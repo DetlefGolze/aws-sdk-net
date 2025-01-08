@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvents.Model
 {
     /// <summary>
@@ -68,7 +69,7 @@ namespace Amazon.CloudWatchEvents.Model
         /// <summary>
         /// Gets and sets the property Destination. 
         /// <para>
-        /// A <code>ReplayDestination</code> object that contains details about the replay.
+        /// A <c>ReplayDestination</c> object that contains details about the replay.
         /// </para>
         /// </summary>
         public ReplayDestination Destination

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -40,7 +41,8 @@ namespace Amazon.Imagebuilder.Model
         /// Gets and sets the property RepositoryName. 
         /// <para>
         /// The name of the container repository where the output container image is stored. This
-        /// name is prefixed by the repository location.
+        /// name is prefixed by the repository location. For example, <c>&lt;repository location
+        /// url&gt;/repository_name</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1024)]

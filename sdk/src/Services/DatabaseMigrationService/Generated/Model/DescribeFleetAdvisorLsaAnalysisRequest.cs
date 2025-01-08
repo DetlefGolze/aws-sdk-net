@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -59,10 +60,10 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If <code>NextToken</code> is returned by a previous response, there are more results
-        /// available. The value of <code>NextToken</code> is a unique pagination token for each
-        /// page. Make the call again using the returned token to retrieve the next page. Keep
-        /// all other arguments unchanged. 
+        /// If <c>NextToken</c> is returned by a previous response, there are more results available.
+        /// The value of <c>NextToken</c> is a unique pagination token for each page. Make the
+        /// call again using the returned token to retrieve the next page. Keep all other arguments
+        /// unchanged. 
         /// </para>
         /// </summary>
         public string NextToken

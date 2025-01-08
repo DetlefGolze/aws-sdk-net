@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Route53Domains.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.Route53Domains.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAdminContact())
@@ -74,6 +76,17 @@ namespace Amazon.Route53Domains.Model.Internal.MarshallTransformations
 
                     var marshaller = ContactDetailMarshaller.Instance;
                     marshaller.Marshall(publicRequest.AdminContact, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetBillingContact())
+                {
+                    context.Writer.WritePropertyName("BillingContact");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ContactDetailMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.BillingContact, context);
 
                     context.Writer.WriteObjectEnd();
                 }

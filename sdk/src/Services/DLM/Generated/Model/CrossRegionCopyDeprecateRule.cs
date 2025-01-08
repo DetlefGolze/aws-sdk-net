@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DLM.Model
 {
     /// <summary>
-    /// <b>[AMI policies only]</b> Specifies an AMI deprecation rule for cross-Region AMI
-    /// copies created by an AMI policy.
+    /// <b>[Custom AMI policies only]</b> Specifies an AMI deprecation rule for cross-Region
+    /// AMI copies created by an AMI policy.
     /// </summary>
     public partial class CrossRegionCopyDeprecateRule
     {
@@ -62,7 +63,7 @@ namespace Amazon.DLM.Model
         /// Gets and sets the property IntervalUnit. 
         /// <para>
         /// The unit of time in which to measure the <b>Interval</b>. For example, to deprecate
-        /// a cross-Region AMI copy after 3 months, specify <code>Interval=3</code> and <code>IntervalUnit=MONTHS</code>.
+        /// a cross-Region AMI copy after 3 months, specify <c>Interval=3</c> and <c>IntervalUnit=MONTHS</c>.
         /// </para>
         /// </summary>
         public RetentionIntervalUnitValues IntervalUnit

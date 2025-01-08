@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The configuration of selected fields in the<code>CustomActionFilterOperation</code>.
+    /// The configuration of selected fields in the<c>CustomActionFilterOperation</c>.
     /// 
     ///  
     /// <para>
@@ -39,9 +40,9 @@ namespace Amazon.QuickSight.Model
     /// </summary>
     public partial class FilterOperationSelectedFieldsConfiguration
     {
-        private List<ColumnIdentifier> _selectedColumns = new List<ColumnIdentifier>();
+        private List<ColumnIdentifier> _selectedColumns = AWSConfigs.InitializeCollections ? new List<ColumnIdentifier>() : null;
         private SelectedFieldOptions _selectedFieldOptions;
-        private List<string> _selectedFields = new List<string>();
+        private List<string> _selectedFields = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property SelectedColumns. 
@@ -59,14 +60,14 @@ namespace Amazon.QuickSight.Model
         // Check to see if SelectedColumns property is set
         internal bool IsSetSelectedColumns()
         {
-            return this._selectedColumns != null && this._selectedColumns.Count > 0; 
+            return this._selectedColumns != null && (this._selectedColumns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SelectedFieldOptions. 
         /// <para>
         /// A structure that contains the options that choose which fields are filtered in the
-        /// <code>CustomActionFilterOperation</code>.
+        /// <c>CustomActionFilterOperation</c>.
         /// </para>
         ///  
         /// <para>
@@ -74,7 +75,7 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ALL_FIELDS</code>: Applies the filter operation to all fields.
+        ///  <c>ALL_FIELDS</c>: Applies the filter operation to all fields.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -93,7 +94,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property SelectedFields. 
         /// <para>
-        /// Chooses the fields that are filtered in <code>CustomActionFilterOperation</code>.
+        /// Chooses the fields that are filtered in <c>CustomActionFilterOperation</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=20)]
@@ -106,7 +107,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if SelectedFields property is set
         internal bool IsSetSelectedFields()
         {
-            return this._selectedFields != null && this._selectedFields.Count > 0; 
+            return this._selectedFields != null && (this._selectedFields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

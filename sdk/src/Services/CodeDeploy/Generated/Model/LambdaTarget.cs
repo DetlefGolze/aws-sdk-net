@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.CodeDeploy.Model
         private string _deploymentId;
         private LambdaFunctionInfo _lambdaFunctionInfo;
         private DateTime? _lastUpdatedAt;
-        private List<LifecycleEvent> _lifecycleEvents = new List<LifecycleEvent>();
+        private List<LifecycleEvent> _lifecycleEvents = AWSConfigs.InitializeCollections ? new List<LifecycleEvent>() : null;
         private TargetStatus _status;
         private string _targetArn;
         private string _targetId;
@@ -62,8 +63,7 @@ namespace Amazon.CodeDeploy.Model
         /// <summary>
         /// Gets and sets the property LambdaFunctionInfo. 
         /// <para>
-        ///  A <code>LambdaFunctionInfo</code> object that describes a target Lambda function.
-        /// 
+        ///  A <c>LambdaFunctionInfo</c> object that describes a target Lambda function. 
         /// </para>
         /// </summary>
         public LambdaFunctionInfo LambdaFunctionInfo
@@ -111,7 +111,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if LifecycleEvents property is set
         internal bool IsSetLifecycleEvents()
         {
-            return this._lifecycleEvents != null && this._lifecycleEvents.Count > 0; 
+            return this._lifecycleEvents != null && (this._lifecycleEvents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -153,8 +153,7 @@ namespace Amazon.CodeDeploy.Model
         /// <summary>
         /// Gets and sets the property TargetId. 
         /// <para>
-        ///  The unique ID of a deployment target that has a type of <code>lambdaTarget</code>.
-        /// 
+        ///  The unique ID of a deployment target that has a type of <c>lambdaTarget</c>. 
         /// </para>
         /// </summary>
         public string TargetId

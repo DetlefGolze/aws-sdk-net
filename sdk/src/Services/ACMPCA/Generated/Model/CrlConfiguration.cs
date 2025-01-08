@@ -26,23 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ACMPCA.Model
 {
     /// <summary>
     /// Contains configuration information for a certificate revocation list (CRL). Your private
     /// certificate authority (CA) creates base CRLs. Delta CRLs are not supported. You can
     /// enable CRLs for your new or an existing private CA by setting the <b>Enabled</b> parameter
-    /// to <code>true</code>. Your private CA writes CRLs to an S3 bucket that you specify
-    /// in the <b>S3BucketName</b> parameter. You can hide the name of your bucket by specifying
-    /// a value for the <b>CustomCname</b> parameter. Your private CA copies the CNAME or
-    /// the S3 bucket name to the <b>CRL Distribution Points</b> extension of each certificate
-    /// it issues. Your S3 bucket policy must give write permission to Amazon Web Services
-    /// Private CA. 
+    /// to <c>true</c>. Your private CA writes CRLs to an S3 bucket that you specify in the
+    /// <b>S3BucketName</b> parameter. You can hide the name of your bucket by specifying
+    /// a value for the <b>CustomCname</b> parameter. Your private CA by default copies the
+    /// CNAME or the S3 bucket name to the <b>CRL Distribution Points</b> extension of each
+    /// certificate it issues. If you want to configure this default behavior to be something
+    /// different, you can set the <b>CrlDistributionPointExtensionConfiguration</b> parameter.
+    /// Your S3 bucket policy must give write permission to Amazon Web Services Private CA.
+    /// 
     /// 
     ///  
     /// <para>
     /// Amazon Web Services Private CA assets that are stored in Amazon S3 can be protected
-    /// with encryption. For more information, see <a href="https://docs.aws.amazon.com/privateca/latest/userguide/PcaCreateCa.html#crl-encryption">Encrypting
+    /// with encryption. For more information, see <a href="https://docs.aws.amazon.com/privateca/latest/userguide/crl-planning.html#crl-encryption">Encrypting
     /// Your CRLs</a>.
     /// </para>
     ///  
@@ -133,7 +136,7 @@ namespace Amazon.ACMPCA.Model
     /// </para>
     ///  
     /// <para>
-    ///  <code>openssl crl -inform DER -text -in <i>crl_path</i> -noout</code> 
+    ///  <c>openssl crl -inform DER -text -in <i>crl_path</i> -noout</c> 
     /// </para>
     ///  
     /// <para>
@@ -144,11 +147,32 @@ namespace Amazon.ACMPCA.Model
     /// </summary>
     public partial class CrlConfiguration
     {
+        private CrlDistributionPointExtensionConfiguration _crlDistributionPointExtensionConfiguration;
         private string _customCname;
         private bool? _enabled;
         private int? _expirationInDays;
         private string _s3BucketName;
         private S3ObjectAcl _s3ObjectAcl;
+
+        /// <summary>
+        /// Gets and sets the property CrlDistributionPointExtensionConfiguration. 
+        /// <para>
+        /// Configures the behavior of the CRL Distribution Point extension for certificates issued
+        /// by your certificate authority. If this field is not provided, then the CRl Distribution
+        /// Point Extension will be present and contain the default CRL URL.
+        /// </para>
+        /// </summary>
+        public CrlDistributionPointExtensionConfiguration CrlDistributionPointExtensionConfiguration
+        {
+            get { return this._crlDistributionPointExtensionConfiguration; }
+            set { this._crlDistributionPointExtensionConfiguration = value; }
+        }
+
+        // Check to see if CrlDistributionPointExtensionConfiguration property is set
+        internal bool IsSetCrlDistributionPointExtensionConfiguration()
+        {
+            return this._crlDistributionPointExtensionConfiguration != null;
+        }
 
         /// <summary>
         /// Gets and sets the property CustomCname. 
@@ -232,7 +256,7 @@ namespace Amazon.ACMPCA.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>S3BucketName</code> parameter must conform to the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html">S3
+        /// The <c>S3BucketName</c> parameter must conform to the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html">S3
         /// bucket naming rules</a>.
         /// </para>
         ///  </note>
@@ -261,16 +285,15 @@ namespace Amazon.ACMPCA.Model
         /// </para>
         ///  
         /// <para>
-        /// If no value is specified, the default is <code>PUBLIC_READ</code>.
+        /// If no value is specified, the default is <c>PUBLIC_READ</c>.
         /// </para>
         ///  
         /// <para>
         ///  <i>Note:</i> This default can cause CA creation to fail in some circumstances. If
         /// you have have enabled the Block Public Access (BPA) feature in your S3 account, then
-        /// you must specify the value of this parameter as <code>BUCKET_OWNER_FULL_CONTROL</code>,
+        /// you must specify the value of this parameter as <c>BUCKET_OWNER_FULL_CONTROL</c>,
         /// and not doing so results in an error. If you have disabled BPA in S3, then you can
-        /// specify either <code>BUCKET_OWNER_FULL_CONTROL</code> or <code>PUBLIC_READ</code>
-        /// as the value.
+        /// specify either <c>BUCKET_OWNER_FULL_CONTROL</c> or <c>PUBLIC_READ</c> as the value.
         /// </para>
         ///  
         /// <para>

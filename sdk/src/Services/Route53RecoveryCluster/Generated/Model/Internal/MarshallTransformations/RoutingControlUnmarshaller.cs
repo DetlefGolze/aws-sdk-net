@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Route53RecoveryCluster.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Route53RecoveryCluster.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public RoutingControl Unmarshall(JsonUnmarshallerContext context)
         {
+            RoutingControl unmarshalledObject = new RoutingControl();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            RoutingControl unmarshalledObject = new RoutingControl();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -74,6 +76,12 @@ namespace Amazon.Route53RecoveryCluster.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.ControlPanelName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("Owner", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Owner = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("RoutingControlArn", targetDepth))
@@ -95,7 +103,6 @@ namespace Amazon.Route53RecoveryCluster.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

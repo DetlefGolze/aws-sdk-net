@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
-    /// The content type of the <code>Invoke</code> request body is not JSON.
+    /// The content type of the <c>Invoke</c> request body is not JSON.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

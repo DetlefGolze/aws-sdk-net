@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -62,16 +63,16 @@ namespace Amazon.IdentityManagement.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Amazon Web Services always interprets the tag <code>Value</code> as a single string.
-    /// If you need to store an array, you can store comma-separated values in the string.
-    /// However, you must interpret the value in your code.
+    /// Amazon Web Services always interprets the tag <c>Value</c> as a single string. If
+    /// you need to store an array, you can store comma-separated values in the string. However,
+    /// you must interpret the value in your code.
     /// </para>
     ///  </li> </ul> </note>
     /// </summary>
     public partial class TagInstanceProfileRequest : AmazonIdentityManagementServiceRequest
     {
         private string _instanceProfileName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property InstanceProfileName. 
@@ -115,7 +116,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

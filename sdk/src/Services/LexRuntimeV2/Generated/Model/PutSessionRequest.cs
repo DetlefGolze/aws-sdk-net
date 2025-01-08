@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexRuntimeV2.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.LexRuntimeV2.Model
         private string _botAliasId;
         private string _botId;
         private string _localeId;
-        private List<Message> _messages = new List<Message>();
-        private Dictionary<string, string> _requestAttributes = new Dictionary<string, string>();
+        private List<Message> _messages = AWSConfigs.InitializeCollections ? new List<Message>() : null;
+        private Dictionary<string, string> _requestAttributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _responseContentType;
         private string _sessionId;
         private SessionState _sessionStateValue;
@@ -118,7 +119,7 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if Messages property is set
         internal bool IsSetMessages()
         {
-            return this._messages != null && this._messages.Count > 0; 
+            return this._messages != null && (this._messages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -128,8 +129,8 @@ namespace Amazon.LexRuntimeV2.Model
         /// </para>
         ///  
         /// <para>
-        /// The namespace <code>x-amz-lex:</code> is reserved for special attributes. Don't create
-        /// any request attributes with the prefix <code>x-amz-lex:</code>.
+        /// The namespace <c>x-amz-lex:</c> is reserved for special attributes. Don't create any
+        /// request attributes with the prefix <c>x-amz-lex:</c>.
         /// </para>
         /// </summary>
         public Dictionary<string, string> RequestAttributes
@@ -141,7 +142,7 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if RequestAttributes property is set
         internal bool IsSetRequestAttributes()
         {
-            return this._requestAttributes != null && this._requestAttributes.Count > 0; 
+            return this._requestAttributes != null && (this._requestAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -152,8 +153,8 @@ namespace Amazon.LexRuntimeV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If the value is <code>text/plain; charset=utf-8</code>, Amazon Lex V2 returns text
-        /// in the response.
+        /// If the value is <c>text/plain; charset=utf-8</c>, Amazon Lex V2 returns text in the
+        /// response.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -167,7 +168,7 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if ResponseContentType property is set
         internal bool IsSetResponseContentType()
         {
-            return this._responseContentType != null;
+            return !string.IsNullOrEmpty(this._responseContentType);
         }
 
         /// <summary>

@@ -26,16 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// A <code>TimeEqualityFilter</code> filters values that are equal to a given value.
+    /// A <c>TimeEqualityFilter</c> filters values that are equal to a given value.
     /// </summary>
     public partial class TimeEqualityFilter
     {
         private ColumnIdentifier _column;
+        private DefaultFilterControlConfiguration _defaultFilterControlConfiguration;
         private string _filterId;
         private string _parameterName;
+        private RollingDateConfiguration _rollingDate;
         private TimeGranularity _timeGranularity;
         private DateTime? _value;
 
@@ -56,6 +59,25 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetColumn()
         {
             return this._column != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DefaultFilterControlConfiguration. 
+        /// <para>
+        /// The default configurations for the associated controls. This applies only for filters
+        /// that are scoped to multiple sheets.
+        /// </para>
+        /// </summary>
+        public DefaultFilterControlConfiguration DefaultFilterControlConfiguration
+        {
+            get { return this._defaultFilterControlConfiguration; }
+            set { this._defaultFilterControlConfiguration = value; }
+        }
+
+        // Check to see if DefaultFilterControlConfiguration property is set
+        internal bool IsSetDefaultFilterControlConfiguration()
+        {
+            return this._defaultFilterControlConfiguration != null;
         }
 
         /// <summary>
@@ -84,7 +106,7 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  
         /// <para>
-        /// This field is mutually exclusive to <code>Value</code>.
+        /// This field is mutually exclusive to <c>Value</c> and <c>RollingDate</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]
@@ -101,9 +123,31 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property RollingDate. 
+        /// <para>
+        /// The rolling date input for the <c>TimeEquality</c> filter.
+        /// </para>
+        ///  
+        /// <para>
+        /// This field is mutually exclusive to <c>Value</c> and <c>ParameterName</c>.
+        /// </para>
+        /// </summary>
+        public RollingDateConfiguration RollingDate
+        {
+            get { return this._rollingDate; }
+            set { this._rollingDate = value; }
+        }
+
+        // Check to see if RollingDate property is set
+        internal bool IsSetRollingDate()
+        {
+            return this._rollingDate != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property TimeGranularity. 
         /// <para>
-        /// The level of time precision that is used to aggregate <code>DateTime</code> values.
+        /// The level of time precision that is used to aggregate <c>DateTime</c> values.
         /// </para>
         /// </summary>
         public TimeGranularity TimeGranularity
@@ -121,11 +165,11 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Value. 
         /// <para>
-        /// The value of a <code>TimeEquality</code> filter.
+        /// The value of a <c>TimeEquality</c> filter.
         /// </para>
         ///  
         /// <para>
-        /// This field is mutually exclusive to <code>ParameterName</code>.
+        /// This field is mutually exclusive to <c>RollingDate</c> and <c>ParameterName</c>.
         /// </para>
         /// </summary>
         public DateTime Value

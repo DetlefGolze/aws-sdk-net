@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ACMPCA.Model
 {
     /// <summary>
-    /// Defines a <code>PolicyInformation</code> qualifier. Amazon Web Services Private CA
-    /// supports the <a href="https://datatracker.ietf.org/doc/html/rfc5280#section-4.2.1.4">certification
+    /// Defines a <c>PolicyInformation</c> qualifier. Amazon Web Services Private CA supports
+    /// the <a href="https://datatracker.ietf.org/doc/html/rfc5280#section-4.2.1.4">certification
     /// practice statement (CPS) qualifier</a> defined in RFC 5280.
     /// </summary>
     public partial class Qualifier

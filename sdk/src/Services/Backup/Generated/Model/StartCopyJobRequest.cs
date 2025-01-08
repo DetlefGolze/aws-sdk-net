@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -50,7 +51,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property DestinationBackupVaultArn. 
         /// <para>
         /// An Amazon Resource Name (ARN) that uniquely identifies a destination backup vault
-        /// to copy to; for example, <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>.
+        /// to copy to; for example, <c>arn:aws:backup:us-east-1:123456789012:backup-vault:aBackupVault</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -69,7 +70,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property IamRoleArn. 
         /// <para>
-        /// Specifies the IAM role ARN used to copy the target recovery point; for example, <code>arn:aws:iam::123456789012:role/S3Access</code>.
+        /// Specifies the IAM role ARN used to copy the target recovery point; for example, <c>arn:aws:iam::123456789012:role/S3Access</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -89,7 +90,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property IdempotencyToken. 
         /// <para>
         /// A customer-chosen string that you can use to distinguish between otherwise identical
-        /// calls to <code>StartCopyJob</code>. Retrying a successful request with the same idempotency
+        /// calls to <c>StartCopyJob</c>. Retrying a successful request with the same idempotency
         /// token results in a success message with no action taken.
         /// </para>
         /// </summary>
@@ -146,8 +147,7 @@ namespace Amazon.Backup.Model
         /// <para>
         /// The name of a logical source container where backups are stored. Backup vaults are
         /// identified by names that are unique to the account used to create them and the Amazon
-        /// Web Services Region where they are created. They consist of lowercase letters, numbers,
-        /// and hyphens.
+        /// Web Services Region where they are created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

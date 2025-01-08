@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.KeyManagementService.Model
         /// <summary>
         /// Gets and sets the property AliasName. 
         /// <para>
-        /// String that contains the alias. This value begins with <code>alias/</code>.
+        /// String that contains the alias. This value begins with <c>alias/</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Athena.Model
 {
     /// <summary>
@@ -35,14 +36,15 @@ namespace Amazon.Athena.Model
     /// configure the query results location and the encryption configuration (known as workgroup
     /// settings), to enable sending query metrics to Amazon CloudWatch, and to establish
     /// per-query data usage control limits for all queries in a workgroup. The workgroup
-    /// settings override is specified in <code>EnforceWorkGroupConfiguration</code> (true/false)
-    /// in the <code>WorkGroupConfiguration</code>. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.
+    /// settings override is specified in <c>EnforceWorkGroupConfiguration</c> (true/false)
+    /// in the <c>WorkGroupConfiguration</c>. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.
     /// </summary>
     public partial class WorkGroup
     {
         private WorkGroupConfiguration _configuration;
         private DateTime? _creationTime;
         private string _description;
+        private string _identityCenterApplicationArn;
         private string _name;
         private WorkGroupState _state;
 
@@ -54,8 +56,8 @@ namespace Amazon.Athena.Model
         /// for query and calculation results; whether the Amazon CloudWatch Metrics are enabled
         /// for the workgroup; whether workgroup settings override client-side settings; and the
         /// data usage limits for the amount of data scanned per query or per workgroup. The workgroup
-        /// settings override is specified in <code>EnforceWorkGroupConfiguration</code> (true/false)
-        /// in the <code>WorkGroupConfiguration</code>. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.
+        /// settings override is specified in <c>EnforceWorkGroupConfiguration</c> (true/false)
+        /// in the <c>WorkGroupConfiguration</c>. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.
         /// </para>
         /// </summary>
         public WorkGroupConfiguration Configuration
@@ -105,6 +107,25 @@ namespace Amazon.Athena.Model
         internal bool IsSetDescription()
         {
             return this._description != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IdentityCenterApplicationArn. 
+        /// <para>
+        /// The ARN of the IAM Identity Center enabled application associated with the workgroup.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=255)]
+        public string IdentityCenterApplicationArn
+        {
+            get { return this._identityCenterApplicationArn; }
+            set { this._identityCenterApplicationArn = value; }
+        }
+
+        // Check to see if IdentityCenterApplicationArn property is set
+        internal bool IsSetIdentityCenterApplicationArn()
+        {
+            return this._identityCenterApplicationArn != null;
         }
 
         /// <summary>

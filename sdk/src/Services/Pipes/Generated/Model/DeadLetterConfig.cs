@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pipes.Model
 {
     /// <summary>
-    /// A <code>DeadLetterConfig</code> object that contains information about a dead-letter
-    /// queue configuration.
+    /// A <c>DeadLetterConfig</c> object that contains information about a dead-letter queue
+    /// configuration.
     /// </summary>
     public partial class DeadLetterConfig
     {
@@ -39,7 +40,12 @@ namespace Amazon.Pipes.Model
         /// <summary>
         /// Gets and sets the property Arn. 
         /// <para>
-        /// The ARN of the Amazon SQS queue specified as the target for the dead-letter queue.
+        /// The ARN of the specified target for the dead-letter queue. 
+        /// </para>
+        ///  
+        /// <para>
+        /// For Amazon Kinesis stream and Amazon DynamoDB stream sources, specify either an Amazon
+        /// SNS topic or Amazon SQS queue ARN.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1600)]

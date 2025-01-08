@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.RDS.Model
     /// 
     ///  <note> 
     /// <para>
-    /// The DB snapshot must be in the <code>available</code> state to be deleted.
+    /// The DB snapshot must be in the <c>available</c> state to be deleted.
     /// </para>
     ///  </note>
     /// </summary>
@@ -50,7 +51,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Instantiates DeleteDBSnapshotRequest with the parameterized properties
         /// </summary>
-        /// <param name="dbSnapshotIdentifier">The DB snapshot identifier. Constraints: Must be the name of an existing DB snapshot in the <code>available</code> state.</param>
+        /// <param name="dbSnapshotIdentifier">The DB snapshot identifier. Constraints: Must be the name of an existing DB snapshot in the <c>available</c> state.</param>
         public DeleteDBSnapshotRequest(string dbSnapshotIdentifier)
         {
             _dbSnapshotIdentifier = dbSnapshotIdentifier;
@@ -63,8 +64,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Constraints: Must be the name of an existing DB snapshot in the <code>available</code>
-        /// state.
+        /// Constraints: Must be the name of an existing DB snapshot in the <c>available</c> state.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

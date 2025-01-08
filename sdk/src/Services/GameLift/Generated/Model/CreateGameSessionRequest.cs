@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.GameLift.Model
     /// Creates a multiplayer game session for players in a specific fleet location. This
     /// operation prompts an available server process to start a game session and retrieves
     /// connection information for the new game session. As an alternative, consider using
-    /// the Amazon GameLift game session placement feature with <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_StartGameSessionPlacement.html">StartGameSessionPlacement</a>
-    /// , which uses the FleetIQ algorithm and queues to optimize the placement process.
+    /// the Amazon GameLift game session placement feature with <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_StartGameSessionPlacement.html">StartGameSessionPlacement</a>,
+    /// which uses the FleetIQ algorithm and queues to optimize the placement process.
     /// 
     ///  
     /// <para>
     /// When creating a game session, you specify exactly where you want to place it and provide
-    /// a set of game session configuration settings. The target fleet must be in <code>ACTIVE</code>
+    /// a set of game session configuration settings. The target fleet must be in <c>ACTIVE</c>
     /// status. 
     /// </para>
     ///  
@@ -64,11 +65,11 @@ namespace Amazon.GameLift.Model
     ///  </li> </ul> 
     /// <para>
     /// If successful, Amazon GameLift initiates a workflow to start a new game session and
-    /// returns a <code>GameSession</code> object containing the game session configuration
-    /// and status. When the game session status is <code>ACTIVE</code>, it is updated with
-    /// connection information and you can create player sessions for the game session. By
-    /// default, newly created game sessions are open to new players. You can restrict new
-    /// player access by using <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateGameSession.html">UpdateGameSession</a>
+    /// returns a <c>GameSession</c> object containing the game session configuration and
+    /// status. When the game session status is <c>ACTIVE</c>, it is updated with connection
+    /// information and you can create player sessions for the game session. By default, newly
+    /// created game sessions are open to new players. You can restrict new player access
+    /// by using <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateGameSession.html">UpdateGameSession</a>
     /// to change the game session's player session creation policy.
     /// </para>
     ///  
@@ -100,7 +101,7 @@ namespace Amazon.GameLift.Model
         private string _aliasId;
         private string _creatorId;
         private string _fleetId;
-        private List<GameProperty> _gameProperties = new List<GameProperty>();
+        private List<GameProperty> _gameProperties = AWSConfigs.InitializeCollections ? new List<GameProperty>() : null;
         private string _gameSessionData;
         private string _gameSessionId;
         private string _idempotencyToken;
@@ -135,21 +136,20 @@ namespace Amazon.GameLift.Model
         /// </para>
         ///  
         /// <para>
-        /// If you add a resource creation limit policy to a fleet, the <code>CreateGameSession</code>
-        /// operation requires a <code>CreatorId</code>. Amazon GameLift limits the number of
-        /// game session creation requests with the same <code>CreatorId</code> in a specified
-        /// time period.
+        /// If you add a resource creation limit policy to a fleet, the <c>CreateGameSession</c>
+        /// operation requires a <c>CreatorId</c>. Amazon GameLift limits the number of game session
+        /// creation requests with the same <c>CreatorId</c> in a specified time period.
         /// </para>
         ///  
         /// <para>
         /// If you your fleet doesn't have a resource creation limit policy and you provide a
-        /// <code>CreatorId</code> in your <code>CreateGameSession</code> requests, Amazon GameLift
-        /// limits requests to one request per <code>CreatorId</code> per second.
+        /// <c>CreatorId</c> in your <c>CreateGameSession</c> requests, Amazon GameLift limits
+        /// requests to one request per <c>CreatorId</c> per second.
         /// </para>
         ///  
         /// <para>
-        /// To not limit <code>CreateGameSession</code> requests with the same <code>CreatorId</code>,
-        /// don't provide a <code>CreatorId</code> in your <code>CreateGameSession</code> request.
+        /// To not limit <c>CreateGameSession</c> requests with the same <c>CreatorId</c>, don't
+        /// provide a <c>CreatorId</c> in your <c>CreateGameSession</c> request.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -173,6 +173,7 @@ namespace Amazon.GameLift.Model
         /// ID, but not both.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -188,10 +189,9 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property GameProperties. 
         /// <para>
-        /// A set of custom properties for a game session, formatted as key:value pairs. These
-        /// properties are passed to a game server process with a request to start a new game
-        /// session (see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
-        /// a Game Session</a>).
+        /// A set of key-value pairs that can store custom data in a game session. For example:
+        /// <c>{"Key": "difficulty", "Value": "novice"}</c>. For an example, see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-client-api.html#game-properties-create">Create
+        /// a game session with custom properties</a>. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=16)]
@@ -204,16 +204,16 @@ namespace Amazon.GameLift.Model
         // Check to see if GameProperties property is set
         internal bool IsSetGameProperties()
         {
-            return this._gameProperties != null && this._gameProperties.Count > 0; 
+            return this._gameProperties != null && (this._gameProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property GameSessionData. 
         /// <para>
         /// A set of custom game session properties, formatted as a single string value. This
-        /// data is passed to a game server process with a request to start a new game session
-        /// (see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
-        /// a Game Session</a>).
+        /// data is passed to a game server process with a request to start a new game session.
+        /// For more information, see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
+        /// a game session</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=262144)]
@@ -232,7 +232,7 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property GameSessionId. 
         /// <para>
-        ///  <i>This parameter is deprecated. Use <code>IdempotencyToken</code> instead.</i> 
+        ///  <i>This parameter is deprecated. Use <c>IdempotencyToken</c> instead.</i> 
         /// </para>
         ///  
         /// <para>
@@ -259,13 +259,13 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// Custom string that uniquely identifies the new game session request. This is useful
         /// for ensuring that game session requests with the same idempotency token are processed
-        /// only once. Subsequent requests with the same string return the original <code>GameSession</code>
+        /// only once. Subsequent requests with the same string return the original <c>GameSession</c>
         /// object, with an updated status. Maximum token length is 48 characters. If provided,
         /// this string is included in the new game session's ID. A game session ARN has the following
-        /// format: <code>arn:aws:gamelift:&lt;region&gt;::gamesession/&lt;fleet ID&gt;/&lt;custom
-        /// ID string or idempotency token&gt;</code>. Idempotency tokens remain in use for 30
-        /// days after a game session has ended; game session objects are retained for this time
-        /// period and then deleted.
+        /// format: <c>arn:aws:gamelift:&lt;region&gt;::gamesession/&lt;fleet ID&gt;/&lt;custom
+        /// ID string or idempotency token&gt;</c>. Idempotency tokens remain in use for 30 days
+        /// after a game session has ended; game session objects are retained for this time period
+        /// and then deleted.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=48)]
@@ -286,9 +286,8 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// A fleet's remote location to place the new game session in. If this parameter is not
         /// set, the new game session is placed in the fleet's home Region. Specify a remote location
-        /// with an Amazon Web Services Region code such as <code>us-west-2</code>. When using
-        /// an Anywhere fleet, this parameter is required and must be set to the Anywhere fleet's
-        /// custom location.
+        /// with an Amazon Web Services Region code such as <c>us-west-2</c>. When using an Anywhere
+        /// fleet, this parameter is required and must be set to the Anywhere fleet's custom location.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]

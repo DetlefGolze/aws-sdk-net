@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -99,7 +100,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// The ARN of the Key Management Service (KMS) CMK used for encryption.
+        /// Identifier (key ID, key alias, key ARN, or alias ARN) of the customer managed KMS
+        /// key to use for EBS encryption.
         /// </para>
         /// </summary>
         public string KmsKeyId

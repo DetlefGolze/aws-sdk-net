@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -37,9 +38,9 @@ namespace Amazon.CloudFormation.Model
     ///  
     /// <para>
     /// For information about requirements for registering as a public extension publisher,
-    /// see <a href="https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/publish-extension.html#publish-extension-prereqs">Registering
-    /// your account to publish CloudFormation extensions</a> in the <i>CloudFormation CLI
-    /// User Guide</i>.
+    /// see <a href="https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/publish-extension.html#publish-extension-prereqs">Prerequisite:
+    /// Registering your account to publish CloudFormation extensions</a> in the <i>CloudFormation
+    /// Command Line Interface (CLI) User Guide</i>.
     /// </para>
     /// </summary>
     public partial class RegisterPublisherRequest : AmazonCloudFormationRequest
@@ -57,7 +58,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// The default is <code>false</code>.
+        /// The default is <c>false</c>.
         /// </para>
         /// </summary>
         public bool AcceptTermsAndConditions
@@ -80,9 +81,9 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// For more information, see <a href="https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/publish-extension.html#publish-extension-prereqs">Registering
-        /// your account to publish CloudFormation extensions</a> in the <i>CloudFormation CLI
-        /// User Guide</i>.
+        /// For more information, see <a href="https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/publish-extension.html#publish-extension-prereqs">Prerequisite:
+        /// Registering your account to publish CloudFormation extensions</a> in the <i>CloudFormation
+        /// Command Line Interface (CLI) User Guide</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]

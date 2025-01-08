@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.LexModelsV2.Model
     {
         private string _botId;
         private string _botVersion;
-        private List<ImportSummary> _importSummaries = new List<ImportSummary>();
+        private List<ImportSummary> _importSummaries = AWSConfigs.InitializeCollections ? new List<ImportSummary>() : null;
         private string _localeId;
         private string _nextToken;
 
@@ -61,7 +62,7 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property BotVersion. 
         /// <para>
-        /// The version of the bot that was imported. It will always be <code>DRAFT</code>.
+        /// The version of the bot that was imported. It will always be <c>DRAFT</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=5, Max=5)]
@@ -81,9 +82,9 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property ImportSummaries. 
         /// <para>
         /// Summary information for the imports that meet the filter criteria specified in the
-        /// request. The length of the list is specified in the <code>maxResults</code> parameter.
-        /// If there are more imports available, the <code>nextToken</code> field contains a token
-        /// to get the next page of results.
+        /// request. The length of the list is specified in the <c>maxResults</c> parameter. If
+        /// there are more imports available, the <c>nextToken</c> field contains a token to get
+        /// the next page of results.
         /// </para>
         /// </summary>
         public List<ImportSummary> ImportSummaries
@@ -95,7 +96,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if ImportSummaries property is set
         internal bool IsSetImportSummaries()
         {
-            return this._importSummaries != null && this._importSummaries.Count > 0; 
+            return this._importSummaries != null && (this._importSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -120,9 +121,9 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token that indicates whether there are more results to return in a response to the
-        /// <code>ListImports</code> operation. If the <code>nextToken</code> field is present,
-        /// you send the contents as the <code>nextToken</code> parameter of a <code>ListImports</code>
-        /// operation request to get the next page of results.
+        /// <c>ListImports</c> operation. If the <c>nextToken</c> field is present, you send the
+        /// contents as the <c>nextToken</c> parameter of a <c>ListImports</c> operation request
+        /// to get the next page of results.
         /// </para>
         /// </summary>
         public string NextToken

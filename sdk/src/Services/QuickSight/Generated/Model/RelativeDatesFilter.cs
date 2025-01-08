@@ -26,15 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// A <code>RelativeDatesFilter</code> filters relative dates values.
+    /// A <c>RelativeDatesFilter</c> filters relative dates values.
     /// </summary>
     public partial class RelativeDatesFilter
     {
         private AnchorDateConfiguration _anchorDateConfiguration;
         private ColumnIdentifier _column;
+        private DefaultFilterControlConfiguration _defaultFilterControlConfiguration;
         private ExcludePeriodConfiguration _excludePeriodConfiguration;
         private string _filterId;
         private TimeGranularity _minimumGranularity;
@@ -80,6 +82,25 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetColumn()
         {
             return this._column != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DefaultFilterControlConfiguration. 
+        /// <para>
+        /// The default configurations for the associated controls. This applies only for filters
+        /// that are scoped to multiple sheets.
+        /// </para>
+        /// </summary>
+        public DefaultFilterControlConfiguration DefaultFilterControlConfiguration
+        {
+            get { return this._defaultFilterControlConfiguration; }
+            set { this._defaultFilterControlConfiguration = value; }
+        }
+
+        // Check to see if DefaultFilterControlConfiguration property is set
+        internal bool IsSetDefaultFilterControlConfiguration()
+        {
+            return this._defaultFilterControlConfiguration != null;
         }
 
         /// <summary>
@@ -144,15 +165,15 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ALL_VALUES</code>: Include null values in filtered results.
+        ///  <c>ALL_VALUES</c>: Include null values in filtered results.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NULLS_ONLY</code>: Only include null values in filtered results.
+        ///  <c>NULLS_ONLY</c>: Only include null values in filtered results.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NON_NULLS_ONLY</code>: Exclude null values from filtered results.
+        ///  <c>NON_NULLS_ONLY</c>: Exclude null values from filtered results.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -195,23 +216,23 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PREVIOUS</code> 
+        ///  <c>PREVIOUS</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>THIS</code> 
+        ///  <c>THIS</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LAST</code> 
+        ///  <c>LAST</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NOW</code> 
+        ///  <c>NOW</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NEXT</code> 
+        ///  <c>NEXT</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -249,7 +270,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property TimeGranularity. 
         /// <para>
-        /// The level of time precision that is used to aggregate <code>DateTime</code> values.
+        /// The level of time precision that is used to aggregate <c>DateTime</c> values.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

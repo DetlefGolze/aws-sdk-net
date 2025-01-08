@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -199,71 +200,19 @@ namespace Amazon.NetworkManager.Model
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The resource type.
-        /// </para>
-        ///  
-        /// <para>
-        /// The following are the supported resource types for Direct Connect:
+        /// The resource type. The following are the supported resource types:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>dxcon</code> 
+        ///  <c>connect-peer</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>dx-gateway</code> 
+        ///  <c>transit-gateway-connect-peer</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>dx-vif</code> 
-        /// </para>
-        ///  </li> </ul> 
-        /// <para>
-        /// The following are the supported resource types for Network Manager:
-        /// </para>
-        ///  <ul> <li> 
-        /// <para>
-        ///  <code>connection</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>device</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>link</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>site</code> 
-        /// </para>
-        ///  </li> </ul> 
-        /// <para>
-        /// The following are the supported resource types for Amazon VPC:
-        /// </para>
-        ///  <ul> <li> 
-        /// <para>
-        ///  <code>customer-gateway</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>transit-gateway</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>transit-gateway-attachment</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>transit-gateway-connect-peer</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>transit-gateway-route-table</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>vpn-connection</code> 
+        ///  <c>vpn-connection</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

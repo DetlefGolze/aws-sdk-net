@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace Amazon.Glue.Model
     public partial class GetDataQualityRulesetResponse : AmazonWebServiceResponse
     {
         private DateTime? _createdOn;
+        private string _dataQualitySecurityConfiguration;
         private string _description;
         private DateTime? _lastModifiedOn;
         private string _name;
@@ -57,6 +59,25 @@ namespace Amazon.Glue.Model
         internal bool IsSetCreatedOn()
         {
             return this._createdOn.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property DataQualitySecurityConfiguration. 
+        /// <para>
+        /// The name of the security configuration created with the data quality encryption option.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=255)]
+        public string DataQualitySecurityConfiguration
+        {
+            get { return this._dataQualitySecurityConfiguration; }
+            set { this._dataQualitySecurityConfiguration = value; }
+        }
+
+        // Check to see if DataQualitySecurityConfiguration property is set
+        internal bool IsSetDataQualitySecurityConfiguration()
+        {
+            return this._dataQualitySecurityConfiguration != null;
         }
 
         /// <summary>

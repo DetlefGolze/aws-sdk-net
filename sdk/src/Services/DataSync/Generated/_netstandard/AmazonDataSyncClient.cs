@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.DataSync
 {
     /// <summary>
-    /// Implementation for accessing DataSync
+    /// <para>Implementation for accessing DataSync</para>
     ///
     /// DataSync 
     /// <para>
@@ -383,29 +384,14 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Activates an DataSync agent that you've deployed in your storage environment. The
-        /// activation process associates the agent with your Amazon Web Services account.
+        /// Activates an DataSync agent that you deploy in your storage environment. The activation
+        /// process associates the agent with your Amazon Web Services account.
         /// 
         ///  
         /// <para>
-        /// If you haven't deployed an agent yet, see the following topics to learn more:
+        /// If you haven't deployed an agent yet, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/do-i-need-datasync-agent.html">Do
+        /// I need a DataSync agent?</a> 
         /// </para>
-        ///  <ul> <li> 
-        /// <para>
-        ///  <a href="https://docs.aws.amazon.com/datasync/latest/userguide/agent-requirements.html">Agent
-        /// requirements</a> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <a href="https://docs.aws.amazon.com/datasync/latest/userguide/configure-agent.html">Create
-        /// an agent</a> 
-        /// </para>
-        ///  </li> </ul> <note> 
-        /// <para>
-        /// If you're transferring between Amazon Web Services storage services, you don't need
-        /// a DataSync agent. 
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateAgent service method.</param>
         /// <param name="cancellationToken">
@@ -445,8 +431,8 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Creates an endpoint for a Microsoft Azure Blob Storage container that DataSync can
-        /// use as a transfer source or destination.
+        /// Creates a transfer <i>location</i> for a Microsoft Azure Blob Storage container. DataSync
+        /// can use this location as a transfer source or destination.
         /// 
         ///  
         /// <para>
@@ -495,9 +481,14 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Creates an endpoint for an Amazon EFS file system that DataSync can access for a transfer.
-        /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-efs-location.html">Creating
-        /// a location for Amazon EFS</a>.
+        /// Creates a transfer <i>location</i> for an Amazon EFS file system. DataSync can use
+        /// this location as a source or destination for transferring data.
+        /// 
+        ///  
+        /// <para>
+        /// Before you begin, make sure that you understand how DataSync <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-efs-location.html#create-efs-location-access">accesses
+        /// Amazon EFS file systems</a>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateLocationEfs service method.</param>
         /// <param name="cancellationToken">
@@ -537,7 +528,14 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Creates an endpoint for an Amazon FSx for Lustre file system.
+        /// Creates a transfer <i>location</i> for an Amazon FSx for Lustre file system. DataSync
+        /// can use this location as a source or destination for transferring data.
+        /// 
+        ///  
+        /// <para>
+        /// Before you begin, make sure that you understand how DataSync <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-lustre-location.html#create-lustre-location-access">accesses
+        /// FSx for Lustre file systems</a>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateLocationFsxLustre service method.</param>
         /// <param name="cancellationToken">
@@ -577,9 +575,14 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Creates an endpoint for an Amazon FSx for NetApp ONTAP file system that DataSync can
-        /// access for a transfer. For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-ontap-location.html">Creating
-        /// a location for FSx for ONTAP</a>.
+        /// Creates a transfer <i>location</i> for an Amazon FSx for NetApp ONTAP file system.
+        /// DataSync can use this location as a source or destination for transferring data.
+        /// 
+        ///  
+        /// <para>
+        /// Before you begin, make sure that you understand how DataSync <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-ontap-location.html#create-ontap-location-access">accesses
+        /// FSx for ONTAP file systems</a>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateLocationFsxOntap service method.</param>
         /// <param name="cancellationToken">
@@ -619,13 +622,17 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Creates an endpoint for an Amazon FSx for OpenZFS file system that DataSync can access
-        /// for a transfer. For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-openzfs-location.html">Creating
-        /// a location for FSx for OpenZFS</a>.
+        /// Creates a transfer <i>location</i> for an Amazon FSx for OpenZFS file system. DataSync
+        /// can use this location as a source or destination for transferring data.
         /// 
+        ///  
+        /// <para>
+        /// Before you begin, make sure that you understand how DataSync <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-openzfs-location.html#create-openzfs-access">accesses
+        /// FSx for OpenZFS file systems</a>.
+        /// </para>
         ///  <note> 
         /// <para>
-        /// Request parameters related to <code>SMB</code> aren't supported with the <code>CreateLocationFsxOpenZfs</code>
+        /// Request parameters related to <c>SMB</c> aren't supported with the <c>CreateLocationFsxOpenZfs</c>
         /// operation.
         /// </para>
         ///  </note>
@@ -668,7 +675,15 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Creates an endpoint for an Amazon FSx for Windows File Server file system.
+        /// Creates a transfer <i>location</i> for an Amazon FSx for Windows File Server file
+        /// system. DataSync can use this location as a source or destination for transferring
+        /// data.
+        /// 
+        ///  
+        /// <para>
+        /// Before you begin, make sure that you understand how DataSync <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-fsx-location.html#create-fsx-location-access">accesses
+        /// FSx for Windows File Server file systems</a>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateLocationFsxWindows service method.</param>
         /// <param name="cancellationToken">
@@ -708,7 +723,14 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Creates an endpoint for a Hadoop Distributed File System (HDFS).
+        /// Creates a transfer <i>location</i> for a Hadoop Distributed File System (HDFS). DataSync
+        /// can use this location as a source or destination for transferring data.
+        /// 
+        ///  
+        /// <para>
+        /// Before you begin, make sure that you understand how DataSync <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-hdfs-location.html#accessing-hdfs">accesses
+        /// HDFS clusters</a>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateLocationHdfs service method.</param>
         /// <param name="cancellationToken">
@@ -748,21 +770,14 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Creates an endpoint for a Network File System (NFS) file server that DataSync can
-        /// use for a data transfer.
+        /// Creates a transfer <i>location</i> for a Network File System (NFS) file server. DataSync
+        /// can use this location as a source or destination for transferring data.
         /// 
         ///  
         /// <para>
-        /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html">Configuring
-        /// transfers to or from an NFS file server</a>.
+        /// Before you begin, make sure that you understand how DataSync <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#accessing-nfs">accesses
+        /// NFS file servers</a>.
         /// </para>
-        ///  <note> 
-        /// <para>
-        /// If you're copying data to or from an Snowcone device, you can also use <code>CreateLocationNfs</code>
-        /// to create your transfer location. For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/nfs-on-snowcone.html">Configuring
-        /// transfers with Snowcone</a>.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateLocationNfs service method.</param>
         /// <param name="cancellationToken">
@@ -802,9 +817,14 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Creates an endpoint for an object storage system that DataSync can access for a transfer.
-        /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html">Creating
-        /// a location for object storage</a>.
+        /// Creates a transfer <i>location</i> for an object storage system. DataSync can use
+        /// this location as a source or destination for transferring data.
+        /// 
+        ///  
+        /// <para>
+        /// Before you begin, make sure that you understand the <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html#create-object-location-prerequisites">prerequisites</a>
+        /// for DataSync to work with object storage systems.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateLocationObjectStorage service method.</param>
         /// <param name="cancellationToken">
@@ -844,12 +864,12 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// A <i>location</i> is an endpoint for an Amazon S3 bucket. DataSync can use the location
-        /// as a source or destination for copying data.
+        /// Creates a transfer <i>location</i> for an Amazon S3 bucket. DataSync can use this
+        /// location as a source or destination for transferring data.
         /// 
         ///  <important> 
         /// <para>
-        /// Before you create your location, make sure that you read the following sections:
+        /// Before you begin, make sure that you read the following topics:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -863,8 +883,8 @@ namespace Amazon.DataSync
         /// </para>
         ///  </li> </ul> </important> 
         /// <para>
-        ///  For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-locations-cli.html#create-location-s3-cli">Creating
-        /// an Amazon S3 location</a>.
+        ///  For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html">Configuring
+        /// transfers with Amazon S3</a>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateLocationS3 service method.</param>
@@ -905,13 +925,13 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Creates an endpoint for a Server Message Block (SMB) file server that DataSync can
-        /// use for a data transfer.
+        /// Creates a transfer <i>location</i> for a Server Message Block (SMB) file server. DataSync
+        /// can use this location as a source or destination for transferring data.
         /// 
         ///  
         /// <para>
-        /// Before you begin, make sure that you understand how DataSync <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html">accesses
-        /// an SMB file server</a>.
+        /// Before you begin, make sure that you understand how DataSync <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html#configuring-smb">accesses
+        /// SMB file servers</a>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateLocationSmb service method.</param>
@@ -952,13 +972,12 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Configures a transfer task, which defines where and how DataSync moves your data.
+        /// Configures a <i>task</i>, which defines where and how DataSync transfers your data.
         /// 
         ///  
         /// <para>
-        /// A task includes a source location, destination location, and the options for how and
-        /// when you want to transfer your data (such as bandwidth limits, scheduling, among other
-        /// options).
+        /// A task includes a source location, destination location, and transfer options (such
+        /// as bandwidth limits, scheduling, and more).
         /// </para>
         ///  <important> 
         /// <para>
@@ -1006,10 +1025,16 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Deletes an agent. To specify which agent to delete, use the Amazon Resource Name (ARN)
-        /// of the agent in your request. The operation disassociates the agent from your Amazon
-        /// Web Services account. However, it doesn't delete the agent virtual machine (VM) from
-        /// your on-premises environment.
+        /// Removes an DataSync agent resource from your Amazon Web Services account.
+        /// 
+        ///  
+        /// <para>
+        /// Keep in mind that this operation (which can't be undone) doesn't remove the agent's
+        /// virtual machine (VM) or Amazon EC2 instance from your storage environment. For next
+        /// steps, you can delete the VM or instance from your storage environment or reuse it
+        /// to <a href="https://docs.aws.amazon.com/datasync/latest/userguide/activate-agent.html">activate
+        /// a new agent</a>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteAgent service method.</param>
         /// <param name="cancellationToken">
@@ -1049,7 +1074,7 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Deletes the configuration of a location used by DataSync.
+        /// Deletes a transfer location resource from DataSync.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteLocation service method.</param>
         /// <param name="cancellationToken">
@@ -1089,7 +1114,7 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Deletes an DataSync transfer task.
+        /// Deletes a transfer task resource from DataSync.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteTask service method.</param>
         /// <param name="cancellationToken">
@@ -1129,7 +1154,8 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Returns metadata about an DataSync agent, such as its name, endpoint type, and status.
+        /// Returns information about an DataSync agent, such as its name, service endpoint type,
+        /// and status.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeAgent service method.</param>
         /// <param name="cancellationToken">
@@ -1250,7 +1276,8 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Returns metadata about your DataSync location for an Amazon EFS file system.
+        /// Provides details about how an DataSync transfer location for an Amazon EFS file system
+        /// is configured.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeLocationEfs service method.</param>
         /// <param name="cancellationToken">
@@ -1290,8 +1317,8 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Provides details about how an DataSync location for an Amazon FSx for Lustre file
-        /// system is configured.
+        /// Provides details about how an DataSync transfer location for an Amazon FSx for Lustre
+        /// file system is configured.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeLocationFsxLustre service method.</param>
         /// <param name="cancellationToken">
@@ -1331,13 +1358,13 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Provides details about how an DataSync location for an Amazon FSx for NetApp ONTAP
-        /// file system is configured.
+        /// Provides details about how an DataSync transfer location for an Amazon FSx for NetApp
+        /// ONTAP file system is configured.
         /// 
         ///  <note> 
         /// <para>
-        /// If your location uses SMB, the <code>DescribeLocationFsxOntap</code> operation doesn't
-        /// actually return a <code>Password</code>.
+        /// If your location uses SMB, the <c>DescribeLocationFsxOntap</c> operation doesn't actually
+        /// return a <c>Password</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -1379,12 +1406,12 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Provides details about how an DataSync location for an Amazon FSx for OpenZFS file
-        /// system is configured.
+        /// Provides details about how an DataSync transfer location for an Amazon FSx for OpenZFS
+        /// file system is configured.
         /// 
         ///  <note> 
         /// <para>
-        /// Response elements related to <code>SMB</code> aren't supported with the <code>DescribeLocationFsxOpenZfs</code>
+        /// Response elements related to <c>SMB</c> aren't supported with the <c>DescribeLocationFsxOpenZfs</c>
         /// operation.
         /// </para>
         ///  </note>
@@ -1427,8 +1454,8 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Returns metadata about an Amazon FSx for Windows File Server location, such as information
-        /// about its path.
+        /// Provides details about how an DataSync transfer location for an Amazon FSx for Windows
+        /// File Server file system is configured.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeLocationFsxWindows service method.</param>
         /// <param name="cancellationToken">
@@ -1468,8 +1495,8 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Returns metadata, such as the authentication information about the Hadoop Distributed
-        /// File System (HDFS) location.
+        /// Provides details about how an DataSync transfer location for a Hadoop Distributed
+        /// File System (HDFS) is configured.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeLocationHdfs service method.</param>
         /// <param name="cancellationToken">
@@ -1550,7 +1577,8 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Returns metadata about your DataSync location for an object storage system.
+        /// Provides details about how an DataSync transfer location for an object storage system
+        /// is configured.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeLocationObjectStorage service method.</param>
         /// <param name="cancellationToken">
@@ -1590,7 +1618,7 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Returns metadata, such as bucket name, about an Amazon S3 bucket location.
+        /// Provides details about how an DataSync transfer location for an S3 bucket is configured.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeLocationS3 service method.</param>
         /// <param name="cancellationToken">
@@ -1630,7 +1658,8 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Returns metadata, such as the path and user information about an SMB location.
+        /// Provides details about how an DataSync transfer location for a Server Message Block
+        /// (SMB) file server is configured.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeLocationSmb service method.</param>
         /// <param name="cancellationToken">
@@ -1793,7 +1822,8 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Provides information about an DataSync transfer task.
+        /// Provides information about a <i>task</i>, which defines where and how DataSync transfers
+        /// your data.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeTask service method.</param>
         /// <param name="cancellationToken">
@@ -1834,7 +1864,17 @@ namespace Amazon.DataSync
 
         /// <summary>
         /// Provides information about an execution of your DataSync task. You can use this operation
-        /// to help monitor the progress of an ongoing transfer or check the results of the transfer.
+        /// to help monitor the progress of an ongoing data transfer or check the results of the
+        /// transfer.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// Some <c>DescribeTaskExecution</c> response elements are only relevant to a specific
+        /// task mode. For information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/choosing-task-mode.html#task-mode-differences">Understanding
+        /// task mode differences</a> and <a href="https://docs.aws.amazon.com/datasync/latest/userguide/transfer-performance-counters.html">Understanding
+        /// data transfer performance counters</a>.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeTaskExecution service method.</param>
         /// <param name="cancellationToken">
@@ -1934,12 +1974,12 @@ namespace Amazon.DataSync
         /// </para>
         ///  
         /// <para>
-        ///  <code>ListAgents</code> is eventually consistent. This means the result of running
-        /// the operation might not reflect that you just created or deleted an agent. For example,
+        ///  <c>ListAgents</c> is eventually consistent. This means the result of running the
+        /// operation might not reflect that you just created or deleted an agent. For example,
         /// if you create an agent with <a href="https://docs.aws.amazon.com/datasync/latest/userguide/API_CreateAgent.html">CreateAgent</a>
-        /// and then immediately run <code>ListAgents</code>, that agent might not show up in
-        /// the list right away. In situations like this, you can always confirm whether an agent
-        /// has been created (or deleted) by using <a href="https://docs.aws.amazon.com/datasync/latest/userguide/API_DescribeAgent.html">DescribeAgent</a>.
+        /// and then immediately run <c>ListAgents</c>, that agent might not show up in the list
+        /// right away. In situations like this, you can always confirm whether an agent has been
+        /// created (or deleted) by using <a href="https://docs.aws.amazon.com/datasync/latest/userguide/API_DescribeAgent.html">DescribeAgent</a>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListAgents service method.</param>
@@ -2148,7 +2188,7 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Returns a list of executed tasks.
+        /// Returns a list of executions for an DataSync transfer task.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTaskExecutions service method.</param>
         /// <param name="cancellationToken">
@@ -2316,7 +2356,7 @@ namespace Amazon.DataSync
         /// 
         ///  
         /// <para>
-        /// There are several phases to a task execution. For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/working-with-task-executions.html#understand-task-execution-statuses">Task
+        /// There are several steps to a task execution. For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/working-with-task-executions.html#understand-task-execution-statuses">Task
         /// execution statuses</a>.
         /// </para>
         ///  <important> 
@@ -2499,7 +2539,7 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Updates the name of an agent.
+        /// Updates the name of an DataSync agent.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateAgent service method.</param>
         /// <param name="cancellationToken">
@@ -2579,8 +2619,14 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Modifies some configurations of the Microsoft Azure Blob Storage transfer location
-        /// that you're using with DataSync.
+        /// Modifies the following configurations of the Microsoft Azure Blob Storage transfer
+        /// location that you're using with DataSync.
+        /// 
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/creating-azure-blob-location.html">Configuring
+        /// DataSync transfers with Azure Blob Storage</a>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateLocationAzureBlob service method.</param>
         /// <param name="cancellationToken">
@@ -2606,6 +2652,247 @@ namespace Amazon.DataSync
 
         #endregion
         
+        #region  UpdateLocationEfs
+
+        internal virtual UpdateLocationEfsResponse UpdateLocationEfs(UpdateLocationEfsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateLocationEfsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateLocationEfsResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateLocationEfsResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Modifies the following configuration parameters of the Amazon EFS transfer location
+        /// that you're using with DataSync.
+        /// 
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-efs-location.html">Configuring
+        /// DataSync transfers with Amazon EFS</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateLocationEfs service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateLocationEfs service method, as returned by DataSync.</returns>
+        /// <exception cref="Amazon.DataSync.Model.InternalException">
+        /// This exception is thrown when an error occurs in the DataSync service.
+        /// </exception>
+        /// <exception cref="Amazon.DataSync.Model.InvalidRequestException">
+        /// This exception is thrown when the client submits a malformed request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationEfs">REST API Reference for UpdateLocationEfs Operation</seealso>
+        public virtual Task<UpdateLocationEfsResponse> UpdateLocationEfsAsync(UpdateLocationEfsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateLocationEfsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateLocationEfsResponseUnmarshaller.Instance;
+
+            return InvokeAsync<UpdateLocationEfsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  UpdateLocationFsxLustre
+
+        internal virtual UpdateLocationFsxLustreResponse UpdateLocationFsxLustre(UpdateLocationFsxLustreRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateLocationFsxLustreRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateLocationFsxLustreResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateLocationFsxLustreResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Modifies the following configuration parameters of the Amazon FSx for Lustre transfer
+        /// location that you're using with DataSync.
+        /// 
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-lustre-location.html">Configuring
+        /// DataSync transfers with FSx for Lustre</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateLocationFsxLustre service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateLocationFsxLustre service method, as returned by DataSync.</returns>
+        /// <exception cref="Amazon.DataSync.Model.InternalException">
+        /// This exception is thrown when an error occurs in the DataSync service.
+        /// </exception>
+        /// <exception cref="Amazon.DataSync.Model.InvalidRequestException">
+        /// This exception is thrown when the client submits a malformed request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationFsxLustre">REST API Reference for UpdateLocationFsxLustre Operation</seealso>
+        public virtual Task<UpdateLocationFsxLustreResponse> UpdateLocationFsxLustreAsync(UpdateLocationFsxLustreRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateLocationFsxLustreRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateLocationFsxLustreResponseUnmarshaller.Instance;
+
+            return InvokeAsync<UpdateLocationFsxLustreResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  UpdateLocationFsxOntap
+
+        internal virtual UpdateLocationFsxOntapResponse UpdateLocationFsxOntap(UpdateLocationFsxOntapRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateLocationFsxOntapRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateLocationFsxOntapResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateLocationFsxOntapResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Modifies the following configuration parameters of the Amazon FSx for NetApp ONTAP
+        /// transfer location that you're using with DataSync.
+        /// 
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-ontap-location.html">Configuring
+        /// DataSync transfers with FSx for ONTAP</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateLocationFsxOntap service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateLocationFsxOntap service method, as returned by DataSync.</returns>
+        /// <exception cref="Amazon.DataSync.Model.InternalException">
+        /// This exception is thrown when an error occurs in the DataSync service.
+        /// </exception>
+        /// <exception cref="Amazon.DataSync.Model.InvalidRequestException">
+        /// This exception is thrown when the client submits a malformed request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationFsxOntap">REST API Reference for UpdateLocationFsxOntap Operation</seealso>
+        public virtual Task<UpdateLocationFsxOntapResponse> UpdateLocationFsxOntapAsync(UpdateLocationFsxOntapRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateLocationFsxOntapRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateLocationFsxOntapResponseUnmarshaller.Instance;
+
+            return InvokeAsync<UpdateLocationFsxOntapResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  UpdateLocationFsxOpenZfs
+
+        internal virtual UpdateLocationFsxOpenZfsResponse UpdateLocationFsxOpenZfs(UpdateLocationFsxOpenZfsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateLocationFsxOpenZfsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateLocationFsxOpenZfsResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateLocationFsxOpenZfsResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Modifies the following configuration parameters of the Amazon FSx for OpenZFS transfer
+        /// location that you're using with DataSync.
+        /// 
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-openzfs-location.html">Configuring
+        /// DataSync transfers with FSx for OpenZFS</a>.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// Request parameters related to <c>SMB</c> aren't supported with the <c>UpdateLocationFsxOpenZfs</c>
+        /// operation.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateLocationFsxOpenZfs service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateLocationFsxOpenZfs service method, as returned by DataSync.</returns>
+        /// <exception cref="Amazon.DataSync.Model.InternalException">
+        /// This exception is thrown when an error occurs in the DataSync service.
+        /// </exception>
+        /// <exception cref="Amazon.DataSync.Model.InvalidRequestException">
+        /// This exception is thrown when the client submits a malformed request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationFsxOpenZfs">REST API Reference for UpdateLocationFsxOpenZfs Operation</seealso>
+        public virtual Task<UpdateLocationFsxOpenZfsResponse> UpdateLocationFsxOpenZfsAsync(UpdateLocationFsxOpenZfsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateLocationFsxOpenZfsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateLocationFsxOpenZfsResponseUnmarshaller.Instance;
+
+            return InvokeAsync<UpdateLocationFsxOpenZfsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  UpdateLocationFsxWindows
+
+        internal virtual UpdateLocationFsxWindowsResponse UpdateLocationFsxWindows(UpdateLocationFsxWindowsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateLocationFsxWindowsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateLocationFsxWindowsResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateLocationFsxWindowsResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Modifies the following configuration parameters of the Amazon FSx for Windows File
+        /// Server transfer location that you're using with DataSync.
+        /// 
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-fsx-location.html">Configuring
+        /// DataSync transfers with FSx for Windows File Server</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateLocationFsxWindows service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateLocationFsxWindows service method, as returned by DataSync.</returns>
+        /// <exception cref="Amazon.DataSync.Model.InternalException">
+        /// This exception is thrown when an error occurs in the DataSync service.
+        /// </exception>
+        /// <exception cref="Amazon.DataSync.Model.InvalidRequestException">
+        /// This exception is thrown when the client submits a malformed request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationFsxWindows">REST API Reference for UpdateLocationFsxWindows Operation</seealso>
+        public virtual Task<UpdateLocationFsxWindowsResponse> UpdateLocationFsxWindowsAsync(UpdateLocationFsxWindowsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateLocationFsxWindowsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateLocationFsxWindowsResponseUnmarshaller.Instance;
+
+            return InvokeAsync<UpdateLocationFsxWindowsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  UpdateLocationHdfs
 
         internal virtual UpdateLocationHdfsResponse UpdateLocationHdfs(UpdateLocationHdfsRequest request)
@@ -2620,8 +2907,14 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Updates some parameters of a previously created location for a Hadoop Distributed
-        /// File System cluster.
+        /// Modifies the following configuration parameters of the Hadoop Distributed File System
+        /// (HDFS) transfer location that you're using with DataSync.
+        /// 
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-hdfs-location.html">Configuring
+        /// DataSync transfers with an HDFS cluster</a>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateLocationHdfs service method.</param>
         /// <param name="cancellationToken">
@@ -2661,13 +2954,13 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Modifies some configurations of the Network File System (NFS) transfer location that
-        /// you're using with DataSync.
+        /// Modifies the following configuration parameters of the Network File System (NFS) transfer
+        /// location that you're using with DataSync.
         /// 
         ///  
         /// <para>
         /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html">Configuring
-        /// transfers to or from an NFS file server</a>.
+        /// transfers with an NFS file server</a>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateLocationNfs service method.</param>
@@ -2708,10 +3001,14 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Updates some parameters of an existing object storage location that DataSync accesses
-        /// for a transfer. For information about creating a self-managed object storage location,
-        /// see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html">Creating
-        /// a location for object storage</a>.
+        /// Modifies the following configuration parameters of the object storage transfer location
+        /// that you're using with DataSync.
+        /// 
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html">Configuring
+        /// DataSync transfers with an object storage system</a>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateLocationObjectStorage service method.</param>
         /// <param name="cancellationToken">
@@ -2737,6 +3034,63 @@ namespace Amazon.DataSync
 
         #endregion
         
+        #region  UpdateLocationS3
+
+        internal virtual UpdateLocationS3Response UpdateLocationS3(UpdateLocationS3Request request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateLocationS3RequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateLocationS3ResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateLocationS3Response>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Modifies the following configuration parameters of the Amazon S3 transfer location
+        /// that you're using with DataSync.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Before you begin, make sure that you read the following topics:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes">Storage
+        /// class considerations with Amazon S3 locations</a> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#create-s3-location-s3-requests">Evaluating
+        /// S3 request costs when using DataSync</a> 
+        /// </para>
+        ///  </li> </ul> </important>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateLocationS3 service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateLocationS3 service method, as returned by DataSync.</returns>
+        /// <exception cref="Amazon.DataSync.Model.InternalException">
+        /// This exception is thrown when an error occurs in the DataSync service.
+        /// </exception>
+        /// <exception cref="Amazon.DataSync.Model.InvalidRequestException">
+        /// This exception is thrown when the client submits a malformed request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationS3">REST API Reference for UpdateLocationS3 Operation</seealso>
+        public virtual Task<UpdateLocationS3Response> UpdateLocationS3Async(UpdateLocationS3Request request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateLocationS3RequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateLocationS3ResponseUnmarshaller.Instance;
+
+            return InvokeAsync<UpdateLocationS3Response>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  UpdateLocationSmb
 
         internal virtual UpdateLocationSmbResponse UpdateLocationSmb(UpdateLocationSmbRequest request)
@@ -2751,10 +3105,14 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Updates some of the parameters of a previously created location for Server Message
-        /// Block (SMB) file system access. For information about creating an SMB location, see
-        /// <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html">Creating
-        /// a location for SMB</a>.
+        /// Modifies the following configuration parameters of the Server Message Block (SMB)
+        /// transfer location that you're using with DataSync.
+        /// 
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html">Configuring
+        /// DataSync transfers with an SMB file server</a>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateLocationSmb service method.</param>
         /// <param name="cancellationToken">
@@ -2835,7 +3193,8 @@ namespace Amazon.DataSync
 
 
         /// <summary>
-        /// Updates the configuration of a DataSync transfer task.
+        /// Updates the configuration of a <i>task</i>, which defines where and how DataSync transfers
+        /// your data.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateTask service method.</param>
         /// <param name="cancellationToken">
@@ -2879,9 +3238,9 @@ namespace Amazon.DataSync
         /// 
         ///  <note> 
         /// <para>
-        /// Currently, the only <code>Option</code> that you can modify with <code>UpdateTaskExecution</code>
-        /// is <code> <a href="https://docs.aws.amazon.com/datasync/latest/userguide/API_Options.html#DataSync-Type-Options-BytesPerSecond">BytesPerSecond</a>
-        /// </code>, which throttles bandwidth for a running or queued task execution.
+        /// Currently, the only <c>Option</c> that you can modify with <c>UpdateTaskExecution</c>
+        /// is <c> <a href="https://docs.aws.amazon.com/datasync/latest/userguide/API_Options.html#DataSync-Type-Options-BytesPerSecond">BytesPerSecond</a>
+        /// </c>, which throttles bandwidth for a running or queued task execution.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2918,11 +3277,11 @@ namespace Amazon.DataSync
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

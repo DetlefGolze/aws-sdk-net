@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.SimpleEmailV2.Model
     public partial class PutConfigurationSetDeliveryOptionsRequest : AmazonSimpleEmailServiceV2Request
     {
         private string _configurationSetName;
+        private long? _maxDeliverySeconds;
         private string _sendingPoolName;
         private TlsPolicy _tlsPolicy;
 
@@ -56,6 +58,27 @@ namespace Amazon.SimpleEmailV2.Model
         internal bool IsSetConfigurationSetName()
         {
             return this._configurationSetName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property MaxDeliverySeconds. 
+        /// <para>
+        /// The maximum amount of time, in seconds, that Amazon SES API v2 will attempt delivery
+        /// of email. If specified, the value must greater than or equal to 300 seconds (5 minutes)
+        /// and less than or equal to 50400 seconds (840 minutes). 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=300, Max=50400)]
+        public long MaxDeliverySeconds
+        {
+            get { return this._maxDeliverySeconds.GetValueOrDefault(); }
+            set { this._maxDeliverySeconds = value; }
+        }
+
+        // Check to see if MaxDeliverySeconds property is set
+        internal bool IsSetMaxDeliverySeconds()
+        {
+            return this._maxDeliverySeconds.HasValue; 
         }
 
         /// <summary>
@@ -80,8 +103,8 @@ namespace Amazon.SimpleEmailV2.Model
         /// Gets and sets the property TlsPolicy. 
         /// <para>
         /// Specifies whether messages that use the configuration set are required to use Transport
-        /// Layer Security (TLS). If the value is <code>Require</code>, messages are only delivered
-        /// if a TLS connection can be established. If the value is <code>Optional</code>, messages
+        /// Layer Security (TLS). If the value is <c>Require</c>, messages are only delivered
+        /// if a TLS connection can be established. If the value is <c>Optional</c>, messages
         /// can be delivered in plain text if a TLS connection can't be established.
         /// </para>
         /// </summary>

@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
     /// Container for the parameters to the RevokeGrant operation.
     /// Deletes the specified grant. You revoke a grant to terminate the permissions that
-    /// the grant allows. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/managing-grants.html#grant-delete">Retiring
+    /// the grant allows. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#grant-delete">Retiring
     /// and revoking grants</a> in the <i> <i>Key Management Service Developer Guide</i> </i>.
     /// 
     ///  
@@ -51,7 +52,7 @@ namespace Amazon.KeyManagementService.Model
     ///  
     /// <para>
     ///  <b>Cross-account use</b>: Yes. To perform this operation on a KMS key in a different
-    /// Amazon Web Services account, specify the key ARN in the value of the <code>KeyId</code>
+    /// Amazon Web Services account, specify the key ARN in the value of the <c>KeyId</c>
     /// parameter.
     /// </para>
     ///  
@@ -79,7 +80,12 @@ namespace Amazon.KeyManagementService.Model
     /// <para>
     ///  <a>RetireGrant</a> 
     /// </para>
-    ///  </li> </ul>
+    ///  </li> </ul> 
+    /// <para>
+    ///  <b>Eventual consistency</b>: The KMS API follows an eventual consistency model. For
+    /// more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html">KMS
+    /// eventual consistency</a>.
+    /// </para>
     /// </summary>
     public partial class RevokeGrantRequest : AmazonKeyManagementServiceRequest
     {
@@ -90,8 +96,7 @@ namespace Amazon.KeyManagementService.Model
         /// <summary>
         /// Gets and sets the property DryRun. 
         /// <para>
-        /// Checks if your request will succeed. <code>DryRun</code> is an optional parameter.
-        /// 
+        /// Checks if your request will succeed. <c>DryRun</c> is an optional parameter. 
         /// </para>
         ///  
         /// <para>
@@ -148,11 +153,11 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> 
+        /// Key ID: <c>1234abcd-12ab-34cd-56ef-1234567890ab</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Key ARN: <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
+        /// Key ARN: <c>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</c>
         /// 
         /// </para>
         ///  </li> </ul> 

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CertificateManager.Model
 {
     /// <summary>
     /// One or both of the values that make up the key-value pair is not valid. For example,
-    /// you cannot specify a tag value that begins with <code>aws:</code>.
+    /// you cannot specify a tag value that begins with <c>aws:</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

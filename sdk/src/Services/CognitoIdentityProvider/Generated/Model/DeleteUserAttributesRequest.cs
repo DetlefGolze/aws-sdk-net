@@ -27,26 +27,33 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteUserAttributes operation.
-    /// Deletes the attributes for a user.
+    /// Self-deletes attributes for a user. For example, your application can submit a request
+    /// to this operation when a user wants to remove their <c>birthdate</c> attribute value.
     /// 
+    ///  
+    /// <para>
+    /// Authorize this action with a signed-in user's access token. It must include the scope
+    /// <c>aws.cognito.signin.user.admin</c>.
+    /// </para>
     ///  <note> 
     /// <para>
     /// Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests
     /// for this API operation. For this operation, you can't use IAM credentials to authorize
     /// requests, and you can't grant IAM permissions in policies. For more information about
     /// authorization models in Amazon Cognito, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using
-    /// the Amazon Cognito native and OIDC APIs</a>.
+    /// the Amazon Cognito user pools API and user pool endpoints</a>.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class DeleteUserAttributesRequest : AmazonCognitoIdentityProviderRequest
     {
         private string _accessToken;
-        private List<string> _userAttributeNames = new List<string>();
+        private List<string> _userAttributeNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AccessToken. 
@@ -75,8 +82,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// </para>
         ///  
         /// <para>
-        /// For custom attributes, you must prependattach the <code>custom:</code> prefix to the
-        /// front of the attribute name.
+        /// For custom attributes, you must prepend the <c>custom:</c> prefix to the attribute
+        /// name, for example <c>custom:department</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -89,7 +96,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if UserAttributeNames property is set
         internal bool IsSetUserAttributeNames()
         {
-            return this._userAttributeNames != null && this._userAttributeNames.Count > 0; 
+            return this._userAttributeNames != null && (this._userAttributeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

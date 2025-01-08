@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -145,6 +146,14 @@ namespace Amazon.Rekognition.Model
         public IListFacesPaginator ListFaces(ListFacesRequest request) 
         {
             return new ListFacesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListMediaAnalysisJobs operation
+        ///</summary>
+        public IListMediaAnalysisJobsPaginator ListMediaAnalysisJobs(ListMediaAnalysisJobsRequest request) 
+        {
+            return new ListMediaAnalysisJobsPaginator(this.client, request);
         }
 
         /// <summary>

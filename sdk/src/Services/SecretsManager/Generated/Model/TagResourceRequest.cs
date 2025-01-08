@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecretsManager.Model
 {
     /// <summary>
@@ -36,39 +37,10 @@ namespace Amazon.SecretsManager.Model
     /// 
     ///  
     /// <para>
-    /// The following restrictions apply to tags:
+    /// For tag quotas and naming restrictions, see <a href="https://docs.aws.amazon.com/general/latest/gr/arg.html#taged-reference-quotas">Service
+    /// quotas for Tagging</a> in the <i>Amazon Web Services General Reference guide</i>.
     /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    /// Maximum number of tags per secret: 50
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Maximum key length: 127 Unicode characters in UTF-8
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Maximum value length: 255 Unicode characters in UTF-8
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Tag keys and values are case sensitive.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Do not use the <code>aws:</code> prefix in your tag names or values because Amazon
-    /// Web Services reserves it for Amazon Web Services use. You can't edit or delete tag
-    /// names or values with this prefix. Tags with this prefix do not count against your
-    /// tags per secret limit.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// If you use your tagging schema across multiple services and resources, other services
-    /// might have restrictions on allowed characters. Generally allowed characters: letters,
-    /// spaces, and numbers representable in UTF-8, plus the following special characters:
-    /// + - = . _ : / @.
-    /// </para>
-    ///  </li> </ul> <important> 
+    ///  <important> 
     /// <para>
     /// If you use tags as part of your security strategy, then adding or removing a tag can
     /// change permissions. If successfully completing this operation would result in you
@@ -84,7 +56,7 @@ namespace Amazon.SecretsManager.Model
     /// </para>
     ///  
     /// <para>
-    ///  <b>Required permissions: </b> <code>secretsmanager:TagResource</code>. For more information,
+    ///  <b>Required permissions: </b> <c>secretsmanager:TagResource</c>. For more information,
     /// see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">
     /// IAM policy actions for Secrets Manager</a> and <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
     /// and access control in Secrets Manager</a>. 
@@ -93,7 +65,7 @@ namespace Amazon.SecretsManager.Model
     public partial class TagResourceRequest : AmazonSecretsManagerRequest
     {
         private string _secretId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property SecretId. 
@@ -125,7 +97,7 @@ namespace Amazon.SecretsManager.Model
         /// Gets and sets the property Tags. 
         /// <para>
         /// The tags to attach to the secret as a JSON text string argument. Each element in the
-        /// list consists of a <code>Key</code> and a <code>Value</code>.
+        /// list consists of a <c>Key</c> and a <c>Value</c>.
         /// </para>
         ///  
         /// <para>
@@ -145,7 +117,7 @@ namespace Amazon.SecretsManager.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

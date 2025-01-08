@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.EC2.Model
     public partial class DescribeFleetHistoryResponse : AmazonWebServiceResponse
     {
         private string _fleetId;
-        private List<HistoryRecordEntry> _historyRecords = new List<HistoryRecordEntry>();
+        private List<HistoryRecordEntry> _historyRecords = AWSConfigs.InitializeCollections ? new List<HistoryRecordEntry>() : null;
         private DateTime? _lastEvaluatedTime;
         private string _nextToken;
         private DateTime? _startTime;
@@ -72,7 +73,7 @@ namespace Amazon.EC2.Model
         // Check to see if HistoryRecords property is set
         internal bool IsSetHistoryRecords()
         {
-            return this._historyRecords != null && this._historyRecords.Count > 0; 
+            return this._historyRecords != null && (this._historyRecords.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -83,7 +84,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// If <code>nextToken</code> indicates that there are more items, this value is not present.
+        /// If <c>nextToken</c> indicates that there are more items, this value is not present.
         /// </para>
         /// </summary>
         public DateTime LastEvaluatedTime
@@ -102,7 +103,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The token to include in another request to get the next page of items. This value
-        /// is <code>null</code> when there are no more items to return.
+        /// is <c>null</c> when there are no more items to return.
         /// </para>
         /// </summary>
         public string NextToken

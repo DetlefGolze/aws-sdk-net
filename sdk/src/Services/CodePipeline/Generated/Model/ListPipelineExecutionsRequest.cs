@@ -26,17 +26,45 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
     /// Container for the parameters to the ListPipelineExecutions operation.
     /// Gets a summary of the most recent executions for a pipeline.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// When applying the filter for pipeline executions that have succeeded in the stage,
+    /// the operation returns all executions in the current pipeline version beginning on
+    /// February 1, 2024.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class ListPipelineExecutionsRequest : AmazonCodePipelineRequest
     {
+        private PipelineExecutionFilter _filter;
         private int? _maxResults;
         private string _nextToken;
         private string _pipelineName;
+
+        /// <summary>
+        /// Gets and sets the property Filter. 
+        /// <para>
+        /// The pipeline execution to filter on.
+        /// </para>
+        /// </summary>
+        public PipelineExecutionFilter Filter
+        {
+            get { return this._filter; }
+            set { this._filter = value; }
+        }
+
+        // Check to see if Filter property is set
+        internal bool IsSetFilter()
+        {
+            return this._filter != null;
+        }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
@@ -63,8 +91,8 @@ namespace Amazon.CodePipeline.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token that was returned from the previous <code>ListPipelineExecutions</code>
-        /// call, which can be used to return the next set of pipeline executions in the list.
+        /// The token that was returned from the previous <c>ListPipelineExecutions</c> call,
+        /// which can be used to return the next set of pipeline executions in the list.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

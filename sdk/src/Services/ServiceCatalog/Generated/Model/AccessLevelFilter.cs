@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -43,15 +44,15 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Account</code> - Filter results based on the account.
+        ///  <c>Account</c> - Filter results based on the account.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Role</code> - Filter results based on the federated role of the specified user.
+        ///  <c>Role</c> - Filter results based on the federated role of the specified user.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>User</code> - Filter results based on the specified user.
+        ///  <c>User</c> - Filter results based on the specified user.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -70,7 +71,7 @@ namespace Amazon.ServiceCatalog.Model
         /// <summary>
         /// Gets and sets the property Value. 
         /// <para>
-        /// The user to which the access level applies. The only supported value is <code>self</code>.
+        /// The user to which the access level applies. The only supported value is <c>self</c>.
         /// </para>
         /// </summary>
         public string Value

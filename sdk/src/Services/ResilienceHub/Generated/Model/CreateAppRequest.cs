@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -52,13 +53,14 @@ namespace Amazon.ResilienceHub.Model
     public partial class CreateAppRequest : AmazonResilienceHubRequest
     {
         private AppAssessmentScheduleType _assessmentSchedule;
+        private string _awsApplicationArn;
         private string _clientToken;
         private string _description;
-        private List<EventSubscription> _eventSubscriptions = new List<EventSubscription>();
+        private List<EventSubscription> _eventSubscriptions = AWSConfigs.InitializeCollections ? new List<EventSubscription>() : null;
         private string _name;
         private PermissionModel _permissionModel;
         private string _policyArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AssessmentSchedule. 
@@ -76,6 +78,27 @@ namespace Amazon.ResilienceHub.Model
         internal bool IsSetAssessmentSchedule()
         {
             return this._assessmentSchedule != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property AwsApplicationArn. 
+        /// <para>
+        /// Amazon Resource Name (ARN) of Resource Groups group that is integrated with an AppRegistry
+        /// application. For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
+        /// </para>
+        /// </summary>
+        public string AwsApplicationArn
+        {
+            get { return this._awsApplicationArn; }
+            set { this._awsApplicationArn = value; }
+        }
+
+        // Check to see if AwsApplicationArn property is set
+        internal bool IsSetAwsApplicationArn()
+        {
+            return this._awsApplicationArn != null;
         }
 
         /// <summary>
@@ -136,7 +159,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if EventSubscriptions property is set
         internal bool IsSetEventSubscriptions()
         {
-            return this._eventSubscriptions != null && this._eventSubscriptions.Count > 0; 
+            return this._eventSubscriptions != null && (this._eventSubscriptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -180,9 +203,10 @@ namespace Amazon.ResilienceHub.Model
         /// <summary>
         /// Gets and sets the property PolicyArn. 
         /// <para>
-        /// Amazon Resource Name (ARN) of the resiliency policy. The format for this ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:resiliency-policy/<code>policy-id</code>.
+        /// Amazon Resource Name (ARN) of the resiliency policy. The format for this ARN is: arn:<c>partition</c>:resiliencehub:<c>region</c>:<c>account</c>:resiliency-policy/<c>policy-id</c>.
         /// For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
-        /// Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i> guide.
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
         /// </para>
         /// </summary>
         public string PolicyArn
@@ -214,7 +238,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,17 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the ImportHubContent operation.
     /// Import hub content.
-    /// 
-    ///  <note> 
-    /// <para>
-    /// Hub APIs are only callable through SageMaker Studio.
-    /// </para>
-    ///  </note>
     /// </summary>
     public partial class ImportHubContentRequest : AmazonSageMakerRequest
     {
@@ -46,11 +41,11 @@ namespace Amazon.SageMaker.Model
         private string _hubContentDocument;
         private string _hubContentMarkdown;
         private string _hubContentName;
-        private List<string> _hubContentSearchKeywords = new List<string>();
+        private List<string> _hubContentSearchKeywords = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private HubContentType _hubContentType;
         private string _hubContentVersion;
         private string _hubName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property DocumentSchemaVersion. 
@@ -184,7 +179,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if HubContentSearchKeywords property is set
         internal bool IsSetHubContentSearchKeywords()
         {
-            return this._hubContentSearchKeywords != null && this._hubContentSearchKeywords.Count > 0; 
+            return this._hubContentSearchKeywords != null && (this._hubContentSearchKeywords.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -231,7 +226,7 @@ namespace Amazon.SageMaker.Model
         /// The name of the hub to import content into.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=63)]
+        [AWSProperty(Required=true)]
         public string HubName
         {
             get { return this._hubName; }
@@ -260,7 +255,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

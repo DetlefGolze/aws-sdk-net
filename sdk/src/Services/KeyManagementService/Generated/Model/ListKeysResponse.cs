@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.KeyManagementService.Model
     /// </summary>
     public partial class ListKeysResponse : AmazonWebServiceResponse
     {
-        private List<KeyListEntry> _keys = new List<KeyListEntry>();
+        private List<KeyListEntry> _keys = AWSConfigs.InitializeCollections ? new List<KeyListEntry>() : null;
         private string _nextMarker;
         private bool? _truncated;
 
@@ -52,14 +53,14 @@ namespace Amazon.KeyManagementService.Model
         // Check to see if Keys property is set
         internal bool IsSetKeys()
         {
-            return this._keys != null && this._keys.Count > 0; 
+            return this._keys != null && (this._keys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextMarker. 
         /// <para>
-        /// When <code>Truncated</code> is true, this element is present and contains the value
-        /// to use for the <code>Marker</code> parameter in a subsequent request.
+        /// When <c>Truncated</c> is true, this element is present and contains the value to use
+        /// for the <c>Marker</c> parameter in a subsequent request.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -80,8 +81,8 @@ namespace Amazon.KeyManagementService.Model
         /// <para>
         /// A flag that indicates whether there are more items in the list. When this value is
         /// true, the list in this response is truncated. To get more items, pass the value of
-        /// the <code>NextMarker</code> element in thisresponse to the <code>Marker</code> parameter
-        /// in a subsequent request.
+        /// the <c>NextMarker</c> element in this response to the <c>Marker</c> parameter in a
+        /// subsequent request.
         /// </para>
         /// </summary>
         public bool Truncated

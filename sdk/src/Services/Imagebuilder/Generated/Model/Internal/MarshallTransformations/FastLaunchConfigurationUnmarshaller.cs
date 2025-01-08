@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Imagebuilder.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Imagebuilder.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public FastLaunchConfiguration Unmarshall(JsonUnmarshallerContext context)
         {
+            FastLaunchConfiguration unmarshalledObject = new FastLaunchConfiguration();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            FastLaunchConfiguration unmarshalledObject = new FastLaunchConfiguration();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -95,7 +97,6 @@ namespace Amazon.Imagebuilder.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

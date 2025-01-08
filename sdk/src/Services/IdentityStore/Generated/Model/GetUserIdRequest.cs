@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityStore.Model
 {
     /// <summary>
     /// Container for the parameters to the GetUserId operation.
-    /// Retrieves the <code>UserId</code> in an identity store.
+    /// Retrieves the <c>UserId</c> in an identity store.
     /// 
     ///  <note> 
     /// <para>
@@ -51,7 +52,7 @@ namespace Amazon.IdentityStore.Model
         /// A unique identifier for a user or group that is not the primary identifier. This value
         /// can be an identifier from an external identity provider (IdP) that is associated with
         /// the user, the group, or a unique attribute. For the unique attribute, the only valid
-        /// paths are <code>userName</code> and <code>emails.value</code>.
+        /// paths are <c>userName</c> and <c>emails.value</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DLM.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.DLM.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(CreateRule requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCronExpression())
             {
                 context.Writer.WritePropertyName("CronExpression");
@@ -67,6 +70,22 @@ namespace Amazon.DLM.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("Location");
                 context.Writer.Write(requestObject.Location);
+            }
+
+            if(requestObject.IsSetScripts())
+            {
+                context.Writer.WritePropertyName("Scripts");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectScriptsListValue in requestObject.Scripts)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ScriptMarshaller.Instance;
+                    marshaller.Marshall(requestObjectScriptsListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
             }
 
             if(requestObject.IsSetTimes())

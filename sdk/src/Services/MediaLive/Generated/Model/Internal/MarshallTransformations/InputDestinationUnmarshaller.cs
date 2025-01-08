@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public InputDestination Unmarshall(JsonUnmarshallerContext context)
         {
+            InputDestination unmarshalledObject = new InputDestination();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            InputDestination unmarshalledObject = new InputDestination();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -68,6 +70,18 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.Ip = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("network", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Network = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("networkRoutes", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<InputDestinationRoute, InputDestinationRouteUnmarshaller>(InputDestinationRouteUnmarshaller.Instance);
+                    unmarshalledObject.NetworkRoutes = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("port", targetDepth))
@@ -89,7 +103,6 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

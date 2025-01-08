@@ -26,28 +26,28 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MachineLearning.Model
 {
     /// <summary>
-    /// Measurements of how well the <code>MLModel</code> performed on known observations.
-    /// One of the following metrics is returned, based on the type of the <code>MLModel</code>:
-    /// 
+    /// Measurements of how well the <c>MLModel</c> performed on known observations. One of
+    /// the following metrics is returned, based on the type of the <c>MLModel</c>: 
     /// 
     ///  <ul> <li> 
     /// <para>
-    /// BinaryAUC: The binary <code>MLModel</code> uses the Area Under the Curve (AUC) technique
+    /// BinaryAUC: The binary <c>MLModel</c> uses the Area Under the Curve (AUC) technique
     /// to measure performance. 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// RegressionRMSE: The regression <code>MLModel</code> uses the Root Mean Square Error
-    /// (RMSE) technique to measure performance. RMSE measures the difference between predicted
-    /// and actual values for a single variable.
+    /// RegressionRMSE: The regression <c>MLModel</c> uses the Root Mean Square Error (RMSE)
+    /// technique to measure performance. RMSE measures the difference between predicted and
+    /// actual values for a single variable.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// MulticlassAvgFScore: The multiclass <code>MLModel</code> uses the F1 score technique
-    /// to measure performance. 
+    /// MulticlassAvgFScore: The multiclass <c>MLModel</c> uses the F1 score technique to
+    /// measure performance. 
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -57,7 +57,7 @@ namespace Amazon.MachineLearning.Model
     /// </summary>
     public partial class PerformanceMetrics
     {
-        private Dictionary<string, string> _properties = new Dictionary<string, string>();
+        private Dictionary<string, string> _properties = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Properties.
@@ -71,7 +71,7 @@ namespace Amazon.MachineLearning.Model
         // Check to see if Properties property is set
         internal bool IsSetProperties()
         {
-            return this._properties != null && this._properties.Count > 0; 
+            return this._properties != null && (this._properties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

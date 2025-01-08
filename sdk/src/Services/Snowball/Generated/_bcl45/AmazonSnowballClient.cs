@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.Snowball
 {
     /// <summary>
-    /// Implementation for accessing Snowball
+    /// <para>Implementation for accessing Snowball</para>
     ///
     /// The Amazon Web Services Snow Family provides a petabyte-scale data transport solution
     /// that uses secure devices to transfer large amounts of data between your on-premises
@@ -275,7 +276,7 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// Cancels a cluster job. You can only cancel a cluster job while it's in the <code>AwaitingQuorum</code>
+        /// Cancels a cluster job. You can only cancel a cluster job while it's in the <c>AwaitingQuorum</c>
         /// status. You'll have at least an hour after creating a cluster job to cancel it.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CancelCluster service method.</param>
@@ -305,7 +306,7 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// Cancels a cluster job. You can only cancel a cluster job while it's in the <code>AwaitingQuorum</code>
+        /// Cancels a cluster job. You can only cancel a cluster job while it's in the <c>AwaitingQuorum</c>
         /// status. You'll have at least an hour after creating a cluster job to cancel it.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CancelCluster service method.</param>
@@ -342,10 +343,9 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// Cancels the specified job. You can only cancel a job before its <code>JobState</code>
-        /// value changes to <code>PreparingAppliance</code>. Requesting the <code>ListJobs</code>
-        /// or <code>DescribeJob</code> action returns a job's <code>JobState</code> as part of
-        /// the response element data returned.
+        /// Cancels the specified job. You can only cancel a job before its <c>JobState</c> value
+        /// changes to <c>PreparingAppliance</c>. Requesting the <c>ListJobs</c> or <c>DescribeJob</c>
+        /// action returns a job's <c>JobState</c> as part of the response element data returned.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CancelJob service method.</param>
         /// 
@@ -374,10 +374,9 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// Cancels the specified job. You can only cancel a job before its <code>JobState</code>
-        /// value changes to <code>PreparingAppliance</code>. Requesting the <code>ListJobs</code>
-        /// or <code>DescribeJob</code> action returns a job's <code>JobState</code> as part of
-        /// the response element data returned.
+        /// Cancels the specified job. You can only cancel a job before its <c>JobState</c> value
+        /// changes to <c>PreparingAppliance</c>. Requesting the <c>ListJobs</c> or <c>DescribeJob</c>
+        /// action returns a job's <c>JobState</c> as part of the response element data returned.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CancelJob service method.</param>
         /// <param name="cancellationToken">
@@ -416,7 +415,8 @@ namespace Amazon.Snowball
         /// Creates an address for a Snow device to be shipped to. In most regions, addresses
         /// are validated at the time of creation. The address you provide must be located within
         /// the serviceable area of your region. If the address is invalid or unsupported, then
-        /// an exception is thrown.
+        /// an exception is thrown. If providing an address as a JSON file through the <c>cli-input-json</c>
+        /// option, include the full file path. For example, <c>--cli-input-json file://create-address.json</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateAddress service method.</param>
         /// 
@@ -445,7 +445,8 @@ namespace Amazon.Snowball
         /// Creates an address for a Snow device to be shipped to. In most regions, addresses
         /// are validated at the time of creation. The address you provide must be located within
         /// the serviceable area of your region. If the address is invalid or unsupported, then
-        /// an exception is thrown.
+        /// an exception is thrown. If providing an address as a JSON file through the <c>cli-input-json</c>
+        /// option, include the full file path. For example, <c>--cli-input-json file://create-address.json</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateAddress service method.</param>
         /// <param name="cancellationToken">
@@ -558,8 +559,8 @@ namespace Amazon.Snowball
         /// Creates a job to import or export data between Amazon S3 and your on-premises data
         /// center. Your Amazon Web Services account must have the right trust policies and permissions
         /// in place to create a job for a Snow device. If you're creating a job for a node in
-        /// a cluster, you only need to provide the <code>clusterId</code> value; the other job
-        /// attributes are inherited from the cluster. 
+        /// a cluster, you only need to provide the <c>clusterId</c> value; the other job attributes
+        /// are inherited from the cluster. 
         /// 
         ///  <note> 
         /// <para>
@@ -754,8 +755,8 @@ namespace Amazon.Snowball
         /// Creates a job to import or export data between Amazon S3 and your on-premises data
         /// center. Your Amazon Web Services account must have the right trust policies and permissions
         /// in place to create a job for a Snow device. If you're creating a job for a node in
-        /// a cluster, you only need to provide the <code>clusterId</code> value; the other job
-        /// attributes are inherited from the cluster. 
+        /// a cluster, you only need to provide the <c>clusterId</c> value; the other job attributes
+        /// are inherited from the cluster. 
         /// 
         ///  <note> 
         /// <para>
@@ -1014,8 +1015,8 @@ namespace Amazon.Snowball
         /// 
         /// <returns>The response from the CreateReturnShippingLabel service method, as returned by Snowball.</returns>
         /// <exception cref="Amazon.Snowball.Model.ConflictException">
-        /// You get this exception when you call <code>CreateReturnShippingLabel</code> more than
-        /// once when other requests are not completed.
+        /// You get this exception when you call <c>CreateReturnShippingLabel</c> more than once
+        /// when other requests are not completed.
         /// </exception>
         /// <exception cref="Amazon.Snowball.Model.InvalidInputCombinationException">
         /// Job or cluster creation failed. One or more inputs were invalid. Confirm that the
@@ -1031,8 +1032,8 @@ namespace Amazon.Snowball
         /// last request, and try again.
         /// </exception>
         /// <exception cref="Amazon.Snowball.Model.ReturnShippingLabelAlreadyExistsException">
-        /// You get this exception if you call <code>CreateReturnShippingLabel</code> and a valid
-        /// return shipping label already exists. In this case, use <code>DescribeReturnShippingLabel</code>
+        /// You get this exception if you call <c>CreateReturnShippingLabel</c> and a valid return
+        /// shipping label already exists. In this case, use <c>DescribeReturnShippingLabel</c>
         /// to get the URL.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/CreateReturnShippingLabel">REST API Reference for CreateReturnShippingLabel Operation</seealso>
@@ -1057,8 +1058,8 @@ namespace Amazon.Snowball
         /// 
         /// <returns>The response from the CreateReturnShippingLabel service method, as returned by Snowball.</returns>
         /// <exception cref="Amazon.Snowball.Model.ConflictException">
-        /// You get this exception when you call <code>CreateReturnShippingLabel</code> more than
-        /// once when other requests are not completed.
+        /// You get this exception when you call <c>CreateReturnShippingLabel</c> more than once
+        /// when other requests are not completed.
         /// </exception>
         /// <exception cref="Amazon.Snowball.Model.InvalidInputCombinationException">
         /// Job or cluster creation failed. One or more inputs were invalid. Confirm that the
@@ -1074,8 +1075,8 @@ namespace Amazon.Snowball
         /// last request, and try again.
         /// </exception>
         /// <exception cref="Amazon.Snowball.Model.ReturnShippingLabelAlreadyExistsException">
-        /// You get this exception if you call <code>CreateReturnShippingLabel</code> and a valid
-        /// return shipping label already exists. In this case, use <code>DescribeReturnShippingLabel</code>
+        /// You get this exception if you call <c>CreateReturnShippingLabel</c> and a valid return
+        /// shipping label already exists. In this case, use <c>DescribeReturnShippingLabel</c>
         /// to get the URL.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/CreateReturnShippingLabel">REST API Reference for CreateReturnShippingLabel Operation</seealso>
@@ -1094,8 +1095,8 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// Takes an <code>AddressId</code> and returns specific details about that address in
-        /// the form of an <code>Address</code> object.
+        /// Takes an <c>AddressId</c> and returns specific details about that address in the form
+        /// of an <c>Address</c> object.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeAddress service method.</param>
         /// 
@@ -1116,8 +1117,8 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// Takes an <code>AddressId</code> and returns specific details about that address in
-        /// the form of an <code>Address</code> object.
+        /// Takes an <c>AddressId</c> and returns specific details about that address in the form
+        /// of an <c>Address</c> object.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeAddress service method.</param>
         /// <param name="cancellationToken">
@@ -1145,17 +1146,16 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// Returns a specified number of <code>ADDRESS</code> objects. Calling this API in one
-        /// of the US regions will return addresses from the list of all addresses associated
-        /// with this account in all US regions.
+        /// Returns a specified number of <c>ADDRESS</c> objects. Calling this API in one of the
+        /// US regions will return addresses from the list of all addresses associated with this
+        /// account in all US regions.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeAddresses service method.</param>
         /// 
         /// <returns>The response from the DescribeAddresses service method, as returned by Snowball.</returns>
         /// <exception cref="Amazon.Snowball.Model.InvalidNextTokenException">
-        /// The <code>NextToken</code> string was altered unexpectedly, and the operation has
-        /// stopped. Run the operation without changing the <code>NextToken</code> string, and
-        /// try again.
+        /// The <c>NextToken</c> string was altered unexpectedly, and the operation has stopped.
+        /// Run the operation without changing the <c>NextToken</c> string, and try again.
         /// </exception>
         /// <exception cref="Amazon.Snowball.Model.InvalidResourceException">
         /// The specified resource can't be found. Check the information you provided in your
@@ -1173,9 +1173,9 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// Returns a specified number of <code>ADDRESS</code> objects. Calling this API in one
-        /// of the US regions will return addresses from the list of all addresses associated
-        /// with this account in all US regions.
+        /// Returns a specified number of <c>ADDRESS</c> objects. Calling this API in one of the
+        /// US regions will return addresses from the list of all addresses associated with this
+        /// account in all US regions.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeAddresses service method.</param>
         /// <param name="cancellationToken">
@@ -1184,9 +1184,8 @@ namespace Amazon.Snowball
         /// 
         /// <returns>The response from the DescribeAddresses service method, as returned by Snowball.</returns>
         /// <exception cref="Amazon.Snowball.Model.InvalidNextTokenException">
-        /// The <code>NextToken</code> string was altered unexpectedly, and the operation has
-        /// stopped. Run the operation without changing the <code>NextToken</code> string, and
-        /// try again.
+        /// The <c>NextToken</c> string was altered unexpectedly, and the operation has stopped.
+        /// Run the operation without changing the <c>NextToken</c> string, and try again.
         /// </exception>
         /// <exception cref="Amazon.Snowball.Model.InvalidResourceException">
         /// The specified resource can't be found. Check the information you provided in your
@@ -1317,8 +1316,8 @@ namespace Amazon.Snowball
         /// 
         /// <returns>The response from the DescribeReturnShippingLabel service method, as returned by Snowball.</returns>
         /// <exception cref="Amazon.Snowball.Model.ConflictException">
-        /// You get this exception when you call <code>CreateReturnShippingLabel</code> more than
-        /// once when other requests are not completed.
+        /// You get this exception when you call <c>CreateReturnShippingLabel</c> more than once
+        /// when other requests are not completed.
         /// </exception>
         /// <exception cref="Amazon.Snowball.Model.InvalidJobStateException">
         /// The action can't be performed because the job's current state doesn't allow that action
@@ -1350,8 +1349,8 @@ namespace Amazon.Snowball
         /// 
         /// <returns>The response from the DescribeReturnShippingLabel service method, as returned by Snowball.</returns>
         /// <exception cref="Amazon.Snowball.Model.ConflictException">
-        /// You get this exception when you call <code>CreateReturnShippingLabel</code> more than
-        /// once when other requests are not completed.
+        /// You get this exception when you call <c>CreateReturnShippingLabel</c> more than once
+        /// when other requests are not completed.
         /// </exception>
         /// <exception cref="Amazon.Snowball.Model.InvalidJobStateException">
         /// The action can't be performed because the job's current state doesn't allow that action
@@ -1378,24 +1377,22 @@ namespace Amazon.Snowball
 
         /// <summary>
         /// Returns a link to an Amazon S3 presigned URL for the manifest file associated with
-        /// the specified <code>JobId</code> value. You can access the manifest file for up to
-        /// 60 minutes after this request has been made. To access the manifest file after 60
-        /// minutes have passed, you'll have to make another call to the <code>GetJobManifest</code>
-        /// action.
+        /// the specified <c>JobId</c> value. You can access the manifest file for up to 60 minutes
+        /// after this request has been made. To access the manifest file after 60 minutes have
+        /// passed, you'll have to make another call to the <c>GetJobManifest</c> action.
         /// 
         ///  
         /// <para>
         /// The manifest is an encrypted file that you can download after your job enters the
-        /// <code>WithCustomer</code> status. This is the only valid status for calling this API
-        /// as the manifest and <code>UnlockCode</code> code value are used for securing your
-        /// device and should only be used when you have the device. The manifest is decrypted
-        /// by using the <code>UnlockCode</code> code value, when you pass both values to the
-        /// Snow device through the Snowball client when the client is started for the first time.
-        /// 
+        /// <c>WithCustomer</c> status. This is the only valid status for calling this API as
+        /// the manifest and <c>UnlockCode</c> code value are used for securing your device and
+        /// should only be used when you have the device. The manifest is decrypted by using the
+        /// <c>UnlockCode</c> code value, when you pass both values to the Snow device through
+        /// the Snowball client when the client is started for the first time. 
         /// </para>
         ///  
         /// <para>
-        /// As a best practice, we recommend that you don't save a copy of an <code>UnlockCode</code>
+        /// As a best practice, we recommend that you don't save a copy of an <c>UnlockCode</c>
         /// value in the same location as the manifest file for that job. Saving these separately
         /// helps prevent unauthorized parties from gaining access to the Snow device associated
         /// with that job.
@@ -1430,24 +1427,22 @@ namespace Amazon.Snowball
 
         /// <summary>
         /// Returns a link to an Amazon S3 presigned URL for the manifest file associated with
-        /// the specified <code>JobId</code> value. You can access the manifest file for up to
-        /// 60 minutes after this request has been made. To access the manifest file after 60
-        /// minutes have passed, you'll have to make another call to the <code>GetJobManifest</code>
-        /// action.
+        /// the specified <c>JobId</c> value. You can access the manifest file for up to 60 minutes
+        /// after this request has been made. To access the manifest file after 60 minutes have
+        /// passed, you'll have to make another call to the <c>GetJobManifest</c> action.
         /// 
         ///  
         /// <para>
         /// The manifest is an encrypted file that you can download after your job enters the
-        /// <code>WithCustomer</code> status. This is the only valid status for calling this API
-        /// as the manifest and <code>UnlockCode</code> code value are used for securing your
-        /// device and should only be used when you have the device. The manifest is decrypted
-        /// by using the <code>UnlockCode</code> code value, when you pass both values to the
-        /// Snow device through the Snowball client when the client is started for the first time.
-        /// 
+        /// <c>WithCustomer</c> status. This is the only valid status for calling this API as
+        /// the manifest and <c>UnlockCode</c> code value are used for securing your device and
+        /// should only be used when you have the device. The manifest is decrypted by using the
+        /// <c>UnlockCode</c> code value, when you pass both values to the Snow device through
+        /// the Snowball client when the client is started for the first time. 
         /// </para>
         ///  
         /// <para>
-        /// As a best practice, we recommend that you don't save a copy of an <code>UnlockCode</code>
+        /// As a best practice, we recommend that you don't save a copy of an <c>UnlockCode</c>
         /// value in the same location as the manifest file for that job. Saving these separately
         /// helps prevent unauthorized parties from gaining access to the Snow device associated
         /// with that job.
@@ -1488,22 +1483,21 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// Returns the <code>UnlockCode</code> code value for the specified job. A particular
-        /// <code>UnlockCode</code> value can be accessed for up to 360 days after the associated
-        /// job has been created.
+        /// Returns the <c>UnlockCode</c> code value for the specified job. A particular <c>UnlockCode</c>
+        /// value can be accessed for up to 360 days after the associated job has been created.
         /// 
         ///  
         /// <para>
-        /// The <code>UnlockCode</code> value is a 29-character code with 25 alphanumeric characters
+        /// The <c>UnlockCode</c> value is a 29-character code with 25 alphanumeric characters
         /// and 4 hyphens. This code is used to decrypt the manifest file when it is passed along
         /// with the manifest to the Snow device through the Snowball client when the client is
-        /// started for the first time. The only valid status for calling this API is <code>WithCustomer</code>
-        /// as the manifest and <code>Unlock</code> code values are used for securing your device
-        /// and should only be used when you have the device.
+        /// started for the first time. The only valid status for calling this API is <c>WithCustomer</c>
+        /// as the manifest and <c>Unlock</c> code values are used for securing your device and
+        /// should only be used when you have the device.
         /// </para>
         ///  
         /// <para>
-        /// As a best practice, we recommend that you don't save a copy of the <code>UnlockCode</code>
+        /// As a best practice, we recommend that you don't save a copy of the <c>UnlockCode</c>
         /// in the same location as the manifest file for that job. Saving these separately helps
         /// prevent unauthorized parties from gaining access to the Snow device associated with
         /// that job.
@@ -1532,22 +1526,21 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// Returns the <code>UnlockCode</code> code value for the specified job. A particular
-        /// <code>UnlockCode</code> value can be accessed for up to 360 days after the associated
-        /// job has been created.
+        /// Returns the <c>UnlockCode</c> code value for the specified job. A particular <c>UnlockCode</c>
+        /// value can be accessed for up to 360 days after the associated job has been created.
         /// 
         ///  
         /// <para>
-        /// The <code>UnlockCode</code> value is a 29-character code with 25 alphanumeric characters
+        /// The <c>UnlockCode</c> value is a 29-character code with 25 alphanumeric characters
         /// and 4 hyphens. This code is used to decrypt the manifest file when it is passed along
         /// with the manifest to the Snow device through the Snowball client when the client is
-        /// started for the first time. The only valid status for calling this API is <code>WithCustomer</code>
-        /// as the manifest and <code>Unlock</code> code values are used for securing your device
-        /// and should only be used when you have the device.
+        /// started for the first time. The only valid status for calling this API is <c>WithCustomer</c>
+        /// as the manifest and <c>Unlock</c> code values are used for securing your device and
+        /// should only be used when you have the device.
         /// </para>
         ///  
         /// <para>
-        /// As a best practice, we recommend that you don't save a copy of the <code>UnlockCode</code>
+        /// As a best practice, we recommend that you don't save a copy of the <c>UnlockCode</c>
         /// in the same location as the manifest file for that job. Saving these separately helps
         /// prevent unauthorized parties from gaining access to the Snow device associated with
         /// that job.
@@ -1641,7 +1634,7 @@ namespace Amazon.Snowball
 
         /// <summary>
         /// Returns an Amazon S3 presigned URL for an update file associated with a specified
-        /// <code>JobId</code>.
+        /// <c>JobId</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetSoftwareUpdates service method.</param>
         /// 
@@ -1667,7 +1660,7 @@ namespace Amazon.Snowball
 
         /// <summary>
         /// Returns an Amazon S3 presigned URL for an update file associated with a specified
-        /// <code>JobId</code>.
+        /// <c>JobId</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetSoftwareUpdates service method.</param>
         /// <param name="cancellationToken">
@@ -1699,17 +1692,16 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// Returns an array of <code>JobListEntry</code> objects of the specified length. Each
-        /// <code>JobListEntry</code> object is for a job in the specified cluster and contains
-        /// a job's state, a job's ID, and other information.
+        /// Returns an array of <c>JobListEntry</c> objects of the specified length. Each <c>JobListEntry</c>
+        /// object is for a job in the specified cluster and contains a job's state, a job's ID,
+        /// and other information.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListClusterJobs service method.</param>
         /// 
         /// <returns>The response from the ListClusterJobs service method, as returned by Snowball.</returns>
         /// <exception cref="Amazon.Snowball.Model.InvalidNextTokenException">
-        /// The <code>NextToken</code> string was altered unexpectedly, and the operation has
-        /// stopped. Run the operation without changing the <code>NextToken</code> string, and
-        /// try again.
+        /// The <c>NextToken</c> string was altered unexpectedly, and the operation has stopped.
+        /// Run the operation without changing the <c>NextToken</c> string, and try again.
         /// </exception>
         /// <exception cref="Amazon.Snowball.Model.InvalidResourceException">
         /// The specified resource can't be found. Check the information you provided in your
@@ -1727,9 +1719,9 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// Returns an array of <code>JobListEntry</code> objects of the specified length. Each
-        /// <code>JobListEntry</code> object is for a job in the specified cluster and contains
-        /// a job's state, a job's ID, and other information.
+        /// Returns an array of <c>JobListEntry</c> objects of the specified length. Each <c>JobListEntry</c>
+        /// object is for a job in the specified cluster and contains a job's state, a job's ID,
+        /// and other information.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListClusterJobs service method.</param>
         /// <param name="cancellationToken">
@@ -1738,9 +1730,8 @@ namespace Amazon.Snowball
         /// 
         /// <returns>The response from the ListClusterJobs service method, as returned by Snowball.</returns>
         /// <exception cref="Amazon.Snowball.Model.InvalidNextTokenException">
-        /// The <code>NextToken</code> string was altered unexpectedly, and the operation has
-        /// stopped. Run the operation without changing the <code>NextToken</code> string, and
-        /// try again.
+        /// The <c>NextToken</c> string was altered unexpectedly, and the operation has stopped.
+        /// Run the operation without changing the <c>NextToken</c> string, and try again.
         /// </exception>
         /// <exception cref="Amazon.Snowball.Model.InvalidResourceException">
         /// The specified resource can't be found. Check the information you provided in your
@@ -1762,17 +1753,16 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// Returns an array of <code>ClusterListEntry</code> objects of the specified length.
-        /// Each <code>ClusterListEntry</code> object contains a cluster's state, a cluster's
-        /// ID, and other important status information.
+        /// Returns an array of <c>ClusterListEntry</c> objects of the specified length. Each
+        /// <c>ClusterListEntry</c> object contains a cluster's state, a cluster's ID, and other
+        /// important status information.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListClusters service method.</param>
         /// 
         /// <returns>The response from the ListClusters service method, as returned by Snowball.</returns>
         /// <exception cref="Amazon.Snowball.Model.InvalidNextTokenException">
-        /// The <code>NextToken</code> string was altered unexpectedly, and the operation has
-        /// stopped. Run the operation without changing the <code>NextToken</code> string, and
-        /// try again.
+        /// The <c>NextToken</c> string was altered unexpectedly, and the operation has stopped.
+        /// Run the operation without changing the <c>NextToken</c> string, and try again.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/ListClusters">REST API Reference for ListClusters Operation</seealso>
         public virtual ListClustersResponse ListClusters(ListClustersRequest request)
@@ -1786,9 +1776,9 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// Returns an array of <code>ClusterListEntry</code> objects of the specified length.
-        /// Each <code>ClusterListEntry</code> object contains a cluster's state, a cluster's
-        /// ID, and other important status information.
+        /// Returns an array of <c>ClusterListEntry</c> objects of the specified length. Each
+        /// <c>ClusterListEntry</c> object contains a cluster's state, a cluster's ID, and other
+        /// important status information.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListClusters service method.</param>
         /// <param name="cancellationToken">
@@ -1797,9 +1787,8 @@ namespace Amazon.Snowball
         /// 
         /// <returns>The response from the ListClusters service method, as returned by Snowball.</returns>
         /// <exception cref="Amazon.Snowball.Model.InvalidNextTokenException">
-        /// The <code>NextToken</code> string was altered unexpectedly, and the operation has
-        /// stopped. Run the operation without changing the <code>NextToken</code> string, and
-        /// try again.
+        /// The <c>NextToken</c> string was altered unexpectedly, and the operation has stopped.
+        /// Run the operation without changing the <c>NextToken</c> string, and try again.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/ListClusters">REST API Reference for ListClusters Operation</seealso>
         public virtual Task<ListClustersResponse> ListClustersAsync(ListClustersRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -1832,9 +1821,8 @@ namespace Amazon.Snowball
         /// Your user lacks the necessary Amazon EC2 permissions to perform the attempted action.
         /// </exception>
         /// <exception cref="Amazon.Snowball.Model.InvalidNextTokenException">
-        /// The <code>NextToken</code> string was altered unexpectedly, and the operation has
-        /// stopped. Run the operation without changing the <code>NextToken</code> string, and
-        /// try again.
+        /// The <c>NextToken</c> string was altered unexpectedly, and the operation has stopped.
+        /// Run the operation without changing the <c>NextToken</c> string, and try again.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/ListCompatibleImages">REST API Reference for ListCompatibleImages Operation</seealso>
         public virtual ListCompatibleImagesResponse ListCompatibleImages(ListCompatibleImagesRequest request)
@@ -1866,9 +1854,8 @@ namespace Amazon.Snowball
         /// Your user lacks the necessary Amazon EC2 permissions to perform the attempted action.
         /// </exception>
         /// <exception cref="Amazon.Snowball.Model.InvalidNextTokenException">
-        /// The <code>NextToken</code> string was altered unexpectedly, and the operation has
-        /// stopped. Run the operation without changing the <code>NextToken</code> string, and
-        /// try again.
+        /// The <c>NextToken</c> string was altered unexpectedly, and the operation has stopped.
+        /// Run the operation without changing the <c>NextToken</c> string, and try again.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/ListCompatibleImages">REST API Reference for ListCompatibleImages Operation</seealso>
         public virtual Task<ListCompatibleImagesResponse> ListCompatibleImagesAsync(ListCompatibleImagesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -1886,19 +1873,18 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// Returns an array of <code>JobListEntry</code> objects of the specified length. Each
-        /// <code>JobListEntry</code> object contains a job's state, a job's ID, and a value that
-        /// indicates whether the job is a job part, in the case of export jobs. Calling this
-        /// API action in one of the US regions will return jobs from the list of all jobs associated
-        /// with this account in all US regions.
+        /// Returns an array of <c>JobListEntry</c> objects of the specified length. Each <c>JobListEntry</c>
+        /// object contains a job's state, a job's ID, and a value that indicates whether the
+        /// job is a job part, in the case of export jobs. Calling this API action in one of the
+        /// US regions will return jobs from the list of all jobs associated with this account
+        /// in all US regions.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListJobs service method.</param>
         /// 
         /// <returns>The response from the ListJobs service method, as returned by Snowball.</returns>
         /// <exception cref="Amazon.Snowball.Model.InvalidNextTokenException">
-        /// The <code>NextToken</code> string was altered unexpectedly, and the operation has
-        /// stopped. Run the operation without changing the <code>NextToken</code> string, and
-        /// try again.
+        /// The <c>NextToken</c> string was altered unexpectedly, and the operation has stopped.
+        /// Run the operation without changing the <c>NextToken</c> string, and try again.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/ListJobs">REST API Reference for ListJobs Operation</seealso>
         public virtual ListJobsResponse ListJobs(ListJobsRequest request)
@@ -1912,11 +1898,11 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// Returns an array of <code>JobListEntry</code> objects of the specified length. Each
-        /// <code>JobListEntry</code> object contains a job's state, a job's ID, and a value that
-        /// indicates whether the job is a job part, in the case of export jobs. Calling this
-        /// API action in one of the US regions will return jobs from the list of all jobs associated
-        /// with this account in all US regions.
+        /// Returns an array of <c>JobListEntry</c> objects of the specified length. Each <c>JobListEntry</c>
+        /// object contains a job's state, a job's ID, and a value that indicates whether the
+        /// job is a job part, in the case of export jobs. Calling this API action in one of the
+        /// US regions will return jobs from the list of all jobs associated with this account
+        /// in all US regions.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListJobs service method.</param>
         /// <param name="cancellationToken">
@@ -1925,9 +1911,8 @@ namespace Amazon.Snowball
         /// 
         /// <returns>The response from the ListJobs service method, as returned by Snowball.</returns>
         /// <exception cref="Amazon.Snowball.Model.InvalidNextTokenException">
-        /// The <code>NextToken</code> string was altered unexpectedly, and the operation has
-        /// stopped. Run the operation without changing the <code>NextToken</code> string, and
-        /// try again.
+        /// The <c>NextToken</c> string was altered unexpectedly, and the operation has stopped.
+        /// Run the operation without changing the <c>NextToken</c> string, and try again.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/ListJobs">REST API Reference for ListJobs Operation</seealso>
         public virtual Task<ListJobsResponse> ListJobsAsync(ListJobsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -1951,9 +1936,8 @@ namespace Amazon.Snowball
         /// 
         /// <returns>The response from the ListLongTermPricing service method, as returned by Snowball.</returns>
         /// <exception cref="Amazon.Snowball.Model.InvalidNextTokenException">
-        /// The <code>NextToken</code> string was altered unexpectedly, and the operation has
-        /// stopped. Run the operation without changing the <code>NextToken</code> string, and
-        /// try again.
+        /// The <c>NextToken</c> string was altered unexpectedly, and the operation has stopped.
+        /// Run the operation without changing the <c>NextToken</c> string, and try again.
         /// </exception>
         /// <exception cref="Amazon.Snowball.Model.InvalidResourceException">
         /// The specified resource can't be found. Check the information you provided in your
@@ -1980,9 +1964,8 @@ namespace Amazon.Snowball
         /// 
         /// <returns>The response from the ListLongTermPricing service method, as returned by Snowball.</returns>
         /// <exception cref="Amazon.Snowball.Model.InvalidNextTokenException">
-        /// The <code>NextToken</code> string was altered unexpectedly, and the operation has
-        /// stopped. Run the operation without changing the <code>NextToken</code> string, and
-        /// try again.
+        /// The <c>NextToken</c> string was altered unexpectedly, and the operation has stopped.
+        /// Run the operation without changing the <c>NextToken</c> string, and try again.
         /// </exception>
         /// <exception cref="Amazon.Snowball.Model.InvalidResourceException">
         /// The specified resource can't be found. Check the information you provided in your
@@ -2053,16 +2036,15 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// Lists all supported versions for Snow on-device services. Returns an array of <code>ServiceVersion</code>
+        /// Lists all supported versions for Snow on-device services. Returns an array of <c>ServiceVersion</c>
         /// object containing the supported versions for a particular service.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListServiceVersions service method.</param>
         /// 
         /// <returns>The response from the ListServiceVersions service method, as returned by Snowball.</returns>
         /// <exception cref="Amazon.Snowball.Model.InvalidNextTokenException">
-        /// The <code>NextToken</code> string was altered unexpectedly, and the operation has
-        /// stopped. Run the operation without changing the <code>NextToken</code> string, and
-        /// try again.
+        /// The <c>NextToken</c> string was altered unexpectedly, and the operation has stopped.
+        /// Run the operation without changing the <c>NextToken</c> string, and try again.
         /// </exception>
         /// <exception cref="Amazon.Snowball.Model.InvalidResourceException">
         /// The specified resource can't be found. Check the information you provided in your
@@ -2080,7 +2062,7 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// Lists all supported versions for Snow on-device services. Returns an array of <code>ServiceVersion</code>
+        /// Lists all supported versions for Snow on-device services. Returns an array of <c>ServiceVersion</c>
         /// object containing the supported versions for a particular service.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListServiceVersions service method.</param>
@@ -2090,9 +2072,8 @@ namespace Amazon.Snowball
         /// 
         /// <returns>The response from the ListServiceVersions service method, as returned by Snowball.</returns>
         /// <exception cref="Amazon.Snowball.Model.InvalidNextTokenException">
-        /// The <code>NextToken</code> string was altered unexpectedly, and the operation has
-        /// stopped. Run the operation without changing the <code>NextToken</code> string, and
-        /// try again.
+        /// The <c>NextToken</c> string was altered unexpectedly, and the operation has stopped.
+        /// Run the operation without changing the <c>NextToken</c> string, and try again.
         /// </exception>
         /// <exception cref="Amazon.Snowball.Model.InvalidResourceException">
         /// The specified resource can't be found. Check the information you provided in your
@@ -2114,10 +2095,10 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// While a cluster's <code>ClusterState</code> value is in the <code>AwaitingQuorum</code>
-        /// state, you can update some of the information associated with a cluster. Once the
-        /// cluster changes to a different job state, usually 60 minutes after the cluster being
-        /// created, this action is no longer available.
+        /// While a cluster's <c>ClusterState</c> value is in the <c>AwaitingQuorum</c> state,
+        /// you can update some of the information associated with a cluster. Once the cluster
+        /// changes to a different job state, usually 60 minutes after the cluster being created,
+        /// this action is no longer available.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateCluster service method.</param>
         /// 
@@ -2154,10 +2135,10 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// While a cluster's <code>ClusterState</code> value is in the <code>AwaitingQuorum</code>
-        /// state, you can update some of the information associated with a cluster. Once the
-        /// cluster changes to a different job state, usually 60 minutes after the cluster being
-        /// created, this action is no longer available.
+        /// While a cluster's <c>ClusterState</c> value is in the <c>AwaitingQuorum</c> state,
+        /// you can update some of the information associated with a cluster. Once the cluster
+        /// changes to a different job state, usually 60 minutes after the cluster being created,
+        /// this action is no longer available.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateCluster service method.</param>
         /// <param name="cancellationToken">
@@ -2201,10 +2182,9 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// While a job's <code>JobState</code> value is <code>New</code>, you can update some
-        /// of the information associated with a job. Once the job changes to a different job
-        /// state, usually within 60 minutes of the job being created, this action is no longer
-        /// available.
+        /// While a job's <c>JobState</c> value is <c>New</c>, you can update some of the information
+        /// associated with a job. Once the job changes to a different job state, usually within
+        /// 60 minutes of the job being created, this action is no longer available.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateJob service method.</param>
         /// 
@@ -2246,10 +2226,9 @@ namespace Amazon.Snowball
 
 
         /// <summary>
-        /// While a job's <code>JobState</code> value is <code>New</code>, you can update some
-        /// of the information associated with a job. Once the job changes to a different job
-        /// state, usually within 60 minutes of the job being created, this action is no longer
-        /// available.
+        /// While a job's <c>JobState</c> value is <c>New</c>, you can update some of the information
+        /// associated with a job. Once the job changes to a different job state, usually within
+        /// 60 minutes of the job being created, this action is no longer available.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateJob service method.</param>
         /// <param name="cancellationToken">
@@ -2409,11 +2388,11 @@ namespace Amazon.Snowball
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

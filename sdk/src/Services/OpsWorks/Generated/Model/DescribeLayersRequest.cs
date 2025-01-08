@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
@@ -46,15 +47,14 @@ namespace Amazon.OpsWorks.Model
     /// </summary>
     public partial class DescribeLayersRequest : AmazonOpsWorksRequest
     {
-        private List<string> _layerIds = new List<string>();
+        private List<string> _layerIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _stackId;
 
         /// <summary>
         /// Gets and sets the property LayerIds. 
         /// <para>
         /// An array of layer IDs that specify the layers to be described. If you omit this parameter,
-        /// <code>DescribeLayers</code> returns a description of every layer in the specified
-        /// stack.
+        /// <c>DescribeLayers</c> returns a description of every layer in the specified stack.
         /// </para>
         /// </summary>
         public List<string> LayerIds
@@ -66,7 +66,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if LayerIds property is set
         internal bool IsSetLayerIds()
         {
-            return this._layerIds != null && this._layerIds.Count > 0; 
+            return this._layerIds != null && (this._layerIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

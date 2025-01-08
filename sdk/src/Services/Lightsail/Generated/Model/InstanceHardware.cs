@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Lightsail.Model
     public partial class InstanceHardware
     {
         private int? _cpuCount;
-        private List<Disk> _disks = new List<Disk>();
+        private List<Disk> _disks = AWSConfigs.InitializeCollections ? new List<Disk>() : null;
         private float? _ramSizeInGb;
 
         /// <summary>
@@ -70,13 +71,13 @@ namespace Amazon.Lightsail.Model
         // Check to see if Disks property is set
         internal bool IsSetDisks()
         {
-            return this._disks != null && this._disks.Count > 0; 
+            return this._disks != null && (this._disks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property RamSizeInGb. 
         /// <para>
-        /// The amount of RAM in GB on the instance (e.g., <code>1.0</code>).
+        /// The amount of RAM in GB on the instance (<c>1.0</c>).
         /// </para>
         /// </summary>
         public float RamSizeInGb

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
@@ -92,7 +93,7 @@ namespace Amazon.NetworkFirewall.Model
         /// A setting indicating whether the firewall is protected against changes to the subnet
         /// associations. Use this setting to protect against accidentally modifying the subnet
         /// associations for a firewall that is in use. When you create a firewall, the operation
-        /// initializes this setting to <code>TRUE</code>.
+        /// initializes this setting to <c>TRUE</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -125,7 +126,7 @@ namespace Amazon.NetworkFirewall.Model
         /// <para>
         /// To make a conditional change to the firewall, provide the token in your update request.
         /// Network Firewall uses the token to ensure that the firewall hasn't changed since you
-        /// last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>.
+        /// last retrieved it. If it has changed, the operation fails with an <c>InvalidTokenException</c>.
         /// If this happens, retrieve the firewall again to get a current copy of it with a new
         /// token. Reapply your changes as needed, then try the operation again using the new
         /// token. 

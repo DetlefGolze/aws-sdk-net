@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Athena.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.Athena.Model
     public partial class ApplicationDPUSizes
     {
         private string _applicationRuntimeId;
-        private List<int> _supportedDPUSizes = new List<int>();
+        private List<int> _supportedDPUSizes = AWSConfigs.InitializeCollections ? new List<int>() : null;
 
         /// <summary>
         /// Gets and sets the property ApplicationRuntimeId. 
         /// <para>
-        /// The name of the supported application runtime (for example, <code>Athena notebook
-        /// version 1</code>).
+        /// The name of the supported application runtime (for example, <c>Athena notebook version
+        /// 1</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -71,7 +72,7 @@ namespace Amazon.Athena.Model
         // Check to see if SupportedDPUSizes property is set
         internal bool IsSetSupportedDPUSizes()
         {
-            return this._supportedDPUSizes != null && this._supportedDPUSizes.Count > 0; 
+            return this._supportedDPUSizes != null && (this._supportedDPUSizes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

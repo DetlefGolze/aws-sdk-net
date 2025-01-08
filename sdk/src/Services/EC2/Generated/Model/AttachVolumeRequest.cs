@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -36,13 +37,13 @@ namespace Amazon.EC2.Model
     ///  
     /// <para>
     /// Encrypted EBS volumes must be attached to instances that support Amazon EBS encryption.
-    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
-    /// EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/ebs/latest/userguide/ebs-encryption.html">Amazon
+    /// EBS encryption</a> in the <i>Amazon EBS User Guide</i>.
     /// </para>
     ///  
     /// <para>
     /// After you attach an EBS volume, you must make it available. For more information,
-    /// see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html">Make
+    /// see <a href="https://docs.aws.amazon.com/ebs/latest/userguide/ebs-using-volumes.html">Make
     /// an EBS volume available for use</a>.
     /// </para>
     ///  
@@ -69,9 +70,8 @@ namespace Amazon.EC2.Model
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html">Attach
-    /// an Amazon EBS volume to an instance</a> in the <i>Amazon Elastic Compute Cloud User
-    /// Guide</i>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/ebs/latest/userguide/ebs-attaching-volume.html">Attach
+    /// an Amazon EBS volume to an instance</a> in the <i>Amazon EBS User Guide</i>.
     /// </para>
     /// </summary>
     public partial class AttachVolumeRequest : AmazonEC2Request
@@ -90,7 +90,7 @@ namespace Amazon.EC2.Model
         /// </summary>
         /// <param name="volumeId">The ID of the EBS volume. The volume and instance must be within the same Availability Zone.</param>
         /// <param name="instanceId">The ID of the instance.</param>
-        /// <param name="device">The device name (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</param>
+        /// <param name="device">The device name (for example, <c>/dev/sdh</c> or <c>xvdh</c>).</param>
         public AttachVolumeRequest(string volumeId, string instanceId, string device)
         {
             _volumeId = volumeId;
@@ -101,7 +101,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Device. 
         /// <para>
-        /// The device name (for example, <code>/dev/sdh</code> or <code>xvdh</code>).
+        /// The device name (for example, <c>/dev/sdh</c> or <c>xvdh</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

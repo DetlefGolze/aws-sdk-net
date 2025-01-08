@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ComputeOptimizer.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -61,6 +62,24 @@ namespace Amazon.ComputeOptimizer.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = ExternalMetricsPreferenceUnmarshaller.Instance;
                     response.ExternalMetricsPreference = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("lookBackPeriod", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.LookBackPeriod = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("preferredResources", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<EffectivePreferredResource, EffectivePreferredResourceUnmarshaller>(EffectivePreferredResourceUnmarshaller.Instance);
+                    response.PreferredResources = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("utilizationPreferences", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<UtilizationPreference, UtilizationPreferenceUnmarshaller>(UtilizationPreferenceUnmarshaller.Instance);
+                    response.UtilizationPreferences = unmarshaller.Unmarshall(context);
                     continue;
                 }
             }

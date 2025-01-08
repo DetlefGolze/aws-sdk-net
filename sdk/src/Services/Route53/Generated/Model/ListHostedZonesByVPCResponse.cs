@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
@@ -33,17 +34,16 @@ namespace Amazon.Route53.Model
     /// </summary>
     public partial class ListHostedZonesByVPCResponse : AmazonWebServiceResponse
     {
-        private List<HostedZoneSummary> _hostedZoneSummaries = new List<HostedZoneSummary>();
+        private List<HostedZoneSummary> _hostedZoneSummaries = AWSConfigs.InitializeCollections ? new List<HostedZoneSummary>() : null;
         private string _maxItems;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property HostedZoneSummaries. 
         /// <para>
-        /// A list that contains one <code>HostedZoneSummary</code> element for each hosted zone
-        /// that the specified Amazon VPC is associated with. Each <code>HostedZoneSummary</code>
-        /// element contains the hosted zone name and ID, and information about who owns the hosted
-        /// zone.
+        /// A list that contains one <c>HostedZoneSummary</c> element for each hosted zone that
+        /// the specified Amazon VPC is associated with. Each <c>HostedZoneSummary</c> element
+        /// contains the hosted zone name and ID, and information about who owns the hosted zone.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -56,13 +56,13 @@ namespace Amazon.Route53.Model
         // Check to see if HostedZoneSummaries property is set
         internal bool IsSetHostedZoneSummaries()
         {
-            return this._hostedZoneSummaries != null && this._hostedZoneSummaries.Count > 0; 
+            return this._hostedZoneSummaries != null && (this._hostedZoneSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxItems. 
         /// <para>
-        /// The value that you specified for <code>MaxItems</code> in the most recent <code>ListHostedZonesByVPC</code>
+        /// The value that you specified for <c>MaxItems</c> in the most recent <c>ListHostedZonesByVPC</c>
         /// request.
         /// </para>
         /// </summary>
@@ -82,7 +82,7 @@ namespace Amazon.Route53.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The value that you will use for <code>NextToken</code> in the next <code>ListHostedZonesByVPC</code>
+        /// The value that you will use for <c>NextToken</c> in the next <c>ListHostedZonesByVPC</c>
         /// request.
         /// </para>
         /// </summary>

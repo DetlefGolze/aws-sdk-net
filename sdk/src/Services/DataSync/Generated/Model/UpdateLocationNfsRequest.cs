@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateLocationNfs operation.
-    /// Modifies some configurations of the Network File System (NFS) transfer location that
-    /// you're using with DataSync.
+    /// Modifies the following configuration parameters of the Network File System (NFS) transfer
+    /// location that you're using with DataSync.
     /// 
     ///  
     /// <para>
     /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html">Configuring
-    /// transfers to or from an NFS file server</a>.
+    /// transfers with an NFS file server</a>.
     /// </para>
     /// </summary>
     public partial class UpdateLocationNfsRequest : AmazonDataSyncRequest

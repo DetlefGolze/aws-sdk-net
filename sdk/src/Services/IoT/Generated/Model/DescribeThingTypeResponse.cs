@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -118,7 +119,7 @@ namespace Amazon.IoT.Model
         /// Gets and sets the property ThingTypeProperties. 
         /// <para>
         /// The ThingTypeProperties contains information about the thing type including description,
-        /// and a list of searchable thing attribute names.
+        /// a list of searchable thing attribute names, and MQTT5 configuration.
         /// </para>
         /// </summary>
         public ThingTypeProperties ThingTypeProperties

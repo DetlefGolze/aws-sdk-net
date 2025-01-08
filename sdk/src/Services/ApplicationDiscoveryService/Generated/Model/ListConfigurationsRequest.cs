@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
     /// Container for the parameters to the ListConfigurations operation.
     /// Retrieves a list of configuration items as specified by the value passed to the required
-    /// parameter <code>configurationType</code>. Optional filtering may be applied to refine
-    /// search results.
+    /// parameter <c>configurationType</c>. Optional filtering may be applied to refine search
+    /// results.
     /// </summary>
     public partial class ListConfigurationsRequest : AmazonApplicationDiscoveryServiceRequest
     {
         private ConfigurationItemType _configurationType;
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
-        private List<OrderByElement> _orderBy = new List<OrderByElement>();
+        private List<OrderByElement> _orderBy = AWSConfigs.InitializeCollections ? new List<OrderByElement>() : null;
 
         /// <summary>
         /// Gets and sets the property ConfigurationType. 
@@ -69,7 +70,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>{"key": "serverType", "value": "webServer"}</code> 
+        ///  <c>{"key": "serverType", "value": "webServer"}</c> 
         /// </para>
         ///  
         /// <para>
@@ -88,7 +89,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -113,9 +114,9 @@ namespace Amazon.ApplicationDiscoveryService.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// Token to retrieve the next set of results. For example, if a previous call to ListConfigurations
-        /// returned 100 items, but you set <code>ListConfigurationsRequest$maxResults</code>
-        /// to 10, you received a set of 10 results along with a token. Use that token in this
-        /// query to get the next set of 10.
+        /// returned 100 items, but you set <c>ListConfigurationsRequest$maxResults</c> to 10,
+        /// you received a set of 10 results along with a token. Use that token in this query
+        /// to get the next set of 10.
         /// </para>
         /// </summary>
         public string NextToken
@@ -148,7 +149,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         // Check to see if OrderBy property is set
         internal bool IsSetOrderBy()
         {
-            return this._orderBy != null && this._orderBy.Count > 0; 
+            return this._orderBy != null && (this._orderBy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

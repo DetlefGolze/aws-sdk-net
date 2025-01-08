@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkMail.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateResource operation.
     /// Updates data for the resource. To have the latest information, it must be preceded
     /// by a <a>DescribeResource</a> call. The dataset in the request should be the one expected
-    /// when performing another <code>DescribeResource</code> call.
+    /// when performing another <c>DescribeResource</c> call.
     /// </summary>
     public partial class UpdateResourceRequest : AmazonWorkMailRequest
     {
@@ -68,7 +69,7 @@ namespace Amazon.WorkMail.Model
         /// Updates the resource description.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=64)]
+        [AWSProperty(Sensitive=true, Min=0, Max=64)]
         public string Description
         {
             get { return this._description; }

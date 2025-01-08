@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,16 +36,16 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeImportImageTasksRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
-        private List<string> _importTaskIds = new List<string>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
+        private List<string> _importTaskIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// Filter tasks using the <code>task-state</code> filter and one of the following values:
-        /// <code>active</code>, <code>completed</code>, <code>deleting</code>, or <code>deleted</code>.
+        /// Filter tasks using the <c>task-state</c> filter and one of the following values: <c>active</c>,
+        /// <c>completed</c>, <c>deleting</c>, or <c>deleted</c>.
         /// </para>
         /// </summary>
         public List<Filter> Filters
@@ -56,7 +57,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace Amazon.EC2.Model
         // Check to see if ImportTaskIds property is set
         internal bool IsSetImportTaskIds()
         {
-            return this._importTaskIds != null && this._importTaskIds.Count > 0; 
+            return this._importTaskIds != null && (this._importTaskIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

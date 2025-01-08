@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -34,10 +35,10 @@ namespace Amazon.Connect.Model
     /// 
     ///  <note> 
     /// <para>
-    /// You can change the <code>SignInConfig</code> distribution only for a default <code>TrafficDistributionGroup</code>
-    /// (see the <code>IsDefault</code> parameter in the <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html">TrafficDistributionGroup</a>
-    /// data type). If you call <code>UpdateTrafficDistribution</code> with a modified <code>SignInConfig</code>
-    /// and a non-default <code>TrafficDistributionGroup</code>, an <code>InvalidRequestException</code>
+    /// The <c>SignInConfig</c> distribution is available only on a default <c>TrafficDistributionGroup</c>
+    /// (see the <c>IsDefault</c> parameter in the <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html">TrafficDistributionGroup</a>
+    /// data type). If you call <c>UpdateTrafficDistribution</c> with a modified <c>SignInConfig</c>
+    /// and a non-default <c>TrafficDistributionGroup</c>, an <c>InvalidRequestException</c>
     /// is returned.
     /// </para>
     ///  </note> 
@@ -77,7 +78,7 @@ namespace Amazon.Connect.Model
         /// <para>
         /// The identifier of the traffic distribution group. This can be the ID or the ARN if
         /// the API is being called in the Region where the traffic distribution group was created.
-        /// The ARN must be provided if the call is from the replicated Region.
+        /// The ARN must be provided if the call is from the replicated Region. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -96,7 +97,8 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property SignInConfig. 
         /// <para>
-        /// The distribution of allowing signing in to the instance and its replica(s).
+        /// The distribution that determines which Amazon Web Services Regions should be used
+        /// to sign in agents in to both the instance and its replica(s).
         /// </para>
         /// </summary>
         public SignInConfig SignInConfig

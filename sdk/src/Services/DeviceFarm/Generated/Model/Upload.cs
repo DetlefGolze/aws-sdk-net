@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DeviceFarm.Model
 {
     /// <summary>
@@ -93,7 +94,7 @@ namespace Amazon.DeviceFarm.Model
         /// <summary>
         /// Gets and sets the property ContentType. 
         /// <para>
-        /// The upload's content type (for example, <code>application/octet-stream</code>).
+        /// The upload's content type (for example, <c>application/octet-stream</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=64)]
@@ -292,19 +293,7 @@ namespace Amazon.DeviceFarm.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// CALABASH_TEST_PACKAGE
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
         /// INSTRUMENTATION_TEST_PACKAGE
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// UIAUTOMATION_TEST_PACKAGE
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// UIAUTOMATOR_TEST_PACKAGE
         /// </para>
         ///  </li> <li> 
         /// <para>

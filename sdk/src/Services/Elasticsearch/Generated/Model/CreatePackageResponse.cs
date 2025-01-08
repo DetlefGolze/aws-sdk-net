@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// Container for response returned by <code> <a>CreatePackage</a> </code> operation.
+    /// Container for response returned by <c> <a>CreatePackage</a> </c> operation.
     /// </summary>
     public partial class CreatePackageResponse : AmazonWebServiceResponse
     {
@@ -38,7 +39,7 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property PackageDetails. 
         /// <para>
-        /// Information about the package <code>PackageDetails</code>.
+        /// Information about the package <c>PackageDetails</c>.
         /// </para>
         /// </summary>
         public PackageDetails PackageDetails

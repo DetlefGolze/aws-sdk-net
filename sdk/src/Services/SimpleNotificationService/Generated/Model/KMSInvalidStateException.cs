@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
     /// The request was rejected because the state of the specified resource isn't valid for
-    /// this request. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">How
-    /// Key State Affects Use of a Customer Master Key</a> in the <i>Key Management Service
-    /// Developer Guide</i>.
+    /// this request. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">Key
+    /// states of Amazon Web Services KMS keys</a> in the <i>Key Management Service Developer
+    /// Guide</i>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Amplify.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -69,6 +70,7 @@ namespace Amazon.Amplify.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetJobId())
@@ -81,6 +83,12 @@ namespace Amazon.Amplify.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("sourceUrl");
                     context.Writer.Write(publicRequest.SourceUrl);
+                }
+
+                if(publicRequest.IsSetSourceUrlType())
+                {
+                    context.Writer.WritePropertyName("sourceUrlType");
+                    context.Writer.Write(publicRequest.SourceUrlType);
                 }
 
                 writer.WriteObjectEnd();

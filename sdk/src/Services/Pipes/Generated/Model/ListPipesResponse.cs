@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pipes.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.Pipes.Model
     public partial class ListPipesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Pipe> _pipes = new List<Pipe>();
+        private List<Pipe> _pipes = AWSConfigs.InitializeCollections ? new List<Pipe>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. Each pagination token expires after 24 hours. Using an expired pagination
-        /// token will return an HTTP 400 InvalidToken error.
+        /// If <c>nextToken</c> is returned, there are more results available. The value of <c>nextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. Each pagination
+        /// token expires after 24 hours. Using an expired pagination token will return an HTTP
+        /// 400 InvalidToken error.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=2048)]
@@ -74,7 +75,7 @@ namespace Amazon.Pipes.Model
         // Check to see if Pipes property is set
         internal bool IsSetPipes()
         {
-            return this._pipes != null && this._pipes.Count > 0; 
+            return this._pipes != null && (this._pipes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

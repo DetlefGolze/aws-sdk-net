@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -77,9 +78,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property ExportType. 
         /// <para>
-        /// Choice of whether to execute as a full export or incremental export. Valid values
-        /// are <code>FULL_EXPORT</code> or <code>INCREMENTAL_EXPORT</code>. If <code>INCREMENTAL_EXPORT</code>
-        /// is provided, the <code>IncrementalExportSpecification</code> must also be used.
+        /// The type of export that was performed. Valid values are <c>FULL_EXPORT</c> or <c>INCREMENTAL_EXPORT</c>.
         /// </para>
         /// </summary>
         public ExportType ExportType

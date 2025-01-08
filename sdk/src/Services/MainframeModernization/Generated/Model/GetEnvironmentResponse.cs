@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MainframeModernization.Model
 {
     /// <summary>
@@ -45,22 +46,23 @@ namespace Amazon.MainframeModernization.Model
         private string _kmsKeyId;
         private string _loadBalancerArn;
         private string _name;
+        private NetworkType _networkType;
         private PendingMaintenance _pendingMaintenance;
         private string _preferredMaintenanceWindow;
         private bool? _publiclyAccessible;
-        private List<string> _securityGroupIds = new List<string>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private EnvironmentLifecycle _status;
         private string _statusReason;
-        private List<StorageConfiguration> _storageConfigurations = new List<StorageConfiguration>();
-        private List<string> _subnetIds = new List<string>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private List<StorageConfiguration> _storageConfigurations = AWSConfigs.InitializeCollections ? new List<StorageConfiguration>() : null;
+        private List<string> _subnetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _vpcId;
 
         /// <summary>
         /// Gets and sets the property ActualCapacity. 
         /// <para>
         /// The number of instances included in the runtime environment. A standalone runtime
-        /// environment has a maxiumum of one instance. Currently, a high availability runtime
+        /// environment has a maximum of one instance. Currently, a high availability runtime
         /// environment has a maximum of two instances. 
         /// </para>
         /// </summary>
@@ -283,6 +285,24 @@ namespace Amazon.MainframeModernization.Model
         }
 
         /// <summary>
+        /// Gets and sets the property NetworkType. 
+        /// <para>
+        /// The network type supported by the runtime environment.
+        /// </para>
+        /// </summary>
+        public NetworkType NetworkType
+        {
+            get { return this._networkType; }
+            set { this._networkType = value; }
+        }
+
+        // Check to see if NetworkType property is set
+        internal bool IsSetNetworkType()
+        {
+            return this._networkType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property PendingMaintenance. 
         /// <para>
         /// Indicates the pending maintenance scheduled on this environment.
@@ -303,8 +323,8 @@ namespace Amazon.MainframeModernization.Model
         /// <summary>
         /// Gets and sets the property PreferredMaintenanceWindow. 
         /// <para>
-        /// Configures the maintenance window you want for the runtime environment. If you do
-        /// not provide a value, a random system-generated value will be assigned.
+        /// The maintenance window for the runtime environment. If you don't provide a value for
+        /// the maintenance window, the service assigns a random value.
         /// </para>
         /// </summary>
         public string PreferredMaintenanceWindow
@@ -354,13 +374,15 @@ namespace Amazon.MainframeModernization.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the runtime environment.
+        /// The status of the runtime environment. If the Amazon Web Services Mainframe Modernization
+        /// environment is missing a connection to the customer owned dependent resource, the
+        /// status will be <c>Unhealthy</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -409,7 +431,7 @@ namespace Amazon.MainframeModernization.Model
         // Check to see if StorageConfigurations property is set
         internal bool IsSetStorageConfigurations()
         {
-            return this._storageConfigurations != null && this._storageConfigurations.Count > 0; 
+            return this._storageConfigurations != null && (this._storageConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -428,7 +450,7 @@ namespace Amazon.MainframeModernization.Model
         // Check to see if SubnetIds property is set
         internal bool IsSetSubnetIds()
         {
-            return this._subnetIds != null && this._subnetIds.Count > 0; 
+            return this._subnetIds != null && (this._subnetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -447,7 +469,7 @@ namespace Amazon.MainframeModernization.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

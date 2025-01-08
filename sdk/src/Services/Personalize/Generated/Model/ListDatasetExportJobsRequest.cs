@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Personalize.Model
 {
     /// <summary>
@@ -83,8 +84,8 @@ namespace Amazon.Personalize.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token returned from the previous call to <code>ListDatasetExportJobs</code> for
-        /// getting the next set of dataset export jobs (if they exist).
+        /// A token returned from the previous call to <c>ListDatasetExportJobs</c> for getting
+        /// the next set of dataset export jobs (if they exist).
         /// </para>
         /// </summary>
         [AWSProperty(Max=1500)]

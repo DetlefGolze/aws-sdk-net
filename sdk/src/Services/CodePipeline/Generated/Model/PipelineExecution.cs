@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
@@ -33,17 +34,22 @@ namespace Amazon.CodePipeline.Model
     /// </summary>
     public partial class PipelineExecution
     {
-        private List<ArtifactRevision> _artifactRevisions = new List<ArtifactRevision>();
+        private List<ArtifactRevision> _artifactRevisions = AWSConfigs.InitializeCollections ? new List<ArtifactRevision>() : null;
+        private ExecutionMode _executionMode;
+        private ExecutionType _executionType;
         private string _pipelineExecutionId;
         private string _pipelineName;
         private int? _pipelineVersion;
+        private PipelineRollbackMetadata _rollbackMetadata;
         private PipelineExecutionStatus _status;
         private string _statusSummary;
+        private ExecutionTrigger _trigger;
+        private List<ResolvedPipelineVariable> _variables = AWSConfigs.InitializeCollections ? new List<ResolvedPipelineVariable>() : null;
 
         /// <summary>
         /// Gets and sets the property ArtifactRevisions. 
         /// <para>
-        /// A list of <code>ArtifactRevision</code> objects included in a pipeline execution.
+        /// A list of <c>ArtifactRevision</c> objects included in a pipeline execution.
         /// </para>
         /// </summary>
         public List<ArtifactRevision> ArtifactRevisions
@@ -55,7 +61,44 @@ namespace Amazon.CodePipeline.Model
         // Check to see if ArtifactRevisions property is set
         internal bool IsSetArtifactRevisions()
         {
-            return this._artifactRevisions != null && this._artifactRevisions.Count > 0; 
+            return this._artifactRevisions != null && (this._artifactRevisions.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExecutionMode. 
+        /// <para>
+        /// The method that the pipeline will use to handle multiple executions. The default mode
+        /// is SUPERSEDED.
+        /// </para>
+        /// </summary>
+        public ExecutionMode ExecutionMode
+        {
+            get { return this._executionMode; }
+            set { this._executionMode = value; }
+        }
+
+        // Check to see if ExecutionMode property is set
+        internal bool IsSetExecutionMode()
+        {
+            return this._executionMode != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExecutionType. 
+        /// <para>
+        /// The type of the pipeline execution.
+        /// </para>
+        /// </summary>
+        public ExecutionType ExecutionType
+        {
+            get { return this._executionType; }
+            set { this._executionType = value; }
+        }
+
+        // Check to see if ExecutionType property is set
+        internal bool IsSetExecutionType()
+        {
+            return this._executionType != null;
         }
 
         /// <summary>
@@ -112,6 +155,24 @@ namespace Amazon.CodePipeline.Model
         internal bool IsSetPipelineVersion()
         {
             return this._pipelineVersion.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property RollbackMetadata. 
+        /// <para>
+        /// The metadata about the execution pertaining to stage rollback.
+        /// </para>
+        /// </summary>
+        public PipelineRollbackMetadata RollbackMetadata
+        {
+            get { return this._rollbackMetadata; }
+            set { this._rollbackMetadata = value; }
+        }
+
+        // Check to see if RollbackMetadata property is set
+        internal bool IsSetRollbackMetadata()
+        {
+            return this._rollbackMetadata != null;
         }
 
         /// <summary>
@@ -186,6 +247,39 @@ namespace Amazon.CodePipeline.Model
         internal bool IsSetStatusSummary()
         {
             return this._statusSummary != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Trigger.
+        /// </summary>
+        public ExecutionTrigger Trigger
+        {
+            get { return this._trigger; }
+            set { this._trigger = value; }
+        }
+
+        // Check to see if Trigger property is set
+        internal bool IsSetTrigger()
+        {
+            return this._trigger != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Variables. 
+        /// <para>
+        /// A list of pipeline variables used for the pipeline execution.
+        /// </para>
+        /// </summary>
+        public List<ResolvedPipelineVariable> Variables
+        {
+            get { return this._variables; }
+            set { this._variables = value; }
+        }
+
+        // Check to see if Variables property is set
+        internal bool IsSetVariables()
+        {
+            return this._variables != null && (this._variables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

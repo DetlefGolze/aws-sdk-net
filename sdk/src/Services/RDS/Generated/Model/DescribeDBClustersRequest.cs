@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -52,7 +53,7 @@ namespace Amazon.RDS.Model
     public partial class DescribeDBClustersRequest : AmazonRDSRequest
     {
         private string _dbClusterIdentifier;
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private bool? _includeShared;
         private string _marker;
         private int? _maxRecords;
@@ -97,29 +98,29 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>clone-group-id</code> - Accepts clone group identifiers. The results list only
-        /// includes information about the DB clusters associated with these clone groups.
+        ///  <c>clone-group-id</c> - Accepts clone group identifiers. The results list only includes
+        /// information about the DB clusters associated with these clone groups.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>db-cluster-id</code> - Accepts DB cluster identifiers and DB cluster Amazon
-        /// Resource Names (ARNs). The results list only includes information about the DB clusters
-        /// identified by these ARNs.
+        ///  <c>db-cluster-id</c> - Accepts DB cluster identifiers and DB cluster Amazon Resource
+        /// Names (ARNs). The results list only includes information about the DB clusters identified
+        /// by these ARNs.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>db-cluster-resource-id</code> - Accepts DB cluster resource identifiers. The
-        /// results list will only include information about the DB clusters identified by these
-        /// DB cluster resource identifiers.
+        ///  <c>db-cluster-resource-id</c> - Accepts DB cluster resource identifiers. The results
+        /// list will only include information about the DB clusters identified by these DB cluster
+        /// resource identifiers.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>domain</code> - Accepts Active Directory directory IDs. The results list only
-        /// includes information about the DB clusters associated with these domains.
+        ///  <c>domain</c> - Accepts Active Directory directory IDs. The results list only includes
+        /// information about the DB clusters associated with these domains.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>engine</code> - Accepts engine names. The results list only includes information
+        ///  <c>engine</c> - Accepts engine names. The results list only includes information
         /// about the DB clusters for these engines.
         /// </para>
         ///  </li> </ul>
@@ -133,7 +134,7 @@ namespace Amazon.RDS.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -158,9 +159,9 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// An optional pagination token provided by a previous <code>DescribeDBClusters</code>
-        /// request. If this parameter is specified, the response includes only records beyond
-        /// the marker, up to the value specified by <code>MaxRecords</code>.
+        /// An optional pagination token provided by a previous <c>DescribeDBClusters</c> request.
+        /// If this parameter is specified, the response includes only records beyond the marker,
+        /// up to the value specified by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -179,8 +180,8 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property MaxRecords. 
         /// <para>
         /// The maximum number of records to include in the response. If more records exist than
-        /// the specified <code>MaxRecords</code> value, a pagination token called a marker is
-        /// included in the response so you can retrieve the remaining results.
+        /// the specified <c>MaxRecords</c> value, a pagination token called a marker is included
+        /// in the response so you can retrieve the remaining results.
         /// </para>
         ///  
         /// <para>
@@ -188,7 +189,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Constraints: Minimum 20, maximum 100.
+        /// Constraints: Minimum 20, maximum 100
         /// </para>
         /// </summary>
         public int MaxRecords

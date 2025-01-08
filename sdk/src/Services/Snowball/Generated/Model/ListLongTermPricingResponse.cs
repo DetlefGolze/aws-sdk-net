@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.Snowball.Model
     /// </summary>
     public partial class ListLongTermPricingResponse : AmazonWebServiceResponse
     {
-        private List<LongTermPricingListEntry> _longTermPricingEntries = new List<LongTermPricingListEntry>();
+        private List<LongTermPricingListEntry> _longTermPricingEntries = AWSConfigs.InitializeCollections ? new List<LongTermPricingListEntry>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property LongTermPricingEntries. 
         /// <para>
-        /// Each <code>LongTermPricingEntry</code> object contains a status, ID, and other information
-        /// about the <code>LongTermPricing</code> type. 
+        /// Each <c>LongTermPricingEntry</c> object contains a status, ID, and other information
+        /// about the <c>LongTermPricing</c> type. 
         /// </para>
         /// </summary>
         public List<LongTermPricingListEntry> LongTermPricingEntries
@@ -52,14 +53,14 @@ namespace Amazon.Snowball.Model
         // Check to see if LongTermPricingEntries property is set
         internal bool IsSetLongTermPricingEntries()
         {
-            return this._longTermPricingEntries != null && this._longTermPricingEntries.Count > 0; 
+            return this._longTermPricingEntries != null && (this._longTermPricingEntries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// Because HTTP requests are stateless, this is the starting point for your next list
-        /// of returned <code>ListLongTermPricing</code> list.
+        /// of returned <c>ListLongTermPricing</c> list.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

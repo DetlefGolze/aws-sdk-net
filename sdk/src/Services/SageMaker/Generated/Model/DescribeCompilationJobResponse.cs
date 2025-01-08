@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -57,7 +58,7 @@ namespace Amazon.SageMaker.Model
         /// <para>
         /// The time when the model compilation job on a compilation job instance ended. For a
         /// successful or stopped job, this is when the job's model artifacts have finished uploading.
-        /// For a failed job, this is when Amazon SageMaker detected that the job failed. 
+        /// For a failed job, this is when Amazon SageMaker AI detected that the job failed. 
         /// </para>
         /// </summary>
         public DateTime CompilationEndTime
@@ -132,12 +133,12 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property CompilationStartTime. 
         /// <para>
-        /// The time when the model compilation job started the <code>CompilationJob</code> instances.
+        /// The time when the model compilation job started the <c>CompilationJob</c> instances.
         /// 
         /// </para>
         ///  
         /// <para>
-        /// You are billed for the time between this timestamp and the timestamp in the <code>CompilationEndTime</code>
+        /// You are billed for the time between this timestamp and the timestamp in the <c>CompilationEndTime</c>
         /// field. In Amazon CloudWatch Logs, the start time might be later than this time. That's
         /// because it takes time to download the compilation job, which depends on the size of
         /// the compilation job container. 
@@ -352,8 +353,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property RoleArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker assumes to perform
-        /// the model compilation job.
+        /// The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker AI assumes to
+        /// perform the model compilation job.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]
@@ -373,8 +374,8 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property StoppingCondition. 
         /// <para>
         /// Specifies a limit to how long a model compilation job can run. When the job reaches
-        /// the time limit, Amazon SageMaker ends the compilation job. Use this API to cap model
-        /// training costs.
+        /// the time limit, Amazon SageMaker AI ends the compilation job. Use this API to cap
+        /// model training costs.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

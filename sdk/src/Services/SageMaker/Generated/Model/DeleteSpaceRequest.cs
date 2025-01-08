@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property DomainId. 
         /// <para>
-        /// The ID of the associated Domain.
+        /// The ID of the associated domain.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=63)]

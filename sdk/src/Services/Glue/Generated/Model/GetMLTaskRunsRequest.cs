@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -33,8 +34,8 @@ namespace Amazon.Glue.Model
     /// Gets a list of runs for a machine learning transform. Machine learning task runs are
     /// asynchronous tasks that Glue runs on your behalf as part of various machine learning
     /// workflows. You can get a sortable, filterable list of machine learning task runs by
-    /// calling <code>GetMLTaskRuns</code> with their parent transform's <code>TransformID</code>
-    /// and other optional parameters as documented in this section.
+    /// calling <c>GetMLTaskRuns</c> with their parent transform's <c>TransformID</c> and
+    /// other optional parameters as documented in this section.
     /// 
     ///  
     /// <para>
@@ -52,8 +53,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property Filter. 
         /// <para>
-        /// The filter criteria, in the <code>TaskRunFilterCriteria</code> structure, for the
-        /// task run.
+        /// The filter criteria, in the <c>TaskRunFilterCriteria</c> structure, for the task run.
         /// </para>
         /// </summary>
         public TaskRunFilterCriteria Filter
@@ -108,8 +108,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property Sort. 
         /// <para>
-        /// The sorting criteria, in the <code>TaskRunSortCriteria</code> structure, for the task
-        /// run.
+        /// The sorting criteria, in the <c>TaskRunSortCriteria</c> structure, for the task run.
         /// </para>
         /// </summary>
         public TaskRunSortCriteria Sort

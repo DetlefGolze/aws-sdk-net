@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -40,9 +41,9 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property Keyword. 
         /// <para>
-        /// A keyword that is used to filter on the <code>name</code> or the <code>prefix</code>
-        /// of the test cases. Only test cases where the keyword is a substring of the <code>name</code>
-        /// or the <code>prefix</code> will be returned.
+        /// A keyword that is used to filter on the <c>name</c> or the <c>prefix</c> of the test
+        /// cases. Only test cases where the keyword is a substring of the <c>name</c> or the
+        /// <c>prefix</c> will be returned.
         /// </para>
         /// </summary>
         public string Keyword
@@ -60,28 +61,28 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status used to filter test cases. A <code>TestCaseFilter</code> can have one status.
+        /// The status used to filter test cases. A <c>TestCaseFilter</c> can have one status.
         /// Valid values are:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>SUCCEEDED</code> 
+        ///  <c>SUCCEEDED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> 
+        ///  <c>FAILED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ERROR</code> 
+        ///  <c>ERROR</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SKIPPED</code> 
+        ///  <c>SKIPPED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UNKNOWN</code> 
+        ///  <c>UNKNOWN</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

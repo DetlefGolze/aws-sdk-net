@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
-    /// Container for the response returned by the <code>GetUpgradeStatus</code> operation.
+    /// Container for the response returned by the <c>GetUpgradeStatus</c> operation.
     /// </summary>
     public partial class GetUpgradeStatusResponse : AmazonWebServiceResponse
     {

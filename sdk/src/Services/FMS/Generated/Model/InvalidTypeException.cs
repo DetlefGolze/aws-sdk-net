@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FMS.Model
 {
     /// <summary>
-    /// The value of the <code>Type</code> parameter is invalid.
+    /// The value of the <c>Type</c> parameter is invalid.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

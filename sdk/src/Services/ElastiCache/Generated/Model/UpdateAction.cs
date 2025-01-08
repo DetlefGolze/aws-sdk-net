@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -34,10 +35,10 @@ namespace Amazon.ElastiCache.Model
     public partial class UpdateAction
     {
         private string _cacheClusterId;
-        private List<CacheNodeUpdateStatus> _cacheNodeUpdateStatus = new List<CacheNodeUpdateStatus>();
+        private List<CacheNodeUpdateStatus> _cacheNodeUpdateStatus = AWSConfigs.InitializeCollections ? new List<CacheNodeUpdateStatus>() : null;
         private string _engine;
         private string _estimatedUpdateTime;
-        private List<NodeGroupUpdateStatus> _nodeGroupUpdateStatus = new List<NodeGroupUpdateStatus>();
+        private List<NodeGroupUpdateStatus> _nodeGroupUpdateStatus = AWSConfigs.InitializeCollections ? new List<NodeGroupUpdateStatus>() : null;
         private string _nodesUpdated;
         private string _replicationGroupId;
         private string _serviceUpdateName;
@@ -84,13 +85,13 @@ namespace Amazon.ElastiCache.Model
         // Check to see if CacheNodeUpdateStatus property is set
         internal bool IsSetCacheNodeUpdateStatus()
         {
-            return this._cacheNodeUpdateStatus != null && this._cacheNodeUpdateStatus.Count > 0; 
+            return this._cacheNodeUpdateStatus != null && (this._cacheNodeUpdateStatus.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Engine. 
         /// <para>
-        /// The Elasticache engine to which the update applies. Either Redis or Memcached
+        /// The Elasticache engine to which the update applies. Either Valkey, Redis OSS or Memcached.
         /// </para>
         /// </summary>
         public string Engine
@@ -138,7 +139,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if NodeGroupUpdateStatus property is set
         internal bool IsSetNodeGroupUpdateStatus()
         {
-            return this._nodeGroupUpdateStatus != null && this._nodeGroupUpdateStatus.Count > 0; 
+            return this._nodeGroupUpdateStatus != null && (this._nodeGroupUpdateStatus.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -199,7 +200,7 @@ namespace Amazon.ElastiCache.Model
         /// Gets and sets the property ServiceUpdateRecommendedApplyByDate. 
         /// <para>
         /// The recommended date to apply the service update to ensure compliance. For information
-        /// on compliance, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/elasticache-compliance.html#elasticache-compliance-self-service">Self-Service
+        /// on compliance, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/elasticache-compliance.html#elasticache-compliance-self-service">Self-Service
         /// Security Updates for Compliance</a>.
         /// </para>
         /// </summary>

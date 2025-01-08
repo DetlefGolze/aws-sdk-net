@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComputeOptimizer.Model
 {
     /// <summary>
@@ -101,7 +102,7 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        ///  The top recommendation option is ranked as <code>1</code>. 
+        ///  The top recommendation option is ranked as <c>1</c>. 
         /// </para>
         /// </summary>
         public int Rank

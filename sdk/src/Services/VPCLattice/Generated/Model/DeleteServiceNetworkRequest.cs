@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property ServiceNetworkIdentifier. 
         /// <para>
-        /// The Amazon Resource Name (ARN) or ID of the service network.
+        /// The ID or ARN of the service network.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=3, Max=2048)]

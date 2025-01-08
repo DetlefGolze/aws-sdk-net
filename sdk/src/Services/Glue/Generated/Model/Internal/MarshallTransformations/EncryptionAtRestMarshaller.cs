@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,10 +46,18 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(EncryptionAtRest requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCatalogEncryptionMode())
             {
                 context.Writer.WritePropertyName("CatalogEncryptionMode");
                 context.Writer.Write(requestObject.CatalogEncryptionMode);
+            }
+
+            if(requestObject.IsSetCatalogEncryptionServiceRole())
+            {
+                context.Writer.WritePropertyName("CatalogEncryptionServiceRole");
+                context.Writer.Write(requestObject.CatalogEncryptionServiceRole);
             }
 
             if(requestObject.IsSetSseAwsKmsKeyId())

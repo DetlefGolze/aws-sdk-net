@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -44,17 +45,16 @@ namespace Amazon.EC2.Model
     /// When copying snapshots to a Region, copies of encrypted EBS snapshots remain encrypted.
     /// Copies of unencrypted snapshots remain unencrypted, unless you enable encryption for
     /// the snapshot copy operation. By default, encrypted snapshot copies use the default
-    /// Key Management Service (KMS) KMS key; however, you can specify a different KMS key.
-    /// To copy an encrypted snapshot that has been shared from another account, you must
-    /// have permissions for the KMS key used to encrypt the snapshot.
+    /// KMS key; however, you can specify a different KMS key. To copy an encrypted snapshot
+    /// that has been shared from another account, you must have permissions for the KMS key
+    /// used to encrypt the snapshot.
     /// </para>
     ///  
     /// <para>
     /// Snapshots copied to an Outpost are encrypted by default using the default encryption
     /// key for the Region, or a different key that you specify in the request using <b>KmsKeyId</b>.
-    /// Outposts do not support unencrypted snapshots. For more information, <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html#ami">
-    /// Amazon EBS local snapshots on Outposts</a> in the <i>Amazon Elastic Compute Cloud
-    /// User Guide</i>.
+    /// Outposts do not support unencrypted snapshots. For more information, <a href="https://docs.aws.amazon.com/ebs/latest/userguide/snapshots-outposts.html#ami">
+    /// Amazon EBS local snapshots on Outposts</a> in the <i>Amazon EBS User Guide</i>.
     /// </para>
     ///  
     /// <para>
@@ -63,12 +63,13 @@ namespace Amazon.EC2.Model
     /// </para>
     ///  
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html">Copy
-    /// an Amazon EBS snapshot</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/ebs/latest/userguide/ebs-copy-snapshot.html">Copy
+    /// an Amazon EBS snapshot</a> in the <i>Amazon EBS User Guide</i>.
     /// </para>
     /// </summary>
     public partial class CopySnapshotRequest : AmazonEC2Request
     {
+        private int? _completionDurationMinutes;
         private string _description;
         private string _destinationOutpostArn;
         private string _destinationRegion;
@@ -77,7 +78,34 @@ namespace Amazon.EC2.Model
         private string _presignedUrl;
         private string _sourceRegion;
         private string _sourceSnapshotId;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
+
+        /// <summary>
+        /// Gets and sets the property CompletionDurationMinutes. 
+        /// <para>
+        /// Specify a completion duration, in 15 minute increments, to initiate a time-based snapshot
+        /// copy. Time-based snapshot copy operations complete within the specified duration.
+        /// For more information, see <a href="https://docs.aws.amazon.com/ebs/latest/userguide/time-based-copies.html">
+        /// Time-based copies</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you do not specify a value, the snapshot copy operation is completed on a best-effort
+        /// basis.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=2880)]
+        public int CompletionDurationMinutes
+        {
+            get { return this._completionDurationMinutes.GetValueOrDefault(); }
+            set { this._completionDurationMinutes = value; }
+        }
+
+        // Check to see if CompletionDurationMinutes property is set
+        internal bool IsSetCompletionDurationMinutes()
+        {
+            return this._completionDurationMinutes.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -108,9 +136,9 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html#copy-snapshots">
+        /// For more information, see <a href="https://docs.aws.amazon.com/ebs/latest/userguide/snapshots-outposts.html#copy-snapshots">
         /// Copy snapshots from an Amazon Web Services Region to an Outpost</a> in the <i>Amazon
-        /// Elastic Compute Cloud User Guide</i>.
+        /// EBS User Guide</i>.
         /// </para>
         /// </summary>
         public string DestinationOutpostArn
@@ -128,16 +156,16 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property DestinationRegion. 
         /// <para>
-        /// The destination Region to use in the <code>PresignedUrl</code> parameter of a snapshot
-        /// copy operation. This parameter is only valid for specifying the destination Region
-        /// in a <code>PresignedUrl</code> parameter, where it is required.
+        /// The destination Region to use in the <c>PresignedUrl</c> parameter of a snapshot copy
+        /// operation. This parameter is only valid for specifying the destination Region in a
+        /// <c>PresignedUrl</c> parameter, where it is required.
         /// </para>
         ///  
         /// <para>
         /// The snapshot copy is sent to the regional endpoint that you sent the HTTP request
-        /// to (for example, <code>ec2.us-east-1.amazonaws.com</code>). With the CLI, this is
-        /// specified using the <code>--region</code> parameter or the default Region in your
-        /// Amazon Web Services configuration file.
+        /// to (for example, <c>ec2.us-east-1.amazonaws.com</c>). With the CLI, this is specified
+        /// using the <c>--region</c> parameter or the default Region in your Amazon Web Services
+        /// configuration file.
         /// </para>
         /// </summary>
         public string DestinationRegion
@@ -159,8 +187,8 @@ namespace Amazon.EC2.Model
         /// enable encryption using this parameter. Otherwise, omit this parameter. Encrypted
         /// snapshots are encrypted, even if you omit this parameter and encryption by default
         /// is not enabled. You cannot set this parameter to false. For more information, see
-        /// <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
-        /// EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+        /// <a href="https://docs.aws.amazon.com/ebs/latest/userguide/ebs-encryption.html">Amazon
+        /// EBS encryption</a> in the <i>Amazon EBS User Guide</i>.
         /// </para>
         /// </summary>
         public bool Encrypted
@@ -178,9 +206,9 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// The identifier of the Key Management Service (KMS) KMS key to use for Amazon EBS encryption.
-        /// If this parameter is not specified, your KMS key for Amazon EBS is used. If <code>KmsKeyId</code>
-        /// is specified, the encrypted state must be <code>true</code>.
+        /// The identifier of the KMS key to use for Amazon EBS encryption. If this parameter
+        /// is not specified, your KMS key for Amazon EBS is used. If <c>KmsKeyId</c> is specified,
+        /// the encrypted state must be <c>true</c>.
         /// </para>
         ///  
         /// <para>
@@ -231,16 +259,15 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// The <code>PresignedUrl</code> should use the snapshot source endpoint, the <code>CopySnapshot</code>
-        /// action, and include the <code>SourceRegion</code>, <code>SourceSnapshotId</code>,
-        /// and <code>DestinationRegion</code> parameters. The <code>PresignedUrl</code> must
-        /// be signed using Amazon Web Services Signature Version 4. Because EBS snapshots are
-        /// stored in Amazon S3, the signing algorithm for this parameter uses the same logic
-        /// that is described in <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html">Authenticating
-        /// Requests: Using Query Parameters (Amazon Web Services Signature Version 4)</a> in
-        /// the <i>Amazon Simple Storage Service API Reference</i>. An invalid or improperly signed
-        /// <code>PresignedUrl</code> will cause the copy operation to fail asynchronously, and
-        /// the snapshot will move to an <code>error</code> state.
+        /// The <c>PresignedUrl</c> should use the snapshot source endpoint, the <c>CopySnapshot</c>
+        /// action, and include the <c>SourceRegion</c>, <c>SourceSnapshotId</c>, and <c>DestinationRegion</c>
+        /// parameters. The <c>PresignedUrl</c> must be signed using Amazon Web Services Signature
+        /// Version 4. Because EBS snapshots are stored in Amazon S3, the signing algorithm for
+        /// this parameter uses the same logic that is described in <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html">
+        /// Authenticating Requests: Using Query Parameters (Amazon Web Services Signature Version
+        /// 4)</a> in the <i>Amazon S3 API Reference</i>. An invalid or improperly signed <c>PresignedUrl</c>
+        /// will cause the copy operation to fail asynchronously, and the snapshot will move to
+        /// an <c>error</c> state.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -309,7 +336,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

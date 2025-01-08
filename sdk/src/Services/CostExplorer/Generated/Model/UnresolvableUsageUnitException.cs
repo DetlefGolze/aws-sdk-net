@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostExplorer.Model
 {
     /// <summary>
-    /// Cost Explorer was unable to identify the usage unit. Provide <code>UsageType/UsageTypeGroup</code>
-    /// filter selections that contain matching units, for example: <code>hours</code>.
+    /// Cost Explorer was unable to identify the usage unit. Provide <c>UsageType/UsageTypeGroup</c>
+    /// filter selections that contain matching units, for example: <c>hours</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

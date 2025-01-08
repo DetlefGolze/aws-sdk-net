@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancing.Model
 {
     /// <summary>
-    /// Information about the <code>CrossZoneLoadBalancing</code> attribute.
+    /// Information about the <c>CrossZoneLoadBalancing</c> attribute.
     /// </summary>
     public partial class CrossZoneLoadBalancing
     {

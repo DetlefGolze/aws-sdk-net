@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
-    /// Filters for the shot detection segments returned by <code>GetSegmentDetection</code>.
-    /// For more information, see <a>StartSegmentDetectionFilters</a>.
+    /// Filters for the shot detection segments returned by <c>GetSegmentDetection</c>. For
+    /// more information, see <a>StartSegmentDetectionFilters</a>.
     /// </summary>
     public partial class StartShotDetectionFilter
     {
@@ -47,8 +48,8 @@ namespace Amazon.Rekognition.Model
         /// </para>
         ///  
         /// <para>
-        /// If you don't specify <code>MinSegmentConfidence</code>, the <code>GetSegmentDetection</code>
-        /// returns segments with confidence values greater than or equal to 50 percent.
+        /// If you don't specify <c>MinSegmentConfidence</c>, the <c>GetSegmentDetection</c> returns
+        /// segments with confidence values greater than or equal to 50 percent.
         /// </para>
         /// </summary>
         [AWSProperty(Min=50, Max=100)]

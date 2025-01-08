@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTWireless.Model
 {
     /// <summary>
@@ -60,8 +61,8 @@ namespace Amazon.IoTWireless.Model
         /// Gets and sets the property AutoCreateTasks. 
         /// <para>
         /// Whether to automatically create tasks using this task definition for all gateways
-        /// with the specified current version. If <code>false</code>, the task must me created
-        /// by calling <code>CreateWirelessGatewayTask</code>.
+        /// with the specified current version. If <c>false</c>, the task must me created by calling
+        /// <c>CreateWirelessGatewayTask</c>.
         /// </para>
         /// </summary>
         public bool AutoCreateTasks

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.S3Outposts.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.S3Outposts.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Outpost Unmarshall(JsonUnmarshallerContext context)
         {
+            Outpost unmarshalledObject = new Outpost();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Outpost unmarshalledObject = new Outpost();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -88,8 +90,13 @@ namespace Amazon.S3Outposts.Model.Internal.MarshallTransformations
                     unmarshalledObject.OwnerId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("S3OutpostArn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.S3OutpostArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

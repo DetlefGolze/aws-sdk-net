@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -35,7 +36,8 @@ namespace Amazon.SimpleEmailV2.Model
     {
         private Destination _destination;
         private ReplacementEmailContent _replacementEmailContent;
-        private List<MessageTag> _replacementTags = new List<MessageTag>();
+        private List<MessageHeader> _replacementHeaders = AWSConfigs.InitializeCollections ? new List<MessageHeader>() : null;
+        private List<MessageTag> _replacementTags = AWSConfigs.InitializeCollections ? new List<MessageTag>() : null;
 
         /// <summary>
         /// Gets and sets the property Destination. 
@@ -69,7 +71,7 @@ namespace Amazon.SimpleEmailV2.Model
         /// <summary>
         /// Gets and sets the property ReplacementEmailContent. 
         /// <para>
-        /// The <code>ReplacementEmailContent</code> associated with a <code>BulkEmailEntry</code>.
+        /// The <c>ReplacementEmailContent</c> associated with a <c>BulkEmailEntry</c>.
         /// </para>
         /// </summary>
         public ReplacementEmailContent ReplacementEmailContent
@@ -85,10 +87,52 @@ namespace Amazon.SimpleEmailV2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ReplacementHeaders. 
+        /// <para>
+        /// The list of message headers associated with the <c>BulkEmailEntry</c> data type.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Headers Not Present in <c>BulkEmailEntry</c>: If a header is specified in <a href="https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_Template.html">
+        /// <c>Template</c> </a> but not in <c>BulkEmailEntry</c>, the header from <c>Template</c>
+        /// will be added to the outgoing email.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Headers Present in <c>BulkEmailEntry</c>: If a header is specified in <c>BulkEmailEntry</c>,
+        /// it takes precedence over any header of the same name specified in <a href="https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_Template.html">
+        /// <c>Template</c> </a>:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// If the header is also defined within <c>Template</c>, the value from <c>BulkEmailEntry</c>
+        /// will replace the header's value in the email.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If the header is not defined within <c>Template</c>, it will simply be added to the
+        /// email as specified in <c>BulkEmailEntry</c>.
+        /// </para>
+        ///  </li> </ul> </li> </ul>
+        /// </summary>
+        [AWSProperty(Min=0, Max=15)]
+        public List<MessageHeader> ReplacementHeaders
+        {
+            get { return this._replacementHeaders; }
+            set { this._replacementHeaders = value; }
+        }
+
+        // Check to see if ReplacementHeaders property is set
+        internal bool IsSetReplacementHeaders()
+        {
+            return this._replacementHeaders != null && (this._replacementHeaders.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property ReplacementTags. 
         /// <para>
         /// A list of tags, in the form of name/value pairs, to apply to an email that you send
-        /// using the <code>SendBulkTemplatedEmail</code> operation. Tags correspond to characteristics
+        /// using the <c>SendBulkTemplatedEmail</c> operation. Tags correspond to characteristics
         /// of the email that you define, so that you can publish email sending events.
         /// </para>
         /// </summary>
@@ -101,7 +145,7 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if ReplacementTags property is set
         internal bool IsSetReplacementTags()
         {
-            return this._replacementTags != null && this._replacementTags.Count > 0; 
+            return this._replacementTags != null && (this._replacementTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

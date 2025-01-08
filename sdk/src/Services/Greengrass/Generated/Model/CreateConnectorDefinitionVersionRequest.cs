@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Greengrass.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Greengrass.Model
     {
         private string _amznClientToken;
         private string _connectorDefinitionId;
-        private List<Connector> _connectors = new List<Connector>();
+        private List<Connector> _connectors = AWSConfigs.InitializeCollections ? new List<Connector>() : null;
 
         /// <summary>
         /// Gets and sets the property AmznClientToken. A client token used to correlate requests
@@ -51,7 +52,7 @@ namespace Amazon.Greengrass.Model
         // Check to see if AmznClientToken property is set
         internal bool IsSetAmznClientToken()
         {
-            return this._amznClientToken != null;
+            return !string.IsNullOrEmpty(this._amznClientToken);
         }
 
         /// <summary>
@@ -83,7 +84,7 @@ namespace Amazon.Greengrass.Model
         // Check to see if Connectors property is set
         internal bool IsSetConnectors()
         {
-            return this._connectors != null && this._connectors.Count > 0; 
+            return this._connectors != null && (this._connectors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

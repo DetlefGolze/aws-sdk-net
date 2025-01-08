@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Scheduler.Model
 {
     /// <summary>
     /// The templated target type for the Amazon Kinesis <a href="kinesis/latest/APIReference/API_PutRecord.html">
-    /// <code>PutRecord</code> </a> API operation.
+    /// <c>PutRecord</c> </a> API operation.
     /// </summary>
     public partial class KinesisParameters
     {

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -42,9 +43,9 @@ namespace Amazon.Rekognition.Model
     ///  
     /// <para>
     /// Information about faces detected in the supplied image, but not used for the search,
-    /// is returned in an array of <code>UnsearchedFace</code> objects. If no valid face is
-    /// detected in the image, the response will contain an empty <code>UserMatches</code>
-    /// list and no <code>SearchedFace</code> object. 
+    /// is returned in an array of <c>UnsearchedFace</c> objects. If no valid face is detected
+    /// in the image, the response will contain an empty <c>UserMatches</c> list and no <c>SearchedFace</c>
+    /// object. 
     /// </para>
     /// </summary>
     public partial class SearchUsersByImageRequest : AmazonRekognitionRequest

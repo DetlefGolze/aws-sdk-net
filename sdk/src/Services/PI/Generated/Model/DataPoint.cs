@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PI.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.PI.Model
         /// <summary>
         /// Gets and sets the property Timestamp. 
         /// <para>
-        /// The time, in epoch format, associated with a particular <code>Value</code>.
+        /// The time, in epoch format, associated with a particular <c>Value</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -59,7 +60,7 @@ namespace Amazon.PI.Model
         /// <summary>
         /// Gets and sets the property Value. 
         /// <para>
-        /// The actual value associated with a particular <code>Timestamp</code>.
+        /// The actual value associated with a particular <c>Timestamp</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
@@ -160,7 +161,7 @@ namespace Amazon.Inspector2.Model
         /// <summary>
         /// Gets and sets the property LambdaFunctionAggregation. 
         /// <para>
-        /// Returns an object with findings aggregated by AWS Lambda function.
+        /// Returns an object with findings aggregated by Amazon Web Services Lambda function.
         /// </para>
         /// </summary>
         public LambdaFunctionAggregation LambdaFunctionAggregation
@@ -178,7 +179,7 @@ namespace Amazon.Inspector2.Model
         /// <summary>
         /// Gets and sets the property LambdaLayerAggregation. 
         /// <para>
-        /// Returns an object with findings aggregated by AWS Lambda layer.
+        /// Returns an object with findings aggregated by Amazon Web Services Lambda layer.
         /// </para>
         /// </summary>
         public LambdaLayerAggregation LambdaLayerAggregation

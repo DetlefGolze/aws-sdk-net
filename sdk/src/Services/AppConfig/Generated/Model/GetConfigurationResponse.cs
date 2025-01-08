@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppConfig.Model
 {
     /// <summary>
@@ -53,7 +54,7 @@ namespace Amazon.AppConfig.Model
         // Check to see if ConfigurationVersion property is set
         internal bool IsSetConfigurationVersion()
         {
-            return this._configurationVersion != null;
+            return !string.IsNullOrEmpty(this._configurationVersion);
         }
 
         /// <summary>
@@ -63,10 +64,10 @@ namespace Amazon.AppConfig.Model
         /// </para>
         ///  <important> 
         /// <para>
-        /// The <code>Content</code> attribute only contains data if the system finds new or updated
-        /// configuration data. If there is no new or updated data and <code>ClientConfigurationVersion</code>
-        /// matches the version of the current configuration, AppConfig returns a <code>204 No
-        /// Content</code> HTTP response code and the <code>Content</code> value will be empty.
+        /// The <c>Content</c> attribute only contains data if the system finds new or updated
+        /// configuration data. If there is no new or updated data and <c>ClientConfigurationVersion</c>
+        /// matches the version of the current configuration, AppConfig returns a <c>204 No Content</c>
+        /// HTTP response code and the <c>Content</c> value will be empty.
         /// </para>
         ///  </important>
         /// </summary>
@@ -99,7 +100,7 @@ namespace Amazon.AppConfig.Model
         // Check to see if ContentType property is set
         internal bool IsSetContentType()
         {
-            return this._contentType != null;
+            return !string.IsNullOrEmpty(this._contentType);
         }
 
     }

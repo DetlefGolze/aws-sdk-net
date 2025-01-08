@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace Amazon.CloudWatchLogs.Model
     public partial class PutLogEventsResponse : AmazonWebServiceResponse
     {
         private string _nextSequenceToken;
+        private RejectedEntityInfo _rejectedEntityInfo;
         private RejectedLogEventsInfo _rejectedLogEventsInfo;
 
         /// <summary>
@@ -47,10 +49,10 @@ namespace Amazon.CloudWatchLogs.Model
         /// </para>
         ///  
         /// <para>
-        /// The sequence token is now ignored in <code>PutLogEvents</code> actions. <code>PutLogEvents</code>
+        /// The sequence token is now ignored in <c>PutLogEvents</c> actions. <c>PutLogEvents</c>
         /// actions are always accepted even if the sequence token is not valid. You can use parallel
-        /// <code>PutLogEvents</code> actions on the same log stream and you do not need to wait
-        /// for the response of a previous <code>PutLogEvents</code> action to obtain the <code>nextSequenceToken</code>
+        /// <c>PutLogEvents</c> actions on the same log stream and you do not need to wait for
+        /// the response of a previous <c>PutLogEvents</c> action to obtain the <c>nextSequenceToken</c>
         /// value.
         /// </para>
         ///  </important>
@@ -66,6 +68,30 @@ namespace Amazon.CloudWatchLogs.Model
         internal bool IsSetNextSequenceToken()
         {
             return this._nextSequenceToken != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RejectedEntityInfo. 
+        /// <para>
+        /// Information about why the entity is rejected when calling <c>PutLogEvents</c>. Only
+        /// returned when the entity is rejected.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// When the entity is rejected, the events may still be accepted.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public RejectedEntityInfo RejectedEntityInfo
+        {
+            get { return this._rejectedEntityInfo; }
+            set { this._rejectedEntityInfo = value; }
+        }
+
+        // Check to see if RejectedEntityInfo property is set
+        internal bool IsSetRejectedEntityInfo()
+        {
+            return this._rejectedEntityInfo != null;
         }
 
         /// <summary>

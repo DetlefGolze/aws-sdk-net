@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IVS.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.IVS.Model
     /// </summary>
     public partial class BatchStartViewerSessionRevocationResponse : AmazonWebServiceResponse
     {
-        private List<BatchStartViewerSessionRevocationError> _errors = new List<BatchStartViewerSessionRevocationError>();
+        private List<BatchStartViewerSessionRevocationError> _errors = AWSConfigs.InitializeCollections ? new List<BatchStartViewerSessionRevocationError>() : null;
 
         /// <summary>
         /// Gets and sets the property Errors. 
         /// <para>
-        /// Each error object is related to a specific <code>channelArn</code> and <code>viewerId</code>
-        /// pair in the request.
+        /// Each error object is related to a specific <c>channelArn</c> and <c>viewerId</c> pair
+        /// in the request.
         /// </para>
         /// </summary>
         public List<BatchStartViewerSessionRevocationError> Errors
@@ -51,7 +52,7 @@ namespace Amazon.IVS.Model
         // Check to see if Errors property is set
         internal bool IsSetErrors()
         {
-            return this._errors != null && this._errors.Count > 0; 
+            return this._errors != null && (this._errors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

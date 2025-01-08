@@ -387,7 +387,7 @@ namespace Amazon.Runtime.Internal
         /// </summary>
         IPropertyBag EndpointAttributes { get; set; }
 
-        //// <summary>
+        /// <summary>
         /// The selected compression algorithm to be used to compress the payload of the request.
         /// </summary>
         CompressionEncodingAlgorithm CompressionAlgorithm { get; set; }
@@ -396,5 +396,10 @@ namespace Amazon.Runtime.Internal
         /// Checksum data to calculate checksum after optionally compressing the request payload
         /// </summary>
         ChecksumData ChecksumData { get; set; }
+
+        /// <summary>
+        /// The time which the request was signed at.
+        /// </summary>
+        DateTime? SignedAt { get; set; }
     }
 }

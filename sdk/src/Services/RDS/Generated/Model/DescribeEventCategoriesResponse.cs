@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// Data returned from the <code>DescribeEventCategories</code> operation.
+    /// Data returned from the <c>DescribeEventCategories</c> operation.
     /// </summary>
     public partial class DescribeEventCategoriesResponse : AmazonWebServiceResponse
     {
-        private List<EventCategoriesMap> _eventCategoriesMapList = new List<EventCategoriesMap>();
+        private List<EventCategoriesMap> _eventCategoriesMapList = AWSConfigs.InitializeCollections ? new List<EventCategoriesMap>() : null;
 
         /// <summary>
         /// Gets and sets the property EventCategoriesMapList. 
         /// <para>
-        /// A list of <code>EventCategoriesMap</code> data types.
+        /// A list of <c>EventCategoriesMap</c> data types.
         /// </para>
         /// </summary>
         public List<EventCategoriesMap> EventCategoriesMapList
@@ -50,7 +51,7 @@ namespace Amazon.RDS.Model
         // Check to see if EventCategoriesMapList property is set
         internal bool IsSetEventCategoriesMapList()
         {
-            return this._eventCategoriesMapList != null && this._eventCategoriesMapList.Count > 0; 
+            return this._eventCategoriesMapList != null && (this._eventCategoriesMapList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

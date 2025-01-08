@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSMarketplaceMetering.Model
 {
     /// <summary>
@@ -35,14 +36,14 @@ namespace Amazon.AWSMarketplaceMetering.Model
     /// 
     ///  
     /// <para>
-    ///  <code>MeterUsage</code> is authenticated on the buyer's AWS account using credentials
-    /// from the EC2 instance, ECS task, or EKS pod.
+    ///  <c>MeterUsage</c> is authenticated on the buyer's AWS account using credentials from
+    /// the EC2 instance, ECS task, or EKS pod.
     /// </para>
     ///  
     /// <para>
-    ///  <code>MeterUsage</code> can optionally include multiple usage allocations, to provide
-    /// customers with usage data split into buckets by tags that you define (or allow the
-    /// customer to define).
+    ///  <c>MeterUsage</c> can optionally include multiple usage allocations, to provide customers
+    /// with usage data split into buckets by tags that you define (or allow the customer
+    /// to define).
     /// </para>
     ///  
     /// <para>
@@ -55,7 +56,7 @@ namespace Amazon.AWSMarketplaceMetering.Model
         private bool? _dryRun;
         private string _productCode;
         private DateTime? _timestamp;
-        private List<UsageAllocation> _usageAllocations = new List<UsageAllocation>();
+        private List<UsageAllocation> _usageAllocations = AWSConfigs.InitializeCollections ? new List<UsageAllocation>() : null;
         private string _usageDimension;
         private int? _usageQuantity;
 
@@ -63,9 +64,9 @@ namespace Amazon.AWSMarketplaceMetering.Model
         /// Gets and sets the property DryRun. 
         /// <para>
         /// Checks whether you have the permissions required for the action, but does not make
-        /// the request. If you have the permissions, the request returns <code>DryRunOperation</code>;
-        /// otherwise, it returns <code>UnauthorizedException</code>. Defaults to <code>false</code>
-        /// if not specified.
+        /// the request. If you have the permissions, the request returns <c>DryRunOperation</c>;
+        /// otherwise, it returns <c>UnauthorizedException</c>. Defaults to <c>false</c> if not
+        /// specified.
         /// </para>
         /// </summary>
         public bool DryRun
@@ -104,8 +105,8 @@ namespace Amazon.AWSMarketplaceMetering.Model
         /// Gets and sets the property Timestamp. 
         /// <para>
         /// Timestamp, in UTC, for which the usage is being reported. Your application can meter
-        /// usage for up to one hour in the past. Make sure the <code>timestamp</code> value is
-        /// not before the start of the software usage.
+        /// usage for up to one hour in the past. Make sure the <c>timestamp</c> value is not
+        /// before the start of the software usage.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -124,13 +125,13 @@ namespace Amazon.AWSMarketplaceMetering.Model
         /// <summary>
         /// Gets and sets the property UsageAllocations. 
         /// <para>
-        /// The set of <code>UsageAllocations</code> to submit.
+        /// The set of <c>UsageAllocations</c> to submit.
         /// </para>
         ///  
         /// <para>
-        /// The sum of all <code>UsageAllocation</code> quantities must equal the <code>UsageQuantity</code>
-        /// of the <code>MeterUsage</code> request, and each <code>UsageAllocation</code> must
-        /// have a unique set of tags (include no tags).
+        /// The sum of all <c>UsageAllocation</c> quantities must equal the <c>UsageQuantity</c>
+        /// of the <c>MeterUsage</c> request, and each <c>UsageAllocation</c> must have a unique
+        /// set of tags (include no tags).
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2500)]
@@ -143,7 +144,7 @@ namespace Amazon.AWSMarketplaceMetering.Model
         // Check to see if UsageAllocations property is set
         internal bool IsSetUsageAllocations()
         {
-            return this._usageAllocations != null && this._usageAllocations.Count > 0; 
+            return this._usageAllocations != null && (this._usageAllocations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -168,7 +169,7 @@ namespace Amazon.AWSMarketplaceMetering.Model
         /// <summary>
         /// Gets and sets the property UsageQuantity. 
         /// <para>
-        /// Consumption value for the hour. Defaults to <code>0</code> if not specified.
+        /// Consumption value for the hour. Defaults to <c>0</c> if not specified.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=2147483647)]

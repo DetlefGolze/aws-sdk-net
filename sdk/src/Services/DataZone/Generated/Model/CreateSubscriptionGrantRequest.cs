@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.DataZone.Model
     /// </summary>
     public partial class CreateSubscriptionGrantRequest : AmazonDataZoneRequest
     {
-        private List<AssetTargetNameMap> _assetTargetNames = new List<AssetTargetNameMap>();
+        private List<AssetTargetNameMap> _assetTargetNames = AWSConfigs.InitializeCollections ? new List<AssetTargetNameMap>() : null;
         private string _clientToken;
         private string _domainIdentifier;
         private string _environmentIdentifier;
@@ -56,7 +57,7 @@ namespace Amazon.DataZone.Model
         // Check to see if AssetTargetNames property is set
         internal bool IsSetAssetTargetNames()
         {
-            return this._assetTargetNames != null && this._assetTargetNames.Count > 0; 
+            return this._assetTargetNames != null && (this._assetTargetNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -141,7 +142,6 @@ namespace Amazon.DataZone.Model
         /// The ID of the subscription target for which the subscription grant is created.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public string SubscriptionTargetIdentifier
         {
             get { return this._subscriptionTargetIdentifier; }

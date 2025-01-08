@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>RealTime</code>: Deploy to real-time inference.
+        ///  <c>RealTime</c>: Deploy to real-time inference.
         /// </para>
         ///  </li> </ul>
         /// </summary>

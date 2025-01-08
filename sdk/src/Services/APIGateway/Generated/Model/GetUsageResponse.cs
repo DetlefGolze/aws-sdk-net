@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.APIGateway.Model
     public partial class GetUsageResponse : AmazonWebServiceResponse
     {
         private string _endDate;
-        private Dictionary<string, List<List<long>>> _items = new Dictionary<string, List<List<long>>>();
+        private Dictionary<string, List<List<long>>> _items = AWSConfigs.InitializeCollections ? new Dictionary<string, List<List<long>>>() : null;
         private string _position;
         private string _startDate;
         private string _usagePlanId;
@@ -61,10 +62,10 @@ namespace Amazon.APIGateway.Model
         /// Gets and sets the property Items. 
         /// <para>
         /// The usage data, as daily logs of used and remaining quotas, over the specified time
-        /// interval indexed over the API keys in a usage plan. For example, <code>{..., "values"
-        /// : { "{api_key}" : [ [0, 100], [10, 90], [100, 10]]}</code>, where <code>{api_key}</code>
-        /// stands for an API key value and the daily log entry is of the format <code>[used quota,
-        /// remaining quota]</code>.
+        /// interval indexed over the API keys in a usage plan. For example, <c>{..., "values"
+        /// : { "{api_key}" : [ [0, 100], [10, 90], [100, 10]]}</c>, where <c>{api_key}</c> stands
+        /// for an API key value and the daily log entry is of the format <c>[used quota, remaining
+        /// quota]</c>.
         /// </para>
         /// </summary>
         public Dictionary<string, List<List<long>>> Items
@@ -76,7 +77,7 @@ namespace Amazon.APIGateway.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

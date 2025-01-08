@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -224,7 +225,7 @@ namespace Amazon.Comprehend.Model
         /// <summary>
         /// Gets and sets the property Message. 
         /// <para>
-        /// Specifies a reason for failure in cases of <code>Failed</code> status.
+        /// Specifies a reason for failure in cases of <c>Failed</c> status.
         /// </para>
         /// </summary>
         public string Message
@@ -262,8 +263,8 @@ namespace Amazon.Comprehend.Model
         /// Gets and sets the property Status. 
         /// <para>
         /// Specifies the status of the endpoint. Because the endpoint updates and creation are
-        /// asynchronous, so customers will need to wait for the endpoint to be <code>Ready</code>
-        /// status before making inference requests.
+        /// asynchronous, so customers will need to wait for the endpoint to be <c>Ready</c> status
+        /// before making inference requests.
         /// </para>
         /// </summary>
         public EndpointStatus Status

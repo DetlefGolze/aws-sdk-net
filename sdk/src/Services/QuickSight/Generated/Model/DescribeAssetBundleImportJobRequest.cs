@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property AssetBundleImportJobId. 
         /// <para>
-        /// The ID of the job. The job ID is set when you start a new job with a <code>StartAssetBundleImportJob</code>
+        /// The ID of the job. The job ID is set when you start a new job with a <c>StartAssetBundleImportJob</c>
         /// API call.
         /// </para>
         /// </summary>

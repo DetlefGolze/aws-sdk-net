@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.SsmSap
 {
     /// <summary>
-    /// Implementation for accessing SsmSap
+    /// <para>Implementation for accessing SsmSap</para>
     ///
     /// This API reference provides descriptions, syntax, and other details about each of
     /// the actions and data types for AWS Systems Manager for SAP. The topic for each action
@@ -337,6 +338,9 @@ namespace Amazon.SsmSap
         /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
         /// An internal error has occurred.
         /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.UnauthorizedException">
+        /// The request is not authorized.
+        /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
@@ -363,6 +367,9 @@ namespace Amazon.SsmSap
         /// <returns>The response from the DeregisterApplication service method, as returned by SsmSap.</returns>
         /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
         /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.UnauthorizedException">
+        /// The request is not authorized.
         /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
@@ -446,6 +453,9 @@ namespace Amazon.SsmSap
         /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
         /// An internal error has occurred.
         /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.UnauthorizedException">
+        /// The request is not authorized.
+        /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
@@ -471,6 +481,9 @@ namespace Amazon.SsmSap
         /// <returns>The response from the GetComponent service method, as returned by SsmSap.</returns>
         /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
         /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.UnauthorizedException">
+        /// The request is not authorized.
         /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
@@ -728,6 +741,9 @@ namespace Amazon.SsmSap
         /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
         /// The resource is not available.
         /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.UnauthorizedException">
+        /// The request is not authorized.
+        /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
@@ -756,6 +772,9 @@ namespace Amazon.SsmSap
         /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
         /// The resource is not available.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.UnauthorizedException">
+        /// The request is not authorized.
         /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
@@ -829,6 +848,71 @@ namespace Amazon.SsmSap
             options.ResponseUnmarshaller = ListDatabasesResponseUnmarshaller.Instance;
             
             return InvokeAsync<ListDatabasesResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListOperationEvents
+
+
+        /// <summary>
+        /// Returns a list of operations events.
+        /// 
+        ///  
+        /// <para>
+        /// Available parameters include <c>OperationID</c>, as well as optional parameters <c>MaxResults</c>,
+        /// <c>NextToken</c>, and <c>Filters</c>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListOperationEvents service method.</param>
+        /// 
+        /// <returns>The response from the ListOperationEvents service method, as returned by SsmSap.</returns>
+        /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListOperationEvents">REST API Reference for ListOperationEvents Operation</seealso>
+        public virtual ListOperationEventsResponse ListOperationEvents(ListOperationEventsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListOperationEventsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListOperationEventsResponseUnmarshaller.Instance;
+
+            return Invoke<ListOperationEventsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Returns a list of operations events.
+        /// 
+        ///  
+        /// <para>
+        /// Available parameters include <c>OperationID</c>, as well as optional parameters <c>MaxResults</c>,
+        /// <c>NextToken</c>, and <c>Filters</c>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListOperationEvents service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListOperationEvents service method, as returned by SsmSap.</returns>
+        /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListOperationEvents">REST API Reference for ListOperationEvents Operation</seealso>
+        public virtual Task<ListOperationEventsResponse> ListOperationEventsAsync(ListOperationEventsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListOperationEventsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListOperationEventsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListOperationEventsResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -1038,6 +1122,9 @@ namespace Amazon.SsmSap
         /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
         /// An internal error has occurred.
         /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
+        /// The resource is not available.
+        /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
@@ -1084,6 +1171,9 @@ namespace Amazon.SsmSap
         /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
         /// An internal error has occurred.
         /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
+        /// The resource is not available.
+        /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
@@ -1095,6 +1185,81 @@ namespace Amazon.SsmSap
             options.ResponseUnmarshaller = RegisterApplicationResponseUnmarshaller.Instance;
             
             return InvokeAsync<RegisterApplicationResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  StartApplication
+
+
+        /// <summary>
+        /// Request is an operation which starts an application.
+        /// 
+        ///  
+        /// <para>
+        /// Parameter <c>ApplicationId</c> is required.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartApplication service method.</param>
+        /// 
+        /// <returns>The response from the StartApplication service method, as returned by SsmSap.</returns>
+        /// <exception cref="Amazon.SsmSap.Model.ConflictException">
+        /// A conflict has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
+        /// The resource is not available.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/StartApplication">REST API Reference for StartApplication Operation</seealso>
+        public virtual StartApplicationResponse StartApplication(StartApplicationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartApplicationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartApplicationResponseUnmarshaller.Instance;
+
+            return Invoke<StartApplicationResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Request is an operation which starts an application.
+        /// 
+        ///  
+        /// <para>
+        /// Parameter <c>ApplicationId</c> is required.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartApplication service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StartApplication service method, as returned by SsmSap.</returns>
+        /// <exception cref="Amazon.SsmSap.Model.ConflictException">
+        /// A conflict has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
+        /// The resource is not available.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/StartApplication">REST API Reference for StartApplication Operation</seealso>
+        public virtual Task<StartApplicationResponse> StartApplicationAsync(StartApplicationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartApplicationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartApplicationResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<StartApplicationResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -1116,6 +1281,9 @@ namespace Amazon.SsmSap
         /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
         /// The resource is not available.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.UnauthorizedException">
+        /// The request is not authorized.
         /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
@@ -1149,6 +1317,9 @@ namespace Amazon.SsmSap
         /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
         /// The resource is not available.
         /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.UnauthorizedException">
+        /// The request is not authorized.
+        /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
@@ -1160,6 +1331,83 @@ namespace Amazon.SsmSap
             options.ResponseUnmarshaller = StartApplicationRefreshResponseUnmarshaller.Instance;
             
             return InvokeAsync<StartApplicationRefreshResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  StopApplication
+
+
+        /// <summary>
+        /// Request is an operation to stop an application.
+        /// 
+        ///  
+        /// <para>
+        /// Parameter <c>ApplicationId</c> is required. Parameters <c>StopConnectedEntity</c>
+        /// and <c>IncludeEc2InstanceShutdown</c> are optional.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StopApplication service method.</param>
+        /// 
+        /// <returns>The response from the StopApplication service method, as returned by SsmSap.</returns>
+        /// <exception cref="Amazon.SsmSap.Model.ConflictException">
+        /// A conflict has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
+        /// The resource is not available.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/StopApplication">REST API Reference for StopApplication Operation</seealso>
+        public virtual StopApplicationResponse StopApplication(StopApplicationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StopApplicationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StopApplicationResponseUnmarshaller.Instance;
+
+            return Invoke<StopApplicationResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Request is an operation to stop an application.
+        /// 
+        ///  
+        /// <para>
+        /// Parameter <c>ApplicationId</c> is required. Parameters <c>StopConnectedEntity</c>
+        /// and <c>IncludeEc2InstanceShutdown</c> are optional.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StopApplication service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StopApplication service method, as returned by SsmSap.</returns>
+        /// <exception cref="Amazon.SsmSap.Model.ConflictException">
+        /// A conflict has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
+        /// The resource is not available.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/StopApplication">REST API Reference for StopApplication Operation</seealso>
+        public virtual Task<StopApplicationResponse> StopApplicationAsync(StopApplicationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StopApplicationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StopApplicationResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<StopApplicationResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -1300,6 +1548,9 @@ namespace Amazon.SsmSap
         /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
         /// The resource is not available.
         /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.UnauthorizedException">
+        /// The request is not authorized.
+        /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
@@ -1332,6 +1583,9 @@ namespace Amazon.SsmSap
         /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
         /// The resource is not available.
         /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.UnauthorizedException">
+        /// The request is not authorized.
+        /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
@@ -1356,11 +1610,11 @@ namespace Amazon.SsmSap
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

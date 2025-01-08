@@ -26,27 +26,39 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
     /// Defines a resiliency policy.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// Resilience Hub allows you to provide a value of zero for <c>rtoInSecs</c> and <c>rpoInSecs</c>
+    /// of your resiliency policy. But, while assessing your application, the lowest possible
+    /// assessment result is near zero. Hence, if you provide value zero for <c>rtoInSecs</c>
+    /// and <c>rpoInSecs</c>, the estimated workload RTO and estimated workload RPO result
+    /// will be near zero and the <b>Compliance status</b> for your application will be set
+    /// to <b>Policy breached</b>.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class ResiliencyPolicy
     {
         private DateTime? _creationTime;
         private DataLocationConstraint _dataLocationConstraint;
         private EstimatedCostTier _estimatedCostTier;
-        private Dictionary<string, FailurePolicy> _policy = new Dictionary<string, FailurePolicy>();
+        private Dictionary<string, FailurePolicy> _policy = AWSConfigs.InitializeCollections ? new Dictionary<string, FailurePolicy>() : null;
         private string _policyArn;
         private string _policyDescription;
         private string _policyName;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private ResiliencyPolicyTier _tier;
 
         /// <summary>
         /// Gets and sets the property CreationTime. 
         /// <para>
-        /// The timestamp for when the resiliency policy was created.
+        /// Date and time when the resiliency policy was created.
         /// </para>
         /// </summary>
         public DateTime CreationTime
@@ -113,15 +125,16 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if Policy property is set
         internal bool IsSetPolicy()
         {
-            return this._policy != null && this._policy.Count > 0; 
+            return this._policy != null && (this._policy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PolicyArn. 
         /// <para>
-        /// Amazon Resource Name (ARN) of the resiliency policy. The format for this ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:resiliency-policy/<code>policy-id</code>.
+        /// Amazon Resource Name (ARN) of the resiliency policy. The format for this ARN is: arn:<c>partition</c>:resiliencehub:<c>region</c>:<c>account</c>:resiliency-policy/<c>policy-id</c>.
         /// For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
-        /// Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i> guide.
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
         /// </para>
         /// </summary>
         public string PolicyArn
@@ -139,7 +152,7 @@ namespace Amazon.ResilienceHub.Model
         /// <summary>
         /// Gets and sets the property PolicyDescription. 
         /// <para>
-        /// The description for the policy.
+        /// Description of the resiliency policy.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=500)]
@@ -190,14 +203,14 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Tier. 
         /// <para>
-        /// The tier for this resiliency policy, ranging from the highest severity (<code>MissionCritical</code>)
-        /// to lowest (<code>NonCritical</code>).
+        /// The tier for this resiliency policy, ranging from the highest severity (<c>MissionCritical</c>)
+        /// to lowest (<c>NonCritical</c>).
         /// </para>
         /// </summary>
         public ResiliencyPolicyTier Tier

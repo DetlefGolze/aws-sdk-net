@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.ConfigService.Model
     public partial class GetAggregateDiscoveredResourceCountsResponse : AmazonWebServiceResponse
     {
         private string _groupByKey;
-        private List<GroupedResourceCount> _groupedResourceCounts = new List<GroupedResourceCount>();
+        private List<GroupedResourceCount> _groupedResourceCounts = AWSConfigs.InitializeCollections ? new List<GroupedResourceCount>() : null;
         private string _nextToken;
         private long? _totalDiscoveredResources;
 
         /// <summary>
         /// Gets and sets the property GroupByKey. 
         /// <para>
-        /// The key passed into the request object. If <code>GroupByKey</code> is not provided,
-        /// the result will be empty.
+        /// The key passed into the request object. If <c>GroupByKey</c> is not provided, the
+        /// result will be empty.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]
@@ -73,14 +74,14 @@ namespace Amazon.ConfigService.Model
         // Check to see if GroupedResourceCounts property is set
         internal bool IsSetGroupedResourceCounts()
         {
-            return this._groupedResourceCounts != null && this._groupedResourceCounts.Count > 0; 
+            return this._groupedResourceCounts != null && (this._groupedResourceCounts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> string returned on a previous page that you use to get
-        /// the next page of results in a paginated response.
+        /// The <c>nextToken</c> string returned on a previous page that you use to get the next
+        /// page of results in a paginated response.
         /// </para>
         /// </summary>
         public string NextToken

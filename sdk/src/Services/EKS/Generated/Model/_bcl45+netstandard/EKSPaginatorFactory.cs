@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -44,6 +45,30 @@ namespace Amazon.EKS.Model
         }
 
         /// <summary>
+        /// Paginator for DescribeClusterVersions operation
+        ///</summary>
+        public IDescribeClusterVersionsPaginator DescribeClusterVersions(DescribeClusterVersionsRequest request) 
+        {
+            return new DescribeClusterVersionsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListAccessEntries operation
+        ///</summary>
+        public IListAccessEntriesPaginator ListAccessEntries(ListAccessEntriesRequest request) 
+        {
+            return new ListAccessEntriesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListAccessPolicies operation
+        ///</summary>
+        public IListAccessPoliciesPaginator ListAccessPolicies(ListAccessPoliciesRequest request) 
+        {
+            return new ListAccessPoliciesPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListAddons operation
         ///</summary>
         public IListAddonsPaginator ListAddons(ListAddonsRequest request) 
@@ -52,11 +77,27 @@ namespace Amazon.EKS.Model
         }
 
         /// <summary>
+        /// Paginator for ListAssociatedAccessPolicies operation
+        ///</summary>
+        public IListAssociatedAccessPoliciesPaginator ListAssociatedAccessPolicies(ListAssociatedAccessPoliciesRequest request) 
+        {
+            return new ListAssociatedAccessPoliciesPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListClusters operation
         ///</summary>
         public IListClustersPaginator ListClusters(ListClustersRequest request) 
         {
             return new ListClustersPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListEksAnywhereSubscriptions operation
+        ///</summary>
+        public IListEksAnywhereSubscriptionsPaginator ListEksAnywhereSubscriptions(ListEksAnywhereSubscriptionsRequest request) 
+        {
+            return new ListEksAnywhereSubscriptionsPaginator(this.client, request);
         }
 
         /// <summary>
@@ -76,11 +117,27 @@ namespace Amazon.EKS.Model
         }
 
         /// <summary>
+        /// Paginator for ListInsights operation
+        ///</summary>
+        public IListInsightsPaginator ListInsights(ListInsightsRequest request) 
+        {
+            return new ListInsightsPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListNodegroups operation
         ///</summary>
         public IListNodegroupsPaginator ListNodegroups(ListNodegroupsRequest request) 
         {
             return new ListNodegroupsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListPodIdentityAssociations operation
+        ///</summary>
+        public IListPodIdentityAssociationsPaginator ListPodIdentityAssociations(ListPodIdentityAssociationsRequest request) 
+        {
+            return new ListPodIdentityAssociationsPaginator(this.client, request);
         }
 
         /// <summary>

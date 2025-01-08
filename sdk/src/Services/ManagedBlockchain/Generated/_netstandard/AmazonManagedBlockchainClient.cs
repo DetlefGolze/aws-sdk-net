@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.ManagedBlockchain
 {
     /// <summary>
-    /// Implementation for accessing ManagedBlockchain
+    /// <para>Implementation for accessing ManagedBlockchain</para>
     ///
     /// Amazon Managed Blockchain is a fully managed service for creating and managing blockchain
     /// networks using open-source frameworks. Blockchain allows you to build applications
@@ -48,8 +49,8 @@ namespace Amazon.ManagedBlockchain
     /// Managed Blockchain supports the Hyperledger Fabric and Ethereum open-source frameworks.
     /// Because of fundamental differences between the frameworks, some API actions or data
     /// types may only apply in the context of one framework and not the other. For example,
-    /// actions related to Hyperledger Fabric network members such as <code>CreateMember</code>
-    /// and <code>DeleteMember</code> don't apply to Ethereum.
+    /// actions related to Hyperledger Fabric network members such as <c>CreateMember</c>
+    /// and <c>DeleteMember</c> don't apply to Ethereum.
     /// </para>
     ///  
     /// <para>
@@ -299,8 +300,8 @@ namespace Amazon.ManagedBlockchain
 
 
         /// <summary>
-        /// Creates a new accessor for use with Managed Blockchain Ethereum nodes. An accessor
-        /// contains information required for token based access to your Ethereum nodes.
+        /// Creates a new accessor for use with Amazon Managed Blockchain service that supports
+        /// token based access. The accessor contains information required for token based access.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateAccessor service method.</param>
         /// <param name="cancellationToken">
@@ -630,12 +631,11 @@ namespace Amazon.ManagedBlockchain
         /// <summary>
         /// Deletes an accessor that your Amazon Web Services account owns. An accessor object
         /// is a container that has the information required for token based access to your Ethereum
-        /// nodes including, the <code>BILLING_TOKEN</code>. After an accessor is deleted, the
-        /// status of the accessor changes from <code>AVAILABLE</code> to <code>PENDING_DELETION</code>.
-        /// An accessor in the <code>PENDING_DELETION</code> state can’t be used for new WebSocket
-        /// requests or HTTP requests. However, WebSocket connections that were initiated while
-        /// the accessor was in the <code>AVAILABLE</code> state remain open until they expire
-        /// (up to 2 hours).
+        /// nodes including, the <c>BILLING_TOKEN</c>. After an accessor is deleted, the status
+        /// of the accessor changes from <c>AVAILABLE</c> to <c>PENDING_DELETION</c>. An accessor
+        /// in the <c>PENDING_DELETION</c> state can’t be used for new WebSocket requests or HTTP
+        /// requests. However, WebSocket connections that were initiated while the accessor was
+        /// in the <c>AVAILABLE</c> state remain open until they expire (up to 2 hours).
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteAccessor service method.</param>
         /// <param name="cancellationToken">
@@ -688,10 +688,10 @@ namespace Amazon.ManagedBlockchain
 
         /// <summary>
         /// Deletes a member. Deleting a member removes the member and all associated resources
-        /// from the network. <code>DeleteMember</code> can only be called for a specified <code>MemberId</code>
+        /// from the network. <c>DeleteMember</c> can only be called for a specified <c>MemberId</c>
         /// if the principal performing the action is associated with the Amazon Web Services
-        /// account that owns the member. In all other cases, the <code>DeleteMember</code> action
-        /// is carried out as the result of an approved proposal to remove a member. If <code>MemberId</code>
+        /// account that owns the member. In all other cases, the <c>DeleteMember</c> action is
+        /// carried out as the result of an approved proposal to remove a member. If <c>MemberId</c>
         /// is the last member in a network specified by the last Amazon Web Services account,
         /// the network is deleted also.
         /// 
@@ -1604,7 +1604,7 @@ namespace Amazon.ManagedBlockchain
         ///  
         /// <para>
         /// When you specify a tag key that already exists, the tag value is overwritten with
-        /// the new value. Use <code>UntagResource</code> to remove tag keys.
+        /// the new value. Use <c>UntagResource</c> to remove tag keys.
         /// </para>
         ///  
         /// <para>
@@ -1834,9 +1834,9 @@ namespace Amazon.ManagedBlockchain
 
 
         /// <summary>
-        /// Casts a vote for a specified <code>ProposalId</code> on behalf of a member. The member
-        /// to vote as, specified by <code>VoterMemberId</code>, must be in the same Amazon Web
-        /// Services account as the principal that calls the action.
+        /// Casts a vote for a specified <c>ProposalId</c> on behalf of a member. The member to
+        /// vote as, specified by <c>VoterMemberId</c>, must be in the same Amazon Web Services
+        /// account as the principal that calls the action.
         /// 
         ///  
         /// <para>
@@ -1891,11 +1891,11 @@ namespace Amazon.ManagedBlockchain
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

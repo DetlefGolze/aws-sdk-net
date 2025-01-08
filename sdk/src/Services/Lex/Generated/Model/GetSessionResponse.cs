@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lex.Model
 {
     /// <summary>
@@ -33,17 +34,17 @@ namespace Amazon.Lex.Model
     /// </summary>
     public partial class GetSessionResponse : AmazonWebServiceResponse
     {
-        private List<ActiveContext> _activeContexts = new List<ActiveContext>();
+        private List<ActiveContext> _activeContexts = AWSConfigs.InitializeCollections ? new List<ActiveContext>() : null;
         private DialogAction _dialogAction;
-        private List<IntentSummary> _recentIntentSummaryView = new List<IntentSummary>();
-        private Dictionary<string, string> _sessionAttributes = new Dictionary<string, string>();
+        private List<IntentSummary> _recentIntentSummaryView = AWSConfigs.InitializeCollections ? new List<IntentSummary>() : null;
+        private Dictionary<string, string> _sessionAttributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _sessionId;
 
         /// <summary>
         /// Gets and sets the property ActiveContexts. 
         /// <para>
         /// A list of active contexts for the session. A context can be set when an intent is
-        /// fulfilled or by calling the <code>PostContent</code>, <code>PostText</code>, or <code>PutSession</code>
+        /// fulfilled or by calling the <c>PostContent</c>, <c>PostText</c>, or <c>PutSession</c>
         /// operation.
         /// </para>
         ///  
@@ -62,7 +63,7 @@ namespace Amazon.Lex.Model
         // Check to see if ActiveContexts property is set
         internal bool IsSetActiveContexts()
         {
-            return this._activeContexts != null && this._activeContexts.Count > 0; 
+            return this._activeContexts != null && (this._activeContexts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -88,13 +89,13 @@ namespace Amazon.Lex.Model
         /// <para>
         /// An array of information about the intents used in the session. The array can contain
         /// a maximum of three summaries. If more than three intents are used in the session,
-        /// the <code>recentIntentSummaryView</code> operation contains information about the
-        /// last three intents used.
+        /// the <c>recentIntentSummaryView</c> operation contains information about the last three
+        /// intents used.
         /// </para>
         ///  
         /// <para>
-        /// If you set the <code>checkpointLabelFilter</code> parameter in the request, the array
-        /// contains only the intents with the specified label.
+        /// If you set the <c>checkpointLabelFilter</c> parameter in the request, the array contains
+        /// only the intents with the specified label.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=3)]
@@ -107,7 +108,7 @@ namespace Amazon.Lex.Model
         // Check to see if RecentIntentSummaryView property is set
         internal bool IsSetRecentIntentSummaryView()
         {
-            return this._recentIntentSummaryView != null && this._recentIntentSummaryView.Count > 0; 
+            return this._recentIntentSummaryView != null && (this._recentIntentSummaryView.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -127,7 +128,7 @@ namespace Amazon.Lex.Model
         // Check to see if SessionAttributes property is set
         internal bool IsSetSessionAttributes()
         {
-            return this._sessionAttributes != null && this._sessionAttributes.Count > 0; 
+            return this._sessionAttributes != null && (this._sessionAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

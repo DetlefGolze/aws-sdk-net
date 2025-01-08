@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
-    /// Contains the response to a <code>DescribeStackProvisioningParameters</code> request.
+    /// Contains the response to a <c>DescribeStackProvisioningParameters</c> request.
     /// </summary>
     public partial class DescribeStackProvisioningParametersResponse : AmazonWebServiceResponse
     {
         private string _agentInstallerUrl;
-        private Dictionary<string, string> _parameters = new Dictionary<string, string>();
+        private Dictionary<string, string> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AgentInstallerUrl. 
         /// <para>
-        /// The AWS OpsWorks Stacks agent installer's URL.
+        /// The OpsWorks Stacks agent installer's URL.
         /// </para>
         /// </summary>
         public string AgentInstallerUrl
@@ -69,7 +70,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

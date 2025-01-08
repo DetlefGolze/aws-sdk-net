@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectConnect.Model
 {
     /// <summary>
@@ -37,10 +38,10 @@ namespace Amazon.DirectConnect.Model
         private AssociatedGateway _associatedGateway;
         private string _directConnectGatewayId;
         private string _directConnectGatewayOwnerAccount;
-        private List<RouteFilterPrefix> _existingAllowedPrefixesToDirectConnectGateway = new List<RouteFilterPrefix>();
+        private List<RouteFilterPrefix> _existingAllowedPrefixesToDirectConnectGateway = AWSConfigs.InitializeCollections ? new List<RouteFilterPrefix>() : null;
         private string _proposalId;
         private DirectConnectGatewayAssociationProposalState _proposalState;
-        private List<RouteFilterPrefix> _requestedAllowedPrefixesToDirectConnectGateway = new List<RouteFilterPrefix>();
+        private List<RouteFilterPrefix> _requestedAllowedPrefixesToDirectConnectGateway = AWSConfigs.InitializeCollections ? new List<RouteFilterPrefix>() : null;
 
         /// <summary>
         /// Gets and sets the property AssociatedGateway. 
@@ -111,7 +112,7 @@ namespace Amazon.DirectConnect.Model
         // Check to see if ExistingAllowedPrefixesToDirectConnectGateway property is set
         internal bool IsSetExistingAllowedPrefixesToDirectConnectGateway()
         {
-            return this._existingAllowedPrefixesToDirectConnectGateway != null && this._existingAllowedPrefixesToDirectConnectGateway.Count > 0; 
+            return this._existingAllowedPrefixesToDirectConnectGateway != null && (this._existingAllowedPrefixesToDirectConnectGateway.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -139,18 +140,18 @@ namespace Amazon.DirectConnect.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>accepted</code>: The proposal has been accepted. The Direct Connect gateway
-        /// association is available to use in this state.
+        ///  <c>accepted</c>: The proposal has been accepted. The Direct Connect gateway association
+        /// is available to use in this state.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deleted</code>: The proposal has been deleted by the owner that made the proposal.
+        ///  <c>deleted</c>: The proposal has been deleted by the owner that made the proposal.
         /// The Direct Connect gateway association cannot be used in this state.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>requested</code>: The proposal has been requested. The Direct Connect gateway
-        /// association cannot be used in this state.
+        ///  <c>requested</c>: The proposal has been requested. The Direct Connect gateway association
+        /// cannot be used in this state.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -181,7 +182,7 @@ namespace Amazon.DirectConnect.Model
         // Check to see if RequestedAllowedPrefixesToDirectConnectGateway property is set
         internal bool IsSetRequestedAllowedPrefixesToDirectConnectGateway()
         {
-            return this._requestedAllowedPrefixesToDirectConnectGateway != null && this._requestedAllowedPrefixesToDirectConnectGateway.Count > 0; 
+            return this._requestedAllowedPrefixesToDirectConnectGateway != null && (this._requestedAllowedPrefixesToDirectConnectGateway.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

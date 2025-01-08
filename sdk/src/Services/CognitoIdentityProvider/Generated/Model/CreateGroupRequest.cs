@@ -26,11 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateGroup operation.
-    /// Creates a new group in the specified user pool.
+    /// Creates a new group in the specified user pool. For more information about user pool
+    /// groups see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-user-groups.html">Adding
+    /// groups to a user pool</a>.
     /// 
     ///  <note> 
     /// <para>
@@ -65,7 +68,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
-        /// A string containing the description of the group.
+        /// A description of the group that you're creating.
         /// </para>
         /// </summary>
         [AWSProperty(Max=2048)]
@@ -84,7 +87,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property GroupName. 
         /// <para>
-        /// The name of the group. Must be unique.
+        /// A name for the group. This name must be unique in your user pool.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=128)]
@@ -105,24 +108,23 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <para>
         /// A non-negative integer value that specifies the precedence of this group relative
         /// to the other groups that a user can belong to in the user pool. Zero is the highest
-        /// precedence value. Groups with lower <code>Precedence</code> values take precedence
-        /// over groups with higher or null <code>Precedence</code> values. If a user belongs
-        /// to two or more groups, it is the group with the lowest precedence value whose role
-        /// ARN is given in the user's tokens for the <code>cognito:roles</code> and <code>cognito:preferred_role</code>
-        /// claims.
+        /// precedence value. Groups with lower <c>Precedence</c> values take precedence over
+        /// groups with higher or null <c>Precedence</c> values. If a user belongs to two or more
+        /// groups, it is the group with the lowest precedence value whose role ARN is given in
+        /// the user's tokens for the <c>cognito:roles</c> and <c>cognito:preferred_role</c> claims.
         /// </para>
         ///  
         /// <para>
-        /// Two groups can have the same <code>Precedence</code> value. If this happens, neither
-        /// group takes precedence over the other. If two groups with the same <code>Precedence</code>
-        /// have the same role ARN, that role is used in the <code>cognito:preferred_role</code>
-        /// claim in tokens for users in each group. If the two groups have different role ARNs,
-        /// the <code>cognito:preferred_role</code> claim isn't set in users' tokens.
+        /// Two groups can have the same <c>Precedence</c> value. If this happens, neither group
+        /// takes precedence over the other. If two groups with the same <c>Precedence</c> have
+        /// the same role ARN, that role is used in the <c>cognito:preferred_role</c> claim in
+        /// tokens for users in each group. If the two groups have different role ARNs, the <c>cognito:preferred_role</c>
+        /// claim isn't set in users' tokens.
         /// </para>
         ///  
         /// <para>
-        /// The default <code>Precedence</code> value is null. The maximum <code>Precedence</code>
-        /// value is <code>2^31-1</code>.
+        /// The default <c>Precedence</c> value is null. The maximum <c>Precedence</c> value is
+        /// <c>2^31-1</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]
@@ -141,7 +143,12 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property RoleArn. 
         /// <para>
-        /// The role Amazon Resource Name (ARN) for the group.
+        /// The Amazon Resource Name (ARN) for the IAM role that you want to associate with the
+        /// group. A group role primarily declares a preferred role for the credentials that you
+        /// get from an identity pool. Amazon Cognito ID tokens have a <c>cognito:preferred_role</c>
+        /// claim that presents the highest-precedence group that a user belongs to. Both ID and
+        /// access tokens also contain a <c>cognito:groups</c> claim that list all the groups
+        /// that a user is a member of.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]
@@ -160,7 +167,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID for the user pool.
+        /// The ID of the user pool where you want to create a user group.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

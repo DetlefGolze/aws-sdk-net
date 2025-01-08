@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -40,13 +41,13 @@ namespace Amazon.EC2.Model
     /// advertise it. You must ensure that the address range is registered to you and that
     /// you created an RPKI ROA to authorize Amazon ASNs 16509 and 14618 to advertise the
     /// address range. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html">Bring
-    /// your own IP addresses (BYOIP)</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+    /// your own IP addresses (BYOIP)</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     ///  
     /// <para>
     /// Provisioning an address range is an asynchronous operation, so the call returns immediately,
-    /// but the address range is not ready to use until its status changes from <code>pending-provision</code>
-    /// to <code>provisioned</code>. To monitor the status of an address range, use <a>DescribeByoipCidrs</a>.
+    /// but the address range is not ready to use until its status changes from <c>pending-provision</c>
+    /// to <c>provisioned</c>. To monitor the status of an address range, use <a>DescribeByoipCidrs</a>.
     /// To allocate an Elastic IP address from your IPv4 address pool, use <a>AllocateAddress</a>
     /// with either the specific address from the address pool or the ID of the address pool.
     /// </para>
@@ -57,16 +58,18 @@ namespace Amazon.EC2.Model
         private CidrAuthorizationContext _cidrAuthorizationContext;
         private string _description;
         private bool? _multiRegion;
-        private List<TagSpecification> _poolTagSpecifications = new List<TagSpecification>();
+        private string _networkBorderGroup;
+        private List<TagSpecification> _poolTagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
         private bool? _publiclyAdvertisable;
 
         /// <summary>
         /// Gets and sets the property Cidr. 
         /// <para>
         /// The public IPv4 or IPv6 address range, in CIDR notation. The most specific IPv4 prefix
-        /// that you can specify is /24. The most specific IPv6 prefix you can specify is /56.
-        /// The address range cannot overlap with another address range that you've brought to
-        /// this or another Region.
+        /// that you can specify is /24. The most specific IPv6 address range that you can bring
+        /// is /48 for CIDRs that are publicly advertisable and /56 for CIDRs that are not publicly
+        /// advertisable. The address range cannot overlap with another address range that you've
+        /// brought to this or another Region.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -138,6 +141,50 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property NetworkBorderGroup. 
+        /// <para>
+        /// If you have <a href="https://docs.aws.amazon.com/local-zones/latest/ug/how-local-zones-work.html">Local
+        /// Zones</a> enabled, you can choose a network border group for Local Zones when you
+        /// provision and advertise a BYOIPv4 CIDR. Choose the network border group carefully
+        /// as the EIP and the Amazon Web Services resource it is associated with must reside
+        /// in the same network border group.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can provision BYOIP address ranges to and advertise them in the following Local
+        /// Zone network border groups:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// us-east-1-dfw-2
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// us-west-2-lax-1
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// us-west-2-phx-2
+        /// </para>
+        ///  </li> </ul> <note> 
+        /// <para>
+        /// You cannot provision or advertise BYOIPv6 address ranges in Local Zones at this time.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public string NetworkBorderGroup
+        {
+            get { return this._networkBorderGroup; }
+            set { this._networkBorderGroup = value; }
+        }
+
+        // Check to see if NetworkBorderGroup property is set
+        internal bool IsSetNetworkBorderGroup()
+        {
+            return this._networkBorderGroup != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property PoolTagSpecifications. 
         /// <para>
         /// The tags to apply to the address pool.
@@ -152,7 +199,7 @@ namespace Amazon.EC2.Model
         // Check to see if PoolTagSpecifications property is set
         internal bool IsSetPoolTagSpecifications()
         {
-            return this._poolTagSpecifications != null && this._poolTagSpecifications.Count > 0; 
+            return this._poolTagSpecifications != null && (this._poolTagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

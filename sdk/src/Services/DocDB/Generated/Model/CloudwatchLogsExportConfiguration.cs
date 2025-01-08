@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.DocDB.Model
     /// 
     ///  
     /// <para>
-    /// The <code>EnableLogTypes</code> and <code>DisableLogTypes</code> arrays determine
-    /// which logs are exported (or not exported) to CloudWatch Logs. The values within these
-    /// arrays depend on the engine that is being used.
+    /// The <c>EnableLogTypes</c> and <c>DisableLogTypes</c> arrays determine which logs are
+    /// exported (or not exported) to CloudWatch Logs. The values within these arrays depend
+    /// on the engine that is being used.
     /// </para>
     /// </summary>
     public partial class CloudwatchLogsExportConfiguration
     {
-        private List<string> _disableLogTypes = new List<string>();
-        private List<string> _enableLogTypes = new List<string>();
+        private List<string> _disableLogTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _enableLogTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DisableLogTypes. 
@@ -59,7 +60,7 @@ namespace Amazon.DocDB.Model
         // Check to see if DisableLogTypes property is set
         internal bool IsSetDisableLogTypes()
         {
-            return this._disableLogTypes != null && this._disableLogTypes.Count > 0; 
+            return this._disableLogTypes != null && (this._disableLogTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -77,7 +78,7 @@ namespace Amazon.DocDB.Model
         // Check to see if EnableLogTypes property is set
         internal bool IsSetEnableLogTypes()
         {
-            return this._enableLogTypes != null && this._enableLogTypes.Count > 0; 
+            return this._enableLogTypes != null && (this._enableLogTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

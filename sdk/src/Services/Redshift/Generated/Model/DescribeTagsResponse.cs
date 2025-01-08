@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.Redshift.Model
     public partial class DescribeTagsResponse : AmazonWebServiceResponse
     {
         private string _marker;
-        private List<TaggedResource> _taggedResources = new List<TaggedResource>();
+        private List<TaggedResource> _taggedResources = AWSConfigs.InitializeCollections ? new List<TaggedResource>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         /// A value that indicates the starting point for the next set of response records in
         /// a subsequent request. If a value is returned in a response, you can retrieve the next
-        /// set of records by providing this returned marker value in the <code>Marker</code>
-        /// parameter and retrying the command. If the <code>Marker</code> field is empty, all
-        /// response records have been retrieved for the request. 
+        /// set of records by providing this returned marker value in the <c>Marker</c> parameter
+        /// and retrying the command. If the <c>Marker</c> field is empty, all response records
+        /// have been retrieved for the request. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]
@@ -74,7 +75,7 @@ namespace Amazon.Redshift.Model
         // Check to see if TaggedResources property is set
         internal bool IsSetTaggedResources()
         {
-            return this._taggedResources != null && this._taggedResources.Count > 0; 
+            return this._taggedResources != null && (this._taggedResources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

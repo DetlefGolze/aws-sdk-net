@@ -26,21 +26,31 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeTapes operation.
-    /// Returns a description of the specified Amazon Resource Name (ARN) of virtual tapes.
-    /// If a <code>TapeARN</code> is not specified, returns a description of all virtual tapes
-    /// associated with the specified gateway. This operation is only supported in the tape
-    /// gateway type.
+    /// Returns a description of virtual tapes that correspond to the specified Amazon Resource
+    /// Names (ARNs). If <c>TapeARN</c> is not specified, returns a description of the virtual
+    /// tapes associated with the specified gateway. This operation is only supported for
+    /// the tape gateway type.
+    /// 
+    ///  
+    /// <para>
+    /// The operation supports pagination. By default, the operation returns a maximum of
+    /// up to 100 tapes. You can optionally specify the <c>Limit</c> field in the body to
+    /// limit the number of tapes in the response. If the number of tapes returned in the
+    /// response is truncated, the response includes a <c>Marker</c> field. You can use this
+    /// <c>Marker</c> value in your subsequent request to retrieve the next set of tapes.
+    /// </para>
     /// </summary>
     public partial class DescribeTapesRequest : AmazonStorageGatewayRequest
     {
         private string _gatewayARN;
         private int? _limit;
         private string _marker;
-        private List<string> _tapeARNs = new List<string>();
+        private List<string> _tapeARNs = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property GatewayARN.
@@ -85,8 +95,8 @@ namespace Amazon.StorageGateway.Model
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// A marker value, obtained in a previous call to <code>DescribeTapes</code>. This marker
-        /// indicates which page of results to retrieve.
+        /// A marker value, obtained in a previous call to <c>DescribeTapes</c>. This marker indicates
+        /// which page of results to retrieve.
         /// </para>
         ///  
         /// <para>
@@ -123,7 +133,7 @@ namespace Amazon.StorageGateway.Model
         // Check to see if TapeARNs property is set
         internal bool IsSetTapeARNs()
         {
-            return this._tapeARNs != null && this._tapeARNs.Count > 0; 
+            return this._tapeARNs != null && (this._tapeARNs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

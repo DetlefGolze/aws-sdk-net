@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class AwsDynamoDbTableReplica
     {
-        private List<AwsDynamoDbTableReplicaGlobalSecondaryIndex> _globalSecondaryIndexes = new List<AwsDynamoDbTableReplicaGlobalSecondaryIndex>();
+        private List<AwsDynamoDbTableReplicaGlobalSecondaryIndex> _globalSecondaryIndexes = AWSConfigs.InitializeCollections ? new List<AwsDynamoDbTableReplicaGlobalSecondaryIndex>() : null;
         private string _kmsMasterKeyId;
         private AwsDynamoDbTableProvisionedThroughputOverride _provisionedThroughputOverride;
         private string _regionName;
@@ -55,7 +56,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if GlobalSecondaryIndexes property is set
         internal bool IsSetGlobalSecondaryIndexes()
         {
-            return this._globalSecondaryIndexes != null && this._globalSecondaryIndexes.Count > 0; 
+            return this._globalSecondaryIndexes != null && (this._globalSecondaryIndexes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -119,23 +120,23 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ACTIVE</code> 
+        ///  <c>ACTIVE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATING</code> 
+        ///  <c>CREATING</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATION_FAILED</code> 
+        ///  <c>CREATION_FAILED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETING</code> 
+        ///  <c>DELETING</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPDATING</code> 
+        ///  <c>UPDATING</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

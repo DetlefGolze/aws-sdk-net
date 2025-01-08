@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.WorkSpacesWeb.Model
 {
     /// <summary>
@@ -41,6 +42,14 @@ namespace Amazon.WorkSpacesWeb.Model
         public IListBrowserSettingsPaginator ListBrowserSettings(ListBrowserSettingsRequest request) 
         {
             return new ListBrowserSettingsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListDataProtectionSettings operation
+        ///</summary>
+        public IListDataProtectionSettingsPaginator ListDataProtectionSettings(ListDataProtectionSettingsRequest request) 
+        {
+            return new ListDataProtectionSettingsPaginator(this.client, request);
         }
 
         /// <summary>
@@ -73,6 +82,14 @@ namespace Amazon.WorkSpacesWeb.Model
         public IListPortalsPaginator ListPortals(ListPortalsRequest request) 
         {
             return new ListPortalsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListSessions operation
+        ///</summary>
+        public IListSessionsPaginator ListSessions(ListSessionsRequest request) 
+        {
+            return new ListSessionsPaginator(this.client, request);
         }
 
         /// <summary>

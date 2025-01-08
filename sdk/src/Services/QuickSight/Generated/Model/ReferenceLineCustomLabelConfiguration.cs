@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The configuration for a custom label on a <code>ReferenceLine</code>.
+    /// The configuration for a custom label on a <c>ReferenceLine</c>.
     /// </summary>
     public partial class ReferenceLineCustomLabelConfiguration
     {

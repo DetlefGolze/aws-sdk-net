@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.NetworkManager.Model
     public partial class NetworkRoute
     {
         private string _destinationCidrBlock;
-        private List<NetworkRouteDestination> _destinations = new List<NetworkRouteDestination>();
+        private List<NetworkRouteDestination> _destinations = AWSConfigs.InitializeCollections ? new List<NetworkRouteDestination>() : null;
         private string _prefixListId;
         private RouteState _state;
         private RouteType _type;
@@ -73,7 +74,7 @@ namespace Amazon.NetworkManager.Model
         // Check to see if Destinations property is set
         internal bool IsSetDestinations()
         {
-            return this._destinations != null && this._destinations.Count > 0; 
+            return this._destinations != null && (this._destinations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -98,7 +99,7 @@ namespace Amazon.NetworkManager.Model
         /// <summary>
         /// Gets and sets the property State. 
         /// <para>
-        /// The route state. The possible values are <code>active</code> and <code>blackhole</code>.
+        /// The route state. The possible values are <c>active</c> and <c>blackhole</c>.
         /// </para>
         /// </summary>
         public RouteState State
@@ -116,7 +117,7 @@ namespace Amazon.NetworkManager.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The route type. The possible values are <code>propagated</code> and <code>static</code>.
+        /// The route type. The possible values are <c>propagated</c> and <c>static</c>.
         /// </para>
         /// </summary>
         public RouteType Type

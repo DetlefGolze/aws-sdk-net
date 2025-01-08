@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Synthetics.Model
 {
     /// <summary>
@@ -42,8 +43,7 @@ namespace Amazon.Synthetics.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// Specify this parameter to limit how many groups are returned each time you use the
-        /// <code>ListGroups</code> operation. If you omit this parameter, the default of 20 is
-        /// used.
+        /// <c>ListGroups</c> operation. If you omit this parameter, the default of 20 is used.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=20)]

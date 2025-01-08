@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMessaging.Model
 {
     /// <summary>
@@ -119,8 +120,8 @@ namespace Amazon.ChimeSDKMessaging.Model
         /// <summary>
         /// Gets and sets the property DeleteResource. 
         /// <para>
-        /// When a processor determines that a message needs to be <code>DENIED</code>, pass this
-        /// parameter with a value of true.
+        /// When a processor determines that a message needs to be <c>DENIED</c>, pass this parameter
+        /// with a value of true.
         /// </para>
         /// </summary>
         public bool DeleteResource

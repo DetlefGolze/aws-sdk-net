@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -46,8 +47,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you use the default key pair (<code>LightsailDefaultKeyPair</code>), the decrypted
-        /// password will be available in the password field.
+        /// If you use the default key pair (<c>LightsailDefaultKeyPair</c>), the decrypted password
+        /// will be available in the password field.
         /// </para>
         ///  
         /// <para>
@@ -78,12 +79,12 @@ namespace Amazon.Lightsail.Model
         /// <para>
         /// The name of the key pair that you used when creating your instance. If no key pair
         /// name was specified when creating the instance, Lightsail uses the default key pair
-        /// (<code>LightsailDefaultKeyPair</code>).
+        /// (<c>LightsailDefaultKeyPair</c>).
         /// </para>
         ///  
         /// <para>
         /// If you are using a custom key pair, you need to use your own means of decrypting your
-        /// password using the <code>ciphertext</code>. Lightsail creates the ciphertext by encrypting
+        /// password using the <c>ciphertext</c>. Lightsail creates the ciphertext by encrypting
         /// your password with the public key part of this key pair.
         /// </para>
         /// </summary>

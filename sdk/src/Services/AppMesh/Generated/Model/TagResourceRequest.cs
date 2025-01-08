@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppMesh.Model
 {
     /// <summary>
     /// Container for the parameters to the TagResource operation.
-    /// Associates the specified tags to a resource with the specified <code>resourceArn</code>.
+    /// Associates the specified tags to a resource with the specified <c>resourceArn</c>.
     /// If existing tags on a resource aren't specified in the request parameters, they aren't
     /// changed. When a resource is deleted, the tags associated with that resource are also
     /// deleted.
@@ -38,7 +39,7 @@ namespace Amazon.AppMesh.Model
     public partial class TagResourceRequest : AmazonAppMeshRequest
     {
         private string _resourceArn;
-        private List<TagRef> _tags = new List<TagRef>();
+        private List<TagRef> _tags = AWSConfigs.InitializeCollections ? new List<TagRef>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -77,7 +78,7 @@ namespace Amazon.AppMesh.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

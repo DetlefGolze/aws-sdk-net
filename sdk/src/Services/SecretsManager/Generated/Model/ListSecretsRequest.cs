@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecretsManager.Model
 {
     /// <summary>
@@ -36,8 +37,9 @@ namespace Amazon.SecretsManager.Model
     /// 
     ///  
     /// <para>
-    /// ListSecrets is eventually consistent, however it might not reflect changes from the
-    /// last five minutes. To get the latest information for a specific secret, use <a>DescribeSecret</a>.
+    /// All Secrets Manager operations are eventually consistent. ListSecrets might not reflect
+    /// changes from the last five minutes. You can get more recent information for a specific
+    /// secret by calling <a>DescribeSecret</a>.
     /// </para>
     ///  
     /// <para>
@@ -45,8 +47,7 @@ namespace Amazon.SecretsManager.Model
     /// </para>
     ///  
     /// <para>
-    /// To get the secret value from <code>SecretString</code> or <code>SecretBinary</code>,
-    /// call <a>GetSecretValue</a>.
+    /// To retrieve the values for the secrets, call <a>BatchGetSecretValue</a> or <a>GetSecretValue</a>.
     /// </para>
     ///  
     /// <para>
@@ -62,7 +63,7 @@ namespace Amazon.SecretsManager.Model
     /// </para>
     ///  
     /// <para>
-    ///  <b>Required permissions: </b> <code>secretsmanager:ListSecrets</code>. For more information,
+    ///  <b>Required permissions: </b> <c>secretsmanager:ListSecrets</c>. For more information,
     /// see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">
     /// IAM policy actions for Secrets Manager</a> and <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
     /// and access control in Secrets Manager</a>. 
@@ -70,7 +71,7 @@ namespace Amazon.SecretsManager.Model
     /// </summary>
     public partial class ListSecretsRequest : AmazonSecretsManagerRequest
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private bool? _includePlannedDeletion;
         private int? _maxResults;
         private string _nextToken;
@@ -92,7 +93,7 @@ namespace Amazon.SecretsManager.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -121,8 +122,8 @@ namespace Amazon.SecretsManager.Model
         /// </para>
         ///  
         /// <para>
-        /// If there are more results available, in the response, Secrets Manager includes <code>NextToken</code>.
-        /// To get the next results, call <code>ListSecrets</code> again with the value from <code>NextToken</code>.
+        /// If there are more results available, in the response, Secrets Manager includes <c>NextToken</c>.
+        /// To get the next results, call <c>ListSecrets</c> again with the value from <c>NextToken</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -142,8 +143,8 @@ namespace Amazon.SecretsManager.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token that indicates where the output should continue from, if a previous call did
-        /// not show all results. To get the next results, call <code>ListSecrets</code> again
-        /// with this value.
+        /// not show all results. To get the next results, call <c>ListSecrets</c> again with
+        /// this value.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4096)]
@@ -162,7 +163,7 @@ namespace Amazon.SecretsManager.Model
         /// <summary>
         /// Gets and sets the property SortOrder. 
         /// <para>
-        /// Secrets are listed by <code>CreatedDate</code>. 
+        /// Secrets are listed by <c>CreatedDate</c>. 
         /// </para>
         /// </summary>
         public SortOrderType SortOrder

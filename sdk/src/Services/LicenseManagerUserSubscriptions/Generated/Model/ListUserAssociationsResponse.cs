@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LicenseManagerUserSubscriptions.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.LicenseManagerUserSubscriptions.Model
     /// </summary>
     public partial class ListUserAssociationsResponse : AmazonWebServiceResponse
     {
-        private List<InstanceUserSummary> _instanceUserSummaries = new List<InstanceUserSummary>();
+        private List<InstanceUserSummary> _instanceUserSummaries = AWSConfigs.InitializeCollections ? new List<InstanceUserSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,13 +52,15 @@ namespace Amazon.LicenseManagerUserSubscriptions.Model
         // Check to see if InstanceUserSummaries property is set
         internal bool IsSetInstanceUserSummaries()
         {
-            return this._instanceUserSummaries != null && this._instanceUserSummaries.Count > 0; 
+            return this._instanceUserSummaries != null && (this._instanceUserSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Token for the next set of results.
+        /// The next token used for paginated responses. When this field isn't empty, there are
+        /// additional elements that the service hasn't included in this request. Use this token
+        /// with the next request to retrieve additional objects.
         /// </para>
         /// </summary>
         public string NextToken

@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.IoTEvents
 {
     /// <summary>
-    /// Implementation for accessing IoTEvents
+    /// <para>Implementation for accessing IoTEvents</para>
     ///
     /// AWS IoT Events monitors your equipment or device fleets for failures or changes in
     /// operation, and triggers actions when such events occur. You can use AWS IoT Events
@@ -690,7 +691,7 @@ namespace Amazon.IoTEvents
         #region  DescribeAlarmModel
 
         /// <summary>
-        /// Retrieves information about an alarm model. If you don't specify a value for the <code>alarmModelVersion</code>
+        /// Retrieves information about an alarm model. If you don't specify a value for the <c>alarmModelVersion</c>
         /// parameter, the latest version is returned.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeAlarmModel service method.</param>
@@ -760,8 +761,8 @@ namespace Amazon.IoTEvents
         #region  DescribeDetectorModel
 
         /// <summary>
-        /// Describes a detector model. If the <code>version</code> parameter is not specified,
-        /// information about the latest version is returned.
+        /// Describes a detector model. If the <c>version</c> parameter is not specified, information
+        /// about the latest version is returned.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeDetectorModel service method.</param>
         /// 
@@ -1605,10 +1606,10 @@ namespace Amazon.IoTEvents
         /// 
         ///  
         /// <para>
-        /// If you update the value of any <code>loggingOptions</code> field, it takes up to one
-        /// minute for the change to take effect. If you change the policy attached to the role
-        /// you specified in the <code>roleArn</code> field (for example, to correct an invalid
-        /// policy), it takes up to five minutes for that change to take effect.
+        /// If you update the value of any <c>loggingOptions</c> field, it takes up to one minute
+        /// for the change to take effect. If you change the policy attached to the role you specified
+        /// in the <c>roleArn</c> field (for example, to correct an invalid policy), it takes
+        /// up to five minutes for that change to take effect.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutLoggingOptions service method.</param>
@@ -2117,11 +2118,11 @@ namespace Amazon.IoTEvents
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.OSIS
 {
     /// <summary>
-    /// Implementation for accessing OSIS
+    /// <para>Implementation for accessing OSIS</para>
     ///
     /// Use the Amazon OpenSearch Ingestion API to create and manage ingestion pipelines.
     /// OpenSearch Ingestion is a fully managed data collector that delivers real-time log
@@ -278,6 +279,9 @@ namespace Amazon.OSIS
         /// <exception cref="Amazon.OSIS.Model.AccessDeniedException">
         /// You don't have permissions to access the resource.
         /// </exception>
+        /// <exception cref="Amazon.OSIS.Model.DisabledOperationException">
+        /// Exception is thrown when an operation has been disabled.
+        /// </exception>
         /// <exception cref="Amazon.OSIS.Model.InternalException">
         /// The request failed because of an unknown error, exception, or failure (the failure
         /// is internal to the service).
@@ -287,6 +291,9 @@ namespace Amazon.OSIS
         /// </exception>
         /// <exception cref="Amazon.OSIS.Model.ResourceAlreadyExistsException">
         /// You attempted to create a resource that already exists.
+        /// </exception>
+        /// <exception cref="Amazon.OSIS.Model.ResourceNotFoundException">
+        /// You attempted to access or delete a resource that does not exist.
         /// </exception>
         /// <exception cref="Amazon.OSIS.Model.ValidationException">
         /// An exception for missing or invalid input fields.
@@ -351,6 +358,9 @@ namespace Amazon.OSIS
         /// </exception>
         /// <exception cref="Amazon.OSIS.Model.ConflictException">
         /// The client attempted to remove a resource that is currently in use.
+        /// </exception>
+        /// <exception cref="Amazon.OSIS.Model.DisabledOperationException">
+        /// Exception is thrown when an operation has been disabled.
         /// </exception>
         /// <exception cref="Amazon.OSIS.Model.InternalException">
         /// The request failed because of an unknown error, exception, or failure (the failure
@@ -419,6 +429,9 @@ namespace Amazon.OSIS
         /// <exception cref="Amazon.OSIS.Model.AccessDeniedException">
         /// You don't have permissions to access the resource.
         /// </exception>
+        /// <exception cref="Amazon.OSIS.Model.DisabledOperationException">
+        /// Exception is thrown when an operation has been disabled.
+        /// </exception>
         /// <exception cref="Amazon.OSIS.Model.InternalException">
         /// The request failed because of an unknown error, exception, or failure (the failure
         /// is internal to the service).
@@ -479,8 +492,8 @@ namespace Amazon.OSIS
 
         /// <summary>
         /// Retrieves information about a specific blueprint for OpenSearch Ingestion. Blueprints
-        /// are templates for the configuration needed for a <code>CreatePipeline</code> request.
-        /// For more information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/creating-pipeline.html#pipeline-blueprint">Using
+        /// are templates for the configuration needed for a <c>CreatePipeline</c> request. For
+        /// more information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/creating-pipeline.html#pipeline-blueprint">Using
         /// blueprints to create a pipeline</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetPipelineBlueprint service method.</param>
@@ -488,6 +501,9 @@ namespace Amazon.OSIS
         /// <returns>The response from the GetPipelineBlueprint service method, as returned by OSIS.</returns>
         /// <exception cref="Amazon.OSIS.Model.AccessDeniedException">
         /// You don't have permissions to access the resource.
+        /// </exception>
+        /// <exception cref="Amazon.OSIS.Model.DisabledOperationException">
+        /// Exception is thrown when an operation has been disabled.
         /// </exception>
         /// <exception cref="Amazon.OSIS.Model.InternalException">
         /// The request failed because of an unknown error, exception, or failure (the failure
@@ -564,6 +580,9 @@ namespace Amazon.OSIS
         /// <exception cref="Amazon.OSIS.Model.AccessDeniedException">
         /// You don't have permissions to access the resource.
         /// </exception>
+        /// <exception cref="Amazon.OSIS.Model.DisabledOperationException">
+        /// Exception is thrown when an operation has been disabled.
+        /// </exception>
         /// <exception cref="Amazon.OSIS.Model.InternalException">
         /// The request failed because of an unknown error, exception, or failure (the failure
         /// is internal to the service).
@@ -632,6 +651,9 @@ namespace Amazon.OSIS
         /// <returns>The response from the ListPipelineBlueprints service method, as returned by OSIS.</returns>
         /// <exception cref="Amazon.OSIS.Model.AccessDeniedException">
         /// You don't have permissions to access the resource.
+        /// </exception>
+        /// <exception cref="Amazon.OSIS.Model.DisabledOperationException">
+        /// Exception is thrown when an operation has been disabled.
         /// </exception>
         /// <exception cref="Amazon.OSIS.Model.InternalException">
         /// The request failed because of an unknown error, exception, or failure (the failure
@@ -702,6 +724,9 @@ namespace Amazon.OSIS
         /// <exception cref="Amazon.OSIS.Model.AccessDeniedException">
         /// You don't have permissions to access the resource.
         /// </exception>
+        /// <exception cref="Amazon.OSIS.Model.DisabledOperationException">
+        /// Exception is thrown when an operation has been disabled.
+        /// </exception>
         /// <exception cref="Amazon.OSIS.Model.InternalException">
         /// The request failed because of an unknown error, exception, or failure (the failure
         /// is internal to the service).
@@ -770,6 +795,9 @@ namespace Amazon.OSIS
         /// <returns>The response from the ListTagsForResource service method, as returned by OSIS.</returns>
         /// <exception cref="Amazon.OSIS.Model.AccessDeniedException">
         /// You don't have permissions to access the resource.
+        /// </exception>
+        /// <exception cref="Amazon.OSIS.Model.DisabledOperationException">
+        /// Exception is thrown when an operation has been disabled.
         /// </exception>
         /// <exception cref="Amazon.OSIS.Model.InternalException">
         /// The request failed because of an unknown error, exception, or failure (the failure
@@ -842,6 +870,9 @@ namespace Amazon.OSIS
         /// <exception cref="Amazon.OSIS.Model.ConflictException">
         /// The client attempted to remove a resource that is currently in use.
         /// </exception>
+        /// <exception cref="Amazon.OSIS.Model.DisabledOperationException">
+        /// Exception is thrown when an operation has been disabled.
+        /// </exception>
         /// <exception cref="Amazon.OSIS.Model.InternalException">
         /// The request failed because of an unknown error, exception, or failure (the failure
         /// is internal to the service).
@@ -913,6 +944,9 @@ namespace Amazon.OSIS
         /// <exception cref="Amazon.OSIS.Model.ConflictException">
         /// The client attempted to remove a resource that is currently in use.
         /// </exception>
+        /// <exception cref="Amazon.OSIS.Model.DisabledOperationException">
+        /// Exception is thrown when an operation has been disabled.
+        /// </exception>
         /// <exception cref="Amazon.OSIS.Model.InternalException">
         /// The request failed because of an unknown error, exception, or failure (the failure
         /// is internal to the service).
@@ -980,6 +1014,9 @@ namespace Amazon.OSIS
         /// <returns>The response from the TagResource service method, as returned by OSIS.</returns>
         /// <exception cref="Amazon.OSIS.Model.AccessDeniedException">
         /// You don't have permissions to access the resource.
+        /// </exception>
+        /// <exception cref="Amazon.OSIS.Model.DisabledOperationException">
+        /// Exception is thrown when an operation has been disabled.
         /// </exception>
         /// <exception cref="Amazon.OSIS.Model.InternalException">
         /// The request failed because of an unknown error, exception, or failure (the failure
@@ -1053,6 +1090,9 @@ namespace Amazon.OSIS
         /// <exception cref="Amazon.OSIS.Model.AccessDeniedException">
         /// You don't have permissions to access the resource.
         /// </exception>
+        /// <exception cref="Amazon.OSIS.Model.DisabledOperationException">
+        /// Exception is thrown when an operation has been disabled.
+        /// </exception>
         /// <exception cref="Amazon.OSIS.Model.InternalException">
         /// The request failed because of an unknown error, exception, or failure (the failure
         /// is internal to the service).
@@ -1124,6 +1164,9 @@ namespace Amazon.OSIS
         /// <exception cref="Amazon.OSIS.Model.ConflictException">
         /// The client attempted to remove a resource that is currently in use.
         /// </exception>
+        /// <exception cref="Amazon.OSIS.Model.DisabledOperationException">
+        /// Exception is thrown when an operation has been disabled.
+        /// </exception>
         /// <exception cref="Amazon.OSIS.Model.InternalException">
         /// The request failed because of an unknown error, exception, or failure (the failure
         /// is internal to the service).
@@ -1193,6 +1236,9 @@ namespace Amazon.OSIS
         /// <exception cref="Amazon.OSIS.Model.AccessDeniedException">
         /// You don't have permissions to access the resource.
         /// </exception>
+        /// <exception cref="Amazon.OSIS.Model.DisabledOperationException">
+        /// Exception is thrown when an operation has been disabled.
+        /// </exception>
         /// <exception cref="Amazon.OSIS.Model.InternalException">
         /// The request failed because of an unknown error, exception, or failure (the failure
         /// is internal to the service).
@@ -1255,11 +1301,11 @@ namespace Amazon.OSIS
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

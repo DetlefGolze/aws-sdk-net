@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -61,6 +62,9 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
             if (!publicRequest.IsSetAssetModelId())
                 throw new AmazonIoTSiteWiseException("Request object does not have required field AssetModelId set");
             request.AddPathResource("{assetModelId}", StringUtils.FromString(publicRequest.AssetModelId));
+            
+            if (publicRequest.IsSetAssetModelVersion())
+                request.Parameters.Add("assetModelVersion", StringUtils.FromString(publicRequest.AssetModelVersion));
             
             if (publicRequest.IsSetFilter())
                 request.Parameters.Add("filter", StringUtils.FromString(publicRequest.Filter));

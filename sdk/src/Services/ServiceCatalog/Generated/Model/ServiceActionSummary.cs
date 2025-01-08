@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.ServiceCatalog.Model
         /// <summary>
         /// Gets and sets the property DefinitionType. 
         /// <para>
-        /// The self-service action definition type. For example, <code>SSM_AUTOMATION</code>.
+        /// The self-service action definition type. For example, <c>SSM_AUTOMATION</c>.
         /// </para>
         /// </summary>
         public ServiceActionDefinitionType DefinitionType

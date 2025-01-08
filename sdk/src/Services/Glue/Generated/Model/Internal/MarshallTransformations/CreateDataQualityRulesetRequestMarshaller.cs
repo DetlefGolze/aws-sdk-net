@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,12 +66,19 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetClientToken())
                 {
                     context.Writer.WritePropertyName("ClientToken");
                     context.Writer.Write(publicRequest.ClientToken);
+                }
+
+                if(publicRequest.IsSetDataQualitySecurityConfiguration())
+                {
+                    context.Writer.WritePropertyName("DataQualitySecurityConfiguration");
+                    context.Writer.Write(publicRequest.DataQualitySecurityConfiguration);
                 }
 
                 if(publicRequest.IsSetDescription())

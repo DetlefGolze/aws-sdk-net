@@ -26,12 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Athena.Model
 {
     /// <summary>
     /// Container for the parameters to the StartCalculationExecution operation.
     /// Submits calculations for execution within a session. You can supply the code to run
     /// as an inline code block within the request.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// The request syntax requires the <a>StartCalculationExecutionRequest$CodeBlock</a>
+    /// parameter or the <a>CalculationConfiguration$CodeBlock</a> parameter, but not both.
+    /// Because <a>CalculationConfiguration$CodeBlock</a> is deprecated, use the <a>StartCalculationExecutionRequest$CodeBlock</a>
+    /// parameter instead.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class StartCalculationExecutionRequest : AmazonAthenaRequest
     {
@@ -64,7 +74,7 @@ namespace Amazon.Athena.Model
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
         /// A unique case-sensitive string used to ensure the request to create the calculation
-        /// is idempotent (executes only once). If another <code>StartCalculationExecutionRequest</code>
+        /// is idempotent (executes only once). If another <c>StartCalculationExecutionRequest</c>
         /// is received, the same response is returned and another calculation is not created.
         /// If a parameter has changed, an error is returned.
         /// </para>
@@ -93,7 +103,8 @@ namespace Amazon.Athena.Model
         /// <summary>
         /// Gets and sets the property CodeBlock. 
         /// <para>
-        /// A string that contains the code of the calculation.
+        /// A string that contains the code of the calculation. Use this parameter instead of
+        /// <a>CalculationConfiguration$CodeBlock</a>, which is deprecated.
         /// </para>
         /// </summary>
         [AWSProperty(Max=68000)]

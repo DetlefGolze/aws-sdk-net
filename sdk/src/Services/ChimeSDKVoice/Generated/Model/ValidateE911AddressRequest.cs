@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKVoice.Model
 {
     /// <summary>
@@ -67,7 +68,7 @@ namespace Amazon.ChimeSDKVoice.Model
         /// <summary>
         /// Gets and sets the property City. 
         /// <para>
-        /// The address city, such as <code>Portland</code>.
+        /// The address city, such as <c>Portland</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true)]
@@ -86,7 +87,9 @@ namespace Amazon.ChimeSDKVoice.Model
         /// <summary>
         /// Gets and sets the property Country. 
         /// <para>
-        /// The country in the address being validated.
+        /// The country in the address being validated as two-letter country code in ISO 3166-1
+        /// alpha-2 format, such as <c>US</c>. For more information, see <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO
+        /// 3166-1 alpha-2</a> in Wikipedia.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true)]
@@ -105,7 +108,7 @@ namespace Amazon.ChimeSDKVoice.Model
         /// <summary>
         /// Gets and sets the property PostalCode. 
         /// <para>
-        /// The dress postal code, such <code>04352</code>.
+        /// The dress postal code, such <c>04352</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true)]
@@ -124,7 +127,7 @@ namespace Amazon.ChimeSDKVoice.Model
         /// <summary>
         /// Gets and sets the property State. 
         /// <para>
-        /// The address state, such as <code>ME</code>.
+        /// The address state, such as <c>ME</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true)]
@@ -143,7 +146,7 @@ namespace Amazon.ChimeSDKVoice.Model
         /// <summary>
         /// Gets and sets the property StreetInfo. 
         /// <para>
-        /// The address street information, such as <code>8th Avenue</code>.
+        /// The address street information, such as <c>8th Avenue</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true)]
@@ -162,7 +165,7 @@ namespace Amazon.ChimeSDKVoice.Model
         /// <summary>
         /// Gets and sets the property StreetNumber. 
         /// <para>
-        /// The address street number, such as <code>200</code> or <code>2121</code>.
+        /// The address street number, such as <c>200</c> or <c>2121</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true)]

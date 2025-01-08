@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
-    /// If a health check or hosted zone was created by another service, <code>LinkedService</code>
+    /// If a health check or hosted zone was created by another service, <c>LinkedService</c>
     /// is a complex type that describes the service that created the resource. When a resource
     /// is created by another service, you can't edit or delete it using Amazon Route 53.
     /// </summary>

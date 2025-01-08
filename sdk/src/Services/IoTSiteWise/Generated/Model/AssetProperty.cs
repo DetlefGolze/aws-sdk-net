@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -36,16 +37,18 @@ namespace Amazon.IoTSiteWise.Model
         private string _alias;
         private PropertyDataType _dataType;
         private string _dataTypeSpec;
+        private string _externalId;
         private string _id;
         private string _name;
         private PropertyNotification _notification;
+        private List<AssetPropertyPathSegment> _path = AWSConfigs.InitializeCollections ? new List<AssetPropertyPathSegment>() : null;
         private string _unit;
 
         /// <summary>
         /// Gets and sets the property Alias. 
         /// <para>
         /// The alias that identifies the property, such as an OPC-UA server data stream path
-        /// (for example, <code>/company/windfarm/3/turbine/7/temperature</code>). For more information,
+        /// (for example, <c>/company/windfarm/3/turbine/7/temperature</c>). For more information,
         /// see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html">Mapping
         /// industrial data streams to asset properties</a> in the <i>IoT SiteWise User Guide</i>.
         /// </para>
@@ -86,7 +89,7 @@ namespace Amazon.IoTSiteWise.Model
         /// Gets and sets the property DataTypeSpec. 
         /// <para>
         /// The data type of the structure for this property. This parameter exists on properties
-        /// that have the <code>STRUCT</code> data type.
+        /// that have the <c>STRUCT</c> data type.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]
@@ -100,6 +103,26 @@ namespace Amazon.IoTSiteWise.Model
         internal bool IsSetDataTypeSpec()
         {
             return this._dataTypeSpec != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExternalId. 
+        /// <para>
+        /// The external ID of the asset property. For more information, see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-ids">Using
+        /// external IDs</a> in the <i>IoT SiteWise User Guide</i>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=2, Max=128)]
+        public string ExternalId
+        {
+            get { return this._externalId; }
+            set { this._externalId = value; }
+        }
+
+        // Check to see if ExternalId property is set
+        internal bool IsSetExternalId()
+        {
+            return this._externalId != null;
         }
 
         /// <summary>
@@ -159,9 +182,27 @@ namespace Amazon.IoTSiteWise.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Path. 
+        /// <para>
+        /// The structured path to the property from the root of the asset.
+        /// </para>
+        /// </summary>
+        public List<AssetPropertyPathSegment> Path
+        {
+            get { return this._path; }
+            set { this._path = value; }
+        }
+
+        // Check to see if Path property is set
+        internal bool IsSetPath()
+        {
+            return this._path != null && (this._path.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Unit. 
         /// <para>
-        /// The unit (such as <code>Newtons</code> or <code>RPM</code>) of the asset property.
+        /// The unit (such as <c>Newtons</c> or <c>RPM</c>) of the asset property.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]

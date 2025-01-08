@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeOptionGroupOptions operation.
-    /// Describes all available options.
+    /// Describes all available options for the specified engine.
     /// </summary>
     public partial class DescribeOptionGroupOptionsRequest : AmazonRDSRequest
     {
         private string _engineName;
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private string _majorEngineVersion;
         private string _marker;
         private int? _maxRecords;
@@ -43,7 +44,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property EngineName. 
         /// <para>
-        /// A required parameter. Options available for the given engine name are described.
+        /// The name of the engine to describe options for.
         /// </para>
         ///  
         /// <para>
@@ -51,47 +52,55 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>mariadb</code> 
+        ///  <c>db2-ae</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mysql</code> 
+        ///  <c>db2-se</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-ee</code> 
+        ///  <c>mariadb</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-ee-cdb</code> 
+        ///  <c>mysql</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-se2</code> 
+        ///  <c>oracle-ee</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-se2-cdb</code> 
+        ///  <c>oracle-ee-cdb</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>postgres</code> 
+        ///  <c>oracle-se2</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ee</code> 
+        ///  <c>oracle-se2-cdb</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-se</code> 
+        ///  <c>postgres</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ex</code> 
+        ///  <c>sqlserver-ee</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-web</code> 
+        ///  <c>sqlserver-se</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>sqlserver-ex</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>sqlserver-web</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -123,7 +132,7 @@ namespace Amazon.RDS.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -150,7 +159,7 @@ namespace Amazon.RDS.Model
         /// <para>
         /// An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>.
+        /// by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -169,8 +178,8 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property MaxRecords. 
         /// <para>
         /// The maximum number of records to include in the response. If more records exist than
-        /// the specified <code>MaxRecords</code> value, a pagination token called a marker is
-        /// included in the response so that you can retrieve the remaining results.
+        /// the specified <c>MaxRecords</c> value, a pagination token called a marker is included
+        /// in the response so that you can retrieve the remaining results.
         /// </para>
         ///  
         /// <para>

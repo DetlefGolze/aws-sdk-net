@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Neptune.Model
     public partial class DBClusterSnapshot
     {
         private int? _allocatedStorage;
-        private List<string> _availabilityZones = new List<string>();
+        private List<string> _availabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _clusterCreateTime;
         private string _dbClusterIdentifier;
         private string _dbClusterSnapshotArn;
@@ -58,6 +59,7 @@ namespace Amazon.Neptune.Model
         private string _sourceDBClusterSnapshotArn;
         private string _status;
         private bool? _storageEncrypted;
+        private string _storageType;
         private string _vpcId;
 
         /// <summary>
@@ -94,7 +96,7 @@ namespace Amazon.Neptune.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -161,18 +163,18 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        /// After you restore a DB cluster using a <code>DBClusterSnapshotIdentifier</code>, you
-        /// must specify the same <code>DBClusterSnapshotIdentifier</code> for any future updates
-        /// to the DB cluster. When you specify this property for an update, the DB cluster is
-        /// not restored from the snapshot again, and the data in the database is not changed.
+        /// After you restore a DB cluster using a <c>DBClusterSnapshotIdentifier</c>, you must
+        /// specify the same <c>DBClusterSnapshotIdentifier</c> for any future updates to the
+        /// DB cluster. When you specify this property for an update, the DB cluster is not restored
+        /// from the snapshot again, and the data in the database is not changed.
         /// </para>
         ///  
         /// <para>
-        /// However, if you don't specify the <code>DBClusterSnapshotIdentifier</code>, an empty
-        /// DB cluster is created, and the original DB cluster is deleted. If you specify a property
+        /// However, if you don't specify the <c>DBClusterSnapshotIdentifier</c>, an empty DB
+        /// cluster is created, and the original DB cluster is deleted. If you specify a property
         /// that is different from the previous snapshot restore property, the DB cluster is restored
-        /// from the snapshot specified by the <code>DBClusterSnapshotIdentifier</code>, and the
-        /// original DB cluster is deleted.
+        /// from the snapshot specified by the <c>DBClusterSnapshotIdentifier</c>, and the original
+        /// DB cluster is deleted.
         /// </para>
         /// </summary>
         public string DBClusterSnapshotIdentifier
@@ -245,7 +247,7 @@ namespace Amazon.Neptune.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// If <code>StorageEncrypted</code> is true, the Amazon KMS key identifier for the encrypted
+        /// If <c>StorageEncrypted</c> is true, the Amazon KMS key identifier for the encrypted
         /// DB cluster snapshot.
         /// </para>
         /// </summary>
@@ -422,6 +424,24 @@ namespace Amazon.Neptune.Model
         internal bool IsSetStorageEncrypted()
         {
             return this._storageEncrypted.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property StorageType. 
+        /// <para>
+        /// The storage type associated with the DB cluster snapshot.
+        /// </para>
+        /// </summary>
+        public string StorageType
+        {
+            get { return this._storageType; }
+            set { this._storageType = value; }
+        }
+
+        // Check to see if StorageType property is set
+        internal bool IsSetStorageType()
+        {
+            return this._storageType != null;
         }
 
         /// <summary>

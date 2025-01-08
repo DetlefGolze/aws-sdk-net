@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkMail.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteUser operation.
     /// Deletes a user from WorkMail and all subsequent systems. Before you can delete a user,
-    /// the user state must be <code>DISABLED</code>. Use the <a>DescribeUser</a> action to
-    /// confirm the user state.
+    /// the user state must be <c>DISABLED</c>. Use the <a>DescribeUser</a> action to confirm
+    /// the user state.
     /// 
     ///  
     /// <para>

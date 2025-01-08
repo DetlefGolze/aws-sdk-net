@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -42,8 +43,8 @@ namespace Amazon.Lightsail.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// The <code>stop instance</code> operation supports tag-based access control via resource
-    /// tags applied to the resource identified by <code>instance name</code>. For more information,
+    /// The <c>stop instance</c> operation supports tag-based access control via resource
+    /// tags applied to the resource identified by <c>instance name</c>. For more information,
     /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
     /// Lightsail Developer Guide</a>.
     /// </para>
@@ -56,12 +57,12 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property Force. 
         /// <para>
-        /// When set to <code>True</code>, forces a Lightsail instance that is stuck in a <code>stopping</code>
+        /// When set to <c>True</c>, forces a Lightsail instance that is stuck in a <c>stopping</c>
         /// state to stop.
         /// </para>
         ///  <important> 
         /// <para>
-        /// Only use the <code>force</code> parameter if your instance is stuck in the <code>stopping</code>
+        /// Only use the <c>force</c> parameter if your instance is stuck in the <c>stopping</c>
         /// state. In any other state, your instance should stop normally without adding this
         /// parameter to your API request.
         /// </para>

@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
     /// Container for the parameters to the DetachLoadBalancerTargetGroups operation.
     /// <note> 
     /// <para>
-    /// This API operation is superseded by <a>DetachTrafficSources</a>, which can detach
-    /// multiple traffic sources types. We recommend using <code>DetachTrafficSources</code>
-    /// to simplify how you manage traffic sources. However, we continue to support <code>DetachLoadBalancerTargetGroups</code>.
-    /// You can use both the original <code>DetachLoadBalancerTargetGroups</code> API operation
-    /// and <code>DetachTrafficSources</code> on the same Auto Scaling group.
+    /// This API operation is superseded by <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeTrafficSources.html">DetachTrafficSources</a>,
+    /// which can detach multiple traffic sources types. We recommend using <c>DetachTrafficSources</c>
+    /// to simplify how you manage traffic sources. However, we continue to support <c>DetachLoadBalancerTargetGroups</c>.
+    /// You can use both the original <c>DetachLoadBalancerTargetGroups</c> API operation
+    /// and <c>DetachTrafficSources</c> on the same Auto Scaling group.
     /// </para>
     ///  </note> 
     /// <para>
@@ -44,22 +45,23 @@ namespace Amazon.AutoScaling.Model
     /// </para>
     ///  
     /// <para>
-    /// When you detach a target group, it enters the <code>Removing</code> state while deregistering
+    /// When you detach a target group, it enters the <c>Removing</c> state while deregistering
     /// the instances in the group. When all instances are deregistered, then you can no longer
-    /// describe the target group using the <a>DescribeLoadBalancerTargetGroups</a> API call.
-    /// The instances remain running.
+    /// describe the target group using the <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeLoadBalancerTargetGroups.html">DescribeLoadBalancerTargetGroups</a>
+    /// API call. The instances remain running.
     /// </para>
     ///  <note> 
     /// <para>
-    /// You can use this operation to detach target groups that were attached by using <a>AttachLoadBalancerTargetGroups</a>,
-    /// but not for target groups that were attached by using <a>AttachTrafficSources</a>.
+    /// You can use this operation to detach target groups that were attached by using <a
+    /// href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_AttachLoadBalancerTargetGroups.html">AttachLoadBalancerTargetGroups</a>,
+    /// but not for target groups that were attached by using <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_AttachTrafficSources.html">AttachTrafficSources</a>.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class DetachLoadBalancerTargetGroupsRequest : AmazonAutoScalingRequest
     {
         private string _autoScalingGroupName;
-        private List<string> _targetGroupARNs = new List<string>();
+        private List<string> _targetGroupARNs = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AutoScalingGroupName. 
@@ -97,7 +99,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if TargetGroupARNs property is set
         internal bool IsSetTargetGroupARNs()
         {
-            return this._targetGroupARNs != null && this._targetGroupARNs.Count > 0; 
+            return this._targetGroupARNs != null && (this._targetGroupARNs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

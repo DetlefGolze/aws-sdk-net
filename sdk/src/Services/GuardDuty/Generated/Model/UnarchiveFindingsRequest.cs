@@ -26,21 +26,28 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
     /// Container for the parameters to the UnarchiveFindings operation.
-    /// Unarchives GuardDuty findings specified by the <code>findingIds</code>.
+    /// Unarchives GuardDuty findings specified by the <c>findingIds</c>.
     /// </summary>
     public partial class UnarchiveFindingsRequest : AmazonGuardDutyRequest
     {
         private string _detectorId;
-        private List<string> _findingIds = new List<string>();
+        private List<string> _findingIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DetectorId. 
         /// <para>
         /// The ID of the detector associated with the findings to unarchive.
+        /// </para>
+        ///  
+        /// <para>
+        /// To find the <c>detectorId</c> in the current Region, see the Settings page in the
+        /// GuardDuty console, or run the <a href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html">ListDetectors</a>
+        /// API.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=300)]
@@ -72,7 +79,7 @@ namespace Amazon.GuardDuty.Model
         // Check to see if FindingIds property is set
         internal bool IsSetFindingIds()
         {
-            return this._findingIds != null && this._findingIds.Count > 0; 
+            return this._findingIds != null && (this._findingIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

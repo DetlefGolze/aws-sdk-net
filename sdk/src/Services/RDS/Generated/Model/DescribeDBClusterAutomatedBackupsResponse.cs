@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.RDS.Model
     /// </summary>
     public partial class DescribeDBClusterAutomatedBackupsResponse : AmazonWebServiceResponse
     {
-        private List<DBClusterAutomatedBackup> _dbClusterAutomatedBackups = new List<DBClusterAutomatedBackup>();
+        private List<DBClusterAutomatedBackup> _dbClusterAutomatedBackups = AWSConfigs.InitializeCollections ? new List<DBClusterAutomatedBackup>() : null;
         private string _marker;
 
         /// <summary>
         /// Gets and sets the property DBClusterAutomatedBackups. 
         /// <para>
-        /// A list of <code>DBClusterAutomatedBackup</code> backups.
+        /// A list of <c>DBClusterAutomatedBackup</c> backups.
         /// </para>
         /// </summary>
         public List<DBClusterAutomatedBackup> DBClusterAutomatedBackups
@@ -51,14 +52,14 @@ namespace Amazon.RDS.Model
         // Check to see if DBClusterAutomatedBackups property is set
         internal bool IsSetDBClusterAutomatedBackups()
         {
-            return this._dbClusterAutomatedBackups != null && this._dbClusterAutomatedBackups.Count > 0; 
+            return this._dbClusterAutomatedBackups != null && (this._dbClusterAutomatedBackups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         /// The pagination token provided in the previous request. If this parameter is specified
-        /// the response includes only records beyond the marker, up to <code>MaxRecords</code>.
+        /// the response includes only records beyond the marker, up to <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker

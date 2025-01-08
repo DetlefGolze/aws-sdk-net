@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// A complex type that contains zero or more <code>Tag</code> elements.
+        /// A complex type that contains zero or more <c>Tag</c> elements.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

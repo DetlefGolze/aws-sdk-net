@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -45,7 +46,7 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// The value that you provided for the <code>Marker</code> request parameter.
+        /// The value that you provided for the <c>Marker</c> request parameter.
         /// </para>
         /// </summary>
         public string Marker
@@ -63,7 +64,7 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property MaxItems. 
         /// <para>
-        /// The value that you provided for the <code>MaxItems</code> request parameter.
+        /// The value that you provided for the <c>MaxItems</c> request parameter.
         /// </para>
         /// </summary>
         public string MaxItems

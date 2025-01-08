@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Proton.Model
 {
     /// <summary>
@@ -99,7 +100,7 @@ namespace Amazon.Proton.Model
         /// <summary>
         /// Gets and sets the property ServiceName. 
         /// <para>
-        /// The name of the service that <code>serviceInstanceName</code> is associated to.
+        /// The name of the service that <c>serviceInstanceName</c> is associated to.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]

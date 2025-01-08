@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property PackageSource. 
         /// <para>
-        /// The customer S3 location <code>PackageSource</code> for importing the package.
+        /// The customer S3 location <c>PackageSource</c> for importing the package.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

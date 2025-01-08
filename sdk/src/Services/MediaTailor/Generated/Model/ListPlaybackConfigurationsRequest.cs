@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaTailor.Model
 {
     /// <summary>
@@ -43,9 +44,9 @@ namespace Amazon.MediaTailor.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of playback configurations that you want MediaTailor to return
-        /// in response to the current request. If there are more than <code>MaxResults</code>
-        /// playback configurations, use the value of <code>NextToken</code> in the response to
-        /// get the next page of results.
+        /// in response to the current request. If there are more than <c>MaxResults</c> playback
+        /// configurations, use the value of <c>NextToken</c> in the response to get the next
+        /// page of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]

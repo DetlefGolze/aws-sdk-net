@@ -26,11 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
     /// Container for the parameters to the ListTagsForResource operation.
-    /// Lists the tags you have assigned to the resource.
+    /// The <c>ListTagsForResource</c> operation returns the tags that are associated with
+    /// an Amazon Managed Service for Prometheus resource. Currently, the only resources that
+    /// can be tagged are scrapers, workspaces, and rule groups namespaces.
     /// </summary>
     public partial class ListTagsForResourceRequest : AmazonPrometheusServiceRequest
     {
@@ -39,7 +42,8 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The ARN of the resource.
+        /// The ARN of the resource to list tages for. Must be a workspace, scraper, or rule groups
+        /// namespace resource.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

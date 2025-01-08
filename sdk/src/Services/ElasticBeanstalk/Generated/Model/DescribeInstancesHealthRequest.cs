@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.ElasticBeanstalk.Model
     /// </summary>
     public partial class DescribeInstancesHealthRequest : AmazonElasticBeanstalkRequest
     {
-        private List<string> _attributeNames = new List<string>();
+        private List<string> _attributeNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _environmentId;
         private string _environmentName;
         private string _nextToken;
@@ -45,7 +46,7 @@ namespace Amazon.ElasticBeanstalk.Model
         /// Gets and sets the property AttributeNames. 
         /// <para>
         /// Specifies the response elements you wish to receive. To retrieve all attributes, set
-        /// to <code>All</code>. If no attribute names are specified, returns a list of instances.
+        /// to <c>All</c>. If no attribute names are specified, returns a list of instances.
         /// </para>
         /// </summary>
         public List<string> AttributeNames
@@ -57,7 +58,7 @@ namespace Amazon.ElasticBeanstalk.Model
         // Check to see if AttributeNames property is set
         internal bool IsSetAttributeNames()
         {
-            return this._attributeNames != null && this._attributeNames.Count > 0; 
+            return this._attributeNames != null && (this._attributeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

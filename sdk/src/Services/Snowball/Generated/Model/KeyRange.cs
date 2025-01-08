@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
-    /// Contains a key range. For export jobs, a <code>S3Resource</code> object can have an
-    /// optional <code>KeyRange</code> value. The length of the range is defined at job creation,
-    /// and has either an inclusive <code>BeginMarker</code>, an inclusive <code>EndMarker</code>,
-    /// or both. Ranges are UTF-8 binary sorted.
+    /// Contains a key range. For export jobs, a <c>S3Resource</c> object can have an optional
+    /// <c>KeyRange</c> value. The length of the range is defined at job creation, and has
+    /// either an inclusive <c>BeginMarker</c>, an inclusive <c>EndMarker</c>, or both. Ranges
+    /// are UTF-8 binary sorted.
     /// </summary>
     public partial class KeyRange
     {

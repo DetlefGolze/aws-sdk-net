@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Elasticsearch.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Elasticsearch.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ElasticsearchDomainStatus Unmarshall(JsonUnmarshallerContext context)
         {
+            ElasticsearchDomainStatus unmarshalledObject = new ElasticsearchDomainStatus();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ElasticsearchDomainStatus unmarshalledObject = new ElasticsearchDomainStatus();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -136,6 +138,12 @@ namespace Amazon.Elasticsearch.Model.Internal.MarshallTransformations
                     unmarshalledObject.DomainName = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("DomainProcessingStatus", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DomainProcessingStatus = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("EBSOptions", targetDepth))
                 {
                     var unmarshaller = EBSOptionsUnmarshaller.Instance;
@@ -178,6 +186,12 @@ namespace Amazon.Elasticsearch.Model.Internal.MarshallTransformations
                     unmarshalledObject.LogPublishingOptions = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ModifyingProperties", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<ModifyingProperties, ModifyingPropertiesUnmarshaller>(ModifyingPropertiesUnmarshaller.Instance);
+                    unmarshalledObject.ModifyingProperties = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("NodeToNodeEncryptionOptions", targetDepth))
                 {
                     var unmarshaller = NodeToNodeEncryptionOptionsUnmarshaller.Instance;
@@ -215,7 +229,6 @@ namespace Amazon.Elasticsearch.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

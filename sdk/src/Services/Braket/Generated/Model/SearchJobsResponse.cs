@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Braket.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.Braket.Model
     /// </summary>
     public partial class SearchJobsResponse : AmazonWebServiceResponse
     {
-        private List<JobSummary> _jobs = new List<JobSummary>();
+        private List<JobSummary> _jobs = AWSConfigs.InitializeCollections ? new List<JobSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Jobs. 
         /// <para>
-        /// An array of <code>JobSummary</code> objects for devices that match the specified filter
+        /// An array of <c>JobSummary</c> objects for devices that match the specified filter
         /// values.
         /// </para>
         /// </summary>
@@ -53,13 +54,13 @@ namespace Amazon.Braket.Model
         // Check to see if Jobs property is set
         internal bool IsSetJobs()
         {
-            return this._jobs != null && this._jobs.Count > 0; 
+            return this._jobs != null && (this._jobs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token used for pagination of results, or <code>null</code> if there are no additional
+        /// A token used for pagination of results, or <c>null</c> if there are no additional
         /// results. Use the token value in a subsequent request to continue results where the
         /// previous request ended.
         /// </para>

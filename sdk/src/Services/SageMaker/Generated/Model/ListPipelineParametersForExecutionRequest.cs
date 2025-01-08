@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -60,9 +61,9 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the result of the previous <code>ListPipelineParametersForExecution</code> request
-        /// was truncated, the response includes a <code>NextToken</code>. To retrieve the next
-        /// set of parameters, use the token in the next request.
+        /// If the result of the previous <c>ListPipelineParametersForExecution</c> request was
+        /// truncated, the response includes a <c>NextToken</c>. To retrieve the next set of parameters,
+        /// use the token in the next request.
         /// </para>
         /// </summary>
         [AWSProperty(Max=8192)]
@@ -84,7 +85,7 @@ namespace Amazon.SageMaker.Model
         /// The Amazon Resource Name (ARN) of the pipeline execution.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=256)]
+        [AWSProperty(Required=true, Max=2048)]
         public string PipelineExecutionArn
         {
             get { return this._pipelineExecutionArn; }

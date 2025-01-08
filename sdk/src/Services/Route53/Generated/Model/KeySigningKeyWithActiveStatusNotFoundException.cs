@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
-    /// A key-signing key (KSK) with <code>ACTIVE</code> status wasn't found.
+    /// A key-signing key (KSK) with <c>ACTIVE</c> status wasn't found.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

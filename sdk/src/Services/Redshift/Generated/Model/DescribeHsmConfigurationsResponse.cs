@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.Redshift.Model
     /// </summary>
     public partial class DescribeHsmConfigurationsResponse : AmazonWebServiceResponse
     {
-        private List<HsmConfiguration> _hsmConfigurations = new List<HsmConfiguration>();
+        private List<HsmConfiguration> _hsmConfigurations = AWSConfigs.InitializeCollections ? new List<HsmConfiguration>() : null;
         private string _marker;
 
         /// <summary>
         /// Gets and sets the property HsmConfigurations. 
         /// <para>
-        /// A list of <code>HsmConfiguration</code> objects.
+        /// A list of <c>HsmConfiguration</c> objects.
         /// </para>
         /// </summary>
         public List<HsmConfiguration> HsmConfigurations
@@ -51,7 +52,7 @@ namespace Amazon.Redshift.Model
         // Check to see if HsmConfigurations property is set
         internal bool IsSetHsmConfigurations()
         {
-            return this._hsmConfigurations != null && this._hsmConfigurations.Count > 0; 
+            return this._hsmConfigurations != null && (this._hsmConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -59,9 +60,9 @@ namespace Amazon.Redshift.Model
         /// <para>
         /// A value that indicates the starting point for the next set of response records in
         /// a subsequent request. If a value is returned in a response, you can retrieve the next
-        /// set of records by providing this returned marker value in the <code>Marker</code>
-        /// parameter and retrying the command. If the <code>Marker</code> field is empty, all
-        /// response records have been retrieved for the request. 
+        /// set of records by providing this returned marker value in the <c>Marker</c> parameter
+        /// and retrying the command. If the <c>Marker</c> field is empty, all response records
+        /// have been retrieved for the request. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]

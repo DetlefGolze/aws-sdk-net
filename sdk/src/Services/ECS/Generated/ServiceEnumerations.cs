@@ -195,6 +195,56 @@ namespace Amazon.ECS
 
 
     /// <summary>
+    /// Constants used for properties of type AvailabilityZoneRebalancing.
+    /// </summary>
+    public class AvailabilityZoneRebalancing : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DISABLED for AvailabilityZoneRebalancing
+        /// </summary>
+        public static readonly AvailabilityZoneRebalancing DISABLED = new AvailabilityZoneRebalancing("DISABLED");
+        /// <summary>
+        /// Constant ENABLED for AvailabilityZoneRebalancing
+        /// </summary>
+        public static readonly AvailabilityZoneRebalancing ENABLED = new AvailabilityZoneRebalancing("ENABLED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public AvailabilityZoneRebalancing(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static AvailabilityZoneRebalancing FindValue(string value)
+        {
+            return FindValue<AvailabilityZoneRebalancing>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator AvailabilityZoneRebalancing(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type CapacityProviderField.
     /// </summary>
     public class CapacityProviderField : ConstantClass
@@ -1005,6 +1055,52 @@ namespace Amazon.ECS
 
 
     /// <summary>
+    /// Constants used for properties of type EBSResourceType.
+    /// </summary>
+    public class EBSResourceType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Volume for EBSResourceType
+        /// </summary>
+        public static readonly EBSResourceType Volume = new EBSResourceType("volume");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public EBSResourceType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static EBSResourceType FindValue(string value)
+        {
+            return FindValue<EBSResourceType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator EBSResourceType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type EFSAuthorizationConfigIAM.
     /// </summary>
     public class EFSAuthorizationConfigIAM : ConstantClass
@@ -1634,6 +1730,56 @@ namespace Amazon.ECS
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator ManagedAgentName(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ManagedDraining.
+    /// </summary>
+    public class ManagedDraining : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DISABLED for ManagedDraining
+        /// </summary>
+        public static readonly ManagedDraining DISABLED = new ManagedDraining("DISABLED");
+        /// <summary>
+        /// Constant ENABLED for ManagedDraining
+        /// </summary>
+        public static readonly ManagedDraining ENABLED = new ManagedDraining("ENABLED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ManagedDraining(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ManagedDraining FindValue(string value)
+        {
+            return FindValue<ManagedDraining>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ManagedDraining(string value)
         {
             return FindValue(value);
         }
@@ -2369,6 +2515,138 @@ namespace Amazon.ECS
 
 
     /// <summary>
+    /// Constants used for properties of type ServiceDeploymentRollbackMonitorsStatus.
+    /// </summary>
+    public class ServiceDeploymentRollbackMonitorsStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DISABLED for ServiceDeploymentRollbackMonitorsStatus
+        /// </summary>
+        public static readonly ServiceDeploymentRollbackMonitorsStatus DISABLED = new ServiceDeploymentRollbackMonitorsStatus("DISABLED");
+        /// <summary>
+        /// Constant MONITORING for ServiceDeploymentRollbackMonitorsStatus
+        /// </summary>
+        public static readonly ServiceDeploymentRollbackMonitorsStatus MONITORING = new ServiceDeploymentRollbackMonitorsStatus("MONITORING");
+        /// <summary>
+        /// Constant MONITORING_COMPLETE for ServiceDeploymentRollbackMonitorsStatus
+        /// </summary>
+        public static readonly ServiceDeploymentRollbackMonitorsStatus MONITORING_COMPLETE = new ServiceDeploymentRollbackMonitorsStatus("MONITORING_COMPLETE");
+        /// <summary>
+        /// Constant TRIGGERED for ServiceDeploymentRollbackMonitorsStatus
+        /// </summary>
+        public static readonly ServiceDeploymentRollbackMonitorsStatus TRIGGERED = new ServiceDeploymentRollbackMonitorsStatus("TRIGGERED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ServiceDeploymentRollbackMonitorsStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ServiceDeploymentRollbackMonitorsStatus FindValue(string value)
+        {
+            return FindValue<ServiceDeploymentRollbackMonitorsStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ServiceDeploymentRollbackMonitorsStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ServiceDeploymentStatus.
+    /// </summary>
+    public class ServiceDeploymentStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant IN_PROGRESS for ServiceDeploymentStatus
+        /// </summary>
+        public static readonly ServiceDeploymentStatus IN_PROGRESS = new ServiceDeploymentStatus("IN_PROGRESS");
+        /// <summary>
+        /// Constant PENDING for ServiceDeploymentStatus
+        /// </summary>
+        public static readonly ServiceDeploymentStatus PENDING = new ServiceDeploymentStatus("PENDING");
+        /// <summary>
+        /// Constant ROLLBACK_FAILED for ServiceDeploymentStatus
+        /// </summary>
+        public static readonly ServiceDeploymentStatus ROLLBACK_FAILED = new ServiceDeploymentStatus("ROLLBACK_FAILED");
+        /// <summary>
+        /// Constant ROLLBACK_IN_PROGRESS for ServiceDeploymentStatus
+        /// </summary>
+        public static readonly ServiceDeploymentStatus ROLLBACK_IN_PROGRESS = new ServiceDeploymentStatus("ROLLBACK_IN_PROGRESS");
+        /// <summary>
+        /// Constant ROLLBACK_SUCCESSFUL for ServiceDeploymentStatus
+        /// </summary>
+        public static readonly ServiceDeploymentStatus ROLLBACK_SUCCESSFUL = new ServiceDeploymentStatus("ROLLBACK_SUCCESSFUL");
+        /// <summary>
+        /// Constant STOP_REQUESTED for ServiceDeploymentStatus
+        /// </summary>
+        public static readonly ServiceDeploymentStatus STOP_REQUESTED = new ServiceDeploymentStatus("STOP_REQUESTED");
+        /// <summary>
+        /// Constant STOPPED for ServiceDeploymentStatus
+        /// </summary>
+        public static readonly ServiceDeploymentStatus STOPPED = new ServiceDeploymentStatus("STOPPED");
+        /// <summary>
+        /// Constant SUCCESSFUL for ServiceDeploymentStatus
+        /// </summary>
+        public static readonly ServiceDeploymentStatus SUCCESSFUL = new ServiceDeploymentStatus("SUCCESSFUL");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ServiceDeploymentStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ServiceDeploymentStatus FindValue(string value)
+        {
+            return FindValue<ServiceDeploymentStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ServiceDeploymentStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ServiceField.
     /// </summary>
     public class ServiceField : ConstantClass
@@ -2441,6 +2719,10 @@ namespace Amazon.ECS
         /// </summary>
         public static readonly SettingName FargateTaskRetirementWaitPeriod = new SettingName("fargateTaskRetirementWaitPeriod");
         /// <summary>
+        /// Constant GuardDutyActivate for SettingName
+        /// </summary>
+        public static readonly SettingName GuardDutyActivate = new SettingName("guardDutyActivate");
+        /// <summary>
         /// Constant ServiceLongArnFormat for SettingName
         /// </summary>
         public static readonly SettingName ServiceLongArnFormat = new SettingName("serviceLongArnFormat");
@@ -2482,6 +2764,56 @@ namespace Amazon.ECS
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator SettingName(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type SettingType.
+    /// </summary>
+    public class SettingType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Aws_managed for SettingType
+        /// </summary>
+        public static readonly SettingType Aws_managed = new SettingType("aws_managed");
+        /// <summary>
+        /// Constant User for SettingType
+        /// </summary>
+        public static readonly SettingType User = new SettingType("user");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public SettingType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static SettingType FindValue(string value)
+        {
+            return FindValue<SettingType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator SettingType(string value)
         {
             return FindValue(value);
         }
@@ -2881,6 +3213,64 @@ namespace Amazon.ECS
 
 
     /// <summary>
+    /// Constants used for properties of type TaskFilesystemType.
+    /// </summary>
+    public class TaskFilesystemType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Ext3 for TaskFilesystemType
+        /// </summary>
+        public static readonly TaskFilesystemType Ext3 = new TaskFilesystemType("ext3");
+        /// <summary>
+        /// Constant Ext4 for TaskFilesystemType
+        /// </summary>
+        public static readonly TaskFilesystemType Ext4 = new TaskFilesystemType("ext4");
+        /// <summary>
+        /// Constant Ntfs for TaskFilesystemType
+        /// </summary>
+        public static readonly TaskFilesystemType Ntfs = new TaskFilesystemType("ntfs");
+        /// <summary>
+        /// Constant Xfs for TaskFilesystemType
+        /// </summary>
+        public static readonly TaskFilesystemType Xfs = new TaskFilesystemType("xfs");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public TaskFilesystemType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static TaskFilesystemType FindValue(string value)
+        {
+            return FindValue<TaskFilesystemType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator TaskFilesystemType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type TaskSetField.
     /// </summary>
     public class TaskSetField : ConstantClass
@@ -3138,6 +3528,56 @@ namespace Amazon.ECS
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator UlimitName(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type VersionConsistency.
+    /// </summary>
+    public class VersionConsistency : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Disabled for VersionConsistency
+        /// </summary>
+        public static readonly VersionConsistency Disabled = new VersionConsistency("disabled");
+        /// <summary>
+        /// Constant Enabled for VersionConsistency
+        /// </summary>
+        public static readonly VersionConsistency Enabled = new VersionConsistency("enabled");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public VersionConsistency(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static VersionConsistency FindValue(string value)
+        {
+            return FindValue<VersionConsistency>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator VersionConsistency(string value)
         {
             return FindValue(value);
         }

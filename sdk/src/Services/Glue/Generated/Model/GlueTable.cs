@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Glue.Model
     /// </summary>
     public partial class GlueTable
     {
-        private Dictionary<string, string> _additionalOptions = new Dictionary<string, string>();
+        private Dictionary<string, string> _additionalOptions = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _catalogId;
         private string _connectionName;
         private string _databaseName;
@@ -46,13 +47,13 @@ namespace Amazon.Glue.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>pushDownPredicate</code>: to filter on partitions without having to list and
-        /// read all the files in your dataset.
+        ///  <c>pushDownPredicate</c>: to filter on partitions without having to list and read
+        /// all the files in your dataset.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>catalogPartitionPredicate</code>: to use server-side partition pruning using
-        /// partition indexes in the Glue Data Catalog.
+        ///  <c>catalogPartitionPredicate</c>: to use server-side partition pruning using partition
+        /// indexes in the Glue Data Catalog.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -66,7 +67,7 @@ namespace Amazon.Glue.Model
         // Check to see if AdditionalOptions property is set
         internal bool IsSetAdditionalOptions()
         {
-            return this._additionalOptions != null && this._additionalOptions.Count > 0; 
+            return this._additionalOptions != null && (this._additionalOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -39,9 +40,9 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property Active. 
         /// <para>
-        /// When <code>true</code>, StackSets performs non-conflicting operations concurrently
-        /// and queues conflicting operations. After conflicting operations finish, StackSets
-        /// starts queued operations in request order.
+        /// When <c>true</c>, StackSets performs non-conflicting operations concurrently and queues
+        /// conflicting operations. After conflicting operations finish, StackSets starts queued
+        /// operations in request order.
         /// </para>
         ///  <note> 
         /// <para>
@@ -55,7 +56,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  </note> 
         /// <para>
-        /// When <code>false</code> (default), StackSets performs one operation at a time in request
+        /// When <c>false</c> (default), StackSets performs one operation at a time in request
         /// order.
         /// </para>
         /// </summary>

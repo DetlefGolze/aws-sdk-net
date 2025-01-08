@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -72,6 +73,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                 }
                 if(publicRequest.IsSetDeviceOptions())
                 {
+                    if(publicRequest.DeviceOptions.IsSetPublicSigningKeyUrl())
+                    {
+                        request.Parameters.Add("DeviceOptions" + "." + "PublicSigningKeyUrl", StringUtils.FromString(publicRequest.DeviceOptions.PublicSigningKeyUrl));
+                    }
                     if(publicRequest.DeviceOptions.IsSetTenantId())
                     {
                         request.Parameters.Add("DeviceOptions" + "." + "TenantId", StringUtils.FromString(publicRequest.DeviceOptions.TenantId));
@@ -80,6 +85,41 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                 if(publicRequest.IsSetDeviceTrustProviderType())
                 {
                     request.Parameters.Add("DeviceTrustProviderType", StringUtils.FromString(publicRequest.DeviceTrustProviderType));
+                }
+                if(publicRequest.IsSetNativeApplicationOidcOptions())
+                {
+                    if(publicRequest.NativeApplicationOidcOptions.IsSetAuthorizationEndpoint())
+                    {
+                        request.Parameters.Add("NativeApplicationOidcOptions" + "." + "AuthorizationEndpoint", StringUtils.FromString(publicRequest.NativeApplicationOidcOptions.AuthorizationEndpoint));
+                    }
+                    if(publicRequest.NativeApplicationOidcOptions.IsSetClientId())
+                    {
+                        request.Parameters.Add("NativeApplicationOidcOptions" + "." + "ClientId", StringUtils.FromString(publicRequest.NativeApplicationOidcOptions.ClientId));
+                    }
+                    if(publicRequest.NativeApplicationOidcOptions.IsSetClientSecret())
+                    {
+                        request.Parameters.Add("NativeApplicationOidcOptions" + "." + "ClientSecret", StringUtils.FromString(publicRequest.NativeApplicationOidcOptions.ClientSecret));
+                    }
+                    if(publicRequest.NativeApplicationOidcOptions.IsSetIssuer())
+                    {
+                        request.Parameters.Add("NativeApplicationOidcOptions" + "." + "Issuer", StringUtils.FromString(publicRequest.NativeApplicationOidcOptions.Issuer));
+                    }
+                    if(publicRequest.NativeApplicationOidcOptions.IsSetPublicSigningKeyEndpoint())
+                    {
+                        request.Parameters.Add("NativeApplicationOidcOptions" + "." + "PublicSigningKeyEndpoint", StringUtils.FromString(publicRequest.NativeApplicationOidcOptions.PublicSigningKeyEndpoint));
+                    }
+                    if(publicRequest.NativeApplicationOidcOptions.IsSetScope())
+                    {
+                        request.Parameters.Add("NativeApplicationOidcOptions" + "." + "Scope", StringUtils.FromString(publicRequest.NativeApplicationOidcOptions.Scope));
+                    }
+                    if(publicRequest.NativeApplicationOidcOptions.IsSetTokenEndpoint())
+                    {
+                        request.Parameters.Add("NativeApplicationOidcOptions" + "." + "TokenEndpoint", StringUtils.FromString(publicRequest.NativeApplicationOidcOptions.TokenEndpoint));
+                    }
+                    if(publicRequest.NativeApplicationOidcOptions.IsSetUserInfoEndpoint())
+                    {
+                        request.Parameters.Add("NativeApplicationOidcOptions" + "." + "UserInfoEndpoint", StringUtils.FromString(publicRequest.NativeApplicationOidcOptions.UserInfoEndpoint));
+                    }
                 }
                 if(publicRequest.IsSetOidcOptions())
                 {

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
@@ -40,9 +41,9 @@ namespace Amazon.NetworkFirewall.Model
     /// <para>
     /// By default, Network Firewall domain list inspection only includes traffic coming from
     /// the VPC where you deploy the firewall. To inspect traffic from IP addresses outside
-    /// of the deployment VPC, you set the <code>HOME_NET</code> rule variable to include
-    /// the CIDR range of the deployment VPC plus the other CIDR ranges. For more information,
-    /// see <a>RuleVariables</a> in this guide and <a href="https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html">Stateful
+    /// of the deployment VPC, you set the <c>HOME_NET</c> rule variable to include the CIDR
+    /// range of the deployment VPC plus the other CIDR ranges. For more information, see
+    /// <a>RuleVariables</a> in this guide and <a href="https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html">Stateful
     /// domain list rule groups in Network Firewall</a> in the <i>Network Firewall Developer
     /// Guide</i>.
     /// </para>
@@ -50,8 +51,8 @@ namespace Amazon.NetworkFirewall.Model
     public partial class RulesSourceList
     {
         private GeneratedRulesType _generatedRulesType;
-        private List<string> _targets = new List<string>();
-        private List<string> _targetTypes = new List<string>();
+        private List<string> _targets = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _targetTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property GeneratedRulesType. 
@@ -80,15 +81,14 @@ namespace Amazon.NetworkFirewall.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Explicit names. For example, <code>abc.example.com</code> matches only the domain
-        /// <code>abc.example.com</code>.
+        /// Explicit names. For example, <c>abc.example.com</c> matches only the domain <c>abc.example.com</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Names that use a domain wildcard, which you indicate with an initial '<code>.</code>'.
-        /// For example,<code>.example.com</code> matches <code>example.com</code> and matches
-        /// all subdomains of <code>example.com</code>, such as <code>abc.example.com</code> and
-        /// <code>www.example.com</code>. 
+        /// Names that use a domain wildcard, which you indicate with an initial '<c>.</c>'. For
+        /// example,<c>.example.com</c> matches <c>example.com</c> and matches all subdomains
+        /// of <c>example.com</c>, such as <c>abc.example.com</c> and <c>www.example.com</c>.
+        /// 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -102,15 +102,14 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TargetTypes. 
         /// <para>
-        /// The protocols you want to inspect. Specify <code>TLS_SNI</code> for <code>HTTPS</code>.
-        /// Specify <code>HTTP_HOST</code> for <code>HTTP</code>. You can specify either or both.
-        /// 
+        /// The protocols you want to inspect. Specify <c>TLS_SNI</c> for <c>HTTPS</c>. Specify
+        /// <c>HTTP_HOST</c> for <c>HTTP</c>. You can specify either or both. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -123,7 +122,7 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if TargetTypes property is set
         internal bool IsSetTargetTypes()
         {
-            return this._targetTypes != null && this._targetTypes.Count > 0; 
+            return this._targetTypes != null && (this._targetTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

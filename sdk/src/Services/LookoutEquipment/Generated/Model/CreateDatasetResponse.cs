@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LookoutEquipment.Model
 {
     /// <summary>
@@ -78,7 +79,7 @@ namespace Amazon.LookoutEquipment.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// Indicates the status of the <code>CreateDataset</code> operation. 
+        /// Indicates the status of the <c>CreateDataset</c> operation. 
         /// </para>
         /// </summary>
         public DatasetStatus Status

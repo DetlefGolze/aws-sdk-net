@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSSupport.Model
 {
     /// <summary>
@@ -48,14 +49,14 @@ namespace Amazon.AWSSupport.Model
     /// <para>
     ///  <b>type</b> - A string value indicating the communication type that the aforementioned
     /// rules apply to. At the moment the type value can assume one of 3 values at the moment
-    /// <code>chat</code>, <code>web</code> and <code>call</code>. 
+    /// <c>chat</c>, <c>web</c> and <c>call</c>. 
     /// </para>
     ///  </li> </ul>
     /// </summary>
     public partial class CommunicationTypeOptions
     {
-        private List<DateInterval> _datesWithoutSupport = new List<DateInterval>();
-        private List<SupportedHour> _supportedHours = new List<SupportedHour>();
+        private List<DateInterval> _datesWithoutSupport = AWSConfigs.InitializeCollections ? new List<DateInterval>() : null;
+        private List<SupportedHour> _supportedHours = AWSConfigs.InitializeCollections ? new List<SupportedHour>() : null;
         private string _type;
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace Amazon.AWSSupport.Model
         // Check to see if DatesWithoutSupport property is set
         internal bool IsSetDatesWithoutSupport()
         {
-            return this._datesWithoutSupport != null && this._datesWithoutSupport.Count > 0; 
+            return this._datesWithoutSupport != null && (this._datesWithoutSupport.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -92,7 +93,7 @@ namespace Amazon.AWSSupport.Model
         // Check to see if SupportedHours property is set
         internal bool IsSetSupportedHours()
         {
-            return this._supportedHours != null && this._supportedHours.Count > 0; 
+            return this._supportedHours != null && (this._supportedHours.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

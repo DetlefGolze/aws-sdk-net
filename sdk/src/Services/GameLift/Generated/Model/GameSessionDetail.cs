@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -65,8 +66,8 @@ namespace Amazon.GameLift.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>FullProtection</b> -- If the game session is in an <code>ACTIVE</code> status,
-        /// it cannot be terminated during a scale-down event.
+        ///  <b>FullProtection</b> -- If the game session is in an <c>ACTIVE</c> status, it cannot
+        /// be terminated during a scale-down event.
         /// </para>
         ///  </li> </ul>
         /// </summary>

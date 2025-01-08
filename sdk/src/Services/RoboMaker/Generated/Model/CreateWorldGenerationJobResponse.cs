@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
@@ -38,10 +39,10 @@ namespace Amazon.RoboMaker.Model
         private DateTime? _createdAt;
         private WorldGenerationJobErrorCode _failureCode;
         private WorldGenerationJobStatus _status;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _template;
         private WorldCount _worldCount;
-        private Dictionary<string, string> _worldTags = new Dictionary<string, string>();
+        private Dictionary<string, string> _worldTags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -159,8 +160,7 @@ namespace Amazon.RoboMaker.Model
         /// </para>
         ///  </dd> <dt>Failed</dt> <dd> 
         /// <para>
-        /// The world generator job failed. See <code>failureCode</code> for more information.
-        /// 
+        /// The world generator job failed. See <c>failureCode</c> for more information. 
         /// </para>
         ///  </dd> <dt>PartialFailed</dt> <dd> 
         /// <para>
@@ -205,7 +205,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -261,7 +261,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if WorldTags property is set
         internal bool IsSetWorldTags()
         {
-            return this._worldTags != null && this._worldTags.Count > 0; 
+            return this._worldTags != null && (this._worldTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

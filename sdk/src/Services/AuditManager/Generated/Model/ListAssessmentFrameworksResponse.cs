@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AuditManager.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.AuditManager.Model
     /// </summary>
     public partial class ListAssessmentFrameworksResponse : AmazonWebServiceResponse
     {
-        private List<AssessmentFrameworkMetadata> _frameworkMetadataList = new List<AssessmentFrameworkMetadata>();
+        private List<AssessmentFrameworkMetadata> _frameworkMetadataList = AWSConfigs.InitializeCollections ? new List<AssessmentFrameworkMetadata>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property FrameworkMetadataList. 
         /// <para>
-        ///  A list of metadata that the <code>ListAssessmentFrameworks</code> API returns for
-        /// each framework.
+        ///  A list of metadata that the <c>ListAssessmentFrameworks</c> API returns for each
+        /// framework.
         /// </para>
         /// </summary>
         public List<AssessmentFrameworkMetadata> FrameworkMetadataList
@@ -52,7 +53,7 @@ namespace Amazon.AuditManager.Model
         // Check to see if FrameworkMetadataList property is set
         internal bool IsSetFrameworkMetadataList()
         {
-            return this._frameworkMetadataList != null && this._frameworkMetadataList.Count > 0; 
+            return this._frameworkMetadataList != null && (this._frameworkMetadataList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -247,6 +247,7 @@ using System.Diagnostics.CodeAnalysis;
 [module: SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Scope = "member", Target = "Amazon.Runtime.Internal.Transform.DoubleUnmarshaller.#GetInstance()")]
 [module: SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Scope = "member", Target = "Amazon.Runtime.Internal.Transform.BoolUnmarshaller.#GetInstance()")]
 [module: SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Scope = "member", Target = "Amazon.Runtime.Internal.Transform.DateTimeEpochLongMillisecondsUnmarshaller.#GetInstance()")]
+[module: SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Scope = "member", Target = "Amazon.Runtime.Internal.Transform.NullableBoolUnmarshaller.#GetInstance()")]
 [module: SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Scope = "member", Target = "Amazon.Runtime.Internal.Transform.NullableIntUnmarshaller.#GetInstance()")]
 [module: SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Scope = "member", Target = "Amazon.Runtime.Internal.Transform.NullableDateTimeUnmarshaller.#GetInstance()")]
 [module: SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Scope = "member", Target = "Amazon.Util.Internal.ITypeInfo.#GetElementType()")]
@@ -351,7 +352,9 @@ using System.Diagnostics.CodeAnalysis;
 [module: SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Scope = "member", Target = "Amazon.Runtime.Internal.RuntimePipeline.#ReplaceHandler`1(Amazon.Runtime.IPipelineHandler)")]
 [module: SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Scope = "member", Target = "Amazon.Runtime.Internal.RuntimePipeline.#AddHandlerBefore`1(Amazon.Runtime.IPipelineHandler)")]
 [module: SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Scope = "member", Target = "Amazon.Runtime.Internal.DefaultRetryPolicy.#IsInnerException`1(System.Exception)")]
+#if BCL
 [module: SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Scope = "member", Target = "Amazon.Util.PaginatedResourceFactory.#Create`3(Amazon.Util.PaginatedResourceInfo)")]
+#endif
 [module: SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Scope = "member", Target = "Amazon.Runtime.Internal.ServiceClientHelpers.#CreateServiceFromAnother`2(Amazon.Runtime.AmazonServiceClient)")]
 [module: SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Scope = "member", Target = "Amazon.Util.Internal.PlatformServices.ServiceFactory.#RegisterService`1(System.Type)")]
 
@@ -452,6 +455,7 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Scope = "member", Target = "~M:Amazon.Runtime.CredentialManagement.NetSDKCredentialsFile.TryGetProfile(System.String,Amazon.Runtime.CredentialManagement.CredentialProfile@)~System.Boolean")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Scope = "member", Target = "~M:Amazon.Runtime.DefaultInstanceProfileAWSCredentials.RenewCredentials(System.Object)")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Scope = "member", Target = "~M:Amazon.Runtime.EventStreams.Internal.EventStream`2.ProcessLoop(System.Object)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Scope = "member", Target = "~M:Amazon.Runtime.EventStreams.Internal.EventStream`2.ProcessLoopAsync()")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Scope = "member", Target = "~M:Amazon.Runtime.FallbackEndpointDiscoveryEnabledFactory.GetEnabled~System.Nullable{System.Boolean}")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Scope = "member", Target = "~M:Amazon.Runtime.FallbackRegionFactory.GetRegionEndpoint(System.Boolean)~Amazon.RegionEndpoint")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Scope = "member", Target = "~M:Amazon.Runtime.Internal.CSMFallbackConfigChain.GetCSMConfig~Amazon.Runtime.Internal.CSMConfiguration")]

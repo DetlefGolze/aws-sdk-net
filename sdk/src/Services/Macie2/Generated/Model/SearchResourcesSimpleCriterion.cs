@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Macie2.Model
     {
         private SearchResourcesComparator _comparator;
         private SearchResourcesSimpleCriterionKey _key;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Comparator. 
@@ -88,6 +89,12 @@ namespace Amazon.Macie2.Model
         /// </para>
         /// </li> <li>
         /// <para>
+        /// AUTOMATED_DISCOVERY_MONITORING_STATUS - A string that represents an enumerated value
+        /// that Macie defines for the <a href="https://docs.aws.amazon.com/macie/latest/APIReference/datasources-s3.html#datasources-s3-prop-bucketmetadata-automateddiscoverymonitoringstatus">BucketMetadata.automatedDiscoveryMonitoringStatus</a>
+        /// property of an S3 bucket.
+        /// </para>
+        /// </li> <li>
+        /// <para>
         /// S3_BUCKET_EFFECTIVE_PERMISSION - A string that represents an enumerated value that
         /// Macie defines for the <a href="https://docs.aws.amazon.com/macie/latest/APIReference/datasources-s3.html#datasources-s3-prop-bucketpublicaccess-effectivepermission">BucketPublicAccess.effectivePermission</a>
         /// property of an S3 bucket.
@@ -117,7 +124,7 @@ namespace Amazon.Macie2.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

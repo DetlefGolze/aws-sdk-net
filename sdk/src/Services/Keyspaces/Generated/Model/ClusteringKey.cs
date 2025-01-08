@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Keyspaces.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.Keyspaces.Model
         /// <summary>
         /// Gets and sets the property OrderBy. 
         /// <para>
-        /// Sets the ascendant (<code>ASC</code>) or descendant (<code>DESC</code>) order modifier.
+        /// Sets the ascendant (<c>ASC</c>) or descendant (<c>DESC</c>) order modifier.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

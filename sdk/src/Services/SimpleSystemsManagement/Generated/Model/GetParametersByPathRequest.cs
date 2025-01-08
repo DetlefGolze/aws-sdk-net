@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -34,20 +35,19 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// 
     ///  
     /// <para>
-    /// Request results are returned on a best-effort basis. If you specify <code>MaxResults</code>
+    /// Request results are returned on a best-effort basis. If you specify <c>MaxResults</c>
     /// in the request, the response includes information up to the limit specified. The number
-    /// of items returned, however, can be between zero and the value of <code>MaxResults</code>.
+    /// of items returned, however, can be between zero and the value of <c>MaxResults</c>.
     /// If the service reaches an internal limit while processing the results, it stops the
-    /// operation and returns the matching values up to that point and a <code>NextToken</code>.
-    /// You can specify the <code>NextToken</code> in a subsequent call to get the next set
-    /// of results.
+    /// operation and returns the matching values up to that point and a <c>NextToken</c>.
+    /// You can specify the <c>NextToken</c> in a subsequent call to get the next set of results.
     /// </para>
     /// </summary>
     public partial class GetParametersByPathRequest : AmazonSimpleSystemsManagementRequest
     {
         private int? _maxResults;
         private string _nextToken;
-        private List<ParameterStringFilter> _parameterFilters = new List<ParameterStringFilter>();
+        private List<ParameterStringFilter> _parameterFilters = AWSConfigs.InitializeCollections ? new List<ParameterStringFilter>() : null;
         private string _path;
         private bool? _recursive;
         private bool? _withDecryption;
@@ -97,14 +97,13 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The following <code>Key</code> values are supported for <code>GetParametersByPath</code>:
-        /// <code>Type</code>, <code>KeyId</code>, and <code>Label</code>.
+        /// The following <c>Key</c> values are supported for <c>GetParametersByPath</c>: <c>Type</c>,
+        /// <c>KeyId</c>, and <c>Label</c>.
         /// </para>
         ///  
         /// <para>
-        /// The following <code>Key</code> values aren't supported for <code>GetParametersByPath</code>:
-        /// <code>tag</code>, <code>DataType</code>, <code>Name</code>, <code>Path</code>, and
-        /// <code>Tier</code>.
+        /// The following <c>Key</c> values aren't supported for <c>GetParametersByPath</c>: <c>tag</c>,
+        /// <c>DataType</c>, <c>Name</c>, <c>Path</c>, and <c>Tier</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -117,7 +116,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if ParameterFilters property is set
         internal bool IsSetParameterFilters()
         {
-            return this._parameterFilters != null && this._parameterFilters.Count > 0; 
+            return this._parameterFilters != null && (this._parameterFilters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -126,8 +125,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// The hierarchy for the parameter. Hierarchies start with a forward slash (/). The hierarchy
         /// is the parameter name except the last part of the parameter. For the API call to succeed,
         /// the last part of the parameter name can't be in the path. A parameter name hierarchy
-        /// can have a maximum of 15 levels. Here is an example of a hierarchy: <code>/Finance/Prod/IAD/WinServ2016/license33
-        /// </code> 
+        /// can have a maximum of 15 levels. Here is an example of a hierarchy: <c>/Finance/Prod/IAD/WinServ2016/license33
+        /// </c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]
@@ -151,10 +150,10 @@ namespace Amazon.SimpleSystemsManagement.Model
         ///  <important> 
         /// <para>
         /// If a user has access to a path, then the user can access all levels of that path.
-        /// For example, if a user has permission to access path <code>/a</code>, then the user
-        /// can also access <code>/a/b</code>. Even if a user has explicitly been denied access
-        /// in IAM for parameter <code>/a/b</code>, they can still call the GetParametersByPath
-        /// API operation recursively for <code>/a</code> and view <code>/a/b</code>.
+        /// For example, if a user has permission to access path <c>/a</c>, then the user can
+        /// also access <c>/a/b</c>. Even if a user has explicitly been denied access in IAM for
+        /// parameter <c>/a/b</c>, they can still call the GetParametersByPath API operation recursively
+        /// for <c>/a</c> and view <c>/a/b</c>.
         /// </para>
         ///  </important>
         /// </summary>

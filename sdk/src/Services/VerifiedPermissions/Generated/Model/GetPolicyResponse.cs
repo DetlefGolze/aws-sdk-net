@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VerifiedPermissions.Model
 {
     /// <summary>
@@ -33,14 +34,36 @@ namespace Amazon.VerifiedPermissions.Model
     /// </summary>
     public partial class GetPolicyResponse : AmazonWebServiceResponse
     {
+        private List<ActionIdentifier> _actions = AWSConfigs.InitializeCollections ? new List<ActionIdentifier>() : null;
         private DateTime? _createdDate;
         private PolicyDefinitionDetail _definition;
+        private PolicyEffect _effect;
         private DateTime? _lastUpdatedDate;
         private string _policyId;
         private string _policyStoreId;
         private PolicyType _policyType;
         private EntityIdentifier _principal;
         private EntityIdentifier _resource;
+
+        /// <summary>
+        /// Gets and sets the property Actions. 
+        /// <para>
+        /// The action that a policy permits or forbids. For example, <c>{"actions": [{"actionId":
+        /// "ViewPhoto", "actionType": "PhotoFlash::Action"}, {"entityID": "SharePhoto", "entityType":
+        /// "PhotoFlash::Action"}]}</c>.
+        /// </para>
+        /// </summary>
+        public List<ActionIdentifier> Actions
+        {
+            get { return this._actions; }
+            set { this._actions = value; }
+        }
+
+        // Check to see if Actions property is set
+        internal bool IsSetActions()
+        {
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
 
         /// <summary>
         /// Gets and sets the property CreatedDate. 
@@ -78,6 +101,25 @@ namespace Amazon.VerifiedPermissions.Model
         internal bool IsSetDefinition()
         {
             return this._definition != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Effect. 
+        /// <para>
+        /// The effect of the decision that a policy returns to an authorization request. For
+        /// example, <c>"effect": "Permit"</c>.
+        /// </para>
+        /// </summary>
+        public PolicyEffect Effect
+        {
+            get { return this._effect; }
+            set { this._effect = value; }
+        }
+
+        // Check to see if Effect property is set
+        internal bool IsSetEffect()
+        {
+            return this._effect != null;
         }
 
         /// <summary>
@@ -160,7 +202,7 @@ namespace Amazon.VerifiedPermissions.Model
         /// Gets and sets the property Principal. 
         /// <para>
         /// The principal specified in the policy's scope. This element isn't included in the
-        /// response when <code>Principal</code> isn't present in the policy content.
+        /// response when <c>Principal</c> isn't present in the policy content.
         /// </para>
         /// </summary>
         public EntityIdentifier Principal
@@ -179,7 +221,7 @@ namespace Amazon.VerifiedPermissions.Model
         /// Gets and sets the property Resource. 
         /// <para>
         /// The resource specified in the policy's scope. This element isn't included in the response
-        /// when <code>Resource</code> isn't present in the policy content.
+        /// when <c>Resource</c> isn't present in the policy content.
         /// </para>
         /// </summary>
         public EntityIdentifier Resource

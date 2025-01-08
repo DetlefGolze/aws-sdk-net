@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -114,8 +115,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property VersionName. 
         /// <para>
         /// An optional field specifying the version of the artifact associated with the document.
-        /// For example, "Release 12, Update 6". This value is unique across all versions of a
-        /// document and can't be changed.
+        /// For example, 12.6. This value is unique across all versions of a document and can't
+        /// be changed.
         /// </para>
         /// </summary>
         public string VersionName

@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeOrganizationConfiguration operation.
-    /// Returns information about the Organizations configuration for Security Hub. Can only
-    /// be called from a Security Hub administrator account.
+    /// Returns information about the way your organization is configured in Security Hub.
+    /// Only the Security Hub administrator account can invoke this operation.
     /// </summary>
     public partial class DescribeOrganizationConfigurationRequest : AmazonSecurityHubRequest
     {

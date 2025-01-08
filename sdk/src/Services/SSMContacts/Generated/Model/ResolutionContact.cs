@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSMContacts.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.SSMContacts.Model
     /// 
     ///  
     /// <para>
-    /// The <code>ResolutionContact</code> structure describes the information for each node
-    /// or step in that process. It contains information about different contact types, such
+    /// The <c>ResolutionContact</c> structure describes the information for each node or
+    /// step in that process. It contains information about different contact types, such
     /// as the escalation, rotation, and personal contacts.
     /// </para>
     /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.SecurityHub.Model
     /// 
     ///  
     /// <para>
-    /// To group the related findings in the insight, use the <code>GroupByAttribute</code>.
+    /// To group the related findings in the insight, use the <c>GroupByAttribute</c>.
     /// </para>
     /// </summary>
     public partial class CreateInsightRequest : AmazonSecurityHubRequest

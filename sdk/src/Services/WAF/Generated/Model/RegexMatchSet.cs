@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAF.Model
 {
     /// <summary>
@@ -42,30 +43,30 @@ namespace Amazon.WAF.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// In a <a>GetRegexMatchSet</a> request, <code>RegexMatchSet</code> is a complex type
-    /// that contains the <code>RegexMatchSetId</code> and <code>Name</code> of a <code>RegexMatchSet</code>,
-    /// and the values that you specified when you updated the <code>RegexMatchSet</code>.
+    /// In a <a>GetRegexMatchSet</a> request, <c>RegexMatchSet</c> is a complex type that
+    /// contains the <c>RegexMatchSetId</c> and <c>Name</c> of a <c>RegexMatchSet</c>, and
+    /// the values that you specified when you updated the <c>RegexMatchSet</c>.
     /// </para>
     ///  
     /// <para>
-    ///  The values are contained in a <code>RegexMatchTuple</code> object, which specify
-    /// the parts of web requests that you want AWS WAF to inspect and the values that you
-    /// want AWS WAF to search for. If a <code>RegexMatchSet</code> contains more than one
-    /// <code>RegexMatchTuple</code> object, a request needs to match the settings in only
-    /// one <code>ByteMatchTuple</code> to be considered a match.
+    ///  The values are contained in a <c>RegexMatchTuple</c> object, which specify the parts
+    /// of web requests that you want AWS WAF to inspect and the values that you want AWS
+    /// WAF to search for. If a <c>RegexMatchSet</c> contains more than one <c>RegexMatchTuple</c>
+    /// object, a request needs to match the settings in only one <c>ByteMatchTuple</c> to
+    /// be considered a match.
     /// </para>
     /// </summary>
     public partial class RegexMatchSet
     {
         private string _name;
         private string _regexMatchSetId;
-        private List<RegexMatchTuple> _regexMatchTuples = new List<RegexMatchTuple>();
+        private List<RegexMatchTuple> _regexMatchTuples = AWSConfigs.InitializeCollections ? new List<RegexMatchTuple>() : null;
 
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// A friendly name or description of the <a>RegexMatchSet</a>. You can't change <code>Name</code>
-        /// after you create a <code>RegexMatchSet</code>.
+        /// A friendly name or description of the <a>RegexMatchSet</a>. You can't change <c>Name</c>
+        /// after you create a <c>RegexMatchSet</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -84,15 +85,15 @@ namespace Amazon.WAF.Model
         /// <summary>
         /// Gets and sets the property RegexMatchSetId. 
         /// <para>
-        /// The <code>RegexMatchSetId</code> for a <code>RegexMatchSet</code>. You use <code>RegexMatchSetId</code>
-        /// to get information about a <code>RegexMatchSet</code> (see <a>GetRegexMatchSet</a>),
-        /// update a <code>RegexMatchSet</code> (see <a>UpdateRegexMatchSet</a>), insert a <code>RegexMatchSet</code>
-        /// into a <code>Rule</code> or delete one from a <code>Rule</code> (see <a>UpdateRule</a>),
-        /// and delete a <code>RegexMatchSet</code> from AWS WAF (see <a>DeleteRegexMatchSet</a>).
+        /// The <c>RegexMatchSetId</c> for a <c>RegexMatchSet</c>. You use <c>RegexMatchSetId</c>
+        /// to get information about a <c>RegexMatchSet</c> (see <a>GetRegexMatchSet</a>), update
+        /// a <c>RegexMatchSet</c> (see <a>UpdateRegexMatchSet</a>), insert a <c>RegexMatchSet</c>
+        /// into a <c>Rule</c> or delete one from a <c>Rule</c> (see <a>UpdateRule</a>), and delete
+        /// a <c>RegexMatchSet</c> from AWS WAF (see <a>DeleteRegexMatchSet</a>).
         /// </para>
         ///  
         /// <para>
-        ///  <code>RegexMatchSetId</code> is returned by <a>CreateRegexMatchSet</a> and by <a>ListRegexMatchSets</a>.
+        ///  <c>RegexMatchSetId</c> is returned by <a>CreateRegexMatchSet</a> and by <a>ListRegexMatchSets</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -111,13 +112,13 @@ namespace Amazon.WAF.Model
         /// <summary>
         /// Gets and sets the property RegexMatchTuples. 
         /// <para>
-        /// Contains an array of <a>RegexMatchTuple</a> objects. Each <code>RegexMatchTuple</code>
-        /// object contains: 
+        /// Contains an array of <a>RegexMatchTuple</a> objects. Each <c>RegexMatchTuple</c> object
+        /// contains: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
         /// The part of a web request that you want AWS WAF to inspect, such as a query string
-        /// or the value of the <code>User-Agent</code> header. 
+        /// or the value of the <c>User-Agent</c> header. 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -140,7 +141,7 @@ namespace Amazon.WAF.Model
         // Check to see if RegexMatchTuples property is set
         internal bool IsSetRegexMatchTuples()
         {
-            return this._regexMatchTuples != null && this._regexMatchTuples.Count > 0; 
+            return this._regexMatchTuples != null && (this._regexMatchTuples.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

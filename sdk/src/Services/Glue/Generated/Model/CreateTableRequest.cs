@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -37,14 +38,14 @@ namespace Amazon.Glue.Model
         private string _catalogId;
         private string _databaseName;
         private OpenTableFormatInput _openTableFormatInput;
-        private List<PartitionIndex> _partitionIndexes = new List<PartitionIndex>();
+        private List<PartitionIndex> _partitionIndexes = AWSConfigs.InitializeCollections ? new List<PartitionIndex>() : null;
         private TableInput _tableInput;
         private string _transactionId;
 
         /// <summary>
         /// Gets and sets the property CatalogId. 
         /// <para>
-        /// The ID of the Data Catalog in which to create the <code>Table</code>. If none is supplied,
+        /// The ID of the Data Catalog in which to create the <c>Table</c>. If none is supplied,
         /// the Amazon Web Services account ID is used by default.
         /// </para>
         /// </summary>
@@ -84,8 +85,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property OpenTableFormatInput. 
         /// <para>
-        /// Specifies an <code>OpenTableFormatInput</code> structure when creating an open format
-        /// table.
+        /// Specifies an <c>OpenTableFormatInput</c> structure when creating an open format table.
         /// </para>
         /// </summary>
         public OpenTableFormatInput OpenTableFormatInput
@@ -103,8 +103,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property PartitionIndexes. 
         /// <para>
-        /// A list of partition indexes, <code>PartitionIndex</code> structures, to create in
-        /// the table.
+        /// A list of partition indexes, <c>PartitionIndex</c> structures, to create in the table.
         /// </para>
         /// </summary>
         [AWSProperty(Max=3)]
@@ -117,14 +116,13 @@ namespace Amazon.Glue.Model
         // Check to see if PartitionIndexes property is set
         internal bool IsSetPartitionIndexes()
         {
-            return this._partitionIndexes != null && this._partitionIndexes.Count > 0; 
+            return this._partitionIndexes != null && (this._partitionIndexes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TableInput. 
         /// <para>
-        /// The <code>TableInput</code> object that defines the metadata table to create in the
-        /// catalog.
+        /// The <c>TableInput</c> object that defines the metadata table to create in the catalog.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

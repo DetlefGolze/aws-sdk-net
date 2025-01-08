@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComputeOptimizer.Model
 {
     /// <summary>
@@ -36,15 +37,16 @@ namespace Amazon.ComputeOptimizer.Model
         private string _accountId;
         private CurrentPerformanceRisk _currentPerformanceRisk;
         private ServiceConfiguration _currentServiceConfiguration;
+        private ECSEffectiveRecommendationPreferences _effectiveRecommendationPreferences;
         private ECSServiceRecommendationFinding _finding;
-        private List<string> _findingReasonCodes = new List<string>();
+        private List<string> _findingReasonCodes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _lastRefreshTimestamp;
         private ECSServiceLaunchType _launchType;
         private double? _lookbackPeriodInDays;
         private string _serviceArn;
-        private List<ECSServiceRecommendationOption> _serviceRecommendationOptions = new List<ECSServiceRecommendationOption>();
-        private List<Tag> _tags = new List<Tag>();
-        private List<ECSServiceUtilizationMetric> _utilizationMetrics = new List<ECSServiceUtilizationMetric>();
+        private List<ECSServiceRecommendationOption> _serviceRecommendationOptions = AWSConfigs.InitializeCollections ? new List<ECSServiceRecommendationOption>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private List<ECSServiceUtilizationMetric> _utilizationMetrics = AWSConfigs.InitializeCollections ? new List<ECSServiceUtilizationMetric>() : null;
 
         /// <summary>
         /// Gets and sets the property AccountId. 
@@ -103,6 +105,24 @@ namespace Amazon.ComputeOptimizer.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EffectiveRecommendationPreferences. 
+        /// <para>
+        ///  Describes the effective recommendation preferences for Amazon ECS services. 
+        /// </para>
+        /// </summary>
+        public ECSEffectiveRecommendationPreferences EffectiveRecommendationPreferences
+        {
+            get { return this._effectiveRecommendationPreferences; }
+            set { this._effectiveRecommendationPreferences = value; }
+        }
+
+        // Check to see if EffectiveRecommendationPreferences property is set
+        internal bool IsSetEffectiveRecommendationPreferences()
+        {
+            return this._effectiveRecommendationPreferences != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Finding. 
         /// <para>
         ///  The finding classification of an Amazon ECS service. 
@@ -113,21 +133,20 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b> <code>Underprovisioned</code> </b> — When Compute Optimizer detects that there’s
-        /// not enough memory or CPU, an Amazon ECS service is considered under-provisioned. An
-        /// under-provisioned service might result in poor application performance.
+        ///  <b> <c>Underprovisioned</c> </b> — When Compute Optimizer detects that there’s not
+        /// enough memory or CPU, an Amazon ECS service is considered under-provisioned. An under-provisioned
+        /// service might result in poor application performance.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>Overprovisioned</code> </b> — When Compute Optimizer detects that there’s
-        /// excessive memory or CPU, an Amazon ECS service is considered over-provisioned. An
-        /// over-provisioned service might result in additional infrastructure costs. 
+        ///  <b> <c>Overprovisioned</c> </b> — When Compute Optimizer detects that there’s excessive
+        /// memory or CPU, an Amazon ECS service is considered over-provisioned. An over-provisioned
+        /// service might result in additional infrastructure costs. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>Optimized</code> </b> — When both the CPU and memory of your Amazon ECS
-        /// service meet the performance requirements of your workload, the service is considered
-        /// optimized.
+        ///  <b> <c>Optimized</c> </b> — When both the CPU and memory of your Amazon ECS service
+        /// meet the performance requirements of your workload, the service is considered optimized.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -154,31 +173,29 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b> <code>CPUUnderprovisioned</code> </b> — The service CPU configuration can be
+        ///  <b> <c>CPUUnderprovisioned</c> </b> — The service CPU configuration can be sized
+        /// up to enhance the performance of your workload. This is identified by analyzing the
+        /// <c>CPUUtilization</c> metric of the current service during the look-back period.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b> <c>CPUOverprovisioned</c> </b> — The service CPU configuration can be sized down
+        /// while still meeting the performance requirements of your workload. This is identified
+        /// by analyzing the <c>CPUUtilization</c> metric of the current service during the look-back
+        /// period. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b> <c>MemoryUnderprovisioned</c> </b> — The service memory configuration can be
         /// sized up to enhance the performance of your workload. This is identified by analyzing
-        /// the <code>CPUUtilization</code> metric of the current service during the look-back
-        /// period.
+        /// the <c>MemoryUtilization</c> metric of the current service during the look-back period.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>CPUOverprovisioned</code> </b> — The service CPU configuration can be sized
+        ///  <b> <c>MemoryOverprovisioned</c> </b> — The service memory configuration can be sized
         /// down while still meeting the performance requirements of your workload. This is identified
-        /// by analyzing the <code>CPUUtilization</code> metric of the current service during
-        /// the look-back period. 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <b> <code>MemoryUnderprovisioned</code> </b> — The service memory configuration can
-        /// be sized up to enhance the performance of your workload. This is identified by analyzing
-        /// the <code>MemoryUtilization</code> metric of the current service during the look-back
-        /// period.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <b> <code>MemoryOverprovisioned</code> </b> — The service memory configuration can
-        /// be sized down while still meeting the performance requirements of your workload. This
-        /// is identified by analyzing the <code>MemoryUtilization</code> metric of the current
-        /// service during the look-back period.
+        /// by analyzing the <c>MemoryUtilization</c> metric of the current service during the
+        /// look-back period.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -191,7 +208,7 @@ namespace Amazon.ComputeOptimizer.Model
         // Check to see if FindingReasonCodes property is set
         internal bool IsSetFindingReasonCodes()
         {
-            return this._findingReasonCodes != null && this._findingReasonCodes.Count > 0; 
+            return this._findingReasonCodes != null && (this._findingReasonCodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -264,8 +281,7 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:ecs:region:aws_account_id:service/cluster-name/service-name</code>
-        /// 
+        ///  <c>arn:aws:ecs:region:aws_account_id:service/cluster-name/service-name</c> 
         /// </para>
         /// </summary>
         public string ServiceArn
@@ -296,7 +312,7 @@ namespace Amazon.ComputeOptimizer.Model
         // Check to see if ServiceRecommendationOptions property is set
         internal bool IsSetServiceRecommendationOptions()
         {
-            return this._serviceRecommendationOptions != null && this._serviceRecommendationOptions.Count > 0; 
+            return this._serviceRecommendationOptions != null && (this._serviceRecommendationOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -314,7 +330,7 @@ namespace Amazon.ComputeOptimizer.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -333,7 +349,7 @@ namespace Amazon.ComputeOptimizer.Model
         // Check to see if UtilizationMetrics property is set
         internal bool IsSetUtilizationMetrics()
         {
-            return this._utilizationMetrics != null && this._utilizationMetrics.Count > 0; 
+            return this._utilizationMetrics != null && (this._utilizationMetrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

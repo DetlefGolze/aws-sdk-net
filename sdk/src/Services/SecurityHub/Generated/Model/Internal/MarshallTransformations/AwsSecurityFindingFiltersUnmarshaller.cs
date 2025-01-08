@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public AwsSecurityFindingFilters Unmarshall(JsonUnmarshallerContext context)
         {
+            AwsSecurityFindingFilters unmarshalledObject = new AwsSecurityFindingFilters();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            AwsSecurityFindingFilters unmarshalledObject = new AwsSecurityFindingFilters();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -68,6 +70,12 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = new ListUnmarshaller<StringFilter, StringFilterUnmarshaller>(StringFilterUnmarshaller.Instance);
                     unmarshalledObject.AwsAccountId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("AwsAccountName", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<StringFilter, StringFilterUnmarshaller>(StringFilterUnmarshaller.Instance);
+                    unmarshalledObject.AwsAccountName = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("CompanyName", targetDepth))
@@ -86,6 +94,18 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = new ListUnmarshaller<StringFilter, StringFilterUnmarshaller>(StringFilterUnmarshaller.Instance);
                     unmarshalledObject.ComplianceSecurityControlId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ComplianceSecurityControlParametersName", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<StringFilter, StringFilterUnmarshaller>(StringFilterUnmarshaller.Instance);
+                    unmarshalledObject.ComplianceSecurityControlParametersName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ComplianceSecurityControlParametersValue", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<StringFilter, StringFilterUnmarshaller>(StringFilterUnmarshaller.Instance);
+                    unmarshalledObject.ComplianceSecurityControlParametersValue = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("ComplianceStatus", targetDepth))
@@ -382,6 +402,18 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
                     unmarshalledObject.RelatedFindingsProductArn = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ResourceApplicationArn", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<StringFilter, StringFilterUnmarshaller>(StringFilterUnmarshaller.Instance);
+                    unmarshalledObject.ResourceApplicationArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ResourceApplicationName", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<StringFilter, StringFilterUnmarshaller>(StringFilterUnmarshaller.Instance);
+                    unmarshalledObject.ResourceApplicationName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ResourceAwsEc2InstanceIamInstanceProfileArn", targetDepth))
                 {
                     var unmarshaller = new ListUnmarshaller<StringFilter, StringFilterUnmarshaller>(StringFilterUnmarshaller.Instance);
@@ -634,6 +666,18 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
                     unmarshalledObject.VerificationState = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("VulnerabilitiesExploitAvailable", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<StringFilter, StringFilterUnmarshaller>(StringFilterUnmarshaller.Instance);
+                    unmarshalledObject.VulnerabilitiesExploitAvailable = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("VulnerabilitiesFixAvailable", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<StringFilter, StringFilterUnmarshaller>(StringFilterUnmarshaller.Instance);
+                    unmarshalledObject.VulnerabilitiesFixAvailable = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("WorkflowState", targetDepth))
                 {
                     var unmarshaller = new ListUnmarshaller<StringFilter, StringFilterUnmarshaller>(StringFilterUnmarshaller.Instance);
@@ -647,7 +691,6 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

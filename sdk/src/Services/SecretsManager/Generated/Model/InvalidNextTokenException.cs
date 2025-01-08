@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecretsManager.Model
 {
     /// <summary>
-    /// The <code>NextToken</code> value is invalid.
+    /// The <c>NextToken</c> value is invalid.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

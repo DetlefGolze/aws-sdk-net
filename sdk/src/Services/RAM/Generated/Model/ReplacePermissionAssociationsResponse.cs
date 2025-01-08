@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RAM.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.RAM.Model
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// The idempotency identifier associated with this request. If you want to repeat the
-        /// same operation in an idempotent manner then you must include this value in the <code>clientToken</code>
+        /// same operation in an idempotent manner then you must include this value in the <c>clientToken</c>
         /// request parameter of that later call. All other parameters must also have the same
         /// values that you used in the first call.
         /// </para>
@@ -62,7 +63,7 @@ namespace Amazon.RAM.Model
         /// <para>
         /// Specifies a data structure that you can use to track the asynchronous tasks that RAM
         /// performs to complete this operation. You can use the <a>ListReplacePermissionAssociationsWork</a>
-        /// operation and pass the <code>id</code> value returned in this structure.
+        /// operation and pass the <c>id</c> value returned in this structure.
         /// </para>
         /// </summary>
         public ReplacePermissionAssociationsWork ReplacePermissionAssociationsWork

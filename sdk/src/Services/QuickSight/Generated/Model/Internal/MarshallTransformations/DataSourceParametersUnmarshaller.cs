@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public DataSourceParameters Unmarshall(JsonUnmarshallerContext context)
         {
+            DataSourceParameters unmarshalledObject = new DataSourceParameters();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            DataSourceParameters unmarshalledObject = new DataSourceParameters();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -98,6 +100,12 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = AwsIotAnalyticsParametersUnmarshaller.Instance;
                     unmarshalledObject.AwsIotAnalyticsParameters = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("BigQueryParameters", targetDepth))
+                {
+                    var unmarshaller = BigQueryParametersUnmarshaller.Instance;
+                    unmarshalledObject.BigQueryParameters = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("DatabricksParameters", targetDepth))
@@ -190,10 +198,22 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
                     unmarshalledObject.SqlServerParameters = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("StarburstParameters", targetDepth))
+                {
+                    var unmarshaller = StarburstParametersUnmarshaller.Instance;
+                    unmarshalledObject.StarburstParameters = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("TeradataParameters", targetDepth))
                 {
                     var unmarshaller = TeradataParametersUnmarshaller.Instance;
                     unmarshalledObject.TeradataParameters = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("TrinoParameters", targetDepth))
+                {
+                    var unmarshaller = TrinoParametersUnmarshaller.Instance;
+                    unmarshalledObject.TrinoParameters = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("TwitterParameters", targetDepth))
@@ -203,7 +223,6 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Transfer.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.Transfer.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(As2ConnectorConfig requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetBasicAuthSecretId())
             {
                 context.Writer.WritePropertyName("BasicAuthSecretId");
@@ -91,6 +94,12 @@ namespace Amazon.Transfer.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("PartnerProfileId");
                 context.Writer.Write(requestObject.PartnerProfileId);
+            }
+
+            if(requestObject.IsSetPreserveContentType())
+            {
+                context.Writer.WritePropertyName("PreserveContentType");
+                context.Writer.Write(requestObject.PreserveContentType);
             }
 
             if(requestObject.IsSetSigningAlgorithm())

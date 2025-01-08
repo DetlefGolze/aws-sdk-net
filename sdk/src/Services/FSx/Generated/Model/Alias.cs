@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -87,8 +88,8 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Formatted as a fully-qualified domain name (FQDN), <code>hostname.domain</code>, for
-        /// example, <code>accounting.example.com</code>.
+        /// Formatted as a fully-qualified domain name (FQDN), <c>hostname.domain</c>, for example,
+        /// <c>accounting.example.com</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>

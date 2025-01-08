@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LicenseManagerUserSubscriptions.Model
 {
     /// <summary>
     /// A filter name and value pair that is used to return more specific results from a describe
-    /// operation. Filters can be used to match a set of resources by specific criteria, such
-    /// as tags, attributes, or IDs.
+    /// or list operation. You can use filters can be used to match a set of resources by
+    /// specific criteria, such as tags, attributes, or IDs.
     /// </summary>
     public partial class Filter
     {

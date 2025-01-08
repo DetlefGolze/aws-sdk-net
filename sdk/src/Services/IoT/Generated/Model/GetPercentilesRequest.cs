@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
     /// Container for the parameters to the GetPercentiles operation.
     /// Groups the aggregated values that match the query into percentile groupings. The default
     /// percentile groupings are: 1,5,25,50,75,95,99, although you can specify your own when
-    /// you call <code>GetPercentiles</code>. This function returns a value for each percentile
+    /// you call <c>GetPercentiles</c>. This function returns a value for each percentile
     /// group specified (or the default percentile groupings). The percentile group "1" contains
     /// the aggregated field value that occurs in approximately one percent of the values
     /// that match the query. The percentile group "5" contains the aggregated field value
@@ -50,7 +51,7 @@ namespace Amazon.IoT.Model
     {
         private string _aggregationField;
         private string _indexName;
-        private List<double> _percents = new List<double>();
+        private List<double> _percents = AWSConfigs.InitializeCollections ? new List<double>() : null;
         private string _queryString;
         private string _queryVersion;
 
@@ -107,7 +108,7 @@ namespace Amazon.IoT.Model
         // Check to see if Percents property is set
         internal bool IsSetPercents()
         {
-            return this._percents != null && this._percents.Count > 0; 
+            return this._percents != null && (this._percents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

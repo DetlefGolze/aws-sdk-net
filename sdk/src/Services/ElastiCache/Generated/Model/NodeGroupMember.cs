@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -80,8 +81,9 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property CurrentRole. 
         /// <para>
-        /// The role that is currently assigned to the node - <code>primary</code> or <code>replica</code>.
-        /// This member is only applicable for Redis (cluster mode disabled) replication groups.
+        /// The role that is currently assigned to the node - <c>primary</c> or <c>replica</c>.
+        /// This member is only applicable for Valkey or Redis OSS (cluster mode disabled) replication
+        /// groups.
         /// </para>
         /// </summary>
         public string CurrentRole
@@ -136,7 +138,8 @@ namespace Amazon.ElastiCache.Model
         /// Gets and sets the property ReadEndpoint. 
         /// <para>
         /// The information required for client programs to connect to a node for read operations.
-        /// The read endpoint is only applicable on Redis (cluster mode disabled) clusters.
+        /// The read endpoint is only applicable on Valkey or Redis OSS (cluster mode disabled)
+        /// clusters.
         /// </para>
         /// </summary>
         public Endpoint ReadEndpoint

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleWorkflow.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.SimpleWorkflow.Model
     /// 
     ///  
     /// <para>
-    /// Tags may only contain unicode letters, digits, whitespace, or these symbols: <code>_
-    /// . : / = + - @</code>.
+    /// Tags may only contain unicode letters, digits, whitespace, or these symbols: <c>_
+    /// . : / = + - @</c>.
     /// </para>
     /// </summary>
     public partial class ResourceTag

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lex.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Lex.Model
         private DialogActionType _dialogActionType;
         private FulfillmentState _fulfillmentState;
         private string _intentName;
-        private Dictionary<string, string> _slots = new Dictionary<string, string>();
+        private Dictionary<string, string> _slots = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _slotToElicit;
 
         /// <summary>
@@ -51,9 +52,8 @@ namespace Amazon.Lex.Model
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>checkpointLabelFilter</code> parameter of the <code>GetSessionRequest</code>
-        /// operation to filter the intents returned by the operation to those with only the specified
-        /// label.
+        /// Use the <c>checkpointLabelFilter</c> parameter of the <c>GetSessionRequest</c> operation
+        /// to filter the intents returned by the operation to those with only the specified label.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -73,23 +73,23 @@ namespace Amazon.Lex.Model
         /// Gets and sets the property ConfirmationStatus. 
         /// <para>
         /// The status of the intent after the user responds to the confirmation prompt. If the
-        /// user confirms the intent, Amazon Lex sets this field to <code>Confirmed</code>. If
-        /// the user denies the intent, Amazon Lex sets this value to <code>Denied</code>. The
-        /// possible values are:
+        /// user confirms the intent, Amazon Lex sets this field to <c>Confirmed</c>. If the user
+        /// denies the intent, Amazon Lex sets this value to <c>Denied</c>. The possible values
+        /// are:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Confirmed</code> - The user has responded "Yes" to the confirmation prompt,
-        /// confirming that the intent is complete and that it is ready to be fulfilled.
+        ///  <c>Confirmed</c> - The user has responded "Yes" to the confirmation prompt, confirming
+        /// that the intent is complete and that it is ready to be fulfilled.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Denied</code> - The user has responded "No" to the confirmation prompt.
+        ///  <c>Denied</c> - The user has responded "No" to the confirmation prompt.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>None</code> - The user has never been prompted for confirmation; or, the user
-        /// was prompted but did not confirm or deny the prompt.
+        ///  <c>None</c> - The user has never been prompted for confirmation; or, the user was
+        /// prompted but did not confirm or deny the prompt.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -113,22 +113,22 @@ namespace Amazon.Lex.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ConfirmIntent</code> - The next action is asking the user if the intent is
-        /// complete and ready to be fulfilled. This is a yes/no question such as "Place the order?"
+        ///  <c>ConfirmIntent</c> - The next action is asking the user if the intent is complete
+        /// and ready to be fulfilled. This is a yes/no question such as "Place the order?"
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Close</code> - Indicates that the there will not be a response from the user.
-        /// For example, the statement "Your order has been placed" does not require a response.
+        ///  <c>Close</c> - Indicates that the there will not be a response from the user. For
+        /// example, the statement "Your order has been placed" does not require a response.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ElicitIntent</code> - The next action is to determine the intent that the user
-        /// wants to fulfill.
+        ///  <c>ElicitIntent</c> - The next action is to determine the intent that the user wants
+        /// to fulfill.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ElicitSlot</code> - The next action is to elicit a slot value from the user.
+        ///  <c>ElicitSlot</c> - The next action is to elicit a slot value from the user.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -152,18 +152,18 @@ namespace Amazon.Lex.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Failed</code> - The Lambda function associated with the intent failed to fulfill
+        ///  <c>Failed</c> - The Lambda function associated with the intent failed to fulfill
         /// the intent.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Fulfilled</code> - The intent has fulfilled by the Lambda function associated
-        /// with the intent. 
+        ///  <c>Fulfilled</c> - The intent has fulfilled by the Lambda function associated with
+        /// the intent. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ReadyForFulfillment</code> - All of the information necessary for the intent
-        /// is present and the intent ready to be fulfilled by the client application.
+        ///  <c>ReadyForFulfillment</c> - All of the information necessary for the intent is present
+        /// and the intent ready to be fulfilled by the client application.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -213,7 +213,7 @@ namespace Amazon.Lex.Model
         // Check to see if Slots property is set
         internal bool IsSetSlots()
         {
-            return this._slots != null && this._slots.Count > 0; 
+            return this._slots != null && (this._slots.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

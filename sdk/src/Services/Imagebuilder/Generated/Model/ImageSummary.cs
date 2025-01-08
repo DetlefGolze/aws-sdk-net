@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -36,14 +37,16 @@ namespace Amazon.Imagebuilder.Model
         private string _arn;
         private BuildType _buildType;
         private string _dateCreated;
+        private DateTime? _deprecationTime;
         private ImageSource _imageSource;
+        private string _lifecycleExecutionId;
         private string _name;
         private string _osVersion;
         private OutputResources _outputResources;
         private string _owner;
         private Platform _platform;
         private ImageState _state;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private ImageType _type;
         private string _version;
 
@@ -117,6 +120,25 @@ namespace Amazon.Imagebuilder.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DeprecationTime. 
+        /// <para>
+        /// The time when deprecation occurs for an image resource. This can be a past or future
+        /// date.
+        /// </para>
+        /// </summary>
+        public DateTime DeprecationTime
+        {
+            get { return this._deprecationTime.GetValueOrDefault(); }
+            set { this._deprecationTime = value; }
+        }
+
+        // Check to see if DeprecationTime property is set
+        internal bool IsSetDeprecationTime()
+        {
+            return this._deprecationTime.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property ImageSource. 
         /// <para>
         /// The origin of the base image that Image Builder used to build this image.
@@ -132,6 +154,25 @@ namespace Amazon.Imagebuilder.Model
         internal bool IsSetImageSource()
         {
             return this._imageSource != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property LifecycleExecutionId. 
+        /// <para>
+        /// Identifies the last runtime instance of the lifecycle policy to take action on the
+        /// image.
+        /// </para>
+        /// </summary>
+        public string LifecycleExecutionId
+        {
+            get { return this._lifecycleExecutionId; }
+            set { this._lifecycleExecutionId = value; }
+        }
+
+        // Check to see if LifecycleExecutionId property is set
+        internal bool IsSetLifecycleExecutionId()
+        {
+            return this._lifecycleExecutionId != null;
         }
 
         /// <summary>
@@ -261,7 +302,7 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

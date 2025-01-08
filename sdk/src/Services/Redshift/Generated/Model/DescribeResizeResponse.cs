@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -37,9 +38,9 @@ namespace Amazon.Redshift.Model
         private double? _dataTransferProgressPercent;
         private long? _elapsedTimeInSeconds;
         private long? _estimatedTimeToCompletionInSeconds;
-        private List<string> _importTablesCompleted = new List<string>();
-        private List<string> _importTablesInProgress = new List<string>();
-        private List<string> _importTablesNotStarted = new List<string>();
+        private List<string> _importTablesCompleted = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _importTablesInProgress = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _importTablesNotStarted = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _message;
         private long? _progressInMegaBytes;
         private string _resizeType;
@@ -148,7 +149,7 @@ namespace Amazon.Redshift.Model
         // Check to see if ImportTablesCompleted property is set
         internal bool IsSetImportTablesCompleted()
         {
-            return this._importTablesCompleted != null && this._importTablesCompleted.Count > 0; 
+            return this._importTablesCompleted != null && (this._importTablesCompleted.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -170,7 +171,7 @@ namespace Amazon.Redshift.Model
         // Check to see if ImportTablesInProgress property is set
         internal bool IsSetImportTablesInProgress()
         {
-            return this._importTablesInProgress != null && this._importTablesInProgress.Count > 0; 
+            return this._importTablesInProgress != null && (this._importTablesInProgress.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -192,7 +193,7 @@ namespace Amazon.Redshift.Model
         // Check to see if ImportTablesNotStarted property is set
         internal bool IsSetImportTablesNotStarted()
         {
-            return this._importTablesNotStarted != null && this._importTablesNotStarted.Count > 0; 
+            return this._importTablesNotStarted != null && (this._importTablesNotStarted.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -239,8 +240,8 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property ResizeType. 
         /// <para>
-        /// An enum with possible values of <code>ClassicResize</code> and <code>ElasticResize</code>.
-        /// These values describe the type of resize operation being performed. 
+        /// An enum with possible values of <c>ClassicResize</c> and <c>ElasticResize</c>. These
+        /// values describe the type of resize operation being performed. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]
@@ -263,8 +264,8 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>NONE</code> | <code>IN_PROGRESS</code> | <code>FAILED</code> |
-        /// <code>SUCCEEDED</code> | <code>CANCELLING</code> 
+        /// Valid Values: <c>NONE</c> | <c>IN_PROGRESS</c> | <c>FAILED</c> | <c>SUCCEEDED</c>
+        /// | <c>CANCELLING</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]
@@ -287,7 +288,7 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>multi-node</code> | <code>single-node</code> 
+        /// Valid Values: <c>multi-node</c> | <c>single-node</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]
@@ -310,7 +311,7 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  
         /// <para>
-        /// Possible values are <code>KMS</code> and <code>None</code>. 
+        /// Possible values are <c>KMS</c> and <c>None</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]

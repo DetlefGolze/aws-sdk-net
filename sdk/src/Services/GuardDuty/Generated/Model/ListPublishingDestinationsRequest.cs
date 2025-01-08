@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
     /// Container for the parameters to the ListPublishingDestinations operation.
-    /// Returns a list of publishing destinations associated with the specified <code>detectorId</code>.
+    /// Returns a list of publishing destinations associated with the specified <c>detectorId</c>.
     /// </summary>
     public partial class ListPublishingDestinationsRequest : AmazonGuardDutyRequest
     {
@@ -41,7 +42,13 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property DetectorId. 
         /// <para>
-        /// The ID of the detector to retrieve publishing destinations for.
+        /// The detector ID for which you want to retrieve the publishing destination.
+        /// </para>
+        ///  
+        /// <para>
+        /// To find the <c>detectorId</c> in the current Region, see the Settings page in the
+        /// GuardDuty console, or run the <a href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html">ListDetectors</a>
+        /// API.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=300)]
@@ -81,8 +88,8 @@ namespace Amazon.GuardDuty.Model
         /// <para>
         /// A token to use for paginating results that are returned in the response. Set the value
         /// of this parameter to null for the first request to a list action. For subsequent calls,
-        /// use the <code>NextToken</code> value returned from the previous request to continue
-        /// listing results after the first page.
+        /// use the <c>NextToken</c> value returned from the previous request to continue listing
+        /// results after the first page.
         /// </para>
         /// </summary>
         public string NextToken

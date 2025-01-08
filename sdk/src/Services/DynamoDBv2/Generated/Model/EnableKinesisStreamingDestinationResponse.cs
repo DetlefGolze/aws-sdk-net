@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace Amazon.DynamoDBv2.Model
     public partial class EnableKinesisStreamingDestinationResponse : AmazonWebServiceResponse
     {
         private DestinationStatus _destinationStatus;
+        private EnableKinesisStreamingConfiguration _enableKinesisStreamingConfiguration;
         private string _streamArn;
         private string _tableName;
 
@@ -53,6 +55,24 @@ namespace Amazon.DynamoDBv2.Model
         internal bool IsSetDestinationStatus()
         {
             return this._destinationStatus != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EnableKinesisStreamingConfiguration. 
+        /// <para>
+        /// The destination for the Kinesis streaming information that is being enabled.
+        /// </para>
+        /// </summary>
+        public EnableKinesisStreamingConfiguration EnableKinesisStreamingConfiguration
+        {
+            get { return this._enableKinesisStreamingConfiguration; }
+            set { this._enableKinesisStreamingConfiguration = value; }
+        }
+
+        // Check to see if EnableKinesisStreamingConfiguration property is set
+        internal bool IsSetEnableKinesisStreamingConfiguration()
+        {
+            return this._enableKinesisStreamingConfiguration != null;
         }
 
         /// <summary>

@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSecureTunneling.Model
 {
     /// <summary>
     /// Container for the parameters to the CloseTunnel operation.
-    /// Closes a tunnel identified by the unique tunnel id. When a <code>CloseTunnel</code>
-    /// request is received, we close the WebSocket connections between the client and proxy
-    /// server so no data can be transmitted.
+    /// Closes a tunnel identified by the unique tunnel id. When a <c>CloseTunnel</c> request
+    /// is received, we close the WebSocket connections between the client and proxy server
+    /// so no data can be transmitted.
     /// 
     ///  
     /// <para>

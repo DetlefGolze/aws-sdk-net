@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
     /// Container for the parameters to the DeactivateKeySigningKey operation.
     /// Deactivates a key-signing key (KSK) so that it will not be used for signing by DNSSEC.
-    /// This operation changes the KSK status to <code>INACTIVE</code>.
+    /// This operation changes the KSK status to <c>INACTIVE</c>.
     /// </summary>
     public partial class DeactivateKeySigningKeyRequest : AmazonRoute53Request
     {

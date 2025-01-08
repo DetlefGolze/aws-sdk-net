@@ -26,13 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
     /// Configures inspection of the response JSON. WAF can inspect the first 65,536 bytes
-    /// (64 KB) of the response JSON. This is part of the <code>ResponseInspection</code>
-    /// configuration for <code>AWSManagedRulesATPRuleSet</code> and <code>AWSManagedRulesACFPRuleSet</code>.
-    /// 
+    /// (64 KB) of the response JSON. This is part of the <c>ResponseInspection</c> configuration
+    /// for <c>AWSManagedRulesATPRuleSet</c> and <c>AWSManagedRulesACFPRuleSet</c>. 
     /// 
     ///  <note> 
     /// <para>
@@ -42,9 +42,9 @@ namespace Amazon.WAFV2.Model
     /// </summary>
     public partial class ResponseInspectionJson
     {
-        private List<string> _failureValues = new List<string>();
+        private List<string> _failureValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _identifier;
-        private List<string> _successValues = new List<string>();
+        private List<string> _successValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property FailureValues. 
@@ -56,7 +56,7 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// JSON example: <code>"FailureValues": [ "False", "Failed" ]</code> 
+        /// JSON example: <c>"FailureValues": [ "False", "Failed" ]</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=5)]
@@ -69,7 +69,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if FailureValues property is set
         internal bool IsSetFailureValues()
         {
-            return this._failureValues != null && this._failureValues.Count > 0; 
+            return this._failureValues != null && (this._failureValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -80,8 +80,8 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// JSON examples: <code>"Identifier": [ "/login/success" ]</code> and <code>"Identifier":
-        /// [ "/sign-up/success" ]</code> 
+        /// JSON examples: <c>"Identifier": [ "/login/success" ]</c> and <c>"Identifier": [ "/sign-up/success"
+        /// ]</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]
@@ -107,7 +107,7 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// JSON example: <code>"SuccessValues": [ "True", "Succeeded" ]</code> 
+        /// JSON example: <c>"SuccessValues": [ "True", "Succeeded" ]</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=5)]
@@ -120,7 +120,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if SuccessValues property is set
         internal bool IsSetSuccessValues()
         {
-            return this._successValues != null && this._successValues.Count > 0; 
+            return this._successValues != null && (this._successValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

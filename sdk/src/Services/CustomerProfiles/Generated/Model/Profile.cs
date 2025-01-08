@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.CustomerProfiles.Model
         private string _accountNumber;
         private string _additionalInformation;
         private Address _address;
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private Address _billingAddress;
         private string _birthDate;
         private string _businessEmailAddress;
@@ -44,7 +45,7 @@ namespace Amazon.CustomerProfiles.Model
         private string _businessPhoneNumber;
         private string _emailAddress;
         private string _firstName;
-        private List<FoundByKeyValue> _foundByItems = new List<FoundByKeyValue>();
+        private List<FoundByKeyValue> _foundByItems = AWSConfigs.InitializeCollections ? new List<FoundByKeyValue>() : null;
         private Gender _gender;
         private string _genderString;
         private string _homePhoneNumber;
@@ -62,7 +63,7 @@ namespace Amazon.CustomerProfiles.Model
         /// <summary>
         /// Gets and sets the property AccountNumber. 
         /// <para>
-        /// A unique account number that you have given to the customer.
+        /// An account number that you have given to the customer.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=255)]
@@ -132,7 +133,7 @@ namespace Amazon.CustomerProfiles.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -277,28 +278,27 @@ namespace Amazon.CustomerProfiles.Model
         /// </para>
         ///  
         /// <para>
-        /// If the optional <code>AdditionalSearchKeys</code> parameter was included in the <a
-        /// href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_SearchProfiles.html">SearchProfiles</a>
-        /// request, the <code>FoundByItems</code> list should be interpreted based on the <code>LogicalOperator</code>
+        /// If the optional <c>AdditionalSearchKeys</c> parameter was included in the <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_SearchProfiles.html">SearchProfiles</a>
+        /// request, the <c>FoundByItems</c> list should be interpreted based on the <c>LogicalOperator</c>
         /// used in the request:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AND</code> - The profile included in the response matched all of the search
-        /// keys specified in the request. The <code>FoundByItems</code> will include all of the
-        /// key-value(s) pairs that were specified in the request (as this is a requirement of
-        /// <code>AND</code> search logic).
+        ///  <c>AND</c> - The profile included in the response matched all of the search keys
+        /// specified in the request. The <c>FoundByItems</c> will include all of the key-value(s)
+        /// pairs that were specified in the request (as this is a requirement of <c>AND</c> search
+        /// logic).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OR</code> - The profile included in the response matched at least one of the
-        /// search keys specified in the request. The <code>FoundByItems</code> will include each
-        /// of the key-value(s) pairs that the profile was found by.
+        ///  <c>OR</c> - The profile included in the response matched at least one of the search
+        /// keys specified in the request. The <c>FoundByItems</c> will include each of the key-value(s)
+        /// pairs that the profile was found by.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// The <code>OR</code> relationship is the default behavior if the <code>LogicalOperator</code>
-        /// parameter is not included in the <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_SearchProfiles.html">SearchProfiles</a>
+        /// The <c>OR</c> relationship is the default behavior if the <c>LogicalOperator</c> parameter
+        /// is not included in the <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_SearchProfiles.html">SearchProfiles</a>
         /// request.
         /// </para>
         /// </summary>
@@ -312,7 +312,7 @@ namespace Amazon.CustomerProfiles.Model
         // Check to see if FoundByItems property is set
         internal bool IsSetFoundByItems()
         {
-            return this._foundByItems != null && this._foundByItems.Count > 0; 
+            return this._foundByItems != null && (this._foundByItems.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the opensearch-2021-01-01.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -64,6 +65,16 @@ namespace Amazon.OpenSearchService.Model
         /// Paginator for GetUpgradeHistory operation
         ///</summary>
         IGetUpgradeHistoryPaginator GetUpgradeHistory(GetUpgradeHistoryRequest request);
+
+        /// <summary>
+        /// Paginator for ListApplications operation
+        ///</summary>
+        IListApplicationsPaginator ListApplications(ListApplicationsRequest request);
+
+        /// <summary>
+        /// Paginator for ListDomainMaintenances operation
+        ///</summary>
+        IListDomainMaintenancesPaginator ListDomainMaintenances(ListDomainMaintenancesRequest request);
 
         /// <summary>
         /// Paginator for ListDomainsForPackage operation

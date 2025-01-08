@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,19 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(MultiplexOutputSettings requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetContainerSettings())
+            {
+                context.Writer.WritePropertyName("containerSettings");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = MultiplexContainerSettingsMarshaller.Instance;
+                marshaller.Marshall(requestObject.ContainerSettings, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetDestination())
             {
                 context.Writer.WritePropertyName("destination");

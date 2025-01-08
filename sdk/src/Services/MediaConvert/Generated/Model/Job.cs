@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaConvert.Model
 {
     /// <summary>
@@ -43,15 +44,17 @@ namespace Amazon.MediaConvert.Model
         private JobPhase _currentPhase;
         private int? _errorCode;
         private string _errorMessage;
-        private List<HopDestination> _hopDestinations = new List<HopDestination>();
+        private List<HopDestination> _hopDestinations = AWSConfigs.InitializeCollections ? new List<HopDestination>() : null;
         private string _id;
+        private string _jobEngineVersionRequested;
+        private string _jobEngineVersionUsed;
         private int? _jobPercentComplete;
         private string _jobTemplate;
         private JobMessages _messages;
-        private List<OutputGroupDetail> _outputGroupDetails = new List<OutputGroupDetail>();
+        private List<OutputGroupDetail> _outputGroupDetails = AWSConfigs.InitializeCollections ? new List<OutputGroupDetail>() : null;
         private int? _priority;
         private string _queue;
-        private List<QueueTransition> _queueTransitions = new List<QueueTransition>();
+        private List<QueueTransition> _queueTransitions = AWSConfigs.InitializeCollections ? new List<QueueTransition>() : null;
         private int? _retryCount;
         private string _role;
         private JobSettings _settings;
@@ -59,8 +62,8 @@ namespace Amazon.MediaConvert.Model
         private JobStatus _status;
         private StatusUpdateInterval _statusUpdateInterval;
         private Timing _timing;
-        private Dictionary<string, string> _userMetadata = new Dictionary<string, string>();
-        private List<WarningGroup> _warnings = new List<WarningGroup>();
+        private Dictionary<string, string> _userMetadata = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<WarningGroup> _warnings = AWSConfigs.InitializeCollections ? new List<WarningGroup>() : null;
 
         /// <summary>
         /// Gets and sets the property AccelerationSettings. Accelerated transcoding can significantly
@@ -229,7 +232,7 @@ namespace Amazon.MediaConvert.Model
         // Check to see if HopDestinations property is set
         internal bool IsSetHopDestinations()
         {
-            return this._hopDestinations != null && this._hopDestinations.Count > 0; 
+            return this._hopDestinations != null && (this._hopDestinations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -246,6 +249,43 @@ namespace Amazon.MediaConvert.Model
         internal bool IsSetId()
         {
             return this._id != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property JobEngineVersionRequested. The Job engine version that
+        /// you requested for your job. Valid versions are in a YYYY-MM-DD format.
+        /// </summary>
+        public string JobEngineVersionRequested
+        {
+            get { return this._jobEngineVersionRequested; }
+            set { this._jobEngineVersionRequested = value; }
+        }
+
+        // Check to see if JobEngineVersionRequested property is set
+        internal bool IsSetJobEngineVersionRequested()
+        {
+            return this._jobEngineVersionRequested != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property JobEngineVersionUsed. The Job engine version that your
+        /// job used. Job engine versions are in a YYYY-MM-DD format. When you request an expired
+        /// version, the response for this property will be empty. Requests to create jobs with
+        /// an expired version result in a regular job, as if no specific Job engine version was
+        /// requested. When you request an invalid version, the response for this property will
+        /// be empty. Requests to create jobs with an invalid version result in a 400 error message,
+        /// and no job is created.
+        /// </summary>
+        public string JobEngineVersionUsed
+        {
+            get { return this._jobEngineVersionUsed; }
+            set { this._jobEngineVersionUsed = value; }
+        }
+
+        // Check to see if JobEngineVersionUsed property is set
+        internal bool IsSetJobEngineVersionUsed()
+        {
+            return this._jobEngineVersionUsed != null;
         }
 
         /// <summary>
@@ -314,7 +354,7 @@ namespace Amazon.MediaConvert.Model
         // Check to see if OutputGroupDetails property is set
         internal bool IsSetOutputGroupDetails()
         {
-            return this._outputGroupDetails != null && this._outputGroupDetails.Count > 0; 
+            return this._outputGroupDetails != null && (this._outputGroupDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -362,7 +402,7 @@ namespace Amazon.MediaConvert.Model
         // Check to see if QueueTransitions property is set
         internal bool IsSetQueueTransitions()
         {
-            return this._queueTransitions != null && this._queueTransitions.Count > 0; 
+            return this._queueTransitions != null && (this._queueTransitions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -498,7 +538,7 @@ namespace Amazon.MediaConvert.Model
         // Check to see if UserMetadata property is set
         internal bool IsSetUserMetadata()
         {
-            return this._userMetadata != null && this._userMetadata.Count > 0; 
+            return this._userMetadata != null && (this._userMetadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -515,7 +555,7 @@ namespace Amazon.MediaConvert.Model
         // Check to see if Warnings property is set
         internal bool IsSetWarnings()
         {
-            return this._warnings != null && this._warnings.Count > 0; 
+            return this._warnings != null && (this._warnings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

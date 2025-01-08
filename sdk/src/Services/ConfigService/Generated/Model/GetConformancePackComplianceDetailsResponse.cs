@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ConfigService.Model
     public partial class GetConformancePackComplianceDetailsResponse : AmazonWebServiceResponse
     {
         private string _conformancePackName;
-        private List<ConformancePackEvaluationResult> _conformancePackRuleEvaluationResults = new List<ConformancePackEvaluationResult>();
+        private List<ConformancePackEvaluationResult> _conformancePackRuleEvaluationResults = AWSConfigs.InitializeCollections ? new List<ConformancePackEvaluationResult>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property ConformancePackRuleEvaluationResults. 
         /// <para>
-        /// Returns a list of <code>ConformancePackEvaluationResult</code> objects.
+        /// Returns a list of <c>ConformancePackEvaluationResult</c> objects.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]
@@ -72,13 +73,13 @@ namespace Amazon.ConfigService.Model
         // Check to see if ConformancePackRuleEvaluationResults property is set
         internal bool IsSetConformancePackRuleEvaluationResults()
         {
-            return this._conformancePackRuleEvaluationResults != null && this._conformancePackRuleEvaluationResults.Count > 0; 
+            return this._conformancePackRuleEvaluationResults != null && (this._conformancePackRuleEvaluationResults.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> string returned in a previous request that you use to request
+        /// The <c>nextToken</c> string returned in a previous request that you use to request
         /// the next page of results in a paginated response.
         /// </para>
         /// </summary>

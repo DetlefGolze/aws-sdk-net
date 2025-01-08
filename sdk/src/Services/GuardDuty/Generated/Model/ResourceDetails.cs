@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property InstanceArn. 
         /// <para>
-        /// InstanceArn that was scanned in the scan entry.
+        /// Instance ARN that was scanned in the scan entry.
         /// </para>
         /// </summary>
         public string InstanceArn

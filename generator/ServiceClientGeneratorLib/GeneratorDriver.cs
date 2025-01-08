@@ -84,7 +84,7 @@ namespace ServiceClientGenerator
 
         private const string Bcl35SubFolder = "_bcl35";
         private const string Bcl45SubFolder = "_bcl45";
-        private const string NetStandardSubFolder = "_netstandard";        
+        private const string NetStandardSubFolder = "_netstandard";
         private string PaginatorsSubFolder = string.Format("Model{0}_bcl45+netstandard", Path.AltDirectorySeparatorChar);
         private string GeneratedTestsSubFolder = string.Format("UnitTests{0}Generated", Path.AltDirectorySeparatorChar);
         private string CustomizationTestsSubFolder = string.Format("UnitTests{0}Generated{0}Customizations", Path.AltDirectorySeparatorChar);
@@ -202,9 +202,10 @@ namespace ServiceClientGenerator
             if (Configuration.Namespace == "Amazon.S3")
             {
                 ExecuteProjectFileGenerators();
+                // The AmazonS3RetryPolicy simply populates the static list of requests to retry for a status code of 200 which returns an exception.
+                ExecuteGenerator(new AmazonS3RetryPolicy(), "AmazonS3RetryPolicy.cs");
                 return;
             }
-            
             // The top level request that all operation requests are children of
             ExecuteGenerator(new BaseRequest(), "Amazon" + Configuration.ClassName + "Request.cs", "Model");
 
@@ -246,6 +247,7 @@ namespace ServiceClientGenerator
                 GenerateResponseUnmarshaller(operation);
                 GenerateEndpointDiscoveryMarshaller(operation);
                 GenerateExceptions(operation);
+                GenerateStructures(operation);
             }
 
             if (Configuration.ServiceModel.Customizations.GenerateCustomUnmarshaller)
@@ -254,27 +256,12 @@ namespace ServiceClientGenerator
             }
 
             // Generate any missed structures that are not defined or referenced by a request, response, marshaller, unmarshaller, or exception of an operation
-            GenerateStructures();
-
-            var fileName = string.Format("{0}MarshallingTests.cs", Configuration.ClassName);
-
-            // Generate tests based on the type of request it is
-            if (Configuration.ServiceModel.Type == ServiceType.Json)
-                ExecuteTestGenerator(new JsonMarshallingTests(), fileName, "Marshalling");
-            else if (Configuration.ServiceModel.Type == ServiceType.Query)
-            {
-                if (Configuration.ServiceModel.IsEC2Protocol)
-                    ExecuteTestGenerator(new AWSQueryEC2MarshallingTests(), fileName, "Marshalling");
-                else
-                    ExecuteTestGenerator(new AWSQueryMarshallingTests(), fileName, "Marshalling");
-            }
-            else if (Configuration.ServiceModel.Type == ServiceType.Rest_Xml || Configuration.ServiceModel.Type == ServiceType.Rest_Json)
-                ExecuteTestGenerator(new RestMarshallingTests(), fileName, "Marshalling");
+            GenerateStructures(null);
 
             //Generate endpoint discovery tests for classes that have an endpoint operation
-            if(Configuration.ServiceModel.FindEndpointOperation() != null)
+            if (Configuration.ServiceModel.FindEndpointOperation() != null)
             {
-                fileName = string.Format("{0}EndpointDiscoveryMarshallingTests.cs", Configuration.ClassName);
+                var fileName = string.Format("{0}EndpointDiscoveryMarshallingTests.cs", Configuration.ClassName);
                 ExecuteTestGenerator(new EndpointDiscoveryMarshallingTests(), fileName, "Marshalling");
             }
 
@@ -534,8 +521,14 @@ namespace ServiceClientGenerator
             generator.Operation = operation;
 
             this.ExecuteGenerator(generator, operation.Name + "RequestMarshaller.cs", "Model.Internal.MarshallTransformations");
-            if (hasRequest)
+            // Mark the shape as processed if it's being referred only as operation's
+            // input shape and not being referred directly by any other shape or via an
+            // operation modifier generating an artifical structure not in the service model.
+            if (hasRequest && !IsShapeReferred(operation.RequestStructure.Name, this.Configuration.ServiceModel)
+                && !operation.WrapsResultShape(operation.RequestStructure.Name))
+            {
                 this._processedMarshallers.Add(operation.RequestStructure.Name);
+            }
 
             if (normalizeMarshallers && hasRequest)
             {
@@ -580,7 +573,6 @@ namespace ServiceClientGenerator
                 this.ExecuteGenerator(paginatorInterfaceGenerator, $"I{operation.Name}Paginator.cs", PaginatorsSubFolder);
 
             }
-            
         }
 
         /// <summary>
@@ -627,31 +619,6 @@ namespace ServiceClientGenerator
             {
                 var lookup = new NestedStructureLookup();
                 lookup.SearchForNestedStructures(operation.ResponseStructure);
-                //Do not generate an unmarshaller for the response's payload if it is of type EventStream
-                //This is because we attach the payload to the generic response and unmarshall it from there.
-                if (operation.IsEventStreamOutput)
-                {
-                    if (!((operation.Name == "InvokeWithResponseStream" && operation.model.ServiceId == "Lambda") ||
-                          (operation.Name == "InvokeEndpointWithResponseStream" && operation.model.ServiceId == "SageMaker Runtime") ||
-                          (operation.Name == "InvokeModelWithResponseStream" && operation.model.ServiceId == "Bedrock Runtime")))
-                    {
-                        throw new Exception("Event streams may not be fully supported until internal ticket DOTNET-7200 is implemented. " +
-                            "We can remove this check once that ticket is resolved. Until then, manually test that the new operation " +
-                            "behaves correctly and then add it to the above allowlist.");
-                    }
-
-                    if (operation.ResponsePayloadMember.ModelShape.IsEventStream)
-                    {
-                        //If the file was already generated incorrectly delete it
-                        var unmarshallerName = operation.ResponsePayloadMember.ModelShape.Name + "Unmarshaller.cs";
-                        var unmarshallerPath = Utils.PathCombineAlt(GeneratedFilesRoot, "Model","Internal", "MarshallTransformations", unmarshallerName);
-                        if (File.Exists(unmarshallerPath))
-                        {
-                            File.Delete(unmarshallerPath);
-                        }
-                        return;
-                    }
-                }
 
                 foreach (var nestedStructure in lookup.NestedStructures)
                 {
@@ -666,7 +633,10 @@ namespace ServiceClientGenerator
                     // the 'simple' DocumentMarshaller in AWSSDK.
                     if (nestedStructure.IsDocument)
                         continue;
-
+                    // We don't generate an umarshaller for a member that is an event stream.
+                    // instead we generated a layer over the structure. That layer is EventStreamGenerator.tt.
+                    if (nestedStructure.IsEventStream)
+                        continue;
                     // Skip already processed unmarshallers. This handles the case of structures being returned in mulitiple requests.
                     if (!this._processedUnmarshallers.Contains(nestedStructure.Name))
                     {
@@ -701,7 +671,7 @@ namespace ServiceClientGenerator
                 // the 'simple' DocumentMarshaller in AWSSDK.
                 if (nestedStructure.IsDocument)
                     continue;
-
+                    
                 // Skip already processed unmarshallers. This handles the case of structures being returned in mulitiple requests.
                 if (!this._processedUnmarshallers.Contains(nestedStructure.Name))
                 {
@@ -758,7 +728,7 @@ namespace ServiceClientGenerator
                 Operation = operation
             };
 
-            this.ExecuteGenerator(generator, operation.Name + "EndpointDiscoveryMarshaller.cs", "Model.Internal.MarshallTransformations");            
+            this.ExecuteGenerator(generator, operation.Name + "EndpointDiscoveryMarshaller.cs", "Model.Internal.MarshallTransformations");
         }
 
         private void GenerateExceptions(Operation operation)
@@ -847,13 +817,23 @@ namespace ServiceClientGenerator
         /// <summary>
         /// Adding Method to create/update service specific unit test projects
         /// </summary>
-        public static void UpdateUnitTestProjects(GenerationManifest generationManifest, GeneratorOptions options, string serviceTestFilesRoot, ServiceConfiguration serviceConfiguration)
+        public static List<string> UpdateUnitTestProjects(GenerationManifest generationManifest, GeneratorOptions options, string serviceTestFilesRoot, ServiceConfiguration serviceConfiguration)
         {
-            Console.WriteLine("Updating unit test project files.");
             string unitTestRoot = Utils.PathCombineAlt(serviceTestFilesRoot, "UnitTests");
             var creator = new UnitTestProjectFileCreator(options, generationManifest.UnitTestProjectFileConfigurations, serviceConfiguration.ServiceFolderName);
-
+            
             UpdateUnitTestProjects(new[] { serviceConfiguration }, options, unitTestRoot, creator);
+
+            List<string> generatedTestFiles = new List<string>();
+            foreach (var file in Directory.GetFiles(unitTestRoot, "*.cs", SearchOption.AllDirectories).OrderBy(f => f))
+            {
+                var fullPath = Utils.ConvertPathAlt(Path.GetFullPath(file));
+                if (fullPath.IndexOf($"/{GeneratedCodeFoldername}/", StringComparison.OrdinalIgnoreCase) < 0)
+                    continue;
+                generatedTestFiles.Add(fullPath);
+            }
+
+            return generatedTestFiles;
         }
 
         private static void UpdateUnitTestProjects(IEnumerable<ServiceConfiguration> serviceConfigurations, GeneratorOptions options, string unitTestRoot, UnitTestProjectFileCreator creator)
@@ -975,7 +955,7 @@ namespace ServiceClientGenerator
         /// <summary>
         /// Generates all the POCOs that go in the Model namespace for the structures defined in the service model.
         /// </summary>
-        void GenerateStructures()
+        void GenerateStructures(Operation operation)
         {
             var excludedOperations = Configuration.ServiceModel.ExcludedOperations;
 
@@ -1000,10 +980,29 @@ namespace ServiceClientGenerator
                     var generator = new StructureGenerator()
                     {
                         ClassName = definition.Name,
-                        Structure = definition
+                        Structure = definition,
+                        Config = this.Configuration,
+                        Operation = operation,
                     };
+                    //since eventstream operations can attach exceptions to the request or response objects instead of the "error"
+                    //list on the operation, we must account for the case where an exception is included as a member of the response
+                    //but not on the operation's error list. In that case we make sure the structure inherits the base exception
+                    if (definition.IsException)
+                    {
+                        generator.BaseClass = this.Configuration.BaseException;
+                        var unmarshallerGenerator = GetExceptionUnmarshaller();
+                        unmarshallerGenerator.Structure = definition;
+
+                        this.ExecuteGenerator(unmarshallerGenerator, definition.Name + "Unmarshaller.cs", "Model.Internal.MarshallTransformations");
+                        this._processedUnmarshallers.Add(definition.Name);
+
+                        DetermineStructuresToProcess(definition, false);
+                        GenerateUnmarshaller(definition);
+                    }
+
                     this.ExecuteGenerator(generator, definition.Name + ".cs", "Model");
                     this._processedStructures.Add(definition.Name);
+
                 }
             }
         }
@@ -1357,7 +1356,6 @@ namespace ServiceClientGenerator
                     throw new Exception("No structure marshaller for service type: " + this.Configuration.ServiceModel.Type);
             }
         }
-
         /// <summary>
         /// Determines the type of response unmarshaller to be used based on the service model type
         /// </summary>
@@ -1399,7 +1397,6 @@ namespace ServiceClientGenerator
                     throw new Exception("No structure unmarshaller for service type: " + this.Configuration.ServiceModel.Type);
             }
         }
-        
         /// <summary>
         /// Determines the Unmarshaller for structures based on the service model type
         /// </summary>
@@ -1418,29 +1415,43 @@ namespace ServiceClientGenerator
                 default:
                     throw new Exception("No structure unmarshaller for service type: " + this.Configuration.ServiceModel.Type);
             }
-        }     
-
+        }
         void GenerateCodeAnalysisProject()
         {
             var command = new CodeAnalysisProjectCreator();
             command.Execute(CodeAnalysisRoot, this.Configuration);
         }
 
-        public static void RemoveOrphanedShapesAndServices(HashSet<string> generatedFiles, string sdkRootFolder)
+        public static void RemoveOrphanedShapesAndServices(HashSet<string> generatedFiles, HashSet<string> generatedTestFiles, string sdkRootFolder)
         {
             var codeGeneratedServiceList = codeGeneratedServiceNames.Distinct();
+
+            // Cleanup services within the main sdk/services folder
             var srcFolder = Utils.PathCombineAlt(sdkRootFolder, SourceSubFoldername, ServicesSubFoldername);
             RemoveOrphanedShapes(generatedFiles, srcFolder);
+
+            // Cleanup services within the sdk/test/services folder where it is a generated test service
+            var testSrcFolder = Utils.PathCombineAlt(sdkRootFolder, TestsSubFoldername, ServicesSubFoldername);
+            RemoveOrphanedShapes(generatedFiles, generatedTestFiles, testSrcFolder);
+                        
             // Cleanup orphaned Service src artifacts. This is encountered when the service identifier is modified.
             RemoveOrphanedServices(srcFolder, codeGeneratedServiceList);
             // Cleanup orphaned Service test artifacts. This is encountered when the service identifier is modified.
-            RemoveOrphanedServices(Utils.PathCombineAlt(sdkRootFolder, TestsSubFoldername, ServicesSubFoldername), codeGeneratedServiceList);
+            RemoveOrphanedServices(testSrcFolder, codeGeneratedServiceList);
             // Cleanup orphaned Service code analysis artifacts. This is encountered when the service identifier is modified.
             RemoveOrphanedServices(Utils.PathCombineAlt(sdkRootFolder, CodeAnalysisFoldername, ServicesAnalysisSubFolderName), codeGeneratedServiceList);
         }
+
+        /// <summary>
+        /// Removes orphaned */generated/* files from specified srcFolder. This can be encountered when a model 
+        /// removes an operation or shape and the sub shapes are no longer needed. The file will be deleted if
+        /// the file contains */generated/* as part of the path and is not a file from a current run generated 
+        /// service (generatedFiles).
+        /// </summary>
+        /// <param name="generatedFiles">Lookup of all files that have been generated.</param>
+        /// <param name="srcFolder">The path to the sdk/services folder containing generated services and manual source code.</param>
         public static void RemoveOrphanedShapes(HashSet<string> generatedFiles, string srcFolder)
         {
-            // Remove orphaned shapes. Most likely due to taking in a model that was still under development.
             foreach (var file in Directory.GetFiles(srcFolder, "*.cs", SearchOption.AllDirectories).OrderBy(f => f))
             {
                 var fullPath = Utils.ConvertPathAlt(Path.GetFullPath(file));
@@ -1450,6 +1461,32 @@ namespace ServiceClientGenerator
                 if (!generatedFiles.Contains(fullPath))
                 {
                     Console.Error.WriteLine("**** Warning: Removing orphaned generated code " + Path.GetFileName(file));
+                    File.Delete(file);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Removes orphaned */generated/* files from specified srcFolder. This can be encountered when a test service model 
+        /// removes an operation or shape and the sub shapes are no longer needed. Special care must be taken within the 
+        /// sdk/test/services folder because there is a mix of generated tests and test services. The file will be deleted if
+        /// the file contains */generated/* as part of the path, is not a file from a current run generated test service (generatedFiles),
+        /// and is not a file from a current run generated test (generatedTestFiles).
+        /// </summary>
+        /// <param name="generatedFiles">Lookup of all files that have been generated.</param>
+        /// <param name="generatedTestFiles">Lookup of all the generated test files.</param>
+        /// <param name="srcFolder">The path to the sdk/test/services folder containing generated tests and test services.</param>
+        public static void RemoveOrphanedShapes(HashSet<string> generatedFiles, HashSet<string> generatedTestFiles, string srcFolder)
+        {
+            foreach (var file in Directory.GetFiles(srcFolder, "*.cs", SearchOption.AllDirectories).OrderBy(f => f))
+            {
+                var fullPath = Utils.ConvertPathAlt(Path.GetFullPath(file));
+                if (fullPath.IndexOf($"/{GeneratedCodeFoldername}/", StringComparison.OrdinalIgnoreCase) < 0)
+                    continue;
+
+                if (!generatedFiles.Contains(fullPath) && !generatedTestFiles.Contains(fullPath))
+                {
+                    Console.Error.WriteLine("**** Warning: Removing orphaned generated test code " + Path.GetFileName(file));
                     File.Delete(file);
                 }
             }
@@ -1502,11 +1539,11 @@ namespace ServiceClientGenerator
                 {
                     var regionName = regions[regionCode]["description"].ToString();
                     endpoints.Add(new EndpointConstant
-                    { 
-                        Name = nameConverter(regionCode), 
-                        RegionCode = regionCode, 
-                        ConvertedRegionCode = codeConverter == null ? regionCode : codeConverter(regionCode), 
-                        RegionName = regionName 
+                    {
+                        Name = nameConverter(regionCode),
+                        RegionCode = regionCode,
+                        ConvertedRegionCode = codeConverter == null ? regionCode : codeConverter(regionCode),
+                        RegionName = regionName
                     });
                 }
             }
@@ -1531,7 +1568,6 @@ namespace ServiceClientGenerator
             var text = generator.TransformText();
             WriteFile(endpointsFilesRoot, null, fileName, text);
         }
-        
         /// <summary>
         /// Converts region code to maintain backward compatibility with S3
         /// </summary>
@@ -1562,7 +1598,6 @@ namespace ServiceClientGenerator
             {
                 Endpoints = endpoints
             };
-            
             var text = generator.TransformText();
             WriteFile(generatedFileRoot, null, fileName, text);
         }

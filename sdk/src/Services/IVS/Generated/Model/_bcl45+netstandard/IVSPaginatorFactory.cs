@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IVS.Model
 {
     /// <summary>
@@ -49,6 +50,14 @@ namespace Amazon.IVS.Model
         public IListPlaybackKeyPairsPaginator ListPlaybackKeyPairs(ListPlaybackKeyPairsRequest request) 
         {
             return new ListPlaybackKeyPairsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListPlaybackRestrictionPolicies operation
+        ///</summary>
+        public IListPlaybackRestrictionPoliciesPaginator ListPlaybackRestrictionPolicies(ListPlaybackRestrictionPoliciesRequest request) 
+        {
+            return new ListPlaybackRestrictionPoliciesPaginator(this.client, request);
         }
 
         /// <summary>

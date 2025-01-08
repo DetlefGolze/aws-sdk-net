@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTThingsGraph.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.IoTThingsGraph.Model
     /// 
     ///  
     /// <para>
-    /// Deploys the system instance to the target specified in <code>CreateSystemInstance</code>.
+    /// Deploys the system instance to the target specified in <c>CreateSystemInstance</c>.
     /// 
     /// </para>
     ///  
@@ -67,7 +68,7 @@ namespace Amazon.IoTThingsGraph.Model
         /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        /// The ID of the system instance. This value is returned by the <code>CreateSystemInstance</code>
+        /// The ID of the system instance. This value is returned by the <c>CreateSystemInstance</c>
         /// action.
         /// </para>
         ///  
@@ -76,7 +77,7 @@ namespace Amazon.IoTThingsGraph.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>urn:tdm:REGION/ACCOUNT ID/default:deployment:DEPLOYMENTNAME</code> 
+        ///  <c>urn:tdm:REGION/ACCOUNT ID/default:deployment:DEPLOYMENTNAME</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Max=160)]

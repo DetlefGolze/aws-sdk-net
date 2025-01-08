@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AppSync.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.AppSync.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAdditionalAuthenticationProviders())
@@ -91,6 +93,23 @@ namespace Amazon.AppSync.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("authenticationType");
                     context.Writer.Write(publicRequest.AuthenticationType);
+                }
+
+                if(publicRequest.IsSetEnhancedMetricsConfig())
+                {
+                    context.Writer.WritePropertyName("enhancedMetricsConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = EnhancedMetricsConfigMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.EnhancedMetricsConfig, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetIntrospectionConfig())
+                {
+                    context.Writer.WritePropertyName("introspectionConfig");
+                    context.Writer.Write(publicRequest.IntrospectionConfig);
                 }
 
                 if(publicRequest.IsSetLambdaAuthorizerConfig())
@@ -142,6 +161,18 @@ namespace Amazon.AppSync.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("ownerContact");
                     context.Writer.Write(publicRequest.OwnerContact);
+                }
+
+                if(publicRequest.IsSetQueryDepthLimit())
+                {
+                    context.Writer.WritePropertyName("queryDepthLimit");
+                    context.Writer.Write(publicRequest.QueryDepthLimit);
+                }
+
+                if(publicRequest.IsSetResolverCountLimit())
+                {
+                    context.Writer.WritePropertyName("resolverCountLimit");
+                    context.Writer.Write(publicRequest.ResolverCountLimit);
                 }
 
                 if(publicRequest.IsSetTags())

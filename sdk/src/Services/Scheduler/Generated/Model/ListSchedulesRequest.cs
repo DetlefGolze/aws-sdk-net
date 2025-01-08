@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Scheduler.Model
 {
     /// <summary>
@@ -64,8 +65,8 @@ namespace Amazon.Scheduler.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// If specified, limits the number of results returned by this operation. The operation
-        /// also returns a <code>NextToken</code> which you can use in a subsequent operation
-        /// to retrieve the next set of results.
+        /// also returns a <c>NextToken</c> which you can use in a subsequent operation to retrieve
+        /// the next set of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]

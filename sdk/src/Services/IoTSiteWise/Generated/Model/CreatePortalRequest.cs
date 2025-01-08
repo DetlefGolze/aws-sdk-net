@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -51,8 +52,10 @@ namespace Amazon.IoTSiteWise.Model
         private string _portalDescription;
         private ImageFile _portalLogoImageFile;
         private string _portalName;
+        private PortalType _portalType;
+        private Dictionary<string, PortalTypeEntry> _portalTypeConfiguration = AWSConfigs.InitializeCollections ? new Dictionary<string, PortalTypeEntry>() : null;
         private string _roleArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Alarms. 
@@ -108,7 +111,7 @@ namespace Amazon.IoTSiteWise.Model
         /// </para>
         ///  </important>
         /// </summary>
-        [AWSProperty(Min=1, Max=255)]
+        [AWSProperty(Sensitive=true, Min=1, Max=255)]
         public string NotificationSenderEmail
         {
             get { return this._notificationSenderEmail; }
@@ -129,17 +132,16 @@ namespace Amazon.IoTSiteWise.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>SSO</code> – The portal uses IAM Identity Center (successor to Single Sign-On)
-        /// to authenticate users and manage user permissions. Before you can create a portal
-        /// that uses IAM Identity Center, you must enable IAM Identity Center. For more information,
-        /// see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-get-started.html#mon-gs-sso">Enabling
+        ///  <c>SSO</c> – The portal uses IAM Identity Center to authenticate users and manage
+        /// user permissions. Before you can create a portal that uses IAM Identity Center, you
+        /// must enable IAM Identity Center. For more information, see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-get-started.html#mon-gs-sso">Enabling
         /// IAM Identity Center</a> in the <i>IoT SiteWise User Guide</i>. This option is only
         /// available in Amazon Web Services Regions other than the China Regions.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IAM</code> – The portal uses Identity and Access Management to authenticate
-        /// users and manage user permissions.
+        ///  <c>IAM</c> – The portal uses Identity and Access Management to authenticate users
+        /// and manage user permissions.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -147,7 +149,7 @@ namespace Amazon.IoTSiteWise.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>SSO</code> 
+        /// Default: <c>SSO</c> 
         /// </para>
         /// </summary>
         public AuthMode PortalAuthMode
@@ -168,7 +170,7 @@ namespace Amazon.IoTSiteWise.Model
         /// The Amazon Web Services administrator's contact email address.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=255)]
+        [AWSProperty(Required=true, Sensitive=true, Min=1, Max=255)]
         public string PortalContactEmail
         {
             get { return this._portalContactEmail; }
@@ -239,6 +241,45 @@ namespace Amazon.IoTSiteWise.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PortalType. 
+        /// <para>
+        /// Define the type of portal. The value for IoT SiteWise Monitor (Classic) is <c>SITEWISE_PORTAL_V1</c>.
+        /// The value for IoT SiteWise Monitor (AI-aware) is <c>SITEWISE_PORTAL_V2</c>.
+        /// </para>
+        /// </summary>
+        public PortalType PortalType
+        {
+            get { return this._portalType; }
+            set { this._portalType = value; }
+        }
+
+        // Check to see if PortalType property is set
+        internal bool IsSetPortalType()
+        {
+            return this._portalType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PortalTypeConfiguration. 
+        /// <para>
+        /// The configuration entry associated with the specific portal type. The value for IoT
+        /// SiteWise Monitor (Classic) is <c>SITEWISE_PORTAL_V1</c>. The value for IoT SiteWise
+        /// Monitor (AI-aware) is <c>SITEWISE_PORTAL_V2</c>.
+        /// </para>
+        /// </summary>
+        public Dictionary<string, PortalTypeEntry> PortalTypeConfiguration
+        {
+            get { return this._portalTypeConfiguration; }
+            set { this._portalTypeConfiguration = value; }
+        }
+
+        // Check to see if PortalTypeConfiguration property is set
+        internal bool IsSetPortalTypeConfiguration()
+        {
+            return this._portalTypeConfiguration != null && (this._portalTypeConfiguration.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property RoleArn. 
         /// <para>
         /// The <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>
@@ -278,7 +319,7 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

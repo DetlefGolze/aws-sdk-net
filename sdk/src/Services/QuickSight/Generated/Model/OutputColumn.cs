@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.QuickSight.Model
     {
         private string _description;
         private string _name;
+        private ColumnDataSubType _subType;
         private ColumnDataType _type;
 
         /// <summary>
@@ -43,7 +45,7 @@ namespace Amazon.QuickSight.Model
         /// A description for a column.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=500)]
+        [AWSProperty(Sensitive=true, Min=0, Max=500)]
         public string Description
         {
             get { return this._description; }
@@ -59,7 +61,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// A display name for the dataset.
+        /// The display name of the column..
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -76,9 +78,27 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SubType. 
+        /// <para>
+        /// The sub data type of the column.
+        /// </para>
+        /// </summary>
+        public ColumnDataSubType SubType
+        {
+            get { return this._subType; }
+            set { this._subType = value; }
+        }
+
+        // Check to see if SubType property is set
+        internal bool IsSetSubType()
+        {
+            return this._subType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type.
+        /// The data type of the column.
         /// </para>
         /// </summary>
         public ColumnDataType Type

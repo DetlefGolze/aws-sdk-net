@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -34,9 +35,9 @@ namespace Amazon.Lightsail.Model
     /// 
     ///  
     /// <para>
-    /// An origin can be a Lightsail instance, bucket, or load balancer. A distribution pulls
-    /// content from an origin, caches it, and serves it to viewers via a worldwide network
-    /// of edge servers.
+    /// An origin can be a Lightsail instance, bucket, container service, or load balancer.
+    /// A distribution pulls content from an origin, caches it, and serves it to viewers via
+    /// a worldwide network of edge servers.
     /// </para>
     /// </summary>
     public partial class InputOrigin
@@ -44,6 +45,7 @@ namespace Amazon.Lightsail.Model
         private string _name;
         private OriginProtocolPolicyEnum _protocolPolicy;
         private RegionName _regionName;
+        private int? _responseTimeout;
 
         /// <summary>
         /// Gets and sets the property Name. 
@@ -98,6 +100,26 @@ namespace Amazon.Lightsail.Model
         internal bool IsSetRegionName()
         {
             return this._regionName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ResponseTimeout. 
+        /// <para>
+        /// The amount of time, in seconds, that the distribution waits for a response after forwarding
+        /// a request to the origin. The minimum timeout is 1 second, the maximum is 60 seconds,
+        /// and the default (if you don't specify otherwise) is 30 seconds.
+        /// </para>
+        /// </summary>
+        public int ResponseTimeout
+        {
+            get { return this._responseTimeout.GetValueOrDefault(); }
+            set { this._responseTimeout = value; }
+        }
+
+        // Check to see if ResponseTimeout property is set
+        internal bool IsSetResponseTimeout()
+        {
+            return this._responseTimeout.HasValue; 
         }
 
     }

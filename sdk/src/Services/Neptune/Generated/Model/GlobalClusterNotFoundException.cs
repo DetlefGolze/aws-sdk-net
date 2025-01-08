@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
-    /// The <code>GlobalClusterIdentifier</code> doesn't refer to an existing global database
-    /// cluster.
+    /// The <c>GlobalClusterIdentifier</c> doesn't refer to an existing global database cluster.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

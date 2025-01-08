@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ControlTower.Model
 {
     /// <summary>
@@ -36,11 +37,51 @@ namespace Amazon.ControlTower.Model
         }
 
         /// <summary>
+        /// Paginator for ListBaselines operation
+        ///</summary>
+        public IListBaselinesPaginator ListBaselines(ListBaselinesRequest request) 
+        {
+            return new ListBaselinesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListControlOperations operation
+        ///</summary>
+        public IListControlOperationsPaginator ListControlOperations(ListControlOperationsRequest request) 
+        {
+            return new ListControlOperationsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListEnabledBaselines operation
+        ///</summary>
+        public IListEnabledBaselinesPaginator ListEnabledBaselines(ListEnabledBaselinesRequest request) 
+        {
+            return new ListEnabledBaselinesPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListEnabledControls operation
         ///</summary>
         public IListEnabledControlsPaginator ListEnabledControls(ListEnabledControlsRequest request) 
         {
             return new ListEnabledControlsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListLandingZoneOperations operation
+        ///</summary>
+        public IListLandingZoneOperationsPaginator ListLandingZoneOperations(ListLandingZoneOperationsRequest request) 
+        {
+            return new ListLandingZoneOperationsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListLandingZones operation
+        ///</summary>
+        public IListLandingZonesPaginator ListLandingZones(ListLandingZonesRequest request) 
+        {
+            return new ListLandingZonesPaginator(this.client, request);
         }
     }
 }

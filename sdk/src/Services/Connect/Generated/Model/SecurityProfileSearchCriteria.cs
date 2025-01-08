@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -33,16 +34,16 @@ namespace Amazon.Connect.Model
     /// 
     ///  <note> 
     /// <para>
-    /// The <code>name</code> field support "contains" queries with a minimum of 2 characters
-    /// and maximum of 25 characters. Any queries with character lengths outside of this range
+    /// The <c>name</c> field support "contains" queries with a minimum of 2 characters and
+    /// maximum of 25 characters. Any queries with character lengths outside of this range
     /// will throw invalid results.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class SecurityProfileSearchCriteria
     {
-        private List<SecurityProfileSearchCriteria> _andConditions = new List<SecurityProfileSearchCriteria>();
-        private List<SecurityProfileSearchCriteria> _orConditions = new List<SecurityProfileSearchCriteria>();
+        private List<SecurityProfileSearchCriteria> _andConditions = AWSConfigs.InitializeCollections ? new List<SecurityProfileSearchCriteria>() : null;
+        private List<SecurityProfileSearchCriteria> _orConditions = AWSConfigs.InitializeCollections ? new List<SecurityProfileSearchCriteria>() : null;
         private StringCondition _stringCondition;
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.Connect.Model
         // Check to see if AndConditions property is set
         internal bool IsSetAndConditions()
         {
-            return this._andConditions != null && this._andConditions.Count > 0; 
+            return this._andConditions != null && (this._andConditions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -78,7 +79,7 @@ namespace Amazon.Connect.Model
         // Check to see if OrConditions property is set
         internal bool IsSetOrConditions()
         {
-            return this._orConditions != null && this._orConditions.Count > 0; 
+            return this._orConditions != null && (this._orConditions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

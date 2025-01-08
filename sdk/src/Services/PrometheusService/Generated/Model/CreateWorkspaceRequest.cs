@@ -26,23 +26,32 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateWorkspace operation.
-    /// Creates a new AMP workspace.
+    /// Creates a Prometheus workspace. A workspace is a logical space dedicated to the storage
+    /// and querying of Prometheus metrics. You can have one or more workspaces in each Region
+    /// in your account.
     /// </summary>
     public partial class CreateWorkspaceRequest : AmazonPrometheusServiceRequest
     {
         private string _alias;
         private string _clientToken;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private string _kmsKeyArn;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Alias. 
         /// <para>
-        /// An optional user-assigned alias for this workspace. This alias is for user reference
-        /// and does not need to be unique.
+        /// An alias that you assign to this workspace to help you identify it. It does not need
+        /// to be unique.
+        /// </para>
+        ///  
+        /// <para>
+        /// Blank spaces at the beginning or end of the alias that you specify will be trimmed
+        /// from the value used.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -61,8 +70,8 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
-        /// Optional, unique, case-sensitive, user-provided identifier to ensure the idempotency
-        /// of the request.
+        /// A unique identifier that you can provide to ensure the idempotency of the request.
+        /// Case-sensitive.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -79,9 +88,31 @@ namespace Amazon.PrometheusService.Model
         }
 
         /// <summary>
+        /// Gets and sets the property KmsKeyArn. 
+        /// <para>
+        /// (optional) The ARN for a customer managed KMS key to use for encrypting data within
+        /// your workspace. For more information about using your own key in your workspace, see
+        /// <a href="https://docs.aws.amazon.com/prometheus/latest/userguide/encryption-at-rest-Amazon-Service-Prometheus.html">Encryption
+        /// at rest</a> in the <i>Amazon Managed Service for Prometheus User Guide</i>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=2048)]
+        public string KmsKeyArn
+        {
+            get { return this._kmsKeyArn; }
+            set { this._kmsKeyArn = value; }
+        }
+
+        // Check to see if KmsKeyArn property is set
+        internal bool IsSetKmsKeyArn()
+        {
+            return this._kmsKeyArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// Optional, user-provided tags for this workspace.
+        /// The list of tag keys and values to associate with the workspace.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -94,7 +125,7 @@ namespace Amazon.PrometheusService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

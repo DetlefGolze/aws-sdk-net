@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaTailor.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.MediaTailor.Model
     /// </summary>
     public partial class AdBreak
     {
-        private List<KeyValuePair> _adBreakMetadata = new List<KeyValuePair>();
+        private List<KeyValuePair> _adBreakMetadata = AWSConfigs.InitializeCollections ? new List<KeyValuePair>() : null;
         private MessageType _messageType;
         private long? _offsetMillis;
         private SlateSource _slate;
@@ -43,8 +44,8 @@ namespace Amazon.MediaTailor.Model
         /// <summary>
         /// Gets and sets the property AdBreakMetadata. 
         /// <para>
-        /// Defines a list of key/value pairs that MediaTailor generates within the <code>EXT-X-ASSET</code>tag
-        /// for <code>SCTE35_ENHANCED</code> output.
+        /// Defines a list of key/value pairs that MediaTailor generates within the <c>EXT-X-ASSET</c>tag
+        /// for <c>SCTE35_ENHANCED</c> output.
         /// </para>
         /// </summary>
         public List<KeyValuePair> AdBreakMetadata
@@ -56,13 +57,13 @@ namespace Amazon.MediaTailor.Model
         // Check to see if AdBreakMetadata property is set
         internal bool IsSetAdBreakMetadata()
         {
-            return this._adBreakMetadata != null && this._adBreakMetadata.Count > 0; 
+            return this._adBreakMetadata != null && (this._adBreakMetadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MessageType. 
         /// <para>
-        /// The SCTE-35 ad insertion type. Accepted value: <code>SPLICE_INSERT</code>, <code>TIME_SIGNAL</code>.
+        /// The SCTE-35 ad insertion type. Accepted value: <c>SPLICE_INSERT</c>, <c>TIME_SIGNAL</c>.
         /// </para>
         /// </summary>
         public MessageType MessageType
@@ -85,6 +86,7 @@ namespace Amazon.MediaTailor.Model
         /// skipped.
         /// </para>
         /// </summary>
+        [AWSProperty(Required=true)]
         public long OffsetMillis
         {
             get { return this._offsetMillis.GetValueOrDefault(); }
@@ -118,9 +120,9 @@ namespace Amazon.MediaTailor.Model
         /// <summary>
         /// Gets and sets the property SpliceInsertMessage. 
         /// <para>
-        /// This defines the SCTE-35 <code>splice_insert()</code> message inserted around the
-        /// ad. For information about using <code>splice_insert()</code>, see the SCTE-35 specficiaiton,
-        /// section 9.7.3.1.
+        /// This defines the SCTE-35 <c>splice_insert()</c> message inserted around the ad. For
+        /// information about using <c>splice_insert()</c>, see the SCTE-35 specficiaiton, section
+        /// 9.7.3.1.
         /// </para>
         /// </summary>
         public SpliceInsertMessage SpliceInsertMessage
@@ -138,13 +140,13 @@ namespace Amazon.MediaTailor.Model
         /// <summary>
         /// Gets and sets the property TimeSignalMessage. 
         /// <para>
-        /// Defines the SCTE-35 <code>time_signal</code> message inserted around the ad.
+        /// Defines the SCTE-35 <c>time_signal</c> message inserted around the ad.
         /// </para>
         ///  
         /// <para>
         /// Programs on a channel's schedule can be configured with one or more ad breaks. You
-        /// can attach a <code>splice_insert</code> SCTE-35 message to the ad break. This message
-        /// provides basic metadata about the ad break.
+        /// can attach a <c>splice_insert</c> SCTE-35 message to the ad break. This message provides
+        /// basic metadata about the ad break.
         /// </para>
         ///  
         /// <para>

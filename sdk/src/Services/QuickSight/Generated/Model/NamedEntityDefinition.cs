@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -98,7 +99,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property PropertyRole. 
         /// <para>
-        /// The property role. Valid values for this structure are <code>PRIMARY</code> and <code>ID</code>.
+        /// The property role. Valid values for this structure are <c>PRIMARY</c> and <c>ID</c>.
         /// </para>
         /// </summary>
         public PropertyRole PropertyRole
@@ -116,8 +117,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property PropertyUsage. 
         /// <para>
-        /// The property usage. Valid values for this structure are <code>INHERIT</code>, <code>DIMENSION</code>,
-        /// and <code>MEASURE</code>.
+        /// The property usage. Valid values for this structure are <c>INHERIT</c>, <c>DIMENSION</c>,
+        /// and <c>MEASURE</c>.
         /// </para>
         /// </summary>
         public PropertyUsage PropertyUsage

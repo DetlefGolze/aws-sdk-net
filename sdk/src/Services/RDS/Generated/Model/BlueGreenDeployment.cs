@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -49,10 +50,10 @@ namespace Amazon.RDS.Model
         private string _source;
         private string _status;
         private string _statusDetails;
-        private List<SwitchoverDetail> _switchoverDetails = new List<SwitchoverDetail>();
-        private List<Tag> _tagList = new List<Tag>();
+        private List<SwitchoverDetail> _switchoverDetails = AWSConfigs.InitializeCollections ? new List<SwitchoverDetail>() : null;
+        private List<Tag> _tagList = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _target;
-        private List<BlueGreenDeploymentTask> _tasks = new List<BlueGreenDeploymentTask>();
+        private List<BlueGreenDeploymentTask> _tasks = AWSConfigs.InitializeCollections ? new List<BlueGreenDeploymentTask>() : null;
 
         /// <summary>
         /// Gets and sets the property BlueGreenDeploymentIdentifier. 
@@ -164,34 +165,34 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PROVISIONING</code> - Resources are being created in the green environment.
+        ///  <c>PROVISIONING</c> - Resources are being created in the green environment.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AVAILABLE</code> - Resources are available in the green environment.
+        ///  <c>AVAILABLE</c> - Resources are available in the green environment.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SWITCHOVER_IN_PROGRESS</code> - The deployment is being switched from the blue
-        /// environment to the green environment.
+        ///  <c>SWITCHOVER_IN_PROGRESS</c> - The deployment is being switched from the blue environment
+        /// to the green environment.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SWITCHOVER_COMPLETED</code> - Switchover from the blue environment to the green
-        /// environment is complete.
+        ///  <c>SWITCHOVER_COMPLETED</c> - Switchover from the blue environment to the green environment
+        /// is complete.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INVALID_CONFIGURATION</code> - Resources in the green environment are invalid,
-        /// so switchover isn't possible.
+        ///  <c>INVALID_CONFIGURATION</c> - Resources in the green environment are invalid, so
+        /// switchover isn't possible.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SWITCHOVER_FAILED</code> - Switchover was attempted but failed.
+        ///  <c>SWITCHOVER_FAILED</c> - Switchover was attempted but failed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETING</code> - The blue/green deployment is being deleted.
+        ///  <c>DELETING</c> - The blue/green deployment is being deleted.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -240,7 +241,7 @@ namespace Amazon.RDS.Model
         // Check to see if SwitchoverDetails property is set
         internal bool IsSetSwitchoverDetails()
         {
-            return this._switchoverDetails != null && this._switchoverDetails.Count > 0; 
+            return this._switchoverDetails != null && (this._switchoverDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -255,7 +256,7 @@ namespace Amazon.RDS.Model
         // Check to see if TagList property is set
         internal bool IsSetTagList()
         {
-            return this._tagList != null && this._tagList.Count > 0; 
+            return this._tagList != null && (this._tagList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -297,7 +298,7 @@ namespace Amazon.RDS.Model
         // Check to see if Tasks property is set
         internal bool IsSetTasks()
         {
-            return this._tasks != null && this._tasks.Count > 0; 
+            return this._tasks != null && (this._tasks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

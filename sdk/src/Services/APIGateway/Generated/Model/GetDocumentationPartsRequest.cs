@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
@@ -64,9 +65,9 @@ namespace Amazon.APIGateway.Model
         /// <summary>
         /// Gets and sets the property LocationStatus. 
         /// <para>
-        /// The status of the API documentation parts to retrieve. Valid values are <code>DOCUMENTED</code>
-        /// for retrieving DocumentationPart resources with content and <code>UNDOCUMENTED</code>
-        /// for DocumentationPart resources without content.
+        /// The status of the API documentation parts to retrieve. Valid values are <c>DOCUMENTED</c>
+        /// for retrieving DocumentationPart resources with content and <c>UNDOCUMENTED</c> for
+        /// DocumentationPart resources without content.
         /// </para>
         /// </summary>
         public LocationStatusType LocationStatus

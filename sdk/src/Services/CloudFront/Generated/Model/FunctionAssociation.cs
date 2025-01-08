@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -39,8 +40,8 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property EventType. 
         /// <para>
-        /// The event type of the function, either <code>viewer-request</code> or <code>viewer-response</code>.
-        /// You cannot use origin-facing event types (<code>origin-request</code> and <code>origin-response</code>)
+        /// The event type of the function, either <c>viewer-request</c> or <c>viewer-response</c>.
+        /// You cannot use origin-facing event types (<c>origin-request</c> and <c>origin-response</c>)
         /// with a CloudFront function.
         /// </para>
         /// </summary>
@@ -63,7 +64,7 @@ namespace Amazon.CloudFront.Model
         /// The Amazon Resource Name (ARN) of the function.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=108)]
+        [AWSProperty(Required=true, Min=0, Max=108)]
         public string FunctionARN
         {
             get { return this._functionARN; }

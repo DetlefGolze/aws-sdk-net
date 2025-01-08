@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -83,7 +84,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the processor feature. Valid names are <code>coreCount</code> and <code>threadsPerCore</code>.
+        /// The name of the processor feature. Valid names are <c>coreCount</c> and <c>threadsPerCore</c>.
         /// </para>
         /// </summary>
         public string Name

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptography.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteKey operation.
-    /// Deletes the key material and all metadata associated with Amazon Web Services Payment
+    /// Deletes the key material and metadata associated with Amazon Web Services Payment
     /// Cryptography key.
     /// 
     ///  
@@ -41,21 +42,15 @@ namespace Amazon.PaymentCryptography.Model
     /// Because key deletion is destructive, Amazon Web Services Payment Cryptography has
     /// a safety mechanism to prevent accidental deletion of a key. When you call this operation,
     /// Amazon Web Services Payment Cryptography disables the specified key but doesn't delete
-    /// it until after a waiting period. The default waiting period is 7 days. To set a different
-    /// waiting period, set <code>DeleteKeyInDays</code>. During the waiting period, the <code>KeyState</code>
-    /// is <code>DELETE_PENDING</code>. After the key is deleted, the <code>KeyState</code>
-    /// is <code>DELETE_COMPLETE</code>.
-    /// </para>
-    ///  
-    /// <para>
-    /// If you delete key material, you can use <a>ImportKey</a> to reimport the same key
-    /// material into the Amazon Web Services Payment Cryptography key.
+    /// it until after a waiting period set using <c>DeleteKeyInDays</c>. The default waiting
+    /// period is 7 days. During the waiting period, the <c>KeyState</c> is <c>DELETE_PENDING</c>.
+    /// After the key is deleted, the <c>KeyState</c> is <c>DELETE_COMPLETE</c>.
     /// </para>
     ///  
     /// <para>
     /// You should delete a key only when you are sure that you don't need to use it anymore
     /// and no other parties are utilizing this key. If you aren't sure, consider deactivating
-    /// it instead by calling <a>StopKeyUsage</a>.
+    /// it instead by calling <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_StopKeyUsage.html">StopKeyUsage</a>.
     /// </para>
     ///  
     /// <para>
@@ -68,15 +63,18 @@ namespace Amazon.PaymentCryptography.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <a>RestoreKey</a> 
+    ///  <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_RestoreKey.html">RestoreKey</a>
+    /// 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a>StartKeyUsage</a> 
+    ///  <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_StartKeyUsage.html">StartKeyUsage</a>
+    /// 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a>StopKeyUsage</a> 
+    ///  <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_StopKeyUsage.html">StopKeyUsage</a>
+    /// 
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -107,7 +105,7 @@ namespace Amazon.PaymentCryptography.Model
         /// <summary>
         /// Gets and sets the property KeyIdentifier. 
         /// <para>
-        /// The <code>KeyARN</code> of the key that is scheduled for deletion.
+        /// The <c>KeyARN</c> of the key that is scheduled for deletion.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=7, Max=322)]

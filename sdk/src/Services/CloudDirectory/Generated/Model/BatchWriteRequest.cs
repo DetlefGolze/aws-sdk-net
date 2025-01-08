@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.CloudDirectory.Model
     public partial class BatchWriteRequest : AmazonCloudDirectoryRequest
     {
         private string _directoryArn;
-        private List<BatchWriteOperation> _operations = new List<BatchWriteOperation>();
+        private List<BatchWriteOperation> _operations = AWSConfigs.InitializeCollections ? new List<BatchWriteOperation>() : null;
 
         /// <summary>
         /// Gets and sets the property DirectoryArn. 
@@ -55,7 +56,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if DirectoryArn property is set
         internal bool IsSetDirectoryArn()
         {
-            return this._directoryArn != null;
+            return !string.IsNullOrEmpty(this._directoryArn);
         }
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if Operations property is set
         internal bool IsSetOperations()
         {
-            return this._operations != null && this._operations.Count > 0; 
+            return this._operations != null && (this._operations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

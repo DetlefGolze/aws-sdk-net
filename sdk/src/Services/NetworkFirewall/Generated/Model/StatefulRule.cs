@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
     /// A single Suricata rules specification, for use in a stateful rule group. Use this
     /// option to specify a simple Suricata rule with protocol, source and destination, ports,
-    /// direction, and rule options. For information about the Suricata <code>Rules</code>
-    /// format, see <a href="https://suricata.readthedocs.io/en/suricata-6.0.9/rules/intro.html">Rules
+    /// direction, and rule options. For information about the Suricata <c>Rules</c> format,
+    /// see <a href="https://suricata.readthedocs.io/en/suricata-6.0.9/rules/intro.html">Rules
     /// Format</a>.
     /// </summary>
     public partial class StatefulRule
     {
         private StatefulAction _action;
         private Header _header;
-        private List<RuleOption> _ruleOptions = new List<RuleOption>();
+        private List<RuleOption> _ruleOptions = AWSConfigs.InitializeCollections ? new List<RuleOption>() : null;
 
         /// <summary>
         /// Gets and sets the property Action. 
@@ -64,15 +65,21 @@ namespace Amazon.NetworkFirewall.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>ALERT</b> - Permits the packets to go to the intended destination and sends an
-        /// alert log message, if alert logging is configured in the <a>Firewall</a> <a>LoggingConfiguration</a>.
-        /// 
+        ///  <b>ALERT</b> - Sends an alert log message, if alert logging is configured in the
+        /// <a>Firewall</a> <a>LoggingConfiguration</a>. 
         /// </para>
         ///  
         /// <para>
         /// You can use this action to test a rule that you intend to use to drop traffic. You
-        /// can enable the rule with <code>ALERT</code> action, verify in the logs that the rule
-        /// is filtering as you want, then change the action to <code>DROP</code>.
+        /// can enable the rule with <c>ALERT</c> action, verify in the logs that the rule is
+        /// filtering as you want, then change the action to <c>DROP</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>REJECT</b> - Drops traffic that matches the conditions of the stateful rule, and
+        /// sends a TCP reset packet back to sender of the packet. A TCP reset packet is a packet
+        /// with no payload and an RST bit contained in the TCP header flags. REJECT is available
+        /// only for TCP traffic. This option doesn't support FTP or IMAP protocols.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -111,7 +118,7 @@ namespace Amazon.NetworkFirewall.Model
         /// <summary>
         /// Gets and sets the property RuleOptions. 
         /// <para>
-        /// Additional options for the rule. These are the Suricata <code>RuleOptions</code> settings.
+        /// Additional options for the rule. These are the Suricata <c>RuleOptions</c> settings.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -124,7 +131,7 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if RuleOptions property is set
         internal bool IsSetRuleOptions()
         {
-            return this._ruleOptions != null && this._ruleOptions.Count > 0; 
+            return this._ruleOptions != null && (this._ruleOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

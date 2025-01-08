@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FMS.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.FMS.Model
     /// </summary>
     public partial class ListAppsListsResponse : AmazonWebServiceResponse
     {
-        private List<AppsListDataSummary> _appsLists = new List<AppsListDataSummary>();
+        private List<AppsListDataSummary> _appsLists = AWSConfigs.InitializeCollections ? new List<AppsListDataSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property AppsLists. 
         /// <para>
-        /// An array of <code>AppsListDataSummary</code> objects.
+        /// An array of <c>AppsListDataSummary</c> objects.
         /// </para>
         /// </summary>
         public List<AppsListDataSummary> AppsLists
@@ -51,15 +52,15 @@ namespace Amazon.FMS.Model
         // Check to see if AppsLists property is set
         internal bool IsSetAppsLists()
         {
-            return this._appsLists != null && this._appsLists.Count > 0; 
+            return this._appsLists != null && (this._appsLists.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If you specify a value for <code>MaxResults</code> in your list request, and you have
-        /// more objects than the maximum, Firewall Manager returns this token in the response.
-        /// You can use this token in subsequent requests to retrieve the next batch of objects.
+        /// If you specify a value for <c>MaxResults</c> in your list request, and you have more
+        /// objects than the maximum, Firewall Manager returns this token in the response. You
+        /// can use this token in subsequent requests to retrieve the next batch of objects.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4096)]

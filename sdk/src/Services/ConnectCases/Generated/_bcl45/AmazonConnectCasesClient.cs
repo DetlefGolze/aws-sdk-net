@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.ConnectCases
 {
     /// <summary>
-    /// Implementation for accessing ConnectCases
+    /// <para>Implementation for accessing ConnectCases</para>
     ///
     /// With Amazon Connect Cases, your agents can track and manage customer issues that require
     /// multiple interactions, follow-up tasks, and teams in your contact center. A case represents
@@ -429,18 +430,19 @@ namespace Amazon.ConnectCases
 
 
         /// <summary>
-        /// Creates a case in the specified Cases domain. Case system and custom fields are taken
-        /// as an array id/value pairs with a declared data types.
-        /// 
-        ///  <note> 
+        /// <note> 
         /// <para>
-        /// The following fields are required when creating a case:
+        /// If you provide a value for <c>PerformedBy.UserArn</c> you must also have <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribeUser.html">connect:DescribeUser</a>
+        /// permission on the User ARN resource that you provide
         /// </para>
-        ///  <pre><code> &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;customer_id&lt;/code&gt;
-        /// - You must provide the full customer profile ARN in this format: &lt;code&gt;arn:aws:profile:your
-        /// AWS Region:your AWS account ID:domains/profiles domain name/profiles/profile ID&lt;/code&gt;
-        /// &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;title&lt;/code&gt; &lt;/p&gt;
-        /// &lt;/li&gt; &lt;/ul&gt; &lt;/note&gt; </code></pre>
+        ///  </note> <pre><c> &lt;p&gt;Creates a case in the specified Cases domain. Case system
+        /// and custom fields are taken as an array id/value pairs with a declared data types.&lt;/p&gt;
+        /// &lt;p&gt;The following fields are required when creating a case:&lt;/p&gt; &lt;ul&gt;
+        /// &lt;li&gt; &lt;p&gt; &lt;code&gt;customer_id&lt;/code&gt; - You must provide the full
+        /// customer profile ARN in this format: &lt;code&gt;arn:aws:profile:your_AWS_Region:your_AWS_account
+        /// ID:domains/your_profiles_domain_name/profiles/profile_ID&lt;/code&gt; &lt;/p&gt; &lt;/li&gt;
+        /// &lt;li&gt; &lt;p&gt; &lt;code&gt;title&lt;/code&gt; &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
+        /// </c></pre>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateCase service method.</param>
         /// 
@@ -479,18 +481,19 @@ namespace Amazon.ConnectCases
 
 
         /// <summary>
-        /// Creates a case in the specified Cases domain. Case system and custom fields are taken
-        /// as an array id/value pairs with a declared data types.
-        /// 
-        ///  <note> 
+        /// <note> 
         /// <para>
-        /// The following fields are required when creating a case:
+        /// If you provide a value for <c>PerformedBy.UserArn</c> you must also have <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribeUser.html">connect:DescribeUser</a>
+        /// permission on the User ARN resource that you provide
         /// </para>
-        ///  <pre><code> &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;customer_id&lt;/code&gt;
-        /// - You must provide the full customer profile ARN in this format: &lt;code&gt;arn:aws:profile:your
-        /// AWS Region:your AWS account ID:domains/profiles domain name/profiles/profile ID&lt;/code&gt;
-        /// &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;title&lt;/code&gt; &lt;/p&gt;
-        /// &lt;/li&gt; &lt;/ul&gt; &lt;/note&gt; </code></pre>
+        ///  </note> <pre><c> &lt;p&gt;Creates a case in the specified Cases domain. Case system
+        /// and custom fields are taken as an array id/value pairs with a declared data types.&lt;/p&gt;
+        /// &lt;p&gt;The following fields are required when creating a case:&lt;/p&gt; &lt;ul&gt;
+        /// &lt;li&gt; &lt;p&gt; &lt;code&gt;customer_id&lt;/code&gt; - You must provide the full
+        /// customer profile ARN in this format: &lt;code&gt;arn:aws:profile:your_AWS_Region:your_AWS_account
+        /// ID:domains/your_profiles_domain_name/profiles/profile_ID&lt;/code&gt; &lt;/p&gt; &lt;/li&gt;
+        /// &lt;li&gt; &lt;p&gt; &lt;code&gt;title&lt;/code&gt; &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
+        /// </c></pre>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateCase service method.</param>
         /// <param name="cancellationToken">
@@ -547,7 +550,7 @@ namespace Amazon.ConnectCases
         /// For more information, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/required-permissions-iam-cases.html#onboard-cases-iam">Onboard
         /// to Cases</a>.
         /// </para>
-        ///  <pre><code> &lt;/important&gt; </code></pre>
+        ///  <pre><c> &lt;/important&gt; </c></pre>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateDomain service method.</param>
         /// 
@@ -596,7 +599,7 @@ namespace Amazon.ConnectCases
         /// For more information, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/required-permissions-iam-cases.html#onboard-cases-iam">Onboard
         /// to Cases</a>.
         /// </para>
-        ///  <pre><code> &lt;/important&gt; </code></pre>
+        ///  <pre><c> &lt;/important&gt; </c></pre>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateDomain service method.</param>
         /// <param name="cancellationToken">
@@ -861,14 +864,19 @@ namespace Amazon.ConnectCases
         /// <summary>
         /// Creates a related item (comments, tasks, and contacts) and associates it with a case.
         /// 
-        ///  <note> 
+        ///  <note> <ul> <li> 
         /// <para>
         /// A Related Item is a resource that is associated with a case. It may or may not have
-        /// an external identifier linking it to an external resource (for example, a <code>contactArn</code>).
-        /// All Related Items have their own internal identifier, the <code>relatedItemArn</code>.
-        /// Examples of related items include <code>comments</code> and <code>contacts</code>.
+        /// an external identifier linking it to an external resource (for example, a <c>contactArn</c>).
+        /// All Related Items have their own internal identifier, the <c>relatedItemArn</c>. Examples
+        /// of related items include <c>comments</c> and <c>contacts</c>.
         /// </para>
-        ///  </note>
+        ///  </li> <li> 
+        /// <para>
+        /// If you provide a value for <c>performedBy.userArn</c> you must also have <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribeUser.html">DescribeUser</a>
+        /// permission on the ARN of the user that you provide.
+        /// </para>
+        ///  </li> </ul> <pre><c> &lt;/note&gt; </c></pre>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateRelatedItem service method.</param>
         /// 
@@ -908,14 +916,19 @@ namespace Amazon.ConnectCases
         /// <summary>
         /// Creates a related item (comments, tasks, and contacts) and associates it with a case.
         /// 
-        ///  <note> 
+        ///  <note> <ul> <li> 
         /// <para>
         /// A Related Item is a resource that is associated with a case. It may or may not have
-        /// an external identifier linking it to an external resource (for example, a <code>contactArn</code>).
-        /// All Related Items have their own internal identifier, the <code>relatedItemArn</code>.
-        /// Examples of related items include <code>comments</code> and <code>contacts</code>.
+        /// an external identifier linking it to an external resource (for example, a <c>contactArn</c>).
+        /// All Related Items have their own internal identifier, the <c>relatedItemArn</c>. Examples
+        /// of related items include <c>comments</c> and <c>contacts</c>.
         /// </para>
-        ///  </note>
+        ///  </li> <li> 
+        /// <para>
+        /// If you provide a value for <c>performedBy.userArn</c> you must also have <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribeUser.html">DescribeUser</a>
+        /// permission on the ARN of the user that you provide.
+        /// </para>
+        ///  </li> </ul> <pre><c> &lt;/note&gt; </c></pre>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateRelatedItem service method.</param>
         /// <param name="cancellationToken">
@@ -1065,10 +1078,10 @@ namespace Amazon.ConnectCases
         /// <summary>
         /// Deletes a Cases domain.
         /// 
-        ///  <pre><code> &lt;note&gt; &lt;p&gt;After deleting your domain you must disassociate
-        /// the deleted domain from your Amazon Connect instance with another API call before
-        /// being able to use Cases again with this Amazon Connect instance. See &lt;a href=&quot;https://docs.aws.amazon.com/connect/latest/APIReference/API_DeleteIntegrationAssociation.html&quot;&gt;DeleteIntegrationAssociation&lt;/a&gt;.&lt;/p&gt;
-        /// &lt;/note&gt; </code></pre>
+        ///  <pre><c> &lt;note&gt; &lt;p&gt;After deleting your domain you must disassociate the
+        /// deleted domain from your Amazon Connect instance with another API call before being
+        /// able to use Cases again with this Amazon Connect instance. See &lt;a href=&quot;https://docs.aws.amazon.com/connect/latest/APIReference/API_DeleteIntegrationAssociation.html&quot;&gt;DeleteIntegrationAssociation&lt;/a&gt;.&lt;/p&gt;
+        /// &lt;/note&gt; </c></pre>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteDomain service method.</param>
         /// 
@@ -1109,10 +1122,10 @@ namespace Amazon.ConnectCases
         /// <summary>
         /// Deletes a Cases domain.
         /// 
-        ///  <pre><code> &lt;note&gt; &lt;p&gt;After deleting your domain you must disassociate
-        /// the deleted domain from your Amazon Connect instance with another API call before
-        /// being able to use Cases again with this Amazon Connect instance. See &lt;a href=&quot;https://docs.aws.amazon.com/connect/latest/APIReference/API_DeleteIntegrationAssociation.html&quot;&gt;DeleteIntegrationAssociation&lt;/a&gt;.&lt;/p&gt;
-        /// &lt;/note&gt; </code></pre>
+        ///  <pre><c> &lt;note&gt; &lt;p&gt;After deleting your domain you must disassociate the
+        /// deleted domain from your Amazon Connect instance with another API call before being
+        /// able to use Cases again with this Amazon Connect instance. See &lt;a href=&quot;https://docs.aws.amazon.com/connect/latest/APIReference/API_DeleteIntegrationAssociation.html&quot;&gt;DeleteIntegrationAssociation&lt;/a&gt;.&lt;/p&gt;
+        /// &lt;/note&gt; </c></pre>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteDomain service method.</param>
         /// <param name="cancellationToken">
@@ -1150,6 +1163,419 @@ namespace Amazon.ConnectCases
             options.ResponseUnmarshaller = DeleteDomainResponseUnmarshaller.Instance;
             
             return InvokeAsync<DeleteDomainResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DeleteField
+
+
+        /// <summary>
+        /// Deletes a field from a cases template. You can delete up to 100 fields per domain.
+        /// 
+        ///  
+        /// <para>
+        /// After a field is deleted:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You can still retrieve the field by calling <c>BatchGetField</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You cannot update a deleted field by calling <c>UpdateField</c>; it throws a <c>ValidationException</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Deleted fields are not included in the <c>ListFields</c> response.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Calling <c>CreateCase</c> with a deleted field throws a <c>ValidationException</c>
+        /// denoting which field IDs in the request have been deleted.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Calling <c>GetCase</c> with a deleted field ID returns the deleted field's value if
+        /// one exists.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Calling <c>UpdateCase</c> with a deleted field ID throws a <c>ValidationException</c>
+        /// if the case does not already contain a value for the deleted field. Otherwise it succeeds,
+        /// allowing you to update or remove (using <c>emptyValue: {}</c>) the field's value from
+        /// the case.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>GetTemplate</c> does not return field IDs for deleted fields.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>GetLayout</c> does not return field IDs for deleted fields.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Calling <c>SearchCases</c> with the deleted field ID as a filter returns any cases
+        /// that have a value for the deleted field that matches the filter criteria.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Calling <c>SearchCases</c> with a <c>searchTerm</c> value that matches a deleted field's
+        /// value on a case returns the case in the response.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Calling <c>BatchPutFieldOptions</c> with a deleted field ID throw a <c>ValidationException</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Calling <c>GetCaseEventConfiguration</c> does not return field IDs for deleted fields.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteField service method.</param>
+        /// 
+        /// <returns>The response from the DeleteField service method, as returned by ConnectCases.</returns>
+        /// <exception cref="Amazon.ConnectCases.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ConflictException">
+        /// The requested operation would cause a conflict with the current state of a service
+        /// resource associated with the request. Resolve the conflict before retrying this request.
+        /// See the accompanying error message for details.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.InternalServerException">
+        /// We couldn't process your request because of an issue with the server. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ResourceNotFoundException">
+        /// We couldn't find the requested resource. Check that your resources exists and were
+        /// created in the same Amazon Web Services Region as your request, and try your request
+        /// again.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ServiceQuotaExceededException">
+        /// The service quota has been exceeded. For a list of service quotas, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html">Amazon
+        /// Connect Service Quotas</a> in the <i>Amazon Connect Administrator Guide</i>.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ThrottlingException">
+        /// The rate has been exceeded for this API. Please try again after a few minutes.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ValidationException">
+        /// The request isn't valid. Check the syntax and try again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/connectcases-2022-10-03/DeleteField">REST API Reference for DeleteField Operation</seealso>
+        public virtual DeleteFieldResponse DeleteField(DeleteFieldRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteFieldRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteFieldResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteFieldResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes a field from a cases template. You can delete up to 100 fields per domain.
+        /// 
+        ///  
+        /// <para>
+        /// After a field is deleted:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You can still retrieve the field by calling <c>BatchGetField</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You cannot update a deleted field by calling <c>UpdateField</c>; it throws a <c>ValidationException</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Deleted fields are not included in the <c>ListFields</c> response.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Calling <c>CreateCase</c> with a deleted field throws a <c>ValidationException</c>
+        /// denoting which field IDs in the request have been deleted.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Calling <c>GetCase</c> with a deleted field ID returns the deleted field's value if
+        /// one exists.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Calling <c>UpdateCase</c> with a deleted field ID throws a <c>ValidationException</c>
+        /// if the case does not already contain a value for the deleted field. Otherwise it succeeds,
+        /// allowing you to update or remove (using <c>emptyValue: {}</c>) the field's value from
+        /// the case.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>GetTemplate</c> does not return field IDs for deleted fields.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>GetLayout</c> does not return field IDs for deleted fields.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Calling <c>SearchCases</c> with the deleted field ID as a filter returns any cases
+        /// that have a value for the deleted field that matches the filter criteria.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Calling <c>SearchCases</c> with a <c>searchTerm</c> value that matches a deleted field's
+        /// value on a case returns the case in the response.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Calling <c>BatchPutFieldOptions</c> with a deleted field ID throw a <c>ValidationException</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Calling <c>GetCaseEventConfiguration</c> does not return field IDs for deleted fields.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteField service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteField service method, as returned by ConnectCases.</returns>
+        /// <exception cref="Amazon.ConnectCases.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ConflictException">
+        /// The requested operation would cause a conflict with the current state of a service
+        /// resource associated with the request. Resolve the conflict before retrying this request.
+        /// See the accompanying error message for details.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.InternalServerException">
+        /// We couldn't process your request because of an issue with the server. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ResourceNotFoundException">
+        /// We couldn't find the requested resource. Check that your resources exists and were
+        /// created in the same Amazon Web Services Region as your request, and try your request
+        /// again.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ServiceQuotaExceededException">
+        /// The service quota has been exceeded. For a list of service quotas, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html">Amazon
+        /// Connect Service Quotas</a> in the <i>Amazon Connect Administrator Guide</i>.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ThrottlingException">
+        /// The rate has been exceeded for this API. Please try again after a few minutes.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ValidationException">
+        /// The request isn't valid. Check the syntax and try again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/connectcases-2022-10-03/DeleteField">REST API Reference for DeleteField Operation</seealso>
+        public virtual Task<DeleteFieldResponse> DeleteFieldAsync(DeleteFieldRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteFieldRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteFieldResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteFieldResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DeleteLayout
+
+
+        /// <summary>
+        /// Deletes a layout from a cases template. You can delete up to 100 layouts per domain.
+        /// 
+        ///  <pre><c> &lt;p&gt;After a layout is deleted:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt;You
+        /// can still retrieve the layout by calling &lt;code&gt;GetLayout&lt;/code&gt;.&lt;/p&gt;
+        /// &lt;/li&gt; &lt;li&gt; &lt;p&gt;You cannot update a deleted layout by calling &lt;code&gt;UpdateLayout&lt;/code&gt;;
+        /// it throws a &lt;code&gt;ValidationException&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt;
+        /// &lt;p&gt;Deleted layouts are not included in the &lt;code&gt;ListLayouts&lt;/code&gt;
+        /// response.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; </c></pre>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteLayout service method.</param>
+        /// 
+        /// <returns>The response from the DeleteLayout service method, as returned by ConnectCases.</returns>
+        /// <exception cref="Amazon.ConnectCases.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ConflictException">
+        /// The requested operation would cause a conflict with the current state of a service
+        /// resource associated with the request. Resolve the conflict before retrying this request.
+        /// See the accompanying error message for details.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.InternalServerException">
+        /// We couldn't process your request because of an issue with the server. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ResourceNotFoundException">
+        /// We couldn't find the requested resource. Check that your resources exists and were
+        /// created in the same Amazon Web Services Region as your request, and try your request
+        /// again.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ThrottlingException">
+        /// The rate has been exceeded for this API. Please try again after a few minutes.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ValidationException">
+        /// The request isn't valid. Check the syntax and try again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/connectcases-2022-10-03/DeleteLayout">REST API Reference for DeleteLayout Operation</seealso>
+        public virtual DeleteLayoutResponse DeleteLayout(DeleteLayoutRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteLayoutRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteLayoutResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteLayoutResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes a layout from a cases template. You can delete up to 100 layouts per domain.
+        /// 
+        ///  <pre><c> &lt;p&gt;After a layout is deleted:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt;You
+        /// can still retrieve the layout by calling &lt;code&gt;GetLayout&lt;/code&gt;.&lt;/p&gt;
+        /// &lt;/li&gt; &lt;li&gt; &lt;p&gt;You cannot update a deleted layout by calling &lt;code&gt;UpdateLayout&lt;/code&gt;;
+        /// it throws a &lt;code&gt;ValidationException&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt;
+        /// &lt;p&gt;Deleted layouts are not included in the &lt;code&gt;ListLayouts&lt;/code&gt;
+        /// response.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; </c></pre>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteLayout service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteLayout service method, as returned by ConnectCases.</returns>
+        /// <exception cref="Amazon.ConnectCases.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ConflictException">
+        /// The requested operation would cause a conflict with the current state of a service
+        /// resource associated with the request. Resolve the conflict before retrying this request.
+        /// See the accompanying error message for details.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.InternalServerException">
+        /// We couldn't process your request because of an issue with the server. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ResourceNotFoundException">
+        /// We couldn't find the requested resource. Check that your resources exists and were
+        /// created in the same Amazon Web Services Region as your request, and try your request
+        /// again.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ThrottlingException">
+        /// The rate has been exceeded for this API. Please try again after a few minutes.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ValidationException">
+        /// The request isn't valid. Check the syntax and try again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/connectcases-2022-10-03/DeleteLayout">REST API Reference for DeleteLayout Operation</seealso>
+        public virtual Task<DeleteLayoutResponse> DeleteLayoutAsync(DeleteLayoutRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteLayoutRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteLayoutResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteLayoutResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DeleteTemplate
+
+
+        /// <summary>
+        /// Deletes a cases template. You can delete up to 100 templates per domain.
+        /// 
+        ///  <pre><c> &lt;p&gt;After a cases template is deleted:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;
+        /// &lt;p&gt;You can still retrieve the template by calling &lt;code&gt;GetTemplate&lt;/code&gt;.&lt;/p&gt;
+        /// &lt;/li&gt; &lt;li&gt; &lt;p&gt;You cannot update the template. &lt;/p&gt; &lt;/li&gt;
+        /// &lt;li&gt; &lt;p&gt;You cannot create a case by using the deleted template.&lt;/p&gt;
+        /// &lt;/li&gt; &lt;li&gt; &lt;p&gt;Deleted templates are not included in the &lt;code&gt;ListTemplates&lt;/code&gt;
+        /// response.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; </c></pre>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteTemplate service method.</param>
+        /// 
+        /// <returns>The response from the DeleteTemplate service method, as returned by ConnectCases.</returns>
+        /// <exception cref="Amazon.ConnectCases.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ConflictException">
+        /// The requested operation would cause a conflict with the current state of a service
+        /// resource associated with the request. Resolve the conflict before retrying this request.
+        /// See the accompanying error message for details.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.InternalServerException">
+        /// We couldn't process your request because of an issue with the server. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ResourceNotFoundException">
+        /// We couldn't find the requested resource. Check that your resources exists and were
+        /// created in the same Amazon Web Services Region as your request, and try your request
+        /// again.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ThrottlingException">
+        /// The rate has been exceeded for this API. Please try again after a few minutes.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ValidationException">
+        /// The request isn't valid. Check the syntax and try again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/connectcases-2022-10-03/DeleteTemplate">REST API Reference for DeleteTemplate Operation</seealso>
+        public virtual DeleteTemplateResponse DeleteTemplate(DeleteTemplateRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteTemplateRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteTemplateResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteTemplateResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes a cases template. You can delete up to 100 templates per domain.
+        /// 
+        ///  <pre><c> &lt;p&gt;After a cases template is deleted:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;
+        /// &lt;p&gt;You can still retrieve the template by calling &lt;code&gt;GetTemplate&lt;/code&gt;.&lt;/p&gt;
+        /// &lt;/li&gt; &lt;li&gt; &lt;p&gt;You cannot update the template. &lt;/p&gt; &lt;/li&gt;
+        /// &lt;li&gt; &lt;p&gt;You cannot create a case by using the deleted template.&lt;/p&gt;
+        /// &lt;/li&gt; &lt;li&gt; &lt;p&gt;Deleted templates are not included in the &lt;code&gt;ListTemplates&lt;/code&gt;
+        /// response.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; </c></pre>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteTemplate service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteTemplate service method, as returned by ConnectCases.</returns>
+        /// <exception cref="Amazon.ConnectCases.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ConflictException">
+        /// The requested operation would cause a conflict with the current state of a service
+        /// resource associated with the request. Resolve the conflict before retrying this request.
+        /// See the accompanying error message for details.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.InternalServerException">
+        /// We couldn't process your request because of an issue with the server. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ResourceNotFoundException">
+        /// We couldn't find the requested resource. Check that your resources exists and were
+        /// created in the same Amazon Web Services Region as your request, and try your request
+        /// again.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ThrottlingException">
+        /// The rate has been exceeded for this API. Please try again after a few minutes.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ValidationException">
+        /// The request isn't valid. Check the syntax and try again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/connectcases-2022-10-03/DeleteTemplate">REST API Reference for DeleteTemplate Operation</seealso>
+        public virtual Task<DeleteTemplateResponse> DeleteTemplateAsync(DeleteTemplateRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteTemplateRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteTemplateResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteTemplateResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -1225,6 +1651,81 @@ namespace Amazon.ConnectCases
             options.ResponseUnmarshaller = GetCaseResponseUnmarshaller.Instance;
             
             return InvokeAsync<GetCaseResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetCaseAuditEvents
+
+
+        /// <summary>
+        /// Returns the audit history about a specific case if it exists.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetCaseAuditEvents service method.</param>
+        /// 
+        /// <returns>The response from the GetCaseAuditEvents service method, as returned by ConnectCases.</returns>
+        /// <exception cref="Amazon.ConnectCases.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.InternalServerException">
+        /// We couldn't process your request because of an issue with the server. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ResourceNotFoundException">
+        /// We couldn't find the requested resource. Check that your resources exists and were
+        /// created in the same Amazon Web Services Region as your request, and try your request
+        /// again.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ThrottlingException">
+        /// The rate has been exceeded for this API. Please try again after a few minutes.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ValidationException">
+        /// The request isn't valid. Check the syntax and try again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/connectcases-2022-10-03/GetCaseAuditEvents">REST API Reference for GetCaseAuditEvents Operation</seealso>
+        public virtual GetCaseAuditEventsResponse GetCaseAuditEvents(GetCaseAuditEventsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetCaseAuditEventsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetCaseAuditEventsResponseUnmarshaller.Instance;
+
+            return Invoke<GetCaseAuditEventsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Returns the audit history about a specific case if it exists.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetCaseAuditEvents service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetCaseAuditEvents service method, as returned by ConnectCases.</returns>
+        /// <exception cref="Amazon.ConnectCases.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.InternalServerException">
+        /// We couldn't process your request because of an issue with the server. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ResourceNotFoundException">
+        /// We couldn't find the requested resource. Check that your resources exists and were
+        /// created in the same Amazon Web Services Region as your request, and try your request
+        /// again.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ThrottlingException">
+        /// The rate has been exceeded for this API. Please try again after a few minutes.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectCases.Model.ValidationException">
+        /// The request isn't valid. Check the syntax and try again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/connectcases-2022-10-03/GetCaseAuditEvents">REST API Reference for GetCaseAuditEvents Operation</seealso>
+        public virtual Task<GetCaseAuditEventsResponse> GetCaseAuditEventsAsync(GetCaseAuditEventsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetCaseAuditEventsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetCaseAuditEventsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetCaseAuditEventsResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -2054,7 +2555,9 @@ namespace Amazon.ConnectCases
 
 
         /// <summary>
-        /// API for adding case event publishing configuration
+        /// Adds case event publishing configuration. For a complete list of fields you can add
+        /// to the event message, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/case-fields.html">Create
+        /// case fields</a> in the <i>Amazon Connect Administrator Guide</i>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutCaseEventConfiguration service method.</param>
         /// 
@@ -2088,7 +2591,9 @@ namespace Amazon.ConnectCases
 
 
         /// <summary>
-        /// API for adding case event publishing configuration
+        /// Adds case event publishing configuration. For a complete list of fields you can add
+        /// to the event message, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/case-fields.html">Create
+        /// case fields</a> in the <i>Amazon Connect Administrator Guide</i>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutCaseEventConfiguration service method.</param>
         /// <param name="cancellationToken">
@@ -2134,9 +2639,9 @@ namespace Amazon.ConnectCases
         /// 
         ///  <note> 
         /// <para>
-        /// For <code>customer_id</code> you must provide the full customer profile ARN in this
-        /// format: <code> arn:aws:profile:your AWS Region:your AWS account ID:domains/profiles
-        /// domain name/profiles/profile ID</code>. 
+        /// For <c>customer_id</c> you must provide the full customer profile ARN in this format:
+        /// <c> arn:aws:profile:your AWS Region:your AWS account ID:domains/profiles domain name/profiles/profile
+        /// ID</c>. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -2177,9 +2682,9 @@ namespace Amazon.ConnectCases
         /// 
         ///  <note> 
         /// <para>
-        /// For <code>customer_id</code> you must provide the full customer profile ARN in this
-        /// format: <code> arn:aws:profile:your AWS Region:your AWS account ID:domains/profiles
-        /// domain name/profiles/profile ID</code>. 
+        /// For <c>customer_id</c> you must provide the full customer profile ARN in this format:
+        /// <c> arn:aws:profile:your AWS Region:your AWS account ID:domains/profiles domain name/profiles/profile
+        /// ID</c>. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -2459,14 +2964,15 @@ namespace Amazon.ConnectCases
 
 
         /// <summary>
-        /// Updates the values of fields on a case. Fields to be updated are received as an array
-        /// of id/value pairs identical to the <code>CreateCase</code> input .
-        /// 
-        ///  
+        /// <note> 
         /// <para>
-        /// If the action is successful, the service sends back an HTTP 200 response with an empty
-        /// HTTP body.
+        /// If you provide a value for <c>PerformedBy.UserArn</c> you must also have <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribeUser.html">connect:DescribeUser</a>
+        /// permission on the User ARN resource that you provide
         /// </para>
+        ///  </note> <pre><c> &lt;p&gt;Updates the values of fields on a case. Fields to be updated
+        /// are received as an array of id/value pairs identical to the &lt;code&gt;CreateCase&lt;/code&gt;
+        /// input .&lt;/p&gt; &lt;p&gt;If the action is successful, the service sends back an
+        /// HTTP 200 response with an empty HTTP body.&lt;/p&gt; </c></pre>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateCase service method.</param>
         /// 
@@ -2500,14 +3006,15 @@ namespace Amazon.ConnectCases
 
 
         /// <summary>
-        /// Updates the values of fields on a case. Fields to be updated are received as an array
-        /// of id/value pairs identical to the <code>CreateCase</code> input .
-        /// 
-        ///  
+        /// <note> 
         /// <para>
-        /// If the action is successful, the service sends back an HTTP 200 response with an empty
-        /// HTTP body.
+        /// If you provide a value for <c>PerformedBy.UserArn</c> you must also have <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribeUser.html">connect:DescribeUser</a>
+        /// permission on the User ARN resource that you provide
         /// </para>
+        ///  </note> <pre><c> &lt;p&gt;Updates the values of fields on a case. Fields to be updated
+        /// are received as an array of id/value pairs identical to the &lt;code&gt;CreateCase&lt;/code&gt;
+        /// input .&lt;/p&gt; &lt;p&gt;If the action is successful, the service sends back an
+        /// HTTP 200 response with an empty HTTP body.&lt;/p&gt; </c></pre>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateCase service method.</param>
         /// <param name="cancellationToken">
@@ -2642,7 +3149,7 @@ namespace Amazon.ConnectCases
         /// </para>
         ///  
         /// <para>
-        /// A <code>ValidationException</code> is returned when you add non-existent <code>fieldIds</code>
+        /// A <c>ValidationException</c> is returned when you add non-existent <c>fieldIds</c>
         /// to a layout.
         /// </para>
         ///  <note> 
@@ -2701,7 +3208,7 @@ namespace Amazon.ConnectCases
         /// </para>
         ///  
         /// <para>
-        /// A <code>ValidationException</code> is returned when you add non-existent <code>fieldIds</code>
+        /// A <c>ValidationException</c> is returned when you add non-existent <c>fieldIds</c>
         /// to a layout.
         /// </para>
         ///  <note> 
@@ -2759,10 +3266,10 @@ namespace Amazon.ConnectCases
 
         /// <summary>
         /// Updates the attributes of an existing template. The template attributes that can be
-        /// modified include <code>name</code>, <code>description</code>, <code>layoutConfiguration</code>,
-        /// <code>requiredFields</code>, and <code>status</code>. At least one of these attributes
-        /// must not be null. If a null value is provided for a given attribute, that attribute
-        /// is ignored and its current value is preserved.
+        /// modified include <c>name</c>, <c>description</c>, <c>layoutConfiguration</c>, <c>requiredFields</c>,
+        /// and <c>status</c>. At least one of these attributes must not be null. If a null value
+        /// is provided for a given attribute, that attribute is ignored and its current value
+        /// is preserved.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateTemplate service method.</param>
         /// 
@@ -2802,10 +3309,10 @@ namespace Amazon.ConnectCases
 
         /// <summary>
         /// Updates the attributes of an existing template. The template attributes that can be
-        /// modified include <code>name</code>, <code>description</code>, <code>layoutConfiguration</code>,
-        /// <code>requiredFields</code>, and <code>status</code>. At least one of these attributes
-        /// must not be null. If a null value is provided for a given attribute, that attribute
-        /// is ignored and its current value is preserved.
+        /// modified include <c>name</c>, <c>description</c>, <c>layoutConfiguration</c>, <c>requiredFields</c>,
+        /// and <c>status</c>. At least one of these attributes must not be null. If a null value
+        /// is provided for a given attribute, that attribute is ignored and its current value
+        /// is preserved.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateTemplate service method.</param>
         /// <param name="cancellationToken">
@@ -2856,11 +3363,11 @@ namespace Amazon.ConnectCases
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

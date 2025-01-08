@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RecycleBin.Model
 {
     /// <summary>
@@ -37,6 +38,7 @@ namespace Amazon.RecycleBin.Model
         private string _identifier;
         private LockState _lockState;
         private RetentionPeriod _retentionPeriod;
+        private string _ruleArn;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -77,28 +79,28 @@ namespace Amazon.RecycleBin.Model
         /// <summary>
         /// Gets and sets the property LockState. 
         /// <para>
-        /// The lock state for the retention rule.
+        /// [Region-level retention rules only] The lock state for the retention rule.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>locked</code> - The retention rule is locked and can't be modified or deleted.
+        ///  <c>locked</c> - The retention rule is locked and can't be modified or deleted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>pending_unlock</code> - The retention rule has been unlocked but it is still
-        /// within the unlock delay period. The retention rule can be modified or deleted only
-        /// after the unlock delay period has expired.
+        ///  <c>pending_unlock</c> - The retention rule has been unlocked but it is still within
+        /// the unlock delay period. The retention rule can be modified or deleted only after
+        /// the unlock delay period has expired.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>unlocked</code> - The retention rule is unlocked and it can be modified or
-        /// deleted by any user with the required permissions.
+        ///  <c>unlocked</c> - The retention rule is unlocked and it can be modified or deleted
+        /// by any user with the required permissions.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>null</code> - The retention rule has never been locked. Once a retention rule
-        /// has been locked, it can transition between the <code>locked</code> and <code>unlocked</code>
-        /// states only; it can never transition back to <code>null</code>.
+        ///  <c>null</c> - The retention rule has never been locked. Once a retention rule has
+        /// been locked, it can transition between the <c>locked</c> and <c>unlocked</c> states
+        /// only; it can never transition back to <c>null</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -130,6 +132,25 @@ namespace Amazon.RecycleBin.Model
         internal bool IsSetRetentionPeriod()
         {
             return this._retentionPeriod != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RuleArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the retention rule.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=1011)]
+        public string RuleArn
+        {
+            get { return this._ruleArn; }
+            set { this._ruleArn = value; }
+        }
+
+        // Check to see if RuleArn property is set
+        internal bool IsSetRuleArn()
+        {
+            return this._ruleArn != null;
         }
 
     }

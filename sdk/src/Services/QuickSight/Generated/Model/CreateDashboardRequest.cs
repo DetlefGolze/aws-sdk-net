@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateDashboard operation.
-    /// Creates a dashboard from either a template or directly with a <code>DashboardDefinition</code>.
-    /// To first create a template, see the <code> <a href="https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html">CreateTemplate</a>
-    /// </code> API operation.
+    /// Creates a dashboard from either a template or directly with a <c>DashboardDefinition</c>.
+    /// To first create a template, see the <c> <a href="https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html">CreateTemplate</a>
+    /// </c> API operation.
     /// 
     ///  
     /// <para>
@@ -49,11 +50,14 @@ namespace Amazon.QuickSight.Model
         private string _dashboardId;
         private DashboardPublishOptions _dashboardPublishOptions;
         private DashboardVersionDefinition _definition;
+        private List<string> _folderArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _linkEntities = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private LinkSharingConfiguration _linkSharingConfiguration;
         private string _name;
         private Parameters _parameters;
-        private List<ResourcePermission> _permissions = new List<ResourcePermission>();
+        private List<ResourcePermission> _permissions = AWSConfigs.InitializeCollections ? new List<ResourcePermission>() : null;
         private DashboardSourceEntity _sourceEntity;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _themeArn;
         private ValidationStrategy _validationStrategy;
         private string _versionDescription;
@@ -103,24 +107,23 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AvailabilityStatus</code> for <code>AdHocFilteringOption</code> - This status
-        /// can be either <code>ENABLED</code> or <code>DISABLED</code>. When this is set to <code>DISABLED</code>,
-        /// Amazon QuickSight disables the left filter pane on the published dashboard, which
-        /// can be used for ad hoc (one-time) filtering. This option is <code>ENABLED</code> by
+        ///  <c>AvailabilityStatus</c> for <c>AdHocFilteringOption</c> - This status can be either
+        /// <c>ENABLED</c> or <c>DISABLED</c>. When this is set to <c>DISABLED</c>, Amazon QuickSight
+        /// disables the left filter pane on the published dashboard, which can be used for ad
+        /// hoc (one-time) filtering. This option is <c>ENABLED</c> by default. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AvailabilityStatus</c> for <c>ExportToCSVOption</c> - This status can be either
+        /// <c>ENABLED</c> or <c>DISABLED</c>. The visual option to export data to .CSV format
+        /// isn't enabled when this is set to <c>DISABLED</c>. This option is <c>ENABLED</c> by
         /// default. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AvailabilityStatus</code> for <code>ExportToCSVOption</code> - This status
-        /// can be either <code>ENABLED</code> or <code>DISABLED</code>. The visual option to
-        /// export data to .CSV format isn't enabled when this is set to <code>DISABLED</code>.
-        /// This option is <code>ENABLED</code> by default. 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>VisibilityState</code> for <code>SheetControlsOption</code> - This visibility
-        /// state can be either <code>COLLAPSED</code> or <code>EXPANDED</code>. This option is
-        /// <code>COLLAPSED</code> by default. 
+        ///  <c>VisibilityState</c> for <c>SheetControlsOption</c> - This visibility state can
+        /// be either <c>COLLAPSED</c> or <c>EXPANDED</c>. This option is <c>COLLAPSED</c> by
+        /// default. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -147,8 +150,8 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  
         /// <para>
-        /// Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in
-        /// order for the request to be valid.
+        /// Either a <c>SourceEntity</c> or a <c>Definition</c> must be provided in order for
+        /// the request to be valid.
         /// </para>
         /// </summary>
         public DashboardVersionDefinition Definition
@@ -161,6 +164,62 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetDefinition()
         {
             return this._definition != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property FolderArns. 
+        /// <para>
+        /// When you create the dashboard, Amazon QuickSight adds the dashboard to these folders.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=1)]
+        public List<string> FolderArns
+        {
+            get { return this._folderArns; }
+            set { this._folderArns = value; }
+        }
+
+        // Check to see if FolderArns property is set
+        internal bool IsSetFolderArns()
+        {
+            return this._folderArns != null && (this._folderArns.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property LinkEntities. 
+        /// <para>
+        /// A list of analysis Amazon Resource Names (ARNs) to be linked to the dashboard.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=5)]
+        public List<string> LinkEntities
+        {
+            get { return this._linkEntities; }
+            set { this._linkEntities = value; }
+        }
+
+        // Check to see if LinkEntities property is set
+        internal bool IsSetLinkEntities()
+        {
+            return this._linkEntities != null && (this._linkEntities.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property LinkSharingConfiguration. 
+        /// <para>
+        /// A structure that contains the permissions of a shareable link to the dashboard.
+        /// </para>
+        /// </summary>
+        public LinkSharingConfiguration LinkSharingConfiguration
+        {
+            get { return this._linkSharingConfiguration; }
+            set { this._linkSharingConfiguration = value; }
+        }
+
+        // Check to see if LinkSharingConfiguration property is set
+        internal bool IsSetLinkSharingConfiguration()
+        {
+            return this._linkSharingConfiguration != null;
         }
 
         /// <summary>
@@ -224,32 +283,31 @@ namespace Amazon.QuickSight.Model
         // Check to see if Permissions property is set
         internal bool IsSetPermissions()
         {
-            return this._permissions != null && this._permissions.Count > 0; 
+            return this._permissions != null && (this._permissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SourceEntity. 
         /// <para>
-        /// The entity that you are using as a source when you create the dashboard. In <code>SourceEntity</code>,
+        /// The entity that you are using as a source when you create the dashboard. In <c>SourceEntity</c>,
         /// you specify the type of object you're using as source. You can only create a dashboard
-        /// from a template, so you use a <code>SourceTemplate</code> entity. If you need to create
+        /// from a template, so you use a <c>SourceTemplate</c> entity. If you need to create
         /// a dashboard from an analysis, first convert the analysis to a template by using the
-        /// <code> <a href="https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html">CreateTemplate</a>
-        /// </code> API operation. For <code>SourceTemplate</code>, specify the Amazon Resource
-        /// Name (ARN) of the source template. The <code>SourceTemplate</code>ARN can contain
-        /// any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services
-        /// Region. 
+        /// <c> <a href="https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html">CreateTemplate</a>
+        /// </c> API operation. For <c>SourceTemplate</c>, specify the Amazon Resource Name (ARN)
+        /// of the source template. The <c>SourceTemplate</c>ARN can contain any Amazon Web Services
+        /// account and any Amazon QuickSight-supported Amazon Web Services Region. 
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> to
-        /// list the replacement datasets for the placeholders listed in the original. The schema
-        /// in each dataset must match its placeholder. 
+        /// Use the <c>DataSetReferences</c> entity within <c>SourceTemplate</c> to list the replacement
+        /// datasets for the placeholders listed in the original. The schema in each dataset must
+        /// match its placeholder. 
         /// </para>
         ///  
         /// <para>
-        /// Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in
-        /// order for the request to be valid.
+        /// Either a <c>SourceEntity</c> or a <c>Definition</c> must be provided in order for
+        /// the request to be valid.
         /// </para>
         /// </summary>
         public DashboardSourceEntity SourceEntity
@@ -281,7 +339,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

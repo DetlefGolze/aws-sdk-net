@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -41,6 +42,14 @@ namespace Amazon.Backup.Model
         public IListBackupJobsPaginator ListBackupJobs(ListBackupJobsRequest request) 
         {
             return new ListBackupJobsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListBackupJobSummaries operation
+        ///</summary>
+        public IListBackupJobSummariesPaginator ListBackupJobSummaries(ListBackupJobSummariesRequest request) 
+        {
+            return new ListBackupJobSummariesPaginator(this.client, request);
         }
 
         /// <summary>
@@ -92,11 +101,27 @@ namespace Amazon.Backup.Model
         }
 
         /// <summary>
+        /// Paginator for ListCopyJobSummaries operation
+        ///</summary>
+        public IListCopyJobSummariesPaginator ListCopyJobSummaries(ListCopyJobSummariesRequest request) 
+        {
+            return new ListCopyJobSummariesPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListFrameworks operation
         ///</summary>
         public IListFrameworksPaginator ListFrameworks(ListFrameworksRequest request) 
         {
             return new ListFrameworksPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListIndexedRecoveryPoints operation
+        ///</summary>
+        public IListIndexedRecoveryPointsPaginator ListIndexedRecoveryPoints(ListIndexedRecoveryPointsRequest request) 
+        {
+            return new ListIndexedRecoveryPointsPaginator(this.client, request);
         }
 
         /// <summary>
@@ -169,6 +194,38 @@ namespace Amazon.Backup.Model
         public IListRestoreJobsPaginator ListRestoreJobs(ListRestoreJobsRequest request) 
         {
             return new ListRestoreJobsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListRestoreJobsByProtectedResource operation
+        ///</summary>
+        public IListRestoreJobsByProtectedResourcePaginator ListRestoreJobsByProtectedResource(ListRestoreJobsByProtectedResourceRequest request) 
+        {
+            return new ListRestoreJobsByProtectedResourcePaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListRestoreJobSummaries operation
+        ///</summary>
+        public IListRestoreJobSummariesPaginator ListRestoreJobSummaries(ListRestoreJobSummariesRequest request) 
+        {
+            return new ListRestoreJobSummariesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListRestoreTestingPlans operation
+        ///</summary>
+        public IListRestoreTestingPlansPaginator ListRestoreTestingPlans(ListRestoreTestingPlansRequest request) 
+        {
+            return new ListRestoreTestingPlansPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListRestoreTestingSelections operation
+        ///</summary>
+        public IListRestoreTestingSelectionsPaginator ListRestoreTestingSelections(ListRestoreTestingSelectionsRequest request) 
+        {
+            return new ListRestoreTestingSelectionsPaginator(this.client, request);
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.Glue.Model
         private DateTime? _completedOn;
         private ConnectionsList _connections;
         private DateTime? _createdOn;
-        private Dictionary<string, string> _defaultArguments = new Dictionary<string, string>();
+        private Dictionary<string, string> _defaultArguments = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _description;
         private double? _dpuSeconds;
         private string _errorMessage;
@@ -47,6 +48,7 @@ namespace Amazon.Glue.Model
         private int? _idleTimeout;
         private double? _maxCapacity;
         private int? _numberOfWorkers;
+        private string _profileName;
         private double? _progress;
         private string _role;
         private string _securityConfiguration;
@@ -141,7 +143,7 @@ namespace Amazon.Glue.Model
         // Check to see if DefaultArguments property is set
         internal bool IsSetDefaultArguments()
         {
-            return this._defaultArguments != null && this._defaultArguments.Count > 0; 
+            return this._defaultArguments != null && (this._defaultArguments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -298,7 +300,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property NumberOfWorkers. 
         /// <para>
-        /// The number of workers of a defined <code>WorkerType</code> to use for the session.
+        /// The number of workers of a defined <c>WorkerType</c> to use for the session.
         /// </para>
         /// </summary>
         public int NumberOfWorkers
@@ -311,6 +313,25 @@ namespace Amazon.Glue.Model
         internal bool IsSetNumberOfWorkers()
         {
             return this._numberOfWorkers.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ProfileName. 
+        /// <para>
+        /// The name of an Glue usage profile associated with the session.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=255)]
+        public string ProfileName
+        {
+            get { return this._profileName; }
+            set { this._profileName = value; }
+        }
+
+        // Check to see if ProfileName property is set
+        internal bool IsSetProfileName()
+        {
+            return this._profileName != null;
         }
 
         /// <summary>
@@ -391,8 +412,8 @@ namespace Amazon.Glue.Model
         /// Gets and sets the property WorkerType. 
         /// <para>
         /// The type of predefined worker that is allocated when a session runs. Accepts a value
-        /// of <code>G.1X</code>, <code>G.2X</code>, <code>G.4X</code>, or <code>G.8X</code> for
-        /// Spark sessions. Accepts the value <code>Z.2X</code> for Ray sessions.
+        /// of <c>G.1X</c>, <c>G.2X</c>, <c>G.4X</c>, or <c>G.8X</c> for Spark sessions. Accepts
+        /// the value <c>Z.2X</c> for Ray sessions.
         /// </para>
         /// </summary>
         public WorkerType WorkerType

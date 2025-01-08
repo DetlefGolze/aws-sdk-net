@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Lambda.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.Lambda.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAmazonManagedKafkaEventSourceConfig())
@@ -150,6 +152,12 @@ namespace Amazon.Lambda.Model.Internal.MarshallTransformations
                     context.Writer.WriteArrayEnd();
                 }
 
+                if(publicRequest.IsSetKMSKeyArn())
+                {
+                    context.Writer.WritePropertyName("KMSKeyArn");
+                    context.Writer.Write(publicRequest.KMSKeyArn);
+                }
+
                 if(publicRequest.IsSetMaximumBatchingWindowInSeconds())
                 {
                     context.Writer.WritePropertyName("MaximumBatchingWindowInSeconds");
@@ -168,10 +176,32 @@ namespace Amazon.Lambda.Model.Internal.MarshallTransformations
                     context.Writer.Write(publicRequest.MaximumRetryAttempts);
                 }
 
+                if(publicRequest.IsSetMetricsConfig())
+                {
+                    context.Writer.WritePropertyName("MetricsConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = EventSourceMappingMetricsConfigMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.MetricsConfig, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetParallelizationFactor())
                 {
                     context.Writer.WritePropertyName("ParallelizationFactor");
                     context.Writer.Write(publicRequest.ParallelizationFactor);
+                }
+
+                if(publicRequest.IsSetProvisionedPollerConfig())
+                {
+                    context.Writer.WritePropertyName("ProvisionedPollerConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ProvisionedPollerConfigMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.ProvisionedPollerConfig, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetQueues())
@@ -244,6 +274,20 @@ namespace Amazon.Lambda.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("StartingPositionTimestamp");
                     context.Writer.Write(publicRequest.StartingPositionTimestamp);
+                }
+
+                if(publicRequest.IsSetTags())
+                {
+                    context.Writer.WritePropertyName("Tags");
+                    context.Writer.WriteObjectStart();
+                    foreach (var publicRequestTagsKvp in publicRequest.Tags)
+                    {
+                        context.Writer.WritePropertyName(publicRequestTagsKvp.Key);
+                        var publicRequestTagsValue = publicRequestTagsKvp.Value;
+
+                            context.Writer.Write(publicRequestTagsValue);
+                    }
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetTopics())

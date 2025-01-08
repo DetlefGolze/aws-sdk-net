@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTAnalytics.Model
 {
     /// <summary>
@@ -33,20 +34,20 @@ namespace Amazon.IoTAnalytics.Model
     /// </summary>
     public partial class AddAttributesActivity
     {
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _name;
         private string _next;
 
         /// <summary>
         /// Gets and sets the property Attributes. 
         /// <para>
-        /// A list of 1-50 <code>AttributeNameMapping</code> objects that map an existing attribute
+        /// A list of 1-50 <c>AttributeNameMapping</c> objects that map an existing attribute
         /// to a new attribute.
         /// </para>
         ///  <note> 
         /// <para>
         /// The existing attributes remain in the message, so if you want to remove the originals,
-        /// use <code>RemoveAttributeActivity</code>.
+        /// use <c>RemoveAttributeActivity</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -60,7 +61,7 @@ namespace Amazon.IoTAnalytics.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

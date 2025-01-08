@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecretsManager.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.SecretsManager.Model
         private MemoryStream _secretBinary;
         private string _secretString;
         private string _versionId;
-        private List<string> _versionStages = new List<string>();
+        private List<string> _versionStages = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ARN. 
@@ -64,8 +65,8 @@ namespace Amazon.SecretsManager.Model
         /// Gets and sets the property CreatedDate. 
         /// <para>
         /// The date and time that this version of the secret was created. If you don't specify
-        /// which version in <code>VersionId</code> or <code>VersionStage</code>, then Secrets
-        /// Manager uses the <code>AWSCURRENT</code> version.
+        /// which version in <c>VersionId</c> or <c>VersionStage</c>, then Secrets Manager uses
+        /// the <c>AWSCURRENT</c> version.
         /// </para>
         /// </summary>
         public DateTime CreatedDate
@@ -103,14 +104,21 @@ namespace Amazon.SecretsManager.Model
         /// Gets and sets the property SecretBinary. 
         /// <para>
         /// The decrypted secret value, if the secret value was originally provided as binary
-        /// data in the form of a byte array. The response parameter represents the binary data
-        /// as a <a href="https://tools.ietf.org/html/rfc4648#section-4">base64-encoded</a> string.
+        /// data in the form of a byte array. When you retrieve a <c>SecretBinary</c> using the
+        /// HTTP API, the Python SDK, or the Amazon Web Services CLI, the value is Base64-encoded.
+        /// Otherwise, it is not encoded.
         /// </para>
         ///  
         /// <para>
         /// If the secret was created by using the Secrets Manager console, or if the secret value
         /// was originally provided as a string, then this field is omitted. The secret value
-        /// appears in <code>SecretString</code> instead.
+        /// appears in <c>SecretString</c> instead.
+        /// </para>
+        ///  
+        /// <para>
+        /// Sensitive: This field contains sensitive information, so the service does not include
+        /// it in CloudTrail log entries. If you create your own log entries, you must also avoid
+        /// logging the information in this field.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=65536)]
@@ -136,6 +144,12 @@ namespace Amazon.SecretsManager.Model
         /// <para>
         /// If this secret was created by using the console, then Secrets Manager stores the information
         /// as a JSON structure of key/value pairs. 
+        /// </para>
+        ///  
+        /// <para>
+        /// Sensitive: This field contains sensitive information, so the service does not include
+        /// it in CloudTrail log entries. If you create your own log entries, you must also avoid
+        /// logging the information in this field.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=65536)]
@@ -186,7 +200,7 @@ namespace Amazon.SecretsManager.Model
         // Check to see if VersionStages property is set
         internal bool IsSetVersionStages()
         {
-            return this._versionStages != null && this._versionStages.Count > 0; 
+            return this._versionStages != null && (this._versionStages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

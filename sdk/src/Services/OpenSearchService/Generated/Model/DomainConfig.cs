@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.OpenSearchService.Model
         private AccessPoliciesStatus _accessPolicies;
         private AdvancedOptionsStatus _advancedOptions;
         private AdvancedSecurityOptionsStatus _advancedSecurityOptions;
+        private AIMLOptionsStatus _aimlOptions;
         private AutoTuneOptionsStatus _autoTuneOptions;
         private ChangeProgressDetails _changeProgressDetails;
         private ClusterConfigStatus _clusterConfig;
@@ -44,7 +46,10 @@ namespace Amazon.OpenSearchService.Model
         private EBSOptionsStatus _ebsOptions;
         private EncryptionAtRestOptionsStatus _encryptionAtRestOptions;
         private VersionStatus _engineVersion;
+        private IdentityCenterOptionsStatus _identityCenterOptions;
+        private IPAddressTypeStatus _ipAddressType;
         private LogPublishingOptionsStatus _logPublishingOptions;
+        private List<ModifyingProperties> _modifyingProperties = AWSConfigs.InitializeCollections ? new List<ModifyingProperties>() : null;
         private NodeToNodeEncryptionOptionsStatus _nodeToNodeEncryptionOptions;
         private OffPeakWindowOptionsStatus _offPeakWindowOptions;
         private SnapshotOptionsStatus _snapshotOptions;
@@ -105,6 +110,24 @@ namespace Amazon.OpenSearchService.Model
         internal bool IsSetAdvancedSecurityOptions()
         {
             return this._advancedSecurityOptions != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property AIMLOptions. 
+        /// <para>
+        /// Container for parameters required to enable all machine learning features.
+        /// </para>
+        /// </summary>
+        public AIMLOptionsStatus AIMLOptions
+        {
+            get { return this._aimlOptions; }
+            set { this._aimlOptions = value; }
+        }
+
+        // Check to see if AIMLOptions property is set
+        internal bool IsSetAIMLOptions()
+        {
+            return this._aimlOptions != null;
         }
 
         /// <summary>
@@ -253,6 +276,45 @@ namespace Amazon.OpenSearchService.Model
         }
 
         /// <summary>
+        /// Gets and sets the property IdentityCenterOptions. 
+        /// <para>
+        /// Container for IAM Identity Center Option control for the domain.
+        /// </para>
+        /// </summary>
+        public IdentityCenterOptionsStatus IdentityCenterOptions
+        {
+            get { return this._identityCenterOptions; }
+            set { this._identityCenterOptions = value; }
+        }
+
+        // Check to see if IdentityCenterOptions property is set
+        internal bool IsSetIdentityCenterOptions()
+        {
+            return this._identityCenterOptions != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IPAddressType. 
+        /// <para>
+        /// Choose either dual stack or IPv4 as your IP address type. Dual stack allows you to
+        /// share domain resources across IPv4 and IPv6 address types, and is the recommended
+        /// option. If you set your IP address type to dual stack, you can't change your address
+        /// type later.
+        /// </para>
+        /// </summary>
+        public IPAddressTypeStatus IPAddressType
+        {
+            get { return this._ipAddressType; }
+            set { this._ipAddressType = value; }
+        }
+
+        // Check to see if IPAddressType property is set
+        internal bool IsSetIPAddressType()
+        {
+            return this._ipAddressType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property LogPublishingOptions. 
         /// <para>
         /// Key-value pairs to configure log publishing.
@@ -268,6 +330,24 @@ namespace Amazon.OpenSearchService.Model
         internal bool IsSetLogPublishingOptions()
         {
             return this._logPublishingOptions != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ModifyingProperties. 
+        /// <para>
+        /// Information about the domain properties that are currently being modified.
+        /// </para>
+        /// </summary>
+        public List<ModifyingProperties> ModifyingProperties
+        {
+            get { return this._modifyingProperties; }
+            set { this._modifyingProperties = value; }
+        }
+
+        // Check to see if ModifyingProperties property is set
+        internal bool IsSetModifyingProperties()
+        {
+            return this._modifyingProperties != null && (this._modifyingProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

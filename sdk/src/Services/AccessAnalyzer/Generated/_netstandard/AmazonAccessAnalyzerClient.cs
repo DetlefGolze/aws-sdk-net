@@ -33,26 +33,47 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.AccessAnalyzer
 {
     /// <summary>
-    /// Implementation for accessing AccessAnalyzer
+    /// <para>Implementation for accessing AccessAnalyzer</para>
     ///
-    /// Identity and Access Management Access Analyzer helps identify potential resource-access
-    /// risks by enabling you to identify any policies that grant access to an external principal.
-    /// It does this by using logic-based reasoning to analyze resource-based policies in
-    /// your Amazon Web Services environment. An external principal can be another Amazon
-    /// Web Services account, a root user, an IAM user or role, a federated user, an Amazon
-    /// Web Services service, or an anonymous user. You can also use IAM Access Analyzer to
-    /// preview and validate public and cross-account access to your resources before deploying
-    /// permissions changes. This guide describes the Identity and Access Management Access
-    /// Analyzer operations that you can call programmatically. For general information about
-    /// IAM Access Analyzer, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html">Identity
-    /// and Access Management Access Analyzer</a> in the <b>IAM User Guide</b>.
+    /// Identity and Access Management Access Analyzer helps you to set, verify, and refine
+    /// your IAM policies by providing a suite of capabilities. Its features include findings
+    /// for external and unused access, basic and custom policy checks for validating policies,
+    /// and policy generation to generate fine-grained policies. To start using IAM Access
+    /// Analyzer to identify external or unused access, you first need to create an analyzer.
     /// 
     ///  
     /// <para>
-    /// To start using IAM Access Analyzer, you first need to create an analyzer.
+    ///  <b>External access analyzers</b> help identify potential risks of accessing resources
+    /// by enabling you to identify any resource policies that grant access to an external
+    /// principal. It does this by using logic-based reasoning to analyze resource-based policies
+    /// in your Amazon Web Services environment. An external principal can be another Amazon
+    /// Web Services account, a root user, an IAM user or role, a federated user, an Amazon
+    /// Web Services service, or an anonymous user. You can also use IAM Access Analyzer to
+    /// preview public and cross-account access to your resources before deploying permissions
+    /// changes.
+    /// </para>
+    ///  
+    /// <para>
+    ///  <b>Unused access analyzers</b> help identify potential identity access risks by enabling
+    /// you to identify unused IAM roles, unused access keys, unused console passwords, and
+    /// IAM principals with unused service and action-level permissions.
+    /// </para>
+    ///  
+    /// <para>
+    /// Beyond findings, IAM Access Analyzer provides basic and custom policy checks to validate
+    /// IAM policies before deploying permissions changes. You can use policy generation to
+    /// refine permissions by attaching a policy generated using access activity logged in
+    /// CloudTrail logs. 
+    /// </para>
+    ///  
+    /// <para>
+    /// This guide describes the IAM Access Analyzer operations that you can call programmatically.
+    /// For general information about IAM Access Analyzer, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html">Identity
+    /// and Access Management Access Analyzer</a> in the <b>IAM User Guide</b>.
     /// </para>
     /// </summary>
     public partial class AmazonAccessAnalyzerClient : AmazonServiceClient, IAmazonAccessAnalyzer
@@ -378,6 +399,173 @@ namespace Amazon.AccessAnalyzer
 
         #endregion
         
+        #region  CheckAccessNotGranted
+
+        internal virtual CheckAccessNotGrantedResponse CheckAccessNotGranted(CheckAccessNotGrantedRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CheckAccessNotGrantedRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CheckAccessNotGrantedResponseUnmarshaller.Instance;
+
+            return Invoke<CheckAccessNotGrantedResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Checks whether the specified access isn't allowed by a policy.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CheckAccessNotGranted service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CheckAccessNotGranted service method, as returned by AccessAnalyzer.</returns>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.InternalServerException">
+        /// Internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.InvalidParameterException">
+        /// The specified parameter is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ThrottlingException">
+        /// Throttling limit exceeded error.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.UnprocessableEntityException">
+        /// The specified entity could not be processed.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ValidationException">
+        /// Validation exception error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/CheckAccessNotGranted">REST API Reference for CheckAccessNotGranted Operation</seealso>
+        public virtual Task<CheckAccessNotGrantedResponse> CheckAccessNotGrantedAsync(CheckAccessNotGrantedRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CheckAccessNotGrantedRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CheckAccessNotGrantedResponseUnmarshaller.Instance;
+
+            return InvokeAsync<CheckAccessNotGrantedResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CheckNoNewAccess
+
+        internal virtual CheckNoNewAccessResponse CheckNoNewAccess(CheckNoNewAccessRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CheckNoNewAccessRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CheckNoNewAccessResponseUnmarshaller.Instance;
+
+            return Invoke<CheckNoNewAccessResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Checks whether new access is allowed for an updated policy when compared to the existing
+        /// policy.
+        /// 
+        ///  
+        /// <para>
+        /// You can find examples for reference policies and learn how to set up and run a custom
+        /// policy check for new access in the <a href="https://github.com/aws-samples/iam-access-analyzer-custom-policy-check-samples">IAM
+        /// Access Analyzer custom policy checks samples</a> repository on GitHub. The reference
+        /// policies in this repository are meant to be passed to the <c>existingPolicyDocument</c>
+        /// request parameter.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CheckNoNewAccess service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CheckNoNewAccess service method, as returned by AccessAnalyzer.</returns>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.InternalServerException">
+        /// Internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.InvalidParameterException">
+        /// The specified parameter is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ThrottlingException">
+        /// Throttling limit exceeded error.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.UnprocessableEntityException">
+        /// The specified entity could not be processed.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ValidationException">
+        /// Validation exception error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/CheckNoNewAccess">REST API Reference for CheckNoNewAccess Operation</seealso>
+        public virtual Task<CheckNoNewAccessResponse> CheckNoNewAccessAsync(CheckNoNewAccessRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CheckNoNewAccessRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CheckNoNewAccessResponseUnmarshaller.Instance;
+
+            return InvokeAsync<CheckNoNewAccessResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CheckNoPublicAccess
+
+        internal virtual CheckNoPublicAccessResponse CheckNoPublicAccess(CheckNoPublicAccessRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CheckNoPublicAccessRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CheckNoPublicAccessResponseUnmarshaller.Instance;
+
+            return Invoke<CheckNoPublicAccessResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Checks whether a resource policy can grant public access to the specified resource
+        /// type.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CheckNoPublicAccess service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CheckNoPublicAccess service method, as returned by AccessAnalyzer.</returns>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.InternalServerException">
+        /// Internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.InvalidParameterException">
+        /// The specified parameter is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ThrottlingException">
+        /// Throttling limit exceeded error.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.UnprocessableEntityException">
+        /// The specified entity could not be processed.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ValidationException">
+        /// Validation exception error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/CheckNoPublicAccess">REST API Reference for CheckNoPublicAccess Operation</seealso>
+        public virtual Task<CheckNoPublicAccessResponse> CheckNoPublicAccessAsync(CheckNoPublicAccessRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CheckNoPublicAccessRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CheckNoPublicAccessResponseUnmarshaller.Instance;
+
+            return InvokeAsync<CheckNoPublicAccessResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  CreateAccessPreview
 
         internal virtual CreateAccessPreviewResponse CreateAccessPreview(CreateAccessPreviewRequest request)
@@ -648,6 +836,52 @@ namespace Amazon.AccessAnalyzer
 
         #endregion
         
+        #region  GenerateFindingRecommendation
+
+        internal virtual GenerateFindingRecommendationResponse GenerateFindingRecommendation(GenerateFindingRecommendationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GenerateFindingRecommendationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GenerateFindingRecommendationResponseUnmarshaller.Instance;
+
+            return Invoke<GenerateFindingRecommendationResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Creates a recommendation for an unused permissions finding.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GenerateFindingRecommendation service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GenerateFindingRecommendation service method, as returned by AccessAnalyzer.</returns>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.InternalServerException">
+        /// Internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ThrottlingException">
+        /// Throttling limit exceeded error.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ValidationException">
+        /// Validation exception error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/GenerateFindingRecommendation">REST API Reference for GenerateFindingRecommendation Operation</seealso>
+        public virtual Task<GenerateFindingRecommendationResponse> GenerateFindingRecommendationAsync(GenerateFindingRecommendationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GenerateFindingRecommendationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GenerateFindingRecommendationResponseUnmarshaller.Instance;
+
+            return InvokeAsync<GenerateFindingRecommendationResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  GetAccessPreview
 
         internal virtual GetAccessPreviewResponse GetAccessPreview(GetAccessPreviewRequest request)
@@ -864,7 +1098,10 @@ namespace Amazon.AccessAnalyzer
 
 
         /// <summary>
-        /// Retrieves information about the specified finding.
+        /// Retrieves information about the specified finding. GetFinding and GetFindingV2 both
+        /// use <c>access-analyzer:GetFinding</c> in the <c>Action</c> element of an IAM policy
+        /// statement. You must have permission to perform the <c>access-analyzer:GetFinding</c>
+        /// action.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetFinding service method.</param>
         /// <param name="cancellationToken">
@@ -899,6 +1136,107 @@ namespace Amazon.AccessAnalyzer
 
         #endregion
         
+        #region  GetFindingRecommendation
+
+        internal virtual GetFindingRecommendationResponse GetFindingRecommendation(GetFindingRecommendationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetFindingRecommendationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetFindingRecommendationResponseUnmarshaller.Instance;
+
+            return Invoke<GetFindingRecommendationResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Retrieves information about a finding recommendation for the specified analyzer.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetFindingRecommendation service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetFindingRecommendation service method, as returned by AccessAnalyzer.</returns>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.InternalServerException">
+        /// Internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ResourceNotFoundException">
+        /// The specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ThrottlingException">
+        /// Throttling limit exceeded error.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ValidationException">
+        /// Validation exception error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/GetFindingRecommendation">REST API Reference for GetFindingRecommendation Operation</seealso>
+        public virtual Task<GetFindingRecommendationResponse> GetFindingRecommendationAsync(GetFindingRecommendationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetFindingRecommendationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetFindingRecommendationResponseUnmarshaller.Instance;
+
+            return InvokeAsync<GetFindingRecommendationResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetFindingV2
+
+        internal virtual GetFindingV2Response GetFindingV2(GetFindingV2Request request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetFindingV2RequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetFindingV2ResponseUnmarshaller.Instance;
+
+            return Invoke<GetFindingV2Response>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Retrieves information about the specified finding. GetFinding and GetFindingV2 both
+        /// use <c>access-analyzer:GetFinding</c> in the <c>Action</c> element of an IAM policy
+        /// statement. You must have permission to perform the <c>access-analyzer:GetFinding</c>
+        /// action.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetFindingV2 service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetFindingV2 service method, as returned by AccessAnalyzer.</returns>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.InternalServerException">
+        /// Internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ResourceNotFoundException">
+        /// The specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ThrottlingException">
+        /// Throttling limit exceeded error.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ValidationException">
+        /// Validation exception error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/GetFindingV2">REST API Reference for GetFindingV2 Operation</seealso>
+        public virtual Task<GetFindingV2Response> GetFindingV2Async(GetFindingV2Request request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetFindingV2RequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetFindingV2ResponseUnmarshaller.Instance;
+
+            return InvokeAsync<GetFindingV2Response>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  GetGeneratedPolicy
 
         internal virtual GetGeneratedPolicyResponse GetGeneratedPolicy(GetGeneratedPolicyRequest request)
@@ -913,7 +1251,7 @@ namespace Amazon.AccessAnalyzer
 
 
         /// <summary>
-        /// Retrieves the policy that was generated using <code>StartPolicyGeneration</code>.
+        /// Retrieves the policy that was generated using <c>StartPolicyGeneration</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetGeneratedPolicy service method.</param>
         /// <param name="cancellationToken">
@@ -1061,7 +1399,7 @@ namespace Amazon.AccessAnalyzer
 
         /// <summary>
         /// Retrieves a list of resources of the specified type that have been analyzed by the
-        /// specified analyzer..
+        /// specified analyzer.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListAnalyzedResources service method.</param>
         /// <param name="cancellationToken">
@@ -1202,7 +1540,10 @@ namespace Amazon.AccessAnalyzer
 
 
         /// <summary>
-        /// Retrieves a list of findings generated by the specified analyzer.
+        /// Retrieves a list of findings generated by the specified analyzer. ListFindings and
+        /// ListFindingsV2 both use <c>access-analyzer:ListFindings</c> in the <c>Action</c> element
+        /// of an IAM policy statement. You must have permission to perform the <c>access-analyzer:ListFindings</c>
+        /// action.
         /// 
         ///  
         /// <para>
@@ -1240,6 +1581,65 @@ namespace Amazon.AccessAnalyzer
             options.ResponseUnmarshaller = ListFindingsResponseUnmarshaller.Instance;
 
             return InvokeAsync<ListFindingsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListFindingsV2
+
+        internal virtual ListFindingsV2Response ListFindingsV2(ListFindingsV2Request request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListFindingsV2RequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListFindingsV2ResponseUnmarshaller.Instance;
+
+            return Invoke<ListFindingsV2Response>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Retrieves a list of findings generated by the specified analyzer. ListFindings and
+        /// ListFindingsV2 both use <c>access-analyzer:ListFindings</c> in the <c>Action</c> element
+        /// of an IAM policy statement. You must have permission to perform the <c>access-analyzer:ListFindings</c>
+        /// action.
+        /// 
+        ///  
+        /// <para>
+        /// To learn about filter keys that you can use to retrieve a list of findings, see <a
+        /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-filter-keys.html">IAM
+        /// Access Analyzer filter keys</a> in the <b>IAM User Guide</b>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListFindingsV2 service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListFindingsV2 service method, as returned by AccessAnalyzer.</returns>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.InternalServerException">
+        /// Internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ResourceNotFoundException">
+        /// The specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ThrottlingException">
+        /// Throttling limit exceeded error.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ValidationException">
+        /// Validation exception error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/ListFindingsV2">REST API Reference for ListFindingsV2 Operation</seealso>
+        public virtual Task<ListFindingsV2Response> ListFindingsV2Async(ListFindingsV2Request request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListFindingsV2RequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListFindingsV2ResponseUnmarshaller.Instance;
+
+            return InvokeAsync<ListFindingsV2Response>(request, options, cancellationToken);
         }
 
         #endregion
@@ -1538,6 +1938,58 @@ namespace Amazon.AccessAnalyzer
 
         #endregion
         
+        #region  UpdateAnalyzer
+
+        internal virtual UpdateAnalyzerResponse UpdateAnalyzer(UpdateAnalyzerRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateAnalyzerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateAnalyzerResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateAnalyzerResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Modifies the configuration of an existing analyzer.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateAnalyzer service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateAnalyzer service method, as returned by AccessAnalyzer.</returns>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ConflictException">
+        /// A conflict exception error.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.InternalServerException">
+        /// Internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ResourceNotFoundException">
+        /// The specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ThrottlingException">
+        /// Throttling limit exceeded error.
+        /// </exception>
+        /// <exception cref="Amazon.AccessAnalyzer.Model.ValidationException">
+        /// Validation exception error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/UpdateAnalyzer">REST API Reference for UpdateAnalyzer Operation</seealso>
+        public virtual Task<UpdateAnalyzerResponse> UpdateAnalyzerAsync(UpdateAnalyzerRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateAnalyzerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateAnalyzerResponseUnmarshaller.Instance;
+
+            return InvokeAsync<UpdateAnalyzerResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  UpdateArchiveRule
 
         internal virtual UpdateArchiveRuleResponse UpdateArchiveRule(UpdateArchiveRuleRequest request)
@@ -1693,11 +2145,11 @@ namespace Amazon.AccessAnalyzer
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

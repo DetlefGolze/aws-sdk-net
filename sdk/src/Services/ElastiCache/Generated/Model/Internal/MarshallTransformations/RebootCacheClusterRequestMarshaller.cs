@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElastiCache.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -67,7 +68,7 @@ namespace Amazon.ElastiCache.Model.Internal.MarshallTransformations
                     int publicRequestlistValueIndex = 1;
                     foreach(var publicRequestlistValue in publicRequest.CacheNodeIdsToReboot)
                     {
-                        request.Parameters.Add("CacheNodeIdsToReboot" + "." + "member" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
+                        request.Parameters.Add("CacheNodeIdsToReboot" + "." + "CacheNodeId" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
                         publicRequestlistValueIndex++;
                     }
                 }

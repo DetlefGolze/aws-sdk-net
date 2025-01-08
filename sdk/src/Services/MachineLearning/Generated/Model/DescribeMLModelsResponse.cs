@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MachineLearning.Model
 {
     /// <summary>
-    /// Represents the output of a <code>DescribeMLModels</code> operation. The content is
-    /// essentially a list of <code>MLModel</code>.
+    /// Represents the output of a <c>DescribeMLModels</c> operation. The content is essentially
+    /// a list of <c>MLModel</c>.
     /// </summary>
     public partial class DescribeMLModelsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<MLModel> _results = new List<MLModel>();
+        private List<MLModel> _results = AWSConfigs.InitializeCollections ? new List<MLModel>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -59,7 +60,7 @@ namespace Amazon.MachineLearning.Model
         /// <summary>
         /// Gets and sets the property Results. 
         /// <para>
-        /// A list of <code>MLModel</code> that meet the search criteria.
+        /// A list of <c>MLModel</c> that meet the search criteria.
         /// </para>
         /// </summary>
         public List<MLModel> Results
@@ -71,7 +72,7 @@ namespace Amazon.MachineLearning.Model
         // Check to see if Results property is set
         internal bool IsSetResults()
         {
-            return this._results != null && this._results.Count > 0; 
+            return this._results != null && (this._results.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

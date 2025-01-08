@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataPipeline.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.DataPipeline.Model
     {
         private string _description;
         private string _name;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _uniqueId;
 
         /// <summary>
@@ -97,7 +98,7 @@ namespace Amazon.DataPipeline.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -106,13 +107,13 @@ namespace Amazon.DataPipeline.Model
         /// A unique identifier. This identifier is not the same as the pipeline identifier assigned
         /// by AWS Data Pipeline. You are responsible for defining the format and ensuring the
         /// uniqueness of this identifier. You use this parameter to ensure idempotency during
-        /// repeated calls to <code>CreatePipeline</code>. For example, if the first call to <code>CreatePipeline</code>
+        /// repeated calls to <c>CreatePipeline</c>. For example, if the first call to <c>CreatePipeline</c>
         /// does not succeed, you can pass in the same unique identifier and pipeline name combination
-        /// on a subsequent call to <code>CreatePipeline</code>. <code>CreatePipeline</code> ensures
-        /// that if a pipeline already exists with the same name and unique identifier, a new
-        /// pipeline is not created. Instead, you'll receive the pipeline identifier from the
-        /// previous attempt. The uniqueness of the name and unique identifier combination is
-        /// scoped to the AWS account or IAM user credentials.
+        /// on a subsequent call to <c>CreatePipeline</c>. <c>CreatePipeline</c> ensures that
+        /// if a pipeline already exists with the same name and unique identifier, a new pipeline
+        /// is not created. Instead, you'll receive the pipeline identifier from the previous
+        /// attempt. The uniqueness of the name and unique identifier combination is scoped to
+        /// the AWS account or IAM user credentials.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1024)]

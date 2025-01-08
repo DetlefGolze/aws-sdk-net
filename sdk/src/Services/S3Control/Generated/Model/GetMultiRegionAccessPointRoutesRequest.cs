@@ -26,13 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
     /// Container for the parameters to the GetMultiRegionAccessPointRoutes operation.
+    /// <note> 
+    /// <para>
+    /// This operation is not supported by directory buckets.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Returns the routing configuration for a Multi-Region Access Point, indicating which
     /// Regions are active or passive.
-    /// 
+    /// </para>
     ///  
     /// <para>
     /// To obtain routing control changes and failover requests, use the Amazon S3 failover
@@ -40,29 +47,25 @@ namespace Amazon.S3Control.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>us-east-1</code> 
+    ///  <c>us-east-1</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>us-west-2</code> 
+    ///  <c>us-west-2</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ap-southeast-2</code> 
+    ///  <c>ap-southeast-2</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ap-northeast-1</code> 
+    ///  <c>ap-northeast-1</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>eu-west-1</code> 
+    ///  <c>eu-west-1</c> 
     /// </para>
-    ///  </li> </ul> <note> 
-    /// <para>
-    /// Your Amazon S3 bucket does not need to be in these five Regions.
-    /// </para>
-    ///  </note>
+    ///  </li> </ul>
     /// </summary>
     public partial class GetMultiRegionAccessPointRoutesRequest : AmazonS3ControlRequest
     {
@@ -85,7 +88,7 @@ namespace Amazon.S3Control.Model
         // Check to see if AccountId property is set
         internal bool IsSetAccountId()
         {
-            return this._accountId != null;
+            return !string.IsNullOrEmpty(this._accountId);
         }
 
         /// <summary>

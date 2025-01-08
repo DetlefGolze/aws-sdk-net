@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeStarNotifications.Model
 {
     /// <summary>
@@ -38,12 +39,12 @@ namespace Amazon.CodeStarNotifications.Model
     {
         private string _clientRequestToken;
         private DetailType _detailType;
-        private List<string> _eventTypeIds = new List<string>();
+        private List<string> _eventTypeIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
         private string _resource;
         private NotificationRuleStatus _status;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
-        private List<Target> _targets = new List<Target>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<Target> _targets = AWSConfigs.InitializeCollections ? new List<Target>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
@@ -76,10 +77,10 @@ namespace Amazon.CodeStarNotifications.Model
         /// <summary>
         /// Gets and sets the property DetailType. 
         /// <para>
-        /// The level of detail to include in the notifications for this resource. <code>BASIC</code>
+        /// The level of detail to include in the notifications for this resource. <c>BASIC</c>
         /// will include only the contents of the event as it would appear in Amazon CloudWatch.
-        /// <code>FULL</code> will include any supplemental information provided by AWS CodeStar
-        /// Notifications and/or the service for the resource for which the notification is created.
+        /// <c>FULL</c> will include any supplemental information provided by AWS CodeStar Notifications
+        /// and/or the service for the resource for which the notification is created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -112,7 +113,7 @@ namespace Amazon.CodeStarNotifications.Model
         // Check to see if EventTypeIds property is set
         internal bool IsSetEventTypeIds()
         {
-            return this._eventTypeIds != null && this._eventTypeIds.Count > 0; 
+            return this._eventTypeIds != null && (this._eventTypeIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -159,9 +160,8 @@ namespace Amazon.CodeStarNotifications.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the notification rule. The default value is <code>ENABLED</code>. If
-        /// the status is set to <code>DISABLED</code>, notifications aren't sent for the notification
-        /// rule.
+        /// The status of the notification rule. The default value is <c>ENABLED</c>. If the status
+        /// is set to <c>DISABLED</c>, notifications aren't sent for the notification rule.
         /// </para>
         /// </summary>
         public NotificationRuleStatus Status
@@ -179,7 +179,7 @@ namespace Amazon.CodeStarNotifications.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// A list of tags to apply to this notification rule. Key names cannot start with "<code>aws</code>".
+        /// A list of tags to apply to this notification rule. Key names cannot start with "<c>aws</c>".
         /// 
         /// </para>
         /// </summary>
@@ -192,7 +192,7 @@ namespace Amazon.CodeStarNotifications.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -212,7 +212,7 @@ namespace Amazon.CodeStarNotifications.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

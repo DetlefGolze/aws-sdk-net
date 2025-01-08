@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -106,7 +107,7 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property PreProvisioningHook. 
         /// <para>
-        /// Updates the pre-provisioning hook template. Only supports template of type <code>FLEET_PROVISIONING</code>.
+        /// Updates the pre-provisioning hook template. Only supports template of type <c>FLEET_PROVISIONING</c>.
         /// For more information about provisioning template types, see <a href="https://docs.aws.amazon.com/iot/latest/apireference/API_CreateProvisioningTemplate.html#iot-CreateProvisioningTemplate-request-type">type</a>.
         /// </para>
         /// </summary>

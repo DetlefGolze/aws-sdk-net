@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
-    /// The <code>Targets</code> parameter includes too many tags. Remove one or more tags
-    /// and try the command again.
+    /// The <c>Targets</c> parameter includes too many tags. Remove one or more tags and try
+    /// the command again.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RedshiftDataAPIService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -123,6 +124,12 @@ namespace Amazon.RedshiftDataAPIService.Model.Internal.MarshallTransformations
                     response.RedshiftQueryId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ResultFormat", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.ResultFormat = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ResultRows", targetDepth))
                 {
                     var unmarshaller = LongUnmarshaller.Instance;
@@ -139,6 +146,12 @@ namespace Amazon.RedshiftDataAPIService.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.SecretArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("SessionId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.SessionId = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Status", targetDepth))

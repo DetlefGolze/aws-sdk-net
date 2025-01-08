@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAF.Model
 {
     /// <summary>
@@ -42,15 +43,14 @@ namespace Amazon.WAF.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// Contains the <code>Rules</code> that identify the requests that you want to allow,
-    /// block, or count. In a <code>WebACL</code>, you also specify a default action (<code>ALLOW</code>
-    /// or <code>BLOCK</code>), and the action for each <code>Rule</code> that you add to
-    /// a <code>WebACL</code>, for example, block requests from specified IP addresses or
-    /// block requests from specified referrers. You also associate the <code>WebACL</code>
-    /// with a CloudFront distribution to identify the requests that you want AWS WAF to filter.
-    /// If you add more than one <code>Rule</code> to a <code>WebACL</code>, a request needs
-    /// to match only one of the specifications to be allowed, blocked, or counted. For more
-    /// information, see <a>UpdateWebACL</a>.
+    /// Contains the <c>Rules</c> that identify the requests that you want to allow, block,
+    /// or count. In a <c>WebACL</c>, you also specify a default action (<c>ALLOW</c> or <c>BLOCK</c>),
+    /// and the action for each <c>Rule</c> that you add to a <c>WebACL</c>, for example,
+    /// block requests from specified IP addresses or block requests from specified referrers.
+    /// You also associate the <c>WebACL</c> with a CloudFront distribution to identify the
+    /// requests that you want AWS WAF to filter. If you add more than one <c>Rule</c> to
+    /// a <c>WebACL</c>, a request needs to match only one of the specifications to be allowed,
+    /// blocked, or counted. For more information, see <a>UpdateWebACL</a>.
     /// </para>
     /// </summary>
     public partial class WebACL
@@ -58,15 +58,15 @@ namespace Amazon.WAF.Model
         private WafAction _defaultAction;
         private string _metricName;
         private string _name;
-        private List<ActivatedRule> _rules = new List<ActivatedRule>();
+        private List<ActivatedRule> _rules = AWSConfigs.InitializeCollections ? new List<ActivatedRule>() : null;
         private string _webACLArn;
         private string _webACLId;
 
         /// <summary>
         /// Gets and sets the property DefaultAction. 
         /// <para>
-        /// The action to perform if none of the <code>Rules</code> contained in the <code>WebACL</code>
-        /// match. The action is specified by the <a>WafAction</a> object.
+        /// The action to perform if none of the <c>Rules</c> contained in the <c>WebACL</c> match.
+        /// The action is specified by the <a>WafAction</a> object.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -85,11 +85,11 @@ namespace Amazon.WAF.Model
         /// <summary>
         /// Gets and sets the property MetricName. 
         /// <para>
-        /// A friendly name or description for the metrics for this <code>WebACL</code>. The name
-        /// can contain only alphanumeric characters (A-Z, a-z, 0-9), with maximum length 128
-        /// and minimum length one. It can't contain whitespace or metric names reserved for AWS
-        /// WAF, including "All" and "Default_Action." You can't change <code>MetricName</code>
-        /// after you create the <code>WebACL</code>.
+        /// A friendly name or description for the metrics for this <c>WebACL</c>. The name can
+        /// contain only alphanumeric characters (A-Z, a-z, 0-9), with maximum length 128 and
+        /// minimum length one. It can't contain whitespace or metric names reserved for AWS WAF,
+        /// including "All" and "Default_Action." You can't change <c>MetricName</c> after you
+        /// create the <c>WebACL</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -108,8 +108,8 @@ namespace Amazon.WAF.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// A friendly name or description of the <code>WebACL</code>. You can't change the name
-        /// of a <code>WebACL</code> after you create it.
+        /// A friendly name or description of the <c>WebACL</c>. You can't change the name of
+        /// a <c>WebACL</c> after you create it.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -128,8 +128,8 @@ namespace Amazon.WAF.Model
         /// <summary>
         /// Gets and sets the property Rules. 
         /// <para>
-        /// An array that contains the action for each <code>Rule</code> in a <code>WebACL</code>,
-        /// the priority of the <code>Rule</code>, and the ID of the <code>Rule</code>.
+        /// An array that contains the action for each <c>Rule</c> in a <c>WebACL</c>, the priority
+        /// of the <c>Rule</c>, and the ID of the <c>Rule</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -142,7 +142,7 @@ namespace Amazon.WAF.Model
         // Check to see if Rules property is set
         internal bool IsSetRules()
         {
-            return this._rules != null && this._rules.Count > 0; 
+            return this._rules != null && (this._rules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -167,13 +167,13 @@ namespace Amazon.WAF.Model
         /// <summary>
         /// Gets and sets the property WebACLId. 
         /// <para>
-        /// A unique identifier for a <code>WebACL</code>. You use <code>WebACLId</code> to get
-        /// information about a <code>WebACL</code> (see <a>GetWebACL</a>), update a <code>WebACL</code>
-        /// (see <a>UpdateWebACL</a>), and delete a <code>WebACL</code> from AWS WAF (see <a>DeleteWebACL</a>).
+        /// A unique identifier for a <c>WebACL</c>. You use <c>WebACLId</c> to get information
+        /// about a <c>WebACL</c> (see <a>GetWebACL</a>), update a <c>WebACL</c> (see <a>UpdateWebACL</a>),
+        /// and delete a <c>WebACL</c> from AWS WAF (see <a>DeleteWebACL</a>).
         /// </para>
         ///  
         /// <para>
-        ///  <code>WebACLId</code> is returned by <a>CreateWebACL</a> and by <a>ListWebACLs</a>.
+        ///  <c>WebACLId</c> is returned by <a>CreateWebACL</a> and by <a>ListWebACLs</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=128)]

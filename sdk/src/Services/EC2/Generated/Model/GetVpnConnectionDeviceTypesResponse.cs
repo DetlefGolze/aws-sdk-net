@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.EC2.Model
     public partial class GetVpnConnectionDeviceTypesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<VpnConnectionDeviceType> _vpnConnectionDeviceTypes = new List<VpnConnectionDeviceType>();
+        private List<VpnConnectionDeviceType> _vpnConnectionDeviceTypes = AWSConfigs.InitializeCollections ? new List<VpnConnectionDeviceType>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>NextToken</code> value to include in a future <code>GetVpnConnectionDeviceTypes</code>
-        /// request. When the results of a <code>GetVpnConnectionDeviceTypes</code> request exceed
-        /// <code>MaxResults</code>, this value can be used to retrieve the next page of results.
-        /// This value is null when there are no more results to return.
+        /// The <c>NextToken</c> value to include in a future <c>GetVpnConnectionDeviceTypes</c>
+        /// request. When the results of a <c>GetVpnConnectionDeviceTypes</c> request exceed <c>MaxResults</c>,
+        /// this value can be used to retrieve the next page of results. This value is null when
+        /// there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken
@@ -73,7 +74,7 @@ namespace Amazon.EC2.Model
         // Check to see if VpnConnectionDeviceTypes property is set
         internal bool IsSetVpnConnectionDeviceTypes()
         {
-            return this._vpnConnectionDeviceTypes != null && this._vpnConnectionDeviceTypes.Count > 0; 
+            return this._vpnConnectionDeviceTypes != null && (this._vpnConnectionDeviceTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancingV2.Model
 {
     /// <summary>
@@ -33,8 +34,9 @@ namespace Amazon.ElasticLoadBalancingV2.Model
     /// </summary>
     public partial class AvailabilityZone
     {
-        private List<LoadBalancerAddress> _loadBalancerAddresses = new List<LoadBalancerAddress>();
+        private List<LoadBalancerAddress> _loadBalancerAddresses = AWSConfigs.InitializeCollections ? new List<LoadBalancerAddress>() : null;
         private string _outpostId;
+        private List<string> _sourceNatIpv6Prefixes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _subnetId;
         private string _zoneName;
 
@@ -56,7 +58,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if LoadBalancerAddresses property is set
         internal bool IsSetLoadBalancerAddresses()
         {
-            return this._loadBalancerAddresses != null && this._loadBalancerAddresses.Count > 0; 
+            return this._loadBalancerAddresses != null && (this._loadBalancerAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -75,6 +77,27 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         internal bool IsSetOutpostId()
         {
             return this._outpostId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SourceNatIpv6Prefixes. 
+        /// <para>
+        /// [Network Load Balancers with UDP listeners] The IPv6 prefixes to use for source NAT.
+        /// For each subnet, specify an IPv6 prefix (/80 netmask) from the subnet CIDR block or
+        /// <c>auto_assigned</c> to use an IPv6 prefix selected at random from the subnet CIDR
+        /// block.
+        /// </para>
+        /// </summary>
+        public List<string> SourceNatIpv6Prefixes
+        {
+            get { return this._sourceNatIpv6Prefixes; }
+            set { this._sourceNatIpv6Prefixes = value; }
+        }
+
+        // Check to see if SourceNatIpv6Prefixes property is set
+        internal bool IsSetSourceNatIpv6Prefixes()
+        {
+            return this._sourceNatIpv6Prefixes != null && (this._sourceNatIpv6Prefixes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

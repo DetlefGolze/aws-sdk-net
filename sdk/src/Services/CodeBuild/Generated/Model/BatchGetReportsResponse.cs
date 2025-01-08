@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -33,14 +34,13 @@ namespace Amazon.CodeBuild.Model
     /// </summary>
     public partial class BatchGetReportsResponse : AmazonWebServiceResponse
     {
-        private List<Report> _reports = new List<Report>();
-        private List<string> _reportsNotFound = new List<string>();
+        private List<Report> _reports = AWSConfigs.InitializeCollections ? new List<Report>() : null;
+        private List<string> _reportsNotFound = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Reports. 
         /// <para>
-        ///  The array of <code>Report</code> objects returned by <code>BatchGetReports</code>.
-        /// 
+        ///  The array of <c>Report</c> objects returned by <c>BatchGetReports</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -53,14 +53,14 @@ namespace Amazon.CodeBuild.Model
         // Check to see if Reports property is set
         internal bool IsSetReports()
         {
-            return this._reports != null && this._reports.Count > 0; 
+            return this._reports != null && (this._reports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ReportsNotFound. 
         /// <para>
-        ///  An array of ARNs passed to <code>BatchGetReportGroups</code> that are not associated
-        /// with a <code>Report</code>. 
+        ///  An array of ARNs passed to <c>BatchGetReportGroups</c> that are not associated with
+        /// a <c>Report</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -73,7 +73,7 @@ namespace Amazon.CodeBuild.Model
         // Check to see if ReportsNotFound property is set
         internal bool IsSetReportsNotFound()
         {
-            return this._reportsNotFound != null && this._reportsNotFound.Count > 0; 
+            return this._reportsNotFound != null && (this._reportsNotFound.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

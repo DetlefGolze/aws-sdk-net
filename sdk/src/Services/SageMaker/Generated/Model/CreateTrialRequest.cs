@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -58,14 +59,14 @@ namespace Amazon.SageMaker.Model
         private string _displayName;
         private string _experimentName;
         private MetadataProperties _metadataProperties;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _trialName;
 
         /// <summary>
         /// Gets and sets the property DisplayName. 
         /// <para>
-        /// The name of the trial as displayed. The name doesn't need to be unique. If <code>DisplayName</code>
-        /// isn't specified, <code>TrialName</code> is displayed.
+        /// The name of the trial as displayed. The name doesn't need to be unique. If <c>DisplayName</c>
+        /// isn't specified, <c>TrialName</c> is displayed.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=120)]
@@ -132,7 +133,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

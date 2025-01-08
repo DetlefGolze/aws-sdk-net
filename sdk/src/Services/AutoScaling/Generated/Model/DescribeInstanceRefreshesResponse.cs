@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.AutoScaling.Model
     /// </summary>
     public partial class DescribeInstanceRefreshesResponse : AmazonWebServiceResponse
     {
-        private List<InstanceRefresh> _instanceRefreshes = new List<InstanceRefresh>();
+        private List<InstanceRefresh> _instanceRefreshes = AWSConfigs.InitializeCollections ? new List<InstanceRefresh>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,14 +53,14 @@ namespace Amazon.AutoScaling.Model
         // Check to see if InstanceRefreshes property is set
         internal bool IsSetInstanceRefreshes()
         {
-            return this._instanceRefreshes != null && this._instanceRefreshes.Count > 0; 
+            return this._instanceRefreshes != null && (this._instanceRefreshes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A string that indicates that the response contains more items than can be returned
-        /// in a single response. To receive additional items, specify this string for the <code>NextToken</code>
+        /// in a single response. To receive additional items, specify this string for the <c>NextToken</c>
         /// value when requesting the next set of items. This value is null when there are no
         /// more items to return.
         /// </para>

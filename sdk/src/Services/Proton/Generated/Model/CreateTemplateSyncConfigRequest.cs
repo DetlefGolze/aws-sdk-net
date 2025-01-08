@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Proton.Model
 {
     /// <summary>
@@ -74,7 +75,7 @@ namespace Amazon.Proton.Model
         /// <summary>
         /// Gets and sets the property RepositoryName. 
         /// <para>
-        /// The repository name (for example, <code>myrepos/myrepo</code>).
+        /// The repository name (for example, <c>myrepos/myrepo</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTAnalytics.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.IoTAnalytics.Model
     /// </summary>
     public partial class ListChannelsResponse : AmazonWebServiceResponse
     {
-        private List<ChannelSummary> _channelSummaries = new List<ChannelSummary>();
+        private List<ChannelSummary> _channelSummaries = AWSConfigs.InitializeCollections ? new List<ChannelSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property ChannelSummaries. 
         /// <para>
-        /// A list of <code>ChannelSummary</code> objects.
+        /// A list of <c>ChannelSummary</c> objects.
         /// </para>
         /// </summary>
         public List<ChannelSummary> ChannelSummaries
@@ -51,14 +52,14 @@ namespace Amazon.IoTAnalytics.Model
         // Check to see if ChannelSummaries property is set
         internal bool IsSetChannelSummaries()
         {
-            return this._channelSummaries != null && this._channelSummaries.Count > 0; 
+            return this._channelSummaries != null && (this._channelSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to retrieve the next set of results, or <code>null</code> if there are no
-        /// more results.
+        /// The token to retrieve the next set of results, or <c>null</c> if there are no more
+        /// results.
         /// </para>
         /// </summary>
         public string NextToken

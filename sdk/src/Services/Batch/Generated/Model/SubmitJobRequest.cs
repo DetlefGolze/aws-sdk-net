@@ -26,17 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
     /// Container for the parameters to the SubmitJob operation.
     /// Submits an Batch job from a job definition. Parameters that are specified during <a>SubmitJob</a>
     /// override parameters defined in the job definition. vCPU and memory requirements that
-    /// are specified in the <code>resourceRequirements</code> objects in the job definition
-    /// are the exception. They can't be overridden this way using the <code>memory</code>
-    /// and <code>vcpus</code> parameters. Rather, you must specify updates to job definition
-    /// parameters in a <code>resourceRequirements</code> object that's included in the <code>containerOverrides</code>
-    /// parameter.
+    /// are specified in the <c>resourceRequirements</c> objects in the job definition are
+    /// the exception. They can't be overridden this way using the <c>memory</c> and <c>vcpus</c>
+    /// parameters. Rather, you must specify updates to job definition parameters in a <c>resourceRequirements</c>
+    /// object that's included in the <c>containerOverrides</c> parameter.
     /// 
     ///  <note> 
     /// <para>
@@ -55,18 +55,19 @@ namespace Amazon.Batch.Model
     {
         private ArrayProperties _arrayProperties;
         private ContainerOverrides _containerOverrides;
-        private List<JobDependency> _dependsOn = new List<JobDependency>();
+        private List<JobDependency> _dependsOn = AWSConfigs.InitializeCollections ? new List<JobDependency>() : null;
+        private EcsPropertiesOverride _ecsPropertiesOverride;
         private EksPropertiesOverride _eksPropertiesOverride;
         private string _jobDefinition;
         private string _jobName;
         private string _jobQueue;
         private NodeOverrides _nodeOverrides;
-        private Dictionary<string, string> _parameters = new Dictionary<string, string>();
+        private Dictionary<string, string> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private bool? _propagateTags;
         private RetryStrategy _retryStrategy;
         private int? _schedulingPriorityOverride;
         private string _shareIdentifier;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private JobTimeout _timeout;
 
         /// <summary>
@@ -93,12 +94,12 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property ContainerOverrides. 
         /// <para>
-        /// An object with various properties that override the defaults for the job definition
-        /// that specify the name of a container in the specified job definition and the overrides
-        /// it should receive. You can override the default command for a container, which is
-        /// specified in the job definition or the Docker image, with a <code>command</code> override.
-        /// You can also override existing environment variables on a container or add new environment
-        /// variables to it with an <code>environment</code> override.
+        /// An object with properties that override the defaults for the job definition that specify
+        /// the name of a container in the specified job definition and the overrides it should
+        /// receive. You can override the default command for a container, which is specified
+        /// in the job definition or the Docker image, with a <c>command</c> override. You can
+        /// also override existing environment variables on a container or add new environment
+        /// variables to it with an <c>environment</c> override.
         /// </para>
         /// </summary>
         public ContainerOverrides ContainerOverrides
@@ -117,11 +118,11 @@ namespace Amazon.Batch.Model
         /// Gets and sets the property DependsOn. 
         /// <para>
         /// A list of dependencies for the job. A job can depend upon a maximum of 20 jobs. You
-        /// can specify a <code>SEQUENTIAL</code> type dependency without specifying a job ID
-        /// for array jobs so that each child array job completes sequentially, starting at index
-        /// 0. You can also specify an <code>N_TO_N</code> type dependency with a job ID for array
-        /// jobs. In that case, each index child of this job must wait for the corresponding index
-        /// child of each dependency to complete before it can begin.
+        /// can specify a <c>SEQUENTIAL</c> type dependency without specifying a job ID for array
+        /// jobs so that each child array job completes sequentially, starting at index 0. You
+        /// can also specify an <c>N_TO_N</c> type dependency with a job ID for array jobs. In
+        /// that case, each index child of this job must wait for the corresponding index child
+        /// of each dependency to complete before it can begin.
         /// </para>
         /// </summary>
         public List<JobDependency> DependsOn
@@ -133,14 +134,33 @@ namespace Amazon.Batch.Model
         // Check to see if DependsOn property is set
         internal bool IsSetDependsOn()
         {
-            return this._dependsOn != null && this._dependsOn.Count > 0; 
+            return this._dependsOn != null && (this._dependsOn.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property EcsPropertiesOverride. 
+        /// <para>
+        /// An object, with properties that override defaults for the job definition, can only
+        /// be specified for jobs that are run on Amazon ECS resources.
+        /// </para>
+        /// </summary>
+        public EcsPropertiesOverride EcsPropertiesOverride
+        {
+            get { return this._ecsPropertiesOverride; }
+            set { this._ecsPropertiesOverride = value; }
+        }
+
+        // Check to see if EcsPropertiesOverride property is set
+        internal bool IsSetEcsPropertiesOverride()
+        {
+            return this._ecsPropertiesOverride != null;
         }
 
         /// <summary>
         /// Gets and sets the property EksPropertiesOverride. 
         /// <para>
-        /// An object that can only be specified for jobs that are run on Amazon EKS resources
-        /// with various properties that override defaults for the job definition.
+        /// An object, with properties that override defaults for the job definition, can only
+        /// be specified for jobs that are run on Amazon EKS resources.
         /// </para>
         /// </summary>
         public EksPropertiesOverride EksPropertiesOverride
@@ -158,11 +178,11 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property JobDefinition. 
         /// <para>
-        /// The job definition used by this job. This value can be one of <code>definition-name</code>,
-        /// <code>definition-name:revision</code>, or the Amazon Resource Name (ARN) for the job
-        /// definition, with or without the revision (<code>arn:aws:batch:<i>region</i>:<i>account</i>:job-definition/<i>definition-name</i>:<i>revision</i>
-        /// </code>, or <code>arn:aws:batch:<i>region</i>:<i>account</i>:job-definition/<i>definition-name</i>
-        /// </code>).
+        /// The job definition used by this job. This value can be one of <c>definition-name</c>,
+        /// <c>definition-name:revision</c>, or the Amazon Resource Name (ARN) for the job definition,
+        /// with or without the revision (<c>arn:aws:batch:<i>region</i>:<i>account</i>:job-definition/<i>definition-name</i>:<i>revision</i>
+        /// </c>, or <c>arn:aws:batch:<i>region</i>:<i>account</i>:job-definition/<i>definition-name</i>
+        /// </c>).
         /// </para>
         ///  
         /// <para>
@@ -232,7 +252,7 @@ namespace Amazon.Batch.Model
         ///  <note> 
         /// <para>
         /// This parameter isn't applicable to jobs that are running on Fargate resources; use
-        /// <code>containerOverrides</code> instead.
+        /// <c>containerOverrides</c> instead.
         /// </para>
         ///  </note>
         /// </summary>
@@ -253,8 +273,8 @@ namespace Amazon.Batch.Model
         /// <para>
         /// Additional parameters passed to the job that replace parameter substitution placeholders
         /// that are set in the job definition. Parameters are specified as a key and value pair
-        /// mapping. Parameters in a <code>SubmitJob</code> request override any corresponding
-        /// parameter defaults from the job definition.
+        /// mapping. Parameters in a <c>SubmitJob</c> request override any corresponding parameter
+        /// defaults from the job definition.
         /// </para>
         /// </summary>
         public Dictionary<string, string> Parameters
@@ -266,7 +286,7 @@ namespace Amazon.Batch.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -276,7 +296,7 @@ namespace Amazon.Batch.Model
         /// Amazon ECS task. If no value is specified, the tags aren't propagated. Tags can only
         /// be propagated to the tasks during task creation. For tags with the same name, job
         /// tags are given priority over job definitions tags. If the total number of combined
-        /// tags from the job and job definition is over 50, the job is moved to the <code>FAILED</code>
+        /// tags from the job and job definition is over 50, the job is moved to the <c>FAILED</c>
         /// state. When specified, this overrides the tag propagation setting in the job definition.
         /// </para>
         /// </summary>
@@ -317,7 +337,8 @@ namespace Amazon.Batch.Model
         /// <para>
         /// The scheduling priority for the job. This only affects jobs in job queues with a fair
         /// share policy. Jobs with a higher scheduling priority are scheduled before jobs with
-        /// a lower scheduling priority. This overrides any scheduling priority in the job definition.
+        /// a lower scheduling priority. This overrides any scheduling priority in the job definition
+        /// and works only within a single share identifier.
         /// </para>
         ///  
         /// <para>
@@ -380,7 +401,7 @@ namespace Amazon.Batch.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

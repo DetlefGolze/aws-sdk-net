@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -65,7 +66,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property BlueprintServiceLocation. 
         /// <para>
-        /// Specifies a path in Amazon S3 where the blueprint is copied when you call <code>CreateBlueprint/UpdateBlueprint</code>
+        /// Specifies a path in Amazon S3 where the blueprint is copied when you call <c>CreateBlueprint/UpdateBlueprint</c>
         /// to register the blueprint in Glue.
         /// </para>
         /// </summary>

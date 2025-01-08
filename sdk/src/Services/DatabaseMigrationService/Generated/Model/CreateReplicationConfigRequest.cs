@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.DatabaseMigrationService.Model
         private string _sourceEndpointArn;
         private string _supplementalSettings;
         private string _tableMappings;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _targetEndpointArn;
 
         /// <summary>
@@ -69,13 +70,13 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property ReplicationConfigIdentifier. 
         /// <para>
-        /// A unique identifier that you want to use to create a <code>ReplicationConfigArn</code>
-        /// that is returned as part of the output from this action. You can then pass this output
-        /// <code>ReplicationConfigArn</code> as the value of the <code>ReplicationConfigArn</code>
-        /// option for other actions to identify both DMS Serverless replications and replication
-        /// configurations that you want those actions to operate on. For some actions, you can
-        /// also use either this unique identifier or a corresponding ARN in action filters to
-        /// identify the specific replication and replication configuration to operate on.
+        /// A unique identifier that you want to use to create a <c>ReplicationConfigArn</c> that
+        /// is returned as part of the output from this action. You can then pass this output
+        /// <c>ReplicationConfigArn</c> as the value of the <c>ReplicationConfigArn</c> option
+        /// for other actions to identify both DMS Serverless replications and replication configurations
+        /// that you want those actions to operate on. For some actions, you can also use either
+        /// this unique identifier or a corresponding ARN in action filters to identify the specific
+        /// replication and replication configuration to operate on.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -122,15 +123,15 @@ namespace Amazon.DatabaseMigrationService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>"full-load"</code> 
+        ///  <c>"full-load"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"cdc"</code> 
+        ///  <c>"cdc"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"full-load-and-cdc"</code> 
+        ///  <c>"full-load-and-cdc"</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -246,7 +247,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

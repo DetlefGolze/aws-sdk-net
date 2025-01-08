@@ -26,10 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectParticipant.Model
 {
     /// <summary>
-    /// An attachment with that identifier is already being uploaded.
+    /// The requested operation conflicts with the current state of a service resource associated
+    /// with the request.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

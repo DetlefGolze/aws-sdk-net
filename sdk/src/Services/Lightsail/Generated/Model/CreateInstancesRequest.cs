@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -34,22 +35,22 @@ namespace Amazon.Lightsail.Model
     /// 
     ///  
     /// <para>
-    /// The <code>create instances</code> operation supports tag-based access control via
-    /// request tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Lightsail
+    /// The <c>create instances</c> operation supports tag-based access control via request
+    /// tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Lightsail
     /// Developer Guide</a>.
     /// </para>
     /// </summary>
     public partial class CreateInstancesRequest : AmazonLightsailRequest
     {
-        private List<AddOnRequest> _addOns = new List<AddOnRequest>();
+        private List<AddOnRequest> _addOns = AWSConfigs.InitializeCollections ? new List<AddOnRequest>() : null;
         private string _availabilityZone;
         private string _blueprintId;
         private string _bundleId;
         private string _customImageName;
-        private List<string> _instanceNames = new List<string>();
+        private List<string> _instanceNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private IpAddressType _ipAddressType;
         private string _keyPairName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _userData;
 
         /// <summary>
@@ -67,17 +68,17 @@ namespace Amazon.Lightsail.Model
         // Check to see if AddOns property is set
         internal bool IsSetAddOns()
         {
-            return this._addOns != null && this._addOns.Count > 0; 
+            return this._addOns != null && (this._addOns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AvailabilityZone. 
         /// <para>
         /// The Availability Zone in which to create your instance. Use the following format:
-        /// <code>us-east-2a</code> (case sensitive). You can get a list of Availability Zones
-        /// by using the <a href="http://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetRegions.html">get
-        /// regions</a> operation. Be sure to add the <code>include Availability Zones</code>
-        /// parameter to your request.
+        /// <c>us-east-2a</c> (case sensitive). You can get a list of Availability Zones by using
+        /// the <a href="http://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetRegions.html">get
+        /// regions</a> operation. Be sure to add the <c>include Availability Zones</c> parameter
+        /// to your request.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -96,9 +97,8 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property BlueprintId. 
         /// <para>
-        /// The ID for a virtual private server image (e.g., <code>app_wordpress_4_4</code> or
-        /// <code>app_lamp_7_0</code>). Use the <code>get blueprints</code> operation to return
-        /// a list of available images (or <i>blueprints</i>).
+        /// The ID for a virtual private server image (<c>app_wordpress_x_x</c> or <c>app_lamp_x_x</c>).
+        /// Use the <c>get blueprints</c> operation to return a list of available images (or <i>blueprints</i>).
         /// </para>
         ///  <note> 
         /// <para>
@@ -126,7 +126,7 @@ namespace Amazon.Lightsail.Model
         /// Gets and sets the property BundleId. 
         /// <para>
         /// The bundle of specification information for your virtual private server (or <i>instance</i>),
-        /// including the pricing plan (e.g., <code>micro_1_0</code>).
+        /// including the pricing plan (<c>medium_x_x</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -145,12 +145,12 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property CustomImageName. 
         /// <para>
-        /// (Deprecated) The name for your custom image.
+        /// (Discontinued) The name for your custom image.
         /// </para>
         ///  <note> 
         /// <para>
         /// In releases prior to June 12, 2017, this parameter was ignored by the API. It is now
-        /// deprecated.
+        /// discontinued.
         /// </para>
         ///  </note>
         /// </summary>
@@ -171,7 +171,7 @@ namespace Amazon.Lightsail.Model
         /// Gets and sets the property InstanceNames. 
         /// <para>
         /// The names to use for your new Lightsail instances. Separate multiple values using
-        /// quotation marks and commas, for example: <code>["MyFirstInstance","MySecondInstance"]</code>
+        /// quotation marks and commas, for example: <c>["MyFirstInstance","MySecondInstance"]</c>
         /// 
         /// </para>
         /// </summary>
@@ -185,7 +185,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if InstanceNames property is set
         internal bool IsSetInstanceNames()
         {
-            return this._instanceNames != null && this._instanceNames.Count > 0; 
+            return this._instanceNames != null && (this._instanceNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -195,12 +195,12 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// The possible values are <code>ipv4</code> for IPv4 only, and <code>dualstack</code>
-        /// for IPv4 and IPv6.
+        /// The possible values are <c>ipv4</c> for IPv4 only, <c>ipv6</c> for IPv6 only, and
+        /// <c>dualstack</c> for IPv4 and IPv6.
         /// </para>
         ///  
         /// <para>
-        /// The default value is <code>dualstack</code>.
+        /// The default value is <c>dualstack</c>.
         /// </para>
         /// </summary>
         public IpAddressType IpAddressType
@@ -240,7 +240,7 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>TagResource</code> action to tag a resource after it's created.
+        /// Use the <c>TagResource</c> action to tag a resource after it's created.
         /// </para>
         /// </summary>
         public List<Tag> Tags
@@ -252,20 +252,20 @@ namespace Amazon.Lightsail.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UserData. 
         /// <para>
         /// A launch script you can create that configures a server with additional user data.
-        /// For example, you might want to run <code>apt-get -y update</code>.
+        /// For example, you might want to run <c>apt-get -y update</c>.
         /// </para>
         ///  <note> 
         /// <para>
         /// Depending on the machine image you choose, the command to get software on your instance
-        /// varies. Amazon Linux and CentOS use <code>yum</code>, Debian and Ubuntu use <code>apt-get</code>,
-        /// and FreeBSD uses <code>pkg</code>. For a complete list, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/compare-options-choose-lightsail-instance-image">Amazon
+        /// varies. Amazon Linux and CentOS use <c>yum</c>, Debian and Ubuntu use <c>apt-get</c>,
+        /// and FreeBSD uses <c>pkg</c>. For a complete list, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/compare-options-choose-lightsail-instance-image">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         ///  </note>

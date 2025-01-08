@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Imagebuilder.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Imagebuilder.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Image Unmarshall(JsonUnmarshallerContext context)
         {
+            Image unmarshalledObject = new Image();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Image unmarshalledObject = new Image();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -88,6 +90,12 @@ namespace Amazon.Imagebuilder.Model.Internal.MarshallTransformations
                     unmarshalledObject.DateCreated = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("deprecationTime", targetDepth))
+                {
+                    var unmarshaller = DateTimeUnmarshaller.Instance;
+                    unmarshalledObject.DeprecationTime = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("distributionConfiguration", targetDepth))
                 {
                     var unmarshaller = DistributionConfigurationUnmarshaller.Instance;
@@ -98,6 +106,12 @@ namespace Amazon.Imagebuilder.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = BoolUnmarshaller.Instance;
                     unmarshalledObject.EnhancedImageMetadataEnabled = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("executionRole", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ExecutionRole = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("imageRecipe", targetDepth))
@@ -128,6 +142,12 @@ namespace Amazon.Imagebuilder.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = InfrastructureConfigurationUnmarshaller.Instance;
                     unmarshalledObject.InfrastructureConfiguration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("lifecycleExecutionId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.LifecycleExecutionId = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("name", targetDepth))
@@ -196,8 +216,13 @@ namespace Amazon.Imagebuilder.Model.Internal.MarshallTransformations
                     unmarshalledObject.Version = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("workflows", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<WorkflowConfiguration, WorkflowConfigurationUnmarshaller>(WorkflowConfigurationUnmarshaller.Instance);
+                    unmarshalledObject.Workflows = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

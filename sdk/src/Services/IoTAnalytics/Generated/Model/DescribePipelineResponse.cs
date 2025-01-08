@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTAnalytics.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.IoTAnalytics.Model
         /// <summary>
         /// Gets and sets the property Pipeline. 
         /// <para>
-        /// A <code>Pipeline</code> object that contains information about the pipeline.
+        /// A <c>Pipeline</c> object that contains information about the pipeline.
         /// </para>
         /// </summary>
         public Pipeline Pipeline

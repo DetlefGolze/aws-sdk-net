@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The configuration of a <code>BarChartVisual</code>.
+    /// The configuration of a <c>BarChartVisual</c>.
     /// </summary>
     public partial class BarChartConfiguration
     {
@@ -37,12 +38,13 @@ namespace Amazon.QuickSight.Model
         private AxisDisplayOptions _categoryAxis;
         private ChartAxisLabelOptions _categoryLabelOptions;
         private ChartAxisLabelOptions _colorLabelOptions;
-        private List<ContributionAnalysisDefault> _contributionAnalysisDefaults = new List<ContributionAnalysisDefault>();
+        private List<ContributionAnalysisDefault> _contributionAnalysisDefaults = AWSConfigs.InitializeCollections ? new List<ContributionAnalysisDefault>() : null;
         private DataLabelOptions _dataLabels;
         private BarChartFieldWells _fieldWells;
+        private VisualInteractionOptions _interactions;
         private LegendOptions _legend;
         private BarChartOrientation _orientation;
-        private List<ReferenceLine> _referenceLines = new List<ReferenceLine>();
+        private List<ReferenceLine> _referenceLines = AWSConfigs.InitializeCollections ? new List<ReferenceLine>() : null;
         private SmallMultiplesOptions _smallMultiplesOptions;
         private BarChartSortConfiguration _sortConfiguration;
         private TooltipOptions _tooltip;
@@ -141,7 +143,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if ContributionAnalysisDefaults property is set
         internal bool IsSetContributionAnalysisDefaults()
         {
-            return this._contributionAnalysisDefaults != null && this._contributionAnalysisDefaults.Count > 0; 
+            return this._contributionAnalysisDefaults != null && (this._contributionAnalysisDefaults.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -181,6 +183,24 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Interactions. 
+        /// <para>
+        /// The general visual interactions setup for a visual.
+        /// </para>
+        /// </summary>
+        public VisualInteractionOptions Interactions
+        {
+            get { return this._interactions; }
+            set { this._interactions = value; }
+        }
+
+        // Check to see if Interactions property is set
+        internal bool IsSetInteractions()
+        {
+            return this._interactions != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Legend. 
         /// <para>
         /// The legend display setup of the visual.
@@ -206,15 +226,15 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>HORIZONTAL</code>: Used for charts that have horizontal bars. Visuals that
-        /// use this value are horizontal bar charts, horizontal stacked bar charts, and horizontal
-        /// stacked 100% bar charts.
+        ///  <c>HORIZONTAL</c>: Used for charts that have horizontal bars. Visuals that use this
+        /// value are horizontal bar charts, horizontal stacked bar charts, and horizontal stacked
+        /// 100% bar charts.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>VERTICAL</code>: Used for charts that have vertical bars. Visuals that use
-        /// this value are vertical bar charts, vertical stacked bar charts, and vertical stacked
-        /// 100% bar charts.
+        ///  <c>VERTICAL</c>: Used for charts that have vertical bars. Visuals that use this value
+        /// are vertical bar charts, vertical stacked bar charts, and vertical stacked 100% bar
+        /// charts.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -246,7 +266,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if ReferenceLines property is set
         internal bool IsSetReferenceLines()
         {
-            return this._referenceLines != null && this._referenceLines.Count > 0; 
+            return this._referenceLines != null && (this._referenceLines.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -270,7 +290,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property SortConfiguration. 
         /// <para>
-        /// The sort configuration of a <code>BarChartVisual</code>.
+        /// The sort configuration of a <c>BarChartVisual</c>.
         /// </para>
         /// </summary>
         public BarChartSortConfiguration SortConfiguration

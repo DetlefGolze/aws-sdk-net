@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -34,15 +35,14 @@ namespace Amazon.QuickSight.Model
     public partial class NamedEntityDefinitionMetric
     {
         private NamedEntityAggType _aggregation;
-        private Dictionary<string, string> _aggregationFunctionParameters = new Dictionary<string, string>();
+        private Dictionary<string, string> _aggregationFunctionParameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Aggregation. 
         /// <para>
-        /// The aggregation of a named entity. Valid values for this structure are <code>SUM</code>,
-        /// <code>MIN</code>, <code>MAX</code>, <code>COUNT</code>, <code>AVERAGE</code>, <code>DISTINCT_COUNT</code>,
-        /// <code>STDEV</code>, <code>STDEVP</code>, <code>VAR</code>, <code>VARP</code>, <code>PERCENTILE</code>,
-        /// <code>MEDIAN</code>, and <code>CUSTOM</code>.
+        /// The aggregation of a named entity. Valid values for this structure are <c>SUM</c>,
+        /// <c>MIN</c>, <c>MAX</c>, <c>COUNT</c>, <c>AVERAGE</c>, <c>DISTINCT_COUNT</c>, <c>STDEV</c>,
+        /// <c>STDEVP</c>, <c>VAR</c>, <c>VARP</c>, <c>PERCENTILE</c>, <c>MEDIAN</c>, and <c>CUSTOM</c>.
         /// </para>
         /// </summary>
         public NamedEntityAggType Aggregation
@@ -72,7 +72,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if AggregationFunctionParameters property is set
         internal bool IsSetAggregationFunctionParameters()
         {
-            return this._aggregationFunctionParameters != null && this._aggregationFunctionParameters.Count > 0; 
+            return this._aggregationFunctionParameters != null && (this._aggregationFunctionParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,17 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// Container for response returned by <code> <a>GetPackageVersionHistory</a> </code>
-    /// operation.
+    /// Container for response returned by <c> <a>GetPackageVersionHistory</a> </c> operation.
     /// </summary>
     public partial class GetPackageVersionHistoryResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
         private string _packageID;
-        private List<PackageVersionHistory> _packageVersionHistoryList = new List<PackageVersionHistory>();
+        private List<PackageVersionHistory> _packageVersionHistoryList = AWSConfigs.InitializeCollections ? new List<PackageVersionHistory>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken.
@@ -71,7 +71,7 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property PackageVersionHistoryList. 
         /// <para>
-        /// List of <code>PackageVersionHistory</code> objects.
+        /// List of <c>PackageVersionHistory</c> objects.
         /// </para>
         /// </summary>
         public List<PackageVersionHistory> PackageVersionHistoryList
@@ -83,7 +83,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if PackageVersionHistoryList property is set
         internal bool IsSetPackageVersionHistoryList()
         {
-            return this._packageVersionHistoryList != null && this._packageVersionHistoryList.Count > 0; 
+            return this._packageVersionHistoryList != null && (this._packageVersionHistoryList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

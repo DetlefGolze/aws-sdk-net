@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CustomerProfiles.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,8 +67,20 @@ namespace Amazon.CustomerProfiles.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetEventTriggerNames())
+                {
+                    context.Writer.WritePropertyName("EventTriggerNames");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestEventTriggerNamesListValue in publicRequest.EventTriggerNames)
+                    {
+                            context.Writer.Write(publicRequestEventTriggerNamesListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+
                 if(publicRequest.IsSetFlowDefinition())
                 {
                     context.Writer.WritePropertyName("FlowDefinition");
@@ -97,6 +110,12 @@ namespace Amazon.CustomerProfiles.Model.Internal.MarshallTransformations
                             context.Writer.Write(publicRequestObjectTypeNamesValue);
                     }
                     context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetRoleArn())
+                {
+                    context.Writer.WritePropertyName("RoleArn");
+                    context.Writer.Write(publicRequest.RoleArn);
                 }
 
                 if(publicRequest.IsSetTags())

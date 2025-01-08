@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -36,23 +37,24 @@ namespace Amazon.ElasticMapReduce.Model
     /// </summary>
     public partial class JobFlowInstancesConfig
     {
-        private List<string> _additionalMasterSecurityGroups = new List<string>();
-        private List<string> _additionalSlaveSecurityGroups = new List<string>();
+        private List<string> _additionalMasterSecurityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _additionalSlaveSecurityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _ec2KeyName;
         private string _ec2SubnetId;
-        private List<string> _ec2SubnetIds = new List<string>();
+        private List<string> _ec2SubnetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _emrManagedMasterSecurityGroup;
         private string _emrManagedSlaveSecurityGroup;
         private string _hadoopVersion;
         private int? _instanceCount;
-        private List<InstanceFleetConfig> _instanceFleets = new List<InstanceFleetConfig>();
-        private List<InstanceGroupConfig> _instanceGroups = new List<InstanceGroupConfig>();
+        private List<InstanceFleetConfig> _instanceFleets = AWSConfigs.InitializeCollections ? new List<InstanceFleetConfig>() : null;
+        private List<InstanceGroupConfig> _instanceGroups = AWSConfigs.InitializeCollections ? new List<InstanceGroupConfig>() : null;
         private bool? _keepJobFlowAliveWhenNoSteps;
         private string _masterInstanceType;
         private PlacementType _placement;
         private string _serviceAccessSecurityGroup;
         private string _slaveInstanceType;
         private bool? _terminationProtected;
+        private bool? _unhealthyNodeReplacement;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -74,7 +76,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if AdditionalMasterSecurityGroups property is set
         internal bool IsSetAdditionalMasterSecurityGroups()
         {
-            return this._additionalMasterSecurityGroups != null && this._additionalMasterSecurityGroups.Count > 0; 
+            return this._additionalMasterSecurityGroups != null && (this._additionalMasterSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -92,7 +94,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if AdditionalSlaveSecurityGroups property is set
         internal bool IsSetAdditionalSlaveSecurityGroups()
         {
-            return this._additionalSlaveSecurityGroups != null && this._additionalSlaveSecurityGroups.Count > 0; 
+            return this._additionalSlaveSecurityGroups != null && (this._additionalSlaveSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -160,14 +162,14 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if Ec2SubnetIds property is set
         internal bool IsSetEc2SubnetIds()
         {
-            return this._ec2SubnetIds != null && this._ec2SubnetIds.Count > 0; 
+            return this._ec2SubnetIds != null && (this._ec2SubnetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property EmrManagedMasterSecurityGroup. 
         /// <para>
         /// The identifier of the Amazon EC2 security group for the master node. If you specify
-        /// <code>EmrManagedMasterSecurityGroup</code>, you must also specify <code>EmrManagedSlaveSecurityGroup</code>.
+        /// <c>EmrManagedMasterSecurityGroup</c>, you must also specify <c>EmrManagedSlaveSecurityGroup</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=256)]
@@ -187,7 +189,7 @@ namespace Amazon.ElasticMapReduce.Model
         /// Gets and sets the property EmrManagedSlaveSecurityGroup. 
         /// <para>
         /// The identifier of the Amazon EC2 security group for the core and task nodes. If you
-        /// specify <code>EmrManagedSlaveSecurityGroup</code>, you must also specify <code>EmrManagedMasterSecurityGroup</code>.
+        /// specify <c>EmrManagedSlaveSecurityGroup</c>, you must also specify <c>EmrManagedMasterSecurityGroup</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=256)]
@@ -209,9 +211,9 @@ namespace Amazon.ElasticMapReduce.Model
         /// Applies only to Amazon EMR release versions earlier than 4.0. The Hadoop version for
         /// the cluster. Valid inputs are "0.18" (no longer maintained), "0.20" (no longer maintained),
         /// "0.20.205" (no longer maintained), "1.0.3", "2.2.0", or "2.4.0". If you do not set
-        /// this value, the default of 0.18 is used, unless the <code>AmiVersion</code> parameter
-        /// is set in the RunJobFlow call, in which case the default version of Hadoop for that
-        /// AMI version is used.
+        /// this value, the default of 0.18 is used, unless the <c>AmiVersion</c> parameter is
+        /// set in the RunJobFlow call, in which case the default version of Hadoop for that AMI
+        /// version is used.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=256)]
@@ -266,7 +268,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if InstanceFleets property is set
         internal bool IsSetInstanceFleets()
         {
-            return this._instanceFleets != null && this._instanceFleets.Count > 0; 
+            return this._instanceFleets != null && (this._instanceFleets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -284,14 +286,14 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if InstanceGroups property is set
         internal bool IsSetInstanceGroups()
         {
-            return this._instanceGroups != null && this._instanceGroups.Count > 0; 
+            return this._instanceGroups != null && (this._instanceGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property KeepJobFlowAliveWhenNoSteps. 
         /// <para>
         /// Specifies whether the cluster should remain available after completing all steps.
-        /// Defaults to <code>true</code>. For more information about configuring cluster termination,
+        /// Defaults to <c>false</c>. For more information about configuring cluster termination,
         /// see <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-termination.html">Control
         /// Cluster Termination</a> in the <i>EMR Management Guide</i>.
         /// </para>
@@ -401,6 +403,25 @@ namespace Amazon.ElasticMapReduce.Model
         internal bool IsSetTerminationProtected()
         {
             return this._terminationProtected.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property UnhealthyNodeReplacement. 
+        /// <para>
+        /// Indicates whether Amazon EMR should gracefully replace core nodes that have degraded
+        /// within the cluster.
+        /// </para>
+        /// </summary>
+        public bool UnhealthyNodeReplacement
+        {
+            get { return this._unhealthyNodeReplacement.GetValueOrDefault(); }
+            set { this._unhealthyNodeReplacement = value; }
+        }
+
+        // Check to see if UnhealthyNodeReplacement property is set
+        internal bool IsSetUnhealthyNodeReplacement()
+        {
+            return this._unhealthyNodeReplacement.HasValue; 
         }
 
     }

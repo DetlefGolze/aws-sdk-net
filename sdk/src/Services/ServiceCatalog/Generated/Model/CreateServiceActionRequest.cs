@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.ServiceCatalog.Model
     public partial class CreateServiceActionRequest : AmazonServiceCatalogRequest
     {
         private string _acceptLanguage;
-        private Dictionary<string, string> _definition = new Dictionary<string, string>();
+        private Dictionary<string, string> _definition = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private ServiceActionDefinitionType _definitionType;
         private string _description;
         private string _idempotencyToken;
@@ -48,11 +49,11 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>jp</code> - Japanese
+        ///  <c>jp</c> - Japanese
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>zh</code> - Chinese
+        ///  <c>zh</c> - Chinese
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -77,7 +78,7 @@ namespace Amazon.ServiceCatalog.Model
         ///  <dl> <dt>Name</dt> <dd> 
         /// <para>
         /// The name of the Amazon Web Services Systems Manager document (SSM document). For example,
-        /// <code>AWS-RestartEC2Instance</code>.
+        /// <c>AWS-RestartEC2Instance</c>.
         /// </para>
         ///  
         /// <para>
@@ -86,16 +87,16 @@ namespace Amazon.ServiceCatalog.Model
         ///  </dd> <dt>Version</dt> <dd> 
         /// <para>
         /// The Amazon Web Services Systems Manager automation document version. For example,
-        /// <code>"Version": "1"</code> 
+        /// <c>"Version": "1"</c> 
         /// </para>
         ///  </dd> <dt>AssumeRole</dt> <dd> 
         /// <para>
         /// The Amazon Resource Name (ARN) of the role that performs the self-service actions
-        /// on your behalf. For example, <code>"AssumeRole": "arn:aws:iam::12345678910:role/ActionRole"</code>.
+        /// on your behalf. For example, <c>"AssumeRole": "arn:aws:iam::12345678910:role/ActionRole"</c>.
         /// </para>
         ///  
         /// <para>
-        /// To reuse the provisioned product launch role, set to <code>"AssumeRole": "LAUNCH_ROLE"</code>.
+        /// To reuse the provisioned product launch role, set to <c>"AssumeRole": "LAUNCH_ROLE"</c>.
         /// </para>
         ///  </dd> <dt>Parameters</dt> <dd> 
         /// <para>
@@ -103,7 +104,7 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  
         /// <para>
-        /// For example: <code>[{\"Name\":\"InstanceId\",\"Type\":\"TARGET\"}]</code> or <code>[{\"Name\":\"InstanceId\",\"Type\":\"TEXT_VALUE\"}]</code>.
+        /// For example: <c>[{\"Name\":\"InstanceId\",\"Type\":\"TARGET\"}]</c> or <c>[{\"Name\":\"InstanceId\",\"Type\":\"TEXT_VALUE\"}]</c>.
         /// </para>
         ///  </dd> </dl>
         /// </summary>
@@ -117,13 +118,13 @@ namespace Amazon.ServiceCatalog.Model
         // Check to see if Definition property is set
         internal bool IsSetDefinition()
         {
-            return this._definition != null && this._definition.Count > 0; 
+            return this._definition != null && (this._definition.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DefinitionType. 
         /// <para>
-        /// The service action definition type. For example, <code>SSM_AUTOMATION</code>.
+        /// The service action definition type. For example, <c>SSM_AUTOMATION</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

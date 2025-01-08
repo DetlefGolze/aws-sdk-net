@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -57,6 +58,14 @@ namespace Amazon.DatabaseMigrationService.Model
         public IDescribeConnectionsPaginator DescribeConnections(DescribeConnectionsRequest request) 
         {
             return new DescribeConnectionsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeDataMigrations operation
+        ///</summary>
+        public IDescribeDataMigrationsPaginator DescribeDataMigrations(DescribeDataMigrationsRequest request) 
+        {
+            return new DescribeDataMigrationsPaginator(this.client, request);
         }
 
         /// <summary>

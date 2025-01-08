@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public BurninDestinationSettings Unmarshall(JsonUnmarshallerContext context)
         {
+            BurninDestinationSettings unmarshalledObject = new BurninDestinationSettings();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            BurninDestinationSettings unmarshalledObject = new BurninDestinationSettings();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -98,6 +100,30 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.FontColor = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("fontFileBold", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.FontFileBold = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("fontFileBoldItalic", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.FontFileBoldItalic = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("fontFileItalic", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.FontFileItalic = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("fontFileRegular", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.FontFileRegular = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("fontOpacity", targetDepth))
@@ -140,6 +166,12 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = IntUnmarshaller.Instance;
                     unmarshalledObject.OutlineSize = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("removeRubyReserveAttributes", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.RemoveRubyReserveAttributes = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("shadowColor", targetDepth))
@@ -191,7 +223,6 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleDB.Model
 {
     /// <summary>
     /// Container for the parameters to the Select operation.
-    /// The <code>Select</code> operation returns a set of attributes for <code>ItemNames</code>
-    /// that match the select expression. <code>Select</code> is similar to the standard SQL
-    /// SELECT statement. 
+    /// The <c>Select</c> operation returns a set of attributes for <c>ItemNames</c> that
+    /// match the select expression. <c>Select</c> is similar to the standard SQL SELECT statement.
+    /// 
     /// 
     ///  
     /// <para>
     ///  The total size of the response cannot exceed 1 MB in total size. Amazon SimpleDB
     /// automatically adjusts the number of items returned per page to enforce this limit.
     /// For example, if the client asks to retrieve 2500 items, but each individual item is
-    /// 10 kB in size, the system returns 100 items and an appropriate <code>NextToken</code>
-    /// so the client can access the next page of results. 
+    /// 10 kB in size, the system returns 100 items and an appropriate <c>NextToken</c> so
+    /// the client can access the next page of results. 
     /// </para>
     ///  
     /// <para>
@@ -72,7 +73,7 @@ namespace Amazon.SimpleDB.Model
         /// Instantiates SelectRequest with the parameterized properties
         /// </summary>
         /// <param name="selectExpression">The expression used to query the domain.</param>
-        /// <param name="consistentRead">Determines whether or not strong consistency should be enforced when data is read from SimpleDB. If <code>true</code>, any data previously written to SimpleDB will be returned. Otherwise, results will be consistent eventually, and the client may not see data that was written immediately before your read.</param>
+        /// <param name="consistentRead">Determines whether or not strong consistency should be enforced when data is read from SimpleDB. If <c>true</c>, any data previously written to SimpleDB will be returned. Otherwise, results will be consistent eventually, and the client may not see data that was written immediately before your read.</param>
         public SelectRequest(string selectExpression, bool consistentRead)
         {
             _selectExpression = selectExpression;
@@ -81,10 +82,9 @@ namespace Amazon.SimpleDB.Model
 
         /// <summary>
         /// Gets and sets the property ConsistentRead. Determines whether or not strong consistency
-        /// should be enforced when data is read from SimpleDB. If <code>true</code>, any data
-        /// previously written to SimpleDB will be returned. Otherwise, results will be consistent
-        /// eventually, and the client may not see data that was written immediately before your
-        /// read.
+        /// should be enforced when data is read from SimpleDB. If <c>true</c>, any data previously
+        /// written to SimpleDB will be returned. Otherwise, results will be consistent eventually,
+        /// and the client may not see data that was written immediately before your read.
         /// </summary>
         public bool ConsistentRead
         {
@@ -100,7 +100,7 @@ namespace Amazon.SimpleDB.Model
 
         /// <summary>
         /// Gets and sets the property NextToken. A string informing Amazon SimpleDB where to
-        /// start the next list of <code>ItemNames</code>.
+        /// start the next list of <c>ItemNames</c>.
         /// </summary>
         public string NextToken
         {

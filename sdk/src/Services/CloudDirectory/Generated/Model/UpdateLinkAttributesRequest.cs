@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateLinkAttributes operation.
     /// Updates a given typed link’s attributes. Attributes to be updated must not contribute
-    /// to the typed link’s identity, as defined by its <code>IdentityAttributeOrder</code>.
+    /// to the typed link’s identity, as defined by its <c>IdentityAttributeOrder</c>.
     /// </summary>
     public partial class UpdateLinkAttributesRequest : AmazonCloudDirectoryRequest
     {
-        private List<LinkAttributeUpdate> _attributeUpdates = new List<LinkAttributeUpdate>();
+        private List<LinkAttributeUpdate> _attributeUpdates = AWSConfigs.InitializeCollections ? new List<LinkAttributeUpdate>() : null;
         private string _directoryArn;
         private TypedLinkSpecifier _typedLinkSpecifier;
 
@@ -55,7 +56,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if AttributeUpdates property is set
         internal bool IsSetAttributeUpdates()
         {
-            return this._attributeUpdates != null && this._attributeUpdates.Count > 0; 
+            return this._attributeUpdates != null && (this._attributeUpdates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -76,7 +77,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if DirectoryArn property is set
         internal bool IsSetDirectoryArn()
         {
-            return this._directoryArn != null;
+            return !string.IsNullOrEmpty(this._directoryArn);
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.ServiceCatalog.Model
     /// </para>
     ///  
     /// <para>
-    /// The user or role that performs this operation must have the <code>cloudformation:GetTemplate</code>
-    /// IAM policy permission. This policy permission is required when using the <code>ImportFromPhysicalId</code>
+    /// The user or role that performs this operation must have the <c>cloudformation:GetTemplate</c>
+    /// IAM policy permission. This policy permission is required when using the <c>ImportFromPhysicalId</c>
     /// template source in the information data section.
     /// </para>
     /// </summary>
@@ -57,11 +58,11 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>jp</code> - Japanese
+        ///  <c>jp</c> - Japanese
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>zh</code> - Chinese
+        ///  <c>zh</c> - Chinese
         /// </para>
         ///  </li> </ul>
         /// </summary>

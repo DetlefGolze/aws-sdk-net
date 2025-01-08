@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// The version for an option. Option group option versions are returned by the <code>DescribeOptionGroupOptions</code>
+    /// The version for an option. Option group option versions are returned by the <c>DescribeOptionGroupOptions</c>
     /// action.
     /// </summary>
     public partial class OptionVersion

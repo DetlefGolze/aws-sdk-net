@@ -26,10 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// A container for information about an IdP for a user pool.
+    /// The characteristics of a source or destination user for linking a federated user profile
+    /// to a local user profile.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a request parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html">AdminLinkProviderForUser</a>
+    /// and <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminDisableProviderForUser.html">AdminDisableProviderForUser</a>.
+    /// </para>
     /// </summary>
     public partial class ProviderUserIdentifierType
     {
@@ -40,7 +48,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property ProviderAttributeName. 
         /// <para>
-        /// The name of the provider attribute to link to, such as <code>NameID</code>.
+        /// The name of the provider attribute to link to, such as <c>NameID</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=131072)]
@@ -59,7 +67,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property ProviderAttributeValue. 
         /// <para>
-        /// The value of the provider attribute to link to, such as <code>xxxxx_account</code>.
+        /// The value of the provider attribute to link to, such as <c>xxxxx_account</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=131072)]

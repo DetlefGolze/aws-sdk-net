@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
     /// The request was rejected because it attempted to create resources beyond the current
     /// Entity Resolution account limits. The error message describes the limit exceeded.
-    /// <code>HTTP Status Code: 402</code>
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
     /// A prompt for additional activity after an intent is fulfilled. For example, after
-    /// the <code>OrderPizza</code> intent is fulfilled, you might prompt the user to find
-    /// out whether the user wants to order drinks.
+    /// the <c>OrderPizza</c> intent is fulfilled, you might prompt the user to find out whether
+    /// the user wants to order drinks.
     /// </summary>
     public partial class FollowUpPrompt
     {
@@ -60,9 +61,8 @@ namespace Amazon.LexModelBuildingService.Model
         /// <summary>
         /// Gets and sets the property RejectionStatement. 
         /// <para>
-        /// If the user answers "no" to the question defined in the <code>prompt</code> field,
-        /// Amazon Lex responds with this statement to acknowledge that the intent was canceled.
-        /// 
+        /// If the user answers "no" to the question defined in the <c>prompt</c> field, Amazon
+        /// Lex responds with this statement to acknowledge that the intent was canceled. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

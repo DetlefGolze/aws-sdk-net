@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -86,8 +87,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property Refresh. 
         /// <para>
-        /// If <code>true</code>, DMS loads metadata for the specified objects from the source
-        /// database.
+        /// If <c>true</c>, DMS loads metadata for the specified objects from the source database.
         /// </para>
         /// </summary>
         public bool Refresh

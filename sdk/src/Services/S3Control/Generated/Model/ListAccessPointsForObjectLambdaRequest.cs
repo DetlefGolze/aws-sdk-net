@@ -26,18 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
     /// Container for the parameters to the ListAccessPointsForObjectLambda operation.
+    /// <note> 
+    /// <para>
+    /// This operation is not supported by directory buckets.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Returns some or all (up to 1,000) access points associated with the Object Lambda
     /// Access Point per call. If there are more access points than what can be returned in
     /// one call, the response will include a continuation token that you can use to list
     /// the additional access points.
-    /// 
+    /// </para>
     ///  
     /// <para>
-    /// The following actions are related to <code>ListAccessPointsForObjectLambda</code>:
+    /// The following actions are related to <c>ListAccessPointsForObjectLambda</c>:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -78,7 +85,7 @@ namespace Amazon.S3Control.Model
         // Check to see if AccountId property is set
         internal bool IsSetAccountId()
         {
-            return this._accountId != null;
+            return !string.IsNullOrEmpty(this._accountId);
         }
 
         /// <summary>
@@ -87,8 +94,8 @@ namespace Amazon.S3Control.Model
         /// The maximum number of access points that you want to include in the list. The response
         /// may contain fewer access points but will never contain more. If there are more than
         /// this number of access points, then the response will include a continuation token
-        /// in the <code>NextToken</code> field that you can use to retrieve the next page of
-        /// access points.
+        /// in the <c>NextToken</c> field that you can use to retrieve the next page of access
+        /// points.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1000)]

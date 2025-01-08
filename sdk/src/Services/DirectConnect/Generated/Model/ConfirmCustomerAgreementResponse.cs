@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectConnect.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.DirectConnect.Model
         /// Gets and sets the property Status. 
         /// <para>
         ///  The status of the customer agreement when the connection was created. This will be
-        /// either <code>signed</code> or <code>unsigned</code>. 
+        /// either <c>signed</c> or <c>unsigned</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=30)]

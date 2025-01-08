@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(FileFormat requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCsv())
             {
                 context.Writer.WritePropertyName("csv");
@@ -52,6 +55,17 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
 
                 var marshaller = CsvMarshaller.Instance;
                 marshaller.Marshall(requestObject.Csv, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetParquet())
+            {
+                context.Writer.WritePropertyName("parquet");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = ParquetMarshaller.Instance;
+                marshaller.Marshall(requestObject.Parquet, context);
 
                 context.Writer.WriteObjectEnd();
             }

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTWireless.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.IoTWireless.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(OtaaV1_0_x requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAppEui())
             {
                 context.Writer.WritePropertyName("AppEui");
@@ -61,6 +64,12 @@ namespace Amazon.IoTWireless.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("GenAppKey");
                 context.Writer.Write(requestObject.GenAppKey);
+            }
+
+            if(requestObject.IsSetJoinEui())
+            {
+                context.Writer.WritePropertyName("JoinEui");
+                context.Writer.Write(requestObject.JoinEui);
             }
 
         }

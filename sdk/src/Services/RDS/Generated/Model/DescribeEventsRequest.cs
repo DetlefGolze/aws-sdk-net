@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -52,8 +53,8 @@ namespace Amazon.RDS.Model
     {
         private int? _duration;
         private DateTime? _endTimeUtc;
-        private List<string> _eventCategories = new List<string>();
-        private List<Filter> _filters = new List<Filter>();
+        private List<string> _eventCategories = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private string _marker;
         private int? _maxRecords;
         private string _sourceIdentifier;
@@ -126,7 +127,7 @@ namespace Amazon.RDS.Model
         // Check to see if EventCategories property is set
         internal bool IsSetEventCategories()
         {
-            return this._eventCategories != null && this._eventCategories.Count > 0; 
+            return this._eventCategories != null && (this._eventCategories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -144,7 +145,7 @@ namespace Amazon.RDS.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -152,7 +153,7 @@ namespace Amazon.RDS.Model
         /// <para>
         /// An optional pagination token provided by a previous DescribeEvents request. If this
         /// parameter is specified, the response includes only records beyond the marker, up to
-        /// the value specified by <code>MaxRecords</code>.
+        /// the value specified by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -171,8 +172,8 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property MaxRecords. 
         /// <para>
         /// The maximum number of records to include in the response. If more records exist than
-        /// the specified <code>MaxRecords</code> value, a pagination token called a marker is
-        /// included in the response so that you can retrieve the remaining results.
+        /// the specified <c>MaxRecords</c> value, a pagination token called a marker is included
+        /// in the response so that you can retrieve the remaining results.
         /// </para>
         ///  
         /// <para>
@@ -207,42 +208,38 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If <code>SourceIdentifier</code> is supplied, <code>SourceType</code> must also be
-        /// provided.
+        /// If <c>SourceIdentifier</c> is supplied, <c>SourceType</c> must also be provided.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the source type is a DB instance, a <code>DBInstanceIdentifier</code> value must
+        /// If the source type is a DB instance, a <c>DBInstanceIdentifier</c> value must be supplied.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If the source type is a DB cluster, a <c>DBClusterIdentifier</c> value must be supplied.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If the source type is a DB parameter group, a <c>DBParameterGroupName</c> value must
         /// be supplied.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the source type is a DB cluster, a <code>DBClusterIdentifier</code> value must
+        /// If the source type is a DB security group, a <c>DBSecurityGroupName</c> value must
         /// be supplied.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the source type is a DB parameter group, a <code>DBParameterGroupName</code> value
-        /// must be supplied.
+        /// If the source type is a DB snapshot, a <c>DBSnapshotIdentifier</c> value must be supplied.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the source type is a DB security group, a <code>DBSecurityGroupName</code> value
-        /// must be supplied.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// If the source type is a DB snapshot, a <code>DBSnapshotIdentifier</code> value must
-        /// be supplied.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// If the source type is a DB cluster snapshot, a <code>DBClusterSnapshotIdentifier</code>
+        /// If the source type is a DB cluster snapshot, a <c>DBClusterSnapshotIdentifier</c>
         /// value must be supplied.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the source type is an RDS Proxy, a <code>DBProxyName</code> value must be supplied.
+        /// If the source type is an RDS Proxy, a <c>DBProxyName</c> value must be supplied.
         /// </para>
         ///  </li> <li> 
         /// <para>

@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the rekognition-2016-06-27.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -94,6 +95,11 @@ namespace Amazon.Rekognition.Model
         /// Paginator for ListFaces operation
         ///</summary>
         IListFacesPaginator ListFaces(ListFacesRequest request);
+
+        /// <summary>
+        /// Paginator for ListMediaAnalysisJobs operation
+        ///</summary>
+        IListMediaAnalysisJobsPaginator ListMediaAnalysisJobs(ListMediaAnalysisJobsRequest request);
 
         /// <summary>
         /// Paginator for ListProjectPolicies operation

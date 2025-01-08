@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ApplicationInsights.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,8 +66,15 @@ namespace Amazon.ApplicationInsights.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetAttachMissingPermission())
+                {
+                    context.Writer.WritePropertyName("AttachMissingPermission");
+                    context.Writer.Write(publicRequest.AttachMissingPermission);
+                }
+
                 if(publicRequest.IsSetAutoConfigEnabled())
                 {
                     context.Writer.WritePropertyName("AutoConfigEnabled");
@@ -107,6 +115,12 @@ namespace Amazon.ApplicationInsights.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("ResourceGroupName");
                     context.Writer.Write(publicRequest.ResourceGroupName);
+                }
+
+                if(publicRequest.IsSetSNSNotificationArn())
+                {
+                    context.Writer.WritePropertyName("SNSNotificationArn");
+                    context.Writer.Write(publicRequest.SNSNotificationArn);
                 }
 
                 if(publicRequest.IsSetTags())

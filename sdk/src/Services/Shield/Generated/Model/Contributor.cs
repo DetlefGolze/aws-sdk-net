@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Shield.Model
 {
     /// <summary>
@@ -40,9 +41,9 @@ namespace Amazon.Shield.Model
         /// Gets and sets the property Name. 
         /// <para>
         /// The name of the contributor. The type of name that you'll find here depends on the
-        /// <code>AttackPropertyIdentifier</code> setting in the <code>AttackProperty</code> where
-        /// this contributor is defined. For example, if the <code>AttackPropertyIdentifier</code>
-        /// is <code>SOURCE_COUNTRY</code>, the <code>Name</code> could be <code>United States</code>.
+        /// <c>AttackPropertyIdentifier</c> setting in the <c>AttackProperty</c> where this contributor
+        /// is defined. For example, if the <c>AttackPropertyIdentifier</c> is <c>SOURCE_COUNTRY</c>,
+        /// the <c>Name</c> could be <c>United States</c>.
         /// </para>
         /// </summary>
         public string Name
@@ -61,7 +62,7 @@ namespace Amazon.Shield.Model
         /// Gets and sets the property Value. 
         /// <para>
         /// The contribution of this contributor expressed in <a>Protection</a> units. For example
-        /// <code>10,000</code>.
+        /// <c>10,000</c>.
         /// </para>
         /// </summary>
         public long Value

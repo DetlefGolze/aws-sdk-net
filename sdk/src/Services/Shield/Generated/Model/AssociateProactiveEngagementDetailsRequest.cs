@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Shield.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.Shield.Model
     ///  
     /// <para>
     /// After you have initialized proactive engagement using this call, to disable or enable
-    /// proactive engagement, use the calls <code>DisableProactiveEngagement</code> and <code>EnableProactiveEngagement</code>.
+    /// proactive engagement, use the calls <c>DisableProactiveEngagement</c> and <c>EnableProactiveEngagement</c>.
     /// 
     /// </para>
     ///  <note> 
@@ -49,14 +50,13 @@ namespace Amazon.Shield.Model
     /// <para>
     /// The contacts that you provide in the request replace any contacts that were already
     /// defined. If you already have contacts defined and want to use them, retrieve the list
-    /// using <code>DescribeEmergencyContactSettings</code> and then provide it to this call.
-    /// 
+    /// using <c>DescribeEmergencyContactSettings</c> and then provide it to this call. 
     /// </para>
     ///  </note>
     /// </summary>
     public partial class AssociateProactiveEngagementDetailsRequest : AmazonShieldRequest
     {
-        private List<EmergencyContact> _emergencyContactList = new List<EmergencyContact>();
+        private List<EmergencyContact> _emergencyContactList = AWSConfigs.InitializeCollections ? new List<EmergencyContact>() : null;
 
         /// <summary>
         /// Gets and sets the property EmergencyContactList. 
@@ -73,7 +73,7 @@ namespace Amazon.Shield.Model
         /// <para>
         /// The contacts that you provide here replace any contacts that were already defined.
         /// If you already have contacts defined and want to use them, retrieve the list using
-        /// <code>DescribeEmergencyContactSettings</code> and then provide it here. 
+        /// <c>DescribeEmergencyContactSettings</c> and then provide it here. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -87,7 +87,7 @@ namespace Amazon.Shield.Model
         // Check to see if EmergencyContactList property is set
         internal bool IsSetEmergencyContactList()
         {
-            return this._emergencyContactList != null && this._emergencyContactList.Count > 0; 
+            return this._emergencyContactList != null && (this._emergencyContactList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -78,7 +79,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property ValueType. 
         /// <para>
-        /// The data type of the <code>Value</code> property.
+        /// The data type of the <c>Value</c> property.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

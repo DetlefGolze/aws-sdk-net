@@ -29,6 +29,11 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
     /// </summary>
     public class ListBucketsResponseUnmarshaller : S3ReponseUnmarshaller
     {
+        /// <summary>
+        /// Unmarshaller the response from the service to the response class.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public override AmazonWebServiceResponse Unmarshall(XmlUnmarshallerContext context) 
         {   
             ListBucketsResponse response = new ListBucketsResponse();
@@ -46,9 +51,8 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
             return response;
         }
         
-        private static void UnmarshallResult(XmlUnmarshallerContext context,ListBucketsResponse response)
+        private static void UnmarshallResult(XmlUnmarshallerContext context, ListBucketsResponse response)
         {
-            
             int originalDepth = context.CurrentDepth;
             int targetDepth = originalDepth + 1;
             
@@ -61,14 +65,26 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
                 {
                     if (context.TestExpression("Bucket", targetDepth + 1))
                     {
+                        if (response.Buckets == null)
+                        {
+                            response.Buckets = new List<S3Bucket>();
+                        }
                         response.Buckets.Add(BucketUnmarshaller.Instance.Unmarshall(context));
-                            
                         continue;
                     }
                     if (context.TestExpression("Owner", targetDepth))
                     {
                         response.Owner = OwnerUnmarshaller.Instance.Unmarshall(context);
-                            
+                        continue;
+                    }
+                    if (context.TestExpression("ContinuationToken", targetDepth))
+                    {
+                        response.ContinuationToken = StringUnmarshaller.Instance.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("Prefix", targetDepth))
+                    {
+                        response.Prefix = StringUnmarshaller.Instance.Unmarshall(context);
                         continue;
                     }
                 }
@@ -77,14 +93,15 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
                     return;
                 }
             }
-                            
-
 
             return;
         }
 
         private static ListBucketsResponseUnmarshaller _instance = new ListBucketsResponseUnmarshaller();
 
+        /// <summary>
+        /// Singleton for the unmarshaller
+        /// </summary>
         public static ListBucketsResponseUnmarshaller Instance
         {
             get

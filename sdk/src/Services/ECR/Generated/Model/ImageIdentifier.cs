@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECR.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.ECR.Model
         /// <summary>
         /// Gets and sets the property ImageDigest. 
         /// <para>
-        /// The <code>sha256</code> digest of the image manifest.
+        /// The <c>sha256</c> digest of the image manifest.
         /// </para>
         /// </summary>
         public string ImageDigest

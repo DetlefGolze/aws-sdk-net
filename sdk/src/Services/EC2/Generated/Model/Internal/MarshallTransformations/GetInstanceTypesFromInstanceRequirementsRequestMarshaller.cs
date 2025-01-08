@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -142,6 +143,24 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                             request.Parameters.Add("InstanceRequirements" + "." + "BaselineEbsBandwidthMbps" + "." + "Min", StringUtils.FromInt(publicRequest.InstanceRequirements.BaselineEbsBandwidthMbps.Min));
                         }
                     }
+                    if(publicRequest.InstanceRequirements.IsSetBaselinePerformanceFactors())
+                    {
+                        if(publicRequest.InstanceRequirements.BaselinePerformanceFactors.IsSetCpu())
+                        {
+                            if(publicRequest.InstanceRequirements.BaselinePerformanceFactors.Cpu.IsSetReferences())
+                            {
+                                int publicRequestInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex = 1;
+                                foreach(var publicRequestInstanceRequirementsBaselinePerformanceFactorsCpulistValue in publicRequest.InstanceRequirements.BaselinePerformanceFactors.Cpu.References)
+                                {
+                                    if(publicRequestInstanceRequirementsBaselinePerformanceFactorsCpulistValue.IsSetInstanceFamily())
+                                    {
+                                        request.Parameters.Add("InstanceRequirements" + "." + "BaselinePerformanceFactors" + "." + "Cpu" + "." + "Reference" + "." + publicRequestInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex + "." + "InstanceFamily", StringUtils.FromString(publicRequestInstanceRequirementsBaselinePerformanceFactorsCpulistValue.InstanceFamily));
+                                    }
+                                    publicRequestInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex++;
+                                }
+                            }
+                        }
+                    }
                     if(publicRequest.InstanceRequirements.IsSetBurstablePerformance())
                     {
                         request.Parameters.Add("InstanceRequirements" + "." + "BurstablePerformance", StringUtils.FromString(publicRequest.InstanceRequirements.BurstablePerformance));
@@ -185,6 +204,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                             request.Parameters.Add("InstanceRequirements" + "." + "LocalStorageType" + "." + publicRequestInstanceRequirementslistValueIndex, StringUtils.FromString(publicRequestInstanceRequirementslistValue));
                             publicRequestInstanceRequirementslistValueIndex++;
                         }
+                    }
+                    if(publicRequest.InstanceRequirements.IsSetMaxSpotPriceAsPercentageOfOptimalOnDemandPrice())
+                    {
+                        request.Parameters.Add("InstanceRequirements" + "." + "MaxSpotPriceAsPercentageOfOptimalOnDemandPrice", StringUtils.FromInt(publicRequest.InstanceRequirements.MaxSpotPriceAsPercentageOfOptimalOnDemandPrice));
                     }
                     if(publicRequest.InstanceRequirements.IsSetMemoryGiBPerVCpu())
                     {

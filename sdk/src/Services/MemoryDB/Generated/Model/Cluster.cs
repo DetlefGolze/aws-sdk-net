@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MemoryDB.Model
 {
     /// <summary>
@@ -40,18 +41,20 @@ namespace Amazon.MemoryDB.Model
         private Endpoint _clusterEndpoint;
         private DataTieringStatus _dataTiering;
         private string _description;
+        private string _engine;
         private string _enginePatchVersion;
         private string _engineVersion;
         private string _kmsKeyId;
         private string _maintenanceWindow;
+        private string _multiRegionClusterName;
         private string _name;
         private string _nodeType;
         private int? _numberOfShards;
         private string _parameterGroupName;
         private string _parameterGroupStatus;
         private ClusterPendingUpdates _pendingUpdates;
-        private List<SecurityGroupMembership> _securityGroups = new List<SecurityGroupMembership>();
-        private List<Shard> _shards = new List<Shard>();
+        private List<SecurityGroupMembership> _securityGroups = AWSConfigs.InitializeCollections ? new List<SecurityGroupMembership>() : null;
+        private List<Shard> _shards = AWSConfigs.InitializeCollections ? new List<Shard>() : null;
         private int? _snapshotRetentionLimit;
         private string _snapshotWindow;
         private string _snsTopicArn;
@@ -192,9 +195,27 @@ namespace Amazon.MemoryDB.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Engine. 
+        /// <para>
+        /// The name of the engine used by the cluster.
+        /// </para>
+        /// </summary>
+        public string Engine
+        {
+            get { return this._engine; }
+            set { this._engine = value; }
+        }
+
+        // Check to see if Engine property is set
+        internal bool IsSetEngine()
+        {
+            return this._engine != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property EnginePatchVersion. 
         /// <para>
-        /// The Redis engine patch version used by the cluster
+        /// The Redis OSS engine patch version used by the cluster
         /// </para>
         /// </summary>
         public string EnginePatchVersion
@@ -212,7 +233,7 @@ namespace Amazon.MemoryDB.Model
         /// <summary>
         /// Gets and sets the property EngineVersion. 
         /// <para>
-        /// The Redis engine version used by the cluster
+        /// The Redis OSS engine version used by the cluster
         /// </para>
         /// </summary>
         public string EngineVersion
@@ -263,6 +284,24 @@ namespace Amazon.MemoryDB.Model
         internal bool IsSetMaintenanceWindow()
         {
             return this._maintenanceWindow != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property MultiRegionClusterName. 
+        /// <para>
+        /// The name of the multi-Region cluster that this cluster belongs to.
+        /// </para>
+        /// </summary>
+        public string MultiRegionClusterName
+        {
+            get { return this._multiRegionClusterName; }
+            set { this._multiRegionClusterName = value; }
+        }
+
+        // Check to see if MultiRegionClusterName property is set
+        internal bool IsSetMultiRegionClusterName()
+        {
+            return this._multiRegionClusterName != null;
         }
 
         /// <summary>
@@ -389,7 +428,7 @@ namespace Amazon.MemoryDB.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -407,7 +446,7 @@ namespace Amazon.MemoryDB.Model
         // Check to see if Shards property is set
         internal bool IsSetShards()
         {
-            return this._shards != null && this._shards.Count > 0; 
+            return this._shards != null && (this._shards.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

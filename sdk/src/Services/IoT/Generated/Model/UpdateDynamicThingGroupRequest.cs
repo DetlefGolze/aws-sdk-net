@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -72,7 +73,7 @@ namespace Amazon.IoT.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// Currently one index is supported: <code>AWS_Things</code>.
+        /// Currently one index is supported: <c>AWS_Things</c>.
         /// </para>
         ///  </note>
         /// </summary>

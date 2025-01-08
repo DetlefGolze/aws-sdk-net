@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lex.Model
 {
     /// <summary>
@@ -33,8 +34,8 @@ namespace Amazon.Lex.Model
     /// </summary>
     public partial class PostTextResponse : AmazonWebServiceResponse
     {
-        private List<ActiveContext> _activeContexts = new List<ActiveContext>();
-        private List<PredictedIntent> _alternativeIntents = new List<PredictedIntent>();
+        private List<ActiveContext> _activeContexts = AWSConfigs.InitializeCollections ? new List<ActiveContext>() : null;
+        private List<PredictedIntent> _alternativeIntents = AWSConfigs.InitializeCollections ? new List<PredictedIntent>() : null;
         private string _botVersion;
         private DialogState _dialogState;
         private string _intentName;
@@ -43,16 +44,16 @@ namespace Amazon.Lex.Model
         private IntentConfidence _nluIntentConfidence;
         private ResponseCard _responseCard;
         private SentimentResponse _sentimentResponse;
-        private Dictionary<string, string> _sessionAttributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _sessionAttributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _sessionId;
-        private Dictionary<string, string> _slots = new Dictionary<string, string>();
+        private Dictionary<string, string> _slots = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _slotToElicit;
 
         /// <summary>
         /// Gets and sets the property ActiveContexts. 
         /// <para>
         /// A list of active contexts for the session. A context can be set when an intent is
-        /// fulfilled or by calling the <code>PostContent</code>, <code>PostText</code>, or <code>PutSession</code>
+        /// fulfilled or by calling the <c>PostContent</c>, <c>PostText</c>, or <c>PutSession</c>
         /// operation.
         /// </para>
         ///  
@@ -71,7 +72,7 @@ namespace Amazon.Lex.Model
         // Check to see if ActiveContexts property is set
         internal bool IsSetActiveContexts()
         {
-            return this._activeContexts != null && this._activeContexts.Count > 0; 
+            return this._activeContexts != null && (this._activeContexts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -95,7 +96,7 @@ namespace Amazon.Lex.Model
         // Check to see if AlternativeIntents property is set
         internal bool IsSetAlternativeIntents()
         {
-            return this._alternativeIntents != null && this._alternativeIntents.Count > 0; 
+            return this._alternativeIntents != null && (this._alternativeIntents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -122,12 +123,12 @@ namespace Amazon.Lex.Model
         /// Gets and sets the property DialogState. 
         /// <para>
         ///  Identifies the current state of the user interaction. Amazon Lex returns one of the
-        /// following values as <code>dialogState</code>. The client can optionally use this information
+        /// following values as <c>dialogState</c>. The client can optionally use this information
         /// to customize the user interface. 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ElicitIntent</code> - Amazon Lex wants to elicit user intent. 
+        ///  <c>ElicitIntent</c> - Amazon Lex wants to elicit user intent. 
         /// </para>
         ///  
         /// <para>
@@ -136,7 +137,7 @@ namespace Amazon.Lex.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ConfirmIntent</code> - Amazon Lex is expecting a "yes" or "no" response. 
+        ///  <c>ConfirmIntent</c> - Amazon Lex is expecting a "yes" or "no" response. 
         /// </para>
         ///  
         /// <para>
@@ -151,7 +152,7 @@ namespace Amazon.Lex.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ElicitSlot</code> - Amazon Lex is expecting a slot value for the current intent.
+        ///  <c>ElicitSlot</c> - Amazon Lex is expecting a slot value for the current intent.
         /// 
         /// </para>
         ///  
@@ -163,17 +164,16 @@ namespace Amazon.Lex.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Fulfilled</code> - Conveys that the Lambda function configured for the intent
-        /// has successfully fulfilled the intent. 
+        ///  <c>Fulfilled</c> - Conveys that the Lambda function configured for the intent has
+        /// successfully fulfilled the intent. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ReadyForFulfillment</code> - Conveys that the client has to fulfill the intent.
-        /// 
+        ///  <c>ReadyForFulfillment</c> - Conveys that the client has to fulfill the intent. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Failed</code> - Conveys that the conversation with the user failed. 
+        ///  <c>Failed</c> - Conveys that the conversation with the user failed. 
         /// </para>
         ///  
         /// <para>
@@ -223,11 +223,10 @@ namespace Amazon.Lex.Model
         ///  
         /// <para>
         /// If the intent is not configured with a Lambda function, or if the Lambda function
-        /// returned <code>Delegate</code> as the <code>dialogAction.type</code> its response,
-        /// Amazon Lex decides on the next course of action and selects an appropriate message
-        /// from the bot's configuration based on the current interaction context. For example,
-        /// if Amazon Lex isn't able to understand user input, it uses a clarification prompt
-        /// message.
+        /// returned <c>Delegate</c> as the <c>dialogAction.type</c> its response, Amazon Lex
+        /// decides on the next course of action and selects an appropriate message from the bot's
+        /// configuration based on the current interaction context. For example, if Amazon Lex
+        /// isn't able to understand user input, it uses a clarification prompt message.
         /// </para>
         ///  
         /// <para>
@@ -262,22 +261,20 @@ namespace Amazon.Lex.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PlainText</code> - The message contains plain UTF-8 text.
+        ///  <c>PlainText</c> - The message contains plain UTF-8 text.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CustomPayload</code> - The message is a custom format defined by the Lambda
-        /// function.
+        ///  <c>CustomPayload</c> - The message is a custom format defined by the Lambda function.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SSML</code> - The message contains text formatted for voice output.
+        ///  <c>SSML</c> - The message contains text formatted for voice output.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Composite</code> - The message contains an escaped JSON object containing one
-        /// or more messages from the groups that messages were assigned to when the intent was
-        /// created.
+        ///  <c>Composite</c> - The message contains an escaped JSON object containing one or
+        /// more messages from the groups that messages were assigned to when the intent was created.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -378,7 +375,7 @@ namespace Amazon.Lex.Model
         // Check to see if SessionAttributes property is set
         internal bool IsSetSessionAttributes()
         {
-            return this._sessionAttributes != null && this._sessionAttributes.Count > 0; 
+            return this._sessionAttributes != null && (this._sessionAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -408,13 +405,12 @@ namespace Amazon.Lex.Model
         ///  
         /// <para>
         /// Amazon Lex creates a resolution list containing likely values for a slot. The value
-        /// that it returns is determined by the <code>valueSelectionStrategy</code> selected
-        /// when the slot type was created or updated. If <code>valueSelectionStrategy</code>
-        /// is set to <code>ORIGINAL_VALUE</code>, the value provided by the user is returned,
-        /// if the user value is similar to the slot values. If <code>valueSelectionStrategy</code>
-        /// is set to <code>TOP_RESOLUTION</code> Amazon Lex returns the first value in the resolution
-        /// list or, if there is no resolution list, null. If you don't specify a <code>valueSelectionStrategy</code>,
-        /// the default is <code>ORIGINAL_VALUE</code>.
+        /// that it returns is determined by the <c>valueSelectionStrategy</c> selected when the
+        /// slot type was created or updated. If <c>valueSelectionStrategy</c> is set to <c>ORIGINAL_VALUE</c>,
+        /// the value provided by the user is returned, if the user value is similar to the slot
+        /// values. If <c>valueSelectionStrategy</c> is set to <c>TOP_RESOLUTION</c> Amazon Lex
+        /// returns the first value in the resolution list or, if there is no resolution list,
+        /// null. If you don't specify a <c>valueSelectionStrategy</c>, the default is <c>ORIGINAL_VALUE</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -427,14 +423,14 @@ namespace Amazon.Lex.Model
         // Check to see if Slots property is set
         internal bool IsSetSlots()
         {
-            return this._slots != null && this._slots.Count > 0; 
+            return this._slots != null && (this._slots.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SlotToElicit. 
         /// <para>
-        /// If the <code>dialogState</code> value is <code>ElicitSlot</code>, returns the name
-        /// of the slot for which Amazon Lex is eliciting a value. 
+        /// If the <c>dialogState</c> value is <c>ElicitSlot</c>, returns the name of the slot
+        /// for which Amazon Lex is eliciting a value. 
         /// </para>
         /// </summary>
         public string SlotToElicit

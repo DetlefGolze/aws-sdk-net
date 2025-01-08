@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityStore.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteUser operation.
-    /// Deletes a user within an identity store given <code>UserId</code>.
+    /// Deletes a user within an identity store given <c>UserId</c>.
     /// </summary>
     public partial class DeleteUserRequest : AmazonIdentityStoreRequest
     {

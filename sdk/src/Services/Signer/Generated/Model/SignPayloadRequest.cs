@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Signer.Model
 {
     /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.Signer.Model
         /// <summary>
         /// Gets and sets the property PayloadFormat. 
         /// <para>
-        /// Payload content type
+        /// Payload content type. The single valid type is <c>application/vnd.cncf.notary.payload.v1+json</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

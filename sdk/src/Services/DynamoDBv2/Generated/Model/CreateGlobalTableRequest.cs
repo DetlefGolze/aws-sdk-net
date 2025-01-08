@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -36,14 +37,17 @@ namespace Amazon.DynamoDBv2.Model
     /// 
     ///  <important> 
     /// <para>
-    /// This operation only applies to <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V1.html">Version
-    /// 2017.11.29 (Legacy)</a> of global tables. We recommend using <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V2.html">Version
-    /// 2019.11.21 (Current)</a> when creating new global tables, as it provides greater flexibility,
-    /// higher efficiency and consumes less write capacity than 2017.11.29 (Legacy). To determine
-    /// which version you are using, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.DetermineVersion.html">Determining
-    /// the version</a>. To update existing global tables from version 2017.11.29 (Legacy)
-    /// to version 2019.11.21 (Current), see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_upgrade.html">
-    /// Updating global tables</a>. 
+    /// This documentation is for version 2017.11.29 (Legacy) of global tables, which should
+    /// be avoided for new global tables. Customers should use <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html">Global
+    /// Tables version 2019.11.21 (Current)</a> when possible, because it provides greater
+    /// flexibility, higher efficiency, and consumes less write capacity than 2017.11.29 (Legacy).
+    /// </para>
+    ///  
+    /// <para>
+    /// To determine which version you're using, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.DetermineVersion.html">Determining
+    /// the global table version you are using</a>. To update existing global tables from
+    /// version 2017.11.29 (Legacy) to version 2019.11.21 (Current), see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_upgrade.html">Upgrading
+    /// global tables</a>.
     /// </para>
     ///  </important> 
     /// <para>
@@ -113,7 +117,7 @@ namespace Amazon.DynamoDBv2.Model
     public partial class CreateGlobalTableRequest : AmazonDynamoDBRequest
     {
         private string _globalTableName;
-        private List<Replica> _replicationGroup = new List<Replica>();
+        private List<Replica> _replicationGroup = AWSConfigs.InitializeCollections ? new List<Replica>() : null;
 
         /// <summary>
         /// Gets and sets the property GlobalTableName. 
@@ -150,7 +154,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if ReplicationGroup property is set
         internal bool IsSetReplicationGroup()
         {
-            return this._replicationGroup != null && this._replicationGroup.Count > 0; 
+            return this._replicationGroup != null && (this._replicationGroup.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

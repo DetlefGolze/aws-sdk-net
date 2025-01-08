@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AppFabric.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -55,7 +56,6 @@ namespace Amazon.AppFabric.Model.Internal.MarshallTransformations
         public IRequest Marshall(StartIngestionRequest publicRequest)
         {
             IRequest request = new DefaultRequest(publicRequest, "Amazon.AppFabric");
-            request.Headers["Content-Type"] = "application/json";
             request.Headers[Amazon.Util.HeaderKeys.XAmzApiVersion] = "2023-05-19";
             request.HttpMethod = "POST";
 

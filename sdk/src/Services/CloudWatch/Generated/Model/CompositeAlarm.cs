@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatch.Model
 {
     /// <summary>
@@ -39,14 +40,14 @@ namespace Amazon.CloudWatch.Model
         private string _actionsSuppressor;
         private int? _actionsSuppressorExtensionPeriod;
         private int? _actionsSuppressorWaitPeriod;
-        private List<string> _alarmActions = new List<string>();
+        private List<string> _alarmActions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _alarmArn;
         private DateTime? _alarmConfigurationUpdatedTimestamp;
         private string _alarmDescription;
         private string _alarmName;
         private string _alarmRule;
-        private List<string> _insufficientDataActions = new List<string>();
-        private List<string> _okActions = new List<string>();
+        private List<string> _insufficientDataActions = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _okActions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _stateReason;
         private string _stateReasonData;
         private DateTime? _stateTransitionedTimestamp;
@@ -74,16 +75,15 @@ namespace Amazon.CloudWatch.Model
         /// <summary>
         /// Gets and sets the property ActionsSuppressedBy. 
         /// <para>
-        ///  When the value is <code>ALARM</code>, it means that the actions are suppressed because
-        /// the suppressor alarm is in <code>ALARM</code> When the value is <code>WaitPeriod</code>,
-        /// it means that the actions are suppressed because the composite alarm is waiting for
-        /// the suppressor alarm to go into into the <code>ALARM</code> state. The maximum waiting
-        /// time is as specified in <code>ActionsSuppressorWaitPeriod</code>. After this time,
-        /// the composite alarm performs its actions. When the value is <code>ExtensionPeriod</code>,
-        /// it means that the actions are suppressed because the composite alarm is waiting after
-        /// the suppressor alarm went out of the <code>ALARM</code> state. The maximum waiting
-        /// time is as specified in <code>ActionsSuppressorExtensionPeriod</code>. After this
-        /// time, the composite alarm performs its actions. 
+        ///  When the value is <c>ALARM</c>, it means that the actions are suppressed because
+        /// the suppressor alarm is in <c>ALARM</c> When the value is <c>WaitPeriod</c>, it means
+        /// that the actions are suppressed because the composite alarm is waiting for the suppressor
+        /// alarm to go into into the <c>ALARM</c> state. The maximum waiting time is as specified
+        /// in <c>ActionsSuppressorWaitPeriod</c>. After this time, the composite alarm performs
+        /// its actions. When the value is <c>ExtensionPeriod</c>, it means that the actions are
+        /// suppressed because the composite alarm is waiting after the suppressor alarm went
+        /// out of the <c>ALARM</c> state. The maximum waiting time is as specified in <c>ActionsSuppressorExtensionPeriod</c>.
+        /// After this time, the composite alarm performs its actions. 
         /// </para>
         /// </summary>
         public ActionsSuppressedBy ActionsSuppressedBy
@@ -120,9 +120,9 @@ namespace Amazon.CloudWatch.Model
         /// <summary>
         /// Gets and sets the property ActionsSuppressor. 
         /// <para>
-        ///  Actions will be suppressed if the suppressor alarm is in the <code>ALARM</code> state.
-        /// <code>ActionsSuppressor</code> can be an AlarmName or an Amazon Resource Name (ARN)
-        /// from an existing alarm. 
+        ///  Actions will be suppressed if the suppressor alarm is in the <c>ALARM</c> state.
+        /// <c>ActionsSuppressor</c> can be an AlarmName or an Amazon Resource Name (ARN) from
+        /// an existing alarm. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1600)]
@@ -142,13 +142,13 @@ namespace Amazon.CloudWatch.Model
         /// Gets and sets the property ActionsSuppressorExtensionPeriod. 
         /// <para>
         ///  The maximum time in seconds that the composite alarm waits after suppressor alarm
-        /// goes out of the <code>ALARM</code> state. After this time, the composite alarm performs
+        /// goes out of the <c>ALARM</c> state. After this time, the composite alarm performs
         /// its actions. 
         /// </para>
         ///  <important> 
         /// <para>
-        ///  <code>ExtensionPeriod</code> is required only when <code>ActionsSuppressor</code>
-        /// is specified. 
+        ///  <c>ExtensionPeriod</c> is required only when <c>ActionsSuppressor</c> is specified.
+        /// 
         /// </para>
         ///  </important>
         /// </summary>
@@ -168,13 +168,12 @@ namespace Amazon.CloudWatch.Model
         /// Gets and sets the property ActionsSuppressorWaitPeriod. 
         /// <para>
         ///  The maximum time in seconds that the composite alarm waits for the suppressor alarm
-        /// to go into the <code>ALARM</code> state. After this time, the composite alarm performs
-        /// its actions. 
+        /// to go into the <c>ALARM</c> state. After this time, the composite alarm performs its
+        /// actions. 
         /// </para>
         ///  <important> 
         /// <para>
-        ///  <code>WaitPeriod</code> is required only when <code>ActionsSuppressor</code> is specified.
-        /// 
+        ///  <c>WaitPeriod</c> is required only when <c>ActionsSuppressor</c> is specified. 
         /// </para>
         ///  </important>
         /// </summary>
@@ -207,7 +206,7 @@ namespace Amazon.CloudWatch.Model
         // Check to see if AlarmActions property is set
         internal bool IsSetAlarmActions()
         {
-            return this._alarmActions != null && this._alarmActions.Count > 0; 
+            return this._alarmActions != null && (this._alarmActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -321,7 +320,7 @@ namespace Amazon.CloudWatch.Model
         // Check to see if InsufficientDataActions property is set
         internal bool IsSetInsufficientDataActions()
         {
-            return this._insufficientDataActions != null && this._insufficientDataActions.Count > 0; 
+            return this._insufficientDataActions != null && (this._insufficientDataActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -341,7 +340,7 @@ namespace Amazon.CloudWatch.Model
         // Check to see if OKActions property is set
         internal bool IsSetOKActions()
         {
-            return this._okActions != null && this._okActions.Count > 0; 
+            return this._okActions != null && (this._okActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -385,7 +384,7 @@ namespace Amazon.CloudWatch.Model
         /// <summary>
         /// Gets and sets the property StateTransitionedTimestamp. 
         /// <para>
-        ///  The timestamp of the last change to the alarm's <code>StateValue</code>. 
+        ///  The timestamp of the last change to the alarm's <c>StateValue</c>. 
         /// </para>
         /// </summary>
         public DateTime StateTransitionedTimestamp
@@ -403,8 +402,7 @@ namespace Amazon.CloudWatch.Model
         /// <summary>
         /// Gets and sets the property StateUpdatedTimestamp. 
         /// <para>
-        /// Tracks the timestamp of any state update, even if <code>StateValue</code> doesn't
-        /// change.
+        /// Tracks the timestamp of any state update, even if <c>StateValue</c> doesn't change.
         /// </para>
         /// </summary>
         public DateTime StateUpdatedTimestamp

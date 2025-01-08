@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -33,8 +34,9 @@ namespace Amazon.LocationService.Model
     /// 
     ///  
     /// <para>
-    /// A geofence geometry is made up of either a polygon or a circle. Can be either a polygon
-    /// or a circle. Including both will return a validation error.
+    /// A geofence geometry is made up of either a polygon or a circle. Can be a polygon,
+    /// a circle or a polygon encoded in Geobuf format. Including multiple selections will
+    /// return a validation error.
     /// </para>
     ///  <note> 
     /// <para>
@@ -46,7 +48,8 @@ namespace Amazon.LocationService.Model
     public partial class GeofenceGeometry
     {
         private Circle _circle;
-        private List<List<List<double>>> _polygon = new List<List<List<double>>>();
+        private MemoryStream _geobuf;
+        private List<List<List<double>>> _polygon = AWSConfigs.InitializeCollections ? new List<List<List<double>>>() : null;
 
         /// <summary>
         /// Gets and sets the property Circle. 
@@ -68,28 +71,51 @@ namespace Amazon.LocationService.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Geobuf. 
+        /// <para>
+        /// Geobuf is a compact binary encoding for geographic data that provides lossless compression
+        /// of GeoJSON polygons. The Geobuf must be Base64-encoded.
+        /// </para>
+        ///  
+        /// <para>
+        /// A polygon in Geobuf format can have up to 100,000 vertices.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Sensitive=true, Min=0, Max=600000)]
+        public MemoryStream Geobuf
+        {
+            get { return this._geobuf; }
+            set { this._geobuf = value; }
+        }
+
+        // Check to see if Geobuf property is set
+        internal bool IsSetGeobuf()
+        {
+            return this._geobuf != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Polygon. 
         /// <para>
         /// A polygon is a list of linear rings which are each made up of a list of vertices.
         /// </para>
         ///  
         /// <para>
-        /// Each vertex is a 2-dimensional point of the form: <code>[longitude, latitude]</code>.
-        /// This is represented as an array of doubles of length 2 (so <code>[double, double]</code>).
+        /// Each vertex is a 2-dimensional point of the form: <c>[longitude, latitude]</c>. This
+        /// is represented as an array of doubles of length 2 (so <c>[double, double]</c>).
         /// </para>
         ///  
         /// <para>
         /// An array of 4 or more vertices, where the first and last vertex are the same (to form
         /// a closed boundary), is called a linear ring. The linear ring vertices must be listed
         /// in counter-clockwise order around the ring’s interior. The linear ring is represented
-        /// as an array of vertices, or an array of arrays of doubles (<code>[[double, double],
-        /// ...]</code>).
+        /// as an array of vertices, or an array of arrays of doubles (<c>[[double, double], ...]</c>).
         /// </para>
         ///  
         /// <para>
         /// A geofence consists of a single linear ring. To allow for future expansion, the Polygon
         /// parameter takes an array of linear rings, which is represented as an array of arrays
-        /// of arrays of doubles (<code>[[[double, double], ...], ...]</code>).
+        /// of arrays of doubles (<c>[[[double, double], ...], ...]</c>).
         /// </para>
         ///  
         /// <para>
@@ -106,7 +132,7 @@ namespace Amazon.LocationService.Model
         // Check to see if Polygon property is set
         internal bool IsSetPolygon()
         {
-            return this._polygon != null && this._polygon.Count > 0; 
+            return this._polygon != null && (this._polygon.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

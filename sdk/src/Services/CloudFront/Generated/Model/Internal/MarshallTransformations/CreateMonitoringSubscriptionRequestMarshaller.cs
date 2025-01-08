@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using System.Xml;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudFront.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.CloudFront.Model.Internal.MarshallTransformations
             if (!publicRequest.IsSetDistributionId())
                 throw new AmazonCloudFrontException("Request object does not have required field DistributionId set");
             request.AddPathResource("{DistributionId}", StringUtils.FromString(publicRequest.DistributionId));
-            request.ResourcePath = "/2020-05-31/distributions/{DistributionId}/monitoring-subscription/";
+            request.ResourcePath = "/2020-05-31/distributions/{DistributionId}/monitoring-subscription";
 
             var stringWriter = new XMLEncodedStringWriter(CultureInfo.InvariantCulture);
             using (var xmlWriter = XmlWriter.Create(stringWriter, new XmlWriterSettings() { Encoding = System.Text.Encoding.UTF8, OmitXmlDeclaration = true, NewLineHandling = NewLineHandling.Entitize }))
@@ -67,12 +68,11 @@ namespace Amazon.CloudFront.Model.Internal.MarshallTransformations
                 if (publicRequest.IsSetMonitoringSubscription())
                 {
                     xmlWriter.WriteStartElement("MonitoringSubscription", "http://cloudfront.amazonaws.com/doc/2020-05-31/");
-                
-                    if (publicRequest.MonitoringSubscription.RealtimeMetricsSubscriptionConfig != null) 
+                    if (publicRequest.MonitoringSubscription.RealtimeMetricsSubscriptionConfig != null)
                     {
-                        xmlWriter.WriteStartElement("RealtimeMetricsSubscriptionConfig", "http://cloudfront.amazonaws.com/doc/2020-05-31/");            
+                        xmlWriter.WriteStartElement("RealtimeMetricsSubscriptionConfig");
                         if(publicRequest.MonitoringSubscription.RealtimeMetricsSubscriptionConfig.IsSetRealtimeMetricsSubscriptionStatus())
-                            xmlWriter.WriteElementString("RealtimeMetricsSubscriptionStatus", "http://cloudfront.amazonaws.com/doc/2020-05-31/", StringUtils.FromString(publicRequest.MonitoringSubscription.RealtimeMetricsSubscriptionConfig.RealtimeMetricsSubscriptionStatus));                 
+                            xmlWriter.WriteElementString("RealtimeMetricsSubscriptionStatus", StringUtils.FromString(publicRequest.MonitoringSubscription.RealtimeMetricsSubscriptionConfig.RealtimeMetricsSubscriptionStatus));                 
 
                         xmlWriter.WriteEndElement();
                     }

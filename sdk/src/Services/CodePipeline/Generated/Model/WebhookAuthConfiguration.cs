@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
@@ -40,8 +41,8 @@ namespace Amazon.CodePipeline.Model
         /// Gets and sets the property AllowedIPRange. 
         /// <para>
         /// The property used to configure acceptance of webhooks in an IP address range. For
-        /// IP, only the <code>AllowedIPRange</code> property must be set. This property must
-        /// be set to a valid CIDR range.
+        /// IP, only the <c>AllowedIPRange</c> property must be set. This property must be set
+        /// to a valid CIDR range.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -60,9 +61,24 @@ namespace Amazon.CodePipeline.Model
         /// <summary>
         /// Gets and sets the property SecretToken. 
         /// <para>
-        /// The property used to configure GitHub authentication. For GITHUB_HMAC, only the <code>SecretToken</code>
+        /// The property used to configure GitHub authentication. For GITHUB_HMAC, only the <c>SecretToken</c>
         /// property must be set.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// When creating CodePipeline webhooks, do not use your own credentials or reuse the
+        /// same secret token across multiple webhooks. For optimal security, generate a unique
+        /// secret token for each webhook you create. The secret token is an arbitrary string
+        /// that you provide, which GitHub uses to compute and sign the webhook payloads sent
+        /// to CodePipeline, for protecting the integrity and authenticity of the webhook payloads.
+        /// Using your own credentials or reusing the same token across multiple webhooks can
+        /// lead to security vulnerabilities.
+        /// </para>
+        ///  </important> <note> 
+        /// <para>
+        /// If a secret token was provided, it will be redacted in the response.
+        /// </para>
+        ///  </note>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
         public string SecretToken

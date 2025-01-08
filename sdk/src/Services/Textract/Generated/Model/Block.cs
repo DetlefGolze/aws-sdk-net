@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Textract.Model
 {
     /// <summary>
-    /// A <code>Block</code> represents items that are recognized in a document within a group
-    /// of pixels close to each other. The information returned in a <code>Block</code> object
-    /// depends on the type of operation. In text detection for documents (for example <a>DetectDocumentText</a>),
+    /// A <c>Block</c> represents items that are recognized in a document within a group of
+    /// pixels close to each other. The information returned in a <c>Block</c> object depends
+    /// on the type of operation. In text detection for documents (for example <a>DetectDocumentText</a>),
     /// you get information about the detected words and lines of text. In text analysis (for
     /// example <a>AnalyzeDocument</a>), you can also get information about the fields, tables,
     /// and selection elements that are detected in the document.
     /// 
     ///  
     /// <para>
-    /// An array of <code>Block</code> objects is returned by both synchronous and asynchronous
+    /// An array of <c>Block</c> objects is returned by both synchronous and asynchronous
     /// operations. In synchronous operations, such as <a>DetectDocumentText</a>, the array
-    /// of <code>Block</code> objects is the entire set of results. In asynchronous operations,
+    /// of <c>Block</c> objects is the entire set of results. In asynchronous operations,
     /// such as <a>GetDocumentAnalysis</a>, the array is returned over one or more responses.
     /// </para>
     ///  
@@ -55,12 +56,12 @@ namespace Amazon.Textract.Model
         private int? _columnIndex;
         private int? _columnSpan;
         private float? _confidence;
-        private List<string> _entityTypes = new List<string>();
+        private List<string> _entityTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private Geometry _geometry;
         private string _id;
         private int? _page;
         private Query _query;
-        private List<Relationship> _relationships = new List<Relationship>();
+        private List<Relationship> _relationships = AWSConfigs.InitializeCollections ? new List<Relationship>() : null;
         private int? _rowIndex;
         private int? _rowSpan;
         private SelectionStatus _selectionStatus;
@@ -75,7 +76,7 @@ namespace Amazon.Textract.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <i>PAGE</i> - Contains a list of the LINE <code>Block</code> objects that are detected
+        ///  <i>PAGE</i> - Contains a list of the LINE <c>Block</c> objects that are detected
         /// on a document page.
         /// </para>
         ///  </li> <li> 
@@ -94,15 +95,15 @@ namespace Amazon.Textract.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <i>PAGE</i> - Contains a list of child <code>Block</code> objects that are detected
-        /// on a document page.
+        ///  <i>PAGE</i> - Contains a list of child <c>Block</c> objects that are detected on
+        /// a document page.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE <code>Block</code> objects for linked
-        /// text that's detected on a document page. Use the <code>EntityType</code> field to
-        /// determine if a KEY_VALUE_SET object is a KEY <code>Block</code> object or a VALUE
-        /// <code>Block</code> object. 
+        ///  <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE <c>Block</c> objects for linked text
+        /// that's detected on a document page. Use the <c>EntityType</c> field to determine if
+        /// a KEY_VALUE_SET object is a KEY <c>Block</c> object or a VALUE <c>Block</c> object.
+        /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -138,12 +139,12 @@ namespace Amazon.Textract.Model
         ///  </li> <li> 
         /// <para>
         ///  <i>MERGED_CELL</i> - A cell in a table whose content spans more than one row or column.
-        /// The <code>Relationships</code> array for this cell contain data from individual cells.
+        /// The <c>Relationships</c> array for this cell contain data from individual cells.
         /// </para>
         ///  </li> <li> 
         /// <para>
         ///  <i>SELECTION_ELEMENT</i> - A selection element such as an option button (radio button)
-        /// or a check box that's detected on a document page. Use the value of <code>SelectionStatus</code>
+        /// or a check box that's detected on a document page. Use the value of <c>SelectionStatus</c>
         /// to determine the status of the selection element.
         /// </para>
         ///  </li> <li> 
@@ -162,6 +163,50 @@ namespace Amazon.Textract.Model
         /// Comes with an alias and ID for ease of locating in a response. Also contains location
         /// and confidence score.
         /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// The following BlockTypes are only returned for Amazon Textract Layout.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>LAYOUT_TITLE</c> - The main title of the document.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>LAYOUT_HEADER</c> - Text located in the top margin of the document.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>LAYOUT_FOOTER</c> - Text located in the bottom margin of the document.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>LAYOUT_SECTION_HEADER</c> - The titles of sections within a document.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>LAYOUT_PAGE_NUMBER</c> - The page number of the documents.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>LAYOUT_LIST</c> - Any information grouped together in list form. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>LAYOUT_FIGURE</c> - Indicates the location of an image in a document.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>LAYOUT_TABLE</c> - Indicates the location of a table in the document.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>LAYOUT_KEY_VALUE</c> - Indicates the location of form key-values in a document.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>LAYOUT_TEXT</c> - Text that is present typically as a part of paragraphs in documents.
+        /// </para>
         ///  </li> </ul>
         /// </summary>
         public BlockType BlockType
@@ -179,8 +224,8 @@ namespace Amazon.Textract.Model
         /// <summary>
         /// Gets and sets the property ColumnIndex. 
         /// <para>
-        /// The column in which a table cell appears. The first column position is 1. <code>ColumnIndex</code>
-        /// isn't returned by <code>DetectDocumentText</code> and <code>GetDocumentTextDetection</code>.
+        /// The column in which a table cell appears. The first column position is 1. <c>ColumnIndex</c>
+        /// isn't returned by <c>DetectDocumentText</c> and <c>GetDocumentTextDetection</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]
@@ -199,8 +244,8 @@ namespace Amazon.Textract.Model
         /// <summary>
         /// Gets and sets the property ColumnSpan. 
         /// <para>
-        /// The number of columns that a table cell spans. <code>ColumnSpan</code> isn't returned
-        /// by <code>DetectDocumentText</code> and <code>GetDocumentTextDetection</code>. 
+        /// The number of columns that a table cell spans. <c>ColumnSpan</c> isn't returned by
+        /// <c>DetectDocumentText</c> and <c>GetDocumentTextDetection</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]
@@ -292,7 +337,7 @@ namespace Amazon.Textract.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        ///  <code>EntityTypes</code> isn't returned by <code>DetectDocumentText</code> and <code>GetDocumentTextDetection</code>.
+        ///  <c>EntityTypes</c> isn't returned by <c>DetectDocumentText</c> and <c>GetDocumentTextDetection</c>.
         /// </para>
         /// </summary>
         public List<string> EntityTypes
@@ -304,7 +349,7 @@ namespace Amazon.Textract.Model
         // Check to see if EntityTypes property is set
         internal bool IsSetEntityTypes()
         {
-            return this._entityTypes != null && this._entityTypes.Count > 0; 
+            return this._entityTypes != null && (this._entityTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -349,11 +394,11 @@ namespace Amazon.Textract.Model
         /// <summary>
         /// Gets and sets the property Page. 
         /// <para>
-        /// The page on which a block was detected. <code>Page</code> is returned by synchronous
-        /// and asynchronous operations. Page values greater than 1 are only returned for multipage
+        /// The page on which a block was detected. <c>Page</c> is returned by synchronous and
+        /// asynchronous operations. Page values greater than 1 are only returned for multipage
         /// documents that are in PDF or TIFF format. A scanned image (JPEG/PNG) provided to an
         /// asynchronous operation, even if it contains multiple document pages, is considered
-        /// a single-page document. This means that for scanned images the value of <code>Page</code>
+        /// a single-page document. This means that for scanned images the value of <c>Page</c>
         /// is always 1. 
         /// </para>
         /// </summary>
@@ -403,14 +448,14 @@ namespace Amazon.Textract.Model
         // Check to see if Relationships property is set
         internal bool IsSetRelationships()
         {
-            return this._relationships != null && this._relationships.Count > 0; 
+            return this._relationships != null && (this._relationships.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property RowIndex. 
         /// <para>
-        /// The row in which a table cell is located. The first row position is 1. <code>RowIndex</code>
-        /// isn't returned by <code>DetectDocumentText</code> and <code>GetDocumentTextDetection</code>.
+        /// The row in which a table cell is located. The first row position is 1. <c>RowIndex</c>
+        /// isn't returned by <c>DetectDocumentText</c> and <c>GetDocumentTextDetection</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]
@@ -429,8 +474,8 @@ namespace Amazon.Textract.Model
         /// <summary>
         /// Gets and sets the property RowSpan. 
         /// <para>
-        /// The number of rows that a table cell spans. <code>RowSpan</code> isn't returned by
-        /// <code>DetectDocumentText</code> and <code>GetDocumentTextDetection</code>.
+        /// The number of rows that a table cell spans. <c>RowSpan</c> isn't returned by <c>DetectDocumentText</c>
+        /// and <c>GetDocumentTextDetection</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]

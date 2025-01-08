@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
@@ -48,8 +49,8 @@ namespace Amazon.Route53.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// Specify <code>MAX_ZONES_BY_REUSABLE_DELEGATION_SET</code> to get the maximum number
-        /// of hosted zones that you can associate with the specified reusable delegation set.
+        /// Specify <c>MAX_ZONES_BY_REUSABLE_DELEGATION_SET</c> to get the maximum number of hosted
+        /// zones that you can associate with the specified reusable delegation set.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

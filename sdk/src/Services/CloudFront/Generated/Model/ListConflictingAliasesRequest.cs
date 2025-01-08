@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -40,12 +41,12 @@ namespace Amazon.CloudFront.Model
     ///  
     /// <para>
     /// Use this operation to find aliases that are in use in CloudFront that conflict or
-    /// overlap with the provided alias. For example, if you provide <code>www.example.com</code>
-    /// as input, the returned list can include <code>www.example.com</code> and the overlapping
-    /// wildcard alternate domain name (<code>*.example.com</code>), if they exist. If you
-    /// provide <code>*.example.com</code> as input, the returned list can include <code>*.example.com</code>
-    /// and any alternate domain names covered by that wildcard (for example, <code>www.example.com</code>,
-    /// <code>test.example.com</code>, <code>dev.example.com</code>, and so on), if they exist.
+    /// overlap with the provided alias. For example, if you provide <c>www.example.com</c>
+    /// as input, the returned list can include <c>www.example.com</c> and the overlapping
+    /// wildcard alternate domain name (<c>*.example.com</c>), if they exist. If you provide
+    /// <c>*.example.com</c> as input, the returned list can include <c>*.example.com</c>
+    /// and any alternate domain names covered by that wildcard (for example, <c>www.example.com</c>,
+    /// <c>test.example.com</c>, <c>dev.example.com</c>, and so on), if they exist.
     /// </para>
     ///  
     /// <para>
@@ -61,8 +62,8 @@ namespace Amazon.CloudFront.Model
     /// You can optionally specify the maximum number of items to receive in the response.
     /// If the total number of items in the list exceeds the maximum that you specify, or
     /// the default maximum, the response is paginated. To get the next page of items, send
-    /// a subsequent request that specifies the <code>NextMarker</code> value from the current
-    /// response as the <code>Marker</code> value in the subsequent request.
+    /// a subsequent request that specifies the <c>NextMarker</c> value from the current response
+    /// as the <c>Marker</c> value in the subsequent request.
     /// </para>
     /// </summary>
     public partial class ListConflictingAliasesRequest : AmazonCloudFrontRequest
@@ -78,7 +79,7 @@ namespace Amazon.CloudFront.Model
         /// The alias (also called a CNAME) to search for conflicting aliases.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=253)]
+        [AWSProperty(Required=true, Min=0, Max=253)]
         public string Alias
         {
             get { return this._alias; }
@@ -98,7 +99,7 @@ namespace Amazon.CloudFront.Model
         /// that includes the provided alias.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=25)]
+        [AWSProperty(Required=true, Min=0, Max=25)]
         public string DistributionId
         {
             get { return this._distributionId; }
@@ -116,7 +117,7 @@ namespace Amazon.CloudFront.Model
         /// <para>
         /// Use this field when paginating results to indicate where to begin in the list of conflicting
         /// aliases. The response includes conflicting aliases in the list that occur after the
-        /// marker. To get the next page of the list, set this field's value to the value of <code>NextMarker</code>
+        /// marker. To get the next page of the list, set this field's value to the value of <c>NextMarker</c>
         /// from the current page's response.
         /// </para>
         /// </summary>

@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Redshift.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -58,6 +59,10 @@ namespace Amazon.Redshift.Model.Internal.MarshallTransformations
 
             if(publicRequest != null)
             {
+                if(publicRequest.IsSetAllowWrites())
+                {
+                    request.Parameters.Add("AllowWrites", StringUtils.FromBool(publicRequest.AllowWrites));
+                }
                 if(publicRequest.IsSetConsumerIdentifier())
                 {
                     request.Parameters.Add("ConsumerIdentifier", StringUtils.FromString(publicRequest.ConsumerIdentifier));

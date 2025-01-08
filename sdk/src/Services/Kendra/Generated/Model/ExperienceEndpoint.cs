@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -59,8 +60,8 @@ namespace Amazon.Kendra.Model
         /// Gets and sets the property EndpointType. 
         /// <para>
         /// The type of endpoint for your Amazon Kendra experience. The type currently available
-        /// is <code>HOME</code>, which is a unique and fully hosted URL to the home page of your
-        /// Amazon Kendra experience.
+        /// is <c>HOME</c>, which is a unique and fully hosted URL to the home page of your Amazon
+        /// Kendra experience.
         /// </para>
         /// </summary>
         public EndpointType EndpointType

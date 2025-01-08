@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the AcceptAddressTransfer operation.
     /// Accepts an Elastic IP address transfer. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#using-instance-addressing-eips-transfer-accept">Accept
-    /// a transferred Elastic IP address</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.
+    /// a transferred Elastic IP address</a> in the <i>Amazon VPC User Guide</i>.
     /// </summary>
     public partial class AcceptAddressTransferRequest : AmazonEC2Request
     {
         private string _address;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
 
         /// <summary>
         /// Gets and sets the property Address. 
@@ -60,11 +61,10 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property TagSpecifications. 
         /// <para>
-        ///  <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the
-        /// resource. Use the tag key in the filter name and the tag value as the filter value.
-        /// For example, to find all resources that have a tag with the key <code>Owner</code>
-        /// and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name
-        /// and <code>TeamA</code> for the filter value.
+        ///  <c>tag</c>:&lt;key&gt; - The key/value combination of a tag assigned to the resource.
+        /// Use the tag key in the filter name and the tag value as the filter value. For example,
+        /// to find all resources that have a tag with the key <c>Owner</c> and the value <c>TeamA</c>,
+        /// specify <c>tag:Owner</c> for the filter name and <c>TeamA</c> for the filter value.
         /// </para>
         /// </summary>
         public List<TagSpecification> TagSpecifications
@@ -76,7 +76,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

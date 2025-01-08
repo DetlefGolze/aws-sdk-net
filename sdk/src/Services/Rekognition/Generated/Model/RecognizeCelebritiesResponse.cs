@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -33,18 +34,18 @@ namespace Amazon.Rekognition.Model
     /// </summary>
     public partial class RecognizeCelebritiesResponse : AmazonWebServiceResponse
     {
-        private List<Celebrity> _celebrityFaces = new List<Celebrity>();
+        private List<Celebrity> _celebrityFaces = AWSConfigs.InitializeCollections ? new List<Celebrity>() : null;
         private OrientationCorrection _orientationCorrection;
-        private List<ComparedFace> _unrecognizedFaces = new List<ComparedFace>();
+        private List<ComparedFace> _unrecognizedFaces = AWSConfigs.InitializeCollections ? new List<ComparedFace>() : null;
 
         /// <summary>
         /// Gets and sets the property CelebrityFaces. 
         /// <para>
         /// Details about each celebrity found in the image. Amazon Rekognition can detect a maximum
         /// of 64 celebrities in an image. Each celebrity object includes the following attributes:
-        /// <code>Face</code>, <code>Confidence</code>, <code>Emotions</code>, <code>Landmarks</code>,
-        /// <code>Pose</code>, <code>Quality</code>, <code>Smile</code>, <code>Id</code>, <code>KnownGender</code>,
-        /// <code>MatchConfidence</code>, <code>Name</code>, <code>Urls</code>.
+        /// <c>Face</c>, <c>Confidence</c>, <c>Emotions</c>, <c>Landmarks</c>, <c>Pose</c>, <c>Quality</c>,
+        /// <c>Smile</c>, <c>Id</c>, <c>KnownGender</c>, <c>MatchConfidence</c>, <c>Name</c>,
+        /// <c>Urls</c>.
         /// </para>
         /// </summary>
         public List<Celebrity> CelebrityFaces
@@ -56,7 +57,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if CelebrityFaces property is set
         internal bool IsSetCelebrityFaces()
         {
-            return this._celebrityFaces != null && this._celebrityFaces.Count > 0; 
+            return this._celebrityFaces != null && (this._celebrityFaces.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -70,17 +71,17 @@ namespace Amazon.Rekognition.Model
         /// <para>
         /// The orientation of the input image (counterclockwise direction). If your application
         /// displays the image, you can use this value to correct the orientation. The bounding
-        /// box coordinates returned in <code>CelebrityFaces</code> and <code>UnrecognizedFaces</code>
-        /// represent face locations before the image orientation is corrected. 
+        /// box coordinates returned in <c>CelebrityFaces</c> and <c>UnrecognizedFaces</c> represent
+        /// face locations before the image orientation is corrected. 
         /// </para>
         ///  <note> 
         /// <para>
         /// If the input image is in .jpeg format, it might contain exchangeable image (Exif)
         /// metadata that includes the image's orientation. If so, and the Exif metadata for the
-        /// input image populates the orientation field, the value of <code>OrientationCorrection</code>
-        /// is null. The <code>CelebrityFaces</code> and <code>UnrecognizedFaces</code> bounding
-        /// box coordinates represent face locations after Exif metadata is used to correct the
-        /// image orientation. Images in .png format don't contain Exif metadata. 
+        /// input image populates the orientation field, the value of <c>OrientationCorrection</c>
+        /// is null. The <c>CelebrityFaces</c> and <c>UnrecognizedFaces</c> bounding box coordinates
+        /// represent face locations after Exif metadata is used to correct the image orientation.
+        /// Images in .png format don't contain Exif metadata. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -111,7 +112,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if UnrecognizedFaces property is set
         internal bool IsSetUnrecognizedFaces()
         {
-            return this._unrecognizedFaces != null && this._unrecognizedFaces.Count > 0; 
+            return this._unrecognizedFaces != null && (this._unrecognizedFaces.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

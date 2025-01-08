@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeNetworkInterfacePermissionsResponse : AmazonWebServiceResponse
     {
-        private List<NetworkInterfacePermission> _networkInterfacePermissions = new List<NetworkInterfacePermission>();
+        private List<NetworkInterfacePermission> _networkInterfacePermissions = AWSConfigs.InitializeCollections ? new List<NetworkInterfacePermission>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.EC2.Model
         // Check to see if NetworkInterfacePermissions property is set
         internal bool IsSetNetworkInterfacePermissions()
         {
-            return this._networkInterfacePermissions != null && this._networkInterfacePermissions.Count > 0; 
+            return this._networkInterfacePermissions != null && (this._networkInterfacePermissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The token to include in another request to get the next page of items. This value
-        /// is <code>null</code> when there are no more items to return.
+        /// is <c>null</c> when there are no more items to return.
         /// </para>
         /// </summary>
         public string NextToken

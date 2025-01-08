@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
     /// A function with the same name already exists in this Amazon Web Services account.
     /// To create a function, you must provide a unique name. To update an existing function,
-    /// use <code>UpdateFunction</code>.
+    /// use <c>UpdateFunction</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -53,18 +54,18 @@ namespace Amazon.CloudFormation.Model
     /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_UpdateStackSet.html">UpdateStackSet</a>
     /// to update all stack instances with the updated template and parameter value specified
     /// in the stack set. Once a stack instance has been updated with the new parameter, you
-    /// can then override the parameter value using <code>UpdateStackInstances</code>.
+    /// can then override the parameter value using <c>UpdateStackInstances</c>.
     /// </para>
     /// </summary>
     public partial class UpdateStackInstancesRequest : AmazonCloudFormationRequest
     {
-        private List<string> _accounts = new List<string>();
+        private List<string> _accounts = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private CallAs _callAs;
         private DeploymentTargets _deploymentTargets;
         private string _operationId;
         private StackSetOperationPreferences _operationPreferences;
-        private List<Parameter> _parameterOverrides = new List<Parameter>();
-        private List<string> _regions = new List<string>();
+        private List<Parameter> _parameterOverrides = AWSConfigs.InitializeCollections ? new List<Parameter>() : null;
+        private List<string> _regions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _stackSetName;
 
         /// <summary>
@@ -77,7 +78,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// You can specify <code>Accounts</code> or <code>DeploymentTargets</code>, but not both.
+        /// You can specify <c>Accounts</c> or <c>DeploymentTargets</c>, but not both.
         /// </para>
         /// </summary>
         public List<string> Accounts
@@ -89,7 +90,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Accounts property is set
         internal bool IsSetAccounts()
         {
-            return this._accounts != null && this._accounts.Count > 0; 
+            return this._accounts != null && (this._accounts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -101,16 +102,16 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for stack sets with
-        /// self-managed permissions.
+        /// By default, <c>SELF</c> is specified. Use <c>SELF</c> for stack sets with self-managed
+        /// permissions.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If you are signed in to the management account, specify <code>SELF</code>.
+        /// If you are signed in to the management account, specify <c>SELF</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If you are signed in to a delegated administrator account, specify <code>DELEGATED_ADMIN</code>.
+        /// If you are signed in to a delegated administrator account, specify <c>DELEGATED_ADMIN</c>.
         /// </para>
         ///  
         /// <para>
@@ -143,7 +144,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// You can specify <code>Accounts</code> or <code>DeploymentTargets</code>, but not both.
+        /// You can specify <c>Accounts</c> or <c>DeploymentTargets</c>, but not both.
         /// </para>
         /// </summary>
         public DeploymentTargets DeploymentTargets
@@ -227,8 +228,8 @@ namespace Amazon.CloudFormation.Model
         ///  </li> <li> 
         /// <para>
         /// To leave an overridden parameter set to its present value, include the parameter and
-        /// specify <code>UsePreviousValue</code> as <code>true</code>. (You can't specify both
-        /// a value and set <code>UsePreviousValue</code> to <code>true</code>.)
+        /// specify <c>UsePreviousValue</c> as <c>true</c>. (You can't specify both a value and
+        /// set <c>UsePreviousValue</c> to <c>true</c>.)
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -248,12 +249,12 @@ namespace Amazon.CloudFormation.Model
         ///  
         /// <para>
         /// You can only override the parameter <i>values</i> that are specified in the stack
-        /// set; to add or delete a parameter itself, use <code>UpdateStackSet</code> to update
-        /// the stack set template. If you add a parameter to a template, before you can override
+        /// set; to add or delete a parameter itself, use <c>UpdateStackSet</c> to update the
+        /// stack set template. If you add a parameter to a template, before you can override
         /// the parameter value specified in the stack set you must first use <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_UpdateStackSet.html">UpdateStackSet</a>
         /// to update all stack instances with the updated template and parameter value specified
         /// in the stack set. Once a stack instance has been updated with the new parameter, you
-        /// can then override the parameter value using <code>UpdateStackInstances</code>.
+        /// can then override the parameter value using <c>UpdateStackInstances</c>.
         /// </para>
         /// </summary>
         public List<Parameter> ParameterOverrides
@@ -265,7 +266,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if ParameterOverrides property is set
         internal bool IsSetParameterOverrides()
         {
-            return this._parameterOverrides != null && this._parameterOverrides.Count > 0; 
+            return this._parameterOverrides != null && (this._parameterOverrides.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -286,7 +287,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Regions property is set
         internal bool IsSetRegions()
         {
-            return this._regions != null && this._regions.Count > 0; 
+            return this._regions != null && (this._regions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

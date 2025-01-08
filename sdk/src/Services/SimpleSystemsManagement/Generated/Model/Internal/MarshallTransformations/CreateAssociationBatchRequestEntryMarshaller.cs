@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SimpleSystemsManagement.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.SimpleSystemsManagement.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(CreateAssociationBatchRequestEntry requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAlarmConfiguration())
             {
                 context.Writer.WritePropertyName("AlarmConfiguration");
@@ -95,6 +98,12 @@ namespace Amazon.SimpleSystemsManagement.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("DocumentVersion");
                 context.Writer.Write(requestObject.DocumentVersion);
+            }
+
+            if(requestObject.IsSetDuration())
+            {
+                context.Writer.WritePropertyName("Duration");
+                context.Writer.Write(requestObject.Duration);
             }
 
             if(requestObject.IsSetInstanceId())

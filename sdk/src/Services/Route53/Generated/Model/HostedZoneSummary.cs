@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
-    /// In the response to a <code>ListHostedZonesByVPC</code> request, the <code>HostedZoneSummaries</code>
-    /// element contains one <code>HostedZoneSummary</code> element for each hosted zone that
-    /// the specified Amazon VPC is associated with. Each <code>HostedZoneSummary</code> element
-    /// contains the hosted zone name and ID, and information about who owns the hosted zone.
+    /// In the response to a <c>ListHostedZonesByVPC</c> request, the <c>HostedZoneSummaries</c>
+    /// element contains one <c>HostedZoneSummary</c> element for each hosted zone that the
+    /// specified Amazon VPC is associated with. Each <c>HostedZoneSummary</c> element contains
+    /// the hosted zone name and ID, and information about who owns the hosted zone.
     /// </summary>
     public partial class HostedZoneSummary
     {
@@ -63,7 +64,7 @@ namespace Amazon.Route53.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the private hosted zone, such as <code>example.com</code>.
+        /// The name of the private hosted zone, such as <c>example.com</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=1024)]

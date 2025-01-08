@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>mySubnetgroup</code> 
+        /// Example: <c>mySubnetgroup</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Lightsail.Model
     /// </summary>
     public partial class Instance
     {
-        private List<AddOn> _addOns = new List<AddOn>();
+        private List<AddOn> _addOns = AWSConfigs.InitializeCollections ? new List<AddOn>() : null;
         private string _arn;
         private string _blueprintId;
         private string _blueprintName;
@@ -41,7 +42,7 @@ namespace Amazon.Lightsail.Model
         private DateTime? _createdAt;
         private InstanceHardware _hardware;
         private IpAddressType _ipAddressType;
-        private List<string> _ipv6Addresses = new List<string>();
+        private List<string> _ipv6Addresses = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _isStaticIp;
         private ResourceLocation _location;
         private InstanceMetadataOptions _metadataOptions;
@@ -53,7 +54,7 @@ namespace Amazon.Lightsail.Model
         private string _sshKeyName;
         private InstanceState _state;
         private string _supportCode;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _username;
 
         /// <summary>
@@ -71,13 +72,13 @@ namespace Amazon.Lightsail.Model
         // Check to see if AddOns property is set
         internal bool IsSetAddOns()
         {
-            return this._addOns != null && this._addOns.Count > 0; 
+            return this._addOns != null && (this._addOns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Arn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the instance (e.g., <code>arn:aws:lightsail:us-east-2:123456789101:Instance/244ad76f-8aad-4741-809f-12345EXAMPLE</code>).
+        /// The Amazon Resource Name (ARN) of the instance (<c>arn:aws:lightsail:us-east-2:123456789101:Instance/244ad76f-8aad-4741-809f-12345EXAMPLE</c>).
         /// </para>
         /// </summary>
         public string Arn
@@ -95,7 +96,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property BlueprintId. 
         /// <para>
-        /// The blueprint ID (e.g., <code>os_amlinux_2016_03</code>).
+        /// The blueprint ID (<c>amazon_linux_2023</c>).
         /// </para>
         /// </summary>
         public string BlueprintId
@@ -113,7 +114,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property BlueprintName. 
         /// <para>
-        /// The friendly name of the blueprint (e.g., <code>Amazon Linux</code>).
+        /// The friendly name of the blueprint (<c>Amazon Linux 2023</c>).
         /// </para>
         /// </summary>
         public string BlueprintName
@@ -131,7 +132,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property BundleId. 
         /// <para>
-        /// The bundle for the instance (e.g., <code>micro_1_0</code>).
+        /// The bundle for the instance (<c>micro_x_x</c>).
         /// </para>
         /// </summary>
         public string BundleId
@@ -149,8 +150,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// The timestamp when the instance was created (e.g., <code>1479734909.17</code>) in
-        /// Unix time format.
+        /// The timestamp when the instance was created (<c>1479734909.17</c>) in Unix time format.
         /// </para>
         /// </summary>
         public DateTime CreatedAt
@@ -190,8 +190,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// The possible values are <code>ipv4</code> for IPv4 only, and <code>dualstack</code>
-        /// for IPv4 and IPv6.
+        /// The possible values are <c>ipv4</c> for IPv4 only, <c>ipv6</c> for IPv6 only, and
+        /// <c>dualstack</c> for IPv4 and IPv6.
         /// </para>
         /// </summary>
         public IpAddressType IpAddressType
@@ -221,7 +221,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Ipv6Addresses property is set
         internal bool IsSetIpv6Addresses()
         {
-            return this._ipv6Addresses != null && this._ipv6Addresses.Count > 0; 
+            return this._ipv6Addresses != null && (this._ipv6Addresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -281,7 +281,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name the user gave the instance (e.g., <code>Amazon_Linux-1GB-Ohio-1</code>).
+        /// The name the user gave the instance (<c>Amazon_Linux_2023-1</c>).
         /// </para>
         /// </summary>
         public string Name
@@ -353,7 +353,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The type of resource (usually <code>Instance</code>).
+        /// The type of resource (usually <c>Instance</c>).
         /// </para>
         /// </summary>
         public ResourceType ResourceType
@@ -371,7 +371,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property SshKeyName. 
         /// <para>
-        /// The name of the SSH key being used to connect to the instance (e.g., <code>LightsailDefaultKeyPair</code>).
+        /// The name of the SSH key being used to connect to the instance (<c>LightsailDefaultKeyPair</c>).
         /// </para>
         /// </summary>
         public string SshKeyName
@@ -389,7 +389,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property State. 
         /// <para>
-        /// The status code and the state (e.g., <code>running</code>) for the instance.
+        /// The status code and the state (<c>running</c>) for the instance.
         /// </para>
         /// </summary>
         public InstanceState State
@@ -441,13 +441,13 @@ namespace Amazon.Lightsail.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Username. 
         /// <para>
-        /// The user name for connecting to the instance (e.g., <code>ec2-user</code>).
+        /// The user name for connecting to the instance (<c>ec2-user</c>).
         /// </para>
         /// </summary>
         public string Username

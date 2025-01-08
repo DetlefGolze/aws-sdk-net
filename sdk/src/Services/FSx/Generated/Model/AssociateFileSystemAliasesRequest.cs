@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -48,7 +49,7 @@ namespace Amazon.FSx.Model
     /// </summary>
     public partial class AssociateFileSystemAliasesRequest : AmazonFSxRequest
     {
-        private List<string> _aliases = new List<string>();
+        private List<string> _aliases = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _clientRequestToken;
         private string _fileSystemId;
 
@@ -60,8 +61,8 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Formatted as a fully-qualified domain name (FQDN), <i> <code>hostname.domain</code>
-        /// </i>, for example, <code>accounting.corp.example.com</code>.
+        /// Formatted as a fully-qualified domain name (FQDN), <i> <c>hostname.domain</c> </i>,
+        /// for example, <c>accounting.corp.example.com</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -92,7 +93,7 @@ namespace Amazon.FSx.Model
         // Check to see if Aliases property is set
         internal bool IsSetAliases()
         {
-            return this._aliases != null && this._aliases.Count > 0; 
+            return this._aliases != null && (this._aliases.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

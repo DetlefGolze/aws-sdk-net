@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -64,11 +65,12 @@ namespace Amazon.EC2.Model
     {
         private bool? _acceptanceRequired;
         private string _clientToken;
-        private List<string> _gatewayLoadBalancerArns = new List<string>();
-        private List<string> _networkLoadBalancerArns = new List<string>();
+        private List<string> _gatewayLoadBalancerArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _networkLoadBalancerArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _privateDnsName;
-        private List<string> _supportedIpAddressTypes = new List<string>();
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<string> _supportedIpAddressTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _supportedRegions = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
 
         /// <summary>
         /// Gets and sets the property AcceptanceRequired. 
@@ -93,7 +95,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// Unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        /// request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How
+        /// request. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html">How
         /// to ensure idempotency</a>.
         /// </para>
         /// </summary>
@@ -124,7 +126,7 @@ namespace Amazon.EC2.Model
         // Check to see if GatewayLoadBalancerArns property is set
         internal bool IsSetGatewayLoadBalancerArns()
         {
-            return this._gatewayLoadBalancerArns != null && this._gatewayLoadBalancerArns.Count > 0; 
+            return this._gatewayLoadBalancerArns != null && (this._gatewayLoadBalancerArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -142,7 +144,7 @@ namespace Amazon.EC2.Model
         // Check to see if NetworkLoadBalancerArns property is set
         internal bool IsSetNetworkLoadBalancerArns()
         {
-            return this._networkLoadBalancerArns != null && this._networkLoadBalancerArns.Count > 0; 
+            return this._networkLoadBalancerArns != null && (this._networkLoadBalancerArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -167,7 +169,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property SupportedIpAddressTypes. 
         /// <para>
-        /// The supported IP address types. The possible values are <code>ipv4</code> and <code>ipv6</code>.
+        /// The supported IP address types. The possible values are <c>ipv4</c> and <c>ipv6</c>.
         /// </para>
         /// </summary>
         public List<string> SupportedIpAddressTypes
@@ -179,7 +181,25 @@ namespace Amazon.EC2.Model
         // Check to see if SupportedIpAddressTypes property is set
         internal bool IsSetSupportedIpAddressTypes()
         {
-            return this._supportedIpAddressTypes != null && this._supportedIpAddressTypes.Count > 0; 
+            return this._supportedIpAddressTypes != null && (this._supportedIpAddressTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SupportedRegions. 
+        /// <para>
+        /// The Regions from which service consumers can access the service.
+        /// </para>
+        /// </summary>
+        public List<string> SupportedRegions
+        {
+            get { return this._supportedRegions; }
+            set { this._supportedRegions = value; }
+        }
+
+        // Check to see if SupportedRegions property is set
+        internal bool IsSetSupportedRegions()
+        {
+            return this._supportedRegions != null && (this._supportedRegions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -197,7 +217,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

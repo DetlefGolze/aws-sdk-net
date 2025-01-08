@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CleanRooms.Model
 {
     /// <summary>
@@ -41,7 +42,9 @@ namespace Amazon.CleanRooms.Model
         private string _collaborationName;
         private DateTime? _createTime;
         private string _id;
-        private List<string> _memberAbilities = new List<string>();
+        private List<string> _memberAbilities = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private MLMemberAbilities _mlMemberAbilities;
+        private MembershipPaymentConfiguration _paymentConfiguration;
         private MembershipStatus _status;
         private DateTime? _updateTime;
 
@@ -214,13 +217,56 @@ namespace Amazon.CleanRooms.Model
         // Check to see if MemberAbilities property is set
         internal bool IsSetMemberAbilities()
         {
-            return this._memberAbilities != null && this._memberAbilities.Count > 0; 
+            return this._memberAbilities != null && (this._memberAbilities.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property MlMemberAbilities. 
+        /// <para>
+        /// Provides a summary of the ML abilities for the collaboration member.
+        /// </para>
+        ///  
+        /// <para>
+        /// Custom ML modeling is in beta release and is subject to change. For beta terms and
+        /// conditions, see <i>Betas and Previews</i> in the <a href="https://aws.amazon.com/service-terms/">Amazon
+        /// Web Services Service Terms</a>.
+        /// </para>
+        /// </summary>
+        public MLMemberAbilities MlMemberAbilities
+        {
+            get { return this._mlMemberAbilities; }
+            set { this._mlMemberAbilities = value; }
+        }
+
+        // Check to see if MlMemberAbilities property is set
+        internal bool IsSetMlMemberAbilities()
+        {
+            return this._mlMemberAbilities != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PaymentConfiguration. 
+        /// <para>
+        /// The payment responsibilities accepted by the collaboration member.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Required=true)]
+        public MembershipPaymentConfiguration PaymentConfiguration
+        {
+            get { return this._paymentConfiguration; }
+            set { this._paymentConfiguration = value; }
+        }
+
+        // Check to see if PaymentConfiguration property is set
+        internal bool IsSetPaymentConfiguration()
+        {
+            return this._paymentConfiguration != null;
         }
 
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the membership. Valid values are `ACTIVE`, `REMOVED`, and `COLLABORATION_DELETED`.
+        /// The status of the membership.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

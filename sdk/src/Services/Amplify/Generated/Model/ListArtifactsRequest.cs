@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Amplify.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property AppId. 
         /// <para>
-        ///  The unique ID for an Amplify app. 
+        /// The unique ID for an Amplify app. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=20)]
@@ -62,7 +63,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property BranchName. 
         /// <para>
-        ///  The name of a branch that is part of an Amplify app. 
+        /// The name of a branch that is part of an Amplify app. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]
@@ -81,7 +82,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property JobId. 
         /// <para>
-        ///  The unique ID for a job. 
+        /// The unique ID for a job. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=255)]
@@ -100,10 +101,10 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        ///  The maximum number of records to list in a single response. 
+        /// The maximum number of records to list in a single response. 
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=100)]
+        [AWSProperty(Min=0, Max=50)]
         public int MaxResults
         {
             get { return this._maxResults.GetValueOrDefault(); }
@@ -119,7 +120,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  A pagination token. Set to null to start listing artifacts from start. If a non-null
+        /// A pagination token. Set to null to start listing artifacts from start. If a non-null
         /// pagination token is returned in a result, pass its value in here to list more artifacts.
         /// 
         /// </para>

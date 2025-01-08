@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
     /// Container for the parameters to the DisassociateTrafficDistributionGroupUser operation.
-    /// Disassociates an agent from a traffic distribution group.
+    /// Disassociates an agent from a traffic distribution group. This API can be called only
+    /// in the Region where the traffic distribution group is created.
     /// </summary>
     public partial class DisassociateTrafficDistributionGroupUserRequest : AmazonConnectRequest
     {
@@ -61,9 +63,8 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property TrafficDistributionGroupId. 
         /// <para>
-        /// The identifier of the traffic distribution group. This can be the ID or the ARN if
-        /// the API is being called in the Region where the traffic distribution group was created.
-        /// The ARN must be provided if the call is from the replicated Region.
+        /// The identifier of the traffic distribution group. This can be the ID or the ARN of
+        /// the traffic distribution group.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

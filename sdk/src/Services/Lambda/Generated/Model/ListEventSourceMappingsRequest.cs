@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
     /// Container for the parameters to the ListEventSourceMappings operation.
-    /// Lists event source mappings. Specify an <code>EventSourceArn</code> to show only event
-    /// source mappings for a single event source.
+    /// Lists event source mappings. Specify an <c>EventSourceArn</c> to show only event source
+    /// mappings for a single event source.
     /// </summary>
     public partial class ListEventSourceMappingsRequest : AmazonLambdaRequest
     {
@@ -59,7 +60,9 @@ namespace Amazon.Lambda.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Amazon Managed Streaming for Apache Kafka</b> – The ARN of the cluster.
+        ///  <b>Amazon Managed Streaming for Apache Kafka</b> – The ARN of the cluster or the
+        /// ARN of the VPC connection (for <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#msk-multi-vpc">cross-account
+        /// event source mappings</a>).
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -86,7 +89,7 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property FunctionName. 
         /// <para>
-        /// The name of the Lambda function.
+        /// The name or ARN of the Lambda function.
         /// </para>
         ///  
         /// <para>
@@ -94,19 +97,19 @@ namespace Amazon.Lambda.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>Function name</b> – <code>MyFunction</code>.
+        ///  <b>Function name</b> – <c>MyFunction</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>.
+        ///  <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Version or Alias ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD</code>.
+        ///  <b>Version or Alias ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Partial ARN</b> – <code>123456789012:function:MyFunction</code>.
+        ///  <b>Partial ARN</b> – <c>123456789012:function:MyFunction</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -34,8 +35,9 @@ namespace Amazon.Glue.Model
     public partial class BasicCatalogTarget
     {
         private string _database;
-        private List<string> _inputs = new List<string>();
+        private List<string> _inputs = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
+        private List<List<string>> _partitionKeys = AWSConfigs.InitializeCollections ? new List<List<string>>() : null;
         private string _table;
 
         /// <summary>
@@ -74,7 +76,7 @@ namespace Amazon.Glue.Model
         // Check to see if Inputs property is set
         internal bool IsSetInputs()
         {
-            return this._inputs != null && this._inputs.Count > 0; 
+            return this._inputs != null && (this._inputs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -94,6 +96,25 @@ namespace Amazon.Glue.Model
         internal bool IsSetName()
         {
             return this._name != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PartitionKeys. 
+        /// <para>
+        /// The partition keys used to distribute data across multiple partitions or shards based
+        /// on a specific key or set of key.
+        /// </para>
+        /// </summary>
+        public List<List<string>> PartitionKeys
+        {
+            get { return this._partitionKeys; }
+            set { this._partitionKeys = value; }
+        }
+
+        // Check to see if PartitionKeys property is set
+        internal bool IsSetPartitionKeys()
+        {
+            return this._partitionKeys != null && (this._partitionKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

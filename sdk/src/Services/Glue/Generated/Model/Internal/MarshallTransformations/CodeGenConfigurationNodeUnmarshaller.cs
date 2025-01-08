@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public CodeGenConfigurationNode Unmarshall(JsonUnmarshallerContext context)
         {
+            CodeGenConfigurationNode unmarshalledObject = new CodeGenConfigurationNode();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            CodeGenConfigurationNode unmarshalledObject = new CodeGenConfigurationNode();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -128,6 +130,18 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = BasicCatalogTargetUnmarshaller.Instance;
                     unmarshalledObject.CatalogTarget = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ConnectorDataSource", targetDepth))
+                {
+                    var unmarshaller = ConnectorDataSourceUnmarshaller.Instance;
+                    unmarshalledObject.ConnectorDataSource = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ConnectorDataTarget", targetDepth))
+                {
+                    var unmarshaller = ConnectorDataTargetUnmarshaller.Instance;
+                    unmarshalledObject.ConnectorDataTarget = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("CustomCode", targetDepth))
@@ -479,7 +493,6 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

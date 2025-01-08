@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the endpoint options for the Elasticsearch domain. See <code>OptionStatus</code>
+        /// The status of the endpoint options for the Elasticsearch domain. See <c>OptionStatus</c>
         /// for the status information that's included. 
         /// </para>
         /// </summary>

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancing.Model
 {
     /// <summary>
-    /// Information about the <code>ConnectionDraining</code> attribute.
+    /// Information about the <c>ConnectionDraining</c> attribute.
     /// </summary>
     public partial class ConnectionDraining
     {

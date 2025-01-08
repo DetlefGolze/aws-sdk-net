@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AccessAnalyzer.Model
 {
     /// <summary>
@@ -33,20 +34,21 @@ namespace Amazon.AccessAnalyzer.Model
     /// </summary>
     public partial class AccessPreviewFinding
     {
-        private List<string> _action = new List<string>();
+        private List<string> _action = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private FindingChangeType _changeType;
-        private Dictionary<string, string> _condition = new Dictionary<string, string>();
+        private Dictionary<string, string> _condition = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private DateTime? _createdAt;
         private string _error;
         private string _existingFindingId;
         private FindingStatus _existingFindingStatus;
         private string _id;
         private bool? _isPublic;
-        private Dictionary<string, string> _principal = new Dictionary<string, string>();
+        private Dictionary<string, string> _principal = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _resource;
+        private ResourceControlPolicyRestriction _resourceControlPolicyRestriction;
         private string _resourceOwnerAccount;
         private ResourceType _resourceType;
-        private List<FindingSource> _sources = new List<FindingSource>();
+        private List<FindingSource> _sources = AWSConfigs.InitializeCollections ? new List<FindingSource>() : null;
         private FindingStatus _status;
 
         /// <summary>
@@ -65,7 +67,7 @@ namespace Amazon.AccessAnalyzer.Model
         // Check to see if Action property is set
         internal bool IsSetAction()
         {
-            return this._action != null && this._action.Count > 0; 
+            return this._action != null && (this._action.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -76,24 +78,21 @@ namespace Amazon.AccessAnalyzer.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>New</code> - The finding is for newly-introduced access.
+        ///  <c>New</c> - The finding is for newly-introduced access.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Unchanged</code> - The preview finding is an existing finding that would remain
-        /// unchanged.
+        ///  <c>Unchanged</c> - The preview finding is an existing finding that would remain unchanged.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Changed</code> - The preview finding is an existing finding with a change in
-        /// status.
+        ///  <c>Changed</c> - The preview finding is an existing finding with a change in status.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For example, a <code>Changed</code> finding with preview status <code>Resolved</code>
-        /// and existing status <code>Active</code> indicates the existing <code>Active</code>
-        /// finding would become <code>Resolved</code> as a result of the proposed permissions
-        /// change.
+        /// For example, a <c>Changed</c> finding with preview status <c>Resolved</c> and existing
+        /// status <c>Active</c> indicates the existing <c>Active</c> finding would become <c>Resolved</c>
+        /// as a result of the proposed permissions change.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -124,7 +123,7 @@ namespace Amazon.AccessAnalyzer.Model
         // Check to see if Condition property is set
         internal bool IsSetCondition()
         {
-            return this._condition != null && this._condition.Count > 0; 
+            return this._condition != null && (this._condition.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -255,7 +254,7 @@ namespace Amazon.AccessAnalyzer.Model
         // Check to see if Principal property is set
         internal bool IsSetPrincipal()
         {
-            return this._principal != null && this._principal.Count > 0; 
+            return this._principal != null && (this._principal.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -275,6 +274,25 @@ namespace Amazon.AccessAnalyzer.Model
         internal bool IsSetResource()
         {
             return this._resource != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ResourceControlPolicyRestriction. 
+        /// <para>
+        /// The type of restriction applied to the finding by the resource owner with an Organizations
+        /// resource control policy (RCP).
+        /// </para>
+        /// </summary>
+        public ResourceControlPolicyRestriction ResourceControlPolicyRestriction
+        {
+            get { return this._resourceControlPolicyRestriction; }
+            set { this._resourceControlPolicyRestriction = value; }
+        }
+
+        // Check to see if ResourceControlPolicyRestriction property is set
+        internal bool IsSetResourceControlPolicyRestriction()
+        {
+            return this._resourceControlPolicyRestriction != null;
         }
 
         /// <summary>
@@ -332,17 +350,16 @@ namespace Amazon.AccessAnalyzer.Model
         // Check to see if Sources property is set
         internal bool IsSetSources()
         {
-            return this._sources != null && this._sources.Count > 0; 
+            return this._sources != null && (this._sources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
         /// The preview status of the finding. This is what the status of the finding would be
-        /// after permissions deployment. For example, a <code>Changed</code> finding with preview
-        /// status <code>Resolved</code> and existing status <code>Active</code> indicates the
-        /// existing <code>Active</code> finding would become <code>Resolved</code> as a result
-        /// of the proposed permissions change.
+        /// after permissions deployment. For example, a <c>Changed</c> finding with preview status
+        /// <c>Resolved</c> and existing status <c>Active</c> indicates the existing <c>Active</c>
+        /// finding would become <c>Resolved</c> as a result of the proposed permissions change.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

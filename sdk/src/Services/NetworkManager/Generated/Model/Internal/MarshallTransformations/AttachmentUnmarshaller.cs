@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.NetworkManager.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.NetworkManager.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Attachment Unmarshall(JsonUnmarshallerContext context)
         {
+            Attachment unmarshalledObject = new Attachment();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Attachment unmarshalledObject = new Attachment();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -106,10 +108,34 @@ namespace Amazon.NetworkManager.Model.Internal.MarshallTransformations
                     unmarshalledObject.EdgeLocation = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("EdgeLocations", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
+                    unmarshalledObject.EdgeLocations = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("LastModificationErrors", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<AttachmentError, AttachmentErrorUnmarshaller>(AttachmentErrorUnmarshaller.Instance);
+                    unmarshalledObject.LastModificationErrors = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("NetworkFunctionGroupName", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.NetworkFunctionGroupName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("OwnerAccountId", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.OwnerAccountId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ProposedNetworkFunctionGroupChange", targetDepth))
+                {
+                    var unmarshaller = ProposedNetworkFunctionGroupChangeUnmarshaller.Instance;
+                    unmarshalledObject.ProposedNetworkFunctionGroupChange = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("ProposedSegmentChange", targetDepth))
@@ -149,7 +175,6 @@ namespace Amazon.NetworkManager.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

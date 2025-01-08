@@ -26,25 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTEventsData.Model
 {
     /// <summary>
     /// Container for the parameters to the BatchPutMessage operation.
     /// Sends a set of messages to the IoT Events system. Each message payload is transformed
-    /// into the input you specify (<code>"inputName"</code>) and ingested into any detectors
-    /// that monitor that input. If multiple messages are sent, the order in which the messages
+    /// into the input you specify (<c>"inputName"</c>) and ingested into any detectors that
+    /// monitor that input. If multiple messages are sent, the order in which the messages
     /// are processed isn't guaranteed. To guarantee ordering, you must send messages one
     /// at a time and wait for a successful response.
     /// </summary>
     public partial class BatchPutMessageRequest : AmazonIoTEventsDataRequest
     {
-        private List<Message> _messages = new List<Message>();
+        private List<Message> _messages = AWSConfigs.InitializeCollections ? new List<Message>() : null;
 
         /// <summary>
         /// Gets and sets the property Messages. 
         /// <para>
-        /// The list of messages to send. Each message has the following format: <code>'{ "messageId":
-        /// "string", "inputName": "string", "payload": "string"}'</code> 
+        /// The list of messages to send. Each message has the following format: <c>'{ "messageId":
+        /// "string", "inputName": "string", "payload": "string"}'</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1)]
@@ -57,7 +58,7 @@ namespace Amazon.IoTEventsData.Model
         // Check to see if Messages property is set
         internal bool IsSetMessages()
         {
-            return this._messages != null && this._messages.Count > 0; 
+            return this._messages != null && (this._messages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

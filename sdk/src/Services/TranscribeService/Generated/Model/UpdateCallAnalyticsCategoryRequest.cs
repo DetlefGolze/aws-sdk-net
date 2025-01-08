@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateCallAnalyticsCategory operation.
-    /// Updates the specified Call Analytics category with new rules. Note that the <code>UpdateCallAnalyticsCategory</code>
+    /// Updates the specified Call Analytics category with new rules. Note that the <c>UpdateCallAnalyticsCategory</c>
     /// operation overwrites all existing rules contained in the specified category. You cannot
     /// append additional rules onto an existing category.
     /// 
@@ -43,7 +44,7 @@ namespace Amazon.TranscribeService.Model
     {
         private string _categoryName;
         private InputType _inputType;
-        private List<Rule> _rules = new List<Rule>();
+        private List<Rule> _rules = AWSConfigs.InitializeCollections ? new List<Rule>() : null;
 
         /// <summary>
         /// Gets and sets the property CategoryName. 
@@ -70,8 +71,8 @@ namespace Amazon.TranscribeService.Model
         /// <para>
         /// Choose whether you want to update a real-time or a post-call category. The input type
         /// you specify must match the input type specified when the category was created. For
-        /// example, if you created a category with the <code>POST_CALL</code> input type, you
-        /// must use <code>POST_CALL</code> as the input type when updating this category.
+        /// example, if you created a category with the <c>POST_CALL</c> input type, you must
+        /// use <c>POST_CALL</c> as the input type when updating this category.
         /// </para>
         /// </summary>
         public InputType InputType
@@ -103,7 +104,7 @@ namespace Amazon.TranscribeService.Model
         // Check to see if Rules property is set
         internal bool IsSetRules()
         {
-            return this._rules != null && this._rules.Count > 0; 
+            return this._rules != null && (this._rules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

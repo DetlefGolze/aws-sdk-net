@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Outposts.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Outposts.Model
     /// </summary>
     public partial class LineItem
     {
-        private List<LineItemAssetInformation> _assetInformationList = new List<LineItemAssetInformation>();
+        private List<LineItemAssetInformation> _assetInformationList = AWSConfigs.InitializeCollections ? new List<LineItemAssetInformation>() : null;
         private string _catalogItemId;
         private string _lineItemId;
         private string _previousLineItemId;
@@ -57,7 +58,7 @@ namespace Amazon.Outposts.Model
         // Check to see if AssetInformationList property is set
         internal bool IsSetAssetInformationList()
         {
-            return this._assetInformationList != null && this._assetInformationList.Count > 0; 
+            return this._assetInformationList != null && (this._assetInformationList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -140,7 +141,7 @@ namespace Amazon.Outposts.Model
         /// The quantity of the line item.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=20)]
+        [AWSProperty(Min=1)]
         public int Quantity
         {
             get { return this._quantity.GetValueOrDefault(); }

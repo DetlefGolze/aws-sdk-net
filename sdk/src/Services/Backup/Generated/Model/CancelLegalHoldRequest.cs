@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
     /// Container for the parameters to the CancelLegalHold operation.
-    /// This action removes the specified legal hold on a recovery point. This action can
-    /// only be performed by a user with sufficient permissions.
+    /// Removes the specified legal hold on a recovery point. This action can only be performed
+    /// by a user with sufficient permissions.
     /// </summary>
     public partial class CancelLegalHoldRequest : AmazonBackupRequest
     {
@@ -42,7 +43,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property CancelDescription. 
         /// <para>
-        /// String describing the reason for removing the legal hold.
+        /// A string the describes the reason for removing the legal hold.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -61,7 +62,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property LegalHoldId. 
         /// <para>
-        /// Legal hold ID required to remove the specified legal hold on a recovery point.
+        /// The ID of the legal hold.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -80,8 +81,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property RetainRecordInDays. 
         /// <para>
-        /// The integer amount in days specifying amount of days after this API operation to remove
-        /// legal hold.
+        /// The integer amount, in days, after which to remove legal hold.
         /// </para>
         /// </summary>
         public long RetainRecordInDays

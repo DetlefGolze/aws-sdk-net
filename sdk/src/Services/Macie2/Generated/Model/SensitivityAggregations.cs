@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Macie2.Model
     /// to S3 buckets. Each field contains aggregated data for all the buckets that have a
     /// sensitivity score (sensitivityScore) of a specified value or within a specified range
     /// (BucketStatisticsBySensitivity). If automated sensitive data discovery is currently
-    /// disabled for your account, the value for each field is 0.
+    /// disabled for your account, the value for most fields is 0.
     /// </summary>
     public partial class SensitivityAggregations
     {

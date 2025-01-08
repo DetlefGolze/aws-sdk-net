@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
-    /// Represents a request to perform a <code>PutItem</code> operation on an item.
+    /// Represents a request to perform a <c>PutItem</c> operation on an item.
     /// </summary>
     public partial class PutRequest
     {
-        private Dictionary<string, AttributeValue> _item = new Dictionary<string, AttributeValue>();
+        private Dictionary<string, AttributeValue> _item = AWSConfigs.InitializeCollections ? new Dictionary<string, AttributeValue>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -43,7 +44,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Instantiates PutRequest with the parameterized properties
         /// </summary>
-        /// <param name="item">A map of attribute name to attribute values, representing the primary key of an item to be processed by <code>PutItem</code>. All of the table's primary key attributes must be specified, and their data types must match those of the table's key schema. If any attributes are present in the item that are part of an index key schema for the table, their types must match the index key schema.</param>
+        /// <param name="item">A map of attribute name to attribute values, representing the primary key of an item to be processed by <c>PutItem</c>. All of the table's primary key attributes must be specified, and their data types must match those of the table's key schema. If any attributes are present in the item that are part of an index key schema for the table, their types must match the index key schema.</param>
         public PutRequest(Dictionary<string, AttributeValue> item)
         {
             _item = item;
@@ -53,10 +54,10 @@ namespace Amazon.DynamoDBv2.Model
         /// Gets and sets the property Item. 
         /// <para>
         /// A map of attribute name to attribute values, representing the primary key of an item
-        /// to be processed by <code>PutItem</code>. All of the table's primary key attributes
-        /// must be specified, and their data types must match those of the table's key schema.
-        /// If any attributes are present in the item that are part of an index key schema for
-        /// the table, their types must match the index key schema.
+        /// to be processed by <c>PutItem</c>. All of the table's primary key attributes must
+        /// be specified, and their data types must match those of the table's key schema. If
+        /// any attributes are present in the item that are part of an index key schema for the
+        /// table, their types must match the index key schema.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -69,7 +70,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if Item property is set
         internal bool IsSetItem()
         {
-            return this._item != null && this._item.Count > 0; 
+            return this._item != null && (this._item.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

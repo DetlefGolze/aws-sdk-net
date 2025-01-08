@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -34,9 +35,11 @@ namespace Amazon.SageMaker.Model
     /// 
     ///  
     /// <para>
-    /// Model artifacts are the output that results from training a model, and typically consist
+    /// Model artifacts are outputs that result from training a model. They typically consist
     /// of trained parameters, a model definition that describes how to compute inferences,
-    /// and other metadata.
+    /// and other metadata. A SageMaker container stores your trained model artifacts in the
+    /// <c>/opt/ml/model</c> directory. After training has completed, by default, these artifacts
+    /// are uploaded to your Amazon S3 bucket as compressed files.
     /// </para>
     /// </summary>
     public partial class ModelArtifacts
@@ -46,7 +49,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property S3ModelArtifacts. 
         /// <para>
-        /// The path of the S3 object that contains the model artifacts. For example, <code>s3://bucket-name/keynameprefix/model.tar.gz</code>.
+        /// The path of the S3 object that contains the model artifacts. For example, <c>s3://bucket-name/keynameprefix/model.tar.gz</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=1024)]

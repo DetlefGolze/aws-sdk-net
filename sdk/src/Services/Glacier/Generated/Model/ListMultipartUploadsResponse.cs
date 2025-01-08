@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glacier.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.Glacier.Model
     public partial class ListMultipartUploadsResponse : AmazonWebServiceResponse
     {
         private string _marker;
-        private List<UploadListElement> _uploadsList = new List<UploadListElement>();
+        private List<UploadListElement> _uploadsList = AWSConfigs.InitializeCollections ? new List<UploadListElement>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         /// An opaque string that represents where to continue pagination of the results. You
         /// use the marker in a new List Multipart Uploads request to obtain more uploads in the
-        /// list. If there are no more uploads, this value is <code>null</code>.
+        /// list. If there are no more uploads, this value is <c>null</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -71,7 +72,7 @@ namespace Amazon.Glacier.Model
         // Check to see if UploadsList property is set
         internal bool IsSetUploadsList()
         {
-            return this._uploadsList != null && this._uploadsList.Count > 0; 
+            return this._uploadsList != null && (this._uploadsList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

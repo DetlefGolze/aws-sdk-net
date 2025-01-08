@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DAX.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.DAX.Model
         private string _dataType;
         private string _description;
         private IsModifiable _isModifiable;
-        private List<NodeTypeSpecificValue> _nodeTypeSpecificValues = new List<NodeTypeSpecificValue>();
+        private List<NodeTypeSpecificValue> _nodeTypeSpecificValues = AWSConfigs.InitializeCollections ? new List<NodeTypeSpecificValue>() : null;
         private string _parameterName;
         private ParameterType _parameterType;
         private string _parameterValue;
@@ -66,8 +67,8 @@ namespace Amazon.DAX.Model
         /// Gets and sets the property ChangeType. 
         /// <para>
         /// The conditions under which changes to this parameter can be applied. For example,
-        /// <code>requires-reboot</code> indicates that a new value for this parameter will only
-        /// take effect if a node is rebooted.
+        /// <c>requires-reboot</c> indicates that a new value for this parameter will only take
+        /// effect if a node is rebooted.
         /// </para>
         /// </summary>
         public ChangeType ChangeType
@@ -85,7 +86,7 @@ namespace Amazon.DAX.Model
         /// <summary>
         /// Gets and sets the property DataType. 
         /// <para>
-        /// The data type of the parameter. For example, <code>integer</code>:
+        /// The data type of the parameter. For example, <c>integer</c>:
         /// </para>
         /// </summary>
         public string DataType
@@ -151,7 +152,7 @@ namespace Amazon.DAX.Model
         // Check to see if NodeTypeSpecificValues property is set
         internal bool IsSetNodeTypeSpecificValues()
         {
-            return this._nodeTypeSpecificValues != null && this._nodeTypeSpecificValues.Count > 0; 
+            return this._nodeTypeSpecificValues != null && (this._nodeTypeSpecificValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -212,7 +213,7 @@ namespace Amazon.DAX.Model
         /// <summary>
         /// Gets and sets the property Source. 
         /// <para>
-        /// How the parameter is defined. For example, <code>system</code> denotes a system-defined
+        /// How the parameter is defined. For example, <c>system</c> denotes a system-defined
         /// parameter.
         /// </para>
         /// </summary>

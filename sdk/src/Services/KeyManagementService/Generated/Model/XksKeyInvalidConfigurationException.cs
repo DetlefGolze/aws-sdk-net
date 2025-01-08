@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
-    /// The request was rejected because the external key specified by the <code>XksKeyId</code>
+    /// The request was rejected because the external key specified by the <c>XksKeyId</c>
     /// parameter did not meet the configuration requirements for an external key store.
     /// 
     ///  

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BillingConductor.Model
 {
     /// <summary>
@@ -36,13 +37,32 @@ namespace Amazon.BillingConductor.Model
     /// </summary>
     public partial class CreateCustomLineItemRequest : AmazonBillingConductorRequest
     {
+        private string _accountId;
         private string _billingGroupArn;
         private CustomLineItemBillingPeriodRange _billingPeriodRange;
         private CustomLineItemChargeDetails _chargeDetails;
         private string _clientToken;
         private string _description;
         private string _name;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+
+        /// <summary>
+        /// Gets and sets the property AccountId. 
+        /// <para>
+        /// The Amazon Web Services account in which this custom line item will be applied to.
+        /// </para>
+        /// </summary>
+        public string AccountId
+        {
+            get { return this._accountId; }
+            set { this._accountId = value; }
+        }
+
+        // Check to see if AccountId property is set
+        internal bool IsSetAccountId()
+        {
+            return this._accountId != null;
+        }
 
         /// <summary>
         /// Gets and sets the property BillingGroupArn. 
@@ -85,8 +105,8 @@ namespace Amazon.BillingConductor.Model
         /// <summary>
         /// Gets and sets the property ChargeDetails. 
         /// <para>
-        ///  A <code>CustomLineItemChargeDetails</code> that describes the charge details for
-        /// a custom line item. 
+        ///  A <c>CustomLineItemChargeDetails</c> that describes the charge details for a custom
+        /// line item. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -119,7 +139,7 @@ namespace Amazon.BillingConductor.Model
         // Check to see if ClientToken property is set
         internal bool IsSetClientToken()
         {
-            return this._clientToken != null;
+            return !string.IsNullOrEmpty(this._clientToken);
         }
 
         /// <summary>
@@ -178,7 +198,7 @@ namespace Amazon.BillingConductor.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

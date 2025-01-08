@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -37,10 +38,8 @@ namespace Amazon.EC2.Model
     /// You can specify one or more specific secondary IP addresses, or you can specify the
     /// number of secondary IP addresses to be automatically assigned within the subnet's
     /// CIDR block range. The number of secondary IP addresses that you can assign to an instance
-    /// varies by instance type. For information about instance types, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-    /// Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. For more information
-    /// about Elastic IP addresses, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic
-    /// IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+    /// varies by instance type. For more information about Elastic IP addresses, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic
+    /// IP Addresses</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     ///  
     /// <para>
@@ -50,7 +49,7 @@ namespace Amazon.EC2.Model
     ///  
     /// <para>
     /// Remapping an IP address is an asynchronous operation. When you move an IP address
-    /// from one network interface to another, check <code>network/interfaces/macs/mac/local-ipv4s</code>
+    /// from one network interface to another, check <c>network/interfaces/macs/mac/local-ipv4s</c>
     /// in the instance metadata to confirm that the remapping is complete.
     /// </para>
     ///  
@@ -62,17 +61,16 @@ namespace Amazon.EC2.Model
     /// You can optionally use Prefix Delegation on the network interface. You must specify
     /// either the IPv4 Prefix Delegation prefixes, or the IPv4 Prefix Delegation count. For
     /// information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html">
-    /// Assigning prefixes to Amazon EC2 network interfaces</a> in the <i>Amazon Elastic Compute
-    /// Cloud User Guide</i>.
+    /// Assigning prefixes to network interfaces</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     /// </summary>
     public partial class AssignPrivateIpAddressesRequest : AmazonEC2Request
     {
         private bool? _allowReassignment;
         private int? _ipv4PrefixCount;
-        private List<string> _ipv4Prefixes = new List<string>();
+        private List<string> _ipv4Prefixes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _networkInterfaceId;
-        private List<string> _privateIpAddresses = new List<string>();
+        private List<string> _privateIpAddresses = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _secondaryPrivateIpAddressCount;
 
         /// <summary>
@@ -98,7 +96,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property Ipv4PrefixCount. 
         /// <para>
         /// The number of IPv4 prefixes that Amazon Web Services automatically assigns to the
-        /// network interface. You cannot use this option if you use the <code>Ipv4 Prefixes</code>
+        /// network interface. You cannot use this option if you use the <c>Ipv4 Prefixes</c>
         /// option.
         /// </para>
         /// </summary>
@@ -118,7 +116,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property Ipv4Prefixes. 
         /// <para>
         /// One or more IPv4 prefixes assigned to the network interface. You cannot use this option
-        /// if you use the <code>Ipv4PrefixCount</code> option.
+        /// if you use the <c>Ipv4PrefixCount</c> option.
         /// </para>
         /// </summary>
         public List<string> Ipv4Prefixes
@@ -130,7 +128,7 @@ namespace Amazon.EC2.Model
         // Check to see if Ipv4Prefixes property is set
         internal bool IsSetIpv4Prefixes()
         {
-            return this._ipv4Prefixes != null && this._ipv4Prefixes.Count > 0; 
+            return this._ipv4Prefixes != null && (this._ipv4Prefixes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -173,7 +171,7 @@ namespace Amazon.EC2.Model
         // Check to see if PrivateIpAddresses property is set
         internal bool IsSetPrivateIpAddresses()
         {
-            return this._privateIpAddresses != null && this._privateIpAddresses.Count > 0; 
+            return this._privateIpAddresses != null && (this._privateIpAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

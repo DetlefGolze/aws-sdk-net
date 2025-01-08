@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -48,14 +49,15 @@ namespace Amazon.CloudFront.Model
     /// </para>
     ///  
     /// <para>
-    /// If you don't want to specify any cache behaviors, include only an empty <code>CacheBehaviors</code>
-    /// element. Don't include an empty <code>CacheBehavior</code> element because this is
-    /// invalid.
+    /// If you don't want to specify any cache behaviors, include only an empty <c>CacheBehaviors</c>
+    /// element. Don't specify an empty individual <c>CacheBehavior</c> element, because this
+    /// is invalid. For more information, see <a href="https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CacheBehaviors.html">CacheBehaviors</a>.
+    /// 
     /// </para>
     ///  
     /// <para>
     /// To delete all cache behaviors in an existing distribution, update the distribution
-    /// configuration and include only an empty <code>CacheBehaviors</code> element.
+    /// configuration and include only an empty <c>CacheBehaviors</c> element.
     /// </para>
     ///  
     /// <para>
@@ -77,6 +79,7 @@ namespace Amazon.CloudFront.Model
         private string _fieldLevelEncryptionId;
         private ForwardedValues _forwardedValues;
         private FunctionAssociations _functionAssociations;
+        private GrpcConfig _grpcConfig;
         private LambdaFunctionAssociations _lambdaFunctionAssociations;
         private long? _maxTTL;
         private long? _minTTL;
@@ -115,8 +118,8 @@ namespace Amazon.CloudFront.Model
         /// </para>
         ///  
         /// <para>
-        /// A <code>CacheBehavior</code> must include either a <code>CachePolicyId</code> or <code>ForwardedValues</code>.
-        /// We recommend that you use a <code>CachePolicyId</code>.
+        /// A <c>CacheBehavior</c> must include either a <c>CachePolicyId</c> or <c>ForwardedValues</c>.
+        /// We recommend that you use a <c>CachePolicyId</c>.
         /// </para>
         /// </summary>
         public string CachePolicyId
@@ -155,8 +158,8 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property DefaultTTL. 
         /// <para>
-        /// This field is deprecated. We recommend that you use the <code>DefaultTTL</code> field
-        /// in a cache policy instead of this field. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy">Creating
+        /// This field is deprecated. We recommend that you use the <c>DefaultTTL</c> field in
+        /// a cache policy instead of this field. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy">Creating
         /// cache policies</a> or <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html">Using
         /// the managed cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.
         /// </para>
@@ -165,8 +168,8 @@ namespace Amazon.CloudFront.Model
         /// The default amount of time that you want objects to stay in CloudFront caches before
         /// CloudFront forwards another request to your origin to determine whether the object
         /// has been updated. The value that you specify applies only when your origin does not
-        /// add HTTP headers such as <code>Cache-Control max-age</code>, <code>Cache-Control s-maxage</code>,
-        /// and <code>Expires</code> to objects. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html">Managing
+        /// add HTTP headers such as <c>Cache-Control max-age</c>, <c>Cache-Control s-maxage</c>,
+        /// and <c>Expires</c> to objects. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html">Managing
         /// How Long Content Stays in an Edge Cache (Expiration)</a> in the <i>Amazon CloudFront
         /// Developer Guide</i>.
         /// </para>
@@ -187,8 +190,8 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property FieldLevelEncryptionId. 
         /// <para>
-        /// The value of <code>ID</code> for the field-level encryption configuration that you
-        /// want CloudFront to use for encrypting specific fields of data for this cache behavior.
+        /// The value of <c>ID</c> for the field-level encryption configuration that you want
+        /// CloudFront to use for encrypting specific fields of data for this cache behavior.
         /// </para>
         /// </summary>
         public string FieldLevelEncryptionId
@@ -226,8 +229,8 @@ namespace Amazon.CloudFront.Model
         /// </para>
         ///  
         /// <para>
-        /// A <code>CacheBehavior</code> must include either a <code>CachePolicyId</code> or <code>ForwardedValues</code>.
-        /// We recommend that you use a <code>CachePolicyId</code>.
+        /// A <c>CacheBehavior</c> must include either a <c>CachePolicyId</c> or <c>ForwardedValues</c>.
+        /// We recommend that you use a <c>CachePolicyId</c>.
         /// </para>
         ///  
         /// <para>
@@ -252,8 +255,8 @@ namespace Amazon.CloudFront.Model
         /// Gets and sets the property FunctionAssociations. 
         /// <para>
         /// A list of CloudFront functions that are associated with this cache behavior. CloudFront
-        /// functions must be published to the <code>LIVE</code> stage to associate them with
-        /// a cache behavior.
+        /// functions must be published to the <c>LIVE</c> stage to associate them with a cache
+        /// behavior.
         /// </para>
         /// </summary>
         public FunctionAssociations FunctionAssociations
@@ -266,6 +269,24 @@ namespace Amazon.CloudFront.Model
         internal bool IsSetFunctionAssociations()
         {
             return this._functionAssociations != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property GrpcConfig. 
+        /// <para>
+        /// The gRPC configuration for your cache behavior.
+        /// </para>
+        /// </summary>
+        public GrpcConfig GrpcConfig
+        {
+            get { return this._grpcConfig; }
+            set { this._grpcConfig = value; }
+        }
+
+        // Check to see if GrpcConfig property is set
+        internal bool IsSetGrpcConfig()
+        {
+            return this._grpcConfig != null;
         }
 
         /// <summary>
@@ -290,8 +311,8 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property MaxTTL. 
         /// <para>
-        /// This field is deprecated. We recommend that you use the <code>MaxTTL</code> field
-        /// in a cache policy instead of this field. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy">Creating
+        /// This field is deprecated. We recommend that you use the <c>MaxTTL</c> field in a cache
+        /// policy instead of this field. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy">Creating
         /// cache policies</a> or <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html">Using
         /// the managed cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.
         /// </para>
@@ -300,8 +321,8 @@ namespace Amazon.CloudFront.Model
         /// The maximum amount of time that you want objects to stay in CloudFront caches before
         /// CloudFront forwards another request to your origin to determine whether the object
         /// has been updated. The value that you specify applies only when your origin adds HTTP
-        /// headers such as <code>Cache-Control max-age</code>, <code>Cache-Control s-maxage</code>,
-        /// and <code>Expires</code> to objects. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html">Managing
+        /// headers such as <c>Cache-Control max-age</c>, <c>Cache-Control s-maxage</c>, and <c>Expires</c>
+        /// to objects. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html">Managing
         /// How Long Content Stays in an Edge Cache (Expiration)</a> in the <i>Amazon CloudFront
         /// Developer Guide</i>.
         /// </para>
@@ -322,8 +343,8 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property MinTTL. 
         /// <para>
-        /// This field is deprecated. We recommend that you use the <code>MinTTL</code> field
-        /// in a cache policy instead of this field. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy">Creating
+        /// This field is deprecated. We recommend that you use the <c>MinTTL</c> field in a cache
+        /// policy instead of this field. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy">Creating
         /// cache policies</a> or <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html">Using
         /// the managed cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.
         /// </para>
@@ -337,9 +358,9 @@ namespace Amazon.CloudFront.Model
         /// </para>
         ///  
         /// <para>
-        /// You must specify <code>0</code> for <code>MinTTL</code> if you configure CloudFront
-        /// to forward all headers to your origin (under <code>Headers</code>, if you specify
-        /// <code>1</code> for <code>Quantity</code> and <code>*</code> for <code>Name</code>).
+        /// You must specify <c>0</c> for <c>MinTTL</c> if you configure CloudFront to forward
+        /// all headers to your origin (under <c>Headers</c>, if you specify <c>1</c> for <c>Quantity</c>
+        /// and <c>*</c> for <c>Name</c>).
         /// </para>
         /// </summary>
         [Obsolete("This field is deprecated. Use CachePolicy instead.")]
@@ -379,20 +400,20 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property PathPattern. 
         /// <para>
-        /// The pattern (for example, <code>images/*.jpg</code>) that specifies which requests
-        /// to apply the behavior to. When CloudFront receives a viewer request, the requested
-        /// path is compared with path patterns in the order in which cache behaviors are listed
-        /// in the distribution.
+        /// The pattern (for example, <c>images/*.jpg</c>) that specifies which requests to apply
+        /// the behavior to. When CloudFront receives a viewer request, the requested path is
+        /// compared with path patterns in the order in which cache behaviors are listed in the
+        /// distribution.
         /// </para>
         ///  <note> 
         /// <para>
-        /// You can optionally include a slash (<code>/</code>) at the beginning of the path pattern.
-        /// For example, <code>/images/*.jpg</code>. CloudFront behavior is the same with or without
-        /// the leading <code>/</code>.
+        /// You can optionally include a slash (<c>/</c>) at the beginning of the path pattern.
+        /// For example, <c>/images/*.jpg</c>. CloudFront behavior is the same with or without
+        /// the leading <c>/</c>.
         /// </para>
         ///  </note> 
         /// <para>
-        /// The path pattern for the default cache behavior is <code>*</code> and cannot be changed.
+        /// The path pattern for the default cache behavior is <c>*</c> and cannot be changed.
         /// If the request for an object does not match the path pattern for any cache behaviors,
         /// CloudFront applies the behavior in the default cache behavior.
         /// </para>
@@ -458,9 +479,9 @@ namespace Amazon.CloudFront.Model
         /// <para>
         /// Indicates whether you want to distribute media files in the Microsoft Smooth Streaming
         /// format using the origin that is associated with this cache behavior. If so, specify
-        /// <code>true</code>; if not, specify <code>false</code>. If you specify <code>true</code>
-        /// for <code>SmoothStreaming</code>, you can still distribute other content using this
-        /// cache behavior if the content matches the value of <code>PathPattern</code>.
+        /// <c>true</c>; if not, specify <c>false</c>. If you specify <c>true</c> for <c>SmoothStreaming</c>,
+        /// you can still distribute other content using this cache behavior if the content matches
+        /// the value of <c>PathPattern</c>.
         /// </para>
         /// </summary>
         public bool SmoothStreaming
@@ -478,8 +499,8 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property TargetOriginId. 
         /// <para>
-        /// The value of <code>ID</code> for the origin that you want CloudFront to route requests
-        /// to when they match this cache behavior.
+        /// The value of <c>ID</c> for the origin that you want CloudFront to route requests to
+        /// when they match this cache behavior.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -525,7 +546,7 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property TrustedSigners. <important> 
         /// <para>
-        /// We recommend using <code>TrustedKeyGroups</code> instead of <code>TrustedSigners</code>.
+        /// We recommend using <c>TrustedKeyGroups</c> instead of <c>TrustedSigners</c>.
         /// </para>
         ///  </important> 
         /// <para>
@@ -558,24 +579,24 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property ViewerProtocolPolicy. 
         /// <para>
-        /// The protocol that viewers can use to access the files in the origin specified by <code>TargetOriginId</code>
-        /// when a request matches the path pattern in <code>PathPattern</code>. You can specify
-        /// the following options:
+        /// The protocol that viewers can use to access the files in the origin specified by <c>TargetOriginId</c>
+        /// when a request matches the path pattern in <c>PathPattern</c>. You can specify the
+        /// following options:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>allow-all</code>: Viewers can use HTTP or HTTPS.
+        ///  <c>allow-all</c>: Viewers can use HTTP or HTTPS.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>redirect-to-https</code>: If a viewer submits an HTTP request, CloudFront returns
+        ///  <c>redirect-to-https</c>: If a viewer submits an HTTP request, CloudFront returns
         /// an HTTP status code of 301 (Moved Permanently) to the viewer along with the HTTPS
         /// URL. The viewer then resubmits the request using the new URL.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>https-only</code>: If a viewer sends an HTTP request, CloudFront returns an
-        /// HTTP status code of 403 (Forbidden).
+        ///  <c>https-only</c>: If a viewer sends an HTTP request, CloudFront returns an HTTP
+        /// status code of 403 (Forbidden).
         /// </para>
         ///  </li> </ul> 
         /// <para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -82,7 +83,7 @@ namespace Amazon.Imagebuilder.Model
         ///  <note> 
         /// <para>
         /// The user data is always base 64 encoded. For example, the following commands are encoded
-        /// as <code>IyEvYmluL2Jhc2gKbWtkaXIgLXAgL3Zhci9iYi8KdG91Y2ggL3Zhci$</code>:
+        /// as <c>IyEvYmluL2Jhc2gKbWtkaXIgLXAgL3Zhci9iYi8KdG91Y2ggL3Zhci$</c>:
         /// </para>
         ///  
         /// <para>

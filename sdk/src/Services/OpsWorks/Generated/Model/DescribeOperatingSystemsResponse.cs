@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
-    /// The response to a <code>DescribeOperatingSystems</code> request.
+    /// The response to a <c>DescribeOperatingSystems</c> request.
     /// </summary>
     public partial class DescribeOperatingSystemsResponse : AmazonWebServiceResponse
     {
-        private List<OperatingSystem> _operatingSystems = new List<OperatingSystem>();
+        private List<OperatingSystem> _operatingSystems = AWSConfigs.InitializeCollections ? new List<OperatingSystem>() : null;
 
         /// <summary>
         /// Gets and sets the property OperatingSystems. 
         /// <para>
-        /// Contains information in response to a <code>DescribeOperatingSystems</code> request.
+        /// Contains information in response to a <c>DescribeOperatingSystems</c> request.
         /// </para>
         /// </summary>
         public List<OperatingSystem> OperatingSystems
@@ -50,7 +51,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if OperatingSystems property is set
         internal bool IsSetOperatingSystems()
         {
-            return this._operatingSystems != null && this._operatingSystems.Count > 0; 
+            return this._operatingSystems != null && (this._operatingSystems.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Imagebuilder.Model
     /// </summary>
     public partial class ListDistributionConfigurationsResponse : AmazonWebServiceResponse
     {
-        private List<DistributionConfigurationSummary> _distributionConfigurationSummaryList = new List<DistributionConfigurationSummary>();
+        private List<DistributionConfigurationSummary> _distributionConfigurationSummaryList = AWSConfigs.InitializeCollections ? new List<DistributionConfigurationSummary>() : null;
         private string _nextToken;
         private string _requestId;
 
@@ -52,14 +53,14 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if DistributionConfigurationSummaryList property is set
         internal bool IsSetDistributionConfigurationSummaryList()
         {
-            return this._distributionConfigurationSummaryList != null && this._distributionConfigurationSummaryList.Count > 0; 
+            return this._distributionConfigurationSummaryList != null && (this._distributionConfigurationSummaryList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The next token used for paginated responses. When this field isn't empty, there are
-        /// additional elements that the service has'ot included in this request. Use this token
+        /// additional elements that the service hasn't included in this request. Use this token
         /// with the next request to retrieve additional objects.
         /// </para>
         /// </summary>

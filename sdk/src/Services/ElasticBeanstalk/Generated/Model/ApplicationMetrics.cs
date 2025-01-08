@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -42,8 +43,8 @@ namespace Amazon.ElasticBeanstalk.Model
         /// Gets and sets the property Duration. 
         /// <para>
         /// The amount of time that the metrics cover (usually 10 seconds). For example, you might
-        /// have 5 requests (<code>request_count</code>) within the most recent time slice of
-        /// 10 seconds (<code>duration</code>).
+        /// have 5 requests (<c>request_count</c>) within the most recent time slice of 10 seconds
+        /// (<c>duration</c>).
         /// </para>
         /// </summary>
         public int Duration

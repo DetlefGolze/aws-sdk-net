@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.ApplicationInsights
 {
     /// <summary>
-    /// Implementation for accessing ApplicationInsights
+    /// <para>Implementation for accessing ApplicationInsights</para>
     ///
     /// Amazon CloudWatch Application Insights 
     /// <para>
@@ -486,7 +487,7 @@ namespace Amazon.ApplicationInsights
         #region  CreateLogPattern
 
         /// <summary>
-        /// Adds an log pattern to a <code>LogPatternSet</code>.
+        /// Adds an log pattern to a <c>LogPatternSet</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateLogPattern service method.</param>
         /// 
@@ -683,7 +684,7 @@ namespace Amazon.ApplicationInsights
         #region  DeleteLogPattern
 
         /// <summary>
-        /// Removes the specified log pattern from a <code>LogPatternSet</code>.
+        /// Removes the specified log pattern from a <c>LogPatternSet</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteLogPattern service method.</param>
         /// 
@@ -1001,7 +1002,7 @@ namespace Amazon.ApplicationInsights
         #region  DescribeLogPattern
 
         /// <summary>
-        /// Describe a specific log pattern from a <code>LogPatternSet</code>.
+        /// Describe a specific log pattern from a <c>LogPatternSet</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeLogPattern service method.</param>
         /// 
@@ -1517,7 +1518,7 @@ namespace Amazon.ApplicationInsights
         #region  ListLogPatterns
 
         /// <summary>
-        /// Lists the log patterns in the specific log <code>LogPatternSet</code>.
+        /// Lists the log patterns in the specific log <c>LogPatternSet</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListLogPatterns service method.</param>
         /// 
@@ -2161,13 +2162,16 @@ namespace Amazon.ApplicationInsights
         /// <summary>
         /// Updates the monitoring configurations for the component. The configuration input parameter
         /// is an escaped JSON of the configuration and should match the schema of what is returned
-        /// by <code>DescribeComponentConfigurationRecommendation</code>.
+        /// by <c>DescribeComponentConfigurationRecommendation</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateComponentConfiguration service method.</param>
         /// 
         /// <returns>The response from the UpdateComponentConfiguration service method, as returned by ApplicationInsights.</returns>
         /// <exception cref="Amazon.ApplicationInsights.Model.InternalServerException">
         /// The server encountered an internal error and is unable to complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.ApplicationInsights.Model.ResourceInUseException">
+        /// The resource is already created or in use.
         /// </exception>
         /// <exception cref="Amazon.ApplicationInsights.Model.ResourceNotFoundException">
         /// The resource does not exist in the customer account.
@@ -2224,7 +2228,7 @@ namespace Amazon.ApplicationInsights
         #region  UpdateLogPattern
 
         /// <summary>
-        /// Adds a log pattern to a <code>LogPatternSet</code>.
+        /// Adds a log pattern to a <c>LogPatternSet</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateLogPattern service method.</param>
         /// 
@@ -2290,7 +2294,7 @@ namespace Amazon.ApplicationInsights
         #region  UpdateProblem
 
         /// <summary>
-        /// Updates the visibility of the problem or specifies the problem as <code>RESOLVED</code>.
+        /// Updates the visibility of the problem or specifies the problem as <c>RESOLVED</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateProblem service method.</param>
         /// 
@@ -2422,11 +2426,11 @@ namespace Amazon.ApplicationInsights
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

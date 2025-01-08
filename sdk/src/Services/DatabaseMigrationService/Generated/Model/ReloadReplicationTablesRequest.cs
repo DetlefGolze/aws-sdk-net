@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -36,21 +37,21 @@ namespace Amazon.DatabaseMigrationService.Model
     ///  
     /// <para>
     /// You can only use this operation with a task in the RUNNING state, otherwise the service
-    /// will throw an <code>InvalidResourceStateFault</code> exception.
+    /// will throw an <c>InvalidResourceStateFault</c> exception.
     /// </para>
     /// </summary>
     public partial class ReloadReplicationTablesRequest : AmazonDatabaseMigrationServiceRequest
     {
         private ReloadOptionValue _reloadOption;
         private string _replicationConfigArn;
-        private List<TableToReload> _tablesToReload = new List<TableToReload>();
+        private List<TableToReload> _tablesToReload = AWSConfigs.InitializeCollections ? new List<TableToReload>() : null;
 
         /// <summary>
         /// Gets and sets the property ReloadOption. 
         /// <para>
-        /// Options for reload. Specify <code>data-reload</code> to reload the data and re-validate
-        /// it if validation is enabled. Specify <code>validate-only</code> to re-validate the
-        /// table. This option applies only when validation is enabled for the replication. 
+        /// Options for reload. Specify <c>data-reload</c> to reload the data and re-validate
+        /// it if validation is enabled. Specify <c>validate-only</c> to re-validate the table.
+        /// This option applies only when validation is enabled for the replication. 
         /// </para>
         /// </summary>
         public ReloadOptionValue ReloadOption
@@ -100,7 +101,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if TablesToReload property is set
         internal bool IsSetTablesToReload()
         {
-            return this._tablesToReload != null && this._tablesToReload.Count > 0; 
+            return this._tablesToReload != null && (this._tablesToReload.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

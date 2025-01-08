@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatch.Model
 {
     /// <summary>
@@ -35,16 +36,16 @@ namespace Amazon.CloudWatch.Model
     {
         private string _arn;
         private DateTime? _creationDate;
-        private List<MetricStreamFilter> _excludeFilters = new List<MetricStreamFilter>();
+        private List<MetricStreamFilter> _excludeFilters = AWSConfigs.InitializeCollections ? new List<MetricStreamFilter>() : null;
         private string _firehoseArn;
-        private List<MetricStreamFilter> _includeFilters = new List<MetricStreamFilter>();
+        private List<MetricStreamFilter> _includeFilters = AWSConfigs.InitializeCollections ? new List<MetricStreamFilter>() : null;
         private bool? _includeLinkedAccountsMetrics;
         private DateTime? _lastUpdateDate;
         private string _name;
         private MetricStreamOutputFormat _outputFormat;
         private string _roleArn;
         private string _state;
-        private List<MetricStreamStatisticsConfiguration> _statisticsConfigurations = new List<MetricStreamStatisticsConfiguration>();
+        private List<MetricStreamStatisticsConfiguration> _statisticsConfigurations = AWSConfigs.InitializeCollections ? new List<MetricStreamStatisticsConfiguration>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -100,7 +101,7 @@ namespace Amazon.CloudWatch.Model
         // Check to see if ExcludeFilters property is set
         internal bool IsSetExcludeFilters()
         {
-            return this._excludeFilters != null && this._excludeFilters.Count > 0; 
+            return this._excludeFilters != null && (this._excludeFilters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -139,14 +140,14 @@ namespace Amazon.CloudWatch.Model
         // Check to see if IncludeFilters property is set
         internal bool IsSetIncludeFilters()
         {
-            return this._includeFilters != null && this._includeFilters.Count > 0; 
+            return this._includeFilters != null && (this._includeFilters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property IncludeLinkedAccountsMetrics. 
         /// <para>
-        /// If this is <code>true</code> and this metric stream is in a monitoring account, then
-        /// the stream includes metrics from source accounts that the monitoring account is linked
+        /// If this is <c>true</c> and this metric stream is in a monitoring account, then the
+        /// stream includes metrics from source accounts that the monitoring account is linked
         /// to.
         /// </para>
         /// </summary>
@@ -202,8 +203,9 @@ namespace Amazon.CloudWatch.Model
         /// <summary>
         /// Gets and sets the property OutputFormat. 
         /// <para>
-        /// The output format for the stream. Valid values are <code>json</code> and <code>opentelemetry0.7</code>.
-        /// For more information about metric stream output formats, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-metric-streams-formats.html">Metric
+        /// The output format for the stream. Valid values are <c>json</c>, <c>opentelemetry1.0</c>,
+        /// and <c>opentelemetry0.7</c>. For more information about metric stream output formats,
+        /// see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-metric-streams-formats.html">Metric
         /// streams output formats</a>.
         /// </para>
         /// </summary>
@@ -242,7 +244,7 @@ namespace Amazon.CloudWatch.Model
         /// <summary>
         /// Gets and sets the property State. 
         /// <para>
-        /// The state of the metric stream. The possible values are <code>running</code> and <code>stopped</code>.
+        /// The state of the metric stream. The possible values are <c>running</c> and <c>stopped</c>.
         /// </para>
         /// </summary>
         public string State
@@ -275,7 +277,7 @@ namespace Amazon.CloudWatch.Model
         // Check to see if StatisticsConfigurations property is set
         internal bool IsSetStatisticsConfigurations()
         {
-            return this._statisticsConfigurations != null && this._statisticsConfigurations.Count > 0; 
+            return this._statisticsConfigurations != null && (this._statisticsConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

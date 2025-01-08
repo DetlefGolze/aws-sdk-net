@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -40,11 +41,11 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property LogEnabled. 
         /// <para>
-        /// Enable or disable VPN tunnel logging feature. Default value is <code>False</code>.
+        /// Enable or disable VPN tunnel logging feature. Default value is <c>False</c>.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>True</code> | <code>False</code> 
+        /// Valid values: <c>True</c> | <c>False</c> 
         /// </para>
         /// </summary>
         public bool LogEnabled
@@ -80,11 +81,11 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property LogOutputFormat. 
         /// <para>
-        /// Set log format. Default format is <code>json</code>.
+        /// Set log format. Default format is <c>json</c>.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>json</code> | <code>text</code> 
+        /// Valid values: <c>json</c> | <c>text</c> 
         /// </para>
         /// </summary>
         public string LogOutputFormat

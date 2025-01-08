@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaLive.Model
 {
     /// <summary>
@@ -33,24 +34,41 @@ namespace Amazon.MediaLive.Model
     /// </summary>
     public partial class DeleteChannelResponse : AmazonWebServiceResponse
     {
+        private DescribeAnywhereSettings _anywhereSettings;
         private string _arn;
         private CdiInputSpecification _cdiInputSpecification;
         private ChannelClass _channelClass;
-        private List<OutputDestination> _destinations = new List<OutputDestination>();
-        private List<ChannelEgressEndpoint> _egressEndpoints = new List<ChannelEgressEndpoint>();
+        private ChannelEngineVersionResponse _channelEngineVersion;
+        private List<OutputDestination> _destinations = AWSConfigs.InitializeCollections ? new List<OutputDestination>() : null;
+        private List<ChannelEgressEndpoint> _egressEndpoints = AWSConfigs.InitializeCollections ? new List<ChannelEgressEndpoint>() : null;
         private EncoderSettings _encoderSettings;
         private string _id;
-        private List<InputAttachment> _inputAttachments = new List<InputAttachment>();
+        private List<InputAttachment> _inputAttachments = AWSConfigs.InitializeCollections ? new List<InputAttachment>() : null;
         private InputSpecification _inputSpecification;
         private LogLevel _logLevel;
         private MaintenanceStatus _maintenance;
         private string _name;
-        private List<PipelineDetail> _pipelineDetails = new List<PipelineDetail>();
+        private List<PipelineDetail> _pipelineDetails = AWSConfigs.InitializeCollections ? new List<PipelineDetail>() : null;
         private int? _pipelinesRunningCount;
         private string _roleArn;
         private ChannelState _state;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private VpcOutputSettingsDescription _vpc;
+
+        /// <summary>
+        /// Gets and sets the property AnywhereSettings. Anywhere settings for this channel.
+        /// </summary>
+        public DescribeAnywhereSettings AnywhereSettings
+        {
+            get { return this._anywhereSettings; }
+            set { this._anywhereSettings = value; }
+        }
+
+        // Check to see if AnywhereSettings property is set
+        internal bool IsSetAnywhereSettings()
+        {
+            return this._anywhereSettings != null;
+        }
 
         /// <summary>
         /// Gets and sets the property Arn. The unique arn of the channel.
@@ -100,6 +118,22 @@ namespace Amazon.MediaLive.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ChannelEngineVersion. Requested engine version for this
+        /// channel.
+        /// </summary>
+        public ChannelEngineVersionResponse ChannelEngineVersion
+        {
+            get { return this._channelEngineVersion; }
+            set { this._channelEngineVersion = value; }
+        }
+
+        // Check to see if ChannelEngineVersion property is set
+        internal bool IsSetChannelEngineVersion()
+        {
+            return this._channelEngineVersion != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Destinations. A list of destinations of the channel. For
         /// UDP outputs, there is onedestination per output. For other types (HLS, for example),
         /// there isone destination per packager.
@@ -113,7 +147,7 @@ namespace Amazon.MediaLive.Model
         // Check to see if Destinations property is set
         internal bool IsSetDestinations()
         {
-            return this._destinations != null && this._destinations.Count > 0; 
+            return this._destinations != null && (this._destinations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -129,7 +163,7 @@ namespace Amazon.MediaLive.Model
         // Check to see if EgressEndpoints property is set
         internal bool IsSetEgressEndpoints()
         {
-            return this._egressEndpoints != null && this._egressEndpoints.Count > 0; 
+            return this._egressEndpoints != null && (this._egressEndpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -174,7 +208,7 @@ namespace Amazon.MediaLive.Model
         // Check to see if InputAttachments property is set
         internal bool IsSetInputAttachments()
         {
-            return this._inputAttachments != null && this._inputAttachments.Count > 0; 
+            return this._inputAttachments != null && (this._inputAttachments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -251,7 +285,7 @@ namespace Amazon.MediaLive.Model
         // Check to see if PipelineDetails property is set
         internal bool IsSetPipelineDetails()
         {
-            return this._pipelineDetails != null && this._pipelineDetails.Count > 0; 
+            return this._pipelineDetails != null && (this._pipelineDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -313,7 +347,7 @@ namespace Amazon.MediaLive.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

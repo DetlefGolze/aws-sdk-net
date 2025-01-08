@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -34,8 +35,9 @@ namespace Amazon.CloudFormation.Model
     /// 
     ///  
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-register.html#registry-set-configuration">Configuring
-    /// extensions at the account level</a> in the <i>CloudFormation User Guide</i>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-set-configuration.html">Edit
+    /// configuration data for extensions in your account</a> in the <i>CloudFormation User
+    /// Guide</i>.
     /// </para>
     /// </summary>
     public partial class TypeConfigurationDetails
@@ -96,7 +98,7 @@ namespace Amazon.CloudFormation.Model
         ///  
         /// <para>
         /// If a configuration hasn't been set for a specified extension, CloudFormation returns
-        /// <code>{}</code>.
+        /// <c>{}</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=204800)]
@@ -138,7 +140,7 @@ namespace Amazon.CloudFormation.Model
         ///  
         /// <para>
         /// If a configuration hasn't been set for a specified extension, CloudFormation returns
-        /// <code>null</code>.
+        /// <c>null</c>.
         /// </para>
         /// </summary>
         public DateTime LastUpdated
@@ -160,10 +162,10 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// For public extensions, this will be the ARN assigned when you <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ActivateType.html">activate
-        /// the type</a> in this account and Region. For private extensions, this will be the
-        /// ARN assigned when you <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterType.html">register
-        /// the type</a> in this account and Region.
+        /// For public extensions, this will be the ARN assigned when you call the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ActivateType.html">ActivateType</a>
+        /// API operation in this account and Region. For private extensions, this will be the
+        /// ARN assigned when you call the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterType.html">RegisterType</a>
+        /// API operation in this account and Region.
         /// </para>
         /// </summary>
         [AWSProperty(Max=1024)]

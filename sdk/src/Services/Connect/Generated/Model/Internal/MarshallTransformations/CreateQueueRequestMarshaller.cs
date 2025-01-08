@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Connect.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,6 +67,7 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetDescription())
@@ -99,6 +101,17 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
 
                     var marshaller = OutboundCallerConfigMarshaller.Instance;
                     marshaller.Marshall(publicRequest.OutboundCallerConfig, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetOutboundEmailConfig())
+                {
+                    context.Writer.WritePropertyName("OutboundEmailConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = OutboundEmailConfigMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.OutboundEmailConfig, context);
 
                     context.Writer.WriteObjectEnd();
                 }

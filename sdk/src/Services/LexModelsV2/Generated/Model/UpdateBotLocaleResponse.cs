@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -38,12 +39,13 @@ namespace Amazon.LexModelsV2.Model
         private string _botVersion;
         private DateTime? _creationDateTime;
         private string _description;
-        private List<string> _failureReasons = new List<string>();
+        private List<string> _failureReasons = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private GenerativeAISettings _generativeaiSettings;
         private DateTime? _lastUpdatedDateTime;
         private string _localeId;
         private string _localeName;
         private double? _nluIntentConfidenceThreshold;
-        private List<string> _recommendedActions = new List<string>();
+        private List<string> _recommendedActions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private VoiceSettings _voiceSettings;
 
         /// <summary>
@@ -68,8 +70,8 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property BotLocaleStatus. 
         /// <para>
-        /// The current status of the locale. When the bot status is <code>Built</code> the locale
-        /// is ready for use.
+        /// The current status of the locale. When the bot status is <c>Built</c> the locale is
+        /// ready for use.
         /// </para>
         /// </summary>
         public BotLocaleStatus BotLocaleStatus
@@ -143,8 +145,8 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property FailureReasons. 
         /// <para>
-        /// If the <code>botLocaleStatus</code> is <code>Failed</code>, the <code>failureReasons</code>
-        /// field lists the errors that occurred while building the bot.
+        /// If the <c>botLocaleStatus</c> is <c>Failed</c>, the <c>failureReasons</c> field lists
+        /// the errors that occurred while building the bot.
         /// </para>
         /// </summary>
         public List<string> FailureReasons
@@ -156,7 +158,26 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if FailureReasons property is set
         internal bool IsSetFailureReasons()
         {
-            return this._failureReasons != null && this._failureReasons.Count > 0; 
+            return this._failureReasons != null && (this._failureReasons.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property GenerativeAISettings. 
+        /// <para>
+        /// Contains settings for generative AI features powered by Amazon Bedrock for your bot
+        /// locale.
+        /// </para>
+        /// </summary>
+        public GenerativeAISettings GenerativeAISettings
+        {
+            get { return this._generativeaiSettings; }
+            set { this._generativeaiSettings = value; }
+        }
+
+        // Check to see if GenerativeAISettings property is set
+        internal bool IsSetGenerativeAISettings()
+        {
+            return this._generativeaiSettings != null;
         }
 
         /// <summary>
@@ -216,9 +237,8 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property NluIntentConfidenceThreshold. 
         /// <para>
-        /// The updated confidence threshold for inserting the <code>AMAZON.FallbackIntent</code>
-        /// and <code>AMAZON.KendraSearchIntent</code> intents in the list of possible intents
-        /// for an utterance.
+        /// The updated confidence threshold for inserting the <c>AMAZON.FallbackIntent</c> and
+        /// <c>AMAZON.KendraSearchIntent</c> intents in the list of possible intents for an utterance.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1)]
@@ -237,8 +257,7 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property RecommendedActions. 
         /// <para>
-        /// Recommended actions to take to resolve an error in the <code>failureReasons</code>
-        /// field.
+        /// Recommended actions to take to resolve an error in the <c>failureReasons</c> field.
         /// </para>
         /// </summary>
         public List<string> RecommendedActions
@@ -250,7 +269,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if RecommendedActions property is set
         internal bool IsSetRecommendedActions()
         {
-            return this._recommendedActions != null && this._recommendedActions.Count > 0; 
+            return this._recommendedActions != null && (this._recommendedActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

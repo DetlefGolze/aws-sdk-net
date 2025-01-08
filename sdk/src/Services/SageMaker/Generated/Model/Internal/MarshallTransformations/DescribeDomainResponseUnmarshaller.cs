@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -147,6 +148,12 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     response.SecurityGroupIdForDomainBoundary = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("SingleSignOnApplicationArn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.SingleSignOnApplicationArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("SingleSignOnManagedApplicationInstanceId", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -163,6 +170,12 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
                     response.SubnetIds = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("TagPropagation", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.TagPropagation = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Url", targetDepth))

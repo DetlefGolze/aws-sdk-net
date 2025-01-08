@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
-    /// Metadata information about an audio stream. An array of <code>AudioMetadata</code>
-    /// objects for the audio streams found in a stored video is returned by <a>GetSegmentDetection</a>.
+    /// Metadata information about an audio stream. An array of <c>AudioMetadata</c> objects
+    /// for the audio streams found in a stored video is returned by <a>GetSegmentDetection</a>.
     /// </summary>
     public partial class AudioMetadata
     {

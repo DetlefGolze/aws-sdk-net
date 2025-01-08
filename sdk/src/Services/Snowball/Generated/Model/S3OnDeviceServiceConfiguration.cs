@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
@@ -43,8 +44,8 @@ namespace Amazon.Snowball.Model
         /// <para>
         /// &gt;Fault tolerance level of the cluster. This indicates the number of nodes that
         /// can go down without degrading the performance of the cluster. This additional input
-        /// helps when the specified <code>StorageLimit</code> matches more than one Amazon S3
-        /// compatible storage on Snow family devices service configuration.
+        /// helps when the specified <c>StorageLimit</c> matches more than one Amazon S3 compatible
+        /// storage on Snow family devices service configuration.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4)]

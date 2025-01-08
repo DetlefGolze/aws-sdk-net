@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentity.Model
 {
     /// <summary>
-    /// Returned in response to a successful <code>GetOpenIdTokenForDeveloperIdentity</code>
-    /// request.
+    /// Returned in response to a successful <c>GetOpenIdTokenForDeveloperIdentity</c> request.
     /// </summary>
     public partial class GetOpenIdTokenForDeveloperIdentityResponse : AmazonWebServiceResponse
     {
@@ -62,6 +62,7 @@ namespace Amazon.CognitoIdentity.Model
         /// An OpenID token.
         /// </para>
         /// </summary>
+        [AWSProperty(Sensitive=true)]
         public string Token
         {
             get { return this._token; }

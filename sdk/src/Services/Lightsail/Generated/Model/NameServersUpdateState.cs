@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -54,19 +55,19 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>SUCCEEDED</code> - The name server records were successfully updated.
+        ///  <c>SUCCEEDED</c> - The name server records were successfully updated.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PENDING</code> - The name server record update is in progress.
+        ///  <c>PENDING</c> - The name server record update is in progress.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> - The name server record update failed.
+        ///  <c>FAILED</c> - The name server record update failed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>STARTED</code> - The automatic name server record update started.
+        ///  <c>STARTED</c> - The automatic name server record update started.
         /// </para>
         ///  </li> </ul>
         /// </summary>

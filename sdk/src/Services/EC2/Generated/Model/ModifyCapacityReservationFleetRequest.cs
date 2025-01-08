@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -71,15 +72,14 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property EndDate. 
         /// <para>
         /// The date and time at which the Capacity Reservation Fleet expires. When the Capacity
-        /// Reservation Fleet expires, its state changes to <code>expired</code> and all of the
-        /// Capacity Reservations in the Fleet expire.
+        /// Reservation Fleet expires, its state changes to <c>expired</c> and all of the Capacity
+        /// Reservations in the Fleet expire.
         /// </para>
         ///  
         /// <para>
         /// The Capacity Reservation Fleet expires within an hour after the specified time. For
-        /// example, if you specify <code>5/31/2019</code>, <code>13:30:55</code>, the Capacity
-        /// Reservation Fleet is guaranteed to expire between <code>13:30:55</code> and <code>14:30:55</code>
-        /// on <code>5/31/2019</code>.
+        /// example, if you specify <c>5/31/2019</c>, <c>13:30:55</c>, the Capacity Reservation
+        /// Fleet is guaranteed to expire between <c>13:30:55</c> and <c>14:30:55</c> on <c>5/31/2019</c>.
         /// </para>
         ///  
         /// <para>
@@ -131,7 +131,7 @@ namespace Amazon.EC2.Model
         /// type used by the Fleet determine the number of instances for which the Fleet reserves
         /// capacity. Both values are based on units that make sense for your workload. For more
         /// information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#target-capacity">Total
-        /// target capacity</a> in the Amazon EC2 User Guide.
+        /// target capacity</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         /// </summary>
         public int TotalTargetCapacity

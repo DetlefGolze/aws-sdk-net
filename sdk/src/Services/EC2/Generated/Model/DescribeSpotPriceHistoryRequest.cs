@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeSpotPriceHistory operation.
     /// Describes the Spot price history. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances-history.html">Spot
-    /// Instance pricing history</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.
+    /// Instance pricing history</a> in the <i>Amazon EC2 User Guide</i>.
     /// 
     ///  
     /// <para>
@@ -44,11 +45,11 @@ namespace Amazon.EC2.Model
     {
         private string _availabilityZone;
         private DateTime? _endTimeUtc;
-        private List<Filter> _filters = new List<Filter>();
-        private List<string> _instanceTypes = new List<string>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
+        private List<string> _instanceTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _productDescriptions = new List<string>();
+        private List<string> _productDescriptions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _startTimeUtc;
 
         /// <summary>
@@ -95,30 +96,29 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>availability-zone</code> - The Availability Zone for which prices should be
-        /// returned.
+        ///  <c>availability-zone</c> - The Availability Zone for which prices should be returned.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>instance-type</code> - The type of instance (for example, <code>m3.medium</code>).
+        ///  <c>instance-type</c> - The type of instance (for example, <c>m3.medium</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>product-description</code> - The product description for the Spot price (<code>Linux/UNIX</code>
-        /// | <code>Red Hat Enterprise Linux</code> | <code>SUSE Linux</code> | <code>Windows</code>
-        /// | <code>Linux/UNIX (Amazon VPC)</code> | <code>Red Hat Enterprise Linux (Amazon VPC)</code>
-        /// | <code>SUSE Linux (Amazon VPC)</code> | <code>Windows (Amazon VPC)</code>).
+        ///  <c>product-description</c> - The product description for the Spot price (<c>Linux/UNIX</c>
+        /// | <c>Red Hat Enterprise Linux</c> | <c>SUSE Linux</c> | <c>Windows</c> | <c>Linux/UNIX
+        /// (Amazon VPC)</c> | <c>Red Hat Enterprise Linux (Amazon VPC)</c> | <c>SUSE Linux (Amazon
+        /// VPC)</c> | <c>Windows (Amazon VPC)</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>spot-price</code> - The Spot price. The value must match exactly (or use wildcards;
+        ///  <c>spot-price</c> - The Spot price. The value must match exactly (or use wildcards;
         /// greater than or less than comparison is not supported).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>timestamp</code> - The time stamp of the Spot price history, in UTC format
-        /// (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
-        /// can use wildcards (* and ?). Greater than or less than comparison is not supported.
+        ///  <c>timestamp</c> - The time stamp of the Spot price history, in UTC format (for example,
+        /// <i>ddd MMM dd HH</i>:<i>mm</i>:<i>ss</i> UTC <i>YYYY</i>). You can use wildcards (<c>*</c>
+        /// and <c>?</c>). Greater than or less than comparison is not supported.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -131,7 +131,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace Amazon.EC2.Model
         // Check to see if InstanceTypes property is set
         internal bool IsSetInstanceTypes()
         {
-            return this._instanceTypes != null && this._instanceTypes.Count > 0; 
+            return this._instanceTypes != null && (this._instanceTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace Amazon.EC2.Model
         // Check to see if ProductDescriptions property is set
         internal bool IsSetProductDescriptions()
         {
-            return this._productDescriptions != null && this._productDescriptions.Count > 0; 
+            return this._productDescriptions != null && (this._productDescriptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

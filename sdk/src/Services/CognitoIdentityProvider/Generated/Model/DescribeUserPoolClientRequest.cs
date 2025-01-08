@@ -26,12 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeUserPoolClient operation.
-    /// Client method for returning the configuration information and metadata of the specified
-    /// user pool app client.
+    /// Given an app client ID, returns configuration information. This operation is useful
+    /// when you want to inspect an existing app client and programmatically replicate the
+    /// configuration to another app client. For more information about app clients, see <a
+    /// href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-client-apps.html">App
+    /// clients</a>.
     /// 
     ///  <note> 
     /// <para>
@@ -63,7 +67,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property ClientId. 
         /// <para>
-        /// The app client ID of the app associated with the user pool.
+        /// The ID of the app client that you want to describe.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=128)]
@@ -82,7 +86,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID for the user pool you want to describe.
+        /// The ID of the user pool that contains the app client you want to describe.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmail.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.SimpleEmail.Model
     public partial class ListTemplatesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<TemplateMetadata> _templatesMetadata = new List<TemplateMetadata>();
+        private List<TemplateMetadata> _templatesMetadata = AWSConfigs.InitializeCollections ? new List<TemplateMetadata>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token indicating that there are additional email templates available to be listed.
-        /// Pass this token to a subsequent call to <code>ListTemplates</code> to retrieve the
-        /// next set of email templates within your page size.
+        /// Pass this token to a subsequent call to <c>ListTemplates</c> to retrieve the next
+        /// set of email templates within your page size.
         /// </para>
         /// </summary>
         public string NextToken
@@ -72,7 +73,7 @@ namespace Amazon.SimpleEmail.Model
         // Check to see if TemplatesMetadata property is set
         internal bool IsSetTemplatesMetadata()
         {
-            return this._templatesMetadata != null && this._templatesMetadata.Count > 0; 
+            return this._templatesMetadata != null && (this._templatesMetadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

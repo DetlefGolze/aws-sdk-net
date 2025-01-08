@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,6 +67,7 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAssetBundleExportJobId())
@@ -97,6 +99,30 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
                     context.Writer.Write(publicRequest.IncludeAllDependencies);
                 }
 
+                if(publicRequest.IsSetIncludeFolderMembers())
+                {
+                    context.Writer.WritePropertyName("IncludeFolderMembers");
+                    context.Writer.Write(publicRequest.IncludeFolderMembers);
+                }
+
+                if(publicRequest.IsSetIncludeFolderMemberships())
+                {
+                    context.Writer.WritePropertyName("IncludeFolderMemberships");
+                    context.Writer.Write(publicRequest.IncludeFolderMemberships);
+                }
+
+                if(publicRequest.IsSetIncludePermissions())
+                {
+                    context.Writer.WritePropertyName("IncludePermissions");
+                    context.Writer.Write(publicRequest.IncludePermissions);
+                }
+
+                if(publicRequest.IsSetIncludeTags())
+                {
+                    context.Writer.WritePropertyName("IncludeTags");
+                    context.Writer.Write(publicRequest.IncludeTags);
+                }
+
                 if(publicRequest.IsSetResourceArns())
                 {
                     context.Writer.WritePropertyName("ResourceArns");
@@ -106,6 +132,17 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
                             context.Writer.Write(publicRequestResourceArnsListValue);
                     }
                     context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetValidationStrategy())
+                {
+                    context.Writer.WritePropertyName("ValidationStrategy");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = AssetBundleExportJobValidationStrategyMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.ValidationStrategy, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 writer.WriteObjectEnd();

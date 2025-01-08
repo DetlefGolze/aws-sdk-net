@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedGrafana.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.ManagedGrafana.Model
     public partial class ListPermissionsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<PermissionEntry> _permissions = new List<PermissionEntry>();
+        private List<PermissionEntry> _permissions = AWSConfigs.InitializeCollections ? new List<PermissionEntry>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to use in a subsequent <code>ListPermissions</code> operation to return
-        /// the next set of results.
+        /// The token to use in a subsequent <c>ListPermissions</c> operation to return the next
+        /// set of results.
         /// </para>
         /// </summary>
         public string NextToken
@@ -71,7 +72,7 @@ namespace Amazon.ManagedGrafana.Model
         // Check to see if Permissions property is set
         internal bool IsSetPermissions()
         {
-            return this._permissions != null && this._permissions.Count > 0; 
+            return this._permissions != null && (this._permissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

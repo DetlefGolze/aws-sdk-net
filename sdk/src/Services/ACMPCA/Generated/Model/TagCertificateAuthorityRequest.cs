@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ACMPCA.Model
 {
     /// <summary>
@@ -43,8 +44,8 @@ namespace Amazon.ACMPCA.Model
     ///  <note> 
     /// <para>
     /// To attach tags to a private CA during the creation procedure, a CA administrator must
-    /// first associate an inline IAM policy with the <code>CreateCertificateAuthority</code>
-    /// action and explicitly allow tagging. For more information, see <a href="https://docs.aws.amazon.com/privateca/latest/userguide/auth-InlinePolicies.html#policy-tag-ca">Attaching
+    /// first associate an inline IAM policy with the <c>CreateCertificateAuthority</c> action
+    /// and explicitly allow tagging. For more information, see <a href="https://docs.aws.amazon.com/privateca/latest/userguide/auth-InlinePolicies.html#policy-tag-ca">Attaching
     /// tags to a CA at the time of creation</a>.
     /// </para>
     ///  </note>
@@ -52,7 +53,7 @@ namespace Amazon.ACMPCA.Model
     public partial class TagCertificateAuthorityRequest : AmazonACMPCARequest
     {
         private string _certificateAuthorityArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property CertificateAuthorityArn. 
@@ -62,8 +63,8 @@ namespace Amazon.ACMPCA.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i>
-        /// </code> 
+        ///  <c>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i>
+        /// </c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=5, Max=200)]
@@ -95,7 +96,7 @@ namespace Amazon.ACMPCA.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

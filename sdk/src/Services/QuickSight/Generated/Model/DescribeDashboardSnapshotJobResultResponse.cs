@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property Arn. 
         /// <para>
         /// The Amazon Resource Name (ARN) for the snapshot job. The job ARN is generated when
-        /// you start a new job with a <code>StartDashboardSnapshotJob</code> API call.
+        /// you start a new job with a <c>StartDashboardSnapshotJob</c> API call.
         /// </para>
         /// </summary>
         public string Arn
@@ -101,7 +102,7 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property JobStatus. 
         /// <para>
         /// Indicates the status of a job after it has reached a terminal state. A finished snapshot
-        /// job will retuen a <code>COMPLETED</code> or <code>FAILED</code> status.
+        /// job will retuen a <c>COMPLETED</c> or <c>FAILED</c> status.
         /// </para>
         /// </summary>
         public SnapshotJobStatus JobStatus

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptunedata.Model
 {
     /// <summary>
@@ -36,6 +37,35 @@ namespace Amazon.Neptunedata.Model
     /// Graph</a> in the Apache TinkerPop3 documentation. More details can also be found in
     /// <a href="https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html">Accessing
     /// a Neptune graph with Gremlin</a>.
+    /// 
+    ///  
+    /// <para>
+    /// When invoking this operation in a Neptune cluster that has IAM authentication enabled,
+    /// the IAM user or role making the request must have a policy attached that enables one
+    /// of the following IAM actions in that cluster, depending on the query:
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#readdataviaquery">neptune-db:ReadDataViaQuery</a>
+    /// 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#writedataviaquery">neptune-db:WriteDataViaQuery</a>
+    /// 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#deletedataviaquery">neptune-db:DeleteDataViaQuery</a>
+    /// 
+    /// </para>
+    ///  </li> </ul> 
+    /// <para>
+    /// Note that the <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html#iam-neptune-condition-keys">neptune-db:QueryLanguage:Gremlin</a>
+    /// IAM condition key can be used in the policy document to restrict the use of Gremlin
+    /// queries (see <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html">Condition
+    /// keys available in Neptune IAM data-access policy statements</a>).
+    /// </para>
     /// </summary>
     public partial class ExecuteGremlinQueryRequest : AmazonNeptunedataRequest
     {
@@ -82,7 +112,7 @@ namespace Amazon.Neptunedata.Model
         // Check to see if Serializer property is set
         internal bool IsSetSerializer()
         {
-            return this._serializer != null;
+            return !string.IsNullOrEmpty(this._serializer);
         }
 
     }

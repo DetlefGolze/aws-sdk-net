@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MachineLearning.Model
 {
     /// <summary>
     /// Container for the parameters to the GetDataSource operation.
-    /// Returns a <code>DataSource</code> that includes metadata and data file information,
-    /// as well as the current status of the <code>DataSource</code>.
+    /// Returns a <c>DataSource</c> that includes metadata and data file information, as well
+    /// as the current status of the <c>DataSource</c>.
     /// 
     ///  
     /// <para>
-    ///  <code>GetDataSource</code> provides results in normal or verbose format. The verbose
-    /// format adds the schema description and the list of files pointed to by the DataSource
-    /// to the normal format.
+    ///  <c>GetDataSource</c> provides results in normal or verbose format. The verbose format
+    /// adds the schema description and the list of files pointed to by the DataSource to
+    /// the normal format.
     /// </para>
     /// </summary>
     public partial class GetDataSourceRequest : AmazonMachineLearningRequest
@@ -48,7 +49,7 @@ namespace Amazon.MachineLearning.Model
         /// <summary>
         /// Gets and sets the property DataSourceId. 
         /// <para>
-        /// The ID assigned to the <code>DataSource</code> at creation.
+        /// The ID assigned to the <c>DataSource</c> at creation.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]
@@ -67,15 +68,15 @@ namespace Amazon.MachineLearning.Model
         /// <summary>
         /// Gets and sets the property Verbose. 
         /// <para>
-        /// Specifies whether the <code>GetDataSource</code> operation should return <code>DataSourceSchema</code>.
+        /// Specifies whether the <c>GetDataSource</c> operation should return <c>DataSourceSchema</c>.
         /// </para>
         ///  
         /// <para>
-        /// If true, <code>DataSourceSchema</code> is returned.
+        /// If true, <c>DataSourceSchema</c> is returned.
         /// </para>
         ///  
         /// <para>
-        /// If false, <code>DataSourceSchema</code> is not returned.
+        /// If false, <c>DataSourceSchema</c> is not returned.
         /// </para>
         /// </summary>
         public bool Verbose

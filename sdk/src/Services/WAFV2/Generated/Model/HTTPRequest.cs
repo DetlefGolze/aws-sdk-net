@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
     /// Part of the response from <a>GetSampledRequests</a>. This is a complex type that appears
-    /// as <code>Request</code> in the response syntax. <code>HTTPRequest</code> contains
-    /// information about one of the web requests.
+    /// as <c>Request</c> in the response syntax. <c>HTTPRequest</c> contains information
+    /// about one of the web requests.
     /// </summary>
     public partial class HTTPRequest
     {
         private string _clientIP;
         private string _country;
-        private List<HTTPHeader> _headers = new List<HTTPHeader>();
+        private List<HTTPHeader> _headers = AWSConfigs.InitializeCollections ? new List<HTTPHeader>() : null;
         private string _httpVersion;
         private string _method;
         private string _uri;
@@ -51,13 +52,13 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>c-ip</code>, if the viewer did not use an HTTP proxy or a load balancer to
-        /// send the request
+        ///  <c>c-ip</c>, if the viewer did not use an HTTP proxy or a load balancer to send the
+        /// request
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>x-forwarded-for</code>, if the viewer did use an HTTP proxy or a load balancer
-        /// to send the request
+        ///  <c>x-forwarded-for</c>, if the viewer did use an HTTP proxy or a load balancer to
+        /// send the request
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -109,13 +110,13 @@ namespace Amazon.WAFV2.Model
         // Check to see if Headers property is set
         internal bool IsSetHeaders()
         {
-            return this._headers != null && this._headers.Count > 0; 
+            return this._headers != null && (this._headers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property HTTPVersion. 
         /// <para>
-        /// The HTTP version specified in the sampled web request, for example, <code>HTTP/1.1</code>.
+        /// The HTTP version specified in the sampled web request, for example, <c>HTTP/1.1</c>.
         /// </para>
         /// </summary>
         public string HTTPVersion
@@ -151,7 +152,7 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property URI. 
         /// <para>
-        /// The URI path of the request, which identifies the resource, for example, <code>/images/daily-ad.jpg</code>.
+        /// The URI path of the request, which identifies the resource, for example, <c>/images/daily-ad.jpg</c>.
         /// </para>
         /// </summary>
         public string URI

@@ -26,10 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
-    /// Contains the information required to locate a manifest object.
+    /// Contains the information required to locate a manifest object. Manifests can't be
+    /// imported from directory buckets. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-overview.html">Directory
+    /// buckets</a>.
     /// </summary>
     public partial class JobManifestLocation
     {

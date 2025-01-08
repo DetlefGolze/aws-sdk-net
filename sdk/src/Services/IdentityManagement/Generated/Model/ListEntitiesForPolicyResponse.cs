@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -35,19 +36,18 @@ namespace Amazon.IdentityManagement.Model
     {
         private bool? _isTruncated;
         private string _marker;
-        private List<PolicyGroup> _policyGroups = new List<PolicyGroup>();
-        private List<PolicyRole> _policyRoles = new List<PolicyRole>();
-        private List<PolicyUser> _policyUsers = new List<PolicyUser>();
+        private List<PolicyGroup> _policyGroups = AWSConfigs.InitializeCollections ? new List<PolicyGroup>() : null;
+        private List<PolicyRole> _policyRoles = AWSConfigs.InitializeCollections ? new List<PolicyRole>() : null;
+        private List<PolicyUser> _policyUsers = AWSConfigs.InitializeCollections ? new List<PolicyUser>() : null;
 
         /// <summary>
         /// Gets and sets the property IsTruncated. 
         /// <para>
         /// A flag that indicates whether there are more items to return. If your results were
-        /// truncated, you can make a subsequent pagination request using the <code>Marker</code>
-        /// request parameter to retrieve more items. Note that IAM might return fewer than the
-        /// <code>MaxItems</code> number of results even when there are more results available.
-        /// We recommend that you check <code>IsTruncated</code> after every call to ensure that
-        /// you receive all your results.
+        /// truncated, you can make a subsequent pagination request using the <c>Marker</c> request
+        /// parameter to retrieve more items. Note that IAM might return fewer than the <c>MaxItems</c>
+        /// number of results even when there are more results available. We recommend that you
+        /// check <c>IsTruncated</c> after every call to ensure that you receive all your results.
         /// </para>
         /// </summary>
         public bool IsTruncated
@@ -65,9 +65,8 @@ namespace Amazon.IdentityManagement.Model
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// When <code>IsTruncated</code> is <code>true</code>, this element is present and contains
-        /// the value to use for the <code>Marker</code> parameter in a subsequent pagination
-        /// request.
+        /// When <c>IsTruncated</c> is <c>true</c>, this element is present and contains the value
+        /// to use for the <c>Marker</c> parameter in a subsequent pagination request.
         /// </para>
         /// </summary>
         public string Marker
@@ -97,7 +96,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if PolicyGroups property is set
         internal bool IsSetPolicyGroups()
         {
-            return this._policyGroups != null && this._policyGroups.Count > 0; 
+            return this._policyGroups != null && (this._policyGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -115,7 +114,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if PolicyRoles property is set
         internal bool IsSetPolicyRoles()
         {
-            return this._policyRoles != null && this._policyRoles.Count > 0; 
+            return this._policyRoles != null && (this._policyRoles.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -133,7 +132,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if PolicyUsers property is set
         internal bool IsSetPolicyUsers()
         {
-            return this._policyUsers != null && this._policyUsers.Count > 0; 
+            return this._policyUsers != null && (this._policyUsers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

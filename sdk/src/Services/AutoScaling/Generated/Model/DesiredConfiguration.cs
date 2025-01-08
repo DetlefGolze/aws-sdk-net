@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -33,8 +34,8 @@ namespace Amazon.AutoScaling.Model
     /// 
     ///  
     /// <para>
-    /// If you specify a desired configuration, you must specify either a <code>LaunchTemplate</code>
-    /// or a <code>MixedInstancesPolicy</code>. 
+    /// If you specify a desired configuration, you must specify either a <c>LaunchTemplate</c>
+    /// or a <c>MixedInstancesPolicy</c>. 
     /// </para>
     /// </summary>
     public partial class DesiredConfiguration
@@ -47,7 +48,7 @@ namespace Amazon.AutoScaling.Model
         /// <para>
         /// Describes the launch template and the version of the launch template that Amazon EC2
         /// Auto Scaling uses to launch Amazon EC2 instances. For more information about launch
-        /// templates, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchTemplates.html">Launch
+        /// templates, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-templates.html">Launch
         /// templates</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
         /// </para>
         /// </summary>

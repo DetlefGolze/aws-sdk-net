@@ -26,29 +26,42 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateTaskSet operation.
     /// Create a task set in the specified cluster and service. This is used when a service
-    /// uses the <code>EXTERNAL</code> deployment controller type. For more information, see
-    /// <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html">Amazon
+    /// uses the <c>EXTERNAL</c> deployment controller type. For more information, see <a
+    /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html">Amazon
     /// ECS deployment types</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// On March 21, 2024, a change was made to resolve the task definition revision before
+    /// authorization. When a task definition revision is not specified, authorization will
+    /// occur using the latest revision of a task definition.
+    /// </para>
+    ///  </note> 
+    /// <para>
+    /// For information about the maximum number of task sets and other quotas, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-quotas.html">Amazon
+    /// ECS service quotas</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+    /// </para>
     /// </summary>
     public partial class CreateTaskSetRequest : AmazonECSRequest
     {
-        private List<CapacityProviderStrategyItem> _capacityProviderStrategy = new List<CapacityProviderStrategyItem>();
+        private List<CapacityProviderStrategyItem> _capacityProviderStrategy = AWSConfigs.InitializeCollections ? new List<CapacityProviderStrategyItem>() : null;
         private string _clientToken;
         private string _cluster;
         private string _externalId;
         private LaunchType _launchType;
-        private List<LoadBalancer> _loadBalancers = new List<LoadBalancer>();
+        private List<LoadBalancer> _loadBalancers = AWSConfigs.InitializeCollections ? new List<LoadBalancer>() : null;
         private NetworkConfiguration _networkConfiguration;
         private string _platformVersion;
         private Scale _scale;
         private string _service;
-        private List<ServiceRegistry> _serviceRegistries = new List<ServiceRegistry>();
-        private List<Tag> _tags = new List<Tag>();
+        private List<ServiceRegistry> _serviceRegistries = AWSConfigs.InitializeCollections ? new List<ServiceRegistry>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _taskDefinition;
 
         /// <summary>
@@ -59,35 +72,34 @@ namespace Amazon.ECS.Model
         ///  
         /// <para>
         /// A capacity provider strategy consists of one or more capacity providers along with
-        /// the <code>base</code> and <code>weight</code> to assign to them. A capacity provider
-        /// must be associated with the cluster to be used in a capacity provider strategy. The
-        /// <a>PutClusterCapacityProviders</a> API is used to associate a capacity provider with
-        /// a cluster. Only capacity providers with an <code>ACTIVE</code> or <code>UPDATING</code>
-        /// status can be used.
+        /// the <c>base</c> and <c>weight</c> to assign to them. A capacity provider must be associated
+        /// with the cluster to be used in a capacity provider strategy. The <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_PutClusterCapacityProviders.html">PutClusterCapacityProviders</a>
+        /// API is used to associate a capacity provider with a cluster. Only capacity providers
+        /// with an <c>ACTIVE</c> or <c>UPDATING</c> status can be used.
         /// </para>
         ///  
         /// <para>
-        /// If a <code>capacityProviderStrategy</code> is specified, the <code>launchType</code>
-        /// parameter must be omitted. If no <code>capacityProviderStrategy</code> or <code>launchType</code>
-        /// is specified, the <code>defaultCapacityProviderStrategy</code> for the cluster is
-        /// used.
+        /// If a <c>capacityProviderStrategy</c> is specified, the <c>launchType</c> parameter
+        /// must be omitted. If no <c>capacityProviderStrategy</c> or <c>launchType</c> is specified,
+        /// the <c>defaultCapacityProviderStrategy</c> for the cluster is used.
         /// </para>
         ///  
         /// <para>
         /// If specifying a capacity provider that uses an Auto Scaling group, the capacity provider
-        /// must already be created. New capacity providers can be created with the <a>CreateCapacityProvider</a>
-        /// API operation.
+        /// must already be created. New capacity providers can be created with the <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateCapacityProviderProvider.html">CreateCapacityProviderProvider</a>API
+        /// operation.
         /// </para>
         ///  
         /// <para>
-        /// To use a Fargate capacity provider, specify either the <code>FARGATE</code> or <code>FARGATE_SPOT</code>
+        /// To use a Fargate capacity provider, specify either the <c>FARGATE</c> or <c>FARGATE_SPOT</c>
         /// capacity providers. The Fargate capacity providers are available to all accounts and
         /// only need to be associated with a cluster to be used.
         /// </para>
         ///  
         /// <para>
-        /// The <a>PutClusterCapacityProviders</a> API operation is used to update the list of
-        /// available capacity providers for a cluster after the cluster is created.
+        /// The <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_PutClusterCapacityProviders.html">PutClusterCapacityProviders</a>
+        /// API operation is used to update the list of available capacity providers for a cluster
+        /// after the cluster is created.
         /// </para>
         /// </summary>
         public List<CapacityProviderStrategyItem> CapacityProviderStrategy
@@ -99,14 +111,15 @@ namespace Amazon.ECS.Model
         // Check to see if CapacityProviderStrategy property is set
         internal bool IsSetCapacityProviderStrategy()
         {
-            return this._capacityProviderStrategy != null && this._capacityProviderStrategy.Count > 0; 
+            return this._capacityProviderStrategy != null && (this._capacityProviderStrategy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
-        /// The identifier that you provide to ensure the idempotency of the request. It's case
-        /// sensitive and must be unique. It can be up to 32 ASCII characters are allowed.
+        /// An identifier that you provide to ensure the idempotency of the request. It must be
+        /// unique and is case sensitive. Up to 36 ASCII characters in the range of 33-126 (inclusive)
+        /// are allowed.
         /// </para>
         /// </summary>
         public string ClientToken
@@ -146,8 +159,8 @@ namespace Amazon.ECS.Model
         /// <para>
         /// An optional non-unique tag that identifies this task set in external systems. If the
         /// task set is associated with a service discovery registry, the tasks in this task set
-        /// will have the <code>ECS_TASK_SET_EXTERNAL_ID</code> Cloud Map attribute set to the
-        /// provided value.
+        /// will have the <c>ECS_TASK_SET_EXTERNAL_ID</c> Cloud Map attribute set to the provided
+        /// value.
         /// </para>
         /// </summary>
         public string ExternalId
@@ -171,8 +184,8 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  
         /// <para>
-        /// If a <code>launchType</code> is specified, the <code>capacityProviderStrategy</code>
-        /// parameter must be omitted.
+        /// If a <c>launchType</c> is specified, the <c>capacityProviderStrategy</c> parameter
+        /// must be omitted.
         /// </para>
         /// </summary>
         public LaunchType LaunchType
@@ -204,7 +217,7 @@ namespace Amazon.ECS.Model
         // Check to see if LoadBalancers property is set
         internal bool IsSetLoadBalancers()
         {
-            return this._loadBalancers != null && this._loadBalancers.Count > 0; 
+            return this._loadBalancers != null && (this._loadBalancers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -229,7 +242,7 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property PlatformVersion. 
         /// <para>
         /// The platform version that the tasks in the task set uses. A platform version is specified
-        /// only for tasks using the Fargate launch type. If one isn't specified, the <code>LATEST</code>
+        /// only for tasks using the Fargate launch type. If one isn't specified, the <c>LATEST</c>
         /// platform version is used.
         /// </para>
         /// </summary>
@@ -301,7 +314,7 @@ namespace Amazon.ECS.Model
         // Check to see if ServiceRegistries property is set
         internal bool IsSetServiceRegistries()
         {
-            return this._serviceRegistries != null && this._serviceRegistries.Count > 0; 
+            return this._serviceRegistries != null && (this._serviceRegistries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -345,10 +358,10 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Do not use <code>aws:</code>, <code>AWS:</code>, or any upper or lowercase combination
-        /// of such as a prefix for either keys or values as it is reserved for Amazon Web Services
-        /// use. You cannot edit or delete tag keys or values with this prefix. Tags with this
-        /// prefix do not count against your tags per resource limit.
+        /// Do not use <c>aws:</c>, <c>AWS:</c>, or any upper or lowercase combination of such
+        /// as a prefix for either keys or values as it is reserved for Amazon Web Services use.
+        /// You cannot edit or delete tag keys or values with this prefix. Tags with this prefix
+        /// do not count against your tags per resource limit.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -362,14 +375,14 @@ namespace Amazon.ECS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TaskDefinition. 
         /// <para>
         /// The task definition for the tasks in the task set to use. If a revision isn't specified,
-        /// the latest <code>ACTIVE</code> revision is used.
+        /// the latest <c>ACTIVE</c> revision is used.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

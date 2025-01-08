@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -33,8 +34,28 @@ namespace Amazon.IoTFleetWise.Model
     /// </summary>
     public partial class InvalidSignalDecoder
     {
+        private string _hint;
         private string _name;
         private SignalDecoderFailureReason _reason;
+
+        /// <summary>
+        /// Gets and sets the property Hint. 
+        /// <para>
+        /// The possible cause for the invalid signal decoder.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=2048)]
+        public string Hint
+        {
+            get { return this._hint; }
+            set { this._hint = value; }
+        }
+
+        // Check to see if Hint property is set
+        internal bool IsSetHint()
+        {
+            return this._hint != null;
+        }
 
         /// <summary>
         /// Gets and sets the property Name. 

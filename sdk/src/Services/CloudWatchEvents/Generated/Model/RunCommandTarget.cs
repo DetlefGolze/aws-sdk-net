@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvents.Model
 {
     /// <summary>
     /// Information about the EC2 instances that are to be sent the command, specified as
-    /// key-value pairs. Each <code>RunCommandTarget</code> block can include only one key,
-    /// but this key may specify multiple values.
+    /// key-value pairs. Each <c>RunCommandTarget</c> block can include only one key, but
+    /// this key may specify multiple values.
     /// </summary>
     public partial class RunCommandTarget
     {
         private string _key;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Key. 
         /// <para>
-        /// Can be either <code>tag:</code> <i>tag-key</i> or <code>InstanceIds</code>.
+        /// Can be either <c>tag:</c> <i>tag-key</i> or <c>InstanceIds</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=128)]
@@ -60,9 +61,9 @@ namespace Amazon.CloudWatchEvents.Model
         /// <summary>
         /// Gets and sets the property Values. 
         /// <para>
-        /// If <code>Key</code> is <code>tag:</code> <i>tag-key</i>, <code>Values</code> is a
-        /// list of tag values. If <code>Key</code> is <code>InstanceIds</code>, <code>Values</code>
-        /// is a list of Amazon EC2 instance IDs.
+        /// If <c>Key</c> is <c>tag:</c> <i>tag-key</i>, <c>Values</c> is a list of tag values.
+        /// If <c>Key</c> is <c>InstanceIds</c>, <c>Values</c> is a list of Amazon EC2 instance
+        /// IDs.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=50)]
@@ -75,7 +76,7 @@ namespace Amazon.CloudWatchEvents.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

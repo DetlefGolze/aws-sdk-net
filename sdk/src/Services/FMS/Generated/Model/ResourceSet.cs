@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FMS.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.FMS.Model
         private DateTime? _lastUpdateTime;
         private string _name;
         private ResourceSetStatus _resourceSetStatus;
-        private List<string> _resourceTypeList = new List<string>();
+        private List<string> _resourceTypeList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _updateToken;
 
         /// <summary>
@@ -125,13 +126,13 @@ namespace Amazon.FMS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ACTIVE</code> - The administrator can manage and delete the resource set.
+        ///  <c>ACTIVE</c> - The administrator can manage and delete the resource set.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OUT_OF_ADMIN_SCOPE</code> - The administrator can view the resource set, but
-        /// they can't edit or delete the resource set. Existing protections stay in place. Any
-        /// new resource that come into scope of the resource set won't be protected.
+        ///  <c>OUT_OF_ADMIN_SCOPE</c> - The administrator can view the resource set, but they
+        /// can't edit or delete the resource set. Existing protections stay in place. Any new
+        /// resource that come into scope of the resource set won't be protected.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -165,7 +166,7 @@ namespace Amazon.FMS.Model
         // Check to see if ResourceTypeList property is set
         internal bool IsSetResourceTypeList()
         {
-            return this._resourceTypeList != null && this._resourceTypeList.Count > 0; 
+            return this._resourceTypeList != null && (this._resourceTypeList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -187,7 +188,7 @@ namespace Amazon.FMS.Model
         /// <para>
         /// To make a conditional change to the resource set, provide the token in your update
         /// request. Firewall Manager uses the token to ensure that the resource set hasn't changed
-        /// since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>.
+        /// since you last retrieved it. If it has changed, the operation fails with an <c>InvalidTokenException</c>.
         /// If this happens, retrieve the resource set again to get a current copy of it with
         /// a new token. Reapply your changes as needed, then try the operation again using the
         /// new token. 

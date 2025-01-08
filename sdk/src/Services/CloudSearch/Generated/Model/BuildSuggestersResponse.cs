@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// The result of a <code>BuildSuggester</code> request. Contains a list of the fields
-    /// used for suggestions.
+    /// The result of a <c>BuildSuggester</c> request. Contains a list of the fields used
+    /// for suggestions.
     /// </summary>
     public partial class BuildSuggestersResponse : AmazonWebServiceResponse
     {
-        private List<string> _fieldNames = new List<string>();
+        private List<string> _fieldNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property FieldNames.
@@ -48,7 +49,7 @@ namespace Amazon.CloudSearch.Model
         // Check to see if FieldNames property is set
         internal bool IsSetFieldNames()
         {
-            return this._fieldNames != null && this._fieldNames.Count > 0; 
+            return this._fieldNames != null && (this._fieldNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

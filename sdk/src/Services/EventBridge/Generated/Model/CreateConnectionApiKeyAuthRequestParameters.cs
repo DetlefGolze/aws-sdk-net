@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
-    /// Contains the API key authorization parameters for the connection.
+    /// The API key authorization parameters for the connection.
     /// </summary>
     public partial class CreateConnectionApiKeyAuthRequestParameters
     {

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.ElasticBeanstalk.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the <code>AutoScalingGroup</code> . 
+        /// The name of the <c>AutoScalingGroup</c> . 
         /// </para>
         /// </summary>
         public string Name

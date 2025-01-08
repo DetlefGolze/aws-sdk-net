@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -123,13 +124,13 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CANCELLED</code>: The operation in the specified account and Region has been
-        /// canceled. This is either because a user has stopped the stack set operation, or because
-        /// the failure tolerance of the stack set operation has been exceeded.
+        ///  <c>CANCELLED</c>: The operation in the specified account and Region has been canceled.
+        /// This is either because a user has stopped the stack set operation, or because the
+        /// failure tolerance of the stack set operation has been exceeded.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code>: The operation in the specified account and Region failed.
+        ///  <c>FAILED</c>: The operation in the specified account and Region failed.
         /// </para>
         ///  
         /// <para>
@@ -138,18 +139,16 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RUNNING</code>: The operation in the specified account and Region is currently
-        /// in progress.
+        ///  <c>RUNNING</c>: The operation in the specified account and Region is currently in
+        /// progress.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PENDING</code>: The operation in the specified account and Region has yet to
-        /// start.
+        ///  <c>PENDING</c>: The operation in the specified account and Region has yet to start.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SUCCEEDED</code>: The operation in the specified account and Region completed
-        /// successfully.
+        ///  <c>SUCCEEDED</c>: The operation in the specified account and Region completed successfully.
         /// </para>
         ///  </li> </ul>
         /// </summary>

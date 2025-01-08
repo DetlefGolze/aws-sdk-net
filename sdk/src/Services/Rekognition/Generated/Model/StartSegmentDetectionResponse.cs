@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.Rekognition.Model
         /// <summary>
         /// Gets and sets the property JobId. 
         /// <para>
-        /// Unique identifier for the segment detection job. The <code>JobId</code> is returned
-        /// from <code>StartSegmentDetection</code>. 
+        /// Unique identifier for the segment detection job. The <c>JobId</c> is returned from
+        /// <c>StartSegmentDetection</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]

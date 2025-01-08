@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -52,9 +53,9 @@ namespace Amazon.WorkSpaces.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// In each platform type, the <code>SupportEmail</code> and <code>SupportLink</code>
-    /// parameters are mutually exclusive. You can specify only one parameter for each platform
-    /// type, but not both.
+    /// In each platform type, the <c>SupportEmail</c> and <c>SupportLink</c> parameters are
+    /// mutually exclusive. You can specify only one parameter for each platform type, but
+    /// not both.
     /// </para>
     ///  </li> <li> 
     /// <para>

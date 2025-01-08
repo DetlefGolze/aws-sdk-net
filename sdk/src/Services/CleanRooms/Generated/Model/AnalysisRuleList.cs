@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CleanRooms.Model
 {
     /// <summary>
@@ -33,15 +34,35 @@ namespace Amazon.CleanRooms.Model
     /// </summary>
     public partial class AnalysisRuleList
     {
-        private List<string> _allowedJoinOperators = new List<string>();
-        private List<string> _joinColumns = new List<string>();
-        private List<string> _listColumns = new List<string>();
+        private AdditionalAnalyses _additionalAnalyses;
+        private List<string> _allowedJoinOperators = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _joinColumns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _listColumns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+
+        /// <summary>
+        /// Gets and sets the property AdditionalAnalyses. 
+        /// <para>
+        ///  An indicator as to whether additional analyses (such as Clean Rooms ML) can be applied
+        /// to the output of the direct query.
+        /// </para>
+        /// </summary>
+        public AdditionalAnalyses AdditionalAnalyses
+        {
+            get { return this._additionalAnalyses; }
+            set { this._additionalAnalyses = value; }
+        }
+
+        // Check to see if AdditionalAnalyses property is set
+        internal bool IsSetAdditionalAnalyses()
+        {
+            return this._additionalAnalyses != null;
+        }
 
         /// <summary>
         /// Gets and sets the property AllowedJoinOperators. 
         /// <para>
         /// The logical operators (if any) that are to be used in an INNER JOIN match condition.
-        /// Default is <code>AND</code>.
+        /// Default is <c>AND</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=2)]
@@ -54,7 +75,7 @@ namespace Amazon.CleanRooms.Model
         // Check to see if AllowedJoinOperators property is set
         internal bool IsSetAllowedJoinOperators()
         {
-            return this._allowedJoinOperators != null && this._allowedJoinOperators.Count > 0; 
+            return this._allowedJoinOperators != null && (this._allowedJoinOperators.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -74,7 +95,7 @@ namespace Amazon.CleanRooms.Model
         // Check to see if JoinColumns property is set
         internal bool IsSetJoinColumns()
         {
-            return this._joinColumns != null && this._joinColumns.Count > 0; 
+            return this._joinColumns != null && (this._joinColumns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -93,7 +114,7 @@ namespace Amazon.CleanRooms.Model
         // Check to see if ListColumns property is set
         internal bool IsSetListColumns()
         {
-            return this._listColumns != null && this._listColumns.Count > 0; 
+            return this._listColumns != null && (this._listColumns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

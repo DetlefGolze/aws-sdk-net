@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.BearerTokenAuthTest
 {
     /// <summary>
-    /// Implementation for accessing BearerTokenAuthTest
+    /// <para>Implementation for accessing BearerTokenAuthTest</para>
     ///
     /// 
     /// </summary>

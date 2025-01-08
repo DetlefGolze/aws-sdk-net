@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataPipeline.Model
 {
     /// <summary>
     /// A key-value pair that describes a property of a pipeline object. The value is specified
-    /// as either a string value (<code>StringValue</code>) or a reference to another object
-    /// (<code>RefValue</code>) but not as both.
+    /// as either a string value (<c>StringValue</c>) or a reference to another object (<c>RefValue</c>)
+    /// but not as both.
     /// </summary>
     public partial class Field
     {

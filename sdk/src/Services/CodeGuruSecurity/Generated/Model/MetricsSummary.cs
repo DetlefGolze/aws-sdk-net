@@ -26,24 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruSecurity.Model
 {
     /// <summary>
-    /// Information about summary metrics in an account.
+    /// A summary of metrics for an account as of a specified date.
     /// </summary>
     public partial class MetricsSummary
     {
-        private List<CategoryWithFindingNum> _categoriesWithMostFindings = new List<CategoryWithFindingNum>();
+        private List<CategoryWithFindingNum> _categoriesWithMostFindings = AWSConfigs.InitializeCollections ? new List<CategoryWithFindingNum>() : null;
         private DateTime? _date;
         private FindingMetricsValuePerSeverity _openFindings;
-        private List<ScanNameWithFindingNum> _scansWithMostOpenCriticalFindings = new List<ScanNameWithFindingNum>();
-        private List<ScanNameWithFindingNum> _scansWithMostOpenFindings = new List<ScanNameWithFindingNum>();
+        private List<ScanNameWithFindingNum> _scansWithMostOpenCriticalFindings = AWSConfigs.InitializeCollections ? new List<ScanNameWithFindingNum>() : null;
+        private List<ScanNameWithFindingNum> _scansWithMostOpenFindings = AWSConfigs.InitializeCollections ? new List<ScanNameWithFindingNum>() : null;
 
         /// <summary>
         /// Gets and sets the property CategoriesWithMostFindings. 
         /// <para>
-        /// A list of <code>CategoryWithFindingNum</code> objects for the top 5 finding categories
-        /// with the most open findings in an account.
+        /// A list of <c>CategoryWithFindingNum</c> objects for the top 5 finding categories with
+        /// the most findings.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=5)]
@@ -56,7 +57,7 @@ namespace Amazon.CodeGuruSecurity.Model
         // Check to see if CategoriesWithMostFindings property is set
         internal bool IsSetCategoriesWithMostFindings()
         {
-            return this._categoriesWithMostFindings != null && this._categoriesWithMostFindings.Count > 0; 
+            return this._categoriesWithMostFindings != null && (this._categoriesWithMostFindings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.CodeGuruSecurity.Model
         /// <summary>
         /// Gets and sets the property OpenFindings. 
         /// <para>
-        /// The number of open findings of each severity in an account.
+        /// The number of open findings of each severity.
         /// </para>
         /// </summary>
         public FindingMetricsValuePerSeverity OpenFindings
@@ -98,8 +99,8 @@ namespace Amazon.CodeGuruSecurity.Model
         /// <summary>
         /// Gets and sets the property ScansWithMostOpenCriticalFindings. 
         /// <para>
-        /// A list of <code>ScanNameWithFindingNum</code> objects for the top 3 scans with the
-        /// most number of open findings in an account.
+        /// A list of <c>ScanNameWithFindingNum</c> objects for the top 3 scans with the most
+        /// number of open critical findings.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=3)]
@@ -112,14 +113,14 @@ namespace Amazon.CodeGuruSecurity.Model
         // Check to see if ScansWithMostOpenCriticalFindings property is set
         internal bool IsSetScansWithMostOpenCriticalFindings()
         {
-            return this._scansWithMostOpenCriticalFindings != null && this._scansWithMostOpenCriticalFindings.Count > 0; 
+            return this._scansWithMostOpenCriticalFindings != null && (this._scansWithMostOpenCriticalFindings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ScansWithMostOpenFindings. 
         /// <para>
-        /// A list of <code>ScanNameWithFindingNum</code> objects for the top 3 scans with the
-        /// most number of open critical findings in an account.
+        /// A list of <c>ScanNameWithFindingNum</c> objects for the top 3 scans with the most
+        /// number of open findings.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=3)]
@@ -132,7 +133,7 @@ namespace Amazon.CodeGuruSecurity.Model
         // Check to see if ScansWithMostOpenFindings property is set
         internal bool IsSetScansWithMostOpenFindings()
         {
-            return this._scansWithMostOpenFindings != null && this._scansWithMostOpenFindings.Count > 0; 
+            return this._scansWithMostOpenFindings != null && (this._scansWithMostOpenFindings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

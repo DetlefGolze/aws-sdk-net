@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.CloudTrail.Model
     public partial class StopImportResponse : AmazonWebServiceResponse
     {
         private DateTime? _createdTimestamp;
-        private List<string> _destinations = new List<string>();
+        private List<string> _destinations = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _endEventTime;
         private string _importId;
         private ImportSource _importSource;
@@ -77,15 +78,15 @@ namespace Amazon.CloudTrail.Model
         // Check to see if Destinations property is set
         internal bool IsSetDestinations()
         {
-            return this._destinations != null && this._destinations.Count > 0; 
+            return this._destinations != null && (this._destinations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property EndEventTime. 
         /// <para>
-        ///  Used with <code>StartEventTime</code> to bound a <code>StartImport</code> request,
-        /// and limit imported trail events to only those events logged within a specified time
-        /// period. 
+        ///  Used with <c>StartEventTime</c> to bound a <c>StartImport</c> request, and limit
+        /// imported trail events to only those events logged within a specified time period.
+        /// 
         /// </para>
         /// </summary>
         public DateTime EndEventTime
@@ -176,9 +177,8 @@ namespace Amazon.CloudTrail.Model
         /// <summary>
         /// Gets and sets the property StartEventTime. 
         /// <para>
-        ///  Used with <code>EndEventTime</code> to bound a <code>StartImport</code> request,
-        /// and limit imported trail events to only those events logged within a specified time
-        /// period. 
+        ///  Used with <c>EndEventTime</c> to bound a <c>StartImport</c> request, and limit imported
+        /// trail events to only those events logged within a specified time period. 
         /// </para>
         /// </summary>
         public DateTime StartEventTime

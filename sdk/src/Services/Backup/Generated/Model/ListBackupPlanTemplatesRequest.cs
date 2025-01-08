@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
     /// Container for the parameters to the ListBackupPlanTemplates operation.
-    /// Returns metadata of your saved backup plan templates, including the template ID, name,
-    /// and the creation and deletion dates.
+    /// Lists the backup plan templates.
     /// </summary>
     public partial class ListBackupPlanTemplatesRequest : AmazonBackupRequest
     {
@@ -41,7 +41,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The maximum number of items to be returned.
+        /// The maximum number of items to return.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]
@@ -61,9 +61,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The next item following a partial list of returned items. For example, if a request
-        /// is made to return <code>maxResults</code> number of items, <code>NextToken</code>
-        /// allows you to return more items in your list starting at the location pointed to by
-        /// the next token.
+        /// is made to return <c>MaxResults</c> number of items, <c>NextToken</c> allows you to
+        /// return more items in your list starting at the location pointed to by the next token.
         /// </para>
         /// </summary>
         public string NextToken

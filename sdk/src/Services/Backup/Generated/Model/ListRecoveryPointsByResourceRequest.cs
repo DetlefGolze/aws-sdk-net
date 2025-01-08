@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
     /// Container for the parameters to the ListRecoveryPointsByResource operation.
-    /// Returns detailed information about all the recovery points of the type specified by
-    /// a resource Amazon Resource Name (ARN).
+    /// The information about the recovery points of the type specified by a resource Amazon
+    /// Resource Name (ARN).
     /// 
     ///  <note> 
     /// <para>
@@ -41,9 +42,42 @@ namespace Amazon.Backup.Model
     /// </summary>
     public partial class ListRecoveryPointsByResourceRequest : AmazonBackupRequest
     {
+        private bool? _managedByAWSBackupOnly;
         private int? _maxResults;
         private string _nextToken;
         private string _resourceArn;
+
+        /// <summary>
+        /// Gets and sets the property ManagedByAWSBackupOnly. 
+        /// <para>
+        /// This attribute filters recovery points based on ownership.
+        /// </para>
+        ///  
+        /// <para>
+        /// If this is set to <c>TRUE</c>, the response will contain recovery points associated
+        /// with the selected resources that are managed by Backup.
+        /// </para>
+        ///  
+        /// <para>
+        /// If this is set to <c>FALSE</c>, the response will contain all recovery points associated
+        /// with the selected resource.
+        /// </para>
+        ///  
+        /// <para>
+        /// Type: Boolean
+        /// </para>
+        /// </summary>
+        public bool ManagedByAWSBackupOnly
+        {
+            get { return this._managedByAWSBackupOnly.GetValueOrDefault(); }
+            set { this._managedByAWSBackupOnly = value; }
+        }
+
+        // Check to see if ManagedByAWSBackupOnly property is set
+        internal bool IsSetManagedByAWSBackupOnly()
+        {
+            return this._managedByAWSBackupOnly.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
@@ -73,9 +107,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The next item following a partial list of returned items. For example, if a request
-        /// is made to return <code>maxResults</code> number of items, <code>NextToken</code>
-        /// allows you to return more items in your list starting at the location pointed to by
-        /// the next token.
+        /// is made to return <c>MaxResults</c> number of items, <c>NextToken</c> allows you to
+        /// return more items in your list starting at the location pointed to by the next token.
         /// </para>
         /// </summary>
         public string NextToken

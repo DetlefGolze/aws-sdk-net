@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-16"?>
 <property-value-rules>
   <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.BatchIsAuthorizedRequest.PolicyStoreId</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>[a-zA-Z0-9-]*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.BatchIsAuthorizedWithTokenRequest.AccessToken</property>
+    <min>1</min>
+    <max>131072</max>
+    <pattern>[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.BatchIsAuthorizedWithTokenRequest.IdentityToken</property>
+    <min>1</min>
+    <max>131072</max>
+    <pattern>[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.BatchIsAuthorizedWithTokenRequest.PolicyStoreId</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>[a-zA-Z0-9-]*</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.CreateIdentitySourceRequest.ClientToken</property>
     <min>1</min>
     <max>64</max>
@@ -59,6 +83,11 @@
     <min>1</min>
     <max>64</max>
     <pattern>[a-zA-Z0-9-]*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.CreatePolicyStoreRequest.Description</property>
+    <min>0</min>
+    <max>150</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.CreatePolicyStoreResponse.Arn</property>
@@ -215,6 +244,11 @@
     <pattern>arn:[^:]*:[^:]*:[^:]*:[^:]*:.*</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.GetPolicyStoreResponse.Description</property>
+    <min>0</min>
+    <max>150</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.GetPolicyStoreResponse.PolicyStoreId</property>
     <min>1</min>
     <max>200</max>
@@ -269,7 +303,6 @@
   <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.GetSchemaResponse.Schema</property>
     <min>1</min>
-    <max>10000</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.IsAuthorizedRequest.PolicyStoreId</property>
@@ -298,7 +331,6 @@
   <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.ListIdentitySourcesRequest.MaxResults</property>
     <min>1</min>
-    <max>200</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.ListIdentitySourcesRequest.NextToken</property>
@@ -321,7 +353,6 @@
   <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.ListPoliciesRequest.MaxResults</property>
     <min>1</min>
-    <max>50</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.ListPoliciesRequest.NextToken</property>
@@ -344,7 +375,6 @@
   <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.ListPolicyStoresRequest.MaxResults</property>
     <min>1</min>
-    <max>50</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.ListPolicyStoresRequest.NextToken</property>
@@ -361,7 +391,6 @@
   <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.ListPolicyTemplatesRequest.MaxResults</property>
     <min>1</min>
-    <max>50</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.ListPolicyTemplatesRequest.NextToken</property>
@@ -448,6 +477,11 @@
     <pattern>[a-zA-Z0-9-]*</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.UpdatePolicyStoreRequest.Description</property>
+    <min>0</min>
+    <max>150</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.UpdatePolicyStoreRequest.PolicyStoreId</property>
     <min>1</min>
     <max>200</max>
@@ -512,7 +546,85 @@
     <pattern>Action$|^.+::Action</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.AttributeValue.Decimal</property>
+    <min>3</min>
+    <max>23</max>
+    <pattern>-?\d{1,15}\.\d{1,4}</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.AttributeValue.Ipaddr</property>
+    <min>1</min>
+    <max>44</max>
+    <pattern>[0-9a-fA-F\.:\/]*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.BatchGetPolicyInputItem.PolicyId</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>[a-zA-Z0-9-]*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.BatchGetPolicyInputItem.PolicyStoreId</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>[a-zA-Z0-9-]*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.BatchGetPolicyOutputItem.PolicyId</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>[a-zA-Z0-9-]*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.BatchGetPolicyOutputItem.PolicyStoreId</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>[a-zA-Z0-9-]*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.CognitoGroupConfiguration.GroupEntityType</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>([_a-zA-Z][_a-zA-Z0-9]*::)*[_a-zA-Z][_a-zA-Z0-9]*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.CognitoGroupConfigurationDetail.GroupEntityType</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>([_a-zA-Z][_a-zA-Z0-9]*::)*[_a-zA-Z][_a-zA-Z0-9]*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.CognitoGroupConfigurationItem.GroupEntityType</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>([_a-zA-Z][_a-zA-Z0-9]*::)*[_a-zA-Z][_a-zA-Z0-9]*</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.CognitoUserPoolConfiguration.UserPoolArn</property>
+    <min>1</min>
+    <max>255</max>
+    <pattern>arn:[a-zA-Z0-9-]+:cognito-idp:(([a-zA-Z0-9-]+:\d{12}:userpool/[\w-]+_[0-9a-zA-Z]+))</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.CognitoUserPoolConfigurationDetail.Issuer</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>https://.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.CognitoUserPoolConfigurationDetail.UserPoolArn</property>
+    <min>1</min>
+    <max>255</max>
+    <pattern>arn:[a-zA-Z0-9-]+:cognito-idp:(([a-zA-Z0-9-]+:\d{12}:userpool/[\w-]+_[0-9a-zA-Z]+))</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.CognitoUserPoolConfigurationItem.Issuer</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>https://.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.CognitoUserPoolConfigurationItem.UserPoolArn</property>
     <min>1</min>
     <max>255</max>
     <pattern>arn:[a-zA-Z0-9-]+:cognito-idp:(([a-zA-Z0-9-]+:\d{12}:userpool/[\w-]+_[0-9a-zA-Z]+))</pattern>
@@ -584,6 +696,93 @@
     <pattern>arn:[a-zA-Z0-9-]+:cognito-idp:(([a-zA-Z0-9-]+:\d{12}:userpool/[\w-]+_[0-9a-zA-Z]+))</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.OpenIdConnectAccessTokenConfiguration.PrincipalIdClaim</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.OpenIdConnectAccessTokenConfigurationDetail.PrincipalIdClaim</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.OpenIdConnectAccessTokenConfigurationItem.PrincipalIdClaim</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.OpenIdConnectConfiguration.EntityIdPrefix</property>
+    <min>1</min>
+    <max>100</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.OpenIdConnectConfiguration.Issuer</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>https://.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.OpenIdConnectConfigurationDetail.EntityIdPrefix</property>
+    <min>1</min>
+    <max>100</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.OpenIdConnectConfigurationDetail.Issuer</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>https://.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.OpenIdConnectConfigurationItem.EntityIdPrefix</property>
+    <min>1</min>
+    <max>100</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.OpenIdConnectConfigurationItem.Issuer</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>https://.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.OpenIdConnectGroupConfiguration.GroupClaim</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.OpenIdConnectGroupConfiguration.GroupEntityType</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>([_a-zA-Z][_a-zA-Z0-9]*::)*[_a-zA-Z][_a-zA-Z0-9]*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.OpenIdConnectGroupConfigurationDetail.GroupClaim</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.OpenIdConnectGroupConfigurationDetail.GroupEntityType</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>([_a-zA-Z][_a-zA-Z0-9]*::)*[_a-zA-Z][_a-zA-Z0-9]*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.OpenIdConnectGroupConfigurationItem.GroupClaim</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.OpenIdConnectGroupConfigurationItem.GroupEntityType</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>([_a-zA-Z][_a-zA-Z0-9]*::)*[_a-zA-Z][_a-zA-Z0-9]*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.OpenIdConnectIdentityTokenConfiguration.PrincipalIdClaim</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.OpenIdConnectIdentityTokenConfigurationDetail.PrincipalIdClaim</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.OpenIdConnectIdentityTokenConfigurationItem.PrincipalIdClaim</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.PolicyFilter.PolicyTemplateId</property>
     <min>1</min>
     <max>200</max>
@@ -606,6 +805,11 @@
     <min>1</min>
     <max>2500</max>
     <pattern>arn:[^:]*:[^:]*:[^:]*:[^:]*:.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.PolicyStoreItem.Description</property>
+    <min>0</min>
+    <max>150</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.PolicyStoreItem.PolicyStoreId</property>
@@ -633,7 +837,6 @@
   <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.SchemaDefinition.CedarJson</property>
     <min>1</min>
-    <max>10000</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.StaticPolicyDefinition.Description</property>
@@ -679,10 +882,45 @@
     <pattern>[a-zA-Z0-9-]*</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.UpdateCognitoGroupConfiguration.GroupEntityType</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>([_a-zA-Z][_a-zA-Z0-9]*::)*[_a-zA-Z][_a-zA-Z0-9]*</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.UpdateCognitoUserPoolConfiguration.UserPoolArn</property>
     <min>1</min>
     <max>255</max>
     <pattern>arn:[a-zA-Z0-9-]+:cognito-idp:(([a-zA-Z0-9-]+:\d{12}:userpool/[\w-]+_[0-9a-zA-Z]+))</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.UpdateOpenIdConnectAccessTokenConfiguration.PrincipalIdClaim</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.UpdateOpenIdConnectConfiguration.EntityIdPrefix</property>
+    <min>1</min>
+    <max>100</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.UpdateOpenIdConnectConfiguration.Issuer</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>https://.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.UpdateOpenIdConnectGroupConfiguration.GroupClaim</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.UpdateOpenIdConnectGroupConfiguration.GroupEntityType</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>([_a-zA-Z][_a-zA-Z0-9]*::)*[_a-zA-Z][_a-zA-Z0-9]*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.VerifiedPermissions.Model.UpdateOpenIdConnectIdentityTokenConfiguration.PrincipalIdClaim</property>
+    <min>1</min>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.VerifiedPermissions.Model.UpdateStaticPolicyDefinition.Description</property>

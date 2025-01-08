@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostExplorer.Model
 {
     /// <summary>
@@ -37,8 +38,8 @@ namespace Amazon.CostExplorer.Model
     /// 
     ///  <note> 
     /// <para>
-    ///  <code>StartSavingsPlansPurchaseRecommendationGeneration</code> has no request syntax
-    /// because no input parameters are needed to support this operation.
+    ///  <c>StartSavingsPlansPurchaseRecommendationGeneration</c> has no request syntax because
+    /// no input parameters are needed to support this operation.
     /// </para>
     ///  </note>
     /// </summary>

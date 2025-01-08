@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaTailor.Model
 {
     /// <summary>
@@ -34,15 +35,17 @@ namespace Amazon.MediaTailor.Model
     public partial class UpdateChannelResponse : AmazonWebServiceResponse
     {
         private string _arn;
+        private List<string> _audiences = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _channelName;
         private ChannelState _channelState;
         private DateTime? _creationTime;
         private SlateSource _fillerSlate;
         private DateTime? _lastModifiedTime;
-        private List<ResponseOutputItem> _outputs = new List<ResponseOutputItem>();
+        private List<ResponseOutputItem> _outputs = AWSConfigs.InitializeCollections ? new List<ResponseOutputItem>() : null;
         private string _playbackMode;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _tier;
+        private TimeShiftConfiguration _timeShiftConfiguration;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -60,6 +63,24 @@ namespace Amazon.MediaTailor.Model
         internal bool IsSetArn()
         {
             return this._arn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Audiences. 
+        /// <para>
+        /// The list of audiences defined in channel.
+        /// </para>
+        /// </summary>
+        public List<string> Audiences
+        {
+            get { return this._audiences; }
+            set { this._audiences = value; }
+        }
+
+        // Check to see if Audiences property is set
+        internal bool IsSetAudiences()
+        {
+            return this._audiences != null && (this._audiences.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -120,8 +141,8 @@ namespace Amazon.MediaTailor.Model
         /// Gets and sets the property FillerSlate. 
         /// <para>
         /// The slate used to fill gaps between programs in the schedule. You must configure filler
-        /// slate if your channel uses the <code>LINEAR</code> <code>PlaybackMode</code>. MediaTailor
-        /// doesn't support filler slate for channels using the <code>LOOP</code> <code>PlaybackMode</code>.
+        /// slate if your channel uses the <c>LINEAR</c> <c>PlaybackMode</c>. MediaTailor doesn't
+        /// support filler slate for channels using the <c>LOOP</c> <c>PlaybackMode</c>.
         /// </para>
         /// </summary>
         public SlateSource FillerSlate
@@ -169,7 +190,7 @@ namespace Amazon.MediaTailor.Model
         // Check to see if Outputs property is set
         internal bool IsSetOutputs()
         {
-            return this._outputs != null && this._outputs.Count > 0; 
+            return this._outputs != null && (this._outputs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -179,12 +200,12 @@ namespace Amazon.MediaTailor.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>LINEAR</code> - Programs play back-to-back only once.
+        ///  <c>LINEAR</c> - Programs play back-to-back only once.
         /// </para>
         ///  
         /// <para>
-        ///  <code>LOOP</code> - Programs play back-to-back in an endless loop. When the last
-        /// program in the schedule plays, playback loops back to the first program in the schedule.
+        ///  <c>LOOP</c> - Programs play back-to-back in an endless loop. When the last program
+        /// in the schedule plays, playback loops back to the first program in the schedule.
         /// </para>
         /// </summary>
         public string PlaybackMode
@@ -217,7 +238,7 @@ namespace Amazon.MediaTailor.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -236,6 +257,24 @@ namespace Amazon.MediaTailor.Model
         internal bool IsSetTier()
         {
             return this._tier != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property TimeShiftConfiguration. 
+        /// <para>
+        ///  The time-shifted viewing configuration for the channel. 
+        /// </para>
+        /// </summary>
+        public TimeShiftConfiguration TimeShiftConfiguration
+        {
+            get { return this._timeShiftConfiguration; }
+            set { this._timeShiftConfiguration = value; }
+        }
+
+        // Check to see if TimeShiftConfiguration property is set
+        internal bool IsSetTimeShiftConfiguration()
+        {
+            return this._timeShiftConfiguration != null;
         }
 
     }

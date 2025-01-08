@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorksCM.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.OpsWorksCM.Model
     /// </summary>
     public partial class DescribeBackupsResponse : AmazonWebServiceResponse
     {
-        private List<Backup> _backups = new List<Backup>();
+        private List<Backup> _backups = AWSConfigs.InitializeCollections ? new List<Backup>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Backups. 
         /// <para>
-        /// Contains the response to a <code>DescribeBackups</code> request. 
+        /// Contains the response to a <c>DescribeBackups</c> request. 
         /// </para>
         /// </summary>
         public List<Backup> Backups
@@ -51,13 +52,13 @@ namespace Amazon.OpsWorksCM.Model
         // Check to see if Backups property is set
         internal bool IsSetBackups()
         {
-            return this._backups != null && this._backups.Count > 0; 
+            return this._backups != null && (this._backups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// This is not currently implemented for <code>DescribeBackups</code> requests.
+        /// This is not currently implemented for <c>DescribeBackups</c> requests.
         /// </para>
         /// </summary>
         [AWSProperty(Max=10000)]

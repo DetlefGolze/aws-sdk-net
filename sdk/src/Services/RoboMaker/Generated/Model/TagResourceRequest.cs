@@ -26,12 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the TagResource operation.
-    /// Adds or edits tags for a AWS RoboMaker resource.
+    /// <important> 
+    /// <para>
+    /// End of support notice: On September 10, 2025, Amazon Web Services will discontinue
+    /// support for Amazon Web Services RoboMaker. After September 10, 2025, you will no longer
+    /// be able to access the Amazon Web Services RoboMaker console or Amazon Web Services
+    /// RoboMaker resources. For more information on transitioning to Batch to help run containerized
+    /// simulations, visit <a href="https://aws.amazon.com/blogs/hpc/run-simulations-using-multiple-containers-in-a-single-aws-batch-job/">https://aws.amazon.com/blogs/hpc/run-simulations-using-multiple-containers-in-a-single-aws-batch-job/</a>.
     /// 
+    /// </para>
+    ///  </important> 
+    /// <para>
+    /// Adds or edits tags for a AWS RoboMaker resource.
+    /// </para>
     ///  
     /// <para>
     /// Each tag consists of a tag key and a tag value. Tag keys and tag values are both required,
@@ -46,7 +58,7 @@ namespace Amazon.RoboMaker.Model
     public partial class TagResourceRequest : AmazonRoboMakerRequest
     {
         private string _resourceArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -83,7 +95,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

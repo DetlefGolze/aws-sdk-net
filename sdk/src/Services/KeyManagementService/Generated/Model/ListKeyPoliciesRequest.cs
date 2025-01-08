@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
     /// Container for the parameters to the ListKeyPolicies operation.
     /// Gets the names of the key policies that are attached to a KMS key. This operation
     /// is designed to get policy names that you can use in a <a>GetKeyPolicy</a> operation.
-    /// However, the only valid policy name is <code>default</code>. 
+    /// However, the only valid policy name is <c>default</c>. 
     /// 
     ///  
     /// <para>
@@ -54,9 +55,15 @@ namespace Amazon.KeyManagementService.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a>PutKeyPolicy</a> 
+    ///  <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_PutKeyPolicy.html">PutKeyPolicy</a>
+    /// 
     /// </para>
-    ///  </li> </ul>
+    ///  </li> </ul> 
+    /// <para>
+    ///  <b>Eventual consistency</b>: The KMS API follows an eventual consistency model. For
+    /// more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html">KMS
+    /// eventual consistency</a>.
+    /// </para>
     /// </summary>
     public partial class ListKeyPoliciesRequest : AmazonKeyManagementServiceRequest
     {
@@ -79,11 +86,11 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> 
+        /// Key ID: <c>1234abcd-12ab-34cd-56ef-1234567890ab</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Key ARN: <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
+        /// Key ARN: <c>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</c>
         /// 
         /// </para>
         ///  </li> </ul> 
@@ -138,8 +145,8 @@ namespace Amazon.KeyManagementService.Model
         /// Gets and sets the property Marker. 
         /// <para>
         /// Use this parameter in a subsequent request after you receive a response with truncated
-        /// results. Set it to the value of <code>NextMarker</code> from the truncated response
-        /// you just received.
+        /// results. Set it to the value of <c>NextMarker</c> from the truncated response you
+        /// just received.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

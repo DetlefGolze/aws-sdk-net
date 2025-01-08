@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleWorkflow.Model
 {
     /// <summary>
-    /// Used to filter the workflow executions in visibility APIs by their <code>workflowId</code>.
+    /// Used to filter the workflow executions in visibility APIs by their <c>workflowId</c>.
     /// </summary>
     public partial class WorkflowExecutionFilter
     {

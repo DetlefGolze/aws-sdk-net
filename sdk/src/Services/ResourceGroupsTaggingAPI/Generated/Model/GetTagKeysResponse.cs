@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroupsTaggingAPI.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.ResourceGroupsTaggingAPI.Model
     public partial class GetTagKeysResponse : AmazonWebServiceResponse
     {
         private string _paginationToken;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property PaginationToken. 
         /// <para>
         /// A string that indicates that there is more data available than this response contains.
-        /// To receive the next part of the response, specify this response value as the <code>PaginationToken</code>
+        /// To receive the next part of the response, specify this response value as the <c>PaginationToken</c>
         /// value in the request for the next page.
         /// </para>
         /// </summary>
@@ -72,7 +73,7 @@ namespace Amazon.ResourceGroupsTaggingAPI.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

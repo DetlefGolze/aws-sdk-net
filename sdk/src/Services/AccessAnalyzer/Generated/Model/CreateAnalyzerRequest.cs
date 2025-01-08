@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AccessAnalyzer.Model
 {
     /// <summary>
@@ -35,9 +36,10 @@ namespace Amazon.AccessAnalyzer.Model
     public partial class CreateAnalyzerRequest : AmazonAccessAnalyzerRequest
     {
         private string _analyzerName;
-        private List<InlineArchiveRule> _archiveRules = new List<InlineArchiveRule>();
+        private List<InlineArchiveRule> _archiveRules = AWSConfigs.InitializeCollections ? new List<InlineArchiveRule>() : null;
         private string _clientToken;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private AnalyzerConfiguration _configuration;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private Type _type;
 
         /// <summary>
@@ -75,7 +77,7 @@ namespace Amazon.AccessAnalyzer.Model
         // Check to see if ArchiveRules property is set
         internal bool IsSetArchiveRules()
         {
-            return this._archiveRules != null && this._archiveRules.Count > 0; 
+            return this._archiveRules != null && (this._archiveRules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -97,9 +99,39 @@ namespace Amazon.AccessAnalyzer.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Configuration. 
+        /// <para>
+        /// Specifies the configuration of the analyzer. If the analyzer is an unused access analyzer,
+        /// the specified scope of unused access is used for the configuration.
+        /// </para>
+        /// </summary>
+        public AnalyzerConfiguration Configuration
+        {
+            get { return this._configuration; }
+            set { this._configuration = value; }
+        }
+
+        // Check to see if Configuration property is set
+        internal bool IsSetConfiguration()
+        {
+            return this._configuration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// The tags to apply to the analyzer.
+        /// An array of key-value pairs to apply to the analyzer. You can use the set of Unicode
+        /// letters, digits, whitespace, <c>_</c>, <c>.</c>, <c>/</c>, <c>=</c>, <c>+</c>, and
+        /// <c>-</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For the tag key, you can specify a value that is 1 to 128 characters in length and
+        /// cannot be prefixed with <c>aws:</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For the tag value, you can specify a value that is 0 to 256 characters in length.
         /// </para>
         /// </summary>
         public Dictionary<string, string> Tags
@@ -111,15 +143,16 @@ namespace Amazon.AccessAnalyzer.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of analyzer to create. Only ACCOUNT and ORGANIZATION analyzers are supported.
-        /// You can create only one analyzer per account per Region. You can create up to 5 analyzers
-        /// per organization per Region.
+        /// The type of analyzer to create. Only <c>ACCOUNT</c>, <c>ORGANIZATION</c>, <c>ACCOUNT_UNUSED_ACCESS</c>,
+        /// and <c>ORGANIZATION_UNUSED_ACCESS</c> analyzers are supported. You can create only
+        /// one analyzer per account per Region. You can create up to 5 analyzers per organization
+        /// per Region.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

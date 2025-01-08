@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.LexModelBuildingService.Model
     /// 
     ///  
     /// <para>
-    /// The <code>GetBotChannelAssociations</code> operation requires permissions for the
-    /// <code>lex:GetBotChannelAssociations</code> action.
+    /// The <c>GetBotChannelAssociations</c> operation requires permissions for the <c>lex:GetBotChannelAssociations</c>
+    /// action.
     /// </para>
     /// </summary>
     public partial class GetBotChannelAssociationsRequest : AmazonLexModelBuildingServiceRequest
@@ -109,7 +110,7 @@ namespace Amazon.LexModelBuildingService.Model
         /// <para>
         /// Substring to match in channel association names. An association will be returned if
         /// any part of its name matches the substring. For example, "xyz" matches both "xyzabc"
-        /// and "abcxyz." To return all bot channel associations, use a hyphen ("-") as the <code>nameContains</code>
+        /// and "abcxyz." To return all bot channel associations, use a hyphen ("-") as the <c>nameContains</c>
         /// parameter.
         /// </para>
         /// </summary>

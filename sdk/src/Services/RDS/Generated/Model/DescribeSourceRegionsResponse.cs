@@ -26,23 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// Contains the result of a successful invocation of the <code>DescribeSourceRegions</code>
+    /// Contains the result of a successful invocation of the <c>DescribeSourceRegions</c>
     /// action.
     /// </summary>
     public partial class DescribeSourceRegionsResponse : AmazonWebServiceResponse
     {
         private string _marker;
-        private List<SourceRegion> _sourceRegions = new List<SourceRegion>();
+        private List<SourceRegion> _sourceRegions = AWSConfigs.InitializeCollections ? new List<SourceRegion>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         /// An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>.
+        /// by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -60,9 +61,9 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property SourceRegions. 
         /// <para>
-        /// A list of <code>SourceRegion</code> instances that contains each source Amazon Web
-        /// Services Region that the current Amazon Web Services Region can get a read replica
-        /// or a DB snapshot from.
+        /// A list of <c>SourceRegion</c> instances that contains each source Amazon Web Services
+        /// Region that the current Amazon Web Services Region can get a read replica or a DB
+        /// snapshot from.
         /// </para>
         /// </summary>
         public List<SourceRegion> SourceRegions
@@ -74,7 +75,7 @@ namespace Amazon.RDS.Model
         // Check to see if SourceRegions property is set
         internal bool IsSetSourceRegions()
         {
-            return this._sourceRegions != null && this._sourceRegions.Count > 0; 
+            return this._sourceRegions != null && (this._sourceRegions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

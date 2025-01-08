@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.SageMaker
 {
     /// <summary>
-    /// Implementation for accessing SageMaker
+    /// <para>Implementation for accessing SageMaker</para>
     ///
     /// Provides APIs for creating and managing SageMaker resources. 
     /// 
@@ -363,19 +364,19 @@ namespace Amazon.SageMaker
         /// API, but not to training jobs that the hyperparameter tuning job launched before you
         /// called this API. To make sure that the tags associated with a hyperparameter tuning
         /// job are also added to all training jobs that the hyperparameter tuning job launches,
-        /// add the tags when you first create the tuning job by specifying them in the <code>Tags</code>
+        /// add the tags when you first create the tuning job by specifying them in the <c>Tags</c>
         /// parameter of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateHyperParameterTuningJob.html">CreateHyperParameterTuningJob</a>
         /// 
         /// </para>
         ///  </note> <note> 
         /// <para>
-        /// Tags that you add to a SageMaker Studio Domain or User Profile by calling this API
-        /// are also added to any Apps that the Domain or User Profile launches after you call
-        /// this API, but not to Apps that the Domain or User Profile launched before you called
-        /// this API. To make sure that the tags associated with a Domain or User Profile are
-        /// also added to all Apps that the Domain or User Profile launches, add the tags when
-        /// you first create the Domain or User Profile by specifying them in the <code>Tags</code>
-        /// parameter of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateDomain.html">CreateDomain</a>
+        /// Tags that you add to a SageMaker Domain or User Profile by calling this API are also
+        /// added to any Apps that the Domain or User Profile launches after you call this API,
+        /// but not to Apps that the Domain or User Profile launched before you called this API.
+        /// To make sure that the tags associated with a Domain or User Profile are also added
+        /// to all Apps that the Domain or User Profile launches, add the tags when you first
+        /// create the Domain or User Profile by specifying them in the <c>Tags</c> parameter
+        /// of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateDomain.html">CreateDomain</a>
         /// or <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateUserProfile.html">CreateUserProfile</a>.
         /// </para>
         ///  </note>
@@ -412,19 +413,19 @@ namespace Amazon.SageMaker
         /// API, but not to training jobs that the hyperparameter tuning job launched before you
         /// called this API. To make sure that the tags associated with a hyperparameter tuning
         /// job are also added to all training jobs that the hyperparameter tuning job launches,
-        /// add the tags when you first create the tuning job by specifying them in the <code>Tags</code>
+        /// add the tags when you first create the tuning job by specifying them in the <c>Tags</c>
         /// parameter of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateHyperParameterTuningJob.html">CreateHyperParameterTuningJob</a>
         /// 
         /// </para>
         ///  </note> <note> 
         /// <para>
-        /// Tags that you add to a SageMaker Studio Domain or User Profile by calling this API
-        /// are also added to any Apps that the Domain or User Profile launches after you call
-        /// this API, but not to Apps that the Domain or User Profile launched before you called
-        /// this API. To make sure that the tags associated with a Domain or User Profile are
-        /// also added to all Apps that the Domain or User Profile launches, add the tags when
-        /// you first create the Domain or User Profile by specifying them in the <code>Tags</code>
-        /// parameter of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateDomain.html">CreateDomain</a>
+        /// Tags that you add to a SageMaker Domain or User Profile by calling this API are also
+        /// added to any Apps that the Domain or User Profile launches after you call this API,
+        /// but not to Apps that the Domain or User Profile launched before you called this API.
+        /// To make sure that the tags associated with a Domain or User Profile are also added
+        /// to all Apps that the Domain or User Profile launches, add the tags when you first
+        /// create the Domain or User Profile by specifying them in the <c>Tags</c> parameter
+        /// of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateDomain.html">CreateDomain</a>
         /// or <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateUserProfile.html">CreateUserProfile</a>.
         /// </para>
         ///  </note>
@@ -502,6 +503,89 @@ namespace Amazon.SageMaker
             options.ResponseUnmarshaller = AssociateTrialComponentResponseUnmarshaller.Instance;
             
             return InvokeAsync<AssociateTrialComponentResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  BatchDeleteClusterNodes
+
+
+        /// <summary>
+        /// Deletes specific nodes within a SageMaker HyperPod cluster. <c>BatchDeleteClusterNodes</c>
+        /// accepts a cluster name and a list of node IDs.
+        /// 
+        ///  <important> <ul> <li> 
+        /// <para>
+        /// To safeguard your work, back up your data to Amazon S3 or an FSx for Lustre file system
+        /// before invoking the API on a worker node group. This will help prevent any potential
+        /// data loss from the instance root volume. For more information about backup, see <a
+        /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-hyperpod-operate-cli-command.html#sagemaker-hyperpod-operate-cli-command-update-cluster-software-backup">Use
+        /// the backup script provided by SageMaker HyperPod</a>. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If you want to invoke this API on an existing cluster, you'll first need to patch
+        /// the cluster by running the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateClusterSoftware.html">UpdateClusterSoftware
+        /// API</a>. For more information about patching a cluster, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-hyperpod-operate-cli-command.html#sagemaker-hyperpod-operate-cli-command-update-cluster-software">Update
+        /// the SageMaker HyperPod platform software of a cluster</a>.
+        /// </para>
+        ///  </li> </ul> </important>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the BatchDeleteClusterNodes service method.</param>
+        /// 
+        /// <returns>The response from the BatchDeleteClusterNodes service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/BatchDeleteClusterNodes">REST API Reference for BatchDeleteClusterNodes Operation</seealso>
+        public virtual BatchDeleteClusterNodesResponse BatchDeleteClusterNodes(BatchDeleteClusterNodesRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = BatchDeleteClusterNodesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = BatchDeleteClusterNodesResponseUnmarshaller.Instance;
+
+            return Invoke<BatchDeleteClusterNodesResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes specific nodes within a SageMaker HyperPod cluster. <c>BatchDeleteClusterNodes</c>
+        /// accepts a cluster name and a list of node IDs.
+        /// 
+        ///  <important> <ul> <li> 
+        /// <para>
+        /// To safeguard your work, back up your data to Amazon S3 or an FSx for Lustre file system
+        /// before invoking the API on a worker node group. This will help prevent any potential
+        /// data loss from the instance root volume. For more information about backup, see <a
+        /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-hyperpod-operate-cli-command.html#sagemaker-hyperpod-operate-cli-command-update-cluster-software-backup">Use
+        /// the backup script provided by SageMaker HyperPod</a>. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If you want to invoke this API on an existing cluster, you'll first need to patch
+        /// the cluster by running the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateClusterSoftware.html">UpdateClusterSoftware
+        /// API</a>. For more information about patching a cluster, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-hyperpod-operate-cli-command.html#sagemaker-hyperpod-operate-cli-command-update-cluster-software">Update
+        /// the SageMaker HyperPod platform software of a cluster</a>.
+        /// </para>
+        ///  </li> </ul> </important>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the BatchDeleteClusterNodes service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the BatchDeleteClusterNodes service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/BatchDeleteClusterNodes">REST API Reference for BatchDeleteClusterNodes Operation</seealso>
+        public virtual Task<BatchDeleteClusterNodesResponse> BatchDeleteClusterNodesAsync(BatchDeleteClusterNodesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = BatchDeleteClusterNodesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = BatchDeleteClusterNodesResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<BatchDeleteClusterNodesResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -650,9 +734,9 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Creates a running app for the specified UserProfile. This operation is automatically
-        /// invoked by Amazon SageMaker Studio upon access to the associated Domain, and when
-        /// new kernel configurations are selected by the user. A user may have multiple Apps
-        /// active simultaneously.
+        /// invoked by Amazon SageMaker AI upon access to the associated Domain, and when new
+        /// kernel configurations are selected by the user. A user may have multiple Apps active
+        /// simultaneously.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateApp service method.</param>
         /// 
@@ -677,9 +761,9 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Creates a running app for the specified UserProfile. This operation is automatically
-        /// invoked by Amazon SageMaker Studio upon access to the associated Domain, and when
-        /// new kernel configurations are selected by the user. A user may have multiple Apps
-        /// active simultaneously.
+        /// invoked by Amazon SageMaker AI upon access to the associated Domain, and when new
+        /// kernel configurations are selected by the user. A user may have multiple Apps active
+        /// simultaneously.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateApp service method.</param>
         /// <param name="cancellationToken">
@@ -710,9 +794,9 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Creates a configuration for running a SageMaker image as a KernelGateway app. The
-        /// configuration specifies the Amazon Elastic File System (EFS) storage volume on the
-        /// image, and a list of the kernels in the image.
+        /// Creates a configuration for running a SageMaker AI image as a KernelGateway app. The
+        /// configuration specifies the Amazon Elastic File System storage volume on the image,
+        /// and a list of the kernels in the image.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateAppImageConfig service method.</param>
         /// 
@@ -732,9 +816,9 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Creates a configuration for running a SageMaker image as a KernelGateway app. The
-        /// configuration specifies the Amazon Elastic File System (EFS) storage volume on the
-        /// image, and a list of the kernels in the image.
+        /// Creates a configuration for running a SageMaker AI image as a KernelGateway app. The
+        /// configuration specifies the Amazon Elastic File System storage volume on the image,
+        /// and a list of the kernels in the image.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateAppImageConfig service method.</param>
         /// <param name="cancellationToken">
@@ -818,6 +902,25 @@ namespace Amazon.SageMaker
         /// <summary>
         /// Creates an Autopilot job also referred to as Autopilot experiment or AutoML job.
         /// 
+        ///  
+        /// <para>
+        /// An AutoML job in SageMaker AI is a fully automated process that allows you to build
+        /// machine learning models with minimal effort and machine learning expertise. When initiating
+        /// an AutoML job, you provide your data and optionally specify parameters tailored to
+        /// your use case. SageMaker AI then automates the entire model development lifecycle,
+        /// including data preprocessing, model training, tuning, and evaluation. AutoML jobs
+        /// are designed to simplify and accelerate the model building process by automating various
+        /// tasks and exploring different combinations of machine learning algorithms, data preprocessing
+        /// techniques, and hyperparameter values. The output of an AutoML job comprises one or
+        /// more trained models ready for deployment and inference. Additionally, SageMaker AI
+        /// AutoML jobs generate a candidate model leaderboard, allowing you to select the best-performing
+        /// model for deployment.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about AutoML jobs, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html">https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html</a>
+        /// in the SageMaker AI developer guide.
+        /// </para>
         ///  <note> 
         /// <para>
         /// We recommend using the new versions <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html">CreateAutoMLJobV2</a>
@@ -826,14 +929,14 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        ///  <code>CreateAutoMLJobV2</code> can manage tabular problem types identical to those
-        /// of its previous version <code>CreateAutoMLJob</code>, as well as time-series forecasting,
-        /// and non-tabular problem types such as image or text classification.
+        ///  <c>CreateAutoMLJobV2</c> can manage tabular problem types identical to those of its
+        /// previous version <c>CreateAutoMLJob</c>, as well as time-series forecasting, non-tabular
+        /// problem types such as image or text classification, and text generation (LLMs fine-tuning).
         /// </para>
         ///  
         /// <para>
-        /// Find guidelines about how to migrate a <code>CreateAutoMLJob</code> to <code>CreateAutoMLJobV2</code>
-        /// in <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html#autopilot-create-experiment-api-migrate-v1-v2">Migrate
+        /// Find guidelines about how to migrate a <c>CreateAutoMLJob</c> to <c>CreateAutoMLJobV2</c>
+        /// in <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment.html#autopilot-create-experiment-api-migrate-v1-v2">Migrate
         /// a CreateAutoMLJob to CreateAutoMLJobV2</a>.
         /// </para>
         ///  </note> 
@@ -866,6 +969,25 @@ namespace Amazon.SageMaker
         /// <summary>
         /// Creates an Autopilot job also referred to as Autopilot experiment or AutoML job.
         /// 
+        ///  
+        /// <para>
+        /// An AutoML job in SageMaker AI is a fully automated process that allows you to build
+        /// machine learning models with minimal effort and machine learning expertise. When initiating
+        /// an AutoML job, you provide your data and optionally specify parameters tailored to
+        /// your use case. SageMaker AI then automates the entire model development lifecycle,
+        /// including data preprocessing, model training, tuning, and evaluation. AutoML jobs
+        /// are designed to simplify and accelerate the model building process by automating various
+        /// tasks and exploring different combinations of machine learning algorithms, data preprocessing
+        /// techniques, and hyperparameter values. The output of an AutoML job comprises one or
+        /// more trained models ready for deployment and inference. Additionally, SageMaker AI
+        /// AutoML jobs generate a candidate model leaderboard, allowing you to select the best-performing
+        /// model for deployment.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about AutoML jobs, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html">https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html</a>
+        /// in the SageMaker AI developer guide.
+        /// </para>
         ///  <note> 
         /// <para>
         /// We recommend using the new versions <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html">CreateAutoMLJobV2</a>
@@ -874,14 +996,14 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        ///  <code>CreateAutoMLJobV2</code> can manage tabular problem types identical to those
-        /// of its previous version <code>CreateAutoMLJob</code>, as well as time-series forecasting,
-        /// and non-tabular problem types such as image or text classification.
+        ///  <c>CreateAutoMLJobV2</c> can manage tabular problem types identical to those of its
+        /// previous version <c>CreateAutoMLJob</c>, as well as time-series forecasting, non-tabular
+        /// problem types such as image or text classification, and text generation (LLMs fine-tuning).
         /// </para>
         ///  
         /// <para>
-        /// Find guidelines about how to migrate a <code>CreateAutoMLJob</code> to <code>CreateAutoMLJobV2</code>
-        /// in <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html#autopilot-create-experiment-api-migrate-v1-v2">Migrate
+        /// Find guidelines about how to migrate a <c>CreateAutoMLJob</c> to <c>CreateAutoMLJobV2</c>
+        /// in <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment.html#autopilot-create-experiment-api-migrate-v1-v2">Migrate
         /// a CreateAutoMLJob to CreateAutoMLJobV2</a>.
         /// </para>
         ///  </note> 
@@ -921,6 +1043,31 @@ namespace Amazon.SageMaker
         /// <summary>
         /// Creates an Autopilot job also referred to as Autopilot experiment or AutoML job V2.
         /// 
+        ///  
+        /// <para>
+        /// An AutoML job in SageMaker AI is a fully automated process that allows you to build
+        /// machine learning models with minimal effort and machine learning expertise. When initiating
+        /// an AutoML job, you provide your data and optionally specify parameters tailored to
+        /// your use case. SageMaker AI then automates the entire model development lifecycle,
+        /// including data preprocessing, model training, tuning, and evaluation. AutoML jobs
+        /// are designed to simplify and accelerate the model building process by automating various
+        /// tasks and exploring different combinations of machine learning algorithms, data preprocessing
+        /// techniques, and hyperparameter values. The output of an AutoML job comprises one or
+        /// more trained models ready for deployment and inference. Additionally, SageMaker AI
+        /// AutoML jobs generate a candidate model leaderboard, allowing you to select the best-performing
+        /// model for deployment.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about AutoML jobs, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html">https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html</a>
+        /// in the SageMaker AI developer guide.
+        /// </para>
+        ///  
+        /// <para>
+        /// AutoML jobs V2 support various problem types such as regression, binary, and multiclass
+        /// classification with tabular data, text and image classification, time-series forecasting,
+        /// and fine-tuning of large language models (LLMs) for text generation.
+        /// </para>
         ///  <note> 
         /// <para>
         ///  <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html">CreateAutoMLJobV2</a>
@@ -931,20 +1078,20 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        ///  <code>CreateAutoMLJobV2</code> can manage tabular problem types identical to those
-        /// of its previous version <code>CreateAutoMLJob</code>, as well as time-series forecasting,
-        /// and non-tabular problem types such as image or text classification.
+        ///  <c>CreateAutoMLJobV2</c> can manage tabular problem types identical to those of its
+        /// previous version <c>CreateAutoMLJob</c>, as well as time-series forecasting, non-tabular
+        /// problem types such as image or text classification, and text generation (LLMs fine-tuning).
         /// </para>
         ///  
         /// <para>
-        /// Find guidelines about how to migrate a <code>CreateAutoMLJob</code> to <code>CreateAutoMLJobV2</code>
-        /// in <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html#autopilot-create-experiment-api-migrate-v1-v2">Migrate
+        /// Find guidelines about how to migrate a <c>CreateAutoMLJob</c> to <c>CreateAutoMLJobV2</c>
+        /// in <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment.html#autopilot-create-experiment-api-migrate-v1-v2">Migrate
         /// a CreateAutoMLJob to CreateAutoMLJobV2</a>.
         /// </para>
         ///  </note> 
         /// <para>
-        /// For the list of available problem types supported by <code>CreateAutoMLJobV2</code>,
-        /// see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLProblemTypeConfig.html">AutoMLProblemTypeConfig</a>.
+        /// For the list of available problem types supported by <c>CreateAutoMLJobV2</c>, see
+        /// <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLProblemTypeConfig.html">AutoMLProblemTypeConfig</a>.
         /// </para>
         ///  
         /// <para>
@@ -976,6 +1123,31 @@ namespace Amazon.SageMaker
         /// <summary>
         /// Creates an Autopilot job also referred to as Autopilot experiment or AutoML job V2.
         /// 
+        ///  
+        /// <para>
+        /// An AutoML job in SageMaker AI is a fully automated process that allows you to build
+        /// machine learning models with minimal effort and machine learning expertise. When initiating
+        /// an AutoML job, you provide your data and optionally specify parameters tailored to
+        /// your use case. SageMaker AI then automates the entire model development lifecycle,
+        /// including data preprocessing, model training, tuning, and evaluation. AutoML jobs
+        /// are designed to simplify and accelerate the model building process by automating various
+        /// tasks and exploring different combinations of machine learning algorithms, data preprocessing
+        /// techniques, and hyperparameter values. The output of an AutoML job comprises one or
+        /// more trained models ready for deployment and inference. Additionally, SageMaker AI
+        /// AutoML jobs generate a candidate model leaderboard, allowing you to select the best-performing
+        /// model for deployment.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about AutoML jobs, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html">https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html</a>
+        /// in the SageMaker AI developer guide.
+        /// </para>
+        ///  
+        /// <para>
+        /// AutoML jobs V2 support various problem types such as regression, binary, and multiclass
+        /// classification with tabular data, text and image classification, time-series forecasting,
+        /// and fine-tuning of large language models (LLMs) for text generation.
+        /// </para>
         ///  <note> 
         /// <para>
         ///  <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html">CreateAutoMLJobV2</a>
@@ -986,20 +1158,20 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        ///  <code>CreateAutoMLJobV2</code> can manage tabular problem types identical to those
-        /// of its previous version <code>CreateAutoMLJob</code>, as well as time-series forecasting,
-        /// and non-tabular problem types such as image or text classification.
+        ///  <c>CreateAutoMLJobV2</c> can manage tabular problem types identical to those of its
+        /// previous version <c>CreateAutoMLJob</c>, as well as time-series forecasting, non-tabular
+        /// problem types such as image or text classification, and text generation (LLMs fine-tuning).
         /// </para>
         ///  
         /// <para>
-        /// Find guidelines about how to migrate a <code>CreateAutoMLJob</code> to <code>CreateAutoMLJobV2</code>
-        /// in <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html#autopilot-create-experiment-api-migrate-v1-v2">Migrate
+        /// Find guidelines about how to migrate a <c>CreateAutoMLJob</c> to <c>CreateAutoMLJobV2</c>
+        /// in <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment.html#autopilot-create-experiment-api-migrate-v1-v2">Migrate
         /// a CreateAutoMLJob to CreateAutoMLJobV2</a>.
         /// </para>
         ///  </note> 
         /// <para>
-        /// For the list of available problem types supported by <code>CreateAutoMLJobV2</code>,
-        /// see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLProblemTypeConfig.html">AutoMLProblemTypeConfig</a>.
+        /// For the list of available problem types supported by <c>CreateAutoMLJobV2</c>, see
+        /// <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLProblemTypeConfig.html">AutoMLProblemTypeConfig</a>.
         /// </para>
         ///  
         /// <para>
@@ -1032,13 +1204,137 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  CreateCluster
+
+
+        /// <summary>
+        /// Creates a SageMaker HyperPod cluster. SageMaker HyperPod is a capability of SageMaker
+        /// for creating and managing persistent clusters for developing large machine learning
+        /// models, such as large language models (LLMs) and diffusion models. To learn more,
+        /// see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-hyperpod.html">Amazon
+        /// SageMaker HyperPod</a> in the <i>Amazon SageMaker Developer Guide</i>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateCluster service method.</param>
+        /// 
+        /// <returns>The response from the CreateCluster service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceInUseException">
+        /// Resource being accessed is in use.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateCluster">REST API Reference for CreateCluster Operation</seealso>
+        public virtual CreateClusterResponse CreateCluster(CreateClusterRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateClusterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateClusterResponseUnmarshaller.Instance;
+
+            return Invoke<CreateClusterResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates a SageMaker HyperPod cluster. SageMaker HyperPod is a capability of SageMaker
+        /// for creating and managing persistent clusters for developing large machine learning
+        /// models, such as large language models (LLMs) and diffusion models. To learn more,
+        /// see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-hyperpod.html">Amazon
+        /// SageMaker HyperPod</a> in the <i>Amazon SageMaker Developer Guide</i>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateCluster service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateCluster service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceInUseException">
+        /// Resource being accessed is in use.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateCluster">REST API Reference for CreateCluster Operation</seealso>
+        public virtual Task<CreateClusterResponse> CreateClusterAsync(CreateClusterRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateClusterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateClusterResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateClusterResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateClusterSchedulerConfig
+
+
+        /// <summary>
+        /// Create cluster policy configuration. This policy is used for task prioritization and
+        /// fair-share allocation of idle compute. This helps prioritize critical workloads and
+        /// distributes idle compute across entities.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateClusterSchedulerConfig service method.</param>
+        /// 
+        /// <returns>The response from the CreateClusterSchedulerConfig service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateClusterSchedulerConfig">REST API Reference for CreateClusterSchedulerConfig Operation</seealso>
+        public virtual CreateClusterSchedulerConfigResponse CreateClusterSchedulerConfig(CreateClusterSchedulerConfigRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateClusterSchedulerConfigRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateClusterSchedulerConfigResponseUnmarshaller.Instance;
+
+            return Invoke<CreateClusterSchedulerConfigResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Create cluster policy configuration. This policy is used for task prioritization and
+        /// fair-share allocation of idle compute. This helps prioritize critical workloads and
+        /// distributes idle compute across entities.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateClusterSchedulerConfig service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateClusterSchedulerConfig service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateClusterSchedulerConfig">REST API Reference for CreateClusterSchedulerConfig Operation</seealso>
+        public virtual Task<CreateClusterSchedulerConfigResponse> CreateClusterSchedulerConfigAsync(CreateClusterSchedulerConfigRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateClusterSchedulerConfigRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateClusterSchedulerConfigResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateClusterSchedulerConfigResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  CreateCodeRepository
 
 
         /// <summary>
-        /// Creates a Git repository as a resource in your SageMaker account. You can associate
+        /// Creates a Git repository as a resource in your SageMaker AI account. You can associate
         /// the repository with notebook instances so that you can use Git source control for
-        /// the notebooks you create. The Git repository is a resource in your SageMaker account,
+        /// the notebooks you create. The Git repository is a resource in your SageMaker AI account,
         /// so it can be associated with more than one notebook instance, and it persists independently
         /// from the lifecycle of any notebook instances it is associated with.
         /// 
@@ -1063,9 +1359,9 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Creates a Git repository as a resource in your SageMaker account. You can associate
+        /// Creates a Git repository as a resource in your SageMaker AI account. You can associate
         /// the repository with notebook instances so that you can use Git source control for
-        /// the notebooks you create. The Git repository is a resource in your SageMaker account,
+        /// the notebooks you create. The Git repository is a resource in your SageMaker AI account,
         /// so it can be associated with more than one notebook instance, and it persists independently
         /// from the lifecycle of any notebook instances it is associated with.
         /// 
@@ -1098,12 +1394,12 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Starts a model compilation job. After the model has been compiled, Amazon SageMaker
-        /// saves the resulting model artifacts to an Amazon Simple Storage Service (Amazon S3)
-        /// bucket that you specify. 
+        /// AI saves the resulting model artifacts to an Amazon Simple Storage Service (Amazon
+        /// S3) bucket that you specify. 
         /// 
         ///  
         /// <para>
-        /// If you choose to host your model using Amazon SageMaker hosting services, you can
+        /// If you choose to host your model using Amazon SageMaker AI hosting services, you can
         /// use the resulting model artifacts as part of the model. You can also use the artifacts
         /// with Amazon Web Services IoT Greengrass. In that case, deploy them as an ML resource.
         /// </para>
@@ -1126,14 +1422,14 @@ namespace Amazon.SageMaker
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker assumes to perform
-        /// the model compilation job. 
+        /// The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker AI assumes to
+        /// perform the model compilation job. 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You can also provide a <code>Tag</code> to track the model compilation job's resource
-        /// use and costs. The response body contains the <code>CompilationJobArn</code> for the
-        /// compiled job.
+        /// You can also provide a <c>Tag</c> to track the model compilation job's resource use
+        /// and costs. The response body contains the <c>CompilationJobArn</c> for the compiled
+        /// job.
         /// </para>
         ///  
         /// <para>
@@ -1165,12 +1461,12 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Starts a model compilation job. After the model has been compiled, Amazon SageMaker
-        /// saves the resulting model artifacts to an Amazon Simple Storage Service (Amazon S3)
-        /// bucket that you specify. 
+        /// AI saves the resulting model artifacts to an Amazon Simple Storage Service (Amazon
+        /// S3) bucket that you specify. 
         /// 
         ///  
         /// <para>
-        /// If you choose to host your model using Amazon SageMaker hosting services, you can
+        /// If you choose to host your model using Amazon SageMaker AI hosting services, you can
         /// use the resulting model artifacts as part of the model. You can also use the artifacts
         /// with Amazon Web Services IoT Greengrass. In that case, deploy them as an ML resource.
         /// </para>
@@ -1193,14 +1489,14 @@ namespace Amazon.SageMaker
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker assumes to perform
-        /// the model compilation job. 
+        /// The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker AI assumes to
+        /// perform the model compilation job. 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You can also provide a <code>Tag</code> to track the model compilation job's resource
-        /// use and costs. The response body contains the <code>CompilationJobArn</code> for the
-        /// compiled job.
+        /// You can also provide a <c>Tag</c> to track the model compilation job's resource use
+        /// and costs. The response body contains the <c>CompilationJobArn</c> for the compiled
+        /// job.
         /// </para>
         ///  
         /// <para>
@@ -1230,6 +1526,67 @@ namespace Amazon.SageMaker
             options.ResponseUnmarshaller = CreateCompilationJobResponseUnmarshaller.Instance;
             
             return InvokeAsync<CreateCompilationJobResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateComputeQuota
+
+
+        /// <summary>
+        /// Create compute allocation definition. This defines how compute is allocated, shared,
+        /// and borrowed for specified entities. Specifically, how to lend and borrow idle compute
+        /// and assign a fair-share weight to the specified entities.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateComputeQuota service method.</param>
+        /// 
+        /// <returns>The response from the CreateComputeQuota service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateComputeQuota">REST API Reference for CreateComputeQuota Operation</seealso>
+        public virtual CreateComputeQuotaResponse CreateComputeQuota(CreateComputeQuotaRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateComputeQuotaRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateComputeQuotaResponseUnmarshaller.Instance;
+
+            return Invoke<CreateComputeQuotaResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Create compute allocation definition. This defines how compute is allocated, shared,
+        /// and borrowed for specified entities. Specifically, how to lend and borrow idle compute
+        /// and assign a fair-share weight to the specified entities.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateComputeQuota service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateComputeQuota service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateComputeQuota">REST API Reference for CreateComputeQuota Operation</seealso>
+        public virtual Task<CreateComputeQuotaResponse> CreateComputeQuotaAsync(CreateComputeQuotaRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateComputeQuotaRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateComputeQuotaResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateComputeQuotaResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -1295,7 +1652,7 @@ namespace Amazon.SageMaker
         /// <summary>
         /// Creates a definition for a job that monitors data quality and drift. For information
         /// about model monitor, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html">Amazon
-        /// SageMaker Model Monitor</a>.
+        /// SageMaker AI Model Monitor</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateDataQualityJobDefinition service method.</param>
         /// 
@@ -1321,7 +1678,7 @@ namespace Amazon.SageMaker
         /// <summary>
         /// Creates a definition for a job that monitors data quality and drift. For information
         /// about model monitor, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html">Amazon
-        /// SageMaker Model Monitor</a>.
+        /// SageMaker AI Model Monitor</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateDataQualityJobDefinition service method.</param>
         /// <param name="cancellationToken">
@@ -1407,11 +1764,10 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Creates a <code>Domain</code> used by Amazon SageMaker Studio. A domain consists of
-        /// an associated Amazon Elastic File System (EFS) volume, a list of authorized users,
-        /// and a variety of security, application, policy, and Amazon Virtual Private Cloud (VPC)
-        /// configurations. Users within a domain can share notebook files and other artifacts
-        /// with each other.
+        /// Creates a <c>Domain</c>. A domain consists of an associated Amazon Elastic File System
+        /// volume, a list of authorized users, and a variety of security, application, policy,
+        /// and Amazon Virtual Private Cloud (VPC) configurations. Users within a domain can share
+        /// notebook files and other artifacts with each other.
         /// 
         ///  
         /// <para>
@@ -1425,7 +1781,7 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        /// SageMaker uses the Amazon Web Services Key Management Service (Amazon Web Services
+        /// SageMaker AI uses the Amazon Web Services Key Management Service (Amazon Web Services
         /// KMS) to encrypt the EFS volume attached to the domain with an Amazon Web Services
         /// managed key by default. For more control, you can specify a customer managed key.
         /// For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/encryption-at-rest.html">Protect
@@ -1437,37 +1793,37 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        /// All SageMaker Studio traffic between the domain and the EFS volume is through the
-        /// specified VPC and subnets. For other Studio traffic, you can specify the <code>AppNetworkAccessType</code>
-        /// parameter. <code>AppNetworkAccessType</code> corresponds to the network access type
-        /// that you choose when you onboard to Studio. The following options are available:
+        /// All traffic between the domain and the Amazon EFS volume is through the specified
+        /// VPC and subnets. For other traffic, you can specify the <c>AppNetworkAccessType</c>
+        /// parameter. <c>AppNetworkAccessType</c> corresponds to the network access type that
+        /// you choose when you onboard to the domain. The following options are available:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PublicInternetOnly</code> - Non-EFS traffic goes through a VPC managed by Amazon
-        /// SageMaker, which allows internet access. This is the default value.
+        ///  <c>PublicInternetOnly</c> - Non-EFS traffic goes through a VPC managed by Amazon
+        /// SageMaker AI, which allows internet access. This is the default value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>VpcOnly</code> - All Studio traffic is through the specified VPC and subnets.
-        /// Internet access is disabled by default. To allow internet access, you must specify
-        /// a NAT gateway.
+        ///  <c>VpcOnly</c> - All traffic is through the specified VPC and subnets. Internet access
+        /// is disabled by default. To allow internet access, you must specify a NAT gateway.
         /// </para>
         ///  
         /// <para>
-        /// When internet access is disabled, you won't be able to run a Studio notebook or to
-        /// train or host models unless your VPC has an interface endpoint to the SageMaker API
-        /// and runtime or a NAT gateway and your security groups allow outbound connections.
+        /// When internet access is disabled, you won't be able to run a Amazon SageMaker AI Studio
+        /// notebook or to train or host models unless your VPC has an interface endpoint to the
+        /// SageMaker AI API and runtime or a NAT gateway and your security groups allow outbound
+        /// connections.
         /// </para>
         ///  </li> </ul> <important> 
         /// <para>
         /// NFS traffic over TCP on port 2049 needs to be allowed in both inbound and outbound
-        /// rules in order to launch a SageMaker Studio app successfully.
+        /// rules in order to launch a Amazon SageMaker AI Studio app successfully.
         /// </para>
         ///  </important> 
         /// <para>
         /// For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-and-internet-access.html">Connect
-        /// SageMaker Studio Notebooks to Resources in a VPC</a>.
+        /// Amazon SageMaker AI Studio Notebooks to Resources in a VPC</a>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateDomain service method.</param>
@@ -1492,11 +1848,10 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Creates a <code>Domain</code> used by Amazon SageMaker Studio. A domain consists of
-        /// an associated Amazon Elastic File System (EFS) volume, a list of authorized users,
-        /// and a variety of security, application, policy, and Amazon Virtual Private Cloud (VPC)
-        /// configurations. Users within a domain can share notebook files and other artifacts
-        /// with each other.
+        /// Creates a <c>Domain</c>. A domain consists of an associated Amazon Elastic File System
+        /// volume, a list of authorized users, and a variety of security, application, policy,
+        /// and Amazon Virtual Private Cloud (VPC) configurations. Users within a domain can share
+        /// notebook files and other artifacts with each other.
         /// 
         ///  
         /// <para>
@@ -1510,7 +1865,7 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        /// SageMaker uses the Amazon Web Services Key Management Service (Amazon Web Services
+        /// SageMaker AI uses the Amazon Web Services Key Management Service (Amazon Web Services
         /// KMS) to encrypt the EFS volume attached to the domain with an Amazon Web Services
         /// managed key by default. For more control, you can specify a customer managed key.
         /// For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/encryption-at-rest.html">Protect
@@ -1522,37 +1877,37 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        /// All SageMaker Studio traffic between the domain and the EFS volume is through the
-        /// specified VPC and subnets. For other Studio traffic, you can specify the <code>AppNetworkAccessType</code>
-        /// parameter. <code>AppNetworkAccessType</code> corresponds to the network access type
-        /// that you choose when you onboard to Studio. The following options are available:
+        /// All traffic between the domain and the Amazon EFS volume is through the specified
+        /// VPC and subnets. For other traffic, you can specify the <c>AppNetworkAccessType</c>
+        /// parameter. <c>AppNetworkAccessType</c> corresponds to the network access type that
+        /// you choose when you onboard to the domain. The following options are available:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PublicInternetOnly</code> - Non-EFS traffic goes through a VPC managed by Amazon
-        /// SageMaker, which allows internet access. This is the default value.
+        ///  <c>PublicInternetOnly</c> - Non-EFS traffic goes through a VPC managed by Amazon
+        /// SageMaker AI, which allows internet access. This is the default value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>VpcOnly</code> - All Studio traffic is through the specified VPC and subnets.
-        /// Internet access is disabled by default. To allow internet access, you must specify
-        /// a NAT gateway.
+        ///  <c>VpcOnly</c> - All traffic is through the specified VPC and subnets. Internet access
+        /// is disabled by default. To allow internet access, you must specify a NAT gateway.
         /// </para>
         ///  
         /// <para>
-        /// When internet access is disabled, you won't be able to run a Studio notebook or to
-        /// train or host models unless your VPC has an interface endpoint to the SageMaker API
-        /// and runtime or a NAT gateway and your security groups allow outbound connections.
+        /// When internet access is disabled, you won't be able to run a Amazon SageMaker AI Studio
+        /// notebook or to train or host models unless your VPC has an interface endpoint to the
+        /// SageMaker AI API and runtime or a NAT gateway and your security groups allow outbound
+        /// connections.
         /// </para>
         ///  </li> </ul> <important> 
         /// <para>
         /// NFS traffic over TCP on port 2049 needs to be allowed in both inbound and outbound
-        /// rules in order to launch a SageMaker Studio app successfully.
+        /// rules in order to launch a Amazon SageMaker AI Studio app successfully.
         /// </para>
         ///  </important> 
         /// <para>
         /// For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-and-internet-access.html">Connect
-        /// SageMaker Studio Notebooks to Resources in a VPC</a>.
+        /// Amazon SageMaker AI Studio Notebooks to Resources in a VPC</a>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateDomain service method.</param>
@@ -1750,10 +2105,9 @@ namespace Amazon.SageMaker
         /// </para>
         ///  <note> 
         /// <para>
-        ///  You must not delete an <code>EndpointConfig</code> that is in use by an endpoint
-        /// that is live or while the <code>UpdateEndpoint</code> or <code>CreateEndpoint</code>
-        /// operations are being performed on the endpoint. To update an endpoint, you must create
-        /// a new <code>EndpointConfig</code>.
+        ///  You must not delete an <c>EndpointConfig</c> that is in use by an endpoint that is
+        /// live or while the <c>UpdateEndpoint</c> or <c>CreateEndpoint</c> operations are being
+        /// performed on the endpoint. To update an endpoint, you must create a new <c>EndpointConfig</c>.
         /// </para>
         ///  </note> 
         /// <para>
@@ -1770,20 +2124,20 @@ namespace Amazon.SageMaker
         /// When you call <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html">CreateEndpoint</a>,
         /// a load call is made to DynamoDB to verify that your endpoint configuration exists.
         /// When you read data from a DynamoDB table supporting <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html">
-        /// <code>Eventually Consistent Reads</code> </a>, the response might not reflect the
-        /// results of a recently completed write operation. The response might include some stale
-        /// data. If the dependent entities are not yet in DynamoDB, this causes a validation
-        /// error. If you repeat your read request after a short time, the response should return
-        /// the latest data. So retry logic is recommended to handle these possible issues. We
-        /// also recommend that customers call <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpointConfig.html">DescribeEndpointConfig</a>
+        /// <c>Eventually Consistent Reads</c> </a>, the response might not reflect the results
+        /// of a recently completed write operation. The response might include some stale data.
+        /// If the dependent entities are not yet in DynamoDB, this causes a validation error.
+        /// If you repeat your read request after a short time, the response should return the
+        /// latest data. So retry logic is recommended to handle these possible issues. We also
+        /// recommend that customers call <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpointConfig.html">DescribeEndpointConfig</a>
         /// before calling <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html">CreateEndpoint</a>
         /// to minimize the potential impact of a DynamoDB eventually consistent read.
         /// </para>
         ///  </note> 
         /// <para>
-        /// When SageMaker receives the request, it sets the endpoint status to <code>Creating</code>.
-        /// After it creates the endpoint, it sets the status to <code>InService</code>. SageMaker
-        /// can then process incoming requests for inferences. To check the status of an endpoint,
+        /// When SageMaker receives the request, it sets the endpoint status to <c>Creating</c>.
+        /// After it creates the endpoint, it sets the status to <c>InService</c>. SageMaker can
+        /// then process incoming requests for inferences. To check the status of an endpoint,
         /// use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html">DescribeEndpoint</a>
         /// API.
         /// </para>
@@ -1808,7 +2162,7 @@ namespace Amazon.SageMaker
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Option 1: For a full SageMaker access, search and attach the <code>AmazonSageMakerFullAccess</code>
+        /// Option 1: For a full SageMaker access, search and attach the <c>AmazonSageMakerFullAccess</c>
         /// policy.
         /// </para>
         ///  </li> <li> 
@@ -1818,25 +2172,23 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        ///  <code>"Action": ["sagemaker:CreateEndpoint", "sagemaker:CreateEndpointConfig"]</code>
-        /// 
+        ///  <c>"Action": ["sagemaker:CreateEndpoint", "sagemaker:CreateEndpointConfig"]</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>"Resource": [</code> 
+        ///  <c>"Resource": [</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>"arn:aws:sagemaker:region:account-id:endpoint/endpointName"</code> 
+        ///  <c>"arn:aws:sagemaker:region:account-id:endpoint/endpointName"</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>"arn:aws:sagemaker:region:account-id:endpoint-config/endpointConfigName"</code>
-        /// 
+        ///  <c>"arn:aws:sagemaker:region:account-id:endpoint-config/endpointConfigName"</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>]</code> 
+        ///  <c>]</c> 
         /// </para>
         ///  
         /// <para>
@@ -1875,10 +2227,9 @@ namespace Amazon.SageMaker
         /// </para>
         ///  <note> 
         /// <para>
-        ///  You must not delete an <code>EndpointConfig</code> that is in use by an endpoint
-        /// that is live or while the <code>UpdateEndpoint</code> or <code>CreateEndpoint</code>
-        /// operations are being performed on the endpoint. To update an endpoint, you must create
-        /// a new <code>EndpointConfig</code>.
+        ///  You must not delete an <c>EndpointConfig</c> that is in use by an endpoint that is
+        /// live or while the <c>UpdateEndpoint</c> or <c>CreateEndpoint</c> operations are being
+        /// performed on the endpoint. To update an endpoint, you must create a new <c>EndpointConfig</c>.
         /// </para>
         ///  </note> 
         /// <para>
@@ -1895,20 +2246,20 @@ namespace Amazon.SageMaker
         /// When you call <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html">CreateEndpoint</a>,
         /// a load call is made to DynamoDB to verify that your endpoint configuration exists.
         /// When you read data from a DynamoDB table supporting <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html">
-        /// <code>Eventually Consistent Reads</code> </a>, the response might not reflect the
-        /// results of a recently completed write operation. The response might include some stale
-        /// data. If the dependent entities are not yet in DynamoDB, this causes a validation
-        /// error. If you repeat your read request after a short time, the response should return
-        /// the latest data. So retry logic is recommended to handle these possible issues. We
-        /// also recommend that customers call <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpointConfig.html">DescribeEndpointConfig</a>
+        /// <c>Eventually Consistent Reads</c> </a>, the response might not reflect the results
+        /// of a recently completed write operation. The response might include some stale data.
+        /// If the dependent entities are not yet in DynamoDB, this causes a validation error.
+        /// If you repeat your read request after a short time, the response should return the
+        /// latest data. So retry logic is recommended to handle these possible issues. We also
+        /// recommend that customers call <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpointConfig.html">DescribeEndpointConfig</a>
         /// before calling <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html">CreateEndpoint</a>
         /// to minimize the potential impact of a DynamoDB eventually consistent read.
         /// </para>
         ///  </note> 
         /// <para>
-        /// When SageMaker receives the request, it sets the endpoint status to <code>Creating</code>.
-        /// After it creates the endpoint, it sets the status to <code>InService</code>. SageMaker
-        /// can then process incoming requests for inferences. To check the status of an endpoint,
+        /// When SageMaker receives the request, it sets the endpoint status to <c>Creating</c>.
+        /// After it creates the endpoint, it sets the status to <c>InService</c>. SageMaker can
+        /// then process incoming requests for inferences. To check the status of an endpoint,
         /// use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html">DescribeEndpoint</a>
         /// API.
         /// </para>
@@ -1933,7 +2284,7 @@ namespace Amazon.SageMaker
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Option 1: For a full SageMaker access, search and attach the <code>AmazonSageMakerFullAccess</code>
+        /// Option 1: For a full SageMaker access, search and attach the <c>AmazonSageMakerFullAccess</c>
         /// policy.
         /// </para>
         ///  </li> <li> 
@@ -1943,25 +2294,23 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        ///  <code>"Action": ["sagemaker:CreateEndpoint", "sagemaker:CreateEndpointConfig"]</code>
-        /// 
+        ///  <c>"Action": ["sagemaker:CreateEndpoint", "sagemaker:CreateEndpointConfig"]</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>"Resource": [</code> 
+        ///  <c>"Resource": [</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>"arn:aws:sagemaker:region:account-id:endpoint/endpointName"</code> 
+        ///  <c>"arn:aws:sagemaker:region:account-id:endpoint/endpointName"</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>"arn:aws:sagemaker:region:account-id:endpoint-config/endpointConfigName"</code>
-        /// 
+        ///  <c>"arn:aws:sagemaker:region:account-id:endpoint-config/endpointConfigName"</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>]</code> 
+        ///  <c>]</c> 
         /// </para>
         ///  
         /// <para>
@@ -1997,7 +2346,7 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Creates an endpoint configuration that SageMaker hosting services uses to deploy models.
-        /// In the configuration, you identify one or more models, created using the <code>CreateModel</code>
+        /// In the configuration, you identify one or more models, created using the <c>CreateModel</c>
         /// API, to deploy and the resources that you want SageMaker to provision. Then you call
         /// the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html">CreateEndpoint</a>
         /// API.
@@ -2009,30 +2358,30 @@ namespace Amazon.SageMaker
         /// </para>
         ///  </note> 
         /// <para>
-        /// In the request, you define a <code>ProductionVariant</code>, for each model that you
-        /// want to deploy. Each <code>ProductionVariant</code> parameter also describes the resources
-        /// that you want SageMaker to provision. This includes the number and type of ML compute
-        /// instances to deploy. 
+        /// In the request, you define a <c>ProductionVariant</c>, for each model that you want
+        /// to deploy. Each <c>ProductionVariant</c> parameter also describes the resources that
+        /// you want SageMaker to provision. This includes the number and type of ML compute instances
+        /// to deploy. 
         /// </para>
         ///  
         /// <para>
-        /// If you are hosting multiple models, you also assign a <code>VariantWeight</code> to
-        /// specify how much traffic you want to allocate to each model. For example, suppose
-        /// that you want to host two models, A and B, and you assign traffic weight 2 for model
-        /// A and 1 for model B. SageMaker distributes two-thirds of the traffic to Model A, and
-        /// one-third to model B. 
+        /// If you are hosting multiple models, you also assign a <c>VariantWeight</c> to specify
+        /// how much traffic you want to allocate to each model. For example, suppose that you
+        /// want to host two models, A and B, and you assign traffic weight 2 for model A and
+        /// 1 for model B. SageMaker distributes two-thirds of the traffic to Model A, and one-third
+        /// to model B. 
         /// </para>
         ///  <note> 
         /// <para>
         /// When you call <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html">CreateEndpoint</a>,
         /// a load call is made to DynamoDB to verify that your endpoint configuration exists.
         /// When you read data from a DynamoDB table supporting <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html">
-        /// <code>Eventually Consistent Reads</code> </a>, the response might not reflect the
-        /// results of a recently completed write operation. The response might include some stale
-        /// data. If the dependent entities are not yet in DynamoDB, this causes a validation
-        /// error. If you repeat your read request after a short time, the response should return
-        /// the latest data. So retry logic is recommended to handle these possible issues. We
-        /// also recommend that customers call <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpointConfig.html">DescribeEndpointConfig</a>
+        /// <c>Eventually Consistent Reads</c> </a>, the response might not reflect the results
+        /// of a recently completed write operation. The response might include some stale data.
+        /// If the dependent entities are not yet in DynamoDB, this causes a validation error.
+        /// If you repeat your read request after a short time, the response should return the
+        /// latest data. So retry logic is recommended to handle these possible issues. We also
+        /// recommend that customers call <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpointConfig.html">DescribeEndpointConfig</a>
         /// before calling <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html">CreateEndpoint</a>
         /// to minimize the potential impact of a DynamoDB eventually consistent read.
         /// </para>
@@ -2058,7 +2407,7 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Creates an endpoint configuration that SageMaker hosting services uses to deploy models.
-        /// In the configuration, you identify one or more models, created using the <code>CreateModel</code>
+        /// In the configuration, you identify one or more models, created using the <c>CreateModel</c>
         /// API, to deploy and the resources that you want SageMaker to provision. Then you call
         /// the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html">CreateEndpoint</a>
         /// API.
@@ -2070,30 +2419,30 @@ namespace Amazon.SageMaker
         /// </para>
         ///  </note> 
         /// <para>
-        /// In the request, you define a <code>ProductionVariant</code>, for each model that you
-        /// want to deploy. Each <code>ProductionVariant</code> parameter also describes the resources
-        /// that you want SageMaker to provision. This includes the number and type of ML compute
-        /// instances to deploy. 
+        /// In the request, you define a <c>ProductionVariant</c>, for each model that you want
+        /// to deploy. Each <c>ProductionVariant</c> parameter also describes the resources that
+        /// you want SageMaker to provision. This includes the number and type of ML compute instances
+        /// to deploy. 
         /// </para>
         ///  
         /// <para>
-        /// If you are hosting multiple models, you also assign a <code>VariantWeight</code> to
-        /// specify how much traffic you want to allocate to each model. For example, suppose
-        /// that you want to host two models, A and B, and you assign traffic weight 2 for model
-        /// A and 1 for model B. SageMaker distributes two-thirds of the traffic to Model A, and
-        /// one-third to model B. 
+        /// If you are hosting multiple models, you also assign a <c>VariantWeight</c> to specify
+        /// how much traffic you want to allocate to each model. For example, suppose that you
+        /// want to host two models, A and B, and you assign traffic weight 2 for model A and
+        /// 1 for model B. SageMaker distributes two-thirds of the traffic to Model A, and one-third
+        /// to model B. 
         /// </para>
         ///  <note> 
         /// <para>
         /// When you call <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html">CreateEndpoint</a>,
         /// a load call is made to DynamoDB to verify that your endpoint configuration exists.
         /// When you read data from a DynamoDB table supporting <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html">
-        /// <code>Eventually Consistent Reads</code> </a>, the response might not reflect the
-        /// results of a recently completed write operation. The response might include some stale
-        /// data. If the dependent entities are not yet in DynamoDB, this causes a validation
-        /// error. If you repeat your read request after a short time, the response should return
-        /// the latest data. So retry logic is recommended to handle these possible issues. We
-        /// also recommend that customers call <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpointConfig.html">DescribeEndpointConfig</a>
+        /// <c>Eventually Consistent Reads</c> </a>, the response might not reflect the results
+        /// of a recently completed write operation. The response might include some stale data.
+        /// If the dependent entities are not yet in DynamoDB, this causes a validation error.
+        /// If you repeat your read request after a short time, the response should return the
+        /// latest data. So retry logic is recommended to handle these possible issues. We also
+        /// recommend that customers call <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpointConfig.html">DescribeEndpointConfig</a>
         /// before calling <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html">CreateEndpoint</a>
         /// to minimize the potential impact of a DynamoDB eventually consistent read.
         /// </para>
@@ -2154,8 +2503,8 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        /// To add a description to an experiment, specify the optional <code>Description</code>
-        /// parameter. To add a description later, or to change the description, call the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateExperiment.html">UpdateExperiment</a>
+        /// To add a description to an experiment, specify the optional <c>Description</c> parameter.
+        /// To add a description later, or to change the description, call the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateExperiment.html">UpdateExperiment</a>
         /// API.
         /// </para>
         ///  
@@ -2215,8 +2564,8 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        /// To add a description to an experiment, specify the optional <code>Description</code>
-        /// parameter. To add a description later, or to change the description, call the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateExperiment.html">UpdateExperiment</a>
+        /// To add a description to an experiment, specify the optional <c>Description</c> parameter.
+        /// To add a description later, or to change the description, call the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateExperiment.html">UpdateExperiment</a>
         /// API.
         /// </para>
         ///  
@@ -2254,24 +2603,27 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Create a new <code>FeatureGroup</code>. A <code>FeatureGroup</code> is a group of
-        /// <code>Features</code> defined in the <code>FeatureStore</code> to describe a <code>Record</code>.
-        /// 
+        /// Create a new <c>FeatureGroup</c>. A <c>FeatureGroup</c> is a group of <c>Features</c>
+        /// defined in the <c>FeatureStore</c> to describe a <c>Record</c>. 
         /// 
         ///  
         /// <para>
-        /// The <code>FeatureGroup</code> defines the schema and features contained in the FeatureGroup.
-        /// A <code>FeatureGroup</code> definition is composed of a list of <code>Features</code>,
-        /// a <code>RecordIdentifierFeatureName</code>, an <code>EventTimeFeatureName</code> and
-        /// configurations for its <code>OnlineStore</code> and <code>OfflineStore</code>. Check
-        /// <a href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">Amazon
-        /// Web Services service quotas</a> to see the <code>FeatureGroup</code>s quota for your
-        /// Amazon Web Services account.
+        /// The <c>FeatureGroup</c> defines the schema and features contained in the <c>FeatureGroup</c>.
+        /// A <c>FeatureGroup</c> definition is composed of a list of <c>Features</c>, a <c>RecordIdentifierFeatureName</c>,
+        /// an <c>EventTimeFeatureName</c> and configurations for its <c>OnlineStore</c> and <c>OfflineStore</c>.
+        /// Check <a href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">Amazon
+        /// Web Services service quotas</a> to see the <c>FeatureGroup</c>s quota for your Amazon
+        /// Web Services account.
+        /// </para>
+        ///  
+        /// <para>
+        /// Note that it can take approximately 10-15 minutes to provision an <c>OnlineStore</c>
+        /// <c>FeatureGroup</c> with the <c>InMemory</c> <c>StorageType</c>.
         /// </para>
         ///  <important> 
         /// <para>
-        /// You must include at least one of <code>OnlineStoreConfig</code> and <code>OfflineStoreConfig</code>
-        /// to create a <code>FeatureGroup</code>.
+        /// You must include at least one of <c>OnlineStoreConfig</c> and <c>OfflineStoreConfig</c>
+        /// to create a <c>FeatureGroup</c>.
         /// </para>
         ///  </important>
         /// </summary>
@@ -2297,24 +2649,27 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Create a new <code>FeatureGroup</code>. A <code>FeatureGroup</code> is a group of
-        /// <code>Features</code> defined in the <code>FeatureStore</code> to describe a <code>Record</code>.
-        /// 
+        /// Create a new <c>FeatureGroup</c>. A <c>FeatureGroup</c> is a group of <c>Features</c>
+        /// defined in the <c>FeatureStore</c> to describe a <c>Record</c>. 
         /// 
         ///  
         /// <para>
-        /// The <code>FeatureGroup</code> defines the schema and features contained in the FeatureGroup.
-        /// A <code>FeatureGroup</code> definition is composed of a list of <code>Features</code>,
-        /// a <code>RecordIdentifierFeatureName</code>, an <code>EventTimeFeatureName</code> and
-        /// configurations for its <code>OnlineStore</code> and <code>OfflineStore</code>. Check
-        /// <a href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">Amazon
-        /// Web Services service quotas</a> to see the <code>FeatureGroup</code>s quota for your
-        /// Amazon Web Services account.
+        /// The <c>FeatureGroup</c> defines the schema and features contained in the <c>FeatureGroup</c>.
+        /// A <c>FeatureGroup</c> definition is composed of a list of <c>Features</c>, a <c>RecordIdentifierFeatureName</c>,
+        /// an <c>EventTimeFeatureName</c> and configurations for its <c>OnlineStore</c> and <c>OfflineStore</c>.
+        /// Check <a href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">Amazon
+        /// Web Services service quotas</a> to see the <c>FeatureGroup</c>s quota for your Amazon
+        /// Web Services account.
+        /// </para>
+        ///  
+        /// <para>
+        /// Note that it can take approximately 10-15 minutes to provision an <c>OnlineStore</c>
+        /// <c>FeatureGroup</c> with the <c>InMemory</c> <c>StorageType</c>.
         /// </para>
         ///  <important> 
         /// <para>
-        /// You must include at least one of <code>OnlineStoreConfig</code> and <code>OfflineStoreConfig</code>
-        /// to create a <code>FeatureGroup</code>.
+        /// You must include at least one of <c>OnlineStoreConfig</c> and <c>OfflineStoreConfig</c>
+        /// to create a <c>FeatureGroup</c>.
         /// </para>
         ///  </important>
         /// </summary>
@@ -2403,12 +2758,6 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Create a hub.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// Hub APIs are only callable through SageMaker Studio.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateHub service method.</param>
         /// 
@@ -2433,12 +2782,6 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Create a hub.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// Hub APIs are only callable through SageMaker Studio.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateHub service method.</param>
         /// <param name="cancellationToken">
@@ -2461,6 +2804,69 @@ namespace Amazon.SageMaker
             options.ResponseUnmarshaller = CreateHubResponseUnmarshaller.Instance;
             
             return InvokeAsync<CreateHubResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateHubContentReference
+
+
+        /// <summary>
+        /// Create a hub content reference in order to add a model in the JumpStart public hub
+        /// to a private hub.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateHubContentReference service method.</param>
+        /// 
+        /// <returns>The response from the CreateHubContentReference service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceInUseException">
+        /// Resource being accessed is in use.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateHubContentReference">REST API Reference for CreateHubContentReference Operation</seealso>
+        public virtual CreateHubContentReferenceResponse CreateHubContentReference(CreateHubContentReferenceRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateHubContentReferenceRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateHubContentReferenceResponseUnmarshaller.Instance;
+
+            return Invoke<CreateHubContentReferenceResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Create a hub content reference in order to add a model in the JumpStart public hub
+        /// to a private hub.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateHubContentReference service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateHubContentReference service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceInUseException">
+        /// Resource being accessed is in use.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateHubContentReference">REST API Reference for CreateHubContentReference Operation</seealso>
+        public virtual Task<CreateHubContentReferenceResponse> CreateHubContentReferenceAsync(CreateHubContentReferenceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateHubContentReferenceRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateHubContentReferenceResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateHubContentReferenceResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -2623,10 +3029,10 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Creates a custom SageMaker image. A SageMaker image is a set of image versions. Each
-        /// image version represents a container image stored in Amazon Elastic Container Registry
-        /// (ECR). For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/studio-byoi.html">Bring
-        /// your own SageMaker image</a>.
+        /// Creates a custom SageMaker AI image. A SageMaker AI image is a set of image versions.
+        /// Each image version represents a container image stored in Amazon ECR. For more information,
+        /// see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/studio-byoi.html">Bring
+        /// your own SageMaker AI image</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateImage service method.</param>
         /// 
@@ -2650,10 +3056,10 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Creates a custom SageMaker image. A SageMaker image is a set of image versions. Each
-        /// image version represents a container image stored in Amazon Elastic Container Registry
-        /// (ECR). For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/studio-byoi.html">Bring
-        /// your own SageMaker image</a>.
+        /// Creates a custom SageMaker AI image. A SageMaker AI image is a set of image versions.
+        /// Each image version represents a container image stored in Amazon ECR. For more information,
+        /// see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/studio-byoi.html">Bring
+        /// your own SageMaker AI image</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateImage service method.</param>
         /// <param name="cancellationToken">
@@ -2684,9 +3090,8 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Creates a version of the SageMaker image specified by <code>ImageName</code>. The
-        /// version represents the Amazon Elastic Container Registry (ECR) container image specified
-        /// by <code>BaseImage</code>.
+        /// Creates a version of the SageMaker AI image specified by <c>ImageName</c>. The version
+        /// represents the Amazon ECR container image specified by <c>BaseImage</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateImageVersion service method.</param>
         /// 
@@ -2713,9 +3118,8 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Creates a version of the SageMaker image specified by <code>ImageName</code>. The
-        /// version represents the Amazon Elastic Container Registry (ECR) container image specified
-        /// by <code>BaseImage</code>.
+        /// Creates a version of the SageMaker AI image specified by <c>ImageName</c>. The version
+        /// represents the Amazon ECR container image specified by <c>BaseImage</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateImageVersion service method.</param>
         /// <param name="cancellationToken">
@@ -2741,6 +3145,69 @@ namespace Amazon.SageMaker
             options.ResponseUnmarshaller = CreateImageVersionResponseUnmarshaller.Instance;
             
             return InvokeAsync<CreateImageVersionResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateInferenceComponent
+
+
+        /// <summary>
+        /// Creates an inference component, which is a SageMaker AI hosting object that you can
+        /// use to deploy a model to an endpoint. In the inference component settings, you specify
+        /// the model, the endpoint, and how the model utilizes the resources that the endpoint
+        /// hosts. You can optimize resource utilization by tailoring how the required CPU cores,
+        /// accelerators, and memory are allocated. You can deploy multiple inference components
+        /// to an endpoint, where each inference component contains one model and the resource
+        /// utilization needs for that individual model. After you deploy an inference component,
+        /// you can directly invoke the associated model when you use the InvokeEndpoint API action.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateInferenceComponent service method.</param>
+        /// 
+        /// <returns>The response from the CreateInferenceComponent service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateInferenceComponent">REST API Reference for CreateInferenceComponent Operation</seealso>
+        public virtual CreateInferenceComponentResponse CreateInferenceComponent(CreateInferenceComponentRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateInferenceComponentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateInferenceComponentResponseUnmarshaller.Instance;
+
+            return Invoke<CreateInferenceComponentResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates an inference component, which is a SageMaker AI hosting object that you can
+        /// use to deploy a model to an endpoint. In the inference component settings, you specify
+        /// the model, the endpoint, and how the model utilizes the resources that the endpoint
+        /// hosts. You can optimize resource utilization by tailoring how the required CPU cores,
+        /// accelerators, and memory are allocated. You can deploy multiple inference components
+        /// to an endpoint, where each inference component contains one model and the resource
+        /// utilization needs for that individual model. After you deploy an inference component,
+        /// you can directly invoke the associated model when you use the InvokeEndpoint API action.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateInferenceComponent service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateInferenceComponent service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateInferenceComponent">REST API Reference for CreateInferenceComponent Operation</seealso>
+        public virtual Task<CreateInferenceComponentResponse> CreateInferenceComponentAsync(CreateInferenceComponentRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateInferenceComponentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateInferenceComponentResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateInferenceComponentResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -2949,10 +3416,10 @@ namespace Amazon.SageMaker
         /// <para>
         /// You can use this operation to create a static labeling job or a streaming labeling
         /// job. A static labeling job stops if all data objects in the input manifest file identified
-        /// in <code>ManifestS3Uri</code> have been labeled. A streaming labeling job runs perpetually
+        /// in <c>ManifestS3Uri</c> have been labeled. A streaming labeling job runs perpetually
         /// until it is manually stopped, or remains idle for 10 days. You can send new data objects
-        /// to an active (<code>InProgress</code>) streaming labeling job in real time. To learn
-        /// how to create a static labeling job, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-create-labeling-job-api.html">Create
+        /// to an active (<c>InProgress</c>) streaming labeling job in real time. To learn how
+        /// to create a static labeling job, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-create-labeling-job-api.html">Create
         /// a Labeling Job (API) </a> in the Amazon SageMaker Developer Guide. To learn how to
         /// create a streaming labeling job, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-streaming-create-job.html">Create
         /// a Streaming Labeling Job</a>.
@@ -3028,10 +3495,10 @@ namespace Amazon.SageMaker
         /// <para>
         /// You can use this operation to create a static labeling job or a streaming labeling
         /// job. A static labeling job stops if all data objects in the input manifest file identified
-        /// in <code>ManifestS3Uri</code> have been labeled. A streaming labeling job runs perpetually
+        /// in <c>ManifestS3Uri</c> have been labeled. A streaming labeling job runs perpetually
         /// until it is manually stopped, or remains idle for 10 days. You can send new data objects
-        /// to an active (<code>InProgress</code>) streaming labeling job in real time. To learn
-        /// how to create a static labeling job, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-create-labeling-job-api.html">Create
+        /// to an active (<c>InProgress</c>) streaming labeling job in real time. To learn how
+        /// to create a static labeling job, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-create-labeling-job-api.html">Create
         /// a Labeling Job (API) </a> in the Amazon SageMaker Developer Guide. To learn how to
         /// create a streaming labeling job, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-streaming-create-job.html">Create
         /// a Streaming Labeling Job</a>.
@@ -3062,6 +3529,59 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  CreateMlflowTrackingServer
+
+
+        /// <summary>
+        /// Creates an MLflow Tracking Server using a general purpose Amazon S3 bucket as the
+        /// artifact store. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/mlflow-create-tracking-server.html">Create
+        /// an MLflow Tracking Server</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateMlflowTrackingServer service method.</param>
+        /// 
+        /// <returns>The response from the CreateMlflowTrackingServer service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateMlflowTrackingServer">REST API Reference for CreateMlflowTrackingServer Operation</seealso>
+        public virtual CreateMlflowTrackingServerResponse CreateMlflowTrackingServer(CreateMlflowTrackingServerRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateMlflowTrackingServerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateMlflowTrackingServerResponseUnmarshaller.Instance;
+
+            return Invoke<CreateMlflowTrackingServerResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates an MLflow Tracking Server using a general purpose Amazon S3 bucket as the
+        /// artifact store. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/mlflow-create-tracking-server.html">Create
+        /// an MLflow Tracking Server</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateMlflowTrackingServer service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateMlflowTrackingServer service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateMlflowTrackingServer">REST API Reference for CreateMlflowTrackingServer Operation</seealso>
+        public virtual Task<CreateMlflowTrackingServerResponse> CreateMlflowTrackingServerAsync(CreateMlflowTrackingServerRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateMlflowTrackingServerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateMlflowTrackingServerResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateMlflowTrackingServerResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  CreateModel
 
 
@@ -3078,20 +3598,14 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        /// To host your model, you create an endpoint configuration with the <code>CreateEndpointConfig</code>
-        /// API, and then create an endpoint with the <code>CreateEndpoint</code> API. SageMaker
-        /// then deploys all of the containers that you defined for the model in the hosting environment.
+        /// To host your model, you create an endpoint configuration with the <c>CreateEndpointConfig</c>
+        /// API, and then create an endpoint with the <c>CreateEndpoint</c> API. SageMaker then
+        /// deploys all of the containers that you defined for the model in the hosting environment.
         /// 
         /// </para>
         ///  
         /// <para>
-        /// For an example that calls this method when deploying a model to SageMaker hosting
-        /// services, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints-deployment.html#realtime-endpoints-deployment-create-model">Create
-        /// a Model (Amazon Web Services SDK for Python (Boto 3)).</a> 
-        /// </para>
-        ///  
-        /// <para>
-        /// To run a batch transform using your model, you start a job with the <code>CreateTransformJob</code>
+        /// To run a batch transform using your model, you start a job with the <c>CreateTransformJob</c>
         /// API. SageMaker uses your model and your dataset to get inferences which are then saved
         /// to a specified S3 location.
         /// </para>
@@ -3135,20 +3649,14 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        /// To host your model, you create an endpoint configuration with the <code>CreateEndpointConfig</code>
-        /// API, and then create an endpoint with the <code>CreateEndpoint</code> API. SageMaker
-        /// then deploys all of the containers that you defined for the model in the hosting environment.
+        /// To host your model, you create an endpoint configuration with the <c>CreateEndpointConfig</c>
+        /// API, and then create an endpoint with the <c>CreateEndpoint</c> API. SageMaker then
+        /// deploys all of the containers that you defined for the model in the hosting environment.
         /// 
         /// </para>
         ///  
         /// <para>
-        /// For an example that calls this method when deploying a model to SageMaker hosting
-        /// services, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints-deployment.html#realtime-endpoints-deployment-create-model">Create
-        /// a Model (Amazon Web Services SDK for Python (Boto 3)).</a> 
-        /// </para>
-        ///  
-        /// <para>
-        /// To run a batch transform using your model, you start a job with the <code>CreateTransformJob</code>
+        /// To run a batch transform using your model, you start a job with the <c>CreateTransformJob</c>
         /// API. SageMaker uses your model and your dataset to get inferences which are then saved
         /// to a specified S3 location.
         /// </para>
@@ -3254,8 +3762,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the CreateModelCard service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
         /// You have exceeded an SageMaker resource limit. For example, you might have too many
@@ -3288,8 +3796,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the CreateModelCard service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
         /// You have exceeded an SageMaker resource limit. For example, you might have too many
@@ -3317,8 +3825,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the CreateModelCardExportJob service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
         /// You have exceeded an SageMaker resource limit. For example, you might have too many
@@ -3348,8 +3856,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the CreateModelCardExportJob service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
         /// You have exceeded an SageMaker resource limit. For example, you might have too many
@@ -3437,9 +3945,9 @@ namespace Amazon.SageMaker
         ///  
         /// <para>
         /// To create a model package by specifying a Docker container that contains your inference
-        /// code and the Amazon S3 location of your model artifacts, provide values for <code>InferenceSpecification</code>.
+        /// code and the Amazon S3 location of your model artifacts, provide values for <c>InferenceSpecification</c>.
         /// To create a model from an algorithm resource that you created or subscribed to in
-        /// Amazon Web Services Marketplace, provide a value for <code>SourceAlgorithmSpecification</code>.
+        /// Amazon Web Services Marketplace, provide a value for <c>SourceAlgorithmSpecification</c>.
         /// </para>
         ///  <note> 
         /// <para>
@@ -3459,8 +3967,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the CreateModelPackage service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
         /// You have exceeded an SageMaker resource limit. For example, you might have too many
@@ -3486,9 +3994,9 @@ namespace Amazon.SageMaker
         ///  
         /// <para>
         /// To create a model package by specifying a Docker container that contains your inference
-        /// code and the Amazon S3 location of your model artifacts, provide values for <code>InferenceSpecification</code>.
+        /// code and the Amazon S3 location of your model artifacts, provide values for <c>InferenceSpecification</c>.
         /// To create a model from an algorithm resource that you created or subscribed to in
-        /// Amazon Web Services Marketplace, provide a value for <code>SourceAlgorithmSpecification</code>.
+        /// Amazon Web Services Marketplace, provide a value for <c>SourceAlgorithmSpecification</c>.
         /// </para>
         ///  <note> 
         /// <para>
@@ -3511,8 +4019,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the CreateModelPackage service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
         /// You have exceeded an SageMaker resource limit. For example, you might have too many
@@ -3585,7 +4093,7 @@ namespace Amazon.SageMaker
         /// <summary>
         /// Creates a definition for a job that monitors model quality and drift. For information
         /// about model monitor, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html">Amazon
-        /// SageMaker Model Monitor</a>.
+        /// SageMaker AI Model Monitor</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateModelQualityJobDefinition service method.</param>
         /// 
@@ -3611,7 +4119,7 @@ namespace Amazon.SageMaker
         /// <summary>
         /// Creates a definition for a job that monitors model quality and drift. For information
         /// about model monitor, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html">Amazon
-        /// SageMaker Model Monitor</a>.
+        /// SageMaker AI Model Monitor</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateModelQualityJobDefinition service method.</param>
         /// <param name="cancellationToken">
@@ -3642,8 +4150,8 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Creates a schedule that regularly starts Amazon SageMaker Processing Jobs to monitor
-        /// the data captured for an Amazon SageMaker Endpoint.
+        /// Creates a schedule that regularly starts Amazon SageMaker AI Processing Jobs to monitor
+        /// the data captured for an Amazon SageMaker AI Endpoint.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateMonitoringSchedule service method.</param>
         /// 
@@ -3667,8 +4175,8 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Creates a schedule that regularly starts Amazon SageMaker Processing Jobs to monitor
-        /// the data captured for an Amazon SageMaker Endpoint.
+        /// Creates a schedule that regularly starts Amazon SageMaker AI Processing Jobs to monitor
+        /// the data captured for an Amazon SageMaker AI Endpoint.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateMonitoringSchedule service method.</param>
         /// <param name="cancellationToken">
@@ -3699,54 +4207,55 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Creates an SageMaker notebook instance. A notebook instance is a machine learning
+        /// Creates an SageMaker AI notebook instance. A notebook instance is a machine learning
         /// (ML) compute instance running on a Jupyter notebook. 
         /// 
         ///  
         /// <para>
-        /// In a <code>CreateNotebookInstance</code> request, specify the type of ML compute instance
-        /// that you want to run. SageMaker launches the instance, installs common libraries that
-        /// you can use to explore datasets for model training, and attaches an ML storage volume
-        /// to the notebook instance. 
+        /// In a <c>CreateNotebookInstance</c> request, specify the type of ML compute instance
+        /// that you want to run. SageMaker AI launches the instance, installs common libraries
+        /// that you can use to explore datasets for model training, and attaches an ML storage
+        /// volume to the notebook instance. 
         /// </para>
         ///  
         /// <para>
-        /// SageMaker also provides a set of example notebooks. Each notebook demonstrates how
-        /// to use SageMaker with a specific algorithm or with a machine learning framework. 
+        /// SageMaker AI also provides a set of example notebooks. Each notebook demonstrates
+        /// how to use SageMaker AI with a specific algorithm or with a machine learning framework.
+        /// 
         /// </para>
         ///  
         /// <para>
-        /// After receiving the request, SageMaker does the following:
+        /// After receiving the request, SageMaker AI does the following:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Creates a network interface in the SageMaker VPC.
+        /// Creates a network interface in the SageMaker AI VPC.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// (Option) If you specified <code>SubnetId</code>, SageMaker creates a network interface
+        /// (Option) If you specified <c>SubnetId</c>, SageMaker AI creates a network interface
         /// in your own VPC, which is inferred from the subnet ID that you provide in the input.
-        /// When creating this network interface, SageMaker attaches the security group that you
-        /// specified in the request to the network interface that it creates in your VPC.
+        /// When creating this network interface, SageMaker AI attaches the security group that
+        /// you specified in the request to the network interface that it creates in your VPC.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Launches an EC2 instance of the type specified in the request in the SageMaker VPC.
-        /// If you specified <code>SubnetId</code> of your VPC, SageMaker specifies both network
+        /// Launches an EC2 instance of the type specified in the request in the SageMaker AI
+        /// VPC. If you specified <c>SubnetId</c> of your VPC, SageMaker AI specifies both network
         /// interfaces when launching this instance. This enables inbound traffic from your own
         /// VPC to the notebook instance, assuming that the security groups allow it.
         /// </para>
         ///  </li> </ol> 
         /// <para>
-        /// After creating the notebook instance, SageMaker returns its Amazon Resource Name (ARN).
-        /// You can't change the name of a notebook instance after you create it.
+        /// After creating the notebook instance, SageMaker AI returns its Amazon Resource Name
+        /// (ARN). You can't change the name of a notebook instance after you create it.
         /// </para>
         ///  
         /// <para>
-        /// After SageMaker creates the notebook instance, you can connect to the Jupyter server
+        /// After SageMaker AI creates the notebook instance, you can connect to the Jupyter server
         /// and work in Jupyter notebooks. For example, you can write code to explore a dataset
         /// that you can use for model training, train a model, host models by creating SageMaker
-        /// endpoints, and validate hosted models. 
+        /// AI endpoints, and validate hosted models. 
         /// </para>
         ///  
         /// <para>
@@ -3773,54 +4282,55 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Creates an SageMaker notebook instance. A notebook instance is a machine learning
+        /// Creates an SageMaker AI notebook instance. A notebook instance is a machine learning
         /// (ML) compute instance running on a Jupyter notebook. 
         /// 
         ///  
         /// <para>
-        /// In a <code>CreateNotebookInstance</code> request, specify the type of ML compute instance
-        /// that you want to run. SageMaker launches the instance, installs common libraries that
-        /// you can use to explore datasets for model training, and attaches an ML storage volume
-        /// to the notebook instance. 
+        /// In a <c>CreateNotebookInstance</c> request, specify the type of ML compute instance
+        /// that you want to run. SageMaker AI launches the instance, installs common libraries
+        /// that you can use to explore datasets for model training, and attaches an ML storage
+        /// volume to the notebook instance. 
         /// </para>
         ///  
         /// <para>
-        /// SageMaker also provides a set of example notebooks. Each notebook demonstrates how
-        /// to use SageMaker with a specific algorithm or with a machine learning framework. 
+        /// SageMaker AI also provides a set of example notebooks. Each notebook demonstrates
+        /// how to use SageMaker AI with a specific algorithm or with a machine learning framework.
+        /// 
         /// </para>
         ///  
         /// <para>
-        /// After receiving the request, SageMaker does the following:
+        /// After receiving the request, SageMaker AI does the following:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Creates a network interface in the SageMaker VPC.
+        /// Creates a network interface in the SageMaker AI VPC.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// (Option) If you specified <code>SubnetId</code>, SageMaker creates a network interface
+        /// (Option) If you specified <c>SubnetId</c>, SageMaker AI creates a network interface
         /// in your own VPC, which is inferred from the subnet ID that you provide in the input.
-        /// When creating this network interface, SageMaker attaches the security group that you
-        /// specified in the request to the network interface that it creates in your VPC.
+        /// When creating this network interface, SageMaker AI attaches the security group that
+        /// you specified in the request to the network interface that it creates in your VPC.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Launches an EC2 instance of the type specified in the request in the SageMaker VPC.
-        /// If you specified <code>SubnetId</code> of your VPC, SageMaker specifies both network
+        /// Launches an EC2 instance of the type specified in the request in the SageMaker AI
+        /// VPC. If you specified <c>SubnetId</c> of your VPC, SageMaker AI specifies both network
         /// interfaces when launching this instance. This enables inbound traffic from your own
         /// VPC to the notebook instance, assuming that the security groups allow it.
         /// </para>
         ///  </li> </ol> 
         /// <para>
-        /// After creating the notebook instance, SageMaker returns its Amazon Resource Name (ARN).
-        /// You can't change the name of a notebook instance after you create it.
+        /// After creating the notebook instance, SageMaker AI returns its Amazon Resource Name
+        /// (ARN). You can't change the name of a notebook instance after you create it.
         /// </para>
         ///  
         /// <para>
-        /// After SageMaker creates the notebook instance, you can connect to the Jupyter server
+        /// After SageMaker AI creates the notebook instance, you can connect to the Jupyter server
         /// and work in Jupyter notebooks. For example, you can write code to explore a dataset
         /// that you can use for model training, train a model, host models by creating SageMaker
-        /// endpoints, and validate hosted models. 
+        /// AI endpoints, and validate hosted models. 
         /// </para>
         ///  
         /// <para>
@@ -3864,13 +4374,13 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        /// The value of the <code>$PATH</code> environment variable that is available to both
-        /// scripts is <code>/sbin:bin:/usr/sbin:/usr/bin</code>.
+        /// The value of the <c>$PATH</c> environment variable that is available to both scripts
+        /// is <c>/sbin:bin:/usr/sbin:/usr/bin</c>.
         /// </para>
         ///  
         /// <para>
-        /// View CloudWatch Logs for notebook instance lifecycle configurations in log group <code>/aws/sagemaker/NotebookInstances</code>
-        /// in log stream <code>[notebook-instance-name]/[LifecycleConfigHook]</code>.
+        /// View Amazon CloudWatch Logs for notebook instance lifecycle configurations in log
+        /// group <c>/aws/sagemaker/NotebookInstances</c> in log stream <c>[notebook-instance-name]/[LifecycleConfigHook]</c>.
         /// </para>
         ///  
         /// <para>
@@ -3913,13 +4423,13 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        /// The value of the <code>$PATH</code> environment variable that is available to both
-        /// scripts is <code>/sbin:bin:/usr/sbin:/usr/bin</code>.
+        /// The value of the <c>$PATH</c> environment variable that is available to both scripts
+        /// is <c>/sbin:bin:/usr/sbin:/usr/bin</c>.
         /// </para>
         ///  
         /// <para>
-        /// View CloudWatch Logs for notebook instance lifecycle configurations in log group <code>/aws/sagemaker/NotebookInstances</code>
-        /// in log stream <code>[notebook-instance-name]/[LifecycleConfigHook]</code>.
+        /// View Amazon CloudWatch Logs for notebook instance lifecycle configurations in log
+        /// group <c>/aws/sagemaker/NotebookInstances</c> in log stream <c>[notebook-instance-name]/[LifecycleConfigHook]</c>.
         /// </para>
         ///  
         /// <para>
@@ -3955,6 +4465,185 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  CreateOptimizationJob
+
+
+        /// <summary>
+        /// Creates a job that optimizes a model for inference performance. To create the job,
+        /// you provide the location of a source model, and you provide the settings for the optimization
+        /// techniques that you want the job to apply. When the job completes successfully, SageMaker
+        /// uploads the new optimized model to the output destination that you specify.
+        /// 
+        ///  
+        /// <para>
+        /// For more information about how to use this action, and about the supported optimization
+        /// techniques, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-optimize.html">Optimize
+        /// model inference with Amazon SageMaker</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateOptimizationJob service method.</param>
+        /// 
+        /// <returns>The response from the CreateOptimizationJob service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceInUseException">
+        /// Resource being accessed is in use.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateOptimizationJob">REST API Reference for CreateOptimizationJob Operation</seealso>
+        public virtual CreateOptimizationJobResponse CreateOptimizationJob(CreateOptimizationJobRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateOptimizationJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateOptimizationJobResponseUnmarshaller.Instance;
+
+            return Invoke<CreateOptimizationJobResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates a job that optimizes a model for inference performance. To create the job,
+        /// you provide the location of a source model, and you provide the settings for the optimization
+        /// techniques that you want the job to apply. When the job completes successfully, SageMaker
+        /// uploads the new optimized model to the output destination that you specify.
+        /// 
+        ///  
+        /// <para>
+        /// For more information about how to use this action, and about the supported optimization
+        /// techniques, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-optimize.html">Optimize
+        /// model inference with Amazon SageMaker</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateOptimizationJob service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateOptimizationJob service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceInUseException">
+        /// Resource being accessed is in use.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateOptimizationJob">REST API Reference for CreateOptimizationJob Operation</seealso>
+        public virtual Task<CreateOptimizationJobResponse> CreateOptimizationJobAsync(CreateOptimizationJobRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateOptimizationJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateOptimizationJobResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateOptimizationJobResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreatePartnerApp
+
+
+        /// <summary>
+        /// Creates an Amazon SageMaker Partner AI App.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreatePartnerApp service method.</param>
+        /// 
+        /// <returns>The response from the CreatePartnerApp service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreatePartnerApp">REST API Reference for CreatePartnerApp Operation</seealso>
+        public virtual CreatePartnerAppResponse CreatePartnerApp(CreatePartnerAppRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreatePartnerAppRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreatePartnerAppResponseUnmarshaller.Instance;
+
+            return Invoke<CreatePartnerAppResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates an Amazon SageMaker Partner AI App.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreatePartnerApp service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreatePartnerApp service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreatePartnerApp">REST API Reference for CreatePartnerApp Operation</seealso>
+        public virtual Task<CreatePartnerAppResponse> CreatePartnerAppAsync(CreatePartnerAppRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreatePartnerAppRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreatePartnerAppResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreatePartnerAppResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreatePartnerAppPresignedUrl
+
+
+        /// <summary>
+        /// Creates a presigned URL to access an Amazon SageMaker Partner AI App.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreatePartnerAppPresignedUrl service method.</param>
+        /// 
+        /// <returns>The response from the CreatePartnerAppPresignedUrl service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreatePartnerAppPresignedUrl">REST API Reference for CreatePartnerAppPresignedUrl Operation</seealso>
+        public virtual CreatePartnerAppPresignedUrlResponse CreatePartnerAppPresignedUrl(CreatePartnerAppPresignedUrlRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreatePartnerAppPresignedUrlRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreatePartnerAppPresignedUrlResponseUnmarshaller.Instance;
+
+            return Invoke<CreatePartnerAppPresignedUrlResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates a presigned URL to access an Amazon SageMaker Partner AI App.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreatePartnerAppPresignedUrl service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreatePartnerAppPresignedUrl service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreatePartnerAppPresignedUrl">REST API Reference for CreatePartnerAppPresignedUrl Operation</seealso>
+        public virtual Task<CreatePartnerAppPresignedUrlResponse> CreatePartnerAppPresignedUrlAsync(CreatePartnerAppPresignedUrlRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreatePartnerAppPresignedUrlRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreatePartnerAppPresignedUrlResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreatePartnerAppPresignedUrlResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  CreatePipeline
 
 
@@ -3964,6 +4653,10 @@ namespace Amazon.SageMaker
         /// <param name="request">Container for the necessary parameters to execute the CreatePipeline service method.</param>
         /// 
         /// <returns>The response from the CreatePipeline service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
         /// You have exceeded an SageMaker resource limit. For example, you might have too many
         /// training jobs created.
@@ -3991,6 +4684,10 @@ namespace Amazon.SageMaker
         /// </param>
         /// 
         /// <returns>The response from the CreatePipeline service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
         /// You have exceeded an SageMaker resource limit. For example, you might have too many
         /// training jobs created.
@@ -4015,10 +4712,9 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Creates a URL for a specified UserProfile in a Domain. When accessed in a web browser,
-        /// the user will be automatically signed in to Amazon SageMaker Studio, and granted access
-        /// to all of the Apps and files associated with the Domain's Amazon Elastic File System
-        /// (EFS) volume. This operation can only be called when the authentication mode equals
-        /// IAM. 
+        /// the user will be automatically signed in to the domain, and granted access to all
+        /// of the Apps and files associated with the Domain's Amazon Elastic File System volume.
+        /// This operation can only be called when the authentication mode equals IAM. 
         /// 
         ///  
         /// <para>
@@ -4032,16 +4728,21 @@ namespace Amazon.SageMaker
         /// You can restrict access to this API and to the URL that it returns to a list of IP
         /// addresses, Amazon VPCs or Amazon VPC Endpoints that you specify. For more information,
         /// see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/studio-interface-endpoint.html">Connect
-        /// to SageMaker Studio Through an Interface VPC Endpoint</a> .
+        /// to Amazon SageMaker AI Studio Through an Interface VPC Endpoint</a> .
         /// </para>
-        ///  <note> 
+        ///  <note> <ul> <li> 
         /// <para>
-        /// The URL that you get from a call to <code>CreatePresignedDomainUrl</code> has a default
-        /// timeout of 5 minutes. You can configure this value using <code>ExpiresInSeconds</code>.
+        /// The URL that you get from a call to <c>CreatePresignedDomainUrl</c> has a default
+        /// timeout of 5 minutes. You can configure this value using <c>ExpiresInSeconds</c>.
         /// If you try to use the URL after the timeout limit expires, you are directed to the
         /// Amazon Web Services console sign-in page.
         /// </para>
-        ///  </note>
+        ///  </li> <li> 
+        /// <para>
+        /// The JupyterLab session default expiration time is 12 hours. You can configure this
+        /// value using SessionExpirationDurationInSeconds.
+        /// </para>
+        ///  </li> </ul> </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreatePresignedDomainUrl service method.</param>
         /// 
@@ -4062,10 +4763,9 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Creates a URL for a specified UserProfile in a Domain. When accessed in a web browser,
-        /// the user will be automatically signed in to Amazon SageMaker Studio, and granted access
-        /// to all of the Apps and files associated with the Domain's Amazon Elastic File System
-        /// (EFS) volume. This operation can only be called when the authentication mode equals
-        /// IAM. 
+        /// the user will be automatically signed in to the domain, and granted access to all
+        /// of the Apps and files associated with the Domain's Amazon Elastic File System volume.
+        /// This operation can only be called when the authentication mode equals IAM. 
         /// 
         ///  
         /// <para>
@@ -4079,16 +4779,21 @@ namespace Amazon.SageMaker
         /// You can restrict access to this API and to the URL that it returns to a list of IP
         /// addresses, Amazon VPCs or Amazon VPC Endpoints that you specify. For more information,
         /// see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/studio-interface-endpoint.html">Connect
-        /// to SageMaker Studio Through an Interface VPC Endpoint</a> .
+        /// to Amazon SageMaker AI Studio Through an Interface VPC Endpoint</a> .
         /// </para>
-        ///  <note> 
+        ///  <note> <ul> <li> 
         /// <para>
-        /// The URL that you get from a call to <code>CreatePresignedDomainUrl</code> has a default
-        /// timeout of 5 minutes. You can configure this value using <code>ExpiresInSeconds</code>.
+        /// The URL that you get from a call to <c>CreatePresignedDomainUrl</c> has a default
+        /// timeout of 5 minutes. You can configure this value using <c>ExpiresInSeconds</c>.
         /// If you try to use the URL after the timeout limit expires, you are directed to the
         /// Amazon Web Services console sign-in page.
         /// </para>
-        ///  </note>
+        ///  </li> <li> 
+        /// <para>
+        /// The JupyterLab session default expiration time is 12 hours. You can configure this
+        /// value using SessionExpirationDurationInSeconds.
+        /// </para>
+        ///  </li> </ul> </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreatePresignedDomainUrl service method.</param>
         /// <param name="cancellationToken">
@@ -4111,14 +4816,65 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  CreatePresignedMlflowTrackingServerUrl
+
+
+        /// <summary>
+        /// Returns a presigned URL that you can use to connect to the MLflow UI attached to your
+        /// tracking server. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/mlflow-launch-ui.html">Launch
+        /// the MLflow UI using a presigned URL</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreatePresignedMlflowTrackingServerUrl service method.</param>
+        /// 
+        /// <returns>The response from the CreatePresignedMlflowTrackingServerUrl service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreatePresignedMlflowTrackingServerUrl">REST API Reference for CreatePresignedMlflowTrackingServerUrl Operation</seealso>
+        public virtual CreatePresignedMlflowTrackingServerUrlResponse CreatePresignedMlflowTrackingServerUrl(CreatePresignedMlflowTrackingServerUrlRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreatePresignedMlflowTrackingServerUrlRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreatePresignedMlflowTrackingServerUrlResponseUnmarshaller.Instance;
+
+            return Invoke<CreatePresignedMlflowTrackingServerUrlResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Returns a presigned URL that you can use to connect to the MLflow UI attached to your
+        /// tracking server. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/mlflow-launch-ui.html">Launch
+        /// the MLflow UI using a presigned URL</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreatePresignedMlflowTrackingServerUrl service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreatePresignedMlflowTrackingServerUrl service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreatePresignedMlflowTrackingServerUrl">REST API Reference for CreatePresignedMlflowTrackingServerUrl Operation</seealso>
+        public virtual Task<CreatePresignedMlflowTrackingServerUrlResponse> CreatePresignedMlflowTrackingServerUrlAsync(CreatePresignedMlflowTrackingServerUrlRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreatePresignedMlflowTrackingServerUrlRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreatePresignedMlflowTrackingServerUrlResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreatePresignedMlflowTrackingServerUrlResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  CreatePresignedNotebookInstanceUrl
 
 
         /// <summary>
         /// Returns a URL that you can use to connect to the Jupyter server from a notebook instance.
-        /// In the SageMaker console, when you choose <code>Open</code> next to a notebook instance,
-        /// SageMaker opens a new tab showing the Jupyter server home page from the notebook instance.
-        /// The console uses this API to get the URL and show the page.
+        /// In the SageMaker AI console, when you choose <c>Open</c> next to a notebook instance,
+        /// SageMaker AI opens a new tab showing the Jupyter server home page from the notebook
+        /// instance. The console uses this API to get the URL and show the page.
         /// 
         ///  
         /// <para>
@@ -4131,10 +4887,9 @@ namespace Amazon.SageMaker
         ///  
         /// <para>
         /// You can restrict access to this API and to the URL that it returns to a list of IP
-        /// addresses that you specify. Use the <code>NotIpAddress</code> condition operator and
-        /// the <code>aws:SourceIP</code> condition context key to specify the list of IP addresses
-        /// that you want to have access to the notebook instance. For more information, see <a
-        /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/security_iam_id-based-policy-examples.html#nbi-ip-filter">Limit
+        /// addresses that you specify. Use the <c>NotIpAddress</c> condition operator and the
+        /// <c>aws:SourceIP</c> condition context key to specify the list of IP addresses that
+        /// you want to have access to the notebook instance. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/security_iam_id-based-policy-examples.html#nbi-ip-filter">Limit
         /// Access to a Notebook Instance by IP Address</a>.
         /// </para>
         ///  <note> 
@@ -4161,9 +4916,9 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Returns a URL that you can use to connect to the Jupyter server from a notebook instance.
-        /// In the SageMaker console, when you choose <code>Open</code> next to a notebook instance,
-        /// SageMaker opens a new tab showing the Jupyter server home page from the notebook instance.
-        /// The console uses this API to get the URL and show the page.
+        /// In the SageMaker AI console, when you choose <c>Open</c> next to a notebook instance,
+        /// SageMaker AI opens a new tab showing the Jupyter server home page from the notebook
+        /// instance. The console uses this API to get the URL and show the page.
         /// 
         ///  
         /// <para>
@@ -4176,10 +4931,9 @@ namespace Amazon.SageMaker
         ///  
         /// <para>
         /// You can restrict access to this API and to the URL that it returns to a list of IP
-        /// addresses that you specify. Use the <code>NotIpAddress</code> condition operator and
-        /// the <code>aws:SourceIP</code> condition context key to specify the list of IP addresses
-        /// that you want to have access to the notebook instance. For more information, see <a
-        /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/security_iam_id-based-policy-examples.html#nbi-ip-filter">Limit
+        /// addresses that you specify. Use the <c>NotIpAddress</c> condition operator and the
+        /// <c>aws:SourceIP</c> condition context key to specify the list of IP addresses that
+        /// you want to have access to the notebook instance. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/security_iam_id-based-policy-examples.html#nbi-ip-filter">Limit
         /// Access to a Notebook Instance by IP Address</a>.
         /// </para>
         ///  <note> 
@@ -4324,7 +5078,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Creates a space used for real time collaboration in a Domain.
+        /// Creates a private space or a space used for real time collaboration in a domain.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateSpace service method.</param>
         /// 
@@ -4348,7 +5102,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Creates a space used for real time collaboration in a Domain.
+        /// Creates a private space or a space used for real time collaboration in a domain.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateSpace service method.</param>
         /// <param name="cancellationToken">
@@ -4379,7 +5133,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Creates a new Studio Lifecycle Configuration.
+        /// Creates a new Amazon SageMaker AI Studio Lifecycle Configuration.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateStudioLifecycleConfig service method.</param>
         /// 
@@ -4399,7 +5153,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Creates a new Studio Lifecycle Configuration.
+        /// Creates a new Amazon SageMaker AI Studio Lifecycle Configuration.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateStudioLifecycleConfig service method.</param>
         /// <param name="cancellationToken">
@@ -4442,14 +5196,14 @@ namespace Amazon.SageMaker
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AlgorithmSpecification</code> - Identifies the training algorithm to use. 
+        ///  <c>AlgorithmSpecification</c> - Identifies the training algorithm to use. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>HyperParameters</code> - Specify these algorithm-specific parameters to enable
-        /// the estimation of model parameters during training. Hyperparameters can be tuned to
-        /// optimize this learning process. For a list of hyperparameters for each training algorithm
-        /// provided by SageMaker, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html">Algorithms</a>.
+        ///  <c>HyperParameters</c> - Specify these algorithm-specific parameters to enable the
+        /// estimation of model parameters during training. Hyperparameters can be tuned to optimize
+        /// this learning process. For a list of hyperparameters for each training algorithm provided
+        /// by SageMaker, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html">Algorithms</a>.
         /// 
         /// </para>
         ///  <important> 
@@ -4461,47 +5215,47 @@ namespace Amazon.SageMaker
         /// </para>
         ///  </important> </li> <li> 
         /// <para>
-        ///  <code>InputDataConfig</code> - Describes the input required by the training job and
-        /// the Amazon S3, EFS, or FSx location where it is stored.
+        ///  <c>InputDataConfig</c> - Describes the input required by the training job and the
+        /// Amazon S3, EFS, or FSx location where it is stored.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OutputDataConfig</code> - Identifies the Amazon S3 bucket where you want SageMaker
+        ///  <c>OutputDataConfig</c> - Identifies the Amazon S3 bucket where you want SageMaker
         /// to save the results of model training. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ResourceConfig</code> - Identifies the resources, ML compute instances, and
-        /// ML storage volumes to deploy for model training. In distributed training, you specify
-        /// more than one instance. 
+        ///  <c>ResourceConfig</c> - Identifies the resources, ML compute instances, and ML storage
+        /// volumes to deploy for model training. In distributed training, you specify more than
+        /// one instance. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EnableManagedSpotTraining</code> - Optimize the cost of training machine learning
+        ///  <c>EnableManagedSpotTraining</c> - Optimize the cost of training machine learning
         /// models by up to 80% by using Amazon EC2 Spot instances. For more information, see
         /// <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-managed-spot-training.html">Managed
         /// Spot Training</a>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RoleArn</code> - The Amazon Resource Name (ARN) that SageMaker assumes to perform
+        ///  <c>RoleArn</c> - The Amazon Resource Name (ARN) that SageMaker assumes to perform
         /// tasks on your behalf during model training. You must grant this role the necessary
         /// permissions so that SageMaker can successfully complete model training. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>StoppingCondition</code> - To help cap training costs, use <code>MaxRuntimeInSeconds</code>
-        /// to set a time limit for training. Use <code>MaxWaitTimeInSeconds</code> to specify
-        /// how long a managed spot training job has to complete. 
+        ///  <c>StoppingCondition</c> - To help cap training costs, use <c>MaxRuntimeInSeconds</c>
+        /// to set a time limit for training. Use <c>MaxWaitTimeInSeconds</c> to specify how long
+        /// a managed spot training job has to complete. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Environment</code> - The environment variables to set in the Docker container.
+        ///  <c>Environment</c> - The environment variables to set in the Docker container.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RetryStrategy</code> - The number of times to retry the job when the job fails
-        /// due to an <code>InternalServerError</code>.
+        ///  <c>RetryStrategy</c> - The number of times to retry the job when the job fails due
+        /// to an <c>InternalServerError</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -4550,14 +5304,14 @@ namespace Amazon.SageMaker
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AlgorithmSpecification</code> - Identifies the training algorithm to use. 
+        ///  <c>AlgorithmSpecification</c> - Identifies the training algorithm to use. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>HyperParameters</code> - Specify these algorithm-specific parameters to enable
-        /// the estimation of model parameters during training. Hyperparameters can be tuned to
-        /// optimize this learning process. For a list of hyperparameters for each training algorithm
-        /// provided by SageMaker, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html">Algorithms</a>.
+        ///  <c>HyperParameters</c> - Specify these algorithm-specific parameters to enable the
+        /// estimation of model parameters during training. Hyperparameters can be tuned to optimize
+        /// this learning process. For a list of hyperparameters for each training algorithm provided
+        /// by SageMaker, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html">Algorithms</a>.
         /// 
         /// </para>
         ///  <important> 
@@ -4569,47 +5323,47 @@ namespace Amazon.SageMaker
         /// </para>
         ///  </important> </li> <li> 
         /// <para>
-        ///  <code>InputDataConfig</code> - Describes the input required by the training job and
-        /// the Amazon S3, EFS, or FSx location where it is stored.
+        ///  <c>InputDataConfig</c> - Describes the input required by the training job and the
+        /// Amazon S3, EFS, or FSx location where it is stored.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OutputDataConfig</code> - Identifies the Amazon S3 bucket where you want SageMaker
+        ///  <c>OutputDataConfig</c> - Identifies the Amazon S3 bucket where you want SageMaker
         /// to save the results of model training. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ResourceConfig</code> - Identifies the resources, ML compute instances, and
-        /// ML storage volumes to deploy for model training. In distributed training, you specify
-        /// more than one instance. 
+        ///  <c>ResourceConfig</c> - Identifies the resources, ML compute instances, and ML storage
+        /// volumes to deploy for model training. In distributed training, you specify more than
+        /// one instance. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EnableManagedSpotTraining</code> - Optimize the cost of training machine learning
+        ///  <c>EnableManagedSpotTraining</c> - Optimize the cost of training machine learning
         /// models by up to 80% by using Amazon EC2 Spot instances. For more information, see
         /// <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-managed-spot-training.html">Managed
         /// Spot Training</a>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RoleArn</code> - The Amazon Resource Name (ARN) that SageMaker assumes to perform
+        ///  <c>RoleArn</c> - The Amazon Resource Name (ARN) that SageMaker assumes to perform
         /// tasks on your behalf during model training. You must grant this role the necessary
         /// permissions so that SageMaker can successfully complete model training. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>StoppingCondition</code> - To help cap training costs, use <code>MaxRuntimeInSeconds</code>
-        /// to set a time limit for training. Use <code>MaxWaitTimeInSeconds</code> to specify
-        /// how long a managed spot training job has to complete. 
+        ///  <c>StoppingCondition</c> - To help cap training costs, use <c>MaxRuntimeInSeconds</c>
+        /// to set a time limit for training. Use <c>MaxWaitTimeInSeconds</c> to specify how long
+        /// a managed spot training job has to complete. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Environment</code> - The environment variables to set in the Docker container.
+        ///  <c>Environment</c> - The environment variables to set in the Docker container.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RetryStrategy</code> - The number of times to retry the job when the job fails
-        /// due to an <code>InternalServerError</code>.
+        ///  <c>RetryStrategy</c> - The number of times to retry the job when the job fails due
+        /// to an <c>InternalServerError</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -4645,6 +5399,213 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  CreateTrainingPlan
+
+
+        /// <summary>
+        /// Creates a new training plan in SageMaker to reserve compute capacity.
+        /// 
+        ///  
+        /// <para>
+        /// Amazon SageMaker Training Plan is a capability within SageMaker that allows customers
+        /// to reserve and manage GPU capacity for large-scale AI model training. It provides
+        /// a way to secure predictable access to computational resources within specific timelines
+        /// and budgets, without the need to manage underlying infrastructure. 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>How it works</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Plans can be created for specific resources such as SageMaker Training Jobs or SageMaker
+        /// HyperPod clusters, automatically provisioning resources, setting up infrastructure,
+        /// executing workloads, and handling infrastructure failures.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Plan creation workflow</b> 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Users search for available plan offerings based on their requirements (e.g., instance
+        /// type, count, start time, duration) using the <c> <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_SearchTrainingPlanOfferings.html">SearchTrainingPlanOfferings</a>
+        /// </c> API operation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// They create a plan that best matches their needs using the ID of the plan offering
+        /// they want to use. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// After successful upfront payment, the plan's status becomes <c>Scheduled</c>. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The plan can be used to:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Queue training jobs.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Allocate to an instance group of a SageMaker HyperPod cluster. 
+        /// </para>
+        ///  </li> </ul> </li> <li> 
+        /// <para>
+        /// When the plan start date arrives, it becomes <c>Active</c>. Based on available reserved
+        /// capacity:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Training jobs are launched.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Instance groups are provisioned.
+        /// </para>
+        ///  </li> </ul> </li> </ul> 
+        /// <para>
+        ///  <b>Plan composition</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// A plan can consist of one or more Reserved Capacities, each defined by a specific
+        /// instance type, quantity, Availability Zone, duration, and start and end times. For
+        /// more information about Reserved Capacity, see <c> <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ReservedCapacitySummary.html">ReservedCapacitySummary</a>
+        /// </c>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateTrainingPlan service method.</param>
+        /// 
+        /// <returns>The response from the CreateTrainingPlan service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceInUseException">
+        /// Resource being accessed is in use.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateTrainingPlan">REST API Reference for CreateTrainingPlan Operation</seealso>
+        public virtual CreateTrainingPlanResponse CreateTrainingPlan(CreateTrainingPlanRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateTrainingPlanRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateTrainingPlanResponseUnmarshaller.Instance;
+
+            return Invoke<CreateTrainingPlanResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates a new training plan in SageMaker to reserve compute capacity.
+        /// 
+        ///  
+        /// <para>
+        /// Amazon SageMaker Training Plan is a capability within SageMaker that allows customers
+        /// to reserve and manage GPU capacity for large-scale AI model training. It provides
+        /// a way to secure predictable access to computational resources within specific timelines
+        /// and budgets, without the need to manage underlying infrastructure. 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>How it works</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Plans can be created for specific resources such as SageMaker Training Jobs or SageMaker
+        /// HyperPod clusters, automatically provisioning resources, setting up infrastructure,
+        /// executing workloads, and handling infrastructure failures.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Plan creation workflow</b> 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Users search for available plan offerings based on their requirements (e.g., instance
+        /// type, count, start time, duration) using the <c> <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_SearchTrainingPlanOfferings.html">SearchTrainingPlanOfferings</a>
+        /// </c> API operation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// They create a plan that best matches their needs using the ID of the plan offering
+        /// they want to use. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// After successful upfront payment, the plan's status becomes <c>Scheduled</c>. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The plan can be used to:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Queue training jobs.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Allocate to an instance group of a SageMaker HyperPod cluster. 
+        /// </para>
+        ///  </li> </ul> </li> <li> 
+        /// <para>
+        /// When the plan start date arrives, it becomes <c>Active</c>. Based on available reserved
+        /// capacity:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Training jobs are launched.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Instance groups are provisioned.
+        /// </para>
+        ///  </li> </ul> </li> </ul> 
+        /// <para>
+        ///  <b>Plan composition</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// A plan can consist of one or more Reserved Capacities, each defined by a specific
+        /// instance type, quantity, Availability Zone, duration, and start and end times. For
+        /// more information about Reserved Capacity, see <c> <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ReservedCapacitySummary.html">ReservedCapacitySummary</a>
+        /// </c>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateTrainingPlan service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateTrainingPlan service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceInUseException">
+        /// Resource being accessed is in use.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateTrainingPlan">REST API Reference for CreateTrainingPlan Operation</seealso>
+        public virtual Task<CreateTrainingPlanResponse> CreateTrainingPlanAsync(CreateTrainingPlanRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateTrainingPlanRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateTrainingPlanResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateTrainingPlanResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  CreateTransformJob
 
 
@@ -4663,29 +5624,28 @@ namespace Amazon.SageMaker
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>TransformJobName</code> - Identifies the transform job. The name must be unique
-        /// within an Amazon Web Services Region in an Amazon Web Services account.
+        ///  <c>TransformJobName</c> - Identifies the transform job. The name must be unique within
+        /// an Amazon Web Services Region in an Amazon Web Services account.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ModelName</code> - Identifies the model to use. <code>ModelName</code> must
-        /// be the name of an existing Amazon SageMaker model in the same Amazon Web Services
-        /// Region and Amazon Web Services account. For information on creating a model, see <a
-        /// href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html">CreateModel</a>.
+        ///  <c>ModelName</c> - Identifies the model to use. <c>ModelName</c> must be the name
+        /// of an existing Amazon SageMaker model in the same Amazon Web Services Region and Amazon
+        /// Web Services account. For information on creating a model, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html">CreateModel</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TransformInput</code> - Describes the dataset to be transformed and the Amazon
-        /// S3 location where it is stored.
+        ///  <c>TransformInput</c> - Describes the dataset to be transformed and the Amazon S3
+        /// location where it is stored.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TransformOutput</code> - Identifies the Amazon S3 location where you want Amazon
+        ///  <c>TransformOutput</c> - Identifies the Amazon S3 location where you want Amazon
         /// SageMaker to save the results from the transform job.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TransformResources</code> - Identifies the ML compute instances for the transform
+        ///  <c>TransformResources</c> - Identifies the ML compute instances for the transform
         /// job.
         /// </para>
         ///  </li> </ul> 
@@ -4733,29 +5693,28 @@ namespace Amazon.SageMaker
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>TransformJobName</code> - Identifies the transform job. The name must be unique
-        /// within an Amazon Web Services Region in an Amazon Web Services account.
+        ///  <c>TransformJobName</c> - Identifies the transform job. The name must be unique within
+        /// an Amazon Web Services Region in an Amazon Web Services account.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ModelName</code> - Identifies the model to use. <code>ModelName</code> must
-        /// be the name of an existing Amazon SageMaker model in the same Amazon Web Services
-        /// Region and Amazon Web Services account. For information on creating a model, see <a
-        /// href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html">CreateModel</a>.
+        ///  <c>ModelName</c> - Identifies the model to use. <c>ModelName</c> must be the name
+        /// of an existing Amazon SageMaker model in the same Amazon Web Services Region and Amazon
+        /// Web Services account. For information on creating a model, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html">CreateModel</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TransformInput</code> - Describes the dataset to be transformed and the Amazon
-        /// S3 location where it is stored.
+        ///  <c>TransformInput</c> - Describes the dataset to be transformed and the Amazon S3
+        /// location where it is stored.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TransformOutput</code> - Identifies the Amazon S3 location where you want Amazon
+        ///  <c>TransformOutput</c> - Identifies the Amazon S3 location where you want Amazon
         /// SageMaker to save the results from the transform job.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TransformResources</code> - Identifies the ML compute instances for the transform
+        ///  <c>TransformResources</c> - Identifies the ML compute instances for the transform
         /// job.
         /// </para>
         ///  </li> </ul> 
@@ -4982,11 +5941,11 @@ namespace Amazon.SageMaker
         /// <summary>
         /// Creates a user profile. A user profile represents a single user within a domain, and
         /// is the main way to reference a "person" for the purposes of sharing, reporting, and
-        /// other user-oriented features. This entity is created when a user onboards to Amazon
-        /// SageMaker Studio. If an administrator invites a person by email or imports them from
-        /// IAM Identity Center, a user profile is automatically created. A user profile is the
-        /// primary holder of settings for an individual user and has a reference to the user's
-        /// private Amazon Elastic File System (EFS) home directory.
+        /// other user-oriented features. This entity is created when a user onboards to a domain.
+        /// If an administrator invites a person by email or imports them from IAM Identity Center,
+        /// a user profile is automatically created. A user profile is the primary holder of settings
+        /// for an individual user and has a reference to the user's private Amazon Elastic File
+        /// System home directory.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateUserProfile service method.</param>
         /// 
@@ -5012,11 +5971,11 @@ namespace Amazon.SageMaker
         /// <summary>
         /// Creates a user profile. A user profile represents a single user within a domain, and
         /// is the main way to reference a "person" for the purposes of sharing, reporting, and
-        /// other user-oriented features. This entity is created when a user onboards to Amazon
-        /// SageMaker Studio. If an administrator invites a person by email or imports them from
-        /// IAM Identity Center, a user profile is automatically created. A user profile is the
-        /// primary holder of settings for an individual user and has a reference to the user's
-        /// private Amazon Elastic File System (EFS) home directory.
+        /// other user-oriented features. This entity is created when a user onboards to a domain.
+        /// If an administrator invites a person by email or imports them from IAM Identity Center,
+        /// a user profile is automatically created. A user profile is the primary holder of settings
+        /// for an individual user and has a reference to the user's private Amazon Elastic File
+        /// System home directory.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateUserProfile service method.</param>
         /// <param name="cancellationToken">
@@ -5056,20 +6015,20 @@ namespace Amazon.SageMaker
         /// <para>
         /// If you want to create a new workforce in an Amazon Web Services Region where a workforce
         /// already exists, use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeleteWorkforce.html">DeleteWorkforce</a>
-        /// API operation to delete the existing workforce and then use <code>CreateWorkforce</code>
+        /// API operation to delete the existing workforce and then use <c>CreateWorkforce</c>
         /// to create a new workforce.
         /// </para>
         ///  
         /// <para>
         /// To create a private workforce using Amazon Cognito, you must specify a Cognito user
-        /// pool in <code>CognitoConfig</code>. You can also create an Amazon Cognito workforce
-        /// using the Amazon SageMaker console. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html">
+        /// pool in <c>CognitoConfig</c>. You can also create an Amazon Cognito workforce using
+        /// the Amazon SageMaker console. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html">
         /// Create a Private Workforce (Amazon Cognito)</a>.
         /// </para>
         ///  
         /// <para>
         /// To create a private workforce using your own OIDC Identity Provider (IdP), specify
-        /// your IdP configuration in <code>OidcConfig</code>. Your OIDC IdP must support <i>groups</i>
+        /// your IdP configuration in <c>OidcConfig</c>. Your OIDC IdP must support <i>groups</i>
         /// because groups are used by Ground Truth and Amazon A2I to create work teams. For more
         /// information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private-oidc.html">
         /// Create a Private Workforce (OIDC IdP)</a>.
@@ -5099,20 +6058,20 @@ namespace Amazon.SageMaker
         /// <para>
         /// If you want to create a new workforce in an Amazon Web Services Region where a workforce
         /// already exists, use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeleteWorkforce.html">DeleteWorkforce</a>
-        /// API operation to delete the existing workforce and then use <code>CreateWorkforce</code>
+        /// API operation to delete the existing workforce and then use <c>CreateWorkforce</c>
         /// to create a new workforce.
         /// </para>
         ///  
         /// <para>
         /// To create a private workforce using Amazon Cognito, you must specify a Cognito user
-        /// pool in <code>CognitoConfig</code>. You can also create an Amazon Cognito workforce
-        /// using the Amazon SageMaker console. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html">
+        /// pool in <c>CognitoConfig</c>. You can also create an Amazon Cognito workforce using
+        /// the Amazon SageMaker console. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html">
         /// Create a Private Workforce (Amazon Cognito)</a>.
         /// </para>
         ///  
         /// <para>
         /// To create a private workforce using your own OIDC Identity Provider (IdP), specify
-        /// your IdP configuration in <code>OidcConfig</code>. Your OIDC IdP must support <i>groups</i>
+        /// your IdP configuration in <c>OidcConfig</c>. Your OIDC IdP must support <i>groups</i>
         /// because groups are used by Ground Truth and Amazon A2I to create work teams. For more
         /// information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private-oidc.html">
         /// Create a Private Workforce (OIDC IdP)</a>.
@@ -5261,6 +6220,10 @@ namespace Amazon.SageMaker
         /// <param name="request">Container for the necessary parameters to execute the DeleteAlgorithm service method.</param>
         /// 
         /// <returns>The response from the DeleteAlgorithm service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteAlgorithm">REST API Reference for DeleteAlgorithm Operation</seealso>
         public virtual DeleteAlgorithmResponse DeleteAlgorithm(DeleteAlgorithmRequest request)
         {
@@ -5281,6 +6244,10 @@ namespace Amazon.SageMaker
         /// </param>
         /// 
         /// <returns>The response from the DeleteAlgorithm service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteAlgorithm">REST API Reference for DeleteAlgorithm Operation</seealso>
         public virtual Task<DeleteAlgorithmResponse> DeleteAlgorithmAsync(DeleteAlgorithmRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -5397,8 +6364,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Deletes an artifact. Either <code>ArtifactArn</code> or <code>Source</code> must be
-        /// specified.
+        /// Deletes an artifact. Either <c>ArtifactArn</c> or <c>Source</c> must be specified.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteArtifact service method.</param>
         /// 
@@ -5418,8 +6384,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Deletes an artifact. Either <code>ArtifactArn</code> or <code>Source</code> must be
-        /// specified.
+        /// Deletes an artifact. Either <c>ArtifactArn</c> or <c>Source</c> must be specified.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteArtifact service method.</param>
         /// <param name="cancellationToken">
@@ -5489,6 +6454,108 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  DeleteCluster
+
+
+        /// <summary>
+        /// Delete a SageMaker HyperPod cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteCluster service method.</param>
+        /// 
+        /// <returns>The response from the DeleteCluster service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteCluster">REST API Reference for DeleteCluster Operation</seealso>
+        public virtual DeleteClusterResponse DeleteCluster(DeleteClusterRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteClusterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteClusterResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteClusterResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Delete a SageMaker HyperPod cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteCluster service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteCluster service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteCluster">REST API Reference for DeleteCluster Operation</seealso>
+        public virtual Task<DeleteClusterResponse> DeleteClusterAsync(DeleteClusterRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteClusterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteClusterResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteClusterResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DeleteClusterSchedulerConfig
+
+
+        /// <summary>
+        /// Deletes the cluster policy of the cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteClusterSchedulerConfig service method.</param>
+        /// 
+        /// <returns>The response from the DeleteClusterSchedulerConfig service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteClusterSchedulerConfig">REST API Reference for DeleteClusterSchedulerConfig Operation</seealso>
+        public virtual DeleteClusterSchedulerConfigResponse DeleteClusterSchedulerConfig(DeleteClusterSchedulerConfigRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteClusterSchedulerConfigRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteClusterSchedulerConfigResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteClusterSchedulerConfigResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes the cluster policy of the cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteClusterSchedulerConfig service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteClusterSchedulerConfig service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteClusterSchedulerConfig">REST API Reference for DeleteClusterSchedulerConfig Operation</seealso>
+        public virtual Task<DeleteClusterSchedulerConfigResponse> DeleteClusterSchedulerConfigAsync(DeleteClusterSchedulerConfigRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteClusterSchedulerConfigRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteClusterSchedulerConfigResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteClusterSchedulerConfigResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  DeleteCodeRepository
 
 
@@ -5526,6 +6593,120 @@ namespace Amazon.SageMaker
             options.ResponseUnmarshaller = DeleteCodeRepositoryResponseUnmarshaller.Instance;
             
             return InvokeAsync<DeleteCodeRepositoryResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DeleteCompilationJob
+
+
+        /// <summary>
+        /// Deletes the specified compilation job. This action deletes only the compilation job
+        /// resource in Amazon SageMaker AI. It doesn't delete other resources that are related
+        /// to that job, such as the model artifacts that the job creates, the compilation logs
+        /// in CloudWatch, the compiled model, or the IAM role.
+        /// 
+        ///  
+        /// <para>
+        /// You can delete a compilation job only if its current status is <c>COMPLETED</c>, <c>FAILED</c>,
+        /// or <c>STOPPED</c>. If the job status is <c>STARTING</c> or <c>INPROGRESS</c>, stop
+        /// the job, and then delete it after its status becomes <c>STOPPED</c>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteCompilationJob service method.</param>
+        /// 
+        /// <returns>The response from the DeleteCompilationJob service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteCompilationJob">REST API Reference for DeleteCompilationJob Operation</seealso>
+        public virtual DeleteCompilationJobResponse DeleteCompilationJob(DeleteCompilationJobRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteCompilationJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteCompilationJobResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteCompilationJobResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes the specified compilation job. This action deletes only the compilation job
+        /// resource in Amazon SageMaker AI. It doesn't delete other resources that are related
+        /// to that job, such as the model artifacts that the job creates, the compilation logs
+        /// in CloudWatch, the compiled model, or the IAM role.
+        /// 
+        ///  
+        /// <para>
+        /// You can delete a compilation job only if its current status is <c>COMPLETED</c>, <c>FAILED</c>,
+        /// or <c>STOPPED</c>. If the job status is <c>STARTING</c> or <c>INPROGRESS</c>, stop
+        /// the job, and then delete it after its status becomes <c>STOPPED</c>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteCompilationJob service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteCompilationJob service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteCompilationJob">REST API Reference for DeleteCompilationJob Operation</seealso>
+        public virtual Task<DeleteCompilationJobResponse> DeleteCompilationJobAsync(DeleteCompilationJobRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteCompilationJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteCompilationJobResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteCompilationJobResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DeleteComputeQuota
+
+
+        /// <summary>
+        /// Deletes the compute allocation from the cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteComputeQuota service method.</param>
+        /// 
+        /// <returns>The response from the DeleteComputeQuota service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteComputeQuota">REST API Reference for DeleteComputeQuota Operation</seealso>
+        public virtual DeleteComputeQuotaResponse DeleteComputeQuota(DeleteComputeQuotaRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteComputeQuotaRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteComputeQuotaResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteComputeQuotaResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes the compute allocation from the cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteComputeQuota service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteComputeQuota service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteComputeQuota">REST API Reference for DeleteComputeQuota Operation</seealso>
+        public virtual Task<DeleteComputeQuotaResponse> DeleteComputeQuotaAsync(DeleteComputeQuotaRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteComputeQuotaRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteComputeQuotaResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteComputeQuotaResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -5844,8 +7025,8 @@ namespace Amazon.SageMaker
         /// When you delete your endpoint, SageMaker asynchronously deletes associated endpoint
         /// resources such as KMS key grants. You might still see these resources in your account
         /// for a few minutes after deleting your endpoint. Do not delete or revoke the permissions
-        /// for your <code> <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html#sagemaker-CreateModel-request-ExecutionRoleArn">ExecutionRoleArn</a>
-        /// </code>, otherwise SageMaker cannot delete these resources.
+        /// for your <c> <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html#sagemaker-CreateModel-request-ExecutionRoleArn">ExecutionRoleArn</a>
+        /// </c>, otherwise SageMaker cannot delete these resources.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteEndpoint service method.</param>
@@ -5877,8 +7058,8 @@ namespace Amazon.SageMaker
         /// When you delete your endpoint, SageMaker asynchronously deletes associated endpoint
         /// resources such as KMS key grants. You might still see these resources in your account
         /// for a few minutes after deleting your endpoint. Do not delete or revoke the permissions
-        /// for your <code> <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html#sagemaker-CreateModel-request-ExecutionRoleArn">ExecutionRoleArn</a>
-        /// </code>, otherwise SageMaker cannot delete these resources.
+        /// for your <c> <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html#sagemaker-CreateModel-request-ExecutionRoleArn">ExecutionRoleArn</a>
+        /// </c>, otherwise SageMaker cannot delete these resources.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteEndpoint service method.</param>
@@ -5903,18 +7084,17 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Deletes an endpoint configuration. The <code>DeleteEndpointConfig</code> API deletes
-        /// only the specified configuration. It does not delete endpoints created using the configuration.
+        /// Deletes an endpoint configuration. The <c>DeleteEndpointConfig</c> API deletes only
+        /// the specified configuration. It does not delete endpoints created using the configuration.
         /// 
         /// 
         ///  
         /// <para>
-        /// You must not delete an <code>EndpointConfig</code> in use by an endpoint that is live
-        /// or while the <code>UpdateEndpoint</code> or <code>CreateEndpoint</code> operations
-        /// are being performed on the endpoint. If you delete the <code>EndpointConfig</code>
-        /// of an endpoint that is active or being created or updated you may lose visibility
-        /// into the instance type the endpoint is using. The endpoint must be deleted in order
-        /// to stop incurring charges.
+        /// You must not delete an <c>EndpointConfig</c> in use by an endpoint that is live or
+        /// while the <c>UpdateEndpoint</c> or <c>CreateEndpoint</c> operations are being performed
+        /// on the endpoint. If you delete the <c>EndpointConfig</c> of an endpoint that is active
+        /// or being created or updated you may lose visibility into the instance type the endpoint
+        /// is using. The endpoint must be deleted in order to stop incurring charges.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteEndpointConfig service method.</param>
@@ -5932,18 +7112,17 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Deletes an endpoint configuration. The <code>DeleteEndpointConfig</code> API deletes
-        /// only the specified configuration. It does not delete endpoints created using the configuration.
+        /// Deletes an endpoint configuration. The <c>DeleteEndpointConfig</c> API deletes only
+        /// the specified configuration. It does not delete endpoints created using the configuration.
         /// 
         /// 
         ///  
         /// <para>
-        /// You must not delete an <code>EndpointConfig</code> in use by an endpoint that is live
-        /// or while the <code>UpdateEndpoint</code> or <code>CreateEndpoint</code> operations
-        /// are being performed on the endpoint. If you delete the <code>EndpointConfig</code>
-        /// of an endpoint that is active or being created or updated you may lose visibility
-        /// into the instance type the endpoint is using. The endpoint must be deleted in order
-        /// to stop incurring charges.
+        /// You must not delete an <c>EndpointConfig</c> in use by an endpoint that is live or
+        /// while the <c>UpdateEndpoint</c> or <c>CreateEndpoint</c> operations are being performed
+        /// on the endpoint. If you delete the <c>EndpointConfig</c> of an endpoint that is active
+        /// or being created or updated you may lose visibility into the instance type the endpoint
+        /// is using. The endpoint must be deleted in order to stop incurring charges.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteEndpointConfig service method.</param>
@@ -6019,15 +7198,20 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Delete the <code>FeatureGroup</code> and any data that was written to the <code>OnlineStore</code>
-        /// of the <code>FeatureGroup</code>. Data cannot be accessed from the <code>OnlineStore</code>
-        /// immediately after <code>DeleteFeatureGroup</code> is called. 
+        /// Delete the <c>FeatureGroup</c> and any data that was written to the <c>OnlineStore</c>
+        /// of the <c>FeatureGroup</c>. Data cannot be accessed from the <c>OnlineStore</c> immediately
+        /// after <c>DeleteFeatureGroup</c> is called. 
         /// 
         ///  
         /// <para>
-        /// Data written into the <code>OfflineStore</code> will not be deleted. The Amazon Web
-        /// Services Glue database and tables that are automatically created for your <code>OfflineStore</code>
+        /// Data written into the <c>OfflineStore</c> will not be deleted. The Amazon Web Services
+        /// Glue database and tables that are automatically created for your <c>OfflineStore</c>
         /// are not deleted. 
+        /// </para>
+        ///  
+        /// <para>
+        /// Note that it can take approximately 10-15 minutes to delete an <c>OnlineStore</c>
+        /// <c>FeatureGroup</c> with the <c>InMemory</c> <c>StorageType</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteFeatureGroup service method.</param>
@@ -6048,15 +7232,20 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Delete the <code>FeatureGroup</code> and any data that was written to the <code>OnlineStore</code>
-        /// of the <code>FeatureGroup</code>. Data cannot be accessed from the <code>OnlineStore</code>
-        /// immediately after <code>DeleteFeatureGroup</code> is called. 
+        /// Delete the <c>FeatureGroup</c> and any data that was written to the <c>OnlineStore</c>
+        /// of the <c>FeatureGroup</c>. Data cannot be accessed from the <c>OnlineStore</c> immediately
+        /// after <c>DeleteFeatureGroup</c> is called. 
         /// 
         ///  
         /// <para>
-        /// Data written into the <code>OfflineStore</code> will not be deleted. The Amazon Web
-        /// Services Glue database and tables that are automatically created for your <code>OfflineStore</code>
+        /// Data written into the <c>OfflineStore</c> will not be deleted. The Amazon Web Services
+        /// Glue database and tables that are automatically created for your <c>OfflineStore</c>
         /// are not deleted. 
+        /// </para>
+        ///  
+        /// <para>
+        /// Note that it can take approximately 10-15 minutes to delete an <c>OnlineStore</c>
+        /// <c>FeatureGroup</c> with the <c>InMemory</c> <c>StorageType</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteFeatureGroup service method.</param>
@@ -6138,12 +7327,6 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Delete a hub.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// Hub APIs are only callable through SageMaker Studio.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteHub service method.</param>
         /// 
@@ -6167,12 +7350,6 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Delete a hub.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// Hub APIs are only callable through SageMaker Studio.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteHub service method.</param>
         /// <param name="cancellationToken">
@@ -6203,12 +7380,6 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Delete the contents of a hub.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// Hub APIs are only callable through SageMaker Studio.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteHubContent service method.</param>
         /// 
@@ -6232,12 +7403,6 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Delete the contents of a hub.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// Hub APIs are only callable through SageMaker Studio.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteHubContent service method.</param>
         /// <param name="cancellationToken">
@@ -6263,6 +7428,53 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  DeleteHubContentReference
+
+
+        /// <summary>
+        /// Delete a hub content reference in order to remove a model from a private hub.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteHubContentReference service method.</param>
+        /// 
+        /// <returns>The response from the DeleteHubContentReference service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteHubContentReference">REST API Reference for DeleteHubContentReference Operation</seealso>
+        public virtual DeleteHubContentReferenceResponse DeleteHubContentReference(DeleteHubContentReferenceRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteHubContentReferenceRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteHubContentReferenceResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteHubContentReferenceResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Delete a hub content reference in order to remove a model from a private hub.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteHubContentReference service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteHubContentReference service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteHubContentReference">REST API Reference for DeleteHubContentReference Operation</seealso>
+        public virtual Task<DeleteHubContentReferenceResponse> DeleteHubContentReferenceAsync(DeleteHubContentReferenceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteHubContentReferenceRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteHubContentReferenceResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteHubContentReferenceResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  DeleteHumanTaskUi
 
 
@@ -6273,7 +7485,7 @@ namespace Amazon.SageMaker
         /// <para>
         ///  To see a list of human task user interfaces (work task templates) in your account,
         /// use <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ListHumanTaskUis.html">ListHumanTaskUis</a>.
-        /// When you delete a worker task template, it no longer appears when you call <code>ListHumanTaskUis</code>.
+        /// When you delete a worker task template, it no longer appears when you call <c>ListHumanTaskUis</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteHumanTaskUi service method.</param>
@@ -6300,7 +7512,7 @@ namespace Amazon.SageMaker
         /// <para>
         ///  To see a list of human task user interfaces (work task templates) in your account,
         /// use <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ListHumanTaskUis.html">ListHumanTaskUis</a>.
-        /// When you delete a worker task template, it no longer appears when you call <code>ListHumanTaskUis</code>.
+        /// When you delete a worker task template, it no longer appears when you call <c>ListHumanTaskUis</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteHumanTaskUi service method.</param>
@@ -6324,11 +7536,58 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  DeleteHyperParameterTuningJob
+
+
+        /// <summary>
+        /// Deletes a hyperparameter tuning job. The <c>DeleteHyperParameterTuningJob</c> API
+        /// deletes only the tuning job entry that was created in SageMaker when you called the
+        /// <c>CreateHyperParameterTuningJob</c> API. It does not delete training jobs, artifacts,
+        /// or the IAM role that you specified when creating the model.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteHyperParameterTuningJob service method.</param>
+        /// 
+        /// <returns>The response from the DeleteHyperParameterTuningJob service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteHyperParameterTuningJob">REST API Reference for DeleteHyperParameterTuningJob Operation</seealso>
+        public virtual DeleteHyperParameterTuningJobResponse DeleteHyperParameterTuningJob(DeleteHyperParameterTuningJobRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteHyperParameterTuningJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteHyperParameterTuningJobResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteHyperParameterTuningJobResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes a hyperparameter tuning job. The <c>DeleteHyperParameterTuningJob</c> API
+        /// deletes only the tuning job entry that was created in SageMaker when you called the
+        /// <c>CreateHyperParameterTuningJob</c> API. It does not delete training jobs, artifacts,
+        /// or the IAM role that you specified when creating the model.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteHyperParameterTuningJob service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteHyperParameterTuningJob service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteHyperParameterTuningJob">REST API Reference for DeleteHyperParameterTuningJob Operation</seealso>
+        public virtual Task<DeleteHyperParameterTuningJobResponse> DeleteHyperParameterTuningJobAsync(DeleteHyperParameterTuningJobRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteHyperParameterTuningJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteHyperParameterTuningJobResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteHyperParameterTuningJobResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  DeleteImage
 
 
         /// <summary>
-        /// Deletes a SageMaker image and all versions of the image. The container images aren't
+        /// Deletes a SageMaker AI image and all versions of the image. The container images aren't
         /// deleted.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteImage service method.</param>
@@ -6352,7 +7611,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Deletes a SageMaker image and all versions of the image. The container images aren't
+        /// Deletes a SageMaker AI image and all versions of the image. The container images aren't
         /// deleted.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteImage service method.</param>
@@ -6383,7 +7642,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Deletes a version of a SageMaker image. The container image the version represents
+        /// Deletes a version of a SageMaker AI image. The container image the version represents
         /// isn't deleted.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteImageVersion service method.</param>
@@ -6407,7 +7666,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Deletes a version of a SageMaker image. The container image the version represents
+        /// Deletes a version of a SageMaker AI image. The container image the version represents
         /// isn't deleted.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteImageVersion service method.</param>
@@ -6434,6 +7693,47 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  DeleteInferenceComponent
+
+
+        /// <summary>
+        /// Deletes an inference component.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteInferenceComponent service method.</param>
+        /// 
+        /// <returns>The response from the DeleteInferenceComponent service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteInferenceComponent">REST API Reference for DeleteInferenceComponent Operation</seealso>
+        public virtual DeleteInferenceComponentResponse DeleteInferenceComponent(DeleteInferenceComponentRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteInferenceComponentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteInferenceComponentResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteInferenceComponentResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes an inference component.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteInferenceComponent service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteInferenceComponent service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteInferenceComponent">REST API Reference for DeleteInferenceComponent Operation</seealso>
+        public virtual Task<DeleteInferenceComponentResponse> DeleteInferenceComponentAsync(DeleteInferenceComponentRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteInferenceComponentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteInferenceComponentResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteInferenceComponentResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  DeleteInferenceExperiment
 
 
@@ -6451,8 +7751,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the DeleteInferenceExperiment service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -6485,8 +7785,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the DeleteInferenceExperiment service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -6503,14 +7803,63 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  DeleteMlflowTrackingServer
+
+
+        /// <summary>
+        /// Deletes an MLflow Tracking Server. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/mlflow-cleanup.html.html">Clean
+        /// up MLflow resources</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteMlflowTrackingServer service method.</param>
+        /// 
+        /// <returns>The response from the DeleteMlflowTrackingServer service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteMlflowTrackingServer">REST API Reference for DeleteMlflowTrackingServer Operation</seealso>
+        public virtual DeleteMlflowTrackingServerResponse DeleteMlflowTrackingServer(DeleteMlflowTrackingServerRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteMlflowTrackingServerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteMlflowTrackingServerResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteMlflowTrackingServerResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes an MLflow Tracking Server. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/mlflow-cleanup.html.html">Clean
+        /// up MLflow resources</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteMlflowTrackingServer service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteMlflowTrackingServer service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteMlflowTrackingServer">REST API Reference for DeleteMlflowTrackingServer Operation</seealso>
+        public virtual Task<DeleteMlflowTrackingServerResponse> DeleteMlflowTrackingServerAsync(DeleteMlflowTrackingServerRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteMlflowTrackingServerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteMlflowTrackingServerResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteMlflowTrackingServerResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  DeleteModel
 
 
         /// <summary>
-        /// Deletes a model. The <code>DeleteModel</code> API deletes only the model entry that
-        /// was created in SageMaker when you called the <code>CreateModel</code> API. It does
-        /// not delete model artifacts, inference code, or the IAM role that you specified when
-        /// creating the model.
+        /// Deletes a model. The <c>DeleteModel</c> API deletes only the model entry that was
+        /// created in SageMaker when you called the <c>CreateModel</c> API. It does not delete
+        /// model artifacts, inference code, or the IAM role that you specified when creating
+        /// the model.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteModel service method.</param>
         /// 
@@ -6527,10 +7876,10 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Deletes a model. The <code>DeleteModel</code> API deletes only the model entry that
-        /// was created in SageMaker when you called the <code>CreateModel</code> API. It does
-        /// not delete model artifacts, inference code, or the IAM role that you specified when
-        /// creating the model.
+        /// Deletes a model. The <c>DeleteModel</c> API deletes only the model entry that was
+        /// created in SageMaker when you called the <c>CreateModel</c> API. It does not delete
+        /// model artifacts, inference code, or the IAM role that you specified when creating
+        /// the model.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteModel service method.</param>
         /// <param name="cancellationToken">
@@ -6554,7 +7903,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Deletes an Amazon SageMaker model bias job definition.
+        /// Deletes an Amazon SageMaker AI model bias job definition.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteModelBiasJobDefinition service method.</param>
         /// 
@@ -6574,7 +7923,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Deletes an Amazon SageMaker model bias job definition.
+        /// Deletes an Amazon SageMaker AI model bias job definition.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteModelBiasJobDefinition service method.</param>
         /// <param name="cancellationToken">
@@ -6607,8 +7956,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the DeleteModelCard service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -6634,8 +7983,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the DeleteModelCard service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -6656,7 +8005,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Deletes an Amazon SageMaker model explainability job definition.
+        /// Deletes an Amazon SageMaker AI model explainability job definition.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteModelExplainabilityJobDefinition service method.</param>
         /// 
@@ -6676,7 +8025,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Deletes an Amazon SageMaker model explainability job definition.
+        /// Deletes an Amazon SageMaker AI model explainability job definition.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteModelExplainabilityJobDefinition service method.</param>
         /// <param name="cancellationToken">
@@ -6716,8 +8065,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the DeleteModelPackage service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelPackage">REST API Reference for DeleteModelPackage Operation</seealso>
         public virtual DeleteModelPackageResponse DeleteModelPackage(DeleteModelPackageRequest request)
@@ -6747,8 +8096,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the DeleteModelPackage service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelPackage">REST API Reference for DeleteModelPackage Operation</seealso>
         public virtual Task<DeleteModelPackageResponse> DeleteModelPackageAsync(DeleteModelPackageRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -6772,8 +8121,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the DeleteModelPackageGroup service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelPackageGroup">REST API Reference for DeleteModelPackageGroup Operation</seealso>
         public virtual DeleteModelPackageGroupResponse DeleteModelPackageGroup(DeleteModelPackageGroupRequest request)
@@ -6796,8 +8145,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the DeleteModelPackageGroup service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelPackageGroup">REST API Reference for DeleteModelPackageGroup Operation</seealso>
         public virtual Task<DeleteModelPackageGroupResponse> DeleteModelPackageGroupAsync(DeleteModelPackageGroupRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -6952,12 +8301,12 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Deletes an SageMaker notebook instance. Before you can delete a notebook instance,
-        /// you must call the <code>StopNotebookInstance</code> API. 
+        /// Deletes an SageMaker AI notebook instance. Before you can delete a notebook instance,
+        /// you must call the <c>StopNotebookInstance</c> API. 
         /// 
         ///  <important> 
         /// <para>
-        /// When you delete a notebook instance, you lose all of your data. SageMaker removes
+        /// When you delete a notebook instance, you lose all of your data. SageMaker AI removes
         /// the ML compute instance, and deletes the ML storage volume and the network interface
         /// associated with the notebook instance. 
         /// </para>
@@ -6978,12 +8327,12 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Deletes an SageMaker notebook instance. Before you can delete a notebook instance,
-        /// you must call the <code>StopNotebookInstance</code> API. 
+        /// Deletes an SageMaker AI notebook instance. Before you can delete a notebook instance,
+        /// you must call the <c>StopNotebookInstance</c> API. 
         /// 
         ///  <important> 
         /// <para>
-        /// When you delete a notebook instance, you lose all of your data. SageMaker removes
+        /// When you delete a notebook instance, you lose all of your data. SageMaker AI removes
         /// the ML compute instance, and deletes the ML storage volume and the network interface
         /// associated with the notebook instance. 
         /// </para>
@@ -7048,17 +8397,123 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  DeleteOptimizationJob
+
+
+        /// <summary>
+        /// Deletes an optimization job.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteOptimizationJob service method.</param>
+        /// 
+        /// <returns>The response from the DeleteOptimizationJob service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteOptimizationJob">REST API Reference for DeleteOptimizationJob Operation</seealso>
+        public virtual DeleteOptimizationJobResponse DeleteOptimizationJob(DeleteOptimizationJobRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteOptimizationJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteOptimizationJobResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteOptimizationJobResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes an optimization job.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteOptimizationJob service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteOptimizationJob service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteOptimizationJob">REST API Reference for DeleteOptimizationJob Operation</seealso>
+        public virtual Task<DeleteOptimizationJobResponse> DeleteOptimizationJobAsync(DeleteOptimizationJobRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteOptimizationJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteOptimizationJobResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteOptimizationJobResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DeletePartnerApp
+
+
+        /// <summary>
+        /// Deletes a SageMaker Partner AI App.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeletePartnerApp service method.</param>
+        /// 
+        /// <returns>The response from the DeletePartnerApp service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeletePartnerApp">REST API Reference for DeletePartnerApp Operation</seealso>
+        public virtual DeletePartnerAppResponse DeletePartnerApp(DeletePartnerAppRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeletePartnerAppRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeletePartnerAppResponseUnmarshaller.Instance;
+
+            return Invoke<DeletePartnerAppResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes a SageMaker Partner AI App.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeletePartnerApp service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeletePartnerApp service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeletePartnerApp">REST API Reference for DeletePartnerApp Operation</seealso>
+        public virtual Task<DeletePartnerAppResponse> DeletePartnerAppAsync(DeletePartnerAppRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeletePartnerAppRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeletePartnerAppResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeletePartnerAppResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  DeletePipeline
 
 
         /// <summary>
         /// Deletes a pipeline if there are no running instances of the pipeline. To delete a
-        /// pipeline, you must stop all running instances of the pipeline using the <code>StopPipelineExecution</code>
+        /// pipeline, you must stop all running instances of the pipeline using the <c>StopPipelineExecution</c>
         /// API. When you delete a pipeline, all instances of the pipeline are deleted.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeletePipeline service method.</param>
         /// 
         /// <returns>The response from the DeletePipeline service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
         /// </exception>
@@ -7075,7 +8530,7 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Deletes a pipeline if there are no running instances of the pipeline. To delete a
-        /// pipeline, you must stop all running instances of the pipeline using the <code>StopPipelineExecution</code>
+        /// pipeline, you must stop all running instances of the pipeline using the <c>StopPipelineExecution</c>
         /// API. When you delete a pipeline, all instances of the pipeline are deleted.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeletePipeline service method.</param>
@@ -7084,6 +8539,10 @@ namespace Amazon.SageMaker
         /// </param>
         /// 
         /// <returns>The response from the DeletePipeline service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
         /// </exception>
@@ -7109,8 +8568,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the DeleteProject service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteProject">REST API Reference for DeleteProject Operation</seealso>
         public virtual DeleteProjectResponse DeleteProject(DeleteProjectRequest request)
@@ -7133,8 +8592,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the DeleteProject service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteProject">REST API Reference for DeleteProject Operation</seealso>
         public virtual Task<DeleteProjectResponse> DeleteProjectAsync(DeleteProjectRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -7205,9 +8664,10 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Deletes the Studio Lifecycle Configuration. In order to delete the Lifecycle Configuration,
-        /// there must be no running apps using the Lifecycle Configuration. You must also remove
-        /// the Lifecycle Configuration from UserSettings in all Domains and UserProfiles.
+        /// Deletes the Amazon SageMaker AI Studio Lifecycle Configuration. In order to delete
+        /// the Lifecycle Configuration, there must be no running apps using the Lifecycle Configuration.
+        /// You must also remove the Lifecycle Configuration from UserSettings in all Domains
+        /// and UserProfiles.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteStudioLifecycleConfig service method.</param>
         /// 
@@ -7230,9 +8690,10 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Deletes the Studio Lifecycle Configuration. In order to delete the Lifecycle Configuration,
-        /// there must be no running apps using the Lifecycle Configuration. You must also remove
-        /// the Lifecycle Configuration from UserSettings in all Domains and UserProfiles.
+        /// Deletes the Amazon SageMaker AI Studio Lifecycle Configuration. In order to delete
+        /// the Lifecycle Configuration, there must be no running apps using the Lifecycle Configuration.
+        /// You must also remove the Lifecycle Configuration from UserSettings in all Domains
+        /// and UserProfiles.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteStudioLifecycleConfig service method.</param>
         /// <param name="cancellationToken">
@@ -7266,7 +8727,7 @@ namespace Amazon.SageMaker
         /// 
         ///  
         /// <para>
-        /// To list a resource's tags, use the <code>ListTags</code> API. 
+        /// To list a resource's tags, use the <c>ListTags</c> API. 
         /// </para>
         ///  <note> 
         /// <para>
@@ -7276,9 +8737,9 @@ namespace Amazon.SageMaker
         /// </para>
         ///  </note> <note> 
         /// <para>
-        /// When you call this API to delete tags from a SageMaker Studio Domain or User Profile,
-        /// the deleted tags are not removed from Apps that the SageMaker Studio Domain or User
-        /// Profile launched before you called this API.
+        /// When you call this API to delete tags from a SageMaker Domain or User Profile, the
+        /// deleted tags are not removed from Apps that the SageMaker Domain or User Profile launched
+        /// before you called this API.
         /// </para>
         ///  </note>
         /// </summary>
@@ -7301,7 +8762,7 @@ namespace Amazon.SageMaker
         /// 
         ///  
         /// <para>
-        /// To list a resource's tags, use the <code>ListTags</code> API. 
+        /// To list a resource's tags, use the <c>ListTags</c> API. 
         /// </para>
         ///  <note> 
         /// <para>
@@ -7311,9 +8772,9 @@ namespace Amazon.SageMaker
         /// </para>
         ///  </note> <note> 
         /// <para>
-        /// When you call this API to delete tags from a SageMaker Studio Domain or User Profile,
-        /// the deleted tags are not removed from Apps that the SageMaker Studio Domain or User
-        /// Profile launched before you called this API.
+        /// When you call this API to delete tags from a SageMaker Domain or User Profile, the
+        /// deleted tags are not removed from Apps that the SageMaker Domain or User Profile launched
+        /// before you called this API.
         /// </para>
         ///  </note>
         /// </summary>
@@ -7511,7 +8972,7 @@ namespace Amazon.SageMaker
         /// <para>
         /// If a private workforce contains one or more work teams, you must use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeleteWorkteam.html">DeleteWorkteam</a>
         /// operation to delete all work teams before you delete the workforce. If you try to
-        /// delete a workforce that contains one or more work teams, you will recieve a <code>ResourceInUse</code>
+        /// delete a workforce that contains one or more work teams, you will receive a <c>ResourceInUse</c>
         /// error.
         /// </para>
         ///  </important>
@@ -7544,7 +9005,7 @@ namespace Amazon.SageMaker
         /// <para>
         /// If a private workforce contains one or more work teams, you must use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeleteWorkteam.html">DeleteWorkteam</a>
         /// operation to delete all work teams before you delete the workforce. If you try to
-        /// delete a workforce that contains one or more work teams, you will recieve a <code>ResourceInUse</code>
+        /// delete a workforce that contains one or more work teams, you will receive a <c>ResourceInUse</c>
         /// error.
         /// </para>
         ///  </important>
@@ -7897,7 +9358,7 @@ namespace Amazon.SageMaker
         ///  <note> 
         /// <para>
         /// AutoML jobs created by calling <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html">CreateAutoMLJobV2</a>
-        /// cannot be described by <code>DescribeAutoMLJob</code>.
+        /// cannot be described by <c>DescribeAutoMLJob</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -7924,7 +9385,7 @@ namespace Amazon.SageMaker
         ///  <note> 
         /// <para>
         /// AutoML jobs created by calling <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html">CreateAutoMLJobV2</a>
-        /// cannot be described by <code>DescribeAutoMLJob</code>.
+        /// cannot be described by <c>DescribeAutoMLJob</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -7994,6 +9455,153 @@ namespace Amazon.SageMaker
             options.ResponseUnmarshaller = DescribeAutoMLJobV2ResponseUnmarshaller.Instance;
             
             return InvokeAsync<DescribeAutoMLJobV2Response>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DescribeCluster
+
+
+        /// <summary>
+        /// Retrieves information of a SageMaker HyperPod cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeCluster service method.</param>
+        /// 
+        /// <returns>The response from the DescribeCluster service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeCluster">REST API Reference for DescribeCluster Operation</seealso>
+        public virtual DescribeClusterResponse DescribeCluster(DescribeClusterRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeClusterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeClusterResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeClusterResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Retrieves information of a SageMaker HyperPod cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeCluster service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeCluster service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeCluster">REST API Reference for DescribeCluster Operation</seealso>
+        public virtual Task<DescribeClusterResponse> DescribeClusterAsync(DescribeClusterRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeClusterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeClusterResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DescribeClusterResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DescribeClusterNode
+
+
+        /// <summary>
+        /// Retrieves information of a node (also called a <i>instance</i> interchangeably) of
+        /// a SageMaker HyperPod cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeClusterNode service method.</param>
+        /// 
+        /// <returns>The response from the DescribeClusterNode service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeClusterNode">REST API Reference for DescribeClusterNode Operation</seealso>
+        public virtual DescribeClusterNodeResponse DescribeClusterNode(DescribeClusterNodeRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeClusterNodeRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeClusterNodeResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeClusterNodeResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Retrieves information of a node (also called a <i>instance</i> interchangeably) of
+        /// a SageMaker HyperPod cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeClusterNode service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeClusterNode service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeClusterNode">REST API Reference for DescribeClusterNode Operation</seealso>
+        public virtual Task<DescribeClusterNodeResponse> DescribeClusterNodeAsync(DescribeClusterNodeRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeClusterNodeRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeClusterNodeResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DescribeClusterNodeResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DescribeClusterSchedulerConfig
+
+
+        /// <summary>
+        /// Description of the cluster policy. This policy is used for task prioritization and
+        /// fair-share allocation. This helps prioritize critical workloads and distributes idle
+        /// compute across entities.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeClusterSchedulerConfig service method.</param>
+        /// 
+        /// <returns>The response from the DescribeClusterSchedulerConfig service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeClusterSchedulerConfig">REST API Reference for DescribeClusterSchedulerConfig Operation</seealso>
+        public virtual DescribeClusterSchedulerConfigResponse DescribeClusterSchedulerConfig(DescribeClusterSchedulerConfigRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeClusterSchedulerConfigRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeClusterSchedulerConfigResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeClusterSchedulerConfigResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Description of the cluster policy. This policy is used for task prioritization and
+        /// fair-share allocation. This helps prioritize critical workloads and distributes idle
+        /// compute across entities.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeClusterSchedulerConfig service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeClusterSchedulerConfig service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeClusterSchedulerConfig">REST API Reference for DescribeClusterSchedulerConfig Operation</seealso>
+        public virtual Task<DescribeClusterSchedulerConfigResponse> DescribeClusterSchedulerConfigAsync(DescribeClusterSchedulerConfigRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeClusterSchedulerConfigRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeClusterSchedulerConfigResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DescribeClusterSchedulerConfigResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -8094,6 +9702,53 @@ namespace Amazon.SageMaker
             options.ResponseUnmarshaller = DescribeCompilationJobResponseUnmarshaller.Instance;
             
             return InvokeAsync<DescribeCompilationJobResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DescribeComputeQuota
+
+
+        /// <summary>
+        /// Description of the compute allocation definition.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeComputeQuota service method.</param>
+        /// 
+        /// <returns>The response from the DescribeComputeQuota service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeComputeQuota">REST API Reference for DescribeComputeQuota Operation</seealso>
+        public virtual DescribeComputeQuotaResponse DescribeComputeQuota(DescribeComputeQuotaRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeComputeQuotaRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeComputeQuotaResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeComputeQuotaResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Description of the compute allocation definition.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeComputeQuota service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeComputeQuota service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeComputeQuota">REST API Reference for DescribeComputeQuota Operation</seealso>
+        public virtual Task<DescribeComputeQuotaResponse> DescribeComputeQuotaAsync(DescribeComputeQuotaRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeComputeQuotaRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeComputeQuotaResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DescribeComputeQuotaResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -8472,7 +10127,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Returns the description of an endpoint configuration created using the <code>CreateEndpointConfig</code>
+        /// Returns the description of an endpoint configuration created using the <c>CreateEndpointConfig</c>
         /// API.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeEndpointConfig service method.</param>
@@ -8490,7 +10145,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Returns the description of an endpoint configuration created using the <code>CreateEndpointConfig</code>
+        /// Returns the description of an endpoint configuration created using the <c>CreateEndpointConfig</c>
         /// API.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeEndpointConfig service method.</param>
@@ -8562,9 +10217,9 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Use this operation to describe a <code>FeatureGroup</code>. The response includes
-        /// information on the creation time, <code>FeatureGroup</code> name, the unique identifier
-        /// for each <code>FeatureGroup</code>, and more.
+        /// Use this operation to describe a <c>FeatureGroup</c>. The response includes information
+        /// on the creation time, <c>FeatureGroup</c> name, the unique identifier for each <c>FeatureGroup</c>,
+        /// and more.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeFeatureGroup service method.</param>
         /// 
@@ -8584,9 +10239,9 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Use this operation to describe a <code>FeatureGroup</code>. The response includes
-        /// information on the creation time, <code>FeatureGroup</code> name, the unique identifier
-        /// for each <code>FeatureGroup</code>, and more.
+        /// Use this operation to describe a <c>FeatureGroup</c>. The response includes information
+        /// on the creation time, <c>FeatureGroup</c> name, the unique identifier for each <c>FeatureGroup</c>,
+        /// and more.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeFeatureGroup service method.</param>
         /// <param name="cancellationToken">
@@ -8707,13 +10362,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Describe a hub.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// Hub APIs are only callable through SageMaker Studio.
-        /// </para>
-        ///  </note>
+        /// Describes a hub.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeHub service method.</param>
         /// 
@@ -8733,13 +10382,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Describe a hub.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// Hub APIs are only callable through SageMaker Studio.
-        /// </para>
-        ///  </note>
+        /// Describes a hub.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeHub service method.</param>
         /// <param name="cancellationToken">
@@ -8767,12 +10410,6 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Describe the content of a hub.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// Hub APIs are only callable through SageMaker Studio.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeHubContent service method.</param>
         /// 
@@ -8793,12 +10430,6 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Describe the content of a hub.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// Hub APIs are only callable through SageMaker Studio.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeHubContent service method.</param>
         /// <param name="cancellationToken">
@@ -8923,7 +10554,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Describes a SageMaker image.
+        /// Describes a SageMaker AI image.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeImage service method.</param>
         /// 
@@ -8943,7 +10574,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Describes a SageMaker image.
+        /// Describes a SageMaker AI image.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeImage service method.</param>
         /// <param name="cancellationToken">
@@ -8970,7 +10601,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Describes a version of a SageMaker image.
+        /// Describes a version of a SageMaker AI image.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeImageVersion service method.</param>
         /// 
@@ -8990,7 +10621,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Describes a version of a SageMaker image.
+        /// Describes a version of a SageMaker AI image.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeImageVersion service method.</param>
         /// <param name="cancellationToken">
@@ -9009,6 +10640,47 @@ namespace Amazon.SageMaker
             options.ResponseUnmarshaller = DescribeImageVersionResponseUnmarshaller.Instance;
             
             return InvokeAsync<DescribeImageVersionResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DescribeInferenceComponent
+
+
+        /// <summary>
+        /// Returns information about an inference component.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeInferenceComponent service method.</param>
+        /// 
+        /// <returns>The response from the DescribeInferenceComponent service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeInferenceComponent">REST API Reference for DescribeInferenceComponent Operation</seealso>
+        public virtual DescribeInferenceComponentResponse DescribeInferenceComponent(DescribeInferenceComponentRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeInferenceComponentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeInferenceComponentResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeInferenceComponentResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Returns information about an inference component.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeInferenceComponent service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeInferenceComponent service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeInferenceComponent">REST API Reference for DescribeInferenceComponent Operation</seealso>
+        public virtual Task<DescribeInferenceComponentResponse> DescribeInferenceComponentAsync(DescribeInferenceComponentRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeInferenceComponentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeInferenceComponentResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DescribeInferenceComponentResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -9207,11 +10879,58 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  DescribeMlflowTrackingServer
+
+
+        /// <summary>
+        /// Returns information about an MLflow Tracking Server.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeMlflowTrackingServer service method.</param>
+        /// 
+        /// <returns>The response from the DescribeMlflowTrackingServer service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeMlflowTrackingServer">REST API Reference for DescribeMlflowTrackingServer Operation</seealso>
+        public virtual DescribeMlflowTrackingServerResponse DescribeMlflowTrackingServer(DescribeMlflowTrackingServerRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeMlflowTrackingServerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeMlflowTrackingServerResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeMlflowTrackingServerResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Returns information about an MLflow Tracking Server.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeMlflowTrackingServer service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeMlflowTrackingServer service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeMlflowTrackingServer">REST API Reference for DescribeMlflowTrackingServer Operation</seealso>
+        public virtual Task<DescribeMlflowTrackingServerResponse> DescribeMlflowTrackingServerAsync(DescribeMlflowTrackingServerRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeMlflowTrackingServerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeMlflowTrackingServerResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DescribeMlflowTrackingServerResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  DescribeModel
 
 
         /// <summary>
-        /// Describes a model that you created using the <code>CreateModel</code> API.
+        /// Describes a model that you created using the <c>CreateModel</c> API.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeModel service method.</param>
         /// 
@@ -9228,7 +10947,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Describes a model that you created using the <code>CreateModel</code> API.
+        /// Describes a model that you created using the <c>CreateModel</c> API.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeModel service method.</param>
         /// <param name="cancellationToken">
@@ -9445,7 +11164,13 @@ namespace Amazon.SageMaker
         /// Returns a description of the specified model package, which is used to create SageMaker
         /// models or list them on Amazon Web Services Marketplace.
         /// 
-        ///  
+        ///  <important> 
+        /// <para>
+        /// If you provided a KMS Key ID when you created your model package, you will see the
+        /// <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html">KMS
+        /// Decrypt</a> API call in your CloudTrail logs when you use this API.
+        /// </para>
+        ///  </important> 
         /// <para>
         /// To create models in SageMaker, buyers can subscribe to model packages listed on Amazon
         /// Web Services Marketplace.
@@ -9469,7 +11194,13 @@ namespace Amazon.SageMaker
         /// Returns a description of the specified model package, which is used to create SageMaker
         /// models or list them on Amazon Web Services Marketplace.
         /// 
-        ///  
+        ///  <important> 
+        /// <para>
+        /// If you provided a KMS Key ID when you created your model package, you will see the
+        /// <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html">KMS
+        /// Decrypt</a> API call in your CloudTrail logs when you use this API.
+        /// </para>
+        ///  </important> 
         /// <para>
         /// To create models in SageMaker, buyers can subscribe to model packages listed on Amazon
         /// Web Services Marketplace.
@@ -9718,6 +11449,100 @@ namespace Amazon.SageMaker
             options.ResponseUnmarshaller = DescribeNotebookInstanceLifecycleConfigResponseUnmarshaller.Instance;
             
             return InvokeAsync<DescribeNotebookInstanceLifecycleConfigResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DescribeOptimizationJob
+
+
+        /// <summary>
+        /// Provides the properties of the specified optimization job.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeOptimizationJob service method.</param>
+        /// 
+        /// <returns>The response from the DescribeOptimizationJob service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeOptimizationJob">REST API Reference for DescribeOptimizationJob Operation</seealso>
+        public virtual DescribeOptimizationJobResponse DescribeOptimizationJob(DescribeOptimizationJobRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeOptimizationJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeOptimizationJobResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeOptimizationJobResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Provides the properties of the specified optimization job.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeOptimizationJob service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeOptimizationJob service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeOptimizationJob">REST API Reference for DescribeOptimizationJob Operation</seealso>
+        public virtual Task<DescribeOptimizationJobResponse> DescribeOptimizationJobAsync(DescribeOptimizationJobRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeOptimizationJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeOptimizationJobResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DescribeOptimizationJobResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DescribePartnerApp
+
+
+        /// <summary>
+        /// Gets information about a SageMaker Partner AI App.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribePartnerApp service method.</param>
+        /// 
+        /// <returns>The response from the DescribePartnerApp service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribePartnerApp">REST API Reference for DescribePartnerApp Operation</seealso>
+        public virtual DescribePartnerAppResponse DescribePartnerApp(DescribePartnerAppRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribePartnerAppRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribePartnerAppResponseUnmarshaller.Instance;
+
+            return Invoke<DescribePartnerAppResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Gets information about a SageMaker Partner AI App.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribePartnerApp service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribePartnerApp service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribePartnerApp">REST API Reference for DescribePartnerApp Operation</seealso>
+        public virtual Task<DescribePartnerAppResponse> DescribePartnerAppAsync(DescribePartnerAppRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribePartnerAppRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribePartnerAppResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DescribePartnerAppResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -10002,7 +11827,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Describes the Studio Lifecycle Configuration.
+        /// Describes the Amazon SageMaker AI Studio Lifecycle Configuration.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeStudioLifecycleConfig service method.</param>
         /// 
@@ -10022,7 +11847,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Describes the Studio Lifecycle Configuration.
+        /// Describes the Amazon SageMaker AI Studio Lifecycle Configuration.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeStudioLifecycleConfig service method.</param>
         /// <param name="cancellationToken">
@@ -10097,10 +11922,10 @@ namespace Amazon.SageMaker
         ///  
         /// <para>
         /// Some of the attributes below only appear if the training job successfully starts.
-        /// If the training job fails, <code>TrainingJobStatus</code> is <code>Failed</code> and,
-        /// depending on the <code>FailureReason</code>, attributes like <code>TrainingStartTime</code>,
-        /// <code>TrainingTimeInSeconds</code>, <code>TrainingEndTime</code>, and <code>BillableTimeInSeconds</code>
-        /// may not be present in the response.
+        /// If the training job fails, <c>TrainingJobStatus</c> is <c>Failed</c> and, depending
+        /// on the <c>FailureReason</c>, attributes like <c>TrainingStartTime</c>, <c>TrainingTimeInSeconds</c>,
+        /// <c>TrainingEndTime</c>, and <c>BillableTimeInSeconds</c> may not be present in the
+        /// response.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeTrainingJob service method.</param>
@@ -10126,10 +11951,10 @@ namespace Amazon.SageMaker
         ///  
         /// <para>
         /// Some of the attributes below only appear if the training job successfully starts.
-        /// If the training job fails, <code>TrainingJobStatus</code> is <code>Failed</code> and,
-        /// depending on the <code>FailureReason</code>, attributes like <code>TrainingStartTime</code>,
-        /// <code>TrainingTimeInSeconds</code>, <code>TrainingEndTime</code>, and <code>BillableTimeInSeconds</code>
-        /// may not be present in the response.
+        /// If the training job fails, <c>TrainingJobStatus</c> is <c>Failed</c> and, depending
+        /// on the <c>FailureReason</c>, attributes like <c>TrainingStartTime</c>, <c>TrainingTimeInSeconds</c>,
+        /// <c>TrainingEndTime</c>, and <c>BillableTimeInSeconds</c> may not be present in the
+        /// response.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeTrainingJob service method.</param>
@@ -10149,6 +11974,53 @@ namespace Amazon.SageMaker
             options.ResponseUnmarshaller = DescribeTrainingJobResponseUnmarshaller.Instance;
             
             return InvokeAsync<DescribeTrainingJobResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DescribeTrainingPlan
+
+
+        /// <summary>
+        /// Retrieves detailed information about a specific training plan.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeTrainingPlan service method.</param>
+        /// 
+        /// <returns>The response from the DescribeTrainingPlan service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeTrainingPlan">REST API Reference for DescribeTrainingPlan Operation</seealso>
+        public virtual DescribeTrainingPlanResponse DescribeTrainingPlan(DescribeTrainingPlanRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeTrainingPlanRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeTrainingPlanResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeTrainingPlanResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Retrieves detailed information about a specific training plan.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeTrainingPlan service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeTrainingPlan service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeTrainingPlan">REST API Reference for DescribeTrainingPlan Operation</seealso>
+        public virtual Task<DescribeTrainingPlanResponse> DescribeTrainingPlanAsync(DescribeTrainingPlanRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeTrainingPlanRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeTrainingPlanResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DescribeTrainingPlanResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -10298,11 +12170,15 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Describes a user profile. For more information, see <code>CreateUserProfile</code>.
+        /// Describes a user profile. For more information, see <c>CreateUserProfile</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeUserProfile service method.</param>
         /// 
         /// <returns>The response from the DescribeUserProfile service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
         /// </exception>
@@ -10318,7 +12194,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Describes a user profile. For more information, see <code>CreateUserProfile</code>.
+        /// Describes a user profile. For more information, see <c>CreateUserProfile</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeUserProfile service method.</param>
         /// <param name="cancellationToken">
@@ -10326,6 +12202,10 @@ namespace Amazon.SageMaker
         /// </param>
         /// 
         /// <returns>The response from the DescribeUserProfile service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
         /// </exception>
@@ -10404,7 +12284,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Gets information about a specific work team. You can see information such as the create
+        /// Gets information about a specific work team. You can see information such as the creation
         /// date, the last updated date, membership information, and the work team's Amazon Resource
         /// Name (ARN).
         /// </summary>
@@ -10423,7 +12303,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Gets information about a specific work team. You can see information such as the create
+        /// Gets information about a specific work team. You can see information such as the creation
         /// date, the last updated date, membership information, and the work team's Amazon Resource
         /// Name (ARN).
         /// </summary>
@@ -10501,8 +12381,8 @@ namespace Amazon.SageMaker
         ///  
         /// <para>
         /// To get a list of the trials a component is associated with, use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Search.html">Search</a>
-        /// API. Specify <code>ExperimentTrialComponent</code> for the <code>Resource</code> parameter.
-        /// The list appears in the response under <code>Results.TrialComponent.Parents</code>.
+        /// API. Specify <c>ExperimentTrialComponent</c> for the <c>Resource</c> parameter. The
+        /// list appears in the response under <c>Results.TrialComponent.Parents</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DisassociateTrialComponent service method.</param>
@@ -10532,8 +12412,8 @@ namespace Amazon.SageMaker
         ///  
         /// <para>
         /// To get a list of the trials a component is associated with, use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Search.html">Search</a>
-        /// API. Specify <code>ExperimentTrialComponent</code> for the <code>Resource</code> parameter.
-        /// The list appears in the response under <code>Results.TrialComponent.Parents</code>.
+        /// API. Specify <c>ExperimentTrialComponent</c> for the <c>Resource</c> parameter. The
+        /// list appears in the response under <c>Results.TrialComponent.Parents</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DisassociateTrialComponent service method.</param>
@@ -10832,9 +12712,8 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// An auto-complete API for the search functionality in the SageMaker console. It returns
-        /// suggestions of possible matches for the property name to use in <code>Search</code>
-        /// queries. Provides suggestions for <code>HyperParameters</code>, <code>Tags</code>,
-        /// and <code>Metrics</code>.
+        /// suggestions of possible matches for the property name to use in <c>Search</c> queries.
+        /// Provides suggestions for <c>HyperParameters</c>, <c>Tags</c>, and <c>Metrics</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetSearchSuggestions service method.</param>
         /// 
@@ -10852,9 +12731,8 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// An auto-complete API for the search functionality in the SageMaker console. It returns
-        /// suggestions of possible matches for the property name to use in <code>Search</code>
-        /// queries. Provides suggestions for <code>HyperParameters</code>, <code>Tags</code>,
-        /// and <code>Metrics</code>.
+        /// suggestions of possible matches for the property name to use in <c>Search</c> queries.
+        /// Provides suggestions for <c>HyperParameters</c>, <c>Tags</c>, and <c>Metrics</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetSearchSuggestions service method.</param>
         /// <param name="cancellationToken">
@@ -10879,12 +12757,6 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Import hub content.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// Hub APIs are only callable through SageMaker Studio.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ImportHubContent service method.</param>
         /// 
@@ -10912,12 +12784,6 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Import hub content.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// Hub APIs are only callable through SageMaker Studio.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ImportHubContent service method.</param>
         /// <param name="cancellationToken">
@@ -11350,6 +13216,137 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  ListClusterNodes
+
+
+        /// <summary>
+        /// Retrieves the list of instances (also called <i>nodes</i> interchangeably) in a SageMaker
+        /// HyperPod cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListClusterNodes service method.</param>
+        /// 
+        /// <returns>The response from the ListClusterNodes service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListClusterNodes">REST API Reference for ListClusterNodes Operation</seealso>
+        public virtual ListClusterNodesResponse ListClusterNodes(ListClusterNodesRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListClusterNodesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListClusterNodesResponseUnmarshaller.Instance;
+
+            return Invoke<ListClusterNodesResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Retrieves the list of instances (also called <i>nodes</i> interchangeably) in a SageMaker
+        /// HyperPod cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListClusterNodes service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListClusterNodes service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListClusterNodes">REST API Reference for ListClusterNodes Operation</seealso>
+        public virtual Task<ListClusterNodesResponse> ListClusterNodesAsync(ListClusterNodesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListClusterNodesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListClusterNodesResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListClusterNodesResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListClusters
+
+
+        /// <summary>
+        /// Retrieves the list of SageMaker HyperPod clusters.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListClusters service method.</param>
+        /// 
+        /// <returns>The response from the ListClusters service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListClusters">REST API Reference for ListClusters Operation</seealso>
+        public virtual ListClustersResponse ListClusters(ListClustersRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListClustersRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListClustersResponseUnmarshaller.Instance;
+
+            return Invoke<ListClustersResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Retrieves the list of SageMaker HyperPod clusters.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListClusters service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListClusters service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListClusters">REST API Reference for ListClusters Operation</seealso>
+        public virtual Task<ListClustersResponse> ListClustersAsync(ListClustersRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListClustersRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListClustersResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListClustersResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListClusterSchedulerConfigs
+
+
+        /// <summary>
+        /// List the cluster policy configurations.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListClusterSchedulerConfigs service method.</param>
+        /// 
+        /// <returns>The response from the ListClusterSchedulerConfigs service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListClusterSchedulerConfigs">REST API Reference for ListClusterSchedulerConfigs Operation</seealso>
+        public virtual ListClusterSchedulerConfigsResponse ListClusterSchedulerConfigs(ListClusterSchedulerConfigsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListClusterSchedulerConfigsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListClusterSchedulerConfigsResponseUnmarshaller.Instance;
+
+            return Invoke<ListClusterSchedulerConfigsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// List the cluster policy configurations.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListClusterSchedulerConfigs service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListClusterSchedulerConfigs service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListClusterSchedulerConfigs">REST API Reference for ListClusterSchedulerConfigs Operation</seealso>
+        public virtual Task<ListClusterSchedulerConfigsResponse> ListClusterSchedulerConfigsAsync(ListClusterSchedulerConfigsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListClusterSchedulerConfigsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListClusterSchedulerConfigsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListClusterSchedulerConfigsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ListCodeRepositories
 
 
@@ -11442,6 +13439,47 @@ namespace Amazon.SageMaker
             options.ResponseUnmarshaller = ListCompilationJobsResponseUnmarshaller.Instance;
             
             return InvokeAsync<ListCompilationJobsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListComputeQuotas
+
+
+        /// <summary>
+        /// List the resource allocation definitions.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListComputeQuotas service method.</param>
+        /// 
+        /// <returns>The response from the ListComputeQuotas service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListComputeQuotas">REST API Reference for ListComputeQuotas Operation</seealso>
+        public virtual ListComputeQuotasResponse ListComputeQuotas(ListComputeQuotasRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListComputeQuotasRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListComputeQuotasResponseUnmarshaller.Instance;
+
+            return Invoke<ListComputeQuotasResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// List the resource allocation definitions.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListComputeQuotas service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListComputeQuotas service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListComputeQuotas">REST API Reference for ListComputeQuotas Operation</seealso>
+        public virtual Task<ListComputeQuotasResponse> ListComputeQuotasAsync(ListComputeQuotasRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListComputeQuotasRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListComputeQuotasResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListComputeQuotasResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -11870,7 +13908,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// List <code>FeatureGroup</code>s based on given filter and order.
+        /// List <c>FeatureGroup</c>s based on given filter and order.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListFeatureGroups service method.</param>
         /// 
@@ -11887,7 +13925,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// List <code>FeatureGroup</code>s based on given filter and order.
+        /// List <c>FeatureGroup</c>s based on given filter and order.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListFeatureGroups service method.</param>
         /// <param name="cancellationToken">
@@ -11953,12 +13991,6 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// List the contents of a hub.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// Hub APIs are only callable through SageMaker Studio.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListHubContents service method.</param>
         /// 
@@ -11979,12 +14011,6 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// List the contents of a hub.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// Hub APIs are only callable through SageMaker Studio.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListHubContents service method.</param>
         /// <param name="cancellationToken">
@@ -12012,12 +14038,6 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// List hub content versions.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// Hub APIs are only callable through SageMaker Studio.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListHubContentVersions service method.</param>
         /// 
@@ -12038,12 +14058,6 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// List hub content versions.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// Hub APIs are only callable through SageMaker Studio.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListHubContentVersions service method.</param>
         /// <param name="cancellationToken">
@@ -12071,12 +14085,6 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// List all existing hubs.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// Hub APIs are only callable through SageMaker Studio.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListHubs service method.</param>
         /// 
@@ -12094,12 +14102,6 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// List all existing hubs.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// Hub APIs are only callable through SageMaker Studio.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListHubs service method.</param>
         /// <param name="cancellationToken">
@@ -12291,6 +14293,47 @@ namespace Amazon.SageMaker
             options.ResponseUnmarshaller = ListImageVersionsResponseUnmarshaller.Instance;
             
             return InvokeAsync<ListImageVersionsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListInferenceComponents
+
+
+        /// <summary>
+        /// Lists the inference components in your account and their properties.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListInferenceComponents service method.</param>
+        /// 
+        /// <returns>The response from the ListInferenceComponents service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListInferenceComponents">REST API Reference for ListInferenceComponents Operation</seealso>
+        public virtual ListInferenceComponentsResponse ListInferenceComponents(ListInferenceComponentsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListInferenceComponentsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListInferenceComponentsResponseUnmarshaller.Instance;
+
+            return Invoke<ListInferenceComponentsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists the inference components in your account and their properties.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListInferenceComponents service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListInferenceComponents service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListInferenceComponents">REST API Reference for ListInferenceComponents Operation</seealso>
+        public virtual Task<ListInferenceComponentsResponse> ListInferenceComponentsAsync(ListInferenceComponentsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListInferenceComponentsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListInferenceComponentsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListInferenceComponentsResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -12565,6 +14608,47 @@ namespace Amazon.SageMaker
             options.ResponseUnmarshaller = ListLineageGroupsResponseUnmarshaller.Instance;
             
             return InvokeAsync<ListLineageGroupsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListMlflowTrackingServers
+
+
+        /// <summary>
+        /// Lists all MLflow Tracking Servers.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListMlflowTrackingServers service method.</param>
+        /// 
+        /// <returns>The response from the ListMlflowTrackingServers service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListMlflowTrackingServers">REST API Reference for ListMlflowTrackingServers Operation</seealso>
+        public virtual ListMlflowTrackingServersResponse ListMlflowTrackingServers(ListMlflowTrackingServersRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListMlflowTrackingServersRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListMlflowTrackingServersResponseUnmarshaller.Instance;
+
+            return Invoke<ListMlflowTrackingServersResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists all MLflow Tracking Servers.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListMlflowTrackingServers service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListMlflowTrackingServers service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListMlflowTrackingServers">REST API Reference for ListMlflowTrackingServers Operation</seealso>
+        public virtual Task<ListMlflowTrackingServersResponse> ListMlflowTrackingServersAsync(ListMlflowTrackingServersRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListMlflowTrackingServersRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListMlflowTrackingServersResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListMlflowTrackingServersResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -12950,7 +15034,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Lists models created with the <code>CreateModel</code> API.
+        /// Lists models created with the <c>CreateModel</c> API.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListModels service method.</param>
         /// 
@@ -12967,7 +15051,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Lists models created with the <code>CreateModel</code> API.
+        /// Lists models created with the <c>CreateModel</c> API.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListModels service method.</param>
         /// <param name="cancellationToken">
@@ -13210,8 +15294,8 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Returns a list of the SageMaker notebook instances in the requester's account in an
-        /// Amazon Web Services Region.
+        /// Returns a list of the SageMaker AI notebook instances in the requester's account in
+        /// an Amazon Web Services Region.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListNotebookInstances service method.</param>
         /// 
@@ -13228,8 +15312,8 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Returns a list of the SageMaker notebook instances in the requester's account in an
-        /// Amazon Web Services Region.
+        /// Returns a list of the SageMaker AI notebook instances in the requester's account in
+        /// an Amazon Web Services Region.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListNotebookInstances service method.</param>
         /// <param name="cancellationToken">
@@ -13245,6 +15329,88 @@ namespace Amazon.SageMaker
             options.ResponseUnmarshaller = ListNotebookInstancesResponseUnmarshaller.Instance;
             
             return InvokeAsync<ListNotebookInstancesResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListOptimizationJobs
+
+
+        /// <summary>
+        /// Lists the optimization jobs in your account and their properties.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListOptimizationJobs service method.</param>
+        /// 
+        /// <returns>The response from the ListOptimizationJobs service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListOptimizationJobs">REST API Reference for ListOptimizationJobs Operation</seealso>
+        public virtual ListOptimizationJobsResponse ListOptimizationJobs(ListOptimizationJobsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListOptimizationJobsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListOptimizationJobsResponseUnmarshaller.Instance;
+
+            return Invoke<ListOptimizationJobsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists the optimization jobs in your account and their properties.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListOptimizationJobs service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListOptimizationJobs service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListOptimizationJobs">REST API Reference for ListOptimizationJobs Operation</seealso>
+        public virtual Task<ListOptimizationJobsResponse> ListOptimizationJobsAsync(ListOptimizationJobsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListOptimizationJobsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListOptimizationJobsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListOptimizationJobsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListPartnerApps
+
+
+        /// <summary>
+        /// Lists all of the SageMaker Partner AI Apps in an account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListPartnerApps service method.</param>
+        /// 
+        /// <returns>The response from the ListPartnerApps service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListPartnerApps">REST API Reference for ListPartnerApps Operation</seealso>
+        public virtual ListPartnerAppsResponse ListPartnerApps(ListPartnerAppsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListPartnerAppsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListPartnerAppsResponseUnmarshaller.Instance;
+
+            return Invoke<ListPartnerAppsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists all of the SageMaker Partner AI Apps in an account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListPartnerApps service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListPartnerApps service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListPartnerApps">REST API Reference for ListPartnerApps Operation</seealso>
+        public virtual Task<ListPartnerAppsResponse> ListPartnerAppsAsync(ListPartnerAppsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListPartnerAppsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListPartnerAppsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListPartnerAppsResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -13300,7 +15466,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Gets a list of <code>PipeLineExecutionStep</code> objects.
+        /// Gets a list of <c>PipeLineExecutionStep</c> objects.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListPipelineExecutionSteps service method.</param>
         /// 
@@ -13320,7 +15486,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Gets a list of <code>PipeLineExecutionStep</code> objects.
+        /// Gets a list of <c>PipeLineExecutionStep</c> objects.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListPipelineExecutionSteps service method.</param>
         /// <param name="cancellationToken">
@@ -13518,7 +15684,7 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Lists Amazon SageMaker Catalogs based on given filters and orders. The maximum number
-        /// of <code>ResourceCatalog</code>s viewable is 1000.
+        /// of <c>ResourceCatalog</c>s viewable is 1000.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListResourceCatalogs service method.</param>
         /// 
@@ -13536,7 +15702,7 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Lists Amazon SageMaker Catalogs based on given filters and orders. The maximum number
-        /// of <code>ResourceCatalog</code>s viewable is 1000.
+        /// of <c>ResourceCatalog</c>s viewable is 1000.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListResourceCatalogs service method.</param>
         /// <param name="cancellationToken">
@@ -13644,7 +15810,8 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Lists the Studio Lifecycle Configurations in your Amazon Web Services Account.
+        /// Lists the Amazon SageMaker AI Studio Lifecycle Configurations in your Amazon Web Services
+        /// Account.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListStudioLifecycleConfigs service method.</param>
         /// 
@@ -13664,7 +15831,8 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Lists the Studio Lifecycle Configurations in your Amazon Web Services Account.
+        /// Lists the Amazon SageMaker AI Studio Lifecycle Configurations in your Amazon Web Services
+        /// Account.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListStudioLifecycleConfigs service method.</param>
         /// <param name="cancellationToken">
@@ -13693,7 +15861,7 @@ namespace Amazon.SageMaker
         /// <summary>
         /// Gets a list of the work teams that you are subscribed to in the Amazon Web Services
         /// Marketplace. The list may be empty if no work team satisfies the filter specified
-        /// in the <code>NameContains</code> parameter.
+        /// in the <c>NameContains</c> parameter.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListSubscribedWorkteams service method.</param>
         /// 
@@ -13712,7 +15880,7 @@ namespace Amazon.SageMaker
         /// <summary>
         /// Gets a list of the work teams that you are subscribed to in the Amazon Web Services
         /// Marketplace. The list may be empty if no work team satisfies the filter specified
-        /// in the <code>NameContains</code> parameter.
+        /// in the <c>NameContains</c> parameter.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListSubscribedWorkteams service method.</param>
         /// <param name="cancellationToken">
@@ -13781,24 +15949,24 @@ namespace Amazon.SageMaker
         /// 
         ///  <note> 
         /// <para>
-        /// When <code>StatusEquals</code> and <code>MaxResults</code> are set at the same time,
-        /// the <code>MaxResults</code> number of training jobs are first retrieved ignoring the
-        /// <code>StatusEquals</code> parameter and then they are filtered by the <code>StatusEquals</code>
-        /// parameter, which is returned as a response.
+        /// When <c>StatusEquals</c> and <c>MaxResults</c> are set at the same time, the <c>MaxResults</c>
+        /// number of training jobs are first retrieved ignoring the <c>StatusEquals</c> parameter
+        /// and then they are filtered by the <c>StatusEquals</c> parameter, which is returned
+        /// as a response.
         /// </para>
         ///  
         /// <para>
-        /// For example, if <code>ListTrainingJobs</code> is invoked with the following parameters:
+        /// For example, if <c>ListTrainingJobs</c> is invoked with the following parameters:
         /// </para>
         ///  
         /// <para>
-        ///  <code>{ ... MaxResults: 100, StatusEquals: InProgress ... }</code> 
+        ///  <c>{ ... MaxResults: 100, StatusEquals: InProgress ... }</c> 
         /// </para>
         ///  
         /// <para>
-        /// First, 100 trainings jobs with any status, including those other than <code>InProgress</code>,
+        /// First, 100 trainings jobs with any status, including those other than <c>InProgress</c>,
         /// are selected (sorted according to the creation time, from the most current to the
-        /// oldest). Next, those with a status of <code>InProgress</code> are returned.
+        /// oldest). Next, those with a status of <c>InProgress</c> are returned.
         /// </para>
         ///  
         /// <para>
@@ -13806,7 +15974,7 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        ///  <code>aws sagemaker list-training-jobs --max-results 100 --status-equals InProgress</code>
+        ///  <c>aws sagemaker list-training-jobs --max-results 100 --status-equals InProgress</c>
         /// 
         /// </para>
         ///  </note>
@@ -13830,24 +15998,24 @@ namespace Amazon.SageMaker
         /// 
         ///  <note> 
         /// <para>
-        /// When <code>StatusEquals</code> and <code>MaxResults</code> are set at the same time,
-        /// the <code>MaxResults</code> number of training jobs are first retrieved ignoring the
-        /// <code>StatusEquals</code> parameter and then they are filtered by the <code>StatusEquals</code>
-        /// parameter, which is returned as a response.
+        /// When <c>StatusEquals</c> and <c>MaxResults</c> are set at the same time, the <c>MaxResults</c>
+        /// number of training jobs are first retrieved ignoring the <c>StatusEquals</c> parameter
+        /// and then they are filtered by the <c>StatusEquals</c> parameter, which is returned
+        /// as a response.
         /// </para>
         ///  
         /// <para>
-        /// For example, if <code>ListTrainingJobs</code> is invoked with the following parameters:
+        /// For example, if <c>ListTrainingJobs</c> is invoked with the following parameters:
         /// </para>
         ///  
         /// <para>
-        ///  <code>{ ... MaxResults: 100, StatusEquals: InProgress ... }</code> 
+        ///  <c>{ ... MaxResults: 100, StatusEquals: InProgress ... }</c> 
         /// </para>
         ///  
         /// <para>
-        /// First, 100 trainings jobs with any status, including those other than <code>InProgress</code>,
+        /// First, 100 trainings jobs with any status, including those other than <c>InProgress</c>,
         /// are selected (sorted according to the creation time, from the most current to the
-        /// oldest). Next, those with a status of <code>InProgress</code> are returned.
+        /// oldest). Next, those with a status of <c>InProgress</c> are returned.
         /// </para>
         ///  
         /// <para>
@@ -13855,7 +16023,7 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        ///  <code>aws sagemaker list-training-jobs --max-results 100 --status-equals InProgress</code>
+        ///  <c>aws sagemaker list-training-jobs --max-results 100 --status-equals InProgress</c>
         /// 
         /// </para>
         ///  </note>
@@ -13927,6 +16095,47 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  ListTrainingPlans
+
+
+        /// <summary>
+        /// Retrieves a list of training plans for the current account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListTrainingPlans service method.</param>
+        /// 
+        /// <returns>The response from the ListTrainingPlans service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListTrainingPlans">REST API Reference for ListTrainingPlans Operation</seealso>
+        public virtual ListTrainingPlansResponse ListTrainingPlans(ListTrainingPlansRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListTrainingPlansRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListTrainingPlansResponseUnmarshaller.Instance;
+
+            return Invoke<ListTrainingPlansResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Retrieves a list of training plans for the current account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListTrainingPlans service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListTrainingPlans service method, as returned by SageMaker.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListTrainingPlans">REST API Reference for ListTrainingPlans Operation</seealso>
+        public virtual Task<ListTrainingPlansResponse> ListTrainingPlansAsync(ListTrainingPlansRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListTrainingPlansRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListTrainingPlansResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListTrainingPlansResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ListTransformJobs
 
 
@@ -13978,15 +16187,15 @@ namespace Amazon.SageMaker
         /// 
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ExperimentName</code> 
+        ///  <c>ExperimentName</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SourceArn</code> 
+        ///  <c>SourceArn</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TrialName</code> 
+        ///  <c>TrialName</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -14014,15 +16223,15 @@ namespace Amazon.SageMaker
         /// 
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ExperimentName</code> 
+        ///  <c>ExperimentName</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SourceArn</code> 
+        ///  <c>SourceArn</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TrialName</code> 
+        ///  <c>TrialName</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -14193,7 +16402,7 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Gets a list of private work teams that you have defined in a region. The list may
-        /// be empty if no work team satisfies the filter specified in the <code>NameContains</code>
+        /// be empty if no work team satisfies the filter specified in the <c>NameContains</c>
         /// parameter.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListWorkteams service method.</param>
@@ -14212,7 +16421,7 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Gets a list of private work teams that you have defined in a region. The list may
-        /// be empty if no work team satisfies the filter specified in the <code>NameContains</code>
+        /// be empty if no work team satisfies the filter specified in the <c>NameContains</c>
         /// parameter.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListWorkteams service method.</param>
@@ -14245,6 +16454,10 @@ namespace Amazon.SageMaker
         /// <param name="request">Container for the necessary parameters to execute the PutModelPackageGroupPolicy service method.</param>
         /// 
         /// <returns>The response from the PutModelPackageGroupPolicy service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/PutModelPackageGroupPolicy">REST API Reference for PutModelPackageGroupPolicy Operation</seealso>
         public virtual PutModelPackageGroupPolicyResponse PutModelPackageGroupPolicy(PutModelPackageGroupPolicyRequest request)
         {
@@ -14268,6 +16481,10 @@ namespace Amazon.SageMaker
         /// </param>
         /// 
         /// <returns>The response from the PutModelPackageGroupPolicy service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/PutModelPackageGroupPolicy">REST API Reference for PutModelPackageGroupPolicy Operation</seealso>
         public virtual Task<PutModelPackageGroupPolicyResponse> PutModelPackageGroupPolicyAsync(PutModelPackageGroupPolicyRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -14437,8 +16654,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the RetryPipelineExecution service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
         /// You have exceeded an SageMaker resource limit. For example, you might have too many
@@ -14468,8 +16685,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the RetryPipelineExecution service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
         /// You have exceeded an SageMaker resource limit. For example, you might have too many
@@ -14495,7 +16712,7 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Finds SageMaker resources that match a search query. Matching resources are returned
-        /// as a list of <code>SearchRecord</code> objects in the response. You can sort the search
+        /// as a list of <c>SearchRecord</c> objects in the response. You can sort the search
         /// results by any resource property in a ascending or descending order.
         /// 
         ///  
@@ -14526,7 +16743,7 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Finds SageMaker resources that match a search query. Matching resources are returned
-        /// as a list of <code>SearchRecord</code> objects in the response. You can sort the search
+        /// as a list of <c>SearchRecord</c> objects in the response. You can sort the search
         /// results by any resource property in a ascending or descending order.
         /// 
         ///  
@@ -14559,6 +16776,91 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  SearchTrainingPlanOfferings
+
+
+        /// <summary>
+        /// Searches for available training plan offerings based on specified criteria. 
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// Users search for available plan offerings based on their requirements (e.g., instance
+        /// type, count, start time, duration). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// And then, they create a plan that best matches their needs using the ID of the plan
+        /// offering they want to use. 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information about how to reserve GPU capacity for your SageMaker training
+        /// jobs or SageMaker HyperPod clusters using Amazon SageMaker Training Plan , see <c>
+        /// <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingPlan.html">CreateTrainingPlan</a>
+        /// </c>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the SearchTrainingPlanOfferings service method.</param>
+        /// 
+        /// <returns>The response from the SearchTrainingPlanOfferings service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/SearchTrainingPlanOfferings">REST API Reference for SearchTrainingPlanOfferings Operation</seealso>
+        public virtual SearchTrainingPlanOfferingsResponse SearchTrainingPlanOfferings(SearchTrainingPlanOfferingsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = SearchTrainingPlanOfferingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = SearchTrainingPlanOfferingsResponseUnmarshaller.Instance;
+
+            return Invoke<SearchTrainingPlanOfferingsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Searches for available training plan offerings based on specified criteria. 
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// Users search for available plan offerings based on their requirements (e.g., instance
+        /// type, count, start time, duration). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// And then, they create a plan that best matches their needs using the ID of the plan
+        /// offering they want to use. 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information about how to reserve GPU capacity for your SageMaker training
+        /// jobs or SageMaker HyperPod clusters using Amazon SageMaker Training Plan , see <c>
+        /// <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingPlan.html">CreateTrainingPlan</a>
+        /// </c>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the SearchTrainingPlanOfferings service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the SearchTrainingPlanOfferings service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/SearchTrainingPlanOfferings">REST API Reference for SearchTrainingPlanOfferings Operation</seealso>
+        public virtual Task<SearchTrainingPlanOfferingsResponse> SearchTrainingPlanOfferingsAsync(SearchTrainingPlanOfferingsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = SearchTrainingPlanOfferingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = SearchTrainingPlanOfferingsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<SearchTrainingPlanOfferingsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  SendPipelineExecutionStepFailure
 
 
@@ -14570,6 +16872,10 @@ namespace Amazon.SageMaker
         /// <param name="request">Container for the necessary parameters to execute the SendPipelineExecutionStepFailure service method.</param>
         /// 
         /// <returns>The response from the SendPipelineExecutionStepFailure service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
         /// You have exceeded an SageMaker resource limit. For example, you might have too many
         /// training jobs created.
@@ -14599,6 +16905,10 @@ namespace Amazon.SageMaker
         /// </param>
         /// 
         /// <returns>The response from the SendPipelineExecutionStepFailure service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
         /// You have exceeded an SageMaker resource limit. For example, you might have too many
         /// training jobs created.
@@ -14630,6 +16940,10 @@ namespace Amazon.SageMaker
         /// <param name="request">Container for the necessary parameters to execute the SendPipelineExecutionStepSuccess service method.</param>
         /// 
         /// <returns>The response from the SendPipelineExecutionStepSuccess service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
         /// You have exceeded an SageMaker resource limit. For example, you might have too many
         /// training jobs created.
@@ -14660,6 +16974,10 @@ namespace Amazon.SageMaker
         /// </param>
         /// 
         /// <returns>The response from the SendPipelineExecutionStepSuccess service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
         /// You have exceeded an SageMaker resource limit. For example, you might have too many
         /// training jobs created.
@@ -14730,8 +17048,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the StartInferenceExperiment service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -14757,8 +17075,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the StartInferenceExperiment service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -14775,6 +17093,61 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  StartMlflowTrackingServer
+
+
+        /// <summary>
+        /// Programmatically start an MLflow Tracking Server.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartMlflowTrackingServer service method.</param>
+        /// 
+        /// <returns>The response from the StartMlflowTrackingServer service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StartMlflowTrackingServer">REST API Reference for StartMlflowTrackingServer Operation</seealso>
+        public virtual StartMlflowTrackingServerResponse StartMlflowTrackingServer(StartMlflowTrackingServerRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartMlflowTrackingServerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartMlflowTrackingServerResponseUnmarshaller.Instance;
+
+            return Invoke<StartMlflowTrackingServerResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Programmatically start an MLflow Tracking Server.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartMlflowTrackingServer service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StartMlflowTrackingServer service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StartMlflowTrackingServer">REST API Reference for StartMlflowTrackingServer Operation</seealso>
+        public virtual Task<StartMlflowTrackingServerResponse> StartMlflowTrackingServerAsync(StartMlflowTrackingServerRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartMlflowTrackingServerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartMlflowTrackingServerResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<StartMlflowTrackingServerResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  StartMonitoringSchedule
 
 
@@ -14784,7 +17157,7 @@ namespace Amazon.SageMaker
         ///  <note> 
         /// <para>
         /// By default, when you successfully create a new schedule, the status of a monitoring
-        /// schedule is <code>scheduled</code>.
+        /// schedule is <c>scheduled</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -14811,7 +17184,7 @@ namespace Amazon.SageMaker
         ///  <note> 
         /// <para>
         /// By default, when you successfully create a new schedule, the status of a monitoring
-        /// schedule is <code>scheduled</code>.
+        /// schedule is <c>scheduled</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -14841,9 +17214,9 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Launches an ML compute instance with the latest version of the libraries and attaches
-        /// your ML storage volume. After configuring the notebook instance, SageMaker sets the
-        /// notebook instance status to <code>InService</code>. A notebook instance's status must
-        /// be <code>InService</code> before you can connect to your Jupyter notebook.
+        /// your ML storage volume. After configuring the notebook instance, SageMaker AI sets
+        /// the notebook instance status to <c>InService</c>. A notebook instance's status must
+        /// be <c>InService</c> before you can connect to your Jupyter notebook.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartNotebookInstance service method.</param>
         /// 
@@ -14865,9 +17238,9 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Launches an ML compute instance with the latest version of the libraries and attaches
-        /// your ML storage volume. After configuring the notebook instance, SageMaker sets the
-        /// notebook instance status to <code>InService</code>. A notebook instance's status must
-        /// be <code>InService</code> before you can connect to your Jupyter notebook.
+        /// your ML storage volume. After configuring the notebook instance, SageMaker AI sets
+        /// the notebook instance status to <c>InService</c>. A notebook instance's status must
+        /// be <c>InService</c> before you can connect to your Jupyter notebook.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartNotebookInstance service method.</param>
         /// <param name="cancellationToken">
@@ -14900,6 +17273,10 @@ namespace Amazon.SageMaker
         /// <param name="request">Container for the necessary parameters to execute the StartPipelineExecution service method.</param>
         /// 
         /// <returns>The response from the StartPipelineExecution service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
         /// You have exceeded an SageMaker resource limit. For example, you might have too many
         /// training jobs created.
@@ -14927,6 +17304,10 @@ namespace Amazon.SageMaker
         /// </param>
         /// 
         /// <returns>The response from the StartPipelineExecution service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
         /// You have exceeded an SageMaker resource limit. For example, you might have too many
         /// training jobs created.
@@ -15001,15 +17382,14 @@ namespace Amazon.SageMaker
         /// 
         ///  
         /// <para>
-        ///  To stop a job, Amazon SageMaker sends the algorithm the SIGTERM signal. This gracefully
+        ///  To stop a job, Amazon SageMaker AI sends the algorithm the SIGTERM signal. This gracefully
         /// shuts the job down. If the job hasn't stopped, it sends the SIGKILL signal.
         /// </para>
         ///  
         /// <para>
-        /// When it receives a <code>StopCompilationJob</code> request, Amazon SageMaker changes
-        /// the <code>CompilationJobStatus</code> of the job to <code>Stopping</code>. After Amazon
-        /// SageMaker stops the job, it sets the <code>CompilationJobStatus</code> to <code>Stopped</code>.
-        /// 
+        /// When it receives a <c>StopCompilationJob</c> request, Amazon SageMaker AI changes
+        /// the <c>CompilationJobStatus</c> of the job to <c>Stopping</c>. After Amazon SageMaker
+        /// stops the job, it sets the <c>CompilationJobStatus</c> to <c>Stopped</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StopCompilationJob service method.</param>
@@ -15034,15 +17414,14 @@ namespace Amazon.SageMaker
         /// 
         ///  
         /// <para>
-        ///  To stop a job, Amazon SageMaker sends the algorithm the SIGTERM signal. This gracefully
+        ///  To stop a job, Amazon SageMaker AI sends the algorithm the SIGTERM signal. This gracefully
         /// shuts the job down. If the job hasn't stopped, it sends the SIGKILL signal.
         /// </para>
         ///  
         /// <para>
-        /// When it receives a <code>StopCompilationJob</code> request, Amazon SageMaker changes
-        /// the <code>CompilationJobStatus</code> of the job to <code>Stopping</code>. After Amazon
-        /// SageMaker stops the job, it sets the <code>CompilationJobStatus</code> to <code>Stopped</code>.
-        /// 
+        /// When it receives a <c>StopCompilationJob</c> request, Amazon SageMaker AI changes
+        /// the <c>CompilationJobStatus</c> of the job to <c>Stopping</c>. After Amazon SageMaker
+        /// stops the job, it sets the <c>CompilationJobStatus</c> to <c>Stopped</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StopCompilationJob service method.</param>
@@ -15159,7 +17538,7 @@ namespace Amazon.SageMaker
         /// <para>
         /// All model artifacts output from the training jobs are stored in Amazon Simple Storage
         /// Service (Amazon S3). All data that the training jobs write to Amazon CloudWatch Logs
-        /// are still available in CloudWatch. After the tuning job moves to the <code>Stopped</code>
+        /// are still available in CloudWatch. After the tuning job moves to the <c>Stopped</c>
         /// state, it releases all reserved resources for the tuning job.
         /// </para>
         /// </summary>
@@ -15188,7 +17567,7 @@ namespace Amazon.SageMaker
         /// <para>
         /// All model artifacts output from the training jobs are stored in Amazon Simple Storage
         /// Service (Amazon S3). All data that the training jobs write to Amazon CloudWatch Logs
-        /// are still available in CloudWatch. After the tuning job moves to the <code>Stopped</code>
+        /// are still available in CloudWatch. After the tuning job moves to the <c>Stopped</c>
         /// state, it releases all reserved resources for the tuning job.
         /// </para>
         /// </summary>
@@ -15223,8 +17602,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the StopInferenceExperiment service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -15250,8 +17629,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the StopInferenceExperiment service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -15364,6 +17743,61 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  StopMlflowTrackingServer
+
+
+        /// <summary>
+        /// Programmatically stop an MLflow Tracking Server.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StopMlflowTrackingServer service method.</param>
+        /// 
+        /// <returns>The response from the StopMlflowTrackingServer service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopMlflowTrackingServer">REST API Reference for StopMlflowTrackingServer Operation</seealso>
+        public virtual StopMlflowTrackingServerResponse StopMlflowTrackingServer(StopMlflowTrackingServerRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StopMlflowTrackingServerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StopMlflowTrackingServerResponseUnmarshaller.Instance;
+
+            return Invoke<StopMlflowTrackingServerResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Programmatically stop an MLflow Tracking Server.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StopMlflowTrackingServer service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StopMlflowTrackingServer service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopMlflowTrackingServer">REST API Reference for StopMlflowTrackingServer Operation</seealso>
+        public virtual Task<StopMlflowTrackingServerResponse> StopMlflowTrackingServerAsync(StopMlflowTrackingServerRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StopMlflowTrackingServerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StopMlflowTrackingServerResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<StopMlflowTrackingServerResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  StopMonitoringSchedule
 
 
@@ -15415,16 +17849,16 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Terminates the ML compute instance. Before terminating the instance, SageMaker disconnects
-        /// the ML storage volume from it. SageMaker preserves the ML storage volume. SageMaker
-        /// stops charging you for the ML compute instance when you call <code>StopNotebookInstance</code>.
+        /// Terminates the ML compute instance. Before terminating the instance, SageMaker AI
+        /// disconnects the ML storage volume from it. SageMaker AI preserves the ML storage volume.
+        /// SageMaker AI stops charging you for the ML compute instance when you call <c>StopNotebookInstance</c>.
         /// 
         ///  
         /// <para>
         /// To access data on the ML storage volume for a notebook instance that has been terminated,
-        /// call the <code>StartNotebookInstance</code> API. <code>StartNotebookInstance</code>
-        /// launches another ML compute instance, configures it, and attaches the preserved ML
-        /// storage volume so you can continue your work. 
+        /// call the <c>StartNotebookInstance</c> API. <c>StartNotebookInstance</c> launches another
+        /// ML compute instance, configures it, and attaches the preserved ML storage volume so
+        /// you can continue your work. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StopNotebookInstance service method.</param>
@@ -15442,16 +17876,16 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Terminates the ML compute instance. Before terminating the instance, SageMaker disconnects
-        /// the ML storage volume from it. SageMaker preserves the ML storage volume. SageMaker
-        /// stops charging you for the ML compute instance when you call <code>StopNotebookInstance</code>.
+        /// Terminates the ML compute instance. Before terminating the instance, SageMaker AI
+        /// disconnects the ML storage volume from it. SageMaker AI preserves the ML storage volume.
+        /// SageMaker AI stops charging you for the ML compute instance when you call <c>StopNotebookInstance</c>.
         /// 
         ///  
         /// <para>
         /// To access data on the ML storage volume for a notebook instance that has been terminated,
-        /// call the <code>StartNotebookInstance</code> API. <code>StartNotebookInstance</code>
-        /// launches another ML compute instance, configures it, and attaches the preserved ML
-        /// storage volume so you can continue your work. 
+        /// call the <c>StartNotebookInstance</c> API. <c>StartNotebookInstance</c> launches another
+        /// ML compute instance, configures it, and attaches the preserved ML storage volume so
+        /// you can continue your work. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StopNotebookInstance service method.</param>
@@ -15472,6 +17906,53 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  StopOptimizationJob
+
+
+        /// <summary>
+        /// Ends a running inference optimization job.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StopOptimizationJob service method.</param>
+        /// 
+        /// <returns>The response from the StopOptimizationJob service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopOptimizationJob">REST API Reference for StopOptimizationJob Operation</seealso>
+        public virtual StopOptimizationJobResponse StopOptimizationJob(StopOptimizationJobRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StopOptimizationJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StopOptimizationJobResponseUnmarshaller.Instance;
+
+            return Invoke<StopOptimizationJobResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Ends a running inference optimization job.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StopOptimizationJob service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StopOptimizationJob service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopOptimizationJob">REST API Reference for StopOptimizationJob Operation</seealso>
+        public virtual Task<StopOptimizationJobResponse> StopOptimizationJobAsync(StopOptimizationJobRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StopOptimizationJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StopOptimizationJobResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<StopOptimizationJobResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  StopPipelineExecution
 
 
@@ -15484,7 +17965,7 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        /// A pipeline execution won't stop while a callback step is running. When you call <code>StopPipelineExecution</code>
+        /// A pipeline execution won't stop while a callback step is running. When you call <c>StopPipelineExecution</c>
         /// on a pipeline execution with a running callback step, SageMaker Pipelines sends an
         /// additional Amazon SQS message to the specified SQS queue. The body of the SQS message
         /// contains a "Status" field which is set to "Stopping".
@@ -15493,7 +17974,7 @@ namespace Amazon.SageMaker
         /// <para>
         /// You should add logic to your Amazon SQS message consumer to take any needed action
         /// (for example, resource cleanup) upon receipt of the message followed by a call to
-        /// <code>SendPipelineExecutionStepSuccess</code> or <code>SendPipelineExecutionStepFailure</code>.
+        /// <c>SendPipelineExecutionStepSuccess</c> or <c>SendPipelineExecutionStepFailure</c>.
         /// </para>
         ///  
         /// <para>
@@ -15510,13 +17991,17 @@ namespace Amazon.SageMaker
         /// function invoked by the lambda step can't be stopped. If you attempt to stop the execution
         /// while the Lambda function is running, the pipeline waits for the Lambda function to
         /// finish or until the timeout is hit, whichever occurs first, and then stops. If the
-        /// Lambda function finishes, the pipeline execution status is <code>Stopped</code>. If
-        /// the timeout is hit the pipeline execution status is <code>Failed</code>.
+        /// Lambda function finishes, the pipeline execution status is <c>Stopped</c>. If the
+        /// timeout is hit the pipeline execution status is <c>Failed</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StopPipelineExecution service method.</param>
         /// 
         /// <returns>The response from the StopPipelineExecution service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
         /// </exception>
@@ -15540,7 +18025,7 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        /// A pipeline execution won't stop while a callback step is running. When you call <code>StopPipelineExecution</code>
+        /// A pipeline execution won't stop while a callback step is running. When you call <c>StopPipelineExecution</c>
         /// on a pipeline execution with a running callback step, SageMaker Pipelines sends an
         /// additional Amazon SQS message to the specified SQS queue. The body of the SQS message
         /// contains a "Status" field which is set to "Stopping".
@@ -15549,7 +18034,7 @@ namespace Amazon.SageMaker
         /// <para>
         /// You should add logic to your Amazon SQS message consumer to take any needed action
         /// (for example, resource cleanup) upon receipt of the message followed by a call to
-        /// <code>SendPipelineExecutionStepSuccess</code> or <code>SendPipelineExecutionStepFailure</code>.
+        /// <c>SendPipelineExecutionStepSuccess</c> or <c>SendPipelineExecutionStepFailure</c>.
         /// </para>
         ///  
         /// <para>
@@ -15566,8 +18051,8 @@ namespace Amazon.SageMaker
         /// function invoked by the lambda step can't be stopped. If you attempt to stop the execution
         /// while the Lambda function is running, the pipeline waits for the Lambda function to
         /// finish or until the timeout is hit, whichever occurs first, and then stops. If the
-        /// Lambda function finishes, the pipeline execution status is <code>Stopped</code>. If
-        /// the timeout is hit the pipeline execution status is <code>Failed</code>.
+        /// Lambda function finishes, the pipeline execution status is <c>Stopped</c>. If the
+        /// timeout is hit the pipeline execution status is <c>Failed</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StopPipelineExecution service method.</param>
@@ -15576,6 +18061,10 @@ namespace Amazon.SageMaker
         /// </param>
         /// 
         /// <returns>The response from the StopPipelineExecution service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
         /// </exception>
@@ -15642,15 +18131,14 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Stops a training job. To stop a job, SageMaker sends the algorithm the <code>SIGTERM</code>
+        /// Stops a training job. To stop a job, SageMaker sends the algorithm the <c>SIGTERM</c>
         /// signal, which delays job termination for 120 seconds. Algorithms might use this 120-second
         /// window to save the model artifacts, so the results of the training is not lost. 
         /// 
         ///  
         /// <para>
-        /// When it receives a <code>StopTrainingJob</code> request, SageMaker changes the status
-        /// of the job to <code>Stopping</code>. After SageMaker stops the job, it sets the status
-        /// to <code>Stopped</code>.
+        /// When it receives a <c>StopTrainingJob</c> request, SageMaker changes the status of
+        /// the job to <c>Stopping</c>. After SageMaker stops the job, it sets the status to <c>Stopped</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StopTrainingJob service method.</param>
@@ -15671,15 +18159,14 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Stops a training job. To stop a job, SageMaker sends the algorithm the <code>SIGTERM</code>
+        /// Stops a training job. To stop a job, SageMaker sends the algorithm the <c>SIGTERM</c>
         /// signal, which delays job termination for 120 seconds. Algorithms might use this 120-second
         /// window to save the model artifacts, so the results of the training is not lost. 
         /// 
         ///  
         /// <para>
-        /// When it receives a <code>StopTrainingJob</code> request, SageMaker changes the status
-        /// of the job to <code>Stopping</code>. After SageMaker stops the job, it sets the status
-        /// to <code>Stopped</code>.
+        /// When it receives a <c>StopTrainingJob</c> request, SageMaker changes the status of
+        /// the job to <c>Stopping</c>. After SageMaker stops the job, it sets the status to <c>Stopped</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StopTrainingJob service method.</param>
@@ -15711,10 +18198,10 @@ namespace Amazon.SageMaker
         /// 
         ///  
         /// <para>
-        /// When Amazon SageMaker receives a <code>StopTransformJob</code> request, the status
-        /// of the job changes to <code>Stopping</code>. After Amazon SageMaker stops the job,
-        /// the status is set to <code>Stopped</code>. When you stop a batch transform job before
-        /// it is completed, Amazon SageMaker doesn't store the job's output in Amazon S3.
+        /// When Amazon SageMaker receives a <c>StopTransformJob</c> request, the status of the
+        /// job changes to <c>Stopping</c>. After Amazon SageMaker stops the job, the status is
+        /// set to <c>Stopped</c>. When you stop a batch transform job before it is completed,
+        /// Amazon SageMaker doesn't store the job's output in Amazon S3.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StopTransformJob service method.</param>
@@ -15739,10 +18226,10 @@ namespace Amazon.SageMaker
         /// 
         ///  
         /// <para>
-        /// When Amazon SageMaker receives a <code>StopTransformJob</code> request, the status
-        /// of the job changes to <code>Stopping</code>. After Amazon SageMaker stops the job,
-        /// the status is set to <code>Stopped</code>. When you stop a batch transform job before
-        /// it is completed, Amazon SageMaker doesn't store the job's output in Amazon S3.
+        /// When Amazon SageMaker receives a <c>StopTransformJob</c> request, the status of the
+        /// job changes to <c>Stopping</c>. After Amazon SageMaker stops the job, the status is
+        /// set to <c>Stopped</c>. When you stop a batch transform job before it is completed,
+        /// Amazon SageMaker doesn't store the job's output in Amazon S3.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StopTransformJob service method.</param>
@@ -15776,8 +18263,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the UpdateAction service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -15803,8 +18290,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the UpdateAction service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -15878,8 +18365,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the UpdateArtifact service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -15905,8 +18392,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the UpdateArtifact service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -15923,6 +18410,207 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  UpdateCluster
+
+
+        /// <summary>
+        /// Updates a SageMaker HyperPod cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateCluster service method.</param>
+        /// 
+        /// <returns>The response from the UpdateCluster service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateCluster">REST API Reference for UpdateCluster Operation</seealso>
+        public virtual UpdateClusterResponse UpdateCluster(UpdateClusterRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateClusterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateClusterResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateClusterResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Updates a SageMaker HyperPod cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateCluster service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateCluster service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateCluster">REST API Reference for UpdateCluster Operation</seealso>
+        public virtual Task<UpdateClusterResponse> UpdateClusterAsync(UpdateClusterRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateClusterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateClusterResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdateClusterResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  UpdateClusterSchedulerConfig
+
+
+        /// <summary>
+        /// Update the cluster policy configuration.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateClusterSchedulerConfig service method.</param>
+        /// 
+        /// <returns>The response from the UpdateClusterSchedulerConfig service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateClusterSchedulerConfig">REST API Reference for UpdateClusterSchedulerConfig Operation</seealso>
+        public virtual UpdateClusterSchedulerConfigResponse UpdateClusterSchedulerConfig(UpdateClusterSchedulerConfigRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateClusterSchedulerConfigRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateClusterSchedulerConfigResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateClusterSchedulerConfigResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Update the cluster policy configuration.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateClusterSchedulerConfig service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateClusterSchedulerConfig service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateClusterSchedulerConfig">REST API Reference for UpdateClusterSchedulerConfig Operation</seealso>
+        public virtual Task<UpdateClusterSchedulerConfigResponse> UpdateClusterSchedulerConfigAsync(UpdateClusterSchedulerConfigRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateClusterSchedulerConfigRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateClusterSchedulerConfigResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdateClusterSchedulerConfigResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  UpdateClusterSoftware
+
+
+        /// <summary>
+        /// Updates the platform software of a SageMaker HyperPod cluster for security patching.
+        /// To learn how to use this API, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-hyperpod-operate.html#sagemaker-hyperpod-operate-cli-command-update-cluster-software">Update
+        /// the SageMaker HyperPod platform software of a cluster</a>.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// The <c>UpgradeClusterSoftware</c> API call may impact your SageMaker HyperPod cluster
+        /// uptime and availability. Plan accordingly to mitigate potential disruptions to your
+        /// workloads.
+        /// </para>
+        ///  </important>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateClusterSoftware service method.</param>
+        /// 
+        /// <returns>The response from the UpdateClusterSoftware service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateClusterSoftware">REST API Reference for UpdateClusterSoftware Operation</seealso>
+        public virtual UpdateClusterSoftwareResponse UpdateClusterSoftware(UpdateClusterSoftwareRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateClusterSoftwareRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateClusterSoftwareResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateClusterSoftwareResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Updates the platform software of a SageMaker HyperPod cluster for security patching.
+        /// To learn how to use this API, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-hyperpod-operate.html#sagemaker-hyperpod-operate-cli-command-update-cluster-software">Update
+        /// the SageMaker HyperPod platform software of a cluster</a>.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// The <c>UpgradeClusterSoftware</c> API call may impact your SageMaker HyperPod cluster
+        /// uptime and availability. Plan accordingly to mitigate potential disruptions to your
+        /// workloads.
+        /// </para>
+        ///  </important>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateClusterSoftware service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateClusterSoftware service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateClusterSoftware">REST API Reference for UpdateClusterSoftware Operation</seealso>
+        public virtual Task<UpdateClusterSoftwareResponse> UpdateClusterSoftwareAsync(UpdateClusterSoftwareRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateClusterSoftwareRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateClusterSoftwareResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdateClusterSoftwareResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  UpdateCodeRepository
 
 
@@ -15932,6 +18620,10 @@ namespace Amazon.SageMaker
         /// <param name="request">Container for the necessary parameters to execute the UpdateCodeRepository service method.</param>
         /// 
         /// <returns>The response from the UpdateCodeRepository service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateCodeRepository">REST API Reference for UpdateCodeRepository Operation</seealso>
         public virtual UpdateCodeRepositoryResponse UpdateCodeRepository(UpdateCodeRepositoryRequest request)
         {
@@ -15952,6 +18644,10 @@ namespace Amazon.SageMaker
         /// </param>
         /// 
         /// <returns>The response from the UpdateCodeRepository service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateCodeRepository">REST API Reference for UpdateCodeRepository Operation</seealso>
         public virtual Task<UpdateCodeRepositoryResponse> UpdateCodeRepositoryAsync(UpdateCodeRepositoryRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -15960,6 +18656,69 @@ namespace Amazon.SageMaker
             options.ResponseUnmarshaller = UpdateCodeRepositoryResponseUnmarshaller.Instance;
             
             return InvokeAsync<UpdateCodeRepositoryResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  UpdateComputeQuota
+
+
+        /// <summary>
+        /// Update the compute allocation definition.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateComputeQuota service method.</param>
+        /// 
+        /// <returns>The response from the UpdateComputeQuota service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateComputeQuota">REST API Reference for UpdateComputeQuota Operation</seealso>
+        public virtual UpdateComputeQuotaResponse UpdateComputeQuota(UpdateComputeQuotaRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateComputeQuotaRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateComputeQuotaResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateComputeQuotaResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Update the compute allocation definition.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateComputeQuota service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateComputeQuota service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateComputeQuota">REST API Reference for UpdateComputeQuota Operation</seealso>
+        public virtual Task<UpdateComputeQuotaResponse> UpdateComputeQuotaAsync(UpdateComputeQuotaRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateComputeQuotaRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateComputeQuotaResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdateComputeQuotaResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -15974,8 +18733,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the UpdateContext service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -16001,8 +18760,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the UpdateContext service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -16172,29 +18931,31 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Deploys the new <code>EndpointConfig</code> specified in the request, switches to
-        /// using newly created endpoint, and then deletes resources provisioned for the endpoint
-        /// using the previous <code>EndpointConfig</code> (there is no availability loss). 
+        /// Deploys the <c>EndpointConfig</c> specified in the request to a new fleet of instances.
+        /// SageMaker shifts endpoint traffic to the new instances with the updated endpoint configuration
+        /// and then deletes the old instances using the previous <c>EndpointConfig</c> (there
+        /// is no availability loss). For more information about how to control the update and
+        /// traffic shifting process, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/deployment-guardrails.html">
+        /// Update models in production</a>.
         /// 
         ///  
         /// <para>
-        /// When SageMaker receives the request, it sets the endpoint status to <code>Updating</code>.
-        /// After updating the endpoint, it sets the status to <code>InService</code>. To check
-        /// the status of an endpoint, use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html">DescribeEndpoint</a>
+        /// When SageMaker receives the request, it sets the endpoint status to <c>Updating</c>.
+        /// After updating the endpoint, it sets the status to <c>InService</c>. To check the
+        /// status of an endpoint, use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html">DescribeEndpoint</a>
         /// API. 
         /// </para>
         ///  <note> 
         /// <para>
-        /// You must not delete an <code>EndpointConfig</code> in use by an endpoint that is live
-        /// or while the <code>UpdateEndpoint</code> or <code>CreateEndpoint</code> operations
-        /// are being performed on the endpoint. To update an endpoint, you must create a new
-        /// <code>EndpointConfig</code>.
+        /// You must not delete an <c>EndpointConfig</c> in use by an endpoint that is live or
+        /// while the <c>UpdateEndpoint</c> or <c>CreateEndpoint</c> operations are being performed
+        /// on the endpoint. To update an endpoint, you must create a new <c>EndpointConfig</c>.
         /// </para>
         ///  
         /// <para>
-        /// If you delete the <code>EndpointConfig</code> of an endpoint that is active or being
-        /// created or updated you may lose visibility into the instance type the endpoint is
-        /// using. The endpoint must be deleted in order to stop incurring charges.
+        /// If you delete the <c>EndpointConfig</c> of an endpoint that is active or being created
+        /// or updated you may lose visibility into the instance type the endpoint is using. The
+        /// endpoint must be deleted in order to stop incurring charges.
         /// </para>
         ///  </note>
         /// </summary>
@@ -16217,29 +18978,31 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Deploys the new <code>EndpointConfig</code> specified in the request, switches to
-        /// using newly created endpoint, and then deletes resources provisioned for the endpoint
-        /// using the previous <code>EndpointConfig</code> (there is no availability loss). 
+        /// Deploys the <c>EndpointConfig</c> specified in the request to a new fleet of instances.
+        /// SageMaker shifts endpoint traffic to the new instances with the updated endpoint configuration
+        /// and then deletes the old instances using the previous <c>EndpointConfig</c> (there
+        /// is no availability loss). For more information about how to control the update and
+        /// traffic shifting process, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/deployment-guardrails.html">
+        /// Update models in production</a>.
         /// 
         ///  
         /// <para>
-        /// When SageMaker receives the request, it sets the endpoint status to <code>Updating</code>.
-        /// After updating the endpoint, it sets the status to <code>InService</code>. To check
-        /// the status of an endpoint, use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html">DescribeEndpoint</a>
+        /// When SageMaker receives the request, it sets the endpoint status to <c>Updating</c>.
+        /// After updating the endpoint, it sets the status to <c>InService</c>. To check the
+        /// status of an endpoint, use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html">DescribeEndpoint</a>
         /// API. 
         /// </para>
         ///  <note> 
         /// <para>
-        /// You must not delete an <code>EndpointConfig</code> in use by an endpoint that is live
-        /// or while the <code>UpdateEndpoint</code> or <code>CreateEndpoint</code> operations
-        /// are being performed on the endpoint. To update an endpoint, you must create a new
-        /// <code>EndpointConfig</code>.
+        /// You must not delete an <c>EndpointConfig</c> in use by an endpoint that is live or
+        /// while the <c>UpdateEndpoint</c> or <c>CreateEndpoint</c> operations are being performed
+        /// on the endpoint. To update an endpoint, you must create a new <c>EndpointConfig</c>.
         /// </para>
         ///  
         /// <para>
-        /// If you delete the <code>EndpointConfig</code> of an endpoint that is active or being
-        /// created or updated you may lose visibility into the instance type the endpoint is
-        /// using. The endpoint must be deleted in order to stop incurring charges.
+        /// If you delete the <c>EndpointConfig</c> of an endpoint that is active or being created
+        /// or updated you may lose visibility into the instance type the endpoint is using. The
+        /// endpoint must be deleted in order to stop incurring charges.
         /// </para>
         ///  </note>
         /// </summary>
@@ -16271,9 +19034,9 @@ namespace Amazon.SageMaker
         /// <summary>
         /// Updates variant weight of one or more variants associated with an existing endpoint,
         /// or capacity of one variant associated with an existing endpoint. When it receives
-        /// the request, SageMaker sets the endpoint status to <code>Updating</code>. After updating
-        /// the endpoint, it sets the status to <code>InService</code>. To check the status of
-        /// an endpoint, use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html">DescribeEndpoint</a>
+        /// the request, SageMaker sets the endpoint status to <c>Updating</c>. After updating
+        /// the endpoint, it sets the status to <c>InService</c>. To check the status of an endpoint,
+        /// use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html">DescribeEndpoint</a>
         /// API.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateEndpointWeightsAndCapacities service method.</param>
@@ -16297,9 +19060,9 @@ namespace Amazon.SageMaker
         /// <summary>
         /// Updates variant weight of one or more variants associated with an existing endpoint,
         /// or capacity of one variant associated with an existing endpoint. When it receives
-        /// the request, SageMaker sets the endpoint status to <code>Updating</code>. After updating
-        /// the endpoint, it sets the status to <code>InService</code>. To check the status of
-        /// an endpoint, use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html">DescribeEndpoint</a>
+        /// the request, SageMaker sets the endpoint status to <c>Updating</c>. After updating
+        /// the endpoint, it sets the status to <c>InService</c>. To check the status of an endpoint,
+        /// use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html">DescribeEndpoint</a>
         /// API.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateEndpointWeightsAndCapacities service method.</param>
@@ -16335,8 +19098,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the UpdateExperiment service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -16363,8 +19126,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the UpdateExperiment service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -16386,27 +19149,32 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Updates the feature group by either adding features or updating the online store configuration.
-        /// Use one of the following request parameters at a time while using the <code>UpdateFeatureGroup</code>
+        /// Use one of the following request parameters at a time while using the <c>UpdateFeatureGroup</c>
         /// API.
         /// 
         ///  
         /// <para>
-        /// You can add features for your feature group using the <code>FeatureAdditions</code>
-        /// request parameter. Features cannot be removed from a feature group.
+        /// You can add features for your feature group using the <c>FeatureAdditions</c> request
+        /// parameter. Features cannot be removed from a feature group.
         /// </para>
         ///  
         /// <para>
-        /// You can update the online store configuration by using the <code>OnlineStoreConfig</code>
-        /// request parameter. If a <code>TtlDuration</code> is specified, the default <code>TtlDuration</code>
+        /// You can update the online store configuration by using the <c>OnlineStoreConfig</c>
+        /// request parameter. If a <c>TtlDuration</c> is specified, the default <c>TtlDuration</c>
         /// applies for all records added to the feature group <i>after the feature group is updated</i>.
-        /// If a record level <code>TtlDuration</code> exists from using the <code>PutRecord</code>
-        /// API, the record level <code>TtlDuration</code> applies to that record instead of the
-        /// default <code>TtlDuration</code>.
+        /// If a record level <c>TtlDuration</c> exists from using the <c>PutRecord</c> API, the
+        /// record level <c>TtlDuration</c> applies to that record instead of the default <c>TtlDuration</c>.
+        /// To remove the default <c>TtlDuration</c> from an existing feature group, use the <c>UpdateFeatureGroup</c>
+        /// API and set the <c>TtlDuration</c> <c>Unit</c> and <c>Value</c> to <c>null</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateFeatureGroup service method.</param>
         /// 
         /// <returns>The response from the UpdateFeatureGroup service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
         /// </exception>
@@ -16423,22 +19191,23 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Updates the feature group by either adding features or updating the online store configuration.
-        /// Use one of the following request parameters at a time while using the <code>UpdateFeatureGroup</code>
+        /// Use one of the following request parameters at a time while using the <c>UpdateFeatureGroup</c>
         /// API.
         /// 
         ///  
         /// <para>
-        /// You can add features for your feature group using the <code>FeatureAdditions</code>
-        /// request parameter. Features cannot be removed from a feature group.
+        /// You can add features for your feature group using the <c>FeatureAdditions</c> request
+        /// parameter. Features cannot be removed from a feature group.
         /// </para>
         ///  
         /// <para>
-        /// You can update the online store configuration by using the <code>OnlineStoreConfig</code>
-        /// request parameter. If a <code>TtlDuration</code> is specified, the default <code>TtlDuration</code>
+        /// You can update the online store configuration by using the <c>OnlineStoreConfig</c>
+        /// request parameter. If a <c>TtlDuration</c> is specified, the default <c>TtlDuration</c>
         /// applies for all records added to the feature group <i>after the feature group is updated</i>.
-        /// If a record level <code>TtlDuration</code> exists from using the <code>PutRecord</code>
-        /// API, the record level <code>TtlDuration</code> applies to that record instead of the
-        /// default <code>TtlDuration</code>.
+        /// If a record level <c>TtlDuration</c> exists from using the <c>PutRecord</c> API, the
+        /// record level <c>TtlDuration</c> applies to that record instead of the default <c>TtlDuration</c>.
+        /// To remove the default <c>TtlDuration</c> from an existing feature group, use the <c>UpdateFeatureGroup</c>
+        /// API and set the <c>TtlDuration</c> <c>Unit</c> and <c>Value</c> to <c>null</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateFeatureGroup service method.</param>
@@ -16447,6 +19216,10 @@ namespace Amazon.SageMaker
         /// </param>
         /// 
         /// <returns>The response from the UpdateFeatureGroup service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
         /// </exception>
@@ -16514,12 +19287,6 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Update a hub.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// Hub APIs are only callable through SageMaker Studio.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateHub service method.</param>
         /// 
@@ -16540,12 +19307,6 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Update a hub.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// Hub APIs are only callable through SageMaker Studio.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateHub service method.</param>
         /// <param name="cancellationToken">
@@ -16572,8 +19333,8 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Updates the properties of a SageMaker image. To change the image's tags, use the <a
-        /// href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AddTags.html">AddTags</a>
+        /// Updates the properties of a SageMaker AI image. To change the image's tags, use the
+        /// <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AddTags.html">AddTags</a>
         /// and <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeleteTags.html">DeleteTags</a>
         /// APIs.
         /// </summary>
@@ -16598,8 +19359,8 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Updates the properties of a SageMaker image. To change the image's tags, use the <a
-        /// href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AddTags.html">AddTags</a>
+        /// Updates the properties of a SageMaker AI image. To change the image's tags, use the
+        /// <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AddTags.html">AddTags</a>
         /// and <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeleteTags.html">DeleteTags</a>
         /// APIs.
         /// </summary>
@@ -16631,7 +19392,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Updates the properties of a SageMaker image version.
+        /// Updates the properties of a SageMaker AI image version.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateImageVersion service method.</param>
         /// 
@@ -16654,7 +19415,7 @@ namespace Amazon.SageMaker
 
 
         /// <summary>
-        /// Updates the properties of a SageMaker image version.
+        /// Updates the properties of a SageMaker AI image version.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateImageVersion service method.</param>
         /// <param name="cancellationToken">
@@ -16680,20 +19441,118 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  UpdateInferenceComponent
+
+
+        /// <summary>
+        /// Updates an inference component.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateInferenceComponent service method.</param>
+        /// 
+        /// <returns>The response from the UpdateInferenceComponent service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateInferenceComponent">REST API Reference for UpdateInferenceComponent Operation</seealso>
+        public virtual UpdateInferenceComponentResponse UpdateInferenceComponent(UpdateInferenceComponentRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateInferenceComponentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateInferenceComponentResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateInferenceComponentResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Updates an inference component.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateInferenceComponent service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateInferenceComponent service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateInferenceComponent">REST API Reference for UpdateInferenceComponent Operation</seealso>
+        public virtual Task<UpdateInferenceComponentResponse> UpdateInferenceComponentAsync(UpdateInferenceComponentRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateInferenceComponentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateInferenceComponentResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdateInferenceComponentResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  UpdateInferenceComponentRuntimeConfig
+
+
+        /// <summary>
+        /// Runtime settings for a model that is deployed with an inference component.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateInferenceComponentRuntimeConfig service method.</param>
+        /// 
+        /// <returns>The response from the UpdateInferenceComponentRuntimeConfig service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateInferenceComponentRuntimeConfig">REST API Reference for UpdateInferenceComponentRuntimeConfig Operation</seealso>
+        public virtual UpdateInferenceComponentRuntimeConfigResponse UpdateInferenceComponentRuntimeConfig(UpdateInferenceComponentRuntimeConfigRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateInferenceComponentRuntimeConfigRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateInferenceComponentRuntimeConfigResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateInferenceComponentRuntimeConfigResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Runtime settings for a model that is deployed with an inference component.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateInferenceComponentRuntimeConfig service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateInferenceComponentRuntimeConfig service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateInferenceComponentRuntimeConfig">REST API Reference for UpdateInferenceComponentRuntimeConfig Operation</seealso>
+        public virtual Task<UpdateInferenceComponentRuntimeConfigResponse> UpdateInferenceComponentRuntimeConfigAsync(UpdateInferenceComponentRuntimeConfigRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateInferenceComponentRuntimeConfigRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateInferenceComponentRuntimeConfigResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdateInferenceComponentRuntimeConfigResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  UpdateInferenceExperiment
 
 
         /// <summary>
         /// Updates an inference experiment that you created. The status of the inference experiment
-        /// has to be either <code>Created</code>, <code>Running</code>. For more information
-        /// on the status of an inference experiment, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeInferenceExperiment.html">DescribeInferenceExperiment</a>.
+        /// has to be either <c>Created</c>, <c>Running</c>. For more information on the status
+        /// of an inference experiment, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeInferenceExperiment.html">DescribeInferenceExperiment</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateInferenceExperiment service method.</param>
         /// 
         /// <returns>The response from the UpdateInferenceExperiment service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -16711,8 +19570,8 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Updates an inference experiment that you created. The status of the inference experiment
-        /// has to be either <code>Created</code>, <code>Running</code>. For more information
-        /// on the status of an inference experiment, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeInferenceExperiment.html">DescribeInferenceExperiment</a>.
+        /// has to be either <c>Created</c>, <c>Running</c>. For more information on the status
+        /// of an inference experiment, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeInferenceExperiment.html">DescribeInferenceExperiment</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateInferenceExperiment service method.</param>
         /// <param name="cancellationToken">
@@ -16721,8 +19580,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the UpdateInferenceExperiment service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -16735,6 +19594,69 @@ namespace Amazon.SageMaker
             options.ResponseUnmarshaller = UpdateInferenceExperimentResponseUnmarshaller.Instance;
             
             return InvokeAsync<UpdateInferenceExperimentResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  UpdateMlflowTrackingServer
+
+
+        /// <summary>
+        /// Updates properties of an existing MLflow Tracking Server.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateMlflowTrackingServer service method.</param>
+        /// 
+        /// <returns>The response from the UpdateMlflowTrackingServer service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateMlflowTrackingServer">REST API Reference for UpdateMlflowTrackingServer Operation</seealso>
+        public virtual UpdateMlflowTrackingServerResponse UpdateMlflowTrackingServer(UpdateMlflowTrackingServerRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateMlflowTrackingServerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateMlflowTrackingServerResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateMlflowTrackingServerResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Updates properties of an existing MLflow Tracking Server.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateMlflowTrackingServer service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateMlflowTrackingServer service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateMlflowTrackingServer">REST API Reference for UpdateMlflowTrackingServer Operation</seealso>
+        public virtual Task<UpdateMlflowTrackingServerResponse> UpdateMlflowTrackingServerAsync(UpdateMlflowTrackingServerRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateMlflowTrackingServerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateMlflowTrackingServerResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdateMlflowTrackingServerResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -16755,8 +19677,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the UpdateModelCard service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
         /// You have exceeded an SageMaker resource limit. For example, you might have too many
@@ -16792,8 +19714,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the UpdateModelCard service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
         /// You have exceeded an SageMaker resource limit. For example, you might have too many
@@ -16823,6 +19745,10 @@ namespace Amazon.SageMaker
         /// <param name="request">Container for the necessary parameters to execute the UpdateModelPackage service method.</param>
         /// 
         /// <returns>The response from the UpdateModelPackage service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateModelPackage">REST API Reference for UpdateModelPackage Operation</seealso>
         public virtual UpdateModelPackageResponse UpdateModelPackage(UpdateModelPackageRequest request)
         {
@@ -16843,6 +19769,10 @@ namespace Amazon.SageMaker
         /// </param>
         /// 
         /// <returns>The response from the UpdateModelPackage service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateModelPackage">REST API Reference for UpdateModelPackage Operation</seealso>
         public virtual Task<UpdateModelPackageResponse> UpdateModelPackageAsync(UpdateModelPackageRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -17069,6 +19999,61 @@ namespace Amazon.SageMaker
 
         #endregion
         
+        #region  UpdatePartnerApp
+
+
+        /// <summary>
+        /// Updates all of the SageMaker Partner AI Apps in an account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdatePartnerApp service method.</param>
+        /// 
+        /// <returns>The response from the UpdatePartnerApp service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdatePartnerApp">REST API Reference for UpdatePartnerApp Operation</seealso>
+        public virtual UpdatePartnerAppResponse UpdatePartnerApp(UpdatePartnerAppRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdatePartnerAppRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdatePartnerAppResponseUnmarshaller.Instance;
+
+            return Invoke<UpdatePartnerAppResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Updates all of the SageMaker Partner AI Apps in an account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdatePartnerApp service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdatePartnerApp service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
+        /// Resource being access is not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdatePartnerApp">REST API Reference for UpdatePartnerApp Operation</seealso>
+        public virtual Task<UpdatePartnerAppResponse> UpdatePartnerAppAsync(UpdatePartnerAppRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdatePartnerAppRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdatePartnerAppResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdatePartnerAppResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  UpdatePipeline
 
 
@@ -17078,6 +20063,10 @@ namespace Amazon.SageMaker
         /// <param name="request">Container for the necessary parameters to execute the UpdatePipeline service method.</param>
         /// 
         /// <returns>The response from the UpdatePipeline service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
         /// </exception>
@@ -17101,6 +20090,10 @@ namespace Amazon.SageMaker
         /// </param>
         /// 
         /// <returns>The response from the UpdatePipeline service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
         /// </exception>
@@ -17125,6 +20118,10 @@ namespace Amazon.SageMaker
         /// <param name="request">Container for the necessary parameters to execute the UpdatePipelineExecution service method.</param>
         /// 
         /// <returns>The response from the UpdatePipelineExecution service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
         /// </exception>
@@ -17148,6 +20145,10 @@ namespace Amazon.SageMaker
         /// </param>
         /// 
         /// <returns>The response from the UpdatePipelineExecution service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
         /// </exception>
@@ -17172,7 +20173,7 @@ namespace Amazon.SageMaker
         /// 
         ///  <note> 
         /// <para>
-        /// You must not update a project that is in use. If you update the <code>ServiceCatalogProvisioningUpdateDetails</code>
+        /// You must not update a project that is in use. If you update the <c>ServiceCatalogProvisioningUpdateDetails</c>
         /// of a project that is active or being created, or updated, you may lose resources already
         /// created by the project.
         /// </para>
@@ -17181,6 +20182,10 @@ namespace Amazon.SageMaker
         /// <param name="request">Container for the necessary parameters to execute the UpdateProject service method.</param>
         /// 
         /// <returns>The response from the UpdateProject service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateProject">REST API Reference for UpdateProject Operation</seealso>
         public virtual UpdateProjectResponse UpdateProject(UpdateProjectRequest request)
         {
@@ -17198,7 +20203,7 @@ namespace Amazon.SageMaker
         /// 
         ///  <note> 
         /// <para>
-        /// You must not update a project that is in use. If you update the <code>ServiceCatalogProvisioningUpdateDetails</code>
+        /// You must not update a project that is in use. If you update the <c>ServiceCatalogProvisioningUpdateDetails</c>
         /// of a project that is active or being created, or updated, you may lose resources already
         /// created by the project.
         /// </para>
@@ -17210,6 +20215,10 @@ namespace Amazon.SageMaker
         /// </param>
         /// 
         /// <returns>The response from the UpdateProject service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ConflictException">
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateProject">REST API Reference for UpdateProject Operation</seealso>
         public virtual Task<UpdateProjectResponse> UpdateProjectAsync(UpdateProjectRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -17227,6 +20236,12 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Updates the settings of a space.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// You can't edit the app type of a space in the <c>SpaceSettings</c>.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateSpace service method.</param>
         /// 
@@ -17254,6 +20269,12 @@ namespace Amazon.SageMaker
 
         /// <summary>
         /// Updates the settings of a space.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// You can't edit the app type of a space in the <c>SpaceSettings</c>.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateSpace service method.</param>
         /// <param name="cancellationToken">
@@ -17293,6 +20314,10 @@ namespace Amazon.SageMaker
         /// <param name="request">Container for the necessary parameters to execute the UpdateTrainingJob service method.</param>
         /// 
         /// <returns>The response from the UpdateTrainingJob service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
         /// </exception>
@@ -17317,6 +20342,10 @@ namespace Amazon.SageMaker
         /// </param>
         /// 
         /// <returns>The response from the UpdateTrainingJob service method, as returned by SageMaker.</returns>
+        /// <exception cref="Amazon.SageMaker.Model.ResourceLimitExceededException">
+        /// You have exceeded an SageMaker resource limit. For example, you might have too many
+        /// training jobs created.
+        /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
         /// </exception>
@@ -17342,8 +20371,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the UpdateTrial service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -17369,8 +20398,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the UpdateTrial service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -17397,8 +20426,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the UpdateTrialComponent service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -17424,8 +20453,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the UpdateTrialComponent service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <exception cref="Amazon.SageMaker.Model.ResourceNotFoundException">
         /// Resource being access is not found.
@@ -17517,17 +20546,17 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        ///  Use <code>SourceIpConfig</code> to restrict worker access to tasks to a specific
-        /// range of IP addresses. You specify allowed IP addresses by creating a list of up to
-        /// ten <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html">CIDRs</a>.
+        ///  Use <c>SourceIpConfig</c> to restrict worker access to tasks to a specific range
+        /// of IP addresses. You specify allowed IP addresses by creating a list of up to ten
+        /// <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html">CIDRs</a>.
         /// By default, a workforce isn't restricted to specific IP addresses. If you specify
         /// a range of IP addresses, workers who attempt to access tasks using any IP address
-        /// outside the specified range are denied and get a <code>Not Found</code> error message
-        /// on the worker portal.
+        /// outside the specified range are denied and get a <c>Not Found</c> error message on
+        /// the worker portal.
         /// </para>
         ///  
         /// <para>
-        /// To restrict access to all the workers in public internet, add the <code>SourceIpConfig</code>
+        /// To restrict access to all the workers in public internet, add the <c>SourceIpConfig</c>
         /// CIDR value as "10.0.0.0/16".
         /// </para>
         ///  <important> 
@@ -17536,8 +20565,8 @@ namespace Amazon.SageMaker
         /// </para>
         ///  </important> 
         /// <para>
-        /// Use <code>OidcConfig</code> to update the configuration of a workforce created using
-        /// your own OIDC IdP. 
+        /// Use <c>OidcConfig</c> to update the configuration of a workforce created using your
+        /// own OIDC IdP. 
         /// </para>
         ///  <important> 
         /// <para>
@@ -17562,8 +20591,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the UpdateWorkforce service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateWorkforce">REST API Reference for UpdateWorkforce Operation</seealso>
         public virtual UpdateWorkforceResponse UpdateWorkforce(UpdateWorkforceRequest request)
@@ -17587,17 +20616,17 @@ namespace Amazon.SageMaker
         /// </para>
         ///  
         /// <para>
-        ///  Use <code>SourceIpConfig</code> to restrict worker access to tasks to a specific
-        /// range of IP addresses. You specify allowed IP addresses by creating a list of up to
-        /// ten <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html">CIDRs</a>.
+        ///  Use <c>SourceIpConfig</c> to restrict worker access to tasks to a specific range
+        /// of IP addresses. You specify allowed IP addresses by creating a list of up to ten
+        /// <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html">CIDRs</a>.
         /// By default, a workforce isn't restricted to specific IP addresses. If you specify
         /// a range of IP addresses, workers who attempt to access tasks using any IP address
-        /// outside the specified range are denied and get a <code>Not Found</code> error message
-        /// on the worker portal.
+        /// outside the specified range are denied and get a <c>Not Found</c> error message on
+        /// the worker portal.
         /// </para>
         ///  
         /// <para>
-        /// To restrict access to all the workers in public internet, add the <code>SourceIpConfig</code>
+        /// To restrict access to all the workers in public internet, add the <c>SourceIpConfig</c>
         /// CIDR value as "10.0.0.0/16".
         /// </para>
         ///  <important> 
@@ -17606,8 +20635,8 @@ namespace Amazon.SageMaker
         /// </para>
         ///  </important> 
         /// <para>
-        /// Use <code>OidcConfig</code> to update the configuration of a workforce created using
-        /// your own OIDC IdP. 
+        /// Use <c>OidcConfig</c> to update the configuration of a workforce created using your
+        /// own OIDC IdP. 
         /// </para>
         ///  <important> 
         /// <para>
@@ -17635,8 +20664,8 @@ namespace Amazon.SageMaker
         /// 
         /// <returns>The response from the UpdateWorkforce service method, as returned by SageMaker.</returns>
         /// <exception cref="Amazon.SageMaker.Model.ConflictException">
-        /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-        /// or <code>Artifact</code>.
+        /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+        /// or <c>Artifact</c>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateWorkforce">REST API Reference for UpdateWorkforce Operation</seealso>
         public virtual Task<UpdateWorkforceResponse> UpdateWorkforceAsync(UpdateWorkforceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -17708,11 +20737,11 @@ namespace Amazon.SageMaker
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

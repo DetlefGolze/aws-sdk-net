@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideo.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.KinesisVideo.Model
     /// 
     ///  
     /// <para>
-    ///  <code>CreateSignalingChannel</code> is an asynchronous operation.
+    ///  <c>CreateSignalingChannel</c> is an asynchronous operation.
     /// </para>
     /// </summary>
     public partial class CreateSignalingChannelRequest : AmazonKinesisVideoRequest
@@ -42,7 +43,7 @@ namespace Amazon.KinesisVideo.Model
         private string _channelName;
         private ChannelType _channelType;
         private SingleMasterConfiguration _singleMasterConfiguration;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ChannelName. 
@@ -67,7 +68,7 @@ namespace Amazon.KinesisVideo.Model
         /// <summary>
         /// Gets and sets the property ChannelType. 
         /// <para>
-        /// A type of the signaling channel that you are creating. Currently, <code>SINGLE_MASTER</code>
+        /// A type of the signaling channel that you are creating. Currently, <c>SINGLE_MASTER</c>
         /// is the only supported channel type. 
         /// </para>
         /// </summary>
@@ -86,8 +87,8 @@ namespace Amazon.KinesisVideo.Model
         /// <summary>
         /// Gets and sets the property SingleMasterConfiguration. 
         /// <para>
-        /// A structure containing the configuration for the <code>SINGLE_MASTER</code> channel
-        /// type. 
+        /// A structure containing the configuration for the <c>SINGLE_MASTER</c> channel type.
+        /// 
         /// </para>
         /// </summary>
         public SingleMasterConfiguration SingleMasterConfiguration
@@ -118,7 +119,7 @@ namespace Amazon.KinesisVideo.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

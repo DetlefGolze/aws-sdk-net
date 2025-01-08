@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,14 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(GetConnectionsFilter requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetConnectionSchemaVersion())
+            {
+                context.Writer.WritePropertyName("ConnectionSchemaVersion");
+                context.Writer.Write(requestObject.ConnectionSchemaVersion);
+            }
+
             if(requestObject.IsSetConnectionType())
             {
                 context.Writer.WritePropertyName("ConnectionType");

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// A tag for a column in a <code> <a href="https://docs.aws.amazon.com/quicksight/latest/APIReference/API_TagColumnOperation.html">TagColumnOperation</a>
-    /// </code> structure. This is a variant type structure. For this structure to be valid,
+    /// A tag for a column in a <c> <a href="https://docs.aws.amazon.com/quicksight/latest/APIReference/API_TagColumnOperation.html">TagColumnOperation</a>
+    /// </c> structure. This is a variant type structure. For this structure to be valid,
     /// only one of the attributes can be non-null.
     /// </summary>
     public partial class ColumnTag

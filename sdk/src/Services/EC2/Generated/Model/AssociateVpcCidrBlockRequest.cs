@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,7 +34,6 @@ namespace Amazon.EC2.Model
     /// Associates a CIDR block with your VPC. You can associate a secondary IPv4 CIDR block,
     /// an Amazon-provided IPv6 CIDR block, or an IPv6 CIDR block from an IPv6 address pool
     /// that you provisioned through bring your own IP addresses (<a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html">BYOIP</a>).
-    /// The IPv6 CIDR block size is fixed at /56.
     /// 
     ///  
     /// <para>
@@ -64,7 +64,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property AmazonProvidedIpv6CidrBlock. 
         /// <para>
         /// Requests an Amazon-provided IPv6 CIDR block with a /56 prefix length for the VPC.
-        /// You cannot specify the range of IPv6 addresses, or the size of the CIDR block.
+        /// You cannot specify the range of IPv6 addresses or the size of the CIDR block.
         /// </para>
         /// </summary>
         public bool AmazonProvidedIpv6CidrBlock
@@ -140,7 +140,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Ipv6CidrBlock. 
         /// <para>
-        /// An IPv6 CIDR block from the IPv6 address pool. You must also specify <code>Ipv6Pool</code>
+        /// An IPv6 CIDR block from the IPv6 address pool. You must also specify <c>Ipv6Pool</c>
         /// in the request.
         /// </para>
         ///  
@@ -168,8 +168,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        ///  You must set <code>AmazonProvidedIpv6CidrBlock</code> to <code>true</code> to use
-        /// this parameter.
+        ///  You must set <c>AmazonProvidedIpv6CidrBlock</c> to <c>true</c> to use this parameter.
         /// </para>
         ///  
         /// <para>

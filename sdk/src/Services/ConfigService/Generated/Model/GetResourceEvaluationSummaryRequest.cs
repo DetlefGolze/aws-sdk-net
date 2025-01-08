@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -52,8 +53,8 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property ResourceEvaluationId. 
         /// <para>
-        /// The unique <code>ResourceEvaluationId</code> of Amazon Web Services resource execution
-        /// for which you want to retrieve the evaluation summary.
+        /// The unique <c>ResourceEvaluationId</c> of Amazon Web Services resource execution for
+        /// which you want to retrieve the evaluation summary.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=128)]

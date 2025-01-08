@@ -26,43 +26,39 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
     /// Container for the parameters to the GetComputeAccess operation.
-    /// Requests authorization to remotely connect to a compute resource in an Amazon GameLift
-    /// fleet. Call this action to connect to an instance in a managed EC2 fleet if the fleet's
-    /// game build uses Amazon GameLift server SDK 5.x or later. To connect to instances with
-    /// game builds that use server SDK 4.x or earlier, call <a>GetInstanceAccess</a>.
+    /// Requests authorization to remotely connect to a hosting resource in a Amazon GameLift
+    /// managed fleet. This operation is not used with Amazon GameLift Anywhere fleets.
     /// 
     ///  
     /// <para>
-    /// To request access to a compute, identify the specific EC2 instance and the fleet it
-    /// belongs to. You can retrieve instances for a managed EC2 fleet by calling <a>ListCompute</a>.
-    /// 
+    ///  <b>Request options</b> 
+    /// </para>
+    ///  
+    /// <para>
+    /// To request access to a compute, specify the compute name and the fleet ID.
+    /// </para>
+    ///  
+    /// <para>
+    ///  <b>Results</b> 
     /// </para>
     ///  
     /// <para>
     /// If successful, this operation returns a set of temporary Amazon Web Services credentials,
-    /// including a two-part access key and a session token. Use these credentials with Amazon
-    /// EC2 Systems Manager (SSM) to start a session with the compute. For more details, see
-    /// <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-sessions-start.html#sessions-start-cli">
+    /// including a two-part access key and a session token.
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    /// With a managed EC2 fleet (where compute type is <c>EC2</c>), use these credentials
+    /// with Amazon EC2 Systems Manager (SSM) to start a session with the compute. For more
+    /// details, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-sessions-start.html#sessions-start-cli">
     /// Starting a session (CLI)</a> in the <i>Amazon EC2 Systems Manager User Guide</i>.
     /// </para>
-    ///  
-    /// <para>
-    ///  <b>Learn more</b> 
-    /// </para>
-    ///  
-    /// <para>
-    ///  <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-remote-access.html">Remotely
-    /// connect to fleet instances</a> 
-    /// </para>
-    ///  
-    /// <para>
-    ///  <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-creating-debug.html">Debug
-    /// fleet issues</a> 
-    /// </para>
+    ///  </li> </ul>
     /// </summary>
     public partial class GetComputeAccessRequest : AmazonGameLiftRequest
     {
@@ -72,8 +68,9 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property ComputeName. 
         /// <para>
-        /// A unique identifier for the compute resource that you want to connect to. You can
-        /// use either a registered compute name or an instance ID.
+        /// A unique identifier for the compute resource that you want to connect to. For an EC2
+        /// fleet compute, use the instance ID. Use <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_ListCompute.html">https://docs.aws.amazon.com/gamelift/latest/apireference/API_ListCompute.html</a>
+        /// to retrieve compute identifiers.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=1024)]
@@ -92,11 +89,11 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property FleetId. 
         /// <para>
-        /// A unique identifier for the fleet that contains the compute resource you want to connect
-        /// to. You can use either the fleet ID or ARN value.
+        /// A unique identifier for the fleet that holds the compute resource that you want to
+        /// connect to. You can use either the fleet ID or ARN value.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }

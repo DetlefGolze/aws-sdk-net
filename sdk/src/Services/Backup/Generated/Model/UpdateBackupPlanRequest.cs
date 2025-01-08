@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateBackupPlan operation.
-    /// Updates an existing backup plan identified by its <code>backupPlanId</code> with the
-    /// input document in JSON format. The new version is uniquely identified by a <code>VersionId</code>.
+    /// Updates the specified backup plan. The new version is uniquely identified by its ID.
     /// </summary>
     public partial class UpdateBackupPlanRequest : AmazonBackupRequest
     {
@@ -41,8 +41,8 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property BackupPlan. 
         /// <para>
-        /// Specifies the body of a backup plan. Includes a <code>BackupPlanName</code> and one
-        /// or more sets of <code>Rules</code>.
+        /// The body of a backup plan. Includes a <c>BackupPlanName</c> and one or more sets of
+        /// <c>Rules</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -61,7 +61,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property BackupPlanId. 
         /// <para>
-        /// Uniquely identifies a backup plan.
+        /// The ID of the backup plan.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

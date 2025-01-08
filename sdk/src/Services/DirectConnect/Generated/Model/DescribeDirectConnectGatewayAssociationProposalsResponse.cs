@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectConnect.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.DirectConnect.Model
     /// </summary>
     public partial class DescribeDirectConnectGatewayAssociationProposalsResponse : AmazonWebServiceResponse
     {
-        private List<DirectConnectGatewayAssociationProposal> _directConnectGatewayAssociationProposals = new List<DirectConnectGatewayAssociationProposal>();
+        private List<DirectConnectGatewayAssociationProposal> _directConnectGatewayAssociationProposals = AWSConfigs.InitializeCollections ? new List<DirectConnectGatewayAssociationProposal>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.DirectConnect.Model
         // Check to see if DirectConnectGatewayAssociationProposals property is set
         internal bool IsSetDirectConnectGatewayAssociationProposals()
         {
-            return this._directConnectGatewayAssociationProposals != null && this._directConnectGatewayAssociationProposals.Count > 0; 
+            return this._directConnectGatewayAssociationProposals != null && (this._directConnectGatewayAssociationProposals.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to use to retrieve the next page of results. This value is <code>null</code>
-        /// when there are no more results to return.
+        /// The token to use to retrieve the next page of results. This value is <c>null</c> when
+        /// there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken

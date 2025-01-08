@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppMesh.Model
 {
     /// <summary>
@@ -59,8 +60,8 @@ namespace Amazon.AppMesh.Model
         /// <summary>
         /// Gets and sets the property MaxPendingRequests. 
         /// <para>
-        /// Number of overflowing requests after <code>max_connections</code> Envoy will queue
-        /// to upstream cluster.
+        /// Number of overflowing requests after <c>max_connections</c> Envoy will queue to upstream
+        /// cluster.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]

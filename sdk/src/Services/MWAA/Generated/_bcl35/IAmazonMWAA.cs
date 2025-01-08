@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.MWAA.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.MWAA
 {
     /// <summary>
-    /// Interface for accessing MWAA
+    /// <para>Interface for accessing MWAA</para>
     ///
     /// Amazon Managed Workflows for Apache Airflow 
     /// <para>
@@ -41,7 +42,7 @@ namespace Amazon.MWAA
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>api.airflow.{region}.amazonaws.com</code> - This endpoint is used for environment
+    ///  <c>api.airflow.{region}.amazonaws.com</c> - This endpoint is used for environment
     /// management.
     /// </para>
     ///  <ul> <li> 
@@ -86,8 +87,8 @@ namespace Amazon.MWAA
     /// </para>
     ///  </li> </ul> </li> <li> 
     /// <para>
-    ///  <code>env.airflow.{region}.amazonaws.com</code> - This endpoint is used to operate
-    /// the Airflow environment.
+    ///  <c>env.airflow.{region}.amazonaws.com</c> - This endpoint is used to operate the
+    /// Airflow environment.
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -99,14 +100,9 @@ namespace Amazon.MWAA
     ///  <a href="https://docs.aws.amazon.com/mwaa/latest/API/API_CreateWebLoginToken.html">CreateWebLoginToken</a>
     /// 
     /// </para>
-    ///  </li> </ul> </li> <li> 
+    ///  </li> <li> 
     /// <para>
-    ///  <code>ops.airflow.{region}.amazonaws.com</code> - This endpoint is used to push environment
-    /// metrics that track environment health.
-    /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    ///  <a href="https://docs.aws.amazon.com/mwaa/latest/API/API_PublishMetrics.html ">PublishMetrics</a>
+    ///  <a href="https://docs.aws.amazon.com/mwaa/latest/API/API_InvokeRestApi.html">InvokeRestApi</a>
     /// 
     /// </para>
     ///  </li> </ul> </li> </ul> 
@@ -115,8 +111,8 @@ namespace Amazon.MWAA
     /// </para>
     ///  
     /// <para>
-    /// For a list of regions that Amazon MWAA supports, see <a href="https://docs.aws.amazon.com/mwaa/latest/userguide/what-is-mwaa.html#regions-mwaa">Region
-    /// availability</a> in the <i>Amazon MWAA User Guide</i>.
+    /// For a list of supported regions, see <a href="https://docs.aws.amazon.com/general/latest/gr/mwaa.html">Amazon
+    /// MWAA endpoints and quotas</a> in the <i>Amazon Web Services General Reference</i>.
     /// </para>
     /// 
     /// </para>
@@ -182,7 +178,7 @@ namespace Amazon.MWAA
 
 
         /// <summary>
-        /// Creates an Amazon Managed Workflows for Apache Airflow (MWAA) environment.
+        /// Creates an Amazon Managed Workflows for Apache Airflow (Amazon MWAA) environment.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateEnvironment service method.</param>
         /// 
@@ -283,7 +279,7 @@ namespace Amazon.MWAA
 
 
         /// <summary>
-        /// Deletes an Amazon Managed Workflows for Apache Airflow (MWAA) environment.
+        /// Deletes an Amazon Managed Workflows for Apache Airflow (Amazon MWAA) environment.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteEnvironment service method.</param>
         /// 
@@ -377,6 +373,70 @@ namespace Amazon.MWAA
 
         #endregion
         
+        #region  InvokeRestApi
+
+
+        /// <summary>
+        /// Invokes the Apache Airflow REST API on the webserver with the specified inputs. To
+        /// learn more, see <a href="https://docs.aws.amazon.com/mwaa/latest/userguide/access-mwaa-apache-airflow-rest-api.html">Using
+        /// the Apache Airflow REST API</a>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the InvokeRestApi service method.</param>
+        /// 
+        /// <returns>The response from the InvokeRestApi service method, as returned by MWAA.</returns>
+        /// <exception cref="Amazon.MWAA.Model.AccessDeniedException">
+        /// Access to the Apache Airflow Web UI or CLI has been denied due to insufficient permissions.
+        /// To learn more, see <a href="https://docs.aws.amazon.com/mwaa/latest/userguide/access-policies.html">Accessing
+        /// an Amazon MWAA environment</a>.
+        /// </exception>
+        /// <exception cref="Amazon.MWAA.Model.InternalServerException">
+        /// InternalServerException: An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.MWAA.Model.ResourceNotFoundException">
+        /// ResourceNotFoundException: The resource is not available.
+        /// </exception>
+        /// <exception cref="Amazon.MWAA.Model.RestApiClientException">
+        /// An exception indicating that a client-side error occurred during the Apache Airflow
+        /// REST API call.
+        /// </exception>
+        /// <exception cref="Amazon.MWAA.Model.RestApiServerException">
+        /// An exception indicating that a server-side error occurred during the Apache Airflow
+        /// REST API call.
+        /// </exception>
+        /// <exception cref="Amazon.MWAA.Model.ValidationException">
+        /// ValidationException: The provided input is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/mwaa-2020-07-01/InvokeRestApi">REST API Reference for InvokeRestApi Operation</seealso>
+        InvokeRestApiResponse InvokeRestApi(InvokeRestApiRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the InvokeRestApi operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the InvokeRestApi operation on AmazonMWAAClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndInvokeRestApi
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/mwaa-2020-07-01/InvokeRestApi">REST API Reference for InvokeRestApi Operation</seealso>
+        IAsyncResult BeginInvokeRestApi(InvokeRestApiRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  InvokeRestApi operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginInvokeRestApi.</param>
+        /// 
+        /// <returns>Returns a  InvokeRestApiResult from MWAA.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/mwaa-2020-07-01/InvokeRestApi">REST API Reference for InvokeRestApi Operation</seealso>
+        InvokeRestApiResponse EndInvokeRestApi(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  ListEnvironments
 
 
@@ -428,7 +488,7 @@ namespace Amazon.MWAA
 
         /// <summary>
         /// Lists the key-value tag pairs associated to the Amazon Managed Workflows for Apache
-        /// Airflow (MWAA) environment. For example, <code>"Environment": "Staging"</code>.
+        /// Airflow (MWAA) environment. For example, <c>"Environment": "Staging"</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTagsForResource service method.</param>
         /// 
@@ -489,6 +549,7 @@ namespace Amazon.MWAA
         /// ValidationException: The provided input is not valid.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/mwaa-2020-07-01/PublishMetrics">REST API Reference for PublishMetrics Operation</seealso>
+        [Obsolete("This API is for internal use and not meant for public use, and is no longer available.")]
         PublishMetricsResponse PublishMetrics(PublishMetricsRequest request);
 
         /// <summary>
@@ -503,6 +564,7 @@ namespace Amazon.MWAA
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndPublishMetrics
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/mwaa-2020-07-01/PublishMetrics">REST API Reference for PublishMetrics Operation</seealso>
+        [Obsolete("This API is for internal use and not meant for public use, and is no longer available.")]
         IAsyncResult BeginPublishMetrics(PublishMetricsRequest request, AsyncCallback callback, object state);
 
 
@@ -515,6 +577,7 @@ namespace Amazon.MWAA
         /// 
         /// <returns>Returns a  PublishMetricsResult from MWAA.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/mwaa-2020-07-01/PublishMetrics">REST API Reference for PublishMetrics Operation</seealso>
+        [Obsolete("This API is for internal use and not meant for public use, and is no longer available.")]
         PublishMetricsResponse EndPublishMetrics(IAsyncResult asyncResult);
 
         #endregion
@@ -574,7 +637,7 @@ namespace Amazon.MWAA
 
         /// <summary>
         /// Removes key-value tag pairs associated to your Amazon Managed Workflows for Apache
-        /// Airflow (MWAA) environment. For example, <code>"Environment": "Staging"</code>.
+        /// Airflow (MWAA) environment. For example, <c>"Environment": "Staging"</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
         /// 

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MachineLearning.Model
 {
     /// <summary>
-    /// Represents the output of a <code>DeleteDataSource</code> operation.
+    /// Represents the output of a <c>DeleteDataSource</c> operation.
     /// </summary>
     public partial class DeleteDataSourceResponse : AmazonWebServiceResponse
     {
@@ -38,8 +39,8 @@ namespace Amazon.MachineLearning.Model
         /// <summary>
         /// Gets and sets the property DataSourceId. 
         /// <para>
-        /// A user-supplied ID that uniquely identifies the <code>DataSource</code>. This value
-        /// should be identical to the value of the <code>DataSourceID</code> in the request.
+        /// A user-supplied ID that uniquely identifies the <c>DataSource</c>. This value should
+        /// be identical to the value of the <c>DataSourceID</c> in the request.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]

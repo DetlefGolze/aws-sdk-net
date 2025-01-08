@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ThreatIntelligenceDetail Unmarshall(JsonUnmarshallerContext context)
         {
+            ThreatIntelligenceDetail unmarshalledObject = new ThreatIntelligenceDetail();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ThreatIntelligenceDetail unmarshalledObject = new ThreatIntelligenceDetail();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("threatFileSha256", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ThreatFileSha256 = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("threatListName", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -77,7 +85,6 @@ namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

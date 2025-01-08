@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -47,8 +48,8 @@ namespace Amazon.QuickSight.Model
     ///  </li> <li> 
     /// <para>
     /// The URL validity period should not be confused with the actual session lifetime that
-    /// can be customized using the <code> <a href="https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GenerateEmbedUrlForRegisteredUser.html#QS-GenerateEmbedUrlForRegisteredUser-request-SessionLifetimeInMinutes">SessionLifetimeInMinutes</a>
-    /// </code> parameter.
+    /// can be customized using the <c> <a href="https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GenerateEmbedUrlForRegisteredUser.html#QS-GenerateEmbedUrlForRegisteredUser-request-SessionLifetimeInMinutes">SessionLifetimeInMinutes</a>
+    /// </c> parameter.
     /// </para>
     ///  
     /// <para>
@@ -73,7 +74,7 @@ namespace Amazon.QuickSight.Model
     /// </summary>
     public partial class GenerateEmbedUrlForRegisteredUserRequest : AmazonQuickSightRequest
     {
-        private List<string> _allowedDomains = new List<string>();
+        private List<string> _allowedDomains = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _awsAccountId;
         private RegisteredUserEmbeddingExperienceConfiguration _experienceConfiguration;
         private long? _sessionLifetimeInMinutes;
@@ -90,9 +91,8 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  
         /// <para>
-        /// To include all subdomains under a specific domain to the allow list, use <code>*</code>.
-        /// For example, <code>https://*.sapp.amazon.com</code> includes all subdomains under
-        /// <code>https://sapp.amazon.com</code>.
+        /// To include all subdomains under a specific domain to the allow list, use <c>*</c>.
+        /// For example, <c>https://*.sapp.amazon.com</c> includes all subdomains under <c>https://sapp.amazon.com</c>.
         /// </para>
         /// </summary>
         public List<string> AllowedDomains
@@ -104,7 +104,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if AllowedDomains property is set
         internal bool IsSetAllowedDomains()
         {
-            return this._allowedDomains != null && this._allowedDomains.Count > 0; 
+            return this._allowedDomains != null && (this._allowedDomains.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -130,9 +130,10 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property ExperienceConfiguration. 
         /// <para>
-        /// The experience you are embedding. For registered users, you can embed Amazon QuickSight
-        /// dashboards, Amazon QuickSight visuals, the Amazon QuickSight Q search bar, or the
-        /// entire Amazon QuickSight console.
+        /// The experience that you want to embed. For registered users, you can embed Amazon
+        /// QuickSight dashboards, Amazon QuickSight visuals, the Amazon QuickSight Q search bar,
+        /// the Amazon QuickSight Generative Q&amp;A experience, or the entire Amazon QuickSight
+        /// console.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

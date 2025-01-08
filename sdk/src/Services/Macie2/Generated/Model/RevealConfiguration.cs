@@ -26,14 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
-    /// Specifies the configuration settings for retrieving occurrences of sensitive data
-    /// reported by findings, and the status of the configuration for an Amazon Macie account.
-    /// When you enable the configuration for the first time, your request must specify an
-    /// Key Management Service (KMS) key. Otherwise, an error occurs. Macie uses the specified
-    /// key to encrypt the sensitive data that you retrieve.
+    /// Specifies the status of the Amazon Macie configuration for retrieving occurrences
+    /// of sensitive data reported by findings, and the Key Management Service (KMS) key to
+    /// use to encrypt sensitive data that's retrieved. When you enable the configuration
+    /// for the first time, your request must specify an KMS key. Otherwise, an error occurs.
     /// </summary>
     public partial class RevealConfiguration
     {
@@ -45,7 +45,7 @@ namespace Amazon.Macie2.Model
         /// <para>
         /// The Amazon Resource Name (ARN), ID, or alias of the KMS key to use to encrypt sensitive
         /// data that's retrieved. The key must be an existing, customer managed, symmetric encryption
-        /// key that's in the same Amazon Web Services Region as the Amazon Macie account.
+        /// key that's enabled in the same Amazon Web Services Region as the Amazon Macie account.
         /// </para>
         ///  
         /// <para>
@@ -70,12 +70,20 @@ namespace Amazon.Macie2.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the configuration for the Amazon Macie account. In a request, valid
+        /// The status of the configuration for the Amazon Macie account. In a response, possible
+        /// values are: ENABLED, the configuration is currently enabled for the account; and,
+        /// DISABLED, the configuration is currently disabled for the account. In a request, valid
         /// values are: ENABLED, enable the configuration for the account; and, DISABLED, disable
-        /// the configuration for the account. In a response, possible values are: ENABLED, the
-        /// configuration is currently enabled for the account; and, DISABLED, the configuration
-        /// is currently disabled for the account.
+        /// the configuration for the account.
         /// </para>
+        ///  <important>
+        /// <para>
+        /// If you disable the configuration, you also permanently delete current settings that
+        /// specify how to access affected S3 objects. If your current access method is ASSUME_ROLE,
+        /// Macie also deletes the external ID and role name currently specified for the configuration.
+        /// These settings can't be recovered after they're deleted.
+        /// </para>
+        /// </important>
         /// </summary>
         [AWSProperty(Required=true)]
         public RevealStatus Status

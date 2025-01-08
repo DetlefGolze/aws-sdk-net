@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
@@ -95,9 +96,9 @@ namespace Amazon.CodeDeploy.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// AppSpecContent: An <code>AppSpecContent</code> object that contains the contents of
-        /// an AppSpec file for an Lambda or Amazon ECS deployment. The content is formatted as
-        /// JSON or YAML stored as a RawString.
+        /// AppSpecContent: An <c>AppSpecContent</c> object that contains the contents of an AppSpec
+        /// file for an Lambda or Amazon ECS deployment. The content is formatted as JSON or YAML
+        /// stored as a RawString.
         /// </para>
         ///  </li> </ul>
         /// </summary>

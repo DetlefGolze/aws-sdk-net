@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeNetworkAclsResponse : AmazonWebServiceResponse
     {
-        private List<NetworkAcl> _networkAcls = new List<NetworkAcl>();
+        private List<NetworkAcl> _networkAcls = AWSConfigs.InitializeCollections ? new List<NetworkAcl>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property NetworkAcls. 
         /// <para>
-        /// Information about one or more network ACLs.
+        /// Information about the network ACLs.
         /// </para>
         /// </summary>
         public List<NetworkAcl> NetworkAcls
@@ -51,14 +52,14 @@ namespace Amazon.EC2.Model
         // Check to see if NetworkAcls property is set
         internal bool IsSetNetworkAcls()
         {
-            return this._networkAcls != null && this._networkAcls.Count > 0; 
+            return this._networkAcls != null && (this._networkAcls.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The token to include in another request to get the next page of items. This value
-        /// is <code>null</code> when there are no more items to return.
+        /// is <c>null</c> when there are no more items to return.
         /// </para>
         /// </summary>
         public string NextToken

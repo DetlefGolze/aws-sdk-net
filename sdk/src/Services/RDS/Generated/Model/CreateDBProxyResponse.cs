@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property DBProxy. 
         /// <para>
-        /// The <code>DBProxy</code> structure corresponding to the new proxy.
+        /// The <c>DBProxy</c> structure corresponding to the new proxy.
         /// </para>
         /// </summary>
         public DBProxy DBProxy

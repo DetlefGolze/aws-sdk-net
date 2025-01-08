@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LookoutforVision.Model
 {
     /// <summary>
     /// Information about the pixels in an anomaly mask. For more information, see <a>Anomaly</a>.
-    /// <code>PixelAnomaly</code> is only returned by image segmentation models.
+    /// <c>PixelAnomaly</c> is only returned by image segmentation models.
     /// </summary>
     public partial class PixelAnomaly
     {

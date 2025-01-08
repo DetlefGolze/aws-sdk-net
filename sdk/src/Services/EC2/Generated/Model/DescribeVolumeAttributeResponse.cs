@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.EC2.Model
     public partial class DescribeVolumeAttributeResponse : AmazonWebServiceResponse
     {
         private bool? _autoEnableIO;
-        private List<ProductCode> _productCodes = new List<ProductCode>();
+        private List<ProductCode> _productCodes = AWSConfigs.InitializeCollections ? new List<ProductCode>() : null;
         private string _volumeId;
 
         /// <summary>
         /// Gets and sets the property AutoEnableIO. 
         /// <para>
-        /// The state of <code>autoEnableIO</code> attribute.
+        /// The state of <c>autoEnableIO</c> attribute.
         /// </para>
         /// </summary>
         public bool AutoEnableIO
@@ -70,7 +71,7 @@ namespace Amazon.EC2.Model
         // Check to see if ProductCodes property is set
         internal bool IsSetProductCodes()
         {
-            return this._productCodes != null && this._productCodes.Count > 0; 
+            return this._productCodes != null && (this._productCodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

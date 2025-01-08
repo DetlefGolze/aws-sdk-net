@@ -26,16 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The configuration of a <code>CustomContentVisual</code>.
+    /// The configuration of a <c>CustomContentVisual</c>.
     /// </summary>
     public partial class CustomContentConfiguration
     {
         private CustomContentType _contentType;
         private string _contentUrl;
         private CustomContentImageScalingConfiguration _imageScaling;
+        private VisualInteractionOptions _interactions;
 
         /// <summary>
         /// Gets and sets the property ContentType. 
@@ -79,7 +81,7 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property ImageScaling. 
         /// <para>
         /// The sizing options for the size of the custom content visual. This structure is required
-        /// when the <code>ContentType</code> of the visual is <code>'IMAGE'</code>.
+        /// when the <c>ContentType</c> of the visual is <c>'IMAGE'</c>.
         /// </para>
         /// </summary>
         public CustomContentImageScalingConfiguration ImageScaling
@@ -92,6 +94,24 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetImageScaling()
         {
             return this._imageScaling != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Interactions. 
+        /// <para>
+        /// The general visual interactions setup for a visual.
+        /// </para>
+        /// </summary>
+        public VisualInteractionOptions Interactions
+        {
+            get { return this._interactions; }
+            set { this._interactions = value; }
+        }
+
+        // Check to see if Interactions property is set
+        internal bool IsSetInteractions()
+        {
+            return this._interactions != null;
         }
 
     }

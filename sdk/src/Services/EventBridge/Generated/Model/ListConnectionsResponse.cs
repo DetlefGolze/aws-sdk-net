@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.EventBridge.Model
     /// </summary>
     public partial class ListConnectionsResponse : AmazonWebServiceResponse
     {
-        private List<Connection> _connections = new List<Connection>();
+        private List<Connection> _connections = AWSConfigs.InitializeCollections ? new List<Connection>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,13 +52,24 @@ namespace Amazon.EventBridge.Model
         // Check to see if Connections property is set
         internal bool IsSetConnections()
         {
-            return this._connections != null && this._connections.Count > 0; 
+            return this._connections != null && (this._connections.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token you can use in a subsequent request to retrieve the next set of results.
+        /// A token indicating there are more results available. If there are no more results,
+        /// no token is included in the response.
+        /// </para>
+        ///  
+        /// <para>
+        /// The value of <c>nextToken</c> is a unique pagination token for each page. To retrieve
+        /// the next page of results, make the call again using the returned token. Keep all other
+        /// arguments unchanged.
+        /// </para>
+        ///  
+        /// <para>
+        ///  Using an expired pagination token results in an <c>HTTP 400 InvalidToken</c> error.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

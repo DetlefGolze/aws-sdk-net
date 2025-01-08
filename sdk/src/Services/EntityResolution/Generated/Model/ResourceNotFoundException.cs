@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
-    /// The resource could not be found. <code>HTTP Status Code: 404</code>
+    /// The resource could not be found.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

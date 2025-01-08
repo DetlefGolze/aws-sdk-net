@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Code. 
         /// <para>
         /// The ICMP code for which to deny or allow access. To deny or allow all codes, use the
-        /// value <code>-1</code>.
+        /// value <c>-1</c>.
         /// </para>
         /// </summary>
         public int Code
@@ -59,7 +60,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Type. 
         /// <para>
         /// The ICMP type for which to deny or allow access. To deny or allow all types, use the
-        /// value <code>-1</code>.
+        /// value <c>-1</c>.
         /// </para>
         /// </summary>
         public int Type

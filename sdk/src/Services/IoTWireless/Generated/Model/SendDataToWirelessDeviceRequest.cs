@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTWireless.Model
 {
     /// <summary>
@@ -77,8 +78,8 @@ namespace Amazon.IoTWireless.Model
         /// <summary>
         /// Gets and sets the property TransmitMode. 
         /// <para>
-        /// The transmit mode to use to send data to the wireless device. Can be: <code>0</code>
-        /// for UM (unacknowledge mode) or <code>1</code> for AM (acknowledge mode).
+        /// The transmit mode to use to send data to the wireless device. Can be: <c>0</c> for
+        /// UM (unacknowledge mode) or <c>1</c> for AM (acknowledge mode).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=1)]

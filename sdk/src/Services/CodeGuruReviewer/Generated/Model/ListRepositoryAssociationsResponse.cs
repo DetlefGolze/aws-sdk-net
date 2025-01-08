@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruReviewer.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.CodeGuruReviewer.Model
     public partial class ListRepositoryAssociationsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<RepositoryAssociationSummary> _repositoryAssociationSummaries = new List<RepositoryAssociationSummary>();
+        private List<RepositoryAssociationSummary> _repositoryAssociationSummaries = AWSConfigs.InitializeCollections ? new List<RepositoryAssociationSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value to include in a future <code>ListRecommendations</code>
-        /// request. When the results of a <code>ListRecommendations</code> request exceed <code>maxResults</code>,
-        /// this value can be used to retrieve the next page of results. This value is <code>null</code>
+        /// The <c>nextToken</c> value to include in a future <c>ListRecommendations</c> request.
+        /// When the results of a <c>ListRecommendations</c> request exceed <c>maxResults</c>,
+        /// this value can be used to retrieve the next page of results. This value is <c>null</c>
         /// when there are no more results to return. 
         /// </para>
         /// </summary>
@@ -73,7 +74,7 @@ namespace Amazon.CodeGuruReviewer.Model
         // Check to see if RepositoryAssociationSummaries property is set
         internal bool IsSetRepositoryAssociationSummaries()
         {
-            return this._repositoryAssociationSummaries != null && this._repositoryAssociationSummaries.Count > 0; 
+            return this._repositoryAssociationSummaries != null && (this._repositoryAssociationSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

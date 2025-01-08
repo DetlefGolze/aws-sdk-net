@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Synthetics.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Synthetics.Model
     public partial class UntagResourceRequest : AmazonSyntheticsRequest
     {
         private string _resourceArn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -44,13 +45,13 @@ namespace Amazon.Synthetics.Model
         /// </para>
         ///  
         /// <para>
-        /// The ARN format of a canary is <code>arn:aws:synthetics:<i>Region</i>:<i>account-id</i>:canary:<i>canary-name</i>
-        /// </code>.
+        /// The ARN format of a canary is <c>arn:aws:synthetics:<i>Region</i>:<i>account-id</i>:canary:<i>canary-name</i>
+        /// </c>.
         /// </para>
         ///  
         /// <para>
-        /// The ARN format of a group is <code>arn:aws:synthetics:<i>Region</i>:<i>account-id</i>:group:<i>group-name</i>
-        /// </code> 
+        /// The ARN format of a group is <c>arn:aws:synthetics:<i>Region</i>:<i>account-id</i>:group:<i>group-name</i>
+        /// </c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]
@@ -82,7 +83,7 @@ namespace Amazon.Synthetics.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

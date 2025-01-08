@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Finspace.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.Finspace.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(KxSavedownStorageConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetSize())
             {
                 context.Writer.WritePropertyName("size");
@@ -55,6 +58,12 @@ namespace Amazon.Finspace.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("type");
                 context.Writer.Write(requestObject.Type);
+            }
+
+            if(requestObject.IsSetVolumeName())
+            {
+                context.Writer.WritePropertyName("volumeName");
+                context.Writer.Write(requestObject.VolumeName);
             }
 
         }

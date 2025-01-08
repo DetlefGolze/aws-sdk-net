@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
-    /// Contains the response to a <code>DescribeInstances</code> request.
+    /// Contains the response to a <c>DescribeInstances</c> request.
     /// </summary>
     public partial class DescribeInstancesResponse : AmazonWebServiceResponse
     {
-        private List<Instance> _instances = new List<Instance>();
+        private List<Instance> _instances = AWSConfigs.InitializeCollections ? new List<Instance>() : null;
 
         /// <summary>
         /// Gets and sets the property Instances. 
         /// <para>
-        /// An array of <code>Instance</code> objects that describe the instances.
+        /// An array of <c>Instance</c> objects that describe the instances.
         /// </para>
         /// </summary>
         public List<Instance> Instances
@@ -50,7 +51,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if Instances property is set
         internal bool IsSetInstances()
         {
-            return this._instances != null && this._instances.Count > 0; 
+            return this._instances != null && (this._instances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

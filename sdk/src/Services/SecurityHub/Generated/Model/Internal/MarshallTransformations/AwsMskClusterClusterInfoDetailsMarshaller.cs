@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(AwsMskClusterClusterInfoDetails requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetClientAuthentication())
             {
                 context.Writer.WritePropertyName("ClientAuthentication");
@@ -77,6 +80,12 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
                 marshaller.Marshall(requestObject.EncryptionInfo, context);
 
                 context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetEnhancedMonitoring())
+            {
+                context.Writer.WritePropertyName("EnhancedMonitoring");
+                context.Writer.Write(requestObject.EnhancedMonitoring);
             }
 
             if(requestObject.IsSetNumberOfBrokerNodes())

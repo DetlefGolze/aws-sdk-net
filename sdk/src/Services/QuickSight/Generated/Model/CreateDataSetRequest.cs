@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -36,20 +37,22 @@ namespace Amazon.QuickSight.Model
     public partial class CreateDataSetRequest : AmazonQuickSightRequest
     {
         private string _awsAccountId;
-        private List<ColumnGroup> _columnGroups = new List<ColumnGroup>();
-        private List<ColumnLevelPermissionRule> _columnLevelPermissionRules = new List<ColumnLevelPermissionRule>();
+        private List<ColumnGroup> _columnGroups = AWSConfigs.InitializeCollections ? new List<ColumnGroup>() : null;
+        private List<ColumnLevelPermissionRule> _columnLevelPermissionRules = AWSConfigs.InitializeCollections ? new List<ColumnLevelPermissionRule>() : null;
         private string _dataSetId;
-        private List<DatasetParameter> _datasetParameters = new List<DatasetParameter>();
+        private List<DatasetParameter> _datasetParameters = AWSConfigs.InitializeCollections ? new List<DatasetParameter>() : null;
         private DataSetUsageConfiguration _dataSetUsageConfiguration;
-        private Dictionary<string, FieldFolder> _fieldFolders = new Dictionary<string, FieldFolder>();
+        private Dictionary<string, FieldFolder> _fieldFolders = AWSConfigs.InitializeCollections ? new Dictionary<string, FieldFolder>() : null;
+        private List<string> _folderArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DataSetImportMode _importMode;
-        private Dictionary<string, LogicalTable> _logicalTableMap = new Dictionary<string, LogicalTable>();
+        private Dictionary<string, LogicalTable> _logicalTableMap = AWSConfigs.InitializeCollections ? new Dictionary<string, LogicalTable>() : null;
         private string _name;
-        private List<ResourcePermission> _permissions = new List<ResourcePermission>();
-        private Dictionary<string, PhysicalTable> _physicalTableMap = new Dictionary<string, PhysicalTable>();
+        private PerformanceConfiguration _performanceConfiguration;
+        private List<ResourcePermission> _permissions = AWSConfigs.InitializeCollections ? new List<ResourcePermission>() : null;
+        private Dictionary<string, PhysicalTable> _physicalTableMap = AWSConfigs.InitializeCollections ? new Dictionary<string, PhysicalTable>() : null;
         private RowLevelPermissionDataSet _rowLevelPermissionDataSet;
         private RowLevelPermissionTagConfiguration _rowLevelPermissionTagConfiguration;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AwsAccountId. 
@@ -87,14 +90,14 @@ namespace Amazon.QuickSight.Model
         // Check to see if ColumnGroups property is set
         internal bool IsSetColumnGroups()
         {
-            return this._columnGroups != null && this._columnGroups.Count > 0; 
+            return this._columnGroups != null && (this._columnGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ColumnLevelPermissionRules. 
         /// <para>
-        /// A set of one or more definitions of a <code> <a href="https://docs.aws.amazon.com/quicksight/latest/APIReference/API_ColumnLevelPermissionRule.html">ColumnLevelPermissionRule</a>
-        /// </code>.
+        /// A set of one or more definitions of a <c> <a href="https://docs.aws.amazon.com/quicksight/latest/APIReference/API_ColumnLevelPermissionRule.html">ColumnLevelPermissionRule</a>
+        /// </c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -107,7 +110,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if ColumnLevelPermissionRules property is set
         internal bool IsSetColumnLevelPermissionRules()
         {
-            return this._columnLevelPermissionRules != null && this._columnLevelPermissionRules.Count > 0; 
+            return this._columnLevelPermissionRules != null && (this._columnLevelPermissionRules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -146,7 +149,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if DatasetParameters property is set
         internal bool IsSetDatasetParameters()
         {
-            return this._datasetParameters != null && this._datasetParameters.Count > 0; 
+            return this._datasetParameters != null && (this._datasetParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -179,7 +182,26 @@ namespace Amazon.QuickSight.Model
         // Check to see if FieldFolders property is set
         internal bool IsSetFieldFolders()
         {
-            return this._fieldFolders != null && this._fieldFolders.Count > 0; 
+            return this._fieldFolders != null && (this._fieldFolders.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property FolderArns. 
+        /// <para>
+        /// When you create the dataset, Amazon QuickSight adds the dataset to these folders.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=1)]
+        public List<string> FolderArns
+        {
+            get { return this._folderArns; }
+            set { this._folderArns = value; }
+        }
+
+        // Check to see if FolderArns property is set
+        internal bool IsSetFolderArns()
+        {
+            return this._folderArns != null && (this._folderArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -217,7 +239,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if LogicalTableMap property is set
         internal bool IsSetLogicalTableMap()
         {
-            return this._logicalTableMap != null && this._logicalTableMap.Count > 0; 
+            return this._logicalTableMap != null && (this._logicalTableMap.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -240,6 +262,25 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PerformanceConfiguration. 
+        /// <para>
+        /// The configuration for the performance optimization of the dataset that contains a
+        /// <c>UniqueKey</c> configuration.
+        /// </para>
+        /// </summary>
+        public PerformanceConfiguration PerformanceConfiguration
+        {
+            get { return this._performanceConfiguration; }
+            set { this._performanceConfiguration = value; }
+        }
+
+        // Check to see if PerformanceConfiguration property is set
+        internal bool IsSetPerformanceConfiguration()
+        {
+            return this._performanceConfiguration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Permissions. 
         /// <para>
         /// A list of resource permissions on the dataset.
@@ -255,7 +296,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Permissions property is set
         internal bool IsSetPermissions()
         {
-            return this._permissions != null && this._permissions.Count > 0; 
+            return this._permissions != null && (this._permissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -274,7 +315,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if PhysicalTableMap property is set
         internal bool IsSetPhysicalTableMap()
         {
-            return this._physicalTableMap != null && this._physicalTableMap.Count > 0; 
+            return this._physicalTableMap != null && (this._physicalTableMap.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -331,7 +372,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

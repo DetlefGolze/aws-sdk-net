@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHub.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.MigrationHub.Model
     /// 
     ///  
     /// <para>
-    /// This API is a prerequisite to calling the <code>NotifyMigrationTaskState</code> API
-    /// as the migration tool must first register the migration task with Migration Hub.
+    /// This API is a prerequisite to calling the <c>NotifyMigrationTaskState</c> API as the
+    /// migration tool must first register the migration task with Migration Hub.
     /// </para>
     /// </summary>
     public partial class ImportMigrationTaskRequest : AmazonMigrationHubRequest

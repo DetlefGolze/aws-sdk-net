@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppMesh.Model
 {
     /// <summary>
@@ -99,7 +100,7 @@ namespace Amazon.AppMesh.Model
         /// <summary>
         /// Gets and sets the property MaxServerErrors. 
         /// <para>
-        /// Number of consecutive <code>5xx</code> errors required for ejection. 
+        /// Number of consecutive <c>5xx</c> errors required for ejection. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1)]

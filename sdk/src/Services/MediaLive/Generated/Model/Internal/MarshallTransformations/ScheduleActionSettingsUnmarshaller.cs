@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ScheduleActionSettings Unmarshall(JsonUnmarshallerContext context)
         {
+            ScheduleActionSettings unmarshalledObject = new ScheduleActionSettings();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ScheduleActionSettings unmarshalledObject = new ScheduleActionSettings();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -142,8 +144,19 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     unmarshalledObject.StaticImageDeactivateSettings = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("staticImageOutputActivateSettings", targetDepth))
+                {
+                    var unmarshaller = StaticImageOutputActivateScheduleActionSettingsUnmarshaller.Instance;
+                    unmarshalledObject.StaticImageOutputActivateSettings = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("staticImageOutputDeactivateSettings", targetDepth))
+                {
+                    var unmarshaller = StaticImageOutputDeactivateScheduleActionSettingsUnmarshaller.Instance;
+                    unmarshalledObject.StaticImageOutputDeactivateSettings = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

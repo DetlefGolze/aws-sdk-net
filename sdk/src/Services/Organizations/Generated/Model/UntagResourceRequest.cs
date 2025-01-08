@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Organizations.Model
 {
     /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.Organizations.Model
     public partial class UntagResourceRequest : AmazonOrganizationsRequest
     {
         private string _resourceId;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceId. 
@@ -78,18 +79,18 @@ namespace Amazon.Organizations.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Organizational unit – specify the OU ID that begins with <code>ou-</code> and looks
-        /// similar to: <code>ou-<i>1a2b-34uvwxyz</i> </code> 
+        /// Organizational unit – specify the OU ID that begins with <c>ou-</c> and looks similar
+        /// to: <c>ou-<i>1a2b-34uvwxyz</i> </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Root – specify the root ID that begins with <code>r-</code> and looks similar to:
-        /// <code>r-<i>1a2b</i> </code> 
+        /// Root – specify the root ID that begins with <c>r-</c> and looks similar to: <c>r-<i>1a2b</i>
+        /// </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Policy – specify the policy ID that begins with <code>p-</code> andlooks similar to:
-        /// <code>p-<i>12abcdefg3</i> </code> 
+        /// Policy – specify the policy ID that begins with <c>p-</c> andlooks similar to: <c>p-<i>12abcdefg3</i>
+        /// </c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -122,7 +123,7 @@ namespace Amazon.Organizations.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

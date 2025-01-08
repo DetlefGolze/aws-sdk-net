@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ConnectCases.Model
 {
     /// <summary>
@@ -41,6 +42,14 @@ namespace Amazon.ConnectCases.Model
         public IGetCasePaginator GetCase(GetCaseRequest request) 
         {
             return new GetCasePaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for GetCaseAuditEvents operation
+        ///</summary>
+        public IGetCaseAuditEventsPaginator GetCaseAuditEvents(GetCaseAuditEventsRequest request) 
+        {
+            return new GetCaseAuditEventsPaginator(this.client, request);
         }
 
         /// <summary>

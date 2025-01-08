@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAutoEnable())
@@ -75,6 +77,17 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("AutoEnableStandards");
                     context.Writer.Write(publicRequest.AutoEnableStandards);
+                }
+
+                if(publicRequest.IsSetOrganizationConfiguration())
+                {
+                    context.Writer.WritePropertyName("OrganizationConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = OrganizationConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.OrganizationConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 writer.WriteObjectEnd();

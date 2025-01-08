@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityLake.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.SecurityLake.Model
     /// </summary>
     public partial class UpdateSubscriberRequest : AmazonSecurityLakeRequest
     {
-        private List<LogSourceResource> _sources = new List<LogSourceResource>();
+        private List<LogSourceResource> _sources = AWSConfigs.InitializeCollections ? new List<LogSourceResource>() : null;
         private string _subscriberDescription;
         private string _subscriberId;
         private AwsIdentity _subscriberIdentity;
@@ -45,8 +46,8 @@ namespace Amazon.SecurityLake.Model
         /// <summary>
         /// Gets and sets the property Sources. 
         /// <para>
-        /// The supported Amazon Web Services from which logs and events are collected. For the
-        /// list of supported Amazon Web Services, see the <a href="https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html">Amazon
+        /// The supported Amazon Web Services services from which logs and events are collected.
+        /// For the list of supported Amazon Web Services services, see the <a href="https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html">Amazon
         /// Security Lake User Guide</a>.
         /// </para>
         /// </summary>
@@ -59,7 +60,7 @@ namespace Amazon.SecurityLake.Model
         // Check to see if Sources property is set
         internal bool IsSetSources()
         {
-            return this._sources != null && this._sources.Count > 0; 
+            return this._sources != null && (this._sources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -102,7 +103,7 @@ namespace Amazon.SecurityLake.Model
         /// <summary>
         /// Gets and sets the property SubscriberIdentity. 
         /// <para>
-        /// The AWS identity used to access your data.
+        /// The Amazon Web Services identity used to access your data.
         /// </para>
         /// </summary>
         public AwsIdentity SubscriberIdentity

@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.LicenseManagerUserSubscriptions.Model
 {
     /// <summary>
@@ -49,6 +50,14 @@ namespace Amazon.LicenseManagerUserSubscriptions.Model
         public IListInstancesPaginator ListInstances(ListInstancesRequest request) 
         {
             return new ListInstancesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListLicenseServerEndpoints operation
+        ///</summary>
+        public IListLicenseServerEndpointsPaginator ListLicenseServerEndpoints(ListLicenseServerEndpointsRequest request) 
+        {
+            return new ListLicenseServerEndpointsPaginator(this.client, request);
         }
 
         /// <summary>

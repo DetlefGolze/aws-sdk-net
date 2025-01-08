@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAF.Model
 {
     /// <summary>
@@ -53,7 +54,7 @@ namespace Amazon.WAF.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of geographical area you want AWS WAF to search for. Currently <code>Country</code>
+        /// The type of geographical area you want AWS WAF to search for. Currently <c>Country</c>
         /// is the only valid value.
         /// </para>
         /// </summary>

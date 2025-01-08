@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
-    /// Represents the output of a <code>DescribeCacheParameterGroups</code> operation.
+    /// Represents the output of a <c>DescribeCacheParameterGroups</c> operation.
     /// </summary>
     public partial class DescribeCacheParameterGroupsResponse : AmazonWebServiceResponse
     {
-        private List<CacheParameterGroup> _cacheParameterGroups = new List<CacheParameterGroup>();
+        private List<CacheParameterGroup> _cacheParameterGroups = AWSConfigs.InitializeCollections ? new List<CacheParameterGroup>() : null;
         private string _marker;
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if CacheParameterGroups property is set
         internal bool IsSetCacheParameterGroups()
         {
-            return this._cacheParameterGroups != null && this._cacheParameterGroups.Count > 0; 
+            return this._cacheParameterGroups != null && (this._cacheParameterGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

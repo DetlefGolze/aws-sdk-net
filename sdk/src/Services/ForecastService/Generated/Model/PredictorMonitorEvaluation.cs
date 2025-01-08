@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.ForecastService.Model
         private string _evaluationState;
         private DateTime? _evaluationTime;
         private string _message;
-        private List<MetricResult> _metricResults = new List<MetricResult>();
+        private List<MetricResult> _metricResults = AWSConfigs.InitializeCollections ? new List<MetricResult>() : null;
         private string _monitorArn;
         private MonitorDataSource _monitorDataSource;
         private long? _numItemsEvaluated;
@@ -48,7 +49,7 @@ namespace Amazon.ForecastService.Model
         /// <summary>
         /// Gets and sets the property EvaluationState. 
         /// <para>
-        /// The status of the monitor evaluation. The state can be <code>SUCCESS</code> or <code>FAILURE</code>.
+        /// The status of the monitor evaluation. The state can be <c>SUCCESS</c> or <c>FAILURE</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=256)]
@@ -117,7 +118,7 @@ namespace Amazon.ForecastService.Model
         // Check to see if MetricResults property is set
         internal bool IsSetMetricResults()
         {
-            return this._metricResults != null && this._metricResults.Count > 0; 
+            return this._metricResults != null && (this._metricResults.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

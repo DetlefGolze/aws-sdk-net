@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruProfiler.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.CodeGuruProfiler.Model
     public partial class GetFindingsReportAccountSummaryResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<FindingsReportSummary> _reportSummaries = new List<FindingsReportSummary>();
+        private List<FindingsReportSummary> _reportSummaries = AWSConfigs.InitializeCollections ? new List<FindingsReportSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value to include in a future <code>GetFindingsReportAccountSummary</code>
-        /// request. When the results of a <code>GetFindingsReportAccountSummary</code> request
-        /// exceed <code>maxResults</code>, this value can be used to retrieve the next page of
-        /// results. This value is <code>null</code> when there are no more results to return.
+        /// The <c>nextToken</c> value to include in a future <c>GetFindingsReportAccountSummary</c>
+        /// request. When the results of a <c>GetFindingsReportAccountSummary</c> request exceed
+        /// <c>maxResults</c>, this value can be used to retrieve the next page of results. This
+        /// value is <c>null</c> when there are no more results to return.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -62,8 +63,8 @@ namespace Amazon.CodeGuruProfiler.Model
         /// Gets and sets the property ReportSummaries. 
         /// <para>
         /// The return list of <a href="https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_FindingsReportSummary.html">
-        /// <code>FindingsReportSummary</code> </a> objects taht contain summaries of analysis
-        /// results for all profiling groups in your AWS account.
+        /// <c>FindingsReportSummary</c> </a> objects taht contain summaries of analysis results
+        /// for all profiling groups in your AWS account.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -76,7 +77,7 @@ namespace Amazon.CodeGuruProfiler.Model
         // Check to see if ReportSummaries property is set
         internal bool IsSetReportSummaries()
         {
-            return this._reportSummaries != null && this._reportSummaries.Count > 0; 
+            return this._reportSummaries != null && (this._reportSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.VPCLattice.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.VPCLattice.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAuthType())
@@ -86,6 +88,17 @@ namespace Amazon.VPCLattice.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("name");
                     context.Writer.Write(publicRequest.Name);
+                }
+
+                if(publicRequest.IsSetSharingConfig())
+                {
+                    context.Writer.WritePropertyName("sharingConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = SharingConfigMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.SharingConfig, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetTags())

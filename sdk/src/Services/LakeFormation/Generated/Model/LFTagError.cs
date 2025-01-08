@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
-    /// A structure containing an error related to a <code>TagResource</code> or <code>UnTagResource</code>
+    /// A structure containing an error related to a <c>TagResource</c> or <c>UnTagResource</c>
     /// operation.
     /// </summary>
     public partial class LFTagError

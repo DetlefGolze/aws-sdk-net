@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -77,7 +78,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property SecurityControlId. 
         /// <para>
-        ///  The control (identified with <code>SecurityControlId</code>, <code>SecurityControlArn</code>,
+        ///  The control (identified with <c>SecurityControlId</c>, <c>SecurityControlArn</c>,
         /// or a mix of both parameters) for which a response couldn't be returned. 
         /// </para>
         /// </summary>

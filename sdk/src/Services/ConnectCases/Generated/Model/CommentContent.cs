@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectCases.Model
 {
     /// <summary>
-    /// Represents the content of a <code>Comment</code> to be returned to agents.
+    /// Represents the content of a <c>Comment</c> to be returned to agents.
     /// </summary>
     public partial class CommentContent
     {
@@ -39,10 +40,10 @@ namespace Amazon.ConnectCases.Model
         /// <summary>
         /// Gets and sets the property Body. 
         /// <para>
-        /// Text in the body of a <code>Comment</code> on a case.
+        /// Text in the body of a <c>Comment</c> on a case.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=1000)]
+        [AWSProperty(Required=true, Min=1, Max=3000)]
         public string Body
         {
             get { return this._body; }
@@ -58,7 +59,7 @@ namespace Amazon.ConnectCases.Model
         /// <summary>
         /// Gets and sets the property ContentType. 
         /// <para>
-        /// Type of the text in the box of a <code>Comment</code> on a case.
+        /// Type of the text in the box of a <c>Comment</c> on a case.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

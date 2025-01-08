@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Finspace.Model
 {
     /// <summary>
@@ -35,7 +36,8 @@ namespace Amazon.Finspace.Model
     public partial class KxDatabaseCacheConfiguration
     {
         private string _cacheType;
-        private List<string> _dbPaths = new List<string>();
+        private string _dataviewName;
+        private List<string> _dbPaths = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property CacheType. 
@@ -63,6 +65,25 @@ namespace Amazon.Finspace.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DataviewName. 
+        /// <para>
+        ///  The name of the dataview to be used for caching historical data on disk. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=3, Max=63)]
+        public string DataviewName
+        {
+            get { return this._dataviewName; }
+            set { this._dataviewName = value; }
+        }
+
+        // Check to see if DataviewName property is set
+        internal bool IsSetDataviewName()
+        {
+            return this._dataviewName != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property DbPaths. 
         /// <para>
         /// Specifies the portions of database that will be loaded into the cache for access.
@@ -78,7 +99,7 @@ namespace Amazon.Finspace.Model
         // Check to see if DbPaths property is set
         internal bool IsSetDbPaths()
         {
-            return this._dbPaths != null && this._dbPaths.Count > 0; 
+            return this._dbPaths != null && (this._dbPaths.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

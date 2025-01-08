@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ConnectContactLens.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.ConnectContactLens.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public RealtimeContactAnalysisSegment Unmarshall(JsonUnmarshallerContext context)
         {
+            RealtimeContactAnalysisSegment unmarshalledObject = new RealtimeContactAnalysisSegment();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            RealtimeContactAnalysisSegment unmarshalledObject = new RealtimeContactAnalysisSegment();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -70,6 +72,12 @@ namespace Amazon.ConnectContactLens.Model.Internal.MarshallTransformations
                     unmarshalledObject.Categories = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("PostContactSummary", targetDepth))
+                {
+                    var unmarshaller = PostContactSummaryUnmarshaller.Instance;
+                    unmarshalledObject.PostContactSummary = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("Transcript", targetDepth))
                 {
                     var unmarshaller = TranscriptUnmarshaller.Instance;
@@ -77,7 +85,6 @@ namespace Amazon.ConnectContactLens.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LookoutMetrics.Model
 {
     /// <summary>
-    /// Aggregated details about the data quality metrics collected for the <code>AnomalyDetectorArn</code>
+    /// Aggregated details about the data quality metrics collected for the <c>AnomalyDetectorArn</c>
     /// provided in the <a>GetDataQualityMetrics</a> object.
     /// </summary>
     public partial class AnomalyDetectorDataQualityMetric
     {
-        private List<MetricSetDataQualityMetric> _metricSetDataQualityMetricList = new List<MetricSetDataQualityMetric>();
+        private List<MetricSetDataQualityMetric> _metricSetDataQualityMetricList = AWSConfigs.InitializeCollections ? new List<MetricSetDataQualityMetric>() : null;
         private DateTime? _startTimestamp;
 
         /// <summary>
         /// Gets and sets the property MetricSetDataQualityMetricList. 
         /// <para>
-        /// An array of <code>DataQualityMetricList</code> objects. Each object in the array contains
+        /// An array of <c>DataQualityMetricList</c> objects. Each object in the array contains
         /// information about a data quality metric.
         /// </para>
         /// </summary>
@@ -53,7 +54,7 @@ namespace Amazon.LookoutMetrics.Model
         // Check to see if MetricSetDataQualityMetricList property is set
         internal bool IsSetMetricSetDataQualityMetricList()
         {
-            return this._metricSetDataQualityMetricList != null && this._metricSetDataQualityMetricList.Count > 0; 
+            return this._metricSetDataQualityMetricList != null && (this._metricSetDataQualityMetricList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

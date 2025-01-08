@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostExplorer.Model
 {
     /// <summary>
-    /// Details about the Amazon ElastiCache instances that Amazon Web Services recommends
+    /// Details about the Amazon ElastiCache reservations that Amazon Web Services recommends
     /// that you purchase.
     /// </summary>
     public partial class ElastiCacheInstanceDetails

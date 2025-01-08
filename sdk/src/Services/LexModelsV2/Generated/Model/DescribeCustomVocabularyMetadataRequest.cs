@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -79,7 +80,7 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property LocaleId. 
         /// <para>
-        /// The locale to return the custom vocabulary information for. The locale must be <code>en_GB</code>.
+        /// The locale to return the custom vocabulary information for. The locale must be <c>en_GB</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

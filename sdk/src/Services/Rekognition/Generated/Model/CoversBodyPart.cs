@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Rekognition.Model
         /// <summary>
         /// Gets and sets the property Confidence. 
         /// <para>
-        /// The confidence that Amazon Rekognition has in the value of <code>Value</code>.
+        /// The confidence that Amazon Rekognition has in the value of <c>Value</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]

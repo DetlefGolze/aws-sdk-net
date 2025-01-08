@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
@@ -37,21 +38,22 @@ namespace Amazon.CodeDeploy.Model
         private AlarmConfiguration _alarmConfiguration;
         private string _applicationName;
         private AutoRollbackConfiguration _autoRollbackConfiguration;
-        private List<string> _autoScalingGroups = new List<string>();
+        private List<string> _autoScalingGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private BlueGreenDeploymentConfiguration _blueGreenDeploymentConfiguration;
         private string _deploymentConfigName;
         private string _deploymentGroupName;
         private DeploymentStyle _deploymentStyle;
-        private List<EC2TagFilter> _ec2TagFilters = new List<EC2TagFilter>();
+        private List<EC2TagFilter> _ec2TagFilters = AWSConfigs.InitializeCollections ? new List<EC2TagFilter>() : null;
         private EC2TagSet _ec2TagSet;
-        private List<ECSService> _ecsServices = new List<ECSService>();
+        private List<ECSService> _ecsServices = AWSConfigs.InitializeCollections ? new List<ECSService>() : null;
         private LoadBalancerInfo _loadBalancerInfo;
-        private List<TagFilter> _onPremisesInstanceTagFilters = new List<TagFilter>();
+        private List<TagFilter> _onPremisesInstanceTagFilters = AWSConfigs.InitializeCollections ? new List<TagFilter>() : null;
         private OnPremisesTagSet _onPremisesTagSet;
         private OutdatedInstancesStrategy _outdatedInstancesStrategy;
         private string _serviceRoleArn;
-        private List<Tag> _tags = new List<Tag>();
-        private List<TriggerConfig> _triggerConfigurations = new List<TriggerConfig>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private bool? _terminationHookEnabled;
+        private List<TriggerConfig> _triggerConfigurations = AWSConfigs.InitializeCollections ? new List<TriggerConfig>() : null;
 
         /// <summary>
         /// Gets and sets the property AlarmConfiguration. 
@@ -125,7 +127,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if AutoScalingGroups property is set
         internal bool IsSetAutoScalingGroups()
         {
-            return this._autoScalingGroups != null && this._autoScalingGroups.Count > 0; 
+            return this._autoScalingGroups != null && (this._autoScalingGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -155,8 +157,8 @@ namespace Amazon.CodeDeploy.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>CodeDeployDefault.OneAtATime</code> is the default deployment configuration.
-        /// It is used if a configuration isn't specified for the deployment or deployment group.
+        ///  <c>CodeDeployDefault.OneAtATime</c> is the default deployment configuration. It is
+        /// used if a configuration isn't specified for the deployment or deployment group.
         /// </para>
         ///  
         /// <para>
@@ -232,7 +234,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if Ec2TagFilters property is set
         internal bool IsSetEc2TagFilters()
         {
-            return this._ec2TagFilters != null && this._ec2TagFilters.Count > 0; 
+            return this._ec2TagFilters != null && (this._ec2TagFilters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -240,7 +242,7 @@ namespace Amazon.CodeDeploy.Model
         /// <para>
         /// Information about groups of tags applied to Amazon EC2 instances. The deployment group
         /// includes only Amazon EC2 instances identified by all the tag groups. Cannot be used
-        /// in the same call as <code>ec2TagFilters</code>.
+        /// in the same call as <c>ec2TagFilters</c>.
         /// </para>
         /// </summary>
         public EC2TagSet Ec2TagSet
@@ -260,7 +262,7 @@ namespace Amazon.CodeDeploy.Model
         /// <para>
         ///  The target Amazon ECS services in the deployment group. This applies only to deployment
         /// groups that use the Amazon ECS compute platform. A target Amazon ECS service is specified
-        /// as an Amazon ECS cluster and service name pair using the format <code>&lt;clustername&gt;:&lt;servicename&gt;</code>.
+        /// as an Amazon ECS cluster and service name pair using the format <c>&lt;clustername&gt;:&lt;servicename&gt;</c>.
         /// 
         /// </para>
         /// </summary>
@@ -273,7 +275,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if EcsServices property is set
         internal bool IsSetEcsServices()
         {
-            return this._ecsServices != null && this._ecsServices.Count > 0; 
+            return this._ecsServices != null && (this._ecsServices.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -298,7 +300,7 @@ namespace Amazon.CodeDeploy.Model
         /// Gets and sets the property OnPremisesInstanceTagFilters. 
         /// <para>
         /// The on-premises instance tags on which to filter. The deployment group includes on-premises
-        /// instances with any of the specified tags. Cannot be used in the same call as <code>OnPremisesTagSet</code>.
+        /// instances with any of the specified tags. Cannot be used in the same call as <c>OnPremisesTagSet</c>.
         /// </para>
         /// </summary>
         public List<TagFilter> OnPremisesInstanceTagFilters
@@ -310,7 +312,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if OnPremisesInstanceTagFilters property is set
         internal bool IsSetOnPremisesInstanceTagFilters()
         {
-            return this._onPremisesInstanceTagFilters != null && this._onPremisesInstanceTagFilters.Count > 0; 
+            return this._onPremisesInstanceTagFilters != null && (this._onPremisesInstanceTagFilters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -318,7 +320,7 @@ namespace Amazon.CodeDeploy.Model
         /// <para>
         /// Information about groups of tags applied to on-premises instances. The deployment
         /// group includes only on-premises instances identified by all of the tag groups. Cannot
-        /// be used in the same call as <code>onPremisesInstanceTagFilters</code>.
+        /// be used in the same call as <c>onPremisesInstanceTagFilters</c>.
         /// </para>
         /// </summary>
         public OnPremisesTagSet OnPremisesTagSet
@@ -341,13 +343,13 @@ namespace Amazon.CodeDeploy.Model
         /// </para>
         ///  
         /// <para>
-        /// If this option is set to <code>UPDATE</code> or is unspecified, CodeDeploy initiates
-        /// one or more 'auto-update outdated instances' deployments to apply the deployed application
+        /// If this option is set to <c>UPDATE</c> or is unspecified, CodeDeploy initiates one
+        /// or more 'auto-update outdated instances' deployments to apply the deployed application
         /// revision to the new Amazon EC2 instances.
         /// </para>
         ///  
         /// <para>
-        /// If this option is set to <code>IGNORE</code>, CodeDeploy does not initiate a deployment
+        /// If this option is set to <c>IGNORE</c>, CodeDeploy does not initiate a deployment
         /// to update the new Amazon EC2 instances. This may result in instances having different
         /// revisions.
         /// </para>
@@ -401,7 +403,44 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property TerminationHookEnabled. 
+        /// <para>
+        /// This parameter only applies if you are using CodeDeploy with Amazon EC2 Auto Scaling.
+        /// For more information, see <a href="https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html">Integrating
+        /// CodeDeploy with Amazon EC2 Auto Scaling</a> in the <i>CodeDeploy User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Set <c>terminationHookEnabled</c> to <c>true</c> to have CodeDeploy install a termination
+        /// hook into your Auto Scaling group when you create a deployment group. When this hook
+        /// is installed, CodeDeploy will perform termination deployments.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information about termination deployments, see <a href="https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors-hook-enable">Enabling
+        /// termination deployments during Auto Scaling scale-in events</a> in the <i>CodeDeploy
+        /// User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about Auto Scaling scale-in events, see the <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-lifecycle.html#as-lifecycle-scale-in">Scale
+        /// in</a> topic in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+        /// </para>
+        /// </summary>
+        public bool TerminationHookEnabled
+        {
+            get { return this._terminationHookEnabled.GetValueOrDefault(); }
+            set { this._terminationHookEnabled = value; }
+        }
+
+        // Check to see if TerminationHookEnabled property is set
+        internal bool IsSetTerminationHookEnabled()
+        {
+            return this._terminationHookEnabled.HasValue; 
         }
 
         /// <summary>
@@ -421,7 +460,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if TriggerConfigurations property is set
         internal bool IsSetTriggerConfigurations()
         {
-            return this._triggerConfigurations != null && this._triggerConfigurations.Count > 0; 
+            return this._triggerConfigurations != null && (this._triggerConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

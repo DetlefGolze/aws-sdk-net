@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
-    /// This data type is used as a response element in the <code>ModifyDBCluster</code> operation
+    /// This data type is used as a response element in the <c>ModifyDBCluster</c> operation
     /// and contains changes that will be applied during the next maintenance window.
     /// </summary>
     public partial class ClusterPendingModifiedValues
@@ -41,11 +42,12 @@ namespace Amazon.Neptune.Model
         private bool? _iamDatabaseAuthenticationEnabled;
         private int? _iops;
         private PendingCloudwatchLogsExports _pendingCloudwatchLogsExports;
+        private string _storageType;
 
         /// <summary>
         /// Gets and sets the property AllocatedStorage. 
         /// <para>
-        /// The allocated storage size in gibibytes (GiB) for database engines. For Neptune, <code>AllocatedStorage</code>
+        /// The allocated storage size in gibibytes (GiB) for database engines. For Neptune, <c>AllocatedStorage</c>
         /// always returns 1, because Neptune DB cluster storage size isn't fixed, but instead
         /// automatically adjusts as needed.
         /// </para>
@@ -157,8 +159,8 @@ namespace Amazon.Neptune.Model
         /// <summary>
         /// Gets and sets the property PendingCloudwatchLogsExports. 
         /// <para>
-        /// This <code>PendingCloudwatchLogsExports</code> structure specifies pending changes
-        /// to which CloudWatch logs are enabled and which are disabled.
+        /// This <c>PendingCloudwatchLogsExports</c> structure specifies pending changes to which
+        /// CloudWatch logs are enabled and which are disabled.
         /// </para>
         /// </summary>
         public PendingCloudwatchLogsExports PendingCloudwatchLogsExports
@@ -171,6 +173,24 @@ namespace Amazon.Neptune.Model
         internal bool IsSetPendingCloudwatchLogsExports()
         {
             return this._pendingCloudwatchLogsExports != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property StorageType. 
+        /// <para>
+        /// The storage type for the DB cluster.
+        /// </para>
+        /// </summary>
+        public string StorageType
+        {
+            get { return this._storageType; }
+            set { this._storageType = value; }
+        }
+
+        // Check to see if StorageType property is set
+        internal bool IsSetStorageType()
+        {
+            return this._storageType != null;
         }
 
     }

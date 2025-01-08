@@ -26,18 +26,27 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.XRay.Model
 {
     /// <summary>
     /// Container for the parameters to the BatchGetTraces operation.
+    /// <note> 
+    /// <para>
+    /// You cannot find traces through this API if Transaction Search is enabled since trace
+    /// is not indexed in X-Ray.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Retrieves a list of traces specified by ID. Each trace is a collection of segment
-    /// documents that originates from a single request. Use <code>GetTraceSummaries</code>
-    /// to get a list of trace IDs.
+    /// documents that originates from a single request. Use <c>GetTraceSummaries</c> to get
+    /// a list of trace IDs.
+    /// </para>
     /// </summary>
     public partial class BatchGetTracesRequest : AmazonXRayRequest
     {
         private string _nextToken;
-        private List<string> _traceIds = new List<string>();
+        private List<string> _traceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -73,7 +82,7 @@ namespace Amazon.XRay.Model
         // Check to see if TraceIds property is set
         internal bool IsSetTraceIds()
         {
-            return this._traceIds != null && this._traceIds.Count > 0; 
+            return this._traceIds != null && (this._traceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

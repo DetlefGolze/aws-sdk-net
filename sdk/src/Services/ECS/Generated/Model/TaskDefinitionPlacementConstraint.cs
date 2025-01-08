@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -67,8 +68,8 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of constraint. The <code>MemberOf</code> constraint restricts selection to
-        /// be from a group of valid candidates.
+        /// The type of constraint. The <c>MemberOf</c> constraint restricts selection to be from
+        /// a group of valid candidates.
         /// </para>
         /// </summary>
         public TaskDefinitionPlacementConstraintType Type

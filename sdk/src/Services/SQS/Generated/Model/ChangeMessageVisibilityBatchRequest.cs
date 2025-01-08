@@ -26,26 +26,27 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SQS.Model
 {
     /// <summary>
     /// Container for the parameters to the ChangeMessageVisibilityBatch operation.
-    /// Changes the visibility timeout of multiple messages. This is a batch version of <code>
-    /// <a>ChangeMessageVisibility</a>.</code> The result of the action on each message is
-    /// reported individually in the response. You can send up to 10 <code> <a>ChangeMessageVisibility</a>
-    /// </code> requests with each <code>ChangeMessageVisibilityBatch</code> action.
+    /// Changes the visibility timeout of multiple messages. This is a batch version of <c>
+    /// <a>ChangeMessageVisibility</a>.</c> The result of the action on each message is reported
+    /// individually in the response. You can send up to 10 <c> <a>ChangeMessageVisibility</a>
+    /// </c> requests with each <c>ChangeMessageVisibilityBatch</c> action.
     /// 
     ///  <important> 
     /// <para>
     /// Because the batch request can result in a combination of successful and unsuccessful
     /// actions, you should check for batch errors even when the call returns an HTTP status
-    /// code of <code>200</code>.
+    /// code of <c>200</c>.
     /// </para>
     ///  </important>
     /// </summary>
     public partial class ChangeMessageVisibilityBatchRequest : AmazonSQSRequest
     {
-        private List<ChangeMessageVisibilityBatchRequestEntry> _entries = new List<ChangeMessageVisibilityBatchRequestEntry>();
+        private List<ChangeMessageVisibilityBatchRequestEntry> _entries = AWSConfigs.InitializeCollections ? new List<ChangeMessageVisibilityBatchRequestEntry>() : null;
         private string _queueUrl;
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace Amazon.SQS.Model
         // Check to see if Entries property is set
         internal bool IsSetEntries()
         {
-            return this._entries != null && this._entries.Count > 0; 
+            return this._entries != null && (this._entries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

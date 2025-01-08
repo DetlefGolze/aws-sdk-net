@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleWorkflow.Model
 {
     /// <summary>
-    /// Decision attributes specified in <code>scheduleLambdaFunctionDecisionAttributes</code>
-    /// within the list of decisions <code>decisions</code> passed to <a>RespondDecisionTaskCompleted</a>.
+    /// Decision attributes specified in <c>scheduleLambdaFunctionDecisionAttributes</c> within
+    /// the list of decisions <c>decisions</c> passed to <a>RespondDecisionTaskCompleted</a>.
     /// </summary>
     public partial class ScheduleLambdaFunctionDecisionAttributes
     {

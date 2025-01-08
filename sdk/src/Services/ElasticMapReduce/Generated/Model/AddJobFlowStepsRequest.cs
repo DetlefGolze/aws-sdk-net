@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -60,8 +61,8 @@ namespace Amazon.ElasticMapReduce.Model
     /// </para>
     ///  <note> 
     /// <para>
-    /// The string values passed into <code>HadoopJarStep</code> object cannot exceed a total
-    /// of 10240 characters.
+    /// The string values passed into <c>HadoopJarStep</c> object cannot exceed a total of
+    /// 10240 characters.
     /// </para>
     ///  </note>
     /// </summary>
@@ -69,7 +70,7 @@ namespace Amazon.ElasticMapReduce.Model
     {
         private string _executionRoleArn;
         private string _jobFlowId;
-        private List<StepConfig> _steps = new List<StepConfig>();
+        private List<StepConfig> _steps = AWSConfigs.InitializeCollections ? new List<StepConfig>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -101,12 +102,12 @@ namespace Amazon.ElasticMapReduce.Model
         /// <para>
         /// The Amazon Resource Name (ARN) of the runtime role for a step on the cluster. The
         /// runtime role can be a cross-account IAM role. The runtime role ARN is a combination
-        /// of account ID, role name, and role type using the following format: <code>arn:partition:service:region:account:resource</code>.
+        /// of account ID, role name, and role type using the following format: <c>arn:partition:service:region:account:resource</c>.
         /// 
         /// </para>
         ///  
         /// <para>
-        /// For example, <code>arn:aws:IAM::1234567890:role/ReadOnly</code> is a correctly formatted
+        /// For example, <c>arn:aws:IAM::1234567890:role/ReadOnly</c> is a correctly formatted
         /// runtime role ARN.
         /// </para>
         /// </summary>
@@ -159,7 +160,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if Steps property is set
         internal bool IsSetSteps()
         {
-            return this._steps != null && this._steps.Count > 0; 
+            return this._steps != null && (this._steps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

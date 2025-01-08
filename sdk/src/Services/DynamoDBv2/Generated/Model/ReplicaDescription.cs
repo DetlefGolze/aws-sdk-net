@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -33,8 +34,9 @@ namespace Amazon.DynamoDBv2.Model
     /// </summary>
     public partial class ReplicaDescription
     {
-        private List<ReplicaGlobalSecondaryIndexDescription> _globalSecondaryIndexes = new List<ReplicaGlobalSecondaryIndexDescription>();
+        private List<ReplicaGlobalSecondaryIndexDescription> _globalSecondaryIndexes = AWSConfigs.InitializeCollections ? new List<ReplicaGlobalSecondaryIndexDescription>() : null;
         private string _kmsMasterKeyId;
+        private OnDemandThroughputOverride _onDemandThroughputOverride;
         private ProvisionedThroughputOverride _provisionedThroughputOverride;
         private string _regionName;
         private DateTime? _replicaInaccessibleDateTime;
@@ -42,6 +44,7 @@ namespace Amazon.DynamoDBv2.Model
         private string _replicaStatusDescription;
         private string _replicaStatusPercentProgress;
         private TableClassSummary _replicaTableClassSummary;
+        private TableWarmThroughputDescription _warmThroughput;
 
         /// <summary>
         /// Gets and sets the property GlobalSecondaryIndexes. 
@@ -58,7 +61,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if GlobalSecondaryIndexes property is set
         internal bool IsSetGlobalSecondaryIndexes()
         {
-            return this._globalSecondaryIndexes != null && this._globalSecondaryIndexes.Count > 0; 
+            return this._globalSecondaryIndexes != null && (this._globalSecondaryIndexes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -77,6 +80,24 @@ namespace Amazon.DynamoDBv2.Model
         internal bool IsSetKMSMasterKeyId()
         {
             return this._kmsMasterKeyId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OnDemandThroughputOverride. 
+        /// <para>
+        /// Overrides the maximum on-demand throughput settings for the specified replica table.
+        /// </para>
+        /// </summary>
+        public OnDemandThroughputOverride OnDemandThroughputOverride
+        {
+            get { return this._onDemandThroughputOverride; }
+            set { this._onDemandThroughputOverride = value; }
+        }
+
+        // Check to see if OnDemandThroughputOverride property is set
+        internal bool IsSetOnDemandThroughputOverride()
+        {
+            return this._onDemandThroughputOverride != null;
         }
 
         /// <summary>
@@ -120,7 +141,7 @@ namespace Amazon.DynamoDBv2.Model
         /// Gets and sets the property ReplicaInaccessibleDateTime. 
         /// <para>
         /// The time at which the replica was first detected as inaccessible. To determine cause
-        /// of inaccessibility check the <code>ReplicaStatus</code> property.
+        /// of inaccessibility check the <c>ReplicaStatus</c> property.
         /// </para>
         /// </summary>
         public DateTime ReplicaInaccessibleDateTime
@@ -142,24 +163,24 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CREATING</code> - The replica is being created.
+        ///  <c>CREATING</c> - The replica is being created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPDATING</code> - The replica is being updated.
+        ///  <c>UPDATING</c> - The replica is being updated.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETING</code> - The replica is being deleted.
+        ///  <c>DELETING</c> - The replica is being deleted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ACTIVE</code> - The replica is ready for use.
+        ///  <c>ACTIVE</c> - The replica is ready for use.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>REGION_DISABLED</code> - The replica is inaccessible because the Amazon Web
-        /// Services Region has been disabled.
+        ///  <c>REGION_DISABLED</c> - The replica is inaccessible because the Amazon Web Services
+        /// Region has been disabled.
         /// </para>
         ///  <note> 
         /// <para>
@@ -169,8 +190,8 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  </note> </li> <li> 
         /// <para>
-        ///  <code>INACCESSIBLE_ENCRYPTION_CREDENTIALS </code> - The KMS key used to encrypt the
-        /// table is inaccessible.
+        ///  <c>INACCESSIBLE_ENCRYPTION_CREDENTIALS </c> - The KMS key used to encrypt the table
+        /// is inaccessible.
         /// </para>
         ///  <note> 
         /// <para>
@@ -241,6 +262,24 @@ namespace Amazon.DynamoDBv2.Model
         internal bool IsSetReplicaTableClassSummary()
         {
             return this._replicaTableClassSummary != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WarmThroughput. 
+        /// <para>
+        /// Represents the warm throughput value for this replica.
+        /// </para>
+        /// </summary>
+        public TableWarmThroughputDescription WarmThroughput
+        {
+            get { return this._warmThroughput; }
+            set { this._warmThroughput = value; }
+        }
+
+        // Check to see if WarmThroughput property is set
+        internal bool IsSetWarmThroughput()
+        {
+            return this._warmThroughput != null;
         }
 
     }

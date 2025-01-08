@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Route53.Model
     /// </summary>
     public partial class ListReusableDelegationSetsResponse : AmazonWebServiceResponse
     {
-        private List<DelegationSet> _delegationSets = new List<DelegationSet>();
+        private List<DelegationSet> _delegationSets = AWSConfigs.InitializeCollections ? new List<DelegationSet>() : null;
         private string _marker;
         private bool? _isTruncated;
         private string _nextMarker;
@@ -43,8 +44,8 @@ namespace Amazon.Route53.Model
         /// <summary>
         /// Gets and sets the property DelegationSets. 
         /// <para>
-        /// A complex type that contains one <code>DelegationSet</code> element for each reusable
-        /// delegation set that was created by the current Amazon Web Services account.
+        /// A complex type that contains one <c>DelegationSet</c> element for each reusable delegation
+        /// set that was created by the current Amazon Web Services account.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -57,15 +58,15 @@ namespace Amazon.Route53.Model
         // Check to see if DelegationSets property is set
         internal bool IsSetDelegationSets()
         {
-            return this._delegationSets != null && this._delegationSets.Count > 0; 
+            return this._delegationSets != null && (this._delegationSets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// For the second and subsequent calls to <code>ListReusableDelegationSets</code>, <code>Marker</code>
-        /// is the value that you specified for the <code>marker</code> parameter in the request
-        /// that produced the current response.
+        /// For the second and subsequent calls to <c>ListReusableDelegationSets</c>, <c>Marker</c>
+        /// is the value that you specified for the <c>marker</c> parameter in the request that
+        /// produced the current response.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=64)]
@@ -103,10 +104,10 @@ namespace Amazon.Route53.Model
         /// <summary>
         /// Gets and sets the property NextMarker. 
         /// <para>
-        /// If <code>IsTruncated</code> is <code>true</code>, the value of <code>NextMarker</code>
-        /// identifies the next reusable delegation set that Amazon Route 53 will return if you
-        /// submit another <code>ListReusableDelegationSets</code> request and specify the value
-        /// of <code>NextMarker</code> in the <code>marker</code> parameter.
+        /// If <c>IsTruncated</c> is <c>true</c>, the value of <c>NextMarker</c> identifies the
+        /// next reusable delegation set that Amazon Route 53 will return if you submit another
+        /// <c>ListReusableDelegationSets</c> request and specify the value of <c>NextMarker</c>
+        /// in the <c>marker</c> parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Max=64)]
@@ -125,8 +126,8 @@ namespace Amazon.Route53.Model
         /// <summary>
         /// Gets and sets the property MaxItems. 
         /// <para>
-        /// The value that you specified for the <code>maxitems</code> parameter in the call to
-        /// <code>ListReusableDelegationSets</code> that produced the current response.
+        /// The value that you specified for the <c>maxitems</c> parameter in the call to <c>ListReusableDelegationSets</c>
+        /// that produced the current response.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

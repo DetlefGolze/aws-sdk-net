@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -37,13 +38,17 @@ namespace Amazon.ElasticMapReduce.Model
         private AuthMode _authMode;
         private string _defaultS3Location;
         private string _description;
+        private string _encryptionKeyArn;
         private string _engineSecurityGroupId;
+        private string _idcInstanceArn;
+        private IdcUserAssignment _idcUserAssignment;
         private string _idpAuthUrl;
         private string _idpRelayStateParameterName;
         private string _name;
         private string _serviceRole;
-        private List<string> _subnetIds = new List<string>();
-        private List<Tag> _tags = new List<Tag>();
+        private List<string> _subnetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private bool? _trustedIdentityPropagationEnabled;
         private string _userRole;
         private string _vpcId;
         private string _workspaceSecurityGroupId;
@@ -106,11 +111,31 @@ namespace Amazon.ElasticMapReduce.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EncryptionKeyArn. 
+        /// <para>
+        /// The KMS key identifier (ARN) used to encrypt Amazon EMR Studio workspace and notebook
+        /// files when backed up to Amazon S3.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=10280)]
+        public string EncryptionKeyArn
+        {
+            get { return this._encryptionKeyArn; }
+            set { this._encryptionKeyArn = value; }
+        }
+
+        // Check to see if EncryptionKeyArn property is set
+        internal bool IsSetEncryptionKeyArn()
+        {
+            return this._encryptionKeyArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property EngineSecurityGroupId. 
         /// <para>
         /// The ID of the Amazon EMR Studio Engine security group. The Engine security group allows
         /// inbound network traffic from the Workspace security group, and it must be in the same
-        /// VPC specified by <code>VpcId</code>.
+        /// VPC specified by <c>VpcId</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=256)]
@@ -124,6 +149,45 @@ namespace Amazon.ElasticMapReduce.Model
         internal bool IsSetEngineSecurityGroupId()
         {
             return this._engineSecurityGroupId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IdcInstanceArn. 
+        /// <para>
+        ///  The ARN of the IAM Identity Center instance to create the Studio application. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=2048)]
+        public string IdcInstanceArn
+        {
+            get { return this._idcInstanceArn; }
+            set { this._idcInstanceArn = value; }
+        }
+
+        // Check to see if IdcInstanceArn property is set
+        internal bool IsSetIdcInstanceArn()
+        {
+            return this._idcInstanceArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IdcUserAssignment. 
+        /// <para>
+        ///  Specifies whether IAM Identity Center user assignment is <c>REQUIRED</c> or <c>OPTIONAL</c>.
+        /// If the value is set to <c>REQUIRED</c>, users must be explicitly assigned to the Studio
+        /// application to access the Studio. 
+        /// </para>
+        /// </summary>
+        public IdcUserAssignment IdcUserAssignment
+        {
+            get { return this._idcUserAssignment; }
+            set { this._idcUserAssignment = value; }
+        }
+
+        // Check to see if IdcUserAssignment property is set
+        internal bool IsSetIdcUserAssignment()
+        {
+            return this._idcUserAssignment != null;
         }
 
         /// <summary>
@@ -151,10 +215,10 @@ namespace Amazon.ElasticMapReduce.Model
         /// <summary>
         /// Gets and sets the property IdpRelayStateParameterName. 
         /// <para>
-        /// The name that your identity provider (IdP) uses for its <code>RelayState</code> parameter.
-        /// For example, <code>RelayState</code> or <code>TargetSource</code>. Specify this value
-        /// when you use IAM authentication and want to let federated users log in to a Studio
-        /// using the Studio URL. The <code>RelayState</code> parameter differs by IdP.
+        /// The name that your identity provider (IdP) uses for its <c>RelayState</c> parameter.
+        /// For example, <c>RelayState</c> or <c>TargetSource</c>. Specify this value when you
+        /// use IAM authentication and want to let federated users log in to a Studio using the
+        /// Studio URL. The <c>RelayState</c> parameter differs by IdP.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=256)]
@@ -213,7 +277,7 @@ namespace Amazon.ElasticMapReduce.Model
         /// Gets and sets the property SubnetIds. 
         /// <para>
         /// A list of subnet IDs to associate with the Amazon EMR Studio. A Studio can have a
-        /// maximum of 5 subnets. The subnets must belong to the VPC specified by <code>VpcId</code>.
+        /// maximum of 5 subnets. The subnets must belong to the VPC specified by <c>VpcId</c>.
         /// Studio users can create a Workspace in any of the specified subnets.
         /// </para>
         /// </summary>
@@ -227,7 +291,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if SubnetIds property is set
         internal bool IsSetSubnetIds()
         {
-            return this._subnetIds != null && this._subnetIds.Count > 0; 
+            return this._subnetIds != null && (this._subnetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -247,16 +311,35 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property TrustedIdentityPropagationEnabled. 
+        /// <para>
+        ///  A Boolean indicating whether to enable Trusted identity propagation for the Studio.
+        /// The default value is <c>false</c>. 
+        /// </para>
+        /// </summary>
+        public bool TrustedIdentityPropagationEnabled
+        {
+            get { return this._trustedIdentityPropagationEnabled.GetValueOrDefault(); }
+            set { this._trustedIdentityPropagationEnabled = value; }
+        }
+
+        // Check to see if TrustedIdentityPropagationEnabled property is set
+        internal bool IsSetTrustedIdentityPropagationEnabled()
+        {
+            return this._trustedIdentityPropagationEnabled.HasValue; 
         }
 
         /// <summary>
         /// Gets and sets the property UserRole. 
         /// <para>
         /// The IAM user role that users and groups assume when logged in to an Amazon EMR Studio.
-        /// Only specify a <code>UserRole</code> when you use IAM Identity Center authentication.
-        /// The permissions attached to the <code>UserRole</code> can be scoped down for each
-        /// user or group using session policies.
+        /// Only specify a <c>UserRole</c> when you use IAM Identity Center authentication. The
+        /// permissions attached to the <c>UserRole</c> can be scoped down for each user or group
+        /// using session policies.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=10280)]
@@ -296,7 +379,7 @@ namespace Amazon.ElasticMapReduce.Model
         /// <para>
         /// The ID of the Amazon EMR Studio Workspace security group. The Workspace security group
         /// allows outbound network traffic to resources in the Engine security group, and it
-        /// must be in the same VPC specified by <code>VpcId</code>.
+        /// must be in the same VPC specified by <c>VpcId</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=256)]

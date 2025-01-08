@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
-    /// Specifies the minimum and maximum for the <code>AcceleratorTotalMemoryMiB</code> object
-    /// when you specify <a>InstanceRequirements</a> for an Auto Scaling group.
+    /// Specifies the minimum and maximum for the <c>AcceleratorTotalMemoryMiB</c> object
+    /// when you specify <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_InstanceRequirements.html">InstanceRequirements</a>
+    /// for an Auto Scaling group.
     /// </summary>
     public partial class AcceleratorTotalMemoryMiBRequest
     {

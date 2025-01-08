@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Amplify.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        ///  The Amazon Resource Name (ARN) to use to list tags. 
+        /// The Amazon Resource Name (ARN) to use to list tags. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=2048)]

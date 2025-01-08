@@ -115,6 +115,100 @@ namespace Amazon.S3
     }
 
     /// <summary>
+    /// Constants used for properties of type BucketType.
+    /// </summary>
+    public class BucketType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Directory for BucketType
+        /// </summary>
+        public static readonly BucketType Directory = new BucketType("Directory");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public BucketType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static BucketType FindValue(string value)
+        {
+            return FindValue<BucketType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator BucketType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+    /// <summary>
+    /// Constants used for properties of type DataRedundancy.
+    /// </summary>
+    public class DataRedundancy : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant SingleAvailabilityZone for DataRedundancy
+        /// </summary>
+        public static readonly DataRedundancy SingleAvailabilityZone = new DataRedundancy("SingleAvailabilityZone");
+
+        /// <summary>
+        /// Constant SingleLocalZone for DataRedundancy
+        /// </summary>
+        public static readonly DataRedundancy SingleLocalZone = new DataRedundancy("SingleLocalZone");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public DataRedundancy(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static DataRedundancy FindValue(string value)
+        {
+            return FindValue<DataRedundancy>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator DataRedundancy(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+    /// <summary>
     /// The status of the delete marker replication.
     /// </summary>
     public sealed class DeleteMarkerReplicationStatus : ConstantClass
@@ -423,7 +517,7 @@ namespace Amazon.S3
         public static S3Region FindValue(string value)
         {
             if (value == null)
-                return S3Region.US;
+                return S3Region.USEast1;
 
             return FindValue<S3Region>(value);
         }
@@ -434,6 +528,55 @@ namespace Amazon.S3
         /// <param name="value"></param>
         /// <returns></returns>
         public static implicit operator S3Region(string value)
+        {
+            return FindValue(value);
+        }
+    }
+    /// <summary>
+    /// Constants used for properties of type LocationType.
+    /// </summary>
+    public class LocationType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant AvailabilityZone for LocationType
+        /// </summary>
+        public static readonly LocationType AvailabilityZone = new LocationType("AvailabilityZone");
+
+        /// <summary>
+        /// Constant LocalZone for LocationType
+        /// </summary>
+        public static readonly LocationType LocalZone = new LocationType("LocalZone");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public LocationType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static LocationType FindValue(string value)
+        {
+            return FindValue<LocationType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator LocationType(string value)
         {
             return FindValue(value);
         }
@@ -646,6 +789,7 @@ namespace Amazon.S3
         /// </summary>
         public static readonly S3StorageClass ReducedRedundancy = new S3StorageClass("REDUCED_REDUNDANCY");
 
+
         /// <summary>
         /// The STANDARD storage class, which is the default
         /// storage class for S3.
@@ -668,7 +812,10 @@ namespace Amazon.S3
         /// for Snow family devices.
         /// </summary>
         public static readonly S3StorageClass Snow = new S3StorageClass("SNOW");
-
+        /// <summary>
+        /// The EXPRESS_ONEZONE storage class for faster access to S3
+        /// </summary>
+        public static readonly S3StorageClass ExpressOnezone = new S3StorageClass("EXPRESS_ONEZONE");
         /// <summary>
         /// Construct an instance of S3StorageClass.
         /// </summary>
@@ -1629,7 +1776,7 @@ namespace Amazon.S3
         /// Construct instance of RestoreObjectRequestGlacierJobTier
         /// </summary>
         /// <param name="value"></param>
-        private GlacierJobTier(string value)
+        public GlacierJobTier(string value)
             : base(value)
         {
         }
@@ -1732,7 +1879,11 @@ namespace Amazon.S3
         /// </summary>
         public static readonly RequestPayer Requester = new RequestPayer("requester");
 
-        private RequestPayer(string value)
+        /// <summary>
+        /// Construct an instance of RequestPayer
+        /// </summary>
+        /// <param name="value"></param>
+        public RequestPayer(string value)
             : base(value)
         {
         }
@@ -1764,7 +1915,11 @@ namespace Amazon.S3
         /// </summary>
         public static readonly RequestCharged Requester = new RequestCharged("requester");
 
-        private RequestCharged(string value)
+        /// <summary>
+        /// Construct an instance of RequestCharged
+        /// </summary>
+        /// <param name="value"></param>
+        public RequestCharged(string value)
             : base(value)
         {
         }
@@ -1795,7 +1950,11 @@ namespace Amazon.S3
         /// Overrides destination bucket's owner.
         /// </summary>
         public static readonly OwnerOverride Destination = new OwnerOverride("Destination");
-        
+
+        /// <summary>
+        /// Construct an instance of OwnerOverride
+        /// </summary>
+        /// <param name="value"></param>
         public OwnerOverride(string value)
             : base(value)
         {
@@ -1813,6 +1972,104 @@ namespace Amazon.S3
         ///  converts the string to OwnerOverride instance
         /// </summary>
         public static implicit operator OwnerOverride(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+    /// <summary>
+    /// Constants used for properties of type SessionMode.
+    /// </summary>
+    public sealed class SessionMode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ReadOnly for SessionMode
+        /// </summary>
+        public static readonly SessionMode ReadOnly = new SessionMode("ReadOnly");
+        /// <summary>
+        /// Constant ReadWrite for SessionMode
+        /// </summary>
+        public static readonly SessionMode ReadWrite = new SessionMode("ReadWrite");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public SessionMode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static SessionMode FindValue(string value)
+        {
+            return FindValue<SessionMode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator SessionMode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+    /// <summary>
+    /// Constants used for properties of type PartitionDateSource.
+    /// </summary>
+    public sealed class PartitionDateSource : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DeliveryTime for PartitionDateSource
+        /// </summary>
+        public static readonly PartitionDateSource DeliveryTime = new PartitionDateSource("DeliveryTime");
+        /// <summary>
+        /// Constant EventTime for PartitionDateSource
+        /// </summary>
+        public static readonly PartitionDateSource EventTime = new PartitionDateSource("EventTime");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public PartitionDateSource(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static PartitionDateSource FindValue(string value)
+        {
+            return FindValue<PartitionDateSource>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator PartitionDateSource(string value)
         {
             return FindValue(value);
         }
@@ -1877,7 +2134,11 @@ namespace Amazon.S3
         /// </summary>
         public static readonly FileHeaderInfo None = new FileHeaderInfo("NONE");
 
-        private FileHeaderInfo(string value)
+        /// <summary>
+        /// Construct instance of FileHeaderInfo
+        /// </summary>
+        /// <param name="value"></param>
+        public FileHeaderInfo(string value)
             : base(value)
         {
         }
@@ -1916,7 +2177,11 @@ namespace Amazon.S3
         /// </summary>
         public static readonly ExistingObjectReplicationStatus Disabled = new ExistingObjectReplicationStatus("Disabled");
 
-        private ExistingObjectReplicationStatus(string value)
+        /// <summary>
+        /// Construct instance of ExistingObjectReplicationStatus
+        /// </summary>
+        /// <param name="value"></param>
+        public ExistingObjectReplicationStatus(string value)
             : base(value)
         {
         }
@@ -1955,7 +2220,11 @@ namespace Amazon.S3
         /// </summary>
         public static readonly QuoteFields AsNeeded = new QuoteFields("ASNEEDED");
 
-        private QuoteFields(string value)
+        /// <summary>
+        /// Constuct an instance of QuoteFields
+        /// </summary>
+        /// <param name="value"></param>
+        public QuoteFields(string value)
             : base(value)
         {
         }
@@ -1989,7 +2258,11 @@ namespace Amazon.S3
         /// </summary>
         public static readonly ExpressionType SQL = new ExpressionType("SQL");
 
-        private ExpressionType(string value)
+        /// <summary>
+        /// Construct instance of ExpressionType
+        /// </summary>
+        /// <param name="value"></param>
+        public ExpressionType(string value)
             : base(value)
         {
         }
@@ -2018,9 +2291,16 @@ namespace Amazon.S3
     /// </summary>
     public sealed class RestoreRequestType : ConstantClass
     {
+        /// <summary>
+        /// Constant for the value SELECT
+        /// </summary>
         public static readonly RestoreRequestType SELECT = new RestoreRequestType("SELECT");
 
-        private RestoreRequestType(string value)
+        /// <summary>
+        /// Construct an instance of RestoreRequestType
+        /// </summary>
+        /// <param name="value"></param>
+        public RestoreRequestType(string value)
             : base(value)
         {
         }
@@ -2047,10 +2327,20 @@ namespace Amazon.S3
     /// </summary>
     public sealed class JsonType : ConstantClass
     {
+        /// <summary>
+        /// Constant for DOCUMENT
+        /// </summary>
         public static readonly JsonType Document = new JsonType("DOCUMENT");
+        /// <summary>
+        /// Constant for LINES
+        /// </summary>
         public static readonly JsonType Lines = new JsonType("LINES");
 
-        private JsonType(string value)
+        /// <summary>
+        /// Construct instance of JsonType
+        /// </summary>
+        /// <param name="value"></param>
+        public JsonType(string value)
             : base(value)
         {
         }
@@ -2077,11 +2367,24 @@ namespace Amazon.S3
     /// </summary>
     public sealed class CompressionType : ConstantClass
     {
+        /// <summary>
+        /// Constant for NONE
+        /// </summary>
         public static readonly CompressionType None = new CompressionType("NONE");
+        /// <summary>
+        /// Constant for GZIP
+        /// </summary>
         public static readonly CompressionType Gzip = new CompressionType("GZIP");
+        /// <summary>
+        /// Constante for BZIP2
+        /// </summary>
         public static readonly CompressionType Bzip2 = new CompressionType("BZIP2");
 
-        private CompressionType(string value)
+        /// <summary>
+        /// Constructs an instance of CompressionType
+        /// </summary>
+        /// <param name="value"></param>
+        public CompressionType(string value)
             : base(value)
         {
         }
@@ -2108,8 +2411,15 @@ namespace Amazon.S3
     /// </summary>
     public sealed class ObjectLockEnabled : ConstantClass
     {        
+        /// <summary>
+        /// Constant for Enabled
+        /// </summary>
         public static readonly ObjectLockEnabled Enabled = new ObjectLockEnabled("Enabled");
-        
+
+        /// <summary>
+        /// Construct an instance of ObjectLockEnabled
+        /// </summary>
+        /// <param name="value"></param>
         public ObjectLockEnabled(string value)
             : base(value)
         {
@@ -2136,10 +2446,21 @@ namespace Amazon.S3
     /// The type of ObjectLockLegalHoldStatus
     /// </summary>
     public sealed class ObjectLockLegalHoldStatus : ConstantClass
-    {        
+    {
+        /// <summary>
+        /// Constant for ON
+        /// </summary>
         public static readonly ObjectLockLegalHoldStatus On = new ObjectLockLegalHoldStatus("ON");
+
+        /// <summary>
+        /// Constant for OFF
+        /// </summary>
         public static readonly ObjectLockLegalHoldStatus Off = new ObjectLockLegalHoldStatus("OFF");
-        
+
+        /// <summary>
+        /// Construct an instance of ObjectLockLegalHoldStatus
+        /// </summary>
+        /// <param name="value"></param>
         public ObjectLockLegalHoldStatus(string value)
             : base(value)
         {
@@ -2166,10 +2487,21 @@ namespace Amazon.S3
     /// The type of ObjectLockRetentionMode
     /// </summary>
     public sealed class ObjectLockRetentionMode : ConstantClass
-    {        
+    {
+        /// <summary>
+        /// Constant for GOVERNANCE
+        /// </summary>
         public static readonly ObjectLockRetentionMode Governance = new ObjectLockRetentionMode("GOVERNANCE");
+
+        /// <summary>
+        /// Constant for COMPLIANCE
+        /// </summary>
         public static readonly ObjectLockRetentionMode Compliance = new ObjectLockRetentionMode("COMPLIANCE");
-        
+
+        /// <summary>
+        /// Construct an instance of ObjectLockRetentionMode
+        /// </summary>
+        /// <param name="value"></param>
         public ObjectLockRetentionMode(string value)
             : base(value)
         {
@@ -2196,10 +2528,21 @@ namespace Amazon.S3
     /// The type of ObjectLockMode
     /// </summary>
     public sealed class ObjectLockMode : ConstantClass
-    {        
+    {
+        /// <summary>
+        /// Constant for GOVERNANCE
+        /// </summary>
         public static readonly ObjectLockMode Governance = new ObjectLockMode("GOVERNANCE");
+
+        /// <summary>
+        /// Constant for COMPLIANCE
+        /// </summary>
         public static readonly ObjectLockMode Compliance = new ObjectLockMode("COMPLIANCE");
-        
+
+        /// <summary>
+        /// Construct an instance of ObjectLockMode
+        /// </summary>
+        /// <param name="value"></param>
         public ObjectLockMode(string value)
             : base(value)
         {
@@ -2271,6 +2614,10 @@ namespace Amazon.S3
     /// </summary>
     public sealed class ReplicationTimeStatus : ConstantClass
     {
+        /// <summary>
+        /// Construct an instance of ReplicationTimeStatus
+        /// </summary>
+        /// <param name="value"></param>
         public ReplicationTimeStatus(string value)
             : base(value)
         {
@@ -2312,7 +2659,11 @@ namespace Amazon.S3
     /// </summary>
     public sealed class MetricsStatus : ConstantClass
     {
-        private MetricsStatus(string value)
+        /// <summary>
+        /// Construct an instance of MetricsStatus
+        /// </summary>
+        /// <param name="value"></param>
+        public MetricsStatus(string value)
             : base(value)
         {
 
@@ -2353,7 +2704,11 @@ namespace Amazon.S3
     /// </summary>
     public sealed class ObjectOwnership : ConstantClass
     {
-        private ObjectOwnership(string value)
+        /// <summary>
+        /// Constuct an instance of ObjectOwnership
+        /// </summary>
+        /// <param name="value"></param>
+        public ObjectOwnership(string value)
             : base(value)
         {
 
@@ -2394,9 +2749,16 @@ namespace Amazon.S3
         }
     }
 
+    /// <summary>
+    /// Constants for the IntelligentTieringStatus field.
+    /// </summary>
     public sealed class IntelligentTieringStatus : ConstantClass
     {
-        private IntelligentTieringStatus(string value)
+        /// <summary>
+        /// Construct an instance of IntelligentTieringStatus
+        /// </summary>
+        /// <param name="value"></param>
+        public IntelligentTieringStatus(string value)
             : base(value)
         {
 
@@ -2432,9 +2794,16 @@ namespace Amazon.S3
         }
     }
 
+    /// <summary>
+    /// Constance for intelligent tiering access tier.
+    /// </summary>
     public sealed class IntelligentTieringAccessTier : ConstantClass
     {
-        private IntelligentTieringAccessTier(string value)
+        /// <summary>
+        /// Construct instance of IntelligentTieringAccessTier
+        /// </summary>
+        /// <param name="value"></param>
+        public IntelligentTieringAccessTier(string value)
             : base(value)
         {
 
@@ -2516,9 +2885,16 @@ namespace Amazon.S3
 
     }
 
+    /// <summary>
+    /// Constants for the ReplicaModificationsStatus field.
+    /// </summary>
     public sealed class ReplicaModificationsStatus : ConstantClass
     {
-        private ReplicaModificationsStatus(string value)
+        /// <summary>
+        /// Construct an instance of ReplicaModificationsStatus
+        /// </summary>
+        /// <param name="value"></param>
+        public ReplicaModificationsStatus(string value)
             : base(value)
         {
 
@@ -2709,6 +3085,54 @@ namespace Amazon.S3
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator ObjectAttributes(string value)
+        {
+            return FindValue(value);
+        }
+    }
+    /// <summary>
+    /// Constants used for properties of type TransitionDefaultMinimumObjectSize.
+    /// </summary>
+    public class TransitionDefaultMinimumObjectSize : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant All_storage_classes_128K for TransitionDefaultMinimumObjectSize
+        /// </summary>
+        public static readonly TransitionDefaultMinimumObjectSize AllStorageClasses128K = new TransitionDefaultMinimumObjectSize("all_storage_classes_128K");
+        /// <summary>
+        /// Constant Varies_by_storage_class for TransitionDefaultMinimumObjectSize
+        /// </summary>
+        public static readonly TransitionDefaultMinimumObjectSize VariesByStorageClass = new TransitionDefaultMinimumObjectSize("varies_by_storage_class");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public TransitionDefaultMinimumObjectSize(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static TransitionDefaultMinimumObjectSize FindValue(string value)
+        {
+            return FindValue<TransitionDefaultMinimumObjectSize>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator TransitionDefaultMinimumObjectSize(string value)
         {
             return FindValue(value);
         }

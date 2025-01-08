@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// Container for response parameters to the <code><a>ListVpcEndpoints</a></code> operation.
+    /// Container for response parameters to the <c><a>ListVpcEndpoints</a></c> operation.
     /// Returns a list containing summarized details of the VPC endpoints.
     /// </summary>
     public partial class ListVpcEndpointsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<VpcEndpointSummary> _vpcEndpointSummaryList = new List<VpcEndpointSummary>();
+        private List<VpcEndpointSummary> _vpcEndpointSummaryList = AWSConfigs.InitializeCollections ? new List<VpcEndpointSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -72,7 +73,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if VpcEndpointSummaryList property is set
         internal bool IsSetVpcEndpointSummaryList()
         {
-            return this._vpcEndpointSummaryList != null && this._vpcEndpointSummaryList.Count > 0; 
+            return this._vpcEndpointSummaryList != null && (this._vpcEndpointSummaryList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

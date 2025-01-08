@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -35,11 +36,13 @@ namespace Amazon.SageMaker.Model
     {
         private AdditionalS3DataSource _additionalS3DataSource;
         private string _containerHostname;
-        private Dictionary<string, string> _environment = new Dictionary<string, string>();
+        private Dictionary<string, string> _environment = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _framework;
         private string _frameworkVersion;
         private string _image;
         private string _imageDigest;
+        private string _modelDataETag;
+        private ModelDataSource _modelDataSource;
         private string _modelDataUrl;
         private ModelInput _modelInput;
         private string _nearestModelName;
@@ -87,11 +90,11 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property Environment. 
         /// <para>
         /// The environment variables to set in the Docker container. Each key and value in the
-        /// <code>Environment</code> string to string map can have length of up to 1024. We support
+        /// <c>Environment</c> string to string map can have length of up to 1024. We support
         /// up to 16 entries in the map.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=16)]
+        [AWSProperty(Max=100)]
         public Dictionary<string, string> Environment
         {
             get { return this._environment; }
@@ -101,7 +104,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Environment property is set
         internal bool IsSetEnvironment()
         {
-            return this._environment != null && this._environment.Count > 0; 
+            return this._environment != null && (this._environment.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -149,8 +152,8 @@ namespace Amazon.SageMaker.Model
         ///  
         /// <para>
         /// If you are using your own custom algorithm instead of an algorithm provided by SageMaker,
-        /// the inference code must meet SageMaker requirements. SageMaker supports both <code>registry/repository[:tag]</code>
-        /// and <code>registry/repository[@digest]</code> image path formats. For more information,
+        /// the inference code must meet SageMaker requirements. SageMaker supports both <c>registry/repository[:tag]</c>
+        /// and <c>registry/repository[@digest]</c> image path formats. For more information,
         /// see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html">Using
         /// Your Own Algorithms with Amazon SageMaker</a>.
         /// </para>
@@ -188,11 +191,47 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ModelDataETag. 
+        /// <para>
+        /// The ETag associated with Model Data URL.
+        /// </para>
+        /// </summary>
+        public string ModelDataETag
+        {
+            get { return this._modelDataETag; }
+            set { this._modelDataETag = value; }
+        }
+
+        // Check to see if ModelDataETag property is set
+        internal bool IsSetModelDataETag()
+        {
+            return this._modelDataETag != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ModelDataSource. 
+        /// <para>
+        /// Specifies the location of ML model data to deploy during endpoint creation.
+        /// </para>
+        /// </summary>
+        public ModelDataSource ModelDataSource
+        {
+            get { return this._modelDataSource; }
+            set { this._modelDataSource = value; }
+        }
+
+        // Check to see if ModelDataSource property is set
+        internal bool IsSetModelDataSource()
+        {
+            return this._modelDataSource != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ModelDataUrl. 
         /// <para>
         /// The Amazon S3 path where the model artifacts, which result from model training, are
-        /// stored. This path must point to a single <code>gzip</code> compressed tar archive
-        /// (<code>.tar.gz</code> suffix).
+        /// stored. This path must point to a single <c>gzip</c> compressed tar archive (<c>.tar.gz</c>
+        /// suffix).
         /// </para>
         ///  <note> 
         /// <para>
@@ -237,7 +276,7 @@ namespace Amazon.SageMaker.Model
         /// <para>
         /// The name of a pre-trained machine learning benchmarked by Amazon SageMaker Inference
         /// Recommender model that matches your model. You can find a list of benchmarked models
-        /// by calling <code>ListModelMetadata</code>.
+        /// by calling <c>ListModelMetadata</c>.
         /// </para>
         /// </summary>
         public string NearestModelName

@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElasticLoadBalancingV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -84,8 +85,18 @@ namespace Amazon.ElasticLoadBalancingV2.Model.Internal.MarshallTransformations
                     if (context.TestExpression("AvailabilityZones/member", targetDepth))
                     {
                         var unmarshaller = AvailabilityZoneUnmarshaller.Instance;
+                        if (response.AvailabilityZones == null)
+                        {
+                            response.AvailabilityZones = new List<AvailabilityZone>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         response.AvailabilityZones.Add(item);
+                        continue;
+                    }
+                    if (context.TestExpression("EnablePrefixForIpv6SourceNat", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        response.EnablePrefixForIpv6SourceNat = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("IpAddressType", targetDepth))
@@ -126,6 +137,10 @@ namespace Amazon.ElasticLoadBalancingV2.Model.Internal.MarshallTransformations
                 if (errorResponse.Code != null && errorResponse.Code.Equals("AvailabilityZoneNotSupported"))
                 {
                     return AvailabilityZoneNotSupportedExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("CapacityReservationPending"))
+                {
+                    return CapacityReservationPendingExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("InvalidConfigurationRequest"))
                 {

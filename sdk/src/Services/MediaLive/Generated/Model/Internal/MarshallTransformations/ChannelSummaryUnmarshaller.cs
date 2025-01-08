@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ChannelSummary Unmarshall(JsonUnmarshallerContext context)
         {
+            ChannelSummary unmarshalledObject = new ChannelSummary();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ChannelSummary unmarshalledObject = new ChannelSummary();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("anywhereSettings", targetDepth))
+                {
+                    var unmarshaller = DescribeAnywhereSettingsUnmarshaller.Instance;
+                    unmarshalledObject.AnywhereSettings = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("arn", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -80,6 +88,12 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.ChannelClass = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("channelEngineVersion", targetDepth))
+                {
+                    var unmarshaller = ChannelEngineVersionResponseUnmarshaller.Instance;
+                    unmarshalledObject.ChannelEngineVersion = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("destinations", targetDepth))
@@ -154,6 +168,12 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     unmarshalledObject.Tags = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("usedChannelEngineVersions", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<ChannelEngineVersionResponse, ChannelEngineVersionResponseUnmarshaller>(ChannelEngineVersionResponseUnmarshaller.Instance);
+                    unmarshalledObject.UsedChannelEngineVersions = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("vpc", targetDepth))
                 {
                     var unmarshaller = VpcOutputSettingsDescriptionUnmarshaller.Instance;
@@ -161,7 +181,6 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

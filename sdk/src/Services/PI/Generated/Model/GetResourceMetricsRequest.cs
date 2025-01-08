@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PI.Model
 {
     /// <summary>
     /// Container for the parameters to the GetResourceMetrics operation.
     /// Retrieve Performance Insights metrics for a set of data sources over a time period.
-    /// You can provide specific dimension groups and dimensions, and provide aggregation
-    /// and filtering criteria for each group.
+    /// You can provide specific dimension groups and dimensions, and provide filtering criteria
+    /// for each group. You must specify an aggregate function for each metric.
     /// 
     ///  <note> 
     /// <para>
@@ -46,7 +47,7 @@ namespace Amazon.PI.Model
         private DateTime? _endTime;
         private string _identifier;
         private int? _maxResults;
-        private List<MetricQuery> _metricQueries = new List<MetricQuery>();
+        private List<MetricQuery> _metricQueries = AWSConfigs.InitializeCollections ? new List<MetricQuery>() : null;
         private string _nextToken;
         private PeriodAlignment _periodAlignment;
         private int? _periodInSeconds;
@@ -58,11 +59,11 @@ namespace Amazon.PI.Model
         /// <para>
         /// The date and time specifying the end of the requested time series query range. The
         /// value specified is <i>exclusive</i>. Thus, the command returns data points less than
-        /// (but not equal to) <code>EndTime</code>.
+        /// (but not equal to) <c>EndTime</c>.
         /// </para>
         ///  
         /// <para>
-        /// The value for <code>EndTime</code> must be later than the value for <code>StartTime</code>.
+        /// The value for <c>EndTime</c> must be later than the value for <c>StartTime</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -83,13 +84,13 @@ namespace Amazon.PI.Model
         /// <para>
         /// An immutable identifier for a data source that is unique for an Amazon Web Services
         /// Region. Performance Insights gathers metrics from this data source. In the console,
-        /// the identifier is shown as <i>ResourceID</i>. When you call <code>DescribeDBInstances</code>,
-        /// the identifier is returned as <code>DbiResourceId</code>.
+        /// the identifier is shown as <i>ResourceID</i>. When you call <c>DescribeDBInstances</c>,
+        /// the identifier is returned as <c>DbiResourceId</c>.
         /// </para>
         ///  
         /// <para>
-        /// To use a DB instance as a data source, specify its <code>DbiResourceId</code> value.
-        /// For example, specify <code>db-ABCDEFGHIJKLMNOPQRSTU1VW2X</code>.
+        /// To use a DB instance as a data source, specify its <c>DbiResourceId</c> value. For
+        /// example, specify <c>db-ABCDEFGHIJKLMNOPQRSTU1VW2X</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=256)]
@@ -109,7 +110,7 @@ namespace Amazon.PI.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of items to return in the response. If more items exist than the
-        /// specified <code>MaxRecords</code> value, a pagination token is included in the response
+        /// specified <c>MaxRecords</c> value, a pagination token is included in the response
         /// so that the remaining results can be retrieved. 
         /// </para>
         /// </summary>
@@ -130,7 +131,10 @@ namespace Amazon.PI.Model
         /// Gets and sets the property MetricQueries. 
         /// <para>
         /// An array of one or more queries to perform. Each query must specify a Performance
-        /// Insights metric, and can optionally specify aggregation and filtering criteria.
+        /// Insights metric and specify an aggregate function, and you can provide filtering criteria.
+        /// You must append the aggregate function to the metric. For example, to find the average
+        /// for the metric <c>db.load</c> you must use <c>db.load.avg</c>. Valid values for aggregate
+        /// functions include <c>.avg</c>, <c>.min</c>, <c>.max</c>, and <c>.sum</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=15)]
@@ -143,7 +147,7 @@ namespace Amazon.PI.Model
         // Check to see if MetricQueries property is set
         internal bool IsSetMetricQueries()
         {
-            return this._metricQueries != null && this._metricQueries.Count > 0; 
+            return this._metricQueries != null && (this._metricQueries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -151,7 +155,7 @@ namespace Amazon.PI.Model
         /// <para>
         /// An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the token, up to the value specified
-        /// by <code>MaxRecords</code>.
+        /// by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=8192)]
@@ -171,7 +175,7 @@ namespace Amazon.PI.Model
         /// Gets and sets the property PeriodAlignment. 
         /// <para>
         /// The returned timestamp which is the start or end time of the time periods. The default
-        /// value is <code>END_TIME</code>.
+        /// value is <c>END_TIME</c>.
         /// </para>
         /// </summary>
         public PeriodAlignment PeriodAlignment
@@ -195,29 +199,28 @@ namespace Amazon.PI.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>1</code> (one second)
+        ///  <c>1</c> (one second)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>60</code> (one minute)
+        ///  <c>60</c> (one minute)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>300</code> (five minutes)
+        ///  <c>300</c> (five minutes)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>3600</code> (one hour)
+        ///  <c>3600</c> (one hour)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>86400</code> (twenty-four hours)
+        ///  <c>86400</c> (twenty-four hours)
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If you don't specify <code>PeriodInSeconds</code>, then Performance Insights will
-        /// choose a value for you, with a goal of returning roughly 100-200 data points in the
-        /// response.
+        /// If you don't specify <c>PeriodInSeconds</c>, then Performance Insights will choose
+        /// a value for you, with a goal of returning roughly 100-200 data points in the response.
         /// </para>
         /// </summary>
         public int PeriodInSeconds
@@ -240,11 +243,11 @@ namespace Amazon.PI.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>RDS</code> 
+        ///  <c>RDS</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DOCDB</code> 
+        ///  <c>DOCDB</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -265,14 +268,14 @@ namespace Amazon.PI.Model
         /// Gets and sets the property StartTime. 
         /// <para>
         /// The date and time specifying the beginning of the requested time series query range.
-        /// You can't specify a <code>StartTime</code> that is earlier than 7 days ago. By default,
+        /// You can't specify a <c>StartTime</c> that is earlier than 7 days ago. By default,
         /// Performance Insights has 7 days of retention, but you can extend this range up to
         /// 2 years. The value specified is <i>inclusive</i>. Thus, the command returns data points
-        /// equal to or greater than <code>StartTime</code>.
+        /// equal to or greater than <c>StartTime</c>.
         /// </para>
         ///  
         /// <para>
-        /// The value for <code>StartTime</code> must be earlier than the value for <code>EndTime</code>.
+        /// The value for <c>StartTime</c> must be earlier than the value for <c>EndTime</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

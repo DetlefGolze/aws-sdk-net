@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTWireless.Model
 {
     /// <summary>
@@ -36,12 +37,12 @@ namespace Amazon.IoTWireless.Model
     {
         private string _clientRequestToken;
         private string _description;
-        private List<string> _multicastGroups = new List<string>();
+        private List<string> _multicastGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private TraceContent _traceContent;
-        private List<string> _wirelessDevices = new List<string>();
-        private List<string> _wirelessGateways = new List<string>();
+        private List<string> _wirelessDevices = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _wirelessGateways = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken.
@@ -79,7 +80,7 @@ namespace Amazon.IoTWireless.Model
         /// Gets and sets the property MulticastGroups. 
         /// <para>
         /// Multicast Group resources to add to the network analyzer configruation. Provide the
-        /// <code>MulticastGroupId</code> of the resource to add in the input array.
+        /// <c>MulticastGroupId</c> of the resource to add in the input array.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=10)]
@@ -92,7 +93,7 @@ namespace Amazon.IoTWireless.Model
         // Check to see if MulticastGroups property is set
         internal bool IsSetMulticastGroups()
         {
-            return this._multicastGroups != null && this._multicastGroups.Count > 0; 
+            return this._multicastGroups != null && (this._multicastGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -124,7 +125,7 @@ namespace Amazon.IoTWireless.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -146,7 +147,7 @@ namespace Amazon.IoTWireless.Model
         /// Gets and sets the property WirelessDevices. 
         /// <para>
         /// Wireless device resources to add to the network analyzer configuration. Provide the
-        /// <code>WirelessDeviceId</code> of the resource to add in the input array.
+        /// <c>WirelessDeviceId</c> of the resource to add in the input array.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=250)]
@@ -159,14 +160,14 @@ namespace Amazon.IoTWireless.Model
         // Check to see if WirelessDevices property is set
         internal bool IsSetWirelessDevices()
         {
-            return this._wirelessDevices != null && this._wirelessDevices.Count > 0; 
+            return this._wirelessDevices != null && (this._wirelessDevices.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property WirelessGateways. 
         /// <para>
         /// Wireless gateway resources to add to the network analyzer configuration. Provide the
-        /// <code>WirelessGatewayId</code> of the resource to add in the input array.
+        /// <c>WirelessGatewayId</c> of the resource to add in the input array.
         /// </para>
         /// </summary>
         public List<string> WirelessGateways
@@ -178,7 +179,7 @@ namespace Amazon.IoTWireless.Model
         // Check to see if WirelessGateways property is set
         internal bool IsSetWirelessGateways()
         {
-            return this._wirelessGateways != null && this._wirelessGateways.Count > 0; 
+            return this._wirelessGateways != null && (this._wirelessGateways.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

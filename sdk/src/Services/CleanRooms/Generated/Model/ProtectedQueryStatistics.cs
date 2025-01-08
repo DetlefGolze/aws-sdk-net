@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CleanRooms.Model
 {
     /// <summary>
@@ -33,12 +34,31 @@ namespace Amazon.CleanRooms.Model
     /// </summary>
     public partial class ProtectedQueryStatistics
     {
+        private BilledResourceUtilization _billedResourceUtilization;
         private long? _totalDurationInMillis;
+
+        /// <summary>
+        /// Gets and sets the property BilledResourceUtilization. 
+        /// <para>
+        ///  The billed resource utilization.
+        /// </para>
+        /// </summary>
+        public BilledResourceUtilization BilledResourceUtilization
+        {
+            get { return this._billedResourceUtilization; }
+            set { this._billedResourceUtilization = value; }
+        }
+
+        // Check to see if BilledResourceUtilization property is set
+        internal bool IsSetBilledResourceUtilization()
+        {
+            return this._billedResourceUtilization != null;
+        }
 
         /// <summary>
         /// Gets and sets the property TotalDurationInMillis. 
         /// <para>
-        /// The duration of the Protected Query, from creation until query completion.
+        /// The duration of the protected query, from creation until query completion.
         /// </para>
         /// </summary>
         public long TotalDurationInMillis

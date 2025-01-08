@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeSnapshotTierStatusRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -45,19 +46,18 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>snapshot-id</code> - The snapshot ID.
+        ///  <c>snapshot-id</c> - The snapshot ID.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>volume-id</code> - The ID of the volume the snapshot is for.
+        ///  <c>volume-id</c> - The ID of the volume the snapshot is for.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>last-tiering-operation</code> - The state of the last archive or restore action.
-        /// (<code>archival-in-progress</code> | <code>archival-completed</code> | <code>archival-failed</code>
-        /// | <code>permanent-restore-in-progress</code> | <code>permanent-restore-completed</code>
-        /// | <code>permanent-restore-failed</code> | <code>temporary-restore-in-progress</code>
-        /// | <code>temporary-restore-completed</code> | <code>temporary-restore-failed</code>)
+        ///  <c>last-tiering-operation</c> - The state of the last archive or restore action.
+        /// (<c>archival-in-progress</c> | <c>archival-completed</c> | <c>archival-failed</c>
+        /// | <c>permanent-restore-in-progress</c> | <c>permanent-restore-completed</c> | <c>permanent-restore-failed</c>
+        /// | <c>temporary-restore-in-progress</c> | <c>temporary-restore-completed</c> | <c>temporary-restore-failed</c>)
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -70,7 +70,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

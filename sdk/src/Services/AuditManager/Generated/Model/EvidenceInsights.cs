@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AuditManager.Model
 {
     /// <summary>
@@ -70,7 +71,7 @@ namespace Amazon.AuditManager.Model
         ///  <note> 
         /// <para>
         /// If evidence has a compliance check status of <i>not applicable</i> in the console,
-        /// it's classified as <i>inconclusive</i> in <code>EvidenceInsights</code> data.
+        /// it's classified as <i>inconclusive</i> in <c>EvidenceInsights</c> data.
         /// </para>
         ///  </note>
         /// </summary>

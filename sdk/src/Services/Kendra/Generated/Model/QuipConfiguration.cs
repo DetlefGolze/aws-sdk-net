@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -33,26 +34,26 @@ namespace Amazon.Kendra.Model
     /// </summary>
     public partial class QuipConfiguration
     {
-        private List<DataSourceToIndexFieldMapping> _attachmentFieldMappings = new List<DataSourceToIndexFieldMapping>();
+        private List<DataSourceToIndexFieldMapping> _attachmentFieldMappings = AWSConfigs.InitializeCollections ? new List<DataSourceToIndexFieldMapping>() : null;
         private bool? _crawlAttachments;
         private bool? _crawlChatRooms;
         private bool? _crawlFileComments;
         private string _domain;
-        private List<string> _exclusionPatterns = new List<string>();
-        private List<string> _folderIds = new List<string>();
-        private List<string> _inclusionPatterns = new List<string>();
-        private List<DataSourceToIndexFieldMapping> _messageFieldMappings = new List<DataSourceToIndexFieldMapping>();
+        private List<string> _exclusionPatterns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _folderIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _inclusionPatterns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<DataSourceToIndexFieldMapping> _messageFieldMappings = AWSConfigs.InitializeCollections ? new List<DataSourceToIndexFieldMapping>() : null;
         private string _secretArn;
-        private List<DataSourceToIndexFieldMapping> _threadFieldMappings = new List<DataSourceToIndexFieldMapping>();
+        private List<DataSourceToIndexFieldMapping> _threadFieldMappings = AWSConfigs.InitializeCollections ? new List<DataSourceToIndexFieldMapping>() : null;
         private DataSourceVpcConfiguration _vpcConfiguration;
 
         /// <summary>
         /// Gets and sets the property AttachmentFieldMappings. 
         /// <para>
-        /// A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or
-        /// field names of Quip attachments to Amazon Kendra index field names. To create custom
-        /// fields, use the <code>UpdateIndex</code> API before you map to Quip fields. For more
-        /// information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
+        /// A list of <c>DataSourceToIndexFieldMapping</c> objects that map attributes or field
+        /// names of Quip attachments to Amazon Kendra index field names. To create custom fields,
+        /// use the <c>UpdateIndex</c> API before you map to Quip fields. For more information,
+        /// see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
         /// data source fields</a>. The Quip field names must exist in your Quip custom metadata.
         /// </para>
         /// </summary>
@@ -66,13 +67,13 @@ namespace Amazon.Kendra.Model
         // Check to see if AttachmentFieldMappings property is set
         internal bool IsSetAttachmentFieldMappings()
         {
-            return this._attachmentFieldMappings != null && this._attachmentFieldMappings.Count > 0; 
+            return this._attachmentFieldMappings != null && (this._attachmentFieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property CrawlAttachments. 
         /// <para>
-        ///  <code>TRUE</code> to index attachments.
+        ///  <c>TRUE</c> to index attachments.
         /// </para>
         /// </summary>
         public bool CrawlAttachments
@@ -90,7 +91,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property CrawlChatRooms. 
         /// <para>
-        ///  <code>TRUE</code> to index the contents of chat rooms.
+        ///  <c>TRUE</c> to index the contents of chat rooms.
         /// </para>
         /// </summary>
         public bool CrawlChatRooms
@@ -108,7 +109,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property CrawlFileComments. 
         /// <para>
-        ///  <code>TRUE</code> to index file comments.
+        ///  <c>TRUE</c> to index file comments.
         /// </para>
         /// </summary>
         public bool CrawlFileComments
@@ -163,7 +164,7 @@ namespace Amazon.Kendra.Model
         // Check to see if ExclusionPatterns property is set
         internal bool IsSetExclusionPatterns()
         {
-            return this._exclusionPatterns != null && this._exclusionPatterns.Count > 0; 
+            return this._exclusionPatterns != null && (this._exclusionPatterns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -183,7 +184,7 @@ namespace Amazon.Kendra.Model
         // Check to see if FolderIds property is set
         internal bool IsSetFolderIds()
         {
-            return this._folderIds != null && this._folderIds.Count > 0; 
+            return this._folderIds != null && (this._folderIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -206,16 +207,16 @@ namespace Amazon.Kendra.Model
         // Check to see if InclusionPatterns property is set
         internal bool IsSetInclusionPatterns()
         {
-            return this._inclusionPatterns != null && this._inclusionPatterns.Count > 0; 
+            return this._inclusionPatterns != null && (this._inclusionPatterns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MessageFieldMappings. 
         /// <para>
-        /// A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or
-        /// field names of Quip messages to Amazon Kendra index field names. To create custom
-        /// fields, use the <code>UpdateIndex</code> API before you map to Quip fields. For more
-        /// information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
+        /// A list of <c>DataSourceToIndexFieldMapping</c> objects that map attributes or field
+        /// names of Quip messages to Amazon Kendra index field names. To create custom fields,
+        /// use the <c>UpdateIndex</c> API before you map to Quip fields. For more information,
+        /// see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
         /// data source fields</a>. The Quip field names must exist in your Quip custom metadata.
         /// </para>
         /// </summary>
@@ -229,7 +230,7 @@ namespace Amazon.Kendra.Model
         // Check to see if MessageFieldMappings property is set
         internal bool IsSetMessageFieldMappings()
         {
-            return this._messageFieldMappings != null && this._messageFieldMappings.Count > 0; 
+            return this._messageFieldMappings != null && (this._messageFieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -262,9 +263,9 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property ThreadFieldMappings. 
         /// <para>
-        /// A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or
-        /// field names of Quip threads to Amazon Kendra index field names. To create custom fields,
-        /// use the <code>UpdateIndex</code> API before you map to Quip fields. For more information,
+        /// A list of <c>DataSourceToIndexFieldMapping</c> objects that map attributes or field
+        /// names of Quip threads to Amazon Kendra index field names. To create custom fields,
+        /// use the <c>UpdateIndex</c> API before you map to Quip fields. For more information,
         /// see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
         /// data source fields</a>. The Quip field names must exist in your Quip custom metadata.
         /// </para>
@@ -279,7 +280,7 @@ namespace Amazon.Kendra.Model
         // Check to see if ThreadFieldMappings property is set
         internal bool IsSetThreadFieldMappings()
         {
-            return this._threadFieldMappings != null && this._threadFieldMappings.Count > 0; 
+            return this._threadFieldMappings != null && (this._threadFieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

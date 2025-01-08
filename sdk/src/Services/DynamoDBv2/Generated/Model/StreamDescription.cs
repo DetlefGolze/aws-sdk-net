@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -34,9 +35,9 @@ namespace Amazon.DynamoDBv2.Model
     public partial class StreamDescription
     {
         private DateTime? _creationRequestDateTime;
-        private List<KeySchemaElement> _keySchema = new List<KeySchemaElement>();
+        private List<KeySchemaElement> _keySchema = AWSConfigs.InitializeCollections ? new List<KeySchemaElement>() : null;
         private string _lastEvaluatedShardId;
-        private List<Shard> _shards = new List<Shard>();
+        private List<Shard> _shards = AWSConfigs.InitializeCollections ? new List<Shard>() : null;
         private string _streamArn;
         private string _streamLabel;
         private StreamStatus _streamStatus;
@@ -77,7 +78,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if KeySchema property is set
         internal bool IsSetKeySchema()
         {
-            return this._keySchema != null && this._keySchema.Count > 0; 
+            return this._keySchema != null && (this._keySchema.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -88,14 +89,14 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  
         /// <para>
-        /// If <code>LastEvaluatedShardId</code> is empty, then the "last page" of results has
-        /// been processed and there is currently no more data to be retrieved.
+        /// If <c>LastEvaluatedShardId</c> is empty, then the "last page" of results has been
+        /// processed and there is currently no more data to be retrieved.
         /// </para>
         ///  
         /// <para>
-        /// If <code>LastEvaluatedShardId</code> is not empty, it does not necessarily mean that
-        /// there is more data in the result set. The only way to know when you have reached the
-        /// end of the result set is when <code>LastEvaluatedShardId</code> is empty.
+        /// If <c>LastEvaluatedShardId</c> is not empty, it does not necessarily mean that there
+        /// is more data in the result set. The only way to know when you have reached the end
+        /// of the result set is when <c>LastEvaluatedShardId</c> is empty.
         /// </para>
         /// </summary>
         [AWSProperty(Min=28, Max=65)]
@@ -126,7 +127,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if Shards property is set
         internal bool IsSetShards()
         {
-            return this._shards != null && this._shards.Count > 0; 
+            return this._shards != null && (this._shards.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -155,9 +156,9 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  
         /// <para>
-        /// Note that <code>LatestStreamLabel</code> is not a unique identifier for the stream,
-        /// because it is possible that a stream from another table might have the same timestamp.
-        /// However, the combination of the following three elements is guaranteed to be unique:
+        /// Note that <c>LatestStreamLabel</c> is not a unique identifier for the stream, because
+        /// it is possible that a stream from another table might have the same timestamp. However,
+        /// the combination of the following three elements is guaranteed to be unique:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -169,7 +170,7 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// the <code>StreamLabel</code> 
+        /// the <c>StreamLabel</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -192,19 +193,19 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ENABLING</code> - Streams is currently being enabled on the DynamoDB table.
+        ///  <c>ENABLING</c> - Streams is currently being enabled on the DynamoDB table.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ENABLED</code> - the stream is enabled.
+        ///  <c>ENABLED</c> - the stream is enabled.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DISABLING</code> - Streams is currently being disabled on the DynamoDB table.
+        ///  <c>DISABLING</c> - Streams is currently being disabled on the DynamoDB table.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DISABLED</code> - the stream is disabled.
+        ///  <c>DISABLED</c> - the stream is disabled.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -227,23 +228,23 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>KEYS_ONLY</code> - only the key attributes of items that were modified in the
-        /// DynamoDB table.
+        ///  <c>KEYS_ONLY</c> - only the key attributes of items that were modified in the DynamoDB
+        /// table.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NEW_IMAGE</code> - entire items from the table, as they appeared after they
-        /// were modified.
+        ///  <c>NEW_IMAGE</c> - entire items from the table, as they appeared after they were
+        /// modified.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OLD_IMAGE</code> - entire items from the table, as they appeared before they
-        /// were modified.
+        ///  <c>OLD_IMAGE</c> - entire items from the table, as they appeared before they were
+        /// modified.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NEW_AND_OLD_IMAGES</code> - both the new and the old images of the items from
-        /// the table.
+        ///  <c>NEW_AND_OLD_IMAGES</c> - both the new and the old images of the items from the
+        /// table.
         /// </para>
         ///  </li> </ul>
         /// </summary>

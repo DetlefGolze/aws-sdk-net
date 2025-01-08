@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -40,8 +41,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property AddonName. 
         /// <para>
-        /// The name of the add-on. The name must match one of the names that <a href="https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html">
-        /// <code>DescribeAddonVersions</code> </a> returns.
+        /// The name of the add-on. The name must match one of the names returned by <c>DescribeAddonVersions</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -62,7 +62,7 @@ namespace Amazon.EKS.Model
         /// <para>
         /// The version of the add-on. The version must match one of the versions returned by
         /// <a href="https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html">
-        /// <code>DescribeAddonVersions</code> </a>.
+        /// <c>DescribeAddonVersions</c> </a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

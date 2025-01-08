@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.CloudFormation.Model
         /// Gets and sets the property Key. 
         /// <para>
         ///  <i>Required</i>. A string used to identify this tag. You can specify a maximum of
-        /// 128 characters for a tag key. Tags owned by Amazon Web Services (Amazon Web Services)
-        /// have the reserved prefix: <code>aws:</code>.
+        /// 128 characters for a tag key. Tags owned by Amazon Web Services have the reserved
+        /// prefix: <c>aws:</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=128)]

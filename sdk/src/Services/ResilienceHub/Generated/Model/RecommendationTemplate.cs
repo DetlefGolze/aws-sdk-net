@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -41,21 +42,22 @@ namespace Amazon.ResilienceHub.Model
         private string _message;
         private string _name;
         private bool? _needsReplacements;
-        private List<string> _recommendationIds = new List<string>();
+        private List<string> _recommendationIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _recommendationTemplateArn;
-        private List<string> _recommendationTypes = new List<string>();
+        private List<string> _recommendationTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _startTime;
         private RecommendationTemplateStatus _status;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private S3Location _templatesLocation;
 
         /// <summary>
         /// Gets and sets the property AppArn. 
         /// <para>
         /// Amazon Resource Name (ARN) of the Resilience Hub application. The format for this
-        /// ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app/<code>app-id</code>.
+        /// ARN is: arn:<c>partition</c>:resiliencehub:<c>region</c>:<c>account</c>:app/<c>app-id</c>.
         /// For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
-        /// Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i> guide.
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
         /// </para>
         /// </summary>
         public string AppArn
@@ -73,9 +75,10 @@ namespace Amazon.ResilienceHub.Model
         /// <summary>
         /// Gets and sets the property AssessmentArn. 
         /// <para>
-        /// Amazon Resource Name (ARN) of the assessment. The format for this ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app-assessment/<code>app-id</code>.
+        /// Amazon Resource Name (ARN) of the assessment. The format for this ARN is: arn:<c>partition</c>:resiliencehub:<c>region</c>:<c>account</c>:app-assessment/<c>app-id</c>.
         /// For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
-        /// Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i> guide.
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -209,7 +212,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if RecommendationIds property is set
         internal bool IsSetRecommendationIds()
         {
-            return this._recommendationIds != null && this._recommendationIds.Count > 0; 
+            return this._recommendationIds != null && (this._recommendationIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -260,7 +263,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if RecommendationTypes property is set
         internal bool IsSetRecommendationTypes()
         {
-            return this._recommendationTypes != null && this._recommendationTypes.Count > 0; 
+            return this._recommendationTypes != null && (this._recommendationTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -317,7 +320,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

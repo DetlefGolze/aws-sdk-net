@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -38,13 +39,17 @@ namespace Amazon.QuickSight.Model
         private AssetBundleImportSourceDescription _assetBundleImportSource;
         private string _awsAccountId;
         private DateTime? _createdTime;
-        private List<AssetBundleImportJobError> _errors = new List<AssetBundleImportJobError>();
+        private List<AssetBundleImportJobError> _errors = AWSConfigs.InitializeCollections ? new List<AssetBundleImportJobError>() : null;
         private AssetBundleImportFailureAction _failureAction;
         private AssetBundleImportJobStatus _jobStatus;
         private AssetBundleImportJobOverrideParameters _overrideParameters;
+        private AssetBundleImportJobOverridePermissions _overridePermissions;
+        private AssetBundleImportJobOverrideTags _overrideTags;
+        private AssetBundleImportJobOverrideValidationStrategy _overrideValidationStrategy;
         private string _requestId;
-        private List<AssetBundleImportJobError> _rollbackErrors = new List<AssetBundleImportJobError>();
+        private List<AssetBundleImportJobError> _rollbackErrors = AWSConfigs.InitializeCollections ? new List<AssetBundleImportJobError>() : null;
         private int? _status;
+        private List<AssetBundleImportJobWarning> _warnings = AWSConfigs.InitializeCollections ? new List<AssetBundleImportJobWarning>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -67,7 +72,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property AssetBundleImportJobId. 
         /// <para>
-        /// The ID of the job. The job ID is set when you start a new job with a <code>StartAssetBundleImportJob</code>
+        /// The ID of the job. The job ID is set when you start a new job with a <c>StartAssetBundleImportJob</c>
         /// API call.
         /// </para>
         /// </summary>
@@ -161,7 +166,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Errors property is set
         internal bool IsSetErrors()
         {
-            return this._errors != null && this._errors.Count > 0; 
+            return this._errors != null && (this._errors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -189,24 +194,24 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  
         /// <para>
-        /// Poll the <code>DescribeAssetBundleImport</code> API until <code>JobStatus</code> returns
-        /// one of the following values:
+        /// Poll the <c>DescribeAssetBundleImport</c> API until <c>JobStatus</c> returns one of
+        /// the following values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>SUCCESSFUL</code> 
+        ///  <c>SUCCESSFUL</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> 
+        ///  <c>FAILED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED_ROLLBACK_COMPLETED</code> 
+        ///  <c>FAILED_ROLLBACK_COMPLETED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED_ROLLBACK_ERROR</code> 
+        ///  <c>FAILED_ROLLBACK_ERROR</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -225,7 +230,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property OverrideParameters. 
         /// <para>
-        /// Optional overrides to be applied to the resource configuration before import.
+        /// Optional overrides that are applied to the resource configuration before import.
         /// </para>
         /// </summary>
         public AssetBundleImportJobOverrideParameters OverrideParameters
@@ -238,6 +243,62 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetOverrideParameters()
         {
             return this._overrideParameters != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OverridePermissions. 
+        /// <para>
+        /// Optional permission overrides that are applied to the resource configuration before
+        /// import.
+        /// </para>
+        /// </summary>
+        public AssetBundleImportJobOverridePermissions OverridePermissions
+        {
+            get { return this._overridePermissions; }
+            set { this._overridePermissions = value; }
+        }
+
+        // Check to see if OverridePermissions property is set
+        internal bool IsSetOverridePermissions()
+        {
+            return this._overridePermissions != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OverrideTags. 
+        /// <para>
+        /// Optional tag overrides that are applied to the resource configuration before import.
+        /// </para>
+        /// </summary>
+        public AssetBundleImportJobOverrideTags OverrideTags
+        {
+            get { return this._overrideTags; }
+            set { this._overrideTags = value; }
+        }
+
+        // Check to see if OverrideTags property is set
+        internal bool IsSetOverrideTags()
+        {
+            return this._overrideTags != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OverrideValidationStrategy. 
+        /// <para>
+        /// An optional validation strategy override for all analyses and dashboards to be applied
+        /// to the resource configuration before import.
+        /// </para>
+        /// </summary>
+        public AssetBundleImportJobOverrideValidationStrategy OverrideValidationStrategy
+        {
+            get { return this._overrideValidationStrategy; }
+            set { this._overrideValidationStrategy = value; }
+        }
+
+        // Check to see if OverrideValidationStrategy property is set
+        internal bool IsSetOverrideValidationStrategy()
+        {
+            return this._overrideValidationStrategy != null;
         }
 
         /// <summary>
@@ -279,7 +340,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if RollbackErrors property is set
         internal bool IsSetRollbackErrors()
         {
-            return this._rollbackErrors != null && this._rollbackErrors.Count > 0; 
+            return this._rollbackErrors != null && (this._rollbackErrors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -298,6 +359,25 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetStatus()
         {
             return this._status.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Warnings. 
+        /// <para>
+        /// An array of warning records that describe all permitted errors that are encountered
+        /// during the import job.
+        /// </para>
+        /// </summary>
+        public List<AssetBundleImportJobWarning> Warnings
+        {
+            get { return this._warnings; }
+            set { this._warnings = value; }
+        }
+
+        // Check to see if Warnings property is set
+        internal bool IsSetWarnings()
+        {
+            return this._warnings != null && (this._warnings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

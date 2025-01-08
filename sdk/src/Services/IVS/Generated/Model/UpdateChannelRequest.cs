@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IVS.Model
 {
     /// <summary>
@@ -38,9 +39,12 @@ namespace Amazon.IVS.Model
     {
         private string _arn;
         private bool? _authorized;
+        private ContainerFormat _containerFormat;
         private bool? _insecureIngest;
         private ChannelLatencyMode _latencyMode;
+        private MultitrackInputConfiguration _multitrackInputConfiguration;
         private string _name;
+        private string _playbackRestrictionPolicyArn;
         private TranscodePreset _preset;
         private string _recordingConfigurationArn;
         private ChannelType _type;
@@ -83,9 +87,30 @@ namespace Amazon.IVS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ContainerFormat. 
+        /// <para>
+        /// Indicates which content-packaging format is used (MPEG-TS or fMP4). If <c>multitrackInputConfiguration</c>
+        /// is specified and <c>enabled</c> is <c>true</c>, then <c>containerFormat</c> is required
+        /// and must be set to <c>FRAGMENTED_MP4</c>. Otherwise, <c>containerFormat</c> may be
+        /// set to <c>TS</c> or <c>FRAGMENTED_MP4</c>. Default: <c>TS</c>.
+        /// </para>
+        /// </summary>
+        public ContainerFormat ContainerFormat
+        {
+            get { return this._containerFormat; }
+            set { this._containerFormat = value; }
+        }
+
+        // Check to see if ContainerFormat property is set
+        internal bool IsSetContainerFormat()
+        {
+            return this._containerFormat != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property InsecureIngest. 
         /// <para>
-        /// Whether the channel allows insecure RTMP ingest. Default: <code>false</code>.
+        /// Whether the channel allows insecure RTMP and SRT ingest. Default: <c>false</c>.
         /// </para>
         /// </summary>
         public bool InsecureIngest
@@ -103,10 +128,8 @@ namespace Amazon.IVS.Model
         /// <summary>
         /// Gets and sets the property LatencyMode. 
         /// <para>
-        /// Channel latency mode. Use <code>NORMAL</code> to broadcast and deliver live video
-        /// up to Full HD. Use <code>LOW</code> for near-real-time interaction with viewers. (Note:
-        /// In the Amazon IVS console, <code>LOW</code> and <code>NORMAL</code> correspond to
-        /// Ultra-low and Standard, respectively.)
+        /// Channel latency mode. Use <c>NORMAL</c> to broadcast and deliver live video up to
+        /// Full HD. Use <c>LOW</c> for near-real-time interaction with viewers.
         /// </para>
         /// </summary>
         public ChannelLatencyMode LatencyMode
@@ -119,6 +142,25 @@ namespace Amazon.IVS.Model
         internal bool IsSetLatencyMode()
         {
             return this._latencyMode != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property MultitrackInputConfiguration. 
+        /// <para>
+        /// Object specifying multitrack input configuration. Default: no multitrack input configuration
+        /// is specified.
+        /// </para>
+        /// </summary>
+        public MultitrackInputConfiguration MultitrackInputConfiguration
+        {
+            get { return this._multitrackInputConfiguration; }
+            set { this._multitrackInputConfiguration = value; }
+        }
+
+        // Check to see if MultitrackInputConfiguration property is set
+        internal bool IsSetMultitrackInputConfiguration()
+        {
+            return this._multitrackInputConfiguration != null;
         }
 
         /// <summary>
@@ -141,12 +183,33 @@ namespace Amazon.IVS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PlaybackRestrictionPolicyArn. 
+        /// <para>
+        /// Playback-restriction-policy ARN. A valid ARN value here both specifies the ARN and
+        /// enables playback restriction. If this is set to an empty string, playback restriction
+        /// policy is disabled.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=128)]
+        public string PlaybackRestrictionPolicyArn
+        {
+            get { return this._playbackRestrictionPolicyArn; }
+            set { this._playbackRestrictionPolicyArn = value; }
+        }
+
+        // Check to see if PlaybackRestrictionPolicyArn property is set
+        internal bool IsSetPlaybackRestrictionPolicyArn()
+        {
+            return this._playbackRestrictionPolicyArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Preset. 
         /// <para>
-        /// Optional transcode preset for the channel. This is selectable only for <code>ADVANCED_HD</code>
-        /// and <code>ADVANCED_SD</code> channel types. For those channel types, the default <code>preset</code>
-        /// is <code>HIGHER_BANDWIDTH_DELIVERY</code>. For other channel types (<code>BASIC</code>
-        /// and <code>STANDARD</code>), <code>preset</code> is the empty string (<code>""</code>).
+        /// Optional transcode preset for the channel. This is selectable only for <c>ADVANCED_HD</c>
+        /// and <c>ADVANCED_SD</c> channel types. For those channel types, the default <c>preset</c>
+        /// is <c>HIGHER_BANDWIDTH_DELIVERY</c>. For other channel types (<c>BASIC</c> and <c>STANDARD</c>),
+        /// <c>preset</c> is the empty string (<c>""</c>).
         /// </para>
         /// </summary>
         public TranscodePreset Preset
@@ -164,8 +227,8 @@ namespace Amazon.IVS.Model
         /// <summary>
         /// Gets and sets the property RecordingConfigurationArn. 
         /// <para>
-        /// Recording-configuration ARN. If this is set to an empty string, recording is disabled.
-        /// A value other than an empty string indicates that recording is enabled
+        /// Recording-configuration ARN. A valid ARN value here both specifies the ARN and enables
+        /// recording. If this is set to an empty string, recording is disabled.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=128)]
@@ -186,7 +249,7 @@ namespace Amazon.IVS.Model
         /// <para>
         /// Channel type, which determines the allowable resolution and bitrate. <i>If you exceed
         /// the allowable input resolution or bitrate, the stream probably will disconnect immediately.</i>
-        /// Default: <code>STANDARD</code>. For details, see <a href="https://docs.aws.amazon.com/ivs/latest/LowLatencyAPIReference/channel-types.html">Channel
+        /// Default: <c>STANDARD</c>. For details, see <a href="https://docs.aws.amazon.com/ivs/latest/LowLatencyAPIReference/channel-types.html">Channel
         /// Types</a>.
         /// </para>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -33,21 +34,21 @@ namespace Amazon.IdentityManagement.Model
     /// 
     ///  
     /// <para>
-    /// This data type is used by the return parameter of <code> <a>SimulateCustomPolicy</a>
-    /// </code> and <code> <a>SimulatePrincipalPolicy</a> </code>.
+    /// This data type is used by the return parameter of <c> <a>SimulateCustomPolicy</a>
+    /// </c> and <c> <a>SimulatePrincipalPolicy</a> </c>.
     /// </para>
     /// </summary>
     public partial class EvaluationResult
     {
         private string _evalActionName;
         private PolicyEvaluationDecisionType _evalDecision;
-        private Dictionary<string, string> _evalDecisionDetails = new Dictionary<string, string>();
+        private Dictionary<string, string> _evalDecisionDetails = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _evalResourceName;
-        private List<Statement> _matchedStatements = new List<Statement>();
-        private List<string> _missingContextValues = new List<string>();
+        private List<Statement> _matchedStatements = AWSConfigs.InitializeCollections ? new List<Statement>() : null;
+        private List<string> _missingContextValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private OrganizationsDecisionDetail _organizationsDecisionDetail;
         private PermissionsBoundaryDecisionDetail _permissionsBoundaryDecisionDetail;
-        private List<ResourceSpecificResult> _resourceSpecificResults = new List<ResourceSpecificResult>();
+        private List<ResourceSpecificResult> _resourceSpecificResults = AWSConfigs.InitializeCollections ? new List<ResourceSpecificResult>() : null;
 
         /// <summary>
         /// Gets and sets the property EvalActionName. 
@@ -98,15 +99,15 @@ namespace Amazon.IdentityManagement.Model
         /// <para>
         /// If the simulation evaluates policies within the same account and includes a resource
         /// ARN, then the parameter is present but the response is empty. If the simulation evaluates
-        /// policies within the same account and specifies all resources (<code>*</code>), then
-        /// the parameter is not returned.
+        /// policies within the same account and specifies all resources (<c>*</c>), then the
+        /// parameter is not returned.
         /// </para>
         ///  
         /// <para>
         /// When you make a cross-account request, Amazon Web Services evaluates the request in
         /// the trusting account and the trusted account. The request is allowed only if both
-        /// evaluations return <code>true</code>. For more information about how policies are
-        /// evaluated, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html#policy-eval-basics">Evaluating
+        /// evaluations return <c>true</c>. For more information about how policies are evaluated,
+        /// see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html#policy-eval-basics">Evaluating
         /// policies within a single account</a>.
         /// </para>
         ///  
@@ -125,7 +126,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if EvalDecisionDetails property is set
         internal bool IsSetEvalDecisionDetails()
         {
-            return this._evalDecisionDetails != null && this._evalDecisionDetails.Count > 0; 
+            return this._evalDecisionDetails != null && (this._evalDecisionDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -165,7 +166,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if MatchedStatements property is set
         internal bool IsSetMatchedStatements()
         {
-            return this._matchedStatements != null && this._matchedStatements.Count > 0; 
+            return this._matchedStatements != null && (this._matchedStatements.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -173,9 +174,9 @@ namespace Amazon.IdentityManagement.Model
         /// <para>
         /// A list of context keys that are required by the included input policies but that were
         /// not provided by one of the input parameters. This list is used when the resource in
-        /// a simulation is "*", either explicitly, or when the <code>ResourceArns</code> parameter
+        /// a simulation is "*", either explicitly, or when the <c>ResourceArns</c> parameter
         /// blank. If you include a list of resources, then any missing context values are instead
-        /// included under the <code>ResourceSpecificResults</code> section. To discover the context
+        /// included under the <c>ResourceSpecificResults</c> section. To discover the context
         /// keys used by a set of policies, you can call <a>GetContextKeysForCustomPolicy</a>
         /// or <a>GetContextKeysForPrincipalPolicy</a>.
         /// </para>
@@ -189,7 +190,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if MissingContextValues property is set
         internal bool IsSetMissingContextValues()
         {
-            return this._missingContextValues != null && this._missingContextValues.Count > 0; 
+            return this._missingContextValues != null && (this._missingContextValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -247,7 +248,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if ResourceSpecificResults property is set
         internal bool IsSetResourceSpecificResults()
         {
-            return this._resourceSpecificResults != null && this._resourceSpecificResults.Count > 0; 
+            return this._resourceSpecificResults != null && (this._resourceSpecificResults.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

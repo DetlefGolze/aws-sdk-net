@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kinesis.Model
 {
     /// <summary>
-    /// Represents the output for <code>GetShardIterator</code>.
+    /// Represents the output for <c>GetShardIterator</c>.
     /// </summary>
     public partial class GetShardIteratorResponse : AmazonWebServiceResponse
     {

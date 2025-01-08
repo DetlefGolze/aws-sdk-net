@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
-    /// You get this exception if you call <code>CreateReturnShippingLabel</code> and a valid
-    /// return shipping label already exists. In this case, use <code>DescribeReturnShippingLabel</code>
+    /// You get this exception if you call <c>CreateReturnShippingLabel</c> and a valid return
+    /// shipping label already exists. In this case, use <c>DescribeReturnShippingLabel</c>
     /// to get the URL.
     /// </summary>
     #if !NETSTANDARD

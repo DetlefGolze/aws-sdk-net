@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.LicenseManager.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.LicenseManager
 {
     /// <summary>
-    /// Interface for accessing LicenseManager
+    /// <para>Interface for accessing LicenseManager</para>
     ///
     /// License Manager makes it easier to manage licenses from software vendors across multiple
     /// Amazon Web Services accounts and on-premises servers.

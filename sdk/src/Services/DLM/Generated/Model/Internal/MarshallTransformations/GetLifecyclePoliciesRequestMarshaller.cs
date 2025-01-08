@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DLM.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -58,6 +59,9 @@ namespace Amazon.DLM.Model.Internal.MarshallTransformations
             request.Headers[Amazon.Util.HeaderKeys.XAmzApiVersion] = "2018-01-12";
             request.HttpMethod = "GET";
 
+            
+            if (publicRequest.IsSetDefaultPolicyType())
+                request.Parameters.Add("defaultPolicyType", StringUtils.FromString(publicRequest.DefaultPolicyType));
             
             if (publicRequest.IsSetPolicyIds())
                 request.ParameterCollection.Add("policyIds", publicRequest.PolicyIds);

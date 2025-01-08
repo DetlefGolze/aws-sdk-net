@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Kendra.Model
         private CapacityUnitsConfiguration _capacityUnits;
         private DateTime? _createdAt;
         private string _description;
-        private List<DocumentMetadataConfiguration> _documentMetadataConfigurations = new List<DocumentMetadataConfiguration>();
+        private List<DocumentMetadataConfiguration> _documentMetadataConfigurations = AWSConfigs.InitializeCollections ? new List<DocumentMetadataConfiguration>() : null;
         private IndexEdition _edition;
         private string _errorMessage;
         private string _id;
@@ -48,7 +49,7 @@ namespace Amazon.Kendra.Model
         private DateTime? _updatedAt;
         private UserContextPolicy _userContextPolicy;
         private UserGroupResolutionConfiguration _userGroupResolutionConfiguration;
-        private List<UserTokenConfiguration> _userTokenConfigurations = new List<UserTokenConfiguration>();
+        private List<UserTokenConfiguration> _userTokenConfigurations = AWSConfigs.InitializeCollections ? new List<UserTokenConfiguration>() : null;
 
         /// <summary>
         /// Gets and sets the property CapacityUnits. 
@@ -128,7 +129,7 @@ namespace Amazon.Kendra.Model
         // Check to see if DocumentMetadataConfigurations property is set
         internal bool IsSetDocumentMetadataConfigurations()
         {
-            return this._documentMetadataConfigurations != null && this._documentMetadataConfigurations.Count > 0; 
+            return this._documentMetadataConfigurations != null && (this._documentMetadataConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -153,8 +154,8 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property ErrorMessage. 
         /// <para>
-        /// When the <code>Status</code> field value is <code>FAILED</code>, the <code>ErrorMessage</code>
-        /// field contains a message that explains why.
+        /// When the <c>Status</c> field value is <c>FAILED</c>, the <c>ErrorMessage</c> field
+        /// contains a message that explains why.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]
@@ -231,7 +232,7 @@ namespace Amazon.Kendra.Model
         /// Gets and sets the property RoleArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the IAM role that gives Amazon Kendra permission
-        /// to write to your Amazon Cloudwatch logs.
+        /// to write to your Amazon CloudWatch logs.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1284)]
@@ -250,7 +251,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property ServerSideEncryptionConfiguration. 
         /// <para>
-        /// The identifier of the KMScustomer master key (CMK) that is used to encrypt your data.
+        /// The identifier of the KMS customer master key (CMK) that is used to encrypt your data.
         /// Amazon Kendra doesn't support asymmetric CMKs.
         /// </para>
         /// </summary>
@@ -269,9 +270,9 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The current status of the index. When the value is <code>ACTIVE</code>, the index
-        /// is ready for use. If the <code>Status</code> field value is <code>FAILED</code>, the
-        /// <code>ErrorMessage</code> field contains a message that explains why.
+        /// The current status of the index. When the value is <c>ACTIVE</c>, the index is ready
+        /// for use. If the <c>Status</c> field value is <c>FAILED</c>, the <c>ErrorMessage</c>
+        /// field contains a message that explains why.
         /// </para>
         /// </summary>
         public IndexStatus Status
@@ -289,7 +290,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property UpdatedAt. 
         /// <para>
-        /// The Unix when the index was last updated.
+        /// The Unix timestamp when the index was last updated.
         /// </para>
         /// </summary>
         public DateTime UpdatedAt
@@ -325,8 +326,9 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property UserGroupResolutionConfiguration. 
         /// <para>
-        /// Whether you have enabled the configuration for fetching access levels of groups and
-        /// users from an IAM Identity Center (successor to Single Sign-On) identity source.
+        /// Whether you have enabled IAM Identity Center identity source for your users and groups.
+        /// This is useful for user context filtering, where search results are filtered based
+        /// on the user or their group access to documents.
         /// </para>
         /// </summary>
         public UserGroupResolutionConfiguration UserGroupResolutionConfiguration
@@ -357,7 +359,7 @@ namespace Amazon.Kendra.Model
         // Check to see if UserTokenConfigurations property is set
         internal bool IsSetUserTokenConfigurations()
         {
-            return this._userTokenConfigurations != null && this._userTokenConfigurations.Count > 0; 
+            return this._userTokenConfigurations != null && (this._userTokenConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

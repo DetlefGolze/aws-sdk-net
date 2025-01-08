@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -69,8 +70,8 @@ namespace Amazon.Rekognition.Model
         /// </para>
         ///  
         /// <para>
-        /// If you don't specify <code>MinSegmentConfidence</code>, <code>GetSegmentDetection</code>
-        /// returns segments with confidence values greater than or equal to 50 percent.
+        /// If you don't specify <c>MinSegmentConfidence</c>, <c>GetSegmentDetection</c> returns
+        /// segments with confidence values greater than or equal to 50 percent.
         /// </para>
         /// </summary>
         [AWSProperty(Min=50, Max=100)]

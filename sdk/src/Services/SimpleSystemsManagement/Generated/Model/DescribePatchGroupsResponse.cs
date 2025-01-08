@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// </summary>
     public partial class DescribePatchGroupsResponse : AmazonWebServiceResponse
     {
-        private List<PatchGroupPatchBaselineMapping> _mappings = new List<PatchGroupPatchBaselineMapping>();
+        private List<PatchGroupPatchBaselineMapping> _mappings = AWSConfigs.InitializeCollections ? new List<PatchGroupPatchBaselineMapping>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -43,12 +44,12 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PatchGroup</code>: string (between 1 and 256 characters. Regex: <code>^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$)</code>
+        ///  <c>PatchGroup</c>: string (between 1 and 256 characters. Regex: <c>^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$)</c>
         /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PatchBaselineIdentity</code>: A <code>PatchBaselineIdentity</code> element.
+        ///  <c>PatchBaselineIdentity</c>: A <c>PatchBaselineIdentity</c> element.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -61,7 +62,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Mappings property is set
         internal bool IsSetMappings()
         {
-            return this._mappings != null && this._mappings.Count > 0; 
+            return this._mappings != null && (this._mappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

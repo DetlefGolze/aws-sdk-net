@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
@@ -34,10 +35,11 @@ namespace Amazon.ElasticFileSystem.Model
     public partial class CreateReplicationConfigurationResponse : AmazonWebServiceResponse
     {
         private DateTime? _creationTime;
-        private List<Destination> _destinations = new List<Destination>();
+        private List<Destination> _destinations = AWSConfigs.InitializeCollections ? new List<Destination>() : null;
         private string _originalSourceFileSystemArn;
         private string _sourceFileSystemArn;
         private string _sourceFileSystemId;
+        private string _sourceFileSystemOwnerId;
         private string _sourceFileSystemRegion;
 
         /// <summary>
@@ -75,14 +77,14 @@ namespace Amazon.ElasticFileSystem.Model
         // Check to see if Destinations property is set
         internal bool IsSetDestinations()
         {
-            return this._destinations != null && this._destinations.Count > 0; 
+            return this._destinations != null && (this._destinations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property OriginalSourceFileSystemArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the original source Amazon EFS file system in the
-        /// replication configuration.
+        /// The Amazon Resource Name (ARN) of the original source EFS file system in the replication
+        /// configuration.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -138,9 +140,28 @@ namespace Amazon.ElasticFileSystem.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SourceFileSystemOwnerId. 
+        /// <para>
+        /// ID of the Amazon Web Services account in which the source file system resides.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=14)]
+        public string SourceFileSystemOwnerId
+        {
+            get { return this._sourceFileSystemOwnerId; }
+            set { this._sourceFileSystemOwnerId = value; }
+        }
+
+        // Check to see if SourceFileSystemOwnerId property is set
+        internal bool IsSetSourceFileSystemOwnerId()
+        {
+            return this._sourceFileSystemOwnerId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property SourceFileSystemRegion. 
         /// <para>
-        /// The Amazon Web Services Region in which the source Amazon EFS file system is located.
+        /// The Amazon Web Services Region in which the source EFS file system is located.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

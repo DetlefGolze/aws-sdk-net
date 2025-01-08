@@ -26,10 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ControlTower.Model
 {
     /// <summary>
-    /// Request would cause a service quota to be exceeded. The limit is 10 concurrent operations.
+    /// The request would cause a service quota to be exceeded. The limit is 10 concurrent
+    /// operations.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

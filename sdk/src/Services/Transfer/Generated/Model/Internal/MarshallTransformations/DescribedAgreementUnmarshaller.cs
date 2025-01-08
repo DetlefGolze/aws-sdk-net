@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Transfer.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Transfer.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public DescribedAgreement Unmarshall(JsonUnmarshallerContext context)
         {
+            DescribedAgreement unmarshalledObject = new DescribedAgreement();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            DescribedAgreement unmarshalledObject = new DescribedAgreement();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -94,6 +96,12 @@ namespace Amazon.Transfer.Model.Internal.MarshallTransformations
                     unmarshalledObject.Description = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("EnforceMessageSigning", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.EnforceMessageSigning = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("LocalProfileId", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -104,6 +112,12 @@ namespace Amazon.Transfer.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.PartnerProfileId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("PreserveFilename", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.PreserveFilename = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("ServerId", targetDepth))
@@ -125,7 +139,6 @@ namespace Amazon.Transfer.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

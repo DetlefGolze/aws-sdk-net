@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Domains.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.Route53Domains.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// You can register only domains designated as <code>AVAILABLE</code>.
+        /// You can register only domains designated as <c>AVAILABLE</c>.
         /// </para>
         ///  </note> 
         /// <para>
@@ -65,6 +66,10 @@ namespace Amazon.Route53Domains.Model
         /// The TLD registry didn't reply with a definitive answer about whether the domain name
         /// is available. Route 53 can return this response for a variety of reasons, for example,
         /// the registry is performing maintenance. Try again later.
+        /// </para>
+        ///  </dd> <dt>INVALID_NAME_FOR_TLD</dt> <dd> 
+        /// <para>
+        /// The TLD isn't valid. For example, it can contain characters that aren't allowed.
         /// </para>
         ///  </dd> <dt>PENDING</dt> <dd> 
         /// <para>

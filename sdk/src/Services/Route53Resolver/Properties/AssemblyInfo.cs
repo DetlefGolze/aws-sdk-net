@@ -15,6 +15,8 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyDescription("The Amazon Web Services SDK for .NET (NetStandard 2.0) - Amazon Route 53 Resolver. This is the first release of the Amazon Route 53 Resolver API. Customers now have the ability to create and manage Amazon Route 53 Resolver endpoints and Amazon Route 53 Resolver rules.")]
 #elif NETCOREAPP3_1
 [assembly: AssemblyDescription("The Amazon Web Services SDK for .NET (.NET Core 3.1) - Amazon Route 53 Resolver. This is the first release of the Amazon Route 53 Resolver API. Customers now have the ability to create and manage Amazon Route 53 Resolver endpoints and Amazon Route 53 Resolver rules.")]
+#elif NET8_0
+[assembly: AssemblyDescription("The Amazon Web Services SDK for .NET (.NET 8.0) - Amazon Route 53 Resolver. This is the first release of the Amazon Route 53 Resolver API. Customers now have the ability to create and manage Amazon Route 53 Resolver endpoints and Amazon Route 53 Resolver rules.")]
 #else
 #error Unknown platform constant - unable to set correct AssemblyDescription
 #endif
@@ -42,9 +44,7 @@ using System.Runtime.CompilerServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("3.3")]
-[assembly: AssemblyFileVersion("3.7.201.50")]
-
-[assembly: System.CLSCompliant(true)]
+[assembly: AssemblyFileVersion("3.7.402.20")]
 
 #if BCL
 [assembly: System.Security.AllowPartiallyTrustedCallers]

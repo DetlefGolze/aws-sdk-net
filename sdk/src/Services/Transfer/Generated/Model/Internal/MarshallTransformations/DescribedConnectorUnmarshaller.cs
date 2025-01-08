@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Transfer.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Transfer.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public DescribedConnector Unmarshall(JsonUnmarshallerContext context)
         {
+            DescribedConnector unmarshalledObject = new DescribedConnector();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            DescribedConnector unmarshalledObject = new DescribedConnector();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -94,6 +96,18 @@ namespace Amazon.Transfer.Model.Internal.MarshallTransformations
                     unmarshalledObject.LoggingRole = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("SecurityPolicyName", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.SecurityPolicyName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ServiceManagedEgressIpAddresses", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
+                    unmarshalledObject.ServiceManagedEgressIpAddresses = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("SftpConfig", targetDepth))
                 {
                     var unmarshaller = SftpConnectorConfigUnmarshaller.Instance;
@@ -113,7 +127,6 @@ namespace Amazon.Transfer.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

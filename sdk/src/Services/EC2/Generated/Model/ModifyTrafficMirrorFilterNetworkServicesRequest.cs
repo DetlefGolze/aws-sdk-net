@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,17 +36,17 @@ namespace Amazon.EC2.Model
     ///  
     /// <para>
     ///  By default, Amazon DNS network services are not eligible for Traffic Mirror. Use
-    /// <code>AddNetworkServices</code> to add network services to a Traffic Mirror filter.
-    /// When a network service is added to the Traffic Mirror filter, all traffic related
-    /// to that network service will be mirrored. When you no longer want to mirror network
-    /// services, use <code>RemoveNetworkServices</code> to remove the network services from
-    /// the Traffic Mirror filter. 
+    /// <c>AddNetworkServices</c> to add network services to a Traffic Mirror filter. When
+    /// a network service is added to the Traffic Mirror filter, all traffic related to that
+    /// network service will be mirrored. When you no longer want to mirror network services,
+    /// use <c>RemoveNetworkServices</c> to remove the network services from the Traffic Mirror
+    /// filter. 
     /// </para>
     /// </summary>
     public partial class ModifyTrafficMirrorFilterNetworkServicesRequest : AmazonEC2Request
     {
-        private List<string> _addNetworkServices = new List<string>();
-        private List<string> _removeNetworkServices = new List<string>();
+        private List<string> _addNetworkServices = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _removeNetworkServices = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _trafficMirrorFilterId;
 
         /// <summary>
@@ -63,7 +64,7 @@ namespace Amazon.EC2.Model
         // Check to see if AddNetworkServices property is set
         internal bool IsSetAddNetworkServices()
         {
-            return this._addNetworkServices != null && this._addNetworkServices.Count > 0; 
+            return this._addNetworkServices != null && (this._addNetworkServices.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace Amazon.EC2.Model
         // Check to see if RemoveNetworkServices property is set
         internal bool IsSetRemoveNetworkServices()
         {
-            return this._removeNetworkServices != null && this._removeNetworkServices.Count > 0; 
+            return this._removeNetworkServices != null && (this._removeNetworkServices.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

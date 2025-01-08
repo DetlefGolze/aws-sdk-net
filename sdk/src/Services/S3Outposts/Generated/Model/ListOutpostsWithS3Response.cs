@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Outposts.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.S3Outposts.Model
     public partial class ListOutpostsWithS3Response : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Outpost> _outposts = new List<Outpost>();
+        private List<Outpost> _outposts = AWSConfigs.InitializeCollections ? new List<Outpost>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Returns a token that you can use to call <code>ListOutpostsWithS3</code> again and
-        /// receive additional results, if there are any.
+        /// Returns a token that you can use to call <c>ListOutpostsWithS3</c> again and receive
+        /// additional results, if there are any.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -67,7 +68,7 @@ namespace Amazon.S3Outposts.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// outposts that are <code>Active</code> (not pending any provisioning nor decommissioned)
+        /// outposts that are <c>Active</c> (not pending any provisioning nor decommissioned)
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -84,7 +85,7 @@ namespace Amazon.S3Outposts.Model
         // Check to see if Outposts property is set
         internal bool IsSetOutposts()
         {
-            return this._outposts != null && this._outposts.Count > 0; 
+            return this._outposts != null && (this._outposts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

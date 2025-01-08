@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Athena.Model
 {
     /// <summary>
@@ -118,7 +119,7 @@ namespace Amazon.Athena.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of notebook. Currently, the only valid type is <code>IPYNB</code>.
+        /// The type of notebook. Currently, the only valid type is <c>IPYNB</c>.
         /// </para>
         /// </summary>
         public NotebookType Type

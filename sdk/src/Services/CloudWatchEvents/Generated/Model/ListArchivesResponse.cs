@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvents.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.CloudWatchEvents.Model
     /// </summary>
     public partial class ListArchivesResponse : AmazonWebServiceResponse
     {
-        private List<Archive> _archives = new List<Archive>();
+        private List<Archive> _archives = AWSConfigs.InitializeCollections ? new List<Archive>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Archives. 
         /// <para>
-        /// An array of <code>Archive</code> objects that include details about an archive.
+        /// An array of <c>Archive</c> objects that include details about an archive.
         /// </para>
         /// </summary>
         public List<Archive> Archives
@@ -51,7 +52,7 @@ namespace Amazon.CloudWatchEvents.Model
         // Check to see if Archives property is set
         internal bool IsSetArchives()
         {
-            return this._archives != null && this._archives.Count > 0; 
+            return this._archives != null && (this._archives.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IVSRealTime.Model
 {
     /// <summary>
@@ -33,6 +34,30 @@ namespace Amazon.IVSRealTime.Model
         internal IVSRealTimePaginatorFactory(IAmazonIVSRealTime client) 
         {
             this.client = client;
+        }
+
+        /// <summary>
+        /// Paginator for ListCompositions operation
+        ///</summary>
+        public IListCompositionsPaginator ListCompositions(ListCompositionsRequest request) 
+        {
+            return new ListCompositionsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListEncoderConfigurations operation
+        ///</summary>
+        public IListEncoderConfigurationsPaginator ListEncoderConfigurations(ListEncoderConfigurationsRequest request) 
+        {
+            return new ListEncoderConfigurationsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListIngestConfigurations operation
+        ///</summary>
+        public IListIngestConfigurationsPaginator ListIngestConfigurations(ListIngestConfigurationsRequest request) 
+        {
+            return new ListIngestConfigurationsPaginator(this.client, request);
         }
 
         /// <summary>
@@ -52,6 +77,14 @@ namespace Amazon.IVSRealTime.Model
         }
 
         /// <summary>
+        /// Paginator for ListPublicKeys operation
+        ///</summary>
+        public IListPublicKeysPaginator ListPublicKeys(ListPublicKeysRequest request) 
+        {
+            return new ListPublicKeysPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListStages operation
         ///</summary>
         public IListStagesPaginator ListStages(ListStagesRequest request) 
@@ -65,6 +98,14 @@ namespace Amazon.IVSRealTime.Model
         public IListStageSessionsPaginator ListStageSessions(ListStageSessionsRequest request) 
         {
             return new ListStageSessionsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListStorageConfigurations operation
+        ///</summary>
+        public IListStorageConfigurationsPaginator ListStorageConfigurations(ListStorageConfigurationsRequest request) 
+        {
+            return new ListStorageConfigurationsPaginator(this.client, request);
         }
     }
 }

@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointEmail.Model
 {
     /// <summary>
     /// An array of objects that provide deliverability data for all the campaigns that used
     /// a specific domain to send email during a specified time range. This data is available
-    /// for a domain only if you enabled the Deliverability dashboard (<code>PutDeliverabilityDashboardOption</code>
+    /// for a domain only if you enabled the Deliverability dashboard (<c>PutDeliverabilityDashboardOption</c>
     /// operation) for the domain.
     /// </summary>
     public partial class ListDomainDeliverabilityCampaignsResponse : AmazonWebServiceResponse
     {
-        private List<DomainDeliverabilityCampaign> _domainDeliverabilityCampaigns = new List<DomainDeliverabilityCampaign>();
+        private List<DomainDeliverabilityCampaign> _domainDeliverabilityCampaigns = AWSConfigs.InitializeCollections ? new List<DomainDeliverabilityCampaign>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -56,13 +57,13 @@ namespace Amazon.PinpointEmail.Model
         // Check to see if DomainDeliverabilityCampaigns property is set
         internal bool IsSetDomainDeliverabilityCampaigns()
         {
-            return this._domainDeliverabilityCampaigns != null && this._domainDeliverabilityCampaigns.Count > 0; 
+            return this._domainDeliverabilityCampaigns != null && (this._domainDeliverabilityCampaigns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token that’s returned from a previous call to the <code>ListDomainDeliverabilityCampaigns</code>
+        /// A token that’s returned from a previous call to the <c>ListDomainDeliverabilityCampaigns</c>
         /// operation. This token indicates the position of the campaign in the list of campaigns.
         /// </para>
         /// </summary>

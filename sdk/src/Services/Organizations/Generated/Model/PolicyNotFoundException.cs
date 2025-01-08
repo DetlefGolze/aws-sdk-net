@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Organizations.Model
 {
     /// <summary>
-    /// We can't find a policy with the <code>PolicyId</code> that you specified.
+    /// We can't find a policy with the <c>PolicyId</c> that you specified.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

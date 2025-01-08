@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -34,9 +35,28 @@ namespace Amazon.DataZone.Model
     /// </summary>
     public partial class AcceptSubscriptionRequestRequest : AmazonDataZoneRequest
     {
+        private List<AcceptedAssetScope> _assetScopes = AWSConfigs.InitializeCollections ? new List<AcceptedAssetScope>() : null;
         private string _decisionComment;
         private string _domainIdentifier;
         private string _identifier;
+
+        /// <summary>
+        /// Gets and sets the property AssetScopes. 
+        /// <para>
+        /// The asset scopes of the accept subscription request.
+        /// </para>
+        /// </summary>
+        public List<AcceptedAssetScope> AssetScopes
+        {
+            get { return this._assetScopes; }
+            set { this._assetScopes = value; }
+        }
+
+        // Check to see if AssetScopes property is set
+        internal bool IsSetAssetScopes()
+        {
+            return this._assetScopes != null && (this._assetScopes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
 
         /// <summary>
         /// Gets and sets the property DecisionComment. 

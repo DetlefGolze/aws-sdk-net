@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroups.Model
 {
     /// <summary>
@@ -33,15 +34,15 @@ namespace Amazon.ResourceGroups.Model
     /// </summary>
     public partial class ListGroupsResponse : AmazonWebServiceResponse
     {
-        private List<GroupIdentifier> _groupIdentifiers = new List<GroupIdentifier>();
-        private List<Group> _groups = new List<Group>();
+        private List<GroupIdentifier> _groupIdentifiers = AWSConfigs.InitializeCollections ? new List<GroupIdentifier>() : null;
+        private List<Group> _groups = AWSConfigs.InitializeCollections ? new List<Group>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property GroupIdentifiers. 
         /// <para>
         /// A list of <a>GroupIdentifier</a> objects. Each identifier is an object that contains
-        /// both the <code>Name</code> and the <code>GroupArn</code>.
+        /// both the <c>Name</c> and the <c>GroupArn</c>.
         /// </para>
         /// </summary>
         public List<GroupIdentifier> GroupIdentifiers
@@ -53,13 +54,13 @@ namespace Amazon.ResourceGroups.Model
         // Check to see if GroupIdentifiers property is set
         internal bool IsSetGroupIdentifiers()
         {
-            return this._groupIdentifiers != null && this._groupIdentifiers.Count > 0; 
+            return this._groupIdentifiers != null && (this._groupIdentifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Groups. <important> 
         /// <para>
-        ///  <i> <b>Deprecated - don't use this field. Use the <code>GroupIdentifiers</code> response
+        ///  <i> <b>Deprecated - don't use this field. Use the <c>GroupIdentifiers</c> response
         /// field instead.</b> </i> 
         /// </para>
         ///  </important>
@@ -74,16 +75,16 @@ namespace Amazon.ResourceGroups.Model
         // Check to see if Groups property is set
         internal bool IsSetGroups()
         {
-            return this._groups != null && this._groups.Count > 0; 
+            return this._groups != null && (this._groups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If present, indicates that more output is available than is included in the current
-        /// response. Use this value in the <code>NextToken</code> request parameter in a subsequent
+        /// response. Use this value in the <c>NextToken</c> request parameter in a subsequent
         /// call to the operation to get the next part of the output. You should repeat this until
-        /// the <code>NextToken</code> response element comes back as <code>null</code>.
+        /// the <c>NextToken</c> response element comes back as <c>null</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=8192)]

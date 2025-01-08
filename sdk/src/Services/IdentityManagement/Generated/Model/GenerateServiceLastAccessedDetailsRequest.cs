@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -35,7 +36,9 @@ namespace Amazon.IdentityManagement.Model
     /// Recent activity usually appears within four hours. IAM reports activity for at least
     /// the last 400 days, or less if your Region began supporting this feature within the
     /// last year. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_access-advisor.html#access-advisor_tracking-period">Regions
-    /// where data is tracked</a>.
+    /// where data is tracked</a>. For more information about services and actions for which
+    /// action last accessed information is displayed, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_access-advisor-action-last-accessed.html">IAM
+    /// action last accessed information services and actions</a>.
     /// 
     ///  <important> 
     /// <para>
@@ -51,8 +54,8 @@ namespace Amazon.IdentityManagement.Model
     /// </para>
     ///  </important> 
     /// <para>
-    /// The <code>GenerateServiceLastAccessedDetails</code> operation returns a <code>JobId</code>.
-    /// Use this parameter in the following operations to retrieve the following details from
+    /// The <c>GenerateServiceLastAccessedDetails</c> operation returns a <c>JobId</c>. Use
+    /// this parameter in the following operations to retrieve the following details from
     /// your report: 
     /// </para>
     ///  <ul> <li> 
@@ -64,9 +67,8 @@ namespace Amazon.IdentityManagement.Model
     /// </para>
     ///  
     /// <para>
-    /// The <code>JobId</code> returned by <code>GenerateServiceLastAccessedDetail</code>
-    /// must be used by the same role within a session, or by the same user when used to call
-    /// <code>GetServiceLastAccessedDetail</code>.
+    /// The <c>JobId</c> returned by <c>GenerateServiceLastAccessedDetail</c> must be used
+    /// by the same role within a session, or by the same user when used to call <c>GetServiceLastAccessedDetail</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -76,9 +78,9 @@ namespace Amazon.IdentityManagement.Model
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// To check the status of the <code>GenerateServiceLastAccessedDetails</code> request,
-    /// use the <code>JobId</code> parameter in the same operations and test the <code>JobStatus</code>
-    /// response parameter.
+    /// To check the status of the <c>GenerateServiceLastAccessedDetails</c> request, use
+    /// the <c>JobId</c> parameter in the same operations and test the <c>JobStatus</c> response
+    /// parameter.
     /// </para>
     ///  
     /// <para>

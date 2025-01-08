@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteExpression operation.
-    /// Removes an <code><a>Expression</a></code> from the search domain. For more information,
+    /// Removes an <c><a>Expression</a></c> from the search domain. For more information,
     /// see <a href="http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
     /// target="_blank">Configuring Expressions</a> in the <i>Amazon CloudSearch Developer
     /// Guide</i>.
@@ -59,7 +60,7 @@ namespace Amazon.CloudSearch.Model
         /// <summary>
         /// Gets and sets the property ExpressionName. 
         /// <para>
-        /// The name of the <code><a>Expression</a></code> to delete.
+        /// The name of the <c><a>Expression</a></c> to delete.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

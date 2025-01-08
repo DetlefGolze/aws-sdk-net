@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
     /// Information and credentials that you can use to remotely connect to an instance in
-    /// an EC2 managed fleet. This data type is returned in response to a call to <a>GetInstanceAccess</a>.
+    /// an EC2 managed fleet. This data type is returned in response to a call to <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_GetInstanceAccess">https://docs.aws.amazon.com/gamelift/latest/apireference/API_GetInstanceAccess</a>.
     /// </summary>
     public partial class InstanceAccess
     {
@@ -65,6 +66,7 @@ namespace Amazon.GameLift.Model
         /// A unique identifier for the fleet containing the instance to be accessed.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=128)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -101,7 +103,7 @@ namespace Amazon.GameLift.Model
         /// IP address assigned to the instance.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=128)]
+        [AWSProperty(Sensitive=true, Min=1, Max=128)]
         public string IpAddress
         {
             get { return this._ipAddress; }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -73,7 +74,7 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// This value is <code>N/A</code> if the access key has not been used.
+        /// This value is <c>N/A</c> if the access key has not been used.
         /// </para>
         /// </summary>
         public string Region
@@ -96,7 +97,7 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// This value is <code>N/A</code> if the access key has not been used.
+        /// This value is <c>N/A</c> if the access key has not been used.
         /// </para>
         /// </summary>
         public string ServiceName

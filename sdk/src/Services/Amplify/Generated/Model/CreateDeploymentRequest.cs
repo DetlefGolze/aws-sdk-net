@@ -26,18 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Amplify.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateDeployment operation.
-    /// Creates a deployment for a manually deployed Amplify app. Manually deployed apps
-    /// are not connected to a repository.
+    /// Creates a deployment for a manually deployed Amplify app. Manually deployed apps are
+    /// not connected to a Git repository. 
+    /// 
+    ///  
+    /// <para>
+    /// The maximum duration between the <c>CreateDeployment</c> call and the <c>StartDeployment</c>
+    /// call cannot exceed 8 hours. If the duration exceeds 8 hours, the <c>StartDeployment</c>
+    /// call and the associated <c>Job</c> will fail.
+    /// </para>
     /// </summary>
     public partial class CreateDeploymentRequest : AmazonAmplifyRequest
     {
         private string _appId;
         private string _branchName;
-        private Dictionary<string, string> _fileMap = new Dictionary<string, string>();
+        private Dictionary<string, string> _fileMap = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AppId. 
@@ -61,7 +69,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property BranchName. 
         /// <para>
-        ///  The name for the branch, for the job. 
+        ///  The name of the branch to use for the job. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]
@@ -95,7 +103,7 @@ namespace Amazon.Amplify.Model
         // Check to see if FileMap property is set
         internal bool IsSetFileMap()
         {
-            return this._fileMap != null && this._fileMap.Count > 0; 
+            return this._fileMap != null && (this._fileMap.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

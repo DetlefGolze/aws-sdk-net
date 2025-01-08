@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// Presents the status of the <code>OrganizationAccess</code>.
+        /// Presents the status of the <c>OrganizationAccess</c>.
         /// </para>
         /// </summary>
         public OrganizationStatus Status

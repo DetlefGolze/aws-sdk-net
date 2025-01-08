@@ -26,21 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
     /// Container for the parameters to the UntagResource operation.
-    /// Deletes tags from the specified resource.
+    /// Removes the specified tags from an Amazon Managed Service for Prometheus resource.
+    /// The only resources that can be tagged are rule groups namespaces, scrapers, and workspaces.
     /// </summary>
     public partial class UntagResourceRequest : AmazonPrometheusServiceRequest
     {
         private string _resourceArn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The ARN of the resource.
+        /// The ARN of the resource from which to remove a tag.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -59,7 +61,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property TagKeys. 
         /// <para>
-        /// One or more tag keys
+        /// The keys of the tags to remove.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -72,7 +74,7 @@ namespace Amazon.PrometheusService.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

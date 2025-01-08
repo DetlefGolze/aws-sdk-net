@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
-    /// Information about a reactive insight. This object is returned by <code>DescribeInsight.</code>
+    /// Information about a reactive insight. This object is returned by <c>DescribeInsight.</c>
     /// </summary>
     public partial class ReactiveInsightSummary
     {
-        private List<string> _associatedResourceArns = new List<string>();
+        private List<string> _associatedResourceArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _id;
         private InsightTimeRange _insightTimeRange;
         private string _name;
@@ -58,7 +59,7 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if AssociatedResourceArns property is set
         internal bool IsSetAssociatedResourceArns()
         {
-            return this._associatedResourceArns != null && this._associatedResourceArns.Count > 0; 
+            return this._associatedResourceArns != null && (this._associatedResourceArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

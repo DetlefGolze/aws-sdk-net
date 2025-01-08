@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EventBridge.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,19 @@ namespace Amazon.EventBridge.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(Target requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetAppSyncParameters())
+            {
+                context.Writer.WritePropertyName("AppSyncParameters");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = AppSyncParametersMarshaller.Instance;
+                marshaller.Marshall(requestObject.AppSyncParameters, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetArn())
             {
                 context.Writer.WritePropertyName("Arn");

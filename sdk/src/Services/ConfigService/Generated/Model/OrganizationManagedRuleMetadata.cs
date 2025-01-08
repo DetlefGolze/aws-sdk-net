@@ -26,12 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
-    /// organization managed rule metadata such as resource type and ID of Amazon Web Services
-    /// resource along with the rule identifier. It also provides the frequency with which
-    /// you want Config to run evaluations for the rule if the trigger type is periodic.
+    /// An object that specifies organization managed rule metadata such as resource type
+    /// and ID of Amazon Web Services resource along with the rule identifier. It also provides
+    /// the frequency with which you want Config to run evaluations for the rule if the trigger
+    /// type is periodic.
     /// </summary>
     public partial class OrganizationManagedRuleMetadata
     {
@@ -39,7 +41,7 @@ namespace Amazon.ConfigService.Model
         private string _inputParameters;
         private MaximumExecutionFrequency _maximumExecutionFrequency;
         private string _resourceIdScope;
-        private List<string> _resourceTypesScope = new List<string>();
+        private List<string> _resourceTypesScope = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _ruleIdentifier;
         private string _tagKeyScope;
         private string _tagValueScope;
@@ -91,8 +93,7 @@ namespace Amazon.ConfigService.Model
         ///  <note> 
         /// <para>
         /// By default, rules with a periodic trigger are evaluated every 24 hours. To change
-        /// the frequency, specify a valid value for the <code>MaximumExecutionFrequency</code>
-        /// parameter.
+        /// the frequency, specify a valid value for the <c>MaximumExecutionFrequency</c> parameter.
         /// </para>
         ///  </note>
         /// </summary>
@@ -143,15 +144,15 @@ namespace Amazon.ConfigService.Model
         // Check to see if ResourceTypesScope property is set
         internal bool IsSetResourceTypesScope()
         {
-            return this._resourceTypesScope != null && this._resourceTypesScope.Count > 0; 
+            return this._resourceTypesScope != null && (this._resourceTypesScope.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property RuleIdentifier. 
         /// <para>
         /// For organization config managed rules, a predefined identifier from a list. For example,
-        /// <code>IAM_PASSWORD_POLICY</code> is a managed rule. To reference a managed rule, see
-        /// <a href="https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html">Using
+        /// <c>IAM_PASSWORD_POLICY</c> is a managed rule. To reference a managed rule, see <a
+        /// href="https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html">Using
         /// Config managed rules</a>.
         /// </para>
         /// </summary>

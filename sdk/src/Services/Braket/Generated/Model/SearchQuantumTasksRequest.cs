@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Braket.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.Braket.Model
     /// </summary>
     public partial class SearchQuantumTasksRequest : AmazonBraketRequest
     {
-        private List<SearchQuantumTasksFilter> _filters = new List<SearchQuantumTasksFilter>();
+        private List<SearchQuantumTasksFilter> _filters = AWSConfigs.InitializeCollections ? new List<SearchQuantumTasksFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// Array of <code>SearchQuantumTasksFilter</code> objects.
+        /// Array of <c>SearchQuantumTasksFilter</c> objects.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=10)]
@@ -54,7 +55,7 @@ namespace Amazon.Braket.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

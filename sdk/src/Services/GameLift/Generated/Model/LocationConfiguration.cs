@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -38,7 +39,9 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property Location. 
         /// <para>
-        /// An Amazon Web Services Region code, such as <code>us-west-2</code>. 
+        /// An Amazon Web Services Region code, such as <c>us-west-2</c>. For a list of supported
+        /// Regions and Local Zones, see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-regions.html">
+        /// Amazon GameLift service locations</a> for managed hosting.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

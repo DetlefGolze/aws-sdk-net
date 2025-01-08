@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ACMPCA.Model
 {
     /// <summary>
-    /// Provides access information used by the <code>authorityInfoAccess</code> and <code>subjectInfoAccess</code>
+    /// Provides access information used by the <c>authorityInfoAccess</c> and <c>subjectInfoAccess</c>
     /// extensions described in <a href="https://datatracker.ietf.org/doc/html/rfc5280">RFC
     /// 5280</a>.
     /// </summary>
@@ -41,7 +42,7 @@ namespace Amazon.ACMPCA.Model
         /// <summary>
         /// Gets and sets the property AccessLocation. 
         /// <para>
-        /// The location of <code>AccessDescription</code> information.
+        /// The location of <c>AccessDescription</c> information.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -60,7 +61,7 @@ namespace Amazon.ACMPCA.Model
         /// <summary>
         /// Gets and sets the property AccessMethod. 
         /// <para>
-        /// The type and format of <code>AccessDescription</code> information.
+        /// The type and format of <c>AccessDescription</c> information.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

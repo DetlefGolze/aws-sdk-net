@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -44,10 +45,11 @@ namespace Amazon.EKS.Model
         private MarketplaceInformation _marketplaceInformation;
         private DateTime? _modifiedAt;
         private string _owner;
+        private List<string> _podIdentityAssociations = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _publisher;
         private string _serviceAccountRoleArn;
         private AddonStatus _status;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AddonArn. 
@@ -106,7 +108,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ClusterName. 
         /// <para>
-        /// The name of the cluster.
+        /// The name of your cluster.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -143,7 +145,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// The date and time that the add-on was created.
+        /// The Unix epoch timestamp at object creation.
         /// </para>
         /// </summary>
         public DateTime CreatedAt
@@ -197,7 +199,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ModifiedAt. 
         /// <para>
-        /// The date and time that the add-on was last modified.
+        /// The Unix epoch timestamp for the last modification to the object.
         /// </para>
         /// </summary>
         public DateTime ModifiedAt
@@ -231,6 +233,30 @@ namespace Amazon.EKS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PodIdentityAssociations. 
+        /// <para>
+        /// An array of Pod Identity Assocations owned by the Addon. Each EKS Pod Identity association
+        /// maps a role to a service account in a namespace in the cluster.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/add-ons-iam.html">Attach
+        /// an IAM Role to an Amazon EKS add-on using Pod Identity</a> in the EKS User Guide.
+        /// </para>
+        /// </summary>
+        public List<string> PodIdentityAssociations
+        {
+            get { return this._podIdentityAssociations; }
+            set { this._podIdentityAssociations = value; }
+        }
+
+        // Check to see if PodIdentityAssociations property is set
+        internal bool IsSetPodIdentityAssociations()
+        {
+            return this._podIdentityAssociations != null && (this._podIdentityAssociations.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Publisher. 
         /// <para>
         /// The publisher of the add-on.
@@ -251,8 +277,8 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ServiceAccountRoleArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the IAM role that's bound to the Kubernetes service
-        /// account that the add-on uses.
+        /// The Amazon Resource Name (ARN) of the IAM role that's bound to the Kubernetes <c>ServiceAccount</c>
+        /// object that the add-on uses.
         /// </para>
         /// </summary>
         public string ServiceAccountRoleArn
@@ -288,9 +314,9 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// The metadata that you apply to the add-on to assist with categorization and organization.
-        /// Each tag consists of a key and an optional value. You define both. Add-on tags do
-        /// not propagate to any other resources associated with the cluster. 
+        /// Metadata that assists with categorization and organization. Each tag consists of a
+        /// key and an optional value. You define both. Tags don't propagate to any other cluster
+        /// or Amazon Web Services resources.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -303,7 +329,7 @@ namespace Amazon.EKS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

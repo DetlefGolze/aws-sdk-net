@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
-    /// A filter to apply to the <code>DescribePackage</code> response.
+    /// A filter to apply to the <c>DescribePackage</c> response.
     /// </summary>
     public partial class DescribePackagesFilter
     {
         private DescribePackagesFilterName _name;
-        private List<string> _value = new List<string>();
+        private List<string> _value = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// Any field from <code>PackageDetails</code>.
+        /// Any field from <c>PackageDetails</c>.
         /// </para>
         /// </summary>
         public DescribePackagesFilterName Name
@@ -60,6 +61,7 @@ namespace Amazon.OpenSearchService.Model
         /// A non-empty list of values for the specified filter field.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1)]
         public List<string> Value
         {
             get { return this._value; }
@@ -69,7 +71,7 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if Value property is set
         internal bool IsSetValue()
         {
-            return this._value != null && this._value.Count > 0; 
+            return this._value != null && (this._value.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

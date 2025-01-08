@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the ssm-2014-11-06.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -89,6 +90,11 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Paginator for DescribeInstancePatchStatesForPatchGroup operation
         ///</summary>
         IDescribeInstancePatchStatesForPatchGroupPaginator DescribeInstancePatchStatesForPatchGroup(DescribeInstancePatchStatesForPatchGroupRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeInstanceProperties operation
+        ///</summary>
+        IDescribeInstancePropertiesPaginator DescribeInstanceProperties(DescribeInstancePropertiesRequest request);
 
         /// <summary>
         /// Paginator for DescribeInventoryDeletions operation
@@ -234,6 +240,16 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Paginator for ListDocumentVersions operation
         ///</summary>
         IListDocumentVersionsPaginator ListDocumentVersions(ListDocumentVersionsRequest request);
+
+        /// <summary>
+        /// Paginator for ListNodes operation
+        ///</summary>
+        IListNodesPaginator ListNodes(ListNodesRequest request);
+
+        /// <summary>
+        /// Paginator for ListNodesSummary operation
+        ///</summary>
+        IListNodesSummaryPaginator ListNodesSummary(ListNodesSummaryRequest request);
 
         /// <summary>
         /// Paginator for ListOpsItemEvents operation

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationInsights.Model
 {
     /// <summary>
@@ -55,9 +56,9 @@ namespace Amazon.ApplicationInsights.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// The <code>aws:</code> prefix is reserved for use by AWS; you can’t use it in any tag
-    /// keys or values that you define. In addition, you can't edit or remove tag keys or
-    /// values that use this prefix. 
+    /// The <c>aws:</c> prefix is reserved for use by Amazon Web Services; you can’t use it
+    /// in any tag keys or values that you define. In addition, you can't edit or remove tag
+    /// keys or values that use this prefix. 
     /// </para>
     ///  </li> </ul>
     /// </summary>

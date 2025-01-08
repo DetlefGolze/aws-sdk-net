@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSHealth.Model
 {
     /// <summary>
@@ -34,17 +35,17 @@ namespace Amazon.AWSHealth.Model
     /// </summary>
     public partial class OrganizationEntityAggregate
     {
-        private List<AccountEntityAggregate> _accounts = new List<AccountEntityAggregate>();
+        private List<AccountEntityAggregate> _accounts = AWSConfigs.InitializeCollections ? new List<AccountEntityAggregate>() : null;
         private int? _count;
         private string _eventArn;
-        private Dictionary<string, int> _statuses = new Dictionary<string, int>();
+        private Dictionary<string, int> _statuses = AWSConfigs.InitializeCollections ? new Dictionary<string, int>() : null;
 
         /// <summary>
         /// Gets and sets the property Accounts. 
         /// <para>
         /// A list of entity aggregates for each of the specified accounts in your organization
-        /// that are affected by a specific event. If there are no <code>awsAccountIds</code>
-        /// provided in the request, this field will be empty in the response.
+        /// that are affected by a specific event. If there are no <c>awsAccountIds</c> provided
+        /// in the request, this field will be empty in the response.
         /// </para>
         /// </summary>
         public List<AccountEntityAggregate> Accounts
@@ -56,7 +57,7 @@ namespace Amazon.AWSHealth.Model
         // Check to see if Accounts property is set
         internal bool IsSetAccounts()
         {
-            return this._accounts != null && this._accounts.Count > 0; 
+            return this._accounts != null && (this._accounts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -81,8 +82,8 @@ namespace Amazon.AWSHealth.Model
         /// <summary>
         /// Gets and sets the property EventArn. 
         /// <para>
-        /// A list of event ARNs (unique identifiers). For example: <code>"arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-CDE456",
-        /// "arn:aws:health:us-west-1::event/EBS/AWS_EBS_LOST_VOLUME/AWS_EBS_LOST_VOLUME_CHI789_JKL101"</code>
+        /// A list of event ARNs (unique identifiers). For example: <c>"arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-CDE456",
+        /// "arn:aws:health:us-west-1::event/EBS/AWS_EBS_LOST_VOLUME/AWS_EBS_LOST_VOLUME_CHI789_JKL101"</c>
         /// 
         /// </para>
         /// </summary>
@@ -114,7 +115,7 @@ namespace Amazon.AWSHealth.Model
         // Check to see if Statuses property is set
         internal bool IsSetStatuses()
         {
-            return this._statuses != null && this._statuses.Count > 0; 
+            return this._statuses != null && (this._statuses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

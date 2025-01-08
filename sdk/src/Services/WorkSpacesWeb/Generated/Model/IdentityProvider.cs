@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpacesWeb.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.WorkSpacesWeb.Model
     public partial class IdentityProvider
     {
         private string _identityProviderArn;
-        private Dictionary<string, string> _identityProviderDetails = new Dictionary<string, string>();
+        private Dictionary<string, string> _identityProviderDetails = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _identityProviderName;
         private IdentityProviderType _identityProviderType;
 
@@ -69,15 +70,15 @@ namespace Amazon.WorkSpacesWeb.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>client_id</code> 
+        ///  <c>client_id</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>client_secret</code> 
+        ///  <c>client_secret</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>authorize_scopes</code> 
+        ///  <c>authorize_scopes</c> 
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
@@ -85,19 +86,19 @@ namespace Amazon.WorkSpacesWeb.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>client_id</code> 
+        ///  <c>client_id</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>client_secret</code> 
+        ///  <c>client_secret</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>authorize_scopes</code> 
+        ///  <c>authorize_scopes</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>api_version</code> 
+        ///  <c>api_version</c> 
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
@@ -105,23 +106,23 @@ namespace Amazon.WorkSpacesWeb.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>client_id</code> 
+        ///  <c>client_id</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>team_id</code> 
+        ///  <c>team_id</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>key_id</code> 
+        ///  <c>key_id</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>private_key</code> 
+        ///  <c>private_key</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>authorize_scopes</code> 
+        ///  <c>authorize_scopes</c> 
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
@@ -129,43 +130,43 @@ namespace Amazon.WorkSpacesWeb.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>client_id</code> 
+        ///  <c>client_id</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>client_secret</code> 
+        ///  <c>client_secret</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>attributes_request_method</code> 
+        ///  <c>attributes_request_method</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oidc_issuer</code> 
+        ///  <c>oidc_issuer</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>authorize_scopes</code> 
+        ///  <c>authorize_scopes</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>authorize_url</code> <i>if not available from discovery URL specified by oidc_issuer
+        ///  <c>authorize_url</c> <i>if not available from discovery URL specified by oidc_issuer
         /// key</i> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>token_url</code> <i>if not available from discovery URL specified by oidc_issuer
+        ///  <c>token_url</c> <i>if not available from discovery URL specified by oidc_issuer
         /// key</i> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>attributes_url</code> <i>if not available from discovery URL specified by oidc_issuer
+        ///  <c>attributes_url</c> <i>if not available from discovery URL specified by oidc_issuer
         /// key</i> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>jwks_uri</code> <i>if not available from discovery URL specified by oidc_issuer
-        /// key</i> 
+        ///  <c>jwks_uri</c> <i>if not available from discovery URL specified by oidc_issuer key</i>
+        /// 
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
@@ -173,11 +174,24 @@ namespace Amazon.WorkSpacesWeb.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>MetadataFile</code> OR <code>MetadataURL</code> 
+        ///  <c>MetadataFile</c> OR <c>MetadataURL</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IDPSignout</code> <i>optional</i> 
+        ///  <c>IDPSignout</c> (boolean) <i>optional</i> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>IDPInit</c> (boolean) <i>optional</i> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>RequestSigningAlgorithm</c> (string) <i>optional</i> - Only accepts <c>rsa-sha256</c>
+        /// 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>EncryptedResponses</c> (boolean) <i>optional</i> 
         /// </para>
         ///  </li> </ul> </li> </ul>
         /// </summary>
@@ -191,7 +205,7 @@ namespace Amazon.WorkSpacesWeb.Model
         // Check to see if IdentityProviderDetails property is set
         internal bool IsSetIdentityProviderDetails()
         {
-            return this._identityProviderDetails != null && this._identityProviderDetails.Count > 0; 
+            return this._identityProviderDetails != null && (this._identityProviderDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

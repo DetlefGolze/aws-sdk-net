@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComputeOptimizer.Model
 {
     /// <summary>
@@ -36,9 +37,9 @@ namespace Amazon.ComputeOptimizer.Model
     /// 
     ///  
     /// <para>
-    /// When you create a recommendation preference, you can set its status to <code>Active</code>
-    /// or <code>Inactive</code>. Use this action to view the recommendation preferences that
-    /// are in effect, or <code>Active</code>.
+    /// When you create a recommendation preference, you can set its status to <c>Active</c>
+    /// or <c>Inactive</c>. Use this action to view the recommendation preferences that are
+    /// in effect, or <c>Active</c>.
     /// </para>
     /// </summary>
     public partial class GetEffectiveRecommendationPreferencesRequest : AmazonComputeOptimizerRequest

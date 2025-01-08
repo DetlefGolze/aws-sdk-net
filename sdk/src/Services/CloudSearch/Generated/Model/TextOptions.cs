@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// Options for text field. Present if <code>IndexFieldType</code> specifies the field
-    /// is of type <code>text</code>. A <code>text</code> field is always searchable. All
-    /// options are enabled by default.
+    /// Options for text field. Present if <c>IndexFieldType</c> specifies the field is of
+    /// type <c>text</c>. A <c>text</c> field is always searchable. All options are enabled
+    /// by default.
     /// </summary>
     public partial class TextOptions
     {
@@ -45,7 +46,7 @@ namespace Amazon.CloudSearch.Model
         /// <summary>
         /// Gets and sets the property AnalysisScheme. 
         /// <para>
-        /// The name of an analysis scheme for a <code>text</code> field.
+        /// The name of an analysis scheme for a <c>text</c> field.
         /// </para>
         /// </summary>
         public string AnalysisScheme

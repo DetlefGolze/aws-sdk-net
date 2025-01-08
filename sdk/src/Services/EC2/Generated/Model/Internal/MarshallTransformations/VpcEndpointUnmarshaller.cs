@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                     if (context.TestExpression("dnsEntrySet/item", targetDepth))
                     {
                         var unmarshaller = DnsEntryUnmarshaller.Instance;
+                        if (unmarshalledObject.DnsEntries == null)
+                        {
+                            unmarshalledObject.DnsEntries = new List<DnsEntry>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.DnsEntries.Add(item);
                         continue;
@@ -73,9 +78,19 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                         unmarshalledObject.DnsOptions = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("failureReason", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.FailureReason = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("groupSet/item", targetDepth))
                     {
                         var unmarshaller = SecurityGroupIdentifierUnmarshaller.Instance;
+                        if (unmarshalledObject.Groups == null)
+                        {
+                            unmarshalledObject.Groups = new List<SecurityGroupIdentifier>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.Groups.Add(item);
                         continue;
@@ -84,6 +99,28 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
                         unmarshalledObject.IpAddressType = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("ipv4PrefixSet/item", targetDepth))
+                    {
+                        var unmarshaller = SubnetIpPrefixesUnmarshaller.Instance;
+                        if (unmarshalledObject.Ipv4Prefixes == null)
+                        {
+                            unmarshalledObject.Ipv4Prefixes = new List<SubnetIpPrefixes>();
+                        }
+                        var item = unmarshaller.Unmarshall(context);
+                        unmarshalledObject.Ipv4Prefixes.Add(item);
+                        continue;
+                    }
+                    if (context.TestExpression("ipv6PrefixSet/item", targetDepth))
+                    {
+                        var unmarshaller = SubnetIpPrefixesUnmarshaller.Instance;
+                        if (unmarshalledObject.Ipv6Prefixes == null)
+                        {
+                            unmarshalledObject.Ipv6Prefixes = new List<SubnetIpPrefixes>();
+                        }
+                        var item = unmarshaller.Unmarshall(context);
+                        unmarshalledObject.Ipv6Prefixes.Add(item);
                         continue;
                     }
                     if (context.TestExpression("lastError", targetDepth))
@@ -95,6 +132,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                     if (context.TestExpression("networkInterfaceIdSet/item", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
+                        if (unmarshalledObject.NetworkInterfaceIds == null)
+                        {
+                            unmarshalledObject.NetworkInterfaceIds = new List<string>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.NetworkInterfaceIds.Add(item);
                         continue;
@@ -123,9 +164,19 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                         unmarshalledObject.RequesterManaged = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("resourceConfigurationArn", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.ResourceConfigurationArn = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("routeTableIdSet/item", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
+                        if (unmarshalledObject.RouteTableIds == null)
+                        {
+                            unmarshalledObject.RouteTableIds = new List<string>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.RouteTableIds.Add(item);
                         continue;
@@ -134,6 +185,18 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
                         unmarshalledObject.ServiceName = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("serviceNetworkArn", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.ServiceNetworkArn = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("serviceRegion", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.ServiceRegion = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("state", targetDepth))
@@ -145,6 +208,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                     if (context.TestExpression("subnetIdSet/item", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
+                        if (unmarshalledObject.SubnetIds == null)
+                        {
+                            unmarshalledObject.SubnetIds = new List<string>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.SubnetIds.Add(item);
                         continue;
@@ -152,6 +219,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                     if (context.TestExpression("tagSet/item", targetDepth))
                     {
                         var unmarshaller = TagUnmarshaller.Instance;
+                        if (unmarshalledObject.Tags == null)
+                        {
+                            unmarshalledObject.Tags = new List<Tag>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.Tags.Add(item);
                         continue;

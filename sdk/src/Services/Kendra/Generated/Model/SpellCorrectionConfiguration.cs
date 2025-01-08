@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -50,7 +51,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property IncludeQuerySpellCheckSuggestions. 
         /// <para>
-        ///  <code>TRUE</code> to suggest spell corrections for queries.
+        ///  <c>TRUE</c> to suggest spell corrections for queries.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -33,18 +34,20 @@ namespace Amazon.CloudFormation.Model
     /// </summary>
     public partial class Stack
     {
-        private List<string> _capabilities = new List<string>();
+        private List<string> _capabilities = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _changeSetId;
         private DateTime? _creationTime;
+        private DeletionMode _deletionMode;
         private DateTime? _deletionTime;
         private string _description;
+        private DetailedStatus _detailedStatus;
         private bool? _disableRollback;
         private StackDriftInformation _driftInformation;
         private bool? _enableTerminationProtection;
         private DateTime? _lastUpdatedTime;
-        private List<string> _notificationARNs = new List<string>();
-        private List<Output> _outputs = new List<Output>();
-        private List<Parameter> _parameters = new List<Parameter>();
+        private List<string> _notificationARNs = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Output> _outputs = AWSConfigs.InitializeCollections ? new List<Output>() : null;
+        private List<Parameter> _parameters = AWSConfigs.InitializeCollections ? new List<Parameter>() : null;
         private string _parentId;
         private bool? _retainExceptOnCreate;
         private string _roleARN;
@@ -54,7 +57,7 @@ namespace Amazon.CloudFormation.Model
         private string _stackName;
         private StackStatus _stackStatus;
         private string _stackStatusReason;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private int? _timeoutInMinutes;
 
         /// <summary>
@@ -72,7 +75,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Capabilities property is set
         internal bool IsSetCapabilities()
         {
-            return this._capabilities != null && this._capabilities.Count > 0; 
+            return this._capabilities != null && (this._capabilities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -114,6 +117,35 @@ namespace Amazon.CloudFormation.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DeletionMode. 
+        /// <para>
+        /// Specifies the deletion mode for the stack. Possible values are:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>STANDARD</c> - Use the standard behavior. Specifying this value is the same as
+        /// not specifying this parameter.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>FORCE_DELETE_STACK</c> - Delete the stack if it's stuck in a <c>DELETE_FAILED</c>
+        /// state due to resource deletion failure.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public DeletionMode DeletionMode
+        {
+            get { return this._deletionMode; }
+            set { this._deletionMode = value; }
+        }
+
+        // Check to see if DeletionMode property is set
+        internal bool IsSetDeletionMode()
+        {
+            return this._deletionMode != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property DeletionTime. 
         /// <para>
         /// The time the stack was deleted.
@@ -151,17 +183,40 @@ namespace Amazon.CloudFormation.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DetailedStatus. 
+        /// <para>
+        /// The detailed status of the resource or stack. If <c>CONFIGURATION_COMPLETE</c> is
+        /// present, the resource or resource configuration phase has completed and the stabilization
+        /// of the resources is in progress. The stack sets <c>CONFIGURATION_COMPLETE</c> when
+        /// all of the resources in the stack have reached that event. For more information, see
+        /// <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stack-resource-configuration-complete.html">Understand
+        /// CloudFormation stack creation events</a> in the <i>CloudFormation User Guide</i>.
+        /// </para>
+        /// </summary>
+        public DetailedStatus DetailedStatus
+        {
+            get { return this._detailedStatus; }
+            set { this._detailedStatus = value; }
+        }
+
+        // Check to see if DetailedStatus property is set
+        internal bool IsSetDetailedStatus()
+        {
+            return this._detailedStatus != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property DisableRollback. 
         /// <para>
         /// Boolean to enable or disable rollback on stack creation failures:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>true</code>: disable rollback.
+        ///  <c>true</c>: disable rollback.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>false</code>: enable rollback.
+        ///  <c>false</c>: enable rollback.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -182,8 +237,8 @@ namespace Amazon.CloudFormation.Model
         /// <para>
         /// Information about whether a stack's actual configuration differs, or has <i>drifted</i>,
         /// from its expected configuration, as defined in the stack template and any values specified
-        /// as template parameters. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html">Detecting
-        /// Unregulated Configuration Changes to Stacks and Resources</a>.
+        /// as template parameters. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html">Detect
+        /// unmanaged configuration changes to stacks and resources with drift detection</a>.
         /// </para>
         /// </summary>
         public StackDriftInformation DriftInformation
@@ -207,8 +262,8 @@ namespace Amazon.CloudFormation.Model
         /// <para>
         /// For <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">nested
         /// stacks</a>, termination protection is set on the root stack and can't be changed directly
-        /// on the nested stack. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-protect-stacks.html">Protecting
-        /// a Stack From Being Deleted</a> in the <i>CloudFormation User Guide</i>.
+        /// on the nested stack. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-protect-stacks.html">Protect
+        /// a CloudFormation stack from being deleted</a> in the <i>CloudFormation User Guide</i>.
         /// </para>
         /// </summary>
         public bool EnableTerminationProtection
@@ -258,7 +313,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if NotificationARNs property is set
         internal bool IsSetNotificationARNs()
         {
-            return this._notificationARNs != null && this._notificationARNs.Count > 0; 
+            return this._notificationARNs != null && (this._notificationARNs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -276,13 +331,13 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Outputs property is set
         internal bool IsSetOutputs()
         {
-            return this._outputs != null && this._outputs.Count > 0; 
+            return this._outputs != null && (this._outputs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Parameters. 
         /// <para>
-        /// A list of <code>Parameter</code> structures.
+        /// A list of <c>Parameter</c> structures.
         /// </para>
         /// </summary>
         public List<Parameter> Parameters
@@ -294,7 +349,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -306,8 +361,8 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Working
-        /// with Nested Stacks</a> in the <i>CloudFormation User Guide</i>.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Embed
+        /// stacks within other stacks using nested stacks</a> in the <i>CloudFormation User Guide</i>.
         /// </para>
         /// </summary>
         public string ParentId
@@ -325,13 +380,12 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property RetainExceptOnCreate. 
         /// <para>
-        /// When set to <code>true</code>, newly created resources are deleted when the operation
-        /// rolls back. This includes newly created resources marked with a deletion policy of
-        /// <code>Retain</code>.
+        /// When set to <c>true</c>, newly created resources are deleted when the operation rolls
+        /// back. This includes newly created resources marked with a deletion policy of <c>Retain</c>.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool RetainExceptOnCreate
@@ -349,9 +403,9 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property RoleARN. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of an Identity and Access Management (IAM) role that's
-        /// associated with the stack. During a stack operation, CloudFormation uses this role's
-        /// credentials to make calls on your behalf.
+        /// The Amazon Resource Name (ARN) of an IAM role that's associated with the stack. During
+        /// a stack operation, CloudFormation uses this role's credentials to make calls on your
+        /// behalf.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]
@@ -394,8 +448,8 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Working
-        /// with Nested Stacks</a> in the <i>CloudFormation User Guide</i>.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Embed
+        /// stacks within other stacks using nested stacks</a> in the <i>CloudFormation User Guide</i>.
         /// </para>
         /// </summary>
         public string RootId
@@ -487,7 +541,7 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// A list of <code>Tag</code>s that specify information about the stack.
+        /// A list of <c>Tag</c>s that specify information about the stack.
         /// </para>
         /// </summary>
         [AWSProperty(Max=50)]
@@ -500,7 +554,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

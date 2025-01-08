@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -34,20 +35,21 @@ namespace Amazon.QuickSight.Model
     /// </summary>
     public partial class AssetBundleCloudFormationOverridePropertyConfiguration
     {
-        private List<AssetBundleExportJobAnalysisOverrideProperties> _analyses = new List<AssetBundleExportJobAnalysisOverrideProperties>();
-        private List<AssetBundleExportJobDashboardOverrideProperties> _dashboards = new List<AssetBundleExportJobDashboardOverrideProperties>();
-        private List<AssetBundleExportJobDataSetOverrideProperties> _dataSets = new List<AssetBundleExportJobDataSetOverrideProperties>();
-        private List<AssetBundleExportJobDataSourceOverrideProperties> _dataSources = new List<AssetBundleExportJobDataSourceOverrideProperties>();
-        private List<AssetBundleExportJobRefreshScheduleOverrideProperties> _refreshSchedules = new List<AssetBundleExportJobRefreshScheduleOverrideProperties>();
+        private List<AssetBundleExportJobAnalysisOverrideProperties> _analyses = AWSConfigs.InitializeCollections ? new List<AssetBundleExportJobAnalysisOverrideProperties>() : null;
+        private List<AssetBundleExportJobDashboardOverrideProperties> _dashboards = AWSConfigs.InitializeCollections ? new List<AssetBundleExportJobDashboardOverrideProperties>() : null;
+        private List<AssetBundleExportJobDataSetOverrideProperties> _dataSets = AWSConfigs.InitializeCollections ? new List<AssetBundleExportJobDataSetOverrideProperties>() : null;
+        private List<AssetBundleExportJobDataSourceOverrideProperties> _dataSources = AWSConfigs.InitializeCollections ? new List<AssetBundleExportJobDataSourceOverrideProperties>() : null;
+        private List<AssetBundleExportJobFolderOverrideProperties> _folders = AWSConfigs.InitializeCollections ? new List<AssetBundleExportJobFolderOverrideProperties>() : null;
+        private List<AssetBundleExportJobRefreshScheduleOverrideProperties> _refreshSchedules = AWSConfigs.InitializeCollections ? new List<AssetBundleExportJobRefreshScheduleOverrideProperties>() : null;
         private AssetBundleExportJobResourceIdOverrideConfiguration _resourceIdOverrideConfiguration;
-        private List<AssetBundleExportJobThemeOverrideProperties> _themes = new List<AssetBundleExportJobThemeOverrideProperties>();
-        private List<AssetBundleExportJobVPCConnectionOverrideProperties> _vpcConnections = new List<AssetBundleExportJobVPCConnectionOverrideProperties>();
+        private List<AssetBundleExportJobThemeOverrideProperties> _themes = AWSConfigs.InitializeCollections ? new List<AssetBundleExportJobThemeOverrideProperties>() : null;
+        private List<AssetBundleExportJobVPCConnectionOverrideProperties> _vpcConnections = AWSConfigs.InitializeCollections ? new List<AssetBundleExportJobVPCConnectionOverrideProperties>() : null;
 
         /// <summary>
         /// Gets and sets the property Analyses. 
         /// <para>
-        /// An optional list of structures that control how <code>Analysis</code> resources are
-        /// parameterized in the returned CloudFormation template.
+        /// An optional list of structures that control how <c>Analysis</c> resources are parameterized
+        /// in the returned CloudFormation template.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -60,14 +62,14 @@ namespace Amazon.QuickSight.Model
         // Check to see if Analyses property is set
         internal bool IsSetAnalyses()
         {
-            return this._analyses != null && this._analyses.Count > 0; 
+            return this._analyses != null && (this._analyses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Dashboards. 
         /// <para>
-        /// An optional list of structures that control how <code>Dashboard</code> resources are
-        /// parameterized in the returned CloudFormation template.
+        /// An optional list of structures that control how <c>Dashboard</c> resources are parameterized
+        /// in the returned CloudFormation template.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -80,14 +82,14 @@ namespace Amazon.QuickSight.Model
         // Check to see if Dashboards property is set
         internal bool IsSetDashboards()
         {
-            return this._dashboards != null && this._dashboards.Count > 0; 
+            return this._dashboards != null && (this._dashboards.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DataSets. 
         /// <para>
-        /// An optional list of structures that control how <code>DataSet</code> resources are
-        /// parameterized in the returned CloudFormation template.
+        /// An optional list of structures that control how <c>DataSet</c> resources are parameterized
+        /// in the returned CloudFormation template.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -100,14 +102,14 @@ namespace Amazon.QuickSight.Model
         // Check to see if DataSets property is set
         internal bool IsSetDataSets()
         {
-            return this._dataSets != null && this._dataSets.Count > 0; 
+            return this._dataSets != null && (this._dataSets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DataSources. 
         /// <para>
-        /// An optional list of structures that control how <code>DataSource</code> resources
-        /// are parameterized in the returned CloudFormation template.
+        /// An optional list of structures that control how <c>DataSource</c> resources are parameterized
+        /// in the returned CloudFormation template.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -120,14 +122,34 @@ namespace Amazon.QuickSight.Model
         // Check to see if DataSources property is set
         internal bool IsSetDataSources()
         {
-            return this._dataSources != null && this._dataSources.Count > 0; 
+            return this._dataSources != null && (this._dataSources.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Folders. 
+        /// <para>
+        /// An optional list of structures that controls how <c>Folder</c> resources are parameterized
+        /// in the returned CloudFormation template.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=50)]
+        public List<AssetBundleExportJobFolderOverrideProperties> Folders
+        {
+            get { return this._folders; }
+            set { this._folders = value; }
+        }
+
+        // Check to see if Folders property is set
+        internal bool IsSetFolders()
+        {
+            return this._folders != null && (this._folders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property RefreshSchedules. 
         /// <para>
-        /// An optional list of structures that control how <code>RefreshSchedule</code> resources
-        /// are parameterized in the returned CloudFormation template.
+        /// An optional list of structures that control how <c>RefreshSchedule</c> resources are
+        /// parameterized in the returned CloudFormation template.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -140,7 +162,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if RefreshSchedules property is set
         internal bool IsSetRefreshSchedules()
         {
-            return this._refreshSchedules != null && this._refreshSchedules.Count > 0; 
+            return this._refreshSchedules != null && (this._refreshSchedules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -165,7 +187,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Themes. 
         /// <para>
-        /// An optional list of structures that control how <code>Theme</code> resources are parameterized
+        /// An optional list of structures that control how <c>Theme</c> resources are parameterized
         /// in the returned CloudFormation template.
         /// </para>
         /// </summary>
@@ -179,14 +201,14 @@ namespace Amazon.QuickSight.Model
         // Check to see if Themes property is set
         internal bool IsSetThemes()
         {
-            return this._themes != null && this._themes.Count > 0; 
+            return this._themes != null && (this._themes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property VPCConnections. 
         /// <para>
-        /// An optional list of structures that control how <code>VPCConnection</code> resources
-        /// are parameterized in the returned CloudFormation template.
+        /// An optional list of structures that control how <c>VPCConnection</c> resources are
+        /// parameterized in the returned CloudFormation template.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -199,7 +221,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if VPCConnections property is set
         internal bool IsSetVPCConnections()
         {
-            return this._vpcConnections != null && this._vpcConnections.Count > 0; 
+            return this._vpcConnections != null && (this._vpcConnections.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

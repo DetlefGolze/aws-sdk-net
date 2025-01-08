@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// The network type is invalid for the DB instance. Valid nework type values are <code>IPV4</code>
-    /// and <code>DUAL</code>.
+    /// The network type is invalid for the DB instance. Valid nework type values are <c>IPV4</c>
+    /// and <c>DUAL</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

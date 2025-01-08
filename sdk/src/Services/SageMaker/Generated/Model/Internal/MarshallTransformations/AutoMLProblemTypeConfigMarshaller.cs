@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(AutoMLProblemTypeConfig requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetImageClassificationJobConfig())
             {
                 context.Writer.WritePropertyName("ImageClassificationJobConfig");
@@ -74,6 +77,17 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 
                 var marshaller = TextClassificationJobConfigMarshaller.Instance;
                 marshaller.Marshall(requestObject.TextClassificationJobConfig, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetTextGenerationJobConfig())
+            {
+                context.Writer.WritePropertyName("TextGenerationJobConfig");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = TextGenerationJobConfigMarshaller.Instance;
+                marshaller.Marshall(requestObject.TextGenerationJobConfig, context);
 
                 context.Writer.WriteObjectEnd();
             }

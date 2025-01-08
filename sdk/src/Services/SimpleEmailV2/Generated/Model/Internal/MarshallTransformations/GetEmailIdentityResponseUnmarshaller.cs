@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SimpleEmailV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -91,6 +92,12 @@ namespace Amazon.SimpleEmailV2.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = new ListUnmarshaller<Tag, TagUnmarshaller>(TagUnmarshaller.Instance);
                     response.Tags = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("VerificationInfo", targetDepth))
+                {
+                    var unmarshaller = VerificationInfoUnmarshaller.Instance;
+                    response.VerificationInfo = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("VerificationStatus", targetDepth))

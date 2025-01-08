@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
-    /// The specified game server group has no available game servers to fulfill a <code>ClaimGameServer</code>
+    /// The specified game server group has no available game servers to fulfill a <c>ClaimGameServer</c>
     /// request. Clients can retry such requests immediately or after a waiting period.
     /// </summary>
     #if !NETSTANDARD

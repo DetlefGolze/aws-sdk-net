@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
@@ -34,17 +35,18 @@ namespace Amazon.LakeFormation.Model
     public partial class PrincipalResourcePermissions
     {
         private DetailsMap _additionalDetails;
+        private Condition _condition;
         private DateTime? _lastUpdated;
         private string _lastUpdatedBy;
-        private List<string> _permissions = new List<string>();
-        private List<string> _permissionsWithGrantOption = new List<string>();
+        private List<string> _permissions = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _permissionsWithGrantOption = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DataLakePrincipal _principal;
         private Resource _resource;
 
         /// <summary>
         /// Gets and sets the property AdditionalDetails. 
         /// <para>
-        /// This attribute can be used to return any additional details of <code>PrincipalResourcePermissions</code>.
+        /// This attribute can be used to return any additional details of <c>PrincipalResourcePermissions</c>.
         /// Currently returns only as a RAM resource share ARN.
         /// </para>
         /// </summary>
@@ -58,6 +60,25 @@ namespace Amazon.LakeFormation.Model
         internal bool IsSetAdditionalDetails()
         {
             return this._additionalDetails != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Condition. 
+        /// <para>
+        /// A Lake Formation condition, which applies to permissions and opt-ins that contain
+        /// an expression.
+        /// </para>
+        /// </summary>
+        public Condition Condition
+        {
+            get { return this._condition; }
+            set { this._condition = value; }
+        }
+
+        // Check to see if Condition property is set
+        internal bool IsSetCondition()
+        {
+            return this._condition != null;
         }
 
         /// <summary>
@@ -112,7 +133,7 @@ namespace Amazon.LakeFormation.Model
         // Check to see if Permissions property is set
         internal bool IsSetPermissions()
         {
-            return this._permissions != null && this._permissions.Count > 0; 
+            return this._permissions != null && (this._permissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -131,7 +152,7 @@ namespace Amazon.LakeFormation.Model
         // Check to see if PermissionsWithGrantOption property is set
         internal bool IsSetPermissionsWithGrantOption()
         {
-            return this._permissionsWithGrantOption != null && this._permissionsWithGrantOption.Count > 0; 
+            return this._permissionsWithGrantOption != null && (this._permissionsWithGrantOption.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

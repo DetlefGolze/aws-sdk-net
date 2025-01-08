@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// There was a conflict when you attempted to modify a SageMaker entity such as an <code>Experiment</code>
-    /// or <code>Artifact</code>.
+    /// There was a conflict when you attempted to modify a SageMaker entity such as an <c>Experiment</c>
+    /// or <c>Artifact</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

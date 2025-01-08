@@ -26,22 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Bedrock.Model
 {
     /// <summary>
     /// Container for the parameters to the UntagResource operation.
     /// Remove one or more tags from a resource. For more information, see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html">Tagging
-    /// resources</a> in the Bedrock User Guide.
+    /// resources</a> in the <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html">Amazon
+    /// Bedrock User Guide</a>.
     /// </summary>
     public partial class UntagResourceRequest : AmazonBedrockRequest
     {
         private string _resourcearn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceARN. 
         /// <para>
-        /// The ARN of the resource to untag.
+        /// The Amazon Resource Name (ARN) of the resource to untag.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=1011)]
@@ -73,7 +75,7 @@ namespace Amazon.Bedrock.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

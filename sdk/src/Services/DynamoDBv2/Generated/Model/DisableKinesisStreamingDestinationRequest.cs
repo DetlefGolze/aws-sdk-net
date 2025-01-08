@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -35,8 +36,27 @@ namespace Amazon.DynamoDBv2.Model
     /// </summary>
     public partial class DisableKinesisStreamingDestinationRequest : AmazonDynamoDBRequest
     {
+        private EnableKinesisStreamingConfiguration _enableKinesisStreamingConfiguration;
         private string _streamArn;
         private string _tableName;
+
+        /// <summary>
+        /// Gets and sets the property EnableKinesisStreamingConfiguration. 
+        /// <para>
+        /// The source for the Kinesis streaming information that is being enabled.
+        /// </para>
+        /// </summary>
+        public EnableKinesisStreamingConfiguration EnableKinesisStreamingConfiguration
+        {
+            get { return this._enableKinesisStreamingConfiguration; }
+            set { this._enableKinesisStreamingConfiguration = value; }
+        }
+
+        // Check to see if EnableKinesisStreamingConfiguration property is set
+        internal bool IsSetEnableKinesisStreamingConfiguration()
+        {
+            return this._enableKinesisStreamingConfiguration != null;
+        }
 
         /// <summary>
         /// Gets and sets the property StreamArn. 
@@ -60,10 +80,11 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property TableName. 
         /// <para>
-        /// The name of the DynamoDB table.
+        /// The name of the DynamoDB table. You can also provide the Amazon Resource Name (ARN)
+        /// of the table in this parameter.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=3, Max=255)]
+        [AWSProperty(Required=true, Min=1, Max=1024)]
         public string TableName
         {
             get { return this._tableName; }

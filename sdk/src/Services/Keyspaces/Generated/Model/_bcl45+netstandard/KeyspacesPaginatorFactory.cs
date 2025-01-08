@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Keyspaces.Model
 {
     /// <summary>
@@ -57,6 +58,14 @@ namespace Amazon.Keyspaces.Model
         public IListTagsForResourcePaginator ListTagsForResource(ListTagsForResourceRequest request) 
         {
             return new ListTagsForResourcePaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListTypes operation
+        ///</summary>
+        public IListTypesPaginator ListTypes(ListTypesRequest request) 
+        {
+            return new ListTypesPaginator(this.client, request);
         }
     }
 }

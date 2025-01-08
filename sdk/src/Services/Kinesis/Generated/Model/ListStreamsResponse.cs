@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kinesis.Model
 {
     /// <summary>
-    /// Represents the output for <code>ListStreams</code>.
+    /// Represents the output for <c>ListStreams</c>.
     /// </summary>
     public partial class ListStreamsResponse : AmazonWebServiceResponse
     {
         private bool? _hasMoreStreams;
         private string _nextToken;
-        private List<string> _streamNames = new List<string>();
-        private List<StreamSummary> _streamSummaries = new List<StreamSummary>();
+        private List<string> _streamNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<StreamSummary> _streamSummaries = AWSConfigs.InitializeCollections ? new List<StreamSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property HasMoreStreams. 
         /// <para>
-        /// If set to <code>true</code>, there are more streams available to list.
+        /// If set to <c>true</c>, there are more streams available to list.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -77,7 +78,7 @@ namespace Amazon.Kinesis.Model
         /// Gets and sets the property StreamNames. 
         /// <para>
         /// The names of the streams that are associated with the Amazon Web Services account
-        /// making the <code>ListStreams</code> request.
+        /// making the <c>ListStreams</c> request.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -90,7 +91,7 @@ namespace Amazon.Kinesis.Model
         // Check to see if StreamNames property is set
         internal bool IsSetStreamNames()
         {
-            return this._streamNames != null && this._streamNames.Count > 0; 
+            return this._streamNames != null && (this._streamNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -105,7 +106,7 @@ namespace Amazon.Kinesis.Model
         // Check to see if StreamSummaries property is set
         internal bool IsSetStreamSummaries()
         {
-            return this._streamSummaries != null && this._streamSummaries.Count > 0; 
+            return this._streamSummaries != null && (this._streamSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

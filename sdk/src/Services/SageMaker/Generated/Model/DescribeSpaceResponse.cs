@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -38,10 +39,14 @@ namespace Amazon.SageMaker.Model
         private string _failureReason;
         private string _homeEfsFileSystemUid;
         private DateTime? _lastModifiedTime;
+        private OwnershipSettings _ownershipSettings;
         private string _spaceArn;
+        private string _spaceDisplayName;
         private string _spaceName;
         private SpaceSettings _spaceSettings;
+        private SpaceSharingSettings _spaceSharingSettings;
         private SpaceStatus _status;
+        private string _url;
 
         /// <summary>
         /// Gets and sets the property CreationTime. 
@@ -64,7 +69,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property DomainId. 
         /// <para>
-        /// The ID of the associated Domain.
+        /// The ID of the associated domain.
         /// </para>
         /// </summary>
         [AWSProperty(Max=63)]
@@ -102,7 +107,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property HomeEfsFileSystemUid. 
         /// <para>
-        /// The ID of the space's profile in the Amazon Elastic File System volume.
+        /// The ID of the space's profile in the Amazon EFS volume.
         /// </para>
         /// </summary>
         [AWSProperty(Max=10)]
@@ -137,6 +142,24 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property OwnershipSettings. 
+        /// <para>
+        /// The collection of ownership settings for a space.
+        /// </para>
+        /// </summary>
+        public OwnershipSettings OwnershipSettings
+        {
+            get { return this._ownershipSettings; }
+            set { this._ownershipSettings = value; }
+        }
+
+        // Check to see if OwnershipSettings property is set
+        internal bool IsSetOwnershipSettings()
+        {
+            return this._ownershipSettings != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property SpaceArn. 
         /// <para>
         /// The space's Amazon Resource Name (ARN).
@@ -153,6 +176,25 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetSpaceArn()
         {
             return this._spaceArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SpaceDisplayName. 
+        /// <para>
+        /// The name of the space that appears in the Amazon SageMaker Studio UI.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=64)]
+        public string SpaceDisplayName
+        {
+            get { return this._spaceDisplayName; }
+            set { this._spaceDisplayName = value; }
+        }
+
+        // Check to see if SpaceDisplayName property is set
+        internal bool IsSetSpaceDisplayName()
+        {
+            return this._spaceDisplayName != null;
         }
 
         /// <summary>
@@ -193,6 +235,24 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SpaceSharingSettings. 
+        /// <para>
+        /// The collection of space sharing settings for a space.
+        /// </para>
+        /// </summary>
+        public SpaceSharingSettings SpaceSharingSettings
+        {
+            get { return this._spaceSharingSettings; }
+            set { this._spaceSharingSettings = value; }
+        }
+
+        // Check to see if SpaceSharingSettings property is set
+        internal bool IsSetSpaceSharingSettings()
+        {
+            return this._spaceSharingSettings != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
         /// The status.
@@ -208,6 +268,46 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetStatus()
         {
             return this._status != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Url. 
+        /// <para>
+        /// Returns the URL of the space. If the space is created with Amazon Web Services IAM
+        /// Identity Center (Successor to Amazon Web Services Single Sign-On) authentication,
+        /// users can navigate to the URL after appending the respective redirect parameter for
+        /// the application type to be federated through Amazon Web Services IAM Identity Center.
+        /// </para>
+        ///  
+        /// <para>
+        /// The following application types are supported:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Studio Classic: <c>&amp;redirect=JupyterServer</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// JupyterLab: <c>&amp;redirect=JupyterLab</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Code Editor, based on Code-OSS, Visual Studio Code - Open Source: <c>&amp;redirect=CodeEditor</c>
+        /// 
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        [AWSProperty(Max=1024)]
+        public string Url
+        {
+            get { return this._url; }
+            set { this._url = value; }
+        }
+
+        // Check to see if Url property is set
+        internal bool IsSetUrl()
+        {
+            return this._url != null;
         }
 
     }

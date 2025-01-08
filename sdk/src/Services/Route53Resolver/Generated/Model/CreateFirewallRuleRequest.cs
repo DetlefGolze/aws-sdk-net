@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -40,30 +41,35 @@ namespace Amazon.Route53Resolver.Model
         private string _blockOverrideDomain;
         private int? _blockOverrideTtl;
         private BlockResponse _blockResponse;
+        private ConfidenceThreshold _confidenceThreshold;
         private string _creatorRequestId;
+        private DnsThreatProtection _dnsThreatProtection;
         private string _firewallDomainListId;
+        private FirewallDomainRedirectionAction _firewallDomainRedirectionAction;
         private string _firewallRuleGroupId;
         private string _name;
         private int? _priority;
+        private string _qtype;
 
         /// <summary>
         /// Gets and sets the property Action. 
         /// <para>
         /// The action that DNS Firewall should take on a DNS query when it matches one of the
-        /// domains in the rule's domain list:
+        /// domains in the rule's domain list, or a threat in a DNS Firewall Advanced rule:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ALLOW</code> - Permit the request to go through.
+        ///  <c>ALLOW</c> - Permit the request to go through. Not available for DNS Firewall Advanced
+        /// rules.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ALERT</code> - Permit the request and send metrics and logs to Cloud Watch.
+        ///  <c>ALERT</c> - Permit the request and send metrics and logs to Cloud Watch.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>BLOCK</code> - Disallow the request. This option requires additional details
-        /// in the rule's <code>BlockResponse</code>. 
+        ///  <c>BLOCK</c> - Disallow the request. This option requires additional details in the
+        /// rule's <c>BlockResponse</c>. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -84,12 +90,12 @@ namespace Amazon.Route53Resolver.Model
         /// Gets and sets the property BlockOverrideDnsType. 
         /// <para>
         /// The DNS record's type. This determines the format of the record value that you provided
-        /// in <code>BlockOverrideDomain</code>. Used for the rule action <code>BLOCK</code> with
-        /// a <code>BlockResponse</code> setting of <code>OVERRIDE</code>.
+        /// in <c>BlockOverrideDomain</c>. Used for the rule action <c>BLOCK</c> with a <c>BlockResponse</c>
+        /// setting of <c>OVERRIDE</c>.
         /// </para>
         ///  
         /// <para>
-        /// This setting is required if the <code>BlockResponse</code> setting is <code>OVERRIDE</code>.
+        /// This setting is required if the <c>BlockResponse</c> setting is <c>OVERRIDE</c>.
         /// </para>
         /// </summary>
         public BlockOverrideDnsType BlockOverrideDnsType
@@ -108,11 +114,11 @@ namespace Amazon.Route53Resolver.Model
         /// Gets and sets the property BlockOverrideDomain. 
         /// <para>
         /// The custom DNS record to send back in response to the query. Used for the rule action
-        /// <code>BLOCK</code> with a <code>BlockResponse</code> setting of <code>OVERRIDE</code>.
+        /// <c>BLOCK</c> with a <c>BlockResponse</c> setting of <c>OVERRIDE</c>.
         /// </para>
         ///  
         /// <para>
-        /// This setting is required if the <code>BlockResponse</code> setting is <code>OVERRIDE</code>.
+        /// This setting is required if the <c>BlockResponse</c> setting is <c>OVERRIDE</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -132,12 +138,12 @@ namespace Amazon.Route53Resolver.Model
         /// Gets and sets the property BlockOverrideTtl. 
         /// <para>
         /// The recommended amount of time, in seconds, for the DNS resolver or web browser to
-        /// cache the provided override record. Used for the rule action <code>BLOCK</code> with
-        /// a <code>BlockResponse</code> setting of <code>OVERRIDE</code>.
+        /// cache the provided override record. Used for the rule action <c>BLOCK</c> with a <c>BlockResponse</c>
+        /// setting of <c>OVERRIDE</c>.
         /// </para>
         ///  
         /// <para>
-        /// This setting is required if the <code>BlockResponse</code> setting is <code>OVERRIDE</code>.
+        /// This setting is required if the <c>BlockResponse</c> setting is <c>OVERRIDE</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=604800)]
@@ -157,26 +163,26 @@ namespace Amazon.Route53Resolver.Model
         /// Gets and sets the property BlockResponse. 
         /// <para>
         /// The way that you want DNS Firewall to block the request, used with the rule action
-        /// setting <code>BLOCK</code>. 
+        /// setting <c>BLOCK</c>. 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NODATA</code> - Respond indicating that the query was successful, but no response
+        ///  <c>NODATA</c> - Respond indicating that the query was successful, but no response
         /// is available for it.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NXDOMAIN</code> - Respond indicating that the domain name that's in the query
-        /// doesn't exist.
+        ///  <c>NXDOMAIN</c> - Respond indicating that the domain name that's in the query doesn't
+        /// exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OVERRIDE</code> - Provide a custom override in the response. This option requires
-        /// custom handling details in the rule's <code>BlockOverride*</code> settings. 
+        ///  <c>OVERRIDE</c> - Provide a custom override in the response. This option requires
+        /// custom handling details in the rule's <c>BlockOverride*</c> settings. 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// This setting is required if the rule action setting is <code>BLOCK</code>.
+        /// This setting is required if the rule action setting is <c>BLOCK</c>.
         /// </para>
         /// </summary>
         public BlockResponse BlockResponse
@@ -192,11 +198,45 @@ namespace Amazon.Route53Resolver.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ConfidenceThreshold. 
+        /// <para>
+        ///  The confidence threshold for DNS Firewall Advanced. You must provide this value when
+        /// you create a DNS Firewall Advanced rule. The confidence level values mean: 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>LOW</c>: Provides the highest detection rate for threats, but also increases false
+        /// positives.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>MEDIUM</c>: Provides a balance between detecting threats and false positives.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>HIGH</c>: Detects only the most well corroborated threats with a low rate of false
+        /// positives. 
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public ConfidenceThreshold ConfidenceThreshold
+        {
+            get { return this._confidenceThreshold; }
+            set { this._confidenceThreshold = value; }
+        }
+
+        // Check to see if ConfidenceThreshold property is set
+        internal bool IsSetConfidenceThreshold()
+        {
+            return this._confidenceThreshold != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property CreatorRequestId. 
         /// <para>
         /// A unique string that identifies the request and that allows you to retry failed requests
-        /// without the risk of running the operation twice. <code>CreatorRequestId</code> can
-        /// be any unique string, for example, a date/time stamp. 
+        /// without the risk of running the operation twice. <c>CreatorRequestId</c> can be any
+        /// unique string, for example, a date/time stamp. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -213,12 +253,31 @@ namespace Amazon.Route53Resolver.Model
         }
 
         /// <summary>
-        /// Gets and sets the property FirewallDomainListId. 
+        /// Gets and sets the property DnsThreatProtection. 
         /// <para>
-        /// The ID of the domain list that you want to use in the rule. 
+        ///  Use to create a DNS Firewall Advanced rule. 
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=64)]
+        public DnsThreatProtection DnsThreatProtection
+        {
+            get { return this._dnsThreatProtection; }
+            set { this._dnsThreatProtection = value; }
+        }
+
+        // Check to see if DnsThreatProtection property is set
+        internal bool IsSetDnsThreatProtection()
+        {
+            return this._dnsThreatProtection != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property FirewallDomainListId. 
+        /// <para>
+        /// The ID of the domain list that you want to use in the rule. Can't be used together
+        /// with <c>DnsThreatProtecton</c>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=64)]
         public string FirewallDomainListId
         {
             get { return this._firewallDomainListId; }
@@ -229,6 +288,37 @@ namespace Amazon.Route53Resolver.Model
         internal bool IsSetFirewallDomainListId()
         {
             return this._firewallDomainListId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property FirewallDomainRedirectionAction. 
+        /// <para>
+        ///  How you want the the rule to evaluate DNS redirection in the DNS redirection chain,
+        /// such as CNAME or DNAME. 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>INSPECT_REDIRECTION_DOMAIN</c>: (Default) inspects all domains in the redirection
+        /// chain. The individual domains in the redirection chain must be added to the domain
+        /// list.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>TRUST_REDIRECTION_DOMAIN</c>: Inspects only the first domain in the redirection
+        /// chain. You don't need to add the subsequent domains in the domain in the redirection
+        /// list to the domain list.
+        /// </para>
+        /// </summary>
+        public FirewallDomainRedirectionAction FirewallDomainRedirectionAction
+        {
+            get { return this._firewallDomainRedirectionAction; }
+            set { this._firewallDomainRedirectionAction = value; }
+        }
+
+        // Check to see if FirewallDomainRedirectionAction property is set
+        internal bool IsSetFirewallDomainRedirectionAction()
+        {
+            return this._firewallDomainRedirectionAction != null;
         }
 
         /// <summary>
@@ -296,6 +386,85 @@ namespace Amazon.Route53Resolver.Model
         internal bool IsSetPriority()
         {
             return this._priority.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Qtype. 
+        /// <para>
+        ///  The DNS query type you want the rule to evaluate. Allowed values are; 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  A: Returns an IPv4 address.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// AAAA: Returns an Ipv6 address.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// CAA: Restricts CAs that can create SSL/TLS certifications for the domain.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// CNAME: Returns another domain name.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// DS: Record that identifies the DNSSEC signing key of a delegated zone.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// MX: Specifies mail servers.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// NAPTR: Regular-expression-based rewriting of domain names.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// NS: Authoritative name servers.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// PTR: Maps an IP address to a domain name.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// SOA: Start of authority record for the zone.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// SPF: Lists the servers authorized to send emails from a domain.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// SRV: Application specific values that identify servers.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// TXT: Verifies email senders and application-specific values.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// A query type you define by using the DNS type ID, for example 28 for AAAA. The values
+        /// must be defined as TYPENUMBER, where the NUMBER can be 1-65334, for example, TYPE28.
+        /// For more information, see <a href="https://en.wikipedia.org/wiki/List_of_DNS_record_types">List
+        /// of DNS record types</a>.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        [AWSProperty(Min=1, Max=16)]
+        public string Qtype
+        {
+            get { return this._qtype; }
+            set { this._qtype = value; }
+        }
+
+        // Check to see if Qtype property is set
+        internal bool IsSetQtype()
+        {
+            return this._qtype != null;
         }
 
     }

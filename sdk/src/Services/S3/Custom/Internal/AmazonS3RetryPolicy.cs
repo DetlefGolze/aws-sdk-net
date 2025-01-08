@@ -31,13 +31,6 @@ namespace Amazon.S3.Internal
     {
         private const string AWS_KMS_Signature_Error = "AWS KMS managed keys require AWS Signature Version 4";
 
-        private static ICollection<Type> RequestsWith200Error = new HashSet<Type>
-        {
-            typeof(CopyObjectRequest),
-            typeof(CopyPartRequest),
-            typeof(CompleteMultipartUploadRequest)
-        };
-
         /// <summary>
         /// Constructor for AmazonS3RetryPolicy.
         /// </summary>
@@ -68,7 +61,7 @@ namespace Amazon.S3.Internal
                 if (serviceException.StatusCode == HttpStatusCode.OK)
                 {
                     var requestType = executionContext.RequestContext.OriginalRequest.GetType();
-                    if (AmazonS3RetryPolicy.RequestsWith200Error.Contains(requestType))
+                    if (RequestsWith200Error.Contains(requestType))
                     {
                         // Retry on HTTP 200 responses which contain an error response
                         // CopyObject, CopyPart and CompleteMultipartUpload operations can return this
@@ -79,12 +72,14 @@ namespace Amazon.S3.Internal
 
                 if (serviceException.StatusCode == HttpStatusCode.BadRequest)
                 {
+#pragma warning disable CS0612,CS0618
                     var configuredUri = new Uri(executionContext.RequestContext.ClientConfig.DetermineServiceURL());
                     if (configuredUri.Host.Equals(S3Constants.S3DefaultEndpoint) &&
                         (serviceException.Message.Contains(AWS4Signer.AWS4AlgorithmTag) ||
                          serviceException.Message.Contains(AWS_KMS_Signature_Error))
                         )
                     {
+#pragma warning restore CS0612,CS0618
                         // If the response message indicates AWS4 signing should have been used,
                         // we've attempted to access a bucket in an AWS4-only region (e.g. EU Central (Frankfurt)) with an AWS2
                         // signature and/or client not configured with the correct region.

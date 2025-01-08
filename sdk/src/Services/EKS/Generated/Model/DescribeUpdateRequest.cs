@@ -26,18 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeUpdate operation.
-    /// Returns descriptive information about an update against your Amazon EKS cluster or
-    /// associated managed node group or Amazon EKS add-on.
+    /// Describes an update to an Amazon EKS resource.
     /// 
     ///  
     /// <para>
-    /// When the status of the update is <code>Succeeded</code>, the update is complete. If
-    /// an update fails, the status is <code>Failed</code>, and an error detail explains the
-    /// reason for the failure.
+    /// When the status of the update is <c>Succeeded</c>, the update is complete. If an update
+    /// fails, the status is <c>Failed</c>, and an error detail explains the reason for the
+    /// failure.
     /// </para>
     /// </summary>
     public partial class DescribeUpdateRequest : AmazonEKSRequest
@@ -51,8 +51,7 @@ namespace Amazon.EKS.Model
         /// Gets and sets the property AddonName. 
         /// <para>
         /// The name of the add-on. The name must match one of the names returned by <a href="https://docs.aws.amazon.com/eks/latest/APIReference/API_ListAddons.html">
-        /// <code>ListAddons</code> </a>. This parameter is required if the update is an add-on
-        /// update.
+        /// <c>ListAddons</c> </a>. This parameter is required if the update is an add-on update.
         /// </para>
         /// </summary>
         public string AddonName

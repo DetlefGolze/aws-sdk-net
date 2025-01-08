@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -35,20 +36,21 @@ namespace Amazon.ResilienceHub.Model
     public partial class RemoveDraftAppVersionResourceMappingsRequest : AmazonResilienceHubRequest
     {
         private string _appArn;
-        private List<string> _appRegistryAppNames = new List<string>();
-        private List<string> _eksSourceNames = new List<string>();
-        private List<string> _logicalStackNames = new List<string>();
-        private List<string> _resourceGroupNames = new List<string>();
-        private List<string> _resourceNames = new List<string>();
-        private List<string> _terraformSourceNames = new List<string>();
+        private List<string> _appRegistryAppNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _eksSourceNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _logicalStackNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _resourceGroupNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _resourceNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _terraformSourceNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AppArn. 
         /// <para>
         /// Amazon Resource Name (ARN) of the Resilience Hub application. The format for this
-        /// ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app/<code>app-id</code>.
+        /// ARN is: arn:<c>partition</c>:resiliencehub:<c>region</c>:<c>account</c>:app/<c>app-id</c>.
         /// For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
-        /// Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i> guide.
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -79,7 +81,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if AppRegistryAppNames property is set
         internal bool IsSetAppRegistryAppNames()
         {
-            return this._appRegistryAppNames != null && this._appRegistryAppNames.Count > 0; 
+            return this._appRegistryAppNames != null && (this._appRegistryAppNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -103,7 +105,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if EksSourceNames property is set
         internal bool IsSetEksSourceNames()
         {
-            return this._eksSourceNames != null && this._eksSourceNames.Count > 0; 
+            return this._eksSourceNames != null && (this._eksSourceNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -121,7 +123,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if LogicalStackNames property is set
         internal bool IsSetLogicalStackNames()
         {
-            return this._logicalStackNames != null && this._logicalStackNames.Count > 0; 
+            return this._logicalStackNames != null && (this._logicalStackNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -139,7 +141,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if ResourceGroupNames property is set
         internal bool IsSetResourceGroupNames()
         {
-            return this._resourceGroupNames != null && this._resourceGroupNames.Count > 0; 
+            return this._resourceGroupNames != null && (this._resourceGroupNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -157,7 +159,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if ResourceNames property is set
         internal bool IsSetResourceNames()
         {
-            return this._resourceNames != null && this._resourceNames.Count > 0; 
+            return this._resourceNames != null && (this._resourceNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -175,7 +177,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if TerraformSourceNames property is set
         internal bool IsSetTerraformSourceNames()
         {
-            return this._terraformSourceNames != null && this._terraformSourceNames.Count > 0; 
+            return this._terraformSourceNames != null && (this._terraformSourceNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

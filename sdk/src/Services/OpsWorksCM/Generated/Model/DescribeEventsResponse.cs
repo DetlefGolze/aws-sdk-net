@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorksCM.Model
 {
     /// <summary>
@@ -34,19 +35,18 @@ namespace Amazon.OpsWorksCM.Model
     public partial class DescribeEventsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ServerEvent> _serverEvents = new List<ServerEvent>();
+        private List<ServerEvent> _serverEvents = AWSConfigs.InitializeCollections ? new List<ServerEvent>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// NextToken is a string that is returned in some command responses. It indicates that
         /// not all entries have been returned, and that you must run at least one more request
-        /// to get remaining items. To get remaining results, call <code>DescribeEvents</code>
-        /// again, and assign the token from the previous results as the value of the <code>nextToken</code>
-        /// parameter. If there are no more results, the response object's <code>nextToken</code>
-        /// parameter value is <code>null</code>. Setting a <code>nextToken</code> value that
-        /// was not returned in your previous results causes an <code>InvalidNextTokenException</code>
-        /// to occur. 
+        /// to get remaining items. To get remaining results, call <c>DescribeEvents</c> again,
+        /// and assign the token from the previous results as the value of the <c>nextToken</c>
+        /// parameter. If there are no more results, the response object's <c>nextToken</c> parameter
+        /// value is <c>null</c>. Setting a <c>nextToken</c> value that was not returned in your
+        /// previous results causes an <c>InvalidNextTokenException</c> to occur. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=10000)]
@@ -65,7 +65,7 @@ namespace Amazon.OpsWorksCM.Model
         /// <summary>
         /// Gets and sets the property ServerEvents. 
         /// <para>
-        /// Contains the response to a <code>DescribeEvents</code> request. 
+        /// Contains the response to a <c>DescribeEvents</c> request. 
         /// </para>
         /// </summary>
         public List<ServerEvent> ServerEvents
@@ -77,7 +77,7 @@ namespace Amazon.OpsWorksCM.Model
         // Check to see if ServerEvents property is set
         internal bool IsSetServerEvents()
         {
-            return this._serverEvents != null && this._serverEvents.Count > 0; 
+            return this._serverEvents != null && (this._serverEvents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmail.Model
 {
     /// <summary>
     /// Container for the parameters to the ListVerifiedEmailAddresses operation.
-    /// Deprecated. Use the <code>ListIdentities</code> operation to list the email addresses
-    /// and domains associated with your account.
+    /// Deprecated. Use the <c>ListIdentities</c> operation to list the email addresses and
+    /// domains associated with your account.
     /// </summary>
     public partial class ListVerifiedEmailAddressesRequest : AmazonSimpleEmailServiceRequest
     {

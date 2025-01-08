@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideo.Model
 {
     /// <summary>
@@ -35,9 +36,9 @@ namespace Amazon.KinesisVideo.Model
     /// 
     ///  
     /// <para>
-    /// If the <code>MessageTtlSeconds</code> value is updated (either increased or reduced),
-    /// it only applies to new messages sent via this channel after it's been updated. Existing
-    /// messages are still expired as per the previous <code>MessageTtlSeconds</code> value.
+    /// If the <c>MessageTtlSeconds</c> value is updated (either increased or reduced), it
+    /// only applies to new messages sent via this channel after it's been updated. Existing
+    /// messages are still expired as per the previous <c>MessageTtlSeconds</c> value.
     /// </para>
     /// </summary>
     public partial class UpdateSignalingChannelRequest : AmazonKinesisVideoRequest
@@ -87,8 +88,8 @@ namespace Amazon.KinesisVideo.Model
         /// <summary>
         /// Gets and sets the property SingleMasterConfiguration. 
         /// <para>
-        /// The structure containing the configuration for the <code>SINGLE_MASTER</code> type
-        /// of the signaling channel that you want to update. 
+        /// The structure containing the configuration for the <c>SINGLE_MASTER</c> type of the
+        /// signaling channel that you want to update. 
         /// </para>
         /// </summary>
         public SingleMasterConfiguration SingleMasterConfiguration

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -48,17 +49,17 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>lowest-price</code> - EC2 Fleet uses price to determine the order, launching
-        /// the lowest price first.
+        ///  <c>lowest-price</c> - EC2 Fleet uses price to determine the order, launching the
+        /// lowest price first.
         /// </para>
         ///  
         /// <para>
-        ///  <code>prioritized</code> - EC2 Fleet uses the priority that you assigned to each
-        /// launch template override, launching the highest priority first.
+        ///  <c>prioritized</c> - EC2 Fleet uses the priority that you assigned to each launch
+        /// template override, launching the highest priority first.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>lowest-price</code> 
+        /// Default: <c>lowest-price</c> 
         /// </para>
         /// </summary>
         public FleetOnDemandAllocationStrategy AllocationStrategy
@@ -80,7 +81,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported only for fleets of type <code>instant</code>.
+        /// Supported only for fleets of type <c>instant</c>.
         /// </para>
         /// </summary>
         public CapacityReservationOptions CapacityReservationOptions
@@ -102,12 +103,12 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If your fleet includes T instances that are configured as <code>unlimited</code>,
-        /// and if their average CPU usage exceeds the baseline utilization, you will incur a
-        /// charge for surplus credits. The <code>maxTotalPrice</code> does not account for surplus
-        /// credits, and, if you use surplus credits, your final cost might be higher than what
-        /// you specified for <code>maxTotalPrice</code>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#unlimited-mode-surplus-credits">Surplus
-        /// credits can incur charges</a> in the <i>EC2 User Guide</i>.
+        /// If your fleet includes T instances that are configured as <c>unlimited</c>, and if
+        /// their average CPU usage exceeds the baseline utilization, you will incur a charge
+        /// for surplus credits. The <c>maxTotalPrice</c> does not account for surplus credits,
+        /// and, if you use surplus credits, your final cost might be higher than what you specified
+        /// for <c>maxTotalPrice</c>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#unlimited-mode-surplus-credits">Surplus
+        /// credits can incur charges</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -126,17 +127,17 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property MinTargetCapacity. 
         /// <para>
-        /// The minimum target capacity for On-Demand Instances in the fleet. If the minimum target
-        /// capacity is not reached, the fleet launches no instances.
+        /// The minimum target capacity for On-Demand Instances in the fleet. If this minimum
+        /// capacity isn't reached, no instances are launched.
         /// </para>
         ///  
         /// <para>
-        /// Supported only for fleets of type <code>instant</code>.
+        /// Constraints: Maximum value of <c>1000</c>. Supported only for fleets of type <c>instant</c>.
         /// </para>
         ///  
         /// <para>
-        /// At least one of the following must be specified: <code>SingleAvailabilityZone</code>
-        /// | <code>SingleInstanceType</code> 
+        /// At least one of the following must be specified: <c>SingleAvailabilityZone</c> | <c>SingleInstanceType</c>
+        /// 
         /// </para>
         /// </summary>
         public int MinTargetCapacity
@@ -159,7 +160,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported only for fleets of type <code>instant</code>.
+        /// Supported only for fleets of type <c>instant</c>.
         /// </para>
         /// </summary>
         public bool SingleAvailabilityZone
@@ -182,7 +183,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported only for fleets of type <code>instant</code>.
+        /// Supported only for fleets of type <c>instant</c>.
         /// </para>
         /// </summary>
         public bool SingleInstanceType

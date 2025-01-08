@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHubRefactorSpaces.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.MigrationHubRefactorSpaces.Model
         private string _ownerAccountId;
         private ProxyType _proxyType;
         private ApplicationState _state;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _vpcId;
 
         /// <summary>
@@ -88,8 +89,8 @@ namespace Amazon.MigrationHubRefactorSpaces.Model
         /// <summary>
         /// Gets and sets the property Arn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the application. The format for this ARN is <code>arn:aws:refactor-spaces:<i>region</i>:<i>account-id</i>:<i>resource-type/resource-id</i>
-        /// </code>. For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
+        /// The Amazon Resource Name (ARN) of the application. The format for this ARN is <c>arn:aws:refactor-spaces:<i>region</i>:<i>account-id</i>:<i>resource-type/resource-id</i>
+        /// </c>. For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
         /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>.
         /// </para>
         /// </summary>
@@ -272,7 +273,7 @@ namespace Amazon.MigrationHubRefactorSpaces.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

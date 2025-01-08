@@ -26,25 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateFleetPortSettings operation.
-    /// Updates permissions that allow inbound traffic to connect to game sessions that are
-    /// being hosted on instances in the fleet. 
+    /// Updates permissions that allow inbound traffic to connect to game sessions in the
+    /// fleet. 
     /// 
     ///  
     /// <para>
     /// To update settings, specify the fleet ID to be updated and specify the changes to
-    /// be made. List the permissions you want to add in <code>InboundPermissionAuthorizations</code>,
-    /// and permissions you want to remove in <code>InboundPermissionRevocations</code>. Permissions
+    /// be made. List the permissions you want to add in <c>InboundPermissionAuthorizations</c>,
+    /// and permissions you want to remove in <c>InboundPermissionRevocations</c>. Permissions
     /// to be removed must match existing fleet permissions. 
     /// </para>
     ///  
     /// <para>
     /// If successful, the fleet ID for the updated fleet is returned. For fleets with remote
     /// locations, port setting updates can take time to propagate across all locations. You
-    /// can check the status of updates in each location by calling <code>DescribeFleetPortSettings</code>
+    /// can check the status of updates in each location by calling <c>DescribeFleetPortSettings</c>
     /// with a location name.
     /// </para>
     ///  
@@ -60,8 +61,8 @@ namespace Amazon.GameLift.Model
     public partial class UpdateFleetPortSettingsRequest : AmazonGameLiftRequest
     {
         private string _fleetId;
-        private List<IpPermission> _inboundPermissionAuthorizations = new List<IpPermission>();
-        private List<IpPermission> _inboundPermissionRevocations = new List<IpPermission>();
+        private List<IpPermission> _inboundPermissionAuthorizations = AWSConfigs.InitializeCollections ? new List<IpPermission>() : null;
+        private List<IpPermission> _inboundPermissionRevocations = AWSConfigs.InitializeCollections ? new List<IpPermission>() : null;
 
         /// <summary>
         /// Gets and sets the property FleetId. 
@@ -70,7 +71,7 @@ namespace Amazon.GameLift.Model
         /// the fleet ID or ARN value.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -99,7 +100,7 @@ namespace Amazon.GameLift.Model
         // Check to see if InboundPermissionAuthorizations property is set
         internal bool IsSetInboundPermissionAuthorizations()
         {
-            return this._inboundPermissionAuthorizations != null && this._inboundPermissionAuthorizations.Count > 0; 
+            return this._inboundPermissionAuthorizations != null && (this._inboundPermissionAuthorizations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -118,7 +119,7 @@ namespace Amazon.GameLift.Model
         // Check to see if InboundPermissionRevocations property is set
         internal bool IsSetInboundPermissionRevocations()
         {
-            return this._inboundPermissionRevocations != null && this._inboundPermissionRevocations.Count > 0; 
+            return this._inboundPermissionRevocations != null && (this._inboundPermissionRevocations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

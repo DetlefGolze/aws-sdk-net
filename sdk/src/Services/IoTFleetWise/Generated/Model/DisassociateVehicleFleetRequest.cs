@@ -26,19 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
     /// Container for the parameters to the DisassociateVehicleFleet operation.
     /// Removes, or disassociates, a vehicle from a fleet. Disassociating a vehicle from a
     /// fleet doesn't delete the vehicle.
-    /// 
-    ///  <note> 
-    /// <para>
-    /// If the vehicle is successfully dissociated from a fleet, Amazon Web Services IoT FleetWise
-    /// sends back an HTTP 200 response with an empty body.
-    /// </para>
-    ///  </note>
     /// </summary>
     public partial class DisassociateVehicleFleetRequest : AmazonIoTFleetWiseRequest
     {

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -42,6 +43,7 @@ namespace Amazon.Transfer.Model
         private MdnSigningAlg _mdnSigningAlgorithm;
         private string _messageSubject;
         private string _partnerProfileId;
+        private PreserveContentType _preserveContentType;
         private SigningAlg _signingAlgorithm;
 
         /// <summary>
@@ -52,8 +54,8 @@ namespace Amazon.Transfer.Model
         /// </para>
         ///  
         /// <para>
-        /// The default value for this parameter is <code>null</code>, which indicates that Basic
-        /// authentication is not enabled for the connector.
+        /// The default value for this parameter is <c>null</c>, which indicates that Basic authentication
+        /// is not enabled for the connector.
         /// </para>
         ///  
         /// <para>
@@ -62,12 +64,12 @@ namespace Amazon.Transfer.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>{ "Username": "user-name", "Password": "user-password" }</code> 
+        ///  <c>{ "Username": "user-name", "Password": "user-password" }</c> 
         /// </para>
         ///  
         /// <para>
-        /// Replace <code>user-name</code> and <code>user-password</code> with the credentials
-        /// for the actual user that is being authenticated.
+        /// Replace <c>user-name</c> and <c>user-password</c> with the credentials for the actual
+        /// user that is being authenticated.
         /// </para>
         ///  
         /// <para>
@@ -88,12 +90,12 @@ namespace Amazon.Transfer.Model
         ///  </li> </ul> 
         /// <para>
         /// If you have previously enabled Basic authentication for a connector, you can disable
-        /// it by using the <code>UpdateConnector</code> API call. For example, if you are using
-        /// the CLI, you can run the following command to remove Basic authentication:
+        /// it by using the <c>UpdateConnector</c> API call. For example, if you are using the
+        /// CLI, you can run the following command to remove Basic authentication:
         /// </para>
         ///  
         /// <para>
-        ///  <code>update-connector --connector-id my-connector-id --as2-config 'BasicAuthSecretId=""'</code>
+        ///  <c>update-connector --connector-id my-connector-id --as2-config 'BasicAuthSecretId=""'</c>
         /// 
         /// </para>
         /// </summary>
@@ -133,12 +135,21 @@ namespace Amazon.Transfer.Model
         /// <para>
         /// The algorithm that is used to encrypt the file.
         /// </para>
-        ///  <note> 
+        ///  
         /// <para>
-        /// You can only specify <code>NONE</code> if the URL for your connector uses HTTPS. This
+        /// Note the following:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Do not use the <c>DES_EDE3_CBC</c> algorithm unless you must support a legacy client
+        /// that requires it, as it is a weak encryption algorithm.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You can only specify <c>NONE</c> if the URL for your connector uses HTTPS. Using HTTPS
         /// ensures that no traffic is sent in clear text.
         /// </para>
-        ///  </note>
+        ///  </li> </ul>
         /// </summary>
         public EncryptionAlg EncryptionAlgorithm
         {
@@ -180,12 +191,12 @@ namespace Amazon.Transfer.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>SYNC</code>: The system expects a synchronous MDN response, confirming that
-        /// the file was transferred successfully (or not).
+        ///  <c>SYNC</c>: The system expects a synchronous MDN response, confirming that the file
+        /// was transferred successfully (or not).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NONE</code>: Specifies that no MDN response is required.
+        ///  <c>NONE</c>: Specifies that no MDN response is required.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -208,8 +219,7 @@ namespace Amazon.Transfer.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If set to DEFAULT (or not set at all), the value for <code>SigningAlgorithm</code>
-        /// is used.
+        /// If set to DEFAULT (or not set at all), the value for <c>SigningAlgorithm</c> is used.
         /// </para>
         ///  </note>
         /// </summary>
@@ -228,8 +238,8 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property MessageSubject. 
         /// <para>
-        /// Used as the <code>Subject</code> HTTP header attribute in AS2 messages that are being
-        /// sent with the connector.
+        /// Used as the <c>Subject</c> HTTP header attribute in AS2 messages that are being sent
+        /// with the connector.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -262,6 +272,27 @@ namespace Amazon.Transfer.Model
         internal bool IsSetPartnerProfileId()
         {
             return this._partnerProfileId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PreserveContentType. 
+        /// <para>
+        /// Allows you to use the Amazon S3 <c>Content-Type</c> that is associated with objects
+        /// in S3 instead of having the content type mapped based on the file extension. This
+        /// parameter is enabled by default when you create an AS2 connector from the console,
+        /// but disabled by default when you create an AS2 connector by calling the API directly.
+        /// </para>
+        /// </summary>
+        public PreserveContentType PreserveContentType
+        {
+            get { return this._preserveContentType; }
+            set { this._preserveContentType = value; }
+        }
+
+        // Check to see if PreserveContentType property is set
+        internal bool IsSetPreserveContentType()
+        {
+            return this._preserveContentType != null;
         }
 
         /// <summary>

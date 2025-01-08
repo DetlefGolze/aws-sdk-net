@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
@@ -48,7 +49,7 @@ namespace Amazon.Inspector2.Model
         private NetworkReachabilityDetails _networkReachabilityDetails;
         private PackageVulnerabilityDetails _packageVulnerabilityDetails;
         private Remediation _remediation;
-        private List<Resource> _resources = new List<Resource>();
+        private List<Resource> _resources = AWSConfigs.InitializeCollections ? new List<Resource>() : null;
         private Severity _severity;
         private FindingStatus _status;
         private string _title;
@@ -208,9 +209,9 @@ namespace Amazon.Inspector2.Model
         /// Gets and sets the property FixAvailable. 
         /// <para>
         /// Details on whether a fix is available through a version update. This value can be
-        /// <code>YES</code>, <code>NO</code>, or <code>PARTIAL</code>. A <code>PARTIAL</code>
-        /// fix means that some, but not all, of the packages identified in the finding have fixes
-        /// available through updated versions.
+        /// <c>YES</c>, <c>NO</c>, or <c>PARTIAL</c>. A <c>PARTIAL</c> fix means that some, but
+        /// not all, of the packages identified in the finding have fixes available through updated
+        /// versions.
         /// </para>
         /// </summary>
         public FixAvailable FixAvailable
@@ -264,7 +265,8 @@ namespace Amazon.Inspector2.Model
         /// <summary>
         /// Gets and sets the property LastObservedAt. 
         /// <para>
-        /// The date and time that the finding was last observed.
+        ///  The date and time the finding was last observed. This timestamp for this field remains
+        /// unchanged until a finding is updated. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -338,7 +340,10 @@ namespace Amazon.Inspector2.Model
         /// <summary>
         /// Gets and sets the property Resources. 
         /// <para>
-        /// Contains information on the resources involved in a finding.
+        /// Contains information on the resources involved in a finding. The <c>resource</c> value
+        /// determines the valid values for <c>type</c> in your request. For more information,
+        /// see <a href="https://docs.aws.amazon.com/inspector/latest/user/findings-types.html">Finding
+        /// types</a> in the Amazon Inspector user guide.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=10)]
@@ -351,13 +356,16 @@ namespace Amazon.Inspector2.Model
         // Check to see if Resources property is set
         internal bool IsSetResources()
         {
-            return this._resources != null && this._resources.Count > 0; 
+            return this._resources != null && (this._resources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Severity. 
         /// <para>
-        /// The severity of the finding.
+        /// The severity of the finding. <c>UNTRIAGED</c> applies to <c>PACKAGE_VULNERABILITY</c>
+        /// type findings that the vendor has not assigned a severity yet. For more information,
+        /// see <a href="https://docs.aws.amazon.com/inspector/latest/user/findings-understanding-severity.html">Severity
+        /// levels for findings</a> in the Amazon Inspector user guide.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -414,7 +422,9 @@ namespace Amazon.Inspector2.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of the finding.
+        /// The type of the finding. The <c>type</c> value determines the valid values for <c>resource</c>
+        /// in your request. For more information, see <a href="https://docs.aws.amazon.com/inspector/latest/user/findings-types.html">Finding
+        /// types</a> in the Amazon Inspector user guide.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

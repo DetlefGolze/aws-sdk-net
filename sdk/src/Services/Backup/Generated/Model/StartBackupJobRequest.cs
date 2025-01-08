@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -34,27 +35,28 @@ namespace Amazon.Backup.Model
     /// </summary>
     public partial class StartBackupJobRequest : AmazonBackupRequest
     {
-        private Dictionary<string, string> _backupOptions = new Dictionary<string, string>();
+        private Dictionary<string, string> _backupOptions = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _backupVaultName;
         private long? _completeWindowMinutes;
         private string _iamRoleArn;
         private string _idempotencyToken;
+        private Index _index;
         private Lifecycle _lifecycle;
-        private Dictionary<string, string> _recoveryPointTags = new Dictionary<string, string>();
+        private Dictionary<string, string> _recoveryPointTags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _resourceArn;
         private long? _startWindowMinutes;
 
         /// <summary>
         /// Gets and sets the property BackupOptions. 
         /// <para>
-        /// Specifies the backup option for a selected resource. This option is only available
-        /// for Windows Volume Shadow Copy Service (VSS) backup jobs.
+        /// The backup option for a selected resource. This option is only available for Windows
+        /// Volume Shadow Copy Service (VSS) backup jobs.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: Set to <code>"WindowsVSS":"enabled"</code> to enable the <code>WindowsVSS</code>
-        /// backup option and create a Windows VSS backup. Set to <code>"WindowsVSS""disabled"</code>
-        /// to create a regular backup. The <code>WindowsVSS</code> option is not enabled by default.
+        /// Valid values: Set to <c>"WindowsVSS":"enabled"</c> to enable the <c>WindowsVSS</c>
+        /// backup option and create a Windows VSS backup. Set to <c>"WindowsVSS""disabled"</c>
+        /// to create a regular backup. The <c>WindowsVSS</c> option is not enabled by default.
         /// </para>
         /// </summary>
         public Dictionary<string, string> BackupOptions
@@ -66,7 +68,7 @@ namespace Amazon.Backup.Model
         // Check to see if BackupOptions property is set
         internal bool IsSetBackupOptions()
         {
-            return this._backupOptions != null && this._backupOptions.Count > 0; 
+            return this._backupOptions != null && (this._backupOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -74,7 +76,7 @@ namespace Amazon.Backup.Model
         /// <para>
         /// The name of a logical container where backups are stored. Backup vaults are identified
         /// by names that are unique to the account used to create them and the Amazon Web Services
-        /// Region where they are created. They consist of lowercase letters, numbers, and hyphens.
+        /// Region where they are created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -95,13 +97,13 @@ namespace Amazon.Backup.Model
         /// <para>
         /// A value in minutes during which a successfully started backup must complete, or else
         /// Backup will cancel the job. This value is optional. This value begins counting down
-        /// from when the backup was scheduled. It does not add additional time for <code>StartWindowMinutes</code>,
+        /// from when the backup was scheduled. It does not add additional time for <c>StartWindowMinutes</c>,
         /// or if the backup started later than scheduled.
         /// </para>
         ///  
         /// <para>
-        /// Like <code>StartWindowMinutes</code>, this parameter has a maximum value of 100 years
-        /// (52,560,000 minutes).
+        /// Like <c>StartWindowMinutes</c>, this parameter has a maximum value of 100 years (52,560,000
+        /// minutes).
         /// </para>
         /// </summary>
         public long CompleteWindowMinutes
@@ -120,7 +122,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property IamRoleArn. 
         /// <para>
         /// Specifies the IAM role ARN used to create the target recovery point; for example,
-        /// <code>arn:aws:iam::123456789012:role/S3Access</code>.
+        /// <c>arn:aws:iam::123456789012:role/S3Access</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -140,8 +142,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property IdempotencyToken. 
         /// <para>
         /// A customer-chosen string that you can use to distinguish between otherwise identical
-        /// calls to <code>StartBackupJob</code>. Retrying a successful request with the same
-        /// idempotency token results in a success message with no action taken.
+        /// calls to <c>StartBackupJob</c>. Retrying a successful request with the same idempotency
+        /// token results in a success message with no action taken.
         /// </para>
         /// </summary>
         public string IdempotencyToken
@@ -154,6 +156,50 @@ namespace Amazon.Backup.Model
         internal bool IsSetIdempotencyToken()
         {
             return this._idempotencyToken != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Index. 
+        /// <para>
+        /// Include this parameter to enable index creation if your backup job has a resource
+        /// type that supports backup indexes.
+        /// </para>
+        ///  
+        /// <para>
+        /// Resource types that support backup indexes include:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>EBS</c> for Amazon Elastic Block Store
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>S3</c> for Amazon Simple Storage Service (Amazon S3)
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Index can have 1 of 2 possible values, either <c>ENABLED</c> or <c>DISABLED</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// To create a backup index for an eligible <c>ACTIVE</c> recovery point that does not
+        /// yet have a backup index, set value to <c>ENABLED</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// To delete a backup index, set value to <c>DISABLED</c>.
+        /// </para>
+        /// </summary>
+        public Index Index
+        {
+            get { return this._index; }
+            set { this._index = value; }
+        }
+
+        // Check to see if Index property is set
+        internal bool IsSetIndex()
+        {
+            return this._index != null;
         }
 
         /// <summary>
@@ -172,10 +218,9 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  
         /// <para>
-        /// Resource types that are able to be transitioned to cold storage are listed in the
-        /// "Lifecycle to cold storage" section of the <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource">
-        /// Feature availability by resource</a> table. Backup ignores this expression for other
-        /// resource types.
+        /// Resource types that can transition to cold storage are listed in the <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/backup-feature-availability.html#features-by-resource">Feature
+        /// availability by resource</a> table. Backup ignores this expression for other resource
+        /// types.
         /// </para>
         ///  
         /// <para>
@@ -197,8 +242,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property RecoveryPointTags. 
         /// <para>
-        /// To help organize your resources, you can assign your own metadata to the resources
-        /// that you create. Each tag is a key-value pair.
+        /// The tags to assign to the resources.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -211,7 +255,7 @@ namespace Amazon.Backup.Model
         // Check to see if RecoveryPointTags property is set
         internal bool IsSetRecoveryPointTags()
         {
-            return this._recoveryPointTags != null && this._recoveryPointTags.Count > 0; 
+            return this._recoveryPointTags != null && (this._recoveryPointTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -247,13 +291,13 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  
         /// <para>
-        /// During the start window, the backup job status remains in <code>CREATED</code> status
-        /// until it has successfully begun or until the start window time has run out. If within
-        /// the start window time Backup receives an error that allows the job to be retried,
-        /// Backup will automatically retry to begin the job at least every 10 minutes until the
-        /// backup successfully begins (the job status changes to <code>RUNNING</code>) or until
-        /// the job status changes to <code>EXPIRED</code> (which is expected to occur when the
-        /// start window time is over).
+        /// During the start window, the backup job status remains in <c>CREATED</c> status until
+        /// it has successfully begun or until the start window time has run out. If within the
+        /// start window time Backup receives an error that allows the job to be retried, Backup
+        /// will automatically retry to begin the job at least every 10 minutes until the backup
+        /// successfully begins (the job status changes to <c>RUNNING</c>) or until the job status
+        /// changes to <c>EXPIRED</c> (which is expected to occur when the start window time is
+        /// over).
         /// </para>
         /// </summary>
         public long StartWindowMinutes

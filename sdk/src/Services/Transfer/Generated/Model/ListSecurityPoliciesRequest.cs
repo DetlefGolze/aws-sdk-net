@@ -26,12 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Container for the parameters to the ListSecurityPolicies operation.
-    /// Lists the security policies that are attached to your file transfer protocol-enabled
-    /// servers.
+    /// Lists the security policies that are attached to your servers and SFTP connectors.
+    /// For more information about security policies, see <a href="https://docs.aws.amazon.com/transfer/latest/userguide/security-policies.html">Working
+    /// with security policies for servers</a> or <a href="https://docs.aws.amazon.com/transfer/latest/userguide/security-policies-connectors.html">Working
+    /// with security policies for SFTP connectors</a>.
     /// </summary>
     public partial class ListSecurityPoliciesRequest : AmazonTransferRequest
     {
@@ -41,7 +44,7 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// Specifies the number of security policies to return as a response to the <code>ListSecurityPolicies</code>
+        /// Specifies the number of security policies to return as a response to the <c>ListSecurityPolicies</c>
         /// query.
         /// </para>
         /// </summary>
@@ -61,10 +64,9 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When additional results are obtained from the <code>ListSecurityPolicies</code> command,
-        /// a <code>NextToken</code> parameter is returned in the output. You can then pass the
-        /// <code>NextToken</code> parameter in a subsequent command to continue listing additional
-        /// security policies.
+        /// When additional results are obtained from the <c>ListSecurityPolicies</c> command,
+        /// a <c>NextToken</c> parameter is returned in the output. You can then pass the <c>NextToken</c>
+        /// parameter in a subsequent command to continue listing additional security policies.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=6144)]

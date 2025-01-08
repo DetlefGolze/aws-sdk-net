@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.EventBridge.Model
     /// Delete an existing global endpoint. For more information about global endpoints, see
     /// <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-global-endpoints.html">Making
     /// applications Regional-fault tolerant with global endpoints and event replication</a>
-    /// in the Amazon EventBridge User Guide.
+    /// in the <i> <i>Amazon EventBridge User Guide</i> </i>.
     /// </summary>
     public partial class DeleteEndpointRequest : AmazonEventBridgeRequest
     {
@@ -42,7 +43,7 @@ namespace Amazon.EventBridge.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the endpoint you want to delete. For example, <code>"Name":"us-east-2-custom_bus_A-endpoint"</code>..
+        /// The name of the endpoint you want to delete. For example, <c>"Name":"us-east-2-custom_bus_A-endpoint"</c>..
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

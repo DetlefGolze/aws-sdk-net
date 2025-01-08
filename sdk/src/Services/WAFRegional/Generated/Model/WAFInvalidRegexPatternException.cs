@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFRegional.Model
 {
     /// <summary>
-    /// The regular expression (regex) you specified in <code>RegexPatternString</code> is
-    /// invalid.
+    /// The regular expression (regex) you specified in <c>RegexPatternString</c> is invalid.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

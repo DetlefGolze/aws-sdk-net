@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalyticsV2.Model
 {
     /// <summary>
-    /// Describes the starting parameters for a Flink-based Kinesis Data Analytics application.
+    /// Describes the starting parameters for a Managed Service for Apache Flink application.
     /// </summary>
     public partial class FlinkRunConfiguration
     {
@@ -41,15 +42,15 @@ namespace Amazon.KinesisAnalyticsV2.Model
         /// When restoring from a snapshot, specifies whether the runtime is allowed to skip a
         /// state that cannot be mapped to the new program. This will happen if the program is
         /// updated between snapshots to remove stateful parameters, and state data in the snapshot
-        /// no longer corresponds to valid application data. For more information, see <a href="https://ci.apache.org/projects/flink/flink-docs-release-1.8/ops/state/savepoints.html#allowing-non-restored-state">
-        /// Allowing Non-Restored State</a> in the <a href="https://ci.apache.org/projects/flink/flink-docs-release-1.8/">Apache
+        /// no longer corresponds to valid application data. For more information, see <a href="https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/ops/state/savepoints/#allowing-non-restored-state">
+        /// Allowing Non-Restored State</a> in the <a href="https://nightlies.apache.org/flink/flink-docs-release-1.19/">Apache
         /// Flink documentation</a>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// This value defaults to <code>false</code>. If you update your application without
-        /// specifying this parameter, <code>AllowNonRestoredState</code> will be set to <code>false</code>,
-        /// even if it was previously set to <code>true</code>.
+        /// This value defaults to <c>false</c>. If you update your application without specifying
+        /// this parameter, <c>AllowNonRestoredState</c> will be set to <c>false</c>, even if
+        /// it was previously set to <c>true</c>.
         /// </para>
         ///  </note>
         /// </summary>

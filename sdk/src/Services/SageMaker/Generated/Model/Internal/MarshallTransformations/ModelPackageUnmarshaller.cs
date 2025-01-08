@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ModelPackage Unmarshall(JsonUnmarshallerContext context)
         {
+            ModelPackage unmarshalledObject = new ModelPackage();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ModelPackage unmarshalledObject = new ModelPackage();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -142,6 +144,18 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     unmarshalledObject.ModelApprovalStatus = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ModelCard", targetDepth))
+                {
+                    var unmarshaller = ModelPackageModelCardUnmarshaller.Instance;
+                    unmarshalledObject.ModelCard = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ModelLifeCycle", targetDepth))
+                {
+                    var unmarshaller = ModelLifeCycleUnmarshaller.Instance;
+                    unmarshalledObject.ModelLifeCycle = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ModelMetrics", targetDepth))
                 {
                     var unmarshaller = ModelMetricsUnmarshaller.Instance;
@@ -196,6 +210,12 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     unmarshalledObject.SamplePayloadUrl = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("SecurityConfig", targetDepth))
+                {
+                    var unmarshaller = ModelPackageSecurityConfigUnmarshaller.Instance;
+                    unmarshalledObject.SecurityConfig = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("SkipModelValidation", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -206,6 +226,12 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = SourceAlgorithmSpecificationUnmarshaller.Instance;
                     unmarshalledObject.SourceAlgorithmSpecification = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("SourceUri", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.SourceUri = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Tags", targetDepth))
@@ -227,7 +253,6 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

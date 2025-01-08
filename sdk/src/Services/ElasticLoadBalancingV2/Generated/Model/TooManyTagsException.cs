@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancingV2.Model
 {
     /// <summary>
-    /// You've reached the limit on the number of tags per load balancer.
+    /// You've reached the limit on the number of tags for this resource.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

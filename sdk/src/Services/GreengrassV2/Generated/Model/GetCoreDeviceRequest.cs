@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GreengrassV2.Model
 {
     /// <summary>
@@ -54,7 +55,7 @@ namespace Amazon.GreengrassV2.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// When the status of any component on the core device becomes <code>BROKEN</code> 
+    /// When the status of any component on the core device becomes <c>BROKEN</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.DynamoDBv2.Model
     /// </summary>
     public partial class ListImportsResponse : AmazonWebServiceResponse
     {
-        private List<ImportSummary> _importSummaryList = new List<ImportSummary>();
+        private List<ImportSummary> _importSummaryList = AWSConfigs.InitializeCollections ? new List<ImportSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property ImportSummaryList. 
         /// <para>
-        ///  A list of <code>ImportSummary</code> objects. 
+        ///  A list of <c>ImportSummary</c> objects. 
         /// </para>
         /// </summary>
         public List<ImportSummary> ImportSummaryList
@@ -51,15 +52,14 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if ImportSummaryList property is set
         internal bool IsSetImportSummaryList()
         {
-            return this._importSummaryList != null && this._importSummaryList.Count > 0; 
+            return this._importSummaryList != null && (this._importSummaryList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         ///  If this value is returned, there are additional results to be displayed. To retrieve
-        /// them, call <code>ListImports</code> again, with <code>NextToken</code> set to this
-        /// value. 
+        /// them, call <c>ListImports</c> again, with <c>NextToken</c> set to this value. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=112, Max=1024)]

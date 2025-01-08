@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -35,15 +36,15 @@ namespace Amazon.Glue.Model
     ///  
     /// <para>
     /// The Identity and Access Management (IAM) permission required for this operation is
-    /// <code>GetPartition</code>.
+    /// <c>GetPartition</c>.
     /// </para>
     /// </summary>
     public partial class GetColumnStatisticsForPartitionRequest : AmazonGlueRequest
     {
         private string _catalogId;
-        private List<string> _columnNames = new List<string>();
+        private List<string> _columnNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _databaseName;
-        private List<string> _partitionValues = new List<string>();
+        private List<string> _partitionValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _tableName;
 
         /// <summary>
@@ -82,7 +83,7 @@ namespace Amazon.Glue.Model
         // Check to see if ColumnNames property is set
         internal bool IsSetColumnNames()
         {
-            return this._columnNames != null && this._columnNames.Count > 0; 
+            return this._columnNames != null && (this._columnNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -120,7 +121,7 @@ namespace Amazon.Glue.Model
         // Check to see if PartitionValues property is set
         internal bool IsSetPartitionValues()
         {
-            return this._partitionValues != null && this._partitionValues.Count > 0; 
+            return this._partitionValues != null && (this._partitionValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

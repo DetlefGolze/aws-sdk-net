@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the secretsmanager-2017-10-17.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SecretsManager.Model
 {
     /// <summary>
@@ -24,6 +25,11 @@ namespace Amazon.SecretsManager.Model
     ///</summary>
     public interface ISecretsManagerPaginatorFactory
     {
+
+        /// <summary>
+        /// Paginator for BatchGetSecretValue operation
+        ///</summary>
+        IBatchGetSecretValuePaginator BatchGetSecretValue(BatchGetSecretValueRequest request);
 
         /// <summary>
         /// Paginator for ListSecrets operation

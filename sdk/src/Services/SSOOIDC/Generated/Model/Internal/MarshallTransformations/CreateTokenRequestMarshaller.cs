@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SSOOIDC.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.SSOOIDC.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetClientId())
@@ -81,6 +83,12 @@ namespace Amazon.SSOOIDC.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("code");
                     context.Writer.Write(publicRequest.Code);
+                }
+
+                if(publicRequest.IsSetCodeVerifier())
+                {
+                    context.Writer.WritePropertyName("codeVerifier");
+                    context.Writer.Write(publicRequest.CodeVerifier);
                 }
 
                 if(publicRequest.IsSetDeviceCode())

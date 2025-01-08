@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DocDB.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -71,7 +72,7 @@ namespace Amazon.DocDB.Model.Internal.MarshallTransformations
                     int publicRequestlistValueIndex = 1;
                     foreach(var publicRequestlistValue in publicRequest.ValuesToAdd)
                     {
-                        request.Parameters.Add("ValuesToAdd" + "." + "member" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
+                        request.Parameters.Add("ValuesToAdd" + "." + "AttributeValue" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
                         publicRequestlistValueIndex++;
                     }
                 }
@@ -80,7 +81,7 @@ namespace Amazon.DocDB.Model.Internal.MarshallTransformations
                     int publicRequestlistValueIndex = 1;
                     foreach(var publicRequestlistValue in publicRequest.ValuesToRemove)
                     {
-                        request.Parameters.Add("ValuesToRemove" + "." + "member" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
+                        request.Parameters.Add("ValuesToRemove" + "." + "AttributeValue" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
                         publicRequestlistValueIndex++;
                     }
                 }

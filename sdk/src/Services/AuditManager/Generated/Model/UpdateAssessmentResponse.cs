@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AuditManager.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.AuditManager.Model
         /// <summary>
         /// Gets and sets the property Assessment. 
         /// <para>
-        ///  The response object for the <code>UpdateAssessment</code> API. This is the name of
-        /// the updated assessment.
+        ///  The response object for the <c>UpdateAssessment</c> API. This is the name of the
+        /// updated assessment.
         /// </para>
         /// </summary>
         public Assessment Assessment

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElasticMapReduce.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.ElasticMapReduce.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAdditionalInfo())
@@ -150,10 +152,22 @@ namespace Amazon.ElasticMapReduce.Model.Internal.MarshallTransformations
                     context.Writer.Write(publicRequest.CustomAmiId);
                 }
 
+                if(publicRequest.IsSetEbsRootVolumeIops())
+                {
+                    context.Writer.WritePropertyName("EbsRootVolumeIops");
+                    context.Writer.Write(publicRequest.EbsRootVolumeIops);
+                }
+
                 if(publicRequest.IsSetEbsRootVolumeSize())
                 {
                     context.Writer.WritePropertyName("EbsRootVolumeSize");
                     context.Writer.Write(publicRequest.EbsRootVolumeSize);
+                }
+
+                if(publicRequest.IsSetEbsRootVolumeThroughput())
+                {
+                    context.Writer.WritePropertyName("EbsRootVolumeThroughput");
+                    context.Writer.Write(publicRequest.EbsRootVolumeThroughput);
                 }
 
                 if(publicRequest.IsSetInstances())

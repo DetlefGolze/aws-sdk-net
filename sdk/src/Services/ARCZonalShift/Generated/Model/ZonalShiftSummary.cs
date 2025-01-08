@@ -26,27 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ARCZonalShift.Model
 {
     /// <summary>
-    /// You start a zonal shift to temporarily move load balancer traffic away from an Availability
-    /// Zone in a AWS Region. A zonal shift helps your application recover immediately, for
-    /// example, from a developer's bad code deployment or from an AWS infrastructure failure
-    /// in a single Availability Zone. You can start a zonal shift in Route 53 ARC only for
-    /// managed resources in your account in an AWS Region. Supported AWS resources are automatically
-    /// registered with Route 53 ARC.
+    /// Lists information about zonal shifts in Amazon Route 53 Application Recovery Controller,
+    /// including zonal shifts that you start yourself and zonal shifts that Route 53 ARC
+    /// starts on your behalf for practice runs with zonal autoshift.
     /// 
     ///  
     /// <para>
-    /// Zonal shifts are temporary. A zonal shift can be active for up to three days (72 hours).
-    /// </para>
-    ///  
-    /// <para>
-    /// When you start a zonal shift, you specify how long you want it to be active, which
-    /// Amazon Route 53 Application Recovery Controller converts to an expiry time (expiration
-    /// time). You can cancel a zonal shift, for example, if you're ready to restore traffic
-    /// to the Availability Zone. Or you can extend the zonal shift by updating the expiration
-    /// so the zonal shift is active longer.
+    /// Zonal shifts are temporary, including customer-initiated zonal shifts and the zonal
+    /// autoshift practice run zonal shifts that Route 53 ARC starts weekly, on your behalf.
+    /// A zonal shift that a customer starts can be active for up to three days (72 hours).
+    /// A practice run zonal shift has a 30 minute duration.
     /// </para>
     /// </summary>
     public partial class ZonalShiftSummary
@@ -54,6 +47,7 @@ namespace Amazon.ARCZonalShift.Model
         private string _awayFrom;
         private string _comment;
         private DateTime? _expiryTime;
+        private PracticeRunOutcome _practiceRunOutcome;
         private string _resourceIdentifier;
         private DateTime? _startTime;
         private ZonalShiftStatus _status;
@@ -62,9 +56,10 @@ namespace Amazon.ARCZonalShift.Model
         /// <summary>
         /// Gets and sets the property AwayFrom. 
         /// <para>
-        /// The Availability Zone that traffic is moved away from for a resource when you start
-        /// a zonal shift. Until the zonal shift expires or you cancel it, traffic for the resource
-        /// is instead moved to other Availability Zones in the AWS Region.
+        /// The Availability Zone (for example, <c>use1-az1</c>) that traffic is moved away from
+        /// for a resource when you start a zonal shift. Until the zonal shift expires or you
+        /// cancel it, traffic for the resource is instead moved to other Availability Zones in
+        /// the Amazon Web Services Region.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=20)]
@@ -104,17 +99,18 @@ namespace Amazon.ARCZonalShift.Model
         /// <summary>
         /// Gets and sets the property ExpiryTime. 
         /// <para>
-        /// The expiry time (expiration time) for the zonal shift. A zonal shift is temporary
-        /// and must be set to expire when you start the zonal shift. You can initially set a
-        /// zonal shift to expire in a maximum of three days (72 hours). However, you can update
-        /// a zonal shift to set a new expiration at any time. 
+        /// The expiry time (expiration time) for a customer-initiated zonal shift. A zonal shift
+        /// is temporary and must be set to expire when you start the zonal shift. You can initially
+        /// set a zonal shift to expire in a maximum of three days (72 hours). However, you can
+        /// update a zonal shift to set a new expiration at any time. 
         /// </para>
         ///  
         /// <para>
         /// When you start a zonal shift, you specify how long you want it to be active, which
         /// Route 53 ARC converts to an expiry time (expiration time). You can cancel a zonal
-        /// shift, for example, if you're ready to restore traffic to the Availability Zone. Or
-        /// you can update the zonal shift to specify another length of time to expire in.
+        /// shift when you're ready to restore traffic to the Availability Zone, or just wait
+        /// for it to expire. Or you can update the zonal shift to specify another length of time
+        /// to expire in.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -128,6 +124,52 @@ namespace Amazon.ARCZonalShift.Model
         internal bool IsSetExpiryTime()
         {
             return this._expiryTime.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property PracticeRunOutcome. 
+        /// <para>
+        /// The outcome, or end state, of a practice run. The following values can be returned:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>PENDING:</b> Outcome value when the practice run is in progress.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>SUCCEEDED:</b> Outcome value when the outcome alarm specified for the practice
+        /// run configuration does not go into an <c>ALARM</c> state during the practice run,
+        /// and the practice run was not interrupted before it completed.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>INTERRUPTED:</b> Outcome value when the practice run did not run for the expected
+        /// 30 minutes or there was another problem with the practice run that created an inconclusive
+        /// outcome.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>FAILED:</b> Outcome value when the outcome alarm specified for the practice run
+        /// configuration goes into an <c>ALARM</c> state during the practice run, and the practice
+        /// run was not interrupted before it completed.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information about practice run outcomes, see <a href="https://docs.aws.amazon.com/r53recovery/latest/dg/arc-zonal-autoshift.configure.html">
+        /// Considerations when you configure zonal autoshift</a> in the Amazon Route 53 Application
+        /// Recovery Controller Developer Guide.
+        /// </para>
+        /// </summary>
+        public PracticeRunOutcome PracticeRunOutcome
+        {
+            get { return this._practiceRunOutcome; }
+            set { this._practiceRunOutcome = value; }
+        }
+
+        // Check to see if PracticeRunOutcome property is set
+        internal bool IsSetPracticeRunOutcome()
+        {
+            return this._practiceRunOutcome != null;
         }
 
         /// <summary>
@@ -158,7 +200,7 @@ namespace Amazon.ARCZonalShift.Model
         /// <summary>
         /// Gets and sets the property StartTime. 
         /// <para>
-        /// The time (UTC) when the zonal shift is started.
+        /// The time (UTC) when the zonal shift starts.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -181,11 +223,11 @@ namespace Amazon.ARCZonalShift.Model
         /// </para>
         ///  
         /// <para>
-        /// The <code>Status</code> for a zonal shift can have one of the following values:
+        /// The <c>Status</c> for a zonal shift can have one of the following values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>ACTIVE:</b> The zonal shift is started and active.
+        ///  <b>ACTIVE:</b> The zonal shift has been started and active.
         /// </para>
         ///  </li> <li> 
         /// <para>

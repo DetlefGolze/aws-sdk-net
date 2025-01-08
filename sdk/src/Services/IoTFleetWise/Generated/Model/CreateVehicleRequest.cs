@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -48,10 +49,11 @@ namespace Amazon.IoTFleetWise.Model
     public partial class CreateVehicleRequest : AmazonIoTFleetWiseRequest
     {
         private VehicleAssociationBehavior _associationBehavior;
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _decoderManifestArn;
         private string _modelManifestArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<StateTemplateAssociation> _stateTemplates = AWSConfigs.InitializeCollections ? new List<StateTemplateAssociation>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _vehicleName;
 
         /// <summary>
@@ -80,13 +82,14 @@ namespace Amazon.IoTFleetWise.Model
         /// <summary>
         /// Gets and sets the property Attributes. 
         /// <para>
-        /// Static information about a vehicle in a key-value pair. For example: <code>"engineType"</code>
-        /// : <code>"1.3 L R2"</code> 
+        /// Static information about a vehicle in a key-value pair. For example: <c>"engineType"</c>
+        /// : <c>"1.3 L R2"</c> 
         /// </para>
         ///  
         /// <para>
-        /// A campaign must include the keys (attribute names) in <code>dataExtraDimensions</code>
-        /// for them to display in Amazon Timestream.
+        /// To use attributes with Campaigns or State Templates, you must include them using the
+        /// request parameters <c>dataExtraDimensions</c> and/or <c>metadataExtraDimensions</c>
+        /// (for state templates only) when creating your campaign/state template. 
         /// </para>
         /// </summary>
         public Dictionary<string, string> Attributes
@@ -98,7 +101,7 @@ namespace Amazon.IoTFleetWise.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -140,6 +143,26 @@ namespace Amazon.IoTFleetWise.Model
         }
 
         /// <summary>
+        /// Gets and sets the property StateTemplates. 
+        /// <para>
+        /// Associate state templates with the vehicle. You can monitor the last known state of
+        /// the vehicle in near real time.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=20)]
+        public List<StateTemplateAssociation> StateTemplates
+        {
+            get { return this._stateTemplates; }
+            set { this._stateTemplates = value; }
+        }
+
+        // Check to see if StateTemplates property is set
+        internal bool IsSetStateTemplates()
+        {
+            return this._stateTemplates != null && (this._stateTemplates.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// Metadata that can be used to manage the vehicle.
@@ -155,7 +178,7 @@ namespace Amazon.IoTFleetWise.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

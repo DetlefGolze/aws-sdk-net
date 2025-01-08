@@ -25,6 +25,72 @@ namespace Amazon.Lambda
 {
 
     /// <summary>
+    /// Constants used for properties of type ApplicationLogLevel.
+    /// </summary>
+    public class ApplicationLogLevel : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DEBUG for ApplicationLogLevel
+        /// </summary>
+        public static readonly ApplicationLogLevel DEBUG = new ApplicationLogLevel("DEBUG");
+        /// <summary>
+        /// Constant ERROR for ApplicationLogLevel
+        /// </summary>
+        public static readonly ApplicationLogLevel ERROR = new ApplicationLogLevel("ERROR");
+        /// <summary>
+        /// Constant FATAL for ApplicationLogLevel
+        /// </summary>
+        public static readonly ApplicationLogLevel FATAL = new ApplicationLogLevel("FATAL");
+        /// <summary>
+        /// Constant INFO for ApplicationLogLevel
+        /// </summary>
+        public static readonly ApplicationLogLevel INFO = new ApplicationLogLevel("INFO");
+        /// <summary>
+        /// Constant TRACE for ApplicationLogLevel
+        /// </summary>
+        public static readonly ApplicationLogLevel TRACE = new ApplicationLogLevel("TRACE");
+        /// <summary>
+        /// Constant WARN for ApplicationLogLevel
+        /// </summary>
+        public static readonly ApplicationLogLevel WARN = new ApplicationLogLevel("WARN");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ApplicationLogLevel(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ApplicationLogLevel FindValue(string value)
+        {
+            return FindValue<ApplicationLogLevel>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ApplicationLogLevel(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type Architecture.
     /// </summary>
     public class Architecture : ConstantClass
@@ -164,6 +230,52 @@ namespace Amazon.Lambda
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator EndPointType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type EventSourceMappingMetric.
+    /// </summary>
+    public class EventSourceMappingMetric : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant EventCount for EventSourceMappingMetric
+        /// </summary>
+        public static readonly EventSourceMappingMetric EventCount = new EventSourceMappingMetric("EventCount");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public EventSourceMappingMetric(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static EventSourceMappingMetric FindValue(string value)
+        {
+            return FindValue<EventSourceMappingMetric>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator EventSourceMappingMetric(string value)
         {
             return FindValue(value);
         }
@@ -701,6 +813,56 @@ namespace Amazon.Lambda
 
 
     /// <summary>
+    /// Constants used for properties of type LogFormat.
+    /// </summary>
+    public class LogFormat : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant JSON for LogFormat
+        /// </summary>
+        public static readonly LogFormat JSON = new LogFormat("JSON");
+        /// <summary>
+        /// Constant Text for LogFormat
+        /// </summary>
+        public static readonly LogFormat Text = new LogFormat("Text");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public LogFormat(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static LogFormat FindValue(string value)
+        {
+            return FindValue<LogFormat>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator LogFormat(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type LogType.
     /// </summary>
     public class LogType : ConstantClass
@@ -855,6 +1017,56 @@ namespace Amazon.Lambda
 
 
     /// <summary>
+    /// Constants used for properties of type RecursiveLoop.
+    /// </summary>
+    public class RecursiveLoop : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Allow for RecursiveLoop
+        /// </summary>
+        public static readonly RecursiveLoop Allow = new RecursiveLoop("Allow");
+        /// <summary>
+        /// Constant Terminate for RecursiveLoop
+        /// </summary>
+        public static readonly RecursiveLoop Terminate = new RecursiveLoop("Terminate");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public RecursiveLoop(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static RecursiveLoop FindValue(string value)
+        {
+            return FindValue<RecursiveLoop>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator RecursiveLoop(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ResponseStreamingInvocationType.
     /// </summary>
     public class ResponseStreamingInvocationType : ConstantClass
@@ -915,6 +1127,10 @@ namespace Amazon.Lambda
         /// </summary>
         public static readonly Runtime Dotnet6 = new Runtime("dotnet6");
         /// <summary>
+        /// Constant Dotnet8 for Runtime
+        /// </summary>
+        public static readonly Runtime Dotnet8 = new Runtime("dotnet8");
+        /// <summary>
         /// Constant Dotnetcore10 for Runtime
         /// </summary>
         public static readonly Runtime Dotnetcore10 = new Runtime("dotnetcore1.0");
@@ -942,6 +1158,10 @@ namespace Amazon.Lambda
         /// Constant Java17 for Runtime
         /// </summary>
         public static readonly Runtime Java17 = new Runtime("java17");
+        /// <summary>
+        /// Constant Java21 for Runtime
+        /// </summary>
+        public static readonly Runtime Java21 = new Runtime("java21");
         /// <summary>
         /// Constant Java8 for Runtime
         /// </summary>
@@ -975,6 +1195,14 @@ namespace Amazon.Lambda
         /// </summary>
         public static readonly Runtime Nodejs18X = new Runtime("nodejs18.x");
         /// <summary>
+        /// Constant Nodejs20X for Runtime
+        /// </summary>
+        public static readonly Runtime Nodejs20X = new Runtime("nodejs20.x");
+        /// <summary>
+        /// Constant Nodejs22X for Runtime
+        /// </summary>
+        public static readonly Runtime Nodejs22X = new Runtime("nodejs22.x");
+        /// <summary>
         /// Constant Nodejs43 for Runtime
         /// </summary>
         public static readonly Runtime Nodejs43 = new Runtime("nodejs4.3");
@@ -999,6 +1227,10 @@ namespace Amazon.Lambda
         /// </summary>
         public static readonly Runtime ProvidedAl2 = new Runtime("provided.al2");
         /// <summary>
+        /// Constant ProvidedAl2023 for Runtime
+        /// </summary>
+        public static readonly Runtime ProvidedAl2023 = new Runtime("provided.al2023");
+        /// <summary>
         /// Constant Python27 for Runtime
         /// </summary>
         public static readonly Runtime Python27 = new Runtime("python2.7");
@@ -1010,6 +1242,14 @@ namespace Amazon.Lambda
         /// Constant Python311 for Runtime
         /// </summary>
         public static readonly Runtime Python311 = new Runtime("python3.11");
+        /// <summary>
+        /// Constant Python312 for Runtime
+        /// </summary>
+        public static readonly Runtime Python312 = new Runtime("python3.12");
+        /// <summary>
+        /// Constant Python313 for Runtime
+        /// </summary>
+        public static readonly Runtime Python313 = new Runtime("python3.13");
         /// <summary>
         /// Constant Python36 for Runtime
         /// </summary>
@@ -1038,6 +1278,10 @@ namespace Amazon.Lambda
         /// Constant Ruby32 for Runtime
         /// </summary>
         public static readonly Runtime Ruby32 = new Runtime("ruby3.2");
+        /// <summary>
+        /// Constant Ruby33 for Runtime
+        /// </summary>
+        public static readonly Runtime Ruby33 = new Runtime("ruby3.3");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -1438,6 +1682,60 @@ namespace Amazon.Lambda
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator StateReasonCode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type SystemLogLevel.
+    /// </summary>
+    public class SystemLogLevel : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DEBUG for SystemLogLevel
+        /// </summary>
+        public static readonly SystemLogLevel DEBUG = new SystemLogLevel("DEBUG");
+        /// <summary>
+        /// Constant INFO for SystemLogLevel
+        /// </summary>
+        public static readonly SystemLogLevel INFO = new SystemLogLevel("INFO");
+        /// <summary>
+        /// Constant WARN for SystemLogLevel
+        /// </summary>
+        public static readonly SystemLogLevel WARN = new SystemLogLevel("WARN");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public SystemLogLevel(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static SystemLogLevel FindValue(string value)
+        {
+            return FindValue<SystemLogLevel>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator SystemLogLevel(string value)
         {
             return FindValue(value);
         }

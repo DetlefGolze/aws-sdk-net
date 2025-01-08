@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.ConnectCampaignService.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.ConnectCampaignService
 {
     /// <summary>
-    /// Interface for accessing ConnectCampaignService
+    /// <para>Interface for accessing ConnectCampaignService</para>
     ///
     /// Provide APIs to create and manage Amazon Connect Campaigns.
     /// </summary>

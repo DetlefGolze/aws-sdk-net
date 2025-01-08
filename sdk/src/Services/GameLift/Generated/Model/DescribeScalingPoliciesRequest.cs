@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.GameLift.Model
     /// To get a fleet's scaling policies, specify the fleet ID. You can filter this request
     /// by policy status, such as to retrieve only active scaling policies. Use the pagination
     /// parameters to retrieve results as a set of sequential pages. If successful, set of
-    /// <code>ScalingPolicy</code> objects is returned for the fleet.
+    /// <c>ScalingPolicy</c> objects is returned for the fleet.
     /// </para>
     ///  
     /// <para>
@@ -60,7 +61,7 @@ namespace Amazon.GameLift.Model
         /// use either the fleet ID or ARN value.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -76,7 +77,7 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property Limit. 
         /// <para>
-        /// The maximum number of results to return. Use this parameter with <code>NextToken</code>
+        /// The maximum number of results to return. Use this parameter with <c>NextToken</c>
         /// to get results as a set of sequential pages.
         /// </para>
         /// </summary>
@@ -138,7 +139,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property StatusFilter. 
         /// <para>
         /// Scaling policy status to filter results on. A scaling policy is only in force when
-        /// in an <code>ACTIVE</code> status.
+        /// in an <c>ACTIVE</c> status.
         /// </para>
         ///  <ul> <li> 
         /// <para>

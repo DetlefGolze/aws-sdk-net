@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -43,9 +44,8 @@ namespace Amazon.IoTFleetWise.Model
         /// <summary>
         /// Gets and sets the property EncryptionType. 
         /// <para>
-        /// The type of encryption. Choose <code>KMS_BASED_ENCRYPTION</code> to use a KMS key
-        /// or <code>FLEETWISE_DEFAULT_ENCRYPTION</code> to use an Amazon Web Services managed
-        /// key.
+        /// The type of encryption. Choose <c>KMS_BASED_ENCRYPTION</c> to use a KMS key or <c>FLEETWISE_DEFAULT_ENCRYPTION</c>
+        /// to use an Amazon Web Services managed key.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -67,6 +67,7 @@ namespace Amazon.IoTFleetWise.Model
         /// The ID of the KMS key that is used for encryption.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=0, Max=2048)]
         public string KmsKeyId
         {
             get { return this._kmsKeyId; }

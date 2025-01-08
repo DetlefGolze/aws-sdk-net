@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
-    /// A complex type that contains zero or more <code>CacheBehavior</code> elements.
+    /// A complex type that contains zero or more <c>CacheBehavior</c> elements.
     /// </summary>
     public partial class CacheBehaviors
     {
-        private List<CacheBehavior> _items = new List<CacheBehavior>();
+        private List<CacheBehavior> _items = AWSConfigs.InitializeCollections ? new List<CacheBehavior>() : null;
         private int? _quantity;
 
         /// <summary>
         /// Gets and sets the property Items. 
         /// <para>
-        /// Optional: A complex type that contains cache behaviors for this distribution. If <code>Quantity</code>
-        /// is <code>0</code>, you can omit <code>Items</code>.
+        /// Optional: A complex type that contains cache behaviors for this distribution. If <c>Quantity</c>
+        /// is <c>0</c>, you can omit <c>Items</c>.
         /// </para>
         /// </summary>
         public List<CacheBehavior> Items
@@ -52,7 +53,7 @@ namespace Amazon.CloudFront.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

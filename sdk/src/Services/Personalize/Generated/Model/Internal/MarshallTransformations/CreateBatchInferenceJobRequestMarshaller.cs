@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Personalize.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.Personalize.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetBatchInferenceJobConfig())
@@ -76,6 +78,12 @@ namespace Amazon.Personalize.Model.Internal.MarshallTransformations
                     marshaller.Marshall(publicRequest.BatchInferenceJobConfig, context);
 
                     context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetBatchInferenceJobMode())
+                {
+                    context.Writer.WritePropertyName("batchInferenceJobMode");
+                    context.Writer.Write(publicRequest.BatchInferenceJobMode);
                 }
 
                 if(publicRequest.IsSetFilterArn())
@@ -144,6 +152,17 @@ namespace Amazon.Personalize.Model.Internal.MarshallTransformations
                         context.Writer.WriteObjectEnd();
                     }
                     context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetThemeGenerationConfig())
+                {
+                    context.Writer.WritePropertyName("themeGenerationConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ThemeGenerationConfigMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.ThemeGenerationConfig, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 writer.WriteObjectEnd();

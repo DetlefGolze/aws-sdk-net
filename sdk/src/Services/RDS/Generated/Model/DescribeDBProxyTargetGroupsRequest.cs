@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeDBProxyTargetGroups operation.
-    /// Returns information about DB proxy target groups, represented by <code>DBProxyTargetGroup</code>
+    /// Returns information about DB proxy target groups, represented by <c>DBProxyTargetGroup</c>
     /// data structures.
     /// </summary>
     public partial class DescribeDBProxyTargetGroupsRequest : AmazonRDSRequest
     {
         private string _dbProxyName;
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private string _marker;
         private int? _maxRecords;
         private string _targetGroupName;
@@ -44,7 +45,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property DBProxyName. 
         /// <para>
-        /// The identifier of the <code>DBProxy</code> associated with the target group.
+        /// The identifier of the <c>DBProxy</c> associated with the target group.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -75,7 +76,7 @@ namespace Amazon.RDS.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -83,7 +84,7 @@ namespace Amazon.RDS.Model
         /// <para>
         /// An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>.
+        /// by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -102,8 +103,8 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property MaxRecords. 
         /// <para>
         /// The maximum number of records to include in the response. If more records exist than
-        /// the specified <code>MaxRecords</code> value, a pagination token called a marker is
-        /// included in the response so that the remaining results can be retrieved.
+        /// the specified <c>MaxRecords</c> value, a pagination token called a marker is included
+        /// in the response so that the remaining results can be retrieved.
         /// </para>
         ///  
         /// <para>
@@ -130,7 +131,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property TargetGroupName. 
         /// <para>
-        /// The identifier of the <code>DBProxyTargetGroup</code> to describe.
+        /// The identifier of the <c>DBProxyTargetGroup</c> to describe.
         /// </para>
         /// </summary>
         public string TargetGroupName

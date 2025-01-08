@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
-    /// Details for workflow of type <code>APPFLOW_INTEGRATION</code>.
+    /// Details for workflow of type <c>APPFLOW_INTEGRATION</c>.
     /// </summary>
     public partial class AppflowIntegration
     {
-        private List<Batch> _batches = new List<Batch>();
+        private List<Batch> _batches = AWSConfigs.InitializeCollections ? new List<Batch>() : null;
         private FlowDefinition _flowDefinition;
 
         /// <summary>
         /// Gets and sets the property Batches. 
         /// <para>
-        /// Batches in workflow of type <code>APPFLOW_INTEGRATION</code>.
+        /// Batches in workflow of type <c>APPFLOW_INTEGRATION</c>.
         /// </para>
         /// </summary>
         public List<Batch> Batches
@@ -51,7 +52,7 @@ namespace Amazon.CustomerProfiles.Model
         // Check to see if Batches property is set
         internal bool IsSetBatches()
         {
-            return this._batches != null && this._batches.Count > 0; 
+            return this._batches != null && (this._batches.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

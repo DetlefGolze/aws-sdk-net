@@ -16,7 +16,11 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
+using Amazon.Runtime.Telemetry;
+using Amazon.Runtime.Telemetry.Metrics;
 using Amazon.Util;
+using Amazon.Util.Internal;
 
 namespace Amazon.Runtime.Internal
 {
@@ -49,7 +53,7 @@ namespace Amazon.Runtime.Internal
         public override System.Threading.Tasks.Task<T> InvokeAsync<T>(IExecutionContext executionContext)
         {
             PreInvoke(executionContext);
-            return base.InvokeAsync<T>(executionContext);            
+            return base.InvokeAsync<T>(executionContext);
         }
 
 #elif AWS_APM_API
@@ -75,39 +79,26 @@ namespace Amazon.Runtime.Internal
         /// request and response context.</param>
         protected static void PreInvoke(IExecutionContext executionContext)
         {
-            var requestContext = executionContext.RequestContext;
-            requestContext.Request = requestContext.Marshaller.Marshall(requestContext.OriginalRequest);
-            requestContext.Request.AuthenticationRegion = requestContext.ClientConfig.AuthenticationRegion;
-
-            var userAgent = $"{requestContext.ClientConfig.UserAgent} " +
-                $"{(executionContext.RequestContext.IsAsync ? "ClientAsync" : "ClientSync")}{requestContext.OriginalRequest.UserAgentAddition}";
-
-            if(requestContext.ClientConfig.UseAlternateUserAgentHeader)
+            using (MetricsUtilities.MeasureDuration(executionContext.RequestContext, TelemetryConstants.SerializationDurationMetricName))
             {
-                requestContext.Request.Headers[HeaderKeys.XAmzUserAgentHeader] = userAgent;
-            }
-            else
-            {
-                requestContext.Request.Headers[HeaderKeys.UserAgentHeader] = userAgent;
-            }
+                var requestContext = executionContext.RequestContext;
+                requestContext.Request = requestContext.Marshaller.Marshall(requestContext.OriginalRequest);
+                requestContext.Request.AuthenticationRegion = requestContext.ClientConfig.AuthenticationRegion;
 
-#if NETSTANDARD
-            var method = requestContext.Request.HttpMethod.ToUpperInvariant();
-#else
-            var method = requestContext.Request.HttpMethod.ToUpper(CultureInfo.InvariantCulture);
-#endif
-            if (method != "GET" && method != "DELETE" && method != "HEAD")
-            {
-                if (!requestContext.Request.Headers.ContainsKey(HeaderKeys.ContentTypeHeader))
+                // If the request has a body and its request-specific marshaller didn't already
+                // set Content-Type, follow our existing fallback logic
+                if (requestContext.Request.HasRequestBody() &&
+                !requestContext.Request.Headers.ContainsKey(HeaderKeys.ContentTypeHeader))
                 {
                     if (requestContext.Request.UseQueryString)
                         requestContext.Request.Headers[HeaderKeys.ContentTypeHeader] = "application/x-amz-json-1.0";
                     else
                         requestContext.Request.Headers[HeaderKeys.ContentTypeHeader] = AWSSDKUtils.UrlEncodedContent;
                 }
-            }
 
-            SetRecursionDetectionHeader(requestContext.Request.Headers);
+                SetRecursionDetectionHeader(requestContext.Request.Headers);
+                SetUserAgentHeader(requestContext);
+            }
         }
 
         /// <summary>
@@ -117,7 +108,7 @@ namespace Amazon.Runtime.Internal
         private static void SetRecursionDetectionHeader(IDictionary<string, string> headers)
         {
             if (!headers.ContainsKey(HeaderKeys.XAmznTraceIdHeader))
-            {                
+            {
                 var lambdaFunctionName = Environment.GetEnvironmentVariable(EnvironmentVariables.AWS_LAMBDA_FUNCTION_NAME);
                 var amznTraceId = Environment.GetEnvironmentVariable(EnvironmentVariables._X_AMZN_TRACE_ID);
 
@@ -125,6 +116,41 @@ namespace Amazon.Runtime.Internal
                 {
                     headers[HeaderKeys.XAmznTraceIdHeader] = AWSSDKUtils.EncodeTraceIdHeaderValue(amznTraceId);
                 }
+            }
+        }
+
+        private static void SetUserAgentHeader(IRequestContext requestContext)
+        {
+            var sb = new StringBuilder(requestContext.ClientConfig.UserAgent);
+
+            var clientAppId = requestContext.ClientConfig.ClientAppId;
+            if (!string.IsNullOrEmpty(clientAppId))
+                sb.AppendFormat(" app/{0}", clientAppId);
+
+            var retryMode = requestContext.ClientConfig.RetryMode.ToString().ToLower();
+            sb.AppendFormat(" cfg/retry-mode#{0}", retryMode);
+
+            sb.AppendFormat(" md/{0}", requestContext.IsAsync ? "ClientAsync" : "ClientSync");
+
+            sb.AppendFormat(" cfg/init-coll#{0}", AWSConfigs.InitializeCollections ? "1" : "0");
+
+            var userAgentAddition = requestContext.OriginalRequest.UserAgentAddition;
+            if (!string.IsNullOrEmpty(userAgentAddition))
+            {
+                sb.AppendFormat(" {0}", userAgentAddition);
+            }
+
+            var userAgent = sb.ToString();
+
+            userAgent = InternalSDKUtils.ReplaceInvalidUserAgentCharacters(userAgent);
+
+            if (requestContext.ClientConfig.UseAlternateUserAgentHeader)
+            {
+                requestContext.Request.Headers[HeaderKeys.XAmzUserAgentHeader] = userAgent;
+            }
+            else
+            {
+                requestContext.Request.Headers[HeaderKeys.UserAgentHeader] = userAgent;
             }
         }
     }

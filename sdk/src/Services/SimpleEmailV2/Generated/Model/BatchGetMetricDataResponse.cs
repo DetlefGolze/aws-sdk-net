@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.SimpleEmailV2.Model
     /// </summary>
     public partial class BatchGetMetricDataResponse : AmazonWebServiceResponse
     {
-        private List<MetricDataError> _errors = new List<MetricDataError>();
-        private List<MetricDataResult> _results = new List<MetricDataResult>();
+        private List<MetricDataError> _errors = AWSConfigs.InitializeCollections ? new List<MetricDataError>() : null;
+        private List<MetricDataResult> _results = AWSConfigs.InitializeCollections ? new List<MetricDataResult>() : null;
 
         /// <summary>
         /// Gets and sets the property Errors. 
         /// <para>
-        /// A list of <code>MetricDataError</code> encountered while processing your metric data
-        /// batch request.
+        /// A list of <c>MetricDataError</c> encountered while processing your metric data batch
+        /// request.
         /// </para>
         /// </summary>
         public List<MetricDataError> Errors
@@ -52,13 +53,13 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if Errors property is set
         internal bool IsSetErrors()
         {
-            return this._errors != null && this._errors.Count > 0; 
+            return this._errors != null && (this._errors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Results. 
         /// <para>
-        /// A list of successfully retrieved <code>MetricDataResult</code>.
+        /// A list of successfully retrieved <c>MetricDataResult</c>.
         /// </para>
         /// </summary>
         public List<MetricDataResult> Results
@@ -70,7 +71,7 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if Results property is set
         internal bool IsSetResults()
         {
-            return this._results != null && this._results.Count > 0; 
+            return this._results != null && (this._results.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -33,13 +34,14 @@ namespace Amazon.CognitoIdentityProvider.Model
     /// </summary>
     public partial class AdminListDevicesResponse : AmazonWebServiceResponse
     {
-        private List<DeviceType> _devices = new List<DeviceType>();
+        private List<DeviceType> _devices = AWSConfigs.InitializeCollections ? new List<DeviceType>() : null;
         private string _paginationToken;
 
         /// <summary>
         /// Gets and sets the property Devices. 
         /// <para>
-        /// The devices in the list of devices response.
+        /// An array of devices and their information. Each entry that's returned includes device
+        /// information, last-accessed and created dates, and the device key.
         /// </para>
         /// </summary>
         public List<DeviceType> Devices
@@ -51,13 +53,16 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if Devices property is set
         internal bool IsSetDevices()
         {
-            return this._devices != null && this._devices.Count > 0; 
+            return this._devices != null && (this._devices.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PaginationToken. 
         /// <para>
-        /// The pagination token.
+        /// The identifier that Amazon Cognito returned with the previous request to this operation.
+        /// When you include a pagination token in your request, Amazon Cognito returns the next
+        /// set of items in the list. By use of this token, you can paginate through the full
+        /// list of items.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -41,10 +42,11 @@ namespace Amazon.Glue.Model
     public partial class CreateDataQualityRulesetRequest : AmazonGlueRequest
     {
         private string _clientToken;
+        private string _dataQualitySecurityConfiguration;
         private string _description;
         private string _name;
         private string _ruleset;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private DataQualityTargetTable _targetTable;
 
         /// <summary>
@@ -65,6 +67,25 @@ namespace Amazon.Glue.Model
         internal bool IsSetClientToken()
         {
             return this._clientToken != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DataQualitySecurityConfiguration. 
+        /// <para>
+        /// The name of the security configuration created with the data quality encryption option.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=255)]
+        public string DataQualitySecurityConfiguration
+        {
+            get { return this._dataQualitySecurityConfiguration; }
+            set { this._dataQualitySecurityConfiguration = value; }
+        }
+
+        // Check to see if DataQualitySecurityConfiguration property is set
+        internal bool IsSetDataQualitySecurityConfiguration()
+        {
+            return this._dataQualitySecurityConfiguration != null;
         }
 
         /// <summary>
@@ -141,7 +162,7 @@ namespace Amazon.Glue.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -66,8 +67,8 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property IncludeQueriesWithoutUserInformation. 
         /// <para>
-        ///  <code>TRUE</code> to use all queries, otherwise use only queries that include user
-        /// information to generate the query suggestions.
+        ///  <c>TRUE</c> to use all queries, otherwise use only queries that include user information
+        /// to generate the query suggestions.
         /// </para>
         /// </summary>
         public bool IncludeQueriesWithoutUserInformation
@@ -173,13 +174,13 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property Mode. 
         /// <para>
-        /// Whether query suggestions are currently in <code>ENABLED</code> mode or <code>LEARN_ONLY</code>
+        /// Whether query suggestions are currently in <c>ENABLED</c> mode or <c>LEARN_ONLY</c>
         /// mode.
         /// </para>
         ///  
         /// <para>
-        /// By default, Amazon Kendra enables query suggestions.<code>LEARN_ONLY</code> turns
-        /// off query suggestions for your users. You can change the mode using the <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateQuerySuggestionsConfig.html">UpdateQuerySuggestionsConfig</a>
+        /// By default, Amazon Kendra enables query suggestions.<c>LEARN_ONLY</c> turns off query
+        /// suggestions for your users. You can change the mode using the <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateQuerySuggestionsConfig.html">UpdateQuerySuggestionsConfig</a>
         /// API.
         /// </para>
         /// </summary>
@@ -216,8 +217,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// Whether the status of query suggestions settings is currently <code>ACTIVE</code>
-        /// or <code>UPDATING</code>.
+        /// Whether the status of query suggestions settings is currently <c>ACTIVE</c> or <c>UPDATING</c>.
         /// </para>
         ///  
         /// <para>

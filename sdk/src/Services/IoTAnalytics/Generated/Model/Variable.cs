@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTAnalytics.Model
 {
     /// <summary>
-    /// An instance of a variable to be passed to the <code>containerAction</code> execution.
-    /// Each variable must have a name and a value given by one of <code>stringValue</code>,
-    /// <code>datasetContentVersionValue</code>, or <code>outputFileUriValue</code>.
+    /// An instance of a variable to be passed to the <c>containerAction</c> execution. Each
+    /// variable must have a name and a value given by one of <c>stringValue</c>, <c>datasetContentVersionValue</c>,
+    /// or <c>outputFileUriValue</c>.
     /// </summary>
     public partial class Variable
     {

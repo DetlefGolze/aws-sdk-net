@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
@@ -37,6 +38,7 @@ namespace Amazon.DocDB.Model
         private string _availabilityZone;
         private int? _backupRetentionPeriod;
         private string _caCertificateIdentifier;
+        private CertificateDetails _certificateDetails;
         private bool? _copyTagsToSnapshot;
         private string _dbClusterIdentifier;
         private string _dbInstanceArn;
@@ -45,7 +47,7 @@ namespace Amazon.DocDB.Model
         private string _dbInstanceStatus;
         private string _dbiResourceId;
         private DBSubnetGroup _dbSubnetGroup;
-        private List<string> _enabledCloudwatchLogsExports = new List<string>();
+        private List<string> _enabledCloudwatchLogsExports = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private Endpoint _endpoint;
         private string _engine;
         private string _engineVersion;
@@ -53,13 +55,15 @@ namespace Amazon.DocDB.Model
         private string _kmsKeyId;
         private DateTime? _latestRestorableTime;
         private PendingModifiedValues _pendingModifiedValues;
+        private bool? _performanceInsightsEnabled;
+        private string _performanceInsightsKMSKeyId;
         private string _preferredBackupWindow;
         private string _preferredMaintenanceWindow;
         private int? _promotionTier;
         private bool? _publiclyAccessible;
-        private List<DBInstanceStatusInfo> _statusInfos = new List<DBInstanceStatusInfo>();
+        private List<DBInstanceStatusInfo> _statusInfos = AWSConfigs.InitializeCollections ? new List<DBInstanceStatusInfo>() : null;
         private bool? _storageEncrypted;
-        private List<VpcSecurityGroupMembership> _vpcSecurityGroups = new List<VpcSecurityGroupMembership>();
+        private List<VpcSecurityGroupMembership> _vpcSecurityGroups = AWSConfigs.InitializeCollections ? new List<VpcSecurityGroupMembership>() : null;
 
         /// <summary>
         /// Gets and sets the property AutoMinorVersionUpgrade. 
@@ -132,6 +136,24 @@ namespace Amazon.DocDB.Model
         internal bool IsSetCACertificateIdentifier()
         {
             return this._caCertificateIdentifier != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CertificateDetails. 
+        /// <para>
+        /// The details of the DB instance's server certificate.
+        /// </para>
+        /// </summary>
+        public CertificateDetails CertificateDetails
+        {
+            get { return this._certificateDetails; }
+            set { this._certificateDetails = value; }
+        }
+
+        // Check to see if CertificateDetails property is set
+        internal bool IsSetCertificateDetails()
+        {
+            return this._certificateDetails != null;
         }
 
         /// <summary>
@@ -299,7 +321,7 @@ namespace Amazon.DocDB.Model
         // Check to see if EnabledCloudwatchLogsExports property is set
         internal bool IsSetEnabledCloudwatchLogsExports()
         {
-            return this._enabledCloudwatchLogsExports != null && this._enabledCloudwatchLogsExports.Count > 0; 
+            return this._enabledCloudwatchLogsExports != null && (this._enabledCloudwatchLogsExports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -377,8 +399,8 @@ namespace Amazon.DocDB.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        ///  If <code>StorageEncrypted</code> is <code>true</code>, the KMS key identifier for
-        /// the encrypted instance. 
+        ///  If <c>StorageEncrypted</c> is <c>true</c>, the KMS key identifier for the encrypted
+        /// instance. 
         /// </para>
         /// </summary>
         public string KmsKeyId
@@ -431,10 +453,49 @@ namespace Amazon.DocDB.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PerformanceInsightsEnabled. 
+        /// <para>
+        /// Set to <c>true</c> if Amazon RDS Performance Insights is enabled for the DB instance,
+        /// and otherwise <c>false</c>.
+        /// </para>
+        /// </summary>
+        public bool PerformanceInsightsEnabled
+        {
+            get { return this._performanceInsightsEnabled.GetValueOrDefault(); }
+            set { this._performanceInsightsEnabled = value; }
+        }
+
+        // Check to see if PerformanceInsightsEnabled property is set
+        internal bool IsSetPerformanceInsightsEnabled()
+        {
+            return this._performanceInsightsEnabled.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property PerformanceInsightsKMSKeyId. 
+        /// <para>
+        /// The KMS key identifier for encryption of Performance Insights data. The KMS key ID
+        /// is the Amazon Resource Name (ARN), KMS key identifier, or the KMS key alias for the
+        /// KMS encryption key.
+        /// </para>
+        /// </summary>
+        public string PerformanceInsightsKMSKeyId
+        {
+            get { return this._performanceInsightsKMSKeyId; }
+            set { this._performanceInsightsKMSKeyId = value; }
+        }
+
+        // Check to see if PerformanceInsightsKMSKeyId property is set
+        internal bool IsSetPerformanceInsightsKMSKeyId()
+        {
+            return this._performanceInsightsKMSKeyId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property PreferredBackupWindow. 
         /// <para>
         ///  Specifies the daily time range during which automated backups are created if automated
-        /// backups are enabled, as determined by the <code>BackupRetentionPeriod</code>. 
+        /// backups are enabled, as determined by the <c>BackupRetentionPeriod</c>. 
         /// </para>
         /// </summary>
         public string PreferredBackupWindow
@@ -491,7 +552,7 @@ namespace Amazon.DocDB.Model
         /// Gets and sets the property PubliclyAccessible. 
         /// <para>
         /// Not supported. Amazon DocumentDB does not currently support public endpoints. The
-        /// value of <code>PubliclyAccessible</code> is always <code>false</code>.
+        /// value of <c>PubliclyAccessible</c> is always <c>false</c>.
         /// </para>
         /// </summary>
         public bool PubliclyAccessible
@@ -521,7 +582,7 @@ namespace Amazon.DocDB.Model
         // Check to see if StatusInfos property is set
         internal bool IsSetStatusInfos()
         {
-            return this._statusInfos != null && this._statusInfos.Count > 0; 
+            return this._statusInfos != null && (this._statusInfos.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -557,7 +618,7 @@ namespace Amazon.DocDB.Model
         // Check to see if VpcSecurityGroups property is set
         internal bool IsSetVpcSecurityGroups()
         {
-            return this._vpcSecurityGroups != null && this._vpcSecurityGroups.Count > 0; 
+            return this._vpcSecurityGroups != null && (this._vpcSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,18 +35,24 @@ namespace Amazon.EC2.Model
     public partial class CustomerGateway
     {
         private string _bgpAsn;
+        private string _bgpAsnExtended;
         private string _certificateArn;
         private string _customerGatewayId;
         private string _deviceName;
         private string _ipAddress;
         private string _state;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _type;
 
         /// <summary>
         /// Gets and sets the property BgpAsn. 
         /// <para>
-        /// The customer gateway's Border Gateway Protocol (BGP) Autonomous System Number (ASN).
+        /// The customer gateway device's Border Gateway Protocol (BGP) Autonomous System Number
+        /// (ASN).
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid values: <c>1</c> to <c>2,147,483,647</c> 
         /// </para>
         /// </summary>
         public string BgpAsn
@@ -58,6 +65,29 @@ namespace Amazon.EC2.Model
         internal bool IsSetBgpAsn()
         {
             return this._bgpAsn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property BgpAsnExtended. 
+        /// <para>
+        /// The customer gateway device's Border Gateway Protocol (BGP) Autonomous System Number
+        /// (ASN).
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid values: <c>2,147,483,648</c> to <c>4,294,967,295</c> 
+        /// </para>
+        /// </summary>
+        public string BgpAsnExtended
+        {
+            get { return this._bgpAsnExtended; }
+            set { this._bgpAsnExtended = value; }
+        }
+
+        // Check to see if BgpAsnExtended property is set
+        internal bool IsSetBgpAsnExtended()
+        {
+            return this._bgpAsnExtended != null;
         }
 
         /// <summary>
@@ -117,7 +147,10 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property IpAddress. 
         /// <para>
-        /// The IP address of the customer gateway device's outside interface.
+        ///  IPv4 address for the customer gateway device's outside interface. The address must
+        /// be static. If <c>OutsideIpAddressType</c> in your VPN connection options is set to
+        /// <c>PrivateIpv4</c>, you can use an RFC6598 or RFC1918 private IPv4 address. If <c>OutsideIpAddressType</c>
+        /// is set to <c>PublicIpv4</c>, you can use a public IPv4 address. 
         /// </para>
         /// </summary>
         public string IpAddress
@@ -135,8 +168,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property State. 
         /// <para>
-        /// The current state of the customer gateway (<code>pending | available | deleting |
-        /// deleted</code>).
+        /// The current state of the customer gateway (<c>pending | available | deleting | deleted</c>).
         /// </para>
         /// </summary>
         public string State
@@ -166,13 +198,13 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of VPN connection the customer gateway supports (<code>ipsec.1</code>).
+        /// The type of VPN connection the customer gateway supports (<c>ipsec.1</c>).
         /// </para>
         /// </summary>
         public string Type

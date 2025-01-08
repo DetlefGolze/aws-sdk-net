@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Neptune.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -101,7 +102,7 @@ namespace Amazon.Neptune.Model.Internal.MarshallTransformations
                 }
                 if(publicRequest.IsSetRestoreToTimeUtc())
                 {
-                    request.Parameters.Add("RestoreToTime", StringUtils.FromDateTimeToISO8601(publicRequest.RestoreToTimeUtc));
+                    request.Parameters.Add("RestoreToTime", StringUtils.FromDateTimeToISO8601WithOptionalMs(publicRequest.RestoreToTimeUtc));
                 }
                 if(publicRequest.IsSetRestoreType())
                 {
@@ -122,6 +123,10 @@ namespace Amazon.Neptune.Model.Internal.MarshallTransformations
                 {
                     request.Parameters.Add("SourceDBClusterIdentifier", StringUtils.FromString(publicRequest.SourceDBClusterIdentifier));
                 }
+                if(publicRequest.IsSetStorageType())
+                {
+                    request.Parameters.Add("StorageType", StringUtils.FromString(publicRequest.StorageType));
+                }
                 if(publicRequest.IsSetTags())
                 {
                     int publicRequestlistValueIndex = 1;
@@ -129,11 +134,11 @@ namespace Amazon.Neptune.Model.Internal.MarshallTransformations
                     {
                         if(publicRequestlistValue.IsSetKey())
                         {
-                            request.Parameters.Add("Tags" + "." + "member" + "." + publicRequestlistValueIndex + "." + "Key", StringUtils.FromString(publicRequestlistValue.Key));
+                            request.Parameters.Add("Tags" + "." + "Tag" + "." + publicRequestlistValueIndex + "." + "Key", StringUtils.FromString(publicRequestlistValue.Key));
                         }
                         if(publicRequestlistValue.IsSetValue())
                         {
-                            request.Parameters.Add("Tags" + "." + "member" + "." + publicRequestlistValueIndex + "." + "Value", StringUtils.FromString(publicRequestlistValue.Value));
+                            request.Parameters.Add("Tags" + "." + "Tag" + "." + publicRequestlistValueIndex + "." + "Value", StringUtils.FromString(publicRequestlistValue.Value));
                         }
                         publicRequestlistValueIndex++;
                     }
@@ -147,7 +152,7 @@ namespace Amazon.Neptune.Model.Internal.MarshallTransformations
                     int publicRequestlistValueIndex = 1;
                     foreach(var publicRequestlistValue in publicRequest.VpcSecurityGroupIds)
                     {
-                        request.Parameters.Add("VpcSecurityGroupIds" + "." + "member" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
+                        request.Parameters.Add("VpcSecurityGroupIds" + "." + "VpcSecurityGroupId" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
                         publicRequestlistValueIndex++;
                     }
                 }

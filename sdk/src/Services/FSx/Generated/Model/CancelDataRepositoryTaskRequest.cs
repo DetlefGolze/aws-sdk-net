@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
     /// Container for the parameters to the CancelDataRepositoryTask operation.
     /// Cancels an existing Amazon FSx for Lustre data repository task if that task is in
-    /// either the <code>PENDING</code> or <code>EXECUTING</code> state. When you cancel am
-    /// export task, Amazon FSx does the following.
+    /// either the <c>PENDING</c> or <c>EXECUTING</c> state. When you cancel am export task,
+    /// Amazon FSx does the following.
     /// 
     ///  <ul> <li> 
     /// <para>

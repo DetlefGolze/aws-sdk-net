@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.ElasticMapReduce.Model
         /// <summary>
         /// Gets and sets the property ADDomainJoinPassword. 
         /// <para>
-        /// The Active Directory password for <code>ADDomainJoinUser</code>.
+        /// The Active Directory password for <c>ADDomainJoinUser</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=256)]
@@ -124,7 +125,7 @@ namespace Amazon.ElasticMapReduce.Model
         /// Gets and sets the property Realm. 
         /// <para>
         /// The name of the Kerberos realm to which all nodes in a cluster belong. For example,
-        /// <code>EC2.INTERNAL</code>. 
+        /// <c>EC2.INTERNAL</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=256)]

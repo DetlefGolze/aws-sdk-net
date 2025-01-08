@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -51,12 +52,12 @@ namespace Amazon.EC2.Model
     public partial class ModifyInstanceAttributeRequest : AmazonEC2Request
     {
         private InstanceAttributeName _attribute;
-        private List<InstanceBlockDeviceMappingSpecification> _blockDeviceMappings = new List<InstanceBlockDeviceMappingSpecification>();
+        private List<InstanceBlockDeviceMappingSpecification> _blockDeviceMappings = AWSConfigs.InitializeCollections ? new List<InstanceBlockDeviceMappingSpecification>() : null;
         private bool? _disableApiStop;
         private bool? _disableApiTermination;
         private bool? _ebsOptimized;
         private bool? _enaSupport;
-        private List<string> _groups = new List<string>();
+        private List<string> _groups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _instanceId;
         private string _instanceInitiatedShutdownBehavior;
         private string _instanceType;
@@ -76,7 +77,7 @@ namespace Amazon.EC2.Model
         /// Instantiates ModifyInstanceAttributeRequest with the parameterized properties
         /// </summary>
         /// <param name="instanceId">The ID of the instance.</param>
-        /// <param name="attribute">The name of the attribute to modify. <important> You can modify the following attributes only: <code>disableApiTermination</code> | <code>instanceType</code> | <code>kernel</code> | <code>ramdisk</code> | <code>instanceInitiatedShutdownBehavior</code> | <code>blockDeviceMapping</code> | <code>userData</code> | <code>sourceDestCheck</code> | <code>groupSet</code> | <code>ebsOptimized</code> | <code>sriovNetSupport</code> | <code>enaSupport</code> | <code>nvmeSupport</code> | <code>disableApiStop</code> | <code>enclaveOptions</code>  </important></param>
+        /// <param name="attribute">The name of the attribute to modify. <important> You can modify the following attributes only: <c>disableApiTermination</c> | <c>instanceType</c> | <c>kernel</c> | <c>ramdisk</c> | <c>instanceInitiatedShutdownBehavior</c> | <c>blockDeviceMapping</c> | <c>userData</c> | <c>sourceDestCheck</c> | <c>groupSet</c> | <c>ebsOptimized</c> | <c>sriovNetSupport</c> | <c>enaSupport</c> | <c>nvmeSupport</c> | <c>disableApiStop</c> | <c>enclaveOptions</c>  </important></param>
         public ModifyInstanceAttributeRequest(string instanceId, InstanceAttributeName attribute)
         {
             _instanceId = instanceId;
@@ -90,12 +91,11 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <important> 
         /// <para>
-        /// You can modify the following attributes only: <code>disableApiTermination</code> |
-        /// <code>instanceType</code> | <code>kernel</code> | <code>ramdisk</code> | <code>instanceInitiatedShutdownBehavior</code>
-        /// | <code>blockDeviceMapping</code> | <code>userData</code> | <code>sourceDestCheck</code>
-        /// | <code>groupSet</code> | <code>ebsOptimized</code> | <code>sriovNetSupport</code>
-        /// | <code>enaSupport</code> | <code>nvmeSupport</code> | <code>disableApiStop</code>
-        /// | <code>enclaveOptions</code> 
+        /// You can modify the following attributes only: <c>disableApiTermination</c> | <c>instanceType</c>
+        /// | <c>kernel</c> | <c>ramdisk</c> | <c>instanceInitiatedShutdownBehavior</c> | <c>blockDeviceMapping</c>
+        /// | <c>userData</c> | <c>sourceDestCheck</c> | <c>groupSet</c> | <c>ebsOptimized</c>
+        /// | <c>sriovNetSupport</c> | <c>enaSupport</c> | <c>nvmeSupport</c> | <c>disableApiStop</c>
+        /// | <c>enclaveOptions</c> 
         /// </para>
         ///  </important>
         /// </summary>
@@ -114,9 +114,11 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property BlockDeviceMappings. 
         /// <para>
-        /// Modifies the <code>DeleteOnTermination</code> attribute for volumes that are currently
-        /// attached. The volume must be owned by the caller. If no value is specified for <code>DeleteOnTermination</code>,
-        /// the default is <code>true</code> and the volume is deleted when the instance is terminated.
+        /// Modifies the <c>DeleteOnTermination</c> attribute for volumes that are currently attached.
+        /// The volume must be owned by the caller. If no value is specified for <c>DeleteOnTermination</c>,
+        /// the default is <c>true</c> and the volume is deleted when the instance is terminated.
+        /// You can't modify the <c>DeleteOnTermination</c> attribute for volumes that are attached
+        /// to Fargate tasks.
         /// </para>
         ///  
         /// <para>
@@ -135,15 +137,15 @@ namespace Amazon.EC2.Model
         // Check to see if BlockDeviceMappings property is set
         internal bool IsSetBlockDeviceMappings()
         {
-            return this._blockDeviceMappings != null && this._blockDeviceMappings.Count > 0; 
+            return this._blockDeviceMappings != null && (this._blockDeviceMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DisableApiStop. 
         /// <para>
         /// Indicates whether an instance is enabled for stop protection. For more information,
-        /// see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html#Using_StopProtection">Stop
-        /// Protection</a>.
+        /// see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-stop-protection.html">Enable
+        /// stop protection for your instance</a>.
         /// </para>
         /// </summary>
         public bool DisableApiStop
@@ -161,9 +163,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property DisableApiTermination. 
         /// <para>
-        /// If the value is <code>true</code>, you can't terminate the instance using the Amazon
-        /// EC2 console, CLI, or API; otherwise, you can. You cannot use this parameter for Spot
-        /// Instances.
+        /// If the value is <c>true</c>, you can't terminate the instance using the Amazon EC2
+        /// console, CLI, or API; otherwise, you can. You cannot use this parameter for Spot Instances.
         /// </para>
         /// </summary>
         public bool DisableApiTermination
@@ -202,7 +203,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property EnaSupport. 
         /// <para>
-        /// Set to <code>true</code> to enable enhanced networking with ENA for the instance.
+        /// Set to <c>true</c> to enable enhanced networking with ENA for the instance.
         /// </para>
         ///  
         /// <para>
@@ -239,7 +240,7 @@ namespace Amazon.EC2.Model
         // Check to see if Groups property is set
         internal bool IsSetGroups()
         {
-            return this._groups != null && this._groups.Count > 0; 
+            return this._groups != null && (this._groups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -285,7 +286,7 @@ namespace Amazon.EC2.Model
         /// <para>
         /// Changes the instance type to the specified value. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
         /// types</a> in the <i>Amazon EC2 User Guide</i>. If the instance type is not valid,
-        /// the error returned is <code>InvalidInstanceAttributeValue</code>.
+        /// the error returned is <c>InvalidInstanceAttributeValue</c>.
         /// </para>
         /// </summary>
         public string InstanceType
@@ -342,10 +343,10 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property SourceDestCheck. 
         /// <para>
         /// Enable or disable source/destination checks, which ensure that the instance is either
-        /// the source or the destination of any traffic that it receives. If the value is <code>true</code>,
+        /// the source or the destination of any traffic that it receives. If the value is <c>true</c>,
         /// source/destination checks are enabled; otherwise, they are disabled. The default value
-        /// is <code>true</code>. You must disable source/destination checks if the instance runs
-        /// services such as network address translation, routing, or firewalls.
+        /// is <c>true</c>. You must disable source/destination checks if the instance runs services
+        /// such as network address translation, routing, or firewalls.
         /// </para>
         /// </summary>
         public bool SourceDestCheck
@@ -363,8 +364,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property SriovNetSupport. 
         /// <para>
-        /// Set to <code>simple</code> to enable enhanced networking with the Intel 82599 Virtual
-        /// Function interface for the instance.
+        /// Set to <c>simple</c> to enable enhanced networking with the Intel 82599 Virtual Function
+        /// interface for the instance.
         /// </para>
         ///  
         /// <para>
@@ -392,9 +393,10 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property UserData. 
         /// <para>
-        /// Changes the instance's user data to the specified value. If you are using an Amazon
-        /// Web Services SDK or command line tool, base64-encoding is performed for you, and you
-        /// can load the text from a file. Otherwise, you must provide base64-encoded text.
+        /// Changes the instance's user data to the specified value. User data must be base64-encoded.
+        /// Depending on the tool or SDK that you're using, the base64-encoding might be performed
+        /// for you. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-add-user-data.html">Work
+        /// with instance user data</a>.
         /// </para>
         /// </summary>
         public string UserData
@@ -412,9 +414,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Value. 
         /// <para>
-        /// A new value for the attribute. Use only with the <code>kernel</code>, <code>ramdisk</code>,
-        /// <code>userData</code>, <code>disableApiTermination</code>, or <code>instanceInitiatedShutdownBehavior</code>
-        /// attribute.
+        /// A new value for the attribute. Use only with the <c>kernel</c>, <c>ramdisk</c>, <c>userData</c>,
+        /// <c>disableApiTermination</c>, or <c>instanceInitiatedShutdownBehavior</c> attribute.
         /// </para>
         /// </summary>
         public string Value

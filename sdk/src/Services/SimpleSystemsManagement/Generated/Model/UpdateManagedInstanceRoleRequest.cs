@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -44,10 +45,10 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <para>
         /// The name of the Identity and Access Management (IAM) role that you want to assign
         /// to the managed node. This IAM role must provide AssumeRole permissions for the Amazon
-        /// Web Services Systems Manager service principal <code>ssm.amazonaws.com</code>. For
-        /// more information, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-service-role.html">Create
-        /// an IAM service role for a hybrid environment</a> in the <i>Amazon Web Services Systems
-        /// Manager User Guide</i>.
+        /// Web Services Systems Manager service principal <c>ssm.amazonaws.com</c>. For more
+        /// information, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/hybrid-multicloud-service-role.html">Create
+        /// the IAM service role required for Systems Manager in hybrid and multicloud environments</a>
+        /// in the <i>Amazon Web Services Systems Manager User Guide</i>.
         /// </para>
         ///  <note> 
         /// <para>

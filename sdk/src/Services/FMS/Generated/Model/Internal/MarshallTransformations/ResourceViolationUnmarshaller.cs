@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.FMS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.FMS.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ResourceViolation Unmarshall(JsonUnmarshallerContext context)
         {
+            ResourceViolation unmarshalledObject = new ResourceViolation();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ResourceViolation unmarshalledObject = new ResourceViolation();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -110,6 +112,12 @@ namespace Amazon.FMS.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = FirewallSubnetMissingVPCEndpointViolationUnmarshaller.Instance;
                     unmarshalledObject.FirewallSubnetMissingVPCEndpointViolation = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("InvalidNetworkAclEntriesViolation", targetDepth))
+                {
+                    var unmarshaller = InvalidNetworkAclEntriesViolationUnmarshaller.Instance;
+                    unmarshalledObject.InvalidNetworkAclEntriesViolation = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("NetworkFirewallBlackHoleRouteDetectedViolation", targetDepth))
@@ -202,8 +210,19 @@ namespace Amazon.FMS.Model.Internal.MarshallTransformations
                     unmarshalledObject.ThirdPartyFirewallMissingSubnetViolation = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("WebACLHasIncompatibleConfigurationViolation", targetDepth))
+                {
+                    var unmarshaller = WebACLHasIncompatibleConfigurationViolationUnmarshaller.Instance;
+                    unmarshalledObject.WebACLHasIncompatibleConfigurationViolation = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("WebACLHasOutOfScopeResourcesViolation", targetDepth))
+                {
+                    var unmarshaller = WebACLHasOutOfScopeResourcesViolationUnmarshaller.Instance;
+                    unmarshalledObject.WebACLHasOutOfScopeResourcesViolation = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

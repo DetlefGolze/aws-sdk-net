@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OSIS.Model
 {
     /// <summary>
-    /// A validation message associated with a <code>ValidatePipeline</code> request in OpenSearch
+    /// A validation message associated with a <c>ValidatePipeline</c> request in OpenSearch
     /// Ingestion.
     /// </summary>
     public partial class ValidationMessage

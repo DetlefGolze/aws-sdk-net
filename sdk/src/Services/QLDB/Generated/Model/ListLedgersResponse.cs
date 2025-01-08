@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QLDB.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.QLDB.Model
     /// </summary>
     public partial class ListLedgersResponse : AmazonWebServiceResponse
     {
-        private List<LedgerSummary> _ledgers = new List<LedgerSummary>();
+        private List<LedgerSummary> _ledgers = AWSConfigs.InitializeCollections ? new List<LedgerSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace Amazon.QLDB.Model
         // Check to see if Ledgers property is set
         internal bool IsSetLedgers()
         {
-            return this._ledgers != null && this._ledgers.Count > 0; 
+            return this._ledgers != null && (this._ledgers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -61,14 +62,14 @@ namespace Amazon.QLDB.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If <code>NextToken</code> is empty, then the last page of results has been processed
-        /// and there are no more results to be retrieved.
+        /// If <c>NextToken</c> is empty, then the last page of results has been processed and
+        /// there are no more results to be retrieved.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If <code>NextToken</code> is <i>not</i> empty, then there are more results available.
-        /// To retrieve the next page of results, use the value of <code>NextToken</code> in a
-        /// subsequent <code>ListLedgers</code> call.
+        /// If <c>NextToken</c> is <i>not</i> empty, then there are more results available. To
+        /// retrieve the next page of results, use the value of <c>NextToken</c> in a subsequent
+        /// <c>ListLedgers</c> call.
         /// </para>
         ///  </li> </ul>
         /// </summary>

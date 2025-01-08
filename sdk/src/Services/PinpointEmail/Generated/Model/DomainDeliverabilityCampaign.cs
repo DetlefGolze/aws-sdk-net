@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointEmail.Model
 {
     /// <summary>
     /// An object that contains the deliverability data for a specific campaign. This data
     /// is available for a campaign only if the campaign sent email by using a domain that
-    /// the Deliverability dashboard is enabled for (<code>PutDeliverabilityDashboardOption</code>
+    /// the Deliverability dashboard is enabled for (<c>PutDeliverabilityDashboardOption</c>
     /// operation).
     /// </summary>
     public partial class DomainDeliverabilityCampaign
     {
         private string _campaignId;
         private double? _deleteRate;
-        private List<string> _esps = new List<string>();
+        private List<string> _esps = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _firstSeenDateTime;
         private string _fromAddress;
         private string _imageUrl;
@@ -47,7 +48,7 @@ namespace Amazon.PinpointEmail.Model
         private long? _projectedVolume;
         private double? _readDeleteRate;
         private double? _readRate;
-        private List<string> _sendingIps = new List<string>();
+        private List<string> _sendingIps = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private long? _spamCount;
         private string _subject;
 
@@ -107,7 +108,7 @@ namespace Amazon.PinpointEmail.Model
         // Check to see if Esps property is set
         internal bool IsSetEsps()
         {
-            return this._esps != null && this._esps.Count > 0; 
+            return this._esps != null && (this._esps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -277,7 +278,7 @@ namespace Amazon.PinpointEmail.Model
         // Check to see if SendingIps property is set
         internal bool IsSetSendingIps()
         {
-            return this._sendingIps != null && this._sendingIps.Count > 0; 
+            return this._sendingIps != null && (this._sendingIps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

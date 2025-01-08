@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
@@ -76,7 +77,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property RuleIdentifier. 
         /// <para>
-        /// The ID or Amazon Resource Name (ARN) of the rule.
+        /// The ID or ARN of the rule.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]

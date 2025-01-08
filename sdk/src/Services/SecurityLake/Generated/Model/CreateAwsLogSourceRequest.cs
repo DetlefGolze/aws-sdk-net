@@ -26,26 +26,28 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityLake.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateAwsLogSource operation.
-    /// Adds a natively supported Amazon Web Service as an Amazon Security Lake source. Enables
-    /// source types for member accounts in required Amazon Web Services Regions, based on
-    /// the parameters you specify. You can choose any source type in any Region for either
-    /// accounts that are part of a trusted organization or standalone accounts. Once you
-    /// add an Amazon Web Service as a source, Security Lake starts collecting logs and events
-    /// from it.
+    /// Adds a natively supported Amazon Web Services service as an Amazon Security Lake source.
+    /// Enables source types for member accounts in required Amazon Web Services Regions,
+    /// based on the parameters you specify. You can choose any source type in any Region
+    /// for either accounts that are part of a trusted organization or standalone accounts.
+    /// Once you add an Amazon Web Services service as a source, Security Lake starts collecting
+    /// logs and events from it.
     /// 
     ///  
     /// <para>
-    /// You can use this API only to enable natively supported Amazon Web Services as a source.
-    /// Use <code>CreateCustomLogSource</code> to enable data collection from a custom source.
+    /// You can use this API only to enable natively supported Amazon Web Services services
+    /// as a source. Use <c>CreateCustomLogSource</c> to enable data collection from a custom
+    /// source.
     /// </para>
     /// </summary>
     public partial class CreateAwsLogSourceRequest : AmazonSecurityLakeRequest
     {
-        private List<AwsLogSourceConfiguration> _sources = new List<AwsLogSourceConfiguration>();
+        private List<AwsLogSourceConfiguration> _sources = AWSConfigs.InitializeCollections ? new List<AwsLogSourceConfiguration>() : null;
 
         /// <summary>
         /// Gets and sets the property Sources. 
@@ -54,7 +56,7 @@ namespace Amazon.SecurityLake.Model
         /// Lake.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=0, Max=50)]
+        [AWSProperty(Required=true, Min=1, Max=50)]
         public List<AwsLogSourceConfiguration> Sources
         {
             get { return this._sources; }
@@ -64,7 +66,7 @@ namespace Amazon.SecurityLake.Model
         // Check to see if Sources property is set
         internal bool IsSetSources()
         {
-            return this._sources != null && this._sources.Count > 0; 
+            return this._sources != null && (this._sources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

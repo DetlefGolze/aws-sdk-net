@@ -26,21 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRunner.Model
 {
     /// <summary>
     /// Describes the basic configuration needed for building and running an App Runner service.
     /// This type doesn't support the full set of possible configuration options. Fur full
-    /// configuration capabilities, use a <code>apprunner.yaml</code> file in the source code
-    /// repository.
+    /// configuration capabilities, use a <c>apprunner.yaml</c> file in the source code repository.
     /// </summary>
     public partial class CodeConfigurationValues
     {
         private string _buildCommand;
         private string _port;
         private Runtime _runtime;
-        private Dictionary<string, string> _runtimeEnvironmentSecrets = new Dictionary<string, string>();
-        private Dictionary<string, string> _runtimeEnvironmentVariables = new Dictionary<string, string>();
+        private Dictionary<string, string> _runtimeEnvironmentSecrets = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private Dictionary<string, string> _runtimeEnvironmentVariables = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _startCommand;
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Amazon.AppRunner.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>8080</code> 
+        /// Default: <c>8080</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=51200)]
@@ -136,7 +136,7 @@ namespace Amazon.AppRunner.Model
         // Check to see if RuntimeEnvironmentSecrets property is set
         internal bool IsSetRuntimeEnvironmentSecrets()
         {
-            return this._runtimeEnvironmentSecrets != null && this._runtimeEnvironmentSecrets.Count > 0; 
+            return this._runtimeEnvironmentSecrets != null && (this._runtimeEnvironmentSecrets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace Amazon.AppRunner.Model
         // Check to see if RuntimeEnvironmentVariables property is set
         internal bool IsSetRuntimeEnvironmentVariables()
         {
-            return this._runtimeEnvironmentVariables != null && this._runtimeEnvironmentVariables.Count > 0; 
+            return this._runtimeEnvironmentVariables != null && (this._runtimeEnvironmentVariables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

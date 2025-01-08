@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QLDBSession.Model
 {
     /// <summary>
@@ -134,7 +135,7 @@ namespace Amazon.QLDBSession.Model
         /// <summary>
         /// Gets and sets the property StartSession. 
         /// <para>
-        /// Contains the details of the started session that includes a session token. This <code>SessionToken</code>
+        /// Contains the details of the started session that includes a session token. This <c>SessionToken</c>
         /// is required for every subsequent command that is issued during the current session.
         /// </para>
         /// </summary>

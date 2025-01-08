@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMediaPipelines.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         /// <summary>
         /// Gets and sets the property ActiveSpeakerOnlyConfiguration. 
         /// <para>
-        /// The configuration settings for an <code>ActiveSpeakerOnly</code> video tile.
+        /// The configuration settings for an <c>ActiveSpeakerOnly</c> video tile.
         /// </para>
         /// </summary>
         public ActiveSpeakerOnlyConfiguration ActiveSpeakerOnlyConfiguration

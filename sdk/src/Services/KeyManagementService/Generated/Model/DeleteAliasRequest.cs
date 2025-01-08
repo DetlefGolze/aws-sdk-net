@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
@@ -91,7 +92,12 @@ namespace Amazon.KeyManagementService.Model
     /// <para>
     ///  <a>UpdateAlias</a> 
     /// </para>
-    ///  </li> </ul>
+    ///  </li> </ul> 
+    /// <para>
+    ///  <b>Eventual consistency</b>: The KMS API follows an eventual consistency model. For
+    /// more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html">KMS
+    /// eventual consistency</a>.
+    /// </para>
     /// </summary>
     public partial class DeleteAliasRequest : AmazonKeyManagementServiceRequest
     {
@@ -100,8 +106,8 @@ namespace Amazon.KeyManagementService.Model
         /// <summary>
         /// Gets and sets the property AliasName. 
         /// <para>
-        /// The alias to be deleted. The alias name must begin with <code>alias/</code> followed
-        /// by the alias name, such as <code>alias/ExampleAlias</code>.
+        /// The alias to be deleted. The alias name must begin with <c>alias/</c> followed by
+        /// the alias name, such as <c>alias/ExampleAlias</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]

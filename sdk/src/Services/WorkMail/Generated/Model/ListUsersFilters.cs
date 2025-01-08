@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkMail.Model
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace Amazon.WorkMail.Model
     public partial class ListUsersFilters
     {
         private string _displayNamePrefix;
+        private string _identityProviderUserIdPrefix;
         private string _primaryEmailPrefix;
         private EntityState _state;
         private string _usernamePrefix;
@@ -55,6 +57,25 @@ namespace Amazon.WorkMail.Model
         internal bool IsSetDisplayNamePrefix()
         {
             return this._displayNamePrefix != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IdentityProviderUserIdPrefix. 
+        /// <para>
+        /// Filters only users with the ID from the IAM Identity Center.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=47)]
+        public string IdentityProviderUserIdPrefix
+        {
+            get { return this._identityProviderUserIdPrefix; }
+            set { this._identityProviderUserIdPrefix = value; }
+        }
+
+        // Check to see if IdentityProviderUserIdPrefix property is set
+        internal bool IsSetIdentityProviderUserIdPrefix()
+        {
+            return this._identityProviderUserIdPrefix != null;
         }
 
         /// <summary>

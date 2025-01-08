@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSMIncidents.Model
 {
     /// <summary>
@@ -40,12 +41,12 @@ namespace Amazon.SSMIncidents.Model
         /// <summary>
         /// Gets and sets the property GeneratedId. 
         /// <para>
-        /// A unique ID for a <code>RelatedItem</code>.
+        /// A unique ID for a <c>RelatedItem</c>.
         /// </para>
         ///  <important> 
         /// <para>
-        /// Don't specify this parameter when you add a <code>RelatedItem</code> by using the
-        /// <a>UpdateRelatedItems</a> API action.
+        /// Don't specify this parameter when you add a <c>RelatedItem</c> by using the <a>UpdateRelatedItems</a>
+        /// API action.
         /// </para>
         ///  </important>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectConnect.Model
 {
     /// <summary>
@@ -36,7 +37,11 @@ namespace Amazon.DirectConnect.Model
         private DirectConnectGateway _directConnectGateway;
 
         /// <summary>
-        /// Gets and sets the property DirectConnectGateway.
+        /// Gets and sets the property DirectConnectGateway. 
+        /// <para>
+        /// Informaiton about a Direct Connect gateway, which enables you to connect virtual interfaces
+        /// and virtual private gateways or transit gateways.
+        /// </para>
         /// </summary>
         public DirectConnectGateway DirectConnectGateway
         {

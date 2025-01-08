@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Detective.Model
 {
     /// <summary>
@@ -33,18 +34,14 @@ namespace Amazon.Detective.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    /// The request would cause the number of member accounts in the behavior graph to exceed
-    /// the maximum allowed. A behavior graph cannot have more than 1200 member accounts.
+    /// This request cannot be completed if it would cause the number of member accounts in
+    /// the behavior graph to exceed the maximum allowed. A behavior graph cannot have more
+    /// than 1,200 member accounts.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// The request would cause the data rate for the behavior graph to exceed the maximum
-    /// allowed.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Detective is unable to verify the data rate for the member account. This is usually
-    /// because the member account is not enrolled in Amazon GuardDuty.
+    /// This request cannot be completed if the current volume ingested is above the limit
+    /// of 10 TB per day. Detective will not allow you to add additional member accounts.
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -53,7 +50,7 @@ namespace Amazon.Detective.Model
     #endif
     public partial class ServiceQuotaExceededException : AmazonDetectiveException
     {
-        private List<string> _resources = new List<string>();
+        private List<string> _resources = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Constructs a new ServiceQuotaExceededException with the specified error
@@ -156,7 +153,7 @@ namespace Amazon.Detective.Model
         // Check to see if Resources property is set
         internal bool IsSetResources()
         {
-            return this._resources != null && this._resources.Count > 0; 
+            return this._resources != null && (this._resources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.QuickSight.Model
         private string _nextToken;
         private string _requestId;
         private int? _status;
-        private List<VPCConnectionSummary> _vpcConnectionSummaries = new List<VPCConnectionSummary>();
+        private List<VPCConnectionSummary> _vpcConnectionSummaries = AWSConfigs.InitializeCollections ? new List<VPCConnectionSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -95,8 +96,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property VPCConnectionSummaries. 
         /// <para>
-        /// A <code>VPCConnectionSummaries</code> object that returns a summary of VPC connection
-        /// objects.
+        /// A <c>VPCConnectionSummaries</c> object that returns a summary of VPC connection objects.
         /// </para>
         /// </summary>
         public List<VPCConnectionSummary> VPCConnectionSummaries
@@ -108,7 +108,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if VPCConnectionSummaries property is set
         internal bool IsSetVPCConnectionSummaries()
         {
-            return this._vpcConnectionSummaries != null && this._vpcConnectionSummaries.Count > 0; 
+            return this._vpcConnectionSummaries != null && (this._vpcConnectionSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

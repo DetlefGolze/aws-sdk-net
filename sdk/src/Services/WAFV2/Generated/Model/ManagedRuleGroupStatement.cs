@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -35,27 +36,27 @@ namespace Amazon.WAFV2.Model
     /// 
     ///  
     /// <para>
-    /// You cannot nest a <code>ManagedRuleGroupStatement</code>, for example for use inside
-    /// a <code>NotStatement</code> or <code>OrStatement</code>. You cannot use a managed
-    /// rule group inside another rule group. You can only reference a managed rule group
-    /// as a top-level statement within a rule that you define in a web ACL.
+    /// You cannot nest a <c>ManagedRuleGroupStatement</c>, for example for use inside a <c>NotStatement</c>
+    /// or <c>OrStatement</c>. You cannot use a managed rule group inside another rule group.
+    /// You can only reference a managed rule group as a top-level statement within a rule
+    /// that you define in a web ACL.
     /// </para>
     ///  <note> 
     /// <para>
     /// You are charged additional fees when you use the WAF Bot Control managed rule group
-    /// <code>AWSManagedRulesBotControlRuleSet</code>, the WAF Fraud Control account takeover
-    /// prevention (ATP) managed rule group <code>AWSManagedRulesATPRuleSet</code>, or the
-    /// WAF Fraud Control account creation fraud prevention (ACFP) managed rule group <code>AWSManagedRulesACFPRuleSet</code>.
+    /// <c>AWSManagedRulesBotControlRuleSet</c>, the WAF Fraud Control account takeover prevention
+    /// (ATP) managed rule group <c>AWSManagedRulesATPRuleSet</c>, or the WAF Fraud Control
+    /// account creation fraud prevention (ACFP) managed rule group <c>AWSManagedRulesACFPRuleSet</c>.
     /// For more information, see <a href="http://aws.amazon.com/waf/pricing/">WAF Pricing</a>.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class ManagedRuleGroupStatement
     {
-        private List<ExcludedRule> _excludedRules = new List<ExcludedRule>();
-        private List<ManagedRuleGroupConfig> _managedRuleGroupConfigs = new List<ManagedRuleGroupConfig>();
+        private List<ExcludedRule> _excludedRules = AWSConfigs.InitializeCollections ? new List<ExcludedRule>() : null;
+        private List<ManagedRuleGroupConfig> _managedRuleGroupConfigs = AWSConfigs.InitializeCollections ? new List<ManagedRuleGroupConfig>() : null;
         private string _name;
-        private List<RuleActionOverride> _ruleActionOverrides = new List<RuleActionOverride>();
+        private List<RuleActionOverride> _ruleActionOverrides = AWSConfigs.InitializeCollections ? new List<RuleActionOverride>() : null;
         private Statement _scopeDownStatement;
         private string _vendorName;
         private string _version;
@@ -63,12 +64,12 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property ExcludedRules. 
         /// <para>
-        /// Rules in the referenced rule group whose actions are set to <code>Count</code>. 
+        /// Rules in the referenced rule group whose actions are set to <c>Count</c>. 
         /// </para>
         ///  <note> 
         /// <para>
-        /// Instead of this option, use <code>RuleActionOverrides</code>. It accepts any valid
-        /// action setting, including <code>Count</code>.
+        /// Instead of this option, use <c>RuleActionOverrides</c>. It accepts any valid action
+        /// setting, including <c>Count</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -82,7 +83,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if ExcludedRules property is set
         internal bool IsSetExcludedRules()
         {
-            return this._excludedRules != null && this._excludedRules.Count > 0; 
+            return this._excludedRules != null && (this._excludedRules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -98,22 +99,21 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Use the <code>AWSManagedRulesACFPRuleSet</code> configuration object to configure
-        /// the account creation fraud prevention managed rule group. The configuration includes
-        /// the registration and sign-up pages of your application and the locations in the account
-        /// creation request payload of data, such as the user email and phone number fields.
-        /// 
+        /// Use the <c>AWSManagedRulesACFPRuleSet</c> configuration object to configure the account
+        /// creation fraud prevention managed rule group. The configuration includes the registration
+        /// and sign-up pages of your application and the locations in the account creation request
+        /// payload of data, such as the user email and phone number fields. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use the <code>AWSManagedRulesATPRuleSet</code> configuration object to configure the
-        /// account takeover prevention managed rule group. The configuration includes the sign-in
-        /// page of your application and the locations in the login request payload of data such
-        /// as the username and password. 
+        /// Use the <c>AWSManagedRulesATPRuleSet</c> configuration object to configure the account
+        /// takeover prevention managed rule group. The configuration includes the sign-in page
+        /// of your application and the locations in the login request payload of data such as
+        /// the username and password. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use the <code>AWSManagedRulesBotControlRuleSet</code> configuration object to configure
+        /// Use the <c>AWSManagedRulesBotControlRuleSet</c> configuration object to configure
         /// the protection level that you want the Bot Control rule group to use. 
         /// </para>
         ///  </li> </ul>
@@ -127,7 +127,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if ManagedRuleGroupConfigs property is set
         internal bool IsSetManagedRuleGroupConfigs()
         {
-            return this._managedRuleGroupConfigs != null && this._managedRuleGroupConfigs.Count > 0; 
+            return this._managedRuleGroupConfigs != null && (this._managedRuleGroupConfigs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -160,12 +160,12 @@ namespace Amazon.WAFV2.Model
         ///  
         /// <para>
         /// You can use overrides for testing, for example you can override all of rule actions
-        /// to <code>Count</code> and then monitor the resulting count metrics to understand how
-        /// the rule group would handle your web traffic. You can also permanently override some
-        /// or all actions, to modify how the rule group manages your web traffic.
+        /// to <c>Count</c> and then monitor the resulting count metrics to understand how the
+        /// rule group would handle your web traffic. You can also permanently override some or
+        /// all actions, to modify how the rule group manages your web traffic.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=100)]
+        [AWSProperty(Max=100)]
         public List<RuleActionOverride> RuleActionOverrides
         {
             get { return this._ruleActionOverrides; }
@@ -175,7 +175,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if RuleActionOverrides property is set
         internal bool IsSetRuleActionOverrides()
         {
-            return this._ruleActionOverrides != null && this._ruleActionOverrides.Count > 0; 
+            return this._ruleActionOverrides != null && (this._ruleActionOverrides.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

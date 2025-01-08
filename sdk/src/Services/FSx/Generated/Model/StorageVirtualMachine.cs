@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.FSx.Model
         private StorageVirtualMachineRootVolumeSecurityStyle _rootVolumeSecurityStyle;
         private string _storageVirtualMachineId;
         private StorageVirtualMachineSubtype _subtype;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _uuid;
 
         /// <summary>
@@ -85,8 +86,8 @@ namespace Amazon.FSx.Model
         /// Gets and sets the property Endpoints. 
         /// <para>
         /// The endpoints that are used to access data or to manage the SVM using the NetApp ONTAP
-        /// CLI, REST API, or NetApp CloudManager. They are the <code>Iscsi</code>, <code>Management</code>,
-        /// <code>Nfs</code>, and <code>Smb</code> endpoints.
+        /// CLI, REST API, or NetApp CloudManager. They are the <c>Iscsi</c>, <c>Management</c>,
+        /// <c>Nfs</c>, and <c>Smb</c> endpoints.
         /// </para>
         /// </summary>
         public SvmEndpoints Endpoints
@@ -124,27 +125,27 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CREATED</code> - The SVM is fully available for use.
+        ///  <c>CREATED</c> - The SVM is fully available for use.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATING</code> - Amazon FSx is creating the new SVM.
+        ///  <c>CREATING</c> - Amazon FSx is creating the new SVM.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETING</code> - Amazon FSx is deleting an existing SVM.
+        ///  <c>DELETING</c> - Amazon FSx is deleting an existing SVM.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> - Amazon FSx was unable to create the SVM.
+        ///  <c>FAILED</c> - Amazon FSx was unable to create the SVM.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MISCONFIGURED</code> - The SVM is in a failed but recoverable state.
+        ///  <c>MISCONFIGURED</c> - The SVM is in a failed but recoverable state.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PENDING</code> - Amazon FSx has not started creating the SVM.
+        ///  <c>PENDING</c> - Amazon FSx has not started creating the SVM.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -281,7 +282,7 @@ namespace Amazon.FSx.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

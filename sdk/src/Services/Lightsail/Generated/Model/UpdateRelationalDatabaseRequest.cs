@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.Lightsail.Model
     /// </para>
     ///  
     /// <para>
-    /// The <code>update relational database</code> operation supports tag-based access control
+    /// The <c>update relational database</c> operation supports tag-based access control
     /// via resource tags applied to the resource identified by relationalDatabaseName. For
     /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
     /// Lightsail Developer Guide</a>.
@@ -55,18 +56,19 @@ namespace Amazon.Lightsail.Model
         private string _preferredBackupWindow;
         private string _preferredMaintenanceWindow;
         private bool? _publiclyAccessible;
+        private string _relationalDatabaseBlueprintId;
         private string _relationalDatabaseName;
         private bool? _rotateMasterUserPassword;
 
         /// <summary>
         /// Gets and sets the property ApplyImmediately. 
         /// <para>
-        /// When <code>true</code>, applies changes immediately. When <code>false</code>, applies
-        /// changes during the preferred maintenance window. Some changes may cause an outage.
+        /// When <c>true</c>, applies changes immediately. When <c>false</c>, applies changes
+        /// during the preferred maintenance window. Some changes may cause an outage.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool ApplyImmediately
@@ -102,13 +104,13 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property DisableBackupRetention. 
         /// <para>
-        /// When <code>true</code>, disables automated backup retention for your database.
+        /// When <c>true</c>, disables automated backup retention for your database.
         /// </para>
         ///  
         /// <para>
         /// Disabling backup retention deletes all automated database backups. Before disabling
-        /// this, you may want to create a snapshot of your database using the <code>create relational
-        /// database snapshot</code> operation.
+        /// this, you may want to create a snapshot of your database using the <c>create relational
+        /// database snapshot</c> operation.
         /// </para>
         ///  
         /// <para>
@@ -131,7 +133,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property EnableBackupRetention. 
         /// <para>
-        /// When <code>true</code>, enables automated backup retention for your database.
+        /// When <c>true</c>, enables automated backup retention for your database.
         /// </para>
         ///  
         /// <para>
@@ -199,11 +201,11 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Must be in the <code>hh24:mi-hh24:mi</code> format.
+        /// Must be in the <c>hh24:mi-hh24:mi</c> format.
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>16:00-16:30</code> 
+        /// Example: <c>16:00-16:30</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -247,7 +249,7 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Must be in the <code>ddd:hh24:mi-ddd:hh24:mi</code> format.
+        /// Must be in the <c>ddd:hh24:mi-ddd:hh24:mi</c> format.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -263,7 +265,7 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Example: <code>Tue:17:00-Tue:17:30</code> 
+        /// Example: <c>Tue:17:00-Tue:17:30</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -282,10 +284,10 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property PubliclyAccessible. 
         /// <para>
-        /// Specifies the accessibility options for your database. A value of <code>true</code>
-        /// specifies a database that is available to resources outside of your Lightsail account.
-        /// A value of <code>false</code> specifies a database that is available only to your
-        /// Lightsail resources in the same region as your database.
+        /// Specifies the accessibility options for your database. A value of <c>true</c> specifies
+        /// a database that is available to resources outside of your Lightsail account. A value
+        /// of <c>false</c> specifies a database that is available only to your Lightsail resources
+        /// in the same region as your database.
         /// </para>
         /// </summary>
         public bool PubliclyAccessible
@@ -298,6 +300,30 @@ namespace Amazon.Lightsail.Model
         internal bool IsSetPubliclyAccessible()
         {
             return this._publiclyAccessible.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property RelationalDatabaseBlueprintId. 
+        /// <para>
+        /// This parameter is used to update the major version of the database. Enter the <c>blueprintId</c>
+        /// for the major version that you want to update to.
+        /// </para>
+        ///  
+        /// <para>
+        /// Use the <a href="https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetRelationalDatabaseBlueprints.html">GetRelationalDatabaseBlueprints</a>
+        /// action to get a list of available blueprint IDs.
+        /// </para>
+        /// </summary>
+        public string RelationalDatabaseBlueprintId
+        {
+            get { return this._relationalDatabaseBlueprintId; }
+            set { this._relationalDatabaseBlueprintId = value; }
+        }
+
+        // Check to see if RelationalDatabaseBlueprintId property is set
+        internal bool IsSetRelationalDatabaseBlueprintId()
+        {
+            return this._relationalDatabaseBlueprintId != null;
         }
 
         /// <summary>
@@ -322,13 +348,13 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property RotateMasterUserPassword. 
         /// <para>
-        /// When <code>true</code>, the master user password is changed to a new strong password
-        /// generated by Lightsail.
+        /// When <c>true</c>, the master user password is changed to a new strong password generated
+        /// by Lightsail.
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>get relational database master user password</code> operation to get
-        /// the new password.
+        /// Use the <c>get relational database master user password</c> operation to get the new
+        /// password.
         /// </para>
         /// </summary>
         public bool RotateMasterUserPassword

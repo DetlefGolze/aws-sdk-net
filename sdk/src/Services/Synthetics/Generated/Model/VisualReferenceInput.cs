@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Synthetics.Model
 {
     /// <summary>
@@ -44,17 +45,19 @@ namespace Amazon.Synthetics.Model
     public partial class VisualReferenceInput
     {
         private string _baseCanaryRunId;
-        private List<BaseScreenshot> _baseScreenshots = new List<BaseScreenshot>();
+        private List<BaseScreenshot> _baseScreenshots = AWSConfigs.InitializeCollections ? new List<BaseScreenshot>() : null;
 
         /// <summary>
         /// Gets and sets the property BaseCanaryRunId. 
         /// <para>
         /// Specifies which canary run to use the screenshots from as the baseline for future
-        /// visual monitoring with this canary. Valid values are <code>nextrun</code> to use the
-        /// screenshots from the next run after this update is made, <code>lastrun</code> to use
-        /// the screenshots from the most recent run before this update was made, or the value
-        /// of <code>Id</code> in the <a href="https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_CanaryRun.html">
-        /// CanaryRun</a> from any past run of this canary.
+        /// visual monitoring with this canary. Valid values are <c>nextrun</c> to use the screenshots
+        /// from the next run after this update is made, <c>lastrun</c> to use the screenshots
+        /// from the most recent run before this update was made, or the value of <c>Id</c> in
+        /// the <a href="https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_CanaryRun.html">
+        /// CanaryRun</a> from a run of this a canary in the past 31 days. If you specify the
+        /// <c>Id</c> of a canary run older than 31 days, the operation returns a 400 validation
+        /// exception error..
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1024)]
@@ -87,7 +90,7 @@ namespace Amazon.Synthetics.Model
         // Check to see if BaseScreenshots property is set
         internal bool IsSetBaseScreenshots()
         {
-            return this._baseScreenshots != null && this._baseScreenshots.Count > 0; 
+            return this._baseScreenshots != null && (this._baseScreenshots.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

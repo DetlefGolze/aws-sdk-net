@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MTurk.Model
 {
     /// <summary>
     /// Container for the parameters to the ListQualificationRequests operation.
-    /// The <code>ListQualificationRequests</code> operation retrieves requests for Qualifications
+    /// The <c>ListQualificationRequests</c> operation retrieves requests for Qualifications
     /// of a particular Qualification type. The owner of the Qualification type calls this
     /// operation to poll for pending requests, and accepts them using the AcceptQualification
     /// operation.

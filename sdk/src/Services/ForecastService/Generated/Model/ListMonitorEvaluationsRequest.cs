@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.ForecastService.Model
     /// </summary>
     public partial class ListMonitorEvaluationsRequest : AmazonForecastServiceRequest
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _monitorArn;
         private string _nextToken;
@@ -51,9 +52,9 @@ namespace Amazon.ForecastService.Model
         /// Gets and sets the property Filters. 
         /// <para>
         /// An array of filters. For each filter, provide a condition and a match statement. The
-        /// condition is either <code>IS</code> or <code>IS_NOT</code>, which specifies whether
-        /// to include or exclude the resources that match the statement from the list. The match
-        /// statement consists of a key and a value.
+        /// condition is either <c>IS</c> or <c>IS_NOT</c>, which specifies whether to include
+        /// or exclude the resources that match the statement from the list. The match statement
+        /// consists of a key and a value.
         /// </para>
         ///  
         /// <para>
@@ -61,18 +62,15 @@ namespace Amazon.ForecastService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Condition</code> - The condition to apply. Valid values are <code>IS</code>
-        /// and <code>IS_NOT</code>.
+        ///  <c>Condition</c> - The condition to apply. Valid values are <c>IS</c> and <c>IS_NOT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Key</code> - The name of the parameter to filter on. The only valid value is
-        /// <code>EvaluationState</code>.
+        ///  <c>Key</c> - The name of the parameter to filter on. The only valid value is <c>EvaluationState</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Value</code> - The value to match. Valid values are only <code>SUCCESS</code>
-        /// or <code>FAILURE</code>.
+        ///  <c>Value</c> - The value to match. Valid values are only <c>SUCCESS</c> or <c>FAILURE</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -80,8 +78,8 @@ namespace Amazon.ForecastService.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"Filters": [ { "Condition": "IS", "Key": "EvaluationState", "Value": "SUCCESS"
-        /// } ]</code> 
+        ///  <c>"Filters": [ { "Condition": "IS", "Key": "EvaluationState", "Value": "SUCCESS"
+        /// } ]</c> 
         /// </para>
         /// </summary>
         public List<Filter> Filters
@@ -93,7 +91,7 @@ namespace Amazon.ForecastService.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -137,7 +135,7 @@ namespace Amazon.ForecastService.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the result of the previous request was truncated, the response includes a <code>NextToken</code>.
+        /// If the result of the previous request was truncated, the response includes a <c>NextToken</c>.
         /// To retrieve the next set of results, use the token in the next request. Tokens expire
         /// after 24 hours.
         /// </para>

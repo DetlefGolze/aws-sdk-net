@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRunner.Model
 {
     /// <summary>
@@ -33,18 +34,17 @@ namespace Amazon.AppRunner.Model
     /// </summary>
     public partial class DescribeCustomDomainsResponse : AmazonWebServiceResponse
     {
-        private List<CustomDomain> _customDomains = new List<CustomDomain>();
+        private List<CustomDomain> _customDomains = AWSConfigs.InitializeCollections ? new List<CustomDomain>() : null;
         private string _dnsTarget;
         private string _nextToken;
         private string _serviceArn;
-        private List<VpcDNSTarget> _vpcDNSTargets = new List<VpcDNSTarget>();
+        private List<VpcDNSTarget> _vpcDNSTargets = AWSConfigs.InitializeCollections ? new List<VpcDNSTarget>() : null;
 
         /// <summary>
         /// Gets and sets the property CustomDomains. 
         /// <para>
         /// A list of descriptions of custom domain names that are associated with the service.
-        /// In a paginated request, the request returns up to <code>MaxResults</code> records
-        /// per call.
+        /// In a paginated request, the request returns up to <c>MaxResults</c> records per call.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -57,7 +57,7 @@ namespace Amazon.AppRunner.Model
         // Check to see if CustomDomains property is set
         internal bool IsSetCustomDomains()
         {
-            return this._customDomains != null && this._customDomains.Count > 0; 
+            return this._customDomains != null && (this._customDomains.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace Amazon.AppRunner.Model
         // Check to see if VpcDNSTargets property is set
         internal bool IsSetVpcDNSTargets()
         {
-            return this._vpcDNSTargets != null && this._vpcDNSTargets.Count > 0; 
+            return this._vpcDNSTargets != null && (this._vpcDNSTargets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

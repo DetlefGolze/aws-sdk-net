@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.DirectoryService.Model
         private DateTime? _lastRequestedDateTime;
         private DateTime? _lastUpdatedDateTime;
         private string _name;
-        private Dictionary<string, string> _requestDetailedStatus = new Dictionary<string, string>();
+        private Dictionary<string, string> _requestDetailedStatus = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _requestedValue;
         private DirectoryConfigurationStatus _requestStatus;
         private string _requestStatusMessage;
@@ -48,7 +49,7 @@ namespace Amazon.DirectoryService.Model
         /// <summary>
         /// Gets and sets the property AllowedValues. 
         /// <para>
-        /// The valid range of values for the directory setting. These values depend on the <code>DataType</code>
+        /// The valid range of values for the directory setting. These values depend on the <c>DataType</c>
         /// of your directory.
         /// </para>
         /// </summary>
@@ -86,9 +87,9 @@ namespace Amazon.DirectoryService.Model
         /// <summary>
         /// Gets and sets the property DataType. 
         /// <para>
-        /// The data type of a directory setting. This is used to define the <code>AllowedValues</code>
-        /// of a setting. For example a data type can be <code>Boolean</code>, <code>DurationInSeconds</code>,
-        /// or <code>Enum</code>.
+        /// The data type of a directory setting. This is used to define the <c>AllowedValues</c>
+        /// of a setting. For example a data type can be <c>Boolean</c>, <c>DurationInSeconds</c>,
+        /// or <c>Enum</c>.
         /// </para>
         /// </summary>
         public string DataType
@@ -146,7 +147,7 @@ namespace Amazon.DirectoryService.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>TLS_1_0</code> 
+        ///  <c>TLS_1_0</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -179,7 +180,7 @@ namespace Amazon.DirectoryService.Model
         // Check to see if RequestDetailedStatus property is set
         internal bool IsSetRequestDetailedStatus()
         {
-            return this._requestDetailedStatus != null && this._requestDetailedStatus.Count > 0; 
+            return this._requestDetailedStatus != null && (this._requestDetailedStatus.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -206,7 +207,7 @@ namespace Amazon.DirectoryService.Model
         /// <para>
         /// The overall status of the request to update the directory setting request. If the
         /// directory setting is deployed in more than one region, and the request fails in any
-        /// region, the overall status is <code>Failed</code>.
+        /// region, the overall status is <c>Failed</c>.
         /// </para>
         /// </summary>
         public DirectoryConfigurationStatus RequestStatus
@@ -243,8 +244,7 @@ namespace Amazon.DirectoryService.Model
         /// Gets and sets the property Type. 
         /// <para>
         /// The type, or category, of a directory setting. Similar settings have the same type.
-        /// For example, <code>Protocol</code>, <code>Cipher</code>, or <code>Certificate-Based
-        /// Authentication</code>.
+        /// For example, <c>Protocol</c>, <c>Cipher</c>, or <c>Certificate-Based Authentication</c>.
         /// </para>
         /// </summary>
         public string Type

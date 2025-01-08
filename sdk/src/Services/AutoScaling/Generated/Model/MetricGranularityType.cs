@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property Granularity. 
         /// <para>
-        /// The granularity. The only valid value is <code>1Minute</code>.
+        /// The granularity. The only valid value is <c>1Minute</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]

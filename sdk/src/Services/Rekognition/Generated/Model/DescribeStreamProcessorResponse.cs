@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.Rekognition.Model
         private string _name;
         private StreamProcessorNotificationChannel _notificationChannel;
         private StreamProcessorOutput _output;
-        private List<RegionOfInterest> _regionsOfInterest = new List<RegionOfInterest>();
+        private List<RegionOfInterest> _regionsOfInterest = AWSConfigs.InitializeCollections ? new List<RegionOfInterest>() : null;
         private string _roleArn;
         private StreamProcessorSettings _settings;
         private StreamProcessorStatus _status;
@@ -214,7 +215,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if RegionsOfInterest property is set
         internal bool IsSetRegionsOfInterest()
         {
-            return this._regionsOfInterest != null && this._regionsOfInterest.Count > 0; 
+            return this._regionsOfInterest != null && (this._regionsOfInterest.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -239,8 +240,8 @@ namespace Amazon.Rekognition.Model
         /// Gets and sets the property Settings. 
         /// <para>
         /// Input parameters used in a streaming video analyzed by a stream processor. You can
-        /// use <code>FaceSearch</code> to recognize faces in a streaming video, or you can use
-        /// <code>ConnectedHome</code> to detect labels.
+        /// use <c>FaceSearch</c> to recognize faces in a streaming video, or you can use <c>ConnectedHome</c>
+        /// to detect labels.
         /// </para>
         /// </summary>
         public StreamProcessorSettings Settings

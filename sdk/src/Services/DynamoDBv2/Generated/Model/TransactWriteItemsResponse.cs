@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.DynamoDBv2.Model
     /// </summary>
     public partial class TransactWriteItemsResponse : AmazonWebServiceResponse
     {
-        private List<ConsumedCapacity> _consumedCapacity = new List<ConsumedCapacity>();
-        private Dictionary<string, List<ItemCollectionMetrics>> _itemCollectionMetrics = new Dictionary<string, List<ItemCollectionMetrics>>();
+        private List<ConsumedCapacity> _consumedCapacity = AWSConfigs.InitializeCollections ? new List<ConsumedCapacity>() : null;
+        private Dictionary<string, List<ItemCollectionMetrics>> _itemCollectionMetrics = AWSConfigs.InitializeCollections ? new Dictionary<string, List<ItemCollectionMetrics>>() : null;
 
         /// <summary>
         /// Gets and sets the property ConsumedCapacity. 
         /// <para>
-        /// The capacity units consumed by the entire <code>TransactWriteItems</code> operation.
-        /// The values of the list are ordered according to the ordering of the <code>TransactItems</code>
+        /// The capacity units consumed by the entire <c>TransactWriteItems</c> operation. The
+        /// values of the list are ordered according to the ordering of the <c>TransactItems</c>
         /// request parameter. 
         /// </para>
         /// </summary>
@@ -53,15 +54,15 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if ConsumedCapacity property is set
         internal bool IsSetConsumedCapacity()
         {
-            return this._consumedCapacity != null && this._consumedCapacity.Count > 0; 
+            return this._consumedCapacity != null && (this._consumedCapacity.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ItemCollectionMetrics. 
         /// <para>
-        /// A list of tables that were processed by <code>TransactWriteItems</code> and, for each
-        /// table, information about any item collections that were affected by individual <code>UpdateItem</code>,
-        /// <code>PutItem</code>, or <code>DeleteItem</code> operations. 
+        /// A list of tables that were processed by <c>TransactWriteItems</c> and, for each table,
+        /// information about any item collections that were affected by individual <c>UpdateItem</c>,
+        /// <c>PutItem</c>, or <c>DeleteItem</c> operations. 
         /// </para>
         /// </summary>
         public Dictionary<string, List<ItemCollectionMetrics>> ItemCollectionMetrics
@@ -73,7 +74,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if ItemCollectionMetrics property is set
         internal bool IsSetItemCollectionMetrics()
         {
-            return this._itemCollectionMetrics != null && this._itemCollectionMetrics.Count > 0; 
+            return this._itemCollectionMetrics != null && (this._itemCollectionMetrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

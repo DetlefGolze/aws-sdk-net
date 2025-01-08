@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
-    /// Represents the output of a <code>DescribeReplicationGroups</code> operation.
+    /// Represents the output of a <c>DescribeReplicationGroups</c> operation.
     /// </summary>
     public partial class DescribeReplicationGroupsResponse : AmazonWebServiceResponse
     {
         private string _marker;
-        private List<ReplicationGroup> _replicationGroups = new List<ReplicationGroup>();
+        private List<ReplicationGroup> _replicationGroups = AWSConfigs.InitializeCollections ? new List<ReplicationGroup>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
@@ -70,7 +71,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if ReplicationGroups property is set
         internal bool IsSetReplicationGroups()
         {
-            return this._replicationGroups != null && this._replicationGroups.Count > 0; 
+            return this._replicationGroups != null && (this._replicationGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

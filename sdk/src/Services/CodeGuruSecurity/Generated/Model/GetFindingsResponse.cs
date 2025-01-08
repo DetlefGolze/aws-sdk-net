@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruSecurity.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.CodeGuruSecurity.Model
     /// </summary>
     public partial class GetFindingsResponse : AmazonWebServiceResponse
     {
-        private List<Finding> _findings = new List<Finding>();
+        private List<Finding> _findings = AWSConfigs.InitializeCollections ? new List<Finding>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.CodeGuruSecurity.Model
         // Check to see if Findings property is set
         internal bool IsSetFindings()
         {
-            return this._findings != null && this._findings.Count > 0; 
+            return this._findings != null && (this._findings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A pagination token. You can use this in future calls to <code>GetFindings</code> to
-        /// continue listing results after the current page. 
+        /// A pagination token. You can use this in future calls to <c>GetFindings</c> to continue
+        /// listing results after the current page. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

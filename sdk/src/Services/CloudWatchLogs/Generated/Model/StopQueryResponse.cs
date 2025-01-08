@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.CloudWatchLogs.Model
         /// <summary>
         /// Gets and sets the property Success. 
         /// <para>
-        /// This is true if the query was stopped by the <code>StopQuery</code> operation.
+        /// This is true if the query was stopped by the <c>StopQuery</c> operation.
         /// </para>
         /// </summary>
         public bool Success

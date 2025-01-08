@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAdditionalInferenceSpecificationsToAdd())
@@ -87,6 +89,12 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("ApprovalDescription");
                     context.Writer.Write(publicRequest.ApprovalDescription);
+                }
+
+                if(publicRequest.IsSetClientToken())
+                {
+                    context.Writer.WritePropertyName("ClientToken");
+                    context.Writer.Write(publicRequest.ClientToken);
                 }
 
                 if(publicRequest.IsSetCustomerMetadataProperties())
@@ -114,16 +122,55 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     context.Writer.WriteArrayEnd();
                 }
 
+                if(publicRequest.IsSetInferenceSpecification())
+                {
+                    context.Writer.WritePropertyName("InferenceSpecification");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = InferenceSpecificationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.InferenceSpecification, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetModelApprovalStatus())
                 {
                     context.Writer.WritePropertyName("ModelApprovalStatus");
                     context.Writer.Write(publicRequest.ModelApprovalStatus);
                 }
 
+                if(publicRequest.IsSetModelCard())
+                {
+                    context.Writer.WritePropertyName("ModelCard");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ModelPackageModelCardMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.ModelCard, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetModelLifeCycle())
+                {
+                    context.Writer.WritePropertyName("ModelLifeCycle");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ModelLifeCycleMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.ModelLifeCycle, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetModelPackageArn())
                 {
                     context.Writer.WritePropertyName("ModelPackageArn");
                     context.Writer.Write(publicRequest.ModelPackageArn);
+                }
+
+                if(publicRequest.IsSetSourceUri())
+                {
+                    context.Writer.WritePropertyName("SourceUri");
+                    context.Writer.Write(publicRequest.SourceUri);
                 }
 
                 writer.WriteObjectEnd();

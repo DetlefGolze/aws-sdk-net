@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSOAdmin.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.SSOAdmin.Model
     {
         private string _instanceArn;
         private string _resourceArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property InstanceArn. 
@@ -47,7 +48,7 @@ namespace Amazon.SSOAdmin.Model
         /// Web Services General Reference</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=10, Max=1224)]
+        [AWSProperty(Min=10, Max=1224)]
         public string InstanceArn
         {
             get { return this._instanceArn; }
@@ -85,7 +86,7 @@ namespace Amazon.SSOAdmin.Model
         /// A set of key-value pairs that are used to manage the resource.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=0, Max=50)]
+        [AWSProperty(Required=true, Min=0, Max=75)]
         public List<Tag> Tags
         {
             get { return this._tags; }
@@ -95,7 +96,7 @@ namespace Amazon.SSOAdmin.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

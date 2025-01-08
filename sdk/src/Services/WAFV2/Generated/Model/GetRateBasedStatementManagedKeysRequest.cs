@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -90,7 +91,7 @@ namespace Amazon.WAFV2.Model
         /// <para>
         /// The name of the rate-based rule to get the keys for. If you have the rule defined
         /// inside a rule group that you're using in your web ACL, also provide the name of the
-        /// rule group reference statement in the request parameter <code>RuleGroupRuleName</code>.
+        /// rule group reference statement in the request parameter <c>RuleGroupRuleName</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=128)]
@@ -121,8 +122,8 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// CLI - Specify the Region when you use the CloudFront scope: <code>--scope=CLOUDFRONT
-        /// --region=us-east-1</code>. 
+        /// CLI - Specify the Region when you use the CloudFront scope: <c>--scope=CLOUDFRONT
+        /// --region=us-east-1</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityLake.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.SecurityLake.Model
     /// </summary>
     public partial class ListDataLakeExceptionsResponse : AmazonWebServiceResponse
     {
-        private List<DataLakeException> _exceptions = new List<DataLakeException>();
+        private List<DataLakeException> _exceptions = AWSConfigs.InitializeCollections ? new List<DataLakeException>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Exceptions. 
         /// <para>
-        /// Lists the failures that cannot be retried in the current Region.
+        /// Lists the failures that cannot be retried.
         /// </para>
         /// </summary>
         public List<DataLakeException> Exceptions
@@ -51,13 +52,13 @@ namespace Amazon.SecurityLake.Model
         // Check to see if Exceptions property is set
         internal bool IsSetExceptions()
         {
-            return this._exceptions != null && this._exceptions.Count > 0; 
+            return this._exceptions != null && (this._exceptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// List if there are more results available. The value of nextToken is a unique pagination
+        /// Lists if there are more results available. The value of nextToken is a unique pagination
         /// token for each page. Repeat the call using the returned token to retrieve the next
         /// page. Keep all other arguments unchanged.
         /// </para>

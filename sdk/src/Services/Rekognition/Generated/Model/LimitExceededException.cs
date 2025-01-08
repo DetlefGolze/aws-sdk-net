@@ -26,14 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-    /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-    /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-    /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-    /// service limit.
+    /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+    /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+    /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

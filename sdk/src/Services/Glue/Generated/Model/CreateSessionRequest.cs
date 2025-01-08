@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Glue.Model
     {
         private SessionCommand _command;
         private ConnectionsList _connections;
-        private Dictionary<string, string> _defaultArguments = new Dictionary<string, string>();
+        private Dictionary<string, string> _defaultArguments = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _description;
         private string _glueVersion;
         private string _id;
@@ -46,14 +47,14 @@ namespace Amazon.Glue.Model
         private string _requestOrigin;
         private string _role;
         private string _securityConfiguration;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private int? _timeout;
         private WorkerType _workerType;
 
         /// <summary>
         /// Gets and sets the property Command. 
         /// <para>
-        /// The <code>SessionCommand</code> that runs the job. 
+        /// The <c>SessionCommand</c> that runs the job. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -103,7 +104,7 @@ namespace Amazon.Glue.Model
         // Check to see if DefaultArguments property is set
         internal bool IsSetDefaultArguments()
         {
-            return this._defaultArguments != null && this._defaultArguments.Count > 0; 
+            return this._defaultArguments != null && (this._defaultArguments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -207,8 +208,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property NumberOfWorkers. 
         /// <para>
-        /// The number of workers of a defined <code>WorkerType</code> to use for the session.
-        /// 
+        /// The number of workers of a defined <c>WorkerType</c> to use for the session. 
         /// </para>
         /// </summary>
         public int NumberOfWorkers
@@ -296,7 +296,7 @@ namespace Amazon.Glue.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -328,43 +328,42 @@ namespace Amazon.Glue.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For the <code>G.1X</code> worker type, each worker maps to 1 DPU (4 vCPUs, 16 GB of
-        /// memory) with 84GB disk (approximately 34GB free), and provides 1 executor per worker.
-        /// We recommend this worker type for workloads such as data transforms, joins, and queries,
-        /// to offers a scalable and cost effective way to run most jobs.
+        /// For the <c>G.1X</c> worker type, each worker maps to 1 DPU (4 vCPUs, 16 GB of memory)
+        /// with 94GB disk, and provides 1 executor per worker. We recommend this worker type
+        /// for workloads such as data transforms, joins, and queries, to offers a scalable and
+        /// cost effective way to run most jobs.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For the <code>G.2X</code> worker type, each worker maps to 2 DPU (8 vCPUs, 32 GB of
-        /// memory) with 128GB disk (approximately 77GB free), and provides 1 executor per worker.
-        /// We recommend this worker type for workloads such as data transforms, joins, and queries,
-        /// to offers a scalable and cost effective way to run most jobs.
+        /// For the <c>G.2X</c> worker type, each worker maps to 2 DPU (8 vCPUs, 32 GB of memory)
+        /// with 138GB disk, and provides 1 executor per worker. We recommend this worker type
+        /// for workloads such as data transforms, joins, and queries, to offers a scalable and
+        /// cost effective way to run most jobs.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For the <code>G.4X</code> worker type, each worker maps to 4 DPU (16 vCPUs, 64 GB
-        /// of memory) with 256GB disk (approximately 235GB free), and provides 1 executor per
-        /// worker. We recommend this worker type for jobs whose workloads contain your most demanding
-        /// transforms, aggregations, joins, and queries. This worker type is available only for
-        /// Glue version 3.0 or later Spark ETL jobs in the following Amazon Web Services Regions:
-        /// US East (Ohio), US East (N. Virginia), US West (Oregon), Asia Pacific (Singapore),
-        /// Asia Pacific (Sydney), Asia Pacific (Tokyo), Canada (Central), Europe (Frankfurt),
-        /// Europe (Ireland), and Europe (Stockholm).
+        /// For the <c>G.4X</c> worker type, each worker maps to 4 DPU (16 vCPUs, 64 GB of memory)
+        /// with 256GB disk, and provides 1 executor per worker. We recommend this worker type
+        /// for jobs whose workloads contain your most demanding transforms, aggregations, joins,
+        /// and queries. This worker type is available only for Glue version 3.0 or later Spark
+        /// ETL jobs in the following Amazon Web Services Regions: US East (Ohio), US East (N.
+        /// Virginia), US West (Oregon), Asia Pacific (Singapore), Asia Pacific (Sydney), Asia
+        /// Pacific (Tokyo), Canada (Central), Europe (Frankfurt), Europe (Ireland), and Europe
+        /// (Stockholm).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For the <code>G.8X</code> worker type, each worker maps to 8 DPU (32 vCPUs, 128 GB
-        /// of memory) with 512GB disk (approximately 487GB free), and provides 1 executor per
-        /// worker. We recommend this worker type for jobs whose workloads contain your most demanding
-        /// transforms, aggregations, joins, and queries. This worker type is available only for
-        /// Glue version 3.0 or later Spark ETL jobs, in the same Amazon Web Services Regions
-        /// as supported for the <code>G.4X</code> worker type.
+        /// For the <c>G.8X</c> worker type, each worker maps to 8 DPU (32 vCPUs, 128 GB of memory)
+        /// with 512GB disk, and provides 1 executor per worker. We recommend this worker type
+        /// for jobs whose workloads contain your most demanding transforms, aggregations, joins,
+        /// and queries. This worker type is available only for Glue version 3.0 or later Spark
+        /// ETL jobs, in the same Amazon Web Services Regions as supported for the <c>G.4X</c>
+        /// worker type.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For the <code>Z.2X</code> worker type, each worker maps to 2 M-DPU (8vCPUs, 64 GB
-        /// of memory) with 128 GB disk (approximately 120GB free), and provides up to 8 Ray workers
-        /// based on the autoscaler.
+        /// For the <c>Z.2X</c> worker type, each worker maps to 2 M-DPU (8vCPUs, 64 GB of memory)
+        /// with 128 GB disk, and provides up to 8 Ray workers based on the autoscaler.
         /// </para>
         ///  </li> </ul>
         /// </summary>

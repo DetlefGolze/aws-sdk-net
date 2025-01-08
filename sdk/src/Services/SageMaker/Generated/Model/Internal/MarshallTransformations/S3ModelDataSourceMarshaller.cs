@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,10 +46,52 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(S3ModelDataSource requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCompressionType())
             {
                 context.Writer.WritePropertyName("CompressionType");
                 context.Writer.Write(requestObject.CompressionType);
+            }
+
+            if(requestObject.IsSetETag())
+            {
+                context.Writer.WritePropertyName("ETag");
+                context.Writer.Write(requestObject.ETag);
+            }
+
+            if(requestObject.IsSetHubAccessConfig())
+            {
+                context.Writer.WritePropertyName("HubAccessConfig");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = InferenceHubAccessConfigMarshaller.Instance;
+                marshaller.Marshall(requestObject.HubAccessConfig, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetManifestEtag())
+            {
+                context.Writer.WritePropertyName("ManifestEtag");
+                context.Writer.Write(requestObject.ManifestEtag);
+            }
+
+            if(requestObject.IsSetManifestS3Uri())
+            {
+                context.Writer.WritePropertyName("ManifestS3Uri");
+                context.Writer.Write(requestObject.ManifestS3Uri);
+            }
+
+            if(requestObject.IsSetModelAccessConfig())
+            {
+                context.Writer.WritePropertyName("ModelAccessConfig");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = ModelAccessConfigMarshaller.Instance;
+                marshaller.Marshall(requestObject.ModelAccessConfig, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetS3DataType())

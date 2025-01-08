@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
-    /// Status information returned by the <code>DeleteInventory</code> operation.
+    /// Status information returned by the <c>DeleteInventory</c> operation.
     /// </summary>
     public partial class InventoryDeletionStatusItem
     {
@@ -44,7 +45,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property DeletionId. 
         /// <para>
-        /// The deletion ID returned by the <code>DeleteInventory</code> operation.
+        /// The deletion ID returned by the <c>DeleteInventory</c> operation.
         /// </para>
         /// </summary>
         public string DeletionId
@@ -81,7 +82,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property DeletionSummary. 
         /// <para>
         /// Information about the delete operation. For more information about this summary, see
-        /// <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-inventory-custom.html#sysman-inventory-delete">Understanding
+        /// <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/inventory-custom.html#delete-custom-inventory">Understanding
         /// the delete inventory summary</a> in the <i>Amazon Web Services Systems Manager User
         /// Guide</i>.
         /// </para>

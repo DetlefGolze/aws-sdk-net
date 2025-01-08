@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// A <code>NumericEqualityFilter</code> filters values that are equal to the specified
-    /// value.
+    /// A <c>NumericEqualityFilter</c> filters values that are equal to the specified value.
     /// </summary>
     public partial class NumericEqualityFilter
     {
         private AggregationFunction _aggregationFunction;
         private ColumnIdentifier _column;
+        private DefaultFilterControlConfiguration _defaultFilterControlConfiguration;
         private string _filterId;
         private NumericEqualityMatchOperator _matchOperator;
         private FilterNullOption _nullOption;
@@ -78,6 +79,25 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetColumn()
         {
             return this._column != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DefaultFilterControlConfiguration. 
+        /// <para>
+        /// The default configurations for the associated controls. This applies only for filters
+        /// that are scoped to multiple sheets.
+        /// </para>
+        /// </summary>
+        public DefaultFilterControlConfiguration DefaultFilterControlConfiguration
+        {
+            get { return this._defaultFilterControlConfiguration; }
+            set { this._defaultFilterControlConfiguration = value; }
+        }
+
+        // Check to see if DefaultFilterControlConfiguration property is set
+        internal bool IsSetDefaultFilterControlConfiguration()
+        {
+            return this._defaultFilterControlConfiguration != null;
         }
 
         /// <summary>
@@ -125,15 +145,15 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ALL_VALUES</code>: Include null values in filtered results.
+        ///  <c>ALL_VALUES</c>: Include null values in filtered results.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NULLS_ONLY</code>: Only include null values in filtered results.
+        ///  <c>NULLS_ONLY</c>: Only include null values in filtered results.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NON_NULLS_ONLY</code>: Exclude null values from filtered results.
+        ///  <c>NON_NULLS_ONLY</c>: Exclude null values from filtered results.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -176,7 +196,7 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>FILTER_ALL_VALUES</code> 
+        ///  <c>FILTER_ALL_VALUES</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

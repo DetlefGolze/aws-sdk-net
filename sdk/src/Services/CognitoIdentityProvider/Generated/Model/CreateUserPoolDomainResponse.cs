@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -34,12 +35,15 @@ namespace Amazon.CognitoIdentityProvider.Model
     public partial class CreateUserPoolDomainResponse : AmazonWebServiceResponse
     {
         private string _cloudFrontDomain;
+        private int? _managedLoginVersion;
 
         /// <summary>
         /// Gets and sets the property CloudFrontDomain. 
         /// <para>
         /// The Amazon CloudFront endpoint that you use as the target of the alias that you set
-        /// up with your Domain Name Service (DNS) provider.
+        /// up with your Domain Name Service (DNS) provider. Amazon Cognito returns this value
+        /// if you set a custom domain with <c>CustomDomainConfig</c>. If you set an Amazon Cognito
+        /// prefix domain, this operation returns a blank response.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=63)]
@@ -53,6 +57,25 @@ namespace Amazon.CognitoIdentityProvider.Model
         internal bool IsSetCloudFrontDomain()
         {
             return this._cloudFrontDomain != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ManagedLoginVersion. 
+        /// <para>
+        /// The version of managed login branding applied your domain. A value of <c>1</c> indicates
+        /// hosted UI (classic) and a version of <c>2</c> indicates managed login.
+        /// </para>
+        /// </summary>
+        public int ManagedLoginVersion
+        {
+            get { return this._managedLoginVersion.GetValueOrDefault(); }
+            set { this._managedLoginVersion = value; }
+        }
+
+        // Check to see if ManagedLoginVersion property is set
+        internal bool IsSetManagedLoginVersion()
+        {
+            return this._managedLoginVersion.HasValue; 
         }
 
     }

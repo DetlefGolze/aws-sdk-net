@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTEvents.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeDetectorModel operation.
-    /// Describes a detector model. If the <code>version</code> parameter is not specified,
-    /// information about the latest version is returned.
+    /// Describes a detector model. If the <c>version</c> parameter is not specified, information
+    /// about the latest version is returned.
     /// </summary>
     public partial class DescribeDetectorModelRequest : AmazonIoTEventsRequest
     {

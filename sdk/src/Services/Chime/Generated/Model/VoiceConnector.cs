@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.Chime.Model
         /// <summary>
         /// Gets and sets the property AwsRegion. 
         /// <para>
-        ///  The AWS Region in which the Amazon Chime Voice Connector is created. Default: <code>us-east-1</code>.
+        ///  The AWS Region in which the Amazon Chime Voice Connector is created. Default: <c>us-east-1</c>.
         /// 
         /// </para>
         /// </summary>

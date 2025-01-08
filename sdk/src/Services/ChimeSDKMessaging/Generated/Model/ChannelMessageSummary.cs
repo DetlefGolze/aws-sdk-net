@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMessaging.Model
 {
     /// <summary>
-    /// Summary of the messages in a <code>Channel</code>.
+    /// Summary of the messages in a <c>Channel</c>.
     /// </summary>
     public partial class ChannelMessageSummary
     {
@@ -38,13 +39,13 @@ namespace Amazon.ChimeSDKMessaging.Model
         private DateTime? _createdTimestamp;
         private DateTime? _lastEditedTimestamp;
         private DateTime? _lastUpdatedTimestamp;
-        private Dictionary<string, MessageAttributeValue> _messageAttributes = new Dictionary<string, MessageAttributeValue>();
+        private Dictionary<string, MessageAttributeValue> _messageAttributes = AWSConfigs.InitializeCollections ? new Dictionary<string, MessageAttributeValue>() : null;
         private string _messageId;
         private string _metadata;
         private bool? _redacted;
         private Identity _sender;
         private ChannelMessageStatusStructure _status;
-        private List<Target> _target = new List<Target>();
+        private List<Target> _target = AWSConfigs.InitializeCollections ? new List<Target>() : null;
         private ChannelMessageType _type;
 
         /// <summary>
@@ -73,9 +74,9 @@ namespace Amazon.ChimeSDKMessaging.Model
         /// Gets and sets the property ContentType. 
         /// <para>
         /// The content type of the channel message listed in the summary. For Amazon Lex V2 bot
-        /// responses, the content type is <code>application/amz-chime-lex-msgs</code> for success
-        /// responses and <code>application/amz-chime-lex-error</code> for failure responses.
-        /// For more information, refer to <a href="https://docs.aws.amazon.com/chime-sdk/latest/dg/appinstance-bots#process-response.html">Processing
+        /// responses, the content type is <c>application/amz-chime-lex-msgs</c> for success responses
+        /// and <c>application/amz-chime-lex-error</c> for failure responses. For more information,
+        /// refer to <a href="https://docs.aws.amazon.com/chime-sdk/latest/dg/appinstance-bots#process-response.html">Processing
         /// responses from an AppInstanceBot</a> in the <i>Amazon Chime SDK Messaging Developer
         /// Guide</i>.
         /// </para>
@@ -165,7 +166,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         // Check to see if MessageAttributes property is set
         internal bool IsSetMessageAttributes()
         {
-            return this._messageAttributes != null && this._messageAttributes.Count > 0; 
+            return this._messageAttributes != null && (this._messageAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -245,7 +246,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The message status. The status value is <code>SENT</code> for messages sent to a channel
+        /// The message status. The status value is <c>SENT</c> for messages sent to a channel
         /// without a channel flow. For channels associated with channel flow, the value determines
         /// the processing stage.
         /// </para>
@@ -280,7 +281,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         // Check to see if Target property is set
         internal bool IsSetTarget()
         {
-            return this._target != null && this._target.Count > 0; 
+            return this._target != null && (this._target.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

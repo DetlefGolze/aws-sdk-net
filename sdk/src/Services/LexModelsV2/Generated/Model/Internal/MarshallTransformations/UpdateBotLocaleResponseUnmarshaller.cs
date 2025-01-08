@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.LexModelsV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -85,6 +86,12 @@ namespace Amazon.LexModelsV2.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
                     response.FailureReasons = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("generativeAISettings", targetDepth))
+                {
+                    var unmarshaller = GenerativeAISettingsUnmarshaller.Instance;
+                    response.GenerativeAISettings = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("lastUpdatedDateTime", targetDepth))

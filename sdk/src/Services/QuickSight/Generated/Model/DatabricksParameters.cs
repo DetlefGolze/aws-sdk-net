@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The required parameters that are needed to connect to a Databricks data source.
+    /// The parameters that are required to connect to a Databricks data source.
     /// </summary>
     public partial class DatabricksParameters
     {

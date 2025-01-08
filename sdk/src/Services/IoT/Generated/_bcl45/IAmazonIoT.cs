@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.IoT.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.IoT
 {
     /// <summary>
-    /// Interface for accessing IoT
+    /// <para>Interface for accessing IoT</para>
     ///
     /// IoT 
     /// <para>
@@ -291,6 +292,86 @@ namespace Amazon.IoT
 
         #endregion
         
+        #region  AssociateSbomWithPackageVersion
+
+
+        /// <summary>
+        /// Associates the selected software bill of materials (SBOM) with a specific software
+        /// package version.
+        /// 
+        ///  
+        /// <para>
+        /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">AssociateSbomWithPackageVersion</a>
+        /// action.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AssociateSbomWithPackageVersion service method.</param>
+        /// 
+        /// <returns>The response from the AssociateSbomWithPackageVersion service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.ConflictException">
+        /// The request conflicts with the current state of the resource.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceQuotaExceededException">
+        /// Service quota has been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/AssociateSbomWithPackageVersion">REST API Reference for AssociateSbomWithPackageVersion Operation</seealso>
+        AssociateSbomWithPackageVersionResponse AssociateSbomWithPackageVersion(AssociateSbomWithPackageVersionRequest request);
+
+
+
+        /// <summary>
+        /// Associates the selected software bill of materials (SBOM) with a specific software
+        /// package version.
+        /// 
+        ///  
+        /// <para>
+        /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">AssociateSbomWithPackageVersion</a>
+        /// action.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AssociateSbomWithPackageVersion service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the AssociateSbomWithPackageVersion service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.ConflictException">
+        /// The request conflicts with the current state of the resource.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceQuotaExceededException">
+        /// Service quota has been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/AssociateSbomWithPackageVersion">REST API Reference for AssociateSbomWithPackageVersion Operation</seealso>
+        Task<AssociateSbomWithPackageVersionResponse> AssociateSbomWithPackageVersionAsync(AssociateSbomWithPackageVersionRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  AssociateTargetsWithJob
 
 
@@ -299,8 +380,7 @@ namespace Amazon.IoT
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// The job must have been created with the <code>targetSelection</code> field set to
-        /// "CONTINUOUS".
+        /// The job must have been created with the <c>targetSelection</c> field set to "CONTINUOUS".
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -344,8 +424,7 @@ namespace Amazon.IoT
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// The job must have been created with the <code>targetSelection</code> field set to
-        /// "CONTINUOUS".
+        /// The job must have been created with the <c>targetSelection</c> field set to "CONTINUOUS".
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -685,7 +764,7 @@ namespace Amazon.IoT
         /// The rate exceeds the limit.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/AttachSecurityProfile">REST API Reference for AttachSecurityProfile Operation</seealso>
@@ -726,7 +805,7 @@ namespace Amazon.IoT
         /// The rate exceeds the limit.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/AttachSecurityProfile">REST API Reference for AttachSecurityProfile Operation</seealso>
@@ -1376,7 +1455,7 @@ namespace Amazon.IoT
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.InvalidStateTransitionException">
         /// An attempt was made to change to an invalid state, for example by deleting a job or
-        /// a job execution which is "IN_PROGRESS" without setting the <code>force</code> parameter.
+        /// a job execution which is "IN_PROGRESS" without setting the <c>force</c> parameter.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
         /// The specified resource does not exist.
@@ -1388,7 +1467,7 @@ namespace Amazon.IoT
         /// The rate exceeds the limit.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CancelJobExecution">REST API Reference for CancelJobExecution Operation</seealso>
@@ -1416,7 +1495,7 @@ namespace Amazon.IoT
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.InvalidStateTransitionException">
         /// An attempt was made to change to an invalid state, for example by deleting a job or
-        /// a job execution which is "IN_PROGRESS" without setting the <code>force</code> parameter.
+        /// a job execution which is "IN_PROGRESS" without setting the <c>force</c> parameter.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
         /// The specified resource does not exist.
@@ -1428,7 +1507,7 @@ namespace Amazon.IoT
         /// The rate exceeds the limit.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CancelJobExecution">REST API Reference for CancelJobExecution Operation</seealso>
@@ -1518,7 +1597,7 @@ namespace Amazon.IoT
         /// <summary>
         /// Confirms a topic rule destination. When you create a rule requiring a destination,
         /// IoT sends a confirmation message to the endpoint or base address you specify. The
-        /// message includes a token which you pass back when calling <code>ConfirmTopicRuleDestination</code>
+        /// message includes a token which you pass back when calling <c>ConfirmTopicRuleDestination</c>
         /// to confirm that you own or have access to the endpoint.
         /// 
         ///  
@@ -1554,7 +1633,7 @@ namespace Amazon.IoT
         /// <summary>
         /// Confirms a topic rule destination. When you create a rule requiring a destination,
         /// IoT sends a confirmation message to the endpoint or base address you specify. The
-        /// message includes a token which you pass back when calling <code>ConfirmTopicRuleDestination</code>
+        /// message includes a token which you pass back when calling <c>ConfirmTopicRuleDestination</c>
         /// to confirm that you own or have access to the endpoint.
         /// 
         ///  
@@ -1746,7 +1825,10 @@ namespace Amazon.IoT
 
 
         /// <summary>
-        /// Creates a billing group.
+        /// Creates a billing group. If this call is made multiple times using the same billing
+        /// group name and configuration, the call will succeed. If this call is made with the
+        /// same billing group name but different configuration a <c>ResourceAlreadyExistsException</c>
+        /// is thrown.
         /// 
         ///  
         /// <para>
@@ -1775,7 +1857,10 @@ namespace Amazon.IoT
 
 
         /// <summary>
-        /// Creates a billing group.
+        /// Creates a billing group. If this call is made multiple times using the same billing
+        /// group name and configuration, the call will succeed. If this call is made with the
+        /// same billing group name but different configuration a <c>ResourceAlreadyExistsException</c>
+        /// is thrown.
         /// 
         ///  
         /// <para>
@@ -1831,10 +1916,10 @@ namespace Amazon.IoT
         ///  </note> 
         /// <para>
         /// You can create multiple certificates in a batch by creating a directory, copying multiple
-        /// <code>.csr</code> files into that directory, and then specifying that directory on
-        /// the command line. The following commands show how to create a batch of certificates
-        /// given a batch of CSRs. In the following commands, we assume that a set of CSRs are
-        /// located inside of the directory my-csr-directory:
+        /// <c>.csr</c> files into that directory, and then specifying that directory on the command
+        /// line. The following commands show how to create a batch of certificates given a batch
+        /// of CSRs. In the following commands, we assume that a set of CSRs are located inside
+        /// of the directory my-csr-directory:
         /// </para>
         ///  
         /// <para>
@@ -1842,24 +1927,24 @@ namespace Amazon.IoT
         /// </para>
         ///  
         /// <para>
-        ///  <code>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request
-        /// file://my-csr-directory/{}</code> 
+        ///  <c>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request
+        /// file://my-csr-directory/{}</c> 
         /// </para>
         ///  
         /// <para>
         /// This command lists all of the CSRs in my-csr-directory and pipes each CSR file name
-        /// to the <code>aws iot create-certificate-from-csr</code> Amazon Web Services CLI command
+        /// to the <c>aws iot create-certificate-from-csr</c> Amazon Web Services CLI command
         /// to create a certificate for the corresponding CSR. 
         /// </para>
         ///  
         /// <para>
-        /// You can also run the <code>aws iot create-certificate-from-csr</code> part of the
-        /// command in parallel to speed up the certificate creation process:
+        /// You can also run the <c>aws iot create-certificate-from-csr</c> part of the command
+        /// in parallel to speed up the certificate creation process:
         /// </para>
         ///  
         /// <para>
-        ///  <code>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr
-        /// --certificate-signing-request file://my-csr-directory/{} </code> 
+        ///  <c>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr
+        /// --certificate-signing-request file://my-csr-directory/{} </c> 
         /// </para>
         ///  
         /// <para>
@@ -1868,8 +1953,8 @@ namespace Amazon.IoT
         /// </para>
         ///  
         /// <para>
-        ///  <code>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request
-        /// file://my-csr-directory/$_} </code> 
+        ///  <c>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request
+        /// file://my-csr-directory/$_} </c> 
         /// </para>
         ///  
         /// <para>
@@ -1878,8 +1963,8 @@ namespace Amazon.IoT
         /// </para>
         ///  
         /// <para>
-        ///  <code>&gt; forfiles /p my-csr-directory /c "cmd /c aws iot create-certificate-from-csr
-        /// --certificate-signing-request file://@path" </code> 
+        ///  <c>&gt; forfiles /p my-csr-directory /c "cmd /c aws iot create-certificate-from-csr
+        /// --certificate-signing-request file://@path" </c> 
         /// </para>
         /// </summary>
         /// <param name="certificateSigningRequest">The certificate signing request (CSR).</param>
@@ -1925,10 +2010,10 @@ namespace Amazon.IoT
         ///  </note> 
         /// <para>
         /// You can create multiple certificates in a batch by creating a directory, copying multiple
-        /// <code>.csr</code> files into that directory, and then specifying that directory on
-        /// the command line. The following commands show how to create a batch of certificates
-        /// given a batch of CSRs. In the following commands, we assume that a set of CSRs are
-        /// located inside of the directory my-csr-directory:
+        /// <c>.csr</c> files into that directory, and then specifying that directory on the command
+        /// line. The following commands show how to create a batch of certificates given a batch
+        /// of CSRs. In the following commands, we assume that a set of CSRs are located inside
+        /// of the directory my-csr-directory:
         /// </para>
         ///  
         /// <para>
@@ -1936,24 +2021,24 @@ namespace Amazon.IoT
         /// </para>
         ///  
         /// <para>
-        ///  <code>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request
-        /// file://my-csr-directory/{}</code> 
+        ///  <c>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request
+        /// file://my-csr-directory/{}</c> 
         /// </para>
         ///  
         /// <para>
         /// This command lists all of the CSRs in my-csr-directory and pipes each CSR file name
-        /// to the <code>aws iot create-certificate-from-csr</code> Amazon Web Services CLI command
+        /// to the <c>aws iot create-certificate-from-csr</c> Amazon Web Services CLI command
         /// to create a certificate for the corresponding CSR. 
         /// </para>
         ///  
         /// <para>
-        /// You can also run the <code>aws iot create-certificate-from-csr</code> part of the
-        /// command in parallel to speed up the certificate creation process:
+        /// You can also run the <c>aws iot create-certificate-from-csr</c> part of the command
+        /// in parallel to speed up the certificate creation process:
         /// </para>
         ///  
         /// <para>
-        ///  <code>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr
-        /// --certificate-signing-request file://my-csr-directory/{} </code> 
+        ///  <c>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr
+        /// --certificate-signing-request file://my-csr-directory/{} </c> 
         /// </para>
         ///  
         /// <para>
@@ -1962,8 +2047,8 @@ namespace Amazon.IoT
         /// </para>
         ///  
         /// <para>
-        ///  <code>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request
-        /// file://my-csr-directory/$_} </code> 
+        ///  <c>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request
+        /// file://my-csr-directory/$_} </c> 
         /// </para>
         ///  
         /// <para>
@@ -1972,8 +2057,8 @@ namespace Amazon.IoT
         /// </para>
         ///  
         /// <para>
-        ///  <code>&gt; forfiles /p my-csr-directory /c "cmd /c aws iot create-certificate-from-csr
-        /// --certificate-signing-request file://@path" </code> 
+        ///  <c>&gt; forfiles /p my-csr-directory /c "cmd /c aws iot create-certificate-from-csr
+        /// --certificate-signing-request file://@path" </c> 
         /// </para>
         /// </summary>
         /// <param name="certificateSigningRequest">The certificate signing request (CSR).</param>
@@ -2020,10 +2105,10 @@ namespace Amazon.IoT
         ///  </note> 
         /// <para>
         /// You can create multiple certificates in a batch by creating a directory, copying multiple
-        /// <code>.csr</code> files into that directory, and then specifying that directory on
-        /// the command line. The following commands show how to create a batch of certificates
-        /// given a batch of CSRs. In the following commands, we assume that a set of CSRs are
-        /// located inside of the directory my-csr-directory:
+        /// <c>.csr</c> files into that directory, and then specifying that directory on the command
+        /// line. The following commands show how to create a batch of certificates given a batch
+        /// of CSRs. In the following commands, we assume that a set of CSRs are located inside
+        /// of the directory my-csr-directory:
         /// </para>
         ///  
         /// <para>
@@ -2031,24 +2116,24 @@ namespace Amazon.IoT
         /// </para>
         ///  
         /// <para>
-        ///  <code>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request
-        /// file://my-csr-directory/{}</code> 
+        ///  <c>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request
+        /// file://my-csr-directory/{}</c> 
         /// </para>
         ///  
         /// <para>
         /// This command lists all of the CSRs in my-csr-directory and pipes each CSR file name
-        /// to the <code>aws iot create-certificate-from-csr</code> Amazon Web Services CLI command
+        /// to the <c>aws iot create-certificate-from-csr</c> Amazon Web Services CLI command
         /// to create a certificate for the corresponding CSR. 
         /// </para>
         ///  
         /// <para>
-        /// You can also run the <code>aws iot create-certificate-from-csr</code> part of the
-        /// command in parallel to speed up the certificate creation process:
+        /// You can also run the <c>aws iot create-certificate-from-csr</c> part of the command
+        /// in parallel to speed up the certificate creation process:
         /// </para>
         ///  
         /// <para>
-        ///  <code>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr
-        /// --certificate-signing-request file://my-csr-directory/{} </code> 
+        ///  <c>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr
+        /// --certificate-signing-request file://my-csr-directory/{} </c> 
         /// </para>
         ///  
         /// <para>
@@ -2057,8 +2142,8 @@ namespace Amazon.IoT
         /// </para>
         ///  
         /// <para>
-        ///  <code>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request
-        /// file://my-csr-directory/$_} </code> 
+        ///  <c>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request
+        /// file://my-csr-directory/$_} </c> 
         /// </para>
         ///  
         /// <para>
@@ -2067,8 +2152,8 @@ namespace Amazon.IoT
         /// </para>
         ///  
         /// <para>
-        ///  <code>&gt; forfiles /p my-csr-directory /c "cmd /c aws iot create-certificate-from-csr
-        /// --certificate-signing-request file://@path" </code> 
+        ///  <c>&gt; forfiles /p my-csr-directory /c "cmd /c aws iot create-certificate-from-csr
+        /// --certificate-signing-request file://@path" </c> 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateCertificateFromCsr service method.</param>
@@ -2115,10 +2200,10 @@ namespace Amazon.IoT
         ///  </note> 
         /// <para>
         /// You can create multiple certificates in a batch by creating a directory, copying multiple
-        /// <code>.csr</code> files into that directory, and then specifying that directory on
-        /// the command line. The following commands show how to create a batch of certificates
-        /// given a batch of CSRs. In the following commands, we assume that a set of CSRs are
-        /// located inside of the directory my-csr-directory:
+        /// <c>.csr</c> files into that directory, and then specifying that directory on the command
+        /// line. The following commands show how to create a batch of certificates given a batch
+        /// of CSRs. In the following commands, we assume that a set of CSRs are located inside
+        /// of the directory my-csr-directory:
         /// </para>
         ///  
         /// <para>
@@ -2126,24 +2211,24 @@ namespace Amazon.IoT
         /// </para>
         ///  
         /// <para>
-        ///  <code>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request
-        /// file://my-csr-directory/{}</code> 
+        ///  <c>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request
+        /// file://my-csr-directory/{}</c> 
         /// </para>
         ///  
         /// <para>
         /// This command lists all of the CSRs in my-csr-directory and pipes each CSR file name
-        /// to the <code>aws iot create-certificate-from-csr</code> Amazon Web Services CLI command
+        /// to the <c>aws iot create-certificate-from-csr</c> Amazon Web Services CLI command
         /// to create a certificate for the corresponding CSR. 
         /// </para>
         ///  
         /// <para>
-        /// You can also run the <code>aws iot create-certificate-from-csr</code> part of the
-        /// command in parallel to speed up the certificate creation process:
+        /// You can also run the <c>aws iot create-certificate-from-csr</c> part of the command
+        /// in parallel to speed up the certificate creation process:
         /// </para>
         ///  
         /// <para>
-        ///  <code>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr
-        /// --certificate-signing-request file://my-csr-directory/{} </code> 
+        ///  <c>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr
+        /// --certificate-signing-request file://my-csr-directory/{} </c> 
         /// </para>
         ///  
         /// <para>
@@ -2152,8 +2237,8 @@ namespace Amazon.IoT
         /// </para>
         ///  
         /// <para>
-        ///  <code>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request
-        /// file://my-csr-directory/$_} </code> 
+        ///  <c>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request
+        /// file://my-csr-directory/$_} </c> 
         /// </para>
         ///  
         /// <para>
@@ -2162,8 +2247,8 @@ namespace Amazon.IoT
         /// </para>
         ///  
         /// <para>
-        ///  <code>&gt; forfiles /p my-csr-directory /c "cmd /c aws iot create-certificate-from-csr
-        /// --certificate-signing-request file://@path" </code> 
+        ///  <c>&gt; forfiles /p my-csr-directory /c "cmd /c aws iot create-certificate-from-csr
+        /// --certificate-signing-request file://@path" </c> 
         /// </para>
         /// </summary>
         /// <param name="certificateSigningRequest">The certificate signing request (CSR).</param>
@@ -2212,10 +2297,10 @@ namespace Amazon.IoT
         ///  </note> 
         /// <para>
         /// You can create multiple certificates in a batch by creating a directory, copying multiple
-        /// <code>.csr</code> files into that directory, and then specifying that directory on
-        /// the command line. The following commands show how to create a batch of certificates
-        /// given a batch of CSRs. In the following commands, we assume that a set of CSRs are
-        /// located inside of the directory my-csr-directory:
+        /// <c>.csr</c> files into that directory, and then specifying that directory on the command
+        /// line. The following commands show how to create a batch of certificates given a batch
+        /// of CSRs. In the following commands, we assume that a set of CSRs are located inside
+        /// of the directory my-csr-directory:
         /// </para>
         ///  
         /// <para>
@@ -2223,24 +2308,24 @@ namespace Amazon.IoT
         /// </para>
         ///  
         /// <para>
-        ///  <code>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request
-        /// file://my-csr-directory/{}</code> 
+        ///  <c>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request
+        /// file://my-csr-directory/{}</c> 
         /// </para>
         ///  
         /// <para>
         /// This command lists all of the CSRs in my-csr-directory and pipes each CSR file name
-        /// to the <code>aws iot create-certificate-from-csr</code> Amazon Web Services CLI command
+        /// to the <c>aws iot create-certificate-from-csr</c> Amazon Web Services CLI command
         /// to create a certificate for the corresponding CSR. 
         /// </para>
         ///  
         /// <para>
-        /// You can also run the <code>aws iot create-certificate-from-csr</code> part of the
-        /// command in parallel to speed up the certificate creation process:
+        /// You can also run the <c>aws iot create-certificate-from-csr</c> part of the command
+        /// in parallel to speed up the certificate creation process:
         /// </para>
         ///  
         /// <para>
-        ///  <code>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr
-        /// --certificate-signing-request file://my-csr-directory/{} </code> 
+        ///  <c>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr
+        /// --certificate-signing-request file://my-csr-directory/{} </c> 
         /// </para>
         ///  
         /// <para>
@@ -2249,8 +2334,8 @@ namespace Amazon.IoT
         /// </para>
         ///  
         /// <para>
-        ///  <code>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request
-        /// file://my-csr-directory/$_} </code> 
+        ///  <c>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request
+        /// file://my-csr-directory/$_} </c> 
         /// </para>
         ///  
         /// <para>
@@ -2259,8 +2344,8 @@ namespace Amazon.IoT
         /// </para>
         ///  
         /// <para>
-        ///  <code>&gt; forfiles /p my-csr-directory /c "cmd /c aws iot create-certificate-from-csr
-        /// --certificate-signing-request file://@path" </code> 
+        ///  <c>&gt; forfiles /p my-csr-directory /c "cmd /c aws iot create-certificate-from-csr
+        /// --certificate-signing-request file://@path" </c> 
         /// </para>
         /// </summary>
         /// <param name="certificateSigningRequest">The certificate signing request (CSR).</param>
@@ -2311,10 +2396,10 @@ namespace Amazon.IoT
         ///  </note> 
         /// <para>
         /// You can create multiple certificates in a batch by creating a directory, copying multiple
-        /// <code>.csr</code> files into that directory, and then specifying that directory on
-        /// the command line. The following commands show how to create a batch of certificates
-        /// given a batch of CSRs. In the following commands, we assume that a set of CSRs are
-        /// located inside of the directory my-csr-directory:
+        /// <c>.csr</c> files into that directory, and then specifying that directory on the command
+        /// line. The following commands show how to create a batch of certificates given a batch
+        /// of CSRs. In the following commands, we assume that a set of CSRs are located inside
+        /// of the directory my-csr-directory:
         /// </para>
         ///  
         /// <para>
@@ -2322,24 +2407,24 @@ namespace Amazon.IoT
         /// </para>
         ///  
         /// <para>
-        ///  <code>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request
-        /// file://my-csr-directory/{}</code> 
+        ///  <c>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request
+        /// file://my-csr-directory/{}</c> 
         /// </para>
         ///  
         /// <para>
         /// This command lists all of the CSRs in my-csr-directory and pipes each CSR file name
-        /// to the <code>aws iot create-certificate-from-csr</code> Amazon Web Services CLI command
+        /// to the <c>aws iot create-certificate-from-csr</c> Amazon Web Services CLI command
         /// to create a certificate for the corresponding CSR. 
         /// </para>
         ///  
         /// <para>
-        /// You can also run the <code>aws iot create-certificate-from-csr</code> part of the
-        /// command in parallel to speed up the certificate creation process:
+        /// You can also run the <c>aws iot create-certificate-from-csr</c> part of the command
+        /// in parallel to speed up the certificate creation process:
         /// </para>
         ///  
         /// <para>
-        ///  <code>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr
-        /// --certificate-signing-request file://my-csr-directory/{} </code> 
+        ///  <c>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr
+        /// --certificate-signing-request file://my-csr-directory/{} </c> 
         /// </para>
         ///  
         /// <para>
@@ -2348,8 +2433,8 @@ namespace Amazon.IoT
         /// </para>
         ///  
         /// <para>
-        ///  <code>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request
-        /// file://my-csr-directory/$_} </code> 
+        ///  <c>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request
+        /// file://my-csr-directory/$_} </c> 
         /// </para>
         ///  
         /// <para>
@@ -2358,8 +2443,8 @@ namespace Amazon.IoT
         /// </para>
         ///  
         /// <para>
-        ///  <code>&gt; forfiles /p my-csr-directory /c "cmd /c aws iot create-certificate-from-csr
-        /// --certificate-signing-request file://@path" </code> 
+        ///  <c>&gt; forfiles /p my-csr-directory /c "cmd /c aws iot create-certificate-from-csr
+        /// --certificate-signing-request file://@path" </c> 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateCertificateFromCsr service method.</param>
@@ -2385,6 +2470,176 @@ namespace Amazon.IoT
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateCertificateFromCsr">REST API Reference for CreateCertificateFromCsr Operation</seealso>
         Task<CreateCertificateFromCsrResponse> CreateCertificateFromCsrAsync(CreateCertificateFromCsrRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  CreateCertificateProvider
+
+
+        /// <summary>
+        /// Creates an Amazon Web Services IoT Core certificate provider. You can use Amazon Web
+        /// Services IoT Core certificate provider to customize how to sign a certificate signing
+        /// request (CSR) in IoT fleet provisioning. For more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provisioning-cert-provider.html">Customizing
+        /// certificate signing using Amazon Web Services IoT Core certificate provider</a> from
+        /// <i>Amazon Web Services IoT Core Developer Guide</i>.
+        /// 
+        ///  
+        /// <para>
+        /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">CreateCertificateProvider</a>
+        /// action.
+        /// </para>
+        ///  <important> 
+        /// <para>
+        /// After you create a certificate provider, the behavior of <a href="https://docs.aws.amazon.com/iot/latest/developerguide/fleet-provision-api.html#create-cert-csr">
+        /// <c>CreateCertificateFromCsr</c> API for fleet provisioning</a> will change and all
+        /// API calls to <c>CreateCertificateFromCsr</c> will invoke the certificate provider
+        /// to create the certificates. It can take up to a few minutes for this behavior to change
+        /// after a certificate provider is created.
+        /// </para>
+        ///  </important>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateCertificateProvider service method.</param>
+        /// 
+        /// <returns>The response from the CreateCertificateProvider service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalFailureException">
+        /// An unexpected error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.LimitExceededException">
+        /// A limit has been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceAlreadyExistsException">
+        /// The resource already exists.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceUnavailableException">
+        /// The service is temporarily unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.UnauthorizedException">
+        /// You are not authorized to perform this operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateCertificateProvider">REST API Reference for CreateCertificateProvider Operation</seealso>
+        CreateCertificateProviderResponse CreateCertificateProvider(CreateCertificateProviderRequest request);
+
+
+
+        /// <summary>
+        /// Creates an Amazon Web Services IoT Core certificate provider. You can use Amazon Web
+        /// Services IoT Core certificate provider to customize how to sign a certificate signing
+        /// request (CSR) in IoT fleet provisioning. For more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provisioning-cert-provider.html">Customizing
+        /// certificate signing using Amazon Web Services IoT Core certificate provider</a> from
+        /// <i>Amazon Web Services IoT Core Developer Guide</i>.
+        /// 
+        ///  
+        /// <para>
+        /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">CreateCertificateProvider</a>
+        /// action.
+        /// </para>
+        ///  <important> 
+        /// <para>
+        /// After you create a certificate provider, the behavior of <a href="https://docs.aws.amazon.com/iot/latest/developerguide/fleet-provision-api.html#create-cert-csr">
+        /// <c>CreateCertificateFromCsr</c> API for fleet provisioning</a> will change and all
+        /// API calls to <c>CreateCertificateFromCsr</c> will invoke the certificate provider
+        /// to create the certificates. It can take up to a few minutes for this behavior to change
+        /// after a certificate provider is created.
+        /// </para>
+        ///  </important>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateCertificateProvider service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateCertificateProvider service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalFailureException">
+        /// An unexpected error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.LimitExceededException">
+        /// A limit has been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceAlreadyExistsException">
+        /// The resource already exists.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceUnavailableException">
+        /// The service is temporarily unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.UnauthorizedException">
+        /// You are not authorized to perform this operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateCertificateProvider">REST API Reference for CreateCertificateProvider Operation</seealso>
+        Task<CreateCertificateProviderResponse> CreateCertificateProviderAsync(CreateCertificateProviderRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  CreateCommand
+
+
+        /// <summary>
+        /// Creates a command. A command contains reusable configurations that can be applied
+        /// before they are sent to the devices.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateCommand service method.</param>
+        /// 
+        /// <returns>The response from the CreateCommand service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.ConflictException">
+        /// The request conflicts with the current state of the resource.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceQuotaExceededException">
+        /// Service quota has been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateCommand">REST API Reference for CreateCommand Operation</seealso>
+        CreateCommandResponse CreateCommand(CreateCommandRequest request);
+
+
+
+        /// <summary>
+        /// Creates a command. A command contains reusable configurations that can be applied
+        /// before they are sent to the devices.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateCommand service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateCommand service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.ConflictException">
+        /// The request conflicts with the current state of the resource.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceQuotaExceededException">
+        /// Service quota has been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateCommand">REST API Reference for CreateCommand Operation</seealso>
+        Task<CreateCommandResponse> CreateCommandAsync(CreateCommandRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -2465,7 +2720,7 @@ namespace Amazon.IoT
 
         /// <summary>
         /// Create a dimension that you can use to limit the scope of a metric used in a security
-        /// profile for IoT Device Defender. For example, using a <code>TOPIC_FILTER</code> dimension,
+        /// profile for IoT Device Defender. For example, using a <c>TOPIC_FILTER</c> dimension,
         /// you can narrow down the scope of the metric only to MQTT topics whose name match the
         /// pattern specified in the dimension.
         /// 
@@ -2500,7 +2755,7 @@ namespace Amazon.IoT
 
         /// <summary>
         /// Create a dimension that you can use to limit the scope of a metric used in a security
-        /// profile for IoT Device Defender. For example, using a <code>TOPIC_FILTER</code> dimension,
+        /// profile for IoT Device Defender. For example, using a <c>TOPIC_FILTER</c> dimension,
         /// you can narrow down the scope of the metric only to MQTT topics whose name match the
         /// pattern specified in the dimension.
         /// 
@@ -2904,7 +3159,7 @@ namespace Amazon.IoT
         /// 
         /// <returns>The response from the CreateJobTemplate service method, as returned by IoT.</returns>
         /// <exception cref="Amazon.IoT.Model.ConflictException">
-        /// A resource with the same name already exists.
+        /// The request conflicts with the current state of the resource.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.InternalFailureException">
         /// An unexpected error has occurred.
@@ -2942,7 +3197,7 @@ namespace Amazon.IoT
         /// 
         /// <returns>The response from the CreateJobTemplate service method, as returned by IoT.</returns>
         /// <exception cref="Amazon.IoT.Model.ConflictException">
-        /// A resource with the same name already exists.
+        /// The request conflicts with the current state of the resource.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.InternalFailureException">
         /// An unexpected error has occurred.
@@ -2969,8 +3224,8 @@ namespace Amazon.IoT
 
         /// <summary>
         /// Creates a 2048-bit RSA key pair and issues an X.509 certificate using the issued public
-        /// key. You can also call <code>CreateKeysAndCertificate</code> over MQTT from a device,
-        /// for more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api">Provisioning
+        /// key. You can also call <c>CreateKeysAndCertificate</c> over MQTT from a device, for
+        /// more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api">Provisioning
         /// MQTT API</a>.
         /// 
         ///  
@@ -3006,8 +3261,8 @@ namespace Amazon.IoT
 
         /// <summary>
         /// Creates a 2048-bit RSA key pair and issues an X.509 certificate using the issued public
-        /// key. You can also call <code>CreateKeysAndCertificate</code> over MQTT from a device,
-        /// for more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api">Provisioning
+        /// key. You can also call <c>CreateKeysAndCertificate</c> over MQTT from a device, for
+        /// more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api">Provisioning
         /// MQTT API</a>.
         /// 
         ///  
@@ -3044,8 +3299,8 @@ namespace Amazon.IoT
 
         /// <summary>
         /// Creates a 2048-bit RSA key pair and issues an X.509 certificate using the issued public
-        /// key. You can also call <code>CreateKeysAndCertificate</code> over MQTT from a device,
-        /// for more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api">Provisioning
+        /// key. You can also call <c>CreateKeysAndCertificate</c> over MQTT from a device, for
+        /// more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api">Provisioning
         /// MQTT API</a>.
         /// 
         ///  
@@ -3083,8 +3338,8 @@ namespace Amazon.IoT
 
         /// <summary>
         /// Creates a 2048-bit RSA key pair and issues an X.509 certificate using the issued public
-        /// key. You can also call <code>CreateKeysAndCertificate</code> over MQTT from a device,
-        /// for more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api">Provisioning
+        /// key. You can also call <c>CreateKeysAndCertificate</c> over MQTT from a device, for
+        /// more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api">Provisioning
         /// MQTT API</a>.
         /// 
         ///  
@@ -3123,8 +3378,8 @@ namespace Amazon.IoT
 
         /// <summary>
         /// Creates a 2048-bit RSA key pair and issues an X.509 certificate using the issued public
-        /// key. You can also call <code>CreateKeysAndCertificate</code> over MQTT from a device,
-        /// for more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api">Provisioning
+        /// key. You can also call <c>CreateKeysAndCertificate</c> over MQTT from a device, for
+        /// more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api">Provisioning
         /// MQTT API</a>.
         /// 
         ///  
@@ -3165,8 +3420,8 @@ namespace Amazon.IoT
 
         /// <summary>
         /// Creates a 2048-bit RSA key pair and issues an X.509 certificate using the issued public
-        /// key. You can also call <code>CreateKeysAndCertificate</code> over MQTT from a device,
-        /// for more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api">Provisioning
+        /// key. You can also call <c>CreateKeysAndCertificate</c> over MQTT from a device, for
+        /// more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api">Provisioning
         /// MQTT API</a>.
         /// 
         ///  
@@ -3387,14 +3642,14 @@ namespace Amazon.IoT
         /// 
         /// <returns>The response from the CreatePackage service method, as returned by IoT.</returns>
         /// <exception cref="Amazon.IoT.Model.ConflictException">
-        /// A resource with the same name already exists.
+        /// The request conflicts with the current state of the resource.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.InternalServerException">
         /// Internal error from the service that indicates an unexpected error or that the service
         /// is unavailable.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.ServiceQuotaExceededException">
-        /// A limit has been exceeded.
+        /// Service quota has been exceeded.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.ThrottlingException">
         /// The rate exceeds the limit.
@@ -3424,14 +3679,14 @@ namespace Amazon.IoT
         /// 
         /// <returns>The response from the CreatePackage service method, as returned by IoT.</returns>
         /// <exception cref="Amazon.IoT.Model.ConflictException">
-        /// A resource with the same name already exists.
+        /// The request conflicts with the current state of the resource.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.InternalServerException">
         /// Internal error from the service that indicates an unexpected error or that the service
         /// is unavailable.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.ServiceQuotaExceededException">
-        /// A limit has been exceeded.
+        /// Service quota has been exceeded.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.ThrottlingException">
         /// The rate exceeds the limit.
@@ -3461,14 +3716,14 @@ namespace Amazon.IoT
         /// 
         /// <returns>The response from the CreatePackageVersion service method, as returned by IoT.</returns>
         /// <exception cref="Amazon.IoT.Model.ConflictException">
-        /// A resource with the same name already exists.
+        /// The request conflicts with the current state of the resource.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.InternalServerException">
         /// Internal error from the service that indicates an unexpected error or that the service
         /// is unavailable.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.ServiceQuotaExceededException">
-        /// A limit has been exceeded.
+        /// Service quota has been exceeded.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.ThrottlingException">
         /// The rate exceeds the limit.
@@ -3498,14 +3753,14 @@ namespace Amazon.IoT
         /// 
         /// <returns>The response from the CreatePackageVersion service method, as returned by IoT.</returns>
         /// <exception cref="Amazon.IoT.Model.ConflictException">
-        /// A resource with the same name already exists.
+        /// The request conflicts with the current state of the resource.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.InternalServerException">
         /// Internal error from the service that indicates an unexpected error or that the service
         /// is unavailable.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.ServiceQuotaExceededException">
-        /// A limit has been exceeded.
+        /// Service quota has been exceeded.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.ThrottlingException">
         /// The rate exceeds the limit.
@@ -4258,6 +4513,16 @@ namespace Amazon.IoT
         /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">CreateRoleAlias</a>
         /// action.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// The value of <a href="https://docs.aws.amazon.com/iot/latest/apireference/API_CreateRoleAlias.html#iot-CreateRoleAlias-request-credentialDurationSeconds">
+        /// <c>credentialDurationSeconds</c> </a> must be less than or equal to the maximum session
+        /// duration of the IAM role that the role alias references. For more information, see
+        /// <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/roles-managingrole-editing-api.html#roles-modify_max-session-duration-api">
+        /// Modifying a role maximum session duration (Amazon Web Services API)</a> from the Amazon
+        /// Web Services Identity and Access Management User Guide.
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateRoleAlias service method.</param>
         /// 
@@ -4296,6 +4561,16 @@ namespace Amazon.IoT
         /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">CreateRoleAlias</a>
         /// action.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// The value of <a href="https://docs.aws.amazon.com/iot/latest/apireference/API_CreateRoleAlias.html#iot-CreateRoleAlias-request-credentialDurationSeconds">
+        /// <c>credentialDurationSeconds</c> </a> must be less than or equal to the maximum session
+        /// duration of the IAM role that the role alias references. For more information, see
+        /// <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/roles-managingrole-editing-api.html#roles-modify_max-session-duration-api">
+        /// Modifying a role maximum session duration (Amazon Web Services API)</a> from the Amazon
+        /// Web Services Identity and Access Management User Guide.
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateRoleAlias service method.</param>
         /// <param name="cancellationToken">
@@ -4561,7 +4836,7 @@ namespace Amazon.IoT
         /// <summary>
         /// Creates a thing record in the registry. If this call is made multiple times using
         /// the same thing name and configuration, the call will succeed. If this call is made
-        /// with the same thing name but different configuration a <code>ResourceAlreadyExistsException</code>
+        /// with the same thing name but different configuration a <c>ResourceAlreadyExistsException</c>
         /// is thrown.
         /// 
         ///  <note> 
@@ -4607,7 +4882,7 @@ namespace Amazon.IoT
         /// <summary>
         /// Creates a thing record in the registry. If this call is made multiple times using
         /// the same thing name and configuration, the call will succeed. If this call is made
-        /// with the same thing name but different configuration a <code>ResourceAlreadyExistsException</code>
+        /// with the same thing name but different configuration a <c>ResourceAlreadyExistsException</c>
         /// is thrown.
         /// 
         ///  <note> 
@@ -4664,6 +4939,11 @@ namespace Amazon.IoT
         /// This is a control plane operation. See <a href="https://docs.aws.amazon.com/iot/latest/developerguide/iot-authorization.html">Authorization</a>
         /// for information about authorizing control plane actions.
         /// </para>
+        ///  
+        /// <para>
+        /// If the <c>ThingGroup</c> that you create has the exact same attributes as an existing
+        /// <c>ThingGroup</c>, you will get a 200 success response. 
+        /// </para>
         ///  </note> 
         /// <para>
         /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">CreateThingGroup</a>
@@ -4698,6 +4978,11 @@ namespace Amazon.IoT
         /// This is a control plane operation. See <a href="https://docs.aws.amazon.com/iot/latest/developerguide/iot-authorization.html">Authorization</a>
         /// for information about authorizing control plane actions.
         /// </para>
+        ///  
+        /// <para>
+        /// If the <c>ThingGroup</c> that you create has the exact same attributes as an existing
+        /// <c>ThingGroup</c>, you will get a 200 success response. 
+        /// </para>
         ///  </note> 
         /// <para>
         /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">CreateThingGroup</a>
@@ -4731,7 +5016,10 @@ namespace Amazon.IoT
 
 
         /// <summary>
-        /// Creates a new thing type.
+        /// Creates a new thing type. If this call is made multiple times using the same thing
+        /// type name and configuration, the call will succeed. If this call is made with the
+        /// same thing type name but different configuration a <c>ResourceAlreadyExistsException</c>
+        /// is thrown. 
         /// 
         ///  
         /// <para>
@@ -4766,7 +5054,10 @@ namespace Amazon.IoT
 
 
         /// <summary>
-        /// Creates a new thing type.
+        /// Creates a new thing type. If this call is made multiple times using the same thing
+        /// type name and configuration, the call will succeed. If this call is made with the
+        /// same thing type name but different configuration a <c>ResourceAlreadyExistsException</c>
+        /// is thrown. 
         /// 
         ///  
         /// <para>
@@ -5186,7 +5477,7 @@ namespace Amazon.IoT
         /// The rate exceeds the limit.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteBillingGroup">REST API Reference for DeleteBillingGroup Operation</seealso>
@@ -5219,7 +5510,7 @@ namespace Amazon.IoT
         /// The rate exceeds the limit.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteBillingGroup">REST API Reference for DeleteBillingGroup Operation</seealso>
@@ -5506,6 +5797,220 @@ namespace Amazon.IoT
 
         #endregion
         
+        #region  DeleteCertificateProvider
+
+
+        /// <summary>
+        /// Deletes a certificate provider.
+        /// 
+        ///  
+        /// <para>
+        /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">DeleteCertificateProvider</a>
+        /// action. 
+        /// </para>
+        ///  
+        /// <para>
+        /// If you delete the certificate provider resource, the behavior of <c>CreateCertificateFromCsr</c>
+        /// will resume, and IoT will create certificates signed by IoT from a certificate signing
+        /// request (CSR).
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteCertificateProvider service method.</param>
+        /// 
+        /// <returns>The response from the DeleteCertificateProvider service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.DeleteConflictException">
+        /// You can't delete the resource because it is attached to one or more resources.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InternalFailureException">
+        /// An unexpected error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceUnavailableException">
+        /// The service is temporarily unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.UnauthorizedException">
+        /// You are not authorized to perform this operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteCertificateProvider">REST API Reference for DeleteCertificateProvider Operation</seealso>
+        DeleteCertificateProviderResponse DeleteCertificateProvider(DeleteCertificateProviderRequest request);
+
+
+
+        /// <summary>
+        /// Deletes a certificate provider.
+        /// 
+        ///  
+        /// <para>
+        /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">DeleteCertificateProvider</a>
+        /// action. 
+        /// </para>
+        ///  
+        /// <para>
+        /// If you delete the certificate provider resource, the behavior of <c>CreateCertificateFromCsr</c>
+        /// will resume, and IoT will create certificates signed by IoT from a certificate signing
+        /// request (CSR).
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteCertificateProvider service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteCertificateProvider service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.DeleteConflictException">
+        /// You can't delete the resource because it is attached to one or more resources.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InternalFailureException">
+        /// An unexpected error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceUnavailableException">
+        /// The service is temporarily unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.UnauthorizedException">
+        /// You are not authorized to perform this operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteCertificateProvider">REST API Reference for DeleteCertificateProvider Operation</seealso>
+        Task<DeleteCertificateProviderResponse> DeleteCertificateProviderAsync(DeleteCertificateProviderRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DeleteCommand
+
+
+        /// <summary>
+        /// Delete a command resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteCommand service method.</param>
+        /// 
+        /// <returns>The response from the DeleteCommand service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.ConflictException">
+        /// The request conflicts with the current state of the resource.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteCommand">REST API Reference for DeleteCommand Operation</seealso>
+        DeleteCommandResponse DeleteCommand(DeleteCommandRequest request);
+
+
+
+        /// <summary>
+        /// Delete a command resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteCommand service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteCommand service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.ConflictException">
+        /// The request conflicts with the current state of the resource.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteCommand">REST API Reference for DeleteCommand Operation</seealso>
+        Task<DeleteCommandResponse> DeleteCommandAsync(DeleteCommandRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DeleteCommandExecution
+
+
+        /// <summary>
+        /// Delete a command execution.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// Only command executions that enter a terminal state can be deleted from your account.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteCommandExecution service method.</param>
+        /// 
+        /// <returns>The response from the DeleteCommandExecution service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.ConflictException">
+        /// The request conflicts with the current state of the resource.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteCommandExecution">REST API Reference for DeleteCommandExecution Operation</seealso>
+        DeleteCommandExecutionResponse DeleteCommandExecution(DeleteCommandExecutionRequest request);
+
+
+
+        /// <summary>
+        /// Delete a command execution.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// Only command executions that enter a terminal state can be deleted from your account.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteCommandExecution service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteCommandExecution service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.ConflictException">
+        /// The request conflicts with the current state of the resource.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteCommandExecution">REST API Reference for DeleteCommandExecution Operation</seealso>
+        Task<DeleteCommandExecutionResponse> DeleteCommandExecutionAsync(DeleteCommandExecutionRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  DeleteCustomMetric
 
 
@@ -5522,7 +6027,7 @@ namespace Amazon.IoT
         /// Before you can delete a custom metric, you must first remove the custom metric from
         /// all security profiles it's a part of. The security profile associated with the custom
         /// metric can be found using the <a href="https://docs.aws.amazon.com/iot/latest/apireference/API_ListSecurityProfiles.html">ListSecurityProfiles</a>
-        /// API with <code>metricName</code> set to your custom metric name.
+        /// API with <c>metricName</c> set to your custom metric name.
         /// </para>
         ///  </note>
         /// </summary>
@@ -5556,7 +6061,7 @@ namespace Amazon.IoT
         /// Before you can delete a custom metric, you must first remove the custom metric from
         /// all security profiles it's a part of. The security profile associated with the custom
         /// metric can be found using the <a href="https://docs.aws.amazon.com/iot/latest/apireference/API_ListSecurityProfiles.html">ListSecurityProfiles</a>
-        /// API with <code>metricName</code> set to your custom metric name.
+        /// API with <c>metricName</c> set to your custom metric name.
         /// </para>
         ///  </note>
         /// </summary>
@@ -5739,7 +6244,7 @@ namespace Amazon.IoT
         /// The rate exceeds the limit.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteDynamicThingGroup">REST API Reference for DeleteDynamicThingGroup Operation</seealso>
@@ -5772,7 +6277,7 @@ namespace Amazon.IoT
         /// The rate exceeds the limit.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteDynamicThingGroup">REST API Reference for DeleteDynamicThingGroup Operation</seealso>
@@ -5812,7 +6317,7 @@ namespace Amazon.IoT
         /// You are not authorized to perform this operation.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteFleetMetric">REST API Reference for DeleteFleetMetric Operation</seealso>
@@ -5852,7 +6357,7 @@ namespace Amazon.IoT
         /// You are not authorized to perform this operation.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteFleetMetric">REST API Reference for DeleteFleetMetric Operation</seealso>
@@ -5892,7 +6397,7 @@ namespace Amazon.IoT
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.InvalidStateTransitionException">
         /// An attempt was made to change to an invalid state, for example by deleting a job or
-        /// a job execution which is "IN_PROGRESS" without setting the <code>force</code> parameter.
+        /// a job execution which is "IN_PROGRESS" without setting the <c>force</c> parameter.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.LimitExceededException">
         /// A limit has been exceeded.
@@ -5943,7 +6448,7 @@ namespace Amazon.IoT
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.InvalidStateTransitionException">
         /// An attempt was made to change to an invalid state, for example by deleting a job or
-        /// a job execution which is "IN_PROGRESS" without setting the <code>force</code> parameter.
+        /// a job execution which is "IN_PROGRESS" without setting the <c>force</c> parameter.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.LimitExceededException">
         /// A limit has been exceeded.
@@ -5982,7 +6487,7 @@ namespace Amazon.IoT
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.InvalidStateTransitionException">
         /// An attempt was made to change to an invalid state, for example by deleting a job or
-        /// a job execution which is "IN_PROGRESS" without setting the <code>force</code> parameter.
+        /// a job execution which is "IN_PROGRESS" without setting the <c>force</c> parameter.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
         /// The specified resource does not exist.
@@ -6018,7 +6523,7 @@ namespace Amazon.IoT
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.InvalidStateTransitionException">
         /// An attempt was made to change to an invalid state, for example by deleting a job or
-        /// a job execution which is "IN_PROGRESS" without setting the <code>force</code> parameter.
+        /// a job execution which is "IN_PROGRESS" without setting the <c>force</c> parameter.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
         /// The specified resource does not exist.
@@ -6178,7 +6683,7 @@ namespace Amazon.IoT
         /// You are not authorized to perform this operation.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteOTAUpdate">REST API Reference for DeleteOTAUpdate Operation</seealso>
@@ -6220,7 +6725,7 @@ namespace Amazon.IoT
         /// You are not authorized to perform this operation.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteOTAUpdate">REST API Reference for DeleteOTAUpdate Operation</seealso>
@@ -7173,7 +7678,7 @@ namespace Amazon.IoT
         /// The rate exceeds the limit.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteSecurityProfile">REST API Reference for DeleteSecurityProfile Operation</seealso>
@@ -7206,7 +7711,7 @@ namespace Amazon.IoT
         /// The rate exceeds the limit.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteSecurityProfile">REST API Reference for DeleteSecurityProfile Operation</seealso>
@@ -7331,7 +7836,7 @@ namespace Amazon.IoT
         /// You are not authorized to perform this operation.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteThing">REST API Reference for DeleteThing Operation</seealso>
@@ -7369,7 +7874,7 @@ namespace Amazon.IoT
         /// You are not authorized to perform this operation.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteThing">REST API Reference for DeleteThing Operation</seealso>
@@ -7411,7 +7916,7 @@ namespace Amazon.IoT
         /// You are not authorized to perform this operation.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteThing">REST API Reference for DeleteThing Operation</seealso>
@@ -7453,7 +7958,7 @@ namespace Amazon.IoT
         /// You are not authorized to perform this operation.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteThing">REST API Reference for DeleteThing Operation</seealso>
@@ -7486,7 +7991,7 @@ namespace Amazon.IoT
         /// The rate exceeds the limit.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteThingGroup">REST API Reference for DeleteThingGroup Operation</seealso>
@@ -7519,7 +8024,7 @@ namespace Amazon.IoT
         /// The rate exceeds the limit.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteThingGroup">REST API Reference for DeleteThingGroup Operation</seealso>
@@ -8607,6 +9112,82 @@ namespace Amazon.IoT
 
         #endregion
         
+        #region  DescribeCertificateProvider
+
+
+        /// <summary>
+        /// Describes a certificate provider.
+        /// 
+        ///  
+        /// <para>
+        /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">DescribeCertificateProvider</a>
+        /// action. 
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeCertificateProvider service method.</param>
+        /// 
+        /// <returns>The response from the DescribeCertificateProvider service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalFailureException">
+        /// An unexpected error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceUnavailableException">
+        /// The service is temporarily unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.UnauthorizedException">
+        /// You are not authorized to perform this operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DescribeCertificateProvider">REST API Reference for DescribeCertificateProvider Operation</seealso>
+        DescribeCertificateProviderResponse DescribeCertificateProvider(DescribeCertificateProviderRequest request);
+
+
+
+        /// <summary>
+        /// Describes a certificate provider.
+        /// 
+        ///  
+        /// <para>
+        /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">DescribeCertificateProvider</a>
+        /// action. 
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeCertificateProvider service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeCertificateProvider service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalFailureException">
+        /// An unexpected error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceUnavailableException">
+        /// The service is temporarily unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.UnauthorizedException">
+        /// You are not authorized to perform this operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DescribeCertificateProvider">REST API Reference for DescribeCertificateProvider Operation</seealso>
+        Task<DescribeCertificateProviderResponse> DescribeCertificateProviderAsync(DescribeCertificateProviderRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  DescribeCustomMetric
 
 
@@ -8955,9 +9536,15 @@ namespace Amazon.IoT
 
 
         /// <summary>
-        /// Returns a unique endpoint specific to the Amazon Web Services account making the call.
+        /// Returns or creates a unique endpoint specific to the Amazon Web Services account making
+        /// the call.
         /// 
-        ///  
+        ///  <note> 
+        /// <para>
+        /// The first time <c>DescribeEndpoint</c> is called, an endpoint is created. All subsequent
+        /// calls to <c>DescribeEndpoint</c> return the same endpoint.
+        /// </para>
+        ///  </note> 
         /// <para>
         /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">DescribeEndpoint</a>
         /// action.
@@ -8981,9 +9568,15 @@ namespace Amazon.IoT
         DescribeEndpointResponse DescribeEndpoint();
 
         /// <summary>
-        /// Returns a unique endpoint specific to the Amazon Web Services account making the call.
+        /// Returns or creates a unique endpoint specific to the Amazon Web Services account making
+        /// the call.
         /// 
-        ///  
+        ///  <note> 
+        /// <para>
+        /// The first time <c>DescribeEndpoint</c> is called, an endpoint is created. All subsequent
+        /// calls to <c>DescribeEndpoint</c> return the same endpoint.
+        /// </para>
+        ///  </note> 
         /// <para>
         /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">DescribeEndpoint</a>
         /// action.
@@ -9009,9 +9602,15 @@ namespace Amazon.IoT
 
 
         /// <summary>
-        /// Returns a unique endpoint specific to the Amazon Web Services account making the call.
+        /// Returns or creates a unique endpoint specific to the Amazon Web Services account making
+        /// the call.
         /// 
-        ///  
+        ///  <note> 
+        /// <para>
+        /// The first time <c>DescribeEndpoint</c> is called, an endpoint is created. All subsequent
+        /// calls to <c>DescribeEndpoint</c> return the same endpoint.
+        /// </para>
+        ///  </note> 
         /// <para>
         /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">DescribeEndpoint</a>
         /// action.
@@ -9039,9 +9638,15 @@ namespace Amazon.IoT
 
 
         /// <summary>
-        /// Returns a unique endpoint specific to the Amazon Web Services account making the call.
+        /// Returns or creates a unique endpoint specific to the Amazon Web Services account making
+        /// the call.
         /// 
-        ///  
+        ///  <note> 
+        /// <para>
+        /// The first time <c>DescribeEndpoint</c> is called, an endpoint is created. All subsequent
+        /// calls to <c>DescribeEndpoint</c> return the same endpoint.
+        /// </para>
+        ///  </note> 
         /// <para>
         /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">DescribeEndpoint</a>
         /// action.
@@ -10911,6 +11516,80 @@ namespace Amazon.IoT
 
         #endregion
         
+        #region  DisassociateSbomFromPackageVersion
+
+
+        /// <summary>
+        /// Disassociates the selected software bill of materials (SBOM) from a specific software
+        /// package version.
+        /// 
+        ///  
+        /// <para>
+        /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">DisassociateSbomWithPackageVersion</a>
+        /// action.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DisassociateSbomFromPackageVersion service method.</param>
+        /// 
+        /// <returns>The response from the DisassociateSbomFromPackageVersion service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.ConflictException">
+        /// The request conflicts with the current state of the resource.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DisassociateSbomFromPackageVersion">REST API Reference for DisassociateSbomFromPackageVersion Operation</seealso>
+        DisassociateSbomFromPackageVersionResponse DisassociateSbomFromPackageVersion(DisassociateSbomFromPackageVersionRequest request);
+
+
+
+        /// <summary>
+        /// Disassociates the selected software bill of materials (SBOM) from a specific software
+        /// package version.
+        /// 
+        ///  
+        /// <para>
+        /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">DisassociateSbomWithPackageVersion</a>
+        /// action.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DisassociateSbomFromPackageVersion service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DisassociateSbomFromPackageVersion service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.ConflictException">
+        /// The request conflicts with the current state of the resource.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DisassociateSbomFromPackageVersion">REST API Reference for DisassociateSbomFromPackageVersion Operation</seealso>
+        Task<DisassociateSbomFromPackageVersionResponse> DisassociateSbomFromPackageVersionAsync(DisassociateSbomFromPackageVersionRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  EnableTopicRule
 
 
@@ -11235,6 +11914,114 @@ namespace Amazon.IoT
 
         #endregion
         
+        #region  GetCommand
+
+
+        /// <summary>
+        /// Gets information about the specified command.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetCommand service method.</param>
+        /// 
+        /// <returns>The response from the GetCommand service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetCommand">REST API Reference for GetCommand Operation</seealso>
+        GetCommandResponse GetCommand(GetCommandRequest request);
+
+
+
+        /// <summary>
+        /// Gets information about the specified command.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetCommand service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetCommand service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetCommand">REST API Reference for GetCommand Operation</seealso>
+        Task<GetCommandResponse> GetCommandAsync(GetCommandRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  GetCommandExecution
+
+
+        /// <summary>
+        /// Gets information about the specific command execution on a single device.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetCommandExecution service method.</param>
+        /// 
+        /// <returns>The response from the GetCommandExecution service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetCommandExecution">REST API Reference for GetCommandExecution Operation</seealso>
+        GetCommandExecutionResponse GetCommandExecution(GetCommandExecutionRequest request);
+
+
+
+        /// <summary>
+        /// Gets information about the specific command execution on a single device.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetCommandExecution service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetCommandExecution service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetCommandExecution">REST API Reference for GetCommandExecution Operation</seealso>
+        Task<GetCommandExecutionResponse> GetCommandExecutionAsync(GetCommandExecutionRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  GetEffectivePolicies
 
 
@@ -11461,8 +12248,7 @@ namespace Amazon.IoT
         /// 
         ///  
         /// <para>
-        /// NOTE: use of this command is not recommended. Use <code>GetV2LoggingOptions</code>
-        /// instead.
+        /// NOTE: use of this command is not recommended. Use <c>GetV2LoggingOptions</c> instead.
         /// </para>
         ///  
         /// <para>
@@ -11492,8 +12278,7 @@ namespace Amazon.IoT
         /// 
         ///  
         /// <para>
-        /// NOTE: use of this command is not recommended. Use <code>GetV2LoggingOptions</code>
-        /// instead.
+        /// NOTE: use of this command is not recommended. Use <c>GetV2LoggingOptions</c> instead.
         /// </para>
         ///  
         /// <para>
@@ -11789,7 +12574,7 @@ namespace Amazon.IoT
         /// <summary>
         /// Groups the aggregated values that match the query into percentile groupings. The default
         /// percentile groupings are: 1,5,25,50,75,95,99, although you can specify your own when
-        /// you call <code>GetPercentiles</code>. This function returns a value for each percentile
+        /// you call <c>GetPercentiles</c>. This function returns a value for each percentile
         /// group specified (or the default percentile groupings). The percentile group "1" contains
         /// the aggregated field value that occurs in approximately one percent of the values
         /// that match the query. The percentile group "5" contains the aggregated field value
@@ -11841,7 +12626,7 @@ namespace Amazon.IoT
         /// <summary>
         /// Groups the aggregated values that match the query into percentile groupings. The default
         /// percentile groupings are: 1,5,25,50,75,95,99, although you can specify your own when
-        /// you call <code>GetPercentiles</code>. This function returns a value for each percentile
+        /// you call <c>GetPercentiles</c>. This function returns a value for each percentile
         /// group specified (or the default percentile groupings). The percentile group "1" contains
         /// the aggregated field value that occurs in approximately one percent of the values
         /// that match the query. The percentile group "5" contains the aggregated field value
@@ -12197,6 +12982,12 @@ namespace Amazon.IoT
         /// 
         ///  
         /// <para>
+        /// IoT will create a registration code as part of this API call if the registration code
+        /// doesn't exist or has been deleted. If you already have a registration code, this API
+        /// call will return the same registration code.
+        /// </para>
+        ///  
+        /// <para>
         /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">GetRegistrationCode</a>
         /// action.
         /// </para>
@@ -12227,6 +13018,12 @@ namespace Amazon.IoT
         /// <summary>
         /// Gets a registration code used to register a CA certificate with IoT.
         /// 
+        ///  
+        /// <para>
+        /// IoT will create a registration code as part of this API call if the registration code
+        /// doesn't exist or has been deleted. If you already have a registration code, this API
+        /// call will return the same registration code.
+        /// </para>
         ///  
         /// <para>
         /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">GetRegistrationCode</a>
@@ -12265,7 +13062,7 @@ namespace Amazon.IoT
         /// <summary>
         /// Returns the count, average, sum, minimum, maximum, sum of squares, variance, and standard
         /// deviation for the specified aggregated field. If the aggregation field is of type
-        /// <code>String</code>, only the count statistic is returned.
+        /// <c>String</c>, only the count statistic is returned.
         /// 
         ///  
         /// <para>
@@ -12311,7 +13108,7 @@ namespace Amazon.IoT
         /// <summary>
         /// Returns the count, average, sum, minimum, maximum, sum of squares, variance, and standard
         /// deviation for the specified aggregated field. If the aggregation field is of type
-        /// <code>String</code>, only the count statistic is returned.
+        /// <c>String</c>, only the count statistic is returned.
         /// 
         ///  
         /// <para>
@@ -12354,6 +13151,76 @@ namespace Amazon.IoT
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetStatistics">REST API Reference for GetStatistics Operation</seealso>
         Task<GetStatisticsResponse> GetStatisticsAsync(GetStatisticsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  GetThingConnectivityData
+
+
+        /// <summary>
+        /// Retrieves the live connectivity status per device.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetThingConnectivityData service method.</param>
+        /// 
+        /// <returns>The response from the GetThingConnectivityData service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.IndexNotReadyException">
+        /// The index is not ready.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InternalFailureException">
+        /// An unexpected error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceUnavailableException">
+        /// The service is temporarily unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.UnauthorizedException">
+        /// You are not authorized to perform this operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetThingConnectivityData">REST API Reference for GetThingConnectivityData Operation</seealso>
+        GetThingConnectivityDataResponse GetThingConnectivityData(GetThingConnectivityDataRequest request);
+
+
+
+        /// <summary>
+        /// Retrieves the live connectivity status per device.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetThingConnectivityData service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetThingConnectivityData service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.IndexNotReadyException">
+        /// The index is not ready.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InternalFailureException">
+        /// An unexpected error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceUnavailableException">
+        /// The service is temporarily unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.UnauthorizedException">
+        /// You are not authorized to perform this operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetThingConnectivityData">REST API Reference for GetThingConnectivityData Operation</seealso>
+        Task<GetThingConnectivityDataResponse> GetThingConnectivityDataAsync(GetThingConnectivityDataRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -13252,6 +14119,76 @@ namespace Amazon.IoT
 
         #endregion
         
+        #region  ListCertificateProviders
+
+
+        /// <summary>
+        /// Lists all your certificate providers in your Amazon Web Services account.
+        /// 
+        ///  
+        /// <para>
+        /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">ListCertificateProviders</a>
+        /// action. 
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListCertificateProviders service method.</param>
+        /// 
+        /// <returns>The response from the ListCertificateProviders service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalFailureException">
+        /// An unexpected error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceUnavailableException">
+        /// The service is temporarily unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.UnauthorizedException">
+        /// You are not authorized to perform this operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListCertificateProviders">REST API Reference for ListCertificateProviders Operation</seealso>
+        ListCertificateProvidersResponse ListCertificateProviders(ListCertificateProvidersRequest request);
+
+
+
+        /// <summary>
+        /// Lists all your certificate providers in your Amazon Web Services account.
+        /// 
+        ///  
+        /// <para>
+        /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">ListCertificateProviders</a>
+        /// action. 
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListCertificateProviders service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListCertificateProviders service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalFailureException">
+        /// An unexpected error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceUnavailableException">
+        /// The service is temporarily unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.UnauthorizedException">
+        /// You are not authorized to perform this operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListCertificateProviders">REST API Reference for ListCertificateProviders Operation</seealso>
+        Task<ListCertificateProvidersResponse> ListCertificateProvidersAsync(ListCertificateProvidersRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  ListCertificates
 
 
@@ -13470,6 +14407,148 @@ namespace Amazon.IoT
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListCertificatesByCA">REST API Reference for ListCertificatesByCA Operation</seealso>
         Task<ListCertificatesByCAResponse> ListCertificatesByCAAsync(ListCertificatesByCARequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListCommandExecutions
+
+
+        /// <summary>
+        /// List all command executions.
+        /// 
+        ///  <important> <ul> <li> 
+        /// <para>
+        /// You must provide only the <c>startedTimeFilter</c> or the <c>completedTimeFilter</c>
+        /// information. If you provide both time filters, the API will generate an error. You
+        /// can use this information to retrieve a list of command executions within a specific
+        /// timeframe.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You must provide only the <c>commandArn</c> or the <c>thingArn</c> information depending
+        /// on whether you want to list executions for a specific command or an IoT thing. If
+        /// you provide both fields, the API will generate an error.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information about considerations for using this API, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/iot-remote-command-execution-start-monitor.html#iot-remote-command-execution-list-cli">List
+        /// command executions in your account (CLI)</a>.
+        /// </para>
+        ///  </important>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListCommandExecutions service method.</param>
+        /// 
+        /// <returns>The response from the ListCommandExecutions service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListCommandExecutions">REST API Reference for ListCommandExecutions Operation</seealso>
+        ListCommandExecutionsResponse ListCommandExecutions(ListCommandExecutionsRequest request);
+
+
+
+        /// <summary>
+        /// List all command executions.
+        /// 
+        ///  <important> <ul> <li> 
+        /// <para>
+        /// You must provide only the <c>startedTimeFilter</c> or the <c>completedTimeFilter</c>
+        /// information. If you provide both time filters, the API will generate an error. You
+        /// can use this information to retrieve a list of command executions within a specific
+        /// timeframe.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You must provide only the <c>commandArn</c> or the <c>thingArn</c> information depending
+        /// on whether you want to list executions for a specific command or an IoT thing. If
+        /// you provide both fields, the API will generate an error.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information about considerations for using this API, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/iot-remote-command-execution-start-monitor.html#iot-remote-command-execution-list-cli">List
+        /// command executions in your account (CLI)</a>.
+        /// </para>
+        ///  </important>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListCommandExecutions service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListCommandExecutions service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListCommandExecutions">REST API Reference for ListCommandExecutions Operation</seealso>
+        Task<ListCommandExecutionsResponse> ListCommandExecutionsAsync(ListCommandExecutionsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListCommands
+
+
+        /// <summary>
+        /// List all commands in your account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListCommands service method.</param>
+        /// 
+        /// <returns>The response from the ListCommands service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListCommands">REST API Reference for ListCommands Operation</seealso>
+        ListCommandsResponse ListCommands(ListCommandsRequest request);
+
+
+
+        /// <summary>
+        /// List all commands in your account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListCommands service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListCommands service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListCommands">REST API Reference for ListCommands Operation</seealso>
+        Task<ListCommandsResponse> ListCommandsAsync(ListCommandsRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -15289,6 +16368,84 @@ namespace Amazon.IoT
 
         #endregion
         
+        #region  ListPrincipalThingsV2
+
+
+        /// <summary>
+        /// Lists the things associated with the specified principal. A principal can be an X.509
+        /// certificate or an Amazon Cognito ID.
+        /// 
+        ///  
+        /// <para>
+        /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">ListPrincipalThings</a>
+        /// action.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListPrincipalThingsV2 service method.</param>
+        /// 
+        /// <returns>The response from the ListPrincipalThingsV2 service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalFailureException">
+        /// An unexpected error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceUnavailableException">
+        /// The service is temporarily unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.UnauthorizedException">
+        /// You are not authorized to perform this operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListPrincipalThingsV2">REST API Reference for ListPrincipalThingsV2 Operation</seealso>
+        ListPrincipalThingsV2Response ListPrincipalThingsV2(ListPrincipalThingsV2Request request);
+
+
+
+        /// <summary>
+        /// Lists the things associated with the specified principal. A principal can be an X.509
+        /// certificate or an Amazon Cognito ID.
+        /// 
+        ///  
+        /// <para>
+        /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">ListPrincipalThings</a>
+        /// action.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListPrincipalThingsV2 service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListPrincipalThingsV2 service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalFailureException">
+        /// An unexpected error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceUnavailableException">
+        /// The service is temporarily unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.UnauthorizedException">
+        /// You are not authorized to perform this operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListPrincipalThingsV2">REST API Reference for ListPrincipalThingsV2 Operation</seealso>
+        Task<ListPrincipalThingsV2Response> ListPrincipalThingsV2Async(ListPrincipalThingsV2Request request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  ListProvisioningTemplates
 
 
@@ -15639,6 +16796,74 @@ namespace Amazon.IoT
 
         #endregion
         
+        #region  ListSbomValidationResults
+
+
+        /// <summary>
+        /// The validation results for all software bill of materials (SBOM) attached to a specific
+        /// software package version.
+        /// 
+        ///  
+        /// <para>
+        /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">ListSbomValidationResults</a>
+        /// action.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListSbomValidationResults service method.</param>
+        /// 
+        /// <returns>The response from the ListSbomValidationResults service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListSbomValidationResults">REST API Reference for ListSbomValidationResults Operation</seealso>
+        ListSbomValidationResultsResponse ListSbomValidationResults(ListSbomValidationResultsRequest request);
+
+
+
+        /// <summary>
+        /// The validation results for all software bill of materials (SBOM) attached to a specific
+        /// software package version.
+        /// 
+        ///  
+        /// <para>
+        /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">ListSbomValidationResults</a>
+        /// action.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListSbomValidationResults service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListSbomValidationResults service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListSbomValidationResults">REST API Reference for ListSbomValidationResults Operation</seealso>
+        Task<ListSbomValidationResultsResponse> ListSbomValidationResultsAsync(ListSbomValidationResultsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  ListScheduledAudits
 
 
@@ -15711,8 +16936,7 @@ namespace Amazon.IoT
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>dimensionName</code> and <code>metricName</code> cannot be used in the same
-        /// request.
+        ///  <c>dimensionName</c> and <c>metricName</c> cannot be used in the same request.
         /// </para>
         ///  </note>
         /// </summary>
@@ -15747,8 +16971,7 @@ namespace Amazon.IoT
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>dimensionName</code> and <code>metricName</code> cannot be used in the same
-        /// request.
+        ///  <c>dimensionName</c> and <c>metricName</c> cannot be used in the same request.
         /// </para>
         ///  </note>
         /// </summary>
@@ -16402,6 +17625,84 @@ namespace Amazon.IoT
 
         #endregion
         
+        #region  ListThingPrincipalsV2
+
+
+        /// <summary>
+        /// Lists the principals associated with the specified thing. A principal can be an X.509
+        /// certificate or an Amazon Cognito ID.
+        /// 
+        ///  
+        /// <para>
+        /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">ListThingPrincipals</a>
+        /// action.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListThingPrincipalsV2 service method.</param>
+        /// 
+        /// <returns>The response from the ListThingPrincipalsV2 service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalFailureException">
+        /// An unexpected error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceUnavailableException">
+        /// The service is temporarily unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.UnauthorizedException">
+        /// You are not authorized to perform this operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListThingPrincipalsV2">REST API Reference for ListThingPrincipalsV2 Operation</seealso>
+        ListThingPrincipalsV2Response ListThingPrincipalsV2(ListThingPrincipalsV2Request request);
+
+
+
+        /// <summary>
+        /// Lists the principals associated with the specified thing. A principal can be an X.509
+        /// certificate or an Amazon Cognito ID.
+        /// 
+        ///  
+        /// <para>
+        /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">ListThingPrincipals</a>
+        /// action.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListThingPrincipalsV2 service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListThingPrincipalsV2 service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalFailureException">
+        /// An unexpected error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceUnavailableException">
+        /// The service is temporarily unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.UnauthorizedException">
+        /// You are not authorized to perform this operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListThingPrincipalsV2">REST API Reference for ListThingPrincipalsV2 Operation</seealso>
+        Task<ListThingPrincipalsV2Response> ListThingPrincipalsV2Async(ListThingPrincipalsV2Request request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  ListThingRegistrationTaskReports
 
 
@@ -16523,7 +17824,7 @@ namespace Amazon.IoT
 
         /// <summary>
         /// Lists your things. Use the <b>attributeName</b> and <b>attributeValue</b> parameters
-        /// to filter your things. For example, calling <code>ListThings</code> with attributeName=Color
+        /// to filter your things. For example, calling <c>ListThings</c> with attributeName=Color
         /// and attributeValue=Red retrieves all things in the registry that contain an attribute
         /// <b>Color</b> with the value <b>Red</b>. For more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/thing-registry.html#list-things">List
         /// Things</a> from the <i>Amazon Web Services IoT Core Developer Guide</i>.
@@ -16535,9 +17836,9 @@ namespace Amazon.IoT
         /// </para>
         ///  <note> 
         /// <para>
-        /// You will not be charged for calling this API if an <code>Access denied</code> error
-        /// is returned. You will also not be charged if no attributes or pagination token was
-        /// provided in request and no pagination token and no results were returned.
+        /// You will not be charged for calling this API if an <c>Access denied</c> error is returned.
+        /// You will also not be charged if no attributes or pagination token was provided in
+        /// request and no pagination token and no results were returned.
         /// </para>
         ///  </note>
         /// </summary>
@@ -16563,7 +17864,7 @@ namespace Amazon.IoT
 
         /// <summary>
         /// Lists your things. Use the <b>attributeName</b> and <b>attributeValue</b> parameters
-        /// to filter your things. For example, calling <code>ListThings</code> with attributeName=Color
+        /// to filter your things. For example, calling <c>ListThings</c> with attributeName=Color
         /// and attributeValue=Red retrieves all things in the registry that contain an attribute
         /// <b>Color</b> with the value <b>Red</b>. For more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/thing-registry.html#list-things">List
         /// Things</a> from the <i>Amazon Web Services IoT Core Developer Guide</i>.
@@ -16575,9 +17876,9 @@ namespace Amazon.IoT
         /// </para>
         ///  <note> 
         /// <para>
-        /// You will not be charged for calling this API if an <code>Access denied</code> error
-        /// is returned. You will also not be charged if no attributes or pagination token was
-        /// provided in request and no pagination token and no results were returned.
+        /// You will not be charged for calling this API if an <c>Access denied</c> error is returned.
+        /// You will also not be charged if no attributes or pagination token was provided in
+        /// request and no pagination token and no results were returned.
         /// </para>
         ///  </note>
         /// </summary>
@@ -16605,7 +17906,7 @@ namespace Amazon.IoT
 
         /// <summary>
         /// Lists your things. Use the <b>attributeName</b> and <b>attributeValue</b> parameters
-        /// to filter your things. For example, calling <code>ListThings</code> with attributeName=Color
+        /// to filter your things. For example, calling <c>ListThings</c> with attributeName=Color
         /// and attributeValue=Red retrieves all things in the registry that contain an attribute
         /// <b>Color</b> with the value <b>Red</b>. For more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/thing-registry.html#list-things">List
         /// Things</a> from the <i>Amazon Web Services IoT Core Developer Guide</i>.
@@ -16617,9 +17918,9 @@ namespace Amazon.IoT
         /// </para>
         ///  <note> 
         /// <para>
-        /// You will not be charged for calling this API if an <code>Access denied</code> error
-        /// is returned. You will also not be charged if no attributes or pagination token was
-        /// provided in request and no pagination token and no results were returned.
+        /// You will not be charged for calling this API if an <c>Access denied</c> error is returned.
+        /// You will also not be charged if no attributes or pagination token was provided in
+        /// request and no pagination token and no results were returned.
         /// </para>
         ///  </note>
         /// </summary>
@@ -16649,7 +17950,7 @@ namespace Amazon.IoT
 
         /// <summary>
         /// Lists your things. Use the <b>attributeName</b> and <b>attributeValue</b> parameters
-        /// to filter your things. For example, calling <code>ListThings</code> with attributeName=Color
+        /// to filter your things. For example, calling <c>ListThings</c> with attributeName=Color
         /// and attributeValue=Red retrieves all things in the registry that contain an attribute
         /// <b>Color</b> with the value <b>Red</b>. For more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/thing-registry.html#list-things">List
         /// Things</a> from the <i>Amazon Web Services IoT Core Developer Guide</i>.
@@ -16661,9 +17962,9 @@ namespace Amazon.IoT
         /// </para>
         ///  <note> 
         /// <para>
-        /// You will not be charged for calling this API if an <code>Access denied</code> error
-        /// is returned. You will also not be charged if no attributes or pagination token was
-        /// provided in request and no pagination token and no results were returned.
+        /// You will not be charged for calling this API if an <c>Access denied</c> error is returned.
+        /// You will also not be charged if no attributes or pagination token was provided in
+        /// request and no pagination token and no results were returned.
         /// </para>
         ///  </note>
         /// </summary>
@@ -17244,8 +18545,8 @@ namespace Amazon.IoT
         /// <summary>
         /// Registers a CA certificate with Amazon Web Services IoT Core. There is no limit to
         /// the number of CA certificates you can register in your Amazon Web Services account.
-        /// You can register up to 10 CA certificates with the same <code>CA subject field</code>
-        /// per Amazon Web Services account.
+        /// You can register up to 10 CA certificates with the same <c>CA subject field</c> per
+        /// Amazon Web Services account.
         /// 
         ///  
         /// <para>
@@ -17294,8 +18595,8 @@ namespace Amazon.IoT
         /// <summary>
         /// Registers a CA certificate with Amazon Web Services IoT Core. There is no limit to
         /// the number of CA certificates you can register in your Amazon Web Services account.
-        /// You can register up to 10 CA certificates with the same <code>CA subject field</code>
-        /// per Amazon Web Services account.
+        /// You can register up to 10 CA certificates with the same <c>CA subject field</c> per
+        /// Amazon Web Services account.
         /// 
         ///  
         /// <para>
@@ -17901,9 +19202,9 @@ namespace Amazon.IoT
         /// 
         ///  
         /// <para>
-        /// You must specify either a <code>thingGroupArn</code> or a <code>thingGroupName</code>
-        /// to identify the thing group and either a <code>thingArn</code> or a <code>thingName</code>
-        /// to identify the thing to remove from the thing group. 
+        /// You must specify either a <c>thingGroupArn</c> or a <c>thingGroupName</c> to identify
+        /// the thing group and either a <c>thingArn</c> or a <c>thingName</c> to identify the
+        /// thing to remove from the thing group. 
         /// </para>
         ///  
         /// <para>
@@ -17936,9 +19237,9 @@ namespace Amazon.IoT
         /// 
         ///  
         /// <para>
-        /// You must specify either a <code>thingGroupArn</code> or a <code>thingGroupName</code>
-        /// to identify the thing group and either a <code>thingArn</code> or a <code>thingName</code>
-        /// to identify the thing to remove from the thing group. 
+        /// You must specify either a <c>thingGroupArn</c> or a <c>thingGroupName</c> to identify
+        /// the thing group and either a <c>thingArn</c> or a <c>thingName</c> to identify the
+        /// thing to remove from the thing group. 
         /// </para>
         ///  
         /// <para>
@@ -18390,8 +19691,7 @@ namespace Amazon.IoT
         /// 
         ///  
         /// <para>
-        /// NOTE: use of this command is not recommended. Use <code>SetV2LoggingOptions</code>
-        /// instead.
+        /// NOTE: use of this command is not recommended. Use <c>SetV2LoggingOptions</c> instead.
         /// </para>
         ///  
         /// <para>
@@ -18421,8 +19721,7 @@ namespace Amazon.IoT
         /// 
         ///  
         /// <para>
-        /// NOTE: use of this command is not recommended. Use <code>SetV2LoggingOptions</code>
-        /// instead.
+        /// NOTE: use of this command is not recommended. Use <c>SetV2LoggingOptions</c> instead.
         /// </para>
         ///  
         /// <para>
@@ -19697,7 +20996,7 @@ namespace Amazon.IoT
         /// The rate exceeds the limit.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateBillingGroup">REST API Reference for UpdateBillingGroup Operation</seealso>
@@ -19733,7 +21032,7 @@ namespace Amazon.IoT
         /// The rate exceeds the limit.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateBillingGroup">REST API Reference for UpdateBillingGroup Operation</seealso>
@@ -20020,6 +21319,142 @@ namespace Amazon.IoT
 
         #endregion
         
+        #region  UpdateCertificateProvider
+
+
+        /// <summary>
+        /// Updates a certificate provider.
+        /// 
+        ///  
+        /// <para>
+        /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">UpdateCertificateProvider</a>
+        /// action. 
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateCertificateProvider service method.</param>
+        /// 
+        /// <returns>The response from the UpdateCertificateProvider service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalFailureException">
+        /// An unexpected error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceUnavailableException">
+        /// The service is temporarily unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.UnauthorizedException">
+        /// You are not authorized to perform this operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateCertificateProvider">REST API Reference for UpdateCertificateProvider Operation</seealso>
+        UpdateCertificateProviderResponse UpdateCertificateProvider(UpdateCertificateProviderRequest request);
+
+
+
+        /// <summary>
+        /// Updates a certificate provider.
+        /// 
+        ///  
+        /// <para>
+        /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">UpdateCertificateProvider</a>
+        /// action. 
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateCertificateProvider service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateCertificateProvider service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalFailureException">
+        /// An unexpected error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceUnavailableException">
+        /// The service is temporarily unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.UnauthorizedException">
+        /// You are not authorized to perform this operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateCertificateProvider">REST API Reference for UpdateCertificateProvider Operation</seealso>
+        Task<UpdateCertificateProviderResponse> UpdateCertificateProviderAsync(UpdateCertificateProviderRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  UpdateCommand
+
+
+        /// <summary>
+        /// Update information about a command or mark a command for deprecation.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateCommand service method.</param>
+        /// 
+        /// <returns>The response from the UpdateCommand service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.ConflictException">
+        /// The request conflicts with the current state of the resource.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateCommand">REST API Reference for UpdateCommand Operation</seealso>
+        UpdateCommandResponse UpdateCommand(UpdateCommandRequest request);
+
+
+
+        /// <summary>
+        /// Update information about a command or mark a command for deprecation.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateCommand service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateCommand service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.ConflictException">
+        /// The request conflicts with the current state of the resource.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InternalServerException">
+        /// Internal error from the service that indicates an unexpected error or that the service
+        /// is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ValidationException">
+        /// The request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateCommand">REST API Reference for UpdateCommand Operation</seealso>
+        Task<UpdateCommandResponse> UpdateCommandAsync(UpdateCommandRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  UpdateCustomMetric
 
 
@@ -20265,7 +21700,7 @@ namespace Amazon.IoT
         /// The rate exceeds the limit.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateDynamicThingGroup">REST API Reference for UpdateDynamicThingGroup Operation</seealso>
@@ -20304,7 +21739,7 @@ namespace Amazon.IoT
         /// The rate exceeds the limit.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateDynamicThingGroup">REST API Reference for UpdateDynamicThingGroup Operation</seealso>
@@ -20413,7 +21848,7 @@ namespace Amazon.IoT
         /// You are not authorized to perform this operation.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateFleetMetric">REST API Reference for UpdateFleetMetric Operation</seealso>
@@ -20464,7 +21899,7 @@ namespace Amazon.IoT
         /// You are not authorized to perform this operation.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateFleetMetric">REST API Reference for UpdateFleetMetric Operation</seealso>
@@ -20686,6 +22121,9 @@ namespace Amazon.IoT
         /// <param name="request">Container for the necessary parameters to execute the UpdatePackage service method.</param>
         /// 
         /// <returns>The response from the UpdatePackage service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.ConflictException">
+        /// The request conflicts with the current state of the resource.
+        /// </exception>
         /// <exception cref="Amazon.IoT.Model.InternalServerException">
         /// Internal error from the service that indicates an unexpected error or that the service
         /// is unavailable.
@@ -20720,6 +22158,9 @@ namespace Amazon.IoT
         /// </param>
         /// 
         /// <returns>The response from the UpdatePackage service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.ConflictException">
+        /// The request conflicts with the current state of the resource.
+        /// </exception>
         /// <exception cref="Amazon.IoT.Model.InternalServerException">
         /// Internal error from the service that indicates an unexpected error or that the service
         /// is unavailable.
@@ -20754,6 +22195,9 @@ namespace Amazon.IoT
         /// <param name="request">Container for the necessary parameters to execute the UpdatePackageConfiguration service method.</param>
         /// 
         /// <returns>The response from the UpdatePackageConfiguration service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.ConflictException">
+        /// The request conflicts with the current state of the resource.
+        /// </exception>
         /// <exception cref="Amazon.IoT.Model.InternalServerException">
         /// Internal error from the service that indicates an unexpected error or that the service
         /// is unavailable.
@@ -20785,6 +22229,9 @@ namespace Amazon.IoT
         /// </param>
         /// 
         /// <returns>The response from the UpdatePackageConfiguration service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.ConflictException">
+        /// The request conflicts with the current state of the resource.
+        /// </exception>
         /// <exception cref="Amazon.IoT.Model.InternalServerException">
         /// Internal error from the service that indicates an unexpected error or that the service
         /// is unavailable.
@@ -20816,6 +22263,9 @@ namespace Amazon.IoT
         /// <param name="request">Container for the necessary parameters to execute the UpdatePackageVersion service method.</param>
         /// 
         /// <returns>The response from the UpdatePackageVersion service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.ConflictException">
+        /// The request conflicts with the current state of the resource.
+        /// </exception>
         /// <exception cref="Amazon.IoT.Model.InternalServerException">
         /// Internal error from the service that indicates an unexpected error or that the service
         /// is unavailable.
@@ -20850,6 +22300,9 @@ namespace Amazon.IoT
         /// </param>
         /// 
         /// <returns>The response from the UpdatePackageVersion service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.ConflictException">
+        /// The request conflicts with the current state of the resource.
+        /// </exception>
         /// <exception cref="Amazon.IoT.Model.InternalServerException">
         /// Internal error from the service that indicates an unexpected error or that the service
         /// is unavailable.
@@ -20951,6 +22404,16 @@ namespace Amazon.IoT
         /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">UpdateRoleAlias</a>
         /// action.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// The value of <a href="https://docs.aws.amazon.com/iot/latest/apireference/API_UpdateRoleAlias.html#iot-UpdateRoleAlias-request-credentialDurationSeconds">
+        /// <c>credentialDurationSeconds</c> </a> must be less than or equal to the maximum session
+        /// duration of the IAM role that the role alias references. For more information, see
+        /// <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/roles-managingrole-editing-api.html#roles-modify_max-session-duration-api">
+        /// Modifying a role maximum session duration (Amazon Web Services API)</a> from the Amazon
+        /// Web Services Identity and Access Management User Guide.
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateRoleAlias service method.</param>
         /// 
@@ -20986,6 +22449,16 @@ namespace Amazon.IoT
         /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">UpdateRoleAlias</a>
         /// action.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// The value of <a href="https://docs.aws.amazon.com/iot/latest/apireference/API_UpdateRoleAlias.html#iot-UpdateRoleAlias-request-credentialDurationSeconds">
+        /// <c>credentialDurationSeconds</c> </a> must be less than or equal to the maximum session
+        /// duration of the IAM role that the role alias references. For more information, see
+        /// <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/roles-managingrole-editing-api.html#roles-modify_max-session-duration-api">
+        /// Modifying a role maximum session duration (Amazon Web Services API)</a> from the Amazon
+        /// Web Services Identity and Access Management User Guide.
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateRoleAlias service method.</param>
         /// <param name="cancellationToken">
@@ -21110,7 +22583,7 @@ namespace Amazon.IoT
         /// The rate exceeds the limit.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateSecurityProfile">REST API Reference for UpdateSecurityProfile Operation</seealso>
@@ -21146,7 +22619,7 @@ namespace Amazon.IoT
         /// The rate exceeds the limit.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateSecurityProfile">REST API Reference for UpdateSecurityProfile Operation</seealso>
@@ -21174,6 +22647,9 @@ namespace Amazon.IoT
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.InvalidRequestException">
         /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.LimitExceededException">
+        /// A limit has been exceeded.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
         /// The specified resource does not exist.
@@ -21212,6 +22688,9 @@ namespace Amazon.IoT
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.InvalidRequestException">
         /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.LimitExceededException">
+        /// A limit has been exceeded.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
         /// The specified resource does not exist.
@@ -21264,7 +22743,7 @@ namespace Amazon.IoT
         /// You are not authorized to perform this operation.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateThing">REST API Reference for UpdateThing Operation</seealso>
@@ -21306,7 +22785,7 @@ namespace Amazon.IoT
         /// You are not authorized to perform this operation.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateThing">REST API Reference for UpdateThing Operation</seealso>
@@ -21342,7 +22821,7 @@ namespace Amazon.IoT
         /// The rate exceeds the limit.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateThingGroup">REST API Reference for UpdateThingGroup Operation</seealso>
@@ -21378,7 +22857,7 @@ namespace Amazon.IoT
         /// The rate exceeds the limit.
         /// </exception>
         /// <exception cref="Amazon.IoT.Model.VersionConflictException">
-        /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+        /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
         /// parameter does not match the latest version in the system.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateThingGroup">REST API Reference for UpdateThingGroup Operation</seealso>
@@ -21447,6 +22926,70 @@ namespace Amazon.IoT
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateThingGroupsForThing">REST API Reference for UpdateThingGroupsForThing Operation</seealso>
         Task<UpdateThingGroupsForThingResponse> UpdateThingGroupsForThingAsync(UpdateThingGroupsForThingRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  UpdateThingType
+
+
+        /// <summary>
+        /// Updates a thing type.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateThingType service method.</param>
+        /// 
+        /// <returns>The response from the UpdateThingType service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalFailureException">
+        /// An unexpected error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceUnavailableException">
+        /// The service is temporarily unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.UnauthorizedException">
+        /// You are not authorized to perform this operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateThingType">REST API Reference for UpdateThingType Operation</seealso>
+        UpdateThingTypeResponse UpdateThingType(UpdateThingTypeRequest request);
+
+
+
+        /// <summary>
+        /// Updates a thing type.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateThingType service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateThingType service method, as returned by IoT.</returns>
+        /// <exception cref="Amazon.IoT.Model.InternalFailureException">
+        /// An unexpected error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ServiceUnavailableException">
+        /// The service is temporarily unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.ThrottlingException">
+        /// The rate exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.IoT.Model.UnauthorizedException">
+        /// You are not authorized to perform this operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateThingType">REST API Reference for UpdateThingType Operation</seealso>
+        Task<UpdateThingTypeResponse> UpdateThingTypeAsync(UpdateThingTypeRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.IdentityManagement.Model
     /// </summary>
     public partial class ListAttachedGroupPoliciesResponse : AmazonWebServiceResponse
     {
-        private List<AttachedPolicyType> _attachedPolicies = new List<AttachedPolicyType>();
+        private List<AttachedPolicyType> _attachedPolicies = AWSConfigs.InitializeCollections ? new List<AttachedPolicyType>() : null;
         private bool? _isTruncated;
         private string _marker;
 
@@ -52,18 +53,17 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if AttachedPolicies property is set
         internal bool IsSetAttachedPolicies()
         {
-            return this._attachedPolicies != null && this._attachedPolicies.Count > 0; 
+            return this._attachedPolicies != null && (this._attachedPolicies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property IsTruncated. 
         /// <para>
         /// A flag that indicates whether there are more items to return. If your results were
-        /// truncated, you can make a subsequent pagination request using the <code>Marker</code>
-        /// request parameter to retrieve more items. Note that IAM might return fewer than the
-        /// <code>MaxItems</code> number of results even when there are more results available.
-        /// We recommend that you check <code>IsTruncated</code> after every call to ensure that
-        /// you receive all your results.
+        /// truncated, you can make a subsequent pagination request using the <c>Marker</c> request
+        /// parameter to retrieve more items. Note that IAM might return fewer than the <c>MaxItems</c>
+        /// number of results even when there are more results available. We recommend that you
+        /// check <c>IsTruncated</c> after every call to ensure that you receive all your results.
         /// </para>
         /// </summary>
         public bool IsTruncated
@@ -81,9 +81,8 @@ namespace Amazon.IdentityManagement.Model
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// When <code>IsTruncated</code> is <code>true</code>, this element is present and contains
-        /// the value to use for the <code>Marker</code> parameter in a subsequent pagination
-        /// request.
+        /// When <c>IsTruncated</c> is <c>true</c>, this element is present and contains the value
+        /// to use for the <c>Marker</c> parameter in a subsequent pagination request.
         /// </para>
         /// </summary>
         public string Marker

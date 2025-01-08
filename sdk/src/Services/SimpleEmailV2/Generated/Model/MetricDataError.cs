@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -44,12 +45,12 @@ namespace Amazon.SimpleEmailV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>INTERNAL_FAILURE</code> – Amazon SES has failed to process one of the queries.
+        ///  <c>INTERNAL_FAILURE</c> – Amazon SES has failed to process one of the queries.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ACCESS_DENIED</code> – You have insufficient access to retrieve metrics based
-        /// on the given query.
+        ///  <c>ACCESS_DENIED</c> – You have insufficient access to retrieve metrics based on
+        /// the given query.
         /// </para>
         ///  </li> </ul>
         /// </summary>

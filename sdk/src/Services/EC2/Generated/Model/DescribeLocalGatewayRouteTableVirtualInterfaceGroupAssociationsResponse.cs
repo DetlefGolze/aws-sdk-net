@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsResponse : AmazonWebServiceResponse
     {
-        private List<LocalGatewayRouteTableVirtualInterfaceGroupAssociation> _localGatewayRouteTableVirtualInterfaceGroupAssociations = new List<LocalGatewayRouteTableVirtualInterfaceGroupAssociation>();
+        private List<LocalGatewayRouteTableVirtualInterfaceGroupAssociation> _localGatewayRouteTableVirtualInterfaceGroupAssociations = AWSConfigs.InitializeCollections ? new List<LocalGatewayRouteTableVirtualInterfaceGroupAssociation>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,14 +53,14 @@ namespace Amazon.EC2.Model
         // Check to see if LocalGatewayRouteTableVirtualInterfaceGroupAssociations property is set
         internal bool IsSetLocalGatewayRouteTableVirtualInterfaceGroupAssociations()
         {
-            return this._localGatewayRouteTableVirtualInterfaceGroupAssociations != null && this._localGatewayRouteTableVirtualInterfaceGroupAssociations.Count > 0; 
+            return this._localGatewayRouteTableVirtualInterfaceGroupAssociations != null && (this._localGatewayRouteTableVirtualInterfaceGroupAssociations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to use to retrieve the next page of results. This value is <code>null</code>
-        /// when there are no more results to return.
+        /// The token to use to retrieve the next page of results. This value is <c>null</c> when
+        /// there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken

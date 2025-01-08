@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ClusterConfig requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetColdStorageOptions())
             {
                 context.Writer.WritePropertyName("ColdStorageOptions");
@@ -90,6 +93,22 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("MultiAZWithStandbyEnabled");
                 context.Writer.Write(requestObject.MultiAZWithStandbyEnabled);
+            }
+
+            if(requestObject.IsSetNodeOptions())
+            {
+                context.Writer.WritePropertyName("NodeOptions");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectNodeOptionsListValue in requestObject.NodeOptions)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = NodeOptionMarshaller.Instance;
+                    marshaller.Marshall(requestObjectNodeOptionsListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
             }
 
             if(requestObject.IsSetWarmCount())

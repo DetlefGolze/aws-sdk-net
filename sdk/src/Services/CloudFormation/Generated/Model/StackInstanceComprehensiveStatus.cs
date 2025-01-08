@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -38,43 +39,49 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property DetailedStatus. <ul> <li> 
         /// <para>
-        ///  <code>CANCELLED</code>: The operation in the specified account and Region has been
-        /// canceled. This is either because a user has stopped the stack set operation, or because
-        /// the failure tolerance of the stack set operation has been exceeded.
+        ///  <c>CANCELLED</c>: The operation in the specified account and Region has been canceled.
+        /// This is either because a user has stopped the stack set operation, or because the
+        /// failure tolerance of the stack set operation has been exceeded.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code>: The operation in the specified account and Region failed. If
-        /// the stack set operation fails in enough accounts within a Region, the failure tolerance
-        /// for the stack set operation as a whole might be exceeded.
+        ///  <c>FAILED</c>: The operation in the specified account and Region failed. If the stack
+        /// set operation fails in enough accounts within a Region, the failure tolerance for
+        /// the stack set operation as a whole might be exceeded.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INOPERABLE</code>: A <code>DeleteStackInstances</code> operation has failed
-        /// and left the stack in an unstable state. Stacks in this state are excluded from further
-        /// <code>UpdateStackSet</code> operations. You might need to perform a <code>DeleteStackInstances</code>
-        /// operation, with <code>RetainStacks</code> set to <code>true</code>, to delete the
-        /// stack instance, and then delete the stack manually.
+        ///  <c>FAILED_IMPORT</c>: The import of the stack instance in the specified account and
+        /// Region failed and left the stack in an unstable state. Once the issues causing the
+        /// failure are fixed, the import operation can be retried. If enough stack set operations
+        /// fail in enough accounts within a Region, the failure tolerance for the stack set operation
+        /// as a whole might be exceeded.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PENDING</code>: The operation in the specified account and Region has yet to
-        /// start.
+        ///  <c>INOPERABLE</c>: A <c>DeleteStackInstances</c> operation has failed and left the
+        /// stack in an unstable state. Stacks in this state are excluded from further <c>UpdateStackSet</c>
+        /// operations. You might need to perform a <c>DeleteStackInstances</c> operation, with
+        /// <c>RetainStacks</c> set to <c>true</c>, to delete the stack instance, and then delete
+        /// the stack manually.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RUNNING</code>: The operation in the specified account and Region is currently
-        /// in progress.
+        ///  <c>PENDING</c>: The operation in the specified account and Region has yet to start.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SKIPPED_SUSPENDED_ACCOUNT</code>: The operation in the specified account and
-        /// Region has been skipped because the account was suspended at the time of the operation.
+        ///  <c>RUNNING</c>: The operation in the specified account and Region is currently in
+        /// progress.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SUCCEEDED</code>: The operation in the specified account and Region completed
-        /// successfully.
+        ///  <c>SKIPPED_SUSPENDED_ACCOUNT</c>: The operation in the specified account and Region
+        /// has been skipped because the account was suspended at the time of the operation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>SUCCEEDED</c>: The operation in the specified account and Region completed successfully.
         /// </para>
         ///  </li> </ul>
         /// </summary>

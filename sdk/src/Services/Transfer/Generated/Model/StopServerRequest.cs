@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Container for the parameters to the StopServer operation.
-    /// Changes the state of a file transfer protocol-enabled server from <code>ONLINE</code>
-    /// to <code>OFFLINE</code>. An <code>OFFLINE</code> server cannot accept and process
-    /// file transfer jobs. Information tied to your server, such as server and user properties,
-    /// are not affected by stopping your server.
+    /// Changes the state of a file transfer protocol-enabled server from <c>ONLINE</c> to
+    /// <c>OFFLINE</c>. An <c>OFFLINE</c> server cannot accept and process file transfer jobs.
+    /// Information tied to your server, such as server and user properties, are not affected
+    /// by stopping your server.
     /// 
     ///  <note> 
     /// <para>
@@ -42,8 +43,8 @@ namespace Amazon.Transfer.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// The state of <code>STOPPING</code> indicates that the server is in an intermediate
-    /// state, either not fully able to respond, or not fully offline. The values of <code>STOP_FAILED</code>
+    /// The state of <c>STOPPING</c> indicates that the server is in an intermediate state,
+    /// either not fully able to respond, or not fully offline. The values of <c>STOP_FAILED</c>
     /// can indicate an error condition.
     /// </para>
     ///  

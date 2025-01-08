@@ -26,23 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
     /// Container for the parameters to the BatchGetCrawlers operation.
     /// Returns a list of resource metadata for a given list of crawler names. After calling
-    /// the <code>ListCrawlers</code> operation, you can call this operation to access the
-    /// data to which you have been granted permissions. This operation supports all IAM permissions,
+    /// the <c>ListCrawlers</c> operation, you can call this operation to access the data
+    /// to which you have been granted permissions. This operation supports all IAM permissions,
     /// including permission conditions that uses tags.
     /// </summary>
     public partial class BatchGetCrawlersRequest : AmazonGlueRequest
     {
-        private List<string> _crawlerNames = new List<string>();
+        private List<string> _crawlerNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property CrawlerNames. 
         /// <para>
-        /// A list of crawler names, which might be the names returned from the <code>ListCrawlers</code>
+        /// A list of crawler names, which might be the names returned from the <c>ListCrawlers</c>
         /// operation.
         /// </para>
         /// </summary>
@@ -56,7 +57,7 @@ namespace Amazon.Glue.Model
         // Check to see if CrawlerNames property is set
         internal bool IsSetCrawlerNames()
         {
-            return this._crawlerNames != null && this._crawlerNames.Count > 0; 
+            return this._crawlerNames != null && (this._crawlerNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

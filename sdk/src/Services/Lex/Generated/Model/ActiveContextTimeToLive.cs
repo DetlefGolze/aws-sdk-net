@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lex.Model
 {
     /// <summary>
@@ -40,8 +41,8 @@ namespace Amazon.Lex.Model
         /// Gets and sets the property TimeToLiveInSeconds. 
         /// <para>
         /// The number of seconds that the context should be active after it is first sent in
-        /// a <code>PostContent</code> or <code>PostText</code> response. You can set the value
-        /// between 5 and 86,400 seconds (24 hours).
+        /// a <c>PostContent</c> or <c>PostText</c> response. You can set the value between 5
+        /// and 86,400 seconds (24 hours).
         /// </para>
         /// </summary>
         [AWSProperty(Min=5, Max=86400)]
@@ -61,8 +62,8 @@ namespace Amazon.Lex.Model
         /// Gets and sets the property TurnsToLive. 
         /// <para>
         /// The number of conversation turns that the context should be active. A conversation
-        /// turn is one <code>PostContent</code> or <code>PostText</code> request and the corresponding
-        /// response from Amazon Lex.
+        /// turn is one <c>PostContent</c> or <c>PostText</c> request and the corresponding response
+        /// from Amazon Lex.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=20)]

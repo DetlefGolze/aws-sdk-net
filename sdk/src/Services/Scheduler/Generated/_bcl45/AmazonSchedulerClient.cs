@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.Scheduler
 {
     /// <summary>
-    /// Implementation for accessing Scheduler
+    /// <para>Implementation for accessing Scheduler</para>
     ///
     /// Amazon EventBridge Scheduler is a serverless scheduler that allows you to create,
     /// run, and manage tasks from one central, managed service. EventBridge Scheduler delivers
@@ -492,10 +493,10 @@ namespace Amazon.Scheduler
         /// <summary>
         /// Deletes the specified schedule group. Deleting a schedule group results in EventBridge
         /// Scheduler deleting all schedules associated with the group. When you delete a group,
-        /// it remains in a <code>DELETING</code> state until all of its associated schedules
-        /// are deleted. Schedules associated with the group that are set to run while the schedule
-        /// group is in the process of being deleted might continue to invoke their targets until
-        /// the schedule group and its associated schedules are deleted.
+        /// it remains in a <c>DELETING</c> state until all of its associated schedules are deleted.
+        /// Schedules associated with the group that are set to run while the schedule group is
+        /// in the process of being deleted might continue to invoke their targets until the schedule
+        /// group and its associated schedules are deleted.
         /// 
         ///  <note> 
         /// <para>
@@ -535,10 +536,10 @@ namespace Amazon.Scheduler
         /// <summary>
         /// Deletes the specified schedule group. Deleting a schedule group results in EventBridge
         /// Scheduler deleting all schedules associated with the group. When you delete a group,
-        /// it remains in a <code>DELETING</code> state until all of its associated schedules
-        /// are deleted. Schedules associated with the group that are set to run while the schedule
-        /// group is in the process of being deleted might continue to invoke their targets until
-        /// the schedule group and its associated schedules are deleted.
+        /// it remains in a <c>DELETING</c> state until all of its associated schedules are deleted.
+        /// Schedules associated with the group that are set to run while the schedule group is
+        /// in the process of being deleted might continue to invoke their targets until the schedule
+        /// group and its associated schedules are deleted.
         /// 
         ///  <note> 
         /// <para>
@@ -1046,7 +1047,7 @@ namespace Amazon.Scheduler
 
 
         /// <summary>
-        /// Updates the specified schedule. When you call <code>UpdateSchedule</code>, EventBridge
+        /// Updates the specified schedule. When you call <c>UpdateSchedule</c>, EventBridge
         /// Scheduler uses all values, including empty values, specified in the request and overrides
         /// the existing schedule. This is by design. This means that if you do not set an optional
         /// field in your request, that field will be set to its system-default value after the
@@ -1054,8 +1055,8 @@ namespace Amazon.Scheduler
         /// 
         ///  
         /// <para>
-        ///  Before calling this operation, we recommend that you call the <code>GetSchedule</code>
-        /// API operation and make a note of all optional parameters for your <code>UpdateSchedule</code>
+        ///  Before calling this operation, we recommend that you call the <c>GetSchedule</c>
+        /// API operation and make a note of all optional parameters for your <c>UpdateSchedule</c>
         /// call. 
         /// </para>
         /// </summary>
@@ -1089,7 +1090,7 @@ namespace Amazon.Scheduler
 
 
         /// <summary>
-        /// Updates the specified schedule. When you call <code>UpdateSchedule</code>, EventBridge
+        /// Updates the specified schedule. When you call <c>UpdateSchedule</c>, EventBridge
         /// Scheduler uses all values, including empty values, specified in the request and overrides
         /// the existing schedule. This is by design. This means that if you do not set an optional
         /// field in your request, that field will be set to its system-default value after the
@@ -1097,8 +1098,8 @@ namespace Amazon.Scheduler
         /// 
         ///  
         /// <para>
-        ///  Before calling this operation, we recommend that you call the <code>GetSchedule</code>
-        /// API operation and make a note of all optional parameters for your <code>UpdateSchedule</code>
+        ///  Before calling this operation, we recommend that you call the <c>GetSchedule</c>
+        /// API operation and make a note of all optional parameters for your <c>UpdateSchedule</c>
         /// call. 
         /// </para>
         /// </summary>
@@ -1144,11 +1145,11 @@ namespace Amazon.Scheduler
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

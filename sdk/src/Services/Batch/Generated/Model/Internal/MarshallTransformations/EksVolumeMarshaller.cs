@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Batch.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(EksVolume requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetEmptyDir())
             {
                 context.Writer.WritePropertyName("emptyDir");
@@ -71,6 +74,17 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("name");
                 context.Writer.Write(requestObject.Name);
+            }
+
+            if(requestObject.IsSetPersistentVolumeClaim())
+            {
+                context.Writer.WritePropertyName("persistentVolumeClaim");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = EksPersistentVolumeClaimMarshaller.Instance;
+                marshaller.Marshall(requestObject.PersistentVolumeClaim, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetSecret())

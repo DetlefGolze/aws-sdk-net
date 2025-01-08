@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
-    /// The progress values reported by the <code>AssessmentProgress</code> response element.
+    /// The progress values reported by the <c>AssessmentProgress</c> response element.
     /// </summary>
     public partial class ReplicationTaskAssessmentRunProgress
     {

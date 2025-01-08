@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
     /// Container for the parameters to the StartDBInstance operation.
     /// Starts an Amazon RDS DB instance that was stopped using the Amazon Web Services console,
-    /// the stop-db-instance CLI command, or the StopDBInstance action.
+    /// the stop-db-instance CLI command, or the <c>StopDBInstance</c> operation.
     /// 
     ///  
     /// <para>
@@ -42,7 +43,7 @@ namespace Amazon.RDS.Model
     ///  <note> 
     /// <para>
     /// This command doesn't apply to RDS Custom, Aurora MySQL, and Aurora PostgreSQL. For
-    /// Aurora DB clusters, use <code>StartDBCluster</code> instead.
+    /// Aurora DB clusters, use <c>StartDBCluster</c> instead.
     /// </para>
     ///  </note>
     /// </summary>

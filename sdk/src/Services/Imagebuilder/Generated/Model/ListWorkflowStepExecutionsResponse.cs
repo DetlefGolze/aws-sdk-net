@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.Imagebuilder.Model
         private string _message;
         private string _nextToken;
         private string _requestId;
-        private List<WorkflowStepMetadata> _steps = new List<WorkflowStepMetadata>();
+        private List<WorkflowStepMetadata> _steps = AWSConfigs.InitializeCollections ? new List<WorkflowStepMetadata>() : null;
         private string _workflowBuildVersionArn;
         private string _workflowExecutionId;
 
@@ -83,7 +84,7 @@ namespace Amazon.Imagebuilder.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The next token used for paginated responses. When this field isn't empty, there are
-        /// additional elements that the service has'ot included in this request. Use this token
+        /// additional elements that the service hasn't included in this request. Use this token
         /// with the next request to retrieve additional objects.
         /// </para>
         /// </summary>
@@ -135,7 +136,7 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if Steps property is set
         internal bool IsSetSteps()
         {
-            return this._steps != null && this._steps.Count > 0; 
+            return this._steps != null && (this._steps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

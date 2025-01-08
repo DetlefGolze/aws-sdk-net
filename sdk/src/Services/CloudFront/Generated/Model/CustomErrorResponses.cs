@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -48,14 +49,14 @@ namespace Amazon.CloudFront.Model
     /// </summary>
     public partial class CustomErrorResponses
     {
-        private List<CustomErrorResponse> _items = new List<CustomErrorResponse>();
+        private List<CustomErrorResponse> _items = AWSConfigs.InitializeCollections ? new List<CustomErrorResponse>() : null;
         private int? _quantity;
 
         /// <summary>
         /// Gets and sets the property Items. 
         /// <para>
-        /// A complex type that contains a <code>CustomErrorResponse</code> element for each HTTP
-        /// status code for which you want to specify a custom error page and/or a caching duration.
+        /// A complex type that contains a <c>CustomErrorResponse</c> element for each HTTP status
+        /// code for which you want to specify a custom error page and/or a caching duration.
         /// 
         /// </para>
         /// </summary>
@@ -68,15 +69,14 @@ namespace Amazon.CloudFront.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Quantity. 
         /// <para>
         /// The number of HTTP status codes for which you want to specify a custom error page
-        /// and/or a caching duration. If <code>Quantity</code> is <code>0</code>, you can omit
-        /// <code>Items</code>.
+        /// and/or a caching duration. If <c>Quantity</c> is <c>0</c>, you can omit <c>Items</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

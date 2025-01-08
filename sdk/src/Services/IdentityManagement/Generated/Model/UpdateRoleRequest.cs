@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -66,17 +67,22 @@ namespace Amazon.IdentityManagement.Model
         /// </para>
         ///  
         /// <para>
-        /// Anyone who assumes the role from the CLI or API can use the <code>DurationSeconds</code>
-        /// API parameter or the <code>duration-seconds</code> CLI parameter to request a longer
-        /// session. The <code>MaxSessionDuration</code> setting determines the maximum duration
-        /// that can be requested using the <code>DurationSeconds</code> parameter. If users don't
-        /// specify a value for the <code>DurationSeconds</code> parameter, their security credentials
-        /// are valid for one hour by default. This applies when you use the <code>AssumeRole*</code>
-        /// API operations or the <code>assume-role*</code> CLI operations but does not apply
-        /// when you use those operations to create a console URL. For more information, see <a
-        /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html">Using IAM
-        /// roles</a> in the <i>IAM User Guide</i>.
+        /// Anyone who assumes the role from the CLI or API can use the <c>DurationSeconds</c>
+        /// API parameter or the <c>duration-seconds</c> CLI parameter to request a longer session.
+        /// The <c>MaxSessionDuration</c> setting determines the maximum duration that can be
+        /// requested using the <c>DurationSeconds</c> parameter. If users don't specify a value
+        /// for the <c>DurationSeconds</c> parameter, their security credentials are valid for
+        /// one hour by default. This applies when you use the <c>AssumeRole*</c> API operations
+        /// or the <c>assume-role*</c> CLI operations but does not apply when you use those operations
+        /// to create a console URL. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html">Using
+        /// IAM roles</a> in the <i>IAM User Guide</i>.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// IAM role credentials provided by Amazon EC2 instances assigned to the role are not
+        /// subject to the specified maximum session duration.
+        /// </para>
+        ///  </note>
         /// </summary>
         [AWSProperty(Min=3600, Max=43200)]
         public int MaxSessionDuration

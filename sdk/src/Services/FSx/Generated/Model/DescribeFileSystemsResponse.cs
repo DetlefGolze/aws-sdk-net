@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
-    /// The response object for <code>DescribeFileSystems</code> operation.
+    /// The response object for <c>DescribeFileSystems</c> operation.
     /// </summary>
     public partial class DescribeFileSystemsResponse : AmazonWebServiceResponse
     {
-        private List<FileSystem> _fileSystems = new List<FileSystem>();
+        private List<FileSystem> _fileSystems = AWSConfigs.InitializeCollections ? new List<FileSystem>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,14 +53,14 @@ namespace Amazon.FSx.Model
         // Check to see if FileSystems property is set
         internal bool IsSetFileSystems()
         {
-            return this._fileSystems != null && this._fileSystems.Count > 0; 
+            return this._fileSystems != null && (this._fileSystems.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// Present if there are more file systems than returned in the response (String). You
-        /// can use the <code>NextToken</code> value in the later request to fetch the descriptions.
+        /// can use the <c>NextToken</c> value in the later request to fetch the descriptions.
         /// 
         /// </para>
         /// </summary>

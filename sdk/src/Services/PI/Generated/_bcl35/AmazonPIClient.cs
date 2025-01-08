@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.PI
 {
     /// <summary>
-    /// Implementation for accessing PI
+    /// <para>Implementation for accessing PI</para>
     ///
     /// Amazon RDS Performance Insights 
     /// <para>
@@ -431,7 +432,7 @@ namespace Amazon.PI
         #region  DescribeDimensionKeys
 
         /// <summary>
-        /// For a specific time period, retrieve the top <code>N</code> dimension keys for a metric.
+        /// For a specific time period, retrieve the top <c>N</c> dimension keys for a metric.
         /// 
         /// 
         ///  <note> 
@@ -503,10 +504,10 @@ namespace Amazon.PI
 
         /// <summary>
         /// Get the attributes of the specified dimension group for a DB instance or data source.
-        /// For example, if you specify a SQL ID, <code>GetDimensionKeyDetails</code> retrieves
-        /// the full text of the dimension <code>db.sql.statement</code> associated with this
-        /// ID. This operation is useful because <code>GetResourceMetrics</code> and <code>DescribeDimensionKeys</code>
-        /// don't support retrieval of large SQL statement text.
+        /// For example, if you specify a SQL ID, <c>GetDimensionKeyDetails</c> retrieves the
+        /// full text of the dimension <c>db.sql.statement</c> associated with this ID. This operation
+        /// is useful because <c>GetResourceMetrics</c> and <c>DescribeDimensionKeys</c> don't
+        /// support retrieval of large SQL statement text.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetDimensionKeyDetails service method.</param>
         /// 
@@ -570,8 +571,8 @@ namespace Amazon.PI
 
         /// <summary>
         /// Retrieves the report including the report ID, status, time details, and the insights
-        /// with recommendations. The report status can be <code>RUNNING</code>, <code>SUCCEEDED</code>,
-        /// or <code>FAILED</code>. The insights include the <code>description</code> and <code>recommendation</code>
+        /// with recommendations. The report status can be <c>RUNNING</c>, <c>SUCCEEDED</c>, or
+        /// <c>FAILED</c>. The insights include the <c>description</c> and <c>recommendation</c>
         /// fields.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetPerformanceAnalysisReport service method.</param>
@@ -700,8 +701,8 @@ namespace Amazon.PI
 
         /// <summary>
         /// Retrieve Performance Insights metrics for a set of data sources over a time period.
-        /// You can provide specific dimension groups and dimensions, and provide aggregation
-        /// and filtering criteria for each group.
+        /// You can provide specific dimension groups and dimensions, and provide filtering criteria
+        /// for each group. You must specify an aggregate function for each metric.
         /// 
         ///  <note> 
         /// <para>
@@ -1157,11 +1158,11 @@ namespace Amazon.PI
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

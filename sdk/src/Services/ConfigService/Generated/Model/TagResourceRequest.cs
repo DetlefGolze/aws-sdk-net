@@ -26,27 +26,61 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
     /// Container for the parameters to the TagResource operation.
-    /// Associates the specified tags to a resource with the specified resourceArn. If existing
-    /// tags on a resource are not specified in the request parameters, they are not changed.
-    /// If existing tags are specified, however, then their values will be updated. When a
-    /// resource is deleted, the tags associated with that resource are deleted as well.
+    /// Associates the specified tags to a resource with the specified <c>ResourceArn</c>.
+    /// If existing tags on a resource are not specified in the request parameters, they are
+    /// not changed. If existing tags are specified, however, then their values will be updated.
+    /// When a resource is deleted, the tags associated with that resource are deleted as
+    /// well.
     /// </summary>
     public partial class TagResourceRequest : AmazonConfigServiceRequest
     {
         private string _resourceArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) that identifies the resource for which to list the
-        /// tags. Currently, the supported resources are <code>ConfigRule</code>, <code>ConfigurationAggregator</code>
-        /// and <code>AggregatorAuthorization</code>.
+        /// tags. The following resources are supported:
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>ConfigurationRecorder</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>ConfigRule</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>OrganizationConfigRule</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>ConformancePack</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>OrganizationConformancePack</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>ConfigurationAggregator</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AggregationAuthorization</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>StoredQuery</c> 
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1000)]
         public string ResourceArn
@@ -77,7 +111,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

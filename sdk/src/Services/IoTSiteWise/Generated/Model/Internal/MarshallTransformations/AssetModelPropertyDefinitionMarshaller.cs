@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(AssetModelPropertyDefinition requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetDataType())
             {
                 context.Writer.WritePropertyName("dataType");
@@ -55,6 +58,18 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("dataTypeSpec");
                 context.Writer.Write(requestObject.DataTypeSpec);
+            }
+
+            if(requestObject.IsSetExternalId())
+            {
+                context.Writer.WritePropertyName("externalId");
+                context.Writer.Write(requestObject.ExternalId);
+            }
+
+            if(requestObject.IsSetId())
+            {
+                context.Writer.WritePropertyName("id");
+                context.Writer.Write(requestObject.Id);
             }
 
             if(requestObject.IsSetName())

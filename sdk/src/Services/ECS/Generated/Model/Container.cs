@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -36,17 +37,17 @@ namespace Amazon.ECS.Model
         private string _containerArn;
         private string _cpu;
         private int? _exitCode;
-        private List<string> _gpuIds = new List<string>();
+        private List<string> _gpuIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private HealthStatus _healthStatus;
         private string _image;
         private string _imageDigest;
         private string _lastStatus;
-        private List<ManagedAgent> _managedAgents = new List<ManagedAgent>();
+        private List<ManagedAgent> _managedAgents = AWSConfigs.InitializeCollections ? new List<ManagedAgent>() : null;
         private string _memory;
         private string _memoryReservation;
         private string _name;
-        private List<NetworkBinding> _networkBindings = new List<NetworkBinding>();
-        private List<NetworkInterface> _networkInterfaces = new List<NetworkInterface>();
+        private List<NetworkBinding> _networkBindings = AWSConfigs.InitializeCollections ? new List<NetworkBinding>() : null;
+        private List<NetworkInterface> _networkInterfaces = AWSConfigs.InitializeCollections ? new List<NetworkInterface>() : null;
         private string _reason;
         private string _runtimeId;
         private string _taskArn;
@@ -72,8 +73,8 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Cpu. 
         /// <para>
-        /// The number of CPU units set for the container. The value is <code>0</code> if no value
-        /// was specified in the container definition when the task definition was registered.
+        /// The number of CPU units set for the container. The value is <c>0</c> if no value was
+        /// specified in the container definition when the task definition was registered.
         /// </para>
         /// </summary>
         public string Cpu
@@ -121,14 +122,14 @@ namespace Amazon.ECS.Model
         // Check to see if GpuIds property is set
         internal bool IsSetGpuIds()
         {
-            return this._gpuIds != null && this._gpuIds.Count > 0; 
+            return this._gpuIds != null && (this._gpuIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property HealthStatus. 
         /// <para>
         /// The health status of the container. If health checks aren't configured for this container
-        /// in its task definition, then it reports the health status as <code>UNKNOWN</code>.
+        /// in its task definition, then it reports the health status as <c>UNKNOWN</c>.
         /// </para>
         /// </summary>
         public HealthStatus HealthStatus
@@ -212,7 +213,7 @@ namespace Amazon.ECS.Model
         // Check to see if ManagedAgents property is set
         internal bool IsSetManagedAgents()
         {
-            return this._managedAgents != null && this._managedAgents.Count > 0; 
+            return this._managedAgents != null && (this._managedAgents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -284,7 +285,7 @@ namespace Amazon.ECS.Model
         // Check to see if NetworkBindings property is set
         internal bool IsSetNetworkBindings()
         {
-            return this._networkBindings != null && this._networkBindings.Count > 0; 
+            return this._networkBindings != null && (this._networkBindings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -302,7 +303,7 @@ namespace Amazon.ECS.Model
         // Check to see if NetworkInterfaces property is set
         internal bool IsSetNetworkInterfaces()
         {
-            return this._networkInterfaces != null && this._networkInterfaces.Count > 0; 
+            return this._networkInterfaces != null && (this._networkInterfaces.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

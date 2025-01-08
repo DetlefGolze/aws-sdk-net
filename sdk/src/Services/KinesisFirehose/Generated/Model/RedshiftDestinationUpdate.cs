@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
@@ -43,12 +44,13 @@ namespace Amazon.KinesisFirehose.Model
         private RedshiftS3BackupMode _s3BackupMode;
         private S3DestinationUpdate _s3BackupUpdate;
         private S3DestinationUpdate _s3Update;
+        private SecretsManagerConfiguration _secretsManagerConfiguration;
         private string _username;
 
         /// <summary>
         /// Gets and sets the property CloudWatchLoggingOptions. 
         /// <para>
-        /// The Amazon CloudWatch logging options for your delivery stream.
+        /// The Amazon CloudWatch logging options for your Firehose stream.
         /// </para>
         /// </summary>
         public CloudWatchLoggingOptions CloudWatchLoggingOptions
@@ -85,7 +87,7 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property CopyCommand. 
         /// <para>
-        /// The <code>COPY</code> command.
+        /// The <c>COPY</c> command.
         /// </para>
         /// </summary>
         public CopyCommand CopyCommand
@@ -140,8 +142,8 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property RetryOptions. 
         /// <para>
-        /// The retry behavior in case Kinesis Data Firehose is unable to deliver documents to
-        /// Amazon Redshift. Default value is 3600 (60 minutes).
+        /// The retry behavior in case Firehose is unable to deliver documents to Amazon Redshift.
+        /// Default value is 3600 (60 minutes).
         /// </para>
         /// </summary>
         public RedshiftRetryOptions RetryOptions
@@ -180,8 +182,8 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property S3BackupMode. 
         /// <para>
-        /// You can update a delivery stream to enable Amazon S3 backup if it is disabled. If
-        /// backup is enabled, you can't update the delivery stream to disable it. 
+        /// You can update a Firehose stream to enable Amazon S3 backup if it is disabled. If
+        /// backup is enabled, you can't update the Firehose stream to disable it. 
         /// </para>
         /// </summary>
         public RedshiftS3BackupMode S3BackupMode
@@ -221,9 +223,9 @@ namespace Amazon.KinesisFirehose.Model
         /// </para>
         ///  
         /// <para>
-        /// The compression formats <code>SNAPPY</code> or <code>ZIP</code> cannot be specified
-        /// in <code>RedshiftDestinationUpdate.S3Update</code> because the Amazon Redshift <code>COPY</code>
-        /// operation that reads from the S3 bucket doesn't support these compression formats.
+        /// The compression formats <c>SNAPPY</c> or <c>ZIP</c> cannot be specified in <c>RedshiftDestinationUpdate.S3Update</c>
+        /// because the Amazon Redshift <c>COPY</c> operation that reads from the S3 bucket doesn't
+        /// support these compression formats.
         /// </para>
         /// </summary>
         public S3DestinationUpdate S3Update
@@ -236,6 +238,24 @@ namespace Amazon.KinesisFirehose.Model
         internal bool IsSetS3Update()
         {
             return this._s3Update != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SecretsManagerConfiguration. 
+        /// <para>
+        ///  The configuration that defines how you access secrets for Amazon Redshift. 
+        /// </para>
+        /// </summary>
+        public SecretsManagerConfiguration SecretsManagerConfiguration
+        {
+            get { return this._secretsManagerConfiguration; }
+            set { this._secretsManagerConfiguration = value; }
+        }
+
+        // Check to see if SecretsManagerConfiguration property is set
+        internal bool IsSetSecretsManagerConfiguration()
+        {
+            return this._secretsManagerConfiguration != null;
         }
 
         /// <summary>

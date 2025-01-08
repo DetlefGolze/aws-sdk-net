@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.SimpleSystemsManagement.Model
     {
         private string _configuration;
         private string _name;
-        private List<string> _products = new List<string>();
+        private List<string> _products = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Configuration. 
@@ -45,19 +46,19 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>[main]</code> 
+        ///  <c>[main]</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>name=MyCustomRepository</code> 
+        ///  <c>name=MyCustomRepository</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>baseurl=https://my-custom-repository</code> 
+        ///  <c>baseurl=https://my-custom-repository</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>enabled=1</code> 
+        ///  <c>enabled=1</c> 
         /// </para>
         ///  <note> 
         /// <para>
@@ -116,7 +117,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Products property is set
         internal bool IsSetProducts()
         {
-            return this._products != null && this._products.Count > 0; 
+            return this._products != null && (this._products.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

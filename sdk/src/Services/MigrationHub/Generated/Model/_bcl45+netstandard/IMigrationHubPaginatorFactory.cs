@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the AWSMigrationHub-2017-05-31.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MigrationHub.Model
 {
     /// <summary>
@@ -46,8 +47,18 @@ namespace Amazon.MigrationHub.Model
         IListMigrationTasksPaginator ListMigrationTasks(ListMigrationTasksRequest request);
 
         /// <summary>
+        /// Paginator for ListMigrationTaskUpdates operation
+        ///</summary>
+        IListMigrationTaskUpdatesPaginator ListMigrationTaskUpdates(ListMigrationTaskUpdatesRequest request);
+
+        /// <summary>
         /// Paginator for ListProgressUpdateStreams operation
         ///</summary>
         IListProgressUpdateStreamsPaginator ListProgressUpdateStreams(ListProgressUpdateStreamsRequest request);
+
+        /// <summary>
+        /// Paginator for ListSourceResources operation
+        ///</summary>
+        IListSourceResourcesPaginator ListSourceResources(ListSourceResourcesRequest request);
     }
 }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// The Key Management Service (KMS) encryption key ID.
+        /// The Key Management Service encryption key ID.
         /// </para>
         /// </summary>
         [AWSProperty(Max=2048)]
@@ -58,7 +59,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property S3OutputPath. 
         /// <para>
-        /// The Amazon S3 output path. Must be 128 characters or less.
+        /// The Amazon S3 output path. Must be 512 characters or less.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=1024)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Route53.Model
     {
         private string _hostedZoneId;
         private string _nextToken;
-        private List<VPC> _vpCs = new List<VPC>();
+        private List<VPC> _vpCs = AWSConfigs.InitializeCollections ? new List<VPC>() : null;
 
         /// <summary>
         /// Gets and sets the property HostedZoneId. 
@@ -59,11 +60,10 @@ namespace Amazon.Route53.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When the response includes a <code>NextToken</code> element, there are more VPCs that
-        /// can be associated with the specified hosted zone. To get the next page of VPCs, submit
-        /// another <code>ListVPCAssociationAuthorizations</code> request, and include the value
-        /// of the <code>NextToken</code> element from the response in the <code>nexttoken</code>
-        /// request parameter.
+        /// When the response includes a <c>NextToken</c> element, there are more VPCs that can
+        /// be associated with the specified hosted zone. To get the next page of VPCs, submit
+        /// another <c>ListVPCAssociationAuthorizations</c> request, and include the value of
+        /// the <c>NextToken</c> element from the response in the <c>nexttoken</c> request parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Max=1024)]
@@ -95,7 +95,7 @@ namespace Amazon.Route53.Model
         // Check to see if VPCs property is set
         internal bool IsSetVPCs()
         {
-            return this._vpCs != null && this._vpCs.Count > 0; 
+            return this._vpCs != null && (this._vpCs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

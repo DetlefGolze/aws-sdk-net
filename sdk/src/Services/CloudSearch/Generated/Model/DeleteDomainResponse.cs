@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// The result of a <code>DeleteDomain</code> request. Contains the status of a newly
-    /// deleted domain, or no status if the domain has already been completely deleted.
+    /// The result of a <c>DeleteDomain</c> request. Contains the status of a newly deleted
+    /// domain, or no status if the domain has already been completely deleted.
     /// </summary>
     public partial class DeleteDomainResponse : AmazonWebServiceResponse
     {

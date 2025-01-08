@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,31 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public PipelineExecutionSummary Unmarshall(JsonUnmarshallerContext context)
         {
+            PipelineExecutionSummary unmarshalledObject = new PipelineExecutionSummary();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            PipelineExecutionSummary unmarshalledObject = new PipelineExecutionSummary();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("executionMode", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ExecutionMode = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("executionType", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ExecutionType = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("lastUpdateTime", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
@@ -74,6 +88,12 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.PipelineExecutionId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("rollbackMetadata", targetDepth))
+                {
+                    var unmarshaller = PipelineRollbackMetadataUnmarshaller.Instance;
+                    unmarshalledObject.RollbackMetadata = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("sourceRevisions", targetDepth))
@@ -94,6 +114,12 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
                     unmarshalledObject.Status = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("statusSummary", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.StatusSummary = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("stopTrigger", targetDepth))
                 {
                     var unmarshaller = StopExecutionTriggerUnmarshaller.Instance;
@@ -107,7 +133,6 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

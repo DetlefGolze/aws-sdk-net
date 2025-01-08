@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property ServiceAccessRoleArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) used by the service access IAM role. The role must
-        /// allow the <code>iam:PassRole</code> action.
+        /// allow the <c>iam:PassRole</c> action.
         /// </para>
         /// </summary>
         public string ServiceAccessRoleArn

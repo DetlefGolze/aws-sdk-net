@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeUserProfile operation.
-    /// Describes a user profile. For more information, see <code>CreateUserProfile</code>.
+    /// Describes a user profile. For more information, see <c>CreateUserProfile</c>.
     /// </summary>
     public partial class DescribeUserProfileRequest : AmazonSageMakerRequest
     {

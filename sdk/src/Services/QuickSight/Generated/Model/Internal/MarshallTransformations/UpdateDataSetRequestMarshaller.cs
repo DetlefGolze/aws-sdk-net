@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -69,6 +70,7 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetColumnGroups())
@@ -178,6 +180,17 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("Name");
                     context.Writer.Write(publicRequest.Name);
+                }
+
+                if(publicRequest.IsSetPerformanceConfiguration())
+                {
+                    context.Writer.WritePropertyName("PerformanceConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = PerformanceConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.PerformanceConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetPhysicalTableMap())

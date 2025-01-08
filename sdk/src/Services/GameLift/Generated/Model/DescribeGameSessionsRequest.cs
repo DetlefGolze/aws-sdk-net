@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -61,16 +62,16 @@ namespace Amazon.GameLift.Model
     /// </para>
     ///  
     /// <para>
-    /// If successful, a <code>GameSession</code> object is returned for each game session
-    /// that matches the request.
+    /// If successful, a <c>GameSession</c> object is returned for each game session that
+    /// matches the request.
     /// </para>
     ///  
     /// <para>
     /// This operation is not designed to be continually called to track game session status.
     /// This practice can cause you to exceed your API limit, which results in errors. Instead,
     /// you must configure an Amazon Simple Notification Service (SNS) topic to receive notifications
-    /// from FlexMatch or queues. Continuously polling with <code>DescribeGameSessions</code>
-    /// should only be used for games in development with low game session usage. 
+    /// from FlexMatch or queues. Continuously polling with <c>DescribeGameSessions</c> should
+    /// only be used for games in development with low game session usage. 
     /// </para>
     ///  
     /// <para>
@@ -127,6 +128,7 @@ namespace Amazon.GameLift.Model
         /// the fleet ID or ARN value. 
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -145,7 +147,7 @@ namespace Amazon.GameLift.Model
         /// A unique identifier for the game session to retrieve. 
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=256)]
+        [AWSProperty(Min=1, Max=512)]
         public string GameSessionId
         {
             get { return this._gameSessionId; }
@@ -161,7 +163,7 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property Limit. 
         /// <para>
-        /// The maximum number of results to return. Use this parameter with <code>NextToken</code>
+        /// The maximum number of results to return. Use this parameter with <c>NextToken</c>
         /// to get results as a set of sequential pages.
         /// </para>
         /// </summary>
@@ -182,7 +184,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property Location. 
         /// <para>
         /// A fleet location to get game sessions for. You can specify a fleet's home Region or
-        /// a remote location. Use the Amazon Web Services Region code format, such as <code>us-west-2</code>.
+        /// a remote location. Use the Amazon Web Services Region code format, such as <c>us-west-2</c>.
         /// 
         /// </para>
         /// </summary>
@@ -224,8 +226,8 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property StatusFilter. 
         /// <para>
         /// Game session status to filter results on. You can filter on the following states:
-        /// <code>ACTIVE</code>, <code>TERMINATED</code>, <code>ACTIVATING</code>, and <code>TERMINATING</code>.
-        /// The last two are transitory and used for only very brief periods of time. 
+        /// <c>ACTIVE</c>, <c>TERMINATED</c>, <c>ACTIVATING</c>, and <c>TERMINATING</c>. The last
+        /// two are transitory and used for only very brief periods of time. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

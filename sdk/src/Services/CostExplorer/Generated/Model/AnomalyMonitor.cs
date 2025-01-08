@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostExplorer.Model
 {
     /// <summary>
     /// This object continuously inspects your account's cost data for anomalies. It's based
-    /// on <code>MonitorType</code> and <code>MonitorSpecification</code>. The content consists
-    /// of detailed metadata and the current status of the monitor object.
+    /// on <c>MonitorType</c> and <c>MonitorSpecification</c>. The content consists of detailed
+    /// metadata and the current status of the monitor object.
     /// </summary>
     public partial class AnomalyMonitor
     {

@@ -26,22 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
-    /// An object representing the health of your local Amazon EKS cluster on an Amazon Web
-    /// Services Outpost. You can't use this API with an Amazon EKS cluster on the Amazon
-    /// Web Services cloud.
+    /// An object representing the health of your Amazon EKS cluster.
     /// </summary>
     public partial class ClusterHealth
     {
-        private List<ClusterIssue> _issues = new List<ClusterIssue>();
+        private List<ClusterIssue> _issues = AWSConfigs.InitializeCollections ? new List<ClusterIssue>() : null;
 
         /// <summary>
         /// Gets and sets the property Issues. 
         /// <para>
-        /// An object representing the health issues of your local Amazon EKS cluster on an Amazon
-        /// Web Services Outpost.
+        /// An object representing the health issues of your Amazon EKS cluster.
         /// </para>
         /// </summary>
         public List<ClusterIssue> Issues
@@ -53,7 +51,7 @@ namespace Amazon.EKS.Model
         // Check to see if Issues property is set
         internal bool IsSetIssues()
         {
-            return this._issues != null && this._issues.Count > 0; 
+            return this._issues != null && (this._issues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

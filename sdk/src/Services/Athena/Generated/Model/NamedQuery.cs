@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Athena.Model
 {
     /// <summary>
-    /// A query, where <code>QueryString</code> contains the SQL statements that make up the
-    /// query.
+    /// A query, where <c>QueryString</c> contains the SQL statements that make up the query.
     /// </summary>
     public partial class NamedQuery
     {

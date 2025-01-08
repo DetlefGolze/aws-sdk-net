@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Company. 
         /// <para>
         /// An identifier for the company that manages a specific security standard. For existing
-        /// standards, the value is equal to <code>Amazon Web Services</code>.
+        /// standards, the value is equal to <c>Amazon Web Services</c>.
         /// </para>
         /// </summary>
         public string Company

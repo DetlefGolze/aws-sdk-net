@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
     /// Container for the parameters to the GetDeployablePatchSnapshotForInstance operation.
     /// Retrieves the current snapshot for the patch baseline the managed node uses. This
-    /// API is primarily used by the <code>AWS-RunPatchBaseline</code> Systems Manager document
+    /// API is primarily used by the <c>AWS-RunPatchBaseline</c> Systems Manager document
     /// (SSM document).
     /// 
     ///  <note> 
@@ -41,8 +42,8 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// fails. To avoid this, you can run the command in the Amazon Web Services Systems Manager
     /// console. Use Run Command, a capability of Amazon Web Services Systems Manager, with
     /// an SSM document that enables you to target a managed node with a script or command.
-    /// For example, run the command using the <code>AWS-RunShellScript</code> document or
-    /// the <code>AWS-RunPowerShellScript</code> document.
+    /// For example, run the command using the <c>AWS-RunShellScript</c> document or the <c>AWS-RunPowerShellScript</c>
+    /// document.
     /// </para>
     ///  </note>
     /// </summary>
@@ -92,7 +93,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property SnapshotId. 
         /// <para>
-        /// The snapshot ID provided by the user when running <code>AWS-RunPatchBaseline</code>.
+        /// The snapshot ID provided by the user when running <c>AWS-RunPatchBaseline</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=36, Max=36)]

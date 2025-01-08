@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.WorkMail.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.WorkMail.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetDisplayName())
@@ -83,6 +85,12 @@ namespace Amazon.WorkMail.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("HiddenFromGlobalAddressList");
                     context.Writer.Write(publicRequest.HiddenFromGlobalAddressList);
+                }
+
+                if(publicRequest.IsSetIdentityProviderUserId())
+                {
+                    context.Writer.WritePropertyName("IdentityProviderUserId");
+                    context.Writer.Write(publicRequest.IdentityProviderUserId);
                 }
 
                 if(publicRequest.IsSetLastName())

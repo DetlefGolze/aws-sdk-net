@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
@@ -34,10 +35,10 @@ namespace Amazon.CodeDeploy.Model
     /// 
     ///  <note> 
     /// <para>
-    ///  The <code>content</code> property of the <code>appSpecContent</code> object in the
-    /// returned revision is always null. Use <code>GetApplicationRevision</code> and the
-    /// <code>sha256</code> property of the returned <code>appSpecContent</code> object to
-    /// get the content of the deployment’s AppSpec file. 
+    ///  The <c>content</c> property of the <c>appSpecContent</c> object in the returned revision
+    /// is always null. Use <c>GetApplicationRevision</c> and the <c>sha256</c> property of
+    /// the returned <c>appSpecContent</c> object to get the content of the deployment’s AppSpec
+    /// file. 
     /// </para>
     ///  </note>
     /// </summary>

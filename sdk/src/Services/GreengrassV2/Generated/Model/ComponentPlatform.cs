@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GreengrassV2.Model
 {
     /// <summary>
@@ -33,16 +34,16 @@ namespace Amazon.GreengrassV2.Model
     /// </summary>
     public partial class ComponentPlatform
     {
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _name;
 
         /// <summary>
         /// Gets and sets the property Attributes. 
         /// <para>
         /// A dictionary of attributes for the platform. The IoT Greengrass Core software defines
-        /// the <code>os</code> and <code>architecture</code> by default. You can specify additional
-        /// platform attributes for a core device when you deploy the Greengrass nucleus component.
-        /// For more information, see the <a href="https://docs.aws.amazon.com/greengrass/v2/developerguide/greengrass-nucleus-component.html">Greengrass
+        /// the <c>os</c> and <c>architecture</c> by default. You can specify additional platform
+        /// attributes for a core device when you deploy the Greengrass nucleus component. For
+        /// more information, see the <a href="https://docs.aws.amazon.com/greengrass/v2/developerguide/greengrass-nucleus-component.html">Greengrass
         /// nucleus component</a> in the <i>IoT Greengrass V2 Developer Guide</i>.
         /// </para>
         /// </summary>
@@ -55,7 +56,7 @@ namespace Amazon.GreengrassV2.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -65,8 +66,8 @@ namespace Amazon.GreengrassV2.Model
         /// </para>
         ///  
         /// <para>
-        /// If you omit this parameter, IoT Greengrass creates a friendly name from the <code>os</code>
-        /// and <code>architecture</code> of the platform.
+        /// If you omit this parameter, IoT Greengrass creates a friendly name from the <c>os</c>
+        /// and <c>architecture</c> of the platform.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECRPublic.Model
 {
     /// <summary>
@@ -40,8 +41,8 @@ namespace Amazon.ECRPublic.Model
         /// Gets and sets the property AuthorizationToken. 
         /// <para>
         /// A base64-encoded string that contains authorization data for a public Amazon ECR registry.
-        /// When the string is decoded, it's presented in the format <code>user:password</code>
-        /// for public registry authentication using <code>docker login</code>.
+        /// When the string is decoded, it's presented in the format <c>user:password</c> for
+        /// public registry authentication using <c>docker login</c>.
         /// </para>
         /// </summary>
         public string AuthorizationToken

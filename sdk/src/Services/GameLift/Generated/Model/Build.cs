@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -53,8 +54,8 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property BuildArn. 
         /// <para>
         /// The Amazon Resource Name (<a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
-        /// assigned to a Amazon GameLift build resource and uniquely identifies it. ARNs are
-        /// unique across all Regions. Format is <code>arn:aws:gamelift:&lt;region&gt;::build/build-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+        /// that is assigned to a Amazon GameLift build resource and uniquely identifies it. ARNs
+        /// are unique across all Regions. Format is <c>arn:aws:gamelift:&lt;region&gt;::build/build-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</c>.
         /// In a GameLift build ARN, the resource ID matches the <i>BuildId</i> value.
         /// </para>
         /// </summary>
@@ -92,7 +93,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property CreationTime. 
         /// <para>
         /// A time stamp indicating when this data object was created. Format is a number expressed
-        /// in Unix time as milliseconds (for example <code>"1469498468.057"</code>).
+        /// in Unix time as milliseconds (for example <c>"1469498468.057"</c>).
         /// </para>
         /// </summary>
         public DateTime CreationTime
@@ -110,8 +111,8 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// A descriptive label associated with a build. Build names don't need to be unique.
-        /// It can be set using <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateBuild.html">CreateBuild</a>
+        /// A descriptive label that is associated with a build. Build names do not need to be
+        /// unique. It can be set using <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateBuild.html">CreateBuild</a>
         /// or <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/UpdateBuild">UpdateBuild</a>.
         /// </para>
         /// </summary>
@@ -133,6 +134,16 @@ namespace Amazon.GameLift.Model
         /// Operating system that the game server binaries are built to run on. This value determines
         /// the type of fleet resources that you can use for this build.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// Amazon Linux 2 (AL2) will reach end of support on 6/30/2025. See more details in the
+        /// <a href="https://aws.amazon.com/amazon-linux-2/faqs/">Amazon Linux 2 FAQs</a>. For
+        /// game servers that are hosted on AL2 and use Amazon GameLift server SDK 4.x., first
+        /// update the game server build to server SDK 5.x, and then deploy to AL2023 instances.
+        /// See <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-serversdk5-migration.html">
+        /// Migrate to Amazon GameLift server SDK version 5.</a> 
+        /// </para>
+        ///  </note>
         /// </summary>
         public OperatingSystem OperatingSystem
         {
@@ -169,8 +180,8 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property SizeOnDisk. 
         /// <para>
         /// File size of the uploaded game build, expressed in bytes. When the build status is
-        /// <code>INITIALIZED</code> or when using a custom Amazon S3 storage location, this value
-        /// is 0.
+        /// <c>INITIALIZED</c> or when using a custom Amazon S3 storage location, this value is
+        /// 0.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -228,8 +239,8 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property Version. 
         /// <para>
-        /// Version information associated with a build or script. Version strings don't need
-        /// to be unique.
+        /// Version information that is associated with a build or script. Version strings do
+        /// not need to be unique.
         /// </para>
         /// </summary>
         public string Version

@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSMIncidents.Model
 {
     /// <summary>
     /// A conditional statement with which to compare a value, after a timestamp, before a
     /// timestamp, or equal to a string or integer. If multiple conditions are specified,
-    /// the conditionals become an <code>AND</code>ed statement. If multiple values are specified
-    /// for a conditional, the values are <code>OR</code>d.
+    /// the conditionals become an <c>AND</c>ed statement. If multiple values are specified
+    /// for a conditional, the values are <c>OR</c>d.
     /// </summary>
     public partial class Condition
     {
@@ -82,7 +83,7 @@ namespace Amazon.SSMIncidents.Model
         /// The value is equal to the provided string or integer. 
         /// </para>
         /// </summary>
-        public AttributeValueList Equals
+        public new AttributeValueList Equals
         {
             get { return this._equals; }
             set { this._equals = value; }

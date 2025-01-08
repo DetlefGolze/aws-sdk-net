@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ACMPCA.Model
 {
     /// <summary>
-    /// Defines the X.509 <code>CertificatePolicies</code> extension.
+    /// Defines the X.509 <c>CertificatePolicies</c> extension.
     /// </summary>
     public partial class PolicyInformation
     {
         private string _certPolicyId;
-        private List<PolicyQualifierInfo> _policyQualifiers = new List<PolicyQualifierInfo>();
+        private List<PolicyQualifierInfo> _policyQualifiers = AWSConfigs.InitializeCollections ? new List<PolicyQualifierInfo>() : null;
 
         /// <summary>
         /// Gets and sets the property CertPolicyId. 
@@ -60,8 +61,8 @@ namespace Amazon.ACMPCA.Model
         /// <summary>
         /// Gets and sets the property PolicyQualifiers. 
         /// <para>
-        /// Modifies the given <code>CertPolicyId</code> with a qualifier. Amazon Web Services
-        /// Private CA supports the certification practice statement (CPS) qualifier.
+        /// Modifies the given <c>CertPolicyId</c> with a qualifier. Amazon Web Services Private
+        /// CA supports the certification practice statement (CPS) qualifier.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=20)]
@@ -74,7 +75,7 @@ namespace Amazon.ACMPCA.Model
         // Check to see if PolicyQualifiers property is set
         internal bool IsSetPolicyQualifiers()
         {
-            return this._policyQualifiers != null && this._policyQualifiers.Count > 0; 
+            return this._policyQualifiers != null && (this._policyQualifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

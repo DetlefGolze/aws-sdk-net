@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.LexModelsV2.Model
         private string _downloadUrl;
         private string _exportId;
         private ExportStatus _exportStatus;
-        private List<string> _failureReasons = new List<string>();
+        private List<string> _failureReasons = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ImportExportFileFormat _fileFormat;
         private DateTime? _lastUpdatedDateTime;
         private ExportResourceSpecification _resourceSpecification;
@@ -64,7 +65,7 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property DownloadUrl. 
         /// <para>
         /// A pre-signed S3 URL that points to the bot or bot locale archive. The URL is only
-        /// available for 5 minutes after calling the <code>DescribeExport</code> operation.
+        /// available for 5 minutes after calling the <c>DescribeExport</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -102,8 +103,8 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property ExportStatus. 
         /// <para>
-        /// The status of the export. When the status is <code>Complete</code> the export archive
-        /// file is available for download.
+        /// The status of the export. When the status is <c>Complete</c> the export archive file
+        /// is available for download.
         /// </para>
         /// </summary>
         public ExportStatus ExportStatus
@@ -121,7 +122,7 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property FailureReasons. 
         /// <para>
-        /// If the <code>exportStatus</code> is failed, contains one or more reasons why the export
+        /// If the <c>exportStatus</c> is failed, contains one or more reasons why the export
         /// could not be completed.
         /// </para>
         /// </summary>
@@ -134,7 +135,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if FailureReasons property is set
         internal bool IsSetFailureReasons()
         {
-            return this._failureReasons != null && this._failureReasons.Count > 0; 
+            return this._failureReasons != null && (this._failureReasons.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

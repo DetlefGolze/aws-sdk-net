@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.LocationService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,7 +64,7 @@ namespace Amazon.LocationService.Model.Internal.MarshallTransformations
             request.AddPathResource("{IndexName}", StringUtils.FromString(publicRequest.IndexName));
             request.ResourcePath = "/places/v0/indexes/{IndexName}";
             
-            request.HostPrefix = $"places.";
+            request.HostPrefix = $"cp.places.";
 
             return request;
         }

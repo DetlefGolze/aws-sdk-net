@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchServerless.Model
 {
     /// <summary>
-    /// List of filter keys that you can use for LIST, UPDATE, and DELETE requests to OpenSearch
+    /// A list of filter keys that you can use for LIST, UPDATE, and DELETE requests to OpenSearch
     /// Serverless collections.
     /// </summary>
     public partial class CollectionFilters

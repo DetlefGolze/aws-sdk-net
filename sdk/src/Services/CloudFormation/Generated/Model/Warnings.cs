@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
-    /// Contains any warnings returned by the <code>GetTemplateSummary</code> API action.
+    /// Contains any warnings returned by the <c>GetTemplateSummary</c> API action.
     /// </summary>
     public partial class Warnings
     {
-        private List<string> _unrecognizedResourceTypes = new List<string>();
+        private List<string> _unrecognizedResourceTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property UnrecognizedResourceTypes. 
         /// <para>
-        /// A list of all of the unrecognized resource types. This is only returned if the <code>TemplateSummaryConfig</code>
-        /// parameter has the <code>TreatUnrecognizedResourceTypesAsWarning</code> configuration
-        /// set to <code>True</code>.
+        /// A list of all of the unrecognized resource types. This is only returned if the <c>TemplateSummaryConfig</c>
+        /// parameter has the <c>TreatUnrecognizedResourceTypesAsWarning</c> configuration set
+        /// to <c>True</c>.
         /// </para>
         /// </summary>
         public List<string> UnrecognizedResourceTypes
@@ -52,7 +53,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if UnrecognizedResourceTypes property is set
         internal bool IsSetUnrecognizedResourceTypes()
         {
-            return this._unrecognizedResourceTypes != null && this._unrecognizedResourceTypes.Count > 0; 
+            return this._unrecognizedResourceTypes != null && (this._unrecognizedResourceTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

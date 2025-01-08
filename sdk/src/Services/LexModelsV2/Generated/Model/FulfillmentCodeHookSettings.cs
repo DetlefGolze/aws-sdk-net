@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property Active. 
         /// <para>
-        /// Determines whether the fulfillment code hook is used. When <code>active</code> is
-        /// false, the code hook doesn't run.
+        /// Determines whether the fulfillment code hook is used. When <c>active</c> is false,
+        /// the code hook doesn't run.
         /// </para>
         /// </summary>
         public bool Active

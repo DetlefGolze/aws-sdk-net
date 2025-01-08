@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -76,6 +77,22 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Paginator for ListBrands operation
+        ///</summary>
+        public IListBrandsPaginator ListBrands(ListBrandsRequest request) 
+        {
+            return new ListBrandsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListCustomPermissions operation
+        ///</summary>
+        public IListCustomPermissionsPaginator ListCustomPermissions(ListCustomPermissionsRequest request) 
+        {
+            return new ListCustomPermissionsPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListDashboards operation
         ///</summary>
         public IListDashboardsPaginator ListDashboards(ListDashboardsRequest request) 
@@ -124,6 +141,14 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Paginator for ListFoldersForResource operation
+        ///</summary>
+        public IListFoldersForResourcePaginator ListFoldersForResource(ListFoldersForResourceRequest request) 
+        {
+            return new ListFoldersForResourcePaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListGroupMemberships operation
         ///</summary>
         public IListGroupMembershipsPaginator ListGroupMemberships(ListGroupMembershipsRequest request) 
@@ -169,6 +194,14 @@ namespace Amazon.QuickSight.Model
         public IListNamespacesPaginator ListNamespaces(ListNamespacesRequest request) 
         {
             return new ListNamespacesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListRoleMemberships operation
+        ///</summary>
+        public IListRoleMembershipsPaginator ListRoleMemberships(ListRoleMembershipsRequest request) 
+        {
+            return new ListRoleMembershipsPaginator(this.client, request);
         }
 
         /// <summary>
@@ -289,6 +322,14 @@ namespace Amazon.QuickSight.Model
         public ISearchGroupsPaginator SearchGroups(SearchGroupsRequest request) 
         {
             return new SearchGroupsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for SearchTopics operation
+        ///</summary>
+        public ISearchTopicsPaginator SearchTopics(SearchTopicsRequest request) 
+        {
+            return new SearchTopicsPaginator(this.client, request);
         }
     }
 }

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
-    /// A <code>BatchWrite</code> exception has occurred.
+    /// A <c>BatchWrite</c> exception has occurred.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

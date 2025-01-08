@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkMail.Model
 {
     /// <summary>
@@ -48,7 +49,7 @@ namespace Amazon.WorkMail.Model
         /// Resource description.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=64)]
+        [AWSProperty(Sensitive=true, Min=1, Max=64)]
         public string Description
         {
             get { return this._description; }

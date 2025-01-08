@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MQ.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.MQ.Model
         private LdapServerMetadataInput _ldapServerMetadata;
         private Logs _logs;
         private WeeklyStartTime _maintenanceWindowStartTime;
-        private List<string> _securityGroups = new List<string>();
+        private List<string> _securityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AuthenticationStrategy. 
@@ -67,10 +68,16 @@ namespace Amazon.MQ.Model
         /// <summary>
         /// Gets and sets the property AutoMinorVersionUpgrade. 
         /// <para>
-        /// Enables automatic upgrades to new minor versions for brokers, as new versions are
-        /// released and supported by Amazon MQ. Automatic upgrades occur during the scheduled
-        /// maintenance window of the broker or after a manual broker reboot.
+        /// Enables automatic upgrades to new patch versions for brokers as new versions are released
+        /// and supported by Amazon MQ. Automatic upgrades occur during the scheduled maintenance
+        /// window or after a manual broker reboot.
         /// </para>
+        ///  <note>
+        /// <para>
+        /// Must be set to true for ActiveMQ brokers version 5.18 and above and for RabbitMQ brokers
+        /// version 3.13 and above.
+        /// </para>
+        /// </note>
         /// </summary>
         public bool AutoMinorVersionUpgrade
         {
@@ -142,9 +149,16 @@ namespace Amazon.MQ.Model
         /// <summary>
         /// Gets and sets the property EngineVersion. 
         /// <para>
-        /// The broker engine version. For a list of supported engine versions, see <a href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker-engine.html">Supported
-        /// engines</a>.
+        /// The broker engine version. For more information, see the <a href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/activemq-version-management.html">ActiveMQ
+        /// version management</a> and the <a href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/rabbitmq-version-management.html">RabbitMQ
+        /// version management</a> sections in the Amazon MQ Developer Guide.
         /// </para>
+        ///  <note>
+        /// <para>
+        /// When upgrading to ActiveMQ version 5.18 and above or RabbitMQ version 3.13 and above,
+        /// you must have autoMinorVersionUpgrade set to true for the broker.
+        /// </para>
+        /// </note>
         /// </summary>
         public string EngineVersion
         {
@@ -249,7 +263,7 @@ namespace Amazon.MQ.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

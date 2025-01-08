@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -49,10 +50,10 @@ namespace Amazon.ElastiCache.Model
         private bool? _clusterEnabled;
         private string _engine;
         private string _engineVersion;
-        private List<GlobalNodeGroup> _globalNodeGroups = new List<GlobalNodeGroup>();
+        private List<GlobalNodeGroup> _globalNodeGroups = AWSConfigs.InitializeCollections ? new List<GlobalNodeGroup>() : null;
         private string _globalReplicationGroupDescription;
         private string _globalReplicationGroupId;
-        private List<GlobalReplicationGroupMember> _members = new List<GlobalReplicationGroupMember>();
+        private List<GlobalReplicationGroupMember> _members = AWSConfigs.InitializeCollections ? new List<GlobalReplicationGroupMember>() : null;
         private string _status;
         private bool? _transitEncryptionEnabled;
 
@@ -77,19 +78,19 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property AtRestEncryptionEnabled. 
         /// <para>
-        /// A flag that enables encryption at rest when set to <code>true</code>.
+        /// A flag that enables encryption at rest when set to <c>true</c>.
         /// </para>
         ///  
         /// <para>
-        /// You cannot modify the value of <code>AtRestEncryptionEnabled</code> after the replication
+        /// You cannot modify the value of <c>AtRestEncryptionEnabled</c> after the replication
         /// group is created. To enable encryption at rest on a replication group you must set
-        /// <code>AtRestEncryptionEnabled</code> to <code>true</code> when you create the replication
-        /// group. 
+        /// <c>AtRestEncryptionEnabled</c> to <c>true</c> when you create the replication group.
+        /// 
         /// </para>
         ///  
         /// <para>
         ///  <b>Required:</b> Only available when creating a replication group in an Amazon VPC
-        /// using redis version <code>3.2.6</code>, <code>4.x</code> or later.
+        /// using Redis OSS version <c>3.2.6</c>, <c>4.x</c> or later.
         /// </para>
         /// </summary>
         public bool AtRestEncryptionEnabled
@@ -107,12 +108,12 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property AuthTokenEnabled. 
         /// <para>
-        /// A flag that enables using an <code>AuthToken</code> (password) when issuing Redis
-        /// commands.
+        /// A flag that enables using an <c>AuthToken</c> (password) when issuing Valkey or Redis
+        /// OSS commands.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool AuthTokenEnabled
@@ -166,7 +167,7 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property Engine. 
         /// <para>
-        /// The Elasticache engine. For Redis only.
+        /// The ElastiCache engine. For Valkey or Redis OSS only.
         /// </para>
         /// </summary>
         public string Engine
@@ -184,7 +185,7 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property EngineVersion. 
         /// <para>
-        /// The Elasticache Redis engine version.
+        /// The ElastiCache engine version.
         /// </para>
         /// </summary>
         public string EngineVersion
@@ -214,7 +215,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if GlobalNodeGroups property is set
         internal bool IsSetGlobalNodeGroups()
         {
-            return this._globalNodeGroups != null && this._globalNodeGroups.Count > 0; 
+            return this._globalNodeGroups != null && (this._globalNodeGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -268,7 +269,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if Members property is set
         internal bool IsSetMembers()
         {
-            return this._members != null && this._members.Count > 0; 
+            return this._members != null && (this._members.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -297,7 +298,7 @@ namespace Amazon.ElastiCache.Model
         ///  
         /// <para>
         ///  <b>Required:</b> Only available when creating a replication group in an Amazon VPC
-        /// using redis version <code>3.2.6</code>, <code>4.x</code> or later.
+        /// using Redis OSS version <c>3.2.6</c>, <c>4.x</c> or later.
         /// </para>
         /// </summary>
         public bool TransitEncryptionEnabled

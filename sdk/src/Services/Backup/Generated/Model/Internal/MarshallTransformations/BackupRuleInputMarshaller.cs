@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Backup.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.Backup.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(BackupRuleInput requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCompletionWindowMinutes())
             {
                 context.Writer.WritePropertyName("CompletionWindowMinutes");
@@ -71,6 +74,22 @@ namespace Amazon.Backup.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("EnableContinuousBackup");
                 context.Writer.Write(requestObject.EnableContinuousBackup);
+            }
+
+            if(requestObject.IsSetIndexActions())
+            {
+                context.Writer.WritePropertyName("IndexActions");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectIndexActionsListValue in requestObject.IndexActions)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = IndexActionMarshaller.Instance;
+                    marshaller.Marshall(requestObjectIndexActionsListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
             }
 
             if(requestObject.IsSetLifecycle())

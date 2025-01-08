@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QLDB.Model
 {
     /// <summary>
@@ -53,11 +54,11 @@ namespace Amazon.QLDB.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ENABLED</code>: Encryption is fully enabled using the specified key.
+        ///  <c>ENABLED</c>: Encryption is fully enabled using the specified key.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPDATING</code>: The ledger is actively processing the specified key change.
+        ///  <c>UPDATING</c>: The ledger is actively processing the specified key change.
         /// </para>
         ///  
         /// <para>
@@ -67,10 +68,10 @@ namespace Amazon.QLDB.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>KMS_KEY_INACCESSIBLE</code>: The specified customer managed KMS key is not
-        /// accessible, and the ledger is impaired. Either the key was disabled or deleted, or
-        /// the grants on the key were revoked. When a ledger is impaired, it is not accessible
-        /// and does not accept any read or write requests.
+        ///  <c>KMS_KEY_INACCESSIBLE</c>: The specified customer managed KMS key is not accessible,
+        /// and the ledger is impaired. Either the key was disabled or deleted, or the grants
+        /// on the key were revoked. When a ledger is impaired, it is not accessible and does
+        /// not accept any read or write requests.
         /// </para>
         ///  
         /// <para>
@@ -123,7 +124,9 @@ namespace Amazon.QLDB.Model
         /// <para>
         /// The Amazon Resource Name (ARN) of the customer managed KMS key that the ledger uses
         /// for encryption at rest. If this parameter is undefined, the ledger uses an Amazon
-        /// Web Services owned KMS key for encryption.
+        /// Web Services owned KMS key for encryption. It will display <c>AWS_OWNED_KMS_KEY</c>
+        /// when updating the ledger's encryption configuration to the Amazon Web Services owned
+        /// KMS key.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=1600)]

@@ -26,41 +26,44 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeParameters operation.
-    /// Get information about a parameter.
+    /// Lists the parameters in your Amazon Web Services account or the parameters shared
+    /// with you when you enable the <a href="https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeParameters.html#systemsmanager-DescribeParameters-request-Shared">Shared</a>
+    /// option.
     /// 
     ///  
     /// <para>
-    /// Request results are returned on a best-effort basis. If you specify <code>MaxResults</code>
+    /// Request results are returned on a best-effort basis. If you specify <c>MaxResults</c>
     /// in the request, the response includes information up to the limit specified. The number
-    /// of items returned, however, can be between zero and the value of <code>MaxResults</code>.
+    /// of items returned, however, can be between zero and the value of <c>MaxResults</c>.
     /// If the service reaches an internal limit while processing the results, it stops the
-    /// operation and returns the matching values up to that point and a <code>NextToken</code>.
-    /// You can specify the <code>NextToken</code> in a subsequent call to get the next set
-    /// of results.
+    /// operation and returns the matching values up to that point and a <c>NextToken</c>.
+    /// You can specify the <c>NextToken</c> in a subsequent call to get the next set of results.
     /// </para>
     ///  <important> 
     /// <para>
     /// If you change the KMS key alias for the KMS key used to encrypt a parameter, then
     /// you must also update the key alias the parameter uses to reference KMS. Otherwise,
-    /// <code>DescribeParameters</code> retrieves whatever the original key alias was referencing.
+    /// <c>DescribeParameters</c> retrieves whatever the original key alias was referencing.
     /// </para>
     ///  </important>
     /// </summary>
     public partial class DescribeParametersRequest : AmazonSimpleSystemsManagementRequest
     {
-        private List<ParametersFilter> _filters = new List<ParametersFilter>();
+        private List<ParametersFilter> _filters = AWSConfigs.InitializeCollections ? new List<ParametersFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
-        private List<ParameterStringFilter> _parameterFilters = new List<ParameterStringFilter>();
+        private List<ParameterStringFilter> _parameterFilters = AWSConfigs.InitializeCollections ? new List<ParameterStringFilter>() : null;
+        private bool? _shared;
 
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// This data type is deprecated. Instead, use <code>ParameterFilters</code>.
+        /// This data type is deprecated. Instead, use <c>ParameterFilters</c>.
         /// </para>
         /// </summary>
         public List<ParametersFilter> Filters
@@ -72,7 +75,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -129,7 +132,40 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if ParameterFilters property is set
         internal bool IsSetParameterFilters()
         {
-            return this._parameterFilters != null && this._parameterFilters.Count > 0; 
+            return this._parameterFilters != null && (this._parameterFilters.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Shared. 
+        /// <para>
+        /// Lists parameters that are shared with you.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// By default when using this option, the command returns parameters that have been shared
+        /// using a standard Resource Access Manager Resource Share. In order for a parameter
+        /// that was shared using the <a>PutResourcePolicy</a> command to be returned, the associated
+        /// <c>RAM Resource Share Created From Policy</c> must have been promoted to a standard
+        /// Resource Share using the RAM <a href="https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html">PromoteResourceShareCreatedFromPolicy</a>
+        /// API operation.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about sharing parameters, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-shared-parameters.html">Working
+        /// with shared parameters</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public bool Shared
+        {
+            get { return this._shared.GetValueOrDefault(); }
+            set { this._shared = value; }
+        }
+
+        // Check to see if Shared property is set
+        internal bool IsSetShared()
+        {
+            return this._shared.HasValue; 
         }
 
     }

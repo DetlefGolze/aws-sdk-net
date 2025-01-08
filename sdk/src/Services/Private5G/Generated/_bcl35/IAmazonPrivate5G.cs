@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Private5G.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Private5G
 {
     /// <summary>
-    /// Interface for accessing Private5G
+    /// <para>Interface for accessing Private5G</para>
     ///
     /// Amazon Web Services Private 5G is a managed service that makes it easy to deploy,
     /// operate, and scale your own private mobile network at your on-premises location. Private
@@ -1142,9 +1143,9 @@ namespace Amazon.Private5G
         ///  </li> </ul> 
         /// <para>
         /// After you submit a request to replace or return a network resource, the status of
-        /// the network resource changes to <code>CREATING_SHIPPING_LABEL</code>. The shipping
-        /// label is available when the status of the network resource is <code>PENDING_RETURN</code>.
-        /// After the network resource is successfully returned, its status changes to <code>DELETED</code>.
+        /// the network resource changes to <c>CREATING_SHIPPING_LABEL</c>. The shipping label
+        /// is available when the status of the network resource is <c>PENDING_RETURN</c>. After
+        /// the network resource is successfully returned, its status changes to <c>DELETED</c>.
         /// For more information, see <a href="https://docs.aws.amazon.com/private-networks/latest/userguide/radio-units.html#return-radio-unit">Return
         /// a radio unit</a>.
         /// </para>

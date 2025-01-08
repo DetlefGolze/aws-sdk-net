@@ -26,13 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ControlTower.Model
 {
     /// <summary>
     /// Container for the parameters to the DisableControl operation.
     /// This API call turns off a control. It starts an asynchronous operation that deletes
-    /// AWS resources on the specified organizational unit and the accounts it contains. The
-    /// resources will vary according to the control that you specify.
+    /// Amazon Web Services resources on the specified organizational unit and the accounts
+    /// it contains. The resources will vary according to the control that you specify. For
+    /// usage examples, see the <a href="https://docs.aws.amazon.com/controltower/latest/controlreference/control-api-examples-short.html">
+    /// <i>Controls Reference Guide</i> </a>.
     /// </summary>
     public partial class DisableControlRequest : AmazonControlTowerRequest
     {
@@ -43,7 +46,9 @@ namespace Amazon.ControlTower.Model
         /// Gets and sets the property ControlIdentifier. 
         /// <para>
         /// The ARN of the control. Only <b>Strongly recommended</b> and <b>Elective</b> controls
-        /// are permitted, with the exception of the <b>Region deny</b> guardrail.
+        /// are permitted, with the exception of the <b>Region deny</b> control. For information
+        /// on how to find the <c>controlIdentifier</c>, see <a href="https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html">the
+        /// overview page</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]
@@ -62,7 +67,9 @@ namespace Amazon.ControlTower.Model
         /// <summary>
         /// Gets and sets the property TargetIdentifier. 
         /// <para>
-        /// The ARN of the organizational unit.
+        /// The ARN of the organizational unit. For information on how to find the <c>targetIdentifier</c>,
+        /// see <a href="https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html">the
+        /// overview page</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]

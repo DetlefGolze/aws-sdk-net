@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancing.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.ElasticLoadBalancing.Model
         /// <summary>
         /// Gets and sets the property AttributeType. 
         /// <para>
-        /// The type of the attribute. For example, <code>Boolean</code> or <code>Integer</code>.
+        /// The type of the attribute. For example, <c>Boolean</c> or <c>Integer</c>.
         /// </para>
         /// </summary>
         public string AttributeType

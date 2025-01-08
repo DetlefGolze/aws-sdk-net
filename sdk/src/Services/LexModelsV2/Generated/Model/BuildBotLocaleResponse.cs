@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -61,10 +62,9 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property BotLocaleStatus. 
         /// <para>
-        /// The bot's build status. When the status is <code>ReadyExpressTesting</code> you can
-        /// test the bot using the utterances defined for the intents and slot types. When the
-        /// status is <code>Built</code>, the bot is ready for use and can be tested using any
-        /// utterance.
+        /// The bot's build status. When the status is <c>ReadyExpressTesting</c> you can test
+        /// the bot using the utterances defined for the intents and slot types. When the status
+        /// is <c>Built</c>, the bot is ready for use and can be tested using any utterance.
         /// </para>
         /// </summary>
         public BotLocaleStatus BotLocaleStatus

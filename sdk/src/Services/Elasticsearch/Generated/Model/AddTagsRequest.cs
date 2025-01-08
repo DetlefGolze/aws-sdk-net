@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
@@ -37,12 +38,12 @@ namespace Amazon.Elasticsearch.Model
     public partial class AddTagsRequest : AmazonElasticsearchRequest
     {
         private string _arn;
-        private List<Tag> _tagList = new List<Tag>();
+        private List<Tag> _tagList = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ARN. 
         /// <para>
-        ///  Specify the <code>ARN</code> for which you want to add the tags.
+        ///  Specify the <c>ARN</c> for which you want to add the tags.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -61,7 +62,7 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property TagList. 
         /// <para>
-        ///  List of <code>Tag</code> that need to be added for the Elasticsearch domain. 
+        ///  List of <c>Tag</c> that need to be added for the Elasticsearch domain. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -74,7 +75,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if TagList property is set
         internal bool IsSetTagList()
         {
-            return this._tagList != null && this._tagList.Count > 0; 
+            return this._tagList != null && (this._tagList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

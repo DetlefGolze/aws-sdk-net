@@ -26,27 +26,29 @@ namespace Amazon.S3.Model
 {
     /// <summary>
     /// Container for the parameters to the ListVersions operation.
+    /// <note> 
+    /// <para>
+    /// This operation is not supported by directory buckets.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Returns metadata about all versions of the objects in a bucket. You can also use request
     /// parameters as selection criteria to return metadata about a subset of all the object
     /// versions.
-    /// 
+    /// </para>
     ///  <important> 
     /// <para>
-    ///  To use this operation, you must have permissions to perform the <code>s3:ListBucketVersions</code>
+    ///  To use this operation, you must have permission to perform the <code>s3:ListBucketVersions</code>
     /// action. Be aware of the name difference. 
     /// </para>
     ///  </important> <note> 
     /// <para>
-    /// A <code>200 OK</code> response can contain valid or invalid XML. Make sure to design
+    ///  A <code>200 OK</code> response can contain valid or invalid XML. Make sure to design
     /// your application to parse the contents of the response and handle it appropriately.
     /// </para>
     ///  </note> 
     /// <para>
     /// To use this operation, you must have READ access to the bucket.
-    /// </para>
-    ///  
-    /// <para>
-    /// This action is not supported by Amazon S3 on Outposts.
     /// </para>
     ///  
     /// <para>
@@ -81,7 +83,7 @@ namespace Amazon.S3.Model
         private string keyMarker;
         private int? maxKeys;
         private string prefix;
-        private List<string> _optionalObjectAttributes = new List<string>();
+        private List<string> _optionalObjectAttributes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private RequestPayer _requestPayer;
         private string versionIdMarker;
         private EncodingType encoding;
@@ -180,7 +182,7 @@ namespace Amazon.S3.Model
         // Check to see if OptionalObjectAttributes property is set
         internal bool IsSetOptionalObjectAttributes()
         {
-            return this._optionalObjectAttributes != null && this._optionalObjectAttributes.Count > 0;
+            return this._optionalObjectAttributes != null && (this._optionalObjectAttributes.Count > 0 || !AWSConfigs.InitializeCollections);
         }
 
         /// <summary>
@@ -236,12 +238,16 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// Requests Amazon S3 to encode the object keys in the response and specifies
-        /// the encoding method to use. An object key may contain any Unicode character;
-        /// however, XML 1.0 parser cannot parse some characters, such as characters
-        /// with an ASCII value from 0 to 10. For characters that are not supported in
-        /// XML 1.0, you can add this parameter to request that Amazon S3 encode the
-        /// keys in the response.
+        /// <para>Encoding type used by Amazon S3 to encode the 
+        /// <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html">object keys</a> in 
+        /// the response. Responses are encoded only in UTF-8. An object key can contain any Unicode character. 
+        /// However, the XML 1.0 parser can't parse certain characters, such as characters with an ASCII value 
+        /// from 0 to 10. For characters that aren't supported in XML 1.0, you can add this parameter to request 
+        /// that Amazon S3 encode the keys in the response. For more information about characters to avoid in object 
+        /// key names, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-guidelines">Object key naming guidelines</a>.
+        /// </para> <note> <para>When using the URL encoding type, non-ASCII characters that are used in an 
+        /// object's key name will be percent-encoded according to UTF-8 code values. For example, the object 
+        /// <code>test_file(3).png</code> will appear as <code>test_file%283%29.png</code>.</para> </note>
         /// </summary>
         public EncodingType Encoding
         {
@@ -256,8 +262,12 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// The account ID of the expected bucket owner. 
-        /// If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.
+        /// Gets and sets the property ExpectedBucketOwner. 
+        /// <para>
+        /// The account ID of the expected bucket owner. If the account ID that you provide does
+        /// not match the actual owner of the bucket, the request fails with the HTTP status code
+        /// <code>403 Forbidden</code> (access denied).
+        /// </para>
         /// </summary>
         public string ExpectedBucketOwner
         {

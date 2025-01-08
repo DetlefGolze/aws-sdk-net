@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeDBSubnetGroups operation.
-    /// Returns a list of <code>DBSubnetGroup</code> descriptions. If a <code>DBSubnetGroupName</code>
-    /// is specified, the list will contain only the descriptions of the specified <code>DBSubnetGroup</code>.
+    /// Returns a list of <c>DBSubnetGroup</c> descriptions. If a <c>DBSubnetGroupName</c>
+    /// is specified, the list will contain only the descriptions of the specified <c>DBSubnetGroup</c>.
     /// </summary>
     public partial class DescribeDBSubnetGroupsRequest : AmazonDocDBRequest
     {
         private string _dbSubnetGroupName;
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private string _marker;
         private int? _maxRecords;
 
@@ -73,7 +74,7 @@ namespace Amazon.DocDB.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace Amazon.DocDB.Model
         /// <para>
         /// An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>.
+        /// by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -100,8 +101,8 @@ namespace Amazon.DocDB.Model
         /// Gets and sets the property MaxRecords. 
         /// <para>
         ///  The maximum number of records to include in the response. If more records exist than
-        /// the specified <code>MaxRecords</code> value, a pagination token (marker) is included
-        /// in the response so that the remaining results can be retrieved.
+        /// the specified <c>MaxRecords</c> value, a pagination token (marker) is included in
+        /// the response so that the remaining results can be retrieved.
         /// </para>
         ///  
         /// <para>

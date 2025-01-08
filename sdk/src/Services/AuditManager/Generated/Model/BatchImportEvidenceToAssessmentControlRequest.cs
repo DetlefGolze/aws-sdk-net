@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AuditManager.Model
 {
     /// <summary>
@@ -44,8 +45,8 @@ namespace Amazon.AuditManager.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>manualEvidence</code> can be only one of the following: <code>evidenceFileName</code>,
-    /// <code>s3ResourcePath</code>, or <code>textResponse</code> 
+    ///  <c>manualEvidence</c> can be only one of the following: <c>evidenceFileName</c>,
+    /// <c>s3ResourcePath</c>, or <c>textResponse</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -71,7 +72,7 @@ namespace Amazon.AuditManager.Model
         private string _assessmentId;
         private string _controlId;
         private string _controlSetId;
-        private List<ManualEvidence> _manualEvidence = new List<ManualEvidence>();
+        private List<ManualEvidence> _manualEvidence = AWSConfigs.InitializeCollections ? new List<ManualEvidence>() : null;
 
         /// <summary>
         /// Gets and sets the property AssessmentId. 
@@ -146,7 +147,7 @@ namespace Amazon.AuditManager.Model
         // Check to see if ManualEvidence property is set
         internal bool IsSetManualEvidence()
         {
-            return this._manualEvidence != null && this._manualEvidence.Count > 0; 
+            return this._manualEvidence != null && (this._manualEvidence.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

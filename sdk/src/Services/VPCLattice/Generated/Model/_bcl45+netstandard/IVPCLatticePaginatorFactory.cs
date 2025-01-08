@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the vpc-lattice-2022-11-30.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
@@ -36,9 +37,29 @@ namespace Amazon.VPCLattice.Model
         IListListenersPaginator ListListeners(ListListenersRequest request);
 
         /// <summary>
+        /// Paginator for ListResourceConfigurations operation
+        ///</summary>
+        IListResourceConfigurationsPaginator ListResourceConfigurations(ListResourceConfigurationsRequest request);
+
+        /// <summary>
+        /// Paginator for ListResourceEndpointAssociations operation
+        ///</summary>
+        IListResourceEndpointAssociationsPaginator ListResourceEndpointAssociations(ListResourceEndpointAssociationsRequest request);
+
+        /// <summary>
+        /// Paginator for ListResourceGateways operation
+        ///</summary>
+        IListResourceGatewaysPaginator ListResourceGateways(ListResourceGatewaysRequest request);
+
+        /// <summary>
         /// Paginator for ListRules operation
         ///</summary>
         IListRulesPaginator ListRules(ListRulesRequest request);
+
+        /// <summary>
+        /// Paginator for ListServiceNetworkResourceAssociations operation
+        ///</summary>
+        IListServiceNetworkResourceAssociationsPaginator ListServiceNetworkResourceAssociations(ListServiceNetworkResourceAssociationsRequest request);
 
         /// <summary>
         /// Paginator for ListServiceNetworks operation
@@ -54,6 +75,11 @@ namespace Amazon.VPCLattice.Model
         /// Paginator for ListServiceNetworkVpcAssociations operation
         ///</summary>
         IListServiceNetworkVpcAssociationsPaginator ListServiceNetworkVpcAssociations(ListServiceNetworkVpcAssociationsRequest request);
+
+        /// <summary>
+        /// Paginator for ListServiceNetworkVpcEndpointAssociations operation
+        ///</summary>
+        IListServiceNetworkVpcEndpointAssociationsPaginator ListServiceNetworkVpcEndpointAssociations(ListServiceNetworkVpcEndpointAssociationsRequest request);
 
         /// <summary>
         /// Paginator for ListServices operation

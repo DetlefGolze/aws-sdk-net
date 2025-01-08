@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaPackageV2.Model
 {
     /// <summary>
@@ -49,6 +50,14 @@ namespace Amazon.MediaPackageV2.Model
         public IListChannelsPaginator ListChannels(ListChannelsRequest request) 
         {
             return new ListChannelsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListHarvestJobs operation
+        ///</summary>
+        public IListHarvestJobsPaginator ListHarvestJobs(ListHarvestJobsRequest request) 
+        {
+            return new ListHarvestJobsPaginator(this.client, request);
         }
 
         /// <summary>

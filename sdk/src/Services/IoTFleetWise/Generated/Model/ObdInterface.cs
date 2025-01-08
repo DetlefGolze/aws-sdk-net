@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
-    /// A network interface that specifies the On-board diagnostic (OBD) II network protocol.
+    /// A network interface that specifies the on-board diagnostic (OBD) II network protocol.
     /// </summary>
     public partial class ObdInterface
     {

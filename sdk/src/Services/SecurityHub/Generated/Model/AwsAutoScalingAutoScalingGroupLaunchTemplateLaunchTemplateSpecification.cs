@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -40,8 +41,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property LaunchTemplateId. 
         /// <para>
-        /// The identifier of the launch template. You must specify either <code>LaunchTemplateId</code>
-        /// or <code>LaunchTemplateName</code>.
+        /// The identifier of the launch template. You must specify either <c>LaunchTemplateId</c>
+        /// or <c>LaunchTemplateName</c>.
         /// </para>
         /// </summary>
         public string LaunchTemplateId
@@ -59,8 +60,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property LaunchTemplateName. 
         /// <para>
-        /// The name of the launch template. You must specify either <code>LaunchTemplateId</code>
-        /// or <code>LaunchTemplateName</code>.
+        /// The name of the launch template. You must specify either <c>LaunchTemplateId</c> or
+        /// <c>LaunchTemplateName</c>.
         /// </para>
         /// </summary>
         public string LaunchTemplateName
@@ -79,7 +80,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Version. 
         /// <para>
         /// Identifies the version of the launch template. You can specify a version identifier,
-        /// or use the values <code>$Latest</code> or <code>$Default</code>.
+        /// or use the values <c>$Latest</c> or <c>$Default</c>.
         /// </para>
         /// </summary>
         public string Version

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// </summary>
     public partial class DescribeMaintenanceWindowExecutionTaskInvocationsRequest : AmazonSimpleSystemsManagementRequest
     {
-        private List<MaintenanceWindowFilter> _filters = new List<MaintenanceWindowFilter>();
+        private List<MaintenanceWindowFilter> _filters = AWSConfigs.InitializeCollections ? new List<MaintenanceWindowFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
         private string _taskId;
@@ -45,9 +46,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property Filters. 
         /// <para>
         /// Optional filters used to scope down the returned task invocations. The supported filter
-        /// key is <code>STATUS</code> with the corresponding values <code>PENDING</code>, <code>IN_PROGRESS</code>,
-        /// <code>SUCCESS</code>, <code>FAILED</code>, <code>TIMED_OUT</code>, <code>CANCELLING</code>,
-        /// and <code>CANCELLED</code>.
+        /// key is <c>STATUS</c> with the corresponding values <c>PENDING</c>, <c>IN_PROGRESS</c>,
+        /// <c>SUCCESS</c>, <c>FAILED</c>, <c>TIMED_OUT</c>, <c>CANCELLING</c>, and <c>CANCELLED</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=5)]
@@ -60,7 +60,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Glue.Model
         private string _connectionName;
         private string _dlqEventQueueArn;
         private string _eventQueueArn;
-        private List<string> _exclusions = new List<string>();
+        private List<string> _exclusions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _path;
         private int? _sampleSize;
 
@@ -62,7 +63,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property DlqEventQueueArn. 
         /// <para>
-        /// A valid Amazon dead-letter SQS ARN. For example, <code>arn:aws:sqs:region:account:deadLetterQueue</code>.
+        /// A valid Amazon dead-letter SQS ARN. For example, <c>arn:aws:sqs:region:account:deadLetterQueue</c>.
         /// </para>
         /// </summary>
         public string DlqEventQueueArn
@@ -80,7 +81,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property EventQueueArn. 
         /// <para>
-        /// A valid Amazon SQS ARN. For example, <code>arn:aws:sqs:region:account:sqs</code>.
+        /// A valid Amazon SQS ARN. For example, <c>arn:aws:sqs:region:account:sqs</c>.
         /// </para>
         /// </summary>
         public string EventQueueArn
@@ -112,7 +113,7 @@ namespace Amazon.Glue.Model
         // Check to see if Exclusions property is set
         internal bool IsSetExclusions()
         {
-            return this._exclusions != null && this._exclusions.Count > 0; 
+            return this._exclusions != null && (this._exclusions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

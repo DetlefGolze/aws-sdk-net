@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -37,13 +38,13 @@ namespace Amazon.Glue.Model
         private string _databaseName;
         private string _dlqEventQueueArn;
         private string _eventQueueArn;
-        private List<string> _tables = new List<string>();
+        private List<string> _tables = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ConnectionName. 
         /// <para>
         /// The name of the connection for an Amazon S3-backed Data Catalog table to be a target
-        /// of the crawl when using a <code>Catalog</code> connection type paired with a <code>NETWORK</code>
+        /// of the crawl when using a <c>Catalog</c> connection type paired with a <c>NETWORK</c>
         /// Connection type.
         /// </para>
         /// </summary>
@@ -81,7 +82,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property DlqEventQueueArn. 
         /// <para>
-        /// A valid Amazon dead-letter SQS ARN. For example, <code>arn:aws:sqs:region:account:deadLetterQueue</code>.
+        /// A valid Amazon dead-letter SQS ARN. For example, <c>arn:aws:sqs:region:account:deadLetterQueue</c>.
         /// </para>
         /// </summary>
         public string DlqEventQueueArn
@@ -99,7 +100,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property EventQueueArn. 
         /// <para>
-        /// A valid Amazon SQS ARN. For example, <code>arn:aws:sqs:region:account:sqs</code>.
+        /// A valid Amazon SQS ARN. For example, <c>arn:aws:sqs:region:account:sqs</c>.
         /// </para>
         /// </summary>
         public string EventQueueArn
@@ -130,7 +131,7 @@ namespace Amazon.Glue.Model
         // Check to see if Tables property is set
         internal bool IsSetTables()
         {
-            return this._tables != null && this._tables.Count > 0; 
+            return this._tables != null && (this._tables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

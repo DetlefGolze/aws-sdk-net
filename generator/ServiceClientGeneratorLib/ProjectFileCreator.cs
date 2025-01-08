@@ -69,7 +69,7 @@ namespace ServiceClientGenerator
                         "endpoints.json",
                     };
                     projectProperties.KeyFilePath = Utils.PathCombineAlt("..", "..", "awssdk.dll.snk");
-                    projectProperties.SupressWarnings = "419,1570,1591";
+                    projectProperties.SupressWarnings = "419,1570,1591;CA1822";
                     projectProperties.NugetPackagesLocation = Utils.PathCombineAlt("..", "..", "packages");
                     projectProperties.FxcopAnalyzerRuleSetFilePath = Utils.PathCombineAlt("..", "..", "AWSDotNetSDK.ruleset");
                     projectProperties.FxcopAnalyzerRuleSetFilePathForBuild = Utils.PathCombineAlt("..", "..", "AWSDotNetSDKForBuild.ruleset");
@@ -130,10 +130,9 @@ namespace ServiceClientGenerator
                         IncludePath = serviceConfiguration.IsTestService
                             ? Utils.PathCombineAlt("..", "..", "..", "src", "Core", $"AWSSDK.Core.{projectType}.csproj")
                             : Utils.PathCombineAlt("..", "..", "Core", $"AWSSDK.Core.{projectType}.csproj")
-                    }); ;
+                    });
 
-                    projectFileConfiguration.ProjectReferences = projectReferenceList;
-                    GenerateVS2017ProjectFile(serviceFilesRoot, serviceConfiguration, projectFileConfiguration);
+                    GenerateVS2017ProjectFile(serviceFilesRoot, serviceConfiguration, projectFileConfiguration, projectReferenceList);
                     continue;
                 }   
 
@@ -160,6 +159,7 @@ namespace ServiceClientGenerator
                 projectProperties.ProjectGuid = projectGuid;
                 projectProperties.RootNamespace = serviceConfiguration.Namespace;
                 projectProperties.AssemblyName = assemblyName;
+                projectProperties.SupressWarnings = "CA1822";
                 projectProperties.SourceDirectories = GetProjectSourceFolders(projectFileConfiguration, serviceFilesRoot);
                 projectProperties.NugetPackagesLocation = Utils.PathCombineAlt("..", "..", "..", "packages");
                 projectProperties.FxcopAnalyzerRuleSetFilePath = Utils.PathCombineAlt("..", "..", "..", "AWSDotNetSDK.ruleset");
@@ -249,7 +249,8 @@ namespace ServiceClientGenerator
             GeneratorDriver.WriteFile(serviceFilesRoot, string.Empty, projectFilename, generatedContent);
             projectConfiguration.ConfigurationPlatforms = projectFileConfiguration.Configurations;
         }
-        private void GenerateVS2017ProjectFile(string serviceFilesRoot, ServiceConfiguration serviceConfiguration, ProjectFileConfiguration projectFileConfiguration)
+
+        private void GenerateVS2017ProjectFile(string serviceFilesRoot, ServiceConfiguration serviceConfiguration, ProjectFileConfiguration projectFileConfiguration, List<ProjectReference> projectFileReferences)
         {
             var assemblyName = "AWSSDK." + serviceConfiguration.Namespace.Split('.')[1];
             var projectType = projectFileConfiguration.Name;
@@ -257,7 +258,7 @@ namespace ServiceClientGenerator
             var projectProperties = new Project();
 
             projectProperties.AssemblyName          = assemblyName;
-            projectProperties.ProjectReferences     = projectFileConfiguration.ProjectReferences;
+            projectProperties.ProjectReferences     = projectFileReferences;
             projectProperties.TargetFrameworks      = projectFileConfiguration.TargetFrameworkVersions;
             projectProperties.DefineConstants       = projectFileConfiguration.CompilationConstants;
             projectProperties.CompileRemoveList     = projectFileConfiguration.PlatformExcludeFolders.ToList();
@@ -268,7 +269,7 @@ namespace ServiceClientGenerator
             }
             projectProperties.FrameworkPathOverride = projectFileConfiguration.FrameworkPathOverride;
             projectProperties.ReferenceDependencies = projectFileConfiguration.DllReferences;
-            projectProperties.SupressWarnings       = projectFileConfiguration.NoWarn;
+            projectProperties.SupressWarnings       = "CA1822";
             projectProperties.SignBinaries          = true;
             projectProperties.PackageReferences = projectFileConfiguration.PackageReferences;
             projectProperties.FxcopAnalyzerRuleSetFilePath = Utils.PathCombineAlt("..", "..", "..", "AWSDotNetSDK.ruleset");

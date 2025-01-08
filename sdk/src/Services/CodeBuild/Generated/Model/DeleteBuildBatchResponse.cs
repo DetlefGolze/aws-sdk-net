@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -33,8 +34,8 @@ namespace Amazon.CodeBuild.Model
     /// </summary>
     public partial class DeleteBuildBatchResponse : AmazonWebServiceResponse
     {
-        private List<string> _buildsDeleted = new List<string>();
-        private List<BuildNotDeleted> _buildsNotDeleted = new List<BuildNotDeleted>();
+        private List<string> _buildsDeleted = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<BuildNotDeleted> _buildsNotDeleted = AWSConfigs.InitializeCollections ? new List<BuildNotDeleted>() : null;
         private string _statusCode;
 
         /// <summary>
@@ -53,14 +54,14 @@ namespace Amazon.CodeBuild.Model
         // Check to see if BuildsDeleted property is set
         internal bool IsSetBuildsDeleted()
         {
-            return this._buildsDeleted != null && this._buildsDeleted.Count > 0; 
+            return this._buildsDeleted != null && (this._buildsDeleted.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property BuildsNotDeleted. 
         /// <para>
-        /// An array of <code>BuildNotDeleted</code> objects that specify the builds that could
-        /// not be deleted.
+        /// An array of <c>BuildNotDeleted</c> objects that specify the builds that could not
+        /// be deleted.
         /// </para>
         /// </summary>
         public List<BuildNotDeleted> BuildsNotDeleted
@@ -72,7 +73,7 @@ namespace Amazon.CodeBuild.Model
         // Check to see if BuildsNotDeleted property is set
         internal bool IsSetBuildsNotDeleted()
         {
-            return this._buildsNotDeleted != null && this._buildsNotDeleted.Count > 0; 
+            return this._buildsNotDeleted != null && (this._buildsNotDeleted.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

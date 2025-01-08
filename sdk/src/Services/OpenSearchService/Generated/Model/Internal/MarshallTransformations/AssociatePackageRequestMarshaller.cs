@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,6 +67,39 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
                 throw new AmazonOpenSearchServiceException("Request object does not have required field PackageID set");
             request.AddPathResource("{PackageID}", StringUtils.FromString(publicRequest.PackageID));
             request.ResourcePath = "/2021-01-01/packages/associate/{PackageID}/{DomainName}";
+            using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
+            {
+                JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
+                writer.WriteObjectStart();
+                var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetAssociationConfiguration())
+                {
+                    context.Writer.WritePropertyName("AssociationConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = PackageAssociationConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.AssociationConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetPrerequisitePackageIDList())
+                {
+                    context.Writer.WritePropertyName("PrerequisitePackageIDList");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestPrerequisitePackageIDListListValue in publicRequest.PrerequisitePackageIDList)
+                    {
+                            context.Writer.Write(publicRequestPrerequisitePackageIDListListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+
+                writer.WriteObjectEnd();
+                string snippet = stringWriter.ToString();
+                request.Content = System.Text.Encoding.UTF8.GetBytes(snippet);
+            }
+
 
             return request;
         }

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// The result of a <code><a>DeleteIndexField</a></code> request.
+    /// The result of a <c><a>DeleteIndexField</a></c> request.
     /// </summary>
     public partial class DeleteIndexFieldResponse : AmazonWebServiceResponse
     {

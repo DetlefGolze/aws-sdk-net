@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.GuardDuty.Model
     ///  <note> 
     /// <para>
     /// If the organization's management account or a delegated administrator runs this API,
-    /// it will return success (<code>HTTP 200</code>) but no content.
+    /// it will return success (<c>HTTP 200</c>) but no content.
     /// </para>
     ///  </note>
     /// </summary>

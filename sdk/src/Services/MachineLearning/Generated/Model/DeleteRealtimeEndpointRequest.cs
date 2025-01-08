@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MachineLearning.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteRealtimeEndpoint operation.
-    /// Deletes a real time endpoint of an <code>MLModel</code>.
+    /// Deletes a real time endpoint of an <c>MLModel</c>.
     /// </summary>
     public partial class DeleteRealtimeEndpointRequest : AmazonMachineLearningRequest
     {
@@ -39,7 +40,7 @@ namespace Amazon.MachineLearning.Model
         /// <summary>
         /// Gets and sets the property MLModelId. 
         /// <para>
-        /// The ID assigned to the <code>MLModel</code> during creation.
+        /// The ID assigned to the <c>MLModel</c> during creation.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

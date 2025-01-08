@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -82,7 +83,7 @@ namespace Amazon.S3Control.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// You must choose a value greater than or equal to <code>1.0</code>.
+        /// You must choose a value greater than or equal to <c>1.0</c>.
         /// </para>
         ///  </note>
         /// </summary>

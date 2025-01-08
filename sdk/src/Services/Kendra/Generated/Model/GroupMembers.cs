@@ -26,24 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
-    /// A list of users or sub groups that belong to a group. This is useful for user context
-    /// filtering, where search results are filtered based on the user or their group access
-    /// to documents.
+    /// A list of users that belong to a group. This is useful for user context filtering,
+    /// where search results are filtered based on the user or their group access to documents.
     /// </summary>
     public partial class GroupMembers
     {
-        private List<MemberGroup> _memberGroups = new List<MemberGroup>();
-        private List<MemberUser> _memberUsers = new List<MemberUser>();
+        private List<MemberGroup> _memberGroups = AWSConfigs.InitializeCollections ? new List<MemberGroup>() : null;
+        private List<MemberUser> _memberUsers = AWSConfigs.InitializeCollections ? new List<MemberUser>() : null;
         private S3Path _s3PathforGroupMembers;
 
         /// <summary>
         /// Gets and sets the property MemberGroups. 
         /// <para>
-        /// A list of sub groups that belong to a group. For example, the sub groups "Research",
-        /// "Engineering", and "Sales and Marketing" all belong to the group "Company".
+        /// A list of users that belong to a group. This can also include sub groups. For example,
+        /// the sub groups "Research", "Engineering", and "Sales and Marketing" all belong to
+        /// the group "Company A".
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]
@@ -56,7 +57,7 @@ namespace Amazon.Kendra.Model
         // Check to see if MemberGroups property is set
         internal bool IsSetMemberGroups()
         {
-            return this._memberGroups != null && this._memberGroups.Count > 0; 
+            return this._memberGroups != null && (this._memberGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -76,7 +77,7 @@ namespace Amazon.Kendra.Model
         // Check to see if MemberUsers property is set
         internal bool IsSetMemberUsers()
         {
-            return this._memberUsers != null && this._memberUsers.Count > 0; 
+            return this._memberUsers != null && (this._memberUsers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -90,9 +91,9 @@ namespace Amazon.Kendra.Model
         ///  
         /// <para>
         /// You can download this <a href="https://docs.aws.amazon.com/kendra/latest/dg/samples/group_members.zip">example
-        /// S3 file</a> that uses the correct format for listing group members. Note, <code>dataSourceId</code>
-        /// is optional. The value of <code>type</code> for a group is always <code>GROUP</code>
-        /// and for a user it is always <code>USER</code>.
+        /// S3 file</a> that uses the correct format for listing group members. Note, <c>dataSourceId</c>
+        /// is optional. The value of <c>type</c> for a group is always <c>GROUP</c> and for a
+        /// user it is always <c>USER</c>.
         /// </para>
         /// </summary>
         public S3Path S3PathforGroupMembers

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Instantiates Restrictions with the parameterized properties
         /// </summary>
-        /// <param name="geoRestriction">A complex type that controls the countries in which your content is distributed. CloudFront determines the location of your users using <code>MaxMind</code> GeoIP databases.</param>
+        /// <param name="geoRestriction">A complex type that controls the countries in which your content is distributed. CloudFront determines the location of your users using <c>MaxMind</c> GeoIP databases.</param>
         public Restrictions(GeoRestriction geoRestriction)
         {
             _geoRestriction = geoRestriction;
@@ -54,7 +55,7 @@ namespace Amazon.CloudFront.Model
         /// Gets and sets the property GeoRestriction. 
         /// <para>
         /// A complex type that controls the countries in which your content is distributed. CloudFront
-        /// determines the location of your users using <code>MaxMind</code> GeoIP databases.
+        /// determines the location of your users using <c>MaxMind</c> GeoIP databases.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

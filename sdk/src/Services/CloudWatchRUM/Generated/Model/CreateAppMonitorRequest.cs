@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchRUM.Model
 {
     /// <summary>
@@ -55,7 +56,7 @@ namespace Amazon.CloudWatchRUM.Model
         private bool? _cwLogEnabled;
         private string _domain;
         private string _name;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AppMonitorConfiguration. 
@@ -63,8 +64,8 @@ namespace Amazon.CloudWatchRUM.Model
         /// A structure that contains much of the configuration data for the app monitor. If you
         /// are using Amazon Cognito for authorization, you must include this structure in your
         /// request, and it must include the ID of the Amazon Cognito identity pool to use for
-        /// authorization. If you don't include <code>AppMonitorConfiguration</code>, you must
-        /// set up your own authorization method. For more information, see <a href="https://docs.aws.amazon.com/monitoring/CloudWatch-RUM-get-started-authorization.html">Authorize
+        /// authorization. If you don't include <c>AppMonitorConfiguration</c>, you must set up
+        /// your own authorization method. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-RUM-get-started-authorization.html">Authorize
         /// your application to send data to Amazon Web Services</a>.
         /// </para>
         ///  
@@ -89,7 +90,7 @@ namespace Amazon.CloudWatchRUM.Model
         /// Gets and sets the property CustomEvents. 
         /// <para>
         /// Specifies whether this app monitor allows the web client to define and send custom
-        /// events. If you omit this parameter, custom events are <code>DISABLED</code>.
+        /// events. If you omit this parameter, custom events are <c>DISABLED</c>.
         /// </para>
         ///  
         /// <para>
@@ -119,7 +120,7 @@ namespace Amazon.CloudWatchRUM.Model
         /// </para>
         ///  
         /// <para>
-        /// If you omit this parameter, the default is <code>false</code>.
+        /// If you omit this parameter, the default is <c>false</c>.
         /// </para>
         /// </summary>
         public bool CwLogEnabled
@@ -207,7 +208,7 @@ namespace Amazon.CloudWatchRUM.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

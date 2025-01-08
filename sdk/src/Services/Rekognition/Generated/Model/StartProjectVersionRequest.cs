@@ -26,13 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// Container for the parameters to the StartProjectVersion operation.
+    /// <note> 
+    /// <para>
+    /// This operation applies only to Amazon Rekognition Custom Labels.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Starts the running of the version of a model. Starting a model takes a while to complete.
-    /// To check the current state of the model, use <a>DescribeProjectVersions</a>.
-    /// 
+    /// To check the current state of the model, use <a>DescribeProjectVersions</a>. 
+    /// </para>
     ///  
     /// <para>
     /// Once the model is running, you can detect custom labels in new images by calling <a>DetectCustomLabels</a>.
@@ -44,12 +51,7 @@ namespace Amazon.Rekognition.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// For more information, see <i>Running a trained Amazon Rekognition Custom Labels model</i>
-    /// in the Amazon Rekognition Custom Labels Guide.
-    /// </para>
-    ///  
-    /// <para>
-    /// This operation requires permissions to perform the <code>rekognition:StartProjectVersion</code>
+    /// This operation requires permissions to perform the <c>rekognition:StartProjectVersion</c>
     /// action.
     /// </para>
     /// </summary>
@@ -84,12 +86,6 @@ namespace Amazon.Rekognition.Model
         /// <para>
         /// The minimum number of inference units to use. A single inference unit represents 1
         /// hour of processing. 
-        /// </para>
-        ///  
-        /// <para>
-        /// For information about the number of transactions per second (TPS) that an inference
-        /// unit can support, see <i>Running a trained Amazon Rekognition Custom Labels model</i>
-        /// in the Amazon Rekognition Custom Labels Guide. 
         /// </para>
         ///  
         /// <para>

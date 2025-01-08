@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -34,21 +35,49 @@ namespace Amazon.IoTFleetWise.Model
     /// 
     ///  
     /// <para>
-    /// A decoder manifest can only be updated when the status is <code>DRAFT</code>. Only
-    /// <code>ACTIVE</code> decoder manifests can be associated with vehicles.
+    /// A decoder manifest can only be updated when the status is <c>DRAFT</c>. Only <c>ACTIVE</c>
+    /// decoder manifests can be associated with vehicles.
     /// </para>
     /// </summary>
     public partial class UpdateDecoderManifestRequest : AmazonIoTFleetWiseRequest
     {
+        private DefaultForUnmappedSignalsType _defaultForUnmappedSignals;
         private string _description;
         private string _name;
-        private List<NetworkInterface> _networkInterfacesToAdd = new List<NetworkInterface>();
-        private List<string> _networkInterfacesToRemove = new List<string>();
-        private List<NetworkInterface> _networkInterfacesToUpdate = new List<NetworkInterface>();
-        private List<SignalDecoder> _signalDecodersToAdd = new List<SignalDecoder>();
-        private List<string> _signalDecodersToRemove = new List<string>();
-        private List<SignalDecoder> _signalDecodersToUpdate = new List<SignalDecoder>();
+        private List<NetworkInterface> _networkInterfacesToAdd = AWSConfigs.InitializeCollections ? new List<NetworkInterface>() : null;
+        private List<string> _networkInterfacesToRemove = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<NetworkInterface> _networkInterfacesToUpdate = AWSConfigs.InitializeCollections ? new List<NetworkInterface>() : null;
+        private List<SignalDecoder> _signalDecodersToAdd = AWSConfigs.InitializeCollections ? new List<SignalDecoder>() : null;
+        private List<string> _signalDecodersToRemove = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<SignalDecoder> _signalDecodersToUpdate = AWSConfigs.InitializeCollections ? new List<SignalDecoder>() : null;
         private ManifestStatus _status;
+
+        /// <summary>
+        /// Gets and sets the property DefaultForUnmappedSignals. 
+        /// <para>
+        /// Use default decoders for all unmapped signals in the model. You don't need to provide
+        /// any detailed decoding information.
+        /// </para>
+        ///  <important> 
+        /// <para>
+        /// Access to certain Amazon Web Services IoT FleetWise features is currently gated. For
+        /// more information, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/fleetwise-regions.html">Amazon
+        /// Web Services Region and feature availability</a> in the <i>Amazon Web Services IoT
+        /// FleetWise Developer Guide</i>.
+        /// </para>
+        ///  </important>
+        /// </summary>
+        public DefaultForUnmappedSignalsType DefaultForUnmappedSignals
+        {
+            get { return this._defaultForUnmappedSignals; }
+            set { this._defaultForUnmappedSignals = value; }
+        }
+
+        // Check to see if DefaultForUnmappedSignals property is set
+        internal bool IsSetDefaultForUnmappedSignals()
+        {
+            return this._defaultForUnmappedSignals != null;
+        }
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -105,7 +134,7 @@ namespace Amazon.IoTFleetWise.Model
         // Check to see if NetworkInterfacesToAdd property is set
         internal bool IsSetNetworkInterfacesToAdd()
         {
-            return this._networkInterfacesToAdd != null && this._networkInterfacesToAdd.Count > 0; 
+            return this._networkInterfacesToAdd != null && (this._networkInterfacesToAdd.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -124,7 +153,7 @@ namespace Amazon.IoTFleetWise.Model
         // Check to see if NetworkInterfacesToRemove property is set
         internal bool IsSetNetworkInterfacesToRemove()
         {
-            return this._networkInterfacesToRemove != null && this._networkInterfacesToRemove.Count > 0; 
+            return this._networkInterfacesToRemove != null && (this._networkInterfacesToRemove.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -144,7 +173,7 @@ namespace Amazon.IoTFleetWise.Model
         // Check to see if NetworkInterfacesToUpdate property is set
         internal bool IsSetNetworkInterfacesToUpdate()
         {
-            return this._networkInterfacesToUpdate != null && this._networkInterfacesToUpdate.Count > 0; 
+            return this._networkInterfacesToUpdate != null && (this._networkInterfacesToUpdate.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -164,7 +193,7 @@ namespace Amazon.IoTFleetWise.Model
         // Check to see if SignalDecodersToAdd property is set
         internal bool IsSetSignalDecodersToAdd()
         {
-            return this._signalDecodersToAdd != null && this._signalDecodersToAdd.Count > 0; 
+            return this._signalDecodersToAdd != null && (this._signalDecodersToAdd.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -183,7 +212,7 @@ namespace Amazon.IoTFleetWise.Model
         // Check to see if SignalDecodersToRemove property is set
         internal bool IsSetSignalDecodersToRemove()
         {
-            return this._signalDecodersToRemove != null && this._signalDecodersToRemove.Count > 0; 
+            return this._signalDecodersToRemove != null && (this._signalDecodersToRemove.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -203,15 +232,15 @@ namespace Amazon.IoTFleetWise.Model
         // Check to see if SignalDecodersToUpdate property is set
         internal bool IsSetSignalDecodersToUpdate()
         {
-            return this._signalDecodersToUpdate != null && this._signalDecodersToUpdate.Count > 0; 
+            return this._signalDecodersToUpdate != null && (this._signalDecodersToUpdate.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        ///  The state of the decoder manifest. If the status is <code>ACTIVE</code>, the decoder
-        /// manifest can't be edited. If the status is <code>DRAFT</code>, you can edit the decoder
-        /// manifest. 
+        ///  The state of the decoder manifest. If the status is <c>ACTIVE</c>, the decoder manifest
+        /// can't be edited. If the status is <c>DRAFT</c>, you can edit the decoder manifest.
+        /// 
         /// </para>
         /// </summary>
         public ManifestStatus Status

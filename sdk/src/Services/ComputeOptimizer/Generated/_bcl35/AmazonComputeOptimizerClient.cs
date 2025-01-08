@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.ComputeOptimizer
 {
     /// <summary>
-    /// Implementation for accessing ComputeOptimizer
+    /// <para>Implementation for accessing ComputeOptimizer</para>
     ///
     /// Compute Optimizer is a service that analyzes the configuration and utilization metrics
     /// of your Amazon Web Services compute resources, such as Amazon EC2 instances, Amazon
@@ -817,6 +818,98 @@ namespace Amazon.ComputeOptimizer
 
         #endregion
         
+        #region  ExportIdleRecommendations
+
+        /// <summary>
+        /// Export optimization recommendations for your idle resources. 
+        /// 
+        ///  
+        /// <para>
+        /// Recommendations are exported in a comma-separated values (CSV) file, and its metadata
+        /// in a JavaScript Object Notation (JSON) file, to an existing Amazon Simple Storage
+        /// Service (Amazon S3) bucket that you specify. For more information, see <a href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html">Exporting
+        /// Recommendations</a> in the <i>Compute Optimizer User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can have only one idle resource export job in progress per Amazon Web Services
+        /// Region.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ExportIdleRecommendations service method.</param>
+        /// 
+        /// <returns>The response from the ExportIdleRecommendations service method, as returned by ComputeOptimizer.</returns>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.InternalServerException">
+        /// An internal error has occurred. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.InvalidParameterValueException">
+        /// The value supplied for the input parameter is out of range or not valid.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.LimitExceededException">
+        /// The request exceeds a limit of the service.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.MissingAuthenticationTokenException">
+        /// The request must contain either a valid (registered) Amazon Web Services access key
+        /// ID or X.509 certificate.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.OptInRequiredException">
+        /// The account is not opted in to Compute Optimizer.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.ServiceUnavailableException">
+        /// The request has failed due to a temporary failure of the server.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/ExportIdleRecommendations">REST API Reference for ExportIdleRecommendations Operation</seealso>
+        public virtual ExportIdleRecommendationsResponse ExportIdleRecommendations(ExportIdleRecommendationsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ExportIdleRecommendationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ExportIdleRecommendationsResponseUnmarshaller.Instance;
+
+            return Invoke<ExportIdleRecommendationsResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ExportIdleRecommendations operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ExportIdleRecommendations operation on AmazonComputeOptimizerClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndExportIdleRecommendations
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/ExportIdleRecommendations">REST API Reference for ExportIdleRecommendations Operation</seealso>
+        public virtual IAsyncResult BeginExportIdleRecommendations(ExportIdleRecommendationsRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ExportIdleRecommendationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ExportIdleRecommendationsResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ExportIdleRecommendations operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginExportIdleRecommendations.</param>
+        /// 
+        /// <returns>Returns a  ExportIdleRecommendationsResult from ComputeOptimizer.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/ExportIdleRecommendations">REST API Reference for ExportIdleRecommendations Operation</seealso>
+        public virtual ExportIdleRecommendationsResponse EndExportIdleRecommendations(IAsyncResult asyncResult)
+        {
+            return EndInvoke<ExportIdleRecommendationsResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region  ExportLambdaFunctionRecommendations
 
         /// <summary>
@@ -997,6 +1090,98 @@ namespace Amazon.ComputeOptimizer
         public virtual ExportLicenseRecommendationsResponse EndExportLicenseRecommendations(IAsyncResult asyncResult)
         {
             return EndInvoke<ExportLicenseRecommendationsResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  ExportRDSDatabaseRecommendations
+
+        /// <summary>
+        /// Export optimization recommendations for your Amazon Relational Database Service (Amazon
+        /// RDS). 
+        /// 
+        ///  
+        /// <para>
+        /// Recommendations are exported in a comma-separated values (CSV) file, and its metadata
+        /// in a JavaScript Object Notation (JSON) file, to an existing Amazon Simple Storage
+        /// Service (Amazon S3) bucket that you specify. For more information, see <a href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html">Exporting
+        /// Recommendations</a> in the <i>Compute Optimizer User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can have only one Amazon RDS export job in progress per Amazon Web Services Region.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ExportRDSDatabaseRecommendations service method.</param>
+        /// 
+        /// <returns>The response from the ExportRDSDatabaseRecommendations service method, as returned by ComputeOptimizer.</returns>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.InternalServerException">
+        /// An internal error has occurred. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.InvalidParameterValueException">
+        /// The value supplied for the input parameter is out of range or not valid.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.LimitExceededException">
+        /// The request exceeds a limit of the service.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.MissingAuthenticationTokenException">
+        /// The request must contain either a valid (registered) Amazon Web Services access key
+        /// ID or X.509 certificate.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.OptInRequiredException">
+        /// The account is not opted in to Compute Optimizer.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.ServiceUnavailableException">
+        /// The request has failed due to a temporary failure of the server.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/ExportRDSDatabaseRecommendations">REST API Reference for ExportRDSDatabaseRecommendations Operation</seealso>
+        public virtual ExportRDSDatabaseRecommendationsResponse ExportRDSDatabaseRecommendations(ExportRDSDatabaseRecommendationsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ExportRDSDatabaseRecommendationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ExportRDSDatabaseRecommendationsResponseUnmarshaller.Instance;
+
+            return Invoke<ExportRDSDatabaseRecommendationsResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ExportRDSDatabaseRecommendations operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ExportRDSDatabaseRecommendations operation on AmazonComputeOptimizerClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndExportRDSDatabaseRecommendations
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/ExportRDSDatabaseRecommendations">REST API Reference for ExportRDSDatabaseRecommendations Operation</seealso>
+        public virtual IAsyncResult BeginExportRDSDatabaseRecommendations(ExportRDSDatabaseRecommendationsRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ExportRDSDatabaseRecommendationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ExportRDSDatabaseRecommendationsResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ExportRDSDatabaseRecommendations operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginExportRDSDatabaseRecommendations.</param>
+        /// 
+        /// <returns>Returns a  ExportRDSDatabaseRecommendationsResult from ComputeOptimizer.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/ExportRDSDatabaseRecommendations">REST API Reference for ExportRDSDatabaseRecommendations Operation</seealso>
+        public virtual ExportRDSDatabaseRecommendationsResponse EndExportRDSDatabaseRecommendations(IAsyncResult asyncResult)
+        {
+            return EndInvoke<ExportRDSDatabaseRecommendationsResponse>(asyncResult);
         }
 
         #endregion
@@ -1267,10 +1452,10 @@ namespace Amazon.ComputeOptimizer
         /// 
         ///  <note> 
         /// <para>
-        /// The <code>Cpu</code> and <code>Memory</code> metrics are the only projected utilization
-        /// metrics returned when you run this action. Additionally, the <code>Memory</code> metric
-        /// is returned only for resources that have the unified CloudWatch agent installed on
-        /// them. For more information, see <a href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent">Enabling
+        /// The <c>Cpu</c> and <c>Memory</c> metrics are the only projected utilization metrics
+        /// returned when you run this action. Additionally, the <c>Memory</c> metric is returned
+        /// only for resources that have the unified CloudWatch agent installed on them. For more
+        /// information, see <a href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent">Enabling
         /// Memory Utilization with the CloudWatch Agent</a>.
         /// </para>
         ///  </note>
@@ -1523,9 +1708,9 @@ namespace Amazon.ComputeOptimizer
         /// 
         ///  
         /// <para>
-        /// When you create a recommendation preference, you can set its status to <code>Active</code>
-        /// or <code>Inactive</code>. Use this action to view the recommendation preferences that
-        /// are in effect, or <code>Active</code>.
+        /// When you create a recommendation preference, you can set its status to <c>Active</c>
+        /// or <c>Inactive</c>. Use this action to view the recommendation preferences that are
+        /// in effect, or <c>Active</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetEffectiveRecommendationPreferences service method.</param>
@@ -1763,6 +1948,88 @@ namespace Amazon.ComputeOptimizer
 
         #endregion
         
+        #region  GetIdleRecommendations
+
+        /// <summary>
+        /// Returns idle resource recommendations. Compute Optimizer generates recommendations
+        /// for idle resources that meet a specific set of requirements. For more information,
+        /// see <a href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html">Resource
+        /// requirements</a> in the <i>Compute Optimizer User Guide</i>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetIdleRecommendations service method.</param>
+        /// 
+        /// <returns>The response from the GetIdleRecommendations service method, as returned by ComputeOptimizer.</returns>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.InternalServerException">
+        /// An internal error has occurred. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.InvalidParameterValueException">
+        /// The value supplied for the input parameter is out of range or not valid.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.MissingAuthenticationTokenException">
+        /// The request must contain either a valid (registered) Amazon Web Services access key
+        /// ID or X.509 certificate.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.OptInRequiredException">
+        /// The account is not opted in to Compute Optimizer.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.ResourceNotFoundException">
+        /// A resource that is required for the action doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.ServiceUnavailableException">
+        /// The request has failed due to a temporary failure of the server.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetIdleRecommendations">REST API Reference for GetIdleRecommendations Operation</seealso>
+        public virtual GetIdleRecommendationsResponse GetIdleRecommendations(GetIdleRecommendationsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetIdleRecommendationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetIdleRecommendationsResponseUnmarshaller.Instance;
+
+            return Invoke<GetIdleRecommendationsResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetIdleRecommendations operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetIdleRecommendations operation on AmazonComputeOptimizerClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetIdleRecommendations
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetIdleRecommendations">REST API Reference for GetIdleRecommendations Operation</seealso>
+        public virtual IAsyncResult BeginGetIdleRecommendations(GetIdleRecommendationsRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetIdleRecommendationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetIdleRecommendationsResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetIdleRecommendations operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetIdleRecommendations.</param>
+        /// 
+        /// <returns>Returns a  GetIdleRecommendationsResult from ComputeOptimizer.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetIdleRecommendations">REST API Reference for GetIdleRecommendations Operation</seealso>
+        public virtual GetIdleRecommendationsResponse EndGetIdleRecommendations(IAsyncResult asyncResult)
+        {
+            return EndInvoke<GetIdleRecommendationsResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region  GetLambdaFunctionRecommendations
 
         /// <summary>
@@ -1935,6 +2202,171 @@ namespace Amazon.ComputeOptimizer
 
         #endregion
         
+        #region  GetRDSDatabaseRecommendationProjectedMetrics
+
+        /// <summary>
+        /// Returns the projected metrics of Amazon RDS recommendations.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetRDSDatabaseRecommendationProjectedMetrics service method.</param>
+        /// 
+        /// <returns>The response from the GetRDSDatabaseRecommendationProjectedMetrics service method, as returned by ComputeOptimizer.</returns>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.InternalServerException">
+        /// An internal error has occurred. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.InvalidParameterValueException">
+        /// The value supplied for the input parameter is out of range or not valid.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.MissingAuthenticationTokenException">
+        /// The request must contain either a valid (registered) Amazon Web Services access key
+        /// ID or X.509 certificate.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.OptInRequiredException">
+        /// The account is not opted in to Compute Optimizer.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.ResourceNotFoundException">
+        /// A resource that is required for the action doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.ServiceUnavailableException">
+        /// The request has failed due to a temporary failure of the server.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetRDSDatabaseRecommendationProjectedMetrics">REST API Reference for GetRDSDatabaseRecommendationProjectedMetrics Operation</seealso>
+        public virtual GetRDSDatabaseRecommendationProjectedMetricsResponse GetRDSDatabaseRecommendationProjectedMetrics(GetRDSDatabaseRecommendationProjectedMetricsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetRDSDatabaseRecommendationProjectedMetricsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetRDSDatabaseRecommendationProjectedMetricsResponseUnmarshaller.Instance;
+
+            return Invoke<GetRDSDatabaseRecommendationProjectedMetricsResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetRDSDatabaseRecommendationProjectedMetrics operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetRDSDatabaseRecommendationProjectedMetrics operation on AmazonComputeOptimizerClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetRDSDatabaseRecommendationProjectedMetrics
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetRDSDatabaseRecommendationProjectedMetrics">REST API Reference for GetRDSDatabaseRecommendationProjectedMetrics Operation</seealso>
+        public virtual IAsyncResult BeginGetRDSDatabaseRecommendationProjectedMetrics(GetRDSDatabaseRecommendationProjectedMetricsRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetRDSDatabaseRecommendationProjectedMetricsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetRDSDatabaseRecommendationProjectedMetricsResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetRDSDatabaseRecommendationProjectedMetrics operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetRDSDatabaseRecommendationProjectedMetrics.</param>
+        /// 
+        /// <returns>Returns a  GetRDSDatabaseRecommendationProjectedMetricsResult from ComputeOptimizer.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetRDSDatabaseRecommendationProjectedMetrics">REST API Reference for GetRDSDatabaseRecommendationProjectedMetrics Operation</seealso>
+        public virtual GetRDSDatabaseRecommendationProjectedMetricsResponse EndGetRDSDatabaseRecommendationProjectedMetrics(IAsyncResult asyncResult)
+        {
+            return EndInvoke<GetRDSDatabaseRecommendationProjectedMetricsResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  GetRDSDatabaseRecommendations
+
+        /// <summary>
+        /// Returns Amazon RDS recommendations. 
+        /// 
+        ///  
+        /// <para>
+        /// Compute Optimizer generates recommendations for Amazon RDS that meet a specific set
+        /// of requirements. For more information, see the <a href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html">Supported
+        /// resources and requirements</a> in the <i>Compute Optimizer User Guide</i>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetRDSDatabaseRecommendations service method.</param>
+        /// 
+        /// <returns>The response from the GetRDSDatabaseRecommendations service method, as returned by ComputeOptimizer.</returns>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.InternalServerException">
+        /// An internal error has occurred. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.InvalidParameterValueException">
+        /// The value supplied for the input parameter is out of range or not valid.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.MissingAuthenticationTokenException">
+        /// The request must contain either a valid (registered) Amazon Web Services access key
+        /// ID or X.509 certificate.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.OptInRequiredException">
+        /// The account is not opted in to Compute Optimizer.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.ResourceNotFoundException">
+        /// A resource that is required for the action doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.ServiceUnavailableException">
+        /// The request has failed due to a temporary failure of the server.
+        /// </exception>
+        /// <exception cref="Amazon.ComputeOptimizer.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetRDSDatabaseRecommendations">REST API Reference for GetRDSDatabaseRecommendations Operation</seealso>
+        public virtual GetRDSDatabaseRecommendationsResponse GetRDSDatabaseRecommendations(GetRDSDatabaseRecommendationsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetRDSDatabaseRecommendationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetRDSDatabaseRecommendationsResponseUnmarshaller.Instance;
+
+            return Invoke<GetRDSDatabaseRecommendationsResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetRDSDatabaseRecommendations operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetRDSDatabaseRecommendations operation on AmazonComputeOptimizerClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetRDSDatabaseRecommendations
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetRDSDatabaseRecommendations">REST API Reference for GetRDSDatabaseRecommendations Operation</seealso>
+        public virtual IAsyncResult BeginGetRDSDatabaseRecommendations(GetRDSDatabaseRecommendationsRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetRDSDatabaseRecommendationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetRDSDatabaseRecommendationsResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetRDSDatabaseRecommendations operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetRDSDatabaseRecommendations.</param>
+        /// 
+        /// <returns>Returns a  GetRDSDatabaseRecommendationsResult from ComputeOptimizer.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetRDSDatabaseRecommendations">REST API Reference for GetRDSDatabaseRecommendations Operation</seealso>
+        public virtual GetRDSDatabaseRecommendationsResponse EndGetRDSDatabaseRecommendations(IAsyncResult asyncResult)
+        {
+            return EndInvoke<GetRDSDatabaseRecommendationsResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region  GetRecommendationPreferences
 
         /// <summary>
@@ -1942,9 +2374,9 @@ namespace Amazon.ComputeOptimizer
         /// 
         ///  
         /// <para>
-        /// Use the <code>scope</code> parameter to specify which preferences to return. You can
-        /// specify to return preferences for an organization, a specific account ID, or a specific
-        /// EC2 instance or Auto Scaling group Amazon Resource Name (ARN).
+        /// Use the <c>scope</c> parameter to specify which preferences to return. You can specify
+        /// to return preferences for an organization, a specific account ID, or a specific EC2
+        /// instance or Auto Scaling group Amazon Resource Name (ARN).
         /// </para>
         ///  
         /// <para>
@@ -2037,25 +2469,25 @@ namespace Amazon.ComputeOptimizer
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Amazon EC2 instances in an account that are <code>Underprovisioned</code>, <code>Overprovisioned</code>,
-        /// or <code>Optimized</code>.
+        /// Amazon EC2 instances in an account that are <c>Underprovisioned</c>, <c>Overprovisioned</c>,
+        /// or <c>Optimized</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Auto Scaling groups in an account that are <code>NotOptimized</code>, or <code>Optimized</code>.
+        /// Auto Scaling groups in an account that are <c>NotOptimized</c>, or <c>Optimized</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Amazon EBS volumes in an account that are <code>NotOptimized</code>, or <code>Optimized</code>.
+        /// Amazon EBS volumes in an account that are <c>NotOptimized</c>, or <c>Optimized</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Lambda functions in an account that are <code>NotOptimized</code>, or <code>Optimized</code>.
+        /// Lambda functions in an account that are <c>NotOptimized</c>, or <c>Optimized</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Amazon ECS services in an account that are <code>Underprovisioned</code>, <code>Overprovisioned</code>,
-        /// or <code>Optimized</code>.
+        /// Amazon ECS services in an account that are <c>Underprovisioned</c>, <c>Overprovisioned</c>,
+        /// or <c>Optimized</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -2318,11 +2750,11 @@ namespace Amazon.ComputeOptimizer
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

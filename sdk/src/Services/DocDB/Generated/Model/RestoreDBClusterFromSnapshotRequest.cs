@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
@@ -46,19 +47,20 @@ namespace Amazon.DocDB.Model
     /// </summary>
     public partial class RestoreDBClusterFromSnapshotRequest : AmazonDocDBRequest
     {
-        private List<string> _availabilityZones = new List<string>();
+        private List<string> _availabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _dbClusterIdentifier;
         private string _dbClusterParameterGroupName;
         private string _dbSubnetGroupName;
         private bool? _deletionProtection;
-        private List<string> _enableCloudwatchLogsExports = new List<string>();
+        private List<string> _enableCloudwatchLogsExports = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _engine;
         private string _engineVersion;
         private string _kmsKeyId;
         private int? _port;
         private string _snapshotIdentifier;
-        private List<Tag> _tags = new List<Tag>();
-        private List<string> _vpcSecurityGroupIds = new List<string>();
+        private string _storageType;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private List<string> _vpcSecurityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AvailabilityZones. 
@@ -76,7 +78,7 @@ namespace Amazon.DocDB.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -103,7 +105,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>my-snapshot-id</code> 
+        /// Example: <c>my-snapshot-id</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -155,11 +157,11 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// Constraints: If provided, must match the name of an existing <code>DBSubnetGroup</code>.
+        /// Constraints: If provided, must match the name of an existing <c>DBSubnetGroup</c>.
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>mySubnetgroup</code> 
+        /// Example: <c>mySubnetgroup</c> 
         /// </para>
         /// </summary>
         public string DBSubnetGroupName
@@ -177,10 +179,9 @@ namespace Amazon.DocDB.Model
         /// <summary>
         /// Gets and sets the property DeletionProtection. 
         /// <para>
-        /// Specifies whether this cluster can be deleted. If <code>DeletionProtection</code>
-        /// is enabled, the cluster cannot be deleted unless it is modified and <code>DeletionProtection</code>
-        /// is disabled. <code>DeletionProtection</code> protects clusters from being accidentally
-        /// deleted.
+        /// Specifies whether this cluster can be deleted. If <c>DeletionProtection</c> is enabled,
+        /// the cluster cannot be deleted unless it is modified and <c>DeletionProtection</c>
+        /// is disabled. <c>DeletionProtection</c> protects clusters from being accidentally deleted.
         /// </para>
         /// </summary>
         public bool DeletionProtection
@@ -210,7 +211,7 @@ namespace Amazon.DocDB.Model
         // Check to see if EnableCloudwatchLogsExports property is set
         internal bool IsSetEnableCloudwatchLogsExports()
         {
-            return this._enableCloudwatchLogsExports != null && this._enableCloudwatchLogsExports.Count > 0; 
+            return this._enableCloudwatchLogsExports != null && (this._enableCloudwatchLogsExports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -273,19 +274,19 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// If you do not specify a value for the <code>KmsKeyId</code> parameter, then the following
+        /// If you do not specify a value for the <c>KmsKeyId</c> parameter, then the following
         /// occurs:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If the snapshot or cluster snapshot in <code>SnapshotIdentifier</code> is encrypted,
-        /// then the restored cluster is encrypted using the KMS key that was used to encrypt
-        /// the snapshot or the cluster snapshot.
+        /// If the snapshot or cluster snapshot in <c>SnapshotIdentifier</c> is encrypted, then
+        /// the restored cluster is encrypted using the KMS key that was used to encrypt the snapshot
+        /// or the cluster snapshot.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the snapshot or the cluster snapshot in <code>SnapshotIdentifier</code> is not
-        /// encrypted, then the restored DB cluster is not encrypted.
+        /// If the snapshot or the cluster snapshot in <c>SnapshotIdentifier</c> is not encrypted,
+        /// then the restored DB cluster is not encrypted.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -308,7 +309,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// Constraints: Must be a value from <code>1150</code> to <code>65535</code>.
+        /// Constraints: Must be a value from <c>1150</c> to <c>65535</c>.
         /// </para>
         ///  
         /// <para>
@@ -361,6 +362,37 @@ namespace Amazon.DocDB.Model
         }
 
         /// <summary>
+        /// Gets and sets the property StorageType. 
+        /// <para>
+        /// The storage type to associate with the DB cluster.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information on storage types for Amazon DocumentDB clusters, see Cluster storage
+        /// configurations in the <i>Amazon DocumentDB Developer Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid values for storage type - <c>standard | iopt1</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Default value is <c>standard </c> 
+        /// </para>
+        /// </summary>
+        public string StorageType
+        {
+            get { return this._storageType; }
+            set { this._storageType = value; }
+        }
+
+        // Check to see if StorageType property is set
+        internal bool IsSetStorageType()
+        {
+            return this._storageType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// The tags to be assigned to the restored cluster.
@@ -375,7 +407,7 @@ namespace Amazon.DocDB.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -394,7 +426,7 @@ namespace Amazon.DocDB.Model
         // Check to see if VpcSecurityGroupIds property is set
         internal bool IsSetVpcSecurityGroupIds()
         {
-            return this._vpcSecurityGroupIds != null && this._vpcSecurityGroupIds.Count > 0; 
+            return this._vpcSecurityGroupIds != null && (this._vpcSecurityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

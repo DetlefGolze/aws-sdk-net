@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElasticLoadBalancingV2.Model
 {
     /// <summary>
@@ -33,6 +34,14 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         internal ElasticLoadBalancingV2PaginatorFactory(IAmazonElasticLoadBalancingV2 client) 
         {
             this.client = client;
+        }
+
+        /// <summary>
+        /// Paginator for DescribeListenerCertificates operation
+        ///</summary>
+        public IDescribeListenerCertificatesPaginator DescribeListenerCertificates(DescribeListenerCertificatesRequest request) 
+        {
+            return new DescribeListenerCertificatesPaginator(this.client, request);
         }
 
         /// <summary>
@@ -52,11 +61,43 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         }
 
         /// <summary>
+        /// Paginator for DescribeRules operation
+        ///</summary>
+        public IDescribeRulesPaginator DescribeRules(DescribeRulesRequest request) 
+        {
+            return new DescribeRulesPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for DescribeTargetGroups operation
         ///</summary>
         public IDescribeTargetGroupsPaginator DescribeTargetGroups(DescribeTargetGroupsRequest request) 
         {
             return new DescribeTargetGroupsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeTrustStoreAssociations operation
+        ///</summary>
+        public IDescribeTrustStoreAssociationsPaginator DescribeTrustStoreAssociations(DescribeTrustStoreAssociationsRequest request) 
+        {
+            return new DescribeTrustStoreAssociationsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeTrustStoreRevocations operation
+        ///</summary>
+        public IDescribeTrustStoreRevocationsPaginator DescribeTrustStoreRevocations(DescribeTrustStoreRevocationsRequest request) 
+        {
+            return new DescribeTrustStoreRevocationsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeTrustStores operation
+        ///</summary>
+        public IDescribeTrustStoresPaginator DescribeTrustStores(DescribeTrustStoresRequest request) 
+        {
+            return new DescribeTrustStoresPaginator(this.client, request);
         }
     }
 }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -50,8 +51,8 @@ namespace Amazon.CloudFormation.Model
     ///  </li> </ul> 
     /// <para>
     /// For more information about these account limits, and other CloudFormation limits,
-    /// see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html">CloudFormation
-    /// quotas</a> in the <i>CloudFormation User Guide</i>.
+    /// see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html">Understand
+    /// CloudFormation quotas</a> in the <i>CloudFormation User Guide</i>.
     /// </para>
     /// </summary>
     public partial class AccountLimit
@@ -66,7 +67,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Values: <code>ConcurrentResourcesLimit</code> | <code>StackLimit</code> | <code>StackOutputsLimit</code>
+        /// Values: <c>ConcurrentResourcesLimit</c> | <c>StackLimit</c> | <c>StackOutputsLimit</c>
         /// 
         /// </para>
         /// </summary>

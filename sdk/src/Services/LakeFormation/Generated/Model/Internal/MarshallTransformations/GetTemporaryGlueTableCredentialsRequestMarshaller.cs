@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.LakeFormation.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.LakeFormation.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAuditContext())
@@ -91,6 +93,23 @@ namespace Amazon.LakeFormation.Model.Internal.MarshallTransformations
                             context.Writer.Write(publicRequestPermissionsListValue);
                     }
                     context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetQuerySessionContext())
+                {
+                    context.Writer.WritePropertyName("QuerySessionContext");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = QuerySessionContextMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.QuerySessionContext, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetS3Path())
+                {
+                    context.Writer.WritePropertyName("S3Path");
+                    context.Writer.Write(publicRequest.S3Path);
                 }
 
                 if(publicRequest.IsSetSupportedPermissionTypes())

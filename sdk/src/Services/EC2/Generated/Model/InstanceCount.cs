@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Count. 
         /// <para>
-        /// The number of listed Reserved Instances in the state specified by the <code>state</code>.
+        /// The number of listed Reserved Instances in the state specified by the <c>state</c>.
         /// </para>
         /// </summary>
         public int Count

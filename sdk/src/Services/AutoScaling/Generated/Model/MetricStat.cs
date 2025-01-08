@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
-    /// This structure defines the CloudWatch metric to return, along with the statistic,
-    /// period, and unit.
+    /// This structure defines the CloudWatch metric to return, along with the statistic and
+    /// unit.
     /// 
     ///  
     /// <para>
@@ -74,8 +75,7 @@ namespace Amazon.AutoScaling.Model
         /// </para>
         ///  
         /// <para>
-        /// The most commonly used metrics for predictive scaling are <code>Average</code> and
-        /// <code>Sum</code>.
+        /// The most commonly used metrics for predictive scaling are <c>Average</c> and <c>Sum</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]

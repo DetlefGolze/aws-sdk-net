@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -38,17 +39,20 @@ namespace Amazon.SageMaker.Model
         private string _failureReason;
         private string _hubArn;
         private string _hubContentArn;
-        private List<HubContentDependency> _hubContentDependencies = new List<HubContentDependency>();
+        private List<HubContentDependency> _hubContentDependencies = AWSConfigs.InitializeCollections ? new List<HubContentDependency>() : null;
         private string _hubContentDescription;
         private string _hubContentDisplayName;
         private string _hubContentDocument;
         private string _hubContentMarkdown;
         private string _hubContentName;
-        private List<string> _hubContentSearchKeywords = new List<string>();
+        private List<string> _hubContentSearchKeywords = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private HubContentStatus _hubContentStatus;
         private HubContentType _hubContentType;
         private string _hubContentVersion;
         private string _hubName;
+        private string _referenceMinVersion;
+        private string _sageMakerPublicHubContentArn;
+        private HubContentSupportStatus _supportStatus;
 
         /// <summary>
         /// Gets and sets the property CreationTime. 
@@ -162,7 +166,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if HubContentDependencies property is set
         internal bool IsSetHubContentDependencies()
         {
-            return this._hubContentDependencies != null && this._hubContentDependencies.Count > 0; 
+            return this._hubContentDependencies != null && (this._hubContentDependencies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -278,7 +282,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if HubContentSearchKeywords property is set
         internal bool IsSetHubContentSearchKeywords()
         {
-            return this._hubContentSearchKeywords != null && this._hubContentSearchKeywords.Count > 0; 
+            return this._hubContentSearchKeywords != null && (this._hubContentSearchKeywords.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -355,6 +359,62 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetHubName()
         {
             return this._hubName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ReferenceMinVersion. 
+        /// <para>
+        /// The minimum version of the hub content.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=5, Max=14)]
+        public string ReferenceMinVersion
+        {
+            get { return this._referenceMinVersion; }
+            set { this._referenceMinVersion = value; }
+        }
+
+        // Check to see if ReferenceMinVersion property is set
+        internal bool IsSetReferenceMinVersion()
+        {
+            return this._referenceMinVersion != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SageMakerPublicHubContentArn. 
+        /// <para>
+        /// The ARN of the public hub content.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=255)]
+        public string SageMakerPublicHubContentArn
+        {
+            get { return this._sageMakerPublicHubContentArn; }
+            set { this._sageMakerPublicHubContentArn = value; }
+        }
+
+        // Check to see if SageMakerPublicHubContentArn property is set
+        internal bool IsSetSageMakerPublicHubContentArn()
+        {
+            return this._sageMakerPublicHubContentArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SupportStatus. 
+        /// <para>
+        /// The support status of the hub content.
+        /// </para>
+        /// </summary>
+        public HubContentSupportStatus SupportStatus
+        {
+            get { return this._supportStatus; }
+            set { this._supportStatus = value; }
+        }
+
+        // Check to see if SupportStatus property is set
+        internal bool IsSetSupportStatus()
+        {
+            return this._supportStatus != null;
         }
 
     }

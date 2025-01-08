@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.APIGateway.Model
         /// <para>
         /// The Amazon Resource Name (ARN) of the CloudWatch Logs log group or Kinesis Data Firehose
         /// delivery stream to receive access logs. If you specify a Kinesis Data Firehose delivery
-        /// stream, the stream name must begin with <code>amazon-apigateway-</code>.
+        /// stream, the stream name must begin with <c>amazon-apigateway-</c>.
         /// </para>
         /// </summary>
         public string DestinationArn
@@ -60,7 +61,7 @@ namespace Amazon.APIGateway.Model
         /// Gets and sets the property Format. 
         /// <para>
         /// A single line format of the access logs of data, as specified by selected $context
-        /// variables. The format must include at least <code>$context.requestId</code>.
+        /// variables. The format must include at least <c>$context.requestId</c>.
         /// </para>
         /// </summary>
         public string Format

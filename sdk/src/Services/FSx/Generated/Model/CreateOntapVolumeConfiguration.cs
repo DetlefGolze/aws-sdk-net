@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -33,16 +34,37 @@ namespace Amazon.FSx.Model
     /// </summary>
     public partial class CreateOntapVolumeConfiguration
     {
+        private CreateAggregateConfiguration _aggregateConfiguration;
         private bool? _copyTagsToBackups;
         private string _junctionPath;
         private InputOntapVolumeType _ontapVolumeType;
         private SecurityStyle _securityStyle;
+        private long? _sizeInBytes;
         private int? _sizeInMegabytes;
         private CreateSnaplockConfiguration _snaplockConfiguration;
         private string _snapshotPolicy;
         private bool? _storageEfficiencyEnabled;
         private string _storageVirtualMachineId;
         private TieringPolicy _tieringPolicy;
+        private VolumeStyle _volumeStyle;
+
+        /// <summary>
+        /// Gets and sets the property AggregateConfiguration. 
+        /// <para>
+        /// Use to specify configuration options for a volume’s storage aggregate or aggregates.
+        /// </para>
+        /// </summary>
+        public CreateAggregateConfiguration AggregateConfiguration
+        {
+            get { return this._aggregateConfiguration; }
+            set { this._aggregateConfiguration = value; }
+        }
+
+        // Check to see if AggregateConfiguration property is set
+        internal bool IsSetAggregateConfiguration()
+        {
+            return this._aggregateConfiguration != null;
+        }
 
         /// <summary>
         /// Gets and sets the property CopyTagsToBackups. 
@@ -71,8 +93,7 @@ namespace Amazon.FSx.Model
         /// Gets and sets the property JunctionPath. 
         /// <para>
         /// Specifies the location in the SVM's namespace where the volume is mounted. This parameter
-        /// is required. The <code>JunctionPath</code> must have a leading forward slash, such
-        /// as <code>/vol3</code>.
+        /// is required. The <c>JunctionPath</c> must have a leading forward slash, such as <c>/vol3</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -95,17 +116,17 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>RW</code> specifies a read/write volume. <code>RW</code> is the default.
+        ///  <c>RW</c> specifies a read/write volume. <c>RW</c> is the default.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DP</code> specifies a data-protection volume. A <code>DP</code> volume is read-only
-        /// and can be used as the destination of a NetApp SnapMirror relationship.
+        ///  <c>DP</c> specifies a data-protection volume. A <c>DP</c> volume is read-only and
+        /// can be used as the destination of a NetApp SnapMirror relationship.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For more information, see <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-types">Volume
-        /// types</a> in the <i>Amazon FSx for NetApp ONTAP User Guide</i>.
+        /// For more information, see <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-volumes.html#volume-types">Volume
+        /// types</a> in the Amazon FSx for NetApp ONTAP User Guide.
         /// </para>
         /// </summary>
         public InputOntapVolumeType OntapVolumeType
@@ -125,29 +146,32 @@ namespace Amazon.FSx.Model
         /// <para>
         /// Specifies the security style for the volume. If a volume's security style is not specified,
         /// it is automatically set to the root volume's security style. The security style determines
-        /// the type of permissions that FSx for ONTAP uses to control data access. For more information,
-        /// see <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-volumes.html#volume-security-style">Volume
-        /// security style</a> in the <i>Amazon FSx for NetApp ONTAP User Guide</i>. Specify one
+        /// the type of permissions that FSx for ONTAP uses to control data access. Specify one
         /// of the following values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>UNIX</code> if the file system is managed by a UNIX administrator, the majority
-        /// of users are NFS clients, and an application accessing the data uses a UNIX user as
-        /// the service account. 
+        ///  <c>UNIX</c> if the file system is managed by a UNIX administrator, the majority of
+        /// users are NFS clients, and an application accessing the data uses a UNIX user as the
+        /// service account. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NTFS</code> if the file system is managed by a Windows administrator, the majority
+        ///  <c>NTFS</c> if the file system is managed by a Windows administrator, the majority
         /// of users are SMB clients, and an application accessing the data uses a Windows user
         /// as the service account.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MIXED</code> if the file system is managed by both UNIX and Windows administrators
-        /// and users consist of both NFS and SMB clients.
+        ///  <c>MIXED</c> This is an advanced setting. For more information, see the topic <a
+        /// href="https://docs.netapp.com/us-en/ontap/nfs-admin/security-styles-their-effects-concept.html">What
+        /// the security styles and their effects are</a> in the NetApp Documentation Center.
         /// </para>
-        ///  </li> </ul>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-volumes.html#volume-security-style">Volume
+        /// security style</a> in the FSx for ONTAP User Guide.
+        /// </para>
         /// </summary>
         public SecurityStyle SecurityStyle
         {
@@ -162,12 +186,33 @@ namespace Amazon.FSx.Model
         }
 
         /// <summary>
-        /// Gets and sets the property SizeInMegabytes. 
+        /// Gets and sets the property SizeInBytes. 
         /// <para>
-        /// Specifies the size of the volume, in megabytes (MB), that you are creating.
+        /// Specifies the configured size of the volume, in bytes.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=0, Max=314572800)]
+        [AWSProperty(Min=0, Max=22517998000000000)]
+        public long SizeInBytes
+        {
+            get { return this._sizeInBytes.GetValueOrDefault(); }
+            set { this._sizeInBytes = value; }
+        }
+
+        // Check to see if SizeInBytes property is set
+        internal bool IsSetSizeInBytes()
+        {
+            return this._sizeInBytes.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SizeInMegabytes. 
+        /// <para>
+        /// Use <c>SizeInBytes</c> instead. Specifies the size of the volume, in megabytes (MB),
+        /// that you are creating.
+        /// </para>
+        /// </summary>
+        [Obsolete("This property is deprecated, use SizeInBytes instead")]
+        [AWSProperty(Min=0, Max=2147483647)]
         public int SizeInMegabytes
         {
             get { return this._sizeInMegabytes.GetValueOrDefault(); }
@@ -205,19 +250,19 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>default</code>: This is the default policy. A maximum of six hourly snapshots
-        /// taken five minutes past the hour. A maximum of two daily snapshots taken Monday through
+        ///  <c>default</c>: This is the default policy. A maximum of six hourly snapshots taken
+        /// five minutes past the hour. A maximum of two daily snapshots taken Monday through
         /// Saturday at 10 minutes after midnight. A maximum of two weekly snapshots taken every
         /// Sunday at 15 minutes after midnight.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>default-1weekly</code>: This policy is the same as the <code>default</code>
-        /// policy except that it only retains one snapshot from the weekly schedule.
+        ///  <c>default-1weekly</c>: This policy is the same as the <c>default</c> policy except
+        /// that it only retains one snapshot from the weekly schedule.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>none</code>: This policy does not take any snapshots. This policy can be assigned
+        ///  <c>none</c>: This policy does not take any snapshots. This policy can be assigned
         /// to volumes to prevent automatic snapshots from being taken.
         /// </para>
         ///  </li> </ul> 
@@ -228,7 +273,7 @@ namespace Amazon.FSx.Model
         ///  
         /// <para>
         /// For more information, see <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snapshots-ontap.html#snapshot-policies">Snapshot
-        /// policies</a> in the <i>Amazon FSx for NetApp ONTAP User Guide</i>.
+        /// policies</a> in the Amazon FSx for NetApp ONTAP User Guide.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -248,7 +293,12 @@ namespace Amazon.FSx.Model
         /// Gets and sets the property StorageEfficiencyEnabled. 
         /// <para>
         /// Set to true to enable deduplication, compression, and compaction storage efficiency
-        /// features on the volume, or set to false to disable them. This parameter is required.
+        /// features on the volume, or set to false to disable them.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>StorageEfficiencyEnabled</c> is required when creating a <c>RW</c> volume (<c>OntapVolumeType</c>
+        /// set to <c>RW</c>).
         /// </para>
         /// </summary>
         public bool StorageEfficiencyEnabled
@@ -295,6 +345,27 @@ namespace Amazon.FSx.Model
         internal bool IsSetTieringPolicy()
         {
             return this._tieringPolicy != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property VolumeStyle. 
+        /// <para>
+        /// Use to specify the style of an ONTAP volume. FSx for ONTAP offers two styles of volumes
+        /// that you can use for different purposes, FlexVol and FlexGroup volumes. For more information,
+        /// see <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-volumes.html#volume-styles">Volume
+        /// styles</a> in the Amazon FSx for NetApp ONTAP User Guide.
+        /// </para>
+        /// </summary>
+        public VolumeStyle VolumeStyle
+        {
+            get { return this._volumeStyle; }
+            set { this._volumeStyle = value; }
+        }
+
+        // Check to see if VolumeStyle property is set
+        internal bool IsSetVolumeStyle()
+        {
+            return this._volumeStyle != null;
         }
 
     }

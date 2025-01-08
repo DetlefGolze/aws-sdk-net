@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(H265Settings requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAdaptiveQuantization())
             {
                 context.Writer.WritePropertyName("adaptiveQuantization");
@@ -92,6 +95,12 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                 context.Writer.WriteObjectEnd();
             }
 
+            if(requestObject.IsSetDeblocking())
+            {
+                context.Writer.WritePropertyName("deblocking");
+                context.Writer.Write(requestObject.Deblocking);
+            }
+
             if(requestObject.IsSetFilterSettings())
             {
                 context.Writer.WritePropertyName("filterSettings");
@@ -136,7 +145,14 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
             if(requestObject.IsSetGopSize())
             {
                 context.Writer.WritePropertyName("gopSize");
-                context.Writer.Write(requestObject.GopSize);
+                if(StringUtils.IsSpecialDoubleValue(requestObject.GopSize))
+                {
+                    context.Writer.Write(StringUtils.FromSpecialDoubleValue(requestObject.GopSize));
+                }
+                else
+                {
+                    context.Writer.Write(requestObject.GopSize);
+                }
             }
 
             if(requestObject.IsSetGopSizeUnits())
@@ -167,6 +183,24 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("minIInterval");
                 context.Writer.Write(requestObject.MinIInterval);
+            }
+
+            if(requestObject.IsSetMinQp())
+            {
+                context.Writer.WritePropertyName("minQp");
+                context.Writer.Write(requestObject.MinQp);
+            }
+
+            if(requestObject.IsSetMvOverPictureBoundaries())
+            {
+                context.Writer.WritePropertyName("mvOverPictureBoundaries");
+                context.Writer.Write(requestObject.MvOverPictureBoundaries);
+            }
+
+            if(requestObject.IsSetMvTemporalPredictor())
+            {
+                context.Writer.WritePropertyName("mvTemporalPredictor");
+                context.Writer.Write(requestObject.MvTemporalPredictor);
             }
 
             if(requestObject.IsSetParDenominator())
@@ -223,6 +257,24 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                 context.Writer.Write(requestObject.Tier);
             }
 
+            if(requestObject.IsSetTileHeight())
+            {
+                context.Writer.WritePropertyName("tileHeight");
+                context.Writer.Write(requestObject.TileHeight);
+            }
+
+            if(requestObject.IsSetTilePadding())
+            {
+                context.Writer.WritePropertyName("tilePadding");
+                context.Writer.Write(requestObject.TilePadding);
+            }
+
+            if(requestObject.IsSetTileWidth())
+            {
+                context.Writer.WritePropertyName("tileWidth");
+                context.Writer.Write(requestObject.TileWidth);
+            }
+
             if(requestObject.IsSetTimecodeBurninSettings())
             {
                 context.Writer.WritePropertyName("timecodeBurninSettings");
@@ -238,6 +290,12 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("timecodeInsertion");
                 context.Writer.Write(requestObject.TimecodeInsertion);
+            }
+
+            if(requestObject.IsSetTreeblockSize())
+            {
+                context.Writer.WritePropertyName("treeblockSize");
+                context.Writer.Write(requestObject.TreeblockSize);
             }
 
         }

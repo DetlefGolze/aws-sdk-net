@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
@@ -109,7 +110,7 @@ namespace Amazon.CloudTrail.Model
         /// <summary>
         /// Gets and sets the property HasInsightSelectors. 
         /// <para>
-        /// Specifies whether a trail has insight types specified in an <code>InsightSelector</code>
+        /// Specifies whether a trail has insight types specified in an <c>InsightSelector</c>
         /// list.
         /// </para>
         /// </summary>
@@ -206,7 +207,7 @@ namespace Amazon.CloudTrail.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:kms:us-east-2:123456789012:key/12345678-1234-1234-1234-123456789012</code>
+        ///  <c>arn:aws:kms:us-east-2:123456789012:key/12345678-1234-1234-1234-123456789012</c>
         /// 
         /// </para>
         /// </summary>
@@ -262,8 +263,8 @@ namespace Amazon.CloudTrail.Model
         /// Gets and sets the property S3BucketName. 
         /// <para>
         /// Name of the Amazon S3 bucket into which CloudTrail delivers your trail files. See
-        /// <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/create_trail_naming_policy.html">Amazon
-        /// S3 Bucket Naming Requirements</a>.
+        /// <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html">Amazon
+        /// S3 Bucket naming rules</a>.
         /// </para>
         /// </summary>
         public string S3BucketName
@@ -282,7 +283,7 @@ namespace Amazon.CloudTrail.Model
         /// Gets and sets the property S3KeyPrefix. 
         /// <para>
         /// Specifies the Amazon S3 key prefix that comes after the name of the bucket you have
-        /// designated for log file delivery. For more information, see <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-find-log-files.html">Finding
+        /// designated for log file delivery. For more information, see <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/get-and-view-cloudtrail-log-files.html#cloudtrail-find-log-files">Finding
         /// Your CloudTrail Log Files</a>. The maximum length is 200 characters.
         /// </para>
         /// </summary>
@@ -306,7 +307,7 @@ namespace Amazon.CloudTrail.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:sns:us-east-2:123456789012:MyTopic</code> 
+        ///  <c>arn:aws:sns:us-east-2:123456789012:MyTopic</c> 
         /// </para>
         /// </summary>
         public string SnsTopicARN
@@ -324,7 +325,7 @@ namespace Amazon.CloudTrail.Model
         /// <summary>
         /// Gets and sets the property SnsTopicName. 
         /// <para>
-        /// This field is no longer in use. Use <code>SnsTopicARN</code>.
+        /// This field is no longer in use. Use <c>SnsTopicARN</c>.
         /// </para>
         /// </summary>
         [Obsolete("This field is deprecated. Use SnsTopicARN.")]
@@ -347,7 +348,7 @@ namespace Amazon.CloudTrail.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</code> 
+        ///  <c>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</c> 
         /// </para>
         /// </summary>
         public string TrailARN

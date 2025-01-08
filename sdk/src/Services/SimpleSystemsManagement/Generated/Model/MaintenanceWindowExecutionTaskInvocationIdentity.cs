@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -69,7 +70,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property ExecutionId. 
         /// <para>
         /// The ID of the action performed in the service that actually handled the task invocation.
-        /// If the task type is <code>RUN_COMMAND</code>, this value is the command ID.
+        /// If the task type is <c>RUN_COMMAND</c>, this value is the command ID.
         /// </para>
         /// </summary>
         public string ExecutionId

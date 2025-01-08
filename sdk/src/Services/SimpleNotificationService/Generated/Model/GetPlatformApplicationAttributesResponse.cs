@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
-    /// Response for GetPlatformApplicationAttributes action.
+    /// Response for <c>GetPlatformApplicationAttributes</c> action.
     /// </summary>
     public partial class GetPlatformApplicationAttributesResponse : AmazonWebServiceResponse
     {
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Attributes. 
@@ -42,37 +43,49 @@ namespace Amazon.SimpleNotificationService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AppleCertificateExpiryDate</code> – The expiry date of the SSL certificate
-        /// used to configure certificate-based authentication.
+        ///  <c>AppleCertificateExpiryDate</c> – The expiry date of the SSL certificate used to
+        /// configure certificate-based authentication.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ApplePlatformTeamID</code> – The Apple developer account ID used to configure
-        /// token-based authentication.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>ApplePlatformBundleID</code> – The app identifier used to configure token-based
+        ///  <c>ApplePlatformTeamID</c> – The Apple developer account ID used to configure token-based
         /// authentication.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EventEndpointCreated</code> – Topic ARN to which EndpointCreated event notifications
+        ///  <c>ApplePlatformBundleID</c> – The app identifier used to configure token-based authentication.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AuthenticationMethod</c> – Returns the credential type used when sending push
+        /// notifications from application to APNS/APNS_Sandbox, or application to GCM.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// APNS – Returns the token or certificate.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// GCM – Returns the token or key.
+        /// </para>
+        ///  </li> </ul> </li> <li> 
+        /// <para>
+        ///  <c>EventEndpointCreated</c> – Topic ARN to which EndpointCreated event notifications
         /// should be sent.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EventEndpointDeleted</code> – Topic ARN to which EndpointDeleted event notifications
+        ///  <c>EventEndpointDeleted</c> – Topic ARN to which EndpointDeleted event notifications
         /// should be sent.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EventEndpointUpdated</code> – Topic ARN to which EndpointUpdate event notifications
+        ///  <c>EventEndpointUpdated</c> – Topic ARN to which EndpointUpdate event notifications
         /// should be sent.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EventDeliveryFailure</code> – Topic ARN to which DeliveryFailure event notifications
+        ///  <c>EventDeliveryFailure</c> – Topic ARN to which DeliveryFailure event notifications
         /// should be sent upon Direct Publish delivery failure (permanent) to one of the application's
         /// endpoints.
         /// </para>
@@ -87,7 +100,7 @@ namespace Amazon.SimpleNotificationService.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

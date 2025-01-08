@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruSecurity.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.CodeGuruSecurity.Model
         private string _description;
         private string _detectorId;
         private string _detectorName;
-        private List<string> _detectorTags = new List<string>();
+        private List<string> _detectorTags = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _generatorId;
         private string _id;
         private Remediation _remediation;
@@ -141,14 +142,13 @@ namespace Amazon.CodeGuruSecurity.Model
         // Check to see if DetectorTags property is set
         internal bool IsSetDetectorTags()
         {
-            return this._detectorTags != null && this._detectorTags.Count > 0; 
+            return this._detectorTags != null && (this._detectorTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property GeneratorId. 
         /// <para>
-        /// The identifier for the component that generated a finding such as AWSCodeGuruSecurity
-        /// or AWSInspector.
+        /// The identifier for the component that generated a finding such as AmazonCodeGuruSecurity.
         /// </para>
         /// </summary>
         public string GeneratorId
@@ -238,7 +238,9 @@ namespace Amazon.CodeGuruSecurity.Model
         /// <summary>
         /// Gets and sets the property Severity. 
         /// <para>
-        /// The severity of the finding.
+        /// The severity of the finding. Severity can be critical, high, medium, low, or informational.
+        /// For information on severity levels, see <a href="https://docs.aws.amazon.com/codeguru/latest/security-ug/findings-overview.html#severity-distribution">Finding
+        /// severity</a> in the <i>Amazon CodeGuru Security User Guide</i>.
         /// </para>
         /// </summary>
         public Severity Severity

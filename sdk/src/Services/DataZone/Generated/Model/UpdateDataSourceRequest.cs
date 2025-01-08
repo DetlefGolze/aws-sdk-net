@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.DataZone.Model
     /// </summary>
     public partial class UpdateDataSourceRequest : AmazonDataZoneRequest
     {
-        private List<FormInput> _assetFormsInput = new List<FormInput>();
+        private List<FormInput> _assetFormsInput = AWSConfigs.InitializeCollections ? new List<FormInput>() : null;
         private DataSourceConfigurationInput _configuration;
         private string _description;
         private string _domainIdentifier;
@@ -43,12 +44,13 @@ namespace Amazon.DataZone.Model
         private string _name;
         private bool? _publishOnImport;
         private RecommendationConfiguration _recommendation;
+        private bool? _retainPermissionsOnRevokeFailure;
         private ScheduleConfiguration _schedule;
 
         /// <summary>
         /// Gets and sets the property AssetFormsInput. 
         /// <para>
-        /// The asset forms to be updated as part of the <code>UpdateDataSource</code> action.
+        /// The asset forms to be updated as part of the <c>UpdateDataSource</c> action.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=0, Max=10)]
@@ -61,13 +63,13 @@ namespace Amazon.DataZone.Model
         // Check to see if AssetFormsInput property is set
         internal bool IsSetAssetFormsInput()
         {
-            return this._assetFormsInput != null && this._assetFormsInput.Count > 0; 
+            return this._assetFormsInput != null && (this._assetFormsInput.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Configuration. 
         /// <para>
-        /// The configuration to be updated as part of the <code>UpdateDataSource</code> action.
+        /// The configuration to be updated as part of the <c>UpdateDataSource</c> action.
         /// </para>
         /// </summary>
         public DataSourceConfigurationInput Configuration
@@ -85,7 +87,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
-        /// The description to be updated as part of the <code>UpdateDataSource</code> action.
+        /// The description to be updated as part of the <c>UpdateDataSource</c> action.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=0, Max=2048)]
@@ -123,7 +125,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property EnableSetting. 
         /// <para>
-        /// The enable setting to be updated as part of the <code>UpdateDataSource</code> action.
+        /// The enable setting to be updated as part of the <c>UpdateDataSource</c> action.
         /// </para>
         /// </summary>
         public EnableSetting EnableSetting
@@ -160,7 +162,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name to be updated as part of the <code>UpdateDataSource</code> action.
+        /// The name to be updated as part of the <c>UpdateDataSource</c> action.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=256)]
@@ -179,7 +181,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property PublishOnImport. 
         /// <para>
-        /// The publish on import setting to be updated as part of the <code>UpdateDataSource</code>
+        /// The publish on import setting to be updated as part of the <c>UpdateDataSource</c>
         /// action.
         /// </para>
         /// </summary>
@@ -198,7 +200,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property Recommendation. 
         /// <para>
-        /// The recommendation to be updated as part of the <code>UpdateDataSource</code> action.
+        /// The recommendation to be updated as part of the <c>UpdateDataSource</c> action.
         /// </para>
         /// </summary>
         public RecommendationConfiguration Recommendation
@@ -214,9 +216,28 @@ namespace Amazon.DataZone.Model
         }
 
         /// <summary>
+        /// Gets and sets the property RetainPermissionsOnRevokeFailure. 
+        /// <para>
+        /// Specifies that the granted permissions are retained in case of a self-subscribe functionality
+        /// failure for a data source.
+        /// </para>
+        /// </summary>
+        public bool RetainPermissionsOnRevokeFailure
+        {
+            get { return this._retainPermissionsOnRevokeFailure.GetValueOrDefault(); }
+            set { this._retainPermissionsOnRevokeFailure = value; }
+        }
+
+        // Check to see if RetainPermissionsOnRevokeFailure property is set
+        internal bool IsSetRetainPermissionsOnRevokeFailure()
+        {
+            return this._retainPermissionsOnRevokeFailure.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property Schedule. 
         /// <para>
-        /// The schedule to be updated as part of the <code>UpdateDataSource</code> action.
+        /// The schedule to be updated as part of the <c>UpdateDataSource</c> action.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]

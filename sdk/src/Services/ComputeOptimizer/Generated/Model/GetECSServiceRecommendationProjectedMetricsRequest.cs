@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComputeOptimizer.Model
 {
     /// <summary>
@@ -89,8 +90,7 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:ecs:region:aws_account_id:service/cluster-name/service-name</code>
-        /// 
+        ///  <c>arn:aws:ecs:region:aws_account_id:service/cluster-name/service-name</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

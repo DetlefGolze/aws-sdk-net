@@ -26,29 +26,30 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Textract.Model
 {
     /// <summary>
-    /// Information about how blocks are related to each other. A <code>Block</code> object
-    /// contains 0 or more <code>Relation</code> objects in a list, <code>Relationships</code>.
-    /// For more information, see <a>Block</a>.
+    /// Information about how blocks are related to each other. A <c>Block</c> object contains
+    /// 0 or more <c>Relation</c> objects in a list, <c>Relationships</c>. For more information,
+    /// see <a>Block</a>.
     /// 
     ///  
     /// <para>
-    /// The <code>Type</code> element provides the type of the relationship for all blocks
-    /// in the <code>IDs</code> array. 
+    /// The <c>Type</c> element provides the type of the relationship for all blocks in the
+    /// <c>IDs</c> array. 
     /// </para>
     /// </summary>
     public partial class Relationship
     {
-        private List<string> _ids = new List<string>();
+        private List<string> _ids = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private RelationshipType _type;
 
         /// <summary>
         /// Gets and sets the property Ids. 
         /// <para>
         /// An array of IDs for related blocks. You can get the type of the relationship from
-        /// the <code>Type</code> element.
+        /// the <c>Type</c> element.
         /// </para>
         /// </summary>
         public List<string> Ids
@@ -60,7 +61,7 @@ namespace Amazon.Textract.Model
         // Check to see if Ids property is set
         internal bool IsSetIds()
         {
-            return this._ids != null && this._ids.Count > 0; 
+            return this._ids != null && (this._ids.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

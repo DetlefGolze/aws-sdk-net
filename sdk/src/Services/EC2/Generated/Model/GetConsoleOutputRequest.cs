@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,19 +36,6 @@ namespace Amazon.EC2.Model
     /// on a physical monitor attached to a computer. For Windows instances, the instance
     /// console output includes the last three system event log errors.
     /// 
-    ///  
-    /// <para>
-    /// By default, the console output returns buffered information that was posted shortly
-    /// after an instance transition state (start, stop, reboot, or terminate). This information
-    /// is available for at least one hour after the most recent post. Only the most recent
-    /// 64 KB of console output is available.
-    /// </para>
-    ///  
-    /// <para>
-    /// You can optionally retrieve the latest serial console output at any time during the
-    /// instance lifecycle. This option is supported on instance types that use the Nitro
-    /// hypervisor.
-    /// </para>
     ///  
     /// <para>
     /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-console.html#instance-console-console-output">Instance
@@ -99,7 +87,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: disabled (<code>false</code>)
+        /// Default: disabled (<c>false</c>)
         /// </para>
         /// </summary>
         public bool Latest

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityLake.Model
 {
     /// <summary>
-    /// The configuration for the Glue Crawler for the third-party custom source.
+    /// The configuration used for the Glue Crawler for a third-party custom source.
     /// </summary>
     public partial class CustomLogSourceCrawlerConfiguration
     {
@@ -43,7 +44,7 @@ namespace Amazon.SecurityLake.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// The managed policy <code>AWSGlueServiceRole</code> 
+        /// The managed policy <c>AWSGlueServiceRole</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>

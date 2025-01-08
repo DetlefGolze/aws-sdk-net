@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -120,7 +121,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the previous call to <code>ListContexts</code> didn't return the full set of contexts,
+        /// If the previous call to <c>ListContexts</c> didn't return the full set of contexts,
         /// the call returns a token for getting the next set of contexts.
         /// </para>
         /// </summary>
@@ -140,7 +141,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SortBy. 
         /// <para>
-        /// The property used to sort results. The default value is <code>CreationTime</code>.
+        /// The property used to sort results. The default value is <c>CreationTime</c>.
         /// </para>
         /// </summary>
         public SortContextsBy SortBy
@@ -158,7 +159,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SortOrder. 
         /// <para>
-        /// The sort order. The default value is <code>Descending</code>.
+        /// The sort order. The default value is <c>Descending</c>.
         /// </para>
         /// </summary>
         public SortOrder SortOrder
@@ -179,7 +180,7 @@ namespace Amazon.SageMaker.Model
         /// A filter that returns only contexts with the specified source URI.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=2048)]
+        [AWSProperty(Min=1, Max=2048)]
         public string SourceUri
         {
             get { return this._sourceUri; }

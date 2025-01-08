@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -39,7 +40,8 @@ namespace Amazon.NetworkManager.Model
         private string _coreNetworkId;
         private DateTime? _createdAt;
         private string _edgeLocation;
-        private List<Tag> _tags = new List<Tag>();
+        private string _subnetArn;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ConnectAttachmentId. 
@@ -154,6 +156,25 @@ namespace Amazon.NetworkManager.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SubnetArn. 
+        /// <para>
+        /// The subnet ARN for the Connect peer summary.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=500)]
+        public string SubnetArn
+        {
+            get { return this._subnetArn; }
+            set { this._subnetArn = value; }
+        }
+
+        // Check to see if SubnetArn property is set
+        internal bool IsSetSubnetArn()
+        {
+            return this._subnetArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// The list of key-value tags associated with the Connect peer summary.
@@ -168,7 +189,7 @@ namespace Amazon.NetworkManager.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QLDB.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.QLDB.Model
     /// </summary>
     public partial class ListJournalS3ExportsResponse : AmazonWebServiceResponse
     {
-        private List<JournalS3ExportDescription> _journalS3Exports = new List<JournalS3ExportDescription>();
+        private List<JournalS3ExportDescription> _journalS3Exports = AWSConfigs.InitializeCollections ? new List<JournalS3ExportDescription>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,20 +53,20 @@ namespace Amazon.QLDB.Model
         // Check to see if JournalS3Exports property is set
         internal bool IsSetJournalS3Exports()
         {
-            return this._journalS3Exports != null && this._journalS3Exports.Count > 0; 
+            return this._journalS3Exports != null && (this._journalS3Exports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. <ul> <li> 
         /// <para>
-        /// If <code>NextToken</code> is empty, then the last page of results has been processed
-        /// and there are no more results to be retrieved.
+        /// If <c>NextToken</c> is empty, then the last page of results has been processed and
+        /// there are no more results to be retrieved.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If <code>NextToken</code> is <i>not</i> empty, then there are more results available.
-        /// To retrieve the next page of results, use the value of <code>NextToken</code> in a
-        /// subsequent <code>ListJournalS3Exports</code> call.
+        /// If <c>NextToken</c> is <i>not</i> empty, then there are more results available. To
+        /// retrieve the next page of results, use the value of <c>NextToken</c> in a subsequent
+        /// <c>ListJournalS3Exports</c> call.
         /// </para>
         ///  </li> </ul>
         /// </summary>

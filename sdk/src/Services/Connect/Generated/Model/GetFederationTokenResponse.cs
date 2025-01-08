@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -44,6 +45,7 @@ namespace Amazon.Connect.Model
         /// The credentials to use for federation.
         /// </para>
         /// </summary>
+        [AWSProperty(Sensitive=true)]
         public Credentials Credentials
         {
             get { return this._credentials; }

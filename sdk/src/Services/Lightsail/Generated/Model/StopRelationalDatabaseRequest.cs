@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -34,9 +35,9 @@ namespace Amazon.Lightsail.Model
     /// 
     ///  
     /// <para>
-    /// The <code>stop relational database</code> operation supports tag-based access control
-    /// via resource tags applied to the resource identified by relationalDatabaseName. For
-    /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+    /// The <c>stop relational database</c> operation supports tag-based access control via
+    /// resource tags applied to the resource identified by relationalDatabaseName. For more
+    /// information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
     /// Lightsail Developer Guide</a>.
     /// </para>
     /// </summary>

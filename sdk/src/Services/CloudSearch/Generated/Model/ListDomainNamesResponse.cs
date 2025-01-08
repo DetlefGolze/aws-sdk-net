@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// The result of a <code>ListDomainNames</code> request. Contains a list of the domains
-    /// owned by an account.
+    /// The result of a <c>ListDomainNames</c> request. Contains a list of the domains owned
+    /// by an account.
     /// </summary>
     public partial class ListDomainNamesResponse : AmazonWebServiceResponse
     {
-        private Dictionary<string, string> _domainNames = new Dictionary<string, string>();
+        private Dictionary<string, string> _domainNames = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property DomainNames. 
@@ -51,7 +52,7 @@ namespace Amazon.CloudSearch.Model
         // Check to see if DomainNames property is set
         internal bool IsSetDomainNames()
         {
-            return this._domainNames != null && this._domainNames.Count > 0; 
+            return this._domainNames != null && (this._domainNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

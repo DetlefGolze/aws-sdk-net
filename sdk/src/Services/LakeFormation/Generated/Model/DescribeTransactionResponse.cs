@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
@@ -38,8 +39,7 @@ namespace Amazon.LakeFormation.Model
         /// <summary>
         /// Gets and sets the property TransactionDescription. 
         /// <para>
-        /// Returns a <code>TransactionDescription</code> object containing information about
-        /// the transaction.
+        /// Returns a <c>TransactionDescription</c> object containing information about the transaction.
         /// </para>
         /// </summary>
         public TransactionDescription TransactionDescription

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Imagebuilder.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Imagebuilder.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ImagePipeline Unmarshall(JsonUnmarshallerContext context)
         {
+            ImagePipeline unmarshalledObject = new ImagePipeline();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ImagePipeline unmarshalledObject = new ImagePipeline();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -118,6 +120,12 @@ namespace Amazon.Imagebuilder.Model.Internal.MarshallTransformations
                     unmarshalledObject.EnhancedImageMetadataEnabled = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("executionRole", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ExecutionRole = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("imageRecipeArn", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -172,8 +180,13 @@ namespace Amazon.Imagebuilder.Model.Internal.MarshallTransformations
                     unmarshalledObject.Tags = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("workflows", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<WorkflowConfiguration, WorkflowConfigurationUnmarshaller>(WorkflowConfigurationUnmarshaller.Instance);
+                    unmarshalledObject.Workflows = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

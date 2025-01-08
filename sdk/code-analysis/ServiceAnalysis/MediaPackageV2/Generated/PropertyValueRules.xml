@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-16"?>
 <property-value-rules>
   <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CancelHarvestJobRequest.ChannelGroupName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CancelHarvestJobRequest.ChannelName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CancelHarvestJobRequest.ETag</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[\S]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CancelHarvestJobRequest.HarvestJobName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CancelHarvestJobRequest.OriginEndpointName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.CreateChannelRequest.ChannelGroupName</property>
     <min>1</min>
     <max>256</max>
@@ -24,6 +54,17 @@
     <max>1024</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateChannelResponse.Description</property>
+    <min>0</min>
+    <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateChannelResponse.ETag</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[\S]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.CreateChannelGroupRequest.ChannelGroupName</property>
     <min>1</min>
     <max>256</max>
@@ -39,6 +80,87 @@
     <property>Amazon.MediaPackageV2.Model.CreateChannelGroupRequest.Description</property>
     <min>0</min>
     <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateChannelGroupResponse.Description</property>
+    <min>0</min>
+    <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateChannelGroupResponse.ETag</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[\S]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateHarvestJobRequest.ChannelGroupName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateHarvestJobRequest.ChannelName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateHarvestJobRequest.ClientToken</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[\S]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateHarvestJobRequest.Description</property>
+    <min>0</min>
+    <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateHarvestJobRequest.HarvestJobName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateHarvestJobRequest.OriginEndpointName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateHarvestJobResponse.ChannelGroupName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateHarvestJobResponse.ChannelName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateHarvestJobResponse.Description</property>
+    <min>0</min>
+    <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateHarvestJobResponse.ETag</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[\S]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateHarvestJobResponse.HarvestJobName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateHarvestJobResponse.OriginEndpointName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.CreateOriginEndpointRequest.ChannelGroupName</property>
@@ -90,6 +212,12 @@
     <property>Amazon.MediaPackageV2.Model.CreateOriginEndpointResponse.Description</property>
     <min>0</min>
     <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateOriginEndpointResponse.ETag</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[\S]+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.CreateOriginEndpointResponse.OriginEndpointName</property>
@@ -176,10 +304,32 @@
     <pattern>[a-zA-Z0-9_-]+</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetChannelResponse.Description</property>
+    <min>0</min>
+    <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetChannelResponse.ETag</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[\S]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.GetChannelGroupRequest.ChannelGroupName</property>
     <min>1</min>
     <max>256</max>
     <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetChannelGroupResponse.Description</property>
+    <min>0</min>
+    <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetChannelGroupResponse.ETag</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[\S]+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.GetChannelPolicyRequest.ChannelGroupName</property>
@@ -189,6 +339,70 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.GetChannelPolicyRequest.ChannelName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetChannelPolicyResponse.Policy</property>
+    <min>0</min>
+    <max>6144</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetHarvestJobRequest.ChannelGroupName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetHarvestJobRequest.ChannelName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetHarvestJobRequest.HarvestJobName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetHarvestJobRequest.OriginEndpointName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetHarvestJobResponse.ChannelGroupName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetHarvestJobResponse.ChannelName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetHarvestJobResponse.Description</property>
+    <min>0</min>
+    <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetHarvestJobResponse.ETag</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[\S]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetHarvestJobResponse.HarvestJobName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetHarvestJobResponse.OriginEndpointName</property>
     <min>1</min>
     <max>256</max>
     <pattern>[a-zA-Z0-9_-]+</pattern>
@@ -229,6 +443,12 @@
     <max>1024</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetOriginEndpointResponse.ETag</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[\S]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.GetOriginEndpointResponse.OriginEndpointName</property>
     <min>1</min>
     <max>256</max>
@@ -253,6 +473,29 @@
     <pattern>[a-zA-Z0-9_-]+</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetOriginEndpointPolicyResponse.ChannelGroupName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetOriginEndpointPolicyResponse.ChannelName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetOriginEndpointPolicyResponse.OriginEndpointName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetOriginEndpointPolicyResponse.Policy</property>
+    <min>0</min>
+    <max>6144</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.ListChannelGroupsRequest.MaxResults</property>
     <min>1</min>
     <max>100</max>
@@ -267,6 +510,29 @@
     <property>Amazon.MediaPackageV2.Model.ListChannelsRequest.MaxResults</property>
     <min>1</min>
     <max>100</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.ListHarvestJobsRequest.ChannelGroupName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.ListHarvestJobsRequest.ChannelName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.ListHarvestJobsRequest.MaxResults</property>
+    <min>1</min>
+    <max>100</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.ListHarvestJobsRequest.OriginEndpointName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.ListOriginEndpointsRequest.ChannelGroupName</property>
@@ -343,6 +609,23 @@
     <max>1024</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.UpdateChannelRequest.ETag</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[\S]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.UpdateChannelResponse.Description</property>
+    <min>0</min>
+    <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.UpdateChannelResponse.ETag</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[\S]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.UpdateChannelGroupRequest.ChannelGroupName</property>
     <min>1</min>
     <max>256</max>
@@ -352,6 +635,23 @@
     <property>Amazon.MediaPackageV2.Model.UpdateChannelGroupRequest.Description</property>
     <min>0</min>
     <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.UpdateChannelGroupRequest.ETag</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[\S]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.UpdateChannelGroupResponse.Description</property>
+    <min>0</min>
+    <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.UpdateChannelGroupResponse.ETag</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[\S]+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.UpdateOriginEndpointRequest.ChannelGroupName</property>
@@ -369,6 +669,12 @@
     <property>Amazon.MediaPackageV2.Model.UpdateOriginEndpointRequest.Description</property>
     <min>0</min>
     <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.UpdateOriginEndpointRequest.ETag</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[\S]+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.UpdateOriginEndpointRequest.OriginEndpointName</property>
@@ -399,10 +705,51 @@
     <max>1024</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.UpdateOriginEndpointResponse.ETag</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[\S]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.UpdateOriginEndpointResponse.OriginEndpointName</property>
     <min>1</min>
     <max>256</max>
     <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.ChannelGroupListConfiguration.Description</property>
+    <min>0</min>
+    <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.ChannelListConfiguration.Description</property>
+    <min>0</min>
+    <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateDashManifestConfiguration.ManifestName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateDashManifestConfiguration.ManifestWindowSeconds</property>
+    <min>30</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateDashManifestConfiguration.MinBufferTimeSeconds</property>
+    <min>0</min>
+    <max>3600</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateDashManifestConfiguration.MinUpdatePeriodSeconds</property>
+    <min>1</min>
+    <max>3600</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.CreateDashManifestConfiguration.SuggestedPresentationDelaySeconds</property>
+    <min>0</min>
+    <max>3600</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.CreateHlsManifestConfiguration.ChildManifestName</property>
@@ -419,7 +766,6 @@
   <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.CreateHlsManifestConfiguration.ManifestWindowSeconds</property>
     <min>30</min>
-    <max>900</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.CreateHlsManifestConfiguration.ProgramDateTimeIntervalSeconds</property>
@@ -441,12 +787,16 @@
   <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.CreateLowLatencyHlsManifestConfiguration.ManifestWindowSeconds</property>
     <min>30</min>
-    <max>900</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.CreateLowLatencyHlsManifestConfiguration.ProgramDateTimeIntervalSeconds</property>
     <min>1</min>
     <max>1209600</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.DashUtcTiming.TimingSource</property>
+    <min>1</min>
+    <max>1024</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.Encryption.ConstantInitializationVector</property>
@@ -458,6 +808,22 @@
     <property>Amazon.MediaPackageV2.Model.Encryption.KeyRotationIntervalSeconds</property>
     <min>300</min>
     <max>31536000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.FilterConfiguration.ManifestFilter</property>
+    <min>1</min>
+    <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.FilterConfiguration.TimeDelaySeconds</property>
+    <min>0</min>
+    <max>1209600</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.GetDashManifestConfiguration.ManifestName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.GetHlsManifestConfiguration.ChildManifestName</property>
@@ -479,6 +845,65 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.GetLowLatencyHlsManifestConfiguration.ManifestName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.HarvestedDashManifest.ManifestName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.HarvestedHlsManifest.ManifestName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.HarvestedLowLatencyHlsManifest.ManifestName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.HarvestJob.ChannelGroupName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.HarvestJob.ChannelName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.HarvestJob.Description</property>
+    <min>0</min>
+    <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.HarvestJob.ETag</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[\S]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.HarvestJob.HarvestJobName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.HarvestJob.OriginEndpointName</property>
+    <min>1</min>
+    <max>256</max>
+    <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.ListDashManifestConfiguration.ManifestName</property>
     <min>1</min>
     <max>256</max>
     <pattern>[a-zA-Z0-9_-]+</pattern>
@@ -529,6 +954,17 @@
     <min>1</min>
     <max>256</max>
     <pattern>[a-zA-Z0-9_-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.S3DestinationConfig.BucketName</property>
+    <min>3</min>
+    <max>63</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaPackageV2.Model.S3DestinationConfig.DestinationPath</property>
+    <min>1</min>
+    <max>1024</max>
+    <pattern>[\S]+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaPackageV2.Model.Segment.SegmentDurationSeconds</property>

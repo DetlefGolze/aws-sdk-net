@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MainframeModernization.Model
 {
     /// <summary>
@@ -38,6 +39,7 @@ namespace Amazon.MainframeModernization.Model
         private int? _desiredCapacity;
         private string _engineVersion;
         private string _environmentId;
+        private bool? _forceUpdate;
         private string _instanceType;
         private string _preferredMaintenanceWindow;
 
@@ -46,9 +48,9 @@ namespace Amazon.MainframeModernization.Model
         /// <para>
         /// Indicates whether to update the runtime environment during the maintenance window.
         /// The default is false. Currently, Amazon Web Services Mainframe Modernization accepts
-        /// the <code>engineVersion</code> parameter only if <code>applyDuringMaintenanceWindow</code>
-        /// is true. If any parameter other than <code>engineVersion</code> is provided in <code>UpdateEnvironmentRequest</code>,
-        /// it will fail if <code>applyDuringMaintenanceWindow</code> is set to true.
+        /// the <c>engineVersion</c> parameter only if <c>applyDuringMaintenanceWindow</c> is
+        /// true. If any parameter other than <c>engineVersion</c> is provided in <c>UpdateEnvironmentRequest</c>,
+        /// it will fail if <c>applyDuringMaintenanceWindow</c> is set to true.
         /// </para>
         /// </summary>
         public bool ApplyDuringMaintenanceWindow
@@ -120,6 +122,35 @@ namespace Amazon.MainframeModernization.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ForceUpdate. 
+        /// <para>
+        /// Forces the updates on the environment. This option is needed if the applications in
+        /// the environment are not stopped or if there are ongoing application-related activities
+        /// in the environment.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you use this option, be aware that it could lead to data corruption in the applications,
+        /// and that you might need to perform repair and recovery procedures for the applications.
+        /// </para>
+        ///  
+        /// <para>
+        /// This option is not needed if the attribute being updated is <c>preferredMaintenanceWindow</c>.
+        /// </para>
+        /// </summary>
+        public bool ForceUpdate
+        {
+            get { return this._forceUpdate.GetValueOrDefault(); }
+            set { this._forceUpdate = value; }
+        }
+
+        // Check to see if ForceUpdate property is set
+        internal bool IsSetForceUpdate()
+        {
+            return this._forceUpdate.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property InstanceType. 
         /// <para>
         /// The instance type for the runtime environment to update.
@@ -140,8 +171,14 @@ namespace Amazon.MainframeModernization.Model
         /// <summary>
         /// Gets and sets the property PreferredMaintenanceWindow. 
         /// <para>
-        /// Configures the maintenance window you want for the runtime environment. If you do
-        /// not provide a value, a random system-generated value will be assigned.
+        /// Configures the maintenance window that you want for the runtime environment. The maintenance
+        /// window must have the format <c>ddd:hh24:mi-ddd:hh24:mi</c> and must be less than 24
+        /// hours. The following two examples are valid maintenance windows: <c>sun:23:45-mon:00:15</c>
+        /// or <c>sat:01:00-sat:03:00</c>. 
+        /// </para>
+        ///  
+        /// <para>
+        /// If you do not provide a value, a random system-generated value will be assigned.
         /// </para>
         /// </summary>
         public string PreferredMaintenanceWindow

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Tnb.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Tnb.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public GetSolNetworkOperationMetadata Unmarshall(JsonUnmarshallerContext context)
         {
+            GetSolNetworkOperationMetadata unmarshalledObject = new GetSolNetworkOperationMetadata();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            GetSolNetworkOperationMetadata unmarshalledObject = new GetSolNetworkOperationMetadata();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -70,14 +72,31 @@ namespace Amazon.Tnb.Model.Internal.MarshallTransformations
                     unmarshalledObject.CreatedAt = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("instantiateMetadata", targetDepth))
+                {
+                    var unmarshaller = InstantiateMetadataUnmarshaller.Instance;
+                    unmarshalledObject.InstantiateMetadata = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("lastModified", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
                     unmarshalledObject.LastModified = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("modifyVnfInfoMetadata", targetDepth))
+                {
+                    var unmarshaller = ModifyVnfInfoMetadataUnmarshaller.Instance;
+                    unmarshalledObject.ModifyVnfInfoMetadata = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("updateNsMetadata", targetDepth))
+                {
+                    var unmarshaller = UpdateNsMetadataUnmarshaller.Instance;
+                    unmarshalledObject.UpdateNsMetadata = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

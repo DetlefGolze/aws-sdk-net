@@ -71,6 +71,9 @@ namespace Amazon.DynamoDBv2
     /// A collection of converters capable of converting between
     /// .NET and DynamoDB objects.
     /// </summary>
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode(Amazon.DynamoDBv2.Custom.Internal.InternalConstants.RequiresUnreferencedCodeMessage)]
+#endif
     public class DynamoDBEntryConversion
     {
         #region Static members
@@ -199,7 +202,7 @@ namespace Amazon.DynamoDBv2
         /// <summary>
         /// Convert value to DynamoDBEntry
         /// </summary>
-        /// <typeparam name="TInput"></typeparam>
+        /// <param name="inputType"></param>
         /// <param name="value"></param>
         /// <returns></returns>
         public DynamoDBEntry ConvertToEntry(Type inputType, object value)
@@ -381,56 +384,59 @@ namespace Amazon.DynamoDBv2
         private ConverterCache ConverterCache = new ConverterCache();
         private ConversionSchema OriginalConversion;
 
-        private void AddConverters(string suffix)
-        {
-            var typedConverterTypeInfo = TypeFactory.GetTypeInfo(typeof(Converter));
-            var assembly = TypeFactory.GetTypeInfo(typeof(DynamoDBEntryConversion)).Assembly;
-#if NETSTANDARD
-            var allTypeInfos = assembly.DefinedTypes;
-            var allTypes = new List<Type>();
-            foreach (var typeInfo in allTypeInfos)
-                allTypes.Add(typeInfo.AsType());
-#else
-            var allTypes = assembly.GetTypes();
-#endif
-
-            foreach (var type in allTypes)
-            {
-                string fullName = type.FullName;
-
-                //if (type.Namespace != typedConverterType.Namespace)
-                //    continue;
-
-                var typeInfo = TypeFactory.GetTypeInfo(type);
-                if (typeInfo.IsAbstract)
-                    continue;
-
-                if (!type.Name.EndsWith(suffix, StringComparison.Ordinal))
-                    continue;
-
-                if (!typedConverterTypeInfo.IsAssignableFrom(typeInfo))
-                    continue;
-
-                AddConverter(type);
-            }
-        }
         internal void AddConverter(Converter converter)
         {
             ConverterCache.AddConverter(converter, this);
         }
-        internal void AddConverter(Type type)
-        {
-            var converter = Activator.CreateInstance(type) as Converter;
-            AddConverter(converter);
-        }
 
         private void SetV1Converters()
         {
-            AddConverters("ConverterV1");
+            AddConverter(new ByteConverterV1());
+            AddConverter(new SByteConverterV1());
+            AddConverter(new UInt16ConverterV1());
+            AddConverter(new Int16ConverterV1());
+            AddConverter(new UInt32ConverterV1());
+            AddConverter(new Int32ConverterV1());
+            AddConverter(new UInt64ConverterV1());
+            AddConverter(new Int64ConverterV1());
+            AddConverter(new SingleConverterV1());
+            AddConverter(new DoubleConverterV1());
+            AddConverter(new DecimalConverterV1());
+            AddConverter(new CharConverterV1());
+            AddConverter(new StringConverterV1());
+            AddConverter(new DateTimeConverterV1());
+            AddConverter(new GuidConverterV1());
+            AddConverter(new BytesConverterV1());
+            AddConverter(new MemoryStreamConverterV1());
+            AddConverter(new EnumConverterV1());
+            AddConverter(new BoolConverterV1());
+            AddConverter(new PrimitiveCollectionConverterV1());
+            AddConverter(new DictionaryConverterV1());
         }
+
         private void SetV2Converters()
         {
-            AddConverters("ConverterV2");
+            AddConverter(new ByteConverterV2());
+            AddConverter(new SByteConverterV2());
+            AddConverter(new UInt16ConverterV2());
+            AddConverter(new Int16ConverterV2());
+            AddConverter(new UInt32ConverterV2());
+            AddConverter(new Int32ConverterV2());
+            AddConverter(new UInt64ConverterV2());
+            AddConverter(new Int64ConverterV2());
+            AddConverter(new SingleConverterV2());
+            AddConverter(new DoubleConverterV2());
+            AddConverter(new DecimalConverterV2());
+            AddConverter(new CharConverterV2());
+            AddConverter(new StringConverterV2());
+            AddConverter(new DateTimeConverterV2());
+            AddConverter(new GuidConverterV2());
+            AddConverter(new BytesConverterV2());
+            AddConverter(new MemoryStreamConverterV2());
+            AddConverter(new DictionaryConverterV2());
+            AddConverter(new EnumConverterV2());
+            AddConverter(new BoolConverterV2());
+            AddConverter(new CollectionConverterV2());
         }
 
         // Converts items to Primitives.
@@ -650,8 +656,7 @@ namespace Amazon.DynamoDBv2
             var type = typeof(T);
             yield return type;
 
-            var typeInfo = TypeFactory.GetTypeInfo(type);
-            if (typeInfo.IsValueType)
+            if (type.IsValueType)
             {
                 //yield return typeof(Nullable<T>);
                 var nullableType = typeof(Nullable<>).MakeGenericType(type);
@@ -811,9 +816,8 @@ namespace Amazon.DynamoDBv2
                 throw new ArgumentNullException("type");
 
             // all enums use the same converter, one for Enum
-            var ti = TypeFactory.GetTypeInfo(type);
-            if (ti.IsEnum)
-                type = EnumType;
+            if (type.IsEnum)
+                return Cache.TryGetValue(EnumType, out converter);
 
             return Cache.TryGetValue(type, out converter);
         }

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(NetworkInterface requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCanInterface())
             {
                 context.Writer.WritePropertyName("canInterface");
@@ -52,6 +55,17 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
 
                 var marshaller = CanInterfaceMarshaller.Instance;
                 marshaller.Marshall(requestObject.CanInterface, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetCustomDecodingInterface())
+            {
+                context.Writer.WritePropertyName("customDecodingInterface");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = CustomDecodingInterfaceMarshaller.Instance;
+                marshaller.Marshall(requestObject.CustomDecodingInterface, context);
 
                 context.Writer.WriteObjectEnd();
             }
@@ -77,6 +91,17 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("type");
                 context.Writer.Write(requestObject.Type);
+            }
+
+            if(requestObject.IsSetVehicleMiddleware())
+            {
+                context.Writer.WritePropertyName("vehicleMiddleware");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = VehicleMiddlewareMarshaller.Instance;
+                marshaller.Marshall(requestObject.VehicleMiddleware, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
         }

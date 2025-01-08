@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Athena.Model
 {
     /// <summary>
     /// The metadata and rows that make up a query result set. The metadata describes the
-    /// column structure and data types. To return a <code>ResultSet</code> object, use <a>GetQueryResults</a>.
+    /// column structure and data types. To return a <c>ResultSet</c> object, use <a>GetQueryResults</a>.
     /// </summary>
     public partial class ResultSet
     {
         private ResultSetMetadata _resultSetMetadata;
-        private List<Row> _rows = new List<Row>();
+        private List<Row> _rows = AWSConfigs.InitializeCollections ? new List<Row>() : null;
 
         /// <summary>
         /// Gets and sets the property ResultSetMetadata. 
@@ -71,7 +72,7 @@ namespace Amazon.Athena.Model
         // Check to see if Rows property is set
         internal bool IsSetRows()
         {
-            return this._rows != null && this._rows.Count > 0; 
+            return this._rows != null && (this._rows.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

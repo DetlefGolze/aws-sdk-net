@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
@@ -38,8 +39,9 @@ namespace Amazon.StepFunctions.Model
         /// <summary>
         /// Gets and sets the property Truncated. 
         /// <para>
-        /// Indicates whether input or output was truncated in the response. Always <code>false</code>
-        /// for API calls.
+        /// Indicates whether input or output was truncated in the response. Always <c>false</c>
+        /// for API calls. In CloudWatch logs, the value will be true if the data is truncated
+        /// due to size limits.
         /// </para>
         /// </summary>
         public bool Truncated

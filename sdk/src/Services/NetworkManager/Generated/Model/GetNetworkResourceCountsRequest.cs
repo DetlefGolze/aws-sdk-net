@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -107,15 +108,15 @@ namespace Amazon.NetworkManager.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>dxcon</code> 
+        ///  <c>dxcon</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>dx-gateway</code> 
+        ///  <c>dx-gateway</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>dx-vif</code> 
+        ///  <c>dx-vif</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -123,19 +124,35 @@ namespace Amazon.NetworkManager.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>connection</code> 
+        ///  <c>attachment</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>device</code> 
+        ///  <c>connect-peer</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>link</code> 
+        ///  <c>connection</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>site</code> 
+        ///  <c>core-network</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>device</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>link</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>peering</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>site</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -143,27 +160,27 @@ namespace Amazon.NetworkManager.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>customer-gateway</code> 
+        ///  <c>customer-gateway</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>transit-gateway</code> 
+        ///  <c>transit-gateway</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>transit-gateway-attachment</code> 
+        ///  <c>transit-gateway-attachment</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>transit-gateway-connect-peer</code> 
+        ///  <c>transit-gateway-connect-peer</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>transit-gateway-route-table</code> 
+        ///  <c>transit-gateway-route-table</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>vpn-connection</code> 
+        ///  <c>vpn-connection</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// For <code>NetworkConnectionAction</code> and <code>PortProbeDetails</code>, <code>LocalPortDetails</code>
+    /// For <c>NetworkConnectionAction</c> and <c>PortProbeDetails</c>, <c>LocalPortDetails</c>
     /// provides information about the local port that was involved in the action.
     /// </summary>
     public partial class ActionLocalPortDetails
@@ -59,6 +60,10 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property PortName. 
         /// <para>
         /// The port name of the local connection.
+        /// </para>
+        ///  
+        /// <para>
+        /// Length Constraints: 128.
         /// </para>
         /// </summary>
         public string PortName

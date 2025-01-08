@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.WorkSpaces.Model
     /// </summary>
     public partial class DescribeApplicationsResponse : AmazonWebServiceResponse
     {
-        private List<WorkSpaceApplication> _applications = new List<WorkSpaceApplication>();
+        private List<WorkSpaceApplication> _applications = AWSConfigs.InitializeCollections ? new List<WorkSpaceApplication>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.WorkSpaces.Model
         // Check to see if Applications property is set
         internal bool IsSetApplications()
         {
-            return this._applications != null && this._applications.Count > 0; 
+            return this._applications != null && (this._applications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If you received a <code>NextToken</code> from a previous call that was paginated,
-        /// provide this token to receive the next set of results.
+        /// If you received a <c>NextToken</c> from a previous call that was paginated, provide
+        /// this token to receive the next set of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

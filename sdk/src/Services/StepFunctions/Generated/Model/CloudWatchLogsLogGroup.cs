@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.StepFunctions.Model
         /// Gets and sets the property LogGroupArn. 
         /// <para>
         /// The ARN of the the CloudWatch log group to which you want your logs emitted to. The
-        /// ARN must end with <code>:*</code> 
+        /// ARN must end with <c>:*</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppMesh.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.AppMesh.Model
     public partial class VirtualNodeSpec
     {
         private BackendDefaults _backendDefaults;
-        private List<Backend> _backends = new List<Backend>();
-        private List<Listener> _listeners = new List<Listener>();
+        private List<Backend> _backends = AWSConfigs.InitializeCollections ? new List<Backend>() : null;
+        private List<Listener> _listeners = AWSConfigs.InitializeCollections ? new List<Listener>() : null;
         private Logging _logging;
         private ServiceDiscovery _serviceDiscovery;
 
@@ -72,7 +73,7 @@ namespace Amazon.AppMesh.Model
         // Check to see if Backends property is set
         internal bool IsSetBackends()
         {
-            return this._backends != null && this._backends.Count > 0; 
+            return this._backends != null && (this._backends.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -91,7 +92,7 @@ namespace Amazon.AppMesh.Model
         // Check to see if Listeners property is set
         internal bool IsSetListeners()
         {
-            return this._listeners != null && this._listeners.Count > 0; 
+            return this._listeners != null && (this._listeners.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -116,7 +117,7 @@ namespace Amazon.AppMesh.Model
         /// Gets and sets the property ServiceDiscovery. 
         /// <para>
         /// The service discovery information for the virtual node. If your virtual node does
-        /// not expect ingress traffic, you can omit this parameter. If you specify a <code>listener</code>,
+        /// not expect ingress traffic, you can omit this parameter. If you specify a <c>listener</c>,
         /// then you must specify service discovery information.
         /// </para>
         /// </summary>

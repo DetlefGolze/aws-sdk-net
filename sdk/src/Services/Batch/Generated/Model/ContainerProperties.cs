@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.Batch.Model
     /// </summary>
     public partial class ContainerProperties
     {
-        private List<string> _command = new List<string>();
-        private List<KeyValuePair> _environment = new List<KeyValuePair>();
+        private List<string> _command = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<KeyValuePair> _environment = AWSConfigs.InitializeCollections ? new List<KeyValuePair>() : null;
         private EphemeralStorage _ephemeralStorage;
         private string _executionRoleArn;
         private FargatePlatformConfiguration _fargatePlatformConfiguration;
@@ -45,25 +46,26 @@ namespace Amazon.Batch.Model
         private LinuxParameters _linuxParameters;
         private LogConfiguration _logConfiguration;
         private int? _memory;
-        private List<MountPoint> _mountPoints = new List<MountPoint>();
+        private List<MountPoint> _mountPoints = AWSConfigs.InitializeCollections ? new List<MountPoint>() : null;
         private NetworkConfiguration _networkConfiguration;
         private bool? _privileged;
         private bool? _readonlyRootFilesystem;
-        private List<ResourceRequirement> _resourceRequirements = new List<ResourceRequirement>();
+        private RepositoryCredentials _repositoryCredentials;
+        private List<ResourceRequirement> _resourceRequirements = AWSConfigs.InitializeCollections ? new List<ResourceRequirement>() : null;
         private RuntimePlatform _runtimePlatform;
-        private List<Secret> _secrets = new List<Secret>();
-        private List<Ulimit> _ulimits = new List<Ulimit>();
+        private List<Secret> _secrets = AWSConfigs.InitializeCollections ? new List<Secret>() : null;
+        private List<Ulimit> _ulimits = AWSConfigs.InitializeCollections ? new List<Ulimit>() : null;
         private string _user;
         private int? _vcpus;
-        private List<Volume> _volumes = new List<Volume>();
+        private List<Volume> _volumes = AWSConfigs.InitializeCollections ? new List<Volume>() : null;
 
         /// <summary>
         /// Gets and sets the property Command. 
         /// <para>
-        /// The command that's passed to the container. This parameter maps to <code>Cmd</code>
-        /// in the <a href="https://docs.docker.com/engine/api/v1.23/#create-a-container">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.23/">Docker
-        /// Remote API</a> and the <code>COMMAND</code> parameter to <a href="https://docs.docker.com/engine/reference/run/">docker
+        /// The command that's passed to the container. This parameter maps to <c>Cmd</c> in the
+        /// <a href="https://docs.docker.com/engine/api/v1.23/#create-a-container">Create a container</a>
+        /// section of the <a href="https://docs.docker.com/engine/api/v1.23/">Docker Remote API</a>
+        /// and the <c>COMMAND</c> parameter to <a href="https://docs.docker.com/engine/reference/run/">docker
         /// run</a>. For more information, see <a href="https://docs.docker.com/engine/reference/builder/#cmd">https://docs.docker.com/engine/reference/builder/#cmd</a>.
         /// </para>
         /// </summary>
@@ -76,16 +78,16 @@ namespace Amazon.Batch.Model
         // Check to see if Command property is set
         internal bool IsSetCommand()
         {
-            return this._command != null && this._command.Count > 0; 
+            return this._command != null && (this._command.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Environment. 
         /// <para>
-        /// The environment variables to pass to a container. This parameter maps to <code>Env</code>
+        /// The environment variables to pass to a container. This parameter maps to <c>Env</c>
         /// in the <a href="https://docs.docker.com/engine/api/v1.23/#create-a-container">Create
         /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.23/">Docker
-        /// Remote API</a> and the <code>--env</code> option to <a href="https://docs.docker.com/engine/reference/run/">docker
+        /// Remote API</a> and the <c>--env</c> option to <a href="https://docs.docker.com/engine/reference/run/">docker
         /// run</a>.
         /// </para>
         ///  <important> 
@@ -95,7 +97,7 @@ namespace Amazon.Batch.Model
         /// </para>
         ///  </important> <note> 
         /// <para>
-        /// Environment variables cannot start with "<code>AWS_BATCH</code>". This naming convention
+        /// Environment variables cannot start with "<c>AWS_BATCH</c>". This naming convention
         /// is reserved for variables that Batch sets.
         /// </para>
         ///  </note>
@@ -109,7 +111,7 @@ namespace Amazon.Batch.Model
         // Check to see if Environment property is set
         internal bool IsSetEnvironment()
         {
-            return this._environment != null && this._environment.Count > 0; 
+            return this._environment != null && (this._environment.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -157,7 +159,7 @@ namespace Amazon.Batch.Model
         /// Gets and sets the property FargatePlatformConfiguration. 
         /// <para>
         /// The platform configuration for jobs that are running on Fargate resources. Jobs that
-        /// are running on EC2 resources must not specify this parameter.
+        /// are running on Amazon EC2 resources must not specify this parameter.
         /// </para>
         /// </summary>
         public FargatePlatformConfiguration FargatePlatformConfiguration
@@ -175,14 +177,14 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property Image. 
         /// <para>
-        /// The image used to start a container. This string is passed directly to the Docker
-        /// daemon. Images in the Docker Hub registry are available by default. Other repositories
-        /// are specified with <code> <i>repository-url</i>/<i>image</i>:<i>tag</i> </code>. It
-        /// can be 255 characters long. It can contain uppercase and lowercase letters, numbers,
-        /// hyphens (-), underscores (_), colons (:), periods (.), forward slashes (/), and number
-        /// signs (#). This parameter maps to <code>Image</code> in the <a href="https://docs.docker.com/engine/api/v1.23/#create-a-container">Create
+        /// Required. The image used to start a container. This string is passed directly to the
+        /// Docker daemon. Images in the Docker Hub registry are available by default. Other repositories
+        /// are specified with <c> <i>repository-url</i>/<i>image</i>:<i>tag</i> </c>. It can
+        /// be 255 characters long. It can contain uppercase and lowercase letters, numbers, hyphens
+        /// (-), underscores (_), colons (:), periods (.), forward slashes (/), and number signs
+        /// (#). This parameter maps to <c>Image</c> in the <a href="https://docs.docker.com/engine/api/v1.23/#create-a-container">Create
         /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.23/">Docker
-        /// Remote API</a> and the <code>IMAGE</code> parameter of <a href="https://docs.docker.com/engine/reference/run/">docker
+        /// Remote API</a> and the <c>IMAGE</c> parameter of <a href="https://docs.docker.com/engine/reference/run/">docker
         /// run</a>.
         /// </para>
         ///  <note> 
@@ -193,29 +195,29 @@ namespace Amazon.Batch.Model
         /// </para>
         ///  </note> <ul> <li> 
         /// <para>
-        /// Images in Amazon ECR Public repositories use the full <code>registry/repository[:tag]</code>
-        /// or <code>registry/repository[@digest]</code> naming conventions. For example, <code>public.ecr.aws/<i>registry_alias</i>/<i>my-web-app</i>:<i>latest</i>
-        /// </code>.
+        /// Images in Amazon ECR Public repositories use the full <c>registry/repository[:tag]</c>
+        /// or <c>registry/repository[@digest]</c> naming conventions. For example, <c>public.ecr.aws/<i>registry_alias</i>/<i>my-web-app</i>:<i>latest</i>
+        /// </c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// Images in Amazon ECR repositories use the full registry and repository URI (for example,
-        /// <code>123456789012.dkr.ecr.&lt;region-name&gt;.amazonaws.com/&lt;repository-name&gt;</code>).
+        /// <c>123456789012.dkr.ecr.&lt;region-name&gt;.amazonaws.com/&lt;repository-name&gt;</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Images in official repositories on Docker Hub use a single name (for example, <code>ubuntu</code>
-        /// or <code>mongo</code>).
+        /// Images in official repositories on Docker Hub use a single name (for example, <c>ubuntu</c>
+        /// or <c>mongo</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// Images in other repositories on Docker Hub are qualified with an organization name
-        /// (for example, <code>amazon/amazon-ecs-agent</code>).
+        /// (for example, <c>amazon/amazon-ecs-agent</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// Images in other online repositories are qualified further by a domain name (for example,
-        /// <code>quay.io/assemblyline/ubuntu</code>).
+        /// <c>quay.io/assemblyline/ubuntu</c>).
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -302,9 +304,9 @@ namespace Amazon.Batch.Model
         /// </para>
         ///  
         /// <para>
-        /// This parameter maps to <code>LogConfig</code> in the <a href="https://docs.docker.com/engine/api/v1.23/#create-a-container">Create
+        /// This parameter maps to <c>LogConfig</c> in the <a href="https://docs.docker.com/engine/api/v1.23/#create-a-container">Create
         /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.23/">Docker
-        /// Remote API</a> and the <code>--log-driver</code> option to <a href="https://docs.docker.com/engine/reference/run/">docker
+        /// Remote API</a> and the <c>--log-driver</c> option to <a href="https://docs.docker.com/engine/reference/run/">docker
         /// run</a>. By default, containers use the same logging driver that the Docker daemon
         /// uses. However the container might use a different logging driver than the Docker daemon
         /// by specifying a log driver with this parameter in the container definition. To use
@@ -316,20 +318,21 @@ namespace Amazon.Batch.Model
         ///  <note> 
         /// <para>
         /// Batch currently supports a subset of the logging drivers available to the Docker daemon
-        /// (shown in the <a>LogConfiguration</a> data type).
+        /// (shown in the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties-logconfiguration.html">LogConfiguration</a>
+        /// data type).
         /// </para>
         ///  </note> 
         /// <para>
         /// This parameter requires version 1.18 of the Docker Remote API or greater on your container
         /// instance. To check the Docker Remote API version on your container instance, log in
-        /// to your container instance and run the following command: <code>sudo docker version
-        /// | grep "Server API version"</code> 
+        /// to your container instance and run the following command: <c>sudo docker version |
+        /// grep "Server API version"</c> 
         /// </para>
         ///  <note> 
         /// <para>
         /// The Amazon ECS container agent running on a container instance must register the logging
-        /// drivers available on that instance with the <code>ECS_AVAILABLE_LOGGING_DRIVERS</code>
-        /// environment variable before containers placed on that instance can use these log configuration
+        /// drivers available on that instance with the <c>ECS_AVAILABLE_LOGGING_DRIVERS</c> environment
+        /// variable before containers placed on that instance can use these log configuration
         /// options. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-config.html">Amazon
         /// ECS container agent configuration</a> in the <i>Amazon Elastic Container Service Developer
         /// Guide</i>.
@@ -351,9 +354,9 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property Memory. 
         /// <para>
-        /// This parameter is deprecated, use <code>resourceRequirements</code> to specify the
-        /// memory requirements for the job definition. It's not supported for jobs running on
-        /// Fargate resources. For jobs that run on EC2 resources, it specifies the memory hard
+        /// This parameter is deprecated, use <c>resourceRequirements</c> to specify the memory
+        /// requirements for the job definition. It's not supported for jobs running on Fargate
+        /// resources. For jobs that run on Amazon EC2 resources, it specifies the memory hard
         /// limit (in MiB) for a container. If your container attempts to exceed the specified
         /// number, it's terminated. You must specify at least 4 MiB of memory for a job using
         /// this parameter. The memory hard limit can be specified in several places. It must
@@ -376,10 +379,10 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property MountPoints. 
         /// <para>
-        /// The mount points for data volumes in your container. This parameter maps to <code>Volumes</code>
+        /// The mount points for data volumes in your container. This parameter maps to <c>Volumes</c>
         /// in the <a href="https://docs.docker.com/engine/api/v1.23/#create-a-container">Create
         /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.23/">Docker
-        /// Remote API</a> and the <code>--volume</code> option to <a href="https://docs.docker.com/engine/reference/run/">docker
+        /// Remote API</a> and the <c>--volume</c> option to <a href="https://docs.docker.com/engine/reference/run/">docker
         /// run</a>.
         /// </para>
         /// </summary>
@@ -392,14 +395,14 @@ namespace Amazon.Batch.Model
         // Check to see if MountPoints property is set
         internal bool IsSetMountPoints()
         {
-            return this._mountPoints != null && this._mountPoints.Count > 0; 
+            return this._mountPoints != null && (this._mountPoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NetworkConfiguration. 
         /// <para>
         /// The network configuration for jobs that are running on Fargate resources. Jobs that
-        /// are running on EC2 resources must not specify this parameter.
+        /// are running on Amazon EC2 resources must not specify this parameter.
         /// </para>
         /// </summary>
         public NetworkConfiguration NetworkConfiguration
@@ -418,10 +421,10 @@ namespace Amazon.Batch.Model
         /// Gets and sets the property Privileged. 
         /// <para>
         /// When this parameter is true, the container is given elevated permissions on the host
-        /// container instance (similar to the <code>root</code> user). This parameter maps to
-        /// <code>Privileged</code> in the <a href="https://docs.docker.com/engine/api/v1.23/#create-a-container">Create
+        /// container instance (similar to the <c>root</c> user). This parameter maps to <c>Privileged</c>
+        /// in the <a href="https://docs.docker.com/engine/api/v1.23/#create-a-container">Create
         /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.23/">Docker
-        /// Remote API</a> and the <code>--privileged</code> option to <a href="https://docs.docker.com/engine/reference/run/">docker
+        /// Remote API</a> and the <c>--privileged</c> option to <a href="https://docs.docker.com/engine/reference/run/">docker
         /// run</a>. The default value is false.
         /// </para>
         ///  <note> 
@@ -447,9 +450,9 @@ namespace Amazon.Batch.Model
         /// Gets and sets the property ReadonlyRootFilesystem. 
         /// <para>
         /// When this parameter is true, the container is given read-only access to its root file
-        /// system. This parameter maps to <code>ReadonlyRootfs</code> in the <a href="https://docs.docker.com/engine/api/v1.23/#create-a-container">Create
+        /// system. This parameter maps to <c>ReadonlyRootfs</c> in the <a href="https://docs.docker.com/engine/api/v1.23/#create-a-container">Create
         /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.23/">Docker
-        /// Remote API</a> and the <code>--read-only</code> option to <code>docker run</code>.
+        /// Remote API</a> and the <c>--read-only</c> option to <c>docker run</c>.
         /// </para>
         /// </summary>
         public bool ReadonlyRootFilesystem
@@ -465,10 +468,28 @@ namespace Amazon.Batch.Model
         }
 
         /// <summary>
+        /// Gets and sets the property RepositoryCredentials. 
+        /// <para>
+        /// The private repository authentication credentials to use.
+        /// </para>
+        /// </summary>
+        public RepositoryCredentials RepositoryCredentials
+        {
+            get { return this._repositoryCredentials; }
+            set { this._repositoryCredentials = value; }
+        }
+
+        // Check to see if RepositoryCredentials property is set
+        internal bool IsSetRepositoryCredentials()
+        {
+            return this._repositoryCredentials != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ResourceRequirements. 
         /// <para>
         /// The type and amount of resources to assign to a container. The supported resources
-        /// include <code>GPU</code>, <code>MEMORY</code>, and <code>VCPU</code>.
+        /// include <c>GPU</c>, <c>MEMORY</c>, and <c>VCPU</c>.
         /// </para>
         /// </summary>
         public List<ResourceRequirement> ResourceRequirements
@@ -480,11 +501,14 @@ namespace Amazon.Batch.Model
         // Check to see if ResourceRequirements property is set
         internal bool IsSetResourceRequirements()
         {
-            return this._resourceRequirements != null && this._resourceRequirements.Count > 0; 
+            return this._resourceRequirements != null && (this._resourceRequirements.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
-        /// Gets and sets the property RuntimePlatform.
+        /// Gets and sets the property RuntimePlatform. 
+        /// <para>
+        /// An object that represents the compute environment architecture for Batch jobs on Fargate.
+        /// </para>
         /// </summary>
         public RuntimePlatform RuntimePlatform
         {
@@ -514,16 +538,16 @@ namespace Amazon.Batch.Model
         // Check to see if Secrets property is set
         internal bool IsSetSecrets()
         {
-            return this._secrets != null && this._secrets.Count > 0; 
+            return this._secrets != null && (this._secrets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Ulimits. 
         /// <para>
-        /// A list of <code>ulimits</code> to set in the container. This parameter maps to <code>Ulimits</code>
+        /// A list of <c>ulimits</c> to set in the container. This parameter maps to <c>Ulimits</c>
         /// in the <a href="https://docs.docker.com/engine/api/v1.23/#create-a-container">Create
         /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.23/">Docker
-        /// Remote API</a> and the <code>--ulimit</code> option to <a href="https://docs.docker.com/engine/reference/run/">docker
+        /// Remote API</a> and the <c>--ulimit</c> option to <a href="https://docs.docker.com/engine/reference/run/">docker
         /// run</a>.
         /// </para>
         ///  <note> 
@@ -542,16 +566,16 @@ namespace Amazon.Batch.Model
         // Check to see if Ulimits property is set
         internal bool IsSetUlimits()
         {
-            return this._ulimits != null && this._ulimits.Count > 0; 
+            return this._ulimits != null && (this._ulimits.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property User. 
         /// <para>
-        /// The user name to use inside the container. This parameter maps to <code>User</code>
-        /// in the <a href="https://docs.docker.com/engine/api/v1.23/#create-a-container">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.23/">Docker
-        /// Remote API</a> and the <code>--user</code> option to <a href="https://docs.docker.com/engine/reference/run/">docker
+        /// The user name to use inside the container. This parameter maps to <c>User</c> in the
+        /// <a href="https://docs.docker.com/engine/api/v1.23/#create-a-container">Create a container</a>
+        /// section of the <a href="https://docs.docker.com/engine/api/v1.23/">Docker Remote API</a>
+        /// and the <c>--user</c> option to <a href="https://docs.docker.com/engine/reference/run/">docker
         /// run</a>.
         /// </para>
         /// </summary>
@@ -570,17 +594,17 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property Vcpus. 
         /// <para>
-        /// This parameter is deprecated, use <code>resourceRequirements</code> to specify the
-        /// vCPU requirements for the job definition. It's not supported for jobs running on Fargate
-        /// resources. For jobs running on EC2 resources, it specifies the number of vCPUs reserved
-        /// for the job.
+        /// This parameter is deprecated, use <c>resourceRequirements</c> to specify the vCPU
+        /// requirements for the job definition. It's not supported for jobs running on Fargate
+        /// resources. For jobs running on Amazon EC2 resources, it specifies the number of vCPUs
+        /// reserved for the job.
         /// </para>
         ///  
         /// <para>
-        /// Each vCPU is equivalent to 1,024 CPU shares. This parameter maps to <code>CpuShares</code>
+        /// Each vCPU is equivalent to 1,024 CPU shares. This parameter maps to <c>CpuShares</c>
         /// in the <a href="https://docs.docker.com/engine/api/v1.23/#create-a-container">Create
         /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.23/">Docker
-        /// Remote API</a> and the <code>--cpu-shares</code> option to <a href="https://docs.docker.com/engine/reference/run/">docker
+        /// Remote API</a> and the <c>--cpu-shares</c> option to <a href="https://docs.docker.com/engine/reference/run/">docker
         /// run</a>. The number of vCPUs must be specified but can be specified in several places.
         /// You must specify it at least once for each node.
         /// </para>
@@ -613,7 +637,7 @@ namespace Amazon.Batch.Model
         // Check to see if Volumes property is set
         internal bool IsSetVolumes()
         {
-            return this._volumes != null && this._volumes.Count > 0; 
+            return this._volumes != null && (this._volumes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

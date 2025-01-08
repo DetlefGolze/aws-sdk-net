@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the codebuild-2016-10-06.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -54,6 +55,11 @@ namespace Amazon.CodeBuild.Model
         /// Paginator for ListBuildsForProject operation
         ///</summary>
         IListBuildsForProjectPaginator ListBuildsForProject(ListBuildsForProjectRequest request);
+
+        /// <summary>
+        /// Paginator for ListFleets operation
+        ///</summary>
+        IListFleetsPaginator ListFleets(ListFleetsRequest request);
 
         /// <summary>
         /// Paginator for ListProjects operation

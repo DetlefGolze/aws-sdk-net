@@ -14,11 +14,16 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml;
 using Amazon.Util;
+using Amazon.Util.Internal;
 using ThirdParty.Json.LitJson;
+
+#if NET8_0_OR_GREATER
+using System.Text.Json;
+#endif
 
 namespace Amazon.Runtime.Credentials.Internal
 {
@@ -82,7 +87,7 @@ namespace Amazon.Runtime.Credentials.Internal
                 !string.IsNullOrEmpty(token.ClientId) &&
                 !string.IsNullOrEmpty(token.ClientSecret);
         }
-        
+
         /// <summary>
         /// Serializes the SSO Token to JSON
         /// </summary>
@@ -90,6 +95,21 @@ namespace Amazon.Runtime.Credentials.Internal
         public static string AsJson(this SsoToken token)
         {
             return ToJson(token);
+        }
+
+        /// <summary>
+        /// This determines whether the <seealso cref="SsoToken.RegistrationExpiresAt"/> field is 5 minutes within expiration
+        /// </summary>
+        /// <param name="token">The sso token</param>
+        /// <returns>This returns true if <seealso cref="SsoToken.RegistrationExpiresAt"/> is within 5 minutes of expiration. False otherwise</returns>
+        public static bool RegisteredClientExpired(this SsoToken token)
+        {
+            if (null == token)
+                throw new ArgumentNullException(nameof(token));
+            DateTime dateTime = ConvertRFC3339StringToDateTime(token.RegistrationExpiresAt);
+#pragma warning disable CS0618 // Type or member is obsolete
+            return AWSSDKUtils.CorrectedUtcNow >= dateTime.AddMinutes(-5);
+#pragma warning restore CS0618 // Type or member is obsolete               
         }
 
         #endregion
@@ -100,33 +120,27 @@ namespace Amazon.Runtime.Credentials.Internal
         /// <param name="token">Token to serialize</param>
         public static string ToJson(SsoToken token)
         {
-            var json = new StringBuilder();
-            var writer = new JsonWriter(json)
+            var jsonData = new Dictionary<string, string>
             {
-                PrettyPrint = true,
+                [JsonPropertyNames.AccessToken] = token.AccessToken,
+                [JsonPropertyNames.ExpiresAt] = XmlConvert.ToString(token.ExpiresAt, XmlDateTimeSerializationMode.Utc),
+                [JsonPropertyNames.RefreshToken] = token.RefreshToken,
+                [JsonPropertyNames.ClientId] = token.ClientId,
+                [JsonPropertyNames.ClientSecret] = token.ClientSecret,
+                [JsonPropertyNames.RegistrationExpiresAt] = token.RegistrationExpiresAt,
+                [JsonPropertyNames.Region] = token.Region,
+                [JsonPropertyNames.StartUrl] = token.StartUrl
             };
 
-            var jsonData = new JsonData
-            {
-                [JsonPropertyNames.AccessToken] = new JsonData(token.AccessToken),
-                [JsonPropertyNames.ExpiresAt] = new JsonData(XmlConvert.ToString(token.ExpiresAt, XmlDateTimeSerializationMode.Utc)),
-                [JsonPropertyNames.RefreshToken] = new JsonData(token.RefreshToken),
-                [JsonPropertyNames.ClientId] = new JsonData(token.ClientId),
-                [JsonPropertyNames.ClientSecret] = new JsonData(token.ClientSecret),
-                [JsonPropertyNames.RegistrationExpiresAt] = new JsonData(token.RegistrationExpiresAt),
-                [JsonPropertyNames.Region] = new JsonData(token.Region),
-                [JsonPropertyNames.StartUrl] = new JsonData(token.StartUrl)
-            };
-
-            JsonMapper.ToJson(jsonData, writer);
-            return json.ToString();
+            return JsonSerializerHelper.Serialize<Dictionary<string, string>>(jsonData, new DictionaryStringStringJsonSerializerContexts(new JsonSerializerOptions { WriteIndented = true }));
         }
 
         /// <summary>
-        /// Deserializes the SSO Token from JSON
+        /// Deserializes the SSO Token from JSON. Returns null when throwIfTokenInvalid is false and token is invalid.
         /// </summary>
-        /// <param name="json">JSON (string) to deserialize</param>
-        public static SsoToken FromJson(string json)
+        /// <param name="json">JSON (string) to deserialize.</param>
+        /// <param name="throwIfTokenInvalid">if set, throws exception of type AmazonClientException when the json doesn't have AccessToken and ExpiresAt properties.</param>
+        public static SsoToken FromJson(string json, bool throwIfTokenInvalid)
         {
             var jsonData = JsonMapper.ToObject(json);
 
@@ -135,13 +149,29 @@ namespace Amazon.Runtime.Credentials.Internal
             if (jsonData.PropertyNames.Contains(JsonPropertyNames.AccessToken))
                 token.AccessToken = jsonData[JsonPropertyNames.AccessToken].ToString();
             else
-                throw new AmazonClientException($"Token is invalid: missing required field [{JsonPropertyNames.AccessToken}]");
-
+            {
+                if (throwIfTokenInvalid)
+                {
+                    throw new AmazonClientException($"Token is invalid: missing required field [{JsonPropertyNames.AccessToken}]");
+                }
+                else
+                {
+                    return null;
+                }
+            }
             if (jsonData.PropertyNames.Contains(JsonPropertyNames.ExpiresAt))
                 token.ExpiresAt = XmlConvert.ToDateTime(jsonData[JsonPropertyNames.ExpiresAt].ToString(), XmlDateTimeSerializationMode.Utc);
             else
-                throw new AmazonClientException($"Token is invalid: missing required field [{JsonPropertyNames.ExpiresAt}]");
-
+            {
+                if (throwIfTokenInvalid)
+                {
+                    throw new AmazonClientException($"Token is invalid: missing required field [{JsonPropertyNames.ExpiresAt}]");
+                }
+                else
+                {
+                    return null;
+                }
+            }
             if (jsonData.PropertyNames.Contains(JsonPropertyNames.RefreshToken))
                 token.RefreshToken = jsonData[JsonPropertyNames.RefreshToken]?.ToString();
 
@@ -159,8 +189,33 @@ namespace Amazon.Runtime.Credentials.Internal
 
             if (jsonData.PropertyNames.Contains(JsonPropertyNames.StartUrl))
                 token.StartUrl = jsonData[JsonPropertyNames.StartUrl]?.ToString();
-            
+
             return token;
         }
+
+        /// <summary>
+        /// Deserializes the SSO Token from JSON
+        /// </summary>
+        /// <param name="json">JSON (string) to deserialize</param>
+        public static SsoToken FromJson(string json)
+        {
+            return FromJson(json, throwIfTokenInvalid: true);
+        }
+        #region private methods
+        /// <summary>
+        /// This method takes in an RFC3339 string representing a datetime and converts it to a DateTime object 
+        /// </summary>
+        /// <param name="stringFormattedDate">The RFC3339 formatted string</param>
+        /// <returns>Returns the datetime object serialized to UTC</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        private static DateTime ConvertRFC3339StringToDateTime(string stringFormattedDate)
+        {
+            if (string.IsNullOrEmpty(stringFormattedDate))
+            {
+                throw new ArgumentNullException(nameof(stringFormattedDate));
+            }
+            return XmlConvert.ToDateTime(stringFormattedDate, XmlDateTimeSerializationMode.Utc);
+        }
+        #endregion
     }
 }

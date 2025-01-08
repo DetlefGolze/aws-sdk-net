@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
-    /// Represents a single entry in the list of values for <code>SqlAliases</code>.
+    /// Represents a single entry in the list of values for <c>SqlAliases</c>.
     /// </summary>
     public partial class SqlAlias
     {

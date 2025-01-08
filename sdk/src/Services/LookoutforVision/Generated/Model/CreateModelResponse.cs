@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LookoutforVision.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.LookoutforVision.Model
         /// <summary>
         /// Gets and sets the property ModelMetadata. 
         /// <para>
-        /// The response from a call to <code>CreateModel</code>.
+        /// The response from a call to <c>CreateModel</c>.
         /// </para>
         /// </summary>
         public ModelMetadata ModelMetadata

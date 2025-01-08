@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentity.Model
 {
     /// <summary>
-    /// Returned in response to a successful <code>LookupDeveloperIdentity</code> action.
+    /// Returned in response to a successful <c>LookupDeveloperIdentity</c> action.
     /// </summary>
     public partial class LookupDeveloperIdentityResponse : AmazonWebServiceResponse
     {
-        private List<string> _developerUserIdentifierList = new List<string>();
+        private List<string> _developerUserIdentifierList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _identityId;
         private string _nextToken;
 
@@ -53,7 +54,7 @@ namespace Amazon.CognitoIdentity.Model
         // Check to see if DeveloperUserIdentifierList property is set
         internal bool IsSetDeveloperUserIdentifierList()
         {
-            return this._developerUserIdentifierList != null && this._developerUserIdentifierList.Count > 0; 
+            return this._developerUserIdentifierList != null && (this._developerUserIdentifierList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -78,12 +79,12 @@ namespace Amazon.CognitoIdentity.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A pagination token. The first call you make will have <code>NextToken</code> set to
-        /// null. After that the service will return <code>NextToken</code> values as needed.
-        /// For example, let's say you make a request with <code>MaxResults</code> set to 10,
-        /// and there are 20 matches in the database. The service will return a pagination token
-        /// as a part of the response. This token can be used to call the API again and get results
-        /// starting from the 11th match.
+        /// A pagination token. The first call you make will have <c>NextToken</c> set to null.
+        /// After that the service will return <c>NextToken</c> values as needed. For example,
+        /// let's say you make a request with <c>MaxResults</c> set to 10, and there are 20 matches
+        /// in the database. The service will return a pagination token as a part of the response.
+        /// This token can be used to call the API again and get results starting from the 11th
+        /// match.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=65535)]

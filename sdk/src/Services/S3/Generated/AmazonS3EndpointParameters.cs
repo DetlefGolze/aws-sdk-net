@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the s3-2006-03-01.normal.json service model.
  */
 
+using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Runtime.Endpoints;
 
@@ -125,6 +126,33 @@ namespace Amazon.S3.Endpoints
         }
 
         /// <summary>
+        /// Key parameter
+        /// </summary>
+        public string Key 
+        { 
+            get { return (string)this["Key"]; }
+            set { this["Key"] = value; } 
+        }
+
+        /// <summary>
+        /// Prefix parameter
+        /// </summary>
+        public string Prefix 
+        { 
+            get { return (string)this["Prefix"]; }
+            set { this["Prefix"] = value; } 
+        }
+
+        /// <summary>
+        /// CopySource parameter
+        /// </summary>
+        public string CopySource 
+        { 
+            get { return (string)this["CopySource"]; }
+            set { this["CopySource"] = value; } 
+        }
+
+        /// <summary>
         /// DisableAccessPoints parameter
         /// </summary>
         public bool? DisableAccessPoints 
@@ -149,6 +177,24 @@ namespace Amazon.S3.Endpoints
         { 
             get { return (bool?)this["UseArnRegion"]; }
             set { this["UseArnRegion"] = value; } 
+        }
+
+        /// <summary>
+        /// UseS3ExpressControlEndpoint parameter
+        /// </summary>
+        public bool? UseS3ExpressControlEndpoint 
+        { 
+            get { return (bool?)this["UseS3ExpressControlEndpoint"]; }
+            set { this["UseS3ExpressControlEndpoint"] = value; } 
+        }
+
+        /// <summary>
+        /// DisableS3ExpressSessionAuth parameter
+        /// </summary>
+        public bool? DisableS3ExpressSessionAuth 
+        { 
+            get { return (bool?)this["DisableS3ExpressSessionAuth"]; }
+            set { this["DisableS3ExpressSessionAuth"] = value; } 
         }
     }
 }

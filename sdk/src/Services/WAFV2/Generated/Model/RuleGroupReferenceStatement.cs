@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -35,17 +36,17 @@ namespace Amazon.WAFV2.Model
     /// 
     ///  
     /// <para>
-    /// You cannot nest a <code>RuleGroupReferenceStatement</code>, for example for use inside
-    /// a <code>NotStatement</code> or <code>OrStatement</code>. You cannot use a rule group
-    /// reference statement inside another rule group. You can only reference a rule group
-    /// as a top-level statement within a rule that you define in a web ACL.
+    /// You cannot nest a <c>RuleGroupReferenceStatement</c>, for example for use inside a
+    /// <c>NotStatement</c> or <c>OrStatement</c>. You cannot use a rule group reference statement
+    /// inside another rule group. You can only reference a rule group as a top-level statement
+    /// within a rule that you define in a web ACL.
     /// </para>
     /// </summary>
     public partial class RuleGroupReferenceStatement
     {
         private string _arn;
-        private List<ExcludedRule> _excludedRules = new List<ExcludedRule>();
-        private List<RuleActionOverride> _ruleActionOverrides = new List<RuleActionOverride>();
+        private List<ExcludedRule> _excludedRules = AWSConfigs.InitializeCollections ? new List<ExcludedRule>() : null;
+        private List<RuleActionOverride> _ruleActionOverrides = AWSConfigs.InitializeCollections ? new List<RuleActionOverride>() : null;
 
         /// <summary>
         /// Gets and sets the property ARN. 
@@ -69,12 +70,12 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property ExcludedRules. 
         /// <para>
-        /// Rules in the referenced rule group whose actions are set to <code>Count</code>. 
+        /// Rules in the referenced rule group whose actions are set to <c>Count</c>. 
         /// </para>
         ///  <note> 
         /// <para>
-        /// Instead of this option, use <code>RuleActionOverrides</code>. It accepts any valid
-        /// action setting, including <code>Count</code>.
+        /// Instead of this option, use <c>RuleActionOverrides</c>. It accepts any valid action
+        /// setting, including <c>Count</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -88,7 +89,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if ExcludedRules property is set
         internal bool IsSetExcludedRules()
         {
-            return this._excludedRules != null && this._excludedRules.Count > 0; 
+            return this._excludedRules != null && (this._excludedRules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -101,12 +102,12 @@ namespace Amazon.WAFV2.Model
         ///  
         /// <para>
         /// You can use overrides for testing, for example you can override all of rule actions
-        /// to <code>Count</code> and then monitor the resulting count metrics to understand how
-        /// the rule group would handle your web traffic. You can also permanently override some
-        /// or all actions, to modify how the rule group manages your web traffic.
+        /// to <c>Count</c> and then monitor the resulting count metrics to understand how the
+        /// rule group would handle your web traffic. You can also permanently override some or
+        /// all actions, to modify how the rule group manages your web traffic.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=100)]
+        [AWSProperty(Max=100)]
         public List<RuleActionOverride> RuleActionOverrides
         {
             get { return this._ruleActionOverrides; }
@@ -116,7 +117,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if RuleActionOverrides property is set
         internal bool IsSetRuleActionOverrides()
         {
-            return this._ruleActionOverrides != null && this._ruleActionOverrides.Count > 0; 
+            return this._ruleActionOverrides != null && (this._ruleActionOverrides.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

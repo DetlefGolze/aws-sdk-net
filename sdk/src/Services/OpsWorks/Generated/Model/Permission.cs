@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
@@ -78,8 +79,8 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property IamUserArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) for an AWS Identity and Access Management (IAM) role.
-        /// For more information about IAM ARNs, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html">Using
+        /// The Amazon Resource Name (ARN) for an Identity and Access Management (IAM) role. For
+        /// more information about IAM ARNs, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html">Using
         /// Identifiers</a>.
         /// </para>
         /// </summary>
@@ -102,23 +103,23 @@ namespace Amazon.OpsWorks.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>deny</code> 
+        ///  <c>deny</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>show</code> 
+        ///  <c>show</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deploy</code> 
+        ///  <c>deploy</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>manage</code> 
+        ///  <c>manage</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>iam_only</code> 
+        ///  <c>iam_only</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>

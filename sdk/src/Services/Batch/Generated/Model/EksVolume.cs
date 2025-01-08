@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
@@ -36,13 +37,14 @@ namespace Amazon.Batch.Model
         private EksEmptyDir _emptyDir;
         private EksHostPath _hostPath;
         private string _name;
+        private EksPersistentVolumeClaim _persistentVolumeClaim;
         private EksSecret _secret;
 
         /// <summary>
         /// Gets and sets the property EmptyDir. 
         /// <para>
-        /// Specifies the configuration of a Kubernetes <code>emptyDir</code> volume. For more
-        /// information, see <a href="https://kubernetes.io/docs/concepts/storage/volumes/#emptydir">emptyDir</a>
+        /// Specifies the configuration of a Kubernetes <c>emptyDir</c> volume. For more information,
+        /// see <a href="https://kubernetes.io/docs/concepts/storage/volumes/#emptydir">emptyDir</a>
         /// in the <i>Kubernetes documentation</i>.
         /// </para>
         /// </summary>
@@ -61,8 +63,8 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property HostPath. 
         /// <para>
-        /// Specifies the configuration of a Kubernetes <code>hostPath</code> volume. For more
-        /// information, see <a href="https://kubernetes.io/docs/concepts/storage/volumes/#hostpath">hostPath</a>
+        /// Specifies the configuration of a Kubernetes <c>hostPath</c> volume. For more information,
+        /// see <a href="https://kubernetes.io/docs/concepts/storage/volumes/#hostpath">hostPath</a>
         /// in the <i>Kubernetes documentation</i>.
         /// </para>
         /// </summary>
@@ -100,9 +102,29 @@ namespace Amazon.Batch.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PersistentVolumeClaim. 
+        /// <para>
+        /// Specifies the configuration of a Kubernetes <c>persistentVolumeClaim</c> bounded to
+        /// a <c>persistentVolume</c>. For more information, see <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims">
+        /// Persistent Volume Claims</a> in the <i>Kubernetes documentation</i>.
+        /// </para>
+        /// </summary>
+        public EksPersistentVolumeClaim PersistentVolumeClaim
+        {
+            get { return this._persistentVolumeClaim; }
+            set { this._persistentVolumeClaim = value; }
+        }
+
+        // Check to see if PersistentVolumeClaim property is set
+        internal bool IsSetPersistentVolumeClaim()
+        {
+            return this._persistentVolumeClaim != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Secret. 
         /// <para>
-        /// Specifies the configuration of a Kubernetes <code>secret</code> volume. For more information,
+        /// Specifies the configuration of a Kubernetes <c>secret</c> volume. For more information,
         /// see <a href="https://kubernetes.io/docs/concepts/storage/volumes/#secret">secret</a>
         /// in the <i>Kubernetes documentation</i>.
         /// </para>

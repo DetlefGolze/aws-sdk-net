@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.GameLift.Model
     /// </para>
     ///  
     /// <para>
-    /// If successful, the updated <code>GameSession</code> object is returned. 
+    /// If successful, the updated <c>GameSession</c> object is returned. 
     /// </para>
     ///  
     /// <para>
@@ -49,6 +50,7 @@ namespace Amazon.GameLift.Model
     /// </summary>
     public partial class UpdateGameSessionRequest : AmazonGameLiftRequest
     {
+        private List<GameProperty> _gameProperties = AWSConfigs.InitializeCollections ? new List<GameProperty>() : null;
         private string _gameSessionId;
         private int? _maximumPlayerSessionCount;
         private string _name;
@@ -56,12 +58,36 @@ namespace Amazon.GameLift.Model
         private ProtectionPolicy _protectionPolicy;
 
         /// <summary>
+        /// Gets and sets the property GameProperties. 
+        /// <para>
+        /// A set of key-value pairs that can store custom data in a game session. For example:
+        /// <c>{"Key": "difficulty", "Value": "novice"}</c>. You can use this parameter to modify
+        /// game properties in an active game session. This action adds new properties and modifies
+        /// existing properties. There is no way to delete properties. For an example, see <a
+        /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-client-api.html#game-properties-update">Update
+        /// the value of a game property</a>. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=16)]
+        public List<GameProperty> GameProperties
+        {
+            get { return this._gameProperties; }
+            set { this._gameProperties = value; }
+        }
+
+        // Check to see if GameProperties property is set
+        internal bool IsSetGameProperties()
+        {
+            return this._gameProperties != null && (this._gameProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property GameSessionId. 
         /// <para>
         /// A unique identifier for the game session to update. 
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=256)]
+        [AWSProperty(Required=true, Min=1, Max=512)]
         public string GameSessionId
         {
             get { return this._gameSessionId; }
@@ -138,12 +164,12 @@ namespace Amazon.GameLift.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>NoProtection</b> -- The game session can be terminated during a scale-down event.
+        ///  <c>NoProtection</c> -- The game session can be terminated during a scale-down event.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>FullProtection</b> -- If the game session is in an <code>ACTIVE</code> status,
-        /// it cannot be terminated during a scale-down event.
+        ///  <c>FullProtection</c> -- If the game session is in an <c>ACTIVE</c> status, it cannot
+        /// be terminated during a scale-down event.
         /// </para>
         ///  </li> </ul>
         /// </summary>

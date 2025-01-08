@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -62,7 +63,7 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property FeatureName. 
         /// <para>
         /// The name of the feature for the DB instance that the IAM role is to be disassociated
-        /// from. For information about supported feature names, see <code>DBEngineVersion</code>.
+        /// from. For information about supported feature names, see <c>DBEngineVersion</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -82,7 +83,7 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property RoleArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the IAM role to disassociate from the DB instance,
-        /// for example, <code>arn:aws:iam::123456789012:role/AccessRole</code>.
+        /// for example, <c>arn:aws:iam::123456789012:role/AccessRole</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

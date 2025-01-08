@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -65,22 +66,21 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>DRIFTED</code>: The stack differs from its expected template configuration.
-        /// A stack is considered to have drifted if one or more of its resources have drifted.
+        ///  <c>DRIFTED</c>: The stack differs from its expected template configuration. A stack
+        /// is considered to have drifted if one or more of its resources have drifted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NOT_CHECKED</code>: CloudFormation hasn't checked if the stack differs from
-        /// its expected template configuration.
+        ///  <c>NOT_CHECKED</c>: CloudFormation hasn't checked if the stack differs from its expected
+        /// template configuration.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IN_SYNC</code>: The stack's actual configuration matches its expected template
-        /// configuration.
+        ///  <c>IN_SYNC</c>: The stack's actual configuration matches its expected template configuration.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UNKNOWN</code>: This value is reserved for future use.
+        ///  <c>UNKNOWN</c>: This value is reserved for future use.
         /// </para>
         ///  </li> </ul>
         /// </summary>

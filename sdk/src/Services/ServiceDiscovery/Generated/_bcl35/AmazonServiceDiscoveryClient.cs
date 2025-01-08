@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.ServiceDiscovery
 {
     /// <summary>
-    /// Implementation for accessing ServiceDiscovery
+    /// <para>Implementation for accessing ServiceDiscovery</para>
     ///
     /// Cloud Map 
     /// <para>
@@ -275,8 +276,8 @@ namespace Amazon.ServiceDiscovery
 
         /// <summary>
         /// Creates an HTTP namespace. Service instances registered using an HTTP namespace can
-        /// be discovered using a <code>DiscoverInstances</code> request but can't be discovered
-        /// using DNS.
+        /// be discovered using a <c>DiscoverInstances</c> request but can't be discovered using
+        /// DNS.
         /// 
         ///  
         /// <para>
@@ -357,12 +358,11 @@ namespace Amazon.ServiceDiscovery
         /// <summary>
         /// Creates a private namespace based on DNS, which is visible only inside a specified
         /// Amazon VPC. The namespace defines your service naming scheme. For example, if you
-        /// name your namespace <code>example.com</code> and name your service <code>backend</code>,
-        /// the resulting DNS name for the service is <code>backend.example.com</code>. Service
-        /// instances that are registered using a private DNS namespace can be discovered using
-        /// either a <code>DiscoverInstances</code> request or using DNS. For the current quota
-        /// on the number of namespaces that you can create using the same Amazon Web Services
-        /// account, see <a href="https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html">Cloud
+        /// name your namespace <c>example.com</c> and name your service <c>backend</c>, the resulting
+        /// DNS name for the service is <c>backend.example.com</c>. Service instances that are
+        /// registered using a private DNS namespace can be discovered using either a <c>DiscoverInstances</c>
+        /// request or using DNS. For the current quota on the number of namespaces that you can
+        /// create using the same Amazon Web Services account, see <a href="https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html">Cloud
         /// Map quotas</a> in the <i>Cloud Map Developer Guide</i>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreatePrivateDnsNamespace service method.</param>
@@ -436,18 +436,18 @@ namespace Amazon.ServiceDiscovery
 
         /// <summary>
         /// Creates a public namespace based on DNS, which is visible on the internet. The namespace
-        /// defines your service naming scheme. For example, if you name your namespace <code>example.com</code>
-        /// and name your service <code>backend</code>, the resulting DNS name for the service
-        /// is <code>backend.example.com</code>. You can discover instances that were registered
-        /// with a public DNS namespace by using either a <code>DiscoverInstances</code> request
-        /// or using DNS. For the current quota on the number of namespaces that you can create
-        /// using the same Amazon Web Services account, see <a href="https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html">Cloud
+        /// defines your service naming scheme. For example, if you name your namespace <c>example.com</c>
+        /// and name your service <c>backend</c>, the resulting DNS name for the service is <c>backend.example.com</c>.
+        /// You can discover instances that were registered with a public DNS namespace by using
+        /// either a <c>DiscoverInstances</c> request or using DNS. For the current quota on the
+        /// number of namespaces that you can create using the same Amazon Web Services account,
+        /// see <a href="https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html">Cloud
         /// Map quotas</a> in the <i>Cloud Map Developer Guide</i>.
         /// 
         ///  <important> 
         /// <para>
-        /// The <code>CreatePublicDnsNamespace</code> API operation is not supported in the Amazon
-        /// Web Services GovCloud (US) Regions.
+        /// The <c>CreatePublicDnsNamespace</c> API operation is not supported in the Amazon Web
+        /// Services GovCloud (US) Regions.
         /// </para>
         ///  </important>
         /// </summary>
@@ -530,23 +530,23 @@ namespace Amazon.ServiceDiscovery
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>A</code> 
+        ///  <c>A</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AAAA</code> 
+        ///  <c>AAAA</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>A</code> and <code>AAAA</code> 
+        ///  <c>A</c> and <c>AAAA</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SRV</code> 
+        ///  <c>SRV</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CNAME</code> 
+        ///  <c>CNAME</c> 
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
@@ -705,8 +705,8 @@ namespace Amazon.ServiceDiscovery
         #region  DeleteService
 
         /// <summary>
-        /// Deletes a specified service. If the service still contains one or more registered
-        /// instances, the request fails.
+        /// Deletes a specified service and all associated service attributes. If the service
+        /// still contains one or more registered instances, the request fails.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteService service method.</param>
         /// 
@@ -765,6 +765,68 @@ namespace Amazon.ServiceDiscovery
         public virtual DeleteServiceResponse EndDeleteService(IAsyncResult asyncResult)
         {
             return EndInvoke<DeleteServiceResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  DeleteServiceAttributes
+
+        /// <summary>
+        /// Deletes specific attributes associated with a service.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteServiceAttributes service method.</param>
+        /// 
+        /// <returns>The response from the DeleteServiceAttributes service method, as returned by ServiceDiscovery.</returns>
+        /// <exception cref="Amazon.ServiceDiscovery.Model.InvalidInputException">
+        /// One or more specified values aren't valid. For example, a required value might be
+        /// missing, a numeric value might be outside the allowed range, or a string value might
+        /// exceed length constraints.
+        /// </exception>
+        /// <exception cref="Amazon.ServiceDiscovery.Model.ServiceNotFoundException">
+        /// No service exists with the specified ID.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/DeleteServiceAttributes">REST API Reference for DeleteServiceAttributes Operation</seealso>
+        public virtual DeleteServiceAttributesResponse DeleteServiceAttributes(DeleteServiceAttributesRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteServiceAttributesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteServiceAttributesResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteServiceAttributesResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteServiceAttributes operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteServiceAttributes operation on AmazonServiceDiscoveryClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteServiceAttributes
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/DeleteServiceAttributes">REST API Reference for DeleteServiceAttributes Operation</seealso>
+        public virtual IAsyncResult BeginDeleteServiceAttributes(DeleteServiceAttributesRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteServiceAttributesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteServiceAttributesResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteServiceAttributes operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteServiceAttributes.</param>
+        /// 
+        /// <returns>Returns a  DeleteServiceAttributesResult from ServiceDiscovery.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/DeleteServiceAttributes">REST API Reference for DeleteServiceAttributes Operation</seealso>
+        public virtual DeleteServiceAttributesResponse EndDeleteServiceAttributes(IAsyncResult asyncResult)
+        {
+            return EndInvoke<DeleteServiceAttributesResponse>(asyncResult);
         }
 
         #endregion
@@ -847,7 +909,7 @@ namespace Amazon.ServiceDiscovery
 
         /// <summary>
         /// Discovers registered instances for a specified namespace and service. You can use
-        /// <code>DiscoverInstances</code> to discover instances for any type of namespace. <code>DiscoverInstances</code>
+        /// <c>DiscoverInstances</c> to discover instances for any type of namespace. <c>DiscoverInstances</c>
         /// returns a randomized list of instances allowing customers to distribute traffic evenly
         /// across instances. For public and private DNS namespaces, you can also use DNS queries
         /// to discover instances.
@@ -1056,7 +1118,7 @@ namespace Amazon.ServiceDiscovery
         #region  GetInstancesHealthStatus
 
         /// <summary>
-        /// Gets the current health status (<code>Healthy</code>, <code>Unhealthy</code>, or <code>Unknown</code>)
+        /// Gets the current health status (<c>Healthy</c>, <c>Unhealthy</c>, or <c>Unknown</c>)
         /// of one or more instances that are associated with a specified service.
         /// 
         ///  <note> 
@@ -1193,7 +1255,7 @@ namespace Amazon.ServiceDiscovery
 
         /// <summary>
         /// Gets information about any operation that returns an operation ID in the response,
-        /// such as a <code>CreateHttpNamespace</code> request.
+        /// such as a <c>CreateHttpNamespace</c> request.
         /// 
         ///  <note> 
         /// <para>
@@ -1316,6 +1378,68 @@ namespace Amazon.ServiceDiscovery
         public virtual GetServiceResponse EndGetService(IAsyncResult asyncResult)
         {
             return EndInvoke<GetServiceResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  GetServiceAttributes
+
+        /// <summary>
+        /// Returns the attributes associated with a specified service.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetServiceAttributes service method.</param>
+        /// 
+        /// <returns>The response from the GetServiceAttributes service method, as returned by ServiceDiscovery.</returns>
+        /// <exception cref="Amazon.ServiceDiscovery.Model.InvalidInputException">
+        /// One or more specified values aren't valid. For example, a required value might be
+        /// missing, a numeric value might be outside the allowed range, or a string value might
+        /// exceed length constraints.
+        /// </exception>
+        /// <exception cref="Amazon.ServiceDiscovery.Model.ServiceNotFoundException">
+        /// No service exists with the specified ID.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/GetServiceAttributes">REST API Reference for GetServiceAttributes Operation</seealso>
+        public virtual GetServiceAttributesResponse GetServiceAttributes(GetServiceAttributesRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetServiceAttributesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetServiceAttributesResponseUnmarshaller.Instance;
+
+            return Invoke<GetServiceAttributesResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetServiceAttributes operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetServiceAttributes operation on AmazonServiceDiscoveryClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetServiceAttributes
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/GetServiceAttributes">REST API Reference for GetServiceAttributes Operation</seealso>
+        public virtual IAsyncResult BeginGetServiceAttributes(GetServiceAttributesRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetServiceAttributesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetServiceAttributesResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetServiceAttributes operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetServiceAttributes.</param>
+        /// 
+        /// <returns>Returns a  GetServiceAttributesResult from ServiceDiscovery.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/GetServiceAttributes">REST API Reference for GetServiceAttributes Operation</seealso>
+        public virtual GetServiceAttributesResponse EndGetServiceAttributes(IAsyncResult asyncResult)
+        {
+            return EndInvoke<GetServiceAttributesResponse>(asyncResult);
         }
 
         #endregion
@@ -1506,7 +1630,7 @@ namespace Amazon.ServiceDiscovery
 
         /// <summary>
         /// Lists summary information for all the services that are associated with one or more
-        /// specified namespaces.
+        /// namespaces.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListServices service method.</param>
         /// 
@@ -1628,19 +1752,19 @@ namespace Amazon.ServiceDiscovery
 
         /// <summary>
         /// Creates or updates one or more records and, optionally, creates a health check based
-        /// on the settings in a specified service. When you submit a <code>RegisterInstance</code>
+        /// on the settings in a specified service. When you submit a <c>RegisterInstance</c>
         /// request, the following occurs:
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// For each DNS record that you define in the service that's specified by <code>ServiceId</code>,
+        /// For each DNS record that you define in the service that's specified by <c>ServiceId</c>,
         /// a record is created or updated in the hosted zone that's associated with the corresponding
         /// namespace.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the service includes <code>HealthCheckConfig</code>, a health check is created
-        /// based on the settings in the health check configuration.
+        /// If the service includes <c>HealthCheckConfig</c>, a health check is created based
+        /// on the settings in the health check configuration.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1648,8 +1772,8 @@ namespace Amazon.ServiceDiscovery
         /// </para>
         ///  </li> </ul> <important> 
         /// <para>
-        /// One <code>RegisterInstance</code> request must complete before you can submit another
-        /// request and specify the same service ID and instance ID.
+        /// One <c>RegisterInstance</c> request must complete before you can submit another request
+        /// and specify the same service ID and instance ID.
         /// </para>
         ///  </important> 
         /// <para>
@@ -1952,10 +2076,10 @@ namespace Amazon.ServiceDiscovery
         /// 
         ///  
         /// <para>
-        /// You can use <code>UpdateInstanceCustomHealthStatus</code> to change the status only
-        /// for custom health checks, which you define using <code>HealthCheckCustomConfig</code>
-        /// when you create a service. You can't use it to change the status for Route 53 health
-        /// checks, which you define using <code>HealthCheckConfig</code>.
+        /// You can use <c>UpdateInstanceCustomHealthStatus</c> to change the status only for
+        /// custom health checks, which you define using <c>HealthCheckCustomConfig</c> when you
+        /// create a service. You can't use it to change the status for Route 53 health checks,
+        /// which you define using <c>HealthCheckConfig</c>.
         /// </para>
         ///  
         /// <para>
@@ -1966,7 +2090,7 @@ namespace Amazon.ServiceDiscovery
         /// 
         /// <returns>The response from the UpdateInstanceCustomHealthStatus service method, as returned by ServiceDiscovery.</returns>
         /// <exception cref="Amazon.ServiceDiscovery.Model.CustomHealthNotFoundException">
-        /// The health check for the instance that's specified by <code>ServiceId</code> and <code>InstanceId</code>
+        /// The health check for the instance that's specified by <c>ServiceId</c> and <c>InstanceId</c>
         /// isn't a custom health check.
         /// </exception>
         /// <exception cref="Amazon.ServiceDiscovery.Model.InstanceNotFoundException">
@@ -2172,15 +2296,15 @@ namespace Amazon.ServiceDiscovery
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// Update the TTL setting for existing <code>DnsRecords</code> configurations
+        /// Update the TTL setting for existing <c>DnsRecords</c> configurations
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Add, update, or delete <code>HealthCheckConfig</code> for a specified service
+        /// Add, update, or delete <c>HealthCheckConfig</c> for a specified service
         /// </para>
         ///  <note> 
         /// <para>
-        /// You can't add, update, or delete a <code>HealthCheckCustomConfig</code> configuration.
+        /// You can't add, update, or delete a <c>HealthCheckCustomConfig</c> configuration.
         /// </para>
         ///  </note> </li> </ul> 
         /// <para>
@@ -2188,14 +2312,13 @@ namespace Amazon.ServiceDiscovery
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If you omit any existing <code>DnsRecords</code> or <code>HealthCheckConfig</code>
-        /// configurations from an <code>UpdateService</code> request, the configurations are
-        /// deleted from the service.
+        /// If you omit any existing <c>DnsRecords</c> or <c>HealthCheckConfig</c> configurations
+        /// from an <c>UpdateService</c> request, the configurations are deleted from the service.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If you omit an existing <code>HealthCheckCustomConfig</code> configuration from an
-        /// <code>UpdateService</code> request, the configuration isn't deleted from the service.
+        /// If you omit an existing <c>HealthCheckCustomConfig</c> configuration from an <c>UpdateService</c>
+        /// request, the configuration isn't deleted from the service.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -2263,6 +2386,72 @@ namespace Amazon.ServiceDiscovery
 
         #endregion
         
+        #region  UpdateServiceAttributes
+
+        /// <summary>
+        /// Submits a request to update a specified service to add service-level attributes.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateServiceAttributes service method.</param>
+        /// 
+        /// <returns>The response from the UpdateServiceAttributes service method, as returned by ServiceDiscovery.</returns>
+        /// <exception cref="Amazon.ServiceDiscovery.Model.InvalidInputException">
+        /// One or more specified values aren't valid. For example, a required value might be
+        /// missing, a numeric value might be outside the allowed range, or a string value might
+        /// exceed length constraints.
+        /// </exception>
+        /// <exception cref="Amazon.ServiceDiscovery.Model.ServiceAttributesLimitExceededException">
+        /// The attribute can't be added to the service because you've exceeded the quota for
+        /// the number of attributes you can add to a service.
+        /// </exception>
+        /// <exception cref="Amazon.ServiceDiscovery.Model.ServiceNotFoundException">
+        /// No service exists with the specified ID.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/UpdateServiceAttributes">REST API Reference for UpdateServiceAttributes Operation</seealso>
+        public virtual UpdateServiceAttributesResponse UpdateServiceAttributes(UpdateServiceAttributesRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateServiceAttributesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateServiceAttributesResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateServiceAttributesResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateServiceAttributes operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateServiceAttributes operation on AmazonServiceDiscoveryClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateServiceAttributes
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/UpdateServiceAttributes">REST API Reference for UpdateServiceAttributes Operation</seealso>
+        public virtual IAsyncResult BeginUpdateServiceAttributes(UpdateServiceAttributesRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateServiceAttributesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateServiceAttributesResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateServiceAttributes operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateServiceAttributes.</param>
+        /// 
+        /// <returns>Returns a  UpdateServiceAttributesResult from ServiceDiscovery.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/UpdateServiceAttributes">REST API Reference for UpdateServiceAttributes Operation</seealso>
+        public virtual UpdateServiceAttributesResponse EndUpdateServiceAttributes(IAsyncResult asyncResult)
+        {
+            return EndInvoke<UpdateServiceAttributesResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region DetermineServiceOperationEndpoint
 
         /// <summary>
@@ -2272,11 +2461,11 @@ namespace Amazon.ServiceDiscovery
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

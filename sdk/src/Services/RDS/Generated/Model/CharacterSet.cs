@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// This data type is used as a response element in the action <code>DescribeDBEngineVersions</code>.
+    /// This data type is used as a response element in the action <c>DescribeDBEngineVersions</c>.
     /// </summary>
     public partial class CharacterSet
     {

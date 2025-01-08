@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -45,7 +46,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>aws/ssm/<i>SystemsManagerDocumentName</i> </code> 
+        ///  <c>aws/ssm/<i>SystemsManagerDocumentName</i> </c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=512)]

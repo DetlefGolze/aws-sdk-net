@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -40,14 +41,14 @@ namespace Amazon.LocationService.Model
         private string _keyArn;
         private string _keyName;
         private ApiKeyRestrictions _restrictions;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private DateTime? _updateTime;
 
         /// <summary>
         /// Gets and sets the property CreateTime. 
         /// <para>
         /// The timestamp for when the API key resource was created in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">
-        /// ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. 
+        /// ISO 8601</a> format: <c>YYYY-MM-DDThh:mm:ss.sssZ</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -86,7 +87,7 @@ namespace Amazon.LocationService.Model
         /// Gets and sets the property ExpireTime. 
         /// <para>
         /// The timestamp for when the API key resource will expire in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">
-        /// ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. 
+        /// ISO 8601</a> format: <c>YYYY-MM-DDThh:mm:ss.sssZ</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -129,7 +130,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Format example: <code>arn:aws:geo:region:account-id:key/ExampleKey</code> 
+        /// Format example: <c>arn:aws:geo:region:account-id:key/ExampleKey</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -197,14 +198,14 @@ namespace Amazon.LocationService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UpdateTime. 
         /// <para>
         /// The timestamp for when the API key resource was last updated in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">
-        /// ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. 
+        /// ISO 8601</a> format: <c>YYYY-MM-DDThh:mm:ss.sssZ</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

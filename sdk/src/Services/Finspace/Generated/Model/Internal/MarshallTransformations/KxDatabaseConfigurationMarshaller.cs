@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Finspace.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.Finspace.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(KxDatabaseConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCacheConfigurations())
             {
                 context.Writer.WritePropertyName("cacheConfigurations");
@@ -71,6 +74,23 @@ namespace Amazon.Finspace.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("databaseName");
                 context.Writer.Write(requestObject.DatabaseName);
+            }
+
+            if(requestObject.IsSetDataviewConfiguration())
+            {
+                context.Writer.WritePropertyName("dataviewConfiguration");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = KxDataviewConfigurationMarshaller.Instance;
+                marshaller.Marshall(requestObject.DataviewConfiguration, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetDataviewName())
+            {
+                context.Writer.WritePropertyName("dataviewName");
+                context.Writer.Write(requestObject.DataviewName);
             }
 
         }

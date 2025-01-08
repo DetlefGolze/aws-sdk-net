@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationAutoScaling.Model
 {
     /// <summary>
@@ -34,11 +35,9 @@ namespace Amazon.ApplicationAutoScaling.Model
     /// 
     ///  
     /// <para>
-    /// Only the Amazon Web Services that you're using send metrics to Amazon CloudWatch.
-    /// To determine whether a desired metric already exists by looking up its namespace and
-    /// dimension using the CloudWatch metrics dashboard in the console, follow the procedure
-    /// in <a href="https://docs.aws.amazon.com/autoscaling/application/userguide/monitoring-cloudwatch.html">Building
-    /// dashboards with CloudWatch</a> in the <i>Application Auto Scaling User Guide</i>.
+    /// For more information, <a href="https://docs.aws.amazon.com/autoscaling/application/userguide/monitoring-cloudwatch.html#predefined-metrics">Predefined
+    /// metrics for target tracking scaling policies</a> in the <i>Application Auto Scaling
+    /// User Guide</i>.
     /// </para>
     /// </summary>
     public partial class PredefinedMetricSpecification
@@ -49,8 +48,8 @@ namespace Amazon.ApplicationAutoScaling.Model
         /// <summary>
         /// Gets and sets the property PredefinedMetricType. 
         /// <para>
-        /// The metric type. The <code>ALBRequestCountPerTarget</code> metric type applies only
-        /// to Spot Fleets and ECS services.
+        /// The metric type. The <c>ALBRequestCountPerTarget</c> metric type applies only to Spot
+        /// Fleets and ECS services.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -70,8 +69,8 @@ namespace Amazon.ApplicationAutoScaling.Model
         /// Gets and sets the property ResourceLabel. 
         /// <para>
         /// Identifies the resource associated with the metric type. You can't specify a resource
-        /// label unless the metric type is <code>ALBRequestCountPerTarget</code> and there is
-        /// a target group attached to the Spot Fleet or ECS service.
+        /// label unless the metric type is <c>ALBRequestCountPerTarget</c> and there is a target
+        /// group attached to the Spot Fleet or ECS service.
         /// </para>
         ///  
         /// <para>
@@ -81,7 +80,7 @@ namespace Amazon.ApplicationAutoScaling.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>app/my-alb/778d41231b141a0f/targetgroup/my-alb-target-group/943f017f100becff</code>.
+        ///  <c>app/my-alb/778d41231b141a0f/targetgroup/my-alb-target-group/943f017f100becff</c>.
         /// </para>
         ///  
         /// <para>

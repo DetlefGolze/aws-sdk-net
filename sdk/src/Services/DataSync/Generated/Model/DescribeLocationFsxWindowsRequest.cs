@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeLocationFsxWindows operation.
-    /// Returns metadata about an Amazon FSx for Windows File Server location, such as information
-    /// about its path.
+    /// Provides details about how an DataSync transfer location for an Amazon FSx for Windows
+    /// File Server file system is configured.
     /// </summary>
     public partial class DescribeLocationFsxWindowsRequest : AmazonDataSyncRequest
     {
@@ -40,7 +41,7 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property LocationArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the FSx for Windows File Server location to describe.
+        /// Specifies the Amazon Resource Name (ARN) of the FSx for Windows File Server location.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=128)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentity.Model
 {
     /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.CognitoIdentity.Model
         /// Gets and sets the property MatchType. 
         /// <para>
         /// The match condition that specifies how closely the claim value in the IdP token must
-        /// match <code>Value</code>.
+        /// match <c>Value</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

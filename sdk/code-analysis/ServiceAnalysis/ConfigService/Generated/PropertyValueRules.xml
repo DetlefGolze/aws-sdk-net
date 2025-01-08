@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-16"?>
 <property-value-rules>
   <property-value-rule>
+    <property>Amazon.ConfigService.Model.AssociateResourceTypesRequest.ConfigurationRecorderArn</property>
+    <min>1</min>
+    <max>1000</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.ConfigService.Model.BatchGetAggregateResourceConfigRequest.ConfigurationAggregatorName</property>
     <min>1</min>
     <max>256</max>
@@ -52,7 +57,7 @@
     <property>Amazon.ConfigService.Model.DeleteOrganizationConfigRuleRequest.OrganizationConfigRuleName</property>
     <min>1</min>
     <max>64</max>
-    <pattern>.*\S.*</pattern>
+    <pattern>[A-Za-z0-9-_]+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ConfigService.Model.DeleteOrganizationConformancePackRequest.OrganizationConformancePackName</property>
@@ -96,6 +101,22 @@
     <min>1</min>
     <max>256</max>
     <pattern>[\w\-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ConfigService.Model.DeleteServiceLinkedConfigurationRecorderRequest.ServicePrincipal</property>
+    <min>1</min>
+    <max>128</max>
+    <pattern>[\w+=,.@-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ConfigService.Model.DeleteServiceLinkedConfigurationRecorderResponse.Arn</property>
+    <min>1</min>
+    <max>1000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ConfigService.Model.DeleteServiceLinkedConfigurationRecorderResponse.Name</property>
+    <min>1</min>
+    <max>256</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ConfigService.Model.DeleteStoredQueryRequest.QueryName</property>
@@ -172,6 +193,28 @@
     <max>100</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.ConfigService.Model.DescribeConfigurationRecordersRequest.Arn</property>
+    <min>1</min>
+    <max>1000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ConfigService.Model.DescribeConfigurationRecordersRequest.ServicePrincipal</property>
+    <min>1</min>
+    <max>128</max>
+    <pattern>[\w+=,.@-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ConfigService.Model.DescribeConfigurationRecorderStatusRequest.Arn</property>
+    <min>1</min>
+    <max>1000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ConfigService.Model.DescribeConfigurationRecorderStatusRequest.ServicePrincipal</property>
+    <min>1</min>
+    <max>128</max>
+    <pattern>[\w+=,.@-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.ConfigService.Model.DescribeConformancePackComplianceRequest.ConformancePackName</property>
     <min>1</min>
     <max>256</max>
@@ -244,6 +287,11 @@
     <property>Amazon.ConfigService.Model.DescribeRemediationExecutionStatusRequest.Limit</property>
     <min>0</min>
     <max>100</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ConfigService.Model.DisassociateResourceTypesRequest.ConfigurationRecorderArn</property>
+    <min>1</min>
+    <max>1000</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ConfigService.Model.GetAggregateComplianceDetailsByConfigRuleRequest.AccountId</property>
@@ -397,7 +445,7 @@
     <property>Amazon.ConfigService.Model.GetOrganizationConfigRuleDetailedStatusRequest.OrganizationConfigRuleName</property>
     <min>1</min>
     <max>64</max>
-    <pattern>.*\S.*</pattern>
+    <pattern>[A-Za-z0-9-_]+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ConfigService.Model.GetOrganizationConformancePackDetailedStatusRequest.Limit</property>
@@ -414,7 +462,7 @@
     <property>Amazon.ConfigService.Model.GetOrganizationCustomRulePolicyRequest.OrganizationConfigRuleName</property>
     <min>1</min>
     <max>64</max>
-    <pattern>.*\S.*</pattern>
+    <pattern>[A-Za-z0-9-_]+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ConfigService.Model.GetOrganizationCustomRulePolicyResponse.PolicyText</property>
@@ -457,6 +505,11 @@
     <property>Amazon.ConfigService.Model.ListAggregateDiscoveredResourcesRequest.Limit</property>
     <min>0</min>
     <max>100</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ConfigService.Model.ListConfigurationRecordersRequest.MaxResults</property>
+    <min>0</min>
+    <max>20</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ConfigService.Model.ListConformancePackComplianceScoresRequest.Limit</property>
@@ -545,7 +598,7 @@
     <property>Amazon.ConfigService.Model.PutOrganizationConfigRuleRequest.OrganizationConfigRuleName</property>
     <min>1</min>
     <max>64</max>
-    <pattern>.*\S.*</pattern>
+    <pattern>[A-Za-z0-9-_]+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ConfigService.Model.PutOrganizationConfigRuleResponse.OrganizationConfigRuleArn</property>
@@ -615,6 +668,22 @@
     <property>Amazon.ConfigService.Model.PutRetentionConfigurationRequest.RetentionPeriodInDays</property>
     <min>30</min>
     <max>2557</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ConfigService.Model.PutServiceLinkedConfigurationRecorderRequest.ServicePrincipal</property>
+    <min>1</min>
+    <max>128</max>
+    <pattern>[\w+=,.@-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ConfigService.Model.PutServiceLinkedConfigurationRecorderResponse.Arn</property>
+    <min>1</min>
+    <max>1000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ConfigService.Model.PutServiceLinkedConfigurationRecorderResponse.Name</property>
+    <min>1</min>
+    <max>256</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ConfigService.Model.PutStoredQueryResponse.QueryArn</property>
@@ -925,9 +994,47 @@
     <max>768</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.ConfigService.Model.ConfigurationRecorder.Arn</property>
+    <min>1</min>
+    <max>1000</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.ConfigService.Model.ConfigurationRecorder.Name</property>
     <min>1</min>
     <max>256</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ConfigService.Model.ConfigurationRecorder.ServicePrincipal</property>
+    <min>1</min>
+    <max>128</max>
+    <pattern>[\w+=,.@-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ConfigService.Model.ConfigurationRecorderStatus.Arn</property>
+    <min>1</min>
+    <max>1000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ConfigService.Model.ConfigurationRecorderStatus.ServicePrincipal</property>
+    <min>1</min>
+    <max>128</max>
+    <pattern>[\w+=,.@-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ConfigService.Model.ConfigurationRecorderSummary.Arn</property>
+    <min>1</min>
+    <max>1000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ConfigService.Model.ConfigurationRecorderSummary.Name</property>
+    <min>1</min>
+    <max>256</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ConfigService.Model.ConfigurationRecorderSummary.ServicePrincipal</property>
+    <min>1</min>
+    <max>128</max>
+    <pattern>[\w+=,.@-]+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ConfigService.Model.ConformancePackComplianceScore.ConformancePackName</property>
@@ -1129,13 +1236,13 @@
     <property>Amazon.ConfigService.Model.OrganizationConfigRule.OrganizationConfigRuleName</property>
     <min>1</min>
     <max>64</max>
-    <pattern>.*\S.*</pattern>
+    <pattern>[A-Za-z0-9-_]+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ConfigService.Model.OrganizationConfigRuleStatus.OrganizationConfigRuleName</property>
     <min>1</min>
     <max>64</max>
-    <pattern>.*\S.*</pattern>
+    <pattern>[A-Za-z0-9-_]+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ConfigService.Model.OrganizationConformancePack.DeliveryS3Bucket</property>
@@ -1312,6 +1419,11 @@
     <property>Amazon.ConfigService.Model.PendingAggregationRequest.RequesterAwsRegion</property>
     <min>1</min>
     <max>64</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ConfigService.Model.RecordingModeOverride.Description</property>
+    <min>1</min>
+    <max>256</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ConfigService.Model.Relationship.ResourceId</property>

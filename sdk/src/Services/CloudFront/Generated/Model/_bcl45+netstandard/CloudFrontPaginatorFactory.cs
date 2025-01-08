@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -57,6 +58,22 @@ namespace Amazon.CloudFront.Model
         public IListInvalidationsPaginator ListInvalidations(ListInvalidationsRequest request) 
         {
             return new ListInvalidationsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListKeyValueStores operation
+        ///</summary>
+        public IListKeyValueStoresPaginator ListKeyValueStores(ListKeyValueStoresRequest request) 
+        {
+            return new ListKeyValueStoresPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListPublicKeys operation
+        ///</summary>
+        public IListPublicKeysPaginator ListPublicKeys(ListPublicKeysRequest request) 
+        {
+            return new ListPublicKeysPaginator(this.client, request);
         }
 
         /// <summary>

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// The result of a <code>UpdateAvailabilityOptions</code> request. Contains the status
-    /// of the domain's availability options.
+    /// The result of a <c>UpdateAvailabilityOptions</c> request. Contains the status of the
+    /// domain's availability options.
     /// </summary>
     public partial class UpdateAvailabilityOptionsResponse : AmazonWebServiceResponse
     {

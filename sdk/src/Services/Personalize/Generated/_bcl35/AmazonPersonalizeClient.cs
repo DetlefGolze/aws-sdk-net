@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.Personalize
 {
     /// <summary>
-    /// Implementation for accessing Personalize
+    /// <para>Implementation for accessing Personalize</para>
     ///
     /// Amazon Personalize is a machine learning service that makes it easy to add individualized
     /// recommendations to customers.
@@ -267,9 +268,37 @@ namespace Amazon.Personalize
         #region  CreateBatchInferenceJob
 
         /// <summary>
-        /// Creates a batch inference job. The operation can handle up to 50 million records and
-        /// the input file must be in JSON format. For more information, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/creating-batch-inference-job.html">Creating
-        /// a batch inference job</a>.
+        /// Generates batch recommendations based on a list of items or users stored in Amazon
+        /// S3 and exports the recommendations to an Amazon S3 bucket.
+        /// 
+        ///  
+        /// <para>
+        /// To generate batch recommendations, specify the ARN of a solution version and an Amazon
+        /// S3 URI for the input and output data. For user personalization, popular items, and
+        /// personalized ranking solutions, the batch inference job generates a list of recommended
+        /// items for each user ID in the input file. For related items solutions, the job generates
+        /// a list of recommended items for each item ID in the input file.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/getting-batch-recommendations.html">Creating
+        /// a batch inference job </a>.
+        /// </para>
+        ///  
+        /// <para>
+        ///  If you use the Similar-Items recipe, Amazon Personalize can add descriptive themes
+        /// to batch recommendations. To generate themes, set the job's mode to <c>THEME_GENERATION</c>
+        /// and specify the name of the field that contains item names in the input data.
+        /// </para>
+        ///  
+        /// <para>
+        ///  For more information about generating themes, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/themed-batch-recommendations.html">Batch
+        /// recommendations with themes from Content Generator </a>. 
+        /// </para>
+        ///  
+        /// <para>
+        /// You can't get batch recommendations with the Trending-Now or Next-Best-Action recipes.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateBatchInferenceJob service method.</param>
         /// 
@@ -415,42 +444,56 @@ namespace Amazon.Personalize
         #region  CreateCampaign
 
         /// <summary>
+        /// <important> 
+        /// <para>
+        ///  You incur campaign costs while it is active. To avoid unnecessary costs, make sure
+        /// to delete the campaign when you are finished. For information about campaign costs,
+        /// see <a href="https://aws.amazon.com/personalize/pricing/">Amazon Personalize pricing</a>.
+        /// </para>
+        ///  </important> 
+        /// <para>
         /// Creates a campaign that deploys a solution version. When a client calls the <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html">GetRecommendations</a>
         /// and <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetPersonalizedRanking.html">GetPersonalizedRanking</a>
         /// APIs, a campaign is specified in the request.
-        /// 
+        /// </para>
         ///  
         /// <para>
         ///  <b>Minimum Provisioned TPS and Auto-Scaling</b> 
         /// </para>
         ///  <important> 
         /// <para>
-        ///  A high <code>minProvisionedTPS</code> will increase your bill. We recommend starting
-        /// with 1 for <code>minProvisionedTPS</code> (the default). Track your usage using Amazon
-        /// CloudWatch metrics, and increase the <code>minProvisionedTPS</code> as necessary.
+        ///  A high <c>minProvisionedTPS</c> will increase your cost. We recommend starting with
+        /// 1 for <c>minProvisionedTPS</c> (the default). Track your usage using Amazon CloudWatch
+        /// metrics, and increase the <c>minProvisionedTPS</c> as necessary.
         /// </para>
         ///  </important> 
         /// <para>
-        /// A transaction is a single <code>GetRecommendations</code> or <code>GetPersonalizedRanking</code>
-        /// call. Transactions per second (TPS) is the throughput and unit of billing for Amazon
-        /// Personalize. The minimum provisioned TPS (<code>minProvisionedTPS</code>) specifies
-        /// the baseline throughput provisioned by Amazon Personalize, and thus, the minimum billing
-        /// charge. 
+        ///  When you create an Amazon Personalize campaign, you can specify the minimum provisioned
+        /// transactions per second (<c>minProvisionedTPS</c>) for the campaign. This is the baseline
+        /// transaction throughput for the campaign provisioned by Amazon Personalize. It sets
+        /// the minimum billing charge for the campaign while it is active. A transaction is a
+        /// single <c>GetRecommendations</c> or <c>GetPersonalizedRanking</c> request. The default
+        /// <c>minProvisionedTPS</c> is 1.
         /// </para>
         ///  
         /// <para>
-        ///  If your TPS increases beyond <code>minProvisionedTPS</code>, Amazon Personalize auto-scales
-        /// the provisioned capacity up and down, but never below <code>minProvisionedTPS</code>.
-        /// There's a short time delay while the capacity is increased that might cause loss of
-        /// transactions.
+        ///  If your TPS increases beyond the <c>minProvisionedTPS</c>, Amazon Personalize auto-scales
+        /// the provisioned capacity up and down, but never below <c>minProvisionedTPS</c>. There's
+        /// a short time delay while the capacity is increased that might cause loss of transactions.
+        /// When your traffic reduces, capacity returns to the <c>minProvisionedTPS</c>. 
         /// </para>
         ///  
         /// <para>
-        /// The actual TPS used is calculated as the average requests/second within a 5-minute
-        /// window. You pay for maximum of either the minimum provisioned TPS or the actual TPS.
-        /// We recommend starting with a low <code>minProvisionedTPS</code>, track your usage
-        /// using Amazon CloudWatch metrics, and then increase the <code>minProvisionedTPS</code>
+        /// You are charged for the the minimum provisioned TPS or, if your requests exceed the
+        /// <c>minProvisionedTPS</c>, the actual TPS. The actual TPS is the total number of recommendation
+        /// requests you make. We recommend starting with a low <c>minProvisionedTPS</c>, track
+        /// your usage using Amazon CloudWatch metrics, and then increase the <c>minProvisionedTPS</c>
         /// as necessary.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about campaign costs, see <a href="https://aws.amazon.com/personalize/pricing/">Amazon
+        /// Personalize pricing</a>.
         /// </para>
         ///  
         /// <para>
@@ -474,8 +517,8 @@ namespace Amazon.Personalize
         /// </para>
         ///  <note> 
         /// <para>
-        /// Wait until the <code>status</code> of the campaign is <code>ACTIVE</code> before asking
-        /// the campaign for recommendations.
+        /// Wait until the <c>status</c> of the campaign is <c>ACTIVE</c> before asking the campaign
+        /// for recommendations.
         /// </para>
         ///  </note> 
         /// <para>
@@ -570,6 +613,140 @@ namespace Amazon.Personalize
 
         #endregion
         
+        #region  CreateDataDeletionJob
+
+        /// <summary>
+        /// Creates a batch job that deletes all references to specific users from an Amazon Personalize
+        /// dataset group in batches. You specify the users to delete in a CSV file of userIds
+        /// in an Amazon S3 bucket. After a job completes, Amazon Personalize no longer trains
+        /// on the users’ data and no longer considers the users when generating user segments.
+        /// For more information about creating a data deletion job, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/delete-records.html">Deleting
+        /// users</a>.
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// Your input file must be a CSV file with a single USER_ID column that lists the users
+        /// IDs. For more information about preparing the CSV file, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/prepare-deletion-input-file.html">Preparing
+        /// your data deletion file and uploading it to Amazon S3</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// To give Amazon Personalize permission to access your input CSV file of userIds, you
+        /// must specify an IAM service role that has permission to read from the data source.
+        /// This role needs <c>GetObject</c> and <c>ListBucket</c> permissions for the bucket
+        /// and its content. These permissions are the same as importing data. For information
+        /// on granting access to your Amazon S3 bucket, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/granting-personalize-s3-access.html">Giving
+        /// Amazon Personalize Access to Amazon S3 Resources</a>. 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        ///  After you create a job, it can take up to a day to delete all references to the users
+        /// from datasets and models. Until the job completes, Amazon Personalize continues to
+        /// use the data when training. And if you use a User Segmentation recipe, the users might
+        /// appear in user segments. 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Status</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// A data deletion job can have one of the following statuses:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// PENDING &gt; IN_PROGRESS &gt; COMPLETED -or- FAILED
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// To get the status of the data deletion job, call <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDataDeletionJob.html">DescribeDataDeletionJob</a>
+        /// API operation and specify the Amazon Resource Name (ARN) of the job. If the status
+        /// is FAILED, the response includes a <c>failureReason</c> key, which describes why the
+        /// job failed.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Related APIs</b> 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_ListDataDeletionJobs.html">ListDataDeletionJobs</a>
+        /// 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDataDeletionJob.html">DescribeDataDeletionJob</a>
+        /// 
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateDataDeletionJob service method.</param>
+        /// 
+        /// <returns>The response from the CreateDataDeletionJob service method, as returned by Personalize.</returns>
+        /// <exception cref="Amazon.Personalize.Model.InvalidInputException">
+        /// Provide a valid value for the field or parameter.
+        /// </exception>
+        /// <exception cref="Amazon.Personalize.Model.LimitExceededException">
+        /// The limit on the number of requests per second has been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.Personalize.Model.ResourceAlreadyExistsException">
+        /// The specified resource already exists.
+        /// </exception>
+        /// <exception cref="Amazon.Personalize.Model.ResourceInUseException">
+        /// The specified resource is in use.
+        /// </exception>
+        /// <exception cref="Amazon.Personalize.Model.ResourceNotFoundException">
+        /// Could not find the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.Personalize.Model.TooManyTagsException">
+        /// You have exceeded the maximum number of tags you can apply to this resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDataDeletionJob">REST API Reference for CreateDataDeletionJob Operation</seealso>
+        public virtual CreateDataDeletionJobResponse CreateDataDeletionJob(CreateDataDeletionJobRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateDataDeletionJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateDataDeletionJobResponseUnmarshaller.Instance;
+
+            return Invoke<CreateDataDeletionJobResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreateDataDeletionJob operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreateDataDeletionJob operation on AmazonPersonalizeClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateDataDeletionJob
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDataDeletionJob">REST API Reference for CreateDataDeletionJob Operation</seealso>
+        public virtual IAsyncResult BeginCreateDataDeletionJob(CreateDataDeletionJobRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateDataDeletionJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateDataDeletionJobResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreateDataDeletionJob operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreateDataDeletionJob.</param>
+        /// 
+        /// <returns>Returns a  CreateDataDeletionJobResult from Personalize.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDataDeletionJob">REST API Reference for CreateDataDeletionJob Operation</seealso>
+        public virtual CreateDataDeletionJobResponse EndCreateDataDeletionJob(IAsyncResult asyncResult)
+        {
+            return EndInvoke<CreateDataDeletionJobResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region  CreateDataset
 
         /// <summary>
@@ -578,11 +755,11 @@ namespace Amazon.Personalize
         /// 
         ///  
         /// <para>
-        /// There are three types of datasets:
+        /// There are 5 types of datasets:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Interactions
+        /// Item interactions
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -592,10 +769,19 @@ namespace Amazon.Personalize
         /// <para>
         /// Users
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Action interactions
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Actions
+        /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Each dataset type has an associated schema with required field types. Only the <code>Interactions</code>
-        /// dataset is required in order to train a model (also referred to as creating a solution).
+        /// Each dataset type has an associated schema with required field types. Only the <c>Item
+        /// interactions</c> dataset is required in order to train a model (also referred to as
+        /// creating a solution).
         /// </para>
         ///  
         /// <para>
@@ -711,8 +897,8 @@ namespace Amazon.Personalize
         /// <summary>
         /// Creates a job that exports data from your dataset to an Amazon S3 bucket. To allow
         /// Amazon Personalize to export the training data, you must specify an service-linked
-        /// IAM role that gives Amazon Personalize <code>PutObject</code> permissions for your
-        /// Amazon S3 bucket. For information, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/export-data.html">Exporting
+        /// IAM role that gives Amazon Personalize <c>PutObject</c> permissions for your Amazon
+        /// S3 bucket. For information, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/export-data.html">Exporting
         /// a dataset</a> in the Amazon Personalize developer guide. 
         /// 
         ///  
@@ -732,8 +918,8 @@ namespace Amazon.Personalize
         ///  To get the status of the export job, call <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetExportJob.html">DescribeDatasetExportJob</a>,
         /// and specify the Amazon Resource Name (ARN) of the dataset export job. The dataset
         /// export is complete when the status shows as ACTIVE. If the status shows as CREATE
-        /// FAILED, the response includes a <code>failureReason</code> key, which describes why
-        /// the job failed. 
+        /// FAILED, the response includes a <c>failureReason</c> key, which describes why the
+        /// job failed. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateDatasetExportJob service method.</param>
@@ -812,7 +998,7 @@ namespace Amazon.Personalize
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// Interactions
+        /// Item interactions
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -821,6 +1007,14 @@ namespace Amazon.Personalize
         ///  </li> <li> 
         /// <para>
         /// Users
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Actions
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Action interactions
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -846,13 +1040,13 @@ namespace Amazon.Personalize
         ///  </li> </ul> 
         /// <para>
         /// To get the status of the dataset group, call <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetGroup.html">DescribeDatasetGroup</a>.
-        /// If the status shows as CREATE FAILED, the response includes a <code>failureReason</code>
+        /// If the status shows as CREATE FAILED, the response includes a <c>failureReason</c>
         /// key, which describes why the creation failed.
         /// </para>
         ///  <note> 
         /// <para>
-        /// You must wait until the <code>status</code> of the dataset group is <code>ACTIVE</code>
-        /// before adding a dataset to the group.
+        /// You must wait until the <c>status</c> of the dataset group is <c>ACTIVE</c> before
+        /// adding a dataset to the group.
         /// </para>
         ///  </note> 
         /// <para>
@@ -971,6 +1165,13 @@ namespace Amazon.Personalize
         /// For information on granting access to your Amazon S3 bucket, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/granting-personalize-s3-access.html">Giving
         /// Amazon Personalize Access to Amazon S3 Resources</a>. 
         /// 
+        ///  
+        /// <para>
+        /// If you already created a recommender or deployed a custom solution version with a
+        /// campaign, how new bulk records influence recommendations depends on the domain use
+        /// case or recipe that you use. For more information, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/how-new-data-influences-recommendations.html">How
+        /// new data influences real-time recommendations</a>.
+        /// </para>
         ///  <important> 
         /// <para>
         /// By default, a dataset import job replaces any existing data in the dataset that you
@@ -994,8 +1195,7 @@ namespace Amazon.Personalize
         /// To get the status of the import job, call <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetImportJob.html">DescribeDatasetImportJob</a>,
         /// providing the Amazon Resource Name (ARN) of the dataset import job. The dataset import
         /// is complete when the status shows as ACTIVE. If the status shows as CREATE FAILED,
-        /// the response includes a <code>failureReason</code> key, which describes why the job
-        /// failed.
+        /// the response includes a <c>failureReason</c> key, which describes why the job failed.
         /// </para>
         ///  <note> 
         /// <para>
@@ -1095,15 +1295,15 @@ namespace Amazon.Personalize
         ///  <note> 
         /// <para>
         /// Only one event tracker can be associated with a dataset group. You will get an error
-        /// if you call <code>CreateEventTracker</code> using the same dataset group as an existing
+        /// if you call <c>CreateEventTracker</c> using the same dataset group as an existing
         /// event tracker.
         /// </para>
         ///  </note> 
         /// <para>
         /// When you create an event tracker, the response includes a tracking ID, which you pass
         /// as a parameter when you use the <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html">PutEvents</a>
-        /// operation. Amazon Personalize then appends the event data to the Interactions dataset
-        /// of the dataset group you specify in your event tracker. 
+        /// operation. Amazon Personalize then appends the event data to the Item interactions
+        /// dataset of the dataset group you specify in your event tracker. 
         /// </para>
         ///  
         /// <para>
@@ -1369,35 +1569,35 @@ namespace Amazon.Personalize
         /// </para>
         ///  <important> 
         /// <para>
-        /// A high <code>minRecommendationRequestsPerSecond</code> will increase your bill. We
-        /// recommend starting with 1 for <code>minRecommendationRequestsPerSecond</code> (the
-        /// default). Track your usage using Amazon CloudWatch metrics, and increase the <code>minRecommendationRequestsPerSecond</code>
+        /// A high <c>minRecommendationRequestsPerSecond</c> will increase your bill. We recommend
+        /// starting with 1 for <c>minRecommendationRequestsPerSecond</c> (the default). Track
+        /// your usage using Amazon CloudWatch metrics, and increase the <c>minRecommendationRequestsPerSecond</c>
         /// as necessary.
         /// </para>
         ///  </important> 
         /// <para>
         /// When you create a recommender, you can configure the recommender's minimum recommendation
-        /// requests per second. The minimum recommendation requests per second (<code>minRecommendationRequestsPerSecond</code>)
+        /// requests per second. The minimum recommendation requests per second (<c>minRecommendationRequestsPerSecond</c>)
         /// specifies the baseline recommendation request throughput provisioned by Amazon Personalize.
-        /// The default minRecommendationRequestsPerSecond is <code>1</code>. A recommendation
-        /// request is a single <code>GetRecommendations</code> operation. Request throughput
-        /// is measured in requests per second and Amazon Personalize uses your requests per second
-        /// to derive your requests per hour and the price of your recommender usage. 
+        /// The default minRecommendationRequestsPerSecond is <c>1</c>. A recommendation request
+        /// is a single <c>GetRecommendations</c> operation. Request throughput is measured in
+        /// requests per second and Amazon Personalize uses your requests per second to derive
+        /// your requests per hour and the price of your recommender usage. 
         /// </para>
         ///  
         /// <para>
-        ///  If your requests per second increases beyond <code>minRecommendationRequestsPerSecond</code>,
+        ///  If your requests per second increases beyond <c>minRecommendationRequestsPerSecond</c>,
         /// Amazon Personalize auto-scales the provisioned capacity up and down, but never below
-        /// <code>minRecommendationRequestsPerSecond</code>. There's a short time delay while
-        /// the capacity is increased that might cause loss of requests.
+        /// <c>minRecommendationRequestsPerSecond</c>. There's a short time delay while the capacity
+        /// is increased that might cause loss of requests.
         /// </para>
         ///  
         /// <para>
         ///  Your bill is the greater of either the minimum requests per hour (based on minRecommendationRequestsPerSecond)
         /// or the actual number of requests. The actual request throughput used is calculated
         /// as the average requests/second within a one-hour window. We recommend starting with
-        /// the default <code>minRecommendationRequestsPerSecond</code>, track your usage using
-        /// Amazon CloudWatch metrics, and then increase the <code>minRecommendationRequestsPerSecond</code>
+        /// the default <c>minRecommendationRequestsPerSecond</c>, track your usage using Amazon
+        /// CloudWatch metrics, and then increase the <c>minRecommendationRequestsPerSecond</c>
         /// as necessary. 
         /// </para>
         ///  
@@ -1427,8 +1627,8 @@ namespace Amazon.Personalize
         /// </para>
         ///  <note> 
         /// <para>
-        /// Wait until the <code>status</code> of the recommender is <code>ACTIVE</code> before
-        /// asking the recommender for recommendations.
+        /// Wait until the <c>status</c> of the recommender is <c>ACTIVE</c> before asking the
+        /// recommender for recommendations.
         /// </para>
         ///  </note> 
         /// <para>
@@ -1618,29 +1818,55 @@ namespace Amazon.Personalize
         #region  CreateSolution
 
         /// <summary>
-        /// Creates the configuration for training a model. A trained model is known as a solution
-        /// version. After the configuration is created, you train the model (create a solution
-        /// version) by calling the <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolutionVersion.html">CreateSolutionVersion</a>
-        /// operation. Every time you call <code>CreateSolutionVersion</code>, a new version of
-        /// the solution is created.
-        /// 
+        /// <important> 
+        /// <para>
+        /// By default, all new solutions use automatic training. With automatic training, you
+        /// incur training costs while your solution is active. To avoid unnecessary costs, when
+        /// you are finished you can <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_UpdateSolution.html">update
+        /// the solution</a> to turn off automatic training. For information about training costs,
+        /// see <a href="https://aws.amazon.com/personalize/pricing/">Amazon Personalize pricing</a>.
+        /// </para>
+        ///  </important> 
+        /// <para>
+        /// Creates the configuration for training a model (creating a solution version). This
+        /// configuration includes the recipe to use for model training and optional training
+        /// configuration, such as columns to use in training and feature transformation parameters.
+        /// For more information about configuring a solution, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/customizing-solution-config.html">Creating
+        /// and configuring a solution</a>. 
+        /// </para>
         ///  
         /// <para>
-        /// After creating a solution version, you check its accuracy by calling <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_GetSolutionMetrics.html">GetSolutionMetrics</a>.
-        /// When you are satisfied with the version, you deploy it using <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html">CreateCampaign</a>.
+        ///  By default, new solutions use automatic training to create solution versions every
+        /// 7 days. You can change the training frequency. Automatic solution version creation
+        /// starts within one hour after the solution is ACTIVE. If you manually create a solution
+        /// version within the hour, the solution skips the first automatic training. For more
+        /// information, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/solution-config-auto-training.html">Configuring
+        /// automatic training</a>.
+        /// </para>
+        ///  
+        /// <para>
+        ///  To turn off automatic training, set <c>performAutoTraining</c> to false. If you turn
+        /// off automatic training, you must manually create a solution version by calling the
+        /// <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolutionVersion.html">CreateSolutionVersion</a>
+        /// operation.
+        /// </para>
+        ///  
+        /// <para>
+        /// After training starts, you can get the solution version's Amazon Resource Name (ARN)
+        /// with the <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutionVersions.html">ListSolutionVersions</a>
+        /// API operation. To get its status, use the <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolutionVersion.html">DescribeSolutionVersion</a>.
+        /// 
+        /// </para>
+        ///  
+        /// <para>
+        /// After training completes you can evaluate model accuracy by calling <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_GetSolutionMetrics.html">GetSolutionMetrics</a>.
+        /// When you are satisfied with the solution version, you deploy it using <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html">CreateCampaign</a>.
         /// The campaign provides recommendations to a client through the <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html">GetRecommendations</a>
         /// API.
         /// </para>
-        ///  
-        /// <para>
-        /// To train a model, Amazon Personalize requires training data and a recipe. The training
-        /// data comes from the dataset group that you provide in the request. A recipe specifies
-        /// the training algorithm and a feature transformation. You can specify one of the predefined
-        /// recipes provided by Amazon Personalize. 
-        /// </para>
         ///  <note> 
         /// <para>
-        /// Amazon Personalize doesn't support configuring the <code>hpoObjective</code> for solution
+        /// Amazon Personalize doesn't support configuring the <c>hpoObjective</c> for solution
         /// hyperparameter optimization at this time.
         /// </para>
         ///  </note> 
@@ -1662,13 +1888,18 @@ namespace Amazon.Personalize
         ///  </li> </ul> 
         /// <para>
         /// To get the status of the solution, call <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolution.html">DescribeSolution</a>.
-        /// Wait until the status shows as ACTIVE before calling <code>CreateSolutionVersion</code>.
+        /// If you use manual training, the status must be ACTIVE before you call <c>CreateSolutionVersion</c>.
         /// </para>
         ///  
         /// <para>
         ///  <b>Related APIs</b> 
         /// </para>
         ///  <ul> <li> 
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_UpdateSolution.html">UpdateSolution</a>
+        /// 
+        /// </para>
+        ///  </li> <li> 
         /// <para>
         ///  <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutions.html">ListSolutions</a>
         /// 
@@ -1772,7 +2003,7 @@ namespace Amazon.Personalize
         /// <summary>
         /// Trains or retrains an active solution in a Custom dataset group. A solution is created
         /// using the <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html">CreateSolution</a>
-        /// operation and must be in the ACTIVE state before calling <code>CreateSolutionVersion</code>.
+        /// operation and must be in the ACTIVE state before calling <c>CreateSolutionVersion</c>.
         /// A new version of the solution is created every time you call this operation.
         /// 
         ///  
@@ -1810,11 +2041,11 @@ namespace Amazon.Personalize
         ///  </li> </ul> 
         /// <para>
         /// To get the status of the version, call <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolutionVersion.html">DescribeSolutionVersion</a>.
-        /// Wait until the status shows as ACTIVE before calling <code>CreateCampaign</code>.
+        /// Wait until the status shows as ACTIVE before calling <c>CreateCampaign</c>.
         /// </para>
         ///  
         /// <para>
-        /// If the status shows as CREATE FAILED, the response includes a <code>failureReason</code>
+        /// If the status shows as CREATE FAILED, the response includes a <c>failureReason</c>
         /// key, which describes why the job failed.
         /// </para>
         ///  
@@ -1989,9 +2220,9 @@ namespace Amazon.Personalize
         #region  DeleteDataset
 
         /// <summary>
-        /// Deletes a dataset. You can't delete a dataset if an associated <code>DatasetImportJob</code>
-        /// or <code>SolutionVersion</code> is in the CREATE PENDING or IN PROGRESS state. For
-        /// more information on datasets, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html">CreateDataset</a>.
+        /// Deletes a dataset. You can't delete a dataset if an associated <c>DatasetImportJob</c>
+        /// or <c>SolutionVersion</c> is in the CREATE PENDING or IN PROGRESS state. For more
+        /// information on datasets, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html">CreateDataset</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteDataset service method.</param>
         /// 
@@ -2131,8 +2362,8 @@ namespace Amazon.Personalize
         #region  DeleteEventTracker
 
         /// <summary>
-        /// Deletes the event tracker. Does not delete the event-interactions dataset from the
-        /// associated dataset group. For more information on event trackers, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html">CreateEventTracker</a>.
+        /// Deletes the event tracker. Does not delete the dataset from the dataset group. For
+        /// more information on event trackers, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html">CreateEventTracker</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteEventTracker service method.</param>
         /// 
@@ -2450,12 +2681,12 @@ namespace Amazon.Personalize
         #region  DeleteSolution
 
         /// <summary>
-        /// Deletes all versions of a solution and the <code>Solution</code> object itself. Before
-        /// deleting a solution, you must delete all campaigns based on the solution. To determine
-        /// what campaigns are using the solution, call <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_ListCampaigns.html">ListCampaigns</a>
+        /// Deletes all versions of a solution and the <c>Solution</c> object itself. Before deleting
+        /// a solution, you must delete all campaigns based on the solution. To determine what
+        /// campaigns are using the solution, call <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_ListCampaigns.html">ListCampaigns</a>
         /// and supply the Amazon Resource Name (ARN) of the solution. You can't delete a solution
-        /// if an associated <code>SolutionVersion</code> is in the CREATE PENDING or IN PROGRESS
-        /// state. For more information on solutions, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html">CreateSolution</a>.
+        /// if an associated <c>SolutionVersion</c> is in the CREATE PENDING or IN PROGRESS state.
+        /// For more information on solutions, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html">CreateSolution</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteSolution service method.</param>
         /// 
@@ -2718,8 +2949,8 @@ namespace Amazon.Personalize
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// When the <code>status</code> is <code>CREATE FAILED</code>, the response includes
-        /// the <code>failureReason</code> key, which describes why.
+        /// When the <c>status</c> is <c>CREATE FAILED</c>, the response includes the <c>failureReason</c>
+        /// key, which describes why.
         /// </para>
         ///  
         /// <para>
@@ -2777,6 +3008,67 @@ namespace Amazon.Personalize
         public virtual DescribeCampaignResponse EndDescribeCampaign(IAsyncResult asyncResult)
         {
             return EndInvoke<DescribeCampaignResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  DescribeDataDeletionJob
+
+        /// <summary>
+        /// Describes the data deletion job created by <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataDeletionJob.html">CreateDataDeletionJob</a>,
+        /// including the job status.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeDataDeletionJob service method.</param>
+        /// 
+        /// <returns>The response from the DescribeDataDeletionJob service method, as returned by Personalize.</returns>
+        /// <exception cref="Amazon.Personalize.Model.InvalidInputException">
+        /// Provide a valid value for the field or parameter.
+        /// </exception>
+        /// <exception cref="Amazon.Personalize.Model.ResourceNotFoundException">
+        /// Could not find the specified resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDataDeletionJob">REST API Reference for DescribeDataDeletionJob Operation</seealso>
+        public virtual DescribeDataDeletionJobResponse DescribeDataDeletionJob(DescribeDataDeletionJobRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeDataDeletionJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeDataDeletionJobResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeDataDeletionJobResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DescribeDataDeletionJob operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DescribeDataDeletionJob operation on AmazonPersonalizeClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDescribeDataDeletionJob
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDataDeletionJob">REST API Reference for DescribeDataDeletionJob Operation</seealso>
+        public virtual IAsyncResult BeginDescribeDataDeletionJob(DescribeDataDeletionJobRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeDataDeletionJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeDataDeletionJobResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DescribeDataDeletionJob operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDescribeDataDeletionJob.</param>
+        /// 
+        /// <returns>Returns a  DescribeDataDeletionJobResult from Personalize.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDataDeletionJob">REST API Reference for DescribeDataDeletionJob Operation</seealso>
+        public virtual DescribeDataDeletionJobResponse EndDescribeDataDeletionJob(IAsyncResult asyncResult)
+        {
+            return EndInvoke<DescribeDataDeletionJobResponse>(asyncResult);
         }
 
         #endregion
@@ -3027,9 +3319,8 @@ namespace Amazon.Personalize
         #region  DescribeEventTracker
 
         /// <summary>
-        /// Describes an event tracker. The response includes the <code>trackingId</code> and
-        /// <code>status</code> of the event tracker. For more information on event trackers,
-        /// see <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html">CreateEventTracker</a>.
+        /// Describes an event tracker. The response includes the <c>trackingId</c> and <c>status</c>
+        /// of the event tracker. For more information on event trackers, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html">CreateEventTracker</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeEventTracker service method.</param>
         /// 
@@ -3291,7 +3582,7 @@ namespace Amazon.Personalize
         /// <para>
         /// Amazon Personalize provides a set of predefined recipes. You specify a recipe when
         /// you create a solution with the <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html">CreateSolution</a>
-        /// API. <code>CreateSolution</code> trains a model by using the algorithm in the specified
+        /// API. <c>CreateSolution</c> trains a model by using the algorithm in the specified
         /// recipe and a training dataset. The solution, when deployed as a campaign, can provide
         /// recommendations using the <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html">GetRecommendations</a>
         /// API.
@@ -3376,13 +3667,12 @@ namespace Amazon.Personalize
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// When the <code>status</code> is <code>CREATE FAILED</code>, the response includes
-        /// the <code>failureReason</code> key, which describes why.
+        /// When the <c>status</c> is <c>CREATE FAILED</c>, the response includes the <c>failureReason</c>
+        /// key, which describes why.
         /// </para>
         ///  
         /// <para>
-        /// The <code>modelMetrics</code> key is null when the recommender is being created or
-        /// deleted.
+        /// The <c>modelMetrics</c> key is null when the recommender is being created or deleted.
         /// </para>
         ///  
         /// <para>
@@ -3869,6 +4159,71 @@ namespace Amazon.Personalize
         public virtual ListCampaignsResponse EndListCampaigns(IAsyncResult asyncResult)
         {
             return EndInvoke<ListCampaignsResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  ListDataDeletionJobs
+
+        /// <summary>
+        /// Returns a list of data deletion jobs for a dataset group ordered by creation time,
+        /// with the most recent first. When a dataset group is not specified, all the data deletion
+        /// jobs associated with the account are listed. The response provides the properties
+        /// for each job, including the Amazon Resource Name (ARN). For more information on data
+        /// deletion jobs, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/delete-records.html">Deleting
+        /// users</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListDataDeletionJobs service method.</param>
+        /// 
+        /// <returns>The response from the ListDataDeletionJobs service method, as returned by Personalize.</returns>
+        /// <exception cref="Amazon.Personalize.Model.InvalidInputException">
+        /// Provide a valid value for the field or parameter.
+        /// </exception>
+        /// <exception cref="Amazon.Personalize.Model.InvalidNextTokenException">
+        /// The token is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDataDeletionJobs">REST API Reference for ListDataDeletionJobs Operation</seealso>
+        public virtual ListDataDeletionJobsResponse ListDataDeletionJobs(ListDataDeletionJobsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListDataDeletionJobsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListDataDeletionJobsResponseUnmarshaller.Instance;
+
+            return Invoke<ListDataDeletionJobsResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListDataDeletionJobs operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListDataDeletionJobs operation on AmazonPersonalizeClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListDataDeletionJobs
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDataDeletionJobs">REST API Reference for ListDataDeletionJobs Operation</seealso>
+        public virtual IAsyncResult BeginListDataDeletionJobs(ListDataDeletionJobsRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListDataDeletionJobsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListDataDeletionJobsResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListDataDeletionJobs operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListDataDeletionJobs.</param>
+        /// 
+        /// <returns>Returns a  ListDataDeletionJobsResult from Personalize.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDataDeletionJobs">REST API Reference for ListDataDeletionJobs Operation</seealso>
+        public virtual ListDataDeletionJobsResponse EndListDataDeletionJobs(IAsyncResult asyncResult)
+        {
+            return EndInvoke<ListDataDeletionJobsResponse>(asyncResult);
         }
 
         #endregion
@@ -4550,8 +4905,8 @@ namespace Amazon.Personalize
         #region  ListSolutions
 
         /// <summary>
-        /// Returns a list of solutions that use the given dataset group. When a dataset group
-        /// is not specified, all the solutions associated with the account are listed. The response
+        /// Returns a list of solutions in a given dataset group. When a dataset group is not
+        /// specified, all the solutions associated with the account are listed. The response
         /// provides the properties for each solution, including the Amazon Resource Name (ARN).
         /// For more information on solutions, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html">CreateSolution</a>.
         /// </summary>
@@ -5027,8 +5382,9 @@ namespace Amazon.Personalize
         #region  UntagResource
 
         /// <summary>
-        /// Remove <a href="https://docs.aws.amazon.com/personalize/latest/dg/tagging-resources.html">tags</a>
-        /// that are attached to a resource.
+        /// Removes the specified tags that are attached to a resource. For more information,
+        /// see <a href="https://docs.aws.amazon.com/personalize/latest/dg/tags-remove.html">Removing
+        /// tags from Amazon Personalize resources</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
         /// 
@@ -5095,10 +5451,27 @@ namespace Amazon.Personalize
         #region  UpdateCampaign
 
         /// <summary>
-        /// Updates a campaign by either deploying a new solution or changing the value of the
-        /// campaign's <code>minProvisionedTPS</code> parameter.
+        /// Updates a campaign to deploy a retrained solution version with an existing campaign,
+        /// change your campaign's <c>minProvisionedTPS</c>, or modify your campaign's configuration.
+        /// For example, you can set <c>enableMetadataWithRecommendations</c> to true for an existing
+        /// campaign.
         /// 
         ///  
+        /// <para>
+        ///  To update a campaign to start automatically using the latest solution version, specify
+        /// the following:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// For the <c>SolutionVersionArn</c> parameter, specify the Amazon Resource Name (ARN)
+        /// of your solution in <c>SolutionArn/$LATEST</c> format. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  In the <c>campaignConfig</c>, set <c>syncWithLatestSolutionVersion</c> to <c>true</c>.
+        /// 
+        /// </para>
+        ///  </li> </ul> 
         /// <para>
         /// To update a campaign, the campaign status must be ACTIVE or CREATE FAILED. Check the
         /// campaign status using the <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html">DescribeCampaign</a>
@@ -5108,12 +5481,14 @@ namespace Amazon.Personalize
         /// <para>
         /// You can still get recommendations from a campaign while an update is in progress.
         /// The campaign will use the previous solution version and campaign configuration to
-        /// generate recommendations until the latest campaign update status is <code>Active</code>.
+        /// generate recommendations until the latest campaign update status is <c>Active</c>.
         /// 
         /// </para>
         ///  </note> 
         /// <para>
-        /// For more information on campaigns, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html">CreateCampaign</a>.
+        /// For more information about updating a campaign, including code samples, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/update-campaigns.html">Updating
+        /// a campaign</a>. For more information about campaigns, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/campaigns.html">Creating
+        /// a campaign</a>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateCampaign service method.</param>
@@ -5313,7 +5688,7 @@ namespace Amazon.Personalize
         /// starts a full retraining of the models backing your recommender. While the update
         /// completes, you can still get recommendations from the recommender. The recommender
         /// uses the previous configuration until the update completes. To track the status of
-        /// this update, use the <code>latestRecommenderUpdate</code> returned in the <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeRecommender.html">DescribeRecommender</a>
+        /// this update, use the <c>latestRecommenderUpdate</c> returned in the <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeRecommender.html">DescribeRecommender</a>
         /// operation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateRecommender service method.</param>
@@ -5374,6 +5749,90 @@ namespace Amazon.Personalize
 
         #endregion
         
+        #region  UpdateSolution
+
+        /// <summary>
+        /// Updates an Amazon Personalize solution to use a different automatic training configuration.
+        /// When you update a solution, you can change whether the solution uses automatic training,
+        /// and you can change the training frequency. For more information about updating a solution,
+        /// see <a href="https://docs.aws.amazon.com/personalize/latest/dg/updating-solution.html">Updating
+        /// a solution</a>.
+        /// 
+        ///  
+        /// <para>
+        /// A solution update can be in one of the following states:
+        /// </para>
+        ///  
+        /// <para>
+        /// CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED
+        /// </para>
+        ///  
+        /// <para>
+        /// To get the status of a solution update, call the <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolution.html">DescribeSolution</a>
+        /// API operation and find the status in the <c>latestSolutionUpdate</c>. 
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateSolution service method.</param>
+        /// 
+        /// <returns>The response from the UpdateSolution service method, as returned by Personalize.</returns>
+        /// <exception cref="Amazon.Personalize.Model.InvalidInputException">
+        /// Provide a valid value for the field or parameter.
+        /// </exception>
+        /// <exception cref="Amazon.Personalize.Model.LimitExceededException">
+        /// The limit on the number of requests per second has been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.Personalize.Model.ResourceInUseException">
+        /// The specified resource is in use.
+        /// </exception>
+        /// <exception cref="Amazon.Personalize.Model.ResourceNotFoundException">
+        /// Could not find the specified resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UpdateSolution">REST API Reference for UpdateSolution Operation</seealso>
+        public virtual UpdateSolutionResponse UpdateSolution(UpdateSolutionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateSolutionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateSolutionResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateSolutionResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateSolution operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateSolution operation on AmazonPersonalizeClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateSolution
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UpdateSolution">REST API Reference for UpdateSolution Operation</seealso>
+        public virtual IAsyncResult BeginUpdateSolution(UpdateSolutionRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateSolutionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateSolutionResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateSolution operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateSolution.</param>
+        /// 
+        /// <returns>Returns a  UpdateSolutionResult from Personalize.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UpdateSolution">REST API Reference for UpdateSolution Operation</seealso>
+        public virtual UpdateSolutionResponse EndUpdateSolution(IAsyncResult asyncResult)
+        {
+            return EndInvoke<UpdateSolutionResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region DetermineServiceOperationEndpoint
 
         /// <summary>
@@ -5383,11 +5842,11 @@ namespace Amazon.Personalize
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

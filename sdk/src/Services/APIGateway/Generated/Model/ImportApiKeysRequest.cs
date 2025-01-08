@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
@@ -61,8 +62,8 @@ namespace Amazon.APIGateway.Model
         /// <summary>
         /// Gets and sets the property FailOnWarnings. 
         /// <para>
-        /// A query parameter to indicate whether to rollback ApiKey importation (<code>true</code>)
-        /// or not (<code>false</code>) when error is encountered.
+        /// A query parameter to indicate whether to rollback ApiKey importation (<c>true</c>)
+        /// or not (<c>false</c>) when error is encountered.
         /// </para>
         /// </summary>
         public bool FailOnWarnings
@@ -81,7 +82,7 @@ namespace Amazon.APIGateway.Model
         /// Gets and sets the property Format. 
         /// <para>
         /// A query parameter to specify the input format to imported API keys. Currently, only
-        /// the <code>csv</code> format is supported.
+        /// the <c>csv</c> format is supported.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

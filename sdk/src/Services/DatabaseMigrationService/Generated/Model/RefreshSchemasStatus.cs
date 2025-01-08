@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
     /// Provides information that describes status of a schema at an endpoint specified by
-    /// the <code>DescribeRefreshSchemaStatus</code> operation.
+    /// the <c>DescribeRefreshSchemaStatus</c> operation.
     /// </summary>
     public partial class RefreshSchemasStatus
     {

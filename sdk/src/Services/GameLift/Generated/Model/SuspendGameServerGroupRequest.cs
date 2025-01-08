@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -52,8 +53,8 @@ namespace Amazon.GameLift.Model
     ///  </li> </ul> 
     /// <para>
     /// To suspend activity, specify a game server group ARN and the type of activity to be
-    /// suspended. If successful, a <code>GameServerGroup</code> object is returned showing
-    /// that the activity is listed in <code>SuspendedActions</code>.
+    /// suspended. If successful, a <c>GameServerGroup</c> object is returned showing that
+    /// the activity is listed in <c>SuspendedActions</c>.
     /// </para>
     ///  
     /// <para>
@@ -68,7 +69,7 @@ namespace Amazon.GameLift.Model
     public partial class SuspendGameServerGroupRequest : AmazonGameLiftRequest
     {
         private string _gameServerGroupName;
-        private List<string> _suspendActions = new List<string>();
+        private List<string> _suspendActions = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property GameServerGroupName. 
@@ -105,7 +106,7 @@ namespace Amazon.GameLift.Model
         // Check to see if SuspendActions property is set
         internal bool IsSetSuspendActions()
         {
-            return this._suspendActions != null && this._suspendActions.Count > 0; 
+            return this._suspendActions != null && (this._suspendActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

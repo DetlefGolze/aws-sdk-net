@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,14 +36,14 @@ namespace Amazon.EC2.Model
     {
         private string _frequency;
         private int? _interval;
-        private List<int> _occurrenceDays = new List<int>();
+        private List<int> _occurrenceDays = AWSConfigs.InitializeCollections ? new List<int>() : null;
         private bool? _occurrenceRelativeToEnd;
         private string _occurrenceUnit;
 
         /// <summary>
         /// Gets and sets the property Frequency. 
         /// <para>
-        /// The frequency (<code>Daily</code>, <code>Weekly</code>, or <code>Monthly</code>).
+        /// The frequency (<c>Daily</c>, <c>Weekly</c>, or <c>Monthly</c>).
         /// </para>
         /// </summary>
         public string Frequency
@@ -60,7 +61,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Interval. 
         /// <para>
-        /// The interval quantity. The interval unit depends on the value of <code>Frequency</code>.
+        /// The interval quantity. The interval unit depends on the value of <c>Frequency</c>.
         /// For example, every 2 weeks or every 2 months.
         /// </para>
         /// </summary>
@@ -94,7 +95,7 @@ namespace Amazon.EC2.Model
         // Check to see if OccurrenceDays property is set
         internal bool IsSetOccurrenceDays()
         {
-            return this._occurrenceDays != null && this._occurrenceDays.Count > 0; 
+            return this._occurrenceDays != null && (this._occurrenceDays.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -119,9 +120,9 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property OccurrenceUnit. 
         /// <para>
-        /// The unit for <code>OccurrenceDays</code> (<code>DayOfWeek</code> or <code>DayOfMonth</code>).
-        /// This value is required for a monthly schedule. You can't specify <code>DayOfWeek</code>
-        /// with a weekly schedule. You can't specify this value with a daily schedule.
+        /// The unit for <c>OccurrenceDays</c> (<c>DayOfWeek</c> or <c>DayOfMonth</c>). This value
+        /// is required for a monthly schedule. You can't specify <c>DayOfWeek</c> with a weekly
+        /// schedule. You can't specify this value with a daily schedule.
         /// </para>
         /// </summary>
         public string OccurrenceUnit

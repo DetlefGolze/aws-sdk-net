@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.QuickSight.Model
     /// 
     ///  
     /// <para>
-    /// The permissions resource is <code>arn:aws:quicksight:region:aws-account-id:dataset/data-set-id</code>.
+    /// The permissions resource is <c>arn:aws:quicksight:region:aws-account-id:dataset/data-set-id</c>.
     /// </para>
     /// </summary>
     public partial class DescribeDataSetPermissionsRequest : AmazonQuickSightRequest

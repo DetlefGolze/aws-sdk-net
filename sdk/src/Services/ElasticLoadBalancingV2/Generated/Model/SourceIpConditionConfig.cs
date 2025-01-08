@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancingV2.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
     /// </summary>
     public partial class SourceIpConditionConfig
     {
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Values. 
@@ -55,6 +56,10 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         /// the addresses in the X-Forwarded-For header. To search for addresses in the X-Forwarded-For
         /// header, use <a>HttpHeaderConditionConfig</a>.
         /// </para>
+        ///  
+        /// <para>
+        /// The total number of values must be less than, or equal to five.
+        /// </para>
         /// </summary>
         public List<string> Values
         {
@@ -65,7 +70,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

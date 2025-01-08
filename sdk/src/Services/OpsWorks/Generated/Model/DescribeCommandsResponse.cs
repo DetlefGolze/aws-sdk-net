@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
-    /// Contains the response to a <code>DescribeCommands</code> request.
+    /// Contains the response to a <c>DescribeCommands</c> request.
     /// </summary>
     public partial class DescribeCommandsResponse : AmazonWebServiceResponse
     {
-        private List<Command> _commands = new List<Command>();
+        private List<Command> _commands = AWSConfigs.InitializeCollections ? new List<Command>() : null;
 
         /// <summary>
         /// Gets and sets the property Commands. 
         /// <para>
-        /// An array of <code>Command</code> objects that describe each of the specified commands.
+        /// An array of <c>Command</c> objects that describe each of the specified commands.
         /// </para>
         /// </summary>
         public List<Command> Commands
@@ -50,7 +51,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if Commands property is set
         internal bool IsSetCommands()
         {
-            return this._commands != null && this._commands.Count > 0; 
+            return this._commands != null && (this._commands.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

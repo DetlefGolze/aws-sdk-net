@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmail.Model
 {
     /// <summary>
@@ -46,14 +47,14 @@ namespace Amazon.SimpleEmail.Model
     /// </summary>
     public partial class GetIdentityNotificationAttributesRequest : AmazonSimpleEmailServiceRequest
     {
-        private List<string> _identities = new List<string>();
+        private List<string> _identities = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Identities. 
         /// <para>
         /// A list of one or more identities. You can specify an identity by using its name or
-        /// by using its Amazon Resource Name (ARN). Examples: <code>user@example.com</code>,
-        /// <code>example.com</code>, <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.
+        /// by using its Amazon Resource Name (ARN). Examples: <c>user@example.com</c>, <c>example.com</c>,
+        /// <c>arn:aws:ses:us-east-1:123456789012:identity/example.com</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -66,7 +67,7 @@ namespace Amazon.SimpleEmail.Model
         // Check to see if Identities property is set
         internal bool IsSetIdentities()
         {
-            return this._identities != null && this._identities.Count > 0; 
+            return this._identities != null && (this._identities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

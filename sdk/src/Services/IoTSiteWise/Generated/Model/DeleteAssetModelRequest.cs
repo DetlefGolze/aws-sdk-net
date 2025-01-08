@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -40,14 +41,20 @@ namespace Amazon.IoTSiteWise.Model
     {
         private string _assetModelId;
         private string _clientToken;
+        private string _ifMatch;
+        private string _ifNoneMatch;
+        private AssetModelVersionType _matchForVersionType;
 
         /// <summary>
         /// Gets and sets the property AssetModelId. 
         /// <para>
-        /// The ID of the asset model to delete.
+        /// The ID of the asset model to delete. This can be either the actual ID in UUID format,
+        /// or else <c>externalId:</c> followed by the external ID, if it has one. For more information,
+        /// see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-id-references">Referencing
+        /// objects with external IDs</a> in the <i>IoT SiteWise User Guide</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=36, Max=36)]
+        [AWSProperty(Required=true, Min=13, Max=139)]
         public string AssetModelId
         {
             get { return this._assetModelId; }
@@ -78,6 +85,66 @@ namespace Amazon.IoTSiteWise.Model
         internal bool IsSetClientToken()
         {
             return this._clientToken != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IfMatch. 
+        /// <para>
+        /// The expected current entity tag (ETag) for the asset model’s latest or active version
+        /// (specified using <c>matchForVersionType</c>). The delete request is rejected if the
+        /// tag does not match the latest or active version's current entity tag. See <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/opt-locking-for-model.html">Optimistic
+        /// locking for asset model writes</a> in the <i>IoT SiteWise User Guide</i>.
+        /// </para>
+        /// </summary>
+        public string IfMatch
+        {
+            get { return this._ifMatch; }
+            set { this._ifMatch = value; }
+        }
+
+        // Check to see if IfMatch property is set
+        internal bool IsSetIfMatch()
+        {
+            return !string.IsNullOrEmpty(this._ifMatch);
+        }
+
+        /// <summary>
+        /// Gets and sets the property IfNoneMatch. 
+        /// <para>
+        /// Accepts <b>*</b> to reject the delete request if an active version (specified using
+        /// <c>matchForVersionType</c> as <c>ACTIVE</c>) already exists for the asset model.
+        /// </para>
+        /// </summary>
+        public string IfNoneMatch
+        {
+            get { return this._ifNoneMatch; }
+            set { this._ifNoneMatch = value; }
+        }
+
+        // Check to see if IfNoneMatch property is set
+        internal bool IsSetIfNoneMatch()
+        {
+            return !string.IsNullOrEmpty(this._ifNoneMatch);
+        }
+
+        /// <summary>
+        /// Gets and sets the property MatchForVersionType. 
+        /// <para>
+        /// Specifies the asset model version type (<c>LATEST</c> or <c>ACTIVE</c>) used in conjunction
+        /// with <c>If-Match</c> or <c>If-None-Match</c> headers to determine the target ETag
+        /// for the delete operation.
+        /// </para>
+        /// </summary>
+        public AssetModelVersionType MatchForVersionType
+        {
+            get { return this._matchForVersionType; }
+            set { this._matchForVersionType = value; }
+        }
+
+        // Check to see if MatchForVersionType property is set
+        internal bool IsSetMatchForVersionType()
+        {
+            return !string.IsNullOrEmpty(this._matchForVersionType);
         }
 
     }

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,8 +67,20 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetComputeConfiguration())
+                {
+                    context.Writer.WritePropertyName("computeConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ComputeConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.ComputeConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetResultConfiguration())
                 {
                     context.Writer.WritePropertyName("resultConfiguration");

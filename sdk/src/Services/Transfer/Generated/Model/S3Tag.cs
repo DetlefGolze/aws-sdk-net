@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -62,7 +63,7 @@ namespace Amazon.Transfer.Model
         /// The value that corresponds to the key.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=256)]
+        [AWSProperty(Required=true, Min=0, Max=256)]
         public string Value
         {
             get { return this._value; }

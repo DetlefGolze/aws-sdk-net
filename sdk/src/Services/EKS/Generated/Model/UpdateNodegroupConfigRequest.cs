@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -42,6 +43,7 @@ namespace Amazon.EKS.Model
         private string _clusterName;
         private UpdateLabelsPayload _labels;
         private string _nodegroupName;
+        private NodeRepairConfig _nodeRepairConfig;
         private NodegroupScalingConfig _scalingConfig;
         private UpdateTaintsPayload _taints;
         private NodegroupUpdateConfig _updateConfig;
@@ -49,8 +51,8 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
-        /// Unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        /// request.
+        /// A unique, case-sensitive identifier that you provide to ensure the idempotency of
+        /// the request.
         /// </para>
         /// </summary>
         public string ClientRequestToken
@@ -68,7 +70,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ClusterName. 
         /// <para>
-        /// The name of the Amazon EKS cluster that the managed node group resides in.
+        /// The name of your cluster.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -87,7 +89,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property Labels. 
         /// <para>
-        /// The Kubernetes labels to be applied to the nodes in the node group after the update.
+        /// The Kubernetes <c>labels</c> to apply to the nodes in the node group after the update.
         /// </para>
         /// </summary>
         public UpdateLabelsPayload Labels
@@ -119,6 +121,24 @@ namespace Amazon.EKS.Model
         internal bool IsSetNodegroupName()
         {
             return this._nodegroupName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property NodeRepairConfig. 
+        /// <para>
+        /// The node auto repair configuration for the node group.
+        /// </para>
+        /// </summary>
+        public NodeRepairConfig NodeRepairConfig
+        {
+            get { return this._nodeRepairConfig; }
+            set { this._nodeRepairConfig = value; }
+        }
+
+        // Check to see if NodeRepairConfig property is set
+        internal bool IsSetNodeRepairConfig()
+        {
+            return this._nodeRepairConfig != null;
         }
 
         /// <summary>

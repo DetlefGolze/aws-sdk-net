@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ECS.Model
     /// </summary>
     public partial class DescribeTaskDefinitionResponse : AmazonWebServiceResponse
     {
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private TaskDefinition _taskDefinition;
 
         /// <summary>
@@ -76,10 +77,10 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Do not use <code>aws:</code>, <code>AWS:</code>, or any upper or lowercase combination
-        /// of such as a prefix for either keys or values as it is reserved for Amazon Web Services
-        /// use. You cannot edit or delete tag keys or values with this prefix. Tags with this
-        /// prefix do not count against your tags per resource limit.
+        /// Do not use <c>aws:</c>, <c>AWS:</c>, or any upper or lowercase combination of such
+        /// as a prefix for either keys or values as it is reserved for Amazon Web Services use.
+        /// You cannot edit or delete tag keys or values with this prefix. Tags with this prefix
+        /// do not count against your tags per resource limit.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -93,7 +94,7 @@ namespace Amazon.ECS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

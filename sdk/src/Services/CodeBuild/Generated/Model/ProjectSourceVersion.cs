@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -70,9 +71,13 @@ namespace Amazon.CodeBuild.Model
         /// <para>
         /// For GitHub: the commit ID, pull request ID, branch name, or tag name that corresponds
         /// to the version of the source code you want to build. If a pull request ID is specified,
-        /// it must use the format <code>pr/pull-request-ID</code> (for example, <code>pr/25</code>).
-        /// If a branch name is specified, the branch's HEAD commit ID is used. If not specified,
-        /// the default branch's HEAD commit ID is used.
+        /// it must use the format <c>pr/pull-request-ID</c> (for example, <c>pr/25</c>). If a
+        /// branch name is specified, the branch's HEAD commit ID is used. If not specified, the
+        /// default branch's HEAD commit ID is used.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For GitLab: the commit ID, branch, or Git tag to use.
         /// </para>
         ///  </li> <li> 
         /// <para>

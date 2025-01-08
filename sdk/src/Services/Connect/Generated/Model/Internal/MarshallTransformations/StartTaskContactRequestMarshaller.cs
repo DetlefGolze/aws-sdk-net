@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Connect.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAttributes())
@@ -155,6 +157,25 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("ScheduledTime");
                     context.Writer.Write(publicRequest.ScheduledTime);
+                }
+
+                if(publicRequest.IsSetSegmentAttributes())
+                {
+                    context.Writer.WritePropertyName("SegmentAttributes");
+                    context.Writer.WriteObjectStart();
+                    foreach (var publicRequestSegmentAttributesKvp in publicRequest.SegmentAttributes)
+                    {
+                        context.Writer.WritePropertyName(publicRequestSegmentAttributesKvp.Key);
+                        var publicRequestSegmentAttributesValue = publicRequestSegmentAttributesKvp.Value;
+
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = SegmentAttributeValueMarshaller.Instance;
+                        marshaller.Marshall(publicRequestSegmentAttributesValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetTaskTemplateId())

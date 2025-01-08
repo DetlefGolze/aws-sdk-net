@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSOAdmin.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.SSOAdmin.Model
     /// 
     ///  <note> 
     /// <para>
-    /// After a successful response, call <code>DescribeAccountAssignmentDeletionStatus</code>
-    /// to describe the status of an assignment deletion request.
+    /// After a successful response, call <c>DescribeAccountAssignmentDeletionStatus</c> to
+    /// describe the status of an assignment deletion request.
     /// </para>
     ///  </note>
     /// </summary>

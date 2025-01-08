@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MedicalImaging.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,6 +67,7 @@ namespace Amazon.MedicalImaging.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetClientToken())
@@ -83,6 +85,12 @@ namespace Amazon.MedicalImaging.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("dataAccessRoleArn");
                     context.Writer.Write(publicRequest.DataAccessRoleArn);
+                }
+
+                if(publicRequest.IsSetInputOwnerAccountId())
+                {
+                    context.Writer.WritePropertyName("inputOwnerAccountId");
+                    context.Writer.Write(publicRequest.InputOwnerAccountId);
                 }
 
                 if(publicRequest.IsSetInputS3Uri())

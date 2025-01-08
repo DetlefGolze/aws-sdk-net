@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRegistry.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.AppRegistry.Model
         /// <summary>
         /// Gets and sets the property TagQueryConfiguration. 
         /// <para>
-        ///  Includes the definition of a <code>tagQuery</code>. 
+        ///  Includes the definition of a <c>tagQuery</c>. 
         /// </para>
         /// </summary>
         public TagQueryConfiguration TagQueryConfiguration

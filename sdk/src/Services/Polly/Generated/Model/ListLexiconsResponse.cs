@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Polly.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Polly.Model
     /// </summary>
     public partial class ListLexiconsResponse : AmazonWebServiceResponse
     {
-        private List<LexiconDescription> _lexicons = new List<LexiconDescription>();
+        private List<LexiconDescription> _lexicons = AWSConfigs.InitializeCollections ? new List<LexiconDescription>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.Polly.Model
         // Check to see if Lexicons property is set
         internal bool IsSetLexicons()
         {
-            return this._lexicons != null && this._lexicons.Count > 0; 
+            return this._lexicons != null && (this._lexicons.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The pagination token to use in the next request to continue the listing of lexicons.
-        /// <code>NextToken</code> is returned only if the response is truncated.
+        /// <c>NextToken</c> is returned only if the response is truncated.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=4096)]

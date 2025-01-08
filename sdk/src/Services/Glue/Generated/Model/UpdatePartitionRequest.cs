@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.Glue.Model
         private string _catalogId;
         private string _databaseName;
         private PartitionInput _partitionInput;
-        private List<string> _partitionValueList = new List<string>();
+        private List<string> _partitionValueList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _tableName;
 
         /// <summary>
@@ -86,8 +87,8 @@ namespace Amazon.Glue.Model
         /// </para>
         ///  
         /// <para>
-        /// The <code>Values</code> property can't be changed. If you want to change the partition
-        /// key values for a partition, delete and recreate the partition.
+        /// The <c>Values</c> property can't be changed. If you want to change the partition key
+        /// values for a partition, delete and recreate the partition.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -119,7 +120,7 @@ namespace Amazon.Glue.Model
         // Check to see if PartitionValueList property is set
         internal bool IsSetPartitionValueList()
         {
-            return this._partitionValueList != null && this._partitionValueList.Count > 0; 
+            return this._partitionValueList != null && (this._partitionValueList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

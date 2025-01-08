@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -45,12 +46,12 @@ namespace Amazon.Lightsail.Model
         private string _principalArn;
         private string _privateDomainName;
         private PrivateRegistryAccess _privateRegistryAccess;
-        private Dictionary<string, List<string>> _publicDomainNames = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<string>> _publicDomainNames = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
         private ResourceType _resourceType;
         private int? _scale;
         private ContainerServiceState _state;
         private ContainerServiceStateDetail _stateDetail;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _url;
 
         /// <summary>
@@ -170,8 +171,7 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// This value is <code>null</code> when there is no deployment in a <code>pending</code>
-        /// state.
+        /// This value is <c>null</c> when there is no deployment in a <c>pending</c> state.
         /// </para>
         /// </summary>
         public ContainerServiceDeployment NextDeployment
@@ -304,8 +304,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property PublicDomainNames. 
         /// <para>
-        /// The public domain name of the container service, such as <code>example.com</code>
-        /// and <code>www.example.com</code>.
+        /// The public domain name of the container service, such as <c>example.com</c> and <c>www.example.com</c>.
         /// </para>
         ///  
         /// <para>
@@ -321,15 +320,13 @@ namespace Amazon.Lightsail.Model
         ///  <important> 
         /// <para>
         /// You must create and validate an SSL/TLS certificate before you can use public domain
-        /// names with your container service. Use the <code>CreateCertificate</code> action to
-        /// create a certificate for the public domain names you want to use with your container
-        /// service.
+        /// names with your container service. Use the <c>CreateCertificate</c> action to create
+        /// a certificate for the public domain names you want to use with your container service.
         /// </para>
         ///  </important> 
         /// <para>
-        /// See <code>CreateContainerService</code> or <code>UpdateContainerService</code> for
-        /// information about how to specify public domain names for your Lightsail container
-        /// service.
+        /// See <c>CreateContainerService</c> or <c>UpdateContainerService</c> for information
+        /// about how to specify public domain names for your Lightsail container service.
         /// </para>
         /// </summary>
         public Dictionary<string, List<string>> PublicDomainNames
@@ -341,13 +338,13 @@ namespace Amazon.Lightsail.Model
         // Check to see if PublicDomainNames property is set
         internal bool IsSetPublicDomainNames()
         {
-            return this._publicDomainNames != null && this._publicDomainNames.Count > 0; 
+            return this._publicDomainNames != null && (this._publicDomainNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The Lightsail resource type of the container service (i.e., <code>ContainerService</code>).
+        /// The Lightsail resource type of the container service.
         /// </para>
         /// </summary>
         public ResourceType ResourceType
@@ -396,35 +393,35 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PENDING</code> - The container service is being created.
+        ///  <c>PENDING</c> - The container service is being created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>READY</code> - The container service is running but it does not have an active
-        /// container deployment.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>DEPLOYING</code> - The container service is launching a container deployment.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>RUNNING</code> - The container service is running and it has an active container
+        ///  <c>READY</c> - The container service is running but it does not have an active container
         /// deployment.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPDATING</code> - The container service capacity or its custom domains are
-        /// being updated.
+        ///  <c>DEPLOYING</c> - The container service is launching a container deployment.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETING</code> - The container service is being deleted.
+        ///  <c>RUNNING</c> - The container service is running and it has an active container
+        /// deployment.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DISABLED</code> - The container service is disabled, and its active deployment
-        /// and containers, if any, are shut down.
+        ///  <c>UPDATING</c> - The container service capacity or its custom domains are being
+        /// updated.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>DELETING</c> - The container service is being deleted.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>DISABLED</c> - The container service is disabled, and its active deployment and
+        /// containers, if any, are shut down.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -447,8 +444,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The state detail is populated only when a container service is in a <code>PENDING</code>,
-        /// <code>DEPLOYING</code>, or <code>UPDATING</code> state.
+        /// The state detail is populated only when a container service is in a <c>PENDING</c>,
+        /// <c>DEPLOYING</c>, or <c>UPDATING</c> state.
         /// </para>
         ///  </note>
         /// </summary>
@@ -481,7 +478,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -491,8 +488,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// If no public endpoint is specified in the <code>currentDeployment</code>, this URL
-        /// returns a 404 response.
+        /// If no public endpoint is specified in the <c>currentDeployment</c>, this URL returns
+        /// a 404 response.
         /// </para>
         /// </summary>
         public string Url

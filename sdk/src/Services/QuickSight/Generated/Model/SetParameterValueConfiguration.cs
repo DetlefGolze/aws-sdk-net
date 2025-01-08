@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property DestinationParameterName. 
         /// <para>
-        /// The destination parameter name of the <code>SetParameterValueConfiguration</code>.
+        /// The destination parameter name of the <c>SetParameterValueConfiguration</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]

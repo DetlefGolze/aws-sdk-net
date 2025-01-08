@@ -26,21 +26,56 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
     /// Container for the parameters to the GetTables operation.
-    /// Retrieves the definitions of some or all of the tables in a given <code>Database</code>.
+    /// Retrieves the definitions of some or all of the tables in a given <c>Database</c>.
     /// </summary>
     public partial class GetTablesRequest : AmazonGlueRequest
     {
+        private List<string> _attributesToGet = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _catalogId;
         private string _databaseName;
         private string _expression;
+        private bool? _includeStatusDetails;
         private int? _maxResults;
         private string _nextToken;
         private DateTime? _queryAsOfTime;
         private string _transactionId;
+
+        /// <summary>
+        /// Gets and sets the property AttributesToGet. 
+        /// <para>
+        ///  Specifies the table fields returned by the <c>GetTables</c> call. This parameter
+        /// doesn’t accept an empty list. The request must include <c>NAME</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// The following are the valid combinations of values:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>NAME</c> - Names of all tables in the database.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>NAME</c>, <c>TABLE_TYPE</c> - Names of all tables and the table types.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public List<string> AttributesToGet
+        {
+            get { return this._attributesToGet; }
+            set { this._attributesToGet = value; }
+        }
+
+        // Check to see if AttributesToGet property is set
+        internal bool IsSetAttributesToGet()
+        {
+            return this._attributesToGet != null && (this._attributesToGet.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
 
         /// <summary>
         /// Gets and sets the property CatalogId. 
@@ -103,6 +138,25 @@ namespace Amazon.Glue.Model
         }
 
         /// <summary>
+        /// Gets and sets the property IncludeStatusDetails. 
+        /// <para>
+        /// Specifies whether to include status details related to a request to create or update
+        /// an Glue Data Catalog view.
+        /// </para>
+        /// </summary>
+        public bool IncludeStatusDetails
+        {
+            get { return this._includeStatusDetails.GetValueOrDefault(); }
+            set { this._includeStatusDetails = value; }
+        }
+
+        // Check to see if IncludeStatusDetails property is set
+        internal bool IsSetIncludeStatusDetails()
+        {
+            return this._includeStatusDetails.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of tables to return in a single response.
@@ -143,7 +197,7 @@ namespace Amazon.Glue.Model
         /// Gets and sets the property QueryAsOfTime. 
         /// <para>
         /// The time as of when to read the table contents. If not set, the most recent transaction
-        /// commit time will be used. Cannot be specified along with <code>TransactionId</code>.
+        /// commit time will be used. Cannot be specified along with <c>TransactionId</c>.
         /// </para>
         /// </summary>
         public DateTime QueryAsOfTime

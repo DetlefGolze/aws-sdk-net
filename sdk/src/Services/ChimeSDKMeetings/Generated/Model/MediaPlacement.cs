@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMeetings.Model
 {
     /// <summary>
@@ -105,6 +106,11 @@ namespace Amazon.ChimeSDKMeetings.Model
         /// <para>
         /// The screen data URL.
         /// </para>
+        ///  <important> 
+        /// <para>
+        ///  <b>This parameter is deprecated and no longer used by the Amazon Chime SDK.</b> 
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Max=4096)]
         public string ScreenDataUrl
@@ -124,6 +130,11 @@ namespace Amazon.ChimeSDKMeetings.Model
         /// <para>
         /// The screen sharing URL.
         /// </para>
+        ///  <important> 
+        /// <para>
+        ///  <b>This parameter is deprecated and no longer used by the Amazon Chime SDK.</b> 
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Max=4096)]
         public string ScreenSharingUrl
@@ -143,6 +154,11 @@ namespace Amazon.ChimeSDKMeetings.Model
         /// <para>
         /// The screen viewing URL.
         /// </para>
+        ///  <important> 
+        /// <para>
+        ///  <b>This parameter is deprecated and no longer used by the Amazon Chime SDK.</b> 
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Max=4096)]
         public string ScreenViewingUrl
@@ -181,6 +197,11 @@ namespace Amazon.ChimeSDKMeetings.Model
         /// <para>
         /// The turn control URL.
         /// </para>
+        ///  <important> 
+        /// <para>
+        ///  <b>This parameter is deprecated and no longer used by the Amazon Chime SDK.</b> 
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Max=4096)]
         public string TurnControlUrl

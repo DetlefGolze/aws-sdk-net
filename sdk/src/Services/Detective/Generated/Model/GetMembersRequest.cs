@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Detective.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Detective.Model
     /// </summary>
     public partial class GetMembersRequest : AmazonDetectiveRequest
     {
-        private List<string> _accountIds = new List<string>();
+        private List<string> _accountIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _graphArn;
 
         /// <summary>
@@ -46,8 +47,8 @@ namespace Amazon.Detective.Model
         /// </para>
         ///  
         /// <para>
-        /// You cannot use <code>GetMembers</code> to retrieve information about member accounts
-        /// that were removed from the behavior graph.
+        /// You cannot use <c>GetMembers</c> to retrieve information about member accounts that
+        /// were removed from the behavior graph.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=50)]
@@ -60,7 +61,7 @@ namespace Amazon.Detective.Model
         // Check to see if AccountIds property is set
         internal bool IsSetAccountIds()
         {
-            return this._accountIds != null && this._accountIds.Count > 0; 
+            return this._accountIds != null && (this._accountIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

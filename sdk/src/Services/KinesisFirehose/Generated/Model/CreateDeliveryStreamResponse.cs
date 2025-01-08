@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property DeliveryStreamARN. 
         /// <para>
-        /// The ARN of the delivery stream.
+        /// The ARN of the Firehose stream.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=512)]

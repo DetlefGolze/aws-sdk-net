@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECRPublic.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ECRPublic.Model
     /// </summary>
     public partial class DescribeImageTagsResponse : AmazonWebServiceResponse
     {
-        private List<ImageTagDetail> _imageTagDetails = new List<ImageTagDetail>();
+        private List<ImageTagDetail> _imageTagDetails = AWSConfigs.InitializeCollections ? new List<ImageTagDetail>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,16 +52,16 @@ namespace Amazon.ECRPublic.Model
         // Check to see if ImageTagDetails property is set
         internal bool IsSetImageTagDetails()
         {
-            return this._imageTagDetails != null && this._imageTagDetails.Count > 0; 
+            return this._imageTagDetails != null && (this._imageTagDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value to include in a future <code>DescribeImageTags</code>
-        /// request. When the results of a <code>DescribeImageTags</code> request exceed <code>maxResults</code>,
-        /// you can use this value to retrieve the next page of results. If there are no more
-        /// results to return, this value is <code>null</code>.
+        /// The <c>nextToken</c> value to include in a future <c>DescribeImageTags</c> request.
+        /// When the results of a <c>DescribeImageTags</c> request exceed <c>maxResults</c>, you
+        /// can use this value to retrieve the next page of results. If there are no more results
+        /// to return, this value is <c>null</c>.
         /// </para>
         /// </summary>
         public string NextToken

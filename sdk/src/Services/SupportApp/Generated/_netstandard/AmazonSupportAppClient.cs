@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.SupportApp
 {
     /// <summary>
-    /// Implementation for accessing SupportApp
+    /// <para>Implementation for accessing SupportApp</para>
     ///
     /// Amazon Web Services Support App in Slack 
     /// <para>
@@ -407,13 +408,13 @@ namespace Amazon.SupportApp
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Call the <code>RegisterSlackWorkspaceForOrganization</code> API from an Amazon Web
-        /// Services account that doesn't belong to an organization.
+        /// Call the <c>RegisterSlackWorkspaceForOrganization</c> API from an Amazon Web Services
+        /// account that doesn't belong to an organization.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Call the <code>RegisterSlackWorkspaceForOrganization</code> API from a member account,
-        /// but the management account hasn't registered that workspace yet for the organization.
+        /// Call the <c>RegisterSlackWorkspaceForOrganization</c> API from a member account, but
+        /// the management account hasn't registered that workspace yet for the organization.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -539,13 +540,13 @@ namespace Amazon.SupportApp
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Call the <code>RegisterSlackWorkspaceForOrganization</code> API from an Amazon Web
-        /// Services account that doesn't belong to an organization.
+        /// Call the <c>RegisterSlackWorkspaceForOrganization</c> API from an Amazon Web Services
+        /// account that doesn't belong to an organization.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Call the <code>RegisterSlackWorkspaceForOrganization</code> API from a member account,
-        /// but the management account hasn't registered that workspace yet for the organization.
+        /// Call the <c>RegisterSlackWorkspaceForOrganization</c> API from a member account, but
+        /// the management account hasn't registered that workspace yet for the organization.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -623,13 +624,13 @@ namespace Amazon.SupportApp
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Call the <code>RegisterSlackWorkspaceForOrganization</code> API from an Amazon Web
-        /// Services account that doesn't belong to an organization.
+        /// Call the <c>RegisterSlackWorkspaceForOrganization</c> API from an Amazon Web Services
+        /// account that doesn't belong to an organization.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Call the <code>RegisterSlackWorkspaceForOrganization</code> API from a member account,
-        /// but the management account hasn't registered that workspace yet for the organization.
+        /// Call the <c>RegisterSlackWorkspaceForOrganization</c> API from a member account, but
+        /// the management account hasn't registered that workspace yet for the organization.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -853,8 +854,8 @@ namespace Amazon.SupportApp
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Call the <code>RegisterSlackWorkspaceForOrganization</code> API to authorize each
-        /// Slack workspace for the organization.
+        /// Call the <c>RegisterSlackWorkspaceForOrganization</c> API to authorize each Slack
+        /// workspace for the organization.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -916,13 +917,13 @@ namespace Amazon.SupportApp
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Call the <code>RegisterSlackWorkspaceForOrganization</code> API from an Amazon Web
-        /// Services account that doesn't belong to an organization.
+        /// Call the <c>RegisterSlackWorkspaceForOrganization</c> API from an Amazon Web Services
+        /// account that doesn't belong to an organization.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Call the <code>RegisterSlackWorkspaceForOrganization</code> API from a member account,
-        /// but the management account hasn't registered that workspace yet for the organization.
+        /// Call the <c>RegisterSlackWorkspaceForOrganization</c> API from a member account, but
+        /// the management account hasn't registered that workspace yet for the organization.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -999,13 +1000,13 @@ namespace Amazon.SupportApp
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Call the <code>RegisterSlackWorkspaceForOrganization</code> API from an Amazon Web
-        /// Services account that doesn't belong to an organization.
+        /// Call the <c>RegisterSlackWorkspaceForOrganization</c> API from an Amazon Web Services
+        /// account that doesn't belong to an organization.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Call the <code>RegisterSlackWorkspaceForOrganization</code> API from a member account,
-        /// but the management account hasn't registered that workspace yet for the organization.
+        /// Call the <c>RegisterSlackWorkspaceForOrganization</c> API from a member account, but
+        /// the management account hasn't registered that workspace yet for the organization.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -1041,11 +1042,11 @@ namespace Amazon.SupportApp
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

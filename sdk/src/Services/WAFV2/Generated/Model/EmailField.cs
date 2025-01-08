@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.WAFV2.Model
     /// 
     ///  
     /// <para>
-    /// This data type is used in the <code>RequestInspectionACFP</code> data type. 
+    /// This data type is used in the <c>RequestInspectionACFP</c> data type. 
     /// </para>
     /// </summary>
     public partial class EmailField
@@ -59,8 +60,8 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// For example, for the JSON payload <code>{ "form": { "email": "THE_EMAIL" } }</code>,
-        /// the email field specification is <code>/form/email</code>.
+        /// For example, for the JSON payload <c>{ "form": { "email": "THE_EMAIL" } }</c>, the
+        /// email field specification is <c>/form/email</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -68,8 +69,8 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// For example, for an HTML form with the input element named <code>email1</code>, the
-        /// email field specification is <code>email1</code>.
+        /// For example, for an HTML form with the input element named <c>email1</c>, the email
+        /// field specification is <c>email1</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>

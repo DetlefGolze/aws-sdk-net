@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
     /// Container for the parameters to the AddTagsToResource operation.
     /// Adds metadata tags to an Amazon DocumentDB resource. You can use these tags with cost
     /// allocation reporting to track costs that are associated with Amazon DocumentDB resources
-    /// or in a <code>Condition</code> statement in an Identity and Access Management (IAM)
-    /// policy for Amazon DocumentDB.
+    /// or in a <c>Condition</c> statement in an Identity and Access Management (IAM) policy
+    /// for Amazon DocumentDB.
     /// </summary>
     public partial class AddTagsToResourceRequest : AmazonDocDBRequest
     {
         private string _resourceName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceName. 
@@ -76,7 +77,7 @@ namespace Amazon.DocDB.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
     /// A custom key-value pair associated with a resource such as a CloudTrail trail, event
-    /// data store, or channel.
+    /// data store, dashboard, or channel.
     /// </summary>
     public partial class Tag
     {

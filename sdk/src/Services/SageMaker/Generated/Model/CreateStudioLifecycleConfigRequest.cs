@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateStudioLifecycleConfig operation.
-    /// Creates a new Studio Lifecycle Configuration.
+    /// Creates a new Amazon SageMaker AI Studio Lifecycle Configuration.
     /// </summary>
     public partial class CreateStudioLifecycleConfigRequest : AmazonSageMakerRequest
     {
         private StudioLifecycleConfigAppType _studioLifecycleConfigAppType;
         private string _studioLifecycleConfigContent;
         private string _studioLifecycleConfigName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property StudioLifecycleConfigAppType. 
@@ -61,8 +62,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property StudioLifecycleConfigContent. 
         /// <para>
-        /// The content of your Studio Lifecycle Configuration script. This content must be base64
-        /// encoded.
+        /// The content of your Amazon SageMaker AI Studio Lifecycle Configuration script. This
+        /// content must be base64 encoded.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=16384)]
@@ -81,7 +82,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property StudioLifecycleConfigName. 
         /// <para>
-        /// The name of the Studio Lifecycle Configuration to create.
+        /// The name of the Amazon SageMaker AI Studio Lifecycle Configuration to create.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=63)]
@@ -115,7 +116,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

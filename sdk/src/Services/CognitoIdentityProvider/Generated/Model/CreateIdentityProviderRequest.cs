@@ -26,11 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateIdentityProvider operation.
-    /// Creates an IdP for a user pool.
+    /// Adds a configuration and trust relationship between a third-party identity provider
+    /// (IdP) and a user pool. Amazon Cognito accepts sign-in with third-party identity providers
+    /// through managed login and OIDC relying-party libraries. For more information, see
+    /// <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-identity-federation.html">Third-party
+    /// IdP sign-in</a>.
     /// 
     ///  <note> 
     /// <para>
@@ -56,9 +61,9 @@ namespace Amazon.CognitoIdentityProvider.Model
     /// </summary>
     public partial class CreateIdentityProviderRequest : AmazonCognitoIdentityProviderRequest
     {
-        private Dictionary<string, string> _attributeMapping = new Dictionary<string, string>();
-        private List<string> _idpIdentifiers = new List<string>();
-        private Dictionary<string, string> _providerDetails = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributeMapping = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<string> _idpIdentifiers = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, string> _providerDetails = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _providerName;
         private IdentityProviderTypeType _providerType;
         private string _userPoolId;
@@ -66,7 +71,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property AttributeMapping. 
         /// <para>
-        /// A mapping of IdP attributes to standard and custom user pool attributes.
+        /// A mapping of IdP attributes to standard and custom user pool attributes. Specify a
+        /// user pool attribute as the key of the key-value pair, and the IdP attribute claim
+        /// name as the value.
         /// </para>
         /// </summary>
         public Dictionary<string, string> AttributeMapping
@@ -78,13 +85,18 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if AttributeMapping property is set
         internal bool IsSetAttributeMapping()
         {
-            return this._attributeMapping != null && this._attributeMapping.Count > 0; 
+            return this._attributeMapping != null && (this._attributeMapping.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property IdpIdentifiers. 
         /// <para>
-        /// A list of IdP identifiers.
+        /// An array of IdP identifiers, for example <c>"IdPIdentifiers": [ "MyIdP", "MyIdP2"
+        /// ]</c>. Identifiers are friendly names that you can pass in the <c>idp_identifier</c>
+        /// query parameter of requests to the <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/authorization-endpoint.html">Authorize
+        /// endpoint</a> to silently redirect to sign-in with the associated IdP. Identifiers
+        /// in a domain format also enable the use of <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-managing-saml-idp-naming.html">email-address
+        /// matching with SAML providers</a>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -97,141 +109,124 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if IdpIdentifiers property is set
         internal bool IsSetIdpIdentifiers()
         {
-            return this._idpIdentifiers != null && this._idpIdentifiers.Count > 0; 
+            return this._idpIdentifiers != null && (this._idpIdentifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ProviderDetails. 
         /// <para>
-        /// The IdP details. The following list describes the provider detail keys for each IdP
-        /// type.
+        /// The scopes, URLs, and identifiers for your external identity provider. The following
+        /// examples describe the provider detail keys for each IdP type. These values and their
+        /// schema are subject to change. Social IdP <c>authorize_scopes</c> values must match
+        /// the values listed here.
         /// </para>
-        ///  <ul> <li> 
+        ///  <dl> <dt>OpenID Connect (OIDC)</dt> <dd> 
         /// <para>
-        /// For Google and Login with Amazon:
+        /// Amazon Cognito accepts the following elements when it can't discover endpoint URLs
+        /// from <c>oidc_issuer</c>: <c>attributes_url</c>, <c>authorize_url</c>, <c>jwks_uri</c>,
+        /// <c>token_url</c>.
         /// </para>
-        ///  <ul> <li> 
+        ///  
         /// <para>
-        /// client_id
+        /// Create or update request: <c>"ProviderDetails": { "attributes_request_method": "GET",
+        /// "attributes_url": "https://auth.example.com/userInfo", "authorize_scopes": "openid
+        /// profile email", "authorize_url": "https://auth.example.com/authorize", "client_id":
+        /// "1example23456789", "client_secret": "provider-app-client-secret", "jwks_uri": "https://auth.example.com/.well-known/jwks.json",
+        /// "oidc_issuer": "https://auth.example.com", "token_url": "https://example.com/token"
+        /// }</c> 
         /// </para>
-        ///  </li> <li> 
+        ///  
         /// <para>
-        /// client_secret
+        /// Describe response: <c>"ProviderDetails": { "attributes_request_method": "GET", "attributes_url":
+        /// "https://auth.example.com/userInfo", "attributes_url_add_attributes": "false", "authorize_scopes":
+        /// "openid profile email", "authorize_url": "https://auth.example.com/authorize", "client_id":
+        /// "1example23456789", "client_secret": "provider-app-client-secret", "jwks_uri": "https://auth.example.com/.well-known/jwks.json",
+        /// "oidc_issuer": "https://auth.example.com", "token_url": "https://example.com/token"
+        /// }</c> 
         /// </para>
-        ///  </li> <li> 
+        ///  </dd> <dt>SAML</dt> <dd> 
         /// <para>
-        /// authorize_scopes
+        /// Create or update request with Metadata URL: <c>"ProviderDetails": { "IDPInit": "true",
+        /// "IDPSignout": "true", "EncryptedResponses" : "true", "MetadataURL": "https://auth.example.com/sso/saml/metadata",
+        /// "RequestSigningAlgorithm": "rsa-sha256" }</c> 
         /// </para>
-        ///  </li> </ul> </li> <li> 
+        ///  
         /// <para>
-        /// For Facebook:
+        /// Create or update request with Metadata file: <c>"ProviderDetails": { "IDPInit": "true",
+        /// "IDPSignout": "true", "EncryptedResponses" : "true", "MetadataFile": "[metadata XML]",
+        /// "RequestSigningAlgorithm": "rsa-sha256" }</c> 
         /// </para>
-        ///  <ul> <li> 
+        ///  
         /// <para>
-        /// client_id
+        /// The value of <c>MetadataFile</c> must be the plaintext metadata document with all
+        /// quote (") characters escaped by backslashes.
         /// </para>
-        ///  </li> <li> 
+        ///  
         /// <para>
-        /// client_secret
+        /// Describe response: <c>"ProviderDetails": { "IDPInit": "true", "IDPSignout": "true",
+        /// "EncryptedResponses" : "true", "ActiveEncryptionCertificate": "[certificate]", "MetadataURL":
+        /// "https://auth.example.com/sso/saml/metadata", "RequestSigningAlgorithm": "rsa-sha256",
+        /// "SLORedirectBindingURI": "https://auth.example.com/slo/saml", "SSORedirectBindingURI":
+        /// "https://auth.example.com/sso/saml" }</c> 
         /// </para>
-        ///  </li> <li> 
+        ///  </dd> <dt>LoginWithAmazon</dt> <dd> 
         /// <para>
-        /// authorize_scopes
+        /// Create or update request: <c>"ProviderDetails": { "authorize_scopes": "profile postal_code",
+        /// "client_id": "amzn1.application-oa2-client.1example23456789", "client_secret": "provider-app-client-secret"</c>
+        /// 
         /// </para>
-        ///  </li> <li> 
+        ///  
         /// <para>
-        /// api_version
+        /// Describe response: <c>"ProviderDetails": { "attributes_url": "https://api.amazon.com/user/profile",
+        /// "attributes_url_add_attributes": "false", "authorize_scopes": "profile postal_code",
+        /// "authorize_url": "https://www.amazon.com/ap/oa", "client_id": "amzn1.application-oa2-client.1example23456789",
+        /// "client_secret": "provider-app-client-secret", "token_request_method": "POST", "token_url":
+        /// "https://api.amazon.com/auth/o2/token" }</c> 
         /// </para>
-        ///  </li> </ul> </li> <li> 
+        ///  </dd> <dt>Google</dt> <dd> 
         /// <para>
-        /// For Sign in with Apple:
+        /// Create or update request: <c>"ProviderDetails": { "authorize_scopes": "email profile
+        /// openid", "client_id": "1example23456789.apps.googleusercontent.com", "client_secret":
+        /// "provider-app-client-secret" }</c> 
         /// </para>
-        ///  <ul> <li> 
+        ///  
         /// <para>
-        /// client_id
+        /// Describe response: <c>"ProviderDetails": { "attributes_url": "https://people.googleapis.com/v1/people/me?personFields=",
+        /// "attributes_url_add_attributes": "true", "authorize_scopes": "email profile openid",
+        /// "authorize_url": "https://accounts.google.com/o/oauth2/v2/auth", "client_id": "1example23456789.apps.googleusercontent.com",
+        /// "client_secret": "provider-app-client-secret", "oidc_issuer": "https://accounts.google.com",
+        /// "token_request_method": "POST", "token_url": "https://www.googleapis.com/oauth2/v4/token"
+        /// }</c> 
         /// </para>
-        ///  </li> <li> 
+        ///  </dd> <dt>SignInWithApple</dt> <dd> 
         /// <para>
-        /// team_id
+        /// Create or update request: <c>"ProviderDetails": { "authorize_scopes": "email name",
+        /// "client_id": "com.example.cognito", "private_key": "1EXAMPLE", "key_id": "2EXAMPLE",
+        /// "team_id": "3EXAMPLE" }</c> 
         /// </para>
-        ///  </li> <li> 
+        ///  
         /// <para>
-        /// key_id
+        /// Describe response: <c>"ProviderDetails": { "attributes_url_add_attributes": "false",
+        /// "authorize_scopes": "email name", "authorize_url": "https://appleid.apple.com/auth/authorize",
+        /// "client_id": "com.example.cognito", "key_id": "1EXAMPLE", "oidc_issuer": "https://appleid.apple.com",
+        /// "team_id": "2EXAMPLE", "token_request_method": "POST", "token_url": "https://appleid.apple.com/auth/token"
+        /// }</c> 
         /// </para>
-        ///  </li> <li> 
+        ///  </dd> <dt>Facebook</dt> <dd> 
         /// <para>
-        /// private_key
+        /// Create or update request: <c>"ProviderDetails": { "api_version": "v17.0", "authorize_scopes":
+        /// "public_profile, email", "client_id": "1example23456789", "client_secret": "provider-app-client-secret"
+        /// }</c> 
         /// </para>
-        ///  </li> <li> 
+        ///  
         /// <para>
-        /// authorize_scopes
+        /// Describe response: <c>"ProviderDetails": { "api_version": "v17.0", "attributes_url":
+        /// "https://graph.facebook.com/v17.0/me?fields=", "attributes_url_add_attributes": "true",
+        /// "authorize_scopes": "public_profile, email", "authorize_url": "https://www.facebook.com/v17.0/dialog/oauth",
+        /// "client_id": "1example23456789", "client_secret": "provider-app-client-secret", "token_request_method":
+        /// "GET", "token_url": "https://graph.facebook.com/v17.0/oauth/access_token" }</c> 
         /// </para>
-        ///  </li> </ul> </li> <li> 
-        /// <para>
-        /// For OpenID Connect (OIDC) providers:
-        /// </para>
-        ///  <ul> <li> 
-        /// <para>
-        /// client_id
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// client_secret
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// attributes_request_method
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// oidc_issuer
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// authorize_scopes
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// The following keys are only present if Amazon Cognito didn't discover them at the
-        /// <code>oidc_issuer</code> URL.
-        /// </para>
-        ///  <ul> <li> 
-        /// <para>
-        /// authorize_url 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// token_url 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// attributes_url 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// jwks_uri 
-        /// </para>
-        ///  </li> </ul> </li> <li> 
-        /// <para>
-        /// Amazon Cognito sets the value of the following keys automatically. They are read-only.
-        /// </para>
-        ///  <ul> <li> 
-        /// <para>
-        /// attributes_url_add_attributes 
-        /// </para>
-        ///  </li> </ul> </li> </ul> </li> <li> 
-        /// <para>
-        /// For SAML providers:
-        /// </para>
-        ///  <ul> <li> 
-        /// <para>
-        /// MetadataFile or MetadataURL
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// IDPSignout <i>optional</i> 
-        /// </para>
-        ///  </li> </ul> </li> </ul>
+        ///  </dd> </dl>
         /// </summary>
         [AWSProperty(Required=true)]
         public Dictionary<string, string> ProviderDetails
@@ -243,13 +238,15 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if ProviderDetails property is set
         internal bool IsSetProviderDetails()
         {
-            return this._providerDetails != null && this._providerDetails.Count > 0; 
+            return this._providerDetails != null && (this._providerDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ProviderName. 
         /// <para>
-        /// The IdP name.
+        /// The name that you want to assign to the IdP. You can pass the identity provider name
+        /// in the <c>identity_provider</c> query parameter of requests to the <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/authorization-endpoint.html">Authorize
+        /// endpoint</a> to silently redirect to sign-in with the associated IdP.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=32)]
@@ -268,7 +265,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property ProviderType. 
         /// <para>
-        /// The IdP type.
+        /// The type of IdP that you want to add. Amazon Cognito supports OIDC, SAML 2.0, Login
+        /// With Amazon, Sign In With Apple, Google, and Facebook IdPs.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -287,7 +285,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID.
+        /// The Id of the user pool where you want to create an IdP.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

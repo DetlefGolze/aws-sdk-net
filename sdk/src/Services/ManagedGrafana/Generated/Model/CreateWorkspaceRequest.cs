@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedGrafana.Model
 {
     /// <summary>
@@ -36,14 +37,14 @@ namespace Amazon.ManagedGrafana.Model
     /// 
     ///  
     /// <para>
-    /// Don't use <code>CreateWorkspace</code> to modify an existing workspace. Instead, use
-    /// <a href="https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdateWorkspace.html">UpdateWorkspace</a>.
+    /// Don't use <c>CreateWorkspace</c> to modify an existing workspace. Instead, use <a
+    /// href="https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdateWorkspace.html">UpdateWorkspace</a>.
     /// </para>
     /// </summary>
     public partial class CreateWorkspaceRequest : AmazonManagedGrafanaRequest
     {
         private AccountAccessType _accountAccessType;
-        private List<string> _authenticationProviders = new List<string>();
+        private List<string> _authenticationProviders = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _clientToken;
         private string _configuration;
         private string _grafanaVersion;
@@ -51,13 +52,13 @@ namespace Amazon.ManagedGrafana.Model
         private string _organizationRoleName;
         private PermissionType _permissionType;
         private string _stackSetName;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private VpcConfiguration _vpcConfiguration;
-        private List<string> _workspaceDataSources = new List<string>();
+        private List<string> _workspaceDataSources = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _workspaceDescription;
         private string _workspaceName;
-        private List<string> _workspaceNotificationDestinations = new List<string>();
-        private List<string> _workspaceOrganizationalUnits = new List<string>();
+        private List<string> _workspaceNotificationDestinations = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _workspaceOrganizationalUnits = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _workspaceRoleArn;
 
         /// <summary>
@@ -65,8 +66,8 @@ namespace Amazon.ManagedGrafana.Model
         /// <para>
         /// Specifies whether the workspace can access Amazon Web Services resources in this Amazon
         /// Web Services account only, or whether it can also access Amazon Web Services resources
-        /// in other accounts in the same organization. If you specify <code>ORGANIZATION</code>,
-        /// you must specify which organizational units the workspace can access in the <code>workspaceOrganizationalUnits</code>
+        /// in other accounts in the same organization. If you specify <c>ORGANIZATION</c>, you
+        /// must specify which organizational units the workspace can access in the <c>workspaceOrganizationalUnits</c>
         /// parameter.
         /// </para>
         /// </summary>
@@ -86,9 +87,9 @@ namespace Amazon.ManagedGrafana.Model
         /// <summary>
         /// Gets and sets the property AuthenticationProviders. 
         /// <para>
-        /// Specifies whether this workspace uses SAML 2.0, IAM Identity Center (successor to
-        /// Single Sign-On), or both to authenticate users for using the Grafana console within
-        /// a workspace. For more information, see <a href="https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html">User
+        /// Specifies whether this workspace uses SAML 2.0, IAM Identity Center, or both to authenticate
+        /// users for using the Grafana console within a workspace. For more information, see
+        /// <a href="https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html">User
         /// authentication in Amazon Managed Grafana</a>.
         /// </para>
         /// </summary>
@@ -102,7 +103,7 @@ namespace Amazon.ManagedGrafana.Model
         // Check to see if AuthenticationProviders property is set
         internal bool IsSetAuthenticationProviders()
         {
-            return this._authenticationProviders != null && this._authenticationProviders.Count > 0; 
+            return this._authenticationProviders != null && (this._authenticationProviders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -148,11 +149,12 @@ namespace Amazon.ManagedGrafana.Model
         /// <summary>
         /// Gets and sets the property GrafanaVersion. 
         /// <para>
-        /// Specifies the version of Grafana to support in the new workspace.
+        /// Specifies the version of Grafana to support in the new workspace. If not specified,
+        /// defaults to the latest version (for example, 10.4).
         /// </para>
         ///  
         /// <para>
-        /// To get a list of supported version, use the <code>ListVersions</code> operation.
+        /// To get a list of supported versions, use the <c>ListVersions</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -226,19 +228,19 @@ namespace Amazon.ManagedGrafana.Model
         /// </para>
         ///  
         /// <para>
-        /// You must also specify a <code>workspaceRoleArn</code> for a role that you will manage
-        /// for the workspace to use when accessing those datasources and notification channels.
+        /// You must also specify a <c>workspaceRoleArn</c> for a role that you will manage for
+        /// the workspace to use when accessing those datasources and notification channels.
         /// </para>
         ///  
         /// <para>
         /// The ability for Amazon Managed Grafana to create and update IAM roles on behalf of
         /// the user is supported only in the Amazon Managed Grafana console, where this value
-        /// may be set to <code>SERVICE_MANAGED</code>.
+        /// may be set to <c>SERVICE_MANAGED</c>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// Use only the <code>CUSTOMER_MANAGED</code> permission type when creating a workspace
-        /// with the API, CLI or Amazon Web Services CloudFormation. 
+        /// Use only the <c>CUSTOMER_MANAGED</c> permission type when creating a workspace with
+        /// the API, CLI or Amazon Web Services CloudFormation. 
         /// </para>
         ///  </note> 
         /// <para>
@@ -295,7 +297,7 @@ namespace Amazon.ManagedGrafana.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -338,7 +340,7 @@ namespace Amazon.ManagedGrafana.Model
         // Check to see if WorkspaceDataSources property is set
         internal bool IsSetWorkspaceDataSources()
         {
-            return this._workspaceDataSources != null && this._workspaceDataSources.Count > 0; 
+            return this._workspaceDataSources != null && (this._workspaceDataSources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -348,7 +350,7 @@ namespace Amazon.ManagedGrafana.Model
         /// </para>
         ///  
         /// <para>
-        /// Pattern: <code>^[\\p{L}\\p{Z}\\p{N}\\p{P}]{0,2048}$</code> 
+        /// Pattern: <c>^[\\p{L}\\p{Z}\\p{N}\\p{P}]{0,2048}$</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=0, Max=2048)]
@@ -400,7 +402,7 @@ namespace Amazon.ManagedGrafana.Model
         // Check to see if WorkspaceNotificationDestinations property is set
         internal bool IsSetWorkspaceNotificationDestinations()
         {
-            return this._workspaceNotificationDestinations != null && this._workspaceNotificationDestinations.Count > 0; 
+            return this._workspaceNotificationDestinations != null && (this._workspaceNotificationDestinations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -420,7 +422,7 @@ namespace Amazon.ManagedGrafana.Model
         // Check to see if WorkspaceOrganizationalUnits property is set
         internal bool IsSetWorkspaceOrganizationalUnits()
         {
-            return this._workspaceOrganizationalUnits != null && this._workspaceOrganizationalUnits.Count > 0; 
+            return this._workspaceOrganizationalUnits != null && (this._workspaceOrganizationalUnits.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

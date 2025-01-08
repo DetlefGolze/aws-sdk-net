@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.WorkSpaces.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.WorkSpaces.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetDirectoryIds())
@@ -74,6 +76,22 @@ namespace Amazon.WorkSpaces.Model.Internal.MarshallTransformations
                     foreach(var publicRequestDirectoryIdsListValue in publicRequest.DirectoryIds)
                     {
                             context.Writer.Write(publicRequestDirectoryIdsListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetFilters())
+                {
+                    context.Writer.WritePropertyName("Filters");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestFiltersListValue in publicRequest.Filters)
+                    {
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = DescribeWorkspaceDirectoriesFilterMarshaller.Instance;
+                        marshaller.Marshall(publicRequestFiltersListValue, context);
+
+                        context.Writer.WriteObjectEnd();
                     }
                     context.Writer.WriteArrayEnd();
                 }
@@ -88,6 +106,17 @@ namespace Amazon.WorkSpaces.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("NextToken");
                     context.Writer.Write(publicRequest.NextToken);
+                }
+
+                if(publicRequest.IsSetWorkspaceDirectoryNames())
+                {
+                    context.Writer.WritePropertyName("WorkspaceDirectoryNames");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestWorkspaceDirectoryNamesListValue in publicRequest.WorkspaceDirectoryNames)
+                    {
+                            context.Writer.Write(publicRequestWorkspaceDirectoryNamesListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
                 }
 
                 writer.WriteObjectEnd();

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
@@ -41,12 +42,12 @@ namespace Amazon.KeyManagementService.Model
     {
         private MultiRegionKeyType _multiRegionKeyType;
         private MultiRegionKey _primaryKey;
-        private List<MultiRegionKey> _replicaKeys = new List<MultiRegionKey>();
+        private List<MultiRegionKey> _replicaKeys = AWSConfigs.InitializeCollections ? new List<MultiRegionKey>() : null;
 
         /// <summary>
         /// Gets and sets the property MultiRegionKeyType. 
         /// <para>
-        /// Indicates whether the KMS key is a <code>PRIMARY</code> or <code>REPLICA</code> key.
+        /// Indicates whether the KMS key is a <c>PRIMARY</c> or <c>REPLICA</c> key.
         /// </para>
         /// </summary>
         public MultiRegionKeyType MultiRegionKeyType
@@ -96,7 +97,7 @@ namespace Amazon.KeyManagementService.Model
         // Check to see if ReplicaKeys property is set
         internal bool IsSetReplicaKeys()
         {
-            return this._replicaKeys != null && this._replicaKeys.Count > 0; 
+            return this._replicaKeys != null && (this._replicaKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

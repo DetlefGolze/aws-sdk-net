@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FMS.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.FMS.Model
     public partial class ListComplianceStatusResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<PolicyComplianceStatus> _policyComplianceStatusList = new List<PolicyComplianceStatus>();
+        private List<PolicyComplianceStatus> _policyComplianceStatusList = AWSConfigs.InitializeCollections ? new List<PolicyComplianceStatus>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If you have more <code>PolicyComplianceStatus</code> objects than the number that
-        /// you specified for <code>MaxResults</code> in the request, the response includes a
-        /// <code>NextToken</code> value. To list more <code>PolicyComplianceStatus</code> objects,
-        /// submit another <code>ListComplianceStatus</code> request, and specify the <code>NextToken</code>
-        /// value from the response in the <code>NextToken</code> value in the next request.
+        /// If you have more <c>PolicyComplianceStatus</c> objects than the number that you specified
+        /// for <c>MaxResults</c> in the request, the response includes a <c>NextToken</c> value.
+        /// To list more <c>PolicyComplianceStatus</c> objects, submit another <c>ListComplianceStatus</c>
+        /// request, and specify the <c>NextToken</c> value from the response in the <c>NextToken</c>
+        /// value in the next request.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4096)]
@@ -62,7 +63,7 @@ namespace Amazon.FMS.Model
         /// <summary>
         /// Gets and sets the property PolicyComplianceStatusList. 
         /// <para>
-        /// An array of <code>PolicyComplianceStatus</code> objects.
+        /// An array of <c>PolicyComplianceStatus</c> objects.
         /// </para>
         /// </summary>
         public List<PolicyComplianceStatus> PolicyComplianceStatusList
@@ -74,7 +75,7 @@ namespace Amazon.FMS.Model
         // Check to see if PolicyComplianceStatusList property is set
         internal bool IsSetPolicyComplianceStatusList()
         {
-            return this._policyComplianceStatusList != null && this._policyComplianceStatusList.Count > 0; 
+            return this._policyComplianceStatusList != null && (this._policyComplianceStatusList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

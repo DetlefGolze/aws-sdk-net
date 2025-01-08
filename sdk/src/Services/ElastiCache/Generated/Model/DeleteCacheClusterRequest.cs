@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteCacheCluster operation.
-    /// Deletes a previously provisioned cluster. <code>DeleteCacheCluster</code> deletes
-    /// all associated cache nodes, node endpoints and the cluster itself. When you receive
-    /// a successful response from this operation, Amazon ElastiCache immediately begins deleting
-    /// the cluster; you cannot cancel or revert this operation.
+    /// Deletes a previously provisioned cluster. <c>DeleteCacheCluster</c> deletes all associated
+    /// cache nodes, node endpoints and the cluster itself. When you receive a successful
+    /// response from this operation, Amazon ElastiCache immediately begins deleting the cluster;
+    /// you cannot cancel or revert this operation.
     /// 
     ///  
     /// <para>
@@ -41,11 +42,11 @@ namespace Amazon.ElastiCache.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// Redis (cluster mode enabled) clusters
+    /// Valkey or Redis OSS (cluster mode enabled) clusters
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Redis (cluster mode disabled) clusters
+    /// Valkey or Redis OSS (cluster mode disabled) clusters
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -61,11 +62,11 @@ namespace Amazon.ElastiCache.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// A cluster from a Redis (cluster mode enabled) replication group
+    /// A cluster from a Valkey or Redis OSS (cluster mode enabled) replication group
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// A cluster that is not in the <code>available</code> state
+    /// A cluster that is not in the <c>available</c> state
     /// </para>
     ///  </li> </ul>
     /// </summary>

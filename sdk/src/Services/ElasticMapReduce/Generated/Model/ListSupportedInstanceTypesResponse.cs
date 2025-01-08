@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ElasticMapReduce.Model
     public partial class ListSupportedInstanceTypesResponse : AmazonWebServiceResponse
     {
         private string _marker;
-        private List<SupportedInstanceType> _supportedInstanceTypes = new List<SupportedInstanceType>();
+        private List<SupportedInstanceType> _supportedInstanceTypes = AWSConfigs.InitializeCollections ? new List<SupportedInstanceType>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
@@ -57,7 +58,7 @@ namespace Amazon.ElasticMapReduce.Model
         /// <summary>
         /// Gets and sets the property SupportedInstanceTypes. 
         /// <para>
-        /// The list of instance types that the release specified in <code>ListSupportedInstanceTypesInput$ReleaseLabel</code>
+        /// The list of instance types that the release specified in <c>ListSupportedInstanceTypesInput$ReleaseLabel</c>
         /// supports, filtered by Amazon Web Services Region.
         /// </para>
         /// </summary>
@@ -70,7 +71,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if SupportedInstanceTypes property is set
         internal bool IsSetSupportedInstanceTypes()
         {
-            return this._supportedInstanceTypes != null && this._supportedInstanceTypes.Count > 0; 
+            return this._supportedInstanceTypes != null && (this._supportedInstanceTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

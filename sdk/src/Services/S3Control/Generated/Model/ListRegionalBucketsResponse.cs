@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -34,15 +35,14 @@ namespace Amazon.S3Control.Model
     public partial class ListRegionalBucketsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<RegionalBucket> _regionalBucketList = new List<RegionalBucket>();
+        private List<RegionalBucket> _regionalBucketList = AWSConfigs.InitializeCollections ? new List<RegionalBucket>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  <code>NextToken</code> is sent when <code>isTruncated</code> is true, which means
-        /// there are more buckets that can be listed. The next list requests to Amazon S3 can
-        /// be continued with this <code>NextToken</code>. <code>NextToken</code> is obfuscated
-        /// and is not a real key.
+        ///  <c>NextToken</c> is sent when <c>isTruncated</c> is true, which means there are more
+        /// buckets that can be listed. The next list requests to Amazon S3 can be continued with
+        /// this <c>NextToken</c>. <c>NextToken</c> is obfuscated and is not a real key.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -70,7 +70,7 @@ namespace Amazon.S3Control.Model
         // Check to see if RegionalBucketList property is set
         internal bool IsSetRegionalBucketList()
         {
-            return this._regionalBucketList != null && this._regionalBucketList.Count > 0; 
+            return this._regionalBucketList != null && (this._regionalBucketList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

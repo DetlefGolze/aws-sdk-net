@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -64,7 +65,7 @@ namespace Amazon.SageMaker.Model
         /// The Amazon Resource Name (ARN) of the pipeline execution.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=256)]
+        [AWSProperty(Required=true, Max=2048)]
         public string PipelineExecutionArn
         {
             get { return this._pipelineExecutionArn; }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRunner.Model
 {
     /// <summary>
@@ -60,8 +61,8 @@ namespace Amazon.AppRunner.Model
         /// Gets and sets the property Service. 
         /// <para>
         /// A description of the App Runner service updated by this request. All configuration
-        /// values in the returned <code>Service</code> structure reflect configuration changes
-        /// that are being applied by this request.
+        /// values in the returned <c>Service</c> structure reflect configuration changes that
+        /// are being applied by this request.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

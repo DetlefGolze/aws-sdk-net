@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruProfiler.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.CodeGuruProfiler.Model
     public partial class FrameMetric
     {
         private string _frameName;
-        private List<string> _threadStates = new List<string>();
+        private List<string> _threadStates = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private MetricType _type;
 
         /// <summary>
@@ -75,16 +76,15 @@ namespace Amazon.CodeGuruProfiler.Model
         // Check to see if ThreadStates property is set
         internal bool IsSetThreadStates()
         {
-            return this._threadStates != null && this._threadStates.Count > 0; 
+            return this._threadStates != null && (this._threadStates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
         ///  A type of aggregation that specifies how a metric for a frame is analyzed. The supported
-        /// value <code>AggregatedRelativeTotalTime</code> is an aggregation of the metric value
-        /// for one frame that is calculated across the occurrences of all frames in a profile.
-        /// 
+        /// value <c>AggregatedRelativeTotalTime</c> is an aggregation of the metric value for
+        /// one frame that is calculated across the occurrences of all frames in a profile. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

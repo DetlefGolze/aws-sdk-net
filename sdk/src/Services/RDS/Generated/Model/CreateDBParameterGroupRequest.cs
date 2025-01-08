@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -36,11 +37,11 @@ namespace Amazon.RDS.Model
     /// <para>
     /// A DB parameter group is initially created with the default parameters for the database
     /// engine used by the DB instance. To provide custom values for any of the parameters,
-    /// you must modify the group after creating it using <code>ModifyDBParameterGroup</code>.
-    /// Once you've created a DB parameter group, you need to associate it with your DB instance
-    /// using <code>ModifyDBInstance</code>. When you associate a new DB parameter group with
-    /// a running DB instance, you need to reboot the DB instance without failover for the
-    /// new DB parameter group and associated settings to take effect.
+    /// you must modify the group after creating it using <c>ModifyDBParameterGroup</c>. Once
+    /// you've created a DB parameter group, you need to associate it with your DB instance
+    /// using <c>ModifyDBInstance</c>. When you associate a new DB parameter group with a
+    /// running DB instance, you need to reboot the DB instance without failover for the new
+    /// DB parameter group and associated settings to take effect.
     /// </para>
     ///  
     /// <para>
@@ -53,7 +54,7 @@ namespace Amazon.RDS.Model
     /// group. This allows Amazon RDS to fully complete the create action before the parameter
     /// group is used as the default for a new DB instance. This is especially important for
     /// parameters that are critical when creating the default database for a DB instance,
-    /// such as the character set for the default database defined by the <code>character_set_database</code>
+    /// such as the character set for the default database defined by the <c>character_set_database</c>
     /// parameter. You can use the <i>Parameter Groups</i> option of the <a href="https://console.aws.amazon.com/rds/">Amazon
     /// RDS console</a> or the <i>DescribeDBParameters</i> command to verify that your DB
     /// parameter group has been created or modified.
@@ -65,7 +66,7 @@ namespace Amazon.RDS.Model
         private string _dbParameterGroupFamily;
         private string _dbParameterGroupName;
         private string _description;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -76,7 +77,7 @@ namespace Amazon.RDS.Model
         /// Instantiates CreateDBParameterGroupRequest with the parameterized properties
         /// </summary>
         /// <param name="dbParameterGroupName">The name of the DB parameter group. Constraints: <ul> <li> Must be 1 to 255 letters, numbers, or hyphens. </li> <li> First character must be a letter </li> <li> Can't end with a hyphen or contain two consecutive hyphens </li> </ul> <note> This value is stored as a lowercase string. </note></param>
-        /// <param name="dbParameterGroupFamily">The DB parameter group family name. A DB parameter group can be associated with one and only one DB parameter group family, and can be applied only to a DB instance running a database engine and engine version compatible with that DB parameter group family. To list all of the available parameter group families for a DB engine, use the following command:  <code>aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily" --engine &lt;engine&gt;</code>  For example, to list all of the available parameter group families for the MySQL DB engine, use the following command:  <code>aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily" --engine mysql</code>  <note> The output contains duplicates. </note> The following are the valid DB engine values: <ul> <li>  <code>aurora-mysql</code>  </li> <li>  <code>aurora-postgresql</code>  </li> <li>  <code>mariadb</code>  </li> <li>  <code>mysql</code>  </li> <li>  <code>oracle-ee</code>  </li> <li>  <code>oracle-ee-cdb</code>  </li> <li>  <code>oracle-se2</code>  </li> <li>  <code>oracle-se2-cdb</code>  </li> <li>  <code>postgres</code>  </li> <li>  <code>sqlserver-ee</code>  </li> <li>  <code>sqlserver-se</code>  </li> <li>  <code>sqlserver-ex</code>  </li> <li>  <code>sqlserver-web</code>  </li> </ul></param>
+        /// <param name="dbParameterGroupFamily">The DB parameter group family name. A DB parameter group can be associated with one and only one DB parameter group family, and can be applied only to a DB instance running a database engine and engine version compatible with that DB parameter group family. To list all of the available parameter group families for a DB engine, use the following command:  <c>aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily" --engine &lt;engine&gt;</c>  For example, to list all of the available parameter group families for the MySQL DB engine, use the following command:  <c>aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily" --engine mysql</c>  <note> The output contains duplicates. </note> The following are the valid DB engine values: <ul> <li>  <c>aurora-mysql</c>  </li> <li>  <c>aurora-postgresql</c>  </li> <li>  <c>db2-ae</c>  </li> <li>  <c>db2-se</c>  </li> <li>  <c>mysql</c>  </li> <li>  <c>oracle-ee</c>  </li> <li>  <c>oracle-ee-cdb</c>  </li> <li>  <c>oracle-se2</c>  </li> <li>  <c>oracle-se2-cdb</c>  </li> <li>  <c>postgres</c>  </li> <li>  <c>sqlserver-ee</c>  </li> <li>  <c>sqlserver-se</c>  </li> <li>  <c>sqlserver-ex</c>  </li> <li>  <c>sqlserver-web</c>  </li> </ul></param>
         /// <param name="description">The description for the DB parameter group.</param>
         public CreateDBParameterGroupRequest(string dbParameterGroupName, string dbParameterGroupFamily, string description)
         {
@@ -99,8 +100,8 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily"
-        /// --engine &lt;engine&gt;</code> 
+        ///  <c>aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily"
+        /// --engine &lt;engine&gt;</c> 
         /// </para>
         ///  
         /// <para>
@@ -109,8 +110,8 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily"
-        /// --engine mysql</code> 
+        ///  <c>aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily"
+        /// --engine mysql</c> 
         /// </para>
         ///  <note> 
         /// <para>
@@ -122,55 +123,59 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>aurora-mysql</code> 
+        ///  <c>aurora-mysql</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>aurora-postgresql</code> 
+        ///  <c>aurora-postgresql</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mariadb</code> 
+        ///  <c>db2-ae</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mysql</code> 
+        ///  <c>db2-se</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-ee</code> 
+        ///  <c>mysql</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-ee-cdb</code> 
+        ///  <c>oracle-ee</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-se2</code> 
+        ///  <c>oracle-ee-cdb</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-se2-cdb</code> 
+        ///  <c>oracle-se2</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>postgres</code> 
+        ///  <c>oracle-se2-cdb</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ee</code> 
+        ///  <c>postgres</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-se</code> 
+        ///  <c>sqlserver-ee</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ex</code> 
+        ///  <c>sqlserver-se</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-web</code> 
+        ///  <c>sqlserver-ex</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>sqlserver-web</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -261,7 +266,7 @@ namespace Amazon.RDS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

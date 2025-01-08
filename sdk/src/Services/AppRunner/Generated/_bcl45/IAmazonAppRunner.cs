@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.AppRunner.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.AppRunner
 {
     /// <summary>
-    /// Interface for accessing AppRunner
+    /// <para>Interface for accessing AppRunner</para>
     ///
     /// App Runner 
     /// <para>
@@ -85,14 +86,13 @@ namespace Amazon.AppRunner
         /// 
         ///  
         /// <para>
-        /// After you call <code>AssociateCustomDomain</code> and receive a successful response,
-        /// use the information in the <a>CustomDomain</a> record that's returned to add CNAME
-        /// records to your Domain Name System (DNS). For each mapped domain name, add a mapping
-        /// to the target App Runner subdomain and one or more certificate validation records.
-        /// App Runner then performs DNS validation to verify that you own or control the domain
-        /// name that you associated. App Runner tracks domain validity in a certificate stored
-        /// in <a href="https://docs.aws.amazon.com/acm/latest/userguide">AWS Certificate Manager
-        /// (ACM)</a>.
+        /// After you call <c>AssociateCustomDomain</c> and receive a successful response, use
+        /// the information in the <a>CustomDomain</a> record that's returned to add CNAME records
+        /// to your Domain Name System (DNS). For each mapped domain name, add a mapping to the
+        /// target App Runner subdomain and one or more certificate validation records. App Runner
+        /// then performs DNS validation to verify that you own or control the domain name that
+        /// you associated. App Runner tracks domain validity in a certificate stored in <a href="https://docs.aws.amazon.com/acm/latest/userguide">AWS
+        /// Certificate Manager (ACM)</a>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the AssociateCustomDomain service method.</param>
@@ -119,14 +119,13 @@ namespace Amazon.AppRunner
         /// 
         ///  
         /// <para>
-        /// After you call <code>AssociateCustomDomain</code> and receive a successful response,
-        /// use the information in the <a>CustomDomain</a> record that's returned to add CNAME
-        /// records to your Domain Name System (DNS). For each mapped domain name, add a mapping
-        /// to the target App Runner subdomain and one or more certificate validation records.
-        /// App Runner then performs DNS validation to verify that you own or control the domain
-        /// name that you associated. App Runner tracks domain validity in a certificate stored
-        /// in <a href="https://docs.aws.amazon.com/acm/latest/userguide">AWS Certificate Manager
-        /// (ACM)</a>.
+        /// After you call <c>AssociateCustomDomain</c> and receive a successful response, use
+        /// the information in the <a>CustomDomain</a> record that's returned to add CNAME records
+        /// to your Domain Name System (DNS). For each mapped domain name, add a mapping to the
+        /// target App Runner subdomain and one or more certificate validation records. App Runner
+        /// then performs DNS validation to verify that you own or control the domain name that
+        /// you associated. App Runner tracks domain validity in a certificate stored in <a href="https://docs.aws.amazon.com/acm/latest/userguide">AWS
+        /// Certificate Manager (ACM)</a>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the AssociateCustomDomain service method.</param>
@@ -162,22 +161,21 @@ namespace Amazon.AppRunner
         ///  
         /// <para>
         /// Create multiple revisions of a configuration by calling this action multiple times
-        /// using the same <code>AutoScalingConfigurationName</code>. The call returns incremental
-        /// <code>AutoScalingConfigurationRevision</code> values. When you create a service and
-        /// configure an auto scaling configuration resource, the service uses the latest active
-        /// revision of the auto scaling configuration by default. You can optionally configure
-        /// the service to use a specific revision.
+        /// using the same <c>AutoScalingConfigurationName</c>. The call returns incremental <c>AutoScalingConfigurationRevision</c>
+        /// values. When you create a service and configure an auto scaling configuration resource,
+        /// the service uses the latest active revision of the auto scaling configuration by default.
+        /// You can optionally configure the service to use a specific revision.
         /// </para>
         ///  
         /// <para>
-        /// Configure a higher <code>MinSize</code> to increase the spread of your App Runner
-        /// service over more Availability Zones in the Amazon Web Services Region. The tradeoff
-        /// is a higher minimal cost.
+        /// Configure a higher <c>MinSize</c> to increase the spread of your App Runner service
+        /// over more Availability Zones in the Amazon Web Services Region. The tradeoff is a
+        /// higher minimal cost.
         /// </para>
         ///  
         /// <para>
-        /// Configure a lower <code>MaxSize</code> to control your cost. The tradeoff is lower
-        /// responsiveness during peak demand.
+        /// Configure a lower <c>MaxSize</c> to control your cost. The tradeoff is lower responsiveness
+        /// during peak demand.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateAutoScalingConfiguration service method.</param>
@@ -214,22 +212,21 @@ namespace Amazon.AppRunner
         ///  
         /// <para>
         /// Create multiple revisions of a configuration by calling this action multiple times
-        /// using the same <code>AutoScalingConfigurationName</code>. The call returns incremental
-        /// <code>AutoScalingConfigurationRevision</code> values. When you create a service and
-        /// configure an auto scaling configuration resource, the service uses the latest active
-        /// revision of the auto scaling configuration by default. You can optionally configure
-        /// the service to use a specific revision.
+        /// using the same <c>AutoScalingConfigurationName</c>. The call returns incremental <c>AutoScalingConfigurationRevision</c>
+        /// values. When you create a service and configure an auto scaling configuration resource,
+        /// the service uses the latest active revision of the auto scaling configuration by default.
+        /// You can optionally configure the service to use a specific revision.
         /// </para>
         ///  
         /// <para>
-        /// Configure a higher <code>MinSize</code> to increase the spread of your App Runner
-        /// service over more Availability Zones in the Amazon Web Services Region. The tradeoff
-        /// is a higher minimal cost.
+        /// Configure a higher <c>MinSize</c> to increase the spread of your App Runner service
+        /// over more Availability Zones in the Amazon Web Services Region. The tradeoff is a
+        /// higher minimal cost.
         /// </para>
         ///  
         /// <para>
-        /// Configure a lower <code>MaxSize</code> to control your cost. The tradeoff is lower
-        /// responsiveness during peak demand.
+        /// Configure a lower <c>MaxSize</c> to control your cost. The tradeoff is lower responsiveness
+        /// during peak demand.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateAutoScalingConfiguration service method.</param>
@@ -352,17 +349,17 @@ namespace Amazon.AppRunner
         ///  
         /// <para>
         /// Create multiple revisions of a configuration by calling this action multiple times
-        /// using the same <code>ObservabilityConfigurationName</code>. The call returns incremental
-        /// <code>ObservabilityConfigurationRevision</code> values. When you create a service
-        /// and configure an observability configuration resource, the service uses the latest
-        /// active revision of the observability configuration by default. You can optionally
-        /// configure the service to use a specific revision.
+        /// using the same <c>ObservabilityConfigurationName</c>. The call returns incremental
+        /// <c>ObservabilityConfigurationRevision</c> values. When you create a service and configure
+        /// an observability configuration resource, the service uses the latest active revision
+        /// of the observability configuration by default. You can optionally configure the service
+        /// to use a specific revision.
         /// </para>
         ///  
         /// <para>
         /// The observability configuration resource is designed to configure multiple features
         /// (currently one feature, tracing). This action takes optional parameters that describe
-        /// the configuration of these features (currently one parameter, <code>TraceConfiguration</code>).
+        /// the configuration of these features (currently one parameter, <c>TraceConfiguration</c>).
         /// If you don't specify a feature parameter, App Runner doesn't enable the feature.
         /// </para>
         /// </summary>
@@ -400,17 +397,17 @@ namespace Amazon.AppRunner
         ///  
         /// <para>
         /// Create multiple revisions of a configuration by calling this action multiple times
-        /// using the same <code>ObservabilityConfigurationName</code>. The call returns incremental
-        /// <code>ObservabilityConfigurationRevision</code> values. When you create a service
-        /// and configure an observability configuration resource, the service uses the latest
-        /// active revision of the observability configuration by default. You can optionally
-        /// configure the service to use a specific revision.
+        /// using the same <c>ObservabilityConfigurationName</c>. The call returns incremental
+        /// <c>ObservabilityConfigurationRevision</c> values. When you create a service and configure
+        /// an observability configuration resource, the service uses the latest active revision
+        /// of the observability configuration by default. You can optionally configure the service
+        /// to use a specific revision.
         /// </para>
         ///  
         /// <para>
         /// The observability configuration resource is designed to configure multiple features
         /// (currently one feature, tracing). This action takes optional parameters that describe
-        /// the configuration of these features (currently one parameter, <code>TraceConfiguration</code>).
+        /// the configuration of these features (currently one parameter, <c>TraceConfiguration</c>).
         /// If you don't specify a feature parameter, App Runner doesn't enable the feature.
         /// </para>
         /// </summary>
@@ -452,7 +449,7 @@ namespace Amazon.AppRunner
         ///  
         /// <para>
         /// This is an asynchronous operation. On a successful call, you can use the returned
-        /// <code>OperationId</code> and the <a href="https://docs.aws.amazon.com/apprunner/latest/api/API_ListOperations.html">ListOperations</a>
+        /// <c>OperationId</c> and the <a href="https://docs.aws.amazon.com/apprunner/latest/api/API_ListOperations.html">ListOperations</a>
         /// call to track the operation's progress.
         /// </para>
         /// </summary>
@@ -488,7 +485,7 @@ namespace Amazon.AppRunner
         ///  
         /// <para>
         /// This is an asynchronous operation. On a successful call, you can use the returned
-        /// <code>OperationId</code> and the <a href="https://docs.aws.amazon.com/apprunner/latest/api/API_ListOperations.html">ListOperations</a>
+        /// <c>OperationId</c> and the <a href="https://docs.aws.amazon.com/apprunner/latest/api/API_ListOperations.html">ListOperations</a>
         /// call to track the operation's progress.
         /// </para>
         /// </summary>
@@ -717,7 +714,7 @@ namespace Amazon.AppRunner
 
         /// <summary>
         /// Delete an App Runner connection. You must first ensure that there are no running App
-        /// Runner services that use this connection. If there are any, the <code>DeleteConnection</code>
+        /// Runner services that use this connection. If there are any, the <c>DeleteConnection</c>
         /// action fails.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteConnection service method.</param>
@@ -741,7 +738,7 @@ namespace Amazon.AppRunner
 
         /// <summary>
         /// Delete an App Runner connection. You must first ensure that there are no running App
-        /// Runner services that use this connection. If there are any, the <code>DeleteConnection</code>
+        /// Runner services that use this connection. If there are any, the <c>DeleteConnection</c>
         /// action fails.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteConnection service method.</param>
@@ -829,8 +826,7 @@ namespace Amazon.AppRunner
         ///  
         /// <para>
         /// This is an asynchronous operation. On a successful call, you can use the returned
-        /// <code>OperationId</code> and the <a>ListOperations</a> call to track the operation's
-        /// progress.
+        /// <c>OperationId</c> and the <a>ListOperations</a> call to track the operation's progress.
         /// </para>
         ///  <note> 
         /// <para>
@@ -867,8 +863,7 @@ namespace Amazon.AppRunner
         ///  
         /// <para>
         /// This is an asynchronous operation. On a successful call, you can use the returned
-        /// <code>OperationId</code> and the <a>ListOperations</a> call to track the operation's
-        /// progress.
+        /// <c>OperationId</c> and the <a>ListOperations</a> call to track the operation's progress.
         /// </para>
         ///  <note> 
         /// <para>
@@ -964,19 +959,19 @@ namespace Amazon.AppRunner
         /// 
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AVAILABLE</code> 
+        ///  <c>AVAILABLE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED_CREATION</code> 
+        ///  <c>FAILED_CREATION</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED_UPDATE</code> 
+        ///  <c>FAILED_UPDATE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED_DELETION</code> 
+        ///  <c>FAILED_DELETION</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1009,19 +1004,19 @@ namespace Amazon.AppRunner
         /// 
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AVAILABLE</code> 
+        ///  <c>AVAILABLE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED_CREATION</code> 
+        ///  <c>FAILED_CREATION</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED_UPDATE</code> 
+        ///  <c>FAILED_UPDATE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED_DELETION</code> 
+        ///  <c>FAILED_DELETION</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1438,7 +1433,7 @@ namespace Amazon.AppRunner
         ///  
         /// <para>
         /// To retrieve a full description of a particular configuration revision, call and provide
-        /// one of the ARNs returned by <code>ListAutoScalingConfigurations</code>.
+        /// one of the ARNs returned by <c>ListAutoScalingConfigurations</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListAutoScalingConfigurations service method.</param>
@@ -1465,7 +1460,7 @@ namespace Amazon.AppRunner
         ///  
         /// <para>
         /// To retrieve a full description of a particular configuration revision, call and provide
-        /// one of the ARNs returned by <code>ListAutoScalingConfigurations</code>.
+        /// one of the ARNs returned by <c>ListAutoScalingConfigurations</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListAutoScalingConfigurations service method.</param>
@@ -1542,7 +1537,7 @@ namespace Amazon.AppRunner
         ///  
         /// <para>
         /// To retrieve a full description of a particular configuration revision, call and provide
-        /// one of the ARNs returned by <code>ListObservabilityConfigurations</code>.
+        /// one of the ARNs returned by <c>ListObservabilityConfigurations</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListObservabilityConfigurations service method.</param>
@@ -1569,7 +1564,7 @@ namespace Amazon.AppRunner
         ///  
         /// <para>
         /// To retrieve a full description of a particular configuration revision, call and provide
-        /// one of the ARNs returned by <code>ListObservabilityConfigurations</code>.
+        /// one of the ARNs returned by <c>ListObservabilityConfigurations</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListObservabilityConfigurations service method.</param>
@@ -1896,8 +1891,7 @@ namespace Amazon.AppRunner
         ///  
         /// <para>
         /// This is an asynchronous operation. On a successful call, you can use the returned
-        /// <code>OperationId</code> and the <a>ListOperations</a> call to track the operation's
-        /// progress.
+        /// <c>OperationId</c> and the <a>ListOperations</a> call to track the operation's progress.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PauseService service method.</param>
@@ -1929,8 +1923,7 @@ namespace Amazon.AppRunner
         ///  
         /// <para>
         /// This is an asynchronous operation. On a successful call, you can use the returned
-        /// <code>OperationId</code> and the <a>ListOperations</a> call to track the operation's
-        /// progress.
+        /// <c>OperationId</c> and the <a>ListOperations</a> call to track the operation's progress.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PauseService service method.</param>
@@ -1968,8 +1961,7 @@ namespace Amazon.AppRunner
         ///  
         /// <para>
         /// This is an asynchronous operation. On a successful call, you can use the returned
-        /// <code>OperationId</code> and the <a>ListOperations</a> call to track the operation's
-        /// progress.
+        /// <c>OperationId</c> and the <a>ListOperations</a> call to track the operation's progress.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ResumeService service method.</param>
@@ -2001,8 +1993,7 @@ namespace Amazon.AppRunner
         ///  
         /// <para>
         /// This is an asynchronous operation. On a successful call, you can use the returned
-        /// <code>OperationId</code> and the <a>ListOperations</a> call to track the operation's
-        /// progress.
+        /// <c>OperationId</c> and the <a>ListOperations</a> call to track the operation's progress.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ResumeService service method.</param>
@@ -2047,8 +2038,7 @@ namespace Amazon.AppRunner
         ///  
         /// <para>
         /// This is an asynchronous operation. On a successful call, you can use the returned
-        /// <code>OperationId</code> and the <a>ListOperations</a> call to track the operation's
-        /// progress.
+        /// <c>OperationId</c> and the <a>ListOperations</a> call to track the operation's progress.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartDeployment service method.</param>
@@ -2084,8 +2074,7 @@ namespace Amazon.AppRunner
         ///  
         /// <para>
         /// This is an asynchronous operation. On a successful call, you can use the returned
-        /// <code>OperationId</code> and the <a>ListOperations</a> call to track the operation's
-        /// progress.
+        /// <c>OperationId</c> and the <a>ListOperations</a> call to track the operation's progress.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartDeployment service method.</param>
@@ -2294,8 +2283,7 @@ namespace Amazon.AppRunner
         ///  
         /// <para>
         /// This is an asynchronous operation. On a successful call, you can use the returned
-        /// <code>OperationId</code> and the <a>ListOperations</a> call to track the operation's
-        /// progress.
+        /// <c>OperationId</c> and the <a>ListOperations</a> call to track the operation's progress.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateService service method.</param>
@@ -2335,8 +2323,7 @@ namespace Amazon.AppRunner
         ///  
         /// <para>
         /// This is an asynchronous operation. On a successful call, you can use the returned
-        /// <code>OperationId</code> and the <a>ListOperations</a> call to track the operation's
-        /// progress.
+        /// <c>OperationId</c> and the <a>ListOperations</a> call to track the operation's progress.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateService service method.</param>

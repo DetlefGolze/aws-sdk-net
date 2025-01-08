@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
-    /// A complex type that contains zero or more <code>Tag</code> elements.
+    /// A complex type that contains zero or more <c>Tag</c> elements.
     /// </summary>
     public partial class Tags
     {
-        private List<Tag> _items = new List<Tag>();
+        private List<Tag> _items = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Items. 
         /// <para>
-        /// A complex type that contains <code>Tag</code> elements.
+        /// A complex type that contains <c>Tag</c> elements.
         /// </para>
         /// </summary>
         public List<Tag> Items
@@ -50,7 +51,7 @@ namespace Amazon.CloudFront.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -33,8 +34,7 @@ namespace Amazon.RDS.Model
     /// 
     ///  
     /// <para>
-    /// This data type is used as a response element in the <code>DescribeDBSnapshots</code>
-    /// action.
+    /// This data type is used as a response element in the <c>DescribeDBSnapshots</c> action.
     /// </para>
     /// </summary>
     public partial class DBSnapshot
@@ -46,6 +46,7 @@ namespace Amazon.RDS.Model
         private string _dbSnapshotArn;
         private string _dbSnapshotIdentifier;
         private string _dbSystemId;
+        private bool? _dedicatedLogVolume;
         private bool? _encrypted;
         private string _engine;
         private string _engineVersion;
@@ -55,11 +56,12 @@ namespace Amazon.RDS.Model
         private string _kmsKeyId;
         private string _licenseModel;
         private string _masterUsername;
+        private bool? _multiTenant;
         private string _optionGroupName;
         private DateTime? _originalSnapshotCreateTime;
         private int? _percentProgress;
         private int? _port;
-        private List<ProcessorFeature> _processorFeatures = new List<ProcessorFeature>();
+        private List<ProcessorFeature> _processorFeatures = AWSConfigs.InitializeCollections ? new List<ProcessorFeature>() : null;
         private DateTime? _snapshotCreateTime;
         private DateTime? _snapshotDatabaseTime;
         private string _snapshotTarget;
@@ -69,7 +71,7 @@ namespace Amazon.RDS.Model
         private string _status;
         private int? _storageThroughput;
         private string _storageType;
-        private List<Tag> _tagList = new List<Tag>();
+        private List<Tag> _tagList = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _tdeCredentialArn;
         private string _timezone;
         private string _vpcId;
@@ -205,6 +207,24 @@ namespace Amazon.RDS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DedicatedLogVolume. 
+        /// <para>
+        /// Indicates whether the DB instance has a dedicated log volume (DLV) enabled.
+        /// </para>
+        /// </summary>
+        public bool DedicatedLogVolume
+        {
+            get { return this._dedicatedLogVolume.GetValueOrDefault(); }
+            set { this._dedicatedLogVolume = value; }
+        }
+
+        // Check to see if DedicatedLogVolume property is set
+        internal bool IsSetDedicatedLogVolume()
+        {
+            return this._dedicatedLogVolume.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property Encrypted. 
         /// <para>
         /// Indicates whether the DB snapshot is encrypted.
@@ -318,8 +338,8 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// If <code>Encrypted</code> is true, the Amazon Web Services KMS key identifier for
-        /// the encrypted DB snapshot.
+        /// If <c>Encrypted</c> is true, the Amazon Web Services KMS key identifier for the encrypted
+        /// DB snapshot.
         /// </para>
         ///  
         /// <para>
@@ -373,6 +393,25 @@ namespace Amazon.RDS.Model
         internal bool IsSetMasterUsername()
         {
             return this._masterUsername != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property MultiTenant. 
+        /// <para>
+        /// Indicates whether the snapshot is of a DB instance using the multi-tenant configuration
+        /// (TRUE) or the single-tenant configuration (FALSE).
+        /// </para>
+        /// </summary>
+        public bool MultiTenant
+        {
+            get { return this._multiTenant.GetValueOrDefault(); }
+            set { this._multiTenant = value; }
+        }
+
+        // Check to see if MultiTenant property is set
+        internal bool IsSetMultiTenant()
+        {
+            return this._multiTenant.HasValue; 
         }
 
         /// <summary>
@@ -464,7 +503,7 @@ namespace Amazon.RDS.Model
         // Check to see if ProcessorFeatures property is set
         internal bool IsSetProcessorFeatures()
         {
-            return this._processorFeatures != null && this._processorFeatures.Count > 0; 
+            return this._processorFeatures != null && (this._processorFeatures.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -653,7 +692,7 @@ namespace Amazon.RDS.Model
         // Check to see if TagList property is set
         internal bool IsSetTagList()
         {
-            return this._tagList != null && this._tagList.Count > 0; 
+            return this._tagList != null && (this._tagList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -677,9 +716,9 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Timezone. 
         /// <para>
-        /// The time zone of the DB snapshot. In most cases, the <code>Timezone</code> element
-        /// is empty. <code>Timezone</code> content appears only for snapshots taken from Microsoft
-        /// SQL Server DB instances that were created with a time zone specified.
+        /// The time zone of the DB snapshot. In most cases, the <c>Timezone</c> element is empty.
+        /// <c>Timezone</c> content appears only for snapshots taken from Microsoft SQL Server
+        /// DB instances that were created with a time zone specified.
         /// </para>
         /// </summary>
         public string Timezone

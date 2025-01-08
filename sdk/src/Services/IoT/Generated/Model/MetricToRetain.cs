@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -33,8 +34,28 @@ namespace Amazon.IoT.Model
     /// </summary>
     public partial class MetricToRetain
     {
+        private bool? _exportMetric;
         private string _metric;
         private MetricDimension _metricDimension;
+
+        /// <summary>
+        /// Gets and sets the property ExportMetric. 
+        /// <para>
+        /// The value indicates exporting metrics related to the <c>MetricToRetain </c> when it's
+        /// true.
+        /// </para>
+        /// </summary>
+        public bool ExportMetric
+        {
+            get { return this._exportMetric.GetValueOrDefault(); }
+            set { this._exportMetric = value; }
+        }
+
+        // Check to see if ExportMetric property is set
+        internal bool IsSetExportMetric()
+        {
+            return this._exportMetric.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property Metric. 

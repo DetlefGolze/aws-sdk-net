@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// A Git repository that SageMaker automatically displays to users for cloning in the
-    /// JupyterServer application.
+    /// A Git repository that SageMaker AI automatically displays to users for cloning in
+    /// the JupyterServer application.
     /// </summary>
     public partial class CodeRepository
     {

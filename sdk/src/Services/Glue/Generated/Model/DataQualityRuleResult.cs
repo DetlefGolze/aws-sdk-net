@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -34,7 +35,8 @@ namespace Amazon.Glue.Model
     public partial class DataQualityRuleResult
     {
         private string _description;
-        private Dictionary<string, double> _evaluatedMetrics = new Dictionary<string, double>();
+        private Dictionary<string, double> _evaluatedMetrics = AWSConfigs.InitializeCollections ? new Dictionary<string, double>() : null;
+        private string _evaluatedRule;
         private string _evaluationMessage;
         private string _name;
         private DataQualityRuleResultStatus _result;
@@ -45,7 +47,7 @@ namespace Amazon.Glue.Model
         /// A description of the data quality rule.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=2048)]
+        [AWSProperty(Sensitive=true, Min=0, Max=2048)]
         public string Description
         {
             get { return this._description; }
@@ -64,6 +66,7 @@ namespace Amazon.Glue.Model
         /// A map of metrics associated with the evaluation of the rule.
         /// </para>
         /// </summary>
+        [AWSProperty(Sensitive=true)]
         public Dictionary<string, double> EvaluatedMetrics
         {
             get { return this._evaluatedMetrics; }
@@ -73,7 +76,26 @@ namespace Amazon.Glue.Model
         // Check to see if EvaluatedMetrics property is set
         internal bool IsSetEvaluatedMetrics()
         {
-            return this._evaluatedMetrics != null && this._evaluatedMetrics.Count > 0; 
+            return this._evaluatedMetrics != null && (this._evaluatedMetrics.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property EvaluatedRule. 
+        /// <para>
+        /// The evaluated rule.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Sensitive=true, Min=0, Max=2048)]
+        public string EvaluatedRule
+        {
+            get { return this._evaluatedRule; }
+            set { this._evaluatedRule = value; }
+        }
+
+        // Check to see if EvaluatedRule property is set
+        internal bool IsSetEvaluatedRule()
+        {
+            return this._evaluatedRule != null;
         }
 
         /// <summary>
@@ -82,7 +104,7 @@ namespace Amazon.Glue.Model
         /// An evaluation message.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=2048)]
+        [AWSProperty(Sensitive=true, Min=0, Max=2048)]
         public string EvaluationMessage
         {
             get { return this._evaluationMessage; }

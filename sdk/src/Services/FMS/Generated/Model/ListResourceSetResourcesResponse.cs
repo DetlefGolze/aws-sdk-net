@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FMS.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.FMS.Model
     /// </summary>
     public partial class ListResourceSetResourcesResponse : AmazonWebServiceResponse
     {
-        private List<Resource> _items = new List<Resource>();
+        private List<Resource> _items = AWSConfigs.InitializeCollections ? new List<Resource>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,16 +53,16 @@ namespace Amazon.FMS.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When you request a list of objects with a <code>MaxResults</code> setting, if the
-        /// number of objects that are still available for retrieval exceeds the maximum you requested,
-        /// Firewall Manager returns a <code>NextToken</code> value in the response. To retrieve
-        /// the next batch of objects, use the token returned from the prior request in your next
+        /// When you request a list of objects with a <c>MaxResults</c> setting, if the number
+        /// of objects that are still available for retrieval exceeds the maximum you requested,
+        /// Firewall Manager returns a <c>NextToken</c> value in the response. To retrieve the
+        /// next batch of objects, use the token returned from the prior request in your next
         /// request.
         /// </para>
         /// </summary>

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public AnalysisRuleAggregation Unmarshall(JsonUnmarshallerContext context)
         {
+            AnalysisRuleAggregation unmarshalledObject = new AnalysisRuleAggregation();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            AnalysisRuleAggregation unmarshalledObject = new AnalysisRuleAggregation();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("additionalAnalyses", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.AdditionalAnalyses = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("aggregateColumns", targetDepth))
                 {
                     var unmarshaller = new ListUnmarshaller<AggregateColumn, AggregateColumnUnmarshaller>(AggregateColumnUnmarshaller.Instance);
@@ -107,7 +115,6 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

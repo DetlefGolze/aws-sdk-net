@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.RDS.Model
     /// </para>
     ///  <note> 
     /// <para>
-    /// This action only applies to Aurora DB clusters.
+    /// This operation only applies to Aurora DB clusters.
     /// </para>
     ///  </note>
     /// </summary>

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -61,6 +62,12 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.CreatedRulesetName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("DataQualitySecurityConfiguration", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.DataQualitySecurityConfiguration = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("DataSource", targetDepth))

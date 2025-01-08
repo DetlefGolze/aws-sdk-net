@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -34,10 +35,10 @@ namespace Amazon.WorkSpaces.Model
     /// 
     ///  
     /// <para>
-    /// To maintain a WorkSpace without being interrupted, set the WorkSpace state to <code>ADMIN_MAINTENANCE</code>.
+    /// To maintain a WorkSpace without being interrupted, set the WorkSpace state to <c>ADMIN_MAINTENANCE</c>.
     /// WorkSpaces in this state do not respond to requests to reboot, stop, start, rebuild,
     /// or restore. An AutoStop WorkSpace in this state is not stopped. Users cannot log into
-    /// a WorkSpace in the <code>ADMIN_MAINTENANCE</code> state.
+    /// a WorkSpace in the <c>ADMIN_MAINTENANCE</c> state.
     /// </para>
     /// </summary>
     public partial class ModifyWorkspaceStateRequest : AmazonWorkSpacesRequest

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.PersonalizeRuntime.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.PersonalizeRuntime.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetCampaignArn())
@@ -109,6 +111,25 @@ namespace Amazon.PersonalizeRuntime.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("itemId");
                     context.Writer.Write(publicRequest.ItemId);
+                }
+
+                if(publicRequest.IsSetMetadataColumns())
+                {
+                    context.Writer.WritePropertyName("metadataColumns");
+                    context.Writer.WriteObjectStart();
+                    foreach (var publicRequestMetadataColumnsKvp in publicRequest.MetadataColumns)
+                    {
+                        context.Writer.WritePropertyName(publicRequestMetadataColumnsKvp.Key);
+                        var publicRequestMetadataColumnsValue = publicRequestMetadataColumnsKvp.Value;
+
+                        context.Writer.WriteArrayStart();
+                        foreach(var publicRequestMetadataColumnsValueListValue in publicRequestMetadataColumnsValue)
+                        {
+                                context.Writer.Write(publicRequestMetadataColumnsValueListValue);
+                        }
+                        context.Writer.WriteArrayEnd();
+                    }
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetNumResults())

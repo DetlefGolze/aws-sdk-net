@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppStream.Model
 {
     /// <summary>
@@ -54,7 +55,7 @@ namespace Amazon.AppStream.Model
         private ScriptDetails _postSetupScriptDetails;
         private ScriptDetails _setupScriptDetails;
         private S3Location _sourceS3Location;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -135,7 +136,7 @@ namespace Amazon.AppStream.Model
         /// Gets and sets the property PostSetupScriptDetails. 
         /// <para>
         /// The post setup script details of the app block. This can only be provided for the
-        /// <code>APPSTREAM2</code> PackagingType.
+        /// <c>APPSTREAM2</c> PackagingType.
         /// </para>
         /// </summary>
         public ScriptDetails PostSetupScriptDetails
@@ -153,7 +154,7 @@ namespace Amazon.AppStream.Model
         /// <summary>
         /// Gets and sets the property SetupScriptDetails. 
         /// <para>
-        /// The setup script details of the app block. This must be provided for the <code>CUSTOM</code>
+        /// The setup script details of the app block. This must be provided for the <c>CUSTOM</c>
         /// PackagingType.
         /// </para>
         /// </summary>
@@ -204,7 +205,7 @@ namespace Amazon.AppStream.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

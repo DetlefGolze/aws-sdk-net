@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Synthetics.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Synthetics.Model
     /// </summary>
     public partial class ListGroupsResponse : AmazonWebServiceResponse
     {
-        private List<GroupSummary> _groups = new List<GroupSummary>();
+        private List<GroupSummary> _groups = AWSConfigs.InitializeCollections ? new List<GroupSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.Synthetics.Model
         // Check to see if Groups property is set
         internal bool IsSetGroups()
         {
-            return this._groups != null && this._groups.Count > 0; 
+            return this._groups != null && (this._groups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token that indicates that there is more data available. You can use this token in
-        /// a subsequent <code>ListGroups</code> operation to retrieve the next set of results.
+        /// a subsequent <c>ListGroups</c> operation to retrieve the next set of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=4, Max=252)]

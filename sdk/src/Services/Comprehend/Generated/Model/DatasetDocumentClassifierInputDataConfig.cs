@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -75,13 +76,13 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  
         /// <para>
-        /// For example, if you use the URI <code>S3://bucketName/prefix</code>, if the prefix
-        /// is a single file, Amazon Comprehend uses that file as input. If more than one file
-        /// begins with the prefix, Amazon Comprehend uses all of them as input.
+        /// For example, if you use the URI <c>S3://bucketName/prefix</c>, if the prefix is a
+        /// single file, Amazon Comprehend uses that file as input. If more than one file begins
+        /// with the prefix, Amazon Comprehend uses all of them as input.
         /// </para>
         ///  
         /// <para>
-        /// This parameter is required if you set <code>DataFormat</code> to <code>COMPREHEND_CSV</code>.
+        /// This parameter is required if you set <c>DataFormat</c> to <c>COMPREHEND_CSV</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=1024)]

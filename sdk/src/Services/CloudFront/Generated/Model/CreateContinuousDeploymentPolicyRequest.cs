@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -35,9 +36,9 @@ namespace Amazon.CloudFront.Model
     /// 
     ///  
     /// <para>
-    /// To use a continuous deployment policy, first use <code>CopyDistribution</code> to
-    /// create a staging distribution, then use <code>UpdateDistribution</code> to modify
-    /// the staging distribution's configuration.
+    /// To use a continuous deployment policy, first use <c>CopyDistribution</c> to create
+    /// a staging distribution, then use <c>UpdateDistribution</c> to modify the staging distribution's
+    /// configuration.
     /// </para>
     ///  
     /// <para>

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
-    /// Specifies the configuration of a Kubernetes <code>hostPath</code> volume. A <code>hostPath</code>
+    /// Specifies the configuration of a Kubernetes <c>hostPath</c> volume. A <c>hostPath</c>
     /// volume mounts an existing file or directory from the host node's filesystem into your
     /// pod. For more information, see <a href="https://kubernetes.io/docs/concepts/storage/volumes/#hostpath">hostPath</a>
     /// in the <i>Kubernetes documentation</i>.

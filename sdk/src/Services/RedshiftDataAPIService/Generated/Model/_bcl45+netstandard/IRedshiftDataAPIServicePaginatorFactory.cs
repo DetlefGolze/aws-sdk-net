@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the redshift-data-2019-12-20.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RedshiftDataAPIService.Model
 {
     /// <summary>
@@ -34,6 +35,11 @@ namespace Amazon.RedshiftDataAPIService.Model
         /// Paginator for GetStatementResult operation
         ///</summary>
         IGetStatementResultPaginator GetStatementResult(GetStatementResultRequest request);
+
+        /// <summary>
+        /// Paginator for GetStatementResultV2 operation
+        ///</summary>
+        IGetStatementResultV2Paginator GetStatementResultV2(GetStatementResultV2Request request);
 
         /// <summary>
         /// Paginator for ListDatabases operation

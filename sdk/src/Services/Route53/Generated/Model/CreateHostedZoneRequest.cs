@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
@@ -65,7 +66,7 @@ namespace Amazon.Route53.Model
     ///  
     /// <para>
     /// If you want to use the same name servers for multiple public hosted zones, you can
-    /// optionally associate a reusable delegation set with the hosted zone. See the <code>DelegationSetId</code>
+    /// optionally associate a reusable delegation set with the hosted zone. See the <c>DelegationSetId</c>
     /// element.
     /// </para>
     ///  </li> <li> 
@@ -78,14 +79,14 @@ namespace Amazon.Route53.Model
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// When you submit a <code>CreateHostedZone</code> request, the initial status of the
-    /// hosted zone is <code>PENDING</code>. For public hosted zones, this means that the
-    /// NS and SOA records are not yet available on all Route 53 DNS servers. When the NS
-    /// and SOA records are available, the status of the zone changes to <code>INSYNC</code>.
+    /// When you submit a <c>CreateHostedZone</c> request, the initial status of the hosted
+    /// zone is <c>PENDING</c>. For public hosted zones, this means that the NS and SOA records
+    /// are not yet available on all Route 53 DNS servers. When the NS and SOA records are
+    /// available, the status of the zone changes to <c>INSYNC</c>.
     /// </para>
     ///  
     /// <para>
-    /// The <code>CreateHostedZone</code> request requires the caller to have an <code>ec2:DescribeVpcs</code>
+    /// The <c>CreateHostedZone</c> request requires the caller to have an <c>ec2:DescribeVpcs</c>
     /// permission.
     /// </para>
     ///  <note> 
@@ -100,15 +101,15 @@ namespace Amazon.Route53.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>aws</code> - Amazon Web Services Regions
+    ///  <c>aws</c> - Amazon Web Services Regions
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>aws-cn</code> - China Regions
+    ///  <c>aws-cn</c> - China Regions
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>aws-us-gov</code> - Amazon Web Services GovCloud (US) Region
+    ///  <c>aws-us-gov</c> - Amazon Web Services GovCloud (US) Region
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -133,8 +134,8 @@ namespace Amazon.Route53.Model
         /// <summary>
         /// Instantiates CreateHostedZoneRequest with the parameterized properties
         /// </summary>
-        /// <param name="name">The name of the domain. Specify a fully qualified domain name, for example, <i>www.example.com</i>. The trailing dot is optional; Amazon Route 53 assumes that the domain name is fully qualified. This means that Route 53 treats <i>www.example.com</i> (without a trailing dot) and <i>www.example.com.</i> (with a trailing dot) as identical. If you're creating a public hosted zone, this is the name you have registered with your DNS registrar. If your domain name is registered with a registrar other than Route 53, change the name servers for your domain to the set of <code>NameServers</code> that <code>CreateHostedZone</code> returns in <code>DelegationSet</code>.</param>
-        /// <param name="callerReference">A unique string that identifies the request and that allows failed <code>CreateHostedZone</code> requests to be retried without the risk of executing the operation twice. You must use a unique <code>CallerReference</code> string every time you submit a <code>CreateHostedZone</code> request. <code>CallerReference</code> can be any unique string, for example, a date/time stamp.</param>
+        /// <param name="name">The name of the domain. Specify a fully qualified domain name, for example, <i>www.example.com</i>. The trailing dot is optional; Amazon Route 53 assumes that the domain name is fully qualified. This means that Route 53 treats <i>www.example.com</i> (without a trailing dot) and <i>www.example.com.</i> (with a trailing dot) as identical. If you're creating a public hosted zone, this is the name you have registered with your DNS registrar. If your domain name is registered with a registrar other than Route 53, change the name servers for your domain to the set of <c>NameServers</c> that <c>CreateHostedZone</c> returns in <c>DelegationSet</c>.</param>
+        /// <param name="callerReference">A unique string that identifies the request and that allows failed <c>CreateHostedZone</c> requests to be retried without the risk of executing the operation twice. You must use a unique <c>CallerReference</c> string every time you submit a <c>CreateHostedZone</c> request. <c>CallerReference</c> can be any unique string, for example, a date/time stamp.</param>
         public CreateHostedZoneRequest(string name, string callerReference)
         {
             _name = name;
@@ -153,8 +154,8 @@ namespace Amazon.Route53.Model
         /// <para>
         /// If you're creating a public hosted zone, this is the name you have registered with
         /// your DNS registrar. If your domain name is registered with a registrar other than
-        /// Route 53, change the name servers for your domain to the set of <code>NameServers</code>
-        /// that <code>CreateHostedZone</code> returns in <code>DelegationSet</code>.
+        /// Route 53, change the name servers for your domain to the set of <c>NameServers</c>
+        /// that <c>CreateHostedZone</c> returns in <c>DelegationSet</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=1024)]
@@ -179,8 +180,8 @@ namespace Amazon.Route53.Model
         ///  
         /// <para>
         /// You can specify only one Amazon VPC when you create a private hosted zone. If you
-        /// are associating a VPC with a hosted zone with this request, the paramaters <code>VPCId</code>
-        /// and <code>VPCRegion</code> are also required.
+        /// are associating a VPC with a hosted zone with this request, the paramaters <c>VPCId</c>
+        /// and <c>VPCRegion</c> are also required.
         /// </para>
         ///  
         /// <para>
@@ -203,10 +204,10 @@ namespace Amazon.Route53.Model
         /// <summary>
         /// Gets and sets the property CallerReference. 
         /// <para>
-        /// A unique string that identifies the request and that allows failed <code>CreateHostedZone</code>
+        /// A unique string that identifies the request and that allows failed <c>CreateHostedZone</c>
         /// requests to be retried without the risk of executing the operation twice. You must
-        /// use a unique <code>CallerReference</code> string every time you submit a <code>CreateHostedZone</code>
-        /// request. <code>CallerReference</code> can be any unique string, for example, a date/time
+        /// use a unique <c>CallerReference</c> string every time you submit a <c>CreateHostedZone</c>
+        /// request. <c>CallerReference</c> can be any unique string, for example, a date/time
         /// stamp.
         /// </para>
         /// </summary>
@@ -234,11 +235,11 @@ namespace Amazon.Route53.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For private hosted zones, an optional <code>PrivateZone</code> element
+        /// For private hosted zones, an optional <c>PrivateZone</c> element
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If you don't specify a comment or the <code>PrivateZone</code> element, omit <code>HostedZoneConfig</code>
+        /// If you don't specify a comment or the <c>PrivateZone</c> element, omit <c>HostedZoneConfig</c>
         /// and the other elements.
         /// </para>
         /// </summary>
@@ -265,7 +266,7 @@ namespace Amazon.Route53.Model
         /// <para>
         /// If you are using a reusable delegation set to create a public hosted zone for a subdomain,
         /// make sure that the parent hosted zone doesn't use one or more of the same name servers.
-        /// If you have overlapping nameservers, the operation will cause a <code>ConflictingDomainsExist</code>
+        /// If you have overlapping nameservers, the operation will cause a <c>ConflictingDomainsExist</c>
         /// error.
         /// </para>
         /// </summary>

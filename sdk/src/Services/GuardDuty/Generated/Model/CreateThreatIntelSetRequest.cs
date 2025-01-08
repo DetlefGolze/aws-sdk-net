@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.GuardDuty.Model
         private ThreatIntelSetFormat _format;
         private string _location;
         private string _name;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Activate. 
@@ -85,8 +86,14 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property DetectorId. 
         /// <para>
-        /// The unique ID of the detector of the GuardDuty account that you want to create a threatIntelSet
-        /// for.
+        /// The unique ID of the detector of the GuardDuty account for which you want to create
+        /// a <c>ThreatIntelSet</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// To find the <c>detectorId</c> in the current Region, see the Settings page in the
+        /// GuardDuty console, or run the <a href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html">ListDetectors</a>
+        /// API.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=300)]
@@ -176,7 +183,7 @@ namespace Amazon.GuardDuty.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,10 +46,18 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(AdditionalS3DataSource requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCompressionType())
             {
                 context.Writer.WritePropertyName("CompressionType");
                 context.Writer.Write(requestObject.CompressionType);
+            }
+
+            if(requestObject.IsSetETag())
+            {
+                context.Writer.WritePropertyName("ETag");
+                context.Writer.Write(requestObject.ETag);
             }
 
             if(requestObject.IsSetS3DataType())

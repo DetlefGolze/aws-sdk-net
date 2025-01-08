@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RDS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -64,6 +65,12 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = DoubleUnmarshaller.Instance;
                         unmarshalledObject.MinCapacity = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("SecondsUntilAutoPause", targetDepth))
+                    {
+                        var unmarshaller = IntUnmarshaller.Instance;
+                        unmarshalledObject.SecondsUntilAutoPause = unmarshaller.Unmarshall(context);
                         continue;
                     }
                 }

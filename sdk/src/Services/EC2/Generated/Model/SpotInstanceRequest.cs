@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -48,7 +49,7 @@ namespace Amazon.EC2.Model
         private string _spotPrice;
         private SpotInstanceState _state;
         private SpotInstanceStatus _status;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private SpotInstanceType _type;
         private DateTime? _validFrom;
         private DateTime? _validUntil;
@@ -303,7 +304,7 @@ namespace Amazon.EC2.Model
         /// <para>
         /// The state of the Spot Instance request. Spot request status information helps track
         /// your Spot Instance requests. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-request-status.html">Spot
-        /// request status</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.
+        /// request status</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         /// </summary>
         public SpotInstanceState State
@@ -351,7 +352,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -398,14 +399,13 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For a persistent request, the request remains active until the <code>validUntil</code>
-        /// date and time is reached. Otherwise, the request remains active until you cancel it.
-        /// 
+        /// For a persistent request, the request remains active until the <c>validUntil</c> date
+        /// and time is reached. Otherwise, the request remains active until you cancel it. 
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// For a one-time request, the request remains active until all instances launch, the
-        /// request is canceled, or the <code>validUntil</code> date and time is reached. By default,
+        /// request is canceled, or the <c>validUntil</c> date and time is reached. By default,
         /// the request is valid for 7 days from the date the request was created.
         /// </para>
         ///  </li> </ul>

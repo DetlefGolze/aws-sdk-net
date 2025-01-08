@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -33,8 +34,8 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class DescribeNotebookInstanceResponse : AmazonWebServiceResponse
     {
-        private List<string> _acceleratorTypes = new List<string>();
-        private List<string> _additionalCodeRepositories = new List<string>();
+        private List<string> _acceleratorTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _additionalCodeRepositories = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _creationTime;
         private string _defaultCodeRepository;
         private DirectInternetAccess _directInternetAccess;
@@ -51,7 +52,7 @@ namespace Amazon.SageMaker.Model
         private string _platformIdentifier;
         private string _roleArn;
         private RootAccess _rootAccess;
-        private List<string> _securityGroups = new List<string>();
+        private List<string> _securityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _subnetId;
         private string _url;
         private int? _volumeSizeInGB;
@@ -59,10 +60,12 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property AcceleratorTypes. 
         /// <para>
-        /// A list of the Elastic Inference (EI) instance types associated with this notebook
-        /// instance. Currently only one EI instance type can be associated with a notebook instance.
-        /// For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/ei.html">Using
-        /// Elastic Inference in Amazon SageMaker</a>.
+        /// This parameter is no longer supported. Elastic Inference (EI) is no longer available.
+        /// </para>
+        ///  
+        /// <para>
+        /// This parameter was used to specify a list of the EI instance types associated with
+        /// this notebook instance.
         /// </para>
         /// </summary>
         public List<string> AcceleratorTypes
@@ -74,7 +77,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if AcceleratorTypes property is set
         internal bool IsSetAcceleratorTypes()
         {
-            return this._acceleratorTypes != null && this._acceleratorTypes.Count > 0; 
+            return this._acceleratorTypes != null && (this._acceleratorTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -86,7 +89,7 @@ namespace Amazon.SageMaker.Model
         /// Web Services CodeCommit</a> or in any other Git repository. These repositories are
         /// cloned at the same level as the default repository of your notebook instance. For
         /// more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html">Associating
-        /// Git Repositories with SageMaker Notebook Instances</a>.
+        /// Git Repositories with SageMaker AI Notebook Instances</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=3)]
@@ -99,7 +102,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if AdditionalCodeRepositories property is set
         internal bool IsSetAdditionalCodeRepositories()
         {
-            return this._additionalCodeRepositories != null && this._additionalCodeRepositories.Count > 0; 
+            return this._additionalCodeRepositories != null && (this._additionalCodeRepositories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -130,7 +133,7 @@ namespace Amazon.SageMaker.Model
         /// Web Services CodeCommit</a> or in any other Git repository. When you open a notebook
         /// instance, it opens in the directory that contains this repository. For more information,
         /// see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html">Associating
-        /// Git Repositories with SageMaker Notebook Instances</a>.
+        /// Git Repositories with SageMaker AI Notebook Instances</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -149,9 +152,9 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property DirectInternetAccess. 
         /// <para>
-        /// Describes whether SageMaker provides internet access to the notebook instance. If
-        /// this value is set to <i>Disabled</i>, the notebook instance does not have internet
-        /// access, and cannot connect to SageMaker training and endpoint services.
+        /// Describes whether SageMaker AI provides internet access to the notebook instance.
+        /// If this value is set to <i>Disabled</i>, the notebook instance does not have internet
+        /// access, and cannot connect to SageMaker AI training and endpoint services.
         /// </para>
         ///  
         /// <para>
@@ -174,7 +177,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property FailureReason. 
         /// <para>
-        /// If status is <code>Failed</code>, the reason it failed.
+        /// If status is <c>Failed</c>, the reason it failed.
         /// </para>
         /// </summary>
         [AWSProperty(Max=1024)]
@@ -229,8 +232,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// The Amazon Web Services KMS key ID SageMaker uses to encrypt data when storing it
-        /// on the ML storage volume attached to the instance. 
+        /// The Amazon Web Services KMS key ID SageMaker AI uses to encrypt data when storing
+        /// it on the ML storage volume attached to the instance. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=2048)]
@@ -268,7 +271,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property NetworkInterfaceId. 
         /// <para>
-        /// The network interface IDs that SageMaker created at the time of creating the instance.
+        /// The network interface IDs that SageMaker AI created at the time of creating the instance.
         /// 
         /// </para>
         /// </summary>
@@ -330,7 +333,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property NotebookInstanceName. 
         /// <para>
-        /// The name of the SageMaker notebook instance. 
+        /// The name of the SageMaker AI notebook instance. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=63)]
@@ -443,7 +446,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

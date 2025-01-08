@@ -26,22 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
     /// Container for the parameters to the UntagResource operation.
-    /// Removes a tag from an index, FAQ, or a data source.
+    /// Removes a tag from an index, FAQ, data source, or other resource.
     /// </summary>
     public partial class UntagResourceRequest : AmazonKendraRequest
     {
         private string _resourceARN;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceARN. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the index, FAQ, or data source to remove the tag
-        /// from.
+        /// The Amazon Resource Name (ARN) of the index, FAQ, data source, or other resource to
+        /// remove a tag. For example, the ARN of an index is constructed as follows: <i>arn:aws:kendra:your-region:your-account-id:index/index-id</i>
+        /// For information on how to construct an ARN for all types of Amazon Kendra resources,
+        /// see <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonkendra.html#amazonkendra-resources-for-iam-policies">Resource
+        /// types</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1011)]
@@ -60,8 +64,8 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property TagKeys. 
         /// <para>
-        /// A list of tag keys to remove from the index, FAQ, or data source. If a tag key does
-        /// not exist on the resource, it is ignored.
+        /// A list of tag keys to remove from the index, FAQ, data source, or other resource.
+        /// If a tag key doesn't exist for the resource, it is ignored.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=200)]
@@ -74,7 +78,7 @@ namespace Amazon.Kendra.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

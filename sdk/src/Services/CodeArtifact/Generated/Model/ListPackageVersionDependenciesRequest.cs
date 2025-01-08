@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeArtifact.Model
 {
     /// <summary>
@@ -33,9 +34,9 @@ namespace Amazon.CodeArtifact.Model
     /// Returns the direct dependencies for a package version. The dependencies are returned
     /// as <a href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageDependency.html">PackageDependency</a>
     /// objects. CodeArtifact extracts the dependencies for a package version from the metadata
-    /// file for the package format (for example, the <code>package.json</code> file for npm
-    /// packages and the <code>pom.xml</code> file for Maven). Any package version dependencies
-    /// that are not listed in the configuration file are not returned.
+    /// file for the package format (for example, the <c>package.json</c> file for npm packages
+    /// and the <c>pom.xml</c> file for Maven). Any package version dependencies that are
+    /// not listed in the configuration file are not returned.
     /// </summary>
     public partial class ListPackageVersionDependenciesRequest : AmazonCodeArtifactRequest
     {
@@ -111,24 +112,29 @@ namespace Amazon.CodeArtifact.Model
         /// Gets and sets the property Namespace. 
         /// <para>
         /// The namespace of the package version with the requested dependencies. The package
-        /// version component that specifies its namespace depends on its type. For example:
+        /// component that specifies its namespace depends on its type. For example:
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// The namespace is required when listing dependencies from package versions of the following
+        /// formats:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  The namespace of a Maven package version is its <code>groupId</code>. 
+        /// Maven
+        /// </para>
+        ///  </li> </ul> </note> <ul> <li> 
+        /// <para>
+        ///  The namespace of a Maven package version is its <c>groupId</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  The namespace of an npm package version is its <code>scope</code>. 
+        ///  The namespace of an npm package version is its <c>scope</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
         ///  Python and NuGet package versions do not contain a corresponding component, package
         /// versions of those formats do not have a namespace. 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  The namespace of a generic package is its <code>namespace</code>. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -187,7 +193,7 @@ namespace Amazon.CodeArtifact.Model
         /// <summary>
         /// Gets and sets the property PackageVersion. 
         /// <para>
-        ///  A string that contains the package version (for example, <code>3.5.2</code>). 
+        ///  A string that contains the package version (for example, <c>3.5.2</c>). 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]

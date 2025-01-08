@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointEmail.Model
 {
     /// <summary>
@@ -104,13 +105,13 @@ namespace Amazon.PinpointEmail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>IN_PROGRESS</code> – The IP address isn't ready to use because the dedicated
-        /// IP warm-up process is ongoing.
+        ///  <c>IN_PROGRESS</c> – The IP address isn't ready to use because the dedicated IP warm-up
+        /// process is ongoing.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DONE</code> – The dedicated IP warm-up process is complete, and the IP address
-        /// is ready to use.
+        ///  <c>DONE</c> – The dedicated IP warm-up process is complete, and the IP address is
+        /// ready to use.
         /// </para>
         ///  </li> </ul>
         /// </summary>

@@ -18,6 +18,7 @@
  */
 using Amazon.Runtime;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.GlobalAccelerator.Model
 {
     /// <summary>
@@ -29,5 +30,10 @@ namespace Amazon.GlobalAccelerator.Model
         /// Enumerable containing all full responses for the operation
         /// </summary>
         IPaginatedEnumerable<ListCustomRoutingEndpointGroupsResponse> Responses { get; }
+
+        /// <summary>
+        /// Enumerable containing all of the EndpointGroups
+        /// </summary>
+        IPaginatedEnumerable<CustomRoutingEndpointGroup> EndpointGroups { get; }
     }
 }

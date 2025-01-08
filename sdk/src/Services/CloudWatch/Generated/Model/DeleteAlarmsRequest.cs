@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatch.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.CloudWatch.Model
     ///  If you specify an incorrect alarm name or make any other error in the operation,
     /// no alarms are deleted. To confirm that alarms were deleted successfully, you can use
     /// the <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeAlarms.html">DescribeAlarms</a>
-    /// operation after using <code>DeleteAlarms</code>.
+    /// operation after using <c>DeleteAlarms</c>.
     /// </para>
     ///  <note> 
     /// <para>
@@ -54,8 +55,8 @@ namespace Amazon.CloudWatch.Model
     /// <para>
     /// To get out of such a situation, you must break the cycle by changing the rule of one
     /// of the composite alarms in the cycle to remove a dependency that creates the cycle.
-    /// The simplest change to make to break a cycle is to change the <code>AlarmRule</code>
-    /// of one of the alarms to <code>false</code>. 
+    /// The simplest change to make to break a cycle is to change the <c>AlarmRule</c> of
+    /// one of the alarms to <c>false</c>. 
     /// </para>
     ///  
     /// <para>
@@ -66,7 +67,7 @@ namespace Amazon.CloudWatch.Model
     /// </summary>
     public partial class DeleteAlarmsRequest : AmazonCloudWatchRequest
     {
-        private List<string> _alarmNames = new List<string>();
+        private List<string> _alarmNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AlarmNames. 
@@ -84,7 +85,7 @@ namespace Amazon.CloudWatch.Model
         // Check to see if AlarmNames property is set
         internal bool IsSetAlarmNames()
         {
-            return this._alarmNames != null && this._alarmNames.Count > 0; 
+            return this._alarmNames != null && (this._alarmNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

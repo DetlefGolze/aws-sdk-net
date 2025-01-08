@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -44,9 +45,9 @@ namespace Amazon.GuardDuty.Model
     /// </para>
     ///  
     /// <para>
-    /// With <code>autoEnableOrganizationMembers</code> configuration for your organization
-    /// set to <code>ALL</code>, you'll receive an error if you attempt to disable GuardDuty
-    /// in a member account.
+    /// With <c>autoEnableOrganizationMembers</c> configuration for your organization set
+    /// to <c>ALL</c>, you'll receive an error if you attempt to disable GuardDuty in a member
+    /// account.
     /// </para>
     /// </summary>
     public partial class DisassociateFromAdministratorAccountRequest : AmazonGuardDutyRequest

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Omics.Model
 {
     /// <summary>
@@ -35,10 +36,11 @@ namespace Amazon.Omics.Model
     {
         private string _description;
         private string _name;
+        private string _referenceId;
         private string _sourceFile;
         private ReferenceImportJobItemStatus _status;
         private string _statusMessage;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -76,6 +78,25 @@ namespace Amazon.Omics.Model
         internal bool IsSetName()
         {
             return this._name != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ReferenceId. 
+        /// <para>
+        /// The source's reference ID.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=10, Max=36)]
+        public string ReferenceId
+        {
+            get { return this._referenceId; }
+            set { this._referenceId = value; }
+        }
+
+        // Check to see if ReferenceId property is set
+        internal bool IsSetReferenceId()
+        {
+            return this._referenceId != null;
         }
 
         /// <summary>
@@ -149,7 +170,7 @@ namespace Amazon.Omics.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

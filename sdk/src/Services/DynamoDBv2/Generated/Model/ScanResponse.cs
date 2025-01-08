@@ -26,28 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
-    /// Represents the output of a <code>Scan</code> operation.
+    /// Represents the output of a <c>Scan</c> operation.
     /// </summary>
     public partial class ScanResponse : AmazonWebServiceResponse
     {
         private ConsumedCapacity _consumedCapacity;
         private int? _count;
-        private List<Dictionary<string, AttributeValue>> _items = new List<Dictionary<string, AttributeValue>>();
-        private Dictionary<string, AttributeValue> _lastEvaluatedKey = new Dictionary<string, AttributeValue>();
+        private List<Dictionary<string, AttributeValue>> _items = AWSConfigs.InitializeCollections ? new List<Dictionary<string, AttributeValue>>() : null;
+        private Dictionary<string, AttributeValue> _lastEvaluatedKey = AWSConfigs.InitializeCollections ? new Dictionary<string, AttributeValue>() : null;
         private int? _scannedCount;
 
         /// <summary>
         /// Gets and sets the property ConsumedCapacity. 
         /// <para>
-        /// The capacity units consumed by the <code>Scan</code> operation. The data returned
-        /// includes the total provisioned throughput consumed, along with statistics for the
-        /// table and any indexes involved in the operation. <code>ConsumedCapacity</code> is
-        /// only returned if the <code>ReturnConsumedCapacity</code> parameter was specified.
-        /// For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughput.html#ItemSizeCalculations.Reads">Provisioned
-        /// Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+        /// The capacity units consumed by the <c>Scan</c> operation. The data returned includes
+        /// the total provisioned throughput consumed, along with statistics for the table and
+        /// any indexes involved in the operation. <c>ConsumedCapacity</c> is only returned if
+        /// the <c>ReturnConsumedCapacity</c> parameter was specified. For more information, see
+        /// <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/read-write-operations.html#read-operation-consumption">Capacity
+        /// unit consumption for read operations</a> in the <i>Amazon DynamoDB Developer Guide</i>.
         /// </para>
         /// </summary>
         public ConsumedCapacity ConsumedCapacity
@@ -69,14 +70,13 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  
         /// <para>
-        /// If you set <code>ScanFilter</code> in the request, then <code>Count</code> is the
-        /// number of items returned after the filter was applied, and <code>ScannedCount</code>
-        /// is the number of matching items before the filter was applied.
+        /// If you set <c>ScanFilter</c> in the request, then <c>Count</c> is the number of items
+        /// returned after the filter was applied, and <c>ScannedCount</c> is the number of matching
+        /// items before the filter was applied.
         /// </para>
         ///  
         /// <para>
-        /// If you did not use a filter in the request, then <code>Count</code> is the same as
-        /// <code>ScannedCount</code>.
+        /// If you did not use a filter in the request, then <c>Count</c> is the same as <c>ScannedCount</c>.
         /// </para>
         /// </summary>
         public int Count
@@ -107,7 +107,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -119,14 +119,14 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  
         /// <para>
-        /// If <code>LastEvaluatedKey</code> is empty, then the "last page" of results has been
-        /// processed and there is no more data to be retrieved.
+        /// If <c>LastEvaluatedKey</c> is empty, then the "last page" of results has been processed
+        /// and there is no more data to be retrieved.
         /// </para>
         ///  
         /// <para>
-        /// If <code>LastEvaluatedKey</code> is not empty, it does not necessarily mean that there
-        /// is more data in the result set. The only way to know when you have reached the end
-        /// of the result set is when <code>LastEvaluatedKey</code> is empty.
+        /// If <c>LastEvaluatedKey</c> is not empty, it does not necessarily mean that there is
+        /// more data in the result set. The only way to know when you have reached the end of
+        /// the result set is when <c>LastEvaluatedKey</c> is empty.
         /// </para>
         /// </summary>
         public Dictionary<string, AttributeValue> LastEvaluatedKey
@@ -138,21 +138,21 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if LastEvaluatedKey property is set
         internal bool IsSetLastEvaluatedKey()
         {
-            return this._lastEvaluatedKey != null && this._lastEvaluatedKey.Count > 0; 
+            return this._lastEvaluatedKey != null && (this._lastEvaluatedKey.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ScannedCount. 
         /// <para>
-        /// The number of items evaluated, before any <code>ScanFilter</code> is applied. A high
-        /// <code>ScannedCount</code> value with few, or no, <code>Count</code> results indicates
-        /// an inefficient <code>Scan</code> operation. For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#Count">Count
+        /// The number of items evaluated, before any <c>ScanFilter</c> is applied. A high <c>ScannedCount</c>
+        /// value with few, or no, <c>Count</c> results indicates an inefficient <c>Scan</c> operation.
+        /// For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#Count">Count
         /// and ScannedCount</a> in the <i>Amazon DynamoDB Developer Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// If you did not use a filter in the request, then <code>ScannedCount</code> is the
-        /// same as <code>Count</code>.
+        /// If you did not use a filter in the request, then <c>ScannedCount</c> is the same as
+        /// <c>Count</c>.
         /// </para>
         /// </summary>
         public int ScannedCount

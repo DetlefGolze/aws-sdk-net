@@ -26,12 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
     /// Container for the parameters to the ListFindingAggregators operation.
-    /// If finding aggregation is enabled, then <code>ListFindingAggregators</code> returns
-    /// the ARN of the finding aggregator. You can run this operation from any Region.
+    /// If cross-Region aggregation is enabled, then <c>ListFindingAggregators</c> returns
+    /// the Amazon Resource Name (ARN) of the finding aggregator. You can run this operation
+    /// from any Amazon Web Services Region.
     /// </summary>
     public partial class ListFindingAggregatorsRequest : AmazonSecurityHubRequest
     {

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.SageMaker.Model
     public partial class ListSubscribedWorkteamsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<SubscribedWorkteam> _subscribedWorkteams = new List<SubscribedWorkteam>();
+        private List<SubscribedWorkteam> _subscribedWorkteams = AWSConfigs.InitializeCollections ? new List<SubscribedWorkteam>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -59,7 +60,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SubscribedWorkteams. 
         /// <para>
-        /// An array of <code>Workteam</code> objects, each describing a work team.
+        /// An array of <c>Workteam</c> objects, each describing a work team.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -72,7 +73,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if SubscribedWorkteams property is set
         internal bool IsSetSubscribedWorkteams()
         {
-            return this._subscribedWorkteams != null && this._subscribedWorkteams.Count > 0; 
+            return this._subscribedWorkteams != null && (this._subscribedWorkteams.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

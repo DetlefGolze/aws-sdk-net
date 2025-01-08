@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
-    /// Each <code>S3Resource</code> object represents an Amazon S3 bucket that your transferred
+    /// Each <c>S3Resource</c> object represents an Amazon S3 bucket that your transferred
     /// data will be exported from or imported into. For export jobs, this object can have
-    /// an optional <code>KeyRange</code> value. The length of the range is defined at job
-    /// creation, and has either an inclusive <code>BeginMarker</code>, an inclusive <code>EndMarker</code>,
-    /// or both. Ranges are UTF-8 binary sorted.
+    /// an optional <c>KeyRange</c> value. The length of the range is defined at job creation,
+    /// and has either an inclusive <c>BeginMarker</c>, an inclusive <c>EndMarker</c>, or
+    /// both. Ranges are UTF-8 binary sorted.
     /// </summary>
     public partial class S3Resource
     {
         private string _bucketArn;
         private KeyRange _keyRange;
-        private List<TargetOnDeviceService> _targetOnDeviceServices = new List<TargetOnDeviceService>();
+        private List<TargetOnDeviceService> _targetOnDeviceServices = AWSConfigs.InitializeCollections ? new List<TargetOnDeviceService>() : null;
 
         /// <summary>
         /// Gets and sets the property BucketArn. 
@@ -63,10 +64,10 @@ namespace Amazon.Snowball.Model
         /// <summary>
         /// Gets and sets the property KeyRange. 
         /// <para>
-        /// For export jobs, you can provide an optional <code>KeyRange</code> within a specific
-        /// Amazon S3 bucket. The length of the range is defined at job creation, and has either
-        /// an inclusive <code>BeginMarker</code>, an inclusive <code>EndMarker</code>, or both.
-        /// Ranges are UTF-8 binary sorted.
+        /// For export jobs, you can provide an optional <c>KeyRange</c> within a specific Amazon
+        /// S3 bucket. The length of the range is defined at job creation, and has either an inclusive
+        /// <c>BeginMarker</c>, an inclusive <c>EndMarker</c>, or both. Ranges are UTF-8 binary
+        /// sorted.
         /// </para>
         /// </summary>
         public KeyRange KeyRange
@@ -98,7 +99,7 @@ namespace Amazon.Snowball.Model
         // Check to see if TargetOnDeviceServices property is set
         internal bool IsSetTargetOnDeviceServices()
         {
-            return this._targetOnDeviceServices != null && this._targetOnDeviceServices.Count > 0; 
+            return this._targetOnDeviceServices != null && (this._targetOnDeviceServices.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

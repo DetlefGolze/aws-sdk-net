@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Domains.Model
 {
     /// <summary>
@@ -82,7 +83,8 @@ namespace Amazon.Route53Domains.Model
         /// <summary>
         /// Gets and sets the property InvoiceId. 
         /// <para>
-        /// The ID of the invoice that is associated with the billing record.
+        /// Deprecated property. This field is retained in report structure for backwards compatibility,
+        /// but will appear blank.
         /// </para>
         /// </summary>
         public string InvoiceId
@@ -125,6 +127,7 @@ namespace Amazon.Route53Domains.Model
         /// Example value: 12.0
         /// </para>
         /// </summary>
+        [AWSProperty(Min=0)]
         public double Price
         {
             get { return this._price.GetValueOrDefault(); }

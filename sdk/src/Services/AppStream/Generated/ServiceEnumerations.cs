@@ -77,6 +77,10 @@ namespace Amazon.AppStream
     {
 
         /// <summary>
+        /// Constant AUTO_TIME_ZONE_REDIRECTION for Action
+        /// </summary>
+        public static readonly Action AUTO_TIME_ZONE_REDIRECTION = new Action("AUTO_TIME_ZONE_REDIRECTION");
+        /// <summary>
         /// Constant CLIPBOARD_COPY_FROM_LOCAL_DEVICE for Action
         /// </summary>
         public static readonly Action CLIPBOARD_COPY_FROM_LOCAL_DEVICE = new Action("CLIPBOARD_COPY_FROM_LOCAL_DEVICE");
@@ -607,6 +611,56 @@ namespace Amazon.AppStream
 
 
     /// <summary>
+    /// Constants used for properties of type DynamicAppProvidersEnabled.
+    /// </summary>
+    public class DynamicAppProvidersEnabled : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DISABLED for DynamicAppProvidersEnabled
+        /// </summary>
+        public static readonly DynamicAppProvidersEnabled DISABLED = new DynamicAppProvidersEnabled("DISABLED");
+        /// <summary>
+        /// Constant ENABLED for DynamicAppProvidersEnabled
+        /// </summary>
+        public static readonly DynamicAppProvidersEnabled ENABLED = new DynamicAppProvidersEnabled("ENABLED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public DynamicAppProvidersEnabled(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static DynamicAppProvidersEnabled FindValue(string value)
+        {
+            return FindValue<DynamicAppProvidersEnabled>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator DynamicAppProvidersEnabled(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type FleetAttribute.
     /// </summary>
     public class FleetAttribute : ConstantClass
@@ -620,6 +674,10 @@ namespace Amazon.AppStream
         /// Constant IAM_ROLE_ARN for FleetAttribute
         /// </summary>
         public static readonly FleetAttribute IAM_ROLE_ARN = new FleetAttribute("IAM_ROLE_ARN");
+        /// <summary>
+        /// Constant MAX_SESSIONS_PER_INSTANCE for FleetAttribute
+        /// </summary>
+        public static readonly FleetAttribute MAX_SESSIONS_PER_INSTANCE = new FleetAttribute("MAX_SESSIONS_PER_INSTANCE");
         /// <summary>
         /// Constant SESSION_SCRIPT_S3_LOCATION for FleetAttribute
         /// </summary>
@@ -1083,6 +1141,56 @@ namespace Amazon.AppStream
 
 
     /// <summary>
+    /// Constants used for properties of type ImageSharedWithOthers.
+    /// </summary>
+    public class ImageSharedWithOthers : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant FALSE for ImageSharedWithOthers
+        /// </summary>
+        public static readonly ImageSharedWithOthers FALSE = new ImageSharedWithOthers("FALSE");
+        /// <summary>
+        /// Constant TRUE for ImageSharedWithOthers
+        /// </summary>
+        public static readonly ImageSharedWithOthers TRUE = new ImageSharedWithOthers("TRUE");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ImageSharedWithOthers(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ImageSharedWithOthers FindValue(string value)
+        {
+            return FindValue<ImageSharedWithOthers>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ImageSharedWithOthers(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ImageState.
     /// </summary>
     public class ImageState : ConstantClass
@@ -1200,6 +1308,56 @@ namespace Amazon.AppStream
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator ImageStateChangeReasonCode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type LatestAppstreamAgentVersion.
+    /// </summary>
+    public class LatestAppstreamAgentVersion : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant FALSE for LatestAppstreamAgentVersion
+        /// </summary>
+        public static readonly LatestAppstreamAgentVersion FALSE = new LatestAppstreamAgentVersion("FALSE");
+        /// <summary>
+        /// Constant TRUE for LatestAppstreamAgentVersion
+        /// </summary>
+        public static readonly LatestAppstreamAgentVersion TRUE = new LatestAppstreamAgentVersion("TRUE");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public LatestAppstreamAgentVersion(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static LatestAppstreamAgentVersion FindValue(string value)
+        {
+            return FindValue<LatestAppstreamAgentVersion>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator LatestAppstreamAgentVersion(string value)
         {
             return FindValue(value);
         }
@@ -1367,6 +1525,14 @@ namespace Amazon.AppStream
         /// </summary>
         public static readonly PlatformType AMAZON_LINUX2 = new PlatformType("AMAZON_LINUX2");
         /// <summary>
+        /// Constant RHEL8 for PlatformType
+        /// </summary>
+        public static readonly PlatformType RHEL8 = new PlatformType("RHEL8");
+        /// <summary>
+        /// Constant ROCKY_LINUX8 for PlatformType
+        /// </summary>
+        public static readonly PlatformType ROCKY_LINUX8 = new PlatformType("ROCKY_LINUX8");
+        /// <summary>
         /// Constant WINDOWS for PlatformType
         /// </summary>
         public static readonly PlatformType WINDOWS = new PlatformType("WINDOWS");
@@ -1378,6 +1544,10 @@ namespace Amazon.AppStream
         /// Constant WINDOWS_SERVER_2019 for PlatformType
         /// </summary>
         public static readonly PlatformType WINDOWS_SERVER_2019 = new PlatformType("WINDOWS_SERVER_2019");
+        /// <summary>
+        /// Constant WINDOWS_SERVER_2022 for PlatformType
+        /// </summary>
+        public static readonly PlatformType WINDOWS_SERVER_2022 = new PlatformType("WINDOWS_SERVER_2022");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -1806,6 +1976,160 @@ namespace Amazon.AppStream
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator StreamView(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ThemeAttribute.
+    /// </summary>
+    public class ThemeAttribute : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant FOOTER_LINKS for ThemeAttribute
+        /// </summary>
+        public static readonly ThemeAttribute FOOTER_LINKS = new ThemeAttribute("FOOTER_LINKS");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ThemeAttribute(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ThemeAttribute FindValue(string value)
+        {
+            return FindValue<ThemeAttribute>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ThemeAttribute(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ThemeState.
+    /// </summary>
+    public class ThemeState : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DISABLED for ThemeState
+        /// </summary>
+        public static readonly ThemeState DISABLED = new ThemeState("DISABLED");
+        /// <summary>
+        /// Constant ENABLED for ThemeState
+        /// </summary>
+        public static readonly ThemeState ENABLED = new ThemeState("ENABLED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ThemeState(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ThemeState FindValue(string value)
+        {
+            return FindValue<ThemeState>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ThemeState(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ThemeStyling.
+    /// </summary>
+    public class ThemeStyling : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant BLUE for ThemeStyling
+        /// </summary>
+        public static readonly ThemeStyling BLUE = new ThemeStyling("BLUE");
+        /// <summary>
+        /// Constant LIGHT_BLUE for ThemeStyling
+        /// </summary>
+        public static readonly ThemeStyling LIGHT_BLUE = new ThemeStyling("LIGHT_BLUE");
+        /// <summary>
+        /// Constant PINK for ThemeStyling
+        /// </summary>
+        public static readonly ThemeStyling PINK = new ThemeStyling("PINK");
+        /// <summary>
+        /// Constant RED for ThemeStyling
+        /// </summary>
+        public static readonly ThemeStyling RED = new ThemeStyling("RED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ThemeStyling(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ThemeStyling FindValue(string value)
+        {
+            return FindValue<ThemeStyling>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ThemeStyling(string value)
         {
             return FindValue(value);
         }

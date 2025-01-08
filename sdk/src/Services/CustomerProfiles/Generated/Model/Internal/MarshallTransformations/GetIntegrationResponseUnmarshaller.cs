@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CustomerProfiles.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,12 @@ namespace Amazon.CustomerProfiles.Model.Internal.MarshallTransformations
                     response.DomainName = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("EventTriggerNames", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
+                    response.EventTriggerNames = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("IsUnstructured", targetDepth))
                 {
                     var unmarshaller = BoolUnmarshaller.Instance;
@@ -85,6 +92,12 @@ namespace Amazon.CustomerProfiles.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = new DictionaryUnmarshaller<string, string, StringUnmarshaller, StringUnmarshaller>(StringUnmarshaller.Instance, StringUnmarshaller.Instance);
                     response.ObjectTypeNames = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("RoleArn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.RoleArn = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Tags", targetDepth))

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHubStrategyRecommendations.Model
 {
     /// <summary>
@@ -81,7 +82,7 @@ namespace Amazon.MigrationHubStrategyRecommendations.Model
         /// <summary>
         /// Gets and sets the property InProgress. 
         /// <para>
-        ///  The number of servers with the assessment status <code>IN_PROGESS</code>. 
+        ///  The number of servers with the assessment status <c>IN_PROGESS</c>. 
         /// </para>
         /// </summary>
         public int InProgress

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -85,8 +86,8 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>KMS</code> - Server-side encryption that uses Key Management Service. The key
-        /// is stored in your account and is managed by KMS (KMS charges apply).
+        ///  <c>KMS</c> - Server-side encryption that uses Key Management Service. The key is
+        /// stored in your account and is managed by KMS (KMS charges apply).
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -110,11 +111,11 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ENABLED</code> - Server-side encryption is enabled.
+        ///  <c>ENABLED</c> - Server-side encryption is enabled.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPDATING</code> - Server-side encryption is being updated.
+        ///  <c>UPDATING</c> - Server-side encryption is being updated.
         /// </para>
         ///  </li> </ul>
         /// </summary>

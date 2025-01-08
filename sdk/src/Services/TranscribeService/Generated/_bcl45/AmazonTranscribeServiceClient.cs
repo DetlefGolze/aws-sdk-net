@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.TranscribeService
 {
     /// <summary>
-    /// Implementation for accessing TranscribeService
+    /// <para>Implementation for accessing TranscribeService</para>
     ///
     /// Amazon Transcribe offers three main types of batch transcription: <b>Standard</b>,
     /// <b>Medical</b>, and <b>Call Analytics</b>.
@@ -296,12 +297,11 @@ namespace Amazon.TranscribeService
         /// </para>
         ///  
         /// <para>
-        /// When creating a new category, you can use the <code>InputType</code> parameter to
-        /// label the category as a <code>POST_CALL</code> or a <code>REAL_TIME</code> category.
-        /// <code>POST_CALL</code> categories can only be applied to post-call transcriptions
-        /// and <code>REAL_TIME</code> categories can only be applied to real-time transcriptions.
-        /// If you do not include <code>InputType</code>, your category is created as a <code>POST_CALL</code>
-        /// category by default.
+        /// When creating a new category, you can use the <c>InputType</c> parameter to label
+        /// the category as a <c>POST_CALL</c> or a <c>REAL_TIME</c> category. <c>POST_CALL</c>
+        /// categories can only be applied to post-call transcriptions and <c>REAL_TIME</c> categories
+        /// can only be applied to real-time transcriptions. If you do not include <c>InputType</c>,
+        /// your category is created as a <c>POST_CALL</c> category by default.
         /// </para>
         ///  
         /// <para>
@@ -325,7 +325,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -361,12 +361,11 @@ namespace Amazon.TranscribeService
         /// </para>
         ///  
         /// <para>
-        /// When creating a new category, you can use the <code>InputType</code> parameter to
-        /// label the category as a <code>POST_CALL</code> or a <code>REAL_TIME</code> category.
-        /// <code>POST_CALL</code> categories can only be applied to post-call transcriptions
-        /// and <code>REAL_TIME</code> categories can only be applied to real-time transcriptions.
-        /// If you do not include <code>InputType</code>, your category is created as a <code>POST_CALL</code>
-        /// category by default.
+        /// When creating a new category, you can use the <c>InputType</c> parameter to label
+        /// the category as a <c>POST_CALL</c> or a <c>REAL_TIME</c> category. <c>POST_CALL</c>
+        /// categories can only be applied to post-call transcriptions and <c>REAL_TIME</c> categories
+        /// can only be applied to real-time transcriptions. If you do not include <c>InputType</c>,
+        /// your category is created as a <c>POST_CALL</c> category by default.
         /// </para>
         ///  
         /// <para>
@@ -393,7 +392,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -454,7 +453,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -514,7 +513,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -550,9 +549,9 @@ namespace Amazon.TranscribeService
         /// <para>
         /// Before creating a new custom medical vocabulary, you must first upload a text file
         /// that contains your vocabulary table into an Amazon S3 bucket. Note that this differs
-        /// from , where you can include a list of terms within your request using the <code>Phrases</code>
-        /// flag; <code>CreateMedicalVocabulary</code> does not support the <code>Phrases</code>
-        /// flag and only accepts vocabularies in table format.
+        /// from , where you can include a list of terms within your request using the <c>Phrases</c>
+        /// flag; <c>CreateMedicalVocabulary</c> does not support the <c>Phrases</c> flag and
+        /// only accepts vocabularies in table format.
         /// </para>
         ///  
         /// <para>
@@ -573,7 +572,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -605,9 +604,9 @@ namespace Amazon.TranscribeService
         /// <para>
         /// Before creating a new custom medical vocabulary, you must first upload a text file
         /// that contains your vocabulary table into an Amazon S3 bucket. Note that this differs
-        /// from , where you can include a list of terms within your request using the <code>Phrases</code>
-        /// flag; <code>CreateMedicalVocabulary</code> does not support the <code>Phrases</code>
-        /// flag and only accepts vocabularies in table format.
+        /// from , where you can include a list of terms within your request using the <c>Phrases</c>
+        /// flag; <c>CreateMedicalVocabulary</c> does not support the <c>Phrases</c> flag and
+        /// only accepts vocabularies in table format.
         /// </para>
         ///  
         /// <para>
@@ -631,7 +630,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -668,7 +667,7 @@ namespace Amazon.TranscribeService
         /// When creating a new custom vocabulary, you can either upload a text file that contains
         /// your new entries, phrases, and terms into an Amazon S3 bucket and include the URI
         /// in your request. Or you can include a list of terms directly in your request using
-        /// the <code>Phrases</code> flag.
+        /// the <c>Phrases</c> flag.
         /// </para>
         ///  
         /// <para>
@@ -689,7 +688,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -722,7 +721,7 @@ namespace Amazon.TranscribeService
         /// When creating a new custom vocabulary, you can either upload a text file that contains
         /// your new entries, phrases, and terms into an Amazon S3 bucket and include the URI
         /// in your request. Or you can include a list of terms directly in your request using
-        /// the <code>Phrases</code> flag.
+        /// the <c>Phrases</c> flag.
         /// </para>
         ///  
         /// <para>
@@ -746,7 +745,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -803,7 +802,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -859,7 +858,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -890,8 +889,7 @@ namespace Amazon.TranscribeService
 
         /// <summary>
         /// Deletes a Call Analytics category. To use this operation, specify the name of the
-        /// category you want to delete using <code>CategoryName</code>. Category names are case
-        /// sensitive.
+        /// category you want to delete using <c>CategoryName</c>. Category names are case sensitive.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteCallAnalyticsCategory service method.</param>
         /// 
@@ -899,7 +897,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -926,8 +924,7 @@ namespace Amazon.TranscribeService
 
         /// <summary>
         /// Deletes a Call Analytics category. To use this operation, specify the name of the
-        /// category you want to delete using <code>CategoryName</code>. Category names are case
-        /// sensitive.
+        /// category you want to delete using <c>CategoryName</c>. Category names are case sensitive.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteCallAnalyticsCategory service method.</param>
         /// <param name="cancellationToken">
@@ -938,7 +935,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -969,7 +966,7 @@ namespace Amazon.TranscribeService
 
         /// <summary>
         /// Deletes a Call Analytics job. To use this operation, specify the name of the job you
-        /// want to delete using <code>CallAnalyticsJobName</code>. Job names are case sensitive.
+        /// want to delete using <c>CallAnalyticsJobName</c>. Job names are case sensitive.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteCallAnalyticsJob service method.</param>
         /// 
@@ -977,7 +974,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1000,7 +997,7 @@ namespace Amazon.TranscribeService
 
         /// <summary>
         /// Deletes a Call Analytics job. To use this operation, specify the name of the job you
-        /// want to delete using <code>CallAnalyticsJobName</code>. Job names are case sensitive.
+        /// want to delete using <c>CallAnalyticsJobName</c>. Job names are case sensitive.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteCallAnalyticsJob service method.</param>
         /// <param name="cancellationToken">
@@ -1011,7 +1008,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1038,8 +1035,8 @@ namespace Amazon.TranscribeService
 
         /// <summary>
         /// Deletes a custom language model. To use this operation, specify the name of the language
-        /// model you want to delete using <code>ModelName</code>. custom language model names
-        /// are case sensitive.
+        /// model you want to delete using <c>ModelName</c>. custom language model names are case
+        /// sensitive.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteLanguageModel service method.</param>
         /// 
@@ -1047,7 +1044,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1070,8 +1067,8 @@ namespace Amazon.TranscribeService
 
         /// <summary>
         /// Deletes a custom language model. To use this operation, specify the name of the language
-        /// model you want to delete using <code>ModelName</code>. custom language model names
-        /// are case sensitive.
+        /// model you want to delete using <c>ModelName</c>. custom language model names are case
+        /// sensitive.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteLanguageModel service method.</param>
         /// <param name="cancellationToken">
@@ -1082,7 +1079,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1104,13 +1101,82 @@ namespace Amazon.TranscribeService
 
         #endregion
         
+        #region  DeleteMedicalScribeJob
+
+
+        /// <summary>
+        /// Deletes a Medical Scribe job. To use this operation, specify the name of the job you
+        /// want to delete using <c>MedicalScribeJobName</c>. Job names are case sensitive.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteMedicalScribeJob service method.</param>
+        /// 
+        /// <returns>The response from the DeleteMedicalScribeJob service method, as returned by TranscribeService.</returns>
+        /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
+        /// Your request didn't pass one or more validation tests. This can occur when the entity
+        /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
+        /// </exception>
+        /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
+        /// There was an internal error. Check the error message, correct the issue, and try your
+        /// request again.
+        /// </exception>
+        /// <exception cref="Amazon.TranscribeService.Model.LimitExceededException">
+        /// You've either sent too many requests or your input file is too long. Wait before retrying
+        /// your request, or use a smaller file and try your request again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/DeleteMedicalScribeJob">REST API Reference for DeleteMedicalScribeJob Operation</seealso>
+        public virtual DeleteMedicalScribeJobResponse DeleteMedicalScribeJob(DeleteMedicalScribeJobRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteMedicalScribeJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteMedicalScribeJobResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteMedicalScribeJobResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes a Medical Scribe job. To use this operation, specify the name of the job you
+        /// want to delete using <c>MedicalScribeJobName</c>. Job names are case sensitive.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteMedicalScribeJob service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteMedicalScribeJob service method, as returned by TranscribeService.</returns>
+        /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
+        /// Your request didn't pass one or more validation tests. This can occur when the entity
+        /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
+        /// </exception>
+        /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
+        /// There was an internal error. Check the error message, correct the issue, and try your
+        /// request again.
+        /// </exception>
+        /// <exception cref="Amazon.TranscribeService.Model.LimitExceededException">
+        /// You've either sent too many requests or your input file is too long. Wait before retrying
+        /// your request, or use a smaller file and try your request again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/DeleteMedicalScribeJob">REST API Reference for DeleteMedicalScribeJob Operation</seealso>
+        public virtual Task<DeleteMedicalScribeJobResponse> DeleteMedicalScribeJobAsync(DeleteMedicalScribeJobRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteMedicalScribeJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteMedicalScribeJobResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteMedicalScribeJobResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  DeleteMedicalTranscriptionJob
 
 
         /// <summary>
         /// Deletes a medical transcription job. To use this operation, specify the name of the
-        /// job you want to delete using <code>MedicalTranscriptionJobName</code>. Job names are
-        /// case sensitive.
+        /// job you want to delete using <c>MedicalTranscriptionJobName</c>. Job names are case
+        /// sensitive.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteMedicalTranscriptionJob service method.</param>
         /// 
@@ -1118,7 +1184,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1141,8 +1207,8 @@ namespace Amazon.TranscribeService
 
         /// <summary>
         /// Deletes a medical transcription job. To use this operation, specify the name of the
-        /// job you want to delete using <code>MedicalTranscriptionJobName</code>. Job names are
-        /// case sensitive.
+        /// job you want to delete using <c>MedicalTranscriptionJobName</c>. Job names are case
+        /// sensitive.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteMedicalTranscriptionJob service method.</param>
         /// <param name="cancellationToken">
@@ -1153,7 +1219,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1180,7 +1246,7 @@ namespace Amazon.TranscribeService
 
         /// <summary>
         /// Deletes a custom medical vocabulary. To use this operation, specify the name of the
-        /// custom vocabulary you want to delete using <code>VocabularyName</code>. Custom vocabulary
+        /// custom vocabulary you want to delete using <c>VocabularyName</c>. Custom vocabulary
         /// names are case sensitive.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteMedicalVocabulary service method.</param>
@@ -1189,7 +1255,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1216,7 +1282,7 @@ namespace Amazon.TranscribeService
 
         /// <summary>
         /// Deletes a custom medical vocabulary. To use this operation, specify the name of the
-        /// custom vocabulary you want to delete using <code>VocabularyName</code>. Custom vocabulary
+        /// custom vocabulary you want to delete using <c>VocabularyName</c>. Custom vocabulary
         /// names are case sensitive.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteMedicalVocabulary service method.</param>
@@ -1228,7 +1294,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1259,7 +1325,7 @@ namespace Amazon.TranscribeService
 
         /// <summary>
         /// Deletes a transcription job. To use this operation, specify the name of the job you
-        /// want to delete using <code>TranscriptionJobName</code>. Job names are case sensitive.
+        /// want to delete using <c>TranscriptionJobName</c>. Job names are case sensitive.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteTranscriptionJob service method.</param>
         /// 
@@ -1267,7 +1333,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1290,7 +1356,7 @@ namespace Amazon.TranscribeService
 
         /// <summary>
         /// Deletes a transcription job. To use this operation, specify the name of the job you
-        /// want to delete using <code>TranscriptionJobName</code>. Job names are case sensitive.
+        /// want to delete using <c>TranscriptionJobName</c>. Job names are case sensitive.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteTranscriptionJob service method.</param>
         /// <param name="cancellationToken">
@@ -1301,7 +1367,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1328,8 +1394,8 @@ namespace Amazon.TranscribeService
 
         /// <summary>
         /// Deletes a custom vocabulary. To use this operation, specify the name of the custom
-        /// vocabulary you want to delete using <code>VocabularyName</code>. Custom vocabulary
-        /// names are case sensitive.
+        /// vocabulary you want to delete using <c>VocabularyName</c>. Custom vocabulary names
+        /// are case sensitive.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteVocabulary service method.</param>
         /// 
@@ -1337,7 +1403,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1364,8 +1430,8 @@ namespace Amazon.TranscribeService
 
         /// <summary>
         /// Deletes a custom vocabulary. To use this operation, specify the name of the custom
-        /// vocabulary you want to delete using <code>VocabularyName</code>. Custom vocabulary
-        /// names are case sensitive.
+        /// vocabulary you want to delete using <c>VocabularyName</c>. Custom vocabulary names
+        /// are case sensitive.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteVocabulary service method.</param>
         /// <param name="cancellationToken">
@@ -1376,7 +1442,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1407,8 +1473,8 @@ namespace Amazon.TranscribeService
 
         /// <summary>
         /// Deletes a custom vocabulary filter. To use this operation, specify the name of the
-        /// custom vocabulary filter you want to delete using <code>VocabularyFilterName</code>.
-        /// Custom vocabulary filter names are case sensitive.
+        /// custom vocabulary filter you want to delete using <c>VocabularyFilterName</c>. Custom
+        /// vocabulary filter names are case sensitive.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteVocabularyFilter service method.</param>
         /// 
@@ -1416,7 +1482,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1443,8 +1509,8 @@ namespace Amazon.TranscribeService
 
         /// <summary>
         /// Deletes a custom vocabulary filter. To use this operation, specify the name of the
-        /// custom vocabulary filter you want to delete using <code>VocabularyFilterName</code>.
-        /// Custom vocabulary filter names are case sensitive.
+        /// custom vocabulary filter you want to delete using <c>VocabularyFilterName</c>. Custom
+        /// vocabulary filter names are case sensitive.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteVocabularyFilter service method.</param>
         /// <param name="cancellationToken">
@@ -1455,7 +1521,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1496,8 +1562,7 @@ namespace Amazon.TranscribeService
         ///  
         /// <para>
         /// If you tried to create a new custom language model and the request wasn't successful,
-        /// you can use <code>DescribeLanguageModel</code> to help identify the reason for this
-        /// failure.
+        /// you can use <c>DescribeLanguageModel</c> to help identify the reason for this failure.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeLanguageModel service method.</param>
@@ -1506,7 +1571,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1543,8 +1608,7 @@ namespace Amazon.TranscribeService
         ///  
         /// <para>
         /// If you tried to create a new custom language model and the request wasn't successful,
-        /// you can use <code>DescribeLanguageModel</code> to help identify the reason for this
-        /// failure.
+        /// you can use <c>DescribeLanguageModel</c> to help identify the reason for this failure.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeLanguageModel service method.</param>
@@ -1556,7 +1620,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1599,7 +1663,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1641,7 +1705,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1675,20 +1739,20 @@ namespace Amazon.TranscribeService
         /// 
         ///  
         /// <para>
-        /// To view the job's status, refer to <code>CallAnalyticsJobStatus</code>. If the status
-        /// is <code>COMPLETED</code>, the job is finished. You can find your completed transcript
-        /// at the URI specified in <code>TranscriptFileUri</code>. If the status is <code>FAILED</code>,
-        /// <code>FailureReason</code> provides details on why your transcription job failed.
+        /// To view the job's status, refer to <c>CallAnalyticsJobStatus</c>. If the status is
+        /// <c>COMPLETED</c>, the job is finished. You can find your completed transcript at the
+        /// URI specified in <c>TranscriptFileUri</c>. If the status is <c>FAILED</c>, <c>FailureReason</c>
+        /// provides details on why your transcription job failed.
         /// </para>
         ///  
         /// <para>
         /// If you enabled personally identifiable information (PII) redaction, the redacted transcript
-        /// appears at the location specified in <code>RedactedTranscriptFileUri</code>.
+        /// appears at the location specified in <c>RedactedTranscriptFileUri</c>.
         /// </para>
         ///  
         /// <para>
         /// If you chose to redact the audio in your media file, you can find your redacted media
-        /// file at the location specified in <code>RedactedMediaFileUri</code>.
+        /// file at the location specified in <c>RedactedMediaFileUri</c>.
         /// </para>
         ///  
         /// <para>
@@ -1701,7 +1765,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1731,20 +1795,20 @@ namespace Amazon.TranscribeService
         /// 
         ///  
         /// <para>
-        /// To view the job's status, refer to <code>CallAnalyticsJobStatus</code>. If the status
-        /// is <code>COMPLETED</code>, the job is finished. You can find your completed transcript
-        /// at the URI specified in <code>TranscriptFileUri</code>. If the status is <code>FAILED</code>,
-        /// <code>FailureReason</code> provides details on why your transcription job failed.
+        /// To view the job's status, refer to <c>CallAnalyticsJobStatus</c>. If the status is
+        /// <c>COMPLETED</c>, the job is finished. You can find your completed transcript at the
+        /// URI specified in <c>TranscriptFileUri</c>. If the status is <c>FAILED</c>, <c>FailureReason</c>
+        /// provides details on why your transcription job failed.
         /// </para>
         ///  
         /// <para>
         /// If you enabled personally identifiable information (PII) redaction, the redacted transcript
-        /// appears at the location specified in <code>RedactedTranscriptFileUri</code>.
+        /// appears at the location specified in <c>RedactedTranscriptFileUri</c>.
         /// </para>
         ///  
         /// <para>
         /// If you chose to redact the audio in your media file, you can find your redacted media
-        /// file at the location specified in <code>RedactedMediaFileUri</code>.
+        /// file at the location specified in <c>RedactedMediaFileUri</c>.
         /// </para>
         ///  
         /// <para>
@@ -1760,7 +1824,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1786,6 +1850,105 @@ namespace Amazon.TranscribeService
 
         #endregion
         
+        #region  GetMedicalScribeJob
+
+
+        /// <summary>
+        /// Provides information about the specified Medical Scribe job.
+        /// 
+        ///  
+        /// <para>
+        /// To view the status of the specified medical transcription job, check the <c>MedicalScribeJobStatus</c>
+        /// field. If the status is <c>COMPLETED</c>, the job is finished. You can find the results
+        /// at the location specified in <c>MedicalScribeOutput</c>. If the status is <c>FAILED</c>,
+        /// <c>FailureReason</c> provides details on why your Medical Scribe job failed.
+        /// </para>
+        ///  
+        /// <para>
+        /// To get a list of your Medical Scribe jobs, use the operation.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetMedicalScribeJob service method.</param>
+        /// 
+        /// <returns>The response from the GetMedicalScribeJob service method, as returned by TranscribeService.</returns>
+        /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
+        /// Your request didn't pass one or more validation tests. This can occur when the entity
+        /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
+        /// </exception>
+        /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
+        /// There was an internal error. Check the error message, correct the issue, and try your
+        /// request again.
+        /// </exception>
+        /// <exception cref="Amazon.TranscribeService.Model.LimitExceededException">
+        /// You've either sent too many requests or your input file is too long. Wait before retrying
+        /// your request, or use a smaller file and try your request again.
+        /// </exception>
+        /// <exception cref="Amazon.TranscribeService.Model.NotFoundException">
+        /// We can't find the requested resource. Check that the specified name is correct and
+        /// try your request again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/GetMedicalScribeJob">REST API Reference for GetMedicalScribeJob Operation</seealso>
+        public virtual GetMedicalScribeJobResponse GetMedicalScribeJob(GetMedicalScribeJobRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetMedicalScribeJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetMedicalScribeJobResponseUnmarshaller.Instance;
+
+            return Invoke<GetMedicalScribeJobResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Provides information about the specified Medical Scribe job.
+        /// 
+        ///  
+        /// <para>
+        /// To view the status of the specified medical transcription job, check the <c>MedicalScribeJobStatus</c>
+        /// field. If the status is <c>COMPLETED</c>, the job is finished. You can find the results
+        /// at the location specified in <c>MedicalScribeOutput</c>. If the status is <c>FAILED</c>,
+        /// <c>FailureReason</c> provides details on why your Medical Scribe job failed.
+        /// </para>
+        ///  
+        /// <para>
+        /// To get a list of your Medical Scribe jobs, use the operation.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetMedicalScribeJob service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetMedicalScribeJob service method, as returned by TranscribeService.</returns>
+        /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
+        /// Your request didn't pass one or more validation tests. This can occur when the entity
+        /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
+        /// </exception>
+        /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
+        /// There was an internal error. Check the error message, correct the issue, and try your
+        /// request again.
+        /// </exception>
+        /// <exception cref="Amazon.TranscribeService.Model.LimitExceededException">
+        /// You've either sent too many requests or your input file is too long. Wait before retrying
+        /// your request, or use a smaller file and try your request again.
+        /// </exception>
+        /// <exception cref="Amazon.TranscribeService.Model.NotFoundException">
+        /// We can't find the requested resource. Check that the specified name is correct and
+        /// try your request again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/GetMedicalScribeJob">REST API Reference for GetMedicalScribeJob Operation</seealso>
+        public virtual Task<GetMedicalScribeJobResponse> GetMedicalScribeJobAsync(GetMedicalScribeJobRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetMedicalScribeJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetMedicalScribeJobResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetMedicalScribeJobResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  GetMedicalTranscriptionJob
 
 
@@ -1794,11 +1957,10 @@ namespace Amazon.TranscribeService
         /// 
         ///  
         /// <para>
-        /// To view the status of the specified medical transcription job, check the <code>TranscriptionJobStatus</code>
-        /// field. If the status is <code>COMPLETED</code>, the job is finished. You can find
-        /// the results at the location specified in <code>TranscriptFileUri</code>. If the status
-        /// is <code>FAILED</code>, <code>FailureReason</code> provides details on why your transcription
-        /// job failed.
+        /// To view the status of the specified medical transcription job, check the <c>TranscriptionJobStatus</c>
+        /// field. If the status is <c>COMPLETED</c>, the job is finished. You can find the results
+        /// at the location specified in <c>TranscriptFileUri</c>. If the status is <c>FAILED</c>,
+        /// <c>FailureReason</c> provides details on why your transcription job failed.
         /// </para>
         ///  
         /// <para>
@@ -1811,7 +1973,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1841,11 +2003,10 @@ namespace Amazon.TranscribeService
         /// 
         ///  
         /// <para>
-        /// To view the status of the specified medical transcription job, check the <code>TranscriptionJobStatus</code>
-        /// field. If the status is <code>COMPLETED</code>, the job is finished. You can find
-        /// the results at the location specified in <code>TranscriptFileUri</code>. If the status
-        /// is <code>FAILED</code>, <code>FailureReason</code> provides details on why your transcription
-        /// job failed.
+        /// To view the status of the specified medical transcription job, check the <c>TranscriptionJobStatus</c>
+        /// field. If the status is <c>COMPLETED</c>, the job is finished. You can find the results
+        /// at the location specified in <c>TranscriptFileUri</c>. If the status is <c>FAILED</c>,
+        /// <c>FailureReason</c> provides details on why your transcription job failed.
         /// </para>
         ///  
         /// <para>
@@ -1861,7 +2022,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1895,10 +2056,10 @@ namespace Amazon.TranscribeService
         /// 
         ///  
         /// <para>
-        /// To view the status of the specified custom medical vocabulary, check the <code>VocabularyState</code>
-        /// field. If the status is <code>READY</code>, your custom vocabulary is available to
-        /// use. If the status is <code>FAILED</code>, <code>FailureReason</code> provides details
-        /// on why your vocabulary failed.
+        /// To view the status of the specified custom medical vocabulary, check the <c>VocabularyState</c>
+        /// field. If the status is <c>READY</c>, your custom vocabulary is available to use.
+        /// If the status is <c>FAILED</c>, <c>FailureReason</c> provides details on why your
+        /// vocabulary failed.
         /// </para>
         ///  
         /// <para>
@@ -1911,7 +2072,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1941,10 +2102,10 @@ namespace Amazon.TranscribeService
         /// 
         ///  
         /// <para>
-        /// To view the status of the specified custom medical vocabulary, check the <code>VocabularyState</code>
-        /// field. If the status is <code>READY</code>, your custom vocabulary is available to
-        /// use. If the status is <code>FAILED</code>, <code>FailureReason</code> provides details
-        /// on why your vocabulary failed.
+        /// To view the status of the specified custom medical vocabulary, check the <c>VocabularyState</c>
+        /// field. If the status is <c>READY</c>, your custom vocabulary is available to use.
+        /// If the status is <c>FAILED</c>, <c>FailureReason</c> provides details on why your
+        /// vocabulary failed.
         /// </para>
         ///  
         /// <para>
@@ -1960,7 +2121,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -1994,16 +2155,15 @@ namespace Amazon.TranscribeService
         /// 
         ///  
         /// <para>
-        /// To view the status of the specified transcription job, check the <code>TranscriptionJobStatus</code>
-        /// field. If the status is <code>COMPLETED</code>, the job is finished. You can find
-        /// the results at the location specified in <code>TranscriptFileUri</code>. If the status
-        /// is <code>FAILED</code>, <code>FailureReason</code> provides details on why your transcription
-        /// job failed.
+        /// To view the status of the specified transcription job, check the <c>TranscriptionJobStatus</c>
+        /// field. If the status is <c>COMPLETED</c>, the job is finished. You can find the results
+        /// at the location specified in <c>TranscriptFileUri</c>. If the status is <c>FAILED</c>,
+        /// <c>FailureReason</c> provides details on why your transcription job failed.
         /// </para>
         ///  
         /// <para>
         /// If you enabled content redaction, the redacted transcript can be found at the location
-        /// specified in <code>RedactedTranscriptFileUri</code>.
+        /// specified in <c>RedactedTranscriptFileUri</c>.
         /// </para>
         ///  
         /// <para>
@@ -2016,7 +2176,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2046,16 +2206,15 @@ namespace Amazon.TranscribeService
         /// 
         ///  
         /// <para>
-        /// To view the status of the specified transcription job, check the <code>TranscriptionJobStatus</code>
-        /// field. If the status is <code>COMPLETED</code>, the job is finished. You can find
-        /// the results at the location specified in <code>TranscriptFileUri</code>. If the status
-        /// is <code>FAILED</code>, <code>FailureReason</code> provides details on why your transcription
-        /// job failed.
+        /// To view the status of the specified transcription job, check the <c>TranscriptionJobStatus</c>
+        /// field. If the status is <c>COMPLETED</c>, the job is finished. You can find the results
+        /// at the location specified in <c>TranscriptFileUri</c>. If the status is <c>FAILED</c>,
+        /// <c>FailureReason</c> provides details on why your transcription job failed.
         /// </para>
         ///  
         /// <para>
         /// If you enabled content redaction, the redacted transcript can be found at the location
-        /// specified in <code>RedactedTranscriptFileUri</code>.
+        /// specified in <c>RedactedTranscriptFileUri</c>.
         /// </para>
         ///  
         /// <para>
@@ -2071,7 +2230,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2105,10 +2264,10 @@ namespace Amazon.TranscribeService
         /// 
         ///  
         /// <para>
-        /// To view the status of the specified custom vocabulary, check the <code>VocabularyState</code>
-        /// field. If the status is <code>READY</code>, your custom vocabulary is available to
-        /// use. If the status is <code>FAILED</code>, <code>FailureReason</code> provides details
-        /// on why your custom vocabulary failed.
+        /// To view the status of the specified custom vocabulary, check the <c>VocabularyState</c>
+        /// field. If the status is <c>READY</c>, your custom vocabulary is available to use.
+        /// If the status is <c>FAILED</c>, <c>FailureReason</c> provides details on why your
+        /// custom vocabulary failed.
         /// </para>
         ///  
         /// <para>
@@ -2121,7 +2280,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2151,10 +2310,10 @@ namespace Amazon.TranscribeService
         /// 
         ///  
         /// <para>
-        /// To view the status of the specified custom vocabulary, check the <code>VocabularyState</code>
-        /// field. If the status is <code>READY</code>, your custom vocabulary is available to
-        /// use. If the status is <code>FAILED</code>, <code>FailureReason</code> provides details
-        /// on why your custom vocabulary failed.
+        /// To view the status of the specified custom vocabulary, check the <c>VocabularyState</c>
+        /// field. If the status is <c>READY</c>, your custom vocabulary is available to use.
+        /// If the status is <c>FAILED</c>, <c>FailureReason</c> provides details on why your
+        /// custom vocabulary failed.
         /// </para>
         ///  
         /// <para>
@@ -2170,7 +2329,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2213,7 +2372,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2255,7 +2414,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2299,7 +2458,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2338,7 +2497,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2378,7 +2537,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2417,7 +2576,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2457,7 +2616,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2496,7 +2655,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2514,6 +2673,85 @@ namespace Amazon.TranscribeService
             options.ResponseUnmarshaller = ListLanguageModelsResponseUnmarshaller.Instance;
             
             return InvokeAsync<ListLanguageModelsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListMedicalScribeJobs
+
+
+        /// <summary>
+        /// Provides a list of Medical Scribe jobs that match the specified criteria. If no criteria
+        /// are specified, all Medical Scribe jobs are returned.
+        /// 
+        ///  
+        /// <para>
+        /// To get detailed information about a specific Medical Scribe job, use the operation.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListMedicalScribeJobs service method.</param>
+        /// 
+        /// <returns>The response from the ListMedicalScribeJobs service method, as returned by TranscribeService.</returns>
+        /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
+        /// Your request didn't pass one or more validation tests. This can occur when the entity
+        /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
+        /// </exception>
+        /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
+        /// There was an internal error. Check the error message, correct the issue, and try your
+        /// request again.
+        /// </exception>
+        /// <exception cref="Amazon.TranscribeService.Model.LimitExceededException">
+        /// You've either sent too many requests or your input file is too long. Wait before retrying
+        /// your request, or use a smaller file and try your request again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/ListMedicalScribeJobs">REST API Reference for ListMedicalScribeJobs Operation</seealso>
+        public virtual ListMedicalScribeJobsResponse ListMedicalScribeJobs(ListMedicalScribeJobsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListMedicalScribeJobsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListMedicalScribeJobsResponseUnmarshaller.Instance;
+
+            return Invoke<ListMedicalScribeJobsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Provides a list of Medical Scribe jobs that match the specified criteria. If no criteria
+        /// are specified, all Medical Scribe jobs are returned.
+        /// 
+        ///  
+        /// <para>
+        /// To get detailed information about a specific Medical Scribe job, use the operation.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListMedicalScribeJobs service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListMedicalScribeJobs service method, as returned by TranscribeService.</returns>
+        /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
+        /// Your request didn't pass one or more validation tests. This can occur when the entity
+        /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
+        /// </exception>
+        /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
+        /// There was an internal error. Check the error message, correct the issue, and try your
+        /// request again.
+        /// </exception>
+        /// <exception cref="Amazon.TranscribeService.Model.LimitExceededException">
+        /// You've either sent too many requests or your input file is too long. Wait before retrying
+        /// your request, or use a smaller file and try your request again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/ListMedicalScribeJobs">REST API Reference for ListMedicalScribeJobs Operation</seealso>
+        public virtual Task<ListMedicalScribeJobsResponse> ListMedicalScribeJobsAsync(ListMedicalScribeJobsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListMedicalScribeJobsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListMedicalScribeJobsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListMedicalScribeJobsResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -2536,7 +2774,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2575,7 +2813,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2615,7 +2853,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2654,7 +2892,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2695,7 +2933,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2739,7 +2977,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2783,7 +3021,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2822,7 +3060,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2862,7 +3100,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2901,7 +3139,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2941,7 +3179,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -2980,7 +3218,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -3029,9 +3267,9 @@ namespace Amazon.TranscribeService
         /// </para>
         ///  
         /// <para>
-        /// To make a <code>StartCallAnalyticsJob</code> request, you must first upload your media
-        /// file into an Amazon S3 bucket; you can then specify the Amazon S3 location of the
-        /// file using the <code>Media</code> parameter.
+        /// To make a <c>StartCallAnalyticsJob</c> request, you must first upload your media file
+        /// into an Amazon S3 bucket; you can then specify the Amazon S3 location of the file
+        /// using the <c>Media</c> parameter.
         /// </para>
         ///  
         /// <para>
@@ -3039,38 +3277,36 @@ namespace Amazon.TranscribeService
         /// </para>
         ///  
         /// <para>
-        /// You must include the following parameters in your <code>StartCallAnalyticsJob</code>
-        /// request:
+        /// You must include the following parameters in your <c>StartCallAnalyticsJob</c> request:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>region</code>: The Amazon Web Services Region where you are making your request.
+        ///  <c>region</c>: The Amazon Web Services Region where you are making your request.
         /// For a list of Amazon Web Services Regions supported with Amazon Transcribe, refer
         /// to <a href="https://docs.aws.amazon.com/general/latest/gr/transcribe.html">Amazon
         /// Transcribe endpoints and quotas</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CallAnalyticsJobName</code>: A custom name that you create for your transcription
+        ///  <c>CallAnalyticsJobName</c>: A custom name that you create for your transcription
         /// job that's unique within your Amazon Web Services account.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DataAccessRoleArn</code>: The Amazon Resource Name (ARN) of an IAM role that
-        /// has permissions to access the Amazon S3 bucket that contains your input files.
+        ///  <c>DataAccessRoleArn</c>: The Amazon Resource Name (ARN) of an IAM role that has
+        /// permissions to access the Amazon S3 bucket that contains your input files.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Media</code> (<code>MediaFileUri</code> or <code>RedactedMediaFileUri</code>):
-        /// The Amazon S3 location of your media file.
+        ///  <c>Media</c> (<c>MediaFileUri</c> or <c>RedactedMediaFileUri</c>): The Amazon S3
+        /// location of your media file.
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
         /// With Call Analytics, you can redact the audio contained in your media file by including
-        /// <code>RedactedMediaFileUri</code>, instead of <code>MediaFileUri</code>, to specify
-        /// the location of your input audio. If you choose to redact your audio, you can find
-        /// your redacted media at the location specified in the <code>RedactedMediaFileUri</code>
-        /// field of your response.
+        /// <c>RedactedMediaFileUri</c>, instead of <c>MediaFileUri</c>, to specify the location
+        /// of your input audio. If you choose to redact your audio, you can find your redacted
+        /// media at the location specified in the <c>RedactedMediaFileUri</c> field of your response.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3080,7 +3316,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -3129,9 +3365,9 @@ namespace Amazon.TranscribeService
         /// </para>
         ///  
         /// <para>
-        /// To make a <code>StartCallAnalyticsJob</code> request, you must first upload your media
-        /// file into an Amazon S3 bucket; you can then specify the Amazon S3 location of the
-        /// file using the <code>Media</code> parameter.
+        /// To make a <c>StartCallAnalyticsJob</c> request, you must first upload your media file
+        /// into an Amazon S3 bucket; you can then specify the Amazon S3 location of the file
+        /// using the <c>Media</c> parameter.
         /// </para>
         ///  
         /// <para>
@@ -3139,38 +3375,36 @@ namespace Amazon.TranscribeService
         /// </para>
         ///  
         /// <para>
-        /// You must include the following parameters in your <code>StartCallAnalyticsJob</code>
-        /// request:
+        /// You must include the following parameters in your <c>StartCallAnalyticsJob</c> request:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>region</code>: The Amazon Web Services Region where you are making your request.
+        ///  <c>region</c>: The Amazon Web Services Region where you are making your request.
         /// For a list of Amazon Web Services Regions supported with Amazon Transcribe, refer
         /// to <a href="https://docs.aws.amazon.com/general/latest/gr/transcribe.html">Amazon
         /// Transcribe endpoints and quotas</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CallAnalyticsJobName</code>: A custom name that you create for your transcription
+        ///  <c>CallAnalyticsJobName</c>: A custom name that you create for your transcription
         /// job that's unique within your Amazon Web Services account.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DataAccessRoleArn</code>: The Amazon Resource Name (ARN) of an IAM role that
-        /// has permissions to access the Amazon S3 bucket that contains your input files.
+        ///  <c>DataAccessRoleArn</c>: The Amazon Resource Name (ARN) of an IAM role that has
+        /// permissions to access the Amazon S3 bucket that contains your input files.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Media</code> (<code>MediaFileUri</code> or <code>RedactedMediaFileUri</code>):
-        /// The Amazon S3 location of your media file.
+        ///  <c>Media</c> (<c>MediaFileUri</c> or <c>RedactedMediaFileUri</c>): The Amazon S3
+        /// location of your media file.
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
         /// With Call Analytics, you can redact the audio contained in your media file by including
-        /// <code>RedactedMediaFileUri</code>, instead of <code>MediaFileUri</code>, to specify
-        /// the location of your input audio. If you choose to redact your audio, you can find
-        /// your redacted media at the location specified in the <code>RedactedMediaFileUri</code>
-        /// field of your response.
+        /// <c>RedactedMediaFileUri</c>, instead of <c>MediaFileUri</c>, to specify the location
+        /// of your input audio. If you choose to redact your audio, you can find your redacted
+        /// media at the location specified in the <c>RedactedMediaFileUri</c> field of your response.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3183,7 +3417,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -3209,6 +3443,187 @@ namespace Amazon.TranscribeService
 
         #endregion
         
+        #region  StartMedicalScribeJob
+
+
+        /// <summary>
+        /// Transcribes patient-clinician conversations and generates clinical notes. 
+        /// 
+        ///  
+        /// <para>
+        /// Amazon Web Services HealthScribe automatically provides rich conversation transcripts,
+        /// identifies speaker roles, classifies dialogues, extracts medical terms, and generates
+        /// preliminary clinical notes. To learn more about these features, refer to <a href="https://docs.aws.amazon.com/transcribe/latest/dg/health-scribe.html">Amazon
+        /// Web Services HealthScribe</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// To make a <c>StartMedicalScribeJob</c> request, you must first upload your media file
+        /// into an Amazon S3 bucket; you can then specify the Amazon S3 location of the file
+        /// using the <c>Media</c> parameter.
+        /// </para>
+        ///  
+        /// <para>
+        /// You must include the following parameters in your <c>StartMedicalTranscriptionJob</c>
+        /// request:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>DataAccessRoleArn</c>: The ARN of an IAM role with the these minimum permissions:
+        /// read permission on input file Amazon S3 bucket specified in <c>Media</c>, write permission
+        /// on the Amazon S3 bucket specified in <c>OutputBucketName</c>, and full permissions
+        /// on the KMS key specified in <c>OutputEncryptionKMSKeyId</c> (if set). The role should
+        /// also allow <c>transcribe.amazonaws.com</c> to assume it. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Media</c> (<c>MediaFileUri</c>): The Amazon S3 location of your media file.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>MedicalScribeJobName</c>: A custom name you create for your MedicalScribe job
+        /// that is unique within your Amazon Web Services account.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>OutputBucketName</c>: The Amazon S3 bucket where you want your output files stored.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Settings</c>: A <c>MedicalScribeSettings</c> obect that must set exactly one of
+        /// <c>ShowSpeakerLabels</c> or <c>ChannelIdentification</c> to true. If <c>ShowSpeakerLabels</c>
+        /// is true, <c>MaxSpeakerLabels</c> must also be set. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>ChannelDefinitions</c>: A <c>MedicalScribeChannelDefinitions</c> array should
+        /// be set if and only if the <c>ChannelIdentification</c> value of <c>Settings</c> is
+        /// set to true. 
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartMedicalScribeJob service method.</param>
+        /// 
+        /// <returns>The response from the StartMedicalScribeJob service method, as returned by TranscribeService.</returns>
+        /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
+        /// Your request didn't pass one or more validation tests. This can occur when the entity
+        /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
+        /// </exception>
+        /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
+        /// A resource already exists with this name. Resource names must be unique within an
+        /// Amazon Web Services account.
+        /// </exception>
+        /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
+        /// There was an internal error. Check the error message, correct the issue, and try your
+        /// request again.
+        /// </exception>
+        /// <exception cref="Amazon.TranscribeService.Model.LimitExceededException">
+        /// You've either sent too many requests or your input file is too long. Wait before retrying
+        /// your request, or use a smaller file and try your request again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/StartMedicalScribeJob">REST API Reference for StartMedicalScribeJob Operation</seealso>
+        public virtual StartMedicalScribeJobResponse StartMedicalScribeJob(StartMedicalScribeJobRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartMedicalScribeJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartMedicalScribeJobResponseUnmarshaller.Instance;
+
+            return Invoke<StartMedicalScribeJobResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Transcribes patient-clinician conversations and generates clinical notes. 
+        /// 
+        ///  
+        /// <para>
+        /// Amazon Web Services HealthScribe automatically provides rich conversation transcripts,
+        /// identifies speaker roles, classifies dialogues, extracts medical terms, and generates
+        /// preliminary clinical notes. To learn more about these features, refer to <a href="https://docs.aws.amazon.com/transcribe/latest/dg/health-scribe.html">Amazon
+        /// Web Services HealthScribe</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// To make a <c>StartMedicalScribeJob</c> request, you must first upload your media file
+        /// into an Amazon S3 bucket; you can then specify the Amazon S3 location of the file
+        /// using the <c>Media</c> parameter.
+        /// </para>
+        ///  
+        /// <para>
+        /// You must include the following parameters in your <c>StartMedicalTranscriptionJob</c>
+        /// request:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>DataAccessRoleArn</c>: The ARN of an IAM role with the these minimum permissions:
+        /// read permission on input file Amazon S3 bucket specified in <c>Media</c>, write permission
+        /// on the Amazon S3 bucket specified in <c>OutputBucketName</c>, and full permissions
+        /// on the KMS key specified in <c>OutputEncryptionKMSKeyId</c> (if set). The role should
+        /// also allow <c>transcribe.amazonaws.com</c> to assume it. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Media</c> (<c>MediaFileUri</c>): The Amazon S3 location of your media file.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>MedicalScribeJobName</c>: A custom name you create for your MedicalScribe job
+        /// that is unique within your Amazon Web Services account.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>OutputBucketName</c>: The Amazon S3 bucket where you want your output files stored.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Settings</c>: A <c>MedicalScribeSettings</c> obect that must set exactly one of
+        /// <c>ShowSpeakerLabels</c> or <c>ChannelIdentification</c> to true. If <c>ShowSpeakerLabels</c>
+        /// is true, <c>MaxSpeakerLabels</c> must also be set. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>ChannelDefinitions</c>: A <c>MedicalScribeChannelDefinitions</c> array should
+        /// be set if and only if the <c>ChannelIdentification</c> value of <c>Settings</c> is
+        /// set to true. 
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartMedicalScribeJob service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StartMedicalScribeJob service method, as returned by TranscribeService.</returns>
+        /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
+        /// Your request didn't pass one or more validation tests. This can occur when the entity
+        /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
+        /// </exception>
+        /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
+        /// A resource already exists with this name. Resource names must be unique within an
+        /// Amazon Web Services account.
+        /// </exception>
+        /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
+        /// There was an internal error. Check the error message, correct the issue, and try your
+        /// request again.
+        /// </exception>
+        /// <exception cref="Amazon.TranscribeService.Model.LimitExceededException">
+        /// You've either sent too many requests or your input file is too long. Wait before retrying
+        /// your request, or use a smaller file and try your request again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/StartMedicalScribeJob">REST API Reference for StartMedicalScribeJob Operation</seealso>
+        public virtual Task<StartMedicalScribeJobResponse> StartMedicalScribeJobAsync(StartMedicalScribeJobRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartMedicalScribeJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartMedicalScribeJobResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<StartMedicalScribeJobResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  StartMedicalTranscriptionJob
 
 
@@ -3226,49 +3641,48 @@ namespace Amazon.TranscribeService
         /// </para>
         ///  
         /// <para>
-        /// To make a <code>StartMedicalTranscriptionJob</code> request, you must first upload
-        /// your media file into an Amazon S3 bucket; you can then specify the S3 location of
-        /// the file using the <code>Media</code> parameter.
+        /// To make a <c>StartMedicalTranscriptionJob</c> request, you must first upload your
+        /// media file into an Amazon S3 bucket; you can then specify the Amazon S3 location of
+        /// the file using the <c>Media</c> parameter.
         /// </para>
         ///  
         /// <para>
-        /// You must include the following parameters in your <code>StartMedicalTranscriptionJob</code>
+        /// You must include the following parameters in your <c>StartMedicalTranscriptionJob</c>
         /// request:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>region</code>: The Amazon Web Services Region where you are making your request.
+        ///  <c>region</c>: The Amazon Web Services Region where you are making your request.
         /// For a list of Amazon Web Services Regions supported with Amazon Transcribe, refer
         /// to <a href="https://docs.aws.amazon.com/general/latest/gr/transcribe.html">Amazon
         /// Transcribe endpoints and quotas</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MedicalTranscriptionJobName</code>: A custom name you create for your transcription
+        ///  <c>MedicalTranscriptionJobName</c>: A custom name you create for your transcription
         /// job that is unique within your Amazon Web Services account.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Media</code> (<code>MediaFileUri</code>): The Amazon S3 location of your media
-        /// file.
+        ///  <c>Media</c> (<c>MediaFileUri</c>): The Amazon S3 location of your media file.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LanguageCode</code>: This must be <code>en-US</code>.
+        ///  <c>LanguageCode</c>: This must be <c>en-US</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OutputBucketName</code>: The Amazon S3 bucket where you want your transcript
-        /// stored. If you want your output stored in a sub-folder of this bucket, you must also
-        /// include <code>OutputKey</code>.
+        ///  <c>OutputBucketName</c>: The Amazon S3 bucket where you want your transcript stored.
+        /// If you want your output stored in a sub-folder of this bucket, you must also include
+        /// <c>OutputKey</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Specialty</code>: This must be <code>PRIMARYCARE</code>.
+        ///  <c>Specialty</c>: This must be <c>PRIMARYCARE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Type</code>: Choose whether your audio is a conversation or a dictation.
+        ///  <c>Type</c>: Choose whether your audio is a conversation or a dictation.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3278,7 +3692,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -3317,49 +3731,48 @@ namespace Amazon.TranscribeService
         /// </para>
         ///  
         /// <para>
-        /// To make a <code>StartMedicalTranscriptionJob</code> request, you must first upload
-        /// your media file into an Amazon S3 bucket; you can then specify the S3 location of
-        /// the file using the <code>Media</code> parameter.
+        /// To make a <c>StartMedicalTranscriptionJob</c> request, you must first upload your
+        /// media file into an Amazon S3 bucket; you can then specify the Amazon S3 location of
+        /// the file using the <c>Media</c> parameter.
         /// </para>
         ///  
         /// <para>
-        /// You must include the following parameters in your <code>StartMedicalTranscriptionJob</code>
+        /// You must include the following parameters in your <c>StartMedicalTranscriptionJob</c>
         /// request:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>region</code>: The Amazon Web Services Region where you are making your request.
+        ///  <c>region</c>: The Amazon Web Services Region where you are making your request.
         /// For a list of Amazon Web Services Regions supported with Amazon Transcribe, refer
         /// to <a href="https://docs.aws.amazon.com/general/latest/gr/transcribe.html">Amazon
         /// Transcribe endpoints and quotas</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MedicalTranscriptionJobName</code>: A custom name you create for your transcription
+        ///  <c>MedicalTranscriptionJobName</c>: A custom name you create for your transcription
         /// job that is unique within your Amazon Web Services account.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Media</code> (<code>MediaFileUri</code>): The Amazon S3 location of your media
-        /// file.
+        ///  <c>Media</c> (<c>MediaFileUri</c>): The Amazon S3 location of your media file.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LanguageCode</code>: This must be <code>en-US</code>.
+        ///  <c>LanguageCode</c>: This must be <c>en-US</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OutputBucketName</code>: The Amazon S3 bucket where you want your transcript
-        /// stored. If you want your output stored in a sub-folder of this bucket, you must also
-        /// include <code>OutputKey</code>.
+        ///  <c>OutputBucketName</c>: The Amazon S3 bucket where you want your transcript stored.
+        /// If you want your output stored in a sub-folder of this bucket, you must also include
+        /// <c>OutputKey</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Specialty</code>: This must be <code>PRIMARYCARE</code>.
+        ///  <c>Specialty</c>: This must be <c>PRIMARYCARE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Type</code>: Choose whether your audio is a conversation or a dictation.
+        ///  <c>Type</c>: Choose whether your audio is a conversation or a dictation.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3372,7 +3785,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -3407,40 +3820,38 @@ namespace Amazon.TranscribeService
         /// 
         ///  
         /// <para>
-        /// To make a <code>StartTranscriptionJob</code> request, you must first upload your media
-        /// file into an Amazon S3 bucket; you can then specify the Amazon S3 location of the
-        /// file using the <code>Media</code> parameter.
+        /// To make a <c>StartTranscriptionJob</c> request, you must first upload your media file
+        /// into an Amazon S3 bucket; you can then specify the Amazon S3 location of the file
+        /// using the <c>Media</c> parameter.
         /// </para>
         ///  
         /// <para>
-        /// You must include the following parameters in your <code>StartTranscriptionJob</code>
-        /// request:
+        /// You must include the following parameters in your <c>StartTranscriptionJob</c> request:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>region</code>: The Amazon Web Services Region where you are making your request.
+        ///  <c>region</c>: The Amazon Web Services Region where you are making your request.
         /// For a list of Amazon Web Services Regions supported with Amazon Transcribe, refer
         /// to <a href="https://docs.aws.amazon.com/general/latest/gr/transcribe.html">Amazon
         /// Transcribe endpoints and quotas</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TranscriptionJobName</code>: A custom name you create for your transcription
-        /// job that is unique within your Amazon Web Services account.
+        ///  <c>TranscriptionJobName</c>: A custom name you create for your transcription job
+        /// that is unique within your Amazon Web Services account.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Media</code> (<code>MediaFileUri</code>): The Amazon S3 location of your media
-        /// file.
+        ///  <c>Media</c> (<c>MediaFileUri</c>): The Amazon S3 location of your media file.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// One of <code>LanguageCode</code>, <code>IdentifyLanguage</code>, or <code>IdentifyMultipleLanguages</code>:
-        /// If you know the language of your media file, specify it using the <code>LanguageCode</code>
+        /// One of <c>LanguageCode</c>, <c>IdentifyLanguage</c>, or <c>IdentifyMultipleLanguages</c>:
+        /// If you know the language of your media file, specify it using the <c>LanguageCode</c>
         /// parameter; you can find all valid language codes in the <a href="https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html">Supported
-        /// languages</a> table. If you don't know the languages spoken in your media, use either
-        /// <code>IdentifyLanguage</code> or <code>IdentifyMultipleLanguages</code> and let Amazon
-        /// Transcribe identify the languages for you.
+        /// languages</a> table. If you do not know the languages spoken in your media, use either
+        /// <c>IdentifyLanguage</c> or <c>IdentifyMultipleLanguages</c> and let Amazon Transcribe
+        /// identify the languages for you.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3450,7 +3861,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -3481,40 +3892,38 @@ namespace Amazon.TranscribeService
         /// 
         ///  
         /// <para>
-        /// To make a <code>StartTranscriptionJob</code> request, you must first upload your media
-        /// file into an Amazon S3 bucket; you can then specify the Amazon S3 location of the
-        /// file using the <code>Media</code> parameter.
+        /// To make a <c>StartTranscriptionJob</c> request, you must first upload your media file
+        /// into an Amazon S3 bucket; you can then specify the Amazon S3 location of the file
+        /// using the <c>Media</c> parameter.
         /// </para>
         ///  
         /// <para>
-        /// You must include the following parameters in your <code>StartTranscriptionJob</code>
-        /// request:
+        /// You must include the following parameters in your <c>StartTranscriptionJob</c> request:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>region</code>: The Amazon Web Services Region where you are making your request.
+        ///  <c>region</c>: The Amazon Web Services Region where you are making your request.
         /// For a list of Amazon Web Services Regions supported with Amazon Transcribe, refer
         /// to <a href="https://docs.aws.amazon.com/general/latest/gr/transcribe.html">Amazon
         /// Transcribe endpoints and quotas</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TranscriptionJobName</code>: A custom name you create for your transcription
-        /// job that is unique within your Amazon Web Services account.
+        ///  <c>TranscriptionJobName</c>: A custom name you create for your transcription job
+        /// that is unique within your Amazon Web Services account.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Media</code> (<code>MediaFileUri</code>): The Amazon S3 location of your media
-        /// file.
+        ///  <c>Media</c> (<c>MediaFileUri</c>): The Amazon S3 location of your media file.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// One of <code>LanguageCode</code>, <code>IdentifyLanguage</code>, or <code>IdentifyMultipleLanguages</code>:
-        /// If you know the language of your media file, specify it using the <code>LanguageCode</code>
+        /// One of <c>LanguageCode</c>, <c>IdentifyLanguage</c>, or <c>IdentifyMultipleLanguages</c>:
+        /// If you know the language of your media file, specify it using the <c>LanguageCode</c>
         /// parameter; you can find all valid language codes in the <a href="https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html">Supported
-        /// languages</a> table. If you don't know the languages spoken in your media, use either
-        /// <code>IdentifyLanguage</code> or <code>IdentifyMultipleLanguages</code> and let Amazon
-        /// Transcribe identify the languages for you.
+        /// languages</a> table. If you do not know the languages spoken in your media, use either
+        /// <c>IdentifyLanguage</c> or <c>IdentifyMultipleLanguages</c> and let Amazon Transcribe
+        /// identify the languages for you.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3527,7 +3936,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -3572,7 +3981,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -3620,7 +4029,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -3658,8 +4067,8 @@ namespace Amazon.TranscribeService
         /// 
         ///  
         /// <para>
-        /// If you include <code>UntagResource</code> in your request, you must also include <code>ResourceArn</code>
-        /// and <code>TagKeys</code>.
+        /// If you include <c>UntagResource</c> in your request, you must also include <c>ResourceArn</c>
+        /// and <c>TagKeys</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
@@ -3668,7 +4077,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -3702,8 +4111,8 @@ namespace Amazon.TranscribeService
         /// 
         ///  
         /// <para>
-        /// If you include <code>UntagResource</code> in your request, you must also include <code>ResourceArn</code>
-        /// and <code>TagKeys</code>.
+        /// If you include <c>UntagResource</c> in your request, you must also include <c>ResourceArn</c>
+        /// and <c>TagKeys</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
@@ -3715,7 +4124,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -3749,7 +4158,7 @@ namespace Amazon.TranscribeService
 
 
         /// <summary>
-        /// Updates the specified Call Analytics category with new rules. Note that the <code>UpdateCallAnalyticsCategory</code>
+        /// Updates the specified Call Analytics category with new rules. Note that the <c>UpdateCallAnalyticsCategory</c>
         /// operation overwrites all existing rules contained in the specified category. You cannot
         /// append additional rules onto an existing category.
         /// 
@@ -3764,7 +4173,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -3794,7 +4203,7 @@ namespace Amazon.TranscribeService
 
 
         /// <summary>
-        /// Updates the specified Call Analytics category with new rules. Note that the <code>UpdateCallAnalyticsCategory</code>
+        /// Updates the specified Call Analytics category with new rules. Note that the <c>UpdateCallAnalyticsCategory</c>
         /// operation overwrites all existing rules contained in the specified category. You cannot
         /// append additional rules onto an existing category.
         /// 
@@ -3812,7 +4221,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -3856,7 +4265,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -3899,7 +4308,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -3943,7 +4352,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -3986,7 +4395,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.ConflictException">
         /// A resource already exists with this name. Resource names must be unique within an
@@ -4030,7 +4439,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -4069,7 +4478,7 @@ namespace Amazon.TranscribeService
         /// <exception cref="Amazon.TranscribeService.Model.BadRequestException">
         /// Your request didn't pass one or more validation tests. This can occur when the entity
         /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-        /// <code>IN PROGRESS</code>). See the exception message field for more information.
+        /// <c>IN PROGRESS</c>). See the exception message field for more information.
         /// </exception>
         /// <exception cref="Amazon.TranscribeService.Model.InternalFailureException">
         /// There was an internal error. Check the error message, correct the issue, and try your
@@ -4104,11 +4513,11 @@ namespace Amazon.TranscribeService
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -39,8 +40,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property ContinuousBackupsStatus. 
         /// <para>
-        ///  <code>ContinuousBackupsStatus</code> can be one of the following states: ENABLED,
-        /// DISABLED
+        ///  <c>ContinuousBackupsStatus</c> can be one of the following states: ENABLED, DISABLED
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

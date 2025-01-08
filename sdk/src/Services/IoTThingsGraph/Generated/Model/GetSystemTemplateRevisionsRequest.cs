@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTThingsGraph.Model
 {
     /// <summary>
@@ -52,7 +53,7 @@ namespace Amazon.IoTThingsGraph.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>urn:tdm:REGION/ACCOUNT ID/default:system:SYSTEMNAME</code> 
+        ///  <c>urn:tdm:REGION/ACCOUNT ID/default:system:SYSTEMNAME</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=160)]

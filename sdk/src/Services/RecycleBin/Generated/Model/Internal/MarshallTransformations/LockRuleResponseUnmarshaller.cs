@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RecycleBin.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -55,6 +56,12 @@ namespace Amazon.RecycleBin.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.Description = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ExcludeResourceTags", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<ResourceTag, ResourceTagUnmarshaller>(ResourceTagUnmarshaller.Instance);
+                    response.ExcludeResourceTags = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Identifier", targetDepth))
@@ -91,6 +98,12 @@ namespace Amazon.RecycleBin.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = RetentionPeriodUnmarshaller.Instance;
                     response.RetentionPeriod = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("RuleArn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.RuleArn = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Status", targetDepth))

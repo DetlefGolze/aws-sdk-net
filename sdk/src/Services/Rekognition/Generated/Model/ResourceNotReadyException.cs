@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// The requested resource isn't ready. For example, this exception occurs when you call
-    /// <code>DetectCustomLabels</code> with a model version that isn't deployed.
+    /// <c>DetectCustomLabels</c> with a model version that isn't deployed.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

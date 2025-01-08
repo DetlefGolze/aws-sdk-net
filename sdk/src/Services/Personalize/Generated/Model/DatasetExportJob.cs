@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Personalize.Model
 {
     /// <summary>
@@ -132,10 +133,10 @@ namespace Amazon.Personalize.Model
         /// <summary>
         /// Gets and sets the property IngestionMode. 
         /// <para>
-        /// The data to export, based on how you imported the data. You can choose to export <code>BULK</code>
-        /// data that you imported using a dataset import job, <code>PUT</code> data that you
-        /// imported incrementally (using the console, PutEvents, PutUsers and PutItems operations),
-        /// or <code>ALL</code> for both types. The default value is <code>PUT</code>. 
+        /// The data to export, based on how you imported the data. You can choose to export <c>BULK</c>
+        /// data that you imported using a dataset import job, <c>PUT</c> data that you imported
+        /// incrementally (using the console, PutEvents, PutUsers and PutItems operations), or
+        /// <c>ALL</c> for both types. The default value is <c>PUT</c>. 
         /// </para>
         /// </summary>
         public IngestionMode IngestionMode
@@ -176,7 +177,7 @@ namespace Amazon.Personalize.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>s3://bucket-name/folder-name/</code> 
+        ///  <c>s3://bucket-name/folder-name/</c> 
         /// </para>
         /// </summary>
         public DatasetExportJobOutput JobOutput

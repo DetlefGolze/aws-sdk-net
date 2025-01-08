@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -43,12 +44,12 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>standard</code> | <code>unlimited</code> 
+        /// Valid values: <c>standard</c> | <c>unlimited</c> 
         /// </para>
         ///  
         /// <para>
-        /// T3 instances with <code>host</code> tenancy do not support the <code>unlimited</code>
-        /// CPU credit option.
+        /// T3 instances with <c>host</c> tenancy do not support the <c>unlimited</c> CPU credit
+        /// option.
         /// </para>
         /// </summary>
         public string CpuCredits

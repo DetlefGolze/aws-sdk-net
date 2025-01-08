@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Domains.Model
 {
     /// <summary>
@@ -52,8 +53,7 @@ namespace Amazon.Route53Domains.Model
     ///  </li> <li> 
     /// <para>
     /// When the registration has been deleted, we'll send you a confirmation to the registrant
-    /// contact. The email will come from <code>noreply@domainnameverification.net</code>
-    /// or <code>noreply@registrar.amazon.com</code>.
+    /// contact. The email will come from <c>noreply@domainnameverification.net</c> or <c>noreply@registrar.amazon.com</c>.
     /// </para>
     ///  </li> </ol>
     /// </summary>

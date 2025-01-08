@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
@@ -35,14 +36,13 @@ namespace Amazon.ElasticFileSystem.Model
     /// 
     ///  
     /// <para>
-    /// This operation requires permissions for the <code>elasticfilesystem:TagResource</code>
-    /// action.
+    /// This operation requires permissions for the <c>elasticfilesystem:TagResource</c> action.
     /// </para>
     /// </summary>
     public partial class TagResourceRequest : AmazonElasticFileSystemRequest
     {
         private string _resourceId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceId. 
@@ -66,8 +66,7 @@ namespace Amazon.ElasticFileSystem.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// An array of <code>Tag</code> objects to add. Each <code>Tag</code> object is a key-value
-        /// pair.
+        /// An array of <c>Tag</c> objects to add. Each <c>Tag</c> object is a key-value pair.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -80,7 +79,7 @@ namespace Amazon.ElasticFileSystem.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Snowball.Model
     /// </summary>
     public partial class DescribeAddressesResponse : AmazonWebServiceResponse
     {
-        private List<Address> _addresses = new List<Address>();
+        private List<Address> _addresses = AWSConfigs.InitializeCollections ? new List<Address>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.Snowball.Model
         // Check to see if Addresses property is set
         internal bool IsSetAddresses()
         {
-            return this._addresses != null && this._addresses.Count > 0; 
+            return this._addresses != null && (this._addresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// HTTP requests are stateless. If you use the automatically generated <code>NextToken</code>
-        /// value in your next <code>DescribeAddresses</code> call, your list of returned addresses
+        /// HTTP requests are stateless. If you use the automatically generated <c>NextToken</c>
+        /// value in your next <c>DescribeAddresses</c> call, your list of returned addresses
         /// will start from this point in the array.
         /// </para>
         /// </summary>

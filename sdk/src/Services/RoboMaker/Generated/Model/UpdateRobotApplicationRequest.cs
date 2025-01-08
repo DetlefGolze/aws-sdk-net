@@ -26,11 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateRobotApplication operation.
+    /// <important> 
+    /// <para>
+    /// End of support notice: On September 10, 2025, Amazon Web Services will discontinue
+    /// support for Amazon Web Services RoboMaker. After September 10, 2025, you will no longer
+    /// be able to access the Amazon Web Services RoboMaker console or Amazon Web Services
+    /// RoboMaker resources. For more information on transitioning to Batch to help run containerized
+    /// simulations, visit <a href="https://aws.amazon.com/blogs/hpc/run-simulations-using-multiple-containers-in-a-single-aws-batch-job/">https://aws.amazon.com/blogs/hpc/run-simulations-using-multiple-containers-in-a-single-aws-batch-job/</a>.
+    /// 
+    /// </para>
+    ///  </important> 
+    /// <para>
     /// Updates a robot application.
+    /// </para>
     /// </summary>
     public partial class UpdateRobotApplicationRequest : AmazonRoboMakerRequest
     {
@@ -38,7 +51,7 @@ namespace Amazon.RoboMaker.Model
         private string _currentRevisionId;
         private Environment _environment;
         private RobotSoftwareSuite _robotSoftwareSuite;
-        private List<SourceConfig> _sources = new List<SourceConfig>();
+        private List<SourceConfig> _sources = AWSConfigs.InitializeCollections ? new List<SourceConfig>() : null;
 
         /// <summary>
         /// Gets and sets the property Application. 
@@ -99,7 +112,7 @@ namespace Amazon.RoboMaker.Model
         /// <summary>
         /// Gets and sets the property RobotSoftwareSuite. 
         /// <para>
-        /// The robot software suite (ROS distribution) used by the robot application.
+        /// The robot software suite used by the robot application.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -130,7 +143,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if Sources property is set
         internal bool IsSetSources()
         {
-            return this._sources != null && this._sources.Count > 0; 
+            return this._sources != null && (this._sources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

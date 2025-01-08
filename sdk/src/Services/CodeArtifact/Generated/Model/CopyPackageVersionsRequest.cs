@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeArtifact.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.CodeArtifact.Model
     /// 
     ///  <note> 
     /// <para>
-    ///  You must specify <code>versions</code> or <code>versionRevisions</code>. You cannot
-    /// specify both. 
+    ///  You must specify <c>versions</c> or <c>versionRevisions</c>. You cannot specify both.
+    /// 
     /// </para>
     ///  </note>
     /// </summary>
@@ -51,16 +52,16 @@ namespace Amazon.CodeArtifact.Model
         private string _awsNamespace;
         private string _package;
         private string _sourceRepository;
-        private Dictionary<string, string> _versionRevisions = new Dictionary<string, string>();
-        private List<string> _versions = new List<string>();
+        private Dictionary<string, string> _versionRevisions = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<string> _versions = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AllowOverwrite. 
         /// <para>
         ///  Set to true to overwrite a package version that already exists in the destination
         /// repository. If set to false and the package version already exists in the destination
-        /// repository, the package version is returned in the <code>failedVersions</code> field
-        /// of the response with an <code>ALREADY_EXISTS</code> error code. 
+        /// repository, the package version is returned in the <c>failedVersions</c> field of
+        /// the response with an <c>ALREADY_EXISTS</c> error code. 
         /// </para>
         /// </summary>
         public bool AllowOverwrite
@@ -176,26 +177,41 @@ namespace Amazon.CodeArtifact.Model
         /// <summary>
         /// Gets and sets the property Namespace. 
         /// <para>
-        /// The namespace of the package versions to be copied. The package version component
-        /// that specifies its namespace depends on its type. For example:
+        /// The namespace of the package versions to be copied. The package component that specifies
+        /// its namespace depends on its type. For example:
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// The namespace is required when copying package versions of the following formats:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  The namespace of a Maven package version is its <code>groupId</code>. The namespace
-        /// is required when copying Maven package versions. 
+        /// Maven
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  The namespace of an npm package version is its <code>scope</code>. 
+        /// Swift
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  Python and NuGet package versions do not contain a corresponding component, package
-        /// versions of those formats do not have a namespace. 
+        /// generic
+        /// </para>
+        ///  </li> </ul> </note> <ul> <li> 
+        /// <para>
+        ///  The namespace of a Maven package version is its <c>groupId</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  The namespace of a generic package is its <code>namespace</code>. 
+        ///  The namespace of an npm or Swift package version is its <c>scope</c>. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The namespace of a generic package is its <c>namespace</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  Python, NuGet, Ruby, and Cargo package versions do not contain a corresponding component,
+        /// package versions of those formats do not have a namespace. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -254,13 +270,13 @@ namespace Amazon.CodeArtifact.Model
         /// Gets and sets the property VersionRevisions. 
         /// <para>
         ///  A list of key-value pairs. The keys are package versions and the values are package
-        /// version revisions. A <code>CopyPackageVersion</code> operation succeeds if the specified
+        /// version revisions. A <c>CopyPackageVersion</c> operation succeeds if the specified
         /// versions in the source repository match the specified package version revision. 
         /// </para>
         ///  <note> 
         /// <para>
-        ///  You must specify <code>versions</code> or <code>versionRevisions</code>. You cannot
-        /// specify both. 
+        ///  You must specify <c>versions</c> or <c>versionRevisions</c>. You cannot specify both.
+        /// 
         /// </para>
         ///  </note>
         /// </summary>
@@ -273,7 +289,7 @@ namespace Amazon.CodeArtifact.Model
         // Check to see if VersionRevisions property is set
         internal bool IsSetVersionRevisions()
         {
-            return this._versionRevisions != null && this._versionRevisions.Count > 0; 
+            return this._versionRevisions != null && (this._versionRevisions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -283,8 +299,8 @@ namespace Amazon.CodeArtifact.Model
         /// </para>
         ///  <note> 
         /// <para>
-        ///  You must specify <code>versions</code> or <code>versionRevisions</code>. You cannot
-        /// specify both. 
+        ///  You must specify <c>versions</c> or <c>versionRevisions</c>. You cannot specify both.
+        /// 
         /// </para>
         ///  </note>
         /// </summary>
@@ -298,7 +314,7 @@ namespace Amazon.CodeArtifact.Model
         // Check to see if Versions property is set
         internal bool IsSetVersions()
         {
-            return this._versions != null && this._versions.Count > 0; 
+            return this._versions != null && (this._versions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

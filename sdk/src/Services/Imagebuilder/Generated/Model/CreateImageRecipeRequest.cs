@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -36,14 +37,14 @@ namespace Amazon.Imagebuilder.Model
     public partial class CreateImageRecipeRequest : AmazonImagebuilderRequest
     {
         private AdditionalInstanceConfiguration _additionalInstanceConfiguration;
-        private List<InstanceBlockDeviceMapping> _blockDeviceMappings = new List<InstanceBlockDeviceMapping>();
+        private List<InstanceBlockDeviceMapping> _blockDeviceMappings = AWSConfigs.InitializeCollections ? new List<InstanceBlockDeviceMapping>() : null;
         private string _clientToken;
-        private List<ComponentConfiguration> _components = new List<ComponentConfiguration>();
+        private List<ComponentConfiguration> _components = AWSConfigs.InitializeCollections ? new List<ComponentConfiguration>() : null;
         private string _description;
         private string _name;
         private string _parentImage;
         private string _semanticVersion;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _workingDirectory;
 
         /// <summary>
@@ -79,13 +80,15 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if BlockDeviceMappings property is set
         internal bool IsSetBlockDeviceMappings()
         {
-            return this._blockDeviceMappings != null && this._blockDeviceMappings.Count > 0; 
+            return this._blockDeviceMappings != null && (this._blockDeviceMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
-        /// The idempotency token used to make this request idempotent.
+        /// Unique, case-sensitive identifier you provide to ensure idempotency of the request.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+        /// idempotency</a> in the <i>Amazon EC2 API Reference</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=36)]
@@ -117,7 +120,7 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if Components property is set
         internal bool IsSetComponents()
         {
-            return this._components != null && this._components.Count > 0; 
+            return this._components != null && (this._components.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -162,7 +165,7 @@ namespace Amazon.Imagebuilder.Model
         /// Gets and sets the property ParentImage. 
         /// <para>
         /// The base image of the image recipe. The value of the string can be the ARN of the
-        /// base image or an AMI ID. The format for the ARN follows this example: <code>arn:aws:imagebuilder:us-west-2:aws:image/windows-server-2016-english-full-base-x86/x.x.x</code>.
+        /// base image or an AMI ID. The format for the ARN follows this example: <c>arn:aws:imagebuilder:us-west-2:aws:image/windows-server-2016-english-full-base-x86/x.x.x</c>.
         /// You can provide the specific version that you want to use, or you can use a wildcard
         /// in all of the fields. If you enter an AMI ID for the string value, you must have access
         /// to the AMI, and the AMI must be in the same Region in which you are using Image Builder.
@@ -235,7 +238,7 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

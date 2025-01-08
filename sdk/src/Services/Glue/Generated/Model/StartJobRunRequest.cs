@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -35,10 +36,11 @@ namespace Amazon.Glue.Model
     public partial class StartJobRunRequest : AmazonGlueRequest
     {
         private int? _allocatedCapacity;
-        private Dictionary<string, string> _arguments = new Dictionary<string, string>();
+        private Dictionary<string, string> _arguments = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private ExecutionClass _executionClass;
         private string _jobName;
         private string _jobRunId;
+        private bool? _jobRunQueuingEnabled;
         private double? _maxCapacity;
         private NotificationProperty _notificationProperty;
         private int? _numberOfWorkers;
@@ -49,7 +51,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property AllocatedCapacity. 
         /// <para>
-        /// This field is deprecated. Use <code>MaxCapacity</code> instead.
+        /// This field is deprecated. Use <c>MaxCapacity</c> instead.
         /// </para>
         ///  
         /// <para>
@@ -117,7 +119,7 @@ namespace Amazon.Glue.Model
         // Check to see if Arguments property is set
         internal bool IsSetArguments()
         {
-            return this._arguments != null && this._arguments.Count > 0; 
+            return this._arguments != null && (this._arguments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -134,9 +136,9 @@ namespace Amazon.Glue.Model
         /// </para>
         ///  
         /// <para>
-        /// Only jobs with Glue version 3.0 and above and command type <code>glueetl</code> will
-        /// be allowed to set <code>ExecutionClass</code> to <code>FLEX</code>. The flexible execution
-        /// class is available for Spark jobs.
+        /// Only jobs with Glue version 3.0 and above and command type <c>glueetl</c> will be
+        /// allowed to set <c>ExecutionClass</c> to <c>FLEX</c>. The flexible execution class
+        /// is available for Spark jobs.
         /// </para>
         /// </summary>
         [AWSProperty(Max=16)]
@@ -174,7 +176,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property JobRunId. 
         /// <para>
-        /// The ID of a previous <code>JobRun</code> to retry.
+        /// The ID of a previous <c>JobRun</c> to retry.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -191,6 +193,29 @@ namespace Amazon.Glue.Model
         }
 
         /// <summary>
+        /// Gets and sets the property JobRunQueuingEnabled. 
+        /// <para>
+        /// Specifies whether job run queuing is enabled for the job run.
+        /// </para>
+        ///  
+        /// <para>
+        /// A value of true means job run queuing is enabled for the job run. If false or not
+        /// populated, the job run will not be considered for queueing.
+        /// </para>
+        /// </summary>
+        public bool JobRunQueuingEnabled
+        {
+            get { return this._jobRunQueuingEnabled.GetValueOrDefault(); }
+            set { this._jobRunQueuingEnabled = value; }
+        }
+
+        // Check to see if JobRunQueuingEnabled property is set
+        internal bool IsSetJobRunQueuingEnabled()
+        {
+            return this._jobRunQueuingEnabled.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property MaxCapacity. 
         /// <para>
         /// For Glue version 1.0 or earlier jobs, using the standard worker type, the number of
@@ -201,30 +226,30 @@ namespace Amazon.Glue.Model
         /// </para>
         ///  
         /// <para>
-        /// For Glue version 2.0+ jobs, you cannot specify a <code>Maximum capacity</code>. Instead,
-        /// you should specify a <code>Worker type</code> and the <code>Number of workers</code>.
+        /// For Glue version 2.0+ jobs, you cannot specify a <c>Maximum capacity</c>. Instead,
+        /// you should specify a <c>Worker type</c> and the <c>Number of workers</c>.
         /// </para>
         ///  
         /// <para>
-        /// Do not set <code>MaxCapacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.
+        /// Do not set <c>MaxCapacity</c> if using <c>WorkerType</c> and <c>NumberOfWorkers</c>.
         /// </para>
         ///  
         /// <para>
-        /// The value that can be allocated for <code>MaxCapacity</code> depends on whether you
-        /// are running a Python shell job, an Apache Spark ETL job, or an Apache Spark streaming
+        /// The value that can be allocated for <c>MaxCapacity</c> depends on whether you are
+        /// running a Python shell job, an Apache Spark ETL job, or an Apache Spark streaming
         /// ETL job:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// When you specify a Python shell job (<code>JobCommand.Name</code>="pythonshell"),
-        /// you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.
+        /// When you specify a Python shell job (<c>JobCommand.Name</c>="pythonshell"), you can
+        /// allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>="glueetl")
-        /// or Apache Spark streaming ETL job (<code>JobCommand.Name</code>="gluestreaming"),
-        /// you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot
-        /// have a fractional DPU allocation.
+        /// When you specify an Apache Spark ETL job (<c>JobCommand.Name</c>="glueetl") or Apache
+        /// Spark streaming ETL job (<c>JobCommand.Name</c>="gluestreaming"), you can allocate
+        /// from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional
+        /// DPU allocation.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -261,8 +286,8 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property NumberOfWorkers. 
         /// <para>
-        /// The number of workers of a defined <code>workerType</code> that are allocated when
-        /// a job runs.
+        /// The number of workers of a defined <c>workerType</c> that are allocated when a job
+        /// runs.
         /// </para>
         /// </summary>
         public int NumberOfWorkers
@@ -280,8 +305,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property SecurityConfiguration. 
         /// <para>
-        /// The name of the <code>SecurityConfiguration</code> structure to be used with this
-        /// job run.
+        /// The name of the <c>SecurityConfiguration</c> structure to be used with this job run.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -300,14 +324,24 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property Timeout. 
         /// <para>
-        /// The <code>JobRun</code> timeout in minutes. This is the maximum time that a job run
-        /// can consume resources before it is terminated and enters <code>TIMEOUT</code> status.
-        /// This value overrides the timeout value set in the parent job.
+        /// The <c>JobRun</c> timeout in minutes. This is the maximum time that a job run can
+        /// consume resources before it is terminated and enters <c>TIMEOUT</c> status. This value
+        /// overrides the timeout value set in the parent job. 
         /// </para>
         ///  
         /// <para>
-        /// Streaming jobs do not have a timeout. The default for non-streaming jobs is 2,880
-        /// minutes (48 hours).
+        /// Jobs must have timeout values less than 7 days or 10080 minutes. Otherwise, the jobs
+        /// will throw an exception.
+        /// </para>
+        ///  
+        /// <para>
+        /// When the value is left blank, the timeout is defaulted to 2880 minutes.
+        /// </para>
+        ///  
+        /// <para>
+        /// Any existing Glue jobs that had a timeout value greater than 7 days will be defaulted
+        /// to 7 days. For instance if you have specified a timeout of 20 days for a batch job,
+        /// it will be stopped on the 7th day.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -331,50 +365,49 @@ namespace Amazon.Glue.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For the <code>G.1X</code> worker type, each worker maps to 1 DPU (4 vCPUs, 16 GB of
-        /// memory) with 84GB disk (approximately 34GB free), and provides 1 executor per worker.
-        /// We recommend this worker type for workloads such as data transforms, joins, and queries,
-        /// to offers a scalable and cost effective way to run most jobs.
+        /// For the <c>G.1X</c> worker type, each worker maps to 1 DPU (4 vCPUs, 16 GB of memory)
+        /// with 94GB disk, and provides 1 executor per worker. We recommend this worker type
+        /// for workloads such as data transforms, joins, and queries, to offers a scalable and
+        /// cost effective way to run most jobs.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For the <code>G.2X</code> worker type, each worker maps to 2 DPU (8 vCPUs, 32 GB of
-        /// memory) with 128GB disk (approximately 77GB free), and provides 1 executor per worker.
-        /// We recommend this worker type for workloads such as data transforms, joins, and queries,
-        /// to offers a scalable and cost effective way to run most jobs.
+        /// For the <c>G.2X</c> worker type, each worker maps to 2 DPU (8 vCPUs, 32 GB of memory)
+        /// with 138GB disk, and provides 1 executor per worker. We recommend this worker type
+        /// for workloads such as data transforms, joins, and queries, to offers a scalable and
+        /// cost effective way to run most jobs.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For the <code>G.4X</code> worker type, each worker maps to 4 DPU (16 vCPUs, 64 GB
-        /// of memory) with 256GB disk (approximately 235GB free), and provides 1 executor per
-        /// worker. We recommend this worker type for jobs whose workloads contain your most demanding
-        /// transforms, aggregations, joins, and queries. This worker type is available only for
-        /// Glue version 3.0 or later Spark ETL jobs in the following Amazon Web Services Regions:
-        /// US East (Ohio), US East (N. Virginia), US West (Oregon), Asia Pacific (Singapore),
-        /// Asia Pacific (Sydney), Asia Pacific (Tokyo), Canada (Central), Europe (Frankfurt),
-        /// Europe (Ireland), and Europe (Stockholm).
+        /// For the <c>G.4X</c> worker type, each worker maps to 4 DPU (16 vCPUs, 64 GB of memory)
+        /// with 256GB disk, and provides 1 executor per worker. We recommend this worker type
+        /// for jobs whose workloads contain your most demanding transforms, aggregations, joins,
+        /// and queries. This worker type is available only for Glue version 3.0 or later Spark
+        /// ETL jobs in the following Amazon Web Services Regions: US East (Ohio), US East (N.
+        /// Virginia), US West (Oregon), Asia Pacific (Singapore), Asia Pacific (Sydney), Asia
+        /// Pacific (Tokyo), Canada (Central), Europe (Frankfurt), Europe (Ireland), and Europe
+        /// (Stockholm).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For the <code>G.8X</code> worker type, each worker maps to 8 DPU (32 vCPUs, 128 GB
-        /// of memory) with 512GB disk (approximately 487GB free), and provides 1 executor per
-        /// worker. We recommend this worker type for jobs whose workloads contain your most demanding
-        /// transforms, aggregations, joins, and queries. This worker type is available only for
-        /// Glue version 3.0 or later Spark ETL jobs, in the same Amazon Web Services Regions
-        /// as supported for the <code>G.4X</code> worker type.
+        /// For the <c>G.8X</c> worker type, each worker maps to 8 DPU (32 vCPUs, 128 GB of memory)
+        /// with 512GB disk, and provides 1 executor per worker. We recommend this worker type
+        /// for jobs whose workloads contain your most demanding transforms, aggregations, joins,
+        /// and queries. This worker type is available only for Glue version 3.0 or later Spark
+        /// ETL jobs, in the same Amazon Web Services Regions as supported for the <c>G.4X</c>
+        /// worker type.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For the <code>G.025X</code> worker type, each worker maps to 0.25 DPU (2 vCPUs, 4
-        /// GB of memory) with 84GB disk (approximately 34GB free), and provides 1 executor per
-        /// worker. We recommend this worker type for low volume streaming jobs. This worker type
-        /// is only available for Glue version 3.0 streaming jobs.
+        /// For the <c>G.025X</c> worker type, each worker maps to 0.25 DPU (2 vCPUs, 4 GB of
+        /// memory) with 84GB disk, and provides 1 executor per worker. We recommend this worker
+        /// type for low volume streaming jobs. This worker type is only available for Glue version
+        /// 3.0 or later streaming jobs.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For the <code>Z.2X</code> worker type, each worker maps to 2 M-DPU (8vCPUs, 64 GB
-        /// of memory) with 128 GB disk (approximately 120GB free), and provides up to 8 Ray workers
-        /// based on the autoscaler.
+        /// For the <c>Z.2X</c> worker type, each worker maps to 2 M-DPU (8vCPUs, 64 GB of memory)
+        /// with 128 GB disk, and provides up to 8 Ray workers based on the autoscaler.
         /// </para>
         ///  </li> </ul>
         /// </summary>

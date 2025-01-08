@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -33,12 +34,12 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class ModelPackage
     {
-        private List<AdditionalInferenceSpecificationDefinition> _additionalInferenceSpecifications = new List<AdditionalInferenceSpecificationDefinition>();
+        private List<AdditionalInferenceSpecificationDefinition> _additionalInferenceSpecifications = AWSConfigs.InitializeCollections ? new List<AdditionalInferenceSpecificationDefinition>() : null;
         private string _approvalDescription;
         private bool? _certifyForMarketplace;
         private UserContext _createdBy;
         private DateTime? _creationTime;
-        private Dictionary<string, string> _customerMetadataProperties = new Dictionary<string, string>();
+        private Dictionary<string, string> _customerMetadataProperties = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _domain;
         private DriftCheckBaselines _driftCheckBaselines;
         private InferenceSpecification _inferenceSpecification;
@@ -46,6 +47,8 @@ namespace Amazon.SageMaker.Model
         private DateTime? _lastModifiedTime;
         private MetadataProperties _metadataProperties;
         private ModelApprovalStatus _modelApprovalStatus;
+        private ModelPackageModelCard _modelCard;
+        private ModelLifeCycle _modelLifeCycle;
         private ModelMetrics _modelMetrics;
         private string _modelPackageArn;
         private string _modelPackageDescription;
@@ -55,9 +58,11 @@ namespace Amazon.SageMaker.Model
         private ModelPackageStatusDetails _modelPackageStatusDetails;
         private int? _modelPackageVersion;
         private string _samplePayloadUrl;
+        private ModelPackageSecurityConfig _securityConfig;
         private SkipModelValidation _skipModelValidation;
         private SourceAlgorithmSpecification _sourceAlgorithmSpecification;
-        private List<Tag> _tags = new List<Tag>();
+        private string _sourceUri;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _task;
         private ModelPackageValidationSpecification _validationSpecification;
 
@@ -77,7 +82,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if AdditionalInferenceSpecifications property is set
         internal bool IsSetAdditionalInferenceSpecifications()
         {
-            return this._additionalInferenceSpecifications != null && this._additionalInferenceSpecifications.Count > 0; 
+            return this._additionalInferenceSpecifications != null && (this._additionalInferenceSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -173,7 +178,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if CustomerMetadataProperties property is set
         internal bool IsSetCustomerMetadataProperties()
         {
-            return this._customerMetadataProperties != null && this._customerMetadataProperties.Count > 0; 
+            return this._customerMetadataProperties != null && (this._customerMetadataProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -294,15 +299,15 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>APPROVED</code> - The model is approved
+        ///  <c>APPROVED</c> - The model is approved
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>REJECTED</code> - The model is rejected.
+        ///  <c>REJECTED</c> - The model is rejected.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PENDING_MANUAL_APPROVAL</code> - The model is waiting for manual approval.
+        ///  <c>PENDING_MANUAL_APPROVAL</c> - The model is waiting for manual approval.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -316,6 +321,39 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetModelApprovalStatus()
         {
             return this._modelApprovalStatus != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ModelCard.
+        /// </summary>
+        public ModelPackageModelCard ModelCard
+        {
+            get { return this._modelCard; }
+            set { this._modelCard = value; }
+        }
+
+        // Check to see if ModelCard property is set
+        internal bool IsSetModelCard()
+        {
+            return this._modelCard != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ModelLifeCycle. 
+        /// <para>
+        ///  A structure describing the current state of the model in its life cycle. 
+        /// </para>
+        /// </summary>
+        public ModelLifeCycle ModelLifeCycle
+        {
+            get { return this._modelLifeCycle; }
+            set { this._modelLifeCycle = value; }
+        }
+
+        // Check to see if ModelLifeCycle property is set
+        internal bool IsSetModelLifeCycle()
+        {
+            return this._modelLifeCycle != null;
         }
 
         /// <summary>
@@ -419,23 +457,23 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PENDING</code> - The model package is pending being created.
+        ///  <c>PENDING</c> - The model package is pending being created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IN_PROGRESS</code> - The model package is in the process of being created.
+        ///  <c>IN_PROGRESS</c> - The model package is in the process of being created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>COMPLETED</code> - The model package was successfully created.
+        ///  <c>COMPLETED</c> - The model package was successfully created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> - The model package failed.
+        ///  <c>FAILED</c> - The model package failed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETING</code> - The model package is in the process of being deleted.
+        ///  <c>DELETING</c> - The model package is in the process of being deleted.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -508,6 +546,21 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SecurityConfig.
+        /// </summary>
+        public ModelPackageSecurityConfig SecurityConfig
+        {
+            get { return this._securityConfig; }
+            set { this._securityConfig = value; }
+        }
+
+        // Check to see if SecurityConfig property is set
+        internal bool IsSetSecurityConfig()
+        {
+            return this._securityConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property SkipModelValidation. 
         /// <para>
         /// Indicates if you want to skip model validation.
@@ -544,6 +597,25 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SourceUri. 
+        /// <para>
+        /// The URI of the source for the model package.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=1024)]
+        public string SourceUri
+        {
+            get { return this._sourceUri; }
+            set { this._sourceUri = value; }
+        }
+
+        // Check to see if SourceUri property is set
+        internal bool IsSetSourceUri()
+        {
+            return this._sourceUri != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// A list of the tags associated with the model package. For more information, see <a
@@ -561,7 +633,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

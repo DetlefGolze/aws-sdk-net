@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudWatchLogs.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.CloudWatchLogs.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetClientToken())
@@ -99,6 +101,12 @@ namespace Amazon.CloudWatchLogs.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("queryDefinitionId");
                     context.Writer.Write(publicRequest.QueryDefinitionId);
+                }
+
+                if(publicRequest.IsSetQueryLanguage())
+                {
+                    context.Writer.WritePropertyName("queryLanguage");
+                    context.Writer.Write(publicRequest.QueryLanguage);
                 }
 
                 if(publicRequest.IsSetQueryString())

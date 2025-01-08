@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The versioning status of the S3 bucket. Valid values are <code>Enabled</code> or <code>Suspended</code>.
+        /// The versioning status of the S3 bucket. Valid values are <c>Enabled</c> or <c>Suspended</c>.
         /// </para>
         /// </summary>
         public string Status

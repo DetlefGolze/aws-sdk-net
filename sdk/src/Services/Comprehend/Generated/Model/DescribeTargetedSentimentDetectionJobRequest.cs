@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Comprehend.Model
         /// <summary>
         /// Gets and sets the property JobId. 
         /// <para>
-        /// The identifier that Amazon Comprehend generated for the job. The <code>StartTargetedSentimentDetectionJob</code>
+        /// The identifier that Amazon Comprehend generated for the job. The <c>StartTargetedSentimentDetectionJob</c>
         /// operation returns this identifier in its response.
         /// </para>
         /// </summary>

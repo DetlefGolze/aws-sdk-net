@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FMS.Model
 {
     /// <summary>
-    /// The reference rule that partially matches the <code>ViolationTarget</code> rule and
-    /// violation reason.
+    /// The reference rule that partially matches the <c>ViolationTarget</c> rule and violation
+    /// reason.
     /// </summary>
     public partial class PartialMatch
     {
         private string _reference;
-        private List<string> _targetViolationReasons = new List<string>();
+        private List<string> _targetViolationReasons = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Reference. 
@@ -70,7 +71,7 @@ namespace Amazon.FMS.Model
         // Check to see if TargetViolationReasons property is set
         internal bool IsSetTargetViolationReasons()
         {
-            return this._targetViolationReasons != null && this._targetViolationReasons.Count > 0; 
+            return this._targetViolationReasons != null && (this._targetViolationReasons.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

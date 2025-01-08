@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Organizations.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Organizations.Model
     /// </para>
     ///  
     /// <para>
-    /// If the request includes tags, then the requester must have the <code>organizations:TagResource</code>
+    /// If the request includes tags, then the requester must have the <c>organizations:TagResource</c>
     /// permission.
     /// </para>
     ///  
@@ -54,17 +55,23 @@ namespace Amazon.Organizations.Model
         private string _content;
         private string _description;
         private string _name;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private PolicyType _type;
 
         /// <summary>
         /// Gets and sets the property Content. 
         /// <para>
         /// The policy text content to add to the new policy. The text that you supply must adhere
-        /// to the rules of the policy type you specify in the <code>Type</code> parameter.
+        /// to the rules of the policy type you specify in the <c>Type</c> parameter. 
+        /// </para>
+        ///  
+        /// <para>
+        /// The maximum size of a policy document depends on the policy's type. For more information,
+        /// see <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_limits.html#min-max-values">Maximum
+        /// and minimum values</a> in the <i>Organizations User Guide</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=1000000)]
+        [AWSProperty(Required=true, Min=1)]
         public string Content
         {
             get { return this._content; }
@@ -125,8 +132,8 @@ namespace Amazon.Organizations.Model
         /// <para>
         /// A list of tags that you want to attach to the newly created policy. For each tag in
         /// the list, you must specify both a tag key and a value. You can set the value to an
-        /// empty string, but you can't set it to <code>null</code>. For more information about
-        /// tagging, see <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_tagging.html">Tagging
+        /// empty string, but you can't set it to <c>null</c>. For more information about tagging,
+        /// see <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_tagging.html">Tagging
         /// Organizations resources</a> in the Organizations User Guide.
         /// </para>
         ///  <note> 
@@ -145,7 +152,7 @@ namespace Amazon.Organizations.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -155,7 +162,17 @@ namespace Amazon.Organizations.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html">AISERVICES_OPT_OUT_POLICY</a>
+        ///  <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html">SERVICE_CONTROL_POLICY</a>
+        /// 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps.html">RESOURCE_CONTROL_POLICY</a>
+        /// 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_declarative.html">DECLARATIVE_POLICY_EC2</a>
         /// 
         /// </para>
         ///  </li> <li> 
@@ -165,12 +182,17 @@ namespace Amazon.Organizations.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html">SERVICE_CONTROL_POLICY</a>
+        ///  <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html">TAG_POLICY</a>
         /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html">TAG_POLICY</a>
+        ///  <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_chatbot.html">CHATBOT_POLICY</a>
+        /// 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html">AISERVICES_OPT_OUT_POLICY</a>
         /// 
         /// </para>
         ///  </li> </ul>

@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the resource-explorer-2-2022-07-28.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ResourceExplorer2.Model
 {
     /// <summary>
@@ -29,6 +30,21 @@ namespace Amazon.ResourceExplorer2.Model
         /// Paginator for ListIndexes operation
         ///</summary>
         IListIndexesPaginator ListIndexes(ListIndexesRequest request);
+
+        /// <summary>
+        /// Paginator for ListIndexesForMembers operation
+        ///</summary>
+        IListIndexesForMembersPaginator ListIndexesForMembers(ListIndexesForMembersRequest request);
+
+        /// <summary>
+        /// Paginator for ListManagedViews operation
+        ///</summary>
+        IListManagedViewsPaginator ListManagedViews(ListManagedViewsRequest request);
+
+        /// <summary>
+        /// Paginator for ListResources operation
+        ///</summary>
+        IListResourcesPaginator ListResources(ListResourcesRequest request);
 
         /// <summary>
         /// Paginator for ListSupportedResourceTypes operation

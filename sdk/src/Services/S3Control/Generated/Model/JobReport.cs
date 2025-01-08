@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -45,6 +46,12 @@ namespace Amazon.S3Control.Model
         /// The Amazon Resource Name (ARN) for the bucket where specified job-completion report
         /// will be stored.
         /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <b>Directory buckets</b> - Directory buckets aren't supported as a location for Batch
+        /// Operations to store job completion reports.
+        /// </para>
+        ///  </note>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
         public string Bucket
@@ -100,7 +107,7 @@ namespace Amazon.S3Control.Model
         /// Gets and sets the property Prefix. 
         /// <para>
         /// An optional prefix to describe where in the specified bucket the job-completion report
-        /// will be stored. Amazon S3 stores the job-completion report at <code>&lt;prefix&gt;/job-&lt;job-id&gt;/report.json</code>.
+        /// will be stored. Amazon S3 stores the job-completion report at <c>&lt;prefix&gt;/job-&lt;job-id&gt;/report.json</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=512)]

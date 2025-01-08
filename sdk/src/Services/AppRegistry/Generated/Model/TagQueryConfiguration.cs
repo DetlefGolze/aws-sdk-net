@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRegistry.Model
 {
     /// <summary>
-    /// The definition of <code>tagQuery</code>. Specifies which resources are associated
-    /// with an application.
+    /// The definition of <c>tagQuery</c>. Specifies which resources are associated with
+    /// an application.
     /// </summary>
     public partial class TagQueryConfiguration
     {

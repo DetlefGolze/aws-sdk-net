@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -41,9 +42,10 @@ namespace Amazon.ResilienceHub.Model
         /// <summary>
         /// Gets and sets the property AssessmentArn. 
         /// <para>
-        /// Amazon Resource Name (ARN) of the assessment. The format for this ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app-assessment/<code>app-id</code>.
+        /// Amazon Resource Name (ARN) of the assessment. The format for this ARN is: arn:<c>partition</c>:resiliencehub:<c>region</c>:<c>account</c>:app-assessment/<c>app-id</c>.
         /// For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
-        /// Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i> guide.
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -63,8 +65,8 @@ namespace Amazon.ResilienceHub.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// Maximum number of results to include in the response. If more results exist than the
-        /// specified <code>MaxResults</code> value, a token is included in the response so that
-        /// the remaining results can be retrieved.
+        /// specified <c>MaxResults</c> value, a token is included in the response so that the
+        /// remaining results can be retrieved.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]

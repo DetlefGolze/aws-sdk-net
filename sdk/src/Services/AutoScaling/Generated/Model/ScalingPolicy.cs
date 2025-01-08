@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.AutoScaling.Model
     public partial class ScalingPolicy
     {
         private string _adjustmentType;
-        private List<Alarm> _alarms = new List<Alarm>();
+        private List<Alarm> _alarms = AWSConfigs.InitializeCollections ? new List<Alarm>() : null;
         private string _autoScalingGroupName;
         private int? _cooldown;
         private bool? _enabled;
@@ -47,15 +48,15 @@ namespace Amazon.AutoScaling.Model
         private string _policyType;
         private PredictiveScalingConfiguration _predictiveScalingConfiguration;
         private int? _scalingAdjustment;
-        private List<StepAdjustment> _stepAdjustments = new List<StepAdjustment>();
+        private List<StepAdjustment> _stepAdjustments = AWSConfigs.InitializeCollections ? new List<StepAdjustment>() : null;
         private TargetTrackingConfiguration _targetTrackingConfiguration;
 
         /// <summary>
         /// Gets and sets the property AdjustmentType. 
         /// <para>
         /// Specifies how the scaling adjustment is interpreted (for example, an absolute number
-        /// or a percentage). The valid values are <code>ChangeInCapacity</code>, <code>ExactCapacity</code>,
-        /// and <code>PercentChangeInCapacity</code>.
+        /// or a percentage). The valid values are <c>ChangeInCapacity</c>, <c>ExactCapacity</c>,
+        /// and <c>PercentChangeInCapacity</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -86,7 +87,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if Alarms property is set
         internal bool IsSetAlarms()
         {
-            return this._alarms != null && this._alarms.Count > 0; 
+            return this._alarms != null && (this._alarms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -129,7 +130,7 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property Enabled. 
         /// <para>
-        /// Indicates whether the policy is enabled (<code>true</code>) or disabled (<code>false</code>).
+        /// Indicates whether the policy is enabled (<c>true</c>) or disabled (<c>false</c>).
         /// </para>
         /// </summary>
         public bool Enabled
@@ -166,8 +167,8 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property MetricAggregationType. 
         /// <para>
-        /// The aggregation type for the CloudWatch metrics. The valid values are <code>Minimum</code>,
-        /// <code>Maximum</code>, and <code>Average</code>.
+        /// The aggregation type for the CloudWatch metrics. The valid values are <c>Minimum</c>,
+        /// <c>Maximum</c>, and <c>Average</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=32)]
@@ -186,7 +187,7 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property MinAdjustmentMagnitude. 
         /// <para>
-        /// The minimum value to scale by when the adjustment type is <code>PercentChangeInCapacity</code>.
+        /// The minimum value to scale by when the adjustment type is <c>PercentChangeInCapacity</c>.
         /// 
         /// </para>
         /// </summary>
@@ -205,7 +206,7 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property MinAdjustmentStep. 
         /// <para>
-        /// Available for backward compatibility. Use <code>MinAdjustmentMagnitude</code> instead.
+        /// Available for backward compatibility. Use <c>MinAdjustmentMagnitude</c> instead.
         /// </para>
         /// </summary>
         public int MinAdjustmentStep
@@ -265,19 +266,19 @@ namespace Amazon.AutoScaling.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>TargetTrackingScaling</code> 
+        ///  <c>TargetTrackingScaling</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>StepScaling</code> 
+        ///  <c>StepScaling</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SimpleScaling</code> (default)
+        ///  <c>SimpleScaling</c> (default)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PredictiveScaling</code> 
+        ///  <c>PredictiveScaling</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -351,7 +352,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if StepAdjustments property is set
         internal bool IsSetStepAdjustments()
         {
-            return this._stepAdjustments != null && this._stepAdjustments.Count > 0; 
+            return this._stepAdjustments != null && (this._stepAdjustments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

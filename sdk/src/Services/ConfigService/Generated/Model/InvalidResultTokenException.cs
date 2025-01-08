@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
-    /// The specified <code>ResultToken</code> is not valid.
+    /// The specified <c>ResultToken</c> is not valid.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

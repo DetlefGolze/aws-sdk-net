@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.EventBridge.Model
         /// <summary>
         /// Gets and sets the property ApiKeyValue. 
         /// <para>
-        /// The value associated with teh API key to use for authorization.
+        /// The value associated with the API key to use for authorization.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=512)]

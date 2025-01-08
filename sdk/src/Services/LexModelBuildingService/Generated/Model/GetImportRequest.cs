@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
     /// Container for the parameters to the GetImport operation.
-    /// Gets information about an import job started with the <code>StartImport</code> operation.
+    /// Gets information about an import job started with the <c>StartImport</c> operation.
     /// </summary>
     public partial class GetImportRequest : AmazonLexModelBuildingServiceRequest
     {

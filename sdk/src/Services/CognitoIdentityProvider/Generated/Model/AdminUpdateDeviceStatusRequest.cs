@@ -26,11 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the AdminUpdateDeviceStatus operation.
-    /// Updates the device status as an administrator.
+    /// Updates the status of a user's device so that it is marked as remembered or not remembered
+    /// for the purpose of device authentication. Device authentication is a "remember me"
+    /// mechanism that silently completes sign-in from trusted devices with a device key instead
+    /// of a user-provided MFA code. This operation changes the status of a device without
+    /// deleting it, so you can enable it again later. For more information about device authentication,
+    /// see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html">Working
+    /// with devices</a>.
     /// 
     ///  <note> 
     /// <para>
@@ -64,7 +71,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property DeviceKey. 
         /// <para>
-        /// The device key.
+        /// The unique identifier, or device key, of the device that you want to update the status
+        /// for.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]
@@ -83,7 +91,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property DeviceRememberedStatus. 
         /// <para>
-        /// The status indicating whether a device has been remembered or not.
+        /// To enable device authentication with the specified device, set to <c>remembered</c>.To
+        /// disable, set to <c>not_remembered</c>.
         /// </para>
         /// </summary>
         public DeviceRememberedStatusType DeviceRememberedStatus
@@ -101,7 +110,10 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Username. 
         /// <para>
-        /// The user name.
+        /// The username of the user that you want to query or modify. The value of this parameter
+        /// is typically your user's username, but it can be any of their alias attributes. If
+        /// <c>username</c> isn't an alias attribute in your user pool, this value must be the
+        /// <c>sub</c> of a local user or the username of a user from a third-party IdP.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=128)]
@@ -120,7 +132,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID.
+        /// The ID of the user pool where you want to change a user's device status.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

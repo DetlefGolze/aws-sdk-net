@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectWisdomService.Model
 {
     /// <summary>
     /// A recommendation trigger provides context on the event that produced the referenced
-    /// recommendations. Recommendations are only referenced in <code>recommendationIds</code>
-    /// by a single RecommendationTrigger.
+    /// recommendations. Recommendations are only referenced in <c>recommendationIds</c> by
+    /// a single RecommendationTrigger.
     /// </summary>
     public partial class RecommendationTrigger
     {
         private RecommendationTriggerData _data;
         private string _id;
-        private List<string> _recommendationIds = new List<string>();
+        private List<string> _recommendationIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private RecommendationSourceType _source;
         private RecommendationTriggerType _type;
 
@@ -85,7 +86,7 @@ namespace Amazon.ConnectWisdomService.Model
         /// The identifiers of the recommendations.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=0, Max=25)]
         public List<string> RecommendationIds
         {
             get { return this._recommendationIds; }
@@ -95,7 +96,7 @@ namespace Amazon.ConnectWisdomService.Model
         // Check to see if RecommendationIds property is set
         internal bool IsSetRecommendationIds()
         {
-            return this._recommendationIds != null && this._recommendationIds.Count > 0; 
+            return this._recommendationIds != null && (this._recommendationIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

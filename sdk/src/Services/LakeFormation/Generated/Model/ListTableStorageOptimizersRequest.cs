@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
@@ -119,7 +120,7 @@ namespace Amazon.LakeFormation.Model
         /// <summary>
         /// Gets and sets the property StorageOptimizerType. 
         /// <para>
-        /// The specific type of storage optimizers to list. The supported value is <code>compaction</code>.
+        /// The specific type of storage optimizers to list. The supported value is <c>compaction</c>.
         /// </para>
         /// </summary>
         public OptimizerType StorageOptimizerType

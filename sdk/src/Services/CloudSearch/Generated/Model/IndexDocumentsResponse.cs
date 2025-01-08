@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// The result of an <code>IndexDocuments</code> request. Contains the status of the indexing
+    /// The result of an <c>IndexDocuments</c> request. Contains the status of the indexing
     /// operation, including the fields being indexed.
     /// </summary>
     public partial class IndexDocumentsResponse : AmazonWebServiceResponse
     {
-        private List<string> _fieldNames = new List<string>();
+        private List<string> _fieldNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property FieldNames. 
@@ -51,7 +52,7 @@ namespace Amazon.CloudSearch.Model
         // Check to see if FieldNames property is set
         internal bool IsSetFieldNames()
         {
-            return this._fieldNames != null && this._fieldNames.Count > 0; 
+            return this._fieldNames != null && (this._fieldNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

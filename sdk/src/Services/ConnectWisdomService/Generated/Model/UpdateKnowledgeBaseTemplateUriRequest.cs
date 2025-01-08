@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectWisdomService.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateKnowledgeBaseTemplateUri operation.
     /// Updates the template URI of a knowledge base. This is only supported for knowledge
-    /// bases of type EXTERNAL. Include a single variable in <code>${variable}</code> format;
-    /// this interpolated by Wisdom using ingested content. For example, if you ingest a Salesforce
-    /// article, it has an <code>Id</code> value, and you can set the template URI to <code>https://myInstanceName.lightning.force.com/lightning/r/Knowledge__kav/*${Id}*/view</code>.
+    /// bases of type EXTERNAL. Include a single variable in <c>${variable}</c> format; this
+    /// interpolated by Wisdom using ingested content. For example, if you ingest a Salesforce
+    /// article, it has an <c>Id</c> value, and you can set the template URI to <c>https://myInstanceName.lightning.force.com/lightning/r/Knowledge__kav/*${Id}*/view</c>.
     /// </summary>
     public partial class UpdateKnowledgeBaseTemplateUriRequest : AmazonConnectWisdomServiceRequest
     {
@@ -43,8 +44,9 @@ namespace Amazon.ConnectWisdomService.Model
         /// <summary>
         /// Gets and sets the property KnowledgeBaseId. 
         /// <para>
-        /// The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot
-        /// contain the ARN.
+        /// The identifier of the knowledge base. This should not be a QUICK_RESPONSES type knowledge
+        /// base if you're storing Wisdom Content resource to it. Can be either the ID or the
+        /// ARN. URLs cannot contain the ARN.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

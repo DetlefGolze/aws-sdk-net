@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
@@ -40,6 +41,7 @@ namespace Amazon.AppSync.Model
         private EventBridgeDataSourceConfig _eventBridgeConfig;
         private HttpDataSourceConfig _httpConfig;
         private LambdaDataSourceConfig _lambdaConfig;
+        private DataSourceLevelMetricsConfig _metricsConfig;
         private string _name;
         private OpenSearchServiceDataSourceConfig _openSearchServiceConfig;
         private RelationalDatabaseDataSourceConfig _relationalDatabaseConfig;
@@ -173,6 +175,32 @@ namespace Amazon.AppSync.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MetricsConfig. 
+        /// <para>
+        /// Enables or disables enhanced data source metrics for specified data sources. Note
+        /// that <c>metricsConfig</c> won't be used unless the <c>dataSourceLevelMetricsBehavior</c>
+        /// value is set to <c>PER_DATA_SOURCE_METRICS</c>. If the <c>dataSourceLevelMetricsBehavior</c>
+        /// is set to <c>FULL_REQUEST_DATA_SOURCE_METRICS</c> instead, <c>metricsConfig</c> will
+        /// be ignored. However, you can still set its value.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>metricsConfig</c> can be <c>ENABLED</c> or <c>DISABLED</c>.
+        /// </para>
+        /// </summary>
+        public DataSourceLevelMetricsConfig MetricsConfig
+        {
+            get { return this._metricsConfig; }
+            set { this._metricsConfig = value; }
+        }
+
+        // Check to see if MetricsConfig property is set
+        internal bool IsSetMetricsConfig()
+        {
+            return this._metricsConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
         /// The name of the data source.
@@ -271,6 +299,10 @@ namespace Amazon.AppSync.Model
         ///  </li> <li> 
         /// <para>
         ///  <b>AMAZON_EVENTBRIDGE</b>: The data source is an Amazon EventBridge configuration.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>AMAZON_BEDROCK_RUNTIME</b>: The data source is the Amazon Bedrock runtime.
         /// </para>
         ///  </li> <li> 
         /// <para>

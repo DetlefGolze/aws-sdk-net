@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvidently.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.CloudWatchEvidently.Model
         /// <summary>
         /// Gets and sets the property Payload. 
         /// <para>
-        /// A sample <code>evaluationContext</code> JSON block to test against the specified pattern.
+        /// A sample <c>evaluationContext</c> JSON block to test against the specified pattern.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

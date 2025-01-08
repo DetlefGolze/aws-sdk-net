@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.Kendra.Model
     /// </para>
     ///  
     /// <para>
-    ///  <code>DescribeQuerySuggestionsConfig</code> is currently not supported in the Amazon
-    /// Web Services GovCloud (US-West) region.
+    ///  <c>DescribeQuerySuggestionsConfig</c> is currently not supported in the Amazon Web
+    /// Services GovCloud (US-West) region.
     /// </para>
     /// </summary>
     public partial class DescribeQuerySuggestionsConfigRequest : AmazonKendraRequest

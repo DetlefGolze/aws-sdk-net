@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruProfiler.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.CodeGuruProfiler.Model
     public partial class BatchGetFrameMetricDataRequest : AmazonCodeGuruProfilerRequest
     {
         private DateTime? _endTime;
-        private List<FrameMetric> _frameMetrics = new List<FrameMetric>();
+        private List<FrameMetric> _frameMetrics = AWSConfigs.InitializeCollections ? new List<FrameMetric>() : null;
         private string _period;
         private string _profilingGroupName;
         private DateTime? _startTime;
@@ -80,15 +81,15 @@ namespace Amazon.CodeGuruProfiler.Model
         // Check to see if FrameMetrics property is set
         internal bool IsSetFrameMetrics()
         {
-            return this._frameMetrics != null && this._frameMetrics.Count > 0; 
+            return this._frameMetrics != null && (this._frameMetrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Period. 
         /// <para>
         ///  The duration of the frame metrics used to return the time series values. Specify
-        /// using the ISO 8601 format. The maximum period duration is one day (<code>PT24H</code>
-        /// or <code>P1D</code>). 
+        /// using the ISO 8601 format. The maximum period duration is one day (<c>PT24H</c> or
+        /// <c>P1D</c>). 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -154,15 +155,15 @@ namespace Amazon.CodeGuruProfiler.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>P1D</code> — 1 day 
+        ///  <c>P1D</c> — 1 day 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PT1H</code> — 1 hour 
+        ///  <c>PT1H</c> — 1 hour 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PT5M</code> — 5 minutes 
+        ///  <c>PT5M</c> — 5 minutes 
         /// </para>
         ///  </li> </ul>
         /// </summary>

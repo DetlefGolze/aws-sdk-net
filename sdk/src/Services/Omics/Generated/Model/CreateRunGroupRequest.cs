@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Omics.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateRunGroup operation.
-    /// Creates a run group.
+    /// You can optionally create a run group to limit the compute resources for the runs
+    /// that you add to the group.
     /// </summary>
     public partial class CreateRunGroupRequest : AmazonOmicsRequest
     {
@@ -40,12 +42,13 @@ namespace Amazon.Omics.Model
         private int? _maxRuns;
         private string _name;
         private string _requestId;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property MaxCpus. 
         /// <para>
-        /// The maximum number of CPUs to use in the group.
+        /// The maximum number of CPUs that can run concurrently across all active runs in the
+        /// run group.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100000)]
@@ -64,7 +67,8 @@ namespace Amazon.Omics.Model
         /// <summary>
         /// Gets and sets the property MaxDuration. 
         /// <para>
-        /// A maximum run time for the group in minutes.
+        /// The maximum time for each run (in minutes). If a run exceeds the maximum run time,
+        /// the run fails automatically.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100000)]
@@ -83,7 +87,8 @@ namespace Amazon.Omics.Model
         /// <summary>
         /// Gets and sets the property MaxGpus. 
         /// <para>
-        ///  The maximum GPUs that can be used by a run group. 
+        /// The maximum number of GPUs that can run concurrently across all active runs in the
+        /// run group.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100000)]
@@ -102,7 +107,7 @@ namespace Amazon.Omics.Model
         /// <summary>
         /// Gets and sets the property MaxRuns. 
         /// <para>
-        /// The maximum number of concurrent runs for the group.
+        /// The maximum number of runs that can be running at the same time.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100000)]
@@ -171,7 +176,7 @@ namespace Amazon.Omics.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Signer.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Signer.Model
     /// </summary>
     public partial class GetRevocationStatusRequest : AmazonSignerRequest
     {
-        private List<string> _certificateHashes = new List<string>();
+        private List<string> _certificateHashes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _jobArn;
         private string _platformId;
         private string _profileVersionArn;
@@ -52,6 +53,33 @@ namespace Amazon.Signer.Model
         /// parent CA) combined with a parent CA TBS hash (signed by the parent CA’s CA). Root
         /// certificates are defined as their own CA.
         /// </para>
+        ///  
+        /// <para>
+        /// The following example shows how to calculate a hash for this parameter using OpenSSL
+        /// commands: 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>openssl asn1parse -in childCert.pem -strparse 4 -out childCert.tbs</c> 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>openssl sha384 &lt; childCert.tbs -binary &gt; childCertTbsHash</c> 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>openssl asn1parse -in parentCert.pem -strparse 4 -out parentCert.tbs</c> 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>openssl sha384 &lt; parentCert.tbs -binary &gt; parentCertTbsHash xxd -p childCertTbsHash
+        /// &gt; certificateHash.hex xxd -p parentCertTbsHash &gt;&gt; certificateHash.hex</c>
+        /// 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>cat certificateHash.hex | tr -d '\n'</c> 
+        /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
         public List<string> CertificateHashes
@@ -63,7 +91,7 @@ namespace Amazon.Signer.Model
         // Check to see if CertificateHashes property is set
         internal bool IsSetCertificateHashes()
         {
-            return this._certificateHashes != null && this._certificateHashes.Count > 0; 
+            return this._certificateHashes != null && (this._certificateHashes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

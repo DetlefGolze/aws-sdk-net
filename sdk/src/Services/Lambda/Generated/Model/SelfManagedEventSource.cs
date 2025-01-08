@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.Lambda.Model
     /// </summary>
     public partial class SelfManagedEventSource
     {
-        private Dictionary<string, List<string>> _endpoints = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<string>> _endpoints = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
 
         /// <summary>
         /// Gets and sets the property Endpoints. 
         /// <para>
-        /// The list of bootstrap servers for your Kafka brokers in the following format: <code>"KAFKA_BOOTSTRAP_SERVERS":
-        /// ["abc.xyz.com:xxxx","abc2.xyz.com:xxxx"]</code>.
+        /// The list of bootstrap servers for your Kafka brokers in the following format: <c>"KAFKA_BOOTSTRAP_SERVERS":
+        /// ["abc.xyz.com:xxxx","abc2.xyz.com:xxxx"]</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2)]
@@ -52,7 +53,7 @@ namespace Amazon.Lambda.Model
         // Check to see if Endpoints property is set
         internal bool IsSetEndpoints()
         {
-            return this._endpoints != null && this._endpoints.Count > 0; 
+            return this._endpoints != null && (this._endpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

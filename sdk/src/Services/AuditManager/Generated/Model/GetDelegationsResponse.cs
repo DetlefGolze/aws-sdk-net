@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AuditManager.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.AuditManager.Model
     /// </summary>
     public partial class GetDelegationsResponse : AmazonWebServiceResponse
     {
-        private List<DelegationMetadata> _delegations = new List<DelegationMetadata>();
+        private List<DelegationMetadata> _delegations = AWSConfigs.InitializeCollections ? new List<DelegationMetadata>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Delegations. 
         /// <para>
-        ///  The list of delegations that the <code>GetDelegations</code> API returned. 
+        ///  The list of delegations that the <c>GetDelegations</c> API returned. 
         /// </para>
         /// </summary>
         public List<DelegationMetadata> Delegations
@@ -51,7 +52,7 @@ namespace Amazon.AuditManager.Model
         // Check to see if Delegations property is set
         internal bool IsSetDelegations()
         {
-            return this._delegations != null && this._delegations.Count > 0; 
+            return this._delegations != null && (this._delegations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

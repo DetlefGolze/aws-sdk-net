@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property InstanceFamily. 
         /// <para>
-        /// The instance family supported by the Dedicated Host. For example, <code>m5</code>.
+        /// The instance family supported by the Dedicated Host. For example, <c>m5</c>.
         /// </para>
         /// </summary>
         public string InstanceFamily
@@ -78,8 +79,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property InstanceType. 
         /// <para>
-        /// The instance type supported by the Dedicated Host. For example, <code>m5.large</code>.
-        /// If the host supports multiple instance types, no <b>instanceType</b> is returned.
+        /// The instance type supported by the Dedicated Host. For example, <c>m5.large</c>. If
+        /// the host supports multiple instance types, no <b>instanceType</b> is returned.
         /// </para>
         /// </summary>
         public string InstanceType

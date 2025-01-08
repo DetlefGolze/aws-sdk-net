@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -40,11 +41,11 @@ namespace Amazon.SageMaker.Model
         /// <para>
         /// The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that
         /// contains the credentials used to access the git repository. The secret must have a
-        /// staging label of <code>AWSCURRENT</code> and must be in the following format:
+        /// staging label of <c>AWSCURRENT</c> and must be in the following format:
         /// </para>
         ///  
         /// <para>
-        ///  <code>{"username": <i>UserName</i>, "password": <i>Password</i>}</code> 
+        ///  <c>{"username": <i>UserName</i>, "password": <i>Password</i>}</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

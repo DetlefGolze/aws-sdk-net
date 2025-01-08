@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideo.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.KinesisVideo.Model
     /// </summary>
     public partial class DescribeMappedResourceConfigurationResponse : AmazonWebServiceResponse
     {
-        private List<MappedResourceConfigurationListItem> _mappedResourceConfigurationList = new List<MappedResourceConfigurationListItem>();
+        private List<MappedResourceConfigurationListItem> _mappedResourceConfigurationList = AWSConfigs.InitializeCollections ? new List<MappedResourceConfigurationListItem>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,17 +53,17 @@ namespace Amazon.KinesisVideo.Model
         // Check to see if MappedResourceConfigurationList property is set
         internal bool IsSetMappedResourceConfigurationList()
         {
-            return this._mappedResourceConfigurationList != null && this._mappedResourceConfigurationList.Count > 0; 
+            return this._mappedResourceConfigurationList != null && (this._mappedResourceConfigurationList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token that was used in the <code>NextToken</code>request to fetch the next set
-        /// of results. 
+        /// The token that was used in the <c>NextToken</c>request to fetch the next set of results.
+        /// 
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=512)]
+        [AWSProperty(Min=0, Max=1024)]
         public string NextToken
         {
             get { return this._nextToken; }

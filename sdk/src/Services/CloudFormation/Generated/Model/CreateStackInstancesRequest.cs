@@ -26,24 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateStackInstances operation.
     /// Creates stack instances for the specified accounts, within the specified Amazon Web
     /// Services Regions. A stack instance refers to a stack in a specific account and Region.
-    /// You must specify at least one value for either <code>Accounts</code> or <code>DeploymentTargets</code>,
-    /// and you must specify at least one value for <code>Regions</code>.
+    /// You must specify at least one value for either <c>Accounts</c> or <c>DeploymentTargets</c>,
+    /// and you must specify at least one value for <c>Regions</c>.
     /// </summary>
     public partial class CreateStackInstancesRequest : AmazonCloudFormationRequest
     {
-        private List<string> _accounts = new List<string>();
+        private List<string> _accounts = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private CallAs _callAs;
         private DeploymentTargets _deploymentTargets;
         private string _operationId;
         private StackSetOperationPreferences _operationPreferences;
-        private List<Parameter> _parameterOverrides = new List<Parameter>();
-        private List<string> _regions = new List<string>();
+        private List<Parameter> _parameterOverrides = AWSConfigs.InitializeCollections ? new List<Parameter>() : null;
+        private List<string> _regions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _stackSetName;
 
         /// <summary>
@@ -54,7 +55,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// You can specify <code>Accounts</code> or <code>DeploymentTargets</code>, but not both.
+        /// You can specify <c>Accounts</c> or <c>DeploymentTargets</c>, but not both.
         /// </para>
         /// </summary>
         public List<string> Accounts
@@ -66,7 +67,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Accounts property is set
         internal bool IsSetAccounts()
         {
-            return this._accounts != null && this._accounts.Count > 0; 
+            return this._accounts != null && (this._accounts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -78,16 +79,16 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for stack sets with
-        /// self-managed permissions.
+        /// By default, <c>SELF</c> is specified. Use <c>SELF</c> for stack sets with self-managed
+        /// permissions.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If you are signed in to the management account, specify <code>SELF</code>.
+        /// If you are signed in to the management account, specify <c>SELF</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If you are signed in to a delegated administrator account, specify <code>DELEGATED_ADMIN</code>.
+        /// If you are signed in to a delegated administrator account, specify <c>DELEGATED_ADMIN</c>.
         /// </para>
         ///  
         /// <para>
@@ -117,7 +118,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// You can specify <code>Accounts</code> or <code>DeploymentTargets</code>, but not both.
+        /// You can specify <c>Accounts</c> or <c>DeploymentTargets</c>, but not both.
         /// </para>
         /// </summary>
         public DeploymentTargets DeploymentTargets
@@ -151,7 +152,7 @@ namespace Amazon.CloudFormation.Model
         ///  
         /// <para>
         /// Repeating this stack set operation with a new operation ID retries all stack instances
-        /// whose status is <code>OUTDATED</code>.
+        /// whose status is <c>OUTDATED</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -205,8 +206,8 @@ namespace Amazon.CloudFormation.Model
         ///  </li> <li> 
         /// <para>
         /// To leave an overridden parameter set to its present value, include the parameter and
-        /// specify <code>UsePreviousValue</code> as <code>true</code>. (You can't specify both
-        /// a value and set <code>UsePreviousValue</code> to <code>true</code>.)
+        /// specify <c>UsePreviousValue</c> as <c>true</c>. (You can't specify both a value and
+        /// set <c>UsePreviousValue</c> to <c>true</c>.)
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -239,7 +240,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if ParameterOverrides property is set
         internal bool IsSetParameterOverrides()
         {
-            return this._parameterOverrides != null && this._parameterOverrides.Count > 0; 
+            return this._parameterOverrides != null && (this._parameterOverrides.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -259,7 +260,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Regions property is set
         internal bool IsSetRegions()
         {
-            return this._regions != null && this._regions.Count > 0; 
+            return this._regions != null && (this._regions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMakerRuntime.Model
 {
     /// <summary>
@@ -53,13 +54,13 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if FailureLocation property is set
         internal bool IsSetFailureLocation()
         {
-            return this._failureLocation != null;
+            return !string.IsNullOrEmpty(this._failureLocation);
         }
 
         /// <summary>
         /// Gets and sets the property InferenceId. 
         /// <para>
-        /// Identifier for an inference request. This will be the same as the <code>InferenceId</code>
+        /// Identifier for an inference request. This will be the same as the <c>InferenceId</c>
         /// specified in the input. Amazon SageMaker will generate an identifier for you if you
         /// do not specify one.
         /// </para>
@@ -93,7 +94,7 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if OutputLocation property is set
         internal bool IsSetOutputLocation()
         {
-            return this._outputLocation != null;
+            return !string.IsNullOrEmpty(this._outputLocation);
         }
 
     }

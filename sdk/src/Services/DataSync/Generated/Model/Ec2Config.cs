@@ -26,14 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
-    /// The subnet and security groups that DataSync uses to access your Amazon EFS file system.
+    /// The subnet and security groups that DataSync uses to connect to one of your Amazon
+    /// EFS file system's <a href="https://docs.aws.amazon.com/efs/latest/ug/accessing-fs.html">mount
+    /// targets</a>.
     /// </summary>
     public partial class Ec2Config
     {
-        private List<string> _securityGroupArns = new List<string>();
+        private List<string> _securityGroupArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _subnetArn;
 
         /// <summary>
@@ -53,7 +56,7 @@ namespace Amazon.DataSync.Model
         // Check to see if SecurityGroupArns property is set
         internal bool IsSetSecurityGroupArns()
         {
-            return this._securityGroupArns != null && this._securityGroupArns.Count > 0; 
+            return this._securityGroupArns != null && (this._securityGroupArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKVoice.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.ChimeSDKVoice.Model
         /// <summary>
         /// Gets and sets the property Disabled. 
         /// <para>
-        /// Denotes the configration as enabled or disabled.
+        /// Denotes the configuration as enabled or disabled.
         /// </para>
         /// </summary>
         public bool Disabled

@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeIndexFields operation.
     /// Gets information about the index fields configured for the search domain. Can be limited
     /// to specific fields by name. By default, shows all fields and includes any pending
-    /// changes to the configuration. Set the <code>Deployed</code> option to <code>true</code>
-    /// to show the active configuration and exclude pending changes. For more information,
-    /// see <a href="http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-domain-info.html"
+    /// changes to the configuration. Set the <c>Deployed</c> option to <c>true</c> to show
+    /// the active configuration and exclude pending changes. For more information, see <a
+    /// href="http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-domain-info.html"
     /// target="_blank">Getting Domain Information</a> in the <i>Amazon CloudSearch Developer
     /// Guide</i>.
     /// </summary>
@@ -42,13 +43,13 @@ namespace Amazon.CloudSearch.Model
     {
         private bool? _deployed;
         private string _domainName;
-        private List<string> _fieldNames = new List<string>();
+        private List<string> _fieldNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Deployed. 
         /// <para>
-        /// Whether to display the deployed configuration (<code>true</code>) or include any pending
-        /// changes (<code>false</code>). Defaults to <code>false</code>.
+        /// Whether to display the deployed configuration (<c>true</c>) or include any pending
+        /// changes (<c>false</c>). Defaults to <c>false</c>.
         /// </para>
         /// </summary>
         public bool Deployed
@@ -98,7 +99,7 @@ namespace Amazon.CloudSearch.Model
         // Check to see if FieldNames property is set
         internal bool IsSetFieldNames()
         {
-            return this._fieldNames != null && this._fieldNames.Count > 0; 
+            return this._fieldNames != null && (this._fieldNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,12 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTJobsDataPlane.Model
 {
     /// <summary>
-    /// The contents of the request were invalid. For example, this code is returned when
-    /// an UpdateJobExecution request contains invalid status details. The message contains
-    /// details about the error.
+    /// The contents of the request were invalid.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

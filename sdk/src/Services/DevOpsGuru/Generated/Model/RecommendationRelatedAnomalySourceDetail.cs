@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
-    /// Contains an array of <code>RecommendationRelatedCloudWatchMetricsSourceDetail</code>
-    /// objects that contain the name and namespace of an Amazon CloudWatch metric.
+    /// Contains an array of <c>RecommendationRelatedCloudWatchMetricsSourceDetail</c> objects
+    /// that contain the name and namespace of an Amazon CloudWatch metric.
     /// </summary>
     public partial class RecommendationRelatedAnomalySourceDetail
     {
-        private List<RecommendationRelatedCloudWatchMetricsSourceDetail> _cloudWatchMetrics = new List<RecommendationRelatedCloudWatchMetricsSourceDetail>();
+        private List<RecommendationRelatedCloudWatchMetricsSourceDetail> _cloudWatchMetrics = AWSConfigs.InitializeCollections ? new List<RecommendationRelatedCloudWatchMetricsSourceDetail>() : null;
 
         /// <summary>
         /// Gets and sets the property CloudWatchMetrics. 
         /// <para>
-        ///  An array of <code>CloudWatchMetricsDetail</code> objects that contains information
-        /// about the analyzed metrics that displayed anomalous behavior. 
+        ///  An array of <c>CloudWatchMetricsDetail</c> objects that contains information about
+        /// the analyzed metrics that displayed anomalous behavior. 
         /// </para>
         /// </summary>
         public List<RecommendationRelatedCloudWatchMetricsSourceDetail> CloudWatchMetrics
@@ -52,7 +53,7 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if CloudWatchMetrics property is set
         internal bool IsSetCloudWatchMetrics()
         {
-            return this._cloudWatchMetrics != null && this._cloudWatchMetrics.Count > 0; 
+            return this._cloudWatchMetrics != null && (this._cloudWatchMetrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

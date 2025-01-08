@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -178,6 +179,24 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                                             request.Parameters.Add("LaunchTemplateConfig" + "." + publicRequestlistValueIndex + "." + "Overrides" + "." + publicRequestlistValuelistValueIndex + "." + "InstanceRequirements" + "." + "BaselineEbsBandwidthMbps" + "." + "Min", StringUtils.FromInt(publicRequestlistValuelistValue.InstanceRequirements.BaselineEbsBandwidthMbps.Min));
                                         }
                                     }
+                                    if(publicRequestlistValuelistValue.InstanceRequirements.IsSetBaselinePerformanceFactors())
+                                    {
+                                        if(publicRequestlistValuelistValue.InstanceRequirements.BaselinePerformanceFactors.IsSetCpu())
+                                        {
+                                            if(publicRequestlistValuelistValue.InstanceRequirements.BaselinePerformanceFactors.Cpu.IsSetReferences())
+                                            {
+                                                int publicRequestlistValuelistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex = 1;
+                                                foreach(var publicRequestlistValuelistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValue in publicRequestlistValuelistValue.InstanceRequirements.BaselinePerformanceFactors.Cpu.References)
+                                                {
+                                                    if(publicRequestlistValuelistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValue.IsSetInstanceFamily())
+                                                    {
+                                                        request.Parameters.Add("LaunchTemplateConfig" + "." + publicRequestlistValueIndex + "." + "Overrides" + "." + publicRequestlistValuelistValueIndex + "." + "InstanceRequirements" + "." + "BaselinePerformanceFactors" + "." + "Cpu" + "." + "Reference" + "." + publicRequestlistValuelistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex + "." + "InstanceFamily", StringUtils.FromString(publicRequestlistValuelistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValue.InstanceFamily));
+                                                    }
+                                                    publicRequestlistValuelistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex++;
+                                                }
+                                            }
+                                        }
+                                    }
                                     if(publicRequestlistValuelistValue.InstanceRequirements.IsSetBurstablePerformance())
                                     {
                                         request.Parameters.Add("LaunchTemplateConfig" + "." + publicRequestlistValueIndex + "." + "Overrides" + "." + publicRequestlistValuelistValueIndex + "." + "InstanceRequirements" + "." + "BurstablePerformance", StringUtils.FromString(publicRequestlistValuelistValue.InstanceRequirements.BurstablePerformance));
@@ -221,6 +240,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                                             request.Parameters.Add("LaunchTemplateConfig" + "." + publicRequestlistValueIndex + "." + "Overrides" + "." + publicRequestlistValuelistValueIndex + "." + "InstanceRequirements" + "." + "LocalStorageType" + "." + publicRequestlistValuelistValueInstanceRequirementslistValueIndex, StringUtils.FromString(publicRequestlistValuelistValueInstanceRequirementslistValue));
                                             publicRequestlistValuelistValueInstanceRequirementslistValueIndex++;
                                         }
+                                    }
+                                    if(publicRequestlistValuelistValue.InstanceRequirements.IsSetMaxSpotPriceAsPercentageOfOptimalOnDemandPrice())
+                                    {
+                                        request.Parameters.Add("LaunchTemplateConfig" + "." + publicRequestlistValueIndex + "." + "Overrides" + "." + publicRequestlistValuelistValueIndex + "." + "InstanceRequirements" + "." + "MaxSpotPriceAsPercentageOfOptimalOnDemandPrice", StringUtils.FromInt(publicRequestlistValuelistValue.InstanceRequirements.MaxSpotPriceAsPercentageOfOptimalOnDemandPrice));
                                     }
                                     if(publicRequestlistValuelistValue.InstanceRequirements.IsSetMemoryGiBPerVCpu())
                                     {

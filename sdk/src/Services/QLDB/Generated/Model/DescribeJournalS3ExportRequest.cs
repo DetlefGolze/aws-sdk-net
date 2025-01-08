@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QLDB.Model
 {
     /// <summary>
@@ -42,12 +43,11 @@ namespace Amazon.QLDB.Model
     /// </para>
     ///  
     /// <para>
-    /// If the export job with the given <code>ExportId</code> doesn't exist, then throws
-    /// <code>ResourceNotFoundException</code>.
+    /// If the export job with the given <c>ExportId</c> doesn't exist, then throws <c>ResourceNotFoundException</c>.
     /// </para>
     ///  
     /// <para>
-    /// If the ledger with the given <code>Name</code> doesn't exist, then throws <code>ResourceNotFoundException</code>.
+    /// If the ledger with the given <c>Name</c> doesn't exist, then throws <c>ResourceNotFoundException</c>.
     /// </para>
     /// </summary>
     public partial class DescribeJournalS3ExportRequest : AmazonQLDBRequest

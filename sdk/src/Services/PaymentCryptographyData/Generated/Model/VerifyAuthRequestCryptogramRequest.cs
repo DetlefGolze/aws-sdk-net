@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptographyData.Model
 {
     /// <summary>
@@ -45,9 +46,9 @@ namespace Amazon.PaymentCryptographyData.Model
     /// This operation uses the imported ARQC and an major encryption key (DUKPT) created
     /// by calling <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_CreateKey.html">CreateKey</a>
     /// to either provide a boolean ARQC verification result or provide an APRC (Authorization
-    /// Response Cryptogram) response using Method 1 or Method 2. The <code>ARPC_METHOD_1</code>
-    /// uses <code>AuthResponseCode</code> to generate ARPC and <code>ARPC_METHOD_2</code>
-    /// uses <code>CardStatusUpdate</code> to generate ARPC. 
+    /// Response Cryptogram) response using Method 1 or Method 2. The <c>ARPC_METHOD_1</c>
+    /// uses <c>AuthResponseCode</c> to generate ARPC and <c>ARPC_METHOD_2</c> uses <c>CardStatusUpdate</c>
+    /// to generate ARPC. 
     /// </para>
     ///  
     /// <para>
@@ -91,7 +92,7 @@ namespace Amazon.PaymentCryptographyData.Model
         /// for ARQC verification using a major encryption key and transaction data.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=16, Max=16)]
+        [AWSProperty(Required=true, Sensitive=true, Min=16, Max=16)]
         public string AuthRequestCryptogram
         {
             get { return this._authRequestCryptogram; }
@@ -126,8 +127,8 @@ namespace Amazon.PaymentCryptographyData.Model
         /// <summary>
         /// Gets and sets the property KeyIdentifier. 
         /// <para>
-        /// The <code>keyARN</code> of the major encryption key that Amazon Web Services Payment
-        /// Cryptography uses for ARQC verification.
+        /// The <c>keyARN</c> of the major encryption key that Amazon Web Services Payment Cryptography
+        /// uses for ARQC verification.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=7, Max=322)]
@@ -193,7 +194,7 @@ namespace Amazon.PaymentCryptographyData.Model
         /// Cryptography.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=2, Max=1024)]
+        [AWSProperty(Required=true, Sensitive=true, Min=2, Max=1024)]
         public string TransactionData
         {
             get { return this._transactionData; }

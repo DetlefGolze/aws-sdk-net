@@ -26,12 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
     /// A JSON object containing the following fields:
     /// 
     ///  <ul> <li> 
+    /// <para>
+    ///  <a>DescribeMaintenanceStartTimeOutput$SoftwareUpdatePreferences</a> 
+    /// </para>
+    ///  </li> <li> 
     /// <para>
     ///  <a>DescribeMaintenanceStartTimeOutput$DayOfMonth</a> 
     /// </para>
@@ -60,14 +65,15 @@ namespace Amazon.StorageGateway.Model
         private string _gatewayARN;
         private int? _hourOfDay;
         private int? _minuteOfHour;
+        private SoftwareUpdatePreferences _softwareUpdatePreferences;
         private string _timezone;
 
         /// <summary>
         /// Gets and sets the property DayOfMonth. 
         /// <para>
         /// The day of the month component of the maintenance start time represented as an ordinal
-        /// number from 1 to 28, where 1 represents the first day of the month and 28 represents
-        /// the last day of the month.
+        /// number from 1 to 28, where 1 represents the first day of the month. It is not possible
+        /// to set the maintenance schedule to start on days 29 through 31.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=28)]
@@ -158,6 +164,40 @@ namespace Amazon.StorageGateway.Model
         internal bool IsSetMinuteOfHour()
         {
             return this._minuteOfHour.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SoftwareUpdatePreferences. 
+        /// <para>
+        /// A set of variables indicating the software update preferences for the gateway.
+        /// </para>
+        ///  
+        /// <para>
+        /// Includes <c>AutomaticUpdatePolicy</c> parameter with the following inputs:
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>ALL_VERSIONS</c> - Enables regular gateway maintenance updates.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>EMERGENCY_VERSIONS_ONLY</c> - Disables regular gateway maintenance updates. The
+        /// gateway will still receive emergency version updates on rare occasions if necessary
+        /// to remedy highly critical security or durability issues. You will be notified before
+        /// an emergency version update is applied. These updates are applied during your gateway's
+        /// scheduled maintenance window.
+        /// </para>
+        /// </summary>
+        public SoftwareUpdatePreferences SoftwareUpdatePreferences
+        {
+            get { return this._softwareUpdatePreferences; }
+            set { this._softwareUpdatePreferences = value; }
+        }
+
+        // Check to see if SoftwareUpdatePreferences property is set
+        internal bool IsSetSoftwareUpdatePreferences()
+        {
+            return this._softwareUpdatePreferences != null;
         }
 
         /// <summary>

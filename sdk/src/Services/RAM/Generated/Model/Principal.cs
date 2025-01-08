@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RAM.Model
 {
     /// <summary>
@@ -65,11 +66,11 @@ namespace Amazon.RAM.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>True</code> – The two accounts belong to same organization.
+        ///  <c>True</c> – The two accounts belong to same organization.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>False</code> – The two accounts do not belong to the same organization.
+        ///  <c>False</c> – The two accounts do not belong to the same organization.
         /// </para>
         ///  </li> </ul>
         /// </summary>

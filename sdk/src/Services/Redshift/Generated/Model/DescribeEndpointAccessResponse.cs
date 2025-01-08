@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Redshift.Model
     /// </summary>
     public partial class DescribeEndpointAccessResponse : AmazonWebServiceResponse
     {
-        private List<EndpointAccess> _endpointAccessList = new List<EndpointAccess>();
+        private List<EndpointAccess> _endpointAccessList = AWSConfigs.InitializeCollections ? new List<EndpointAccess>() : null;
         private string _marker;
 
         /// <summary>
@@ -51,15 +52,15 @@ namespace Amazon.Redshift.Model
         // Check to see if EndpointAccessList property is set
         internal bool IsSetEndpointAccessList()
         {
-            return this._endpointAccessList != null && this._endpointAccessList.Count > 0; 
+            return this._endpointAccessList != null && (this._endpointAccessList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// An optional pagination token provided by a previous <code>DescribeEndpointAccess</code>
+        /// An optional pagination token provided by a previous <c>DescribeEndpointAccess</c>
         /// request. If this parameter is specified, the response includes only records beyond
-        /// the marker, up to the value specified by the <code>MaxRecords</code> parameter.
+        /// the marker, up to the value specified by the <c>MaxRecords</c> parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]

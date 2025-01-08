@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.BedrockRuntime.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -53,6 +54,8 @@ namespace Amazon.BedrockRuntime.Model.Internal.MarshallTransformations
             response.Body = ms;
             if (context.ResponseData.IsHeaderPresent("Content-Type"))
                 response.ContentType = context.ResponseData.GetHeaderValue("Content-Type");
+            if (context.ResponseData.IsHeaderPresent("X-Amzn-Bedrock-PerformanceConfig-Latency"))
+                response.PerformanceConfigLatency = context.ResponseData.GetHeaderValue("X-Amzn-Bedrock-PerformanceConfig-Latency");
 
             return response;
         }
@@ -102,6 +105,10 @@ namespace Amazon.BedrockRuntime.Model.Internal.MarshallTransformations
                 if (errorResponse.Code != null && errorResponse.Code.Equals("ServiceQuotaExceededException"))
                 {
                     return ServiceQuotaExceededExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("ServiceUnavailableException"))
+                {
+                    return ServiceUnavailableExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("ThrottlingException"))
                 {

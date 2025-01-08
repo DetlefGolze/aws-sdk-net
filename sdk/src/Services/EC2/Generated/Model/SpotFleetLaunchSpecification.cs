@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Describes the launch specification for one or more Spot Instances. If you include
     /// On-Demand capacity in your fleet request or want to specify an EFA network device,
-    /// you can't use <code>SpotFleetLaunchSpecification</code>; you must use <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_LaunchTemplateConfig.html">LaunchTemplateConfig</a>.
+    /// you can't use <c>SpotFleetLaunchSpecification</c>; you must use <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_LaunchTemplateConfig.html">LaunchTemplateConfig</a>.
     /// </summary>
     public partial class SpotFleetLaunchSpecification
     {
         private string _addressingType;
-        private List<BlockDeviceMapping> _blockDeviceMappings = new List<BlockDeviceMapping>();
+        private List<BlockDeviceMapping> _blockDeviceMappings = AWSConfigs.InitializeCollections ? new List<BlockDeviceMapping>() : null;
         private bool? _ebsOptimized;
         private IamInstanceProfileSpecification _iamInstanceProfile;
         private string _imageId;
@@ -45,13 +46,13 @@ namespace Amazon.EC2.Model
         private string _kernelId;
         private string _keyName;
         private SpotFleetMonitoring _monitoring;
-        private List<InstanceNetworkInterfaceSpecification> _networkInterfaces = new List<InstanceNetworkInterfaceSpecification>();
+        private List<InstanceNetworkInterfaceSpecification> _networkInterfaces = AWSConfigs.InitializeCollections ? new List<InstanceNetworkInterfaceSpecification>() : null;
         private SpotPlacement _placement;
         private string _ramdiskId;
-        private List<GroupIdentifier> _securityGroups = new List<GroupIdentifier>();
+        private List<GroupIdentifier> _securityGroups = AWSConfigs.InitializeCollections ? new List<GroupIdentifier>() : null;
         private string _spotPrice;
         private string _subnetId;
-        private List<SpotFleetTagSpecification> _tagSpecifications = new List<SpotFleetTagSpecification>();
+        private List<SpotFleetTagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<SpotFleetTagSpecification>() : null;
         private string _userData;
         private double? _weightedCapacity;
 
@@ -91,7 +92,7 @@ namespace Amazon.EC2.Model
         // Check to see if BlockDeviceMappings property is set
         internal bool IsSetBlockDeviceMappings()
         {
-            return this._blockDeviceMappings != null && this._blockDeviceMappings.Count > 0; 
+            return this._blockDeviceMappings != null && (this._blockDeviceMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -104,7 +105,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool EbsOptimized
@@ -163,7 +164,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you specify <code>InstanceRequirements</code>, you can't specify <code>InstanceType</code>.
+        /// If you specify <c>InstanceRequirements</c>, you can't specify <c>InstanceType</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -254,13 +255,13 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property NetworkInterfaces. 
         /// <para>
-        /// One or more network interfaces. If you specify a network interface, you must specify
-        /// subnet IDs and security group IDs using the network interface.
+        /// The network interfaces.
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>SpotFleetLaunchSpecification</code> currently does not support Elastic Fabric
-        /// Adapter (EFA). To specify an EFA, you must use <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_LaunchTemplateConfig.html">LaunchTemplateConfig</a>.
+        ///  <c>SpotFleetLaunchSpecification</c> does not support Elastic Fabric Adapter (EFA).
+        /// You must use <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_LaunchTemplateConfig.html">LaunchTemplateConfig</a>
+        /// instead.
         /// </para>
         ///  </note>
         /// </summary>
@@ -273,7 +274,7 @@ namespace Amazon.EC2.Model
         // Check to see if NetworkInterfaces property is set
         internal bool IsSetNetworkInterfaces()
         {
-            return this._networkInterfaces != null && this._networkInterfaces.Count > 0; 
+            return this._networkInterfaces != null && (this._networkInterfaces.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -320,6 +321,11 @@ namespace Amazon.EC2.Model
         /// <para>
         /// The security groups.
         /// </para>
+        ///  
+        /// <para>
+        /// If you specify a network interface, you must specify any security groups as part of
+        /// the network interface instead of using this parameter.
+        /// </para>
         /// </summary>
         public List<GroupIdentifier> SecurityGroups
         {
@@ -330,7 +336,7 @@ namespace Amazon.EC2.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -365,6 +371,11 @@ namespace Amazon.EC2.Model
         /// The IDs of the subnets in which to launch the instances. To specify multiple subnets,
         /// separate them using commas; for example, "subnet-1234abcdeexample1, subnet-0987cdef6example2".
         /// </para>
+        ///  
+        /// <para>
+        /// If you specify a network interface, you must specify any subnets as part of the network
+        /// interface instead of using this parameter.
+        /// </para>
         /// </summary>
         public string SubnetId
         {
@@ -393,7 +404,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -429,6 +440,15 @@ namespace Amazon.EC2.Model
         /// the number of instances to the next whole number. If this value is not specified,
         /// the default is 1.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// When specifying weights, the price used in the <c>lowestPrice</c> and <c>priceCapacityOptimized</c>
+        /// allocation strategies is per <i>unit</i> hour (where the instance price is divided
+        /// by the specified weight). However, if all the specified weights are above the requested
+        /// <c>TargetCapacity</c>, resulting in only 1 instance being launched, the price used
+        /// is per <i>instance</i> hour.
+        /// </para>
+        ///  </note>
         /// </summary>
         public double WeightedCapacity
         {

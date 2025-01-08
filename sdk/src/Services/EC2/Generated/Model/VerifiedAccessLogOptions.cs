@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property IncludeTrustContext. 
         /// <para>
-        ///  Include trust data sent by trust providers into the logs. 
+        /// Indicates whether to include trust data sent by trust providers in the logs.
         /// </para>
         /// </summary>
         public bool IncludeTrustContext
@@ -96,11 +97,11 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property LogVersion. 
         /// <para>
-        ///  The logging version to use. 
+        /// The logging version.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>ocsf-0.1</code> | <code>ocsf-1.0.0-rc.2</code> 
+        /// Valid values: <c>ocsf-0.1</c> | <c>ocsf-1.0.0-rc.2</c> 
         /// </para>
         /// </summary>
         public string LogVersion

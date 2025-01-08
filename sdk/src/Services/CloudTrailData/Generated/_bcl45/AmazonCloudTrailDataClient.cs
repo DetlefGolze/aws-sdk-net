@@ -33,16 +33,17 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.CloudTrailData
 {
     /// <summary>
-    /// Implementation for accessing CloudTrailData
+    /// <para>Implementation for accessing CloudTrailData</para>
     ///
     /// The CloudTrail Data Service lets you ingest events into CloudTrail from any source
     /// in your hybrid environments, such as in-house or SaaS applications hosted on-premises
     /// or in the cloud, virtual machines, or containers. You can store, access, analyze,
     /// troubleshoot and take action on this data without maintaining multiple log aggregators
-    /// and reporting tools. After you run <code>PutAuditEvents</code> to ingest your application
+    /// and reporting tools. After you run <c>PutAuditEvents</c> to ingest your application
     /// activity into CloudTrail, you can use CloudTrail Lake to search, query, and analyze
     /// the data that is logged from your applications.
     /// </summary>
@@ -257,9 +258,9 @@ namespace Amazon.CloudTrailData
 
 
         /// <summary>
-        /// Ingests your application events into CloudTrail Lake. A required parameter, <code>auditEvents</code>,
+        /// Ingests your application events into CloudTrail Lake. A required parameter, <c>auditEvents</c>,
         /// accepts the JSON records (also called <i>payload</i>) of events that you want CloudTrail
-        /// to ingest. You can add up to 100 of these events (or up to 1 MB) per <code>PutAuditEvents</code>
+        /// to ingest. You can add up to 100 of these events (or up to 1 MB) per <c>PutAuditEvents</c>
         /// request.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutAuditEvents service method.</param>
@@ -295,9 +296,9 @@ namespace Amazon.CloudTrailData
 
 
         /// <summary>
-        /// Ingests your application events into CloudTrail Lake. A required parameter, <code>auditEvents</code>,
+        /// Ingests your application events into CloudTrail Lake. A required parameter, <c>auditEvents</c>,
         /// accepts the JSON records (also called <i>payload</i>) of events that you want CloudTrail
-        /// to ingest. You can add up to 100 of these events (or up to 1 MB) per <code>PutAuditEvents</code>
+        /// to ingest. You can add up to 100 of these events (or up to 1 MB) per <c>PutAuditEvents</c>
         /// request.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutAuditEvents service method.</param>
@@ -345,11 +346,11 @@ namespace Amazon.CloudTrailData
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

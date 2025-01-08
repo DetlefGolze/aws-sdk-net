@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Synthetics.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Synthetics.Model
     /// 
     ///  
     /// <para>
-    /// You can use <code>StartCanary</code> to start it running again with the canary’s current
+    /// You can use <c>StartCanary</c> to start it running again with the canary’s current
     /// schedule at any point in the future. 
     /// </para>
     /// </summary>
@@ -51,7 +52,7 @@ namespace Amazon.Synthetics.Model
         /// use <a href="https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_DescribeCanaries.html">ListCanaries</a>.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=21)]
+        [AWSProperty(Required=true, Min=1, Max=255)]
         public string Name
         {
             get { return this._name; }

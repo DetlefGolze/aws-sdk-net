@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -36,9 +37,9 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// 
     ///  <note> 
     /// <para>
-    /// Amazon Web Services CLI usage: <code>start-session</code> is an interactive command
-    /// that requires the Session Manager plugin to be installed on the client machine making
-    /// the call. For information, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html">Install
+    /// Amazon Web Services CLI usage: <c>start-session</c> is an interactive command that
+    /// requires the Session Manager plugin to be installed on the client machine making the
+    /// call. For information, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html">Install
     /// the Session Manager plugin for the Amazon Web Services CLI</a> in the <i>Amazon Web
     /// Services Systems Manager User Guide</i>.
     /// </para>
@@ -52,7 +53,7 @@ namespace Amazon.SimpleSystemsManagement.Model
     public partial class StartSessionRequest : AmazonSimpleSystemsManagementRequest
     {
         private string _documentName;
-        private Dictionary<string, List<string>> _parameters = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<string>> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
         private string _reason;
         private string _target;
 
@@ -60,7 +61,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property DocumentName. 
         /// <para>
         /// The name of the SSM document you want to use to define the type of session, input
-        /// parameters, or preferences for the session. For example, <code>SSM-SessionManagerRunShell</code>.
+        /// parameters, or preferences for the session. For example, <c>SSM-SessionManagerRunShell</c>.
         /// You can call the <a>GetDocument</a> API to verify the document exists before attempting
         /// to start a session. If no document name is provided, a shell to the managed node is
         /// launched by default. For more information, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-sessions-start.html">Start
@@ -94,7 +95,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

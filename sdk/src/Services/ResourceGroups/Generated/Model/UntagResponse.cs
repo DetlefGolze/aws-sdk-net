@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroups.Model
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace Amazon.ResourceGroups.Model
     public partial class UntagResponse : AmazonWebServiceResponse
     {
         private string _arn;
-        private List<string> _keys = new List<string>();
+        private List<string> _keys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
         /// <para>
-        /// The ARN of the resource group from which tags have been removed.
+        /// The Amazon resource name (ARN) of the resource group from which tags have been removed.
         /// </para>
         /// </summary>
         [AWSProperty(Min=12, Max=1600)]
@@ -70,7 +71,7 @@ namespace Amazon.ResourceGroups.Model
         // Check to see if Keys property is set
         internal bool IsSetKeys()
         {
-            return this._keys != null && this._keys.Count > 0; 
+            return this._keys != null && (this._keys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

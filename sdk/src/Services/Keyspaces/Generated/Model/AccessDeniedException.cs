@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Keyspaces.Model
 {
     /// <summary>
-    /// You do not have sufficient access to perform this action.
+    /// You don't have sufficient access permissions to perform this action.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

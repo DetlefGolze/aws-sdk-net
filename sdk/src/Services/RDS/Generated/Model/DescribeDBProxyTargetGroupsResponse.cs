@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.RDS.Model
     public partial class DescribeDBProxyTargetGroupsResponse : AmazonWebServiceResponse
     {
         private string _marker;
-        private List<DBProxyTargetGroup> _targetGroups = new List<DBProxyTargetGroup>();
+        private List<DBProxyTargetGroup> _targetGroups = AWSConfigs.InitializeCollections ? new List<DBProxyTargetGroup>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         /// An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>.
+        /// by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -59,8 +60,8 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property TargetGroups. 
         /// <para>
-        /// An arbitrary number of <code>DBProxyTargetGroup</code> objects, containing details
-        /// of the corresponding target groups.
+        /// An arbitrary number of <c>DBProxyTargetGroup</c> objects, containing details of the
+        /// corresponding target groups.
         /// </para>
         /// </summary>
         public List<DBProxyTargetGroup> TargetGroups
@@ -72,7 +73,7 @@ namespace Amazon.RDS.Model
         // Check to see if TargetGroups property is set
         internal bool IsSetTargetGroups()
         {
-            return this._targetGroups != null && this._targetGroups.Count > 0; 
+            return this._targetGroups != null && (this._targetGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

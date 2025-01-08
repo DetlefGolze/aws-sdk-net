@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
-    /// A complex type that contains the response to a <code>GetHealthCheck</code> request.
+    /// A complex type that contains the response to a <c>GetHealthCheck</c> request.
     /// </summary>
     public partial class GetHealthCheckStatusResponse : AmazonWebServiceResponse
     {
-        private List<HealthCheckObservation> _healthCheckObservations = new List<HealthCheckObservation>();
+        private List<HealthCheckObservation> _healthCheckObservations = AWSConfigs.InitializeCollections ? new List<HealthCheckObservation>() : null;
 
         /// <summary>
         /// Gets and sets the property HealthCheckObservations. 
         /// <para>
-        /// A list that contains one <code>HealthCheckObservation</code> element for each Amazon
-        /// Route 53 health checker that is reporting a status about the health check endpoint.
+        /// A list that contains one <c>HealthCheckObservation</c> element for each Amazon Route
+        /// 53 health checker that is reporting a status about the health check endpoint.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -52,7 +53,7 @@ namespace Amazon.Route53.Model
         // Check to see if HealthCheckObservations property is set
         internal bool IsSetHealthCheckObservations()
         {
-            return this._healthCheckObservations != null && this._healthCheckObservations.Count > 0; 
+            return this._healthCheckObservations != null && (this._healthCheckObservations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

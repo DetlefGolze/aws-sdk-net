@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaConnect.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,10 +46,23 @@ namespace Amazon.MediaConnect.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(UpdateBridgeNetworkSourceRequest requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetMulticastIp())
             {
                 context.Writer.WritePropertyName("multicastIp");
                 context.Writer.Write(requestObject.MulticastIp);
+            }
+
+            if(requestObject.IsSetMulticastSourceSettings())
+            {
+                context.Writer.WritePropertyName("multicastSourceSettings");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = MulticastSourceSettingsMarshaller.Instance;
+                marshaller.Marshall(requestObject.MulticastSourceSettings, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetNetworkName())

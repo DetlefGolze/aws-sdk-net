@@ -26,14 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
     /// Provides statistical data for sensitive data discovery metrics that apply to an S3
-    /// bucket that Amazon Macie monitors and analyzes for your account. The statistics capture
-    /// the results of automated sensitive data discovery activities that Macie has performed
-    /// for the bucket. The data is available only if automated sensitive data discovery is
-    /// currently enabled for your account.
+    /// bucket that Amazon Macie monitors and analyzes for an account, if automated sensitive
+    /// data discovery has been enabled for the account. The data captures the results of
+    /// automated sensitive data discovery activities that Macie has performed for the bucket.
     /// </summary>
     public partial class ResourceStatistics
     {
@@ -148,7 +148,7 @@ namespace Amazon.Macie2.Model
         /// Gets and sets the property TotalItemsSkipped. 
         /// <para>
         /// The total number of objects that Amazon Macie wasn't able to analyze in the bucket
-        /// due to an object-level issue or error. For example, the object is a malformed file.
+        /// due to an object-level issue or error. For example, an object is a malformed file.
         /// This value includes objects that Macie wasn't able to analyze for reasons reported
         /// by other statistics in the ResourceStatistics object.
         /// </para>

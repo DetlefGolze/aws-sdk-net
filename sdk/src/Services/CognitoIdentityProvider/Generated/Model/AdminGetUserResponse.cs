@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -35,19 +36,21 @@ namespace Amazon.CognitoIdentityProvider.Model
     public partial class AdminGetUserResponse : AmazonWebServiceResponse
     {
         private bool? _enabled;
-        private List<MFAOptionType> _mfaOptions = new List<MFAOptionType>();
+        private List<MFAOptionType> _mfaOptions = AWSConfigs.InitializeCollections ? new List<MFAOptionType>() : null;
         private string _preferredMfaSetting;
-        private List<AttributeType> _userAttributes = new List<AttributeType>();
+        private List<AttributeType> _userAttributes = AWSConfigs.InitializeCollections ? new List<AttributeType>() : null;
         private DateTime? _userCreateDate;
         private DateTime? _userLastModifiedDate;
-        private List<string> _userMFASettingList = new List<string>();
+        private List<string> _userMFASettingList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _username;
         private UserStatusType _userStatus;
 
         /// <summary>
         /// Gets and sets the property Enabled. 
         /// <para>
-        /// Indicates that the status is <code>enabled</code>.
+        /// Indicates whether the user is activated for sign-in. The <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminDisableUser.html">AdminDisableUser</a>
+        /// and <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminEnableUser.html">AdminEnableUser</a>
+        /// API operations deactivate and activate user sign-in, respectively.
         /// </para>
         /// </summary>
         public bool Enabled
@@ -80,13 +83,13 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if MFAOptions property is set
         internal bool IsSetMFAOptions()
         {
-            return this._mfaOptions != null && this._mfaOptions.Count > 0; 
+            return this._mfaOptions != null && (this._mfaOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PreferredMfaSetting. 
         /// <para>
-        /// The user's preferred MFA setting.
+        /// The user's preferred MFA. Users can prefer SMS message, email message, or TOTP MFA.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=131072)]
@@ -105,7 +108,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserAttributes. 
         /// <para>
-        /// An array of name-value pairs representing user attributes.
+        /// An array of name-value pairs of user attributes and their values, for example <c>"email":
+        /// "testuser@example.com"</c>.
         /// </para>
         /// </summary>
         public List<AttributeType> UserAttributes
@@ -117,13 +121,15 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if UserAttributes property is set
         internal bool IsSetUserAttributes()
         {
-            return this._userAttributes != null && this._userAttributes.Count > 0; 
+            return this._userAttributes != null && (this._userAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UserCreateDate. 
         /// <para>
-        /// The date the user was created.
+        /// The date and time when the item was created. Amazon Cognito returns this timestamp
+        /// in UNIX epoch time format. Your SDK might render the output in a human-readable format
+        /// like ISO 8601 or a Java <c>Date</c> object.
         /// </para>
         /// </summary>
         public DateTime UserCreateDate
@@ -141,8 +147,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserLastModifiedDate. 
         /// <para>
-        /// The date and time, in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-        /// 8601</a> format, when the item was modified.
+        /// The date and time when the item was modified. Amazon Cognito returns this timestamp
+        /// in UNIX epoch time format. Your SDK might render the output in a human-readable format
+        /// like ISO 8601 or a Java <c>Date</c> object.
         /// </para>
         /// </summary>
         public DateTime UserLastModifiedDate
@@ -161,7 +168,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// Gets and sets the property UserMFASettingList. 
         /// <para>
         /// The MFA options that are activated for the user. The possible values in this list
-        /// are <code>SMS_MFA</code> and <code>SOFTWARE_TOKEN_MFA</code>.
+        /// are <c>SMS_MFA</c>, <c>EMAIL_OTP</c>, and <c>SOFTWARE_TOKEN_MFA</c>. You can change
+        /// the MFA preference for users who have more than one available MFA factor with <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminSetUserMFAPreference.html">AdminSetUserMFAPreference</a>
+        /// or <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetUserMFAPreference.html">SetUserMFAPreference</a>.
         /// </para>
         /// </summary>
         public List<string> UserMFASettingList
@@ -173,7 +182,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if UserMFASettingList property is set
         internal bool IsSetUserMFASettingList()
         {
-            return this._userMFASettingList != null && this._userMFASettingList.Count > 0; 
+            return this._userMFASettingList != null && (this._userMFASettingList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -198,7 +207,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserStatus. 
         /// <para>
-        /// The user status. Can be one of the following:
+        /// The user's status. Can be one of the following:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -222,6 +231,10 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// FORCE_CHANGE_PASSWORD - The user is confirmed and the user can sign in using a temporary
         /// password, but on first sign-in, the user must change their password to a new value
         /// before doing anything else. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// EXTERNAL_PROVIDER - The user signed in with a third-party identity provider.
         /// </para>
         ///  </li> </ul>
         /// </summary>

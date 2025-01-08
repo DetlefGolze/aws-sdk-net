@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -42,11 +43,11 @@ namespace Amazon.Redshift.Model
         private DateTime? _clusterCreateTime;
         private string _clusterIdentifier;
         private string _clusterNamespaceArn;
-        private List<ClusterNode> _clusterNodes = new List<ClusterNode>();
-        private List<ClusterParameterGroupStatus> _clusterParameterGroups = new List<ClusterParameterGroupStatus>();
+        private List<ClusterNode> _clusterNodes = AWSConfigs.InitializeCollections ? new List<ClusterNode>() : null;
+        private List<ClusterParameterGroupStatus> _clusterParameterGroups = AWSConfigs.InitializeCollections ? new List<ClusterParameterGroupStatus>() : null;
         private string _clusterPublicKey;
         private string _clusterRevisionNumber;
-        private List<ClusterSecurityGroupMembership> _clusterSecurityGroups = new List<ClusterSecurityGroupMembership>();
+        private List<ClusterSecurityGroupMembership> _clusterSecurityGroups = AWSConfigs.InitializeCollections ? new List<ClusterSecurityGroupMembership>() : null;
         private ClusterSnapshotCopyStatus _clusterSnapshotCopyStatus;
         private string _clusterStatus;
         private string _clusterSubnetGroupName;
@@ -57,7 +58,7 @@ namespace Amazon.Redshift.Model
         private DataTransferProgress _dataTransferProgress;
         private string _dbName;
         private string _defaultIamRoleArn;
-        private List<DeferredMaintenanceWindow> _deferredMaintenanceWindows = new List<DeferredMaintenanceWindow>();
+        private List<DeferredMaintenanceWindow> _deferredMaintenanceWindows = AWSConfigs.InitializeCollections ? new List<DeferredMaintenanceWindow>() : null;
         private ElasticIpStatus _elasticIpStatus;
         private string _elasticResizeNumberOfNodeOptions;
         private bool? _encrypted;
@@ -66,16 +67,21 @@ namespace Amazon.Redshift.Model
         private DateTime? _expectedNextSnapshotScheduleTime;
         private string _expectedNextSnapshotScheduleTimeStatus;
         private HsmStatus _hsmStatus;
-        private List<ClusterIamRole> _iamRoles = new List<ClusterIamRole>();
+        private List<ClusterIamRole> _iamRoles = AWSConfigs.InitializeCollections ? new List<ClusterIamRole>() : null;
+        private string _ipAddressType;
         private string _kmsKeyId;
         private string _maintenanceTrackName;
         private int? _manualSnapshotRetentionPeriod;
+        private string _masterPasswordSecretArn;
+        private string _masterPasswordSecretKmsKeyId;
         private string _masterUsername;
         private string _modifyStatus;
+        private string _multiAZ;
+        private SecondaryClusterInfo _multiAZSecondary;
         private DateTime? _nextMaintenanceWindowStartTime;
         private string _nodeType;
         private int? _numberOfNodes;
-        private List<string> _pendingActions = new List<string>();
+        private List<string> _pendingActions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private PendingModifiedValues _pendingModifiedValues;
         private string _preferredMaintenanceWindow;
         private bool? _publiclyAccessible;
@@ -84,16 +90,16 @@ namespace Amazon.Redshift.Model
         private RestoreStatus _restoreStatus;
         private string _snapshotScheduleIdentifier;
         private ScheduleState _snapshotScheduleState;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private long? _totalStorageCapacityInMegaBytes;
         private string _vpcId;
-        private List<VpcSecurityGroupMembership> _vpcSecurityGroups = new List<VpcSecurityGroupMembership>();
+        private List<VpcSecurityGroupMembership> _vpcSecurityGroups = AWSConfigs.InitializeCollections ? new List<VpcSecurityGroupMembership>() : null;
 
         /// <summary>
         /// Gets and sets the property AllowVersionUpgrade. 
         /// <para>
-        /// A boolean value that, if <code>true</code>, indicates that major version upgrades
-        /// will be applied automatically to the cluster during the maintenance window. 
+        /// A boolean value that, if <c>true</c>, indicates that major version upgrades will be
+        /// applied automatically to the cluster during the maintenance window. 
         /// </para>
         /// </summary>
         public bool AllowVersionUpgrade
@@ -296,7 +302,7 @@ namespace Amazon.Redshift.Model
         // Check to see if ClusterNodes property is set
         internal bool IsSetClusterNodes()
         {
-            return this._clusterNodes != null && this._clusterNodes.Count > 0; 
+            return this._clusterNodes != null && (this._clusterNodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -315,7 +321,7 @@ namespace Amazon.Redshift.Model
         // Check to see if ClusterParameterGroups property is set
         internal bool IsSetClusterParameterGroups()
         {
-            return this._clusterParameterGroups != null && this._clusterParameterGroups.Count > 0; 
+            return this._clusterParameterGroups != null && (this._clusterParameterGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -360,8 +366,8 @@ namespace Amazon.Redshift.Model
         /// Gets and sets the property ClusterSecurityGroups. 
         /// <para>
         /// A list of cluster security group that are associated with the cluster. Each security
-        /// group is represented by an element that contains <code>ClusterSecurityGroup.Name</code>
-        /// and <code>ClusterSecurityGroup.Status</code> subelements. 
+        /// group is represented by an element that contains <c>ClusterSecurityGroup.Name</c>
+        /// and <c>ClusterSecurityGroup.Status</c> subelements. 
         /// </para>
         ///  
         /// <para>
@@ -379,7 +385,7 @@ namespace Amazon.Redshift.Model
         // Check to see if ClusterSecurityGroups property is set
         internal bool IsSetClusterSecurityGroups()
         {
-            return this._clusterSecurityGroups != null && this._clusterSecurityGroups.Count > 0; 
+            return this._clusterSecurityGroups != null && (this._clusterSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -408,83 +414,83 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>available</code> 
+        ///  <c>available</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>available, prep-for-resize</code> 
+        ///  <c>available, prep-for-resize</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>available, resize-cleanup</code> 
+        ///  <c>available, resize-cleanup</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>cancelling-resize</code> 
+        ///  <c>cancelling-resize</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>creating</code> 
+        ///  <c>creating</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deleting</code> 
+        ///  <c>deleting</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>final-snapshot</code> 
+        ///  <c>final-snapshot</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>hardware-failure</code> 
+        ///  <c>hardware-failure</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>incompatible-hsm</code> 
+        ///  <c>incompatible-hsm</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>incompatible-network</code> 
+        ///  <c>incompatible-network</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>incompatible-parameters</code> 
+        ///  <c>incompatible-parameters</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>incompatible-restore</code> 
+        ///  <c>incompatible-restore</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>modifying</code> 
+        ///  <c>modifying</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>paused</code> 
+        ///  <c>paused</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>rebooting</code> 
+        ///  <c>rebooting</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>renaming</code> 
+        ///  <c>renaming</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>resizing</code> 
+        ///  <c>resizing</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>rotating-keys</code> 
+        ///  <c>rotating-keys</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>storage-full</code> 
+        ///  <c>storage-full</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>updating-hsm</code> 
+        ///  <c>updating-hsm</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -616,7 +622,7 @@ namespace Amazon.Redshift.Model
         /// <para>
         /// The name of the initial database that was created when the cluster was created. This
         /// same name is returned for the life of the cluster. If an initial database was not
-        /// specified, a database named <code>dev</code>dev was created by default. 
+        /// specified, a database named <c>dev</c>dev was created by default. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]
@@ -654,7 +660,7 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property DeferredMaintenanceWindows. 
         /// <para>
-        /// Describes a group of <code>DeferredMaintenanceWindow</code> objects.
+        /// Describes a group of <c>DeferredMaintenanceWindow</c> objects.
         /// </para>
         /// </summary>
         public List<DeferredMaintenanceWindow> DeferredMaintenanceWindows
@@ -666,7 +672,7 @@ namespace Amazon.Redshift.Model
         // Check to see if DeferredMaintenanceWindows property is set
         internal bool IsSetDeferredMaintenanceWindows()
         {
-            return this._deferredMaintenanceWindows != null && this._deferredMaintenanceWindows.Count > 0; 
+            return this._deferredMaintenanceWindows != null && (this._deferredMaintenanceWindows.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -710,8 +716,8 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property Encrypted. 
         /// <para>
-        /// A boolean value that, if <code>true</code>, indicates that data in the cluster is
-        /// encrypted at rest.
+        /// A boolean value that, if <c>true</c>, indicates that data in the cluster is encrypted
+        /// at rest.
         /// </para>
         /// </summary>
         public bool Encrypted
@@ -754,7 +760,7 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  
         /// <para>
-        /// If this option is <code>true</code>, enhanced VPC routing is enabled. 
+        /// If this option is <c>true</c>, enhanced VPC routing is enabled. 
         /// </para>
         ///  
         /// <para>
@@ -860,7 +866,26 @@ namespace Amazon.Redshift.Model
         // Check to see if IamRoles property is set
         internal bool IsSetIamRoles()
         {
-            return this._iamRoles != null && this._iamRoles.Count > 0; 
+            return this._iamRoles != null && (this._iamRoles.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property IpAddressType. 
+        /// <para>
+        /// The IP address type for the cluster. Possible values are <c>ipv4</c> and <c>dualstack</c>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=2147483647)]
+        public string IpAddressType
+        {
+            get { return this._ipAddressType; }
+            set { this._ipAddressType = value; }
+        }
+
+        // Check to see if IpAddressType property is set
+        internal bool IsSetIpAddressType()
+        {
+            return this._ipAddressType != null;
         }
 
         /// <summary>
@@ -927,6 +952,45 @@ namespace Amazon.Redshift.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MasterPasswordSecretArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) for the cluster's admin user credentials secret.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=2147483647)]
+        public string MasterPasswordSecretArn
+        {
+            get { return this._masterPasswordSecretArn; }
+            set { this._masterPasswordSecretArn = value; }
+        }
+
+        // Check to see if MasterPasswordSecretArn property is set
+        internal bool IsSetMasterPasswordSecretArn()
+        {
+            return this._masterPasswordSecretArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property MasterPasswordSecretKmsKeyId. 
+        /// <para>
+        /// The ID of the Key Management Service (KMS) key used to encrypt and store the cluster's
+        /// admin credentials secret.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=2147483647)]
+        public string MasterPasswordSecretKmsKeyId
+        {
+            get { return this._masterPasswordSecretKmsKeyId; }
+            set { this._masterPasswordSecretKmsKeyId = value; }
+        }
+
+        // Check to see if MasterPasswordSecretKmsKeyId property is set
+        internal bool IsSetMasterPasswordSecretKmsKeyId()
+        {
+            return this._masterPasswordSecretKmsKeyId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property MasterUsername. 
         /// <para>
         /// The admin user name for the cluster. This name is used to connect to the database
@@ -963,6 +1027,44 @@ namespace Amazon.Redshift.Model
         internal bool IsSetModifyStatus()
         {
             return this._modifyStatus != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property MultiAZ. 
+        /// <para>
+        /// A boolean value that, if true, indicates that the cluster is deployed in two Availability
+        /// Zones.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=2147483647)]
+        public string MultiAZ
+        {
+            get { return this._multiAZ; }
+            set { this._multiAZ = value; }
+        }
+
+        // Check to see if MultiAZ property is set
+        internal bool IsSetMultiAZ()
+        {
+            return this._multiAZ != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property MultiAZSecondary. 
+        /// <para>
+        /// The secondary compute unit of a cluster, if Multi-AZ deployment is turned on.
+        /// </para>
+        /// </summary>
+        public SecondaryClusterInfo MultiAZSecondary
+        {
+            get { return this._multiAZSecondary; }
+            set { this._multiAZSecondary = value; }
+        }
+
+        // Check to see if MultiAZSecondary property is set
+        internal bool IsSetMultiAZSecondary()
+        {
+            return this._multiAZSecondary != null;
         }
 
         /// <summary>
@@ -1035,7 +1137,7 @@ namespace Amazon.Redshift.Model
         // Check to see if PendingActions property is set
         internal bool IsSetPendingActions()
         {
-            return this._pendingActions != null && this._pendingActions.Count > 0; 
+            return this._pendingActions != null && (this._pendingActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1080,8 +1182,8 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property PubliclyAccessible. 
         /// <para>
-        /// A boolean value that, if <code>true</code>, indicates that the cluster can be accessed
-        /// from a public network.
+        /// A boolean value that, if <c>true</c>, indicates that the cluster can be accessed from
+        /// a public network.
         /// </para>
         /// </summary>
         public bool PubliclyAccessible
@@ -1213,7 +1315,7 @@ namespace Amazon.Redshift.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1269,7 +1371,7 @@ namespace Amazon.Redshift.Model
         // Check to see if VpcSecurityGroups property is set
         internal bool IsSetVpcSecurityGroups()
         {
-            return this._vpcSecurityGroups != null && this._vpcSecurityGroups.Count > 0; 
+            return this._vpcSecurityGroups != null && (this._vpcSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

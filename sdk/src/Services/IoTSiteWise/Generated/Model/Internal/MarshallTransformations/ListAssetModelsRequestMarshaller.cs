@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -58,6 +59,12 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
             request.Headers[Amazon.Util.HeaderKeys.XAmzApiVersion] = "2019-12-02";
             request.HttpMethod = "GET";
 
+            
+            if (publicRequest.IsSetAssetModelTypes())
+                request.ParameterCollection.Add("assetModelTypes", publicRequest.AssetModelTypes);
+            
+            if (publicRequest.IsSetAssetModelVersion())
+                request.Parameters.Add("assetModelVersion", StringUtils.FromString(publicRequest.AssetModelVersion));
             
             if (publicRequest.IsSetMaxResults())
                 request.Parameters.Add("maxResults", StringUtils.FromInt(publicRequest.MaxResults));

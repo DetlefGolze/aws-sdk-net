@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatch.Model
 {
     /// <summary>
@@ -40,8 +41,8 @@ namespace Amazon.CloudWatch.Model
         /// <summary>
         /// Gets and sets the property EndTime. 
         /// <para>
-        /// The end time of the range to exclude. The format is <code>yyyy-MM-dd'T'HH:mm:ss</code>.
-        /// For example, <code>2019-07-01T23:59:59</code>.
+        /// The end time of the range to exclude. The format is <c>yyyy-MM-dd'T'HH:mm:ss</c>.
+        /// For example, <c>2019-07-01T23:59:59</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -60,8 +61,8 @@ namespace Amazon.CloudWatch.Model
         /// <summary>
         /// Gets and sets the property StartTime. 
         /// <para>
-        /// The start time of the range to exclude. The format is <code>yyyy-MM-dd'T'HH:mm:ss</code>.
-        /// For example, <code>2019-07-01T23:59:59</code>.
+        /// The start time of the range to exclude. The format is <c>yyyy-MM-dd'T'HH:mm:ss</c>.
+        /// For example, <c>2019-07-01T23:59:59</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

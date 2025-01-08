@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -38,10 +39,11 @@ namespace Amazon.Imagebuilder.Model
         private string _dateUpdated;
         private string _description;
         private string _instanceProfileName;
-        private List<string> _instanceTypes = new List<string>();
+        private List<string> _instanceTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
-        private Dictionary<string, string> _resourceTags = new Dictionary<string, string>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Placement _placement;
+        private Dictionary<string, string> _resourceTags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -150,7 +152,7 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if InstanceTypes property is set
         internal bool IsSetInstanceTypes()
         {
-            return this._instanceTypes != null && this._instanceTypes.Count > 0; 
+            return this._instanceTypes != null && (this._instanceTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -172,6 +174,25 @@ namespace Amazon.Imagebuilder.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Placement. 
+        /// <para>
+        /// The instance placement settings that define where the instances that are launched
+        /// from your image will run.
+        /// </para>
+        /// </summary>
+        public Placement Placement
+        {
+            get { return this._placement; }
+            set { this._placement = value; }
+        }
+
+        // Check to see if Placement property is set
+        internal bool IsSetPlacement()
+        {
+            return this._placement != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ResourceTags. 
         /// <para>
         /// The tags attached to the image created by Image Builder.
@@ -187,7 +208,7 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if ResourceTags property is set
         internal bool IsSetResourceTags()
         {
-            return this._resourceTags != null && this._resourceTags.Count > 0; 
+            return this._resourceTags != null && (this._resourceTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -206,7 +227,7 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

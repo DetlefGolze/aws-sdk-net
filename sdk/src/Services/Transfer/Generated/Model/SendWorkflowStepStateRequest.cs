@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -34,9 +35,9 @@ namespace Amazon.Transfer.Model
     /// 
     ///  
     /// <para>
-    ///  The <code>ExecutionId</code>, <code>WorkflowId</code>, and <code>Token</code> are
-    /// passed to the target resource during execution of a custom step of a workflow. You
-    /// must include those with their callback as well as providing a status. 
+    ///  The <c>ExecutionId</c>, <c>WorkflowId</c>, and <c>Token</c> are passed to the target
+    /// resource during execution of a custom step of a workflow. You must include those with
+    /// their callback as well as providing a status. 
     /// </para>
     /// </summary>
     public partial class SendWorkflowStepStateRequest : AmazonTransferRequest

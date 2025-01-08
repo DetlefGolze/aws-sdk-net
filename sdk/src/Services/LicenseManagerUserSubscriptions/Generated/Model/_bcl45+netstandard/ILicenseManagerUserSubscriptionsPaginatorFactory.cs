@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the license-manager-user-subscriptions-2018-05-10.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.LicenseManagerUserSubscriptions.Model
 {
     /// <summary>
@@ -34,6 +35,11 @@ namespace Amazon.LicenseManagerUserSubscriptions.Model
         /// Paginator for ListInstances operation
         ///</summary>
         IListInstancesPaginator ListInstances(ListInstancesRequest request);
+
+        /// <summary>
+        /// Paginator for ListLicenseServerEndpoints operation
+        ///</summary>
+        IListLicenseServerEndpointsPaginator ListLicenseServerEndpoints(ListLicenseServerEndpointsRequest request);
 
         /// <summary>
         /// Paginator for ListProductSubscriptions operation

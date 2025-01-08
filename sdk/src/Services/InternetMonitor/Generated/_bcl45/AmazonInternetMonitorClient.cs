@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.InternetMonitor
 {
     /// <summary>
-    /// Implementation for accessing InternetMonitor
+    /// <para>Implementation for accessing InternetMonitor</para>
     ///
     /// Amazon CloudWatch Internet Monitor provides visibility into how internet issues impact
     /// the performance and availability between your applications hosted on Amazon Web Services
@@ -481,7 +482,7 @@ namespace Amazon.InternetMonitor
 
 
         /// <summary>
-        /// Gets information the Amazon CloudWatch Internet Monitor has created and stored about
+        /// Gets information that Amazon CloudWatch Internet Monitor has created and stored about
         /// a health event for a specified monitor. This information includes the impacted locations,
         /// and all the information related to the event, by location.
         /// 
@@ -523,7 +524,7 @@ namespace Amazon.InternetMonitor
 
 
         /// <summary>
-        /// Gets information the Amazon CloudWatch Internet Monitor has created and stored about
+        /// Gets information that Amazon CloudWatch Internet Monitor has created and stored about
         /// a health event for a specified monitor. This information includes the impacted locations,
         /// and all the information related to the event, by location.
         /// 
@@ -564,6 +565,91 @@ namespace Amazon.InternetMonitor
             options.ResponseUnmarshaller = GetHealthEventResponseUnmarshaller.Instance;
             
             return InvokeAsync<GetHealthEventResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetInternetEvent
+
+
+        /// <summary>
+        /// Gets information that Amazon CloudWatch Internet Monitor has generated about an internet
+        /// event. Internet Monitor displays information about recent global health events, called
+        /// internet events, on a global outages map that is available to all Amazon Web Services
+        /// customers. 
+        /// 
+        ///  
+        /// <para>
+        /// The information returned here includes the impacted location, when the event started
+        /// and (if the event is over) ended, the type of event (<c>PERFORMANCE</c> or <c>AVAILABILITY</c>),
+        /// and the status (<c>ACTIVE</c> or <c>RESOLVED</c>).
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetInternetEvent service method.</param>
+        /// 
+        /// <returns>The response from the GetInternetEvent service method, as returned by InternetMonitor.</returns>
+        /// <exception cref="Amazon.InternetMonitor.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.InternalServerException">
+        /// An internal error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ValidationException">
+        /// Invalid request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/GetInternetEvent">REST API Reference for GetInternetEvent Operation</seealso>
+        public virtual GetInternetEventResponse GetInternetEvent(GetInternetEventRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetInternetEventRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetInternetEventResponseUnmarshaller.Instance;
+
+            return Invoke<GetInternetEventResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Gets information that Amazon CloudWatch Internet Monitor has generated about an internet
+        /// event. Internet Monitor displays information about recent global health events, called
+        /// internet events, on a global outages map that is available to all Amazon Web Services
+        /// customers. 
+        /// 
+        ///  
+        /// <para>
+        /// The information returned here includes the impacted location, when the event started
+        /// and (if the event is over) ended, the type of event (<c>PERFORMANCE</c> or <c>AVAILABILITY</c>),
+        /// and the status (<c>ACTIVE</c> or <c>RESOLVED</c>).
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetInternetEvent service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetInternetEvent service method, as returned by InternetMonitor.</returns>
+        /// <exception cref="Amazon.InternetMonitor.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.InternalServerException">
+        /// An internal error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ValidationException">
+        /// Invalid request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/GetInternetEvent">REST API Reference for GetInternetEvent Operation</seealso>
+        public virtual Task<GetInternetEventResponse> GetInternetEventAsync(GetInternetEventRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetInternetEventRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetInternetEventResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetInternetEventResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -637,12 +723,220 @@ namespace Amazon.InternetMonitor
 
         #endregion
         
+        #region  GetQueryResults
+
+
+        /// <summary>
+        /// Return the data for a query with the Amazon CloudWatch Internet Monitor query interface.
+        /// Specify the query that you want to return results for by providing a <c>QueryId</c>
+        /// and a monitor name.
+        /// 
+        ///  
+        /// <para>
+        /// For more information about using the query interface, including examples, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-view-cw-tools-cwim-query.html">Using
+        /// the Amazon CloudWatch Internet Monitor query interface</a> in the Amazon CloudWatch
+        /// Internet Monitor User Guide.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetQueryResults service method.</param>
+        /// 
+        /// <returns>The response from the GetQueryResults service method, as returned by InternetMonitor.</returns>
+        /// <exception cref="Amazon.InternetMonitor.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.InternalServerException">
+        /// An internal error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.LimitExceededException">
+        /// The request exceeded a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ValidationException">
+        /// Invalid request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/GetQueryResults">REST API Reference for GetQueryResults Operation</seealso>
+        public virtual GetQueryResultsResponse GetQueryResults(GetQueryResultsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetQueryResultsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetQueryResultsResponseUnmarshaller.Instance;
+
+            return Invoke<GetQueryResultsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Return the data for a query with the Amazon CloudWatch Internet Monitor query interface.
+        /// Specify the query that you want to return results for by providing a <c>QueryId</c>
+        /// and a monitor name.
+        /// 
+        ///  
+        /// <para>
+        /// For more information about using the query interface, including examples, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-view-cw-tools-cwim-query.html">Using
+        /// the Amazon CloudWatch Internet Monitor query interface</a> in the Amazon CloudWatch
+        /// Internet Monitor User Guide.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetQueryResults service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetQueryResults service method, as returned by InternetMonitor.</returns>
+        /// <exception cref="Amazon.InternetMonitor.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.InternalServerException">
+        /// An internal error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.LimitExceededException">
+        /// The request exceeded a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ValidationException">
+        /// Invalid request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/GetQueryResults">REST API Reference for GetQueryResults Operation</seealso>
+        public virtual Task<GetQueryResultsResponse> GetQueryResultsAsync(GetQueryResultsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetQueryResultsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetQueryResultsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetQueryResultsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetQueryStatus
+
+
+        /// <summary>
+        /// Returns the current status of a query for the Amazon CloudWatch Internet Monitor query
+        /// interface, for a specified query ID and monitor. When you run a query, check the status
+        /// to make sure that the query has <c>SUCCEEDED</c> before you review the results.
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>QUEUED</c>: The query is scheduled to run.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>RUNNING</c>: The query is in progress but not complete.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>SUCCEEDED</c>: The query completed sucessfully.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>FAILED</c>: The query failed due to an error.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>CANCELED</c>: The query was canceled.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetQueryStatus service method.</param>
+        /// 
+        /// <returns>The response from the GetQueryStatus service method, as returned by InternetMonitor.</returns>
+        /// <exception cref="Amazon.InternetMonitor.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.InternalServerException">
+        /// An internal error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.LimitExceededException">
+        /// The request exceeded a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ValidationException">
+        /// Invalid request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/GetQueryStatus">REST API Reference for GetQueryStatus Operation</seealso>
+        public virtual GetQueryStatusResponse GetQueryStatus(GetQueryStatusRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetQueryStatusRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetQueryStatusResponseUnmarshaller.Instance;
+
+            return Invoke<GetQueryStatusResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Returns the current status of a query for the Amazon CloudWatch Internet Monitor query
+        /// interface, for a specified query ID and monitor. When you run a query, check the status
+        /// to make sure that the query has <c>SUCCEEDED</c> before you review the results.
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>QUEUED</c>: The query is scheduled to run.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>RUNNING</c>: The query is in progress but not complete.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>SUCCEEDED</c>: The query completed sucessfully.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>FAILED</c>: The query failed due to an error.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>CANCELED</c>: The query was canceled.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetQueryStatus service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetQueryStatus service method, as returned by InternetMonitor.</returns>
+        /// <exception cref="Amazon.InternetMonitor.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.InternalServerException">
+        /// An internal error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.LimitExceededException">
+        /// The request exceeded a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ValidationException">
+        /// Invalid request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/GetQueryStatus">REST API Reference for GetQueryStatus Operation</seealso>
+        public virtual Task<GetQueryStatusResponse> GetQueryStatusAsync(GetQueryStatusRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetQueryStatusRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetQueryStatusResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetQueryStatusResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ListHealthEvents
 
 
         /// <summary>
         /// Lists all health events for a monitor in Amazon CloudWatch Internet Monitor. Returns
-        /// information for health events including the event start and end time and the status.
+        /// information for health events including the event start and end times, and the status.
         /// 
         ///  <note> 
         /// <para>
@@ -679,7 +973,7 @@ namespace Amazon.InternetMonitor
 
         /// <summary>
         /// Lists all health events for a monitor in Amazon CloudWatch Internet Monitor. Returns
-        /// information for health events including the event start and end time and the status.
+        /// information for health events including the event start and end times, and the status.
         /// 
         ///  <note> 
         /// <para>
@@ -714,6 +1008,103 @@ namespace Amazon.InternetMonitor
             options.ResponseUnmarshaller = ListHealthEventsResponseUnmarshaller.Instance;
             
             return InvokeAsync<ListHealthEventsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListInternetEvents
+
+
+        /// <summary>
+        /// Lists internet events that cause performance or availability issues for client locations.
+        /// Amazon CloudWatch Internet Monitor displays information about recent global health
+        /// events, called internet events, on a global outages map that is available to all Amazon
+        /// Web Services customers. 
+        /// 
+        ///  
+        /// <para>
+        /// You can constrain the list of internet events returned by providing a start time and
+        /// end time to define a total time frame for events you want to list. Both start time
+        /// and end time specify the time when an event started. End time is optional. If you
+        /// don't include it, the default end time is the current time.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can also limit the events returned to a specific status (<c>ACTIVE</c> or <c>RESOLVED</c>)
+        /// or type (<c>PERFORMANCE</c> or <c>AVAILABILITY</c>).
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListInternetEvents service method.</param>
+        /// 
+        /// <returns>The response from the ListInternetEvents service method, as returned by InternetMonitor.</returns>
+        /// <exception cref="Amazon.InternetMonitor.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.InternalServerException">
+        /// An internal error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ValidationException">
+        /// Invalid request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/ListInternetEvents">REST API Reference for ListInternetEvents Operation</seealso>
+        public virtual ListInternetEventsResponse ListInternetEvents(ListInternetEventsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListInternetEventsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListInternetEventsResponseUnmarshaller.Instance;
+
+            return Invoke<ListInternetEventsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists internet events that cause performance or availability issues for client locations.
+        /// Amazon CloudWatch Internet Monitor displays information about recent global health
+        /// events, called internet events, on a global outages map that is available to all Amazon
+        /// Web Services customers. 
+        /// 
+        ///  
+        /// <para>
+        /// You can constrain the list of internet events returned by providing a start time and
+        /// end time to define a total time frame for events you want to list. Both start time
+        /// and end time specify the time when an event started. End time is optional. If you
+        /// don't include it, the default end time is the current time.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can also limit the events returned to a specific status (<c>ACTIVE</c> or <c>RESOLVED</c>)
+        /// or type (<c>PERFORMANCE</c> or <c>AVAILABILITY</c>).
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListInternetEvents service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListInternetEvents service method, as returned by InternetMonitor.</returns>
+        /// <exception cref="Amazon.InternetMonitor.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.InternalServerException">
+        /// An internal error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ValidationException">
+        /// Invalid request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/ListInternetEvents">REST API Reference for ListInternetEvents Operation</seealso>
+        public virtual Task<ListInternetEventsResponse> ListInternetEventsAsync(ListInternetEventsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListInternetEventsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListInternetEventsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListInternetEventsResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -858,6 +1249,168 @@ namespace Amazon.InternetMonitor
 
         #endregion
         
+        #region  StartQuery
+
+
+        /// <summary>
+        /// Start a query to return data for a specific query type for the Amazon CloudWatch Internet
+        /// Monitor query interface. Specify a time period for the data that you want returned
+        /// by using <c>StartTime</c> and <c>EndTime</c>. You filter the query results to return
+        /// by providing parameters that you specify with <c>FilterParameters</c>.
+        /// 
+        ///  
+        /// <para>
+        /// For more information about using the query interface, including examples, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-view-cw-tools-cwim-query.html">Using
+        /// the Amazon CloudWatch Internet Monitor query interface</a> in the Amazon CloudWatch
+        /// Internet Monitor User Guide.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartQuery service method.</param>
+        /// 
+        /// <returns>The response from the StartQuery service method, as returned by InternetMonitor.</returns>
+        /// <exception cref="Amazon.InternetMonitor.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.InternalServerException">
+        /// An internal error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.LimitExceededException">
+        /// The request exceeded a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ValidationException">
+        /// Invalid request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/StartQuery">REST API Reference for StartQuery Operation</seealso>
+        public virtual StartQueryResponse StartQuery(StartQueryRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartQueryRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartQueryResponseUnmarshaller.Instance;
+
+            return Invoke<StartQueryResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Start a query to return data for a specific query type for the Amazon CloudWatch Internet
+        /// Monitor query interface. Specify a time period for the data that you want returned
+        /// by using <c>StartTime</c> and <c>EndTime</c>. You filter the query results to return
+        /// by providing parameters that you specify with <c>FilterParameters</c>.
+        /// 
+        ///  
+        /// <para>
+        /// For more information about using the query interface, including examples, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-view-cw-tools-cwim-query.html">Using
+        /// the Amazon CloudWatch Internet Monitor query interface</a> in the Amazon CloudWatch
+        /// Internet Monitor User Guide.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartQuery service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StartQuery service method, as returned by InternetMonitor.</returns>
+        /// <exception cref="Amazon.InternetMonitor.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.InternalServerException">
+        /// An internal error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.LimitExceededException">
+        /// The request exceeded a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ValidationException">
+        /// Invalid request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/StartQuery">REST API Reference for StartQuery Operation</seealso>
+        public virtual Task<StartQueryResponse> StartQueryAsync(StartQueryRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartQueryRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartQueryResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<StartQueryResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  StopQuery
+
+
+        /// <summary>
+        /// Stop a query that is progress for a specific monitor.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StopQuery service method.</param>
+        /// 
+        /// <returns>The response from the StopQuery service method, as returned by InternetMonitor.</returns>
+        /// <exception cref="Amazon.InternetMonitor.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.InternalServerException">
+        /// An internal error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.LimitExceededException">
+        /// The request exceeded a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ValidationException">
+        /// Invalid request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/StopQuery">REST API Reference for StopQuery Operation</seealso>
+        public virtual StopQueryResponse StopQuery(StopQueryRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StopQueryRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StopQueryResponseUnmarshaller.Instance;
+
+            return Invoke<StopQueryResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Stop a query that is progress for a specific monitor.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StopQuery service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StopQuery service method, as returned by InternetMonitor.</returns>
+        /// <exception cref="Amazon.InternetMonitor.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.InternalServerException">
+        /// An internal error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.LimitExceededException">
+        /// The request exceeded a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ValidationException">
+        /// Invalid request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/StopQuery">REST API Reference for StopQuery Operation</seealso>
+        public virtual Task<StopQueryResponse> StopQueryAsync(StopQueryRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StopQueryRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StopQueryResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<StopQueryResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  TagResource
 
 
@@ -868,7 +1421,7 @@ namespace Amazon.InternetMonitor
         ///  
         /// <para>
         /// A minimum of one tag is required for this call. It returns an error if you use the
-        /// <code>TagResource</code> request with 0 tags.
+        /// <c>TagResource</c> request with 0 tags.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the TagResource service method.</param>
@@ -907,7 +1460,7 @@ namespace Amazon.InternetMonitor
         ///  
         /// <para>
         /// A minimum of one tag is required for this call. It returns an error if you use the
-        /// <code>TagResource</code> request with 0 tags.
+        /// <c>TagResource</c> request with 0 tags.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the TagResource service method.</param>
@@ -1120,11 +1673,11 @@ namespace Amazon.InternetMonitor
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

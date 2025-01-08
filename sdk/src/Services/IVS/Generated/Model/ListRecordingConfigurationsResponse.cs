@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IVS.Model
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace Amazon.IVS.Model
     public partial class ListRecordingConfigurationsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<RecordingConfigurationSummary> _recordingConfigurations = new List<RecordingConfigurationSummary>();
+        private List<RecordingConfigurationSummary> _recordingConfigurations = AWSConfigs.InitializeCollections ? new List<RecordingConfigurationSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If there are more recording configurations than <code>maxResults</code>, use <code>nextToken</code>
+        /// If there are more recording configurations than <c>maxResults</c>, use <c>nextToken</c>
         /// in the request to get the next set.
         /// </para>
         /// </summary>
@@ -72,7 +73,7 @@ namespace Amazon.IVS.Model
         // Check to see if RecordingConfigurations property is set
         internal bool IsSetRecordingConfigurations()
         {
-            return this._recordingConfigurations != null && this._recordingConfigurations.Count > 0; 
+            return this._recordingConfigurations != null && (this._recordingConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class AwsAutoScalingAutoScalingGroupDetails
     {
-        private List<AwsAutoScalingAutoScalingGroupAvailabilityZonesListDetails> _availabilityZones = new List<AwsAutoScalingAutoScalingGroupAvailabilityZonesListDetails>();
+        private List<AwsAutoScalingAutoScalingGroupAvailabilityZonesListDetails> _availabilityZones = AWSConfigs.InitializeCollections ? new List<AwsAutoScalingAutoScalingGroupAvailabilityZonesListDetails>() : null;
         private bool? _capacityRebalance;
         private string _createdTime;
         private int? _healthCheckGracePeriod;
         private string _healthCheckType;
         private string _launchConfigurationName;
         private AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification _launchTemplate;
-        private List<string> _loadBalancerNames = new List<string>();
+        private List<string> _loadBalancerNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private AwsAutoScalingAutoScalingGroupMixedInstancesPolicyDetails _mixedInstancesPolicy;
 
         /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -86,9 +87,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string CreatedTime
@@ -125,7 +125,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property HealthCheckType. 
         /// <para>
-        /// The service to use for the health checks. Valid values are <code>EC2</code> or <code>ELB</code>.
+        /// The service to use for the health checks. Valid values are <c>EC2</c> or <c>ELB</c>.
         /// </para>
         /// </summary>
         public string HealthCheckType
@@ -191,7 +191,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if LoadBalancerNames property is set
         internal bool IsSetLoadBalancerNames()
         {
-            return this._loadBalancerNames != null && this._loadBalancerNames.Count > 0; 
+            return this._loadBalancerNames != null && (this._loadBalancerNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

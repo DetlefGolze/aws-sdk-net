@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.LakeFormation.Model
         private string _catalogId;
         private string _databaseName;
         private DateTime? _queryAsOfTime;
-        private Dictionary<string, string> _queryParameters = new Dictionary<string, string>();
+        private Dictionary<string, string> _queryParameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _transactionId;
 
         /// <summary>
@@ -82,7 +83,7 @@ namespace Amazon.LakeFormation.Model
         /// Gets and sets the property QueryAsOfTime. 
         /// <para>
         /// The time as of when to read the table contents. If not set, the most recent transaction
-        /// commit time will be used. Cannot be specified along with <code>TransactionId</code>.
+        /// commit time will be used. Cannot be specified along with <c>TransactionId</c>.
         /// </para>
         /// </summary>
         public DateTime QueryAsOfTime
@@ -112,7 +113,7 @@ namespace Amazon.LakeFormation.Model
         // Check to see if QueryParameters property is set
         internal bool IsSetQueryParameters()
         {
-            return this._queryParameters != null && this._queryParameters.Count > 0; 
+            return this._queryParameters != null && (this._queryParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -121,7 +122,7 @@ namespace Amazon.LakeFormation.Model
         /// The transaction ID at which to read the table contents. If this transaction is not
         /// committed, the read will be treated as part of that transaction and will see its writes.
         /// If this transaction has aborted, an error will be returned. If not set, defaults to
-        /// the most recent committed transaction. Cannot be specified along with <code>QueryAsOfTime</code>.
+        /// the most recent committed transaction. Cannot be specified along with <c>QueryAsOfTime</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]

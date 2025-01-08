@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class AwsElbv2LoadBalancerDetails
     {
-        private List<AvailabilityZone> _availabilityZones = new List<AvailabilityZone>();
+        private List<AvailabilityZone> _availabilityZones = AWSConfigs.InitializeCollections ? new List<AvailabilityZone>() : null;
         private string _canonicalHostedZoneId;
         private string _createdTime;
         private string _dnsName;
         private string _ipAddressType;
-        private List<AwsElbv2LoadBalancerAttribute> _loadBalancerAttributes = new List<AwsElbv2LoadBalancerAttribute>();
+        private List<AwsElbv2LoadBalancerAttribute> _loadBalancerAttributes = AWSConfigs.InitializeCollections ? new List<AwsElbv2LoadBalancerAttribute>() : null;
         private string _scheme;
-        private List<string> _securityGroups = new List<string>();
+        private List<string> _securityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private LoadBalancerState _state;
         private string _type;
         private string _vpcId;
@@ -60,7 +61,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -88,9 +89,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string CreatedTime
@@ -127,8 +127,8 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property IpAddressType. 
         /// <para>
         /// The type of IP addresses used by the subnets for your load balancer. The possible
-        /// values are <code>ipv4</code> (for IPv4 addresses) and <code>dualstack</code> (for
-        /// IPv4 and IPv6 addresses).
+        /// values are <c>ipv4</c> (for IPv4 addresses) and <c>dualstack</c> (for IPv4 and IPv6
+        /// addresses).
         /// </para>
         /// </summary>
         public string IpAddressType
@@ -158,7 +158,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if LoadBalancerAttributes property is set
         internal bool IsSetLoadBalancerAttributes()
         {
-            return this._loadBalancerAttributes != null && this._loadBalancerAttributes.Count > 0; 
+            return this._loadBalancerAttributes != null && (this._loadBalancerAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

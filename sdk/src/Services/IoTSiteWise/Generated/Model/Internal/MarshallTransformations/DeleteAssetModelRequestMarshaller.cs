@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -68,6 +69,21 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
                 request.Parameters.Add("clientToken", System.Guid.NewGuid().ToString());
                 
             request.ResourcePath = "/asset-models/{assetModelId}";
+        
+            if (publicRequest.IsSetIfMatch()) 
+            {
+                request.Headers["If-Match"] = publicRequest.IfMatch;
+            }
+        
+            if (publicRequest.IsSetIfNoneMatch()) 
+            {
+                request.Headers["If-None-Match"] = publicRequest.IfNoneMatch;
+            }
+        
+            if (publicRequest.IsSetMatchForVersionType()) 
+            {
+                request.Headers["Match-For-Version-Type"] = publicRequest.MatchForVersionType;
+            }
             request.UseQueryString = true;
             
             request.HostPrefix = $"api.";

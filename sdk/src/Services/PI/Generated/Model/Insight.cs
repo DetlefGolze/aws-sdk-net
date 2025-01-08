@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PI.Model
 {
     /// <summary>
@@ -33,17 +34,17 @@ namespace Amazon.PI.Model
     /// </summary>
     public partial class Insight
     {
-        private List<Data> _baselineData = new List<Data>();
+        private List<Data> _baselineData = AWSConfigs.InitializeCollections ? new List<Data>() : null;
         private ContextType _context;
         private string _description;
         private DateTime? _endTime;
-        private List<Data> _insightData = new List<Data>();
+        private List<Data> _insightData = AWSConfigs.InitializeCollections ? new List<Data>() : null;
         private string _insightId;
         private string _insightType;
-        private List<Recommendation> _recommendations = new List<Recommendation>();
+        private List<Recommendation> _recommendations = AWSConfigs.InitializeCollections ? new List<Recommendation>() : null;
         private Severity _severity;
         private DateTime? _startTime;
-        private List<Insight> _supportingInsights = new List<Insight>();
+        private List<Insight> _supportingInsights = AWSConfigs.InitializeCollections ? new List<Insight>() : null;
 
         /// <summary>
         /// Gets and sets the property BaselineData. 
@@ -60,7 +61,7 @@ namespace Amazon.PI.Model
         // Check to see if BaselineData property is set
         internal bool IsSetBaselineData()
         {
-            return this._baselineData != null && this._baselineData.Count > 0; 
+            return this._baselineData != null && (this._baselineData.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -84,9 +85,9 @@ namespace Amazon.PI.Model
         /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
-        /// Description of the insight. For example: <code>A high severity Insight found between
+        /// Description of the insight. For example: <c>A high severity Insight found between
         /// 02:00 to 02:30, where there was an unusually high DB load 600x above baseline. Likely
-        /// performance impact</code>.
+        /// performance impact</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=0, Max=8000)]
@@ -105,7 +106,7 @@ namespace Amazon.PI.Model
         /// <summary>
         /// Gets and sets the property EndTime. 
         /// <para>
-        /// The end time of the insight. For example, <code>2018-10-30T00:00:00Z</code>.
+        /// The end time of the insight. For example, <c>2018-10-30T00:00:00Z</c>.
         /// </para>
         /// </summary>
         public DateTime EndTime
@@ -136,13 +137,13 @@ namespace Amazon.PI.Model
         // Check to see if InsightData property is set
         internal bool IsSetInsightData()
         {
-            return this._insightData != null && this._insightData.Count > 0; 
+            return this._insightData != null && (this._insightData.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property InsightId. 
         /// <para>
-        /// The unique identifier for the insight. For example, <code>insight-12345678901234567</code>.
+        /// The unique identifier for the insight. For example, <c>insight-12345678901234567</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=256)]
@@ -161,8 +162,7 @@ namespace Amazon.PI.Model
         /// <summary>
         /// Gets and sets the property InsightType. 
         /// <para>
-        /// The type of insight. For example, <code>HighDBLoad</code>, <code>HighCPU</code>, or
-        /// <code>DominatingSQLs</code>.
+        /// The type of insight. For example, <c>HighDBLoad</c>, <c>HighCPU</c>, or <c>DominatingSQLs</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=256)]
@@ -181,8 +181,8 @@ namespace Amazon.PI.Model
         /// <summary>
         /// Gets and sets the property Recommendations. 
         /// <para>
-        /// List of recommendations for the insight. For example, <code>Investigate the following
-        /// SQLs that contributed to 100% of the total DBLoad during that time period: sql-id</code>.
+        /// List of recommendations for the insight. For example, <c>Investigate the following
+        /// SQLs that contributed to 100% of the total DBLoad during that time period: sql-id</c>.
         /// </para>
         /// </summary>
         public List<Recommendation> Recommendations
@@ -194,14 +194,13 @@ namespace Amazon.PI.Model
         // Check to see if Recommendations property is set
         internal bool IsSetRecommendations()
         {
-            return this._recommendations != null && this._recommendations.Count > 0; 
+            return this._recommendations != null && (this._recommendations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Severity. 
         /// <para>
-        /// The severity of the insight. The values are: <code>Low</code>, <code>Medium</code>,
-        /// or <code>High</code>.
+        /// The severity of the insight. The values are: <c>Low</c>, <c>Medium</c>, or <c>High</c>.
         /// </para>
         /// </summary>
         public Severity Severity
@@ -219,7 +218,7 @@ namespace Amazon.PI.Model
         /// <summary>
         /// Gets and sets the property StartTime. 
         /// <para>
-        /// The start time of the insight. For example, <code>2018-10-30T00:00:00Z</code>.
+        /// The start time of the insight. For example, <c>2018-10-30T00:00:00Z</c>.
         /// </para>
         /// </summary>
         public DateTime StartTime
@@ -249,7 +248,7 @@ namespace Amazon.PI.Model
         // Check to see if SupportingInsights property is set
         internal bool IsSetSupportingInsights()
         {
-            return this._supportingInsights != null && this._supportingInsights.Count > 0; 
+            return this._supportingInsights != null && (this._supportingInsights.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

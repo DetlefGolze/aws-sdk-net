@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECR.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.ECR.Model
         private string _arch;
         private int? _epoch;
         private string _filePath;
+        private string _fixedInVersion;
         private string _name;
         private string _packageManager;
         private string _release;
@@ -94,6 +96,24 @@ namespace Amazon.ECR.Model
         internal bool IsSetFilePath()
         {
             return this._filePath != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property FixedInVersion. 
+        /// <para>
+        /// The version of the package that contains the vulnerability fix.
+        /// </para>
+        /// </summary>
+        public string FixedInVersion
+        {
+            get { return this._fixedInVersion; }
+            set { this._fixedInVersion = value; }
+        }
+
+        // Check to see if FixedInVersion property is set
+        internal bool IsSetFixedInVersion()
+        {
+            return this._fixedInVersion != null;
         }
 
         /// <summary>

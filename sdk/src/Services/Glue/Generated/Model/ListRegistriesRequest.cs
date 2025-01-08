@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
     /// Container for the parameters to the ListRegistries operation.
     /// Returns a list of registries that you have created, with minimal registry information.
-    /// Registries in the <code>Deleting</code> status will not be included in the results.
-    /// Empty results will be returned if there are no registries available.
+    /// Registries in the <c>Deleting</c> status will not be included in the results. Empty
+    /// results will be returned if there are no registries available.
     /// </summary>
     public partial class ListRegistriesRequest : AmazonGlueRequest
     {

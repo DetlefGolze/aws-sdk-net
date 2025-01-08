@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
@@ -35,8 +36,7 @@ namespace Amazon.LexModelBuildingService.Model
     /// 
     ///  
     /// <para>
-    ///  This operation requires permissions to perform the <code>lex:GetIntent</code> action.
-    /// 
+    ///  This operation requires permissions to perform the <c>lex:GetIntent</c> action. 
     /// </para>
     /// </summary>
     public partial class GetIntentRequest : AmazonLexModelBuildingServiceRequest

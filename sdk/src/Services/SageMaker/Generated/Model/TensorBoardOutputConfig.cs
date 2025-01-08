@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property LocalPath. 
         /// <para>
-        /// Path to local storage location for tensorBoard output. Defaults to <code>/opt/ml/output/tensorboard</code>.
+        /// Path to local storage location for tensorBoard output. Defaults to <c>/opt/ml/output/tensorboard</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=4096)]

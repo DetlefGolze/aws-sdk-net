@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -59,27 +60,27 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>0</code> : <code>pending</code> 
+        ///  <c>0</c> : <c>pending</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>16</code> : <code>running</code> 
+        ///  <c>16</c> : <c>running</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>32</code> : <code>shutting-down</code> 
+        ///  <c>32</c> : <c>shutting-down</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>48</code> : <code>terminated</code> 
+        ///  <c>48</c> : <c>terminated</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>64</code> : <code>stopping</code> 
+        ///  <c>64</c> : <c>stopping</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>80</code> : <code>stopped</code> 
+        ///  <c>80</c> : <c>stopped</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>

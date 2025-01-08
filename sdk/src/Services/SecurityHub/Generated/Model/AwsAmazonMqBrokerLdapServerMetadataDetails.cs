@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class AwsAmazonMqBrokerLdapServerMetadataDetails
     {
-        private List<string> _hosts = new List<string>();
+        private List<string> _hosts = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _roleBase;
         private string _roleName;
         private string _roleSearchMatching;
@@ -61,7 +62,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Hosts property is set
         internal bool IsSetHosts()
         {
-            return this._hosts != null && this._hosts.Count > 0; 
+            return this._hosts != null && (this._hosts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -104,7 +105,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property RoleSearchMatching. 
         /// <para>
-        ///  The LDAP search filter used to find roles within the <code>roleBase</code>. 
+        ///  The LDAP search filter used to find roles within the <c>roleBase</c>. 
         /// </para>
         /// </summary>
         public string RoleSearchMatching
@@ -122,8 +123,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property RoleSearchSubtree. 
         /// <para>
-        ///  The directory search scope for the role. If set to <code>true</code>, the scope is
-        /// to search the entire subtree. 
+        ///  The directory search scope for the role. If set to <c>true</c>, the scope is to search
+        /// the entire subtree. 
         /// </para>
         /// </summary>
         public bool RoleSearchSubtree
@@ -198,7 +199,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property UserSearchMatching. 
         /// <para>
-        ///  The LDAP search filter used to find users within the <code>userBase</code>. 
+        ///  The LDAP search filter used to find users within the <c>userBase</c>. 
         /// </para>
         /// </summary>
         public string UserSearchMatching

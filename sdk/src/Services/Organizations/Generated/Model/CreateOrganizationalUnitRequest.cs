@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Organizations.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.Organizations.Model
     /// </para>
     ///  
     /// <para>
-    /// If the request includes tags, then the requester must have the <code>organizations:TagResource</code>
+    /// If the request includes tags, then the requester must have the <c>organizations:TagResource</c>
     /// permission.
     /// </para>
     ///  
@@ -55,7 +56,7 @@ namespace Amazon.Organizations.Model
     {
         private string _name;
         private string _parentId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Name. 
@@ -119,8 +120,8 @@ namespace Amazon.Organizations.Model
         /// <para>
         /// A list of tags that you want to attach to the newly created OU. For each tag in the
         /// list, you must specify both a tag key and a value. You can set the value to an empty
-        /// string, but you can't set it to <code>null</code>. For more information about tagging,
-        /// see <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_tagging.html">Tagging
+        /// string, but you can't set it to <c>null</c>. For more information about tagging, see
+        /// <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_tagging.html">Tagging
         /// Organizations resources</a> in the Organizations User Guide.
         /// </para>
         ///  <note> 
@@ -139,7 +140,7 @@ namespace Amazon.Organizations.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

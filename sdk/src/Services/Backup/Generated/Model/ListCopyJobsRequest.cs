@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -40,6 +41,7 @@ namespace Amazon.Backup.Model
         private DateTime? _byCreatedAfter;
         private DateTime? _byCreatedBefore;
         private string _byDestinationVaultArn;
+        private string _byMessageCategory;
         private string _byParentJobId;
         private string _byResourceArn;
         private string _byResourceType;
@@ -144,7 +146,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property ByDestinationVaultArn. 
         /// <para>
         /// An Amazon Resource Name (ARN) that uniquely identifies a source backup vault to copy
-        /// from; for example, <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>.
+        /// from; for example, <c>arn:aws:backup:us-east-1:123456789012:backup-vault:aBackupVault</c>.
         /// 
         /// </para>
         /// </summary>
@@ -158,6 +160,44 @@ namespace Amazon.Backup.Model
         internal bool IsSetByDestinationVaultArn()
         {
             return this._byDestinationVaultArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ByMessageCategory. 
+        /// <para>
+        /// This is an optional parameter that can be used to filter out jobs with a MessageCategory
+        /// which matches the value you input.
+        /// </para>
+        ///  
+        /// <para>
+        /// Example strings may include <c>AccessDenied</c>, <c>SUCCESS</c>, <c>AGGREGATE_ALL</c>,
+        /// and <c>INVALIDPARAMETERS</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// View <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html">Monitoring</a>
+        /// for a list of accepted strings.
+        /// </para>
+        ///  
+        /// <para>
+        /// The the value ANY returns count of all message categories.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>AGGREGATE_ALL</c> aggregates job counts for all message categories and returns
+        /// the sum.
+        /// </para>
+        /// </summary>
+        public string ByMessageCategory
+        {
+            get { return this._byMessageCategory; }
+            set { this._byMessageCategory = value; }
+        }
+
+        // Check to see if ByMessageCategory property is set
+        internal bool IsSetByMessageCategory()
+        {
+            return this._byMessageCategory != null;
         }
 
         /// <summary>
@@ -204,51 +244,68 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Aurora</code> for Amazon Aurora
+        ///  <c>Aurora</c> for Amazon Aurora
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DocumentDB</code> for Amazon DocumentDB (with MongoDB compatibility)
+        ///  <c>CloudFormation</c> for CloudFormation
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DynamoDB</code> for Amazon DynamoDB
+        ///  <c>DocumentDB</c> for Amazon DocumentDB (with MongoDB compatibility)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EBS</code> for Amazon Elastic Block Store
+        ///  <c>DynamoDB</c> for Amazon DynamoDB
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EC2</code> for Amazon Elastic Compute Cloud
+        ///  <c>EBS</c> for Amazon Elastic Block Store
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EFS</code> for Amazon Elastic File System
+        ///  <c>EC2</c> for Amazon Elastic Compute Cloud
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FSx</code> for Amazon FSx
+        ///  <c>EFS</c> for Amazon Elastic File System
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Neptune</code> for Amazon Neptune
+        ///  <c>FSx</c> for Amazon FSx
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RDS</code> for Amazon Relational Database Service
+        ///  <c>Neptune</c> for Amazon Neptune
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Storage Gateway</code> for Storage Gateway
+        ///  <c>RDS</c> for Amazon Relational Database Service
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>S3</code> for Amazon S3
+        ///  <c>Redshift</c> for Amazon Redshift
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>VirtualMachine</code> for virtual machines
+        ///  <c>S3</c> for Amazon Simple Storage Service (Amazon S3)
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>SAP HANA on Amazon EC2</c> for SAP HANA databases on Amazon Elastic Compute Cloud
+        /// instances
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Storage Gateway</c> for Storage Gateway
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Timestream</c> for Amazon Timestream
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>VirtualMachine</c> for VMware virtual machines
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -305,7 +362,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The next item following a partial list of returned items. For example, if a request
-        /// is made to return maxResults number of items, NextToken allows you to return more
+        /// is made to return MaxResults number of items, NextToken allows you to return more
         /// items in your list starting at the location pointed to by the next token. 
         /// </para>
         /// </summary>

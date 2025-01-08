@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
@@ -35,13 +36,13 @@ namespace Amazon.APIGateway.Model
     public partial class PutMethodRequest : AmazonAPIGatewayRequest
     {
         private bool? _apiKeyRequired;
-        private List<string> _authorizationScopes = new List<string>();
+        private List<string> _authorizationScopes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _authorizationType;
         private string _authorizerId;
         private string _httpMethod;
         private string _operationName;
-        private Dictionary<string, string> _requestModels = new Dictionary<string, string>();
-        private Dictionary<string, bool> _requestParameters = new Dictionary<string, bool>();
+        private Dictionary<string, string> _requestModels = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private Dictionary<string, bool> _requestParameters = AWSConfigs.InitializeCollections ? new Dictionary<string, bool>() : null;
         private string _requestValidatorId;
         private string _resourceId;
         private string _restApiId;
@@ -68,12 +69,12 @@ namespace Amazon.APIGateway.Model
         /// Gets and sets the property AuthorizationScopes. 
         /// <para>
         /// A list of authorization scopes configured on the method. The scopes are used with
-        /// a <code>COGNITO_USER_POOLS</code> authorizer to authorize the method invocation. The
-        /// authorization works by matching the method scopes against the scopes parsed from the
-        /// access token in the incoming request. The method invocation is authorized if any method
-        /// scopes matches a claimed scope in the access token. Otherwise, the invocation is not
-        /// authorized. When the method scope is configured, the client must provide an access
-        /// token instead of an identity token for authorization purposes.
+        /// a <c>COGNITO_USER_POOLS</c> authorizer to authorize the method invocation. The authorization
+        /// works by matching the method scopes against the scopes parsed from the access token
+        /// in the incoming request. The method invocation is authorized if any method scopes
+        /// matches a claimed scope in the access token. Otherwise, the invocation is not authorized.
+        /// When the method scope is configured, the client must provide an access token instead
+        /// of an identity token for authorization purposes.
         /// </para>
         /// </summary>
         public List<string> AuthorizationScopes
@@ -85,15 +86,15 @@ namespace Amazon.APIGateway.Model
         // Check to see if AuthorizationScopes property is set
         internal bool IsSetAuthorizationScopes()
         {
-            return this._authorizationScopes != null && this._authorizationScopes.Count > 0; 
+            return this._authorizationScopes != null && (this._authorizationScopes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AuthorizationType. 
         /// <para>
-        /// The method's authorization type. Valid values are <code>NONE</code> for open access,
-        /// <code>AWS_IAM</code> for using AWS IAM permissions, <code>CUSTOM</code> for using
-        /// a custom authorizer, or <code>COGNITO_USER_POOLS</code> for using a Cognito user pool.
+        /// The method's authorization type. Valid values are <c>NONE</c> for open access, <c>AWS_IAM</c>
+        /// for using AWS IAM permissions, <c>CUSTOM</c> for using a custom authorizer, or <c>COGNITO_USER_POOLS</c>
+        /// for using a Cognito user pool.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -152,8 +153,8 @@ namespace Amazon.APIGateway.Model
         /// Gets and sets the property OperationName. 
         /// <para>
         /// A human-friendly operation identifier for the method. For example, you can assign
-        /// the <code>operationName</code> of <code>ListPets</code> for the <code>GET /pets</code>
-        /// method in the <code>PetStore</code> example.
+        /// the <c>operationName</c> of <c>ListPets</c> for the <c>GET /pets</c> method in the
+        /// <c>PetStore</c> example.
         /// </para>
         /// </summary>
         public string OperationName
@@ -185,7 +186,7 @@ namespace Amazon.APIGateway.Model
         // Check to see if RequestModels property is set
         internal bool IsSetRequestModels()
         {
-            return this._requestModels != null && this._requestModels.Count > 0; 
+            return this._requestModels != null && (this._requestModels.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -193,12 +194,12 @@ namespace Amazon.APIGateway.Model
         /// <para>
         /// A key-value map defining required or optional method request parameters that can be
         /// accepted by API Gateway. A key defines a method request parameter name matching the
-        /// pattern of <code>method.request.{location}.{name}</code>, where <code>location</code>
-        /// is <code>querystring</code>, <code>path</code>, or <code>header</code> and <code>name</code>
-        /// is a valid and unique parameter name. The value associated with the key is a Boolean
-        /// flag indicating whether the parameter is required (<code>true</code>) or optional
-        /// (<code>false</code>). The method request parameter names defined here are available
-        /// in Integration to be mapped to integration request parameters or body-mapping templates.
+        /// pattern of <c>method.request.{location}.{name}</c>, where <c>location</c> is <c>querystring</c>,
+        /// <c>path</c>, or <c>header</c> and <c>name</c> is a valid and unique parameter name.
+        /// The value associated with the key is a Boolean flag indicating whether the parameter
+        /// is required (<c>true</c>) or optional (<c>false</c>). The method request parameter
+        /// names defined here are available in Integration to be mapped to integration request
+        /// parameters or body-mapping templates.
         /// </para>
         /// </summary>
         public Dictionary<string, bool> RequestParameters
@@ -210,7 +211,7 @@ namespace Amazon.APIGateway.Model
         // Check to see if RequestParameters property is set
         internal bool IsSetRequestParameters()
         {
-            return this._requestParameters != null && this._requestParameters.Count > 0; 
+            return this._requestParameters != null && (this._requestParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

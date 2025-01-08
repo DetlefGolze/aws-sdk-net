@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.S3Control.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.S3Control
 {
     /// <summary>
-    /// Interface for accessing S3Control
+    /// <para>Interface for accessing S3Control</para>
     ///
     /// Amazon Web Services S3 Control provides access to Amazon S3 control plane actions.
     /// </summary>
@@ -42,14 +43,312 @@ namespace Amazon.S3Control
         IS3ControlPaginatorFactory Paginators { get; }
 
         
+        #region  AssociateAccessGrantsIdentityCenter
+
+
+        /// <summary>
+        /// Associate your S3 Access Grants instance with an Amazon Web Services IAM Identity
+        /// Center instance. Use this action if you want to create access grants for users or
+        /// groups from your corporate identity directory. First, you must add your corporate
+        /// identity directory to Amazon Web Services IAM Identity Center. Then, you can associate
+        /// this IAM Identity Center instance with your S3 Access Grants instance.
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:AssociateAccessGrantsIdentityCenter</c> permission to use
+        /// this operation. 
+        /// </para>
+        ///  </dd> <dt>Additional Permissions</dt> <dd> 
+        /// <para>
+        /// You must also have the following permissions: <c>sso:CreateApplication</c>, <c>sso:PutApplicationGrant</c>,
+        /// and <c>sso:PutApplicationAuthenticationMethod</c>. 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AssociateAccessGrantsIdentityCenter service method.</param>
+        /// 
+        /// <returns>The response from the AssociateAccessGrantsIdentityCenter service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/AssociateAccessGrantsIdentityCenter">REST API Reference for AssociateAccessGrantsIdentityCenter Operation</seealso>
+        AssociateAccessGrantsIdentityCenterResponse AssociateAccessGrantsIdentityCenter(AssociateAccessGrantsIdentityCenterRequest request);
+
+
+
+        /// <summary>
+        /// Associate your S3 Access Grants instance with an Amazon Web Services IAM Identity
+        /// Center instance. Use this action if you want to create access grants for users or
+        /// groups from your corporate identity directory. First, you must add your corporate
+        /// identity directory to Amazon Web Services IAM Identity Center. Then, you can associate
+        /// this IAM Identity Center instance with your S3 Access Grants instance.
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:AssociateAccessGrantsIdentityCenter</c> permission to use
+        /// this operation. 
+        /// </para>
+        ///  </dd> <dt>Additional Permissions</dt> <dd> 
+        /// <para>
+        /// You must also have the following permissions: <c>sso:CreateApplication</c>, <c>sso:PutApplicationGrant</c>,
+        /// and <c>sso:PutApplicationAuthenticationMethod</c>. 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AssociateAccessGrantsIdentityCenter service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the AssociateAccessGrantsIdentityCenter service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/AssociateAccessGrantsIdentityCenter">REST API Reference for AssociateAccessGrantsIdentityCenter Operation</seealso>
+        Task<AssociateAccessGrantsIdentityCenterResponse> AssociateAccessGrantsIdentityCenterAsync(AssociateAccessGrantsIdentityCenterRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  CreateAccessGrant
+
+
+        /// <summary>
+        /// Creates an access grant that gives a grantee access to your S3 data. The grantee can
+        /// be an IAM user or role or a directory user, or group. Before you can create a grant,
+        /// you must have an S3 Access Grants instance in the same Region as the S3 data. You
+        /// can create an S3 Access Grants instance using the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessGrantsInstance.html">CreateAccessGrantsInstance</a>.
+        /// You must also have registered at least one S3 data location in your S3 Access Grants
+        /// instance using <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessGrantsLocation.html">CreateAccessGrantsLocation</a>.
+        /// 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:CreateAccessGrant</c> permission to use this operation. 
+        /// </para>
+        ///  </dd> <dt>Additional Permissions</dt> <dd> 
+        /// <para>
+        /// For any directory identity - <c>sso:DescribeInstance</c> and <c>sso:DescribeApplication</c>
+        /// 
+        /// </para>
+        ///  
+        /// <para>
+        /// For directory users - <c>identitystore:DescribeUser</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// For directory groups - <c>identitystore:DescribeGroup</c> 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateAccessGrant service method.</param>
+        /// 
+        /// <returns>The response from the CreateAccessGrant service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateAccessGrant">REST API Reference for CreateAccessGrant Operation</seealso>
+        CreateAccessGrantResponse CreateAccessGrant(CreateAccessGrantRequest request);
+
+
+
+        /// <summary>
+        /// Creates an access grant that gives a grantee access to your S3 data. The grantee can
+        /// be an IAM user or role or a directory user, or group. Before you can create a grant,
+        /// you must have an S3 Access Grants instance in the same Region as the S3 data. You
+        /// can create an S3 Access Grants instance using the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessGrantsInstance.html">CreateAccessGrantsInstance</a>.
+        /// You must also have registered at least one S3 data location in your S3 Access Grants
+        /// instance using <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessGrantsLocation.html">CreateAccessGrantsLocation</a>.
+        /// 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:CreateAccessGrant</c> permission to use this operation. 
+        /// </para>
+        ///  </dd> <dt>Additional Permissions</dt> <dd> 
+        /// <para>
+        /// For any directory identity - <c>sso:DescribeInstance</c> and <c>sso:DescribeApplication</c>
+        /// 
+        /// </para>
+        ///  
+        /// <para>
+        /// For directory users - <c>identitystore:DescribeUser</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// For directory groups - <c>identitystore:DescribeGroup</c> 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateAccessGrant service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateAccessGrant service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateAccessGrant">REST API Reference for CreateAccessGrant Operation</seealso>
+        Task<CreateAccessGrantResponse> CreateAccessGrantAsync(CreateAccessGrantRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  CreateAccessGrantsInstance
+
+
+        /// <summary>
+        /// Creates an S3 Access Grants instance, which serves as a logical grouping for access
+        /// grants. You can create one S3 Access Grants instance per Region per account. 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:CreateAccessGrantsInstance</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> <dt>Additional Permissions</dt> <dd> 
+        /// <para>
+        /// To associate an IAM Identity Center instance with your S3 Access Grants instance,
+        /// you must also have the <c>sso:DescribeInstance</c>, <c>sso:CreateApplication</c>,
+        /// <c>sso:PutApplicationGrant</c>, and <c>sso:PutApplicationAuthenticationMethod</c>
+        /// permissions. 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateAccessGrantsInstance service method.</param>
+        /// 
+        /// <returns>The response from the CreateAccessGrantsInstance service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateAccessGrantsInstance">REST API Reference for CreateAccessGrantsInstance Operation</seealso>
+        CreateAccessGrantsInstanceResponse CreateAccessGrantsInstance(CreateAccessGrantsInstanceRequest request);
+
+
+
+        /// <summary>
+        /// Creates an S3 Access Grants instance, which serves as a logical grouping for access
+        /// grants. You can create one S3 Access Grants instance per Region per account. 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:CreateAccessGrantsInstance</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> <dt>Additional Permissions</dt> <dd> 
+        /// <para>
+        /// To associate an IAM Identity Center instance with your S3 Access Grants instance,
+        /// you must also have the <c>sso:DescribeInstance</c>, <c>sso:CreateApplication</c>,
+        /// <c>sso:PutApplicationGrant</c>, and <c>sso:PutApplicationAuthenticationMethod</c>
+        /// permissions. 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateAccessGrantsInstance service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateAccessGrantsInstance service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateAccessGrantsInstance">REST API Reference for CreateAccessGrantsInstance Operation</seealso>
+        Task<CreateAccessGrantsInstanceResponse> CreateAccessGrantsInstanceAsync(CreateAccessGrantsInstanceRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  CreateAccessGrantsLocation
+
+
+        /// <summary>
+        /// The S3 data location that you would like to register in your S3 Access Grants instance.
+        /// Your S3 data must be in the same Region as your S3 Access Grants instance. The location
+        /// can be one of the following: 
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// The default S3 location <c>s3://</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// A bucket - <c>S3://&lt;bucket-name&gt;</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// A bucket and prefix - <c>S3://&lt;bucket-name&gt;/&lt;prefix&gt;</c> 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// When you register a location, you must include the IAM role that has permission to
+        /// manage the S3 location that you are registering. Give S3 Access Grants permission
+        /// to assume this role <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants-location.html">using
+        /// a policy</a>. S3 Access Grants assumes this role to manage access to the location
+        /// and to vend temporary credentials to grantees or client applications. 
+        /// </para>
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:CreateAccessGrantsLocation</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> <dt>Additional Permissions</dt> <dd> 
+        /// <para>
+        /// You must also have the following permission for the specified IAM role: <c>iam:PassRole</c>
+        /// 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateAccessGrantsLocation service method.</param>
+        /// 
+        /// <returns>The response from the CreateAccessGrantsLocation service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateAccessGrantsLocation">REST API Reference for CreateAccessGrantsLocation Operation</seealso>
+        CreateAccessGrantsLocationResponse CreateAccessGrantsLocation(CreateAccessGrantsLocationRequest request);
+
+
+
+        /// <summary>
+        /// The S3 data location that you would like to register in your S3 Access Grants instance.
+        /// Your S3 data must be in the same Region as your S3 Access Grants instance. The location
+        /// can be one of the following: 
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// The default S3 location <c>s3://</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// A bucket - <c>S3://&lt;bucket-name&gt;</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// A bucket and prefix - <c>S3://&lt;bucket-name&gt;/&lt;prefix&gt;</c> 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// When you register a location, you must include the IAM role that has permission to
+        /// manage the S3 location that you are registering. Give S3 Access Grants permission
+        /// to assume this role <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants-location.html">using
+        /// a policy</a>. S3 Access Grants assumes this role to manage access to the location
+        /// and to vend temporary credentials to grantees or client applications. 
+        /// </para>
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:CreateAccessGrantsLocation</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> <dt>Additional Permissions</dt> <dd> 
+        /// <para>
+        /// You must also have the following permission for the specified IAM role: <c>iam:PassRole</c>
+        /// 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateAccessGrantsLocation service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateAccessGrantsLocation service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateAccessGrantsLocation">REST API Reference for CreateAccessGrantsLocation Operation</seealso>
+        Task<CreateAccessGrantsLocationResponse> CreateAccessGrantsLocationAsync(CreateAccessGrantsLocationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  CreateAccessPoint
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Creates an access point and associates it with the specified bucket. For more information,
         /// see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html">Managing
         /// Data Access with Amazon S3 Access Points</a> in the <i>Amazon S3 User Guide</i>.
-        /// 
+        /// </para>
         ///   <note> 
         /// <para>
         /// S3 on Outposts only supports VPC-style access points. 
@@ -63,16 +362,16 @@ namespace Amazon.S3Control
         ///  </note> 
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html#API_control_CreateAccessPoint_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html#API_control_CreateAccessPoint_Examples">Examples</a>
         /// section.
         /// </para>
         ///   
         /// <para>
-        /// The following actions are related to <code>CreateAccessPoint</code>:
+        /// The following actions are related to <c>CreateAccessPoint</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -100,10 +399,16 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Creates an access point and associates it with the specified bucket. For more information,
         /// see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html">Managing
         /// Data Access with Amazon S3 Access Points</a> in the <i>Amazon S3 User Guide</i>.
-        /// 
+        /// </para>
         ///   <note> 
         /// <para>
         /// S3 on Outposts only supports VPC-style access points. 
@@ -117,16 +422,16 @@ namespace Amazon.S3Control
         ///  </note> 
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html#API_control_CreateAccessPoint_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html#API_control_CreateAccessPoint_Examples">Examples</a>
         /// section.
         /// </para>
         ///   
         /// <para>
-        /// The following actions are related to <code>CreateAccessPoint</code>:
+        /// The following actions are related to <c>CreateAccessPoint</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -160,12 +465,18 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Creates an Object Lambda Access Point. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/transforming-objects.html">Transforming
         /// objects with Object Lambda Access Points</a> in the <i>Amazon S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>CreateAccessPointForObjectLambda</code>:
+        /// The following actions are related to <c>CreateAccessPointForObjectLambda</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -193,12 +504,18 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Creates an Object Lambda Access Point. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/transforming-objects.html">Transforming
         /// objects with Object Lambda Access Points</a> in the <i>Amazon S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>CreateAccessPointForObjectLambda</code>:
+        /// The following actions are related to <c>CreateAccessPointForObjectLambda</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -272,13 +589,13 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and <code>x-amz-outpost-id</code> in your API request,
+        /// Outposts endpoint hostname prefix and <c>x-amz-outpost-id</c> in your API request,
         /// see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateBucket.html#API_control_CreateBucket_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>CreateBucket</code> for Amazon S3 on Outposts:
+        /// The following actions are related to <c>CreateBucket</c> for Amazon S3 on Outposts:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -363,13 +680,13 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and <code>x-amz-outpost-id</code> in your API request,
+        /// Outposts endpoint hostname prefix and <c>x-amz-outpost-id</c> in your API request,
         /// see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateBucket.html#API_control_CreateBucket_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>CreateBucket</code> for Amazon S3 on Outposts:
+        /// The following actions are related to <c>CreateBucket</c> for Amazon S3 on Outposts:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -420,16 +737,21 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// This operation creates an S3 Batch Operations job.
+        /// 
+        ///  
+        /// <para>
         /// You can use S3 Batch Operations to perform large-scale batch actions on Amazon S3
         /// objects. Batch Operations can run a single action on lists of Amazon S3 objects that
         /// you specify. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html">S3
         /// Batch Operations</a> in the <i>Amazon S3 User Guide</i>.
-        /// 
-        ///  
-        /// <para>
-        /// This action creates a S3 Batch Operations job.
         /// </para>
-        ///   
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// For information about permissions required to use the Batch Operations, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops-iam-role-policies.html">Granting
+        /// permissions for S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
+        ///  </dd> </dl>  
         /// <para>
         /// Related actions include:
         /// </para>
@@ -481,16 +803,21 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// This operation creates an S3 Batch Operations job.
+        /// 
+        ///  
+        /// <para>
         /// You can use S3 Batch Operations to perform large-scale batch actions on Amazon S3
         /// objects. Batch Operations can run a single action on lists of Amazon S3 objects that
         /// you specify. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html">S3
         /// Batch Operations</a> in the <i>Amazon S3 User Guide</i>.
-        /// 
-        ///  
-        /// <para>
-        /// This action creates a S3 Batch Operations job.
         /// </para>
-        ///   
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// For information about permissions required to use the Batch Operations, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops-iam-role-policies.html">Granting
+        /// permissions for S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
+        ///  </dd> </dl>  
         /// <para>
         /// Related actions include:
         /// </para>
@@ -548,25 +875,31 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Creates a Multi-Region Access Point and associates it with the specified buckets.
         /// For more information about creating Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html">Creating
         /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// This action will always be routed to the US West (Oregon) Region. For more information
-        /// about the restrictions around managing Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html">Managing
-        /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
+        /// about the restrictions around working with Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html">Multi-Region
+        /// Access Point restrictions and limitations</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         ///  
         /// <para>
         /// This request is asynchronous, meaning that you might receive a response before the
         /// command has completed. When this request provides a response, it provides a token
-        /// that you can use to monitor the status of the request with <code>DescribeMultiRegionAccessPointOperation</code>.
+        /// that you can use to monitor the status of the request with <c>DescribeMultiRegionAccessPointOperation</c>.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>CreateMultiRegionAccessPoint</code>:
+        /// The following actions are related to <c>CreateMultiRegionAccessPoint</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -599,25 +932,31 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Creates a Multi-Region Access Point and associates it with the specified buckets.
         /// For more information about creating Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html">Creating
         /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// This action will always be routed to the US West (Oregon) Region. For more information
-        /// about the restrictions around managing Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html">Managing
-        /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
+        /// about the restrictions around working with Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html">Multi-Region
+        /// Access Point restrictions and limitations</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         ///  
         /// <para>
         /// This request is asynchronous, meaning that you might receive a response before the
         /// command has completed. When this request provides a response, it provides a token
-        /// that you can use to monitor the status of the request with <code>DescribeMultiRegionAccessPointOperation</code>.
+        /// that you can use to monitor the status of the request with <c>DescribeMultiRegionAccessPointOperation</c>.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>CreateMultiRegionAccessPoint</code>:
+        /// The following actions are related to <c>CreateMultiRegionAccessPoint</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -652,25 +991,295 @@ namespace Amazon.S3Control
 
         #endregion
         
+        #region  CreateStorageLensGroup
+
+
+        /// <summary>
+        /// Creates a new S3 Storage Lens group and associates it with the specified Amazon Web
+        /// Services account ID. An S3 Storage Lens group is a custom grouping of objects based
+        /// on prefix, suffix, object tags, object size, object age, or a combination of these
+        /// filters. For each Storage Lens group that you’ve created, you can also optionally
+        /// add Amazon Web Services resource tags. For more information about S3 Storage Lens
+        /// groups, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups-overview.html">Working
+        /// with S3 Storage Lens groups</a>.
+        /// 
+        ///  
+        /// <para>
+        /// To use this operation, you must have the permission to perform the <c>s3:CreateStorageLensGroup</c>
+        /// action. If you’re trying to create a Storage Lens group with Amazon Web Services resource
+        /// tags, you must also have permission to perform the <c>s3:TagResource</c> action. For
+        /// more information about the required Storage Lens Groups permissions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions">Setting
+        /// account permissions to use S3 Storage Lens groups</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information about Storage Lens groups errors, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList">List
+        /// of Amazon S3 Storage Lens error codes</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateStorageLensGroup service method.</param>
+        /// 
+        /// <returns>The response from the CreateStorageLensGroup service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateStorageLensGroup">REST API Reference for CreateStorageLensGroup Operation</seealso>
+        CreateStorageLensGroupResponse CreateStorageLensGroup(CreateStorageLensGroupRequest request);
+
+
+
+        /// <summary>
+        /// Creates a new S3 Storage Lens group and associates it with the specified Amazon Web
+        /// Services account ID. An S3 Storage Lens group is a custom grouping of objects based
+        /// on prefix, suffix, object tags, object size, object age, or a combination of these
+        /// filters. For each Storage Lens group that you’ve created, you can also optionally
+        /// add Amazon Web Services resource tags. For more information about S3 Storage Lens
+        /// groups, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups-overview.html">Working
+        /// with S3 Storage Lens groups</a>.
+        /// 
+        ///  
+        /// <para>
+        /// To use this operation, you must have the permission to perform the <c>s3:CreateStorageLensGroup</c>
+        /// action. If you’re trying to create a Storage Lens group with Amazon Web Services resource
+        /// tags, you must also have permission to perform the <c>s3:TagResource</c> action. For
+        /// more information about the required Storage Lens Groups permissions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions">Setting
+        /// account permissions to use S3 Storage Lens groups</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information about Storage Lens groups errors, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList">List
+        /// of Amazon S3 Storage Lens error codes</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateStorageLensGroup service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateStorageLensGroup service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateStorageLensGroup">REST API Reference for CreateStorageLensGroup Operation</seealso>
+        Task<CreateStorageLensGroupResponse> CreateStorageLensGroupAsync(CreateStorageLensGroupRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DeleteAccessGrant
+
+
+        /// <summary>
+        /// Deletes the access grant from the S3 Access Grants instance. You cannot undo an access
+        /// grant deletion and the grantee will no longer have access to the S3 data.
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:DeleteAccessGrant</c> permission to use this operation. 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteAccessGrant service method.</param>
+        /// 
+        /// <returns>The response from the DeleteAccessGrant service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessGrant">REST API Reference for DeleteAccessGrant Operation</seealso>
+        DeleteAccessGrantResponse DeleteAccessGrant(DeleteAccessGrantRequest request);
+
+
+
+        /// <summary>
+        /// Deletes the access grant from the S3 Access Grants instance. You cannot undo an access
+        /// grant deletion and the grantee will no longer have access to the S3 data.
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:DeleteAccessGrant</c> permission to use this operation. 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteAccessGrant service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteAccessGrant service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessGrant">REST API Reference for DeleteAccessGrant Operation</seealso>
+        Task<DeleteAccessGrantResponse> DeleteAccessGrantAsync(DeleteAccessGrantRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DeleteAccessGrantsInstance
+
+
+        /// <summary>
+        /// Deletes your S3 Access Grants instance. You must first delete the access grants and
+        /// locations before S3 Access Grants can delete the instance. See <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessGrant.html">DeleteAccessGrant</a>
+        /// and <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessGrantsLocation.html">DeleteAccessGrantsLocation</a>.
+        /// If you have associated an IAM Identity Center instance with your S3 Access Grants
+        /// instance, you must first dissassociate the Identity Center instance from the S3 Access
+        /// Grants instance before you can delete the S3 Access Grants instance. See <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_AssociateAccessGrantsIdentityCenter.html">AssociateAccessGrantsIdentityCenter</a>
+        /// and <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DissociateAccessGrantsIdentityCenter.html">DissociateAccessGrantsIdentityCenter</a>.
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:DeleteAccessGrantsInstance</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteAccessGrantsInstance service method.</param>
+        /// 
+        /// <returns>The response from the DeleteAccessGrantsInstance service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessGrantsInstance">REST API Reference for DeleteAccessGrantsInstance Operation</seealso>
+        DeleteAccessGrantsInstanceResponse DeleteAccessGrantsInstance(DeleteAccessGrantsInstanceRequest request);
+
+
+
+        /// <summary>
+        /// Deletes your S3 Access Grants instance. You must first delete the access grants and
+        /// locations before S3 Access Grants can delete the instance. See <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessGrant.html">DeleteAccessGrant</a>
+        /// and <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessGrantsLocation.html">DeleteAccessGrantsLocation</a>.
+        /// If you have associated an IAM Identity Center instance with your S3 Access Grants
+        /// instance, you must first dissassociate the Identity Center instance from the S3 Access
+        /// Grants instance before you can delete the S3 Access Grants instance. See <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_AssociateAccessGrantsIdentityCenter.html">AssociateAccessGrantsIdentityCenter</a>
+        /// and <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DissociateAccessGrantsIdentityCenter.html">DissociateAccessGrantsIdentityCenter</a>.
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:DeleteAccessGrantsInstance</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteAccessGrantsInstance service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteAccessGrantsInstance service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessGrantsInstance">REST API Reference for DeleteAccessGrantsInstance Operation</seealso>
+        Task<DeleteAccessGrantsInstanceResponse> DeleteAccessGrantsInstanceAsync(DeleteAccessGrantsInstanceRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DeleteAccessGrantsInstanceResourcePolicy
+
+
+        /// <summary>
+        /// Deletes the resource policy of the S3 Access Grants instance. The resource policy
+        /// is used to manage cross-account access to your S3 Access Grants instance. By deleting
+        /// the resource policy, you delete any cross-account permissions to your S3 Access Grants
+        /// instance. 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:DeleteAccessGrantsInstanceResourcePolicy</c> permission to
+        /// use this operation. 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteAccessGrantsInstanceResourcePolicy service method.</param>
+        /// 
+        /// <returns>The response from the DeleteAccessGrantsInstanceResourcePolicy service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessGrantsInstanceResourcePolicy">REST API Reference for DeleteAccessGrantsInstanceResourcePolicy Operation</seealso>
+        DeleteAccessGrantsInstanceResourcePolicyResponse DeleteAccessGrantsInstanceResourcePolicy(DeleteAccessGrantsInstanceResourcePolicyRequest request);
+
+
+
+        /// <summary>
+        /// Deletes the resource policy of the S3 Access Grants instance. The resource policy
+        /// is used to manage cross-account access to your S3 Access Grants instance. By deleting
+        /// the resource policy, you delete any cross-account permissions to your S3 Access Grants
+        /// instance. 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:DeleteAccessGrantsInstanceResourcePolicy</c> permission to
+        /// use this operation. 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteAccessGrantsInstanceResourcePolicy service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteAccessGrantsInstanceResourcePolicy service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessGrantsInstanceResourcePolicy">REST API Reference for DeleteAccessGrantsInstanceResourcePolicy Operation</seealso>
+        Task<DeleteAccessGrantsInstanceResourcePolicyResponse> DeleteAccessGrantsInstanceResourcePolicyAsync(DeleteAccessGrantsInstanceResourcePolicyRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DeleteAccessGrantsLocation
+
+
+        /// <summary>
+        /// Deregisters a location from your S3 Access Grants instance. You can only delete a
+        /// location registration from an S3 Access Grants instance if there are no grants associated
+        /// with this location. See <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessGrant.html">Delete
+        /// a grant</a> for information on how to delete grants. You need to have at least one
+        /// registered location in your S3 Access Grants instance in order to create access grants.
+        /// 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:DeleteAccessGrantsLocation</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteAccessGrantsLocation service method.</param>
+        /// 
+        /// <returns>The response from the DeleteAccessGrantsLocation service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessGrantsLocation">REST API Reference for DeleteAccessGrantsLocation Operation</seealso>
+        DeleteAccessGrantsLocationResponse DeleteAccessGrantsLocation(DeleteAccessGrantsLocationRequest request);
+
+
+
+        /// <summary>
+        /// Deregisters a location from your S3 Access Grants instance. You can only delete a
+        /// location registration from an S3 Access Grants instance if there are no grants associated
+        /// with this location. See <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessGrant.html">Delete
+        /// a grant</a> for information on how to delete grants. You need to have at least one
+        /// registered location in your S3 Access Grants instance in order to create access grants.
+        /// 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:DeleteAccessGrantsLocation</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteAccessGrantsLocation service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteAccessGrantsLocation service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessGrantsLocation">REST API Reference for DeleteAccessGrantsLocation Operation</seealso>
+        Task<DeleteAccessGrantsLocationResponse> DeleteAccessGrantsLocationAsync(DeleteAccessGrantsLocationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  DeleteAccessPoint
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Deletes the specified access point.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html#API_control_DeleteAccessPoint_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html#API_control_DeleteAccessPoint_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>DeleteAccessPoint</code>:
+        /// The following actions are related to <c>DeleteAccessPoint</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -698,21 +1307,27 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Deletes the specified access point.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html#API_control_DeleteAccessPoint_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html#API_control_DeleteAccessPoint_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>DeleteAccessPoint</code>:
+        /// The following actions are related to <c>DeleteAccessPoint</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -746,11 +1361,17 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Deletes the specified Object Lambda Access Point.
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>DeleteAccessPointForObjectLambda</code>:
+        /// The following actions are related to <c>DeleteAccessPointForObjectLambda</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -778,11 +1399,17 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Deletes the specified Object Lambda Access Point.
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>DeleteAccessPointForObjectLambda</code>:
+        /// The following actions are related to <c>DeleteAccessPointForObjectLambda</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -816,21 +1443,27 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Deletes the access point policy for the specified access point.
-        /// 
+        /// </para>
         ///   
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointPolicy.html#API_control_DeleteAccessPointPolicy_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointPolicy.html#API_control_DeleteAccessPointPolicy_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>DeleteAccessPointPolicy</code>:
+        /// The following actions are related to <c>DeleteAccessPointPolicy</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -853,21 +1486,27 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Deletes the access point policy for the specified access point.
-        /// 
+        /// </para>
         ///   
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointPolicy.html#API_control_DeleteAccessPointPolicy_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointPolicy.html#API_control_DeleteAccessPointPolicy_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>DeleteAccessPointPolicy</code>:
+        /// The following actions are related to <c>DeleteAccessPointPolicy</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -896,11 +1535,17 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Removes the resource policy for an Object Lambda Access Point.
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>DeleteAccessPointPolicyForObjectLambda</code>:
+        /// The following actions are related to <c>DeleteAccessPointPolicyForObjectLambda</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -923,11 +1568,17 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Removes the resource policy for an Object Lambda Access Point.
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>DeleteAccessPointPolicyForObjectLambda</code>:
+        /// The following actions are related to <c>DeleteAccessPointPolicyForObjectLambda</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -972,11 +1623,11 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucket.html#API_control_DeleteBucket_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucket.html#API_control_DeleteBucket_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
@@ -1025,11 +1676,11 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucket.html#API_control_DeleteBucket_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucket.html#API_control_DeleteBucket_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
@@ -1085,18 +1736,18 @@ namespace Amazon.S3Control
         /// </para>
         ///  
         /// <para>
-        /// To use this action, you must have permission to perform the <code>s3-outposts:DeleteLifecycleConfiguration</code>
+        /// To use this operation, you must have permission to perform the <c>s3-outposts:PutLifecycleConfiguration</c>
         /// action. By default, the bucket owner has this permission and the Outposts bucket owner
         /// can grant this permission to others.
         /// </para>
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketLifecycleConfiguration.html#API_control_DeleteBucketLifecycleConfiguration_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketLifecycleConfiguration.html#API_control_DeleteBucketLifecycleConfiguration_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
@@ -1146,18 +1797,18 @@ namespace Amazon.S3Control
         /// </para>
         ///  
         /// <para>
-        /// To use this action, you must have permission to perform the <code>s3-outposts:DeleteLifecycleConfiguration</code>
+        /// To use this operation, you must have permission to perform the <c>s3-outposts:PutLifecycleConfiguration</c>
         /// action. By default, the bucket owner has this permission and the Outposts bucket owner
         /// can grant this permission to others.
         /// </para>
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketLifecycleConfiguration.html#API_control_DeleteBucketLifecycleConfiguration_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketLifecycleConfiguration.html#API_control_DeleteBucketLifecycleConfiguration_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
@@ -1207,17 +1858,17 @@ namespace Amazon.S3Control
         /// This implementation of the DELETE action uses the policy subresource to delete the
         /// policy of a specified Amazon S3 on Outposts bucket. If you are using an identity other
         /// than the root user of the Amazon Web Services account that owns the bucket, the calling
-        /// identity must have the <code>s3-outposts:DeleteBucketPolicy</code> permissions on
-        /// the specified Outposts bucket and belong to the bucket owner's account to use this
-        /// action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html">Using
+        /// identity must have the <c>s3-outposts:DeleteBucketPolicy</c> permissions on the specified
+        /// Outposts bucket and belong to the bucket owner's account to use this action. For more
+        /// information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html">Using
         /// Amazon S3 on Outposts</a> in <i>Amazon S3 User Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// If you don't have <code>DeleteBucketPolicy</code> permissions, Amazon S3 returns a
-        /// <code>403 Access Denied</code> error. If you have the correct permissions, but you're
-        /// not using an identity that belongs to the bucket owner's account, Amazon S3 returns
-        /// a <code>405 Method Not Allowed</code> error. 
+        /// If you don't have <c>DeleteBucketPolicy</c> permissions, Amazon S3 returns a <c>403
+        /// Access Denied</c> error. If you have the correct permissions, but you're not using
+        /// an identity that belongs to the bucket owner's account, Amazon S3 returns a <c>405
+        /// Method Not Allowed</c> error. 
         /// </para>
         ///  <important> 
         /// <para>
@@ -1233,16 +1884,16 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketPolicy.html#API_control_DeleteBucketPolicy_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketPolicy.html#API_control_DeleteBucketPolicy_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>DeleteBucketPolicy</code>:
+        /// The following actions are related to <c>DeleteBucketPolicy</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -1276,17 +1927,17 @@ namespace Amazon.S3Control
         /// This implementation of the DELETE action uses the policy subresource to delete the
         /// policy of a specified Amazon S3 on Outposts bucket. If you are using an identity other
         /// than the root user of the Amazon Web Services account that owns the bucket, the calling
-        /// identity must have the <code>s3-outposts:DeleteBucketPolicy</code> permissions on
-        /// the specified Outposts bucket and belong to the bucket owner's account to use this
-        /// action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html">Using
+        /// identity must have the <c>s3-outposts:DeleteBucketPolicy</c> permissions on the specified
+        /// Outposts bucket and belong to the bucket owner's account to use this action. For more
+        /// information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html">Using
         /// Amazon S3 on Outposts</a> in <i>Amazon S3 User Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// If you don't have <code>DeleteBucketPolicy</code> permissions, Amazon S3 returns a
-        /// <code>403 Access Denied</code> error. If you have the correct permissions, but you're
-        /// not using an identity that belongs to the bucket owner's account, Amazon S3 returns
-        /// a <code>405 Method Not Allowed</code> error. 
+        /// If you don't have <c>DeleteBucketPolicy</c> permissions, Amazon S3 returns a <c>403
+        /// Access Denied</c> error. If you have the correct permissions, but you're not using
+        /// an identity that belongs to the bucket owner's account, Amazon S3 returns a <c>405
+        /// Method Not Allowed</c> error. 
         /// </para>
         ///  <important> 
         /// <para>
@@ -1302,16 +1953,16 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketPolicy.html#API_control_DeleteBucketPolicy_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketPolicy.html#API_control_DeleteBucketPolicy_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>DeleteBucketPolicy</code>:
+        /// The following actions are related to <c>DeleteBucketPolicy</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -1352,7 +2003,7 @@ namespace Amazon.S3Control
         /// </para>
         ///  
         /// <para>
-        /// To use this operation, you must have permissions to perform the <code>s3-outposts:PutReplicationConfiguration</code>
+        /// To use this operation, you must have permissions to perform the <c>s3-outposts:PutReplicationConfiguration</c>
         /// action. The Outposts bucket owner has this permission by default and can grant it
         /// to others. For more information about permissions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsIAM.html">Setting
         /// up IAM with S3 on Outposts</a> and <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsBucketPolicy.html">Managing
@@ -1360,21 +2011,20 @@ namespace Amazon.S3Control
         /// </para>
         ///  <note> 
         /// <para>
-        /// It can take a while to propagate <code>PUT</code> or <code>DELETE</code> requests
-        /// for a replication configuration to all S3 on Outposts systems. Therefore, the replication
-        /// configuration that's returned by a <code>GET</code> request soon after a <code>PUT</code>
-        /// or <code>DELETE</code> request might return a more recent result than what's on the
-        /// Outpost. If an Outpost is offline, the delay in updating the replication configuration
-        /// on that Outpost can be significant.
+        /// It can take a while to propagate <c>PUT</c> or <c>DELETE</c> requests for a replication
+        /// configuration to all S3 on Outposts systems. Therefore, the replication configuration
+        /// that's returned by a <c>GET</c> request soon after a <c>PUT</c> or <c>DELETE</c> request
+        /// might return a more recent result than what's on the Outpost. If an Outpost is offline,
+        /// the delay in updating the replication configuration on that Outpost can be significant.
         /// </para>
         ///  </note> 
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketReplication.html#API_control_DeleteBucketReplication_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketReplication.html#API_control_DeleteBucketReplication_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
@@ -1384,7 +2034,7 @@ namespace Amazon.S3Control
         /// </para>
         ///  
         /// <para>
-        /// The following operations are related to <code>DeleteBucketReplication</code>:
+        /// The following operations are related to <c>DeleteBucketReplication</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -1419,7 +2069,7 @@ namespace Amazon.S3Control
         /// </para>
         ///  
         /// <para>
-        /// To use this operation, you must have permissions to perform the <code>s3-outposts:PutReplicationConfiguration</code>
+        /// To use this operation, you must have permissions to perform the <c>s3-outposts:PutReplicationConfiguration</c>
         /// action. The Outposts bucket owner has this permission by default and can grant it
         /// to others. For more information about permissions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsIAM.html">Setting
         /// up IAM with S3 on Outposts</a> and <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsBucketPolicy.html">Managing
@@ -1427,21 +2077,20 @@ namespace Amazon.S3Control
         /// </para>
         ///  <note> 
         /// <para>
-        /// It can take a while to propagate <code>PUT</code> or <code>DELETE</code> requests
-        /// for a replication configuration to all S3 on Outposts systems. Therefore, the replication
-        /// configuration that's returned by a <code>GET</code> request soon after a <code>PUT</code>
-        /// or <code>DELETE</code> request might return a more recent result than what's on the
-        /// Outpost. If an Outpost is offline, the delay in updating the replication configuration
-        /// on that Outpost can be significant.
+        /// It can take a while to propagate <c>PUT</c> or <c>DELETE</c> requests for a replication
+        /// configuration to all S3 on Outposts systems. Therefore, the replication configuration
+        /// that's returned by a <c>GET</c> request soon after a <c>PUT</c> or <c>DELETE</c> request
+        /// might return a more recent result than what's on the Outpost. If an Outpost is offline,
+        /// the delay in updating the replication configuration on that Outpost can be significant.
         /// </para>
         ///  </note> 
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketReplication.html#API_control_DeleteBucketReplication_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketReplication.html#API_control_DeleteBucketReplication_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
@@ -1451,7 +2100,7 @@ namespace Amazon.S3Control
         /// </para>
         ///  
         /// <para>
-        /// The following operations are related to <code>DeleteBucketReplication</code>:
+        /// The following operations are related to <c>DeleteBucketReplication</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -1493,23 +2142,23 @@ namespace Amazon.S3Control
         /// </para>
         ///  
         /// <para>
-        /// To use this action, you must have permission to perform the <code>PutBucketTagging</code>
+        /// To use this action, you must have permission to perform the <c>PutBucketTagging</c>
         /// action. By default, the bucket owner has this permission and can grant this permission
         /// to others. 
         /// </para>
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketTagging.html#API_control_DeleteBucketTagging_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketTagging.html#API_control_DeleteBucketTagging_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>DeleteBucketTagging</code>:
+        /// The following actions are related to <c>DeleteBucketTagging</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -1545,23 +2194,23 @@ namespace Amazon.S3Control
         /// </para>
         ///  
         /// <para>
-        /// To use this action, you must have permission to perform the <code>PutBucketTagging</code>
+        /// To use this action, you must have permission to perform the <c>PutBucketTagging</c>
         /// action. By default, the bucket owner has this permission and can grant this permission
         /// to others. 
         /// </para>
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketTagging.html#API_control_DeleteBucketTagging_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketTagging.html#API_control_DeleteBucketTagging_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>DeleteBucketTagging</code>:
+        /// The following actions are related to <c>DeleteBucketTagging</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -1590,12 +2239,15 @@ namespace Amazon.S3Control
 
 
         /// <summary>
-        /// Removes the entire tag set from the specified S3 Batch Operations job. To use the
-        /// <code>DeleteJobTagging</code> operation, you must have permission to perform the <code>s3:DeleteJobTagging</code>
-        /// action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags">Controlling
-        /// access and labeling jobs using tags</a> in the <i>Amazon S3 User Guide</i>.
+        /// Removes the entire tag set from the specified S3 Batch Operations job.
         /// 
-        ///   
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// To use the <c>DeleteJobTagging</c> operation, you must have permission to perform
+        /// the <c>s3:DeleteJobTagging</c> action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags">Controlling
+        /// access and labeling jobs using tags</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
+        ///  </dd> </dl> 
         /// <para>
         /// Related actions include:
         /// </para>
@@ -1634,12 +2286,15 @@ namespace Amazon.S3Control
 
 
         /// <summary>
-        /// Removes the entire tag set from the specified S3 Batch Operations job. To use the
-        /// <code>DeleteJobTagging</code> operation, you must have permission to perform the <code>s3:DeleteJobTagging</code>
-        /// action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags">Controlling
-        /// access and labeling jobs using tags</a> in the <i>Amazon S3 User Guide</i>.
+        /// Removes the entire tag set from the specified S3 Batch Operations job.
         /// 
-        ///   
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// To use the <c>DeleteJobTagging</c> operation, you must have permission to perform
+        /// the <c>s3:DeleteJobTagging</c> action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags">Controlling
+        /// access and labeling jobs using tags</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
+        ///  </dd> </dl> 
         /// <para>
         /// Related actions include:
         /// </para>
@@ -1684,24 +2339,30 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Deletes a Multi-Region Access Point. This action does not delete the buckets associated
         /// with the Multi-Region Access Point, only the Multi-Region Access Point itself.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// This action will always be routed to the US West (Oregon) Region. For more information
-        /// about the restrictions around managing Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html">Managing
-        /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
+        /// about the restrictions around working with Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html">Multi-Region
+        /// Access Point restrictions and limitations</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         ///  
         /// <para>
         /// This request is asynchronous, meaning that you might receive a response before the
         /// command has completed. When this request provides a response, it provides a token
-        /// that you can use to monitor the status of the request with <code>DescribeMultiRegionAccessPointOperation</code>.
+        /// that you can use to monitor the status of the request with <c>DescribeMultiRegionAccessPointOperation</c>.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>DeleteMultiRegionAccessPoint</code>:
+        /// The following actions are related to <c>DeleteMultiRegionAccessPoint</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -1734,24 +2395,30 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Deletes a Multi-Region Access Point. This action does not delete the buckets associated
         /// with the Multi-Region Access Point, only the Multi-Region Access Point itself.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// This action will always be routed to the US West (Oregon) Region. For more information
-        /// about the restrictions around managing Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html">Managing
-        /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
+        /// about the restrictions around working with Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html">Multi-Region
+        /// Access Point restrictions and limitations</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         ///  
         /// <para>
         /// This request is asynchronous, meaning that you might receive a response before the
         /// command has completed. When this request provides a response, it provides a token
-        /// that you can use to monitor the status of the request with <code>DescribeMultiRegionAccessPointOperation</code>.
+        /// that you can use to monitor the status of the request with <c>DescribeMultiRegionAccessPointOperation</c>.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>DeleteMultiRegionAccessPoint</code>:
+        /// The following actions are related to <c>DeleteMultiRegionAccessPoint</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -1790,10 +2457,16 @@ namespace Amazon.S3Control
 
 
         /// <summary>
-        /// Removes the <code>PublicAccessBlock</code> configuration for an Amazon Web Services
-        /// account. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html">
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// Removes the <c>PublicAccessBlock</c> configuration for an Amazon Web Services account.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html">
         /// Using Amazon S3 block public access</a>.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// Related actions include:
@@ -1819,10 +2492,16 @@ namespace Amazon.S3Control
 
 
         /// <summary>
-        /// Removes the <code>PublicAccessBlock</code> configuration for an Amazon Web Services
-        /// account. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html">
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// Removes the <c>PublicAccessBlock</c> configuration for an Amazon Web Services account.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html">
         /// Using Amazon S3 block public access</a>.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// Related actions include:
@@ -1854,14 +2533,20 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Deletes the Amazon S3 Storage Lens configuration. For more information about S3 Storage
         /// Lens, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html">Assessing
         /// your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon
         /// S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  <note> 
         /// <para>
-        /// To use this action, you must have permission to perform the <code>s3:DeleteStorageLensConfiguration</code>
+        /// To use this action, you must have permission to perform the <c>s3:DeleteStorageLensConfiguration</c>
         /// action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html">Setting
         /// permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
@@ -1876,14 +2561,20 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Deletes the Amazon S3 Storage Lens configuration. For more information about S3 Storage
         /// Lens, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html">Assessing
         /// your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon
         /// S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  <note> 
         /// <para>
-        /// To use this action, you must have permission to perform the <code>s3:DeleteStorageLensConfiguration</code>
+        /// To use this action, you must have permission to perform the <c>s3:DeleteStorageLensConfiguration</c>
         /// action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html">Setting
         /// permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
@@ -1904,14 +2595,20 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Deletes the Amazon S3 Storage Lens configuration tags. For more information about
         /// S3 Storage Lens, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html">Assessing
         /// your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon
         /// S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  <note> 
         /// <para>
-        /// To use this action, you must have permission to perform the <code>s3:DeleteStorageLensConfigurationTagging</code>
+        /// To use this action, you must have permission to perform the <c>s3:DeleteStorageLensConfigurationTagging</c>
         /// action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html">Setting
         /// permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
@@ -1926,14 +2623,20 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Deletes the Amazon S3 Storage Lens configuration tags. For more information about
         /// S3 Storage Lens, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html">Assessing
         /// your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon
         /// S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  <note> 
         /// <para>
-        /// To use this action, you must have permission to perform the <code>s3:DeleteStorageLensConfigurationTagging</code>
+        /// To use this action, you must have permission to perform the <c>s3:DeleteStorageLensConfigurationTagging</c>
         /// action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html">Setting
         /// permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
@@ -1950,6 +2653,60 @@ namespace Amazon.S3Control
 
         #endregion
         
+        #region  DeleteStorageLensGroup
+
+
+        /// <summary>
+        /// Deletes an existing S3 Storage Lens group.
+        /// 
+        ///  
+        /// <para>
+        /// To use this operation, you must have the permission to perform the <c>s3:DeleteStorageLensGroup</c>
+        /// action. For more information about the required Storage Lens Groups permissions, see
+        /// <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions">Setting
+        /// account permissions to use S3 Storage Lens groups</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information about Storage Lens groups errors, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList">List
+        /// of Amazon S3 Storage Lens error codes</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteStorageLensGroup service method.</param>
+        /// 
+        /// <returns>The response from the DeleteStorageLensGroup service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteStorageLensGroup">REST API Reference for DeleteStorageLensGroup Operation</seealso>
+        DeleteStorageLensGroupResponse DeleteStorageLensGroup(DeleteStorageLensGroupRequest request);
+
+
+
+        /// <summary>
+        /// Deletes an existing S3 Storage Lens group.
+        /// 
+        ///  
+        /// <para>
+        /// To use this operation, you must have the permission to perform the <c>s3:DeleteStorageLensGroup</c>
+        /// action. For more information about the required Storage Lens Groups permissions, see
+        /// <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions">Setting
+        /// account permissions to use S3 Storage Lens groups</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information about Storage Lens groups errors, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList">List
+        /// of Amazon S3 Storage Lens error codes</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteStorageLensGroup service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteStorageLensGroup service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteStorageLensGroup">REST API Reference for DeleteStorageLensGroup Operation</seealso>
+        Task<DeleteStorageLensGroupResponse> DeleteStorageLensGroupAsync(DeleteStorageLensGroupRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  DescribeJob
 
 
@@ -1958,7 +2715,12 @@ namespace Amazon.S3Control
         /// more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html">S3
         /// Batch Operations</a> in the <i>Amazon S3 User Guide</i>.
         /// 
-        ///   
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// To use the <c>DescribeJob</c> operation, you must have permission to perform the <c>s3:DescribeJob</c>
+        /// action.
+        /// </para>
+        ///  </dd> </dl> 
         /// <para>
         /// Related actions include:
         /// </para>
@@ -2009,7 +2771,12 @@ namespace Amazon.S3Control
         /// more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html">S3
         /// Batch Operations</a> in the <i>Amazon S3 User Guide</i>.
         /// 
-        ///   
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// To use the <c>DescribeJob</c> operation, you must have permission to perform the <c>s3:DescribeJob</c>
+        /// action.
+        /// </para>
+        ///  </dd> </dl> 
         /// <para>
         /// Related actions include:
         /// </para>
@@ -2062,14 +2829,20 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Retrieves the status of an asynchronous request to manage a Multi-Region Access Point.
         /// For more information about managing Multi-Region Access Points and how asynchronous
-        /// requests work, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html">Managing
+        /// requests work, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MrapOperations.html">Using
         /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetMultiRegionAccessPoint</code>:
+        /// The following actions are related to <c>GetMultiRegionAccessPoint</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -2102,14 +2875,20 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Retrieves the status of an asynchronous request to manage a Multi-Region Access Point.
         /// For more information about managing Multi-Region Access Points and how asynchronous
-        /// requests work, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html">Managing
+        /// requests work, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MrapOperations.html">Using
         /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetMultiRegionAccessPoint</code>:
+        /// The following actions are related to <c>GetMultiRegionAccessPoint</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -2144,25 +2923,313 @@ namespace Amazon.S3Control
 
         #endregion
         
+        #region  DissociateAccessGrantsIdentityCenter
+
+
+        /// <summary>
+        /// Dissociates the Amazon Web Services IAM Identity Center instance from the S3 Access
+        /// Grants instance. 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:DissociateAccessGrantsIdentityCenter</c> permission to use
+        /// this operation. 
+        /// </para>
+        ///  </dd> <dt>Additional Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>sso:DeleteApplication</c> permission to use this operation. 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DissociateAccessGrantsIdentityCenter service method.</param>
+        /// 
+        /// <returns>The response from the DissociateAccessGrantsIdentityCenter service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DissociateAccessGrantsIdentityCenter">REST API Reference for DissociateAccessGrantsIdentityCenter Operation</seealso>
+        DissociateAccessGrantsIdentityCenterResponse DissociateAccessGrantsIdentityCenter(DissociateAccessGrantsIdentityCenterRequest request);
+
+
+
+        /// <summary>
+        /// Dissociates the Amazon Web Services IAM Identity Center instance from the S3 Access
+        /// Grants instance. 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:DissociateAccessGrantsIdentityCenter</c> permission to use
+        /// this operation. 
+        /// </para>
+        ///  </dd> <dt>Additional Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>sso:DeleteApplication</c> permission to use this operation. 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DissociateAccessGrantsIdentityCenter service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DissociateAccessGrantsIdentityCenter service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DissociateAccessGrantsIdentityCenter">REST API Reference for DissociateAccessGrantsIdentityCenter Operation</seealso>
+        Task<DissociateAccessGrantsIdentityCenterResponse> DissociateAccessGrantsIdentityCenterAsync(DissociateAccessGrantsIdentityCenterRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  GetAccessGrant
+
+
+        /// <summary>
+        /// Get the details of an access grant from your S3 Access Grants instance.
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:GetAccessGrant</c> permission to use this operation. 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetAccessGrant service method.</param>
+        /// 
+        /// <returns>The response from the GetAccessGrant service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessGrant">REST API Reference for GetAccessGrant Operation</seealso>
+        GetAccessGrantResponse GetAccessGrant(GetAccessGrantRequest request);
+
+
+
+        /// <summary>
+        /// Get the details of an access grant from your S3 Access Grants instance.
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:GetAccessGrant</c> permission to use this operation. 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetAccessGrant service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetAccessGrant service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessGrant">REST API Reference for GetAccessGrant Operation</seealso>
+        Task<GetAccessGrantResponse> GetAccessGrantAsync(GetAccessGrantRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  GetAccessGrantsInstance
+
+
+        /// <summary>
+        /// Retrieves the S3 Access Grants instance for a Region in your account. 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:GetAccessGrantsInstance</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> </dl> <note> 
+        /// <para>
+        ///  <c>GetAccessGrantsInstance</c> is not supported for cross-account access. You can
+        /// only call the API from the account that owns the S3 Access Grants instance.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetAccessGrantsInstance service method.</param>
+        /// 
+        /// <returns>The response from the GetAccessGrantsInstance service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessGrantsInstance">REST API Reference for GetAccessGrantsInstance Operation</seealso>
+        GetAccessGrantsInstanceResponse GetAccessGrantsInstance(GetAccessGrantsInstanceRequest request);
+
+
+
+        /// <summary>
+        /// Retrieves the S3 Access Grants instance for a Region in your account. 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:GetAccessGrantsInstance</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> </dl> <note> 
+        /// <para>
+        ///  <c>GetAccessGrantsInstance</c> is not supported for cross-account access. You can
+        /// only call the API from the account that owns the S3 Access Grants instance.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetAccessGrantsInstance service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetAccessGrantsInstance service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessGrantsInstance">REST API Reference for GetAccessGrantsInstance Operation</seealso>
+        Task<GetAccessGrantsInstanceResponse> GetAccessGrantsInstanceAsync(GetAccessGrantsInstanceRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  GetAccessGrantsInstanceForPrefix
+
+
+        /// <summary>
+        /// Retrieve the S3 Access Grants instance that contains a particular prefix. 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:GetAccessGrantsInstanceForPrefix</c> permission for the caller
+        /// account to use this operation. 
+        /// </para>
+        ///  </dd> <dt>Additional Permissions</dt> <dd> 
+        /// <para>
+        /// The prefix owner account must grant you the following permissions to their S3 Access
+        /// Grants instance: <c>s3:GetAccessGrantsInstanceForPrefix</c>. 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetAccessGrantsInstanceForPrefix service method.</param>
+        /// 
+        /// <returns>The response from the GetAccessGrantsInstanceForPrefix service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessGrantsInstanceForPrefix">REST API Reference for GetAccessGrantsInstanceForPrefix Operation</seealso>
+        GetAccessGrantsInstanceForPrefixResponse GetAccessGrantsInstanceForPrefix(GetAccessGrantsInstanceForPrefixRequest request);
+
+
+
+        /// <summary>
+        /// Retrieve the S3 Access Grants instance that contains a particular prefix. 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:GetAccessGrantsInstanceForPrefix</c> permission for the caller
+        /// account to use this operation. 
+        /// </para>
+        ///  </dd> <dt>Additional Permissions</dt> <dd> 
+        /// <para>
+        /// The prefix owner account must grant you the following permissions to their S3 Access
+        /// Grants instance: <c>s3:GetAccessGrantsInstanceForPrefix</c>. 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetAccessGrantsInstanceForPrefix service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetAccessGrantsInstanceForPrefix service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessGrantsInstanceForPrefix">REST API Reference for GetAccessGrantsInstanceForPrefix Operation</seealso>
+        Task<GetAccessGrantsInstanceForPrefixResponse> GetAccessGrantsInstanceForPrefixAsync(GetAccessGrantsInstanceForPrefixRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  GetAccessGrantsInstanceResourcePolicy
+
+
+        /// <summary>
+        /// Returns the resource policy of the S3 Access Grants instance. 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:GetAccessGrantsInstanceResourcePolicy</c> permission to use
+        /// this operation. 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetAccessGrantsInstanceResourcePolicy service method.</param>
+        /// 
+        /// <returns>The response from the GetAccessGrantsInstanceResourcePolicy service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessGrantsInstanceResourcePolicy">REST API Reference for GetAccessGrantsInstanceResourcePolicy Operation</seealso>
+        GetAccessGrantsInstanceResourcePolicyResponse GetAccessGrantsInstanceResourcePolicy(GetAccessGrantsInstanceResourcePolicyRequest request);
+
+
+
+        /// <summary>
+        /// Returns the resource policy of the S3 Access Grants instance. 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:GetAccessGrantsInstanceResourcePolicy</c> permission to use
+        /// this operation. 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetAccessGrantsInstanceResourcePolicy service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetAccessGrantsInstanceResourcePolicy service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessGrantsInstanceResourcePolicy">REST API Reference for GetAccessGrantsInstanceResourcePolicy Operation</seealso>
+        Task<GetAccessGrantsInstanceResourcePolicyResponse> GetAccessGrantsInstanceResourcePolicyAsync(GetAccessGrantsInstanceResourcePolicyRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  GetAccessGrantsLocation
+
+
+        /// <summary>
+        /// Retrieves the details of a particular location registered in your S3 Access Grants
+        /// instance. 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:GetAccessGrantsLocation</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetAccessGrantsLocation service method.</param>
+        /// 
+        /// <returns>The response from the GetAccessGrantsLocation service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessGrantsLocation">REST API Reference for GetAccessGrantsLocation Operation</seealso>
+        GetAccessGrantsLocationResponse GetAccessGrantsLocation(GetAccessGrantsLocationRequest request);
+
+
+
+        /// <summary>
+        /// Retrieves the details of a particular location registered in your S3 Access Grants
+        /// instance. 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:GetAccessGrantsLocation</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetAccessGrantsLocation service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetAccessGrantsLocation service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessGrantsLocation">REST API Reference for GetAccessGrantsLocation Operation</seealso>
+        Task<GetAccessGrantsLocationResponse> GetAccessGrantsLocationAsync(GetAccessGrantsLocationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  GetAccessPoint
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns configuration information about the specified access point.
-        /// 
+        /// </para>
         ///   
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html#API_control_GetAccessPoint_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html#API_control_GetAccessPoint_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetAccessPoint</code>:
+        /// The following actions are related to <c>GetAccessPoint</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -2190,21 +3257,27 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns configuration information about the specified access point.
-        /// 
+        /// </para>
         ///   
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html#API_control_GetAccessPoint_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html#API_control_GetAccessPoint_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetAccessPoint</code>:
+        /// The following actions are related to <c>GetAccessPoint</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -2238,11 +3311,17 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns configuration for an Object Lambda Access Point.
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetAccessPointConfigurationForObjectLambda</code>:
+        /// The following actions are related to <c>GetAccessPointConfigurationForObjectLambda</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -2260,11 +3339,17 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns configuration for an Object Lambda Access Point.
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetAccessPointConfigurationForObjectLambda</code>:
+        /// The following actions are related to <c>GetAccessPointConfigurationForObjectLambda</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -2288,11 +3373,17 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns configuration information about the specified Object Lambda Access Point
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetAccessPointForObjectLambda</code>:
+        /// The following actions are related to <c>GetAccessPointForObjectLambda</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -2320,11 +3411,17 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns configuration information about the specified Object Lambda Access Point
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetAccessPointForObjectLambda</code>:
+        /// The following actions are related to <c>GetAccessPointForObjectLambda</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -2358,11 +3455,17 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns the access point policy associated with the specified access point.
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetAccessPointPolicy</code>:
+        /// The following actions are related to <c>GetAccessPointPolicy</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -2385,11 +3488,17 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns the access point policy associated with the specified access point.
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetAccessPointPolicy</code>:
+        /// The following actions are related to <c>GetAccessPointPolicy</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -2418,11 +3527,17 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns the resource policy for an Object Lambda Access Point.
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetAccessPointPolicyForObjectLambda</code>:
+        /// The following actions are related to <c>GetAccessPointPolicyForObjectLambda</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -2445,11 +3560,17 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns the resource policy for an Object Lambda Access Point.
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetAccessPointPolicyForObjectLambda</code>:
+        /// The following actions are related to <c>GetAccessPointPolicyForObjectLambda</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -2478,9 +3599,16 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Indicates whether the specified access point currently has a policy that allows public
         /// access. For more information about public access through access points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html">Managing
         /// Data Access with Amazon S3 access points</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetAccessPointPolicyStatus service method.</param>
         /// 
@@ -2491,9 +3619,16 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Indicates whether the specified access point currently has a policy that allows public
         /// access. For more information about public access through access points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html">Managing
         /// Data Access with Amazon S3 access points</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetAccessPointPolicyStatus service method.</param>
         /// <param name="cancellationToken">
@@ -2510,8 +3645,15 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns the status of the resource policy associated with an Object Lambda Access
         /// Point.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetAccessPointPolicyStatusForObjectLambda service method.</param>
         /// 
@@ -2522,8 +3664,15 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns the status of the resource policy associated with an Object Lambda Access
         /// Point.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetAccessPointPolicyStatusForObjectLambda service method.</param>
         /// <param name="cancellationToken">
@@ -2546,29 +3695,29 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// If you are using an identity other than the root user of the Amazon Web Services account
-        /// that owns the Outposts bucket, the calling identity must have the <code>s3-outposts:GetBucket</code>
+        /// that owns the Outposts bucket, the calling identity must have the <c>s3-outposts:GetBucket</c>
         /// permissions on the specified Outposts bucket and belong to the Outposts bucket owner's
         /// account in order to use this action. Only users from Outposts bucket owner account
         /// with the right permissions can perform actions on an Outposts bucket. 
         /// </para>
         ///  
         /// <para>
-        ///  If you don't have <code>s3-outposts:GetBucket</code> permissions or you're not using
-        /// an identity that belongs to the bucket owner's account, Amazon S3 returns a <code>403
-        /// Access Denied</code> error.
+        /// If you don't have <c>s3-outposts:GetBucket</c> permissions or you're not using an
+        /// identity that belongs to the bucket owner's account, Amazon S3 returns a <c>403 Access
+        /// Denied</c> error.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetBucket</code> for Amazon S3 on Outposts:
+        /// The following actions are related to <c>GetBucket</c> for Amazon S3 on Outposts:
         /// </para>
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucket.html#API_control_GetBucket_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucket.html#API_control_GetBucket_Examples">Examples</a>
         /// section.
         /// </para>
         ///  <ul> <li> 
@@ -2603,29 +3752,29 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// If you are using an identity other than the root user of the Amazon Web Services account
-        /// that owns the Outposts bucket, the calling identity must have the <code>s3-outposts:GetBucket</code>
+        /// that owns the Outposts bucket, the calling identity must have the <c>s3-outposts:GetBucket</c>
         /// permissions on the specified Outposts bucket and belong to the Outposts bucket owner's
         /// account in order to use this action. Only users from Outposts bucket owner account
         /// with the right permissions can perform actions on an Outposts bucket. 
         /// </para>
         ///  
         /// <para>
-        ///  If you don't have <code>s3-outposts:GetBucket</code> permissions or you're not using
-        /// an identity that belongs to the bucket owner's account, Amazon S3 returns a <code>403
-        /// Access Denied</code> error.
+        /// If you don't have <c>s3-outposts:GetBucket</c> permissions or you're not using an
+        /// identity that belongs to the bucket owner's account, Amazon S3 returns a <c>403 Access
+        /// Denied</c> error.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetBucket</code> for Amazon S3 on Outposts:
+        /// The following actions are related to <c>GetBucket</c> for Amazon S3 on Outposts:
         /// </para>
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucket.html#API_control_GetBucket_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucket.html#API_control_GetBucket_Examples">Examples</a>
         /// section.
         /// </para>
         ///  <ul> <li> 
@@ -2676,7 +3825,7 @@ namespace Amazon.S3Control
         /// </para>
         ///  
         /// <para>
-        /// To use this action, you must have permission to perform the <code>s3-outposts:GetLifecycleConfiguration</code>
+        /// To use this action, you must have permission to perform the <c>s3-outposts:GetLifecycleConfiguration</c>
         /// action. The Outposts bucket owner has this permission, by default. The bucket owner
         /// can grant this permission to others. For more information about permissions, see <a
         /// href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources">Permissions
@@ -2686,20 +3835,20 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketLifecycleConfiguration.html#API_control_GetBucketLifecycleConfiguration_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketLifecycleConfiguration.html#API_control_GetBucketLifecycleConfiguration_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetBucketLifecycleConfiguration</code> has the following special error:
+        ///  <c>GetBucketLifecycleConfiguration</c> has the following special error:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Error code: <code>NoSuchLifecycleConfiguration</code> 
+        /// Error code: <c>NoSuchLifecycleConfiguration</c> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -2715,7 +3864,7 @@ namespace Amazon.S3Control
         /// </para>
         ///  </li> </ul> </li> </ul> 
         /// <para>
-        /// The following actions are related to <code>GetBucketLifecycleConfiguration</code>:
+        /// The following actions are related to <c>GetBucketLifecycleConfiguration</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -2754,7 +3903,7 @@ namespace Amazon.S3Control
         /// </para>
         ///  
         /// <para>
-        /// To use this action, you must have permission to perform the <code>s3-outposts:GetLifecycleConfiguration</code>
+        /// To use this action, you must have permission to perform the <c>s3-outposts:GetLifecycleConfiguration</c>
         /// action. The Outposts bucket owner has this permission, by default. The bucket owner
         /// can grant this permission to others. For more information about permissions, see <a
         /// href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources">Permissions
@@ -2764,20 +3913,20 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketLifecycleConfiguration.html#API_control_GetBucketLifecycleConfiguration_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketLifecycleConfiguration.html#API_control_GetBucketLifecycleConfiguration_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetBucketLifecycleConfiguration</code> has the following special error:
+        ///  <c>GetBucketLifecycleConfiguration</c> has the following special error:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Error code: <code>NoSuchLifecycleConfiguration</code> 
+        /// Error code: <c>NoSuchLifecycleConfiguration</c> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -2793,7 +3942,7 @@ namespace Amazon.S3Control
         /// </para>
         ///  </li> </ul> </li> </ul> 
         /// <para>
-        /// The following actions are related to <code>GetBucketLifecycleConfiguration</code>:
+        /// The following actions are related to <c>GetBucketLifecycleConfiguration</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -2836,16 +3985,16 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// If you are using an identity other than the root user of the Amazon Web Services account
-        /// that owns the bucket, the calling identity must have the <code>GetBucketPolicy</code>
-        /// permissions on the specified bucket and belong to the bucket owner's account in order
-        /// to use this action.
+        /// that owns the bucket, the calling identity must have the <c>GetBucketPolicy</c> permissions
+        /// on the specified bucket and belong to the bucket owner's account in order to use this
+        /// action.
         /// </para>
         ///  
         /// <para>
         /// Only users from Outposts bucket owner account with the right permissions can perform
-        /// actions on an Outposts bucket. If you don't have <code>s3-outposts:GetBucketPolicy</code>
+        /// actions on an Outposts bucket. If you don't have <c>s3-outposts:GetBucketPolicy</c>
         /// permissions or you're not using an identity that belongs to the bucket owner's account,
-        /// Amazon S3 returns a <code>403 Access Denied</code> error.
+        /// Amazon S3 returns a <c>403 Access Denied</c> error.
         /// </para>
         ///  <important> 
         /// <para>
@@ -2861,16 +4010,16 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketPolicy.html#API_control_GetBucketPolicy_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketPolicy.html#API_control_GetBucketPolicy_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetBucketPolicy</code>:
+        /// The following actions are related to <c>GetBucketPolicy</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -2912,16 +4061,16 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// If you are using an identity other than the root user of the Amazon Web Services account
-        /// that owns the bucket, the calling identity must have the <code>GetBucketPolicy</code>
-        /// permissions on the specified bucket and belong to the bucket owner's account in order
-        /// to use this action.
+        /// that owns the bucket, the calling identity must have the <c>GetBucketPolicy</c> permissions
+        /// on the specified bucket and belong to the bucket owner's account in order to use this
+        /// action.
         /// </para>
         ///  
         /// <para>
         /// Only users from Outposts bucket owner account with the right permissions can perform
-        /// actions on an Outposts bucket. If you don't have <code>s3-outposts:GetBucketPolicy</code>
+        /// actions on an Outposts bucket. If you don't have <c>s3-outposts:GetBucketPolicy</c>
         /// permissions or you're not using an identity that belongs to the bucket owner's account,
-        /// Amazon S3 returns a <code>403 Access Denied</code> error.
+        /// Amazon S3 returns a <c>403 Access Denied</c> error.
         /// </para>
         ///  <important> 
         /// <para>
@@ -2937,16 +4086,16 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketPolicy.html#API_control_GetBucketPolicy_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketPolicy.html#API_control_GetBucketPolicy_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetBucketPolicy</code>:
+        /// The following actions are related to <c>GetBucketPolicy</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -2996,16 +4145,15 @@ namespace Amazon.S3Control
         /// </para>
         ///  <note> 
         /// <para>
-        /// It can take a while to propagate <code>PUT</code> or <code>DELETE</code> requests
-        /// for a replication configuration to all S3 on Outposts systems. Therefore, the replication
-        /// configuration that's returned by a <code>GET</code> request soon after a <code>PUT</code>
-        /// or <code>DELETE</code> request might return a more recent result than what's on the
-        /// Outpost. If an Outpost is offline, the delay in updating the replication configuration
-        /// on that Outpost can be significant.
+        /// It can take a while to propagate <c>PUT</c> or <c>DELETE</c> requests for a replication
+        /// configuration to all S3 on Outposts systems. Therefore, the replication configuration
+        /// that's returned by a <c>GET</c> request soon after a <c>PUT</c> or <c>DELETE</c> request
+        /// might return a more recent result than what's on the Outpost. If an Outpost is offline,
+        /// the delay in updating the replication configuration on that Outpost can be significant.
         /// </para>
         ///  </note> 
         /// <para>
-        /// This action requires permissions for the <code>s3-outposts:GetReplicationConfiguration</code>
+        /// This action requires permissions for the <c>s3-outposts:GetReplicationConfiguration</c>
         /// action. The Outposts bucket owner has this permission by default and can grant it
         /// to others. For more information about permissions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsIAM.html">Setting
         /// up IAM with S3 on Outposts</a> and <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsBucketPolicy.html">Managing
@@ -3014,18 +4162,18 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketReplication.html#API_control_GetBucketReplication_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketReplication.html#API_control_GetBucketReplication_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// If you include the <code>Filter</code> element in a replication configuration, you
-        /// must also include the <code>DeleteMarkerReplication</code>, <code>Status</code>, and
-        /// <code>Priority</code> elements. The response also returns those elements.
+        /// If you include the <c>Filter</c> element in a replication configuration, you must
+        /// also include the <c>DeleteMarkerReplication</c>, <c>Status</c>, and <c>Priority</c>
+        /// elements. The response also returns those elements.
         /// </para>
         ///  
         /// <para>
@@ -3034,7 +4182,7 @@ namespace Amazon.S3Control
         /// </para>
         ///  
         /// <para>
-        /// The following operations are related to <code>GetBucketReplication</code>:
+        /// The following operations are related to <c>GetBucketReplication</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -3073,16 +4221,15 @@ namespace Amazon.S3Control
         /// </para>
         ///  <note> 
         /// <para>
-        /// It can take a while to propagate <code>PUT</code> or <code>DELETE</code> requests
-        /// for a replication configuration to all S3 on Outposts systems. Therefore, the replication
-        /// configuration that's returned by a <code>GET</code> request soon after a <code>PUT</code>
-        /// or <code>DELETE</code> request might return a more recent result than what's on the
-        /// Outpost. If an Outpost is offline, the delay in updating the replication configuration
-        /// on that Outpost can be significant.
+        /// It can take a while to propagate <c>PUT</c> or <c>DELETE</c> requests for a replication
+        /// configuration to all S3 on Outposts systems. Therefore, the replication configuration
+        /// that's returned by a <c>GET</c> request soon after a <c>PUT</c> or <c>DELETE</c> request
+        /// might return a more recent result than what's on the Outpost. If an Outpost is offline,
+        /// the delay in updating the replication configuration on that Outpost can be significant.
         /// </para>
         ///  </note> 
         /// <para>
-        /// This action requires permissions for the <code>s3-outposts:GetReplicationConfiguration</code>
+        /// This action requires permissions for the <c>s3-outposts:GetReplicationConfiguration</c>
         /// action. The Outposts bucket owner has this permission by default and can grant it
         /// to others. For more information about permissions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsIAM.html">Setting
         /// up IAM with S3 on Outposts</a> and <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsBucketPolicy.html">Managing
@@ -3091,18 +4238,18 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketReplication.html#API_control_GetBucketReplication_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketReplication.html#API_control_GetBucketReplication_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// If you include the <code>Filter</code> element in a replication configuration, you
-        /// must also include the <code>DeleteMarkerReplication</code>, <code>Status</code>, and
-        /// <code>Priority</code> elements. The response also returns those elements.
+        /// If you include the <c>Filter</c> element in a replication configuration, you must
+        /// also include the <c>DeleteMarkerReplication</c>, <c>Status</c>, and <c>Priority</c>
+        /// elements. The response also returns those elements.
         /// </para>
         ///  
         /// <para>
@@ -3111,7 +4258,7 @@ namespace Amazon.S3Control
         /// </para>
         ///  
         /// <para>
-        /// The following operations are related to <code>GetBucketReplication</code>:
+        /// The following operations are related to <c>GetBucketReplication</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -3154,17 +4301,17 @@ namespace Amazon.S3Control
         /// </para>
         ///  
         /// <para>
-        /// To use this action, you must have permission to perform the <code>GetBucketTagging</code>
+        /// To use this action, you must have permission to perform the <c>GetBucketTagging</c>
         /// action. By default, the bucket owner has this permission and can grant this permission
         /// to others.
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetBucketTagging</code> has the following special error:
+        ///  <c>GetBucketTagging</c> has the following special error:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Error code: <code>NoSuchTagSetError</code> 
+        /// Error code: <c>NoSuchTagSetError</c> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -3173,16 +4320,16 @@ namespace Amazon.S3Control
         ///  </li> </ul> </li> </ul> 
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketTagging.html#API_control_GetBucketTagging_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketTagging.html#API_control_GetBucketTagging_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetBucketTagging</code>:
+        /// The following actions are related to <c>GetBucketTagging</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -3219,17 +4366,17 @@ namespace Amazon.S3Control
         /// </para>
         ///  
         /// <para>
-        /// To use this action, you must have permission to perform the <code>GetBucketTagging</code>
+        /// To use this action, you must have permission to perform the <c>GetBucketTagging</c>
         /// action. By default, the bucket owner has this permission and can grant this permission
         /// to others.
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetBucketTagging</code> has the following special error:
+        ///  <c>GetBucketTagging</c> has the following special error:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Error code: <code>NoSuchTagSetError</code> 
+        /// Error code: <c>NoSuchTagSetError</c> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -3238,16 +4385,16 @@ namespace Amazon.S3Control
         ///  </li> </ul> </li> </ul> 
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketTagging.html#API_control_GetBucketTagging_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketTagging.html#API_control_GetBucketTagging_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetBucketTagging</code>:
+        /// The following actions are related to <c>GetBucketTagging</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -3291,8 +4438,7 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// If you've never set versioning on your bucket, it has no versioning state. In that
-        /// case, the <code>GetBucketVersioning</code> request does not return a versioning state
-        /// value.
+        /// case, the <c>GetBucketVersioning</c> request does not return a versioning state value.
         /// </para>
         ///  
         /// <para>
@@ -3302,17 +4448,16 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketVersioning.html#API_control_GetBucketVersioning_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketVersioning.html#API_control_GetBucketVersioning_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following operations are related to <code>GetBucketVersioning</code> for S3 on
-        /// Outposts.
+        /// The following operations are related to <c>GetBucketVersioning</c> for S3 on Outposts.
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -3355,8 +4500,7 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// If you've never set versioning on your bucket, it has no versioning state. In that
-        /// case, the <code>GetBucketVersioning</code> request does not return a versioning state
-        /// value.
+        /// case, the <c>GetBucketVersioning</c> request does not return a versioning state value.
         /// </para>
         ///  
         /// <para>
@@ -3366,17 +4510,16 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketVersioning.html#API_control_GetBucketVersioning_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketVersioning.html#API_control_GetBucketVersioning_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following operations are related to <code>GetBucketVersioning</code> for S3 on
-        /// Outposts.
+        /// The following operations are related to <c>GetBucketVersioning</c> for S3 on Outposts.
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -3406,16 +4549,79 @@ namespace Amazon.S3Control
 
         #endregion
         
+        #region  GetDataAccess
+
+
+        /// <summary>
+        /// Returns a temporary access credential from S3 Access Grants to the grantee or client
+        /// application. The <a href="https://docs.aws.amazon.com/STS/latest/APIReference/API_Credentials.html">temporary
+        /// credential</a> is an Amazon Web Services STS token that grants them access to the
+        /// S3 data. 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:GetDataAccess</c> permission to use this operation. 
+        /// </para>
+        ///  </dd> <dt>Additional Permissions</dt> <dd> 
+        /// <para>
+        /// The IAM role that S3 Access Grants assumes must have the following permissions specified
+        /// in the trust policy when registering the location: <c>sts:AssumeRole</c>, for directory
+        /// users or groups <c>sts:SetContext</c>, and for IAM users or roles <c>sts:SetSourceIdentity</c>.
+        /// 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDataAccess service method.</param>
+        /// 
+        /// <returns>The response from the GetDataAccess service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetDataAccess">REST API Reference for GetDataAccess Operation</seealso>
+        GetDataAccessResponse GetDataAccess(GetDataAccessRequest request);
+
+
+
+        /// <summary>
+        /// Returns a temporary access credential from S3 Access Grants to the grantee or client
+        /// application. The <a href="https://docs.aws.amazon.com/STS/latest/APIReference/API_Credentials.html">temporary
+        /// credential</a> is an Amazon Web Services STS token that grants them access to the
+        /// S3 data. 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:GetDataAccess</c> permission to use this operation. 
+        /// </para>
+        ///  </dd> <dt>Additional Permissions</dt> <dd> 
+        /// <para>
+        /// The IAM role that S3 Access Grants assumes must have the following permissions specified
+        /// in the trust policy when registering the location: <c>sts:AssumeRole</c>, for directory
+        /// users or groups <c>sts:SetContext</c>, and for IAM users or roles <c>sts:SetSourceIdentity</c>.
+        /// 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDataAccess service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetDataAccess service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetDataAccess">REST API Reference for GetDataAccess Operation</seealso>
+        Task<GetDataAccessResponse> GetDataAccessAsync(GetDataAccessRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  GetJobTagging
 
 
         /// <summary>
-        /// Returns the tags on an S3 Batch Operations job. To use the <code>GetJobTagging</code>
-        /// operation, you must have permission to perform the <code>s3:GetJobTagging</code> action.
-        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags">Controlling
-        /// access and labeling jobs using tags</a> in the <i>Amazon S3 User Guide</i>.
+        /// Returns the tags on an S3 Batch Operations job. 
         /// 
-        ///   
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// To use the <c>GetJobTagging</c> operation, you must have permission to perform the
+        /// <c>s3:GetJobTagging</c> action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags">Controlling
+        /// access and labeling jobs using tags</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
+        ///  </dd> </dl> 
         /// <para>
         /// Related actions include:
         /// </para>
@@ -3454,12 +4660,15 @@ namespace Amazon.S3Control
 
 
         /// <summary>
-        /// Returns the tags on an S3 Batch Operations job. To use the <code>GetJobTagging</code>
-        /// operation, you must have permission to perform the <code>s3:GetJobTagging</code> action.
-        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags">Controlling
-        /// access and labeling jobs using tags</a> in the <i>Amazon S3 User Guide</i>.
+        /// Returns the tags on an S3 Batch Operations job. 
         /// 
-        ///   
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// To use the <c>GetJobTagging</c> operation, you must have permission to perform the
+        /// <c>s3:GetJobTagging</c> action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags">Controlling
+        /// access and labeling jobs using tags</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
+        ///  </dd> </dl> 
         /// <para>
         /// Related actions include:
         /// </para>
@@ -3504,17 +4713,23 @@ namespace Amazon.S3Control
 
 
         /// <summary>
-        /// Returns configuration information about the specified Multi-Region Access Point.
-        /// 
-        ///  
+        /// <note> 
         /// <para>
-        /// This action will always be routed to the US West (Oregon) Region. For more information
-        /// about the restrictions around managing Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html">Managing
-        /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// Returns configuration information about the specified Multi-Region Access Point.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetMultiRegionAccessPoint</code>:
+        /// This action will always be routed to the US West (Oregon) Region. For more information
+        /// about the restrictions around working with Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html">Multi-Region
+        /// Access Point restrictions and limitations</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// The following actions are related to <c>GetMultiRegionAccessPoint</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -3547,17 +4762,23 @@ namespace Amazon.S3Control
 
 
         /// <summary>
-        /// Returns configuration information about the specified Multi-Region Access Point.
-        /// 
-        ///  
+        /// <note> 
         /// <para>
-        /// This action will always be routed to the US West (Oregon) Region. For more information
-        /// about the restrictions around managing Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html">Managing
-        /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// Returns configuration information about the specified Multi-Region Access Point.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetMultiRegionAccessPoint</code>:
+        /// This action will always be routed to the US West (Oregon) Region. For more information
+        /// about the restrictions around working with Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html">Multi-Region
+        /// Access Point restrictions and limitations</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// The following actions are related to <c>GetMultiRegionAccessPoint</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -3596,17 +4817,23 @@ namespace Amazon.S3Control
 
 
         /// <summary>
-        /// Returns the access control policy of the specified Multi-Region Access Point.
-        /// 
-        ///  
+        /// <note> 
         /// <para>
-        /// This action will always be routed to the US West (Oregon) Region. For more information
-        /// about the restrictions around managing Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html">Managing
-        /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// Returns the access control policy of the specified Multi-Region Access Point.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetMultiRegionAccessPointPolicy</code>:
+        /// This action will always be routed to the US West (Oregon) Region. For more information
+        /// about the restrictions around working with Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html">Multi-Region
+        /// Access Point restrictions and limitations</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// The following actions are related to <c>GetMultiRegionAccessPointPolicy</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -3629,17 +4856,23 @@ namespace Amazon.S3Control
 
 
         /// <summary>
-        /// Returns the access control policy of the specified Multi-Region Access Point.
-        /// 
-        ///  
+        /// <note> 
         /// <para>
-        /// This action will always be routed to the US West (Oregon) Region. For more information
-        /// about the restrictions around managing Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html">Managing
-        /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// Returns the access control policy of the specified Multi-Region Access Point.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetMultiRegionAccessPointPolicy</code>:
+        /// This action will always be routed to the US West (Oregon) Region. For more information
+        /// about the restrictions around working with Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html">Multi-Region
+        /// Access Point restrictions and limitations</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// The following actions are related to <c>GetMultiRegionAccessPointPolicy</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -3668,18 +4901,24 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Indicates whether the specified Multi-Region Access Point has an access control policy
         /// that allows public access.
-        /// 
-        ///  
-        /// <para>
-        /// This action will always be routed to the US West (Oregon) Region. For more information
-        /// about the restrictions around managing Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html">Managing
-        /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetMultiRegionAccessPointPolicyStatus</code>:
+        /// This action will always be routed to the US West (Oregon) Region. For more information
+        /// about the restrictions around working with Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html">Multi-Region
+        /// Access Point restrictions and limitations</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// The following actions are related to <c>GetMultiRegionAccessPointPolicyStatus</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -3702,18 +4941,24 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Indicates whether the specified Multi-Region Access Point has an access control policy
         /// that allows public access.
-        /// 
-        ///  
-        /// <para>
-        /// This action will always be routed to the US West (Oregon) Region. For more information
-        /// about the restrictions around managing Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html">Managing
-        /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>GetMultiRegionAccessPointPolicyStatus</code>:
+        /// This action will always be routed to the US West (Oregon) Region. For more information
+        /// about the restrictions around working with Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html">Multi-Region
+        /// Access Point restrictions and limitations</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// The following actions are related to <c>GetMultiRegionAccessPointPolicyStatus</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -3742,9 +4987,15 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns the routing configuration for a Multi-Region Access Point, indicating which
         /// Regions are active or passive.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// To obtain routing control changes and failover requests, use the Amazon S3 failover
@@ -3752,29 +5003,25 @@ namespace Amazon.S3Control
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>us-east-1</code> 
+        ///  <c>us-east-1</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>us-west-2</code> 
+        ///  <c>us-west-2</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ap-southeast-2</code> 
+        ///  <c>ap-southeast-2</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ap-northeast-1</code> 
+        ///  <c>ap-northeast-1</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>eu-west-1</code> 
+        ///  <c>eu-west-1</c> 
         /// </para>
-        ///  </li> </ul> <note> 
-        /// <para>
-        /// Your Amazon S3 bucket does not need to be in these five Regions.
-        /// </para>
-        ///  </note>
+        ///  </li> </ul>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetMultiRegionAccessPointRoutes service method.</param>
         /// 
@@ -3785,9 +5032,15 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns the routing configuration for a Multi-Region Access Point, indicating which
         /// Regions are active or passive.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// To obtain routing control changes and failover requests, use the Amazon S3 failover
@@ -3795,29 +5048,25 @@ namespace Amazon.S3Control
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>us-east-1</code> 
+        ///  <c>us-east-1</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>us-west-2</code> 
+        ///  <c>us-west-2</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ap-southeast-2</code> 
+        ///  <c>ap-southeast-2</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ap-northeast-1</code> 
+        ///  <c>ap-northeast-1</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>eu-west-1</code> 
+        ///  <c>eu-west-1</c> 
         /// </para>
-        ///  </li> </ul> <note> 
-        /// <para>
-        /// Your Amazon S3 bucket does not need to be in these five Regions.
-        /// </para>
-        ///  </note>
+        ///  </li> </ul>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetMultiRegionAccessPointRoutes service method.</param>
         /// <param name="cancellationToken">
@@ -3834,10 +5083,16 @@ namespace Amazon.S3Control
 
 
         /// <summary>
-        /// Retrieves the <code>PublicAccessBlock</code> configuration for an Amazon Web Services
-        /// account. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html">
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// Retrieves the <c>PublicAccessBlock</c> configuration for an Amazon Web Services account.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html">
         /// Using Amazon S3 block public access</a>.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// Related actions include:
@@ -3858,9 +5113,8 @@ namespace Amazon.S3Control
         /// 
         /// <returns>The response from the GetPublicAccessBlock service method, as returned by S3Control.</returns>
         /// <exception cref="Amazon.S3Control.Model.NoSuchPublicAccessBlockConfigurationException">
-        /// Amazon S3 throws this exception if you make a <code>GetPublicAccessBlock</code> request
-        /// against an account that doesn't have a <code>PublicAccessBlockConfiguration</code>
-        /// set.
+        /// Amazon S3 throws this exception if you make a <c>GetPublicAccessBlock</c> request
+        /// against an account that doesn't have a <c>PublicAccessBlockConfiguration</c> set.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetPublicAccessBlock">REST API Reference for GetPublicAccessBlock Operation</seealso>
         GetPublicAccessBlockResponse GetPublicAccessBlock(GetPublicAccessBlockRequest request);
@@ -3868,10 +5122,16 @@ namespace Amazon.S3Control
 
 
         /// <summary>
-        /// Retrieves the <code>PublicAccessBlock</code> configuration for an Amazon Web Services
-        /// account. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html">
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// Retrieves the <c>PublicAccessBlock</c> configuration for an Amazon Web Services account.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html">
         /// Using Amazon S3 block public access</a>.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// Related actions include:
@@ -3895,9 +5155,8 @@ namespace Amazon.S3Control
         /// 
         /// <returns>The response from the GetPublicAccessBlock service method, as returned by S3Control.</returns>
         /// <exception cref="Amazon.S3Control.Model.NoSuchPublicAccessBlockConfigurationException">
-        /// Amazon S3 throws this exception if you make a <code>GetPublicAccessBlock</code> request
-        /// against an account that doesn't have a <code>PublicAccessBlockConfiguration</code>
-        /// set.
+        /// Amazon S3 throws this exception if you make a <c>GetPublicAccessBlock</c> request
+        /// against an account that doesn't have a <c>PublicAccessBlockConfiguration</c> set.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetPublicAccessBlock">REST API Reference for GetPublicAccessBlock Operation</seealso>
         Task<GetPublicAccessBlockResponse> GetPublicAccessBlockAsync(GetPublicAccessBlockRequest request, CancellationToken cancellationToken = default(CancellationToken));
@@ -3908,14 +5167,20 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Gets the Amazon S3 Storage Lens configuration. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html">Assessing
         /// your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon
         /// S3 User Guide</i>. For a complete list of S3 Storage Lens metrics, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html">S3
         /// Storage Lens metrics glossary</a> in the <i>Amazon S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  <note> 
         /// <para>
-        /// To use this action, you must have permission to perform the <code>s3:GetStorageLensConfiguration</code>
+        /// To use this action, you must have permission to perform the <c>s3:GetStorageLensConfiguration</c>
         /// action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html">Setting
         /// permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
@@ -3930,14 +5195,20 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Gets the Amazon S3 Storage Lens configuration. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html">Assessing
         /// your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon
         /// S3 User Guide</i>. For a complete list of S3 Storage Lens metrics, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html">S3
         /// Storage Lens metrics glossary</a> in the <i>Amazon S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  <note> 
         /// <para>
-        /// To use this action, you must have permission to perform the <code>s3:GetStorageLensConfiguration</code>
+        /// To use this action, you must have permission to perform the <c>s3:GetStorageLensConfiguration</c>
         /// action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html">Setting
         /// permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
@@ -3958,14 +5229,20 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Gets the tags of Amazon S3 Storage Lens configuration. For more information about
         /// S3 Storage Lens, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html">Assessing
         /// your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon
         /// S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  <note> 
         /// <para>
-        /// To use this action, you must have permission to perform the <code>s3:GetStorageLensConfigurationTagging</code>
+        /// To use this action, you must have permission to perform the <c>s3:GetStorageLensConfigurationTagging</c>
         /// action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html">Setting
         /// permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
@@ -3980,14 +5257,20 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Gets the tags of Amazon S3 Storage Lens configuration. For more information about
         /// S3 Storage Lens, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html">Assessing
         /// your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon
         /// S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  <note> 
         /// <para>
-        /// To use this action, you must have permission to perform the <code>s3:GetStorageLensConfigurationTagging</code>
+        /// To use this action, you must have permission to perform the <c>s3:GetStorageLensConfigurationTagging</c>
         /// action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html">Setting
         /// permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
@@ -4004,29 +5287,217 @@ namespace Amazon.S3Control
 
         #endregion
         
+        #region  GetStorageLensGroup
+
+
+        /// <summary>
+        /// Retrieves the Storage Lens group configuration details.
+        /// 
+        ///  
+        /// <para>
+        /// To use this operation, you must have the permission to perform the <c>s3:GetStorageLensGroup</c>
+        /// action. For more information about the required Storage Lens Groups permissions, see
+        /// <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions">Setting
+        /// account permissions to use S3 Storage Lens groups</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information about Storage Lens groups errors, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList">List
+        /// of Amazon S3 Storage Lens error codes</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetStorageLensGroup service method.</param>
+        /// 
+        /// <returns>The response from the GetStorageLensGroup service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetStorageLensGroup">REST API Reference for GetStorageLensGroup Operation</seealso>
+        GetStorageLensGroupResponse GetStorageLensGroup(GetStorageLensGroupRequest request);
+
+
+
+        /// <summary>
+        /// Retrieves the Storage Lens group configuration details.
+        /// 
+        ///  
+        /// <para>
+        /// To use this operation, you must have the permission to perform the <c>s3:GetStorageLensGroup</c>
+        /// action. For more information about the required Storage Lens Groups permissions, see
+        /// <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions">Setting
+        /// account permissions to use S3 Storage Lens groups</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information about Storage Lens groups errors, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList">List
+        /// of Amazon S3 Storage Lens error codes</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetStorageLensGroup service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetStorageLensGroup service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetStorageLensGroup">REST API Reference for GetStorageLensGroup Operation</seealso>
+        Task<GetStorageLensGroupResponse> GetStorageLensGroupAsync(GetStorageLensGroupRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListAccessGrants
+
+
+        /// <summary>
+        /// Returns the list of access grants in your S3 Access Grants instance.
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:ListAccessGrants</c> permission to use this operation. 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAccessGrants service method.</param>
+        /// 
+        /// <returns>The response from the ListAccessGrants service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListAccessGrants">REST API Reference for ListAccessGrants Operation</seealso>
+        ListAccessGrantsResponse ListAccessGrants(ListAccessGrantsRequest request);
+
+
+
+        /// <summary>
+        /// Returns the list of access grants in your S3 Access Grants instance.
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:ListAccessGrants</c> permission to use this operation. 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAccessGrants service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListAccessGrants service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListAccessGrants">REST API Reference for ListAccessGrants Operation</seealso>
+        Task<ListAccessGrantsResponse> ListAccessGrantsAsync(ListAccessGrantsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListAccessGrantsInstances
+
+
+        /// <summary>
+        /// Returns a list of S3 Access Grants instances. An S3 Access Grants instance serves
+        /// as a logical grouping for your individual access grants. You can only have one S3
+        /// Access Grants instance per Region per account.
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:ListAccessGrantsInstances</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAccessGrantsInstances service method.</param>
+        /// 
+        /// <returns>The response from the ListAccessGrantsInstances service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListAccessGrantsInstances">REST API Reference for ListAccessGrantsInstances Operation</seealso>
+        ListAccessGrantsInstancesResponse ListAccessGrantsInstances(ListAccessGrantsInstancesRequest request);
+
+
+
+        /// <summary>
+        /// Returns a list of S3 Access Grants instances. An S3 Access Grants instance serves
+        /// as a logical grouping for your individual access grants. You can only have one S3
+        /// Access Grants instance per Region per account.
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:ListAccessGrantsInstances</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAccessGrantsInstances service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListAccessGrantsInstances service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListAccessGrantsInstances">REST API Reference for ListAccessGrantsInstances Operation</seealso>
+        Task<ListAccessGrantsInstancesResponse> ListAccessGrantsInstancesAsync(ListAccessGrantsInstancesRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListAccessGrantsLocations
+
+
+        /// <summary>
+        /// Returns a list of the locations registered in your S3 Access Grants instance.
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:ListAccessGrantsLocations</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAccessGrantsLocations service method.</param>
+        /// 
+        /// <returns>The response from the ListAccessGrantsLocations service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListAccessGrantsLocations">REST API Reference for ListAccessGrantsLocations Operation</seealso>
+        ListAccessGrantsLocationsResponse ListAccessGrantsLocations(ListAccessGrantsLocationsRequest request);
+
+
+
+        /// <summary>
+        /// Returns a list of the locations registered in your S3 Access Grants instance.
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:ListAccessGrantsLocations</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAccessGrantsLocations service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListAccessGrantsLocations service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListAccessGrantsLocations">REST API Reference for ListAccessGrantsLocations Operation</seealso>
+        Task<ListAccessGrantsLocationsResponse> ListAccessGrantsLocationsAsync(ListAccessGrantsLocationsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  ListAccessPoints
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns a list of the access points that are owned by the current account that's associated
         /// with the specified bucket. You can retrieve up to 1000 access points per call. If
         /// the specified bucket has more than 1,000 access points (or the number specified in
-        /// <code>maxResults</code>, whichever is less), the response will include a continuation
-        /// token that you can use to list the additional access points.
-        /// 
+        /// <c>maxResults</c>, whichever is less), the response will include a continuation token
+        /// that you can use to list the additional access points.
+        /// </para>
         ///   
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html#API_control_GetAccessPoint_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html#API_control_GetAccessPoint_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>ListAccessPoints</code>:
+        /// The following actions are related to <c>ListAccessPoints</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -4054,25 +5525,31 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns a list of the access points that are owned by the current account that's associated
         /// with the specified bucket. You can retrieve up to 1000 access points per call. If
         /// the specified bucket has more than 1,000 access points (or the number specified in
-        /// <code>maxResults</code>, whichever is less), the response will include a continuation
-        /// token that you can use to list the additional access points.
-        /// 
+        /// <c>maxResults</c>, whichever is less), the response will include a continuation token
+        /// that you can use to list the additional access points.
+        /// </para>
         ///   
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html#API_control_GetAccessPoint_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html#API_control_GetAccessPoint_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>ListAccessPoints</code>:
+        /// The following actions are related to <c>ListAccessPoints</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -4106,14 +5583,20 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns some or all (up to 1,000) access points associated with the Object Lambda
         /// Access Point per call. If there are more access points than what can be returned in
         /// one call, the response will include a continuation token that you can use to list
         /// the additional access points.
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>ListAccessPointsForObjectLambda</code>:
+        /// The following actions are related to <c>ListAccessPointsForObjectLambda</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -4141,14 +5624,20 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns some or all (up to 1,000) access points associated with the Object Lambda
         /// Access Point per call. If there are more access points than what can be returned in
         /// one call, the response will include a continuation token that you can use to list
         /// the additional access points.
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>ListAccessPointsForObjectLambda</code>:
+        /// The following actions are related to <c>ListAccessPointsForObjectLambda</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -4178,16 +5667,83 @@ namespace Amazon.S3Control
 
         #endregion
         
+        #region  ListCallerAccessGrants
+
+
+        /// <summary>
+        /// Use this API to list the access grants that grant the caller access to Amazon S3 data
+        /// through S3 Access Grants. The caller (grantee) can be an Identity and Access Management
+        /// (IAM) identity or Amazon Web Services Identity Center corporate directory identity.
+        /// You must pass the Amazon Web Services account of the S3 data owner (grantor) in the
+        /// request. You can, optionally, narrow the results by <c>GrantScope</c>, using a fragment
+        /// of the data's S3 path, and S3 Access Grants will return only the grants with a path
+        /// that contains the path fragment. You can also pass the <c>AllowedByApplication</c>
+        /// filter in the request, which returns only the grants authorized for applications,
+        /// whether the application is the caller's Identity Center application or any other application
+        /// (<c>ALL</c>). For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants-list-grants.html">List
+        /// the caller's access grants</a> in the <i>Amazon S3 User Guide</i>.
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:ListCallerAccessGrants</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListCallerAccessGrants service method.</param>
+        /// 
+        /// <returns>The response from the ListCallerAccessGrants service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListCallerAccessGrants">REST API Reference for ListCallerAccessGrants Operation</seealso>
+        ListCallerAccessGrantsResponse ListCallerAccessGrants(ListCallerAccessGrantsRequest request);
+
+
+
+        /// <summary>
+        /// Use this API to list the access grants that grant the caller access to Amazon S3 data
+        /// through S3 Access Grants. The caller (grantee) can be an Identity and Access Management
+        /// (IAM) identity or Amazon Web Services Identity Center corporate directory identity.
+        /// You must pass the Amazon Web Services account of the S3 data owner (grantor) in the
+        /// request. You can, optionally, narrow the results by <c>GrantScope</c>, using a fragment
+        /// of the data's S3 path, and S3 Access Grants will return only the grants with a path
+        /// that contains the path fragment. You can also pass the <c>AllowedByApplication</c>
+        /// filter in the request, which returns only the grants authorized for applications,
+        /// whether the application is the caller's Identity Center application or any other application
+        /// (<c>ALL</c>). For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants-list-grants.html">List
+        /// the caller's access grants</a> in the <i>Amazon S3 User Guide</i>.
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:ListCallerAccessGrants</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListCallerAccessGrants service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListCallerAccessGrants service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListCallerAccessGrants">REST API Reference for ListCallerAccessGrants Operation</seealso>
+        Task<ListCallerAccessGrantsResponse> ListCallerAccessGrantsAsync(ListCallerAccessGrantsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  ListJobs
 
 
         /// <summary>
-        /// Lists current S3 Batch Operations jobs and jobs that have ended within the last 30
-        /// days for the Amazon Web Services account making the request. For more information,
-        /// see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html">S3
+        /// Lists current S3 Batch Operations jobs as well as the jobs that have ended within
+        /// the last 90 days for the Amazon Web Services account making the request. For more
+        /// information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html">S3
         /// Batch Operations</a> in the <i>Amazon S3 User Guide</i>.
         /// 
-        ///  
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// To use the <c>ListJobs</c> operation, you must have permission to perform the <c>s3:ListJobs</c>
+        /// action.
+        /// </para>
+        ///  </dd> </dl> 
         /// <para>
         /// Related actions include:
         /// </para>
@@ -4231,12 +5787,17 @@ namespace Amazon.S3Control
 
 
         /// <summary>
-        /// Lists current S3 Batch Operations jobs and jobs that have ended within the last 30
-        /// days for the Amazon Web Services account making the request. For more information,
-        /// see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html">S3
+        /// Lists current S3 Batch Operations jobs as well as the jobs that have ended within
+        /// the last 90 days for the Amazon Web Services account making the request. For more
+        /// information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html">S3
         /// Batch Operations</a> in the <i>Amazon S3 User Guide</i>.
         /// 
-        ///  
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// To use the <c>ListJobs</c> operation, you must have permission to perform the <c>s3:ListJobs</c>
+        /// action.
+        /// </para>
+        ///  </dd> </dl> 
         /// <para>
         /// Related actions include:
         /// </para>
@@ -4286,20 +5847,26 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns a list of the Multi-Region Access Points currently associated with the specified
         /// Amazon Web Services account. Each call can return up to 100 Multi-Region Access Points,
         /// the maximum number of Multi-Region Access Points that can be associated with a single
         /// account.
-        /// 
-        ///  
-        /// <para>
-        /// This action will always be routed to the US West (Oregon) Region. For more information
-        /// about the restrictions around managing Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html">Managing
-        /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>ListMultiRegionAccessPoint</code>:
+        /// This action will always be routed to the US West (Oregon) Region. For more information
+        /// about the restrictions around working with Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html">Multi-Region
+        /// Access Point restrictions and limitations</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// The following actions are related to <c>ListMultiRegionAccessPoint</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -4332,20 +5899,26 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns a list of the Multi-Region Access Points currently associated with the specified
         /// Amazon Web Services account. Each call can return up to 100 Multi-Region Access Points,
         /// the maximum number of Multi-Region Access Points that can be associated with a single
         /// account.
-        /// 
-        ///  
-        /// <para>
-        /// This action will always be routed to the US West (Oregon) Region. For more information
-        /// about the restrictions around managing Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html">Managing
-        /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>ListMultiRegionAccessPoint</code>:
+        /// This action will always be routed to the US West (Oregon) Region. For more information
+        /// about the restrictions around working with Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html">Multi-Region
+        /// Access Point restrictions and limitations</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// The following actions are related to <c>ListMultiRegionAccessPoint</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -4384,15 +5957,21 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns a list of all Outposts buckets in an Outpost that are owned by the authenticated
         /// sender of the request. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html">Using
         /// Amazon S3 on Outposts</a> in the <i>Amazon S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and <code>x-amz-outpost-id</code> in your request,
-        /// see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListRegionalBuckets.html#API_control_ListRegionalBuckets_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and <c>x-amz-outpost-id</c> in your request, see
+        /// the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListRegionalBuckets.html#API_control_ListRegionalBuckets_Examples">Examples</a>
         /// section.
         /// </para>
         /// </summary>
@@ -4405,15 +5984,21 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns a list of all Outposts buckets in an Outpost that are owned by the authenticated
         /// sender of the request. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html">Using
         /// Amazon S3 on Outposts</a> in the <i>Amazon S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and <code>x-amz-outpost-id</code> in your request,
-        /// see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListRegionalBuckets.html#API_control_ListRegionalBuckets_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and <c>x-amz-outpost-id</c> in your request, see
+        /// the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListRegionalBuckets.html#API_control_ListRegionalBuckets_Examples">Examples</a>
         /// section.
         /// </para>
         /// </summary>
@@ -4432,14 +6017,20 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Gets a list of Amazon S3 Storage Lens configurations. For more information about S3
         /// Storage Lens, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html">Assessing
         /// your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon
         /// S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  <note> 
         /// <para>
-        /// To use this action, you must have permission to perform the <code>s3:ListStorageLensConfigurations</code>
+        /// To use this action, you must have permission to perform the <c>s3:ListStorageLensConfigurations</c>
         /// action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html">Setting
         /// permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
@@ -4454,14 +6045,20 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Gets a list of Amazon S3 Storage Lens configurations. For more information about S3
         /// Storage Lens, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html">Assessing
         /// your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon
         /// S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  <note> 
         /// <para>
-        /// To use this action, you must have permission to perform the <code>s3:ListStorageLensConfigurations</code>
+        /// To use this action, you must have permission to perform the <c>s3:ListStorageLensConfigurations</c>
         /// action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html">Setting
         /// permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
@@ -4478,15 +6075,195 @@ namespace Amazon.S3Control
 
         #endregion
         
+        #region  ListStorageLensGroups
+
+
+        /// <summary>
+        /// Lists all the Storage Lens groups in the specified home Region. 
+        /// 
+        ///  
+        /// <para>
+        /// To use this operation, you must have the permission to perform the <c>s3:ListStorageLensGroups</c>
+        /// action. For more information about the required Storage Lens Groups permissions, see
+        /// <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions">Setting
+        /// account permissions to use S3 Storage Lens groups</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information about Storage Lens groups errors, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList">List
+        /// of Amazon S3 Storage Lens error codes</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListStorageLensGroups service method.</param>
+        /// 
+        /// <returns>The response from the ListStorageLensGroups service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListStorageLensGroups">REST API Reference for ListStorageLensGroups Operation</seealso>
+        ListStorageLensGroupsResponse ListStorageLensGroups(ListStorageLensGroupsRequest request);
+
+
+
+        /// <summary>
+        /// Lists all the Storage Lens groups in the specified home Region. 
+        /// 
+        ///  
+        /// <para>
+        /// To use this operation, you must have the permission to perform the <c>s3:ListStorageLensGroups</c>
+        /// action. For more information about the required Storage Lens Groups permissions, see
+        /// <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions">Setting
+        /// account permissions to use S3 Storage Lens groups</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information about Storage Lens groups errors, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList">List
+        /// of Amazon S3 Storage Lens error codes</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListStorageLensGroups service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListStorageLensGroups service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListStorageLensGroups">REST API Reference for ListStorageLensGroups Operation</seealso>
+        Task<ListStorageLensGroupsResponse> ListStorageLensGroupsAsync(ListStorageLensGroupsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListTagsForResource
+
+
+        /// <summary>
+        /// This operation allows you to list all the Amazon Web Services resource tags for a
+        /// specified resource. Each tag is a label consisting of a user-defined key and value.
+        /// Tags can help you manage, identify, organize, search for, and filter resources. 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:ListTagsForResource</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> </dl> <note> 
+        /// <para>
+        /// This operation is only supported for <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html">S3
+        /// Storage Lens groups</a> and for <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants-tagging.html">S3
+        /// Access Grants</a>. The tagged resource can be an S3 Storage Lens group or S3 Access
+        /// Grants instance, registered location, or grant. 
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// For more information about the required Storage Lens Groups permissions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions">Setting
+        /// account permissions to use S3 Storage Lens groups</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information about S3 Tagging errors, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList">List
+        /// of Amazon S3 Tagging error codes</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListTagsForResource service method.</param>
+        /// 
+        /// <returns>The response from the ListTagsForResource service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListTagsForResource">REST API Reference for ListTagsForResource Operation</seealso>
+        ListTagsForResourceResponse ListTagsForResource(ListTagsForResourceRequest request);
+
+
+
+        /// <summary>
+        /// This operation allows you to list all the Amazon Web Services resource tags for a
+        /// specified resource. Each tag is a label consisting of a user-defined key and value.
+        /// Tags can help you manage, identify, organize, search for, and filter resources. 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:ListTagsForResource</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> </dl> <note> 
+        /// <para>
+        /// This operation is only supported for <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html">S3
+        /// Storage Lens groups</a> and for <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants-tagging.html">S3
+        /// Access Grants</a>. The tagged resource can be an S3 Storage Lens group or S3 Access
+        /// Grants instance, registered location, or grant. 
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// For more information about the required Storage Lens Groups permissions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions">Setting
+        /// account permissions to use S3 Storage Lens groups</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information about S3 Tagging errors, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList">List
+        /// of Amazon S3 Tagging error codes</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListTagsForResource service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListTagsForResource service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListTagsForResource">REST API Reference for ListTagsForResource Operation</seealso>
+        Task<ListTagsForResourceResponse> ListTagsForResourceAsync(ListTagsForResourceRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  PutAccessGrantsInstanceResourcePolicy
+
+
+        /// <summary>
+        /// Updates the resource policy of the S3 Access Grants instance. 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:PutAccessGrantsInstanceResourcePolicy</c> permission to use
+        /// this operation. 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutAccessGrantsInstanceResourcePolicy service method.</param>
+        /// 
+        /// <returns>The response from the PutAccessGrantsInstanceResourcePolicy service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutAccessGrantsInstanceResourcePolicy">REST API Reference for PutAccessGrantsInstanceResourcePolicy Operation</seealso>
+        PutAccessGrantsInstanceResourcePolicyResponse PutAccessGrantsInstanceResourcePolicy(PutAccessGrantsInstanceResourcePolicyRequest request);
+
+
+
+        /// <summary>
+        /// Updates the resource policy of the S3 Access Grants instance. 
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:PutAccessGrantsInstanceResourcePolicy</c> permission to use
+        /// this operation. 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutAccessGrantsInstanceResourcePolicy service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the PutAccessGrantsInstanceResourcePolicy service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutAccessGrantsInstanceResourcePolicy">REST API Reference for PutAccessGrantsInstanceResourcePolicy Operation</seealso>
+        Task<PutAccessGrantsInstanceResourcePolicyResponse> PutAccessGrantsInstanceResourcePolicyAsync(PutAccessGrantsInstanceResourcePolicyRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  PutAccessPointConfigurationForObjectLambda
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Replaces configuration for an Object Lambda Access Point.
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>PutAccessPointConfigurationForObjectLambda</code>:
+        /// The following actions are related to <c>PutAccessPointConfigurationForObjectLambda</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -4504,11 +6281,17 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Replaces configuration for an Object Lambda Access Point.
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>PutAccessPointConfigurationForObjectLambda</code>:
+        /// The following actions are related to <c>PutAccessPointConfigurationForObjectLambda</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -4532,23 +6315,29 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Associates an access policy with the specified access point. Each access point can
         /// have only one policy, so a request made to this API replaces any existing policy associated
         /// with the specified access point.
-        /// 
+        /// </para>
         ///   
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicy.html#API_control_PutAccessPointPolicy_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicy.html#API_control_PutAccessPointPolicy_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>PutAccessPointPolicy</code>:
+        /// The following actions are related to <c>PutAccessPointPolicy</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -4571,23 +6360,29 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Associates an access policy with the specified access point. Each access point can
         /// have only one policy, so a request made to this API replaces any existing policy associated
         /// with the specified access point.
-        /// 
+        /// </para>
         ///   
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicy.html#API_control_PutAccessPointPolicy_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicy.html#API_control_PutAccessPointPolicy_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>PutAccessPointPolicy</code>:
+        /// The following actions are related to <c>PutAccessPointPolicy</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -4616,13 +6411,19 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Creates or replaces resource policy for an Object Lambda Access Point. For an example
         /// policy, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/olap-create.html#olap-create-cli">Creating
         /// Object Lambda Access Points</a> in the <i>Amazon S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>PutAccessPointPolicyForObjectLambda</code>:
+        /// The following actions are related to <c>PutAccessPointPolicyForObjectLambda</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -4645,13 +6446,19 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Creates or replaces resource policy for an Object Lambda Access Point. For an example
         /// policy, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/olap-create.html#olap-create-cli">Creating
         /// Object Lambda Access Points</a> in the <i>Amazon S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>PutAccessPointPolicyForObjectLambda</code>:
+        /// The following actions are related to <c>PutAccessPointPolicyForObjectLambda</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -4696,16 +6503,16 @@ namespace Amazon.S3Control
         ///   
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketLifecycleConfiguration.html#API_control_PutBucketLifecycleConfiguration_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketLifecycleConfiguration.html#API_control_PutBucketLifecycleConfiguration_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>PutBucketLifecycleConfiguration</code>:
+        /// The following actions are related to <c>PutBucketLifecycleConfiguration</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -4744,16 +6551,16 @@ namespace Amazon.S3Control
         ///   
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketLifecycleConfiguration.html#API_control_PutBucketLifecycleConfiguration_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketLifecycleConfiguration.html#API_control_PutBucketLifecycleConfiguration_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>PutBucketLifecycleConfiguration</code>:
+        /// The following actions are related to <c>PutBucketLifecycleConfiguration</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -4797,16 +6604,16 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// If you are using an identity other than the root user of the Amazon Web Services account
-        /// that owns the Outposts bucket, the calling identity must have the <code>PutBucketPolicy</code>
+        /// that owns the Outposts bucket, the calling identity must have the <c>PutBucketPolicy</c>
         /// permissions on the specified Outposts bucket and belong to the bucket owner's account
         /// in order to use this action.
         /// </para>
         ///  
         /// <para>
-        /// If you don't have <code>PutBucketPolicy</code> permissions, Amazon S3 returns a <code>403
-        /// Access Denied</code> error. If you have the correct permissions, but you're not using
-        /// an identity that belongs to the bucket owner's account, Amazon S3 returns a <code>405
-        /// Method Not Allowed</code> error.
+        /// If you don't have <c>PutBucketPolicy</c> permissions, Amazon S3 returns a <c>403 Access
+        /// Denied</c> error. If you have the correct permissions, but you're not using an identity
+        /// that belongs to the bucket owner's account, Amazon S3 returns a <c>405 Method Not
+        /// Allowed</c> error.
         /// </para>
         ///  <important> 
         /// <para>
@@ -4822,16 +6629,16 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketPolicy.html#API_control_PutBucketPolicy_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketPolicy.html#API_control_PutBucketPolicy_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>PutBucketPolicy</code>:
+        /// The following actions are related to <c>PutBucketPolicy</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -4869,16 +6676,16 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// If you are using an identity other than the root user of the Amazon Web Services account
-        /// that owns the Outposts bucket, the calling identity must have the <code>PutBucketPolicy</code>
+        /// that owns the Outposts bucket, the calling identity must have the <c>PutBucketPolicy</c>
         /// permissions on the specified Outposts bucket and belong to the bucket owner's account
         /// in order to use this action.
         /// </para>
         ///  
         /// <para>
-        /// If you don't have <code>PutBucketPolicy</code> permissions, Amazon S3 returns a <code>403
-        /// Access Denied</code> error. If you have the correct permissions, but you're not using
-        /// an identity that belongs to the bucket owner's account, Amazon S3 returns a <code>405
-        /// Method Not Allowed</code> error.
+        /// If you don't have <c>PutBucketPolicy</c> permissions, Amazon S3 returns a <c>403 Access
+        /// Denied</c> error. If you have the correct permissions, but you're not using an identity
+        /// that belongs to the bucket owner's account, Amazon S3 returns a <c>405 Method Not
+        /// Allowed</c> error.
         /// </para>
         ///  <important> 
         /// <para>
@@ -4894,16 +6701,16 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketPolicy.html#API_control_PutBucketPolicy_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketPolicy.html#API_control_PutBucketPolicy_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>PutBucketPolicy</code>:
+        /// The following actions are related to <c>PutBucketPolicy</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -4946,12 +6753,11 @@ namespace Amazon.S3Control
         /// </para>
         ///  <note> 
         /// <para>
-        /// It can take a while to propagate <code>PUT</code> or <code>DELETE</code> requests
-        /// for a replication configuration to all S3 on Outposts systems. Therefore, the replication
-        /// configuration that's returned by a <code>GET</code> request soon after a <code>PUT</code>
-        /// or <code>DELETE</code> request might return a more recent result than what's on the
-        /// Outpost. If an Outpost is offline, the delay in updating the replication configuration
-        /// on that Outpost can be significant.
+        /// It can take a while to propagate <c>PUT</c> or <c>DELETE</c> requests for a replication
+        /// configuration to all S3 on Outposts systems. Therefore, the replication configuration
+        /// that's returned by a <c>GET</c> request soon after a <c>PUT</c> or <c>DELETE</c> request
+        /// might return a more recent result than what's on the Outpost. If an Outpost is offline,
+        /// the delay in updating the replication configuration on that Outpost can be significant.
         /// </para>
         ///  </note> 
         /// <para>
@@ -4982,17 +6788,16 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// To specify a subset of the objects in the source Outposts bucket to apply a replication
-        /// rule to, add the <code>Filter</code> element as a child of the <code>Rule</code> element.
-        /// You can filter objects based on an object key prefix, one or more object tags, or
-        /// both. When you add the <code>Filter</code> element in the configuration, you must
-        /// also add the following elements: <code>DeleteMarkerReplication</code>, <code>Status</code>,
-        /// and <code>Priority</code>.
+        /// rule to, add the <c>Filter</c> element as a child of the <c>Rule</c> element. You
+        /// can filter objects based on an object key prefix, one or more object tags, or both.
+        /// When you add the <c>Filter</c> element in the configuration, you must also add the
+        /// following elements: <c>DeleteMarkerReplication</c>, <c>Status</c>, and <c>Priority</c>.
         /// </para>
         ///  
         /// <para>
-        /// Using <code>PutBucketReplication</code> on Outposts requires that both the source
-        /// and destination buckets must have versioning enabled. For information about enabling
-        /// versioning on a bucket, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsManagingVersioning.html">Managing
+        /// Using <c>PutBucketReplication</c> on Outposts requires that both the source and destination
+        /// buckets must have versioning enabled. For information about enabling versioning on
+        /// a bucket, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsManagingVersioning.html">Managing
         /// S3 Versioning for your S3 on Outposts bucket</a>.
         /// </para>
         ///  
@@ -5017,7 +6822,7 @@ namespace Amazon.S3Control
         /// </para>
         ///  
         /// <para>
-        /// To create a <code>PutBucketReplication</code> request, you must have <code>s3-outposts:PutReplicationConfiguration</code>
+        /// To create a <c>PutBucketReplication</c> request, you must have <c>s3-outposts:PutReplicationConfiguration</c>
         /// permissions for the bucket. The Outposts bucket owner has this permission by default
         /// and can grant it to others. For more information about permissions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsIAM.html">Setting
         /// up IAM with S3 on Outposts</a> and <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsBucketPolicy.html">Managing
@@ -5025,23 +6830,23 @@ namespace Amazon.S3Control
         /// </para>
         ///  <note> 
         /// <para>
-        /// To perform this operation, the user or role must also have the <code>iam:CreateRole</code>
-        /// and <code>iam:PassRole</code> permissions. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html">Granting
+        /// To perform this operation, the user or role must also have the <c>iam:CreateRole</c>
+        /// and <c>iam:PassRole</c> permissions. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html">Granting
         /// a user permissions to pass a role to an Amazon Web Services service</a>.
         /// </para>
         ///  </note> 
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketReplication.html#API_control_PutBucketReplication_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketReplication.html#API_control_PutBucketReplication_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following operations are related to <code>PutBucketReplication</code>:
+        /// The following operations are related to <c>PutBucketReplication</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5078,12 +6883,11 @@ namespace Amazon.S3Control
         /// </para>
         ///  <note> 
         /// <para>
-        /// It can take a while to propagate <code>PUT</code> or <code>DELETE</code> requests
-        /// for a replication configuration to all S3 on Outposts systems. Therefore, the replication
-        /// configuration that's returned by a <code>GET</code> request soon after a <code>PUT</code>
-        /// or <code>DELETE</code> request might return a more recent result than what's on the
-        /// Outpost. If an Outpost is offline, the delay in updating the replication configuration
-        /// on that Outpost can be significant.
+        /// It can take a while to propagate <c>PUT</c> or <c>DELETE</c> requests for a replication
+        /// configuration to all S3 on Outposts systems. Therefore, the replication configuration
+        /// that's returned by a <c>GET</c> request soon after a <c>PUT</c> or <c>DELETE</c> request
+        /// might return a more recent result than what's on the Outpost. If an Outpost is offline,
+        /// the delay in updating the replication configuration on that Outpost can be significant.
         /// </para>
         ///  </note> 
         /// <para>
@@ -5114,17 +6918,16 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// To specify a subset of the objects in the source Outposts bucket to apply a replication
-        /// rule to, add the <code>Filter</code> element as a child of the <code>Rule</code> element.
-        /// You can filter objects based on an object key prefix, one or more object tags, or
-        /// both. When you add the <code>Filter</code> element in the configuration, you must
-        /// also add the following elements: <code>DeleteMarkerReplication</code>, <code>Status</code>,
-        /// and <code>Priority</code>.
+        /// rule to, add the <c>Filter</c> element as a child of the <c>Rule</c> element. You
+        /// can filter objects based on an object key prefix, one or more object tags, or both.
+        /// When you add the <c>Filter</c> element in the configuration, you must also add the
+        /// following elements: <c>DeleteMarkerReplication</c>, <c>Status</c>, and <c>Priority</c>.
         /// </para>
         ///  
         /// <para>
-        /// Using <code>PutBucketReplication</code> on Outposts requires that both the source
-        /// and destination buckets must have versioning enabled. For information about enabling
-        /// versioning on a bucket, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsManagingVersioning.html">Managing
+        /// Using <c>PutBucketReplication</c> on Outposts requires that both the source and destination
+        /// buckets must have versioning enabled. For information about enabling versioning on
+        /// a bucket, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsManagingVersioning.html">Managing
         /// S3 Versioning for your S3 on Outposts bucket</a>.
         /// </para>
         ///  
@@ -5149,7 +6952,7 @@ namespace Amazon.S3Control
         /// </para>
         ///  
         /// <para>
-        /// To create a <code>PutBucketReplication</code> request, you must have <code>s3-outposts:PutReplicationConfiguration</code>
+        /// To create a <c>PutBucketReplication</c> request, you must have <c>s3-outposts:PutReplicationConfiguration</c>
         /// permissions for the bucket. The Outposts bucket owner has this permission by default
         /// and can grant it to others. For more information about permissions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsIAM.html">Setting
         /// up IAM with S3 on Outposts</a> and <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsBucketPolicy.html">Managing
@@ -5157,23 +6960,23 @@ namespace Amazon.S3Control
         /// </para>
         ///  <note> 
         /// <para>
-        /// To perform this operation, the user or role must also have the <code>iam:CreateRole</code>
-        /// and <code>iam:PassRole</code> permissions. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html">Granting
+        /// To perform this operation, the user or role must also have the <c>iam:CreateRole</c>
+        /// and <c>iam:PassRole</c> permissions. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html">Granting
         /// a user permissions to pass a role to an Amazon Web Services service</a>.
         /// </para>
         ///  </note> 
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketReplication.html#API_control_PutBucketReplication_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketReplication.html#API_control_PutBucketReplication_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following operations are related to <code>PutBucketReplication</code>:
+        /// The following operations are related to <c>PutBucketReplication</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5232,7 +7035,7 @@ namespace Amazon.S3Control
         /// </para>
         ///  </note> 
         /// <para>
-        /// To use this action, you must have permissions to perform the <code>s3-outposts:PutBucketTagging</code>
+        /// To use this action, you must have permissions to perform the <c>s3-outposts:PutBucketTagging</c>
         /// action. The Outposts bucket owner has this permission by default and can grant this
         /// permission to others. For more information about permissions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources">
         /// Permissions Related to Bucket Subresource Operations</a> and <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html">Managing
@@ -5240,11 +7043,11 @@ namespace Amazon.S3Control
         /// </para>
         ///  
         /// <para>
-        ///  <code>PutBucketTagging</code> has the following special errors:
+        ///  <c>PutBucketTagging</c> has the following special errors:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Error code: <code>InvalidTagError</code> 
+        /// Error code: <c>InvalidTagError</c> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5255,7 +7058,7 @@ namespace Amazon.S3Control
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
-        /// Error code: <code>MalformedXMLError</code> 
+        /// Error code: <c>MalformedXMLError</c> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5263,7 +7066,7 @@ namespace Amazon.S3Control
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
-        /// Error code: <code>OperationAbortedError </code> 
+        /// Error code: <c>OperationAbortedError </c> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5272,7 +7075,7 @@ namespace Amazon.S3Control
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
-        /// Error code: <code>InternalError</code> 
+        /// Error code: <c>InternalError</c> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5281,16 +7084,16 @@ namespace Amazon.S3Control
         ///  </li> </ul> </li> </ul> 
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketTagging.html#API_control_PutBucketTagging_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketTagging.html#API_control_PutBucketTagging_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>PutBucketTagging</code>:
+        /// The following actions are related to <c>PutBucketTagging</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5343,7 +7146,7 @@ namespace Amazon.S3Control
         /// </para>
         ///  </note> 
         /// <para>
-        /// To use this action, you must have permissions to perform the <code>s3-outposts:PutBucketTagging</code>
+        /// To use this action, you must have permissions to perform the <c>s3-outposts:PutBucketTagging</c>
         /// action. The Outposts bucket owner has this permission by default and can grant this
         /// permission to others. For more information about permissions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources">
         /// Permissions Related to Bucket Subresource Operations</a> and <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html">Managing
@@ -5351,11 +7154,11 @@ namespace Amazon.S3Control
         /// </para>
         ///  
         /// <para>
-        ///  <code>PutBucketTagging</code> has the following special errors:
+        ///  <c>PutBucketTagging</c> has the following special errors:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Error code: <code>InvalidTagError</code> 
+        /// Error code: <c>InvalidTagError</c> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5366,7 +7169,7 @@ namespace Amazon.S3Control
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
-        /// Error code: <code>MalformedXMLError</code> 
+        /// Error code: <c>MalformedXMLError</c> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5374,7 +7177,7 @@ namespace Amazon.S3Control
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
-        /// Error code: <code>OperationAbortedError </code> 
+        /// Error code: <c>OperationAbortedError </c> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5383,7 +7186,7 @@ namespace Amazon.S3Control
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
-        /// Error code: <code>InternalError</code> 
+        /// Error code: <c>InternalError</c> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5392,16 +7195,16 @@ namespace Amazon.S3Control
         ///  </li> </ul> </li> </ul> 
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketTagging.html#API_control_PutBucketTagging_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketTagging.html#API_control_PutBucketTagging_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>PutBucketTagging</code>:
+        /// The following actions are related to <c>PutBucketTagging</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5454,7 +7257,7 @@ namespace Amazon.S3Control
         ///  </li> <li> 
         /// <para>
         ///  <b>Suspended</b> - Suspends versioning for the objects in the bucket. All objects
-        /// added to the bucket receive the version ID <code>null</code>.
+        /// added to the bucket receive the version ID <c>null</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -5483,17 +7286,16 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketVersioning.html#API_control_PutBucketVersioning_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketVersioning.html#API_control_PutBucketVersioning_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following operations are related to <code>PutBucketVersioning</code> for S3 on
-        /// Outposts.
+        /// The following operations are related to <c>PutBucketVersioning</c> for S3 on Outposts.
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5545,7 +7347,7 @@ namespace Amazon.S3Control
         ///  </li> <li> 
         /// <para>
         ///  <b>Suspended</b> - Suspends versioning for the objects in the bucket. All objects
-        /// added to the bucket receive the version ID <code>null</code>.
+        /// added to the bucket receive the version ID <c>null</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -5574,17 +7376,16 @@ namespace Amazon.S3Control
         ///  
         /// <para>
         /// All Amazon S3 on Outposts REST API requests for this action require an additional
-        /// parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition,
-        /// you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>.
+        /// parameter of <c>x-amz-outpost-id</c> to be passed with the request. In addition, you
+        /// must use an S3 on Outposts endpoint hostname prefix instead of <c>s3-control</c>.
         /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-        /// Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by
-        /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketVersioning.html#API_control_PutBucketVersioning_Examples">Examples</a>
+        /// Outposts endpoint hostname prefix and the <c>x-amz-outpost-id</c> derived by using
+        /// the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketVersioning.html#API_control_PutBucketVersioning_Examples">Examples</a>
         /// section.
         /// </para>
         ///  
         /// <para>
-        /// The following operations are related to <code>PutBucketVersioning</code> for S3 on
-        /// Outposts.
+        /// The following operations are related to <c>PutBucketVersioning</c> for S3 on Outposts.
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5627,11 +7428,11 @@ namespace Amazon.S3Control
         /// job. To modify the existing tag set, you can either replace the existing tag set entirely,
         /// or make changes within the existing tag set by retrieving the existing tag set using
         /// <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetJobTagging.html">GetJobTagging</a>,
-        /// modify that tag set, and use this action to replace the tag set with the one you modified.
-        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags">Controlling
+        /// modify that tag set, and use this operation to replace the tag set with the one you
+        /// modified. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags">Controlling
         /// access and labeling jobs using tags</a> in the <i>Amazon S3 User Guide</i>. 
         /// </para>
-        ///   <note> <ul> <li> 
+        ///  <note> <ul> <li> 
         /// <para>
         /// If you send this request with an empty tag set, Amazon S3 deletes the existing tag
         /// set on the Batch Operations job. If you use this method, you are charged for a Tier
@@ -5669,12 +7470,12 @@ namespace Amazon.S3Control
         /// For tagging-related restrictions related to characters and encodings, see <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html">User-Defined
         /// Tag Restrictions</a> in the <i>Billing and Cost Management User Guide</i>.
         /// </para>
-        ///  </li> </ul> </li> </ul> </note>  
+        ///  </li> </ul> </li> </ul> </note> <dl> <dt>Permissions</dt> <dd> 
         /// <para>
-        /// To use the <code>PutJobTagging</code> operation, you must have permission to perform
-        /// the <code>s3:PutJobTagging</code> action.
+        /// To use the <c>PutJobTagging</c> operation, you must have permission to perform the
+        /// <c>s3:PutJobTagging</c> action.
         /// </para>
-        ///  
+        ///  </dd> </dl> 
         /// <para>
         /// Related actions include:
         /// </para>
@@ -5725,11 +7526,11 @@ namespace Amazon.S3Control
         /// job. To modify the existing tag set, you can either replace the existing tag set entirely,
         /// or make changes within the existing tag set by retrieving the existing tag set using
         /// <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetJobTagging.html">GetJobTagging</a>,
-        /// modify that tag set, and use this action to replace the tag set with the one you modified.
-        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags">Controlling
+        /// modify that tag set, and use this operation to replace the tag set with the one you
+        /// modified. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags">Controlling
         /// access and labeling jobs using tags</a> in the <i>Amazon S3 User Guide</i>. 
         /// </para>
-        ///   <note> <ul> <li> 
+        ///  <note> <ul> <li> 
         /// <para>
         /// If you send this request with an empty tag set, Amazon S3 deletes the existing tag
         /// set on the Batch Operations job. If you use this method, you are charged for a Tier
@@ -5767,12 +7568,12 @@ namespace Amazon.S3Control
         /// For tagging-related restrictions related to characters and encodings, see <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html">User-Defined
         /// Tag Restrictions</a> in the <i>Billing and Cost Management User Guide</i>.
         /// </para>
-        ///  </li> </ul> </li> </ul> </note>  
+        ///  </li> </ul> </li> </ul> </note> <dl> <dt>Permissions</dt> <dd> 
         /// <para>
-        /// To use the <code>PutJobTagging</code> operation, you must have permission to perform
-        /// the <code>s3:PutJobTagging</code> action.
+        /// To use the <c>PutJobTagging</c> operation, you must have permission to perform the
+        /// <c>s3:PutJobTagging</c> action.
         /// </para>
-        ///  
+        ///  </dd> </dl> 
         /// <para>
         /// Related actions include:
         /// </para>
@@ -5820,20 +7621,26 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Associates an access control policy with the specified Multi-Region Access Point.
         /// Each Multi-Region Access Point can have only one policy, so a request made to this
         /// action replaces any existing policy that is associated with the specified Multi-Region
         /// Access Point.
-        /// 
-        ///  
-        /// <para>
-        /// This action will always be routed to the US West (Oregon) Region. For more information
-        /// about the restrictions around managing Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html">Managing
-        /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>PutMultiRegionAccessPointPolicy</code>:
+        /// This action will always be routed to the US West (Oregon) Region. For more information
+        /// about the restrictions around working with Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html">Multi-Region
+        /// Access Point restrictions and limitations</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// The following actions are related to <c>PutMultiRegionAccessPointPolicy</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5856,20 +7663,26 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Associates an access control policy with the specified Multi-Region Access Point.
         /// Each Multi-Region Access Point can have only one policy, so a request made to this
         /// action replaces any existing policy that is associated with the specified Multi-Region
         /// Access Point.
-        /// 
-        ///  
-        /// <para>
-        /// This action will always be routed to the US West (Oregon) Region. For more information
-        /// about the restrictions around managing Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html">Managing
-        /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// The following actions are related to <code>PutMultiRegionAccessPointPolicy</code>:
+        /// This action will always be routed to the US West (Oregon) Region. For more information
+        /// about the restrictions around working with Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html">Multi-Region
+        /// Access Point restrictions and limitations</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// The following actions are related to <c>PutMultiRegionAccessPointPolicy</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5898,11 +7711,17 @@ namespace Amazon.S3Control
 
 
         /// <summary>
-        /// Creates or modifies the <code>PublicAccessBlock</code> configuration for an Amazon
-        /// Web Services account. For this operation, users must have the <code>s3:PutAccountPublicAccessBlock</code>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// Creates or modifies the <c>PublicAccessBlock</c> configuration for an Amazon Web Services
+        /// account. For this operation, users must have the <c>s3:PutAccountPublicAccessBlock</c>
         /// permission. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html">
         /// Using Amazon S3 block public access</a>.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// Related actions include:
@@ -5928,11 +7747,17 @@ namespace Amazon.S3Control
 
 
         /// <summary>
-        /// Creates or modifies the <code>PublicAccessBlock</code> configuration for an Amazon
-        /// Web Services account. For this operation, users must have the <code>s3:PutAccountPublicAccessBlock</code>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// Creates or modifies the <c>PublicAccessBlock</c> configuration for an Amazon Web Services
+        /// account. For this operation, users must have the <c>s3:PutAccountPublicAccessBlock</c>
         /// permission. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html">
         /// Using Amazon S3 block public access</a>.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// Related actions include:
@@ -5964,15 +7789,21 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Puts an Amazon S3 Storage Lens configuration. For more information about S3 Storage
         /// Lens, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html">Working
         /// with Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>. For a complete
         /// list of S3 Storage Lens metrics, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html">S3
         /// Storage Lens metrics glossary</a> in the <i>Amazon S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  <note> 
         /// <para>
-        /// To use this action, you must have permission to perform the <code>s3:PutStorageLensConfiguration</code>
+        /// To use this action, you must have permission to perform the <c>s3:PutStorageLensConfiguration</c>
         /// action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html">Setting
         /// permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
@@ -5987,15 +7818,21 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Puts an Amazon S3 Storage Lens configuration. For more information about S3 Storage
         /// Lens, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html">Working
         /// with Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>. For a complete
         /// list of S3 Storage Lens metrics, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html">S3
         /// Storage Lens metrics glossary</a> in the <i>Amazon S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  <note> 
         /// <para>
-        /// To use this action, you must have permission to perform the <code>s3:PutStorageLensConfiguration</code>
+        /// To use this action, you must have permission to perform the <c>s3:PutStorageLensConfiguration</c>
         /// action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html">Setting
         /// permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
@@ -6016,14 +7853,20 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Put or replace tags on an existing Amazon S3 Storage Lens configuration. For more
         /// information about S3 Storage Lens, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html">Assessing
         /// your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon
         /// S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  <note> 
         /// <para>
-        /// To use this action, you must have permission to perform the <code>s3:PutStorageLensConfigurationTagging</code>
+        /// To use this action, you must have permission to perform the <c>s3:PutStorageLensConfigurationTagging</c>
         /// action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html">Setting
         /// permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
@@ -6038,14 +7881,20 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Put or replace tags on an existing Amazon S3 Storage Lens configuration. For more
         /// information about S3 Storage Lens, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html">Assessing
         /// your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon
         /// S3 User Guide</i>.
-        /// 
+        /// </para>
         ///  <note> 
         /// <para>
-        /// To use this action, you must have permission to perform the <code>s3:PutStorageLensConfigurationTagging</code>
+        /// To use this action, you must have permission to perform the <c>s3:PutStorageLensConfigurationTagging</c>
         /// action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html">Setting
         /// permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
@@ -6066,13 +7915,19 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Submits an updated route configuration for a Multi-Region Access Point. This API operation
         /// updates the routing status for the specified Regions from active to passive, or from
-        /// passive to active. A value of <code>0</code> indicates a passive status, which means
-        /// that traffic won't be routed to the specified Region. A value of <code>100</code>
-        /// indicates an active status, which means that traffic will be routed to the specified
-        /// Region. At least one Region must be active at all times.
-        /// 
+        /// passive to active. A value of <c>0</c> indicates a passive status, which means that
+        /// traffic won't be routed to the specified Region. A value of <c>100</c> indicates an
+        /// active status, which means that traffic will be routed to the specified Region. At
+        /// least one Region must be active at all times.
+        /// </para>
         ///  
         /// <para>
         /// When the routing configuration is changed, any in-progress operations (uploads, copies,
@@ -6092,29 +7947,25 @@ namespace Amazon.S3Control
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>us-east-1</code> 
+        ///  <c>us-east-1</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>us-west-2</code> 
+        ///  <c>us-west-2</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ap-southeast-2</code> 
+        ///  <c>ap-southeast-2</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ap-northeast-1</code> 
+        ///  <c>ap-northeast-1</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>eu-west-1</code> 
+        ///  <c>eu-west-1</c> 
         /// </para>
-        ///  </li> </ul> <note> 
-        /// <para>
-        /// Your Amazon S3 bucket does not need to be in these five Regions.
-        /// </para>
-        ///  </note>
+        ///  </li> </ul>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the SubmitMultiRegionAccessPointRoutes service method.</param>
         /// 
@@ -6125,13 +7976,19 @@ namespace Amazon.S3Control
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation is not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Submits an updated route configuration for a Multi-Region Access Point. This API operation
         /// updates the routing status for the specified Regions from active to passive, or from
-        /// passive to active. A value of <code>0</code> indicates a passive status, which means
-        /// that traffic won't be routed to the specified Region. A value of <code>100</code>
-        /// indicates an active status, which means that traffic will be routed to the specified
-        /// Region. At least one Region must be active at all times.
-        /// 
+        /// passive to active. A value of <c>0</c> indicates a passive status, which means that
+        /// traffic won't be routed to the specified Region. A value of <c>100</c> indicates an
+        /// active status, which means that traffic will be routed to the specified Region. At
+        /// least one Region must be active at all times.
+        /// </para>
         ///  
         /// <para>
         /// When the routing configuration is changed, any in-progress operations (uploads, copies,
@@ -6151,29 +8008,25 @@ namespace Amazon.S3Control
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>us-east-1</code> 
+        ///  <c>us-east-1</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>us-west-2</code> 
+        ///  <c>us-west-2</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ap-southeast-2</code> 
+        ///  <c>ap-southeast-2</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ap-northeast-1</code> 
+        ///  <c>ap-northeast-1</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>eu-west-1</code> 
+        ///  <c>eu-west-1</c> 
         /// </para>
-        ///  </li> </ul> <note> 
-        /// <para>
-        /// Your Amazon S3 bucket does not need to be in these five Regions.
-        /// </para>
-        ///  </note>
+        ///  </li> </ul>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the SubmitMultiRegionAccessPointRoutes service method.</param>
         /// <param name="cancellationToken">
@@ -6186,6 +8039,210 @@ namespace Amazon.S3Control
 
         #endregion
         
+        #region  TagResource
+
+
+        /// <summary>
+        /// Creates a new Amazon Web Services resource tag or updates an existing resource tag.
+        /// Each tag is a label consisting of a user-defined key and value. Tags can help you
+        /// manage, identify, organize, search for, and filter resources. You can add up to 50
+        /// Amazon Web Services resource tags for each S3 resource. 
+        /// 
+        ///  <note> 
+        /// <para>
+        /// This operation is only supported for <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html">S3
+        /// Storage Lens groups</a> and for <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants-tagging.html">S3
+        /// Access Grants</a>. The tagged resource can be an S3 Storage Lens group or S3 Access
+        /// Grants instance, registered location, or grant. 
+        /// </para>
+        ///  </note> <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:TagResource</c> permission to use this operation. 
+        /// </para>
+        ///  </dd> </dl> 
+        /// <para>
+        /// For more information about the required Storage Lens Groups permissions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions">Setting
+        /// account permissions to use S3 Storage Lens groups</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information about S3 Tagging errors, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList">List
+        /// of Amazon S3 Tagging error codes</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the TagResource service method.</param>
+        /// 
+        /// <returns>The response from the TagResource service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/TagResource">REST API Reference for TagResource Operation</seealso>
+        TagResourceResponse TagResource(TagResourceRequest request);
+
+
+
+        /// <summary>
+        /// Creates a new Amazon Web Services resource tag or updates an existing resource tag.
+        /// Each tag is a label consisting of a user-defined key and value. Tags can help you
+        /// manage, identify, organize, search for, and filter resources. You can add up to 50
+        /// Amazon Web Services resource tags for each S3 resource. 
+        /// 
+        ///  <note> 
+        /// <para>
+        /// This operation is only supported for <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html">S3
+        /// Storage Lens groups</a> and for <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants-tagging.html">S3
+        /// Access Grants</a>. The tagged resource can be an S3 Storage Lens group or S3 Access
+        /// Grants instance, registered location, or grant. 
+        /// </para>
+        ///  </note> <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:TagResource</c> permission to use this operation. 
+        /// </para>
+        ///  </dd> </dl> 
+        /// <para>
+        /// For more information about the required Storage Lens Groups permissions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions">Setting
+        /// account permissions to use S3 Storage Lens groups</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information about S3 Tagging errors, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList">List
+        /// of Amazon S3 Tagging error codes</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the TagResource service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the TagResource service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/TagResource">REST API Reference for TagResource Operation</seealso>
+        Task<TagResourceResponse> TagResourceAsync(TagResourceRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  UntagResource
+
+
+        /// <summary>
+        /// This operation removes the specified Amazon Web Services resource tags from an S3
+        /// resource. Each tag is a label consisting of a user-defined key and value. Tags can
+        /// help you manage, identify, organize, search for, and filter resources. 
+        /// 
+        ///  <note> 
+        /// <para>
+        /// This operation is only supported for <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html">S3
+        /// Storage Lens groups</a> and for <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants-tagging.html">S3
+        /// Access Grants</a>. The tagged resource can be an S3 Storage Lens group or S3 Access
+        /// Grants instance, registered location, or grant. 
+        /// </para>
+        ///  </note> <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:UntagResource</c> permission to use this operation. 
+        /// </para>
+        ///  </dd> </dl> 
+        /// <para>
+        /// For more information about the required Storage Lens Groups permissions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions">Setting
+        /// account permissions to use S3 Storage Lens groups</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information about S3 Tagging errors, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList">List
+        /// of Amazon S3 Tagging error codes</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
+        /// 
+        /// <returns>The response from the UntagResource service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/UntagResource">REST API Reference for UntagResource Operation</seealso>
+        UntagResourceResponse UntagResource(UntagResourceRequest request);
+
+
+
+        /// <summary>
+        /// This operation removes the specified Amazon Web Services resource tags from an S3
+        /// resource. Each tag is a label consisting of a user-defined key and value. Tags can
+        /// help you manage, identify, organize, search for, and filter resources. 
+        /// 
+        ///  <note> 
+        /// <para>
+        /// This operation is only supported for <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html">S3
+        /// Storage Lens groups</a> and for <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants-tagging.html">S3
+        /// Access Grants</a>. The tagged resource can be an S3 Storage Lens group or S3 Access
+        /// Grants instance, registered location, or grant. 
+        /// </para>
+        ///  </note> <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:UntagResource</c> permission to use this operation. 
+        /// </para>
+        ///  </dd> </dl> 
+        /// <para>
+        /// For more information about the required Storage Lens Groups permissions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions">Setting
+        /// account permissions to use S3 Storage Lens groups</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information about S3 Tagging errors, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList">List
+        /// of Amazon S3 Tagging error codes</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UntagResource service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/UntagResource">REST API Reference for UntagResource Operation</seealso>
+        Task<UntagResourceResponse> UntagResourceAsync(UntagResourceRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  UpdateAccessGrantsLocation
+
+
+        /// <summary>
+        /// Updates the IAM role of a registered location in your S3 Access Grants instance.
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:UpdateAccessGrantsLocation</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> <dt>Additional Permissions</dt> <dd> 
+        /// <para>
+        /// You must also have the following permission: <c>iam:PassRole</c> 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateAccessGrantsLocation service method.</param>
+        /// 
+        /// <returns>The response from the UpdateAccessGrantsLocation service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/UpdateAccessGrantsLocation">REST API Reference for UpdateAccessGrantsLocation Operation</seealso>
+        UpdateAccessGrantsLocationResponse UpdateAccessGrantsLocation(UpdateAccessGrantsLocationRequest request);
+
+
+
+        /// <summary>
+        /// Updates the IAM role of a registered location in your S3 Access Grants instance.
+        /// 
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// You must have the <c>s3:UpdateAccessGrantsLocation</c> permission to use this operation.
+        /// 
+        /// </para>
+        ///  </dd> <dt>Additional Permissions</dt> <dd> 
+        /// <para>
+        /// You must also have the following permission: <c>iam:PassRole</c> 
+        /// </para>
+        ///  </dd> </dl>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateAccessGrantsLocation service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateAccessGrantsLocation service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/UpdateAccessGrantsLocation">REST API Reference for UpdateAccessGrantsLocation Operation</seealso>
+        Task<UpdateAccessGrantsLocationResponse> UpdateAccessGrantsLocationAsync(UpdateAccessGrantsLocationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  UpdateJobPriority
 
 
@@ -6194,7 +8251,12 @@ namespace Amazon.S3Control
         /// <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html">S3
         /// Batch Operations</a> in the <i>Amazon S3 User Guide</i>.
         /// 
-        ///   
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// To use the <c>UpdateJobPriority</c> operation, you must have permission to perform
+        /// the <c>s3:UpdateJobPriority</c> action.
+        /// </para>
+        ///  </dd> </dl> 
         /// <para>
         /// Related actions include:
         /// </para>
@@ -6245,7 +8307,12 @@ namespace Amazon.S3Control
         /// <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html">S3
         /// Batch Operations</a> in the <i>Amazon S3 User Guide</i>.
         /// 
-        ///   
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// To use the <c>UpdateJobPriority</c> operation, you must have permission to perform
+        /// the <c>s3:UpdateJobPriority</c> action.
+        /// </para>
+        ///  </dd> </dl> 
         /// <para>
         /// Related actions include:
         /// </para>
@@ -6298,11 +8365,16 @@ namespace Amazon.S3Control
 
 
         /// <summary>
-        /// Updates the status for the specified job. Use this action to confirm that you want
+        /// Updates the status for the specified job. Use this operation to confirm that you want
         /// to run a job or to cancel an existing job. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html">S3
         /// Batch Operations</a> in the <i>Amazon S3 User Guide</i>.
         /// 
-        ///   
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// To use the <c>UpdateJobStatus</c> operation, you must have permission to perform the
+        /// <c>s3:UpdateJobStatus</c> action.
+        /// </para>
+        ///  </dd> </dl> 
         /// <para>
         /// Related actions include:
         /// </para>
@@ -6352,11 +8424,16 @@ namespace Amazon.S3Control
 
 
         /// <summary>
-        /// Updates the status for the specified job. Use this action to confirm that you want
+        /// Updates the status for the specified job. Use this operation to confirm that you want
         /// to run a job or to cancel an existing job. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html">S3
         /// Batch Operations</a> in the <i>Amazon S3 User Guide</i>.
         /// 
-        ///   
+        ///  <dl> <dt>Permissions</dt> <dd> 
+        /// <para>
+        /// To use the <c>UpdateJobStatus</c> operation, you must have permission to perform the
+        /// <c>s3:UpdateJobStatus</c> action.
+        /// </para>
+        ///  </dd> </dl> 
         /// <para>
         /// Related actions include:
         /// </para>
@@ -6405,6 +8482,60 @@ namespace Amazon.S3Control
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/UpdateJobStatus">REST API Reference for UpdateJobStatus Operation</seealso>
         Task<UpdateJobStatusResponse> UpdateJobStatusAsync(UpdateJobStatusRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  UpdateStorageLensGroup
+
+
+        /// <summary>
+        /// Updates the existing Storage Lens group.
+        /// 
+        ///  
+        /// <para>
+        /// To use this operation, you must have the permission to perform the <c>s3:UpdateStorageLensGroup</c>
+        /// action. For more information about the required Storage Lens Groups permissions, see
+        /// <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions">Setting
+        /// account permissions to use S3 Storage Lens groups</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information about Storage Lens groups errors, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList">List
+        /// of Amazon S3 Storage Lens error codes</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateStorageLensGroup service method.</param>
+        /// 
+        /// <returns>The response from the UpdateStorageLensGroup service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/UpdateStorageLensGroup">REST API Reference for UpdateStorageLensGroup Operation</seealso>
+        UpdateStorageLensGroupResponse UpdateStorageLensGroup(UpdateStorageLensGroupRequest request);
+
+
+
+        /// <summary>
+        /// Updates the existing Storage Lens group.
+        /// 
+        ///  
+        /// <para>
+        /// To use this operation, you must have the permission to perform the <c>s3:UpdateStorageLensGroup</c>
+        /// action. For more information about the required Storage Lens Groups permissions, see
+        /// <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions">Setting
+        /// account permissions to use S3 Storage Lens groups</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information about Storage Lens groups errors, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList">List
+        /// of Amazon S3 Storage Lens error codes</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateStorageLensGroup service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateStorageLensGroup service method, as returned by S3Control.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/UpdateStorageLensGroup">REST API Reference for UpdateStorageLensGroup Operation</seealso>
+        Task<UpdateStorageLensGroupResponse> UpdateStorageLensGroupAsync(UpdateStorageLensGroupRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 

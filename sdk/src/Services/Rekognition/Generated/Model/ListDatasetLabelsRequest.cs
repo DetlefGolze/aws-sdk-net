@@ -26,14 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// Container for the parameters to the ListDatasetLabels operation.
+    /// <note> 
+    /// <para>
+    /// This operation applies only to Amazon Rekognition Custom Labels.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Lists the labels in a dataset. Amazon Rekognition Custom Labels uses labels to describe
     /// images. For more information, see <a href="https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/md-labeling-images.html">Labeling
     /// images</a>. 
-    /// 
+    /// </para>
     ///  
     /// <para>
     ///  Lists the labels in a dataset. Amazon Rekognition Custom Labels uses labels to describe

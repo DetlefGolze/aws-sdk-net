@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GreengrassV2.Model
 {
     /// <summary>
@@ -52,8 +53,8 @@ namespace Amazon.GreengrassV2.Model
     /// </para>
     ///  
     /// <para>
-    /// To create a component from a recipe, specify <code>inlineRecipe</code> when you call
-    /// this operation.
+    /// To create a component from a recipe, specify <c>inlineRecipe</c> when you call this
+    /// operation.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -68,48 +69,14 @@ namespace Amazon.GreengrassV2.Model
     /// </para>
     ///  
     /// <para>
-    /// This function only accepts Lambda functions that use the following runtimes:
+    /// This function accepts Lambda functions in all supported versions of Python, Node.js,
+    /// and Java runtimes. IoT Greengrass doesn't apply any additional restrictions on deprecated
+    /// Lambda runtime versions.
     /// </para>
-    ///  <ul> <li> 
+    ///  
     /// <para>
-    /// Python 2.7 – <code>python2.7</code> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Python 3.7 – <code>python3.7</code> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Python 3.8 – <code>python3.8</code> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Python 3.9 – <code>python3.9</code> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Java 8 – <code>java8</code> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Java 11 – <code>java11</code> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Node.js 10 – <code>nodejs10.x</code> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Node.js 12 – <code>nodejs12.x</code> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Node.js 14 – <code>nodejs14.x</code> 
-    /// </para>
-    ///  </li> </ul> 
-    /// <para>
-    /// To create a component from a Lambda function, specify <code>lambdaFunction</code>
-    /// when you call this operation.
+    /// To create a component from a Lambda function, specify <c>lambdaFunction</c> when you
+    /// call this operation.
     /// </para>
     ///  <note> 
     /// <para>
@@ -122,7 +89,7 @@ namespace Amazon.GreengrassV2.Model
         private string _clientToken;
         private MemoryStream _inlineRecipe;
         private LambdaFunctionRecipeSource _lambdaFunction;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
@@ -156,7 +123,7 @@ namespace Amazon.GreengrassV2.Model
         /// </para>
         ///  
         /// <para>
-        /// You must specify either <code>inlineRecipe</code> or <code>lambdaFunction</code>.
+        /// You must specify either <c>inlineRecipe</c> or <c>lambdaFunction</c>.
         /// </para>
         /// </summary>
         public MemoryStream InlineRecipe
@@ -178,7 +145,7 @@ namespace Amazon.GreengrassV2.Model
         /// </para>
         ///  
         /// <para>
-        /// You must specify either <code>inlineRecipe</code> or <code>lambdaFunction</code>.
+        /// You must specify either <c>inlineRecipe</c> or <c>lambdaFunction</c>.
         /// </para>
         /// </summary>
         public LambdaFunctionRecipeSource LambdaFunction
@@ -211,7 +178,7 @@ namespace Amazon.GreengrassV2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

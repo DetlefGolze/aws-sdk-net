@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.CloudFront.Model
         /// Gets and sets the property Location. 
         /// <para>
         /// The fully qualified URI of the distribution and invalidation batch request, including
-        /// the <code>Invalidation ID</code>.
+        /// the <c>Invalidation ID</c>.
         /// </para>
         /// </summary>
         public string Location
@@ -70,7 +71,7 @@ namespace Amazon.CloudFront.Model
         // Check to see if Location property is set
         internal bool IsSetLocation()
         {
-            return this._location != null;
+            return !string.IsNullOrEmpty(this._location);
         }
 
     }

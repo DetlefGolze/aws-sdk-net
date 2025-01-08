@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the mediapackagev2-2022-12-25.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaPackageV2.Model
 {
     /// <summary>
@@ -34,6 +35,11 @@ namespace Amazon.MediaPackageV2.Model
         /// Paginator for ListChannels operation
         ///</summary>
         IListChannelsPaginator ListChannels(ListChannelsRequest request);
+
+        /// <summary>
+        /// Paginator for ListHarvestJobs operation
+        ///</summary>
+        IListHarvestJobsPaginator ListHarvestJobs(ListHarvestJobsRequest request);
 
         /// <summary>
         /// Paginator for ListOriginEndpoints operation

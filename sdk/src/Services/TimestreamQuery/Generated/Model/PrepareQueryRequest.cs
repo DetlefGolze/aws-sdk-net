@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TimestreamQuery.Model
 {
     /// <summary>
     /// Container for the parameters to the PrepareQuery operation.
     /// A synchronous operation that allows you to submit a query with parameters to be stored
     /// by Timestream for later running. Timestream only supports using this operation with
-    /// the <code>PrepareQueryRequest$ValidateOnly</code> set to <code>true</code>.
+    /// <c>ValidateOnly</c> set to <c>true</c>.
     /// </summary>
     public partial class PrepareQueryRequest : AmazonTimestreamQueryRequest
     {
@@ -43,8 +44,8 @@ namespace Amazon.TimestreamQuery.Model
         /// Gets and sets the property QueryString. 
         /// <para>
         /// The Timestream query string that you want to use as a prepared statement. Parameter
-        /// names can be specified in the query string <code>@</code> character followed by an
-        /// identifier. 
+        /// names can be specified in the query string <c>@</c> character followed by an identifier.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=262144)]
@@ -63,9 +64,8 @@ namespace Amazon.TimestreamQuery.Model
         /// <summary>
         /// Gets and sets the property ValidateOnly. 
         /// <para>
-        /// By setting this value to <code>true</code>, Timestream will only validate that the
-        /// query string is a valid Timestream query, and not store the prepared query for later
-        /// use.
+        /// By setting this value to <c>true</c>, Timestream will only validate that the query
+        /// string is a valid Timestream query, and not store the prepared query for later use.
         /// </para>
         /// </summary>
         public bool ValidateOnly

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMessaging.Model
 {
     /// <summary>
@@ -38,9 +39,8 @@ namespace Amazon.ChimeSDKMessaging.Model
     /// </para>
     ///  <note> 
     /// <para>
-    /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the ARN of the
-    /// <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that makes the API call
-    /// as the value in the header.
+    /// The <c>x-amz-chime-bearer</c> request header is mandatory. Use the ARN of the <c>AppInstanceUser</c>
+    /// or <c>AppInstanceBot</c> that makes the API call as the value in the header.
     /// </para>
     ///  </note>
     /// </summary>
@@ -52,13 +52,13 @@ namespace Amazon.ChimeSDKMessaging.Model
         private string _clientRequestToken;
         private ElasticChannelConfiguration _elasticChannelConfiguration;
         private ExpirationSettings _expirationSettings;
-        private List<string> _memberArns = new List<string>();
+        private List<string> _memberArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _metadata;
         private ChannelMode _mode;
-        private List<string> _moderatorArns = new List<string>();
+        private List<string> _moderatorArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
         private ChannelPrivacy _privacy;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AppInstanceArn. 
@@ -101,8 +101,8 @@ namespace Amazon.ChimeSDKMessaging.Model
         /// <summary>
         /// Gets and sets the property ChimeBearer. 
         /// <para>
-        /// The ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that makes
-        /// the API call.
+        /// The ARN of the <c>AppInstanceUser</c> or <c>AppInstanceBot</c> that makes the API
+        /// call.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=5, Max=1600)]
@@ -115,13 +115,13 @@ namespace Amazon.ChimeSDKMessaging.Model
         // Check to see if ChimeBearer property is set
         internal bool IsSetChimeBearer()
         {
-            return this._chimeBearer != null;
+            return !string.IsNullOrEmpty(this._chimeBearer);
         }
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
-        /// The client token for the request. An <code>Idempotency</code> token.
+        /// The client token for the request. An <c>Idempotency</c> token.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=2, Max=64)]
@@ -190,7 +190,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         // Check to see if MemberArns property is set
         internal bool IsSetMemberArns()
         {
-            return this._memberArns != null && this._memberArns.Count > 0; 
+            return this._memberArns != null && (this._memberArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -215,9 +215,9 @@ namespace Amazon.ChimeSDKMessaging.Model
         /// <summary>
         /// Gets and sets the property Mode. 
         /// <para>
-        /// The channel mode: <code>UNRESTRICTED</code> or <code>RESTRICTED</code>. Administrators,
-        /// moderators, and channel members can add themselves and other members to unrestricted
-        /// channels. Only administrators and moderators can add members to restricted channels.
+        /// The channel mode: <c>UNRESTRICTED</c> or <c>RESTRICTED</c>. Administrators, moderators,
+        /// and channel members can add themselves and other members to unrestricted channels.
+        /// Only administrators and moderators can add members to restricted channels.
         /// </para>
         /// </summary>
         public ChannelMode Mode
@@ -248,7 +248,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         // Check to see if ModeratorArns property is set
         internal bool IsSetModeratorArns()
         {
-            return this._moderatorArns != null && this._moderatorArns.Count > 0; 
+            return this._moderatorArns != null && (this._moderatorArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -273,9 +273,9 @@ namespace Amazon.ChimeSDKMessaging.Model
         /// <summary>
         /// Gets and sets the property Privacy. 
         /// <para>
-        /// The channel's privacy level: <code>PUBLIC</code> or <code>PRIVATE</code>. Private
-        /// channels aren't discoverable by users outside the channel. Public channels are discoverable
-        /// by anyone in the <code>AppInstance</code>.
+        /// The channel's privacy level: <c>PUBLIC</c> or <c>PRIVATE</c>. Private channels aren't
+        /// discoverable by users outside the channel. Public channels are discoverable by anyone
+        /// in the <c>AppInstance</c>.
         /// </para>
         /// </summary>
         public ChannelPrivacy Privacy
@@ -306,7 +306,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaPackageV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -81,16 +82,40 @@ namespace Amazon.MediaPackageV2.Model.Internal.MarshallTransformations
                     response.Description = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ETag", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.ETag = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("IngestEndpoints", targetDepth))
                 {
                     var unmarshaller = new ListUnmarshaller<IngestEndpoint, IngestEndpointUnmarshaller>(IngestEndpointUnmarshaller.Instance);
                     response.IngestEndpoints = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("InputSwitchConfiguration", targetDepth))
+                {
+                    var unmarshaller = InputSwitchConfigurationUnmarshaller.Instance;
+                    response.InputSwitchConfiguration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("InputType", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.InputType = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ModifiedAt", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
                     response.ModifiedAt = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("OutputHeaderConfiguration", targetDepth))
+                {
+                    var unmarshaller = OutputHeaderConfigurationUnmarshaller.Instance;
+                    response.OutputHeaderConfiguration = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Tags", targetDepth))

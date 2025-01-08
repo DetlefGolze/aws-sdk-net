@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Shield.Model
 {
     /// <summary>
@@ -36,11 +37,11 @@ namespace Amazon.Shield.Model
     public partial class CreateProtectionGroupRequest : AmazonShieldRequest
     {
         private ProtectionGroupAggregation _aggregation;
-        private List<string> _members = new List<string>();
+        private List<string> _members = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ProtectionGroupPattern _pattern;
         private string _protectionGroupId;
         private ProtectedResourceType _resourceType;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Aggregation. 
@@ -83,8 +84,8 @@ namespace Amazon.Shield.Model
         /// Gets and sets the property Members. 
         /// <para>
         /// The Amazon Resource Names (ARNs) of the resources to include in the protection group.
-        /// You must set this when you set <code>Pattern</code> to <code>ARBITRARY</code> and
-        /// you must not set it for any other <code>Pattern</code> setting. 
+        /// You must set this when you set <c>Pattern</c> to <c>ARBITRARY</c> and you must not
+        /// set it for any other <c>Pattern</c> setting. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=10000)]
@@ -97,7 +98,7 @@ namespace Amazon.Shield.Model
         // Check to see if Members property is set
         internal bool IsSetMembers()
         {
-            return this._members != null && this._members.Count > 0; 
+            return this._members != null && (this._members.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -147,9 +148,9 @@ namespace Amazon.Shield.Model
         /// <para>
         /// The resource type to include in the protection group. All protected resources of this
         /// type are included in the protection group. Newly protected resources of this type
-        /// are automatically added to the group. You must set this when you set <code>Pattern</code>
-        /// to <code>BY_RESOURCE_TYPE</code> and you must not set it for any other <code>Pattern</code>
-        /// setting. 
+        /// are automatically added to the group. You must set this when you set <c>Pattern</c>
+        /// to <c>BY_RESOURCE_TYPE</c> and you must not set it for any other <c>Pattern</c> setting.
+        /// 
         /// </para>
         /// </summary>
         public ProtectedResourceType ResourceType
@@ -180,7 +181,7 @@ namespace Amazon.Shield.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

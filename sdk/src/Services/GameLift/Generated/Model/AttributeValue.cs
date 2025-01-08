@@ -26,20 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
     /// Values for use in player attribute key-value pairs. This object lets you specify an
     /// attribute value using any of the valid data types: string, number, string array, or
-    /// data map. Each <code>AttributeValue</code> object can use only one of the available
-    /// properties.
+    /// data map. Each <c>AttributeValue</c> object can use only one of the available properties.
     /// </summary>
     public partial class AttributeValue
     {
         private double? _n;
         private string _s;
-        private Dictionary<string, double> _sdm = new Dictionary<string, double>();
-        private List<string> _sl = new List<string>();
+        private Dictionary<string, double> _sdm = AWSConfigs.InitializeCollections ? new Dictionary<string, double>() : null;
+        private List<string> _sl = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property N. 
@@ -94,7 +94,7 @@ namespace Amazon.GameLift.Model
         // Check to see if SDM property is set
         internal bool IsSetSDM()
         {
-            return this._sdm != null && this._sdm.Count > 0; 
+            return this._sdm != null && (this._sdm.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace Amazon.GameLift.Model
         // Check to see if SL property is set
         internal bool IsSetSL()
         {
-            return this._sl != null && this._sl.Count > 0; 
+            return this._sl != null && (this._sl.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

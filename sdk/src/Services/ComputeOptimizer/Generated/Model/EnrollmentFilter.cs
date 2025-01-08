@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComputeOptimizer.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.ComputeOptimizer.Model
     public partial class EnrollmentFilter
     {
         private EnrollmentFilterName _name;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Name. 
@@ -44,8 +45,8 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        /// Specify <code>Status</code> to return accounts with a specific enrollment status (for
-        /// example, <code>Active</code>).
+        /// Specify <c>Status</c> to return accounts with a specific enrollment status (for example,
+        /// <c>Active</c>).
         /// </para>
         /// </summary>
         public EnrollmentFilterName Name
@@ -67,8 +68,7 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        /// The valid values are <code>Active</code>, <code>Inactive</code>, <code>Pending</code>,
-        /// and <code>Failed</code>.
+        /// The valid values are <c>Active</c>, <c>Inactive</c>, <c>Pending</c>, and <c>Failed</c>.
         /// </para>
         /// </summary>
         public List<string> Values
@@ -80,7 +80,7 @@ namespace Amazon.ComputeOptimizer.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

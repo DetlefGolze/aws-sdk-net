@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.LakeFormation.Model
         /// <summary>
         /// Gets and sets the property ResultStream. 
         /// <para>
-        /// Rows returned from the <code>GetWorkUnitResults</code> operation as a stream of Apache
-        /// Arrow v1.0 messages.
+        /// Rows returned from the <c>GetWorkUnitResults</c> operation as a stream of Apache Arrow
+        /// v1.0 messages.
         /// </para>
         /// </summary>
         public Stream ResultStream
@@ -67,6 +68,9 @@ namespace Amazon.LakeFormation.Model
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Disposes of all managed and unmanaged resources.
+        /// </summary>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

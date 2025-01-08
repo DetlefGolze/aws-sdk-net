@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the resource-groups-2017-11-27.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ResourceGroups.Model
 {
     /// <summary>
@@ -24,6 +25,11 @@ namespace Amazon.ResourceGroups.Model
     ///</summary>
     public interface IResourceGroupsPaginatorFactory
     {
+
+        /// <summary>
+        /// Paginator for ListGroupingStatuses operation
+        ///</summary>
+        IListGroupingStatusesPaginator ListGroupingStatuses(ListGroupingStatusesRequest request);
 
         /// <summary>
         /// Paginator for ListGroupResources operation
@@ -34,6 +40,11 @@ namespace Amazon.ResourceGroups.Model
         /// Paginator for ListGroups operation
         ///</summary>
         IListGroupsPaginator ListGroups(ListGroupsRequest request);
+
+        /// <summary>
+        /// Paginator for ListTagSyncTasks operation
+        ///</summary>
+        IListTagSyncTasksPaginator ListTagSyncTasks(ListTagSyncTasksRequest request);
 
         /// <summary>
         /// Paginator for SearchResources operation

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Route53.Model
     /// </summary>
     public partial class ListTrafficPolicyVersionsResponse : AmazonWebServiceResponse
     {
-        private List<TrafficPolicy> _trafficPolicies = new List<TrafficPolicy>();
+        private List<TrafficPolicy> _trafficPolicies = AWSConfigs.InitializeCollections ? new List<TrafficPolicy>() : null;
         private bool? _isTruncated;
         private string _trafficPolicyVersionMarker;
         private string _maxItems;
@@ -41,8 +42,8 @@ namespace Amazon.Route53.Model
         /// <summary>
         /// Gets and sets the property TrafficPolicies. 
         /// <para>
-        /// A list that contains one <code>TrafficPolicy</code> element for each traffic policy
-        /// version that is associated with the specified traffic policy.
+        /// A list that contains one <c>TrafficPolicy</c> element for each traffic policy version
+        /// that is associated with the specified traffic policy.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -55,7 +56,7 @@ namespace Amazon.Route53.Model
         // Check to see if TrafficPolicies property is set
         internal bool IsSetTrafficPolicies()
         {
-            return this._trafficPolicies != null && this._trafficPolicies.Count > 0; 
+            return this._trafficPolicies != null && (this._trafficPolicies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -63,8 +64,8 @@ namespace Amazon.Route53.Model
         /// <para>
         /// A flag that indicates whether there are more traffic policies to be listed. If the
         /// response was truncated, you can get the next group of traffic policies by submitting
-        /// another <code>ListTrafficPolicyVersions</code> request and specifying the value of
-        /// <code>NextMarker</code> in the <code>marker</code> parameter.
+        /// another <c>ListTrafficPolicyVersions</c> request and specifying the value of <c>NextMarker</c>
+        /// in the <c>marker</c> parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -83,15 +84,15 @@ namespace Amazon.Route53.Model
         /// <summary>
         /// Gets and sets the property TrafficPolicyVersionMarker. 
         /// <para>
-        /// If <code>IsTruncated</code> is <code>true</code>, the value of <code>TrafficPolicyVersionMarker</code>
+        /// If <c>IsTruncated</c> is <c>true</c>, the value of <c>TrafficPolicyVersionMarker</c>
         /// identifies the first traffic policy that Amazon Route 53 will return if you submit
-        /// another request. Call <code>ListTrafficPolicyVersions</code> again and specify the
-        /// value of <code>TrafficPolicyVersionMarker</code> in the <code>TrafficPolicyVersionMarker</code>
-        /// request parameter.
+        /// another request. Call <c>ListTrafficPolicyVersions</c> again and specify the value
+        /// of <c>TrafficPolicyVersionMarker</c> in the <c>TrafficPolicyVersionMarker</c> request
+        /// parameter.
         /// </para>
         ///  
         /// <para>
-        /// This element is present only if <code>IsTruncated</code> is <code>true</code>.
+        /// This element is present only if <c>IsTruncated</c> is <c>true</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=4)]
@@ -110,7 +111,7 @@ namespace Amazon.Route53.Model
         /// <summary>
         /// Gets and sets the property MaxItems. 
         /// <para>
-        /// The value that you specified for the <code>maxitems</code> parameter in the <code>ListTrafficPolicyVersions</code>
+        /// The value that you specified for the <c>maxitems</c> parameter in the <c>ListTrafficPolicyVersions</c>
         /// request that produced the current response.
         /// </para>
         /// </summary>

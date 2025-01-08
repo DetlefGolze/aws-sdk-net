@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAmazonOpenSearchServerlessDestinationConfiguration())
@@ -85,6 +87,17 @@ namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
 
                     var marshaller = AmazonopensearchserviceDestinationConfigurationMarshaller.Instance;
                     marshaller.Marshall(publicRequest.AmazonopensearchserviceDestinationConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetDatabaseSourceConfiguration())
+                {
+                    context.Writer.WritePropertyName("DatabaseSourceConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = DatabaseSourceConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.DatabaseSourceConfiguration, context);
 
                     context.Writer.WriteObjectEnd();
                 }
@@ -145,6 +158,17 @@ namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
                     context.Writer.WriteObjectEnd();
                 }
 
+                if(publicRequest.IsSetIcebergDestinationConfiguration())
+                {
+                    context.Writer.WritePropertyName("IcebergDestinationConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = IcebergDestinationConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.IcebergDestinationConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetKinesisStreamSourceConfiguration())
                 {
                     context.Writer.WritePropertyName("KinesisStreamSourceConfiguration");
@@ -185,6 +209,17 @@ namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
 
                     var marshaller = S3DestinationConfigurationMarshaller.Instance;
                     marshaller.Marshall(publicRequest.S3DestinationConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetSnowflakeDestinationConfiguration())
+                {
+                    context.Writer.WritePropertyName("SnowflakeDestinationConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = SnowflakeDestinationConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.SnowflakeDestinationConfiguration, context);
 
                     context.Writer.WriteObjectEnd();
                 }

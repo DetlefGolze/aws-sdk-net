@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.WorkSpacesWeb.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.WorkSpacesWeb.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public PortalSummary Unmarshall(JsonUnmarshallerContext context)
         {
+            PortalSummary unmarshalledObject = new PortalSummary();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            PortalSummary unmarshalledObject = new PortalSummary();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -88,16 +90,34 @@ namespace Amazon.WorkSpacesWeb.Model.Internal.MarshallTransformations
                     unmarshalledObject.CreationDate = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("dataProtectionSettingsArn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DataProtectionSettingsArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("displayName", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.DisplayName = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("instanceType", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.InstanceType = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ipAccessSettingsArn", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.IpAccessSettingsArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("maxConcurrentSessions", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.MaxConcurrentSessions = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("networkSettingsArn", targetDepth))
@@ -149,7 +169,6 @@ namespace Amazon.WorkSpacesWeb.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

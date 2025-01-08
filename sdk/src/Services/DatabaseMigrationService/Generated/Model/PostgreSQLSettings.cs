@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -39,6 +40,7 @@ namespace Amazon.DatabaseMigrationService.Model
         private DatabaseMode _databaseMode;
         private string _databaseName;
         private string _ddlArtifactsSchema;
+        private bool? _disableUnicodeSourceFilter;
         private int? _executeTimeout;
         private bool? _failTasksOnLobTruncation;
         private bool? _heartbeatEnable;
@@ -66,7 +68,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>afterConnectScript=SET session_replication_role='replica'</code> 
+        /// Example: <c>afterConnectScript=SET session_replication_role='replica'</c> 
         /// </para>
         /// </summary>
         public string AfterConnectScript
@@ -107,8 +109,12 @@ namespace Amazon.DatabaseMigrationService.Model
         /// </para>
         ///  
         /// <para>
-        /// If this value is set to <code>N</code>, you don't have to create tables or triggers
-        /// on the source database.
+        /// The default value is <c>true</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// If this value is set to <c>N</c>, you don't have to create tables or triggers on the
+        /// source database.
         /// </para>
         /// </summary>
         public bool CaptureDdls
@@ -167,7 +173,11 @@ namespace Amazon.DatabaseMigrationService.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>ddlArtifactsSchema=xyzddlschema;</code> 
+        /// The default value is <c>public</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Example: <c>ddlArtifactsSchema=xyzddlschema;</c> 
         /// </para>
         /// </summary>
         public string DdlArtifactsSchema
@@ -183,6 +193,32 @@ namespace Amazon.DatabaseMigrationService.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DisableUnicodeSourceFilter. 
+        /// <para>
+        /// Disables the Unicode source filter with PostgreSQL, for values passed into the Selection
+        /// rule filter on Source Endpoint column values. By default DMS performs source filter
+        /// comparisons using a Unicode string which can cause look ups to ignore the indexes
+        /// in the text columns and slow down migrations.
+        /// </para>
+        ///  
+        /// <para>
+        /// Unicode support should only be disabled when using a selection rule filter is on a
+        /// text column in the Source database that is indexed.
+        /// </para>
+        /// </summary>
+        public bool DisableUnicodeSourceFilter
+        {
+            get { return this._disableUnicodeSourceFilter.GetValueOrDefault(); }
+            set { this._disableUnicodeSourceFilter = value; }
+        }
+
+        // Check to see if DisableUnicodeSourceFilter property is set
+        internal bool IsSetDisableUnicodeSourceFilter()
+        {
+            return this._disableUnicodeSourceFilter.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property ExecuteTimeout. 
         /// <para>
         /// Sets the client statement timeout for the PostgreSQL instance, in seconds. The default
@@ -190,7 +226,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>executeTimeout=100;</code> 
+        /// Example: <c>executeTimeout=100;</c> 
         /// </para>
         /// </summary>
         public int ExecuteTimeout
@@ -208,8 +244,12 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property FailTasksOnLobTruncation. 
         /// <para>
-        /// When set to <code>true</code>, this value causes a task to fail if the actual size
-        /// of a LOB column is greater than the specified <code>LobMaxSize</code>.
+        /// When set to <c>true</c>, this value causes a task to fail if the actual size of a
+        /// LOB column is greater than the specified <c>LobMaxSize</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// The default value is <c>false</c>.
         /// </para>
         ///  
         /// <para>
@@ -234,8 +274,12 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <para>
         /// The write-ahead log (WAL) heartbeat feature mimics a dummy transaction. By doing this,
         /// it prevents idle logical replication slots from holding onto old WAL logs, which can
-        /// result in storage full situations on the source. This heartbeat keeps <code>restart_lsn</code>
+        /// result in storage full situations on the source. This heartbeat keeps <c>restart_lsn</c>
         /// moving and prevents storage full scenarios.
+        /// </para>
+        ///  
+        /// <para>
+        /// The default value is <c>false</c>.
         /// </para>
         /// </summary>
         public bool HeartbeatEnable
@@ -255,6 +299,10 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <para>
         /// Sets the WAL heartbeat frequency (in minutes).
         /// </para>
+        ///  
+        /// <para>
+        /// The default value is 5 minutes.
+        /// </para>
         /// </summary>
         public int HeartbeatFrequency
         {
@@ -273,6 +321,10 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <para>
         /// Sets the schema in which the heartbeat artifacts are created.
         /// </para>
+        ///  
+        /// <para>
+        /// The default value is <c>public</c>.
+        /// </para>
         /// </summary>
         public string HeartbeatSchema
         {
@@ -290,8 +342,12 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property MapBooleanAsBoolean. 
         /// <para>
         /// When true, lets PostgreSQL migrate the boolean type as boolean. By default, PostgreSQL
-        /// migrates booleans as <code>varchar(5)</code>. You must set this setting on both the
-        /// source and target endpoints for it to take effect.
+        /// migrates booleans as <c>varchar(5)</c>. You must set this setting on both the source
+        /// and target endpoints for it to take effect.
+        /// </para>
+        ///  
+        /// <para>
+        /// The default value is <c>false</c>.
         /// </para>
         /// </summary>
         public bool MapBooleanAsBoolean
@@ -311,6 +367,10 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <para>
         /// When true, DMS migrates JSONB values as CLOB.
         /// </para>
+        ///  
+        /// <para>
+        /// The default value is <c>false</c>.
+        /// </para>
         /// </summary>
         public bool MapJsonbAsClob
         {
@@ -327,7 +387,11 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property MapLongVarcharAs. 
         /// <para>
-        /// When true, DMS migrates LONG values as VARCHAR.
+        /// Sets what datatype to map LONG values as.
+        /// </para>
+        ///  
+        /// <para>
+        /// The default value is <c>wstring</c>.
         /// </para>
         /// </summary>
         public LongVarcharMappingType MapLongVarcharAs
@@ -349,7 +413,11 @@ namespace Amazon.DatabaseMigrationService.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>maxFileSize=512</code> 
+        /// The default value is 32,768 KB (32 MB).
+        /// </para>
+        ///  
+        /// <para>
+        /// Example: <c>maxFileSize=512</c> 
         /// </para>
         /// </summary>
         public int MaxFileSize
@@ -388,6 +456,10 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <para>
         /// Specifies the plugin to use to create a replication slot.
         /// </para>
+        ///  
+        /// <para>
+        /// The default value is <c>pglogical</c>.
+        /// </para>
         /// </summary>
         public PluginNameValue PluginName
         {
@@ -423,19 +495,19 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property SecretsManagerAccessRoleArn. 
         /// <para>
         /// The full Amazon Resource Name (ARN) of the IAM role that specifies DMS as the trusted
-        /// entity and grants the required permissions to access the value in <code>SecretsManagerSecret</code>.
-        /// The role must allow the <code>iam:PassRole</code> action. <code>SecretsManagerSecret</code>
-        /// has the value of the Amazon Web Services Secrets Manager secret that allows access
-        /// to the PostgreSQL endpoint.
+        /// entity and grants the required permissions to access the value in <c>SecretsManagerSecret</c>.
+        /// The role must allow the <c>iam:PassRole</c> action. <c>SecretsManagerSecret</c> has
+        /// the value of the Amazon Web Services Secrets Manager secret that allows access to
+        /// the PostgreSQL endpoint.
         /// </para>
         ///  <note> 
         /// <para>
         /// You can specify one of two sets of values for these permissions. You can specify the
-        /// values for this setting and <code>SecretsManagerSecretId</code>. Or you can specify
-        /// clear-text values for <code>UserName</code>, <code>Password</code>, <code>ServerName</code>,
-        /// and <code>Port</code>. You can't specify both. For more information on creating this
-        /// <code>SecretsManagerSecret</code> and the <code>SecretsManagerAccessRoleArn</code>
-        /// and <code>SecretsManagerSecretId</code> required to access it, see <a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager">Using
+        /// values for this setting and <c>SecretsManagerSecretId</c>. Or you can specify clear-text
+        /// values for <c>UserName</c>, <c>Password</c>, <c>ServerName</c>, and <c>Port</c>. You
+        /// can't specify both. For more information on creating this <c>SecretsManagerSecret</c>
+        /// and the <c>SecretsManagerAccessRoleArn</c> and <c>SecretsManagerSecretId</c> required
+        /// to access it, see <a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager">Using
         /// secrets to access Database Migration Service resources</a> in the <i>Database Migration
         /// Service User Guide</i>.
         /// </para>
@@ -456,8 +528,8 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property SecretsManagerSecretId. 
         /// <para>
-        /// The full ARN, partial ARN, or friendly name of the <code>SecretsManagerSecret</code>
-        /// that contains the PostgreSQL endpoint connection details.
+        /// The full ARN, partial ARN, or friendly name of the <c>SecretsManagerSecret</c> that
+        /// contains the PostgreSQL endpoint connection details.
         /// </para>
         /// </summary>
         public string SecretsManagerSecretId
@@ -480,13 +552,13 @@ namespace Amazon.DatabaseMigrationService.Model
         ///  
         /// <para>
         /// For an Amazon RDS PostgreSQL instance, this is the output of <a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html">DescribeDBInstances</a>,
-        /// in the <code> <a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_Endpoint.html">Endpoint</a>.Address</code>
+        /// in the <c> <a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_Endpoint.html">Endpoint</a>.Address</c>
         /// field.
         /// </para>
         ///  
         /// <para>
         /// For an Aurora PostgreSQL instance, this is the output of <a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBClusters.html">DescribeDBClusters</a>,
-        /// in the <code>Endpoint</code> field.
+        /// in the <c>Endpoint</c> field.
         /// </para>
         /// </summary>
         public string ServerName
@@ -509,19 +581,19 @@ namespace Amazon.DatabaseMigrationService.Model
         /// </para>
         ///  
         /// <para>
-        /// When used with the <code>CdcStartPosition</code> request parameter for the DMS API
-        /// , this attribute also makes it possible to use native CDC start points. DMS verifies
-        /// that the specified logical replication slot exists before starting the CDC load task.
-        /// It also verifies that the task was created with a valid setting of <code>CdcStartPosition</code>.
-        /// If the specified slot doesn't exist or the task doesn't have a valid <code>CdcStartPosition</code>
+        /// When used with the <c>CdcStartPosition</c> request parameter for the DMS API , this
+        /// attribute also makes it possible to use native CDC start points. DMS verifies that
+        /// the specified logical replication slot exists before starting the CDC load task. It
+        /// also verifies that the task was created with a valid setting of <c>CdcStartPosition</c>.
+        /// If the specified slot doesn't exist or the task doesn't have a valid <c>CdcStartPosition</c>
         /// setting, DMS raises an error.
         /// </para>
         ///  
         /// <para>
-        /// For more information about setting the <code>CdcStartPosition</code> request parameter,
+        /// For more information about setting the <c>CdcStartPosition</c> request parameter,
         /// see <a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Task.CDC.html#CHAP_Task.CDC.StartPoint.Native">Determining
         /// a CDC native start point</a> in the <i>Database Migration Service User Guide</i>.
-        /// For more information about using <code>CdcStartPosition</code>, see <a href="https://docs.aws.amazon.com/dms/latest/APIReference/API_CreateReplicationTask.html">CreateReplicationTask</a>,
+        /// For more information about using <c>CdcStartPosition</c>, see <a href="https://docs.aws.amazon.com/dms/latest/APIReference/API_CreateReplicationTask.html">CreateReplicationTask</a>,
         /// <a href="https://docs.aws.amazon.com/dms/latest/APIReference/API_StartReplicationTask.html">StartReplicationTask</a>,
         /// and <a href="https://docs.aws.amazon.com/dms/latest/APIReference/API_ModifyReplicationTask.html">ModifyReplicationTask</a>.
         /// </para>
@@ -541,8 +613,8 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property TrimSpaceInChar. 
         /// <para>
-        /// Use the <code>TrimSpaceInChar</code> source endpoint setting to trim data on CHAR
-        /// and NCHAR data types during migration. The default value is <code>true</code>.
+        /// Use the <c>TrimSpaceInChar</c> source endpoint setting to trim data on CHAR and NCHAR
+        /// data types during migration. The default value is <c>true</c>.
         /// </para>
         /// </summary>
         public bool TrimSpaceInChar

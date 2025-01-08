@@ -25,6 +25,64 @@ namespace Amazon.SsmSap
 {
 
     /// <summary>
+    /// Constants used for properties of type AllocationType.
+    /// </summary>
+    public class AllocationType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ELASTIC_IP for AllocationType
+        /// </summary>
+        public static readonly AllocationType ELASTIC_IP = new AllocationType("ELASTIC_IP");
+        /// <summary>
+        /// Constant OVERLAY for AllocationType
+        /// </summary>
+        public static readonly AllocationType OVERLAY = new AllocationType("OVERLAY");
+        /// <summary>
+        /// Constant UNKNOWN for AllocationType
+        /// </summary>
+        public static readonly AllocationType UNKNOWN = new AllocationType("UNKNOWN");
+        /// <summary>
+        /// Constant VPC_SUBNET for AllocationType
+        /// </summary>
+        public static readonly AllocationType VPC_SUBNET = new AllocationType("VPC_SUBNET");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public AllocationType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static AllocationType FindValue(string value)
+        {
+            return FindValue<AllocationType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator AllocationType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ApplicationDiscoveryStatus.
     /// </summary>
     public class ApplicationDiscoveryStatus : ConstantClass
@@ -170,6 +228,10 @@ namespace Amazon.SsmSap
         /// Constant HANA for ApplicationType
         /// </summary>
         public static readonly ApplicationType HANA = new ApplicationType("HANA");
+        /// <summary>
+        /// Constant SAP_ABAP for ApplicationType
+        /// </summary>
+        public static readonly ApplicationType SAP_ABAP = new ApplicationType("SAP_ABAP");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -391,6 +453,22 @@ namespace Amazon.SsmSap
     {
 
         /// <summary>
+        /// Constant ABAP for ComponentType
+        /// </summary>
+        public static readonly ComponentType ABAP = new ComponentType("ABAP");
+        /// <summary>
+        /// Constant ASCS for ComponentType
+        /// </summary>
+        public static readonly ComponentType ASCS = new ComponentType("ASCS");
+        /// <summary>
+        /// Constant DIALOG for ComponentType
+        /// </summary>
+        public static readonly ComponentType DIALOG = new ComponentType("DIALOG");
+        /// <summary>
+        /// Constant ERS for ComponentType
+        /// </summary>
+        public static readonly ComponentType ERS = new ComponentType("ERS");
+        /// <summary>
         /// Constant HANA for ComponentType
         /// </summary>
         public static readonly ComponentType HANA = new ComponentType("HANA");
@@ -398,6 +476,14 @@ namespace Amazon.SsmSap
         /// Constant HANA_NODE for ComponentType
         /// </summary>
         public static readonly ComponentType HANA_NODE = new ComponentType("HANA_NODE");
+        /// <summary>
+        /// Constant WD for ComponentType
+        /// </summary>
+        public static readonly ComponentType WD = new ComponentType("WD");
+        /// <summary>
+        /// Constant WEBDISP for ComponentType
+        /// </summary>
+        public static readonly ComponentType WEBDISP = new ComponentType("WEBDISP");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -428,6 +514,52 @@ namespace Amazon.SsmSap
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator ComponentType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ConnectedEntityType.
+    /// </summary>
+    public class ConnectedEntityType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DBMS for ConnectedEntityType
+        /// </summary>
+        public static readonly ConnectedEntityType DBMS = new ConnectedEntityType("DBMS");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ConnectedEntityType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ConnectedEntityType FindValue(string value)
+        {
+            return FindValue<ConnectedEntityType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ConnectedEntityType(string value)
         {
             return FindValue(value);
         }
@@ -474,6 +606,56 @@ namespace Amazon.SsmSap
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator CredentialType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type DatabaseConnectionMethod.
+    /// </summary>
+    public class DatabaseConnectionMethod : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DIRECT for DatabaseConnectionMethod
+        /// </summary>
+        public static readonly DatabaseConnectionMethod DIRECT = new DatabaseConnectionMethod("DIRECT");
+        /// <summary>
+        /// Constant OVERLAY for DatabaseConnectionMethod
+        /// </summary>
+        public static readonly DatabaseConnectionMethod OVERLAY = new DatabaseConnectionMethod("OVERLAY");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public DatabaseConnectionMethod(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static DatabaseConnectionMethod FindValue(string value)
+        {
+            return FindValue<DatabaseConnectionMethod>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator DatabaseConnectionMethod(string value)
         {
             return FindValue(value);
         }
@@ -605,7 +787,7 @@ namespace Amazon.SsmSap
         /// <summary>
         /// Constant Equals for FilterOperator
         /// </summary>
-        public static readonly FilterOperator Equals = new FilterOperator("Equals");
+        public new static readonly FilterOperator Equals = new FilterOperator("Equals");
         /// <summary>
         /// Constant GreaterThanOrEquals for FilterOperator
         /// </summary>
@@ -702,6 +884,60 @@ namespace Amazon.SsmSap
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator HostRole(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type OperationEventStatus.
+    /// </summary>
+    public class OperationEventStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant COMPLETED for OperationEventStatus
+        /// </summary>
+        public static readonly OperationEventStatus COMPLETED = new OperationEventStatus("COMPLETED");
+        /// <summary>
+        /// Constant FAILED for OperationEventStatus
+        /// </summary>
+        public static readonly OperationEventStatus FAILED = new OperationEventStatus("FAILED");
+        /// <summary>
+        /// Constant IN_PROGRESS for OperationEventStatus
+        /// </summary>
+        public static readonly OperationEventStatus IN_PROGRESS = new OperationEventStatus("IN_PROGRESS");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public OperationEventStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static OperationEventStatus FindValue(string value)
+        {
+            return FindValue<OperationEventStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator OperationEventStatus(string value)
         {
             return FindValue(value);
         }

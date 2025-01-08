@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MTurk.Model
 {
     /// <summary>
     /// Container for the parameters to the GetHIT operation.
-    /// The <code>GetHIT</code> operation retrieves the details of the specified HIT.
+    /// The <c>GetHIT</c> operation retrieves the details of the specified HIT.
     /// </summary>
     public partial class GetHITRequest : AmazonMTurkRequest
     {

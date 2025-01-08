@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -33,8 +34,8 @@ namespace Amazon.IoT.Model
     /// 
     ///  <note> 
     /// <para>
-    /// The <code>Elasticsearch</code> action can only be used by existing rule actions. To
-    /// create a new rule action or to update an existing rule action, use the <code>OpenSearch</code>
+    /// The <c>Elasticsearch</c> action can only be used by existing rule actions. To create
+    /// a new rule action or to update an existing rule action, use the <c>OpenSearch</c>
     /// rule action instead. For more information, see <a href="https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html">OpenSearchAction</a>.
     /// </para>
     ///  </note>

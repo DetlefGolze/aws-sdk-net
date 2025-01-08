@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(UserPoolPolicyType requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetPasswordPolicy())
             {
                 context.Writer.WritePropertyName("PasswordPolicy");
@@ -52,6 +55,17 @@ namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
 
                 var marshaller = PasswordPolicyTypeMarshaller.Instance;
                 marshaller.Marshall(requestObject.PasswordPolicy, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetSignInPolicy())
+            {
+                context.Writer.WritePropertyName("SignInPolicy");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = SignInPolicyTypeMarshaller.Instance;
+                marshaller.Marshall(requestObject.SignInPolicy, context);
 
                 context.Writer.WriteObjectEnd();
             }

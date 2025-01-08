@@ -26,14 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
-    /// Describes a Amazon GameLift fleet of game hosting resources.
+    /// Describes an Amazon GameLift fleet of game hosting resources. Attributes differ based
+    /// on the fleet's compute type, as follows:
     /// 
-    ///  
+    ///  <ul> <li> 
     /// <para>
-    ///  <b>Related actions</b> 
+    /// EC2 fleet attributes identify a <c>Build</c> resource (for fleets with customer game
+    /// server builds) or a <c>Script</c> resource (for Realtime Servers fleets).
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Amazon GameLift Anywhere fleets have an abbreviated set of attributes, because most
+    /// fleet configurations are set directly on the fleet's computes. Attributes include
+    /// fleet identifiers and descriptive properties, creation/termination time, and fleet
+    /// status.
+    /// </para>
+    ///  </li> </ul> 
+    /// <para>
+    ///  <b>Returned by:</b> <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetAttributes">https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetAttributes</a>
+    /// 
     /// </para>
     /// </summary>
     public partial class FleetAttributes
@@ -49,9 +64,10 @@ namespace Amazon.GameLift.Model
         private string _fleetId;
         private FleetType _fleetType;
         private string _instanceRoleArn;
+        private InstanceRoleCredentialsProvider _instanceRoleCredentialsProvider;
         private EC2InstanceType _instanceType;
-        private List<string> _logPaths = new List<string>();
-        private List<string> _metricGroups = new List<string>();
+        private List<string> _logPaths = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _metricGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
         private ProtectionPolicy _newGameSessionProtectionPolicy;
         private OperatingSystem _operatingSystem;
@@ -61,11 +77,14 @@ namespace Amazon.GameLift.Model
         private string _serverLaunchParameters;
         private string _serverLaunchPath;
         private FleetStatus _status;
-        private List<string> _stoppedActions = new List<string>();
+        private List<string> _stoppedActions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _terminationTime;
 
         /// <summary>
-        /// Gets and sets the property AnywhereConfiguration.
+        /// Gets and sets the property AnywhereConfiguration. 
+        /// <para>
+        /// A set of attributes that are specific to an Anywhere fleet.
+        /// </para>
         /// </summary>
         public AnywhereConfiguration AnywhereConfiguration
         {
@@ -84,8 +103,8 @@ namespace Amazon.GameLift.Model
         /// <para>
         ///  The Amazon Resource Name (<a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
         /// associated with the Amazon GameLift build resource that is deployed on instances in
-        /// this fleet. In a GameLift build ARN, the resource ID matches the <code>BuildId</code>
-        /// value.
+        /// this fleet. In a GameLift build ARN, the resource ID matches the <c>BuildId</c> value.
+        /// This attribute is used with fleets where <c>ComputeType</c> is "EC2".
         /// </para>
         /// </summary>
         public string BuildArn
@@ -104,6 +123,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property BuildId. 
         /// <para>
         /// A unique identifier for the build resource that is deployed on instances in this fleet.
+        /// This attribute is used with fleets where <c>ComputeType</c> is "EC2".
         /// </para>
         /// </summary>
         public string BuildId
@@ -119,7 +139,11 @@ namespace Amazon.GameLift.Model
         }
 
         /// <summary>
-        /// Gets and sets the property CertificateConfiguration.
+        /// Gets and sets the property CertificateConfiguration. 
+        /// <para>
+        /// Determines whether a TLS/SSL certificate is generated for a fleet. This feature must
+        /// be enabled when creating the fleet. All instances in a fleet share the same certificate.
+        /// </para>
         /// </summary>
         public CertificateConfiguration CertificateConfiguration
         {
@@ -157,7 +181,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property CreationTime. 
         /// <para>
         /// A time stamp indicating when this data object was created. Format is a number expressed
-        /// in Unix time as milliseconds (for example <code>"1469498468.057"</code>).
+        /// in Unix time as milliseconds (for example <c>"1469498468.057"</c>).
         /// </para>
         /// </summary>
         public DateTime CreationTime
@@ -196,10 +220,11 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// The Amazon Resource Name (<a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
         /// that is assigned to a Amazon GameLift fleet resource and uniquely identifies it. ARNs
-        /// are unique across all Regions. Format is <code>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
-        /// In a GameLift fleet ARN, the resource ID matches the <code>FleetId</code> value.
+        /// are unique across all Regions. Format is <c>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</c>.
+        /// In a GameLift fleet ARN, the resource ID matches the <c>FleetId</c> value.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=512)]
         public string FleetArn
         {
             get { return this._fleetArn; }
@@ -218,6 +243,7 @@ namespace Amazon.GameLift.Model
         /// A unique identifier for the fleet.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=128)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -233,10 +259,10 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property FleetType. 
         /// <para>
-        /// Indicates whether to use On-Demand or Spot instances for this fleet. By default, this
-        /// property is set to <code>ON_DEMAND</code>. Learn more about when to use <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-ec2-instances.html#gamelift-ec2-instances-spot">
-        /// On-Demand versus Spot Instances</a>. This property cannot be changed after the fleet
-        /// is created.
+        /// Indicates whether the fleet uses On-Demand or Spot instances. For more information,
+        /// see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-ec2-instances.html#gamelift-ec2-instances-spot">
+        /// On-Demand versus Spot Instances</a>. This fleet property can't be changed after the
+        /// fleet is created.
         /// </para>
         /// </summary>
         public FleetType FleetType
@@ -261,7 +287,8 @@ namespace Amazon.GameLift.Model
         /// <a href="https://console.aws.amazon.com/iam/">IAM dashboard</a> in the Amazon Web
         /// Services Management Console. Learn more about using on-box credentials for your game
         /// servers at <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html">
-        /// Access external resources from a game server</a>.
+        /// Access external resources from a game server</a>. This attribute is used with fleets
+        /// where <c>ComputeType</c> is <c>EC2</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -278,12 +305,38 @@ namespace Amazon.GameLift.Model
         }
 
         /// <summary>
+        /// Gets and sets the property InstanceRoleCredentialsProvider. 
+        /// <para>
+        /// Indicates that fleet instances maintain a shared credentials file for the IAM role
+        /// defined in <c>InstanceRoleArn</c>. Shared credentials allow applications that are
+        /// deployed with the game server executable to communicate with other Amazon Web Services
+        /// resources. This property is used only when the game server is integrated with the
+        /// server SDK version 5.x. For more information about using shared credentials, see <a
+        /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html">
+        /// Communicate with other Amazon Web Services resources from your fleets</a>. This attribute
+        /// is used with fleets where <c>ComputeType</c> is <c>EC2</c>.
+        /// </para>
+        /// </summary>
+        public InstanceRoleCredentialsProvider InstanceRoleCredentialsProvider
+        {
+            get { return this._instanceRoleCredentialsProvider; }
+            set { this._instanceRoleCredentialsProvider = value; }
+        }
+
+        // Check to see if InstanceRoleCredentialsProvider property is set
+        internal bool IsSetInstanceRoleCredentialsProvider()
+        {
+            return this._instanceRoleCredentialsProvider != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property InstanceType. 
         /// <para>
-        /// The Amazon EC2 instance type that determines the computing resources of each instance
-        /// in the fleet. Instance type defines the CPU, memory, storage, and networking capacity.
-        /// See <a href="http://aws.amazon.com/ec2/instance-types/">Amazon Elastic Compute Cloud
-        /// Instance Types</a> for detailed descriptions.
+        /// The Amazon EC2 instance type that the fleet uses. Instance type determines the computing
+        /// resources of each instance in the fleet, including CPU, memory, storage, and networking
+        /// capacity. See <a href="http://aws.amazon.com/ec2/instance-types/">Amazon Elastic Compute
+        /// Cloud Instance Types</a> for detailed descriptions. This attribute is used with fleets
+        /// where <c>ComputeType</c> is <c>EC2</c>.
         /// </para>
         /// </summary>
         public EC2InstanceType InstanceType
@@ -302,8 +355,8 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property LogPaths. 
         /// <para>
         ///  <b>This parameter is no longer used.</b> Game session log paths are now defined using
-        /// the Amazon GameLift server API <code>ProcessReady()</code> <code>logParameters</code>.
-        /// See more information in the <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api-ref.html#gamelift-sdk-server-api-ref-dataypes-process">Server
+        /// the Amazon GameLift server API <c>ProcessReady()</c> <c>logParameters</c>. See more
+        /// information in the <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api-ref.html#gamelift-sdk-server-api-ref-dataypes-process">Server
         /// API Reference</a>. 
         /// </para>
         /// </summary>
@@ -316,7 +369,7 @@ namespace Amazon.GameLift.Model
         // Check to see if LogPaths property is set
         internal bool IsSetLogPaths()
         {
-            return this._logPaths != null && this._logPaths.Count > 0; 
+            return this._logPaths != null && (this._logPaths.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -324,7 +377,8 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// Name of a metric group that metrics for this fleet are added to. In Amazon CloudWatch,
         /// you can view aggregated metrics for fleets that are in a metric group. A fleet can
-        /// be included in only one metric group at a time.
+        /// be included in only one metric group at a time. This attribute is used with fleets
+        /// where <c>ComputeType</c> is <c>EC2</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=1)]
@@ -337,7 +391,7 @@ namespace Amazon.GameLift.Model
         // Check to see if MetricGroups property is set
         internal bool IsSetMetricGroups()
         {
-            return this._metricGroups != null && this._metricGroups.Count > 0; 
+            return this._metricGroups != null && (this._metricGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -364,7 +418,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property NewGameSessionProtectionPolicy. 
         /// <para>
         /// The type of game session protection to set on all new instances that are started in
-        /// the fleet.
+        /// the fleet. This attribute is used with fleets where <c>ComputeType</c> is <c>EC2</c>.
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -372,8 +426,8 @@ namespace Amazon.GameLift.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>FullProtection</b> -- If the game session is in an <code>ACTIVE</code> status,
-        /// it cannot be terminated during a scale-down event.
+        ///  <b>FullProtection</b> -- If the game session is in an <c>ACTIVE</c> status, it cannot
+        /// be terminated during a scale-down event.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -393,8 +447,19 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property OperatingSystem. 
         /// <para>
         /// The operating system of the fleet's computing resources. A fleet's operating system
-        /// is determined by the OS of the build or script that is deployed on this fleet.
+        /// is determined by the OS of the build or script that is deployed on this fleet. This
+        /// attribute is used with fleets where <c>ComputeType</c> is <c>EC2</c>.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// Amazon Linux 2 (AL2) will reach end of support on 6/30/2025. See more details in the
+        /// <a href="https://aws.amazon.com/amazon-linux-2/faqs/">Amazon Linux 2 FAQs</a>. For
+        /// game servers that are hosted on AL2 and use Amazon GameLift server SDK 4.x., first
+        /// update the game server build to server SDK 5.x, and then deploy to AL2023 instances.
+        /// See <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-serversdk5-migration.html">
+        /// Migrate to Amazon GameLift server SDK version 5.</a> 
+        /// </para>
+        ///  </note>
         /// </summary>
         public OperatingSystem OperatingSystem
         {
@@ -428,8 +493,7 @@ namespace Amazon.GameLift.Model
         /// <para>
         ///  The Amazon Resource Name (<a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
         /// associated with the GameLift script resource that is deployed on instances in this
-        /// fleet. In a GameLift script ARN, the resource ID matches the <code>ScriptId</code>
-        /// value.
+        /// fleet. In a GameLift script ARN, the resource ID matches the <c>ScriptId</c> value.
         /// </para>
         /// </summary>
         public string ScriptArn
@@ -448,7 +512,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property ScriptId. 
         /// <para>
         /// A unique identifier for the Realtime script resource that is deployed on instances
-        /// in this fleet.
+        /// in this fleet. This attribute is used with fleets where <c>ComputeType</c> is "EC2".
         /// </para>
         /// </summary>
         public string ScriptId
@@ -467,8 +531,8 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property ServerLaunchParameters. 
         /// <para>
         ///  <b>This parameter is no longer used.</b> Server launch parameters are now defined
-        /// using the fleet's runtime configuration . Requests that use this parameter instead
-        /// continue to be valid.
+        /// using the fleet's runtime configuration. Requests that use this parameter continue
+        /// to be valid.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -488,8 +552,8 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property ServerLaunchPath. 
         /// <para>
         ///  <b>This parameter is no longer used.</b> Server launch paths are now defined using
-        /// the fleet's <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/RuntimeConfiguration.html">RuntimeConfiguration</a>
-        /// . Requests that use this parameter instead continue to be valid.
+        /// the fleet's <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/RuntimeConfiguration.html">RuntimeConfiguration</a>.
+        /// Requests that use this parameter continue to be valid.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -512,30 +576,36 @@ namespace Amazon.GameLift.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>NEW</b> -- A new fleet has been defined and desired instances is set to 1. 
+        /// NEW -- A new fleet resource has been defined and Amazon GameLift has started creating
+        /// the fleet. Desired instances is set to 1. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>DOWNLOADING/VALIDATING/BUILDING/ACTIVATING</b> -- Amazon GameLift is setting up
-        /// the new fleet, creating new instances with the game build or Realtime script and starting
-        /// server processes.
+        /// DOWNLOADING/VALIDATING/BUILDING -- Amazon GameLift is download the game server build,
+        /// running install scripts, and then validating the build files. When complete, Amazon
+        /// GameLift launches a fleet instance. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>ACTIVE</b> -- Hosts can now accept game sessions.
+        /// ACTIVATING -- Amazon GameLift is launching a game server process and testing its connectivity
+        /// with the Amazon GameLift service.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>ERROR</b> -- An error occurred when downloading, validating, building, or activating
-        /// the fleet.
+        /// ACTIVE -- The fleet is now ready to host game sessions.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>DELETING</b> -- Hosts are responding to a delete fleet request.
+        /// ERROR -- An error occurred when downloading, validating, building, or activating the
+        /// fleet.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>TERMINATED</b> -- The fleet no longer exists.
+        /// DELETING -- Hosts are responding to a delete fleet request.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// TERMINATED -- The fleet no longer exists.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -554,8 +624,9 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property StoppedActions. 
         /// <para>
-        /// A list of fleet activity that has been suspended using <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_StopFleetActions.html">StopFleetActions</a>
-        /// . This includes fleet auto-scaling.
+        /// A list of fleet activity that has been suspended using <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_StopFleetActions.html">StopFleetActions</a>.
+        /// This includes fleet auto-scaling. This attribute is used with fleets where <c>ComputeType</c>
+        /// is <c>EC2</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1)]
@@ -568,14 +639,14 @@ namespace Amazon.GameLift.Model
         // Check to see if StoppedActions property is set
         internal bool IsSetStoppedActions()
         {
-            return this._stoppedActions != null && this._stoppedActions.Count > 0; 
+            return this._stoppedActions != null && (this._stoppedActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TerminationTime. 
         /// <para>
         /// A time stamp indicating when this data object was terminated. Format is a number expressed
-        /// in Unix time as milliseconds (for example <code>"1469498468.057"</code>).
+        /// in Unix time as milliseconds (for example <c>"1469498468.057"</c>).
         /// </para>
         /// </summary>
         public DateTime TerminationTime

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastQueryService.Model
 {
     /// <summary>
@@ -34,14 +35,13 @@ namespace Amazon.ForecastQueryService.Model
     /// 
     ///  
     /// <para>
-    /// The criteria is a key-value pair. The key is either <code>item_id</code> (or the equivalent
-    /// non-timestamp, non-target field) from the <code>TARGET_TIME_SERIES</code> dataset,
-    /// or one of the forecast dimensions specified as part of the <code>FeaturizationConfig</code>
-    /// object.
+    /// The criteria is a key-value pair. The key is either <c>item_id</c> (or the equivalent
+    /// non-timestamp, non-target field) from the <c>TARGET_TIME_SERIES</c> dataset, or one
+    /// of the forecast dimensions specified as part of the <c>FeaturizationConfig</c> object.
     /// </para>
     ///  
     /// <para>
-    /// By default, <code>QueryForecast</code> returns the complete date range for the filtered
+    /// By default, <c>QueryForecast</c> returns the complete date range for the filtered
     /// forecast. You can request a specific date range.
     /// </para>
     ///  
@@ -59,7 +59,7 @@ namespace Amazon.ForecastQueryService.Model
     public partial class QueryForecastRequest : AmazonForecastQueryServiceRequest
     {
         private string _endDate;
-        private Dictionary<string, string> _filters = new Dictionary<string, string>();
+        private Dictionary<string, string> _filters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _forecastArn;
         private string _nextToken;
         private string _startDate;
@@ -87,12 +87,11 @@ namespace Amazon.ForecastQueryService.Model
         /// Gets and sets the property Filters. 
         /// <para>
         /// The filtering criteria to apply when retrieving the forecast. For example, to get
-        /// the forecast for <code>client_21</code> in the electricity usage dataset, specify
-        /// the following:
+        /// the forecast for <c>client_21</c> in the electricity usage dataset, specify the following:
         /// </para>
         ///  
         /// <para>
-        ///  <code>{"item_id" : "client_21"}</code> 
+        ///  <c>{"item_id" : "client_21"}</c> 
         /// </para>
         ///  
         /// <para>
@@ -110,7 +109,7 @@ namespace Amazon.ForecastQueryService.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -135,7 +134,7 @@ namespace Amazon.ForecastQueryService.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the result of the previous request was truncated, the response includes a <code>NextToken</code>.
+        /// If the result of the previous request was truncated, the response includes a <c>NextToken</c>.
         /// To retrieve the next set of results, use the token in the next request. Tokens expire
         /// after 24 hours.
         /// </para>

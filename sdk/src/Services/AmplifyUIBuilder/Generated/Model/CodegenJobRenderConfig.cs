@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AmplifyUIBuilder.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.AmplifyUIBuilder.Model
         /// <summary>
         /// Gets and sets the property React. 
         /// <para>
-        /// The name of the <code>ReactStartCodegenJobData</code> object.
+        /// The name of the <c>ReactStartCodegenJobData</c> object.
         /// </para>
         /// </summary>
         public ReactStartCodegenJobData React

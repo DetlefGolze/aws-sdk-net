@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AuditManager.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.AuditManager.Model
         /// <summary>
         /// Gets and sets the property ControlSet. 
         /// <para>
-        ///  The name of the updated control set that the <code>UpdateAssessmentControlSetStatus</code>
+        ///  The name of the updated control set that the <c>UpdateAssessmentControlSetStatus</c>
         /// API returned. 
         /// </para>
         /// </summary>

@@ -26,18 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OSIS.Model
 {
     /// <summary>
     /// Container for the parameters to the GetPipelineBlueprint operation.
     /// Retrieves information about a specific blueprint for OpenSearch Ingestion. Blueprints
-    /// are templates for the configuration needed for a <code>CreatePipeline</code> request.
-    /// For more information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/creating-pipeline.html#pipeline-blueprint">Using
+    /// are templates for the configuration needed for a <c>CreatePipeline</c> request. For
+    /// more information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/creating-pipeline.html#pipeline-blueprint">Using
     /// blueprints to create a pipeline</a>.
     /// </summary>
     public partial class GetPipelineBlueprintRequest : AmazonOSISRequest
     {
         private string _blueprintName;
+        private string _format;
 
         /// <summary>
         /// Gets and sets the property BlueprintName. 
@@ -56,6 +58,24 @@ namespace Amazon.OSIS.Model
         internal bool IsSetBlueprintName()
         {
             return this._blueprintName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Format. 
+        /// <para>
+        /// The format format of the blueprint to retrieve.
+        /// </para>
+        /// </summary>
+        public string Format
+        {
+            get { return this._format; }
+            set { this._format = value; }
+        }
+
+        // Check to see if Format property is set
+        internal bool IsSetFormat()
+        {
+            return this._format != null;
         }
 
     }

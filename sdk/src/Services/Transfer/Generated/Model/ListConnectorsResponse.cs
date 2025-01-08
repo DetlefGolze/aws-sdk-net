@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Transfer.Model
     /// </summary>
     public partial class ListConnectorsResponse : AmazonWebServiceResponse
     {
-        private List<ListedConnector> _connectors = new List<ListedConnector>();
+        private List<ListedConnector> _connectors = AWSConfigs.InitializeCollections ? new List<ListedConnector>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,14 +53,14 @@ namespace Amazon.Transfer.Model
         // Check to see if Connectors property is set
         internal bool IsSetConnectors()
         {
-            return this._connectors != null && this._connectors.Count > 0; 
+            return this._connectors != null && (this._connectors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Returns a token that you can use to call <code>ListConnectors</code> again and receive
-        /// additional results, if there are any.
+        /// Returns a token that you can use to call <c>ListConnectors</c> again and receive additional
+        /// results, if there are any.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=6144)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruReviewer.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.CodeGuruReviewer.Model
     /// </summary>
     public partial class CodeReview
     {
-        private List<string> _analysisTypes = new List<string>();
+        private List<string> _analysisTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _associationArn;
         private string _codeReviewArn;
         private ConfigFileState _configFileState;
@@ -55,7 +56,7 @@ namespace Amazon.CodeGuruReviewer.Model
         /// Gets and sets the property AnalysisTypes. 
         /// <para>
         /// The types of analysis performed during a repository analysis or a pull request review.
-        /// You can specify either <code>Security</code>, <code>CodeQuality</code>, or both.
+        /// You can specify either <c>Security</c>, <c>CodeQuality</c>, or both.
         /// </para>
         /// </summary>
         public List<string> AnalysisTypes
@@ -67,7 +68,7 @@ namespace Amazon.CodeGuruReviewer.Model
         // Check to see if AnalysisTypes property is set
         internal bool IsSetAnalysisTypes()
         {
-            return this._analysisTypes != null && this._analysisTypes.Count > 0; 
+            return this._analysisTypes != null && (this._analysisTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -114,9 +115,9 @@ namespace Amazon.CodeGuruReviewer.Model
         /// <summary>
         /// Gets and sets the property ConfigFileState. 
         /// <para>
-        /// The state of the <code>aws-codeguru-reviewer.yml</code> configuration file that allows
-        /// the configuration of the CodeGuru Reviewer analysis. The file either exists, doesn't
-        /// exist, or exists with errors at the root directory of your repository.
+        /// The state of the <c>aws-codeguru-reviewer.yml</c> configuration file that allows the
+        /// configuration of the CodeGuru Reviewer analysis. The file either exists, doesn't exist,
+        /// or exists with errors at the root directory of your repository.
         /// </para>
         /// </summary>
         public ConfigFileState ConfigFileState
@@ -308,19 +309,19 @@ namespace Amazon.CodeGuruReviewer.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Completed</code>: The code review is complete.
+        ///  <c>Completed</c>: The code review is complete.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Pending</code>: The code review started and has not completed or failed.
+        ///  <c>Pending</c>: The code review started and has not completed or failed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Failed</code>: The code review failed.
+        ///  <c>Failed</c>: The code review failed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Deleting</code>: The code review is being deleted.
+        ///  <c>Deleting</c>: The code review is being deleted.
         /// </para>
         ///  </li> </ul>
         /// </summary>

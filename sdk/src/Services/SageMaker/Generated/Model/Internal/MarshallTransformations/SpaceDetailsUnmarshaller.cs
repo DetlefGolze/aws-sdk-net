@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public SpaceDetails Unmarshall(JsonUnmarshallerContext context)
         {
+            SpaceDetails unmarshalledObject = new SpaceDetails();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            SpaceDetails unmarshalledObject = new SpaceDetails();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -82,10 +84,34 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     unmarshalledObject.LastModifiedTime = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("OwnershipSettingsSummary", targetDepth))
+                {
+                    var unmarshaller = OwnershipSettingsSummaryUnmarshaller.Instance;
+                    unmarshalledObject.OwnershipSettingsSummary = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("SpaceDisplayName", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.SpaceDisplayName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("SpaceName", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.SpaceName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("SpaceSettingsSummary", targetDepth))
+                {
+                    var unmarshaller = SpaceSettingsSummaryUnmarshaller.Instance;
+                    unmarshalledObject.SpaceSettingsSummary = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("SpaceSharingSettingsSummary", targetDepth))
+                {
+                    var unmarshaller = SpaceSharingSettingsSummaryUnmarshaller.Instance;
+                    unmarshalledObject.SpaceSharingSettingsSummary = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Status", targetDepth))
@@ -95,7 +121,6 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

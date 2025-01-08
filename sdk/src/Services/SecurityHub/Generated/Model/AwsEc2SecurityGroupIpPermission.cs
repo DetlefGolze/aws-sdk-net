@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -35,11 +36,11 @@ namespace Amazon.SecurityHub.Model
     {
         private int? _fromPort;
         private string _ipProtocol;
-        private List<AwsEc2SecurityGroupIpRange> _ipRanges = new List<AwsEc2SecurityGroupIpRange>();
-        private List<AwsEc2SecurityGroupIpv6Range> _ipv6Ranges = new List<AwsEc2SecurityGroupIpv6Range>();
-        private List<AwsEc2SecurityGroupPrefixListId> _prefixListIds = new List<AwsEc2SecurityGroupPrefixListId>();
+        private List<AwsEc2SecurityGroupIpRange> _ipRanges = AWSConfigs.InitializeCollections ? new List<AwsEc2SecurityGroupIpRange>() : null;
+        private List<AwsEc2SecurityGroupIpv6Range> _ipv6Ranges = AWSConfigs.InitializeCollections ? new List<AwsEc2SecurityGroupIpv6Range>() : null;
+        private List<AwsEc2SecurityGroupPrefixListId> _prefixListIds = AWSConfigs.InitializeCollections ? new List<AwsEc2SecurityGroupPrefixListId>() : null;
         private int? _toPort;
-        private List<AwsEc2SecurityGroupUserIdGroupPair> _userIdGroupPairs = new List<AwsEc2SecurityGroupUserIdGroupPair>();
+        private List<AwsEc2SecurityGroupUserIdGroupPair> _userIdGroupPairs = AWSConfigs.InitializeCollections ? new List<AwsEc2SecurityGroupUserIdGroupPair>() : null;
 
         /// <summary>
         /// Gets and sets the property FromPort. 
@@ -68,27 +69,25 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property IpProtocol. 
         /// <para>
-        /// The IP protocol name (<code>tcp</code>, <code>udp</code>, <code>icmp</code>, <code>icmpv6</code>)
-        /// or number.
+        /// The IP protocol name (<c>tcp</c>, <c>udp</c>, <c>icmp</c>, <c>icmpv6</c>) or number.
         /// </para>
         ///  
         /// <para>
-        /// [VPC only] Use <code>-1</code> to specify all protocols.
+        /// [VPC only] Use <c>-1</c> to specify all protocols.
         /// </para>
         ///  
         /// <para>
-        /// When authorizing security group rules, specifying <code>-1</code> or a protocol number
-        /// other than <code>tcp</code>, <code>udp</code>, <code>icmp</code>, or <code>icmpv6</code>
-        /// allows traffic on all ports, regardless of any port range you specify.
+        /// When authorizing security group rules, specifying <c>-1</c> or a protocol number other
+        /// than <c>tcp</c>, <c>udp</c>, <c>icmp</c>, or <c>icmpv6</c> allows traffic on all ports,
+        /// regardless of any port range you specify.
         /// </para>
         ///  
         /// <para>
-        /// For <code>tcp</code>, <code>udp</code>, and <code>icmp</code>, you must specify a
-        /// port range.
+        /// For <c>tcp</c>, <c>udp</c>, and <c>icmp</c>, you must specify a port range.
         /// </para>
         ///  
         /// <para>
-        /// For <code>icmpv6</code>, the port range is optional. If you omit the port range, traffic
+        /// For <c>icmpv6</c>, the port range is optional. If you omit the port range, traffic
         /// for all types and codes is allowed. 
         /// </para>
         /// </summary>
@@ -119,7 +118,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if IpRanges property is set
         internal bool IsSetIpRanges()
         {
-            return this._ipRanges != null && this._ipRanges.Count > 0; 
+            return this._ipRanges != null && (this._ipRanges.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -137,7 +136,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Ipv6Ranges property is set
         internal bool IsSetIpv6Ranges()
         {
-            return this._ipv6Ranges != null && this._ipv6Ranges.Count > 0; 
+            return this._ipv6Ranges != null && (this._ipv6Ranges.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -157,7 +156,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if PrefixListIds property is set
         internal bool IsSetPrefixListIds()
         {
-            return this._prefixListIds != null && this._prefixListIds.Count > 0; 
+            return this._prefixListIds != null && (this._prefixListIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -167,7 +166,7 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// A value of <code>-1</code> indicates all ICMP/ICMPv6 codes. If you specify all ICMP/ICMPv6
+        /// A value of <c>-1</c> indicates all ICMP/ICMPv6 codes. If you specify all ICMP/ICMPv6
         /// types, you must specify all codes.
         /// </para>
         /// </summary>
@@ -198,7 +197,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if UserIdGroupPairs property is set
         internal bool IsSetUserIdGroupPairs()
         {
-            return this._userIdGroupPairs != null && this._userIdGroupPairs.Count > 0; 
+            return this._userIdGroupPairs != null && (this._userIdGroupPairs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

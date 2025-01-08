@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
@@ -43,6 +44,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         private bool? _sharedRoutesEnabled;
         private PoolStatus _status;
         private string _twoWayChannelArn;
+        private string _twoWayChannelRole;
         private bool? _twoWayEnabled;
 
         /// <summary>
@@ -165,10 +167,11 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// Gets and sets the property SelfManagedOptOutsEnabled. 
         /// <para>
         /// When set to false, an end recipient sends a message that begins with HELP or STOP
-        /// to one of your dedicated numbers, Amazon Pinpoint automatically replies with a customizable
-        /// message and adds the end recipient to the OptOutList. When set to true you're responsible
-        /// for responding to HELP and STOP requests. You're also responsible for tracking and
-        /// honoring opt-out requests. For more information see <a href="https://docs.aws.amazon.com/pinpoint/latest/userguide/settings-sms-managing.html#settings-account-sms-self-managed-opt-out">Self-managed
+        /// to one of your dedicated numbers, AWS End User Messaging SMS and Voice automatically
+        /// replies with a customizable message and adds the end recipient to the OptOutList.
+        /// When set to true you're responsible for responding to HELP and STOP requests. You're
+        /// also responsible for tracking and honoring opt-out requests. For more information
+        /// see <a href="https://docs.aws.amazon.com/pinpoint/latest/userguide/settings-sms-managing.html#settings-account-sms-self-managed-opt-out">Self-managed
         /// opt-outs</a> 
         /// </para>
         /// </summary>
@@ -192,11 +195,11 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// </para>
         ///  
         /// <para>
-        /// By default, this is set to <code>False</code>. If you set this value to <code>True</code>,
-        /// your messages are sent using phone numbers or sender IDs (depending on the country)
-        /// that are shared with other Amazon Pinpoint users. In some countries, such as the United
-        /// States, senders aren't allowed to use shared routes and must use a dedicated phone
-        /// number or short code.
+        /// By default, this is set to <c>False</c>. If you set this value to <c>True</c>, your
+        /// messages are sent using phone numbers or sender IDs (depending on the country) that
+        /// are shared with other users. In some countries, such as the United States, senders
+        /// aren't allowed to use shared routes and must use a dedicated phone number or short
+        /// code.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -248,6 +251,25 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         internal bool IsSetTwoWayChannelArn()
         {
             return this._twoWayChannelArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property TwoWayChannelRole. 
+        /// <para>
+        /// An optional IAM Role Arn for a service to assume, to be able to post inbound SMS messages.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=2048)]
+        public string TwoWayChannelRole
+        {
+            get { return this._twoWayChannelRole; }
+            set { this._twoWayChannelRole = value; }
+        }
+
+        // Check to see if TwoWayChannelRole property is set
+        internal bool IsSetTwoWayChannelRole()
+        {
+            return this._twoWayChannelRole != null;
         }
 
         /// <summary>

@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KendraRanking.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteRescoreExecutionPlan operation.
     /// Deletes a rescore execution plan. A rescore execution plan is an Amazon Kendra Intelligent
-    /// Ranking resource used for provisioning the <code>Rescore</code> API.
+    /// Ranking resource used for provisioning the <c>Rescore</c> API.
     /// </summary>
     public partial class DeleteRescoreExecutionPlanRequest : AmazonKendraRankingRequest
     {

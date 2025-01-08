@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// The <code>GlobalClusterIdentifier</code> already exists. Choose a new global database
-    /// identifier (unique name) to create a new global database cluster.
+    /// The <c>GlobalClusterIdentifier</c> already exists. Specify a new global database identifier
+    /// (unique name) to create a new global database cluster or to rename an existing one.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

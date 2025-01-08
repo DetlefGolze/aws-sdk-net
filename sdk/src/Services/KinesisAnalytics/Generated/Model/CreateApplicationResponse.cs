@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalytics.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.KinesisAnalytics.Model
         /// <summary>
         /// Gets and sets the property ApplicationSummary. 
         /// <para>
-        /// In response to your <code>CreateApplication</code> request, Amazon Kinesis Analytics
-        /// returns a response with a summary of the application it created, including the application
+        /// In response to your <c>CreateApplication</c> request, Amazon Kinesis Analytics returns
+        /// a response with a summary of the application it created, including the application
         /// Amazon Resource Name (ARN), name, and status.
         /// </para>
         /// </summary>

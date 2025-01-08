@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.GroundStation.Model
     /// </summary>
     public partial class ListConfigsResponse : AmazonWebServiceResponse
     {
-        private List<ConfigListItem> _configList = new List<ConfigListItem>();
+        private List<ConfigListItem> _configList = AWSConfigs.InitializeCollections ? new List<ConfigListItem>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property ConfigList. 
         /// <para>
-        /// List of <code>Config</code> items.
+        /// List of <c>Config</c> items.
         /// </para>
         /// </summary>
         public List<ConfigListItem> ConfigList
@@ -51,14 +52,14 @@ namespace Amazon.GroundStation.Model
         // Check to see if ConfigList property is set
         internal bool IsSetConfigList()
         {
-            return this._configList != null && this._configList.Count > 0; 
+            return this._configList != null && (this._configList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Next token returned in the response of a previous <code>ListConfigs</code> call. Used
-        /// to get the next page of results.
+        /// Next token returned in the response of a previous <c>ListConfigs</c> call. Used to
+        /// get the next page of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=3, Max=1000)]

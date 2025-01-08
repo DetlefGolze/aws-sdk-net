@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -45,12 +46,13 @@ namespace Amazon.DatabaseMigrationService.Model
         private bool? _partitionIncludeSchemaTable;
         private string _serviceAccessRoleArn;
         private string _streamArn;
+        private bool? _useLargeIntegerValue;
 
         /// <summary>
         /// Gets and sets the property IncludeControlDetails. 
         /// <para>
         /// Shows detailed control information for table definition, column definition, and table
-        /// and column changes in the Kinesis message output. The default is <code>false</code>.
+        /// and column changes in the Kinesis message output. The default is <c>false</c>.
         /// </para>
         /// </summary>
         public bool IncludeControlDetails
@@ -69,7 +71,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property IncludeNullAndEmpty. 
         /// <para>
         /// Include NULL and empty columns for records migrated to the endpoint. The default is
-        /// <code>false</code>.
+        /// <c>false</c>.
         /// </para>
         /// </summary>
         public bool IncludeNullAndEmpty
@@ -88,7 +90,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property IncludePartitionValue. 
         /// <para>
         /// Shows the partition value within the Kinesis message output, unless the partition
-        /// type is <code>schema-table-type</code>. The default is <code>false</code>.
+        /// type is <c>schema-table-type</c>. The default is <c>false</c>.
         /// </para>
         /// </summary>
         public bool IncludePartitionValue
@@ -107,8 +109,8 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property IncludeTableAlterOperations. 
         /// <para>
         /// Includes any data definition language (DDL) operations that change the table in the
-        /// control data, such as <code>rename-table</code>, <code>drop-table</code>, <code>add-column</code>,
-        /// <code>drop-column</code>, and <code>rename-column</code>. The default is <code>false</code>.
+        /// control data, such as <c>rename-table</c>, <c>drop-table</c>, <c>add-column</c>, <c>drop-column</c>,
+        /// and <c>rename-column</c>. The default is <c>false</c>.
         /// </para>
         /// </summary>
         public bool IncludeTableAlterOperations
@@ -127,9 +129,9 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property IncludeTransactionDetails. 
         /// <para>
         /// Provides detailed transaction information from the source database. This information
-        /// includes a commit timestamp, a log position, and values for <code>transaction_id</code>,
-        /// previous <code>transaction_id</code>, and <code>transaction_record_id</code> (the
-        /// record offset within a transaction). The default is <code>false</code>.
+        /// includes a commit timestamp, a log position, and values for <c>transaction_id</c>,
+        /// previous <c>transaction_id</c>, and <c>transaction_record_id</c> (the record offset
+        /// within a transaction). The default is <c>false</c>.
         /// </para>
         /// </summary>
         public bool IncludeTransactionDetails
@@ -147,8 +149,8 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property MessageFormat. 
         /// <para>
-        /// The output format for the records created on the endpoint. The message format is <code>JSON</code>
-        /// (default) or <code>JSON_UNFORMATTED</code> (a single line with no tab).
+        /// The output format for the records created on the endpoint. The message format is <c>JSON</c>
+        /// (default) or <c>JSON_UNFORMATTED</c> (a single line with no tab).
         /// </para>
         /// </summary>
         public MessageFormatValue MessageFormat
@@ -166,11 +168,11 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property NoHexPrefix. 
         /// <para>
-        /// Set this optional parameter to <code>true</code> to avoid adding a '0x' prefix to
-        /// raw data in hexadecimal format. For example, by default, DMS adds a '0x' prefix to
-        /// the LOB column type in hexadecimal format moving from an Oracle source to an Amazon
-        /// Kinesis target. Use the <code>NoHexPrefix</code> endpoint setting to enable migration
-        /// of RAW data type columns without adding the '0x' prefix.
+        /// Set this optional parameter to <c>true</c> to avoid adding a '0x' prefix to raw data
+        /// in hexadecimal format. For example, by default, DMS adds a '0x' prefix to the LOB
+        /// column type in hexadecimal format moving from an Oracle source to an Amazon Kinesis
+        /// target. Use the <c>NoHexPrefix</c> endpoint setting to enable migration of RAW data
+        /// type columns without adding the '0x' prefix.
         /// </para>
         /// </summary>
         public bool NoHexPrefix
@@ -188,11 +190,11 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property PartitionIncludeSchemaTable. 
         /// <para>
-        /// Prefixes schema and table names to partition values, when the partition type is <code>primary-key-type</code>.
+        /// Prefixes schema and table names to partition values, when the partition type is <c>primary-key-type</c>.
         /// Doing this increases data distribution among Kinesis shards. For example, suppose
         /// that a SysBench schema has thousands of tables and each table has only limited range
         /// for a primary key. In this case, the same primary key is sent from thousands of tables
-        /// to the same shard, which causes throttling. The default is <code>false</code>.
+        /// to the same shard, which causes throttling. The default is <c>false</c>.
         /// </para>
         /// </summary>
         public bool PartitionIncludeSchemaTable
@@ -211,7 +213,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property ServiceAccessRoleArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) for the IAM role that DMS uses to write to the Kinesis
-        /// data stream. The role must allow the <code>iam:PassRole</code> action.
+        /// data stream. The role must allow the <c>iam:PassRole</c> action.
         /// </para>
         /// </summary>
         public string ServiceAccessRoleArn
@@ -242,6 +244,24 @@ namespace Amazon.DatabaseMigrationService.Model
         internal bool IsSetStreamArn()
         {
             return this._streamArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property UseLargeIntegerValue. 
+        /// <para>
+        /// Specifies using the large integer value with Kinesis.
+        /// </para>
+        /// </summary>
+        public bool UseLargeIntegerValue
+        {
+            get { return this._useLargeIntegerValue.GetValueOrDefault(); }
+            set { this._useLargeIntegerValue = value; }
+        }
+
+        // Check to see if UseLargeIntegerValue property is set
+        internal bool IsSetUseLargeIntegerValue()
+        {
+            return this._useLargeIntegerValue.HasValue; 
         }
 
     }

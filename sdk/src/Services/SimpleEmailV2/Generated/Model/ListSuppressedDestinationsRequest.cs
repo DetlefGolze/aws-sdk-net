@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.SimpleEmailV2.Model
         private DateTime? _endDate;
         private string _nextToken;
         private int? _pageSize;
-        private List<string> _reasons = new List<string>();
+        private List<string> _reasons = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _startDate;
 
         /// <summary>
@@ -62,8 +63,8 @@ namespace Amazon.SimpleEmailV2.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token returned from a previous call to <code>ListSuppressedDestinations</code> to
-        /// indicate the position in the list of suppressed email addresses.
+        /// A token returned from a previous call to <c>ListSuppressedDestinations</c> to indicate
+        /// the position in the list of suppressed email addresses.
         /// </para>
         /// </summary>
         public string NextToken
@@ -81,10 +82,10 @@ namespace Amazon.SimpleEmailV2.Model
         /// <summary>
         /// Gets and sets the property PageSize. 
         /// <para>
-        /// The number of results to show in a single call to <code>ListSuppressedDestinations</code>.
+        /// The number of results to show in a single call to <c>ListSuppressedDestinations</c>.
         /// If the number of results is larger than the number you specified in this parameter,
-        /// then the response includes a <code>NextToken</code> element, which you can use to
-        /// obtain additional results.
+        /// then the response includes a <c>NextToken</c> element, which you can use to obtain
+        /// additional results.
         /// </para>
         /// </summary>
         public int PageSize
@@ -114,7 +115,7 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if Reasons property is set
         internal bool IsSetReasons()
         {
-            return this._reasons != null && this._reasons.Count > 0; 
+            return this._reasons != null && (this._reasons.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

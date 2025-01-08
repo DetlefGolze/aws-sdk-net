@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the connectcases-2022-10-03.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ConnectCases.Model
 {
     /// <summary>
@@ -29,6 +30,11 @@ namespace Amazon.ConnectCases.Model
         /// Paginator for GetCase operation
         ///</summary>
         IGetCasePaginator GetCase(GetCaseRequest request);
+
+        /// <summary>
+        /// Paginator for GetCaseAuditEvents operation
+        ///</summary>
+        IGetCaseAuditEventsPaginator GetCaseAuditEvents(GetCaseAuditEventsRequest request);
 
         /// <summary>
         /// Paginator for ListCasesForContact operation

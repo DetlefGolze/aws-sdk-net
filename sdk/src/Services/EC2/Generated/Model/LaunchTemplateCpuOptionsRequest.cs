@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property ThreadsPerCore. 
         /// <para>
         /// The number of threads per CPU core. To disable multithreading for the instance, specify
-        /// a value of <code>1</code>. Otherwise, specify the default value of <code>2</code>.
+        /// a value of <c>1</c>. Otherwise, specify the default value of <c>2</c>.
         /// </para>
         /// </summary>
         public int ThreadsPerCore

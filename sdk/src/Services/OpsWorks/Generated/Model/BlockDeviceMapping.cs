@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
@@ -43,10 +44,9 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property DeviceName. 
         /// <para>
-        /// The device name that is exposed to the instance, such as <code>/dev/sdh</code>. For
-        /// the root device, you can use the explicit device name or you can set this parameter
-        /// to <code>ROOT_DEVICE</code> and AWS OpsWorks Stacks will provide the correct device
-        /// name.
+        /// The device name that is exposed to the instance, such as <c>/dev/sdh</c>. For the
+        /// root device, you can use the explicit device name or you can set this parameter to
+        /// <c>ROOT_DEVICE</c> and OpsWorks Stacks will provide the correct device name.
         /// </para>
         /// </summary>
         public string DeviceName
@@ -64,8 +64,8 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Ebs. 
         /// <para>
-        /// An <code>EBSBlockDevice</code> that defines how to configure an Amazon EBS volume
-        /// when the instance is launched.
+        /// An <c>EBSBlockDevice</c> that defines how to configure an Amazon EBS volume when the
+        /// instance is launched.
         /// </para>
         /// </summary>
         public EbsBlockDevice Ebs

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.ServiceCatalog.Model
     public partial class UpdateServiceActionRequest : AmazonServiceCatalogRequest
     {
         private string _acceptLanguage;
-        private Dictionary<string, string> _definition = new Dictionary<string, string>();
+        private Dictionary<string, string> _definition = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _description;
         private string _id;
         private string _name;
@@ -47,11 +48,11 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>jp</code> - Japanese
+        ///  <c>jp</c> - Japanese
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>zh</code> - Chinese
+        ///  <c>zh</c> - Chinese
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -84,7 +85,7 @@ namespace Amazon.ServiceCatalog.Model
         // Check to see if Definition property is set
         internal bool IsSetDefinition()
         {
-            return this._definition != null && this._definition.Count > 0; 
+            return this._definition != null && (this._definition.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

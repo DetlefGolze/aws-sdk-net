@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppFabric.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.AppFabric.Model
     /// </summary>
     public partial class ListAppBundlesResponse : AmazonWebServiceResponse
     {
-        private List<AppBundleSummary> _appBundleSummaryList = new List<AppBundleSummary>();
+        private List<AppBundleSummary> _appBundleSummaryList = AWSConfigs.InitializeCollections ? new List<AppBundleSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,17 +53,17 @@ namespace Amazon.AppFabric.Model
         // Check to see if AppBundleSummaryList property is set
         internal bool IsSetAppBundleSummaryList()
         {
-            return this._appBundleSummaryList != null && this._appBundleSummaryList.Count > 0; 
+            return this._appBundleSummaryList != null && (this._appBundleSummaryList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. Each pagination token expires after 24 hours. Using an expired pagination
-        /// token will return an <i>HTTP 400 InvalidToken error</i>.
+        /// If <c>nextToken</c> is returned, there are more results available. The value of <c>nextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. Each pagination
+        /// token expires after 24 hours. Using an expired pagination token will return an <i>HTTP
+        /// 400 InvalidToken error</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Connect.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public RuleAction Unmarshall(JsonUnmarshallerContext context)
         {
+            RuleAction unmarshalledObject = new RuleAction();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            RuleAction unmarshalledObject = new RuleAction();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -76,6 +78,18 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
                     unmarshalledObject.AssignContactCategoryAction = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("CreateCaseAction", targetDepth))
+                {
+                    var unmarshaller = CreateCaseActionDefinitionUnmarshaller.Instance;
+                    unmarshalledObject.CreateCaseAction = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("EndAssociatedTasksAction", targetDepth))
+                {
+                    var unmarshaller = EndAssociatedTasksActionDefinitionUnmarshaller.Instance;
+                    unmarshalledObject.EndAssociatedTasksAction = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("EventBridgeAction", targetDepth))
                 {
                     var unmarshaller = EventBridgeActionDefinitionUnmarshaller.Instance;
@@ -88,14 +102,25 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
                     unmarshalledObject.SendNotificationAction = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("SubmitAutoEvaluationAction", targetDepth))
+                {
+                    var unmarshaller = SubmitAutoEvaluationActionDefinitionUnmarshaller.Instance;
+                    unmarshalledObject.SubmitAutoEvaluationAction = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("TaskAction", targetDepth))
                 {
                     var unmarshaller = TaskActionDefinitionUnmarshaller.Instance;
                     unmarshalledObject.TaskAction = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("UpdateCaseAction", targetDepth))
+                {
+                    var unmarshaller = UpdateCaseActionDefinitionUnmarshaller.Instance;
+                    unmarshalledObject.UpdateCaseAction = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

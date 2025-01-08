@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorksCM.Model
 {
     /// <summary>
@@ -35,38 +36,38 @@ namespace Amazon.OpsWorksCM.Model
     /// 
     ///  
     /// <para>
-    ///  On a Chef server: This command is an alternative to <code>knife bootstrap</code>.
+    ///  On a Chef server: This command is an alternative to <c>knife bootstrap</c>.
     /// </para>
     ///  
     /// <para>
-    ///  Example (Chef): <code>aws opsworks-cm associate-node --server-name <i>MyServer</i>
-    /// --node-name <i>MyManagedNode</i> --engine-attributes "Name=<i>CHEF_ORGANIZATION</i>,Value=default"
-    /// "Name=<i>CHEF_NODE_PUBLIC_KEY</i>,Value=<i>public-key-pem</i>"</code> 
+    ///  Example (Chef): <c>aws opsworks-cm associate-node --server-name <i>MyServer</i> --node-name
+    /// <i>MyManagedNode</i> --engine-attributes "Name=<i>CHEF_ORGANIZATION</i>,Value=default"
+    /// "Name=<i>CHEF_NODE_PUBLIC_KEY</i>,Value=<i>public-key-pem</i>"</c> 
     /// </para>
     ///  
     /// <para>
-    ///  On a Puppet server, this command is an alternative to the <code>puppet cert sign</code>
+    ///  On a Puppet server, this command is an alternative to the <c>puppet cert sign</c>
     /// command that signs a Puppet node CSR. 
     /// </para>
     ///  
     /// <para>
-    ///  Example (Puppet): <code>aws opsworks-cm associate-node --server-name <i>MyServer</i>
-    /// --node-name <i>MyManagedNode</i> --engine-attributes "Name=<i>PUPPET_NODE_CSR</i>,Value=<i>csr-pem</i>"</code>
+    ///  Example (Puppet): <c>aws opsworks-cm associate-node --server-name <i>MyServer</i>
+    /// --node-name <i>MyManagedNode</i> --engine-attributes "Name=<i>PUPPET_NODE_CSR</i>,Value=<i>csr-pem</i>"</c>
     /// 
     /// </para>
     ///  
     /// <para>
-    ///  A node can can only be associated with servers that are in a <code>HEALTHY</code>
-    /// state. Otherwise, an <code>InvalidStateException</code> is thrown. A <code>ResourceNotFoundException</code>
-    /// is thrown when the server does not exist. A <code>ValidationException</code> is raised
-    /// when parameters of the request are not valid. The AssociateNode API call can be integrated
+    ///  A node can can only be associated with servers that are in a <c>HEALTHY</c> state.
+    /// Otherwise, an <c>InvalidStateException</c> is thrown. A <c>ResourceNotFoundException</c>
+    /// is thrown when the server does not exist. A <c>ValidationException</c> is raised when
+    /// parameters of the request are not valid. The AssociateNode API call can be integrated
     /// into Auto Scaling configurations, AWS Cloudformation templates, or the user data of
     /// a server's instance. 
     /// </para>
     /// </summary>
     public partial class AssociateNodeRequest : AmazonOpsWorksCMRequest
     {
-        private List<EngineAttribute> _engineAttributes = new List<EngineAttribute>();
+        private List<EngineAttribute> _engineAttributes = AWSConfigs.InitializeCollections ? new List<EngineAttribute>() : null;
         private string _nodeName;
         private string _serverName;
 
@@ -81,13 +82,13 @@ namespace Amazon.OpsWorksCM.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CHEF_ORGANIZATION</code>: The Chef organization with which the node is associated.
-        /// By default only one organization named <code>default</code> can exist. 
+        ///  <c>CHEF_ORGANIZATION</c>: The Chef organization with which the node is associated.
+        /// By default only one organization named <c>default</c> can exist. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CHEF_NODE_PUBLIC_KEY</code>: A PEM-formatted public key. This key is required
-        /// for the <code>chef-client</code> agent to access the Chef API. 
+        ///  <c>CHEF_NODE_PUBLIC_KEY</c>: A PEM-formatted public key. This key is required for
+        /// the <c>chef-client</c> agent to access the Chef API. 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -95,8 +96,8 @@ namespace Amazon.OpsWorksCM.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PUPPET_NODE_CSR</code>: A PEM-formatted certificate-signing request (CSR) that
-        /// is created by the node. 
+        ///  <c>PUPPET_NODE_CSR</c>: A PEM-formatted certificate-signing request (CSR) that is
+        /// created by the node. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -110,7 +111,7 @@ namespace Amazon.OpsWorksCM.Model
         // Check to see if EngineAttributes property is set
         internal bool IsSetEngineAttributes()
         {
-            return this._engineAttributes != null && this._engineAttributes.Count > 0; 
+            return this._engineAttributes != null && (this._engineAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

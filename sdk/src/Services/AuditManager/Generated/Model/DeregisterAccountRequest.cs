@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AuditManager.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.AuditManager.Model
     /// <para>
     /// Before you deregister, you can use the <a href="https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_UpdateSettings.html">UpdateSettings</a>
     /// API operation to set your preferred data retention policy. By default, Audit Manager
-    /// retains your data. If you want to delete your data, you can use the <code>DeregistrationPolicy</code>
+    /// retains your data. If you want to delete your data, you can use the <c>DeregistrationPolicy</c>
     /// attribute to request the deletion of your data. 
     /// </para>
     ///  

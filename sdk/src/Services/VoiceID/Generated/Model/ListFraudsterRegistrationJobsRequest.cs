@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VoiceID.Model
 {
     /// <summary>
     /// Container for the parameters to the ListFraudsterRegistrationJobs operation.
-    /// Lists all the fraudster registration jobs in the domain with the given <code>JobStatus</code>.
-    /// If <code>JobStatus</code> is not provided, this lists all fraudster registration jobs
-    /// in the given domain.
+    /// Lists all the fraudster registration jobs in the domain with the given <c>JobStatus</c>.
+    /// If <c>JobStatus</c> is not provided, this lists all fraudster registration jobs in
+    /// the given domain.
     /// </summary>
     public partial class ListFraudsterRegistrationJobsRequest : AmazonVoiceIDRequest
     {
@@ -81,7 +82,7 @@ namespace Amazon.VoiceID.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The maximum number of results that are returned per call. You can use <code>NextToken</code>
+        /// The maximum number of results that are returned per call. You can use <c>NextToken</c>
         /// to obtain more pages of results. The default is 100; the maximum allowed page size
         /// is also 100. 
         /// </para>
@@ -102,10 +103,10 @@ namespace Amazon.VoiceID.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If <code>NextToken</code> is returned, there are more results available. The value
-        /// of <code>NextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. Each pagination token expires after 24 hours.
+        /// If <c>NextToken</c> is returned, there are more results available. The value of <c>NextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. Each pagination
+        /// token expires after 24 hours.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=8192)]

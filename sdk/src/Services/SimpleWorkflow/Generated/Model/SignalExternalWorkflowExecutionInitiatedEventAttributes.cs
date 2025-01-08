@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleWorkflow.Model
 {
     /// <summary>
-    /// Provides the details of the <code>SignalExternalWorkflowExecutionInitiated</code>
-    /// event.
+    /// Provides the details of the <c>SignalExternalWorkflowExecutionInitiated</c> event.
     /// </summary>
     public partial class SignalExternalWorkflowExecutionInitiatedEventAttributes
     {
@@ -64,10 +64,10 @@ namespace Amazon.SimpleWorkflow.Model
         /// <summary>
         /// Gets and sets the property DecisionTaskCompletedEventId. 
         /// <para>
-        /// The ID of the <code>DecisionTaskCompleted</code> event corresponding to the decision
-        /// task that resulted in the <code>SignalExternalWorkflowExecution</code> decision for
-        /// this signal. This information can be useful for diagnosing problems by tracing back
-        /// the chain of events leading up to this event.
+        /// The ID of the <c>DecisionTaskCompleted</c> event corresponding to the decision task
+        /// that resulted in the <c>SignalExternalWorkflowExecution</c> decision for this signal.
+        /// This information can be useful for diagnosing problems by tracing back the chain of
+        /// events leading up to this event.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -105,7 +105,7 @@ namespace Amazon.SimpleWorkflow.Model
         /// <summary>
         /// Gets and sets the property RunId. 
         /// <para>
-        /// The <code>runId</code> of the external workflow execution to send the signal to.
+        /// The <c>runId</c> of the external workflow execution to send the signal to.
         /// </para>
         /// </summary>
         [AWSProperty(Max=64)]
@@ -143,7 +143,7 @@ namespace Amazon.SimpleWorkflow.Model
         /// <summary>
         /// Gets and sets the property WorkflowId. 
         /// <para>
-        /// The <code>workflowId</code> of the external workflow execution.
+        /// The <c>workflowId</c> of the external workflow execution.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]

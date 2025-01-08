@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// </summary>
     public partial class DescribeInstancePatchesRequest : AmazonSimpleSystemsManagementRequest
     {
-        private List<PatchOrchestratorFilter> _filters = new List<PatchOrchestratorFilter>();
+        private List<PatchOrchestratorFilter> _filters = AWSConfigs.InitializeCollections ? new List<PatchOrchestratorFilter>() : null;
         private string _instanceId;
         private int? _maxResults;
         private string _nextToken;
@@ -47,40 +48,45 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported keys for <code>DescribeInstancePatches</code>include the following:
+        /// Supported keys for <c>DescribeInstancePatches</c>include the following:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b> <code>Classification</code> </b> 
+        ///  <b> <c>Classification</c> </b> 
         /// </para>
         ///  
         /// <para>
-        /// Sample values: <code>Security</code> | <code>SecurityUpdates</code> 
+        /// Sample values: <c>Security</c> | <c>SecurityUpdates</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>KBId</code> </b> 
+        ///  <b> <c>KBId</c> </b> 
         /// </para>
         ///  
         /// <para>
-        /// Sample values: <code>KB4480056</code> | <code>java-1.7.0-openjdk.x86_64</code> 
+        /// Sample values: <c>KB4480056</c> | <c>java-1.7.0-openjdk.x86_64</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>Severity</code> </b> 
+        ///  <b> <c>Severity</c> </b> 
         /// </para>
         ///  
         /// <para>
-        /// Sample values: <code>Important</code> | <code>Medium</code> | <code>Low</code> 
+        /// Sample values: <c>Important</c> | <c>Medium</c> | <c>Low</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>State</code> </b> 
+        ///  <b> <c>State</c> </b> 
         /// </para>
         ///  
         /// <para>
-        /// Sample values: <code>Installed</code> | <code>InstalledOther</code> | <code>InstalledPendingReboot</code>
+        /// Sample values: <c>Installed</c> | <c>InstalledOther</c> | <c>InstalledPendingReboot</c>
         /// 
+        /// </para>
+        ///  
+        /// <para>
+        /// For lists of all <c>State</c> values, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-compliance-states.html">Patch
+        /// compliance state values</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -94,7 +100,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

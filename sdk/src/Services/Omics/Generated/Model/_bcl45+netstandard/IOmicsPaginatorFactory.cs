@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the omics-2022-11-28.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Omics.Model
 {
     /// <summary>
@@ -84,6 +85,11 @@ namespace Amazon.Omics.Model
         /// Paginator for ListReferenceStores operation
         ///</summary>
         IListReferenceStoresPaginator ListReferenceStores(ListReferenceStoresRequest request);
+
+        /// <summary>
+        /// Paginator for ListRunCaches operation
+        ///</summary>
+        IListRunCachesPaginator ListRunCaches(ListRunCachesRequest request);
 
         /// <summary>
         /// Paginator for ListRunGroups operation

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
-    /// Metadata that you can assign to a delivery stream, consisting of a key-value pair.
+    /// Metadata that you can assign to a Firehose stream, consisting of a key-value pair.
     /// </summary>
     public partial class Tag
     {

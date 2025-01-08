@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideoArchivedMedia.Model
 {
     /// <summary>
-    /// A streaming session was requested for a stream that does not retain data (that is,
-    /// has a <code>DataRetentionInHours</code> of 0).
+    /// <c>GetImages</c> was requested for a stream that does not retain data (that is, has
+    /// a <c>DataRetentionInHours</c> of 0).
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

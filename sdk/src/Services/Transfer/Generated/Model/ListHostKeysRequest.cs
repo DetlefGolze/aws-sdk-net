@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Container for the parameters to the ListHostKeys operation.
-    /// Returns a list of host keys for the server that's specified by the <code>ServerId</code>
+    /// Returns a list of host keys for the server that's specified by the <c>ServerId</c>
     /// parameter.
     /// </summary>
     public partial class ListHostKeysRequest : AmazonTransferRequest
@@ -42,7 +43,7 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The maximum number of host keys to return.
+        /// The maximum number of items to return.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]
@@ -61,9 +62,9 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When there are additional results that were not returned, a <code>NextToken</code>
-        /// parameter is returned. You can use that value for a subsequent call to <code>ListHostKeys</code>
-        /// to continue listing results.
+        /// When there are additional results that were not returned, a <c>NextToken</c> parameter
+        /// is returned. You can use that value for a subsequent call to <c>ListHostKeys</c> to
+        /// continue listing results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=6144)]

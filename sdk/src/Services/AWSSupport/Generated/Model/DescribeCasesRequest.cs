@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSSupport.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeCases operation.
     /// Returns a list of cases that you specify by passing one or more case IDs. You can
-    /// use the <code>afterTime</code> and <code>beforeTime</code> parameters to filter the
-    /// cases by date. You can set values for the <code>includeResolvedCases</code> and <code>includeCommunications</code>
+    /// use the <c>afterTime</c> and <c>beforeTime</c> parameters to filter the cases by date.
+    /// You can set values for the <c>includeResolvedCases</c> and <c>includeCommunications</c>
     /// parameters to specify how much information to return.
     /// 
     ///  
@@ -46,8 +47,8 @@ namespace Amazon.AWSSupport.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// One or more <code>nextToken</code> values, which specify where to paginate the returned
-    /// records represented by the <code>CaseDetails</code> objects.
+    /// One or more <c>nextToken</c> values, which specify where to paginate the returned
+    /// records represented by the <c>CaseDetails</c> objects.
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -62,7 +63,7 @@ namespace Amazon.AWSSupport.Model
     ///  </li> <li> 
     /// <para>
     /// If you call the Amazon Web Services Support API from an account that doesn't have
-    /// a Business, Enterprise On-Ramp, or Enterprise Support plan, the <code>SubscriptionRequiredException</code>
+    /// a Business, Enterprise On-Ramp, or Enterprise Support plan, the <c>SubscriptionRequiredException</c>
     /// error message appears. For information about changing your support plan, see <a href="http://aws.amazon.com/premiumsupport/">Amazon
     /// Web Services Support</a>.
     /// </para>
@@ -72,7 +73,7 @@ namespace Amazon.AWSSupport.Model
     {
         private string _afterTime;
         private string _beforeTime;
-        private List<string> _caseIdList = new List<string>();
+        private List<string> _caseIdList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _displayId;
         private bool? _includeCommunications;
         private bool? _includeResolvedCases;
@@ -135,7 +136,7 @@ namespace Amazon.AWSSupport.Model
         // Check to see if CaseIdList property is set
         internal bool IsSetCaseIdList()
         {
-            return this._caseIdList != null && this._caseIdList.Count > 0; 
+            return this._caseIdList != null && (this._caseIdList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -159,7 +160,7 @@ namespace Amazon.AWSSupport.Model
         /// <summary>
         /// Gets and sets the property IncludeCommunications. 
         /// <para>
-        /// Specifies whether to include communications in the <code>DescribeCases</code> response.
+        /// Specifies whether to include communications in the <c>DescribeCases</c> response.
         /// By default, communications are included.
         /// </para>
         /// </summary>
@@ -178,8 +179,8 @@ namespace Amazon.AWSSupport.Model
         /// <summary>
         /// Gets and sets the property IncludeResolvedCases. 
         /// <para>
-        /// Specifies whether to include resolved support cases in the <code>DescribeCases</code>
-        /// response. By default, resolved cases aren't included.
+        /// Specifies whether to include resolved support cases in the <c>DescribeCases</c> response.
+        /// By default, resolved cases aren't included.
         /// </para>
         /// </summary>
         public bool IncludeResolvedCases
@@ -199,8 +200,8 @@ namespace Amazon.AWSSupport.Model
         /// <para>
         /// The language in which Amazon Web Services Support handles the case. Amazon Web Services
         /// Support currently supports Chinese (“zh”), English ("en"), Japanese ("ja") and Korean
-        /// (“ko”). You must specify the ISO 639-1 code for the <code>language</code> parameter
-        /// if you want support in that language.
+        /// (“ko”). You must specify the ISO 639-1 code for the <c>language</c> parameter if you
+        /// want support in that language.
         /// </para>
         /// </summary>
         public string Language

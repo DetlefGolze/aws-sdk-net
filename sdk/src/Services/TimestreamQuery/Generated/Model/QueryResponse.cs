@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TimestreamQuery.Model
 {
     /// <summary>
@@ -33,11 +34,12 @@ namespace Amazon.TimestreamQuery.Model
     /// </summary>
     public partial class QueryResponse : AmazonWebServiceResponse
     {
-        private List<ColumnInfo> _columnInfo = new List<ColumnInfo>();
+        private List<ColumnInfo> _columnInfo = AWSConfigs.InitializeCollections ? new List<ColumnInfo>() : null;
         private string _nextToken;
         private string _queryId;
+        private QueryInsightsResponse _queryInsightsResponse;
         private QueryStatus _queryStatus;
-        private List<Row> _rows = new List<Row>();
+        private List<Row> _rows = AWSConfigs.InitializeCollections ? new List<Row>() : null;
 
         /// <summary>
         /// Gets and sets the property ColumnInfo. 
@@ -55,14 +57,14 @@ namespace Amazon.TimestreamQuery.Model
         // Check to see if ColumnInfo property is set
         internal bool IsSetColumnInfo()
         {
-            return this._columnInfo != null && this._columnInfo.Count > 0; 
+            return this._columnInfo != null && (this._columnInfo.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  A pagination token that can be used again on a <code>Query</code> call to get the
-        /// next set of results. 
+        ///  A pagination token that can be used again on a <c>Query</c> call to get the next
+        /// set of results. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]
@@ -95,6 +97,25 @@ namespace Amazon.TimestreamQuery.Model
         internal bool IsSetQueryId()
         {
             return this._queryId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property QueryInsightsResponse. 
+        /// <para>
+        /// Encapsulates <c>QueryInsights</c> containing insights and metrics related to the query
+        /// that you executed.
+        /// </para>
+        /// </summary>
+        public QueryInsightsResponse QueryInsightsResponse
+        {
+            get { return this._queryInsightsResponse; }
+            set { this._queryInsightsResponse = value; }
+        }
+
+        // Check to see if QueryInsightsResponse property is set
+        internal bool IsSetQueryInsightsResponse()
+        {
+            return this._queryInsightsResponse != null;
         }
 
         /// <summary>
@@ -131,7 +152,7 @@ namespace Amazon.TimestreamQuery.Model
         // Check to see if Rows property is set
         internal bool IsSetRows()
         {
-            return this._rows != null && this._rows.Count > 0; 
+            return this._rows != null && (this._rows.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

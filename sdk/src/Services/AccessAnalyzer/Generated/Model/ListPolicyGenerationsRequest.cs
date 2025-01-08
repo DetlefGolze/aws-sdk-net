@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AccessAnalyzer.Model
 {
     /// <summary>
@@ -79,8 +80,8 @@ namespace Amazon.AccessAnalyzer.Model
         /// Gets and sets the property PrincipalArn. 
         /// <para>
         /// The ARN of the IAM entity (user or role) for which you are generating a policy. Use
-        /// this with <code>ListGeneratedPolicies</code> to filter the results to only include
-        /// results for a specific principal.
+        /// this with <c>ListGeneratedPolicies</c> to filter the results to only include results
+        /// for a specific principal.
         /// </para>
         /// </summary>
         public string PrincipalArn

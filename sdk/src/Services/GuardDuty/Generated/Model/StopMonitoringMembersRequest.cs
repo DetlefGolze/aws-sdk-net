@@ -26,23 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
     /// Container for the parameters to the StopMonitoringMembers operation.
-    /// Stops GuardDuty monitoring for the specified member accounts. Use the <code>StartMonitoringMembers</code>
+    /// Stops GuardDuty monitoring for the specified member accounts. Use the <c>StartMonitoringMembers</c>
     /// operation to restart monitoring for those accounts.
     /// 
     ///  
     /// <para>
-    /// With <code>autoEnableOrganizationMembers</code> configuration for your organization
-    /// set to <code>ALL</code>, you'll receive an error if you attempt to stop monitoring
-    /// the member accounts in your organization.
+    /// With <c>autoEnableOrganizationMembers</c> configuration for your organization set
+    /// to <c>ALL</c>, you'll receive an error if you attempt to stop monitoring the member
+    /// accounts in your organization.
     /// </para>
     /// </summary>
     public partial class StopMonitoringMembersRequest : AmazonGuardDutyRequest
     {
-        private List<string> _accountIds = new List<string>();
+        private List<string> _accountIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _detectorId;
 
         /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.GuardDuty.Model
         // Check to see if AccountIds property is set
         internal bool IsSetAccountIds()
         {
-            return this._accountIds != null && this._accountIds.Count > 0; 
+            return this._accountIds != null && (this._accountIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -69,6 +70,12 @@ namespace Amazon.GuardDuty.Model
         /// <para>
         /// The unique ID of the detector associated with the GuardDuty administrator account
         /// that is monitoring member accounts.
+        /// </para>
+        ///  
+        /// <para>
+        /// To find the <c>detectorId</c> in the current Region, see the Settings page in the
+        /// GuardDuty console, or run the <a href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html">ListDetectors</a>
+        /// API.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=300)]

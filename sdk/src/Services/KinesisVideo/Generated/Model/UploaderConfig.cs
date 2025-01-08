@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideo.Model
 {
     /// <summary>
-    /// The configuration that consists of the <code>ScheduleExpression</code> and the <code>DurationInMinutes</code>
+    /// The configuration that consists of the <c>ScheduleExpression</c> and the <c>DurationInMinutes</c>
     /// details that specify the scheduling to record from a camera, or local media file,
-    /// onto the Edge Agent. If the <code>ScheduleConfig</code> is not provided in the <code>UploaderConfig</code>,
+    /// onto the Edge Agent. If the <c>ScheduleConfig</c> is not provided in the <c>UploaderConfig</c>,
     /// then the Edge Agent will upload at regular intervals (every 1 hour).
     /// </summary>
     public partial class UploaderConfig
@@ -41,9 +42,9 @@ namespace Amazon.KinesisVideo.Model
         /// <summary>
         /// Gets and sets the property ScheduleConfig. 
         /// <para>
-        /// The configuration that consists of the <code>ScheduleExpression</code> and the <code>DurationInMinutes</code>
+        /// The configuration that consists of the <c>ScheduleExpression</c> and the <c>DurationInMinutes</c>
         /// details that specify the scheduling to record from a camera, or local media file,
-        /// onto the Edge Agent. If the <code>ScheduleConfig</code> is not provided in this <code>UploaderConfig</code>,
+        /// onto the Edge Agent. If the <c>ScheduleConfig</c> is not provided in this <c>UploaderConfig</c>,
         /// then the Edge Agent will upload at regular intervals (every 1 hour).
         /// </para>
         /// </summary>

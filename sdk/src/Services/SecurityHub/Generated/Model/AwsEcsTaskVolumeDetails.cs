@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -40,8 +41,8 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Host. 
         /// <para>
         /// This parameter is specified when you use bind mount host volumes. The contents of
-        /// the <code>host</code> parameter determine whether your bind mount host volume persists
-        /// on the host container instance and where it's stored. 
+        /// the <c>host</c> parameter determine whether your bind mount host volume persists on
+        /// the host container instance and where it's stored. 
         /// </para>
         /// </summary>
         public AwsEcsTaskVolumeHostDetails Host
@@ -60,8 +61,8 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Name. 
         /// <para>
         /// The name of the volume. Up to 255 letters (uppercase and lowercase), numbers, underscores,
-        /// and hyphens are allowed. This name is referenced in the <code>sourceVolume</code>
-        /// parameter of container definition <code>mountPoints</code>. 
+        /// and hyphens are allowed. This name is referenced in the <c>sourceVolume</c> parameter
+        /// of container definition <c>mountPoints</c>. 
         /// </para>
         /// </summary>
         public string Name

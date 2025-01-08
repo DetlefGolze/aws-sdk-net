@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
-    /// You cannot delete the delivery channel you specified because the configuration recorder
-    /// is running.
+    /// You cannot delete the delivery channel you specified because the customer managed
+    /// configuration recorder is running.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

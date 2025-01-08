@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -76,7 +77,7 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property SnapshotId. 
         /// <para>
-        /// The ID of the snapshot that you want to update, in the format <code>fsvolsnap-0123456789abcdef0</code>.
+        /// The ID of the snapshot that you want to update, in the format <c>fsvolsnap-0123456789abcdef0</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=11, Max=28)]

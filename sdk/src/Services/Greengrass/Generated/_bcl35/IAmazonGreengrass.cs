@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Greengrass.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Greengrass
 {
     /// <summary>
-    /// Interface for accessing Greengrass
+    /// <para>Interface for accessing Greengrass</para>
     ///
     /// AWS IoT Greengrass seamlessly extends AWS onto physical devices so they can act locally
     /// on the data they generate, while still using the cloud for management, analytics,

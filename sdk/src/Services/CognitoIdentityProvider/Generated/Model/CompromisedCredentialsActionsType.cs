@@ -26,10 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// The compromised credentials actions type.
+    /// Settings for user pool actions when Amazon Cognito detects compromised credentials
+    /// with advanced security features in full-function <c>ENFORCED</c> mode.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a request parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetRiskConfiguration.html">SetRiskConfiguration</a>
+    /// and a response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeRiskConfiguration.html">DescribeRiskConfiguration</a>.
+    /// </para>
     /// </summary>
     public partial class CompromisedCredentialsActionsType
     {
@@ -38,7 +46,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property EventAction. 
         /// <para>
-        /// The event action.
+        /// The action that Amazon Cognito takes when it detects compromised credentials.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

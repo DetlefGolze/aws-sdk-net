@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppConfig.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.AppConfig.Model
         private string _name;
         private string _retrievalRoleArn;
         private string _type;
-        private List<Validator> _validators = new List<Validator>();
+        private List<Validator> _validators = AWSConfigs.InitializeCollections ? new List<Validator>() : null;
 
         /// <summary>
         /// Gets and sets the property ApplicationId. 
@@ -104,9 +105,8 @@ namespace Amazon.AppConfig.Model
         /// <para>
         /// The Amazon Resource Name of the Key Management Service key to encrypt new configuration
         /// data versions in the AppConfig hosted configuration store. This attribute is only
-        /// used for <code>hosted</code> configuration types. To encrypt data managed in other
-        /// configuration stores, see the documentation for how to specify an KMS key for that
-        /// particular service.
+        /// used for <c>hosted</c> configuration types. To encrypt data managed in other configuration
+        /// stores, see the documentation for how to specify an KMS key for that particular service.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]
@@ -129,6 +129,7 @@ namespace Amazon.AppConfig.Model
         /// when the resource was created or updated.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=2048)]
         public string KmsKeyIdentifier
         {
             get { return this._kmsKeyIdentifier; }
@@ -183,7 +184,7 @@ namespace Amazon.AppConfig.Model
         /// Gets and sets the property RetrievalRoleArn. 
         /// <para>
         /// The ARN of an IAM role with permission to access the configuration at the specified
-        /// <code>LocationUri</code>.
+        /// <c>LocationUri</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]
@@ -202,19 +203,19 @@ namespace Amazon.AppConfig.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of configurations contained in the profile. AppConfig supports <code>feature
-        /// flags</code> and <code>freeform</code> configurations. We recommend you create feature
-        /// flag configurations to enable or disable new features and freeform configurations
-        /// to distribute configurations to an application. When calling this API, enter one of
-        /// the following values for <code>Type</code>:
+        /// The type of configurations contained in the profile. AppConfig supports <c>feature
+        /// flags</c> and <c>freeform</c> configurations. We recommend you create feature flag
+        /// configurations to enable or disable new features and freeform configurations to distribute
+        /// configurations to an application. When calling this API, enter one of the following
+        /// values for <c>Type</c>:
         /// </para>
         ///  
         /// <para>
-        ///  <code>AWS.AppConfig.FeatureFlags</code> 
+        ///  <c>AWS.AppConfig.FeatureFlags</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>AWS.Freeform</code> 
+        ///  <c>AWS.Freeform</c> 
         /// </para>
         /// </summary>
         public string Type
@@ -245,7 +246,7 @@ namespace Amazon.AppConfig.Model
         // Check to see if Validators property is set
         internal bool IsSetValidators()
         {
-            return this._validators != null && this._validators.Count > 0; 
+            return this._validators != null && (this._validators.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

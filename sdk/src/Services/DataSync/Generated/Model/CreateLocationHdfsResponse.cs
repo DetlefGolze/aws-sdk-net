@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property LocationArn. 
         /// <para>
-        /// The ARN of the source HDFS cluster location that's created. 
+        /// The ARN of the source HDFS cluster location that you create.
         /// </para>
         /// </summary>
         [AWSProperty(Max=128)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.StepFunctions.Model
         /// <para>
         /// The Amazon Resource Name (ARN) that identifies a state machine alias. The alias ARN
         /// is a combination of state machine ARN and the alias name separated by a colon (:).
-        /// For example, <code>stateMachineARN:PROD</code>.
+        /// For example, <c>stateMachineARN:PROD</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2000)]

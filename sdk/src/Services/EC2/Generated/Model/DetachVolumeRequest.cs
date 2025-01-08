@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the DetachVolume operation.
     /// Detaches an EBS volume from an instance. Make sure to unmount any file systems on
     /// the device within your operating system before detaching the volume. Failure to do
-    /// so can result in the volume becoming stuck in the <code>busy</code> state while detaching.
+    /// so can result in the volume becoming stuck in the <c>busy</c> state while detaching.
     /// If this happens, detachment can be delayed indefinitely until you unmount the volume,
     /// force detachment, reboot the instance, or all three. If an EBS volume is the root
     /// device of an instance, it can't be detached while the instance is running. To detach
@@ -45,8 +46,14 @@ namespace Amazon.EC2.Model
     /// </para>
     ///  
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-detaching-volume.html">Detach
-    /// an Amazon EBS volume</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+    /// You can't detach or force detach volumes that are attached to Amazon ECS or Fargate
+    /// tasks. Attempting to do this results in the <c>UnsupportedOperationException</c> exception
+    /// with the <c>Unable to detach volume attached to ECS tasks</c> error message.
+    /// </para>
+    ///  
+    /// <para>
+    /// For more information, see <a href="https://docs.aws.amazon.com/ebs/latest/userguide/ebs-detaching-volume.html">Detach
+    /// an Amazon EBS volume</a> in the <i>Amazon EBS User Guide</i>.
     /// </para>
     /// </summary>
     public partial class DetachVolumeRequest : AmazonEC2Request

@@ -26,21 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// Contains the result of a successful invocation of the <code>DescribeDBSnapshots</code>
-    /// action.
+    /// Contains the result of a successful invocation of the <c>DescribeDBSnapshots</c> action.
     /// </summary>
     public partial class DescribeDBSnapshotsResponse : AmazonWebServiceResponse
     {
-        private List<DBSnapshot> _dbSnapshots = new List<DBSnapshot>();
+        private List<DBSnapshot> _dbSnapshots = AWSConfigs.InitializeCollections ? new List<DBSnapshot>() : null;
         private string _marker;
 
         /// <summary>
         /// Gets and sets the property DBSnapshots. 
         /// <para>
-        /// A list of <code>DBSnapshot</code> instances.
+        /// A list of <c>DBSnapshot</c> instances.
         /// </para>
         /// </summary>
         public List<DBSnapshot> DBSnapshots
@@ -52,7 +52,7 @@ namespace Amazon.RDS.Model
         // Check to see if DBSnapshots property is set
         internal bool IsSetDBSnapshots()
         {
-            return this._dbSnapshots != null && this._dbSnapshots.Count > 0; 
+            return this._dbSnapshots != null && (this._dbSnapshots.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Amazon.RDS.Model
         /// <para>
         /// An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>.
+        /// by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker

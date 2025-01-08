@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.Backup.Model
     /// </summary>
     public partial class ListBackupPlansResponse : AmazonWebServiceResponse
     {
-        private List<BackupPlansListMember> _backupPlansList = new List<BackupPlansListMember>();
+        private List<BackupPlansListMember> _backupPlansList = AWSConfigs.InitializeCollections ? new List<BackupPlansListMember>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property BackupPlansList. 
         /// <para>
-        /// An array of backup plan list items containing metadata about your saved backup plans.
+        /// Information about the backup plans.
         /// </para>
         /// </summary>
         public List<BackupPlansListMember> BackupPlansList
@@ -51,16 +52,15 @@ namespace Amazon.Backup.Model
         // Check to see if BackupPlansList property is set
         internal bool IsSetBackupPlansList()
         {
-            return this._backupPlansList != null && this._backupPlansList.Count > 0; 
+            return this._backupPlansList != null && (this._backupPlansList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The next item following a partial list of returned items. For example, if a request
-        /// is made to return <code>maxResults</code> number of items, <code>NextToken</code>
-        /// allows you to return more items in your list starting at the location pointed to by
-        /// the next token.
+        /// is made to return <c>MaxResults</c> number of items, <c>NextToken</c> allows you to
+        /// return more items in your list starting at the location pointed to by the next token.
         /// </para>
         /// </summary>
         public string NextToken

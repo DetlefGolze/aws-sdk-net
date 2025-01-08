@@ -26,6 +26,7 @@ using System.Globalization;
 using Amazon.Runtime.Internal.Util;
 using AWSSDK.Runtime.Internal.Util;
 using Amazon.Runtime.Internal;
+using Amazon.Util.Internal;
 
 namespace Amazon.Util
 {
@@ -72,7 +73,6 @@ namespace Amazon.Util
         private static int
             DEFAULT_RETRIES = 3,
             MIN_PAUSE_MS = 250,
-            MAX_RETRIES = 3,
             DEFAULT_APITOKEN_TTL = 21600;
 
         private static Dictionary<string, string> _cache = new Dictionary<string, string>();
@@ -81,6 +81,7 @@ namespace Amazon.Util
 
         private static ReaderWriterLockSlim metadataLock = new ReaderWriterLockSlim(); // Lock to control getting metadata across multiple threads.
         private static readonly TimeSpan metadataLockTimeout = TimeSpan.FromMilliseconds(5000);
+        private static readonly string _userAgent = InternalSDKUtils.BuildUserAgentString(string.Empty, string.Empty);
 
         /// <summary>
         /// Base endpoint of the instance metadata service. Returns the endpoint configured first 
@@ -129,8 +130,11 @@ namespace Amazon.Util
         public static string EC2ApiTokenUrl => ServiceEndpoint + LATEST + "/api/token";
 
         /// <summary>
-        /// Returns whether requesting the EC2 Instance Metadata Service is 
-        /// enabled via the AWS_EC2_METADATA_DISABLED environment variable.
+        /// If set to true the SDK logic for falling back to V1 will be disabled.
+        /// When using the SDK on an EC2 instance that has configured instance metadata service to 
+        /// use V1 only, a InvalidOperationException exception will be thrown when attempting to access
+        /// the metadata in EC2 instance metadata.This includes AWS credentials and region information.
+        /// The default value is false.
         /// </summary>
         public static bool IsIMDSEnabled
         {
@@ -145,6 +149,23 @@ namespace Amazon.Util
                 return !True.Equals(value, StringComparison.OrdinalIgnoreCase);
             }
         }
+
+        private static bool? _ec2MetadataV1Disabled;
+        
+        /// <summary>
+        /// Controls whether request EC2 metadata v1 fallback is disabled.
+        /// </summary>
+        public static bool EC2MetadataV1Disabled
+        {
+            get
+            {
+                if (_ec2MetadataV1Disabled.HasValue)
+                    return _ec2MetadataV1Disabled.Value;
+                return FallbackInternalConfigurationFactory.EC2MetadataV1Disabled.GetValueOrDefault();
+            }
+            set { _ec2MetadataV1Disabled = value; }
+        }
+
 
         /// <summary>
         /// Allows to configure the proxy used for HTTP requests. The default value is null.
@@ -288,7 +309,7 @@ namespace Amazon.Util
         {
             get { return FetchData("/ramdisk-id"); }
         }
-                
+
         /// <summary>
         /// The region in which the instance is running, extracted from the identity
         /// document data.
@@ -348,7 +369,7 @@ namespace Amazon.Util
                 IAMInstanceProfileMetadata info;
                 try
                 {
-                    info = JsonMapper.ToObject<IAMInstanceProfileMetadata>(json);
+                    info = JsonSerializerHelper.Deserialize<IAMInstanceProfileMetadata>(json, EC2InstanceMetadataJsonSerializerContexts.Default);
                 }
                 catch
                 {
@@ -380,7 +401,7 @@ namespace Amazon.Util
                     var json = GetData("/iam/security-credentials/" + item);
                     try
                     {
-                        var cred = JsonMapper.ToObject<IAMSecurityCredentialMetadata>(json);
+                        var cred = JsonSerializerHelper.Deserialize<IAMSecurityCredentialMetadata>(json, EC2InstanceMetadataJsonSerializerContexts.Default);
                         creds[item] = cred;
                     }
                     catch
@@ -652,6 +673,7 @@ namespace Amazon.Util
                     var uriForToken = new Uri(EC2ApiTokenUrl);
 
                     var headers = new Dictionary<string, string>();
+                    headers.Add(HeaderKeys.UserAgentHeader, _userAgent);
                     headers.Add(HeaderKeys.XAwsEc2MetadataTokenTtlSeconds, DEFAULT_APITOKEN_TTL.ToString(CultureInfo.InvariantCulture));
                     var content = AWSSDKUtils.ExecuteHttpRequest(uriForToken, "PUT", null, TimeSpan.FromSeconds(5), Proxy, headers);
                     return content.Trim();
@@ -660,10 +682,15 @@ namespace Amazon.Util
                 {
                     HttpStatusCode? httpStatusCode = ExceptionUtils.DetermineHttpStatusCode(e);
 
-                    if (httpStatusCode == HttpStatusCode.NotFound 
+                    if (httpStatusCode == HttpStatusCode.NotFound
                         || httpStatusCode == HttpStatusCode.MethodNotAllowed
                         || httpStatusCode == HttpStatusCode.Forbidden)
                     {
+                        if (EC2MetadataV1Disabled)
+                        {
+                            throw new InvalidOperationException("Unable to retrieve token for use in IMDSv2 call and IMDSv1 has been disabled.");
+                        }
+
                         useNullToken = true;
                         return null;
                     }
@@ -680,9 +707,15 @@ namespace Amazon.Util
 
                         //If there isn't a status code, it was a failure to contact the server which would be
                         //a request failure, a network issue, or a timeout. Cache this response and fallback
-                        //to IMDS flow without a token. If the non token IMDS flow returns unauthorized, the 
-                        //useNullToken flag will be cleared and the IMDS flow will attempt to obtain another 
-                        //token.
+                        //to IMDS flow without a token unless EC2MetadataV1Disabled is set to true. If the non
+                        //token IMDS flow returns unauthorized, the useNullToken flag will be cleared and the IMDS
+                        //flow will attempt to obtain another token.
+
+                        if (EC2MetadataV1Disabled)
+                        {
+                            throw new InvalidOperationException("Unable to retrieve token for use in IMDSv2 call and IMDSv1 has been disabled.");
+                        }
+
                         if (httpStatusCode == null)
                         {
                             useNullToken = true;
@@ -693,14 +726,14 @@ namespace Amazon.Util
                     }
 
                     PauseExponentially(retry - 1);
-                }                
+                }
             }
 
             return null;
         }
 
         public static void ClearTokenFlag()
-        {    
+        {
             useNullToken = false;
         }
 
@@ -714,15 +747,16 @@ namespace Amazon.Util
             var items = new List<string>();
             //For all meta-data queries we need to fetch an api token to use. In the event a 
             //token cannot be obtained we will fallback to not using a token.
-            Dictionary<string, string> headers = null;
-            if(token == null)
+            if (token == null)
             {
-                token = FetchApiToken(DEFAULT_RETRIES);    
+                token = FetchApiToken(DEFAULT_RETRIES);
             }
+
+            var headers = new Dictionary<string, string>();
+            headers.Add(HeaderKeys.UserAgentHeader, _userAgent);
 
             if (!string.IsNullOrEmpty(token))
             {
-                headers = new Dictionary<string, string>();
                 headers.Add(HeaderKeys.XAwsEc2MetadataToken, token);
             }
 
@@ -738,7 +772,7 @@ namespace Amazon.Util
                 var uri = relativeOrAbsolutePath.StartsWith(ServiceEndpoint, StringComparison.Ordinal)
                             ? new Uri(relativeOrAbsolutePath)
                             : new Uri(EC2MetadataRoot + relativeOrAbsolutePath);
-                
+
                 var content = AWSSDKUtils.ExecuteHttpRequest(uri, "GET", null, TimeSpan.FromSeconds(5), Proxy, headers);
                 using (var stream = new StringReader(content))
                 {
@@ -756,7 +790,7 @@ namespace Amazon.Util
                         while (line != null);
                     }
                 }
-            }            
+            }
             catch (IMDSDisabledException)
             {
                 // Keep this behavior identical to when HttpStatusCode.NotFound is returned.
@@ -789,7 +823,7 @@ namespace Amazon.Util
 
             return items;
         }
-                
+
         /// <summary>
         /// Exponentially sleeps based on the current retry value. A lower 
         /// value will sleep shorter than a larger value
@@ -872,7 +906,7 @@ namespace Amazon.Util
         /// The secret key used to sign requests
         /// </summary>
         public string SecretAccessKey { get; set; }
-        
+
         /// <summary>
         /// The security token
         /// </summary>
@@ -1044,7 +1078,7 @@ namespace Amazon.Util
                 _data[key] = EC2InstanceMetadata.GetData(_path + key);
                 return _data[key];
             }
-            else 
+            else
                 return null;
         }
 

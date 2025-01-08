@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -37,12 +38,14 @@ namespace Amazon.DataZone.Model
         private string _createdBy;
         private string _decisionComment;
         private string _domainId;
+        private string _existingSubscriptionId;
         private string _id;
+        private List<FormOutput> _metadataForms = AWSConfigs.InitializeCollections ? new List<FormOutput>() : null;
         private string _requestReason;
         private string _reviewerId;
         private SubscriptionRequestStatus _status;
-        private List<SubscribedListing> _subscribedListings = new List<SubscribedListing>();
-        private List<SubscribedPrincipal> _subscribedPrincipals = new List<SubscribedPrincipal>();
+        private List<SubscribedListing> _subscribedListings = AWSConfigs.InitializeCollections ? new List<SubscribedListing>() : null;
+        private List<SubscribedPrincipal> _subscribedPrincipals = AWSConfigs.InitializeCollections ? new List<SubscribedPrincipal>() : null;
         private DateTime? _updatedAt;
         private string _updatedBy;
 
@@ -123,6 +126,24 @@ namespace Amazon.DataZone.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ExistingSubscriptionId. 
+        /// <para>
+        /// The ID of the existing subscription.
+        /// </para>
+        /// </summary>
+        public string ExistingSubscriptionId
+        {
+            get { return this._existingSubscriptionId; }
+            set { this._existingSubscriptionId = value; }
+        }
+
+        // Check to see if ExistingSubscriptionId property is set
+        internal bool IsSetExistingSubscriptionId()
+        {
+            return this._existingSubscriptionId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
         /// The ID of the subscription request.
@@ -139,6 +160,24 @@ namespace Amazon.DataZone.Model
         internal bool IsSetId()
         {
             return this._id != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property MetadataForms. 
+        /// <para>
+        /// The metadata form included in the subscription request.
+        /// </para>
+        /// </summary>
+        public List<FormOutput> MetadataForms
+        {
+            get { return this._metadataForms; }
+            set { this._metadataForms = value; }
+        }
+
+        // Check to see if MetadataForms property is set
+        internal bool IsSetMetadataForms()
+        {
+            return this._metadataForms != null && (this._metadataForms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -198,7 +237,10 @@ namespace Amazon.DataZone.Model
         }
 
         /// <summary>
-        /// Gets and sets the property SubscribedListings.
+        /// Gets and sets the property SubscribedListings. 
+        /// <para>
+        /// The published asset for which the subscription grant is to be created.
+        /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1)]
         public List<SubscribedListing> SubscribedListings
@@ -210,7 +252,7 @@ namespace Amazon.DataZone.Model
         // Check to see if SubscribedListings property is set
         internal bool IsSetSubscribedListings()
         {
-            return this._subscribedListings != null && this._subscribedListings.Count > 0; 
+            return this._subscribedListings != null && (this._subscribedListings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -229,7 +271,7 @@ namespace Amazon.DataZone.Model
         // Check to see if SubscribedPrincipals property is set
         internal bool IsSetSubscribedPrincipals()
         {
-            return this._subscribedPrincipals != null && this._subscribedPrincipals.Count > 0; 
+            return this._subscribedPrincipals != null && (this._subscribedPrincipals.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

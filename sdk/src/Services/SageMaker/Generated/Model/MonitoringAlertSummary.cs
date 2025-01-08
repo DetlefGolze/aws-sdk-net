@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -44,8 +45,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property Actions. 
         /// <para>
-        /// A list of alert actions taken in response to an alert going into <code>InAlert</code>
-        /// status.
+        /// A list of alert actions taken in response to an alert going into <c>InAlert</c> status.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -102,7 +102,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property DatapointsToAlert. 
         /// <para>
-        /// Within <code>EvaluationPeriod</code>, how many execution failures will raise an alert.
+        /// Within <c>EvaluationPeriod</c>, how many execution failures will raise an alert.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]

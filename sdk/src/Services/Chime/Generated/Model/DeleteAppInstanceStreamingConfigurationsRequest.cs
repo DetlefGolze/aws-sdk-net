@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteAppInstanceStreamingConfigurations operation.
-    /// Deletes the streaming configurations of an <code>AppInstance</code>.
+    /// Deletes the streaming configurations of an <c>AppInstance</c>.
     /// 
     ///  <important> 
     /// <para>

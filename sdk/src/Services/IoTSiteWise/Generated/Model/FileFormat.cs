@@ -26,19 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
-    /// The file format of the data.
+    /// The file format of the data in S3.
     /// </summary>
     public partial class FileFormat
     {
         private Csv _csv;
+        private Parquet _parquet;
 
         /// <summary>
         /// Gets and sets the property Csv. 
         /// <para>
-        /// The .csv file format.
+        /// The file is in .CSV format.
         /// </para>
         /// </summary>
         public Csv Csv
@@ -51,6 +53,24 @@ namespace Amazon.IoTSiteWise.Model
         internal bool IsSetCsv()
         {
             return this._csv != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Parquet. 
+        /// <para>
+        /// The file is in parquet format.
+        /// </para>
+        /// </summary>
+        public Parquet Parquet
+        {
+            get { return this._parquet; }
+            set { this._parquet = value; }
+        }
+
+        // Check to see if Parquet property is set
+        internal bool IsSetParquet()
+        {
+            return this._parquet != null;
         }
 
     }

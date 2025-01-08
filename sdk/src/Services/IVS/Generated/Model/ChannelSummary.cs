@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IVS.Model
 {
     /// <summary>
@@ -38,9 +39,10 @@ namespace Amazon.IVS.Model
         private bool? _insecureIngest;
         private ChannelLatencyMode _latencyMode;
         private string _name;
+        private string _playbackRestrictionPolicyArn;
         private TranscodePreset _preset;
         private string _recordingConfigurationArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private ChannelType _type;
 
         /// <summary>
@@ -65,7 +67,7 @@ namespace Amazon.IVS.Model
         /// <summary>
         /// Gets and sets the property Authorized. 
         /// <para>
-        /// Whether the channel is private (enabled for playback authorization). Default: <code>false</code>.
+        /// Whether the channel is private (enabled for playback authorization). Default: <c>false</c>.
         /// </para>
         /// </summary>
         public bool Authorized
@@ -83,7 +85,7 @@ namespace Amazon.IVS.Model
         /// <summary>
         /// Gets and sets the property InsecureIngest. 
         /// <para>
-        /// Whether the channel allows insecure RTMP ingest. Default: <code>false</code>.
+        /// Whether the channel allows insecure RTMP ingest. Default: <c>false</c>.
         /// </para>
         /// </summary>
         public bool InsecureIngest
@@ -101,10 +103,8 @@ namespace Amazon.IVS.Model
         /// <summary>
         /// Gets and sets the property LatencyMode. 
         /// <para>
-        /// Channel latency mode. Use <code>NORMAL</code> to broadcast and deliver live video
-        /// up to Full HD. Use <code>LOW</code> for near-real-time interaction with viewers. Default:
-        /// <code>LOW</code>. (Note: In the Amazon IVS console, <code>LOW</code> and <code>NORMAL</code>
-        /// correspond to Ultra-low and Standard, respectively.)
+        /// Channel latency mode. Use <c>NORMAL</c> to broadcast and deliver live video up to
+        /// Full HD. Use <c>LOW</c> for near-real-time interaction with viewers. Default: <c>LOW</c>.
         /// </para>
         /// </summary>
         public ChannelLatencyMode LatencyMode
@@ -139,12 +139,33 @@ namespace Amazon.IVS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PlaybackRestrictionPolicyArn. 
+        /// <para>
+        /// Playback-restriction-policy ARN. A valid ARN value here both specifies the ARN and
+        /// enables playback restriction. Default: "" (empty string, no playback restriction policy
+        /// is applied).
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=128)]
+        public string PlaybackRestrictionPolicyArn
+        {
+            get { return this._playbackRestrictionPolicyArn; }
+            set { this._playbackRestrictionPolicyArn = value; }
+        }
+
+        // Check to see if PlaybackRestrictionPolicyArn property is set
+        internal bool IsSetPlaybackRestrictionPolicyArn()
+        {
+            return this._playbackRestrictionPolicyArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Preset. 
         /// <para>
-        /// Optional transcode preset for the channel. This is selectable only for <code>ADVANCED_HD</code>
-        /// and <code>ADVANCED_SD</code> channel types. For those channel types, the default <code>preset</code>
-        /// is <code>HIGHER_BANDWIDTH_DELIVERY</code>. For other channel types (<code>BASIC</code>
-        /// and <code>STANDARD</code>), <code>preset</code> is the empty string (<code>""</code>).
+        /// Optional transcode preset for the channel. This is selectable only for <c>ADVANCED_HD</c>
+        /// and <c>ADVANCED_SD</c> channel types. For those channel types, the default <c>preset</c>
+        /// is <c>HIGHER_BANDWIDTH_DELIVERY</c>. For other channel types (<c>BASIC</c> and <c>STANDARD</c>),
+        /// <c>preset</c> is the empty string (<c>""</c>).
         /// </para>
         /// </summary>
         public TranscodePreset Preset
@@ -162,8 +183,8 @@ namespace Amazon.IVS.Model
         /// <summary>
         /// Gets and sets the property RecordingConfigurationArn. 
         /// <para>
-        /// Recording-configuration ARN. A value other than an empty string indicates that recording
-        /// is enabled. Default: "" (empty string, recording is disabled).
+        /// Recording-configuration ARN. A valid ARN value here both specifies the ARN and enables
+        /// recording. Default: "" (empty string, recording is disabled).
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=128)]
@@ -182,11 +203,12 @@ namespace Amazon.IVS.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// Tags attached to the resource. Array of 1-50 maps, each of the form <code>string:string
-        /// (key:value)</code>. See <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-        /// Amazon Web Services Resources</a> for more information, including restrictions that
-        /// apply to tags and "Tag naming limits and requirements"; Amazon IVS has no service-specific
-        /// constraints beyond what is documented there.
+        /// Tags attached to the resource. Array of 1-50 maps, each of the form <c>string:string
+        /// (key:value)</c>. See <a href="https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html">Best
+        /// practices and strategies</a> in <i>Tagging Amazon Web Services Resources and Tag Editor</i>
+        /// for details, including restrictions that apply to tags and "Tag naming limits and
+        /// requirements"; Amazon IVS has no service-specific constraints beyond what is documented
+        /// there.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -199,7 +221,7 @@ namespace Amazon.IVS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -207,7 +229,7 @@ namespace Amazon.IVS.Model
         /// <para>
         /// Channel type, which determines the allowable resolution and bitrate. <i>If you exceed
         /// the allowable input resolution or bitrate, the stream probably will disconnect immediately.</i>
-        /// Default: <code>STANDARD</code>. For details, see <a href="https://docs.aws.amazon.com/ivs/latest/LowLatencyAPIReference/channel-types.html">Channel
+        /// Default: <c>STANDARD</c>. For details, see <a href="https://docs.aws.amazon.com/ivs/latest/LowLatencyAPIReference/channel-types.html">Channel
         /// Types</a>.
         /// </para>
         /// </summary>

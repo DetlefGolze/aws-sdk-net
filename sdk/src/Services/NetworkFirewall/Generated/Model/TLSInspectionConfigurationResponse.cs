@@ -26,25 +26,42 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
     /// The high-level properties of a TLS inspection configuration. This, along with the
-    /// <code>TLSInspectionConfiguration</code>, define the TLS inspection configuration.
-    /// You can retrieve all objects for a TLS inspection configuration by calling <code>DescribeTLSInspectionConfiguration</code>.
+    /// <c>TLSInspectionConfiguration</c>, define the TLS inspection configuration. You can
+    /// retrieve all objects for a TLS inspection configuration by calling <c>DescribeTLSInspectionConfiguration</c>.
     /// </summary>
     public partial class TLSInspectionConfigurationResponse
     {
-        private List<TlsCertificateData> _certificates = new List<TlsCertificateData>();
+        private TlsCertificateData _certificateAuthority;
+        private List<TlsCertificateData> _certificates = AWSConfigs.InitializeCollections ? new List<TlsCertificateData>() : null;
         private string _description;
         private EncryptionConfiguration _encryptionConfiguration;
         private DateTime? _lastModifiedTime;
         private int? _numberOfAssociations;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _tlsInspectionConfigurationArn;
         private string _tlsInspectionConfigurationId;
         private string _tlsInspectionConfigurationName;
         private ResourceStatus _tlsInspectionConfigurationStatus;
+
+        /// <summary>
+        /// Gets and sets the property CertificateAuthority.
+        /// </summary>
+        public TlsCertificateData CertificateAuthority
+        {
+            get { return this._certificateAuthority; }
+            set { this._certificateAuthority = value; }
+        }
+
+        // Check to see if CertificateAuthority property is set
+        internal bool IsSetCertificateAuthority()
+        {
+            return this._certificateAuthority != null;
+        }
 
         /// <summary>
         /// Gets and sets the property Certificates. 
@@ -61,7 +78,7 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if Certificates property is set
         internal bool IsSetCertificates()
         {
-            return this._certificates != null && this._certificates.Count > 0; 
+            return this._certificates != null && (this._certificates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -154,7 +171,7 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

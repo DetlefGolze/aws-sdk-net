@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -34,11 +35,12 @@ namespace Amazon.IoTFleetWise.Model
     public partial class GetVehicleResponse : AmazonWebServiceResponse
     {
         private string _arn;
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private DateTime? _creationTime;
         private string _decoderManifestArn;
         private DateTime? _lastModificationTime;
         private string _modelManifestArn;
+        private List<StateTemplateAssociation> _stateTemplates = AWSConfigs.InitializeCollections ? new List<StateTemplateAssociation>() : null;
         private string _vehicleName;
 
         /// <summary>
@@ -66,7 +68,7 @@ namespace Amazon.IoTFleetWise.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"engineType"</code> : <code>"1.3 L R2"</code> 
+        ///  <c>"engineType"</c> : <c>"1.3 L R2"</c> 
         /// </para>
         /// </summary>
         public Dictionary<string, string> Attributes
@@ -78,7 +80,7 @@ namespace Amazon.IoTFleetWise.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -153,6 +155,25 @@ namespace Amazon.IoTFleetWise.Model
         internal bool IsSetModelManifestArn()
         {
             return this._modelManifestArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property StateTemplates. 
+        /// <para>
+        /// State templates associated with the vehicle.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=20)]
+        public List<StateTemplateAssociation> StateTemplates
+        {
+            get { return this._stateTemplates; }
+            set { this._stateTemplates = value; }
+        }
+
+        // Check to see if StateTemplates property is set
+        internal bool IsSetStateTemplates()
+        {
+            return this._stateTemplates != null && (this._stateTemplates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

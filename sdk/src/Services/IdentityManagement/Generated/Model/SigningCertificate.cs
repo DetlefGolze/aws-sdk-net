@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -56,7 +57,7 @@ namespace Amazon.IdentityManagement.Model
         /// <param name="userName">The name of the user the signing certificate is associated with.</param>
         /// <param name="certificateId">The ID for the signing certificate.</param>
         /// <param name="certificateBody">The contents of the signing certificate.</param>
-        /// <param name="status">The status of the signing certificate. <code>Active</code> means that the key is valid for API calls, while <code>Inactive</code> means it is not.</param>
+        /// <param name="status">The status of the signing certificate. <c>Active</c> means that the key is valid for API calls, while <c>Inactive</c> means it is not.</param>
         public SigningCertificate(string userName, string certificateId, string certificateBody, StatusType status)
         {
             _userName = userName;
@@ -106,8 +107,8 @@ namespace Amazon.IdentityManagement.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the signing certificate. <code>Active</code> means that the key is valid
-        /// for API calls, while <code>Inactive</code> means it is not.
+        /// The status of the signing certificate. <c>Active</c> means that the key is valid for
+        /// API calls, while <c>Inactive</c> means it is not.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

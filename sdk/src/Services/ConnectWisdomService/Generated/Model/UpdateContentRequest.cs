@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectWisdomService.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.ConnectWisdomService.Model
     {
         private string _contentId;
         private string _knowledgeBaseId;
-        private Dictionary<string, string> _metadata = new Dictionary<string, string>();
+        private Dictionary<string, string> _metadata = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _overrideLinkOutUri;
         private bool? _removeOverrideLinkOutUri;
         private string _revisionId;
@@ -66,7 +67,9 @@ namespace Amazon.ConnectWisdomService.Model
         /// <summary>
         /// Gets and sets the property KnowledgeBaseId. 
         /// <para>
-        /// The identifier of the knowledge base. Can be either the ID or the ARN
+        /// The identifier of the knowledge base. This should not be a QUICK_RESPONSES type knowledge
+        /// base if you're storing Wisdom Content resource to it. Can be either the ID or the
+        /// ARN
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -100,15 +103,15 @@ namespace Amazon.ConnectWisdomService.Model
         // Check to see if Metadata property is set
         internal bool IsSetMetadata()
         {
-            return this._metadata != null && this._metadata.Count > 0; 
+            return this._metadata != null && (this._metadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property OverrideLinkOutUri. 
         /// <para>
         /// The URI for the article. If the knowledge base has a templateUri, setting this argument
-        /// overrides it for this piece of content. To remove an existing <code>overrideLinkOurUri</code>,
-        /// exclude this argument and set <code>removeOverrideLinkOutUri</code> to true.
+        /// overrides it for this piece of content. To remove an existing <c>overrideLinkOurUri</c>,
+        /// exclude this argument and set <c>removeOverrideLinkOutUri</c> to true.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4096)]
@@ -127,7 +130,7 @@ namespace Amazon.ConnectWisdomService.Model
         /// <summary>
         /// Gets and sets the property RemoveOverrideLinkOutUri. 
         /// <para>
-        /// Unset the existing <code>overrideLinkOutUri</code> if it exists.
+        /// Unset the existing <c>overrideLinkOutUri</c> if it exists.
         /// </para>
         /// </summary>
         public bool RemoveOverrideLinkOutUri
@@ -145,11 +148,10 @@ namespace Amazon.ConnectWisdomService.Model
         /// <summary>
         /// Gets and sets the property RevisionId. 
         /// <para>
-        /// The <code>revisionId</code> of the content resource to update, taken from an earlier
-        /// call to <code>GetContent</code>, <code>GetContentSummary</code>, <code>SearchContent</code>,
-        /// or <code>ListContents</code>. If included, this argument acts as an optimistic lock
-        /// to ensure content was not modified since it was last read. If it has been modified,
-        /// this API throws a <code>PreconditionFailedException</code>.
+        /// The <c>revisionId</c> of the content resource to update, taken from an earlier call
+        /// to <c>GetContent</c>, <c>GetContentSummary</c>, <c>SearchContent</c>, or <c>ListContents</c>.
+        /// If included, this argument acts as an optimistic lock to ensure content was not modified
+        /// since it was last read. If it has been modified, this API throws a <c>PreconditionFailedException</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4096)]

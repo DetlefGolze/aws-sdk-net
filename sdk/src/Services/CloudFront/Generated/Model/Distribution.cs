@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.CloudFront.Model
     {
         private ActiveTrustedKeyGroups _activeTrustedKeyGroups;
         private ActiveTrustedSigners _activeTrustedSigners;
-        private List<AliasICPRecordal> _aliasICPRecordals = new List<AliasICPRecordal>();
+        private List<AliasICPRecordal> _aliasICPRecordals = AWSConfigs.InitializeCollections ? new List<AliasICPRecordal>() : null;
         private string _arn;
         private DistributionConfig _distributionConfig;
         private string _domainName;
@@ -53,9 +54,9 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Instantiates Distribution with the parameterized properties
         /// </summary>
-        /// <param name="id">The distribution's identifier. For example: <code>E1U5RQF7T870K0</code>.</param>
-        /// <param name="status">The distribution's status. When the status is <code>Deployed</code>, the distribution's information is fully propagated to all CloudFront edge locations.</param>
-        /// <param name="domainName">The distribution's CloudFront domain name. For example: <code>d111111abcdef8.cloudfront.net</code>.</param>
+        /// <param name="id">The distribution's identifier. For example: <c>E1U5RQF7T870K0</c>.</param>
+        /// <param name="status">The distribution's status. When the status is <c>Deployed</c>, the distribution's information is fully propagated to all CloudFront edge locations.</param>
+        /// <param name="domainName">The distribution's CloudFront domain name. For example: <c>d111111abcdef8.cloudfront.net</c>.</param>
         public Distribution(string id, string status, string domainName)
         {
             _id = id;
@@ -85,7 +86,7 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property ActiveTrustedSigners. <important> 
         /// <para>
-        /// We recommend using <code>TrustedKeyGroups</code> instead of <code>TrustedSigners</code>.
+        /// We recommend using <c>TrustedKeyGroups</c> instead of <c>TrustedSigners</c>.
         /// </para>
         ///  </important> 
         /// <para>
@@ -130,7 +131,7 @@ namespace Amazon.CloudFront.Model
         // Check to see if AliasICPRecordals property is set
         internal bool IsSetAliasICPRecordals()
         {
-            return this._aliasICPRecordals != null && this._aliasICPRecordals.Count > 0; 
+            return this._aliasICPRecordals != null && (this._aliasICPRecordals.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -174,7 +175,7 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property DomainName. 
         /// <para>
-        /// The distribution's CloudFront domain name. For example: <code>d111111abcdef8.cloudfront.net</code>.
+        /// The distribution's CloudFront domain name. For example: <c>d111111abcdef8.cloudfront.net</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -193,7 +194,7 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        /// The distribution's identifier. For example: <code>E1U5RQF7T870K0</code>.
+        /// The distribution's identifier. For example: <c>E1U5RQF7T870K0</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -250,7 +251,7 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The distribution's status. When the status is <code>Deployed</code>, the distribution's
+        /// The distribution's status. When the status is <c>Deployed</c>, the distribution's
         /// information is fully propagated to all CloudFront edge locations.
         /// </para>
         /// </summary>

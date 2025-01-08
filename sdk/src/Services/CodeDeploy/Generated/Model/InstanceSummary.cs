@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.CodeDeploy.Model
         private string _instanceId;
         private InstanceType _instanceType;
         private DateTime? _lastUpdatedAt;
-        private List<LifecycleEvent> _lifecycleEvents = new List<LifecycleEvent>();
+        private List<LifecycleEvent> _lifecycleEvents = AWSConfigs.InitializeCollections ? new List<LifecycleEvent>() : null;
         private InstanceStatus _status;
 
         /// <summary>
@@ -137,7 +138,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if LifecycleEvents property is set
         internal bool IsSetLifecycleEvents()
         {
-            return this._lifecycleEvents != null && this._lifecycleEvents.Count > 0; 
+            return this._lifecycleEvents != null && (this._lifecycleEvents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -147,27 +148,27 @@ namespace Amazon.CodeDeploy.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Pending</code>: The deployment is pending for this instance.
+        ///  <c>Pending</c>: The deployment is pending for this instance.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>In Progress</code>: The deployment is in progress for this instance.
+        ///  <c>In Progress</c>: The deployment is in progress for this instance.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Succeeded</code>: The deployment has succeeded for this instance.
+        ///  <c>Succeeded</c>: The deployment has succeeded for this instance.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Failed</code>: The deployment has failed for this instance.
+        ///  <c>Failed</c>: The deployment has failed for this instance.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Skipped</code>: The deployment has been skipped for this instance.
+        ///  <c>Skipped</c>: The deployment has been skipped for this instance.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Unknown</code>: The deployment status is unknown for this instance.
+        ///  <c>Unknown</c>: The deployment status is unknown for this instance.
         /// </para>
         ///  </li> </ul>
         /// </summary>

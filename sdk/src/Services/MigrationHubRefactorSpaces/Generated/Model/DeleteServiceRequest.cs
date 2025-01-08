@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHubRefactorSpaces.Model
 {
     /// <summary>
@@ -45,9 +46,9 @@ namespace Amazon.MigrationHubRefactorSpaces.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>RefactorSpacesSecurityGroup</code> security group must be removed from all
-        /// Amazon Web Services resources in the virtual private cloud (VPC) prior to deleting
-        /// a service with a URL endpoint in a VPC.
+        /// The <c>RefactorSpacesSecurityGroup</c> security group must be removed from all Amazon
+        /// Web Services resources in the virtual private cloud (VPC) prior to deleting a service
+        /// with a URL endpoint in a VPC.
         /// </para>
         ///  </note>
         /// </summary>

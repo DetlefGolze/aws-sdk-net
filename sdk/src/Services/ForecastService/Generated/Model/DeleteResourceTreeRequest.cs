@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -62,8 +63,8 @@ namespace Amazon.ForecastService.Model
     /// </para>
     ///  </li> </ul> <note> 
     /// <para>
-    ///  <code>DeleteResourceTree</code> will only delete Amazon Forecast resources, and will
-    /// not delete datasets or exported files stored in Amazon S3. 
+    ///  <c>DeleteResourceTree</c> will only delete Amazon Forecast resources, and will not
+    /// delete datasets or exported files stored in Amazon S3. 
     /// </para>
     ///  </note>
     /// </summary>

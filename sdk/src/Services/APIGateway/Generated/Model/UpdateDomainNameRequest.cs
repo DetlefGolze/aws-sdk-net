@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
@@ -35,7 +36,8 @@ namespace Amazon.APIGateway.Model
     public partial class UpdateDomainNameRequest : AmazonAPIGatewayRequest
     {
         private string _domainName;
-        private List<PatchOperation> _patchOperations = new List<PatchOperation>();
+        private string _domainNameId;
+        private List<PatchOperation> _patchOperations = AWSConfigs.InitializeCollections ? new List<PatchOperation>() : null;
 
         /// <summary>
         /// Gets and sets the property DomainName. 
@@ -57,6 +59,25 @@ namespace Amazon.APIGateway.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DomainNameId. 
+        /// <para>
+        ///  The identifier for the domain name resource. Supported only for private custom domain
+        /// names. 
+        /// </para>
+        /// </summary>
+        public string DomainNameId
+        {
+            get { return this._domainNameId; }
+            set { this._domainNameId = value; }
+        }
+
+        // Check to see if DomainNameId property is set
+        internal bool IsSetDomainNameId()
+        {
+            return this._domainNameId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property PatchOperations. 
         /// <para>
         /// For more information about supported patch operations, see <a href="https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html">Patch
@@ -72,7 +93,7 @@ namespace Amazon.APIGateway.Model
         // Check to see if PatchOperations property is set
         internal bool IsSetPatchOperations()
         {
-            return this._patchOperations != null && this._patchOperations.Count > 0; 
+            return this._patchOperations != null && (this._patchOperations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

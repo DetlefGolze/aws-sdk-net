@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideo.Model
 {
     /// <summary>
@@ -61,8 +62,8 @@ namespace Amazon.KinesisVideo.Model
         /// Gets and sets the property StreamARN. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the Kinesis video stream from where you want to
-        /// update the notification configuration. You must specify either the <code>StreamName</code>
-        /// or the <code>StreamARN</code>.
+        /// update the notification configuration. You must specify either the <c>StreamName</c>
+        /// or the <c>StreamARN</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -82,7 +83,7 @@ namespace Amazon.KinesisVideo.Model
         /// Gets and sets the property StreamName. 
         /// <para>
         /// The name of the stream from which to update the notification configuration. You must
-        /// specify either the <code>StreamName</code> or the <code>StreamARN</code>.
+        /// specify either the <c>StreamName</c> or the <c>StreamARN</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]

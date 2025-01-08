@@ -26,12 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
     /// The RevisionId provided does not match the latest RevisionId for the Lambda function
-    /// or alias. Call the <code>GetFunction</code> or the <code>GetAlias</code> API operation
+    /// or alias.
+    /// 
+    ///  <ul> <li> 
+    /// <para>
+    ///  <b>For AddPermission and RemovePermission API operations:</b> Call <c>GetPolicy</c>
     /// to retrieve the latest RevisionId for your resource.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <b>For all other API operations:</b> Call <c>GetFunction</c> or <c>GetAlias</c> to
+    /// retrieve the latest RevisionId for your resource.
+    /// </para>
+    ///  </li> </ul>
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

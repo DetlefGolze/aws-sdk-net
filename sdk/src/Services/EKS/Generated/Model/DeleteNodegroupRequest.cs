@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteNodegroup operation.
-    /// Deletes an Amazon EKS node group for a cluster.
+    /// Deletes a managed node group.
     /// </summary>
     public partial class DeleteNodegroupRequest : AmazonEKSRequest
     {
@@ -40,7 +41,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ClusterName. 
         /// <para>
-        /// The name of the Amazon EKS cluster that is associated with your node group.
+        /// The name of your cluster.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

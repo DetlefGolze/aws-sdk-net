@@ -26,15 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// Container for the parameters to the PutProjectPolicy operation.
+    /// <note> 
+    /// <para>
+    /// This operation applies only to Amazon Rekognition Custom Labels.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Attaches a project policy to a Amazon Rekognition Custom Labels project in a trusting
     /// AWS account. A project policy specifies that a trusted AWS account can copy a model
     /// version from a trusting AWS account to a project in the trusted AWS account. To copy
-    /// a model version you use the <a>CopyProjectVersion</a> operation.
-    /// 
+    /// a model version you use the <a>CopyProjectVersion</a> operation. Only applies to Custom
+    /// Labels projects.
+    /// </para>
     ///  
     /// <para>
     /// For more information about the format of a project policy document, see Attaching
@@ -43,7 +51,7 @@ namespace Amazon.Rekognition.Model
     /// </para>
     ///  
     /// <para>
-    /// The response from <code>PutProjectPolicy</code> is a revision ID for the project policy.
+    /// The response from <c>PutProjectPolicy</c> is a revision ID for the project policy.
     /// You can attach multiple project policies to a project. You can also update an existing
     /// project policy by specifying the policy revision ID of the existing policy.
     /// </para>
@@ -59,7 +67,7 @@ namespace Amazon.Rekognition.Model
     /// </para>
     ///  
     /// <para>
-    /// This operation requires permissions to perform the <code>rekognition:PutProjectPolicy</code>
+    /// This operation requires permissions to perform the <c>rekognition:PutProjectPolicy</c>
     /// action.
     /// </para>
     /// </summary>
@@ -115,7 +123,7 @@ namespace Amazon.Rekognition.Model
         /// Gets and sets the property PolicyRevisionId. 
         /// <para>
         /// The revision ID for the Project Policy. Each time you modify a policy, Amazon Rekognition
-        /// Custom Labels generates and assigns a new <code>PolicyRevisionId</code> and then deletes
+        /// Custom Labels generates and assigns a new <c>PolicyRevisionId</c> and then deletes
         /// the previous version of the policy.
         /// </para>
         /// </summary>

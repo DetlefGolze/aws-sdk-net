@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
     /// Container for the parameters to the BatchUpdateUser operation.
     /// Updates user details within the <a>UpdateUserRequestItem</a> object for up to 20 users
-    /// for the specified Amazon Chime account. Currently, only <code>LicenseType</code> updates
+    /// for the specified Amazon Chime account. Currently, only <c>LicenseType</c> updates
     /// are supported for this action.
     /// </summary>
     public partial class BatchUpdateUserRequest : AmazonChimeRequest
     {
         private string _accountId;
-        private List<UpdateUserRequestItem> _updateUserRequestItems = new List<UpdateUserRequestItem>();
+        private List<UpdateUserRequestItem> _updateUserRequestItems = AWSConfigs.InitializeCollections ? new List<UpdateUserRequestItem>() : null;
 
         /// <summary>
         /// Gets and sets the property AccountId. 
@@ -74,7 +75,7 @@ namespace Amazon.Chime.Model
         // Check to see if UpdateUserRequestItems property is set
         internal bool IsSetUpdateUserRequestItems()
         {
-            return this._updateUserRequestItems != null && this._updateUserRequestItems.Count > 0; 
+            return this._updateUserRequestItems != null && (this._updateUserRequestItems.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

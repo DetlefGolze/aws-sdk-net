@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedGrafana.Model
 {
     /// <summary>
@@ -34,8 +35,7 @@ namespace Amazon.ManagedGrafana.Model
     /// 
     ///  <note> 
     /// <para>
-    /// Provided <code>securityGroupIds</code> and <code>subnetIds</code> must be part of
-    /// the same VPC.
+    /// Provided <c>securityGroupIds</c> and <c>subnetIds</c> must be part of the same VPC.
     /// </para>
     ///  
     /// <para>
@@ -46,8 +46,8 @@ namespace Amazon.ManagedGrafana.Model
     /// </summary>
     public partial class VpcConfiguration
     {
-        private List<string> _securityGroupIds = new List<string>();
-        private List<string> _subnetIds = new List<string>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _subnetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property SecurityGroupIds. 
@@ -66,7 +66,7 @@ namespace Amazon.ManagedGrafana.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Amazon.ManagedGrafana.Model
         // Check to see if SubnetIds property is set
         internal bool IsSetSubnetIds()
         {
-            return this._subnetIds != null && this._subnetIds.Count > 0; 
+            return this._subnetIds != null && (this._subnetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

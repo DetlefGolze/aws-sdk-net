@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.SageMaker.Model
         private HumanLoopRequestSource _humanLoopRequestSource;
         private FlowDefinitionOutputConfig _outputConfig;
         private string _roleArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property FlowDefinitionName. 
@@ -85,7 +86,6 @@ namespace Amazon.SageMaker.Model
         /// An object containing information about the tasks the human reviewers will perform.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public HumanLoopConfig HumanLoopConfig
         {
             get { return this._humanLoopConfig; }
@@ -140,7 +140,7 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property RoleArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the role needed to call other services on your behalf.
-        /// For example, <code>arn:aws:iam::1234567890:role/service-role/AmazonSageMaker-ExecutionRole-20180111T151298</code>.
+        /// For example, <c>arn:aws:iam::1234567890:role/service-role/AmazonSageMaker-ExecutionRole-20180111T151298</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]
@@ -173,7 +173,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

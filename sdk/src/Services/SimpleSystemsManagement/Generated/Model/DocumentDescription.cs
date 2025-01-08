@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -34,10 +35,10 @@ namespace Amazon.SimpleSystemsManagement.Model
     public partial class DocumentDescription
     {
         private string _approvedVersion;
-        private List<AttachmentInformation> _attachmentsInformation = new List<AttachmentInformation>();
+        private List<AttachmentInformation> _attachmentsInformation = AWSConfigs.InitializeCollections ? new List<AttachmentInformation>() : null;
         private string _author;
-        private List<string> _category = new List<string>();
-        private List<string> _categoryEnum = new List<string>();
+        private List<string> _category = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _categoryEnum = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _createdDate;
         private string _defaultVersion;
         private string _description;
@@ -50,17 +51,17 @@ namespace Amazon.SimpleSystemsManagement.Model
         private string _latestVersion;
         private string _name;
         private string _owner;
-        private List<DocumentParameter> _parameters = new List<DocumentParameter>();
+        private List<DocumentParameter> _parameters = AWSConfigs.InitializeCollections ? new List<DocumentParameter>() : null;
         private string _pendingReviewVersion;
-        private List<string> _platformTypes = new List<string>();
-        private List<DocumentRequires> _requires = new List<DocumentRequires>();
-        private List<ReviewInformation> _reviewInformation = new List<ReviewInformation>();
+        private List<string> _platformTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<DocumentRequires> _requires = AWSConfigs.InitializeCollections ? new List<DocumentRequires>() : null;
+        private List<ReviewInformation> _reviewInformation = AWSConfigs.InitializeCollections ? new List<ReviewInformation>() : null;
         private ReviewStatus _reviewStatus;
         private string _schemaVersion;
         private string _sha1;
         private DocumentStatus _status;
         private string _statusInformation;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _targetType;
         private string _versionName;
 
@@ -98,7 +99,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if AttachmentsInformation property is set
         internal bool IsSetAttachmentsInformation()
         {
-            return this._attachmentsInformation != null && this._attachmentsInformation.Count > 0; 
+            return this._attachmentsInformation != null && (this._attachmentsInformation.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -135,7 +136,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Category property is set
         internal bool IsSetCategory()
         {
-            return this._category != null && this._category.Count > 0; 
+            return this._category != null && (this._category.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -154,7 +155,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if CategoryEnum property is set
         internal bool IsSetCategoryEnum()
         {
-            return this._categoryEnum != null && this._categoryEnum.Count > 0; 
+            return this._categoryEnum != null && (this._categoryEnum.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -312,7 +313,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property HashType. 
         /// <para>
-        /// The hash type of the document. Valid values include <code>Sha256</code> or <code>Sha1</code>.
+        /// The hash type of the document. Valid values include <c>Sha256</c> or <c>Sha1</c>.
         /// </para>
         ///  <note> 
         /// <para>
@@ -401,7 +402,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -437,14 +438,14 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if PlatformTypes property is set
         internal bool IsSetPlatformTypes()
         {
-            return this._platformTypes != null && this._platformTypes.Count > 0; 
+            return this._platformTypes != null && (this._platformTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Requires. 
         /// <para>
-        /// A list of SSM documents required by a document. For example, an <code>ApplicationConfiguration</code>
-        /// document requires an <code>ApplicationConfigurationSchema</code> document.
+        /// A list of SSM documents required by a document. For example, an <c>ApplicationConfiguration</c>
+        /// document requires an <c>ApplicationConfigurationSchema</c> document.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -457,7 +458,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Requires property is set
         internal bool IsSetRequires()
         {
-            return this._requires != null && this._requires.Count > 0; 
+            return this._requires != null && (this._requires.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -476,7 +477,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if ReviewInformation property is set
         internal bool IsSetReviewInformation()
         {
-            return this._reviewInformation != null && this._reviewInformation.Count > 0; 
+            return this._reviewInformation != null && (this._reviewInformation.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -554,8 +555,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property StatusInformation. 
         /// <para>
-        /// A message returned by Amazon Web Services Systems Manager that explains the <code>Status</code>
-        /// value. For example, a <code>Failed</code> status might be explained by the <code>StatusInformation</code>
+        /// A message returned by Amazon Web Services Systems Manager that explains the <c>Status</c>
+        /// value. For example, a <c>Failed</c> status might be explained by the <c>StatusInformation</c>
         /// message, "The specified S3 bucket doesn't exist. Verify that the URL of the S3 bucket
         /// is correct."
         /// </para>
@@ -588,15 +589,14 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TargetType. 
         /// <para>
         /// The target type which defines the kinds of resources the document can run on. For
-        /// example, <code>/AWS::EC2::Instance</code>. For a list of valid resource types, see
-        /// <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">Amazon
+        /// example, <c>/AWS::EC2::Instance</c>. For a list of valid resource types, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">Amazon
         /// Web Services resource and property types reference</a> in the <i>CloudFormation User
         /// Guide</i>. 
         /// </para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECR.Model
 {
     /// <summary>
@@ -43,9 +44,9 @@ namespace Amazon.ECR.Model
         /// <summary>
         /// Gets and sets the property ImageTagMutability. 
         /// <para>
-        /// The tag mutability setting for the repository. If <code>MUTABLE</code> is specified,
-        /// image tags can be overwritten. If <code>IMMUTABLE</code> is specified, all image tags
-        /// within the repository will be immutable which will prevent them from being overwritten.
+        /// The tag mutability setting for the repository. If <c>MUTABLE</c> is specified, image
+        /// tags can be overwritten. If <c>IMMUTABLE</c> is specified, all image tags within the
+        /// repository will be immutable which will prevent them from being overwritten.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

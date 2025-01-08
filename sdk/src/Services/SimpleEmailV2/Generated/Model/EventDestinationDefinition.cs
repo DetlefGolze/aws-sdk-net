@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -37,8 +38,9 @@ namespace Amazon.SimpleEmailV2.Model
     {
         private CloudWatchDestination _cloudWatchDestination;
         private bool? _enabled;
+        private EventBridgeDestination _eventBridgeDestination;
         private KinesisFirehoseDestination _kinesisFirehoseDestination;
-        private List<string> _matchingEventTypes = new List<string>();
+        private List<string> _matchingEventTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private PinpointDestination _pinpointDestination;
         private SnsDestination _snsDestination;
 
@@ -64,13 +66,13 @@ namespace Amazon.SimpleEmailV2.Model
         /// <summary>
         /// Gets and sets the property Enabled. 
         /// <para>
-        /// If <code>true</code>, the event destination is enabled. When the event destination
-        /// is enabled, the specified event types are sent to the destinations in this <code>EventDestinationDefinition</code>.
+        /// If <c>true</c>, the event destination is enabled. When the event destination is enabled,
+        /// the specified event types are sent to the destinations in this <c>EventDestinationDefinition</c>.
         /// </para>
         ///  
         /// <para>
-        /// If <code>false</code>, the event destination is disabled. When the event destination
-        /// is disabled, events aren't sent to the specified destinations.
+        /// If <c>false</c>, the event destination is disabled. When the event destination is
+        /// disabled, events aren't sent to the specified destinations.
         /// </para>
         /// </summary>
         public bool Enabled
@@ -83,6 +85,25 @@ namespace Amazon.SimpleEmailV2.Model
         internal bool IsSetEnabled()
         {
             return this._enabled.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property EventBridgeDestination. 
+        /// <para>
+        /// An object that defines an Amazon EventBridge destination for email events. You can
+        /// use Amazon EventBridge to send notifications when certain email events occur.
+        /// </para>
+        /// </summary>
+        public EventBridgeDestination EventBridgeDestination
+        {
+            get { return this._eventBridgeDestination; }
+            set { this._eventBridgeDestination = value; }
+        }
+
+        // Check to see if EventBridgeDestination property is set
+        internal bool IsSetEventBridgeDestination()
+        {
+            return this._eventBridgeDestination != null;
         }
 
         /// <summary>
@@ -109,7 +130,7 @@ namespace Amazon.SimpleEmailV2.Model
         /// Gets and sets the property MatchingEventTypes. 
         /// <para>
         /// An array that specifies which events the Amazon SES API v2 should send to the destinations
-        /// in this <code>EventDestinationDefinition</code>.
+        /// in this <c>EventDestinationDefinition</c>.
         /// </para>
         /// </summary>
         public List<string> MatchingEventTypes
@@ -121,7 +142,7 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if MatchingEventTypes property is set
         internal bool IsSetMatchingEventTypes()
         {
-            return this._matchingEventTypes != null && this._matchingEventTypes.Count > 0; 
+            return this._matchingEventTypes != null && (this._matchingEventTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -150,7 +171,7 @@ namespace Amazon.SimpleEmailV2.Model
         /// Gets and sets the property SnsDestination. 
         /// <para>
         /// An object that defines an Amazon SNS destination for email events. You can use Amazon
-        /// SNS to send notification when certain email events occur.
+        /// SNS to send notifications when certain email events occur.
         /// </para>
         /// </summary>
         public SnsDestination SnsDestination

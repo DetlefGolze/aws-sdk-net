@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// A <code>StatusDetailFilters</code> object.
+        /// A <c>StatusDetailFilters</c> object.
         /// </para>
         /// </summary>
         public StatusDetailFilters Filters
@@ -61,9 +62,8 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property Limit. 
         /// <para>
-        /// The maximum number of <code>OrganizationConfigRuleDetailedStatus</code> returned on
-        /// each page. If you do not specify a number, Config uses the default. The default is
-        /// 100.
+        /// The maximum number of <c>OrganizationConfigRuleDetailedStatus</c> returned on each
+        /// page. If you do not specify a number, Config uses the default. The default is 100.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]
@@ -82,8 +82,8 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> string returned on a previous page that you use to get
-        /// the next page of results in a paginated response. 
+        /// The <c>nextToken</c> string returned on a previous page that you use to get the next
+        /// page of results in a paginated response. 
         /// </para>
         /// </summary>
         public string NextToken

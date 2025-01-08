@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationAutoScaling.Model
 {
     /// <summary>
@@ -69,10 +70,10 @@ namespace Amazon.ApplicationAutoScaling.Model
         /// Gets and sets the property DisableScaleIn. 
         /// <para>
         /// Indicates whether scale in by the target tracking scaling policy is disabled. If the
-        /// value is <code>true</code>, scale in is disabled and the target tracking scaling policy
+        /// value is <c>true</c>, scale in is disabled and the target tracking scaling policy
         /// won't remove capacity from the scalable target. Otherwise, scale in is enabled and
         /// the target tracking scaling policy can remove capacity from the scalable target. The
-        /// default value is <code>false</code>.
+        /// default value is <c>false</c>.
         /// </para>
         /// </summary>
         public bool DisableScaleIn
@@ -109,7 +110,7 @@ namespace Amazon.ApplicationAutoScaling.Model
         /// Gets and sets the property ScaleInCooldown. 
         /// <para>
         /// The amount of time, in seconds, after a scale-in activity completes before another
-        /// scale-in activity can start. For more information and for default values, see <a href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html#target-tracking-cooldown">Define
+        /// scale-in activity can start. For more information and for default values, see <a href="https://docs.aws.amazon.com/autoscaling/application/userguide/target-tracking-scaling-policy-overview.html#target-tracking-cooldown">Define
         /// cooldown periods</a> in the <i>Application Auto Scaling User Guide</i>.
         /// </para>
         /// </summary>
@@ -129,7 +130,7 @@ namespace Amazon.ApplicationAutoScaling.Model
         /// Gets and sets the property ScaleOutCooldown. 
         /// <para>
         /// The amount of time, in seconds, to wait for a previous scale-out activity to take
-        /// effect. For more information and for default values, see <a href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html#target-tracking-cooldown">Define
+        /// effect. For more information and for default values, see <a href="https://docs.aws.amazon.com/autoscaling/application/userguide/target-tracking-scaling-policy-overview.html#target-tracking-cooldown">Define
         /// cooldown periods</a> in the <i>Application Auto Scaling User Guide</i>.
         /// </para>
         /// </summary>
@@ -157,9 +158,9 @@ namespace Amazon.ApplicationAutoScaling.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If the scaling policy specifies the <code>ALBRequestCountPerTarget</code> predefined
-        /// metric, specify the target utilization as the optimal average request count per target
-        /// during any one-minute interval.
+        /// If the scaling policy specifies the <c>ALBRequestCountPerTarget</c> predefined metric,
+        /// specify the target utilization as the optimal average request count per target during
+        /// any one-minute interval.
         /// </para>
         ///  </note>
         /// </summary>

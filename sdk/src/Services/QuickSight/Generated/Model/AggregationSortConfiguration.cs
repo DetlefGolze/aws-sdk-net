@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property AggregationFunction. 
         /// <para>
-        /// The function that aggregates the values in <code>Column</code>.
+        /// The function that aggregates the values in <c>Column</c>.
         /// </para>
         /// </summary>
         public AggregationFunction AggregationFunction
@@ -81,11 +82,11 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ASC</code>: Sort in ascending order.
+        ///  <c>ASC</c>: Sort in ascending order.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DESC</code>: Sort in descending order.
+        ///  <c>DESC</c>: Sort in descending order.
         /// </para>
         ///  </li> </ul>
         /// </summary>

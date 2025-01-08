@@ -26,11 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
-    /// The size of the function's <code>/tmp</code> directory in MB. The default value is
-    /// 512, but it can be any whole number between 512 and 10,240 MB.
+    /// The size of the function's <c>/tmp</c> directory in MB. The default value is 512,
+    /// but can be any whole number between 512 and 10,240 MB. For more information, see <a
+    /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage">Configuring
+    /// ephemeral storage (console)</a>.
     /// </summary>
     public partial class EphemeralStorage
     {
@@ -39,7 +42,7 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property Size. 
         /// <para>
-        /// The size of the function's <code>/tmp</code> directory.
+        /// The size of the function's <c>/tmp</c> directory.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=512, Max=10240)]

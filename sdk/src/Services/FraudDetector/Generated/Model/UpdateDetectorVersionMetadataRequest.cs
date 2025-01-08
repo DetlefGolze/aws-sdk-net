@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FraudDetector.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateDetectorVersionMetadata operation.
     /// Updates the detector version's description. You can update the metadata for any detector
-    /// version (<code>DRAFT, ACTIVE,</code> or <code>INACTIVE</code>).
+    /// version (<c>DRAFT, ACTIVE,</c> or <c>INACTIVE</c>).
     /// </summary>
     public partial class UpdateDetectorVersionMetadataRequest : AmazonFraudDetectorRequest
     {

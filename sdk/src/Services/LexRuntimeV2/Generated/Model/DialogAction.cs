@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexRuntimeV2.Model
 {
     /// <summary>
@@ -54,7 +55,7 @@ namespace Amazon.LexRuntimeV2.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For more information, see <a href="https://docs.aws.amazon.com/lexv2/latest/dg/using-spelling.html">
+        /// For more information, see <a href="https://docs.aws.amazon.com/lexv2/latest/dg/spelling-styles.html">
         /// Using spelling to enter slot values </a>.
         /// </para>
         /// </summary>
@@ -111,30 +112,30 @@ namespace Amazon.LexRuntimeV2.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The next action that the bot should take in its interaction with the user. The possible
-        /// values are:
+        /// The next action that the bot should take in its interaction with the user. The following
+        /// values are possible:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Close</code> - Indicates that there will not be a response from the user. For
-        /// example, the statement "Your order has been placed" does not require a response.
+        ///  <c>Close</c> – Indicates that there will not be a response from the user. For example,
+        /// the statement "Your order has been placed" does not require a response.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ConfirmIntent</code> - The next action is asking the user if the intent is
-        /// complete and ready to be fulfilled. This is a yes/no question such as "Place the order?"
+        ///  <c>ConfirmIntent</c> – The next action is asking the user if the intent is complete
+        /// and ready to be fulfilled. This is a yes/no question such as "Place the order?"
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Delegate</code> - The next action is determined by Amazon Lex V2.
+        ///  <c>Delegate</c> – The next action is determined by Amazon Lex V2.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ElicitIntent</code> - The next action is to elicit an intent from the user.
+        ///  <c>ElicitIntent</c> – The next action is to elicit an intent from the user.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ElicitSlot</code> - The next action is to elicit a slot value from the user.
+        ///  <c>ElicitSlot</c> – The next action is to elicit a slot value from the user.
         /// </para>
         ///  </li> </ul>
         /// </summary>

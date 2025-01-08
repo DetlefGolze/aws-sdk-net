@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MarketplaceCatalog.Model
 {
     /// <summary>
@@ -36,7 +37,9 @@ namespace Amazon.MarketplaceCatalog.Model
     {
         private string _catalog;
         private string _entityType;
-        private List<Filter> _filterList = new List<Filter>();
+        private EntityTypeFilters _entityTypeFilters;
+        private EntityTypeSort _entityTypeSort;
+        private List<Filter> _filterList = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
         private OwnershipType _ownershipType;
@@ -45,7 +48,7 @@ namespace Amazon.MarketplaceCatalog.Model
         /// <summary>
         /// Gets and sets the property Catalog. 
         /// <para>
-        /// The catalog related to the request. Fixed value: <code>AWSMarketplace</code> 
+        /// The catalog related to the request. Fixed value: <c>AWSMarketplace</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]
@@ -64,7 +67,9 @@ namespace Amazon.MarketplaceCatalog.Model
         /// <summary>
         /// Gets and sets the property EntityType. 
         /// <para>
-        /// The type of entities to retrieve.
+        /// The type of entities to retrieve. Valid values are: <c>AmiProduct</c>, <c>ContainerProduct</c>,
+        /// <c>DataProduct</c>, <c>SaaSProduct</c>, <c>ProcurementPolicy</c>, <c>Experience</c>,
+        /// <c>Audience</c>, <c>BrandingSettings</c>, <c>Offer</c>, <c>Seller</c>, <c>ResaleAuthorization</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]
@@ -81,10 +86,50 @@ namespace Amazon.MarketplaceCatalog.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EntityTypeFilters. 
+        /// <para>
+        /// A Union object containing filter shapes for all <c>EntityType</c>s. Each <c>EntityTypeFilter</c>
+        /// shape will have filters applicable for that <c>EntityType</c> that can be used to
+        /// search or filter entities.
+        /// </para>
+        /// </summary>
+        public EntityTypeFilters EntityTypeFilters
+        {
+            get { return this._entityTypeFilters; }
+            set { this._entityTypeFilters = value; }
+        }
+
+        // Check to see if EntityTypeFilters property is set
+        internal bool IsSetEntityTypeFilters()
+        {
+            return this._entityTypeFilters != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EntityTypeSort. 
+        /// <para>
+        /// A Union object containing <c>Sort</c> shapes for all <c>EntityType</c>s. Each <c>EntityTypeSort</c>
+        /// shape will have <c>SortBy</c> and <c>SortOrder</c> applicable for fields on that <c>EntityType</c>.
+        /// This can be used to sort the results of the filter query.
+        /// </para>
+        /// </summary>
+        public EntityTypeSort EntityTypeSort
+        {
+            get { return this._entityTypeSort; }
+            set { this._entityTypeSort = value; }
+        }
+
+        // Check to see if EntityTypeSort property is set
+        internal bool IsSetEntityTypeSort()
+        {
+            return this._entityTypeSort != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property FilterList. 
         /// <para>
-        /// An array of filter objects. Each filter object contains two attributes, <code>filterName</code>
-        /// and <code>filterValues</code>.
+        /// An array of filter objects. Each filter object contains two attributes, <c>filterName</c>
+        /// and <c>filterValues</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=8)]
@@ -97,7 +142,7 @@ namespace Amazon.MarketplaceCatalog.Model
         // Check to see if FilterList property is set
         internal bool IsSetFilterList()
         {
-            return this._filterList != null && this._filterList.Count > 0; 
+            return this._filterList != null && (this._filterList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -142,10 +187,10 @@ namespace Amazon.MarketplaceCatalog.Model
         /// <summary>
         /// Gets and sets the property OwnershipType. 
         /// <para>
-        /// Filters the returned set of entities based on their owner. The default is <code>SELF</code>.
+        /// Filters the returned set of entities based on their owner. The default is <c>SELF</c>.
         /// To list entities shared with you through AWS Resource Access Manager (AWS RAM), set
-        /// to <code>SHARED</code>. Entities shared through the AWS Marketplace Catalog API <code>PutResourcePolicy</code>
-        /// operation can't be discovered through the <code>SHARED</code> parameter.
+        /// to <c>SHARED</c>. Entities shared through the AWS Marketplace Catalog API <c>PutResourcePolicy</c>
+        /// operation can't be discovered through the <c>SHARED</c> parameter.
         /// </para>
         /// </summary>
         public OwnershipType OwnershipType
@@ -163,7 +208,7 @@ namespace Amazon.MarketplaceCatalog.Model
         /// <summary>
         /// Gets and sets the property Sort. 
         /// <para>
-        /// An object that contains two attributes, <code>SortBy</code> and <code>SortOrder</code>.
+        /// An object that contains two attributes, <c>SortBy</c> and <c>SortOrder</c>.
         /// </para>
         /// </summary>
         public Sort Sort

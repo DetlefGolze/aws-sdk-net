@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.StepFunctions.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,8 +66,20 @@ namespace Amazon.StepFunctions.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetEncryptionConfiguration())
+                {
+                    context.Writer.WritePropertyName("encryptionConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = EncryptionConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.EncryptionConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetName())
                 {
                     context.Writer.WritePropertyName("name");

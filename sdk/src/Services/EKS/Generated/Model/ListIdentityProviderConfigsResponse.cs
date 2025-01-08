@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.EKS.Model
     /// </summary>
     public partial class ListIdentityProviderConfigsResponse : AmazonWebServiceResponse
     {
-        private List<IdentityProviderConfig> _identityProviderConfigs = new List<IdentityProviderConfig>();
+        private List<IdentityProviderConfig> _identityProviderConfigs = AWSConfigs.InitializeCollections ? new List<IdentityProviderConfig>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,17 +52,23 @@ namespace Amazon.EKS.Model
         // Check to see if IdentityProviderConfigs property is set
         internal bool IsSetIdentityProviderConfigs()
         {
-            return this._identityProviderConfigs != null && this._identityProviderConfigs.Count > 0; 
+            return this._identityProviderConfigs != null && (this._identityProviderConfigs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value returned from a previous paginated <code>ListIdentityProviderConfigsResponse</code>
-        /// where <code>maxResults</code> was used and the results exceeded the value of that
-        /// parameter. Pagination continues from the end of the previous results that returned
-        /// the <code>nextToken</code> value.
+        /// The <c>nextToken</c> value to include in a future <c>ListIdentityProviderConfigsResponse</c>
+        /// request. When the results of a <c>ListIdentityProviderConfigsResponse</c> request
+        /// exceed <c>maxResults</c>, you can use this value to retrieve the next page of results.
+        /// This value is <c>null</c> when there are no more results to return.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// This token should be treated as an opaque identifier that is used only to retrieve
+        /// the next items in a list and not for other programmatic purposes.
+        /// </para>
+        ///  </note>
         /// </summary>
         public string NextToken
         {

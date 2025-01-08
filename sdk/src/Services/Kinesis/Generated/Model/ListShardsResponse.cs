@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kinesis.Model
 {
     /// <summary>
@@ -34,25 +35,24 @@ namespace Amazon.Kinesis.Model
     public partial class ListShardsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Shard> _shards = new List<Shard>();
+        private List<Shard> _shards = AWSConfigs.InitializeCollections ? new List<Shard>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// When the number of shards in the data stream is greater than the default value for
-        /// the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code>
+        /// the <c>MaxResults</c> parameter, or if you explicitly specify a value for <c>MaxResults</c>
         /// that is less than the number of shards in the data stream, the response includes a
-        /// pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code>
-        /// value in a subsequent call to <code>ListShards</code> to list the next set of shards.
-        /// For more information about the use of this pagination token when calling the <code>ListShards</code>
+        /// pagination token named <c>NextToken</c>. You can specify this <c>NextToken</c> value
+        /// in a subsequent call to <c>ListShards</c> to list the next set of shards. For more
+        /// information about the use of this pagination token when calling the <c>ListShards</c>
         /// operation, see <a>ListShardsInput$NextToken</a>.
         /// </para>
         ///  <important> 
         /// <para>
-        /// Tokens expire after 300 seconds. When you obtain a value for <code>NextToken</code>
-        /// in the response to a call to <code>ListShards</code>, you have 300 seconds to use
-        /// that value. If you specify an expired token in a call to <code>ListShards</code>,
-        /// you get <code>ExpiredNextTokenException</code>.
+        /// Tokens expire after 300 seconds. When you obtain a value for <c>NextToken</c> in the
+        /// response to a call to <c>ListShards</c>, you have 300 seconds to use that value. If
+        /// you specify an expired token in a call to <c>ListShards</c>, you get <c>ExpiredNextTokenException</c>.
         /// </para>
         ///  </important>
         /// </summary>
@@ -87,7 +87,7 @@ namespace Amazon.Kinesis.Model
         // Check to see if Shards property is set
         internal bool IsSetShards()
         {
-            return this._shards != null && this._shards.Count > 0; 
+            return this._shards != null && (this._shards.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

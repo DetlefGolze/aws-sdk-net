@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -40,9 +41,10 @@ namespace Amazon.RDS.Model
     /// </para>
     ///  
     /// <para>
-    /// For a Multi-AZ DB cluster, failover for a DB cluster promotes one of the readable
-    /// standby DB instances (read-only instances) in the DB cluster to be the primary DB
-    /// instance (the cluster writer).
+    /// For a Multi-AZ DB cluster, after RDS terminates the primary DB instance, the internal
+    /// monitoring system detects that the primary DB instance is unhealthy and promotes a
+    /// readable standby (read-only instances) in the DB cluster to be the primary DB instance
+    /// (the cluster writer). Failover times are typically less than 35 seconds.
     /// </para>
     ///  
     /// <para>
@@ -109,7 +111,7 @@ namespace Amazon.RDS.Model
         ///  
         /// <para>
         /// Specify the DB instance identifier for an Aurora Replica or a Multi-AZ readable standby
-        /// in the DB cluster, for example <code>mydbcluster-replica1</code>.
+        /// in the DB cluster, for example <c>mydbcluster-replica1</c>.
         /// </para>
         ///  
         /// <para>

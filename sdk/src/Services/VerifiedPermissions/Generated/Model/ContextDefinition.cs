@@ -26,28 +26,30 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VerifiedPermissions.Model
 {
     /// <summary>
     /// Contains additional details about the context of the request. Verified Permissions
-    /// evaluates this information in an authorization request as part of the <code>when</code>
-    /// and <code>unless</code> clauses in a policy.
+    /// evaluates this information in an authorization request as part of the <c>when</c>
+    /// and <c>unless</c> clauses in a policy.
     /// 
     ///  
     /// <para>
-    /// This data type is used as a request parameter for the <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html">IsAuthorized</a>
+    /// This data type is used as a request parameter for the <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html">IsAuthorized</a>,
+    /// <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_BatchIsAuthorized.html">BatchIsAuthorized</a>,
     /// and <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html">IsAuthorizedWithToken</a>
     /// operations.
     /// </para>
     ///  
     /// <para>
-    /// Example: <code>"context":{"Context":{"&lt;KeyName1&gt;":{"boolean":true},"&lt;KeyName2&gt;":{"long":1234}}}</code>
+    /// Example: <c>"context":{"contextMap":{"&lt;KeyName1&gt;":{"boolean":true},"&lt;KeyName2&gt;":{"long":1234}}}</c>
     /// 
     /// </para>
     /// </summary>
     public partial class ContextDefinition
     {
-        private Dictionary<string, AttributeValue> _contextMap = new Dictionary<string, AttributeValue>();
+        private Dictionary<string, AttributeValue> _contextMap = AWSConfigs.InitializeCollections ? new Dictionary<string, AttributeValue>() : null;
 
         /// <summary>
         /// Gets and sets the property ContextMap. 
@@ -57,10 +59,11 @@ namespace Amazon.VerifiedPermissions.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>"Context":{"&lt;KeyName1&gt;":{"boolean":true},"&lt;KeyName2&gt;":{"long":1234}}</code>
+        /// Example: <c>"contextMap":{"&lt;KeyName1&gt;":{"boolean":true},"&lt;KeyName2&gt;":{"long":1234}}</c>
         /// 
         /// </para>
         /// </summary>
+        [AWSProperty(Sensitive=true)]
         public Dictionary<string, AttributeValue> ContextMap
         {
             get { return this._contextMap; }
@@ -70,7 +73,7 @@ namespace Amazon.VerifiedPermissions.Model
         // Check to see if ContextMap property is set
         internal bool IsSetContextMap()
         {
-            return this._contextMap != null && this._contextMap.Count > 0; 
+            return this._contextMap != null && (this._contextMap.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

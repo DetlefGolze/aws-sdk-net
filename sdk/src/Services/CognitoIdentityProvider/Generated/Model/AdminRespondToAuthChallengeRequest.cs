@@ -26,12 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the AdminRespondToAuthChallenge operation.
-    /// Responds to an authentication challenge, as an administrator.
+    /// Some API operations in a user pool generate a challenge, like a prompt for an MFA
+    /// code, for device authentication that bypasses MFA, or for a custom authentication
+    /// challenge. An <c>AdminRespondToAuthChallenge</c> API request provides the answer to
+    /// that challenge, like a code or a secure remote password (SRP). The parameters of a
+    /// response to an authentication challenge vary with the type of challenge.
     /// 
+    ///  
+    /// <para>
+    /// For more information about custom authentication challenges, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-challenge.html">Custom
+    /// authentication challenge Lambda triggers</a>.
+    /// </para>
     ///  <note> 
     /// <para>
     /// This action might generate an SMS text message. Starting June 1, 2021, US telecom
@@ -45,8 +55,8 @@ namespace Amazon.CognitoIdentityProvider.Model
     ///  
     /// <para>
     /// If you have never used SMS text messages with Amazon Cognito or any other Amazon Web
-    /// Service, Amazon Simple Notification Service might place your account in the SMS sandbox.
-    /// In <i> <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+    /// Services service, Amazon Simple Notification Service might place your account in the
+    /// SMS sandbox. In <i> <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
     /// mode</a> </i>, you can send messages only to verified phone numbers. After you test
     /// your app while in the sandbox environment, you can move out of the sandbox and into
     /// production. For more information, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html">
@@ -79,9 +89,9 @@ namespace Amazon.CognitoIdentityProvider.Model
     {
         private AnalyticsMetadataType _analyticsMetadata;
         private ChallengeNameType _challengeName;
-        private Dictionary<string, string> _challengeResponses = new Dictionary<string, string>();
+        private Dictionary<string, string> _challengeResponses = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _clientId;
-        private Dictionary<string, string> _clientMetadata = new Dictionary<string, string>();
+        private Dictionary<string, string> _clientMetadata = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private ContextDataType _contextData;
         private string _session;
         private string _userPoolId;
@@ -89,7 +99,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property AnalyticsMetadata. 
         /// <para>
-        /// The analytics metadata for collecting Amazon Pinpoint metrics for <code>AdminRespondToAuthChallenge</code>
+        /// The analytics metadata for collecting Amazon Pinpoint metrics for <c>AdminRespondToAuthChallenge</c>
         /// calls.
         /// </para>
         /// </summary>
@@ -108,7 +118,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property ChallengeName. 
         /// <para>
-        /// The challenge name. For more information, see <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminInitiateAuth.html">AdminInitiateAuth</a>.
+        /// The name of the challenge that you are responding to. You can find more information
+        /// about values for <c>ChallengeName</c> in the response parameters of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminInitiateAuth.html#CognitoUserPools-AdminInitiateAuth-response-ChallengeName">AdminInitiateAuth</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -127,64 +138,155 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property ChallengeResponses. 
         /// <para>
-        /// The challenge responses. These are inputs corresponding to the value of <code>ChallengeName</code>,
-        /// for example:
+        /// The responses to the challenge that you received in the previous request. Each challenge
+        /// has its own required response parameters. The following examples are partial JSON
+        /// request bodies that highlight challenge-response parameters.
         /// </para>
-        ///  <ul> <li> 
+        ///  <important> 
         /// <para>
-        ///  <code>SMS_MFA</code>: <code>SMS_MFA_CODE</code>, <code>USERNAME</code>, <code>SECRET_HASH</code>
-        /// (if app client is configured with client secret).
+        /// You must provide a SECRET_HASH parameter in all challenge responses to an app client
+        /// that has a client secret. Include a <c>DEVICE_KEY</c> for device authentication.
         /// </para>
-        ///  </li> <li> 
+        ///  </important> <dl> <dt>SELECT_CHALLENGE</dt> <dd> 
         /// <para>
-        ///  <code>PASSWORD_VERIFIER</code>: <code>PASSWORD_CLAIM_SIGNATURE</code>, <code>PASSWORD_CLAIM_SECRET_BLOCK</code>,
-        /// <code>TIMESTAMP</code>, <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client
-        /// is configured with client secret).
-        /// </para>
-        ///  <note> 
-        /// <para>
-        ///  <code>PASSWORD_VERIFIER</code> requires <code>DEVICE_KEY</code> when signing in with
-        /// a remembered device.
-        /// </para>
-        ///  </note> </li> <li> 
-        /// <para>
-        ///  <code>ADMIN_NO_SRP_AUTH</code>: <code>PASSWORD</code>, <code>USERNAME</code>, <code>SECRET_HASH</code>
-        /// (if app client is configured with client secret). 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, <code>USERNAME</code>,
-        /// <code>SECRET_HASH</code> (if app client is configured with client secret). To set
-        /// any required attributes that Amazon Cognito returned as <code>requiredAttributes</code>
-        /// in the <code>AdminInitiateAuth</code> response, add a <code>userAttributes.<i>attributename</i>
-        /// </code> parameter. This parameter can also set values for writable attributes that
-        /// aren't required by your user pool.
-        /// </para>
-        ///  <note> 
-        /// <para>
-        /// In a <code>NEW_PASSWORD_REQUIRED</code> challenge response, you can't modify a required
-        /// attribute that already has a value. In <code>AdminRespondToAuthChallenge</code>, set
-        /// a value for any keys that Amazon Cognito returned in the <code>requiredAttributes</code>
-        /// parameter, then use the <code>AdminUpdateUserAttributes</code> API operation to modify
-        /// the value of any additional attributes.
-        /// </para>
-        ///  </note> </li> <li> 
-        /// <para>
-        ///  <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you must use the session
-        /// value returned by <code>VerifySoftwareToken</code> in the <code>Session</code> parameter.
-        /// </para>
-        ///  </li> </ul> 
-        /// <para>
-        /// The value of the <code>USERNAME</code> attribute must be the user's actual username,
-        /// not an alias (such as an email address or phone number). To make this simpler, the
-        /// <code>AdminInitiateAuth</code> response includes the actual username value in the
-        /// <code>USERNAMEUSER_ID_FOR_SRP</code> attribute. This happens even if you specified
-        /// an alias in your call to <code>AdminInitiateAuth</code>.
+        ///  <c>"ChallengeName": "SELECT_CHALLENGE", "ChallengeResponses": { "USERNAME": "[username]",
+        /// "ANSWER": "[Challenge name]"}</c> 
         /// </para>
         ///  
         /// <para>
-        /// For more information about <code>SECRET_HASH</code>, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash">Computing
-        /// secret hash values</a>. For information about <code>DEVICE_KEY</code>, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html">Working
+        /// Available challenges are <c>PASSWORD</c>, <c>PASSWORD_SRP</c>, <c>EMAIL_OTP</c>, <c>SMS_OTP</c>,
+        /// and <c>WEB_AUTHN</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Complete authentication in the <c>SELECT_CHALLENGE</c> response for <c>PASSWORD</c>,
+        /// <c>PASSWORD_SRP</c>, and <c>WEB_AUTHN</c>:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>"ChallengeName": "SELECT_CHALLENGE", "ChallengeResponses": { "ANSWER": "WEB_AUTHN",
+        /// "USERNAME": "[username]", "CREDENTIAL": "[AuthenticationResponseJSON]"}</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// See <a href="https://www.w3.org/TR/webauthn-3/#dictdef-authenticationresponsejson">
+        /// AuthenticationResponseJSON</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>"ChallengeName": "SELECT_CHALLENGE", "ChallengeResponses": { "ANSWER": "PASSWORD",
+        /// "USERNAME": "[username]", "PASSWORD": "[password]"}</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>"ChallengeName": "SELECT_CHALLENGE", "ChallengeResponses": { "ANSWER": "PASSWORD_SRP",
+        /// "USERNAME": "[username]", "SRP_A": "[SRP_A]"}</c> 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <c>SMS_OTP</c> and <c>EMAIL_OTP</c>, respond with the username and answer. Your
+        /// user pool will send a code for the user to submit in the next challenge response.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>"ChallengeName": "SELECT_CHALLENGE", "ChallengeResponses": { "ANSWER": "SMS_OTP",
+        /// "USERNAME": "[username]"}</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>"ChallengeName": "SELECT_CHALLENGE", "ChallengeResponses": { "ANSWER": "EMAIL_OTP",
+        /// "USERNAME": "[username]"}</c> 
+        /// </para>
+        ///  </li> </ul> </dd> <dt>SMS_OTP</dt> <dd> 
+        /// <para>
+        ///  <c>"ChallengeName": "SMS_OTP", "ChallengeResponses": {"SMS_OTP_CODE": "[code]", "USERNAME":
+        /// "[username]"}</c> 
+        /// </para>
+        ///  </dd> <dt>EMAIL_OTP</dt> <dd> 
+        /// <para>
+        ///  <c>"ChallengeName": "EMAIL_OTP", "ChallengeResponses": {"EMAIL_OTP_CODE": "[code]",
+        /// "USERNAME": "[username]"}</c> 
+        /// </para>
+        ///  </dd> <dt>SMS_MFA</dt> <dd> 
+        /// <para>
+        ///  <c>"ChallengeName": "SMS_MFA", "ChallengeResponses": {"SMS_MFA_CODE": "[code]", "USERNAME":
+        /// "[username]"}</c> 
+        /// </para>
+        ///  </dd> <dt>PASSWORD_VERIFIER</dt> <dd> 
+        /// <para>
+        /// This challenge response is part of the SRP flow. Amazon Cognito requires that your
+        /// application respond to this challenge within a few seconds. When the response time
+        /// exceeds this period, your user pool returns a <c>NotAuthorizedException</c> error.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>"ChallengeName": "PASSWORD_VERIFIER", "ChallengeResponses": {"PASSWORD_CLAIM_SIGNATURE":
+        /// "[claim_signature]", "PASSWORD_CLAIM_SECRET_BLOCK": "[secret_block]", "TIMESTAMP":
+        /// [timestamp], "USERNAME": "[username]"}</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Add <c>"DEVICE_KEY"</c> when you sign in with a remembered device.
+        /// </para>
+        ///  </dd> <dt>CUSTOM_CHALLENGE</dt> <dd> 
+        /// <para>
+        ///  <c>"ChallengeName": "CUSTOM_CHALLENGE", "ChallengeResponses": {"USERNAME": "[username]",
+        /// "ANSWER": "[challenge_answer]"}</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Add <c>"DEVICE_KEY"</c> when you sign in with a remembered device.
+        /// </para>
+        ///  </dd> <dt>NEW_PASSWORD_REQUIRED</dt> <dd> 
+        /// <para>
+        ///  <c>"ChallengeName": "NEW_PASSWORD_REQUIRED", "ChallengeResponses": {"NEW_PASSWORD":
+        /// "[new_password]", "USERNAME": "[username]"}</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// To set any required attributes that <c>InitiateAuth</c> returned in an <c>requiredAttributes</c>
+        /// parameter, add <c>"userAttributes.[attribute_name]": "[attribute_value]"</c>. This
+        /// parameter can also set values for writable attributes that aren't required by your
+        /// user pool.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// In a <c>NEW_PASSWORD_REQUIRED</c> challenge response, you can't modify a required
+        /// attribute that already has a value. In <c>RespondToAuthChallenge</c>, set a value
+        /// for any keys that Amazon Cognito returned in the <c>requiredAttributes</c> parameter,
+        /// then use the <c>UpdateUserAttributes</c> API operation to modify the value of any
+        /// additional attributes.
+        /// </para>
+        ///  </note> </dd> <dt>SOFTWARE_TOKEN_MFA</dt> <dd> 
+        /// <para>
+        ///  <c>"ChallengeName": "SOFTWARE_TOKEN_MFA", "ChallengeResponses": {"USERNAME": "[username]",
+        /// "SOFTWARE_TOKEN_MFA_CODE": [authenticator_code]}</c> 
+        /// </para>
+        ///  </dd> <dt>DEVICE_SRP_AUTH</dt> <dd> 
+        /// <para>
+        ///  <c>"ChallengeName": "DEVICE_SRP_AUTH", "ChallengeResponses": {"USERNAME": "[username]",
+        /// "DEVICE_KEY": "[device_key]", "SRP_A": "[srp_a]"}</c> 
+        /// </para>
+        ///  </dd> <dt>DEVICE_PASSWORD_VERIFIER</dt> <dd> 
+        /// <para>
+        ///  <c>"ChallengeName": "DEVICE_PASSWORD_VERIFIER", "ChallengeResponses": {"DEVICE_KEY":
+        /// "[device_key]", "PASSWORD_CLAIM_SIGNATURE": "[claim_signature]", "PASSWORD_CLAIM_SECRET_BLOCK":
+        /// "[secret_block]", "TIMESTAMP": [timestamp], "USERNAME": "[username]"}</c> 
+        /// </para>
+        ///  </dd> <dt>MFA_SETUP</dt> <dd> 
+        /// <para>
+        ///  <c>"ChallengeName": "MFA_SETUP", "ChallengeResponses": {"USERNAME": "[username]"},
+        /// "SESSION": "[Session ID from VerifySoftwareToken]"</c> 
+        /// </para>
+        ///  </dd> <dt>SELECT_MFA_TYPE</dt> <dd> 
+        /// <para>
+        ///  <c>"ChallengeName": "SELECT_MFA_TYPE", "ChallengeResponses": {"USERNAME": "[username]",
+        /// "ANSWER": "[SMS_MFA or SOFTWARE_TOKEN_MFA]"}</c> 
+        /// </para>
+        ///  </dd> </dl> 
+        /// <para>
+        /// For more information about <c>SECRET_HASH</c>, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash">Computing
+        /// secret hash values</a>. For information about <c>DEVICE_KEY</c>, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html">Working
         /// with user devices in your user pool</a>.
         /// </para>
         /// </summary>
@@ -198,13 +300,13 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if ChallengeResponses property is set
         internal bool IsSetChallengeResponses()
         {
-            return this._challengeResponses != null && this._challengeResponses.Count > 0; 
+            return this._challengeResponses != null && (this._challengeResponses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ClientId. 
         /// <para>
-        /// The app client ID.
+        /// The ID of the app client where you initiated sign-in.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=128)]
@@ -234,7 +336,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// pre sign-up
+        /// Pre sign-up
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -242,36 +344,35 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// post authentication
+        /// Post authentication
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// user migration
+        /// User migration
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// pre token generation
+        /// Pre token generation
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// define auth challenge
+        /// Define auth challenge
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// create auth challenge
+        /// Create auth challenge
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// verify auth challenge response
+        /// Verify auth challenge response
         /// </para>
         ///  </li> </ul> 
         /// <para>
         /// When Amazon Cognito invokes any of these functions, it passes a JSON payload, which
-        /// the function receives as input. This payload contains a <code>clientMetadata</code>
-        /// attribute that provides the data that you assigned to the ClientMetadata parameter
-        /// in your AdminRespondToAuthChallenge request. In your function code in Lambda, you
-        /// can process the <code>clientMetadata</code> value to enhance your workflow for your
-        /// specific needs.
+        /// the function receives as input. This payload contains a <c>clientMetadata</c> attribute
+        /// that provides the data that you assigned to the ClientMetadata parameter in your AdminRespondToAuthChallenge
+        /// request. In your function code in Lambda, you can process the <c>clientMetadata</c>
+        /// value to enhance your workflow for your specific needs.
         /// </para>
         ///  
         /// <para>
@@ -281,22 +382,23 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// When you use the ClientMetadata parameter, remember that Amazon Cognito won't do the
-        /// following:
+        /// When you use the <c>ClientMetadata</c> parameter, note that Amazon Cognito won't do
+        /// the following:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Store the ClientMetadata value. This data is available only to Lambda triggers that
-        /// are assigned to a user pool to support custom workflows. If your user pool configuration
-        /// doesn't include triggers, the ClientMetadata parameter serves no purpose.
+        /// Store the <c>ClientMetadata</c> value. This data is available only to Lambda triggers
+        /// that are assigned to a user pool to support custom workflows. If your user pool configuration
+        /// doesn't include triggers, the <c>ClientMetadata</c> parameter serves no purpose.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Validate the ClientMetadata value.
+        /// Validate the <c>ClientMetadata</c> value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Encrypt the ClientMetadata value. Don't use Amazon Cognito to provide sensitive information.
+        /// Encrypt the <c>ClientMetadata</c> value. Don't send sensitive information in this
+        /// parameter.
         /// </para>
         ///  </li> </ul> </note>
         /// </summary>
@@ -309,7 +411,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if ClientMetadata property is set
         internal bool IsSetClientMetadata()
         {
-            return this._clientMetadata != null && this._clientMetadata.Count > 0; 
+            return this._clientMetadata != null && (this._clientMetadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -319,6 +421,11 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// or location. Amazon Cognito advanced security evaluates the risk of an authentication
         /// event based on the context that your app generates and passes to Amazon Cognito when
         /// it makes API requests.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-viewing-threat-protection-app.html">Collecting
+        /// data for threat protection in applications</a>.
         /// </para>
         /// </summary>
         public ContextDataType ContextData
@@ -336,11 +443,11 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Session. 
         /// <para>
-        /// The session that should be passed both ways in challenge-response calls to the service.
-        /// If an <code>InitiateAuth</code> or <code>RespondToAuthChallenge</code> API call determines
-        /// that the caller must pass another challenge, it returns a session with other challenge
-        /// parameters. This session should be passed as it is to the next <code>RespondToAuthChallenge</code>
-        /// API call.
+        /// The session identifier that maintains the state of authentication requests and challenge
+        /// responses. If an <c>AdminInitiateAuth</c> or <c>AdminRespondToAuthChallenge</c> API
+        /// request results in a determination that your application must pass another challenge,
+        /// Amazon Cognito returns a session with other challenge parameters. Send this session
+        /// identifier, unmodified, to the next <c>AdminRespondToAuthChallenge</c> request.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=20, Max=2048)]
@@ -359,7 +466,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The ID of the Amazon Cognito user pool.
+        /// The ID of the user pool where you want to respond to an authentication challenge.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

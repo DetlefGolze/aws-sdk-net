@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -40,6 +41,7 @@ namespace Amazon.EKS.Model
         private string _clusterName;
         private string _fargateProfileName;
         private string _nodegroupName;
+        private string _subscriptionId;
 
         /// <summary>
         /// Constructs a new InvalidParameterException with the specified error
@@ -105,6 +107,7 @@ namespace Amazon.EKS.Model
             this.ClusterName = (string)info.GetValue("ClusterName", typeof(string));
             this.FargateProfileName = (string)info.GetValue("FargateProfileName", typeof(string));
             this.NodegroupName = (string)info.GetValue("NodegroupName", typeof(string));
+            this.SubscriptionId = (string)info.GetValue("SubscriptionId", typeof(string));
         }
 
         /// <summary>
@@ -129,11 +132,16 @@ namespace Amazon.EKS.Model
             info.AddValue("ClusterName", this.ClusterName);
             info.AddValue("FargateProfileName", this.FargateProfileName);
             info.AddValue("NodegroupName", this.NodegroupName);
+            info.AddValue("SubscriptionId", this.SubscriptionId);
         }
 #endif
 
         /// <summary>
-        /// Gets and sets the property AddonName.
+        /// Gets and sets the property AddonName. 
+        /// <para>
+        /// The specified parameter for the add-on name is invalid. Review the available parameters
+        /// for the API request
+        /// </para>
         /// </summary>
         public string AddonName
         {
@@ -199,6 +207,24 @@ namespace Amazon.EKS.Model
         internal bool IsSetNodegroupName()
         {
             return this._nodegroupName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SubscriptionId. 
+        /// <para>
+        /// The Amazon EKS subscription ID with the exception.
+        /// </para>
+        /// </summary>
+        public string SubscriptionId
+        {
+            get { return this._subscriptionId; }
+            set { this._subscriptionId = value; }
+        }
+
+        // Check to see if SubscriptionId property is set
+        internal bool IsSetSubscriptionId()
+        {
+            return this._subscriptionId != null;
         }
 
     }

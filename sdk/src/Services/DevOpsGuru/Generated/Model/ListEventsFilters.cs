@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
-    /// Filters you can use to specify which events are returned when <code>ListEvents</code>
-    /// is called.
+    /// Filters you can use to specify which events are returned when <c>ListEvents</c> is
+    /// called.
     /// </summary>
     public partial class ListEventsFilters
     {
@@ -44,8 +45,8 @@ namespace Amazon.DevOpsGuru.Model
         /// <summary>
         /// Gets and sets the property DataSource. 
         /// <para>
-        ///  The source, <code>AWS_CLOUD_TRAIL</code> or <code>AWS_CODE_DEPLOY</code>, of the
-        /// events you want returned. 
+        ///  The source, <c>AWS_CLOUD_TRAIL</c> or <c>AWS_CODE_DEPLOY</c>, of the events you want
+        /// returned. 
         /// </para>
         /// </summary>
         public EventDataSource DataSource

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHubStrategyRecommendations.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.MigrationHubStrategyRecommendations.Model
         /// <summary>
         /// Gets and sets the property AssessmentId. 
         /// <para>
-        ///  The <code>assessmentId</code> returned by <a>StartAssessment</a>. 
+        ///  The <c>assessmentId</c> returned by <a>StartAssessment</a>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=52)]

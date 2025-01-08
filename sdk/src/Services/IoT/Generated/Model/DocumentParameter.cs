@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -35,9 +36,9 @@ namespace Amazon.IoT.Model
     /// 
     ///  <note> 
     /// <para>
-    ///  <code>documentParameters</code> can only be used when creating jobs from Amazon Web
-    /// Services managed templates. This parameter can't be used with custom job templates
-    /// or to create jobs from them.
+    ///  <c>documentParameters</c> can only be used when creating jobs from Amazon Web Services
+    /// managed templates. This parameter can't be used with custom job templates or to create
+    /// jobs from them.
     /// </para>
     ///  </note>
     /// </summary>

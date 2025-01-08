@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Organizations.Model
 {
     /// <summary>
-    /// We can't find a source root or OU with the <code>ParentId</code> that you specified.
+    /// We can't find a source root or OU with the <c>ParentId</c> that you specified.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

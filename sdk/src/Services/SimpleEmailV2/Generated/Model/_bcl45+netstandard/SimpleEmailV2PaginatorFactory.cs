@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -129,6 +130,14 @@ namespace Amazon.SimpleEmailV2.Model
         public IListImportJobsPaginator ListImportJobs(ListImportJobsRequest request) 
         {
             return new ListImportJobsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListMultiRegionEndpoints operation
+        ///</summary>
+        public IListMultiRegionEndpointsPaginator ListMultiRegionEndpoints(ListMultiRegionEndpointsRequest request) 
+        {
+            return new ListMultiRegionEndpointsPaginator(this.client, request);
         }
 
         /// <summary>

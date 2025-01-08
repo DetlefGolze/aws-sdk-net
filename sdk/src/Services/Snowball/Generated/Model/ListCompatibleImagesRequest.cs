@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
@@ -67,8 +68,8 @@ namespace Amazon.Snowball.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// HTTP requests are stateless. To identify what object comes "next" in the list of compatible
-        /// images, you can specify a value for <code>NextToken</code> as the starting point for
-        /// your list of returned images.
+        /// images, you can specify a value for <c>NextToken</c> as the starting point for your
+        /// list of returned images.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

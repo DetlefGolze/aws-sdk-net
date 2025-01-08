@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.SageMaker.Model
     public partial class AdditionalS3DataSource
     {
         private CompressionType _compressionType;
+        private string _eTag;
         private AdditionalS3DataSourceDataType _s3DataType;
         private string _s3Uri;
 
@@ -42,7 +44,7 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property CompressionType. 
         /// <para>
         /// The type of compression used for an additional data source used in inference or training.
-        /// Specify <code>None</code> if your additional data source is not compressed.
+        /// Specify <c>None</c> if your additional data source is not compressed.
         /// </para>
         /// </summary>
         public CompressionType CompressionType
@@ -55,6 +57,24 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetCompressionType()
         {
             return this._compressionType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ETag. 
+        /// <para>
+        /// The ETag associated with S3 URI.
+        /// </para>
+        /// </summary>
+        public string ETag
+        {
+            get { return this._eTag; }
+            set { this._eTag = value; }
+        }
+
+        // Check to see if ETag property is set
+        internal bool IsSetETag()
+        {
+            return this._eTag != null;
         }
 
         /// <summary>

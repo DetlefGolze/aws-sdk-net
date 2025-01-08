@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the docdb-elastic-2022-11-28.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DocDBElastic.Model
 {
     /// <summary>
@@ -34,5 +35,10 @@ namespace Amazon.DocDBElastic.Model
         /// Paginator for ListClusterSnapshots operation
         ///</summary>
         IListClusterSnapshotsPaginator ListClusterSnapshots(ListClusterSnapshotsRequest request);
+
+        /// <summary>
+        /// Paginator for ListPendingMaintenanceActions operation
+        ///</summary>
+        IListPendingMaintenanceActionsPaginator ListPendingMaintenanceActions(ListPendingMaintenanceActionsRequest request);
     }
 }

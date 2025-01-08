@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSHealth.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.AWSHealth.Model
     {
         private int? _count;
         private string _eventArn;
-        private Dictionary<string, int> _statuses = new Dictionary<string, int>();
+        private Dictionary<string, int> _statuses = AWSConfigs.InitializeCollections ? new Dictionary<string, int>() : null;
 
         /// <summary>
         /// Gets and sets the property Count. 
@@ -60,8 +61,8 @@ namespace Amazon.AWSHealth.Model
         /// <summary>
         /// Gets and sets the property EventArn. 
         /// <para>
-        /// The unique identifier for the event. The event ARN has the <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i>
-        /// </code> format.
+        /// The unique identifier for the event. The event ARN has the <c>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i>
+        /// </c> format.
         /// </para>
         ///  
         /// <para>
@@ -69,7 +70,7 @@ namespace Amazon.AWSHealth.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
+        ///  <c>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</c>
         /// 
         /// </para>
         /// </summary>
@@ -101,7 +102,7 @@ namespace Amazon.AWSHealth.Model
         // Check to see if Statuses property is set
         internal bool IsSetStatuses()
         {
-            return this._statuses != null && this._statuses.Count > 0; 
+            return this._statuses != null && (this._statuses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

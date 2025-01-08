@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.ElastiCache.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/ParameterGroups.html">Parameters
+    ///  <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/ParameterGroups.html">Parameters
     /// and Parameter Groups</a> in the ElastiCache User Guide.
     /// </para>
     ///  </li> </ul>
@@ -57,7 +58,7 @@ namespace Amazon.ElastiCache.Model
         private string _cacheParameterGroupFamily;
         private string _cacheParameterGroupName;
         private string _description;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -68,7 +69,7 @@ namespace Amazon.ElastiCache.Model
         /// Instantiates CreateCacheParameterGroupRequest with the parameterized properties
         /// </summary>
         /// <param name="cacheParameterGroupName">A user-specified name for the cache parameter group.</param>
-        /// <param name="cacheParameterGroupFamily">The name of the cache parameter group family that the cache parameter group can be used with. Valid values are: <code>memcached1.4</code> | <code>memcached1.5</code> | <code>memcached1.6</code> | <code>redis2.6</code> | <code>redis2.8</code> | <code>redis3.2</code> | <code>redis4.0</code> | <code>redis5.0</code> | <code>redis6.x</code> | <code>redis7</code> </param>
+        /// <param name="cacheParameterGroupFamily">The name of the cache parameter group family that the cache parameter group can be used with. Valid values are: <c>memcached1.4</c> | <c>memcached1.5</c> | <c>memcached1.6</c> | <c>redis2.6</c> | <c>redis2.8</c> | <c>redis3.2</c> | <c>redis4.0</c> | <c>redis5.0</c> | <c>redis6.x</c> | <c>redis7</c> </param>
         /// <param name="description">A user-specified description for the cache parameter group.</param>
         public CreateCacheParameterGroupRequest(string cacheParameterGroupName, string cacheParameterGroupFamily, string description)
         {
@@ -85,9 +86,9 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values are: <code>memcached1.4</code> | <code>memcached1.5</code> | <code>memcached1.6</code>
-        /// | <code>redis2.6</code> | <code>redis2.8</code> | <code>redis3.2</code> | <code>redis4.0</code>
-        /// | <code>redis5.0</code> | <code>redis6.x</code> | <code>redis7</code> 
+        /// Valid values are: <c>memcached1.4</c> | <c>memcached1.5</c> | <c>memcached1.6</c>
+        /// | <c>redis2.6</c> | <c>redis2.8</c> | <c>redis3.2</c> | <c>redis4.0</c> | <c>redis5.0</c>
+        /// | <c>redis6.x</c> | <c>redis7</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -157,7 +158,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

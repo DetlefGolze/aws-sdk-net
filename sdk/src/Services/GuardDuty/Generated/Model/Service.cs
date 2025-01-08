@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -37,12 +38,14 @@ namespace Amazon.GuardDuty.Model
         private ServiceAdditionalInfo _additionalInfo;
         private bool? _archived;
         private int? _count;
+        private Detection _detection;
         private string _detectorId;
         private EbsVolumeScanDetails _ebsVolumeScanDetails;
         private string _eventFirstSeen;
         private string _eventLastSeen;
         private Evidence _evidence;
         private string _featureName;
+        private MalwareScanDetails _malwareScanDetails;
         private string _resourceRole;
         private RuntimeDetails _runtimeDetails;
         private string _serviceName;
@@ -118,6 +121,24 @@ namespace Amazon.GuardDuty.Model
         internal bool IsSetCount()
         {
             return this._count.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Detection. 
+        /// <para>
+        /// Contains information about the detected unusual behavior.
+        /// </para>
+        /// </summary>
+        public Detection Detection
+        {
+            get { return this._detection; }
+            set { this._detection = value; }
+        }
+
+        // Check to see if Detection property is set
+        internal bool IsSetDetection()
+        {
+            return this._detection != null;
         }
 
         /// <summary>
@@ -228,6 +249,24 @@ namespace Amazon.GuardDuty.Model
         internal bool IsSetFeatureName()
         {
             return this._featureName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property MalwareScanDetails. 
+        /// <para>
+        /// Returns details from the malware scan that generated a GuardDuty finding.
+        /// </para>
+        /// </summary>
+        public MalwareScanDetails MalwareScanDetails
+        {
+            get { return this._malwareScanDetails; }
+            set { this._malwareScanDetails = value; }
+        }
+
+        // Check to see if MalwareScanDetails property is set
+        internal bool IsSetMalwareScanDetails()
+        {
+            return this._malwareScanDetails != null;
         }
 
         /// <summary>

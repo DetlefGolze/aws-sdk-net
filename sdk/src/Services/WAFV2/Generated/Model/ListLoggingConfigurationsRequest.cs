@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.WAFV2.Model
     public partial class ListLoggingConfigurationsRequest : AmazonWAFV2Request
     {
         private int? _limit;
+        private LogScope _logScope;
         private string _nextMarker;
         private Scope _scope;
 
@@ -42,8 +44,8 @@ namespace Amazon.WAFV2.Model
         /// Gets and sets the property Limit. 
         /// <para>
         /// The maximum number of objects that you want WAF to return for this request. If more
-        /// objects are available, in the response, WAF provides a <code>NextMarker</code> value
-        /// that you can use in a subsequent call to get the next batch of objects.
+        /// objects are available, in the response, WAF provides a <c>NextMarker</c> value that
+        /// you can use in a subsequent call to get the next batch of objects.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -60,12 +62,44 @@ namespace Amazon.WAFV2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property LogScope. 
+        /// <para>
+        /// The owner of the logging configuration, which must be set to <c>CUSTOMER</c> for the
+        /// configurations that you manage. 
+        /// </para>
+        ///  
+        /// <para>
+        /// The log scope <c>SECURITY_LAKE</c> indicates a configuration that is managed through
+        /// Amazon Security Lake. You can use Security Lake to collect log and event data from
+        /// various sources for normalization, analysis, and management. For information, see
+        /// <a href="https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html">Collecting
+        /// data from Amazon Web Services services</a> in the <i>Amazon Security Lake user guide</i>.
+        /// 
+        /// </para>
+        ///  
+        /// <para>
+        /// Default: <c>CUSTOMER</c> 
+        /// </para>
+        /// </summary>
+        public LogScope LogScope
+        {
+            get { return this._logScope; }
+            set { this._logScope = value; }
+        }
+
+        // Check to see if LogScope property is set
+        internal bool IsSetLogScope()
+        {
+            return this._logScope != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property NextMarker. 
         /// <para>
-        /// When you request a list of objects with a <code>Limit</code> setting, if the number
-        /// of objects that are still available for retrieval exceeds the limit, WAF returns a
-        /// <code>NextMarker</code> value in the response. To retrieve the next batch of objects,
-        /// provide the marker from the prior call in your next request.
+        /// When you request a list of objects with a <c>Limit</c> setting, if the number of objects
+        /// that are still available for retrieval exceeds the limit, WAF returns a <c>NextMarker</c>
+        /// value in the response. To retrieve the next batch of objects, provide the marker from
+        /// the prior call in your next request.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]
@@ -96,8 +130,8 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// CLI - Specify the Region when you use the CloudFront scope: <code>--scope=CLOUDFRONT
-        /// --region=us-east-1</code>. 
+        /// CLI - Specify the Region when you use the CloudFront scope: <c>--scope=CLOUDFRONT
+        /// --region=us-east-1</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>

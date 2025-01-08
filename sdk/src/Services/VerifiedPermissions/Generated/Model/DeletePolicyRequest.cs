@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VerifiedPermissions.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.VerifiedPermissions.Model
     ///  
     /// <para>
     /// This operation is idempotent; if you specify a policy that doesn't exist, the request
-    /// response returns a successful <code>HTTP 200</code> status code.
+    /// response returns a successful <c>HTTP 200</c> status code.
     /// </para>
     /// </summary>
     public partial class DeletePolicyRequest : AmazonVerifiedPermissionsRequest

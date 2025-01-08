@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateTerminationProtection operation.
     /// Updates termination protection for the specified stack. If a user attempts to delete
     /// a stack with termination protection enabled, the operation fails and the stack remains
-    /// unchanged. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-protect-stacks.html">Protecting
-    /// a Stack From Being Deleted</a> in the <i>CloudFormation User Guide</i>.
+    /// unchanged. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-protect-stacks.html">Protect
+    /// a CloudFormation stack from being deleted</a> in the <i>CloudFormation User Guide</i>.
     /// 
     ///  
     /// <para>

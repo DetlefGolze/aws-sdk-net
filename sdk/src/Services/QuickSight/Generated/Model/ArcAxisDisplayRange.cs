@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The arc axis range of a <code>GaugeChartVisual</code>.
+    /// The arc axis range of a <c>GaugeChartVisual</c>.
     /// </summary>
     public partial class ArcAxisDisplayRange
     {

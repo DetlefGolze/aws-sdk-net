@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
-    /// Information about a robot software suite (ROS distribution).
+    /// Information about a robot software suite.
     /// </summary>
     public partial class RobotSoftwareSuite
     {
@@ -39,7 +40,7 @@ namespace Amazon.RoboMaker.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the robot software suite (ROS distribution).
+        /// The name of the robot software suite. <c>General</c> is the only supported value.
         /// </para>
         /// </summary>
         public RobotSoftwareSuiteType Name
@@ -57,7 +58,7 @@ namespace Amazon.RoboMaker.Model
         /// <summary>
         /// Gets and sets the property Version. 
         /// <para>
-        /// The version of the robot software suite (ROS distribution).
+        /// The version of the robot software suite. Not applicable for General software suite.
         /// </para>
         /// </summary>
         public RobotSoftwareSuiteVersionType Version

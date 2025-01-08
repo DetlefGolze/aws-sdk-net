@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
     /// Container for the parameters to the ListTags operation.
-    /// Lists the tags for the specified trails, event data stores, or channels in the current
-    /// Region.
+    /// Lists the tags for the specified trails, event data stores, dashboards, or channels
+    /// in the current Region.
     /// </summary>
     public partial class ListTagsRequest : AmazonCloudTrailRequest
     {
         private string _nextToken;
-        private List<string> _resourceIdList = new List<string>();
+        private List<string> _resourceIdList = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -59,22 +60,27 @@ namespace Amazon.CloudTrail.Model
         /// <summary>
         /// Gets and sets the property ResourceIdList. 
         /// <para>
-        /// Specifies a list of trail, event data store, or channel ARNs whose tags will be listed.
-        /// The list has a limit of 20 ARNs.
+        /// Specifies a list of trail, event data store, dashboard, or channel ARNs whose tags
+        /// will be listed. The list has a limit of 20 ARNs.
         /// </para>
         ///  
         /// <para>
-        ///  Example trail ARN format: <code>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</code>
+        ///  Example trail ARN format: <c>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</c>
         /// 
         /// </para>
         ///  
         /// <para>
-        /// Example event data store ARN format: <code>arn:aws:cloudtrail:us-east-2:123456789012:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE</code>
+        /// Example event data store ARN format: <c>arn:aws:cloudtrail:us-east-2:123456789012:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE</c>
         /// 
         /// </para>
         ///  
         /// <para>
-        /// Example channel ARN format: <code>arn:aws:cloudtrail:us-east-2:123456789012:channel/01234567890</code>
+        /// Example dashboard ARN format: <c>arn:aws:cloudtrail:us-east-1:123456789012:dashboard/exampleDash</c>
+        /// 
+        /// </para>
+        ///  
+        /// <para>
+        /// Example channel ARN format: <c>arn:aws:cloudtrail:us-east-2:123456789012:channel/01234567890</c>
         /// 
         /// </para>
         /// </summary>
@@ -88,7 +94,7 @@ namespace Amazon.CloudTrail.Model
         // Check to see if ResourceIdList property is set
         internal bool IsSetResourceIdList()
         {
-            return this._resourceIdList != null && this._resourceIdList.Count > 0; 
+            return this._resourceIdList != null && (this._resourceIdList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

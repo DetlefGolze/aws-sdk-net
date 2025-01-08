@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
@@ -41,8 +42,7 @@ namespace Amazon.TranscribeService.Model
     ///  
     /// <para>
     /// If you tried to create a new custom language model and the request wasn't successful,
-    /// you can use <code>DescribeLanguageModel</code> to help identify the reason for this
-    /// failure.
+    /// you can use <c>DescribeLanguageModel</c> to help identify the reason for this failure.
     /// </para>
     /// </summary>
     public partial class DescribeLanguageModelRequest : AmazonTranscribeServiceRequest

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroups.Model
 {
     /// <summary>
@@ -34,20 +35,24 @@ namespace Amazon.ResourceGroups.Model
     /// 
     ///  <important> 
     /// <para>
-    /// You can use this operation with only resource groups that are configured with the
-    /// following types:
+    /// You can only use this operation with the following groups:
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>AWS::EC2::HostManagement</code> 
+    ///  <c>AWS::EC2::HostManagement</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>AWS::EC2::CapacityReservationPool</code> 
+    ///  <c>AWS::EC2::CapacityReservationPool</c> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <c>AWS::ResourceGroups::ApplicationGroup</c> 
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// Other resource group type and resource types aren't currently supported by this operation.
+    /// Other resource group types and resource types are not currently supported by this
+    /// operation.
     /// </para>
     ///  </important> 
     /// <para>
@@ -59,19 +64,20 @@ namespace Amazon.ResourceGroups.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>resource-groups:GroupResources</code> 
+    ///  <c>resource-groups:GroupResources</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>
     public partial class GroupResourcesRequest : AmazonResourceGroupsRequest
     {
         private string _group;
-        private List<string> _resourceArns = new List<string>();
+        private List<string> _resourceArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Group. 
         /// <para>
-        /// The name or the ARN of the resource group to add resources to.
+        /// The name or the Amazon resource name (ARN) of the resource group to add resources
+        /// to.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1600)]
@@ -90,7 +96,8 @@ namespace Amazon.ResourceGroups.Model
         /// <summary>
         /// Gets and sets the property ResourceArns. 
         /// <para>
-        /// The list of ARNs of the resources to be added to the group. 
+        /// The list of Amazon resource names (ARNs) of the resources to be added to the group.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=10)]
@@ -103,7 +110,7 @@ namespace Amazon.ResourceGroups.Model
         // Check to see if ResourceArns property is set
         internal bool IsSetResourceArns()
         {
-            return this._resourceArns != null && this._resourceArns.Count > 0; 
+            return this._resourceArns != null && (this._resourceArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

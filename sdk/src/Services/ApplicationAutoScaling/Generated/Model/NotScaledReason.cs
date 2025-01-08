@@ -26,13 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationAutoScaling.Model
 {
     /// <summary>
     /// Describes the reason for an activity that isn't scaled (<i>not scaled activity</i>),
     /// in machine-readable format. For help interpreting the not scaled reason details, see
     /// <a href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scaling-activities.html">Scaling
-    /// activities for Application Auto Scaling</a>.
+    /// activities for Application Auto Scaling</a> in the <i>Application Auto Scaling User
+    /// Guide</i>.
     /// </summary>
     public partial class NotScaledReason
     {

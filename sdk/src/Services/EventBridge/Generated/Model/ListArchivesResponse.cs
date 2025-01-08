@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.EventBridge.Model
     /// </summary>
     public partial class ListArchivesResponse : AmazonWebServiceResponse
     {
-        private List<Archive> _archives = new List<Archive>();
+        private List<Archive> _archives = AWSConfigs.InitializeCollections ? new List<Archive>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Archives. 
         /// <para>
-        /// An array of <code>Archive</code> objects that include details about an archive.
+        /// An array of <c>Archive</c> objects that include details about an archive.
         /// </para>
         /// </summary>
         public List<Archive> Archives
@@ -51,13 +52,24 @@ namespace Amazon.EventBridge.Model
         // Check to see if Archives property is set
         internal bool IsSetArchives()
         {
-            return this._archives != null && this._archives.Count > 0; 
+            return this._archives != null && (this._archives.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token returned by a previous call to retrieve the next set of results.
+        /// A token indicating there are more results available. If there are no more results,
+        /// no token is included in the response.
+        /// </para>
+        ///  
+        /// <para>
+        /// The value of <c>nextToken</c> is a unique pagination token for each page. To retrieve
+        /// the next page of results, make the call again using the returned token. Keep all other
+        /// arguments unchanged.
+        /// </para>
+        ///  
+        /// <para>
+        ///  Using an expired pagination token results in an <c>HTTP 400 InvalidToken</c> error.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

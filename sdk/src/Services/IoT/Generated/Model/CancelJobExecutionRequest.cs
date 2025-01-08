@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.IoT.Model
         private long? _expectedVersion;
         private bool? _force;
         private string _jobId;
-        private Dictionary<string, string> _statusDetails = new Dictionary<string, string>();
+        private Dictionary<string, string> _statusDetails = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _thingName;
 
         /// <summary>
@@ -72,11 +73,11 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property Force. 
         /// <para>
-        /// (Optional) If <code>true</code> the job execution will be canceled if it has status
-        /// IN_PROGRESS or QUEUED, otherwise the job execution will be canceled only if it has
-        /// status QUEUED. If you attempt to cancel a job execution that is IN_PROGRESS, and you
-        /// do not set <code>force</code> to <code>true</code>, then an <code>InvalidStateTransitionException</code>
-        /// will be thrown. The default is <code>false</code>.
+        /// (Optional) If <c>true</c> the job execution will be canceled if it has status IN_PROGRESS
+        /// or QUEUED, otherwise the job execution will be canceled only if it has status QUEUED.
+        /// If you attempt to cancel a job execution that is IN_PROGRESS, and you do not set <c>force</c>
+        /// to <c>true</c>, then an <c>InvalidStateTransitionException</c> will be thrown. The
+        /// default is <c>false</c>.
         /// </para>
         ///  
         /// <para>
@@ -133,7 +134,7 @@ namespace Amazon.IoT.Model
         // Check to see if StatusDetails property is set
         internal bool IsSetStatusDetails()
         {
-            return this._statusDetails != null && this._statusDetails.Count > 0; 
+            return this._statusDetails != null && (this._statusDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

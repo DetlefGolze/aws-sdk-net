@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -44,8 +45,9 @@ namespace Amazon.GuardDuty.Model
         private LambdaDetails _lambdaDetails;
         private RdsDbInstanceDetails _rdsDbInstanceDetails;
         private RdsDbUserDetails _rdsDbUserDetails;
+        private RdsLimitlessDbDetails _rdsLimitlessDbDetails;
         private string _resourceType;
-        private List<S3BucketDetail> _s3BucketDetails = new List<S3BucketDetail>();
+        private List<S3BucketDetail> _s3BucketDetails = AWSConfigs.InitializeCollections ? new List<S3BucketDetail>() : null;
 
         /// <summary>
         /// Gets and sets the property AccessKeyDetails. 
@@ -229,6 +231,25 @@ namespace Amazon.GuardDuty.Model
         }
 
         /// <summary>
+        /// Gets and sets the property RdsLimitlessDbDetails. 
+        /// <para>
+        /// Contains information about the RDS Limitless database that was involved in a GuardDuty
+        /// finding.
+        /// </para>
+        /// </summary>
+        public RdsLimitlessDbDetails RdsLimitlessDbDetails
+        {
+            get { return this._rdsLimitlessDbDetails; }
+            set { this._rdsLimitlessDbDetails = value; }
+        }
+
+        // Check to see if RdsLimitlessDbDetails property is set
+        internal bool IsSetRdsLimitlessDbDetails()
+        {
+            return this._rdsLimitlessDbDetails != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
         /// The type of Amazon Web Services resource.
@@ -261,7 +282,7 @@ namespace Amazon.GuardDuty.Model
         // Check to see if S3BucketDetails property is set
         internal bool IsSetS3BucketDetails()
         {
-            return this._s3BucketDetails != null && this._s3BucketDetails.Count > 0; 
+            return this._s3BucketDetails != null && (this._s3BucketDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,10 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// The notify configuration type.
+    /// The configuration for Amazon SES email messages that advanced security features sends
+    /// to a user when your adaptive authentication automated response has a <i>Notify</i>
+    /// action.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a request parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetRiskConfiguration.html">SetRiskConfiguration</a>
+    /// and a response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeRiskConfiguration.html">DescribeRiskConfiguration</a>.
+    /// </para>
     /// </summary>
     public partial class NotifyConfigurationType
     {
@@ -43,7 +52,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property BlockEmail. 
         /// <para>
-        /// Email template used when a detected risk event is blocked.
+        /// The template for the email message that your user pool sends when a detected risk
+        /// event is blocked.
         /// </para>
         /// </summary>
         public NotifyEmailType BlockEmail
@@ -61,7 +71,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property From. 
         /// <para>
-        /// The email address that is sending the email. The address must be either individually
+        /// The email address that sends the email message. The address must be either individually
         /// verified with Amazon Simple Email Service, or from a domain that has been verified
         /// with Amazon SES.
         /// </para>
@@ -82,8 +92,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property MfaEmail. 
         /// <para>
-        /// The multi-factor authentication (MFA) email template used when MFA is challenged as
-        /// part of a detected risk.
+        /// The template for the email message that your user pool sends when MFA is challenged
+        /// in response to a detected risk.
         /// </para>
         /// </summary>
         public NotifyEmailType MfaEmail
@@ -101,7 +111,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property NoActionEmail. 
         /// <para>
-        /// The email template used when a detected risk event is allowed.
+        /// The template for the email message that your user pool sends when no action is taken
+        /// in response to a detected risk.
         /// </para>
         /// </summary>
         public NotifyEmailType NoActionEmail
@@ -119,7 +130,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property ReplyTo. 
         /// <para>
-        /// The destination to which the receiver of an email should reply to.
+        /// The reply-to email address of an email template.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=131072)]
@@ -140,7 +151,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <para>
         /// The Amazon Resource Name (ARN) of the identity that is associated with the sending
         /// authorization policy. This identity permits Amazon Cognito to send for the email address
-        /// specified in the <code>From</code> parameter.
+        /// specified in the <c>From</c> parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]

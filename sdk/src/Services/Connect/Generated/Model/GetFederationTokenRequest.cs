@@ -26,12 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
     /// Container for the parameters to the GetFederationToken operation.
-    /// Retrieves a token for federation.
+    /// Supports SAML sign-in for Amazon Connect. Retrieves a token for federation. The token
+    /// is for the Amazon Connect user which corresponds to the IAM credentials that were
+    /// used to invoke this action. 
     /// 
+    ///  
+    /// <para>
+    /// For more information about how SAML sign-in works in Amazon Connect, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/configure-saml.html
+    /// ">Configure SAML with IAM for Amazon Connect in the <i>Amazon Connect Administrator
+    /// Guide</i>.</a> 
+    /// </para>
     ///  <note> 
     /// <para>
     /// This API doesn't support root users. If you try to invoke GetFederationToken with
@@ -39,8 +48,8 @@ namespace Amazon.Connect.Model
     /// </para>
     ///  
     /// <para>
-    ///  <code>Provided identity: Principal: .... User: .... cannot be used for federation
-    /// with Amazon Connect</code> 
+    ///  <c>Provided identity: Principal: .... User: .... cannot be used for federation with
+    /// Amazon Connect</c> 
     /// </para>
     ///  </note>
     /// </summary>

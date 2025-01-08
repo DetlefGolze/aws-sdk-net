@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(LineChartConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetContributionAnalysisDefaults())
             {
                 context.Writer.WritePropertyName("ContributionAnalysisDefaults");
@@ -108,6 +111,17 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
                     context.Writer.WriteObjectEnd();
                 }
                 context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetInteractions())
+            {
+                context.Writer.WritePropertyName("Interactions");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = VisualInteractionOptionsMarshaller.Instance;
+                marshaller.Marshall(requestObject.Interactions, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetLegend())
@@ -195,6 +209,17 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
                     context.Writer.WriteObjectEnd();
                 }
                 context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetSingleAxisOptions())
+            {
+                context.Writer.WritePropertyName("SingleAxisOptions");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = SingleAxisOptionsMarshaller.Instance;
+                marshaller.Marshall(requestObject.SingleAxisOptions, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetSmallMultiplesOptions())

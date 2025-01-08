@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecretsManager.Model
 {
     /// <summary>
@@ -42,8 +43,8 @@ namespace Amazon.SecretsManager.Model
     /// </para>
     ///  
     /// <para>
-    ///  <b>Required permissions: </b> <code>secretsmanager:DeleteResourcePolicy</code>. For
-    /// more information, see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">
+    ///  <b>Required permissions: </b> <c>secretsmanager:DeleteResourcePolicy</c>. For more
+    /// information, see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">
     /// IAM policy actions for Secrets Manager</a> and <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
     /// and access control in Secrets Manager</a>. 
     /// </para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
+        ///  <c>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</c>
         /// 
         /// </para>
         ///  
@@ -55,7 +56,7 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:comprehend:us-west-2:111122223333:targeted-sentiment-detection-job/1234abcd12ab34cd56ef1234567890ab</code>
+        ///  <c>arn:aws:comprehend:us-west-2:111122223333:targeted-sentiment-detection-job/1234abcd12ab34cd56ef1234567890ab</c>
         /// 
         /// </para>
         /// </summary>
@@ -76,7 +77,7 @@ namespace Amazon.Comprehend.Model
         /// Gets and sets the property JobId. 
         /// <para>
         /// The identifier generated for the job. To get the status of a job, use this identifier
-        /// with the <code>DescribeTargetedSentimentDetectionJob</code> operation.
+        /// with the <c>DescribeTargetedSentimentDetectionJob</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=32)]
@@ -111,7 +112,7 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// FAILED - The job did not complete. To get details, use the <code>DescribeTargetedSentimentDetectionJob</code>
+        /// FAILED - The job did not complete. To get details, use the <c>DescribeTargetedSentimentDetectionJob</c>
         /// operation.
         /// </para>
         ///  </li> </ul>

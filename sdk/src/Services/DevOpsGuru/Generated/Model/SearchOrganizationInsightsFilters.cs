@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
-    /// Filters you can use to specify which events are returned when <code>ListEvents</code>
-    /// is called.
+    /// Filters you can use to specify which events are returned when <c>ListEvents</c> is
+    /// called.
     /// </summary>
     public partial class SearchOrganizationInsightsFilters
     {
         private ResourceCollection _resourceCollection;
         private ServiceCollection _serviceCollection;
-        private List<string> _severities = new List<string>();
-        private List<string> _statuses = new List<string>();
+        private List<string> _severities = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _statuses = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceCollection.
@@ -85,7 +86,7 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if Severities property is set
         internal bool IsSetSeverities()
         {
-            return this._severities != null && this._severities.Count > 0; 
+            return this._severities != null && (this._severities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -104,7 +105,7 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if Statuses property is set
         internal bool IsSetStatuses()
         {
-            return this._statuses != null && this._statuses.Count > 0; 
+            return this._statuses != null && (this._statuses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

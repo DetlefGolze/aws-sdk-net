@@ -26,23 +26,52 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RedshiftServerless.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateWorkgroup operation.
     /// Creates an workgroup in Amazon Redshift Serverless.
+    /// 
+    ///  
+    /// <para>
+    /// VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that
+    /// you own in a Region from reaching or being reached from the internet through internet
+    /// gateways and egress-only internet gateways. If a workgroup is in an account with VPC
+    /// BPA turned on, the following capabilities are blocked: 
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    /// Creating a public access workgroup
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Modifying a private workgroup to public
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Adding a subnet with VPC BPA turned on to the workgroup when the workgroup is public
+    /// </para>
+    ///  </li> </ul> 
+    /// <para>
+    /// For more information about VPC BPA, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/security-vpc-bpa.html">Block
+    /// public access to VPCs and subnets</a> in the <i>Amazon VPC User Guide</i>.
+    /// </para>
     /// </summary>
     public partial class CreateWorkgroupRequest : AmazonRedshiftServerlessRequest
     {
         private int? _baseCapacity;
-        private List<ConfigParameter> _configParameters = new List<ConfigParameter>();
+        private List<ConfigParameter> _configParameters = AWSConfigs.InitializeCollections ? new List<ConfigParameter>() : null;
         private bool? _enhancedVpcRouting;
+        private string _ipAddressType;
+        private int? _maxCapacity;
         private string _namespaceName;
         private int? _port;
+        private PerformanceTarget _pricePerformanceTarget;
         private bool? _publiclyAccessible;
-        private List<string> _securityGroupIds = new List<string>();
-        private List<string> _subnetIds = new List<string>();
-        private List<Tag> _tags = new List<Tag>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _subnetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _workgroupName;
 
         /// <summary>
@@ -67,10 +96,10 @@ namespace Amazon.RedshiftServerless.Model
         /// Gets and sets the property ConfigParameters. 
         /// <para>
         /// An array of parameters to set for advanced control over a database. The options are
-        /// <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitivity_identifier</code>,
-        /// <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>,
-        /// and query monitoring metrics that let you define performance boundaries. For more
-        /// information about query monitoring rules and available metrics, see <a href="https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless">
+        /// <c>auto_mv</c>, <c>datestyle</c>, <c>enable_case_sensitive_identifier</c>, <c>enable_user_activity_logging</c>,
+        /// <c>query_group</c>, <c>search_path</c>, <c>require_ssl</c>, <c>use_fips_ssl</c>, and
+        /// query monitoring metrics that let you define performance boundaries. For more information
+        /// about query monitoring rules and available metrics, see <a href="https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless">
         /// Query monitoring metrics for Amazon Redshift Serverless</a>.
         /// </para>
         /// </summary>
@@ -83,7 +112,7 @@ namespace Amazon.RedshiftServerless.Model
         // Check to see if ConfigParameters property is set
         internal bool IsSetConfigParameters()
         {
-            return this._configParameters != null && this._configParameters.Count > 0; 
+            return this._configParameters != null && (this._configParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -104,6 +133,44 @@ namespace Amazon.RedshiftServerless.Model
         internal bool IsSetEnhancedVpcRouting()
         {
             return this._enhancedVpcRouting.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property IpAddressType. 
+        /// <para>
+        /// The IP address type that the workgroup supports. Possible values are <c>ipv4</c> and
+        /// <c>dualstack</c>.
+        /// </para>
+        /// </summary>
+        public string IpAddressType
+        {
+            get { return this._ipAddressType; }
+            set { this._ipAddressType = value; }
+        }
+
+        // Check to see if IpAddressType property is set
+        internal bool IsSetIpAddressType()
+        {
+            return this._ipAddressType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property MaxCapacity. 
+        /// <para>
+        /// The maximum data-warehouse capacity Amazon Redshift Serverless uses to serve queries.
+        /// The max capacity is specified in RPUs.
+        /// </para>
+        /// </summary>
+        public int MaxCapacity
+        {
+            get { return this._maxCapacity.GetValueOrDefault(); }
+            set { this._maxCapacity = value; }
+        }
+
+        // Check to see if MaxCapacity property is set
+        internal bool IsSetMaxCapacity()
+        {
+            return this._maxCapacity.HasValue; 
         }
 
         /// <summary>
@@ -145,6 +212,24 @@ namespace Amazon.RedshiftServerless.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PricePerformanceTarget. 
+        /// <para>
+        /// An object that represents the price performance target settings for the workgroup.
+        /// </para>
+        /// </summary>
+        public PerformanceTarget PricePerformanceTarget
+        {
+            get { return this._pricePerformanceTarget; }
+            set { this._pricePerformanceTarget = value; }
+        }
+
+        // Check to see if PricePerformanceTarget property is set
+        internal bool IsSetPricePerformanceTarget()
+        {
+            return this._pricePerformanceTarget != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property PubliclyAccessible. 
         /// <para>
         /// A value that specifies whether the workgroup can be accessed from a public network.
@@ -177,7 +262,7 @@ namespace Amazon.RedshiftServerless.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -195,7 +280,7 @@ namespace Amazon.RedshiftServerless.Model
         // Check to see if SubnetIds property is set
         internal bool IsSetSubnetIds()
         {
-            return this._subnetIds != null && this._subnetIds.Count > 0; 
+            return this._subnetIds != null && (this._subnetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -214,7 +299,7 @@ namespace Amazon.RedshiftServerless.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

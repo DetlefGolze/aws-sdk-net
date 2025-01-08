@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointEmail.Model
 {
     /// <summary>
-    /// Represents the email message that you're sending. The <code>Message</code> object
-    /// consists of a subject line and a message body.
+    /// Represents the email message that you're sending. The <c>Message</c> object consists
+    /// of a subject line and a message body.
     /// </summary>
     public partial class Message
     {

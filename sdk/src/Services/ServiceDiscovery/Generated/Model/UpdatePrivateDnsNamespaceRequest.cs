@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceDiscovery.Model
 {
     /// <summary>
@@ -79,8 +80,8 @@ namespace Amazon.ServiceDiscovery.Model
         /// <summary>
         /// Gets and sets the property UpdaterRequestId. 
         /// <para>
-        /// A unique string that identifies the request and that allows failed <code>UpdatePrivateDnsNamespace</code>
-        /// requests to be retried without the risk of running the operation twice. <code>UpdaterRequestId</code>
+        /// A unique string that identifies the request and that allows failed <c>UpdatePrivateDnsNamespace</c>
+        /// requests to be retried without the risk of running the operation twice. <c>UpdaterRequestId</c>
         /// can be any unique string (for example, a date/timestamp).
         /// </para>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CleanRooms.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.CleanRooms.Model
         /// The query text.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=15000)]
+        [AWSProperty(Min=0, Max=90000)]
         public string Text
         {
             get { return this._text; }

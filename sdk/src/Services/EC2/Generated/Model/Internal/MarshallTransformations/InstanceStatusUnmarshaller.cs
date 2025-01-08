@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -54,6 +55,12 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
             {
                 if (context.IsStartElement || context.IsAttribute)
                 {
+                    if (context.TestExpression("attachedEbsStatus", targetDepth))
+                    {
+                        var unmarshaller = EbsStatusSummaryUnmarshaller.Instance;
+                        unmarshalledObject.AttachedEbsStatus = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("availabilityZone", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
@@ -63,6 +70,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                     if (context.TestExpression("eventsSet/item", targetDepth))
                     {
                         var unmarshaller = InstanceStatusEventUnmarshaller.Instance;
+                        if (unmarshalledObject.Events == null)
+                        {
+                            unmarshalledObject.Events = new List<InstanceStatusEvent>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.Events.Add(item);
                         continue;
@@ -77,6 +88,12 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = InstanceStateUnmarshaller.Instance;
                         unmarshalledObject.InstanceState = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("operator", targetDepth))
+                    {
+                        var unmarshaller = OperatorResponseUnmarshaller.Instance;
+                        unmarshalledObject.Operator = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("outpostArn", targetDepth))

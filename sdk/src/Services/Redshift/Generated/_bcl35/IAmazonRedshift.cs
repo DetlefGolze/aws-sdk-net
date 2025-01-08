@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Redshift.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Redshift
 {
     /// <summary>
-    /// Interface for accessing Redshift
+    /// <para>Interface for accessing Redshift</para>
     ///
     /// Amazon Redshift 
     /// <para>
@@ -153,13 +154,16 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the AddPartner service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.PartnerNotFoundException">
         /// The name of the partner was not found.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.UnauthorizedPartnerIntegrationException">
         /// The partner integration is not authorized.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/AddPartner">REST API Reference for AddPartner Operation</seealso>
         AddPartnerResponse AddPartner(AddPartnerRequest request);
@@ -284,7 +288,7 @@ namespace Amazon.Redshift
         /// The cluster security group name does not refer to an existing cluster security group.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterSecurityGroupStateException">
-        /// The state of the cluster security group is not <code>available</code>.
+        /// The state of the cluster security group is not <c>available</c>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/AuthorizeClusterSecurityGroupIngress">REST API Reference for AuthorizeClusterSecurityGroupIngress Operation</seealso>
         AuthorizeClusterSecurityGroupIngressResponse AuthorizeClusterSecurityGroupIngress(AuthorizeClusterSecurityGroupIngressRequest request);
@@ -372,7 +376,7 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the AuthorizeEndpointAccess service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.EndpointAuthorizationAlreadyExistsException">
         /// The authorization already exists for this endpoint.
@@ -384,7 +388,7 @@ namespace Amazon.Redshift
         /// The status of the authorization is not valid.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
         /// The requested operation isn't supported.
@@ -450,8 +454,8 @@ namespace Amazon.Redshift
         /// made by Amazon Redshift on your behalf. Wait and retry the request.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterSnapshotStateException">
-        /// The specified cluster snapshot is not in the <code>available</code> state, or other
-        /// accounts are authorized to access the snapshot.
+        /// The specified cluster snapshot is not in the <c>available</c> state, or other accounts
+        /// are authorized to access the snapshot.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.LimitExceededException">
         /// The encryption key has exceeded its grant limit in Amazon Web Services KMS.
@@ -595,10 +599,10 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the CancelResize service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.ResizeNotFoundException">
         /// A resize operation for the specified cluster is not found.
@@ -661,6 +665,9 @@ namespace Amazon.Redshift
         /// <param name="request">Container for the necessary parameters to execute the CopyClusterSnapshot service method.</param>
         /// 
         /// <returns>The response from the CopyClusterSnapshot service method, as returned by Redshift.</returns>
+        /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
+        /// </exception>
         /// <exception cref="Amazon.Redshift.Model.ClusterSnapshotAlreadyExistsException">
         /// The value specified as a snapshot identifier is already used by an existing snapshot.
         /// </exception>
@@ -671,8 +678,8 @@ namespace Amazon.Redshift
         /// The request would result in the user exceeding the allowed number of cluster snapshots.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterSnapshotStateException">
-        /// The specified cluster snapshot is not in the <code>available</code> state, or other
-        /// accounts are authorized to access the snapshot.
+        /// The specified cluster snapshot is not in the <c>available</c> state, or other accounts
+        /// are authorized to access the snapshot.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidRetentionPeriodException">
         /// The retention period specified is either in the past or is not a valid value.
@@ -780,6 +787,35 @@ namespace Amazon.Redshift
         /// go to <a href="https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html">Amazon
         /// Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>.
         /// </para>
+        ///  
+        /// <para>
+        /// VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that
+        /// you own in a Region from reaching or being reached from the internet through internet
+        /// gateways and egress-only internet gateways. If a subnet group for a provisioned cluster
+        /// is in an account with VPC BPA turned on, the following capabilities are blocked:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Creating a public cluster
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Restoring a public cluster
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Modifying a private cluster to be public
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Adding a subnet with VPC BPA turned on to the subnet group when there's at least one
+        /// public cluster within the group
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information about VPC BPA, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/security-vpc-bpa.html">Block
+        /// public access to VPCs and subnets</a> in the <i>Amazon VPC User Guide</i>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateCluster service method.</param>
         /// 
@@ -840,6 +876,10 @@ namespace Amazon.Redshift
         /// <exception cref="Amazon.Redshift.Model.InvalidVPCNetworkStateException">
         /// The cluster subnet group does not cover all Availability Zones.
         /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.Ipv6CidrBlockNotFoundException">
+        /// There are no subnets in your VPC with associated IPv6 CIDR blocks. To use dual-stack
+        /// mode, associate an IPv6 CIDR block with each subnet in your VPC.
+        /// </exception>
         /// <exception cref="Amazon.Redshift.Model.LimitExceededException">
         /// The encryption key has exceeded its grant limit in Amazon Web Services KMS.
         /// </exception>
@@ -851,6 +891,9 @@ namespace Amazon.Redshift
         /// about increasing your quota, go to <a href="https://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html">Limits
         /// in Amazon Redshift</a> in the <i>Amazon Redshift Cluster Management Guide</i>.
         /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.RedshiftIdcApplicationNotExistsException">
+        /// The application you attempted to find doesn't exist.
+        /// </exception>
         /// <exception cref="Amazon.Redshift.Model.SnapshotScheduleNotFoundException">
         /// We could not find the specified snapshot schedule.
         /// </exception>
@@ -859,6 +902,9 @@ namespace Amazon.Redshift
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.UnauthorizedOperationException">
         /// Your account is not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateCluster">REST API Reference for CreateCluster Operation</seealso>
         CreateClusterResponse CreateCluster(CreateClusterRequest request);
@@ -1026,7 +1072,7 @@ namespace Amazon.Redshift
 
 
         /// <summary>
-        /// Creates a manual snapshot of the specified cluster. The cluster must be in the <code>available</code>
+        /// Creates a manual snapshot of the specified cluster. The cluster must be in the <c>available</c>
         /// state. 
         /// 
         ///  
@@ -1039,7 +1085,7 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the CreateClusterSnapshot service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.ClusterSnapshotAlreadyExistsException">
         /// The value specified as a snapshot identifier is already used by an existing snapshot.
@@ -1048,7 +1094,7 @@ namespace Amazon.Redshift
         /// The request would result in the user exceeding the allowed number of cluster snapshots.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidRetentionPeriodException">
         /// The retention period specified is either in the past or is not a valid value.
@@ -1184,7 +1230,7 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the CreateCustomDomainAssociation service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.CustomCnameAssociationException">
         /// An error occurred when an attempt was made to change the custom domain association.
@@ -1236,7 +1282,7 @@ namespace Amazon.Redshift
         /// You are not authorized to access the cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.ClusterSubnetGroupNotFoundException">
         /// The cluster subnet group name does not refer to an existing cluster subnet group.
@@ -1251,10 +1297,10 @@ namespace Amazon.Redshift
         /// The number of Redshift-managed VPC endpoints per cluster has exceeded its limit.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterSecurityGroupStateException">
-        /// The state of the cluster security group is not <code>available</code>.
+        /// The state of the cluster security group is not <c>available</c>.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.UnauthorizedOperationException">
         /// Your account is not authorized to perform the requested operation.
@@ -1528,17 +1574,146 @@ namespace Amazon.Redshift
 
         #endregion
         
+        #region  CreateIntegration
+
+
+        /// <summary>
+        /// Creates a zero-ETL integration or S3 event integration with Amazon Redshift.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateIntegration service method.</param>
+        /// 
+        /// <returns>The response from the CreateIntegration service method, as returned by Redshift.</returns>
+        /// <exception cref="Amazon.Redshift.Model.IntegrationAlreadyExistsException">
+        /// The integration you are trying to create already exists.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.IntegrationConflictOperationException">
+        /// A conflicting conditional operation is currently in progress against this resource.
+        /// This typically occurs when there are multiple requests being made to the same resource
+        /// at the same time, and these requests conflict with each other.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.IntegrationQuotaExceededException">
+        /// You can't create any more zero-ETL or S3 event integrations because the quota has
+        /// been reached.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.IntegrationSourceNotFoundException">
+        /// The specified integration source can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.IntegrationTargetNotFoundException">
+        /// The specified integration target can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
+        /// The specified cluster is not in the <c>available</c> state.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.InvalidTagException">
+        /// The tag is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.TagLimitExceededException">
+        /// You have exceeded the number of tags allowed.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateIntegration">REST API Reference for CreateIntegration Operation</seealso>
+        CreateIntegrationResponse CreateIntegration(CreateIntegrationRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreateIntegration operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreateIntegration operation on AmazonRedshiftClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateIntegration
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateIntegration">REST API Reference for CreateIntegration Operation</seealso>
+        IAsyncResult BeginCreateIntegration(CreateIntegrationRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreateIntegration operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreateIntegration.</param>
+        /// 
+        /// <returns>Returns a  CreateIntegrationResult from Redshift.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateIntegration">REST API Reference for CreateIntegration Operation</seealso>
+        CreateIntegrationResponse EndCreateIntegration(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  CreateRedshiftIdcApplication
+
+
+        /// <summary>
+        /// Creates an Amazon Redshift application for use with IAM Identity Center.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateRedshiftIdcApplication service method.</param>
+        /// 
+        /// <returns>The response from the CreateRedshiftIdcApplication service method, as returned by Redshift.</returns>
+        /// <exception cref="Amazon.Redshift.Model.DependentServiceAccessDeniedException">
+        /// A dependent service denied access for the integration.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.DependentServiceUnavailableException">
+        /// Your request cannot be completed because a dependent internal service is temporarily
+        /// unavailable. Wait 30 to 60 seconds and try again.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.RedshiftIdcApplicationAlreadyExistsException">
+        /// The application you attempted to add already exists.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.RedshiftIdcApplicationQuotaExceededException">
+        /// The maximum number of Redshift IAM Identity Center applications was exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateRedshiftIdcApplication">REST API Reference for CreateRedshiftIdcApplication Operation</seealso>
+        CreateRedshiftIdcApplicationResponse CreateRedshiftIdcApplication(CreateRedshiftIdcApplicationRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreateRedshiftIdcApplication operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreateRedshiftIdcApplication operation on AmazonRedshiftClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateRedshiftIdcApplication
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateRedshiftIdcApplication">REST API Reference for CreateRedshiftIdcApplication Operation</seealso>
+        IAsyncResult BeginCreateRedshiftIdcApplication(CreateRedshiftIdcApplicationRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreateRedshiftIdcApplication operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreateRedshiftIdcApplication.</param>
+        /// 
+        /// <returns>Returns a  CreateRedshiftIdcApplicationResult from Redshift.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateRedshiftIdcApplication">REST API Reference for CreateRedshiftIdcApplication Operation</seealso>
+        CreateRedshiftIdcApplicationResponse EndCreateRedshiftIdcApplication(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  CreateScheduledAction
 
 
         /// <summary>
         /// Creates a scheduled action. A scheduled action contains a schedule and an Amazon Redshift
-        /// API action. For example, you can create a schedule of when to run the <code>ResizeCluster</code>
+        /// API action. For example, you can create a schedule of when to run the <c>ResizeCluster</c>
         /// API operation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateScheduledAction service method.</param>
         /// 
         /// <returns>The response from the CreateScheduledAction service method, as returned by Redshift.</returns>
+        /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
+        /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidScheduledActionException">
         /// The scheduled action is not valid.
         /// </exception>
@@ -1556,6 +1731,9 @@ namespace Amazon.Redshift
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.UnauthorizedOperationException">
         /// Your account is not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateScheduledAction">REST API Reference for CreateScheduledAction Operation</seealso>
         CreateScheduledActionResponse CreateScheduledAction(CreateScheduledActionRequest request);
@@ -1738,7 +1916,7 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the CreateTags service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidTagException">
         /// The tag is invalid.
@@ -1791,10 +1969,10 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the CreateUsageLimit service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidUsageLimitException">
         /// The usage limit is not valid.
@@ -1947,11 +2125,11 @@ namespace Amazon.Redshift
         ///  
         /// <para>
         /// If you want to shut down the cluster and retain it for future use, set <i>SkipFinalClusterSnapshot</i>
-        /// to <code>false</code> and specify a name for <i>FinalClusterSnapshotIdentifier</i>.
-        /// You can later restore this snapshot to resume using the cluster. If a final cluster
-        /// snapshot is requested, the status of the cluster will be "final-snapshot" while the
-        /// snapshot is being taken, then it's "deleting" once Amazon Redshift begins deleting
-        /// the cluster. 
+        /// to <c>false</c> and specify a name for <i>FinalClusterSnapshotIdentifier</i>. You
+        /// can later restore this snapshot to resume using the cluster. If a final cluster snapshot
+        /// is requested, the status of the cluster will be "final-snapshot" while the snapshot
+        /// is being taken, then it's "deleting" once Amazon Redshift begins deleting the cluster.
+        /// 
         /// </para>
         ///  
         /// <para>
@@ -1963,7 +2141,7 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the DeleteCluster service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.ClusterSnapshotAlreadyExistsException">
         /// The value specified as a snapshot identifier is already used by an existing snapshot.
@@ -1972,7 +2150,7 @@ namespace Amazon.Redshift
         /// The request would result in the user exceeding the allowed number of cluster snapshots.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidRetentionPeriodException">
         /// The retention period specified is either in the past or is not a valid value.
@@ -2092,7 +2270,7 @@ namespace Amazon.Redshift
         /// The cluster security group name does not refer to an existing cluster security group.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterSecurityGroupStateException">
-        /// The state of the cluster security group is not <code>available</code>.
+        /// The state of the cluster security group is not <c>available</c>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteClusterSecurityGroup">REST API Reference for DeleteClusterSecurityGroup Operation</seealso>
         DeleteClusterSecurityGroupResponse DeleteClusterSecurityGroup(DeleteClusterSecurityGroupRequest request);
@@ -2129,7 +2307,7 @@ namespace Amazon.Redshift
 
 
         /// <summary>
-        /// Deletes the specified manual snapshot. The snapshot must be in the <code>available</code>
+        /// Deletes the specified manual snapshot. The snapshot must be in the <c>available</c>
         /// state, with no other users authorized to access the snapshot. 
         /// 
         ///  
@@ -2148,8 +2326,8 @@ namespace Amazon.Redshift
         /// The snapshot identifier does not refer to an existing cluster snapshot.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterSnapshotStateException">
-        /// The specified cluster snapshot is not in the <code>available</code> state, or other
-        /// accounts are authorized to access the snapshot.
+        /// The specified cluster snapshot is not in the <c>available</c> state, or other accounts
+        /// are authorized to access the snapshot.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteClusterSnapshot">REST API Reference for DeleteClusterSnapshot Operation</seealso>
         DeleteClusterSnapshotResponse DeleteClusterSnapshot(DeleteClusterSnapshotRequest request);
@@ -2241,10 +2419,13 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the DeleteCustomDomainAssociation service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.CustomCnameAssociationException">
         /// An error occurred when an attempt was made to change the custom domain association.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.CustomDomainAssociationNotFoundException">
+        /// An error occurred. The custom domain name couldn't be found.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
         /// The requested operation isn't supported.
@@ -2290,16 +2471,16 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the DeleteEndpointAccess service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.EndpointNotFoundException">
         /// The endpoint name doesn't refer to an existing endpoint.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterSecurityGroupStateException">
-        /// The state of the cluster security group is not <code>available</code>.
+        /// The state of the cluster security group is not <c>available</c>.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidEndpointStateException">
         /// The status of the endpoint is not valid.
@@ -2396,8 +2577,8 @@ namespace Amazon.Redshift
         /// There is no Amazon Redshift HSM client certificate with the specified identifier.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidHsmClientCertificateStateException">
-        /// The specified HSM client certificate is not in the <code>available</code> state, or
-        /// it is still in use by one or more Amazon Redshift clusters.
+        /// The specified HSM client certificate is not in the <c>available</c> state, or it is
+        /// still in use by one or more Amazon Redshift clusters.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteHsmClientCertificate">REST API Reference for DeleteHsmClientCertificate Operation</seealso>
         DeleteHsmClientCertificateResponse DeleteHsmClientCertificate(DeleteHsmClientCertificateRequest request);
@@ -2443,8 +2624,8 @@ namespace Amazon.Redshift
         /// There is no Amazon Redshift HSM configuration with the specified identifier.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidHsmConfigurationStateException">
-        /// The specified HSM configuration is not in the <code>available</code> state, or it
-        /// is still in use by one or more Amazon Redshift clusters.
+        /// The specified HSM configuration is not in the <c>available</c> state, or it is still
+        /// in use by one or more Amazon Redshift clusters.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteHsmConfiguration">REST API Reference for DeleteHsmConfiguration Operation</seealso>
         DeleteHsmConfigurationResponse DeleteHsmConfiguration(DeleteHsmConfigurationRequest request);
@@ -2477,6 +2658,60 @@ namespace Amazon.Redshift
 
         #endregion
         
+        #region  DeleteIntegration
+
+
+        /// <summary>
+        /// Deletes a zero-ETL integration or S3 event integration with Amazon Redshift.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteIntegration service method.</param>
+        /// 
+        /// <returns>The response from the DeleteIntegration service method, as returned by Redshift.</returns>
+        /// <exception cref="Amazon.Redshift.Model.IntegrationConflictOperationException">
+        /// A conflicting conditional operation is currently in progress against this resource.
+        /// This typically occurs when there are multiple requests being made to the same resource
+        /// at the same time, and these requests conflict with each other.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.IntegrationConflictStateException">
+        /// The integration is in an invalid state and can't perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.IntegrationNotFoundException">
+        /// The integration can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteIntegration">REST API Reference for DeleteIntegration Operation</seealso>
+        DeleteIntegrationResponse DeleteIntegration(DeleteIntegrationRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteIntegration operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteIntegration operation on AmazonRedshiftClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteIntegration
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteIntegration">REST API Reference for DeleteIntegration Operation</seealso>
+        IAsyncResult BeginDeleteIntegration(DeleteIntegrationRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteIntegration operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteIntegration.</param>
+        /// 
+        /// <returns>Returns a  DeleteIntegrationResult from Redshift.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteIntegration">REST API Reference for DeleteIntegration Operation</seealso>
+        DeleteIntegrationResponse EndDeleteIntegration(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  DeletePartner
 
 
@@ -2488,13 +2723,16 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the DeletePartner service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.PartnerNotFoundException">
         /// The name of the partner was not found.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.UnauthorizedPartnerIntegrationException">
         /// The partner integration is not authorized.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeletePartner">REST API Reference for DeletePartner Operation</seealso>
         DeletePartnerResponse DeletePartner(DeletePartnerRequest request);
@@ -2524,6 +2762,105 @@ namespace Amazon.Redshift
         /// <returns>Returns a  DeletePartnerResult from Redshift.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeletePartner">REST API Reference for DeletePartner Operation</seealso>
         DeletePartnerResponse EndDeletePartner(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  DeleteRedshiftIdcApplication
+
+
+        /// <summary>
+        /// Deletes an Amazon Redshift IAM Identity Center application.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteRedshiftIdcApplication service method.</param>
+        /// 
+        /// <returns>The response from the DeleteRedshiftIdcApplication service method, as returned by Redshift.</returns>
+        /// <exception cref="Amazon.Redshift.Model.DependentServiceAccessDeniedException">
+        /// A dependent service denied access for the integration.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.DependentServiceUnavailableException">
+        /// Your request cannot be completed because a dependent internal service is temporarily
+        /// unavailable. Wait 30 to 60 seconds and try again.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.RedshiftIdcApplicationNotExistsException">
+        /// The application you attempted to find doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteRedshiftIdcApplication">REST API Reference for DeleteRedshiftIdcApplication Operation</seealso>
+        DeleteRedshiftIdcApplicationResponse DeleteRedshiftIdcApplication(DeleteRedshiftIdcApplicationRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteRedshiftIdcApplication operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteRedshiftIdcApplication operation on AmazonRedshiftClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteRedshiftIdcApplication
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteRedshiftIdcApplication">REST API Reference for DeleteRedshiftIdcApplication Operation</seealso>
+        IAsyncResult BeginDeleteRedshiftIdcApplication(DeleteRedshiftIdcApplicationRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteRedshiftIdcApplication operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteRedshiftIdcApplication.</param>
+        /// 
+        /// <returns>Returns a  DeleteRedshiftIdcApplicationResult from Redshift.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteRedshiftIdcApplication">REST API Reference for DeleteRedshiftIdcApplication Operation</seealso>
+        DeleteRedshiftIdcApplicationResponse EndDeleteRedshiftIdcApplication(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  DeleteResourcePolicy
+
+
+        /// <summary>
+        /// Deletes the resource policy for a specified resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteResourcePolicy service method.</param>
+        /// 
+        /// <returns>The response from the DeleteResourcePolicy service method, as returned by Redshift.</returns>
+        /// <exception cref="Amazon.Redshift.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteResourcePolicy">REST API Reference for DeleteResourcePolicy Operation</seealso>
+        DeleteResourcePolicyResponse DeleteResourcePolicy(DeleteResourcePolicyRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteResourcePolicy operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteResourcePolicy operation on AmazonRedshiftClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteResourcePolicy
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteResourcePolicy">REST API Reference for DeleteResourcePolicy Operation</seealso>
+        IAsyncResult BeginDeleteResourcePolicy(DeleteResourcePolicyRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteResourcePolicy operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteResourcePolicy.</param>
+        /// 
+        /// <returns>Returns a  DeleteResourcePolicyResult from Redshift.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteResourcePolicy">REST API Reference for DeleteResourcePolicy Operation</seealso>
+        DeleteResourcePolicyResponse EndDeleteResourcePolicy(IAsyncResult asyncResult);
 
         #endregion
         
@@ -2759,6 +3096,56 @@ namespace Amazon.Redshift
 
         #endregion
         
+        #region  DeregisterNamespace
+
+
+        /// <summary>
+        /// Deregisters a cluster or serverless namespace from the Amazon Web Services Glue Data
+        /// Catalog.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeregisterNamespace service method.</param>
+        /// 
+        /// <returns>The response from the DeregisterNamespace service method, as returned by Redshift.</returns>
+        /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
+        /// The specified cluster is not in the <c>available</c> state.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.InvalidNamespaceException">
+        /// The namespace isn't valid because the namespace doesn't exist. Provide a valid namespace.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeregisterNamespace">REST API Reference for DeregisterNamespace Operation</seealso>
+        DeregisterNamespaceResponse DeregisterNamespace(DeregisterNamespaceRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeregisterNamespace operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeregisterNamespace operation on AmazonRedshiftClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeregisterNamespace
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeregisterNamespace">REST API Reference for DeregisterNamespace Operation</seealso>
+        IAsyncResult BeginDeregisterNamespace(DeregisterNamespaceRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeregisterNamespace operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeregisterNamespace.</param>
+        /// 
+        /// <returns>Returns a  DeregisterNamespaceResult from Redshift.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeregisterNamespace">REST API Reference for DeregisterNamespace Operation</seealso>
+        DeregisterNamespaceResponse EndDeregisterNamespace(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  DescribeAccountAttributes
 
 
@@ -2851,16 +3238,16 @@ namespace Amazon.Redshift
 
 
         /// <summary>
-        /// Returns an array of <code>ClusterDbRevision</code> objects.
+        /// Returns an array of <c>ClusterDbRevision</c> objects.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeClusterDbRevisions service method.</param>
         /// 
         /// <returns>The response from the DescribeClusterDbRevisions service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeClusterDbRevisions">REST API Reference for DescribeClusterDbRevisions Operation</seealso>
         DescribeClusterDbRevisionsResponse DescribeClusterDbRevisions(DescribeClusterDbRevisionsRequest request);
@@ -2911,9 +3298,9 @@ namespace Amazon.Redshift
         /// <para>
         /// If you specify both tag keys and tag values in the same request, Amazon Redshift returns
         /// all parameter groups that match any combination of the specified keys and values.
-        /// For example, if you have <code>owner</code> and <code>environment</code> for tag keys,
-        /// and <code>admin</code> and <code>test</code> for tag values, all parameter groups
-        /// that have any combination of those values are returned.
+        /// For example, if you have <c>owner</c> and <c>environment</c> for tag keys, and <c>admin</c>
+        /// and <c>test</c> for tag values, all parameter groups that have any combination of
+        /// those values are returned.
         /// </para>
         ///  
         /// <para>
@@ -2947,9 +3334,9 @@ namespace Amazon.Redshift
         /// <para>
         /// If you specify both tag keys and tag values in the same request, Amazon Redshift returns
         /// all parameter groups that match any combination of the specified keys and values.
-        /// For example, if you have <code>owner</code> and <code>environment</code> for tag keys,
-        /// and <code>admin</code> and <code>test</code> for tag values, all parameter groups
-        /// that have any combination of those values are returned.
+        /// For example, if you have <c>owner</c> and <c>environment</c> for tag keys, and <c>admin</c>
+        /// and <c>test</c> for tag values, all parameter groups that have any combination of
+        /// those values are returned.
         /// </para>
         ///  
         /// <para>
@@ -3069,9 +3456,9 @@ namespace Amazon.Redshift
         /// <para>
         /// If you specify both tag keys and tag values in the same request, Amazon Redshift returns
         /// all clusters that match any combination of the specified keys and values. For example,
-        /// if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code>
-        /// and <code>test</code> for tag values, all clusters that have any combination of those
-        /// values are returned.
+        /// if you have <c>owner</c> and <c>environment</c> for tag keys, and <c>admin</c> and
+        /// <c>test</c> for tag values, all clusters that have any combination of those values
+        /// are returned.
         /// </para>
         ///  
         /// <para>
@@ -3082,7 +3469,7 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the DescribeClusters service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidTagException">
         /// The tag is invalid.
@@ -3101,9 +3488,9 @@ namespace Amazon.Redshift
         /// <para>
         /// If you specify both tag keys and tag values in the same request, Amazon Redshift returns
         /// all clusters that match any combination of the specified keys and values. For example,
-        /// if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code>
-        /// and <code>test</code> for tag values, all clusters that have any combination of those
-        /// values are returned.
+        /// if you have <c>owner</c> and <c>environment</c> for tag keys, and <c>admin</c> and
+        /// <c>test</c> for tag values, all clusters that have any combination of those values
+        /// are returned.
         /// </para>
         ///  
         /// <para>
@@ -3115,7 +3502,7 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the DescribeClusters service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidTagException">
         /// The tag is invalid.
@@ -3169,9 +3556,9 @@ namespace Amazon.Redshift
         /// <para>
         /// If you specify both tag keys and tag values in the same request, Amazon Redshift returns
         /// all security groups that match any combination of the specified keys and values. For
-        /// example, if you have <code>owner</code> and <code>environment</code> for tag keys,
-        /// and <code>admin</code> and <code>test</code> for tag values, all security groups that
-        /// have any combination of those values are returned.
+        /// example, if you have <c>owner</c> and <c>environment</c> for tag keys, and <c>admin</c>
+        /// and <c>test</c> for tag values, all security groups that have any combination of those
+        /// values are returned.
         /// </para>
         ///  
         /// <para>
@@ -3205,9 +3592,9 @@ namespace Amazon.Redshift
         /// <para>
         /// If you specify both tag keys and tag values in the same request, Amazon Redshift returns
         /// all security groups that match any combination of the specified keys and values. For
-        /// example, if you have <code>owner</code> and <code>environment</code> for tag keys,
-        /// and <code>admin</code> and <code>test</code> for tag values, all security groups that
-        /// have any combination of those values are returned.
+        /// example, if you have <c>owner</c> and <c>environment</c> for tag keys, and <c>admin</c>
+        /// and <c>test</c> for tag values, all security groups that have any combination of those
+        /// values are returned.
         /// </para>
         ///  
         /// <para>
@@ -3268,10 +3655,10 @@ namespace Amazon.Redshift
         /// <para>
         /// If you specify both tag keys and tag values in the same request, Amazon Redshift returns
         /// all snapshots that match any combination of the specified keys and values. For example,
-        /// if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code>
-        /// and <code>test</code> for tag values, all snapshots that have any combination of those
-        /// values are returned. Only snapshots that you own are returned in the response; shared
-        /// snapshots are not returned with the tag key and tag value request parameters.
+        /// if you have <c>owner</c> and <c>environment</c> for tag keys, and <c>admin</c> and
+        /// <c>test</c> for tag values, all snapshots that have any combination of those values
+        /// are returned. Only snapshots that you own are returned in the response; shared snapshots
+        /// are not returned with the tag key and tag value request parameters.
         /// </para>
         ///  
         /// <para>
@@ -3282,7 +3669,7 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the DescribeClusterSnapshots service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.ClusterSnapshotNotFoundException">
         /// The snapshot identifier does not refer to an existing cluster snapshot.
@@ -3306,10 +3693,10 @@ namespace Amazon.Redshift
         /// <para>
         /// If you specify both tag keys and tag values in the same request, Amazon Redshift returns
         /// all snapshots that match any combination of the specified keys and values. For example,
-        /// if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code>
-        /// and <code>test</code> for tag values, all snapshots that have any combination of those
-        /// values are returned. Only snapshots that you own are returned in the response; shared
-        /// snapshots are not returned with the tag key and tag value request parameters.
+        /// if you have <c>owner</c> and <c>environment</c> for tag keys, and <c>admin</c> and
+        /// <c>test</c> for tag values, all snapshots that have any combination of those values
+        /// are returned. Only snapshots that you own are returned in the response; shared snapshots
+        /// are not returned with the tag key and tag value request parameters.
         /// </para>
         ///  
         /// <para>
@@ -3321,7 +3708,7 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the DescribeClusterSnapshots service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.ClusterSnapshotNotFoundException">
         /// The snapshot identifier does not refer to an existing cluster snapshot.
@@ -3375,9 +3762,9 @@ namespace Amazon.Redshift
         /// <para>
         /// If you specify both tag keys and tag values in the same request, Amazon Redshift returns
         /// all subnet groups that match any combination of the specified keys and values. For
-        /// example, if you have <code>owner</code> and <code>environment</code> for tag keys,
-        /// and <code>admin</code> and <code>test</code> for tag values, all subnet groups that
-        /// have any combination of those values are returned.
+        /// example, if you have <c>owner</c> and <c>environment</c> for tag keys, and <c>admin</c>
+        /// and <c>test</c> for tag values, all subnet groups that have any combination of those
+        /// values are returned.
         /// </para>
         ///  
         /// <para>
@@ -3405,9 +3792,9 @@ namespace Amazon.Redshift
         /// <para>
         /// If you specify both tag keys and tag values in the same request, Amazon Redshift returns
         /// all subnet groups that match any combination of the specified keys and values. For
-        /// example, if you have <code>owner</code> and <code>environment</code> for tag keys,
-        /// and <code>admin</code> and <code>test</code> for tag values, all subnet groups that
-        /// have any combination of those values are returned.
+        /// example, if you have <c>owner</c> and <c>environment</c> for tag keys, and <c>admin</c>
+        /// and <c>test</c> for tag values, all subnet groups that have any combination of those
+        /// values are returned.
         /// </para>
         ///  
         /// <para>
@@ -3559,7 +3946,7 @@ namespace Amazon.Redshift
 
 
         /// <summary>
-        /// Contains information for custom domain associations for a cluster.
+        /// Contains information about custom domain associations for a cluster.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeCustomDomainAssociations service method.</param>
         /// 
@@ -3789,13 +4176,13 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the DescribeEndpointAccess service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.EndpointNotFoundException">
         /// The endpoint name doesn't refer to an existing endpoint.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeEndpointAccess">REST API Reference for DescribeEndpointAccess Operation</seealso>
         DescribeEndpointAccessResponse DescribeEndpointAccess(DescribeEndpointAccessRequest request);
@@ -3838,7 +4225,7 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the DescribeEndpointAuthorization service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
         /// The requested operation isn't supported.
@@ -3992,9 +4379,9 @@ namespace Amazon.Redshift
         /// <para>
         /// If you specify both tag keys and tag values in the same request, Amazon Redshift returns
         /// all event notification subscriptions that match any combination of the specified keys
-        /// and values. For example, if you have <code>owner</code> and <code>environment</code>
-        /// for tag keys, and <code>admin</code> and <code>test</code> for tag values, all subscriptions
-        /// that have any combination of those values are returned.
+        /// and values. For example, if you have <c>owner</c> and <c>environment</c> for tag keys,
+        /// and <c>admin</c> and <c>test</c> for tag values, all subscriptions that have any combination
+        /// of those values are returned.
         /// </para>
         ///  
         /// <para>
@@ -4023,9 +4410,9 @@ namespace Amazon.Redshift
         /// <para>
         /// If you specify both tag keys and tag values in the same request, Amazon Redshift returns
         /// all event notification subscriptions that match any combination of the specified keys
-        /// and values. For example, if you have <code>owner</code> and <code>environment</code>
-        /// for tag keys, and <code>admin</code> and <code>test</code> for tag values, all subscriptions
-        /// that have any combination of those values are returned.
+        /// and values. For example, if you have <c>owner</c> and <c>environment</c> for tag keys,
+        /// and <c>admin</c> and <c>test</c> for tag values, all subscriptions that have any combination
+        /// of those values are returned.
         /// </para>
         ///  
         /// <para>
@@ -4086,9 +4473,9 @@ namespace Amazon.Redshift
         /// <para>
         /// If you specify both tag keys and tag values in the same request, Amazon Redshift returns
         /// all HSM client certificates that match any combination of the specified keys and values.
-        /// For example, if you have <code>owner</code> and <code>environment</code> for tag keys,
-        /// and <code>admin</code> and <code>test</code> for tag values, all HSM client certificates
-        /// that have any combination of those values are returned.
+        /// For example, if you have <c>owner</c> and <c>environment</c> for tag keys, and <c>admin</c>
+        /// and <c>test</c> for tag values, all HSM client certificates that have any combination
+        /// of those values are returned.
         /// </para>
         ///  
         /// <para>
@@ -4116,9 +4503,9 @@ namespace Amazon.Redshift
         /// <para>
         /// If you specify both tag keys and tag values in the same request, Amazon Redshift returns
         /// all HSM client certificates that match any combination of the specified keys and values.
-        /// For example, if you have <code>owner</code> and <code>environment</code> for tag keys,
-        /// and <code>admin</code> and <code>test</code> for tag values, all HSM client certificates
-        /// that have any combination of those values are returned.
+        /// For example, if you have <c>owner</c> and <c>environment</c> for tag keys, and <c>admin</c>
+        /// and <c>test</c> for tag values, all HSM client certificates that have any combination
+        /// of those values are returned.
         /// </para>
         ///  
         /// <para>
@@ -4178,9 +4565,9 @@ namespace Amazon.Redshift
         /// <para>
         /// If you specify both tag keys and tag values in the same request, Amazon Redshift returns
         /// all HSM connections that match any combination of the specified keys and values. For
-        /// example, if you have <code>owner</code> and <code>environment</code> for tag keys,
-        /// and <code>admin</code> and <code>test</code> for tag values, all HSM connections that
-        /// have any combination of those values are returned.
+        /// example, if you have <c>owner</c> and <c>environment</c> for tag keys, and <c>admin</c>
+        /// and <c>test</c> for tag values, all HSM connections that have any combination of those
+        /// values are returned.
         /// </para>
         ///  
         /// <para>
@@ -4208,9 +4595,9 @@ namespace Amazon.Redshift
         /// <para>
         /// If you specify both tag keys and tag values in the same request, Amazon Redshift returns
         /// all HSM connections that match any combination of the specified keys and values. For
-        /// example, if you have <code>owner</code> and <code>environment</code> for tag keys,
-        /// and <code>admin</code> and <code>test</code> for tag values, all HSM connections that
-        /// have any combination of those values are returned.
+        /// example, if you have <c>owner</c> and <c>environment</c> for tag keys, and <c>admin</c>
+        /// and <c>test</c> for tag values, all HSM connections that have any combination of those
+        /// values are returned.
         /// </para>
         ///  
         /// <para>
@@ -4258,6 +4645,101 @@ namespace Amazon.Redshift
 
         #endregion
         
+        #region  DescribeInboundIntegrations
+
+
+        /// <summary>
+        /// Returns a list of inbound integrations.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeInboundIntegrations service method.</param>
+        /// 
+        /// <returns>The response from the DescribeInboundIntegrations service method, as returned by Redshift.</returns>
+        /// <exception cref="Amazon.Redshift.Model.IntegrationNotFoundException">
+        /// The integration can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.InvalidNamespaceException">
+        /// The namespace isn't valid because the namespace doesn't exist. Provide a valid namespace.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeInboundIntegrations">REST API Reference for DescribeInboundIntegrations Operation</seealso>
+        DescribeInboundIntegrationsResponse DescribeInboundIntegrations(DescribeInboundIntegrationsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DescribeInboundIntegrations operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DescribeInboundIntegrations operation on AmazonRedshiftClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDescribeInboundIntegrations
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeInboundIntegrations">REST API Reference for DescribeInboundIntegrations Operation</seealso>
+        IAsyncResult BeginDescribeInboundIntegrations(DescribeInboundIntegrationsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DescribeInboundIntegrations operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDescribeInboundIntegrations.</param>
+        /// 
+        /// <returns>Returns a  DescribeInboundIntegrationsResult from Redshift.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeInboundIntegrations">REST API Reference for DescribeInboundIntegrations Operation</seealso>
+        DescribeInboundIntegrationsResponse EndDescribeInboundIntegrations(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  DescribeIntegrations
+
+
+        /// <summary>
+        /// Describes one or more zero-ETL or S3 event integrations with Amazon Redshift.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeIntegrations service method.</param>
+        /// 
+        /// <returns>The response from the DescribeIntegrations service method, as returned by Redshift.</returns>
+        /// <exception cref="Amazon.Redshift.Model.IntegrationNotFoundException">
+        /// The integration can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeIntegrations">REST API Reference for DescribeIntegrations Operation</seealso>
+        DescribeIntegrationsResponse DescribeIntegrations(DescribeIntegrationsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DescribeIntegrations operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DescribeIntegrations operation on AmazonRedshiftClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDescribeIntegrations
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeIntegrations">REST API Reference for DescribeIntegrations Operation</seealso>
+        IAsyncResult BeginDescribeIntegrations(DescribeIntegrationsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DescribeIntegrations operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDescribeIntegrations.</param>
+        /// 
+        /// <returns>Returns a  DescribeIntegrationsResult from Redshift.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeIntegrations">REST API Reference for DescribeIntegrations Operation</seealso>
+        DescribeIntegrationsResponse EndDescribeIntegrations(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  DescribeLoggingStatus
 
 
@@ -4269,7 +4751,10 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the DescribeLoggingStatus service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeLoggingStatus">REST API Reference for DescribeLoggingStatus Operation</seealso>
         DescribeLoggingStatusResponse DescribeLoggingStatus(DescribeLoggingStatusRequest request);
@@ -4317,14 +4802,14 @@ namespace Amazon.Redshift
         /// snapshot.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.ClusterSnapshotNotFoundException">
         /// The snapshot identifier does not refer to an existing cluster snapshot.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterSnapshotStateException">
-        /// The specified cluster snapshot is not in the <code>available</code> state, or other
-        /// accounts are authorized to access the snapshot.
+        /// The specified cluster snapshot is not in the <c>available</c> state, or other accounts
+        /// are authorized to access the snapshot.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
         /// The requested operation isn't supported.
@@ -4432,10 +4917,13 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the DescribePartners service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.UnauthorizedPartnerIntegrationException">
         /// The partner integration is not authorized.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribePartners">REST API Reference for DescribePartners Operation</seealso>
         DescribePartnersResponse DescribePartners(DescribePartnersRequest request);
@@ -4465,6 +4953,59 @@ namespace Amazon.Redshift
         /// <returns>Returns a  DescribePartnersResult from Redshift.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribePartners">REST API Reference for DescribePartners Operation</seealso>
         DescribePartnersResponse EndDescribePartners(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  DescribeRedshiftIdcApplications
+
+
+        /// <summary>
+        /// Lists the Amazon Redshift IAM Identity Center applications.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeRedshiftIdcApplications service method.</param>
+        /// 
+        /// <returns>The response from the DescribeRedshiftIdcApplications service method, as returned by Redshift.</returns>
+        /// <exception cref="Amazon.Redshift.Model.DependentServiceAccessDeniedException">
+        /// A dependent service denied access for the integration.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.DependentServiceUnavailableException">
+        /// Your request cannot be completed because a dependent internal service is temporarily
+        /// unavailable. Wait 30 to 60 seconds and try again.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.RedshiftIdcApplicationNotExistsException">
+        /// The application you attempted to find doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeRedshiftIdcApplications">REST API Reference for DescribeRedshiftIdcApplications Operation</seealso>
+        DescribeRedshiftIdcApplicationsResponse DescribeRedshiftIdcApplications(DescribeRedshiftIdcApplicationsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DescribeRedshiftIdcApplications operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DescribeRedshiftIdcApplications operation on AmazonRedshiftClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDescribeRedshiftIdcApplications
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeRedshiftIdcApplications">REST API Reference for DescribeRedshiftIdcApplications Operation</seealso>
+        IAsyncResult BeginDescribeRedshiftIdcApplications(DescribeRedshiftIdcApplicationsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DescribeRedshiftIdcApplications operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDescribeRedshiftIdcApplications.</param>
+        /// 
+        /// <returns>Returns a  DescribeRedshiftIdcApplicationsResult from Redshift.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeRedshiftIdcApplications">REST API Reference for DescribeRedshiftIdcApplications Operation</seealso>
+        DescribeRedshiftIdcApplicationsResponse EndDescribeRedshiftIdcApplications(IAsyncResult asyncResult);
 
         #endregion
         
@@ -4675,9 +5216,9 @@ namespace Amazon.Redshift
 
         /// <summary>
         /// Returns information about the last resize operation for the specified cluster. If
-        /// no resize operation has ever been initiated for the specified cluster, a <code>HTTP
-        /// 404</code> error is returned. If a resize operation was initiated and completed, the
-        /// status of the resize remains as <code>SUCCEEDED</code> until the next resize. 
+        /// no resize operation has ever been initiated for the specified cluster, a <c>HTTP 404</c>
+        /// error is returned. If a resize operation was initiated and completed, the status of
+        /// the resize remains as <c>SUCCEEDED</c> until the next resize. 
         /// 
         ///  
         /// <para>
@@ -4689,10 +5230,13 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the DescribeResize service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.ResizeNotFoundException">
         /// A resize operation for the specified cluster is not found.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeResize">REST API Reference for DescribeResize Operation</seealso>
         DescribeResizeResponse DescribeResize(DescribeResizeRequest request);
@@ -4911,20 +5455,19 @@ namespace Amazon.Redshift
 
         /// <summary>
         /// Lists the status of one or more table restore requests made using the <a>RestoreTableFromClusterSnapshot</a>
-        /// API action. If you don't specify a value for the <code>TableRestoreRequestId</code>
-        /// parameter, then <code>DescribeTableRestoreStatus</code> returns the status of all
-        /// table restore requests ordered by the date and time of the request in ascending order.
-        /// Otherwise <code>DescribeTableRestoreStatus</code> returns the status of the table
-        /// specified by <code>TableRestoreRequestId</code>.
+        /// API action. If you don't specify a value for the <c>TableRestoreRequestId</c> parameter,
+        /// then <c>DescribeTableRestoreStatus</c> returns the status of all table restore requests
+        /// ordered by the date and time of the request in ascending order. Otherwise <c>DescribeTableRestoreStatus</c>
+        /// returns the status of the table specified by <c>TableRestoreRequestId</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeTableRestoreStatus service method.</param>
         /// 
         /// <returns>The response from the DescribeTableRestoreStatus service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.TableRestoreNotFoundException">
-        /// The specified <code>TableRestoreRequestId</code> value was not found.
+        /// The specified <c>TableRestoreRequestId</c> value was not found.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeTableRestoreStatus">REST API Reference for DescribeTableRestoreStatus Operation</seealso>
         DescribeTableRestoreStatusResponse DescribeTableRestoreStatus(DescribeTableRestoreStatusRequest request);
@@ -4967,7 +5510,7 @@ namespace Amazon.Redshift
         /// 
         ///  
         /// <para>
-        /// The following are limitations for <code>DescribeTags</code>: 
+        /// The following are limitations for <c>DescribeTags</c>: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -4975,21 +5518,21 @@ namespace Amazon.Redshift
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You cannot use the <code>MaxRecords</code> and <code>Marker</code> parameters together
-        /// with the ARN parameter.
+        /// You cannot use the <c>MaxRecords</c> and <c>Marker</c> parameters together with the
+        /// ARN parameter.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>MaxRecords</code> parameter can be a range from 10 to 50 results to return
-        /// in a request.
+        /// The <c>MaxRecords</c> parameter can be a range from 10 to 50 results to return in
+        /// a request.
         /// </para>
         ///  </li> </ul> 
         /// <para>
         /// If you specify both tag keys and tag values in the same request, Amazon Redshift returns
         /// all resources that match any combination of the specified keys and values. For example,
-        /// if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code>
-        /// and <code>test</code> for tag values, all resources that have any combination of those
-        /// values are returned.
+        /// if you have <c>owner</c> and <c>environment</c> for tag keys, and <c>admin</c> and
+        /// <c>test</c> for tag values, all resources that have any combination of those values
+        /// are returned.
         /// </para>
         ///  
         /// <para>
@@ -5070,7 +5613,7 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the DescribeUsageLimits service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
         /// The requested operation isn't supported.
@@ -5117,10 +5660,13 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the DisableLogging service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DisableLogging">REST API Reference for DisableLogging Operation</seealso>
         DisableLoggingResponse DisableLogging(DisableLoggingRequest request);
@@ -5171,16 +5717,19 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the DisableSnapshotCopy service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.SnapshotCopyAlreadyDisabledException">
         /// The cluster already has cross-region snapshot copy disabled.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.UnauthorizedOperationException">
         /// Your account is not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DisableSnapshotCopy">REST API Reference for DisableSnapshotCopy Operation</seealso>
         DisableSnapshotCopyResponse DisableSnapshotCopy(DisableSnapshotCopyRequest request);
@@ -5273,14 +5822,14 @@ namespace Amazon.Redshift
         /// Could not find the specified S3 bucket.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InsufficientS3BucketPolicyException">
         /// The cluster does not have read bucket or put object permissions on the S3 bucket specified
         /// when enabling logging.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidS3BucketNameException">
         /// The S3 bucket name is invalid. For more information about naming rules, go to <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html">Bucket
@@ -5290,6 +5839,9 @@ namespace Amazon.Redshift
         /// <exception cref="Amazon.Redshift.Model.InvalidS3KeyPrefixException">
         /// The string specified for the logging S3 key prefix does not comply with the documented
         /// constraints.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/EnableLogging">REST API Reference for EnableLogging Operation</seealso>
         EnableLoggingResponse EnableLogging(EnableLoggingRequest request);
@@ -5333,7 +5885,7 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the EnableSnapshotCopy service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.CopyToRegionDisabledException">
         /// Cross-region snapshot copy was temporarily disabled. Try your request again.
@@ -5346,7 +5898,7 @@ namespace Amazon.Redshift
         /// The specified options are incompatible.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidRetentionPeriodException">
         /// The retention period specified is either in the past or is not a valid value.
@@ -5403,17 +5955,70 @@ namespace Amazon.Redshift
 
         #endregion
         
+        #region  FailoverPrimaryCompute
+
+
+        /// <summary>
+        /// Fails over the primary compute unit of the specified Multi-AZ cluster to another Availability
+        /// Zone.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the FailoverPrimaryCompute service method.</param>
+        /// 
+        /// <returns>The response from the FailoverPrimaryCompute service method, as returned by Redshift.</returns>
+        /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
+        /// The specified cluster is not in the <c>available</c> state.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnauthorizedOperationException">
+        /// Your account is not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/FailoverPrimaryCompute">REST API Reference for FailoverPrimaryCompute Operation</seealso>
+        FailoverPrimaryComputeResponse FailoverPrimaryCompute(FailoverPrimaryComputeRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the FailoverPrimaryCompute operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the FailoverPrimaryCompute operation on AmazonRedshiftClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndFailoverPrimaryCompute
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/FailoverPrimaryCompute">REST API Reference for FailoverPrimaryCompute Operation</seealso>
+        IAsyncResult BeginFailoverPrimaryCompute(FailoverPrimaryComputeRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  FailoverPrimaryCompute operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginFailoverPrimaryCompute.</param>
+        /// 
+        /// <returns>Returns a  FailoverPrimaryComputeResult from Redshift.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/FailoverPrimaryCompute">REST API Reference for FailoverPrimaryCompute Operation</seealso>
+        FailoverPrimaryComputeResponse EndFailoverPrimaryCompute(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  GetClusterCredentials
 
 
         /// <summary>
         /// Returns a database user name and temporary password with temporary authorization to
         /// log on to an Amazon Redshift database. The action returns the database user name prefixed
-        /// with <code>IAM:</code> if <code>AutoCreate</code> is <code>False</code> or <code>IAMA:</code>
-        /// if <code>AutoCreate</code> is <code>True</code>. You can optionally specify one or
-        /// more database user groups that the user will join at log on. By default, the temporary
-        /// credentials expire in 900 seconds. You can optionally specify a duration between 900
-        /// seconds (15 minutes) and 3600 seconds (60 minutes). For more information, see <a href="https://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html">Using
+        /// with <c>IAM:</c> if <c>AutoCreate</c> is <c>False</c> or <c>IAMA:</c> if <c>AutoCreate</c>
+        /// is <c>True</c>. You can optionally specify one or more database user groups that the
+        /// user will join at log on. By default, the temporary credentials expire in 900 seconds.
+        /// You can optionally specify a duration between 900 seconds (15 minutes) and 3600 seconds
+        /// (60 minutes). For more information, see <a href="https://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html">Using
         /// IAM Authentication to Generate Database User Credentials</a> in the Amazon Redshift
         /// Cluster Management Guide.
         /// 
@@ -5426,26 +6031,25 @@ namespace Amazon.Redshift
         /// </para>
         ///  
         /// <para>
-        /// If the <code>DbGroups</code> parameter is specified, the IAM policy must allow the
-        /// <code>redshift:JoinGroup</code> action with access to the listed <code>dbgroups</code>.
-        /// 
+        /// If the <c>DbGroups</c> parameter is specified, the IAM policy must allow the <c>redshift:JoinGroup</c>
+        /// action with access to the listed <c>dbgroups</c>. 
         /// </para>
         ///  
         /// <para>
-        /// In addition, if the <code>AutoCreate</code> parameter is set to <code>True</code>,
-        /// then the policy must include the <code>redshift:CreateClusterUser</code> permission.
+        /// In addition, if the <c>AutoCreate</c> parameter is set to <c>True</c>, then the policy
+        /// must include the <c>redshift:CreateClusterUser</c> permission.
         /// </para>
         ///  
         /// <para>
-        /// If the <code>DbName</code> parameter is specified, the IAM policy must allow access
-        /// to the resource <code>dbname</code> for the specified database name. 
+        /// If the <c>DbName</c> parameter is specified, the IAM policy must allow access to the
+        /// resource <c>dbname</c> for the specified database name. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetClusterCredentials service method.</param>
         /// 
         /// <returns>The response from the GetClusterCredentials service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
         /// The requested operation isn't supported.
@@ -5505,7 +6109,7 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the GetClusterCredentialsWithIAM service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
         /// The requested operation isn't supported.
@@ -5553,7 +6157,7 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the GetReservedNodeExchangeConfigurationOptions service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.ClusterSnapshotNotFoundException">
         /// The snapshot identifier does not refer to an existing cluster snapshot.
@@ -5668,6 +6272,102 @@ namespace Amazon.Redshift
 
         #endregion
         
+        #region  GetResourcePolicy
+
+
+        /// <summary>
+        /// Get the resource policy for a specified resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetResourcePolicy service method.</param>
+        /// 
+        /// <returns>The response from the GetResourcePolicy service method, as returned by Redshift.</returns>
+        /// <exception cref="Amazon.Redshift.Model.InvalidPolicyException">
+        /// The resource policy isn't valid.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/GetResourcePolicy">REST API Reference for GetResourcePolicy Operation</seealso>
+        GetResourcePolicyResponse GetResourcePolicy(GetResourcePolicyRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetResourcePolicy operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetResourcePolicy operation on AmazonRedshiftClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetResourcePolicy
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/GetResourcePolicy">REST API Reference for GetResourcePolicy Operation</seealso>
+        IAsyncResult BeginGetResourcePolicy(GetResourcePolicyRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetResourcePolicy operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetResourcePolicy.</param>
+        /// 
+        /// <returns>Returns a  GetResourcePolicyResult from Redshift.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/GetResourcePolicy">REST API Reference for GetResourcePolicy Operation</seealso>
+        GetResourcePolicyResponse EndGetResourcePolicy(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  ListRecommendations
+
+
+        /// <summary>
+        /// List the Amazon Redshift Advisor recommendations for one or multiple Amazon Redshift
+        /// clusters in an Amazon Web Services account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListRecommendations service method.</param>
+        /// 
+        /// <returns>The response from the ListRecommendations service method, as returned by Redshift.</returns>
+        /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ListRecommendations">REST API Reference for ListRecommendations Operation</seealso>
+        ListRecommendationsResponse ListRecommendations(ListRecommendationsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListRecommendations operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListRecommendations operation on AmazonRedshiftClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListRecommendations
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ListRecommendations">REST API Reference for ListRecommendations Operation</seealso>
+        IAsyncResult BeginListRecommendations(ListRecommendationsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListRecommendations operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListRecommendations.</param>
+        /// 
+        /// <returns>Returns a  ListRecommendationsResult from Redshift.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ListRecommendations">REST API Reference for ListRecommendations Operation</seealso>
+        ListRecommendationsResponse EndListRecommendations(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  ModifyAquaConfiguration
 
 
@@ -5679,10 +6379,10 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the ModifyAquaConfiguration service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
         /// The requested operation isn't supported.
@@ -5791,6 +6491,35 @@ namespace Amazon.Redshift
         /// to take effect. For more information about managing clusters, go to <a href="https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html">Amazon
         /// Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>.
         /// </para>
+        ///  
+        /// <para>
+        /// VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that
+        /// you own in a Region from reaching or being reached from the internet through internet
+        /// gateways and egress-only internet gateways. If a subnet group for a provisioned cluster
+        /// is in an account with VPC BPA turned on, the following capabilities are blocked:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Creating a public cluster
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Restoring a public cluster
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Modifying a private cluster to be public
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Adding a subnet with VPC BPA turned on to the subnet group when there's at least one
+        /// public cluster within the group
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information about VPC BPA, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/security-vpc-bpa.html">Block
+        /// public access to VPCs and subnets</a> in the <i>Amazon VPC User Guide</i>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ModifyCluster service method.</param>
         /// 
@@ -5799,7 +6528,7 @@ namespace Amazon.Redshift
         /// The account already has a cluster with the given identifier.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.ClusterParameterGroupNotFoundException">
         /// The parameter group name does not refer to an existing parameter group.
@@ -5824,10 +6553,10 @@ namespace Amazon.Redshift
         /// The number of nodes specified exceeds the allotted capacity of the cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterSecurityGroupStateException">
-        /// The state of the cluster security group is not <code>available</code>.
+        /// The state of the cluster security group is not <c>available</c>.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterTrackException">
         /// The provided cluster track name is not valid.
@@ -5842,6 +6571,10 @@ namespace Amazon.Redshift
         /// <para>
         /// The value must be either -1 or an integer between 1 and 3,653.
         /// </para>
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.Ipv6CidrBlockNotFoundException">
+        /// There are no subnets in your VPC with associated IPv6 CIDR blocks. To use dual-stack
+        /// mode, associate an IPv6 CIDR block with each subnet in your VPC.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.LimitExceededException">
         /// The encryption key has exceeded its grant limit in Amazon Web Services KMS.
@@ -5909,13 +6642,16 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the ModifyClusterDbRevision service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.ClusterOnLatestRevisionException">
         /// Cluster is already on the latest database revision.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyClusterDbRevision">REST API Reference for ModifyClusterDbRevision Operation</seealso>
         ModifyClusterDbRevisionResponse ModifyClusterDbRevision(ModifyClusterDbRevisionRequest request);
@@ -5966,10 +6702,10 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the ModifyClusterIamRoles service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyClusterIamRoles">REST API Reference for ModifyClusterIamRoles Operation</seealso>
         ModifyClusterIamRolesResponse ModifyClusterIamRoles(ModifyClusterIamRolesRequest request);
@@ -6012,10 +6748,10 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the ModifyClusterMaintenance service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyClusterMaintenance">REST API Reference for ModifyClusterMaintenance Operation</seealso>
         ModifyClusterMaintenanceResponse ModifyClusterMaintenance(ModifyClusterMaintenanceRequest request);
@@ -6121,8 +6857,8 @@ namespace Amazon.Redshift
         /// The snapshot identifier does not refer to an existing cluster snapshot.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterSnapshotStateException">
-        /// The specified cluster snapshot is not in the <code>available</code> state, or other
-        /// accounts are authorized to access the snapshot.
+        /// The specified cluster snapshot is not in the <c>available</c> state, or other accounts
+        /// are authorized to access the snapshot.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidRetentionPeriodException">
         /// The retention period specified is either in the past or is not a valid value.
@@ -6173,7 +6909,7 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the ModifyClusterSnapshotSchedule service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterSnapshotScheduleStateException">
         /// The cluster snapshot schedule state is not valid.
@@ -6218,6 +6954,36 @@ namespace Amazon.Redshift
         /// <summary>
         /// Modifies a cluster subnet group to include the specified list of VPC subnets. The
         /// operation replaces the existing list of subnets with the new list of subnets.
+        /// 
+        ///  
+        /// <para>
+        /// VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that
+        /// you own in a Region from reaching or being reached from the internet through internet
+        /// gateways and egress-only internet gateways. If a subnet group for a provisioned cluster
+        /// is in an account with VPC BPA turned on, the following capabilities are blocked:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Creating a public cluster
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Restoring a public cluster
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Modifying a private cluster to be public
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Adding a subnet with VPC BPA turned on to the subnet group when there's at least one
+        /// public cluster within the group
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information about VPC BPA, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/security-vpc-bpa.html">Block
+        /// public access to VPCs and subnets</a> in the <i>Amazon VPC User Guide</i>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ModifyClusterSubnetGroup service method.</param>
         /// 
@@ -6284,10 +7050,13 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the ModifyCustomDomainAssociation service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.CustomCnameAssociationException">
         /// An error occurred when an attempt was made to change the custom domain association.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.CustomDomainAssociationNotFoundException">
+        /// An error occurred. The custom domain name couldn't be found.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
         /// The requested operation isn't supported.
@@ -6333,16 +7102,16 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the ModifyEndpointAccess service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.EndpointNotFoundException">
         /// The endpoint name doesn't refer to an existing endpoint.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterSecurityGroupStateException">
-        /// The state of the cluster security group is not <code>available</code>.
+        /// The state of the cluster security group is not <c>available</c>.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidEndpointStateException">
         /// The status of the endpoint is not valid.
@@ -6454,6 +7223,116 @@ namespace Amazon.Redshift
 
         #endregion
         
+        #region  ModifyIntegration
+
+
+        /// <summary>
+        /// Modifies a zero-ETL integration or S3 event integration with Amazon Redshift.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ModifyIntegration service method.</param>
+        /// 
+        /// <returns>The response from the ModifyIntegration service method, as returned by Redshift.</returns>
+        /// <exception cref="Amazon.Redshift.Model.IntegrationAlreadyExistsException">
+        /// The integration you are trying to create already exists.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.IntegrationConflictOperationException">
+        /// A conflicting conditional operation is currently in progress against this resource.
+        /// This typically occurs when there are multiple requests being made to the same resource
+        /// at the same time, and these requests conflict with each other.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.IntegrationConflictStateException">
+        /// The integration is in an invalid state and can't perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.IntegrationNotFoundException">
+        /// The integration can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyIntegration">REST API Reference for ModifyIntegration Operation</seealso>
+        ModifyIntegrationResponse ModifyIntegration(ModifyIntegrationRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ModifyIntegration operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ModifyIntegration operation on AmazonRedshiftClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndModifyIntegration
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyIntegration">REST API Reference for ModifyIntegration Operation</seealso>
+        IAsyncResult BeginModifyIntegration(ModifyIntegrationRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ModifyIntegration operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginModifyIntegration.</param>
+        /// 
+        /// <returns>Returns a  ModifyIntegrationResult from Redshift.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyIntegration">REST API Reference for ModifyIntegration Operation</seealso>
+        ModifyIntegrationResponse EndModifyIntegration(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  ModifyRedshiftIdcApplication
+
+
+        /// <summary>
+        /// Changes an existing Amazon Redshift IAM Identity Center application.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ModifyRedshiftIdcApplication service method.</param>
+        /// 
+        /// <returns>The response from the ModifyRedshiftIdcApplication service method, as returned by Redshift.</returns>
+        /// <exception cref="Amazon.Redshift.Model.DependentServiceAccessDeniedException">
+        /// A dependent service denied access for the integration.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.DependentServiceUnavailableException">
+        /// Your request cannot be completed because a dependent internal service is temporarily
+        /// unavailable. Wait 30 to 60 seconds and try again.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.RedshiftIdcApplicationNotExistsException">
+        /// The application you attempted to find doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyRedshiftIdcApplication">REST API Reference for ModifyRedshiftIdcApplication Operation</seealso>
+        ModifyRedshiftIdcApplicationResponse ModifyRedshiftIdcApplication(ModifyRedshiftIdcApplicationRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ModifyRedshiftIdcApplication operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ModifyRedshiftIdcApplication operation on AmazonRedshiftClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndModifyRedshiftIdcApplication
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyRedshiftIdcApplication">REST API Reference for ModifyRedshiftIdcApplication Operation</seealso>
+        IAsyncResult BeginModifyRedshiftIdcApplication(ModifyRedshiftIdcApplicationRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ModifyRedshiftIdcApplication operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginModifyRedshiftIdcApplication.</param>
+        /// 
+        /// <returns>Returns a  ModifyRedshiftIdcApplicationResult from Redshift.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyRedshiftIdcApplication">REST API Reference for ModifyRedshiftIdcApplication Operation</seealso>
+        ModifyRedshiftIdcApplicationResponse EndModifyRedshiftIdcApplication(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  ModifyScheduledAction
 
 
@@ -6463,6 +7342,9 @@ namespace Amazon.Redshift
         /// <param name="request">Container for the necessary parameters to execute the ModifyScheduledAction service method.</param>
         /// 
         /// <returns>The response from the ModifyScheduledAction service method, as returned by Redshift.</returns>
+        /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
+        /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidScheduledActionException">
         /// The scheduled action is not valid.
         /// </exception>
@@ -6477,6 +7359,9 @@ namespace Amazon.Redshift
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.UnauthorizedOperationException">
         /// Your account is not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyScheduledAction">REST API Reference for ModifyScheduledAction Operation</seealso>
         ModifyScheduledActionResponse ModifyScheduledAction(ModifyScheduledActionRequest request);
@@ -6525,10 +7410,10 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the ModifySnapshotCopyRetentionPeriod service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidRetentionPeriodException">
         /// The retention period specified is either in the past or is not a valid value.
@@ -6684,10 +7569,13 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the PauseCluster service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/PauseCluster">REST API Reference for PauseCluster Operation</seealso>
         PauseClusterResponse PauseCluster(PauseClusterRequest request);
@@ -6784,12 +7672,64 @@ namespace Amazon.Redshift
 
         #endregion
         
+        #region  PutResourcePolicy
+
+
+        /// <summary>
+        /// Updates the resource policy for a specified resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutResourcePolicy service method.</param>
+        /// 
+        /// <returns>The response from the PutResourcePolicy service method, as returned by Redshift.</returns>
+        /// <exception cref="Amazon.Redshift.Model.ConflictPolicyUpdateException">
+        /// There is a conflict while updating the resource policy.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.InvalidPolicyException">
+        /// The resource policy isn't valid.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/PutResourcePolicy">REST API Reference for PutResourcePolicy Operation</seealso>
+        PutResourcePolicyResponse PutResourcePolicy(PutResourcePolicyRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the PutResourcePolicy operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the PutResourcePolicy operation on AmazonRedshiftClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndPutResourcePolicy
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/PutResourcePolicy">REST API Reference for PutResourcePolicy Operation</seealso>
+        IAsyncResult BeginPutResourcePolicy(PutResourcePolicyRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  PutResourcePolicy operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginPutResourcePolicy.</param>
+        /// 
+        /// <returns>Returns a  PutResourcePolicyResult from Redshift.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/PutResourcePolicy">REST API Reference for PutResourcePolicy Operation</seealso>
+        PutResourcePolicyResponse EndPutResourcePolicy(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  RebootCluster
 
 
         /// <summary>
         /// Reboots a cluster. This action is taken as soon as possible. It results in a momentary
-        /// outage to the cluster, during which the cluster status is set to <code>rebooting</code>.
+        /// outage to the cluster, during which the cluster status is set to <c>rebooting</c>.
         /// A cluster event is created when the reboot is completed. Any pending cluster modifications
         /// (see <a>ModifyCluster</a>) are applied at this reboot. For more information about
         /// managing clusters, go to <a href="https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html">Amazon
@@ -6799,10 +7739,10 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the RebootCluster service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RebootCluster">REST API Reference for RebootCluster Operation</seealso>
         RebootClusterResponse RebootCluster(RebootClusterRequest request);
@@ -6832,6 +7772,55 @@ namespace Amazon.Redshift
         /// <returns>Returns a  RebootClusterResult from Redshift.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RebootCluster">REST API Reference for RebootCluster Operation</seealso>
         RebootClusterResponse EndRebootCluster(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  RegisterNamespace
+
+
+        /// <summary>
+        /// Registers a cluster or serverless namespace to the Amazon Web Services Glue Data Catalog.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the RegisterNamespace service method.</param>
+        /// 
+        /// <returns>The response from the RegisterNamespace service method, as returned by Redshift.</returns>
+        /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
+        /// The specified cluster is not in the <c>available</c> state.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.InvalidNamespaceException">
+        /// The namespace isn't valid because the namespace doesn't exist. Provide a valid namespace.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RegisterNamespace">REST API Reference for RegisterNamespace Operation</seealso>
+        RegisterNamespaceResponse RegisterNamespace(RegisterNamespaceRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the RegisterNamespace operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the RegisterNamespace operation on AmazonRedshiftClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndRegisterNamespace
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RegisterNamespace">REST API Reference for RegisterNamespace Operation</seealso>
+        IAsyncResult BeginRegisterNamespace(RegisterNamespaceRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  RegisterNamespace operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginRegisterNamespace.</param>
+        /// 
+        /// <returns>Returns a  RegisterNamespaceResult from Redshift.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RegisterNamespace">REST API Reference for RegisterNamespace Operation</seealso>
+        RegisterNamespaceResponse EndRegisterNamespace(IAsyncResult asyncResult);
 
         #endregion
         
@@ -6948,14 +7937,6 @@ namespace Amazon.Redshift
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// dc1.large (if your cluster is in a VPC)
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// dc1.8xlarge (if your cluster is in a VPC)
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
         /// dc2.large
         /// </para>
         ///  </li> <li> 
@@ -6964,11 +7945,7 @@ namespace Amazon.Redshift
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// ds2.xlarge
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// ds2.8xlarge
+        /// ra3.large
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -6992,7 +7969,7 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the ResizeCluster service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.DependentServiceUnavailableException">
         /// Your request cannot be completed because a dependent internal service is temporarily
@@ -7002,7 +7979,7 @@ namespace Amazon.Redshift
         /// The number of nodes specified exceeds the allotted capacity of the cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidReservedNodeStateException">
         /// Indicates that the Reserved Node being exchanged is not in an active state.
@@ -7089,6 +8066,35 @@ namespace Amazon.Redshift
         /// </para>
         ///  
         /// <para>
+        /// VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that
+        /// you own in a Region from reaching or being reached from the internet through internet
+        /// gateways and egress-only internet gateways. If a subnet group for a provisioned cluster
+        /// is in an account with VPC BPA turned on, the following capabilities are blocked:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Creating a public cluster
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Restoring a public cluster
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Modifying a private cluster to be public
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Adding a subnet with VPC BPA turned on to the subnet group when there's at least one
+        /// public cluster within the group
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information about VPC BPA, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/security-vpc-bpa.html">Block
+        /// public access to VPCs and subnets</a> in the <i>Amazon VPC User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
         ///  For more information about working with snapshots, go to <a href="https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html">Amazon
         /// Redshift Snapshots</a> in the <i>Amazon Redshift Cluster Management Guide</i>.
         /// </para>
@@ -7138,8 +8144,8 @@ namespace Amazon.Redshift
         /// The number of nodes specified exceeds the allotted capacity of the cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterSnapshotStateException">
-        /// The specified cluster snapshot is not in the <code>available</code> state, or other
-        /// accounts are authorized to access the snapshot.
+        /// The specified cluster snapshot is not in the <c>available</c> state, or other accounts
+        /// are authorized to access the snapshot.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterSubnetGroupStateException">
         /// The cluster subnet group cannot be deleted because it is in use.
@@ -7164,6 +8170,10 @@ namespace Amazon.Redshift
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidVPCNetworkStateException">
         /// The cluster subnet group does not cover all Availability Zones.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.Ipv6CidrBlockNotFoundException">
+        /// There are no subnets in your VPC with associated IPv6 CIDR blocks. To use dual-stack
+        /// mode, associate an IPv6 CIDR block with each subnet in your VPC.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.LimitExceededException">
         /// The encryption key has exceeded its grant limit in Amazon Web Services KMS.
@@ -7241,14 +8251,14 @@ namespace Amazon.Redshift
         /// 
         ///  
         /// <para>
-        /// You cannot use <code>RestoreTableFromClusterSnapshot</code> to restore a table with
-        /// the same name as an existing table in an Amazon Redshift cluster. That is, you cannot
+        /// You cannot use <c>RestoreTableFromClusterSnapshot</c> to restore a table with the
+        /// same name as an existing table in an Amazon Redshift cluster. That is, you cannot
         /// overwrite an existing table in a cluster with a restored table. If you want to replace
         /// your original table with a new, restored table, then rename or drop your original
-        /// table before you call <code>RestoreTableFromClusterSnapshot</code>. When you have
-        /// renamed your original table, then you can pass the original name of the table as the
-        /// <code>NewTableName</code> parameter value in the call to <code>RestoreTableFromClusterSnapshot</code>.
-        /// This way, you can replace the original table with the table created from the snapshot.
+        /// table before you call <c>RestoreTableFromClusterSnapshot</c>. When you have renamed
+        /// your original table, then you can pass the original name of the table as the <c>NewTableName</c>
+        /// parameter value in the call to <c>RestoreTableFromClusterSnapshot</c>. This way, you
+        /// can replace the original table with the table created from the snapshot.
         /// </para>
         ///  
         /// <para>
@@ -7260,7 +8270,7 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the RestoreTableFromClusterSnapshot service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.ClusterSnapshotNotFoundException">
         /// The snapshot identifier does not refer to an existing cluster snapshot.
@@ -7270,16 +8280,16 @@ namespace Amazon.Redshift
         /// table restore requests to complete before making a new request.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterSnapshotStateException">
-        /// The specified cluster snapshot is not in the <code>available</code> state, or other
-        /// accounts are authorized to access the snapshot.
+        /// The specified cluster snapshot is not in the <c>available</c> state, or other accounts
+        /// are authorized to access the snapshot.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidTableRestoreArgumentException">
-        /// The value specified for the <code>sourceDatabaseName</code>, <code>sourceSchemaName</code>,
-        /// or <code>sourceTableName</code> parameter, or a combination of these, doesn't exist
-        /// in the snapshot.
+        /// The value specified for the <c>sourceDatabaseName</c>, <c>sourceSchemaName</c>, or
+        /// <c>sourceTableName</c> parameter, or a combination of these, doesn't exist in the
+        /// snapshot.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
         /// The requested operation isn't supported.
@@ -7325,13 +8335,16 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the ResumeCluster service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InsufficientClusterCapacityException">
         /// The number of nodes specified exceeds the allotted capacity of the cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ResumeCluster">REST API Reference for ResumeCluster Operation</seealso>
         ResumeClusterResponse ResumeCluster(ResumeClusterRequest request);
@@ -7385,7 +8398,7 @@ namespace Amazon.Redshift
         /// The cluster security group name does not refer to an existing cluster security group.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterSecurityGroupStateException">
-        /// The state of the cluster security group is not <code>available</code>.
+        /// The state of the cluster security group is not <c>available</c>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RevokeClusterSecurityGroupIngress">REST API Reference for RevokeClusterSecurityGroupIngress Operation</seealso>
         RevokeClusterSecurityGroupIngressResponse RevokeClusterSecurityGroupIngress(RevokeClusterSecurityGroupIngressRequest request);
@@ -7428,7 +8441,7 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the RevokeEndpointAccess service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.EndpointAuthorizationNotFoundException">
         /// The authorization for this endpoint can't be found.
@@ -7440,10 +8453,10 @@ namespace Amazon.Redshift
         /// The status of the authorization is not valid.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterSecurityGroupStateException">
-        /// The state of the cluster security group is not <code>available</code>.
+        /// The state of the cluster security group is not <c>available</c>.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidEndpointStateException">
         /// The status of the endpoint is not valid.
@@ -7551,14 +8564,17 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the RotateEncryptionKey service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.DependentServiceRequestThrottlingException">
         /// The request cannot be completed because a dependent service is throttling requests
         /// made by Amazon Redshift on your behalf. Wait and retry the request.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.InvalidClusterStateException">
-        /// The specified cluster is not in the <code>available</code> state.
+        /// The specified cluster is not in the <c>available</c> state.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RotateEncryptionKey">REST API Reference for RotateEncryptionKey Operation</seealso>
         RotateEncryptionKeyResponse RotateEncryptionKey(RotateEncryptionKeyRequest request);
@@ -7601,13 +8617,16 @@ namespace Amazon.Redshift
         /// 
         /// <returns>The response from the UpdatePartnerStatus service method, as returned by Redshift.</returns>
         /// <exception cref="Amazon.Redshift.Model.ClusterNotFoundException">
-        /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+        /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.PartnerNotFoundException">
         /// The name of the partner was not found.
         /// </exception>
         /// <exception cref="Amazon.Redshift.Model.UnauthorizedPartnerIntegrationException">
         /// The partner integration is not authorized.
+        /// </exception>
+        /// <exception cref="Amazon.Redshift.Model.UnsupportedOperationException">
+        /// The requested operation isn't supported.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/UpdatePartnerStatus">REST API Reference for UpdatePartnerStatus Operation</seealso>
         UpdatePartnerStatusResponse UpdatePartnerStatus(UpdatePartnerStatusRequest request);

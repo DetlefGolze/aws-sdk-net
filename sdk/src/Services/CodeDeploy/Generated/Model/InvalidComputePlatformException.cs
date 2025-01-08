@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
-    /// The computePlatform is invalid. The computePlatform should be <code>Lambda</code>,
-    /// <code>Server</code>, or <code>ECS</code>.
+    /// The computePlatform is invalid. The computePlatform should be <c>Lambda</c>, <c>Server</c>,
+    /// or <c>ECS</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

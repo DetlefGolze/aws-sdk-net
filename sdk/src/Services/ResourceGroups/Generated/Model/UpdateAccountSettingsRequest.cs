@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroups.Model
 {
     /// <summary>
@@ -35,9 +36,8 @@ namespace Amazon.ResourceGroups.Model
     ///  
     /// <para>
     /// The preceding example shows that the request to turn on group lifecycle events is
-    /// <code>IN_PROGRESS</code>. You can call the <a>GetAccountSettings</a> operation to
-    /// check for completion by looking for <code>GroupLifecycleEventsStatus</code> to change
-    /// to <code>ACTIVE</code>.
+    /// <c>IN_PROGRESS</c>. You can call the <a>GetAccountSettings</a> operation to check
+    /// for completion by looking for <c>GroupLifecycleEventsStatus</c> to change to <c>ACTIVE</c>.
     /// </para>
     /// </summary>
     public partial class UpdateAccountSettingsRequest : AmazonResourceGroupsRequest
@@ -49,6 +49,11 @@ namespace Amazon.ResourceGroups.Model
         /// <para>
         /// Specifies whether you want to turn <a href="https://docs.aws.amazon.com/ARG/latest/userguide/monitor-groups.html">group
         /// lifecycle events</a> on or off.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can't turn on group lifecycle events if your resource groups quota is greater
+        /// than 2,000. 
         /// </para>
         /// </summary>
         public GroupLifecycleEventsDesiredStatus GroupLifecycleEventsDesiredStatus

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DLM.Model
 {
     /// <summary>
@@ -62,7 +63,7 @@ namespace Amazon.DLM.Model
         /// Gets and sets the property IntervalUnit. 
         /// <para>
         /// The unit of time for time-based retention. For example, to retain a cross-Region copy
-        /// for 3 months, specify <code>Interval=3</code> and <code>IntervalUnit=MONTHS</code>.
+        /// for 3 months, specify <c>Interval=3</c> and <c>IntervalUnit=MONTHS</c>.
         /// </para>
         /// </summary>
         public RetentionIntervalUnitValues IntervalUnit

@@ -26,18 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeVpcPeeringConnections operation.
-    /// Describes one or more of your VPC peering connections.
+    /// Describes your VPC peering connections. The default is to describe all your VPC peering
+    /// connections. Alternatively, you can specify specific VPC peering connection IDs or
+    /// filter the results to include only the VPC peering connections that match specific
+    /// criteria.
     /// </summary>
     public partial class DescribeVpcPeeringConnectionsRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _vpcPeeringConnectionIds = new List<string>();
+        private List<string> _vpcPeeringConnectionIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Filters. 
@@ -46,62 +50,60 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>accepter-vpc-info.cidr-block</code> - The IPv4 CIDR block of the accepter VPC.
+        ///  <c>accepter-vpc-info.cidr-block</c> - The IPv4 CIDR block of the accepter VPC.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>accepter-vpc-info.owner-id</code> - The ID of the Amazon Web Services account
-        /// that owns the accepter VPC.
+        ///  <c>accepter-vpc-info.owner-id</c> - The ID of the Amazon Web Services account that
+        /// owns the accepter VPC.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>accepter-vpc-info.vpc-id</code> - The ID of the accepter VPC.
+        ///  <c>accepter-vpc-info.vpc-id</c> - The ID of the accepter VPC.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>expiration-time</code> - The expiration date and time for the VPC peering connection.
+        ///  <c>expiration-time</c> - The expiration date and time for the VPC peering connection.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>requester-vpc-info.cidr-block</code> - The IPv4 CIDR block of the requester's
-        /// VPC.
+        ///  <c>requester-vpc-info.cidr-block</c> - The IPv4 CIDR block of the requester's VPC.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>requester-vpc-info.owner-id</code> - The ID of the Amazon Web Services account
-        /// that owns the requester VPC.
+        ///  <c>requester-vpc-info.owner-id</c> - The ID of the Amazon Web Services account that
+        /// owns the requester VPC.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>requester-vpc-info.vpc-id</code> - The ID of the requester VPC.
+        ///  <c>requester-vpc-info.vpc-id</c> - The ID of the requester VPC.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>status-code</code> - The status of the VPC peering connection (<code>pending-acceptance</code>
-        /// | <code>failed</code> | <code>expired</code> | <code>provisioning</code> | <code>active</code>
-        /// | <code>deleting</code> | <code>deleted</code> | <code>rejected</code>).
+        ///  <c>status-code</c> - The status of the VPC peering connection (<c>pending-acceptance</c>
+        /// | <c>failed</c> | <c>expired</c> | <c>provisioning</c> | <c>active</c> | <c>deleting</c>
+        /// | <c>deleted</c> | <c>rejected</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>status-message</code> - A message that provides more information about the
-        /// status of the VPC peering connection, if applicable.
+        ///  <c>status-message</c> - A message that provides more information about the status
+        /// of the VPC peering connection, if applicable.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the
-        /// resource. Use the tag key in the filter name and the tag value as the filter value.
-        /// For example, to find all resources that have a tag with the key <code>Owner</code>
-        /// and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name
-        /// and <code>TeamA</code> for the filter value.
+        ///  <c>tag</c> - The key/value combination of a tag assigned to the resource. Use the
+        /// tag key in the filter name and the tag value as the filter value. For example, to
+        /// find all resources that have a tag with the key <c>Owner</c> and the value <c>TeamA</c>,
+        /// specify <c>tag:Owner</c> for the filter name and <c>TeamA</c> for the filter value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter
-        /// to find all resources assigned a tag with a specific key, regardless of the tag value.
+        ///  <c>tag-key</c> - The key of a tag assigned to the resource. Use this filter to find
+        /// all resources assigned a tag with a specific key, regardless of the tag value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>vpc-peering-connection-id</code> - The ID of the VPC peering connection.
+        ///  <c>vpc-peering-connection-id</c> - The ID of the VPC peering connection.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -114,7 +116,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -176,7 +178,7 @@ namespace Amazon.EC2.Model
         // Check to see if VpcPeeringConnectionIds property is set
         internal bool IsSetVpcPeeringConnectionIds()
         {
-            return this._vpcPeeringConnectionIds != null && this._vpcPeeringConnectionIds.Count > 0; 
+            return this._vpcPeeringConnectionIds != null && (this._vpcPeeringConnectionIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

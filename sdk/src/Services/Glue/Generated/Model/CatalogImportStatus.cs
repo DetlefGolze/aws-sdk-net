@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property ImportCompleted. 
         /// <para>
-        ///  <code>True</code> if the migration has completed, or <code>False</code> otherwise.
+        ///  <c>True</c> if the migration has completed, or <c>False</c> otherwise.
         /// </para>
         /// </summary>
         public bool ImportCompleted

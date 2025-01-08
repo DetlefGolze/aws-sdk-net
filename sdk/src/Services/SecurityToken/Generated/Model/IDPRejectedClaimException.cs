@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityToken.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.SecurityToken.Model
     /// 
     ///  
     /// <para>
-    /// If this error is returned for the <code>AssumeRoleWithWebIdentity</code> operation,
-    /// it can also mean that the claim has expired or has been explicitly revoked. 
+    /// If this error is returned for the <c>AssumeRoleWithWebIdentity</c> operation, it can
+    /// also mean that the claim has expired or has been explicitly revoked. 
     /// </para>
     /// </summary>
     #if !NETSTANDARD

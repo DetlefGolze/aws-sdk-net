@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.ElasticFileSystem.Model
     public partial class DescribeReplicationConfigurationsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ReplicationConfigurationDescription> _replications = new List<ReplicationConfigurationDescription>();
+        private List<ReplicationConfigurationDescription> _replications = AWSConfigs.InitializeCollections ? new List<ReplicationConfigurationDescription>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// You can use the <code>NextToken</code> from the previous response in a subsequent
-        /// request to fetch the additional descriptions.
+        /// You can use the <c>NextToken</c> from the previous response in a subsequent request
+        /// to fetch the additional descriptions.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -71,7 +72,7 @@ namespace Amazon.ElasticFileSystem.Model
         // Check to see if Replications property is set
         internal bool IsSetReplications()
         {
-            return this._replications != null && this._replications.Count > 0; 
+            return this._replications != null && (this._replications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

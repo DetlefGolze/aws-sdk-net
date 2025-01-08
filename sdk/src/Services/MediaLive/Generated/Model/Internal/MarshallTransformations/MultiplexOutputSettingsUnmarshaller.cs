@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public MultiplexOutputSettings Unmarshall(JsonUnmarshallerContext context)
         {
+            MultiplexOutputSettings unmarshalledObject = new MultiplexOutputSettings();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            MultiplexOutputSettings unmarshalledObject = new MultiplexOutputSettings();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("containerSettings", targetDepth))
+                {
+                    var unmarshaller = MultiplexContainerSettingsUnmarshaller.Instance;
+                    unmarshalledObject.ContainerSettings = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("destination", targetDepth))
                 {
                     var unmarshaller = OutputLocationRefUnmarshaller.Instance;
@@ -71,7 +79,6 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

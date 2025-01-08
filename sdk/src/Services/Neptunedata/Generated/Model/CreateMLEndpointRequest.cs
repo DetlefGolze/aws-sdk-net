@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptunedata.Model
 {
     /// <summary>
@@ -33,6 +34,14 @@ namespace Amazon.Neptunedata.Model
     /// Creates a new Neptune ML inference endpoint that lets you query one specific model
     /// that the model-training process constructed. See <a href="https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-endpoints.html">Managing
     /// inference endpoints using the endpoints command</a>.
+    /// 
+    ///  
+    /// <para>
+    /// When invoking this operation in a Neptune cluster that has IAM authentication enabled,
+    /// the IAM user or role making the request must have a policy attached that allows the
+    /// <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#createmlendpoint">neptune-db:CreateMLEndpoint</a>
+    /// IAM action in that cluster.
+    /// </para>
     /// </summary>
     public partial class CreateMLEndpointRequest : AmazonNeptunedataRequest
     {
@@ -87,7 +96,7 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property InstanceType. 
         /// <para>
-        /// The type of Neptune ML instance to use for online servicing. The default is <code>ml.m5.xlarge</code>.
+        /// The type of Neptune ML instance to use for online servicing. The default is <c>ml.m5.xlarge</c>.
         /// Choosing the ML instance for an inference endpoint depends on the task type, the graph
         /// size, and your budget.
         /// </para>
@@ -108,8 +117,8 @@ namespace Amazon.Neptunedata.Model
         /// Gets and sets the property MlModelTrainingJobId. 
         /// <para>
         /// The job Id of the completed model-training job that has created the model that the
-        /// inference endpoint will point to. You must supply either the <code>mlModelTrainingJobId</code>
-        /// or the <code>mlModelTransformJobId</code>.
+        /// inference endpoint will point to. You must supply either the <c>mlModelTrainingJobId</c>
+        /// or the <c>mlModelTransformJobId</c>.
         /// </para>
         /// </summary>
         public string MlModelTrainingJobId
@@ -127,8 +136,8 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property MlModelTransformJobId. 
         /// <para>
-        /// The job Id of the completed model-transform job. You must supply either the <code>mlModelTrainingJobId</code>
-        /// or the <code>mlModelTransformJobId</code>.
+        /// The job Id of the completed model-transform job. You must supply either the <c>mlModelTrainingJobId</c>
+        /// or the <c>mlModelTransformJobId</c>.
         /// </para>
         /// </summary>
         public string MlModelTransformJobId
@@ -147,11 +156,10 @@ namespace Amazon.Neptunedata.Model
         /// Gets and sets the property ModelName. 
         /// <para>
         /// Model type for training. By default the Neptune ML model is automatically based on
-        /// the <code>modelType</code> used in data processing, but you can specify a different
-        /// model type here. The default is <code>rgcn</code> for heterogeneous graphs and <code>kge</code>
-        /// for knowledge graphs. The only valid value for heterogeneous graphs is <code>rgcn</code>.
-        /// Valid values for knowledge graphs are: <code>kge</code>, <code>transe</code>, <code>distmult</code>,
-        /// and <code>rotate</code>.
+        /// the <c>modelType</c> used in data processing, but you can specify a different model
+        /// type here. The default is <c>rgcn</c> for heterogeneous graphs and <c>kge</c> for
+        /// knowledge graphs. The only valid value for heterogeneous graphs is <c>rgcn</c>. Valid
+        /// values for knowledge graphs are: <c>kge</c>, <c>transe</c>, <c>distmult</c>, and <c>rotate</c>.
         /// </para>
         /// </summary>
         public string ModelName
@@ -188,9 +196,9 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property Update. 
         /// <para>
-        /// If set to <code>true</code>, <code>update</code> indicates that this is an update
-        /// request. The default is <code>false</code>. You must supply either the <code>mlModelTrainingJobId</code>
-        /// or the <code>mlModelTransformJobId</code>.
+        /// If set to <c>true</c>, <c>update</c> indicates that this is an update request. The
+        /// default is <c>false</c>. You must supply either the <c>mlModelTrainingJobId</c> or
+        /// the <c>mlModelTransformJobId</c>.
         /// </para>
         /// </summary>
         public bool Update

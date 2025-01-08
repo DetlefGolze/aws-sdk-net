@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QLDB.Model
 {
     /// <summary>
@@ -97,19 +98,19 @@ namespace Amazon.QLDB.Model
         /// </para>
         ///  
         /// <para>
-        /// The following are examples of valid <code>Prefix</code> values:
+        /// The following are examples of valid <c>Prefix</c> values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>JournalExports-ForMyLedger/Testing/</code> 
+        ///  <c>JournalExports-ForMyLedger/Testing/</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>JournalExports</code> 
+        ///  <c>JournalExports</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>My:Tests/</code> 
+        ///  <c>My:Tests/</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

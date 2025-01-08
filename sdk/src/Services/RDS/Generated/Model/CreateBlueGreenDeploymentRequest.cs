@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -36,8 +37,8 @@ namespace Amazon.RDS.Model
     /// <para>
     /// A blue/green deployment creates a staging environment that copies the production environment.
     /// In a blue/green deployment, the blue environment is the current production environment.
-    /// The green environment is the staging environment. The staging environment stays in
-    /// sync with the current production environment using logical replication.
+    /// The green environment is the staging environment, and it stays in sync with the current
+    /// production environment.
     /// </para>
     ///  
     /// <para>
@@ -61,10 +62,16 @@ namespace Amazon.RDS.Model
     {
         private string _blueGreenDeploymentName;
         private string _source;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private int? _targetAllocatedStorage;
         private string _targetDBClusterParameterGroupName;
+        private string _targetDBInstanceClass;
         private string _targetDBParameterGroupName;
         private string _targetEngineVersion;
+        private int? _targetIops;
+        private int? _targetStorageThroughput;
+        private string _targetStorageType;
+        private bool? _upgradeTargetStorageConfig;
 
         /// <summary>
         /// Gets and sets the property BlueGreenDeploymentName. 
@@ -136,7 +143,30 @@ namespace Amazon.RDS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property TargetAllocatedStorage. 
+        /// <para>
+        /// The amount of storage in gibibytes (GiB) to allocate for the green DB instance. You
+        /// can choose to increase or decrease the allocated storage on the green DB instance.
+        /// </para>
+        ///  
+        /// <para>
+        /// This setting doesn't apply to Amazon Aurora blue/green deployments.
+        /// </para>
+        /// </summary>
+        public int TargetAllocatedStorage
+        {
+            get { return this._targetAllocatedStorage.GetValueOrDefault(); }
+            set { this._targetAllocatedStorage = value; }
+        }
+
+        // Check to see if TargetAllocatedStorage property is set
+        internal bool IsSetTargetAllocatedStorage()
+        {
+            return this._targetAllocatedStorage.HasValue; 
         }
 
         /// <summary>
@@ -162,6 +192,33 @@ namespace Amazon.RDS.Model
         internal bool IsSetTargetDBClusterParameterGroupName()
         {
             return this._targetDBClusterParameterGroupName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property TargetDBInstanceClass. 
+        /// <para>
+        /// Specify the DB instance class for the databases in the green environment.
+        /// </para>
+        ///  
+        /// <para>
+        /// This parameter only applies to RDS DB instances, because DB instances within an Aurora
+        /// DB cluster can have multiple different instance classes. If you're creating a blue/green
+        /// deployment from an Aurora DB cluster, don't specify this parameter. After the green
+        /// environment is created, you can individually modify the instance classes of the DB
+        /// instances within the green DB cluster.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=5, Max=20)]
+        public string TargetDBInstanceClass
+        {
+            get { return this._targetDBInstanceClass; }
+            set { this._targetDBInstanceClass = value; }
+        }
+
+        // Check to see if TargetDBInstanceClass property is set
+        internal bool IsSetTargetDBInstanceClass()
+        {
+            return this._targetDBInstanceClass != null;
         }
 
         /// <summary>
@@ -209,6 +266,103 @@ namespace Amazon.RDS.Model
         internal bool IsSetTargetEngineVersion()
         {
             return this._targetEngineVersion != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property TargetIops. 
+        /// <para>
+        /// The amount of Provisioned IOPS (input/output operations per second) to allocate for
+        /// the green DB instance. For information about valid IOPS values, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html">Amazon
+        /// RDS DB instance storage</a> in the <i>Amazon RDS User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// This setting doesn't apply to Amazon Aurora blue/green deployments.
+        /// </para>
+        /// </summary>
+        public int TargetIops
+        {
+            get { return this._targetIops.GetValueOrDefault(); }
+            set { this._targetIops = value; }
+        }
+
+        // Check to see if TargetIops property is set
+        internal bool IsSetTargetIops()
+        {
+            return this._targetIops.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property TargetStorageThroughput. 
+        /// <para>
+        /// The storage throughput value for the green DB instance.
+        /// </para>
+        ///  
+        /// <para>
+        /// This setting applies only to the <c>gp3</c> storage type.
+        /// </para>
+        ///  
+        /// <para>
+        /// This setting doesn't apply to Amazon Aurora blue/green deployments.
+        /// </para>
+        /// </summary>
+        public int TargetStorageThroughput
+        {
+            get { return this._targetStorageThroughput.GetValueOrDefault(); }
+            set { this._targetStorageThroughput = value; }
+        }
+
+        // Check to see if TargetStorageThroughput property is set
+        internal bool IsSetTargetStorageThroughput()
+        {
+            return this._targetStorageThroughput.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property TargetStorageType. 
+        /// <para>
+        /// The storage type to associate with the green DB instance.
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid Values: <c>gp2 | gp3 | io1 | io2</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// This setting doesn't apply to Amazon Aurora blue/green deployments.
+        /// </para>
+        /// </summary>
+        public string TargetStorageType
+        {
+            get { return this._targetStorageType; }
+            set { this._targetStorageType = value; }
+        }
+
+        // Check to see if TargetStorageType property is set
+        internal bool IsSetTargetStorageType()
+        {
+            return this._targetStorageType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property UpgradeTargetStorageConfig. 
+        /// <para>
+        /// Whether to upgrade the storage file system configuration on the green database. This
+        /// option migrates the green DB instance from the older 32-bit file system to the preferred
+        /// configuration. For more information, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.UpgradeFileSystem">Upgrading
+        /// the storage file system for a DB instance</a>.
+        /// </para>
+        /// </summary>
+        public bool UpgradeTargetStorageConfig
+        {
+            get { return this._upgradeTargetStorageConfig.GetValueOrDefault(); }
+            set { this._upgradeTargetStorageConfig = value; }
+        }
+
+        // Check to see if UpgradeTargetStorageConfig property is set
+        internal bool IsSetUpgradeTargetStorageConfig()
+        {
+            return this._upgradeTargetStorageConfig.HasValue; 
         }
 
     }

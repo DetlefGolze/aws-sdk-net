@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
-    /// Contains the response to a <code>DescribeElasticIps</code> request.
+    /// Contains the response to a <c>DescribeElasticIps</c> request.
     /// </summary>
     public partial class DescribeElasticIpsResponse : AmazonWebServiceResponse
     {
-        private List<ElasticIp> _elasticIps = new List<ElasticIp>();
+        private List<ElasticIp> _elasticIps = AWSConfigs.InitializeCollections ? new List<ElasticIp>() : null;
 
         /// <summary>
         /// Gets and sets the property ElasticIps. 
         /// <para>
-        /// An <code>ElasticIps</code> object that describes the specified Elastic IP addresses.
+        /// An <c>ElasticIps</c> object that describes the specified Elastic IP addresses.
         /// </para>
         /// </summary>
         public List<ElasticIp> ElasticIps
@@ -50,7 +51,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if ElasticIps property is set
         internal bool IsSetElasticIps()
         {
-            return this._elasticIps != null && this._elasticIps.Count > 0; 
+            return this._elasticIps != null && (this._elasticIps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

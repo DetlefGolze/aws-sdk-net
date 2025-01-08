@@ -7,6 +7,11 @@
 	  "retentionInDays"
 	]
   },
+	"operationModifiers": {
+		"GetLogEvents": {
+			"stopPaginationOnSameToken": true
+		}
+	},
   "dataTypeSwap" : {
     "InputLogEvent" : {
 	  "timestamp" : {
@@ -73,7 +78,7 @@
 	    "Type" : "DateTime",
 		"Marshaller" : "Amazon.Runtime.Internal.Transform.CustomMarshallTransformations.ConvertDateTimeToEpochMilliseconds",
 		"Unmarshaller" : "DateTimeEpochLongMillisecondsUnmarshaller"
-	  },
+	  }
     }
   }
 }

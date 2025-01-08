@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Omics.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Omics.Model
         /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        /// The task's ID.
+        /// The workflow run ID.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=18)]

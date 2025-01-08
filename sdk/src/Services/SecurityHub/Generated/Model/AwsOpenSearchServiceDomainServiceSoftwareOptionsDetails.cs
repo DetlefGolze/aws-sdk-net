@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -177,23 +178,23 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>COMPLETED</code> 
+        ///  <c>COMPLETED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ELIGIBLE</code> 
+        ///  <c>ELIGIBLE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IN_PROGRESS</code> 
+        ///  <c>IN_PROGRESS</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NOT_ELIGIBLE</code> 
+        ///  <c>NOT_ELIGIBLE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PENDING_UPDATE</code> 
+        ///  <c>PENDING_UPDATE</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

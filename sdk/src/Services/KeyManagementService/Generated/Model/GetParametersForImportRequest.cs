@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
@@ -44,21 +45,21 @@ namespace Amazon.KeyManagementService.Model
     /// </para>
     ///  
     /// <para>
-    /// Before calling <code>GetParametersForImport</code>, use the <a>CreateKey</a> operation
-    /// with an <code>Origin</code> value of <code>EXTERNAL</code> to create a KMS key with
-    /// no key material. You can import key material for a symmetric encryption KMS key, HMAC
-    /// KMS key, asymmetric encryption KMS key, or asymmetric signing KMS key. You can also
-    /// import key material into a <a href="kms/latest/developerguide/multi-region-keys-overview.html">multi-Region
+    /// Before calling <c>GetParametersForImport</c>, use the <a>CreateKey</a> operation with
+    /// an <c>Origin</c> value of <c>EXTERNAL</c> to create a KMS key with no key material.
+    /// You can import key material for a symmetric encryption KMS key, HMAC KMS key, asymmetric
+    /// encryption KMS key, or asymmetric signing KMS key. You can also import key material
+    /// into a <a href="https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html">multi-Region
     /// key</a> of any supported type. However, you can't import key material into a KMS key
-    /// in a <a href="kms/latest/developerguide/custom-key-store-overview.html">custom key
-    /// store</a>. You can also use <code>GetParametersForImport</code> to get a public key
-    /// and import token to <a href="kms/latest/developerguide/importing-keys.html#reimport-key-material">reimport
+    /// in a <a href="https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html">custom
+    /// key store</a>. You can also use <c>GetParametersForImport</c> to get a public key
+    /// and import token to <a href="https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html#reimport-key-material">reimport
     /// the original key material</a> into a KMS key whose key material expired or was deleted.
     /// </para>
     ///  
     /// <para>
-    ///  <code>GetParametersForImport</code> returns the items that you need to import your
-    /// key material.
+    ///  <c>GetParametersForImport</c> returns the items that you need to import your key
+    /// material.
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -78,14 +79,14 @@ namespace Amazon.KeyManagementService.Model
     /// <para>
     /// The public key and its import token are permanently linked and must be used together.
     /// Each public key and import token set is valid for 24 hours. The expiration date and
-    /// time appear in the <code>ParametersValidTo</code> field in the <code>GetParametersForImport</code>
+    /// time appear in the <c>ParametersValidTo</c> field in the <c>GetParametersForImport</c>
     /// response. You cannot use an expired public key or import token in an <a>ImportKeyMaterial</a>
-    /// request. If your key and token expire, send another <code>GetParametersForImport</code>
+    /// request. If your key and token expire, send another <c>GetParametersForImport</c>
     /// request.
     /// </para>
     ///  
     /// <para>
-    ///  <code>GetParametersForImport</code> requires the following information:
+    ///  <c>GetParametersForImport</c> requires the following information:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -133,7 +134,12 @@ namespace Amazon.KeyManagementService.Model
     /// <para>
     ///  <a>DeleteImportedKeyMaterial</a> 
     /// </para>
-    ///  </li> </ul>
+    ///  </li> </ul> 
+    /// <para>
+    ///  <b>Eventual consistency</b>: The KMS API follows an eventual consistency model. For
+    /// more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html">KMS
+    /// eventual consistency</a>.
+    /// </para>
     /// </summary>
     public partial class GetParametersForImportRequest : AmazonKeyManagementServiceRequest
     {
@@ -145,7 +151,7 @@ namespace Amazon.KeyManagementService.Model
         /// Gets and sets the property KeyId. 
         /// <para>
         /// The identifier of the KMS key that will be associated with the imported key material.
-        /// The <code>Origin</code> of the KMS key must be <code>EXTERNAL</code>.
+        /// The <c>Origin</c> of the KMS key must be <c>EXTERNAL</c>.
         /// </para>
         ///  
         /// <para>
@@ -162,11 +168,11 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> 
+        /// Key ID: <c>1234abcd-12ab-34cd-56ef-1234567890ab</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Key ARN: <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
+        /// Key ARN: <c>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</c>
         /// 
         /// </para>
         ///  </li> </ul> 
@@ -190,9 +196,8 @@ namespace Amazon.KeyManagementService.Model
         /// <summary>
         /// Gets and sets the property WrappingAlgorithm. 
         /// <para>
-        /// The algorithm you will use with the RSA public key (<code>PublicKey</code>) in the
-        /// response to protect your key material during import. For more information, see <a
-        /// href="kms/latest/developerguide/importing-keys-get-public-key-and-token.html#select-wrapping-algorithm">Select
+        /// The algorithm you will use with the RSA public key (<c>PublicKey</c>) in the response
+        /// to protect your key material during import. For more information, see <a href="kms/latest/developerguide/importing-keys-get-public-key-and-token.html#select-wrapping-algorithm">Select
         /// a wrapping algorithm</a> in the <i>Key Management Service Developer Guide</i>.
         /// </para>
         ///  
@@ -237,8 +242,8 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>RSAES_PKCS1_V1_5</b> (Deprecated) — Supported only for symmetric encryption key
-        /// material (and only in legacy mode).
+        ///  <b>RSAES_PKCS1_V1_5</b> (Deprecated) — As of October 10, 2023, KMS does not support
+        /// the RSAES_PKCS1_V1_5 wrapping algorithm.
         /// </para>
         ///  </li> </ul>
         /// </summary>

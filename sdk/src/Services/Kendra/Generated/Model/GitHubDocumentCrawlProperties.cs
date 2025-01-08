@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property CrawlIssue. 
         /// <para>
-        ///  <code>TRUE</code> to index all issues within a repository.
+        ///  <c>TRUE</c> to index all issues within a repository.
         /// </para>
         /// </summary>
         public bool CrawlIssue
@@ -64,7 +65,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property CrawlIssueComment. 
         /// <para>
-        ///  <code>TRUE</code> to index all comments on issues.
+        ///  <c>TRUE</c> to index all comments on issues.
         /// </para>
         /// </summary>
         public bool CrawlIssueComment
@@ -82,7 +83,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property CrawlIssueCommentAttachment. 
         /// <para>
-        ///  <code>TRUE</code> to include all comment attachments for issues.
+        ///  <c>TRUE</c> to include all comment attachments for issues.
         /// </para>
         /// </summary>
         public bool CrawlIssueCommentAttachment
@@ -100,7 +101,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property CrawlPullRequest. 
         /// <para>
-        ///  <code>TRUE</code> to index all pull requests within a repository.
+        ///  <c>TRUE</c> to index all pull requests within a repository.
         /// </para>
         /// </summary>
         public bool CrawlPullRequest
@@ -118,7 +119,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property CrawlPullRequestComment. 
         /// <para>
-        ///  <code>TRUE</code> to index all comments on pull requests.
+        ///  <c>TRUE</c> to index all comments on pull requests.
         /// </para>
         /// </summary>
         public bool CrawlPullRequestComment
@@ -136,7 +137,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property CrawlPullRequestCommentAttachment. 
         /// <para>
-        ///  <code>TRUE</code> to include all comment attachments for pull requests.
+        ///  <c>TRUE</c> to include all comment attachments for pull requests.
         /// </para>
         /// </summary>
         public bool CrawlPullRequestCommentAttachment
@@ -154,7 +155,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property CrawlRepositoryDocuments. 
         /// <para>
-        ///  <code>TRUE</code> to index all files with a repository.
+        ///  <c>TRUE</c> to index all files with a repository.
         /// </para>
         /// </summary>
         public bool CrawlRepositoryDocuments

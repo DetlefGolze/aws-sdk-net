@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VoiceID.Model
 {
     /// <summary>
@@ -40,10 +41,10 @@ namespace Amazon.VoiceID.Model
         /// Gets and sets the property ExistingEnrollmentAction. 
         /// <para>
         ///  The action to take when the specified speaker is already enrolled in the specified
-        /// domain. The default value is <code>SKIP</code>, which skips the enrollment for the
-        /// existing speaker. Setting the value to <code>OVERWRITE</code> replaces the existing
-        /// voice prints and enrollment audio stored for that speaker with new data generated
-        /// from the latest audio.
+        /// domain. The default value is <c>SKIP</c>, which skips the enrollment for the existing
+        /// speaker. Setting the value to <c>OVERWRITE</c> replaces the existing voice prints
+        /// and enrollment audio stored for that speaker with new data generated from the latest
+        /// audio.
         /// </para>
         /// </summary>
         public ExistingEnrollmentAction ExistingEnrollmentAction

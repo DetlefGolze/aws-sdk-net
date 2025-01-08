@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the sagemaker-2017-07-24.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -71,6 +72,21 @@ namespace Amazon.SageMaker.Model
         IListCandidatesForAutoMLJobPaginator ListCandidatesForAutoMLJob(ListCandidatesForAutoMLJobRequest request);
 
         /// <summary>
+        /// Paginator for ListClusterNodes operation
+        ///</summary>
+        IListClusterNodesPaginator ListClusterNodes(ListClusterNodesRequest request);
+
+        /// <summary>
+        /// Paginator for ListClusters operation
+        ///</summary>
+        IListClustersPaginator ListClusters(ListClustersRequest request);
+
+        /// <summary>
+        /// Paginator for ListClusterSchedulerConfigs operation
+        ///</summary>
+        IListClusterSchedulerConfigsPaginator ListClusterSchedulerConfigs(ListClusterSchedulerConfigsRequest request);
+
+        /// <summary>
         /// Paginator for ListCodeRepositories operation
         ///</summary>
         IListCodeRepositoriesPaginator ListCodeRepositories(ListCodeRepositoriesRequest request);
@@ -79,6 +95,11 @@ namespace Amazon.SageMaker.Model
         /// Paginator for ListCompilationJobs operation
         ///</summary>
         IListCompilationJobsPaginator ListCompilationJobs(ListCompilationJobsRequest request);
+
+        /// <summary>
+        /// Paginator for ListComputeQuotas operation
+        ///</summary>
+        IListComputeQuotasPaginator ListComputeQuotas(ListComputeQuotasRequest request);
 
         /// <summary>
         /// Paginator for ListContexts operation
@@ -161,6 +182,11 @@ namespace Amazon.SageMaker.Model
         IListImageVersionsPaginator ListImageVersions(ListImageVersionsRequest request);
 
         /// <summary>
+        /// Paginator for ListInferenceComponents operation
+        ///</summary>
+        IListInferenceComponentsPaginator ListInferenceComponents(ListInferenceComponentsRequest request);
+
+        /// <summary>
         /// Paginator for ListInferenceExperiments operation
         ///</summary>
         IListInferenceExperimentsPaginator ListInferenceExperiments(ListInferenceExperimentsRequest request);
@@ -189,6 +215,11 @@ namespace Amazon.SageMaker.Model
         /// Paginator for ListLineageGroups operation
         ///</summary>
         IListLineageGroupsPaginator ListLineageGroups(ListLineageGroupsRequest request);
+
+        /// <summary>
+        /// Paginator for ListMlflowTrackingServers operation
+        ///</summary>
+        IListMlflowTrackingServersPaginator ListMlflowTrackingServers(ListMlflowTrackingServersRequest request);
 
         /// <summary>
         /// Paginator for ListModelBiasJobDefinitions operation
@@ -271,6 +302,16 @@ namespace Amazon.SageMaker.Model
         IListNotebookInstancesPaginator ListNotebookInstances(ListNotebookInstancesRequest request);
 
         /// <summary>
+        /// Paginator for ListOptimizationJobs operation
+        ///</summary>
+        IListOptimizationJobsPaginator ListOptimizationJobs(ListOptimizationJobsRequest request);
+
+        /// <summary>
+        /// Paginator for ListPartnerApps operation
+        ///</summary>
+        IListPartnerAppsPaginator ListPartnerApps(ListPartnerAppsRequest request);
+
+        /// <summary>
         /// Paginator for ListPipelineExecutions operation
         ///</summary>
         IListPipelineExecutionsPaginator ListPipelineExecutions(ListPipelineExecutionsRequest request);
@@ -339,6 +380,11 @@ namespace Amazon.SageMaker.Model
         /// Paginator for ListTrainingJobsForHyperParameterTuningJob operation
         ///</summary>
         IListTrainingJobsForHyperParameterTuningJobPaginator ListTrainingJobsForHyperParameterTuningJob(ListTrainingJobsForHyperParameterTuningJobRequest request);
+
+        /// <summary>
+        /// Paginator for ListTrainingPlans operation
+        ///</summary>
+        IListTrainingPlansPaginator ListTrainingPlans(ListTrainingPlansRequest request);
 
         /// <summary>
         /// Paginator for ListTransformJobs operation

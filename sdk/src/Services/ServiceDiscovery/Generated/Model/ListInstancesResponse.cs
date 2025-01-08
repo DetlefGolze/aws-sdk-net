@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceDiscovery.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ServiceDiscovery.Model
     /// </summary>
     public partial class ListInstancesResponse : AmazonWebServiceResponse
     {
-        private List<InstanceSummary> _instances = new List<InstanceSummary>();
+        private List<InstanceSummary> _instances = AWSConfigs.InitializeCollections ? new List<InstanceSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,16 +52,15 @@ namespace Amazon.ServiceDiscovery.Model
         // Check to see if Instances property is set
         internal bool IsSetInstances()
         {
-            return this._instances != null && this._instances.Count > 0; 
+            return this._instances != null && (this._instances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If more than <code>MaxResults</code> instances match the specified criteria, you can
-        /// submit another <code>ListInstances</code> request to get the next group of results.
-        /// Specify the value of <code>NextToken</code> from the previous response in the next
-        /// request.
+        /// If more than <c>MaxResults</c> instances match the specified criteria, you can submit
+        /// another <c>ListInstances</c> request to get the next group of results. Specify the
+        /// value of <c>NextToken</c> from the previous response in the next request.
         /// </para>
         /// </summary>
         [AWSProperty(Max=4096)]

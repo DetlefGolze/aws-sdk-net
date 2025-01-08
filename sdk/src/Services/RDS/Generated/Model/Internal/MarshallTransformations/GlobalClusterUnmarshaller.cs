@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RDS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,10 +67,22 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                         unmarshalledObject.DeletionProtection = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("Endpoint", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.Endpoint = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("Engine", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
                         unmarshalledObject.Engine = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("EngineLifecycleSupport", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.EngineLifecycleSupport = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("EngineVersion", targetDepth))
@@ -99,6 +112,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("GlobalClusterMembers/GlobalClusterMember", targetDepth))
                     {
                         var unmarshaller = GlobalClusterMemberUnmarshaller.Instance;
+                        if (unmarshalledObject.GlobalClusterMembers == null)
+                        {
+                            unmarshalledObject.GlobalClusterMembers = new List<GlobalClusterMember>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.GlobalClusterMembers.Add(item);
                         continue;
@@ -119,6 +136,17 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = BoolUnmarshaller.Instance;
                         unmarshalledObject.StorageEncrypted = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("TagList/Tag", targetDepth))
+                    {
+                        var unmarshaller = TagUnmarshaller.Instance;
+                        if (unmarshalledObject.TagList == null)
+                        {
+                            unmarshalledObject.TagList = new List<Tag>();
+                        }
+                        var item = unmarshaller.Unmarshall(context);
+                        unmarshalledObject.TagList.Add(item);
                         continue;
                     }
                 }

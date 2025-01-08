@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchServerless.Model
 {
     /// <summary>
@@ -39,10 +40,13 @@ namespace Amazon.OpenSearchServerless.Model
         private long? _createdDate;
         private string _dashboardEndpoint;
         private string _description;
+        private string _failureCode;
+        private string _failureMessage;
         private string _id;
         private string _kmsKeyArn;
         private long? _lastModifiedDate;
         private string _name;
+        private StandbyReplicas _standbyReplicas;
         private CollectionStatus _status;
         private CollectionType _type;
 
@@ -138,6 +142,42 @@ namespace Amazon.OpenSearchServerless.Model
         }
 
         /// <summary>
+        /// Gets and sets the property FailureCode. 
+        /// <para>
+        /// A failure code associated with the request.
+        /// </para>
+        /// </summary>
+        public string FailureCode
+        {
+            get { return this._failureCode; }
+            set { this._failureCode = value; }
+        }
+
+        // Check to see if FailureCode property is set
+        internal bool IsSetFailureCode()
+        {
+            return this._failureCode != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property FailureMessage. 
+        /// <para>
+        /// A message associated with the failure code.
+        /// </para>
+        /// </summary>
+        public string FailureMessage
+        {
+            get { return this._failureMessage; }
+            set { this._failureMessage = value; }
+        }
+
+        // Check to see if FailureMessage property is set
+        internal bool IsSetFailureMessage()
+        {
+            return this._failureMessage != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
         /// A unique identifier for the collection.
@@ -209,6 +249,24 @@ namespace Amazon.OpenSearchServerless.Model
         internal bool IsSetName()
         {
             return this._name != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property StandbyReplicas. 
+        /// <para>
+        /// Details about an OpenSearch Serverless collection.
+        /// </para>
+        /// </summary>
+        public StandbyReplicas StandbyReplicas
+        {
+            get { return this._standbyReplicas; }
+            set { this._standbyReplicas = value; }
+        }
+
+        // Check to see if StandbyReplicas property is set
+        internal bool IsSetStandbyReplicas()
+        {
+            return this._standbyReplicas != null;
         }
 
         /// <summary>

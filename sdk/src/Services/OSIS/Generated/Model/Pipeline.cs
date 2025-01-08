@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OSIS.Model
 {
     /// <summary>
@@ -33,8 +34,11 @@ namespace Amazon.OSIS.Model
     /// </summary>
     public partial class Pipeline
     {
+        private BufferOptions _bufferOptions;
         private DateTime? _createdAt;
-        private List<string> _ingestEndpointUrls = new List<string>();
+        private List<PipelineDestination> _destinations = AWSConfigs.InitializeCollections ? new List<PipelineDestination>() : null;
+        private EncryptionAtRestOptions _encryptionAtRestOptions;
+        private List<string> _ingestEndpointUrls = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _lastUpdatedAt;
         private LogPublishingOptions _logPublishingOptions;
         private int? _maxUnits;
@@ -42,9 +46,27 @@ namespace Amazon.OSIS.Model
         private string _pipelineArn;
         private string _pipelineConfigurationBody;
         private string _pipelineName;
+        private List<ServiceVpcEndpoint> _serviceVpcEndpoints = AWSConfigs.InitializeCollections ? new List<ServiceVpcEndpoint>() : null;
         private PipelineStatus _status;
         private PipelineStatusReason _statusReason;
-        private List<VpcEndpoint> _vpcEndpoints = new List<VpcEndpoint>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private List<VpcEndpoint> _vpcEndpoints = AWSConfigs.InitializeCollections ? new List<VpcEndpoint>() : null;
+        private string _vpcEndpointService;
+
+        /// <summary>
+        /// Gets and sets the property BufferOptions.
+        /// </summary>
+        public BufferOptions BufferOptions
+        {
+            get { return this._bufferOptions; }
+            set { this._bufferOptions = value; }
+        }
+
+        // Check to see if BufferOptions property is set
+        internal bool IsSetBufferOptions()
+        {
+            return this._bufferOptions != null;
+        }
 
         /// <summary>
         /// Gets and sets the property CreatedAt. 
@@ -65,6 +87,39 @@ namespace Amazon.OSIS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Destinations. 
+        /// <para>
+        /// Destinations to which the pipeline writes data.
+        /// </para>
+        /// </summary>
+        public List<PipelineDestination> Destinations
+        {
+            get { return this._destinations; }
+            set { this._destinations = value; }
+        }
+
+        // Check to see if Destinations property is set
+        internal bool IsSetDestinations()
+        {
+            return this._destinations != null && (this._destinations.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property EncryptionAtRestOptions.
+        /// </summary>
+        public EncryptionAtRestOptions EncryptionAtRestOptions
+        {
+            get { return this._encryptionAtRestOptions; }
+            set { this._encryptionAtRestOptions = value; }
+        }
+
+        // Check to see if EncryptionAtRestOptions property is set
+        internal bool IsSetEncryptionAtRestOptions()
+        {
+            return this._encryptionAtRestOptions != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property IngestEndpointUrls. 
         /// <para>
         /// The ingestion endpoints for the pipeline, which you can send data to.
@@ -79,7 +134,7 @@ namespace Amazon.OSIS.Model
         // Check to see if IngestEndpointUrls property is set
         internal bool IsSetIngestEndpointUrls()
         {
-            return this._ingestEndpointUrls != null && this._ingestEndpointUrls.Count > 0; 
+            return this._ingestEndpointUrls != null && (this._ingestEndpointUrls.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -209,6 +264,25 @@ namespace Amazon.OSIS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ServiceVpcEndpoints. 
+        /// <para>
+        /// A list of VPC endpoints that OpenSearch Ingestion has created to other Amazon Web
+        /// Services services.
+        /// </para>
+        /// </summary>
+        public List<ServiceVpcEndpoint> ServiceVpcEndpoints
+        {
+            get { return this._serviceVpcEndpoints; }
+            set { this._serviceVpcEndpoints = value; }
+        }
+
+        // Check to see if ServiceVpcEndpoints property is set
+        internal bool IsSetServiceVpcEndpoints()
+        {
+            return this._serviceVpcEndpoints != null && (this._serviceVpcEndpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
         /// The current status of the pipeline.
@@ -245,6 +319,24 @@ namespace Amazon.OSIS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Tags. 
+        /// <para>
+        /// A list of tags associated with the given pipeline.
+        /// </para>
+        /// </summary>
+        public List<Tag> Tags
+        {
+            get { return this._tags; }
+            set { this._tags = value; }
+        }
+
+        // Check to see if Tags property is set
+        internal bool IsSetTags()
+        {
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property VpcEndpoints. 
         /// <para>
         /// The VPC interface endpoints that have access to the pipeline.
@@ -259,7 +351,25 @@ namespace Amazon.OSIS.Model
         // Check to see if VpcEndpoints property is set
         internal bool IsSetVpcEndpoints()
         {
-            return this._vpcEndpoints != null && this._vpcEndpoints.Count > 0; 
+            return this._vpcEndpoints != null && (this._vpcEndpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property VpcEndpointService. 
+        /// <para>
+        /// The VPC endpoint service name for the pipeline.
+        /// </para>
+        /// </summary>
+        public string VpcEndpointService
+        {
+            get { return this._vpcEndpointService; }
+            set { this._vpcEndpointService = value; }
+        }
+
+        // Check to see if VpcEndpointService property is set
+        internal bool IsSetVpcEndpointService()
+        {
+            return this._vpcEndpointService != null;
         }
 
     }

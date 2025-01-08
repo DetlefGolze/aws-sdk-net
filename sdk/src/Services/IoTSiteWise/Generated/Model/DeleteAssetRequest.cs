@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteAsset operation.
     /// Deletes an asset. This action can't be undone. For more information, see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/delete-assets-and-models.html">Deleting
-    /// assets and models</a> in the <i>IoT SiteWise User Guide</i>. 
+    /// assets and models</a> in the <i>IoT SiteWise User Guide</i>.
     /// 
     ///  <note> 
     /// <para>
@@ -48,10 +49,13 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property AssetId. 
         /// <para>
-        /// The ID of the asset to delete.
+        /// The ID of the asset to delete. This can be either the actual ID in UUID format, or
+        /// else <c>externalId:</c> followed by the external ID, if it has one. For more information,
+        /// see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-id-references">Referencing
+        /// objects with external IDs</a> in the <i>IoT SiteWise User Guide</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=36, Max=36)]
+        [AWSProperty(Required=true, Min=13, Max=139)]
         public string AssetId
         {
             get { return this._assetId; }

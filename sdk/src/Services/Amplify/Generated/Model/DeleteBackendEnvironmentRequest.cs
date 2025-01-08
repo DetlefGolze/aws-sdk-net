@@ -26,11 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Amplify.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteBackendEnvironment operation.
-    /// Deletes a backend environment for an Amplify app.
+    /// Deletes a backend environment for an Amplify app. 
+    /// 
+    ///  
+    /// <para>
+    /// This API is available only to Amplify Gen 1 applications where the backend is created
+    /// using Amplify Studio or the Amplify command line interface (CLI). This API isn’t available
+    /// to Amplify Gen 2 applications. When you deploy an application with Amplify Gen 2,
+    /// you provision the app's backend infrastructure using Typescript code.
+    /// </para>
     /// </summary>
     public partial class DeleteBackendEnvironmentRequest : AmazonAmplifyRequest
     {
@@ -40,7 +49,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property AppId. 
         /// <para>
-        ///  The unique ID of an Amplify app. 
+        /// The unique ID of an Amplify app. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=20)]
@@ -59,7 +68,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property EnvironmentName. 
         /// <para>
-        ///  The name of a backend environment of an Amplify app. 
+        /// The name of a backend environment of an Amplify app. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]

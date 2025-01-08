@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Proton.Model
 {
     /// <summary>
@@ -101,7 +102,7 @@ namespace Amazon.Proton.Model
         /// <summary>
         /// Gets and sets the property SyncType. 
         /// <para>
-        /// The sync type. The only supported value is <code>TEMPLATE_SYNC</code>.
+        /// The sync type. The only supported value is <c>TEMPLATE_SYNC</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

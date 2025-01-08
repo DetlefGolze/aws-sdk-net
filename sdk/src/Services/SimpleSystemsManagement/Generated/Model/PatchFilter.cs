@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -34,22 +35,20 @@ namespace Amazon.SimpleSystemsManagement.Model
     ///  
     /// <para>
     /// A patch filter consists of a key and a set of values. The filter key is a patch property.
-    /// For example, the available filter keys for <code>WINDOWS</code> are <code>PATCH_SET</code>,
-    /// <code>PRODUCT</code>, <code>PRODUCT_FAMILY</code>, <code>CLASSIFICATION</code>, and
-    /// <code>MSRC_SEVERITY</code>.
+    /// For example, the available filter keys for <c>WINDOWS</c> are <c>PATCH_SET</c>, <c>PRODUCT</c>,
+    /// <c>PRODUCT_FAMILY</c>, <c>CLASSIFICATION</c>, and <c>MSRC_SEVERITY</c>.
     /// </para>
     ///  
     /// <para>
     /// The filter values define a matching criterion for the patch property indicated by
-    /// the key. For example, if the filter key is <code>PRODUCT</code> and the filter values
-    /// are <code>["Office 2013", "Office 2016"]</code>, then the filter accepts all patches
-    /// where product name is either "Office 2013" or "Office 2016". The filter values can
-    /// be exact values for the patch property given as a key, or a wildcard (*), which matches
-    /// all values.
+    /// the key. For example, if the filter key is <c>PRODUCT</c> and the filter values are
+    /// <c>["Office 2013", "Office 2016"]</c>, then the filter accepts all patches where product
+    /// name is either "Office 2013" or "Office 2016". The filter values can be exact values
+    /// for the patch property given as a key, or a wildcard (*), which matches all values.
     /// </para>
     ///  
     /// <para>
-    /// You can view lists of valid values for the patch properties by running the <code>DescribePatchProperties</code>
+    /// You can view lists of valid values for the patch properties by running the <c>DescribePatchProperties</c>
     /// command. For information about which patch properties can be used with each major
     /// operating system, see <a>DescribePatchProperties</a>.
     /// </para>
@@ -57,7 +56,7 @@ namespace Amazon.SimpleSystemsManagement.Model
     public partial class PatchFilter
     {
         private PatchFilterKey _key;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Key. 
@@ -104,7 +103,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

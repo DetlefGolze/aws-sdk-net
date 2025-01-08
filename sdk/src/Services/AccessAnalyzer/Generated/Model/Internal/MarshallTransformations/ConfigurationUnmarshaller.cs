@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AccessAnalyzer.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,31 @@ namespace Amazon.AccessAnalyzer.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Configuration Unmarshall(JsonUnmarshallerContext context)
         {
+            Configuration unmarshalledObject = new Configuration();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Configuration unmarshalledObject = new Configuration();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("dynamodbStream", targetDepth))
+                {
+                    var unmarshaller = DynamodbStreamConfigurationUnmarshaller.Instance;
+                    unmarshalledObject.DynamodbStream = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("dynamodbTable", targetDepth))
+                {
+                    var unmarshaller = DynamodbTableConfigurationUnmarshaller.Instance;
+                    unmarshalledObject.DynamodbTable = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ebsSnapshot", targetDepth))
                 {
                     var unmarshaller = EbsSnapshotConfigurationUnmarshaller.Instance;
@@ -112,6 +126,12 @@ namespace Amazon.AccessAnalyzer.Model.Internal.MarshallTransformations
                     unmarshalledObject.S3Bucket = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("s3ExpressDirectoryBucket", targetDepth))
+                {
+                    var unmarshaller = S3ExpressDirectoryBucketConfigurationUnmarshaller.Instance;
+                    unmarshalledObject.S3ExpressDirectoryBucket = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("secretsManagerSecret", targetDepth))
                 {
                     var unmarshaller = SecretsManagerSecretConfigurationUnmarshaller.Instance;
@@ -131,7 +151,6 @@ namespace Amazon.AccessAnalyzer.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

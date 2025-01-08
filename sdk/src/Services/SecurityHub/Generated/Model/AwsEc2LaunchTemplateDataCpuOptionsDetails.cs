@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -59,8 +60,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property ThreadsPerCore. 
         /// <para>
-        ///  The number of threads per CPU core. A value of <code>1</code> disables multithreading
-        /// for the instance, The default value is <code>2</code>. 
+        ///  The number of threads per CPU core. A value of <c>1</c> disables multithreading for
+        /// the instance, The default value is <c>2</c>. 
         /// </para>
         /// </summary>
         public int ThreadsPerCore

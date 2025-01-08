@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VerifiedPermissions.Model
 {
     /// <summary>
@@ -34,22 +35,22 @@ namespace Amazon.VerifiedPermissions.Model
     /// 
     ///  <note> 
     /// <para>
-    /// Although <a href="https://docs.cedarpolicy.com/schema.html#namespace">Cedar supports
-    /// multiple namespaces</a>, Verified Permissions currently supports only one namespace
-    /// per policy store.
+    /// Although <a href="https://docs.cedarpolicy.com/schema/schema.html#namespace">Cedar
+    /// supports multiple namespaces</a>, Verified Permissions currently supports only one
+    /// namespace per policy store.
     /// </para>
     ///  </note> <note> 
     /// <para>
     /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
-    /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
-    /// propagate through the service and be visible in the results of other Verified Permissions
-    /// operations.
+    /// consistent</a> </i>. It can take a few seconds for a new or changed element to propagate
+    /// through the service and be visible in the results of other Verified Permissions operations.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class CreatePolicyStoreRequest : AmazonVerifiedPermissionsRequest
     {
         private string _clientToken;
+        private string _description;
         private ValidationSettings _validationSettings;
 
         /// <summary>
@@ -69,8 +70,14 @@ namespace Amazon.VerifiedPermissions.Model
         /// </para>
         ///  
         /// <para>
-        /// If you retry the operation with the same <code>ClientToken</code>, but with different
-        /// parameters, the retry fails with an <code>IdempotentParameterMismatch</code> error.
+        /// If you retry the operation with the same <c>ClientToken</c>, but with different parameters,
+        /// the retry fails with an <c>ConflictException</c> error.
+        /// </para>
+        ///  
+        /// <para>
+        /// Verified Permissions recognizes a <c>ClientToken</c> for eight hours. After eight
+        /// hours, the next request with the same parameters performs the operation again regardless
+        /// of the value of <c>ClientToken</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -87,20 +94,40 @@ namespace Amazon.VerifiedPermissions.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Description. 
+        /// <para>
+        /// Descriptive text that you can provide to help with identification of the current policy
+        /// store.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Sensitive=true, Min=0, Max=150)]
+        public string Description
+        {
+            get { return this._description; }
+            set { this._description = value; }
+        }
+
+        // Check to see if Description property is set
+        internal bool IsSetDescription()
+        {
+            return this._description != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ValidationSettings. 
         /// <para>
         /// Specifies the validation setting for this policy store.
         /// </para>
         ///  
         /// <para>
-        /// Currently, the only valid and required value is <code>Mode</code>.
+        /// Currently, the only valid and required value is <c>Mode</c>.
         /// </para>
         ///  <important> 
         /// <para>
-        /// We recommend that you turn on <code>STRICT</code> mode only after you define a schema.
-        /// If a schema doesn't exist, then <code>STRICT</code> mode causes any policy to fail
-        /// validation, and Verified Permissions rejects the policy. You can turn off validation
-        /// by using the <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdatePolicyStore">UpdatePolicyStore</a>.
+        /// We recommend that you turn on <c>STRICT</c> mode only after you define a schema. If
+        /// a schema doesn't exist, then <c>STRICT</c> mode causes any policy to fail validation,
+        /// and Verified Permissions rejects the policy. You can turn off validation by using
+        /// the <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdatePolicyStore">UpdatePolicyStore</a>.
         /// Then, when you have a schema defined, use <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdatePolicyStore">UpdatePolicyStore</a>
         /// again to turn validation back on.
         /// </para>

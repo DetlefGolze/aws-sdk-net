@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -34,8 +35,9 @@ namespace Amazon.OpenSearchService.Model
     public partial class DomainStatus
     {
         private string _accessPolicies;
-        private Dictionary<string, string> _advancedOptions = new Dictionary<string, string>();
+        private Dictionary<string, string> _advancedOptions = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private AdvancedSecurityOptions _advancedSecurityOptions;
+        private AIMLOptionsOutput _aimlOptions;
         private string _arn;
         private AutoTuneOptionsOutput _autoTuneOptions;
         private ChangeProgressDetails _changeProgressDetails;
@@ -44,14 +46,20 @@ namespace Amazon.OpenSearchService.Model
         private bool? _created;
         private bool? _deleted;
         private DomainEndpointOptions _domainEndpointOptions;
+        private string _domainEndpointV2HostedZoneId;
         private string _domainId;
         private string _domainName;
+        private DomainProcessingStatusType _domainProcessingStatus;
         private EBSOptions _ebsOptions;
         private EncryptionAtRestOptions _encryptionAtRestOptions;
         private string _endpoint;
-        private Dictionary<string, string> _endpoints = new Dictionary<string, string>();
+        private Dictionary<string, string> _endpoints = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private string _endpointV2;
         private string _engineVersion;
-        private Dictionary<string, LogPublishingOption> _logPublishingOptions = new Dictionary<string, LogPublishingOption>();
+        private IdentityCenterOptions _identityCenterOptions;
+        private IPAddressType _ipAddressType;
+        private Dictionary<string, LogPublishingOption> _logPublishingOptions = AWSConfigs.InitializeCollections ? new Dictionary<string, LogPublishingOption>() : null;
+        private List<ModifyingProperties> _modifyingProperties = AWSConfigs.InitializeCollections ? new List<ModifyingProperties>() : null;
         private NodeToNodeEncryptionOptions _nodeToNodeEncryptionOptions;
         private OffPeakWindowOptions _offPeakWindowOptions;
         private bool? _processing;
@@ -96,7 +104,7 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if AdvancedOptions property is set
         internal bool IsSetAdvancedOptions()
         {
-            return this._advancedOptions != null && this._advancedOptions.Count > 0; 
+            return this._advancedOptions != null && (this._advancedOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -115,6 +123,24 @@ namespace Amazon.OpenSearchService.Model
         internal bool IsSetAdvancedSecurityOptions()
         {
             return this._advancedSecurityOptions != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property AIMLOptions. 
+        /// <para>
+        /// Container for parameters required to enable all machine learning features.
+        /// </para>
+        /// </summary>
+        public AIMLOptionsOutput AIMLOptions
+        {
+            get { return this._aimlOptions; }
+            set { this._aimlOptions = value; }
+        }
+
+        // Check to see if AIMLOptions property is set
+        internal bool IsSetAIMLOptions()
+        {
+            return this._aimlOptions != null;
         }
 
         /// <summary>
@@ -269,6 +295,24 @@ namespace Amazon.OpenSearchService.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DomainEndpointV2HostedZoneId. 
+        /// <para>
+        /// The dual stack hosted zone ID for the domain. 
+        /// </para>
+        /// </summary>
+        public string DomainEndpointV2HostedZoneId
+        {
+            get { return this._domainEndpointV2HostedZoneId; }
+            set { this._domainEndpointV2HostedZoneId = value; }
+        }
+
+        // Check to see if DomainEndpointV2HostedZoneId property is set
+        internal bool IsSetDomainEndpointV2HostedZoneId()
+        {
+            return this._domainEndpointV2HostedZoneId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property DomainId. 
         /// <para>
         /// Unique identifier for the domain.
@@ -305,6 +349,24 @@ namespace Amazon.OpenSearchService.Model
         internal bool IsSetDomainName()
         {
             return this._domainName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DomainProcessingStatus. 
+        /// <para>
+        /// The status of any changes that are currently in progress for the domain.
+        /// </para>
+        /// </summary>
+        public DomainProcessingStatusType DomainProcessingStatus
+        {
+            get { return this._domainProcessingStatus; }
+            set { this._domainProcessingStatus = value; }
+        }
+
+        // Check to see if DomainProcessingStatus property is set
+        internal bool IsSetDomainProcessingStatus()
+        {
+            return this._domainProcessingStatus != null;
         }
 
         /// <summary>
@@ -365,9 +427,20 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property Endpoints. 
         /// <para>
-        /// The key-value pair that exists if the OpenSearch Service domain uses VPC endpoints..
-        /// Example <code>key, value</code>: <code>'vpc','vpc-endpoint-h2dsd34efgyghrtguk5gt6j2foh4.us-east-1.es.amazonaws.com'</code>.
+        /// The key-value pair that exists if the OpenSearch Service domain uses VPC endpoints.
+        /// For example:
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>IPv4 IP addresses</b> - <c>'vpc','vpc-endpoint-h2dsd34efgyghrtguk5gt6j2foh4.us-east-1.es.amazonaws.com'</c>
+        /// 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>Dual stack IP addresses</b> - <c>'vpcv2':'vpc-endpoint-h2dsd34efgyghrtguk5gt6j2foh4.aos.us-east-1.on.aws'</c>
+        /// 
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public Dictionary<string, string> Endpoints
         {
@@ -378,14 +451,35 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if Endpoints property is set
         internal bool IsSetEndpoints()
         {
-            return this._endpoints != null && this._endpoints.Count > 0; 
+            return this._endpoints != null && (this._endpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property EndpointV2. 
+        /// <para>
+        /// If <c>IPAddressType</c> to set to <c>dualstack</c>, a version 2 domain endpoint is
+        /// provisioned. This endpoint functions like a normal endpoint, except that it works
+        /// with both IPv4 and IPv6 IP addresses. Normal endpoints work only with IPv4 IP addresses.
+        /// 
+        /// </para>
+        /// </summary>
+        public string EndpointV2
+        {
+            get { return this._endpointV2; }
+            set { this._endpointV2 = value; }
+        }
+
+        // Check to see if EndpointV2 property is set
+        internal bool IsSetEndpointV2()
+        {
+            return this._endpointV2 != null;
         }
 
         /// <summary>
         /// Gets and sets the property EngineVersion. 
         /// <para>
-        /// Version of OpenSearch or Elasticsearch that the domain is running, in the format <code>Elasticsearch_X.Y</code>
-        /// or <code>OpenSearch_X.Y</code>.
+        /// Version of OpenSearch or Elasticsearch that the domain is running, in the format <c>Elasticsearch_X.Y</c>
+        /// or <c>OpenSearch_X.Y</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=14, Max=18)]
@@ -399,6 +493,42 @@ namespace Amazon.OpenSearchService.Model
         internal bool IsSetEngineVersion()
         {
             return this._engineVersion != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IdentityCenterOptions. 
+        /// <para>
+        /// Container for IAM Identity Center Option control for the domain.
+        /// </para>
+        /// </summary>
+        public IdentityCenterOptions IdentityCenterOptions
+        {
+            get { return this._identityCenterOptions; }
+            set { this._identityCenterOptions = value; }
+        }
+
+        // Check to see if IdentityCenterOptions property is set
+        internal bool IsSetIdentityCenterOptions()
+        {
+            return this._identityCenterOptions != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IPAddressType. 
+        /// <para>
+        /// The type of IP addresses supported by the endpoint for the domain.
+        /// </para>
+        /// </summary>
+        public IPAddressType IPAddressType
+        {
+            get { return this._ipAddressType; }
+            set { this._ipAddressType = value; }
+        }
+
+        // Check to see if IPAddressType property is set
+        internal bool IsSetIPAddressType()
+        {
+            return this._ipAddressType != null;
         }
 
         /// <summary>
@@ -416,7 +546,25 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if LogPublishingOptions property is set
         internal bool IsSetLogPublishingOptions()
         {
-            return this._logPublishingOptions != null && this._logPublishingOptions.Count > 0; 
+            return this._logPublishingOptions != null && (this._logPublishingOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ModifyingProperties. 
+        /// <para>
+        /// Information about the domain properties that are currently being modified.
+        /// </para>
+        /// </summary>
+        public List<ModifyingProperties> ModifyingProperties
+        {
+            get { return this._modifyingProperties; }
+            set { this._modifyingProperties = value; }
+        }
+
+        // Check to see if ModifyingProperties property is set
+        internal bool IsSetModifyingProperties()
+        {
+            return this._modifyingProperties != null && (this._modifyingProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DeviceFarm.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.DeviceFarm.Model
     /// </summary>
     public partial class ScheduleRunConfiguration
     {
-        private List<string> _auxiliaryApps = new List<string>();
+        private List<string> _auxiliaryApps = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private BillingMethod _billingMethod;
         private CustomerArtifactPaths _customerArtifactPaths;
         private string _extraDataPackageArn;
@@ -42,7 +43,7 @@ namespace Amazon.DeviceFarm.Model
         private Location _location;
         private string _networkProfileArn;
         private Radios _radios;
-        private List<string> _vpceConfigurationArns = new List<string>();
+        private List<string> _vpceConfigurationArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AuxiliaryApps. 
@@ -59,18 +60,18 @@ namespace Amazon.DeviceFarm.Model
         // Check to see if AuxiliaryApps property is set
         internal bool IsSetAuxiliaryApps()
         {
-            return this._auxiliaryApps != null && this._auxiliaryApps.Count > 0; 
+            return this._auxiliaryApps != null && (this._auxiliaryApps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property BillingMethod. 
         /// <para>
-        /// Specifies the billing method for a test run: <code>metered</code> or <code>unmetered</code>.
-        /// If the parameter is not specified, the default value is <code>metered</code>.
+        /// Specifies the billing method for a test run: <c>metered</c> or <c>unmetered</c>. If
+        /// the parameter is not specified, the default value is <c>metered</c>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you have purchased unmetered device slots, you must set this parameter to <code>unmetered</code>
+        /// If you have purchased unmetered device slots, you must set this parameter to <c>unmetered</c>
         /// to make use of them. Otherwise, your run counts against your metered time.
         /// </para>
         ///  </note>
@@ -90,7 +91,7 @@ namespace Amazon.DeviceFarm.Model
         /// <summary>
         /// Gets and sets the property CustomerArtifactPaths. 
         /// <para>
-        /// Input <code>CustomerArtifactPaths</code> object for the scheduled run configuration.
+        /// Input <c>CustomerArtifactPaths</c> object for the scheduled run configuration.
         /// </para>
         /// </summary>
         public CustomerArtifactPaths CustomerArtifactPaths
@@ -213,7 +214,7 @@ namespace Amazon.DeviceFarm.Model
         // Check to see if VpceConfigurationArns property is set
         internal bool IsSetVpceConfigurationArns()
         {
-            return this._vpceConfigurationArns != null && this._vpceConfigurationArns.Count > 0; 
+            return this._vpceConfigurationArns != null && (this._vpceConfigurationArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

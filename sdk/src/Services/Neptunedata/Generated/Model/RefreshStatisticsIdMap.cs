@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptunedata.Model
 {
     /// <summary>
-    /// Statistics for <code>REFRESH</code> mode.
+    /// Statistics for <c>REFRESH</c> mode.
     /// </summary>
     public partial class RefreshStatisticsIdMap
     {

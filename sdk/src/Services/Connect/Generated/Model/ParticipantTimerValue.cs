@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
-    /// The value of the timer. Either the timer action (<code>Unset</code> to delete the
-    /// timer), or the duration of the timer in minutes. Only one value can be set.
+    /// The value of the timer. Either the timer action (<c>Unset</c> to delete the timer),
+    /// or the duration of the timer in minutes. Only one value can be set.
     /// 
     ///  
     /// <para>
@@ -46,8 +47,8 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property ParticipantTimerAction. 
         /// <para>
-        /// The timer action. Currently only one value is allowed: <code>Unset</code>. It deletes
-        /// a timer.
+        /// The timer action. Currently only one value is allowed: <c>Unset</c>. It deletes a
+        /// timer.
         /// </para>
         /// </summary>
         public ParticipantTimerAction ParticipantTimerAction

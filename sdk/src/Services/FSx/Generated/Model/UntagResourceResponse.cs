@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
-    /// The response object for <code>UntagResource</code> action.
+    /// The response object for <c>UntagResource</c> action.
     /// </summary>
     public partial class UntagResourceResponse : AmazonWebServiceResponse
     {

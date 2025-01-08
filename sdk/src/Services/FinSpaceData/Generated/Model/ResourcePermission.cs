@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FinSpaceData.Model
 {
     /// <summary>
@@ -39,27 +40,27 @@ namespace Amazon.FinSpaceData.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>ViewDatasetDetails</code> 
+    ///  <c>ViewDatasetDetails</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ReadDatasetDetails</code> 
+    ///  <c>ReadDatasetDetails</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>AddDatasetData</code> 
+    ///  <c>AddDatasetData</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>CreateDataView</code> 
+    ///  <c>CreateDataView</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>EditDatasetMetadata</code> 
+    ///  <c>EditDatasetMetadata</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>DeleteDataset</code> 
+    ///  <c>DeleteDataset</c> 
     /// </para>
     ///  </li> </ul> 
     /// <para>

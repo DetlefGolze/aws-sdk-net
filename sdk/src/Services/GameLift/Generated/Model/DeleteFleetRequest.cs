@@ -26,25 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteFleet operation.
-    /// Deletes all resources and information related a fleet. Any current fleet instances,
-    /// including those in remote locations, are shut down. You don't need to call <code>DeleteFleetLocations</code>
-    /// separately.
+    /// Deletes all resources and information related to a fleet and shuts down any currently
+    /// running fleet instances, including those in remote locations.
     /// 
     ///  <note> 
     /// <para>
     /// If the fleet being deleted has a VPC peering connection, you first need to get a valid
     /// authorization (good for 24 hours) by calling <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateVpcPeeringAuthorization.html">CreateVpcPeeringAuthorization</a>.
-    /// You do not need to explicitly delete the VPC peering connection.
+    /// You don't need to explicitly delete the VPC peering connection.
     /// </para>
     ///  </note> 
     /// <para>
-    /// To delete a fleet, specify the fleet ID to be terminated. During the deletion process
-    /// the fleet status is changed to <code>DELETING</code>. When completed, the status switches
-    /// to <code>TERMINATED</code> and the fleet event <code>FLEET_DELETED</code> is sent.
+    /// To delete a fleet, specify the fleet ID to be terminated. During the deletion process,
+    /// the fleet status is changed to <c>DELETING</c>. When completed, the status switches
+    /// to <c>TERMINATED</c> and the fleet event <c>FLEET_DELETED</c> is emitted.
     /// </para>
     ///  
     /// <para>
@@ -67,7 +67,7 @@ namespace Amazon.GameLift.Model
         /// ARN value.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// </summary>
     public partial class InventoryGroup
     {
-        private List<InventoryFilter> _filters = new List<InventoryFilter>();
+        private List<InventoryFilter> _filters = AWSConfigs.InitializeCollections ? new List<InventoryFilter>() : null;
         private string _name;
 
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// Filters define the criteria for the group. The <code>matchingCount</code> field displays
-        /// the number of resources that match the criteria. The <code>notMatchingCount</code>
-        /// field displays the number of resources that don't match the criteria. 
+        /// Filters define the criteria for the group. The <c>matchingCount</c> field displays
+        /// the number of resources that match the criteria. The <c>notMatchingCount</c> field
+        /// displays the number of resources that don't match the criteria. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=5)]
@@ -55,7 +56,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

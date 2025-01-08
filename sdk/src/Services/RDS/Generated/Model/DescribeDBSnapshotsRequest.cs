@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.RDS.Model
         private string _dbInstanceIdentifier;
         private string _dbiResourceId;
         private string _dbSnapshotIdentifier;
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private bool? _includePublic;
         private bool? _includeShared;
         private string _marker;
@@ -111,7 +112,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If this identifier is for an automated snapshot, the <code>SnapshotType</code> parameter
+        /// If this identifier is for an automated snapshot, the <c>SnapshotType</c> parameter
         /// must also be specified.
         /// </para>
         ///  </li> </ul>
@@ -139,24 +140,24 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>db-instance-id</code> - Accepts DB instance identifiers and DB instance Amazon
-        /// Resource Names (ARNs).
+        ///  <c>db-instance-id</c> - Accepts DB instance identifiers and DB instance Amazon Resource
+        /// Names (ARNs).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>db-snapshot-id</code> - Accepts DB snapshot identifiers.
+        ///  <c>db-snapshot-id</c> - Accepts DB snapshot identifiers.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>dbi-resource-id</code> - Accepts identifiers of source DB instances.
+        ///  <c>dbi-resource-id</c> - Accepts identifiers of source DB instances.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>snapshot-type</code> - Accepts types of DB snapshots.
+        ///  <c>snapshot-type</c> - Accepts types of DB snapshots.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>engine</code> - Accepts names of database engines.
+        ///  <c>engine</c> - Accepts names of database engines.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -169,7 +170,7 @@ namespace Amazon.RDS.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -211,7 +212,7 @@ namespace Amazon.RDS.Model
         ///  
         /// <para>
         /// You can give an Amazon Web Services account permission to restore a manual DB snapshot
-        /// from another Amazon Web Services account by using the <code>ModifyDBSnapshotAttribute</code>
+        /// from another Amazon Web Services account by using the <c>ModifyDBSnapshotAttribute</c>
         /// API action.
         /// </para>
         ///  
@@ -234,9 +235,9 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// An optional pagination token provided by a previous <code>DescribeDBSnapshots</code>
-        /// request. If this parameter is specified, the response includes only records beyond
-        /// the marker, up to the value specified by <code>MaxRecords</code>.
+        /// An optional pagination token provided by a previous <c>DescribeDBSnapshots</c> request.
+        /// If this parameter is specified, the response includes only records beyond the marker,
+        /// up to the value specified by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -255,8 +256,8 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property MaxRecords. 
         /// <para>
         /// The maximum number of records to include in the response. If more records exist than
-        /// the specified <code>MaxRecords</code> value, a pagination token called a marker is
-        /// included in the response so that you can retrieve the remaining results.
+        /// the specified <c>MaxRecords</c> value, a pagination token called a marker is included
+        /// in the response so that you can retrieve the remaining results.
         /// </para>
         ///  
         /// <para>
@@ -286,27 +287,27 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>automated</code> - Return all DB snapshots that have been automatically taken
-        /// by Amazon RDS for my Amazon Web Services account.
+        ///  <c>automated</c> - Return all DB snapshots that have been automatically taken by
+        /// Amazon RDS for my Amazon Web Services account.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>manual</code> - Return all DB snapshots that have been taken by my Amazon Web
-        /// Services account.
+        ///  <c>manual</c> - Return all DB snapshots that have been taken by my Amazon Web Services
+        /// account.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>shared</code> - Return all manual DB snapshots that have been shared to my
-        /// Amazon Web Services account.
+        ///  <c>shared</c> - Return all manual DB snapshots that have been shared to my Amazon
+        /// Web Services account.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>public</code> - Return all DB snapshots that have been marked as public.
+        ///  <c>public</c> - Return all DB snapshots that have been marked as public.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>awsbackup</code> - Return the DB snapshots managed by the Amazon Web Services
-        /// Backup service.
+        ///  <c>awsbackup</c> - Return the DB snapshots managed by the Amazon Web Services Backup
+        /// service.
         /// </para>
         ///  
         /// <para>
@@ -315,23 +316,22 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// The <code>awsbackup</code> type does not apply to Aurora.
+        /// The <c>awsbackup</c> type does not apply to Aurora.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If you don't specify a <code>SnapshotType</code> value, then both automated and manual
-        /// snapshots are returned. Shared and public DB snapshots are not included in the returned
-        /// results by default. You can include shared snapshots with these results by enabling
-        /// the <code>IncludeShared</code> parameter. You can include public snapshots with these
-        /// results by enabling the <code>IncludePublic</code> parameter.
+        /// If you don't specify a <c>SnapshotType</c> value, then both automated and manual snapshots
+        /// are returned. Shared and public DB snapshots are not included in the returned results
+        /// by default. You can include shared snapshots with these results by enabling the <c>IncludeShared</c>
+        /// parameter. You can include public snapshots with these results by enabling the <c>IncludePublic</c>
+        /// parameter.
         /// </para>
         ///  
         /// <para>
-        /// The <code>IncludeShared</code> and <code>IncludePublic</code> parameters don't apply
-        /// for <code>SnapshotType</code> values of <code>manual</code> or <code>automated</code>.
-        /// The <code>IncludePublic</code> parameter doesn't apply when <code>SnapshotType</code>
-        /// is set to <code>shared</code>. The <code>IncludeShared</code> parameter doesn't apply
-        /// when <code>SnapshotType</code> is set to <code>public</code>.
+        /// The <c>IncludeShared</c> and <c>IncludePublic</c> parameters don't apply for <c>SnapshotType</c>
+        /// values of <c>manual</c> or <c>automated</c>. The <c>IncludePublic</c> parameter doesn't
+        /// apply when <c>SnapshotType</c> is set to <c>shared</c>. The <c>IncludeShared</c> parameter
+        /// doesn't apply when <c>SnapshotType</c> is set to <c>public</c>.
         /// </para>
         /// </summary>
         public string SnapshotType

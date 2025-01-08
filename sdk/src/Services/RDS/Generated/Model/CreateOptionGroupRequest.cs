@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -43,12 +44,12 @@ namespace Amazon.RDS.Model
         private string _majorEngineVersion;
         private string _optionGroupDescription;
         private string _optionGroupName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property EngineName. 
         /// <para>
-        /// Specifies the name of the engine that this option group should be associated with.
+        /// The name of the engine to associate this option group with.
         /// </para>
         ///  
         /// <para>
@@ -56,47 +57,55 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>mariadb</code> 
+        ///  <c>db2-ae</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mysql</code> 
+        ///  <c>db2-se</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-ee</code> 
+        ///  <c>mariadb</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-ee-cdb</code> 
+        ///  <c>mysql</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-se2</code> 
+        ///  <c>oracle-ee</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-se2-cdb</code> 
+        ///  <c>oracle-ee-cdb</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>postgres</code> 
+        ///  <c>oracle-se2</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ee</code> 
+        ///  <c>oracle-se2-cdb</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-se</code> 
+        ///  <c>postgres</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ex</code> 
+        ///  <c>sqlserver-ee</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-web</code> 
+        ///  <c>sqlserver-se</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>sqlserver-ex</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>sqlserver-web</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -175,7 +184,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>myoptiongroup</code> 
+        /// Example: <c>myoptiongroup</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -206,7 +215,7 @@ namespace Amazon.RDS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

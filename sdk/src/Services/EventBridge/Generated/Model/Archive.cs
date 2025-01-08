@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
-    /// An <code>Archive</code> object that contains details about an archive.
+    /// An <c>Archive</c> object that contains details about an archive.
     /// </summary>
     public partial class Archive
     {

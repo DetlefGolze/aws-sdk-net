@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Kafka.Model
 {
     /// <summary>
@@ -105,6 +106,14 @@ namespace Amazon.Kafka.Model
         public IListNodesPaginator ListNodes(ListNodesRequest request) 
         {
             return new ListNodesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListReplicators operation
+        ///</summary>
+        public IListReplicatorsPaginator ListReplicators(ListReplicatorsRequest request) 
+        {
+            return new ListReplicatorsPaginator(this.client, request);
         }
 
         /// <summary>

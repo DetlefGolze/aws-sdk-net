@@ -26,17 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeChangeSet operation.
     /// Returns the inputs for the change set and a list of changes that CloudFormation will
-    /// make if you execute the change set. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html">Updating
-    /// Stacks Using Change Sets</a> in the CloudFormation User Guide.
+    /// make if you execute the change set. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html">Update
+    /// CloudFormation stacks using change sets</a> in the <i>CloudFormation User Guide</i>.
     /// </summary>
     public partial class DescribeChangeSetRequest : AmazonCloudFormationRequest
     {
         private string _changeSetName;
+        private bool? _includePropertyValues;
         private string _nextToken;
         private string _stackName;
 
@@ -57,6 +59,24 @@ namespace Amazon.CloudFormation.Model
         internal bool IsSetChangeSetName()
         {
             return this._changeSetName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IncludePropertyValues. 
+        /// <para>
+        /// If <c>true</c>, the returned changes include detailed changes in the property values.
+        /// </para>
+        /// </summary>
+        public bool IncludePropertyValues
+        {
+            get { return this._includePropertyValues.GetValueOrDefault(); }
+            set { this._includePropertyValues = value; }
+        }
+
+        // Check to see if IncludePropertyValues property is set
+        internal bool IsSetIncludePropertyValues()
+        {
+            return this._includePropertyValues.HasValue; 
         }
 
         /// <summary>

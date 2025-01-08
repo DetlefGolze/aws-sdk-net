@@ -26,20 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
     /// Container for the parameters to the GetKeyRotationStatus operation.
-    /// Gets a Boolean value that indicates whether <a href="https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html">automatic
-    /// rotation of the key material</a> is enabled for the specified KMS key.
+    /// Provides detailed information about the rotation status for a KMS key, including whether
+    /// <a href="https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html">automatic
+    /// rotation of the key material</a> is enabled for the specified KMS key, the <a href="https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html#rotation-period">rotation
+    /// period</a>, and the next scheduled rotation date.
     /// 
-    ///  
-    /// <para>
-    /// When you enable automatic rotation for <a href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk">customer
-    /// managed KMS keys</a>, KMS rotates the key material of the KMS key one year (approximately
-    /// 365 days) from the enable date and every year thereafter. You can monitor rotation
-    /// of the key material for your KMS keys in CloudTrail and Amazon CloudWatch.
-    /// </para>
     ///  
     /// <para>
     /// Automatic key rotation is supported only on <a href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#symmetric-cmks">symmetric
@@ -56,7 +52,15 @@ namespace Amazon.KeyManagementService.Model
     /// of the key material in customer managed KMS keys. Key material rotation of <a href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk">Amazon
     /// Web Services managed KMS keys</a> is not configurable. KMS always rotates the key
     /// material in Amazon Web Services managed KMS keys every year. The key rotation status
-    /// for Amazon Web Services managed KMS keys is always <code>true</code>.
+    /// for Amazon Web Services managed KMS keys is always <c>true</c>.
+    /// </para>
+    ///  
+    /// <para>
+    /// You can perform on-demand (<a>RotateKeyOnDemand</a>) rotation of the key material
+    /// in customer managed KMS keys, regardless of whether or not automatic key rotation
+    /// is enabled. You can use GetKeyRotationStatus to identify the date and time that an
+    /// in progress on-demand rotation was initiated. You can use <a>ListKeyRotations</a>
+    /// to view the details of completed rotations.
     /// </para>
     ///  <note> 
     /// <para>
@@ -81,13 +85,13 @@ namespace Amazon.KeyManagementService.Model
     ///  </li> <li> 
     /// <para>
     /// Pending deletion: While a KMS key is pending deletion, its key rotation status is
-    /// <code>false</code> and KMS does not rotate the key material. If you cancel the deletion,
-    /// the original key rotation status returns to <code>true</code>.
+    /// <c>false</c> and KMS does not rotate the key material. If you cancel the deletion,
+    /// the original key rotation status returns to <c>true</c>.
     /// </para>
     ///  </li> </ul> 
     /// <para>
     ///  <b>Cross-account use</b>: Yes. To perform this operation on a KMS key in a different
-    /// Amazon Web Services account, specify the key ARN in the value of the <code>KeyId</code>
+    /// Amazon Web Services account, specify the key ARN in the value of the <c>KeyId</c>
     /// parameter.
     /// </para>
     ///  
@@ -107,7 +111,20 @@ namespace Amazon.KeyManagementService.Model
     /// <para>
     ///  <a>EnableKeyRotation</a> 
     /// </para>
-    ///  </li> </ul>
+    ///  </li> <li> 
+    /// <para>
+    ///  <a>ListKeyRotations</a> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <a>RotateKeyOnDemand</a> 
+    /// </para>
+    ///  </li> </ul> 
+    /// <para>
+    ///  <b>Eventual consistency</b>: The KMS API follows an eventual consistency model. For
+    /// more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html">KMS
+    /// eventual consistency</a>.
+    /// </para>
     /// </summary>
     public partial class GetKeyRotationStatusRequest : AmazonKeyManagementServiceRequest
     {
@@ -129,11 +146,11 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> 
+        /// Key ID: <c>1234abcd-12ab-34cd-56ef-1234567890ab</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Key ARN: <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
+        /// Key ARN: <c>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</c>
         /// 
         /// </para>
         ///  </li> </ul> 

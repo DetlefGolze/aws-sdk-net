@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.Connect.Model
     public partial class ListIntegrationAssociationsRequest : AmazonConnectRequest
     {
         private string _instanceId;
+        private string _integrationArn;
         private IntegrationType _integrationType;
         private int? _maxResults;
         private string _nextToken;
@@ -58,6 +60,24 @@ namespace Amazon.Connect.Model
         internal bool IsSetInstanceId()
         {
             return this._instanceId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IntegrationArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the integration.
+        /// </para>
+        /// </summary>
+        public string IntegrationArn
+        {
+            get { return this._integrationArn; }
+            set { this._integrationArn = value; }
+        }
+
+        // Check to see if IntegrationArn property is set
+        internal bool IsSetIntegrationArn()
+        {
+            return this._integrationArn != null;
         }
 
         /// <summary>

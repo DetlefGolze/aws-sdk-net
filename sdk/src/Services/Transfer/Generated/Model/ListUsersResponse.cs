@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -35,14 +36,14 @@ namespace Amazon.Transfer.Model
     {
         private string _nextToken;
         private string _serverId;
-        private List<ListedUser> _users = new List<ListedUser>();
+        private List<ListedUser> _users = AWSConfigs.InitializeCollections ? new List<ListedUser>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When you can get additional results from the <code>ListUsers</code> call, a <code>NextToken</code>
+        /// When you can get additional results from the <c>ListUsers</c> call, a <c>NextToken</c>
         /// parameter is returned in the output. You can then pass in a subsequent command to
-        /// the <code>NextToken</code> parameter to continue listing additional users.
+        /// the <c>NextToken</c> parameter to continue listing additional users.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=6144)]
@@ -80,8 +81,8 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property Users. 
         /// <para>
-        /// Returns the Transfer Family users and their properties for the <code>ServerId</code>
-        /// value that you specify.
+        /// Returns the Transfer Family users and their properties for the <c>ServerId</c> value
+        /// that you specify.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -94,7 +95,7 @@ namespace Amazon.Transfer.Model
         // Check to see if Users property is set
         internal bool IsSetUsers()
         {
-            return this._users != null && this._users.Count > 0; 
+            return this._users != null && (this._users.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -13,6 +13,7 @@
  * permissions and limitations under the License.
  */
 using Amazon.Runtime.Endpoints;
+using Amazon.Util.Internal;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -73,6 +74,15 @@ namespace Amazon.Runtime.Internal.Endpoints.StandardLibrary
         }
 
         /// <summary>
+        /// The region used by partitional (non-regionalized/global) services for signing.
+        /// </summary>
+        public string implicitGlobalRegion
+        {
+            get { return (string)this["implicitGlobalRegion"]; }
+            set { this["implicitGlobalRegion"] = value; }
+        }
+
+        /// <summary>
         /// Builds Partition from PartitionAttributesShape
         /// </summary>
         internal static Partition FromPartitionData(PartitionAttributesShape data)
@@ -83,7 +93,8 @@ namespace Amazon.Runtime.Internal.Endpoints.StandardLibrary
                 dnsSuffix = data.dnsSuffix,
                 dualStackDnsSuffix = data.dualStackDnsSuffix,
                 supportsFIPS = data.supportsFIPS,
-                supportsDualStack = data.supportsDualStack
+                supportsDualStack = data.supportsDualStack,
+                implicitGlobalRegion = data.implicitGlobalRegion,
             };
         }
 
@@ -105,7 +116,7 @@ namespace Amazon.Runtime.Internal.Endpoints.StandardLibrary
             try
             {
                 var json = File.ReadAllText(partitionsFile);
-                var partitions = JsonMapper.ToObject<PartitionFunctionShape>(json);
+                var partitions = JsonSerializerHelper.Deserialize<PartitionFunctionShape>(json, PartitionFunctionShapeJsonSerializerContexts.Default);
                 _partitionsByRegionName.Clear();
                 _partitionsByRegex.Clear();
                 _defaultPartition = null;

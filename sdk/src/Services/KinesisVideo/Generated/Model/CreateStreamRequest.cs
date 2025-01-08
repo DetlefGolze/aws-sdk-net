@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideo.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.KinesisVideo.Model
     /// </para>
     ///  
     /// <para>
-    ///  <code>CreateStream</code> is an asynchronous operation.
+    ///  <c>CreateStream</c> is an asynchronous operation.
     /// </para>
     ///  
     /// <para>
@@ -48,7 +49,7 @@ namespace Amazon.KinesisVideo.Model
     /// </para>
     ///  
     /// <para>
-    /// You must have permissions for the <code>KinesisVideo:CreateStream</code> action.
+    /// You must have permissions for the <c>KinesisVideo:CreateStream</c> action.
     /// </para>
     /// </summary>
     public partial class CreateStreamRequest : AmazonKinesisVideoRequest
@@ -58,7 +59,7 @@ namespace Amazon.KinesisVideo.Model
         private string _kmsKeyId;
         private string _mediaType;
         private string _streamName;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property DataRetentionInHours. 
@@ -72,10 +73,10 @@ namespace Amazon.KinesisVideo.Model
         /// </para>
         ///  
         /// <para>
-        /// When the <code>DataRetentionInHours</code> value is 0, consumers can still consume
-        /// the fragments that remain in the service host buffer, which has a retention time limit
-        /// of 5 minutes and a retention memory limit of 200 MB. Fragments are removed from the
-        /// buffer when either limit is reached.
+        /// When the <c>DataRetentionInHours</c> value is 0, consumers can still consume the fragments
+        /// that remain in the service host buffer, which has a retention time limit of 5 minutes
+        /// and a retention memory limit of 200 MB. Fragments are removed from the buffer when
+        /// either limit is reached.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]
@@ -123,8 +124,8 @@ namespace Amazon.KinesisVideo.Model
         /// </para>
         ///  
         /// <para>
-        /// If no key ID is specified, the default, Kinesis Video-managed key (<code>Amazon Web
-        /// Services/kinesisvideo</code>) is used.
+        /// If no key ID is specified, the default, Kinesis Video-managed key (<c>Amazon Web Services/kinesisvideo</c>)
+        /// is used.
         /// </para>
         ///  
         /// <para>
@@ -150,7 +151,7 @@ namespace Amazon.KinesisVideo.Model
         /// <para>
         /// The media type of the stream. Consumers of the stream can use this information when
         /// processing the stream. For more information about media types, see <a href="http://www.iana.org/assignments/media-types/media-types.xhtml">Media
-        /// Types</a>. If you choose to specify the <code>MediaType</code>, see <a href="https://tools.ietf.org/html/rfc6838#section-4.2">Naming
+        /// Types</a>. If you choose to specify the <c>MediaType</c>, see <a href="https://tools.ietf.org/html/rfc6838#section-4.2">Naming
         /// Requirements</a> for guidelines.
         /// </para>
         ///  
@@ -159,7 +160,7 @@ namespace Amazon.KinesisVideo.Model
         /// </para>
         ///  
         /// <para>
-        /// This parameter is optional; the default value is <code>null</code> (or empty in JSON).
+        /// This parameter is optional; the default value is <c>null</c> (or empty in JSON).
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -216,7 +217,7 @@ namespace Amazon.KinesisVideo.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

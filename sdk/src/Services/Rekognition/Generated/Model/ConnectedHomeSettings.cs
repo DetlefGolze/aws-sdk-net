@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// Label detection settings to use on a streaming video. Defining the settings is required
     /// in the request parameter for <a>CreateStreamProcessor</a>. Including this setting
-    /// in the <code>CreateStreamProcessor</code> request enables you to use the stream processor
+    /// in the <c>CreateStreamProcessor</c> request enables you to use the stream processor
     /// for label detection. You can then select what you want the stream processor to detect,
     /// such as people or pets. When the stream processor has started, one notification is
     /// sent for each object class specified. For example, if packages and pets are selected,
@@ -41,7 +42,7 @@ namespace Amazon.Rekognition.Model
     /// </summary>
     public partial class ConnectedHomeSettings
     {
-        private List<string> _labels = new List<string>();
+        private List<string> _labels = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private float? _minConfidence;
 
         /// <summary>
@@ -62,7 +63,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if Labels property is set
         internal bool IsSetLabels()
         {
-            return this._labels != null && this._labels.Count > 0; 
+            return this._labels != null && (this._labels.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -47,13 +48,13 @@ namespace Amazon.SimpleEmailV2.Model
     public partial class PutDeliverabilityDashboardOptionRequest : AmazonSimpleEmailServiceV2Request
     {
         private bool? _dashboardEnabled;
-        private List<DomainDeliverabilityTrackingOption> _subscribedDomains = new List<DomainDeliverabilityTrackingOption>();
+        private List<DomainDeliverabilityTrackingOption> _subscribedDomains = AWSConfigs.InitializeCollections ? new List<DomainDeliverabilityTrackingOption>() : null;
 
         /// <summary>
         /// Gets and sets the property DashboardEnabled. 
         /// <para>
         /// Specifies whether to enable the Deliverability dashboard. To enable the dashboard,
-        /// set this value to <code>true</code>.
+        /// set this value to <c>true</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -85,7 +86,7 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if SubscribedDomains property is set
         internal bool IsSetSubscribedDomains()
         {
-            return this._subscribedDomains != null && this._subscribedDomains.Count > 0; 
+            return this._subscribedDomains != null && (this._subscribedDomains.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

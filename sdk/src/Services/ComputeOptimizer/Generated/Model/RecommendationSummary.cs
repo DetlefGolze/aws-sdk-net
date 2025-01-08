@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComputeOptimizer.Model
 {
     /// <summary>
@@ -34,11 +35,14 @@ namespace Amazon.ComputeOptimizer.Model
     public partial class RecommendationSummary
     {
         private string _accountId;
+        private SavingsOpportunity _aggregatedSavingsOpportunity;
         private CurrentPerformanceRiskRatings _currentPerformanceRiskRatings;
-        private List<InferredWorkloadSaving> _inferredWorkloadSavings = new List<InferredWorkloadSaving>();
+        private SavingsOpportunity _idleSavingsOpportunity;
+        private List<IdleSummary> _idleSummaries = AWSConfigs.InitializeCollections ? new List<IdleSummary>() : null;
+        private List<InferredWorkloadSaving> _inferredWorkloadSavings = AWSConfigs.InitializeCollections ? new List<InferredWorkloadSaving>() : null;
         private RecommendationSourceType _recommendationResourceType;
         private SavingsOpportunity _savingsOpportunity;
-        private List<Summary> _summaries = new List<Summary>();
+        private List<Summary> _summaries = AWSConfigs.InitializeCollections ? new List<Summary>() : null;
 
         /// <summary>
         /// Gets and sets the property AccountId. 
@@ -56,6 +60,21 @@ namespace Amazon.ComputeOptimizer.Model
         internal bool IsSetAccountId()
         {
             return this._accountId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property AggregatedSavingsOpportunity.
+        /// </summary>
+        public SavingsOpportunity AggregatedSavingsOpportunity
+        {
+            get { return this._aggregatedSavingsOpportunity; }
+            set { this._aggregatedSavingsOpportunity = value; }
+        }
+
+        // Check to see if AggregatedSavingsOpportunity property is set
+        internal bool IsSetAggregatedSavingsOpportunity()
+        {
+            return this._aggregatedSavingsOpportunity != null;
         }
 
         /// <summary>
@@ -77,12 +96,44 @@ namespace Amazon.ComputeOptimizer.Model
         }
 
         /// <summary>
+        /// Gets and sets the property IdleSavingsOpportunity.
+        /// </summary>
+        public SavingsOpportunity IdleSavingsOpportunity
+        {
+            get { return this._idleSavingsOpportunity; }
+            set { this._idleSavingsOpportunity = value; }
+        }
+
+        // Check to see if IdleSavingsOpportunity property is set
+        internal bool IsSetIdleSavingsOpportunity()
+        {
+            return this._idleSavingsOpportunity != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IdleSummaries. 
+        /// <para>
+        ///  Describes the findings summary of the idle resources. 
+        /// </para>
+        /// </summary>
+        public List<IdleSummary> IdleSummaries
+        {
+            get { return this._idleSummaries; }
+            set { this._idleSummaries = value; }
+        }
+
+        // Check to see if IdleSummaries property is set
+        internal bool IsSetIdleSummaries()
+        {
+            return this._idleSummaries != null && (this._idleSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property InferredWorkloadSavings. 
         /// <para>
         ///  An array of objects that describes the estimated monthly saving amounts for the instances
-        /// running on the specified <code>inferredWorkloadTypes</code>. The array contains the
-        /// top five savings opportunites for the instances that run inferred workload types.
-        /// 
+        /// running on the specified <c>inferredWorkloadTypes</c>. The array contains the top
+        /// five savings opportunites for the instances that run inferred workload types. 
         /// </para>
         /// </summary>
         public List<InferredWorkloadSaving> InferredWorkloadSavings
@@ -94,7 +145,7 @@ namespace Amazon.ComputeOptimizer.Model
         // Check to see if InferredWorkloadSavings property is set
         internal bool IsSetInferredWorkloadSavings()
         {
-            return this._inferredWorkloadSavings != null && this._inferredWorkloadSavings.Count > 0; 
+            return this._inferredWorkloadSavings != null && (this._inferredWorkloadSavings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -149,7 +200,7 @@ namespace Amazon.ComputeOptimizer.Model
         // Check to see if Summaries property is set
         internal bool IsSetSummaries()
         {
-            return this._summaries != null && this._summaries.Count > 0; 
+            return this._summaries != null && (this._summaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

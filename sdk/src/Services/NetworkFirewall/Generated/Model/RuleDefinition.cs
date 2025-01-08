@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.NetworkFirewall.Model
     /// </summary>
     public partial class RuleDefinition
     {
-        private List<string> _actions = new List<string>();
+        private List<string> _actions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private MatchAttributes _matchAttributes;
 
         /// <summary>
@@ -48,9 +49,9 @@ namespace Amazon.NetworkFirewall.Model
         ///  <note> 
         /// <para>
         /// Network Firewall only forwards a packet for stateful rule inspection if you specify
-        /// <code>aws:forward_to_sfe</code> for a rule that the packet matches, or if the packet
-        /// doesn't match any stateless rule and you specify <code>aws:forward_to_sfe</code> for
-        /// the <code>StatelessDefaultActions</code> setting for the <a>FirewallPolicy</a>.
+        /// <c>aws:forward_to_sfe</c> for a rule that the packet matches, or if the packet doesn't
+        /// match any stateless rule and you specify <c>aws:forward_to_sfe</c> for the <c>StatelessDefaultActions</c>
+        /// setting for the <a>FirewallPolicy</a>.
         /// </para>
         ///  </note> 
         /// <para>
@@ -74,15 +75,15 @@ namespace Amazon.NetworkFirewall.Model
         ///  </li> </ul> 
         /// <para>
         /// Additionally, you can specify a custom action. To do this, you define a custom action
-        /// by name and type, then provide the name you've assigned to the action in this <code>Actions</code>
+        /// by name and type, then provide the name you've assigned to the action in this <c>Actions</c>
         /// setting. For information about the options, see <a>CustomAction</a>. 
         /// </para>
         ///  
         /// <para>
         /// To provide more than one action in this setting, separate the settings with a comma.
-        /// For example, if you have a custom <code>PublishMetrics</code> action that you've named
-        /// <code>MyMetricsAction</code>, then you could specify the standard action <code>aws:pass</code>
-        /// and the custom action with <code>[“aws:pass”, “MyMetricsAction”]</code>. 
+        /// For example, if you have a custom <c>PublishMetrics</c> action that you've named <c>MyMetricsAction</c>,
+        /// then you could specify the standard action <c>aws:pass</c> and the custom action with
+        /// <c>[“aws:pass”, “MyMetricsAction”]</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -95,7 +96,7 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

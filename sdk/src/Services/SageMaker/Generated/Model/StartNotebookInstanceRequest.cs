@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the StartNotebookInstance operation.
     /// Launches an ML compute instance with the latest version of the libraries and attaches
-    /// your ML storage volume. After configuring the notebook instance, SageMaker sets the
-    /// notebook instance status to <code>InService</code>. A notebook instance's status must
-    /// be <code>InService</code> before you can connect to your Jupyter notebook.
+    /// your ML storage volume. After configuring the notebook instance, SageMaker AI sets
+    /// the notebook instance status to <c>InService</c>. A notebook instance's status must
+    /// be <c>InService</c> before you can connect to your Jupyter notebook.
     /// </summary>
     public partial class StartNotebookInstanceRequest : AmazonSageMakerRequest
     {

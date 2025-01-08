@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeLoggingConfiguration operation.
-    /// Describes logging configuration.
+    /// Returns complete information about the current logging configuration of the workspace.
     /// </summary>
     public partial class DescribeLoggingConfigurationRequest : AmazonPrometheusServiceRequest
     {
@@ -39,7 +40,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property WorkspaceId. 
         /// <para>
-        /// The ID of the workspace to vend logs to.
+        /// The ID of the workspace to describe the logging configuration for.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKVoice.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateSipMediaApplicationCall operation.
     /// Creates an outbound call to a phone number from the phone number specified in the
-    /// request, and it invokes the endpoint of the specified <code>sipMediaApplicationId</code>.
+    /// request, and it invokes the endpoint of the specified <c>sipMediaApplicationId</c>.
     /// </summary>
     public partial class CreateSipMediaApplicationCallRequest : AmazonChimeSDKVoiceRequest
     {
-        private Dictionary<string, string> _argumentsMap = new Dictionary<string, string>();
+        private Dictionary<string, string> _argumentsMap = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _fromPhoneNumber;
-        private Dictionary<string, string> _sipHeaders = new Dictionary<string, string>();
+        private Dictionary<string, string> _sipHeaders = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _sipMediaApplicationId;
         private string _toPhoneNumber;
 
@@ -45,7 +46,7 @@ namespace Amazon.ChimeSDKVoice.Model
         /// Gets and sets the property ArgumentsMap. 
         /// <para>
         /// Context passed to a CreateSipMediaApplication API call. For example, you could pass
-        /// key-value pairs such as: <code>"FirstName": "John", "LastName": "Doe"</code> 
+        /// key-value pairs such as: <c>"FirstName": "John", "LastName": "Doe"</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=20)]
@@ -58,7 +59,7 @@ namespace Amazon.ChimeSDKVoice.Model
         // Check to see if ArgumentsMap property is set
         internal bool IsSetArgumentsMap()
         {
-            return this._argumentsMap != null && this._argumentsMap.Count > 0; 
+            return this._argumentsMap != null && (this._argumentsMap.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -97,7 +98,7 @@ namespace Amazon.ChimeSDKVoice.Model
         // Check to see if SipHeaders property is set
         internal bool IsSetSipHeaders()
         {
-            return this._sipHeaders != null && this._sipHeaders.Count > 0; 
+            return this._sipHeaders != null && (this._sipHeaders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

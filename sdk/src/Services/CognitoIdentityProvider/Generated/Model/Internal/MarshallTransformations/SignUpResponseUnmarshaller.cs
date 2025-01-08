@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -55,6 +56,12 @@ namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = CodeDeliveryDetailsTypeUnmarshaller.Instance;
                     response.CodeDeliveryDetails = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("Session", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.Session = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("UserConfirmed", targetDepth))
@@ -127,6 +134,10 @@ namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
                 if (errorResponse.Code != null && errorResponse.Code.Equals("InvalidSmsRoleTrustRelationshipException"))
                 {
                     return InvalidSmsRoleTrustRelationshipExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("LimitExceededException"))
+                {
+                    return LimitExceededExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("NotAuthorizedException"))
                 {

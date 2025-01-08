@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Redshift.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -68,7 +69,7 @@ namespace Amazon.Redshift.Model.Internal.MarshallTransformations
                 }
                 if(publicRequest.IsSetEndTimeUtc())
                 {
-                    request.Parameters.Add("EndTime", StringUtils.FromDateTimeToISO8601(publicRequest.EndTimeUtc));
+                    request.Parameters.Add("EndTime", StringUtils.FromDateTimeToISO8601WithOptionalMs(publicRequest.EndTimeUtc));
                 }
                 if(publicRequest.IsSetMarker())
                 {
@@ -101,25 +102,25 @@ namespace Amazon.Redshift.Model.Internal.MarshallTransformations
                     {
                         if(publicRequestlistValue.IsSetAttribute())
                         {
-                            request.Parameters.Add("SortingEntities" + "." + "member" + "." + publicRequestlistValueIndex + "." + "Attribute", StringUtils.FromString(publicRequestlistValue.Attribute));
+                            request.Parameters.Add("SortingEntities" + "." + "SnapshotSortingEntity" + "." + publicRequestlistValueIndex + "." + "Attribute", StringUtils.FromString(publicRequestlistValue.Attribute));
                         }
                         if(publicRequestlistValue.IsSetSortOrder())
                         {
-                            request.Parameters.Add("SortingEntities" + "." + "member" + "." + publicRequestlistValueIndex + "." + "SortOrder", StringUtils.FromString(publicRequestlistValue.SortOrder));
+                            request.Parameters.Add("SortingEntities" + "." + "SnapshotSortingEntity" + "." + publicRequestlistValueIndex + "." + "SortOrder", StringUtils.FromString(publicRequestlistValue.SortOrder));
                         }
                         publicRequestlistValueIndex++;
                     }
                 }
                 if(publicRequest.IsSetStartTimeUtc())
                 {
-                    request.Parameters.Add("StartTime", StringUtils.FromDateTimeToISO8601(publicRequest.StartTimeUtc));
+                    request.Parameters.Add("StartTime", StringUtils.FromDateTimeToISO8601WithOptionalMs(publicRequest.StartTimeUtc));
                 }
                 if(publicRequest.IsSetTagKeys())
                 {
                     int publicRequestlistValueIndex = 1;
                     foreach(var publicRequestlistValue in publicRequest.TagKeys)
                     {
-                        request.Parameters.Add("TagKeys" + "." + "member" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
+                        request.Parameters.Add("TagKeys" + "." + "TagKey" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
                         publicRequestlistValueIndex++;
                     }
                 }
@@ -128,7 +129,7 @@ namespace Amazon.Redshift.Model.Internal.MarshallTransformations
                     int publicRequestlistValueIndex = 1;
                     foreach(var publicRequestlistValue in publicRequest.TagValues)
                     {
-                        request.Parameters.Add("TagValues" + "." + "member" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
+                        request.Parameters.Add("TagValues" + "." + "TagValue" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
                         publicRequestlistValueIndex++;
                     }
                 }

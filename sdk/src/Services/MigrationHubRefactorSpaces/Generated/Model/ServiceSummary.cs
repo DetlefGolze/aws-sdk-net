@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHubRefactorSpaces.Model
 {
     /// <summary>
-    /// A summary for the service as a response to <code>ListServices</code>.
+    /// A summary for the service as a response to <c>ListServices</c>.
     /// </summary>
     public partial class ServiceSummary
     {
@@ -47,7 +48,7 @@ namespace Amazon.MigrationHubRefactorSpaces.Model
         private string _ownerAccountId;
         private string _serviceId;
         private ServiceState _state;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private UrlEndpointSummary _urlEndpoint;
         private string _vpcId;
 
@@ -327,7 +328,7 @@ namespace Amazon.MigrationHubRefactorSpaces.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

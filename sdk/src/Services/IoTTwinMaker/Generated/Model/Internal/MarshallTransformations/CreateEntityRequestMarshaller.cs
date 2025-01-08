@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTTwinMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,6 +67,7 @@ namespace Amazon.IoTTwinMaker.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetComponents())
@@ -81,6 +83,25 @@ namespace Amazon.IoTTwinMaker.Model.Internal.MarshallTransformations
 
                         var marshaller = ComponentRequestMarshaller.Instance;
                         marshaller.Marshall(publicRequestComponentsValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetCompositeComponents())
+                {
+                    context.Writer.WritePropertyName("compositeComponents");
+                    context.Writer.WriteObjectStart();
+                    foreach (var publicRequestCompositeComponentsKvp in publicRequest.CompositeComponents)
+                    {
+                        context.Writer.WritePropertyName(publicRequestCompositeComponentsKvp.Key);
+                        var publicRequestCompositeComponentsValue = publicRequestCompositeComponentsKvp.Value;
+
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = CompositeComponentRequestMarshaller.Instance;
+                        marshaller.Marshall(publicRequestCompositeComponentsValue, context);
 
                         context.Writer.WriteObjectEnd();
                     }

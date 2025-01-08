@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
@@ -57,7 +58,7 @@ namespace Amazon.DevOpsGuru.Model
         /// <summary>
         /// Gets and sets the property Timestamp. 
         /// <para>
-        /// A <code>Timestamp</code> that specifies the time the event occurred. 
+        /// A <c>Timestamp</c> that specifies the time the event occurred. 
         /// </para>
         /// </summary>
         public DateTime Timestamp

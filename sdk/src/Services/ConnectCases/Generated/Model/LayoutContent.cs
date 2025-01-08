@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectCases.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.ConnectCases.Model
         /// <summary>
         /// Gets and sets the property Basic. 
         /// <para>
-        /// Content specific to <code>BasicLayout</code> type. It configures fields in the top
-        /// panel and More Info tab of Cases user interface.
+        /// Content specific to <c>BasicLayout</c> type. It configures fields in the top panel
+        /// and More Info tab of Cases user interface.
         /// </para>
         /// </summary>
         public BasicLayout Basic

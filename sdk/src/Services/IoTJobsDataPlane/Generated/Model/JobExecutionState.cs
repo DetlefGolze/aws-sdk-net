@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTJobsDataPlane.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.IoTJobsDataPlane.Model
     public partial class JobExecutionState
     {
         private JobExecutionStatus _status;
-        private Dictionary<string, string> _statusDetails = new Dictionary<string, string>();
+        private Dictionary<string, string> _statusDetails = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private long? _versionNumber;
 
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
         /// The status of the job execution. Can be one of: "QUEUED", "IN_PROGRESS", "FAILED",
-        /// "SUCCESS", "CANCELED", "REJECTED", or "REMOVED".
+        /// "SUCCESS", "CANCELED", "TIMED_OUT", "REJECTED", or "REMOVED".
         /// </para>
         /// </summary>
         public JobExecutionStatus Status
@@ -61,6 +62,10 @@ namespace Amazon.IoTJobsDataPlane.Model
         /// <para>
         /// A collection of name/value pairs that describe the status of the job execution.
         /// </para>
+        ///  
+        /// <para>
+        /// The maximum length of the value in the name/value pair is 1,024 characters.
+        /// </para>
         /// </summary>
         public Dictionary<string, string> StatusDetails
         {
@@ -71,7 +76,7 @@ namespace Amazon.IoTJobsDataPlane.Model
         // Check to see if StatusDetails property is set
         internal bool IsSetStatusDetails()
         {
-            return this._statusDetails != null && this._statusDetails.Count > 0; 
+            return this._statusDetails != null && (this._statusDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

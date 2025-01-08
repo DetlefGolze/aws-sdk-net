@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -71,8 +72,8 @@ namespace Amazon.LocationService.Model
         /// Gets and sets the property EndTimeExclusive. 
         /// <para>
         /// Specify the end time for the position history in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">
-        /// ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the value
-        /// will be the time that the request is made.
+        /// ISO 8601</a> format: <c>YYYY-MM-DDThh:mm:ss.sssZ</c>. By default, the value will be
+        /// the time that the request is made.
         /// </para>
         ///  
         /// <para>
@@ -80,7 +81,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// The time specified for <code>EndTimeExclusive</code> must be after the time for <code>StartTimeInclusive</code>.
+        /// The time specified for <c>EndTimeExclusive</c> must be after the time for <c>StartTimeInclusive</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -103,7 +104,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  
         /// <para>
-        /// Default value: <code>100</code> 
+        /// Default value: <c>100</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -127,7 +128,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  
         /// <para>
-        /// Default value: <code>null</code> 
+        /// Default value: <c>null</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2000)]
@@ -147,8 +148,8 @@ namespace Amazon.LocationService.Model
         /// Gets and sets the property StartTimeInclusive. 
         /// <para>
         /// Specify the start time for the position history in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">
-        /// ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the value
-        /// will be 24 hours prior to the time that the request is made.
+        /// ISO 8601</a> format: <c>YYYY-MM-DDThh:mm:ss.sssZ</c>. By default, the value will be
+        /// 24 hours prior to the time that the request is made.
         /// </para>
         ///  
         /// <para>
@@ -156,7 +157,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// The time specified for <code>StartTimeInclusive</code> must be before <code>EndTimeExclusive</code>.
+        /// The time specified for <c>StartTimeInclusive</c> must be before <c>EndTimeExclusive</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>

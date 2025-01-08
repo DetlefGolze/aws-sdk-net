@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pipes.Model
 {
     /// <summary>
@@ -118,7 +119,7 @@ namespace Amazon.Pipes.Model
         /// <summary>
         /// Gets and sets the property StartingPosition. 
         /// <para>
-        /// (Streams only) The position in a stream from which to start reading.
+        /// The position in a stream from which to start reading.
         /// </para>
         /// </summary>
         public MSKStartPosition StartingPosition

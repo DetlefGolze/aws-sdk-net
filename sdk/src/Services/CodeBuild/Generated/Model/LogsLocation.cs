@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -63,9 +64,10 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property CloudWatchLogsArn. 
         /// <para>
-        ///  The ARN of CloudWatch Logs for a build project. Its format is <code>arn:${Partition}:logs:${Region}:${Account}:log-group:${LogGroupName}:log-stream:${LogStreamName}</code>.
-        /// For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazoncloudwatchlogs.html#amazoncloudwatchlogs-resources-for-iam-policies">Resources
-        /// Defined by CloudWatch Logs</a>. 
+        /// The ARN of the CloudWatch Logs stream for a build execution. Its format is <c>arn:${Partition}:logs:${Region}:${Account}:log-group:${LogGroupName}:log-stream:${LogStreamName}</c>.
+        /// The CloudWatch Logs stream is created during the PROVISIONING phase of a build and
+        /// the ARN will not be valid until it is created. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazoncloudwatchlogs.html#amazoncloudwatchlogs-resources-for-iam-policies">Resources
+        /// Defined by CloudWatch Logs</a>.
         /// </para>
         /// </summary>
         public string CloudWatchLogsArn
@@ -83,7 +85,9 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property DeepLink. 
         /// <para>
-        /// The URL to an individual build log in CloudWatch Logs.
+        /// The URL to an individual build log in CloudWatch Logs. The log stream is created during
+        /// the PROVISIONING phase of a build and the <c>deeplink</c> will not be valid until
+        /// it is created.
         /// </para>
         /// </summary>
         public string DeepLink
@@ -155,7 +159,7 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property S3LogsArn. 
         /// <para>
-        ///  The ARN of S3 logs for a build project. Its format is <code>arn:${Partition}:s3:::${BucketName}/${ObjectName}</code>.
+        ///  The ARN of S3 logs for a build project. Its format is <c>arn:${Partition}:s3:::${BucketName}/${ObjectName}</c>.
         /// For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazons3.html#amazons3-resources-for-iam-policies">Resources
         /// Defined by Amazon S3</a>. 
         /// </para>

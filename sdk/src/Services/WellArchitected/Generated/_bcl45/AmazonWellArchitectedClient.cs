@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.WellArchitected
 {
     /// <summary>
-    /// Implementation for accessing WellArchitected
+    /// <para>Implementation for accessing WellArchitected</para>
     ///
     /// Well-Architected Tool 
     /// <para>
@@ -627,9 +628,9 @@ namespace Amazon.WellArchitected
         ///  
         /// <para>
         /// Use this operation to publish a new lens version after you have imported a lens. The
-        /// <code>LensAlias</code> is used to identify the lens to be published. The owner of
-        /// a lens can share the lens with other Amazon Web Services accounts and users in the
-        /// same Amazon Web Services Region. Only the owner of a lens can delete it. 
+        /// <c>LensAlias</c> is used to identify the lens to be published. The owner of a lens
+        /// can share the lens with other Amazon Web Services accounts and users in the same Amazon
+        /// Web Services Region. Only the owner of a lens can delete it. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateLensVersion service method.</param>
@@ -677,9 +678,9 @@ namespace Amazon.WellArchitected
         ///  
         /// <para>
         /// Use this operation to publish a new lens version after you have imported a lens. The
-        /// <code>LensAlias</code> is used to identify the lens to be published. The owner of
-        /// a lens can share the lens with other Amazon Web Services accounts and users in the
-        /// same Amazon Web Services Region. Only the owner of a lens can delete it. 
+        /// <c>LensAlias</c> is used to identify the lens to be published. The owner of a lens
+        /// can share the lens with other Amazon Web Services accounts and users in the same Amazon
+        /// Web Services Region. Only the owner of a lens can delete it. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateLensVersion service method.</param>
@@ -1233,13 +1234,13 @@ namespace Amazon.WellArchitected
         /// </para>
         ///  <important> 
         /// <para>
-        /// Either <code>AwsRegions</code>, <code>NonAwsRegions</code>, or both must be specified
-        /// when creating a workload.
+        /// Either <c>AwsRegions</c>, <c>NonAwsRegions</c>, or both must be specified when creating
+        /// a workload.
         /// </para>
         ///  
         /// <para>
-        /// You also must specify <code>ReviewOwner</code>, even though the parameter is listed
-        /// as not being required in the following section. 
+        /// You also must specify <c>ReviewOwner</c>, even though the parameter is listed as not
+        /// being required in the following section. 
         /// </para>
         ///  </important> 
         /// <para>
@@ -1248,19 +1249,19 @@ namespace Amazon.WellArchitected
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>wellarchitected:GetReviewTemplate</code> 
+        ///  <c>wellarchitected:GetReviewTemplate</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>wellarchitected:GetReviewTemplateAnswer</code> 
+        ///  <c>wellarchitected:GetReviewTemplateAnswer</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>wellarchitected:ListReviewTemplateAnswers</code> 
+        ///  <c>wellarchitected:ListReviewTemplateAnswers</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>wellarchitected:GetReviewTemplateLensReview</code> 
+        ///  <c>wellarchitected:GetReviewTemplateLensReview</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1315,13 +1316,13 @@ namespace Amazon.WellArchitected
         /// </para>
         ///  <important> 
         /// <para>
-        /// Either <code>AwsRegions</code>, <code>NonAwsRegions</code>, or both must be specified
-        /// when creating a workload.
+        /// Either <c>AwsRegions</c>, <c>NonAwsRegions</c>, or both must be specified when creating
+        /// a workload.
         /// </para>
         ///  
         /// <para>
-        /// You also must specify <code>ReviewOwner</code>, even though the parameter is listed
-        /// as not being required in the following section. 
+        /// You also must specify <c>ReviewOwner</c>, even though the parameter is listed as not
+        /// being required in the following section. 
         /// </para>
         ///  </important> 
         /// <para>
@@ -1330,19 +1331,19 @@ namespace Amazon.WellArchitected
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>wellarchitected:GetReviewTemplate</code> 
+        ///  <c>wellarchitected:GetReviewTemplate</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>wellarchitected:GetReviewTemplateAnswer</code> 
+        ///  <c>wellarchitected:GetReviewTemplateAnswer</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>wellarchitected:ListReviewTemplateAnswers</code> 
+        ///  <c>wellarchitected:ListReviewTemplateAnswers</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>wellarchitected:GetReviewTemplateLensReview</code> 
+        ///  <c>wellarchitected:GetReviewTemplateLensReview</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -2274,8 +2275,8 @@ namespace Amazon.WellArchitected
         /// </para>
         ///  <note> 
         /// <para>
-        /// The Amazon Web Services Well-Architected Framework lens (<code>wellarchitected</code>)
-        /// cannot be removed from a workload.
+        /// The Amazon Web Services Well-Architected Framework lens (<c>wellarchitected</c>) cannot
+        /// be removed from a workload.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2320,8 +2321,8 @@ namespace Amazon.WellArchitected
         /// </para>
         ///  <note> 
         /// <para>
-        /// The Amazon Web Services Well-Architected Framework lens (<code>wellarchitected</code>)
-        /// cannot be removed from a workload.
+        /// The Amazon Web Services Well-Architected Framework lens (<c>wellarchitected</c>) cannot
+        /// be removed from a workload.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2707,6 +2708,71 @@ namespace Amazon.WellArchitected
             options.ResponseUnmarshaller = GetConsolidatedReportResponseUnmarshaller.Instance;
             
             return InvokeAsync<GetConsolidatedReportResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetGlobalSettings
+
+
+        /// <summary>
+        /// Global settings for all workloads.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetGlobalSettings service method.</param>
+        /// 
+        /// <returns>The response from the GetGlobalSettings service method, as returned by WellArchitected.</returns>
+        /// <exception cref="Amazon.WellArchitected.Model.AccessDeniedException">
+        /// User does not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.WellArchitected.Model.InternalServerException">
+        /// There is a problem with the Well-Architected Tool API service.
+        /// </exception>
+        /// <exception cref="Amazon.WellArchitected.Model.ThrottlingException">
+        /// Request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.WellArchitected.Model.ValidationException">
+        /// The user input is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/wellarchitected-2020-03-31/GetGlobalSettings">REST API Reference for GetGlobalSettings Operation</seealso>
+        public virtual GetGlobalSettingsResponse GetGlobalSettings(GetGlobalSettingsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetGlobalSettingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetGlobalSettingsResponseUnmarshaller.Instance;
+
+            return Invoke<GetGlobalSettingsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Global settings for all workloads.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetGlobalSettings service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetGlobalSettings service method, as returned by WellArchitected.</returns>
+        /// <exception cref="Amazon.WellArchitected.Model.AccessDeniedException">
+        /// User does not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.WellArchitected.Model.InternalServerException">
+        /// There is a problem with the Well-Architected Tool API service.
+        /// </exception>
+        /// <exception cref="Amazon.WellArchitected.Model.ThrottlingException">
+        /// Request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.WellArchitected.Model.ValidationException">
+        /// The user input is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/wellarchitected-2020-03-31/GetGlobalSettings">REST API Reference for GetGlobalSettings Operation</seealso>
+        public virtual Task<GetGlobalSettingsResponse> GetGlobalSettingsAsync(GetGlobalSettingsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetGlobalSettingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetGlobalSettingsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetGlobalSettingsResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -3500,14 +3566,14 @@ namespace Amazon.WellArchitected
         /// 
         ///  
         /// <para>
-        /// To update an existing custom lens, specify its ARN as the <code>LensAlias</code>.
-        /// If no ARN is specified, a new custom lens is created.
+        /// To update an existing custom lens, specify its ARN as the <c>LensAlias</c>. If no
+        /// ARN is specified, a new custom lens is created.
         /// </para>
         ///  
         /// <para>
-        /// The new or updated lens will have a status of <code>DRAFT</code>. The lens cannot
-        /// be applied to workloads or shared with other Amazon Web Services accounts until it's
-        /// published with <a>CreateLensVersion</a>.
+        /// The new or updated lens will have a status of <c>DRAFT</c>. The lens cannot be applied
+        /// to workloads or shared with other Amazon Web Services accounts until it's published
+        /// with <a>CreateLensVersion</a>.
         /// </para>
         ///  
         /// <para>
@@ -3573,14 +3639,14 @@ namespace Amazon.WellArchitected
         /// 
         ///  
         /// <para>
-        /// To update an existing custom lens, specify its ARN as the <code>LensAlias</code>.
-        /// If no ARN is specified, a new custom lens is created.
+        /// To update an existing custom lens, specify its ARN as the <c>LensAlias</c>. If no
+        /// ARN is specified, a new custom lens is created.
         /// </para>
         ///  
         /// <para>
-        /// The new or updated lens will have a status of <code>DRAFT</code>. The lens cannot
-        /// be applied to workloads or shared with other Amazon Web Services accounts until it's
-        /// published with <a>CreateLensVersion</a>.
+        /// The new or updated lens will have a status of <c>DRAFT</c>. The lens cannot be applied
+        /// to workloads or shared with other Amazon Web Services accounts until it's published
+        /// with <a>CreateLensVersion</a>.
         /// </para>
         ///  
         /// <para>
@@ -3927,7 +3993,7 @@ namespace Amazon.WellArchitected
 
 
         /// <summary>
-        /// List lens review improvements.
+        /// List the improvements of a particular lens review.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListLensReviewImprovements service method.</param>
         /// 
@@ -3959,7 +4025,7 @@ namespace Amazon.WellArchitected
 
 
         /// <summary>
-        /// List lens review improvements.
+        /// List the improvements of a particular lens review.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListLensReviewImprovements service method.</param>
         /// <param name="cancellationToken">
@@ -4617,9 +4683,8 @@ namespace Amazon.WellArchitected
         /// 
         ///  
         /// <para>
-        ///  <code>WorkloadNamePrefix</code>, <code>LensNamePrefix</code>, <code>ProfileNamePrefix</code>,
-        /// and <code>TemplateNamePrefix</code> are mutually exclusive. Use the parameter that
-        /// matches your <code>ShareResourceType</code>.
+        ///  <c>WorkloadNamePrefix</c>, <c>LensNamePrefix</c>, <c>ProfileNamePrefix</c>, and <c>TemplateNamePrefix</c>
+        /// are mutually exclusive. Use the parameter that matches your <c>ShareResourceType</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListShareInvitations service method.</param>
@@ -4653,9 +4718,8 @@ namespace Amazon.WellArchitected
         /// 
         ///  
         /// <para>
-        ///  <code>WorkloadNamePrefix</code>, <code>LensNamePrefix</code>, <code>ProfileNamePrefix</code>,
-        /// and <code>TemplateNamePrefix</code> are mutually exclusive. Use the parameter that
-        /// matches your <code>ShareResourceType</code>.
+        ///  <c>WorkloadNamePrefix</c>, <c>LensNamePrefix</c>, <c>ProfileNamePrefix</c>, and <c>TemplateNamePrefix</c>
+        /// are mutually exclusive. Use the parameter that matches your <c>ShareResourceType</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListShareInvitations service method.</param>
@@ -5046,7 +5110,7 @@ namespace Amazon.WellArchitected
         /// </para>
         ///  
         /// <para>
-        ///  <code>DELETE /tags/WorkloadArn?tagKeys=key1&amp;tagKeys=key2</code> 
+        ///  <c>DELETE /tags/WorkloadArn?tagKeys=key1&amp;tagKeys=key2</c> 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
@@ -5083,7 +5147,7 @@ namespace Amazon.WellArchitected
         /// </para>
         ///  
         /// <para>
-        ///  <code>DELETE /tags/WorkloadArn?tagKeys=key1&amp;tagKeys=key2</code> 
+        ///  <c>DELETE /tags/WorkloadArn?tagKeys=key1&amp;tagKeys=key2</c> 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
@@ -5191,7 +5255,7 @@ namespace Amazon.WellArchitected
 
 
         /// <summary>
-        /// Updates whether the Amazon Web Services account is opted into organization sharing
+        /// Update whether the Amazon Web Services account is opted into organization sharing
         /// and discovery integration features.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateGlobalSettings service method.</param>
@@ -5224,7 +5288,7 @@ namespace Amazon.WellArchitected
 
 
         /// <summary>
-        /// Updates whether the Amazon Web Services account is opted into organization sharing
+        /// Update whether the Amazon Web Services account is opted into organization sharing
         /// and discovery integration features.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateGlobalSettings service method.</param>
@@ -5256,6 +5320,83 @@ namespace Amazon.WellArchitected
             options.ResponseUnmarshaller = UpdateGlobalSettingsResponseUnmarshaller.Instance;
             
             return InvokeAsync<UpdateGlobalSettingsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  UpdateIntegration
+
+
+        /// <summary>
+        /// Update integration features.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateIntegration service method.</param>
+        /// 
+        /// <returns>The response from the UpdateIntegration service method, as returned by WellArchitected.</returns>
+        /// <exception cref="Amazon.WellArchitected.Model.AccessDeniedException">
+        /// User does not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.WellArchitected.Model.ConflictException">
+        /// The resource has already been processed, was deleted, or is too large.
+        /// </exception>
+        /// <exception cref="Amazon.WellArchitected.Model.InternalServerException">
+        /// There is a problem with the Well-Architected Tool API service.
+        /// </exception>
+        /// <exception cref="Amazon.WellArchitected.Model.ResourceNotFoundException">
+        /// The requested resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.WellArchitected.Model.ThrottlingException">
+        /// Request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.WellArchitected.Model.ValidationException">
+        /// The user input is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/wellarchitected-2020-03-31/UpdateIntegration">REST API Reference for UpdateIntegration Operation</seealso>
+        public virtual UpdateIntegrationResponse UpdateIntegration(UpdateIntegrationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateIntegrationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateIntegrationResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateIntegrationResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Update integration features.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateIntegration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateIntegration service method, as returned by WellArchitected.</returns>
+        /// <exception cref="Amazon.WellArchitected.Model.AccessDeniedException">
+        /// User does not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.WellArchitected.Model.ConflictException">
+        /// The resource has already been processed, was deleted, or is too large.
+        /// </exception>
+        /// <exception cref="Amazon.WellArchitected.Model.InternalServerException">
+        /// There is a problem with the Well-Architected Tool API service.
+        /// </exception>
+        /// <exception cref="Amazon.WellArchitected.Model.ResourceNotFoundException">
+        /// The requested resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.WellArchitected.Model.ThrottlingException">
+        /// Request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.WellArchitected.Model.ValidationException">
+        /// The user input is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/wellarchitected-2020-03-31/UpdateIntegration">REST API Reference for UpdateIntegration Operation</seealso>
+        public virtual Task<UpdateIntegrationResponse> UpdateIntegrationAsync(UpdateIntegrationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateIntegrationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateIntegrationResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdateIntegrationResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -5911,6 +6052,9 @@ namespace Amazon.WellArchitected
         /// <exception cref="Amazon.WellArchitected.Model.ResourceNotFoundException">
         /// The requested resource was not found.
         /// </exception>
+        /// <exception cref="Amazon.WellArchitected.Model.ServiceQuotaExceededException">
+        /// The user has reached their resource quota.
+        /// </exception>
         /// <exception cref="Amazon.WellArchitected.Model.ThrottlingException">
         /// Request was denied due to request throttling.
         /// </exception>
@@ -5948,6 +6092,9 @@ namespace Amazon.WellArchitected
         /// </exception>
         /// <exception cref="Amazon.WellArchitected.Model.ResourceNotFoundException">
         /// The requested resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.WellArchitected.Model.ServiceQuotaExceededException">
+        /// The user has reached their resource quota.
         /// </exception>
         /// <exception cref="Amazon.WellArchitected.Model.ThrottlingException">
         /// Request was denied due to request throttling.
@@ -5988,6 +6135,9 @@ namespace Amazon.WellArchitected
         /// <exception cref="Amazon.WellArchitected.Model.ResourceNotFoundException">
         /// The requested resource was not found.
         /// </exception>
+        /// <exception cref="Amazon.WellArchitected.Model.ServiceQuotaExceededException">
+        /// The user has reached their resource quota.
+        /// </exception>
         /// <exception cref="Amazon.WellArchitected.Model.ThrottlingException">
         /// Request was denied due to request throttling.
         /// </exception>
@@ -6025,6 +6175,9 @@ namespace Amazon.WellArchitected
         /// </exception>
         /// <exception cref="Amazon.WellArchitected.Model.ResourceNotFoundException">
         /// The requested resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.WellArchitected.Model.ServiceQuotaExceededException">
+        /// The user has reached their resource quota.
         /// </exception>
         /// <exception cref="Amazon.WellArchitected.Model.ThrottlingException">
         /// Request was denied due to request throttling.
@@ -6130,11 +6283,11 @@ namespace Amazon.WellArchitected
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

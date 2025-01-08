@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
-    /// Represents the output of a <code>BatchWrite</code> response operation.
+    /// Represents the output of a <c>BatchWrite</c> response operation.
     /// </summary>
     public partial class BatchWriteOperationResponse
     {
@@ -292,7 +293,7 @@ namespace Amazon.CloudDirectory.Model
         /// <summary>
         /// Gets and sets the property UpdateLinkAttributes. 
         /// <para>
-        /// Represents the output of a <code>BatchWrite</code> response operation.
+        /// Represents the output of a <c>BatchWrite</c> response operation.
         /// </para>
         /// </summary>
         public BatchUpdateLinkAttributesResponse UpdateLinkAttributes

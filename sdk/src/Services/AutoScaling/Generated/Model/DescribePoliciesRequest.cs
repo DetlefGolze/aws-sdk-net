@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -37,8 +38,8 @@ namespace Amazon.AutoScaling.Model
         private string _autoScalingGroupName;
         private int? _maxRecords;
         private string _nextToken;
-        private List<string> _policyNames = new List<string>();
-        private List<string> _policyTypes = new List<string>();
+        private List<string> _policyNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _policyTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AutoScalingGroupName. 
@@ -62,8 +63,8 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property MaxRecords. 
         /// <para>
-        /// The maximum number of items to be returned with each call. The default value is <code>50</code>
-        /// and the maximum value is <code>100</code>.
+        /// The maximum number of items to be returned with each call. The default value is <c>50</c>
+        /// and the maximum value is <c>100</c>.
         /// </para>
         /// </summary>
         public int MaxRecords
@@ -118,14 +119,14 @@ namespace Amazon.AutoScaling.Model
         // Check to see if PolicyNames property is set
         internal bool IsSetPolicyNames()
         {
-            return this._policyNames != null && this._policyNames.Count > 0; 
+            return this._policyNames != null && (this._policyNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PolicyTypes. 
         /// <para>
-        /// One or more policy types. The valid values are <code>SimpleScaling</code>, <code>StepScaling</code>,
-        /// <code>TargetTrackingScaling</code>, and <code>PredictiveScaling</code>.
+        /// One or more policy types. The valid values are <c>SimpleScaling</c>, <c>StepScaling</c>,
+        /// <c>TargetTrackingScaling</c>, and <c>PredictiveScaling</c>.
         /// </para>
         /// </summary>
         public List<string> PolicyTypes
@@ -137,7 +138,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if PolicyTypes property is set
         internal bool IsSetPolicyTypes()
         {
-            return this._policyTypes != null && this._policyTypes.Count > 0; 
+            return this._policyTypes != null && (this._policyTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

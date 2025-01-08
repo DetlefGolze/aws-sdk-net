@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.ElastiCache.Model
     public partial class DescribeServiceUpdatesResponse : AmazonWebServiceResponse
     {
         private string _marker;
-        private List<ServiceUpdate> _serviceUpdates = new List<ServiceUpdate>();
+        private List<ServiceUpdate> _serviceUpdates = AWSConfigs.InitializeCollections ? new List<ServiceUpdate>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         /// An optional marker returned from a prior request. Use this marker for pagination of
         /// results from this operation. If this parameter is specified, the response includes
-        /// only records beyond the marker, up to the value specified by <code>MaxRecords</code>.
+        /// only records beyond the marker, up to the value specified by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -71,7 +72,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if ServiceUpdates property is set
         internal bool IsSetServiceUpdates()
         {
-            return this._serviceUpdates != null && this._serviceUpdates.Count > 0; 
+            return this._serviceUpdates != null && (this._serviceUpdates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -82,7 +83,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property Metadata. 
         /// <para>
         /// The type of data for which details are being requested. Currently, the only supported
-        /// value is <code>DocumentReviews</code>.
+        /// value is <c>DocumentReviews</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

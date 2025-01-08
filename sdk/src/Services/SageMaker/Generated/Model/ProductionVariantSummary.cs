@@ -26,25 +26,27 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Describes weight and capacities for a production variant associated with an endpoint.
-    /// If you sent a request to the <code>UpdateEndpointWeightsAndCapacities</code> API and
-    /// the endpoint status is <code>Updating</code>, you get different desired and current
-    /// values.
+    /// If you sent a request to the <c>UpdateEndpointWeightsAndCapacities</c> API and the
+    /// endpoint status is <c>Updating</c>, you get different desired and current values.
     /// </summary>
     public partial class ProductionVariantSummary
     {
         private int? _currentInstanceCount;
         private ProductionVariantServerlessConfig _currentServerlessConfig;
         private float? _currentWeight;
-        private List<DeployedImage> _deployedImages = new List<DeployedImage>();
+        private List<DeployedImage> _deployedImages = AWSConfigs.InitializeCollections ? new List<DeployedImage>() : null;
         private int? _desiredInstanceCount;
         private ProductionVariantServerlessConfig _desiredServerlessConfig;
         private float? _desiredWeight;
+        private ProductionVariantManagedInstanceScaling _managedInstanceScaling;
+        private ProductionVariantRoutingConfig _routingConfig;
         private string _variantName;
-        private List<ProductionVariantStatus> _variantStatus = new List<ProductionVariantStatus>();
+        private List<ProductionVariantStatus> _variantStatus = AWSConfigs.InitializeCollections ? new List<ProductionVariantStatus>() : null;
 
         /// <summary>
         /// Gets and sets the property CurrentInstanceCount. 
@@ -105,8 +107,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property DeployedImages. 
         /// <para>
-        /// An array of <code>DeployedImage</code> objects that specify the Amazon EC2 Container
-        /// Registry paths of the inference images deployed on instances of this <code>ProductionVariant</code>.
+        /// An array of <c>DeployedImage</c> objects that specify the Amazon EC2 Container Registry
+        /// paths of the inference images deployed on instances of this <c>ProductionVariant</c>.
         /// </para>
         /// </summary>
         public List<DeployedImage> DeployedImages
@@ -118,13 +120,13 @@ namespace Amazon.SageMaker.Model
         // Check to see if DeployedImages property is set
         internal bool IsSetDeployedImages()
         {
-            return this._deployedImages != null && this._deployedImages.Count > 0; 
+            return this._deployedImages != null && (this._deployedImages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DesiredInstanceCount. 
         /// <para>
-        /// The number of instances requested in the <code>UpdateEndpointWeightsAndCapacities</code>
+        /// The number of instances requested in the <c>UpdateEndpointWeightsAndCapacities</c>
         /// request. 
         /// </para>
         /// </summary>
@@ -162,7 +164,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property DesiredWeight. 
         /// <para>
-        /// The requested weight, as specified in the <code>UpdateEndpointWeightsAndCapacities</code>
+        /// The requested weight, as specified in the <c>UpdateEndpointWeightsAndCapacities</c>
         /// request. 
         /// </para>
         /// </summary>
@@ -177,6 +179,44 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetDesiredWeight()
         {
             return this._desiredWeight.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ManagedInstanceScaling. 
+        /// <para>
+        /// Settings that control the range in the number of instances that the endpoint provisions
+        /// as it scales up or down to accommodate traffic. 
+        /// </para>
+        /// </summary>
+        public ProductionVariantManagedInstanceScaling ManagedInstanceScaling
+        {
+            get { return this._managedInstanceScaling; }
+            set { this._managedInstanceScaling = value; }
+        }
+
+        // Check to see if ManagedInstanceScaling property is set
+        internal bool IsSetManagedInstanceScaling()
+        {
+            return this._managedInstanceScaling != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RoutingConfig. 
+        /// <para>
+        /// Settings that control how the endpoint routes incoming traffic to the instances that
+        /// the endpoint hosts.
+        /// </para>
+        /// </summary>
+        public ProductionVariantRoutingConfig RoutingConfig
+        {
+            get { return this._routingConfig; }
+            set { this._routingConfig = value; }
+        }
+
+        // Check to see if RoutingConfig property is set
+        internal bool IsSetRoutingConfig()
+        {
+            return this._routingConfig != null;
         }
 
         /// <summary>
@@ -215,7 +255,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if VariantStatus property is set
         internal bool IsSetVariantStatus()
         {
-            return this._variantStatus != null && this._variantStatus.Count > 0; 
+            return this._variantStatus != null && (this._variantStatus.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

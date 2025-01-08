@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the redshift-2012-12-01.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -126,6 +127,16 @@ namespace Amazon.Redshift.Model
         IDescribeHsmConfigurationsPaginator DescribeHsmConfigurations(DescribeHsmConfigurationsRequest request);
 
         /// <summary>
+        /// Paginator for DescribeInboundIntegrations operation
+        ///</summary>
+        IDescribeInboundIntegrationsPaginator DescribeInboundIntegrations(DescribeInboundIntegrationsRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeIntegrations operation
+        ///</summary>
+        IDescribeIntegrationsPaginator DescribeIntegrations(DescribeIntegrationsRequest request);
+
+        /// <summary>
         /// Paginator for DescribeNodeConfigurationOptions operation
         ///</summary>
         IDescribeNodeConfigurationOptionsPaginator DescribeNodeConfigurationOptions(DescribeNodeConfigurationOptionsRequest request);
@@ -134,6 +145,11 @@ namespace Amazon.Redshift.Model
         /// Paginator for DescribeOrderableClusterOptions operation
         ///</summary>
         IDescribeOrderableClusterOptionsPaginator DescribeOrderableClusterOptions(DescribeOrderableClusterOptionsRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeRedshiftIdcApplications operation
+        ///</summary>
+        IDescribeRedshiftIdcApplicationsPaginator DescribeRedshiftIdcApplications(DescribeRedshiftIdcApplicationsRequest request);
 
         /// <summary>
         /// Paginator for DescribeReservedNodeExchangeStatus operation
@@ -189,5 +205,10 @@ namespace Amazon.Redshift.Model
         /// Paginator for GetReservedNodeExchangeOfferings operation
         ///</summary>
         IGetReservedNodeExchangeOfferingsPaginator GetReservedNodeExchangeOfferings(GetReservedNodeExchangeOfferingsRequest request);
+
+        /// <summary>
+        /// Paginator for ListRecommendations operation
+        ///</summary>
+        IListRecommendationsPaginator ListRecommendations(ListRecommendationsRequest request);
     }
 }

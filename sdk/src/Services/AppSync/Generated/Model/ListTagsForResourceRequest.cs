@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.AppSync.Model
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The <code>GraphqlApi</code> Amazon Resource Name (ARN).
+        /// The <c>GraphqlApi</c> Amazon Resource Name (ARN).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=70, Max=75)]

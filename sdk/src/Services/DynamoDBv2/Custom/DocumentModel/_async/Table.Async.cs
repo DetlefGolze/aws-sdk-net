@@ -25,6 +25,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Amazon.Runtime.Internal;
+using Amazon.Runtime.Telemetry.Tracing;
 
 namespace Amazon.DynamoDBv2.DocumentModel
 {
@@ -39,9 +40,13 @@ namespace Amazon.DynamoDBv2.DocumentModel
         /// <param name="doc">Document to save.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> PutItemAsync(Document doc, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> PutItemAsync(Document doc, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return PutItemHelperAsync(doc, null, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(PutItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await PutItemHelperAsync(doc, null, cancellationToken).ConfigureAwait(false);
+            }
         }
 
 
@@ -53,9 +58,13 @@ namespace Amazon.DynamoDBv2.DocumentModel
         /// <param name="config">Configuration to use.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> PutItemAsync(Document doc, PutItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> PutItemAsync(Document doc, PutItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return PutItemHelperAsync(doc, config, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(PutItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await PutItemHelperAsync(doc, config, cancellationToken).ConfigureAwait(false);
+            }
         }
 
         #endregion
@@ -64,80 +73,98 @@ namespace Amazon.DynamoDBv2.DocumentModel
 
         /// <summary>
         /// Initiates the asynchronous execution of the GetItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.GetItem"/>
         /// </summary>
         /// <param name="hashKey">Hash key element of the document.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> GetItemAsync(Primitive hashKey, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> GetItemAsync(Primitive hashKey, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return GetItemHelperAsync(MakeKey(hashKey, null), null, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(GetItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await GetItemHelperAsync(MakeKey(hashKey, null), null, cancellationToken).ConfigureAwait(false);
+            }
         }
 
         /// <summary>
         /// Initiates the asynchronous execution of the GetItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.GetItem"/>
         /// </summary>
         /// <param name="hashKey">Hash key element of the document.</param>
         /// <param name="config">Configuration to use.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> GetItemAsync(Primitive hashKey, GetItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> GetItemAsync(Primitive hashKey, GetItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return GetItemHelperAsync(MakeKey(hashKey, null), config, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(GetItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await GetItemHelperAsync(MakeKey(hashKey, null), config, cancellationToken).ConfigureAwait(false);
+            }
         }
 
 
         /// <summary>
         /// Initiates the asynchronous execution of the GetItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.GetItem"/>
         /// </summary>
         /// <param name="hashKey">Hash key element of the document.</param>
         /// <param name="rangeKey">Range key element of the document.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> GetItemAsync(Primitive hashKey, Primitive rangeKey, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> GetItemAsync(Primitive hashKey, Primitive rangeKey, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return GetItemHelperAsync(MakeKey(hashKey, rangeKey), null, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(GetItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await GetItemHelperAsync(MakeKey(hashKey, rangeKey), null, cancellationToken).ConfigureAwait(false);
+            }
         }
 
         /// <summary>
         /// Initiates the asynchronous execution of the GetItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.GetItem"/>
         /// </summary>
         /// <param name="hashKey">Hash key element of the document.</param>
         /// <param name="rangeKey">Range key element of the document.</param>
         /// <param name="config">Configuration to use.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> GetItemAsync(Primitive hashKey, Primitive rangeKey, GetItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> GetItemAsync(Primitive hashKey, Primitive rangeKey, GetItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return GetItemHelperAsync(MakeKey(hashKey, rangeKey), config, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(GetItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await GetItemHelperAsync(MakeKey(hashKey, rangeKey), config, cancellationToken).ConfigureAwait(false);
+            }
         }
 
         /// <summary>
         /// Initiates the asynchronous execution of the GetItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.GetItem"/>
         /// </summary>
         /// <param name="key">Ley of the document.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> GetItemAsync(IDictionary<string, DynamoDBEntry> key, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> GetItemAsync(IDictionary<string, DynamoDBEntry> key, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return GetItemHelperAsync(MakeKey(key), null, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(GetItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await GetItemHelperAsync(MakeKey(key), null, cancellationToken).ConfigureAwait(false);
+            }
         }
 
         /// <summary>
         /// Initiates the asynchronous execution of the GetItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.GetItem"/>
         /// </summary>
         /// <param name="key">Ley of the document.</param>
         /// <param name="config">Configuration to use.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> GetItemAsync(IDictionary<string, DynamoDBEntry> key, GetItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> GetItemAsync(IDictionary<string, DynamoDBEntry> key, GetItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return GetItemHelperAsync(MakeKey(key), config, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(GetItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await GetItemHelperAsync(MakeKey(key), config, cancellationToken).ConfigureAwait(false);
+            }
         }
 
         #endregion
@@ -146,100 +173,120 @@ namespace Amazon.DynamoDBv2.DocumentModel
 
         /// <summary>
         /// Initiates the asynchronous execution of the UpdateItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.UpdateItem"/>
         /// </summary>
         /// <param name="doc">Attributes to update.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> UpdateItemAsync(Document doc, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> UpdateItemAsync(Document doc, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return UpdateHelperAsync(doc, null, null, null, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(UpdateItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await UpdateHelperAsync(doc, null, null, null, cancellationToken).ConfigureAwait(false);
+            }
         }
 
         /// <summary>
         /// Initiates the asynchronous execution of the UpdateItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.UpdateItem"/>
         /// </summary>
         /// <param name="doc">Attributes to update.</param>
         /// <param name="config">Configuration to use.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> UpdateItemAsync(Document doc, UpdateItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> UpdateItemAsync(Document doc, UpdateItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return UpdateHelperAsync(doc, null, null, config, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(UpdateItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await UpdateHelperAsync(doc, null, null, config, cancellationToken).ConfigureAwait(false);
+            }
         }
 
         /// <summary>
         /// Initiates the asynchronous execution of the UpdateItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.UpdateItem"/>
         /// </summary>
         /// <param name="doc">Attributes to update.</param>
         /// <param name="key">Key of the document.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> UpdateItemAsync(Document doc, IDictionary<string, DynamoDBEntry> key, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> UpdateItemAsync(Document doc, IDictionary<string, DynamoDBEntry> key, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return UpdateHelperAsync(doc, MakeKey(key), null, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(UpdateItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await UpdateHelperAsync(doc, MakeKey(key), null, cancellationToken).ConfigureAwait(false);
+            }
         }
 
         /// <summary>
         /// Initiates the asynchronous execution of the UpdateItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.UpdateItem"/>
         /// </summary>
         /// <param name="doc">Attributes to update.</param>
         /// <param name="key">Key of the document.</param>
         /// <param name="config">Configuration to use.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> UpdateItemAsync(Document doc, IDictionary<string, DynamoDBEntry> key, UpdateItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> UpdateItemAsync(Document doc, IDictionary<string, DynamoDBEntry> key, UpdateItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return UpdateHelperAsync(doc, MakeKey(key), config, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(UpdateItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await UpdateHelperAsync(doc, MakeKey(key), config, cancellationToken).ConfigureAwait(false);
+            }
         }
 
         /// <summary>
         /// Initiates the asynchronous execution of the UpdateItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.UpdateItem"/>
         /// </summary>
         /// <param name="doc">Attributes to update.</param>
         /// <param name="hashKey">Hash key element of the document.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> UpdateItemAsync(Document doc, Primitive hashKey, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> UpdateItemAsync(Document doc, Primitive hashKey, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return UpdateHelperAsync(doc, hashKey, null, null, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(UpdateItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await UpdateHelperAsync(doc, hashKey, null, null, cancellationToken).ConfigureAwait(false);
+            }
         }
 
         /// <summary>
         /// Initiates the asynchronous execution of the UpdateItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.UpdateItem"/>
         /// </summary>
         /// <param name="doc">Attributes to update.</param>
         /// <param name="hashKey">Hash key element of the document.</param>
         /// <param name="config">Configuration to use.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> UpdateItemAsync(Document doc, Primitive hashKey, UpdateItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> UpdateItemAsync(Document doc, Primitive hashKey, UpdateItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return UpdateHelperAsync(doc, hashKey, null, config, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(UpdateItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await UpdateHelperAsync(doc, hashKey, null, config, cancellationToken).ConfigureAwait(false);
+            }
         }
 
         /// <summary>
         /// Initiates the asynchronous execution of the UpdateItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.UpdateItem"/>
         /// </summary>
         /// <param name="doc">Attributes to update.</param>
         /// <param name="hashKey">Hash key element of the document.</param>
         /// <param name="rangeKey">Range key element of the document.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> UpdateItemAsync(Document doc, Primitive hashKey, Primitive rangeKey, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> UpdateItemAsync(Document doc, Primitive hashKey, Primitive rangeKey, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return UpdateHelperAsync(doc, hashKey, rangeKey, null, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(UpdateItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await UpdateHelperAsync(doc, hashKey, rangeKey, null, cancellationToken).ConfigureAwait(false);
+            }
         }
 
         /// <summary>
         /// Initiates the asynchronous execution of the UpdateItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.UpdateItem"/>
         /// </summary>
         /// <param name="doc">Attributes to update.</param>
         /// <param name="hashKey">Hash key element of the document.</param>
@@ -247,9 +294,13 @@ namespace Amazon.DynamoDBv2.DocumentModel
         /// <param name="config">Configuration to use.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> UpdateItemAsync(Document doc, Primitive hashKey, Primitive rangeKey, UpdateItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> UpdateItemAsync(Document doc, Primitive hashKey, Primitive rangeKey, UpdateItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return UpdateHelperAsync(doc, hashKey, rangeKey, config, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(UpdateItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await UpdateHelperAsync(doc, hashKey, rangeKey, config, cancellationToken).ConfigureAwait(false);
+            }
         }
 
 
@@ -259,106 +310,129 @@ namespace Amazon.DynamoDBv2.DocumentModel
 
         /// <summary>
         /// Initiates the asynchronous execution of the DeleteItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.DeleteItem"/>
         /// </summary>
         /// <param name="document">Document to delete.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> DeleteItemAsync(Document document, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> DeleteItemAsync(Document document, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return DeleteHelperAsync(MakeKey(document), null, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(DeleteItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await DeleteHelperAsync(MakeKey(document), null, cancellationToken).ConfigureAwait(false);
+            }
         }
 
         /// <summary>
         /// Initiates the asynchronous execution of the DeleteItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.DeleteItem"/>
         /// </summary>
         /// <param name="document">Document to delete.</param>
         /// <param name="config">Configuration to use.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> DeleteItemAsync(Document document, DeleteItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> DeleteItemAsync(Document document, DeleteItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return DeleteHelperAsync(MakeKey(document), config, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(DeleteItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await DeleteHelperAsync(MakeKey(document), config, cancellationToken).ConfigureAwait(false);
+            }
         }
 
         /// <summary>
         /// Initiates the asynchronous execution of the DeleteItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.DeleteItem"/>
         /// </summary>
         /// <param name="hashKey">Hash key element of the document.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> DeleteItemAsync(Primitive hashKey, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> DeleteItemAsync(Primitive hashKey, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return DeleteHelperAsync(MakeKey(hashKey, null), null, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(DeleteItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await DeleteHelperAsync(MakeKey(hashKey, null), null, cancellationToken).ConfigureAwait(false);
+            }
         }
 
         /// <summary>
         /// Initiates the asynchronous execution of the DeleteItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.DeleteItem"/>
         /// </summary>
         /// <param name="hashKey">Hash key element of the document.</param>
         /// <param name="config">Configuration to use.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> DeleteItemAsync(Primitive hashKey, DeleteItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> DeleteItemAsync(Primitive hashKey, DeleteItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return DeleteHelperAsync(MakeKey(hashKey, null), config, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(DeleteItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await DeleteHelperAsync(MakeKey(hashKey, null), config, cancellationToken).ConfigureAwait(false);
+            }
         }
 
         /// <summary>
         /// Initiates the asynchronous execution of the DeleteItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.DeleteItem"/>
         /// </summary>
         /// <param name="hashKey">Hash key element of the document.</param>
         /// <param name="rangeKey">Range key element of the document.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> DeleteItemAsync(Primitive hashKey, Primitive rangeKey, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> DeleteItemAsync(Primitive hashKey, Primitive rangeKey, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return DeleteHelperAsync(MakeKey(hashKey, rangeKey), null, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(DeleteItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await DeleteHelperAsync(MakeKey(hashKey, rangeKey), null, cancellationToken).ConfigureAwait(false);
+            }
         }
 
         /// <summary>
         /// Initiates the asynchronous execution of the DeleteItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.DeleteItem"/>
         /// </summary>
         /// <param name="hashKey">Hash key element of the document.</param>
         /// <param name="rangeKey">Range key element of the document.</param>
         /// <param name="config">Configuration to use.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> DeleteItemAsync(Primitive hashKey, Primitive rangeKey, DeleteItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> DeleteItemAsync(Primitive hashKey, Primitive rangeKey, DeleteItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return DeleteHelperAsync(MakeKey(hashKey, rangeKey), config, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(DeleteItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await DeleteHelperAsync(MakeKey(hashKey, rangeKey), config, cancellationToken).ConfigureAwait(false);
+            }
         }
 
         /// <summary>
         /// Initiates the asynchronous execution of the DeleteItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.DeleteItem"/>
         /// </summary>
         /// <param name="key">Key of the document.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> DeleteItemAsync(IDictionary<string, DynamoDBEntry> key, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> DeleteItemAsync(IDictionary<string, DynamoDBEntry> key, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return DeleteHelperAsync(MakeKey(key), null, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(DeleteItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await DeleteHelperAsync(MakeKey(key), null, cancellationToken).ConfigureAwait(false);
+            }
         }
 
         /// <summary>
         /// Initiates the asynchronous execution of the DeleteItem operation.
-        /// <seealso cref="Amazon.DynamoDBv2.DocumentModel.Table.DeleteItem"/>
         /// </summary>
         /// <param name="key">Key of the document.</param>
         /// <param name="config">Configuration to use.</param>
         /// <param name="cancellationToken">Token which can be used to cancel the task.</param>
         /// <returns>A Task that can be used to poll or wait for results, or both.</returns>
-        public Task<Document> DeleteItemAsync(IDictionary<string, DynamoDBEntry> key, DeleteItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Document> DeleteItemAsync(IDictionary<string, DynamoDBEntry> key, DeleteItemOperationConfig config, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return DeleteHelperAsync(MakeKey(key), config, cancellationToken);
+            var operationName = DynamoDBTelemetry.ExtractOperationName(nameof(Table), nameof(DeleteItemAsync));
+            using (DynamoDBTelemetry.CreateSpan(TracerProvider, operationName, spanKind: SpanKind.CLIENT))
+            {
+                return await DeleteHelperAsync(MakeKey(key), config, cancellationToken).ConfigureAwait(false);
+            }
         }
-        
         #endregion
 
     }

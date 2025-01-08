@@ -26,20 +26,27 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Amplify.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Amplify
 {
     /// <summary>
-    /// Interface for accessing Amplify
+    /// <para>Interface for accessing Amplify</para>
     ///
     /// Amplify enables developers to develop and deploy cloud-powered mobile and web apps.
-    /// The Amplify Console provides a continuous delivery and hosting service for web applications.
+    /// Amplify Hosting provides a continuous delivery and hosting service for web applications.
     /// For more information, see the <a href="https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html">Amplify
-    /// Console User Guide</a>. The Amplify Framework is a comprehensive set of SDKs, libraries,
+    /// Hosting User Guide</a>. The Amplify Framework is a comprehensive set of SDKs, libraries,
     /// tools, and documentation for client app development. For more information, see the
     /// <a href="https://docs.amplify.aws/">Amplify Framework.</a>
     /// </summary>
     public partial interface IAmazonAmplify : IAmazonService, IDisposable
     {
+#if AWS_ASYNC_ENUMERABLES_API
+        /// <summary>
+        /// Paginators for the service
+        /// </summary>
+        IAmplifyPaginatorFactory Paginators { get; }
+#endif
                 
         #region  CreateApp
 
@@ -79,7 +86,15 @@ namespace Amazon.Amplify
 
 
         /// <summary>
-        /// Creates a new backend environment for an Amplify app.
+        /// Creates a new backend environment for an Amplify app. 
+        /// 
+        ///  
+        /// <para>
+        /// This API is available only to Amplify Gen 1 applications where the backend is created
+        /// using Amplify Studio or the Amplify command line interface (CLI). This API isn’t available
+        /// to Amplify Gen 2 applications. When you deploy an application with Amplify Gen 2,
+        /// you provision the app's backend infrastructure using Typescript code.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateBackendEnvironment service method.</param>
         /// <param name="cancellationToken">
@@ -148,8 +163,15 @@ namespace Amazon.Amplify
 
 
         /// <summary>
-        /// Creates a deployment for a manually deployed Amplify app. Manually deployed apps
-        /// are not connected to a repository.
+        /// Creates a deployment for a manually deployed Amplify app. Manually deployed apps are
+        /// not connected to a Git repository. 
+        /// 
+        ///  
+        /// <para>
+        /// The maximum duration between the <c>CreateDeployment</c> call and the <c>StartDeployment</c>
+        /// call cannot exceed 8 hours. If the duration exceeds 8 hours, the <c>StartDeployment</c>
+        /// call and the associated <c>Job</c> will fail.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateDeployment service method.</param>
         /// <param name="cancellationToken">
@@ -285,7 +307,15 @@ namespace Amazon.Amplify
 
 
         /// <summary>
-        /// Deletes a backend environment for an Amplify app.
+        /// Deletes a backend environment for an Amplify app. 
+        /// 
+        ///  
+        /// <para>
+        /// This API is available only to Amplify Gen 1 applications where the backend is created
+        /// using Amplify Studio or the Amplify command line interface (CLI). This API isn’t available
+        /// to Amplify Gen 2 applications. When you deploy an application with Amplify Gen 2,
+        /// you provision the app's backend infrastructure using Typescript code.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteBackendEnvironment service method.</param>
         /// <param name="cancellationToken">
@@ -480,7 +510,7 @@ namespace Amazon.Amplify
 
 
         /// <summary>
-        /// Returns an existing Amplify app by appID.
+        /// Returns an existing Amplify app specified by an app ID.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetApp service method.</param>
         /// <param name="cancellationToken">
@@ -543,7 +573,15 @@ namespace Amazon.Amplify
 
 
         /// <summary>
-        /// Returns a backend environment for an Amplify app.
+        /// Returns a backend environment for an Amplify app. 
+        /// 
+        ///  
+        /// <para>
+        /// This API is available only to Amplify Gen 1 applications where the backend is created
+        /// using Amplify Studio or the Amplify command line interface (CLI). This API isn’t available
+        /// to Amplify Gen 2 applications. When you deploy an application with Amplify Gen 2,
+        /// you provision the app's backend infrastructure using Typescript code.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetBackendEnvironment service method.</param>
         /// <param name="cancellationToken">
@@ -756,7 +794,15 @@ namespace Amazon.Amplify
 
 
         /// <summary>
-        /// Lists the backend environments for an Amplify app.
+        /// Lists the backend environments for an Amplify app. 
+        /// 
+        ///  
+        /// <para>
+        /// This API is available only to Amplify Gen 1 applications where the backend is created
+        /// using Amplify Studio or the Amplify command line interface (CLI). This API isn’t available
+        /// to Amplify Gen 2 applications. When you deploy an application with Amplify Gen 2,
+        /// you provision the app's backend infrastructure using Typescript code.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListBackendEnvironments service method.</param>
         /// <param name="cancellationToken">
@@ -925,7 +971,14 @@ namespace Amazon.Amplify
 
         /// <summary>
         /// Starts a deployment for a manually deployed app. Manually deployed apps are not connected
-        /// to a repository.
+        /// to a Git repository. 
+        /// 
+        ///  
+        /// <para>
+        /// The maximum duration between the <c>CreateDeployment</c> call and the <c>StartDeployment</c>
+        /// call cannot exceed 8 hours. If the duration exceeds 8 hours, the <c>StartDeployment</c>
+        /// call and the associated <c>Job</c> will fail.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartDeployment service method.</param>
         /// <param name="cancellationToken">

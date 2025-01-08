@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glacier.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Glacier.Model
     /// </summary>
     public partial class ListJobsResponse : AmazonWebServiceResponse
     {
-        private List<GlacierJobDescription> _jobList = new List<GlacierJobDescription>();
+        private List<GlacierJobDescription> _jobList = AWSConfigs.InitializeCollections ? new List<GlacierJobDescription>() : null;
         private string _marker;
 
         /// <summary>
@@ -51,16 +52,16 @@ namespace Amazon.Glacier.Model
         // Check to see if JobList property is set
         internal bool IsSetJobList()
         {
-            return this._jobList != null && this._jobList.Count > 0; 
+            return this._jobList != null && (this._jobList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         ///  An opaque string used for pagination that specifies the job at which the listing
-        /// of jobs should begin. You get the <code>marker</code> value from a previous List Jobs
-        /// response. You only need to include the marker if you are continuing the pagination
-        /// of the results started in a previous List Jobs request. 
+        /// of jobs should begin. You get the <c>marker</c> value from a previous List Jobs response.
+        /// You only need to include the marker if you are continuing the pagination of the results
+        /// started in a previous List Jobs request. 
         /// </para>
         /// </summary>
         public string Marker

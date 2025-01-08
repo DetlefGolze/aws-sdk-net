@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.KeyManagementService.Model
     /// 
     ///  
     /// <para>
-    /// The <code>XksProxyAuthenticationCredential</code> includes two required elements.
+    /// The <c>XksProxyAuthenticationCredential</c> includes two required elements.
     /// </para>
     /// </summary>
     public partial class XksProxyAuthenticationCredentialType

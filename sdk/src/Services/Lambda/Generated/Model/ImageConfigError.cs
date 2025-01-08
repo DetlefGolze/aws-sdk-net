@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
-    /// Error response to <code>GetFunctionConfiguration</code>.
+    /// Error response to <c>GetFunctionConfiguration</c>.
     /// </summary>
     public partial class ImageConfigError
     {

@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearchDomain.Model
 {
     /// <summary>
-    /// Contains the response to an <code>UploadDocuments</code> request.
+    /// Contains the response to an <c>UploadDocuments</c> request.
     /// </summary>
     public partial class UploadDocumentsResponse : AmazonWebServiceResponse
     {
         private long? _adds;
         private long? _deletes;
         private string _status;
-        private List<DocumentServiceWarning> _warnings = new List<DocumentServiceWarning>();
+        private List<DocumentServiceWarning> _warnings = AWSConfigs.InitializeCollections ? new List<DocumentServiceWarning>() : null;
 
         /// <summary>
         /// Gets and sets the property Adds. 
@@ -77,7 +78,7 @@ namespace Amazon.CloudSearchDomain.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of an <code>UploadDocumentsRequest</code>.
+        /// The status of an <c>UploadDocumentsRequest</c>.
         /// </para>
         /// </summary>
         public string Status
@@ -107,7 +108,7 @@ namespace Amazon.CloudSearchDomain.Model
         // Check to see if Warnings property is set
         internal bool IsSetWarnings()
         {
-            return this._warnings != null && this._warnings.Count > 0; 
+            return this._warnings != null && (this._warnings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

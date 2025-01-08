@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECR.Model
 {
     /// <summary>
     /// Container for the parameters to the PutImageScanningConfiguration operation.
     /// <important> 
     /// <para>
-    /// The <code>PutImageScanningConfiguration</code> API is being deprecated, in favor of
-    /// specifying the image scanning configuration at the registry level. For more information,
-    /// see <a>PutRegistryScanningConfiguration</a>.
+    /// The <c>PutImageScanningConfiguration</c> API is being deprecated, in favor of specifying
+    /// the image scanning configuration at the registry level. For more information, see
+    /// <a>PutRegistryScanningConfiguration</a>.
     /// </para>
     ///  </important> 
     /// <para>

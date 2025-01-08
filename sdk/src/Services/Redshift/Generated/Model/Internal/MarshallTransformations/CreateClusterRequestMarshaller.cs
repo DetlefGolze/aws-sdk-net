@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Redshift.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -95,7 +96,7 @@ namespace Amazon.Redshift.Model.Internal.MarshallTransformations
                     int publicRequestlistValueIndex = 1;
                     foreach(var publicRequestlistValue in publicRequest.ClusterSecurityGroups)
                     {
-                        request.Parameters.Add("ClusterSecurityGroups" + "." + "member" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
+                        request.Parameters.Add("ClusterSecurityGroups" + "." + "ClusterSecurityGroupName" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
                         publicRequestlistValueIndex++;
                     }
                 }
@@ -144,9 +145,13 @@ namespace Amazon.Redshift.Model.Internal.MarshallTransformations
                     int publicRequestlistValueIndex = 1;
                     foreach(var publicRequestlistValue in publicRequest.IamRoles)
                     {
-                        request.Parameters.Add("IamRoles" + "." + "member" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
+                        request.Parameters.Add("IamRoles" + "." + "IamRoleArn" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
                         publicRequestlistValueIndex++;
                     }
+                }
+                if(publicRequest.IsSetIpAddressType())
+                {
+                    request.Parameters.Add("IpAddressType", StringUtils.FromString(publicRequest.IpAddressType));
                 }
                 if(publicRequest.IsSetKmsKeyId())
                 {
@@ -160,9 +165,17 @@ namespace Amazon.Redshift.Model.Internal.MarshallTransformations
                 {
                     request.Parameters.Add("MaintenanceTrackName", StringUtils.FromString(publicRequest.MaintenanceTrackName));
                 }
+                if(publicRequest.IsSetManageMasterPassword())
+                {
+                    request.Parameters.Add("ManageMasterPassword", StringUtils.FromBool(publicRequest.ManageMasterPassword));
+                }
                 if(publicRequest.IsSetManualSnapshotRetentionPeriod())
                 {
                     request.Parameters.Add("ManualSnapshotRetentionPeriod", StringUtils.FromInt(publicRequest.ManualSnapshotRetentionPeriod));
+                }
+                if(publicRequest.IsSetMasterPasswordSecretKmsKeyId())
+                {
+                    request.Parameters.Add("MasterPasswordSecretKmsKeyId", StringUtils.FromString(publicRequest.MasterPasswordSecretKmsKeyId));
                 }
                 if(publicRequest.IsSetMasterUsername())
                 {
@@ -171,6 +184,10 @@ namespace Amazon.Redshift.Model.Internal.MarshallTransformations
                 if(publicRequest.IsSetMasterUserPassword())
                 {
                     request.Parameters.Add("MasterUserPassword", StringUtils.FromString(publicRequest.MasterUserPassword));
+                }
+                if(publicRequest.IsSetMultiAZ())
+                {
+                    request.Parameters.Add("MultiAZ", StringUtils.FromBool(publicRequest.MultiAZ));
                 }
                 if(publicRequest.IsSetNodeType())
                 {
@@ -192,6 +209,10 @@ namespace Amazon.Redshift.Model.Internal.MarshallTransformations
                 {
                     request.Parameters.Add("PubliclyAccessible", StringUtils.FromBool(publicRequest.PubliclyAccessible));
                 }
+                if(publicRequest.IsSetRedshiftIdcApplicationArn())
+                {
+                    request.Parameters.Add("RedshiftIdcApplicationArn", StringUtils.FromString(publicRequest.RedshiftIdcApplicationArn));
+                }
                 if(publicRequest.IsSetSnapshotScheduleIdentifier())
                 {
                     request.Parameters.Add("SnapshotScheduleIdentifier", StringUtils.FromString(publicRequest.SnapshotScheduleIdentifier));
@@ -203,11 +224,11 @@ namespace Amazon.Redshift.Model.Internal.MarshallTransformations
                     {
                         if(publicRequestlistValue.IsSetKey())
                         {
-                            request.Parameters.Add("Tags" + "." + "member" + "." + publicRequestlistValueIndex + "." + "Key", StringUtils.FromString(publicRequestlistValue.Key));
+                            request.Parameters.Add("Tags" + "." + "Tag" + "." + publicRequestlistValueIndex + "." + "Key", StringUtils.FromString(publicRequestlistValue.Key));
                         }
                         if(publicRequestlistValue.IsSetValue())
                         {
-                            request.Parameters.Add("Tags" + "." + "member" + "." + publicRequestlistValueIndex + "." + "Value", StringUtils.FromString(publicRequestlistValue.Value));
+                            request.Parameters.Add("Tags" + "." + "Tag" + "." + publicRequestlistValueIndex + "." + "Value", StringUtils.FromString(publicRequestlistValue.Value));
                         }
                         publicRequestlistValueIndex++;
                     }
@@ -217,7 +238,7 @@ namespace Amazon.Redshift.Model.Internal.MarshallTransformations
                     int publicRequestlistValueIndex = 1;
                     foreach(var publicRequestlistValue in publicRequest.VpcSecurityGroupIds)
                     {
-                        request.Parameters.Add("VpcSecurityGroupIds" + "." + "member" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
+                        request.Parameters.Add("VpcSecurityGroupIds" + "." + "VpcSecurityGroupId" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
                         publicRequestlistValueIndex++;
                     }
                 }

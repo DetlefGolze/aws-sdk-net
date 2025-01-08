@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateCapacityReservationFleet operation.
     /// Creates a Capacity Reservation Fleet. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/work-with-cr-fleets.html#create-crfleet">Create
-    /// a Capacity Reservation Fleet</a> in the Amazon EC2 User Guide.
+    /// a Capacity Reservation Fleet</a> in the <i>Amazon EC2 User Guide</i>.
     /// </summary>
     public partial class CreateCapacityReservationFleetRequest : AmazonEC2Request
     {
@@ -39,8 +40,8 @@ namespace Amazon.EC2.Model
         private string _clientToken;
         private DateTime? _endDate;
         private FleetInstanceMatchCriteria _instanceMatchCriteria;
-        private List<ReservationFleetInstanceSpecification> _instanceTypeSpecifications = new List<ReservationFleetInstanceSpecification>();
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<ReservationFleetInstanceSpecification> _instanceTypeSpecifications = AWSConfigs.InitializeCollections ? new List<ReservationFleetInstanceSpecification>() : null;
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
         private FleetCapacityReservationTenancy _tenancy;
         private int? _totalTargetCapacity;
 
@@ -48,13 +49,13 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property AllocationStrategy. 
         /// <para>
         /// The strategy used by the Capacity Reservation Fleet to determine which of the specified
-        /// instance types to use. Currently, only the <code>prioritized</code> allocation strategy
+        /// instance types to use. Currently, only the <c>prioritized</c> allocation strategy
         /// is supported. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#allocation-strategy">
-        /// Allocation strategy</a> in the Amazon EC2 User Guide.
+        /// Allocation strategy</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>prioritized</code> 
+        /// Valid values: <c>prioritized</c> 
         /// </para>
         /// </summary>
         public string AllocationStrategy
@@ -93,15 +94,15 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property EndDate. 
         /// <para>
         /// The date and time at which the Capacity Reservation Fleet expires. When the Capacity
-        /// Reservation Fleet expires, its state changes to <code>expired</code> and all of the
-        /// Capacity Reservations in the Fleet expire.
+        /// Reservation Fleet expires, its state changes to <c>expired</c> and all of the Capacity
+        /// Reservations in the Fleet expire.
         /// </para>
         ///  
         /// <para>
         /// The Capacity Reservation Fleet expires within an hour after the specified time. For
-        /// example, if you specify <code>5/31/2019</code>, <code>13:30:55</code>, the Capacity
-        /// Reservation Fleet is guaranteed to expire between <code>13:30:55</code> and <code>14:30:55</code>
-        /// on <code>5/31/2019</code>. 
+        /// example, if you specify <c>5/31/2019</c>, <c>13:30:55</c>, the Capacity Reservation
+        /// Fleet is guaranteed to expire between <c>13:30:55</c> and <c>14:30:55</c> on <c>5/31/2019</c>.
+        /// 
         /// </para>
         /// </summary>
         public DateTime EndDate
@@ -124,11 +125,10 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Currently, Capacity Reservation Fleets support <code>open</code> instance matching
-        /// criteria only. This means that instances that have matching attributes (instance type,
-        /// platform, and Availability Zone) run in the Capacity Reservations automatically. Instances
-        /// do not need to explicitly target a Capacity Reservation Fleet to use its reserved
-        /// capacity.
+        /// Currently, Capacity Reservation Fleets support <c>open</c> instance matching criteria
+        /// only. This means that instances that have matching attributes (instance type, platform,
+        /// and Availability Zone) run in the Capacity Reservations automatically. Instances do
+        /// not need to explicitly target a Capacity Reservation Fleet to use its reserved capacity.
         /// </para>
         /// </summary>
         public FleetInstanceMatchCriteria InstanceMatchCriteria
@@ -159,7 +159,7 @@ namespace Amazon.EC2.Model
         // Check to see if InstanceTypeSpecifications property is set
         internal bool IsSetInstanceTypeSpecifications()
         {
-            return this._instanceTypeSpecifications != null && this._instanceTypeSpecifications.Count > 0; 
+            return this._instanceTypeSpecifications != null && (this._instanceTypeSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -190,12 +190,12 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>default</code> - The Capacity Reservation Fleet is created on hardware that
-        /// is shared with other Amazon Web Services accounts.
+        ///  <c>default</c> - The Capacity Reservation Fleet is created on hardware that is shared
+        /// with other Amazon Web Services accounts.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>dedicated</code> - The Capacity Reservations are created on single-tenant hardware
+        ///  <c>dedicated</c> - The Capacity Reservations are created on single-tenant hardware
         /// that is dedicated to a single Amazon Web Services account.
         /// </para>
         ///  </li> </ul>
@@ -219,8 +219,8 @@ namespace Amazon.EC2.Model
         /// This value, together with the instance type weights that you assign to each instance
         /// type used by the Fleet determine the number of instances for which the Fleet reserves
         /// capacity. Both values are based on units that make sense for your workload. For more
-        /// information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#target-capacity">
-        /// Total target capacity</a> in the Amazon EC2 User Guide.
+        /// information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#target-capacity">Total
+        /// target capacity</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

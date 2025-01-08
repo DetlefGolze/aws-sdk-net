@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.CloudFront.Model
     public partial class DistributionIdList
     {
         private bool? _isTruncated;
-        private List<string> _items = new List<string>();
+        private List<string> _items = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _marker;
         private int? _maxItems;
         private string _nextMarker;
@@ -44,7 +45,7 @@ namespace Amazon.CloudFront.Model
         /// Gets and sets the property IsTruncated. 
         /// <para>
         /// A flag that indicates whether more distribution IDs remain to be listed. If your results
-        /// were truncated, you can make a subsequent request using the <code>Marker</code> request
+        /// were truncated, you can make a subsequent request using the <c>Marker</c> request
         /// field to retrieve more distribution IDs in the list.
         /// </para>
         /// </summary>
@@ -76,13 +77,13 @@ namespace Amazon.CloudFront.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// The value provided in the <code>Marker</code> request field.
+        /// The value provided in the <c>Marker</c> request field.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -120,7 +121,7 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property NextMarker. 
         /// <para>
-        /// Contains the value that you should use in the <code>Marker</code> field of a subsequent
+        /// Contains the value that you should use in the <c>Marker</c> field of a subsequent
         /// request to continue listing distribution IDs where you left off.
         /// </para>
         /// </summary>

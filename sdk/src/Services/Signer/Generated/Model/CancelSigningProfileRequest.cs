@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Signer.Model
 {
     /// <summary>
     /// Container for the parameters to the CancelSigningProfile operation.
-    /// Changes the state of an <code>ACTIVE</code> signing profile to <code>CANCELED</code>.
-    /// A canceled profile is still viewable with the <code>ListSigningProfiles</code> operation,
-    /// but it cannot perform new signing jobs, and is deleted two years after cancelation.
+    /// Changes the state of an <c>ACTIVE</c> signing profile to <c>CANCELED</c>. A canceled
+    /// profile is still viewable with the <c>ListSigningProfiles</c> operation, but it cannot
+    /// perform new signing jobs, and is deleted two years after cancelation.
     /// </summary>
     public partial class CancelSigningProfileRequest : AmazonSignerRequest
     {

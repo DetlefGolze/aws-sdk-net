@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -164,7 +165,6 @@ namespace Amazon.DataZone.Model
         /// The identifier of the environment profile with which the environment was created.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public string EnvironmentProfileId
         {
             get { return this._environmentProfileId; }

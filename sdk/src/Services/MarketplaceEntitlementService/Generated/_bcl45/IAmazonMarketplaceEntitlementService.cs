@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.MarketplaceEntitlementService.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.MarketplaceEntitlementService
 {
     /// <summary>
-    /// Interface for accessing MarketplaceEntitlementService
+    /// <para>Interface for accessing MarketplaceEntitlementService</para>
     ///
     /// AWS Marketplace Entitlement Service 
     /// <para>
@@ -55,6 +56,10 @@ namespace Amazon.MarketplaceEntitlementService
     public partial interface IAmazonMarketplaceEntitlementService : IAmazonService, IDisposable
     {
 
+        /// <summary>
+        /// Paginators for the service
+        /// </summary>
+        IMarketplaceEntitlementServicePaginatorFactory Paginators { get; }
 
         
         #region  GetEntitlements

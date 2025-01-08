@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
@@ -64,10 +65,9 @@ namespace Amazon.NetworkFirewall.Model
         /// <para>
         /// The current status of the firewall endpoint in the subnet. This value reflects both
         /// the instantiation of the endpoint in the VPC subnet and the sync states that are reported
-        /// in the <code>Config</code> settings. When this value is <code>READY</code>, the endpoint
-        /// is available and configured properly to handle network traffic. When the endpoint
-        /// isn't available for traffic, this value will reflect its state, for example <code>CREATING</code>
-        /// or <code>DELETING</code>.
+        /// in the <c>Config</c> settings. When this value is <c>READY</c>, the endpoint is available
+        /// and configured properly to handle network traffic. When the endpoint isn't available
+        /// for traffic, this value will reflect its state, for example <c>CREATING</c> or <c>DELETING</c>.
         /// </para>
         /// </summary>
         public AttachmentStatus Status
@@ -87,10 +87,10 @@ namespace Amazon.NetworkFirewall.Model
         /// <para>
         /// If Network Firewall fails to create or delete the firewall endpoint in the subnet,
         /// it populates this with the reason for the error or failure and how to resolve it.
-        /// A <code>FAILED</code> status indicates a non-recoverable state, and a <code>ERROR</code>
-        /// status indicates an issue that you can fix. Depending on the error, it can take as
-        /// many as 15 minutes to populate this field. For more information about the causes for
-        /// failiure or errors and solutions available for this field, see <a href="https://docs.aws.amazon.com/network-firewall/latest/developerguide/firewall-troubleshooting-endpoint-failures.html">Troubleshooting
+        /// A <c>FAILED</c> status indicates a non-recoverable state, and a <c>ERROR</c> status
+        /// indicates an issue that you can fix. Depending on the error, it can take as many as
+        /// 15 minutes to populate this field. For more information about the causes for failiure
+        /// or errors and solutions available for this field, see <a href="https://docs.aws.amazon.com/network-firewall/latest/developerguide/firewall-troubleshooting-endpoint-failures.html">Troubleshooting
         /// firewall endpoint failures</a> in the <i>Network Firewall Developer Guide</i>.
         /// </para>
         /// </summary>

@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.GreengrassV2
 {
     /// <summary>
-    /// Implementation for accessing GreengrassV2
+    /// <para>Implementation for accessing GreengrassV2</para>
     ///
     /// IoT Greengrass brings local compute, messaging, data management, sync, and ML inference
     /// capabilities to edge devices. This enables devices to collect and analyze data closer
@@ -643,8 +644,8 @@ namespace Amazon.GreengrassV2
         /// </para>
         ///  
         /// <para>
-        /// To create a component from a recipe, specify <code>inlineRecipe</code> when you call
-        /// this operation.
+        /// To create a component from a recipe, specify <c>inlineRecipe</c> when you call this
+        /// operation.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -659,48 +660,14 @@ namespace Amazon.GreengrassV2
         /// </para>
         ///  
         /// <para>
-        /// This function only accepts Lambda functions that use the following runtimes:
+        /// This function accepts Lambda functions in all supported versions of Python, Node.js,
+        /// and Java runtimes. IoT Greengrass doesn't apply any additional restrictions on deprecated
+        /// Lambda runtime versions.
         /// </para>
-        ///  <ul> <li> 
+        ///  
         /// <para>
-        /// Python 2.7 – <code>python2.7</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Python 3.7 – <code>python3.7</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Python 3.8 – <code>python3.8</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Python 3.9 – <code>python3.9</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Java 8 – <code>java8</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Java 11 – <code>java11</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Node.js 10 – <code>nodejs10.x</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Node.js 12 – <code>nodejs12.x</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Node.js 14 – <code>nodejs14.x</code> 
-        /// </para>
-        ///  </li> </ul> 
-        /// <para>
-        /// To create a component from a Lambda function, specify <code>lambdaFunction</code>
-        /// when you call this operation.
+        /// To create a component from a Lambda function, specify <c>lambdaFunction</c> when you
+        /// call this operation.
         /// </para>
         ///  <note> 
         /// <para>
@@ -772,8 +739,8 @@ namespace Amazon.GreengrassV2
         /// </para>
         ///  
         /// <para>
-        /// To create a component from a recipe, specify <code>inlineRecipe</code> when you call
-        /// this operation.
+        /// To create a component from a recipe, specify <c>inlineRecipe</c> when you call this
+        /// operation.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -788,48 +755,14 @@ namespace Amazon.GreengrassV2
         /// </para>
         ///  
         /// <para>
-        /// This function only accepts Lambda functions that use the following runtimes:
+        /// This function accepts Lambda functions in all supported versions of Python, Node.js,
+        /// and Java runtimes. IoT Greengrass doesn't apply any additional restrictions on deprecated
+        /// Lambda runtime versions.
         /// </para>
-        ///  <ul> <li> 
+        ///  
         /// <para>
-        /// Python 2.7 – <code>python2.7</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Python 3.7 – <code>python3.7</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Python 3.8 – <code>python3.8</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Python 3.9 – <code>python3.9</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Java 8 – <code>java8</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Java 11 – <code>java11</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Node.js 10 – <code>nodejs10.x</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Node.js 12 – <code>nodejs12.x</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Node.js 14 – <code>nodejs14.x</code> 
-        /// </para>
-        ///  </li> </ul> 
-        /// <para>
-        /// To create a component from a Lambda function, specify <code>lambdaFunction</code>
-        /// when you call this operation.
+        /// To create a component from a Lambda function, specify <c>lambdaFunction</c> when you
+        /// call this operation.
         /// </para>
         ///  <note> 
         /// <para>
@@ -1691,7 +1624,7 @@ namespace Amazon.GreengrassV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// When the status of any component on the core device becomes <code>BROKEN</code> 
+        /// When the status of any component on the core device becomes <c>BROKEN</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1761,7 +1694,7 @@ namespace Amazon.GreengrassV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// When the status of any component on the core device becomes <code>BROKEN</code> 
+        /// When the status of any component on the core device becomes <c>BROKEN</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2197,7 +2130,14 @@ namespace Amazon.GreengrassV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// When the status of any component on the core device becomes <code>BROKEN</code> 
+        /// For Greengrass nucleus 2.12.2 and earlier, the core device sends status updates when
+        /// the status of any component on the core device becomes <c>ERRORED</c> or <c>BROKEN</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For Greengrass nucleus 2.12.3 and later, the core device sends status updates when
+        /// the status of any component on the core device becomes <c>ERRORED</c>, <c>BROKEN</c>,
+        /// <c>RUNNING</c>, or <c>FINISHED</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2264,7 +2204,14 @@ namespace Amazon.GreengrassV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// When the status of any component on the core device becomes <code>BROKEN</code> 
+        /// For Greengrass nucleus 2.12.2 and earlier, the core device sends status updates when
+        /// the status of any component on the core device becomes <c>ERRORED</c> or <c>BROKEN</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For Greengrass nucleus 2.12.3 and later, the core device sends status updates when
+        /// the status of any component on the core device becomes <c>ERRORED</c>, <c>BROKEN</c>,
+        /// <c>RUNNING</c>, or <c>FINISHED</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2462,8 +2409,8 @@ namespace Amazon.GreengrassV2
         /// <summary>
         /// Retrieves a paginated list of the components that a Greengrass core device runs. By
         /// default, this list doesn't include components that are deployed as dependencies of
-        /// other components. To include dependencies in the response, set the <code>topologyFilter</code>
-        /// parameter to <code>ALL</code>.
+        /// other components. To include dependencies in the response, set the <c>topologyFilter</c>
+        /// parameter to <c>ALL</c>.
         /// 
         ///  <note> 
         /// <para>
@@ -2487,7 +2434,7 @@ namespace Amazon.GreengrassV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// When the status of any component on the core device becomes <code>BROKEN</code> 
+        /// When the status of any component on the core device becomes <c>BROKEN</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2535,8 +2482,8 @@ namespace Amazon.GreengrassV2
         /// <summary>
         /// Retrieves a paginated list of the components that a Greengrass core device runs. By
         /// default, this list doesn't include components that are deployed as dependencies of
-        /// other components. To include dependencies in the response, set the <code>topologyFilter</code>
-        /// parameter to <code>ALL</code>.
+        /// other components. To include dependencies in the response, set the <c>topologyFilter</c>
+        /// parameter to <c>ALL</c>.
         /// 
         ///  <note> 
         /// <para>
@@ -2560,7 +2507,7 @@ namespace Amazon.GreengrassV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// When the status of any component on the core device becomes <code>BROKEN</code> 
+        /// When the status of any component on the core device becomes <c>BROKEN</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2682,9 +2629,8 @@ namespace Amazon.GreengrassV2
         /// <para>
         /// This operation identifies components that meet all dependency requirements for a deployment.
         /// If the requirements conflict, then this operation returns an error and the deployment
-        /// fails. For example, this occurs if component <code>A</code> requires version <code>&gt;2.0.0</code>
-        /// and component <code>B</code> requires version <code>&lt;2.0.0</code> of a component
-        /// dependency.
+        /// fails. For example, this occurs if component <c>A</c> requires version <c>&gt;2.0.0</c>
+        /// and component <c>B</c> requires version <c>&lt;2.0.0</c> of a component dependency.
         /// </para>
         ///  
         /// <para>
@@ -2745,9 +2691,8 @@ namespace Amazon.GreengrassV2
         /// <para>
         /// This operation identifies components that meet all dependency requirements for a deployment.
         /// If the requirements conflict, then this operation returns an error and the deployment
-        /// fails. For example, this occurs if component <code>A</code> requires version <code>&gt;2.0.0</code>
-        /// and component <code>B</code> requires version <code>&lt;2.0.0</code> of a component
-        /// dependency.
+        /// fails. For example, this occurs if component <c>A</c> requires version <c>&gt;2.0.0</c>
+        /// and component <c>B</c> requires version <c>&lt;2.0.0</c> of a component dependency.
         /// </para>
         ///  
         /// <para>
@@ -3011,11 +2956,11 @@ namespace Amazon.GreengrassV2
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
-    /// The parameters for an <code>AUTOMATION</code> task type.
+    /// The parameters for an <c>AUTOMATION</c> task type.
     /// </summary>
     public partial class MaintenanceWindowAutomationParameters
     {
         private string _documentVersion;
-        private Dictionary<string, List<string>> _parameters = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<string>> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
 
         /// <summary>
         /// Gets and sets the property DocumentVersion. 
@@ -57,7 +58,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property Parameters. 
         /// <para>
-        /// The parameters for the <code>AUTOMATION</code> task.
+        /// The parameters for the <c>AUTOMATION</c> task.
         /// </para>
         ///  
         /// <para>
@@ -66,23 +67,23 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>LoggingInfo</code> has been deprecated. To specify an Amazon Simple Storage
-        /// Service (Amazon S3) bucket to contain logs, instead use the <code>OutputS3BucketName</code>
-        /// and <code>OutputS3KeyPrefix</code> options in the <code>TaskInvocationParameters</code>
-        /// structure. For information about how Amazon Web Services Systems Manager handles these
-        /// options for the supported maintenance window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.
+        ///  <c>LoggingInfo</c> has been deprecated. To specify an Amazon Simple Storage Service
+        /// (Amazon S3) bucket to contain logs, instead use the <c>OutputS3BucketName</c> and
+        /// <c>OutputS3KeyPrefix</c> options in the <c>TaskInvocationParameters</c> structure.
+        /// For information about how Amazon Web Services Systems Manager handles these options
+        /// for the supported maintenance window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>TaskParameters</code> has been deprecated. To specify parameters to pass to
-        /// a task when it runs, instead use the <code>Parameters</code> option in the <code>TaskInvocationParameters</code>
+        ///  <c>TaskParameters</c> has been deprecated. To specify parameters to pass to a task
+        /// when it runs, instead use the <c>Parameters</c> option in the <c>TaskInvocationParameters</c>
         /// structure. For information about how Systems Manager handles these options for the
         /// supported maintenance window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.
         /// </para>
         ///  
         /// <para>
-        /// For <code>AUTOMATION</code> task types, Amazon Web Services Systems Manager ignores
-        /// any values specified for these parameters.
+        /// For <c>AUTOMATION</c> task types, Amazon Web Services Systems Manager ignores any
+        /// values specified for these parameters.
         /// </para>
         ///  </note>
         /// </summary>
@@ -96,7 +97,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

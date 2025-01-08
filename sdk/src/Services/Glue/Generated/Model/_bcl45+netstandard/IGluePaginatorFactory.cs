@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the glue-2017-03-31.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -24,6 +25,11 @@ namespace Amazon.Glue.Model
     ///</summary>
     public interface IGluePaginatorFactory
     {
+
+        /// <summary>
+        /// Paginator for DescribeEntity operation
+        ///</summary>
+        IDescribeEntityPaginator DescribeEntity(DescribeEntityRequest request);
 
         /// <summary>
         /// Paginator for GetBlueprintRuns operation
@@ -34,6 +40,11 @@ namespace Amazon.Glue.Model
         /// Paginator for GetClassifiers operation
         ///</summary>
         IGetClassifiersPaginator GetClassifiers(GetClassifiersRequest request);
+
+        /// <summary>
+        /// Paginator for GetColumnStatisticsTaskRuns operation
+        ///</summary>
+        IGetColumnStatisticsTaskRunsPaginator GetColumnStatisticsTaskRuns(GetColumnStatisticsTaskRunsRequest request);
 
         /// <summary>
         /// Paginator for GetConnections operation
@@ -136,6 +147,16 @@ namespace Amazon.Glue.Model
         IListBlueprintsPaginator ListBlueprints(ListBlueprintsRequest request);
 
         /// <summary>
+        /// Paginator for ListColumnStatisticsTaskRuns operation
+        ///</summary>
+        IListColumnStatisticsTaskRunsPaginator ListColumnStatisticsTaskRuns(ListColumnStatisticsTaskRunsRequest request);
+
+        /// <summary>
+        /// Paginator for ListConnectionTypes operation
+        ///</summary>
+        IListConnectionTypesPaginator ListConnectionTypes(ListConnectionTypesRequest request);
+
+        /// <summary>
         /// Paginator for ListCrawlers operation
         ///</summary>
         IListCrawlersPaginator ListCrawlers(ListCrawlersRequest request);
@@ -171,6 +192,11 @@ namespace Amazon.Glue.Model
         IListDevEndpointsPaginator ListDevEndpoints(ListDevEndpointsRequest request);
 
         /// <summary>
+        /// Paginator for ListEntities operation
+        ///</summary>
+        IListEntitiesPaginator ListEntities(ListEntitiesRequest request);
+
+        /// <summary>
         /// Paginator for ListJobs operation
         ///</summary>
         IListJobsPaginator ListJobs(ListJobsRequest request);
@@ -201,9 +227,19 @@ namespace Amazon.Glue.Model
         IListSessionsPaginator ListSessions(ListSessionsRequest request);
 
         /// <summary>
+        /// Paginator for ListTableOptimizerRuns operation
+        ///</summary>
+        IListTableOptimizerRunsPaginator ListTableOptimizerRuns(ListTableOptimizerRunsRequest request);
+
+        /// <summary>
         /// Paginator for ListTriggers operation
         ///</summary>
         IListTriggersPaginator ListTriggers(ListTriggersRequest request);
+
+        /// <summary>
+        /// Paginator for ListUsageProfiles operation
+        ///</summary>
+        IListUsageProfilesPaginator ListUsageProfiles(ListUsageProfilesRequest request);
 
         /// <summary>
         /// Paginator for ListWorkflows operation

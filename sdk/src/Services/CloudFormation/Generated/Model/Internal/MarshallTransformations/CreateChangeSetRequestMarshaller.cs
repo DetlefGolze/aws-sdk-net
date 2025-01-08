@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudFormation.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -82,6 +83,10 @@ namespace Amazon.CloudFormation.Model.Internal.MarshallTransformations
                 if(publicRequest.IsSetDescription())
                 {
                     request.Parameters.Add("Description", StringUtils.FromString(publicRequest.Description));
+                }
+                if(publicRequest.IsSetImportExistingResources())
+                {
+                    request.Parameters.Add("ImportExistingResources", StringUtils.FromBool(publicRequest.ImportExistingResources));
                 }
                 if(publicRequest.IsSetIncludeNestedStacks())
                 {

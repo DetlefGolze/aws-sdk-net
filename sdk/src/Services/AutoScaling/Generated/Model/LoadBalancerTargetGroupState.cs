@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -62,28 +63,26 @@ namespace Amazon.AutoScaling.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Adding</code> - The Auto Scaling instances are being registered with the target
-        /// group.
+        ///  <c>Adding</c> - The Auto Scaling instances are being registered with the target group.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Added</code> - All Auto Scaling instances are registered with the target group.
+        ///  <c>Added</c> - All Auto Scaling instances are registered with the target group.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>InService</code> - At least one Auto Scaling instance passed an <code>ELB</code>
-        /// health check.
+        ///  <c>InService</c> - At least one Auto Scaling instance passed an <c>ELB</c> health
+        /// check.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Removing</code> - The Auto Scaling instances are being deregistered from the
-        /// target group. If connection draining is enabled, Elastic Load Balancing waits for
-        /// in-flight requests to complete before deregistering the instances.
+        ///  <c>Removing</c> - The Auto Scaling instances are being deregistered from the target
+        /// group. If connection draining is enabled, Elastic Load Balancing waits for in-flight
+        /// requests to complete before deregistering the instances.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Removed</code> - All Auto Scaling instances are deregistered from the target
-        /// group.
+        ///  <c>Removed</c> - All Auto Scaling instances are deregistered from the target group.
         /// </para>
         ///  </li> </ul>
         /// </summary>

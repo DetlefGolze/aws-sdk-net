@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.NetworkManager.Model
     /// </summary>
     public partial class OrganizationStatus
     {
-        private List<AccountStatus> _accountStatusList = new List<AccountStatus>();
+        private List<AccountStatus> _accountStatusList = AWSConfigs.InitializeCollections ? new List<AccountStatus>() : null;
         private string _organizationAwsServiceAccessStatus;
         private string _organizationId;
         private string _slrDeploymentStatus;
@@ -42,7 +43,7 @@ namespace Amazon.NetworkManager.Model
         /// Gets and sets the property AccountStatusList. 
         /// <para>
         /// The current service-linked role (SLR) deployment status for an Amazon Web Services
-        /// Organization's accounts. This will be either <code>SUCCEEDED</code> or <code>IN_PROGRESS</code>.
+        /// Organization's accounts. This will be either <c>SUCCEEDED</c> or <c>IN_PROGRESS</c>.
         /// </para>
         /// </summary>
         public List<AccountStatus> AccountStatusList
@@ -54,14 +55,14 @@ namespace Amazon.NetworkManager.Model
         // Check to see if AccountStatusList property is set
         internal bool IsSetAccountStatusList()
         {
-            return this._accountStatusList != null && this._accountStatusList.Count > 0; 
+            return this._accountStatusList != null && (this._accountStatusList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property OrganizationAwsServiceAccessStatus. 
         /// <para>
-        /// The status of the organization's AWS service access. This will be <code>ENABLED</code>
-        /// or <code>DISABLED</code>.
+        /// The status of the organization's AWS service access. This will be <c>ENABLED</c> or
+        /// <c>DISABLED</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -99,8 +100,8 @@ namespace Amazon.NetworkManager.Model
         /// <summary>
         /// Gets and sets the property SLRDeploymentStatus. 
         /// <para>
-        /// The status of the SLR deployment for the account. This will be either <code>SUCCEEDED</code>
-        /// or <code>IN_PROGRESS</code>.
+        /// The status of the SLR deployment for the account. This will be either <c>SUCCEEDED</c>
+        /// or <c>IN_PROGRESS</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -73,8 +74,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property BlueprintId. 
         /// <para>
-        /// The ID for the virtual private server image (e.g., <code>app_wordpress_4_4</code>
-        /// or <code>app_lamp_7_0</code>).
+        /// The ID for the virtual private server image (<c>app_wordpress_x_x</c> or <c>app_lamp_x_x</c>).
         /// </para>
         /// </summary>
         public string BlueprintId
@@ -110,7 +110,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property Group. 
         /// <para>
-        /// The group name of the blueprint (e.g., <code>amazon-linux</code>).
+        /// The group name of the blueprint (<c>amazon-linux</c>).
         /// </para>
         /// </summary>
         public string Group
@@ -169,8 +169,8 @@ namespace Amazon.Lightsail.Model
         /// <para>
         /// The minimum bundle power required to run this blueprint. For example, you need a bundle
         /// with a power value of 500 or more to create an instance that uses a blueprint with
-        /// a minimum power value of 500. <code>0</code> indicates that the blueprint runs on
-        /// all instance sizes. 
+        /// a minimum power value of 500. <c>0</c> indicates that the blueprint runs on all instance
+        /// sizes. 
         /// </para>
         /// </summary>
         public int MinPower
@@ -188,7 +188,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The friendly name of the blueprint (e.g., <code>Amazon Linux</code>).
+        /// The friendly name of the blueprint (<c>Amazon Linux</c>).
         /// </para>
         /// </summary>
         public string Name
@@ -243,7 +243,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of the blueprint (e.g., <code>os</code> or <code>app</code>).
+        /// The type of the blueprint (<c>os</c> or <c>app</c>).
         /// </para>
         /// </summary>
         public BlueprintType Type
@@ -261,7 +261,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property Version. 
         /// <para>
-        /// The version number of the operating system, application, or stack (e.g., <code>2016.03.0</code>).
+        /// The version number of the operating system, application, or stack ( <c>2016.03.0</c>).
         /// </para>
         /// </summary>
         public string Version

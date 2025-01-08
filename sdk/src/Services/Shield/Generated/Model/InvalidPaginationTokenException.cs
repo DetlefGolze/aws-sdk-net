@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Shield.Model
 {
     /// <summary>
-    /// Exception that indicates that the <code>NextToken</code> specified in the request
-    /// is invalid. Submit the request using the <code>NextToken</code> value that was returned
-    /// in the prior response.
+    /// Exception that indicates that the <c>NextToken</c> specified in the request is invalid.
+    /// Submit the request using the <c>NextToken</c> value that was returned in the prior
+    /// response.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

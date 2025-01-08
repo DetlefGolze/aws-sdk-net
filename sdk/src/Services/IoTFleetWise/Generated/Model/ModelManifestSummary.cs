@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -158,9 +159,8 @@ namespace Amazon.IoTFleetWise.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The state of the vehicle model. If the status is <code>ACTIVE</code>, the vehicle
-        /// model can't be edited. If the status is <code>DRAFT</code>, you can edit the vehicle
-        /// model.
+        /// The state of the vehicle model. If the status is <c>ACTIVE</c>, the vehicle model
+        /// can't be edited. If the status is <c>DRAFT</c>, you can edit the vehicle model.
         /// </para>
         /// </summary>
         public ManifestStatus Status

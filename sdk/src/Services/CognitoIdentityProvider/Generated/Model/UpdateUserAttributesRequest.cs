@@ -27,19 +27,28 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateUserAttributes operation.
-    /// Allows a user to update a specific attribute (one at a time).
+    /// With this operation, your users can update one or more of their attributes with their
+    /// own credentials. You authorize this API request with the user's access token. To delete
+    /// an attribute from your user, submit the attribute in your API request with a blank
+    /// value. Custom attribute values in this request must include the <c>custom:</c> prefix.
     /// 
+    ///  
+    /// <para>
+    /// Authorize this action with a signed-in user's access token. It must include the scope
+    /// <c>aws.cognito.signin.user.admin</c>.
+    /// </para>
     ///  <note> 
     /// <para>
     /// Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests
     /// for this API operation. For this operation, you can't use IAM credentials to authorize
     /// requests, and you can't grant IAM permissions in policies. For more information about
     /// authorization models in Amazon Cognito, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using
-    /// the Amazon Cognito native and OIDC APIs</a>.
+    /// the Amazon Cognito user pools API and user pool endpoints</a>.
     /// </para>
     ///  </note> <note> 
     /// <para>
@@ -54,8 +63,8 @@ namespace Amazon.CognitoIdentityProvider.Model
     ///  
     /// <para>
     /// If you have never used SMS text messages with Amazon Cognito or any other Amazon Web
-    /// Service, Amazon Simple Notification Service might place your account in the SMS sandbox.
-    /// In <i> <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+    /// Services service, Amazon Simple Notification Service might place your account in the
+    /// SMS sandbox. In <i> <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
     /// mode</a> </i>, you can send messages only to verified phone numbers. After you test
     /// your app while in the sandbox environment, you can move out of the sandbox and into
     /// production. For more information, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html">
@@ -67,8 +76,8 @@ namespace Amazon.CognitoIdentityProvider.Model
     public partial class UpdateUserAttributesRequest : AmazonCognitoIdentityProviderRequest
     {
         private string _accessToken;
-        private Dictionary<string, string> _clientMetadata = new Dictionary<string, string>();
-        private List<AttributeType> _userAttributes = new List<AttributeType>();
+        private Dictionary<string, string> _clientMetadata = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<AttributeType> _userAttributes = AWSConfigs.InitializeCollections ? new List<AttributeType>() : null;
 
         /// <summary>
         /// Gets and sets the property AccessToken. 
@@ -102,10 +111,10 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// you use the UpdateUserAttributes API action, Amazon Cognito invokes the function that
         /// is assigned to the <i>custom message</i> trigger. When Amazon Cognito invokes this
         /// function, it passes a JSON payload, which the function receives as input. This payload
-        /// contains a <code>clientMetadata</code> attribute, which provides the data that you
-        /// assigned to the ClientMetadata parameter in your UpdateUserAttributes request. In
-        /// your function code in Lambda, you can process the <code>clientMetadata</code> value
-        /// to enhance your workflow for your specific needs.
+        /// contains a <c>clientMetadata</c> attribute, which provides the data that you assigned
+        /// to the ClientMetadata parameter in your UpdateUserAttributes request. In your function
+        /// code in Lambda, you can process the <c>clientMetadata</c> value to enhance your workflow
+        /// for your specific needs.
         /// </para>
         ///  
         /// <para>
@@ -115,22 +124,23 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// When you use the ClientMetadata parameter, remember that Amazon Cognito won't do the
-        /// following:
+        /// When you use the <c>ClientMetadata</c> parameter, note that Amazon Cognito won't do
+        /// the following:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Store the ClientMetadata value. This data is available only to Lambda triggers that
-        /// are assigned to a user pool to support custom workflows. If your user pool configuration
-        /// doesn't include triggers, the ClientMetadata parameter serves no purpose.
+        /// Store the <c>ClientMetadata</c> value. This data is available only to Lambda triggers
+        /// that are assigned to a user pool to support custom workflows. If your user pool configuration
+        /// doesn't include triggers, the <c>ClientMetadata</c> parameter serves no purpose.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Validate the ClientMetadata value.
+        /// Validate the <c>ClientMetadata</c> value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Encrypt the ClientMetadata value. Don't use Amazon Cognito to provide sensitive information.
+        /// Encrypt the <c>ClientMetadata</c> value. Don't send sensitive information in this
+        /// parameter.
         /// </para>
         ///  </li> </ul> </note>
         /// </summary>
@@ -143,7 +153,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if ClientMetadata property is set
         internal bool IsSetClientMetadata()
         {
-            return this._clientMetadata != null && this._clientMetadata.Count > 0; 
+            return this._clientMetadata != null && (this._clientMetadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -153,7 +163,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// </para>
         ///  
         /// <para>
-        /// For custom attributes, you must prepend the <code>custom:</code> prefix to the attribute
+        /// For custom attributes, you must prepend the <c>custom:</c> prefix to the attribute
         /// name.
         /// </para>
         ///  
@@ -175,7 +185,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if UserAttributes property is set
         internal bool IsSetUserAttributes()
         {
-            return this._userAttributes != null && this._userAttributes.Count > 0; 
+            return this._userAttributes != null && (this._userAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

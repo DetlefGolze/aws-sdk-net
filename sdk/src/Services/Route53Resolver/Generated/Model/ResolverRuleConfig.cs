@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Route53Resolver.Model
     {
         private string _name;
         private string _resolverEndpointId;
-        private List<TargetAddress> _targetIps = new List<TargetAddress>();
+        private List<TargetAddress> _targetIps = AWSConfigs.InitializeCollections ? new List<TargetAddress>() : null;
 
         /// <summary>
         /// Gets and sets the property Name. 
@@ -62,7 +63,7 @@ namespace Amazon.Route53Resolver.Model
         /// Gets and sets the property ResolverEndpointId. 
         /// <para>
         /// The ID of the new outbound Resolver endpoint that you want to use to route DNS queries
-        /// to the IP addresses that you specify in <code>TargetIps</code>.
+        /// to the IP addresses that you specify in <c>TargetIps</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -95,7 +96,7 @@ namespace Amazon.Route53Resolver.Model
         // Check to see if TargetIps property is set
         internal bool IsSetTargetIps()
         {
-            return this._targetIps != null && this._targetIps.Count > 0; 
+            return this._targetIps != null && (this._targetIps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

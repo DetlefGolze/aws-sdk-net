@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateEndpointWeightsAndCapacities operation.
     /// Updates variant weight of one or more variants associated with an existing endpoint,
     /// or capacity of one variant associated with an existing endpoint. When it receives
-    /// the request, SageMaker sets the endpoint status to <code>Updating</code>. After updating
-    /// the endpoint, it sets the status to <code>InService</code>. To check the status of
-    /// an endpoint, use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html">DescribeEndpoint</a>
+    /// the request, SageMaker sets the endpoint status to <c>Updating</c>. After updating
+    /// the endpoint, it sets the status to <c>InService</c>. To check the status of an endpoint,
+    /// use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html">DescribeEndpoint</a>
     /// API.
     /// </summary>
     public partial class UpdateEndpointWeightsAndCapacitiesRequest : AmazonSageMakerRequest
     {
-        private List<DesiredWeightAndCapacity> _desiredWeightsAndCapacities = new List<DesiredWeightAndCapacity>();
+        private List<DesiredWeightAndCapacity> _desiredWeightsAndCapacities = AWSConfigs.InitializeCollections ? new List<DesiredWeightAndCapacity>() : null;
         private string _endpointName;
 
         /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if DesiredWeightsAndCapacities property is set
         internal bool IsSetDesiredWeightsAndCapacities()
         {
-            return this._desiredWeightsAndCapacities != null && this._desiredWeightsAndCapacities.Count > 0; 
+            return this._desiredWeightsAndCapacities != null && (this._desiredWeightsAndCapacities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
-    /// Response object for the <code>DescribeBackups</code> operation.
+    /// Response object for the <c>DescribeBackups</c> operation.
     /// </summary>
     public partial class DescribeBackupsResponse : AmazonWebServiceResponse
     {
-        private List<Backup> _backups = new List<Backup>();
+        private List<Backup> _backups = AWSConfigs.InitializeCollections ? new List<Backup>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,15 +53,15 @@ namespace Amazon.FSx.Model
         // Check to see if Backups property is set
         internal bool IsSetBackups()
         {
-            return this._backups != null && this._backups.Count > 0; 
+            return this._backups != null && (this._backups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A <code>NextToken</code> value is present if there are more backups than returned
-        /// in the response. You can use the <code>NextToken</code> value in the subsequent request
-        /// to fetch the backups. 
+        /// A <c>NextToken</c> value is present if there are more backups than returned in the
+        /// response. You can use the <c>NextToken</c> value in the subsequent request to fetch
+        /// the backups. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]

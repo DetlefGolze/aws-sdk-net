@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
-    /// Used to filter for insights that have the status <code>ONGOING</code>.
+    /// Used to filter for insights that have the status <c>ONGOING</c>.
     /// </summary>
     public partial class ListInsightsOngoingStatusFilter
     {
@@ -38,8 +39,7 @@ namespace Amazon.DevOpsGuru.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        ///  Use to filter for either <code>REACTIVE</code> or <code>PROACTIVE</code> insights.
-        /// 
+        ///  Use to filter for either <c>REACTIVE</c> or <c>PROACTIVE</c> insights. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
     /// The stateless or stateful rules definitions for use in a single rule group. Each rule
-    /// group requires a single <code>RulesSource</code>. You can use an instance of this
-    /// for either stateless rules or stateful rules.
+    /// group requires a single <c>RulesSource</c>. You can use an instance of this for either
+    /// stateless rules or stateful rules.
     /// </summary>
     public partial class RulesSource
     {
         private RulesSourceList _rulesSourceList;
         private string _rulesString;
-        private List<StatefulRule> _statefulRules = new List<StatefulRule>();
+        private List<StatefulRule> _statefulRules = AWSConfigs.InitializeCollections ? new List<StatefulRule>() : null;
         private StatelessRulesAndCustomActions _statelessRulesAndCustomActions;
 
         /// <summary>
@@ -61,15 +62,21 @@ namespace Amazon.NetworkFirewall.Model
         /// <summary>
         /// Gets and sets the property RulesString. 
         /// <para>
-        /// Stateful inspection criteria, provided in Suricata compatible intrusion prevention
-        /// system (IPS) rules. Suricata is an open-source network IPS that includes a standard
-        /// rule-based language for network traffic inspection.
+        /// Stateful inspection criteria, provided in Suricata compatible rules. Suricata is an
+        /// open-source threat detection framework that includes a standard rule-based language
+        /// for network traffic inspection.
         /// </para>
         ///  
         /// <para>
         /// These rules contain the inspection criteria and the action to take for traffic that
         /// matches the criteria, so this type of rule group doesn't have a separate action setting.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// You can't use the <c>priority</c> keyword if the <c>RuleOrder</c> option in <a>StatefulRuleOptions</a>
+        /// is set to <c>STRICT_ORDER</c>.
+        /// </para>
+        ///  </note>
         /// </summary>
         [AWSProperty(Min=0, Max=2000000)]
         public string RulesString
@@ -90,7 +97,7 @@ namespace Amazon.NetworkFirewall.Model
         /// An array of individual stateful rules inspection criteria to be used together in a
         /// stateful rule group. Use this option to specify simple Suricata rules with protocol,
         /// source and destination, ports, direction, and rule options. For information about
-        /// the Suricata <code>Rules</code> format, see <a href="https://suricata.readthedocs.io/en/suricata-6.0.9/rules/intro.html">Rules
+        /// the Suricata <c>Rules</c> format, see <a href="https://suricata.readthedocs.io/en/suricata-6.0.9/rules/intro.html">Rules
         /// Format</a>. 
         /// </para>
         /// </summary>
@@ -103,7 +110,7 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if StatefulRules property is set
         internal bool IsSetStatefulRules()
         {
-            return this._statefulRules != null && this._statefulRules.Count > 0; 
+            return this._statefulRules != null && (this._statefulRules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

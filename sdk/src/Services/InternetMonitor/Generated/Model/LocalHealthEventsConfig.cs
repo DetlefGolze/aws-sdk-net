@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.InternetMonitor.Model
 {
     /// <summary>
@@ -40,6 +41,10 @@ namespace Amazon.InternetMonitor.Model
     /// Also defines whether a local threshold is enabled or disabled, and the minimum percentage
     /// of overall traffic that must be impacted by an issue before Internet Monitor creates
     /// an event when a threshold is crossed for a local health score.
+    /// </para>
+    ///  
+    /// <para>
+    /// If you don't set a local health event threshold, the default value is 60%.
     /// </para>
     ///  
     /// <para>
@@ -80,6 +85,10 @@ namespace Amazon.InternetMonitor.Model
         /// by an issue before Internet Monitor creates an event when a threshold is crossed for
         /// a local health score.
         /// </para>
+        ///  
+        /// <para>
+        /// If you don't set a minimum traffic impact threshold, the default value is 0.1%.
+        /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]
         public double MinTrafficImpact
@@ -98,8 +107,7 @@ namespace Amazon.InternetMonitor.Model
         /// Gets and sets the property Status. 
         /// <para>
         /// The status of whether Internet Monitor creates a health event based on a threshold
-        /// percentage set for a local health score. The status can be <code>ENABLED</code> or
-        /// <code>DISABLED</code>.
+        /// percentage set for a local health score. The status can be <c>ENABLED</c> or <c>DISABLED</c>.
         /// </para>
         /// </summary>
         public LocalHealthEventsConfigStatus Status

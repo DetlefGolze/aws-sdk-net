@@ -26,57 +26,64 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
     /// Container for the parameters to the PutRecord operation.
-    /// Writes a single data record into an Amazon Kinesis Data Firehose delivery stream.
-    /// To write multiple data records into a delivery stream, use <a>PutRecordBatch</a>.
-    /// Applications using these operations are referred to as producers.
+    /// Writes a single data record into an Firehose stream. To write multiple data records
+    /// into a Firehose stream, use <a>PutRecordBatch</a>. Applications using these operations
+    /// are referred to as producers.
     /// 
     ///  
     /// <para>
-    /// By default, each delivery stream can take in up to 2,000 transactions per second,
+    /// By default, each Firehose stream can take in up to 2,000 transactions per second,
     /// 5,000 records per second, or 5 MB per second. If you use <a>PutRecord</a> and <a>PutRecordBatch</a>,
-    /// the limits are an aggregate across these two operations for each delivery stream.
+    /// the limits are an aggregate across these two operations for each Firehose stream.
     /// For more information about limits and how to request an increase, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/limits.html">Amazon
-    /// Kinesis Data Firehose Limits</a>. 
+    /// Firehose Limits</a>. 
     /// </para>
     ///  
     /// <para>
-    /// Kinesis Data Firehose accumulates and publishes a particular metric for a customer
-    /// account in one minute intervals. It is possible that the bursts of incoming bytes/records
-    /// ingested to a delivery stream last only for a few seconds. Due to this, the actual
-    /// spikes in the traffic might not be fully visible in the customer's 1 minute CloudWatch
-    /// metrics.
+    /// Firehose accumulates and publishes a particular metric for a customer account in one
+    /// minute intervals. It is possible that the bursts of incoming bytes/records ingested
+    /// to a Firehose stream last only for a few seconds. Due to this, the actual spikes in
+    /// the traffic might not be fully visible in the customer's 1 minute CloudWatch metrics.
     /// </para>
     ///  
     /// <para>
-    /// You must specify the name of the delivery stream and the data record when using <a>PutRecord</a>.
+    /// You must specify the name of the Firehose stream and the data record when using <a>PutRecord</a>.
     /// The data record consists of a data blob that can be up to 1,000 KiB in size, and any
     /// kind of data. For example, it can be a segment from a log file, geographic location
     /// data, website clickstream data, and so on.
     /// </para>
     ///  
     /// <para>
-    /// Kinesis Data Firehose buffers records before delivering them to the destination. To
-    /// disambiguate the data blobs at the destination, a common solution is to use delimiters
-    /// in the data, such as a newline (<code>\n</code>) or some other character unique within
-    /// the data. This allows the consumer application to parse individual data items when
-    /// reading the data from the destination.
+    /// For multi record de-aggregation, you can not put more than 500 records even if the
+    /// data blob length is less than 1000 KiB. If you include more than 500 records, the
+    /// request succeeds but the record de-aggregation doesn't work as expected and transformation
+    /// lambda is invoked with the complete base64 encoded data blob instead of de-aggregated
+    /// base64 decoded records.
     /// </para>
     ///  
     /// <para>
-    /// The <code>PutRecord</code> operation returns a <code>RecordId</code>, which is a unique
-    /// string assigned to each record. Producer applications can use this ID for purposes
-    /// such as auditability and investigation.
+    /// Firehose buffers records before delivering them to the destination. To disambiguate
+    /// the data blobs at the destination, a common solution is to use delimiters in the data,
+    /// such as a newline (<c>\n</c>) or some other character unique within the data. This
+    /// allows the consumer application to parse individual data items when reading the data
+    /// from the destination.
     /// </para>
     ///  
     /// <para>
-    /// If the <code>PutRecord</code> operation throws a <code>ServiceUnavailableException</code>,
-    /// the API is automatically reinvoked (retried) 3 times. If the exception persists, it
-    /// is possible that the throughput limits have been exceeded for the delivery stream.
-    /// 
+    /// The <c>PutRecord</c> operation returns a <c>RecordId</c>, which is a unique string
+    /// assigned to each record. Producer applications can use this ID for purposes such as
+    /// auditability and investigation.
+    /// </para>
+    ///  
+    /// <para>
+    /// If the <c>PutRecord</c> operation throws a <c>ServiceUnavailableException</c>, the
+    /// API is automatically reinvoked (retried) 3 times. If the exception persists, it is
+    /// possible that the throughput limits have been exceeded for the Firehose stream. 
     /// </para>
     ///  
     /// <para>
@@ -86,9 +93,9 @@ namespace Amazon.KinesisFirehose.Model
     /// </para>
     ///  
     /// <para>
-    /// Data records sent to Kinesis Data Firehose are stored for 24 hours from the time they
-    /// are added to a delivery stream as it tries to send the records to the destination.
-    /// If the destination is unreachable for more than 24 hours, the data is no longer available.
+    /// Data records sent to Firehose are stored for 24 hours from the time they are added
+    /// to a Firehose stream as it tries to send the records to the destination. If the destination
+    /// is unreachable for more than 24 hours, the data is no longer available.
     /// </para>
     ///  <important> 
     /// <para>
@@ -105,7 +112,7 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property DeliveryStreamName. 
         /// <para>
-        /// The name of the delivery stream.
+        /// The name of the Firehose stream.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

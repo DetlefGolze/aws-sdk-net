@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AppStream.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,10 +46,18 @@ namespace Amazon.AppStream.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ComputeCapacity requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetDesiredInstances())
             {
                 context.Writer.WritePropertyName("DesiredInstances");
                 context.Writer.Write(requestObject.DesiredInstances);
+            }
+
+            if(requestObject.IsSetDesiredSessions())
+            {
+                context.Writer.WritePropertyName("DesiredSessions");
+                context.Writer.Write(requestObject.DesiredSessions);
             }
 
         }

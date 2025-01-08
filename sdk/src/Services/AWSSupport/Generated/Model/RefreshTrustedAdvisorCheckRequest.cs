@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSSupport.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.AWSSupport.Model
     /// 
     ///  
     /// <para>
-    /// Some checks are refreshed automatically. If you call the <code>RefreshTrustedAdvisorCheck</code>
-    /// operation to refresh them, you might see the <code>InvalidParameterValue</code> error.
+    /// Some checks are refreshed automatically. If you call the <c>RefreshTrustedAdvisorCheck</c>
+    /// operation to refresh them, you might see the <c>InvalidParameterValue</c> error.
     /// </para>
     ///  
     /// <para>
@@ -50,7 +51,7 @@ namespace Amazon.AWSSupport.Model
     ///  </li> <li> 
     /// <para>
     /// If you call the Amazon Web Services Support API from an account that doesn't have
-    /// a Business, Enterprise On-Ramp, or Enterprise Support plan, the <code>SubscriptionRequiredException</code>
+    /// a Business, Enterprise On-Ramp, or Enterprise Support plan, the <c>SubscriptionRequiredException</c>
     /// error message appears. For information about changing your support plan, see <a href="http://aws.amazon.com/premiumsupport/">Amazon
     /// Web Services Support</a>.
     /// </para>
@@ -75,7 +76,7 @@ namespace Amazon.AWSSupport.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// Specifying the check ID of a check that is automatically refreshed causes an <code>InvalidParameterValue</code>
+        /// Specifying the check ID of a check that is automatically refreshed causes an <c>InvalidParameterValue</c>
         /// error.
         /// </para>
         ///  </note>

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeAgreement operation.
-    /// Describes the agreement that's identified by the <code>AgreementId</code>.
+    /// Describes the agreement that's identified by the <c>AgreementId</c>.
     /// </summary>
     public partial class DescribeAgreementRequest : AmazonTransferRequest
     {

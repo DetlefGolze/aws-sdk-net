@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// The result of a <code>CreateElasticsearchDomain</code> operation. Contains the status
-    /// of the newly created Elasticsearch domain.
+    /// The result of a <c>CreateElasticsearchDomain</c> operation. Contains the status of
+    /// the newly created Elasticsearch domain.
     /// </summary>
     public partial class CreateElasticsearchDomainResponse : AmazonWebServiceResponse
     {

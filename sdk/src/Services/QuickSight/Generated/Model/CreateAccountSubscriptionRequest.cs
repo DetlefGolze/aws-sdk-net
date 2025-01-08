@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -35,8 +36,7 @@ namespace Amazon.QuickSight.Model
     ///  
     /// <para>
     /// The Amazon Web Services Region for the account is derived from what is configured
-    /// in the CLI or SDK. This operation isn't supported in the US East (Ohio) Region, South
-    /// America (Sao Paulo) Region, or Asia Pacific (Singapore) Region. 
+    /// in the CLI or SDK.
     /// </para>
     ///  
     /// <para>
@@ -49,10 +49,9 @@ namespace Amazon.QuickSight.Model
     /// </para>
     ///  
     /// <para>
-    /// If your IAM policy includes both the <code>Subscribe</code> and <code>CreateAccountSubscription</code>
-    /// actions, make sure that both actions are set to <code>Allow</code>. If either action
-    /// is set to <code>Deny</code>, the <code>Deny</code> action prevails and your API call
-    /// fails.
+    /// If your IAM policy includes both the <c>Subscribe</c> and <c>CreateAccountSubscription</c>
+    /// actions, make sure that both actions are set to <c>Allow</c>. If either action is
+    /// set to <c>Deny</c>, the <c>Deny</c> action prevails and your API call fails.
     /// </para>
     ///  
     /// <para>
@@ -74,25 +73,29 @@ namespace Amazon.QuickSight.Model
     {
         private string _accountName;
         private string _activeDirectoryName;
-        private List<string> _adminGroup = new List<string>();
+        private List<string> _adminGroup = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _adminProGroup = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private AuthenticationMethodOption _authenticationMethod;
-        private List<string> _authorGroup = new List<string>();
+        private List<string> _authorGroup = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _authorProGroup = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _awsAccountId;
         private string _contactNumber;
         private string _directoryId;
         private Edition _edition;
         private string _emailAddress;
         private string _firstName;
+        private string _iamIdentityCenterInstanceArn;
         private string _lastName;
         private string _notificationEmail;
-        private List<string> _readerGroup = new List<string>();
+        private List<string> _readerGroup = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _readerProGroup = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _realm;
 
         /// <summary>
         /// Gets and sets the property AccountName. 
         /// <para>
         /// The name of your Amazon QuickSight account. This name is unique over all of Amazon
-        /// Web Services, and it appears only when users sign in. You can't change <code>AccountName</code>
+        /// Web Services, and it appears only when users sign in. You can't change <c>AccountName</c>
         /// value after the Amazon QuickSight account is created.
         /// </para>
         /// </summary>
@@ -112,7 +115,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property ActiveDirectoryName. 
         /// <para>
-        /// The name of your Active Directory. This field is required if <code>ACTIVE_DIRECTORY</code>
+        /// The name of your Active Directory. This field is required if <c>ACTIVE_DIRECTORY</c>
         /// is the selected authentication method of the new Amazon QuickSight account.
         /// </para>
         /// </summary>
@@ -131,9 +134,18 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property AdminGroup. 
         /// <para>
-        /// The admin group associated with your Active Directory. This field is required if <code>ACTIVE_DIRECTORY</code>
-        /// is the selected authentication method of the new Amazon QuickSight account. For more
-        /// information about using Active Directory in Amazon QuickSight, see <a href="https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html">Using
+        /// The admin group associated with your Active Directory or IAM Identity Center account.
+        /// Either this field or the <c>AdminProGroup</c> field is required if <c>ACTIVE_DIRECTORY</c>
+        /// or <c>IAM_IDENTITY_CENTER</c> is the selected authentication method of the new Amazon
+        /// QuickSight account.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about using IAM Identity Center in Amazon QuickSight, see <a
+        /// href="https://docs.aws.amazon.com/quicksight/latest/user/sec-identity-management-identity-center.html">Using
+        /// IAM Identity Center with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight
+        /// User Guide. For more information about using Active Directory in Amazon QuickSight,
+        /// see <a href="https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html">Using
         /// Active Directory with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight
         /// User Guide.
         /// </para>
@@ -147,20 +159,54 @@ namespace Amazon.QuickSight.Model
         // Check to see if AdminGroup property is set
         internal bool IsSetAdminGroup()
         {
-            return this._adminGroup != null && this._adminGroup.Count > 0; 
+            return this._adminGroup != null && (this._adminGroup.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property AdminProGroup. 
+        /// <para>
+        /// The admin pro group associated with your Active Directory or IAM Identity Center account.
+        /// Either this field or the <c>AdminGroup</c> field is required if <c>ACTIVE_DIRECTORY</c>
+        /// or <c>IAM_IDENTITY_CENTER</c> is the selected authentication method of the new Amazon
+        /// QuickSight account.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about using IAM Identity Center in Amazon QuickSight, see <a
+        /// href="https://docs.aws.amazon.com/quicksight/latest/user/sec-identity-management-identity-center.html">Using
+        /// IAM Identity Center with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight
+        /// User Guide. For more information about using Active Directory in Amazon QuickSight,
+        /// see <a href="https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html">Using
+        /// Active Directory with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight
+        /// User Guide.
+        /// </para>
+        /// </summary>
+        public List<string> AdminProGroup
+        {
+            get { return this._adminProGroup; }
+            set { this._adminProGroup = value; }
+        }
+
+        // Check to see if AdminProGroup property is set
+        internal bool IsSetAdminProGroup()
+        {
+            return this._adminProGroup != null && (this._adminProGroup.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AuthenticationMethod. 
         /// <para>
-        /// The method that you want to use to authenticate your Amazon QuickSight account. Currently,
-        /// the valid values for this parameter are <code>IAM_AND_QUICKSIGHT</code>, <code>IAM_ONLY</code>,
-        /// and <code>ACTIVE_DIRECTORY</code>.
+        /// The method that you want to use to authenticate your Amazon QuickSight account.
         /// </para>
         ///  
         /// <para>
-        /// If you choose <code>ACTIVE_DIRECTORY</code>, provide an <code>ActiveDirectoryName</code>
-        /// and an <code>AdminGroup</code> associated with your Active Directory.
+        /// If you choose <c>ACTIVE_DIRECTORY</c>, provide an <c>ActiveDirectoryName</c> and an
+        /// <c>AdminGroup</c> associated with your Active Directory.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you choose <c>IAM_IDENTITY_CENTER</c>, provide an <c>AdminGroup</c> associated
+        /// with your IAM Identity Center account.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -179,8 +225,15 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property AuthorGroup. 
         /// <para>
-        /// The author group associated with your Active Directory. For more information about
-        /// using Active Directory in Amazon QuickSight, see <a href="https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html">Using
+        /// The author group associated with your Active Directory or IAM Identity Center account.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about using IAM Identity Center in Amazon QuickSight, see <a
+        /// href="https://docs.aws.amazon.com/quicksight/latest/user/sec-identity-management-identity-center.html">Using
+        /// IAM Identity Center with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight
+        /// User Guide. For more information about using Active Directory in Amazon QuickSight,
+        /// see <a href="https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html">Using
         /// Active Directory with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight
         /// User Guide.
         /// </para>
@@ -194,7 +247,36 @@ namespace Amazon.QuickSight.Model
         // Check to see if AuthorGroup property is set
         internal bool IsSetAuthorGroup()
         {
-            return this._authorGroup != null && this._authorGroup.Count > 0; 
+            return this._authorGroup != null && (this._authorGroup.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property AuthorProGroup. 
+        /// <para>
+        /// The author pro group associated with your Active Directory or IAM Identity Center
+        /// account.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about using IAM Identity Center in Amazon QuickSight, see <a
+        /// href="https://docs.aws.amazon.com/quicksight/latest/user/sec-identity-management-identity-center.html">Using
+        /// IAM Identity Center with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight
+        /// User Guide. For more information about using Active Directory in Amazon QuickSight,
+        /// see <a href="https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html">Using
+        /// Active Directory with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight
+        /// User Guide.
+        /// </para>
+        /// </summary>
+        public List<string> AuthorProGroup
+        {
+            get { return this._authorProGroup; }
+            set { this._authorProGroup = value; }
+        }
+
+        // Check to see if AuthorProGroup property is set
+        internal bool IsSetAuthorProGroup()
+        {
+            return this._authorProGroup != null && (this._authorProGroup.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -221,8 +303,8 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property ContactNumber. 
         /// <para>
         /// A 10-digit phone number for the author of the Amazon QuickSight account to use for
-        /// future communications. This field is required if <code>ENTERPPRISE_AND_Q</code> is
-        /// the selected edition of the new Amazon QuickSight account.
+        /// future communications. This field is required if <c>ENTERPPRISE_AND_Q</c> is the selected
+        /// edition of the new Amazon QuickSight account.
         /// </para>
         /// </summary>
         public string ContactNumber
@@ -259,31 +341,30 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property Edition. 
         /// <para>
         /// The edition of Amazon QuickSight that you want your account to have. Currently, you
-        /// can choose from <code>ENTERPRISE</code> or <code>ENTERPRISE_AND_Q</code>.
+        /// can choose from <c>ENTERPRISE</c> or <c>ENTERPRISE_AND_Q</c>.
         /// </para>
         ///  
         /// <para>
-        /// If you choose <code>ENTERPRISE_AND_Q</code>, the following parameters are required:
+        /// If you choose <c>ENTERPRISE_AND_Q</c>, the following parameters are required:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>FirstName</code> 
+        ///  <c>FirstName</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastName</code> 
+        ///  <c>LastName</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EmailAddress</code> 
+        ///  <c>EmailAddress</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ContactNumber</code> 
+        ///  <c>ContactNumber</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
-        [AWSProperty(Required=true)]
         public Edition Edition
         {
             get { return this._edition; }
@@ -300,7 +381,7 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property EmailAddress. 
         /// <para>
         /// The email address of the author of the Amazon QuickSight account to use for future
-        /// communications. This field is required if <code>ENTERPPRISE_AND_Q</code> is the selected
+        /// communications. This field is required if <c>ENTERPPRISE_AND_Q</c> is the selected
         /// edition of the new Amazon QuickSight account.
         /// </para>
         /// </summary>
@@ -320,8 +401,8 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property FirstName. 
         /// <para>
         /// The first name of the author of the Amazon QuickSight account to use for future communications.
-        /// This field is required if <code>ENTERPPRISE_AND_Q</code> is the selected edition of
-        /// the new Amazon QuickSight account.
+        /// This field is required if <c>ENTERPPRISE_AND_Q</c> is the selected edition of the
+        /// new Amazon QuickSight account.
         /// </para>
         /// </summary>
         public string FirstName
@@ -337,11 +418,29 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property IAMIdentityCenterInstanceArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) for the IAM Identity Center instance.
+        /// </para>
+        /// </summary>
+        public string IAMIdentityCenterInstanceArn
+        {
+            get { return this._iamIdentityCenterInstanceArn; }
+            set { this._iamIdentityCenterInstanceArn = value; }
+        }
+
+        // Check to see if IAMIdentityCenterInstanceArn property is set
+        internal bool IsSetIAMIdentityCenterInstanceArn()
+        {
+            return this._iamIdentityCenterInstanceArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property LastName. 
         /// <para>
         /// The last name of the author of the Amazon QuickSight account to use for future communications.
-        /// This field is required if <code>ENTERPPRISE_AND_Q</code> is the selected edition of
-        /// the new Amazon QuickSight account.
+        /// This field is required if <c>ENTERPPRISE_AND_Q</c> is the selected edition of the
+        /// new Amazon QuickSight account.
         /// </para>
         /// </summary>
         public string LastName
@@ -379,10 +478,17 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property ReaderGroup. 
         /// <para>
-        /// The reader group associated with your Active Direcrtory. For more information about
-        /// using Active Directory in Amazon QuickSight, see <a href="https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html">Using
-        /// Active Directory with Amazon QuickSight Enterprise Edition</a> in the <i>Amazon QuickSight
-        /// User Guide</i>.
+        /// The reader group associated with your Active Directory or IAM Identity Center account.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about using IAM Identity Center in Amazon QuickSight, see <a
+        /// href="https://docs.aws.amazon.com/quicksight/latest/user/sec-identity-management-identity-center.html">Using
+        /// IAM Identity Center with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight
+        /// User Guide. For more information about using Active Directory in Amazon QuickSight,
+        /// see <a href="https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html">Using
+        /// Active Directory with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight
+        /// User Guide.
         /// </para>
         /// </summary>
         public List<string> ReaderGroup
@@ -394,15 +500,44 @@ namespace Amazon.QuickSight.Model
         // Check to see if ReaderGroup property is set
         internal bool IsSetReaderGroup()
         {
-            return this._readerGroup != null && this._readerGroup.Count > 0; 
+            return this._readerGroup != null && (this._readerGroup.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ReaderProGroup. 
+        /// <para>
+        /// The reader pro group associated with your Active Directory or IAM Identity Center
+        /// account.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about using IAM Identity Center in Amazon QuickSight, see <a
+        /// href="https://docs.aws.amazon.com/quicksight/latest/user/sec-identity-management-identity-center.html">Using
+        /// IAM Identity Center with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight
+        /// User Guide. For more information about using Active Directory in Amazon QuickSight,
+        /// see <a href="https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html">Using
+        /// Active Directory with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight
+        /// User Guide.
+        /// </para>
+        /// </summary>
+        public List<string> ReaderProGroup
+        {
+            get { return this._readerProGroup; }
+            set { this._readerProGroup = value; }
+        }
+
+        // Check to see if ReaderProGroup property is set
+        internal bool IsSetReaderProGroup()
+        {
+            return this._readerProGroup != null && (this._readerProGroup.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Realm. 
         /// <para>
         /// The realm of the Active Directory that is associated with your Amazon QuickSight account.
-        /// This field is required if <code>ACTIVE_DIRECTORY</code> is the selected authentication
-        /// method of the new Amazon QuickSight account.
+        /// This field is required if <c>ACTIVE_DIRECTORY</c> is the selected authentication method
+        /// of the new Amazon QuickSight account.
         /// </para>
         /// </summary>
         public string Realm

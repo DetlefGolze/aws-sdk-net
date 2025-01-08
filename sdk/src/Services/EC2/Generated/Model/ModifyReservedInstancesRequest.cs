@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -36,15 +37,15 @@ namespace Amazon.EC2.Model
     /// 
     ///  
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html">Modifying
+    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html">Modify
     /// Reserved Instances</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     /// </summary>
     public partial class ModifyReservedInstancesRequest : AmazonEC2Request
     {
         private string _clientToken;
-        private List<string> _reservedInstancesIds = new List<string>();
-        private List<ReservedInstancesConfiguration> _targetConfigurations = new List<ReservedInstancesConfiguration>();
+        private List<string> _reservedInstancesIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<ReservedInstancesConfiguration> _targetConfigurations = AWSConfigs.InitializeCollections ? new List<ReservedInstancesConfiguration>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
@@ -82,7 +83,7 @@ namespace Amazon.EC2.Model
         // Check to see if ReservedInstancesIds property is set
         internal bool IsSetReservedInstancesIds()
         {
-            return this._reservedInstancesIds != null && this._reservedInstancesIds.Count > 0; 
+            return this._reservedInstancesIds != null && (this._reservedInstancesIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -101,7 +102,7 @@ namespace Amazon.EC2.Model
         // Check to see if TargetConfigurations property is set
         internal bool IsSetTargetConfigurations()
         {
-            return this._targetConfigurations != null && this._targetConfigurations.Count > 0; 
+            return this._targetConfigurations != null && (this._targetConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

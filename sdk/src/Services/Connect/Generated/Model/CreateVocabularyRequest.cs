@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.Connect.Model
         private string _content;
         private string _instanceId;
         private VocabularyLanguageCode _languageCode;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _vocabularyName;
 
         /// <summary>
@@ -72,10 +73,9 @@ namespace Amazon.Connect.Model
         /// Gets and sets the property Content. 
         /// <para>
         /// The content of the custom vocabulary in plain-text format with a table of values.
-        /// Each row in the table represents a word or a phrase, described with <code>Phrase</code>,
-        /// <code>IPA</code>, <code>SoundsLike</code>, and <code>DisplayAs</code> fields. Separate
-        /// the fields with TAB characters. The size limit is 50KB. For more information, see
-        /// <a href="https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html#create-vocabulary-table">Create
+        /// Each row in the table represents a word or a phrase, described with <c>Phrase</c>,
+        /// <c>IPA</c>, <c>SoundsLike</c>, and <c>DisplayAs</c> fields. Separate the fields with
+        /// TAB characters. The size limit is 50KB. For more information, see <a href="https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html#create-vocabulary-table">Create
         /// a custom vocabulary using a table</a>.
         /// </para>
         /// </summary>
@@ -137,7 +137,7 @@ namespace Amazon.Connect.Model
         /// Gets and sets the property Tags. 
         /// <para>
         /// The tags used to organize, track, or control access for this resource. For example,
-        /// { "tags": {"key1":"value1", "key2":"value2"} }.
+        /// { "Tags": {"key1":"value1", "key2":"value2"} }.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -150,7 +150,7 @@ namespace Amazon.Connect.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

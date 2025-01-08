@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.SimpleSystemsManagement.Model
     {
         private string _key;
         private InventoryQueryOperatorType _type;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Key. 
@@ -63,8 +64,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>Exists</code> filter must be used with aggregators. For more information,
-        /// see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-inventory-aggregate.html">Aggregating
+        /// The <c>Exists</c> filter must be used with aggregators. For more information, see
+        /// <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/inventory-aggregate.html">Aggregating
         /// inventory data</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.
         /// </para>
         ///  </note>
@@ -85,7 +86,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property Values. 
         /// <para>
         /// Inventory filter values. Example: inventory filter where managed node IDs are specified
-        /// as values <code>Key=AWS:InstanceInformation.InstanceId,Values= i-a12b3c4d5e6g, i-1a2b3c4d5e6,Type=Equal</code>.
+        /// as values <c>Key=AWS:InstanceInformation.InstanceId,Values= i-a12b3c4d5e6g, i-1a2b3c4d5e6,Type=Equal</c>.
         /// 
         /// </para>
         /// </summary>
@@ -99,7 +100,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

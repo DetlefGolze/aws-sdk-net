@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.StorageGateway.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.StorageGateway.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetDayOfMonth())
@@ -95,6 +97,17 @@ namespace Amazon.StorageGateway.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("MinuteOfHour");
                     context.Writer.Write(publicRequest.MinuteOfHour);
+                }
+
+                if(publicRequest.IsSetSoftwareUpdatePreferences())
+                {
+                    context.Writer.WritePropertyName("SoftwareUpdatePreferences");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = SoftwareUpdatePreferencesMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.SoftwareUpdatePreferences, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 writer.WriteObjectEnd();

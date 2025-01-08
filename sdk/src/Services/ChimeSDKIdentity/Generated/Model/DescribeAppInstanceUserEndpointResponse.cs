@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKIdentity.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.ChimeSDKIdentity.Model
         /// <summary>
         /// Gets and sets the property AppInstanceUserEndpoint. 
         /// <para>
-        /// The full details of an <code>AppInstanceUserEndpoint</code>: the <code>AppInstanceUserArn</code>,
+        /// The full details of an <c>AppInstanceUserEndpoint</c>: the <c>AppInstanceUserArn</c>,
         /// ID, name, type, resource ARN, attributes, allow messages, state, and created and last
         /// updated timestamps. All timestamps use epoch milliseconds.
         /// </para>

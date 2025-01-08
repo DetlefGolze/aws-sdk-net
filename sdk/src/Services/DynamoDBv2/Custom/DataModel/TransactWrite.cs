@@ -21,6 +21,7 @@ using System.Threading;
 using System.Threading.Tasks;
 #endif
 using Amazon.DynamoDBv2.DocumentModel;
+using Amazon.Runtime.Telemetry.Tracing;
 
 namespace Amazon.DynamoDBv2.DataModel
 {
@@ -35,6 +36,7 @@ namespace Amazon.DynamoDBv2.DataModel
         internal DynamoDBContext Context { get; set; }
         internal DynamoDBFlatConfig Config { get; set; }
         internal DocumentTransactWrite DocumentTransaction { get; set; }
+        internal TracerProvider TracerProvider { get; private set; }
 
         #endregion
 
@@ -45,6 +47,8 @@ namespace Amazon.DynamoDBv2.DataModel
         {
             Context = context;
             Config = config;
+            TracerProvider = context?.Client?.Config?.TelemetryProvider?.TracerProvider
+                ?? AWSConfigs.TelemetryProvider.TracerProvider;
         }
 
         #endregion
@@ -77,6 +81,9 @@ namespace Amazon.DynamoDBv2.DataModel
     /// Represents a strongly-typed object for writing/deleting/version-checking multiple items
     /// in a single DynamoDB table in a transaction.
     /// </summary>
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode(Amazon.DynamoDBv2.Custom.Internal.InternalConstants.RequiresUnreferencedCodeMessage)]
+#endif
     public class TransactWrite<T> : TransactWrite
     {
         #region Public Combine methods
@@ -140,6 +147,39 @@ namespace Amazon.DynamoDBv2.DataModel
             objectItems.Add(objectItem);
         }
 
+        /// <summary>
+        /// Add a single item to be saved in the current transaction operation.
+        /// Item is identified by its hash primary key and will be updated using the update expression provided.
+        /// </summary>
+        /// <param name="hashKey">Hash key of the item to delete.</param>
+        /// <param name="updateExpression">Update expression to use.</param>
+        /// <param name="conditionExpression">Condition to check before the operation.</param>
+        public void AddSaveItem(object hashKey, Expression updateExpression, Expression conditionExpression = null)
+        {
+            AddSaveItem(hashKey, rangeKey: null, updateExpression, conditionExpression);
+        }
+
+        /// <summary>
+        /// Add a single item to be saved in the current transaction operation.
+        /// Item is identified by its hash-and-range primary key and will be updated using the update expression provided.
+        /// </summary>
+        /// <param name="hashKey">Hash key of the item to delete.</param>
+        /// <param name="rangeKey">Range key of the item to delete.</param>
+        /// <param name="updateExpression">Update expression to use.</param>
+        /// <param name="conditionExpression">Condition to check before the operation.</param>
+        public void AddSaveItem(object hashKey, object rangeKey, Expression updateExpression, Expression conditionExpression = null)
+        {
+            var operationConfig = conditionExpression != null
+                ? new TransactWriteItemOperationConfig
+                {
+                    ConditionalExpression = conditionExpression,
+                    ReturnValuesOnConditionCheckFailure = DocumentModel.ReturnValuesOnConditionCheckFailure.None
+                }
+                : null;
+
+            DocumentTransaction.AddDocumentToUpdateHelper(Context.MakeKey(hashKey, rangeKey, StorageConfig, Config), updateExpression, operationConfig);
+        }
+
         #endregion
 
 
@@ -185,7 +225,18 @@ namespace Amazon.DynamoDBv2.DataModel
         /// <param name="hashKey">Hash key of the item to delete.</param>
         public void AddDeleteKey(object hashKey)
         {
-            AddDeleteKey(hashKey, rangeKey: null);
+            AddDeleteKey(hashKey, conditionExpression: null);
+        }
+
+        /// <summary>
+        /// Add a single item to be deleted in the current transaction operation.
+        /// Item is identified by its hash primary key.
+        /// </summary>
+        /// <param name="hashKey">Hash key of the item to delete.</param>
+        /// <param name="conditionExpression">Condition to check before the operation.</param>
+        public void AddDeleteKey(object hashKey, Expression conditionExpression)
+        {
+            AddDeleteKey(hashKey, rangeKey: null, conditionExpression);
         }
 
         /// <summary>
@@ -196,7 +247,27 @@ namespace Amazon.DynamoDBv2.DataModel
         /// <param name="rangeKey">Range key of the item to delete.</param>
         public void AddDeleteKey(object hashKey, object rangeKey)
         {
-            DocumentTransaction.AddKeyToDeleteHelper(Context.MakeKey(hashKey, rangeKey, StorageConfig, Config));
+            AddDeleteKey(hashKey, rangeKey, conditionExpression: null);
+        }
+
+        /// <summary>
+        /// Add a single item to be deleted in the current transaction operation.
+        /// Item is identified by its hash-and-range primary key.
+        /// </summary>
+        /// <param name="hashKey">Hash key of the item to delete.</param>
+        /// <param name="rangeKey">Range key of the item to delete.</param>
+        /// <param name="conditionExpression">Condition to check before the operation.</param>
+        public void AddDeleteKey(object hashKey, object rangeKey, Expression conditionExpression)
+        {
+            var operationConfig = conditionExpression != null
+                ? new TransactWriteItemOperationConfig
+                {
+                    ConditionalExpression = conditionExpression,
+                    ReturnValuesOnConditionCheckFailure = DocumentModel.ReturnValuesOnConditionCheckFailure.None
+                }
+                : null;
+
+            DocumentTransaction.AddKeyToDeleteHelper(Context.MakeKey(hashKey, rangeKey, StorageConfig, Config), operationConfig);
         }
 
         #endregion
@@ -388,6 +459,7 @@ namespace Amazon.DynamoDBv2.DataModel
 
         #endregion
 
+        internal TracerProvider TracerProvider { get; private set; }
 
         #region Constructor
 
@@ -399,6 +471,9 @@ namespace Amazon.DynamoDBv2.DataModel
         public MultiTableTransactWrite(params TransactWrite[] transactionParts)
         {
             allTransactionParts = new List<TransactWrite>(transactionParts);
+            TracerProvider = allTransactionParts.Count > 0
+                ? allTransactionParts[0].TracerProvider
+                : AWSConfigs.TelemetryProvider.TracerProvider;
         }
 
         internal MultiTableTransactWrite(TransactWrite first, params TransactWrite[] rest)
@@ -406,6 +481,7 @@ namespace Amazon.DynamoDBv2.DataModel
             allTransactionParts = new List<TransactWrite>();
             allTransactionParts.Add(first);
             allTransactionParts.AddRange(rest);
+            TracerProvider = allTransactionParts[0].TracerProvider;
         }
 
         #endregion

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -34,10 +35,10 @@ namespace Amazon.Lightsail.Model
     /// </summary>
     public partial class InstancePortState
     {
-        private List<string> _cidrListAliases = new List<string>();
-        private List<string> _cidrs = new List<string>();
+        private List<string> _cidrListAliases = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _cidrs = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _fromPort;
-        private List<string> _ipv6Cidrs = new List<string>();
+        private List<string> _ipv6Cidrs = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private NetworkProtocol _protocol;
         private PortState _state;
         private int? _toPort;
@@ -49,9 +50,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// The only alias currently supported is <code>lightsail-connect</code>, which allows
-        /// IP addresses of the browser-based RDP/SSH client in the Lightsail console to connect
-        /// to your instance.
+        /// The only alias currently supported is <c>lightsail-connect</c>, which allows IP addresses
+        /// of the browser-based RDP/SSH client in the Lightsail console to connect to your instance.
         /// </para>
         /// </summary>
         public List<string> CidrListAliases
@@ -63,7 +63,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if CidrListAliases property is set
         internal bool IsSetCidrListAliases()
         {
-            return this._cidrListAliases != null && this._cidrListAliases.Count > 0; 
+            return this._cidrListAliases != null && (this._cidrListAliases.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -74,8 +74,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>ipv6Cidrs</code> parameter lists the IPv6 addresses that are allowed to
-        /// connect to an instance.
+        /// The <c>ipv6Cidrs</c> parameter lists the IPv6 addresses that are allowed to connect
+        /// to an instance.
         /// </para>
         ///  </note> 
         /// <para>
@@ -92,7 +92,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Cidrs property is set
         internal bool IsSetCidrs()
         {
-            return this._cidrs != null && this._cidrs.Count > 0; 
+            return this._cidrs != null && (this._cidrs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -106,20 +106,20 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// TCP and UDP - <code>0</code> to <code>65535</code> 
+        /// TCP and UDP - <c>0</c> to <c>65535</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// ICMP - The ICMP type for IPv4 addresses. For example, specify <code>8</code> as the
-        /// <code>fromPort</code> (ICMP type), and <code>-1</code> as the <code>toPort</code>
-        /// (ICMP code), to enable ICMP Ping. For more information, see <a href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Control_messages">Control
+        /// ICMP - The ICMP type for IPv4 addresses. For example, specify <c>8</c> as the <c>fromPort</c>
+        /// (ICMP type), and <c>-1</c> as the <c>toPort</c> (ICMP code), to enable ICMP Ping.
+        /// For more information, see <a href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Control_messages">Control
         /// Messages</a> on <i>Wikipedia</i>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// ICMPv6 - The ICMP type for IPv6 addresses. For example, specify <code>128</code> as
-        /// the <code>fromPort</code> (ICMPv6 type), and <code>0</code> as <code>toPort</code>
-        /// (ICMPv6 code). For more information, see <a href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol_for_IPv6">Internet
+        /// ICMPv6 - The ICMP type for IPv6 addresses. For example, specify <c>128</c> as the
+        /// <c>fromPort</c> (ICMPv6 type), and <c>0</c> as <c>toPort</c> (ICMPv6 code). For more
+        /// information, see <a href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol_for_IPv6">Internet
         /// Control Message Protocol for IPv6</a>.
         /// </para>
         ///  </li> </ul>
@@ -146,8 +146,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>cidrs</code> parameter lists the IPv4 addresses that are allowed to connect
-        /// to an instance.
+        /// The <c>cidrs</c> parameter lists the IPv4 addresses that are allowed to connect to
+        /// an instance.
         /// </para>
         ///  </note> 
         /// <para>
@@ -164,7 +164,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Ipv6Cidrs property is set
         internal bool IsSetIpv6Cidrs()
         {
-            return this._ipv6Cidrs != null && this._ipv6Cidrs.Count > 0; 
+            return this._ipv6Cidrs != null && (this._ipv6Cidrs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -178,34 +178,38 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>tcp</code> - Transmission Control Protocol (TCP) provides reliable, ordered,
-        /// and error-checked delivery of streamed data between applications running on hosts
-        /// communicating by an IP network. If you have an application that doesn't require reliable
-        /// data stream service, use UDP instead.
+        ///  <c>tcp</c> - Transmission Control Protocol (TCP) provides reliable, ordered, and
+        /// error-checked delivery of streamed data between applications running on hosts communicating
+        /// by an IP network. If you have an application that doesn't require reliable data stream
+        /// service, use UDP instead.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>all</code> - All transport layer protocol types. For more general information,
-        /// see <a href="https://en.wikipedia.org/wiki/Transport_layer">Transport layer</a> on
-        /// <i>Wikipedia</i>.
+        ///  <c>all</c> - All transport layer protocol types. For more general information, see
+        /// <a href="https://en.wikipedia.org/wiki/Transport_layer">Transport layer</a> on <i>Wikipedia</i>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>udp</code> - With User Datagram Protocol (UDP), computer applications can send
-        /// messages (or datagrams) to other hosts on an Internet Protocol (IP) network. Prior
-        /// communications are not required to set up transmission channels or data paths. Applications
-        /// that don't require reliable data stream service can use UDP, which provides a connectionless
+        ///  <c>udp</c> - With User Datagram Protocol (UDP), computer applications can send messages
+        /// (or datagrams) to other hosts on an Internet Protocol (IP) network. Prior communications
+        /// are not required to set up transmission channels or data paths. Applications that
+        /// don't require reliable data stream service can use UDP, which provides a connectionless
         /// datagram service that emphasizes reduced latency over reliability. If you do require
         /// reliable data stream service, use TCP instead.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>icmp</code> - Internet Control Message Protocol (ICMP) is used to send error
-        /// messages and operational information indicating success or failure when communicating
-        /// with an instance. For example, an error is indicated when an instance could not be
-        /// reached. When you specify <code>icmp</code> as the <code>protocol</code>, you must
-        /// specify the ICMP type using the <code>fromPort</code> parameter, and ICMP code using
-        /// the <code>toPort</code> parameter.
+        ///  <c>icmp</c> - Internet Control Message Protocol (ICMP) is used to send error messages
+        /// and operational information indicating success or failure when communicating with
+        /// an instance. For example, an error is indicated when an instance could not be reached.
+        /// When you specify <c>icmp</c> as the <c>protocol</c>, you must specify the ICMP type
+        /// using the <c>fromPort</c> parameter, and ICMP code using the <c>toPort</c> parameter.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>icmp6</c> - Internet Control Message Protocol (ICMP) for IPv6. When you specify
+        /// <c>icmp6</c> as the <c>protocol</c>, you must specify the ICMP type using the <c>fromPort</c>
+        /// parameter, and ICMP code using the <c>toPort</c> parameter.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -224,11 +228,11 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property State. 
         /// <para>
-        /// Specifies whether the instance port is <code>open</code> or <code>closed</code>.
+        /// Specifies whether the instance port is <c>open</c> or <c>closed</c>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// The port state for Lightsail instances is always <code>open</code>.
+        /// The port state for Lightsail instances is always <c>open</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -255,20 +259,20 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// TCP and UDP - <code>0</code> to <code>65535</code> 
+        /// TCP and UDP - <c>0</c> to <c>65535</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// ICMP - The ICMP code for IPv4 addresses. For example, specify <code>8</code> as the
-        /// <code>fromPort</code> (ICMP type), and <code>-1</code> as the <code>toPort</code>
-        /// (ICMP code), to enable ICMP Ping. For more information, see <a href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Control_messages">Control
+        /// ICMP - The ICMP code for IPv4 addresses. For example, specify <c>8</c> as the <c>fromPort</c>
+        /// (ICMP type), and <c>-1</c> as the <c>toPort</c> (ICMP code), to enable ICMP Ping.
+        /// For more information, see <a href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Control_messages">Control
         /// Messages</a> on <i>Wikipedia</i>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// ICMPv6 - The ICMP code for IPv6 addresses. For example, specify <code>128</code> as
-        /// the <code>fromPort</code> (ICMPv6 type), and <code>0</code> as <code>toPort</code>
-        /// (ICMPv6 code). For more information, see <a href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol_for_IPv6">Internet
+        /// ICMPv6 - The ICMP code for IPv6 addresses. For example, specify <c>128</c> as the
+        /// <c>fromPort</c> (ICMPv6 type), and <c>0</c> as <c>toPort</c> (ICMPv6 code). For more
+        /// information, see <a href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol_for_IPv6">Internet
         /// Control Message Protocol for IPv6</a>.
         /// </para>
         ///  </li> </ul>

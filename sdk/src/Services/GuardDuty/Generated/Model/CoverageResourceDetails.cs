@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -33,8 +34,46 @@ namespace Amazon.GuardDuty.Model
     /// </summary>
     public partial class CoverageResourceDetails
     {
+        private CoverageEc2InstanceDetails _ec2InstanceDetails;
+        private CoverageEcsClusterDetails _ecsClusterDetails;
         private CoverageEksClusterDetails _eksClusterDetails;
         private ResourceType _resourceType;
+
+        /// <summary>
+        /// Gets and sets the property Ec2InstanceDetails. 
+        /// <para>
+        /// Information about the Amazon EC2 instance assessed for runtime coverage.
+        /// </para>
+        /// </summary>
+        public CoverageEc2InstanceDetails Ec2InstanceDetails
+        {
+            get { return this._ec2InstanceDetails; }
+            set { this._ec2InstanceDetails = value; }
+        }
+
+        // Check to see if Ec2InstanceDetails property is set
+        internal bool IsSetEc2InstanceDetails()
+        {
+            return this._ec2InstanceDetails != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EcsClusterDetails. 
+        /// <para>
+        /// Information about the Amazon ECS cluster that is assessed for runtime coverage.
+        /// </para>
+        /// </summary>
+        public CoverageEcsClusterDetails EcsClusterDetails
+        {
+            get { return this._ecsClusterDetails; }
+            set { this._ecsClusterDetails = value; }
+        }
+
+        // Check to see if EcsClusterDetails property is set
+        internal bool IsSetEcsClusterDetails()
+        {
+            return this._ecsClusterDetails != null;
+        }
 
         /// <summary>
         /// Gets and sets the property EksClusterDetails. 

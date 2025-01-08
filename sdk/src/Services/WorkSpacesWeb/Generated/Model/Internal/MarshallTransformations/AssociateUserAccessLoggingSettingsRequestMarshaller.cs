@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.WorkSpacesWeb.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -55,7 +56,6 @@ namespace Amazon.WorkSpacesWeb.Model.Internal.MarshallTransformations
         public IRequest Marshall(AssociateUserAccessLoggingSettingsRequest publicRequest)
         {
             IRequest request = new DefaultRequest(publicRequest, "Amazon.WorkSpacesWeb");
-            request.Headers["Content-Type"] = "application/json";
             request.Headers[Amazon.Util.HeaderKeys.XAmzApiVersion] = "2020-07-08";
             request.HttpMethod = "PUT";
 

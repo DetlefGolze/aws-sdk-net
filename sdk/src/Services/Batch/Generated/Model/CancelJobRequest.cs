@@ -26,30 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
     /// Container for the parameters to the CancelJob operation.
-    /// Cancels a job in an Batch job queue. Jobs that are in the <code>SUBMITTED</code> or
-    /// <code>PENDING</code> are canceled. A job in<code>RUNNABLE</code> remains in <code>RUNNABLE</code>
-    /// until it reaches the head of the job queue. Then the job status is updated to <code>FAILED</code>.
+    /// Cancels a job in an Batch job queue. Jobs that are in a <c>SUBMITTED</c>, <c>PENDING</c>,
+    /// or <c>RUNNABLE</c> state are cancelled and the job status is updated to <c>FAILED</c>.
     /// 
     ///  <note> 
     /// <para>
-    /// A <code>PENDING</code> job is canceled after all dependency jobs are completed. Therefore,
-    /// it may take longer than expected to cancel a job in <code>PENDING</code> status.
+    /// A <c>PENDING</c> job is canceled after all dependency jobs are completed. Therefore,
+    /// it may take longer than expected to cancel a job in <c>PENDING</c> status.
     /// </para>
     ///  
     /// <para>
-    /// When you try to cancel an array parent job in <code>PENDING</code>, Batch attempts
-    /// to cancel all child jobs. The array parent job is canceled when all child jobs are
-    /// completed.
+    /// When you try to cancel an array parent job in <c>PENDING</c>, Batch attempts to cancel
+    /// all child jobs. The array parent job is canceled when all child jobs are completed.
     /// </para>
     ///  </note> 
     /// <para>
-    /// Jobs that progressed to the <code>STARTING</code> or <code>RUNNING</code> state aren't
-    /// canceled. However, the API operation still succeeds, even if no job is canceled. These
-    /// jobs must be terminated with the <a>TerminateJob</a> operation.
+    /// Jobs that progressed to the <c>STARTING</c> or <c>RUNNING</c> state aren't canceled.
+    /// However, the API operation still succeeds, even if no job is canceled. These jobs
+    /// must be terminated with the <a>TerminateJob</a> operation.
     /// </para>
     /// </summary>
     public partial class CancelJobRequest : AmazonBatchRequest
@@ -80,8 +79,12 @@ namespace Amazon.Batch.Model
         /// Gets and sets the property Reason. 
         /// <para>
         /// A message to attach to the job that explains the reason for canceling it. This message
-        /// is returned by future <a>DescribeJobs</a> operations on the job. This message is also
-        /// recorded in the Batch activity logs.
+        /// is returned by future <a>DescribeJobs</a> operations on the job. It is also recorded
+        /// in the Batch activity logs.
+        /// </para>
+        ///  
+        /// <para>
+        /// This parameter has as limit of 1024 characters.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

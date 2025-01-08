@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.CloudWatchLogs.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.CloudWatchLogs
 {
     /// <summary>
-    /// Interface for accessing CloudWatchLogs
+    /// <para>Interface for accessing CloudWatchLogs</para>
     ///
     /// You can use Amazon CloudWatch Logs to monitor, store, and access your log files from
     /// EC2 instances, CloudTrail, and other sources. You can then retrieve the associated
@@ -88,15 +89,15 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// When you use <code>AssociateKmsKey</code>, you specify either the <code>logGroupName</code>
-        /// parameter or the <code>resourceIdentifier</code> parameter. You can't specify both
-        /// of those parameters in the same operation.
+        /// When you use <c>AssociateKmsKey</c>, you specify either the <c>logGroupName</c> parameter
+        /// or the <c>resourceIdentifier</c> parameter. You can't specify both of those parameters
+        /// in the same operation.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Specify the <code>logGroupName</code> parameter to cause all log events stored in
-        /// the log group to be encrypted with that key. Only the log events ingested after the
-        /// key is associated are encrypted with that key.
+        /// Specify the <c>logGroupName</c> parameter to cause all log events stored in the log
+        /// group to be encrypted with that key. Only the log events ingested after the key is
+        /// associated are encrypted with that key.
         /// </para>
         ///  
         /// <para>
@@ -110,13 +111,13 @@ namespace Amazon.CloudWatchLogs
         /// <para>
         /// Associating a key with a log group does not cause the results of queries of that log
         /// group to be encrypted with that key. To have query results encrypted with a KMS key,
-        /// you must use an <code>AssociateKmsKey</code> operation with the <code>resourceIdentifier</code>
-        /// parameter that specifies a <code>query-result</code> resource. 
+        /// you must use an <c>AssociateKmsKey</c> operation with the <c>resourceIdentifier</c>
+        /// parameter that specifies a <c>query-result</c> resource. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Specify the <code>resourceIdentifier</code> parameter with a <code>query-result</code>
-        /// resource, to use that key to encrypt the stored results of all future <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html">StartQuery</a>
+        /// Specify the <c>resourceIdentifier</c> parameter with a <c>query-result</c> resource,
+        /// to use that key to encrypt the stored results of all future <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html">StartQuery</a>
         /// operations in the account. The response from a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetQueryResults.html">GetQueryResults</a>
         /// operation will still return the query results in plain text.
         /// </para>
@@ -149,8 +150,8 @@ namespace Amazon.CloudWatchLogs
         ///  
         /// <para>
         /// If you attempt to associate a KMS key with a log group but the KMS key does not exist
-        /// or the KMS key is disabled, you receive an <code>InvalidParameterException</code>
-        /// error. 
+        /// or the KMS key is disabled, you receive an <c>InvalidParameterException</c> error.
+        /// 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the AssociateKmsKey service method.</param>
@@ -179,15 +180,15 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// When you use <code>AssociateKmsKey</code>, you specify either the <code>logGroupName</code>
-        /// parameter or the <code>resourceIdentifier</code> parameter. You can't specify both
-        /// of those parameters in the same operation.
+        /// When you use <c>AssociateKmsKey</c>, you specify either the <c>logGroupName</c> parameter
+        /// or the <c>resourceIdentifier</c> parameter. You can't specify both of those parameters
+        /// in the same operation.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Specify the <code>logGroupName</code> parameter to cause all log events stored in
-        /// the log group to be encrypted with that key. Only the log events ingested after the
-        /// key is associated are encrypted with that key.
+        /// Specify the <c>logGroupName</c> parameter to cause all log events stored in the log
+        /// group to be encrypted with that key. Only the log events ingested after the key is
+        /// associated are encrypted with that key.
         /// </para>
         ///  
         /// <para>
@@ -201,13 +202,13 @@ namespace Amazon.CloudWatchLogs
         /// <para>
         /// Associating a key with a log group does not cause the results of queries of that log
         /// group to be encrypted with that key. To have query results encrypted with a KMS key,
-        /// you must use an <code>AssociateKmsKey</code> operation with the <code>resourceIdentifier</code>
-        /// parameter that specifies a <code>query-result</code> resource. 
+        /// you must use an <c>AssociateKmsKey</c> operation with the <c>resourceIdentifier</c>
+        /// parameter that specifies a <c>query-result</c> resource. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Specify the <code>resourceIdentifier</code> parameter with a <code>query-result</code>
-        /// resource, to use that key to encrypt the stored results of all future <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html">StartQuery</a>
+        /// Specify the <c>resourceIdentifier</c> parameter with a <c>query-result</c> resource,
+        /// to use that key to encrypt the stored results of all future <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html">StartQuery</a>
         /// operations in the account. The response from a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetQueryResults.html">GetQueryResults</a>
         /// operation will still return the query results in plain text.
         /// </para>
@@ -240,8 +241,8 @@ namespace Amazon.CloudWatchLogs
         ///  
         /// <para>
         /// If you attempt to associate a KMS key with a log group but the KMS key does not exist
-        /// or the KMS key is disabled, you receive an <code>InvalidParameterException</code>
-        /// error. 
+        /// or the KMS key is disabled, you receive an <c>InvalidParameterException</c> error.
+        /// 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the AssociateKmsKey service method.</param>
@@ -275,7 +276,7 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// The task must be in the <code>PENDING</code> or <code>RUNNING</code> state.
+        /// The task must be in the <c>PENDING</c> or <c>RUNNING</c> state.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CancelExportTask service method.</param>
@@ -303,7 +304,7 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// The task must be in the <code>PENDING</code> or <code>RUNNING</code> state.
+        /// The task must be in the <c>PENDING</c> or <c>RUNNING</c> state.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CancelExportTask service method.</param>
@@ -329,14 +330,184 @@ namespace Amazon.CloudWatchLogs
 
         #endregion
         
+        #region  CreateDelivery
+
+
+        /// <summary>
+        /// Creates a <i>delivery</i>. A delivery is a connection between a logical <i>delivery
+        /// source</i> and a logical <i>delivery destination</i> that you have already created.
+        /// 
+        ///  
+        /// <para>
+        /// Only some Amazon Web Services services support being configured as a delivery source
+        /// using this operation. These services are listed as <b>Supported [V2 Permissions]</b>
+        /// in the table at <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html">Enabling
+        /// logging from Amazon Web Services services.</a> 
+        /// </para>
+        ///  
+        /// <para>
+        /// A delivery destination can represent a log group in CloudWatch Logs, an Amazon S3
+        /// bucket, or a delivery stream in Firehose.
+        /// </para>
+        ///  
+        /// <para>
+        /// To configure logs delivery between a supported Amazon Web Services service and a destination,
+        /// you must do the following:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Create a delivery source, which is a logical object that represents the resource that
+        /// is actually sending the logs. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliverySource.html">PutDeliverySource</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Create a <i>delivery destination</i>, which is a logical object that represents the
+        /// actual delivery destination. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestination.html">PutDeliveryDestination</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If you are delivering logs cross-account, you must use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestinationPolicy.html">PutDeliveryDestinationPolicy</a>
+        /// in the destination account to assign an IAM policy to the destination. This policy
+        /// allows delivery to that destination. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Use <c>CreateDelivery</c> to create a <i>delivery</i> by pairing exactly one delivery
+        /// source and one delivery destination. 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// You can configure a single delivery source to send logs to multiple destinations by
+        /// creating multiple deliveries. You can also create multiple deliveries to configure
+        /// multiple delivery sources to send logs to the same delivery destination.
+        /// </para>
+        ///  
+        /// <para>
+        /// To update an existing delivery configuration, use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_UpdateDeliveryConfiguration.html">UpdateDeliveryConfiguration</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateDelivery service method.</param>
+        /// 
+        /// <returns>The response from the CreateDelivery service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.AccessDeniedException">
+        /// You don't have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ConflictException">
+        /// This operation attempted to create a resource that already exists.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/CreateDelivery">REST API Reference for CreateDelivery Operation</seealso>
+        CreateDeliveryResponse CreateDelivery(CreateDeliveryRequest request);
+
+
+
+        /// <summary>
+        /// Creates a <i>delivery</i>. A delivery is a connection between a logical <i>delivery
+        /// source</i> and a logical <i>delivery destination</i> that you have already created.
+        /// 
+        ///  
+        /// <para>
+        /// Only some Amazon Web Services services support being configured as a delivery source
+        /// using this operation. These services are listed as <b>Supported [V2 Permissions]</b>
+        /// in the table at <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html">Enabling
+        /// logging from Amazon Web Services services.</a> 
+        /// </para>
+        ///  
+        /// <para>
+        /// A delivery destination can represent a log group in CloudWatch Logs, an Amazon S3
+        /// bucket, or a delivery stream in Firehose.
+        /// </para>
+        ///  
+        /// <para>
+        /// To configure logs delivery between a supported Amazon Web Services service and a destination,
+        /// you must do the following:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Create a delivery source, which is a logical object that represents the resource that
+        /// is actually sending the logs. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliverySource.html">PutDeliverySource</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Create a <i>delivery destination</i>, which is a logical object that represents the
+        /// actual delivery destination. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestination.html">PutDeliveryDestination</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If you are delivering logs cross-account, you must use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestinationPolicy.html">PutDeliveryDestinationPolicy</a>
+        /// in the destination account to assign an IAM policy to the destination. This policy
+        /// allows delivery to that destination. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Use <c>CreateDelivery</c> to create a <i>delivery</i> by pairing exactly one delivery
+        /// source and one delivery destination. 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// You can configure a single delivery source to send logs to multiple destinations by
+        /// creating multiple deliveries. You can also create multiple deliveries to configure
+        /// multiple delivery sources to send logs to the same delivery destination.
+        /// </para>
+        ///  
+        /// <para>
+        /// To update an existing delivery configuration, use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_UpdateDeliveryConfiguration.html">UpdateDeliveryConfiguration</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateDelivery service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateDelivery service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.AccessDeniedException">
+        /// You don't have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ConflictException">
+        /// This operation attempted to create a resource that already exists.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/CreateDelivery">REST API Reference for CreateDelivery Operation</seealso>
+        Task<CreateDeliveryResponse> CreateDeliveryAsync(CreateDeliveryRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  CreateExportTask
 
 
         /// <summary>
         /// Creates an export task so that you can efficiently export data from a log group to
-        /// an Amazon S3 bucket. When you perform a <code>CreateExportTask</code> operation, you
-        /// must use credentials that have permission to write to the S3 bucket that you specify
-        /// as the destination.
+        /// an Amazon S3 bucket. When you perform a <c>CreateExportTask</c> operation, you must
+        /// use credentials that have permission to write to the S3 bucket that you specify as
+        /// the destination.
         /// 
         ///  
         /// <para>
@@ -353,8 +524,8 @@ namespace Amazon.CloudWatchLogs
         /// This is an asynchronous call. If all the required information is provided, this operation
         /// initiates an export task and responds with the ID of the task. After the task has
         /// started, you can use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeExportTasks.html">DescribeExportTasks</a>
-        /// to get the status of the export task. Each account can only have one active (<code>RUNNING</code>
-        /// or <code>PENDING</code>) export task at a time. To cancel an export task, use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CancelExportTask.html">CancelExportTask</a>.
+        /// to get the status of the export task. Each account can only have one active (<c>RUNNING</c>
+        /// or <c>PENDING</c>) export task at a time. To cancel an export task, use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CancelExportTask.html">CancelExportTask</a>.
         /// </para>
         ///  
         /// <para>
@@ -397,9 +568,9 @@ namespace Amazon.CloudWatchLogs
 
         /// <summary>
         /// Creates an export task so that you can efficiently export data from a log group to
-        /// an Amazon S3 bucket. When you perform a <code>CreateExportTask</code> operation, you
-        /// must use credentials that have permission to write to the S3 bucket that you specify
-        /// as the destination.
+        /// an Amazon S3 bucket. When you perform a <c>CreateExportTask</c> operation, you must
+        /// use credentials that have permission to write to the S3 bucket that you specify as
+        /// the destination.
         /// 
         ///  
         /// <para>
@@ -416,8 +587,8 @@ namespace Amazon.CloudWatchLogs
         /// This is an asynchronous call. If all the required information is provided, this operation
         /// initiates an export task and responds with the ID of the task. After the task has
         /// started, you can use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeExportTasks.html">DescribeExportTasks</a>
-        /// to get the status of the export task. Each account can only have one active (<code>RUNNING</code>
-        /// or <code>PENDING</code>) export task at a time. To cancel an export task, use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CancelExportTask.html">CancelExportTask</a>.
+        /// to get the status of the export task. Each account can only have one active (<c>RUNNING</c>
+        /// or <c>PENDING</c>) export task at a time. To cancel an export task, use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CancelExportTask.html">CancelExportTask</a>.
         /// </para>
         ///  
         /// <para>
@@ -461,6 +632,150 @@ namespace Amazon.CloudWatchLogs
 
         #endregion
         
+        #region  CreateLogAnomalyDetector
+
+
+        /// <summary>
+        /// Creates an <i>anomaly detector</i> that regularly scans one or more log groups and
+        /// look for patterns and anomalies in the logs.
+        /// 
+        ///  
+        /// <para>
+        /// An anomaly detector can help surface issues by automatically discovering anomalies
+        /// in your log event traffic. An anomaly detector uses machine learning algorithms to
+        /// scan log events and find <i>patterns</i>. A pattern is a shared text structure that
+        /// recurs among your log fields. Patterns provide a useful tool for analyzing large sets
+        /// of logs because a large number of log events can often be compressed into a few patterns.
+        /// </para>
+        ///  
+        /// <para>
+        /// The anomaly detector uses pattern recognition to find <c>anomalies</c>, which are
+        /// unusual log events. It uses the <c>evaluationFrequency</c> to compare current log
+        /// events and patterns with trained baselines. 
+        /// </para>
+        ///  
+        /// <para>
+        /// Fields within a pattern are called <i>tokens</i>. Fields that vary within a pattern,
+        /// such as a request ID or timestamp, are referred to as <i>dynamic tokens</i> and represented
+        /// by <c>&lt;*&gt;</c>. 
+        /// </para>
+        ///  
+        /// <para>
+        /// The following is an example of a pattern:
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>[INFO] Request time: &lt;*&gt; ms</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// This pattern represents log events like <c>[INFO] Request time: 327 ms</c> and other
+        /// similar log events that differ only by the number, in this csse 327. When the pattern
+        /// is displayed, the different numbers are replaced by <c>&lt;*&gt;</c> 
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// Any parts of log events that are masked as sensitive data are not scanned for anomalies.
+        /// For more information about masking sensitive data, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/mask-sensitive-log-data.html">Help
+        /// protect sensitive log data with masking</a>. 
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateLogAnomalyDetector service method.</param>
+        /// 
+        /// <returns>The response from the CreateLogAnomalyDetector service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.LimitExceededException">
+        /// You have reached the maximum number of resources that can be created.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/CreateLogAnomalyDetector">REST API Reference for CreateLogAnomalyDetector Operation</seealso>
+        CreateLogAnomalyDetectorResponse CreateLogAnomalyDetector(CreateLogAnomalyDetectorRequest request);
+
+
+
+        /// <summary>
+        /// Creates an <i>anomaly detector</i> that regularly scans one or more log groups and
+        /// look for patterns and anomalies in the logs.
+        /// 
+        ///  
+        /// <para>
+        /// An anomaly detector can help surface issues by automatically discovering anomalies
+        /// in your log event traffic. An anomaly detector uses machine learning algorithms to
+        /// scan log events and find <i>patterns</i>. A pattern is a shared text structure that
+        /// recurs among your log fields. Patterns provide a useful tool for analyzing large sets
+        /// of logs because a large number of log events can often be compressed into a few patterns.
+        /// </para>
+        ///  
+        /// <para>
+        /// The anomaly detector uses pattern recognition to find <c>anomalies</c>, which are
+        /// unusual log events. It uses the <c>evaluationFrequency</c> to compare current log
+        /// events and patterns with trained baselines. 
+        /// </para>
+        ///  
+        /// <para>
+        /// Fields within a pattern are called <i>tokens</i>. Fields that vary within a pattern,
+        /// such as a request ID or timestamp, are referred to as <i>dynamic tokens</i> and represented
+        /// by <c>&lt;*&gt;</c>. 
+        /// </para>
+        ///  
+        /// <para>
+        /// The following is an example of a pattern:
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>[INFO] Request time: &lt;*&gt; ms</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// This pattern represents log events like <c>[INFO] Request time: 327 ms</c> and other
+        /// similar log events that differ only by the number, in this csse 327. When the pattern
+        /// is displayed, the different numbers are replaced by <c>&lt;*&gt;</c> 
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// Any parts of log events that are masked as sensitive data are not scanned for anomalies.
+        /// For more information about masking sensitive data, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/mask-sensitive-log-data.html">Help
+        /// protect sensitive log data with masking</a>. 
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateLogAnomalyDetector service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateLogAnomalyDetector service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.LimitExceededException">
+        /// You have reached the maximum number of resources that can be created.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/CreateLogAnomalyDetector">REST API Reference for CreateLogAnomalyDetector Operation</seealso>
+        Task<CreateLogAnomalyDetectorResponse> CreateLogAnomalyDetectorAsync(CreateLogAnomalyDetectorRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  CreateLogGroup
 
 
@@ -485,6 +800,10 @@ namespace Amazon.CloudWatchLogs
         /// Log group names consist of the following characters: a-z, A-Z, 0-9, '_' (underscore),
         /// '-' (hyphen), '/' (forward slash), '.' (period), and '#' (number sign)
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Log group names can't start with the string <c>aws/</c> 
+        /// </para>
         ///  </li> </ul> 
         /// <para>
         /// When you create a log group, by default the log events in the log group do not expire.
@@ -501,7 +820,7 @@ namespace Amazon.CloudWatchLogs
         ///  
         /// <para>
         /// If you attempt to associate a KMS key with the log group but the KMS key does not
-        /// exist or the KMS key is disabled, you receive an <code>InvalidParameterException</code>
+        /// exist or the KMS key is disabled, you receive an <c>InvalidParameterException</c>
         /// error. 
         /// </para>
         ///  <important> 
@@ -556,6 +875,10 @@ namespace Amazon.CloudWatchLogs
         /// Log group names consist of the following characters: a-z, A-Z, 0-9, '_' (underscore),
         /// '-' (hyphen), '/' (forward slash), '.' (period), and '#' (number sign)
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Log group names can't start with the string <c>aws/</c> 
+        /// </para>
         ///  </li> </ul> 
         /// <para>
         /// When you create a log group, by default the log events in the log group do not expire.
@@ -572,7 +895,7 @@ namespace Amazon.CloudWatchLogs
         ///  
         /// <para>
         /// If you attempt to associate a KMS key with the log group but the KMS key does not
-        /// exist or the KMS key is disabled, you receive an <code>InvalidParameterException</code>
+        /// exist or the KMS key is disabled, you receive an <c>InvalidParameterException</c>
         /// error. 
         /// </para>
         ///  <important> 
@@ -620,8 +943,8 @@ namespace Amazon.CloudWatchLogs
         ///  
         /// <para>
         /// There is no limit on the number of log streams that you can create for a log group.
-        /// There is a limit of 50 TPS on <code>CreateLogStream</code> operations, after which
-        /// transactions are throttled.
+        /// There is a limit of 50 TPS on <c>CreateLogStream</c> operations, after which transactions
+        /// are throttled.
         /// </para>
         ///  
         /// <para>
@@ -669,8 +992,8 @@ namespace Amazon.CloudWatchLogs
         ///  
         /// <para>
         /// There is no limit on the number of log streams that you can create for a log group.
-        /// There is a limit of 50 TPS on <code>CreateLogStream</code> operations, after which
-        /// transactions are throttled.
+        /// There is a limit of 50 TPS on <c>CreateLogStream</c> operations, after which transactions
+        /// are throttled.
         /// </para>
         ///  
         /// <para>
@@ -717,12 +1040,40 @@ namespace Amazon.CloudWatchLogs
 
 
         /// <summary>
-        /// Deletes a CloudWatch Logs account policy.
+        /// Deletes a CloudWatch Logs account policy. This stops the account-wide policy from
+        /// applying to log groups in the account. If you delete a data protection policy or subscription
+        /// filter policy, any log-group level policies of those types remain in effect.
         /// 
         ///  
         /// <para>
-        /// To use this operation, you must be signed on with the <code>logs:DeleteDataProtectionPolicy</code>
-        /// and <code>logs:DeleteAccountPolicy</code> permissions.
+        /// To use this operation, you must be signed on with the correct permissions depending
+        /// on the type of policy that you are deleting.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// To delete a data protection policy, you must have the <c>logs:DeleteDataProtectionPolicy</c>
+        /// and <c>logs:DeleteAccountPolicy</c> permissions.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// To delete a subscription filter policy, you must have the <c>logs:DeleteSubscriptionFilter</c>
+        /// and <c>logs:DeleteAccountPolicy</c> permissions.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// To delete a transformer policy, you must have the <c>logs:DeleteTransformer</c> and
+        /// <c>logs:DeleteAccountPolicy</c> permissions.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// To delete a field index policy, you must have the <c>logs:DeleteIndexPolicy</c> and
+        /// <c>logs:DeleteAccountPolicy</c> permissions.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// If you delete a field index policy, the indexing of the log events that happened before
+        /// you deleted the policy will still be used for up to 30 days to improve CloudWatch
+        /// Logs Insights queries.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteAccountPolicy service method.</param>
@@ -746,12 +1097,40 @@ namespace Amazon.CloudWatchLogs
 
 
         /// <summary>
-        /// Deletes a CloudWatch Logs account policy.
+        /// Deletes a CloudWatch Logs account policy. This stops the account-wide policy from
+        /// applying to log groups in the account. If you delete a data protection policy or subscription
+        /// filter policy, any log-group level policies of those types remain in effect.
         /// 
         ///  
         /// <para>
-        /// To use this operation, you must be signed on with the <code>logs:DeleteDataProtectionPolicy</code>
-        /// and <code>logs:DeleteAccountPolicy</code> permissions.
+        /// To use this operation, you must be signed on with the correct permissions depending
+        /// on the type of policy that you are deleting.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// To delete a data protection policy, you must have the <c>logs:DeleteDataProtectionPolicy</c>
+        /// and <c>logs:DeleteAccountPolicy</c> permissions.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// To delete a subscription filter policy, you must have the <c>logs:DeleteSubscriptionFilter</c>
+        /// and <c>logs:DeleteAccountPolicy</c> permissions.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// To delete a transformer policy, you must have the <c>logs:DeleteTransformer</c> and
+        /// <c>logs:DeleteAccountPolicy</c> permissions.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// To delete a field index policy, you must have the <c>logs:DeleteIndexPolicy</c> and
+        /// <c>logs:DeleteAccountPolicy</c> permissions.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// If you delete a field index policy, the indexing of the log events that happened before
+        /// you deleted the policy will still be used for up to 30 days to improve CloudWatch
+        /// Logs Insights queries.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteAccountPolicy service method.</param>
@@ -839,6 +1218,294 @@ namespace Amazon.CloudWatchLogs
 
         #endregion
         
+        #region  DeleteDelivery
+
+
+        /// <summary>
+        /// Deletes s <i>delivery</i>. A delivery is a connection between a logical <i>delivery
+        /// source</i> and a logical <i>delivery destination</i>. Deleting a delivery only deletes
+        /// the connection between the delivery source and delivery destination. It does not delete
+        /// the delivery destination or the delivery source.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDelivery service method.</param>
+        /// 
+        /// <returns>The response from the DeleteDelivery service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ConflictException">
+        /// This operation attempted to create a resource that already exists.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DeleteDelivery">REST API Reference for DeleteDelivery Operation</seealso>
+        DeleteDeliveryResponse DeleteDelivery(DeleteDeliveryRequest request);
+
+
+
+        /// <summary>
+        /// Deletes s <i>delivery</i>. A delivery is a connection between a logical <i>delivery
+        /// source</i> and a logical <i>delivery destination</i>. Deleting a delivery only deletes
+        /// the connection between the delivery source and delivery destination. It does not delete
+        /// the delivery destination or the delivery source.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDelivery service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteDelivery service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ConflictException">
+        /// This operation attempted to create a resource that already exists.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DeleteDelivery">REST API Reference for DeleteDelivery Operation</seealso>
+        Task<DeleteDeliveryResponse> DeleteDeliveryAsync(DeleteDeliveryRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DeleteDeliveryDestination
+
+
+        /// <summary>
+        /// Deletes a <i>delivery destination</i>. A delivery is a connection between a logical
+        /// <i>delivery source</i> and a logical <i>delivery destination</i>.
+        /// 
+        ///  
+        /// <para>
+        /// You can't delete a delivery destination if any current deliveries are associated with
+        /// it. To find whether any deliveries are associated with this delivery destination,
+        /// use the <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeDeliveries.html">DescribeDeliveries</a>
+        /// operation and check the <c>deliveryDestinationArn</c> field in the results.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDeliveryDestination service method.</param>
+        /// 
+        /// <returns>The response from the DeleteDeliveryDestination service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ConflictException">
+        /// This operation attempted to create a resource that already exists.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DeleteDeliveryDestination">REST API Reference for DeleteDeliveryDestination Operation</seealso>
+        DeleteDeliveryDestinationResponse DeleteDeliveryDestination(DeleteDeliveryDestinationRequest request);
+
+
+
+        /// <summary>
+        /// Deletes a <i>delivery destination</i>. A delivery is a connection between a logical
+        /// <i>delivery source</i> and a logical <i>delivery destination</i>.
+        /// 
+        ///  
+        /// <para>
+        /// You can't delete a delivery destination if any current deliveries are associated with
+        /// it. To find whether any deliveries are associated with this delivery destination,
+        /// use the <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeDeliveries.html">DescribeDeliveries</a>
+        /// operation and check the <c>deliveryDestinationArn</c> field in the results.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDeliveryDestination service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteDeliveryDestination service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ConflictException">
+        /// This operation attempted to create a resource that already exists.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DeleteDeliveryDestination">REST API Reference for DeleteDeliveryDestination Operation</seealso>
+        Task<DeleteDeliveryDestinationResponse> DeleteDeliveryDestinationAsync(DeleteDeliveryDestinationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DeleteDeliveryDestinationPolicy
+
+
+        /// <summary>
+        /// Deletes a delivery destination policy. For more information about these policies,
+        /// see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestinationPolicy.html">PutDeliveryDestinationPolicy</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDeliveryDestinationPolicy service method.</param>
+        /// 
+        /// <returns>The response from the DeleteDeliveryDestinationPolicy service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ConflictException">
+        /// This operation attempted to create a resource that already exists.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DeleteDeliveryDestinationPolicy">REST API Reference for DeleteDeliveryDestinationPolicy Operation</seealso>
+        DeleteDeliveryDestinationPolicyResponse DeleteDeliveryDestinationPolicy(DeleteDeliveryDestinationPolicyRequest request);
+
+
+
+        /// <summary>
+        /// Deletes a delivery destination policy. For more information about these policies,
+        /// see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestinationPolicy.html">PutDeliveryDestinationPolicy</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDeliveryDestinationPolicy service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteDeliveryDestinationPolicy service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ConflictException">
+        /// This operation attempted to create a resource that already exists.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DeleteDeliveryDestinationPolicy">REST API Reference for DeleteDeliveryDestinationPolicy Operation</seealso>
+        Task<DeleteDeliveryDestinationPolicyResponse> DeleteDeliveryDestinationPolicyAsync(DeleteDeliveryDestinationPolicyRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DeleteDeliverySource
+
+
+        /// <summary>
+        /// Deletes a <i>delivery source</i>. A delivery is a connection between a logical <i>delivery
+        /// source</i> and a logical <i>delivery destination</i>.
+        /// 
+        ///  
+        /// <para>
+        /// You can't delete a delivery source if any current deliveries are associated with it.
+        /// To find whether any deliveries are associated with this delivery source, use the <a
+        /// href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeDeliveries.html">DescribeDeliveries</a>
+        /// operation and check the <c>deliverySourceName</c> field in the results.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDeliverySource service method.</param>
+        /// 
+        /// <returns>The response from the DeleteDeliverySource service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ConflictException">
+        /// This operation attempted to create a resource that already exists.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DeleteDeliverySource">REST API Reference for DeleteDeliverySource Operation</seealso>
+        DeleteDeliverySourceResponse DeleteDeliverySource(DeleteDeliverySourceRequest request);
+
+
+
+        /// <summary>
+        /// Deletes a <i>delivery source</i>. A delivery is a connection between a logical <i>delivery
+        /// source</i> and a logical <i>delivery destination</i>.
+        /// 
+        ///  
+        /// <para>
+        /// You can't delete a delivery source if any current deliveries are associated with it.
+        /// To find whether any deliveries are associated with this delivery source, use the <a
+        /// href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeDeliveries.html">DescribeDeliveries</a>
+        /// operation and check the <c>deliverySourceName</c> field in the results.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDeliverySource service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteDeliverySource service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ConflictException">
+        /// This operation attempted to create a resource that already exists.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DeleteDeliverySource">REST API Reference for DeleteDeliverySource Operation</seealso>
+        Task<DeleteDeliverySourceResponse> DeleteDeliverySourceAsync(DeleteDeliverySourceRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  DeleteDestination
 
 
@@ -892,6 +1559,204 @@ namespace Amazon.CloudWatchLogs
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DeleteDestination">REST API Reference for DeleteDestination Operation</seealso>
         Task<DeleteDestinationResponse> DeleteDestinationAsync(DeleteDestinationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DeleteIndexPolicy
+
+
+        /// <summary>
+        /// Deletes a log-group level field index policy that was applied to a single log group.
+        /// The indexing of the log events that happened before you delete the policy will still
+        /// be used for as many as 30 days to improve CloudWatch Logs Insights queries.
+        /// 
+        ///  
+        /// <para>
+        /// You can't use this operation to delete an account-level index policy. Instead, use
+        /// <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DeleteAccountPolicy.html">DeletAccountPolicy</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you delete a log-group level field index policy and there is an account-level field
+        /// index policy, in a few minutes the log group begins using that account-wide policy
+        /// to index new incoming log events. 
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteIndexPolicy service method.</param>
+        /// 
+        /// <returns>The response from the DeleteIndexPolicy service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.LimitExceededException">
+        /// You have reached the maximum number of resources that can be created.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DeleteIndexPolicy">REST API Reference for DeleteIndexPolicy Operation</seealso>
+        DeleteIndexPolicyResponse DeleteIndexPolicy(DeleteIndexPolicyRequest request);
+
+
+
+        /// <summary>
+        /// Deletes a log-group level field index policy that was applied to a single log group.
+        /// The indexing of the log events that happened before you delete the policy will still
+        /// be used for as many as 30 days to improve CloudWatch Logs Insights queries.
+        /// 
+        ///  
+        /// <para>
+        /// You can't use this operation to delete an account-level index policy. Instead, use
+        /// <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DeleteAccountPolicy.html">DeletAccountPolicy</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you delete a log-group level field index policy and there is an account-level field
+        /// index policy, in a few minutes the log group begins using that account-wide policy
+        /// to index new incoming log events. 
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteIndexPolicy service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteIndexPolicy service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.LimitExceededException">
+        /// You have reached the maximum number of resources that can be created.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DeleteIndexPolicy">REST API Reference for DeleteIndexPolicy Operation</seealso>
+        Task<DeleteIndexPolicyResponse> DeleteIndexPolicyAsync(DeleteIndexPolicyRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DeleteIntegration
+
+
+        /// <summary>
+        /// Deletes the integration between CloudWatch Logs and OpenSearch Service. If your integration
+        /// has active vended logs dashboards, you must specify <c>true</c> for the <c>force</c>
+        /// parameter, otherwise the operation will fail. If you delete the integration by setting
+        /// <c>force</c> to <c>true</c>, all your vended logs dashboards powered by OpenSearch
+        /// Service will be deleted and the data that was on them will no longer be accessible.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteIntegration service method.</param>
+        /// 
+        /// <returns>The response from the DeleteIntegration service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DeleteIntegration">REST API Reference for DeleteIntegration Operation</seealso>
+        DeleteIntegrationResponse DeleteIntegration(DeleteIntegrationRequest request);
+
+
+
+        /// <summary>
+        /// Deletes the integration between CloudWatch Logs and OpenSearch Service. If your integration
+        /// has active vended logs dashboards, you must specify <c>true</c> for the <c>force</c>
+        /// parameter, otherwise the operation will fail. If you delete the integration by setting
+        /// <c>force</c> to <c>true</c>, all your vended logs dashboards powered by OpenSearch
+        /// Service will be deleted and the data that was on them will no longer be accessible.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteIntegration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteIntegration service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DeleteIntegration">REST API Reference for DeleteIntegration Operation</seealso>
+        Task<DeleteIntegrationResponse> DeleteIntegrationAsync(DeleteIntegrationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DeleteLogAnomalyDetector
+
+
+        /// <summary>
+        /// Deletes the specified CloudWatch Logs anomaly detector.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteLogAnomalyDetector service method.</param>
+        /// 
+        /// <returns>The response from the DeleteLogAnomalyDetector service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DeleteLogAnomalyDetector">REST API Reference for DeleteLogAnomalyDetector Operation</seealso>
+        DeleteLogAnomalyDetectorResponse DeleteLogAnomalyDetector(DeleteLogAnomalyDetectorRequest request);
+
+
+
+        /// <summary>
+        /// Deletes the specified CloudWatch Logs anomaly detector.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteLogAnomalyDetector service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteLogAnomalyDetector service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DeleteLogAnomalyDetector">REST API Reference for DeleteLogAnomalyDetector Operation</seealso>
+        Task<DeleteLogAnomalyDetectorResponse> DeleteLogAnomalyDetectorAsync(DeleteLogAnomalyDetectorRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -1064,12 +1929,12 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// Each <code>DeleteQueryDefinition</code> operation can delete one query definition.
+        /// Each <c>DeleteQueryDefinition</c> operation can delete one query definition.
         /// </para>
         ///  
         /// <para>
-        /// You must have the <code>logs:DeleteQueryDefinition</code> permission to be able to
-        /// perform this operation.
+        /// You must have the <c>logs:DeleteQueryDefinition</c> permission to be able to perform
+        /// this operation.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteQueryDefinition service method.</param>
@@ -1095,12 +1960,12 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// Each <code>DeleteQueryDefinition</code> operation can delete one query definition.
+        /// Each <c>DeleteQueryDefinition</c> operation can delete one query definition.
         /// </para>
         ///  
         /// <para>
-        /// You must have the <code>logs:DeleteQueryDefinition</code> permission to be able to
-        /// perform this operation.
+        /// You must have the <c>logs:DeleteQueryDefinition</c> permission to be able to perform
+        /// this operation.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteQueryDefinition service method.</param>
@@ -1285,6 +2150,84 @@ namespace Amazon.CloudWatchLogs
 
         #endregion
         
+        #region  DeleteTransformer
+
+
+        /// <summary>
+        /// Deletes the log transformer for the specified log group. As soon as you do this, the
+        /// transformation of incoming log events according to that transformer stops. If this
+        /// account has an account-level transformer that applies to this log group, the log group
+        /// begins using that account-level transformer when this log-group level transformer
+        /// is deleted.
+        /// 
+        ///  
+        /// <para>
+        /// After you delete a transformer, be sure to edit any metric filters or subscription
+        /// filters that relied on the transformed versions of the log events.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteTransformer service method.</param>
+        /// 
+        /// <returns>The response from the DeleteTransformer service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidOperationException">
+        /// The operation is not valid on the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DeleteTransformer">REST API Reference for DeleteTransformer Operation</seealso>
+        DeleteTransformerResponse DeleteTransformer(DeleteTransformerRequest request);
+
+
+
+        /// <summary>
+        /// Deletes the log transformer for the specified log group. As soon as you do this, the
+        /// transformation of incoming log events according to that transformer stops. If this
+        /// account has an account-level transformer that applies to this log group, the log group
+        /// begins using that account-level transformer when this log-group level transformer
+        /// is deleted.
+        /// 
+        ///  
+        /// <para>
+        /// After you delete a transformer, be sure to edit any metric filters or subscription
+        /// filters that relied on the transformed versions of the log events.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteTransformer service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteTransformer service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidOperationException">
+        /// The operation is not valid on the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DeleteTransformer">REST API Reference for DeleteTransformer Operation</seealso>
+        Task<DeleteTransformerResponse> DeleteTransformerAsync(DeleteTransformerRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  DescribeAccountPolicies
 
 
@@ -1334,6 +2277,248 @@ namespace Amazon.CloudWatchLogs
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DescribeAccountPolicies">REST API Reference for DescribeAccountPolicies Operation</seealso>
         Task<DescribeAccountPoliciesResponse> DescribeAccountPoliciesAsync(DescribeAccountPoliciesRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DescribeConfigurationTemplates
+
+
+        /// <summary>
+        /// Use this operation to return the valid and default values that are used when creating
+        /// delivery sources, delivery destinations, and deliveries. For more information about
+        /// deliveries, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CreateDelivery.html">CreateDelivery</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeConfigurationTemplates service method.</param>
+        /// 
+        /// <returns>The response from the DescribeConfigurationTemplates service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DescribeConfigurationTemplates">REST API Reference for DescribeConfigurationTemplates Operation</seealso>
+        DescribeConfigurationTemplatesResponse DescribeConfigurationTemplates(DescribeConfigurationTemplatesRequest request);
+
+
+
+        /// <summary>
+        /// Use this operation to return the valid and default values that are used when creating
+        /// delivery sources, delivery destinations, and deliveries. For more information about
+        /// deliveries, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CreateDelivery.html">CreateDelivery</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeConfigurationTemplates service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeConfigurationTemplates service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DescribeConfigurationTemplates">REST API Reference for DescribeConfigurationTemplates Operation</seealso>
+        Task<DescribeConfigurationTemplatesResponse> DescribeConfigurationTemplatesAsync(DescribeConfigurationTemplatesRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DescribeDeliveries
+
+
+        /// <summary>
+        /// Retrieves a list of the deliveries that have been created in the account.
+        /// 
+        ///  
+        /// <para>
+        /// A <i>delivery</i> is a connection between a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliverySource.html">
+        /// <i>delivery source</i> </a> and a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestination.html">
+        /// <i>delivery destination</i> </a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// A delivery source represents an Amazon Web Services resource that sends logs to an
+        /// logs delivery destination. The destination can be CloudWatch Logs, Amazon S3, or Firehose.
+        /// Only some Amazon Web Services services support being configured as a delivery source.
+        /// These services are listed in <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html">Enable
+        /// logging from Amazon Web Services services.</a> 
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeDeliveries service method.</param>
+        /// 
+        /// <returns>The response from the DescribeDeliveries service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DescribeDeliveries">REST API Reference for DescribeDeliveries Operation</seealso>
+        DescribeDeliveriesResponse DescribeDeliveries(DescribeDeliveriesRequest request);
+
+
+
+        /// <summary>
+        /// Retrieves a list of the deliveries that have been created in the account.
+        /// 
+        ///  
+        /// <para>
+        /// A <i>delivery</i> is a connection between a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliverySource.html">
+        /// <i>delivery source</i> </a> and a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestination.html">
+        /// <i>delivery destination</i> </a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// A delivery source represents an Amazon Web Services resource that sends logs to an
+        /// logs delivery destination. The destination can be CloudWatch Logs, Amazon S3, or Firehose.
+        /// Only some Amazon Web Services services support being configured as a delivery source.
+        /// These services are listed in <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html">Enable
+        /// logging from Amazon Web Services services.</a> 
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeDeliveries service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeDeliveries service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DescribeDeliveries">REST API Reference for DescribeDeliveries Operation</seealso>
+        Task<DescribeDeliveriesResponse> DescribeDeliveriesAsync(DescribeDeliveriesRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DescribeDeliveryDestinations
+
+
+        /// <summary>
+        /// Retrieves a list of the delivery destinations that have been created in the account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeDeliveryDestinations service method.</param>
+        /// 
+        /// <returns>The response from the DescribeDeliveryDestinations service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DescribeDeliveryDestinations">REST API Reference for DescribeDeliveryDestinations Operation</seealso>
+        DescribeDeliveryDestinationsResponse DescribeDeliveryDestinations(DescribeDeliveryDestinationsRequest request);
+
+
+
+        /// <summary>
+        /// Retrieves a list of the delivery destinations that have been created in the account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeDeliveryDestinations service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeDeliveryDestinations service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DescribeDeliveryDestinations">REST API Reference for DescribeDeliveryDestinations Operation</seealso>
+        Task<DescribeDeliveryDestinationsResponse> DescribeDeliveryDestinationsAsync(DescribeDeliveryDestinationsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DescribeDeliverySources
+
+
+        /// <summary>
+        /// Retrieves a list of the delivery sources that have been created in the account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeDeliverySources service method.</param>
+        /// 
+        /// <returns>The response from the DescribeDeliverySources service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DescribeDeliverySources">REST API Reference for DescribeDeliverySources Operation</seealso>
+        DescribeDeliverySourcesResponse DescribeDeliverySources(DescribeDeliverySourcesRequest request);
+
+
+
+        /// <summary>
+        /// Retrieves a list of the delivery sources that have been created in the account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeDeliverySources service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeDeliverySources service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DescribeDeliverySources">REST API Reference for DescribeDeliverySources Operation</seealso>
+        Task<DescribeDeliverySourcesResponse> DescribeDeliverySourcesAsync(DescribeDeliverySourcesRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -1419,6 +2604,158 @@ namespace Amazon.CloudWatchLogs
 
         #endregion
         
+        #region  DescribeFieldIndexes
+
+
+        /// <summary>
+        /// Returns a list of field indexes listed in the field index policies of one or more
+        /// log groups. For more information about field index policies, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutIndexPolicy.html">PutIndexPolicy</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeFieldIndexes service method.</param>
+        /// 
+        /// <returns>The response from the DescribeFieldIndexes service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.LimitExceededException">
+        /// You have reached the maximum number of resources that can be created.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DescribeFieldIndexes">REST API Reference for DescribeFieldIndexes Operation</seealso>
+        DescribeFieldIndexesResponse DescribeFieldIndexes(DescribeFieldIndexesRequest request);
+
+
+
+        /// <summary>
+        /// Returns a list of field indexes listed in the field index policies of one or more
+        /// log groups. For more information about field index policies, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutIndexPolicy.html">PutIndexPolicy</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeFieldIndexes service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeFieldIndexes service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.LimitExceededException">
+        /// You have reached the maximum number of resources that can be created.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DescribeFieldIndexes">REST API Reference for DescribeFieldIndexes Operation</seealso>
+        Task<DescribeFieldIndexesResponse> DescribeFieldIndexesAsync(DescribeFieldIndexesRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DescribeIndexPolicies
+
+
+        /// <summary>
+        /// Returns the field index policies of one or more log groups. For more information about
+        /// field index policies, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutIndexPolicy.html">PutIndexPolicy</a>.
+        /// 
+        ///  
+        /// <para>
+        /// If a specified log group has a log-group level index policy, that policy is returned
+        /// by this operation.
+        /// </para>
+        ///  
+        /// <para>
+        /// If a specified log group doesn't have a log-group level index policy, but an account-wide
+        /// index policy applies to it, that account-wide policy is returned by this operation.
+        /// </para>
+        ///  
+        /// <para>
+        /// To find information about only account-level policies, use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeAccountPolicies.html">DescribeAccountPolicies</a>
+        /// instead.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeIndexPolicies service method.</param>
+        /// 
+        /// <returns>The response from the DescribeIndexPolicies service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.LimitExceededException">
+        /// You have reached the maximum number of resources that can be created.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DescribeIndexPolicies">REST API Reference for DescribeIndexPolicies Operation</seealso>
+        DescribeIndexPoliciesResponse DescribeIndexPolicies(DescribeIndexPoliciesRequest request);
+
+
+
+        /// <summary>
+        /// Returns the field index policies of one or more log groups. For more information about
+        /// field index policies, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutIndexPolicy.html">PutIndexPolicy</a>.
+        /// 
+        ///  
+        /// <para>
+        /// If a specified log group has a log-group level index policy, that policy is returned
+        /// by this operation.
+        /// </para>
+        ///  
+        /// <para>
+        /// If a specified log group doesn't have a log-group level index policy, but an account-wide
+        /// index policy applies to it, that account-wide policy is returned by this operation.
+        /// </para>
+        ///  
+        /// <para>
+        /// To find information about only account-level policies, use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeAccountPolicies.html">DescribeAccountPolicies</a>
+        /// instead.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeIndexPolicies service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeIndexPolicies service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.LimitExceededException">
+        /// You have reached the maximum number of resources that can be created.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DescribeIndexPolicies">REST API Reference for DescribeIndexPolicies Operation</seealso>
+        Task<DescribeIndexPoliciesResponse> DescribeIndexPoliciesAsync(DescribeIndexPoliciesRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  DescribeLogGroups
 
 
@@ -1428,11 +2765,11 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// CloudWatch Logs doesn’t support IAM policies that control access to the <code>DescribeLogGroups</code>
-        /// action by using the <code>aws:ResourceTag/<i>key-name</i> </code> condition key. Other
-        /// CloudWatch Logs actions do support the use of the <code>aws:ResourceTag/<i>key-name</i>
-        /// </code> condition key to control access. For more information about using tags to
-        /// control access, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html">Controlling
+        /// CloudWatch Logs doesn't support IAM policies that control access to the <c>DescribeLogGroups</c>
+        /// action by using the <c>aws:ResourceTag/<i>key-name</i> </c> condition key. Other CloudWatch
+        /// Logs actions do support the use of the <c>aws:ResourceTag/<i>key-name</i> </c> condition
+        /// key to control access. For more information about using tags to control access, see
+        /// <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html">Controlling
         /// access to Amazon Web Services resources using tags</a>.
         /// </para>
         ///  
@@ -1461,11 +2798,11 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// CloudWatch Logs doesn’t support IAM policies that control access to the <code>DescribeLogGroups</code>
-        /// action by using the <code>aws:ResourceTag/<i>key-name</i> </code> condition key. Other
-        /// CloudWatch Logs actions do support the use of the <code>aws:ResourceTag/<i>key-name</i>
-        /// </code> condition key to control access. For more information about using tags to
-        /// control access, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html">Controlling
+        /// CloudWatch Logs doesn't support IAM policies that control access to the <c>DescribeLogGroups</c>
+        /// action by using the <c>aws:ResourceTag/<i>key-name</i> </c> condition key. Other CloudWatch
+        /// Logs actions do support the use of the <c>aws:ResourceTag/<i>key-name</i> </c> condition
+        /// key to control access. For more information about using tags to control access, see
+        /// <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html">Controlling
         /// access to Amazon Web Services resources using tags</a>.
         /// </para>
         ///  
@@ -1495,11 +2832,11 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// CloudWatch Logs doesn’t support IAM policies that control access to the <code>DescribeLogGroups</code>
-        /// action by using the <code>aws:ResourceTag/<i>key-name</i> </code> condition key. Other
-        /// CloudWatch Logs actions do support the use of the <code>aws:ResourceTag/<i>key-name</i>
-        /// </code> condition key to control access. For more information about using tags to
-        /// control access, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html">Controlling
+        /// CloudWatch Logs doesn't support IAM policies that control access to the <c>DescribeLogGroups</c>
+        /// action by using the <c>aws:ResourceTag/<i>key-name</i> </c> condition key. Other CloudWatch
+        /// Logs actions do support the use of the <c>aws:ResourceTag/<i>key-name</i> </c> condition
+        /// key to control access. For more information about using tags to control access, see
+        /// <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html">Controlling
         /// access to Amazon Web Services resources using tags</a>.
         /// </para>
         ///  
@@ -1532,11 +2869,11 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// CloudWatch Logs doesn’t support IAM policies that control access to the <code>DescribeLogGroups</code>
-        /// action by using the <code>aws:ResourceTag/<i>key-name</i> </code> condition key. Other
-        /// CloudWatch Logs actions do support the use of the <code>aws:ResourceTag/<i>key-name</i>
-        /// </code> condition key to control access. For more information about using tags to
-        /// control access, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html">Controlling
+        /// CloudWatch Logs doesn't support IAM policies that control access to the <c>DescribeLogGroups</c>
+        /// action by using the <c>aws:ResourceTag/<i>key-name</i> </c> condition key. Other CloudWatch
+        /// Logs actions do support the use of the <c>aws:ResourceTag/<i>key-name</i> </c> condition
+        /// key to control access. For more information about using tags to control access, see
+        /// <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html">Controlling
         /// access to Amazon Web Services resources using tags</a>.
         /// </para>
         ///  
@@ -1573,9 +2910,9 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// You can specify the log group to search by using either <code>logGroupIdentifier</code>
-        /// or <code>logGroupName</code>. You must include one of these two parameters, but you
-        /// can't include both. 
+        /// You can specify the log group to search by using either <c>logGroupIdentifier</c>
+        /// or <c>logGroupName</c>. You must include one of these two parameters, but you can't
+        /// include both. 
         /// </para>
         ///  
         /// <para>
@@ -1613,9 +2950,9 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// You can specify the log group to search by using either <code>logGroupIdentifier</code>
-        /// or <code>logGroupName</code>. You must include one of these two parameters, but you
-        /// can't include both. 
+        /// You can specify the log group to search by using either <c>logGroupIdentifier</c>
+        /// or <c>logGroupName</c>. You must include one of these two parameters, but you can't
+        /// include both. 
         /// </para>
         ///  
         /// <para>
@@ -1755,12 +3092,13 @@ namespace Amazon.CloudWatchLogs
 
         /// <summary>
         /// This operation returns a paginated list of your saved CloudWatch Logs Insights query
-        /// definitions.
+        /// definitions. You can retrieve query definitions from the current account or from a
+        /// source account that is linked to the current account.
         /// 
         ///  
         /// <para>
-        /// You can use the <code>queryDefinitionNamePrefix</code> parameter to limit the results
-        /// to only the query definitions that have names that start with a certain string.
+        /// You can use the <c>queryDefinitionNamePrefix</c> parameter to limit the results to
+        /// only the query definitions that have names that start with a certain string.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeQueryDefinitions service method.</param>
@@ -1779,12 +3117,13 @@ namespace Amazon.CloudWatchLogs
 
         /// <summary>
         /// This operation returns a paginated list of your saved CloudWatch Logs Insights query
-        /// definitions.
+        /// definitions. You can retrieve query definitions from the current account or from a
+        /// source account that is linked to the current account.
         /// 
         ///  
         /// <para>
-        /// You can use the <code>queryDefinitionNamePrefix</code> parameter to limit the results
-        /// to only the query definitions that have names that start with a certain string.
+        /// You can use the <c>queryDefinitionNamePrefix</c> parameter to limit the results to
+        /// only the query definitions that have names that start with a certain string.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeQueryDefinitions service method.</param>
@@ -1901,22 +3240,22 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// When you use <code>DisassociateKmsKey</code>, you specify either the <code>logGroupName</code>
-        /// parameter or the <code>resourceIdentifier</code> parameter. You can't specify both
-        /// of those parameters in the same operation.
+        /// When you use <c>DisassociateKmsKey</c>, you specify either the <c>logGroupName</c>
+        /// parameter or the <c>resourceIdentifier</c> parameter. You can't specify both of those
+        /// parameters in the same operation.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Specify the <code>logGroupName</code> parameter to stop using the KMS key to encrypt
-        /// future log events ingested and stored in the log group. Instead, they will be encrypted
-        /// with the default CloudWatch Logs method. The log events that were ingested while the
-        /// key was associated with the log group are still encrypted with that key. Therefore,
-        /// CloudWatch Logs will need permissions for the key whenever that data is accessed.
+        /// Specify the <c>logGroupName</c> parameter to stop using the KMS key to encrypt future
+        /// log events ingested and stored in the log group. Instead, they will be encrypted with
+        /// the default CloudWatch Logs method. The log events that were ingested while the key
+        /// was associated with the log group are still encrypted with that key. Therefore, CloudWatch
+        /// Logs will need permissions for the key whenever that data is accessed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Specify the <code>resourceIdentifier</code> parameter with the <code>query-result</code>
-        /// resource to stop using the KMS key to encrypt the results of all future <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html">StartQuery</a>
+        /// Specify the <c>resourceIdentifier</c> parameter with the <c>query-result</c> resource
+        /// to stop using the KMS key to encrypt the results of all future <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html">StartQuery</a>
         /// operations in the account. They will instead be encrypted with the default CloudWatch
         /// Logs method. The results from queries that ran while the key was associated with the
         /// account are still encrypted with that key. Therefore, CloudWatch Logs will need permissions
@@ -1953,22 +3292,22 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// When you use <code>DisassociateKmsKey</code>, you specify either the <code>logGroupName</code>
-        /// parameter or the <code>resourceIdentifier</code> parameter. You can't specify both
-        /// of those parameters in the same operation.
+        /// When you use <c>DisassociateKmsKey</c>, you specify either the <c>logGroupName</c>
+        /// parameter or the <c>resourceIdentifier</c> parameter. You can't specify both of those
+        /// parameters in the same operation.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Specify the <code>logGroupName</code> parameter to stop using the KMS key to encrypt
-        /// future log events ingested and stored in the log group. Instead, they will be encrypted
-        /// with the default CloudWatch Logs method. The log events that were ingested while the
-        /// key was associated with the log group are still encrypted with that key. Therefore,
-        /// CloudWatch Logs will need permissions for the key whenever that data is accessed.
+        /// Specify the <c>logGroupName</c> parameter to stop using the KMS key to encrypt future
+        /// log events ingested and stored in the log group. Instead, they will be encrypted with
+        /// the default CloudWatch Logs method. The log events that were ingested while the key
+        /// was associated with the log group are still encrypted with that key. Therefore, CloudWatch
+        /// Logs will need permissions for the key whenever that data is accessed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Specify the <code>resourceIdentifier</code> parameter with the <code>query-result</code>
-        /// resource to stop using the KMS key to encrypt the results of all future <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html">StartQuery</a>
+        /// Specify the <c>resourceIdentifier</c> parameter with the <c>query-result</c> resource
+        /// to stop using the KMS key to encrypt the results of all future <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html">StartQuery</a>
         /// operations in the account. They will instead be encrypted with the default CloudWatch
         /// Logs method. The results from queries that ran while the key was associated with the
         /// account are still encrypted with that key. Therefore, CloudWatch Logs will need permissions
@@ -2011,13 +3350,13 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// You must have the <code>logs:FilterLogEvents</code> permission to perform this operation.
+        /// You must have the <c>logs:FilterLogEvents</c> permission to perform this operation.
         /// </para>
         ///  
         /// <para>
-        /// You can specify the log group to search by using either <code>logGroupIdentifier</code>
-        /// or <code>logGroupName</code>. You must include one of these two parameters, but you
-        /// can't include both. 
+        /// You can specify the log group to search by using either <c>logGroupIdentifier</c>
+        /// or <c>logGroupName</c>. You must include one of these two parameters, but you can't
+        /// include both. 
         /// </para>
         ///  
         /// <para>
@@ -2030,7 +3369,7 @@ namespace Amazon.CloudWatchLogs
         ///  
         /// <para>
         /// The returned log events are sorted by event timestamp, the timestamp when the event
-        /// was ingested by CloudWatch Logs, and the ID of the <code>PutLogEvents</code> request.
+        /// was ingested by CloudWatch Logs, and the ID of the <c>PutLogEvents</c> request.
         /// </para>
         ///  
         /// <para>
@@ -2063,13 +3402,13 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// You must have the <code>logs:FilterLogEvents</code> permission to perform this operation.
+        /// You must have the <c>logs:FilterLogEvents</c> permission to perform this operation.
         /// </para>
         ///  
         /// <para>
-        /// You can specify the log group to search by using either <code>logGroupIdentifier</code>
-        /// or <code>logGroupName</code>. You must include one of these two parameters, but you
-        /// can't include both. 
+        /// You can specify the log group to search by using either <c>logGroupIdentifier</c>
+        /// or <c>logGroupName</c>. You must include one of these two parameters, but you can't
+        /// include both. 
         /// </para>
         ///  
         /// <para>
@@ -2082,7 +3421,7 @@ namespace Amazon.CloudWatchLogs
         ///  
         /// <para>
         /// The returned log events are sorted by event timestamp, the timestamp when the event
-        /// was ingested by CloudWatch Logs, and the ID of the <code>PutLogEvents</code> request.
+        /// was ingested by CloudWatch Logs, and the ID of the <c>PutLogEvents</c> request.
         /// </para>
         ///  
         /// <para>
@@ -2164,6 +3503,364 @@ namespace Amazon.CloudWatchLogs
 
         #endregion
         
+        #region  GetDelivery
+
+
+        /// <summary>
+        /// Returns complete information about one logical <i>delivery</i>. A delivery is a connection
+        /// between a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliverySource.html">
+        /// <i>delivery source</i> </a> and a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestination.html">
+        /// <i>delivery destination</i> </a>.
+        /// 
+        ///  
+        /// <para>
+        /// A delivery source represents an Amazon Web Services resource that sends logs to an
+        /// logs delivery destination. The destination can be CloudWatch Logs, Amazon S3, or Firehose.
+        /// Only some Amazon Web Services services support being configured as a delivery source.
+        /// These services are listed in <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html">Enable
+        /// logging from Amazon Web Services services.</a> 
+        /// </para>
+        ///  
+        /// <para>
+        /// You need to specify the delivery <c>id</c> in this operation. You can find the IDs
+        /// of the deliveries in your account with the <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeDeliveries.html">DescribeDeliveries</a>
+        /// operation.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDelivery service method.</param>
+        /// 
+        /// <returns>The response from the GetDelivery service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/GetDelivery">REST API Reference for GetDelivery Operation</seealso>
+        GetDeliveryResponse GetDelivery(GetDeliveryRequest request);
+
+
+
+        /// <summary>
+        /// Returns complete information about one logical <i>delivery</i>. A delivery is a connection
+        /// between a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliverySource.html">
+        /// <i>delivery source</i> </a> and a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestination.html">
+        /// <i>delivery destination</i> </a>.
+        /// 
+        ///  
+        /// <para>
+        /// A delivery source represents an Amazon Web Services resource that sends logs to an
+        /// logs delivery destination. The destination can be CloudWatch Logs, Amazon S3, or Firehose.
+        /// Only some Amazon Web Services services support being configured as a delivery source.
+        /// These services are listed in <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html">Enable
+        /// logging from Amazon Web Services services.</a> 
+        /// </para>
+        ///  
+        /// <para>
+        /// You need to specify the delivery <c>id</c> in this operation. You can find the IDs
+        /// of the deliveries in your account with the <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeDeliveries.html">DescribeDeliveries</a>
+        /// operation.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDelivery service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetDelivery service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/GetDelivery">REST API Reference for GetDelivery Operation</seealso>
+        Task<GetDeliveryResponse> GetDeliveryAsync(GetDeliveryRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  GetDeliveryDestination
+
+
+        /// <summary>
+        /// Retrieves complete information about one delivery destination.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDeliveryDestination service method.</param>
+        /// 
+        /// <returns>The response from the GetDeliveryDestination service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/GetDeliveryDestination">REST API Reference for GetDeliveryDestination Operation</seealso>
+        GetDeliveryDestinationResponse GetDeliveryDestination(GetDeliveryDestinationRequest request);
+
+
+
+        /// <summary>
+        /// Retrieves complete information about one delivery destination.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDeliveryDestination service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetDeliveryDestination service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/GetDeliveryDestination">REST API Reference for GetDeliveryDestination Operation</seealso>
+        Task<GetDeliveryDestinationResponse> GetDeliveryDestinationAsync(GetDeliveryDestinationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  GetDeliveryDestinationPolicy
+
+
+        /// <summary>
+        /// Retrieves the delivery destination policy assigned to the delivery destination that
+        /// you specify. For more information about delivery destinations and their policies,
+        /// see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestinationPolicy.html">PutDeliveryDestinationPolicy</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDeliveryDestinationPolicy service method.</param>
+        /// 
+        /// <returns>The response from the GetDeliveryDestinationPolicy service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/GetDeliveryDestinationPolicy">REST API Reference for GetDeliveryDestinationPolicy Operation</seealso>
+        GetDeliveryDestinationPolicyResponse GetDeliveryDestinationPolicy(GetDeliveryDestinationPolicyRequest request);
+
+
+
+        /// <summary>
+        /// Retrieves the delivery destination policy assigned to the delivery destination that
+        /// you specify. For more information about delivery destinations and their policies,
+        /// see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestinationPolicy.html">PutDeliveryDestinationPolicy</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDeliveryDestinationPolicy service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetDeliveryDestinationPolicy service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/GetDeliveryDestinationPolicy">REST API Reference for GetDeliveryDestinationPolicy Operation</seealso>
+        Task<GetDeliveryDestinationPolicyResponse> GetDeliveryDestinationPolicyAsync(GetDeliveryDestinationPolicyRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  GetDeliverySource
+
+
+        /// <summary>
+        /// Retrieves complete information about one delivery source.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDeliverySource service method.</param>
+        /// 
+        /// <returns>The response from the GetDeliverySource service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/GetDeliverySource">REST API Reference for GetDeliverySource Operation</seealso>
+        GetDeliverySourceResponse GetDeliverySource(GetDeliverySourceRequest request);
+
+
+
+        /// <summary>
+        /// Retrieves complete information about one delivery source.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDeliverySource service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetDeliverySource service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/GetDeliverySource">REST API Reference for GetDeliverySource Operation</seealso>
+        Task<GetDeliverySourceResponse> GetDeliverySourceAsync(GetDeliverySourceRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  GetIntegration
+
+
+        /// <summary>
+        /// Returns information about one integration between CloudWatch Logs and OpenSearch Service.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetIntegration service method.</param>
+        /// 
+        /// <returns>The response from the GetIntegration service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/GetIntegration">REST API Reference for GetIntegration Operation</seealso>
+        GetIntegrationResponse GetIntegration(GetIntegrationRequest request);
+
+
+
+        /// <summary>
+        /// Returns information about one integration between CloudWatch Logs and OpenSearch Service.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetIntegration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetIntegration service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/GetIntegration">REST API Reference for GetIntegration Operation</seealso>
+        Task<GetIntegrationResponse> GetIntegrationAsync(GetIntegrationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  GetLogAnomalyDetector
+
+
+        /// <summary>
+        /// Retrieves information about the log anomaly detector that you specify.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetLogAnomalyDetector service method.</param>
+        /// 
+        /// <returns>The response from the GetLogAnomalyDetector service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/GetLogAnomalyDetector">REST API Reference for GetLogAnomalyDetector Operation</seealso>
+        GetLogAnomalyDetectorResponse GetLogAnomalyDetector(GetLogAnomalyDetectorRequest request);
+
+
+
+        /// <summary>
+        /// Retrieves information about the log anomaly detector that you specify.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetLogAnomalyDetector service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetLogAnomalyDetector service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/GetLogAnomalyDetector">REST API Reference for GetLogAnomalyDetector Operation</seealso>
+        Task<GetLogAnomalyDetectorResponse> GetLogAnomalyDetectorAsync(GetLogAnomalyDetectorRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  GetLogEvents
 
 
@@ -2187,9 +3884,9 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  
         /// <para>
-        /// You can specify the log group to search by using either <code>logGroupIdentifier</code>
-        /// or <code>logGroupName</code>. You must include one of these two parameters, but you
-        /// can't include both. 
+        /// You can specify the log group to search by using either <c>logGroupIdentifier</c>
+        /// or <c>logGroupName</c>. You must include one of these two parameters, but you can't
+        /// include both. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetLogEvents service method.</param>
@@ -2229,9 +3926,9 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  
         /// <para>
-        /// You can specify the log group to search by using either <code>logGroupIdentifier</code>
-        /// or <code>logGroupName</code>. You must include one of these two parameters, but you
-        /// can't include both. 
+        /// You can specify the log group to search by using either <c>logGroupIdentifier</c>
+        /// or <c>logGroupName</c>. You must include one of these two parameters, but you can't
+        /// include both. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetLogEvents service method.</param>
@@ -2264,15 +3961,15 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// You can specify the log group to search by using either <code>logGroupIdentifier</code>
-        /// or <code>logGroupName</code>. You must specify one of these parameters, but you can't
-        /// specify both. 
+        /// You can specify the log group to search by using either <c>logGroupIdentifier</c>
+        /// or <c>logGroupName</c>. You must specify one of these parameters, but you can't specify
+        /// both. 
         /// </para>
         ///  
         /// <para>
-        /// In the results, fields that start with <code>@</code> are fields generated by CloudWatch
-        /// Logs. For example, <code>@timestamp</code> is the timestamp of each log event. For
-        /// more information about the fields that are generated by CloudWatch logs, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_AnalyzeLogData-discoverable-fields.html">Supported
+        /// In the results, fields that start with <c>@</c> are fields generated by CloudWatch
+        /// Logs. For example, <c>@timestamp</c> is the timestamp of each log event. For more
+        /// information about the fields that are generated by CloudWatch logs, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_AnalyzeLogData-discoverable-fields.html">Supported
         /// Logs and Discovered Fields</a>.
         /// </para>
         ///  
@@ -2315,15 +4012,15 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// You can specify the log group to search by using either <code>logGroupIdentifier</code>
-        /// or <code>logGroupName</code>. You must specify one of these parameters, but you can't
-        /// specify both. 
+        /// You can specify the log group to search by using either <c>logGroupIdentifier</c>
+        /// or <c>logGroupName</c>. You must specify one of these parameters, but you can't specify
+        /// both. 
         /// </para>
         ///  
         /// <para>
-        /// In the results, fields that start with <code>@</code> are fields generated by CloudWatch
-        /// Logs. For example, <code>@timestamp</code> is the timestamp of each log event. For
-        /// more information about the fields that are generated by CloudWatch logs, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_AnalyzeLogData-discoverable-fields.html">Supported
+        /// In the results, fields that start with <c>@</c> are fields generated by CloudWatch
+        /// Logs. For example, <c>@timestamp</c> is the timestamp of each log event. For more
+        /// information about the fields that are generated by CloudWatch logs, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_AnalyzeLogData-discoverable-fields.html">Supported
         /// Logs and Discovered Fields</a>.
         /// </para>
         ///  
@@ -2367,12 +4064,12 @@ namespace Amazon.CloudWatchLogs
 
         /// <summary>
         /// Retrieves all of the fields and values of a single log event. All fields are retrieved,
-        /// even if the original query that produced the <code>logRecordPointer</code> retrieved
-        /// only a subset of fields. Fields are returned as field name/field value pairs.
+        /// even if the original query that produced the <c>logRecordPointer</c> retrieved only
+        /// a subset of fields. Fields are returned as field name/field value pairs.
         /// 
         ///  
         /// <para>
-        /// The full unparsed log event is returned within <code>@message</code>.
+        /// The full unparsed log event is returned within <c>@message</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetLogRecord service method.</param>
@@ -2397,12 +4094,12 @@ namespace Amazon.CloudWatchLogs
 
         /// <summary>
         /// Retrieves all of the fields and values of a single log event. All fields are retrieved,
-        /// even if the original query that produced the <code>logRecordPointer</code> retrieved
-        /// only a subset of fields. Fields are returned as field name/field value pairs.
+        /// even if the original query that produced the <c>logRecordPointer</c> retrieved only
+        /// a subset of fields. Fields are returned as field name/field value pairs.
         /// 
         ///  
         /// <para>
-        /// The full unparsed log event is returned within <code>@message</code>.
+        /// The full unparsed log event is returned within <c>@message</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetLogRecord service method.</param>
@@ -2436,22 +4133,23 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// Only the fields requested in the query are returned, along with a <code>@ptr</code>
-        /// field, which is the identifier for the log record. You can use the value of <code>@ptr</code>
-        /// in a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogRecord.html">GetLogRecord</a>
+        /// Only the fields requested in the query are returned, along with a <c>@ptr</c> field,
+        /// which is the identifier for the log record. You can use the value of <c>@ptr</c> in
+        /// a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogRecord.html">GetLogRecord</a>
         /// operation to get the full log record.
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetQueryResults</code> does not start running a query. To run a query, use
-        /// <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html">StartQuery</a>.
+        ///  <c>GetQueryResults</c> does not start running a query. To run a query, use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html">StartQuery</a>.
+        /// For more information about how long results of previous queries are available, see
+        /// <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch_limits_cwl.html">CloudWatch
+        /// Logs quotas</a>.
         /// </para>
         ///  
         /// <para>
-        /// If the value of the <code>Status</code> field in the output is <code>Running</code>,
-        /// this operation returns only partial results. If you see a value of <code>Scheduled</code>
-        /// or <code>Running</code> for the status, you can retry the operation later to see the
-        /// final results. 
+        /// If the value of the <c>Status</c> field in the output is <c>Running</c>, this operation
+        /// returns only partial results. If you see a value of <c>Scheduled</c> or <c>Running</c>
+        /// for the status, you can retry the operation later to see the final results. 
         /// </para>
         ///  
         /// <para>
@@ -2483,22 +4181,23 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// Only the fields requested in the query are returned, along with a <code>@ptr</code>
-        /// field, which is the identifier for the log record. You can use the value of <code>@ptr</code>
-        /// in a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogRecord.html">GetLogRecord</a>
+        /// Only the fields requested in the query are returned, along with a <c>@ptr</c> field,
+        /// which is the identifier for the log record. You can use the value of <c>@ptr</c> in
+        /// a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogRecord.html">GetLogRecord</a>
         /// operation to get the full log record.
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetQueryResults</code> does not start running a query. To run a query, use
-        /// <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html">StartQuery</a>.
+        ///  <c>GetQueryResults</c> does not start running a query. To run a query, use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html">StartQuery</a>.
+        /// For more information about how long results of previous queries are available, see
+        /// <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch_limits_cwl.html">CloudWatch
+        /// Logs quotas</a>.
         /// </para>
         ///  
         /// <para>
-        /// If the value of the <code>Status</code> field in the output is <code>Running</code>,
-        /// this operation returns only partial results. If you see a value of <code>Scheduled</code>
-        /// or <code>Running</code> for the status, you can retry the operation later to see the
-        /// final results. 
+        /// If the value of the <c>Status</c> field in the output is <c>Running</c>, this operation
+        /// returns only partial results. If you see a value of <c>Scheduled</c> or <c>Running</c>
+        /// for the status, you can retry the operation later to see the final results. 
         /// </para>
         ///  
         /// <para>
@@ -2525,6 +4224,292 @@ namespace Amazon.CloudWatchLogs
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/GetQueryResults">REST API Reference for GetQueryResults Operation</seealso>
         Task<GetQueryResultsResponse> GetQueryResultsAsync(GetQueryResultsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  GetTransformer
+
+
+        /// <summary>
+        /// Returns the information about the log transformer associated with this log group.
+        /// 
+        ///  
+        /// <para>
+        /// This operation returns data only for transformers created at the log group level.
+        /// To get information for an account-level transformer, use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeAccountPolicies.html">DescribeAccountPolicies</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetTransformer service method.</param>
+        /// 
+        /// <returns>The response from the GetTransformer service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidOperationException">
+        /// The operation is not valid on the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/GetTransformer">REST API Reference for GetTransformer Operation</seealso>
+        GetTransformerResponse GetTransformer(GetTransformerRequest request);
+
+
+
+        /// <summary>
+        /// Returns the information about the log transformer associated with this log group.
+        /// 
+        ///  
+        /// <para>
+        /// This operation returns data only for transformers created at the log group level.
+        /// To get information for an account-level transformer, use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeAccountPolicies.html">DescribeAccountPolicies</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetTransformer service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetTransformer service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidOperationException">
+        /// The operation is not valid on the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/GetTransformer">REST API Reference for GetTransformer Operation</seealso>
+        Task<GetTransformerResponse> GetTransformerAsync(GetTransformerRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListAnomalies
+
+
+        /// <summary>
+        /// Returns a list of anomalies that log anomaly detectors have found. For details about
+        /// the structure format of each anomaly object that is returned, see the example in this
+        /// section.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAnomalies service method.</param>
+        /// 
+        /// <returns>The response from the ListAnomalies service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/ListAnomalies">REST API Reference for ListAnomalies Operation</seealso>
+        ListAnomaliesResponse ListAnomalies(ListAnomaliesRequest request);
+
+
+
+        /// <summary>
+        /// Returns a list of anomalies that log anomaly detectors have found. For details about
+        /// the structure format of each anomaly object that is returned, see the example in this
+        /// section.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAnomalies service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListAnomalies service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/ListAnomalies">REST API Reference for ListAnomalies Operation</seealso>
+        Task<ListAnomaliesResponse> ListAnomaliesAsync(ListAnomaliesRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListIntegrations
+
+
+        /// <summary>
+        /// Returns a list of integrations between CloudWatch Logs and other services in this
+        /// account. Currently, only one integration can be created in an account, and this integration
+        /// must be with OpenSearch Service.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListIntegrations service method.</param>
+        /// 
+        /// <returns>The response from the ListIntegrations service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/ListIntegrations">REST API Reference for ListIntegrations Operation</seealso>
+        ListIntegrationsResponse ListIntegrations(ListIntegrationsRequest request);
+
+
+
+        /// <summary>
+        /// Returns a list of integrations between CloudWatch Logs and other services in this
+        /// account. Currently, only one integration can be created in an account, and this integration
+        /// must be with OpenSearch Service.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListIntegrations service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListIntegrations service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/ListIntegrations">REST API Reference for ListIntegrations Operation</seealso>
+        Task<ListIntegrationsResponse> ListIntegrationsAsync(ListIntegrationsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListLogAnomalyDetectors
+
+
+        /// <summary>
+        /// Retrieves a list of the log anomaly detectors in the account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListLogAnomalyDetectors service method.</param>
+        /// 
+        /// <returns>The response from the ListLogAnomalyDetectors service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/ListLogAnomalyDetectors">REST API Reference for ListLogAnomalyDetectors Operation</seealso>
+        ListLogAnomalyDetectorsResponse ListLogAnomalyDetectors(ListLogAnomalyDetectorsRequest request);
+
+
+
+        /// <summary>
+        /// Retrieves a list of the log anomaly detectors in the account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListLogAnomalyDetectors service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListLogAnomalyDetectors service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/ListLogAnomalyDetectors">REST API Reference for ListLogAnomalyDetectors Operation</seealso>
+        Task<ListLogAnomalyDetectorsResponse> ListLogAnomalyDetectorsAsync(ListLogAnomalyDetectorsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListLogGroupsForQuery
+
+
+        /// <summary>
+        /// Returns a list of the log groups that were analyzed during a single CloudWatch Logs
+        /// Insights query. This can be useful for queries that use log group name prefixes or
+        /// the <c>filterIndex</c> command, because the log groups are dynamically selected in
+        /// these cases.
+        /// 
+        ///  
+        /// <para>
+        /// For more information about field indexes, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing.html">Create
+        /// field indexes to improve query performance and reduce costs</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListLogGroupsForQuery service method.</param>
+        /// 
+        /// <returns>The response from the ListLogGroupsForQuery service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.AccessDeniedException">
+        /// You don't have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/ListLogGroupsForQuery">REST API Reference for ListLogGroupsForQuery Operation</seealso>
+        ListLogGroupsForQueryResponse ListLogGroupsForQuery(ListLogGroupsForQueryRequest request);
+
+
+
+        /// <summary>
+        /// Returns a list of the log groups that were analyzed during a single CloudWatch Logs
+        /// Insights query. This can be useful for queries that use log group name prefixes or
+        /// the <c>filterIndex</c> command, because the log groups are dynamically selected in
+        /// these cases.
+        /// 
+        ///  
+        /// <para>
+        /// For more information about field indexes, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing.html">Create
+        /// field indexes to improve query performance and reduce costs</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListLogGroupsForQuery service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListLogGroupsForQuery service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.AccessDeniedException">
+        /// You don't have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/ListLogGroupsForQuery">REST API Reference for ListLogGroupsForQuery Operation</seealso>
+        Task<ListLogGroupsForQueryResponse> ListLogGroupsForQueryAsync(ListLogGroupsForQueryRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -2640,11 +4625,19 @@ namespace Amazon.CloudWatchLogs
 
 
         /// <summary>
-        /// Creates an account-level data protection policy that applies to all log groups in
-        /// the account. A data protection policy can help safeguard sensitive data that's ingested
-        /// by your log groups by auditing and masking the sensitive log data. Each account can
-        /// have only one account-level policy.
+        /// Creates an account-level data protection policy, subscription filter policy, or field
+        /// index policy that applies to all log groups or a subset of log groups in the account.
         /// 
+        ///  
+        /// <para>
+        ///  <b>Data protection policy</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// A data protection policy can help safeguard sensitive data that's ingested by your
+        /// log groups by auditing and masking the sensitive log data. Each account can have only
+        /// one account-level data protection policy.
+        /// </para>
         ///  <important> 
         /// <para>
         /// Sensitive data is detected and masked when it is ingested into a log group. When you
@@ -2653,22 +4646,22 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  </important> 
         /// <para>
-        /// If you use <code>PutAccountPolicy</code> to create a data protection policy for your
-        /// whole account, it applies to both existing log groups and all log groups that are
-        /// created later in this account. The account policy is applied to existing log groups
+        /// If you use <c>PutAccountPolicy</c> to create a data protection policy for your whole
+        /// account, it applies to both existing log groups and all log groups that are created
+        /// later in this account. The account-level policy is applied to existing log groups
         /// with eventual consistency. It might take up to 5 minutes before sensitive data in
         /// existing log groups begins to be masked.
         /// </para>
         ///  
         /// <para>
         /// By default, when a user views a log event that includes masked data, the sensitive
-        /// data is replaced by asterisks. A user who has the <code>logs:Unmask</code> permission
-        /// can use a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogEvents.html">GetLogEvents</a>
+        /// data is replaced by asterisks. A user who has the <c>logs:Unmask</c> permission can
+        /// use a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogEvents.html">GetLogEvents</a>
         /// or <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_FilterLogEvents.html">FilterLogEvents</a>
-        /// operation with the <code>unmask</code> parameter set to <code>true</code> to view
-        /// the unmasked log events. Users with the <code>logs:Unmask</code> can also view unmasked
-        /// data in the CloudWatch Logs console by running a CloudWatch Logs Insights query with
-        /// the <code>unmask</code> query command.
+        /// operation with the <c>unmask</c> parameter set to <c>true</c> to view the unmasked
+        /// log events. Users with the <c>logs:Unmask</c> can also view unmasked data in the CloudWatch
+        /// Logs console by running a CloudWatch Logs Insights query with the <c>unmask</c> query
+        /// command.
         /// </para>
         ///  
         /// <para>
@@ -2678,17 +4671,177 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  
         /// <para>
-        /// To use the <code>PutAccountPolicy</code> operation, you must be signed on with the
-        /// <code>logs:PutDataProtectionPolicy</code> and <code>logs:PutAccountPolicy</code> permissions.
+        /// To use the <c>PutAccountPolicy</c> operation for a data protection policy, you must
+        /// be signed on with the <c>logs:PutDataProtectionPolicy</c> and <c>logs:PutAccountPolicy</c>
+        /// permissions.
         /// </para>
         ///  
         /// <para>
-        /// The <code>PutAccountPolicy</code> operation applies to all log groups in the account.
-        /// You can also use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDataProtectionPolicy.html">PutDataProtectionPolicy</a>
+        /// The <c>PutAccountPolicy</c> operation applies to all log groups in the account. You
+        /// can use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDataProtectionPolicy.html">PutDataProtectionPolicy</a>
         /// to create a data protection policy that applies to just one log group. If a log group
         /// has its own data protection policy and the account also has an account-level data
         /// protection policy, then the two policies are cumulative. Any sensitive term specified
         /// in either policy is masked.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Subscription filter policy</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// A subscription filter policy sets up a real-time feed of log events from CloudWatch
+        /// Logs to other Amazon Web Services services. Account-level subscription filter policies
+        /// apply to both existing log groups and log groups that are created later in this account.
+        /// Supported destinations are Kinesis Data Streams, Firehose, and Lambda. When log events
+        /// are sent to the receiving service, they are Base64 encoded and compressed with the
+        /// GZIP format.
+        /// </para>
+        ///  
+        /// <para>
+        /// The following destinations are supported for subscription filters:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// An Kinesis Data Streams data stream in the same account as the subscription policy,
+        /// for same-account delivery.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// An Firehose data stream in the same account as the subscription policy, for same-account
+        /// delivery.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// A Lambda function in the same account as the subscription policy, for same-account
+        /// delivery.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// A logical destination in a different account created with <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestination.html">PutDestination</a>,
+        /// for cross-account delivery. Kinesis Data Streams and Firehose are supported as logical
+        /// destinations.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Each account can have one account-level subscription filter policy per Region. If
+        /// you are updating an existing filter, you must specify the correct name in <c>PolicyName</c>.
+        /// To perform a <c>PutAccountPolicy</c> subscription filter operation for any destination
+        /// except a Lambda function, you must also have the <c>iam:PassRole</c> permission.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Transformer policy</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Creates or updates a <i>log transformer policy</i> for your account. You use log transformers
+        /// to transform log events into a different format, making them easier for you to process
+        /// and analyze. You can also transform logs from different sources into standardized
+        /// formats that contain relevant, source-specific information. After you have created
+        /// a transformer, CloudWatch Logs performs this transformation at the time of log ingestion.
+        /// You can then refer to the transformed versions of the logs during operations such
+        /// as querying with CloudWatch Logs Insights or creating metric filters or subscription
+        /// filters.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can also use a transformer to copy metadata from metadata keys into the log events
+        /// themselves. This metadata can include log group name, log stream name, account ID
+        /// and Region.
+        /// </para>
+        ///  
+        /// <para>
+        /// A transformer for a log group is a series of processors, where each processor applies
+        /// one type of transformation to the log events ingested into this log group. For more
+        /// information about the available processors to use in a transformer, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Transformation.html#CloudWatch-Logs-Transformation-Processors">
+        /// Processors that you can use</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Having log events in standardized format enables visibility across your applications
+        /// for your log analysis, reporting, and alarming needs. CloudWatch Logs provides transformation
+        /// for common log types with out-of-the-box transformation templates for major Amazon
+        /// Web Services log sources such as VPC flow logs, Lambda, and Amazon RDS. You can use
+        /// pre-built transformation templates or create custom transformation policies.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can create transformers only for the log groups in the Standard log class.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can have one account-level transformer policy that applies to all log groups in
+        /// the account. Or you can create as many as 20 account-level transformer policies that
+        /// are each scoped to a subset of log groups with the <c>selectionCriteria</c> parameter.
+        /// If you have multiple account-level transformer policies with selection criteria, no
+        /// two of them can use the same or overlapping log group name prefixes. For example,
+        /// if you have one policy filtered to log groups that start with <c>my-log</c>, you can't
+        /// have another field index policy filtered to <c>my-logpprod</c> or <c>my-logging</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can also set up a transformer at the log-group level. For more information, see
+        /// <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutTransformer.html">PutTransformer</a>.
+        /// If there is both a log-group level transformer created with <c>PutTransformer</c>
+        /// and an account-level transformer that could apply to the same log group, the log group
+        /// uses only the log-group level transformer. It ignores the account-level transformer.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Field index policy</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// You can use field index policies to create indexes on fields found in log events in
+        /// the log group. Creating field indexes can help lower the scan volume for CloudWatch
+        /// Logs Insights queries that reference those fields, because these queries attempt to
+        /// skip the processing of log events that are known to not match the indexed field. Good
+        /// fields to index are fields that you often need to query for and fields or values that
+        /// match only a small fraction of the total log events. Common examples of indexes include
+        /// request ID, session ID, user IDs, or instance IDs. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing.html">Create
+        /// field indexes to improve query performance and reduce costs</a> 
+        /// </para>
+        ///  
+        /// <para>
+        /// To find the fields that are in your log group events, use the <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogGroupFields.html">GetLogGroupFields</a>
+        /// operation.
+        /// </para>
+        ///  
+        /// <para>
+        /// For example, suppose you have created a field index for <c>requestId</c>. Then, any
+        /// CloudWatch Logs Insights query on that log group that includes <c>requestId = <i>value</i>
+        /// </c> or <c>requestId in [<i>value</i>, <i>value</i>, ...]</c> will attempt to process
+        /// only the log events where the indexed field matches the specified value.
+        /// </para>
+        ///  
+        /// <para>
+        /// Matches of log events to the names of indexed fields are case-sensitive. For example,
+        /// an indexed field of <c>RequestId</c> won't match a log event containing <c>requestId</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can have one account-level field index policy that applies to all log groups in
+        /// the account. Or you can create as many as 20 account-level field index policies that
+        /// are each scoped to a subset of log groups with the <c>selectionCriteria</c> parameter.
+        /// If you have multiple account-level index policies with selection criteria, no two
+        /// of them can use the same or overlapping log group name prefixes. For example, if you
+        /// have one policy filtered to log groups that start with <c>my-log</c>, you can't have
+        /// another field index policy filtered to <c>my-logpprod</c> or <c>my-logging</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you create an account-level field index policy in a monitoring account in cross-account
+        /// observability, the policy is applied only to the monitoring account and not to any
+        /// source accounts.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you want to create a field index policy for a single log group, you can use <a
+        /// href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutIndexPolicy.html">PutIndexPolicy</a>
+        /// instead of <c>PutAccountPolicy</c>. If you do so, that log group will use only that
+        /// log-group level policy, and will ignore the account-level policy that you create with
+        /// <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutAccountPolicy.html">PutAccountPolicy</a>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutAccountPolicy service method.</param>
@@ -2712,11 +4865,19 @@ namespace Amazon.CloudWatchLogs
 
 
         /// <summary>
-        /// Creates an account-level data protection policy that applies to all log groups in
-        /// the account. A data protection policy can help safeguard sensitive data that's ingested
-        /// by your log groups by auditing and masking the sensitive log data. Each account can
-        /// have only one account-level policy.
+        /// Creates an account-level data protection policy, subscription filter policy, or field
+        /// index policy that applies to all log groups or a subset of log groups in the account.
         /// 
+        ///  
+        /// <para>
+        ///  <b>Data protection policy</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// A data protection policy can help safeguard sensitive data that's ingested by your
+        /// log groups by auditing and masking the sensitive log data. Each account can have only
+        /// one account-level data protection policy.
+        /// </para>
         ///  <important> 
         /// <para>
         /// Sensitive data is detected and masked when it is ingested into a log group. When you
@@ -2725,22 +4886,22 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  </important> 
         /// <para>
-        /// If you use <code>PutAccountPolicy</code> to create a data protection policy for your
-        /// whole account, it applies to both existing log groups and all log groups that are
-        /// created later in this account. The account policy is applied to existing log groups
+        /// If you use <c>PutAccountPolicy</c> to create a data protection policy for your whole
+        /// account, it applies to both existing log groups and all log groups that are created
+        /// later in this account. The account-level policy is applied to existing log groups
         /// with eventual consistency. It might take up to 5 minutes before sensitive data in
         /// existing log groups begins to be masked.
         /// </para>
         ///  
         /// <para>
         /// By default, when a user views a log event that includes masked data, the sensitive
-        /// data is replaced by asterisks. A user who has the <code>logs:Unmask</code> permission
-        /// can use a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogEvents.html">GetLogEvents</a>
+        /// data is replaced by asterisks. A user who has the <c>logs:Unmask</c> permission can
+        /// use a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogEvents.html">GetLogEvents</a>
         /// or <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_FilterLogEvents.html">FilterLogEvents</a>
-        /// operation with the <code>unmask</code> parameter set to <code>true</code> to view
-        /// the unmasked log events. Users with the <code>logs:Unmask</code> can also view unmasked
-        /// data in the CloudWatch Logs console by running a CloudWatch Logs Insights query with
-        /// the <code>unmask</code> query command.
+        /// operation with the <c>unmask</c> parameter set to <c>true</c> to view the unmasked
+        /// log events. Users with the <c>logs:Unmask</c> can also view unmasked data in the CloudWatch
+        /// Logs console by running a CloudWatch Logs Insights query with the <c>unmask</c> query
+        /// command.
         /// </para>
         ///  
         /// <para>
@@ -2750,17 +4911,177 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  
         /// <para>
-        /// To use the <code>PutAccountPolicy</code> operation, you must be signed on with the
-        /// <code>logs:PutDataProtectionPolicy</code> and <code>logs:PutAccountPolicy</code> permissions.
+        /// To use the <c>PutAccountPolicy</c> operation for a data protection policy, you must
+        /// be signed on with the <c>logs:PutDataProtectionPolicy</c> and <c>logs:PutAccountPolicy</c>
+        /// permissions.
         /// </para>
         ///  
         /// <para>
-        /// The <code>PutAccountPolicy</code> operation applies to all log groups in the account.
-        /// You can also use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDataProtectionPolicy.html">PutDataProtectionPolicy</a>
+        /// The <c>PutAccountPolicy</c> operation applies to all log groups in the account. You
+        /// can use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDataProtectionPolicy.html">PutDataProtectionPolicy</a>
         /// to create a data protection policy that applies to just one log group. If a log group
         /// has its own data protection policy and the account also has an account-level data
         /// protection policy, then the two policies are cumulative. Any sensitive term specified
         /// in either policy is masked.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Subscription filter policy</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// A subscription filter policy sets up a real-time feed of log events from CloudWatch
+        /// Logs to other Amazon Web Services services. Account-level subscription filter policies
+        /// apply to both existing log groups and log groups that are created later in this account.
+        /// Supported destinations are Kinesis Data Streams, Firehose, and Lambda. When log events
+        /// are sent to the receiving service, they are Base64 encoded and compressed with the
+        /// GZIP format.
+        /// </para>
+        ///  
+        /// <para>
+        /// The following destinations are supported for subscription filters:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// An Kinesis Data Streams data stream in the same account as the subscription policy,
+        /// for same-account delivery.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// An Firehose data stream in the same account as the subscription policy, for same-account
+        /// delivery.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// A Lambda function in the same account as the subscription policy, for same-account
+        /// delivery.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// A logical destination in a different account created with <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestination.html">PutDestination</a>,
+        /// for cross-account delivery. Kinesis Data Streams and Firehose are supported as logical
+        /// destinations.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Each account can have one account-level subscription filter policy per Region. If
+        /// you are updating an existing filter, you must specify the correct name in <c>PolicyName</c>.
+        /// To perform a <c>PutAccountPolicy</c> subscription filter operation for any destination
+        /// except a Lambda function, you must also have the <c>iam:PassRole</c> permission.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Transformer policy</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Creates or updates a <i>log transformer policy</i> for your account. You use log transformers
+        /// to transform log events into a different format, making them easier for you to process
+        /// and analyze. You can also transform logs from different sources into standardized
+        /// formats that contain relevant, source-specific information. After you have created
+        /// a transformer, CloudWatch Logs performs this transformation at the time of log ingestion.
+        /// You can then refer to the transformed versions of the logs during operations such
+        /// as querying with CloudWatch Logs Insights or creating metric filters or subscription
+        /// filters.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can also use a transformer to copy metadata from metadata keys into the log events
+        /// themselves. This metadata can include log group name, log stream name, account ID
+        /// and Region.
+        /// </para>
+        ///  
+        /// <para>
+        /// A transformer for a log group is a series of processors, where each processor applies
+        /// one type of transformation to the log events ingested into this log group. For more
+        /// information about the available processors to use in a transformer, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Transformation.html#CloudWatch-Logs-Transformation-Processors">
+        /// Processors that you can use</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Having log events in standardized format enables visibility across your applications
+        /// for your log analysis, reporting, and alarming needs. CloudWatch Logs provides transformation
+        /// for common log types with out-of-the-box transformation templates for major Amazon
+        /// Web Services log sources such as VPC flow logs, Lambda, and Amazon RDS. You can use
+        /// pre-built transformation templates or create custom transformation policies.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can create transformers only for the log groups in the Standard log class.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can have one account-level transformer policy that applies to all log groups in
+        /// the account. Or you can create as many as 20 account-level transformer policies that
+        /// are each scoped to a subset of log groups with the <c>selectionCriteria</c> parameter.
+        /// If you have multiple account-level transformer policies with selection criteria, no
+        /// two of them can use the same or overlapping log group name prefixes. For example,
+        /// if you have one policy filtered to log groups that start with <c>my-log</c>, you can't
+        /// have another field index policy filtered to <c>my-logpprod</c> or <c>my-logging</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can also set up a transformer at the log-group level. For more information, see
+        /// <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutTransformer.html">PutTransformer</a>.
+        /// If there is both a log-group level transformer created with <c>PutTransformer</c>
+        /// and an account-level transformer that could apply to the same log group, the log group
+        /// uses only the log-group level transformer. It ignores the account-level transformer.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Field index policy</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// You can use field index policies to create indexes on fields found in log events in
+        /// the log group. Creating field indexes can help lower the scan volume for CloudWatch
+        /// Logs Insights queries that reference those fields, because these queries attempt to
+        /// skip the processing of log events that are known to not match the indexed field. Good
+        /// fields to index are fields that you often need to query for and fields or values that
+        /// match only a small fraction of the total log events. Common examples of indexes include
+        /// request ID, session ID, user IDs, or instance IDs. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing.html">Create
+        /// field indexes to improve query performance and reduce costs</a> 
+        /// </para>
+        ///  
+        /// <para>
+        /// To find the fields that are in your log group events, use the <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogGroupFields.html">GetLogGroupFields</a>
+        /// operation.
+        /// </para>
+        ///  
+        /// <para>
+        /// For example, suppose you have created a field index for <c>requestId</c>. Then, any
+        /// CloudWatch Logs Insights query on that log group that includes <c>requestId = <i>value</i>
+        /// </c> or <c>requestId in [<i>value</i>, <i>value</i>, ...]</c> will attempt to process
+        /// only the log events where the indexed field matches the specified value.
+        /// </para>
+        ///  
+        /// <para>
+        /// Matches of log events to the names of indexed fields are case-sensitive. For example,
+        /// an indexed field of <c>RequestId</c> won't match a log event containing <c>requestId</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can have one account-level field index policy that applies to all log groups in
+        /// the account. Or you can create as many as 20 account-level field index policies that
+        /// are each scoped to a subset of log groups with the <c>selectionCriteria</c> parameter.
+        /// If you have multiple account-level index policies with selection criteria, no two
+        /// of them can use the same or overlapping log group name prefixes. For example, if you
+        /// have one policy filtered to log groups that start with <c>my-log</c>, you can't have
+        /// another field index policy filtered to <c>my-logpprod</c> or <c>my-logging</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you create an account-level field index policy in a monitoring account in cross-account
+        /// observability, the policy is applied only to the monitoring account and not to any
+        /// source accounts.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you want to create a field index policy for a single log group, you can use <a
+        /// href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutIndexPolicy.html">PutIndexPolicy</a>
+        /// instead of <c>PutAccountPolicy</c>. If you do so, that log group will use only that
+        /// log-group level policy, and will ignore the account-level policy that you create with
+        /// <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutAccountPolicy.html">PutAccountPolicy</a>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutAccountPolicy service method.</param>
@@ -2803,13 +5124,13 @@ namespace Amazon.CloudWatchLogs
         ///  </important> 
         /// <para>
         /// By default, when a user views a log event that includes masked data, the sensitive
-        /// data is replaced by asterisks. A user who has the <code>logs:Unmask</code> permission
-        /// can use a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogEvents.html">GetLogEvents</a>
+        /// data is replaced by asterisks. A user who has the <c>logs:Unmask</c> permission can
+        /// use a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogEvents.html">GetLogEvents</a>
         /// or <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_FilterLogEvents.html">FilterLogEvents</a>
-        /// operation with the <code>unmask</code> parameter set to <code>true</code> to view
-        /// the unmasked log events. Users with the <code>logs:Unmask</code> can also view unmasked
-        /// data in the CloudWatch Logs console by running a CloudWatch Logs Insights query with
-        /// the <code>unmask</code> query command.
+        /// operation with the <c>unmask</c> parameter set to <c>true</c> to view the unmasked
+        /// log events. Users with the <c>logs:Unmask</c> can also view unmasked data in the CloudWatch
+        /// Logs console by running a CloudWatch Logs Insights query with the <c>unmask</c> query
+        /// command.
         /// </para>
         ///  
         /// <para>
@@ -2819,8 +5140,8 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  
         /// <para>
-        /// The <code>PutDataProtectionPolicy</code> operation applies to only the specified log
-        /// group. You can also use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutAccountPolicy.html">PutAccountPolicy</a>
+        /// The <c>PutDataProtectionPolicy</c> operation applies to only the specified log group.
+        /// You can also use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutAccountPolicy.html">PutAccountPolicy</a>
         /// to create an account-level data protection policy that applies to all log groups in
         /// the account, including both existing log groups and log groups that are created level.
         /// If a log group has its own data protection policy and the account also has an account-level
@@ -2865,13 +5186,13 @@ namespace Amazon.CloudWatchLogs
         ///  </important> 
         /// <para>
         /// By default, when a user views a log event that includes masked data, the sensitive
-        /// data is replaced by asterisks. A user who has the <code>logs:Unmask</code> permission
-        /// can use a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogEvents.html">GetLogEvents</a>
+        /// data is replaced by asterisks. A user who has the <c>logs:Unmask</c> permission can
+        /// use a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogEvents.html">GetLogEvents</a>
         /// or <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_FilterLogEvents.html">FilterLogEvents</a>
-        /// operation with the <code>unmask</code> parameter set to <code>true</code> to view
-        /// the unmasked log events. Users with the <code>logs:Unmask</code> can also view unmasked
-        /// data in the CloudWatch Logs console by running a CloudWatch Logs Insights query with
-        /// the <code>unmask</code> query command.
+        /// operation with the <c>unmask</c> parameter set to <c>true</c> to view the unmasked
+        /// log events. Users with the <c>logs:Unmask</c> can also view unmasked data in the CloudWatch
+        /// Logs console by running a CloudWatch Logs Insights query with the <c>unmask</c> query
+        /// command.
         /// </para>
         ///  
         /// <para>
@@ -2881,8 +5202,8 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  
         /// <para>
-        /// The <code>PutDataProtectionPolicy</code> operation applies to only the specified log
-        /// group. You can also use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutAccountPolicy.html">PutAccountPolicy</a>
+        /// The <c>PutDataProtectionPolicy</c> operation applies to only the specified log group.
+        /// You can also use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutAccountPolicy.html">PutAccountPolicy</a>
         /// to create an account-level data protection policy that applies to all log groups in
         /// the account, including both existing log groups and log groups that are created level.
         /// If a log group has its own data protection policy and the account also has an account-level
@@ -2916,6 +5237,458 @@ namespace Amazon.CloudWatchLogs
 
         #endregion
         
+        #region  PutDeliveryDestination
+
+
+        /// <summary>
+        /// Creates or updates a logical <i>delivery destination</i>. A delivery destination is
+        /// an Amazon Web Services resource that represents an Amazon Web Services service that
+        /// logs can be sent to. CloudWatch Logs, Amazon S3, and Firehose are supported as logs
+        /// delivery destinations.
+        /// 
+        ///  
+        /// <para>
+        /// To configure logs delivery between a supported Amazon Web Services service and a destination,
+        /// you must do the following:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Create a delivery source, which is a logical object that represents the resource that
+        /// is actually sending the logs. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliverySource.html">PutDeliverySource</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Use <c>PutDeliveryDestination</c> to create a <i>delivery destination</i>, which is
+        /// a logical object that represents the actual delivery destination. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If you are delivering logs cross-account, you must use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestinationPolicy.html">PutDeliveryDestinationPolicy</a>
+        /// in the destination account to assign an IAM policy to the destination. This policy
+        /// allows delivery to that destination. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Use <c>CreateDelivery</c> to create a <i>delivery</i> by pairing exactly one delivery
+        /// source and one delivery destination. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CreateDelivery.html">CreateDelivery</a>.
+        /// 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// You can configure a single delivery source to send logs to multiple destinations by
+        /// creating multiple deliveries. You can also create multiple deliveries to configure
+        /// multiple delivery sources to send logs to the same delivery destination.
+        /// </para>
+        ///  
+        /// <para>
+        /// Only some Amazon Web Services services support being configured as a delivery source.
+        /// These services are listed as <b>Supported [V2 Permissions]</b> in the table at <a
+        /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html">Enabling
+        /// logging from Amazon Web Services services.</a> 
+        /// </para>
+        ///  
+        /// <para>
+        /// If you use this operation to update an existing delivery destination, all the current
+        /// delivery destination parameters are overwritten with the new parameter values that
+        /// you specify.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutDeliveryDestination service method.</param>
+        /// 
+        /// <returns>The response from the PutDeliveryDestination service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ConflictException">
+        /// This operation attempted to create a resource that already exists.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/PutDeliveryDestination">REST API Reference for PutDeliveryDestination Operation</seealso>
+        PutDeliveryDestinationResponse PutDeliveryDestination(PutDeliveryDestinationRequest request);
+
+
+
+        /// <summary>
+        /// Creates or updates a logical <i>delivery destination</i>. A delivery destination is
+        /// an Amazon Web Services resource that represents an Amazon Web Services service that
+        /// logs can be sent to. CloudWatch Logs, Amazon S3, and Firehose are supported as logs
+        /// delivery destinations.
+        /// 
+        ///  
+        /// <para>
+        /// To configure logs delivery between a supported Amazon Web Services service and a destination,
+        /// you must do the following:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Create a delivery source, which is a logical object that represents the resource that
+        /// is actually sending the logs. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliverySource.html">PutDeliverySource</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Use <c>PutDeliveryDestination</c> to create a <i>delivery destination</i>, which is
+        /// a logical object that represents the actual delivery destination. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If you are delivering logs cross-account, you must use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestinationPolicy.html">PutDeliveryDestinationPolicy</a>
+        /// in the destination account to assign an IAM policy to the destination. This policy
+        /// allows delivery to that destination. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Use <c>CreateDelivery</c> to create a <i>delivery</i> by pairing exactly one delivery
+        /// source and one delivery destination. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CreateDelivery.html">CreateDelivery</a>.
+        /// 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// You can configure a single delivery source to send logs to multiple destinations by
+        /// creating multiple deliveries. You can also create multiple deliveries to configure
+        /// multiple delivery sources to send logs to the same delivery destination.
+        /// </para>
+        ///  
+        /// <para>
+        /// Only some Amazon Web Services services support being configured as a delivery source.
+        /// These services are listed as <b>Supported [V2 Permissions]</b> in the table at <a
+        /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html">Enabling
+        /// logging from Amazon Web Services services.</a> 
+        /// </para>
+        ///  
+        /// <para>
+        /// If you use this operation to update an existing delivery destination, all the current
+        /// delivery destination parameters are overwritten with the new parameter values that
+        /// you specify.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutDeliveryDestination service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the PutDeliveryDestination service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ConflictException">
+        /// This operation attempted to create a resource that already exists.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/PutDeliveryDestination">REST API Reference for PutDeliveryDestination Operation</seealso>
+        Task<PutDeliveryDestinationResponse> PutDeliveryDestinationAsync(PutDeliveryDestinationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  PutDeliveryDestinationPolicy
+
+
+        /// <summary>
+        /// Creates and assigns an IAM policy that grants permissions to CloudWatch Logs to deliver
+        /// logs cross-account to a specified destination in this account. To configure the delivery
+        /// of logs from an Amazon Web Services service in another account to a logs delivery
+        /// destination in the current account, you must do the following:
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// Create a delivery source, which is a logical object that represents the resource that
+        /// is actually sending the logs. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliverySource.html">PutDeliverySource</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Create a <i>delivery destination</i>, which is a logical object that represents the
+        /// actual delivery destination. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestination.html">PutDeliveryDestination</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Use this operation in the destination account to assign an IAM policy to the destination.
+        /// This policy allows delivery to that destination. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Create a <i>delivery</i> by pairing exactly one delivery source and one delivery destination.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CreateDelivery.html">CreateDelivery</a>.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Only some Amazon Web Services services support being configured as a delivery source.
+        /// These services are listed as <b>Supported [V2 Permissions]</b> in the table at <a
+        /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html">Enabling
+        /// logging from Amazon Web Services services.</a> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The contents of the policy must include two statements. One statement enables general
+        /// logs delivery, and the other allows delivery to the chosen destination. See the examples
+        /// for the needed policies.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutDeliveryDestinationPolicy service method.</param>
+        /// 
+        /// <returns>The response from the PutDeliveryDestinationPolicy service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ConflictException">
+        /// This operation attempted to create a resource that already exists.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/PutDeliveryDestinationPolicy">REST API Reference for PutDeliveryDestinationPolicy Operation</seealso>
+        PutDeliveryDestinationPolicyResponse PutDeliveryDestinationPolicy(PutDeliveryDestinationPolicyRequest request);
+
+
+
+        /// <summary>
+        /// Creates and assigns an IAM policy that grants permissions to CloudWatch Logs to deliver
+        /// logs cross-account to a specified destination in this account. To configure the delivery
+        /// of logs from an Amazon Web Services service in another account to a logs delivery
+        /// destination in the current account, you must do the following:
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// Create a delivery source, which is a logical object that represents the resource that
+        /// is actually sending the logs. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliverySource.html">PutDeliverySource</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Create a <i>delivery destination</i>, which is a logical object that represents the
+        /// actual delivery destination. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestination.html">PutDeliveryDestination</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Use this operation in the destination account to assign an IAM policy to the destination.
+        /// This policy allows delivery to that destination. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Create a <i>delivery</i> by pairing exactly one delivery source and one delivery destination.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CreateDelivery.html">CreateDelivery</a>.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Only some Amazon Web Services services support being configured as a delivery source.
+        /// These services are listed as <b>Supported [V2 Permissions]</b> in the table at <a
+        /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html">Enabling
+        /// logging from Amazon Web Services services.</a> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The contents of the policy must include two statements. One statement enables general
+        /// logs delivery, and the other allows delivery to the chosen destination. See the examples
+        /// for the needed policies.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutDeliveryDestinationPolicy service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the PutDeliveryDestinationPolicy service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ConflictException">
+        /// This operation attempted to create a resource that already exists.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/PutDeliveryDestinationPolicy">REST API Reference for PutDeliveryDestinationPolicy Operation</seealso>
+        Task<PutDeliveryDestinationPolicyResponse> PutDeliveryDestinationPolicyAsync(PutDeliveryDestinationPolicyRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  PutDeliverySource
+
+
+        /// <summary>
+        /// Creates or updates a logical <i>delivery source</i>. A delivery source represents
+        /// an Amazon Web Services resource that sends logs to an logs delivery destination. The
+        /// destination can be CloudWatch Logs, Amazon S3, or Firehose.
+        /// 
+        ///  
+        /// <para>
+        /// To configure logs delivery between a delivery destination and an Amazon Web Services
+        /// service that is supported as a delivery source, you must do the following:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Use <c>PutDeliverySource</c> to create a delivery source, which is a logical object
+        /// that represents the resource that is actually sending the logs. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Use <c>PutDeliveryDestination</c> to create a <i>delivery destination</i>, which is
+        /// a logical object that represents the actual delivery destination. For more information,
+        /// see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestination.html">PutDeliveryDestination</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If you are delivering logs cross-account, you must use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestinationPolicy.html">PutDeliveryDestinationPolicy</a>
+        /// in the destination account to assign an IAM policy to the destination. This policy
+        /// allows delivery to that destination. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Use <c>CreateDelivery</c> to create a <i>delivery</i> by pairing exactly one delivery
+        /// source and one delivery destination. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CreateDelivery.html">CreateDelivery</a>.
+        /// 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// You can configure a single delivery source to send logs to multiple destinations by
+        /// creating multiple deliveries. You can also create multiple deliveries to configure
+        /// multiple delivery sources to send logs to the same delivery destination.
+        /// </para>
+        ///  
+        /// <para>
+        /// Only some Amazon Web Services services support being configured as a delivery source.
+        /// These services are listed as <b>Supported [V2 Permissions]</b> in the table at <a
+        /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html">Enabling
+        /// logging from Amazon Web Services services.</a> 
+        /// </para>
+        ///  
+        /// <para>
+        /// If you use this operation to update an existing delivery source, all the current delivery
+        /// source parameters are overwritten with the new parameter values that you specify.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutDeliverySource service method.</param>
+        /// 
+        /// <returns>The response from the PutDeliverySource service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ConflictException">
+        /// This operation attempted to create a resource that already exists.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/PutDeliverySource">REST API Reference for PutDeliverySource Operation</seealso>
+        PutDeliverySourceResponse PutDeliverySource(PutDeliverySourceRequest request);
+
+
+
+        /// <summary>
+        /// Creates or updates a logical <i>delivery source</i>. A delivery source represents
+        /// an Amazon Web Services resource that sends logs to an logs delivery destination. The
+        /// destination can be CloudWatch Logs, Amazon S3, or Firehose.
+        /// 
+        ///  
+        /// <para>
+        /// To configure logs delivery between a delivery destination and an Amazon Web Services
+        /// service that is supported as a delivery source, you must do the following:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Use <c>PutDeliverySource</c> to create a delivery source, which is a logical object
+        /// that represents the resource that is actually sending the logs. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Use <c>PutDeliveryDestination</c> to create a <i>delivery destination</i>, which is
+        /// a logical object that represents the actual delivery destination. For more information,
+        /// see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestination.html">PutDeliveryDestination</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If you are delivering logs cross-account, you must use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestinationPolicy.html">PutDeliveryDestinationPolicy</a>
+        /// in the destination account to assign an IAM policy to the destination. This policy
+        /// allows delivery to that destination. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Use <c>CreateDelivery</c> to create a <i>delivery</i> by pairing exactly one delivery
+        /// source and one delivery destination. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CreateDelivery.html">CreateDelivery</a>.
+        /// 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// You can configure a single delivery source to send logs to multiple destinations by
+        /// creating multiple deliveries. You can also create multiple deliveries to configure
+        /// multiple delivery sources to send logs to the same delivery destination.
+        /// </para>
+        ///  
+        /// <para>
+        /// Only some Amazon Web Services services support being configured as a delivery source.
+        /// These services are listed as <b>Supported [V2 Permissions]</b> in the table at <a
+        /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html">Enabling
+        /// logging from Amazon Web Services services.</a> 
+        /// </para>
+        ///  
+        /// <para>
+        /// If you use this operation to update an existing delivery source, all the current delivery
+        /// source parameters are overwritten with the new parameter values that you specify.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutDeliverySource service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the PutDeliverySource service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ConflictException">
+        /// This operation attempted to create a resource that already exists.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceQuotaExceededException">
+        /// This request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/PutDeliverySource">REST API Reference for PutDeliverySource Operation</seealso>
+        Task<PutDeliverySourceResponse> PutDeliverySourceAsync(PutDeliverySourceRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  PutDestination
 
 
@@ -2932,14 +5705,14 @@ namespace Amazon.CloudWatchLogs
         ///  
         /// <para>
         /// Through an access policy, a destination controls what is written to it. By default,
-        /// <code>PutDestination</code> does not set any access policy with the destination, which
-        /// means a cross-account user cannot call <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutSubscriptionFilter.html">PutSubscriptionFilter</a>
+        /// <c>PutDestination</c> does not set any access policy with the destination, which means
+        /// a cross-account user cannot call <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutSubscriptionFilter.html">PutSubscriptionFilter</a>
         /// against this destination. To enable this, the destination owner must call <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestinationPolicy.html">PutDestinationPolicy</a>
-        /// after <code>PutDestination</code>.
+        /// after <c>PutDestination</c>.
         /// </para>
         ///  
         /// <para>
-        /// To perform a <code>PutDestination</code> operation, you must also have the <code>iam:PassRole</code>
+        /// To perform a <c>PutDestination</c> operation, you must also have the <c>iam:PassRole</c>
         /// permission.
         /// </para>
         /// </summary>
@@ -2973,14 +5746,14 @@ namespace Amazon.CloudWatchLogs
         ///  
         /// <para>
         /// Through an access policy, a destination controls what is written to it. By default,
-        /// <code>PutDestination</code> does not set any access policy with the destination, which
-        /// means a cross-account user cannot call <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutSubscriptionFilter.html">PutSubscriptionFilter</a>
+        /// <c>PutDestination</c> does not set any access policy with the destination, which means
+        /// a cross-account user cannot call <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutSubscriptionFilter.html">PutSubscriptionFilter</a>
         /// against this destination. To enable this, the destination owner must call <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestinationPolicy.html">PutDestinationPolicy</a>
-        /// after <code>PutDestination</code>.
+        /// after <c>PutDestination</c>.
         /// </para>
         ///  
         /// <para>
-        /// To perform a <code>PutDestination</code> operation, you must also have the <code>iam:PassRole</code>
+        /// To perform a <c>PutDestination</c> operation, you must also have the <c>iam:PassRole</c>
         /// permission.
         /// </para>
         /// </summary>
@@ -3056,6 +5829,252 @@ namespace Amazon.CloudWatchLogs
 
         #endregion
         
+        #region  PutIndexPolicy
+
+
+        /// <summary>
+        /// Creates or updates a <i>field index policy</i> for the specified log group. Only log
+        /// groups in the Standard log class support field index policies. For more information
+        /// about log classes, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html">Log
+        /// classes</a>.
+        /// 
+        ///  
+        /// <para>
+        /// You can use field index policies to create <i>field indexes</i> on fields found in
+        /// log events in the log group. Creating field indexes speeds up and lowers the costs
+        /// for CloudWatch Logs Insights queries that reference those field indexes, because these
+        /// queries attempt to skip the processing of log events that are known to not match the
+        /// indexed field. Good fields to index are fields that you often need to query for and
+        /// fields or values that match only a small fraction of the total log events. Common
+        /// examples of indexes include request ID, session ID, userID, and instance IDs. For
+        /// more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing.html">Create
+        /// field indexes to improve query performance and reduce costs</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// To find the fields that are in your log group events, use the <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogGroupFields.html">GetLogGroupFields</a>
+        /// operation.
+        /// </para>
+        ///  
+        /// <para>
+        /// For example, suppose you have created a field index for <c>requestId</c>. Then, any
+        /// CloudWatch Logs Insights query on that log group that includes <c>requestId = <i>value</i>
+        /// </c> or <c>requestId IN [<i>value</i>, <i>value</i>, ...]</c> will process fewer log
+        /// events to reduce costs, and have improved performance.
+        /// </para>
+        ///  
+        /// <para>
+        /// Each index policy has the following quotas and restrictions:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// As many as 20 fields can be included in the policy.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Each field name can include as many as 100 characters.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Matches of log events to the names of indexed fields are case-sensitive. For example,
+        /// a field index of <c>RequestId</c> won't match a log event containing <c>requestId</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Log group-level field index policies created with <c>PutIndexPolicy</c> override account-level
+        /// field index policies created with <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutAccountPolicy.html">PutAccountPolicy</a>.
+        /// If you use <c>PutIndexPolicy</c> to create a field index policy for a log group, that
+        /// log group uses only that policy. The log group ignores any account-wide field index
+        /// policy that you might have created.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutIndexPolicy service method.</param>
+        /// 
+        /// <returns>The response from the PutIndexPolicy service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.LimitExceededException">
+        /// You have reached the maximum number of resources that can be created.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/PutIndexPolicy">REST API Reference for PutIndexPolicy Operation</seealso>
+        PutIndexPolicyResponse PutIndexPolicy(PutIndexPolicyRequest request);
+
+
+
+        /// <summary>
+        /// Creates or updates a <i>field index policy</i> for the specified log group. Only log
+        /// groups in the Standard log class support field index policies. For more information
+        /// about log classes, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html">Log
+        /// classes</a>.
+        /// 
+        ///  
+        /// <para>
+        /// You can use field index policies to create <i>field indexes</i> on fields found in
+        /// log events in the log group. Creating field indexes speeds up and lowers the costs
+        /// for CloudWatch Logs Insights queries that reference those field indexes, because these
+        /// queries attempt to skip the processing of log events that are known to not match the
+        /// indexed field. Good fields to index are fields that you often need to query for and
+        /// fields or values that match only a small fraction of the total log events. Common
+        /// examples of indexes include request ID, session ID, userID, and instance IDs. For
+        /// more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing.html">Create
+        /// field indexes to improve query performance and reduce costs</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// To find the fields that are in your log group events, use the <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogGroupFields.html">GetLogGroupFields</a>
+        /// operation.
+        /// </para>
+        ///  
+        /// <para>
+        /// For example, suppose you have created a field index for <c>requestId</c>. Then, any
+        /// CloudWatch Logs Insights query on that log group that includes <c>requestId = <i>value</i>
+        /// </c> or <c>requestId IN [<i>value</i>, <i>value</i>, ...]</c> will process fewer log
+        /// events to reduce costs, and have improved performance.
+        /// </para>
+        ///  
+        /// <para>
+        /// Each index policy has the following quotas and restrictions:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// As many as 20 fields can be included in the policy.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Each field name can include as many as 100 characters.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Matches of log events to the names of indexed fields are case-sensitive. For example,
+        /// a field index of <c>RequestId</c> won't match a log event containing <c>requestId</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Log group-level field index policies created with <c>PutIndexPolicy</c> override account-level
+        /// field index policies created with <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutAccountPolicy.html">PutAccountPolicy</a>.
+        /// If you use <c>PutIndexPolicy</c> to create a field index policy for a log group, that
+        /// log group uses only that policy. The log group ignores any account-wide field index
+        /// policy that you might have created.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutIndexPolicy service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the PutIndexPolicy service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.LimitExceededException">
+        /// You have reached the maximum number of resources that can be created.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/PutIndexPolicy">REST API Reference for PutIndexPolicy Operation</seealso>
+        Task<PutIndexPolicyResponse> PutIndexPolicyAsync(PutIndexPolicyRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  PutIntegration
+
+
+        /// <summary>
+        /// Creates an integration between CloudWatch Logs and another service in this account.
+        /// Currently, only integrations with OpenSearch Service are supported, and currently
+        /// you can have only one integration in your account.
+        /// 
+        ///  
+        /// <para>
+        /// Integrating with OpenSearch Service makes it possible for you to create curated vended
+        /// logs dashboards, powered by OpenSearch Service analytics. For more information, see
+        /// <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-OpenSearch-Dashboards.html">Vended
+        /// log dashboards powered by Amazon OpenSearch Service</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can use this operation only to create a new integration. You can't modify an existing
+        /// integration.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutIntegration service method.</param>
+        /// 
+        /// <returns>The response from the PutIntegration service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.LimitExceededException">
+        /// You have reached the maximum number of resources that can be created.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/PutIntegration">REST API Reference for PutIntegration Operation</seealso>
+        PutIntegrationResponse PutIntegration(PutIntegrationRequest request);
+
+
+
+        /// <summary>
+        /// Creates an integration between CloudWatch Logs and another service in this account.
+        /// Currently, only integrations with OpenSearch Service are supported, and currently
+        /// you can have only one integration in your account.
+        /// 
+        ///  
+        /// <para>
+        /// Integrating with OpenSearch Service makes it possible for you to create curated vended
+        /// logs dashboards, powered by OpenSearch Service analytics. For more information, see
+        /// <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-OpenSearch-Dashboards.html">Vended
+        /// log dashboards powered by Amazon OpenSearch Service</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can use this operation only to create a new integration. You can't modify an existing
+        /// integration.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutIntegration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the PutIntegration service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.LimitExceededException">
+        /// You have reached the maximum number of resources that can be created.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/PutIntegration">REST API Reference for PutIntegration Operation</seealso>
+        Task<PutIntegrationResponse> PutIntegrationAsync(PutIntegrationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  PutLogEvents
 
 
@@ -3064,10 +6083,10 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  <important> 
         /// <para>
-        /// The sequence token is now ignored in <code>PutLogEvents</code> actions. <code>PutLogEvents</code>
-        /// actions are always accepted and never return <code>InvalidSequenceTokenException</code>
-        /// or <code>DataAlreadyAcceptedException</code> even if the sequence token is not valid.
-        /// You can use parallel <code>PutLogEvents</code> actions on the same log stream. 
+        /// The sequence token is now ignored in <c>PutLogEvents</c> actions. <c>PutLogEvents</c>
+        /// actions are always accepted and never return <c>InvalidSequenceTokenException</c>
+        /// or <c>DataAlreadyAcceptedException</c> even if the sequence token is not valid. You
+        /// can use parallel <c>PutLogEvents</c> actions on the same log stream. 
         /// </para>
         ///  </important> 
         /// <para>
@@ -3091,10 +6110,9 @@ namespace Amazon.CloudWatchLogs
         /// <para>
         /// The log events in the batch must be in chronological order by their timestamp. The
         /// timestamp is the time that the event occurred, expressed as the number of milliseconds
-        /// after <code>Jan 1, 1970 00:00:00 UTC</code>. (In Amazon Web Services Tools for PowerShell
+        /// after <c>Jan 1, 1970 00:00:00 UTC</c>. (In Amazon Web Services Tools for PowerShell
         /// and the Amazon Web Services SDK for .NET, the timestamp is specified in .NET format:
-        /// <code>yyyy-mm-ddThh:mm:ss</code>. For example, <code>2017-09-15T13:45:30</code>.)
-        /// 
+        /// <c>yyyy-mm-ddThh:mm:ss</c>. For example, <c>2017-09-15T13:45:30</c>.) 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3111,14 +6129,14 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  </li> <li> <important> 
         /// <para>
-        /// The quota of five requests per second per log stream has been removed. Instead, <code>PutLogEvents</code>
+        /// The quota of five requests per second per log stream has been removed. Instead, <c>PutLogEvents</c>
         /// actions are throttled based on a per-second per-account quota. You can request an
         /// increase to the per-second throttling quota by using the Service Quotas service.
         /// </para>
         ///  </important> </li> </ul> 
         /// <para>
-        /// If a call to <code>PutLogEvents</code> returns "UnrecognizedClientException" the most
-        /// likely cause is a non-valid Amazon Web Services access key ID or secret key. 
+        /// If a call to <c>PutLogEvents</c> returns "UnrecognizedClientException" the most likely
+        /// cause is a non-valid Amazon Web Services access key ID or secret key. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutLogEvents service method.</param>
@@ -3129,7 +6147,7 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  <important> 
         /// <para>
-        ///  <code>PutLogEvents</code> actions are now always accepted and never return <code>DataAlreadyAcceptedException</code>
+        ///  <c>PutLogEvents</c> actions are now always accepted and never return <c>DataAlreadyAcceptedException</c>
         /// regardless of whether a given batch of log events has already been accepted. 
         /// </para>
         ///  </important>
@@ -3138,12 +6156,12 @@ namespace Amazon.CloudWatchLogs
         /// A parameter is specified incorrectly.
         /// </exception>
         /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidSequenceTokenException">
-        /// The sequence token is not valid. You can get the correct sequence token in the <code>expectedSequenceToken</code>
-        /// field in the <code>InvalidSequenceTokenException</code> message. 
+        /// The sequence token is not valid. You can get the correct sequence token in the <c>expectedSequenceToken</c>
+        /// field in the <c>InvalidSequenceTokenException</c> message. 
         /// 
         ///  <important> 
         /// <para>
-        ///  <code>PutLogEvents</code> actions are now always accepted and never return <code>InvalidSequenceTokenException</code>
+        ///  <c>PutLogEvents</c> actions are now always accepted and never return <c>InvalidSequenceTokenException</c>
         /// regardless of receiving an invalid sequence token. 
         /// </para>
         ///  </important>
@@ -3168,10 +6186,10 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  <important> 
         /// <para>
-        /// The sequence token is now ignored in <code>PutLogEvents</code> actions. <code>PutLogEvents</code>
-        /// actions are always accepted and never return <code>InvalidSequenceTokenException</code>
-        /// or <code>DataAlreadyAcceptedException</code> even if the sequence token is not valid.
-        /// You can use parallel <code>PutLogEvents</code> actions on the same log stream. 
+        /// The sequence token is now ignored in <c>PutLogEvents</c> actions. <c>PutLogEvents</c>
+        /// actions are always accepted and never return <c>InvalidSequenceTokenException</c>
+        /// or <c>DataAlreadyAcceptedException</c> even if the sequence token is not valid. You
+        /// can use parallel <c>PutLogEvents</c> actions on the same log stream. 
         /// </para>
         ///  </important> 
         /// <para>
@@ -3195,10 +6213,9 @@ namespace Amazon.CloudWatchLogs
         /// <para>
         /// The log events in the batch must be in chronological order by their timestamp. The
         /// timestamp is the time that the event occurred, expressed as the number of milliseconds
-        /// after <code>Jan 1, 1970 00:00:00 UTC</code>. (In Amazon Web Services Tools for PowerShell
+        /// after <c>Jan 1, 1970 00:00:00 UTC</c>. (In Amazon Web Services Tools for PowerShell
         /// and the Amazon Web Services SDK for .NET, the timestamp is specified in .NET format:
-        /// <code>yyyy-mm-ddThh:mm:ss</code>. For example, <code>2017-09-15T13:45:30</code>.)
-        /// 
+        /// <c>yyyy-mm-ddThh:mm:ss</c>. For example, <c>2017-09-15T13:45:30</c>.) 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3215,14 +6232,14 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  </li> <li> <important> 
         /// <para>
-        /// The quota of five requests per second per log stream has been removed. Instead, <code>PutLogEvents</code>
+        /// The quota of five requests per second per log stream has been removed. Instead, <c>PutLogEvents</c>
         /// actions are throttled based on a per-second per-account quota. You can request an
         /// increase to the per-second throttling quota by using the Service Quotas service.
         /// </para>
         ///  </important> </li> </ul> 
         /// <para>
-        /// If a call to <code>PutLogEvents</code> returns "UnrecognizedClientException" the most
-        /// likely cause is a non-valid Amazon Web Services access key ID or secret key. 
+        /// If a call to <c>PutLogEvents</c> returns "UnrecognizedClientException" the most likely
+        /// cause is a non-valid Amazon Web Services access key ID or secret key. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutLogEvents service method.</param>
@@ -3236,7 +6253,7 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  <important> 
         /// <para>
-        ///  <code>PutLogEvents</code> actions are now always accepted and never return <code>DataAlreadyAcceptedException</code>
+        ///  <c>PutLogEvents</c> actions are now always accepted and never return <c>DataAlreadyAcceptedException</c>
         /// regardless of whether a given batch of log events has already been accepted. 
         /// </para>
         ///  </important>
@@ -3245,12 +6262,12 @@ namespace Amazon.CloudWatchLogs
         /// A parameter is specified incorrectly.
         /// </exception>
         /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidSequenceTokenException">
-        /// The sequence token is not valid. You can get the correct sequence token in the <code>expectedSequenceToken</code>
-        /// field in the <code>InvalidSequenceTokenException</code> message. 
+        /// The sequence token is not valid. You can get the correct sequence token in the <c>expectedSequenceToken</c>
+        /// field in the <c>InvalidSequenceTokenException</c> message. 
         /// 
         ///  <important> 
         /// <para>
-        ///  <code>PutLogEvents</code> actions are now always accepted and never return <code>InvalidSequenceTokenException</code>
+        ///  <c>PutLogEvents</c> actions are now always accepted and never return <c>InvalidSequenceTokenException</c>
         /// regardless of receiving an invalid sequence token. 
         /// </para>
         ///  </important>
@@ -3284,15 +6301,24 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  
         /// <para>
+        /// Using regular expressions to create metric filters is supported. For these filters,
+        /// there is a quota of two regular expression patterns within a single filter pattern.
+        /// There is also a quota of five regular expression patterns per log group. For more
+        /// information about using regular expressions in metric filters, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html">
+        /// Filter pattern syntax for metric filters, subscription filters, filter log events,
+        /// and Live Tail</a>.
+        /// </para>
+        ///  
+        /// <para>
         /// When you create a metric filter, you can also optionally assign a unit and dimensions
         /// to the metric that is created.
         /// </para>
         ///  <important> 
         /// <para>
         /// Metrics extracted from log events are charged as custom metrics. To prevent unexpected
-        /// high charges, do not specify high-cardinality fields such as <code>IPAddress</code>
-        /// or <code>requestID</code> as dimensions. Each different value found for a dimension
-        /// is treated as a separate metric and accrues charges as a separate custom metric. 
+        /// high charges, do not specify high-cardinality fields such as <c>IPAddress</c> or <c>requestID</c>
+        /// as dimensions. Each different value found for a dimension is treated as a separate
+        /// metric and accrues charges as a separate custom metric. 
         /// </para>
         ///  
         /// <para>
@@ -3311,6 +6337,9 @@ namespace Amazon.CloudWatchLogs
         /// <param name="request">Container for the necessary parameters to execute the PutMetricFilter service method.</param>
         /// 
         /// <returns>The response from the PutMetricFilter service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidOperationException">
+        /// The operation is not valid on the specified resource.
+        /// </exception>
         /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
         /// A parameter is specified incorrectly.
         /// </exception>
@@ -3342,15 +6371,24 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  
         /// <para>
+        /// Using regular expressions to create metric filters is supported. For these filters,
+        /// there is a quota of two regular expression patterns within a single filter pattern.
+        /// There is also a quota of five regular expression patterns per log group. For more
+        /// information about using regular expressions in metric filters, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html">
+        /// Filter pattern syntax for metric filters, subscription filters, filter log events,
+        /// and Live Tail</a>.
+        /// </para>
+        ///  
+        /// <para>
         /// When you create a metric filter, you can also optionally assign a unit and dimensions
         /// to the metric that is created.
         /// </para>
         ///  <important> 
         /// <para>
         /// Metrics extracted from log events are charged as custom metrics. To prevent unexpected
-        /// high charges, do not specify high-cardinality fields such as <code>IPAddress</code>
-        /// or <code>requestID</code> as dimensions. Each different value found for a dimension
-        /// is treated as a separate metric and accrues charges as a separate custom metric. 
+        /// high charges, do not specify high-cardinality fields such as <c>IPAddress</c> or <c>requestID</c>
+        /// as dimensions. Each different value found for a dimension is treated as a separate
+        /// metric and accrues charges as a separate custom metric. 
         /// </para>
         ///  
         /// <para>
@@ -3372,6 +6410,9 @@ namespace Amazon.CloudWatchLogs
         /// </param>
         /// 
         /// <returns>The response from the PutMetricFilter service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidOperationException">
+        /// The operation is not valid on the specified resource.
+        /// </exception>
         /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
         /// A parameter is specified incorrectly.
         /// </exception>
@@ -3402,17 +6443,16 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// To update a query definition, specify its <code>queryDefinitionId</code> in your request.
-        /// The values of <code>name</code>, <code>queryString</code>, and <code>logGroupNames</code>
-        /// are changed to the values that you specify in your update operation. No current values
-        /// are retained from the current query definition. For example, imagine updating a current
-        /// query definition that includes log groups. If you don't specify the <code>logGroupNames</code>
-        /// parameter in your update operation, the query definition changes to contain no log
-        /// groups.
+        /// To update a query definition, specify its <c>queryDefinitionId</c> in your request.
+        /// The values of <c>name</c>, <c>queryString</c>, and <c>logGroupNames</c> are changed
+        /// to the values that you specify in your update operation. No current values are retained
+        /// from the current query definition. For example, imagine updating a current query definition
+        /// that includes log groups. If you don't specify the <c>logGroupNames</c> parameter
+        /// in your update operation, the query definition changes to contain no log groups.
         /// </para>
         ///  
         /// <para>
-        /// You must have the <code>logs:PutQueryDefinition</code> permission to be able to perform
+        /// You must have the <c>logs:PutQueryDefinition</c> permission to be able to perform
         /// this operation.
         /// </para>
         /// </summary>
@@ -3443,17 +6483,16 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  
         /// <para>
-        /// To update a query definition, specify its <code>queryDefinitionId</code> in your request.
-        /// The values of <code>name</code>, <code>queryString</code>, and <code>logGroupNames</code>
-        /// are changed to the values that you specify in your update operation. No current values
-        /// are retained from the current query definition. For example, imagine updating a current
-        /// query definition that includes log groups. If you don't specify the <code>logGroupNames</code>
-        /// parameter in your update operation, the query definition changes to contain no log
-        /// groups.
+        /// To update a query definition, specify its <c>queryDefinitionId</c> in your request.
+        /// The values of <c>name</c>, <c>queryString</c>, and <c>logGroupNames</c> are changed
+        /// to the values that you specify in your update operation. No current values are retained
+        /// from the current query definition. For example, imagine updating a current query definition
+        /// that includes log groups. If you don't specify the <c>logGroupNames</c> parameter
+        /// in your update operation, the query definition changes to contain no log groups.
         /// </para>
         ///  
         /// <para>
-        /// You must have the <code>logs:PutQueryDefinition</code> permission to be able to perform
+        /// You must have the <c>logs:PutQueryDefinition</c> permission to be able to perform
         /// this operation.
         /// </para>
         /// </summary>
@@ -3539,14 +6578,14 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  <note> 
         /// <para>
-        /// CloudWatch Logs doesn’t immediately delete log events when they reach their retention
+        /// CloudWatch Logs doesn't immediately delete log events when they reach their retention
         /// setting. It typically takes up to 72 hours after that before log events are deleted,
         /// but in rare situations might take longer.
         /// </para>
         ///  
         /// <para>
         /// To illustrate, imagine that you change a log group to have a longer retention setting
-        /// when it contains log events that are past the expiration date, but haven’t been deleted.
+        /// when it contains log events that are past the expiration date, but haven't been deleted.
         /// Those log events will take up to 72 hours to be deleted after the new retention date
         /// is reached. To make sure that log data is deleted permanently, keep a log group at
         /// its lower retention setting until 72 hours after the previous retention period ends.
@@ -3558,8 +6597,8 @@ namespace Amazon.CloudWatchLogs
         /// When log events reach their retention setting they are marked for deletion. After
         /// they are marked for deletion, they do not add to your archival storage costs anymore,
         /// even if they are not actually deleted until later. These log events marked for deletion
-        /// are also not included when you use an API to retrieve the <code>storedBytes</code>
-        /// value to see how many bytes a log group is storing.
+        /// are also not included when you use an API to retrieve the <c>storedBytes</c> value
+        /// to see how many bytes a log group is storing.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3589,14 +6628,14 @@ namespace Amazon.CloudWatchLogs
         /// 
         ///  <note> 
         /// <para>
-        /// CloudWatch Logs doesn’t immediately delete log events when they reach their retention
+        /// CloudWatch Logs doesn't immediately delete log events when they reach their retention
         /// setting. It typically takes up to 72 hours after that before log events are deleted,
         /// but in rare situations might take longer.
         /// </para>
         ///  
         /// <para>
         /// To illustrate, imagine that you change a log group to have a longer retention setting
-        /// when it contains log events that are past the expiration date, but haven’t been deleted.
+        /// when it contains log events that are past the expiration date, but haven't been deleted.
         /// Those log events will take up to 72 hours to be deleted after the new retention date
         /// is reached. To make sure that log data is deleted permanently, keep a log group at
         /// its lower retention setting until 72 hours after the previous retention period ends.
@@ -3608,8 +6647,8 @@ namespace Amazon.CloudWatchLogs
         /// When log events reach their retention setting they are marked for deletion. After
         /// they are marked for deletion, they do not add to your archival storage costs anymore,
         /// even if they are not actually deleted until later. These log events marked for deletion
-        /// are also not included when you use an API to retrieve the <code>storedBytes</code>
-        /// value to see how many bytes a log group is storing.
+        /// are also not included when you use an API to retrieve the <c>storedBytes</c> value
+        /// to see how many bytes a log group is storing.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3659,7 +6698,7 @@ namespace Amazon.CloudWatchLogs
         /// <para>
         /// A logical destination created with <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestination.html">PutDestination</a>
         /// that belongs to a different account, for cross-account delivery. We currently support
-        /// Kinesis Data Streams and Kinesis Data Firehose as logical destinations.
+        /// Kinesis Data Streams and Firehose as logical destinations.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3674,18 +6713,31 @@ namespace Amazon.CloudWatchLogs
         ///  </li> </ul> 
         /// <para>
         /// Each log group can have up to two subscription filters associated with it. If you
-        /// are updating an existing filter, you must specify the correct name in <code>filterName</code>.
+        /// are updating an existing filter, you must specify the correct name in <c>filterName</c>.
         /// 
         /// </para>
         ///  
         /// <para>
-        /// To perform a <code>PutSubscriptionFilter</code> operation for any destination except
-        /// a Lambda function, you must also have the <code>iam:PassRole</code> permission.
+        /// Using regular expressions to create subscription filters is supported. For these filters,
+        /// there is a quotas of quota of two regular expression patterns within a single filter
+        /// pattern. There is also a quota of five regular expression patterns per log group.
+        /// For more information about using regular expressions in subscription filters, see
+        /// <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html">
+        /// Filter pattern syntax for metric filters, subscription filters, filter log events,
+        /// and Live Tail</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// To perform a <c>PutSubscriptionFilter</c> operation for any destination except a Lambda
+        /// function, you must also have the <c>iam:PassRole</c> permission.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutSubscriptionFilter service method.</param>
         /// 
         /// <returns>The response from the PutSubscriptionFilter service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidOperationException">
+        /// The operation is not valid on the specified resource.
+        /// </exception>
         /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
         /// A parameter is specified incorrectly.
         /// </exception>
@@ -3726,7 +6778,7 @@ namespace Amazon.CloudWatchLogs
         /// <para>
         /// A logical destination created with <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestination.html">PutDestination</a>
         /// that belongs to a different account, for cross-account delivery. We currently support
-        /// Kinesis Data Streams and Kinesis Data Firehose as logical destinations.
+        /// Kinesis Data Streams and Firehose as logical destinations.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3741,13 +6793,23 @@ namespace Amazon.CloudWatchLogs
         ///  </li> </ul> 
         /// <para>
         /// Each log group can have up to two subscription filters associated with it. If you
-        /// are updating an existing filter, you must specify the correct name in <code>filterName</code>.
+        /// are updating an existing filter, you must specify the correct name in <c>filterName</c>.
         /// 
         /// </para>
         ///  
         /// <para>
-        /// To perform a <code>PutSubscriptionFilter</code> operation for any destination except
-        /// a Lambda function, you must also have the <code>iam:PassRole</code> permission.
+        /// Using regular expressions to create subscription filters is supported. For these filters,
+        /// there is a quotas of quota of two regular expression patterns within a single filter
+        /// pattern. There is also a quota of five regular expression patterns per log group.
+        /// For more information about using regular expressions in subscription filters, see
+        /// <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html">
+        /// Filter pattern syntax for metric filters, subscription filters, filter log events,
+        /// and Live Tail</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// To perform a <c>PutSubscriptionFilter</c> operation for any destination except a Lambda
+        /// function, you must also have the <c>iam:PassRole</c> permission.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutSubscriptionFilter service method.</param>
@@ -3756,6 +6818,9 @@ namespace Amazon.CloudWatchLogs
         /// </param>
         /// 
         /// <returns>The response from the PutSubscriptionFilter service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidOperationException">
+        /// The operation is not valid on the specified resource.
+        /// </exception>
         /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
         /// A parameter is specified incorrectly.
         /// </exception>
@@ -3776,12 +6841,350 @@ namespace Amazon.CloudWatchLogs
 
         #endregion
         
+        #region  PutTransformer
+
+
+        /// <summary>
+        /// Creates or updates a <i>log transformer</i> for a single log group. You use log transformers
+        /// to transform log events into a different format, making them easier for you to process
+        /// and analyze. You can also transform logs from different sources into standardized
+        /// formats that contains relevant, source-specific information.
+        /// 
+        ///  
+        /// <para>
+        /// After you have created a transformer, CloudWatch Logs performs the transformations
+        /// at the time of log ingestion. You can then refer to the transformed versions of the
+        /// logs during operations such as querying with CloudWatch Logs Insights or creating
+        /// metric filters or subscription filers.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can also use a transformer to copy metadata from metadata keys into the log events
+        /// themselves. This metadata can include log group name, log stream name, account ID
+        /// and Region.
+        /// </para>
+        ///  
+        /// <para>
+        /// A transformer for a log group is a series of processors, where each processor applies
+        /// one type of transformation to the log events ingested into this log group. The processors
+        /// work one after another, in the order that you list them, like a pipeline. For more
+        /// information about the available processors to use in a transformer, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Transformation.html#CloudWatch-Logs-Transformation-Processors">
+        /// Processors that you can use</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Having log events in standardized format enables visibility across your applications
+        /// for your log analysis, reporting, and alarming needs. CloudWatch Logs provides transformation
+        /// for common log types with out-of-the-box transformation templates for major Amazon
+        /// Web Services log sources such as VPC flow logs, Lambda, and Amazon RDS. You can use
+        /// pre-built transformation templates or create custom transformation policies.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can create transformers only for the log groups in the Standard log class.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can also set up a transformer at the account level. For more information, see
+        /// <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutAccountPolicy.html">PutAccountPolicy</a>.
+        /// If there is both a log-group level transformer created with <c>PutTransformer</c>
+        /// and an account-level transformer that could apply to the same log group, the log group
+        /// uses only the log-group level transformer. It ignores the account-level transformer.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutTransformer service method.</param>
+        /// 
+        /// <returns>The response from the PutTransformer service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidOperationException">
+        /// The operation is not valid on the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.LimitExceededException">
+        /// You have reached the maximum number of resources that can be created.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/PutTransformer">REST API Reference for PutTransformer Operation</seealso>
+        PutTransformerResponse PutTransformer(PutTransformerRequest request);
+
+
+
+        /// <summary>
+        /// Creates or updates a <i>log transformer</i> for a single log group. You use log transformers
+        /// to transform log events into a different format, making them easier for you to process
+        /// and analyze. You can also transform logs from different sources into standardized
+        /// formats that contains relevant, source-specific information.
+        /// 
+        ///  
+        /// <para>
+        /// After you have created a transformer, CloudWatch Logs performs the transformations
+        /// at the time of log ingestion. You can then refer to the transformed versions of the
+        /// logs during operations such as querying with CloudWatch Logs Insights or creating
+        /// metric filters or subscription filers.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can also use a transformer to copy metadata from metadata keys into the log events
+        /// themselves. This metadata can include log group name, log stream name, account ID
+        /// and Region.
+        /// </para>
+        ///  
+        /// <para>
+        /// A transformer for a log group is a series of processors, where each processor applies
+        /// one type of transformation to the log events ingested into this log group. The processors
+        /// work one after another, in the order that you list them, like a pipeline. For more
+        /// information about the available processors to use in a transformer, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Transformation.html#CloudWatch-Logs-Transformation-Processors">
+        /// Processors that you can use</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Having log events in standardized format enables visibility across your applications
+        /// for your log analysis, reporting, and alarming needs. CloudWatch Logs provides transformation
+        /// for common log types with out-of-the-box transformation templates for major Amazon
+        /// Web Services log sources such as VPC flow logs, Lambda, and Amazon RDS. You can use
+        /// pre-built transformation templates or create custom transformation policies.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can create transformers only for the log groups in the Standard log class.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can also set up a transformer at the account level. For more information, see
+        /// <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutAccountPolicy.html">PutAccountPolicy</a>.
+        /// If there is both a log-group level transformer created with <c>PutTransformer</c>
+        /// and an account-level transformer that could apply to the same log group, the log group
+        /// uses only the log-group level transformer. It ignores the account-level transformer.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutTransformer service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the PutTransformer service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidOperationException">
+        /// The operation is not valid on the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.LimitExceededException">
+        /// You have reached the maximum number of resources that can be created.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/PutTransformer">REST API Reference for PutTransformer Operation</seealso>
+        Task<PutTransformerResponse> PutTransformerAsync(PutTransformerRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  StartLiveTail
+
+
+        /// <summary>
+        /// Starts a Live Tail streaming session for one or more log groups. A Live Tail session
+        /// returns a stream of log events that have been recently ingested in the log groups.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs_LiveTail.html">Use
+        /// Live Tail to view logs in near real time</a>. 
+        /// 
+        ///  
+        /// <para>
+        /// The response to this operation is a response stream, over which the server sends live
+        /// log events and the client receives them.
+        /// </para>
+        ///  
+        /// <para>
+        /// The following objects are sent over the stream:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// A single <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_LiveTailSessionStart.html">LiveTailSessionStart</a>
+        /// object is sent at the start of the session.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Every second, a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_LiveTailSessionUpdate.html">LiveTailSessionUpdate</a>
+        /// object is sent. Each of these objects contains an array of the actual log events.
+        /// </para>
+        ///  
+        /// <para>
+        /// If no new log events were ingested in the past second, the <c>LiveTailSessionUpdate</c>
+        /// object will contain an empty array.
+        /// </para>
+        ///  
+        /// <para>
+        /// The array of log events contained in a <c>LiveTailSessionUpdate</c> can include as
+        /// many as 500 log events. If the number of log events matching the request exceeds 500
+        /// per second, the log events are sampled down to 500 log events to be included in each
+        /// <c>LiveTailSessionUpdate</c> object.
+        /// </para>
+        ///  
+        /// <para>
+        /// If your client consumes the log events slower than the server produces them, CloudWatch
+        /// Logs buffers up to 10 <c>LiveTailSessionUpdate</c> events or 5000 log events, after
+        /// which it starts dropping the oldest events.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// A <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartLiveTailResponseStream.html#CWL-Type-StartLiveTailResponseStream-SessionStreamingException">SessionStreamingException</a>
+        /// object is returned if an unknown error occurs on the server side.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// A <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartLiveTailResponseStream.html#CWL-Type-StartLiveTailResponseStream-SessionTimeoutException">SessionTimeoutException</a>
+        /// object is returned when the session times out, after it has been kept open for three
+        /// hours.
+        /// </para>
+        ///  </li> </ul> <important> 
+        /// <para>
+        /// You can end a session before it times out by closing the session stream or by closing
+        /// the client that is receiving the stream. The session also ends if the established
+        /// connection between the client and the server breaks.
+        /// </para>
+        ///  </important> 
+        /// <para>
+        /// For examples of using an SDK to start a Live Tail session, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/example_cloudwatch-logs_StartLiveTail_section.html">
+        /// Start a Live Tail session using an Amazon Web Services SDK</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartLiveTail service method.</param>
+        /// 
+        /// <returns>The response from the StartLiveTail service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.AccessDeniedException">
+        /// You don't have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidOperationException">
+        /// The operation is not valid on the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.LimitExceededException">
+        /// You have reached the maximum number of resources that can be created.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/StartLiveTail">REST API Reference for StartLiveTail Operation</seealso>
+        StartLiveTailResponse StartLiveTail(StartLiveTailRequest request);
+
+
+
+        /// <summary>
+        /// Starts a Live Tail streaming session for one or more log groups. A Live Tail session
+        /// returns a stream of log events that have been recently ingested in the log groups.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs_LiveTail.html">Use
+        /// Live Tail to view logs in near real time</a>. 
+        /// 
+        ///  
+        /// <para>
+        /// The response to this operation is a response stream, over which the server sends live
+        /// log events and the client receives them.
+        /// </para>
+        ///  
+        /// <para>
+        /// The following objects are sent over the stream:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// A single <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_LiveTailSessionStart.html">LiveTailSessionStart</a>
+        /// object is sent at the start of the session.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Every second, a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_LiveTailSessionUpdate.html">LiveTailSessionUpdate</a>
+        /// object is sent. Each of these objects contains an array of the actual log events.
+        /// </para>
+        ///  
+        /// <para>
+        /// If no new log events were ingested in the past second, the <c>LiveTailSessionUpdate</c>
+        /// object will contain an empty array.
+        /// </para>
+        ///  
+        /// <para>
+        /// The array of log events contained in a <c>LiveTailSessionUpdate</c> can include as
+        /// many as 500 log events. If the number of log events matching the request exceeds 500
+        /// per second, the log events are sampled down to 500 log events to be included in each
+        /// <c>LiveTailSessionUpdate</c> object.
+        /// </para>
+        ///  
+        /// <para>
+        /// If your client consumes the log events slower than the server produces them, CloudWatch
+        /// Logs buffers up to 10 <c>LiveTailSessionUpdate</c> events or 5000 log events, after
+        /// which it starts dropping the oldest events.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// A <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartLiveTailResponseStream.html#CWL-Type-StartLiveTailResponseStream-SessionStreamingException">SessionStreamingException</a>
+        /// object is returned if an unknown error occurs on the server side.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// A <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartLiveTailResponseStream.html#CWL-Type-StartLiveTailResponseStream-SessionTimeoutException">SessionTimeoutException</a>
+        /// object is returned when the session times out, after it has been kept open for three
+        /// hours.
+        /// </para>
+        ///  </li> </ul> <important> 
+        /// <para>
+        /// You can end a session before it times out by closing the session stream or by closing
+        /// the client that is receiving the stream. The session also ends if the established
+        /// connection between the client and the server breaks.
+        /// </para>
+        ///  </important> 
+        /// <para>
+        /// For examples of using an SDK to start a Live Tail session, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/example_cloudwatch-logs_StartLiveTail_section.html">
+        /// Start a Live Tail session using an Amazon Web Services SDK</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartLiveTail service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StartLiveTail service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.AccessDeniedException">
+        /// You don't have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidOperationException">
+        /// The operation is not valid on the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.LimitExceededException">
+        /// You have reached the maximum number of resources that can be created.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/StartLiveTail">REST API Reference for StartLiveTail Operation</seealso>
+        Task<StartLiveTailResponse> StartLiveTailAsync(StartLiveTailRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  StartQuery
 
 
         /// <summary>
-        /// Schedules a query of a log group using CloudWatch Logs Insights. You specify the log
-        /// group and time range to query and the query string to use.
+        /// Starts a query of one or more log groups using CloudWatch Logs Insights. You specify
+        /// the log groups and time range to query and the query string to use.
         /// 
         ///  
         /// <para>
@@ -3790,12 +7193,32 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  
         /// <para>
-        /// After you run a query using <code>StartQuery</code>, the query results are stored
-        /// by CloudWatch Logs. You can use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetQueryResults.html">GetQueryResults</a>
-        /// to retrieve the results of a query, using the <code>queryId</code> that <code>StartQuery</code>
+        /// After you run a query using <c>StartQuery</c>, the query results are stored by CloudWatch
+        /// Logs. You can use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetQueryResults.html">GetQueryResults</a>
+        /// to retrieve the results of a query, using the <c>queryId</c> that <c>StartQuery</c>
         /// returns. 
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// To specify the log groups to query, a <c>StartQuery</c> operation must include one
+        /// of the following:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Either exactly one of the following parameters: <c>logGroupName</c>, <c>logGroupNames</c>,
+        /// or <c>logGroupIdentifiers</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Or the <c>queryString</c> must include a <c>SOURCE</c> command to select log groups
+        /// for the query. The <c>SOURCE</c> command can select log groups based on log group
+        /// name prefix, account ID, and log class. 
+        /// </para>
         ///  
+        /// <para>
+        /// For more information about the <c>SOURCE</c> command, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax-Source.html">SOURCE</a>.
+        /// </para>
+        ///  </li> </ul> </note> 
         /// <para>
         /// If you have associated a KMS key with the query results in this account, then <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html">StartQuery</a>
         /// uses that key to encrypt the results when it stores them. If no key is associated
@@ -3812,7 +7235,7 @@ namespace Amazon.CloudWatchLogs
         /// If you are using CloudWatch cross-account observability, you can use this operation
         /// in a monitoring account to start a query in a linked source account. For more information,
         /// see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html">CloudWatch
-        /// cross-account observability</a>. For a cross-account <code>StartQuery</code> operation,
+        /// cross-account observability</a>. For a cross-account <c>StartQuery</c> operation,
         /// the query definition must be defined in the monitoring account.
         /// </para>
         ///  
@@ -3831,7 +7254,7 @@ namespace Amazon.CloudWatchLogs
         /// You have reached the maximum number of resources that can be created.
         /// </exception>
         /// <exception cref="Amazon.CloudWatchLogs.Model.MalformedQueryException">
-        /// The query string is not valid. Details about this error are displayed in a <code>QueryCompileError</code>
+        /// The query string is not valid. Details about this error are displayed in a <c>QueryCompileError</c>
         /// object. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_QueryCompileError.html">QueryCompileError</a>.
         /// 
         ///  
@@ -3852,8 +7275,8 @@ namespace Amazon.CloudWatchLogs
 
 
         /// <summary>
-        /// Schedules a query of a log group using CloudWatch Logs Insights. You specify the log
-        /// group and time range to query and the query string to use.
+        /// Starts a query of one or more log groups using CloudWatch Logs Insights. You specify
+        /// the log groups and time range to query and the query string to use.
         /// 
         ///  
         /// <para>
@@ -3862,12 +7285,32 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  
         /// <para>
-        /// After you run a query using <code>StartQuery</code>, the query results are stored
-        /// by CloudWatch Logs. You can use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetQueryResults.html">GetQueryResults</a>
-        /// to retrieve the results of a query, using the <code>queryId</code> that <code>StartQuery</code>
+        /// After you run a query using <c>StartQuery</c>, the query results are stored by CloudWatch
+        /// Logs. You can use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetQueryResults.html">GetQueryResults</a>
+        /// to retrieve the results of a query, using the <c>queryId</c> that <c>StartQuery</c>
         /// returns. 
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// To specify the log groups to query, a <c>StartQuery</c> operation must include one
+        /// of the following:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Either exactly one of the following parameters: <c>logGroupName</c>, <c>logGroupNames</c>,
+        /// or <c>logGroupIdentifiers</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Or the <c>queryString</c> must include a <c>SOURCE</c> command to select log groups
+        /// for the query. The <c>SOURCE</c> command can select log groups based on log group
+        /// name prefix, account ID, and log class. 
+        /// </para>
         ///  
+        /// <para>
+        /// For more information about the <c>SOURCE</c> command, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax-Source.html">SOURCE</a>.
+        /// </para>
+        ///  </li> </ul> </note> 
         /// <para>
         /// If you have associated a KMS key with the query results in this account, then <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html">StartQuery</a>
         /// uses that key to encrypt the results when it stores them. If no key is associated
@@ -3884,7 +7327,7 @@ namespace Amazon.CloudWatchLogs
         /// If you are using CloudWatch cross-account observability, you can use this operation
         /// in a monitoring account to start a query in a linked source account. For more information,
         /// see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html">CloudWatch
-        /// cross-account observability</a>. For a cross-account <code>StartQuery</code> operation,
+        /// cross-account observability</a>. For a cross-account <c>StartQuery</c> operation,
         /// the query definition must be defined in the monitoring account.
         /// </para>
         ///  
@@ -3906,7 +7349,7 @@ namespace Amazon.CloudWatchLogs
         /// You have reached the maximum number of resources that can be created.
         /// </exception>
         /// <exception cref="Amazon.CloudWatchLogs.Model.MalformedQueryException">
-        /// The query string is not valid. Details about this error are displayed in a <code>QueryCompileError</code>
+        /// The query string is not valid. Details about this error are displayed in a <c>QueryCompileError</c>
         /// object. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_QueryCompileError.html">QueryCompileError</a>.
         /// 
         ///  
@@ -4000,8 +7443,8 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  
         /// <para>
-        /// CloudWatch Logs doesn’t support IAM policies that prevent users from assigning specified
-        /// tags to log groups using the <code>aws:Resource/<i>key-name</i> </code> or <code>aws:TagKeys</code>
+        /// CloudWatch Logs doesn't support IAM policies that prevent users from assigning specified
+        /// tags to log groups using the <c>aws:Resource/<i>key-name</i> </c> or <c>aws:TagKeys</c>
         /// condition keys. For more information about using tags to control access, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html">Controlling
         /// access to Amazon Web Services resources using tags</a>.
         /// </para>
@@ -4044,8 +7487,8 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  
         /// <para>
-        /// CloudWatch Logs doesn’t support IAM policies that prevent users from assigning specified
-        /// tags to log groups using the <code>aws:Resource/<i>key-name</i> </code> or <code>aws:TagKeys</code>
+        /// CloudWatch Logs doesn't support IAM policies that prevent users from assigning specified
+        /// tags to log groups using the <c>aws:Resource/<i>key-name</i> </c> or <c>aws:TagKeys</c>
         /// condition keys. For more information about using tags to control access, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html">Controlling
         /// access to Amazon Web Services resources using tags</a>.
         /// </para>
@@ -4089,8 +7532,8 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  
         /// <para>
-        /// You can use the <code>TagResource</code> action with a resource that already has tags.
-        /// If you specify a new tag key for the alarm, this tag is appended to the list of tags
+        /// You can use the <c>TagResource</c> action with a resource that already has tags. If
+        /// you specify a new tag key for the alarm, this tag is appended to the list of tags
         /// associated with the alarm. If you specify a tag key that is already associated with
         /// the alarm, the new tag value that you specify replaces the previous value for that
         /// tag.
@@ -4138,8 +7581,8 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  
         /// <para>
-        /// You can use the <code>TagResource</code> action with a resource that already has tags.
-        /// If you specify a new tag key for the alarm, this tag is appended to the list of tags
+        /// You can use the <c>TagResource</c> action with a resource that already has tags. If
+        /// you specify a new tag key for the alarm, this tag is appended to the list of tags
         /// associated with the alarm. If you specify a tag key that is already associated with
         /// the alarm, the new tag value that you specify replaces the previous value for that
         /// tag.
@@ -4214,6 +7657,56 @@ namespace Amazon.CloudWatchLogs
 
         #endregion
         
+        #region  TestTransformer
+
+
+        /// <summary>
+        /// Use this operation to test a log transformer. You enter the transformer configuration
+        /// and a set of log events to test with. The operation responds with an array that includes
+        /// the original log events and the transformed versions.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the TestTransformer service method.</param>
+        /// 
+        /// <returns>The response from the TestTransformer service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidOperationException">
+        /// The operation is not valid on the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/TestTransformer">REST API Reference for TestTransformer Operation</seealso>
+        TestTransformerResponse TestTransformer(TestTransformerRequest request);
+
+
+
+        /// <summary>
+        /// Use this operation to test a log transformer. You enter the transformer configuration
+        /// and a set of log events to test with. The operation responds with an array that includes
+        /// the original log events and the transformed versions.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the TestTransformer service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the TestTransformer service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidOperationException">
+        /// The operation is not valid on the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/TestTransformer">REST API Reference for TestTransformer Operation</seealso>
+        Task<TestTransformerResponse> TestTransformerAsync(TestTransformerRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  UntagLogGroup
 
 
@@ -4235,8 +7728,8 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  
         /// <para>
-        /// CloudWatch Logs doesn’t support IAM policies that prevent users from assigning specified
-        /// tags to log groups using the <code>aws:Resource/<i>key-name</i> </code> or <code>aws:TagKeys</code>
+        /// CloudWatch Logs doesn't support IAM policies that prevent users from assigning specified
+        /// tags to log groups using the <c>aws:Resource/<i>key-name</i> </c> or <c>aws:TagKeys</c>
         /// condition keys. 
         /// </para>
         /// </summary>
@@ -4270,8 +7763,8 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  
         /// <para>
-        /// CloudWatch Logs doesn’t support IAM policies that prevent users from assigning specified
-        /// tags to log groups using the <code>aws:Resource/<i>key-name</i> </code> or <code>aws:TagKeys</code>
+        /// CloudWatch Logs doesn't support IAM policies that prevent users from assigning specified
+        /// tags to log groups using the <c>aws:Resource/<i>key-name</i> </c> or <c>aws:TagKeys</c>
         /// condition keys. 
         /// </para>
         /// </summary>
@@ -4333,6 +7826,210 @@ namespace Amazon.CloudWatchLogs
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/UntagResource">REST API Reference for UntagResource Operation</seealso>
         Task<UntagResourceResponse> UntagResourceAsync(UntagResourceRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  UpdateAnomaly
+
+
+        /// <summary>
+        /// Use this operation to <i>suppress</i> anomaly detection for a specified anomaly or
+        /// pattern. If you suppress an anomaly, CloudWatch Logs won't report new occurrences
+        /// of that anomaly and won't update that anomaly with new data. If you suppress a pattern,
+        /// CloudWatch Logs won't report any anomalies related to that pattern.
+        /// 
+        ///  
+        /// <para>
+        /// You must specify either <c>anomalyId</c> or <c>patternId</c>, but you can't specify
+        /// both parameters in the same operation.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you have previously used this operation to suppress detection of a pattern or anomaly,
+        /// you can use it again to cause CloudWatch Logs to end the suppression. To do this,
+        /// use this operation and specify the anomaly or pattern to stop suppressing, and omit
+        /// the <c>suppressionType</c> and <c>suppressionPeriod</c> parameters.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateAnomaly service method.</param>
+        /// 
+        /// <returns>The response from the UpdateAnomaly service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/UpdateAnomaly">REST API Reference for UpdateAnomaly Operation</seealso>
+        UpdateAnomalyResponse UpdateAnomaly(UpdateAnomalyRequest request);
+
+
+
+        /// <summary>
+        /// Use this operation to <i>suppress</i> anomaly detection for a specified anomaly or
+        /// pattern. If you suppress an anomaly, CloudWatch Logs won't report new occurrences
+        /// of that anomaly and won't update that anomaly with new data. If you suppress a pattern,
+        /// CloudWatch Logs won't report any anomalies related to that pattern.
+        /// 
+        ///  
+        /// <para>
+        /// You must specify either <c>anomalyId</c> or <c>patternId</c>, but you can't specify
+        /// both parameters in the same operation.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you have previously used this operation to suppress detection of a pattern or anomaly,
+        /// you can use it again to cause CloudWatch Logs to end the suppression. To do this,
+        /// use this operation and specify the anomaly or pattern to stop suppressing, and omit
+        /// the <c>suppressionType</c> and <c>suppressionPeriod</c> parameters.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateAnomaly service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateAnomaly service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/UpdateAnomaly">REST API Reference for UpdateAnomaly Operation</seealso>
+        Task<UpdateAnomalyResponse> UpdateAnomalyAsync(UpdateAnomalyRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  UpdateDeliveryConfiguration
+
+
+        /// <summary>
+        /// Use this operation to update the configuration of a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_Delivery.html">delivery</a>
+        /// to change either the S3 path pattern or the format of the delivered logs. You can't
+        /// use this operation to change the source or destination of the delivery.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateDeliveryConfiguration service method.</param>
+        /// 
+        /// <returns>The response from the UpdateDeliveryConfiguration service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.AccessDeniedException">
+        /// You don't have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ConflictException">
+        /// This operation attempted to create a resource that already exists.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/UpdateDeliveryConfiguration">REST API Reference for UpdateDeliveryConfiguration Operation</seealso>
+        UpdateDeliveryConfigurationResponse UpdateDeliveryConfiguration(UpdateDeliveryConfigurationRequest request);
+
+
+
+        /// <summary>
+        /// Use this operation to update the configuration of a <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_Delivery.html">delivery</a>
+        /// to change either the S3 path pattern or the format of the delivered logs. You can't
+        /// use this operation to change the source or destination of the delivery.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateDeliveryConfiguration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateDeliveryConfiguration service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.AccessDeniedException">
+        /// You don't have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ConflictException">
+        /// This operation attempted to create a resource that already exists.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ThrottlingException">
+        /// The request was throttled because of quota limits.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ValidationException">
+        /// One of the parameters for the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/UpdateDeliveryConfiguration">REST API Reference for UpdateDeliveryConfiguration Operation</seealso>
+        Task<UpdateDeliveryConfigurationResponse> UpdateDeliveryConfigurationAsync(UpdateDeliveryConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  UpdateLogAnomalyDetector
+
+
+        /// <summary>
+        /// Updates an existing log anomaly detector.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateLogAnomalyDetector service method.</param>
+        /// 
+        /// <returns>The response from the UpdateLogAnomalyDetector service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/UpdateLogAnomalyDetector">REST API Reference for UpdateLogAnomalyDetector Operation</seealso>
+        UpdateLogAnomalyDetectorResponse UpdateLogAnomalyDetector(UpdateLogAnomalyDetectorRequest request);
+
+
+
+        /// <summary>
+        /// Updates an existing log anomaly detector.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateLogAnomalyDetector service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateLogAnomalyDetector service method, as returned by CloudWatchLogs.</returns>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.InvalidParameterException">
+        /// A parameter is specified incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.OperationAbortedException">
+        /// Multiple concurrent requests to update the same resource were in conflict.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CloudWatchLogs.Model.ServiceUnavailableException">
+        /// The service cannot complete the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/UpdateLogAnomalyDetector">REST API Reference for UpdateLogAnomalyDetector Operation</seealso>
+        Task<UpdateLogAnomalyDetectorResponse> UpdateLogAnomalyDetectorAsync(UpdateLogAnomalyDetectorRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 

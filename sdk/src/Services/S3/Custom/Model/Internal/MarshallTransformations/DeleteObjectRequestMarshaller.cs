@@ -61,13 +61,25 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
             if (deleteObjectRequest.IsSetRequestPayer())
                 request.Headers.Add(S3Constants.AmzHeaderRequestPayer, S3Transforms.ToStringValue(deleteObjectRequest.RequestPayer.ToString()));
             request.UseQueryString = true;
-            
+
+            if (deleteObjectRequest.IsSetIfMatch())
+                request.Headers.Add(HeaderKeys.IfMatchHeader, S3Transforms.ToStringValue(deleteObjectRequest.IfMatch));
+
+            if (deleteObjectRequest.IsSetIfMatchLastModifiedTime())
+                request.Headers.Add(S3Constants.AmzHeaderIfMatchLastModifiedTime, S3Transforms.ToStringValue(deleteObjectRequest.IfMatchLastModifiedTime));
+
+            if (deleteObjectRequest.IsSetIfMatchSize())
+                request.Headers.Add(S3Constants.AmzHeaderIfMatchSize, S3Transforms.ToStringValue(deleteObjectRequest.IfMatchSize));
+
             return request;
         }
 
 	    private static DeleteObjectRequestMarshaller _instance;
 
-	    public static DeleteObjectRequestMarshaller Instance
+        /// <summary>
+        /// Singleton for marshaller
+        /// </summary>
+        public static DeleteObjectRequestMarshaller Instance
 	    {
 	        get
 	        {

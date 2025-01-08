@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -34,18 +35,59 @@ namespace Amazon.CloudFormation.Model
     ///  
     /// <para>
     /// For more information about maximum concurrent accounts and failure tolerance, see
-    /// <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-concepts.html#stackset-ops-options">Stack
+    /// <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/what-is-cfnstacksets.html#stackset-ops-options">Stack
     /// set operation options</a>.
     /// </para>
     /// </summary>
     public partial class StackSetOperationPreferences
     {
+        private ConcurrencyMode _concurrencyMode;
         private int? _failureToleranceCount;
         private int? _failureTolerancePercentage;
         private int? _maxConcurrentCount;
         private int? _maxConcurrentPercentage;
         private RegionConcurrencyType _regionConcurrencyType;
-        private List<string> _regionOrder = new List<string>();
+        private List<string> _regionOrder = AWSConfigs.InitializeCollections ? new List<string>() : null;
+
+        /// <summary>
+        /// Gets and sets the property ConcurrencyMode. 
+        /// <para>
+        /// Specifies how the concurrency level behaves during the operation execution.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>STRICT_FAILURE_TOLERANCE</c>: This option dynamically lowers the concurrency level
+        /// to ensure the number of failed accounts never exceeds the value of <c>FailureToleranceCount</c>
+        /// +1. The initial actual concurrency is set to the lower of either the value of the
+        /// <c>MaxConcurrentCount</c>, or the value of <c>FailureToleranceCount</c> +1. The actual
+        /// concurrency is then reduced proportionally by the number of failures. This is the
+        /// default behavior.
+        /// </para>
+        ///  
+        /// <para>
+        /// If failure tolerance or Maximum concurrent accounts are set to percentages, the behavior
+        /// is similar.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>SOFT_FAILURE_TOLERANCE</c>: This option decouples <c>FailureToleranceCount</c>
+        /// from the actual concurrency. This allows stack set operations to run at the concurrency
+        /// level set by the <c>MaxConcurrentCount</c> value, or <c>MaxConcurrentPercentage</c>,
+        /// regardless of the number of failures.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public ConcurrencyMode ConcurrencyMode
+        {
+            get { return this._concurrencyMode; }
+            set { this._concurrencyMode = value; }
+        }
+
+        // Check to see if ConcurrencyMode property is set
+        internal bool IsSetConcurrencyMode()
+        {
+            return this._concurrencyMode != null;
+        }
 
         /// <summary>
         /// Gets and sets the property FailureToleranceCount. 
@@ -56,12 +98,12 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify either <code>FailureToleranceCount</code> or <code>FailureTolerancePercentage</code>
+        /// Conditional: You must specify either <c>FailureToleranceCount</c> or <c>FailureTolerancePercentage</c>
         /// (but not both).
         /// </para>
         ///  
         /// <para>
-        /// By default, <code>0</code> is specified.
+        /// By default, <c>0</c> is specified.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]
@@ -91,12 +133,12 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify either <code>FailureToleranceCount</code> or <code>FailureTolerancePercentage</code>,
+        /// Conditional: You must specify either <c>FailureToleranceCount</c> or <c>FailureTolerancePercentage</c>,
         /// but not both.
         /// </para>
         ///  
         /// <para>
-        /// By default, <code>0</code> is specified.
+        /// By default, <c>0</c> is specified.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]
@@ -116,8 +158,9 @@ namespace Amazon.CloudFormation.Model
         /// Gets and sets the property MaxConcurrentCount. 
         /// <para>
         /// The maximum number of accounts in which to perform this operation at one time. This
-        /// is dependent on the value of <code>FailureToleranceCount</code>.<code>MaxConcurrentCount</code>
-        /// is at most one more than the <code>FailureToleranceCount</code>.
+        /// can depend on the value of <c>FailureToleranceCount</c> depending on your <c>ConcurrencyMode</c>.
+        /// <c>MaxConcurrentCount</c> is at most one more than the <c>FailureToleranceCount</c>
+        /// if you're using <c>STRICT_FAILURE_TOLERANCE</c>.
         /// </para>
         ///  
         /// <para>
@@ -127,12 +170,12 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify either <code>MaxConcurrentCount</code> or <code>MaxConcurrentPercentage</code>,
+        /// Conditional: You must specify either <c>MaxConcurrentCount</c> or <c>MaxConcurrentPercentage</c>,
         /// but not both.
         /// </para>
         ///  
         /// <para>
-        /// By default, <code>1</code> is specified.
+        /// By default, <c>1</c> is specified.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -167,12 +210,12 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify either <code>MaxConcurrentCount</code> or <code>MaxConcurrentPercentage</code>,
+        /// Conditional: You must specify either <c>MaxConcurrentCount</c> or <c>MaxConcurrentPercentage</c>,
         /// but not both.
         /// </para>
         ///  
         /// <para>
-        /// By default, <code>1</code> is specified.
+        /// By default, <c>1</c> is specified.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -212,6 +255,11 @@ namespace Amazon.CloudFormation.Model
         /// <para>
         /// The order of the Regions where you want to perform the stack operation.
         /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <c>RegionOrder</c> isn't followed if <c>AutoDeployment</c> is enabled.
+        /// </para>
+        ///  </note>
         /// </summary>
         public List<string> RegionOrder
         {
@@ -222,7 +270,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if RegionOrder property is set
         internal bool IsSetRegionOrder()
         {
-            return this._regionOrder != null && this._regionOrder.Count > 0; 
+            return this._regionOrder != null && (this._regionOrder.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

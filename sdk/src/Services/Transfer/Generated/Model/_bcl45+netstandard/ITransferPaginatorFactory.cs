@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the transfer-2018-11-05.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -51,6 +52,11 @@ namespace Amazon.Transfer.Model
         IListExecutionsPaginator ListExecutions(ListExecutionsRequest request);
 
         /// <summary>
+        /// Paginator for ListFileTransferResults operation
+        ///</summary>
+        IListFileTransferResultsPaginator ListFileTransferResults(ListFileTransferResultsRequest request);
+
+        /// <summary>
         /// Paginator for ListProfiles operation
         ///</summary>
         IListProfilesPaginator ListProfiles(ListProfilesRequest request);
@@ -74,6 +80,11 @@ namespace Amazon.Transfer.Model
         /// Paginator for ListUsers operation
         ///</summary>
         IListUsersPaginator ListUsers(ListUsersRequest request);
+
+        /// <summary>
+        /// Paginator for ListWebApps operation
+        ///</summary>
+        IListWebAppsPaginator ListWebApps(ListWebAppsRequest request);
 
         /// <summary>
         /// Paginator for ListWorkflows operation

@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteBackupSelection operation.
     /// Deletes the resource selection associated with a backup plan that is specified by
-    /// the <code>SelectionId</code>.
+    /// the <c>SelectionId</c>.
     /// </summary>
     public partial class DeleteBackupSelectionRequest : AmazonBackupRequest
     {

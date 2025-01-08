@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.Glue.Model
         private string _catalogId;
         private string _databaseName;
         private string _tableName;
-        private List<string> _versionIds = new List<string>();
+        private List<string> _versionIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property CatalogId. 
@@ -101,8 +102,8 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property VersionIds. 
         /// <para>
-        /// A list of the IDs of versions to be deleted. A <code>VersionId</code> is a string
-        /// representation of an integer. Each version is incremented by 1.
+        /// A list of the IDs of versions to be deleted. A <c>VersionId</c> is a string representation
+        /// of an integer. Each version is incremented by 1.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=100)]
@@ -115,7 +116,7 @@ namespace Amazon.Glue.Model
         // Check to see if VersionIds property is set
         internal bool IsSetVersionIds()
         {
-            return this._versionIds != null && this._versionIds.Count > 0; 
+            return this._versionIds != null && (this._versionIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

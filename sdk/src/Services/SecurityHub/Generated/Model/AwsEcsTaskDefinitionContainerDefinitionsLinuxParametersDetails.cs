@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -35,12 +36,12 @@ namespace Amazon.SecurityHub.Model
     public partial class AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails
     {
         private AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails _capabilities;
-        private List<AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails> _devices = new List<AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails>();
+        private List<AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails> _devices = AWSConfigs.InitializeCollections ? new List<AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails>() : null;
         private bool? _initProcessEnabled;
         private int? _maxSwap;
         private int? _sharedMemorySize;
         private int? _swappiness;
-        private List<AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails> _tmpfs = new List<AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails>();
+        private List<AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails> _tmpfs = AWSConfigs.InitializeCollections ? new List<AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails>() : null;
 
         /// <summary>
         /// Gets and sets the property Capabilities. 
@@ -76,14 +77,14 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Devices property is set
         internal bool IsSetDevices()
         {
-            return this._devices != null && this._devices.Count > 0; 
+            return this._devices != null && (this._devices.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property InitProcessEnabled. 
         /// <para>
-        /// Whether to run an <code>init</code> process inside the container that forwards signals
-        /// and reaps processes. 
+        /// Whether to run an <c>init</c> process inside the container that forwards signals and
+        /// reaps processes. 
         /// </para>
         /// </summary>
         public bool InitProcessEnabled
@@ -169,7 +170,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Tmpfs property is set
         internal bool IsSetTmpfs()
         {
-            return this._tmpfs != null && this._tmpfs.Count > 0; 
+            return this._tmpfs != null && (this._tmpfs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

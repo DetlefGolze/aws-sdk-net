@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.SimpleEmailV2.Model
     /// </summary>
     public partial class GetDedicatedIpsResponse : AmazonWebServiceResponse
     {
-        private List<DedicatedIp> _dedicatedIps = new List<DedicatedIp>();
+        private List<DedicatedIp> _dedicatedIps = AWSConfigs.InitializeCollections ? new List<DedicatedIp>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -53,15 +54,15 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if DedicatedIps property is set
         internal bool IsSetDedicatedIps()
         {
-            return this._dedicatedIps != null && this._dedicatedIps.Count > 0; 
+            return this._dedicatedIps != null && (this._dedicatedIps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token that indicates that there are additional dedicated IP addresses to list. To
-        /// view additional addresses, issue another request to <code>GetDedicatedIps</code>,
-        /// passing this token in the <code>NextToken</code> parameter.
+        /// view additional addresses, issue another request to <c>GetDedicatedIps</c>, passing
+        /// this token in the <c>NextToken</c> parameter.
         /// </para>
         /// </summary>
         public string NextToken

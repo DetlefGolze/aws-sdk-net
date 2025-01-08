@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -69,14 +70,13 @@ namespace Amazon.CloudFront.Model
         /// </para>
         ///  
         /// <para>
-        /// If the value of <code>CallerReference</code> is new (regardless of the content of
-        /// the <code>StreamingDistributionConfig</code> object), CloudFront creates a new distribution.
+        /// If the value of <c>CallerReference</c> is new (regardless of the content of the <c>StreamingDistributionConfig</c>
+        /// object), CloudFront creates a new distribution.
         /// </para>
         ///  
         /// <para>
-        /// If <code>CallerReference</code> is a value that you already sent in a previous request
-        /// to create a distribution, CloudFront returns a <code>DistributionAlreadyExists</code>
-        /// error.
+        /// If <c>CallerReference</c> is a value that you already sent in a previous request to
+        /// create a distribution, CloudFront returns a <c>DistributionAlreadyExists</c> error.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

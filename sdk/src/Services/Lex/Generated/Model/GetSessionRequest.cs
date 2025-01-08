@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lex.Model
 {
     /// <summary>
@@ -80,13 +81,13 @@ namespace Amazon.Lex.Model
         /// <summary>
         /// Gets and sets the property CheckpointLabelFilter. 
         /// <para>
-        /// A string used to filter the intents returned in the <code>recentIntentSummaryView</code>
+        /// A string used to filter the intents returned in the <c>recentIntentSummaryView</c>
         /// structure. 
         /// </para>
         ///  
         /// <para>
-        /// When you specify a filter, only intents with their <code>checkpointLabel</code> field
-        /// set to that string are returned.
+        /// When you specify a filter, only intents with their <c>checkpointLabel</c> field set
+        /// to that string are returned.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]

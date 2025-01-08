@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -34,12 +35,15 @@ namespace Amazon.IoTSiteWise.Model
     public partial class AssetModelSummary
     {
         private string _arn;
+        private AssetModelType _assetModelType;
         private DateTime? _creationDate;
         private string _description;
+        private string _externalId;
         private string _id;
         private DateTime? _lastUpdateDate;
         private string _name;
         private AssetModelStatus _status;
+        private string _version;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -49,7 +53,7 @@ namespace Amazon.IoTSiteWise.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:${Partition}:iotsitewise:${Region}:${Account}:asset-model/${AssetModelId}</code>
+        ///  <c>arn:${Partition}:iotsitewise:${Region}:${Account}:asset-model/${AssetModelId}</c>
         /// 
         /// </para>
         /// </summary>
@@ -64,6 +68,36 @@ namespace Amazon.IoTSiteWise.Model
         internal bool IsSetArn()
         {
             return this._arn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property AssetModelType. 
+        /// <para>
+        /// The type of asset model.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>ASSET_MODEL</b> – (default) An asset model that you can use to create assets.
+        /// Can't be included as a component in another asset model.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>COMPONENT_MODEL</b> – A reusable component that you can include in the composite
+        /// models of other asset models. You can't create assets directly from this type of asset
+        /// model. 
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public AssetModelType AssetModelType
+        {
+            get { return this._assetModelType; }
+            set { this._assetModelType = value; }
+        }
+
+        // Check to see if AssetModelType property is set
+        internal bool IsSetAssetModelType()
+        {
+            return this._assetModelType != null;
         }
 
         /// <summary>
@@ -105,9 +139,29 @@ namespace Amazon.IoTSiteWise.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ExternalId. 
+        /// <para>
+        /// The external ID of the asset model. For more information, see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-ids">Using
+        /// external IDs</a> in the <i>IoT SiteWise User Guide</i>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=2, Max=128)]
+        public string ExternalId
+        {
+            get { return this._externalId; }
+            set { this._externalId = value; }
+        }
+
+        // Check to see if ExternalId property is set
+        internal bool IsSetExternalId()
+        {
+            return this._externalId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        /// The ID of the asset model (used with IoT SiteWise APIs).
+        /// The ID of the asset model (used with IoT SiteWise API operations).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=36, Max=36)]
@@ -178,6 +232,25 @@ namespace Amazon.IoTSiteWise.Model
         internal bool IsSetStatus()
         {
             return this._status != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Version. 
+        /// <para>
+        /// The version number of the asset model.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=10)]
+        public string Version
+        {
+            get { return this._version; }
+            set { this._version = value; }
+        }
+
+        // Check to see if Version property is set
+        internal bool IsSetVersion()
+        {
+            return this._version != null;
         }
 
     }

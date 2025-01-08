@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
-    /// The response from the <code>ListPhoneNumbersOptedOut</code> action.
+    /// The response from the <c>ListPhoneNumbersOptedOut</c> action.
     /// </summary>
     public partial class ListPhoneNumbersOptedOutResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<string> _phoneNumbers = new List<string>();
+        private List<string> _phoneNumbers = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A <code>NextToken</code> string is returned when you call the <code>ListPhoneNumbersOptedOut</code>
+        /// A <c>NextToken</c> string is returned when you call the <c>ListPhoneNumbersOptedOut</c>
         /// action if additional records are available after the first page of results.
         /// </para>
         /// </summary>
@@ -71,7 +72,7 @@ namespace Amazon.SimpleNotificationService.Model
         // Check to see if PhoneNumbers property is set
         internal bool IsSetPhoneNumbers()
         {
-            return this._phoneNumbers != null && this._phoneNumbers.Count > 0; 
+            return this._phoneNumbers != null && (this._phoneNumbers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

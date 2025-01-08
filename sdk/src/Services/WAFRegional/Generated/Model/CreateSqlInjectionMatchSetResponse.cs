@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFRegional.Model
 {
     /// <summary>
-    /// The response to a <code>CreateSqlInjectionMatchSet</code> request.
+    /// The response to a <c>CreateSqlInjectionMatchSet</c> request.
     /// </summary>
     public partial class CreateSqlInjectionMatchSetResponse : AmazonWebServiceResponse
     {
@@ -39,7 +40,7 @@ namespace Amazon.WAFRegional.Model
         /// <summary>
         /// Gets and sets the property ChangeToken. 
         /// <para>
-        /// The <code>ChangeToken</code> that you used to submit the <code>CreateSqlInjectionMatchSet</code>
+        /// The <c>ChangeToken</c> that you used to submit the <c>CreateSqlInjectionMatchSet</c>
         /// request. You can also use this value to query the status of the request. For more
         /// information, see <a>GetChangeTokenStatus</a>.
         /// </para>

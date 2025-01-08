@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHubConfig.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.MigrationHubConfig.Model
         /// <summary>
         /// Gets and sets the property HomeRegionControl. 
         /// <para>
-        /// This object is the <code>HomeRegionControl</code> object that's returned by a successful
-        /// call to <code>CreateHomeRegionControl</code>.
+        /// This object is the <c>HomeRegionControl</c> object that's returned by a successful
+        /// call to <c>CreateHomeRegionControl</c>.
         /// </para>
         /// </summary>
         public HomeRegionControl HomeRegionControl

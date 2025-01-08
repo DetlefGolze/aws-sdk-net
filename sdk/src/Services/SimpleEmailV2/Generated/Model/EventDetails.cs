@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
-    /// Contains a <code>Bounce</code> object if the event type is <code>BOUNCE</code>. Contains
-    /// a <code>Complaint</code> object if the event type is <code>COMPLAINT</code>.
+    /// Contains a <c>Bounce</c> object if the event type is <c>BOUNCE</c>. Contains a <c>Complaint</c>
+    /// object if the event type is <c>COMPLAINT</c>.
     /// </summary>
     public partial class EventDetails
     {
@@ -40,7 +41,7 @@ namespace Amazon.SimpleEmailV2.Model
         /// <summary>
         /// Gets and sets the property Bounce. 
         /// <para>
-        /// Information about a <code>Bounce</code> event.
+        /// Information about a <c>Bounce</c> event.
         /// </para>
         /// </summary>
         public Bounce Bounce
@@ -58,7 +59,7 @@ namespace Amazon.SimpleEmailV2.Model
         /// <summary>
         /// Gets and sets the property Complaint. 
         /// <para>
-        /// Information about a <code>Complaint</code> event.
+        /// Information about a <c>Complaint</c> event.
         /// </para>
         /// </summary>
         public Complaint Complaint

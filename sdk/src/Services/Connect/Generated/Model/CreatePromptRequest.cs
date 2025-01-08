@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
     /// Container for the parameters to the CreatePrompt operation.
     /// Creates a prompt. For more information about prompts, such as supported file types
     /// and maximum length, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/prompts.html">Create
-    /// prompts</a> in the <i>Amazon Connect Administrator's Guide</i>.
+    /// prompts</a> in the <i>Amazon Connect Administrator Guide</i>.
     /// </summary>
     public partial class CreatePromptRequest : AmazonConnectRequest
     {
@@ -40,7 +41,7 @@ namespace Amazon.Connect.Model
         private string _instanceId;
         private string _name;
         private string _s3Uri;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -103,10 +104,12 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property S3Uri. 
         /// <para>
-        /// The URI for the S3 bucket where the prompt is stored.
+        /// The URI for the S3 bucket where the prompt is stored. You can provide S3 pre-signed
+        /// URLs returned by the <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_GetPromptFile.html">GetPromptFile</a>
+        /// API instead of providing S3 URIs.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=512)]
+        [AWSProperty(Required=true, Min=1, Max=2000)]
         public string S3Uri
         {
             get { return this._s3Uri; }
@@ -123,7 +126,7 @@ namespace Amazon.Connect.Model
         /// Gets and sets the property Tags. 
         /// <para>
         /// The tags used to organize, track, or control access for this resource. For example,
-        /// { "tags": {"key1":"value1", "key2":"value2"} }.
+        /// { "Tags": {"key1":"value1", "key2":"value2"} }.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -136,7 +139,7 @@ namespace Amazon.Connect.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

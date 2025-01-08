@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,28 +53,47 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public SnowflakeParameters Unmarshall(JsonUnmarshallerContext context)
         {
+            SnowflakeParameters unmarshalledObject = new SnowflakeParameters();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            SnowflakeParameters unmarshalledObject = new SnowflakeParameters();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("AuthenticationType", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.AuthenticationType = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("Database", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.Database = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("DatabaseAccessControlRole", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DatabaseAccessControlRole = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("Host", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.Host = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("OAuthParameters", targetDepth))
+                {
+                    var unmarshaller = OAuthParametersUnmarshaller.Instance;
+                    unmarshalledObject.OAuthParameters = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Warehouse", targetDepth))
@@ -83,7 +103,6 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

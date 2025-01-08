@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -34,17 +35,17 @@ namespace Amazon.Redshift.Model
     public partial class DescribeScheduledActionsResponse : AmazonWebServiceResponse
     {
         private string _marker;
-        private List<ScheduledAction> _scheduledActions = new List<ScheduledAction>();
+        private List<ScheduledAction> _scheduledActions = AWSConfigs.InitializeCollections ? new List<ScheduledAction>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         /// An optional parameter that specifies the starting point to return a set of response
         /// records. When the results of a <a>DescribeScheduledActions</a> request exceed the
-        /// value specified in <code>MaxRecords</code>, Amazon Web Services returns a value in
-        /// the <code>Marker</code> field of the response. You can retrieve the next set of response
-        /// records by providing the returned marker value in the <code>Marker</code> parameter
-        /// and retrying the request. 
+        /// value specified in <c>MaxRecords</c>, Amazon Web Services returns a value in the <c>Marker</c>
+        /// field of the response. You can retrieve the next set of response records by providing
+        /// the returned marker value in the <c>Marker</c> parameter and retrying the request.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]
@@ -75,7 +76,7 @@ namespace Amazon.Redshift.Model
         // Check to see if ScheduledActions property is set
         internal bool IsSetScheduledActions()
         {
-            return this._scheduledActions != null && this._scheduledActions.Count > 0; 
+            return this._scheduledActions != null && (this._scheduledActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

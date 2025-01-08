@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.AppSync.Model
         /// <summary>
         /// Gets and sets the property FunctionConfiguration. 
         /// <para>
-        /// The <code>Function</code> object.
+        /// The <c>Function</c> object.
         /// </para>
         /// </summary>
         public FunctionConfiguration FunctionConfiguration

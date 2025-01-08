@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
@@ -62,8 +63,7 @@ namespace Amazon.StepFunctions.Model
         /// </para>
         ///  
         /// <para>
-        /// If the <code>publish</code> parameter isn't set to <code>true</code>, this field returns
-        /// null.
+        /// If the <c>publish</c> parameter isn't set to <c>true</c>, this field returns null.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]

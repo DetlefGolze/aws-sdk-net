@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -36,14 +37,14 @@ namespace Amazon.Kendra.Model
     {
         private string _documentDataFieldName;
         private string _documentTitleFieldName;
-        private List<DataSourceToIndexFieldMapping> _fieldMappings = new List<DataSourceToIndexFieldMapping>();
-        private List<string> _includeFilterTypes = new List<string>();
+        private List<DataSourceToIndexFieldMapping> _fieldMappings = AWSConfigs.InitializeCollections ? new List<DataSourceToIndexFieldMapping>() : null;
+        private List<string> _includeFilterTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DocumentDataFieldName. 
         /// <para>
         /// The name of the column in the Salesforce FeedItem table that contains the content
-        /// to index. Typically this is the <code>Body</code> column.
+        /// to index. Typically this is the <c>Body</c> column.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]
@@ -63,7 +64,7 @@ namespace Amazon.Kendra.Model
         /// Gets and sets the property DocumentTitleFieldName. 
         /// <para>
         /// The name of the column in the Salesforce FeedItem table that contains the title of
-        /// the document. This is typically the <code>Title</code> column.
+        /// the document. This is typically the <c>Title</c> column.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -95,15 +96,15 @@ namespace Amazon.Kendra.Model
         // Check to see if FieldMappings property is set
         internal bool IsSetFieldMappings()
         {
-            return this._fieldMappings != null && this._fieldMappings.Count > 0; 
+            return this._fieldMappings != null && (this._fieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property IncludeFilterTypes. 
         /// <para>
-        /// Filters the documents in the feed based on status of the user. When you specify <code>ACTIVE_USERS</code>
+        /// Filters the documents in the feed based on status of the user. When you specify <c>ACTIVE_USERS</c>
         /// only documents from users who have an active account are indexed. When you specify
-        /// <code>STANDARD_USER</code> only documents for Salesforce standard users are documented.
+        /// <c>STANDARD_USER</c> only documents for Salesforce standard users are documented.
         /// You can specify both.
         /// </para>
         /// </summary>
@@ -117,7 +118,7 @@ namespace Amazon.Kendra.Model
         // Check to see if IncludeFilterTypes property is set
         internal bool IsSetIncludeFilterTypes()
         {
-            return this._includeFilterTypes != null && this._includeFilterTypes.Count > 0; 
+            return this._includeFilterTypes != null && (this._includeFilterTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property Key. 
         /// <para>
-        /// A key to be specified in <code>UserProperty</code>.
+        /// A key to be specified in <c>UserProperty</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=1024)]
@@ -60,7 +61,7 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property Value. 
         /// <para>
-        /// A value to be specified in <code>UserProperty</code>.
+        /// A value to be specified in <c>UserProperty</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=1024)]

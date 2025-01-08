@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -77,8 +78,8 @@ namespace Amazon.ElasticMapReduce.Model
         /// Gets and sets the property BidPrice. 
         /// <para>
         /// If specified, indicates that the instance group uses Spot Instances. This is the maximum
-        /// price you are willing to pay for Spot Instances. Specify <code>OnDemandPrice</code>
-        /// to set the amount equal to the On-Demand price, or specify an amount in USD.
+        /// price you are willing to pay for Spot Instances. Specify <c>OnDemandPrice</c> to set
+        /// the amount equal to the On-Demand price, or specify an amount in USD.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=256)]

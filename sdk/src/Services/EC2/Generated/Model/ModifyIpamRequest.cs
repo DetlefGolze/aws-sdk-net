@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,10 +35,12 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class ModifyIpamRequest : AmazonEC2Request
     {
-        private List<AddIpamOperatingRegion> _addOperatingRegions = new List<AddIpamOperatingRegion>();
+        private List<AddIpamOperatingRegion> _addOperatingRegions = AWSConfigs.InitializeCollections ? new List<AddIpamOperatingRegion>() : null;
         private string _description;
+        private bool? _enablePrivateGua;
         private string _ipamId;
-        private List<RemoveIpamOperatingRegion> _removeOperatingRegions = new List<RemoveIpamOperatingRegion>();
+        private List<RemoveIpamOperatingRegion> _removeOperatingRegions = AWSConfigs.InitializeCollections ? new List<RemoveIpamOperatingRegion>() : null;
+        private IpamTier _tier;
 
         /// <summary>
         /// Gets and sets the property AddOperatingRegions. 
@@ -63,7 +66,7 @@ namespace Amazon.EC2.Model
         // Check to see if AddOperatingRegions property is set
         internal bool IsSetAddOperatingRegions()
         {
-            return this._addOperatingRegions != null && this._addOperatingRegions.Count > 0; 
+            return this._addOperatingRegions != null && (this._addOperatingRegions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -82,6 +85,25 @@ namespace Amazon.EC2.Model
         internal bool IsSetDescription()
         {
             return this._description != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EnablePrivateGua. 
+        /// <para>
+        /// Enable this option to use your own GUA ranges as private IPv6 addresses. This option
+        /// is disabled by default.
+        /// </para>
+        /// </summary>
+        public bool EnablePrivateGua
+        {
+            get { return this._enablePrivateGua.GetValueOrDefault(); }
+            set { this._enablePrivateGua = value; }
+        }
+
+        // Check to see if EnablePrivateGua property is set
+        internal bool IsSetEnablePrivateGua()
+        {
+            return this._enablePrivateGua.HasValue; 
         }
 
         /// <summary>
@@ -119,7 +141,27 @@ namespace Amazon.EC2.Model
         // Check to see if RemoveOperatingRegions property is set
         internal bool IsSetRemoveOperatingRegions()
         {
-            return this._removeOperatingRegions != null && this._removeOperatingRegions.Count > 0; 
+            return this._removeOperatingRegions != null && (this._removeOperatingRegions.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Tier. 
+        /// <para>
+        /// IPAM is offered in a Free Tier and an Advanced Tier. For more information about the
+        /// features available in each tier and the costs associated with the tiers, see <a href="http://aws.amazon.com/vpc/pricing/">Amazon
+        /// VPC pricing &gt; IPAM tab</a>.
+        /// </para>
+        /// </summary>
+        public IpamTier Tier
+        {
+            get { return this._tier; }
+            set { this._tier = value; }
+        }
+
+        // Check to see if Tier property is set
+        internal bool IsSetTier()
+        {
+            return this._tier != null;
         }
 
     }

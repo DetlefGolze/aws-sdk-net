@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pipes.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Pipes.Model
         /// <para>
         /// Use this structure to specify the VPC subnets and security groups for the task, and
         /// whether a public IP address is to be used. This structure is relevant only for ECS
-        /// tasks that use the <code>awsvpc</code> network mode.
+        /// tasks that use the <c>awsvpc</c> network mode.
         /// </para>
         /// </summary>
         public AwsVpcConfiguration AwsvpcConfiguration

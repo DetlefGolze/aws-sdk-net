@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
@@ -52,11 +53,43 @@ namespace Amazon.VPCLattice.Model
         }
 
         /// <summary>
+        /// Paginator for ListResourceConfigurations operation
+        ///</summary>
+        public IListResourceConfigurationsPaginator ListResourceConfigurations(ListResourceConfigurationsRequest request) 
+        {
+            return new ListResourceConfigurationsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListResourceEndpointAssociations operation
+        ///</summary>
+        public IListResourceEndpointAssociationsPaginator ListResourceEndpointAssociations(ListResourceEndpointAssociationsRequest request) 
+        {
+            return new ListResourceEndpointAssociationsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListResourceGateways operation
+        ///</summary>
+        public IListResourceGatewaysPaginator ListResourceGateways(ListResourceGatewaysRequest request) 
+        {
+            return new ListResourceGatewaysPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListRules operation
         ///</summary>
         public IListRulesPaginator ListRules(ListRulesRequest request) 
         {
             return new ListRulesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListServiceNetworkResourceAssociations operation
+        ///</summary>
+        public IListServiceNetworkResourceAssociationsPaginator ListServiceNetworkResourceAssociations(ListServiceNetworkResourceAssociationsRequest request) 
+        {
+            return new ListServiceNetworkResourceAssociationsPaginator(this.client, request);
         }
 
         /// <summary>
@@ -81,6 +114,14 @@ namespace Amazon.VPCLattice.Model
         public IListServiceNetworkVpcAssociationsPaginator ListServiceNetworkVpcAssociations(ListServiceNetworkVpcAssociationsRequest request) 
         {
             return new ListServiceNetworkVpcAssociationsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListServiceNetworkVpcEndpointAssociations operation
+        ///</summary>
+        public IListServiceNetworkVpcEndpointAssociationsPaginator ListServiceNetworkVpcEndpointAssociations(ListServiceNetworkVpcEndpointAssociationsRequest request) 
+        {
+            return new ListServiceNetworkVpcEndpointAssociationsPaginator(this.client, request);
         }
 
         /// <summary>

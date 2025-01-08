@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Lightsail.Model
     public partial class GetRelationalDatabaseEventsResponse : AmazonWebServiceResponse
     {
         private string _nextPageToken;
-        private List<RelationalDatabaseEvent> _relationalDatabaseEvents = new List<RelationalDatabaseEvent>();
+        private List<RelationalDatabaseEvent> _relationalDatabaseEvents = AWSConfigs.InitializeCollections ? new List<RelationalDatabaseEvent>() : null;
 
         /// <summary>
         /// Gets and sets the property NextPageToken. 
@@ -47,8 +48,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// To get the next page of results, perform another <code>GetRelationalDatabaseEvents</code>
-        /// request and specify the next page token using the <code>pageToken</code> parameter.
+        /// To get the next page of results, perform another <c>GetRelationalDatabaseEvents</c>
+        /// request and specify the next page token using the <c>pageToken</c> parameter.
         /// </para>
         /// </summary>
         public string NextPageToken
@@ -78,7 +79,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if RelationalDatabaseEvents property is set
         internal bool IsSetRelationalDatabaseEvents()
         {
-            return this._relationalDatabaseEvents != null && this._relationalDatabaseEvents.Count > 0; 
+            return this._relationalDatabaseEvents != null && (this._relationalDatabaseEvents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

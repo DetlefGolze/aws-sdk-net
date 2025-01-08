@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FIS.Model
 {
     /// <summary>
@@ -40,9 +41,9 @@ namespace Amazon.FIS.Model
         /// <summary>
         /// Gets and sets the property Source. 
         /// <para>
-        /// The source for the stop condition. Specify <code>aws:cloudwatch:alarm</code> if the
-        /// stop condition is defined by a CloudWatch alarm. Specify <code>none</code> if there
-        /// is no stop condition.
+        /// The source for the stop condition. Specify <c>aws:cloudwatch:alarm</c> if the stop
+        /// condition is defined by a CloudWatch alarm. Specify <c>none</c> if there is no stop
+        /// condition.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=64)]

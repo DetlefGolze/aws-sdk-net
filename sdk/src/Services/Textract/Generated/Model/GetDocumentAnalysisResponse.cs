@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Textract.Model
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace Amazon.Textract.Model
     public partial class GetDocumentAnalysisResponse : AmazonWebServiceResponse
     {
         private string _analyzeDocumentModelVersion;
-        private List<Block> _blocks = new List<Block>();
+        private List<Block> _blocks = AWSConfigs.InitializeCollections ? new List<Block>() : null;
         private DocumentMetadata _documentMetadata;
         private JobStatus _jobStatus;
         private string _nextToken;
         private string _statusMessage;
-        private List<Warning> _warnings = new List<Warning>();
+        private List<Warning> _warnings = AWSConfigs.InitializeCollections ? new List<Warning>() : null;
 
         /// <summary>
         /// Gets and sets the property AnalyzeDocumentModelVersion.
@@ -71,13 +72,13 @@ namespace Amazon.Textract.Model
         // Check to see if Blocks property is set
         internal bool IsSetBlocks()
         {
-            return this._blocks != null && this._blocks.Count > 0; 
+            return this._blocks != null && (this._blocks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DocumentMetadata. 
         /// <para>
-        /// Information about a document that Amazon Textract processed. <code>DocumentMetadata</code>
+        /// Information about a document that Amazon Textract processed. <c>DocumentMetadata</c>
         /// is returned in every page of paginated responses from an Amazon Textract video operation.
         /// </para>
         /// </summary>
@@ -118,7 +119,7 @@ namespace Amazon.Textract.Model
         /// token in the subsequent request to retrieve the next set of text detection results.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=255)]
+        [AWSProperty(Min=1, Max=1024)]
         public string NextToken
         {
             get { return this._nextToken; }
@@ -165,7 +166,7 @@ namespace Amazon.Textract.Model
         // Check to see if Warnings property is set
         internal bool IsSetWarnings()
         {
-            return this._warnings != null && this._warnings.Count > 0; 
+            return this._warnings != null && (this._warnings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

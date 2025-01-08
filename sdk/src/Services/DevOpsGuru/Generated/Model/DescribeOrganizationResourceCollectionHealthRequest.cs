@@ -26,20 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeOrganizationResourceCollectionHealth operation.
     /// Provides an overview of your system's health. If additional member accounts are part
-    /// of your organization, you can filter those accounts using the <code>AccountIds</code>
-    /// field.
+    /// of your organization, you can filter those accounts using the <c>AccountIds</c> field.
     /// </summary>
     public partial class DescribeOrganizationResourceCollectionHealthRequest : AmazonDevOpsGuruRequest
     {
-        private List<string> _accountIds = new List<string>();
+        private List<string> _accountIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _organizationalUnitIds = new List<string>();
+        private List<string> _organizationalUnitIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private OrganizationResourceCollectionType _organizationResourceCollectionType;
 
         /// <summary>
@@ -58,14 +58,14 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if AccountIds property is set
         internal bool IsSetAccountIds()
         {
-            return this._accountIds != null && this._accountIds.Count > 0; 
+            return this._accountIds != null && (this._accountIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to return with a single call. To retrieve the remaining
-        /// results, make another call with the returned <code>nextToken</code> value.
+        /// results, make another call with the returned <c>nextToken</c> value.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=500)]
@@ -117,7 +117,7 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if OrganizationalUnitIds property is set
         internal bool IsSetOrganizationalUnitIds()
         {
-            return this._organizationalUnitIds != null && this._organizationalUnitIds.Count > 0; 
+            return this._organizationalUnitIds != null && (this._organizationalUnitIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

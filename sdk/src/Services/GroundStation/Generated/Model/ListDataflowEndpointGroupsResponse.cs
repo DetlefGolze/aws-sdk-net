@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.GroundStation.Model
     /// </summary>
     public partial class ListDataflowEndpointGroupsResponse : AmazonWebServiceResponse
     {
-        private List<DataflowEndpointListItem> _dataflowEndpointGroupList = new List<DataflowEndpointListItem>();
+        private List<DataflowEndpointListItem> _dataflowEndpointGroupList = AWSConfigs.InitializeCollections ? new List<DataflowEndpointListItem>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,13 +52,13 @@ namespace Amazon.GroundStation.Model
         // Check to see if DataflowEndpointGroupList property is set
         internal bool IsSetDataflowEndpointGroupList()
         {
-            return this._dataflowEndpointGroupList != null && this._dataflowEndpointGroupList.Count > 0; 
+            return this._dataflowEndpointGroupList != null && (this._dataflowEndpointGroupList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Next token returned in the response of a previous <code>ListDataflowEndpointGroups</code>
+        /// Next token returned in the response of a previous <c>ListDataflowEndpointGroups</c>
         /// call. Used to get the next page of results.
         /// </para>
         /// </summary>

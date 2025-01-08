@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Omics.Model
 {
     /// <summary>
@@ -36,10 +37,15 @@ namespace Amazon.Omics.Model
         private string _arn;
         private DateTime? _creationTime;
         private string _description;
+        private ETagAlgorithmFamily _eTagAlgorithmFamily;
         private string _fallbackLocation;
         private string _id;
         private string _name;
+        private List<string> _propagatedSetLevelTags = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private SequenceStoreS3Access _s3Access;
         private SseConfig _sseConfig;
+        private SequenceStoreStatus _status;
+        private string _statusMessage;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -99,9 +105,27 @@ namespace Amazon.Omics.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ETagAlgorithmFamily. 
+        /// <para>
+        /// The algorithm family of the ETag.
+        /// </para>
+        /// </summary>
+        public ETagAlgorithmFamily ETagAlgorithmFamily
+        {
+            get { return this._eTagAlgorithmFamily; }
+            set { this._eTagAlgorithmFamily = value; }
+        }
+
+        // Check to see if ETagAlgorithmFamily property is set
+        internal bool IsSetETagAlgorithmFamily()
+        {
+            return this._eTagAlgorithmFamily != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property FallbackLocation. 
         /// <para>
-        ///  An S3 location that is used to store files that have failed a direct upload. 
+        /// An S3 location that is used to store files that have failed a direct upload.
         /// </para>
         /// </summary>
         public string FallbackLocation
@@ -155,6 +179,41 @@ namespace Amazon.Omics.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PropagatedSetLevelTags. 
+        /// <para>
+        /// The tags keys to propagate to the S3 objects associated with read sets in the sequence
+        /// store.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=50)]
+        public List<string> PropagatedSetLevelTags
+        {
+            get { return this._propagatedSetLevelTags; }
+            set { this._propagatedSetLevelTags = value; }
+        }
+
+        // Check to see if PropagatedSetLevelTags property is set
+        internal bool IsSetPropagatedSetLevelTags()
+        {
+            return this._propagatedSetLevelTags != null && (this._propagatedSetLevelTags.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property S3Access.
+        /// </summary>
+        public SequenceStoreS3Access S3Access
+        {
+            get { return this._s3Access; }
+            set { this._s3Access = value; }
+        }
+
+        // Check to see if S3Access property is set
+        internal bool IsSetS3Access()
+        {
+            return this._s3Access != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property SseConfig. 
         /// <para>
         /// The store's SSE settings.
@@ -170,6 +229,43 @@ namespace Amazon.Omics.Model
         internal bool IsSetSseConfig()
         {
             return this._sseConfig != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Status. 
+        /// <para>
+        /// The status of the sequence store.
+        /// </para>
+        /// </summary>
+        public SequenceStoreStatus Status
+        {
+            get { return this._status; }
+            set { this._status = value; }
+        }
+
+        // Check to see if Status property is set
+        internal bool IsSetStatus()
+        {
+            return this._status != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property StatusMessage. 
+        /// <para>
+        /// The status message of the sequence store.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=127)]
+        public string StatusMessage
+        {
+            get { return this._statusMessage; }
+            set { this._statusMessage = value; }
+        }
+
+        // Check to see if StatusMessage property is set
+        internal bool IsSetStatusMessage()
+        {
+            return this._statusMessage != null;
         }
 
     }

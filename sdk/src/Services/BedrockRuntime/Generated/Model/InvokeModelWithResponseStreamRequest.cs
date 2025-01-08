@@ -26,21 +26,48 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BedrockRuntime.Model
 {
     /// <summary>
     /// Container for the parameters to the InvokeModelWithResponseStream operation.
-    /// Invoke the specified Bedrock model to run inference using the input provided. Return
-    /// the response in a stream.
+    /// Invoke the specified Amazon Bedrock model to run inference using the prompt and inference
+    /// parameters provided in the request body. The response is returned in a stream.
     /// 
     ///  
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html">Run
-    /// inference</a> in the Bedrock User Guide.
+    /// To see if a model supports streaming, call <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GetFoundationModel.html">GetFoundationModel</a>
+    /// and check the <c>responseStreamingSupported</c> field in the response.
+    /// </para>
+    ///  <note> 
+    /// <para>
+    /// The CLI doesn't support streaming operations in Amazon Bedrock, including <c>InvokeModelWithResponseStream</c>.
+    /// </para>
+    ///  </note> 
+    /// <para>
+    /// For example code, see <i>Invoke model with streaming code example</i> in the <i>Amazon
+    /// Bedrock User Guide</i>. 
     /// </para>
     ///  
     /// <para>
-    /// For an example request and response, see Examples (after the Errors section).
+    /// This operation requires permissions to perform the <c>bedrock:InvokeModelWithResponseStream</c>
+    /// action. 
+    /// </para>
+    ///  <important> 
+    /// <para>
+    /// To deny all inference access to resources that you specify in the modelId field, you
+    /// need to deny access to the <c>bedrock:InvokeModel</c> and <c>bedrock:InvokeModelWithResponseStream</c>
+    /// actions. Doing this also denies access to the resource through the Converse API actions
+    /// (<a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html">Converse</a>
+    /// and <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_ConverseStream.html">ConverseStream</a>).
+    /// For more information see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/security_iam_id-based-policy-examples.html#security_iam_id-based-policy-examples-deny-inference">Deny
+    /// access for inference on specific models</a>. 
+    /// </para>
+    ///  </important> 
+    /// <para>
+    /// For troubleshooting some of the common errors you might encounter when using the <c>InvokeModelWithResponseStream</c>
+    /// API, see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/troubleshooting-api-error-codes.html">Troubleshooting
+    /// Amazon Bedrock API Error Codes</a> in the Amazon Bedrock User Guide
     /// </para>
     /// </summary>
     public partial class InvokeModelWithResponseStreamRequest : AmazonBedrockRuntimeRequest
@@ -48,13 +75,17 @@ namespace Amazon.BedrockRuntime.Model
         private string _accept;
         private MemoryStream _body;
         private string _contentType;
+        private string _guardrailIdentifier;
+        private string _guardrailVersion;
         private string _modelId;
+        private PerformanceConfigLatency _performanceConfigLatency;
+        private Trace _trace;
 
         /// <summary>
         /// Gets and sets the property Accept. 
         /// <para>
         /// The desired MIME type of the inference body in the response. The default value is
-        /// <code>application/json</code>.
+        /// <c>application/json</c>.
         /// </para>
         /// </summary>
         public string Accept
@@ -66,18 +97,20 @@ namespace Amazon.BedrockRuntime.Model
         // Check to see if Accept property is set
         internal bool IsSetAccept()
         {
-            return this._accept != null;
+            return !string.IsNullOrEmpty(this._accept);
         }
 
         /// <summary>
         /// Gets and sets the property Body. 
         /// <para>
-        /// Inference input in the format specified by the content-type. To see the format and
-        /// content of this field for different models, refer to <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html">Inference
-        /// parameters</a>.
+        /// The prompt and inference parameters in the format specified in the <c>contentType</c>
+        /// in the header. You must provide the body in JSON format. To see the format and content
+        /// of the request and response bodies for different models, refer to <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html">Inference
+        /// parameters</a>. For more information, see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html">Run
+        /// inference</a> in the Bedrock User Guide.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Sensitive=true, Min=0, Max=25000000)]
+        [AWSProperty(Sensitive=true, Min=0, Max=25000000)]
         public MemoryStream Body
         {
             get { return this._body; }
@@ -93,7 +126,7 @@ namespace Amazon.BedrockRuntime.Model
         /// <summary>
         /// Gets and sets the property ContentType. 
         /// <para>
-        /// The MIME type of the input data in the request. The default value is <code>application/json</code>.
+        /// The MIME type of the input data in the request. You must specify <c>application/json</c>.
         /// </para>
         /// </summary>
         public string ContentType
@@ -105,14 +138,107 @@ namespace Amazon.BedrockRuntime.Model
         // Check to see if ContentType property is set
         internal bool IsSetContentType()
         {
-            return this._contentType != null;
+            return !string.IsNullOrEmpty(this._contentType);
+        }
+
+        /// <summary>
+        /// Gets and sets the property GuardrailIdentifier. 
+        /// <para>
+        /// The unique identifier of the guardrail that you want to use. If you don't provide
+        /// a value, no guardrail is applied to the invocation.
+        /// </para>
+        ///  
+        /// <para>
+        /// An error is thrown in the following situations.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You don't provide a guardrail identifier but you specify the <c>amazon-bedrock-guardrailConfig</c>
+        /// field in the request body.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You enable the guardrail but the <c>contentType</c> isn't <c>application/json</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You provide a guardrail identifier, but <c>guardrailVersion</c> isn't specified.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        [AWSProperty(Min=0, Max=2048)]
+        public string GuardrailIdentifier
+        {
+            get { return this._guardrailIdentifier; }
+            set { this._guardrailIdentifier = value; }
+        }
+
+        // Check to see if GuardrailIdentifier property is set
+        internal bool IsSetGuardrailIdentifier()
+        {
+            return !string.IsNullOrEmpty(this._guardrailIdentifier);
+        }
+
+        /// <summary>
+        /// Gets and sets the property GuardrailVersion. 
+        /// <para>
+        /// The version number for the guardrail. The value can also be <c>DRAFT</c>.
+        /// </para>
+        /// </summary>
+        public string GuardrailVersion
+        {
+            get { return this._guardrailVersion; }
+            set { this._guardrailVersion = value; }
+        }
+
+        // Check to see if GuardrailVersion property is set
+        internal bool IsSetGuardrailVersion()
+        {
+            return !string.IsNullOrEmpty(this._guardrailVersion);
         }
 
         /// <summary>
         /// Gets and sets the property ModelId. 
         /// <para>
-        /// Id of the model to invoke using the streaming request.
+        /// The unique identifier of the model to invoke to run inference.
         /// </para>
+        ///  
+        /// <para>
+        /// The <c>modelId</c> to provide depends on the type of model or throughput that you
+        /// use:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// If you use a base model, specify the model ID or its ARN. For a list of model IDs
+        /// for base models, see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html#model-ids-arns">Amazon
+        /// Bedrock base model IDs (on-demand throughput)</a> in the Amazon Bedrock User Guide.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If you use an inference profile, specify the inference profile ID or its ARN. For
+        /// a list of inference profile IDs, see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference-support.html">Supported
+        /// Regions and models for cross-region inference</a> in the Amazon Bedrock User Guide.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If you use a provisioned model, specify the ARN of the Provisioned Throughput. For
+        /// more information, see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/prov-thru-use.html">Run
+        /// inference using a Provisioned Throughput</a> in the Amazon Bedrock User Guide.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If you use a custom model, first purchase Provisioned Throughput for it. Then specify
+        /// the ARN of the resulting provisioned model. For more information, see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-use.html">Use
+        /// a custom model in Amazon Bedrock</a> in the Amazon Bedrock User Guide.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If you use an <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-import-model.html">imported
+        /// model</a>, specify the ARN of the imported model. You can get the model ARN from a
+        /// successful call to <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_CreateModelImportJob.html">CreateModelImportJob</a>
+        /// or from the Imported models page in the Amazon Bedrock console.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]
         public string ModelId
@@ -125,6 +251,43 @@ namespace Amazon.BedrockRuntime.Model
         internal bool IsSetModelId()
         {
             return this._modelId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PerformanceConfigLatency. 
+        /// <para>
+        /// Model performance settings for the request.
+        /// </para>
+        /// </summary>
+        public PerformanceConfigLatency PerformanceConfigLatency
+        {
+            get { return this._performanceConfigLatency; }
+            set { this._performanceConfigLatency = value; }
+        }
+
+        // Check to see if PerformanceConfigLatency property is set
+        internal bool IsSetPerformanceConfigLatency()
+        {
+            return !string.IsNullOrEmpty(this._performanceConfigLatency);
+        }
+
+        /// <summary>
+        /// Gets and sets the property Trace. 
+        /// <para>
+        /// Specifies whether to enable or disable the Bedrock trace. If enabled, you can see
+        /// the full Bedrock trace.
+        /// </para>
+        /// </summary>
+        public Trace Trace
+        {
+            get { return this._trace; }
+            set { this._trace = value; }
+        }
+
+        // Check to see if Trace property is set
+        internal bool IsSetTrace()
+        {
+            return !string.IsNullOrEmpty(this._trace);
         }
 
     }

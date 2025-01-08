@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -35,10 +36,10 @@ namespace Amazon.FSx.Model
     /// 
     ///  
     /// <para>
-    /// The <code>DeleteFileCache</code> operation returns while the cache has the <code>DELETING</code>
+    /// The <c>DeleteFileCache</c> operation returns while the cache has the <c>DELETING</c>
     /// status. You can check the cache deletion status by calling the <a href="https://docs.aws.amazon.com/fsx/latest/APIReference/API_DescribeFileCaches.html">DescribeFileCaches</a>
     /// operation, which returns a list of caches in your account. If you pass the cache ID
-    /// for a deleted cache, the <code>DescribeFileCaches</code> operation returns a <code>FileCacheNotFound</code>
+    /// for a deleted cache, the <c>DescribeFileCaches</c> operation returns a <c>FileCacheNotFound</c>
     /// error.
     /// </para>
     ///  <important> 

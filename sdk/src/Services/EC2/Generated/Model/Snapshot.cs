@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,6 +34,9 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class Snapshot
     {
+        private string _availabilityZone;
+        private int? _completionDurationMinutes;
+        private DateTime? _completionTime;
         private string _dataEncryptionKeyId;
         private string _description;
         private bool? _encrypted;
@@ -48,9 +52,69 @@ namespace Amazon.EC2.Model
         private SnapshotState _state;
         private string _stateMessage;
         private StorageTier _storageTier;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private TransferType _transferType;
         private string _volumeId;
         private int? _volumeSize;
+
+        /// <summary>
+        /// Gets and sets the property AvailabilityZone. 
+        /// <para>
+        /// The Availability Zone or Local Zone of the snapshot. For example, <c>us-west-1a</c>
+        /// (Availability Zone) or <c>us-west-2-lax-1a</c> (Local Zone).
+        /// </para>
+        /// </summary>
+        public string AvailabilityZone
+        {
+            get { return this._availabilityZone; }
+            set { this._availabilityZone = value; }
+        }
+
+        // Check to see if AvailabilityZone property is set
+        internal bool IsSetAvailabilityZone()
+        {
+            return this._availabilityZone != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CompletionDurationMinutes. <note> 
+        /// <para>
+        /// Only for snapshot copies created with time-based snapshot copy operations.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// The completion duration requested for the time-based snapshot copy operation.
+        /// </para>
+        /// </summary>
+        public int CompletionDurationMinutes
+        {
+            get { return this._completionDurationMinutes.GetValueOrDefault(); }
+            set { this._completionDurationMinutes = value; }
+        }
+
+        // Check to see if CompletionDurationMinutes property is set
+        internal bool IsSetCompletionDurationMinutes()
+        {
+            return this._completionDurationMinutes.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property CompletionTime. 
+        /// <para>
+        /// The time stamp when the snapshot was completed.
+        /// </para>
+        /// </summary>
+        public DateTime CompletionTime
+        {
+            get { return this._completionTime.GetValueOrDefault(); }
+            set { this._completionTime = value; }
+        }
+
+        // Check to see if CompletionTime property is set
+        internal bool IsSetCompletionTime()
+        {
+            return this._completionTime.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property DataEncryptionKeyId. 
@@ -114,8 +178,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the Key Management Service (KMS) KMS key that was
-        /// used to protect the volume encryption key for the parent volume.
+        /// The Amazon Resource Name (ARN) of the KMS key that was used to protect the volume
+        /// encryption key for the parent volume.
         /// </para>
         /// </summary>
         public string KmsKeyId
@@ -134,8 +198,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property OutpostArn. 
         /// <para>
         /// The ARN of the Outpost on which the snapshot is stored. For more information, see
-        /// <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html">Amazon
-        /// EBS local snapshots on Outposts</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+        /// <a href="https://docs.aws.amazon.com/ebs/latest/userguide/snapshots-outposts.html">Amazon
+        /// EBS local snapshots on Outposts</a> in the <i>Amazon EBS User Guide</i>.
         /// </para>
         /// </summary>
         public string OutpostArn
@@ -153,7 +217,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property OwnerAlias. 
         /// <para>
-        /// The Amazon Web Services owner alias, from an Amazon-maintained list (<code>amazon</code>).
+        /// The Amazon Web Services owner alias, from an Amazon-maintained list (<c>amazon</c>).
         /// This is not the user-configured Amazon Web Services account alias set using the IAM
         /// console.
         /// </para>
@@ -301,9 +365,9 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property StateMessage. 
         /// <para>
         /// Encrypted Amazon EBS snapshots are copied asynchronously. If a snapshot copy operation
-        /// fails (for example, if the proper Key Management Service (KMS) permissions are not
-        /// obtained) this field displays error state details to help you diagnose why the error
-        /// occurred. This parameter is only returned by <a>DescribeSnapshots</a>.
+        /// fails (for example, if the proper KMS permissions are not obtained) this field displays
+        /// error state details to help you diagnose why the error occurred. This parameter is
+        /// only returned by <a>DescribeSnapshots</a>.
         /// </para>
         /// </summary>
         public string StateMessage
@@ -321,10 +385,10 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property StorageTier. 
         /// <para>
-        /// The storage tier in which the snapshot is stored. <code>standard</code> indicates
-        /// that the snapshot is stored in the standard snapshot storage tier and that it is ready
-        /// for use. <code>archive</code> indicates that the snapshot is currently archived and
-        /// that it must be restored before it can be used.
+        /// The storage tier in which the snapshot is stored. <c>standard</c> indicates that the
+        /// snapshot is stored in the standard snapshot storage tier and that it is ready for
+        /// use. <c>archive</c> indicates that the snapshot is currently archived and that it
+        /// must be restored before it can be used.
         /// </para>
         /// </summary>
         public StorageTier StorageTier
@@ -354,7 +418,42 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property TransferType. <note> 
+        /// <para>
+        /// Only for snapshot copies.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// Indicates whether the snapshot copy was created with a standard or time-based snapshot
+        /// copy operation. Time-based snapshot copy operations complete within the completion
+        /// duration specified in the request. Standard snapshot copy operations are completed
+        /// on a best-effort basis.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>standard</c> - The snapshot copy was created with a standard snapshot copy operation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>time-based</c> - The snapshot copy was created with a time-based snapshot copy
+        /// operation.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public TransferType TransferType
+        {
+            get { return this._transferType; }
+            set { this._transferType = value; }
+        }
+
+        // Check to see if TransferType property is set
+        internal bool IsSetTransferType()
+        {
+            return this._transferType != null;
         }
 
         /// <summary>

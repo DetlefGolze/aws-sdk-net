@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppStream.Model
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.AppStream.Model
     /// </summary>
     public partial class AppBlock
     {
-        private List<ErrorDetails> _appBlockErrors = new List<ErrorDetails>();
+        private List<ErrorDetails> _appBlockErrors = AWSConfigs.InitializeCollections ? new List<ErrorDetails>() : null;
         private string _arn;
         private DateTime? _createdTime;
         private string _description;
@@ -73,7 +74,7 @@ namespace Amazon.AppStream.Model
         // Check to see if AppBlockErrors property is set
         internal bool IsSetAppBlockErrors()
         {
-            return this._appBlockErrors != null && this._appBlockErrors.Count > 0; 
+            return this._appBlockErrors != null && (this._appBlockErrors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -195,7 +196,7 @@ namespace Amazon.AppStream.Model
         /// </para>
         ///  
         /// <para>
-        /// This only applies to app blocks with PackagingType <code>APPSTREAM2</code>.
+        /// This only applies to app blocks with PackagingType <c>APPSTREAM2</c>.
         /// </para>
         /// </summary>
         public ScriptDetails PostSetupScriptDetails
@@ -217,7 +218,7 @@ namespace Amazon.AppStream.Model
         /// </para>
         ///  
         /// <para>
-        /// This only applies to app blocks with PackagingType <code>CUSTOM</code>.
+        /// This only applies to app blocks with PackagingType <c>CUSTOM</c>.
         /// </para>
         /// </summary>
         public ScriptDetails SetupScriptDetails
@@ -257,14 +258,13 @@ namespace Amazon.AppStream.Model
         /// </para>
         ///  
         /// <para>
-        /// An app block with AppStream 2.0 packaging will be in the <code>INACTIVE</code> state
-        /// if no application package (VHD) is assigned to it. After an application package (VHD)
-        /// is created by an app block builder for an app block, it becomes <code>ACTIVE</code>.
-        /// 
+        /// An app block with AppStream 2.0 packaging will be in the <c>INACTIVE</c> state if
+        /// no application package (VHD) is assigned to it. After an application package (VHD)
+        /// is created by an app block builder for an app block, it becomes <c>ACTIVE</c>. 
         /// </para>
         ///  
         /// <para>
-        /// Custom app blocks are always in the <code>ACTIVE</code> state and no action is required
+        /// Custom app blocks are always in the <c>ACTIVE</c> state and no action is required
         /// to use them.
         /// </para>
         /// </summary>

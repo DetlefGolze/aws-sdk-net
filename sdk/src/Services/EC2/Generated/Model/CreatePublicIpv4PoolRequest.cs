@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -37,16 +38,37 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class CreatePublicIpv4PoolRequest : AmazonEC2Request
     {
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private string _networkBorderGroup;
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
+
+        /// <summary>
+        /// Gets and sets the property NetworkBorderGroup. 
+        /// <para>
+        /// The Availability Zone (AZ) or Local Zone (LZ) network border group that the resource
+        /// that the IP address is assigned to is in. Defaults to an AZ network border group.
+        /// For more information on available Local Zones, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html#byoip-zone-avail">Local
+        /// Zone availability</a> in the <i>Amazon EC2 User Guide</i>.
+        /// </para>
+        /// </summary>
+        public string NetworkBorderGroup
+        {
+            get { return this._networkBorderGroup; }
+            set { this._networkBorderGroup = value; }
+        }
+
+        // Check to see if NetworkBorderGroup property is set
+        internal bool IsSetNetworkBorderGroup()
+        {
+            return this._networkBorderGroup != null;
+        }
 
         /// <summary>
         /// Gets and sets the property TagSpecifications. 
         /// <para>
         /// The key/value combination of a tag assigned to the resource. Use the tag key in the
         /// filter name and the tag value as the filter value. For example, to find all resources
-        /// that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>,
-        /// specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the
-        /// filter value.
+        /// that have a tag with the key <c>Owner</c> and the value <c>TeamA</c>, specify <c>tag:Owner</c>
+        /// for the filter name and <c>TeamA</c> for the filter value.
         /// </para>
         /// </summary>
         public List<TagSpecification> TagSpecifications
@@ -58,7 +80,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

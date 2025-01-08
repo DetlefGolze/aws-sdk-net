@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Bedrock.Model
 {
     /// <summary>
     /// Container for the parameters to the GetFoundationModel operation.
-    /// Get details about a Bedrock foundation model.
+    /// Get details about a Amazon Bedrock foundation model.
     /// </summary>
     public partial class GetFoundationModelRequest : AmazonBedrockRequest
     {

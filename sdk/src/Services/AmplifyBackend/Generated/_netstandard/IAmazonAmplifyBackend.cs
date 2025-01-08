@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.AmplifyBackend.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.AmplifyBackend
 {
     /// <summary>
-    /// Interface for accessing AmplifyBackend
+    /// <para>Interface for accessing AmplifyBackend</para>
     ///
     /// AWS Amplify Admin API
     /// </summary>

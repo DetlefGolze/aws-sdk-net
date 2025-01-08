@@ -26,17 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateImageVersion operation.
-    /// Creates a version of the SageMaker image specified by <code>ImageName</code>. The
-    /// version represents the Amazon Elastic Container Registry (ECR) container image specified
-    /// by <code>BaseImage</code>.
+    /// Creates a version of the SageMaker AI image specified by <c>ImageName</c>. The version
+    /// represents the Amazon ECR container image specified by <c>BaseImage</c>.
     /// </summary>
     public partial class CreateImageVersionRequest : AmazonSageMakerRequest
     {
-        private List<string> _aliases = new List<string>();
+        private List<string> _aliases = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _baseImage;
         private string _clientToken;
         private bool? _horovod;
@@ -63,19 +63,19 @@ namespace Amazon.SageMaker.Model
         // Check to see if Aliases property is set
         internal bool IsSetAliases()
         {
-            return this._aliases != null && this._aliases.Count > 0; 
+            return this._aliases != null && (this._aliases.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property BaseImage. 
         /// <para>
         /// The registry path of the container image to use as the starting point for this version.
-        /// The path is an Amazon Elastic Container Registry (ECR) URI in the following format:
+        /// The path is an Amazon ECR URI in the following format:
         /// </para>
         ///  
         /// <para>
-        ///  <code>&lt;acct-id&gt;.dkr.ecr.&lt;region&gt;.amazonaws.com/&lt;repo-name[:tag] or
-        /// [@digest]&gt;</code> 
+        ///  <c>&lt;acct-id&gt;.dkr.ecr.&lt;region&gt;.amazonaws.com/&lt;repo-name[:tag] or [@digest]&gt;</c>
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]
@@ -132,7 +132,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property ImageName. 
         /// <para>
-        /// The <code>ImageName</code> of the <code>Image</code> to create a version of.
+        /// The <c>ImageName</c> of the <c>Image</c> to create a version of.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=63)]
@@ -151,20 +151,19 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property JobType. 
         /// <para>
-        /// Indicates SageMaker job type compatibility.
+        /// Indicates SageMaker AI job type compatibility.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>TRAINING</code>: The image version is compatible with SageMaker training jobs.
+        ///  <c>TRAINING</c>: The image version is compatible with SageMaker AI training jobs.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INFERENCE</code>: The image version is compatible with SageMaker inference
-        /// jobs.
+        ///  <c>INFERENCE</c>: The image version is compatible with SageMaker AI inference jobs.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NOTEBOOK_KERNEL</code>: The image version is compatible with SageMaker notebook
+        ///  <c>NOTEBOOK_KERNEL</c>: The image version is compatible with SageMaker AI notebook
         /// kernels.
         /// </para>
         ///  </li> </ul>
@@ -207,11 +206,11 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CPU</code>: The image version is compatible with CPU.
+        ///  <c>CPU</c>: The image version is compatible with CPU.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>GPU</code>: The image version is compatible with GPU.
+        ///  <c>GPU</c>: The image version is compatible with GPU.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -272,22 +271,21 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NOT_PROVIDED</code>: The maintainers did not provide a status for image version
-        /// stability.
+        ///  <c>NOT_PROVIDED</c>: The maintainers did not provide a status for image version stability.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>STABLE</code>: The image version is stable.
+        ///  <c>STABLE</c>: The image version is stable.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TO_BE_ARCHIVED</code>: The image version is set to be archived. Custom image
-        /// versions that are set to be archived are automatically archived after three months.
+        ///  <c>TO_BE_ARCHIVED</c>: The image version is set to be archived. Custom image versions
+        /// that are set to be archived are automatically archived after three months.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ARCHIVED</code>: The image version is archived. Archived image versions are
-        /// not searchable and are no longer actively supported. 
+        ///  <c>ARCHIVED</c>: The image version is archived. Archived image versions are not searchable
+        /// and are no longer actively supported. 
         /// </para>
         ///  </li> </ul>
         /// </summary>

@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.ComprehendMedical
 {
     /// <summary>
-    /// Implementation for accessing ComprehendMedical
+    /// <para>Implementation for accessing ComprehendMedical</para>
     ///
     /// Amazon Comprehend Medical extracts structured information from unstructured clinical
     /// text. Use these actions to gain insight in your documents. Amazon Comprehend Medical
@@ -631,7 +632,7 @@ namespace Amazon.ComprehendMedical
 
 
         /// <summary>
-        /// The <code>DetectEntities</code> operation is deprecated. You should use the <a>DetectEntitiesV2</a>
+        /// The <c>DetectEntities</c> operation is deprecated. You should use the <a>DetectEntitiesV2</a>
         /// operation instead.
         /// 
         ///  
@@ -681,7 +682,7 @@ namespace Amazon.ComprehendMedical
 
 
         /// <summary>
-        /// The <code>DetectEntities</code> operation is deprecated. You should use the <a>DetectEntitiesV2</a>
+        /// The <c>DetectEntities</c> operation is deprecated. You should use the <a>DetectEntitiesV2</a>
         /// operation instead.
         /// 
         ///  
@@ -745,14 +746,14 @@ namespace Amazon.ComprehendMedical
         /// 
         ///  
         /// <para>
-        /// The <code>DetectEntitiesV2</code> operation replaces the <a>DetectEntities</a> operation.
+        /// The <c>DetectEntitiesV2</c> operation replaces the <a>DetectEntities</a> operation.
         /// This new action uses a different model for determining the entities in your medical
         /// text and changes the way that some entities are returned in the output. You should
-        /// use the <code>DetectEntitiesV2</code> operation in all new applications.
+        /// use the <c>DetectEntitiesV2</c> operation in all new applications.
         /// </para>
         ///  
         /// <para>
-        /// The <code>DetectEntitiesV2</code> operation returns the <code>Acuity</code> and <code>Direction</code>
+        /// The <c>DetectEntitiesV2</c> operation returns the <c>Acuity</c> and <c>Direction</c>
         /// entities as attributes instead of types. 
         /// </para>
         /// </summary>
@@ -802,14 +803,14 @@ namespace Amazon.ComprehendMedical
         /// 
         ///  
         /// <para>
-        /// The <code>DetectEntitiesV2</code> operation replaces the <a>DetectEntities</a> operation.
+        /// The <c>DetectEntitiesV2</c> operation replaces the <a>DetectEntities</a> operation.
         /// This new action uses a different model for determining the entities in your medical
         /// text and changes the way that some entities are returned in the output. You should
-        /// use the <code>DetectEntitiesV2</code> operation in all new applications.
+        /// use the <c>DetectEntitiesV2</c> operation in all new applications.
         /// </para>
         ///  
         /// <para>
-        /// The <code>DetectEntitiesV2</code> operation returns the <code>Acuity</code> and <code>Direction</code>
+        /// The <c>DetectEntitiesV2</c> operation returns the <c>Acuity</c> and <c>Direction</c>
         /// entities as attributes instead of types. 
         /// </para>
         /// </summary>
@@ -1599,8 +1600,7 @@ namespace Amazon.ComprehendMedical
 
         /// <summary>
         /// Starts an asynchronous medical entity detection job for a collection of documents.
-        /// Use the <code>DescribeEntitiesDetectionV2Job</code> operation to track the status
-        /// of a job.
+        /// Use the <c>DescribeEntitiesDetectionV2Job</c> operation to track the status of a job.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartEntitiesDetectionV2Job service method.</param>
         /// 
@@ -1634,8 +1634,7 @@ namespace Amazon.ComprehendMedical
 
         /// <summary>
         /// Starts an asynchronous medical entity detection job for a collection of documents.
-        /// Use the <code>DescribeEntitiesDetectionV2Job</code> operation to track the status
-        /// of a job.
+        /// Use the <c>DescribeEntitiesDetectionV2Job</c> operation to track the status of a job.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartEntitiesDetectionV2Job service method.</param>
         /// <param name="cancellationToken">
@@ -1676,8 +1675,8 @@ namespace Amazon.ComprehendMedical
 
         /// <summary>
         /// Starts an asynchronous job to detect medical conditions and link them to the ICD-10-CM
-        /// ontology. Use the <code>DescribeICD10CMInferenceJob</code> operation to track the
-        /// status of a job.
+        /// ontology. Use the <c>DescribeICD10CMInferenceJob</c> operation to track the status
+        /// of a job.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartICD10CMInferenceJob service method.</param>
         /// 
@@ -1711,8 +1710,8 @@ namespace Amazon.ComprehendMedical
 
         /// <summary>
         /// Starts an asynchronous job to detect medical conditions and link them to the ICD-10-CM
-        /// ontology. Use the <code>DescribeICD10CMInferenceJob</code> operation to track the
-        /// status of a job.
+        /// ontology. Use the <c>DescribeICD10CMInferenceJob</c> operation to track the status
+        /// of a job.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartICD10CMInferenceJob service method.</param>
         /// <param name="cancellationToken">
@@ -1752,7 +1751,7 @@ namespace Amazon.ComprehendMedical
 
 
         /// <summary>
-        /// Starts an asynchronous job to detect protected health information (PHI). Use the <code>DescribePHIDetectionJob</code>
+        /// Starts an asynchronous job to detect protected health information (PHI). Use the <c>DescribePHIDetectionJob</c>
         /// operation to track the status of a job.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartPHIDetectionJob service method.</param>
@@ -1786,7 +1785,7 @@ namespace Amazon.ComprehendMedical
 
 
         /// <summary>
-        /// Starts an asynchronous job to detect protected health information (PHI). Use the <code>DescribePHIDetectionJob</code>
+        /// Starts an asynchronous job to detect protected health information (PHI). Use the <c>DescribePHIDetectionJob</c>
         /// operation to track the status of a job.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartPHIDetectionJob service method.</param>
@@ -1828,7 +1827,7 @@ namespace Amazon.ComprehendMedical
 
         /// <summary>
         /// Starts an asynchronous job to detect medication entities and link them to the RxNorm
-        /// ontology. Use the <code>DescribeRxNormInferenceJob</code> operation to track the status
+        /// ontology. Use the <c>DescribeRxNormInferenceJob</c> operation to track the status
         /// of a job.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartRxNormInferenceJob service method.</param>
@@ -1863,7 +1862,7 @@ namespace Amazon.ComprehendMedical
 
         /// <summary>
         /// Starts an asynchronous job to detect medication entities and link them to the RxNorm
-        /// ontology. Use the <code>DescribeRxNormInferenceJob</code> operation to track the status
+        /// ontology. Use the <c>DescribeRxNormInferenceJob</c> operation to track the status
         /// of a job.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartRxNormInferenceJob service method.</param>
@@ -2311,11 +2310,11 @@ namespace Amazon.ComprehendMedical
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideo.Model
 {
     /// <summary>
@@ -122,7 +123,7 @@ namespace Amazon.KinesisVideo.Model
         /// <summary>
         /// Gets and sets the property MediaType. 
         /// <para>
-        /// The <code>MediaType</code> of the stream. 
+        /// The <c>MediaType</c> of the stream. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]

@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRegistry.Model
 {
     /// <summary>
     /// Container for the parameters to the DisassociateAttributeGroup operation.
     /// Disassociates an attribute group from an application to remove the extra attributes
     /// contained in the attribute group from the application's metadata. This operation reverts
-    /// <code>AssociateAttributeGroup</code>.
+    /// <c>AssociateAttributeGroup</c>.
     /// </summary>
     public partial class DisassociateAttributeGroupRequest : AmazonAppRegistryRequest
     {

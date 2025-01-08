@@ -26,13 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
     /// Container for the parameters to the GetAccessPointPolicyStatus operation.
+    /// <note> 
+    /// <para>
+    /// This operation is not supported by directory buckets.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Indicates whether the specified access point currently has a policy that allows public
     /// access. For more information about public access through access points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html">Managing
     /// Data Access with Amazon S3 access points</a> in the <i>Amazon S3 User Guide</i>.
+    /// </para>
     /// </summary>
     public partial class GetAccessPointPolicyStatusRequest : AmazonS3ControlRequest
     {
@@ -55,7 +63,7 @@ namespace Amazon.S3Control.Model
         // Check to see if AccountId property is set
         internal bool IsSetAccountId()
         {
-            return this._accountId != null;
+            return !string.IsNullOrEmpty(this._accountId);
         }
 
         /// <summary>

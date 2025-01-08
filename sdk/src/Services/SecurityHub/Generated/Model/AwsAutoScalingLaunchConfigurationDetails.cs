@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -34,9 +35,9 @@ namespace Amazon.SecurityHub.Model
     public partial class AwsAutoScalingLaunchConfigurationDetails
     {
         private bool? _associatePublicIpAddress;
-        private List<AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails> _blockDeviceMappings = new List<AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails>();
+        private List<AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails> _blockDeviceMappings = AWSConfigs.InitializeCollections ? new List<AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails>() : null;
         private string _classicLinkVpcId;
-        private List<string> _classicLinkVpcSecurityGroups = new List<string>();
+        private List<string> _classicLinkVpcSecurityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _createdTime;
         private bool? _ebsOptimized;
         private string _iamInstanceProfile;
@@ -49,7 +50,7 @@ namespace Amazon.SecurityHub.Model
         private AwsAutoScalingLaunchConfigurationMetadataOptions _metadataOptions;
         private string _placementTenancy;
         private string _ramdiskId;
-        private List<string> _securityGroups = new List<string>();
+        private List<string> _securityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _spotPrice;
         private string _userData;
 
@@ -87,7 +88,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if BlockDeviceMappings property is set
         internal bool IsSetBlockDeviceMappings()
         {
-            return this._blockDeviceMappings != null && this._blockDeviceMappings.Count > 0; 
+            return this._blockDeviceMappings != null && (this._blockDeviceMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -112,7 +113,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property ClassicLinkVpcSecurityGroups. 
         /// <para>
-        /// The identifiers of one or more security groups for the VPC that is specified in <code>ClassicLinkVPCId</code>.
+        /// The identifiers of one or more security groups for the VPC that is specified in <c>ClassicLinkVPCId</c>.
         /// </para>
         /// </summary>
         public List<string> ClassicLinkVpcSecurityGroups
@@ -124,7 +125,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ClassicLinkVpcSecurityGroups property is set
         internal bool IsSetClassicLinkVpcSecurityGroups()
         {
-            return this._classicLinkVpcSecurityGroups != null && this._classicLinkVpcSecurityGroups.Count > 0; 
+            return this._classicLinkVpcSecurityGroups != null && (this._classicLinkVpcSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -134,9 +135,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string CreatedTime
@@ -317,8 +317,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property PlacementTenancy. 
         /// <para>
-        /// The tenancy of the instance. An instance with <code>dedicated</code> tenancy runs
-        /// on isolated, single-tenant hardware and can only be launched into a VPC.
+        /// The tenancy of the instance. An instance with <c>dedicated</c> tenancy runs on isolated,
+        /// single-tenant hardware and can only be launched into a VPC.
         /// </para>
         /// </summary>
         public string PlacementTenancy
@@ -366,7 +366,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

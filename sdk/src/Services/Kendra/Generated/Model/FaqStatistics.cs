@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
-    /// Provides statistical information about the FAQ questions and answers contained in
-    /// an index.
+    /// Provides statistical information about the FAQ questions and answers for an index.
     /// </summary>
     public partial class FaqStatistics
     {
@@ -39,7 +39,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property IndexedQuestionAnswersCount. 
         /// <para>
-        /// The total number of FAQ questions and answers contained in the index.
+        /// The total number of FAQ questions and answers for an index.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0)]

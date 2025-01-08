@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TimestreamQuery.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateScheduledQuery operation.
     /// Create a scheduled query that will be run on your behalf at the configured schedule.
-    /// Timestream assumes the execution role provided as part of the <code>ScheduledQueryExecutionRoleArn</code>
-    /// parameter to run the query. You can use the <code>NotificationConfiguration</code>
-    /// parameter to configure notification for your scheduled query operations.
+    /// Timestream assumes the execution role provided as part of the <c>ScheduledQueryExecutionRoleArn</c>
+    /// parameter to run the query. You can use the <c>NotificationConfiguration</c> parameter
+    /// to configure notification for your scheduled query operations.
     /// </summary>
     public partial class CreateScheduledQueryRequest : AmazonTimestreamQueryRequest
     {
@@ -45,7 +46,7 @@ namespace Amazon.TimestreamQuery.Model
         private string _queryString;
         private ScheduleConfiguration _scheduleConfiguration;
         private string _scheduledQueryExecutionRoleArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private TargetConfiguration _targetConfiguration;
 
         /// <summary>
@@ -57,13 +58,13 @@ namespace Amazon.TimestreamQuery.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  If CreateScheduledQuery is called without a <code>ClientToken</code>, the Query SDK
-        /// generates a <code>ClientToken</code> on your behalf.
+        ///  If CreateScheduledQuery is called without a <c>ClientToken</c>, the Query SDK generates
+        /// a <c>ClientToken</c> on your behalf.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  After 8 hours, any request with the same <code>ClientToken</code> is treated as a
-        /// new request. 
+        ///  After 8 hours, any request with the same <c>ClientToken</c> is treated as a new request.
+        /// 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -110,8 +111,8 @@ namespace Amazon.TimestreamQuery.Model
         /// </para>
         ///  
         /// <para>
-        /// If ErrorReportConfiguration uses <code>SSE_KMS</code> as encryption type, the same
-        /// KmsKeyId is used to encrypt the error report at rest.
+        /// If ErrorReportConfiguration uses <c>SSE_KMS</c> as encryption type, the same KmsKeyId
+        /// is used to encrypt the error report at rest.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]
@@ -169,17 +170,17 @@ namespace Amazon.TimestreamQuery.Model
         /// <summary>
         /// Gets and sets the property QueryString. 
         /// <para>
-        /// The query string to run. Parameter names can be specified in the query string <code>@</code>
-        /// character followed by an identifier. The named Parameter <code>@scheduled_runtime</code>
+        /// The query string to run. Parameter names can be specified in the query string <c>@</c>
+        /// character followed by an identifier. The named Parameter <c>@scheduled_runtime</c>
         /// is reserved and can be used in the query to get the time at which the query is scheduled
         /// to run.
         /// </para>
         ///  
         /// <para>
         /// The timestamp calculated according to the ScheduleConfiguration parameter, will be
-        /// the value of <code>@scheduled_runtime</code> paramater for each query run. For example,
+        /// the value of <c>@scheduled_runtime</c> paramater for each query run. For example,
         /// consider an instance of a scheduled query executing on 2021-12-01 00:00:00. For this
-        /// instance, the <code>@scheduled_runtime</code> parameter is initialized to the timestamp
+        /// instance, the <c>@scheduled_runtime</c> parameter is initialized to the timestamp
         /// 2021-12-01 00:00:00 when invoking the query.
         /// </para>
         /// </summary>
@@ -251,7 +252,7 @@ namespace Amazon.TimestreamQuery.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

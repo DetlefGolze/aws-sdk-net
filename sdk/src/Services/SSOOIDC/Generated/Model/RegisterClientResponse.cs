@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSOOIDC.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.SSOOIDC.Model
         /// <summary>
         /// Gets and sets the property AuthorizationEndpoint. 
         /// <para>
-        /// The endpoint where the client can request authorization.
+        /// An endpoint that the client can use to request authorization.
         /// </para>
         /// </summary>
         public string AuthorizationEndpoint
@@ -80,8 +81,7 @@ namespace Amazon.SSOOIDC.Model
         /// <summary>
         /// Gets and sets the property ClientIdIssuedAt. 
         /// <para>
-        /// Indicates the time at which the <code>clientId</code> and <code>clientSecret</code>
-        /// were issued.
+        /// Indicates the time at which the <c>clientId</c> and <c>clientSecret</c> were issued.
         /// </para>
         /// </summary>
         public long ClientIdIssuedAt
@@ -103,6 +103,7 @@ namespace Amazon.SSOOIDC.Model
         /// by the service in subsequent calls.
         /// </para>
         /// </summary>
+        [AWSProperty(Sensitive=true)]
         public string ClientSecret
         {
             get { return this._clientSecret; }
@@ -118,8 +119,8 @@ namespace Amazon.SSOOIDC.Model
         /// <summary>
         /// Gets and sets the property ClientSecretExpiresAt. 
         /// <para>
-        /// Indicates the time at which the <code>clientId</code> and <code>clientSecret</code>
-        /// will become invalid.
+        /// Indicates the time at which the <c>clientId</c> and <c>clientSecret</c> will become
+        /// invalid.
         /// </para>
         /// </summary>
         public long ClientSecretExpiresAt
@@ -137,7 +138,7 @@ namespace Amazon.SSOOIDC.Model
         /// <summary>
         /// Gets and sets the property TokenEndpoint. 
         /// <para>
-        /// The endpoint where the client can get an access token.
+        /// An endpoint that the client can use to create tokens.
         /// </para>
         /// </summary>
         public string TokenEndpoint

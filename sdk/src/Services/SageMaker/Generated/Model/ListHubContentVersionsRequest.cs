@@ -26,17 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the ListHubContentVersions operation.
     /// List hub content versions.
-    /// 
-    ///  <note> 
-    /// <para>
-    /// Hub APIs are only callable through SageMaker Studio.
-    /// </para>
-    ///  </note>
     /// </summary>
     public partial class ListHubContentVersionsRequest : AmazonSageMakerRequest
     {
@@ -132,7 +127,7 @@ namespace Amazon.SageMaker.Model
         /// The name of the hub to list the content versions of.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=63)]
+        [AWSProperty(Required=true)]
         public string HubName
         {
             get { return this._hubName; }
@@ -205,8 +200,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the response to a previous <code>ListHubContentVersions</code> request was truncated,
-        /// the response includes a <code>NextToken</code>. To retrieve the next set of hub content
+        /// If the response to a previous <c>ListHubContentVersions</c> request was truncated,
+        /// the response includes a <c>NextToken</c>. To retrieve the next set of hub content
         /// versions, use the token in the next request.
         /// </para>
         /// </summary>

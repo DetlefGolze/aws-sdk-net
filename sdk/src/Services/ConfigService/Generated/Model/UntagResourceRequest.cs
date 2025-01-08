@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -35,15 +36,47 @@ namespace Amazon.ConfigService.Model
     public partial class UntagResourceRequest : AmazonConfigServiceRequest
     {
         private string _resourceArn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) that identifies the resource for which to list the
-        /// tags. Currently, the supported resources are <code>ConfigRule</code>, <code>ConfigurationAggregator</code>
-        /// and <code>AggregatorAuthorization</code>.
+        /// tags. The following resources are supported:
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>ConfigurationRecorder</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>ConfigRule</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>OrganizationConfigRule</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>ConformancePack</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>OrganizationConformancePack</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>ConfigurationAggregator</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AggregationAuthorization</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>StoredQuery</c> 
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1000)]
         public string ResourceArn
@@ -74,7 +107,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

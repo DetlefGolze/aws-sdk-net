@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchainQuery.Model
 {
     /// <summary>
-    /// Error generated from a failed <code>BatchGetTokenBalance</code> request.
+    /// Error generated from a failed <c>BatchGetTokenBalance</c> request.
     /// </summary>
     public partial class BatchGetTokenBalanceErrorItem
     {

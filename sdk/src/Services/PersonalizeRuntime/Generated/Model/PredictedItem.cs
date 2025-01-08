@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PersonalizeRuntime.Model
 {
     /// <summary>
@@ -33,13 +34,15 @@ namespace Amazon.PersonalizeRuntime.Model
     /// 
     ///  
     /// <para>
-    /// The and APIs return a list of <code>PredictedItem</code>s.
+    /// The and APIs return a list of <c>PredictedItem</c>s.
     /// </para>
     /// </summary>
     public partial class PredictedItem
     {
         private string _itemId;
+        private Dictionary<string, string> _metadata = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _promotionName;
+        private List<string> _reason = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private double? _score;
 
         /// <summary>
@@ -62,6 +65,25 @@ namespace Amazon.PersonalizeRuntime.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Metadata. 
+        /// <para>
+        /// Metadata about the item from your Items dataset.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Sensitive=true)]
+        public Dictionary<string, string> Metadata
+        {
+            get { return this._metadata; }
+            set { this._metadata = value; }
+        }
+
+        // Check to see if Metadata property is set
+        internal bool IsSetMetadata()
+        {
+            return this._metadata != null && (this._metadata.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property PromotionName. 
         /// <para>
         /// The name of the promotion that included the predicted item.
@@ -78,6 +100,45 @@ namespace Amazon.PersonalizeRuntime.Model
         internal bool IsSetPromotionName()
         {
             return this._promotionName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Reason. 
+        /// <para>
+        /// If you use User-Personalization-v2, a list of reasons for why the item was included
+        /// in recommendations. Possible reasons include the following:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Promoted item - Indicates the item was included as part of a promotion that you applied
+        /// in your recommendation request.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Exploration - Indicates the item was included with exploration. With exploration,
+        /// recommendations include items with less interactions data or relevance for the user.
+        /// For more information about exploration, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/use-case-recipe-features.html#about-exploration">Exploration</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  Popular item - Indicates the item was included as a placeholder popular item. If
+        /// you use a filter, depending on how many recommendations the filter removes, Amazon
+        /// Personalize might add placeholder items to meet the <c>numResults</c> for your recommendation
+        /// request. These items are popular items, based on interactions data, that satisfy your
+        /// filter criteria. They don't have a relevance score for the user. 
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public List<string> Reason
+        {
+            get { return this._reason; }
+            set { this._reason = value; }
+        }
+
+        // Check to see if Reason property is set
+        internal bool IsSetReason()
+        {
+            return this._reason != null && (this._reason.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

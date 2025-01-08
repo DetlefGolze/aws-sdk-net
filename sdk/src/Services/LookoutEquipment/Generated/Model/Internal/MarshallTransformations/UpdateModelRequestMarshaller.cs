@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.LookoutEquipment.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.LookoutEquipment.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetLabelsInputConfiguration())
@@ -74,6 +76,17 @@ namespace Amazon.LookoutEquipment.Model.Internal.MarshallTransformations
 
                     var marshaller = LabelsInputConfigurationMarshaller.Instance;
                     marshaller.Marshall(publicRequest.LabelsInputConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetModelDiagnosticsOutputConfiguration())
+                {
+                    context.Writer.WritePropertyName("ModelDiagnosticsOutputConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ModelDiagnosticsOutputConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.ModelDiagnosticsOutputConfiguration, context);
 
                     context.Writer.WriteObjectEnd();
                 }

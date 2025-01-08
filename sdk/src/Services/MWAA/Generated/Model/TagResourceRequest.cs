@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MWAA.Model
 {
     /// <summary>
@@ -36,12 +37,12 @@ namespace Amazon.MWAA.Model
     public partial class TagResourceRequest : AmazonMWAARequest
     {
         private string _resourceArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the Amazon MWAA environment. For example, <code>arn:aws:airflow:us-east-1:123456789012:environment/MyMWAAEnvironment</code>.
+        /// The Amazon Resource Name (ARN) of the Amazon MWAA environment. For example, <c>arn:aws:airflow:us-east-1:123456789012:environment/MyMWAAEnvironment</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1224)]
@@ -60,8 +61,8 @@ namespace Amazon.MWAA.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// The key-value tag pairs you want to associate to your environment. For example, <code>"Environment":
-        /// "Staging"</code>. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
+        /// The key-value tag pairs you want to associate to your environment. For example, <c>"Environment":
+        /// "Staging"</c>. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
         /// Amazon Web Services resources</a>.
         /// </para>
         /// </summary>
@@ -75,7 +76,7 @@ namespace Amazon.MWAA.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

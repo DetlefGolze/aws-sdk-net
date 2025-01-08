@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -34,18 +35,42 @@ namespace Amazon.Connect.Model
     /// </summary>
     public partial class ListPhoneNumbersSummary
     {
+        private string _instanceId;
         private string _phoneNumber;
         private string _phoneNumberArn;
         private PhoneNumberCountryCode _phoneNumberCountryCode;
+        private string _phoneNumberDescription;
         private string _phoneNumberId;
         private PhoneNumberType _phoneNumberType;
+        private string _sourcePhoneNumberArn;
         private string _targetArn;
+
+        /// <summary>
+        /// Gets and sets the property InstanceId. 
+        /// <para>
+        /// The identifier of the Amazon Connect instance that phone numbers are claimed to. You
+        /// can <a href="https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html">find
+        /// the instance ID</a> in the Amazon Resource Name (ARN) of the instance.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=100)]
+        public string InstanceId
+        {
+            get { return this._instanceId; }
+            set { this._instanceId = value; }
+        }
+
+        // Check to see if InstanceId property is set
+        internal bool IsSetInstanceId()
+        {
+            return this._instanceId != null;
+        }
 
         /// <summary>
         /// Gets and sets the property PhoneNumber. 
         /// <para>
-        /// The phone number. Phone numbers are formatted <code>[+] [country code] [subscriber
-        /// number including area code]</code>.
+        /// The phone number. Phone numbers are formatted <c>[+] [country code] [subscriber number
+        /// including area code]</c>.
         /// </para>
         /// </summary>
         public string PhoneNumber
@@ -97,6 +122,25 @@ namespace Amazon.Connect.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PhoneNumberDescription. 
+        /// <para>
+        /// The description of the phone number.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=500)]
+        public string PhoneNumberDescription
+        {
+            get { return this._phoneNumberDescription; }
+            set { this._phoneNumberDescription = value; }
+        }
+
+        // Check to see if PhoneNumberDescription property is set
+        internal bool IsSetPhoneNumberDescription()
+        {
+            return this._phoneNumberDescription != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property PhoneNumberId. 
         /// <para>
         /// A unique identifier for the phone number.
@@ -133,10 +177,31 @@ namespace Amazon.Connect.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SourcePhoneNumberArn. 
+        /// <para>
+        /// The claimed phone number ARN that was previously imported from the external service,
+        /// such as Amazon Web Services End User Messaging. If it is from Amazon Web Services
+        /// End User Messaging, it looks like the ARN of the phone number that was imported from
+        /// Amazon Web Services End User Messaging.
+        /// </para>
+        /// </summary>
+        public string SourcePhoneNumberArn
+        {
+            get { return this._sourcePhoneNumberArn; }
+            set { this._sourcePhoneNumberArn = value; }
+        }
+
+        // Check to see if SourcePhoneNumberArn property is set
+        internal bool IsSetSourcePhoneNumberArn()
+        {
+            return this._sourcePhoneNumberArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property TargetArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution
-        /// groups that phone numbers are claimed to.
+        /// groups that phone number inbound traffic is routed through.
         /// </para>
         /// </summary>
         public string TargetArn

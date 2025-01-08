@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -40,22 +41,31 @@ namespace Amazon.RDS.Model
     ///  
     /// <para>
     /// If you want to replace your original DB instance with the new, restored DB instance,
-    /// then rename your original DB instance before you call the RestoreDBInstanceFromDBSnapshot
-    /// action. RDS doesn't allow two DB instances with the same name. After you have renamed
+    /// then rename your original DB instance before you call the <c>RestoreDBInstanceFromDBSnapshot</c>
+    /// operation. RDS doesn't allow two DB instances with the same name. After you have renamed
     /// your original DB instance with a different identifier, then you can pass the original
-    /// name of the DB instance as the DBInstanceIdentifier in the call to the RestoreDBInstanceFromDBSnapshot
-    /// action. The result is that you replace the original DB instance with the DB instance
+    /// name of the DB instance as the <c>DBInstanceIdentifier</c> in the call to the <c>RestoreDBInstanceFromDBSnapshot</c>
+    /// operation. The result is that you replace the original DB instance with the DB instance
     /// created from the snapshot.
     /// </para>
     ///  
     /// <para>
-    /// If you are restoring from a shared manual DB snapshot, the <code>DBSnapshotIdentifier</code>
+    /// If you are restoring from a shared manual DB snapshot, the <c>DBSnapshotIdentifier</c>
     /// must be the ARN of the shared DB snapshot.
+    /// </para>
+    ///  
+    /// <para>
+    /// To restore from a DB snapshot with an unsupported engine version, you must first upgrade
+    /// the engine version of the snapshot. For more information about upgrading a RDS for
+    /// MySQL DB snapshot engine version, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/mysql-upgrade-snapshot.html">Upgrading
+    /// a MySQL DB snapshot engine version</a>. For more information about upgrading a RDS
+    /// for PostgreSQL DB snapshot engine version, <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBSnapshot.PostgreSQL.html">Upgrading
+    /// a PostgreSQL DB snapshot engine version</a>.
     /// </para>
     ///  <note> 
     /// <para>
     /// This command doesn't apply to Aurora MySQL and Aurora PostgreSQL. For Aurora, use
-    /// <code>RestoreDBClusterFromSnapshot</code>.
+    /// <c>RestoreDBClusterFromSnapshot</c>.
     /// </para>
     ///  </note>
     /// </summary>
@@ -65,6 +75,7 @@ namespace Amazon.RDS.Model
         private bool? _autoMinorVersionUpgrade;
         private string _availabilityZone;
         private string _backupTarget;
+        private string _caCertificateIdentifier;
         private bool? _copyTagsToSnapshot;
         private string _customIamInstanceProfile;
         private string _dbClusterSnapshotIdentifier;
@@ -74,32 +85,34 @@ namespace Amazon.RDS.Model
         private string _dbParameterGroupName;
         private string _dbSnapshotIdentifier;
         private string _dbSubnetGroupName;
+        private bool? _dedicatedLogVolume;
         private bool? _deletionProtection;
         private string _domain;
         private string _domainAuthSecretArn;
-        private List<string> _domainDnsIps = new List<string>();
+        private List<string> _domainDnsIps = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _domainFqdn;
         private string _domainIAMRoleName;
         private string _domainOu;
-        private List<string> _enableCloudwatchLogsExports = new List<string>();
+        private List<string> _enableCloudwatchLogsExports = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _enableCustomerOwnedIp;
         private bool? _enableIAMDatabaseAuthentication;
         private string _engine;
+        private string _engineLifecycleSupport;
         private int? _iops;
         private string _licenseModel;
         private bool? _multiAZ;
         private string _networkType;
         private string _optionGroupName;
         private int? _port;
-        private List<ProcessorFeature> _processorFeatures = new List<ProcessorFeature>();
+        private List<ProcessorFeature> _processorFeatures = AWSConfigs.InitializeCollections ? new List<ProcessorFeature>() : null;
         private bool? _publiclyAccessible;
         private int? _storageThroughput;
         private string _storageType;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _tdeCredentialArn;
         private string _tdeCredentialPassword;
         private bool? _useDefaultProcessorFeatures;
-        private List<string> _vpcSecurityGroupIds = new List<string>();
+        private List<string> _vpcSecurityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -109,8 +122,8 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Instantiates RestoreDBInstanceFromDBSnapshotRequest with the parameterized properties
         /// </summary>
-        /// <param name="dbInstanceIdentifier">Name of the DB instance to create from the DB snapshot. This parameter isn't case-sensitive. Constraints: <ul> <li> Must contain from 1 to 63 numbers, letters, or hyphens </li> <li> First character must be a letter </li> <li> Can't end with a hyphen or contain two consecutive hyphens </li> </ul> Example: <code>my-snapshot-id</code> </param>
-        /// <param name="dbSnapshotIdentifier">The identifier for the DB snapshot to restore from. Constraints: <ul> <li> Must match the identifier of an existing DBSnapshot. </li> <li> Can't be specified when <code>DBClusterSnapshotIdentifier</code> is specified. </li> <li> Must be specified when <code>DBClusterSnapshotIdentifier</code> isn't specified. </li> <li> If you are restoring from a shared manual DB snapshot, the <code>DBSnapshotIdentifier</code> must be the ARN of the shared DB snapshot. </li> </ul></param>
+        /// <param name="dbInstanceIdentifier">The name of the DB instance to create from the DB snapshot. This parameter isn't case-sensitive. Constraints: <ul> <li> Must contain from 1 to 63 numbers, letters, or hyphens. </li> <li> First character must be a letter. </li> <li> Can't end with a hyphen or contain two consecutive hyphens. </li> </ul> Example: <c>my-snapshot-id</c> </param>
+        /// <param name="dbSnapshotIdentifier">The identifier for the DB snapshot to restore from. Constraints: <ul> <li> Must match the identifier of an existing DB snapshot. </li> <li> Can't be specified when <c>DBClusterSnapshotIdentifier</c> is specified. </li> <li> Must be specified when <c>DBClusterSnapshotIdentifier</c> isn't specified. </li> <li> If you are restoring from a shared manual DB snapshot, the <c>DBSnapshotIdentifier</c> must be the ARN of the shared DB snapshot. </li> </ul></param>
         public RestoreDBInstanceFromDBSnapshotRequest(string dbInstanceIdentifier, string dbSnapshotIdentifier)
         {
             _dbInstanceIdentifier = dbInstanceIdentifier;
@@ -122,6 +135,10 @@ namespace Amazon.RDS.Model
         /// <para>
         /// The amount of storage (in gibibytes) to allocate initially for the DB instance. Follow
         /// the allocation rules specified in CreateDBInstance.
+        /// </para>
+        ///  
+        /// <para>
+        /// This setting isn't valid for RDS for SQL Server.
         /// </para>
         ///  <note> 
         /// <para>
@@ -176,12 +193,12 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Constraint: You can't specify the <code>AvailabilityZone</code> parameter if the DB
-        /// instance is a Multi-AZ deployment.
+        /// Constraint: You can't specify the <c>AvailabilityZone</c> parameter if the DB instance
+        /// is a Multi-AZ deployment.
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>us-east-1a</code> 
+        /// Example: <c>us-east-1a</c> 
         /// </para>
         /// </summary>
         public string AvailabilityZone
@@ -204,8 +221,8 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Possible values are <code>outposts</code> (Amazon Web Services Outposts) and <code>region</code>
-        /// (Amazon Web Services Region). The default is <code>region</code>.
+        /// Possible values are <c>outposts</c> (Amazon Web Services Outposts) and <c>region</c>
+        /// (Amazon Web Services Region). The default is <c>region</c>.
         /// </para>
         ///  
         /// <para>
@@ -223,6 +240,36 @@ namespace Amazon.RDS.Model
         internal bool IsSetBackupTarget()
         {
             return this._backupTarget != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CACertificateIdentifier. 
+        /// <para>
+        /// The CA certificate identifier to use for the DB instance's server certificate.
+        /// </para>
+        ///  
+        /// <para>
+        /// This setting doesn't apply to RDS Custom DB instances.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html">Using
+        /// SSL/TLS to encrypt a connection to a DB instance</a> in the <i>Amazon RDS User Guide</i>
+        /// and <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.SSL.html">
+        /// Using SSL/TLS to encrypt a connection to a DB cluster</a> in the <i>Amazon Aurora
+        /// User Guide</i>.
+        /// </para>
+        /// </summary>
+        public string CACertificateIdentifier
+        {
+            get { return this._caCertificateIdentifier; }
+            set { this._caCertificateIdentifier = value; }
+        }
+
+        // Check to see if CACertificateIdentifier property is set
+        internal bool IsSetCACertificateIdentifier()
+        {
+            return this._caCertificateIdentifier != null;
         }
 
         /// <summary>
@@ -274,7 +321,7 @@ namespace Amazon.RDS.Model
         ///  </li> <li> 
         /// <para>
         /// The instance profile name and the associated IAM role name must start with the prefix
-        /// <code>AWSRDSCustom</code>.
+        /// <c>AWSRDSCustom</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -301,7 +348,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property DBClusterSnapshotIdentifier. 
         /// <para>
-        /// The identifier for the RDS for MySQL Multi-AZ DB cluster snapshot to restore from.
+        /// The identifier for the Multi-AZ DB cluster snapshot to restore from.
         /// </para>
         ///  
         /// <para>
@@ -318,24 +365,20 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Can't be specified when <code>DBSnapshotIdentifier</code> is specified.
+        /// Can't be specified when <c>DBSnapshotIdentifier</c> is specified.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Must be specified when <code>DBSnapshotIdentifier</code> isn't specified.
+        /// Must be specified when <c>DBSnapshotIdentifier</c> isn't specified.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If you are restoring from a shared manual Multi-AZ DB cluster snapshot, the <code>DBClusterSnapshotIdentifier</code>
+        /// If you are restoring from a shared manual Multi-AZ DB cluster snapshot, the <c>DBClusterSnapshotIdentifier</c>
         /// must be the ARN of the shared snapshot.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// Can't be the identifier of an Aurora DB cluster snapshot.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Can't be the identifier of an RDS for PostgreSQL Multi-AZ DB cluster snapshot.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -380,7 +423,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property DBInstanceIdentifier. 
         /// <para>
-        /// Name of the DB instance to create from the DB snapshot. This parameter isn't case-sensitive.
+        /// The name of the DB instance to create from the DB snapshot. This parameter isn't case-sensitive.
         /// </para>
         ///  
         /// <para>
@@ -388,19 +431,19 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Must contain from 1 to 63 numbers, letters, or hyphens
+        /// Must contain from 1 to 63 numbers, letters, or hyphens.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// First character must be a letter
+        /// First character must be a letter.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Can't end with a hyphen or contain two consecutive hyphens
+        /// Can't end with a hyphen or contain two consecutive hyphens.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>my-snapshot-id</code> 
+        /// Example: <c>my-snapshot-id</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -419,12 +462,12 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property DBName. 
         /// <para>
-        /// The database name for the restored DB instance.
+        /// The name of the database for the restored DB instance.
         /// </para>
         ///  
         /// <para>
-        /// This parameter doesn't apply to the MySQL, PostgreSQL, or MariaDB engines. It also
-        /// doesn't apply to RDS Custom DB instances.
+        /// This parameter only applies to RDS for Oracle and RDS for SQL Server DB instances.
+        /// It doesn't apply to the other engines or to RDS Custom DB instances.
         /// </para>
         /// </summary>
         public string DBName
@@ -446,8 +489,8 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// If you don't specify a value for <code>DBParameterGroupName</code>, then RDS uses
-        /// the default <code>DBParameterGroup</code> for the specified DB engine.
+        /// If you don't specify a value for <c>DBParameterGroupName</c>, then RDS uses the default
+        /// <c>DBParameterGroup</c> for the specified DB engine.
         /// </para>
         ///  
         /// <para>
@@ -459,7 +502,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If supplied, must match the name of an existing DBParameterGroup.
+        /// If supplied, must match the name of an existing DB parameter group.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -498,19 +541,19 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Must match the identifier of an existing DBSnapshot.
+        /// Must match the identifier of an existing DB snapshot.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Can't be specified when <code>DBClusterSnapshotIdentifier</code> is specified.
+        /// Can't be specified when <c>DBClusterSnapshotIdentifier</c> is specified.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Must be specified when <code>DBClusterSnapshotIdentifier</code> isn't specified.
+        /// Must be specified when <c>DBClusterSnapshotIdentifier</c> isn't specified.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If you are restoring from a shared manual DB snapshot, the <code>DBSnapshotIdentifier</code>
+        /// If you are restoring from a shared manual DB snapshot, the <c>DBSnapshotIdentifier</c>
         /// must be the ARN of the shared DB snapshot.
         /// </para>
         ///  </li> </ul>
@@ -530,15 +573,19 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property DBSubnetGroupName. 
         /// <para>
-        /// The DB subnet group name to use for the new instance.
+        /// The name of the DB subnet group to use for the new instance.
         /// </para>
         ///  
         /// <para>
-        /// Constraints: If supplied, must match the name of an existing DBSubnetGroup.
+        /// Constraints:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// Example: <code>mydbsubnetgroup</code> 
+        /// If supplied, must match the name of an existing DB subnet group.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Example: <c>mydbsubnetgroup</c> 
         /// </para>
         /// </summary>
         public string DBSubnetGroupName
@@ -551,6 +598,24 @@ namespace Amazon.RDS.Model
         internal bool IsSetDBSubnetGroupName()
         {
             return this._dbSubnetGroupName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DedicatedLogVolume. 
+        /// <para>
+        /// Specifies whether to enable a dedicated log volume (DLV) for the DB instance.
+        /// </para>
+        /// </summary>
+        public bool DedicatedLogVolume
+        {
+            get { return this._dedicatedLogVolume.GetValueOrDefault(); }
+            set { this._dedicatedLogVolume = value; }
+        }
+
+        // Check to see if DedicatedLogVolume property is set
+        internal bool IsSetDedicatedLogVolume()
+        {
+            return this._dedicatedLogVolume.HasValue; 
         }
 
         /// <summary>
@@ -577,8 +642,8 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Domain. 
         /// <para>
-        /// Specify the Active Directory directory ID to restore the DB instance in. The domain/
-        /// must be created prior to this operation. Currently, you can create only MySQL, Microsoft
+        /// The Active Directory directory ID to restore the DB instance in. The domain/ must
+        /// be created prior to this operation. Currently, you can create only Db2, MySQL, Microsoft
         /// SQL Server, Oracle, and PostgreSQL DB instances in an Active Directory Domain.
         /// </para>
         ///  
@@ -619,7 +684,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>arn:aws:secretsmanager:region:account-number:secret:myselfmanagedADtestsecret-123456</code>
+        /// Example: <c>arn:aws:secretsmanager:region:account-number:secret:myselfmanagedADtestsecret-123456</c>
         /// 
         /// </para>
         /// </summary>
@@ -651,7 +716,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>123.124.125.126,234.235.236.237</code> 
+        /// Example: <c>123.124.125.126,234.235.236.237</c> 
         /// </para>
         /// </summary>
         public List<string> DomainDnsIps
@@ -663,7 +728,7 @@ namespace Amazon.RDS.Model
         // Check to see if DomainDnsIps property is set
         internal bool IsSetDomainDnsIps()
         {
-            return this._domainDnsIps != null && this._domainDnsIps.Count > 0; 
+            return this._domainDnsIps != null && (this._domainDnsIps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -681,7 +746,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>mymanagedADtest.mymanagedAD.mydomain</code> 
+        /// Example: <c>mymanagedADtest.mymanagedAD.mydomain</c> 
         /// </para>
         /// </summary>
         public string DomainFqdn
@@ -737,7 +802,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>OU=mymanagedADtestOU,DC=mymanagedADtest,DC=mymanagedAD,DC=mydomain</code>
+        /// Example: <c>OU=mymanagedADtestOU,DC=mymanagedADtest,DC=mymanagedAD,DC=mydomain</c>
         /// 
         /// </para>
         /// </summary>
@@ -756,9 +821,8 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property EnableCloudwatchLogsExports. 
         /// <para>
-        /// The list of logs that the restored DB instance is to export to CloudWatch Logs. The
-        /// values in the list depend on the DB engine being used. For more information, see <a
-        /// href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch">Publishing
+        /// The list of logs for the restored DB instance to export to CloudWatch Logs. The values
+        /// in the list depend on the DB engine. For more information, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch">Publishing
         /// Database Logs to Amazon CloudWatch Logs</a> in the <i>Amazon RDS User Guide</i>.
         /// </para>
         ///  
@@ -775,7 +839,7 @@ namespace Amazon.RDS.Model
         // Check to see if EnableCloudwatchLogsExports property is set
         internal bool IsSetEnableCloudwatchLogsExports()
         {
-            return this._enableCloudwatchLogsExports != null && this._enableCloudwatchLogsExports.Count > 0; 
+            return this._enableCloudwatchLogsExports != null && (this._enableCloudwatchLogsExports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -871,47 +935,55 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>mariadb</code> 
+        ///  <c>db2-ae</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mysql</code> 
+        ///  <c>db2-se</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-ee</code> 
+        ///  <c>mariadb</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-ee-cdb</code> 
+        ///  <c>mysql</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-se2</code> 
+        ///  <c>oracle-ee</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-se2-cdb</code> 
+        ///  <c>oracle-ee-cdb</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>postgres</code> 
+        ///  <c>oracle-se2</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ee</code> 
+        ///  <c>oracle-se2-cdb</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-se</code> 
+        ///  <c>postgres</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ex</code> 
+        ///  <c>sqlserver-ee</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-web</code> 
+        ///  <c>sqlserver-se</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>sqlserver-ex</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>sqlserver-web</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -925,6 +997,54 @@ namespace Amazon.RDS.Model
         internal bool IsSetEngine()
         {
             return this._engine != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EngineLifecycleSupport. 
+        /// <para>
+        /// The life cycle type for this DB instance.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// By default, this value is set to <c>open-source-rds-extended-support</c>, which enrolls
+        /// your DB instance into Amazon RDS Extended Support. At the end of standard support,
+        /// you can avoid charges for Extended Support by setting the value to <c>open-source-rds-extended-support-disabled</c>.
+        /// In this case, RDS automatically upgrades your restored DB instance to a higher engine
+        /// version, if the major engine version is past its end of standard support date.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// You can use this setting to enroll your DB instance into Amazon RDS Extended Support.
+        /// With RDS Extended Support, you can run the selected major engine version on your DB
+        /// instance past the end of standard support for that engine version. For more information,
+        /// see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html">Using
+        /// Amazon RDS Extended Support</a> in the <i>Amazon RDS User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// This setting applies only to RDS for MySQL and RDS for PostgreSQL. For Amazon Aurora
+        /// DB instances, the life cycle type is managed by the DB cluster.
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid Values: <c>open-source-rds-extended-support | open-source-rds-extended-support-disabled</c>
+        /// 
+        /// </para>
+        ///  
+        /// <para>
+        /// Default: <c>open-source-rds-extended-support</c> 
+        /// </para>
+        /// </summary>
+        public string EngineLifecycleSupport
+        {
+            get { return this._engineLifecycleSupport; }
+            set { this._engineLifecycleSupport = value; }
+        }
+
+        // Check to see if EngineLifecycleSupport property is set
+        internal bool IsSetEngineLifecycleSupport()
+        {
+            return this._engineLifecycleSupport != null;
         }
 
         /// <summary>
@@ -964,18 +1084,50 @@ namespace Amazon.RDS.Model
         /// <para>
         /// License model information for the restored DB instance.
         /// </para>
-        ///  
+        ///  <note> 
         /// <para>
-        /// This setting doesn't apply to RDS Custom.
+        /// License models for RDS for Db2 require additional configuration. The Bring Your Own
+        /// License (BYOL) model requires a custom parameter group and an Amazon Web Services
+        /// License Manager self-managed license. The Db2 license through Amazon Web Services
+        /// Marketplace model requires an Amazon Web Services Marketplace subscription. For more
+        /// information, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/db2-licensing.html">Amazon
+        /// RDS for Db2 licensing options</a> in the <i>Amazon RDS User Guide</i>.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// This setting doesn't apply to Amazon Aurora or RDS Custom DB instances.
         /// </para>
         ///  
         /// <para>
-        /// Default: Same as source.
+        /// Valid Values:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// Valid Values: <code>license-included</code> | <code>bring-your-own-license</code>
-        /// | <code>general-public-license</code> 
+        /// RDS for Db2 - <c>bring-your-own-license | marketplace-license</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// RDS for MariaDB - <c>general-public-license</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// RDS for Microsoft SQL Server - <c>license-included</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// RDS for MySQL - <c>general-public-license</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// RDS for Oracle - <c>bring-your-own-license | license-included</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// RDS for PostgreSQL - <c>postgresql-license</c> 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Default: Same as the source.
         /// </para>
         /// </summary>
         public string LicenseModel
@@ -1001,8 +1153,8 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Constraint: You can't specify the <code>AvailabilityZone</code> parameter if the DB
-        /// instance is a Multi-AZ deployment.
+        /// Constraint: You can't specify the <c>AvailabilityZone</c> parameter if the DB instance
+        /// is a Multi-AZ deployment.
         /// </para>
         /// </summary>
         public bool MultiAZ
@@ -1028,17 +1180,17 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>IPV4</code> 
+        ///  <c>IPV4</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DUAL</code> 
+        ///  <c>DUAL</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// The network type is determined by the <code>DBSubnetGroup</code> specified for the
-        /// DB instance. A <code>DBSubnetGroup</code> can support only the IPv4 protocol or the
-        /// IPv4 and the IPv6 protocols (<code>DUAL</code>).
+        /// The network type is determined by the <c>DBSubnetGroup</c> specified for the DB instance.
+        /// A <c>DBSubnetGroup</c> can support only the IPv4 protocol or the IPv4 and the IPv6
+        /// protocols (<c>DUAL</c>).
         /// </para>
         ///  
         /// <para>
@@ -1097,7 +1249,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Constraints: Value must be <code>1150-65535</code> 
+        /// Constraints: Value must be <c>1150-65535</c> 
         /// </para>
         /// </summary>
         public int Port
@@ -1132,7 +1284,7 @@ namespace Amazon.RDS.Model
         // Check to see if ProcessorFeatures property is set
         internal bool IsSetProcessorFeatures()
         {
-            return this._processorFeatures != null && this._processorFeatures.Count > 0; 
+            return this._processorFeatures != null && (this._processorFeatures.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1200,17 +1352,17 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>gp2 | gp3 | io1 | standard</code> 
+        /// Valid Values: <c>gp2 | gp3 | io1 | io2 | standard</c> 
         /// </para>
         ///  
         /// <para>
-        /// If you specify <code>io1</code> or <code>gp3</code>, you must also include a value
-        /// for the <code>Iops</code> parameter.
+        /// If you specify <c>io1</c>, <c>io2</c>, or <c>gp3</c>, you must also include a value
+        /// for the <c>Iops</c> parameter.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>io1</code> if the <code>Iops</code> parameter is specified, otherwise
-        /// <code>gp2</code> 
+        /// Default: <c>io1</c> if the <c>Iops</c> parameter is specified, otherwise <c>gp2</c>
+        /// 
         /// </para>
         /// </summary>
         public string StorageType
@@ -1237,7 +1389,7 @@ namespace Amazon.RDS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1326,7 +1478,7 @@ namespace Amazon.RDS.Model
         // Check to see if VpcSecurityGroupIds property is set
         internal bool IsSetVpcSecurityGroupIds()
         {
-            return this._vpcSecurityGroupIds != null && this._vpcSecurityGroupIds.Count > 0; 
+            return this._vpcSecurityGroupIds != null && (this._vpcSecurityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// Stores the configuration information for the image classification problem of an AutoML
-    /// job V2.
+    /// The collection of settings used by an AutoML job V2 for the image classification problem
+    /// type.
     /// </summary>
     public partial class ImageClassificationJobConfig
     {

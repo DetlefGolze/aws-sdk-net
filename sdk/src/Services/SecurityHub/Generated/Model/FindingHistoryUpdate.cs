@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.SecurityHub.Model
         /// <para>
         ///  The value of the ASFF field after the finding change event. To preserve storage and
         /// readability, Security Hub omits this value if <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_FindingHistoryRecord.html">
-        /// <code>FindingHistoryRecord</code> </a> exceeds database limits. 
+        /// <c>FindingHistoryRecord</c> </a> exceeds database limits. 
         /// </para>
         /// </summary>
         public string NewValue

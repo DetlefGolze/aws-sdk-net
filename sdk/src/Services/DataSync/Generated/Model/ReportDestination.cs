@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
-    /// Specifies where DataSync uploads your <a href="https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html">task
+    /// Specifies where DataSync uploads your <a href="https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html">task
     /// report</a>.
     /// </summary>
     public partial class ReportDestination

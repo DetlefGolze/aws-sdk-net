@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
@@ -33,9 +34,18 @@ namespace Amazon.CloudTrail.Model
     /// Looks up <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-management-events">management
     /// events</a> or <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-insights-events">CloudTrail
     /// Insights events</a> that are captured by CloudTrail. You can look up events that occurred
-    /// in a Region within the last 90 days. Lookup supports the following attributes for
-    /// management events:
+    /// in a Region within the last 90 days.
     /// 
+    ///  <note> 
+    /// <para>
+    ///  <c>LookupEvents</c> returns recent Insights events for trails that enable Insights.
+    /// To view Insights events for an event data store, you can run queries on your Insights
+    /// event data store, and you can also view the Lake dashboard for Insights.
+    /// </para>
+    ///  </note> 
+    /// <para>
+    /// Lookup supports the following attributes for management events:
+    /// </para>
     ///  <ul> <li> 
     /// <para>
     /// Amazon Web Services access key
@@ -101,7 +111,7 @@ namespace Amazon.CloudTrail.Model
     {
         private DateTime? _endTime;
         private EventCategory _eventCategory;
-        private List<LookupAttribute> _lookupAttributes = new List<LookupAttribute>();
+        private List<LookupAttribute> _lookupAttributes = AWSConfigs.InitializeCollections ? new List<LookupAttribute>() : null;
         private int? _maxResults;
         private string _nextToken;
         private DateTime? _startTime;
@@ -129,8 +139,8 @@ namespace Amazon.CloudTrail.Model
         /// Gets and sets the property EventCategory. 
         /// <para>
         /// Specifies the event category. If you do not specify an event category, events of the
-        /// category are not returned in the response. For example, if you do not specify <code>insight</code>
-        /// as the value of <code>EventCategory</code>, no Insights events are returned.
+        /// category are not returned in the response. For example, if you do not specify <c>insight</c>
+        /// as the value of <c>EventCategory</c>, no Insights events are returned.
         /// </para>
         /// </summary>
         public EventCategory EventCategory
@@ -160,7 +170,7 @@ namespace Amazon.CloudTrail.Model
         // Check to see if LookupAttributes property is set
         internal bool IsSetLookupAttributes()
         {
-            return this._lookupAttributes != null && this._lookupAttributes.Count > 0; 
+            return this._lookupAttributes != null && (this._lookupAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

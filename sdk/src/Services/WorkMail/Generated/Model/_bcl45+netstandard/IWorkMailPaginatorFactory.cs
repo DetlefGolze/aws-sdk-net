@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the workmail-2017-10-01.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.WorkMail.Model
 {
     /// <summary>
@@ -79,6 +80,11 @@ namespace Amazon.WorkMail.Model
         /// Paginator for ListOrganizations operation
         ///</summary>
         IListOrganizationsPaginator ListOrganizations(ListOrganizationsRequest request);
+
+        /// <summary>
+        /// Paginator for ListPersonalAccessTokens operation
+        ///</summary>
+        IListPersonalAccessTokensPaginator ListPersonalAccessTokens(ListPersonalAccessTokensRequest request);
 
         /// <summary>
         /// Paginator for ListResourceDelegates operation

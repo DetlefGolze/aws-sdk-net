@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LicenseManager.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.LicenseManager.Model
         /// <summary>
         /// Gets and sets the property AmiAssociationScope. 
         /// <para>
-        /// Scope of AMI associations. The possible value is <code>cross-account</code>.
+        /// Scope of AMI associations. The possible value is <c>cross-account</c>.
         /// </para>
         /// </summary>
         public string AmiAssociationScope

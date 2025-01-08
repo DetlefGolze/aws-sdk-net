@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -84,13 +85,13 @@ namespace Amazon.ForecastService.Model
         /// Gets and sets the property RoleArn. 
         /// <para>
         /// The ARN of the Identity and Access Management (IAM) role that Amazon Forecast can
-        /// assume to access the Amazon S3 bucket or files. If you provide a value for the <code>KMSKeyArn</code>
+        /// assume to access the Amazon S3 bucket or files. If you provide a value for the <c>KMSKeyArn</c>
         /// key, the role must allow access to the key.
         /// </para>
         ///  
         /// <para>
         /// Passing a role across Amazon Web Services accounts is not allowed. If you pass a role
-        /// that isn't in your account, you get an <code>InvalidInputException</code> error.
+        /// that isn't in your account, you get an <c>InvalidInputException</c> error.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=256)]

@@ -27,6 +27,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSO.Model
 {
     /// <summary>
@@ -45,8 +46,8 @@ namespace Amazon.SSO.Model
         /// <summary>
         /// Gets and sets the property AccessToken. 
         /// <para>
-        /// The token issued by the <code>CreateToken</code> API call. For more information, see
-        /// <a href="https://docs.aws.amazon.com/singlesignon/latest/OIDCAPIReference/API_CreateToken.html">CreateToken</a>
+        /// The token issued by the <c>CreateToken</c> API call. For more information, see <a
+        /// href="https://docs.aws.amazon.com/singlesignon/latest/OIDCAPIReference/API_CreateToken.html">CreateToken</a>
         /// in the <i>IAM Identity Center OIDC API Reference Guide</i>.
         /// </para>
         /// </summary>
@@ -60,7 +61,7 @@ namespace Amazon.SSO.Model
         // Check to see if AccessToken property is set
         internal bool IsSetAccessToken()
         {
-            return this._accessToken != null;
+            return !string.IsNullOrEmpty(this._accessToken);
         }
 
         /// <summary>

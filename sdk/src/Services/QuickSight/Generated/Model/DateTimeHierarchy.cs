@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The option that determines the hierarchy of any <code>DateTime</code> fields.
+    /// The option that determines the hierarchy of any <c>DateTime</c> fields.
     /// </summary>
     public partial class DateTimeHierarchy
     {
-        private List<DrillDownFilter> _drillDownFilters = new List<DrillDownFilter>();
+        private List<DrillDownFilter> _drillDownFilters = AWSConfigs.InitializeCollections ? new List<DrillDownFilter>() : null;
         private string _hierarchyId;
 
         /// <summary>
         /// Gets and sets the property DrillDownFilters. 
         /// <para>
-        /// The option that determines the drill down filters for the <code>DateTime</code> hierarchy.
+        /// The option that determines the drill down filters for the <c>DateTime</c> hierarchy.
         /// </para>
         /// </summary>
         [AWSProperty(Max=10)]
@@ -52,13 +53,13 @@ namespace Amazon.QuickSight.Model
         // Check to see if DrillDownFilters property is set
         internal bool IsSetDrillDownFilters()
         {
-            return this._drillDownFilters != null && this._drillDownFilters.Count > 0; 
+            return this._drillDownFilters != null && (this._drillDownFilters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property HierarchyId. 
         /// <para>
-        /// The hierarchy ID of the <code>DateTime</code> hierarchy.
+        /// The hierarchy ID of the <c>DateTime</c> hierarchy.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]

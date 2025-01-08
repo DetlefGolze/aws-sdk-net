@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostAndUsageReport.Model
 {
     /// <summary>
     /// Container for the parameters to the ModifyReportDefinition operation.
-    /// Allows you to programatically update your report preferences.
+    /// Allows you to programmatically update your report preferences.
     /// </summary>
     public partial class ModifyReportDefinitionRequest : AmazonCostAndUsageReportRequest
     {

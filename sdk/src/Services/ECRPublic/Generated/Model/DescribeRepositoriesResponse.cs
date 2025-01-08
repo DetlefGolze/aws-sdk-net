@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECRPublic.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.ECRPublic.Model
     public partial class DescribeRepositoriesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Repository> _repositories = new List<Repository>();
+        private List<Repository> _repositories = AWSConfigs.InitializeCollections ? new List<Repository>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value to include in a future <code>DescribeRepositories</code>
-        /// request. When the results of a <code>DescribeRepositories</code> request exceed <code>maxResults</code>,
+        /// The <c>nextToken</c> value to include in a future <c>DescribeRepositories</c> request.
+        /// When the results of a <c>DescribeRepositories</c> request exceed <c>maxResults</c>,
         /// this value can be used to retrieve the next page of results. If there are no more
-        /// results to return, this value is <code>null</code>.
+        /// results to return, this value is <c>null</c>.
         /// </para>
         /// </summary>
         public string NextToken
@@ -72,7 +73,7 @@ namespace Amazon.ECRPublic.Model
         // Check to see if Repositories property is set
         internal bool IsSetRepositories()
         {
-            return this._repositories != null && this._repositories.Count > 0; 
+            return this._repositories != null && (this._repositories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

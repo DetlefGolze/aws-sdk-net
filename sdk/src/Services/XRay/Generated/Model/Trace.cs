@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.XRay.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.XRay.Model
         private double? _duration;
         private string _id;
         private bool? _limitExceeded;
-        private List<Segment> _segments = new List<Segment>();
+        private List<Segment> _segments = AWSConfigs.InitializeCollections ? new List<Segment>() : null;
 
         /// <summary>
         /// Gets and sets the property Duration. 
@@ -79,10 +80,10 @@ namespace Amazon.XRay.Model
         /// <summary>
         /// Gets and sets the property LimitExceeded. 
         /// <para>
-        /// LimitExceeded is set to true when the trace has exceeded the <code>Trace document
-        /// size</code> limit. For more information about this limit and other X-Ray limits and
-        /// quotas, see <a href="https://docs.aws.amazon.com/general/latest/gr/xray.html">Amazon
-        /// Web Services X-Ray endpoints and quotas</a>.
+        /// LimitExceeded is set to true when the trace has exceeded the <c>Trace document size</c>
+        /// limit. For more information about this limit and other X-Ray limits and quotas, see
+        /// <a href="https://docs.aws.amazon.com/general/latest/gr/xray.html">Amazon Web Services
+        /// X-Ray endpoints and quotas</a>.
         /// </para>
         /// </summary>
         public bool LimitExceeded
@@ -112,7 +113,7 @@ namespace Amazon.XRay.Model
         // Check to see if Segments property is set
         internal bool IsSetSegments()
         {
-            return this._segments != null && this._segments.Count > 0; 
+            return this._segments != null && (this._segments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,47 +26,31 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
-    /// Advanced event selectors let you create fine-grained selectors for the following CloudTrail
-    /// event record ﬁelds. They help you control costs by logging only those events that
-    /// are important to you. For more information about advanced event selectors, see <a
-    /// href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html">Logging
-    /// data events</a> in the <i>CloudTrail User Guide</i>.
+    /// Advanced event selectors let you create fine-grained selectors for CloudTrail management,
+    /// data, and network activity events. They help you control costs by logging only those
+    /// events that are important to you. For more information about configuring advanced
+    /// event selectors, see the <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html">Logging
+    /// data events</a>, <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-network-events-with-cloudtrail.html">Logging
+    /// network activity events</a>, and <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html">Logging
+    /// management events</a> topics in the <i>CloudTrail User Guide</i>.
     /// 
-    ///  <ul> <li> 
-    /// <para>
-    ///  <code>readOnly</code> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <code>eventSource</code> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <code>eventName</code> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <code>eventCategory</code> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <code>resources.type</code> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <code>resources.ARN</code> 
-    /// </para>
-    ///  </li> </ul> 
+    ///  
     /// <para>
     /// You cannot apply both event selectors and advanced event selectors to a trail.
+    /// </para>
+    ///  
+    /// <para>
+    /// For information about configurable advanced event selector fields, see <a href="https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_AdvancedEventSelector.html">AdvancedEventSelector</a>
+    /// in the <i>CloudTrailUser Guide</i>.
     /// </para>
     /// </summary>
     public partial class AdvancedEventSelector
     {
-        private List<AdvancedFieldSelector> _fieldSelectors = new List<AdvancedFieldSelector>();
+        private List<AdvancedFieldSelector> _fieldSelectors = AWSConfigs.InitializeCollections ? new List<AdvancedFieldSelector>() : null;
         private string _name;
 
         /// <summary>
@@ -85,7 +69,7 @@ namespace Amazon.CloudTrail.Model
         // Check to see if FieldSelectors property is set
         internal bool IsSetFieldSelectors()
         {
-            return this._fieldSelectors != null && this._fieldSelectors.Count > 0; 
+            return this._fieldSelectors != null && (this._fieldSelectors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to return with a single call. To retrieve the remaining
-        /// results, make another call with the returned <code>nextToken</code> value.
+        /// results, make another call with the returned <c>nextToken</c> value.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]

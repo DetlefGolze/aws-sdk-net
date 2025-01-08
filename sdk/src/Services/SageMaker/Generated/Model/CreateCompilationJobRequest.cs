@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateCompilationJob operation.
     /// Starts a model compilation job. After the model has been compiled, Amazon SageMaker
-    /// saves the resulting model artifacts to an Amazon Simple Storage Service (Amazon S3)
-    /// bucket that you specify. 
+    /// AI saves the resulting model artifacts to an Amazon Simple Storage Service (Amazon
+    /// S3) bucket that you specify. 
     /// 
     ///  
     /// <para>
-    /// If you choose to host your model using Amazon SageMaker hosting services, you can
+    /// If you choose to host your model using Amazon SageMaker AI hosting services, you can
     /// use the resulting model artifacts as part of the model. You can also use the artifacts
     /// with Amazon Web Services IoT Greengrass. In that case, deploy them as an ML resource.
     /// </para>
@@ -59,14 +60,14 @@ namespace Amazon.SageMaker.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker assumes to perform
-    /// the model compilation job. 
+    /// The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker AI assumes to
+    /// perform the model compilation job. 
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// You can also provide a <code>Tag</code> to track the model compilation job's resource
-    /// use and costs. The response body contains the <code>CompilationJobArn</code> for the
-    /// compiled job.
+    /// You can also provide a <c>Tag</c> to track the model compilation job's resource use
+    /// and costs. The response body contains the <c>CompilationJobArn</c> for the compiled
+    /// job.
     /// </para>
     ///  
     /// <para>
@@ -83,7 +84,7 @@ namespace Amazon.SageMaker.Model
         private OutputConfig _outputConfig;
         private string _roleArn;
         private StoppingCondition _stoppingCondition;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private NeoVpcConfig _vpcConfig;
 
         /// <summary>
@@ -128,9 +129,9 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property ModelPackageVersionArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of a versioned model package. Provide either a <code>ModelPackageVersionArn</code>
-        /// or an <code>InputConfig</code> object in the request syntax. The presence of both
-        /// objects in the <code>CreateCompilationJob</code> request will return an exception.
+        /// The Amazon Resource Name (ARN) of a versioned model package. Provide either a <c>ModelPackageVersionArn</c>
+        /// or an <c>InputConfig</c> object in the request syntax. The presence of both objects
+        /// in the <c>CreateCompilationJob</c> request will return an exception.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]
@@ -169,12 +170,12 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property RoleArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to perform
-        /// tasks on your behalf. 
+        /// The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker AI to
+        /// perform tasks on your behalf. 
         /// </para>
         ///  
         /// <para>
-        /// During model compilation, Amazon SageMaker needs your permission to:
+        /// During model compilation, Amazon SageMaker AI needs your permission to:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -195,9 +196,9 @@ namespace Amazon.SageMaker.Model
         ///  </li> </ul> 
         /// <para>
         /// You grant permissions for all of these tasks to an IAM role. To pass this role to
-        /// Amazon SageMaker, the caller of this API must have the <code>iam:PassRole</code> permission.
+        /// Amazon SageMaker AI, the caller of this API must have the <c>iam:PassRole</c> permission.
         /// For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html">Amazon
-        /// SageMaker Roles.</a> 
+        /// SageMaker AI Roles.</a> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]
@@ -217,8 +218,8 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property StoppingCondition. 
         /// <para>
         /// Specifies a limit to how long a model compilation job can run. When the job reaches
-        /// the time limit, Amazon SageMaker ends the compilation job. Use this API to cap model
-        /// training costs.
+        /// the time limit, Amazon SageMaker AI ends the compilation job. Use this API to cap
+        /// model training costs.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -253,7 +254,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

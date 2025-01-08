@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroups.Model
 {
     /// <summary>
@@ -42,20 +43,20 @@ namespace Amazon.ResourceGroups.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>resource-groups:Untag</code> 
+    ///  <c>resource-groups:Untag</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>
     public partial class UntagRequest : AmazonResourceGroupsRequest
     {
         private string _arn;
-        private List<string> _keys = new List<string>();
+        private List<string> _keys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
         /// <para>
-        /// The ARN of the resource group from which to remove tags. The command removed both
-        /// the specified keys and any values associated with those keys.
+        /// The Amazon resource name (ARN) of the resource group from which to remove tags. The
+        /// command removed both the specified keys and any values associated with those keys.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=12, Max=1600)]
@@ -87,7 +88,7 @@ namespace Amazon.ResourceGroups.Model
         // Check to see if Keys property is set
         internal bool IsSetKeys()
         {
-            return this._keys != null && this._keys.Count > 0; 
+            return this._keys != null && (this._keys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

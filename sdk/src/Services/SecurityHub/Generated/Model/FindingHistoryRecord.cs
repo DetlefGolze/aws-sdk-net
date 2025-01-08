@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -37,16 +38,16 @@ namespace Amazon.SecurityHub.Model
         private bool? _findingCreated;
         private AwsSecurityFindingIdentifier _findingIdentifier;
         private string _nextToken;
-        private List<FindingHistoryUpdate> _updates = new List<FindingHistoryUpdate>();
+        private List<FindingHistoryUpdate> _updates = AWSConfigs.InitializeCollections ? new List<FindingHistoryUpdate>() : null;
         private FindingHistoryUpdateSource _updateSource;
         private DateTime? _updateTime;
 
         /// <summary>
         /// Gets and sets the property FindingCreated. 
         /// <para>
-        ///  Identifies whether the event marks the creation of a new finding. A value of <code>True</code>
-        /// means that the finding is newly created. A value of <code>False</code> means that
-        /// the finding isn’t newly created. 
+        ///  Identifies whether the event marks the creation of a new finding. A value of <c>True</c>
+        /// means that the finding is newly created. A value of <c>False</c> means that the finding
+        /// isn’t newly created. 
         /// </para>
         /// </summary>
         public bool FindingCreated
@@ -81,8 +82,8 @@ namespace Amazon.SecurityHub.Model
         /// <para>
         ///  A token for pagination purposes. Provide this token in the subsequent request to
         /// <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_GetFindingsHistory.html">
-        /// <code>GetFindingsHistory</code> </a> to get up to an additional 100 results of history
-        /// for the same finding that you specified in your initial request. 
+        /// <c>GetFindingsHistory</c> </a> to get up to an additional 100 results of history for
+        /// the same finding that you specified in your initial request. 
         /// </para>
         /// </summary>
         public string NextToken
@@ -114,16 +115,16 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Updates property is set
         internal bool IsSetUpdates()
         {
-            return this._updates != null && this._updates.Count > 0; 
+            return this._updates != null && (this._updates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UpdateSource. 
         /// <para>
         ///  Identifies the source of the event that changed the finding. For example, an integrated
-        /// Amazon Web Service or third-party partner integration may call <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchImportFindings.html">
-        /// <code>BatchImportFindings</code> </a>, or an Security Hub customer may call <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateFindings.html">
-        /// <code>BatchUpdateFindings</code> </a>. 
+        /// Amazon Web Services service or third-party partner integration may call <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchImportFindings.html">
+        /// <c>BatchImportFindings</c> </a>, or an Security Hub customer may call <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateFindings.html">
+        /// <c>BatchUpdateFindings</c> </a>. 
         /// </para>
         /// </summary>
         public FindingHistoryUpdateSource UpdateSource
@@ -141,15 +142,12 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property UpdateTime. 
         /// <para>
-        ///  An ISO 8601-formatted timestamp that indicates when Security Hub processed the updated
-        /// finding record.
+        ///  A timestamp that indicates when Security Hub processed the updated finding record.
         /// </para>
         ///  
         /// <para>
-        /// A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value
-        /// cannot contain spaces, and date and time should be separated by <code>T</code>. For
-        /// more information, see <a href="https://www.rfc-editor.org/rfc/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. 
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public DateTime UpdateTime

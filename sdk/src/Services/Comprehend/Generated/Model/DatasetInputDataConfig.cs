@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Comprehend.Model
     /// </summary>
     public partial class DatasetInputDataConfig
     {
-        private List<DatasetAugmentedManifestsListItem> _augmentedManifests = new List<DatasetAugmentedManifestsListItem>();
+        private List<DatasetAugmentedManifestsListItem> _augmentedManifests = AWSConfigs.InitializeCollections ? new List<DatasetAugmentedManifestsListItem>() : null;
         private DatasetDataFormat _dataFormat;
         private DatasetDocumentClassifierInputDataConfig _documentClassifierInputDataConfig;
         private DatasetEntityRecognizerInputDataConfig _entityRecognizerInputDataConfig;
@@ -55,18 +56,18 @@ namespace Amazon.Comprehend.Model
         // Check to see if AugmentedManifests property is set
         internal bool IsSetAugmentedManifests()
         {
-            return this._augmentedManifests != null && this._augmentedManifests.Count > 0; 
+            return this._augmentedManifests != null && (this._augmentedManifests.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DataFormat. 
         /// <para>
-        ///  <code>COMPREHEND_CSV</code>: The data format is a two-column CSV file, where the
-        /// first column contains labels and the second column contains documents.
+        ///  <c>COMPREHEND_CSV</c>: The data format is a two-column CSV file, where the first
+        /// column contains labels and the second column contains documents.
         /// </para>
         ///  
         /// <para>
-        ///  <code>AUGMENTED_MANIFEST</code>: The data format 
+        ///  <c>AUGMENTED_MANIFEST</c>: The data format 
         /// </para>
         /// </summary>
         public DatasetDataFormat DataFormat

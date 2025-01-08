@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AppStream.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.AppStream.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Fleet Unmarshall(JsonUnmarshallerContext context)
         {
+            Fleet unmarshalledObject = new Fleet();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Fleet unmarshalledObject = new Fleet();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -160,6 +162,12 @@ namespace Amazon.AppStream.Model.Internal.MarshallTransformations
                     unmarshalledObject.MaxConcurrentSessions = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("MaxSessionsPerInstance", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.MaxSessionsPerInstance = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("MaxUserDurationInSeconds", targetDepth))
                 {
                     var unmarshaller = IntUnmarshaller.Instance;
@@ -209,7 +217,6 @@ namespace Amazon.AppStream.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

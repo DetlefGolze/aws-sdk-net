@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -64,8 +65,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property EncryptionDisabled. 
         /// <para>
-        /// Indicates whether to disable encryption on the artifact. Only valid when <code>Type</code>
-        /// is <code>S3</code>.
+        /// Indicates whether to disable encryption on the artifact. Only valid when <c>Type</c>
+        /// is <c>S3</c>.
         /// </para>
         /// </summary>
         public bool EncryptionDisabled
@@ -83,8 +84,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Location. 
         /// <para>
-        /// Only used when <code>Type</code> is <code>S3</code>. The name of the S3 bucket where
-        /// the artifact is located.
+        /// Only used when <c>Type</c> is <c>S3</c>. The name of the S3 bucket where the artifact
+        /// is located.
         /// </para>
         /// </summary>
         public string Location
@@ -102,8 +103,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// Only used when Type is S3. The name of the artifact. Used with <code>NamepaceType</code>
-        /// and <code>Path</code> to determine the pattern for storing the artifact.
+        /// Only used when Type is S3. The name of the artifact. Used with <c>NamepaceType</c>
+        /// and <c>Path</c> to determine the pattern for storing the artifact.
         /// </para>
         /// </summary>
         public string Name
@@ -121,9 +122,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property NamespaceType. 
         /// <para>
-        /// Only used when <code>Type</code> is <code>S3</code>. The value to use for the namespace.
-        /// Used with <code>Name</code> and <code>Path</code> to determine the pattern for storing
-        /// the artifact.
+        /// Only used when <c>Type</c> is <c>S3</c>. The value to use for the namespace. Used
+        /// with <c>Name</c> and <c>Path</c> to determine the pattern for storing the artifact.
         /// </para>
         /// </summary>
         public string NamespaceType
@@ -159,8 +159,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Packaging. 
         /// <para>
-        /// Only used when <code>Type</code> is <code>S3</code>. The type of output artifact to
-        /// create.
+        /// Only used when <c>Type</c> is <c>S3</c>. The type of output artifact to create.
         /// </para>
         /// </summary>
         public string Packaging
@@ -178,9 +177,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Path. 
         /// <para>
-        /// Only used when <code>Type</code> is <code>S3</code>. The path to the artifact. Used
-        /// with <code>Name</code> and <code>NamespaceType</code> to determine the pattern for
-        /// storing the artifact.
+        /// Only used when <c>Type</c> is <c>S3</c>. The path to the artifact. Used with <c>Name</c>
+        /// and <c>NamespaceType</c> to determine the pattern for storing the artifact.
         /// </para>
         /// </summary>
         public string Path

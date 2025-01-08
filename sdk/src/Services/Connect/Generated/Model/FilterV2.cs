@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -35,16 +36,15 @@ namespace Amazon.Connect.Model
     public partial class FilterV2
     {
         private string _filterKey;
-        private List<string> _filterValues = new List<string>();
+        private List<string> _filterValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property FilterKey. 
         /// <para>
-        /// The key to use for filtering data. For example, <code>QUEUE</code>, <code>ROUTING_PROFILE,
-        /// AGENT</code>, <code>CHANNEL</code>, <code>AGENT_HIERARCHY_LEVEL_ONE</code>, <code>AGENT_HIERARCHY_LEVEL_TWO</code>,
-        /// <code>AGENT_HIERARCHY_LEVEL_THREE</code>, <code>AGENT_HIERARCHY_LEVEL_FOUR</code>,
-        /// <code>AGENT_HIERARCHY_LEVEL_FIVE</code>. There must be at least 1 key and a maximum
-        /// 5 keys. 
+        /// The key to use for filtering data. For example, <c>QUEUE</c>, <c>ROUTING_PROFILE,
+        /// AGENT</c>, <c>CHANNEL</c>, <c>AGENT_HIERARCHY_LEVEL_ONE</c>, <c>AGENT_HIERARCHY_LEVEL_TWO</c>,
+        /// <c>AGENT_HIERARCHY_LEVEL_THREE</c>, <c>AGENT_HIERARCHY_LEVEL_FOUR</c>, <c>AGENT_HIERARCHY_LEVEL_FIVE</c>.
+        /// There must be at least 1 key and a maximum 5 keys. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=250)]
@@ -64,8 +64,7 @@ namespace Amazon.Connect.Model
         /// Gets and sets the property FilterValues. 
         /// <para>
         /// The identifiers to use for filtering data. For example, if you have a filter key of
-        /// <code>QUEUE</code>, you would add queue IDs or ARNs in <code>FilterValues</code>.
-        /// 
+        /// <c>QUEUE</c>, you would add queue IDs or ARNs in <c>FilterValues</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -78,7 +77,7 @@ namespace Amazon.Connect.Model
         // Check to see if FilterValues property is set
         internal bool IsSetFilterValues()
         {
-            return this._filterValues != null && this._filterValues.Count > 0; 
+            return this._filterValues != null && (this._filterValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

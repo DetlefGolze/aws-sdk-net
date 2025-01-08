@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTThingsGraph.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.IoTThingsGraph.Model
         /// <summary>
         /// Gets and sets the property UploadId. 
         /// <para>
-        /// The ID of the upload. This value is returned by the <code>UploadEntityDefinitions</code>
+        /// The ID of the upload. This value is returned by the <c>UploadEntityDefinitions</c>
         /// action.
         /// </para>
         /// </summary>

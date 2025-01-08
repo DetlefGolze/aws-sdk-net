@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteIPSet operation.
-    /// Deletes the IPSet specified by the <code>ipSetId</code>. IPSets are called trusted
-    /// IP lists in the console user interface.
+    /// Deletes the IPSet specified by the <c>ipSetId</c>. IPSets are called trusted IP lists
+    /// in the console user interface.
     /// </summary>
     public partial class DeleteIPSetRequest : AmazonGuardDutyRequest
     {
@@ -42,6 +43,12 @@ namespace Amazon.GuardDuty.Model
         /// Gets and sets the property DetectorId. 
         /// <para>
         /// The unique ID of the detector associated with the IPSet.
+        /// </para>
+        ///  
+        /// <para>
+        /// To find the <c>detectorId</c> in the current Region, see the Settings page in the
+        /// GuardDuty console, or run the <a href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html">ListDetectors</a>
+        /// API.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=300)]

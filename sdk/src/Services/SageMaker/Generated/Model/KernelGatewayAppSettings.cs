@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -33,14 +34,15 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class KernelGatewayAppSettings
     {
-        private List<CustomImage> _customImages = new List<CustomImage>();
+        private List<CustomImage> _customImages = AWSConfigs.InitializeCollections ? new List<CustomImage>() : null;
         private ResourceSpec _defaultResourceSpec;
-        private List<string> _lifecycleConfigArns = new List<string>();
+        private List<string> _lifecycleConfigArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property CustomImages. 
         /// <para>
-        /// A list of custom SageMaker images that are configured to run as a KernelGateway app.
+        /// A list of custom SageMaker AI images that are configured to run as a KernelGateway
+        /// app.
         /// </para>
         /// </summary>
         [AWSProperty(Max=200)]
@@ -53,21 +55,20 @@ namespace Amazon.SageMaker.Model
         // Check to see if CustomImages property is set
         internal bool IsSetCustomImages()
         {
-            return this._customImages != null && this._customImages.Count > 0; 
+            return this._customImages != null && (this._customImages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DefaultResourceSpec. 
         /// <para>
         /// The default instance type and the Amazon Resource Name (ARN) of the default SageMaker
-        /// image used by the KernelGateway app.
+        /// AI image used by the KernelGateway app.
         /// </para>
         ///  <note> 
         /// <para>
-        /// The Amazon SageMaker Studio UI does not use the default instance type value set here.
-        /// The default instance type set here is used when Apps are created using the Amazon
-        /// Web Services Command Line Interface or Amazon Web Services CloudFormation and the
-        /// instance type parameter value is not passed.
+        /// The Amazon SageMaker AI Studio UI does not use the default instance type value set
+        /// here. The default instance type set here is used when Apps are created using the CLI
+        /// or CloudFormation and the instance type parameter value is not passed.
         /// </para>
         ///  </note>
         /// </summary>
@@ -91,8 +92,8 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// To remove a Lifecycle Config, you must set <code>LifecycleConfigArns</code> to an
-        /// empty list.
+        /// To remove a Lifecycle Config, you must set <c>LifecycleConfigArns</c> to an empty
+        /// list.
         /// </para>
         ///  </note>
         /// </summary>
@@ -105,7 +106,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if LifecycleConfigArns property is set
         internal bool IsSetLifecycleConfigArns()
         {
-            return this._lifecycleConfigArns != null && this._lifecycleConfigArns.Count > 0; 
+            return this._lifecycleConfigArns != null && (this._lifecycleConfigArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

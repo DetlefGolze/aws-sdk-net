@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -85,8 +86,8 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property BotStatus. 
         /// <para>
-        /// The current status of the bot. When the status is <code>Available</code> the bot is
-        /// ready for use.
+        /// The current status of the bot. When the status is <c>Available</c> the bot is ready
+        /// for use.
         /// </para>
         /// </summary>
         public BotStatus BotStatus

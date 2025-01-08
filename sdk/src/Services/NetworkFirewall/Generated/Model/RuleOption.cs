@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace Amazon.NetworkFirewall.Model
     public partial class RuleOption
     {
         private string _keyword;
-        private List<string> _settings = new List<string>();
+        private List<string> _settings = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Keyword. 
         /// <para>
-        /// The keyword for the Suricata compatible rule option. You must include a <code>sid</code>
+        /// The keyword for the Suricata compatible rule option. You must include a <c>sid</c>
         /// (signature ID), and can optionally include other keywords. For information about Suricata
         /// compatible keywords, see <a href="https://suricata.readthedocs.io/en/suricata-6.0.9/rules/intro.html#rule-options">Rule
         /// options</a> in the Suricata documentation.
@@ -62,7 +63,7 @@ namespace Amazon.NetworkFirewall.Model
         /// Gets and sets the property Settings. 
         /// <para>
         /// The settings of the Suricata compatible rule option. Rule options have zero or more
-        /// setting values, and the number of possible and required settings depends on the <code>Keyword</code>.
+        /// setting values, and the number of possible and required settings depends on the <c>Keyword</c>.
         /// For more information about the settings for specific options, see <a href="https://suricata.readthedocs.io/en/suricata-6.0.9/rules/intro.html#rule-options">Rule
         /// options</a>.
         /// </para>
@@ -76,7 +77,7 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if Settings property is set
         internal bool IsSetSettings()
         {
-            return this._settings != null && this._settings.Count > 0; 
+            return this._settings != null && (this._settings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

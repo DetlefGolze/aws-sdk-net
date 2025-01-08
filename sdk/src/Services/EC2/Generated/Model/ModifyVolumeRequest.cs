@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,26 +35,20 @@ namespace Amazon.EC2.Model
     /// volume type, and IOPS capacity. If your EBS volume is attached to a current-generation
     /// EC2 instance type, you might be able to apply these changes without stopping the instance
     /// or detaching the volume from it. For more information about modifying EBS volumes,
-    /// see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html">Amazon
-    /// EBS Elastic Volumes</a> (Linux instances) or <a href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-modify-volume.html">Amazon
-    /// EBS Elastic Volumes</a> (Windows instances).
+    /// see <a href="https://docs.aws.amazon.com/ebs/latest/userguide/ebs-modify-volume.html">Amazon
+    /// EBS Elastic Volumes</a> in the <i>Amazon EBS User Guide</i>.
     /// 
     ///  
     /// <para>
     /// When you complete a resize operation on your volume, you need to extend the volume's
     /// file-system size to take advantage of the new storage capacity. For more information,
-    /// see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-expand-volume.html#recognize-expanded-volume-linux">Extend
-    /// a Linux file system</a> or <a href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-expand-volume.html#recognize-expanded-volume-windows">Extend
-    /// a Windows file system</a>.
+    /// see <a href="https://docs.aws.amazon.com/ebs/latest/userguide/recognize-expanded-volume-linux.html">Extend
+    /// the file system</a>.
     /// </para>
     ///  
     /// <para>
-    ///  You can use CloudWatch Events to check the status of a modification to an EBS volume.
-    /// For information about CloudWatch Events, see the <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/">Amazon
-    /// CloudWatch Events User Guide</a>. You can also track the status of a modification
-    /// using <a>DescribeVolumesModifications</a>. For information about tracking status changes
-    /// using either method, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-volume-modifications.html">Monitor
-    /// the progress of volume modifications</a>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/ebs/latest/userguide/monitoring-volume-modifications.html">Monitor
+    /// the progress of volume modifications</a> in the <i>Amazon EBS User Guide</i>.
     /// </para>
     ///  
     /// <para>
@@ -63,8 +58,8 @@ namespace Amazon.EC2.Model
     ///  
     /// <para>
     /// After modifying a volume, you must wait at least six hours and ensure that the volume
-    /// is in the <code>in-use</code> or <code>available</code> state before you can modify
-    /// the same volume. This is sometimes referred to as a cooldown period.
+    /// is in the <c>in-use</c> or <c>available</c> state before you can modify the same volume.
+    /// This is sometimes referred to as a cooldown period.
     /// </para>
     /// </summary>
     public partial class ModifyVolumeRequest : AmazonEC2Request
@@ -79,8 +74,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Iops. 
         /// <para>
-        /// The target IOPS rate of the volume. This parameter is valid only for <code>gp3</code>,
-        /// <code>io1</code>, and <code>io2</code> volumes.
+        /// The target IOPS rate of the volume. This parameter is valid only for <c>gp3</c>, <c>io1</c>,
+        /// and <c>io2</c> volumes.
         /// </para>
         ///  
         /// <para>
@@ -88,21 +83,26 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>gp3</code>: 3,000-16,000 IOPS
+        ///  <c>gp3</c>: 3,000 - 16,000 IOPS
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>io1</code>: 100-64,000 IOPS
+        ///  <c>io1</c>: 100 - 64,000 IOPS
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>io2</code>: 100-64,000 IOPS
+        ///  <c>io2</c>: 100 - 256,000 IOPS
         /// </para>
         ///  </li> </ul> 
         /// <para>
+        /// For <c>io2</c> volumes, you can achieve up to 256,000 IOPS on <a href="https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-nitro-instances.html">instances
+        /// built on the Nitro System</a>. On other instances, you can achieve performance up
+        /// to 32,000 IOPS.
+        /// </para>
+        ///  
+        /// <para>
         /// Default: The existing value is retained if you keep the same volume type. If you change
-        /// the volume type to <code>io1</code>, <code>io2</code>, or <code>gp3</code>, the default
-        /// is 3,000.
+        /// the volume type to <c>io1</c>, <c>io2</c>, or <c>gp3</c>, the default is 3,000.
         /// </para>
         /// </summary>
         public int Iops
@@ -121,11 +121,10 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property MultiAttachEnabled. 
         /// <para>
         /// Specifies whether to enable Amazon EBS Multi-Attach. If you enable Multi-Attach, you
-        /// can attach the volume to up to 16 <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances">
+        /// can attach the volume to up to 16 <a href="https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-nitro-instances.html">
         /// Nitro-based instances</a> in the same Availability Zone. This parameter is supported
-        /// with <code>io1</code> and <code>io2</code> volumes only. For more information, see
-        /// <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volumes-multi.html">
-        /// Amazon EBS Multi-Attach</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+        /// with <c>io1</c> and <c>io2</c> volumes only. For more information, see <a href="https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volumes-multi.html">
+        /// Amazon EBS Multi-Attach</a> in the <i>Amazon EBS User Guide</i>.
         /// </para>
         /// </summary>
         public bool MultiAttachEnabled
@@ -152,19 +151,23 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>gp2</code> and <code>gp3</code>: 1-16,384
+        ///  <c>gp2</c> and <c>gp3</c>: 1 - 16,384 GiB
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>io1</code> and <code>io2</code>: 4-16,384
+        ///  <c>io1</c>: 4 - 16,384 GiB
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>st1</code> and <code>sc1</code>: 125-16,384
+        ///  <c>io2</c>: 4 - 65,536 GiB
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>standard</code>: 1-1,024
+        ///  <c>st1</c> and <c>sc1</c>: 125 - 16,384 GiB
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>standard</c>: 1 - 1024 GiB
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -186,12 +189,12 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Throughput. 
         /// <para>
-        /// The target throughput of the volume, in MiB/s. This parameter is valid only for <code>gp3</code>
+        /// The target throughput of the volume, in MiB/s. This parameter is valid only for <c>gp3</c>
         /// volumes. The maximum value is 1,000.
         /// </para>
         ///  
         /// <para>
-        /// Default: The existing value is retained if the source and target volume type is <code>gp3</code>.
+        /// Default: The existing value is retained if the source and target volume type is <c>gp3</c>.
         /// Otherwise, the default value is 125.
         /// </para>
         ///  
@@ -233,8 +236,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property VolumeType. 
         /// <para>
-        /// The target EBS volume type of the volume. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
-        /// EBS volume types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+        /// The target EBS volume type of the volume. For more information, see <a href="https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volume-types.html">Amazon
+        /// EBS volume types</a> in the <i>Amazon EBS User Guide</i>.
         /// </para>
         ///  
         /// <para>

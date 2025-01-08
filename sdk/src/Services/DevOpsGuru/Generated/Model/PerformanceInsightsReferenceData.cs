@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.DevOpsGuru.Model
         /// Gets and sets the property ComparisonValues. 
         /// <para>
         /// The specific reference values used to evaluate the Performance Insights. For more
-        /// information, see <code> <a href="https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsReferenceComparisonValues.html">PerformanceInsightsReferenceComparisonValues</a>
-        /// </code>. 
+        /// information, see <c> <a href="https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsReferenceComparisonValues.html">PerformanceInsightsReferenceComparisonValues</a>
+        /// </c>. 
         /// </para>
         /// </summary>
         public PerformanceInsightsReferenceComparisonValues ComparisonValues

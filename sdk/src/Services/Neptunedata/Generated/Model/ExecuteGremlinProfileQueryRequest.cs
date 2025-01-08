@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptunedata.Model
 {
     /// <summary>
@@ -33,6 +34,21 @@ namespace Amazon.Neptunedata.Model
     /// Executes a Gremlin Profile query, which runs a specified traversal, collects various
     /// metrics about the run, and produces a profile report as output. See <a href="https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-profile-api.html">Gremlin
     /// profile API in Neptune</a> for details.
+    /// 
+    ///  
+    /// <para>
+    /// When invoking this operation in a Neptune cluster that has IAM authentication enabled,
+    /// the IAM user or role making the request must have a policy attached that allows the
+    /// <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#readdataviaquery">neptune-db:ReadDataViaQuery</a>
+    /// IAM action in that cluster.
+    /// </para>
+    ///  
+    /// <para>
+    /// Note that the <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html#iam-neptune-condition-keys">neptune-db:QueryLanguage:Gremlin</a>
+    /// IAM condition key can be used in the policy document to restrict the use of Gremlin
+    /// queries (see <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html">Condition
+    /// keys available in Neptune IAM data-access policy statements</a>).
+    /// </para>
     /// </summary>
     public partial class ExecuteGremlinProfileQueryRequest : AmazonNeptunedataRequest
     {
@@ -83,8 +99,8 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property IndexOps. 
         /// <para>
-        /// If this flag is set to <code>TRUE</code>, the results include a detailed report of
-        /// all index operations that took place during query execution and serialization.
+        /// If this flag is set to <c>TRUE</c>, the results include a detailed report of all index
+        /// operations that took place during query execution and serialization.
         /// </para>
         /// </summary>
         public bool IndexOps
@@ -102,8 +118,8 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property Results. 
         /// <para>
-        /// If this flag is set to <code>TRUE</code>, the query results are gathered and displayed
-        /// as part of the profile report. If <code>FALSE</code>, only the result count is displayed.
+        /// If this flag is set to <c>TRUE</c>, the query results are gathered and displayed as
+        /// part of the profile report. If <c>FALSE</c>, only the result count is displayed.
         /// </para>
         /// </summary>
         public bool Results

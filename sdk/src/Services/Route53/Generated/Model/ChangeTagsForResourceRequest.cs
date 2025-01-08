@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
@@ -42,8 +43,8 @@ namespace Amazon.Route53.Model
     {
         private TagResourceType _resourceType;
         private string _resourceId;
-        private List<Tag> _addTags = new List<Tag>();
-        private List<string> _removeTagKeys = new List<string>();
+        private List<Tag> _addTags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private List<string> _removeTagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceType. 
@@ -52,11 +53,11 @@ namespace Amazon.Route53.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// The resource type for health checks is <code>healthcheck</code>.
+        /// The resource type for health checks is <c>healthcheck</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The resource type for hosted zones is <code>hostedzone</code>.
+        /// The resource type for hosted zones is <c>hostedzone</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -96,8 +97,7 @@ namespace Amazon.Route53.Model
         /// Gets and sets the property AddTags. 
         /// <para>
         /// A complex type that contains a list of the tags that you want to add to the specified
-        /// health check or hosted zone and/or the tags that you want to edit <code>Value</code>
-        /// for.
+        /// health check or hosted zone and/or the tags that you want to edit <c>Value</c> for.
         /// </para>
         ///  
         /// <para>
@@ -114,7 +114,7 @@ namespace Amazon.Route53.Model
         // Check to see if AddTags property is set
         internal bool IsSetAddTags()
         {
-            return this._addTags != null && this._addTags.Count > 0; 
+            return this._addTags != null && (this._addTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace Amazon.Route53.Model
         // Check to see if RemoveTagKeys property is set
         internal bool IsSetRemoveTagKeys()
         {
-            return this._removeTagKeys != null && this._removeTagKeys.Count > 0; 
+            return this._removeTagKeys != null && (this._removeTagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

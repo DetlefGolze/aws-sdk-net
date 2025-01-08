@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -37,27 +38,27 @@ namespace Amazon.ECS.Model
     public partial class Cluster
     {
         private int? _activeServicesCount;
-        private List<Attachment> _attachments = new List<Attachment>();
+        private List<Attachment> _attachments = AWSConfigs.InitializeCollections ? new List<Attachment>() : null;
         private string _attachmentsStatus;
-        private List<string> _capacityProviders = new List<string>();
+        private List<string> _capacityProviders = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _clusterArn;
         private string _clusterName;
         private ClusterConfiguration _configuration;
-        private List<CapacityProviderStrategyItem> _defaultCapacityProviderStrategy = new List<CapacityProviderStrategyItem>();
+        private List<CapacityProviderStrategyItem> _defaultCapacityProviderStrategy = AWSConfigs.InitializeCollections ? new List<CapacityProviderStrategyItem>() : null;
         private int? _pendingTasksCount;
         private int? _registeredContainerInstancesCount;
         private int? _runningTasksCount;
         private ClusterServiceConnectDefaults _serviceConnectDefaults;
-        private List<ClusterSetting> _settings = new List<ClusterSetting>();
-        private List<KeyValuePair> _statistics = new List<KeyValuePair>();
+        private List<ClusterSetting> _settings = AWSConfigs.InitializeCollections ? new List<ClusterSetting>() : null;
+        private List<KeyValuePair> _statistics = AWSConfigs.InitializeCollections ? new List<KeyValuePair>() : null;
         private string _status;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ActiveServicesCount. 
         /// <para>
-        /// The number of services that are running on the cluster in an <code>ACTIVE</code> state.
-        /// You can view these services with <a>ListServices</a>.
+        /// The number of services that are running on the cluster in an <c>ACTIVE</c> state.
+        /// You can view these services with <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ListServices.html">PListServices</a>.
         /// </para>
         /// </summary>
         public int ActiveServicesCount
@@ -88,7 +89,7 @@ namespace Amazon.ECS.Model
         // Check to see if Attachments property is set
         internal bool IsSetAttachments()
         {
-            return this._attachments != null && this._attachments.Count > 0; 
+            return this._attachments != null && (this._attachments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -138,7 +139,7 @@ namespace Amazon.ECS.Model
         // Check to see if CapacityProviders property is set
         internal bool IsSetCapacityProviders()
         {
-            return this._capacityProviders != null && this._capacityProviders.Count > 0; 
+            return this._capacityProviders != null && (this._capacityProviders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -214,13 +215,13 @@ namespace Amazon.ECS.Model
         // Check to see if DefaultCapacityProviderStrategy property is set
         internal bool IsSetDefaultCapacityProviderStrategy()
         {
-            return this._defaultCapacityProviderStrategy != null && this._defaultCapacityProviderStrategy.Count > 0; 
+            return this._defaultCapacityProviderStrategy != null && (this._defaultCapacityProviderStrategy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PendingTasksCount. 
         /// <para>
-        /// The number of tasks in the cluster that are in the <code>PENDING</code> state.
+        /// The number of tasks in the cluster that are in the <c>PENDING</c> state.
         /// </para>
         /// </summary>
         public int PendingTasksCount
@@ -239,7 +240,7 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property RegisteredContainerInstancesCount. 
         /// <para>
         /// The number of container instances registered into the cluster. This includes container
-        /// instances in both <code>ACTIVE</code> and <code>DRAINING</code> status.
+        /// instances in both <c>ACTIVE</c> and <c>DRAINING</c> status.
         /// </para>
         /// </summary>
         public int RegisteredContainerInstancesCount
@@ -257,7 +258,7 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property RunningTasksCount. 
         /// <para>
-        /// The number of tasks in the cluster that are in the <code>RUNNING</code> state.
+        /// The number of tasks in the cluster that are in the <c>RUNNING</c> state.
         /// </para>
         /// </summary>
         public int RunningTasksCount
@@ -278,10 +279,9 @@ namespace Amazon.ECS.Model
         /// Use this parameter to set a default Service Connect namespace. After you set a default
         /// Service Connect namespace, any new services with Service Connect turned on that are
         /// created in the cluster are added as client services in the namespace. This setting
-        /// only applies to new services that set the <code>enabled</code> parameter to <code>true</code>
-        /// in the <code>ServiceConnectConfiguration</code>. You can set the namespace of each
-        /// service individually in the <code>ServiceConnectConfiguration</code> to override this
-        /// default parameter.
+        /// only applies to new services that set the <c>enabled</c> parameter to <c>true</c>
+        /// in the <c>ServiceConnectConfiguration</c>. You can set the namespace of each service
+        /// individually in the <c>ServiceConnectConfiguration</c> to override this default parameter.
         /// </para>
         ///  
         /// <para>
@@ -321,7 +321,7 @@ namespace Amazon.ECS.Model
         // Check to see if Settings property is set
         internal bool IsSetSettings()
         {
-            return this._settings != null && this._settings.Count > 0; 
+            return this._settings != null && (this._settings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -373,7 +373,7 @@ namespace Amazon.ECS.Model
         // Check to see if Statistics property is set
         internal bool IsSetStatistics()
         {
-            return this._statistics != null && this._statistics.Count > 0; 
+            return this._statistics != null && (this._statistics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -403,10 +403,9 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  </dd> <dt>INACTIVE</dt> <dd> 
         /// <para>
-        /// The cluster has been deleted. Clusters with an <code>INACTIVE</code> status may remain
-        /// discoverable in your account for a period of time. However, this behavior is subject
-        /// to change in the future. We don't recommend that you rely on <code>INACTIVE</code>
-        /// clusters persisting.
+        /// The cluster has been deleted. Clusters with an <c>INACTIVE</c> status may remain discoverable
+        /// in your account for a period of time. However, this behavior is subject to change
+        /// in the future. We don't recommend that you rely on <c>INACTIVE</c> clusters persisting.
         /// </para>
         ///  </dd> </dl>
         /// </summary>
@@ -462,10 +461,10 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Do not use <code>aws:</code>, <code>AWS:</code>, or any upper or lowercase combination
-        /// of such as a prefix for either keys or values as it is reserved for Amazon Web Services
-        /// use. You cannot edit or delete tag keys or values with this prefix. Tags with this
-        /// prefix do not count against your tags per resource limit.
+        /// Do not use <c>aws:</c>, <c>AWS:</c>, or any upper or lowercase combination of such
+        /// as a prefix for either keys or values as it is reserved for Amazon Web Services use.
+        /// You cannot edit or delete tag keys or values with this prefix. Tags with this prefix
+        /// do not count against your tags per resource limit.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -479,7 +478,7 @@ namespace Amazon.ECS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

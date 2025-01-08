@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -41,10 +42,9 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property BackupVaultName. 
         /// <para>
-        /// This is the name of a logical container where the child (nested) recovery point is
-        /// stored. Backup vaults are identified by names that are unique to the account used
-        /// to create them and the Amazon Web Services Region where they are created. They consist
-        /// of lowercase letters, numbers, and hyphens.
+        /// The name of a logical container where the child (nested) recovery point is stored.
+        /// Backup vaults are identified by names that are unique to the account used to create
+        /// them and the Amazon Web Services Region where they are created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -63,8 +63,8 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property RecoveryPointArn. 
         /// <para>
-        /// This is the Amazon Resource Name (ARN) that uniquely identifies the child (nested)
-        /// recovery point; for example, <code>arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45.</code>
+        /// The Amazon Resource Name (ARN) that uniquely identifies the child (nested) recovery
+        /// point; for example, <c>arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45.</c>
         /// 
         /// </para>
         /// </summary>

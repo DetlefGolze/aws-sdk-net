@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AccessAnalyzer.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.AccessAnalyzer.Model
     {
         private string _analyzerArn;
         private string _clientToken;
-        private List<string> _ids = new List<string>();
+        private List<string> _ids = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _resourceArn;
         private FindingStatusUpdate _status;
 
@@ -93,7 +94,7 @@ namespace Amazon.AccessAnalyzer.Model
         // Check to see if Ids property is set
         internal bool IsSetIds()
         {
-            return this._ids != null && this._ids.Count > 0; 
+            return this._ids != null && (this._ids.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -117,9 +118,9 @@ namespace Amazon.AccessAnalyzer.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The state represents the action to take to update the finding Status. Use <code>ARCHIVE</code>
-        /// to change an Active finding to an Archived finding. Use <code>ACTIVE</code> to change
-        /// an Archived finding to an Active finding.
+        /// The state represents the action to take to update the finding Status. Use <c>ARCHIVE</c>
+        /// to change an Active finding to an Archived finding. Use <c>ACTIVE</c> to change an
+        /// Archived finding to an Active finding.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

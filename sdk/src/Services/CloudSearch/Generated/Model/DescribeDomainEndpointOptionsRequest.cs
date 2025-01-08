@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.CloudSearch.Model
         /// Gets and sets the property Deployed. 
         /// <para>
         /// Whether to retrieve the latest configuration (which might be in a Processing state)
-        /// or the current, active configuration. Defaults to <code>false</code>.
+        /// or the current, active configuration. Defaults to <c>false</c>.
         /// </para>
         /// </summary>
         public bool Deployed

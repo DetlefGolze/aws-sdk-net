@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.SageMaker.Model
         private string _description;
         private string _eventTimeFeatureName;
         private string _failureReason;
-        private List<FeatureDefinition> _featureDefinitions = new List<FeatureDefinition>();
+        private List<FeatureDefinition> _featureDefinitions = AWSConfigs.InitializeCollections ? new List<FeatureDefinition>() : null;
         private string _featureGroupArn;
         private string _featureGroupName;
         private FeatureGroupStatus _featureGroupStatus;
@@ -50,11 +51,12 @@ namespace Amazon.SageMaker.Model
         private long? _onlineStoreTotalSizeBytes;
         private string _recordIdentifierFeatureName;
         private string _roleArn;
+        private ThroughputConfigDescription _throughputConfig;
 
         /// <summary>
         /// Gets and sets the property CreationTime. 
         /// <para>
-        /// A timestamp indicating when SageMaker created the <code>FeatureGroup</code>.
+        /// A timestamp indicating when SageMaker created the <c>FeatureGroup</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -92,13 +94,13 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property EventTimeFeatureName. 
         /// <para>
-        /// The name of the feature that stores the <code>EventTime</code> of a Record in a <code>FeatureGroup</code>.
+        /// The name of the feature that stores the <c>EventTime</c> of a Record in a <c>FeatureGroup</c>.
         /// </para>
         ///  
         /// <para>
-        ///  An <code>EventTime</code> is a point in time when a new event occurs that corresponds
-        /// to the creation or update of a <code>Record</code> in a <code>FeatureGroup</code>.
-        /// All <code>Records</code> in the <code>FeatureGroup</code> have a corresponding <code>EventTime</code>.
+        ///  An <c>EventTime</c> is a point in time when a new event occurs that corresponds to
+        /// the creation or update of a <c>Record</c> in a <c>FeatureGroup</c>. All <c>Records</c>
+        /// in the <c>FeatureGroup</c> have a corresponding <c>EventTime</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]
@@ -117,16 +119,16 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property FailureReason. 
         /// <para>
-        /// The reason that the <code>FeatureGroup</code> failed to be replicated in the <code>OfflineStore</code>.
+        /// The reason that the <c>FeatureGroup</c> failed to be replicated in the <c>OfflineStore</c>.
         /// This is failure can occur because:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// The <code>FeatureGroup</code> could not be created in the <code>OfflineStore</code>.
+        /// The <c>FeatureGroup</c> could not be created in the <c>OfflineStore</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>FeatureGroup</code> could not be deleted from the <code>OfflineStore</code>.
+        /// The <c>FeatureGroup</c> could not be deleted from the <c>OfflineStore</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -146,8 +148,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property FeatureDefinitions. 
         /// <para>
-        /// A list of the <code>Features</code> in the <code>FeatureGroup</code>. Each feature
-        /// is defined by a <code>FeatureName</code> and <code>FeatureType</code>.
+        /// A list of the <c>Features</c> in the <c>FeatureGroup</c>. Each feature is defined
+        /// by a <c>FeatureName</c> and <c>FeatureType</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2500)]
@@ -160,13 +162,13 @@ namespace Amazon.SageMaker.Model
         // Check to see if FeatureDefinitions property is set
         internal bool IsSetFeatureDefinitions()
         {
-            return this._featureDefinitions != null && this._featureDefinitions.Count > 0; 
+            return this._featureDefinitions != null && (this._featureDefinitions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property FeatureGroupArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the <code>FeatureGroup</code>. 
+        /// The Amazon Resource Name (ARN) of the <c>FeatureGroup</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=256)]
@@ -185,7 +187,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property FeatureGroupName. 
         /// <para>
-        /// he name of the <code>FeatureGroup</code>.
+        /// he name of the <c>FeatureGroup</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]
@@ -258,7 +260,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token to resume pagination of the list of <code>Features</code> (<code>FeatureDefinitions</code>).
+        /// A token to resume pagination of the list of <c>Features</c> (<c>FeatureDefinitions</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=8192)]
@@ -316,9 +318,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property OfflineStoreStatus. 
         /// <para>
-        /// The status of the <code>OfflineStore</code>. Notifies you if replicating data into
-        /// the <code>OfflineStore</code> has failed. Returns either: <code>Active</code> or <code>Blocked</code>
-        /// 
+        /// The status of the <c>OfflineStore</c>. Notifies you if replicating data into the <c>OfflineStore</c>
+        /// has failed. Returns either: <c>Active</c> or <c>Blocked</c> 
         /// </para>
         /// </summary>
         public OfflineStoreStatus OfflineStoreStatus
@@ -336,7 +337,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property OnlineStoreConfig. 
         /// <para>
-        /// The configuration for the <code>OnlineStore</code>.
+        /// The configuration for the <c>OnlineStore</c>.
         /// </para>
         /// </summary>
         public OnlineStoreConfig OnlineStoreConfig
@@ -354,7 +355,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property OnlineStoreTotalSizeBytes. 
         /// <para>
-        /// The size of the <code>OnlineStore</code> in bytes.
+        /// The size of the <c>OnlineStore</c> in bytes.
         /// </para>
         /// </summary>
         public long OnlineStoreTotalSizeBytes
@@ -372,8 +373,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property RecordIdentifierFeatureName. 
         /// <para>
-        /// The name of the <code>Feature</code> used for <code>RecordIdentifier</code>, whose
-        /// value uniquely identifies a record stored in the feature store.
+        /// The name of the <c>Feature</c> used for <c>RecordIdentifier</c>, whose value uniquely
+        /// identifies a record stored in the feature store.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]
@@ -407,6 +408,21 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetRoleArn()
         {
             return this._roleArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ThroughputConfig.
+        /// </summary>
+        public ThroughputConfigDescription ThroughputConfig
+        {
+            get { return this._throughputConfig; }
+            set { this._throughputConfig = value; }
+        }
+
+        // Check to see if ThroughputConfig property is set
+        internal bool IsSetThroughputConfig()
+        {
+            return this._throughputConfig != null;
         }
 
     }

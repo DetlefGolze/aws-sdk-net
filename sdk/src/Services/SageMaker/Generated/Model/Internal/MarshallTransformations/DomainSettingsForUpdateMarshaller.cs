@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,30 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(DomainSettingsForUpdate requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetAmazonQSettings())
+            {
+                context.Writer.WritePropertyName("AmazonQSettings");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = AmazonQSettingsMarshaller.Instance;
+                marshaller.Marshall(requestObject.AmazonQSettings, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetDockerSettings())
+            {
+                context.Writer.WritePropertyName("DockerSettings");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = DockerSettingsMarshaller.Instance;
+                marshaller.Marshall(requestObject.DockerSettings, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetExecutionRoleIdentityConfig())
             {
                 context.Writer.WritePropertyName("ExecutionRoleIdentityConfig");

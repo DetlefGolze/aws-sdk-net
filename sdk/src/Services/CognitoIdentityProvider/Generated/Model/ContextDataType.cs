@@ -26,16 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// Contextual user data type used for evaluating the risk of an unexpected event by Amazon
-    /// Cognito advanced security.
+    /// Contextual user data used for evaluating the risk of an authentication event by user
+    /// pool threat protection.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a request parameter of server-side authentication operations like
+    /// <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminInitiateAuth.html">AdminInitiateAuth</a>
+    /// and <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminRespondToAuthChallenge.html">AdminRespondToAuthChallenge</a>.
+    /// </para>
     /// </summary>
     public partial class ContextDataType
     {
         private string _encodedData;
-        private List<HttpHeader> _httpHeaders = new List<HttpHeader>();
+        private List<HttpHeader> _httpHeaders = AWSConfigs.InitializeCollections ? new List<HttpHeader>() : null;
         private string _ipAddress;
         private string _serverName;
         private string _serverPath;
@@ -64,7 +72,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property HttpHeaders. 
         /// <para>
-        /// HttpHeaders received on your server in same order.
+        /// The HTTP headers from your user's authentication request.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -77,7 +85,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if HttpHeaders property is set
         internal bool IsSetHttpHeaders()
         {
-            return this._httpHeaders != null && this._httpHeaders.Count > 0; 
+            return this._httpHeaders != null && (this._httpHeaders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -102,7 +110,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property ServerName. 
         /// <para>
-        /// Your server endpoint where this API is invoked.
+        /// The name of your application's service endpoint.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=131072)]
@@ -121,7 +129,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property ServerPath. 
         /// <para>
-        /// Your server path where this API is invoked.
+        /// The path of your application's service endpoint.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=131072)]

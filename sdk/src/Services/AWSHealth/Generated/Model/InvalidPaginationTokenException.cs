@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSHealth.Model
 {
     /// <summary>
-    /// The specified pagination token (<code>nextToken</code>) is not valid.
+    /// The specified pagination token (<c>nextToken</c>) is not valid.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

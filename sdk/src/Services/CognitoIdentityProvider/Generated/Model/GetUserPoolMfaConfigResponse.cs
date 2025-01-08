@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -33,9 +34,31 @@ namespace Amazon.CognitoIdentityProvider.Model
     /// </summary>
     public partial class GetUserPoolMfaConfigResponse : AmazonWebServiceResponse
     {
+        private EmailMfaConfigType _emailMfaConfiguration;
         private UserPoolMfaType _mfaConfiguration;
         private SmsMfaConfigType _smsMfaConfiguration;
         private SoftwareTokenMfaConfigType _softwareTokenMfaConfiguration;
+        private WebAuthnConfigurationType _webAuthnConfiguration;
+
+        /// <summary>
+        /// Gets and sets the property EmailMfaConfiguration. 
+        /// <para>
+        /// Shows user pool email message configuration for MFA. Includes the subject and body
+        /// of the email message template for MFA messages. To activate this setting, <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-advanced-security.html">
+        /// advanced security features</a> must be active in your user pool.
+        /// </para>
+        /// </summary>
+        public EmailMfaConfigType EmailMfaConfiguration
+        {
+            get { return this._emailMfaConfiguration; }
+            set { this._emailMfaConfiguration = value; }
+        }
+
+        // Check to see if EmailMfaConfiguration property is set
+        internal bool IsSetEmailMfaConfiguration()
+        {
+            return this._emailMfaConfiguration != null;
+        }
 
         /// <summary>
         /// Gets and sets the property MfaConfiguration. 
@@ -44,16 +67,16 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>OFF</code> MFA won't be used for any users.
+        ///  <c>OFF</c> MFA won't be used for any users.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ON</code> MFA is required for all users to sign in.
+        ///  <c>ON</c> MFA is required for all users to sign in.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OPTIONAL</code> MFA will be required only for individual users who have an
-        /// MFA factor activated.
+        ///  <c>OPTIONAL</c> MFA will be required only for individual users who have an MFA factor
+        /// activated.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -72,7 +95,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property SmsMfaConfiguration. 
         /// <para>
-        /// The SMS text message multi-factor authentication (MFA) configuration.
+        /// Shows user pool SMS message configuration for MFA. Includes the message template and
+        /// the SMS message sending configuration for Amazon SNS.
         /// </para>
         /// </summary>
         public SmsMfaConfigType SmsMfaConfiguration
@@ -90,7 +114,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property SoftwareTokenMfaConfiguration. 
         /// <para>
-        /// The software token multi-factor authentication (MFA) configuration.
+        /// Shows user pool configuration for time-based one-time password (TOTP) MFA. Includes
+        /// TOTP enabled or disabled state.
         /// </para>
         /// </summary>
         public SoftwareTokenMfaConfigType SoftwareTokenMfaConfiguration
@@ -103,6 +128,25 @@ namespace Amazon.CognitoIdentityProvider.Model
         internal bool IsSetSoftwareTokenMfaConfiguration()
         {
             return this._softwareTokenMfaConfiguration != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WebAuthnConfiguration. 
+        /// <para>
+        /// Shows user pool configuration for MFA with passkeys from biometric devices and security
+        /// keys.
+        /// </para>
+        /// </summary>
+        public WebAuthnConfigurationType WebAuthnConfiguration
+        {
+            get { return this._webAuthnConfiguration; }
+            set { this._webAuthnConfiguration = value; }
+        }
+
+        // Check to see if WebAuthnConfiguration property is set
+        internal bool IsSetWebAuthnConfiguration()
+        {
+            return this._webAuthnConfiguration != null;
         }
 
     }

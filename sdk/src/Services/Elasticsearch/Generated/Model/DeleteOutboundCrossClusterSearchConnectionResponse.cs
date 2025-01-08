@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// The result of a <code><a>DeleteOutboundCrossClusterSearchConnection</a></code> operation.
+    /// The result of a <c><a>DeleteOutboundCrossClusterSearchConnection</a></c> operation.
     /// Contains details of deleted outbound connection.
     /// </summary>
     public partial class DeleteOutboundCrossClusterSearchConnectionResponse : AmazonWebServiceResponse
@@ -39,8 +40,8 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property CrossClusterSearchConnection. 
         /// <para>
-        /// Specifies the <code><a>OutboundCrossClusterSearchConnection</a></code> of deleted
-        /// outbound connection. 
+        /// Specifies the <c><a>OutboundCrossClusterSearchConnection</a></c> of deleted outbound
+        /// connection. 
         /// </para>
         /// </summary>
         public OutboundCrossClusterSearchConnection CrossClusterSearchConnection

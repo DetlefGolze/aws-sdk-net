@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
-    /// Describes a request to create or edit the <code>StopInstanceOnIdle</code> add-on.
+    /// Describes a request to create or edit the <c>StopInstanceOnIdle</c> add-on.
     /// 
     ///  <important> 
     /// <para>

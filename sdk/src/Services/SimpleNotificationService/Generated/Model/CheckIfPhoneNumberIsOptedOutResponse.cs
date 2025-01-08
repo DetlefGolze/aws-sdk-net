@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
-    /// The response from the <code>CheckIfPhoneNumberIsOptedOut</code> action.
+    /// The response from the <c>CheckIfPhoneNumberIsOptedOut</c> action.
     /// </summary>
     public partial class CheckIfPhoneNumberIsOptedOutResponse : AmazonWebServiceResponse
     {
@@ -42,12 +43,12 @@ namespace Amazon.SimpleNotificationService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>true</code> – The phone number is opted out, meaning you cannot publish SMS
-        /// messages to it.
+        ///  <c>true</c> – The phone number is opted out, meaning you cannot publish SMS messages
+        /// to it.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>false</code> – The phone number is opted in, meaning you can publish SMS messages
+        ///  <c>false</c> – The phone number is opted in, meaning you can publish SMS messages
         /// to it.
         /// </para>
         ///  </li> </ul>

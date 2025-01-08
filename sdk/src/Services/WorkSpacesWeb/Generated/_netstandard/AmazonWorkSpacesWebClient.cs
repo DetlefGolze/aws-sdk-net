@@ -33,17 +33,19 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.WorkSpacesWeb
 {
     /// <summary>
-    /// Implementation for accessing WorkSpacesWeb
+    /// <para>Implementation for accessing WorkSpacesWeb</para>
     ///
-    /// WorkSpaces Web is a low cost, fully managed WorkSpace built specifically to facilitate
-    /// secure, web-based workloads. WorkSpaces Web makes it easy for customers to safely
-    /// provide their employees with access to internal websites and SaaS web applications
-    /// without the administrative burden of appliances or specialized client software. WorkSpaces
-    /// Web provides simple policy tools tailored for user interactions, while offloading
-    /// common tasks like capacity management, scaling, and maintaining browser images.
+    /// Amazon WorkSpaces Secure Browser is a low cost, fully managed WorkSpace built specifically
+    /// to facilitate secure, web-based workloads. WorkSpaces Secure Browser makes it easy
+    /// for customers to safely provide their employees with access to internal websites and
+    /// SaaS web applications without the administrative burden of appliances or specialized
+    /// client software. WorkSpaces Secure Browser provides simple policy tools tailored for
+    /// user interactions, while offloading common tasks like capacity management, scaling,
+    /// and maintaining browser images.
     /// </summary>
     public partial class AmazonWorkSpacesWebClient : AmazonServiceClient, IAmazonWorkSpacesWeb
     {
@@ -324,6 +326,58 @@ namespace Amazon.WorkSpacesWeb
 
         #endregion
         
+        #region  AssociateDataProtectionSettings
+
+        internal virtual AssociateDataProtectionSettingsResponse AssociateDataProtectionSettings(AssociateDataProtectionSettingsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = AssociateDataProtectionSettingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = AssociateDataProtectionSettingsResponseUnmarshaller.Instance;
+
+            return Invoke<AssociateDataProtectionSettingsResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Associates a data protection settings resource with a web portal.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AssociateDataProtectionSettings service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the AssociateDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/AssociateDataProtectionSettings">REST API Reference for AssociateDataProtectionSettings Operation</seealso>
+        public virtual Task<AssociateDataProtectionSettingsResponse> AssociateDataProtectionSettingsAsync(AssociateDataProtectionSettingsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = AssociateDataProtectionSettingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = AssociateDataProtectionSettingsResponseUnmarshaller.Instance;
+
+            return InvokeAsync<AssociateDataProtectionSettingsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  AssociateIpAccessSettings
 
         internal virtual AssociateIpAccessSettingsResponse AssociateIpAccessSettings(AssociateIpAccessSettingsRequest request)
@@ -452,6 +506,9 @@ namespace Amazon.WorkSpacesWeb
         /// <returns>The response from the AssociateTrustStore service method, as returned by WorkSpacesWeb.</returns>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
         /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
@@ -634,6 +691,61 @@ namespace Amazon.WorkSpacesWeb
             options.ResponseUnmarshaller = CreateBrowserSettingsResponseUnmarshaller.Instance;
 
             return InvokeAsync<CreateBrowserSettingsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateDataProtectionSettings
+
+        internal virtual CreateDataProtectionSettingsResponse CreateDataProtectionSettings(CreateDataProtectionSettingsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateDataProtectionSettingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateDataProtectionSettingsResponseUnmarshaller.Instance;
+
+            return Invoke<CreateDataProtectionSettingsResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Creates a data protection settings resource that can be associated with a web portal.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateDataProtectionSettings service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ServiceQuotaExceededException">
+        /// The service quota has been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/CreateDataProtectionSettings">REST API Reference for CreateDataProtectionSettings Operation</seealso>
+        public virtual Task<CreateDataProtectionSettingsResponse> CreateDataProtectionSettingsAsync(CreateDataProtectionSettingsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateDataProtectionSettingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateDataProtectionSettingsResponseUnmarshaller.Instance;
+
+            return InvokeAsync<CreateDataProtectionSettingsResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -1067,6 +1179,55 @@ namespace Amazon.WorkSpacesWeb
 
         #endregion
         
+        #region  DeleteDataProtectionSettings
+
+        internal virtual DeleteDataProtectionSettingsResponse DeleteDataProtectionSettings(DeleteDataProtectionSettingsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteDataProtectionSettingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteDataProtectionSettingsResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteDataProtectionSettingsResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Deletes data protection settings.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDataProtectionSettings service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DeleteDataProtectionSettings">REST API Reference for DeleteDataProtectionSettings Operation</seealso>
+        public virtual Task<DeleteDataProtectionSettingsResponse> DeleteDataProtectionSettingsAsync(DeleteDataProtectionSettingsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteDataProtectionSettingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteDataProtectionSettingsResponseUnmarshaller.Instance;
+
+            return InvokeAsync<DeleteDataProtectionSettingsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  DeleteIdentityProvider
 
         internal virtual DeleteIdentityProviderResponse DeleteIdentityProvider(DeleteIdentityProviderRequest request)
@@ -1435,6 +1596,9 @@ namespace Amazon.WorkSpacesWeb
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
         /// </exception>
@@ -1455,6 +1619,58 @@ namespace Amazon.WorkSpacesWeb
             options.ResponseUnmarshaller = DisassociateBrowserSettingsResponseUnmarshaller.Instance;
 
             return InvokeAsync<DisassociateBrowserSettingsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DisassociateDataProtectionSettings
+
+        internal virtual DisassociateDataProtectionSettingsResponse DisassociateDataProtectionSettings(DisassociateDataProtectionSettingsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DisassociateDataProtectionSettingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DisassociateDataProtectionSettingsResponseUnmarshaller.Instance;
+
+            return Invoke<DisassociateDataProtectionSettingsResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Disassociates data protection settings from a web portal.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DisassociateDataProtectionSettings service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DisassociateDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DisassociateDataProtectionSettings">REST API Reference for DisassociateDataProtectionSettings Operation</seealso>
+        public virtual Task<DisassociateDataProtectionSettingsResponse> DisassociateDataProtectionSettingsAsync(DisassociateDataProtectionSettingsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DisassociateDataProtectionSettingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DisassociateDataProtectionSettingsResponseUnmarshaller.Instance;
+
+            return InvokeAsync<DisassociateDataProtectionSettingsResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -1483,6 +1699,9 @@ namespace Amazon.WorkSpacesWeb
         /// <returns>The response from the DisassociateIpAccessSettings service method, as returned by WorkSpacesWeb.</returns>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
         /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
@@ -1533,6 +1752,9 @@ namespace Amazon.WorkSpacesWeb
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
         /// </exception>
@@ -1581,6 +1803,9 @@ namespace Amazon.WorkSpacesWeb
         /// <returns>The response from the DisassociateTrustStore service method, as returned by WorkSpacesWeb.</returns>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
         /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
@@ -1631,6 +1856,9 @@ namespace Amazon.WorkSpacesWeb
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
         /// </exception>
@@ -1680,6 +1908,9 @@ namespace Amazon.WorkSpacesWeb
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
         /// </exception>
@@ -1700,6 +1931,55 @@ namespace Amazon.WorkSpacesWeb
             options.ResponseUnmarshaller = DisassociateUserSettingsResponseUnmarshaller.Instance;
 
             return InvokeAsync<DisassociateUserSettingsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ExpireSession
+
+        internal virtual ExpireSessionResponse ExpireSession(ExpireSessionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ExpireSessionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ExpireSessionResponseUnmarshaller.Instance;
+
+            return Invoke<ExpireSessionResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Expires an active secure browser session.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ExpireSession service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ExpireSession service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ExpireSession">REST API Reference for ExpireSession Operation</seealso>
+        public virtual Task<ExpireSessionResponse> ExpireSessionAsync(ExpireSessionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ExpireSessionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ExpireSessionResponseUnmarshaller.Instance;
+
+            return InvokeAsync<ExpireSessionResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -1749,6 +2029,55 @@ namespace Amazon.WorkSpacesWeb
             options.ResponseUnmarshaller = GetBrowserSettingsResponseUnmarshaller.Instance;
 
             return InvokeAsync<GetBrowserSettingsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetDataProtectionSettings
+
+        internal virtual GetDataProtectionSettingsResponse GetDataProtectionSettings(GetDataProtectionSettingsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetDataProtectionSettingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetDataProtectionSettingsResponseUnmarshaller.Instance;
+
+            return Invoke<GetDataProtectionSettingsResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Gets the data protection settings.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDataProtectionSettings service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/GetDataProtectionSettings">REST API Reference for GetDataProtectionSettings Operation</seealso>
+        public virtual Task<GetDataProtectionSettingsResponse> GetDataProtectionSettingsAsync(GetDataProtectionSettingsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetDataProtectionSettingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetDataProtectionSettingsResponseUnmarshaller.Instance;
+
+            return InvokeAsync<GetDataProtectionSettingsResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -1998,6 +2327,55 @@ namespace Amazon.WorkSpacesWeb
 
         #endregion
         
+        #region  GetSession
+
+        internal virtual GetSessionResponse GetSession(GetSessionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetSessionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetSessionResponseUnmarshaller.Instance;
+
+            return Invoke<GetSessionResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Gets information for a secure browser session.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetSession service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetSession service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/GetSession">REST API Reference for GetSession Operation</seealso>
+        public virtual Task<GetSessionResponse> GetSessionAsync(GetSessionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetSessionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetSessionResponseUnmarshaller.Instance;
+
+            return InvokeAsync<GetSessionResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  GetTrustStore
 
         internal virtual GetTrustStoreResponse GetTrustStore(GetTrustStoreRequest request)
@@ -2240,6 +2618,52 @@ namespace Amazon.WorkSpacesWeb
 
         #endregion
         
+        #region  ListDataProtectionSettings
+
+        internal virtual ListDataProtectionSettingsResponse ListDataProtectionSettings(ListDataProtectionSettingsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListDataProtectionSettingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListDataProtectionSettingsResponseUnmarshaller.Instance;
+
+            return Invoke<ListDataProtectionSettingsResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Retrieves a list of data protection settings.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListDataProtectionSettings service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ListDataProtectionSettings">REST API Reference for ListDataProtectionSettings Operation</seealso>
+        public virtual Task<ListDataProtectionSettingsResponse> ListDataProtectionSettingsAsync(ListDataProtectionSettingsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListDataProtectionSettingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListDataProtectionSettingsResponseUnmarshaller.Instance;
+
+            return InvokeAsync<ListDataProtectionSettingsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ListIdentityProviders
 
         internal virtual ListIdentityProvidersResponse ListIdentityProviders(ListIdentityProvidersRequest request)
@@ -2420,6 +2844,55 @@ namespace Amazon.WorkSpacesWeb
             options.ResponseUnmarshaller = ListPortalsResponseUnmarshaller.Instance;
 
             return InvokeAsync<ListPortalsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListSessions
+
+        internal virtual ListSessionsResponse ListSessions(ListSessionsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListSessionsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListSessionsResponseUnmarshaller.Instance;
+
+            return Invoke<ListSessionsResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Lists information for multiple secure browser sessions from a specific portal.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListSessions service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListSessions service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ListSessions">REST API Reference for ListSessions Operation</seealso>
+        public virtual Task<ListSessionsResponse> ListSessionsAsync(ListSessionsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListSessionsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListSessionsResponseUnmarshaller.Instance;
+
+            return InvokeAsync<ListSessionsResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -2810,6 +3283,55 @@ namespace Amazon.WorkSpacesWeb
 
         #endregion
         
+        #region  UpdateDataProtectionSettings
+
+        internal virtual UpdateDataProtectionSettingsResponse UpdateDataProtectionSettings(UpdateDataProtectionSettingsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateDataProtectionSettingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateDataProtectionSettingsResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateDataProtectionSettingsResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Updates data protection settings.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateDataProtectionSettings service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/UpdateDataProtectionSettings">REST API Reference for UpdateDataProtectionSettings Operation</seealso>
+        public virtual Task<UpdateDataProtectionSettingsResponse> UpdateDataProtectionSettingsAsync(UpdateDataProtectionSettingsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateDataProtectionSettingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateDataProtectionSettingsResponseUnmarshaller.Instance;
+
+            return InvokeAsync<UpdateDataProtectionSettingsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  UpdateIdentityProvider
 
         internal virtual UpdateIdentityProviderResponse UpdateIdentityProvider(UpdateIdentityProviderRequest request)
@@ -2991,6 +3513,9 @@ namespace Amazon.WorkSpacesWeb
         /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
         /// The resource cannot be found.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ServiceQuotaExceededException">
+        /// The service quota has been exceeded.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
         /// There is a throttling error.
         /// </exception>
@@ -3168,11 +3693,11 @@ namespace Amazon.WorkSpacesWeb
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

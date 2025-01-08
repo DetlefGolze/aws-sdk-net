@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -35,14 +36,16 @@ namespace Amazon.SageMaker.Model
     {
         private string _appImageConfigArn;
         private string _appImageConfigName;
+        private CodeEditorAppImageConfig _codeEditorAppImageConfig;
         private DateTime? _creationTime;
+        private JupyterLabAppImageConfig _jupyterLabAppImageConfig;
         private KernelGatewayImageConfig _kernelGatewayImageConfig;
         private DateTime? _lastModifiedTime;
 
         /// <summary>
         /// Gets and sets the property AppImageConfigArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the AppImageConfig.
+        /// The ARN of the AppImageConfig.
         /// </para>
         /// </summary>
         [AWSProperty(Max=256)]
@@ -78,6 +81,24 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property CodeEditorAppImageConfig. 
+        /// <para>
+        /// The configuration of the Code Editor app.
+        /// </para>
+        /// </summary>
+        public CodeEditorAppImageConfig CodeEditorAppImageConfig
+        {
+            get { return this._codeEditorAppImageConfig; }
+            set { this._codeEditorAppImageConfig = value; }
+        }
+
+        // Check to see if CodeEditorAppImageConfig property is set
+        internal bool IsSetCodeEditorAppImageConfig()
+        {
+            return this._codeEditorAppImageConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property CreationTime. 
         /// <para>
         /// When the AppImageConfig was created.
@@ -93,6 +114,24 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetCreationTime()
         {
             return this._creationTime.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property JupyterLabAppImageConfig. 
+        /// <para>
+        /// The configuration of the JupyterLab app.
+        /// </para>
+        /// </summary>
+        public JupyterLabAppImageConfig JupyterLabAppImageConfig
+        {
+            get { return this._jupyterLabAppImageConfig; }
+            set { this._jupyterLabAppImageConfig = value; }
+        }
+
+        // Check to see if JupyterLabAppImageConfig property is set
+        internal bool IsSetJupyterLabAppImageConfig()
+        {
+            return this._jupyterLabAppImageConfig != null;
         }
 
         /// <summary>

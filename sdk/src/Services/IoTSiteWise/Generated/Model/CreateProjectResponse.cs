@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -44,8 +45,7 @@ namespace Amazon.IoTSiteWise.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:${Partition}:iotsitewise:${Region}:${Account}:project/${ProjectId}</code>
-        /// 
+        ///  <c>arn:${Partition}:iotsitewise:${Region}:${Account}:project/${ProjectId}</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1600)]

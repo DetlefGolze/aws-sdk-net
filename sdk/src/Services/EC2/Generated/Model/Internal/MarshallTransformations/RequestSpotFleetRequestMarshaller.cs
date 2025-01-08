@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -254,6 +255,24 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                                         request.Parameters.Add("SpotFleetRequestConfig" + "." + "LaunchSpecifications" + "." + publicRequestSpotFleetRequestConfiglistValueIndex + "." + "InstanceRequirements" + "." + "BaselineEbsBandwidthMbps" + "." + "Min", StringUtils.FromInt(publicRequestSpotFleetRequestConfiglistValue.InstanceRequirements.BaselineEbsBandwidthMbps.Min));
                                     }
                                 }
+                                if(publicRequestSpotFleetRequestConfiglistValue.InstanceRequirements.IsSetBaselinePerformanceFactors())
+                                {
+                                    if(publicRequestSpotFleetRequestConfiglistValue.InstanceRequirements.BaselinePerformanceFactors.IsSetCpu())
+                                    {
+                                        if(publicRequestSpotFleetRequestConfiglistValue.InstanceRequirements.BaselinePerformanceFactors.Cpu.IsSetReferences())
+                                        {
+                                            int publicRequestSpotFleetRequestConfiglistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex = 1;
+                                            foreach(var publicRequestSpotFleetRequestConfiglistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValue in publicRequestSpotFleetRequestConfiglistValue.InstanceRequirements.BaselinePerformanceFactors.Cpu.References)
+                                            {
+                                                if(publicRequestSpotFleetRequestConfiglistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValue.IsSetInstanceFamily())
+                                                {
+                                                    request.Parameters.Add("SpotFleetRequestConfig" + "." + "LaunchSpecifications" + "." + publicRequestSpotFleetRequestConfiglistValueIndex + "." + "InstanceRequirements" + "." + "BaselinePerformanceFactors" + "." + "Cpu" + "." + "ReferenceSet" + "." + publicRequestSpotFleetRequestConfiglistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex + "." + "InstanceFamily", StringUtils.FromString(publicRequestSpotFleetRequestConfiglistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValue.InstanceFamily));
+                                                }
+                                                publicRequestSpotFleetRequestConfiglistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex++;
+                                            }
+                                        }
+                                    }
+                                }
                                 if(publicRequestSpotFleetRequestConfiglistValue.InstanceRequirements.IsSetBurstablePerformance())
                                 {
                                     request.Parameters.Add("SpotFleetRequestConfig" + "." + "LaunchSpecifications" + "." + publicRequestSpotFleetRequestConfiglistValueIndex + "." + "InstanceRequirements" + "." + "BurstablePerformance", StringUtils.FromString(publicRequestSpotFleetRequestConfiglistValue.InstanceRequirements.BurstablePerformance));
@@ -297,6 +316,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                                         request.Parameters.Add("SpotFleetRequestConfig" + "." + "LaunchSpecifications" + "." + publicRequestSpotFleetRequestConfiglistValueIndex + "." + "InstanceRequirements" + "." + "LocalStorageTypeSet" + "." + publicRequestSpotFleetRequestConfiglistValueInstanceRequirementslistValueIndex, StringUtils.FromString(publicRequestSpotFleetRequestConfiglistValueInstanceRequirementslistValue));
                                         publicRequestSpotFleetRequestConfiglistValueInstanceRequirementslistValueIndex++;
                                     }
+                                }
+                                if(publicRequestSpotFleetRequestConfiglistValue.InstanceRequirements.IsSetMaxSpotPriceAsPercentageOfOptimalOnDemandPrice())
+                                {
+                                    request.Parameters.Add("SpotFleetRequestConfig" + "." + "LaunchSpecifications" + "." + publicRequestSpotFleetRequestConfiglistValueIndex + "." + "InstanceRequirements" + "." + "MaxSpotPriceAsPercentageOfOptimalOnDemandPrice", StringUtils.FromInt(publicRequestSpotFleetRequestConfiglistValue.InstanceRequirements.MaxSpotPriceAsPercentageOfOptimalOnDemandPrice));
                                 }
                                 if(publicRequestSpotFleetRequestConfiglistValue.InstanceRequirements.IsSetMemoryGiBPerVCpu())
                                 {
@@ -409,6 +432,21 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                                     {
                                         request.Parameters.Add("SpotFleetRequestConfig" + "." + "LaunchSpecifications" + "." + publicRequestSpotFleetRequestConfiglistValueIndex + "." + "NetworkInterfaceSet" + "." + publicRequestSpotFleetRequestConfiglistValuelistValueIndex + "." + "AssociatePublicIpAddress", StringUtils.FromBool(publicRequestSpotFleetRequestConfiglistValuelistValue.AssociatePublicIpAddress));
                                     }
+                                    if(publicRequestSpotFleetRequestConfiglistValuelistValue.IsSetConnectionTrackingSpecification())
+                                    {
+                                        if(publicRequestSpotFleetRequestConfiglistValuelistValue.ConnectionTrackingSpecification.IsSetTcpEstablishedTimeout())
+                                        {
+                                            request.Parameters.Add("SpotFleetRequestConfig" + "." + "LaunchSpecifications" + "." + publicRequestSpotFleetRequestConfiglistValueIndex + "." + "NetworkInterfaceSet" + "." + publicRequestSpotFleetRequestConfiglistValuelistValueIndex + "." + "ConnectionTrackingSpecification" + "." + "TcpEstablishedTimeout", StringUtils.FromInt(publicRequestSpotFleetRequestConfiglistValuelistValue.ConnectionTrackingSpecification.TcpEstablishedTimeout));
+                                        }
+                                        if(publicRequestSpotFleetRequestConfiglistValuelistValue.ConnectionTrackingSpecification.IsSetUdpStreamTimeout())
+                                        {
+                                            request.Parameters.Add("SpotFleetRequestConfig" + "." + "LaunchSpecifications" + "." + publicRequestSpotFleetRequestConfiglistValueIndex + "." + "NetworkInterfaceSet" + "." + publicRequestSpotFleetRequestConfiglistValuelistValueIndex + "." + "ConnectionTrackingSpecification" + "." + "UdpStreamTimeout", StringUtils.FromInt(publicRequestSpotFleetRequestConfiglistValuelistValue.ConnectionTrackingSpecification.UdpStreamTimeout));
+                                        }
+                                        if(publicRequestSpotFleetRequestConfiglistValuelistValue.ConnectionTrackingSpecification.IsSetUdpTimeout())
+                                        {
+                                            request.Parameters.Add("SpotFleetRequestConfig" + "." + "LaunchSpecifications" + "." + publicRequestSpotFleetRequestConfiglistValueIndex + "." + "NetworkInterfaceSet" + "." + publicRequestSpotFleetRequestConfiglistValuelistValueIndex + "." + "ConnectionTrackingSpecification" + "." + "UdpTimeout", StringUtils.FromInt(publicRequestSpotFleetRequestConfiglistValuelistValue.ConnectionTrackingSpecification.UdpTimeout));
+                                        }
+                                    }
                                     if(publicRequestSpotFleetRequestConfiglistValuelistValue.IsSetDeleteOnTermination())
                                     {
                                         request.Parameters.Add("SpotFleetRequestConfig" + "." + "LaunchSpecifications" + "." + publicRequestSpotFleetRequestConfiglistValueIndex + "." + "NetworkInterfaceSet" + "." + publicRequestSpotFleetRequestConfiglistValuelistValueIndex + "." + "DeleteOnTermination", StringUtils.FromBool(publicRequestSpotFleetRequestConfiglistValuelistValue.DeleteOnTermination));
@@ -420,6 +458,20 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                                     if(publicRequestSpotFleetRequestConfiglistValuelistValue.IsSetDeviceIndex())
                                     {
                                         request.Parameters.Add("SpotFleetRequestConfig" + "." + "LaunchSpecifications" + "." + publicRequestSpotFleetRequestConfiglistValueIndex + "." + "NetworkInterfaceSet" + "." + publicRequestSpotFleetRequestConfiglistValuelistValueIndex + "." + "DeviceIndex", StringUtils.FromInt(publicRequestSpotFleetRequestConfiglistValuelistValue.DeviceIndex));
+                                    }
+                                    if(publicRequestSpotFleetRequestConfiglistValuelistValue.IsSetEnaSrdSpecification())
+                                    {
+                                        if(publicRequestSpotFleetRequestConfiglistValuelistValue.EnaSrdSpecification.IsSetEnaSrdEnabled())
+                                        {
+                                            request.Parameters.Add("SpotFleetRequestConfig" + "." + "LaunchSpecifications" + "." + publicRequestSpotFleetRequestConfiglistValueIndex + "." + "NetworkInterfaceSet" + "." + publicRequestSpotFleetRequestConfiglistValuelistValueIndex + "." + "EnaSrdSpecification" + "." + "EnaSrdEnabled", StringUtils.FromBool(publicRequestSpotFleetRequestConfiglistValuelistValue.EnaSrdSpecification.EnaSrdEnabled));
+                                        }
+                                        if(publicRequestSpotFleetRequestConfiglistValuelistValue.EnaSrdSpecification.IsSetEnaSrdUdpSpecification())
+                                        {
+                                            if(publicRequestSpotFleetRequestConfiglistValuelistValue.EnaSrdSpecification.EnaSrdUdpSpecification.IsSetEnaSrdUdpEnabled())
+                                            {
+                                                request.Parameters.Add("SpotFleetRequestConfig" + "." + "LaunchSpecifications" + "." + publicRequestSpotFleetRequestConfiglistValueIndex + "." + "NetworkInterfaceSet" + "." + publicRequestSpotFleetRequestConfiglistValuelistValueIndex + "." + "EnaSrdSpecification" + "." + "EnaSrdUdpSpecification" + "." + "EnaSrdUdpEnabled", StringUtils.FromBool(publicRequestSpotFleetRequestConfiglistValuelistValue.EnaSrdSpecification.EnaSrdUdpSpecification.EnaSrdUdpEnabled));
+                                            }
+                                        }
                                     }
                                     if(publicRequestSpotFleetRequestConfiglistValuelistValue.IsSetGroups())
                                     {
@@ -715,6 +767,24 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                                                 request.Parameters.Add("SpotFleetRequestConfig" + "." + "LaunchTemplateConfigs" + "." + publicRequestSpotFleetRequestConfiglistValueIndex + "." + "Overrides" + "." + publicRequestSpotFleetRequestConfiglistValuelistValueIndex + "." + "InstanceRequirements" + "." + "BaselineEbsBandwidthMbps" + "." + "Min", StringUtils.FromInt(publicRequestSpotFleetRequestConfiglistValuelistValue.InstanceRequirements.BaselineEbsBandwidthMbps.Min));
                                             }
                                         }
+                                        if(publicRequestSpotFleetRequestConfiglistValuelistValue.InstanceRequirements.IsSetBaselinePerformanceFactors())
+                                        {
+                                            if(publicRequestSpotFleetRequestConfiglistValuelistValue.InstanceRequirements.BaselinePerformanceFactors.IsSetCpu())
+                                            {
+                                                if(publicRequestSpotFleetRequestConfiglistValuelistValue.InstanceRequirements.BaselinePerformanceFactors.Cpu.IsSetReferences())
+                                                {
+                                                    int publicRequestSpotFleetRequestConfiglistValuelistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex = 1;
+                                                    foreach(var publicRequestSpotFleetRequestConfiglistValuelistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValue in publicRequestSpotFleetRequestConfiglistValuelistValue.InstanceRequirements.BaselinePerformanceFactors.Cpu.References)
+                                                    {
+                                                        if(publicRequestSpotFleetRequestConfiglistValuelistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValue.IsSetInstanceFamily())
+                                                        {
+                                                            request.Parameters.Add("SpotFleetRequestConfig" + "." + "LaunchTemplateConfigs" + "." + publicRequestSpotFleetRequestConfiglistValueIndex + "." + "Overrides" + "." + publicRequestSpotFleetRequestConfiglistValuelistValueIndex + "." + "InstanceRequirements" + "." + "BaselinePerformanceFactors" + "." + "Cpu" + "." + "ReferenceSet" + "." + publicRequestSpotFleetRequestConfiglistValuelistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex + "." + "InstanceFamily", StringUtils.FromString(publicRequestSpotFleetRequestConfiglistValuelistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValue.InstanceFamily));
+                                                        }
+                                                        publicRequestSpotFleetRequestConfiglistValuelistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex++;
+                                                    }
+                                                }
+                                            }
+                                        }
                                         if(publicRequestSpotFleetRequestConfiglistValuelistValue.InstanceRequirements.IsSetBurstablePerformance())
                                         {
                                             request.Parameters.Add("SpotFleetRequestConfig" + "." + "LaunchTemplateConfigs" + "." + publicRequestSpotFleetRequestConfiglistValueIndex + "." + "Overrides" + "." + publicRequestSpotFleetRequestConfiglistValuelistValueIndex + "." + "InstanceRequirements" + "." + "BurstablePerformance", StringUtils.FromString(publicRequestSpotFleetRequestConfiglistValuelistValue.InstanceRequirements.BurstablePerformance));
@@ -758,6 +828,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                                                 request.Parameters.Add("SpotFleetRequestConfig" + "." + "LaunchTemplateConfigs" + "." + publicRequestSpotFleetRequestConfiglistValueIndex + "." + "Overrides" + "." + publicRequestSpotFleetRequestConfiglistValuelistValueIndex + "." + "InstanceRequirements" + "." + "LocalStorageTypeSet" + "." + publicRequestSpotFleetRequestConfiglistValuelistValueInstanceRequirementslistValueIndex, StringUtils.FromString(publicRequestSpotFleetRequestConfiglistValuelistValueInstanceRequirementslistValue));
                                                 publicRequestSpotFleetRequestConfiglistValuelistValueInstanceRequirementslistValueIndex++;
                                             }
+                                        }
+                                        if(publicRequestSpotFleetRequestConfiglistValuelistValue.InstanceRequirements.IsSetMaxSpotPriceAsPercentageOfOptimalOnDemandPrice())
+                                        {
+                                            request.Parameters.Add("SpotFleetRequestConfig" + "." + "LaunchTemplateConfigs" + "." + publicRequestSpotFleetRequestConfiglistValueIndex + "." + "Overrides" + "." + publicRequestSpotFleetRequestConfiglistValuelistValueIndex + "." + "InstanceRequirements" + "." + "MaxSpotPriceAsPercentageOfOptimalOnDemandPrice", StringUtils.FromInt(publicRequestSpotFleetRequestConfiglistValuelistValue.InstanceRequirements.MaxSpotPriceAsPercentageOfOptimalOnDemandPrice));
                                         }
                                         if(publicRequestSpotFleetRequestConfiglistValuelistValue.InstanceRequirements.IsSetMemoryGiBPerVCpu())
                                         {

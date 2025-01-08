@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT1ClickProjects.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.IoT1ClickProjects.Model
         private string _description;
         private PlacementTemplate _placementTemplate;
         private string _projectName;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -64,8 +65,8 @@ namespace Amazon.IoT1ClickProjects.Model
         /// <para>
         /// The schema defining the placement to be created. A placement template defines placement
         /// default attributes and device templates. You cannot add or remove device templates
-        /// after the project has been created. However, you can update <code>callbackOverrides</code>
-        /// for the device templates using the <code>UpdateProject</code> API.
+        /// after the project has been created. However, you can update <c>callbackOverrides</c>
+        /// for the device templates using the <c>UpdateProject</c> API.
         /// </para>
         /// </summary>
         public PlacementTemplate PlacementTemplate
@@ -103,8 +104,7 @@ namespace Amazon.IoT1ClickProjects.Model
         /// Gets and sets the property Tags. 
         /// <para>
         /// Optional tags (metadata key/value pairs) to be associated with the project. For example,
-        /// <code>{ {"key1": "value1", "key2": "value2"} }</code>. For more information, see <a
-        /// href="https://aws.amazon.com/answers/account-management/aws-tagging-strategies/">AWS
+        /// <c>{ {"key1": "value1", "key2": "value2"} }</c>. For more information, see <a href="https://aws.amazon.com/answers/account-management/aws-tagging-strategies/">AWS
         /// Tagging Strategies</a>.
         /// </para>
         /// </summary>
@@ -118,7 +118,7 @@ namespace Amazon.IoT1ClickProjects.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.ServiceCatalog.Model
     /// </para>
     ///  
     /// <para>
-    /// The user or role that performs this operation must have the <code>cloudformation:GetTemplate</code>
-    /// IAM policy permission. This policy permission is required when using the <code>ImportFromPhysicalId</code>
+    /// The user or role that performs this operation must have the <c>cloudformation:GetTemplate</c>
+    /// IAM policy permission. This policy permission is required when using the <c>ImportFromPhysicalId</c>
     /// template source in the information data section.
     /// </para>
     /// </summary>
@@ -57,7 +58,7 @@ namespace Amazon.ServiceCatalog.Model
         private string _supportDescription;
         private string _supportEmail;
         private string _supportUrl;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AcceptLanguage. 
@@ -66,11 +67,11 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>jp</code> - Japanese
+        ///  <c>jp</c> - Japanese
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>zh</code> - Chinese
+        ///  <c>zh</c> - Chinese
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -225,16 +226,16 @@ namespace Amazon.ServiceCatalog.Model
         /// <para>
         /// Specifies connection details for the created product and syncs the product to the
         /// connection source artifact. This automatically manages the product's artifacts based
-        /// on changes to the source. The <code>SourceConnection</code> parameter consists of
-        /// the following sub-fields.
+        /// on changes to the source. The <c>SourceConnection</c> parameter consists of the following
+        /// sub-fields.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Type</code> 
+        ///  <c>Type</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ConnectionParamters</code> 
+        ///  <c>ConnectionParamters</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -295,7 +296,7 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>^https?:\/\// </code>/ is the pattern used to validate SupportUrl.
+        ///  <c>^https?:\/\// </c>/ is the pattern used to validate SupportUrl.
         /// </para>
         /// </summary>
         [AWSProperty(Max=2083)]
@@ -327,7 +328,7 @@ namespace Amazon.ServiceCatalog.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

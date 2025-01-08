@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.TranscribeService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.TranscribeService.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public CallAnalyticsJobSummary Unmarshall(JsonUnmarshallerContext context)
         {
+            CallAnalyticsJobSummary unmarshalledObject = new CallAnalyticsJobSummary();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            CallAnalyticsJobSummary unmarshalledObject = new CallAnalyticsJobSummary();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("CallAnalyticsJobDetails", targetDepth))
+                {
+                    var unmarshaller = CallAnalyticsJobDetailsUnmarshaller.Instance;
+                    unmarshalledObject.CallAnalyticsJobDetails = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("CallAnalyticsJobName", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -107,7 +115,6 @@ namespace Amazon.TranscribeService.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

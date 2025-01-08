@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -35,8 +36,10 @@ namespace Amazon.IoTSiteWise.Model
     public partial class AssetModelCompositeModelDefinition
     {
         private string _description;
+        private string _externalId;
+        private string _id;
         private string _name;
-        private List<AssetModelPropertyDefinition> _properties = new List<AssetModelPropertyDefinition>();
+        private List<AssetModelPropertyDefinition> _properties = AWSConfigs.InitializeCollections ? new List<AssetModelPropertyDefinition>() : null;
         private string _type;
 
         /// <summary>
@@ -56,6 +59,49 @@ namespace Amazon.IoTSiteWise.Model
         internal bool IsSetDescription()
         {
             return this._description != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExternalId. 
+        /// <para>
+        /// An external ID to assign to the composite model. The external ID must be unique among
+        /// composite models within this asset model. For more information, see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-ids">Using
+        /// external IDs</a> in the <i>IoT SiteWise User Guide</i>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=2, Max=128)]
+        public string ExternalId
+        {
+            get { return this._externalId; }
+            set { this._externalId = value; }
+        }
+
+        // Check to see if ExternalId property is set
+        internal bool IsSetExternalId()
+        {
+            return this._externalId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Id. 
+        /// <para>
+        /// The ID to assign to the composite model, if desired. IoT SiteWise automatically generates
+        /// a unique ID for you, so this parameter is never required. However, if you prefer to
+        /// supply your own ID instead, you can specify it here in UUID format. If you specify
+        /// your own ID, it must be globally unique.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=36, Max=36)]
+        public string Id
+        {
+            get { return this._id; }
+            set { this._id = value; }
+        }
+
+        // Check to see if Id property is set
+        internal bool IsSetId()
+        {
+            return this._id != null;
         }
 
         /// <summary>
@@ -92,13 +138,13 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if Properties property is set
         internal bool IsSetProperties()
         {
-            return this._properties != null && this._properties.Count > 0; 
+            return this._properties != null && (this._properties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of the composite model. For alarm composite models, this type is <code>AWS/ALARM</code>.
+        /// The type of the composite model. For alarm composite models, this type is <c>AWS/ALARM</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]

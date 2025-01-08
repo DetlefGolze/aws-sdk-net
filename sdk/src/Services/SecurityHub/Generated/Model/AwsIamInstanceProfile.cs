@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.SecurityHub.Model
         private string _instanceProfileId;
         private string _instanceProfileName;
         private string _path;
-        private List<AwsIamInstanceProfileRole> _roles = new List<AwsIamInstanceProfileRole>();
+        private List<AwsIamInstanceProfileRole> _roles = AWSConfigs.InitializeCollections ? new List<AwsIamInstanceProfileRole>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -65,9 +66,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string CreateDate
@@ -151,7 +151,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Roles property is set
         internal bool IsSetRoles()
         {
-            return this._roles != null && this._roles.Count > 0; 
+            return this._roles != null && (this._roles.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

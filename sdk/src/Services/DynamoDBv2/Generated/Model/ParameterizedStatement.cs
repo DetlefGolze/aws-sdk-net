@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
-    /// Represents a PartiQL statment that uses parameters.
+    /// Represents a PartiQL statement that uses parameters.
     /// </summary>
     public partial class ParameterizedStatement
     {
-        private List<AttributeValue> _parameters = new List<AttributeValue>();
+        private List<AttributeValue> _parameters = AWSConfigs.InitializeCollections ? new List<AttributeValue>() : null;
         private ReturnValuesOnConditionCheckFailure _returnValuesOnConditionCheckFailure;
         private string _statement;
 
@@ -53,13 +54,13 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ReturnValuesOnConditionCheckFailure. 
         /// <para>
-        /// An optional parameter that returns the item attributes for a PartiQL <code>ParameterizedStatement</code>
+        /// An optional parameter that returns the item attributes for a PartiQL <c>ParameterizedStatement</c>
         /// operation that failed a condition check.
         /// </para>
         ///  
@@ -84,7 +85,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property Statement. 
         /// <para>
-        ///  A PartiQL statment that uses parameters. 
+        ///  A PartiQL statement that uses parameters. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=8192)]

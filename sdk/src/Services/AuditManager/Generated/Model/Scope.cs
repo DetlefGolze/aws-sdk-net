@@ -26,16 +26,33 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AuditManager.Model
 {
     /// <summary>
-    /// The wrapper that contains the Amazon Web Services accounts and services that are
-    /// in scope for the assessment.
+    /// The wrapper that contains the Amazon Web Services accounts that are in scope for
+    /// the assessment. 
+    /// 
+    ///  <note> 
+    /// <para>
+    /// You no longer need to specify which Amazon Web Services are in scope when you create
+    /// or update an assessment. Audit Manager infers the services in scope by examining your
+    /// assessment controls and their data sources, and then mapping this information to the
+    /// relevant Amazon Web Services. 
+    /// </para>
+    ///  
+    /// <para>
+    /// If an underlying data source changes for your assessment, we automatically update
+    /// the services scope as needed to reflect the correct Amazon Web Services. This ensures
+    /// that your assessment collects accurate and comprehensive evidence about all of the
+    /// relevant services in your AWS environment.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class Scope
     {
-        private List<AWSAccount> _awsAccounts = new List<AWSAccount>();
-        private List<AWSService> _awsServices = new List<AWSService>();
+        private List<AWSAccount> _awsAccounts = AWSConfigs.InitializeCollections ? new List<AWSAccount>() : null;
+        private List<AWSService> _awsServices = AWSConfigs.InitializeCollections ? new List<AWSService>() : null;
 
         /// <summary>
         /// Gets and sets the property AwsAccounts. 
@@ -44,7 +61,7 @@ namespace Amazon.AuditManager.Model
         /// 
         /// </para>
         /// </summary>
-        [AWSProperty(Sensitive=true)]
+        [AWSProperty(Sensitive=true, Min=1, Max=200)]
         public List<AWSAccount> AwsAccounts
         {
             get { return this._awsAccounts; }
@@ -54,7 +71,7 @@ namespace Amazon.AuditManager.Model
         // Check to see if AwsAccounts property is set
         internal bool IsSetAwsAccounts()
         {
-            return this._awsAccounts != null && this._awsAccounts.Count > 0; 
+            return this._awsAccounts != null && (this._awsAccounts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -63,7 +80,15 @@ namespace Amazon.AuditManager.Model
         ///  The Amazon Web Services services that are included in the scope of the assessment.
         /// 
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// This API parameter is no longer supported. If you use this parameter to specify one
+        /// or more Amazon Web Services, Audit Manager ignores this input. Instead, the value
+        /// for <c>awsServices</c> will show as empty.
+        /// </para>
+        ///  </important>
         /// </summary>
+        [Obsolete("You can't specify services in scope when creating/updating an assessment. If you use the parameter to specify one or more AWS services, Audit Manager ignores the input. Instead the value of the parameter will show as empty indicating that the services are defined and managed by Audit Manager.")]
         public List<AWSService> AwsServices
         {
             get { return this._awsServices; }
@@ -73,7 +98,7 @@ namespace Amazon.AuditManager.Model
         // Check to see if AwsServices property is set
         internal bool IsSetAwsServices()
         {
-            return this._awsServices != null && this._awsServices.Count > 0; 
+            return this._awsServices != null && (this._awsServices.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

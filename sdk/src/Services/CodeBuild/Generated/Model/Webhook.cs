@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -36,9 +37,11 @@ namespace Amazon.CodeBuild.Model
     {
         private string _branchFilter;
         private WebhookBuildType _buildType;
-        private List<List<WebhookFilter>> _filterGroups = new List<List<WebhookFilter>>();
+        private List<List<WebhookFilter>> _filterGroups = AWSConfigs.InitializeCollections ? new List<List<WebhookFilter>>() : null;
         private DateTime? _lastModifiedSecret;
+        private bool? _manualCreation;
         private string _payloadUrl;
+        private ScopeConfiguration _scopeConfiguration;
         private string _secret;
         private string _url;
 
@@ -47,11 +50,11 @@ namespace Amazon.CodeBuild.Model
         /// <para>
         /// A regular expression used to determine which repository branches are built when a
         /// webhook is triggered. If the name of a branch matches the regular expression, then
-        /// it is built. If <code>branchFilter</code> is empty, then all branches are built.
+        /// it is built. If <c>branchFilter</c> is empty, then all branches are built.
         /// </para>
         ///  <note> 
         /// <para>
-        /// It is recommended that you use <code>filterGroups</code> instead of <code>branchFilter</code>.
+        /// It is recommended that you use <c>filterGroups</c> instead of <c>branchFilter</c>.
         /// 
         /// </para>
         ///  </note>
@@ -89,13 +92,13 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property FilterGroups. 
         /// <para>
-        /// An array of arrays of <code>WebhookFilter</code> objects used to determine which webhooks
-        /// are triggered. At least one <code>WebhookFilter</code> in the array must specify <code>EVENT</code>
-        /// as its <code>type</code>. 
+        /// An array of arrays of <c>WebhookFilter</c> objects used to determine which webhooks
+        /// are triggered. At least one <c>WebhookFilter</c> in the array must specify <c>EVENT</c>
+        /// as its <c>type</c>. 
         /// </para>
         ///  
         /// <para>
-        /// For a build to be triggered, at least one filter group in the <code>filterGroups</code>
+        /// For a build to be triggered, at least one filter group in the <c>filterGroups</c>
         /// array must pass. For a filter group to pass, each of its filters must pass. 
         /// </para>
         /// </summary>
@@ -108,7 +111,7 @@ namespace Amazon.CodeBuild.Model
         // Check to see if FilterGroups property is set
         internal bool IsSetFilterGroups()
         {
-            return this._filterGroups != null && this._filterGroups.Count > 0; 
+            return this._filterGroups != null && (this._filterGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -131,6 +134,32 @@ namespace Amazon.CodeBuild.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ManualCreation. 
+        /// <para>
+        /// If manualCreation is true, CodeBuild doesn't create a webhook in GitHub and instead
+        /// returns <c>payloadUrl</c> and <c>secret</c> values for the webhook. The <c>payloadUrl</c>
+        /// and <c>secret</c> values in the output can be used to manually create a webhook within
+        /// GitHub.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// manualCreation is only available for GitHub webhooks.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public bool ManualCreation
+        {
+            get { return this._manualCreation.GetValueOrDefault(); }
+            set { this._manualCreation = value; }
+        }
+
+        // Check to see if ManualCreation property is set
+        internal bool IsSetManualCreation()
+        {
+            return this._manualCreation.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property PayloadUrl. 
         /// <para>
         /// The CodeBuild endpoint where webhook events are sent.
@@ -150,13 +179,37 @@ namespace Amazon.CodeBuild.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ScopeConfiguration. 
+        /// <para>
+        /// The scope configuration for global or organization webhooks.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// Global or organization webhooks are only available for GitHub and Github Enterprise
+        /// webhooks.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public ScopeConfiguration ScopeConfiguration
+        {
+            get { return this._scopeConfiguration; }
+            set { this._scopeConfiguration = value; }
+        }
+
+        // Check to see if ScopeConfiguration property is set
+        internal bool IsSetScopeConfiguration()
+        {
+            return this._scopeConfiguration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Secret. 
         /// <para>
         /// The secret token of the associated repository. 
         /// </para>
         ///  <note> 
         /// <para>
-        /// A Bitbucket webhook does not support <code>secret</code>. 
+        /// A Bitbucket webhook does not support <c>secret</c>. 
         /// </para>
         ///  </note>
         /// </summary>

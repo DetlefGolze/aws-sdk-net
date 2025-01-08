@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDSDataService.Model
 {
     /// <summary>
-    /// The <code>resourceArn</code>, <code>secretArn</code>, or <code>transactionId</code>
-    /// value can't be found.
+    /// The <c>resourceArn</c>, <c>secretArn</c>, or <c>transactionId</c> value can't be found.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

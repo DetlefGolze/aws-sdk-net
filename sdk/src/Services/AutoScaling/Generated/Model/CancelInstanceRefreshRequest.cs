@@ -26,13 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
     /// Container for the parameters to the CancelInstanceRefresh operation.
     /// Cancels an instance refresh or rollback that is in progress. If an instance refresh
-    /// or rollback is not in progress, an <code>ActiveInstanceRefreshNotFound</code> error
-    /// occurs.
+    /// or rollback is not in progress, an <c>ActiveInstanceRefreshNotFound</c> error occurs.
     /// 
     ///  
     /// <para>
@@ -43,7 +43,8 @@ namespace Amazon.AutoScaling.Model
     ///  
     /// <para>
     /// When you cancel an instance refresh, this does not roll back any changes that it made.
-    /// Use the <a>RollbackInstanceRefresh</a> API to roll back instead.
+    /// Use the <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_RollbackInstanceRefresh.html">RollbackInstanceRefresh</a>
+    /// API to roll back instead.
     /// </para>
     /// </summary>
     public partial class CancelInstanceRefreshRequest : AmazonAutoScalingRequest

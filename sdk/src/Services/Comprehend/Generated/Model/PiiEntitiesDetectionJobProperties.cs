@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -112,7 +113,7 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:pii-entities-detection-job/&lt;job-id&gt;</code>
+        ///  <c>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:pii-entities-detection-job/&lt;job-id&gt;</c>
         /// 
         /// </para>
         ///  
@@ -121,7 +122,7 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:comprehend:us-west-2:111122223333:pii-entities-detection-job/1234abcd12ab34cd56ef1234567890ab</code>
+        ///  <c>arn:aws:comprehend:us-west-2:111122223333:pii-entities-detection-job/1234abcd12ab34cd56ef1234567890ab</c>
         /// 
         /// </para>
         /// </summary>
@@ -179,8 +180,8 @@ namespace Amazon.Comprehend.Model
         /// <summary>
         /// Gets and sets the property JobStatus. 
         /// <para>
-        /// The current status of the PII entities detection job. If the status is <code>FAILED</code>,
-        /// the <code>Message</code> field shows the reason for the failure.
+        /// The current status of the PII entities detection job. If the status is <c>FAILED</c>,
+        /// the <c>Message</c> field shows the reason for the failure.
         /// </para>
         /// </summary>
         public JobStatus JobStatus
@@ -198,7 +199,7 @@ namespace Amazon.Comprehend.Model
         /// <summary>
         /// Gets and sets the property LanguageCode. 
         /// <para>
-        /// The language code of the input documents
+        /// The language code of the input documents.
         /// </para>
         /// </summary>
         public LanguageCode LanguageCode
@@ -276,9 +277,9 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  
         /// <para>
-        /// This parameter is required if you set the <code>Mode</code> parameter to <code>ONLY_REDACTION</code>.
-        /// In that case, you must provide a <code>RedactionConfig</code> definition that includes
-        /// the <code>PiiEntityTypes</code> parameter.
+        /// This parameter is required if you set the <c>Mode</c> parameter to <c>ONLY_REDACTION</c>.
+        /// In that case, you must provide a <c>RedactionConfig</c> definition that includes the
+        /// <c>PiiEntityTypes</c> parameter.
         /// </para>
         /// </summary>
         public RedactionConfig RedactionConfig

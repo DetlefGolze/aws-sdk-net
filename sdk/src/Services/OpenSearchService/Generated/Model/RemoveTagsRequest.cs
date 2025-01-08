@@ -26,24 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
     /// Container for the parameters to the RemoveTags operation.
-    /// Removes the specified set of tags from an Amazon OpenSearch Service domain. For more
-    /// information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains.html#managedomains-awsresorcetagging">
-    /// Tagging Amazon OpenSearch Service domains</a>.
+    /// Removes the specified set of tags from an Amazon OpenSearch Service domain, data source,
+    /// or application. For more information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains.html#managedomains-awsresorcetagging">
+    /// Tagging Amazon OpenSearch Service resources</a>.
     /// </summary>
     public partial class RemoveTagsRequest : AmazonOpenSearchServiceRequest
     {
         private string _arn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ARN. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the domain from which you want to delete the specified
-        /// tags.
+        /// The Amazon Resource Name (ARN) of the domain, data source, or application from which
+        /// you want to delete the specified tags.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]
@@ -62,7 +63,7 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property TagKeys. 
         /// <para>
-        /// The list of tag keys to remove from the domain.
+        /// The list of tag keys to remove from the domain, data source, or application.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -75,7 +76,7 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

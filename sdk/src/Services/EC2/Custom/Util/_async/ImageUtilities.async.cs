@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 using Amazon.Runtime;
 using System.Threading.Tasks;
+using Amazon.Util.Internal;
 
 #pragma warning disable 1591
 
@@ -82,10 +83,17 @@ namespace Amazon.EC2.Util
                 if (ImageDefinitionsLoaded)
                     return;
             }
+            const string httpPrefix = "http://";
+            const string httpsPrefix = "https://";
 
             IWebProxy webProxy = null;
-            if (ec2Config != null)
+            IWebProxy httpProxy = null;
+            IWebProxy httpsProxy = null;
+            if (ec2Config != null) {
                 webProxy = ec2Config.GetWebProxy();
+                httpProxy = ec2Config.GetHttpProxy();
+                httpsProxy = ec2Config.GetHttpsProxy();
+            }
 
             int retries = 0;
             while (retries < MAX_DOWNLOAD_RETRIES)
@@ -95,9 +103,22 @@ namespace Amazon.EC2.Util
                     HttpWebResponse response = null;
                     foreach (var location in DownloadLocations)
                     {
+                        var useProxy = webProxy;
+                        if (useProxy == null && !NoProxyFilter.Instance.Match(new Uri(location)))
+                        {
+                            if (location.StartsWith(httpPrefix))
+                            {
+                                useProxy = httpProxy;
+                            }
+                            else if (location.StartsWith(httpsPrefix))
+                            {
+                                useProxy = httpsProxy;
+                            }
+                        }
+
                         try
                         {
-                            response = await DownloadControlFileAsync(location, webProxy).ConfigureAwait(false);
+                            response = await DownloadControlFileAsync(location, useProxy).ConfigureAwait(false);
                             if (response != null)
                                 break;
                         }
@@ -141,7 +162,9 @@ namespace Amazon.EC2.Util
         }
         private static async Task<HttpWebResponse> DownloadControlFileAsync(string location, IWebProxy proxy)
         {
+#pragma warning disable SYSLIB0014 // Continue to use WebRequest while the SDK targets .NET Framework 3.5
             var request = WebRequest.Create(location) as HttpWebRequest;
+#pragma warning restore SYSLIB0014
             if (proxy != null)
                 request.Proxy = proxy;
             return await request.GetResponseAsync().ConfigureAwait(false) as HttpWebResponse;

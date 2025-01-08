@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -95,7 +96,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property SslMode. 
         /// <para>
-        /// The SSL mode used to connect to the MariaDB data provider. The default value is <code>none</code>.
+        /// The SSL mode used to connect to the MariaDB data provider. The default value is <c>none</c>.
         /// </para>
         /// </summary>
         public DmsSslModeValue SslMode

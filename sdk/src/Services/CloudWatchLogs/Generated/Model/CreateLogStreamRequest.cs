@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -37,8 +38,8 @@ namespace Amazon.CloudWatchLogs.Model
     ///  
     /// <para>
     /// There is no limit on the number of log streams that you can create for a log group.
-    /// There is a limit of 50 TPS on <code>CreateLogStream</code> operations, after which
-    /// transactions are throttled.
+    /// There is a limit of 50 TPS on <c>CreateLogStream</c> operations, after which transactions
+    /// are throttled.
     /// </para>
     ///  
     /// <para>

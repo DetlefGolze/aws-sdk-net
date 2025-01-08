@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AuditManager.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.AuditManager.Model
     /// </summary>
     public partial class BatchDisassociateAssessmentReportEvidenceResponse : AmazonWebServiceResponse
     {
-        private List<AssessmentReportEvidenceError> _errors = new List<AssessmentReportEvidenceError>();
-        private List<string> _evidenceIds = new List<string>();
+        private List<AssessmentReportEvidenceError> _errors = AWSConfigs.InitializeCollections ? new List<AssessmentReportEvidenceError>() : null;
+        private List<string> _evidenceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Errors. 
         /// <para>
-        ///  A list of errors that the <code>BatchDisassociateAssessmentReportEvidence</code>
-        /// API returned. 
+        ///  A list of errors that the <c>BatchDisassociateAssessmentReportEvidence</c> API returned.
+        /// 
         /// </para>
         /// </summary>
         public List<AssessmentReportEvidenceError> Errors
@@ -52,7 +53,7 @@ namespace Amazon.AuditManager.Model
         // Check to see if Errors property is set
         internal bool IsSetErrors()
         {
-            return this._errors != null && this._errors.Count > 0; 
+            return this._errors != null && (this._errors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -71,7 +72,7 @@ namespace Amazon.AuditManager.Model
         // Check to see if EvidenceIds property is set
         internal bool IsSetEvidenceIds()
         {
-            return this._evidenceIds != null && this._evidenceIds.Count > 0; 
+            return this._evidenceIds != null && (this._evidenceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

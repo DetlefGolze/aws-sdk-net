@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -36,13 +37,14 @@ namespace Amazon.EC2.Model
         private ApplianceModeSupportValue _applianceModeSupport;
         private DnsSupportValue _dnsSupport;
         private Ipv6SupportValue _ipv6Support;
+        private SecurityGroupReferencingSupportValue _securityGroupReferencingSupport;
 
         /// <summary>
         /// Gets and sets the property ApplianceModeSupport. 
         /// <para>
         /// Enable or disable support for appliance mode. If enabled, a traffic flow between a
         /// source and destination uses the same Availability Zone for the VPC attachment for
-        /// the lifetime of that flow. The default is <code>disable</code>.
+        /// the lifetime of that flow. The default is <c>disable</c>.
         /// </para>
         /// </summary>
         public ApplianceModeSupportValue ApplianceModeSupport
@@ -60,7 +62,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property DnsSupport. 
         /// <para>
-        /// Enable or disable DNS support. The default is <code>enable</code>.
+        /// Enable or disable DNS support. The default is <c>enable</c>.
         /// </para>
         /// </summary>
         public DnsSupportValue DnsSupport
@@ -78,7 +80,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Ipv6Support. 
         /// <para>
-        /// Enable or disable IPv6 support. The default is <code>disable</code>.
+        /// Enable or disable IPv6 support. The default is <c>disable</c>.
         /// </para>
         /// </summary>
         public Ipv6SupportValue Ipv6Support
@@ -91,6 +93,35 @@ namespace Amazon.EC2.Model
         internal bool IsSetIpv6Support()
         {
             return this._ipv6Support != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SecurityGroupReferencingSupport. 
+        /// <para>
+        /// Enables you to reference a security group across VPCs attached to a transit gateway
+        /// to simplify security group management.
+        /// </para>
+        ///  
+        /// <para>
+        /// This option is set to <c>enable</c> by default. However, at the transit gateway level
+        /// the default is set to <c>disable</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about security group referencing, see <a href="https://docs.aws.amazon.com/vpc/latest/tgw/tgw-vpc-attachments.html#vpc-attachment-security">Security
+        /// group referencing </a> in the <i>Amazon Web Services Transit Gateways Guide</i>.
+        /// </para>
+        /// </summary>
+        public SecurityGroupReferencingSupportValue SecurityGroupReferencingSupport
+        {
+            get { return this._securityGroupReferencingSupport; }
+            set { this._securityGroupReferencingSupport = value; }
+        }
+
+        // Check to see if SecurityGroupReferencingSupport property is set
+        internal bool IsSetSecurityGroupReferencingSupport()
+        {
+            return this._securityGroupReferencingSupport != null;
         }
 
     }

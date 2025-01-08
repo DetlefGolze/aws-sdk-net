@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataPipeline.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.DataPipeline.Model
     public partial class QueryObjectsResponse : AmazonWebServiceResponse
     {
         private bool? _hasMoreResults;
-        private List<string> _ids = new List<string>();
+        private List<string> _ids = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _marker;
 
         /// <summary>
@@ -70,15 +71,15 @@ namespace Amazon.DataPipeline.Model
         // Check to see if Ids property is set
         internal bool IsSetIds()
         {
-            return this._ids != null && this._ids.Count > 0; 
+            return this._ids != null && (this._ids.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         /// The starting point for the next page of results. To view the next page of results,
-        /// call <code>QueryObjects</code> again with this marker value. If the value is null,
-        /// there are no more results.
+        /// call <c>QueryObjects</c> again with this marker value. If the value is null, there
+        /// are no more results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1024)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -86,7 +87,7 @@ namespace Amazon.Neptune.Model
         ///  
         /// <para>
         /// You must specify the instance identifier for an Read Replica in the DB cluster. For
-        /// example, <code>mydbcluster-replica1</code>.
+        /// example, <c>mydbcluster-replica1</c>.
         /// </para>
         /// </summary>
         public string TargetDBInstanceIdentifier

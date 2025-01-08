@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// Represents the output of a <code>PurchaseReservedElasticsearchInstanceOffering</code>
-    /// operation.
+    /// Represents the output of a <c>PurchaseReservedElasticsearchInstanceOffering</c> operation.
     /// </summary>
     public partial class PurchaseReservedElasticsearchInstanceOfferingResponse : AmazonWebServiceResponse
     {

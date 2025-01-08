@@ -26,12 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// Container for the parameters to the ListProjectPolicies operation.
+    /// <note> 
+    /// <para>
+    /// This operation applies only to Amazon Rekognition Custom Labels.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Gets a list of the project policies attached to a project.
-    /// 
+    /// </para>
     ///  
     /// <para>
     /// To attach a project policy to a project, call <a>PutProjectPolicy</a>. To remove a
@@ -39,7 +46,7 @@ namespace Amazon.Rekognition.Model
     /// </para>
     ///  
     /// <para>
-    /// This operation requires permissions to perform the <code>rekognition:ListProjectPolicies</code>
+    /// This operation requires permissions to perform the <c>rekognition:ListProjectPolicies</c>
     /// action.
     /// </para>
     /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.LakeFormation.Model
     public partial class AddObjectInput
     {
         private string _eTag;
-        private List<string> _partitionValues = new List<string>();
+        private List<string> _partitionValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private long? _size;
         private string _uri;
 
         /// <summary>
         /// Gets and sets the property ETag. 
         /// <para>
-        /// The Amazon S3 ETag of the object. Returned by <code>GetTableObjects</code> for validation
+        /// The Amazon S3 ETag of the object. Returned by <c>GetTableObjects</c> for validation
         /// and used to identify changes to the underlying data.
         /// </para>
         /// </summary>
@@ -80,7 +81,7 @@ namespace Amazon.LakeFormation.Model
         // Check to see if PartitionValues property is set
         internal bool IsSetPartitionValues()
         {
-            return this._partitionValues != null && this._partitionValues.Count > 0; 
+            return this._partitionValues != null && (this._partitionValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

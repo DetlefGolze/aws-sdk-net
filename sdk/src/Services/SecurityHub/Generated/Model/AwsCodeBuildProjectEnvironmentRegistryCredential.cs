@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -67,7 +68,7 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// The valid value,<code> SECRETS_MANAGER</code>, is for Secrets Manager.
+        /// The valid value,<c> SECRETS_MANAGER</c>, is for Secrets Manager.
         /// </para>
         /// </summary>
         public string CredentialProvider

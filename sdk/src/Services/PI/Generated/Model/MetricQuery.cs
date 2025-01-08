@@ -26,18 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PI.Model
 {
     /// <summary>
-    /// A single query to be processed. You must provide the metric to query. If no other
-    /// parameters are specified, Performance Insights returns all data points for the specified
-    /// metric. Optionally, you can request that the data points be aggregated by dimension
-    /// group (<code>GroupBy</code>), and return only those data points that match your criteria
-    /// (<code>Filter</code>).
+    /// A single query to be processed. You must provide the metric to query and append an
+    /// aggregate function to the metric. For example, to find the average for the metric
+    /// <c>db.load</c> you must use <c>db.load.avg</c>. Valid values for aggregate functions
+    /// include <c>.avg</c>, <c>.min</c>, <c>.max</c>, and <c>.sum</c>. If no other parameters
+    /// are specified, Performance Insights returns all data points for the specified metric.
+    /// Optionally, you can request that the data points be aggregated by dimension group
+    /// (<c>GroupBy</c>), and return only those data points that match your criteria (<c>Filter</c>).
     /// </summary>
     public partial class MetricQuery
     {
-        private Dictionary<string, string> _filter = new Dictionary<string, string>();
+        private Dictionary<string, string> _filter = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private DimensionGroup _groupBy;
         private string _metric;
 
@@ -48,14 +51,17 @@ namespace Amazon.PI.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Any number of filters by the same dimension, as specified in the <code>GroupBy</code>
-        /// parameter.
+        /// Any number of filters by the same dimension, as specified in the <c>GroupBy</c> parameter.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// A single filter for any other dimension in this dimension group.
         /// </para>
-        ///  </li> </ul>
+        ///  </li> </ul> <note> 
+        /// <para>
+        /// The <c>db.sql.db_id</c> filter isn't available for RDS for SQL Server DB instances.
+        /// </para>
+        ///  </note>
         /// </summary>
         public Dictionary<string, string> Filter
         {
@@ -66,7 +72,7 @@ namespace Amazon.PI.Model
         // Check to see if Filter property is set
         internal bool IsSetFilter()
         {
-            return this._filter != null && this._filter.Count > 0; 
+            return this._filter != null && (this._filter.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -98,32 +104,35 @@ namespace Amazon.PI.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values for <code>Metric</code> are:
+        /// Valid values for <c>Metric</c> are:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>db.load.avg</code> - A scaled representation of the number of active sessions
-        /// for the database engine.
+        ///  <c>db.load.avg</c> - A scaled representation of the number of active sessions for
+        /// the database engine.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>db.sampledload.avg</code> - The raw number of active sessions for the database
-        /// engine.
+        ///  <c>db.sampledload.avg</c> - The raw number of active sessions for the database engine.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The counter metrics listed in <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights_Counters.html#USER_PerfInsights_Counters.OS">Performance
         /// Insights operating system counters</a> in the <i>Amazon Aurora User Guide</i>.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The counter metrics listed in <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights_Counters.html#USER_PerfInsights_Counters.OS">Performance
+        /// Insights operating system counters</a> in the <i>Amazon RDS User Guide</i>.
+        /// </para>
         ///  </li> </ul> 
         /// <para>
         /// If the number of active sessions is less than an internal Performance Insights threshold,
-        /// <code>db.load.avg</code> and <code>db.sampledload.avg</code> are the same value. If
-        /// the number of active sessions is greater than the internal threshold, Performance
-        /// Insights samples the active sessions, with <code>db.load.avg</code> showing the scaled
-        /// values, <code>db.sampledload.avg</code> showing the raw values, and <code>db.sampledload.avg</code>
-        /// less than <code>db.load.avg</code>. For most use cases, you can query <code>db.load.avg</code>
-        /// only.
+        /// <c>db.load.avg</c> and <c>db.sampledload.avg</c> are the same value. If the number
+        /// of active sessions is greater than the internal threshold, Performance Insights samples
+        /// the active sessions, with <c>db.load.avg</c> showing the scaled values, <c>db.sampledload.avg</c>
+        /// showing the raw values, and <c>db.sampledload.avg</c> less than <c>db.load.avg</c>.
+        /// For most use cases, you can query <c>db.load.avg</c> only.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=256)]

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AppRegistry.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -69,6 +70,28 @@ namespace Amazon.AppRegistry.Model.Internal.MarshallTransformations
                 throw new AmazonAppRegistryException("Request object does not have required field ResourceType set");
             request.AddPathResource("{resourceType}", StringUtils.FromString(publicRequest.ResourceType));
             request.ResourcePath = "/applications/{application}/resources/{resourceType}/{resource}";
+            using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
+            {
+                JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
+                writer.WriteObjectStart();
+                var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetOptions())
+                {
+                    context.Writer.WritePropertyName("options");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestOptionsListValue in publicRequest.Options)
+                    {
+                            context.Writer.Write(publicRequestOptionsListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+
+                writer.WriteObjectEnd();
+                string snippet = stringWriter.ToString();
+                request.Content = System.Text.Encoding.UTF8.GetBytes(snippet);
+            }
+
 
             return request;
         }

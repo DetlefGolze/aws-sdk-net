@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.ServiceCatalog.Model
     /// </para>
     ///  
     /// <para>
-    /// Note that a delegated administrator is not authorized to invoke <code>DisableAWSOrganizationsAccess</code>.
+    /// Note that a delegated administrator is not authorized to invoke <c>DisableAWSOrganizationsAccess</c>.
     /// </para>
     ///  <important> 
     /// <para>

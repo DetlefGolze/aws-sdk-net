@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -81,7 +82,7 @@ namespace Amazon.SageMaker.Model
         /// The URI of the source.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=2048)]
+        [AWSProperty(Required=true, Min=1, Max=2048)]
         public string SourceUri
         {
             get { return this._sourceUri; }

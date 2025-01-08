@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFRegional.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.WAFRegional.Model
     public partial class ListRegexMatchSetsResponse : AmazonWebServiceResponse
     {
         private string _nextMarker;
-        private List<RegexMatchSetSummary> _regexMatchSets = new List<RegexMatchSetSummary>();
+        private List<RegexMatchSetSummary> _regexMatchSets = AWSConfigs.InitializeCollections ? new List<RegexMatchSetSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextMarker. 
         /// <para>
-        /// If you have more <code>RegexMatchSet</code> objects than the number that you specified
-        /// for <code>Limit</code> in the request, the response includes a <code>NextMarker</code>
-        /// value. To list more <code>RegexMatchSet</code> objects, submit another <code>ListRegexMatchSets</code>
-        /// request, and specify the <code>NextMarker</code> value from the response in the <code>NextMarker</code>
+        /// If you have more <c>RegexMatchSet</c> objects than the number that you specified for
+        /// <c>Limit</c> in the request, the response includes a <c>NextMarker</c> value. To list
+        /// more <c>RegexMatchSet</c> objects, submit another <c>ListRegexMatchSets</c> request,
+        /// and specify the <c>NextMarker</c> value from the response in the <c>NextMarker</c>
         /// value in the next request.
         /// </para>
         /// </summary>
@@ -74,7 +75,7 @@ namespace Amazon.WAFRegional.Model
         // Check to see if RegexMatchSets property is set
         internal bool IsSetRegexMatchSets()
         {
-            return this._regexMatchSets != null && this._regexMatchSets.Count > 0; 
+            return this._regexMatchSets != null && (this._regexMatchSets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

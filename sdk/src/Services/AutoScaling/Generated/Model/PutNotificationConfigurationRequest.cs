@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -40,9 +41,9 @@ namespace Amazon.AutoScaling.Model
     /// </para>
     ///  
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ASGettingNotifications.html">Getting
-    /// Amazon SNS notifications when your Auto Scaling group scales</a> in the <i>Amazon
-    /// EC2 Auto Scaling User Guide</i>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-sns-notifications.html">Amazon
+    /// SNS notification options for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto
+    /// Scaling User Guide</i>.
     /// </para>
     ///  
     /// <para>
@@ -53,7 +54,7 @@ namespace Amazon.AutoScaling.Model
     public partial class PutNotificationConfigurationRequest : AmazonAutoScalingRequest
     {
         private string _autoScalingGroupName;
-        private List<string> _notificationTypes = new List<string>();
+        private List<string> _notificationTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _topicARN;
 
         /// <summary>
@@ -79,7 +80,7 @@ namespace Amazon.AutoScaling.Model
         /// Gets and sets the property NotificationTypes. 
         /// <para>
         /// The type of event that causes the notification to be sent. To query the notification
-        /// types supported by Amazon EC2 Auto Scaling, call the <a>DescribeAutoScalingNotificationTypes</a>
+        /// types supported by Amazon EC2 Auto Scaling, call the <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeAutoScalingNotificationTypes.html">DescribeAutoScalingNotificationTypes</a>
         /// API.
         /// </para>
         /// </summary>
@@ -93,7 +94,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if NotificationTypes property is set
         internal bool IsSetNotificationTypes()
         {
-            return this._notificationTypes != null && this._notificationTypes.Count > 0; 
+            return this._notificationTypes != null && (this._notificationTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

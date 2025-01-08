@@ -36,12 +36,12 @@ namespace Amazon.S3.Model
         /// Enumerable containing all full responses for the operation
         /// </summary>
         public IPaginatedEnumerable<ListVersionsResponse> Responses => new PaginatedResponse<ListVersionsResponse>(this);
-        
+
         /// <summary>
         /// Enumerable containing all of the Versions
         /// </summary>
-        public IPaginatedEnumerable<S3ObjectVersion> Versions => 
-            new PaginatedResultKeyResponse<ListVersionsResponse, S3ObjectVersion>(this, (i) => i.Versions);
+        public IPaginatedEnumerable<S3ObjectVersion> Versions =>
+            new PaginatedResultKeyResponse<ListVersionsResponse, S3ObjectVersion>(this, (i) => i.Versions ?? new List<S3ObjectVersion>());
 
         /// <summary>
         /// Enumerable containing all of the CommonPrefixes
@@ -78,7 +78,7 @@ namespace Amazon.S3.Model
         }
 #endif
 #if AWS_ASYNC_ENUMERABLES_API
-        async IAsyncEnumerable<ListVersionsResponse> IPaginator<ListVersionsResponse>.PaginateAsync(CancellationToken cancellationToken = default)
+        async IAsyncEnumerable<ListVersionsResponse> IPaginator<ListVersionsResponse>.PaginateAsync([System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken cancellationToken)
         {
             if (Interlocked.Exchange(ref _isPaginatorInUse, 1) != 0)
             {

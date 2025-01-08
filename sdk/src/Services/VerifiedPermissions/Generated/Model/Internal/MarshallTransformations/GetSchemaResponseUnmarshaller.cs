@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.VerifiedPermissions.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -61,6 +62,12 @@ namespace Amazon.VerifiedPermissions.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
                     response.LastUpdatedDate = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("namespaces", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
+                    response.Namespaces = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("policyStoreId", targetDepth))

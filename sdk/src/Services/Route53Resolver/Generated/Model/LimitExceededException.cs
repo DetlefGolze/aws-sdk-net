@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -126,8 +127,8 @@ namespace Amazon.Route53Resolver.Model
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// For a <code>LimitExceededException</code> error, the type of resource that exceeded
-        /// the current limit.
+        /// For a <c>LimitExceededException</c> error, the type of resource that exceeded the
+        /// current limit.
         /// </para>
         /// </summary>
         public string ResourceType

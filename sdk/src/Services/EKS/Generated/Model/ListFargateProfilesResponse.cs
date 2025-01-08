@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.EKS.Model
     /// </summary>
     public partial class ListFargateProfilesResponse : AmazonWebServiceResponse
     {
-        private List<string> _fargateProfileNames = new List<string>();
+        private List<string> _fargateProfileNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,17 +52,23 @@ namespace Amazon.EKS.Model
         // Check to see if FargateProfileNames property is set
         internal bool IsSetFargateProfileNames()
         {
-            return this._fargateProfileNames != null && this._fargateProfileNames.Count > 0; 
+            return this._fargateProfileNames != null && (this._fargateProfileNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value to include in a future <code>ListFargateProfiles</code>
-        /// request. When the results of a <code>ListFargateProfiles</code> request exceed <code>maxResults</code>,
-        /// you can use this value to retrieve the next page of results. This value is <code>null</code>
-        /// when there are no more results to return.
+        /// The <c>nextToken</c> value returned from a previous paginated request, where <c>maxResults</c>
+        /// was used and the results exceeded the value of that parameter. Pagination continues
+        /// from the end of the previous results that returned the <c>nextToken</c> value. This
+        /// value is null when there are no more results to return.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// This token should be treated as an opaque identifier that is used only to retrieve
+        /// the next items in a list and not for other programmatic purposes.
+        /// </para>
+        ///  </note>
         /// </summary>
         public string NextToken
         {

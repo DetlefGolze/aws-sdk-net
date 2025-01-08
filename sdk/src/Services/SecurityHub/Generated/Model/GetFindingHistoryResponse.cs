@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.SecurityHub.Model
     public partial class GetFindingHistoryResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<FindingHistoryRecord> _records = new List<FindingHistoryRecord>();
+        private List<FindingHistoryRecord> _records = AWSConfigs.InitializeCollections ? new List<FindingHistoryRecord>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         ///  A token for pagination purposes. Provide this token in the subsequent request to
-        /// <code>GetFindingsHistory</code> to get up to an additional 100 results of history
-        /// for the same finding that you specified in your initial request. 
+        /// <c>GetFindingsHistory</c> to get up to an additional 100 results of history for the
+        /// same finding that you specified in your initial request. 
         /// </para>
         /// </summary>
         public string NextToken
@@ -72,7 +73,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Records property is set
         internal bool IsSetRecords()
         {
-            return this._records != null && this._records.Count > 0; 
+            return this._records != null && (this._records.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

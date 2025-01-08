@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Domains.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Route53Domains.Model
     /// 
     ///  
     /// <para>
-    /// If you want us to resend the email, use the <code>ResendContactReachabilityEmail</code>
+    /// If you want us to resend the email, use the <c>ResendContactReachabilityEmail</c>
     /// operation.
     /// </para>
     /// </summary>

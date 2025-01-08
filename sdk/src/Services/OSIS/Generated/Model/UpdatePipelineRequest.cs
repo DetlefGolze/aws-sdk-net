@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OSIS.Model
 {
     /// <summary>
@@ -35,11 +36,49 @@ namespace Amazon.OSIS.Model
     /// </summary>
     public partial class UpdatePipelineRequest : AmazonOSISRequest
     {
+        private BufferOptions _bufferOptions;
+        private EncryptionAtRestOptions _encryptionAtRestOptions;
         private LogPublishingOptions _logPublishingOptions;
         private int? _maxUnits;
         private int? _minUnits;
         private string _pipelineConfigurationBody;
         private string _pipelineName;
+
+        /// <summary>
+        /// Gets and sets the property BufferOptions. 
+        /// <para>
+        /// Key-value pairs to configure persistent buffering for the pipeline.
+        /// </para>
+        /// </summary>
+        public BufferOptions BufferOptions
+        {
+            get { return this._bufferOptions; }
+            set { this._bufferOptions = value; }
+        }
+
+        // Check to see if BufferOptions property is set
+        internal bool IsSetBufferOptions()
+        {
+            return this._bufferOptions != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EncryptionAtRestOptions. 
+        /// <para>
+        /// Key-value pairs to configure encryption for data that is written to a persistent buffer.
+        /// </para>
+        /// </summary>
+        public EncryptionAtRestOptions EncryptionAtRestOptions
+        {
+            get { return this._encryptionAtRestOptions; }
+            set { this._encryptionAtRestOptions = value; }
+        }
+
+        // Check to see if EncryptionAtRestOptions property is set
+        internal bool IsSetEncryptionAtRestOptions()
+        {
+            return this._encryptionAtRestOptions != null;
+        }
 
         /// <summary>
         /// Gets and sets the property LogPublishingOptions. 
@@ -65,7 +104,7 @@ namespace Amazon.OSIS.Model
         /// The maximum pipeline capacity, in Ingestion Compute Units (ICUs)
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=96)]
+        [AWSProperty(Min=1)]
         public int MaxUnits
         {
             get { return this._maxUnits.GetValueOrDefault(); }
@@ -84,7 +123,7 @@ namespace Amazon.OSIS.Model
         /// The minimum pipeline capacity, in Ingestion Compute Units (ICUs).
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=96)]
+        [AWSProperty(Min=1)]
         public int MinUnits
         {
             get { return this._minUnits.GetValueOrDefault(); }
@@ -102,7 +141,7 @@ namespace Amazon.OSIS.Model
         /// <para>
         /// The pipeline configuration in YAML format. The command accepts the pipeline configuration
         /// as a string or within a .yaml file. If you provide the configuration as a string,
-        /// each new line must be escaped with <code>\n</code>.
+        /// each new line must be escaped with <c>\n</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=24000)]

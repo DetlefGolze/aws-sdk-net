@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTEvents.Model
 {
     /// <summary>
-    /// Specifies the actions performed and the next state entered when a <code>condition</code>
+    /// Specifies the actions performed and the next state entered when a <c>condition</c>
     /// evaluates to TRUE.
     /// </summary>
     public partial class TransitionEvent
     {
-        private List<Action> _actions = new List<Action>();
+        private List<Action> _actions = AWSConfigs.InitializeCollections ? new List<Action>() : null;
         private string _condition;
         private string _eventName;
         private string _nextState;
@@ -54,14 +55,14 @@ namespace Amazon.IoTEvents.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Condition. 
         /// <para>
         /// Required. A Boolean expression that when TRUE causes the actions to be performed and
-        /// the <code>nextState</code> to be entered.
+        /// the <c>nextState</c> to be entered.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=512)]

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
-    /// Request references a resource which does not exist.
+    /// The request references a resources that doesn't exist.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

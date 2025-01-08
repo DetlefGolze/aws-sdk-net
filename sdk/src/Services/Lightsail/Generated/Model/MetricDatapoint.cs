@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -134,7 +135,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property Timestamp. 
         /// <para>
-        /// The timestamp (e.g., <code>1479816991.349</code>).
+        /// The timestamp (<c>1479816991.349</c>).
         /// </para>
         /// </summary>
         public DateTime Timestamp

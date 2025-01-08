@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Protocol. 
         /// <para>
         /// The protocol to use when redirecting requests. By default, this field uses the same
-        /// protocol as the original request. Valid values are <code>http</code> or <code>https</code>.
+        /// protocol as the original request. Valid values are <c>http</c> or <c>https</c>.
         /// </para>
         /// </summary>
         public string Protocol

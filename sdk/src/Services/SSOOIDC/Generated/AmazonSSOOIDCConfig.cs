@@ -32,7 +32,7 @@ namespace Amazon.SSOOIDC
     public partial class AmazonSSOOIDCConfig : ClientConfig
     {
         private static readonly string UserAgentString =
-            InternalSDKUtils.BuildUserAgentString("3.7.201.9");
+            InternalSDKUtils.BuildUserAgentString("SSO OIDC", "3.7.400.73");
 
         private string _userAgent = UserAgentString;
         ///<summary>
@@ -52,7 +52,7 @@ namespace Amazon.SSOOIDC
             : base(new Amazon.Runtime.Internal.DefaultConfigurationProvider(AmazonSSOOIDCDefaultConfiguration.GetAllConfigurations()))
         {
             base.ServiceId = "SSO OIDC";
-            this.AuthenticationServiceName = "awsssooidc";
+            this.AuthenticationServiceName = "sso-oauth";
             this.EndpointProvider = new AmazonSSOOIDCEndpointProvider();
         }
 

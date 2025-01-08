@@ -26,12 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteProjectPolicy operation.
+    /// <note> 
+    /// <para>
+    /// This operation applies only to Amazon Rekognition Custom Labels.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Deletes an existing project policy.
-    /// 
+    /// </para>
     ///  
     /// <para>
     /// To get a list of project policies attached to a project, call <a>ListProjectPolicies</a>.
@@ -39,7 +46,7 @@ namespace Amazon.Rekognition.Model
     /// </para>
     ///  
     /// <para>
-    /// This operation requires permissions to perform the <code>rekognition:DeleteProjectPolicy</code>
+    /// This operation requires permissions to perform the <c>rekognition:DeleteProjectPolicy</c>
     /// action.
     /// </para>
     /// </summary>

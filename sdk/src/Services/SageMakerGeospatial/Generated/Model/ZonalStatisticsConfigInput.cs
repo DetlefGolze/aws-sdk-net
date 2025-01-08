@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMakerGeospatial.Model
 {
     /// <summary>
@@ -33,8 +34,8 @@ namespace Amazon.SageMakerGeospatial.Model
     /// </summary>
     public partial class ZonalStatisticsConfigInput
     {
-        private List<string> _statistics = new List<string>();
-        private List<string> _targetBands = new List<string>();
+        private List<string> _statistics = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _targetBands = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _zoneS3Path;
         private string _zoneS3PathKmsKeyId;
 
@@ -54,7 +55,7 @@ namespace Amazon.SageMakerGeospatial.Model
         // Check to see if Statistics property is set
         internal bool IsSetStatistics()
         {
-            return this._statistics != null && this._statistics.Count > 0; 
+            return this._statistics != null && (this._statistics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace Amazon.SageMakerGeospatial.Model
         // Check to see if TargetBands property is set
         internal bool IsSetTargetBands()
         {
-            return this._targetBands != null && this._targetBands.Count > 0; 
+            return this._targetBands != null && (this._targetBands.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -101,12 +102,12 @@ namespace Amazon.SageMakerGeospatial.Model
         /// <para>
         /// The Amazon Resource Name (ARN) or an ID of a Amazon Web Services Key Management Service
         /// (Amazon Web Services KMS) key that Amazon SageMaker uses to decrypt your output artifacts
-        /// with Amazon S3 server-side encryption. The SageMaker execution role must have <code>kms:GenerateDataKey</code>
+        /// with Amazon S3 server-side encryption. The SageMaker execution role must have <c>kms:GenerateDataKey</c>
         /// permission.
         /// </para>
         ///  
         /// <para>
-        /// The <code>KmsKeyId</code> can be any of the following formats:
+        /// The <c>KmsKeyId</c> can be any of the following formats:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -114,7 +115,7 @@ namespace Amazon.SageMakerGeospatial.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code> 
+        ///  <c>"1234abcd-12ab-34cd-56ef-1234567890ab"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -122,7 +123,7 @@ namespace Amazon.SageMakerGeospatial.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"arn:aws:kms:&lt;region&gt;:&lt;account&gt;:key/&lt;key-id-12ab-34cd-56ef-1234567890ab&gt;"</code>
+        ///  <c>"arn:aws:kms:&lt;region&gt;:&lt;account&gt;:key/&lt;key-id-12ab-34cd-56ef-1234567890ab&gt;"</c>
         /// 
         /// </para>
         ///  </li> </ul> 

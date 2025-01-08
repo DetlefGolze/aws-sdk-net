@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BackupGateway.Model
 {
     /// <summary>
@@ -33,14 +34,13 @@ namespace Amazon.BackupGateway.Model
     /// </summary>
     public partial class ListHypervisorsResponse : AmazonWebServiceResponse
     {
-        private List<Hypervisor> _hypervisors = new List<Hypervisor>();
+        private List<Hypervisor> _hypervisors = AWSConfigs.InitializeCollections ? new List<Hypervisor>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Hypervisors. 
         /// <para>
-        /// A list of your <code>Hypervisor</code> objects, ordered by their Amazon Resource Names
-        /// (ARNs).
+        /// A list of your <c>Hypervisor</c> objects, ordered by their Amazon Resource Names (ARNs).
         /// </para>
         /// </summary>
         public List<Hypervisor> Hypervisors
@@ -52,16 +52,16 @@ namespace Amazon.BackupGateway.Model
         // Check to see if Hypervisors property is set
         internal bool IsSetHypervisors()
         {
-            return this._hypervisors != null && this._hypervisors.Count > 0; 
+            return this._hypervisors != null && (this._hypervisors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The next item following a partial list of returned resources. For example, if a request
-        /// is made to return <code>maxResults</code> number of resources, <code>NextToken</code>
-        /// allows you to return more items in your list starting at the location pointed to by
-        /// the next token.
+        /// is made to return <c>maxResults</c> number of resources, <c>NextToken</c> allows you
+        /// to return more items in your list starting at the location pointed to by the next
+        /// token.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]

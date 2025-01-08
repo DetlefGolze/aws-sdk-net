@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElasticLoadBalancingV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -286,6 +287,29 @@ namespace Amazon.ElasticLoadBalancingV2.Model.Internal.MarshallTransformations
                 if(publicRequest.IsSetListenerArn())
                 {
                     request.Parameters.Add("ListenerArn", StringUtils.FromString(publicRequest.ListenerArn));
+                }
+                if(publicRequest.IsSetMutualAuthentication())
+                {
+                    if(publicRequest.MutualAuthentication.IsSetAdvertiseTrustStoreCaNames())
+                    {
+                        request.Parameters.Add("MutualAuthentication" + "." + "AdvertiseTrustStoreCaNames", StringUtils.FromString(publicRequest.MutualAuthentication.AdvertiseTrustStoreCaNames));
+                    }
+                    if(publicRequest.MutualAuthentication.IsSetIgnoreClientCertificateExpiry())
+                    {
+                        request.Parameters.Add("MutualAuthentication" + "." + "IgnoreClientCertificateExpiry", StringUtils.FromBool(publicRequest.MutualAuthentication.IgnoreClientCertificateExpiry));
+                    }
+                    if(publicRequest.MutualAuthentication.IsSetMode())
+                    {
+                        request.Parameters.Add("MutualAuthentication" + "." + "Mode", StringUtils.FromString(publicRequest.MutualAuthentication.Mode));
+                    }
+                    if(publicRequest.MutualAuthentication.IsSetTrustStoreArn())
+                    {
+                        request.Parameters.Add("MutualAuthentication" + "." + "TrustStoreArn", StringUtils.FromString(publicRequest.MutualAuthentication.TrustStoreArn));
+                    }
+                    if(publicRequest.MutualAuthentication.IsSetTrustStoreAssociationStatus())
+                    {
+                        request.Parameters.Add("MutualAuthentication" + "." + "TrustStoreAssociationStatus", StringUtils.FromString(publicRequest.MutualAuthentication.TrustStoreAssociationStatus));
+                    }
                 }
                 if(publicRequest.IsSetPort())
                 {

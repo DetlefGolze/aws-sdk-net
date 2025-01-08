@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -36,8 +37,10 @@ namespace Amazon.CloudWatchLogs.Model
         private string _arn;
         private DateTime? _creationTime;
         private DataProtectionStatus _dataProtectionStatus;
-        private List<string> _inheritedProperties = new List<string>();
+        private List<string> _inheritedProperties = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _kmsKeyId;
+        private string _logGroupArn;
+        private LogGroupClass _logGroupClass;
         private string _logGroupName;
         private int? _metricFilterCount;
         private int? _retentionInDays;
@@ -46,7 +49,17 @@ namespace Amazon.CloudWatchLogs.Model
         /// <summary>
         /// Gets and sets the property Arn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the log group.
+        /// The Amazon Resource Name (ARN) of the log group. This version of the ARN includes
+        /// a trailing <c>:*</c> after the log group name. 
+        /// </para>
+        ///  
+        /// <para>
+        /// Use this version to refer to the ARN in IAM policies when specifying permissions for
+        /// most API actions. The exception is when specifying permissions for <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_TagResource.html">TagResource</a>,
+        /// <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_UntagResource.html">UntagResource</a>,
+        /// and <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_ListTagsForResource.html">ListTagsForResource</a>.
+        /// The permissions for those three actions require the ARN version that doesn't include
+        /// a trailing <c>:*</c>.
         /// </para>
         /// </summary>
         public string Arn
@@ -115,7 +128,7 @@ namespace Amazon.CloudWatchLogs.Model
         // Check to see if InheritedProperties property is set
         internal bool IsSetInheritedProperties()
         {
-            return this._inheritedProperties != null && this._inheritedProperties.Count > 0; 
+            return this._inheritedProperties != null && (this._inheritedProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -135,6 +148,76 @@ namespace Amazon.CloudWatchLogs.Model
         internal bool IsSetKmsKeyId()
         {
             return this._kmsKeyId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property LogGroupArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the log group. This version of the ARN doesn't include
+        /// a trailing <c>:*</c> after the log group name. 
+        /// </para>
+        ///  
+        /// <para>
+        /// Use this version to refer to the ARN in the following situations:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// In the <c>logGroupIdentifier</c> input field in many CloudWatch Logs APIs.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// In the <c>resourceArn</c> field in tagging APIs
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// In IAM policies, when specifying permissions for <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_TagResource.html">TagResource</a>,
+        /// <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_UntagResource.html">UntagResource</a>,
+        /// and <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_ListTagsForResource.html">ListTagsForResource</a>.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public string LogGroupArn
+        {
+            get { return this._logGroupArn; }
+            set { this._logGroupArn = value; }
+        }
+
+        // Check to see if LogGroupArn property is set
+        internal bool IsSetLogGroupArn()
+        {
+            return this._logGroupArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property LogGroupClass. 
+        /// <para>
+        /// This specifies the log group class for this log group. There are two classes:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// The <c>Standard</c> log class supports all CloudWatch Logs features.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The <c>Infrequent Access</c> log class supports a subset of CloudWatch Logs features
+        /// and incurs lower costs.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For details about the features supported by each class, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html">Log
+        /// classes</a> 
+        /// </para>
+        /// </summary>
+        public LogGroupClass LogGroupClass
+        {
+            get { return this._logGroupClass; }
+            set { this._logGroupClass = value; }
+        }
+
+        // Check to see if LogGroupClass property is set
+        internal bool IsSetLogGroupClass()
+        {
+            return this._logGroupClass != null;
         }
 
         /// <summary>

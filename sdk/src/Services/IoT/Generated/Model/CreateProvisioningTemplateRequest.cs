@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.IoT.Model
         private bool? _enabled;
         private ProvisioningHook _preProvisioningHook;
         private string _provisioningRoleArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _templateBody;
         private string _templateName;
         private TemplateType _type;
@@ -89,7 +90,7 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property PreProvisioningHook. 
         /// <para>
-        /// Creates a pre-provisioning hook template. Only supports template of type <code>FLEET_PROVISIONING</code>.
+        /// Creates a pre-provisioning hook template. Only supports template of type <c>FLEET_PROVISIONING</c>.
         /// For more information about provisioning template types, see <a href="https://docs.aws.amazon.com/iot/latest/apireference/API_CreateProvisioningTemplate.html#iot-CreateProvisioningTemplate-request-type">type</a>.
         /// </para>
         /// </summary>
@@ -153,7 +154,7 @@ namespace Amazon.IoT.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -199,8 +200,8 @@ namespace Amazon.IoT.Model
         /// <para>
         /// The type you define in a provisioning template. You can create a template with only
         /// one type. You can't change the template type after its creation. The default value
-        /// is <code>FLEET_PROVISIONING</code>. For more information about provisioning template,
-        /// see: <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html">Provisioning
+        /// is <c>FLEET_PROVISIONING</c>. For more information about provisioning template, see:
+        /// <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html">Provisioning
         /// template</a>. 
         /// </para>
         /// </summary>

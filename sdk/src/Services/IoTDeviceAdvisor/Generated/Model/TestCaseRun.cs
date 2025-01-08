@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTDeviceAdvisor.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.IoTDeviceAdvisor.Model
         private string _testCaseDefinitionId;
         private string _testCaseDefinitionName;
         private string _testCaseRunId;
-        private List<TestCaseScenario> _testScenarios = new List<TestCaseScenario>();
+        private List<TestCaseScenario> _testScenarios = AWSConfigs.InitializeCollections ? new List<TestCaseScenario>() : null;
         private string _warnings;
 
         /// <summary>
@@ -123,37 +124,37 @@ namespace Amazon.IoTDeviceAdvisor.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PASS</code>: Test passed.
+        ///  <c>PASS</c>: Test passed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAIL</code>: Test failed.
+        ///  <c>FAIL</c>: Test failed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PENDING</code>: Test has not started running but is scheduled.
+        ///  <c>PENDING</c>: Test has not started running but is scheduled.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RUNNING</code>: Test is running.
+        ///  <c>RUNNING</c>: Test is running.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>STOPPING</code>: Test is performing cleanup steps. You will see this status
-        /// only if you stop a suite run.
+        ///  <c>STOPPING</c>: Test is performing cleanup steps. You will see this status only
+        /// if you stop a suite run.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>STOPPED</code> Test is stopped. You will see this status only if you stop a
-        /// suite run.
+        ///  <c>STOPPED</c> Test is stopped. You will see this status only if you stop a suite
+        /// run.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PASS_WITH_WARNINGS</code>: Test passed with warnings.
+        ///  <c>PASS_WITH_WARNINGS</c>: Test passed with warnings.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ERORR</code>: Test faced an error when running due to an internal issue.
+        ///  <c>ERORR</c>: Test faced an error when running due to an internal issue.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -240,7 +241,7 @@ namespace Amazon.IoTDeviceAdvisor.Model
         // Check to see if TestScenarios property is set
         internal bool IsSetTestScenarios()
         {
-            return this._testScenarios != null && this._testScenarios.Count > 0; 
+            return this._testScenarios != null && (this._testScenarios.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

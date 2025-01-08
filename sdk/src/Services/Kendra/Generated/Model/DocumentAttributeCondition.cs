@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -45,8 +46,8 @@ namespace Amazon.Kendra.Model
     /// <para>
     /// Amazon Kendra cannot create a target field if it has not already been created as an
     /// index field. After you create your index field, you can create a document metadata
-    /// field using <code>DocumentAttributeTarget</code>. Amazon Kendra then will map your
-    /// newly created metadata field to your index field.
+    /// field using <c>DocumentAttributeTarget</c>. Amazon Kendra then will map your newly
+    /// created metadata field to your index field.
     /// </para>
     /// </summary>
     public partial class DocumentAttributeCondition
@@ -67,8 +68,8 @@ namespace Amazon.Kendra.Model
         /// </para>
         ///  
         /// <para>
-        /// Amazon Kendra currently does not support <code>_document_body</code> as an attribute
-        /// key used for the condition.
+        /// Amazon Kendra currently does not support <c>_document_body</c> as an attribute key
+        /// used for the condition.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=200)]

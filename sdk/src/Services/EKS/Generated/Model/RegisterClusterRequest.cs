@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -39,20 +40,20 @@ namespace Amazon.EKS.Model
     /// </para>
     ///  
     /// <para>
-    /// Cluster connection requires two steps. First, send a <code> <a>RegisterClusterRequest</a>
-    /// </code> to add it to the Amazon EKS control plane.
+    /// Cluster connection requires two steps. First, send a <c> <a>RegisterClusterRequest</a>
+    /// </c> to add it to the Amazon EKS control plane.
     /// </para>
     ///  
     /// <para>
     /// Second, a <a href="https://amazon-eks.s3.us-west-2.amazonaws.com/eks-connector/manifests/eks-connector/latest/eks-connector.yaml">Manifest</a>
-    /// containing the <code>activationID</code> and <code>activationCode</code> must be applied
-    /// to the Kubernetes cluster through it's native provider to provide visibility.
+    /// containing the <c>activationID</c> and <c>activationCode</c> must be applied to the
+    /// Kubernetes cluster through it's native provider to provide visibility.
     /// </para>
     ///  
     /// <para>
-    /// After the Manifest is updated and applied, then the connected cluster is visible to
-    /// the Amazon EKS control plane. If the Manifest is not applied within three days, then
-    /// the connected cluster will no longer be visible and must be deregistered. See <a>DeregisterCluster</a>.
+    /// After the manifest is updated and applied, the connected cluster is visible to the
+    /// Amazon EKS control plane. If the manifest isn't applied within three days, the connected
+    /// cluster will no longer be visible and must be deregistered using <c>DeregisterCluster</c>.
     /// </para>
     /// </summary>
     public partial class RegisterClusterRequest : AmazonEKSRequest
@@ -60,13 +61,13 @@ namespace Amazon.EKS.Model
         private string _clientRequestToken;
         private ConnectorConfigRequest _connectorConfig;
         private string _name;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
-        /// Unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        /// request.
+        /// A unique, case-sensitive identifier that you provide to ensure the idempotency of
+        /// the request.
         /// </para>
         /// </summary>
         public string ClientRequestToken
@@ -104,7 +105,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// Define a unique name for this cluster for your Region.
+        /// A unique name for this cluster in your Amazon Web Services Region.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]
@@ -123,9 +124,9 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// The metadata that you apply to the cluster to assist with categorization and organization.
-        /// Each tag consists of a key and an optional value, both of which you define. Cluster
-        /// tags do not propagate to any other resources associated with the cluster.
+        /// Metadata that assists with categorization and organization. Each tag consists of a
+        /// key and an optional value. You define both. Tags don't propagate to any other cluster
+        /// or Amazon Web Services resources.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -138,7 +139,7 @@ namespace Amazon.EKS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

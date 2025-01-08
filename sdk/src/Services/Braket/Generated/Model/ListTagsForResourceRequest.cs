@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Braket.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.Braket.Model
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// Specify the <code>resourceArn</code> for the resource whose tags to display.
+        /// Specify the <c>resourceArn</c> for the resource whose tags to display.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

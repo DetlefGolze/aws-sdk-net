@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -78,8 +79,8 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// A descriptive label associated with a build. Build names don't need to be unique.
-        /// 
+        /// A descriptive label that is associated with a build. Build names do not need to be
+        /// unique. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -98,8 +99,8 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property Version. 
         /// <para>
-        /// Version information associated with a build or script. Version strings don't need
-        /// to be unique.
+        /// Version information that is associated with a build or script. Version strings do
+        /// not need to be unique.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

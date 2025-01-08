@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateForecast operation.
-    /// Creates a forecast for each item in the <code>TARGET_TIME_SERIES</code> dataset that
-    /// was used to train the predictor. This is known as inference. To retrieve the forecast
+    /// Creates a forecast for each item in the <c>TARGET_TIME_SERIES</c> dataset that was
+    /// used to train the predictor. This is known as inference. To retrieve the forecast
     /// for a single item at low latency, use the operation. To export the complete forecast
     /// into your Amazon Simple Storage Service (Amazon S3) bucket, use the <a>CreateForecastExportJob</a>
     /// operation.
     /// 
     ///  
     /// <para>
-    /// The range of the forecast is determined by the <code>ForecastHorizon</code> value,
-    /// which you specify in the <a>CreatePredictor</a> request. When you query a forecast,
-    /// you can request a specific date range within the forecast.
+    /// The range of the forecast is determined by the <c>ForecastHorizon</c> value, which
+    /// you specify in the <a>CreatePredictor</a> request. When you query a forecast, you
+    /// can request a specific date range within the forecast.
     /// </para>
     ///  
     /// <para>
@@ -57,26 +58,24 @@ namespace Amazon.ForecastService.Model
     /// </para>
     ///  <note> 
     /// <para>
-    /// The <code>Status</code> of the forecast must be <code>ACTIVE</code> before you can
-    /// query or export the forecast. Use the <a>DescribeForecast</a> operation to get the
-    /// status.
+    /// The <c>Status</c> of the forecast must be <c>ACTIVE</c> before you can query or export
+    /// the forecast. Use the <a>DescribeForecast</a> operation to get the status.
     /// </para>
     ///  </note> 
     /// <para>
-    /// By default, a forecast includes predictions for every item (<code>item_id</code>)
-    /// in the dataset group that was used to train the predictor. However, you can use the
-    /// <code>TimeSeriesSelector</code> object to generate a forecast on a subset of time
-    /// series. Forecast creation is skipped for any time series that you specify that are
-    /// not in the input dataset. The forecast export file will not contain these time series
-    /// or their forecasted values.
+    /// By default, a forecast includes predictions for every item (<c>item_id</c>) in the
+    /// dataset group that was used to train the predictor. However, you can use the <c>TimeSeriesSelector</c>
+    /// object to generate a forecast on a subset of time series. Forecast creation is skipped
+    /// for any time series that you specify that are not in the input dataset. The forecast
+    /// export file will not contain these time series or their forecasted values.
     /// </para>
     /// </summary>
     public partial class CreateForecastRequest : AmazonForecastServiceRequest
     {
         private string _forecastName;
-        private List<string> _forecastTypes = new List<string>();
+        private List<string> _forecastTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _predictorArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private TimeSeriesSelector _timeSeriesSelector;
 
         /// <summary>
@@ -102,15 +101,15 @@ namespace Amazon.ForecastService.Model
         /// Gets and sets the property ForecastTypes. 
         /// <para>
         /// The quantiles at which probabilistic forecasts are generated. <b>You can currently
-        /// specify up to 5 quantiles per forecast</b>. Accepted values include <code>0.01 to
-        /// 0.99</code> (increments of .01 only) and <code>mean</code>. The mean forecast is different
-        /// from the median (0.50) when the distribution is not symmetric (for example, Beta and
-        /// Negative Binomial). 
+        /// specify up to 5 quantiles per forecast</b>. Accepted values include <c>0.01 to 0.99</c>
+        /// (increments of .01 only) and <c>mean</c>. The mean forecast is different from the
+        /// median (0.50) when the distribution is not symmetric (for example, Beta and Negative
+        /// Binomial). 
         /// </para>
         ///  
         /// <para>
         /// The default quantiles are the quantiles you specified during predictor creation. If
-        /// you didn't specify quantiles, the default values are <code>["0.1", "0.5", "0.9"]</code>.
+        /// you didn't specify quantiles, the default values are <c>["0.1", "0.5", "0.9"]</c>.
         /// 
         /// </para>
         /// </summary>
@@ -124,7 +123,7 @@ namespace Amazon.ForecastService.Model
         // Check to see if ForecastTypes property is set
         internal bool IsSetForecastTypes()
         {
-            return this._forecastTypes != null && this._forecastTypes.Count > 0; 
+            return this._forecastTypes != null && (this._forecastTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -186,12 +185,12 @@ namespace Amazon.ForecastService.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Do not use <code>aws:</code>, <code>AWS:</code>, or any upper or lowercase combination
-        /// of such as a prefix for keys as it is reserved for Amazon Web Services use. You cannot
-        /// edit or delete tag keys with this prefix. Values can have this prefix. If a tag value
-        /// has <code>aws</code> as its prefix but the key does not, then Forecast considers it
-        /// to be a user tag and will count against the limit of 50 tags. Tags with only the key
-        /// prefix of <code>aws</code> do not count against your tags per resource limit.
+        /// Do not use <c>aws:</c>, <c>AWS:</c>, or any upper or lowercase combination of such
+        /// as a prefix for keys as it is reserved for Amazon Web Services use. You cannot edit
+        /// or delete tag keys with this prefix. Values can have this prefix. If a tag value has
+        /// <c>aws</c> as its prefix but the key does not, then Forecast considers it to be a
+        /// user tag and will count against the limit of 50 tags. Tags with only the key prefix
+        /// of <c>aws</c> do not count against your tags per resource limit.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -205,30 +204,30 @@ namespace Amazon.ForecastService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TimeSeriesSelector. 
         /// <para>
-        /// Defines the set of time series that are used to create the forecasts in a <code>TimeSeriesIdentifiers</code>
+        /// Defines the set of time series that are used to create the forecasts in a <c>TimeSeriesIdentifiers</c>
         /// object.
         /// </para>
         ///  
         /// <para>
-        /// The <code>TimeSeriesIdentifiers</code> object needs the following information:
+        /// The <c>TimeSeriesIdentifiers</c> object needs the following information:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>DataSource</code> 
+        ///  <c>DataSource</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Format</code> 
+        ///  <c>Format</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Schema</code> 
+        ///  <c>Schema</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

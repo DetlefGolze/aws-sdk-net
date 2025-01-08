@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.EventBridge.Model
         /// Gets and sets the property Expression. 
         /// <para>
         /// A cluster query language expression to apply to the constraint. You cannot specify
-        /// an expression if the constraint type is <code>distinctInstance</code>. To learn more,
-        /// see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-query-language.html">Cluster
+        /// an expression if the constraint type is <c>distinctInstance</c>. To learn more, see
+        /// <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-query-language.html">Cluster
         /// Query Language</a> in the Amazon Elastic Container Service Developer Guide. 
         /// </para>
         /// </summary>

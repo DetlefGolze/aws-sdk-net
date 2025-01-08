@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.DocDB.Model
     {
         private string _dbClusterIdentifier;
         private string _dbClusterSnapshotIdentifier;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property DBClusterIdentifier. 
@@ -50,11 +51,11 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Must match the identifier of an existing <code>DBCluster</code>.
+        /// Must match the identifier of an existing <c>DBCluster</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>my-cluster</code> 
+        /// Example: <c>my-cluster</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -93,7 +94,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>my-cluster-snapshot1</code> 
+        /// Example: <c>my-cluster-snapshot1</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -124,7 +125,7 @@ namespace Amazon.DocDB.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

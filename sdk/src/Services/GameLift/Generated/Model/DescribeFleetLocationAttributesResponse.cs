@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.GameLift.Model
     {
         private string _fleetArn;
         private string _fleetId;
-        private List<LocationAttributes> _locationAttributes = new List<LocationAttributes>();
+        private List<LocationAttributes> _locationAttributes = AWSConfigs.InitializeCollections ? new List<LocationAttributes>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -43,9 +44,10 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// The Amazon Resource Name (<a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
         /// that is assigned to a Amazon GameLift fleet resource and uniquely identifies it. ARNs
-        /// are unique across all Regions. Format is <code>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+        /// are unique across all Regions. Format is <c>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</c>.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=512)]
         public string FleetArn
         {
             get { return this._fleetArn; }
@@ -64,6 +66,7 @@ namespace Amazon.GameLift.Model
         /// A unique identifier for the fleet that location attributes were requested for.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -91,7 +94,7 @@ namespace Amazon.GameLift.Model
         // Check to see if LocationAttributes property is set
         internal bool IsSetLocationAttributes()
         {
-            return this._locationAttributes != null && this._locationAttributes.Count > 0; 
+            return this._locationAttributes != null && (this._locationAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeArtifact.Model
 {
     /// <summary>
@@ -33,38 +34,38 @@ namespace Amazon.CodeArtifact.Model
     /// </summary>
     public partial class CopyPackageVersionsResponse : AmazonWebServiceResponse
     {
-        private Dictionary<string, PackageVersionError> _failedVersions = new Dictionary<string, PackageVersionError>();
-        private Dictionary<string, SuccessfulPackageVersionInfo> _successfulVersions = new Dictionary<string, SuccessfulPackageVersionInfo>();
+        private Dictionary<string, PackageVersionError> _failedVersions = AWSConfigs.InitializeCollections ? new Dictionary<string, PackageVersionError>() : null;
+        private Dictionary<string, SuccessfulPackageVersionInfo> _successfulVersions = AWSConfigs.InitializeCollections ? new Dictionary<string, SuccessfulPackageVersionInfo>() : null;
 
         /// <summary>
         /// Gets and sets the property FailedVersions. 
         /// <para>
         ///  A map of package versions that failed to copy and their error codes. The possible
-        /// error codes are in the <code>PackageVersionError</code> data type. They are: 
+        /// error codes are in the <c>PackageVersionError</c> data type. They are: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ALREADY_EXISTS</code> 
+        ///  <c>ALREADY_EXISTS</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MISMATCHED_REVISION</code> 
+        ///  <c>MISMATCHED_REVISION</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MISMATCHED_STATUS</code> 
+        ///  <c>MISMATCHED_STATUS</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NOT_ALLOWED</code> 
+        ///  <c>NOT_ALLOWED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NOT_FOUND</code> 
+        ///  <c>NOT_FOUND</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SKIPPED</code> 
+        ///  <c>SKIPPED</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -77,7 +78,7 @@ namespace Amazon.CodeArtifact.Model
         // Check to see if FailedVersions property is set
         internal bool IsSetFailedVersions()
         {
-            return this._failedVersions != null && this._failedVersions.Count > 0; 
+            return this._failedVersions != null && (this._failedVersions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -96,7 +97,7 @@ namespace Amazon.CodeArtifact.Model
         // Check to see if SuccessfulVersions property is set
         internal bool IsSetSuccessfulVersions()
         {
-            return this._successfulVersions != null && this._successfulVersions.Count > 0; 
+            return this._successfulVersions != null && (this._successfulVersions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

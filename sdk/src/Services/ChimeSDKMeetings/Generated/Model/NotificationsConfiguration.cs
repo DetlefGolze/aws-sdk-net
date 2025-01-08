@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMeetings.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.ChimeSDKMeetings.Model
         /// <summary>
         /// Gets and sets the property LambdaFunctionArn. 
         /// <para>
-        /// The ARN of the AWS Lambda function in the notifications configuration.
+        /// The ARN of the Amazon Web Services Lambda function in the notifications configuration.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=1024)]

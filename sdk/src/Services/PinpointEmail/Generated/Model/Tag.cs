@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointEmail.Model
 {
     /// <summary>
@@ -55,10 +56,10 @@ namespace Amazon.PinpointEmail.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// The <code>aws:</code> prefix is reserved for use by AWS; you can’t use it in any tag
-    /// keys or values that you define. In addition, you can't edit or remove tag keys or
-    /// values that use this prefix. Tags that use this prefix don’t count against the limit
-    /// of 50 tags per resource.
+    /// The <c>aws:</c> prefix is reserved for use by AWS; you can’t use it in any tag keys
+    /// or values that you define. In addition, you can't edit or remove tag keys or values
+    /// that use this prefix. Tags that use this prefix don’t count against the limit of 50
+    /// tags per resource.
     /// </para>
     ///  </li> <li> 
     /// <para>

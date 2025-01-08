@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MWAA.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.MWAA.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Environment Unmarshall(JsonUnmarshallerContext context)
         {
+            Environment unmarshalledObject = new Environment();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Environment unmarshalledObject = new Environment();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -82,6 +84,12 @@ namespace Amazon.MWAA.Model.Internal.MarshallTransformations
                     unmarshalledObject.Arn = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("CeleryExecutorQueue", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.CeleryExecutorQueue = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("CreatedAt", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
@@ -92,6 +100,18 @@ namespace Amazon.MWAA.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.DagS3Path = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("DatabaseVpcEndpointService", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DatabaseVpcEndpointService = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("EndpointManagement", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.EndpointManagement = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("EnvironmentClass", targetDepth))
@@ -124,10 +144,22 @@ namespace Amazon.MWAA.Model.Internal.MarshallTransformations
                     unmarshalledObject.LoggingConfiguration = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("MaxWebservers", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.MaxWebservers = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("MaxWorkers", targetDepth))
                 {
                     var unmarshaller = IntUnmarshaller.Instance;
                     unmarshalledObject.MaxWorkers = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("MinWebservers", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.MinWebservers = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("MinWorkers", targetDepth))
@@ -226,6 +258,12 @@ namespace Amazon.MWAA.Model.Internal.MarshallTransformations
                     unmarshalledObject.WebserverUrl = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("WebserverVpcEndpointService", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.WebserverVpcEndpointService = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("WeeklyMaintenanceWindowStart", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -233,7 +271,6 @@ namespace Amazon.MWAA.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ConfigService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.ConfigService.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ConfigurationAggregator Unmarshall(JsonUnmarshallerContext context)
         {
+            ConfigurationAggregator unmarshalledObject = new ConfigurationAggregator();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ConfigurationAggregator unmarshalledObject = new ConfigurationAggregator();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -68,6 +70,12 @@ namespace Amazon.ConfigService.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = new ListUnmarshaller<AccountAggregationSource, AccountAggregationSourceUnmarshaller>(AccountAggregationSourceUnmarshaller.Instance);
                     unmarshalledObject.AccountAggregationSources = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("AggregatorFilters", targetDepth))
+                {
+                    var unmarshaller = AggregatorFiltersUnmarshaller.Instance;
+                    unmarshalledObject.AggregatorFilters = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("ConfigurationAggregatorArn", targetDepth))
@@ -107,7 +115,6 @@ namespace Amazon.ConfigService.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

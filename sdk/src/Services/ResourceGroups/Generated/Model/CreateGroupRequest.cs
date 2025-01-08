@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroups.Model
 {
     /// <summary>
@@ -48,17 +49,20 @@ namespace Amazon.ResourceGroups.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>resource-groups:CreateGroup</code> 
+    ///  <c>resource-groups:CreateGroup</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>
     public partial class CreateGroupRequest : AmazonResourceGroupsRequest
     {
-        private List<GroupConfigurationItem> _configuration = new List<GroupConfigurationItem>();
+        private List<GroupConfigurationItem> _configuration = AWSConfigs.InitializeCollections ? new List<GroupConfigurationItem>() : null;
+        private int? _criticality;
         private string _description;
+        private string _displayName;
         private string _name;
+        private string _owner;
         private ResourceQuery _resourceQuery;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Configuration. 
@@ -71,7 +75,7 @@ namespace Amazon.ResourceGroups.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// A resource group can contain either a <code>Configuration</code> or a <code>ResourceQuery</code>,
+        /// A resource group can contain either a <c>Configuration</c> or a <c>ResourceQuery</c>,
         /// but not both.
         /// </para>
         ///  </note>
@@ -86,7 +90,27 @@ namespace Amazon.ResourceGroups.Model
         // Check to see if Configuration property is set
         internal bool IsSetConfiguration()
         {
-            return this._configuration != null && this._configuration.Count > 0; 
+            return this._configuration != null && (this._configuration.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Criticality. 
+        /// <para>
+        /// The critical rank of the application group on a scale of 1 to 10, with a rank of 1
+        /// being the most critical, and a rank of 10 being least critical.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=10)]
+        public int Criticality
+        {
+            get { return this._criticality.GetValueOrDefault(); }
+            set { this._criticality = value; }
+        }
+
+        // Check to see if Criticality property is set
+        internal bool IsSetCriticality()
+        {
+            return this._criticality.HasValue; 
         }
 
         /// <summary>
@@ -110,14 +134,33 @@ namespace Amazon.ResourceGroups.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DisplayName. 
+        /// <para>
+        /// The name of the application group, which you can change at any time. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=300)]
+        public string DisplayName
+        {
+            get { return this._displayName; }
+            set { this._displayName = value; }
+        }
+
+        // Check to see if DisplayName property is set
+        internal bool IsSetDisplayName()
+        {
+            return this._displayName != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
         /// The name of the group, which is the identifier of the group in other operations. You
         /// can't change the name of a resource group after you create it. A resource group name
         /// can consist of letters, numbers, hyphens, periods, and underscores. The name cannot
-        /// start with <code>AWS</code> or <code>aws</code>; these are reserved. A resource group
-        /// name must be unique within each Amazon Web Services Region in your Amazon Web Services
-        /// account.
+        /// start with <c>AWS</c>, <c>aws</c>, or any other possible capitalization; these are
+        /// reserved. A resource group name must be unique within each Amazon Web Services Region
+        /// in your Amazon Web Services account.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=300)]
@@ -134,6 +177,26 @@ namespace Amazon.ResourceGroups.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Owner. 
+        /// <para>
+        /// A name, email address or other identifier for the person or group who is considered
+        /// as the owner of this application group within your organization. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=300)]
+        public string Owner
+        {
+            get { return this._owner; }
+            set { this._owner = value; }
+        }
+
+        // Check to see if Owner property is set
+        internal bool IsSetOwner()
+        {
+            return this._owner != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ResourceQuery. 
         /// <para>
         /// The resource query that determines which Amazon Web Services resources are members
@@ -142,7 +205,7 @@ namespace Amazon.ResourceGroups.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// A resource group can contain either a <code>ResourceQuery</code> or a <code>Configuration</code>,
+        /// A resource group can contain either a <c>ResourceQuery</c> or a <c>Configuration</c>,
         /// but not both.
         /// </para>
         ///  </note>
@@ -174,7 +237,7 @@ namespace Amazon.ResourceGroups.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ConfigService.Model
     /// </summary>
     public partial class OrganizationConfigRule
     {
-        private List<string> _excludedAccounts = new List<string>();
+        private List<string> _excludedAccounts = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _lastUpdateTime;
         private string _organizationConfigRuleArn;
         private string _organizationConfigRuleName;
@@ -58,7 +59,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if ExcludedAccounts property is set
         internal bool IsSetExcludedAccounts()
         {
-            return this._excludedAccounts != null && this._excludedAccounts.Count > 0; 
+            return this._excludedAccounts != null && (this._excludedAccounts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -142,7 +143,7 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property OrganizationCustomRuleMetadata. 
         /// <para>
-        /// An <code>OrganizationCustomRuleMetadata</code> object.
+        /// An <c>OrganizationCustomRuleMetadata</c> object.
         /// </para>
         /// </summary>
         public OrganizationCustomRuleMetadata OrganizationCustomRuleMetadata
@@ -160,7 +161,7 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property OrganizationManagedRuleMetadata. 
         /// <para>
-        /// An <code>OrganizationManagedRuleMetadata</code> object.
+        /// An <c>OrganizationManagedRuleMetadata</c> object.
         /// </para>
         /// </summary>
         public OrganizationManagedRuleMetadata OrganizationManagedRuleMetadata

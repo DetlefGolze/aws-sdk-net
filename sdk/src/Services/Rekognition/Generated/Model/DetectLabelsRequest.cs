@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -52,25 +53,25 @@ namespace Amazon.Rekognition.Model
     /// </para>
     ///  
     /// <para>
-    /// You can specify one or both of the <code>GENERAL_LABELS</code> and <code>IMAGE_PROPERTIES</code>
-    /// feature types when calling the DetectLabels API. Including <code>GENERAL_LABELS</code>
-    /// will ensure the response includes the labels detected in the input image, while including
-    /// <code>IMAGE_PROPERTIES </code>will ensure the response includes information about
-    /// the image quality and color.
+    /// You can specify one or both of the <c>GENERAL_LABELS</c> and <c>IMAGE_PROPERTIES</c>
+    /// feature types when calling the DetectLabels API. Including <c>GENERAL_LABELS</c> will
+    /// ensure the response includes the labels detected in the input image, while including
+    /// <c>IMAGE_PROPERTIES </c>will ensure the response includes information about the image
+    /// quality and color.
     /// </para>
     ///  
     /// <para>
-    /// When using <code>GENERAL_LABELS</code> and/or <code>IMAGE_PROPERTIES</code> you can
-    /// provide filtering criteria to the Settings parameter. You can filter with sets of
-    /// individual labels or with label categories. You can specify inclusive filters, exclusive
-    /// filters, or a combination of inclusive and exclusive filters. For more information
-    /// on filtering see <a href="https://docs.aws.amazon.com/rekognition/latest/dg/labels-detect-labels-image.html">Detecting
+    /// When using <c>GENERAL_LABELS</c> and/or <c>IMAGE_PROPERTIES</c> you can provide filtering
+    /// criteria to the Settings parameter. You can filter with sets of individual labels
+    /// or with label categories. You can specify inclusive filters, exclusive filters, or
+    /// a combination of inclusive and exclusive filters. For more information on filtering
+    /// see <a href="https://docs.aws.amazon.com/rekognition/latest/dg/labels-detect-labels-image.html">Detecting
     /// Labels in an Image</a>.
     /// </para>
     ///  
     /// <para>
-    /// When getting labels, you can specify <code>MinConfidence</code> to control the confidence
-    /// threshold for the labels returned. The default is 55%. You can also add the <code>MaxLabels</code>
+    /// When getting labels, you can specify <c>MinConfidence</c> to control the confidence
+    /// threshold for the labels returned. The default is 55%. You can also add the <c>MaxLabels</c>
     /// parameter to limit the number of labels returned. The default and upper limit is 1000
     /// labels. These arguments are only valid when supplying GENERAL_LABELS as a feature
     /// type.
@@ -151,15 +152,15 @@ namespace Amazon.Rekognition.Model
     /// </para>
     ///  
     /// <para>
-    ///  <code>{Name: lighthouse, Confidence: 98.4629}</code> 
+    ///  <c>{Name: lighthouse, Confidence: 98.4629}</c> 
     /// </para>
     ///  
     /// <para>
-    ///  <code>{Name: rock,Confidence: 79.2097}</code> 
+    ///  <c>{Name: rock,Confidence: 79.2097}</c> 
     /// </para>
     ///  
     /// <para>
-    ///  <code> {Name: sea,Confidence: 75.061}</code> 
+    ///  <c> {Name: sea,Confidence: 75.061}</c> 
     /// </para>
     ///  
     /// <para>
@@ -169,15 +170,15 @@ namespace Amazon.Rekognition.Model
     /// </para>
     ///  
     /// <para>
-    ///  <code>{Name: flower,Confidence: 99.0562}</code> 
+    ///  <c>{Name: flower,Confidence: 99.0562}</c> 
     /// </para>
     ///  
     /// <para>
-    ///  <code>{Name: plant,Confidence: 99.0562}</code> 
+    ///  <c>{Name: plant,Confidence: 99.0562}</c> 
     /// </para>
     ///  
     /// <para>
-    ///  <code>{Name: tulip,Confidence: 99.0562}</code> 
+    ///  <c>{Name: tulip,Confidence: 99.0562}</c> 
     /// </para>
     ///  
     /// <para>
@@ -195,13 +196,13 @@ namespace Amazon.Rekognition.Model
     /// </para>
     ///  
     /// <para>
-    /// This operation requires permissions to perform the <code>rekognition:DetectLabels</code>
+    /// This operation requires permissions to perform the <c>rekognition:DetectLabels</c>
     /// action. 
     /// </para>
     /// </summary>
     public partial class DetectLabelsRequest : AmazonRekognitionRequest
     {
-        private List<string> _features = new List<string>();
+        private List<string> _features = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private Image _image;
         private int? _maxLabels;
         private float? _minConfidence;
@@ -225,7 +226,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if Features property is set
         internal bool IsSetFeatures()
         {
-            return this._features != null && this._features.Count > 0; 
+            return this._features != null && (this._features.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -238,7 +239,7 @@ namespace Amazon.Rekognition.Model
         ///  
         /// <para>
         /// If you are using an AWS SDK to call Amazon Rekognition, you might not need to base64-encode
-        /// image bytes passed using the <code>Bytes</code> field. For more information, see Images
+        /// image bytes passed using the <c>Bytes</c> field. For more information, see Images
         /// in the Amazon Rekognition developer guide.
         /// </para>
         /// </summary>
@@ -284,9 +285,9 @@ namespace Amazon.Rekognition.Model
         /// </para>
         ///  
         /// <para>
-        /// If <code>MinConfidence</code> is not specified, the operation returns labels with
-        /// a confidence values greater than or equal to 55 percent. Only valid when GENERAL_LABELS
-        /// is specified as a feature type in the Feature input parameter.
+        /// If <c>MinConfidence</c> is not specified, the operation returns labels with a confidence
+        /// values greater than or equal to 55 percent. Only valid when GENERAL_LABELS is specified
+        /// as a feature type in the Feature input parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]

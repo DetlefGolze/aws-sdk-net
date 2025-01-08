@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -41,11 +42,11 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// Use <code>Marker</code> and <code>MaxItems</code> to control pagination of results.
-        /// If you have more than <code>MaxItems</code> distributions that satisfy the request,
-        /// the response includes a <code>NextMarker</code> element. To get the next page of results,
-        /// submit another request. For the value of <code>Marker</code>, specify the value of
-        /// <code>NextMarker</code> from the last response. (For the first request, omit <code>Marker</code>.)
+        /// Use <c>Marker</c> and <c>MaxItems</c> to control pagination of results. If you have
+        /// more than <c>MaxItems</c> distributions that satisfy the request, the response includes
+        /// a <c>NextMarker</c> element. To get the next page of results, submit another request.
+        /// For the value of <c>Marker</c>, specify the value of <c>NextMarker</c> from the last
+        /// response. (For the first request, omit <c>Marker</c>.)
         /// </para>
         /// </summary>
         public string Marker
@@ -84,7 +85,15 @@ namespace Amazon.CloudFront.Model
         /// <para>
         /// The ID of the WAF web ACL that you want to list the associated distributions. If you
         /// specify "null" for the ID, the request returns a list of the distributions that aren't
-        /// associated with a web ACL.
+        /// associated with a web ACL. 
+        /// </para>
+        ///  
+        /// <para>
+        /// For WAFV2, this is the ARN of the web ACL, such as <c>arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For WAF Classic, this is the ID of the web ACL, such as <c>a1b2c3d4-5678-90ab-cdef-EXAMPLE11111</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

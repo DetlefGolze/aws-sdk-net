@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.ElasticFileSystem.Model
     /// 
     ///  
     /// <para>
-    /// This operation requires permissions for the <code>elasticfilesystem:DeleteAccessPoint</code>
+    /// This operation requires permissions for the <c>elasticfilesystem:DeleteAccessPoint</c>
     /// action.
     /// </para>
     /// </summary>

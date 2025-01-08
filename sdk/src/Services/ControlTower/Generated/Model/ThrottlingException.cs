@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ControlTower.Model
 {
     /// <summary>
-    /// Request was denied due to request throttling.
+    /// The request was denied due to request throttling.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

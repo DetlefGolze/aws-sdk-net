@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeGroupMembership operation.
-    /// Use the <code>DescribeGroupMembership</code> operation to determine if a user is a
-    /// member of the specified group. If the user exists and is a member of the specified
-    /// group, an associated <code>GroupMember</code> object is returned.
+    /// Use the <c>DescribeGroupMembership</c> operation to determine if a user is a member
+    /// of the specified group. If the user exists and is a member of the specified group,
+    /// an associated <c>GroupMember</c> object is returned.
     /// </summary>
     public partial class DescribeGroupMembershipRequest : AmazonQuickSightRequest
     {

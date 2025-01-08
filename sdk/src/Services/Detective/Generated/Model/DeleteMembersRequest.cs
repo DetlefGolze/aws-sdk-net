@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Detective.Model
 {
     /// <summary>
@@ -44,19 +45,19 @@ namespace Amazon.Detective.Model
     /// <para>
     /// For organization accounts in the organization behavior graph, the Detective administrator
     /// account can always enable the organization account again. Organization accounts that
-    /// are not enabled as member accounts are not included in the <code>ListMembers</code>
-    /// results for the organization behavior graph.
+    /// are not enabled as member accounts are not included in the <c>ListMembers</c> results
+    /// for the organization behavior graph.
     /// </para>
     ///  
     /// <para>
-    /// An administrator account cannot use <code>DeleteMembers</code> to remove their own
-    /// account from the behavior graph. To disable a behavior graph, the administrator account
-    /// uses the <code>DeleteGraph</code> API method.
+    /// An administrator account cannot use <c>DeleteMembers</c> to remove their own account
+    /// from the behavior graph. To disable a behavior graph, the administrator account uses
+    /// the <c>DeleteGraph</c> API method.
     /// </para>
     /// </summary>
     public partial class DeleteMembersRequest : AmazonDetectiveRequest
     {
-        private List<string> _accountIds = new List<string>();
+        private List<string> _accountIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _graphArn;
 
         /// <summary>
@@ -76,7 +77,7 @@ namespace Amazon.Detective.Model
         // Check to see if AccountIds property is set
         internal bool IsSetAccountIds()
         {
-            return this._accountIds != null && this._accountIds.Count > 0; 
+            return this._accountIds != null && (this._accountIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

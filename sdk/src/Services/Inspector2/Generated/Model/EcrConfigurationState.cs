@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.Inspector2.Model
         /// <summary>
         /// Gets and sets the property RescanDurationState. 
         /// <para>
-        /// An object that contains details about the state of the ECR automated re-scan setting.
+        /// An object that contains details about the state of the ECR re-scan settings.
         /// </para>
         /// </summary>
         public EcrRescanDurationState RescanDurationState

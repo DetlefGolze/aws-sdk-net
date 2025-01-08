@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.QuickSight.Model
     public partial class ParameterDropDownControl
     {
         private CascadingControlConfiguration _cascadingControlConfiguration;
+        private CommitMode _commitMode;
         private DropDownControlDisplayOptions _displayOptions;
         private string _parameterControlId;
         private ParameterSelectableValues _selectableValues;
@@ -62,6 +64,24 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property CommitMode. 
+        /// <para>
+        /// The visibility configuration of the Apply button on a <c>ParameterDropDownControl</c>.
+        /// </para>
+        /// </summary>
+        public CommitMode CommitMode
+        {
+            get { return this._commitMode; }
+            set { this._commitMode = value; }
+        }
+
+        // Check to see if CommitMode property is set
+        internal bool IsSetCommitMode()
+        {
+            return this._commitMode != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property DisplayOptions. 
         /// <para>
         /// The display options of a control.
@@ -82,7 +102,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property ParameterControlId. 
         /// <para>
-        /// The ID of the <code>ParameterDropDownControl</code>.
+        /// The ID of the <c>ParameterDropDownControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]
@@ -119,7 +139,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property SourceParameterName. 
         /// <para>
-        /// The source parameter name of the <code>ParameterDropDownControl</code>.
+        /// The source parameter name of the <c>ParameterDropDownControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]
@@ -138,7 +158,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Title. 
         /// <para>
-        /// The title of the <code>ParameterDropDownControl</code>.
+        /// The title of the <c>ParameterDropDownControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]
@@ -157,7 +177,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type parameter name of the <code>ParameterDropDownControl</code>.
+        /// The type parameter name of the <c>ParameterDropDownControl</c>.
         /// </para>
         /// </summary>
         public SheetControlListType Type

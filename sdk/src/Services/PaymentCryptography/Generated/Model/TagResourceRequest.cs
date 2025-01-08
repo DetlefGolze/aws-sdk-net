@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptography.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.PaymentCryptography.Model
     /// The tag value can be an empty (null) string. To add a tag, specify a new tag key and
     /// a tag value. To edit a tag, specify an existing tag key and a new tag value. You can
     /// also add tags to an Amazon Web Services Payment Cryptography key when you create it
-    /// with <a>CreateKey</a>.
+    /// with <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_CreateKey.html">CreateKey</a>.
     /// </para>
     ///  
     /// <para>
@@ -56,23 +57,25 @@ namespace Amazon.PaymentCryptography.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <a>ListTagsForResource</a> 
+    ///  <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ListTagsForResource.html">ListTagsForResource</a>
+    /// 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a>UntagResource</a> 
+    ///  <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_UntagResource.html">UntagResource</a>
+    /// 
     /// </para>
     ///  </li> </ul>
     /// </summary>
     public partial class TagResourceRequest : AmazonPaymentCryptographyRequest
     {
         private string _resourceArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The <code>KeyARN</code> of the key whose tags are being updated.
+        /// The <c>KeyARN</c> of the key whose tags are being updated.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=70, Max=150)]
@@ -99,17 +102,18 @@ namespace Amazon.PaymentCryptography.Model
         /// </para>
         ///  <important> 
         /// <para>
-        /// Don't include confidential or sensitive information in this field. This field may
-        /// be displayed in plaintext in CloudTrail logs and other output.
+        /// Don't include personal, confidential or sensitive information in this field. This
+        /// field may be displayed in plaintext in CloudTrail logs and other output.
         /// </para>
         ///  </important> 
         /// <para>
-        /// To use this parameter, you must have <a>TagResource</a> permission in an IAM policy.
+        /// To use this parameter, you must have <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_TagResource.html">TagResource</a>
+        /// permission in an IAM policy.
         /// </para>
         ///  <important> 
         /// <para>
-        /// Don't include confidential or sensitive information in this field. This field may
-        /// be displayed in plaintext in CloudTrail logs and other output.
+        /// Don't include personal, confidential or sensitive information in this field. This
+        /// field may be displayed in plaintext in CloudTrail logs and other output.
         /// </para>
         ///  </important>
         /// </summary>
@@ -123,7 +127,7 @@ namespace Amazon.PaymentCryptography.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.CloudFront.Model
     public partial class RealtimeLogConfigs
     {
         private bool? _isTruncated;
-        private List<RealtimeLogConfig> _items = new List<RealtimeLogConfig>();
+        private List<RealtimeLogConfig> _items = AWSConfigs.InitializeCollections ? new List<RealtimeLogConfig>() : null;
         private string _marker;
         private int? _maxItems;
         private string _nextMarker;
@@ -74,7 +75,7 @@ namespace Amazon.CloudFront.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -120,7 +121,7 @@ namespace Amazon.CloudFront.Model
         /// Gets and sets the property NextMarker. 
         /// <para>
         /// If there are more items in the list than are in this response, this element is present.
-        /// It contains the value that you should use in the <code>Marker</code> field of a subsequent
+        /// It contains the value that you should use in the <c>Marker</c> field of a subsequent
         /// request to continue listing real-time log configurations where you left off. 
         /// </para>
         /// </summary>

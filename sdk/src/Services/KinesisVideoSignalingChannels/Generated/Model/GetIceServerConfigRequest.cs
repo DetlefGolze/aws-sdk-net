@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideoSignalingChannels.Model
 {
     /// <summary>
@@ -101,7 +102,7 @@ namespace Amazon.KinesisVideoSignalingChannels.Model
         /// <summary>
         /// Gets and sets the property Service. 
         /// <para>
-        /// Specifies the desired service. Currently, <code>TURN</code> is the only valid value.
+        /// Specifies the desired service. Currently, <c>TURN</c> is the only valid value.
         /// </para>
         /// </summary>
         public Service Service

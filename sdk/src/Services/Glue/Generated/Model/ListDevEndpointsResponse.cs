@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.Glue.Model
     /// </summary>
     public partial class ListDevEndpointsResponse : AmazonWebServiceResponse
     {
-        private List<string> _devEndpointNames = new List<string>();
+        private List<string> _devEndpointNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property DevEndpointNames. 
         /// <para>
-        /// The names of all the <code>DevEndpoint</code>s in the account, or the <code>DevEndpoint</code>s
+        /// The names of all the <c>DevEndpoint</c>s in the account, or the <c>DevEndpoint</c>s
         /// with the specified tags.
         /// </para>
         /// </summary>
@@ -52,7 +53,7 @@ namespace Amazon.Glue.Model
         // Check to see if DevEndpointNames property is set
         internal bool IsSetDevEndpointNames()
         {
-            return this._devEndpointNames != null && this._devEndpointNames.Count > 0; 
+            return this._devEndpointNames != null && (this._devEndpointNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

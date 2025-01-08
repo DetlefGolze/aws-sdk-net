@@ -26,31 +26,30 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
     /// This parameter is specified when you're using Docker volumes. Docker volumes are only
     /// supported when you're using the EC2 launch type. Windows containers only support the
-    /// use of the <code>local</code> driver. To use bind mounts, specify a <code>host</code>
-    /// instead.
+    /// use of the <c>local</c> driver. To use bind mounts, specify a <c>host</c> instead.
     /// </summary>
     public partial class DockerVolumeConfiguration
     {
         private bool? _autoprovision;
         private string _driver;
-        private Dictionary<string, string> _driverOpts = new Dictionary<string, string>();
-        private Dictionary<string, string> _labels = new Dictionary<string, string>();
+        private Dictionary<string, string> _driverOpts = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private Dictionary<string, string> _labels = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private Scope _scope;
 
         /// <summary>
         /// Gets and sets the property Autoprovision. 
         /// <para>
-        /// If this value is <code>true</code>, the Docker volume is created if it doesn't already
-        /// exist.
+        /// If this value is <c>true</c>, the Docker volume is created if it doesn't already exist.
         /// </para>
         ///  <note> 
         /// <para>
-        /// This field is only used if the <code>scope</code> is <code>shared</code>.
+        /// This field is only used if the <c>scope</c> is <c>shared</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -71,14 +70,11 @@ namespace Amazon.ECS.Model
         /// <para>
         /// The Docker volume driver to use. The driver value must match the driver name provided
         /// by Docker because it is used for task placement. If the driver was installed using
-        /// the Docker plugin CLI, use <code>docker plugin ls</code> to retrieve the driver name
-        /// from your container instance. If the driver was installed using another method, use
-        /// Docker plugin discovery to retrieve the driver name. For more information, see <a
-        /// href="https://docs.docker.com/engine/extend/plugin_api/#plugin-discovery">Docker plugin
-        /// discovery</a>. This parameter maps to <code>Driver</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/VolumeCreate">Create
-        /// a volume</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>xxdriver</code> option to <a href="https://docs.docker.com/engine/reference/commandline/volume_create/">docker
-        /// volume create</a>.
+        /// the Docker plugin CLI, use <c>docker plugin ls</c> to retrieve the driver name from
+        /// your container instance. If the driver was installed using another method, use Docker
+        /// plugin discovery to retrieve the driver name. This parameter maps to <c>Driver</c>
+        /// in the docker container create command and the <c>xxdriver</c> option to docker volume
+        /// create.
         /// </para>
         /// </summary>
         public string Driver
@@ -96,11 +92,8 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property DriverOpts. 
         /// <para>
-        /// A map of Docker driver-specific options passed through. This parameter maps to <code>DriverOpts</code>
-        /// in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/VolumeCreate">Create
-        /// a volume</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>xxopt</code> option to <a href="https://docs.docker.com/engine/reference/commandline/volume_create/">docker
-        /// volume create</a>.
+        /// A map of Docker driver-specific options passed through. This parameter maps to <c>DriverOpts</c>
+        /// in the docker create-volume command and the <c>xxopt</c> option to docker volume create.
         /// </para>
         /// </summary>
         public Dictionary<string, string> DriverOpts
@@ -112,17 +105,15 @@ namespace Amazon.ECS.Model
         // Check to see if DriverOpts property is set
         internal bool IsSetDriverOpts()
         {
-            return this._driverOpts != null && this._driverOpts.Count > 0; 
+            return this._driverOpts != null && (this._driverOpts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Labels. 
         /// <para>
-        /// Custom metadata to add to your Docker volume. This parameter maps to <code>Labels</code>
-        /// in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/VolumeCreate">Create
-        /// a volume</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>xxlabel</code> option to <a href="https://docs.docker.com/engine/reference/commandline/volume_create/">docker
-        /// volume create</a>.
+        /// Custom metadata to add to your Docker volume. This parameter maps to <c>Labels</c>
+        /// in the docker container create command and the <c>xxlabel</c> option to docker volume
+        /// create.
         /// </para>
         /// </summary>
         public Dictionary<string, string> Labels
@@ -134,16 +125,16 @@ namespace Amazon.ECS.Model
         // Check to see if Labels property is set
         internal bool IsSetLabels()
         {
-            return this._labels != null && this._labels.Count > 0; 
+            return this._labels != null && (this._labels.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Scope. 
         /// <para>
         /// The scope for the Docker volume that determines its lifecycle. Docker volumes that
-        /// are scoped to a <code>task</code> are automatically provisioned when the task starts
-        /// and destroyed when the task stops. Docker volumes that are scoped as <code>shared</code>
-        /// persist after the task stops.
+        /// are scoped to a <c>task</c> are automatically provisioned when the task starts and
+        /// destroyed when the task stops. Docker volumes that are scoped as <c>shared</c> persist
+        /// after the task stops.
         /// </para>
         /// </summary>
         public Scope Scope

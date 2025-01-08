@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.IoTSiteWise.Model
         /// data sources (CLI)</a> in the <i>IoT SiteWise User Guide</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=104857600)]
+        [AWSProperty(Required=true, Min=1, Max=10000000)]
         public string CapabilityConfiguration
         {
             get { return this._capabilityConfiguration; }
@@ -86,15 +87,26 @@ namespace Amazon.IoTSiteWise.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>IN_SYNC</code> – The gateway is running the capability configuration.
+        ///  <c>IN_SYNC</c> – The gateway is running the capability configuration.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OUT_OF_SYNC</code> – The gateway hasn't received the capability configuration.
+        ///  <c>NOT_APPLICABLE</c> – Synchronization is not required for this capability configuration.
+        /// This is most common when integrating partner data sources, because the data integration
+        /// is handled externally by the partner.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SYNC_FAILED</code> – The gateway rejected the capability configuration.
+        ///  <c>OUT_OF_SYNC</c> – The gateway hasn't received the capability configuration.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>SYNC_FAILED</c> – The gateway rejected the capability configuration.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>UNKNOWN</c> – The synchronization status is currently unknown due to an undetermined
+        /// or temporary error.
         /// </para>
         ///  </li> </ul>
         /// </summary>

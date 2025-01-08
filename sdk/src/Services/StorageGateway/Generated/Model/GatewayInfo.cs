@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
@@ -33,6 +34,7 @@ namespace Amazon.StorageGateway.Model
     /// </summary>
     public partial class GatewayInfo
     {
+        private string _deprecationDate;
         private string _ec2InstanceId;
         private string _ec2InstanceRegion;
         private string _gatewayARN;
@@ -42,6 +44,27 @@ namespace Amazon.StorageGateway.Model
         private string _gatewayType;
         private HostEnvironment _hostEnvironment;
         private string _hostEnvironmentId;
+        private string _softwareVersion;
+
+        /// <summary>
+        /// Gets and sets the property DeprecationDate. 
+        /// <para>
+        /// Date after which this gateway will not receive software updates for new features and
+        /// bug fixes.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=25)]
+        public string DeprecationDate
+        {
+            get { return this._deprecationDate; }
+            set { this._deprecationDate = value; }
+        }
+
+        // Check to see if DeprecationDate property is set
+        internal bool IsSetDeprecationDate()
+        {
+            return this._deprecationDate != null;
+        }
 
         /// <summary>
         /// Gets and sets the property Ec2InstanceId. 
@@ -144,7 +167,7 @@ namespace Amazon.StorageGateway.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>DISABLED</code> | <code>ACTIVE</code> 
+        /// Valid Values: <c>DISABLED</c> | <c>ACTIVE</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=2, Max=25)]
@@ -165,6 +188,14 @@ namespace Amazon.StorageGateway.Model
         /// <para>
         /// The type of the gateway.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// Amazon FSx File Gateway is no longer available to new customers. Existing customers
+        /// of FSx File Gateway can continue to use the service normally. For capabilities similar
+        /// to FSx File Gateway, visit <a href="https://aws.amazon.com/blogs/storage/switch-your-file-share-access-from-amazon-fsx-file-gateway-to-amazon-fsx-for-windows-file-server/">this
+        /// blog post</a>.
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Min=2, Max=20)]
         public string GatewayType
@@ -184,6 +215,11 @@ namespace Amazon.StorageGateway.Model
         /// <para>
         /// The type of hardware or software platform on which the gateway is running.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// Tape Gateway is no longer available on Snow Family devices.
+        /// </para>
+        ///  </note>
         /// </summary>
         public HostEnvironment HostEnvironment
         {
@@ -216,6 +252,24 @@ namespace Amazon.StorageGateway.Model
         internal bool IsSetHostEnvironmentId()
         {
             return this._hostEnvironmentId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SoftwareVersion. 
+        /// <para>
+        /// The version number of the software running on the gateway appliance.
+        /// </para>
+        /// </summary>
+        public string SoftwareVersion
+        {
+            get { return this._softwareVersion; }
+            set { this._softwareVersion = value; }
+        }
+
+        // Check to see if SoftwareVersion property is set
+        internal bool IsSetSoftwareVersion()
+        {
+            return this._softwareVersion != null;
         }
 
     }

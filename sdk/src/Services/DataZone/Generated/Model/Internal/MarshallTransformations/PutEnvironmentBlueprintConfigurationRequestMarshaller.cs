@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DataZone.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -69,6 +70,7 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetEnabledRegions())
@@ -82,10 +84,32 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
                     context.Writer.WriteArrayEnd();
                 }
 
+                if(publicRequest.IsSetEnvironmentRolePermissionBoundary())
+                {
+                    context.Writer.WritePropertyName("environmentRolePermissionBoundary");
+                    context.Writer.Write(publicRequest.EnvironmentRolePermissionBoundary);
+                }
+
                 if(publicRequest.IsSetManageAccessRoleArn())
                 {
                     context.Writer.WritePropertyName("manageAccessRoleArn");
                     context.Writer.Write(publicRequest.ManageAccessRoleArn);
+                }
+
+                if(publicRequest.IsSetProvisioningConfigurations())
+                {
+                    context.Writer.WritePropertyName("provisioningConfigurations");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestProvisioningConfigurationsListValue in publicRequest.ProvisioningConfigurations)
+                    {
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = ProvisioningConfigurationMarshaller.Instance;
+                        marshaller.Marshall(publicRequestProvisioningConfigurationsListValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteArrayEnd();
                 }
 
                 if(publicRequest.IsSetProvisioningRoleArn())

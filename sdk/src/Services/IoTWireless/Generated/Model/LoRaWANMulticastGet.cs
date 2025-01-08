@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTWireless.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.IoTWireless.Model
         private DlClass _dlClass;
         private int? _numberOfDevicesInGroup;
         private int? _numberOfDevicesRequested;
+        private ParticipatingGatewaysMulticast _participatingGateways;
         private SupportedRfRegion _rfRegion;
 
         /// <summary>
@@ -82,6 +84,21 @@ namespace Amazon.IoTWireless.Model
         internal bool IsSetNumberOfDevicesRequested()
         {
             return this._numberOfDevicesRequested.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ParticipatingGateways.
+        /// </summary>
+        public ParticipatingGatewaysMulticast ParticipatingGateways
+        {
+            get { return this._participatingGateways; }
+            set { this._participatingGateways = value; }
+        }
+
+        // Check to see if ParticipatingGateways property is set
+        internal bool IsSetParticipatingGateways()
+        {
+            return this._participatingGateways != null;
         }
 
         /// <summary>

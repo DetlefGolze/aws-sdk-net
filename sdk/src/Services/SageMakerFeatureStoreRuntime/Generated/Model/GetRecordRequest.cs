@@ -26,27 +26,28 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMakerFeatureStoreRuntime.Model
 {
     /// <summary>
     /// Container for the parameters to the GetRecord operation.
-    /// Use for <code>OnlineStore</code> serving from a <code>FeatureStore</code>. Only the
-    /// latest records stored in the <code>OnlineStore</code> can be retrieved. If no Record
-    /// with <code>RecordIdentifierValue</code> is found, then an empty result is returned.
+    /// Use for <c>OnlineStore</c> serving from a <c>FeatureStore</c>. Only the latest records
+    /// stored in the <c>OnlineStore</c> can be retrieved. If no Record with <c>RecordIdentifierValue</c>
+    /// is found, then an empty result is returned.
     /// </summary>
     public partial class GetRecordRequest : AmazonSageMakerFeatureStoreRuntimeRequest
     {
         private ExpirationTimeResponse _expirationTimeResponse;
         private string _featureGroupName;
-        private List<string> _featureNames = new List<string>();
+        private List<string> _featureNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _recordIdentifierValueAsString;
 
         /// <summary>
         /// Gets and sets the property ExpirationTimeResponse. 
         /// <para>
-        /// Parameter to request <code>ExpiresAt</code> in response. If <code>Enabled</code>,
-        /// <code>GetRecord</code> will return the value of <code>ExpiresAt</code>, if it is not
-        /// null. If <code>Disabled</code> and null, <code>GetRecord</code> will return null.
+        /// Parameter to request <c>ExpiresAt</c> in response. If <c>Enabled</c>, <c>GetRecord</c>
+        /// will return the value of <c>ExpiresAt</c>, if it is not null. If <c>Disabled</c> and
+        /// null, <c>GetRecord</c> will return null.
         /// </para>
         /// </summary>
         public ExpirationTimeResponse ExpirationTimeResponse
@@ -98,14 +99,14 @@ namespace Amazon.SageMakerFeatureStoreRuntime.Model
         // Check to see if FeatureNames property is set
         internal bool IsSetFeatureNames()
         {
-            return this._featureNames != null && this._featureNames.Count > 0; 
+            return this._featureNames != null && (this._featureNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property RecordIdentifierValueAsString. 
         /// <para>
-        /// The value that corresponds to <code>RecordIdentifier</code> type and uniquely identifies
-        /// the record in the <code>FeatureGroup</code>. 
+        /// The value that corresponds to <c>RecordIdentifier</c> type and uniquely identifies
+        /// the record in the <c>FeatureGroup</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=358400)]

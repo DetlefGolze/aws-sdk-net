@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -39,7 +40,9 @@ namespace Amazon.Imagebuilder.Model
         private string _name;
         private string _owner;
         private Platform _platform;
-        private List<string> _supportedOsVersions = new List<string>();
+        private List<ProductCodeListItem> _productCodes = AWSConfigs.InitializeCollections ? new List<ProductCodeListItem>() : null;
+        private ComponentStatus _status;
+        private List<string> _supportedOsVersions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ComponentType _type;
         private string _version;
 
@@ -175,6 +178,43 @@ namespace Amazon.Imagebuilder.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ProductCodes. 
+        /// <para>
+        /// Contains product codes that are used for billing purposes for Amazon Web Services
+        /// Marketplace components.
+        /// </para>
+        /// </summary>
+        public List<ProductCodeListItem> ProductCodes
+        {
+            get { return this._productCodes; }
+            set { this._productCodes = value; }
+        }
+
+        // Check to see if ProductCodes property is set
+        internal bool IsSetProductCodes()
+        {
+            return this._productCodes != null && (this._productCodes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Status. 
+        /// <para>
+        /// Describes the current status of the component version.
+        /// </para>
+        /// </summary>
+        public ComponentStatus Status
+        {
+            get { return this._status; }
+            set { this._status = value; }
+        }
+
+        // Check to see if Status property is set
+        internal bool IsSetStatus()
+        {
+            return this._status != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property SupportedOsVersions. 
         /// <para>
         /// he operating system (OS) version supported by the component. If the OS information
@@ -192,7 +232,7 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if SupportedOsVersions property is set
         internal bool IsSetSupportedOsVersions()
         {
-            return this._supportedOsVersions != null && this._supportedOsVersions.Count > 0; 
+            return this._supportedOsVersions != null && (this._supportedOsVersions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

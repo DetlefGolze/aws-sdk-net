@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorksCM.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.OpsWorksCM.Model
     public partial class ListTagsForResourceResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token that you can use as the value of <code>NextToken</code> in subsequent calls
-        /// to the API to show more results.
+        /// A token that you can use as the value of <c>NextToken</c> in subsequent calls to the
+        /// API to show more results.
         /// </para>
         /// </summary>
         [AWSProperty(Max=10000)]
@@ -72,7 +73,7 @@ namespace Amazon.OpsWorksCM.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

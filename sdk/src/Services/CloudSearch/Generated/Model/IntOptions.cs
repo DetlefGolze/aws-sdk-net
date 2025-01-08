@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// Options for a 64-bit signed integer field. Present if <code>IndexFieldType</code>
-    /// specifies the field is of type <code>int</code>. All options are enabled by default.
+    /// Options for a 64-bit signed integer field. Present if <c>IndexFieldType</c> specifies
+    /// the field is of type <c>int</c>. All options are enabled by default.
     /// </summary>
     public partial class IntOptions
     {

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
     /// The user-defined preferences that will be applied during product provisioning, unless
-    /// overridden by <code>ProvisioningPreferences</code> or <code>UpdateProvisioningPreferences</code>.
+    /// overridden by <c>ProvisioningPreferences</c> or <c>UpdateProvisioningPreferences</c>.
     /// 
     ///  
     /// <para>
@@ -41,19 +42,19 @@ namespace Amazon.ServiceCatalog.Model
     /// </summary>
     public partial class ProvisioningArtifactPreferences
     {
-        private List<string> _stackSetAccounts = new List<string>();
-        private List<string> _stackSetRegions = new List<string>();
+        private List<string> _stackSetAccounts = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _stackSetRegions = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property StackSetAccounts. 
         /// <para>
         /// One or more Amazon Web Services accounts where stack instances are deployed from the
-        /// stack set. These accounts can be scoped in <code>ProvisioningPreferences$StackSetAccounts</code>
-        /// and <code>UpdateProvisioningPreferences$StackSetAccounts</code>.
+        /// stack set. These accounts can be scoped in <c>ProvisioningPreferences$StackSetAccounts</c>
+        /// and <c>UpdateProvisioningPreferences$StackSetAccounts</c>.
         /// </para>
         ///  
         /// <para>
-        /// Applicable only to a <code>CFN_STACKSET</code> provisioned product type.
+        /// Applicable only to a <c>CFN_STACKSET</c> provisioned product type.
         /// </para>
         /// </summary>
         public List<string> StackSetAccounts
@@ -65,19 +66,19 @@ namespace Amazon.ServiceCatalog.Model
         // Check to see if StackSetAccounts property is set
         internal bool IsSetStackSetAccounts()
         {
-            return this._stackSetAccounts != null && this._stackSetAccounts.Count > 0; 
+            return this._stackSetAccounts != null && (this._stackSetAccounts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property StackSetRegions. 
         /// <para>
         /// One or more Amazon Web Services Regions where stack instances are deployed from the
-        /// stack set. These Regions can be scoped in <code>ProvisioningPreferences$StackSetRegions</code>
-        /// and <code>UpdateProvisioningPreferences$StackSetRegions</code>.
+        /// stack set. These Regions can be scoped in <c>ProvisioningPreferences$StackSetRegions</c>
+        /// and <c>UpdateProvisioningPreferences$StackSetRegions</c>.
         /// </para>
         ///  
         /// <para>
-        /// Applicable only to a <code>CFN_STACKSET</code> provisioned product type.
+        /// Applicable only to a <c>CFN_STACKSET</c> provisioned product type.
         /// </para>
         /// </summary>
         public List<string> StackSetRegions
@@ -89,7 +90,7 @@ namespace Amazon.ServiceCatalog.Model
         // Check to see if StackSetRegions property is set
         internal bool IsSetStackSetRegions()
         {
-            return this._stackSetRegions != null && this._stackSetRegions.Count > 0; 
+            return this._stackSetRegions != null && (this._stackSetRegions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

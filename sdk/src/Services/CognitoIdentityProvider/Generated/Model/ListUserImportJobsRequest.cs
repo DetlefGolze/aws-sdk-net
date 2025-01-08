@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -82,8 +83,11 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property PaginationToken. 
         /// <para>
-        /// An identifier that was returned from the previous call to <code>ListUserImportJobs</code>,
-        /// which can be used to return the next set of import jobs in the list.
+        /// This API operation returns a limited number of results. The pagination token is an
+        /// identifier that you can present in an additional API request with the same parameters.
+        /// When you include the pagination token, Amazon Cognito returns the next set of items
+        /// after the current list. Subsequent requests return a new pagination token. By use
+        /// of this token, you can paginate through the full list of items.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -102,7 +106,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID for the user pool that the users are being imported into.
+        /// The ID of the user pool that the users are being imported into.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

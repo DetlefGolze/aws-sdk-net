@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
     /// A global endpoint used to improve your application's availability by making it regional-fault
     /// tolerant. For more information about global endpoints, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-global-endpoints.html">Making
     /// applications Regional-fault tolerant with global endpoints and event replication</a>
-    /// in the Amazon EventBridge User Guide.
+    /// in the <i> <i>Amazon EventBridge User Guide</i> </i>.
     /// </summary>
     public partial class Endpoint
     {
@@ -41,7 +42,7 @@ namespace Amazon.EventBridge.Model
         private string _description;
         private string _endpointId;
         private string _endpointUrl;
-        private List<EndpointEventBus> _eventBuses = new List<EndpointEventBus>();
+        private List<EndpointEventBus> _eventBuses = AWSConfigs.InitializeCollections ? new List<EndpointEventBus>() : null;
         private DateTime? _lastModifiedTime;
         private string _name;
         private ReplicationConfig _replicationConfig;
@@ -110,7 +111,7 @@ namespace Amazon.EventBridge.Model
         /// Gets and sets the property EndpointId. 
         /// <para>
         /// The URL subdomain of the endpoint. For example, if the URL for Endpoint is https://abcde.veo.endpoints.event.amazonaws.com,
-        /// then the EndpointId is <code>abcde.veo</code>.
+        /// then the EndpointId is <c>abcde.veo</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -161,7 +162,7 @@ namespace Amazon.EventBridge.Model
         // Check to see if EventBuses property is set
         internal bool IsSetEventBuses()
         {
-            return this._eventBuses != null && this._eventBuses.Count > 0; 
+            return this._eventBuses != null && (this._eventBuses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -205,9 +206,8 @@ namespace Amazon.EventBridge.Model
         /// Gets and sets the property ReplicationConfig. 
         /// <para>
         /// Whether event replication was enabled or disabled for this endpoint. The default state
-        /// is <code>ENABLED</code> which means you must supply a <code>RoleArn</code>. If you
-        /// don't have a <code>RoleArn</code> or you don't want event replication enabled, set
-        /// the state to <code>DISABLED</code>.
+        /// is <c>ENABLED</c> which means you must supply a <c>RoleArn</c>. If you don't have
+        /// a <c>RoleArn</c> or you don't want event replication enabled, set the state to <c>DISABLED</c>.
         /// </para>
         /// </summary>
         public ReplicationConfig ReplicationConfig

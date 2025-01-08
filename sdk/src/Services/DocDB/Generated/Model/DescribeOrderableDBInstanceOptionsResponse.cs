@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.DocDB.Model
     public partial class DescribeOrderableDBInstanceOptionsResponse : AmazonWebServiceResponse
     {
         private string _marker;
-        private List<OrderableDBInstanceOption> _orderableDBInstanceOptions = new List<OrderableDBInstanceOption>();
+        private List<OrderableDBInstanceOption> _orderableDBInstanceOptions = AWSConfigs.InitializeCollections ? new List<OrderableDBInstanceOption>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         /// An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>.
+        /// by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -71,7 +72,7 @@ namespace Amazon.DocDB.Model
         // Check to see if OrderableDBInstanceOptions property is set
         internal bool IsSetOrderableDBInstanceOptions()
         {
-            return this._orderableDBInstanceOptions != null && this._orderableDBInstanceOptions.Count > 0; 
+            return this._orderableDBInstanceOptions != null && (this._orderableDBInstanceOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

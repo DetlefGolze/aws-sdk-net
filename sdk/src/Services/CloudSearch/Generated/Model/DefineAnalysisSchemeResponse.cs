@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// The result of a <code><a>DefineAnalysisScheme</a></code> request. Contains the status
-    /// of the newly-configured analysis scheme.
+    /// The result of a <c><a>DefineAnalysisScheme</a></c> request. Contains the status of
+    /// the newly-configured analysis scheme.
     /// </summary>
     public partial class DefineAnalysisSchemeResponse : AmazonWebServiceResponse
     {

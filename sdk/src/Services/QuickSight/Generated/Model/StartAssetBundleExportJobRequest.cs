@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -36,9 +37,9 @@ namespace Amazon.QuickSight.Model
     /// <para>
     /// An Asset Bundle export job exports specified Amazon QuickSight assets. You can also
     /// choose to export any asset dependencies in the same job. Export jobs run asynchronously
-    /// and can be polled with a <code>DescribeAssetBundleExportJob</code> API call. When
-    /// a job is successfully completed, a download URL that contains the exported assets
-    /// is returned. The URL is valid for 5 minutes and can be refreshed with a <code>DescribeAssetBundleExportJob</code>
+    /// and can be polled with a <c>DescribeAssetBundleExportJob</c> API call. When a job
+    /// is successfully completed, a download URL that contains the exported assets is returned.
+    /// The URL is valid for 5 minutes and can be refreshed with a <c>DescribeAssetBundleExportJob</c>
     /// API call. Each Amazon QuickSight account can run up to 5 export jobs concurrently.
     /// </para>
     ///  
@@ -54,7 +55,12 @@ namespace Amazon.QuickSight.Model
         private AssetBundleCloudFormationOverridePropertyConfiguration _cloudFormationOverridePropertyConfiguration;
         private AssetBundleExportFormat _exportFormat;
         private bool? _includeAllDependencies;
-        private List<string> _resourceArns = new List<string>();
+        private IncludeFolderMembers _includeFolderMembers;
+        private bool? _includeFolderMemberships;
+        private bool? _includePermissions;
+        private bool? _includeTags;
+        private List<string> _resourceArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private AssetBundleExportJobValidationStrategy _validationStrategy;
 
         /// <summary>
         /// Gets and sets the property AssetBundleExportJobId. 
@@ -104,8 +110,8 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  
         /// <para>
-        /// Use this field if the <code>ExportFormat</code> field of a <code>StartAssetBundleExportJobRequest</code>
-        /// API call is set to <code>CLOUDFORMATION_JSON</code>.
+        /// Use this field if the <c>ExportFormat</c> field of a <c>StartAssetBundleExportJobRequest</c>
+        /// API call is set to <c>CLOUDFORMATION_JSON</c>.
         /// </para>
         /// </summary>
         public AssetBundleCloudFormationOverridePropertyConfiguration CloudFormationOverridePropertyConfiguration
@@ -143,10 +149,9 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property IncludeAllDependencies. 
         /// <para>
         /// A Boolean that determines whether all dependencies of each resource ARN are recursively
-        /// exported with the job. For example, say you provided a Dashboard ARN to the <code>ResourceArns</code>
-        /// parameter. If you set <code>IncludeAllDependencies</code> to <code>TRUE</code>, any
-        /// theme, dataset, and data source resource that is a dependency of the dashboard is
-        /// also exported.
+        /// exported with the job. For example, say you provided a Dashboard ARN to the <c>ResourceArns</c>
+        /// parameter. If you set <c>IncludeAllDependencies</c> to <c>TRUE</c>, any theme, dataset,
+        /// and data source resource that is a dependency of the dashboard is also exported.
         /// </para>
         /// </summary>
         public bool IncludeAllDependencies
@@ -162,37 +167,115 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property IncludeFolderMembers. 
+        /// <para>
+        /// A setting that indicates whether you want to include folder assets. You can also use
+        /// this setting to recusrsively include all subfolders of an exported folder.
+        /// </para>
+        /// </summary>
+        public IncludeFolderMembers IncludeFolderMembers
+        {
+            get { return this._includeFolderMembers; }
+            set { this._includeFolderMembers = value; }
+        }
+
+        // Check to see if IncludeFolderMembers property is set
+        internal bool IsSetIncludeFolderMembers()
+        {
+            return this._includeFolderMembers != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IncludeFolderMemberships. 
+        /// <para>
+        /// A Boolean that determines if the exported asset carries over information about the
+        /// folders that the asset is a member of. 
+        /// </para>
+        /// </summary>
+        public bool IncludeFolderMemberships
+        {
+            get { return this._includeFolderMemberships.GetValueOrDefault(); }
+            set { this._includeFolderMemberships = value; }
+        }
+
+        // Check to see if IncludeFolderMemberships property is set
+        internal bool IsSetIncludeFolderMemberships()
+        {
+            return this._includeFolderMemberships.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property IncludePermissions. 
+        /// <para>
+        /// A Boolean that determines whether all permissions for each resource ARN are exported
+        /// with the job. If you set <c>IncludePermissions</c> to <c>TRUE</c>, any permissions
+        /// associated with each resource are exported. 
+        /// </para>
+        /// </summary>
+        public bool IncludePermissions
+        {
+            get { return this._includePermissions.GetValueOrDefault(); }
+            set { this._includePermissions = value; }
+        }
+
+        // Check to see if IncludePermissions property is set
+        internal bool IsSetIncludePermissions()
+        {
+            return this._includePermissions.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property IncludeTags. 
+        /// <para>
+        ///  A Boolean that determines whether all tags for each resource ARN are exported with
+        /// the job. If you set <c>IncludeTags</c> to <c>TRUE</c>, any tags associated with each
+        /// resource are exported.
+        /// </para>
+        /// </summary>
+        public bool IncludeTags
+        {
+            get { return this._includeTags.GetValueOrDefault(); }
+            set { this._includeTags = value; }
+        }
+
+        // Check to see if IncludeTags property is set
+        internal bool IsSetIncludeTags()
+        {
+            return this._includeTags.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property ResourceArns. 
         /// <para>
         /// An array of resource ARNs to export. The following resources are supported.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Analysis</code> 
+        ///  <c>Analysis</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Dashboard</code> 
+        ///  <c>Dashboard</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DataSet</code> 
+        ///  <c>DataSet</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DataSource</code> 
+        ///  <c>DataSource</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RefreshSchedule</code> 
+        ///  <c>RefreshSchedule</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Theme</code> 
+        ///  <c>Theme</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>VPCConnection</code> 
+        ///  <c>VPCConnection</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -210,7 +293,29 @@ namespace Amazon.QuickSight.Model
         // Check to see if ResourceArns property is set
         internal bool IsSetResourceArns()
         {
-            return this._resourceArns != null && this._resourceArns.Count > 0; 
+            return this._resourceArns != null && (this._resourceArns.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ValidationStrategy. 
+        /// <para>
+        /// An optional parameter that determines which validation strategy to use for the export
+        /// job. If <c>StrictModeForAllResources</c> is set to <c>TRUE</c>, strict validation
+        /// for every error is enforced. If it is set to <c>FALSE</c>, validation is skipped for
+        /// specific UI errors that are shown as warnings. The default value for <c>StrictModeForAllResources</c>
+        /// is <c>FALSE</c>.
+        /// </para>
+        /// </summary>
+        public AssetBundleExportJobValidationStrategy ValidationStrategy
+        {
+            get { return this._validationStrategy; }
+            set { this._validationStrategy = value; }
+        }
+
+        // Check to see if ValidationStrategy property is set
+        internal bool IsSetValidationStrategy()
+        {
+            return this._validationStrategy != null;
         }
 
     }

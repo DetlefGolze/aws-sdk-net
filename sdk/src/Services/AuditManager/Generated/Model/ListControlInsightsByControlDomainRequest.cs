@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AuditManager.Model
 {
     /// <summary>
@@ -36,9 +37,9 @@ namespace Amazon.AuditManager.Model
     ///  <note> 
     /// <para>
     /// Control insights are listed only if the control belongs to the control domain that
-    /// was specified and the control collected evidence on the <code>lastUpdated</code> date
-    /// of <code>controlInsightsMetadata</code>. If neither of these conditions are met, no
-    /// data is listed for that control. 
+    /// was specified and the control collected evidence on the <c>lastUpdated</c> date of
+    /// <c>controlInsightsMetadata</c>. If neither of these conditions are met, no data is
+    /// listed for that control. 
     /// </para>
     ///  </note>
     /// </summary>
@@ -53,8 +54,15 @@ namespace Amazon.AuditManager.Model
         /// <para>
         /// The unique identifier for the control domain. 
         /// </para>
+        ///  
+        /// <para>
+        /// Audit Manager supports the control domains that are provided by Amazon Web Services
+        /// Control Catalog. For information about how to find a list of available control domains,
+        /// see <a href="https://docs.aws.amazon.com/controlcatalog/latest/APIReference/API_ListDomains.html">
+        /// <c>ListDomains</c> </a> in the Amazon Web Services Control Catalog API Reference.
+        /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=36, Max=36)]
+        [AWSProperty(Required=true, Min=13, Max=2048)]
         public string ControlDomainId
         {
             get { return this._controlDomainId; }

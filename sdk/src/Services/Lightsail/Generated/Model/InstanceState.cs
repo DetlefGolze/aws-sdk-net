@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -57,7 +58,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The state of the instance (e.g., <code>running</code> or <code>pending</code>).
+        /// The state of the instance (<c>running</c> or <c>pending</c>).
         /// </para>
         /// </summary>
         public string Name

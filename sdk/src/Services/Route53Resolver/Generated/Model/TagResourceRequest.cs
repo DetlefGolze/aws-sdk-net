@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -35,14 +36,13 @@ namespace Amazon.Route53Resolver.Model
     public partial class TagResourceRequest : AmazonRoute53ResolverRequest
     {
         private string _resourceArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) for the resource that you want to add tags to. To get
-        /// the ARN for a resource, use the applicable <code>Get</code> or <code>List</code> command:
-        /// 
+        /// the ARN for a resource, use the applicable <c>Get</c> or <c>List</c> command: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -105,7 +105,7 @@ namespace Amazon.Route53Resolver.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

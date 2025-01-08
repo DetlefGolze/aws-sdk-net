@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.EC2.Model
     ///  <note> 
     /// <para>
     /// Limitations and rules apply to a VPC peering connection. For more information, see
-    /// the <a href="https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-basics.html#vpc-peering-limitations">limitations</a>
-    /// section in the <i>VPC Peering Guide</i>.
+    /// the <a href="https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-basics.html#vpc-peering-limitations">VPC
+    /// peering limitations</a> in the <i>VPC Peering Guide</i>.
     /// </para>
     ///  </note> 
     /// <para>
@@ -50,7 +51,7 @@ namespace Amazon.EC2.Model
     ///  
     /// <para>
     /// If you create a VPC peering connection request between VPCs with overlapping CIDR
-    /// blocks, the VPC peering connection has a status of <code>failed</code>.
+    /// blocks, the VPC peering connection has a status of <c>failed</c>.
     /// </para>
     /// </summary>
     public partial class CreateVpcPeeringConnectionRequest : AmazonEC2Request
@@ -58,7 +59,7 @@ namespace Amazon.EC2.Model
         private string _peerOwnerId;
         private string _peerRegion;
         private string _peerVpcId;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
         private string _vpcId;
 
         /// <summary>
@@ -140,7 +141,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glacier.Model
 {
     /// <summary>
@@ -51,11 +52,11 @@ namespace Amazon.Glacier.Model
         /// <summary>
         /// Gets and sets the property AccountId. 
         /// <para>
-        /// The <code>AccountId</code> value is the AWS account ID of the account that owns the
-        /// vault. You can either specify an AWS account ID or optionally a single '<code>-</code>'
-        /// (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with
-        /// the credentials used to sign the request. If you use an account ID, do not include
-        /// any hyphens ('-') in the ID. 
+        /// The <c>AccountId</c> value is the AWS account ID of the account that owns the vault.
+        /// You can either specify an AWS account ID or optionally a single '<c>-</c>' (hyphen),
+        /// in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials
+        /// used to sign the request. If you use an account ID, do not include any hyphens ('-')
+        /// in the ID. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

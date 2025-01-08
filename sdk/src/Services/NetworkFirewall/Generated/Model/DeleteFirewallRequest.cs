@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteFirewall operation.
     /// Deletes the specified <a>Firewall</a> and its <a>FirewallStatus</a>. This operation
-    /// requires the firewall's <code>DeleteProtection</code> flag to be <code>FALSE</code>.
-    /// You can't revert this operation. 
+    /// requires the firewall's <c>DeleteProtection</c> flag to be <c>FALSE</c>. You can't
+    /// revert this operation. 
     /// 
     ///  
     /// <para>

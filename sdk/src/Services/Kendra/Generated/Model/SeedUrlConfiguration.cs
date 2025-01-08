@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.Kendra.Model
     /// </summary>
     public partial class SeedUrlConfiguration
     {
-        private List<string> _seedUrls = new List<string>();
+        private List<string> _seedUrls = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private WebCrawlerMode _webCrawlerMode;
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace Amazon.Kendra.Model
         // Check to see if SeedUrls property is set
         internal bool IsSetSeedUrls()
         {
-            return this._seedUrls != null && this._seedUrls.Count > 0; 
+            return this._seedUrls != null && (this._seedUrls.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -74,23 +75,23 @@ namespace Amazon.Kendra.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>HOST_ONLY</code>—crawl only the website host names. For example, if the seed
-        /// URL is "abc.example.com", then only URLs with host name "abc.example.com" are crawled.
+        ///  <c>HOST_ONLY</c>—crawl only the website host names. For example, if the seed URL
+        /// is "abc.example.com", then only URLs with host name "abc.example.com" are crawled.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SUBDOMAINS</code>—crawl the website host names with subdomains. For example,
-        /// if the seed URL is "abc.example.com", then "a.abc.example.com" and "b.abc.example.com"
-        /// are also crawled.
+        ///  <c>SUBDOMAINS</c>—crawl the website host names with subdomains. For example, if the
+        /// seed URL is "abc.example.com", then "a.abc.example.com" and "b.abc.example.com" are
+        /// also crawled.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EVERYTHING</code>—crawl the website host names with subdomains and other domains
+        ///  <c>EVERYTHING</c>—crawl the website host names with subdomains and other domains
         /// that the web pages link to.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// The default mode is set to <code>HOST_ONLY</code>.
+        /// The default mode is set to <c>HOST_ONLY</c>.
         /// </para>
         /// </summary>
         public WebCrawlerMode WebCrawlerMode

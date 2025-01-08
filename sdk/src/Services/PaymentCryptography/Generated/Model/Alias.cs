@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptography.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.PaymentCryptography.Model
         /// <summary>
         /// Gets and sets the property AliasName. 
         /// <para>
-        /// A friendly name that you can use to refer to a key. The value must begin with <code>alias/</code>.
+        /// A friendly name that you can use to refer to a key. The value must begin with <c>alias/</c>.
         /// </para>
         ///  <important> 
         /// <para>
@@ -64,7 +65,7 @@ namespace Amazon.PaymentCryptography.Model
         /// <summary>
         /// Gets and sets the property KeyArn. 
         /// <para>
-        /// The <code>KeyARN</code> of the key associated with the alias.
+        /// The <c>KeyARN</c> of the key associated with the alias.
         /// </para>
         /// </summary>
         [AWSProperty(Min=70, Max=150)]

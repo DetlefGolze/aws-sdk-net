@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AutoScaling.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -205,6 +206,24 @@ namespace Amazon.AutoScaling.Model.Internal.MarshallTransformations
                                                 request.Parameters.Add("DesiredConfiguration" + "." + "MixedInstancesPolicy" + "." + "LaunchTemplate" + "." + "Overrides" + "." + "member" + "." + publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValueIndex + "." + "InstanceRequirements" + "." + "BaselineEbsBandwidthMbps" + "." + "Min", StringUtils.FromInt(publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValue.InstanceRequirements.BaselineEbsBandwidthMbps.Min));
                                             }
                                         }
+                                        if(publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValue.InstanceRequirements.IsSetBaselinePerformanceFactors())
+                                        {
+                                            if(publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValue.InstanceRequirements.BaselinePerformanceFactors.IsSetCpu())
+                                            {
+                                                if(publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValue.InstanceRequirements.BaselinePerformanceFactors.Cpu.IsSetReferences())
+                                                {
+                                                    int publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex = 1;
+                                                    foreach(var publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValue in publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValue.InstanceRequirements.BaselinePerformanceFactors.Cpu.References)
+                                                    {
+                                                        if(publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValue.IsSetInstanceFamily())
+                                                        {
+                                                            request.Parameters.Add("DesiredConfiguration" + "." + "MixedInstancesPolicy" + "." + "LaunchTemplate" + "." + "Overrides" + "." + "member" + "." + publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValueIndex + "." + "InstanceRequirements" + "." + "BaselinePerformanceFactors" + "." + "Cpu" + "." + "Reference" + "." + "item" + "." + publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex + "." + "InstanceFamily", StringUtils.FromString(publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValue.InstanceFamily));
+                                                        }
+                                                        publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValueInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex++;
+                                                    }
+                                                }
+                                            }
+                                        }
                                         if(publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValue.InstanceRequirements.IsSetBurstablePerformance())
                                         {
                                             request.Parameters.Add("DesiredConfiguration" + "." + "MixedInstancesPolicy" + "." + "LaunchTemplate" + "." + "Overrides" + "." + "member" + "." + publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValueIndex + "." + "InstanceRequirements" + "." + "BurstablePerformance", StringUtils.FromString(publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValue.InstanceRequirements.BurstablePerformance));
@@ -248,6 +267,10 @@ namespace Amazon.AutoScaling.Model.Internal.MarshallTransformations
                                                 request.Parameters.Add("DesiredConfiguration" + "." + "MixedInstancesPolicy" + "." + "LaunchTemplate" + "." + "Overrides" + "." + "member" + "." + publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValueIndex + "." + "InstanceRequirements" + "." + "LocalStorageTypes" + "." + "member" + "." + publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValueInstanceRequirementslistValueIndex, StringUtils.FromString(publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValueInstanceRequirementslistValue));
                                                 publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValueInstanceRequirementslistValueIndex++;
                                             }
+                                        }
+                                        if(publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValue.InstanceRequirements.IsSetMaxSpotPriceAsPercentageOfOptimalOnDemandPrice())
+                                        {
+                                            request.Parameters.Add("DesiredConfiguration" + "." + "MixedInstancesPolicy" + "." + "LaunchTemplate" + "." + "Overrides" + "." + "member" + "." + publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValueIndex + "." + "InstanceRequirements" + "." + "MaxSpotPriceAsPercentageOfOptimalOnDemandPrice", StringUtils.FromInt(publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValue.InstanceRequirements.MaxSpotPriceAsPercentageOfOptimalOnDemandPrice));
                                         }
                                         if(publicRequestDesiredConfigurationMixedInstancesPolicyLaunchTemplatelistValue.InstanceRequirements.IsSetMemoryGiBPerVCpu())
                                         {
@@ -375,6 +398,10 @@ namespace Amazon.AutoScaling.Model.Internal.MarshallTransformations
                     {
                         request.Parameters.Add("Preferences" + "." + "AutoRollback", StringUtils.FromBool(publicRequest.Preferences.AutoRollback));
                     }
+                    if(publicRequest.Preferences.IsSetBakeTime())
+                    {
+                        request.Parameters.Add("Preferences" + "." + "BakeTime", StringUtils.FromInt(publicRequest.Preferences.BakeTime));
+                    }
                     if(publicRequest.Preferences.IsSetCheckpointDelay())
                     {
                         request.Parameters.Add("Preferences" + "." + "CheckpointDelay", StringUtils.FromInt(publicRequest.Preferences.CheckpointDelay));
@@ -391,6 +418,10 @@ namespace Amazon.AutoScaling.Model.Internal.MarshallTransformations
                     if(publicRequest.Preferences.IsSetInstanceWarmup())
                     {
                         request.Parameters.Add("Preferences" + "." + "InstanceWarmup", StringUtils.FromInt(publicRequest.Preferences.InstanceWarmup));
+                    }
+                    if(publicRequest.Preferences.IsSetMaxHealthyPercentage())
+                    {
+                        request.Parameters.Add("Preferences" + "." + "MaxHealthyPercentage", StringUtils.FromInt(publicRequest.Preferences.MaxHealthyPercentage));
                     }
                     if(publicRequest.Preferences.IsSetMinHealthyPercentage())
                     {

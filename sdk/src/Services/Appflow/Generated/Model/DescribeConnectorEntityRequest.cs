@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Appflow.Model
 {
     /// <summary>
@@ -81,7 +82,7 @@ namespace Amazon.Appflow.Model
         /// <summary>
         /// Gets and sets the property ConnectorProfileName. 
         /// <para>
-        ///  The name of the connector profile. The name is unique for each <code>ConnectorProfile</code>
+        ///  The name of the connector profile. The name is unique for each <c>ConnectorProfile</c>
         /// in the Amazon Web Services account. 
         /// </para>
         /// </summary>

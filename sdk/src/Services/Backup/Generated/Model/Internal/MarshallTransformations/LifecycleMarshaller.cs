@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Backup.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.Backup.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(Lifecycle requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetDeleteAfterDays())
             {
                 context.Writer.WritePropertyName("DeleteAfterDays");
@@ -55,6 +58,12 @@ namespace Amazon.Backup.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("MoveToColdStorageAfterDays");
                 context.Writer.Write(requestObject.MoveToColdStorageAfterDays);
+            }
+
+            if(requestObject.IsSetOptInToArchiveForSupportedResources())
+            {
+                context.Writer.WritePropertyName("OptInToArchiveForSupportedResources");
+                context.Writer.Write(requestObject.OptInToArchiveForSupportedResources);
             }
 
         }

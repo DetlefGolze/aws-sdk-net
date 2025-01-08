@@ -26,21 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateFleetAttributes operation.
-    /// Updates a fleet's mutable attributes, including game session protection and resource
+    /// Updates a fleet's mutable attributes, such as game session protection and resource
     /// creation limits.
     /// 
     ///  
     /// <para>
     /// To update fleet attributes, specify the fleet ID and the property values that you
-    /// want to change. 
-    /// </para>
-    ///  
-    /// <para>
-    /// If successful, an updated <code>FleetAttributes</code> object is returned.
+    /// want to change. If successful, Amazon GameLift returns the identifiers for the updated
+    /// fleet.
     /// </para>
     ///  
     /// <para>
@@ -57,7 +55,7 @@ namespace Amazon.GameLift.Model
         private AnywhereConfiguration _anywhereConfiguration;
         private string _description;
         private string _fleetId;
-        private List<string> _metricGroups = new List<string>();
+        private List<string> _metricGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
         private ProtectionPolicy _newGameSessionProtectionPolicy;
         private ResourceCreationLimitPolicy _resourceCreationLimitPolicy;
@@ -106,7 +104,7 @@ namespace Amazon.GameLift.Model
         /// the fleet ID or ARN value.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -138,7 +136,7 @@ namespace Amazon.GameLift.Model
         // Check to see if MetricGroups property is set
         internal bool IsSetMetricGroups()
         {
-            return this._metricGroups != null && this._metricGroups.Count > 0; 
+            return this._metricGroups != null && (this._metricGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -175,8 +173,8 @@ namespace Amazon.GameLift.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>FullProtection</b> -- If the game session is in an <code>ACTIVE</code> status,
-        /// it cannot be terminated during a scale-down event.
+        ///  <b>FullProtection</b> -- If the game session is in an <c>ACTIVE</c> status, it cannot
+        /// be terminated during a scale-down event.
         /// </para>
         ///  </li> </ul>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Athena.Model
 {
     /// <summary>
@@ -33,11 +34,11 @@ namespace Amazon.Athena.Model
     /// Returns the details of a single prepared statement or a list of up to 256 prepared
     /// statements for the array of prepared statement names that you provide. Requires you
     /// to have access to the workgroup to which the prepared statements belong. If a prepared
-    /// statement cannot be retrieved for the name specified, the statement is listed in <code>UnprocessedPreparedStatementNames</code>.
+    /// statement cannot be retrieved for the name specified, the statement is listed in <c>UnprocessedPreparedStatementNames</c>.
     /// </summary>
     public partial class BatchGetPreparedStatementRequest : AmazonAthenaRequest
     {
-        private List<string> _preparedStatementNames = new List<string>();
+        private List<string> _preparedStatementNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _workGroup;
 
         /// <summary>
@@ -56,7 +57,7 @@ namespace Amazon.Athena.Model
         // Check to see if PreparedStatementNames property is set
         internal bool IsSetPreparedStatementNames()
         {
-            return this._preparedStatementNames != null && this._preparedStatementNames.Count > 0; 
+            return this._preparedStatementNames != null && (this._preparedStatementNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudTrail.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,12 +66,19 @@ namespace Amazon.CloudTrail.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetEventDataStore())
                 {
                     context.Writer.WritePropertyName("EventDataStore");
                     context.Writer.Write(publicRequest.EventDataStore);
+                }
+
+                if(publicRequest.IsSetEventDataStoreOwnerAccountId())
+                {
+                    context.Writer.WritePropertyName("EventDataStoreOwnerAccountId");
+                    context.Writer.Write(publicRequest.EventDataStoreOwnerAccountId);
                 }
 
                 if(publicRequest.IsSetQueryAlias())
@@ -83,6 +91,12 @@ namespace Amazon.CloudTrail.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("QueryId");
                     context.Writer.Write(publicRequest.QueryId);
+                }
+
+                if(publicRequest.IsSetRefreshId())
+                {
+                    context.Writer.WritePropertyName("RefreshId");
+                    context.Writer.Write(publicRequest.RefreshId);
                 }
 
                 writer.WriteObjectEnd();

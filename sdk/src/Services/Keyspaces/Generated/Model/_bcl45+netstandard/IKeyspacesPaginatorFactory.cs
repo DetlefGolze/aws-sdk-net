@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the keyspaces-2022-02-10.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Keyspaces.Model
 {
     /// <summary>
@@ -39,5 +40,10 @@ namespace Amazon.Keyspaces.Model
         /// Paginator for ListTagsForResource operation
         ///</summary>
         IListTagsForResourcePaginator ListTagsForResource(ListTagsForResourceRequest request);
+
+        /// <summary>
+        /// Paginator for ListTypes operation
+        ///</summary>
+        IListTypesPaginator ListTypes(ListTypesRequest request);
     }
 }

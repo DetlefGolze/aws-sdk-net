@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
     /// A logical rule statement used to combine other rule statements with OR logic. You
-    /// provide more than one <a>Statement</a> within the <code>OrStatement</code>.
+    /// provide more than one <a>Statement</a> within the <c>OrStatement</c>.
     /// </summary>
     public partial class OrStatement
     {
-        private List<Statement> _statements = new List<Statement>();
+        private List<Statement> _statements = AWSConfigs.InitializeCollections ? new List<Statement>() : null;
 
         /// <summary>
         /// Gets and sets the property Statements. 
@@ -52,7 +53,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if Statements property is set
         internal bool IsSetStatements()
         {
-            return this._statements != null && this._statements.Count > 0; 
+            return this._statements != null && (this._statements.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

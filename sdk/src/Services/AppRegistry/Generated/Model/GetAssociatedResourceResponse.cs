@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRegistry.Model
 {
     /// <summary>
@@ -33,7 +34,45 @@ namespace Amazon.AppRegistry.Model
     /// </summary>
     public partial class GetAssociatedResourceResponse : AmazonWebServiceResponse
     {
+        private ApplicationTagResult _applicationTagResult;
+        private List<string> _options = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private Resource _resource;
+
+        /// <summary>
+        /// Gets and sets the property ApplicationTagResult. 
+        /// <para>
+        ///  The result of the application that's tag applied to a resource. 
+        /// </para>
+        /// </summary>
+        public ApplicationTagResult ApplicationTagResult
+        {
+            get { return this._applicationTagResult; }
+            set { this._applicationTagResult = value; }
+        }
+
+        // Check to see if ApplicationTagResult property is set
+        internal bool IsSetApplicationTagResult()
+        {
+            return this._applicationTagResult != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Options. 
+        /// <para>
+        ///  Determines whether an application tag is applied or skipped. 
+        /// </para>
+        /// </summary>
+        public List<string> Options
+        {
+            get { return this._options; }
+            set { this._options = value; }
+        }
+
+        // Check to see if Options property is set
+        internal bool IsSetOptions()
+        {
+            return this._options != null && (this._options.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
 
         /// <summary>
         /// Gets and sets the property Resource. 

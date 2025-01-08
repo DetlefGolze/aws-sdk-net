@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -57,6 +58,7 @@ namespace Amazon.DatabaseMigrationService.Model
         private string _availabilityZone;
         private string _dnsNameServers;
         private string _engineVersion;
+        private KerberosAuthenticationSettings _kerberosAuthenticationSettings;
         private string _kmsKeyId;
         private bool? _multiAZ;
         private string _networkType;
@@ -66,8 +68,8 @@ namespace Amazon.DatabaseMigrationService.Model
         private string _replicationInstanceIdentifier;
         private string _replicationSubnetGroupIdentifier;
         private string _resourceIdentifier;
-        private List<Tag> _tags = new List<Tag>();
-        private List<string> _vpcSecurityGroupIds = new List<string>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private List<string> _vpcSecurityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AllocatedStorage. 
@@ -93,11 +95,11 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <para>
         /// A value that indicates whether minor engine upgrades are applied automatically to
         /// the replication instance during the maintenance window. This parameter defaults to
-        /// <code>true</code>.
+        /// <c>true</c>.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>true</code> 
+        /// Default: <c>true</c> 
         /// </para>
         /// </summary>
         public bool AutoMinorVersionUpgrade
@@ -117,7 +119,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <para>
         /// The Availability Zone where the replication instance will be created. The default
         /// value is a random, system-chosen Availability Zone in the endpoint's Amazon Web Services
-        /// Region, for example: <code>us-east-1d</code>.
+        /// Region, for example: <c>us-east-1d</c>.
         /// </para>
         /// </summary>
         public string AvailabilityZone
@@ -138,7 +140,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// A list of custom DNS name servers supported for the replication instance to access
         /// your on-premise source or target database. This list overrides the default name servers
         /// supported by the replication instance. You can specify a comma-separated list of internet
-        /// addresses for up to four on-premise DNS name servers. For example: <code>"1.1.1.1,2.2.2.2,3.3.3.3,4.4.4.4"</code>
+        /// addresses for up to four on-premise DNS name servers. For example: <c>"1.1.1.1,2.2.2.2,3.3.3.3,4.4.4.4"</c>
         /// 
         /// </para>
         /// </summary>
@@ -178,14 +180,33 @@ namespace Amazon.DatabaseMigrationService.Model
         }
 
         /// <summary>
+        /// Gets and sets the property KerberosAuthenticationSettings. 
+        /// <para>
+        /// Specifies the ID of the secret that stores the key cache file required for kerberos
+        /// authentication, when creating a replication instance.
+        /// </para>
+        /// </summary>
+        public KerberosAuthenticationSettings KerberosAuthenticationSettings
+        {
+            get { return this._kerberosAuthenticationSettings; }
+            set { this._kerberosAuthenticationSettings = value; }
+        }
+
+        // Check to see if KerberosAuthenticationSettings property is set
+        internal bool IsSetKerberosAuthenticationSettings()
+        {
+            return this._kerberosAuthenticationSettings != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
         /// An KMS key identifier that is used to encrypt the data on the replication instance.
         /// </para>
         ///  
         /// <para>
-        /// If you don't specify a value for the <code>KmsKeyId</code> parameter, then DMS uses
-        /// your default encryption key.
+        /// If you don't specify a value for the <c>KmsKeyId</c> parameter, then DMS uses your
+        /// default encryption key.
         /// </para>
         ///  
         /// <para>
@@ -210,7 +231,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property MultiAZ. 
         /// <para>
         ///  Specifies whether the replication instance is a Multi-AZ deployment. You can't set
-        /// the <code>AvailabilityZone</code> parameter if the Multi-AZ parameter is set to <code>true</code>.
+        /// the <c>AvailabilityZone</c> parameter if the Multi-AZ parameter is set to <c>true</c>.
         /// 
         /// </para>
         /// </summary>
@@ -253,7 +274,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// </para>
         ///  
         /// <para>
-        ///  Format: <code>ddd:hh24:mi-ddd:hh24:mi</code> 
+        ///  Format: <c>ddd:hh24:mi-ddd:hh24:mi</c> 
         /// </para>
         ///  
         /// <para>
@@ -284,9 +305,9 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property PubliclyAccessible. 
         /// <para>
-        ///  Specifies the accessibility options for the replication instance. A value of <code>true</code>
-        /// represents an instance with a public IP address. A value of <code>false</code> represents
-        /// an instance with a private IP address. The default value is <code>true</code>. 
+        ///  Specifies the accessibility options for the replication instance. A value of <c>true</c>
+        /// represents an instance with a public IP address. A value of <c>false</c> represents
+        /// an instance with a private IP address. The default value is <c>true</c>. 
         /// </para>
         /// </summary>
         public bool PubliclyAccessible
@@ -306,7 +327,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <para>
         /// The compute and memory capacity of the replication instance as defined for the specified
         /// replication instance class. For example to specify the instance class dms.c4.large,
-        /// set this parameter to <code>"dms.c4.large"</code>.
+        /// set this parameter to <c>"dms.c4.large"</c>.
         /// </para>
         ///  
         /// <para>
@@ -316,7 +337,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// the best size for a replication instance</a>. 
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Max=30)]
         public string ReplicationInstanceClass
         {
             get { return this._replicationInstanceClass; }
@@ -352,7 +373,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>myrepinstance</code> 
+        /// Example: <c>myrepinstance</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -389,14 +410,14 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property ResourceIdentifier. 
         /// <para>
-        /// A friendly name for the resource identifier at the end of the <code>EndpointArn</code>
-        /// response parameter that is returned in the created <code>Endpoint</code> object. The
-        /// value for this parameter can have up to 31 characters. It can contain only ASCII letters,
-        /// digits, and hyphen ('-'). Also, it can't end with a hyphen or contain two consecutive
-        /// hyphens, and can only begin with a letter, such as <code>Example-App-ARN1</code>.
-        /// For example, this value might result in the <code>EndpointArn</code> value <code>arn:aws:dms:eu-west-1:012345678901:rep:Example-App-ARN1</code>.
-        /// If you don't specify a <code>ResourceIdentifier</code> value, DMS generates a default
-        /// identifier value for the end of <code>EndpointArn</code>.
+        /// A friendly name for the resource identifier at the end of the <c>EndpointArn</c> response
+        /// parameter that is returned in the created <c>Endpoint</c> object. The value for this
+        /// parameter can have up to 31 characters. It can contain only ASCII letters, digits,
+        /// and hyphen ('-'). Also, it can't end with a hyphen or contain two consecutive hyphens,
+        /// and can only begin with a letter, such as <c>Example-App-ARN1</c>. For example, this
+        /// value might result in the <c>EndpointArn</c> value <c>arn:aws:dms:eu-west-1:012345678901:rep:Example-App-ARN1</c>.
+        /// If you don't specify a <c>ResourceIdentifier</c> value, DMS generates a default identifier
+        /// value for the end of <c>EndpointArn</c>.
         /// </para>
         /// </summary>
         public string ResourceIdentifier
@@ -426,7 +447,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -445,7 +466,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if VpcSecurityGroupIds property is set
         internal bool IsSetVpcSecurityGroupIds()
         {
-            return this._vpcSecurityGroupIds != null && this._vpcSecurityGroupIds.Count > 0; 
+            return this._vpcSecurityGroupIds != null && (this._vpcSecurityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

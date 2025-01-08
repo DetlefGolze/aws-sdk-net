@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.EC2.Model
         private string _snapshotId;
         private SnapshotState _status;
         private StorageTier _storageTier;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _volumeId;
 
         /// <summary>
@@ -212,10 +213,10 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property StorageTier. 
         /// <para>
-        /// The storage tier in which the snapshot is stored. <code>standard</code> indicates
-        /// that the snapshot is stored in the standard snapshot storage tier and that it is ready
-        /// for use. <code>archive</code> indicates that the snapshot is currently archived and
-        /// that it must be restored before it can be used.
+        /// The storage tier in which the snapshot is stored. <c>standard</c> indicates that the
+        /// snapshot is stored in the standard snapshot storage tier and that it is ready for
+        /// use. <c>archive</c> indicates that the snapshot is currently archived and that it
+        /// must be restored before it can be used.
         /// </para>
         /// </summary>
         public StorageTier StorageTier
@@ -245,7 +246,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

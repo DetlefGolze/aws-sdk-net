@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
     /// The specified target managed node for the session isn't fully configured for use with
-    /// Session Manager. For more information, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started.html">Getting
-    /// started with Session Manager</a> in the <i>Amazon Web Services Systems Manager User
-    /// Guide</i>. This error is also returned if you attempt to start a session on a managed
-    /// node that is located in a different account or Region
+    /// Session Manager. For more information, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started.html">Setting
+    /// up Session Manager</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.
+    /// This error is also returned if you attempt to start a session on a managed node that
+    /// is located in a different account or Region
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

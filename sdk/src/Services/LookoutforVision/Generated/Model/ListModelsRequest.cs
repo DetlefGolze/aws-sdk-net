@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LookoutforVision.Model
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace Amazon.LookoutforVision.Model
     /// 
     ///  
     /// <para>
-    /// The <code>ListModels</code> operation is eventually consistent. Recent calls to <code>CreateModel</code>
-    /// might take a while to appear in the response from <code>ListProjects</code>.
+    /// The <c>ListModels</c> operation is eventually consistent. Recent calls to <c>CreateModel</c>
+    /// might take a while to appear in the response from <c>ListProjects</c>.
     /// </para>
     ///  
     /// <para>
-    /// This operation requires permissions to perform the <code>lookoutvision:ListModels</code>
+    /// This operation requires permissions to perform the <c>lookoutvision:ListModels</c>
     /// operation.
     /// </para>
     /// </summary>

@@ -26,23 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Keyspaces.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateTable operation.
     /// Adds new columns to the table or updates one of the table's settings, for example
-    /// capacity mode, encryption, point-in-time recovery, or ttl settings. Note that you
-    /// can only update one specific table setting per update operation.
+    /// capacity mode, auto scaling, encryption, point-in-time recovery, or ttl settings.
+    /// Note that you can only update one specific table setting per update operation.
     /// </summary>
     public partial class UpdateTableRequest : AmazonKeyspacesRequest
     {
-        private List<ColumnDefinition> _addColumns = new List<ColumnDefinition>();
+        private List<ColumnDefinition> _addColumns = AWSConfigs.InitializeCollections ? new List<ColumnDefinition>() : null;
+        private AutoScalingSpecification _autoScalingSpecification;
         private CapacitySpecification _capacitySpecification;
         private ClientSideTimestamps _clientSideTimestamps;
         private int? _defaultTimeToLive;
         private EncryptionSpecification _encryptionSpecification;
         private string _keyspaceName;
         private PointInTimeRecovery _pointInTimeRecovery;
+        private List<ReplicaSpecification> _replicaSpecifications = AWSConfigs.InitializeCollections ? new List<ReplicaSpecification>() : null;
         private string _tableName;
         private TimeToLive _ttl;
 
@@ -53,11 +56,11 @@ namespace Amazon.Keyspaces.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>name</code> - The name of the column.
+        ///  <c>name</c> - The name of the column.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>type</code> - An Amazon Keyspaces data type. For more information, see <a href="https://docs.aws.amazon.com/keyspaces/latest/devguide/cql.elements.html#cql.data-types">Data
+        ///  <c>type</c> - An Amazon Keyspaces data type. For more information, see <a href="https://docs.aws.amazon.com/keyspaces/latest/devguide/cql.elements.html#cql.data-types">Data
         /// types</a> in the <i>Amazon Keyspaces Developer Guide</i>.
         /// </para>
         ///  </li> </ul>
@@ -72,7 +75,40 @@ namespace Amazon.Keyspaces.Model
         // Check to see if AddColumns property is set
         internal bool IsSetAddColumns()
         {
-            return this._addColumns != null && this._addColumns.Count > 0; 
+            return this._addColumns != null && (this._addColumns.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property AutoScalingSpecification. 
+        /// <para>
+        /// The optional auto scaling settings to update for a table in provisioned capacity mode.
+        /// Specifies if the service can manage throughput capacity of a provisioned table automatically
+        /// on your behalf. Amazon Keyspaces auto scaling helps you provision throughput capacity
+        /// for variable workloads efficiently by increasing and decreasing your table's read
+        /// and write capacity automatically in response to application traffic.
+        /// </para>
+        ///  
+        /// <para>
+        /// If auto scaling is already enabled for the table, you can use <c>UpdateTable</c> to
+        /// update the minimum and maximum values or the auto scaling policy settings independently.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/keyspaces/latest/devguide/autoscaling.html">Managing
+        /// throughput capacity automatically with Amazon Keyspaces auto scaling</a> in the <i>Amazon
+        /// Keyspaces Developer Guide</i>.
+        /// </para>
+        /// </summary>
+        public AutoScalingSpecification AutoScalingSpecification
+        {
+            get { return this._autoScalingSpecification; }
+            set { this._autoScalingSpecification = value; }
+        }
+
+        // Check to see if AutoScalingSpecification property is set
+        internal bool IsSetAutoScalingSpecification()
+        {
+            return this._autoScalingSpecification != null;
         }
 
         /// <summary>
@@ -82,16 +118,16 @@ namespace Amazon.Keyspaces.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>throughputMode:PAY_PER_REQUEST</code> and 
+        ///  <c>throughputMode:PAY_PER_REQUEST</c> and 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>throughputMode:PROVISIONED</code> - Provisioned capacity mode requires <code>readCapacityUnits</code>
-        /// and <code>writeCapacityUnits</code> as input.
+        ///  <c>throughputMode:PROVISIONED</c> - Provisioned capacity mode requires <c>readCapacityUnits</c>
+        /// and <c>writeCapacityUnits</c> as input.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// The default is <code>throughput_mode:PAY_PER_REQUEST</code>.
+        /// The default is <c>throughput_mode:PAY_PER_REQUEST</c>.
         /// </para>
         ///  
         /// <para>
@@ -119,7 +155,7 @@ namespace Amazon.Keyspaces.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>status: "enabled"</code> 
+        ///  <c>status: "enabled"</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -149,7 +185,7 @@ namespace Amazon.Keyspaces.Model
         /// the default TTL value for a table</a> in the <i>Amazon Keyspaces Developer Guide</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=630720000)]
+        [AWSProperty(Min=0, Max=630720000)]
         public int DefaultTimeToLive
         {
             get { return this._defaultTimeToLive.GetValueOrDefault(); }
@@ -170,17 +206,17 @@ namespace Amazon.Keyspaces.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>type:AWS_OWNED_KMS_KEY</code> - This key is owned by Amazon Keyspaces. 
+        ///  <c>type:AWS_OWNED_KMS_KEY</c> - This key is owned by Amazon Keyspaces. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>type:CUSTOMER_MANAGED_KMS_KEY</code> - This key is stored in your account and
-        /// is created, owned, and managed by you. This option requires the <code>kms_key_identifier</code>
+        ///  <c>type:CUSTOMER_MANAGED_KMS_KEY</c> - This key is stored in your account and is
+        /// created, owned, and managed by you. This option requires the <c>kms_key_identifier</c>
         /// of the KMS key in Amazon Resource Name (ARN) format as input. 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// The default is <code>AWS_OWNED_KMS_KEY</code>.
+        /// The default is <c>AWS_OWNED_KMS_KEY</c>.
         /// </para>
         ///  
         /// <para>
@@ -222,19 +258,19 @@ namespace Amazon.Keyspaces.Model
         /// <summary>
         /// Gets and sets the property PointInTimeRecovery. 
         /// <para>
-        /// Modifies the <code>pointInTimeRecovery</code> settings of the table. The options are:
+        /// Modifies the <c>pointInTimeRecovery</c> settings of the table. The options are:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>status=ENABLED</code> 
+        ///  <c>status=ENABLED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>status=DISABLED</code> 
+        ///  <c>status=DISABLED</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If it's not specified, the default is <code>status=DISABLED</code>.
+        /// If it's not specified, the default is <c>status=DISABLED</c>.
         /// </para>
         ///  
         /// <para>
@@ -252,6 +288,25 @@ namespace Amazon.Keyspaces.Model
         internal bool IsSetPointInTimeRecovery()
         {
             return this._pointInTimeRecovery != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ReplicaSpecifications. 
+        /// <para>
+        /// The Region specific settings of a multi-Regional table.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1)]
+        public List<ReplicaSpecification> ReplicaSpecifications
+        {
+            get { return this._replicaSpecifications; }
+            set { this._replicaSpecifications = value; }
+        }
+
+        // Check to see if ReplicaSpecifications property is set
+        internal bool IsSetReplicaSpecifications()
+        {
+            return this._replicaSpecifications != null && (this._replicaSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -280,16 +335,16 @@ namespace Amazon.Keyspaces.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>status:enabled</code> 
+        ///  <c>status:enabled</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>status:disabled</code> 
+        ///  <c>status:disabled</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// The default is <code>status:disabled</code>. After <code>ttl</code> is enabled, you
-        /// can't disable it for the table.
+        /// The default is <c>status:disabled</c>. After <c>ttl</c> is enabled, you can't disable
+        /// it for the table.
         /// </para>
         ///  
         /// <para>

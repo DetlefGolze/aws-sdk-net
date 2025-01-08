@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.FSx.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public OntapFileSystemConfiguration Unmarshall(JsonUnmarshallerContext context)
         {
+            OntapFileSystemConfiguration unmarshalledObject = new OntapFileSystemConfiguration();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            OntapFileSystemConfiguration unmarshalledObject = new OntapFileSystemConfiguration();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -106,6 +108,12 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
                     unmarshalledObject.FsxAdminPassword = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("HAPairs", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.HAPairs = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("PreferredSubnetId", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -124,6 +132,12 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
                     unmarshalledObject.ThroughputCapacity = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ThroughputCapacityPerHAPair", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.ThroughputCapacityPerHAPair = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("WeeklyMaintenanceStartTime", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -131,7 +145,6 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

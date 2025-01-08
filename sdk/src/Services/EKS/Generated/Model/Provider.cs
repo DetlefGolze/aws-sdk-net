@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -38,10 +39,11 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property KeyArn. 
         /// <para>
-        /// Amazon Resource Name (ARN) or alias of the KMS key. The KMS key must be symmetric,
-        /// created in the same region as the cluster, and if the KMS key was created in a different
-        /// account, the user must have access to the KMS key. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html">Allowing
-        /// Users in Other Accounts to Use a KMS key</a> in the <i>Key Management Service Developer
+        /// Amazon Resource Name (ARN) or alias of the KMS key. The KMS key must be symmetric
+        /// and created in the same Amazon Web Services Region as the cluster. If the KMS key
+        /// was created in a different account, the <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html">IAM
+        /// principal</a> must have access to the KMS key. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html">Allowing
+        /// users in other accounts to use a KMS key</a> in the <i>Key Management Service Developer
         /// Guide</i>.
         /// </para>
         /// </summary>

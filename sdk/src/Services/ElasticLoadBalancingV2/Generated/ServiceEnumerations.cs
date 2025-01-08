@@ -87,6 +87,106 @@ namespace Amazon.ElasticLoadBalancingV2
 
 
     /// <summary>
+    /// Constants used for properties of type AdvertiseTrustStoreCaNamesEnum.
+    /// </summary>
+    public class AdvertiseTrustStoreCaNamesEnum : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Off for AdvertiseTrustStoreCaNamesEnum
+        /// </summary>
+        public static readonly AdvertiseTrustStoreCaNamesEnum Off = new AdvertiseTrustStoreCaNamesEnum("off");
+        /// <summary>
+        /// Constant On for AdvertiseTrustStoreCaNamesEnum
+        /// </summary>
+        public static readonly AdvertiseTrustStoreCaNamesEnum On = new AdvertiseTrustStoreCaNamesEnum("on");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public AdvertiseTrustStoreCaNamesEnum(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static AdvertiseTrustStoreCaNamesEnum FindValue(string value)
+        {
+            return FindValue<AdvertiseTrustStoreCaNamesEnum>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator AdvertiseTrustStoreCaNamesEnum(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type AnomalyResultEnum.
+    /// </summary>
+    public class AnomalyResultEnum : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Anomalous for AnomalyResultEnum
+        /// </summary>
+        public static readonly AnomalyResultEnum Anomalous = new AnomalyResultEnum("anomalous");
+        /// <summary>
+        /// Constant Normal for AnomalyResultEnum
+        /// </summary>
+        public static readonly AnomalyResultEnum Normal = new AnomalyResultEnum("normal");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public AnomalyResultEnum(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static AnomalyResultEnum FindValue(string value)
+        {
+            return FindValue<AnomalyResultEnum>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator AnomalyResultEnum(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type AuthenticateCognitoActionConditionalBehaviorEnum.
     /// </summary>
     public class AuthenticateCognitoActionConditionalBehaviorEnum : ConstantClass
@@ -195,6 +295,164 @@ namespace Amazon.ElasticLoadBalancingV2
 
 
     /// <summary>
+    /// Constants used for properties of type CapacityReservationStateEnum.
+    /// </summary>
+    public class CapacityReservationStateEnum : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Failed for CapacityReservationStateEnum
+        /// </summary>
+        public static readonly CapacityReservationStateEnum Failed = new CapacityReservationStateEnum("failed");
+        /// <summary>
+        /// Constant Pending for CapacityReservationStateEnum
+        /// </summary>
+        public static readonly CapacityReservationStateEnum Pending = new CapacityReservationStateEnum("pending");
+        /// <summary>
+        /// Constant Provisioned for CapacityReservationStateEnum
+        /// </summary>
+        public static readonly CapacityReservationStateEnum Provisioned = new CapacityReservationStateEnum("provisioned");
+        /// <summary>
+        /// Constant Rebalancing for CapacityReservationStateEnum
+        /// </summary>
+        public static readonly CapacityReservationStateEnum Rebalancing = new CapacityReservationStateEnum("rebalancing");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public CapacityReservationStateEnum(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static CapacityReservationStateEnum FindValue(string value)
+        {
+            return FindValue<CapacityReservationStateEnum>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator CapacityReservationStateEnum(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type DescribeTargetHealthInputIncludeEnum.
+    /// </summary>
+    public class DescribeTargetHealthInputIncludeEnum : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant All for DescribeTargetHealthInputIncludeEnum
+        /// </summary>
+        public static readonly DescribeTargetHealthInputIncludeEnum All = new DescribeTargetHealthInputIncludeEnum("All");
+        /// <summary>
+        /// Constant AnomalyDetection for DescribeTargetHealthInputIncludeEnum
+        /// </summary>
+        public static readonly DescribeTargetHealthInputIncludeEnum AnomalyDetection = new DescribeTargetHealthInputIncludeEnum("AnomalyDetection");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public DescribeTargetHealthInputIncludeEnum(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static DescribeTargetHealthInputIncludeEnum FindValue(string value)
+        {
+            return FindValue<DescribeTargetHealthInputIncludeEnum>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator DescribeTargetHealthInputIncludeEnum(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type EnablePrefixForIpv6SourceNatEnum.
+    /// </summary>
+    public class EnablePrefixForIpv6SourceNatEnum : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Off for EnablePrefixForIpv6SourceNatEnum
+        /// </summary>
+        public static readonly EnablePrefixForIpv6SourceNatEnum Off = new EnablePrefixForIpv6SourceNatEnum("off");
+        /// <summary>
+        /// Constant On for EnablePrefixForIpv6SourceNatEnum
+        /// </summary>
+        public static readonly EnablePrefixForIpv6SourceNatEnum On = new EnablePrefixForIpv6SourceNatEnum("on");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public EnablePrefixForIpv6SourceNatEnum(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static EnablePrefixForIpv6SourceNatEnum FindValue(string value)
+        {
+            return FindValue<EnablePrefixForIpv6SourceNatEnum>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator EnablePrefixForIpv6SourceNatEnum(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type EnforceSecurityGroupInboundRulesOnPrivateLinkTrafficEnum.
     /// </summary>
     public class EnforceSecurityGroupInboundRulesOnPrivateLinkTrafficEnum : ConstantClass
@@ -254,6 +512,10 @@ namespace Amazon.ElasticLoadBalancingV2
         /// Constant Dualstack for IpAddressType
         /// </summary>
         public static readonly IpAddressType Dualstack = new IpAddressType("dualstack");
+        /// <summary>
+        /// Constant DualstackWithoutPublicIpv4 for IpAddressType
+        /// </summary>
+        public static readonly IpAddressType DualstackWithoutPublicIpv4 = new IpAddressType("dualstack-without-public-ipv4");
         /// <summary>
         /// Constant Ipv4 for IpAddressType
         /// </summary>
@@ -457,6 +719,56 @@ namespace Amazon.ElasticLoadBalancingV2
 
 
     /// <summary>
+    /// Constants used for properties of type MitigationInEffectEnum.
+    /// </summary>
+    public class MitigationInEffectEnum : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant No for MitigationInEffectEnum
+        /// </summary>
+        public static readonly MitigationInEffectEnum No = new MitigationInEffectEnum("no");
+        /// <summary>
+        /// Constant Yes for MitigationInEffectEnum
+        /// </summary>
+        public static readonly MitigationInEffectEnum Yes = new MitigationInEffectEnum("yes");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public MitigationInEffectEnum(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static MitigationInEffectEnum FindValue(string value)
+        {
+            return FindValue<MitigationInEffectEnum>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator MitigationInEffectEnum(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ProtocolEnum.
     /// </summary>
     public class ProtocolEnum : ConstantClass
@@ -570,6 +882,168 @@ namespace Amazon.ElasticLoadBalancingV2
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator RedirectActionStatusCodeEnum(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type RevocationType.
+    /// </summary>
+    public class RevocationType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CRL for RevocationType
+        /// </summary>
+        public static readonly RevocationType CRL = new RevocationType("CRL");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public RevocationType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static RevocationType FindValue(string value)
+        {
+            return FindValue<RevocationType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator RevocationType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type TargetAdministrativeOverrideReasonEnum.
+    /// </summary>
+    public class TargetAdministrativeOverrideReasonEnum : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant AdministrativeOverrideNoOverride for TargetAdministrativeOverrideReasonEnum
+        /// </summary>
+        public static readonly TargetAdministrativeOverrideReasonEnum AdministrativeOverrideNoOverride = new TargetAdministrativeOverrideReasonEnum("AdministrativeOverride.NoOverride");
+        /// <summary>
+        /// Constant AdministrativeOverrideUnknown for TargetAdministrativeOverrideReasonEnum
+        /// </summary>
+        public static readonly TargetAdministrativeOverrideReasonEnum AdministrativeOverrideUnknown = new TargetAdministrativeOverrideReasonEnum("AdministrativeOverride.Unknown");
+        /// <summary>
+        /// Constant AdministrativeOverrideZonalShiftActive for TargetAdministrativeOverrideReasonEnum
+        /// </summary>
+        public static readonly TargetAdministrativeOverrideReasonEnum AdministrativeOverrideZonalShiftActive = new TargetAdministrativeOverrideReasonEnum("AdministrativeOverride.ZonalShiftActive");
+        /// <summary>
+        /// Constant AdministrativeOverrideZonalShiftDelegatedToDns for TargetAdministrativeOverrideReasonEnum
+        /// </summary>
+        public static readonly TargetAdministrativeOverrideReasonEnum AdministrativeOverrideZonalShiftDelegatedToDns = new TargetAdministrativeOverrideReasonEnum("AdministrativeOverride.ZonalShiftDelegatedToDns");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public TargetAdministrativeOverrideReasonEnum(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static TargetAdministrativeOverrideReasonEnum FindValue(string value)
+        {
+            return FindValue<TargetAdministrativeOverrideReasonEnum>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator TargetAdministrativeOverrideReasonEnum(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type TargetAdministrativeOverrideStateEnum.
+    /// </summary>
+    public class TargetAdministrativeOverrideStateEnum : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant No_override for TargetAdministrativeOverrideStateEnum
+        /// </summary>
+        public static readonly TargetAdministrativeOverrideStateEnum No_override = new TargetAdministrativeOverrideStateEnum("no_override");
+        /// <summary>
+        /// Constant Unknown for TargetAdministrativeOverrideStateEnum
+        /// </summary>
+        public static readonly TargetAdministrativeOverrideStateEnum Unknown = new TargetAdministrativeOverrideStateEnum("unknown");
+        /// <summary>
+        /// Constant Zonal_shift_active for TargetAdministrativeOverrideStateEnum
+        /// </summary>
+        public static readonly TargetAdministrativeOverrideStateEnum Zonal_shift_active = new TargetAdministrativeOverrideStateEnum("zonal_shift_active");
+        /// <summary>
+        /// Constant Zonal_shift_delegated_to_dns for TargetAdministrativeOverrideStateEnum
+        /// </summary>
+        public static readonly TargetAdministrativeOverrideStateEnum Zonal_shift_delegated_to_dns = new TargetAdministrativeOverrideStateEnum("zonal_shift_delegated_to_dns");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public TargetAdministrativeOverrideStateEnum(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static TargetAdministrativeOverrideStateEnum FindValue(string value)
+        {
+            return FindValue<TargetAdministrativeOverrideStateEnum>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator TargetAdministrativeOverrideStateEnum(string value)
         {
             return FindValue(value);
         }
@@ -743,6 +1217,10 @@ namespace Amazon.ElasticLoadBalancingV2
         /// </summary>
         public static readonly TargetHealthStateEnum Unhealthy = new TargetHealthStateEnum("unhealthy");
         /// <summary>
+        /// Constant UnhealthyDraining for TargetHealthStateEnum
+        /// </summary>
+        public static readonly TargetHealthStateEnum UnhealthyDraining = new TargetHealthStateEnum("unhealthy.draining");
+        /// <summary>
         /// Constant Unused for TargetHealthStateEnum
         /// </summary>
         public static readonly TargetHealthStateEnum Unused = new TargetHealthStateEnum("unused");
@@ -834,6 +1312,106 @@ namespace Amazon.ElasticLoadBalancingV2
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator TargetTypeEnum(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type TrustStoreAssociationStatusEnum.
+    /// </summary>
+    public class TrustStoreAssociationStatusEnum : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Active for TrustStoreAssociationStatusEnum
+        /// </summary>
+        public static readonly TrustStoreAssociationStatusEnum Active = new TrustStoreAssociationStatusEnum("active");
+        /// <summary>
+        /// Constant Removed for TrustStoreAssociationStatusEnum
+        /// </summary>
+        public static readonly TrustStoreAssociationStatusEnum Removed = new TrustStoreAssociationStatusEnum("removed");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public TrustStoreAssociationStatusEnum(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static TrustStoreAssociationStatusEnum FindValue(string value)
+        {
+            return FindValue<TrustStoreAssociationStatusEnum>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator TrustStoreAssociationStatusEnum(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type TrustStoreStatus.
+    /// </summary>
+    public class TrustStoreStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ACTIVE for TrustStoreStatus
+        /// </summary>
+        public static readonly TrustStoreStatus ACTIVE = new TrustStoreStatus("ACTIVE");
+        /// <summary>
+        /// Constant CREATING for TrustStoreStatus
+        /// </summary>
+        public static readonly TrustStoreStatus CREATING = new TrustStoreStatus("CREATING");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public TrustStoreStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static TrustStoreStatus FindValue(string value)
+        {
+            return FindValue<TrustStoreStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator TrustStoreStatus(string value)
         {
             return FindValue(value);
         }

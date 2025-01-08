@@ -26,19 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptography.Model
 {
     /// <summary>
     /// Container for the parameters to the GetParametersForImport operation.
-    /// Gets the import token and the wrapping key certificate to initiate a TR-34 key import
-    /// into Amazon Web Services Payment Cryptography.
+    /// Gets the import token and the wrapping key certificate in PEM format (base64 encoded)
+    /// to initiate a TR-34 WrappedKeyBlock or a RSA WrappedKeyCryptogram import into Amazon
+    /// Web Services Payment Cryptography.
     /// 
     ///  
     /// <para>
-    /// The wrapping key certificate wraps the key under import within the TR-34 key payload.
-    /// The import token and wrapping key certificate must be in place and operational before
-    /// calling <a>ImportKey</a>. The import token expires in 7 days. The same import token
-    /// can be used to import multiple keys into your service account.
+    /// The wrapping key certificate wraps the key under import. The import token and wrapping
+    /// key certificate must be in place and operational before calling <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ImportKey.html">ImportKey</a>.
+    /// The import token expires in 7 days. You can use the same import token to import multiple
+    /// keys into your service account.
     /// </para>
     ///  
     /// <para>
@@ -51,11 +53,13 @@ namespace Amazon.PaymentCryptography.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <a>GetParametersForExport</a> 
+    ///  <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_GetParametersForExport.html">GetParametersForExport</a>
+    /// 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a>ImportKey</a> 
+    ///  <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ImportKey.html">ImportKey</a>
+    /// 
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -67,9 +71,13 @@ namespace Amazon.PaymentCryptography.Model
         /// <summary>
         /// Gets and sets the property KeyMaterialType. 
         /// <para>
-        /// The key block format type such as TR-34 or TR-31 to use during key material import.
-        /// Import token is only required for TR-34 key import <code>TR34_KEY_BLOCK</code>. Import
-        /// token is not required for TR-31 key import.
+        /// The method to use for key material import. Import token is only required for TR-34
+        /// WrappedKeyBlock (<c>TR34_KEY_BLOCK</c>) and RSA WrappedKeyCryptogram (<c>KEY_CRYPTOGRAM</c>).
+        /// </para>
+        ///  
+        /// <para>
+        /// Import token is not required for TR-31, root public key cerificate or trusted public
+        /// key certificate.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -89,8 +97,13 @@ namespace Amazon.PaymentCryptography.Model
         /// Gets and sets the property WrappingKeyAlgorithm. 
         /// <para>
         /// The wrapping key algorithm to generate a wrapping key certificate. This certificate
-        /// wraps the key under import within the TR-34 key block cryptogram. <code>RSA_2048</code>
-        /// is the only wrapping key algorithm allowed.
+        /// wraps the key under import.
+        /// </para>
+        ///  
+        /// <para>
+        /// At this time, <c>RSA_2048</c> is the allowed algorithm for TR-34 WrappedKeyBlock import.
+        /// Additionally, <c>RSA_2048</c>, <c>RSA_3072</c>, <c>RSA_4096</c> are the allowed algorithms
+        /// for RSA WrappedKeyCryptogram import.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

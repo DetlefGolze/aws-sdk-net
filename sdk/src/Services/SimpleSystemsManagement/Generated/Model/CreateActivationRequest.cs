@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -35,9 +36,9 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// Registering these machines with Systems Manager makes it possible to manage them using
     /// Systems Manager capabilities. You use the activation code and ID when installing SSM
     /// Agent on machines in your hybrid environment. For more information about requirements
-    /// for managing on-premises machines using Systems Manager, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managedinstances.html">Setting
-    /// up Amazon Web Services Systems Manager for hybrid environments</a> in the <i>Amazon
-    /// Web Services Systems Manager User Guide</i>. 
+    /// for managing on-premises machines using Systems Manager, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-hybrid-multicloud.html">Using
+    /// Amazon Web Services Systems Manager in hybrid and multicloud environments</a> in the
+    /// <i>Amazon Web Services Systems Manager User Guide</i>. 
     /// 
     ///  <note> 
     /// <para>
@@ -54,8 +55,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         private DateTime? _expirationDate;
         private string _iamRole;
         private int? _registrationLimit;
-        private List<RegistrationMetadataItem> _registrationMetadata = new List<RegistrationMetadataItem>();
-        private List<Tag> _tags = new List<Tag>();
+        private List<RegistrationMetadataItem> _registrationMetadata = AWSConfigs.InitializeCollections ? new List<RegistrationMetadataItem>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property DefaultInstanceName. 
@@ -112,7 +113,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property ExpirationDate. 
         /// <para>
         /// The date by which this activation request should expire, in timestamp format, such
-        /// as "2021-07-07T00:00:00". You can specify a date up to 30 days in advance. If you
+        /// as "2024-07-07T00:00:00". You can specify a date up to 30 days in advance. If you
         /// don't provide an expiration date, the activation code expires in 24 hours.
         /// </para>
         /// </summary>
@@ -133,10 +134,10 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <para>
         /// The name of the Identity and Access Management (IAM) role that you want to assign
         /// to the managed node. This IAM role must provide AssumeRole permissions for the Amazon
-        /// Web Services Systems Manager service principal <code>ssm.amazonaws.com</code>. For
-        /// more information, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-service-role.html">Create
-        /// an IAM service role for a hybrid environment</a> in the <i>Amazon Web Services Systems
-        /// Manager User Guide</i>.
+        /// Web Services Systems Manager service principal <c>ssm.amazonaws.com</c>. For more
+        /// information, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/hybrid-multicloud-service-role.html">Create
+        /// the IAM service role required for Systems Manager in a hybrid and multicloud environments</a>
+        /// in the <i>Amazon Web Services Systems Manager User Guide</i>.
         /// </para>
         ///  <note> 
         /// <para>
@@ -162,7 +163,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property RegistrationLimit. 
         /// <para>
         /// Specify the maximum number of managed nodes you want to register. The default value
-        /// is <code>1</code>.
+        /// is <c>1</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]
@@ -193,7 +194,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if RegistrationMetadata property is set
         internal bool IsSetRegistrationMetadata()
         {
-            return this._registrationMetadata != null && this._registrationMetadata.Count > 0; 
+            return this._registrationMetadata != null && (this._registrationMetadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -207,11 +208,11 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Key=OS,Value=Windows</code> 
+        ///  <c>Key=OS,Value=Windows</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Key=Environment,Value=Production</code> 
+        ///  <c>Key=Environment,Value=Production</c> 
         /// </para>
         ///  </li> </ul> <important> 
         /// <para>
@@ -239,7 +240,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

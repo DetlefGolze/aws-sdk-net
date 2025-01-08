@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.KinesisAnalytics
 {
     /// <summary>
-    /// Implementation for accessing KinesisAnalytics
+    /// <para>Implementation for accessing KinesisAnalytics</para>
     ///
     /// Amazon Kinesis Analytics 
     /// <para>
@@ -374,7 +375,7 @@ namespace Amazon.KinesisAnalytics
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>kinesisanalytics:AddApplicationInput</code>
+        /// This operation requires permissions to perform the <c>kinesisanalytics:AddApplicationInput</c>
         /// action.
         /// </para>
         /// </summary>
@@ -574,7 +575,7 @@ namespace Amazon.KinesisAnalytics
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>kinesisanalytics:AddApplicationOutput</code>
+        /// This operation requires permissions to perform the <c>kinesisanalytics:AddApplicationOutput</c>
         /// action.
         /// </para>
         /// </summary>
@@ -675,7 +676,7 @@ namespace Amazon.KinesisAnalytics
         /// </para>
         ///  
         /// <para>
-        ///  This operation requires permissions to perform the <code>kinesisanalytics:AddApplicationOutput</code>
+        ///  This operation requires permissions to perform the <c>kinesisanalytics:AddApplicationOutput</c>
         /// action. 
         /// </para>
         /// </summary>
@@ -785,7 +786,7 @@ namespace Amazon.KinesisAnalytics
         /// <para>
         ///  To read data from your source stream or write data to destination streams, Amazon
         /// Kinesis Analytics needs your permissions. You grant these permissions by creating
-        /// IAM roles. This operation requires permissions to perform the <code>kinesisanalytics:CreateApplication</code>
+        /// IAM roles. This operation requires permissions to perform the <c>kinesisanalytics:CreateApplication</c>
         /// action. 
         /// </para>
         ///  
@@ -883,7 +884,7 @@ namespace Amazon.KinesisAnalytics
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>kinesisanalytics:DeleteApplication</code>
+        /// This operation requires permissions to perform the <c>kinesisanalytics:DeleteApplication</c>
         /// action.
         /// </para>
         /// </summary>
@@ -1133,7 +1134,7 @@ namespace Amazon.KinesisAnalytics
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>kinesisanalytics:DeleteApplicationOutput</code>
+        /// This operation requires permissions to perform the <c>kinesisanalytics:DeleteApplicationOutput</c>
         /// action.
         /// </para>
         /// </summary>
@@ -1225,7 +1226,7 @@ namespace Amazon.KinesisAnalytics
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>kinesisanalytics.DeleteApplicationReferenceDataSource</code>
+        /// This operation requires permissions to perform the <c>kinesisanalytics.DeleteApplicationReferenceDataSource</c>
         /// action.
         /// </para>
         /// </summary>
@@ -1316,9 +1317,9 @@ namespace Amazon.KinesisAnalytics
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>kinesisanalytics:DescribeApplication</code>
-        /// action. You can use <code>DescribeApplication</code> to get the current application
-        /// versionId, which you need to call other operations such as <code>Update</code>. 
+        /// This operation requires permissions to perform the <c>kinesisanalytics:DescribeApplication</c>
+        /// action. You can use <c>DescribeApplication</c> to get the current application versionId,
+        /// which you need to call other operations such as <c>Update</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeApplication service method.</param>
@@ -1404,7 +1405,7 @@ namespace Amazon.KinesisAnalytics
         /// </para>
         ///  
         /// <para>
-        ///  This operation requires permissions to perform the <code>kinesisanalytics:DiscoverInputSchema</code>
+        ///  This operation requires permissions to perform the <c>kinesisanalytics:DiscoverInputSchema</c>
         /// action. 
         /// </para>
         /// </summary>
@@ -1486,9 +1487,9 @@ namespace Amazon.KinesisAnalytics
         /// <para>
         /// Returns a list of Amazon Kinesis Analytics applications in your account. For each
         /// application, the response includes the application name, Amazon Resource Name (ARN),
-        /// and status. If the response returns the <code>HasMoreApplications</code> value as
-        /// true, you can send another request by adding the <code>ExclusiveStartApplicationName</code>
-        /// in the request body, and set the value of this to the last application name from the
+        /// and status. If the response returns the <c>HasMoreApplications</c> value as true,
+        /// you can send another request by adding the <c>ExclusiveStartApplicationName</c> in
+        /// the request body, and set the value of this to the last application name from the
         /// previous response. 
         /// </para>
         ///  
@@ -1497,7 +1498,7 @@ namespace Amazon.KinesisAnalytics
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>kinesisanalytics:ListApplications</code>
+        /// This operation requires permissions to perform the <c>kinesisanalytics:ListApplications</c>
         /// action.
         /// </para>
         /// </summary>
@@ -1638,8 +1639,8 @@ namespace Amazon.KinesisAnalytics
         /// </para>
         ///  
         /// <para>
-        ///  The application status must be <code>READY</code> for you to start an application.
-        /// You can get the application status in the console or using the <a href="https://docs.aws.amazon.com/kinesisanalytics/latest/dev/API_DescribeApplication.html">DescribeApplication</a>
+        ///  The application status must be <c>READY</c> for you to start an application. You
+        /// can get the application status in the console or using the <a href="https://docs.aws.amazon.com/kinesisanalytics/latest/dev/API_DescribeApplication.html">DescribeApplication</a>
         /// operation.
         /// </para>
         ///  
@@ -1650,7 +1651,7 @@ namespace Amazon.KinesisAnalytics
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>kinesisanalytics:StartApplication</code>
+        /// This operation requires permissions to perform the <c>kinesisanalytics:StartApplication</c>
         /// action.
         /// </para>
         /// </summary>
@@ -1739,7 +1740,7 @@ namespace Amazon.KinesisAnalytics
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>kinesisanalytics:StopApplication</code>
+        /// This operation requires permissions to perform the <c>kinesisanalytics:StopApplication</c>
         /// action.
         /// </para>
         /// </summary>
@@ -1968,12 +1969,12 @@ namespace Amazon.KinesisAnalytics
         /// </para>
         ///  
         /// <para>
-        /// Note that Amazon Kinesis Analytics updates the <code>CurrentApplicationVersionId</code>
+        /// Note that Amazon Kinesis Analytics updates the <c>CurrentApplicationVersionId</c>
         /// each time you update your application. 
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permission for the <code>kinesisanalytics:UpdateApplication</code>
+        /// This operation requires permission for the <c>kinesisanalytics:UpdateApplication</c>
         /// action.
         /// </para>
         /// </summary>
@@ -2055,11 +2056,11 @@ namespace Amazon.KinesisAnalytics
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
     /// The network configuration for jobs that are running on Fargate resources. Jobs that
-    /// are running on EC2 resources must not specify this parameter.
+    /// are running on Amazon EC2 resources must not specify this parameter.
     /// </summary>
     public partial class NetworkConfiguration
     {
@@ -44,7 +45,7 @@ namespace Amazon.Batch.Model
         /// to pull container images), the private subnet requires a NAT gateway be attached to
         /// route requests to the internet. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-networking.html">Amazon
         /// ECS task networking</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
-        /// The default value is "<code>DISABLED</code>".
+        /// The default value is "<c>DISABLED</c>".
         /// </para>
         /// </summary>
         public AssignPublicIp AssignPublicIp

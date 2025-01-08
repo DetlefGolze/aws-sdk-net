@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -89,15 +90,15 @@ namespace Amazon.NetworkManager.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Address</code>: The physical address of the site.
+        ///  <c>Address</c>: The physical address of the site.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Latitude</code>: The latitude of the site. 
+        ///  <c>Latitude</c>: The latitude of the site. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Longitude</code>: The longitude of the site.
+        ///  <c>Longitude</c>: The longitude of the site.
         /// </para>
         ///  </li> </ul>
         /// </summary>

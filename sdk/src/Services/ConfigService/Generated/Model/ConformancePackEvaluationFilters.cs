@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.ConfigService.Model
     public partial class ConformancePackEvaluationFilters
     {
         private ConformancePackComplianceType _complianceType;
-        private List<string> _configRuleNames = new List<string>();
-        private List<string> _resourceIds = new List<string>();
+        private List<string> _configRuleNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _resourceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _resourceType;
 
         /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.ConfigService.Model
         /// </para>
         ///  
         /// <para>
-        /// The allowed values are <code>COMPLIANT</code> and <code>NON_COMPLIANT</code>. <code>INSUFFICIENT_DATA</code>
+        /// The allowed values are <c>COMPLIANT</c> and <c>NON_COMPLIANT</c>. <c>INSUFFICIENT_DATA</c>
         /// is not supported.
         /// </para>
         /// </summary>
@@ -78,7 +79,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if ConfigRuleNames property is set
         internal bool IsSetConfigRuleNames()
         {
-            return this._configRuleNames != null && this._configRuleNames.Count > 0; 
+            return this._configRuleNames != null && (this._configRuleNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -103,13 +104,13 @@ namespace Amazon.ConfigService.Model
         // Check to see if ResourceIds property is set
         internal bool IsSetResourceIds()
         {
-            return this._resourceIds != null && this._resourceIds.Count > 0; 
+            return this._resourceIds != null && (this._resourceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// Filters the results by the resource type (for example, <code>"AWS::EC2::Instance"</code>).
+        /// Filters the results by the resource type (for example, <c>"AWS::EC2::Instance"</c>).
         /// 
         /// </para>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -37,16 +38,16 @@ namespace Amazon.ElastiCache.Model
     {
         private bool? _applyImmediately;
         private int? _nodeGroupCount;
-        private List<string> _nodeGroupsToRemove = new List<string>();
-        private List<string> _nodeGroupsToRetain = new List<string>();
+        private List<string> _nodeGroupsToRemove = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _nodeGroupsToRetain = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _replicationGroupId;
-        private List<ReshardingConfiguration> _reshardingConfiguration = new List<ReshardingConfiguration>();
+        private List<ReshardingConfiguration> _reshardingConfiguration = AWSConfigs.InitializeCollections ? new List<ReshardingConfiguration>() : null;
 
         /// <summary>
         /// Gets and sets the property ApplyImmediately. 
         /// <para>
         /// Indicates that the shard reconfiguration process begins immediately. At present, the
-        /// only permitted value for this parameter is <code>true</code>.
+        /// only permitted value for this parameter is <c>true</c>.
         /// </para>
         ///  
         /// <para>
@@ -89,14 +90,13 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property NodeGroupsToRemove. 
         /// <para>
-        /// If the value of <code>NodeGroupCount</code> is less than the current number of node
-        /// groups (shards), then either <code>NodeGroupsToRemove</code> or <code>NodeGroupsToRetain</code>
-        /// is required. <code>NodeGroupsToRemove</code> is a list of <code>NodeGroupId</code>s
-        /// to remove from the cluster.
+        /// If the value of <c>NodeGroupCount</c> is less than the current number of node groups
+        /// (shards), then either <c>NodeGroupsToRemove</c> or <c>NodeGroupsToRetain</c> is required.
+        /// <c>NodeGroupsToRemove</c> is a list of <c>NodeGroupId</c>s to remove from the cluster.
         /// </para>
         ///  
         /// <para>
-        /// ElastiCache for Redis will attempt to remove all node groups listed by <code>NodeGroupsToRemove</code>
+        /// ElastiCache will attempt to remove all node groups listed by <c>NodeGroupsToRemove</c>
         /// from the cluster.
         /// </para>
         /// </summary>
@@ -109,21 +109,20 @@ namespace Amazon.ElastiCache.Model
         // Check to see if NodeGroupsToRemove property is set
         internal bool IsSetNodeGroupsToRemove()
         {
-            return this._nodeGroupsToRemove != null && this._nodeGroupsToRemove.Count > 0; 
+            return this._nodeGroupsToRemove != null && (this._nodeGroupsToRemove.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NodeGroupsToRetain. 
         /// <para>
-        /// If the value of <code>NodeGroupCount</code> is less than the current number of node
-        /// groups (shards), then either <code>NodeGroupsToRemove</code> or <code>NodeGroupsToRetain</code>
-        /// is required. <code>NodeGroupsToRetain</code> is a list of <code>NodeGroupId</code>s
-        /// to retain in the cluster.
+        /// If the value of <c>NodeGroupCount</c> is less than the current number of node groups
+        /// (shards), then either <c>NodeGroupsToRemove</c> or <c>NodeGroupsToRetain</c> is required.
+        /// <c>NodeGroupsToRetain</c> is a list of <c>NodeGroupId</c>s to retain in the cluster.
         /// </para>
         ///  
         /// <para>
-        /// ElastiCache for Redis will attempt to remove all node groups except those listed by
-        /// <code>NodeGroupsToRetain</code> from the cluster.
+        /// ElastiCache will attempt to remove all node groups except those listed by <c>NodeGroupsToRetain</c>
+        /// from the cluster.
         /// </para>
         /// </summary>
         public List<string> NodeGroupsToRetain
@@ -135,14 +134,14 @@ namespace Amazon.ElastiCache.Model
         // Check to see if NodeGroupsToRetain property is set
         internal bool IsSetNodeGroupsToRetain()
         {
-            return this._nodeGroupsToRetain != null && this._nodeGroupsToRetain.Count > 0; 
+            return this._nodeGroupsToRetain != null && (this._nodeGroupsToRetain.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ReplicationGroupId. 
         /// <para>
-        /// The name of the Redis (cluster mode enabled) cluster (replication group) on which
-        /// the shards are to be configured.
+        /// The name of the Valkey or Redis OSS (cluster mode enabled) cluster (replication group)
+        /// on which the shards are to be configured.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -162,15 +161,15 @@ namespace Amazon.ElastiCache.Model
         /// Gets and sets the property ReshardingConfiguration. 
         /// <para>
         /// Specifies the preferred availability zones for each node group in the cluster. If
-        /// the value of <code>NodeGroupCount</code> is greater than the current number of node
-        /// groups (shards), you can use this parameter to specify the preferred availability
-        /// zones of the cluster's shards. If you omit this parameter ElastiCache selects availability
+        /// the value of <c>NodeGroupCount</c> is greater than the current number of node groups
+        /// (shards), you can use this parameter to specify the preferred availability zones of
+        /// the cluster's shards. If you omit this parameter ElastiCache selects availability
         /// zones for you.
         /// </para>
         ///  
         /// <para>
-        /// You can specify this parameter only if the value of <code>NodeGroupCount</code> is
-        /// greater than the current number of node groups (shards).
+        /// You can specify this parameter only if the value of <c>NodeGroupCount</c> is greater
+        /// than the current number of node groups (shards).
         /// </para>
         /// </summary>
         public List<ReshardingConfiguration> ReshardingConfiguration
@@ -182,7 +181,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if ReshardingConfiguration property is set
         internal bool IsSetReshardingConfiguration()
         {
-            return this._reshardingConfiguration != null && this._reshardingConfiguration.Count > 0; 
+            return this._reshardingConfiguration != null && (this._reshardingConfiguration.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,19 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMessaging.Model
 {
     /// <summary>
     /// Container for the parameters to the ListChannelMembershipsForAppInstanceUser operation.
-    /// Lists all channels that an <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
-    /// is a part of. Only an <code>AppInstanceAdmin</code> can call the API with a user ARN
-    /// that is not their own. 
+    /// Lists all channels that an <c>AppInstanceUser</c> or <c>AppInstanceBot</c> is a part
+    /// of. Only an <c>AppInstanceAdmin</c> can call the API with a user ARN that is not their
+    /// own. 
     /// 
     ///  <note> 
     /// <para>
-    /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the ARN of the
-    /// <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that makes the API call
-    /// as the value in the header.
+    /// The <c>x-amz-chime-bearer</c> request header is mandatory. Use the ARN of the <c>AppInstanceUser</c>
+    /// or <c>AppInstanceBot</c> that makes the API call as the value in the header.
     /// </para>
     ///  </note>
     /// </summary>
@@ -71,8 +71,8 @@ namespace Amazon.ChimeSDKMessaging.Model
         /// <summary>
         /// Gets and sets the property ChimeBearer. 
         /// <para>
-        /// The ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that makes
-        /// the API call.
+        /// The ARN of the <c>AppInstanceUser</c> or <c>AppInstanceBot</c> that makes the API
+        /// call.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=5, Max=1600)]
@@ -85,7 +85,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         // Check to see if ChimeBearer property is set
         internal bool IsSetChimeBearer()
         {
-            return this._chimeBearer != null;
+            return !string.IsNullOrEmpty(this._chimeBearer);
         }
 
         /// <summary>

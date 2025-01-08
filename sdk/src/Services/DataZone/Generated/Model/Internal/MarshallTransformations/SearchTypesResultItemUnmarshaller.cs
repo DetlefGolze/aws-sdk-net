@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DataZone.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public SearchTypesResultItem Unmarshall(JsonUnmarshallerContext context)
         {
+            SearchTypesResultItem unmarshalledObject = new SearchTypesResultItem();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            SearchTypesResultItem unmarshalledObject = new SearchTypesResultItem();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -76,8 +78,13 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
                     unmarshalledObject.FormTypeItem = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("lineageNodeTypeItem", targetDepth))
+                {
+                    var unmarshaller = LineageNodeTypeItemUnmarshaller.Instance;
+                    unmarshalledObject.LineageNodeTypeItem = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

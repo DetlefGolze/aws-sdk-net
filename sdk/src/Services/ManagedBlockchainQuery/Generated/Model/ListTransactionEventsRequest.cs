@@ -26,12 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchainQuery.Model
 {
     /// <summary>
     /// Container for the parameters to the ListTransactionEvents operation.
-    /// An array of <code>TransactionEvent</code> objects. Each object contains details about
-    /// the transaction event.
+    /// Lists all the transaction events for a transaction 
+    /// 
+    ///  <note> 
+    /// <para>
+    /// This action will return transaction details for all transactions that are <i>confirmed</i>
+    /// on the blockchain, even if they have not reached <a href="https://docs.aws.amazon.com/managed-blockchain/latest/ambq-dg/key-concepts.html#finality">finality</a>.
+    /// 
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class ListTransactionEventsRequest : AmazonManagedBlockchainQueryRequest
     {
@@ -39,22 +47,27 @@ namespace Amazon.ManagedBlockchainQuery.Model
         private QueryNetwork _network;
         private string _nextToken;
         private string _transactionHash;
+        private string _transactionId;
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of transaction events to list.
         /// </para>
+        ///  
+        /// <para>
+        /// Default: <c>100</c> 
+        /// </para>
         ///  <note> 
         /// <para>
         /// Even if additional results can be retrieved, the request can return less results than
-        /// <code>maxResults</code> or an empty array of results.
+        /// <c>maxResults</c> or an empty array of results.
         /// </para>
         ///  
         /// <para>
-        /// To retrieve the next set of results, make another request with the returned <code>nextToken</code>
-        /// value. The value of <code>nextToken</code> is <code>null</code> when there are no
-        /// more results to return
+        /// To retrieve the next set of results, make another request with the returned <c>nextToken</c>
+        /// value. The value of <c>nextToken</c> is <c>null</c> when there are no more results
+        /// to return
         /// </para>
         ///  </note>
         /// </summary>
@@ -112,11 +125,9 @@ namespace Amazon.ManagedBlockchainQuery.Model
         /// <summary>
         /// Gets and sets the property TransactionHash. 
         /// <para>
-        /// The hash of the transaction. It is generated whenever a transaction is verified and
-        /// added to the blockchain.
+        /// The hash of a transaction. It is generated when a transaction is created.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public string TransactionHash
         {
             get { return this._transactionHash; }
@@ -127,6 +138,29 @@ namespace Amazon.ManagedBlockchainQuery.Model
         internal bool IsSetTransactionHash()
         {
             return this._transactionHash != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property TransactionId. 
+        /// <para>
+        /// The identifier of a Bitcoin transaction. It is generated when a transaction is created.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <c>transactionId</c> is only supported on the Bitcoin networks.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public string TransactionId
+        {
+            get { return this._transactionId; }
+            set { this._transactionId = value; }
+        }
+
+        // Check to see if TransactionId property is set
+        internal bool IsSetTransactionId()
+        {
+            return this._transactionId != null;
         }
 
     }

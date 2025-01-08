@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RDS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -71,7 +72,7 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     int publicRequestlistValueIndex = 1;
                     foreach(var publicRequestlistValue in publicRequest.AvailabilityZones)
                     {
-                        request.Parameters.Add("AvailabilityZones" + "." + "member" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
+                        request.Parameters.Add("AvailabilityZones" + "." + "AvailabilityZone" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
                         publicRequestlistValueIndex++;
                     }
                 }
@@ -83,13 +84,25 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                 {
                     request.Parameters.Add("BackupRetentionPeriod", StringUtils.FromInt(publicRequest.BackupRetentionPeriod));
                 }
+                if(publicRequest.IsSetCACertificateIdentifier())
+                {
+                    request.Parameters.Add("CACertificateIdentifier", StringUtils.FromString(publicRequest.CACertificateIdentifier));
+                }
                 if(publicRequest.IsSetCharacterSetName())
                 {
                     request.Parameters.Add("CharacterSetName", StringUtils.FromString(publicRequest.CharacterSetName));
                 }
+                if(publicRequest.IsSetClusterScalabilityType())
+                {
+                    request.Parameters.Add("ClusterScalabilityType", StringUtils.FromString(publicRequest.ClusterScalabilityType));
+                }
                 if(publicRequest.IsSetCopyTagsToSnapshot())
                 {
                     request.Parameters.Add("CopyTagsToSnapshot", StringUtils.FromBool(publicRequest.CopyTagsToSnapshot));
+                }
+                if(publicRequest.IsSetDatabaseInsightsMode())
+                {
+                    request.Parameters.Add("DatabaseInsightsMode", StringUtils.FromString(publicRequest.DatabaseInsightsMode));
                 }
                 if(publicRequest.IsSetDatabaseName())
                 {
@@ -148,6 +161,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                 {
                     request.Parameters.Add("EnableIAMDatabaseAuthentication", StringUtils.FromBool(publicRequest.EnableIAMDatabaseAuthentication));
                 }
+                if(publicRequest.IsSetEnableLimitlessDatabase())
+                {
+                    request.Parameters.Add("EnableLimitlessDatabase", StringUtils.FromBool(publicRequest.EnableLimitlessDatabase));
+                }
                 if(publicRequest.IsSetEnableLocalWriteForwarding())
                 {
                     request.Parameters.Add("EnableLocalWriteForwarding", StringUtils.FromBool(publicRequest.EnableLocalWriteForwarding));
@@ -159,6 +176,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                 if(publicRequest.IsSetEngine())
                 {
                     request.Parameters.Add("Engine", StringUtils.FromString(publicRequest.Engine));
+                }
+                if(publicRequest.IsSetEngineLifecycleSupport())
+                {
+                    request.Parameters.Add("EngineLifecycleSupport", StringUtils.FromString(publicRequest.EngineLifecycleSupport));
                 }
                 if(publicRequest.IsSetEngineMode())
                 {
@@ -240,6 +261,21 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                 {
                     request.Parameters.Add("PubliclyAccessible", StringUtils.FromBool(publicRequest.PubliclyAccessible));
                 }
+                if(publicRequest.IsSetRdsCustomClusterConfiguration())
+                {
+                    if(publicRequest.RdsCustomClusterConfiguration.IsSetInterconnectSubnetId())
+                    {
+                        request.Parameters.Add("RdsCustomClusterConfiguration" + "." + "InterconnectSubnetId", StringUtils.FromString(publicRequest.RdsCustomClusterConfiguration.InterconnectSubnetId));
+                    }
+                    if(publicRequest.RdsCustomClusterConfiguration.IsSetReplicaMode())
+                    {
+                        request.Parameters.Add("RdsCustomClusterConfiguration" + "." + "ReplicaMode", StringUtils.FromString(publicRequest.RdsCustomClusterConfiguration.ReplicaMode));
+                    }
+                    if(publicRequest.RdsCustomClusterConfiguration.IsSetTransitGatewayMulticastDomainId())
+                    {
+                        request.Parameters.Add("RdsCustomClusterConfiguration" + "." + "TransitGatewayMulticastDomainId", StringUtils.FromString(publicRequest.RdsCustomClusterConfiguration.TransitGatewayMulticastDomainId));
+                    }
+                }
                 if(publicRequest.IsSetReplicationSourceIdentifier())
                 {
                     request.Parameters.Add("ReplicationSourceIdentifier", StringUtils.FromString(publicRequest.ReplicationSourceIdentifier));
@@ -281,6 +317,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     {
                         request.Parameters.Add("ServerlessV2ScalingConfiguration" + "." + "MinCapacity", StringUtils.FromDouble(publicRequest.ServerlessV2ScalingConfiguration.MinCapacity));
                     }
+                    if(publicRequest.ServerlessV2ScalingConfiguration.IsSetSecondsUntilAutoPause())
+                    {
+                        request.Parameters.Add("ServerlessV2ScalingConfiguration" + "." + "SecondsUntilAutoPause", StringUtils.FromInt(publicRequest.ServerlessV2ScalingConfiguration.SecondsUntilAutoPause));
+                    }
                 }
                 if(publicRequest.IsSetStorageEncrypted())
                 {
@@ -297,11 +337,11 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     {
                         if(publicRequestlistValue.IsSetKey())
                         {
-                            request.Parameters.Add("Tags" + "." + "member" + "." + publicRequestlistValueIndex + "." + "Key", StringUtils.FromString(publicRequestlistValue.Key));
+                            request.Parameters.Add("Tags" + "." + "Tag" + "." + publicRequestlistValueIndex + "." + "Key", StringUtils.FromString(publicRequestlistValue.Key));
                         }
                         if(publicRequestlistValue.IsSetValue())
                         {
-                            request.Parameters.Add("Tags" + "." + "member" + "." + publicRequestlistValueIndex + "." + "Value", StringUtils.FromString(publicRequestlistValue.Value));
+                            request.Parameters.Add("Tags" + "." + "Tag" + "." + publicRequestlistValueIndex + "." + "Value", StringUtils.FromString(publicRequestlistValue.Value));
                         }
                         publicRequestlistValueIndex++;
                     }
@@ -311,7 +351,7 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     int publicRequestlistValueIndex = 1;
                     foreach(var publicRequestlistValue in publicRequest.VpcSecurityGroupIds)
                     {
-                        request.Parameters.Add("VpcSecurityGroupIds" + "." + "member" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
+                        request.Parameters.Add("VpcSecurityGroupIds" + "." + "VpcSecurityGroupId" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
                         publicRequestlistValueIndex++;
                     }
                 }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -38,16 +39,16 @@ namespace Amazon.EC2.Model
         private string _description;
         private string _fpgaImageGlobalId;
         private string _fpgaImageId;
-        private List<string> _instanceTypes = new List<string>();
+        private List<string> _instanceTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
         private string _ownerAlias;
         private string _ownerId;
         private PciId _pciId;
-        private List<ProductCode> _productCodes = new List<ProductCode>();
+        private List<ProductCode> _productCodes = AWSConfigs.InitializeCollections ? new List<ProductCode>() : null;
         private bool? _public;
         private string _shellVersion;
         private FpgaImageState _state;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private DateTime? _updateTime;
 
         /// <summary>
@@ -155,7 +156,7 @@ namespace Amazon.EC2.Model
         // Check to see if InstanceTypes property is set
         internal bool IsSetInstanceTypes()
         {
-            return this._instanceTypes != null && this._instanceTypes.Count > 0; 
+            return this._instanceTypes != null && (this._instanceTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -179,8 +180,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property OwnerAlias. 
         /// <para>
-        /// The alias of the AFI owner. Possible values include <code>self</code>, <code>amazon</code>,
-        /// and <code>aws-marketplace</code>.
+        /// The alias of the AFI owner. Possible values include <c>self</c>, <c>amazon</c>, and
+        /// <c>aws-marketplace</c>.
         /// </para>
         /// </summary>
         public string OwnerAlias
@@ -246,7 +247,7 @@ namespace Amazon.EC2.Model
         // Check to see if ProductCodes property is set
         internal bool IsSetProductCodes()
         {
-            return this._productCodes != null && this._productCodes.Count > 0; 
+            return this._productCodes != null && (this._productCodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -318,7 +319,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

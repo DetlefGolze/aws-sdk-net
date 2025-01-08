@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
     /// Contains the drift information for a resource that has been checked for drift. This
     /// includes actual and expected property values for resources in which CloudFormation
     /// has detected drift. Only resource properties explicitly defined in the stack template
-    /// are checked for drift. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html">Detecting
-    /// Unregulated Configuration Changes to Stacks and Resources</a>.
+    /// are checked for drift. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html">Detect
+    /// unmanaged configuration changes to stacks and resources with drift detection</a>.
     /// 
     ///  
     /// <para>
     /// Resources that don't currently support drift detection can't be checked. For a list
-    /// of resources that support drift detection, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift-resource-list.html">Resources
-    /// that Support Drift Detection</a>.
+    /// of resources that support drift detection, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resource-import-supported-resources.html">Resource
+    /// type support for imports and drift detection</a>.
     /// </para>
     ///  
     /// <para>
@@ -54,8 +55,8 @@ namespace Amazon.CloudFormation.Model
         private string _logicalResourceId;
         private ModuleInfo _moduleInfo;
         private string _physicalResourceId;
-        private List<PhysicalResourceIdContextKeyValuePair> _physicalResourceIdContext = new List<PhysicalResourceIdContextKeyValuePair>();
-        private List<PropertyDifference> _propertyDifferences = new List<PropertyDifference>();
+        private List<PhysicalResourceIdContextKeyValuePair> _physicalResourceIdContext = AWSConfigs.InitializeCollections ? new List<PhysicalResourceIdContextKeyValuePair>() : null;
+        private List<PropertyDifference> _propertyDifferences = AWSConfigs.InitializeCollections ? new List<PropertyDifference>() : null;
         private string _resourceType;
         private string _stackId;
         private StackResourceDriftStatus _stackResourceDriftStatus;
@@ -68,8 +69,8 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// For resources whose <code>StackResourceDriftStatus</code> is <code>DELETED</code>,
-        /// this structure will not be present.
+        /// For resources whose <c>StackResourceDriftStatus</c> is <c>DELETED</c>, this structure
+        /// will not be present.
         /// </para>
         /// </summary>
         public string ActualProperties
@@ -92,8 +93,8 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// For resources whose <code>StackResourceDriftStatus</code> is <code>DELETED</code>,
-        /// this structure will not be present.
+        /// For resources whose <c>StackResourceDriftStatus</c> is <c>DELETED</c>, this structure
+        /// will not be present.
         /// </para>
         /// </summary>
         public string ExpectedProperties
@@ -184,15 +185,15 @@ namespace Amazon.CloudFormation.Model
         // Check to see if PhysicalResourceIdContext property is set
         internal bool IsSetPhysicalResourceIdContext()
         {
-            return this._physicalResourceIdContext != null && this._physicalResourceIdContext.Count > 0; 
+            return this._physicalResourceIdContext != null && (this._physicalResourceIdContext.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PropertyDifferences. 
         /// <para>
         /// A collection of the resource properties whose actual values differ from their expected
-        /// values. These will be present only for resources whose <code>StackResourceDriftStatus</code>
-        /// is <code>MODIFIED</code>.
+        /// values. These will be present only for resources whose <c>StackResourceDriftStatus</c>
+        /// is <c>MODIFIED</c>.
         /// </para>
         /// </summary>
         public List<PropertyDifference> PropertyDifferences
@@ -204,7 +205,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if PropertyDifferences property is set
         internal bool IsSetPropertyDifferences()
         {
-            return this._propertyDifferences != null && this._propertyDifferences.Count > 0; 
+            return this._propertyDifferences != null && (this._propertyDifferences.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -252,22 +253,22 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>DELETED</code>: The resource differs from its expected template configuration
-        /// because the resource has been deleted.
+        ///  <c>DELETED</c>: The resource differs from its expected template configuration because
+        /// the resource has been deleted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MODIFIED</code>: One or more resource properties differ from their expected
-        /// values (as defined in the stack template and any values specified as template parameters).
+        ///  <c>MODIFIED</c>: One or more resource properties differ from their expected values
+        /// (as defined in the stack template and any values specified as template parameters).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IN_SYNC</code>: The resource's actual configuration matches its expected template
+        ///  <c>IN_SYNC</c>: The resource's actual configuration matches its expected template
         /// configuration.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NOT_CHECKED</code>: CloudFormation does not currently return this value.
+        ///  <c>NOT_CHECKED</c>: CloudFormation does not currently return this value.
         /// </para>
         ///  </li> </ul>
         /// </summary>

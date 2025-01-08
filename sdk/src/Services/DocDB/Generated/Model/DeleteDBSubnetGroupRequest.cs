@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
@@ -57,11 +58,11 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// Must match the name of an existing <code>DBSubnetGroup</code>. Must not be default.
+        /// Must match the name of an existing <c>DBSubnetGroup</c>. Must not be default.
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>mySubnetgroup</code> 
+        /// Example: <c>mySubnetgroup</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

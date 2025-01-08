@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -40,8 +41,7 @@ namespace Amazon.IoT.Model
     /// </para>
     ///  <note> 
     /// <para>
-    ///  <code>dimensionName</code> and <code>metricName</code> cannot be used in the same
-    /// request.
+    ///  <c>dimensionName</c> and <c>metricName</c> cannot be used in the same request.
     /// </para>
     ///  </note>
     /// </summary>
@@ -56,7 +56,7 @@ namespace Amazon.IoT.Model
         /// Gets and sets the property DimensionName. 
         /// <para>
         /// A filter to limit results to the security profiles that use the defined dimension.
-        /// Cannot be used with <code>metricName</code> 
+        /// Cannot be used with <c>metricName</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -94,7 +94,7 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property MetricName. 
         /// <para>
-        ///  The name of the custom metric. Cannot be used with <code>dimensionName</code>. 
+        ///  The name of the custom metric. Cannot be used with <c>dimensionName</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]

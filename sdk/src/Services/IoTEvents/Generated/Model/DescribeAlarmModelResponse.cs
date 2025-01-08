@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTEvents.Model
 {
     /// <summary>
@@ -110,7 +111,7 @@ namespace Amazon.IoTEvents.Model
         /// The description of the alarm model.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=128)]
+        [AWSProperty(Max=1024)]
         public string AlarmModelDescription
         {
             get { return this._alarmModelDescription; }
@@ -300,22 +301,22 @@ namespace Amazon.IoTEvents.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ACTIVE</code> - The alarm model is active and it's ready to evaluate data.
+        ///  <c>ACTIVE</c> - The alarm model is active and it's ready to evaluate data.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ACTIVATING</code> - AWS IoT Events is activating your alarm model. Activating
-        /// an alarm model can take up to a few minutes.
+        ///  <c>ACTIVATING</c> - AWS IoT Events is activating your alarm model. Activating an
+        /// alarm model can take up to a few minutes.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INACTIVE</code> - The alarm model is inactive, so it isn't ready to evaluate
-        /// data. Check your alarm model information and update the alarm model.
+        ///  <c>INACTIVE</c> - The alarm model is inactive, so it isn't ready to evaluate data.
+        /// Check your alarm model information and update the alarm model.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> - You couldn't create or update the alarm model. Check your alarm
-        /// model information and try again.
+        ///  <c>FAILED</c> - You couldn't create or update the alarm model. Check your alarm model
+        /// information and try again.
         /// </para>
         ///  </li> </ul>
         /// </summary>

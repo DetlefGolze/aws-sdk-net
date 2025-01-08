@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.KeyManagementService.Model
     public partial class ListResourceTagsResponse : AmazonWebServiceResponse
     {
         private string _nextMarker;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private bool? _truncated;
 
         /// <summary>
         /// Gets and sets the property NextMarker. 
         /// <para>
-        /// When <code>Truncated</code> is true, this element is present and contains the value
-        /// to use for the <code>Marker</code> parameter in a subsequent request.
+        /// When <c>Truncated</c> is true, this element is present and contains the value to use
+        /// for the <c>Marker</c> parameter in a subsequent request.
         /// </para>
         ///  
         /// <para>
@@ -83,7 +84,7 @@ namespace Amazon.KeyManagementService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -91,8 +92,8 @@ namespace Amazon.KeyManagementService.Model
         /// <para>
         /// A flag that indicates whether there are more items in the list. When this value is
         /// true, the list in this response is truncated. To get more items, pass the value of
-        /// the <code>NextMarker</code> element in thisresponse to the <code>Marker</code> parameter
-        /// in a subsequent request.
+        /// the <c>NextMarker</c> element in this response to the <c>Marker</c> parameter in a
+        /// subsequent request.
         /// </para>
         /// </summary>
         public bool Truncated

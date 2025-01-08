@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Elasticsearch.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Elasticsearch.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ChangeProgressDetails Unmarshall(JsonUnmarshallerContext context)
         {
+            ChangeProgressDetails unmarshalledObject = new ChangeProgressDetails();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ChangeProgressDetails unmarshalledObject = new ChangeProgressDetails();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -70,14 +72,37 @@ namespace Amazon.Elasticsearch.Model.Internal.MarshallTransformations
                     unmarshalledObject.ChangeId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ConfigChangeStatus", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ConfigChangeStatus = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("InitiatedBy", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.InitiatedBy = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("LastUpdatedTime", targetDepth))
+                {
+                    var unmarshaller = DateTimeUnmarshaller.Instance;
+                    unmarshalledObject.LastUpdatedTime = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("Message", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.Message = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("StartTime", targetDepth))
+                {
+                    var unmarshaller = DateTimeUnmarshaller.Instance;
+                    unmarshalledObject.StartTime = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

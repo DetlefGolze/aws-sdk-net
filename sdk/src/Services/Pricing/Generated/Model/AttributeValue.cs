@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pricing.Model
 {
     /// <summary>
-    /// The values of a given attribute, such as <code>Throughput Optimized HDD</code> or
-    /// <code>Provisioned IOPS</code> for the <code>Amazon EC2</code> <code>volumeType</code>
-    /// attribute.
+    /// The values of a given attribute, such as <c>Throughput Optimized HDD</c> or <c>Provisioned
+    /// IOPS</c> for the <c>Amazon EC2</c> <c>volumeType</c> attribute.
     /// </summary>
     public partial class AttributeValue
     {
@@ -40,7 +40,7 @@ namespace Amazon.Pricing.Model
         /// <summary>
         /// Gets and sets the property Value. 
         /// <para>
-        /// The specific value of an <code>attributeName</code>.
+        /// The specific value of an <c>attributeName</c>.
         /// </para>
         /// </summary>
         public string Value

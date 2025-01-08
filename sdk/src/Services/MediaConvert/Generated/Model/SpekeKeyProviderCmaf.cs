@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaConvert.Model
 {
     /// <summary>
@@ -36,8 +37,9 @@ namespace Amazon.MediaConvert.Model
     public partial class SpekeKeyProviderCmaf
     {
         private string _certificateArn;
-        private List<string> _dashSignaledSystemIds = new List<string>();
-        private List<string> _hlsSignaledSystemIds = new List<string>();
+        private List<string> _dashSignaledSystemIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private EncryptionContractConfiguration _encryptionContractConfiguration;
+        private List<string> _hlsSignaledSystemIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _resourceId;
         private string _url;
 
@@ -74,7 +76,26 @@ namespace Amazon.MediaConvert.Model
         // Check to see if DashSignaledSystemIds property is set
         internal bool IsSetDashSignaledSystemIds()
         {
-            return this._dashSignaledSystemIds != null && this._dashSignaledSystemIds.Count > 0; 
+            return this._dashSignaledSystemIds != null && (this._dashSignaledSystemIds.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property EncryptionContractConfiguration. Specify the SPEKE version,
+        /// either v1.0 or v2.0, that MediaConvert uses when encrypting your output. For more
+        /// information, see: https://docs.aws.amazon.com/speke/latest/documentation/speke-api-specification.html
+        /// To use SPEKE v1.0: Leave blank. To use SPEKE v2.0: Specify a SPEKE v2.0 video preset
+        /// and a SPEKE v2.0 audio preset.
+        /// </summary>
+        public EncryptionContractConfiguration EncryptionContractConfiguration
+        {
+            get { return this._encryptionContractConfiguration; }
+            set { this._encryptionContractConfiguration = value; }
+        }
+
+        // Check to see if EncryptionContractConfiguration property is set
+        internal bool IsSetEncryptionContractConfiguration()
+        {
+            return this._encryptionContractConfiguration != null;
         }
 
         /// <summary>
@@ -92,7 +113,7 @@ namespace Amazon.MediaConvert.Model
         // Check to see if HlsSignaledSystemIds property is set
         internal bool IsSetHlsSignaledSystemIds()
         {
-            return this._hlsSignaledSystemIds != null && this._hlsSignaledSystemIds.Count > 0; 
+            return this._hlsSignaledSystemIds != null && (this._hlsSignaledSystemIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

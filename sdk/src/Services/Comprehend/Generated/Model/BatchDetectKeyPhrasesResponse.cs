@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -33,15 +34,15 @@ namespace Amazon.Comprehend.Model
     /// </summary>
     public partial class BatchDetectKeyPhrasesResponse : AmazonWebServiceResponse
     {
-        private List<BatchItemError> _errorList = new List<BatchItemError>();
-        private List<BatchDetectKeyPhrasesItemResult> _resultList = new List<BatchDetectKeyPhrasesItemResult>();
+        private List<BatchItemError> _errorList = AWSConfigs.InitializeCollections ? new List<BatchItemError>() : null;
+        private List<BatchDetectKeyPhrasesItemResult> _resultList = AWSConfigs.InitializeCollections ? new List<BatchDetectKeyPhrasesItemResult>() : null;
 
         /// <summary>
         /// Gets and sets the property ErrorList. 
         /// <para>
         /// A list containing one object for each document that contained an error. The results
-        /// are sorted in ascending order by the <code>Index</code> field and match the order
-        /// of the documents in the input list. If there are no errors in the batch, the <code>ErrorList</code>
+        /// are sorted in ascending order by the <c>Index</c> field and match the order of the
+        /// documents in the input list. If there are no errors in the batch, the <c>ErrorList</c>
         /// is empty.
         /// </para>
         /// </summary>
@@ -55,15 +56,15 @@ namespace Amazon.Comprehend.Model
         // Check to see if ErrorList property is set
         internal bool IsSetErrorList()
         {
-            return this._errorList != null && this._errorList.Count > 0; 
+            return this._errorList != null && (this._errorList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ResultList. 
         /// <para>
         /// A list of objects containing the results of the operation. The results are sorted
-        /// in ascending order by the <code>Index</code> field and match the order of the documents
-        /// in the input list. If all of the documents contain an error, the <code>ResultList</code>
+        /// in ascending order by the <c>Index</c> field and match the order of the documents
+        /// in the input list. If all of the documents contain an error, the <c>ResultList</c>
         /// is empty.
         /// </para>
         /// </summary>
@@ -77,7 +78,7 @@ namespace Amazon.Comprehend.Model
         // Check to see if ResultList property is set
         internal bool IsSetResultList()
         {
-            return this._resultList != null && this._resultList.Count > 0; 
+            return this._resultList != null && (this._resultList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

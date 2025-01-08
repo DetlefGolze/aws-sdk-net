@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// A list of overrides for a specific <code>RefreshsSchedule</code> resource that is
-    /// present in the asset bundle that is imported.
+    /// A list of overrides for a specific <c>RefreshsSchedule</c> resource that is present
+    /// in the asset bundle that is imported.
     /// </summary>
     public partial class AssetBundleImportJobRefreshScheduleOverrideParameters
     {
@@ -41,9 +42,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property DataSetId. 
         /// <para>
-        /// A partial identifier for the specific <code>RefreshSchedule</code> resource that is
-        /// being overridden. This structure is used together with the <code>ScheduleID</code>
-        /// structure.
+        /// A partial identifier for the specific <c>RefreshSchedule</c> resource that is being
+        /// overridden. This structure is used together with the <c>ScheduleID</c> structure.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -62,8 +62,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property ScheduleId. 
         /// <para>
-        /// A partial identifier for the specific <code>RefreshSchedule</code> resource being
-        /// overridden. This structure is used together with the <code>DataSetId</code> structure.
+        /// A partial identifier for the specific <c>RefreshSchedule</c> resource being overridden.
+        /// This structure is used together with the <c>DataSetId</c> structure.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -82,9 +82,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property StartAfterDateTime. 
         /// <para>
-        /// An override for the <code>StartAfterDateTime</code> of a <code>RefreshSchedule</code>.
-        /// Make sure that the <code>StartAfterDateTime</code> is set to a time that takes place
-        /// in the future.
+        /// An override for the <c>StartAfterDateTime</c> of a <c>RefreshSchedule</c>. Make sure
+        /// that the <c>StartAfterDateTime</c> is set to a time that takes place in the future.
         /// </para>
         /// </summary>
         public DateTime StartAfterDateTime

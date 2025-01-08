@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MWAA.Model
 {
     /// <summary>
@@ -33,6 +34,7 @@ namespace Amazon.MWAA.Model
     /// To learn more about the metrics published to Amazon CloudWatch, see <a href="https://docs.aws.amazon.com/mwaa/latest/userguide/cw-metrics.html">Amazon
     /// MWAA performance metrics in Amazon CloudWatch</a>.
     /// </summary>
+    [Obsolete("This type is for internal use and not meant for public use. Data set for this type will be ignored.")]
     public partial class StatisticSet
     {
         private double? _maximum;

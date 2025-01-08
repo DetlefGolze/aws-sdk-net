@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.KeyManagementService.Model
         private string _issuingAccount;
         private string _keyId;
         private string _name;
-        private List<string> _operations = new List<string>();
+        private List<string> _operations = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _retiringPrincipal;
 
         /// <summary>
@@ -87,9 +88,9 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  
         /// <para>
-        /// The <code>GranteePrincipal</code> field in the <code>ListGrants</code> response usually
-        /// contains the user or role designated as the grantee principal in the grant. However,
-        /// when the grantee principal in the grant is an Amazon Web Services service, the <code>GranteePrincipal</code>
+        /// The <c>GranteePrincipal</c> field in the <c>ListGrants</c> response usually contains
+        /// the user or role designated as the grantee principal in the grant. However, when the
+        /// grantee principal in the grant is an Amazon Web Services service, the <c>GranteePrincipal</c>
         /// field contains the <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#principal-services">service
         /// principal</a>, which might represent several different grantee principals.
         /// </para>
@@ -199,7 +200,7 @@ namespace Amazon.KeyManagementService.Model
         // Check to see if Operations property is set
         internal bool IsSetOperations()
         {
-            return this._operations != null && this._operations.Count > 0; 
+            return this._operations != null && (this._operations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

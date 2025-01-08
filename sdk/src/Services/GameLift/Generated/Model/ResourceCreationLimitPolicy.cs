@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -36,9 +37,9 @@ namespace Amazon.GameLift.Model
     ///  
     /// <para>
     /// The policy is evaluated when a player tries to create a new game session. On receiving
-    /// a <code>CreateGameSession</code> request, Amazon GameLift checks that the player (identified
-    /// by <code>CreatorId</code>) has created fewer than game session limit in the specified
-    /// time period.
+    /// a <c>CreateGameSession</c> request, Amazon GameLift checks that the player (identified
+    /// by <c>CreatorId</c>) has created fewer than game session limit in the specified time
+    /// period.
     /// </para>
     /// </summary>
     public partial class ResourceCreationLimitPolicy
@@ -56,9 +57,9 @@ namespace Amazon.GameLift.Model
         ///  
         /// <para>
         /// The policy is evaluated when a player tries to create a new game session. On receiving
-        /// a <code>CreateGameSession</code> request, Amazon GameLift checks that the player (identified
-        /// by <code>CreatorId</code>) has created fewer than game session limit in the specified
-        /// time period.
+        /// a <c>CreateGameSession</c> request, Amazon GameLift checks that the player (identified
+        /// by <c>CreatorId</c>) has created fewer than game session limit in the specified time
+        /// period.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]

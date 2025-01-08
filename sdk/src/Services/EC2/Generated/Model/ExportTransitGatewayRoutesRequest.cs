@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -38,12 +39,12 @@ namespace Amazon.EC2.Model
     /// <para>
     /// The routes are saved to the specified bucket in a JSON file. For more information,
     /// see <a href="https://docs.aws.amazon.com/vpc/latest/tgw/tgw-route-tables.html#tgw-export-route-tables">Export
-    /// Route Tables to Amazon S3</a> in <i>Transit Gateways</i>.
+    /// route tables to Amazon S3</a> in the <i>Amazon Web Services Transit Gateways Guide</i>.
     /// </para>
     /// </summary>
     public partial class ExportTransitGatewayRoutesRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private string _s3Bucket;
         private string _transitGatewayRouteTableId;
 
@@ -54,45 +55,42 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>attachment.transit-gateway-attachment-id</code> - The id of the transit gateway
-        /// attachment.
+        ///  <c>attachment.transit-gateway-attachment-id</c> - The id of the transit gateway attachment.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>attachment.resource-id</code> - The resource id of the transit gateway attachment.
+        ///  <c>attachment.resource-id</c> - The resource id of the transit gateway attachment.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>route-search.exact-match</code> - The exact match of the specified filter.
+        ///  <c>route-search.exact-match</c> - The exact match of the specified filter.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>route-search.longest-prefix-match</code> - The longest prefix that matches
-        /// the route.
+        ///  <c>route-search.longest-prefix-match</c> - The longest prefix that matches the route.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>route-search.subnet-of-match</code> - The routes with a subnet that match the
-        /// specified CIDR filter.
+        ///  <c>route-search.subnet-of-match</c> - The routes with a subnet that match the specified
+        /// CIDR filter.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>route-search.supernet-of-match</code> - The routes with a CIDR that encompass
-        /// the CIDR filter. For example, if you have 10.0.1.0/29 and 10.0.1.0/31 routes in your
-        /// route table and you specify supernet-of-match as 10.0.1.0/30, then the result returns
-        /// 10.0.1.0/29.
+        ///  <c>route-search.supernet-of-match</c> - The routes with a CIDR that encompass the
+        /// CIDR filter. For example, if you have 10.0.1.0/29 and 10.0.1.0/31 routes in your route
+        /// table and you specify supernet-of-match as 10.0.1.0/30, then the result returns 10.0.1.0/29.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>state</code> - The state of the route (<code>active</code> | <code>blackhole</code>).
+        ///  <c>state</c> - The state of the route (<c>active</c> | <c>blackhole</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>transit-gateway-route-destination-cidr-block</code> - The CIDR range.
+        ///  <c>transit-gateway-route-destination-cidr-block</c> - The CIDR range.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>type</code> - The type of route (<code>propagated</code> | <code>static</code>).
+        ///  <c>type</c> - The type of route (<c>propagated</c> | <c>static</c>).
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -105,7 +103,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

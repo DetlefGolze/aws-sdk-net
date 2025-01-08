@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -42,8 +43,8 @@ namespace Amazon.QuickSight.Model
         /// <para>
         /// A single-use URL that you can put into your server-side web page to embed your Amazon
         /// QuickSight session. This URL is valid for 5 minutes. The API operation provides the
-        /// URL with an <code>auth_code</code> value that enables one (and only one) sign-on to
-        /// a user session that is valid for 10 hours. 
+        /// URL with an <c>auth_code</c> value that enables one (and only one) sign-on to a user
+        /// session that is valid for 10 hours. 
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]

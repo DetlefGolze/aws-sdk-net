@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaStore.Model
 {
     /// <summary>
@@ -34,19 +35,19 @@ namespace Amazon.MediaStore.Model
     /// </summary>
     public partial class CorsRule
     {
-        private List<string> _allowedHeaders = new List<string>();
-        private List<string> _allowedMethods = new List<string>();
-        private List<string> _allowedOrigins = new List<string>();
-        private List<string> _exposeHeaders = new List<string>();
+        private List<string> _allowedHeaders = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _allowedMethods = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _allowedOrigins = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _exposeHeaders = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxAgeSeconds;
 
         /// <summary>
         /// Gets and sets the property AllowedHeaders. 
         /// <para>
-        /// Specifies which headers are allowed in a preflight <code>OPTIONS</code> request through
-        /// the <code>Access-Control-Request-Headers</code> header. Each header name that is specified
-        /// in <code>Access-Control-Request-Headers</code> must have a corresponding entry in
-        /// the rule. Only the headers that were requested are sent back. 
+        /// Specifies which headers are allowed in a preflight <c>OPTIONS</c> request through
+        /// the <c>Access-Control-Request-Headers</c> header. Each header name that is specified
+        /// in <c>Access-Control-Request-Headers</c> must have a corresponding entry in the rule.
+        /// Only the headers that were requested are sent back. 
         /// </para>
         ///  
         /// <para>
@@ -63,7 +64,7 @@ namespace Amazon.MediaStore.Model
         // Check to see if AllowedHeaders property is set
         internal bool IsSetAllowedHeaders()
         {
-            return this._allowedHeaders != null && this._allowedHeaders.Count > 0; 
+            return this._allowedHeaders != null && (this._allowedHeaders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace Amazon.MediaStore.Model
         /// </para>
         ///  
         /// <para>
-        /// Each CORS rule must contain at least one <code>AllowedMethods</code> and one <code>AllowedOrigins</code>
+        /// Each CORS rule must contain at least one <c>AllowedMethods</c> and one <c>AllowedOrigins</c>
         /// element.
         /// </para>
         /// </summary>
@@ -88,21 +89,20 @@ namespace Amazon.MediaStore.Model
         // Check to see if AllowedMethods property is set
         internal bool IsSetAllowedMethods()
         {
-            return this._allowedMethods != null && this._allowedMethods.Count > 0; 
+            return this._allowedMethods != null && (this._allowedMethods.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AllowedOrigins. 
         /// <para>
         /// One or more response headers that you want users to be able to access from their applications
-        /// (for example, from a JavaScript <code>XMLHttpRequest</code> object).
+        /// (for example, from a JavaScript <c>XMLHttpRequest</c> object).
         /// </para>
         ///  
         /// <para>
-        /// Each CORS rule must have at least one <code>AllowedOrigins</code> element. The string
-        /// value can include only one wildcard character (*), for example, http://*.example.com.
-        /// Additionally, you can specify only one wildcard character to allow cross-origin access
-        /// for all origins.
+        /// Each CORS rule must have at least one <c>AllowedOrigins</c> element. The string value
+        /// can include only one wildcard character (*), for example, http://*.example.com. Additionally,
+        /// you can specify only one wildcard character to allow cross-origin access for all origins.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]
@@ -115,14 +115,14 @@ namespace Amazon.MediaStore.Model
         // Check to see if AllowedOrigins property is set
         internal bool IsSetAllowedOrigins()
         {
-            return this._allowedOrigins != null && this._allowedOrigins.Count > 0; 
+            return this._allowedOrigins != null && (this._allowedOrigins.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ExposeHeaders. 
         /// <para>
         /// One or more headers in the response that you want users to be able to access from
-        /// their applications (for example, from a JavaScript <code>XMLHttpRequest</code> object).
+        /// their applications (for example, from a JavaScript <c>XMLHttpRequest</c> object).
         /// </para>
         ///  
         /// <para>
@@ -139,7 +139,7 @@ namespace Amazon.MediaStore.Model
         // Check to see if ExposeHeaders property is set
         internal bool IsSetExposeHeaders()
         {
-            return this._exposeHeaders != null && this._exposeHeaders.Count > 0; 
+            return this._exposeHeaders != null && (this._exposeHeaders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace Amazon.MediaStore.Model
         /// </para>
         ///  
         /// <para>
-        /// A CORS rule can have only one <code>MaxAgeSeconds</code> element.
+        /// A CORS rule can have only one <c>MaxAgeSeconds</c> element.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=2147483647)]

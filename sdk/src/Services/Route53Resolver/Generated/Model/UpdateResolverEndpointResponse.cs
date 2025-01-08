@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.Route53Resolver.Model
         /// <summary>
         /// Gets and sets the property ResolverEndpoint. 
         /// <para>
-        /// The response to an <code>UpdateResolverEndpoint</code> request.
+        /// The response to an <c>UpdateResolverEndpoint</c> request.
         /// </para>
         /// </summary>
         public ResolverEndpoint ResolverEndpoint

@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
     /// Container for the parameters to the ListFolderMembers operation.
-    /// List all assets (<code>DASHBOARD</code>, <code>ANALYSIS</code>, and <code>DATASET</code>)
-    /// in a folder.
+    /// List all assets (<c>DASHBOARD</c>, <c>ANALYSIS</c>, and <c>DATASET</c>) in a folder.
     /// </summary>
     public partial class ListFolderMembersRequest : AmazonQuickSightRequest
     {

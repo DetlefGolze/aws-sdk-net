@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
-    /// This exception is thrown when the specified value of <code>ChannelARN</code> is not
-    /// valid.
+    /// This exception is thrown when the specified value of <c>ChannelARN</c> is not valid.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

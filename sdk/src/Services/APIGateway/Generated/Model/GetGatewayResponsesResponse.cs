@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
-    /// The collection of the GatewayResponse instances of a RestApi as a <code>responseType</code>-to-GatewayResponse
+    /// The collection of the GatewayResponse instances of a RestApi as a <c>responseType</c>-to-GatewayResponse
     /// object map of key-value pairs. As such, pagination is not supported for querying this
     /// collection.
     /// </summary>
     public partial class GetGatewayResponsesResponse : AmazonWebServiceResponse
     {
-        private List<GatewayResponse> _items = new List<GatewayResponse>();
+        private List<GatewayResponse> _items = AWSConfigs.InitializeCollections ? new List<GatewayResponse>() : null;
         private string _position;
 
         /// <summary>
@@ -53,7 +54,7 @@ namespace Amazon.APIGateway.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

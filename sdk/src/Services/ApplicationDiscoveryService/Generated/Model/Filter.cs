@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
     {
         private string _condition;
         private string _name;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Condition. 
@@ -89,8 +90,8 @@ namespace Amazon.ApplicationDiscoveryService.Model
         /// <summary>
         /// Gets and sets the property Values. 
         /// <para>
-        /// A string value on which to filter. For example, if you choose the <code>destinationServer.osVersion</code>
-        /// filter name, you could specify <code>Ubuntu</code> for the value.
+        /// A string value on which to filter. For example, if you choose the <c>destinationServer.osVersion</c>
+        /// filter name, you could specify <c>Ubuntu</c> for the value.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -103,7 +104,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -38,12 +39,12 @@ namespace Amazon.CloudFront.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// Use <code>S3OriginConfig</code> to specify an Amazon S3 bucket that is not configured
-    /// with static website hosting.
+    /// Use <c>S3OriginConfig</c> to specify an Amazon S3 bucket that is not configured with
+    /// static website hosting.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Use <code>CustomOriginConfig</code> to specify all other kinds of origins, including:
+    /// Use <c>CustomOriginConfig</c> to specify all other kinds of origins, including:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -55,11 +56,11 @@ namespace Amazon.CloudFront.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// An AWS Elemental MediaPackage endpoint
+    /// An Elemental MediaPackage endpoint
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// An AWS Elemental MediaStore container
+    /// An Elemental MediaStore container
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -85,6 +86,7 @@ namespace Amazon.CloudFront.Model
         private string _originPath;
         private OriginShield _originShield;
         private S3OriginConfig _s3OriginConfig;
+        private VpcOriginConfig _vpcOriginConfig;
 
         /// <summary>
         /// Gets and sets the property ConnectionAttempts. 
@@ -172,7 +174,7 @@ namespace Amazon.CloudFront.Model
         /// <para>
         /// Use this type to specify an origin that is not an Amazon S3 bucket, with one exception.
         /// If the Amazon S3 bucket is configured with static website hosting, use this type.
-        /// If the Amazon S3 bucket is not configured with static website hosting, use the <code>S3OriginConfig</code>
+        /// If the Amazon S3 bucket is not configured with static website hosting, use the <c>S3OriginConfig</c>
         /// type instead.
         /// </para>
         /// </summary>
@@ -219,8 +221,7 @@ namespace Amazon.CloudFront.Model
         /// </para>
         ///  
         /// <para>
-        /// Use this value to specify the <code>TargetOriginId</code> in a <code>CacheBehavior</code>
-        /// or <code>DefaultCacheBehavior</code>.
+        /// Use this value to specify the <c>TargetOriginId</c> in a <c>CacheBehavior</c> or <c>DefaultCacheBehavior</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -311,7 +312,7 @@ namespace Amazon.CloudFront.Model
         /// <para>
         /// Use this type to specify an origin that is an Amazon S3 bucket that is not configured
         /// with static website hosting. To specify any other type of origin, including an Amazon
-        /// S3 bucket that is configured with static website hosting, use the <code>CustomOriginConfig</code>
+        /// S3 bucket that is configured with static website hosting, use the <c>CustomOriginConfig</c>
         /// type instead.
         /// </para>
         /// </summary>
@@ -325,6 +326,24 @@ namespace Amazon.CloudFront.Model
         internal bool IsSetS3OriginConfig()
         {
             return this._s3OriginConfig != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property VpcOriginConfig. 
+        /// <para>
+        /// The VPC origin configuration.
+        /// </para>
+        /// </summary>
+        public VpcOriginConfig VpcOriginConfig
+        {
+            get { return this._vpcOriginConfig; }
+            set { this._vpcOriginConfig = value; }
+        }
+
+        // Check to see if VpcOriginConfig property is set
+        internal bool IsSetVpcOriginConfig()
+        {
+            return this._vpcOriginConfig != null;
         }
 
     }

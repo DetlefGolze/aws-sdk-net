@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.ApplicationDiscoveryService.Model
     /// </summary>
     public partial class DescribeExportTasksRequest : AmazonApplicationDiscoveryServiceRequest
     {
-        private List<string> _exportIds = new List<string>();
-        private List<ExportFilter> _filters = new List<ExportFilter>();
+        private List<string> _exportIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<ExportFilter> _filters = AWSConfigs.InitializeCollections ? new List<ExportFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -55,7 +56,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         // Check to see if ExportIds property is set
         internal bool IsSetExportIds()
         {
-            return this._exportIds != null && this._exportIds.Count > 0; 
+            return this._exportIds != null && (this._exportIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -65,7 +66,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AgentId</code> - ID of the agent whose collected data will be exported
+        ///  <c>AgentId</c> - ID of the agent whose collected data will be exported
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -78,16 +79,15 @@ namespace Amazon.ApplicationDiscoveryService.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The maximum number of volume results returned by <code>DescribeExportTasks</code>
-        /// in paginated output. When this parameter is used, <code>DescribeExportTasks</code>
-        /// only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code>
-        /// response element.
+        /// The maximum number of volume results returned by <c>DescribeExportTasks</c> in paginated
+        /// output. When this parameter is used, <c>DescribeExportTasks</c> only returns <c>maxResults</c>
+        /// results in a single page along with a <c>nextToken</c> response element.
         /// </para>
         /// </summary>
         public int MaxResults
@@ -105,11 +105,10 @@ namespace Amazon.ApplicationDiscoveryService.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value returned from a previous paginated <code>DescribeExportTasks</code>
-        /// request where <code>maxResults</code> was used and the results exceeded the value
-        /// of that parameter. Pagination continues from the end of the previous results that
-        /// returned the <code>nextToken</code> value. This value is null when there are no more
-        /// results to return.
+        /// The <c>nextToken</c> value returned from a previous paginated <c>DescribeExportTasks</c>
+        /// request where <c>maxResults</c> was used and the results exceeded the value of that
+        /// parameter. Pagination continues from the end of the previous results that returned
+        /// the <c>nextToken</c> value. This value is null when there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken

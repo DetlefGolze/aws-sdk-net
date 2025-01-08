@@ -6,6 +6,8 @@
             { "operation": "addBefore", "newType": "Amazon.S3.Internal.AmazonS3ResponseHandler", "targetType": "Amazon.Runtime.Internal.Unmarshaller" },
             { "operation": "addAfter", "newType": "Amazon.S3.Internal.AmazonS3ExceptionHandler", "targetType": "Amazon.Runtime.Internal.ErrorCallbackHandler" },
             { "operation": "addAfter", "newType": "Amazon.S3.Internal.AmazonS3RedirectHandler", "targetType": "Amazon.Runtime.Internal.Unmarshaller" },
+            { "operation": "addBefore", "newType": "Amazon.S3.Internal.S3Express.S3ExpressPreSigner", "targetType": "Amazon.Runtime.Internal.Signer" },
+            { "operation": "addAfter", "newType": "Amazon.S3.Internal.AmazonS3PostMarshallHandler", "targetType": "Amazon.Runtime.Internal.EndpointResolver" },
             {
                 "condition":"this.Config.RetryMode == RequestRetryMode.Legacy",
                 "operation": "replace",
@@ -54,7 +56,8 @@
             "inject": [
                 {
                     "PartETags": {
-                        "shape": "CompletedPartList"
+                        "shape": "CompletedPartList",
+                        "originalMember": "MultipartUpload"
                     }
                 }
             ]
@@ -77,7 +80,8 @@
                 },
                 {
                     "SourceKey": {
-                        "shape": "ObjectKey"
+                        "shape": "ObjectKey",
+                        "originalMember": "CopySource"
                     }
                 },
                 {
@@ -87,12 +91,13 @@
                 },
                 {
                     "DestinationBucket": {
-                        "shape": "BucketName"
+                        "shape": "BucketName"                    
                     }
                 },
                 {
                     "DestinationKey": {
-                        "shape": "ObjectKey"
+                        "shape": "ObjectKey",
+                        "originalMember":"Key"
                     }
                 }
             ]
@@ -104,7 +109,8 @@
             "inject": [
                 {
                     "Objects": {
-                        "shape": "ObjectIdentifierList"
+                        "shape": "ObjectIdentifierList",
+                        "originalMember" : "Delete"
                     }
                 },
                 {
@@ -126,7 +132,8 @@
             "inject": [
                 {
                     "TagSet": {
-                        "shape": "TagSet"
+                        "shape": "TagSet",
+                        "originalMember": "Tagging"
                     }
                 }
             ]
@@ -152,7 +159,8 @@
             "inject": [
                 {
                     "Configuration": {
-                        "shape": "LifecycleConfiguration"
+                        "shape": "LifecycleConfiguration",
+                        "originalMember": "LifecycleConfiguration"
                     }
                 }
             ]
@@ -169,7 +177,8 @@
             "inject": [
                 {
                     "Days": {
-                        "shape": "Days"
+                        "shape": "Days",
+                        "originalMember": "RestoreRequest"
                     }
                 }
             ]
@@ -199,7 +208,8 @@
                 },
                 {
                     "SourceKey": {
-                        "shape": "ObjectKey"
+                        "shape": "ObjectKey",
+                        "originalMember":"CopySource"
                     }
                 },
                 {
@@ -214,7 +224,8 @@
                 },
                 {
                     "DestinationKey": {
-                        "shape": "ObjectKey"
+                        "shape": "ObjectKey",
+                        "originalMember": "Key"
                     }
                 }
             ]

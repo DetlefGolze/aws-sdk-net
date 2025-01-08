@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.Route53Resolver.Model
         /// <summary>
         /// Gets and sets the property ResolverRuleAssociation. 
         /// <para>
-        /// Information about the <code>AssociateResolverRule</code> request, including the status
-        /// of the request.
+        /// Information about the <c>AssociateResolverRule</c> request, including the status of
+        /// the request.
         /// </para>
         /// </summary>
         public ResolverRuleAssociation ResolverRuleAssociation

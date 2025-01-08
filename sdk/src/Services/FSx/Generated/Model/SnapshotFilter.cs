@@ -26,22 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
-    /// A filter used to restrict the results of <code>DescribeSnapshots</code> calls. You
-    /// can use multiple filters to return results that meet all applied filter requirements.
+    /// A filter used to restrict the results of <c>DescribeSnapshots</c> calls. You can use
+    /// multiple filters to return results that meet all applied filter requirements.
     /// </summary>
     public partial class SnapshotFilter
     {
         private SnapshotFilterName _name;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the filter to use. You can filter by the <code>file-system-id</code> or
-        /// by <code>volume-id</code>.
+        /// The name of the filter to use. You can filter by the <c>file-system-id</c> or by <c>volume-id</c>.
         /// </para>
         /// </summary>
         public SnapshotFilterName Name
@@ -59,7 +59,7 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property Values. 
         /// <para>
-        /// The <code>file-system-id</code> or <code>volume-id</code> that you are filtering for.
+        /// The <c>file-system-id</c> or <c>volume-id</c> that you are filtering for.
         /// </para>
         /// </summary>
         [AWSProperty(Max=20)]
@@ -72,7 +72,7 @@ namespace Amazon.FSx.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

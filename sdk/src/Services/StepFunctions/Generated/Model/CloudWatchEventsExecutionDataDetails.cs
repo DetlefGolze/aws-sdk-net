@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.StepFunctions.Model
         /// <summary>
         /// Gets and sets the property Included. 
         /// <para>
-        /// Indicates whether input or output was included in the response. Always <code>true</code>
+        /// Indicates whether input or output was included in the response. Always <c>true</c>
         /// for API calls. 
         /// </para>
         /// </summary>

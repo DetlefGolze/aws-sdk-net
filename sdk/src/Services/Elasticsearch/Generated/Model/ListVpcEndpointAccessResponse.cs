@@ -26,23 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// Container for response parameters to the <code><a>ListVpcEndpointAccess</a></code>
-    /// operation. Returns a list of accounts id and account type authorized to manage VPC
-    /// endpoints.
+    /// Container for response parameters to the <c><a>ListVpcEndpointAccess</a></c> operation.
+    /// Returns a list of accounts id and account type authorized to manage VPC endpoints.
     /// </summary>
     public partial class ListVpcEndpointAccessResponse : AmazonWebServiceResponse
     {
-        private List<AuthorizedPrincipal> _authorizedPrincipalList = new List<AuthorizedPrincipal>();
+        private List<AuthorizedPrincipal> _authorizedPrincipalList = AWSConfigs.InitializeCollections ? new List<AuthorizedPrincipal>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property AuthorizedPrincipalList. 
         /// <para>
-        /// List of <code>AuthorizedPrincipal</code> describing the details of the permissions
-        /// to manage VPC endpoints against the specified domain.
+        /// List of <c>AuthorizedPrincipal</c> describing the details of the permissions to manage
+        /// VPC endpoints against the specified domain.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -55,7 +55,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if AuthorizedPrincipalList property is set
         internal bool IsSetAuthorizedPrincipalList()
         {
-            return this._authorizedPrincipalList != null && this._authorizedPrincipalList.Count > 0; 
+            return this._authorizedPrincipalList != null && (this._authorizedPrincipalList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

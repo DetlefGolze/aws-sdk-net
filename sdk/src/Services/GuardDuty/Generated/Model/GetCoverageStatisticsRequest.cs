@@ -26,25 +26,32 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
     /// Container for the parameters to the GetCoverageStatistics operation.
     /// Retrieves aggregated statistics for your account. If you are a GuardDuty administrator,
     /// you can retrieve the statistics for all the resources associated with the active member
-    /// accounts in your organization who have enabled EKS Runtime Monitoring and have the
-    /// GuardDuty agent running on their EKS nodes.
+    /// accounts in your organization who have enabled Runtime Monitoring and have the GuardDuty
+    /// security agent running on their resources.
     /// </summary>
     public partial class GetCoverageStatisticsRequest : AmazonGuardDutyRequest
     {
         private string _detectorId;
         private CoverageFilterCriteria _filterCriteria;
-        private List<string> _statisticsType = new List<string>();
+        private List<string> _statisticsType = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DetectorId. 
         /// <para>
-        /// The unique ID of the GuardDuty detector associated to the coverage statistics.
+        /// The unique ID of the GuardDuty detector.
+        /// </para>
+        ///  
+        /// <para>
+        /// To find the <c>detectorId</c> in the current Region, see the Settings page in the
+        /// GuardDuty console, or run the <a href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html">ListDetectors</a>
+        /// API.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=300)]
@@ -63,7 +70,7 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property FilterCriteria. 
         /// <para>
-        /// Represents the criteria used to filter the coverage statistics
+        /// Represents the criteria used to filter the coverage statistics.
         /// </para>
         /// </summary>
         public CoverageFilterCriteria FilterCriteria
@@ -94,7 +101,7 @@ namespace Amazon.GuardDuty.Model
         // Check to see if StatisticsType property is set
         internal bool IsSetStatisticsType()
         {
-            return this._statisticsType != null && this._statisticsType.Count > 0; 
+            return this._statisticsType != null && (this._statisticsType.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

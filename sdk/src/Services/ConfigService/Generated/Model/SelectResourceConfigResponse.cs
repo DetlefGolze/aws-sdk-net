@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -35,12 +36,12 @@ namespace Amazon.ConfigService.Model
     {
         private string _nextToken;
         private QueryInfo _queryInfo;
-        private List<string> _results = new List<string>();
+        private List<string> _results = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> string returned in a previous request that you use to request
+        /// The <c>nextToken</c> string returned in a previous request that you use to request
         /// the next page of results in a paginated response. 
         /// </para>
         /// </summary>
@@ -59,7 +60,7 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property QueryInfo. 
         /// <para>
-        /// Returns the <code>QueryInfo</code> object.
+        /// Returns the <c>QueryInfo</c> object.
         /// </para>
         /// </summary>
         public QueryInfo QueryInfo
@@ -89,7 +90,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if Results property is set
         internal bool IsSetResults()
         {
-            return this._results != null && this._results.Count > 0; 
+            return this._results != null && (this._results.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

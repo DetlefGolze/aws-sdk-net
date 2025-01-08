@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,6 +67,7 @@ namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetFindingCriteria())
@@ -88,6 +90,24 @@ namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
                             context.Writer.Write(publicRequestFindingStatisticTypesListValue);
                     }
                     context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetGroupBy())
+                {
+                    context.Writer.WritePropertyName("groupBy");
+                    context.Writer.Write(publicRequest.GroupBy);
+                }
+
+                if(publicRequest.IsSetMaxResults())
+                {
+                    context.Writer.WritePropertyName("maxResults");
+                    context.Writer.Write(publicRequest.MaxResults);
+                }
+
+                if(publicRequest.IsSetOrderBy())
+                {
+                    context.Writer.WritePropertyName("orderBy");
+                    context.Writer.Write(publicRequest.OrderBy);
                 }
 
                 writer.WriteObjectEnd();

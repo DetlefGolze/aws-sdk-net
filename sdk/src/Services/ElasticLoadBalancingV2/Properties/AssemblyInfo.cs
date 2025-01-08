@@ -15,6 +15,8 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyDescription("The Amazon Web Services SDK for .NET (NetStandard 2.0) - Elastic Load Balancing. Elastic Load Balancing automatically distributes incoming application traffic across multiple compute instances in the cloud.")]
 #elif NETCOREAPP3_1
 [assembly: AssemblyDescription("The Amazon Web Services SDK for .NET (.NET Core 3.1) - Elastic Load Balancing. Elastic Load Balancing automatically distributes incoming application traffic across multiple compute instances in the cloud.")]
+#elif NET8_0
+[assembly: AssemblyDescription("The Amazon Web Services SDK for .NET (.NET 8.0) - Elastic Load Balancing. Elastic Load Balancing automatically distributes incoming application traffic across multiple compute instances in the cloud.")]
 #else
 #error Unknown platform constant - unable to set correct AssemblyDescription
 #endif
@@ -42,9 +44,7 @@ using System.Runtime.CompilerServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("3.3")]
-[assembly: AssemblyFileVersion("3.7.201.37")]
-
-[assembly: System.CLSCompliant(true)]
+[assembly: AssemblyFileVersion("3.7.408.16")]
 
 #if BCL
 [assembly: System.Security.AllowPartiallyTrustedCallers]

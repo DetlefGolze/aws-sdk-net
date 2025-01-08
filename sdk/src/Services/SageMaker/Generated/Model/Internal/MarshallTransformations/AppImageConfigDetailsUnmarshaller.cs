@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public AppImageConfigDetails Unmarshall(JsonUnmarshallerContext context)
         {
+            AppImageConfigDetails unmarshalledObject = new AppImageConfigDetails();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            AppImageConfigDetails unmarshalledObject = new AppImageConfigDetails();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -76,10 +78,22 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     unmarshalledObject.AppImageConfigName = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("CodeEditorAppImageConfig", targetDepth))
+                {
+                    var unmarshaller = CodeEditorAppImageConfigUnmarshaller.Instance;
+                    unmarshalledObject.CodeEditorAppImageConfig = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("CreationTime", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
                     unmarshalledObject.CreationTime = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("JupyterLabAppImageConfig", targetDepth))
+                {
+                    var unmarshaller = JupyterLabAppImageConfigUnmarshaller.Instance;
+                    unmarshalledObject.JupyterLabAppImageConfig = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("KernelGatewayImageConfig", targetDepth))
@@ -95,7 +109,6 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

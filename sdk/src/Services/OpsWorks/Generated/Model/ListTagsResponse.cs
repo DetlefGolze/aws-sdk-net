@@ -26,23 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
-    /// Contains the response to a <code>ListTags</code> request.
+    /// Contains the response to a <c>ListTags</c> request.
     /// </summary>
     public partial class ListTagsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If a paginated request does not return all of the remaining results, this parameter
-        /// is set to a token that you can assign to the request object's <code>NextToken</code>
-        /// parameter to get the next set of results. If the previous paginated request returned
-        /// all of the remaining results, this parameter is set to <code>null</code>. 
+        /// is set to a token that you can assign to the request object's <c>NextToken</c> parameter
+        /// to get the next set of results. If the previous paginated request returned all of
+        /// the remaining results, this parameter is set to <c>null</c>. 
         /// </para>
         /// </summary>
         public string NextToken
@@ -73,7 +74,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruReviewer.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.CodeGuruReviewer.Model
         /// <summary>
         /// Gets and sets the property BranchName. 
         /// <para>
-        /// The name of the branch in an associated repository. The <code>RepositoryHeadSourceCodeType</code>
+        /// The name of the branch in an associated repository. The <c>RepositoryHeadSourceCodeType</c>
         /// specifies the tip of this branch.
         /// </para>
         /// </summary>

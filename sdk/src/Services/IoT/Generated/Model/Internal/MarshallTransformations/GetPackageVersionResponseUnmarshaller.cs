@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoT.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -51,6 +52,12 @@ namespace Amazon.IoT.Model.Internal.MarshallTransformations
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("artifact", targetDepth))
+                {
+                    var unmarshaller = PackageVersionArtifactUnmarshaller.Instance;
+                    response.Artifact = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("attributes", targetDepth))
                 {
                     var unmarshaller = new DictionaryUnmarshaller<string, string, StringUnmarshaller, StringUnmarshaller>(StringUnmarshaller.Instance, StringUnmarshaller.Instance);
@@ -91,6 +98,24 @@ namespace Amazon.IoT.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.PackageVersionArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("recipe", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.Recipe = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("sbom", targetDepth))
+                {
+                    var unmarshaller = SbomUnmarshaller.Instance;
+                    response.Sbom = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("sbomValidationStatus", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.SbomValidationStatus = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("status", targetDepth))

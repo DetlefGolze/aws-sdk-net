@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.CodeDeploy.Model
     {
         private string _nextToken;
         private RegistrationStatus _registrationStatus;
-        private List<TagFilter> _tagFilters = new List<TagFilter>();
+        private List<TagFilter> _tagFilters = AWSConfigs.InitializeCollections ? new List<TagFilter>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -71,13 +72,12 @@ namespace Amazon.CodeDeploy.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Deregistered</code>: Include deregistered on-premises instances in the resulting
+        ///  <c>Deregistered</c>: Include deregistered on-premises instances in the resulting
         /// list.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Registered</code>: Include registered on-premises instances in the resulting
-        /// list.
+        ///  <c>Registered</c>: Include registered on-premises instances in the resulting list.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -109,7 +109,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if TagFilters property is set
         internal bool IsSetTagFilters()
         {
-            return this._tagFilters != null && this._tagFilters.Count > 0; 
+            return this._tagFilters != null && (this._tagFilters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

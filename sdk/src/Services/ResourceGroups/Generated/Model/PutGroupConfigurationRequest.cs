@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroups.Model
 {
     /// <summary>
@@ -44,13 +45,13 @@ namespace Amazon.ResourceGroups.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>resource-groups:PutGroupConfiguration</code> 
+    ///  <c>resource-groups:PutGroupConfiguration</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>
     public partial class PutGroupConfigurationRequest : AmazonResourceGroupsRequest
     {
-        private List<GroupConfigurationItem> _configuration = new List<GroupConfigurationItem>();
+        private List<GroupConfigurationItem> _configuration = AWSConfigs.InitializeCollections ? new List<GroupConfigurationItem>() : null;
         private string _group;
 
         /// <summary>
@@ -68,7 +69,7 @@ namespace Amazon.ResourceGroups.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// A resource group can contain either a <code>Configuration</code> or a <code>ResourceQuery</code>,
+        /// A resource group can contain either a <c>Configuration</c> or a <c>ResourceQuery</c>,
         /// but not both.
         /// </para>
         ///  </note>
@@ -83,13 +84,14 @@ namespace Amazon.ResourceGroups.Model
         // Check to see if Configuration property is set
         internal bool IsSetConfiguration()
         {
-            return this._configuration != null && this._configuration.Count > 0; 
+            return this._configuration != null && (this._configuration.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Group. 
         /// <para>
-        /// The name or ARN of the resource group with the configuration that you want to update.
+        /// The name or Amazon resource name (ARN) of the resource group with the configuration
+        /// that you want to update.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1600)]

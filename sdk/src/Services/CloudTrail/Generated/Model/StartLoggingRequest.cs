@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
@@ -48,7 +49,7 @@ namespace Amazon.CloudTrail.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</code> 
+        ///  <c>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

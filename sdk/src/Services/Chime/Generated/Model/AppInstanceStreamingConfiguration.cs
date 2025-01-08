@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
-    /// The details of the streaming configuration of an <code>AppInstance</code>.
+    /// The details of the streaming configuration of an <c>AppInstance</c>.
     /// </summary>
     public partial class AppInstanceStreamingConfiguration
     {

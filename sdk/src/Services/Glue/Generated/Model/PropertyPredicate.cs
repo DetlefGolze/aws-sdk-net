@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.Glue.Model
         /// The key of the property.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=1024)]
+        [AWSProperty(Min=1, Max=1024)]
         public string Key
         {
             get { return this._key; }
@@ -80,7 +81,7 @@ namespace Amazon.Glue.Model
         /// The value of the property.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=1024)]
+        [AWSProperty(Min=1, Max=1024)]
         public string Value
         {
             get { return this._value; }

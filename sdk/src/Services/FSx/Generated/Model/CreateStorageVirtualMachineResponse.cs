@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property StorageVirtualMachine. 
         /// <para>
-        /// Returned after a successful <code>CreateStorageVirtualMachine</code> operation; describes
+        /// Returned after a successful <c>CreateStorageVirtualMachine</c> operation; describes
         /// the SVM just created.
         /// </para>
         /// </summary>

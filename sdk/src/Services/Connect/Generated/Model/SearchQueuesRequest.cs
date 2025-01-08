@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -66,7 +67,7 @@ namespace Amazon.Connect.Model
         /// The maximum number of results to return per page.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=100)]
+        [AWSProperty(Min=1, Max=500)]
         public int MaxResults
         {
             get { return this._maxResults.GetValueOrDefault(); }
@@ -106,9 +107,9 @@ namespace Amazon.Connect.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>name</code> and <code>description</code> fields support "contains" queries
-        /// with a minimum of 2 characters and a maximum of 25 characters. Any queries with character
-        /// lengths outside of this range will throw invalid results. 
+        /// The <c>name</c> and <c>description</c> fields support "contains" queries with a minimum
+        /// of 2 characters and a maximum of 25 characters. Any queries with character lengths
+        /// outside of this range will throw invalid results. 
         /// </para>
         ///  </note>
         /// </summary>

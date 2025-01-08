@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -34,9 +35,9 @@ namespace Amazon.LocationService.Model
     /// </summary>
     public partial class SearchForSuggestionsResult
     {
-        private List<string> _categories = new List<string>();
+        private List<string> _categories = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _placeId;
-        private List<string> _supplementalCategories = new List<string>();
+        private List<string> _supplementalCategories = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _text;
 
         /// <summary>
@@ -61,24 +62,24 @@ namespace Amazon.LocationService.Model
         // Check to see if Categories property is set
         internal bool IsSetCategories()
         {
-            return this._categories != null && this._categories.Count > 0; 
+            return this._categories != null && (this._categories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PlaceId. 
         /// <para>
-        /// The unique identifier of the Place. You can use this with the <code>GetPlace</code>
-        /// operation to find the place again later, or to get full information for the Place.
+        /// The unique identifier of the Place. You can use this with the <c>GetPlace</c> operation
+        /// to find the place again later, or to get full information for the Place.
         /// </para>
         ///  
         /// <para>
-        /// The <code>GetPlace</code> request must use the same <code>PlaceIndex</code> resource
-        /// as the <code>SearchPlaceIndexForSuggestions</code> that generated the Place ID.
+        /// The <c>GetPlace</c> request must use the same <c>PlaceIndex</c> resource as the <c>SearchPlaceIndexForSuggestions</c>
+        /// that generated the Place ID.
         /// </para>
         ///  <note> 
         /// <para>
-        /// For <code>SearchPlaceIndexForSuggestions</code> operations, the <code>PlaceId</code>
-        /// is returned by place indexes that use Esri, Grab, or HERE as data providers.
+        /// For <c>SearchPlaceIndexForSuggestions</c> operations, the <c>PlaceId</c> is returned
+        /// by place indexes that use Esri, Grab, or HERE as data providers.
         /// </para>
         ///  </note>
         /// </summary>
@@ -111,7 +112,7 @@ namespace Amazon.LocationService.Model
         // Check to see if SupplementalCategories property is set
         internal bool IsSetSupplementalCategories()
         {
-            return this._supplementalCategories != null && this._supplementalCategories.Count > 0; 
+            return this._supplementalCategories != null && (this._supplementalCategories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

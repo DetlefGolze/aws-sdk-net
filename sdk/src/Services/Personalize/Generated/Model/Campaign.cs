@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Personalize.Model
 {
     /// <summary>
@@ -155,9 +156,9 @@ namespace Amazon.Personalize.Model
         /// Gets and sets the property MinProvisionedTPS. 
         /// <para>
         /// Specifies the requested minimum provisioned transactions (recommendations) per second.
-        /// A high <code>minProvisionedTPS</code> will increase your bill. We recommend starting
-        /// with 1 for <code>minProvisionedTPS</code> (the default). Track your usage using Amazon
-        /// CloudWatch metrics, and increase the <code>minProvisionedTPS</code> as necessary.
+        /// A high <c>minProvisionedTPS</c> will increase your bill. We recommend starting with
+        /// 1 for <c>minProvisionedTPS</c> (the default). Track your usage using Amazon CloudWatch
+        /// metrics, and increase the <c>minProvisionedTPS</c> as necessary.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -195,7 +196,7 @@ namespace Amazon.Personalize.Model
         /// <summary>
         /// Gets and sets the property SolutionVersionArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of a specific version of the solution.
+        /// The Amazon Resource Name (ARN) of the solution version the campaign uses.
         /// </para>
         /// </summary>
         [AWSProperty(Max=256)]

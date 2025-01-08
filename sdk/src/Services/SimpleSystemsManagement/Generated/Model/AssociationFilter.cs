@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Instantiates AssociationFilter with the parameterized properties
         /// </summary>
-        /// <param name="key">The name of the filter. <note>  <code>InstanceId</code> has been deprecated. </note></param>
+        /// <param name="key">The name of the filter. <note>  <c>InstanceId</c> has been deprecated. </note></param>
         /// <param name="value">The filter value.</param>
         public AssociationFilter(AssociationFilterKey key, string value)
         {
@@ -59,7 +60,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>InstanceId</code> has been deprecated.
+        ///  <c>InstanceId</c> has been deprecated.
         /// </para>
         ///  </note>
         /// </summary>

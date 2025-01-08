@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -33,25 +34,25 @@ namespace Amazon.Rekognition.Model
     /// </summary>
     public partial class GetSegmentDetectionResponse : AmazonWebServiceResponse
     {
-        private List<AudioMetadata> _audioMetadata = new List<AudioMetadata>();
+        private List<AudioMetadata> _audioMetadata = AWSConfigs.InitializeCollections ? new List<AudioMetadata>() : null;
         private string _jobId;
         private VideoJobStatus _jobStatus;
         private string _jobTag;
         private string _nextToken;
-        private List<SegmentDetection> _segments = new List<SegmentDetection>();
-        private List<SegmentTypeInfo> _selectedSegmentTypes = new List<SegmentTypeInfo>();
+        private List<SegmentDetection> _segments = AWSConfigs.InitializeCollections ? new List<SegmentDetection>() : null;
+        private List<SegmentTypeInfo> _selectedSegmentTypes = AWSConfigs.InitializeCollections ? new List<SegmentTypeInfo>() : null;
         private string _statusMessage;
         private Video _video;
-        private List<VideoMetadata> _videoMetadata = new List<VideoMetadata>();
+        private List<VideoMetadata> _videoMetadata = AWSConfigs.InitializeCollections ? new List<VideoMetadata>() : null;
 
         /// <summary>
         /// Gets and sets the property AudioMetadata. 
         /// <para>
-        /// An array of objects. There can be multiple audio streams. Each <code>AudioMetadata</code>
-        /// object contains metadata for a single audio stream. Audio information in an <code>AudioMetadata</code>
+        /// An array of objects. There can be multiple audio streams. Each <c>AudioMetadata</c>
+        /// object contains metadata for a single audio stream. Audio information in an <c>AudioMetadata</c>
         /// objects includes the audio codec, the number of audio channels, the duration of the
         /// audio stream, and the sample rate. Audio metadata is returned in each page of information
-        /// returned by <code>GetSegmentDetection</code>.
+        /// returned by <c>GetSegmentDetection</c>.
         /// </para>
         /// </summary>
         public List<AudioMetadata> AudioMetadata
@@ -63,7 +64,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if AudioMetadata property is set
         internal bool IsSetAudioMetadata()
         {
-            return this._audioMetadata != null && this._audioMetadata.Count > 0; 
+            return this._audioMetadata != null && (this._audioMetadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -149,9 +150,8 @@ namespace Amazon.Rekognition.Model
         /// Gets and sets the property Segments. 
         /// <para>
         /// An array of segments detected in a video. The array is sorted by the segment types
-        /// (TECHNICAL_CUE or SHOT) specified in the <code>SegmentTypes</code> input parameter
-        /// of <code>StartSegmentDetection</code>. Within each segment type the array is sorted
-        /// by timestamp values.
+        /// (TECHNICAL_CUE or SHOT) specified in the <c>SegmentTypes</c> input parameter of <c>StartSegmentDetection</c>.
+        /// Within each segment type the array is sorted by timestamp values.
         /// </para>
         /// </summary>
         public List<SegmentDetection> Segments
@@ -163,13 +163,13 @@ namespace Amazon.Rekognition.Model
         // Check to see if Segments property is set
         internal bool IsSetSegments()
         {
-            return this._segments != null && this._segments.Count > 0; 
+            return this._segments != null && (this._segments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SelectedSegmentTypes. 
         /// <para>
-        /// An array containing the segment types requested in the call to <code>StartSegmentDetection</code>.
+        /// An array containing the segment types requested in the call to <c>StartSegmentDetection</c>.
         /// 
         /// </para>
         /// </summary>
@@ -182,13 +182,13 @@ namespace Amazon.Rekognition.Model
         // Check to see if SelectedSegmentTypes property is set
         internal bool IsSetSelectedSegmentTypes()
         {
-            return this._selectedSegmentTypes != null && this._selectedSegmentTypes.Count > 0; 
+            return this._selectedSegmentTypes != null && (this._selectedSegmentTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property StatusMessage. 
         /// <para>
-        /// If the job fails, <code>StatusMessage</code> provides a descriptive error message.
+        /// If the job fails, <c>StatusMessage</c> provides a descriptive error message.
         /// </para>
         /// </summary>
         public string StatusMessage
@@ -221,11 +221,11 @@ namespace Amazon.Rekognition.Model
         /// <summary>
         /// Gets and sets the property VideoMetadata. 
         /// <para>
-        /// Currently, Amazon Rekognition Video returns a single object in the <code>VideoMetadata</code>
+        /// Currently, Amazon Rekognition Video returns a single object in the <c>VideoMetadata</c>
         /// array. The object contains information about the video stream in the input file that
-        /// Amazon Rekognition Video chose to analyze. The <code>VideoMetadata</code> object includes
+        /// Amazon Rekognition Video chose to analyze. The <c>VideoMetadata</c> object includes
         /// the video codec, video format and other information. Video metadata is returned in
-        /// each page of information returned by <code>GetSegmentDetection</code>.
+        /// each page of information returned by <c>GetSegmentDetection</c>.
         /// </para>
         /// </summary>
         public List<VideoMetadata> VideoMetadata
@@ -237,7 +237,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if VideoMetadata property is set
         internal bool IsSetVideoMetadata()
         {
-            return this._videoMetadata != null && this._videoMetadata.Count > 0; 
+            return this._videoMetadata != null && (this._videoMetadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceDiscovery.Model
 {
     /// <summary>
@@ -34,21 +35,21 @@ namespace Amazon.ServiceDiscovery.Model
     public partial class ListServicesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ServiceSummary> _services = new List<ServiceSummary>();
+        private List<ServiceSummary> _services = AWSConfigs.InitializeCollections ? new List<ServiceSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the response contains <code>NextToken</code>, submit another <code>ListServices</code>
-        /// request to get the next group of results. Specify the value of <code>NextToken</code>
-        /// from the previous response in the next request.
+        /// If the response contains <c>NextToken</c>, submit another <c>ListServices</c> request
+        /// to get the next group of results. Specify the value of <c>NextToken</c> from the previous
+        /// response in the next request.
         /// </para>
         ///  <note> 
         /// <para>
-        /// Cloud Map gets <code>MaxResults</code> services and then filters them based on the
-        /// specified criteria. It's possible that no services in the first <code>MaxResults</code>
-        /// services matched the specified criteria but that subsequent groups of <code>MaxResults</code>
-        /// services do contain services that match the criteria.
+        /// Cloud Map gets <c>MaxResults</c> services and then filters them based on the specified
+        /// criteria. It's possible that no services in the first <c>MaxResults</c> services matched
+        /// the specified criteria but that subsequent groups of <c>MaxResults</c> services do
+        /// contain services that match the criteria.
         /// </para>
         ///  </note>
         /// </summary>
@@ -68,8 +69,8 @@ namespace Amazon.ServiceDiscovery.Model
         /// <summary>
         /// Gets and sets the property Services. 
         /// <para>
-        /// An array that contains one <code>ServiceSummary</code> object for each service that
-        /// matches the specified filter criteria.
+        /// An array that contains one <c>ServiceSummary</c> object for each service that matches
+        /// the specified filter criteria.
         /// </para>
         /// </summary>
         public List<ServiceSummary> Services
@@ -81,7 +82,7 @@ namespace Amazon.ServiceDiscovery.Model
         // Check to see if Services property is set
         internal bool IsSetServices()
         {
-            return this._services != null && this._services.Count > 0; 
+            return this._services != null && (this._services.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

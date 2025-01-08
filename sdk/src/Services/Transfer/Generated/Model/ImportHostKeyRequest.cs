@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Container for the parameters to the ImportHostKey operation.
-    /// Adds a host key to the server that's specified by the <code>ServerId</code> parameter.
+    /// Adds a host key to the server that's specified by the <c>ServerId</c> parameter.
     /// </summary>
     public partial class ImportHostKeyRequest : AmazonTransferRequest
     {
         private string _description;
         private string _hostKeyBody;
         private string _serverId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -68,7 +69,7 @@ namespace Amazon.Transfer.Model
         /// Transfer Family accepts RSA, ECDSA, and ED25519 keys.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Sensitive=true, Max=4096)]
+        [AWSProperty(Required=true, Sensitive=true, Min=0, Max=4096)]
         public string HostKeyBody
         {
             get { return this._hostKeyBody; }
@@ -116,7 +117,7 @@ namespace Amazon.Transfer.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

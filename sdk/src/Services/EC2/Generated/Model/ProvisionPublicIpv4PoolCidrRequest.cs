@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -42,6 +43,7 @@ namespace Amazon.EC2.Model
     {
         private string _ipamPoolId;
         private int? _netmaskLength;
+        private string _networkBorderGroup;
         private string _poolId;
 
         /// <summary>
@@ -67,6 +69,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property NetmaskLength. 
         /// <para>
         /// The netmask length of the CIDR you would like to allocate to the public IPv4 pool.
+        /// The least specific netmask length you can define is 24.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -80,6 +83,27 @@ namespace Amazon.EC2.Model
         internal bool IsSetNetmaskLength()
         {
             return this._netmaskLength.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property NetworkBorderGroup. 
+        /// <para>
+        /// The Availability Zone (AZ) or Local Zone (LZ) network border group that the resource
+        /// that the IP address is assigned to is in. Defaults to an AZ network border group.
+        /// For more information on available Local Zones, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html#byoip-zone-avail">Local
+        /// Zone availability</a> in the <i>Amazon EC2 User Guide</i>.
+        /// </para>
+        /// </summary>
+        public string NetworkBorderGroup
+        {
+            get { return this._networkBorderGroup; }
+            set { this._networkBorderGroup = value; }
+        }
+
+        // Check to see if NetworkBorderGroup property is set
+        internal bool IsSetNetworkBorderGroup()
+        {
+            return this._networkBorderGroup != null;
         }
 
         /// <summary>

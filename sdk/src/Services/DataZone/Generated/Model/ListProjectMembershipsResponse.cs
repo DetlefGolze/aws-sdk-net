@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.DataZone.Model
     /// </summary>
     public partial class ListProjectMembershipsResponse : AmazonWebServiceResponse
     {
-        private List<ProjectMember> _members = new List<ProjectMember>();
+        private List<ProjectMember> _members = AWSConfigs.InitializeCollections ? new List<ProjectMember>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,17 +53,17 @@ namespace Amazon.DataZone.Model
         // Check to see if Members property is set
         internal bool IsSetMembers()
         {
-            return this._members != null && this._members.Count > 0; 
+            return this._members != null && (this._members.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When the number of memberships is greater than the default value for the <code>MaxResults</code>
-        /// parameter, or if you explicitly specify a value for <code>MaxResults</code> that is
-        /// less than the number of memberships, the response includes a pagination token named
-        /// <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent
-        /// call to <code>ListProjectMemberships</code> to list the next set of memberships.
+        /// When the number of memberships is greater than the default value for the <c>MaxResults</c>
+        /// parameter, or if you explicitly specify a value for <c>MaxResults</c> that is less
+        /// than the number of memberships, the response includes a pagination token named <c>NextToken</c>.
+        /// You can specify this <c>NextToken</c> value in a subsequent call to <c>ListProjectMemberships</c>
+        /// to list the next set of memberships.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=8192)]

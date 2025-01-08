@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public AudioDescription Unmarshall(JsonUnmarshallerContext context)
         {
+            AudioDescription unmarshalledObject = new AudioDescription();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            AudioDescription unmarshalledObject = new AudioDescription();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("audioDashRoles", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
+                    unmarshalledObject.AudioDashRoles = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("audioNormalizationSettings", targetDepth))
                 {
                     var unmarshaller = AudioNormalizationSettingsUnmarshaller.Instance;
@@ -100,6 +108,12 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     unmarshalledObject.CodecSettings = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("dvbDashAccessibility", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DvbDashAccessibility = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("languageCode", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -131,7 +145,6 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MachineLearning.Model
 {
     /// <summary>
@@ -42,12 +43,12 @@ namespace Amazon.MachineLearning.Model
     {
         private string _resourceId;
         private TaggableResourceType _resourceType;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceId. 
         /// <para>
-        /// The ID of the tagged ML object. For example, <code>exampleModelId</code>.
+        /// The ID of the tagged ML object. For example, <c>exampleModelId</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]
@@ -98,7 +99,7 @@ namespace Amazon.MachineLearning.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

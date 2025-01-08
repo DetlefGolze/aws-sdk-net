@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
-    /// An object which defines an incremental run type and has only <code>incrementalRunType</code>
+    /// An object which defines an incremental run type and has only <c>incrementalRunType</c>
     /// as a field.
     /// </summary>
     public partial class IncrementalRunConfig
@@ -39,7 +40,7 @@ namespace Amazon.EntityResolution.Model
         /// <summary>
         /// Gets and sets the property IncrementalRunType. 
         /// <para>
-        /// The type of incremental run. It takes only one value: <code>IMMEDIATE</code>.
+        /// The type of incremental run. It takes only one value: <c>IMMEDIATE</c>.
         /// </para>
         /// </summary>
         public IncrementalRunType IncrementalRunType

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.CodeBuild.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    ///  <code>imagePullCredentialsType</code> must be set to <code>SERVICE_ROLE</code>. 
+    ///  <c>imagePullCredentialsType</c> must be set to <c>SERVICE_ROLE</c>. 
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -59,8 +60,8 @@ namespace Amazon.CodeBuild.Model
         /// </para>
         ///  <note> 
         /// <para>
-        ///  The <code>credential</code> can use the name of the credentials only if they exist
-        /// in your current Amazon Web Services Region. 
+        ///  The <c>credential</c> can use the name of the credentials only if they exist in your
+        /// current Amazon Web Services Region. 
         /// </para>
         ///  </note>
         /// </summary>

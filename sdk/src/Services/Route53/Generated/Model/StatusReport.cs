@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.Route53.Model
         /// Gets and sets the property CheckedTime. 
         /// <para>
         /// The date and time that the health checker performed the health check in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO
-        /// 8601 format</a> and Coordinated Universal Time (UTC). For example, the value <code>2017-03-27T17:48:16.751Z</code>
+        /// 8601 format</a> and Coordinated Universal Time (UTC). For example, the value <c>2017-03-27T17:48:16.751Z</c>
         /// represents March 27, 2017 at 17:48:16.751 UTC.
         /// </para>
         /// </summary>

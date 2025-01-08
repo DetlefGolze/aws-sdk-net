@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -38,9 +39,9 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property ReportJob. 
         /// <para>
-        /// A list of information about a report job, including its completion and creation times,
-        /// report destination, unique report job ID, Amazon Resource Name (ARN), report template,
-        /// status, and status message.
+        /// The information about a report job, including its completion and creation times, report
+        /// destination, unique report job ID, Amazon Resource Name (ARN), report template, status,
+        /// and status message.
         /// </para>
         /// </summary>
         public ReportJob ReportJob

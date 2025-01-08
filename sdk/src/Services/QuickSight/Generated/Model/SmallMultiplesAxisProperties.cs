@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -39,9 +40,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Placement. 
         /// <para>
-        /// Defines the placement of the axis. By default, axes are rendered <code>OUTSIDE</code>
-        /// of the panels. Axes with <code>INDEPENDENT</code> scale are rendered <code>INSIDE</code>
-        /// the panels.
+        /// Defines the placement of the axis. By default, axes are rendered <c>OUTSIDE</c> of
+        /// the panels. Axes with <c>INDEPENDENT</c> scale are rendered <c>INSIDE</c> the panels.
         /// </para>
         /// </summary>
         public SmallMultiplesAxisPlacement Placement
@@ -60,7 +60,7 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property Scale. 
         /// <para>
         /// Determines whether scale of the axes are shared or independent. The default value
-        /// is <code>SHARED</code>.
+        /// is <c>SHARED</c>.
         /// </para>
         /// </summary>
         public SmallMultiplesAxisScale Scale

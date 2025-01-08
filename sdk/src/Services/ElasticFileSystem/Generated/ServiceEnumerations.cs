@@ -25,6 +25,56 @@ namespace Amazon.ElasticFileSystem
 {
 
     /// <summary>
+    /// Constants used for properties of type DeletionMode.
+    /// </summary>
+    public class DeletionMode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ALL_CONFIGURATIONS for DeletionMode
+        /// </summary>
+        public static readonly DeletionMode ALL_CONFIGURATIONS = new DeletionMode("ALL_CONFIGURATIONS");
+        /// <summary>
+        /// Constant LOCAL_CONFIGURATION_ONLY for DeletionMode
+        /// </summary>
+        public static readonly DeletionMode LOCAL_CONFIGURATION_ONLY = new DeletionMode("LOCAL_CONFIGURATION_ONLY");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public DeletionMode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static DeletionMode FindValue(string value)
+        {
+            return FindValue<DeletionMode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator DeletionMode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type LifeCycleState.
     /// </summary>
     public class LifeCycleState : ConstantClass
@@ -134,6 +184,60 @@ namespace Amazon.ElasticFileSystem
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator PerformanceMode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ReplicationOverwriteProtection.
+    /// </summary>
+    public class ReplicationOverwriteProtection : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DISABLED for ReplicationOverwriteProtection
+        /// </summary>
+        public static readonly ReplicationOverwriteProtection DISABLED = new ReplicationOverwriteProtection("DISABLED");
+        /// <summary>
+        /// Constant ENABLED for ReplicationOverwriteProtection
+        /// </summary>
+        public static readonly ReplicationOverwriteProtection ENABLED = new ReplicationOverwriteProtection("ENABLED");
+        /// <summary>
+        /// Constant REPLICATING for ReplicationOverwriteProtection
+        /// </summary>
+        public static readonly ReplicationOverwriteProtection REPLICATING = new ReplicationOverwriteProtection("REPLICATING");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ReplicationOverwriteProtection(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ReplicationOverwriteProtection FindValue(string value)
+        {
+            return FindValue<ReplicationOverwriteProtection>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ReplicationOverwriteProtection(string value)
         {
             return FindValue(value);
         }
@@ -419,6 +523,84 @@ namespace Amazon.ElasticFileSystem
 
 
     /// <summary>
+    /// Constants used for properties of type TransitionToArchiveRules.
+    /// </summary>
+    public class TransitionToArchiveRules : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant AFTER_1_DAY for TransitionToArchiveRules
+        /// </summary>
+        public static readonly TransitionToArchiveRules AFTER_1_DAY = new TransitionToArchiveRules("AFTER_1_DAY");
+        /// <summary>
+        /// Constant AFTER_14_DAYS for TransitionToArchiveRules
+        /// </summary>
+        public static readonly TransitionToArchiveRules AFTER_14_DAYS = new TransitionToArchiveRules("AFTER_14_DAYS");
+        /// <summary>
+        /// Constant AFTER_180_DAYS for TransitionToArchiveRules
+        /// </summary>
+        public static readonly TransitionToArchiveRules AFTER_180_DAYS = new TransitionToArchiveRules("AFTER_180_DAYS");
+        /// <summary>
+        /// Constant AFTER_270_DAYS for TransitionToArchiveRules
+        /// </summary>
+        public static readonly TransitionToArchiveRules AFTER_270_DAYS = new TransitionToArchiveRules("AFTER_270_DAYS");
+        /// <summary>
+        /// Constant AFTER_30_DAYS for TransitionToArchiveRules
+        /// </summary>
+        public static readonly TransitionToArchiveRules AFTER_30_DAYS = new TransitionToArchiveRules("AFTER_30_DAYS");
+        /// <summary>
+        /// Constant AFTER_365_DAYS for TransitionToArchiveRules
+        /// </summary>
+        public static readonly TransitionToArchiveRules AFTER_365_DAYS = new TransitionToArchiveRules("AFTER_365_DAYS");
+        /// <summary>
+        /// Constant AFTER_60_DAYS for TransitionToArchiveRules
+        /// </summary>
+        public static readonly TransitionToArchiveRules AFTER_60_DAYS = new TransitionToArchiveRules("AFTER_60_DAYS");
+        /// <summary>
+        /// Constant AFTER_7_DAYS for TransitionToArchiveRules
+        /// </summary>
+        public static readonly TransitionToArchiveRules AFTER_7_DAYS = new TransitionToArchiveRules("AFTER_7_DAYS");
+        /// <summary>
+        /// Constant AFTER_90_DAYS for TransitionToArchiveRules
+        /// </summary>
+        public static readonly TransitionToArchiveRules AFTER_90_DAYS = new TransitionToArchiveRules("AFTER_90_DAYS");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public TransitionToArchiveRules(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static TransitionToArchiveRules FindValue(string value)
+        {
+            return FindValue<TransitionToArchiveRules>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator TransitionToArchiveRules(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type TransitionToIARules.
     /// </summary>
     public class TransitionToIARules : ConstantClass
@@ -433,9 +615,21 @@ namespace Amazon.ElasticFileSystem
         /// </summary>
         public static readonly TransitionToIARules AFTER_14_DAYS = new TransitionToIARules("AFTER_14_DAYS");
         /// <summary>
+        /// Constant AFTER_180_DAYS for TransitionToIARules
+        /// </summary>
+        public static readonly TransitionToIARules AFTER_180_DAYS = new TransitionToIARules("AFTER_180_DAYS");
+        /// <summary>
+        /// Constant AFTER_270_DAYS for TransitionToIARules
+        /// </summary>
+        public static readonly TransitionToIARules AFTER_270_DAYS = new TransitionToIARules("AFTER_270_DAYS");
+        /// <summary>
         /// Constant AFTER_30_DAYS for TransitionToIARules
         /// </summary>
         public static readonly TransitionToIARules AFTER_30_DAYS = new TransitionToIARules("AFTER_30_DAYS");
+        /// <summary>
+        /// Constant AFTER_365_DAYS for TransitionToIARules
+        /// </summary>
+        public static readonly TransitionToIARules AFTER_365_DAYS = new TransitionToIARules("AFTER_365_DAYS");
         /// <summary>
         /// Constant AFTER_60_DAYS for TransitionToIARules
         /// </summary>

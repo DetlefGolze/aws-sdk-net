@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppConfig.Model
 {
     /// <summary>
@@ -40,38 +41,38 @@ namespace Amazon.AppConfig.Model
     /// provided by AppConfig. For an AppConfig extension that uses Lambda, you must create
     /// a Lambda function to perform any computation and processing defined in the extension.
     /// If you plan to create custom versions of the Amazon Web Services authored notification
-    /// extensions, you only need to specify an Amazon Resource Name (ARN) in the <code>Uri</code>
+    /// extensions, you only need to specify an Amazon Resource Name (ARN) in the <c>Uri</c>
     /// field for the new extension version.
     /// </para>
     ///  <ul> <li> 
     /// <para>
     /// For a custom EventBridge notification extension, enter the ARN of the EventBridge
-    /// default events in the <code>Uri</code> field.
+    /// default events in the <c>Uri</c> field.
     /// </para>
     ///  </li> <li> 
     /// <para>
     /// For a custom Amazon SNS notification extension, enter the ARN of an Amazon SNS topic
-    /// in the <code>Uri</code> field.
+    /// in the <c>Uri</c> field.
     /// </para>
     ///  </li> <li> 
     /// <para>
     /// For a custom Amazon SQS notification extension, enter the ARN of an Amazon SQS message
-    /// queue in the <code>Uri</code> field. 
+    /// queue in the <c>Uri</c> field. 
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// For more information about extensions, see <a href="https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html">Working
-    /// with AppConfig extensions</a> in the <i>AppConfig User Guide</i>.
+    /// For more information about extensions, see <a href="https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html">Extending
+    /// workflows</a> in the <i>AppConfig User Guide</i>.
     /// </para>
     /// </summary>
     public partial class CreateExtensionRequest : AmazonAppConfigRequest
     {
-        private Dictionary<string, List<Action>> _actions = new Dictionary<string, List<Action>>();
+        private Dictionary<string, List<Action>> _actions = AWSConfigs.InitializeCollections ? new Dictionary<string, List<Action>>() : null;
         private string _description;
         private int? _latestVersionNumber;
         private string _name;
-        private Dictionary<string, Parameter> _parameters = new Dictionary<string, Parameter>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, Parameter> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, Parameter>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Actions. 
@@ -89,7 +90,7 @@ namespace Amazon.AppConfig.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -155,12 +156,12 @@ namespace Amazon.AppConfig.Model
         /// Gets and sets the property Parameters. 
         /// <para>
         /// The parameters accepted by the extension. You specify parameter values when you associate
-        /// the extension to an AppConfig resource by using the <code>CreateExtensionAssociation</code>
+        /// the extension to an AppConfig resource by using the <c>CreateExtensionAssociation</c>
         /// API action. For Lambda extension actions, these parameters are included in the Lambda
         /// request object.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=5)]
+        [AWSProperty(Min=1, Max=10)]
         public Dictionary<string, Parameter> Parameters
         {
             get { return this._parameters; }
@@ -170,7 +171,7 @@ namespace Amazon.AppConfig.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -191,7 +192,7 @@ namespace Amazon.AppConfig.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

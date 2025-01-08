@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -103,8 +104,7 @@ namespace Amazon.ElasticMapReduce.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of execution engine. A value of <code>EMR</code> specifies an Amazon EMR
-        /// cluster.
+        /// The type of execution engine. A value of <c>EMR</c> specifies an Amazon EMR cluster.
         /// </para>
         /// </summary>
         public ExecutionEngineType Type

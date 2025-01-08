@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostExplorer.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.CostExplorer.Model
     /// </summary>
     public partial class UpdateCostAllocationTagsStatusResponse : AmazonWebServiceResponse
     {
-        private List<UpdateCostAllocationTagsStatusError> _errors = new List<UpdateCostAllocationTagsStatusError>();
+        private List<UpdateCostAllocationTagsStatusError> _errors = AWSConfigs.InitializeCollections ? new List<UpdateCostAllocationTagsStatusError>() : null;
 
         /// <summary>
         /// Gets and sets the property Errors. 
         /// <para>
-        /// A list of <code>UpdateCostAllocationTagsStatusError</code> objects with error details
-        /// about each cost allocation tag that can't be updated. If there's no failure, an empty
-        /// array returns. 
+        /// A list of <c>UpdateCostAllocationTagsStatusError</c> objects with error details about
+        /// each cost allocation tag that can't be updated. If there's no failure, an empty array
+        /// returns. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=20)]
@@ -53,7 +54,7 @@ namespace Amazon.CostExplorer.Model
         // Check to see if Errors property is set
         internal bool IsSetErrors()
         {
-            return this._errors != null && this._errors.Count > 0; 
+            return this._errors != null && (this._errors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

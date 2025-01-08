@@ -26,14 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ARCZonalShift.Model
 {
     /// <summary>
     /// Container for the parameters to the ListManagedResources operation.
-    /// Lists all the resources in your AWS account in this AWS Region that are managed for
-    /// zonal shifts in Amazon Route 53 Application Recovery Controller, and information about
-    /// them. The information includes their Amazon Resource Names (ARNs), the Availability
-    /// Zones the resources are deployed in, and the resource name.
+    /// Lists all the resources in your Amazon Web Services account in this Amazon Web Services
+    /// Region that are managed for zonal shifts in Amazon Route 53 Application Recovery Controller,
+    /// and information about them. The information includes the zonal autoshift status for
+    /// the resource, as well as the Amazon Resource Name (ARN), the Availability Zones that
+    /// each resource is deployed in, and the resource name.
     /// </summary>
     public partial class ListManagedResourcesRequest : AmazonARCZonalShiftRequest
     {
@@ -63,9 +65,9 @@ namespace Amazon.ARCZonalShift.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// Specifies that you want to receive the next page of results. Valid only if you received
-        /// a <code>NextToken</code> response in the previous request. If you did, it indicates
-        /// that more output is available. Set this parameter to the value provided by the previous
-        /// call's <code>NextToken</code> response to request the next page of results.
+        /// a <c>NextToken</c> response in the previous request. If you did, it indicates that
+        /// more output is available. Set this parameter to the value provided by the previous
+        /// call's <c>NextToken</c> response to request the next page of results.
         /// </para>
         /// </summary>
         public string NextToken

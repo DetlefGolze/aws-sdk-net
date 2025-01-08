@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ElasticFileSystem.Model
     /// </summary>
     public partial class DescribeFileSystemsResponse : AmazonWebServiceResponse
     {
-        private List<FileSystemDescription> _fileSystems = new List<FileSystemDescription>();
+        private List<FileSystemDescription> _fileSystems = AWSConfigs.InitializeCollections ? new List<FileSystemDescription>() : null;
         private string _marker;
         private string _nextMarker;
 
@@ -52,7 +53,7 @@ namespace Amazon.ElasticFileSystem.Model
         // Check to see if FileSystems property is set
         internal bool IsSetFileSystems()
         {
-            return this._fileSystems != null && this._fileSystems.Count > 0; 
+            return this._fileSystems != null && (this._fileSystems.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -78,7 +79,7 @@ namespace Amazon.ElasticFileSystem.Model
         /// Gets and sets the property NextMarker. 
         /// <para>
         /// Present if there are more file systems than returned in the response (String). You
-        /// can use the <code>NextMarker</code> in the subsequent request to fetch the descriptions.
+        /// can use the <c>NextMarker</c> in the subsequent request to fetch the descriptions.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]

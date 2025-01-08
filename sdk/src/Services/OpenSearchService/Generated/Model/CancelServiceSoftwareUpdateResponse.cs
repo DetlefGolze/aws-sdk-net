@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
-    /// Container for the response to a <code>CancelServiceSoftwareUpdate</code> operation.
-    /// Contains the status of the update.
+    /// Container for the response to a <c>CancelServiceSoftwareUpdate</c> operation. Contains
+    /// the status of the update.
     /// </summary>
     public partial class CancelServiceSoftwareUpdateResponse : AmazonWebServiceResponse
     {

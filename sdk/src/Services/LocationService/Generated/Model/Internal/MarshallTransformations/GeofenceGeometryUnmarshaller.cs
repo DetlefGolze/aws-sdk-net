@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.LocationService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.LocationService.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public GeofenceGeometry Unmarshall(JsonUnmarshallerContext context)
         {
+            GeofenceGeometry unmarshalledObject = new GeofenceGeometry();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            GeofenceGeometry unmarshalledObject = new GeofenceGeometry();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -70,6 +72,12 @@ namespace Amazon.LocationService.Model.Internal.MarshallTransformations
                     unmarshalledObject.Circle = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("Geobuf", targetDepth))
+                {
+                    var unmarshaller = MemoryStreamUnmarshaller.Instance;
+                    unmarshalledObject.Geobuf = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("Polygon", targetDepth))
                 {
                     var unmarshaller = new ListUnmarshaller<List<List<double>>, ListUnmarshaller<List<double>, ListUnmarshaller<double, DoubleUnmarshaller>>>(new ListUnmarshaller<List<double>, ListUnmarshaller<double, DoubleUnmarshaller>>(new ListUnmarshaller<double, DoubleUnmarshaller>(DoubleUnmarshaller.Instance)));
@@ -77,7 +85,6 @@ namespace Amazon.LocationService.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

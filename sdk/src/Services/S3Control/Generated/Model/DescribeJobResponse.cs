@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.S3Control.Model
         /// <summary>
         /// Gets and sets the property Job. 
         /// <para>
-        /// Contains the configuration parameters and status for the job specified in the <code>Describe
-        /// Job</code> request.
+        /// Contains the configuration parameters and status for the job specified in the <c>Describe
+        /// Job</c> request.
         /// </para>
         /// </summary>
         public JobDescriptor Job

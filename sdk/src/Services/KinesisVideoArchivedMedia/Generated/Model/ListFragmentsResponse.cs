@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideoArchivedMedia.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.KinesisVideoArchivedMedia.Model
     /// </summary>
     public partial class ListFragmentsResponse : AmazonWebServiceResponse
     {
-        private List<Fragment> _fragments = new List<Fragment>();
+        private List<Fragment> _fragments = AWSConfigs.InitializeCollections ? new List<Fragment>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,14 +53,14 @@ namespace Amazon.KinesisVideoArchivedMedia.Model
         // Check to see if Fragments property is set
         internal bool IsSetFragments()
         {
-            return this._fragments != null && this._fragments.Count > 0; 
+            return this._fragments != null && (this._fragments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If the returned list is truncated, the operation returns this token to use to retrieve
-        /// the next page of results. This value is <code>null</code> when there are no more results
+        /// the next page of results. This value is <c>null</c> when there are no more results
         /// to return.
         /// </para>
         /// </summary>

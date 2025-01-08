@@ -26,20 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// The compromised credentials risk configuration type.
+    /// Settings for compromised-credentials actions and authentication-event sources with
+    /// advanced security features in full-function <c>ENFORCED</c> mode.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a request parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetRiskConfiguration.html">SetRiskConfiguration</a>
+    /// and a response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeRiskConfiguration.html">DescribeRiskConfiguration</a>.
+    /// </para>
     /// </summary>
     public partial class CompromisedCredentialsRiskConfigurationType
     {
         private CompromisedCredentialsActionsType _actions;
-        private List<string> _eventFilter = new List<string>();
+        private List<string> _eventFilter = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Actions. 
         /// <para>
-        /// The compromised credentials risk configuration actions.
+        /// Settings for the actions that you want your user pool to take when Amazon Cognito
+        /// detects compromised credentials.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -58,8 +67,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property EventFilter. 
         /// <para>
-        /// Perform the action for these events. The default is to perform all events if no event
-        /// filter is specified.
+        /// Settings for the sign-in activity where you want to configure compromised-credentials
+        /// actions. Defaults to all events.
         /// </para>
         /// </summary>
         public List<string> EventFilter
@@ -71,7 +80,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if EventFilter property is set
         internal bool IsSetEventFilter()
         {
-            return this._eventFilter != null && this._eventFilter.Count > 0; 
+            return this._eventFilter != null && (this._eventFilter.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

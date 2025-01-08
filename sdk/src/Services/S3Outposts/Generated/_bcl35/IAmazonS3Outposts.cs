@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.S3Outposts.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.S3Outposts
 {
     /// <summary>
-    /// Interface for accessing S3Outposts
+    /// <para>Interface for accessing S3Outposts</para>
     ///
     /// Amazon S3 on Outposts provides access to S3 on Outposts operations.
     /// </summary>

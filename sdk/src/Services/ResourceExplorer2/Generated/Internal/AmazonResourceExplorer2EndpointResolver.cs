@@ -18,6 +18,8 @@
  */
 
 using System;
+using System.Linq;
+using System.Collections.Generic;
 using Amazon.ResourceExplorer2.Model;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
@@ -49,6 +51,7 @@ namespace Amazon.ResourceExplorer2.Internal
             var config = (AmazonResourceExplorer2Config)requestContext.ClientConfig;
             var result = new ResourceExplorer2EndpointParameters();
             result.Region = config.RegionEndpoint?.SystemName;
+            result.UseDualStack = config.UseDualstackEndpoint;
             result.UseFIPS = config.UseFIPSEndpoint;
             result.Endpoint = config.ServiceURL;
 
@@ -57,8 +60,16 @@ namespace Amazon.ResourceExplorer2.Internal
             var regionEndpoint = config.RegionEndpoint;
             if (regionEndpoint == null && !string.IsNullOrEmpty(config.ServiceURL))
             {
-                var regionName = AWSSDKUtils.DetermineRegion(config.ServiceURL);
-                result.Region = RegionEndpoint.GetBySystemName(regionName).SystemName;
+                // Use the specified signing region if it was provided alongside a custom ServiceURL
+                if (!string.IsNullOrEmpty(config.AuthenticationRegion))
+                {
+                    result.Region = config.AuthenticationRegion;
+                }
+                else // try to extract a region from the custom ServiceURL
+                {
+                    var regionName = AWSSDKUtils.DetermineRegion(config.ServiceURL);
+                    result.Region = RegionEndpoint.GetBySystemName(regionName).SystemName;
+                }
             }
 
             // To support legacy endpoint overridding rules in the endpoints.json

@@ -26,11 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
     /// Container for the parameters to the ListTargetsByRule operation.
     /// Lists the targets assigned to the specified rule.
+    /// 
+    ///  
+    /// <para>
+    /// The maximum number of results per page for requests is 100.
+    /// </para>
     /// </summary>
     public partial class ListTargetsByRuleRequest : AmazonEventBridgeRequest
     {
@@ -81,7 +87,18 @@ namespace Amazon.EventBridge.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token returned by a previous call to retrieve the next set of results.
+        /// The token returned by a previous call, which you can use to retrieve the next set
+        /// of results.
+        /// </para>
+        ///  
+        /// <para>
+        /// The value of <c>nextToken</c> is a unique pagination token for each page. To retrieve
+        /// the next page of results, make the call again using the returned token. Keep all other
+        /// arguments unchanged.
+        /// </para>
+        ///  
+        /// <para>
+        ///  Using an expired pagination token results in an <c>HTTP 400 InvalidToken</c> error.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

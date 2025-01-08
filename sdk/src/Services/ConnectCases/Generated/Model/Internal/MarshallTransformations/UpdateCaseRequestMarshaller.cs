@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ConnectCases.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -69,6 +70,7 @@ namespace Amazon.ConnectCases.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetFields())
@@ -85,6 +87,17 @@ namespace Amazon.ConnectCases.Model.Internal.MarshallTransformations
                         context.Writer.WriteObjectEnd();
                     }
                     context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetPerformedBy())
+                {
+                    context.Writer.WritePropertyName("performedBy");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = UserUnionMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.PerformedBy, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 writer.WriteObjectEnd();

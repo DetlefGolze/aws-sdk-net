@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -39,8 +40,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property LogGroupArn. 
         /// <para>
-        /// The ARN (ends with <code>:*</code>) of the CloudWatch Logs log group to which you
-        /// want your logs emitted.
+        /// The ARN (ends with <c>:*</c>) of the CloudWatch Logs log group to which you want your
+        /// logs emitted.
         /// </para>
         /// </summary>
         public string LogGroupArn

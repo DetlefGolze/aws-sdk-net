@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -37,10 +38,10 @@ namespace Amazon.SecurityHub.Model
         private string _customerAwsId;
         private string _custSubscriptionId;
         private bool? _enabled;
-        private List<string> _eventCategoriesList = new List<string>();
+        private List<string> _eventCategoriesList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _eventSubscriptionArn;
         private string _snsTopicArn;
-        private List<string> _sourceIdsList = new List<string>();
+        private List<string> _sourceIdsList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _sourceType;
         private string _status;
         private string _subscriptionCreationTime;
@@ -114,7 +115,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if EventCategoriesList property is set
         internal bool IsSetEventCategoriesList()
         {
-            return this._eventCategoriesList != null && this._eventCategoriesList.Count > 0; 
+            return this._eventCategoriesList != null && (this._eventCategoriesList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -168,7 +169,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if SourceIdsList property is set
         internal bool IsSetSourceIdsList()
         {
-            return this._sourceIdsList != null && this._sourceIdsList.Count > 0; 
+            return this._sourceIdsList != null && (this._sourceIdsList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -196,9 +197,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>creating</code> | <code>modifying</code> | <code>deleting</code>
-        /// | <code>active</code> | <code>no-permission</code> | <code>topic-not-exist</code>
-        /// 
+        /// Valid values: <c>creating</c> | <c>modifying</c> | <c>deleting</c> | <c>active</c>
+        /// | <c>no-permission</c> | <c>topic-not-exist</c> 
         /// </para>
         /// </summary>
         public string Status
@@ -220,9 +220,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string SubscriptionCreationTime

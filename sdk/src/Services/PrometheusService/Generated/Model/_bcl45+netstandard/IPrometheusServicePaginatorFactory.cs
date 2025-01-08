@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the amp-2020-08-01.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
@@ -29,6 +30,11 @@ namespace Amazon.PrometheusService.Model
         /// Paginator for ListRuleGroupsNamespaces operation
         ///</summary>
         IListRuleGroupsNamespacesPaginator ListRuleGroupsNamespaces(ListRuleGroupsNamespacesRequest request);
+
+        /// <summary>
+        /// Paginator for ListScrapers operation
+        ///</summary>
+        IListScrapersPaginator ListScrapers(ListScrapersRequest request);
 
         /// <summary>
         /// Paginator for ListWorkspaces operation

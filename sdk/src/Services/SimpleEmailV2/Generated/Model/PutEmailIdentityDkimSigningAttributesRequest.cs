@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -113,13 +114,12 @@ namespace Amazon.SimpleEmailV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AWS_SES</code> – Configure DKIM for the identity by using <a href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html">Easy
+        ///  <c>AWS_SES</c> – Configure DKIM for the identity by using <a href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html">Easy
         /// DKIM</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EXTERNAL</code> – Configure DKIM for the identity by using Bring Your Own DKIM
-        /// (BYODKIM).
+        ///  <c>EXTERNAL</c> – Configure DKIM for the identity by using Bring Your Own DKIM (BYODKIM).
         /// </para>
         ///  </li> </ul>
         /// </summary>

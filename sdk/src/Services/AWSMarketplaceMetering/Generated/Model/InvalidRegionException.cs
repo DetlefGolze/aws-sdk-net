@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSMarketplaceMetering.Model
 {
     /// <summary>
-    /// <code>RegisterUsage</code> must be called in the same AWS Region the ECS task was
-    /// launched in. This prevents a container from hardcoding a Region (e.g. withRegion(“us-east-1”)
-    /// when calling <code>RegisterUsage</code>.
+    /// <c>RegisterUsage</c> must be called in the same AWS Region the ECS task was launched
+    /// in. This prevents a container from hardcoding a Region (e.g. withRegion(“us-east-1”)
+    /// when calling <c>RegisterUsage</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

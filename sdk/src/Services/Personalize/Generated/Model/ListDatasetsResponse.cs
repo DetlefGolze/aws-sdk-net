@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Personalize.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.Personalize.Model
     /// </summary>
     public partial class ListDatasetsResponse : AmazonWebServiceResponse
     {
-        private List<DatasetSummary> _datasets = new List<DatasetSummary>();
+        private List<DatasetSummary> _datasets = AWSConfigs.InitializeCollections ? new List<DatasetSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Datasets. 
         /// <para>
-        /// An array of <code>Dataset</code> objects. Each object provides metadata information.
+        /// An array of <c>Dataset</c> objects. Each object provides metadata information.
         /// </para>
         /// </summary>
         [AWSProperty(Max=100)]
@@ -52,7 +53,7 @@ namespace Amazon.Personalize.Model
         // Check to see if Datasets property is set
         internal bool IsSetDatasets()
         {
-            return this._datasets != null && this._datasets.Count > 0; 
+            return this._datasets != null && (this._datasets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

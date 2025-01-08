@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
-    /// Describes supported operating systems in AWS OpsWorks Stacks.
+    /// Describes supported operating systems in OpsWorks Stacks.
     /// </summary>
     public partial class OperatingSystem
     {
-        private List<OperatingSystemConfigurationManager> _configurationManagers = new List<OperatingSystemConfigurationManager>();
+        private List<OperatingSystemConfigurationManager> _configurationManagers = AWSConfigs.InitializeCollections ? new List<OperatingSystemConfigurationManager>() : null;
         private string _id;
         private string _name;
         private string _reportedName;
@@ -44,7 +45,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property ConfigurationManagers. 
         /// <para>
-        /// Supported configuration manager name and versions for an AWS OpsWorks Stacks operating
+        /// Supported configuration manager name and versions for an OpsWorks Stacks operating
         /// system.
         /// </para>
         /// </summary>
@@ -57,13 +58,13 @@ namespace Amazon.OpsWorks.Model
         // Check to see if ConfigurationManagers property is set
         internal bool IsSetConfigurationManagers()
         {
-            return this._configurationManagers != null && this._configurationManagers.Count > 0; 
+            return this._configurationManagers != null && (this._configurationManagers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        /// The ID of a supported operating system, such as <code>Amazon Linux 2018.03</code>.
+        /// The ID of a supported operating system, such as <c>Amazon Linux 2</c>.
         /// </para>
         /// </summary>
         public string Id
@@ -81,7 +82,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the operating system, such as <code>Amazon Linux 2018.03</code>.
+        /// The name of the operating system, such as <c>Amazon Linux 2</c>.
         /// </para>
         /// </summary>
         public string Name
@@ -153,7 +154,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of a supported operating system, either <code>Linux</code> or <code>Windows</code>.
+        /// The type of a supported operating system, either <c>Linux</c> or <c>Windows</c>.
         /// </para>
         /// </summary>
         public string Type

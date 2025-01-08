@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class AlgorithmValidationSpecification
     {
-        private List<AlgorithmValidationProfile> _validationProfiles = new List<AlgorithmValidationProfile>();
+        private List<AlgorithmValidationProfile> _validationProfiles = AWSConfigs.InitializeCollections ? new List<AlgorithmValidationProfile>() : null;
         private string _validationRole;
 
         /// <summary>
         /// Gets and sets the property ValidationProfiles. 
         /// <para>
-        /// An array of <code>AlgorithmValidationProfile</code> objects, each of which specifies
-        /// a training job and batch transform job that SageMaker runs to validate your algorithm.
+        /// An array of <c>AlgorithmValidationProfile</c> objects, each of which specifies a training
+        /// job and batch transform job that SageMaker runs to validate your algorithm.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1)]
@@ -54,7 +55,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if ValidationProfiles property is set
         internal bool IsSetValidationProfiles()
         {
-            return this._validationProfiles != null && this._validationProfiles.Count > 0; 
+            return this._validationProfiles != null && (this._validationProfiles.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QLDB.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.QLDB.Model
     public partial class UntagResourceRequest : AmazonQLDBRequest
     {
         private string _resourceArn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -45,7 +46,7 @@ namespace Amazon.QLDB.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:qldb:us-east-1:123456789012:ledger/exampleLedger</code> 
+        ///  <c>arn:aws:qldb:us-east-1:123456789012:ledger/exampleLedger</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=1600)]
@@ -77,7 +78,7 @@ namespace Amazon.QLDB.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

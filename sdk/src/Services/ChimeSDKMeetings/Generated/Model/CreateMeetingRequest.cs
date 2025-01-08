@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMeetings.Model
 {
     /// <summary>
@@ -45,8 +46,8 @@ namespace Amazon.ChimeSDKMeetings.Model
         private string _meetingHostId;
         private NotificationsConfiguration _notificationsConfiguration;
         private string _primaryMeetingId;
-        private List<Tag> _tags = new List<Tag>();
-        private List<string> _tenantIds = new List<string>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private List<string> _tenantIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
@@ -75,12 +76,12 @@ namespace Amazon.ChimeSDKMeetings.Model
         /// </para>
         ///  
         /// <para>
-        /// Pattern: <code>[-_&amp;@+=,(){}\[\]\/«».:|'"#a-zA-Z0-9À-ÿ\s]*</code> 
+        /// Pattern: <c>[-_&amp;@+=,(){}\[\]\/«».:|'"#a-zA-Z0-9À-ÿ\s]*</c> 
         /// </para>
         ///  
         /// <para>
-        /// Values that begin with <code>aws:</code> are reserved. You can't configure a value
-        /// that uses this prefix. Case insensitive.
+        /// Values that begin with <c>aws:</c> are reserved. You can't configure a value that
+        /// uses this prefix. Case insensitive.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=2, Max=64)]
@@ -103,16 +104,16 @@ namespace Amazon.ChimeSDKMeetings.Model
         /// </para>
         ///  
         /// <para>
-        ///  Available values: <code>af-south-1</code>, <code>ap-northeast-1</code>, <code>ap-northeast-2</code>,
-        /// <code>ap-south-1</code>, <code>ap-southeast-1</code>, <code>ap-southeast-2</code>,
-        /// <code>ca-central-1</code>, <code>eu-central-1</code>, <code>eu-north-1</code>, <code>eu-south-1</code>,
-        /// <code>eu-west-1</code>, <code>eu-west-2</code>, <code>eu-west-3</code>, <code>sa-east-1</code>,
-        /// <code>us-east-1</code>, <code>us-east-2</code>, <code>us-west-1</code>, <code>us-west-2</code>.
-        /// 
+        ///  Available values: <c>af-south-1</c>, <c>ap-northeast-1</c>, <c>ap-northeast-2</c>,
+        /// <c>ap-south-1</c>, <c>ap-southeast-1</c>, <c>ap-southeast-2</c>, <c>ca-central-1</c>,
+        /// <c>eu-central-1</c>, <c>eu-north-1</c>, <c>eu-south-1</c>, <c>eu-west-1</c>, <c>eu-west-2</c>,
+        /// <c>eu-west-3</c>, <c>sa-east-1</c>, <c>us-east-1</c>, <c>us-east-2</c>, <c>us-west-1</c>,
+        /// <c>us-west-2</c>. 
         /// </para>
         ///  
         /// <para>
-        /// Available values in AWS GovCloud (US) Regions: <code>us-gov-east-1</code>, <code>us-gov-west-1</code>.
+        /// Available values in Amazon Web Services GovCloud (US) Regions: <c>us-gov-east-1</c>,
+        /// <c>us-gov-west-1</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=2, Max=64)]
@@ -223,8 +224,8 @@ namespace Amazon.ChimeSDKMeetings.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You can only tag resources that are located in the specified AWS Region for the AWS
-        /// account.
+        /// You can only tag resources that are located in the specified Amazon Web Services Region
+        /// for the Amazon Web Services account.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -244,25 +245,25 @@ namespace Amazon.ChimeSDKMeetings.Model
         /// </para>
         ///  
         /// <para>
-        /// In addition to the <code>tag:TagResources</code> permission required by this operation,
+        /// In addition to the <c>tag:TagResources</c> permission required by this operation,
         /// you must also have the tagging permission defined by the service that created the
-        /// resource. For example, to tag a <code>ChimeSDKMeetings</code> instance using the <code>TagResources</code>
+        /// resource. For example, to tag a <c>ChimeSDKMeetings</c> instance using the <c>TagResources</c>
         /// operation, you must have both of the following permissions:
         /// </para>
         ///  
         /// <para>
-        ///  <code>tag:TagResources</code> 
+        ///  <c>tag:TagResources</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>ChimeSDKMeetings:CreateTags</code> 
+        ///  <c>ChimeSDKMeetings:CreateTags</c> 
         /// </para>
         ///  <note> 
         /// <para>
         /// Some services might have specific requirements for tagging some resources. For example,
-        /// to tag an Amazon S3 bucket, you must also have the <code>s3:GetBucketTagging</code>
-        /// permission. If the expected minimum permissions don't work, check the documentation
-        /// for that service's tagging APIs for more information.
+        /// to tag an Amazon S3 bucket, you must also have the <c>s3:GetBucketTagging</c> permission.
+        /// If the expected minimum permissions don't work, check the documentation for that service's
+        /// tagging APIs for more information.
         /// </para>
         ///  </note>
         /// </summary>
@@ -276,7 +277,7 @@ namespace Amazon.ChimeSDKMeetings.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -296,7 +297,7 @@ namespace Amazon.ChimeSDKMeetings.Model
         // Check to see if TenantIds property is set
         internal bool IsSetTenantIds()
         {
-            return this._tenantIds != null && this._tenantIds.Count > 0; 
+            return this._tenantIds != null && (this._tenantIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -74,8 +75,8 @@ namespace Amazon.IoT.Model
         /// </para>
         ///  
         /// <para>
-        ///  <b>Note:</b> You cannot name a <code>defaultVersion</code> and set <code>unsetDefaultVersion</code>
-        /// equal to <code>true</code> at the same time.
+        ///  <b>Note:</b> You cannot name a <c>defaultVersion</c> and set <c>unsetDefaultVersion</c>
+        /// equal to <c>true</c> at the same time.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -133,12 +134,12 @@ namespace Amazon.IoT.Model
         /// Gets and sets the property UnsetDefaultVersion. 
         /// <para>
         /// Indicates whether you want to remove the named default package version from the software
-        /// package. Set as <code>true</code> to remove the default package version. 
+        /// package. Set as <c>true</c> to remove the default package version. 
         /// </para>
         ///  
         /// <para>
-        ///  <b>Note:</b> You cannot name a <code>defaultVersion</code> and set <code>unsetDefaultVersion</code>
-        /// equal to <code>true</code> at the same time.
+        ///  <b>Note:</b> You cannot name a <c>defaultVersion</c> and set <c>unsetDefaultVersion</c>
+        /// equal to <c>true</c> at the same time.
         /// </para>
         /// </summary>
         public bool UnsetDefaultVersion

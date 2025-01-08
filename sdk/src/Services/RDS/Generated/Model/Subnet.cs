@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// This data type is used as a response element for the <code>DescribeDBSubnetGroups</code>
+    /// This data type is used as a response element for the <c>DescribeDBSubnetGroups</c>
     /// operation.
     /// </summary>
     public partial class Subnet

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -38,11 +39,11 @@ namespace Amazon.IoTSiteWise.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// List child assets associated to a parent asset by a hierarchy that you specify.
+    ///  <c>CHILD</c> - List all child assets associated to the asset.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// List an asset's parent asset.
+    ///  <c>PARENT</c> - List the asset's parent asset.
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -57,10 +58,13 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property AssetId. 
         /// <para>
-        /// The ID of the asset to query.
+        /// The ID of the asset to query. This can be either the actual ID in UUID format, or
+        /// else <c>externalId:</c> followed by the external ID, if it has one. For more information,
+        /// see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-id-references">Referencing
+        /// objects with external IDs</a> in the <i>IoT SiteWise User Guide</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=36, Max=36)]
+        [AWSProperty(Required=true, Min=13, Max=139)]
         public string AssetId
         {
             get { return this._assetId; }
@@ -76,10 +80,15 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property HierarchyId. 
         /// <para>
-        /// The ID of the hierarchy by which child assets are associated to the asset. To find
-        /// a hierarchy ID, use the <a href="https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAsset.html">DescribeAsset</a>
-        /// or <a href="https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetModel.html">DescribeAssetModel</a>
-        /// operations. This parameter is required if you choose <code>CHILD</code> for <code>traversalDirection</code>.
+        /// (Optional) If you don't provide a <c>hierarchyId</c>, all the immediate assets in
+        /// the <c>traversalDirection</c> will be returned. 
+        /// </para>
+        ///  
+        /// <para>
+        ///  The ID of the hierarchy by which child assets are associated to the asset. (This
+        /// can be either the actual ID in UUID format, or else <c>externalId:</c> followed by
+        /// the external ID, if it has one. For more information, see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-id-references">Referencing
+        /// objects with external IDs</a> in the <i>IoT SiteWise User Guide</i>.)
         /// </para>
         ///  
         /// <para>
@@ -87,7 +96,7 @@ namespace Amazon.IoTSiteWise.Model
         /// hierarchies</a> in the <i>IoT SiteWise User Guide</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=36, Max=36)]
+        [AWSProperty(Min=13, Max=139)]
         public string HierarchyId
         {
             get { return this._hierarchyId; }
@@ -149,16 +158,15 @@ namespace Amazon.IoTSiteWise.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CHILD</code> – The list includes all child assets associated to the asset.
-        /// The <code>hierarchyId</code> parameter is required if you choose <code>CHILD</code>.
+        ///  <c>CHILD</c> – The list includes all child assets associated to the asset.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PARENT</code> – The list includes the asset's parent asset.
+        ///  <c>PARENT</c> – The list includes the asset's parent asset.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Default: <code>CHILD</code> 
+        /// Default: <c>CHILD</c> 
         /// </para>
         /// </summary>
         public TraversalDirection TraversalDirection

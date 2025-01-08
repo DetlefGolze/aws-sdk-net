@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTAnalytics.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.IoTAnalytics.Model
     /// </summary>
     public partial class SelectAttributesActivity
     {
-        private List<string> _attributes = new List<string>();
+        private List<string> _attributes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
         private string _next;
 
@@ -54,13 +55,13 @@ namespace Amazon.IoTAnalytics.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the <code>selectAttributes</code> activity.
+        /// The name of the <c>selectAttributes</c> activity.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=128)]

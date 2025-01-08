@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTTwinMaker.Model
 {
     /// <summary>
@@ -34,7 +35,8 @@ namespace Amazon.IoTTwinMaker.Model
     /// </summary>
     public partial class UpdateEntityRequest : AmazonIoTTwinMakerRequest
     {
-        private Dictionary<string, ComponentUpdateRequest> _componentUpdates = new Dictionary<string, ComponentUpdateRequest>();
+        private Dictionary<string, ComponentUpdateRequest> _componentUpdates = AWSConfigs.InitializeCollections ? new Dictionary<string, ComponentUpdateRequest>() : null;
+        private Dictionary<string, CompositeComponentUpdateRequest> _compositeComponentUpdates = AWSConfigs.InitializeCollections ? new Dictionary<string, CompositeComponentUpdateRequest>() : null;
         private string _description;
         private string _entityId;
         private string _entityName;
@@ -57,7 +59,26 @@ namespace Amazon.IoTTwinMaker.Model
         // Check to see if ComponentUpdates property is set
         internal bool IsSetComponentUpdates()
         {
-            return this._componentUpdates != null && this._componentUpdates.Count > 0; 
+            return this._componentUpdates != null && (this._componentUpdates.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property CompositeComponentUpdates. 
+        /// <para>
+        /// This is an object that maps strings to <c>compositeComponent</c> updates in the request.
+        /// Each key of the map represents the <c>componentPath</c> of the <c>compositeComponent</c>.
+        /// </para>
+        /// </summary>
+        public Dictionary<string, CompositeComponentUpdateRequest> CompositeComponentUpdates
+        {
+            get { return this._compositeComponentUpdates; }
+            set { this._compositeComponentUpdates = value; }
+        }
+
+        // Check to see if CompositeComponentUpdates property is set
+        internal bool IsSetCompositeComponentUpdates()
+        {
+            return this._compositeComponentUpdates != null && (this._compositeComponentUpdates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

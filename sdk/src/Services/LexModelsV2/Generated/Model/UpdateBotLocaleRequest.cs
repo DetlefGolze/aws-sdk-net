@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -37,6 +38,7 @@ namespace Amazon.LexModelsV2.Model
         private string _botId;
         private string _botVersion;
         private string _description;
+        private GenerativeAISettings _generativeaiSettings;
         private string _localeId;
         private double? _nluIntentConfidenceThreshold;
         private VoiceSettings _voiceSettings;
@@ -64,7 +66,7 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property BotVersion. 
         /// <para>
         /// The version of the bot that contains the locale to be updated. The version can only
-        /// be the <code>DRAFT</code> version.
+        /// be the <c>DRAFT</c> version.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=5, Max=5)]
@@ -100,6 +102,26 @@ namespace Amazon.LexModelsV2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property GenerativeAISettings. 
+        /// <para>
+        /// Contains settings for generative AI features powered by Amazon Bedrock for your bot
+        /// locale. Use this object to turn generative AI features on and off. Pricing may differ
+        /// if you turn a feature on. For more information, see LINK.
+        /// </para>
+        /// </summary>
+        public GenerativeAISettings GenerativeAISettings
+        {
+            get { return this._generativeaiSettings; }
+            set { this._generativeaiSettings = value; }
+        }
+
+        // Check to see if GenerativeAISettings property is set
+        internal bool IsSetGenerativeAISettings()
+        {
+            return this._generativeaiSettings != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property LocaleId. 
         /// <para>
         /// The identifier of the language and locale to update. The string must match one of
@@ -123,9 +145,9 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property NluIntentConfidenceThreshold. 
         /// <para>
-        /// The new confidence threshold where Amazon Lex inserts the <code>AMAZON.FallbackIntent</code>
-        /// and <code>AMAZON.KendraSearchIntent</code> intents in the list of possible intents
-        /// for an utterance.
+        /// The new confidence threshold where Amazon Lex inserts the <c>AMAZON.FallbackIntent</c>
+        /// and <c>AMAZON.KendraSearchIntent</c> intents in the list of possible intents for an
+        /// utterance.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=1)]

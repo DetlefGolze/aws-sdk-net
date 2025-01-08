@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AuditManager.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.AuditManager.Model
     /// </summary>
     public partial class ListKeywordsForDataSourceResponse : AmazonWebServiceResponse
     {
-        private List<string> _keywords = new List<string>();
+        private List<string> _keywords = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Keywords. 
         /// <para>
-        ///  The list of keywords for the event mapping source. 
+        /// The list of keywords for the control mapping source.
         /// </para>
         /// </summary>
         public List<string> Keywords
@@ -51,7 +52,7 @@ namespace Amazon.AuditManager.Model
         // Check to see if Keywords property is set
         internal bool IsSetKeywords()
         {
-            return this._keywords != null && this._keywords.Count > 0; 
+            return this._keywords != null && (this._keywords.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

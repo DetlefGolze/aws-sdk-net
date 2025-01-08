@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ACMPCA.Model
 {
     /// <summary>
     /// Permissions designate which private CA actions can be performed by an Amazon Web Services
     /// service or entity. In order for ACM to automatically renew private certificates, you
-    /// must give the ACM service principal all available permissions (<code>IssueCertificate</code>,
-    /// <code>GetCertificate</code>, and <code>ListPermissions</code>). Permissions can be
-    /// assigned with the <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreatePermission.html">CreatePermission</a>
+    /// must give the ACM service principal all available permissions (<c>IssueCertificate</c>,
+    /// <c>GetCertificate</c>, and <c>ListPermissions</c>). Permissions can be assigned with
+    /// the <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreatePermission.html">CreatePermission</a>
     /// action, removed with the <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_DeletePermission.html">DeletePermission</a>
     /// action, and listed with the <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_ListPermissions.html">ListPermissions</a>
     /// action.
     /// </summary>
     public partial class Permission
     {
-        private List<string> _actions = new List<string>();
+        private List<string> _actions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _certificateAuthorityArn;
         private DateTime? _createdAt;
         private string _policy;
@@ -64,7 +65,7 @@ namespace Amazon.ACMPCA.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -127,7 +128,7 @@ namespace Amazon.ACMPCA.Model
         /// Gets and sets the property Principal. 
         /// <para>
         /// The Amazon Web Services service or entity that holds the permission. At this time,
-        /// the only valid principal is <code>acm.amazonaws.com</code>.
+        /// the only valid principal is <c>acm.amazonaws.com</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=128)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
@@ -34,10 +35,14 @@ namespace Amazon.CodePipeline.Model
     public partial class PipelineDeclaration
     {
         private ArtifactStore _artifactStore;
-        private Dictionary<string, ArtifactStore> _artifactStores = new Dictionary<string, ArtifactStore>();
+        private Dictionary<string, ArtifactStore> _artifactStores = AWSConfigs.InitializeCollections ? new Dictionary<string, ArtifactStore>() : null;
+        private ExecutionMode _executionMode;
         private string _name;
+        private PipelineType _pipelineType;
         private string _roleArn;
-        private List<StageDeclaration> _stages = new List<StageDeclaration>();
+        private List<StageDeclaration> _stages = AWSConfigs.InitializeCollections ? new List<StageDeclaration>() : null;
+        private List<PipelineTriggerDeclaration> _triggers = AWSConfigs.InitializeCollections ? new List<PipelineTriggerDeclaration>() : null;
+        private List<PipelineVariableDeclaration> _variables = AWSConfigs.InitializeCollections ? new List<PipelineVariableDeclaration>() : null;
         private int? _version;
 
         /// <summary>
@@ -47,9 +52,9 @@ namespace Amazon.CodePipeline.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// You must include either <code>artifactStore</code> or <code>artifactStores</code>
-        /// in your pipeline, but you cannot use both. If you create a cross-region action in
-        /// your pipeline, you must use <code>artifactStores</code>.
+        /// You must include either <c>artifactStore</c> or <c>artifactStores</c> in your pipeline,
+        /// but you cannot use both. If you create a cross-region action in your pipeline, you
+        /// must use <c>artifactStores</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -68,15 +73,15 @@ namespace Amazon.CodePipeline.Model
         /// <summary>
         /// Gets and sets the property ArtifactStores. 
         /// <para>
-        /// A mapping of <code>artifactStore</code> objects and their corresponding Amazon Web
-        /// Services Regions. There must be an artifact store for the pipeline Region and for
-        /// each cross-region action in the pipeline.
+        /// A mapping of <c>artifactStore</c> objects and their corresponding Amazon Web Services
+        /// Regions. There must be an artifact store for the pipeline Region and for each cross-region
+        /// action in the pipeline.
         /// </para>
         ///  <note> 
         /// <para>
-        /// You must include either <code>artifactStore</code> or <code>artifactStores</code>
-        /// in your pipeline, but you cannot use both. If you create a cross-region action in
-        /// your pipeline, you must use <code>artifactStores</code>.
+        /// You must include either <c>artifactStore</c> or <c>artifactStores</c> in your pipeline,
+        /// but you cannot use both. If you create a cross-region action in your pipeline, you
+        /// must use <c>artifactStores</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -89,7 +94,26 @@ namespace Amazon.CodePipeline.Model
         // Check to see if ArtifactStores property is set
         internal bool IsSetArtifactStores()
         {
-            return this._artifactStores != null && this._artifactStores.Count > 0; 
+            return this._artifactStores != null && (this._artifactStores.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExecutionMode. 
+        /// <para>
+        /// The method that the pipeline will use to handle multiple executions. The default mode
+        /// is SUPERSEDED.
+        /// </para>
+        /// </summary>
+        public ExecutionMode ExecutionMode
+        {
+            get { return this._executionMode; }
+            set { this._executionMode = value; }
+        }
+
+        // Check to see if ExecutionMode property is set
+        internal bool IsSetExecutionMode()
+        {
+            return this._executionMode != null;
         }
 
         /// <summary>
@@ -112,10 +136,55 @@ namespace Amazon.CodePipeline.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PipelineType. 
+        /// <para>
+        /// CodePipeline provides the following pipeline types, which differ in characteristics
+        /// and price, so that you can tailor your pipeline features and cost to the needs of
+        /// your applications.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// V1 type pipelines have a JSON structure that contains standard pipeline, stage, and
+        /// action-level parameters.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// V2 type pipelines have the same structure as a V1 type, along with additional parameters
+        /// for release safety and trigger configuration.
+        /// </para>
+        ///  </li> </ul> <important> 
+        /// <para>
+        /// Including V2 parameters, such as triggers on Git tags, in the pipeline JSON when creating
+        /// or updating a pipeline will result in the pipeline having the V2 type of pipeline
+        /// and the associated costs.
+        /// </para>
+        ///  </important> 
+        /// <para>
+        /// For information about pricing for CodePipeline, see <a href="http://aws.amazon.com/codepipeline/pricing/">Pricing</a>.
+        /// </para>
+        ///  
+        /// <para>
+        ///  For information about which type of pipeline to choose, see <a href="https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types-planning.html">What
+        /// type of pipeline is right for me?</a>.
+        /// </para>
+        /// </summary>
+        public PipelineType PipelineType
+        {
+            get { return this._pipelineType; }
+            set { this._pipelineType = value; }
+        }
+
+        // Check to see if PipelineType property is set
+        internal bool IsSetPipelineType()
+        {
+            return this._pipelineType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property RoleArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) for CodePipeline to use to either perform actions with
-        /// no <code>actionRoleArn</code>, or to use to assume roles for actions with an <code>actionRoleArn</code>.
+        /// no <c>actionRoleArn</c>, or to use to assume roles for actions with an <c>actionRoleArn</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=1024)]
@@ -147,7 +216,53 @@ namespace Amazon.CodePipeline.Model
         // Check to see if Stages property is set
         internal bool IsSetStages()
         {
-            return this._stages != null && this._stages.Count > 0; 
+            return this._stages != null && (this._stages.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Triggers. 
+        /// <para>
+        /// The trigger configuration specifying a type of event, such as Git tags, that starts
+        /// the pipeline.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// When a trigger configuration is specified, default change detection for repository
+        /// and branch commits is disabled.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        [AWSProperty(Max=50)]
+        public List<PipelineTriggerDeclaration> Triggers
+        {
+            get { return this._triggers; }
+            set { this._triggers = value; }
+        }
+
+        // Check to see if Triggers property is set
+        internal bool IsSetTriggers()
+        {
+            return this._triggers != null && (this._triggers.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Variables. 
+        /// <para>
+        /// A list that defines the pipeline variables for a pipeline resource. Variable names
+        /// can have alphanumeric and underscore characters, and the values must match <c>[A-Za-z0-9@\-_]+</c>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=50)]
+        public List<PipelineVariableDeclaration> Variables
+        {
+            get { return this._variables; }
+            set { this._variables = value; }
+        }
+
+        // Check to see if Variables property is set
+        internal bool IsSetVariables()
+        {
+            return this._variables != null && (this._variables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

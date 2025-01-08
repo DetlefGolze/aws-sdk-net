@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Outposts.Model
 {
     /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.Outposts.Model
         /// The quantity of a line item request.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=20)]
+        [AWSProperty(Min=1)]
         public int Quantity
         {
             get { return this._quantity.GetValueOrDefault(); }

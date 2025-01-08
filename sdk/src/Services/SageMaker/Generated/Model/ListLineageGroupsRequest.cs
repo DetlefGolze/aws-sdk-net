@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -122,7 +123,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SortBy. 
         /// <para>
-        /// The parameter by which to sort the results. The default is <code>CreationTime</code>.
+        /// The parameter by which to sort the results. The default is <c>CreationTime</c>.
         /// </para>
         /// </summary>
         public SortLineageGroupsBy SortBy
@@ -140,7 +141,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SortOrder. 
         /// <para>
-        /// The sort order for the results. The default is <code>Ascending</code>.
+        /// The sort order for the results. The default is <c>Ascending</c>.
         /// </para>
         /// </summary>
         public SortOrder SortOrder

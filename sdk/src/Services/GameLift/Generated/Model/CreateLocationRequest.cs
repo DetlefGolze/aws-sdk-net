@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.GameLift.Model
     public partial class CreateLocationRequest : AmazonGameLiftRequest
     {
         private string _locationName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property LocationName. 
@@ -59,11 +60,10 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// A list of labels to assign to the new matchmaking configuration resource. Tags are
-        /// developer-defined key-value pairs. Tagging Amazon Web Services resources are useful
-        /// for resource management, access management and cost allocation. For more information,
-        /// see <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html"> Tagging
-        /// Amazon Web Services Resources</a> in the <i>Amazon Web Services General Rareference</i>.
+        /// A list of labels to assign to the new resource. Tags are developer-defined key-value
+        /// pairs. Tagging Amazon Web Services resources are useful for resource management, access
+        /// management, and cost allocation. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">
+        /// Tagging Amazon Web Services Resources</a> in the <i>Amazon Web Services General Rareference</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=200)]
@@ -76,7 +76,7 @@ namespace Amazon.GameLift.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

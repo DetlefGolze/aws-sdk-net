@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property AwsSignerJobId. 
         /// <para>
-        /// The ID of the <code>AWSSignerJob</code> which was created to sign the file.
+        /// The ID of the <c>AWSSignerJob</c> which was created to sign the file.
         /// </para>
         /// </summary>
         public string AwsSignerJobId

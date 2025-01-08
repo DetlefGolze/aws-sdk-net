@@ -17,6 +17,7 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Util;
 using Amazon.Runtime.SharedInterfaces;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Net;
 
@@ -67,9 +68,33 @@ namespace Amazon.Runtime
         public string SessionName { get; set; }
 
         /// <summary>
+        /// The SSO scopes that are provided for authorization when using AWS SSO.
+        /// </summary>
+        public IList<string> Scopes { get; set; }
+
+        /// <summary>
         /// A callback that is used to initiate the SSO Login flow with the user.
         /// </summary>
         public Action<SsoVerificationArguments> SsoVerificationCallback { get; set; }
+
+        /// <summary>
+        /// This property MUST be specified if the client wishes to use the Authorization Code Flow 
+        /// with PKCE (if null, the SSO Token Manager will default to the Device Authorization Flow).
+        /// </summary>
+        public PkceFlowOptions PkceFlowOptions { get; set; }
+
+        /// <summary>
+        /// This field controls whether a new sso token will be generated if a valid cached token or 
+        /// refreshable token is not found.
+        /// <para />
+        /// If <c>true</c> and a valid cached token or refreshable token is not found then 
+        /// sso authorization flow is started, a new token is generated and the result is cached.
+        /// If <c>false</c> and a valid cached token or refreshable token is not found, an exception is thrown.
+        /// <para />
+        /// NOTE: If setting to <c>true</c>, either <see cref="SsoVerificationCallback"/> or <see cref="PkceFlowOptions"/> must 
+        /// also be set for authorization flow to succeed.
+        /// </summary>
+        public bool SupportsGettingNewToken { get; set; } = true;
 
         /// <summary>
         /// The proxy settings to use when calling SSOOIDC and SSO Services.

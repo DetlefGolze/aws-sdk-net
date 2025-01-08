@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaPackageV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -69,6 +70,7 @@ namespace Amazon.MediaPackageV2.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetDescription())
@@ -77,11 +79,38 @@ namespace Amazon.MediaPackageV2.Model.Internal.MarshallTransformations
                     context.Writer.Write(publicRequest.Description);
                 }
 
+                if(publicRequest.IsSetInputSwitchConfiguration())
+                {
+                    context.Writer.WritePropertyName("InputSwitchConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = InputSwitchConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.InputSwitchConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetOutputHeaderConfiguration())
+                {
+                    context.Writer.WritePropertyName("OutputHeaderConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = OutputHeaderConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.OutputHeaderConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 writer.WriteObjectEnd();
                 string snippet = stringWriter.ToString();
                 request.Content = System.Text.Encoding.UTF8.GetBytes(snippet);
             }
 
+        
+            if (publicRequest.IsSetETag()) 
+            {
+                request.Headers["x-amzn-update-if-match"] = publicRequest.ETag;
+            }
 
             return request;
         }

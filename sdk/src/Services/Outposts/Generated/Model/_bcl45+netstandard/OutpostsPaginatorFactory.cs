@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Outposts.Model
 {
     /// <summary>
@@ -44,11 +45,43 @@ namespace Amazon.Outposts.Model
         }
 
         /// <summary>
+        /// Paginator for GetOutpostSupportedInstanceTypes operation
+        ///</summary>
+        public IGetOutpostSupportedInstanceTypesPaginator GetOutpostSupportedInstanceTypes(GetOutpostSupportedInstanceTypesRequest request) 
+        {
+            return new GetOutpostSupportedInstanceTypesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListAssetInstances operation
+        ///</summary>
+        public IListAssetInstancesPaginator ListAssetInstances(ListAssetInstancesRequest request) 
+        {
+            return new ListAssetInstancesPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListAssets operation
         ///</summary>
         public IListAssetsPaginator ListAssets(ListAssetsRequest request) 
         {
             return new ListAssetsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListBlockingInstancesForCapacityTask operation
+        ///</summary>
+        public IListBlockingInstancesForCapacityTaskPaginator ListBlockingInstancesForCapacityTask(ListBlockingInstancesForCapacityTaskRequest request) 
+        {
+            return new ListBlockingInstancesForCapacityTaskPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListCapacityTasks operation
+        ///</summary>
+        public IListCapacityTasksPaginator ListCapacityTasks(ListCapacityTasksRequest request) 
+        {
+            return new ListCapacityTasksPaginator(this.client, request);
         }
 
         /// <summary>

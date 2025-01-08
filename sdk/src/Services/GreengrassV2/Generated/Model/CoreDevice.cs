@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GreengrassV2.Model
 {
     /// <summary>
@@ -34,9 +35,31 @@ namespace Amazon.GreengrassV2.Model
     /// </summary>
     public partial class CoreDevice
     {
+        private string _architecture;
         private string _coreDeviceThingName;
         private DateTime? _lastStatusUpdateTimestamp;
+        private string _platform;
+        private string _runtime;
         private CoreDeviceStatus _status;
+
+        /// <summary>
+        /// Gets and sets the property Architecture. 
+        /// <para>
+        /// The computer architecture of the core device.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=255)]
+        public string Architecture
+        {
+            get { return this._architecture; }
+            set { this._architecture = value; }
+        }
+
+        // Check to see if Architecture property is set
+        internal bool IsSetArchitecture()
+        {
+            return this._architecture != null;
+        }
 
         /// <summary>
         /// Gets and sets the property CoreDeviceThingName. 
@@ -76,19 +99,66 @@ namespace Amazon.GreengrassV2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Platform. 
+        /// <para>
+        /// The operating system platform that the core device runs.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=255)]
+        public string Platform
+        {
+            get { return this._platform; }
+            set { this._platform = value; }
+        }
+
+        // Check to see if Platform property is set
+        internal bool IsSetPlatform()
+        {
+            return this._platform != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Runtime. 
+        /// <para>
+        /// The runtime for the core device. The runtime can be:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>aws_nucleus_classic</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>aws_nucleus_lite</c> 
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        [AWSProperty(Min=1, Max=255)]
+        public string Runtime
+        {
+            get { return this._runtime; }
+            set { this._runtime = value; }
+        }
+
+        // Check to see if Runtime property is set
+        internal bool IsSetRuntime()
+        {
+            return this._runtime != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
         /// The status of the core device. Core devices can have the following statuses:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>HEALTHY</code> – The IoT Greengrass Core software and all components run on
-        /// the core device without issue.
+        ///  <c>HEALTHY</c> – The IoT Greengrass Core software and all components run on the core
+        /// device without issue.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UNHEALTHY</code> – The IoT Greengrass Core software or a component is in a
-        /// failed state on the core device.
+        ///  <c>UNHEALTHY</c> – The IoT Greengrass Core software or a component is in a failed
+        /// state on the core device.
         /// </para>
         ///  </li> </ul>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -68,15 +69,15 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>APPROVED</code> - The model is approved
+        ///  <c>APPROVED</c> - The model is approved
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>REJECTED</code> - The model is rejected.
+        ///  <c>REJECTED</c> - The model is rejected.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PENDING_MANUAL_APPROVAL</code> - The model is waiting for manual approval.
+        ///  <c>PENDING_MANUAL_APPROVAL</c> - The model is waiting for manual approval.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -156,7 +157,7 @@ namespace Amazon.SageMaker.Model
         /// The name of the model package.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=63)]
+        [AWSProperty(Min=1, Max=63)]
         public string ModelPackageName
         {
             get { return this._modelPackageName; }

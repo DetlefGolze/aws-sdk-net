@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.CodeDeploy.Model
         private string _deploymentId;
         private TargetLabel _instanceLabel;
         private DateTime? _lastUpdatedAt;
-        private List<LifecycleEvent> _lifecycleEvents = new List<LifecycleEvent>();
+        private List<LifecycleEvent> _lifecycleEvents = AWSConfigs.InitializeCollections ? new List<LifecycleEvent>() : null;
         private TargetStatus _status;
         private string _targetArn;
         private string _targetId;
@@ -63,8 +64,8 @@ namespace Amazon.CodeDeploy.Model
         /// <summary>
         /// Gets and sets the property InstanceLabel. 
         /// <para>
-        ///  A label that identifies whether the instance is an original target (<code>BLUE</code>)
-        /// or a replacement target (<code>GREEN</code>). 
+        ///  A label that identifies whether the instance is an original target (<c>BLUE</c>)
+        /// or a replacement target (<c>GREEN</c>). 
         /// </para>
         /// </summary>
         public TargetLabel InstanceLabel
@@ -112,7 +113,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if LifecycleEvents property is set
         internal bool IsSetLifecycleEvents()
         {
-            return this._lifecycleEvents != null && this._lifecycleEvents.Count > 0; 
+            return this._lifecycleEvents != null && (this._lifecycleEvents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -154,8 +155,7 @@ namespace Amazon.CodeDeploy.Model
         /// <summary>
         /// Gets and sets the property TargetId. 
         /// <para>
-        ///  The unique ID of a deployment target that has a type of <code>instanceTarget</code>.
-        /// 
+        ///  The unique ID of a deployment target that has a type of <c>instanceTarget</c>. 
         /// </para>
         /// </summary>
         public string TargetId

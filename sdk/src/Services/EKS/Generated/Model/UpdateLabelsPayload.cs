@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
-    /// An object representing a Kubernetes label change for a managed node group.
+    /// An object representing a Kubernetes <c>label</c> change for a managed node group.
     /// </summary>
     public partial class UpdateLabelsPayload
     {
-        private Dictionary<string, string> _addOrUpdateLabels = new Dictionary<string, string>();
-        private List<string> _removeLabels = new List<string>();
+        private Dictionary<string, string> _addOrUpdateLabels = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<string> _removeLabels = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AddOrUpdateLabels. 
         /// <para>
-        /// Kubernetes labels to be added or updated.
+        /// The Kubernetes <c>labels</c> to add or update.
         /// </para>
         /// </summary>
         public Dictionary<string, string> AddOrUpdateLabels
@@ -51,13 +52,13 @@ namespace Amazon.EKS.Model
         // Check to see if AddOrUpdateLabels property is set
         internal bool IsSetAddOrUpdateLabels()
         {
-            return this._addOrUpdateLabels != null && this._addOrUpdateLabels.Count > 0; 
+            return this._addOrUpdateLabels != null && (this._addOrUpdateLabels.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property RemoveLabels. 
         /// <para>
-        /// Kubernetes labels to be removed.
+        /// The Kubernetes <c>labels</c> to remove.
         /// </para>
         /// </summary>
         public List<string> RemoveLabels
@@ -69,7 +70,7 @@ namespace Amazon.EKS.Model
         // Check to see if RemoveLabels property is set
         internal bool IsSetRemoveLabels()
         {
-            return this._removeLabels != null && this._removeLabels.Count > 0; 
+            return this._removeLabels != null && (this._removeLabels.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -44,10 +45,10 @@ namespace Amazon.SimpleSystemsManagement.Model
         private string _name;
         private int? _priority;
         private string _serviceRoleArn;
-        private List<Target> _targets = new List<Target>();
+        private List<Target> _targets = AWSConfigs.InitializeCollections ? new List<Target>() : null;
         private string _taskArn;
         private MaintenanceWindowTaskInvocationParameters _taskInvocationParameters;
-        private Dictionary<string, MaintenanceWindowTaskParameterValueExpression> _taskParameters = new Dictionary<string, MaintenanceWindowTaskParameterValueExpression>();
+        private Dictionary<string, MaintenanceWindowTaskParameterValueExpression> _taskParameters = AWSConfigs.InitializeCollections ? new Dictionary<string, MaintenanceWindowTaskParameterValueExpression>() : null;
         private MaintenanceWindowTaskType _taskType;
         private string _windowId;
 
@@ -96,12 +97,12 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CONTINUE_TASK</code>: When the cutoff time is reached, any tasks that are running
+        ///  <c>CONTINUE_TASK</c>: When the cutoff time is reached, any tasks that are running
         /// continue. The default value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CANCEL_TASK</code>:
+        ///  <c>CANCEL_TASK</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -117,7 +118,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// The status for tasks that are not completed is <code>TIMED_OUT</code>.
+        /// The status for tasks that are not completed is <c>TIMED_OUT</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -160,11 +161,11 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>LoggingInfo</code> has been deprecated. To specify an Amazon Simple Storage
-        /// Service (Amazon S3) bucket to contain logs, instead use the <code>OutputS3BucketName</code>
-        /// and <code>OutputS3KeyPrefix</code> options in the <code>TaskInvocationParameters</code>
-        /// structure. For information about how Amazon Web Services Systems Manager handles these
-        /// options for the supported maintenance window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.
+        ///  <c>LoggingInfo</c> has been deprecated. To specify an Amazon Simple Storage Service
+        /// (Amazon S3) bucket to contain logs, instead use the <c>OutputS3BucketName</c> and
+        /// <c>OutputS3KeyPrefix</c> options in the <c>TaskInvocationParameters</c> structure.
+        /// For information about how Amazon Web Services Systems Manager handles these options
+        /// for the supported maintenance window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -194,8 +195,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         ///  
         /// <para>
         /// For maintenance window tasks without a target specified, you can't supply a value
-        /// for this option. Instead, the system inserts a placeholder value of <code>1</code>.
-        /// This value doesn't affect the running of your task.
+        /// for this option. Instead, the system inserts a placeholder value of <c>1</c>. This
+        /// value doesn't affect the running of your task.
         /// </para>
         ///  </note>
         /// </summary>
@@ -226,8 +227,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         ///  
         /// <para>
         /// For maintenance window tasks without a target specified, you can't supply a value
-        /// for this option. Instead, the system inserts a placeholder value of <code>1</code>.
-        /// This value doesn't affect the running of your task.
+        /// for this option. Instead, the system inserts a placeholder value of <c>1</c>. This
+        /// value doesn't affect the running of your task.
         /// </para>
         ///  </note>
         /// </summary>
@@ -289,26 +290,19 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <para>
         /// The Amazon Resource Name (ARN) of the IAM service role for Amazon Web Services Systems
         /// Manager to assume when running a maintenance window task. If you do not specify a
-        /// service role ARN, Systems Manager uses your account's service-linked role. If no service-linked
-        /// role for Systems Manager exists in your account, it is created when you run <code>RegisterTaskWithMaintenanceWindow</code>.
+        /// service role ARN, Systems Manager uses a service-linked role in your account. If no
+        /// appropriate service-linked role for Systems Manager exists in your account, it is
+        /// created when you run <c>RegisterTaskWithMaintenanceWindow</c>.
         /// </para>
         ///  
         /// <para>
-        /// For more information, see the following topics in the in the <i>Amazon Web Services
-        /// Systems Manager User Guide</i>:
+        /// However, for an improved security posture, we strongly recommend creating a custom
+        /// policy and custom service role for running your maintenance window tasks. The policy
+        /// can be crafted to provide only the permissions needed for your particular maintenance
+        /// window tasks. For more information, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-maintenance-permissions.html">Setting
+        /// up Maintenance Windows</a> in the in the <i>Amazon Web Services Systems Manager User
+        /// Guide</i>.
         /// </para>
-        ///  <ul> <li> 
-        /// <para>
-        ///  <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/using-service-linked-roles.html#slr-permissions">Using
-        /// service-linked roles for Systems Manager</a> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-maintenance-permissions.html#maintenance-window-tasks-service-role">Should
-        /// I use a service-linked role or a custom service role to run maintenance window tasks?
-        /// </a> 
-        /// </para>
-        ///  </li> </ul>
         /// </summary>
         public string ServiceRoleArn
         {
@@ -342,7 +336,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>Key=InstanceIds,Values=&lt;instance-id-1&gt;,&lt;instance-id-2&gt;</code> 
+        ///  <c>Key=InstanceIds,Values=&lt;instance-id-1&gt;,&lt;instance-id-2&gt;</c> 
         /// </para>
         ///  
         /// <para>
@@ -350,7 +344,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>Key=WindowTargetIds,Values=&lt;window-target-id-1&gt;,&lt;window-target-id-2&gt;</code>
+        ///  <c>Key=WindowTargetIds,Values=&lt;window-target-id-1&gt;,&lt;window-target-id-2&gt;</c>
         /// 
         /// </para>
         /// </summary>
@@ -364,7 +358,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -412,8 +406,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>TaskParameters</code> has been deprecated. To specify parameters to pass to
-        /// a task when it runs, instead use the <code>Parameters</code> option in the <code>TaskInvocationParameters</code>
+        ///  <c>TaskParameters</c> has been deprecated. To specify parameters to pass to a task
+        /// when it runs, instead use the <c>Parameters</c> option in the <c>TaskInvocationParameters</c>
         /// structure. For information about how Systems Manager handles these options for the
         /// supported maintenance window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.
         /// </para>
@@ -429,7 +423,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if TaskParameters property is set
         internal bool IsSetTaskParameters()
         {
-            return this._taskParameters != null && this._taskParameters.Count > 0; 
+            return this._taskParameters != null && (this._taskParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

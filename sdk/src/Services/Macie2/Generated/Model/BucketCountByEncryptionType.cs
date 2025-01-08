@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
@@ -43,11 +44,12 @@ namespace Amazon.Macie2.Model
         private long? _unknown;
 
         /// <summary>
-        /// Gets and sets the property KmsManaged.  
+        /// Gets and sets the property KmsManaged. 
         /// <para>
         /// The total number of buckets whose default encryption settings are configured to encrypt
-        /// new objects with an Amazon Web Services managed KMS key or a customer managed KMS
-        /// key. By default, these buckets encrypt new objects automatically using SSE-KMS encryption.
+        /// new objects with an KMS key, either an Amazon Web Services managed key or a customer
+        /// managed key. By default, these buckets encrypt new objects automatically using DSSE-KMS
+        /// or SSE-KMS encryption.
         /// </para>
         /// </summary>
         public long KmsManaged
@@ -105,8 +107,8 @@ namespace Amazon.Macie2.Model
         /// Gets and sets the property Unknown. 
         /// <para>
         /// The total number of buckets that Amazon Macie doesn't have current encryption metadata
-        /// for. Macie can't provide current data about the default encryption settings for these
-        /// buckets.
+        /// for. For example, the buckets' permissions settings or a quota prevented Macie from
+        /// retrieving the default encryption settings for the buckets.
         /// </para>
         /// </summary>
         public long Unknown

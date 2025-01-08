@@ -26,24 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
     /// Container for the parameters to the GetTemplateSummary operation.
-    /// Returns information about a new or existing template. The <code>GetTemplateSummary</code>
+    /// Returns information about a new or existing template. The <c>GetTemplateSummary</c>
     /// action is useful for viewing parameter information, such as default parameter values
     /// and parameter types, before you create or update a stack or stack set.
     /// 
     ///  
     /// <para>
-    /// You can use the <code>GetTemplateSummary</code> action when you submit a template,
-    /// or you can get template information for a stack set, or a running or deleted stack.
+    /// You can use the <c>GetTemplateSummary</c> action when you submit a template, or you
+    /// can get template information for a stack set, or a running or deleted stack.
     /// </para>
     ///  
     /// <para>
-    /// For deleted stacks, <code>GetTemplateSummary</code> returns the template information
-    /// for up to 90 days after the stack has been deleted. If the template doesn't exist,
-    /// a <code>ValidationError</code> is returned.
+    /// For deleted stacks, <c>GetTemplateSummary</c> returns the template information for
+    /// up to 90 days after the stack has been deleted. If the template doesn't exist, a <c>ValidationError</c>
+    /// is returned.
     /// </para>
     /// </summary>
     public partial class GetTemplateSummaryRequest : AmazonCloudFormationRequest
@@ -64,16 +65,16 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for stack sets with
-        /// self-managed permissions.
+        /// By default, <c>SELF</c> is specified. Use <c>SELF</c> for stack sets with self-managed
+        /// permissions.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If you are signed in to the management account, specify <code>SELF</code>.
+        /// If you are signed in to the management account, specify <c>SELF</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If you are signed in to a delegated administrator account, specify <code>DELEGATED_ADMIN</code>.
+        /// If you are signed in to a delegated administrator account, specify <c>DELEGATED_ADMIN</c>.
         /// </para>
         ///  
         /// <para>
@@ -104,8 +105,8 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify only one of the following parameters: <code>StackName</code>,
-        /// <code>StackSetName</code>, <code>TemplateBody</code>, or <code>TemplateURL</code>.
+        /// Conditional: You must specify only one of the following parameters: <c>StackName</c>,
+        /// <c>StackSetName</c>, <c>TemplateBody</c>, or <c>TemplateURL</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -128,8 +129,8 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify only one of the following parameters: <code>StackName</code>,
-        /// <code>StackSetName</code>, <code>TemplateBody</code>, or <code>TemplateURL</code>.
+        /// Conditional: You must specify only one of the following parameters: <c>StackName</c>,
+        /// <c>StackSetName</c>, <c>TemplateBody</c>, or <c>TemplateURL</c>.
         /// </para>
         /// </summary>
         public string StackSetName
@@ -148,13 +149,12 @@ namespace Amazon.CloudFormation.Model
         /// Gets and sets the property TemplateBody. 
         /// <para>
         /// Structure containing the template body with a minimum length of 1 byte and a maximum
-        /// length of 51,200 bytes. For more information about templates, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html">Template
-        /// anatomy</a> in the CloudFormation User Guide.
+        /// length of 51,200 bytes.
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify only one of the following parameters: <code>StackName</code>,
-        /// <code>StackSetName</code>, <code>TemplateBody</code>, or <code>TemplateURL</code>.
+        /// Conditional: You must specify only one of the following parameters: <c>StackName</c>,
+        /// <c>StackSetName</c>, <c>TemplateBody</c>, or <c>TemplateURL</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -173,7 +173,7 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property TemplateSummaryConfig. 
         /// <para>
-        /// Specifies options for the <code>GetTemplateSummary</code> API action.
+        /// Specifies options for the <c>GetTemplateSummary</c> API action.
         /// </para>
         /// </summary>
         public TemplateSummaryConfig TemplateSummaryConfig
@@ -193,13 +193,12 @@ namespace Amazon.CloudFormation.Model
         /// <para>
         /// Location of file containing the template body. The URL must point to a template (max
         /// size: 460,800 bytes) that's located in an Amazon S3 bucket or a Systems Manager document.
-        /// For more information about templates, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html">Template
-        /// anatomy</a> in the CloudFormation User Guide.
+        /// The location for an Amazon S3 bucket must start with <c>https://</c>.
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify only one of the following parameters: <code>StackName</code>,
-        /// <code>StackSetName</code>, <code>TemplateBody</code>, or <code>TemplateURL</code>.
+        /// Conditional: You must specify only one of the following parameters: <c>StackName</c>,
+        /// <c>StackSetName</c>, <c>TemplateBody</c>, or <c>TemplateURL</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

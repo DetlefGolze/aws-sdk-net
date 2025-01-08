@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,10 +64,46 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
                     response.CellFilters = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("IsMultiDialectView", targetDepth))
+                {
+                    var unmarshaller = BoolUnmarshaller.Instance;
+                    response.IsMultiDialectView = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("IsProtected", targetDepth))
+                {
+                    var unmarshaller = BoolUnmarshaller.Instance;
+                    response.IsProtected = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("IsRegisteredWithLakeFormation", targetDepth))
                 {
                     var unmarshaller = BoolUnmarshaller.Instance;
                     response.IsRegisteredWithLakeFormation = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("Permissions", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
+                    response.Permissions = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("QueryAuthorizationId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.QueryAuthorizationId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ResourceArn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.ResourceArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("RowFilter", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.RowFilter = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Table", targetDepth))

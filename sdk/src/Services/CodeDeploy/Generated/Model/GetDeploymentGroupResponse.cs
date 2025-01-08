@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
-    /// Represents the output of a <code>GetDeploymentGroup</code> operation.
+    /// Represents the output of a <c>GetDeploymentGroup</c> operation.
     /// </summary>
     public partial class GetDeploymentGroupResponse : AmazonWebServiceResponse
     {

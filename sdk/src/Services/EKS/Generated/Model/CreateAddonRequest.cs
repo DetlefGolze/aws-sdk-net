@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -46,15 +47,15 @@ namespace Amazon.EKS.Model
         private string _clientRequestToken;
         private string _clusterName;
         private string _configurationValues;
+        private List<AddonPodIdentityAssociations> _podIdentityAssociations = AWSConfigs.InitializeCollections ? new List<AddonPodIdentityAssociations>() : null;
         private ResolveConflicts _resolveConflicts;
         private string _serviceAccountRoleArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AddonName. 
         /// <para>
-        /// The name of the add-on. The name must match one of the names that <a href="https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html">
-        /// <code>DescribeAddonVersions</code> </a> returns.
+        /// The name of the add-on. The name must match one of the names returned by <c>DescribeAddonVersions</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -75,7 +76,7 @@ namespace Amazon.EKS.Model
         /// <para>
         /// The version of the add-on. The version must match one of the versions returned by
         /// <a href="https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html">
-        /// <code>DescribeAddonVersions</code> </a>.
+        /// <c>DescribeAddonVersions</c> </a>.
         /// </para>
         /// </summary>
         public string AddonVersion
@@ -112,7 +113,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ClusterName. 
         /// <para>
-        /// The name of the cluster to create the add-on for.
+        /// The name of your cluster.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]
@@ -132,8 +133,7 @@ namespace Amazon.EKS.Model
         /// Gets and sets the property ConfigurationValues. 
         /// <para>
         /// The set of configuration values for the add-on that's created. The values that you
-        /// provide are validated against the schema in <a href="https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonConfiguration.html">
-        /// <code>DescribeAddonConfiguration</code> </a>.
+        /// provide are validated against the schema returned by <c>DescribeAddonConfiguration</c>.
         /// </para>
         /// </summary>
         public string ConfigurationValues
@@ -146,6 +146,30 @@ namespace Amazon.EKS.Model
         internal bool IsSetConfigurationValues()
         {
             return this._configurationValues != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PodIdentityAssociations. 
+        /// <para>
+        /// An array of Pod Identity Assocations to be created. Each EKS Pod Identity association
+        /// maps a Kubernetes service account to an IAM Role.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/add-ons-iam.html">Attach
+        /// an IAM Role to an Amazon EKS add-on using Pod Identity</a> in the EKS User Guide.
+        /// </para>
+        /// </summary>
+        public List<AddonPodIdentityAssociations> PodIdentityAssociations
+        {
+            get { return this._podIdentityAssociations; }
+            set { this._podIdentityAssociations = value; }
+        }
+
+        // Check to see if PodIdentityAssociations property is set
+        internal bool IsSetPodIdentityAssociations()
+        {
+            return this._podIdentityAssociations != null && (this._podIdentityAssociations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -167,8 +191,10 @@ namespace Amazon.EKS.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Preserve</b> – Not supported. You can set this value when updating an add-on though.
-        /// For more information, see <a href="https://docs.aws.amazon.com/eks/latest/APIReference/API_UpdateAddon.html">UpdateAddon</a>.
+        ///  <b>Preserve</b> – This is similar to the NONE option. If the self-managed version
+        /// of the add-on is installed on your cluster Amazon EKS doesn't change the add-on resource
+        /// properties. Creation of the add-on might fail if conflicts are detected. This option
+        /// works differently during the update operation. For more information, see <a href="https://docs.aws.amazon.com/eks/latest/APIReference/API_UpdateAddon.html">UpdateAddon</a>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -222,8 +248,9 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// The metadata to apply to the cluster to assist with categorization and organization.
-        /// Each tag consists of a key and an optional value. You define both.
+        /// Metadata that assists with categorization and organization. Each tag consists of a
+        /// key and an optional value. You define both. Tags don't propagate to any other cluster
+        /// or Amazon Web Services resources.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -236,7 +263,7 @@ namespace Amazon.EKS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

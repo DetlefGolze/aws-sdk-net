@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.CloudFront.Model
         /// Instantiates DeleteDistributionRequest with the parameterized properties
         /// </summary>
         /// <param name="id">The distribution ID.</param>
-        /// <param name="ifMatch">The value of the <code>ETag</code> header that you received when you disabled the distribution. For example: <code>E2QWRUHAPOMQZL</code>.</param>
+        /// <param name="ifMatch">The value of the <c>ETag</c> header that you received when you disabled the distribution. For example: <c>E2QWRUHAPOMQZL</c>.</param>
         public DeleteDistributionRequest(string id, string ifMatch)
         {
             _id = id;
@@ -75,8 +76,8 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property IfMatch. 
         /// <para>
-        /// The value of the <code>ETag</code> header that you received when you disabled the
-        /// distribution. For example: <code>E2QWRUHAPOMQZL</code>.
+        /// The value of the <c>ETag</c> header that you received when you disabled the distribution.
+        /// For example: <c>E2QWRUHAPOMQZL</c>.
         /// </para>
         /// </summary>
         public string IfMatch
@@ -88,7 +89,7 @@ namespace Amazon.CloudFront.Model
         // Check to see if IfMatch property is set
         internal bool IsSetIfMatch()
         {
-            return this._ifMatch != null;
+            return !string.IsNullOrEmpty(this._ifMatch);
         }
 
     }

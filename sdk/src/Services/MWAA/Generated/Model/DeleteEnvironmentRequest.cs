@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MWAA.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteEnvironment operation.
-    /// Deletes an Amazon Managed Workflows for Apache Airflow (MWAA) environment.
+    /// Deletes an Amazon Managed Workflows for Apache Airflow (Amazon MWAA) environment.
     /// </summary>
     public partial class DeleteEnvironmentRequest : AmazonMWAARequest
     {
@@ -39,7 +40,7 @@ namespace Amazon.MWAA.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the Amazon MWAA environment. For example, <code>MyMWAAEnvironment</code>.
+        /// The name of the Amazon MWAA environment. For example, <c>MyMWAAEnvironment</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=80)]

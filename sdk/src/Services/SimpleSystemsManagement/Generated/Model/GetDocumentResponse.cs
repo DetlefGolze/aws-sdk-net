@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// </summary>
     public partial class GetDocumentResponse : AmazonWebServiceResponse
     {
-        private List<AttachmentContent> _attachmentsContent = new List<AttachmentContent>();
+        private List<AttachmentContent> _attachmentsContent = AWSConfigs.InitializeCollections ? new List<AttachmentContent>() : null;
         private string _content;
         private DateTime? _createdDate;
         private string _displayName;
@@ -41,7 +42,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         private DocumentType _documentType;
         private string _documentVersion;
         private string _name;
-        private List<DocumentRequires> _requires = new List<DocumentRequires>();
+        private List<DocumentRequires> _requires = AWSConfigs.InitializeCollections ? new List<DocumentRequires>() : null;
         private ReviewStatus _reviewStatus;
         private DocumentStatus _status;
         private string _statusInformation;
@@ -63,7 +64,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if AttachmentsContent property is set
         internal bool IsSetAttachmentsContent()
         {
-            return this._attachmentsContent != null && this._attachmentsContent.Count > 0; 
+            return this._attachmentsContent != null && (this._attachmentsContent.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -198,8 +199,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property Requires. 
         /// <para>
-        /// A list of SSM documents required by a document. For example, an <code>ApplicationConfiguration</code>
-        /// document requires an <code>ApplicationConfigurationSchema</code> document.
+        /// A list of SSM documents required by a document. For example, an <c>ApplicationConfiguration</c>
+        /// document requires an <c>ApplicationConfigurationSchema</c> document.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -212,7 +213,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Requires property is set
         internal bool IsSetRequires()
         {
-            return this._requires != null && this._requires.Count > 0; 
+            return this._requires != null && (this._requires.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -247,8 +248,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the SSM document, such as <code>Creating</code>, <code>Active</code>,
-        /// <code>Updating</code>, <code>Failed</code>, and <code>Deleting</code>.
+        /// The status of the SSM document, such as <c>Creating</c>, <c>Active</c>, <c>Updating</c>,
+        /// <c>Failed</c>, and <c>Deleting</c>.
         /// </para>
         /// </summary>
         public DocumentStatus Status
@@ -266,8 +267,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property StatusInformation. 
         /// <para>
-        /// A message returned by Amazon Web Services Systems Manager that explains the <code>Status</code>
-        /// value. For example, a <code>Failed</code> status might be explained by the <code>StatusInformation</code>
+        /// A message returned by Amazon Web Services Systems Manager that explains the <c>Status</c>
+        /// value. For example, a <c>Failed</c> status might be explained by the <c>StatusInformation</c>
         /// message, "The specified S3 bucket doesn't exist. Verify that the URL of the S3 bucket
         /// is correct."
         /// </para>
@@ -287,8 +288,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property VersionName. 
         /// <para>
-        /// The version of the artifact associated with the document. For example, "Release 12,
-        /// Update 6". This value is unique across all versions of a document, and can't be changed.
+        /// The version of the artifact associated with the document. For example, 12.6. This
+        /// value is unique across all versions of a document, and can't be changed.
         /// </para>
         /// </summary>
         public string VersionName

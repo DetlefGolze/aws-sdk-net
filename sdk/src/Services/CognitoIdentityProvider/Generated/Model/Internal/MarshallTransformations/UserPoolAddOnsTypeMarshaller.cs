@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,19 @@ namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(UserPoolAddOnsType requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetAdvancedSecurityAdditionalFlows())
+            {
+                context.Writer.WritePropertyName("AdvancedSecurityAdditionalFlows");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = AdvancedSecurityAdditionalFlowsTypeMarshaller.Instance;
+                marshaller.Marshall(requestObject.AdvancedSecurityAdditionalFlows, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetAdvancedSecurityMode())
             {
                 context.Writer.WritePropertyName("AdvancedSecurityMode");

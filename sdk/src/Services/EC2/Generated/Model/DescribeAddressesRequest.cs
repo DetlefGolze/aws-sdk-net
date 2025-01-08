@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,9 +35,9 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeAddressesRequest : AmazonEC2Request
     {
-        private List<string> _allocationIds = new List<string>();
-        private List<Filter> _filters = new List<Filter>();
-        private List<string> _publicIps = new List<string>();
+        private List<string> _allocationIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
+        private List<string> _publicIps = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AllocationIds. 
@@ -53,7 +54,7 @@ namespace Amazon.EC2.Model
         // Check to see if AllocationIds property is set
         internal bool IsSetAllocationIds()
         {
-            return this._allocationIds != null && this._allocationIds.Count > 0; 
+            return this._allocationIds != null && (this._allocationIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -63,53 +64,50 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>allocation-id</code> - The allocation ID for the address.
+        ///  <c>allocation-id</c> - The allocation ID for the address.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>association-id</code> - The association ID for the address.
+        ///  <c>association-id</c> - The association ID for the address.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>instance-id</code> - The ID of the instance the address is associated with,
-        /// if any.
+        ///  <c>instance-id</c> - The ID of the instance the address is associated with, if any.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>network-border-group</code> - A unique set of Availability Zones, Local Zones,
-        /// or Wavelength Zones from where Amazon Web Services advertises IP addresses. 
+        ///  <c>network-border-group</c> - A unique set of Availability Zones, Local Zones, or
+        /// Wavelength Zones from where Amazon Web Services advertises IP addresses. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>network-interface-id</code> - The ID of the network interface that the address
-        /// is associated with, if any.
+        ///  <c>network-interface-id</c> - The ID of the network interface that the address is
+        /// associated with, if any.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>network-interface-owner-id</code> - The Amazon Web Services account ID of the
-        /// owner.
+        ///  <c>network-interface-owner-id</c> - The Amazon Web Services account ID of the owner.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>private-ip-address</code> - The private IP address associated with the Elastic
-        /// IP address.
+        ///  <c>private-ip-address</c> - The private IP address associated with the Elastic IP
+        /// address.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>public-ip</code> - The Elastic IP address, or the carrier IP address.
+        ///  <c>public-ip</c> - The Elastic IP address, or the carrier IP address.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the
-        /// resource. Use the tag key in the filter name and the tag value as the filter value.
-        /// For example, to find all resources that have a tag with the key <code>Owner</code>
-        /// and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name
-        /// and <code>TeamA</code> for the filter value.
+        ///  <c>tag</c>:&lt;key&gt; - The key/value combination of a tag assigned to the resource.
+        /// Use the tag key in the filter name and the tag value as the filter value. For example,
+        /// to find all resources that have a tag with the key <c>Owner</c> and the value <c>TeamA</c>,
+        /// specify <c>tag:Owner</c> for the filter name and <c>TeamA</c> for the filter value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter
-        /// to find all resources assigned a tag with a specific key, regardless of the tag value.
+        ///  <c>tag-key</c> - The key of a tag assigned to the resource. Use this filter to find
+        /// all resources assigned a tag with a specific key, regardless of the tag value.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -122,7 +120,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -144,7 +142,7 @@ namespace Amazon.EC2.Model
         // Check to see if PublicIps property is set
         internal bool IsSetPublicIps()
         {
-            return this._publicIps != null && this._publicIps.Count > 0; 
+            return this._publicIps != null && (this._publicIps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

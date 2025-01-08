@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Organizations.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Organizations.Model
     /// </summary>
     public partial class ListAccountsResponse : AmazonWebServiceResponse
     {
-        private List<Account> _accounts = new List<Account>();
+        private List<Account> _accounts = AWSConfigs.InitializeCollections ? new List<Account>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,16 +52,16 @@ namespace Amazon.Organizations.Model
         // Check to see if Accounts property is set
         internal bool IsSetAccounts()
         {
-            return this._accounts != null && this._accounts.Count > 0; 
+            return this._accounts != null && (this._accounts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If present, indicates that more output is available than is included in the current
-        /// response. Use this value in the <code>NextToken</code> request parameter in a subsequent
+        /// response. Use this value in the <c>NextToken</c> request parameter in a subsequent
         /// call to the operation to get the next part of the output. You should repeat this until
-        /// the <code>NextToken</code> response element comes back as <code>null</code>.
+        /// the <c>NextToken</c> response element comes back as <c>null</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=100000)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -48,7 +49,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property AccessGroupId. 
         /// <para>
         /// The ID of the group to grant access to, for example, the Active Directory group or
-        /// identity provider (IdP) group. Required if <code>AuthorizeAllGroups</code> is <code>false</code>
+        /// identity provider (IdP) group. Required if <c>AuthorizeAllGroups</c> is <c>false</c>
         /// or not specified.
         /// </para>
         /// </summary>
@@ -67,9 +68,9 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property AuthorizeAllGroups. 
         /// <para>
-        /// Indicates whether to grant access to all clients. Specify <code>true</code> to grant
-        /// all clients who successfully establish a VPN connection access to the network. Must
-        /// be set to <code>true</code> if <code>AccessGroupId</code> is not specified.
+        /// Indicates whether to grant access to all clients. Specify <c>true</c> to grant all
+        /// clients who successfully establish a VPN connection access to the network. Must be
+        /// set to <c>true</c> if <c>AccessGroupId</c> is not specified.
         /// </para>
         /// </summary>
         public bool AuthorizeAllGroups
@@ -88,8 +89,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// Unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        /// request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How
-        /// to ensure idempotency</a>.
+        /// request. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html">Ensuring
+        /// idempotency</a>.
         /// </para>
         /// </summary>
         public string ClientToken

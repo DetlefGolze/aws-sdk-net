@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDSDataService.Model
 {
     /// <summary>
@@ -33,15 +34,14 @@ namespace Amazon.RDSDataService.Model
     /// 
     ///  <note> 
     /// <para>
-    /// This data structure is only used with the deprecated <code>ExecuteSql</code> operation.
-    /// Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code> operation
-    /// instead.
+    /// This data structure is only used with the deprecated <c>ExecuteSql</c> operation.
+    /// Use the <c>BatchExecuteStatement</c> or <c>ExecuteStatement</c> operation instead.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class ResultFrame
     {
-        private List<Record> _records = new List<Record>();
+        private List<Record> _records = AWSConfigs.InitializeCollections ? new List<Record>() : null;
         private ResultSetMetadata _resultSetMetadata;
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Amazon.RDSDataService.Model
         // Check to see if Records property is set
         internal bool IsSetRecords()
         {
-            return this._records != null && this._records.Count > 0; 
+            return this._records != null && (this._records.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -33,13 +34,12 @@ namespace Amazon.QuickSight.Model
     /// </summary>
     public partial class HistogramAggregatedFieldWells
     {
-        private List<MeasureField> _values = new List<MeasureField>();
+        private List<MeasureField> _values = AWSConfigs.InitializeCollections ? new List<MeasureField>() : null;
 
         /// <summary>
         /// Gets and sets the property Values. 
         /// <para>
-        /// The value field wells of a histogram. Values are aggregated by <code>COUNT</code>
-        /// or <code>DISTINCT_COUNT</code>.
+        /// The value field wells of a histogram. Values are aggregated by <c>COUNT</c> or <c>DISTINCT_COUNT</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=1)]
@@ -52,7 +52,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

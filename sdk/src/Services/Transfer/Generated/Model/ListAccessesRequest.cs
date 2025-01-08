@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// Specifies the maximum number of access SIDs to return.
+        /// The maximum number of items to return.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]
@@ -60,9 +61,9 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When you can get additional results from the <code>ListAccesses</code> call, a <code>NextToken</code>
+        /// When you can get additional results from the <c>ListAccesses</c> call, a <c>NextToken</c>
         /// parameter is returned in the output. You can then pass in a subsequent command to
-        /// the <code>NextToken</code> parameter to continue listing additional accesses.
+        /// the <c>NextToken</c> parameter to continue listing additional accesses.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=6144)]

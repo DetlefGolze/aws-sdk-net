@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
@@ -33,13 +34,12 @@ namespace Amazon.Route53.Model
     /// </summary>
     public partial class ListTagsForResourcesResponse : AmazonWebServiceResponse
     {
-        private List<ResourceTagSet> _resourceTagSets = new List<ResourceTagSet>();
+        private List<ResourceTagSet> _resourceTagSets = AWSConfigs.InitializeCollections ? new List<ResourceTagSet>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceTagSets. 
         /// <para>
-        /// A list of <code>ResourceTagSet</code>s containing tags associated with the specified
-        /// resources.
+        /// A list of <c>ResourceTagSet</c>s containing tags associated with the specified resources.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -52,7 +52,7 @@ namespace Amazon.Route53.Model
         // Check to see if ResourceTagSets property is set
         internal bool IsSetResourceTagSets()
         {
-            return this._resourceTagSets != null && this._resourceTagSets.Count > 0; 
+            return this._resourceTagSets != null && (this._resourceTagSets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

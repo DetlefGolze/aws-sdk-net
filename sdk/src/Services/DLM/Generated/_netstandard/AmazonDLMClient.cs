@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.DLM
 {
     /// <summary>
-    /// Implementation for accessing DLM
+    /// <para>Implementation for accessing DLM</para>
     ///
     /// Amazon Data Lifecycle Manager 
     /// <para>
@@ -274,8 +275,40 @@ namespace Amazon.DLM
 
 
         /// <summary>
-        /// Creates a policy to manage the lifecycle of the specified Amazon Web Services resources.
-        /// You can create up to 100 lifecycle policies.
+        /// Creates an Amazon Data Lifecycle Manager lifecycle policy. Amazon Data Lifecycle Manager
+        /// supports the following policy types:
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// Custom EBS snapshot policy
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Custom EBS-backed AMI policy
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Cross-account copy event policy
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Default policy for EBS snapshots
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Default policy for EBS-backed AMIs
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/policy-differences.html">
+        /// Default policies vs custom policies</a>.
+        /// </para>
+        ///  <important> 
+        /// <para>
+        /// If you create a default policy, you can specify the request parameters either in the
+        /// request body, or in the PolicyDetails request structure, but not both.
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateLifecyclePolicy service method.</param>
         /// <param name="cancellationToken">
@@ -372,7 +405,7 @@ namespace Amazon.DLM
         /// 
         ///  
         /// <para>
-        /// To get complete information about a policy, use <a>GetLifecyclePolicy</a>.
+        /// To get complete information about a policy, use <a href="https://docs.aws.amazon.com/dlm/latest/APIReference/API_GetLifecyclePolicy.html">GetLifecyclePolicy</a>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetLifecyclePolicies service method.</param>
@@ -638,11 +671,11 @@ namespace Amazon.DLM
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSSupport.Model
 {
     /// <summary>
     /// Container for the parameters to the ResolveCase operation.
-    /// Resolves a support case. This operation takes a <code>caseId</code> and returns the
-    /// initial and final state of the case.
+    /// Resolves a support case. This operation takes a <c>caseId</c> and returns the initial
+    /// and final state of the case.
     /// 
     ///  <note> <ul> <li> 
     /// <para>
@@ -41,7 +42,7 @@ namespace Amazon.AWSSupport.Model
     ///  </li> <li> 
     /// <para>
     /// If you call the Amazon Web Services Support API from an account that doesn't have
-    /// a Business, Enterprise On-Ramp, or Enterprise Support plan, the <code>SubscriptionRequiredException</code>
+    /// a Business, Enterprise On-Ramp, or Enterprise Support plan, the <c>SubscriptionRequiredException</c>
     /// error message appears. For information about changing your support plan, see <a href="http://aws.amazon.com/premiumsupport/">Amazon
     /// Web Services Support</a>.
     /// </para>

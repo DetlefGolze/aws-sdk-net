@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.DatabaseMigrationService.Model
     /// </summary>
     public partial class DescribeFleetAdvisorLsaAnalysisResponse : AmazonWebServiceResponse
     {
-        private List<FleetAdvisorLsaAnalysisResponse> _analysis = new List<FleetAdvisorLsaAnalysisResponse>();
+        private List<FleetAdvisorLsaAnalysisResponse> _analysis = AWSConfigs.InitializeCollections ? new List<FleetAdvisorLsaAnalysisResponse>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Analysis. 
         /// <para>
-        /// A list of <code>FleetAdvisorLsaAnalysisResponse</code> objects.
+        /// A list of <c>FleetAdvisorLsaAnalysisResponse</c> objects.
         /// </para>
         /// </summary>
         public List<FleetAdvisorLsaAnalysisResponse> Analysis
@@ -51,16 +52,15 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if Analysis property is set
         internal bool IsSetAnalysis()
         {
-            return this._analysis != null && this._analysis.Count > 0; 
+            return this._analysis != null && (this._analysis.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If <code>NextToken</code> is returned, there are more results available. The value
-        /// of <code>NextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. 
+        /// If <c>NextToken</c> is returned, there are more results available. The value of <c>NextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. 
         /// </para>
         /// </summary>
         public string NextToken

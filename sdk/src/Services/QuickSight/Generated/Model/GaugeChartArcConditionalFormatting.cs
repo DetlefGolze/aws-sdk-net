@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The options that determine the presentation of the arc of a <code>GaugeChartVisual</code>.
+    /// The options that determine the presentation of the arc of a <c>GaugeChartVisual</c>.
     /// </summary>
     public partial class GaugeChartArcConditionalFormatting
     {

@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
-    /// The response to a <code>DataQuery</code>.
+    /// The response to a <c>DataQuery</c>.
     /// </summary>
     public partial class DataResponse
     {
         private string _destination;
         private string _id;
         private MetricType _metric;
-        private List<MetricPoint> _metricPoints = new List<MetricPoint>();
+        private List<MetricPoint> _metricPoints = AWSConfigs.InitializeCollections ? new List<MetricPoint>() : null;
         private PeriodType _period;
         private string _source;
         private StatisticType _statistic;
@@ -45,7 +46,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property Destination. 
         /// <para>
         /// The Region or Availability Zone that's the destination for the data query. For example,
-        /// <code>eu-west-1</code>.
+        /// <c>eu-west-1</c>.
         /// </para>
         /// </summary>
         public string Destination
@@ -63,7 +64,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        /// The ID passed in the <code>DataQuery</code>.
+        /// The ID passed in the <c>DataQuery</c>.
         /// </para>
         /// </summary>
         public string Id
@@ -81,8 +82,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Metric. 
         /// <para>
-        /// The metric used for the network performance request. Only <code>aggregate-latency</code>
-        /// is supported, which shows network latency during a specified period. 
+        /// The metric used for the network performance request.
         /// </para>
         /// </summary>
         public MetricType Metric
@@ -100,7 +100,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property MetricPoints. 
         /// <para>
-        /// A list of <code>MetricPoint</code> objects.
+        /// A list of <c>MetricPoint</c> objects.
         /// </para>
         /// </summary>
         public List<MetricPoint> MetricPoints
@@ -112,7 +112,7 @@ namespace Amazon.EC2.Model
         // Check to see if MetricPoints property is set
         internal bool IsSetMetricPoints()
         {
-            return this._metricPoints != null && this._metricPoints.Count > 0; 
+            return this._metricPoints != null && (this._metricPoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property Source. 
         /// <para>
         /// The Region or Availability Zone that's the source for the data query. For example,
-        /// <code>us-east-1</code>.
+        /// <c>us-east-1</c>.
         /// </para>
         /// </summary>
         public string Source

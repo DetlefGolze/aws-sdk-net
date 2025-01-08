@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticTranscoder.Model
 {
     /// <summary>
-    /// The <code>ReadPresetResponse</code> structure.
+    /// The <c>ReadPresetResponse</c> structure.
     /// </summary>
     public partial class ReadPresetResponse : AmazonWebServiceResponse
     {

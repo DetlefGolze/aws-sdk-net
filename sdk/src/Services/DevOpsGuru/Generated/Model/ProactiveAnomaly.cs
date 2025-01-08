@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
-    /// Information about an anomaly. This object is returned by <code>ListAnomalies</code>.
+    /// Information about an anomaly. This object is returned by <c>ListAnomalies</c>.
     /// </summary>
     public partial class ProactiveAnomaly
     {
         private AnomalyReportedTimeRange _anomalyReportedTimeRange;
-        private List<AnomalyResource> _anomalyResources = new List<AnomalyResource>();
+        private List<AnomalyResource> _anomalyResources = AWSConfigs.InitializeCollections ? new List<AnomalyResource>() : null;
         private AnomalyTimeRange _anomalyTimeRange;
         private string _associatedInsightId;
         private string _description;
@@ -51,8 +52,8 @@ namespace Amazon.DevOpsGuru.Model
         /// <summary>
         /// Gets and sets the property AnomalyReportedTimeRange. 
         /// <para>
-        ///  An <code>AnomalyReportedTimeRange</code> object that specifies the time range between
-        /// when the anomaly is opened and the time when it is closed. 
+        ///  An <c>AnomalyReportedTimeRange</c> object that specifies the time range between when
+        /// the anomaly is opened and the time when it is closed. 
         /// </para>
         /// </summary>
         public AnomalyReportedTimeRange AnomalyReportedTimeRange
@@ -82,7 +83,7 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if AnomalyResources property is set
         internal bool IsSetAnomalyResources()
         {
-            return this._anomalyResources != null && this._anomalyResources.Count > 0; 
+            return this._anomalyResources != null && (this._anomalyResources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -34,7 +34,6 @@ namespace Amazon.Runtime
     /// <summary>
     /// A factory which creates HTTP clients.
     /// </summary>
-    [CLSCompliant(false)]
     public abstract class HttpClientFactory
     {
         /// <summary>
@@ -90,7 +89,6 @@ namespace Amazon.Runtime
     /// <summary>
     /// A factory which creates HTTP requests which uses System.Net.Http.HttpClient.
     /// </summary>
-    [CLSCompliant(false)]
     public class HttpRequestMessageFactory : IHttpRequestFactory<HttpContent>
     {
         // This is the global cache of HttpClient for service clients that are using 
@@ -270,7 +268,11 @@ namespace Amazon.Runtime
             }
 
             try
-            { 
+            {
+                // HTTP Client will automatically read `HTTP_PROXY`,
+                // and `HTTPS_PROXY`. So we let it use those variables, since
+                // we don't know at client construction time whether they're
+                // using HTTP or HTTPS.
                 var proxy = clientConfig.GetWebProxy();
                 if (proxy != null)
                 {
@@ -369,7 +371,6 @@ namespace Amazon.Runtime
     /// <summary>
     /// HTTP request wrapper for System.Net.Http.HttpRequestMessage.
     /// </summary>    
-    [CLSCompliant(false)]
     public class HttpWebRequestMessage : IHttpRequest<HttpContent>
     {
 
@@ -483,6 +484,32 @@ namespace Amazon.Runtime
         /// Returns the HTTP response.
         /// </summary>
         /// <returns>The HTTP response.</returns>
+#if NET8_0_OR_GREATER
+        public IWebResponseData GetResponse()
+        {
+            try
+            {
+                var responseMessage = _httpClient.Send(_request, HttpCompletionOption.ResponseHeadersRead);
+
+                return ProcessHttpResponseMessage(responseMessage);
+            }
+            catch (HttpRequestException httpException)
+            {
+                if (httpException.InnerException != null)
+                {
+                    if (httpException.InnerException is IOException)
+                    {
+                        throw httpException.InnerException;
+                    }
+
+                    if (httpException.InnerException is WebException)
+                        throw httpException.InnerException;
+                }
+
+                throw;
+            }
+        }
+#else
         public IWebResponseData GetResponse()
         {
             try
@@ -494,6 +521,7 @@ namespace Amazon.Runtime
                 throw e.InnerException;
             }
         }
+#endif
 
         /// <summary>
         /// Aborts the HTTP request.
@@ -515,23 +543,7 @@ namespace Amazon.Runtime
                 var responseMessage = await _httpClient.SendAsync(_request, HttpCompletionOption.ResponseHeadersRead, cancellationToken)
                     .ConfigureAwait(continueOnCapturedContext: false);
 
-                bool disposeClient = ClientConfig.DisposeHttpClients(_clientConfig);
-                // If AllowAutoRedirect is set to false, HTTP 3xx responses are returned back as response.
-                if (!_clientConfig.AllowAutoRedirect &&
-                    responseMessage.StatusCode >= HttpStatusCode.Ambiguous &&
-                    responseMessage.StatusCode < HttpStatusCode.BadRequest)
-                {
-                    return new HttpClientResponseData(responseMessage, _httpClient, disposeClient);
-                }
-
-                if (!responseMessage.IsSuccessStatusCode)
-                {
-                    // For all responses other than HTTP 2xx, return an exception.
-                    throw new Amazon.Runtime.Internal.HttpErrorResponseException(
-                        new HttpClientResponseData(responseMessage, _httpClient, disposeClient));
-                }
-
-                return new HttpClientResponseData(responseMessage, _httpClient, disposeClient);
+                return ProcessHttpResponseMessage(responseMessage);
             }
             catch (HttpRequestException httpException)
             {
@@ -564,6 +576,27 @@ namespace Amazon.Runtime
 
                 throw;
             }
+        }
+
+        private HttpClientResponseData ProcessHttpResponseMessage(HttpResponseMessage responseMessage)
+        {
+            bool disposeClient = ClientConfig.DisposeHttpClients(_clientConfig);
+            // If AllowAutoRedirect is set to false, HTTP 3xx responses are returned back as response.
+            if (!_clientConfig.AllowAutoRedirect &&
+                responseMessage.StatusCode >= HttpStatusCode.Ambiguous &&
+                responseMessage.StatusCode < HttpStatusCode.BadRequest)
+            {
+                return new HttpClientResponseData(responseMessage, _httpClient, disposeClient);
+            }
+
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                // For all responses other than HTTP 2xx, return an exception.
+                throw new Amazon.Runtime.Internal.HttpErrorResponseException(
+                    new HttpClientResponseData(responseMessage, _httpClient, disposeClient));
+            }
+
+            return new HttpClientResponseData(responseMessage, _httpClient, disposeClient);
         }
 
         /// <summary>
@@ -624,8 +657,11 @@ namespace Amazon.Runtime
 
         private void WriteContentHeaders(IDictionary<string, string> contentHeaders)
         {
-            _request.Content.Headers.ContentType =
-                MediaTypeHeaderValue.Parse(contentHeaders[HeaderKeys.ContentTypeHeader]);
+            if (contentHeaders.ContainsKey(HeaderKeys.ContentTypeHeader))
+            {
+                _request.Content.Headers.ContentType =
+                    MediaTypeHeaderValue.Parse(contentHeaders[HeaderKeys.ContentTypeHeader]);
+            }
 
             if (contentHeaders.TryGetValue(HeaderKeys.ContentRangeHeader, out var contentRangeHeader))
                 _request.Content.Headers.TryAddWithoutValidation(HeaderKeys.ContentRangeHeader,

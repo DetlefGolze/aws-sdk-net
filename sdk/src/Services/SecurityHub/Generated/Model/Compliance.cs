@@ -26,24 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// Contains finding details that are specific to control-based findings. Only returned
-    /// for findings generated from controls.
+    /// This object typically provides details about a control finding, such as applicable
+    /// standards and the status of control checks. While finding providers can add custom
+    /// content in <c>Compliance</c> object fields, they are typically used to review details
+    /// of Security Hub control findings.
     /// </summary>
     public partial class Compliance
     {
-        private List<AssociatedStandard> _associatedStandards = new List<AssociatedStandard>();
-        private List<string> _relatedRequirements = new List<string>();
+        private List<AssociatedStandard> _associatedStandards = AWSConfigs.InitializeCollections ? new List<AssociatedStandard>() : null;
+        private List<string> _relatedRequirements = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _securityControlId;
+        private List<SecurityControlParameter> _securityControlParameters = AWSConfigs.InitializeCollections ? new List<SecurityControlParameter>() : null;
         private ComplianceStatus _status;
-        private List<StatusReason> _statusReasons = new List<StatusReason>();
+        private List<StatusReason> _statusReasons = AWSConfigs.InitializeCollections ? new List<StatusReason>() : null;
 
         /// <summary>
         /// Gets and sets the property AssociatedStandards. 
         /// <para>
-        /// The enabled security standards in which a security control is currently enabled. 
+        /// Typically provides an array of enabled security standards in which a security control
+        /// is currently enabled. 
         /// </para>
         /// </summary>
         public List<AssociatedStandard> AssociatedStandards
@@ -55,14 +60,18 @@ namespace Amazon.SecurityHub.Model
         // Check to see if AssociatedStandards property is set
         internal bool IsSetAssociatedStandards()
         {
-            return this._associatedStandards != null && this._associatedStandards.Count > 0; 
+            return this._associatedStandards != null && (this._associatedStandards.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property RelatedRequirements. 
         /// <para>
-        /// For a control, the industry or regulatory framework requirements that are related
-        /// to the control. The check for that control is aligned with these requirements.
+        /// Typically provides the industry or regulatory framework requirements that are related
+        /// to a control. The check for that control is aligned with these requirements.
+        /// </para>
+        ///  
+        /// <para>
+        /// Array Members: Maximum number of 32 items.
         /// </para>
         /// </summary>
         public List<string> RelatedRequirements
@@ -74,14 +83,15 @@ namespace Amazon.SecurityHub.Model
         // Check to see if RelatedRequirements property is set
         internal bool IsSetRelatedRequirements()
         {
-            return this._relatedRequirements != null && this._relatedRequirements.Count > 0; 
+            return this._relatedRequirements != null && (this._relatedRequirements.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SecurityControlId. 
         /// <para>
-        ///  The unique identifier of a control across standards. Values for this field typically
-        /// consist of an Amazon Web Service and a number, such as APIGateway.5. 
+        ///  Typically provides the unique identifier of a control across standards. For Security
+        /// Hub controls, this field consists of an Amazon Web Services service and a unique number,
+        /// such as <c>APIGateway.5</c>. 
         /// </para>
         /// </summary>
         public string SecurityControlId
@@ -97,33 +107,51 @@ namespace Amazon.SecurityHub.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SecurityControlParameters. 
+        /// <para>
+        ///  Typically an object that includes security control parameter names and values. 
+        /// </para>
+        /// </summary>
+        public List<SecurityControlParameter> SecurityControlParameters
+        {
+            get { return this._securityControlParameters; }
+            set { this._securityControlParameters = value; }
+        }
+
+        // Check to see if SecurityControlParameters property is set
+        internal bool IsSetSecurityControlParameters()
+        {
+            return this._securityControlParameters != null && (this._securityControlParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The result of a standards check.
+        /// Typically summarizes the result of a control check.
         /// </para>
         ///  
         /// <para>
-        /// The valid values for <code>Status</code> are as follows.
+        /// For Security Hub controls, valid values for <c>Status</c> are as follows.
         /// </para>
         ///  <ul> <li> <ul> <li> 
         /// <para>
-        ///  <code>PASSED</code> - Standards check passed for all evaluated resources.
+        ///  <c>PASSED</c> - Standards check passed for all evaluated resources.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>WARNING</code> - Some information is missing or this check is not supported
-        /// for your configuration.
+        ///  <c>WARNING</c> - Some information is missing or this check is not supported for your
+        /// configuration.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> - Standards check failed for at least one evaluated resource.
+        ///  <c>FAILED</c> - Standards check failed for at least one evaluated resource.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NOT_AVAILABLE</code> - Check could not be performed due to a service outage,
-        /// API error, or because the result of the Config evaluation was <code>NOT_APPLICABLE</code>.
-        /// If the Config evaluation result was <code>NOT_APPLICABLE</code>, then after 3 days,
-        /// Security Hub automatically archives the finding.
+        ///  <c>NOT_AVAILABLE</c> - Check could not be performed due to a service outage, API
+        /// error, or because the result of the Config evaluation was <c>NOT_APPLICABLE</c>. If
+        /// the Config evaluation result was <c>NOT_APPLICABLE</c> for a Security Hub control,
+        /// Security Hub automatically archives the finding after 3 days.
         /// </para>
         ///  </li> </ul> </li> </ul>
         /// </summary>
@@ -142,9 +170,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property StatusReasons. 
         /// <para>
-        /// For findings generated from controls, a list of reasons behind the value of <code>Status</code>.
-        /// For the list of status reason codes and their meanings, see <a href="https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-results.html#securityhub-standards-results-asff">Standards-related
-        /// information in the ASFF</a> in the <i>Security Hub User Guide</i>. 
+        /// Typically used to provide a list of reasons for the value of <c>Status</c>.
         /// </para>
         /// </summary>
         public List<StatusReason> StatusReasons
@@ -156,7 +182,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if StatusReasons property is set
         internal bool IsSetStatusReasons()
         {
-            return this._statusReasons != null && this._statusReasons.Count > 0; 
+            return this._statusReasons != null && (this._statusReasons.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -33,8 +34,8 @@ namespace Amazon.Imagebuilder.Model
     /// Returns a list of image scan aggregations for your account. You can filter by the
     /// type of key that Image Builder uses to group results. For example, if you want to
     /// get a list of findings by severity level for one of your pipelines, you might specify
-    /// your pipeline with the <code>imagePipelineArn</code> filter. If you don't specify
-    /// a filter, Image Builder returns an aggregation for your account.
+    /// your pipeline with the <c>imagePipelineArn</c> filter. If you don't specify a filter,
+    /// Image Builder returns an aggregation for your account.
     /// 
     ///  
     /// <para>
@@ -42,19 +43,19 @@ namespace Amazon.Imagebuilder.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>accountId</code> 
+    ///  <c>accountId</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>imageBuildVersionArn</code> 
+    ///  <c>imageBuildVersionArn</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>imagePipelineArn</code> 
+    ///  <c>imagePipelineArn</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>vulnerabilityId</code> 
+    ///  <c>vulnerabilityId</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -81,7 +82,7 @@ namespace Amazon.Imagebuilder.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token to specify where to start paginating. This is the NextToken from a previously
+        /// A token to specify where to start paginating. This is the nextToken from a previously
         /// truncated response.
         /// </para>
         /// </summary>

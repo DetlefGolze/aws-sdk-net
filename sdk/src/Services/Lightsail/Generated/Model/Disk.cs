@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Lightsail.Model
     /// </summary>
     public partial class Disk
     {
-        private List<AddOn> _addOns = new List<AddOn>();
+        private List<AddOn> _addOns = AWSConfigs.InitializeCollections ? new List<AddOn>() : null;
         private string _arn;
         private string _attachedTo;
         private string _attachmentState;
@@ -50,7 +51,7 @@ namespace Amazon.Lightsail.Model
         private int? _sizeInGb;
         private DiskState _state;
         private string _supportCode;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AddOns. 
@@ -67,7 +68,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if AddOns property is set
         internal bool IsSetAddOns()
         {
-            return this._addOns != null && this._addOns.Count > 0; 
+            return this._addOns != null && (this._addOns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -109,13 +110,13 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property AttachmentState. 
         /// <para>
-        /// (Deprecated) The attachment state of the disk.
+        /// (Discontinued) The attachment state of the disk.
         /// </para>
         ///  <note> 
         /// <para>
-        /// In releases prior to November 14, 2017, this parameter returned <code>attached</code>
-        /// for system disks in the API response. It is now deprecated, but still included in
-        /// the response. Use <code>isAttached</code> instead.
+        /// In releases prior to November 14, 2017, this parameter returned <c>attached</c> for
+        /// system disks in the API response. It is now discontinued, but still included in the
+        /// response. Use <c>isAttached</c> instead.
         /// </para>
         ///  </note>
         /// </summary>
@@ -176,12 +177,12 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property GbInUse. 
         /// <para>
-        /// (Deprecated) The number of GB in use by the disk.
+        /// (Discontinued) The number of GB in use by the disk.
         /// </para>
         ///  <note> 
         /// <para>
         /// In releases prior to November 14, 2017, this parameter was not included in the API
-        /// response. It is now deprecated.
+        /// response. It is now discontinued.
         /// </para>
         ///  </note>
         /// </summary>
@@ -310,7 +311,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The Lightsail resource type (e.g., <code>Disk</code>).
+        /// The Lightsail resource type (<c>Disk</c>).
         /// </para>
         /// </summary>
         public ResourceType ResourceType
@@ -398,7 +399,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

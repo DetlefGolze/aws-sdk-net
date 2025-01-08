@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property DiskSnapshotName. 
         /// <para>
-        /// The name of the disk snapshot (e.g., <code>my-disk-snapshot</code>).
+        /// The name of the disk snapshot (<c>my-disk-snapshot</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

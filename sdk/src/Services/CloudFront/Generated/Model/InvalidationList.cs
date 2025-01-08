@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
-    /// The <code>InvalidationList</code> complex type describes the list of invalidation
-    /// objects. For more information about invalidation, see <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html">Invalidating
+    /// The <c>InvalidationList</c> complex type describes the list of invalidation objects.
+    /// For more information about invalidation, see <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html">Invalidating
     /// Objects (Web Distributions Only)</a> in the <i>Amazon CloudFront Developer Guide</i>.
     /// </summary>
     public partial class InvalidationList
     {
         private bool? _isTruncated;
-        private List<InvalidationSummary> _items = new List<InvalidationSummary>();
+        private List<InvalidationSummary> _items = AWSConfigs.InitializeCollections ? new List<InvalidationSummary>() : null;
         private string _marker;
         private int? _maxItems;
         private string _nextMarker;
@@ -52,8 +53,7 @@ namespace Amazon.CloudFront.Model
         /// <para>
         /// A flag that indicates whether more invalidation batch requests remain to be listed.
         /// If your results were truncated, you can make a follow-up pagination request using
-        /// the <code>Marker</code> request parameter to retrieve more invalidation batches in
-        /// the list.
+        /// the <c>Marker</c> request parameter to retrieve more invalidation batches in the list.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -72,8 +72,8 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property Items. 
         /// <para>
-        /// A complex type that contains one <code>InvalidationSummary</code> element for each
-        /// invalidation batch created by the current Amazon Web Services account.
+        /// A complex type that contains one <c>InvalidationSummary</c> element for each invalidation
+        /// batch created by the current Amazon Web Services account.
         /// </para>
         /// </summary>
         public List<InvalidationSummary> Items
@@ -85,13 +85,13 @@ namespace Amazon.CloudFront.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// The value that you provided for the <code>Marker</code> request parameter.
+        /// The value that you provided for the <c>Marker</c> request parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -110,7 +110,7 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property MaxItems. 
         /// <para>
-        /// The value that you provided for the <code>MaxItems</code> request parameter.
+        /// The value that you provided for the <c>MaxItems</c> request parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -129,9 +129,9 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property NextMarker. 
         /// <para>
-        /// If <code>IsTruncated</code> is <code>true</code>, this element is present and contains
-        /// the value that you can use for the <code>Marker</code> request parameter to continue
-        /// listing your invalidation batches where they left off.
+        /// If <c>IsTruncated</c> is <c>true</c>, this element is present and contains the value
+        /// that you can use for the <c>Marker</c> request parameter to continue listing your
+        /// invalidation batches where they left off.
         /// </para>
         /// </summary>
         public string NextMarker

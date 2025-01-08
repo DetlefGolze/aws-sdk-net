@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CertificateManager.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.CertificateManager.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012</code>
+        ///  <c>arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012</c>
         /// 
         /// </para>
         /// </summary>

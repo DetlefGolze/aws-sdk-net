@@ -26,20 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateRegionSettings operation.
-    /// Updates the current service opt-in settings for the Region. If service-opt-in is enabled
-    /// for a service, Backup tries to protect that service's resources in this Region, when
-    /// the resource is included in an on-demand backup or scheduled backup plan. Otherwise,
-    /// Backup does not try to protect that service's resources in this Region. Use the <code>DescribeRegionSettings</code>
-    /// API to determine the resource types that are supported.
+    /// Updates the current service opt-in settings for the Region.
+    /// 
+    ///  
+    /// <para>
+    /// Use the <c>DescribeRegionSettings</c> API to determine the resource types that are
+    /// supported.
+    /// </para>
     /// </summary>
     public partial class UpdateRegionSettingsRequest : AmazonBackupRequest
     {
-        private Dictionary<string, bool> _resourceTypeManagementPreference = new Dictionary<string, bool>();
-        private Dictionary<string, bool> _resourceTypeOptInPreference = new Dictionary<string, bool>();
+        private Dictionary<string, bool> _resourceTypeManagementPreference = AWSConfigs.InitializeCollections ? new Dictionary<string, bool>() : null;
+        private Dictionary<string, bool> _resourceTypeOptInPreference = AWSConfigs.InitializeCollections ? new Dictionary<string, bool>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceTypeManagementPreference. 
@@ -59,13 +62,22 @@ namespace Amazon.Backup.Model
         // Check to see if ResourceTypeManagementPreference property is set
         internal bool IsSetResourceTypeManagementPreference()
         {
-            return this._resourceTypeManagementPreference != null && this._resourceTypeManagementPreference.Count > 0; 
+            return this._resourceTypeManagementPreference != null && (this._resourceTypeManagementPreference.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ResourceTypeOptInPreference. 
         /// <para>
         /// Updates the list of services along with the opt-in preferences for the Region.
+        /// </para>
+        ///  
+        /// <para>
+        /// If resource assignments are only based on tags, then service opt-in settings are applied.
+        /// If a resource type is explicitly assigned to a backup plan, such as Amazon S3, Amazon
+        /// EC2, or Amazon RDS, it will be included in the backup even if the opt-in is not enabled
+        /// for that particular service. If both a resource type and tags are specified in a resource
+        /// assignment, the resource type specified in the backup plan takes priority over the
+        /// tag condition. Service opt-in settings are disregarded in this situation.
         /// </para>
         /// </summary>
         public Dictionary<string, bool> ResourceTypeOptInPreference
@@ -77,7 +89,7 @@ namespace Amazon.Backup.Model
         // Check to see if ResourceTypeOptInPreference property is set
         internal bool IsSetResourceTypeOptInPreference()
         {
-            return this._resourceTypeOptInPreference != null && this._resourceTypeOptInPreference.Count > 0; 
+            return this._resourceTypeOptInPreference != null && (this._resourceTypeOptInPreference.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

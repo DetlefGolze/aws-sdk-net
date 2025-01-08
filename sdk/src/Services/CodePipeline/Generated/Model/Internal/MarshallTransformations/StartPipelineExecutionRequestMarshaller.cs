@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetClientRequestToken())
@@ -82,6 +84,38 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("name");
                     context.Writer.Write(publicRequest.Name);
+                }
+
+                if(publicRequest.IsSetSourceRevisions())
+                {
+                    context.Writer.WritePropertyName("sourceRevisions");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestSourceRevisionsListValue in publicRequest.SourceRevisions)
+                    {
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = SourceRevisionOverrideMarshaller.Instance;
+                        marshaller.Marshall(publicRequestSourceRevisionsListValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetVariables())
+                {
+                    context.Writer.WritePropertyName("variables");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestVariablesListValue in publicRequest.Variables)
+                    {
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = PipelineVariableMarshaller.Instance;
+                        marshaller.Marshall(publicRequestVariablesListValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteArrayEnd();
                 }
 
                 writer.WriteObjectEnd();

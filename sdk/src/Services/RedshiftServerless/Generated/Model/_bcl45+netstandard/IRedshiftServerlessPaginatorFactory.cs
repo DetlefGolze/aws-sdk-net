@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the redshift-serverless-2021-04-21.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RedshiftServerless.Model
 {
     /// <summary>
@@ -26,9 +27,19 @@ namespace Amazon.RedshiftServerless.Model
     {
 
         /// <summary>
+        /// Paginator for ListCustomDomainAssociations operation
+        ///</summary>
+        IListCustomDomainAssociationsPaginator ListCustomDomainAssociations(ListCustomDomainAssociationsRequest request);
+
+        /// <summary>
         /// Paginator for ListEndpointAccess operation
         ///</summary>
         IListEndpointAccessPaginator ListEndpointAccess(ListEndpointAccessRequest request);
+
+        /// <summary>
+        /// Paginator for ListManagedWorkgroups operation
+        ///</summary>
+        IListManagedWorkgroupsPaginator ListManagedWorkgroups(ListManagedWorkgroupsRequest request);
 
         /// <summary>
         /// Paginator for ListNamespaces operation
@@ -39,6 +50,16 @@ namespace Amazon.RedshiftServerless.Model
         /// Paginator for ListRecoveryPoints operation
         ///</summary>
         IListRecoveryPointsPaginator ListRecoveryPoints(ListRecoveryPointsRequest request);
+
+        /// <summary>
+        /// Paginator for ListScheduledActions operation
+        ///</summary>
+        IListScheduledActionsPaginator ListScheduledActions(ListScheduledActionsRequest request);
+
+        /// <summary>
+        /// Paginator for ListSnapshotCopyConfigurations operation
+        ///</summary>
+        IListSnapshotCopyConfigurationsPaginator ListSnapshotCopyConfigurations(ListSnapshotCopyConfigurationsRequest request);
 
         /// <summary>
         /// Paginator for ListSnapshots operation

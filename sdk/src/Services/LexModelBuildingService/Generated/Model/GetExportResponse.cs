@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
@@ -48,15 +49,15 @@ namespace Amazon.LexModelBuildingService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>IN_PROGRESS</code> - The export is in progress.
+        ///  <c>IN_PROGRESS</c> - The export is in progress.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>READY</code> - The export is complete.
+        ///  <c>READY</c> - The export is complete.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> - The export could not be completed.
+        ///  <c>FAILED</c> - The export could not be completed.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -93,8 +94,8 @@ namespace Amazon.LexModelBuildingService.Model
         /// <summary>
         /// Gets and sets the property FailureReason. 
         /// <para>
-        /// If <code>status</code> is <code>FAILED</code>, Amazon Lex provides the reason that
-        /// it failed to export the resource.
+        /// If <c>status</c> is <c>FAILED</c>, Amazon Lex provides the reason that it failed to
+        /// export the resource.
         /// </para>
         /// </summary>
         public string FailureReason

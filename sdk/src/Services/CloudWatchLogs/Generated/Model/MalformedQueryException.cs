@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
-    /// The query string is not valid. Details about this error are displayed in a <code>QueryCompileError</code>
+    /// The query string is not valid. Details about this error are displayed in a <c>QueryCompileError</c>
     /// object. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_QueryCompileError.html">QueryCompileError</a>.
     /// 
     ///  

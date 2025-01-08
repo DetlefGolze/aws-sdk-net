@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -34,18 +35,18 @@ namespace Amazon.SecurityHub.Model
     ///  
     /// <para>
     /// To provide the details, use the object that corresponds to the resource type. For
-    /// example, if the resource type is <code>AwsEc2Instance</code>, then you use the <code>AwsEc2Instance</code>
+    /// example, if the resource type is <c>AwsEc2Instance</c>, then you use the <c>AwsEc2Instance</c>
     /// object to provide the details.
     /// </para>
     ///  
     /// <para>
     /// If the type-specific object does not contain all of the fields you want to populate,
-    /// then you use the <code>Other</code> object to populate those additional fields.
+    /// then you use the <c>Other</c> object to populate those additional fields.
     /// </para>
     ///  
     /// <para>
-    /// You also use the <code>Other</code> object to populate the details when the selected
-    /// type does not have a corresponding object.
+    /// You also use the <c>Other</c> object to populate the details when the selected type
+    /// does not have a corresponding object.
     /// </para>
     /// </summary>
     public partial class ResourceDetails
@@ -72,6 +73,7 @@ namespace Amazon.SecurityHub.Model
         private AwsDmsReplicationInstanceDetails _awsDmsReplicationInstance;
         private AwsDmsReplicationTaskDetails _awsDmsReplicationTask;
         private AwsDynamoDbTableDetails _awsDynamoDbTable;
+        private AwsEc2ClientVpnEndpointDetails _awsEc2ClientVpnEndpoint;
         private AwsEc2EipDetails _awsEc2Eip;
         private AwsEc2InstanceDetails _awsEc2Instance;
         private AwsEc2LaunchTemplateDetails _awsEc2LaunchTemplate;
@@ -125,6 +127,7 @@ namespace Amazon.SecurityHub.Model
         private AwsRdsEventSubscriptionDetails _awsRdsEventSubscription;
         private AwsRedshiftClusterDetails _awsRedshiftCluster;
         private AwsRoute53HostedZoneDetails _awsRoute53HostedZone;
+        private AwsS3AccessPointDetails _awsS3AccessPoint;
         private AwsS3AccountPublicAccessBlockDetails _awsS3AccountPublicAccessBlock;
         private AwsS3BucketDetails _awsS3Bucket;
         private AwsS3ObjectDetails _awsS3Object;
@@ -146,7 +149,7 @@ namespace Amazon.SecurityHub.Model
         private AwsWafWebAclDetails _awsWafWebAcl;
         private AwsXrayEncryptionConfigDetails _awsXrayEncryptionConfig;
         private ContainerDetails _container;
-        private Dictionary<string, string> _other = new Dictionary<string, string>();
+        private Dictionary<string, string> _other = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AwsAmazonMqBroker. 
@@ -553,6 +556,26 @@ namespace Amazon.SecurityHub.Model
         internal bool IsSetAwsDynamoDbTable()
         {
             return this._awsDynamoDbTable != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property AwsEc2ClientVpnEndpoint. 
+        /// <para>
+        ///  Provides details about an Client VPN endpoint. A Client VPN endpoint is the resource
+        /// that you create and configure to enable and manage client VPN sessions. It's the termination
+        /// point for all client VPN sessions. 
+        /// </para>
+        /// </summary>
+        public AwsEc2ClientVpnEndpointDetails AwsEc2ClientVpnEndpoint
+        {
+            get { return this._awsEc2ClientVpnEndpoint; }
+            set { this._awsEc2ClientVpnEndpoint = value; }
+        }
+
+        // Check to see if AwsEc2ClientVpnEndpoint property is set
+        internal bool IsSetAwsEc2ClientVpnEndpoint()
+        {
+            return this._awsEc2ClientVpnEndpoint != null;
         }
 
         /// <summary>
@@ -1525,6 +1548,26 @@ namespace Amazon.SecurityHub.Model
         }
 
         /// <summary>
+        /// Gets and sets the property AwsS3AccessPoint. 
+        /// <para>
+        ///  Provides details about an Amazon Simple Storage Service (Amazon S3) access point.
+        /// S3 access points are named network endpoints that are attached to S3 buckets that
+        /// you can use to perform S3 object operations. 
+        /// </para>
+        /// </summary>
+        public AwsS3AccessPointDetails AwsS3AccessPoint
+        {
+            get { return this._awsS3AccessPoint; }
+            set { this._awsS3AccessPoint = value; }
+        }
+
+        // Check to see if AwsS3AccessPoint property is set
+        internal bool IsSetAwsS3AccessPoint()
+        {
+            return this._awsS3AccessPoint != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property AwsS3AccountPublicAccessBlock. 
         /// <para>
         /// Details about the Amazon S3 Public Access Block configuration for an account.
@@ -1899,19 +1942,19 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Other. 
         /// <para>
         /// Details about a resource that are not available in a type-specific details object.
-        /// Use the <code>Other</code> object in the following cases.
+        /// Use the <c>Other</c> object in the following cases.
         /// </para>
         ///  <ul> <li> 
         /// <para>
         /// The type-specific object does not contain all of the fields that you want to populate.
         /// In this case, first use the type-specific object to populate those fields. Use the
-        /// <code>Other</code> object to populate the fields that are missing from the type-specific
+        /// <c>Other</c> object to populate the fields that are missing from the type-specific
         /// object.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The resource type does not have a corresponding object. This includes resources for
-        /// which the type is <code>Other</code>. 
+        /// which the type is <c>Other</c>. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1924,7 +1967,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Other property is set
         internal bool IsSetOther()
         {
-            return this._other != null && this._other.Count > 0; 
+            return this._other != null && (this._other.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

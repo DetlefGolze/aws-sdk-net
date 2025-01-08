@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaConvert.Model
 {
     /// <summary>
@@ -72,7 +73,7 @@ namespace Amazon.MediaConvert.Model
         }
 
         /// <summary>
-        /// Gets and sets the property SampleRate. Sample rate in hz.
+        /// Gets and sets the property SampleRate. Sample rate in Hz.
         /// </summary>
         [AWSProperty(Min=32000, Max=48000)]
         public int SampleRate

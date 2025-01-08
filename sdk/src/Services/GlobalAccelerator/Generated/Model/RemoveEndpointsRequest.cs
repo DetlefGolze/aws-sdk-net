@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GlobalAccelerator.Model
 {
     /// <summary>
@@ -34,31 +35,31 @@ namespace Amazon.GlobalAccelerator.Model
     /// 
     ///  
     /// <para>
-    /// The <code>RemoveEndpoints</code> API operation is the recommended option for removing
-    /// endpoints. The alternative is to remove endpoints by updating an endpoint group by
-    /// using the <a href="https://docs.aws.amazon.com/global-accelerator/latest/api/API_UpdateEndpointGroup.html">UpdateEndpointGroup</a>
-    /// API operation. There are two advantages to using <code>AddEndpoints</code> to remove
-    /// endpoints instead:
+    /// The <c>RemoveEndpoints</c> API operation is the recommended option for removing endpoints.
+    /// The alternative is to remove endpoints by updating an endpoint group by using the
+    /// <a href="https://docs.aws.amazon.com/global-accelerator/latest/api/API_UpdateEndpointGroup.html">UpdateEndpointGroup</a>
+    /// API operation. There are two advantages to using <c>AddEndpoints</c> to remove endpoints
+    /// instead:
     /// </para>
     ///  <ul> <li> 
     /// <para>
     /// It's more convenient, because you only need to specify the endpoints that you want
-    /// to remove. With the <code>UpdateEndpointGroup</code> API operation, you must specify
-    /// all of the endpoints in the endpoint group except the ones that you want to remove
-    /// from the group.
+    /// to remove. With the <c>UpdateEndpointGroup</c> API operation, you must specify all
+    /// of the endpoints in the endpoint group except the ones that you want to remove from
+    /// the group.
     /// </para>
     ///  </li> <li> 
     /// <para>
     /// It's faster, because Global Accelerator doesn't need to resolve any endpoints. With
-    /// the <code>UpdateEndpointGroup</code> API operation, Global Accelerator must resolve
-    /// all of the endpoints that remain in the group.
+    /// the <c>UpdateEndpointGroup</c> API operation, Global Accelerator must resolve all
+    /// of the endpoints that remain in the group.
     /// </para>
     ///  </li> </ul>
     /// </summary>
     public partial class RemoveEndpointsRequest : AmazonGlobalAcceleratorRequest
     {
         private string _endpointGroupArn;
-        private List<EndpointIdentifier> _endpointIdentifiers = new List<EndpointIdentifier>();
+        private List<EndpointIdentifier> _endpointIdentifiers = AWSConfigs.InitializeCollections ? new List<EndpointIdentifier>() : null;
 
         /// <summary>
         /// Gets and sets the property EndpointGroupArn. 
@@ -95,7 +96,7 @@ namespace Amazon.GlobalAccelerator.Model
         // Check to see if EndpointIdentifiers property is set
         internal bool IsSetEndpointIdentifiers()
         {
-            return this._endpointIdentifiers != null && this._endpointIdentifiers.Count > 0; 
+            return this._endpointIdentifiers != null && (this._endpointIdentifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

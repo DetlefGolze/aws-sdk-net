@@ -13,6 +13,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -170,6 +171,10 @@ namespace ThirdParty.Json.LitJson
 
 
         #region Private Methods
+
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JsonMapper requires reflection of unknown types. System.Text.Json should be used instead.")]
+#endif
         private static void AddArrayMetadata (Type type)
         {
             if (array_metadata.ContainsKey (type))
@@ -179,11 +184,10 @@ namespace ThirdParty.Json.LitJson
 
             data.IsArray = type.IsArray;
 
-            var typeInfo = TypeFactory.GetTypeInfo(type);
-            if (typeInfo.GetInterface("System.Collections.IList") != null)
+            if (type.GetInterface("System.Collections.IList") != null)
                 data.IsList = true;
 
-            foreach (PropertyInfo p_info in typeInfo.GetProperties())
+            foreach (PropertyInfo p_info in type.GetProperties())
             {
                 if (p_info.Name != "Item")
                     continue;
@@ -206,6 +210,9 @@ namespace ThirdParty.Json.LitJson
             }
         }
 
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JsonMapper requires reflection of unknown types. System.Text.Json should be used instead.")]
+#endif
         private static void AddObjectMetadata (Type type)
         {
             if (object_metadata.ContainsKey (type))
@@ -213,13 +220,12 @@ namespace ThirdParty.Json.LitJson
 
             ObjectMetadata data = new ObjectMetadata ();
 
-            var typeInfo = TypeFactory.GetTypeInfo(type);
-            if (typeInfo.GetInterface("System.Collections.IDictionary") != null)
+            if (type.GetInterface("System.Collections.IDictionary") != null)
                 data.IsDictionary = true;
 
             data.Properties = new Dictionary<string, PropertyMetadata> ();
 
-            foreach (PropertyInfo p_info in typeInfo.GetProperties())
+            foreach (PropertyInfo p_info in type.GetProperties())
             {
                 if (p_info.Name == "Item") {
                     ParameterInfo[] parameters = p_info.GetIndexParameters ();
@@ -243,7 +249,7 @@ namespace ThirdParty.Json.LitJson
                 data.Properties.Add (p_info.Name, p_data);
             }
 
-            foreach (FieldInfo f_info in typeInfo.GetFields())
+            foreach (FieldInfo f_info in type.GetFields())
             {
                 PropertyMetadata p_data = new PropertyMetadata ();
                 p_data.Info = f_info;
@@ -262,14 +268,17 @@ namespace ThirdParty.Json.LitJson
             }
         }
 
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JsonMapper requires reflection of unknown types. System.Text.Json should be used instead.")]
+#endif
         private static void AddTypeProperties (Type type)
         {
             if (type_properties.ContainsKey (type))
                 return;
-            var typeInfo = TypeFactory.GetTypeInfo(type);
+
             IList<PropertyMetadata> props = new List<PropertyMetadata> ();
 
-            foreach (PropertyInfo p_info in typeInfo.GetProperties())
+            foreach (PropertyInfo p_info in type.GetProperties())
             {
                 if (p_info.Name == "Item")
                     continue;
@@ -280,7 +289,7 @@ namespace ThirdParty.Json.LitJson
                 props.Add (p_data);
             }
 
-            foreach (FieldInfo f_info in typeInfo.GetFields())
+            foreach (FieldInfo f_info in type.GetFields())
             {
                 PropertyMetadata p_data = new PropertyMetadata ();
                 p_data.Info = f_info;
@@ -298,6 +307,9 @@ namespace ThirdParty.Json.LitJson
             }
         }
 
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JsonMapper requires reflection of unknown types. System.Text.Json should be used instead.")]
+#endif
         private static MethodInfo GetConvOp (Type t1, Type t2)
         {
             lock (conv_ops_lock) {
@@ -305,14 +317,11 @@ namespace ThirdParty.Json.LitJson
                     conv_ops.Add (t1, new Dictionary<Type, MethodInfo> ());
             }
 
-            var typeInfoT1 = TypeFactory.GetTypeInfo(t1);
-            var typeInfoT2 = TypeFactory.GetTypeInfo(t2);
-
             if (conv_ops[t1].ContainsKey (t2))
                 return conv_ops[t1][t2];
 
-            MethodInfo op = typeInfoT1.GetMethod(
-                "op_Implicit", new ITypeInfo[] { typeInfoT2 });
+            MethodInfo op = t1.GetMethod(
+                "op_Implicit", new Type[] { t2 });
 
             lock (conv_ops_lock) {
                 try {
@@ -325,10 +334,12 @@ namespace ThirdParty.Json.LitJson
             return op;
         }
 
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JsonMapper requires reflection of unknown types. System.Text.Json should be used instead.")]
+#endif
         private static object ReadValue (Type inst_type, JsonReader reader)
         {
             reader.Read ();
-            var inst_typeInfo = TypeFactory.GetTypeInfo(inst_type);
 
             if (reader.Token == JsonToken.ArrayEnd)
                 return null;
@@ -339,7 +350,7 @@ namespace ThirdParty.Json.LitJson
             
             if (reader.Token == JsonToken.Null) {
 
-                if (inst_typeInfo.IsClass || underlying_type != null)
+                if (inst_type.IsClass || underlying_type != null)
                 {
                     return null;
                 }
@@ -358,8 +369,7 @@ namespace ThirdParty.Json.LitJson
                 reader.Token == JsonToken.Boolean) {
 
                 Type json_type = reader.Value.GetType ();
-                var json_typeInfo = TypeFactory.GetTypeInfo(json_type);
-                if (inst_typeInfo.IsAssignableFrom(json_typeInfo))
+                if (inst_type.IsAssignableFrom(json_type))
                     return reader.Value;
 
                 // If there's a custom importer that fits, use it
@@ -385,7 +395,7 @@ namespace ThirdParty.Json.LitJson
                 }
 
                 // Maybe it's an enum
-                if (inst_typeInfo.IsEnum)
+                if (inst_type.IsEnum)
                     return Enum.ToObject (value_type, reader.Value);
 
                 // Try using an implicit conversion operator
@@ -477,14 +487,16 @@ namespace ThirdParty.Json.LitJson
                         }
 
                     } else {
-                        if (! t_data.IsDictionary)
-                            throw new JsonException (String.Format (
-                                    "The type {0} doesn't have the " +
-                                    "property '{1}'", inst_type, property));
-
-                        ((IDictionary) instance).Add (
-                            property, ReadValue (
-                                t_data.ElementType, reader));
+                        if (t_data.IsDictionary)
+                        {
+                            ((IDictionary)instance).Add(property, ReadValue(t_data.ElementType, reader));
+                        }
+                        else
+                        {
+                            // If the current property doesn't exist in the specified type, we'll still read its value
+                            // but throw the results aways (instead of throwing an exception).
+                            ReadValue(t_data.ElementType, reader);
+                        }
                     }
 
                 }
@@ -495,15 +507,17 @@ namespace ThirdParty.Json.LitJson
             return instance;
         }
 
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JsonMapper requires reflection of unknown types. System.Text.Json should be used instead.")]
+#endif
         private static void ValidateRequiredFields(object instance, Type inst_type)
         {
-            var typeInfo = TypeFactory.GetTypeInfo(inst_type);
-            foreach (var prop in typeInfo.GetProperties())
+            foreach (var prop in inst_type.GetProperties())
             {
                 var customAttributes = prop.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
                 if (!customAttributes.Any()) continue;
                 var jsonAttributeVal = (JsonPropertyAttribute)customAttributes.First();
-                if (typeInfo.GetProperty(prop.Name).GetValue(instance, null) == null &&
+                if (inst_type.GetProperty(prop.Name).GetValue(instance, null) == null &&
                     jsonAttributeVal.Required)
                 {
                     throw new JsonException ($"The type {instance.GetType()} doesn't have the required " +
@@ -751,6 +765,9 @@ namespace ThirdParty.Json.LitJson
             table[json_type][value_type] = importer;
         }
 
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JsonMapper requires reflection of unknown types. System.Text.Json should be used instead.")]
+#endif
         private static void WriteValue (object obj, JsonWriter writer,
                                         bool writer_is_private,
                                         int depth)
@@ -762,7 +779,7 @@ namespace ThirdParty.Json.LitJson
                                    obj.GetType ()));
 
             if (obj == null) {
-                writer.Write (null);
+                writer.Write ((string)null);
                 return;
             }
 
@@ -902,7 +919,9 @@ namespace ThirdParty.Json.LitJson
         }
         #endregion
 
-
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JsonMapper requires reflection of unknown types. System.Text.Json should be used instead.")]
+#endif
         public static string ToJson (object obj)
         {
             lock (static_writer_lock) {
@@ -914,6 +933,9 @@ namespace ThirdParty.Json.LitJson
             }
         }
 
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JsonMapper requires reflection of unknown types. System.Text.Json should be used instead.")]
+#endif
         public static void ToJson (object obj, JsonWriter writer)
         {
             WriteValue (obj, writer, false, 0);
@@ -939,11 +961,17 @@ namespace ThirdParty.Json.LitJson
                 delegate { return new JsonData (); }, json);
         }
 
-        public static T ToObject<T> (JsonReader reader)
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JsonMapper requires reflection of unknown types. System.Text.Json should be used instead.")]
+#endif
+        public static T ToObject<T>(JsonReader reader)
         {
             return (T) ReadValue (typeof (T), reader);
         }
 
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JsonMapper requires reflection of unknown types. System.Text.Json should be used instead.")]
+#endif
         public static T ToObject<T> (TextReader reader)
         {
             JsonReader json_reader = new JsonReader (reader);
@@ -951,6 +979,9 @@ namespace ThirdParty.Json.LitJson
             return (T) ReadValue (typeof (T), json_reader);
         }
 
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JsonMapper requires reflection of unknown types. System.Text.Json should be used instead.")]
+#endif
         public static T ToObject<T> (string json)
         {
             JsonReader reader = new JsonReader (json);

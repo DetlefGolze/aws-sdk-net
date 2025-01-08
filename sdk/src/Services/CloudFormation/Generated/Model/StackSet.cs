@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -38,20 +39,20 @@ namespace Amazon.CloudFormation.Model
     {
         private string _administrationRoleARN;
         private AutoDeployment _autoDeployment;
-        private List<string> _capabilities = new List<string>();
+        private List<string> _capabilities = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _description;
         private string _executionRoleName;
         private ManagedExecution _managedExecution;
-        private List<string> _organizationalUnitIds = new List<string>();
-        private List<Parameter> _parameters = new List<Parameter>();
+        private List<string> _organizationalUnitIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Parameter> _parameters = AWSConfigs.InitializeCollections ? new List<Parameter>() : null;
         private PermissionModels _permissionModel;
-        private List<string> _regions = new List<string>();
+        private List<string> _regions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _stackSetARN;
         private StackSetDriftDetectionDetails _stackSetDriftDetectionDetails;
         private string _stackSetId;
         private string _stackSetName;
         private StackSetStatus _status;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _templateBody;
 
         /// <summary>
@@ -106,8 +107,8 @@ namespace Amazon.CloudFormation.Model
         /// The capabilities that are allowed in the stack set. Some stack set templates might
         /// include resources that can affect permissions in your Amazon Web Services account—for
         /// example, by creating new Identity and Access Management (IAM) users. For more information,
-        /// see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html#capabilities">Acknowledging
-        /// IAM Resources in CloudFormation Templates.</a> 
+        /// see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html#using-iam-capabilities">Acknowledging
+        /// IAM resources in CloudFormation templates</a>.
         /// </para>
         /// </summary>
         public List<string> Capabilities
@@ -119,7 +120,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Capabilities property is set
         internal bool IsSetCapabilities()
         {
-            return this._capabilities != null && this._capabilities.Count > 0; 
+            return this._capabilities != null && (this._capabilities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -200,7 +201,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if OrganizationalUnitIds property is set
         internal bool IsSetOrganizationalUnitIds()
         {
-            return this._organizationalUnitIds != null && this._organizationalUnitIds.Count > 0; 
+            return this._organizationalUnitIds != null && (this._organizationalUnitIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -218,7 +219,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -228,16 +229,15 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// With <code>self-managed</code> permissions, you must create the administrator and
-        /// execution roles required to deploy to target accounts. For more information, see <a
-        /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-prereqs-self-managed.html">Grant
+        /// With <c>self-managed</c> permissions, you must create the administrator and execution
+        /// roles required to deploy to target accounts. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-prereqs-self-managed.html">Grant
         /// Self-Managed Stack Set Permissions</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// With <code>service-managed</code> permissions, StackSets automatically creates the
-        /// IAM roles required to deploy to accounts managed by Organizations. For more information,
-        /// see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-prereqs-service-managed.html">Grant
+        /// With <c>service-managed</c> permissions, StackSets automatically creates the IAM roles
+        /// required to deploy to accounts managed by Organizations. For more information, see
+        /// <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-prereqs-service-managed.html">Grant
         /// Service-Managed Stack Set Permissions</a>.
         /// </para>
         ///  </li> </ul>
@@ -270,7 +270,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Regions property is set
         internal bool IsSetRegions()
         {
-            return this._regions != null && this._regions.Count > 0; 
+            return this._regions != null && (this._regions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -386,7 +386,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -140,9 +141,9 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property RoleArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of a role with permission to access <code>Query</code>
-        /// API, <code>QuerySuggestions</code> API, <code>SubmitFeedback</code> API, and IAM Identity
-        /// Center that stores your user and group information. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html">IAM
+        /// The Amazon Resource Name (ARN) of an IAM role with permission to access the <c>Query</c>
+        /// API, <c>QuerySuggestions</c> API, <c>SubmitFeedback</c> API, and IAM Identity Center
+        /// that stores your users and groups information. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html">IAM
         /// roles for Amazon Kendra</a>.
         /// </para>
         /// </summary>

@@ -26,69 +26,115 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.SecurityHub.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.SecurityHub
 {
     /// <summary>
-    /// Interface for accessing SecurityHub
+    /// <para>Interface for accessing SecurityHub</para>
     ///
-    /// Security Hub provides you with a comprehensive view of the security state of your
-    /// Amazon Web Services environment and resources. It also provides you with the readiness
-    /// status of your environment based on controls from supported security standards. Security
-    /// Hub collects security data from Amazon Web Services accounts, services, and integrated
-    /// third-party products and helps you analyze security trends in your environment to
-    /// identify the highest priority security issues. For more information about Security
-    /// Hub, see the <a href="https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html">
-    /// <i>Security Hub User Guide</i> </a>.
+    /// Security Hub provides you with a comprehensive view of your security state in Amazon
+    /// Web Services and helps you assess your Amazon Web Services environment against security
+    /// industry standards and best practices.
     /// 
     ///  
     /// <para>
-    /// When you use operations in the Security Hub API, the requests are executed only in
-    /// the Amazon Web Services Region that is currently active or in the specific Amazon
-    /// Web Services Region that you specify in your request. Any configuration or settings
-    /// change that results from the operation is applied only to that Region. To make the
-    /// same change in other Regions, run the same command for each Region in which you want
-    /// to apply the change.
+    /// Security Hub collects security data across Amazon Web Services accounts, Amazon Web
+    /// Services services, and supported third-party products and helps you analyze your security
+    /// trends and identify the highest priority security issues.
     /// </para>
     ///  
     /// <para>
-    /// For example, if your Region is set to <code>us-west-2</code>, when you use <code>CreateMembers</code>
-    /// to add a member account to Security Hub, the association of the member account with
-    /// the administrator account is created only in the <code>us-west-2</code> Region. Security
-    /// Hub must be enabled for the member account in the same Region that the invitation
-    /// was sent from.
+    /// To help you manage the security state of your organization, Security Hub supports
+    /// multiple security standards. These include the Amazon Web Services Foundational Security
+    /// Best Practices (FSBP) standard developed by Amazon Web Services, and external compliance
+    /// frameworks such as the Center for Internet Security (CIS), the Payment Card Industry
+    /// Data Security Standard (PCI DSS), and the National Institute of Standards and Technology
+    /// (NIST). Each standard includes several security controls, each of which represents
+    /// a security best practice. Security Hub runs checks against security controls and generates
+    /// control findings to help you assess your compliance against security best practices.
     /// </para>
     ///  
     /// <para>
-    /// The following throttling limits apply to using Security Hub API operations.
+    /// In addition to generating control findings, Security Hub also receives findings from
+    /// other Amazon Web Services services, such as Amazon GuardDuty and Amazon Inspector,
+    /// and supported third-party products. This gives you a single pane of glass into a variety
+    /// of security-related issues. You can also send Security Hub findings to other Amazon
+    /// Web Services services and supported third-party products.
+    /// </para>
+    ///  
+    /// <para>
+    /// Security Hub offers automation features that help you triage and remediate security
+    /// issues. For example, you can use automation rules to automatically update critical
+    /// findings when a security check fails. You can also leverage the integration with Amazon
+    /// EventBridge to trigger automatic responses to specific findings.
+    /// </para>
+    ///  
+    /// <para>
+    /// This guide, the <i>Security Hub API Reference</i>, provides information about the
+    /// Security Hub API. This includes supported resources, HTTP methods, parameters, and
+    /// schemas. If you're new to Security Hub, you might find it helpful to also review the
+    /// <a href="https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html">
+    /// <i>Security Hub User Guide</i> </a>. The user guide explains key concepts and provides
+    /// procedures that demonstrate how to use Security Hub features. It also provides information
+    /// about topics such as integrating Security Hub with other Amazon Web Services services.
+    /// </para>
+    ///  
+    /// <para>
+    /// In addition to interacting with Security Hub by making calls to the Security Hub API,
+    /// you can use a current version of an Amazon Web Services command line tool or SDK.
+    /// Amazon Web Services provides tools and SDKs that consist of libraries and sample code
+    /// for various languages and platforms, such as PowerShell, Java, Go, Python, C++, and
+    /// .NET. These tools and SDKs provide convenient, programmatic access to Security Hub
+    /// and other Amazon Web Services services . They also handle tasks such as signing requests,
+    /// managing errors, and retrying requests automatically. For information about installing
+    /// and using the Amazon Web Services tools and SDKs, see <a href="http://aws.amazon.com/developer/tools/">Tools
+    /// to Build on Amazon Web Services</a>.
+    /// </para>
+    ///  
+    /// <para>
+    /// With the exception of operations that are related to central configuration, Security
+    /// Hub API requests are executed only in the Amazon Web Services Region that is currently
+    /// active or in the specific Amazon Web Services Region that you specify in your request.
+    /// Any configuration or settings change that results from the operation is applied only
+    /// to that Region. To make the same change in other Regions, call the same API operation
+    /// in each Region in which you want to apply the change. When you use central configuration,
+    /// API requests for enabling Security Hub, standards, and controls are executed in the
+    /// home Region and all linked Regions. For a list of central configuration operations,
+    /// see the <a href="https://docs.aws.amazon.com/securityhub/latest/userguide/central-configuration-intro.html#central-configuration-concepts">Central
+    /// configuration terms and concepts</a> section of the <i>Security Hub User Guide</i>.
+    /// </para>
+    ///  
+    /// <para>
+    /// The following throttling limits apply to Security Hub API operations.
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>BatchEnableStandards</code> - <code>RateLimit</code> of 1 request per second.
-    /// <code>BurstLimit</code> of 1 request per second.
+    ///  <c>BatchEnableStandards</c> - <c>RateLimit</c> of 1 request per second. <c>BurstLimit</c>
+    /// of 1 request per second.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>GetFindings</code> - <code>RateLimit</code> of 3 requests per second. <code>BurstLimit</code>
+    ///  <c>GetFindings</c> - <c>RateLimit</c> of 3 requests per second. <c>BurstLimit</c>
     /// of 6 requests per second.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>BatchImportFindings</code> - <code>RateLimit</code> of 10 requests per second.
-    /// <code>BurstLimit</code> of 30 requests per second.
+    ///  <c>BatchImportFindings</c> - <c>RateLimit</c> of 10 requests per second. <c>BurstLimit</c>
+    /// of 30 requests per second.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>BatchUpdateFindings</code> - <code>RateLimit</code> of 10 requests per second.
-    /// <code>BurstLimit</code> of 30 requests per second.
+    ///  <c>BatchUpdateFindings</c> - <c>RateLimit</c> of 10 requests per second. <c>BurstLimit</c>
+    /// of 30 requests per second.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>UpdateStandardsControl</code> - <code>RateLimit</code> of 1 request per second.
-    /// <code>BurstLimit</code> of 5 requests per second.
+    ///  <c>UpdateStandardsControl</c> - <c>RateLimit</c> of 1 request per second. <c>BurstLimit</c>
+    /// of 5 requests per second.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// All other operations - <code>RateLimit</code> of 10 requests per second. <code>BurstLimit</code>
+    /// All other operations - <c>RateLimit</c> of 10 requests per second. <c>BurstLimit</c>
     /// of 30 requests per second.
     /// </para>
     ///  </li> </ul>
@@ -107,9 +153,18 @@ namespace Amazon.SecurityHub
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// We recommend using Organizations instead of Security Hub invitations to manage your
+        /// member accounts. For information, see <a href="https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-accounts-orgs.html">Managing
+        /// Security Hub administrator and member accounts with Organizations</a> in the <i>Security
+        /// Hub User Guide</i>.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Accepts the invitation to be a member account and be monitored by the Security Hub
         /// administrator account that the invitation was sent from.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// This operation is only used by member accounts that are not added through Organizations.
@@ -154,15 +209,15 @@ namespace Amazon.SecurityHub
 
 
         /// <summary>
-        /// This method is deprecated. Instead, use <code>AcceptAdministratorInvitation</code>.
+        /// This method is deprecated. Instead, use <c>AcceptAdministratorInvitation</c>.
         /// 
         ///  
         /// <para>
-        /// The Security Hub console continues to use <code>AcceptInvitation</code>. It will eventually
-        /// change to use <code>AcceptAdministratorInvitation</code>. Any IAM policies that specifically
-        /// control access to this function must continue to use <code>AcceptInvitation</code>.
-        /// You should also add <code>AcceptAdministratorInvitation</code> to your policies to
-        /// ensure that the correct permissions are in place after the console begins to use <code>AcceptAdministratorInvitation</code>.
+        /// The Security Hub console continues to use <c>AcceptInvitation</c>. It will eventually
+        /// change to use <c>AcceptAdministratorInvitation</c>. Any IAM policies that specifically
+        /// control access to this function must continue to use <c>AcceptInvitation</c>. You
+        /// should also add <c>AcceptAdministratorInvitation</c> to your policies to ensure that
+        /// the correct permissions are in place after the console begins to use <c>AcceptAdministratorInvitation</c>.
         /// </para>
         ///  
         /// <para>
@@ -250,7 +305,7 @@ namespace Amazon.SecurityHub
 
 
         /// <summary>
-        /// Disables the standards specified by the provided <code>StandardsSubscriptionArns</code>.
+        /// Disables the standards specified by the provided <c>StandardsSubscriptionArns</c>.
         /// 
         ///  
         /// <para>
@@ -264,6 +319,9 @@ namespace Amazon.SecurityHub
         /// </param>
         /// 
         /// <returns>The response from the BatchDisableStandards service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
         /// <exception cref="Amazon.SecurityHub.Model.InternalException">
         /// Internal server error.
         /// </exception>
@@ -289,8 +347,8 @@ namespace Amazon.SecurityHub
 
 
         /// <summary>
-        /// Enables the standards specified by the provided <code>StandardsArn</code>. To obtain
-        /// the ARN for a standard, use the <code>DescribeStandards</code> operation.
+        /// Enables the standards specified by the provided <c>StandardsArn</c>. To obtain the
+        /// ARN for a standard, use the <c>DescribeStandards</c> operation.
         /// 
         ///  
         /// <para>
@@ -304,6 +362,9 @@ namespace Amazon.SecurityHub
         /// </param>
         /// 
         /// <returns>The response from the BatchEnableStandards service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
         /// <exception cref="Amazon.SecurityHub.Model.InternalException">
         /// Internal server error.
         /// </exception>
@@ -361,6 +422,48 @@ namespace Amazon.SecurityHub
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchGetAutomationRules">REST API Reference for BatchGetAutomationRules Operation</seealso>
         Task<BatchGetAutomationRulesResponse> BatchGetAutomationRulesAsync(BatchGetAutomationRulesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  BatchGetConfigurationPolicyAssociations
+
+
+
+        /// <summary>
+        /// Returns associations between an Security Hub configuration and a batch of target
+        /// accounts, organizational units, or the root. Only the Security Hub delegated administrator
+        /// can invoke this operation from the home Region. A configuration can refer to a configuration
+        /// policy or to a self-managed configuration.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the BatchGetConfigurationPolicyAssociations service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the BatchGetConfigurationPolicyAssociations service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InternalException">
+        /// Internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidAccessException">
+        /// The account doesn't have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidInputException">
+        /// The request was rejected because you supplied an invalid or out-of-range value for
+        /// an input parameter.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.LimitExceededException">
+        /// The request was rejected because it attempted to create resources beyond the current
+        /// Amazon Web Services account or throttling limits. The error code describes the limit
+        /// exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.ResourceNotFoundException">
+        /// The request was rejected because we can't find the specified resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchGetConfigurationPolicyAssociations">REST API Reference for BatchGetConfigurationPolicyAssociations Operation</seealso>
+        Task<BatchGetConfigurationPolicyAssociationsResponse> BatchGetConfigurationPolicyAssociationsAsync(BatchGetConfigurationPolicyAssociationsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 
@@ -442,7 +545,7 @@ namespace Amazon.SecurityHub
         /// 
         ///  
         /// <para>
-        ///  <code>BatchImportFindings</code> must be called by one of the following:
+        ///  <c>BatchImportFindings</c> must be called by one of the following:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -450,15 +553,15 @@ namespace Amazon.SecurityHub
         /// the <a href="https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-custom-providers.html#securityhub-custom-providers-bfi-reqs">default
         /// product ARN</a> or are a partner sending findings from within a customer's Amazon
         /// Web Services account. In these cases, the identifier of the account that you are calling
-        /// <code>BatchImportFindings</code> from needs to be the same as the <code>AwsAccountId</code>
-        /// attribute for the finding.
+        /// <c>BatchImportFindings</c> from needs to be the same as the <c>AwsAccountId</c> attribute
+        /// for the finding.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// An Amazon Web Services account that Security Hub has allow-listed for an official
-        /// partner integration. In this case, you can call <code>BatchImportFindings</code> from
-        /// the allow-listed account and send findings from different customer accounts in the
-        /// same batch.
+        /// partner integration. In this case, you can call <c>BatchImportFindings</c> from the
+        /// allow-listed account and send findings from different customer accounts in the same
+        /// batch.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -467,55 +570,55 @@ namespace Amazon.SecurityHub
         /// </para>
         ///  
         /// <para>
-        /// After a finding is created, <code>BatchImportFindings</code> cannot be used to update
-        /// the following finding fields and objects, which Security Hub customers use to manage
-        /// their investigation workflow.
+        /// After a finding is created, <c>BatchImportFindings</c> cannot be used to update the
+        /// following finding fields and objects, which Security Hub customers use to manage their
+        /// investigation workflow.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Note</code> 
+        ///  <c>Note</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UserDefinedFields</code> 
+        ///  <c>UserDefinedFields</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>VerificationState</code> 
+        ///  <c>VerificationState</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Workflow</code> 
+        ///  <c>Workflow</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Finding providers also should not use <code>BatchImportFindings</code> to update the
-        /// following attributes.
+        /// Finding providers also should not use <c>BatchImportFindings</c> to update the following
+        /// attributes.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Confidence</code> 
+        ///  <c>Confidence</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Criticality</code> 
+        ///  <c>Criticality</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RelatedFindings</code> 
+        ///  <c>RelatedFindings</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Severity</code> 
+        ///  <c>Severity</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Types</code> 
+        ///  <c>Types</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Instead, finding providers use <code>FindingProviderFields</code> to provide values
-        /// for these attributes.
+        /// Instead, finding providers use <c>FindingProviderFields</c> to provide values for
+        /// these attributes.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the BatchImportFindings service method.</param>
@@ -593,49 +696,49 @@ namespace Amazon.SecurityHub
         /// 
         ///  
         /// <para>
-        /// Updates from <code>BatchUpdateFindings</code> do not affect the value of <code>UpdatedAt</code>
+        /// Updates from <c>BatchUpdateFindings</c> don't affect the value of <c>UpdatedAt</c>
         /// for a finding.
         /// </para>
         ///  
         /// <para>
-        /// Administrator and member accounts can use <code>BatchUpdateFindings</code> to update
-        /// the following finding fields and objects.
+        /// Administrator and member accounts can use <c>BatchUpdateFindings</c> to update the
+        /// following finding fields and objects.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Confidence</code> 
+        ///  <c>Confidence</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Criticality</code> 
+        ///  <c>Criticality</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Note</code> 
+        ///  <c>Note</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RelatedFindings</code> 
+        ///  <c>RelatedFindings</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Severity</code> 
+        ///  <c>Severity</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Types</code> 
+        ///  <c>Types</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UserDefinedFields</code> 
+        ///  <c>UserDefinedFields</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>VerificationState</code> 
+        ///  <c>VerificationState</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Workflow</code> 
+        ///  <c>Workflow</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -685,6 +788,9 @@ namespace Amazon.SecurityHub
         /// </param>
         /// 
         /// <returns>The response from the BatchUpdateStandardsControlAssociations service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
         /// <exception cref="Amazon.SecurityHub.Model.InternalException">
         /// Internal server error.
         /// </exception>
@@ -783,17 +889,65 @@ namespace Amazon.SecurityHub
 
         #endregion
                 
+        #region  CreateConfigurationPolicy
+
+
+
+        /// <summary>
+        /// Creates a configuration policy with the defined configuration. Only the Security
+        /// Hub delegated administrator can invoke this operation from the home Region.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateConfigurationPolicy service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateConfigurationPolicy service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InternalException">
+        /// Internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidAccessException">
+        /// The account doesn't have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidInputException">
+        /// The request was rejected because you supplied an invalid or out-of-range value for
+        /// an input parameter.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.LimitExceededException">
+        /// The request was rejected because it attempted to create resources beyond the current
+        /// Amazon Web Services account or throttling limits. The error code describes the limit
+        /// exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.ResourceConflictException">
+        /// The resource specified in the request conflicts with an existing resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/CreateConfigurationPolicy">REST API Reference for CreateConfigurationPolicy Operation</seealso>
+        Task<CreateConfigurationPolicyResponse> CreateConfigurationPolicyAsync(CreateConfigurationPolicyRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  CreateFindingAggregator
 
 
 
         /// <summary>
-        /// Used to enable finding aggregation. Must be called from the aggregation Region.
-        /// 
+        /// <note> 
+        /// <para>
+        /// The <i>aggregation Region</i> is now called the <i>home Region</i>.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// Used to enable cross-Region aggregation. This operation can be invoked from the home
+        /// Region only.
+        /// </para>
         ///  
         /// <para>
-        /// For more details about cross-Region replication, see <a href="https://docs.aws.amazon.com/securityhub/latest/userguide/finding-aggregation.html">Configuring
-        /// finding aggregation</a> in the <i>Security Hub User Guide</i>. 
+        /// For information about how cross-Region aggregation works, see <a href="https://docs.aws.amazon.com/securityhub/latest/userguide/finding-aggregation.html">Understanding
+        /// cross-Region aggregation in Security Hub</a> in the <i>Security Hub User Guide</i>.
+        /// 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateFindingAggregator service method.</param>
@@ -835,7 +989,7 @@ namespace Amazon.SecurityHub
         /// 
         ///  
         /// <para>
-        /// To group the related findings in the insight, use the <code>GroupByAttribute</code>.
+        /// To group the related findings in the insight, use the <c>GroupByAttribute</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateInsight service method.</param>
@@ -879,13 +1033,12 @@ namespace Amazon.SecurityHub
         /// 
         ///  
         /// <para>
-        ///  <code>CreateMembers</code> is always used to add accounts that are not organization
-        /// members.
+        ///  <c>CreateMembers</c> is always used to add accounts that are not organization members.
         /// </para>
         ///  
         /// <para>
-        /// For accounts that are managed using Organizations, <code>CreateMembers</code> is only
-        /// used in the following cases:
+        /// For accounts that are managed using Organizations, <c>CreateMembers</c> is only used
+        /// in the following cases:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -898,18 +1051,18 @@ namespace Amazon.SecurityHub
         ///  </li> </ul> 
         /// <para>
         /// This action can only be used by an account that has Security Hub enabled. To enable
-        /// Security Hub, you can use the <code>EnableSecurityHub</code> operation.
+        /// Security Hub, you can use the <c>EnableSecurityHub</c> operation.
         /// </para>
         ///  
         /// <para>
         /// For accounts that are not organization members, you create the account association
         /// and then send an invitation to the member account. To send the invitation, you use
-        /// the <code>InviteMembers</code> operation. If the account owner accepts the invitation,
-        /// the account becomes a member account in Security Hub.
+        /// the <c>InviteMembers</c> operation. If the account owner accepts the invitation, the
+        /// account becomes a member account in Security Hub.
         /// </para>
         ///  
         /// <para>
-        /// Accounts that are managed using Organizations do not receive an invitation. They automatically
+        /// Accounts that are managed using Organizations don't receive an invitation. They automatically
         /// become a member account in Security Hub.
         /// </para>
         ///  <ul> <li> 
@@ -933,8 +1086,8 @@ namespace Amazon.SecurityHub
         /// </para>
         ///  
         /// <para>
-        /// To remove the association between the administrator and member accounts, use the <code>DisassociateFromMasterAccount</code>
-        /// or <code>DisassociateMembers</code> operation.
+        /// To remove the association between the administrator and member accounts, use the <c>DisassociateFromMasterAccount</c>
+        /// or <c>DisassociateMembers</c> operation.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateMembers service method.</param>
@@ -943,6 +1096,9 @@ namespace Amazon.SecurityHub
         /// </param>
         /// 
         /// <returns>The response from the CreateMembers service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
         /// <exception cref="Amazon.SecurityHub.Model.InternalException">
         /// Internal server error.
         /// </exception>
@@ -971,8 +1127,17 @@ namespace Amazon.SecurityHub
 
 
         /// <summary>
-        /// Declines invitations to become a member account.
-        /// 
+        /// <note> 
+        /// <para>
+        /// We recommend using Organizations instead of Security Hub invitations to manage your
+        /// member accounts. For information, see <a href="https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-accounts-orgs.html">Managing
+        /// Security Hub administrator and member accounts with Organizations</a> in the <i>Security
+        /// Hub User Guide</i>.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// Declines invitations to become a Security Hub member account.
+        /// </para>
         ///  
         /// <para>
         /// A prospective member account uses this operation to decline an invitation to become
@@ -980,8 +1145,8 @@ namespace Amazon.SecurityHub
         /// </para>
         ///  
         /// <para>
-        /// This operation is only called by member accounts that aren't part of an organization.
-        /// Organization accounts don't receive invitations.
+        /// Only member accounts that aren't part of an Amazon Web Services organization should
+        /// use this operation. Organization accounts don't receive invitations.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeclineInvitations service method.</param>
@@ -1045,19 +1210,71 @@ namespace Amazon.SecurityHub
 
         #endregion
                 
+        #region  DeleteConfigurationPolicy
+
+
+
+        /// <summary>
+        /// Deletes a configuration policy. Only the Security Hub delegated administrator can
+        /// invoke this operation from the home Region. For the deletion to succeed, you must
+        /// first disassociate a configuration policy from target accounts, organizational units,
+        /// or the root by invoking the <c>StartConfigurationPolicyDisassociation</c> operation.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteConfigurationPolicy service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteConfigurationPolicy service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InternalException">
+        /// Internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidAccessException">
+        /// The account doesn't have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidInputException">
+        /// The request was rejected because you supplied an invalid or out-of-range value for
+        /// an input parameter.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.LimitExceededException">
+        /// The request was rejected because it attempted to create resources beyond the current
+        /// Amazon Web Services account or throttling limits. The error code describes the limit
+        /// exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.ResourceConflictException">
+        /// The resource specified in the request conflicts with an existing resource.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.ResourceNotFoundException">
+        /// The request was rejected because we can't find the specified resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DeleteConfigurationPolicy">REST API Reference for DeleteConfigurationPolicy Operation</seealso>
+        Task<DeleteConfigurationPolicyResponse> DeleteConfigurationPolicyAsync(DeleteConfigurationPolicyRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  DeleteFindingAggregator
 
 
 
         /// <summary>
-        /// Deletes a finding aggregator. When you delete the finding aggregator, you stop finding
-        /// aggregation.
-        /// 
+        /// <note> 
+        /// <para>
+        /// The <i>aggregation Region</i> is now called the <i>home Region</i>.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// Deletes a finding aggregator. When you delete the finding aggregator, you stop cross-Region
+        /// aggregation. Finding replication stops occurring from the linked Regions to the home
+        /// Region.
+        /// </para>
         ///  
         /// <para>
-        /// When you stop finding aggregation, findings that were already aggregated to the aggregation
-        /// Region are still visible from the aggregation Region. New findings and finding updates
-        /// are not aggregated. 
+        /// When you stop cross-Region aggregation, findings that were already replicated and
+        /// sent to the home Region are still visible from the home Region. However, new findings
+        /// and finding updates are no longer replicated and sent to the home Region. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteFindingAggregator service method.</param>
@@ -1097,7 +1314,7 @@ namespace Amazon.SecurityHub
 
 
         /// <summary>
-        /// Deletes the insight specified by the <code>InsightArn</code>.
+        /// Deletes the insight specified by the <c>InsightArn</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteInsight service method.</param>
         /// <param name="cancellationToken">
@@ -1133,18 +1350,27 @@ namespace Amazon.SecurityHub
 
 
         /// <summary>
-        /// Deletes invitations received by the Amazon Web Services account to become a member
-        /// account.
-        /// 
-        ///  
+        /// <note> 
         /// <para>
-        /// A Security Hub administrator account can use this operation to delete invitations
-        /// sent to one or more member accounts.
+        /// We recommend using Organizations instead of Security Hub invitations to manage your
+        /// member accounts. For information, see <a href="https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-accounts-orgs.html">Managing
+        /// Security Hub administrator and member accounts with Organizations</a> in the <i>Security
+        /// Hub User Guide</i>.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// Deletes invitations to become a Security Hub member account.
         /// </para>
         ///  
         /// <para>
-        /// This operation is only used to delete invitations that are sent to member accounts
-        /// that aren't part of an organization. Organization accounts don't receive invitations.
+        /// A Security Hub administrator account can use this operation to delete invitations
+        /// sent to one or more prospective member accounts.
+        /// </para>
+        ///  
+        /// <para>
+        /// This operation is only used to delete invitations that are sent to prospective member
+        /// accounts that aren't part of an Amazon Web Services organization. Organization accounts
+        /// don't receive invitations.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteInvitations service method.</param>
@@ -1254,7 +1480,7 @@ namespace Amazon.SecurityHub
 
 
         /// <summary>
-        /// Returns details about the Hub resource in your account, including the <code>HubArn</code>
+        /// Returns details about the Hub resource in your account, including the <c>HubArn</c>
         /// and the time when you enabled Security Hub.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeHub service method.</param>
@@ -1291,8 +1517,8 @@ namespace Amazon.SecurityHub
 
 
         /// <summary>
-        /// Returns information about the Organizations configuration for Security Hub. Can only
-        /// be called from a Security Hub administrator account.
+        /// Returns information about the way your organization is configured in Security Hub.
+        /// Only the Security Hub administrator account can invoke this operation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeOrganizationConfiguration service method.</param>
         /// <param name="cancellationToken">
@@ -1334,7 +1560,7 @@ namespace Amazon.SecurityHub
         /// </para>
         ///  
         /// <para>
-        /// If you do not provide an integration ARN, then the results include all of the available
+        /// If you don't provide an integration ARN, then the results include all of the available
         /// product integrations. 
         /// </para>
         /// </summary>
@@ -1486,6 +1712,9 @@ namespace Amazon.SecurityHub
         /// </param>
         /// 
         /// <returns>The response from the DisableOrganizationAdminAccount service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
         /// <exception cref="Amazon.SecurityHub.Model.InternalException">
         /// Internal server error.
         /// </exception>
@@ -1538,6 +1767,9 @@ namespace Amazon.SecurityHub
         /// </param>
         /// 
         /// <returns>The response from the DisableSecurityHub service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
         /// <exception cref="Amazon.SecurityHub.Model.InternalException">
         /// Internal server error.
         /// </exception>
@@ -1605,16 +1837,15 @@ namespace Amazon.SecurityHub
 
 
         /// <summary>
-        /// This method is deprecated. Instead, use <code>DisassociateFromAdministratorAccount</code>.
+        /// This method is deprecated. Instead, use <c>DisassociateFromAdministratorAccount</c>.
         /// 
         ///  
         /// <para>
-        /// The Security Hub console continues to use <code>DisassociateFromMasterAccount</code>.
-        /// It will eventually change to use <code>DisassociateFromAdministratorAccount</code>.
-        /// Any IAM policies that specifically control access to this function must continue to
-        /// use <code>DisassociateFromMasterAccount</code>. You should also add <code>DisassociateFromAdministratorAccount</code>
-        /// to your policies to ensure that the correct permissions are in place after the console
-        /// begins to use <code>DisassociateFromAdministratorAccount</code>.
+        /// The Security Hub console continues to use <c>DisassociateFromMasterAccount</c>. It
+        /// will eventually change to use <c>DisassociateFromAdministratorAccount</c>. Any IAM
+        /// policies that specifically control access to this function must continue to use <c>DisassociateFromMasterAccount</c>.
+        /// You should also add <c>DisassociateFromAdministratorAccount</c> to your policies to
+        /// ensure that the correct permissions are in place after the console begins to use <c>DisassociateFromAdministratorAccount</c>.
         /// </para>
         ///  
         /// <para>
@@ -1676,6 +1907,9 @@ namespace Amazon.SecurityHub
         /// </param>
         /// 
         /// <returns>The response from the DisassociateMembers service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
         /// <exception cref="Amazon.SecurityHub.Model.InternalException">
         /// Internal server error.
         /// </exception>
@@ -1756,6 +1990,9 @@ namespace Amazon.SecurityHub
         /// </param>
         /// 
         /// <returns>The response from the EnableOrganizationAdminAccount service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
         /// <exception cref="Amazon.SecurityHub.Model.InternalException">
         /// Internal server error.
         /// </exception>
@@ -1791,8 +2028,8 @@ namespace Amazon.SecurityHub
         /// </para>
         ///  
         /// <para>
-        /// When you use the <code>EnableSecurityHub</code> operation to enable Security Hub,
-        /// you also automatically enable the following standards:
+        /// When you use the <c>EnableSecurityHub</c> operation to enable Security Hub, you also
+        /// automatically enable the following standards:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -1808,13 +2045,13 @@ namespace Amazon.SecurityHub
         /// </para>
         ///  
         /// <para>
-        /// To opt out of automatically enabled standards, set <code>EnableDefaultStandards</code>
-        /// to <code>false</code>.
+        /// To opt out of automatically enabled standards, set <c>EnableDefaultStandards</c> to
+        /// <c>false</c>.
         /// </para>
         ///  
         /// <para>
-        /// After you enable Security Hub, to enable a standard, use the <code>BatchEnableStandards</code>
-        /// operation. To disable a standard, use the <code>BatchDisableStandards</code> operation.
+        /// After you enable Security Hub, to enable a standard, use the <c>BatchEnableStandards</c>
+        /// operation. To disable a standard, use the <c>BatchDisableStandards</c> operation.
         /// </para>
         ///  
         /// <para>
@@ -1893,6 +2130,88 @@ namespace Amazon.SecurityHub
 
         #endregion
                 
+        #region  GetConfigurationPolicy
+
+
+
+        /// <summary>
+        /// Provides information about a configuration policy. Only the Security Hub delegated
+        /// administrator can invoke this operation from the home Region.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetConfigurationPolicy service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetConfigurationPolicy service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InternalException">
+        /// Internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidAccessException">
+        /// The account doesn't have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidInputException">
+        /// The request was rejected because you supplied an invalid or out-of-range value for
+        /// an input parameter.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.LimitExceededException">
+        /// The request was rejected because it attempted to create resources beyond the current
+        /// Amazon Web Services account or throttling limits. The error code describes the limit
+        /// exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.ResourceNotFoundException">
+        /// The request was rejected because we can't find the specified resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/GetConfigurationPolicy">REST API Reference for GetConfigurationPolicy Operation</seealso>
+        Task<GetConfigurationPolicyResponse> GetConfigurationPolicyAsync(GetConfigurationPolicyRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  GetConfigurationPolicyAssociation
+
+
+
+        /// <summary>
+        /// Returns the association between a configuration and a target account, organizational
+        /// unit, or the root. The configuration can be a configuration policy or self-managed
+        /// behavior. Only the Security Hub delegated administrator can invoke this operation
+        /// from the home Region.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetConfigurationPolicyAssociation service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetConfigurationPolicyAssociation service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InternalException">
+        /// Internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidAccessException">
+        /// The account doesn't have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidInputException">
+        /// The request was rejected because you supplied an invalid or out-of-range value for
+        /// an input parameter.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.LimitExceededException">
+        /// The request was rejected because it attempted to create resources beyond the current
+        /// Amazon Web Services account or throttling limits. The error code describes the limit
+        /// exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.ResourceNotFoundException">
+        /// The request was rejected because we can't find the specified resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/GetConfigurationPolicyAssociation">REST API Reference for GetConfigurationPolicyAssociation Operation</seealso>
+        Task<GetConfigurationPolicyAssociationResponse> GetConfigurationPolicyAssociationAsync(GetConfigurationPolicyAssociationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  GetEnabledStandards
 
 
@@ -1931,7 +2250,16 @@ namespace Amazon.SecurityHub
 
 
         /// <summary>
-        /// Returns the current finding aggregation configuration.
+        /// <note> 
+        /// <para>
+        /// The <i>aggregation Region</i> is now called the <i>home Region</i>.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// Returns the current configuration in the calling account for cross-Region aggregation.
+        /// A finding aggregator is a resource that establishes the home Region and any linked
+        /// Regions.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetFindingAggregator service method.</param>
         /// <param name="cancellationToken">
@@ -2008,9 +2336,9 @@ namespace Amazon.SecurityHub
         /// 
         ///  
         /// <para>
-        /// If finding aggregation is enabled, then when you call <code>GetFindings</code> from
-        /// the aggregation Region, the results include all of the matching findings from both
-        /// the aggregation Region and the linked Regions.
+        /// If cross-Region aggregation is enabled, then when you call <c>GetFindings</c> from
+        /// the home Region, the results include all of the matching findings from both the home
+        /// Region and linked Regions.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetFindings service method.</param>
@@ -2116,8 +2444,18 @@ namespace Amazon.SecurityHub
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// We recommend using Organizations instead of Security Hub invitations to manage your
+        /// member accounts. For information, see <a href="https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-accounts-orgs.html">Managing
+        /// Security Hub administrator and member accounts with Organizations</a> in the <i>Security
+        /// Hub User Guide</i>.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Returns the count of all Security Hub membership invitations that were sent to the
-        /// current member account, not including the currently accepted invitation.
+        /// calling member account, not including the currently accepted invitation. 
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetInvitationsCount service method.</param>
         /// <param name="cancellationToken">
@@ -2150,15 +2488,15 @@ namespace Amazon.SecurityHub
 
 
         /// <summary>
-        /// This method is deprecated. Instead, use <code>GetAdministratorAccount</code>.
+        /// This method is deprecated. Instead, use <c>GetAdministratorAccount</c>.
         /// 
         ///  
         /// <para>
-        /// The Security Hub console continues to use <code>GetMasterAccount</code>. It will eventually
-        /// change to use <code>GetAdministratorAccount</code>. Any IAM policies that specifically
-        /// control access to this function must continue to use <code>GetMasterAccount</code>.
-        /// You should also add <code>GetAdministratorAccount</code> to your policies to ensure
-        /// that the correct permissions are in place after the console begins to use <code>GetAdministratorAccount</code>.
+        /// The Security Hub console continues to use <c>GetMasterAccount</c>. It will eventually
+        /// change to use <c>GetAdministratorAccount</c>. Any IAM policies that specifically control
+        /// access to this function must continue to use <c>GetMasterAccount</c>. You should also
+        /// add <c>GetAdministratorAccount</c> to your policies to ensure that the correct permissions
+        /// are in place after the console begins to use <c>GetAdministratorAccount</c>.
         /// </para>
         ///  
         /// <para>
@@ -2249,29 +2587,75 @@ namespace Amazon.SecurityHub
 
         #endregion
                 
+        #region  GetSecurityControlDefinition
+
+
+
+        /// <summary>
+        /// Retrieves the definition of a security control. The definition includes the control
+        /// title, description, Region availability, parameter definitions, and other details.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetSecurityControlDefinition service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetSecurityControlDefinition service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.InternalException">
+        /// Internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidAccessException">
+        /// The account doesn't have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidInputException">
+        /// The request was rejected because you supplied an invalid or out-of-range value for
+        /// an input parameter.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.LimitExceededException">
+        /// The request was rejected because it attempted to create resources beyond the current
+        /// Amazon Web Services account or throttling limits. The error code describes the limit
+        /// exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.ResourceNotFoundException">
+        /// The request was rejected because we can't find the specified resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/GetSecurityControlDefinition">REST API Reference for GetSecurityControlDefinition Operation</seealso>
+        Task<GetSecurityControlDefinitionResponse> GetSecurityControlDefinitionAsync(GetSecurityControlDefinitionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  InviteMembers
 
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// We recommend using Organizations instead of Security Hub invitations to manage your
+        /// member accounts. For information, see <a href="https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-accounts-orgs.html">Managing
+        /// Security Hub administrator and member accounts with Organizations</a> in the <i>Security
+        /// Hub User Guide</i>.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Invites other Amazon Web Services accounts to become member accounts for the Security
         /// Hub administrator account that the invitation is sent from.
-        /// 
-        ///  
-        /// <para>
-        /// This operation is only used to invite accounts that do not belong to an organization.
-        /// Organization accounts do not receive invitations.
         /// </para>
         ///  
         /// <para>
-        /// Before you can use this action to invite a member, you must first use the <code>CreateMembers</code>
+        /// This operation is only used to invite accounts that don't belong to an Amazon Web
+        /// Services organization. Organization accounts don't receive invitations.
+        /// </para>
+        ///  
+        /// <para>
+        /// Before you can use this action to invite a member, you must first use the <c>CreateMembers</c>
         /// action to create the member account in Security Hub.
         /// </para>
         ///  
         /// <para>
         /// When the account owner enables Security Hub and accepts the invitation to become a
-        /// member account, the administrator account can view the findings generated from the
-        /// member account.
+        /// member account, the administrator account can view the findings generated in the member
+        /// account.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the InviteMembers service method.</param>
@@ -2339,6 +2723,82 @@ namespace Amazon.SecurityHub
 
         #endregion
                 
+        #region  ListConfigurationPolicies
+
+
+
+        /// <summary>
+        /// Lists the configuration policies that the Security Hub delegated administrator has
+        /// created for your organization. Only the delegated administrator can invoke this operation
+        /// from the home Region.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListConfigurationPolicies service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListConfigurationPolicies service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InternalException">
+        /// Internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidAccessException">
+        /// The account doesn't have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidInputException">
+        /// The request was rejected because you supplied an invalid or out-of-range value for
+        /// an input parameter.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.LimitExceededException">
+        /// The request was rejected because it attempted to create resources beyond the current
+        /// Amazon Web Services account or throttling limits. The error code describes the limit
+        /// exceeded.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/ListConfigurationPolicies">REST API Reference for ListConfigurationPolicies Operation</seealso>
+        Task<ListConfigurationPoliciesResponse> ListConfigurationPoliciesAsync(ListConfigurationPoliciesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  ListConfigurationPolicyAssociations
+
+
+
+        /// <summary>
+        /// Provides information about the associations for your configuration policies and self-managed
+        /// behavior. Only the Security Hub delegated administrator can invoke this operation
+        /// from the home Region.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListConfigurationPolicyAssociations service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListConfigurationPolicyAssociations service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InternalException">
+        /// Internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidAccessException">
+        /// The account doesn't have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidInputException">
+        /// The request was rejected because you supplied an invalid or out-of-range value for
+        /// an input parameter.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.LimitExceededException">
+        /// The request was rejected because it attempted to create resources beyond the current
+        /// Amazon Web Services account or throttling limits. The error code describes the limit
+        /// exceeded.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/ListConfigurationPolicyAssociations">REST API Reference for ListConfigurationPolicyAssociations Operation</seealso>
+        Task<ListConfigurationPolicyAssociationsResponse> ListConfigurationPolicyAssociationsAsync(ListConfigurationPolicyAssociationsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  ListEnabledProductsForImport
 
 
@@ -2374,8 +2834,9 @@ namespace Amazon.SecurityHub
 
 
         /// <summary>
-        /// If finding aggregation is enabled, then <code>ListFindingAggregators</code> returns
-        /// the ARN of the finding aggregator. You can run this operation from any Region.
+        /// If cross-Region aggregation is enabled, then <c>ListFindingAggregators</c> returns
+        /// the Amazon Resource Name (ARN) of the finding aggregator. You can run this operation
+        /// from any Amazon Web Services Region.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListFindingAggregators service method.</param>
         /// <param name="cancellationToken">
@@ -2411,13 +2872,21 @@ namespace Amazon.SecurityHub
 
 
         /// <summary>
-        /// Lists all Security Hub membership invitations that were sent to the current Amazon
-        /// Web Services account.
-        /// 
+        /// <note> 
+        /// <para>
+        /// We recommend using Organizations instead of Security Hub invitations to manage your
+        /// member accounts. For information, see <a href="https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-accounts-orgs.html">Managing
+        /// Security Hub administrator and member accounts with Organizations</a> in the <i>Security
+        /// Hub User Guide</i>.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// Lists all Security Hub membership invitations that were sent to the calling account.
+        /// </para>
         ///  
         /// <para>
-        /// This operation is only used by accounts that are managed by invitation. Accounts that
-        /// are managed using the integration with Organizations do not receive invitations.
+        /// Only accounts that are managed by invitation can use this operation. Accounts that
+        /// are managed using the integration with Organizations don't receive invitations.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListInvitations service method.</param>
@@ -2615,6 +3084,92 @@ namespace Amazon.SecurityHub
 
         #endregion
                 
+        #region  StartConfigurationPolicyAssociation
+
+
+
+        /// <summary>
+        /// Associates a target account, organizational unit, or the root with a specified configuration.
+        /// The target can be associated with a configuration policy or self-managed behavior.
+        /// Only the Security Hub delegated administrator can invoke this operation from the home
+        /// Region.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartConfigurationPolicyAssociation service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StartConfigurationPolicyAssociation service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InternalException">
+        /// Internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidAccessException">
+        /// The account doesn't have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidInputException">
+        /// The request was rejected because you supplied an invalid or out-of-range value for
+        /// an input parameter.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.LimitExceededException">
+        /// The request was rejected because it attempted to create resources beyond the current
+        /// Amazon Web Services account or throttling limits. The error code describes the limit
+        /// exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.ResourceNotFoundException">
+        /// The request was rejected because we can't find the specified resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/StartConfigurationPolicyAssociation">REST API Reference for StartConfigurationPolicyAssociation Operation</seealso>
+        Task<StartConfigurationPolicyAssociationResponse> StartConfigurationPolicyAssociationAsync(StartConfigurationPolicyAssociationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  StartConfigurationPolicyDisassociation
+
+
+
+        /// <summary>
+        /// Disassociates a target account, organizational unit, or the root from a specified
+        /// configuration. When you disassociate a configuration from its target, the target inherits
+        /// the configuration of the closest parent. If there’s no configuration to inherit, the
+        /// target retains its settings but becomes a self-managed account. A target can be disassociated
+        /// from a configuration policy or self-managed behavior. Only the Security Hub delegated
+        /// administrator can invoke this operation from the home Region.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartConfigurationPolicyDisassociation service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StartConfigurationPolicyDisassociation service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InternalException">
+        /// Internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidAccessException">
+        /// The account doesn't have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidInputException">
+        /// The request was rejected because you supplied an invalid or out-of-range value for
+        /// an input parameter.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.LimitExceededException">
+        /// The request was rejected because it attempted to create resources beyond the current
+        /// Amazon Web Services account or throttling limits. The error code describes the limit
+        /// exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.ResourceNotFoundException">
+        /// The request was rejected because we can't find the specified resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/StartConfigurationPolicyDisassociation">REST API Reference for StartConfigurationPolicyDisassociation Operation</seealso>
+        Task<StartConfigurationPolicyDisassociationResponse> StartConfigurationPolicyDisassociationAsync(StartConfigurationPolicyDisassociationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  TagResource
 
 
@@ -2702,19 +3257,67 @@ namespace Amazon.SecurityHub
 
         #endregion
                 
+        #region  UpdateConfigurationPolicy
+
+
+
+        /// <summary>
+        /// Updates a configuration policy. Only the Security Hub delegated administrator can
+        /// invoke this operation from the home Region.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateConfigurationPolicy service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateConfigurationPolicy service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InternalException">
+        /// Internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidAccessException">
+        /// The account doesn't have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidInputException">
+        /// The request was rejected because you supplied an invalid or out-of-range value for
+        /// an input parameter.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.LimitExceededException">
+        /// The request was rejected because it attempted to create resources beyond the current
+        /// Amazon Web Services account or throttling limits. The error code describes the limit
+        /// exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.ResourceConflictException">
+        /// The resource specified in the request conflicts with an existing resource.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.ResourceNotFoundException">
+        /// The request was rejected because we can't find the specified resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/UpdateConfigurationPolicy">REST API Reference for UpdateConfigurationPolicy Operation</seealso>
+        Task<UpdateConfigurationPolicyResponse> UpdateConfigurationPolicyAsync(UpdateConfigurationPolicyRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  UpdateFindingAggregator
 
 
 
         /// <summary>
-        /// Updates the finding aggregation configuration. Used to update the Region linking mode
-        /// and the list of included or excluded Regions. You cannot use <code>UpdateFindingAggregator</code>
-        /// to change the aggregation Region.
-        /// 
+        /// <note> 
+        /// <para>
+        /// The <i>aggregation Region</i> is now called the <i>home Region</i>.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// Updates cross-Region aggregation settings. You can use this operation to update the
+        /// Region linking mode and the list of included or excluded Amazon Web Services Regions.
+        /// However, you can't use this operation to change the home Region.
+        /// </para>
         ///  
         /// <para>
-        /// You must run <code>UpdateFindingAggregator</code> from the current aggregation Region.
-        /// 
+        /// You can invoke this operation from the current home Region only. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateFindingAggregator service method.</param>
@@ -2754,14 +3357,21 @@ namespace Amazon.SecurityHub
 
 
         /// <summary>
-        /// <code>UpdateFindings</code> is deprecated. Instead of <code>UpdateFindings</code>,
-        /// use <code>BatchUpdateFindings</code>.
+        /// <c>UpdateFindings</c> is a deprecated operation. Instead of <c>UpdateFindings</c>,
+        /// use the <c>BatchUpdateFindings</c> operation.
         /// 
         ///  
         /// <para>
-        /// Updates the <code>Note</code> and <code>RecordState</code> of the Security Hub-aggregated
-        /// findings that the filter attributes specify. Any member account that can view the
-        /// finding also sees the update to the finding.
+        /// The <c>UpdateFindings</c> operation updates the <c>Note</c> and <c>RecordState</c>
+        /// of the Security Hub aggregated findings that the filter attributes specify. Any member
+        /// account that can view the finding can also see the update to the finding.
+        /// </para>
+        ///  
+        /// <para>
+        /// Finding updates made with <c>UpdateFindings</c> aren't persisted if the same finding
+        /// is later updated by the finding provider through the <c>BatchImportFindings</c> operation.
+        /// In addition, Security Hub doesn't record updates made with <c>UpdateFindings</c> in
+        /// the finding history.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateFindings service method.</param>
@@ -2834,8 +3444,8 @@ namespace Amazon.SecurityHub
 
 
         /// <summary>
-        /// Used to update the configuration related to Organizations. Can only be called from
-        /// a Security Hub administrator account.
+        /// Updates the configuration of your organization in Security Hub. Only the Security
+        /// Hub administrator account can invoke this operation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateOrganizationConfiguration service method.</param>
         /// <param name="cancellationToken">
@@ -2843,6 +3453,9 @@ namespace Amazon.SecurityHub
         /// </param>
         /// 
         /// <returns>The response from the UpdateOrganizationConfiguration service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
         /// <exception cref="Amazon.SecurityHub.Model.InternalException">
         /// Internal server error.
         /// </exception>
@@ -2858,8 +3471,58 @@ namespace Amazon.SecurityHub
         /// Amazon Web Services account or throttling limits. The error code describes the limit
         /// exceeded.
         /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.ResourceConflictException">
+        /// The resource specified in the request conflicts with an existing resource.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.ResourceNotFoundException">
+        /// The request was rejected because we can't find the specified resource.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/UpdateOrganizationConfiguration">REST API Reference for UpdateOrganizationConfiguration Operation</seealso>
         Task<UpdateOrganizationConfigurationResponse> UpdateOrganizationConfigurationAsync(UpdateOrganizationConfigurationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  UpdateSecurityControl
+
+
+
+        /// <summary>
+        /// Updates the properties of a security control.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateSecurityControl service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateSecurityControl service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InternalException">
+        /// Internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidAccessException">
+        /// The account doesn't have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.InvalidInputException">
+        /// The request was rejected because you supplied an invalid or out-of-range value for
+        /// an input parameter.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.LimitExceededException">
+        /// The request was rejected because it attempted to create resources beyond the current
+        /// Amazon Web Services account or throttling limits. The error code describes the limit
+        /// exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.ResourceInUseException">
+        /// The request was rejected because it conflicts with the resource's availability. For
+        /// example, you tried to update a security control that's currently in the <c>UPDATING</c>
+        /// state.
+        /// </exception>
+        /// <exception cref="Amazon.SecurityHub.Model.ResourceNotFoundException">
+        /// The request was rejected because we can't find the specified resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/UpdateSecurityControl">REST API Reference for UpdateSecurityControl Operation</seealso>
+        Task<UpdateSecurityControlResponse> UpdateSecurityControlAsync(UpdateSecurityControlRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 
@@ -2876,6 +3539,9 @@ namespace Amazon.SecurityHub
         /// </param>
         /// 
         /// <returns>The response from the UpdateSecurityHubConfiguration service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
         /// <exception cref="Amazon.SecurityHub.Model.InternalException">
         /// Internal server error.
         /// </exception>
@@ -2912,6 +3578,9 @@ namespace Amazon.SecurityHub
         /// </param>
         /// 
         /// <returns>The response from the UpdateStandardsControl service method, as returned by SecurityHub.</returns>
+        /// <exception cref="Amazon.SecurityHub.Model.AccessDeniedException">
+        /// You don't have permission to perform the action specified in the request.
+        /// </exception>
         /// <exception cref="Amazon.SecurityHub.Model.InternalException">
         /// Internal server error.
         /// </exception>

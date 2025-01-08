@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.MediaTailor.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.MediaTailor
 {
     /// <summary>
-    /// Interface for accessing MediaTailor
+    /// <para>Interface for accessing MediaTailor</para>
     ///
     /// Use the AWS Elemental MediaTailor SDKs and CLI to configure scalable ad insertion
     /// and linear channels. With MediaTailor, you can assemble existing content into a linear
@@ -415,7 +416,7 @@ namespace Amazon.MediaTailor
 
 
         /// <summary>
-        /// Deletes a prefetch schedule for a specific playback configuration. If you call <code>DeletePrefetchSchedule</code>
+        /// Deletes a prefetch schedule for a specific playback configuration. If you call <c>DeletePrefetchSchedule</c>
         /// on an expired prefetch schedule, MediaTailor returns an HTTP 404 status code. For
         /// more information about ad prefetching, see <a href="https://docs.aws.amazon.com/mediatailor/latest/ug/prefetching-ads.html">Using
         /// ad prefetching</a> in the <i>MediaTailor User Guide</i>.
@@ -429,7 +430,7 @@ namespace Amazon.MediaTailor
 
 
         /// <summary>
-        /// Deletes a prefetch schedule for a specific playback configuration. If you call <code>DeletePrefetchSchedule</code>
+        /// Deletes a prefetch schedule for a specific playback configuration. If you call <c>DeletePrefetchSchedule</c>
         /// on an expired prefetch schedule, MediaTailor returns an HTTP 404 status code. For
         /// more information about ad prefetching, see <a href="https://docs.aws.amazon.com/mediatailor/latest/ug/prefetching-ads.html">Using
         /// ad prefetching</a> in the <i>MediaTailor User Guide</i>.

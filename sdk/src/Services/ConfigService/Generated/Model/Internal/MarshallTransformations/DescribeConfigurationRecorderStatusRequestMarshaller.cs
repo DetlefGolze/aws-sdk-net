@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ConfigService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,8 +66,15 @@ namespace Amazon.ConfigService.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetArn())
+                {
+                    context.Writer.WritePropertyName("Arn");
+                    context.Writer.Write(publicRequest.Arn);
+                }
+
                 if(publicRequest.IsSetConfigurationRecorderNames())
                 {
                     context.Writer.WritePropertyName("ConfigurationRecorderNames");
@@ -76,6 +84,12 @@ namespace Amazon.ConfigService.Model.Internal.MarshallTransformations
                             context.Writer.Write(publicRequestConfigurationRecorderNamesListValue);
                     }
                     context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetServicePrincipal())
+                {
+                    context.Writer.WritePropertyName("ServicePrincipal");
+                    context.Writer.Write(publicRequest.ServicePrincipal);
                 }
 
                 writer.WriteObjectEnd();

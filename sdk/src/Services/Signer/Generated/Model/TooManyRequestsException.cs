@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Signer.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Signer.Model
     /// 
     ///  
     /// <para>
-    /// This error supersedes the error <code>ThrottlingException</code>.
+    /// This error supersedes the error <c>ThrottlingException</c>.
     /// </para>
     /// </summary>
     #if !NETSTANDARD

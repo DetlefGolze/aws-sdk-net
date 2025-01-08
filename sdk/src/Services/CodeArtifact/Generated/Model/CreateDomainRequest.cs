@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeArtifact.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.CodeArtifact.Model
     {
         private string _domain;
         private string _encryptionKey;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Domain. 
@@ -76,9 +77,9 @@ namespace Amazon.CodeArtifact.Model
         /// <para>
         ///  The encryption key for the domain. This is used to encrypt content stored in a domain.
         /// An encryption key can be a key ID, a key Amazon Resource Name (ARN), a key alias,
-        /// or a key alias ARN. To specify an <code>encryptionKey</code>, your IAM role must have
-        /// <code>kms:DescribeKey</code> and <code>kms:CreateGrant</code> permissions on the encryption
-        /// key that is used. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestSyntax">DescribeKey</a>
+        /// or a key alias ARN. To specify an <c>encryptionKey</c>, your IAM role must have <c>kms:DescribeKey</c>
+        /// and <c>kms:CreateGrant</c> permissions on the encryption key that is used. For more
+        /// information, see <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestSyntax">DescribeKey</a>
         /// in the <i>Key Management Service API Reference</i> and <a href="https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html">Key
         /// Management Service API Permissions Reference</a> in the <i>Key Management Service
         /// Developer Guide</i>. 
@@ -121,7 +122,7 @@ namespace Amazon.CodeArtifact.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

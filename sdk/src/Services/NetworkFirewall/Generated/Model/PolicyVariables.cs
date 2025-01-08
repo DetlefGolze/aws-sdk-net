@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.NetworkFirewall.Model
     /// </summary>
     public partial class PolicyVariables
     {
-        private Dictionary<string, IPSet> _ruleVariables = new Dictionary<string, IPSet>();
+        private Dictionary<string, IPSet> _ruleVariables = AWSConfigs.InitializeCollections ? new Dictionary<string, IPSet>() : null;
 
         /// <summary>
         /// Gets and sets the property RuleVariables. 
         /// <para>
-        /// The IPv4 or IPv6 addresses in CIDR notation to use for the Suricata <code>HOME_NET</code>
+        /// The IPv4 or IPv6 addresses in CIDR notation to use for the Suricata <c>HOME_NET</c>
         /// variable. If your firewall uses an inspection VPC, you might want to override the
-        /// <code>HOME_NET</code> variable with the CIDRs of your home networks. If you don't
-        /// override <code>HOME_NET</code> with your own CIDRs, Network Firewall by default uses
-        /// the CIDR of your inspection VPC.
+        /// <c>HOME_NET</c> variable with the CIDRs of your home networks. If you don't override
+        /// <c>HOME_NET</c> with your own CIDRs, Network Firewall by default uses the CIDR of
+        /// your inspection VPC.
         /// </para>
         /// </summary>
         public Dictionary<string, IPSet> RuleVariables
@@ -55,7 +56,7 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if RuleVariables property is set
         internal bool IsSetRuleVariables()
         {
-            return this._ruleVariables != null && this._ruleVariables.Count > 0; 
+            return this._ruleVariables != null && (this._ruleVariables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

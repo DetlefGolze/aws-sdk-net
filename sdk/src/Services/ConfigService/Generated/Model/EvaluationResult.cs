@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -69,10 +70,9 @@ namespace Amazon.ConfigService.Model
         /// </para>
         ///  
         /// <para>
-        /// For the <code>EvaluationResult</code> data type, Config supports only the <code>COMPLIANT</code>,
-        /// <code>NON_COMPLIANT</code>, and <code>NOT_APPLICABLE</code> values. Config does not
-        /// support the <code>INSUFFICIENT_DATA</code> value for the <code>EvaluationResult</code>
-        /// data type.
+        /// For the <c>EvaluationResult</c> data type, Config supports only the <c>COMPLIANT</c>,
+        /// <c>NON_COMPLIANT</c>, and <c>NOT_APPLICABLE</c> values. Config does not support the
+        /// <c>INSUFFICIENT_DATA</c> value for the <c>EvaluationResult</c> data type.
         /// </para>
         /// </summary>
         public ComplianceType ComplianceType

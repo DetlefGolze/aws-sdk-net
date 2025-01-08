@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -43,14 +44,14 @@ namespace Amazon.RDS.Model
         private string _kmsKeyId;
         private string _manifest;
         private string _sourceCustomDbEngineVersionIdentifier;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private bool? _useAwsProvidedLatestImage;
 
         /// <summary>
         /// Gets and sets the property DatabaseInstallationFilesS3BucketName. 
         /// <para>
         /// The name of an Amazon S3 bucket that contains database installation files for your
-        /// CEV. For example, a valid bucket name is <code>my-custom-installation-files</code>.
+        /// CEV. For example, a valid bucket name is <c>my-custom-installation-files</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=3, Max=63)]
@@ -70,8 +71,8 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property DatabaseInstallationFilesS3Prefix. 
         /// <para>
         /// The Amazon S3 directory that contains the database installation files for your CEV.
-        /// For example, a valid bucket name is <code>123456789012/cev1</code>. If this setting
-        /// isn't specified, no prefix is assumed.
+        /// For example, a valid bucket name is <c>123456789012/cev1</c>. If this setting isn't
+        /// specified, no prefix is assumed.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -109,9 +110,25 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Engine. 
         /// <para>
-        /// The database engine to use for your custom engine version (CEV). The only supported
-        /// value is <code>custom-oracle-ee</code>.
+        /// The database engine. RDS Custom for Oracle supports the following values:
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>custom-oracle-ee</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>custom-oracle-ee-cdb</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>custom-oracle-se2</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>custom-oracle-se2-cdb</c> 
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=35)]
         public string Engine
@@ -130,9 +147,9 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property EngineVersion. 
         /// <para>
         /// The name of your CEV. The name format is 19.<i>customized_string</i>. For example,
-        /// a valid CEV name is <code>19.my_cev1</code>. This setting is required for RDS Custom
-        /// for Oracle, but optional for Amazon RDS. The combination of <code>Engine</code> and
-        /// <code>EngineVersion</code> is unique per customer per Region.
+        /// a valid CEV name is <c>19.my_cev1</c>. This setting is required for RDS Custom for
+        /// Oracle, but optional for Amazon RDS. The combination of <c>Engine</c> and <c>EngineVersion</c>
+        /// is unique per customer per Region.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=60)]
@@ -217,7 +234,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <dl> <dt>MediaImportTemplateVersion</dt> <dd> 
         /// <para>
-        /// Version of the CEV manifest. The date is in the format <code>YYYY-MM-DD</code>.
+        /// Version of the CEV manifest. The date is in the format <c>YYYY-MM-DD</c>.
         /// </para>
         ///  </dd> <dt>databaseInstallationFileNames</dt> <dd> 
         /// <para>
@@ -258,7 +275,9 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property SourceCustomDbEngineVersionIdentifier. 
         /// <para>
-        /// Reserved for future use.
+        /// The ARN of a CEV to use as a source for creating a new CEV. You can specify a different
+        /// Amazon Machine Imagine (AMI) by using either <c>Source</c> or <c>UseAwsProvidedLatestImage</c>.
+        /// You can't specify a different JSON manifest when you specify <c>SourceCustomDbEngineVersionIdentifier</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -286,13 +305,14 @@ namespace Amazon.RDS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UseAwsProvidedLatestImage. 
         /// <para>
-        /// Reserved for future use.
+        /// Specifies whether to use the latest service-provided Amazon Machine Image (AMI) for
+        /// the CEV. If you specify <c>UseAwsProvidedLatestImage</c>, you can't also specify <c>ImageId</c>.
         /// </para>
         /// </summary>
         public bool UseAwsProvidedLatestImage

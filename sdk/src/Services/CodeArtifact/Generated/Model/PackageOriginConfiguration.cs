@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeArtifact.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.CodeArtifact.Model
         /// <summary>
         /// Gets and sets the property Restrictions. 
         /// <para>
-        /// A <code>PackageOriginRestrictions</code> object that contains information about the
-        /// upstream and publish package origin configuration for the package.
+        /// A <c>PackageOriginRestrictions</c> object that contains information about the upstream
+        /// and publish package origin configuration for the package.
         /// </para>
         /// </summary>
         public PackageOriginRestrictions Restrictions

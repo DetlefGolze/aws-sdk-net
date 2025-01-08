@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.StorageGateway.Model
     public partial class ListTapePoolsResponse : AmazonWebServiceResponse
     {
         private string _marker;
-        private List<PoolInfo> _poolInfos = new List<PoolInfo>();
+        private List<PoolInfo> _poolInfos = AWSConfigs.InitializeCollections ? new List<PoolInfo>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
@@ -61,9 +62,8 @@ namespace Amazon.StorageGateway.Model
         /// <summary>
         /// Gets and sets the property PoolInfos. 
         /// <para>
-        /// An array of <code>PoolInfo</code> objects, where each object describes a single custom
-        /// tape pool. If there are no custom tape pools, the <code>PoolInfos</code> is an empty
-        /// array. 
+        /// An array of <c>PoolInfo</c> objects, where each object describes a single custom tape
+        /// pool. If there are no custom tape pools, the <c>PoolInfos</c> is an empty array. 
         /// </para>
         /// </summary>
         public List<PoolInfo> PoolInfos
@@ -75,7 +75,7 @@ namespace Amazon.StorageGateway.Model
         // Check to see if PoolInfos property is set
         internal bool IsSetPoolInfos()
         {
-            return this._poolInfos != null && this._poolInfos.Count > 0; 
+            return this._poolInfos != null && (this._poolInfos.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The default values of the <code>StringParameterDeclaration</code>.
+    /// The default values of the <c>StringParameterDeclaration</c>.
     /// </summary>
     public partial class StringDefaultValues
     {
         private DynamicDefaultValue _dynamicValue;
-        private List<string> _staticValues = new List<string>();
+        private List<string> _staticValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DynamicValue. 
         /// <para>
-        /// The dynamic value of the <code>StringDefaultValues</code>. Different defaults displayed
+        /// The dynamic value of the <c>StringDefaultValues</c>. Different defaults displayed
         /// according to users, groups, and values mapping.
         /// </para>
         /// </summary>
@@ -58,7 +59,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property StaticValues. 
         /// <para>
-        /// The static values of the <code>DecimalDefaultValues</code>.
+        /// The static values of the <c>DecimalDefaultValues</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=50000)]
@@ -71,7 +72,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if StaticValues property is set
         internal bool IsSetStaticValues()
         {
-            return this._staticValues != null && this._staticValues.Count > 0; 
+            return this._staticValues != null && (this._staticValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

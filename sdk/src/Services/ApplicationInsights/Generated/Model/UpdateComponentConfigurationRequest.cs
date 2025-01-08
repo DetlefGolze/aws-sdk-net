@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationInsights.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateComponentConfiguration operation.
     /// Updates the monitoring configurations for the component. The configuration input parameter
     /// is an escaped JSON of the configuration and should match the schema of what is returned
-    /// by <code>DescribeComponentConfigurationRecommendation</code>.
+    /// by <c>DescribeComponentConfigurationRecommendation</c>.
     /// </summary>
     public partial class UpdateComponentConfigurationRequest : AmazonApplicationInsightsRequest
     {
@@ -67,7 +68,7 @@ namespace Amazon.ApplicationInsights.Model
         /// <para>
         /// The configuration settings of the component. The value is the escaped JSON of the
         /// configuration. For more information about the JSON format, see <a href="https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/working-with-json.html">Working
-        /// with JSON</a>. You can send a request to <code>DescribeComponentConfigurationRecommendation</code>
+        /// with JSON</a>. You can send a request to <c>DescribeComponentConfigurationRecommendation</c>
         /// to see the recommended configuration for a component. For the complete format of the
         /// component configuration file, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/component-config.html">Component
         /// Configuration</a>.

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.DataZone.Model
     /// </summary>
     public partial class SearchRequest : AmazonDataZoneRequest
     {
-        private List<string> _additionalAttributes = new List<string>();
+        private List<string> _additionalAttributes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _domainIdentifier;
         private FilterClause _filters;
         private int? _maxResults;
         private string _nextToken;
         private string _owningProjectIdentifier;
-        private List<SearchInItem> _searchIn = new List<SearchInItem>();
+        private List<SearchInItem> _searchIn = AWSConfigs.InitializeCollections ? new List<SearchInItem>() : null;
         private InventorySearchScope _searchScope;
         private string _searchText;
         private SearchSort _sort;
@@ -48,7 +49,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property AdditionalAttributes. 
         /// <para>
-        /// Specifies additional attributes for the <code>Search</code> action.
+        /// Specifies additional attributes for the <c>Search</c> action.
         /// </para>
         /// </summary>
         public List<string> AdditionalAttributes
@@ -60,7 +61,7 @@ namespace Amazon.DataZone.Model
         // Check to see if AdditionalAttributes property is set
         internal bool IsSetAdditionalAttributes()
         {
-            return this._additionalAttributes != null && this._additionalAttributes.Count > 0; 
+            return this._additionalAttributes != null && (this._additionalAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -103,10 +104,10 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The maximum number of results to return in a single call to <code>Search</code>. When
-        /// the number of results to be listed is greater than the value of <code>MaxResults</code>,
-        /// the response contains a <code>NextToken</code> value that you can use in a subsequent
-        /// call to <code>Search</code> to list the next set of results.
+        /// The maximum number of results to return in a single call to <c>Search</c>. When the
+        /// number of results to be listed is greater than the value of <c>MaxResults</c>, the
+        /// response contains a <c>NextToken</c> value that you can use in a subsequent call to
+        /// <c>Search</c> to list the next set of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -125,10 +126,10 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When the number of results is greater than the default value for the <code>MaxResults</code>
-        /// parameter, or if you explicitly specify a value for <code>MaxResults</code> that is
-        /// less than the number of results, the response includes a pagination token named <code>NextToken</code>.
-        /// You can specify this <code>NextToken</code> value in a subsequent call to <code>Search</code>
+        /// When the number of results is greater than the default value for the <c>MaxResults</c>
+        /// parameter, or if you explicitly specify a value for <c>MaxResults</c> that is less
+        /// than the number of results, the response includes a pagination token named <c>NextToken</c>.
+        /// You can specify this <c>NextToken</c> value in a subsequent call to <c>Search</c>
         /// to list the next set of results.
         /// </para>
         /// </summary>
@@ -164,7 +165,10 @@ namespace Amazon.DataZone.Model
         }
 
         /// <summary>
-        /// Gets and sets the property SearchIn.
+        /// Gets and sets the property SearchIn. 
+        /// <para>
+        /// The details of the search.
+        /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
         public List<SearchInItem> SearchIn
@@ -176,7 +180,7 @@ namespace Amazon.DataZone.Model
         // Check to see if SearchIn property is set
         internal bool IsSetSearchIn()
         {
-            return this._searchIn != null && this._searchIn.Count > 0; 
+            return this._searchIn != null && (this._searchIn.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

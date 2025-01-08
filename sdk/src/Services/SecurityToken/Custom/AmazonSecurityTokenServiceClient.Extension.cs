@@ -13,6 +13,7 @@
  * permissions and limitations under the License.
  */
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Linq;
 using Amazon.Runtime;
@@ -21,6 +22,9 @@ using Amazon.Runtime.Internal.Util;
 using Amazon.Runtime.SharedInterfaces;
 using Amazon.SecurityToken.Model;
 using Amazon.SecurityToken.SAML;
+using Amazon.Util.Internal;
+
+
 #if AWS_ASYNC_API
 using System.Threading.Tasks;
 #endif
@@ -40,11 +44,25 @@ namespace Amazon.SecurityToken
             TimeSpan credentialDuration,
             ICredentials userCredential)
         {
+            const string httpPrefix = "http://";
+            const string httpsPrefix = "https://";
             SAMLAssertion assertion;
 
             try
             {
-                var authController = new SAMLAuthenticationController(Config.GetWebProxy());
+                var proxy = Config.GetWebProxy();
+                if (proxy == null && !NoProxyFilter.Instance.Match(new Uri(endpoint)))
+                {
+                    if (endpoint.StartsWith(httpPrefix))
+                    {
+                        proxy = Config.GetHttpProxy();
+                    }
+                    else if (endpoint.StartsWith(httpsPrefix))
+                    {
+                        proxy = Config.GetHttpsProxy();
+                    }
+                }
+                var authController = new SAMLAuthenticationController(proxy);
                 assertion = authController.GetSAMLAssertion(endpoint, userCredential, authenticationType);
             }
             catch (Exception e)
@@ -169,6 +187,16 @@ namespace Amazon.SecurityToken
                     if (options.DurationSeconds.HasValue)
                     {
                         request.DurationSeconds = options.DurationSeconds.Value;
+                    }
+
+                    if (options.Tags != null && options.Tags.Count > 0)
+                    {
+                        request.Tags = options.Tags.Select(kv => new Tag() { Key = kv.Key, Value = kv.Value }).ToList();
+                    }
+
+                    if (options.TransitiveTagKeys != null && options.TransitiveTagKeys.Count > 0)
+                    {
+                        request.TransitiveTagKeys = options.TransitiveTagKeys;
                     }
                 }
 

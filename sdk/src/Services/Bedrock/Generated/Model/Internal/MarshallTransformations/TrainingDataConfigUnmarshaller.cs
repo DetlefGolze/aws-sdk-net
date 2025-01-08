@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Bedrock.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.Bedrock.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public TrainingDataConfig Unmarshall(JsonUnmarshallerContext context)
         {
+            TrainingDataConfig unmarshalledObject = new TrainingDataConfig();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            TrainingDataConfig unmarshalledObject = new TrainingDataConfig();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("invocationLogsConfig", targetDepth))
+                {
+                    var unmarshaller = InvocationLogsConfigUnmarshaller.Instance;
+                    unmarshalledObject.InvocationLogsConfig = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("s3Uri", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -71,7 +79,6 @@ namespace Amazon.Bedrock.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

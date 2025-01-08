@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -63,7 +64,7 @@ namespace Amazon.Imagebuilder.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The timeoutMinutes attribute is not currently active. This value is ignored.
+        /// The timeout attribute is not currently active. This value is ignored.
         /// </para>
         ///  </note>
         /// </summary>

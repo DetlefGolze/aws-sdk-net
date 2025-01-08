@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Domains.Model
 {
     /// <summary>
@@ -40,8 +41,8 @@ namespace Amazon.Route53Domains.Model
         /// Gets and sets the property Name. 
         /// <para>
         /// Field to be used for sorting the list of domains. It can be either the name or the
-        /// expiration for a domain. Note that if <code>filterCondition</code> is used in the
-        /// same <a href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_domains__ListDomains.html">ListDomains</a>
+        /// expiration for a domain. Note that if <c>filterCondition</c> is used in the same <a
+        /// href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_domains__ListDomains.html">ListDomains</a>
         /// call, the field used for sorting has to be the same as the field used for filtering.
         /// </para>
         /// </summary>

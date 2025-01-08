@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -102,9 +103,19 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                         unmarshalledObject.PropagationDefaultRouteTableId = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("securityGroupReferencingSupport", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.SecurityGroupReferencingSupport = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("transitGatewayCidrBlocks/item", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
+                        if (unmarshalledObject.TransitGatewayCidrBlocks == null)
+                        {
+                            unmarshalledObject.TransitGatewayCidrBlocks = new List<string>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.TransitGatewayCidrBlocks.Add(item);
                         continue;

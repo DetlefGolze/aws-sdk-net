@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -39,6 +40,7 @@ namespace Amazon.EKS.Model
         private string _clientRequestToken;
         private string _clusterName;
         private string _configurationValues;
+        private List<AddonPodIdentityAssociations> _podIdentityAssociations = AWSConfigs.InitializeCollections ? new List<AddonPodIdentityAssociations>() : null;
         private ResolveConflicts _resolveConflicts;
         private string _serviceAccountRoleArn;
 
@@ -46,7 +48,7 @@ namespace Amazon.EKS.Model
         /// Gets and sets the property AddonName. 
         /// <para>
         /// The name of the add-on. The name must match one of the names returned by <a href="https://docs.aws.amazon.com/eks/latest/APIReference/API_ListAddons.html">
-        /// <code>ListAddons</code> </a>.
+        /// <c>ListAddons</c> </a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -67,7 +69,7 @@ namespace Amazon.EKS.Model
         /// <para>
         /// The version of the add-on. The version must match one of the versions returned by
         /// <a href="https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html">
-        /// <code>DescribeAddonVersions</code> </a>.
+        /// <c>DescribeAddonVersions</c> </a>.
         /// </para>
         /// </summary>
         public string AddonVersion
@@ -85,8 +87,8 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
-        /// Unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        /// request.
+        /// A unique, case-sensitive identifier that you provide to ensure the idempotency of
+        /// the request.
         /// </para>
         /// </summary>
         public string ClientRequestToken
@@ -104,7 +106,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ClusterName. 
         /// <para>
-        /// The name of the cluster.
+        /// The name of your cluster.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]
@@ -124,7 +126,7 @@ namespace Amazon.EKS.Model
         /// Gets and sets the property ConfigurationValues. 
         /// <para>
         /// The set of configuration values for the add-on that's created. The values that you
-        /// provide are validated against the schema in <a href="https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonConfiguration.html">DescribeAddonConfiguration</a>.
+        /// provide are validated against the schema returned by <c>DescribeAddonConfiguration</c>.
         /// </para>
         /// </summary>
         public string ConfigurationValues
@@ -137,6 +139,32 @@ namespace Amazon.EKS.Model
         internal bool IsSetConfigurationValues()
         {
             return this._configurationValues != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PodIdentityAssociations. 
+        /// <para>
+        /// An array of Pod Identity Assocations to be updated. Each EKS Pod Identity association
+        /// maps a Kubernetes service account to an IAM Role. If this value is left blank, no
+        /// change. If an empty array is provided, existing Pod Identity Assocations owned by
+        /// the Addon are deleted.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/add-ons-iam.html">Attach
+        /// an IAM Role to an Amazon EKS add-on using Pod Identity</a> in the EKS User Guide.
+        /// </para>
+        /// </summary>
+        public List<AddonPodIdentityAssociations> PodIdentityAssociations
+        {
+            get { return this._podIdentityAssociations; }
+            set { this._podIdentityAssociations = value; }
+        }
+
+        // Check to see if PodIdentityAssociations property is set
+        internal bool IsSetPodIdentityAssociations()
+        {
+            return this._podIdentityAssociations != null && (this._podIdentityAssociations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

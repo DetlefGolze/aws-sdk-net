@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KendraRanking.Model
 {
     /// <summary>
     /// Container for the parameters to the TagResource operation.
     /// Adds a specified tag to a specified rescore execution plan. A rescore execution plan
-    /// is an Amazon Kendra Intelligent Ranking resource used for provisioning the <code>Rescore</code>
+    /// is an Amazon Kendra Intelligent Ranking resource used for provisioning the <c>Rescore</c>
     /// API. If the tag already exists, the existing value is replaced with the new value.
     /// </summary>
     public partial class TagResourceRequest : AmazonKendraRankingRequest
     {
         private string _resourceARN;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceARN. 
@@ -75,7 +76,7 @@ namespace Amazon.KendraRanking.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

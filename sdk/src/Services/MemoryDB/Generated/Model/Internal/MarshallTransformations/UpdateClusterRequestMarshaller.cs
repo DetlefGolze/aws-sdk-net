@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MemoryDB.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.MemoryDB.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetACLName())
@@ -83,6 +85,12 @@ namespace Amazon.MemoryDB.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("Description");
                     context.Writer.Write(publicRequest.Description);
+                }
+
+                if(publicRequest.IsSetEngine())
+                {
+                    context.Writer.WritePropertyName("Engine");
+                    context.Writer.Write(publicRequest.Engine);
                 }
 
                 if(publicRequest.IsSetEngineVersion())

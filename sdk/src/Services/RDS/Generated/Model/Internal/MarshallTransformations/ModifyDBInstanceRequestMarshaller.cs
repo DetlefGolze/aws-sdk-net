@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RDS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -119,6 +120,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                 {
                     request.Parameters.Add("CopyTagsToSnapshot", StringUtils.FromBool(publicRequest.CopyTagsToSnapshot));
                 }
+                if(publicRequest.IsSetDatabaseInsightsMode())
+                {
+                    request.Parameters.Add("DatabaseInsightsMode", StringUtils.FromString(publicRequest.DatabaseInsightsMode));
+                }
                 if(publicRequest.IsSetDBInstanceClass())
                 {
                     request.Parameters.Add("DBInstanceClass", StringUtils.FromString(publicRequest.DBInstanceClass));
@@ -140,13 +145,17 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     int publicRequestlistValueIndex = 1;
                     foreach(var publicRequestlistValue in publicRequest.DBSecurityGroups)
                     {
-                        request.Parameters.Add("DBSecurityGroups" + "." + "member" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
+                        request.Parameters.Add("DBSecurityGroups" + "." + "DBSecurityGroupName" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
                         publicRequestlistValueIndex++;
                     }
                 }
                 if(publicRequest.IsSetDBSubnetGroupName())
                 {
                     request.Parameters.Add("DBSubnetGroupName", StringUtils.FromString(publicRequest.DBSubnetGroupName));
+                }
+                if(publicRequest.IsSetDedicatedLogVolume())
+                {
+                    request.Parameters.Add("DedicatedLogVolume", StringUtils.FromBool(publicRequest.DedicatedLogVolume));
                 }
                 if(publicRequest.IsSetDeletionProtection())
                 {
@@ -241,6 +250,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                 {
                     request.Parameters.Add("MultiAZ", StringUtils.FromBool(publicRequest.MultiAZ));
                 }
+                if(publicRequest.IsSetMultiTenant())
+                {
+                    request.Parameters.Add("MultiTenant", StringUtils.FromBool(publicRequest.MultiTenant));
+                }
                 if(publicRequest.IsSetNetworkType())
                 {
                     request.Parameters.Add("NetworkType", StringUtils.FromString(publicRequest.NetworkType));
@@ -276,11 +289,11 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     {
                         if(publicRequestlistValue.IsSetName())
                         {
-                            request.Parameters.Add("ProcessorFeatures" + "." + "member" + "." + publicRequestlistValueIndex + "." + "Name", StringUtils.FromString(publicRequestlistValue.Name));
+                            request.Parameters.Add("ProcessorFeatures" + "." + "ProcessorFeature" + "." + publicRequestlistValueIndex + "." + "Name", StringUtils.FromString(publicRequestlistValue.Name));
                         }
                         if(publicRequestlistValue.IsSetValue())
                         {
-                            request.Parameters.Add("ProcessorFeatures" + "." + "member" + "." + publicRequestlistValueIndex + "." + "Value", StringUtils.FromString(publicRequestlistValue.Value));
+                            request.Parameters.Add("ProcessorFeatures" + "." + "ProcessorFeature" + "." + publicRequestlistValueIndex + "." + "Value", StringUtils.FromString(publicRequestlistValue.Value));
                         }
                         publicRequestlistValueIndex++;
                     }
@@ -330,7 +343,7 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     int publicRequestlistValueIndex = 1;
                     foreach(var publicRequestlistValue in publicRequest.VpcSecurityGroupIds)
                     {
-                        request.Parameters.Add("VpcSecurityGroupIds" + "." + "member" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
+                        request.Parameters.Add("VpcSecurityGroupIds" + "." + "VpcSecurityGroupId" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
                         publicRequestlistValueIndex++;
                     }
                 }

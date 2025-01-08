@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
-    /// Summary information about the association between a service network and a service.
+    /// Summary information about an association between a service network and a service.
     /// </summary>
     public partial class ServiceNetworkServiceAssociationSummary
     {
@@ -69,7 +70,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// The date and time that the association was created, specified in ISO-8601 format.
+        /// The date and time that the association was created, in ISO-8601 format.
         /// </para>
         /// </summary>
         public DateTime CreatedAt
@@ -106,7 +107,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property CustomDomainName. 
         /// <para>
-        ///  The custom domain name of the service. 
+        /// The custom domain name of the service.
         /// </para>
         /// </summary>
         [AWSProperty(Min=3, Max=255)]
@@ -125,7 +126,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property DnsEntry. 
         /// <para>
-        /// DNS information about the service.
+        /// The DNS information.
         /// </para>
         /// </summary>
         public DnsEntry DnsEntry
@@ -241,7 +242,7 @@ namespace Amazon.VPCLattice.Model
         /// The ID of the service network.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=32, Max=32)]
+        [AWSProperty(Min=20, Max=20)]
         public string ServiceNetworkId
         {
             get { return this._serviceNetworkId; }

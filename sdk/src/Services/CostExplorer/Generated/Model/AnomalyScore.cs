@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostExplorer.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.CostExplorer.Model
         /// <summary>
         /// Gets and sets the property MaxScore. 
         /// <para>
-        /// The maximum score that's observed during the <code>AnomalyDateInterval</code>. 
+        /// The maximum score that's observed during the <c>AnomalyDateInterval</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -70,14 +71,14 @@ namespace Amazon.LocationService.Model
         // Check to see if CacheControl property is set
         internal bool IsSetCacheControl()
         {
-            return this._cacheControl != null;
+            return !string.IsNullOrEmpty(this._cacheControl);
         }
 
         /// <summary>
         /// Gets and sets the property ContentType. 
         /// <para>
         /// The content type of the sprite sheet and offsets. For example, the sprite sheet content
-        /// type is <code>image/png</code>, and the sprite offset JSON document is <code>application/json</code>.
+        /// type is <c>image/png</c>, and the sprite offset JSON document is <c>application/json</c>.
         /// 
         /// </para>
         /// </summary>
@@ -90,7 +91,7 @@ namespace Amazon.LocationService.Model
         // Check to see if ContentType property is set
         internal bool IsSetContentType()
         {
-            return this._contentType != null;
+            return !string.IsNullOrEmpty(this._contentType);
         }
 
     }

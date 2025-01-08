@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComprehendMedical.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ComprehendMedical.Model
     /// </summary>
     public partial class InferRxNormResponse : AmazonWebServiceResponse
     {
-        private List<RxNormEntity> _entities = new List<RxNormEntity>();
+        private List<RxNormEntity> _entities = AWSConfigs.InitializeCollections ? new List<RxNormEntity>() : null;
         private string _modelVersion;
         private string _paginationToken;
 
@@ -55,7 +56,7 @@ namespace Amazon.ComprehendMedical.Model
         // Check to see if Entities property is set
         internal bool IsSetEntities()
         {
-            return this._entities != null && this._entities.Count > 0; 
+            return this._entities != null && (this._entities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -81,8 +82,8 @@ namespace Amazon.ComprehendMedical.Model
         /// <summary>
         /// Gets and sets the property PaginationToken. 
         /// <para>
-        /// If the result of the previous request to <code>InferRxNorm</code> was truncated, include
-        /// the <code>PaginationToken</code> to fetch the next page of medication entities.
+        /// If the result of the previous request to <c>InferRxNorm</c> was truncated, include
+        /// the <c>PaginationToken</c> to fetch the next page of medication entities.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]

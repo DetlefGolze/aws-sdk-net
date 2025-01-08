@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectConnect.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.DirectConnect.Model
         private string _location;
         private string _providerName;
         private string _region;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AwsDevice. 
@@ -184,33 +185,32 @@ namespace Amazon.DirectConnect.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>requested</code>: The initial state of an interconnect. The interconnect stays
-        /// in the requested state until the Letter of Authorization (LOA) is sent to the customer.
+        ///  <c>requested</c>: The initial state of an interconnect. The interconnect stays in
+        /// the requested state until the Letter of Authorization (LOA) is sent to the customer.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>pending</code>: The interconnect is approved, and is being initialized.
+        ///  <c>pending</c>: The interconnect is approved, and is being initialized.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>available</code>: The network link is up, and the interconnect is ready for
-        /// use.
+        ///  <c>available</c>: The network link is up, and the interconnect is ready for use.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>down</code>: The network link is down.
+        ///  <c>down</c>: The network link is down.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deleting</code>: The interconnect is being deleted.
+        ///  <c>deleting</c>: The interconnect is being deleted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deleted</code>: The interconnect is deleted.
+        ///  <c>deleted</c>: The interconnect is deleted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>unknown</code>: The state of the interconnect is not available.
+        ///  <c>unknown</c>: The state of the interconnect is not available.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -350,7 +350,7 @@ namespace Amazon.DirectConnect.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

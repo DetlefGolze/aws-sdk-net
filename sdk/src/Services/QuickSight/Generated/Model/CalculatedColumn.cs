@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -83,7 +84,7 @@ namespace Amazon.QuickSight.Model
         /// An expression that defines the calculated column.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Sensitive=true, Min=1, Max=4096)]
+        [AWSProperty(Required=true, Sensitive=true, Min=1, Max=250000)]
         public string Expression
         {
             get { return this._expression; }

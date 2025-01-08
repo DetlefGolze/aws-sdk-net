@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalyticsV2.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.KinesisAnalyticsV2.Model
     {
         private string _applicationARN;
         private long? _applicationVersionId;
+        private string _operationId;
         private VpcConfigurationDescription _vpcConfigurationDescription;
 
         /// <summary>
@@ -59,8 +61,8 @@ namespace Amazon.KinesisAnalyticsV2.Model
         /// <summary>
         /// Gets and sets the property ApplicationVersionId. 
         /// <para>
-        /// Provides the current application version. Kinesis Data Analytics updates the ApplicationVersionId
-        /// each time you update the application.
+        /// Provides the current application version. Managed Service for Apache Flink updates
+        /// the ApplicationVersionId each time you update the application.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=999999999)]
@@ -74,6 +76,23 @@ namespace Amazon.KinesisAnalyticsV2.Model
         internal bool IsSetApplicationVersionId()
         {
             return this._applicationVersionId.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property OperationId. Operation ID for tracking AddApplicationVpcConfiguration
+        /// request
+        /// </summary>
+        [AWSProperty(Min=1, Max=64)]
+        public string OperationId
+        {
+            get { return this._operationId; }
+            set { this._operationId = value; }
+        }
+
+        // Check to see if OperationId property is set
+        internal bool IsSetOperationId()
+        {
+            return this._operationId != null;
         }
 
         /// <summary>

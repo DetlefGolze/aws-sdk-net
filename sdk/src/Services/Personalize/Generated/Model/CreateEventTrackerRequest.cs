@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Personalize.Model
 {
     /// <summary>
@@ -37,15 +38,15 @@ namespace Amazon.Personalize.Model
     ///  <note> 
     /// <para>
     /// Only one event tracker can be associated with a dataset group. You will get an error
-    /// if you call <code>CreateEventTracker</code> using the same dataset group as an existing
+    /// if you call <c>CreateEventTracker</c> using the same dataset group as an existing
     /// event tracker.
     /// </para>
     ///  </note> 
     /// <para>
     /// When you create an event tracker, the response includes a tracking ID, which you pass
     /// as a parameter when you use the <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html">PutEvents</a>
-    /// operation. Amazon Personalize then appends the event data to the Interactions dataset
-    /// of the dataset group you specify in your event tracker. 
+    /// operation. Amazon Personalize then appends the event data to the Item interactions
+    /// dataset of the dataset group you specify in your event tracker. 
     /// </para>
     ///  
     /// <para>
@@ -92,7 +93,7 @@ namespace Amazon.Personalize.Model
     {
         private string _datasetGroupArn;
         private string _name;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property DatasetGroupArn. 
@@ -149,7 +150,7 @@ namespace Amazon.Personalize.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

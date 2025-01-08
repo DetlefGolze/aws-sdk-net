@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchRUM.Model
 {
     /// <summary>
@@ -35,20 +36,20 @@ namespace Amazon.CloudWatchRUM.Model
     {
         private bool? _allowCookies;
         private bool? _enableXRay;
-        private List<string> _excludedPages = new List<string>();
-        private List<string> _favoritePages = new List<string>();
+        private List<string> _excludedPages = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _favoritePages = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _guestRoleArn;
         private string _identityPoolId;
-        private List<string> _includedPages = new List<string>();
+        private List<string> _includedPages = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private double? _sessionSampleRate;
-        private List<string> _telemetries = new List<string>();
+        private List<string> _telemetries = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AllowCookies. 
         /// <para>
-        /// If you set this to <code>true</code>, the RUM web client sets two cookies, a session
-        /// cookie and a user cookie. The cookies allow the RUM web client to collect data relating
-        /// to the number of users an application has and the behavior of the application across
+        /// If you set this to <c>true</c>, the RUM web client sets two cookies, a session cookie
+        /// and a user cookie. The cookies allow the RUM web client to collect data relating to
+        /// the number of users an application has and the behavior of the application across
         /// a sequence of events. Cookies are stored in the top-level domain of the current page.
         /// </para>
         /// </summary>
@@ -67,11 +68,11 @@ namespace Amazon.CloudWatchRUM.Model
         /// <summary>
         /// Gets and sets the property EnableXRay. 
         /// <para>
-        /// If you set this to <code>true</code>, RUM enables X-Ray tracing for the user sessions
-        /// that RUM samples. RUM adds an X-Ray trace header to allowed HTTP requests. It also
-        /// records an X-Ray segment for allowed HTTP requests. You can see traces and segments
-        /// from these user sessions in the X-Ray console and the CloudWatch ServiceLens console.
-        /// For more information, see <a href="https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html">What
+        /// If you set this to <c>true</c>, RUM enables X-Ray tracing for the user sessions that
+        /// RUM samples. RUM adds an X-Ray trace header to allowed HTTP requests. It also records
+        /// an X-Ray segment for allowed HTTP requests. You can see traces and segments from these
+        /// user sessions in the X-Ray console and the CloudWatch ServiceLens console. For more
+        /// information, see <a href="https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html">What
         /// is X-Ray?</a> 
         /// </para>
         /// </summary>
@@ -94,8 +95,7 @@ namespace Amazon.CloudWatchRUM.Model
         /// </para>
         ///  
         /// <para>
-        /// You can't include both <code>ExcludedPages</code> and <code>IncludedPages</code> in
-        /// the same operation.
+        /// You can't include both <c>ExcludedPages</c> and <c>IncludedPages</c> in the same operation.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -108,7 +108,7 @@ namespace Amazon.CloudWatchRUM.Model
         // Check to see if ExcludedPages property is set
         internal bool IsSetExcludedPages()
         {
-            return this._excludedPages != null && this._excludedPages.Count > 0; 
+            return this._excludedPages != null && (this._excludedPages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace Amazon.CloudWatchRUM.Model
         // Check to see if FavoritePages property is set
         internal bool IsSetFavoritePages()
         {
-            return this._favoritePages != null && this._favoritePages.Count > 0; 
+            return this._favoritePages != null && (this._favoritePages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -137,6 +137,29 @@ namespace Amazon.CloudWatchRUM.Model
         /// The ARN of the guest IAM role that is attached to the Amazon Cognito identity pool
         /// that is used to authorize the sending of data to RUM.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// It is possible that an app monitor does not have a value for <c>GuestRoleArn</c>.
+        /// For example, this can happen when you use the console to create an app monitor and
+        /// you allow CloudWatch RUM to create a new identity pool for Authorization. In this
+        /// case, <c>GuestRoleArn</c> is not present in the <a href="https://docs.aws.amazon.com/cloudwatchrum/latest/APIReference/API_GetAppMonitor.html">GetAppMonitor</a>
+        /// response because it is not stored by the service.
+        /// </para>
+        ///  
+        /// <para>
+        /// If this issue affects you, you can take one of the following steps:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Use the Cloud Development Kit (CDK) to create an identity pool and the associated
+        /// IAM role, and use that for your app monitor.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Make a separate <a href="https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetIdentityPoolRoles.html">GetIdentityPoolRoles</a>
+        /// call to Amazon Cognito to retrieve the <c>GuestRoleArn</c>.
+        /// </para>
+        ///  </li> </ul> </note>
         /// </summary>
         public string GuestRoleArn
         {
@@ -178,8 +201,7 @@ namespace Amazon.CloudWatchRUM.Model
         /// </para>
         ///  
         /// <para>
-        /// You can't include both <code>ExcludedPages</code> and <code>IncludedPages</code> in
-        /// the same operation.
+        /// You can't include both <c>ExcludedPages</c> and <c>IncludedPages</c> in the same operation.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -192,7 +214,7 @@ namespace Amazon.CloudWatchRUM.Model
         // Check to see if IncludedPages property is set
         internal bool IsSetIncludedPages()
         {
-            return this._includedPages != null && this._includedPages.Count > 0; 
+            return this._includedPages != null && (this._includedPages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -233,18 +255,17 @@ namespace Amazon.CloudWatchRUM.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>errors</code> indicates that RUM collects data about unhandled JavaScript errors
+        ///  <c>errors</c> indicates that RUM collects data about unhandled JavaScript errors
         /// raised by your application.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>performance</code> indicates that RUM collects performance data about how your
-        /// application and its resources are loaded and rendered. This includes Core Web Vitals.
+        ///  <c>performance</c> indicates that RUM collects performance data about how your application
+        /// and its resources are loaded and rendered. This includes Core Web Vitals.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>http</code> indicates that RUM collects data about HTTP errors thrown by your
-        /// application.
+        ///  <c>http</c> indicates that RUM collects data about HTTP errors thrown by your application.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -257,7 +278,7 @@ namespace Amazon.CloudWatchRUM.Model
         // Check to see if Telemetries property is set
         internal bool IsSetTelemetries()
         {
-            return this._telemetries != null && this._telemetries.Count > 0; 
+            return this._telemetries != null && (this._telemetries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

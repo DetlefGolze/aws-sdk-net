@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruReviewer.Model
 {
     /// <summary>
@@ -33,12 +34,12 @@ namespace Amazon.CodeGuruReviewer.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    ///  <code>PullRequest</code> - A code review that is automatically triggered by a pull
-    /// request on an associated repository.
+    ///  <c>PullRequest</c> - A code review that is automatically triggered by a pull request
+    /// on an associated repository.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>RepositoryAnalysis</code> - A code review that analyzes all code under a specified
+    ///  <c>RepositoryAnalysis</c> - A code review that analyzes all code under a specified
     /// branch in an associated repository. The associated repository is specified using its
     /// ARN in <a href="https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview">CreateCodeReview</a>.
     /// </para>
@@ -46,14 +47,14 @@ namespace Amazon.CodeGuruReviewer.Model
     /// </summary>
     public partial class CodeReviewType
     {
-        private List<string> _analysisTypes = new List<string>();
+        private List<string> _analysisTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private RepositoryAnalysis _repositoryAnalysis;
 
         /// <summary>
         /// Gets and sets the property AnalysisTypes. 
         /// <para>
         /// They types of analysis performed during a repository analysis or a pull request review.
-        /// You can specify either <code>Security</code>, <code>CodeQuality</code>, or both.
+        /// You can specify either <c>Security</c>, <c>CodeQuality</c>, or both.
         /// </para>
         /// </summary>
         public List<string> AnalysisTypes
@@ -65,7 +66,7 @@ namespace Amazon.CodeGuruReviewer.Model
         // Check to see if AnalysisTypes property is set
         internal bool IsSetAnalysisTypes()
         {
-            return this._analysisTypes != null && this._analysisTypes.Count > 0; 
+            return this._analysisTypes != null && (this._analysisTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.DatabaseMigrationService.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.DatabaseMigrationService
 {
     /// <summary>
-    /// Interface for accessing DatabaseMigrationService
+    /// <para>Interface for accessing DatabaseMigrationService</para>
     ///
     /// Database Migration Service 
     /// <para>
@@ -64,11 +65,14 @@ namespace Amazon.DatabaseMigrationService
         /// group, and migration task. These tags can also be used with cost allocation reporting
         /// to track cost associated with DMS resources, or used in a Condition statement in an
         /// IAM policy for DMS. For more information, see <a href="https://docs.aws.amazon.com/dms/latest/APIReference/API_Tag.html">
-        /// <code>Tag</code> </a> data type description.
+        /// <c>Tag</c> </a> data type description.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the AddTagsToResource service method.</param>
         /// 
         /// <returns>The response from the AddTagsToResource service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
+        /// The resource is in a state that prevents it from being used for database migration.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
         /// The resource could not be found.
         /// </exception>
@@ -82,7 +86,7 @@ namespace Amazon.DatabaseMigrationService
         /// group, and migration task. These tags can also be used with cost allocation reporting
         /// to track cost associated with DMS resources, or used in a Condition statement in an
         /// IAM policy for DMS. For more information, see <a href="https://docs.aws.amazon.com/dms/latest/APIReference/API_Tag.html">
-        /// <code>Tag</code> </a> data type description.
+        /// <c>Tag</c> </a> data type description.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the AddTagsToResource service method.</param>
         /// <param name="cancellationToken">
@@ -90,6 +94,9 @@ namespace Amazon.DatabaseMigrationService
         /// </param>
         /// 
         /// <returns>The response from the AddTagsToResource service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
+        /// The resource is in a state that prevents it from being used for database migration.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
         /// The resource could not be found.
         /// </exception>
@@ -146,7 +153,7 @@ namespace Amazon.DatabaseMigrationService
         /// The result of analysis of each source database is reported individually in the response.
         /// Because the batch request can result in a combination of successful and unsuccessful
         /// actions, you should check for batch errors even when the call returns an HTTP status
-        /// code of <code>200</code>.
+        /// code of <c>200</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the BatchStartRecommendations service method.</param>
@@ -175,7 +182,7 @@ namespace Amazon.DatabaseMigrationService
         /// The result of analysis of each source database is reported individually in the response.
         /// Because the batch request can result in a combination of successful and unsuccessful
         /// actions, you should check for batch errors even when the call returns an HTTP status
-        /// code of <code>200</code>.
+        /// code of <c>200</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the BatchStartRecommendations service method.</param>
@@ -258,6 +265,64 @@ namespace Amazon.DatabaseMigrationService
 
         #endregion
         
+        #region  CreateDataMigration
+
+
+        /// <summary>
+        /// Creates a data migration using the provided settings.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateDataMigration service method.</param>
+        /// 
+        /// <returns>The response from the CreateDataMigration service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidOperationException">
+        /// The action or operation requested isn't valid.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceAlreadyExistsException">
+        /// The resource you are attempting to create already exists.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceQuotaExceededException">
+        /// The quota for this resource quota has been exceeded.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateDataMigration">REST API Reference for CreateDataMigration Operation</seealso>
+        CreateDataMigrationResponse CreateDataMigration(CreateDataMigrationRequest request);
+
+
+
+        /// <summary>
+        /// Creates a data migration using the provided settings.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateDataMigration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateDataMigration service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidOperationException">
+        /// The action or operation requested isn't valid.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceAlreadyExistsException">
+        /// The resource you are attempting to create already exists.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceQuotaExceededException">
+        /// The quota for this resource quota has been exceeded.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateDataMigration">REST API Reference for CreateDataMigration Operation</seealso>
+        Task<CreateDataMigrationResponse> CreateDataMigrationAsync(CreateDataMigrationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  CreateDataProvider
 
 
@@ -270,6 +335,9 @@ namespace Amazon.DatabaseMigrationService
         /// <returns>The response from the CreateDataProvider service method, as returned by DatabaseMigrationService.</returns>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
         /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceAlreadyExistsException">
         /// The resource you are attempting to create already exists.
@@ -295,6 +363,9 @@ namespace Amazon.DatabaseMigrationService
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
         /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceAlreadyExistsException">
         /// The resource you are attempting to create already exists.
         /// </exception>
@@ -315,10 +386,10 @@ namespace Amazon.DatabaseMigrationService
         ///  <note> 
         /// <para>
         /// For a MySQL source or target endpoint, don't explicitly specify the database using
-        /// the <code>DatabaseName</code> request parameter on the <code>CreateEndpoint</code>
-        /// API call. Specifying <code>DatabaseName</code> when you create a MySQL endpoint replicates
-        /// all the task tables to this single database. For MySQL endpoints, you specify the
-        /// database only when you specify the schema in the table-mapping rules of the DMS task.
+        /// the <c>DatabaseName</c> request parameter on the <c>CreateEndpoint</c> API call. Specifying
+        /// <c>DatabaseName</c> when you create a MySQL endpoint replicates all the task tables
+        /// to this single database. For MySQL endpoints, you specify the database only when you
+        /// specify the schema in the table-mapping rules of the DMS task.
         /// </para>
         ///  </note>
         /// </summary>
@@ -357,10 +428,10 @@ namespace Amazon.DatabaseMigrationService
         ///  <note> 
         /// <para>
         /// For a MySQL source or target endpoint, don't explicitly specify the database using
-        /// the <code>DatabaseName</code> request parameter on the <code>CreateEndpoint</code>
-        /// API call. Specifying <code>DatabaseName</code> when you create a MySQL endpoint replicates
-        /// all the task tables to this single database. For MySQL endpoints, you specify the
-        /// database only when you specify the schema in the table-mapping rules of the DMS task.
+        /// the <c>DatabaseName</c> request parameter on the <c>CreateEndpoint</c> API call. Specifying
+        /// <c>DatabaseName</c> when you create a MySQL endpoint replicates all the task tables
+        /// to this single database. For MySQL endpoints, you specify the database only when you
+        /// specify the schema in the table-mapping rules of the DMS task.
         /// </para>
         ///  </note>
         /// </summary>
@@ -404,17 +475,16 @@ namespace Amazon.DatabaseMigrationService
         /// 
         ///  
         /// <para>
-        /// You can specify the type of source (<code>SourceType</code>) you want to be notified
-        /// of, provide a list of DMS source IDs (<code>SourceIds</code>) that triggers the events,
-        /// and provide a list of event categories (<code>EventCategories</code>) for events you
-        /// want to be notified of. If you specify both the <code>SourceType</code> and <code>SourceIds</code>,
-        /// such as <code>SourceType = replication-instance</code> and <code>SourceIdentifier
-        /// = my-replinstance</code>, you will be notified of all the replication instance events
-        /// for the specified source. If you specify a <code>SourceType</code> but don't specify
-        /// a <code>SourceIdentifier</code>, you receive notice of the events for that source
-        /// type for all your DMS sources. If you don't specify either <code>SourceType</code>
-        /// nor <code>SourceIdentifier</code>, you will be notified of events generated from all
-        /// DMS sources belonging to your customer account.
+        /// You can specify the type of source (<c>SourceType</c>) you want to be notified of,
+        /// provide a list of DMS source IDs (<c>SourceIds</c>) that triggers the events, and
+        /// provide a list of event categories (<c>EventCategories</c>) for events you want to
+        /// be notified of. If you specify both the <c>SourceType</c> and <c>SourceIds</c>, such
+        /// as <c>SourceType = replication-instance</c> and <c>SourceIdentifier = my-replinstance</c>,
+        /// you will be notified of all the replication instance events for the specified source.
+        /// If you specify a <c>SourceType</c> but don't specify a <c>SourceIdentifier</c>, you
+        /// receive notice of the events for that source type for all your DMS sources. If you
+        /// don't specify either <c>SourceType</c> nor <c>SourceIdentifier</c>, you will be notified
+        /// of events generated from all DMS sources belonging to your customer account.
         /// </para>
         ///  
         /// <para>
@@ -467,17 +537,16 @@ namespace Amazon.DatabaseMigrationService
         /// 
         ///  
         /// <para>
-        /// You can specify the type of source (<code>SourceType</code>) you want to be notified
-        /// of, provide a list of DMS source IDs (<code>SourceIds</code>) that triggers the events,
-        /// and provide a list of event categories (<code>EventCategories</code>) for events you
-        /// want to be notified of. If you specify both the <code>SourceType</code> and <code>SourceIds</code>,
-        /// such as <code>SourceType = replication-instance</code> and <code>SourceIdentifier
-        /// = my-replinstance</code>, you will be notified of all the replication instance events
-        /// for the specified source. If you specify a <code>SourceType</code> but don't specify
-        /// a <code>SourceIdentifier</code>, you receive notice of the events for that source
-        /// type for all your DMS sources. If you don't specify either <code>SourceType</code>
-        /// nor <code>SourceIdentifier</code>, you will be notified of events generated from all
-        /// DMS sources belonging to your customer account.
+        /// You can specify the type of source (<c>SourceType</c>) you want to be notified of,
+        /// provide a list of DMS source IDs (<c>SourceIds</c>) that triggers the events, and
+        /// provide a list of event categories (<c>EventCategories</c>) for events you want to
+        /// be notified of. If you specify both the <c>SourceType</c> and <c>SourceIds</c>, such
+        /// as <c>SourceType = replication-instance</c> and <c>SourceIdentifier = my-replinstance</c>,
+        /// you will be notified of all the replication instance events for the specified source.
+        /// If you specify a <c>SourceType</c> but don't specify a <c>SourceIdentifier</c>, you
+        /// receive notice of the events for that source type for all your DMS sources. If you
+        /// don't specify either <c>SourceType</c> nor <c>SourceIdentifier</c>, you will be notified
+        /// of events generated from all DMS sources belonging to your customer account.
         /// </para>
         ///  
         /// <para>
@@ -598,6 +667,9 @@ namespace Amazon.DatabaseMigrationService
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
         /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
         /// The resource is in a state that prevents it from being used for database migration.
         /// </exception>
@@ -635,6 +707,9 @@ namespace Amazon.DatabaseMigrationService
         /// <returns>The response from the CreateInstanceProfile service method, as returned by DatabaseMigrationService.</returns>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
         /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
         /// The resource is in a state that prevents it from being used for database migration.
@@ -681,6 +756,9 @@ namespace Amazon.DatabaseMigrationService
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
         /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceAlreadyExistsException">
         /// The resource you are attempting to create already exists.
         /// </exception>
@@ -719,6 +797,9 @@ namespace Amazon.DatabaseMigrationService
         /// <returns>The response from the CreateMigrationProject service method, as returned by DatabaseMigrationService.</returns>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
         /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceAlreadyExistsException">
         /// The resource you are attempting to create already exists.
@@ -957,7 +1038,7 @@ namespace Amazon.DatabaseMigrationService
         ///  
         /// <para>
         /// The VPC needs to have at least one subnet in at least two availability zones in the
-        /// Amazon Web Services Region, otherwise the service will throw a <code>ReplicationSubnetGroupDoesNotCoverEnoughAZs</code>
+        /// Amazon Web Services Region, otherwise the service will throw a <c>ReplicationSubnetGroupDoesNotCoverEnoughAZs</c>
         /// exception.
         /// </para>
         ///  
@@ -1002,7 +1083,7 @@ namespace Amazon.DatabaseMigrationService
         ///  
         /// <para>
         /// The VPC needs to have at least one subnet in at least two availability zones in the
-        /// Amazon Web Services Region, otherwise the service will throw a <code>ReplicationSubnetGroupDoesNotCoverEnoughAZs</code>
+        /// Amazon Web Services Region, otherwise the service will throw a <c>ReplicationSubnetGroupDoesNotCoverEnoughAZs</c>
         /// exception.
         /// </para>
         ///  
@@ -1194,6 +1275,52 @@ namespace Amazon.DatabaseMigrationService
 
         #endregion
         
+        #region  DeleteDataMigration
+
+
+        /// <summary>
+        /// Deletes the specified data migration.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDataMigration service method.</param>
+        /// 
+        /// <returns>The response from the DeleteDataMigration service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
+        /// The resource is in a state that prevents it from being used for database migration.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteDataMigration">REST API Reference for DeleteDataMigration Operation</seealso>
+        DeleteDataMigrationResponse DeleteDataMigration(DeleteDataMigrationRequest request);
+
+
+
+        /// <summary>
+        /// Deletes the specified data migration.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDataMigration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteDataMigration service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
+        /// The resource is in a state that prevents it from being used for database migration.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteDataMigration">REST API Reference for DeleteDataMigration Operation</seealso>
+        Task<DeleteDataMigrationResponse> DeleteDataMigrationAsync(DeleteDataMigrationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  DeleteDataProvider
 
 
@@ -1212,6 +1339,9 @@ namespace Amazon.DatabaseMigrationService
         /// <returns>The response from the DeleteDataProvider service method, as returned by DatabaseMigrationService.</returns>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
         /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
         /// The resource is in a state that prevents it from being used for database migration.
@@ -1242,6 +1372,9 @@ namespace Amazon.DatabaseMigrationService
         /// <returns>The response from the DeleteDataProvider service method, as returned by DatabaseMigrationService.</returns>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
         /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
         /// The resource is in a state that prevents it from being used for database migration.
@@ -1315,6 +1448,9 @@ namespace Amazon.DatabaseMigrationService
         /// <param name="request">Container for the necessary parameters to execute the DeleteEventSubscription service method.</param>
         /// 
         /// <returns>The response from the DeleteEventSubscription service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
+        /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
         /// The resource is in a state that prevents it from being used for database migration.
         /// </exception>
@@ -1335,6 +1471,9 @@ namespace Amazon.DatabaseMigrationService
         /// </param>
         /// 
         /// <returns>The response from the DeleteEventSubscription service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
+        /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
         /// The resource is in a state that prevents it from being used for database migration.
         /// </exception>
@@ -1355,6 +1494,9 @@ namespace Amazon.DatabaseMigrationService
         /// <param name="request">Container for the necessary parameters to execute the DeleteFleetAdvisorCollector service method.</param>
         /// 
         /// <returns>The response from the DeleteFleetAdvisorCollector service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
+        /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.CollectorNotFoundException">
         /// The specified collector doesn't exist.
         /// </exception>
@@ -1375,6 +1517,9 @@ namespace Amazon.DatabaseMigrationService
         /// </param>
         /// 
         /// <returns>The response from the DeleteFleetAdvisorCollector service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
+        /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.CollectorNotFoundException">
         /// The specified collector doesn't exist.
         /// </exception>
@@ -1395,6 +1540,9 @@ namespace Amazon.DatabaseMigrationService
         /// <param name="request">Container for the necessary parameters to execute the DeleteFleetAdvisorDatabases service method.</param>
         /// 
         /// <returns>The response from the DeleteFleetAdvisorDatabases service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
+        /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidOperationException">
         /// The action or operation requested isn't valid.
         /// </exception>
@@ -1415,6 +1563,9 @@ namespace Amazon.DatabaseMigrationService
         /// </param>
         /// 
         /// <returns>The response from the DeleteFleetAdvisorDatabases service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
+        /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidOperationException">
         /// The action or operation requested isn't valid.
         /// </exception>
@@ -1444,6 +1595,9 @@ namespace Amazon.DatabaseMigrationService
         /// <returns>The response from the DeleteInstanceProfile service method, as returned by DatabaseMigrationService.</returns>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
         /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
         /// The resource is in a state that prevents it from being used for database migration.
@@ -1475,6 +1629,9 @@ namespace Amazon.DatabaseMigrationService
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
         /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
         /// The resource is in a state that prevents it from being used for database migration.
         /// </exception>
@@ -1504,6 +1661,9 @@ namespace Amazon.DatabaseMigrationService
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
         /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
         /// The resource is in a state that prevents it from being used for database migration.
         /// </exception>
@@ -1532,6 +1692,9 @@ namespace Amazon.DatabaseMigrationService
         /// <returns>The response from the DeleteMigrationProject service method, as returned by DatabaseMigrationService.</returns>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
         /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
         /// The resource is in a state that prevents it from being used for database migration.
@@ -1659,6 +1822,9 @@ namespace Amazon.DatabaseMigrationService
         /// <param name="request">Container for the necessary parameters to execute the DeleteReplicationSubnetGroup service method.</param>
         /// 
         /// <returns>The response from the DeleteReplicationSubnetGroup service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
+        /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
         /// The resource is in a state that prevents it from being used for database migration.
         /// </exception>
@@ -1679,6 +1845,9 @@ namespace Amazon.DatabaseMigrationService
         /// </param>
         /// 
         /// <returns>The response from the DeleteReplicationSubnetGroup service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
+        /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
         /// The resource is in a state that prevents it from being used for database migration.
         /// </exception>
@@ -2040,6 +2209,52 @@ namespace Amazon.DatabaseMigrationService
 
         #endregion
         
+        #region  DescribeDataMigrations
+
+
+        /// <summary>
+        /// Returns information about data migrations.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeDataMigrations service method.</param>
+        /// 
+        /// <returns>The response from the DescribeDataMigrations service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
+        /// The resource is in a state that prevents it from being used for database migration.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeDataMigrations">REST API Reference for DescribeDataMigrations Operation</seealso>
+        DescribeDataMigrationsResponse DescribeDataMigrations(DescribeDataMigrationsRequest request);
+
+
+
+        /// <summary>
+        /// Returns information about data migrations.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeDataMigrations service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeDataMigrations service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
+        /// The resource is in a state that prevents it from being used for database migration.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeDataMigrations">REST API Reference for DescribeDataMigrations Operation</seealso>
+        Task<DescribeDataMigrationsResponse> DescribeDataMigrationsAsync(DescribeDataMigrationsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  DescribeDataProviders
 
 
@@ -2051,6 +2266,9 @@ namespace Amazon.DatabaseMigrationService
         /// <returns>The response from the DescribeDataProviders service method, as returned by DatabaseMigrationService.</returns>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
         /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
         /// The resource could not be found.
@@ -2071,6 +2289,9 @@ namespace Amazon.DatabaseMigrationService
         /// <returns>The response from the DescribeDataProviders service method, as returned by DatabaseMigrationService.</returns>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
         /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
         /// The resource could not be found.
@@ -2269,14 +2490,13 @@ namespace Amazon.DatabaseMigrationService
 
         /// <summary>
         /// Lists all the event subscriptions for a customer account. The description of a subscription
-        /// includes <code>SubscriptionName</code>, <code>SNSTopicARN</code>, <code>CustomerID</code>,
-        /// <code>SourceType</code>, <code>SourceID</code>, <code>CreationTime</code>, and <code>Status</code>.
-        /// 
+        /// includes <c>SubscriptionName</c>, <c>SNSTopicARN</c>, <c>CustomerID</c>, <c>SourceType</c>,
+        /// <c>SourceID</c>, <c>CreationTime</c>, and <c>Status</c>. 
         /// 
         ///  
         /// <para>
-        /// If you specify <code>SubscriptionName</code>, this action lists the description for
-        /// that subscription.
+        /// If you specify <c>SubscriptionName</c>, this action lists the description for that
+        /// subscription.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeEventSubscriptions service method.</param>
@@ -2292,14 +2512,13 @@ namespace Amazon.DatabaseMigrationService
 
         /// <summary>
         /// Lists all the event subscriptions for a customer account. The description of a subscription
-        /// includes <code>SubscriptionName</code>, <code>SNSTopicARN</code>, <code>CustomerID</code>,
-        /// <code>SourceType</code>, <code>SourceID</code>, <code>CreationTime</code>, and <code>Status</code>.
-        /// 
+        /// includes <c>SubscriptionName</c>, <c>SNSTopicARN</c>, <c>CustomerID</c>, <c>SourceType</c>,
+        /// <c>SourceID</c>, <c>CreationTime</c>, and <c>Status</c>. 
         /// 
         ///  
         /// <para>
-        /// If you specify <code>SubscriptionName</code>, this action lists the description for
-        /// that subscription.
+        /// If you specify <c>SubscriptionName</c>, this action lists the description for that
+        /// subscription.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeEventSubscriptions service method.</param>
@@ -2532,6 +2751,9 @@ namespace Amazon.DatabaseMigrationService
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
         /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
         /// The resource could not be found.
         /// </exception>
@@ -2551,6 +2773,9 @@ namespace Amazon.DatabaseMigrationService
         /// <returns>The response from the DescribeInstanceProfiles service method, as returned by DatabaseMigrationService.</returns>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
         /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
         /// The resource could not be found.
@@ -2744,6 +2969,9 @@ namespace Amazon.DatabaseMigrationService
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
         /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
         /// The resource could not be found.
         /// </exception>
@@ -2763,6 +2991,9 @@ namespace Amazon.DatabaseMigrationService
         /// <returns>The response from the DescribeMigrationProjects service method, as returned by DatabaseMigrationService.</returns>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
         /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
         /// The resource could not be found.
@@ -3242,7 +3473,7 @@ namespace Amazon.DatabaseMigrationService
         ///  <note> 
         /// <para>
         /// This operation doesn't return information about individual assessments. For this information,
-        /// see the <code>DescribeReplicationTaskIndividualAssessments</code> operation. 
+        /// see the <c>DescribeReplicationTaskIndividualAssessments</c> operation. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -3268,7 +3499,7 @@ namespace Amazon.DatabaseMigrationService
         ///  <note> 
         /// <para>
         /// This operation doesn't return information about individual assessments. For this information,
-        /// see the <code>DescribeReplicationTaskIndividualAssessments</code> operation. 
+        /// see the <c>DescribeReplicationTaskIndividualAssessments</c> operation. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -3423,6 +3654,9 @@ namespace Amazon.DatabaseMigrationService
         /// <param name="request">Container for the necessary parameters to execute the DescribeTableStatistics service method.</param>
         /// 
         /// <returns>The response from the DescribeTableStatistics service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
+        /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
         /// The resource is in a state that prevents it from being used for database migration.
         /// </exception>
@@ -3451,6 +3685,9 @@ namespace Amazon.DatabaseMigrationService
         /// </param>
         /// 
         /// <returns>The response from the DescribeTableStatistics service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
+        /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
         /// The resource is in a state that prevents it from being used for database migration.
         /// </exception>
@@ -3550,11 +3787,14 @@ namespace Amazon.DatabaseMigrationService
         /// <summary>
         /// Lists all metadata tags attached to an DMS resource, including replication instance,
         /// endpoint, subnet group, and migration task. For more information, see <a href="https://docs.aws.amazon.com/dms/latest/APIReference/API_Tag.html">
-        /// <code>Tag</code> </a> data type description.
+        /// <c>Tag</c> </a> data type description.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTagsForResource service method.</param>
         /// 
         /// <returns>The response from the ListTagsForResource service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
+        /// The resource is in a state that prevents it from being used for database migration.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
         /// The resource could not be found.
         /// </exception>
@@ -3566,7 +3806,7 @@ namespace Amazon.DatabaseMigrationService
         /// <summary>
         /// Lists all metadata tags attached to an DMS resource, including replication instance,
         /// endpoint, subnet group, and migration task. For more information, see <a href="https://docs.aws.amazon.com/dms/latest/APIReference/API_Tag.html">
-        /// <code>Tag</code> </a> data type description.
+        /// <c>Tag</c> </a> data type description.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTagsForResource service method.</param>
         /// <param name="cancellationToken">
@@ -3574,6 +3814,9 @@ namespace Amazon.DatabaseMigrationService
         /// </param>
         /// 
         /// <returns>The response from the ListTagsForResource service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
+        /// The resource is in a state that prevents it from being used for database migration.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
         /// The resource could not be found.
         /// </exception>
@@ -3622,6 +3865,52 @@ namespace Amazon.DatabaseMigrationService
 
         #endregion
         
+        #region  ModifyDataMigration
+
+
+        /// <summary>
+        /// Modifies an existing DMS data migration.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ModifyDataMigration service method.</param>
+        /// 
+        /// <returns>The response from the ModifyDataMigration service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
+        /// The resource is in a state that prevents it from being used for database migration.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyDataMigration">REST API Reference for ModifyDataMigration Operation</seealso>
+        ModifyDataMigrationResponse ModifyDataMigration(ModifyDataMigrationRequest request);
+
+
+
+        /// <summary>
+        /// Modifies an existing DMS data migration.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ModifyDataMigration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ModifyDataMigration service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
+        /// The resource is in a state that prevents it from being used for database migration.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyDataMigration">REST API Reference for ModifyDataMigration Operation</seealso>
+        Task<ModifyDataMigrationResponse> ModifyDataMigrationAsync(ModifyDataMigrationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  ModifyDataProvider
 
 
@@ -3640,6 +3929,9 @@ namespace Amazon.DatabaseMigrationService
         /// <returns>The response from the ModifyDataProvider service method, as returned by DatabaseMigrationService.</returns>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
         /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
         /// The resource is in a state that prevents it from being used for database migration.
@@ -3671,6 +3963,9 @@ namespace Amazon.DatabaseMigrationService
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
         /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
         /// The resource is in a state that prevents it from being used for database migration.
         /// </exception>
@@ -3691,10 +3986,10 @@ namespace Amazon.DatabaseMigrationService
         ///  <note> 
         /// <para>
         /// For a MySQL source or target endpoint, don't explicitly specify the database using
-        /// the <code>DatabaseName</code> request parameter on the <code>ModifyEndpoint</code>
-        /// API call. Specifying <code>DatabaseName</code> when you modify a MySQL endpoint replicates
-        /// all the task tables to this single database. For MySQL endpoints, you specify the
-        /// database only when you specify the schema in the table-mapping rules of the DMS task.
+        /// the <c>DatabaseName</c> request parameter on the <c>ModifyEndpoint</c> API call. Specifying
+        /// <c>DatabaseName</c> when you modify a MySQL endpoint replicates all the task tables
+        /// to this single database. For MySQL endpoints, you specify the database only when you
+        /// specify the schema in the table-mapping rules of the DMS task.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3727,10 +4022,10 @@ namespace Amazon.DatabaseMigrationService
         ///  <note> 
         /// <para>
         /// For a MySQL source or target endpoint, don't explicitly specify the database using
-        /// the <code>DatabaseName</code> request parameter on the <code>ModifyEndpoint</code>
-        /// API call. Specifying <code>DatabaseName</code> when you modify a MySQL endpoint replicates
-        /// all the task tables to this single database. For MySQL endpoints, you specify the
-        /// database only when you specify the schema in the table-mapping rules of the DMS task.
+        /// the <c>DatabaseName</c> request parameter on the <c>ModifyEndpoint</c> API call. Specifying
+        /// <c>DatabaseName</c> when you modify a MySQL endpoint replicates all the task tables
+        /// to this single database. For MySQL endpoints, you specify the database only when you
+        /// specify the schema in the table-mapping rules of the DMS task.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3769,6 +4064,9 @@ namespace Amazon.DatabaseMigrationService
         /// <param name="request">Container for the necessary parameters to execute the ModifyEventSubscription service method.</param>
         /// 
         /// <returns>The response from the ModifyEventSubscription service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
+        /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.KMSAccessDeniedException">
         /// The ciphertext references a key that doesn't exist or that the DMS account doesn't
         /// have access to.
@@ -3811,6 +4109,9 @@ namespace Amazon.DatabaseMigrationService
         /// </param>
         /// 
         /// <returns>The response from the ModifyEventSubscription service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
+        /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.KMSAccessDeniedException">
         /// The ciphertext references a key that doesn't exist or that the DMS account doesn't
         /// have access to.
@@ -3863,6 +4164,9 @@ namespace Amazon.DatabaseMigrationService
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
         /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
         /// The resource is in a state that prevents it from being used for database migration.
         /// </exception>
@@ -3902,6 +4206,9 @@ namespace Amazon.DatabaseMigrationService
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
         /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
         /// The resource is in a state that prevents it from being used for database migration.
         /// </exception>
@@ -3940,6 +4247,9 @@ namespace Amazon.DatabaseMigrationService
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
         /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
         /// The resource is in a state that prevents it from being used for database migration.
         /// </exception>
@@ -3974,6 +4284,9 @@ namespace Amazon.DatabaseMigrationService
         /// <returns>The response from the ModifyMigrationProject service method, as returned by DatabaseMigrationService.</returns>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.AccessDeniedException">
         /// DMS was denied access to the endpoint. Check that the role is correctly configured.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
         /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
         /// The resource is in a state that prevents it from being used for database migration.
@@ -4472,7 +4785,7 @@ namespace Amazon.DatabaseMigrationService
         ///  
         /// <para>
         /// You can only use this operation with a task in the RUNNING state, otherwise the service
-        /// will throw an <code>InvalidResourceStateFault</code> exception.
+        /// will throw an <c>InvalidResourceStateFault</c> exception.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ReloadReplicationTables service method.</param>
@@ -4496,7 +4809,7 @@ namespace Amazon.DatabaseMigrationService
         ///  
         /// <para>
         /// You can only use this operation with a task in the RUNNING state, otherwise the service
-        /// will throw an <code>InvalidResourceStateFault</code> exception.
+        /// will throw an <c>InvalidResourceStateFault</c> exception.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ReloadReplicationTables service method.</param>
@@ -4524,8 +4837,8 @@ namespace Amazon.DatabaseMigrationService
         /// 
         ///  
         /// <para>
-        /// You can only use this operation with a task in the <code>RUNNING</code> state, otherwise
-        /// the service will throw an <code>InvalidResourceStateFault</code> exception.
+        /// You can only use this operation with a task in the <c>RUNNING</c> state, otherwise
+        /// the service will throw an <c>InvalidResourceStateFault</c> exception.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ReloadTables service method.</param>
@@ -4547,8 +4860,8 @@ namespace Amazon.DatabaseMigrationService
         /// 
         ///  
         /// <para>
-        /// You can only use this operation with a task in the <code>RUNNING</code> state, otherwise
-        /// the service will throw an <code>InvalidResourceStateFault</code> exception.
+        /// You can only use this operation with a task in the <c>RUNNING</c> state, otherwise
+        /// the service will throw an <c>InvalidResourceStateFault</c> exception.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ReloadTables service method.</param>
@@ -4574,11 +4887,14 @@ namespace Amazon.DatabaseMigrationService
         /// <summary>
         /// Removes metadata tags from an DMS resource, including replication instance, endpoint,
         /// subnet group, and migration task. For more information, see <a href="https://docs.aws.amazon.com/dms/latest/APIReference/API_Tag.html">
-        /// <code>Tag</code> </a> data type description.
+        /// <c>Tag</c> </a> data type description.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the RemoveTagsFromResource service method.</param>
         /// 
         /// <returns>The response from the RemoveTagsFromResource service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
+        /// The resource is in a state that prevents it from being used for database migration.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
         /// The resource could not be found.
         /// </exception>
@@ -4590,7 +4906,7 @@ namespace Amazon.DatabaseMigrationService
         /// <summary>
         /// Removes metadata tags from an DMS resource, including replication instance, endpoint,
         /// subnet group, and migration task. For more information, see <a href="https://docs.aws.amazon.com/dms/latest/APIReference/API_Tag.html">
-        /// <code>Tag</code> </a> data type description.
+        /// <c>Tag</c> </a> data type description.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the RemoveTagsFromResource service method.</param>
         /// <param name="cancellationToken">
@@ -4598,6 +4914,9 @@ namespace Amazon.DatabaseMigrationService
         /// </param>
         /// 
         /// <returns>The response from the RemoveTagsFromResource service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
+        /// The resource is in a state that prevents it from being used for database migration.
+        /// </exception>
         /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
         /// The resource could not be found.
         /// </exception>
@@ -4645,6 +4964,64 @@ namespace Amazon.DatabaseMigrationService
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RunFleetAdvisorLsaAnalysis">REST API Reference for RunFleetAdvisorLsaAnalysis Operation</seealso>
         Task<RunFleetAdvisorLsaAnalysisResponse> RunFleetAdvisorLsaAnalysisAsync(RunFleetAdvisorLsaAnalysisRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  StartDataMigration
+
+
+        /// <summary>
+        /// Starts the specified data migration.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartDataMigration service method.</param>
+        /// 
+        /// <returns>The response from the StartDataMigration service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidOperationException">
+        /// The action or operation requested isn't valid.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
+        /// The resource is in a state that prevents it from being used for database migration.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceQuotaExceededException">
+        /// The quota for this resource quota has been exceeded.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StartDataMigration">REST API Reference for StartDataMigration Operation</seealso>
+        StartDataMigrationResponse StartDataMigration(StartDataMigrationRequest request);
+
+
+
+        /// <summary>
+        /// Starts the specified data migration.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartDataMigration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StartDataMigration service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidOperationException">
+        /// The action or operation requested isn't valid.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
+        /// The resource is in a state that prevents it from being used for database migration.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceQuotaExceededException">
+        /// The quota for this resource quota has been exceeded.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StartDataMigration">REST API Reference for StartDataMigration Operation</seealso>
+        Task<StartDataMigrationResponse> StartDataMigrationAsync(StartDataMigrationRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -5309,7 +5686,7 @@ namespace Amazon.DatabaseMigrationService
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// The task must be in the <code>stopped</code> state.
+        /// The task must be in the <c>stopped</c> state.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -5317,8 +5694,8 @@ namespace Amazon.DatabaseMigrationService
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If either of these conditions are not met, an <code>InvalidResourceStateFault</code>
-        /// error will result. 
+        /// If either of these conditions are not met, an <c>InvalidResourceStateFault</c> error
+        /// will result. 
         /// </para>
         ///  
         /// <para>
@@ -5350,7 +5727,7 @@ namespace Amazon.DatabaseMigrationService
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// The task must be in the <code>stopped</code> state.
+        /// The task must be in the <c>stopped</c> state.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -5358,8 +5735,8 @@ namespace Amazon.DatabaseMigrationService
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If either of these conditions are not met, an <code>InvalidResourceStateFault</code>
-        /// error will result. 
+        /// If either of these conditions are not met, an <c>InvalidResourceStateFault</c> error
+        /// will result. 
         /// </para>
         ///  
         /// <para>
@@ -5503,6 +5880,52 @@ namespace Amazon.DatabaseMigrationService
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StartReplicationTaskAssessmentRun">REST API Reference for StartReplicationTaskAssessmentRun Operation</seealso>
         Task<StartReplicationTaskAssessmentRunResponse> StartReplicationTaskAssessmentRunAsync(StartReplicationTaskAssessmentRunRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  StopDataMigration
+
+
+        /// <summary>
+        /// Stops the specified data migration.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StopDataMigration service method.</param>
+        /// 
+        /// <returns>The response from the StopDataMigration service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
+        /// The resource is in a state that prevents it from being used for database migration.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StopDataMigration">REST API Reference for StopDataMigration Operation</seealso>
+        StopDataMigrationResponse StopDataMigration(StopDataMigrationRequest request);
+
+
+
+        /// <summary>
+        /// Stops the specified data migration.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StopDataMigration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StopDataMigration service method, as returned by DatabaseMigrationService.</returns>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.FailedDependencyException">
+        /// A dependency threw an exception.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.InvalidResourceStateException">
+        /// The resource is in a state that prevents it from being used for database migration.
+        /// </exception>
+        /// <exception cref="Amazon.DatabaseMigrationService.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StopDataMigration">REST API Reference for StopDataMigration Operation</seealso>
+        Task<StopDataMigrationResponse> StopDataMigrationAsync(StopDataMigrationRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -5661,9 +6084,9 @@ namespace Amazon.DatabaseMigrationService
         /// only when all your replication instance versions are 3.4.5 or higher. If any replication
         /// instances are from versions earlier than 3.4.5, the operation raises an error and
         /// tells you to upgrade these instances to version 3.4.5 or higher. To enable migration
-        /// regardless of version, set the <code>Force</code> option to true. However, if you
-        /// don't upgrade instances earlier than version 3.4.5, some types of events might not
-        /// be available when you use Amazon EventBridge.
+        /// regardless of version, set the <c>Force</c> option to true. However, if you don't
+        /// upgrade instances earlier than version 3.4.5, some types of events might not be available
+        /// when you use Amazon EventBridge.
         /// 
         ///  
         /// <para>
@@ -5693,9 +6116,9 @@ namespace Amazon.DatabaseMigrationService
         /// only when all your replication instance versions are 3.4.5 or higher. If any replication
         /// instances are from versions earlier than 3.4.5, the operation raises an error and
         /// tells you to upgrade these instances to version 3.4.5 or higher. To enable migration
-        /// regardless of version, set the <code>Force</code> option to true. However, if you
-        /// don't upgrade instances earlier than version 3.4.5, some types of events might not
-        /// be available when you use Amazon EventBridge.
+        /// regardless of version, set the <c>Force</c> option to true. However, if you don't
+        /// upgrade instances earlier than version 3.4.5, some types of events might not be available
+        /// when you use Amazon EventBridge.
         /// 
         ///  
         /// <para>

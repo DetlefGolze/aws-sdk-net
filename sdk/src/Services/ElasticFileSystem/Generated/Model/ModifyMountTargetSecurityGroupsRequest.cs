@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
@@ -37,9 +38,9 @@ namespace Amazon.ElasticFileSystem.Model
     /// When you create a mount target, Amazon EFS also creates a new network interface. For
     /// more information, see <a>CreateMountTarget</a>. This operation replaces the security
     /// groups in effect for the network interface associated with a mount target, with the
-    /// <code>SecurityGroups</code> provided in the request. This operation requires that
-    /// the network interface of the mount target has been created and the lifecycle state
-    /// of the mount target is not <code>deleted</code>. 
+    /// <c>SecurityGroups</c> provided in the request. This operation requires that the network
+    /// interface of the mount target has been created and the lifecycle state of the mount
+    /// target is not <c>deleted</c>. 
     /// </para>
     ///  
     /// <para>
@@ -47,20 +48,20 @@ namespace Amazon.ElasticFileSystem.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>elasticfilesystem:ModifyMountTargetSecurityGroups</code> action on the mount
-    /// target's file system. 
+    ///  <c>elasticfilesystem:ModifyMountTargetSecurityGroups</c> action on the mount target's
+    /// file system. 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ec2:ModifyNetworkInterfaceAttribute</code> action on the mount target's network
-    /// interface. 
+    ///  <c>ec2:ModifyNetworkInterfaceAttribute</c> action on the mount target's network interface.
+    /// 
     /// </para>
     ///  </li> </ul>
     /// </summary>
     public partial class ModifyMountTargetSecurityGroupsRequest : AmazonElasticFileSystemRequest
     {
         private string _mountTargetId;
-        private List<string> _securityGroups = new List<string>();
+        private List<string> _securityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property MountTargetId. 
@@ -97,7 +98,7 @@ namespace Amazon.ElasticFileSystem.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AmplifyUIBuilder.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.AmplifyUIBuilder.Model
         /// <summary>
         /// Gets and sets the property Provider. 
         /// <para>
-        /// The third-party provider for the token. The only valid value is <code>figma</code>.
+        /// The third-party provider for the token. The only valid value is <c>figma</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,21 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                 else if(!(publicRequest.IsSetClientToken()))
                 {
                     request.Parameters.Add("ClientToken", StringUtils.FromString(Guid.NewGuid().ToString()));
+                }
+                if(publicRequest.IsSetConnectionTrackingSpecification())
+                {
+                    if(publicRequest.ConnectionTrackingSpecification.IsSetTcpEstablishedTimeout())
+                    {
+                        request.Parameters.Add("ConnectionTrackingSpecification" + "." + "TcpEstablishedTimeout", StringUtils.FromInt(publicRequest.ConnectionTrackingSpecification.TcpEstablishedTimeout));
+                    }
+                    if(publicRequest.ConnectionTrackingSpecification.IsSetUdpStreamTimeout())
+                    {
+                        request.Parameters.Add("ConnectionTrackingSpecification" + "." + "UdpStreamTimeout", StringUtils.FromInt(publicRequest.ConnectionTrackingSpecification.UdpStreamTimeout));
+                    }
+                    if(publicRequest.ConnectionTrackingSpecification.IsSetUdpTimeout())
+                    {
+                        request.Parameters.Add("ConnectionTrackingSpecification" + "." + "UdpTimeout", StringUtils.FromInt(publicRequest.ConnectionTrackingSpecification.UdpTimeout));
+                    }
                 }
                 if(publicRequest.IsSetDescription())
                 {
@@ -137,6 +153,13 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                             request.Parameters.Add("Ipv6Prefix" + "." + publicRequestlistValueIndex + "." + "Ipv6Prefix", StringUtils.FromString(publicRequestlistValue.Ipv6Prefix));
                         }
                         publicRequestlistValueIndex++;
+                    }
+                }
+                if(publicRequest.IsSetOperator())
+                {
+                    if(publicRequest.Operator.IsSetPrincipal())
+                    {
+                        request.Parameters.Add("Operator" + "." + "Principal", StringUtils.FromString(publicRequest.Operator.Principal));
                     }
                 }
                 if(publicRequest.IsSetPrivateIpAddress())

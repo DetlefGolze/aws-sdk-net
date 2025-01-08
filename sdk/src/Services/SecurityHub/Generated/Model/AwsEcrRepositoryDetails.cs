@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -79,8 +80,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property ImageTagMutability. 
         /// <para>
-        /// The tag mutability setting for the repository. Valid values are <code>IMMUTABLE</code>
-        /// or <code>MUTABLE</code>.
+        /// The tag mutability setting for the repository. Valid values are <c>IMMUTABLE</c> or
+        /// <c>MUTABLE</c>.
         /// </para>
         /// </summary>
         public string ImageTagMutability

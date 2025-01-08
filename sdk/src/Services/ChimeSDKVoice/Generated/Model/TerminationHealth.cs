@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKVoice.Model
 {
     /// <summary>
     /// The termination health details, including the source IP address and timestamp of the
-    /// last successful <code>SIP OPTIONS</code> message from your SIP infrastructure.
+    /// last successful <c>SIP OPTIONS</c> message from your SIP infrastructure.
     /// </summary>
     public partial class TerminationHealth
     {

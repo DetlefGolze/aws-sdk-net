@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -58,12 +59,12 @@ namespace Amazon.SageMaker.Model
         private string _description;
         private string _endpointName;
         private string _kmsKey;
-        private List<ModelVariantConfig> _modelVariants = new List<ModelVariantConfig>();
+        private List<ModelVariantConfig> _modelVariants = AWSConfigs.InitializeCollections ? new List<ModelVariantConfig>() : null;
         private string _name;
         private string _roleArn;
         private InferenceExperimentSchedule _schedule;
         private ShadowModeConfig _shadowModeConfig;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private InferenceExperimentType _type;
 
         /// <summary>
@@ -135,8 +136,8 @@ namespace Amazon.SageMaker.Model
         /// <para>
         ///  The Amazon Web Services Key Management Service (Amazon Web Services KMS) key that
         /// Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute
-        /// instance that hosts the endpoint. The <code>KmsKey</code> can be any of the following
-        /// formats: 
+        /// instance that hosts the endpoint. The <c>KmsKey</c> can be any of the following formats:
+        /// 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -144,7 +145,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code> 
+        ///  <c>"1234abcd-12ab-34cd-56ef-1234567890ab"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -152,7 +153,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+        ///  <c>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</c>
         /// 
         /// </para>
         ///  </li> <li> 
@@ -161,7 +162,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"alias/ExampleAlias"</code> 
+        ///  <c>"alias/ExampleAlias"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -169,25 +170,25 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias"</code> 
+        ///  <c>"arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias"</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
         ///  If you use a KMS key ID or an alias of your KMS key, the Amazon SageMaker execution
-        /// role must include permissions to call <code>kms:Encrypt</code>. If you don't provide
-        /// a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon S3 for your role's
-        /// account. Amazon SageMaker uses server-side encryption with KMS managed keys for <code>OutputDataConfig</code>.
-        /// If you use a bucket policy with an <code>s3:PutObject</code> permission that only
-        /// allows objects with server-side encryption, set the condition key of <code>s3:x-amz-server-side-encryption</code>
-        /// to <code>"aws:kms"</code>. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html">KMS
+        /// role must include permissions to call <c>kms:Encrypt</c>. If you don't provide a KMS
+        /// key ID, Amazon SageMaker uses the default KMS key for Amazon S3 for your role's account.
+        /// Amazon SageMaker uses server-side encryption with KMS managed keys for <c>OutputDataConfig</c>.
+        /// If you use a bucket policy with an <c>s3:PutObject</c> permission that only allows
+        /// objects with server-side encryption, set the condition key of <c>s3:x-amz-server-side-encryption</c>
+        /// to <c>"aws:kms"</c>. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html">KMS
         /// managed Encryption Keys</a> in the <i>Amazon Simple Storage Service Developer Guide.</i>
         /// 
         /// </para>
         ///  
         /// <para>
         ///  The KMS key policy must grant permission to the IAM role that you specify in your
-        /// <code>CreateEndpoint</code> and <code>UpdateEndpoint</code> requests. For more information,
-        /// see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html">Using
+        /// <c>CreateEndpoint</c> and <c>UpdateEndpoint</c> requests. For more information, see
+        /// <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html">Using
         /// Key Policies in Amazon Web Services KMS</a> in the <i>Amazon Web Services Key Management
         /// Service Developer Guide</i>. 
         /// </para>
@@ -208,9 +209,9 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property ModelVariants. 
         /// <para>
-        ///  An array of <code>ModelVariantConfig</code> objects. There is one for each variant
-        /// in the inference experiment. Each <code>ModelVariantConfig</code> object in the array
-        /// describes the infrastructure configuration for the corresponding variant. 
+        ///  An array of <c>ModelVariantConfig</c> objects. There is one for each variant in the
+        /// inference experiment. Each <c>ModelVariantConfig</c> object in the array describes
+        /// the infrastructure configuration for the corresponding variant. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2)]
@@ -223,7 +224,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if ModelVariants property is set
         internal bool IsSetModelVariants()
         {
-            return this._modelVariants != null && this._modelVariants.Count > 0; 
+            return this._modelVariants != null && (this._modelVariants.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -289,11 +290,11 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property ShadowModeConfig. 
         /// <para>
-        ///  The configuration of <code>ShadowMode</code> inference experiment type. Use this
-        /// field to specify a production variant which takes all the inference requests, and
-        /// a shadow variant to which Amazon SageMaker replicates a percentage of the inference
-        /// requests. For the shadow variant also specify the percentage of requests that Amazon
-        /// SageMaker replicates. 
+        ///  The configuration of <c>ShadowMode</c> inference experiment type. Use this field
+        /// to specify a production variant which takes all the inference requests, and a shadow
+        /// variant to which Amazon SageMaker replicates a percentage of the inference requests.
+        /// For the shadow variant also specify the percentage of requests that Amazon SageMaker
+        /// replicates. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -328,7 +329,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -339,8 +340,8 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ShadowMode</code>: You can use this type to validate a shadow variant. For
-        /// more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/shadow-tests.html">Shadow
+        ///  <c>ShadowMode</c>: You can use this type to validate a shadow variant. For more information,
+        /// see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/shadow-tests.html">Shadow
         /// tests</a>. 
         /// </para>
         ///  </li> </ul>

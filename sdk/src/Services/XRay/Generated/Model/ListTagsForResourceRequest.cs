@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.XRay.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.XRay.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A pagination token. If multiple pages of results are returned, use the <code>NextToken</code>
+        /// A pagination token. If multiple pages of results are returned, use the <c>NextToken</c>
         /// value returned with the current page of results as the value of this parameter to
         /// get the next page of results.
         /// </para>

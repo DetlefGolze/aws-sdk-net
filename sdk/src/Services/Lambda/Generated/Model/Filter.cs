@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
-    /// A structure within a <code>FilterCriteria</code> object that defines an event filtering
+    /// A structure within a <c>FilterCriteria</c> object that defines an event filtering
     /// pattern.
     /// </summary>
     public partial class Filter

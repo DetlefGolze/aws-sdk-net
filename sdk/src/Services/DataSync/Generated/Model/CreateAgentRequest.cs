@@ -26,48 +26,34 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateAgent operation.
-    /// Activates an DataSync agent that you've deployed in your storage environment. The
-    /// activation process associates the agent with your Amazon Web Services account.
+    /// Activates an DataSync agent that you deploy in your storage environment. The activation
+    /// process associates the agent with your Amazon Web Services account.
     /// 
     ///  
     /// <para>
-    /// If you haven't deployed an agent yet, see the following topics to learn more:
+    /// If you haven't deployed an agent yet, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/do-i-need-datasync-agent.html">Do
+    /// I need a DataSync agent?</a> 
     /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    ///  <a href="https://docs.aws.amazon.com/datasync/latest/userguide/agent-requirements.html">Agent
-    /// requirements</a> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a href="https://docs.aws.amazon.com/datasync/latest/userguide/configure-agent.html">Create
-    /// an agent</a> 
-    /// </para>
-    ///  </li> </ul> <note> 
-    /// <para>
-    /// If you're transferring between Amazon Web Services storage services, you don't need
-    /// a DataSync agent. 
-    /// </para>
-    ///  </note>
     /// </summary>
     public partial class CreateAgentRequest : AmazonDataSyncRequest
     {
         private string _activationKey;
         private string _agentName;
-        private List<string> _securityGroupArns = new List<string>();
-        private List<string> _subnetArns = new List<string>();
-        private List<TagListEntry> _tags = new List<TagListEntry>();
+        private List<string> _securityGroupArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _subnetArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<TagListEntry> _tags = AWSConfigs.InitializeCollections ? new List<TagListEntry>() : null;
         private string _vpcEndpointId;
 
         /// <summary>
         /// Gets and sets the property ActivationKey. 
         /// <para>
         /// Specifies your DataSync agent's activation key. If you don't have an activation key,
-        /// see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/activate-agent.html">Activate
+        /// see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/activate-agent.html">Activating
         /// your agent</a>.
         /// </para>
         /// </summary>
@@ -87,10 +73,10 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property AgentName. 
         /// <para>
-        /// Specifies a name for your agent. You can see this name in the DataSync console.
+        /// Specifies a name for your agent. We recommend specifying a name that you can remember.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=256)]
+        [AWSProperty(Min=0, Max=256)]
         public string AgentName
         {
             get { return this._agentName; }
@@ -106,10 +92,8 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property SecurityGroupArns. 
         /// <para>
-        /// Specifies the Amazon Resource Name (ARN) of the security group that protects your
-        /// task's <a href="https://docs.aws.amazon.com/datasync/latest/userguide/datasync-network.html#required-network-interfaces">network
-        /// interfaces</a> when <a href="https://docs.aws.amazon.com/datasync/latest/userguide/choose-service-endpoint.html#choose-service-endpoint-vpc">using
-        /// a virtual private cloud (VPC) endpoint</a>. You can only specify one ARN.
+        /// Specifies the Amazon Resource Name (ARN) of the security group that allows traffic
+        /// between your agent and VPC service endpoint. You can only specify one ARN.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1)]
@@ -122,15 +106,14 @@ namespace Amazon.DataSync.Model
         // Check to see if SecurityGroupArns property is set
         internal bool IsSetSecurityGroupArns()
         {
-            return this._securityGroupArns != null && this._securityGroupArns.Count > 0; 
+            return this._securityGroupArns != null && (this._securityGroupArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SubnetArns. 
         /// <para>
-        /// Specifies the ARN of the subnet where you want to run your DataSync task when using
-        /// a VPC endpoint. This is the subnet where DataSync creates and manages the <a href="https://docs.aws.amazon.com/datasync/latest/userguide/datasync-network.html#required-network-interfaces">network
-        /// interfaces</a> for your transfer. You can only specify one ARN.
+        /// Specifies the ARN of the subnet where your VPC service endpoint is located. You can
+        /// only specify one ARN.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1)]
@@ -143,7 +126,7 @@ namespace Amazon.DataSync.Model
         // Check to see if SubnetArns property is set
         internal bool IsSetSubnetArns()
         {
-            return this._subnetArns != null && this._subnetArns.Count > 0; 
+            return this._subnetArns != null && (this._subnetArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -163,18 +146,20 @@ namespace Amazon.DataSync.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property VpcEndpointId. 
         /// <para>
-        /// Specifies the ID of the VPC endpoint that you want your agent to connect to. For example,
-        /// a VPC endpoint ID looks like <code>vpce-01234d5aff67890e1</code>.
+        /// Specifies the ID of the <a href="https://docs.aws.amazon.com/datasync/latest/userguide/choose-service-endpoint.html#datasync-in-vpc">VPC
+        /// service endpoint</a> that you're using. For example, a VPC endpoint ID looks like
+        /// <c>vpce-01234d5aff67890e1</c>.
         /// </para>
         ///  <important> 
         /// <para>
-        /// The VPC endpoint you use must include the DataSync service name (for example, <code>com.amazonaws.us-east-2.datasync</code>).
+        /// The VPC service endpoint you use must include the DataSync service name (for example,
+        /// <c>com.amazonaws.us-east-2.datasync</c>).
         /// </para>
         ///  </important>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -83,18 +84,18 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ACTIVE</code> - the IAM role ARN is associated with the DB cluster and can
-        /// be used to access other Amazon Web Services on your behalf.
+        ///  <c>ACTIVE</c> - the IAM role ARN is associated with the DB cluster and can be used
+        /// to access other Amazon Web Services on your behalf.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PENDING</code> - the IAM role ARN is being associated with the DB cluster.
+        ///  <c>PENDING</c> - the IAM role ARN is being associated with the DB cluster.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INVALID</code> - the IAM role ARN is associated with the DB cluster, but the
-        /// DB cluster is unable to assume the IAM role in order to access other Amazon Web Services
-        /// on your behalf.
+        ///  <c>INVALID</c> - the IAM role ARN is associated with the DB cluster, but the DB cluster
+        /// is unable to assume the IAM role in order to access other Amazon Web Services on your
+        /// behalf.
         /// </para>
         ///  </li> </ul>
         /// </summary>

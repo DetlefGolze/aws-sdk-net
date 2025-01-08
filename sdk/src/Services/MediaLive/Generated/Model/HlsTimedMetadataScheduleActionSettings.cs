@@ -26,18 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaLive.Model
 {
     /// <summary>
-    /// Settings for the action to emit HLS metadata
+    /// Settings for the action to insert ID3 metadata (as a one-time action) in HLS output
+    /// groups.
     /// </summary>
     public partial class HlsTimedMetadataScheduleActionSettings
     {
         private string _id3;
 
         /// <summary>
-        /// Gets and sets the property Id3. Base64 string formatted according to the ID3 specification:
-        /// http://id3.org/id3v2.4.0-structure
+        /// Gets and sets the property Id3. Enter a base64 string that contains one or more fully
+        /// formed ID3 tags.See the ID3 specification: http://id3.org/id3v2.4.0-structure
         /// </summary>
         [AWSProperty(Required=true)]
         public string Id3

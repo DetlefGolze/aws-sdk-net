@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Amplify.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property WebhookId. 
         /// <para>
-        ///  The unique ID for a webhook. 
+        /// The unique ID for a webhook. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=255)]

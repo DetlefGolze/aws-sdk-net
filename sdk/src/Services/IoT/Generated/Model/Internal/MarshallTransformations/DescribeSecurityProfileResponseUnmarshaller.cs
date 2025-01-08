@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoT.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -85,6 +86,12 @@ namespace Amazon.IoT.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
                     response.LastModifiedDate = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("metricsExportConfig", targetDepth))
+                {
+                    var unmarshaller = MetricsExportConfigUnmarshaller.Instance;
+                    response.MetricsExportConfig = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("securityProfileArn", targetDepth))

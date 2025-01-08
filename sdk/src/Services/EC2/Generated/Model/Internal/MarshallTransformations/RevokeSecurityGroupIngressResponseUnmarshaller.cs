@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -61,9 +62,24 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                         response.Return = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("revokedSecurityGroupRuleSet/item", targetDepth))
+                    {
+                        var unmarshaller = RevokedSecurityGroupRuleUnmarshaller.Instance;
+                        if (response.RevokedSecurityGroupRules == null)
+                        {
+                            response.RevokedSecurityGroupRules = new List<RevokedSecurityGroupRule>();
+                        }
+                        var item = unmarshaller.Unmarshall(context);
+                        response.RevokedSecurityGroupRules.Add(item);
+                        continue;
+                    }
                     if (context.TestExpression("unknownIpPermissionSet/item", targetDepth))
                     {
                         var unmarshaller = IpPermissionUnmarshaller.Instance;
+                        if (response.UnknownIpPermissions == null)
+                        {
+                            response.UnknownIpPermissions = new List<IpPermission>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         response.UnknownIpPermissions.Add(item);
                         continue;

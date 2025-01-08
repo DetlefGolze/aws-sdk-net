@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.CloudWatchLogs.Model
     /// 
     ///  
     /// <para>
-    /// The task must be in the <code>PENDING</code> or <code>RUNNING</code> state.
+    /// The task must be in the <c>PENDING</c> or <c>RUNNING</c> state.
     /// </para>
     /// </summary>
     public partial class CancelExportTaskRequest : AmazonCloudWatchLogsRequest

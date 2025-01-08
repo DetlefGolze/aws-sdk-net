@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -37,6 +38,8 @@ namespace Amazon.Route53Resolver.Model
         private string _ip;
         private string _ipv6;
         private int? _port;
+        private Protocol _protocol;
+        private string _serverNameIndication;
 
         /// <summary>
         /// Gets and sets the property Ip. 
@@ -79,7 +82,7 @@ namespace Amazon.Route53Resolver.Model
         /// <summary>
         /// Gets and sets the property Port. 
         /// <para>
-        /// The port at <code>Ip</code> that you want to forward DNS queries to.
+        /// The port at <c>Ip</c> that you want to forward DNS queries to.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=65535)]
@@ -93,6 +96,45 @@ namespace Amazon.Route53Resolver.Model
         internal bool IsSetPort()
         {
             return this._port.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Protocol. 
+        /// <para>
+        ///  The protocols for the target address. The protocol you choose needs to be supported
+        /// by the outbound endpoint of the Resolver rule.
+        /// </para>
+        /// </summary>
+        public Protocol Protocol
+        {
+            get { return this._protocol; }
+            set { this._protocol = value; }
+        }
+
+        // Check to see if Protocol property is set
+        internal bool IsSetProtocol()
+        {
+            return this._protocol != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ServerNameIndication. 
+        /// <para>
+        ///  The Server Name Indication of the DoH server that you want to forward queries to.
+        /// This is only used if the Protocol of the <c>TargetAddress</c> is <c>DoH</c>. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=255)]
+        public string ServerNameIndication
+        {
+            get { return this._serverNameIndication; }
+            set { this._serverNameIndication = value; }
+        }
+
+        // Check to see if ServerNameIndication property is set
+        internal bool IsSetServerNameIndication()
+        {
+            return this._serverNameIndication != null;
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.CloudDirectory.Model
     /// </summary>
     public partial class BatchListObjectChildrenResponse
     {
-        private Dictionary<string, string> _children = new Dictionary<string, string>();
+        private Dictionary<string, string> _children = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Children. 
         /// <para>
-        /// The children structure, which is a map with the key as the <code>LinkName</code> and
-        /// <code>ObjectIdentifier</code> as the value.
+        /// The children structure, which is a map with the key as the <c>LinkName</c> and <c>ObjectIdentifier</c>
+        /// as the value.
         /// </para>
         /// </summary>
         public Dictionary<string, string> Children
@@ -52,7 +53,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if Children property is set
         internal bool IsSetChildren()
         {
-            return this._children != null && this._children.Count > 0; 
+            return this._children != null && (this._children.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

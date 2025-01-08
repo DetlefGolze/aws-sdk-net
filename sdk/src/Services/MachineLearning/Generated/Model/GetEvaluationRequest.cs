@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MachineLearning.Model
 {
     /// <summary>
     /// Container for the parameters to the GetEvaluation operation.
-    /// Returns an <code>Evaluation</code> that includes metadata as well as the current status
-    /// of the <code>Evaluation</code>.
+    /// Returns an <c>Evaluation</c> that includes metadata as well as the current status
+    /// of the <c>Evaluation</c>.
     /// </summary>
     public partial class GetEvaluationRequest : AmazonMachineLearningRequest
     {
@@ -40,7 +41,7 @@ namespace Amazon.MachineLearning.Model
         /// <summary>
         /// Gets and sets the property EvaluationId. 
         /// <para>
-        /// The ID of the <code>Evaluation</code> to retrieve. The evaluation of each <code>MLModel</code>
+        /// The ID of the <c>Evaluation</c> to retrieve. The evaluation of each <c>MLModel</c>
         /// is recorded and cataloged. The ID provides the means to access the information. 
         /// </para>
         /// </summary>

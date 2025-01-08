@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.Glue.Model
     /// </summary>
     public partial class GetDatabasesResponse : AmazonWebServiceResponse
     {
-        private List<Database> _databaseList = new List<Database>();
+        private List<Database> _databaseList = AWSConfigs.InitializeCollections ? new List<Database>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property DatabaseList. 
         /// <para>
-        /// A list of <code>Database</code> objects from the specified catalog.
+        /// A list of <c>Database</c> objects from the specified catalog.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -52,7 +53,7 @@ namespace Amazon.Glue.Model
         // Check to see if DatabaseList property is set
         internal bool IsSetDatabaseList()
         {
-            return this._databaseList != null && this._databaseList.Count > 0; 
+            return this._databaseList != null && (this._databaseList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -40,8 +41,18 @@ namespace Amazon.WAFV2.Model
     /// <para>
     /// For Amazon CloudFront, don't use this call. Instead, use your CloudFront distribution
     /// configuration. To disassociate a web ACL, provide an empty web ACL ID in the CloudFront
-    /// call <code>UpdateDistribution</code>. For information, see <a href="https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html">UpdateDistribution</a>
+    /// call <c>UpdateDistribution</c>. For information, see <a href="https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html">UpdateDistribution</a>
     /// in the <i>Amazon CloudFront API Reference</i>. 
+    /// </para>
+    ///  
+    /// <para>
+    ///  <b>Required permissions for customer-managed IAM policies</b> 
+    /// </para>
+    ///  
+    /// <para>
+    /// This call requires permissions that are specific to the protected resource type. For
+    /// details, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/security_iam_service-with-iam.html#security_iam_action-DisassociateWebACL">Permissions
+    /// for DisassociateWebACL</a> in the <i>WAF Developer Guide</i>.
     /// </para>
     /// </summary>
     public partial class DisassociateWebACLRequest : AmazonWAFV2Request
@@ -59,33 +70,33 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For an Application Load Balancer: <code>arn:<i>partition</i>:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/app/<i>load-balancer-name</i>/<i>load-balancer-id</i>
-        /// </code> 
+        /// For an Application Load Balancer: <c>arn:<i>partition</i>:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/app/<i>load-balancer-name</i>/<i>load-balancer-id</i>
+        /// </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For an Amazon API Gateway REST API: <code>arn:<i>partition</i>:apigateway:<i>region</i>::/restapis/<i>api-id</i>/stages/<i>stage-name</i>
-        /// </code> 
+        /// For an Amazon API Gateway REST API: <c>arn:<i>partition</i>:apigateway:<i>region</i>::/restapis/<i>api-id</i>/stages/<i>stage-name</i>
+        /// </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For an AppSync GraphQL API: <code>arn:<i>partition</i>:appsync:<i>region</i>:<i>account-id</i>:apis/<i>GraphQLApiId</i>
-        /// </code> 
+        /// For an AppSync GraphQL API: <c>arn:<i>partition</i>:appsync:<i>region</i>:<i>account-id</i>:apis/<i>GraphQLApiId</i>
+        /// </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For an Amazon Cognito user pool: <code>arn:<i>partition</i>:cognito-idp:<i>region</i>:<i>account-id</i>:userpool/<i>user-pool-id</i>
-        /// </code> 
+        /// For an Amazon Cognito user pool: <c>arn:<i>partition</i>:cognito-idp:<i>region</i>:<i>account-id</i>:userpool/<i>user-pool-id</i>
+        /// </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For an App Runner service: <code>arn:<i>partition</i>:apprunner:<i>region</i>:<i>account-id</i>:service/<i>apprunner-service-name</i>/<i>apprunner-service-id</i>
-        /// </code> 
+        /// For an App Runner service: <c>arn:<i>partition</i>:apprunner:<i>region</i>:<i>account-id</i>:service/<i>apprunner-service-name</i>/<i>apprunner-service-id</i>
+        /// </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For an Amazon Web Services Verified Access instance: <code>arn:<i>partition</i>:ec2:<i>region</i>:<i>account-id</i>:verified-access-instance/<i>instance-id</i>
-        /// </code> 
+        /// For an Amazon Web Services Verified Access instance: <c>arn:<i>partition</i>:ec2:<i>region</i>:<i>account-id</i>:verified-access-instance/<i>instance-id</i>
+        /// </c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

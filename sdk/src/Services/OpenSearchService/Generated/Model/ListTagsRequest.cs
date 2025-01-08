@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
     /// Container for the parameters to the ListTags operation.
-    /// Returns all resource tags for an Amazon OpenSearch Service domain. For more information,
-    /// see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-awsresourcetagging.html">Tagging
-    /// Amazon OpenSearch Service domains</a>.
+    /// Returns all resource tags for an Amazon OpenSearch Service domain, data source, or
+    /// application. For more information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-awsresourcetagging.html">Tagging
+    /// Amazon OpenSearch Service resources</a>.
     /// </summary>
     public partial class ListTagsRequest : AmazonOpenSearchServiceRequest
     {
@@ -41,7 +42,8 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property ARN. 
         /// <para>
-        /// Amazon Resource Name (ARN) for the domain to view tags for.
+        /// Amazon Resource Name (ARN) for the domain, data source, or application to view tags
+        /// for.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]

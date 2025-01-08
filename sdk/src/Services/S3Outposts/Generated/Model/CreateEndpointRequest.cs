@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Outposts.Model
 {
     /// <summary>
@@ -64,13 +65,13 @@ namespace Amazon.S3Outposts.Model
         /// Gets and sets the property AccessType. 
         /// <para>
         /// The type of access for the network connectivity for the Amazon S3 on Outposts endpoint.
-        /// To use the Amazon Web Services VPC, choose <code>Private</code>. To use the endpoint
-        /// with an on-premises network, choose <code>CustomerOwnedIp</code>. If you choose <code>CustomerOwnedIp</code>,
+        /// To use the Amazon Web Services VPC, choose <c>Private</c>. To use the endpoint with
+        /// an on-premises network, choose <c>CustomerOwnedIp</c>. If you choose <c>CustomerOwnedIp</c>,
         /// you must also provide the customer-owned IP address pool (CoIP pool).
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>Private</code> is the default access type value.
+        ///  <c>Private</c> is the default access type value.
         /// </para>
         ///  </note>
         /// </summary>

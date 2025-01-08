@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MemoryDB.Model
 {
     /// <summary>
@@ -65,6 +66,14 @@ namespace Amazon.MemoryDB.Model
         public IDescribeEventsPaginator DescribeEvents(DescribeEventsRequest request) 
         {
             return new DescribeEventsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeMultiRegionClusters operation
+        ///</summary>
+        public IDescribeMultiRegionClustersPaginator DescribeMultiRegionClusters(DescribeMultiRegionClustersRequest request) 
+        {
+            return new DescribeMultiRegionClustersPaginator(this.client, request);
         }
 
         /// <summary>

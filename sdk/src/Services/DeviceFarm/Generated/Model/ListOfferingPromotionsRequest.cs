@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DeviceFarm.Model
 {
     /// <summary>
     /// Container for the parameters to the ListOfferingPromotions operation.
     /// Returns a list of offering promotions. Each offering promotion record contains the
-    /// ID and description of the promotion. The API returns a <code>NotEligible</code> error
-    /// if the caller is not permitted to invoke the operation. Contact <a href="mailto:aws-devicefarm-support@amazon.com">aws-devicefarm-support@amazon.com</a>
+    /// ID and description of the promotion. The API returns a <c>NotEligible</c> error if
+    /// the caller is not permitted to invoke the operation. Contact <a href="mailto:aws-devicefarm-support@amazon.com">aws-devicefarm-support@amazon.com</a>
     /// if you must be able to invoke this operation.
     /// </summary>
     public partial class ListOfferingPromotionsRequest : AmazonDeviceFarmRequest

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Kendra.Model
     /// </summary>
     public partial class DocumentInfo
     {
-        private List<DocumentAttribute> _attributes = new List<DocumentAttribute>();
+        private List<DocumentAttribute> _attributes = AWSConfigs.InitializeCollections ? new List<DocumentAttribute>() : null;
         private string _documentId;
 
         /// <summary>
@@ -63,16 +64,16 @@ namespace Amazon.Kendra.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>dataSourceId</code> and <code>jobExecutionId</code> must be used together.
+        ///  <c>dataSourceId</c> and <c>jobExecutionId</c> must be used together.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>version</code> is ignored if <code>dataSourceId</code> and <code>jobExecutionId</code>
-        /// are not provided.
+        ///  <c>version</c> is ignored if <c>dataSourceId</c> and <c>jobExecutionId</c> are not
+        /// provided.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If <code>dataSourceId</code> and <code>jobExecutionId</code> are provided, but <code>version</code>
+        /// If <c>dataSourceId</c> and <c>jobExecutionId</c> are provided, but <c>version</c>
         /// is not, the version defaults to "0".
         /// </para>
         ///  </li> </ul>
@@ -86,7 +87,7 @@ namespace Amazon.Kendra.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

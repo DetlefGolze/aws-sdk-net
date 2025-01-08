@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
@@ -34,21 +35,21 @@ namespace Amazon.CloudDirectory.Model
     /// 
     ///  <ol> <li> 
     /// <para>
-    /// Adds new <code>Attributes</code>, <code>Rules</code>, or <code>ObjectTypes</code>.
+    /// Adds new <c>Attributes</c>, <c>Rules</c>, or <c>ObjectTypes</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Updates existing <code>Attributes</code>, <code>Rules</code>, or <code>ObjectTypes</code>.
+    /// Updates existing <c>Attributes</c>, <c>Rules</c>, or <c>ObjectTypes</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Deletes existing <code>Attributes</code>, <code>Rules</code>, or <code>ObjectTypes</code>.
+    /// Deletes existing <c>Attributes</c>, <c>Rules</c>, or <c>ObjectTypes</c>.
     /// </para>
     ///  </li> </ol>
     /// </summary>
     public partial class UpdateFacetRequest : AmazonCloudDirectoryRequest
     {
-        private List<FacetAttributeUpdate> _attributeUpdates = new List<FacetAttributeUpdate>();
+        private List<FacetAttributeUpdate> _attributeUpdates = AWSConfigs.InitializeCollections ? new List<FacetAttributeUpdate>() : null;
         private string _name;
         private ObjectType _objectType;
         private string _schemaArn;
@@ -57,7 +58,7 @@ namespace Amazon.CloudDirectory.Model
         /// Gets and sets the property AttributeUpdates. 
         /// <para>
         /// List of attributes that need to be updated in a given schema <a>Facet</a>. Each attribute
-        /// is followed by <code>AttributeAction</code>, which specifies the type of update operation
+        /// is followed by <c>AttributeAction</c>, which specifies the type of update operation
         /// to perform. 
         /// </para>
         /// </summary>
@@ -70,7 +71,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if AttributeUpdates property is set
         internal bool IsSetAttributeUpdates()
         {
-            return this._attributeUpdates != null && this._attributeUpdates.Count > 0; 
+            return this._attributeUpdates != null && (this._attributeUpdates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -128,7 +129,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if SchemaArn property is set
         internal bool IsSetSchemaArn()
         {
-            return this._schemaArn != null;
+            return !string.IsNullOrEmpty(this._schemaArn);
         }
 
     }

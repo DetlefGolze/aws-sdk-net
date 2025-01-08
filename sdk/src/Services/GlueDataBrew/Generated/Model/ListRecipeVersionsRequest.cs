@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GlueDataBrew.Model
 {
     /// <summary>
     /// Container for the parameters to the ListRecipeVersions operation.
-    /// Lists the versions of a particular DataBrew recipe, except for <code>LATEST_WORKING</code>.
+    /// Lists the versions of a particular DataBrew recipe, except for <c>LATEST_WORKING</c>.
     /// </summary>
     public partial class ListRecipeVersionsRequest : AmazonGlueDataBrewRequest
     {

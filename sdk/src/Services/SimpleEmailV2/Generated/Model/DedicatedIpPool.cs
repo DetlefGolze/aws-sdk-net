@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -62,13 +63,13 @@ namespace Amazon.SimpleEmailV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>STANDARD</code> – A dedicated IP pool where you can control which IPs are part
-        /// of the pool.
+        ///  <c>STANDARD</c> – A dedicated IP pool where you can control which IPs are part of
+        /// the pool.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MANAGED</code> – A dedicated IP pool where the reputation and number of IPs
-        /// are automatically managed by Amazon SES.
+        ///  <c>MANAGED</c> – A dedicated IP pool where the reputation and number of IPs are automatically
+        /// managed by Amazon SES.
         /// </para>
         ///  </li> </ul>
         /// </summary>

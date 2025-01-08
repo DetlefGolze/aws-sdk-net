@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -64,7 +65,7 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        /// The ID for the origin access identity. For example: <code>E74FTE3AJFJ256A</code>.
+        /// The ID for the origin access identity. For example: <c>E74FTE3AJFJ256A</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
@@ -38,10 +39,10 @@ namespace Amazon.Snowball.Model
         /// <summary>
         /// Gets and sets the property UpdatesURI. 
         /// <para>
-        /// The Amazon S3 presigned URL for the update file associated with the specified <code>JobId</code>
+        /// The Amazon S3 presigned URL for the update file associated with the specified <c>JobId</c>
         /// value. The software update will be available for 2 days after this request is made.
         /// To access an update after the 2 days have passed, you'll have to make another call
-        /// to <code>GetSoftwareUpdates</code>.
+        /// to <c>GetSoftwareUpdates</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaConvert.Model
 {
     /// <summary>
@@ -92,7 +93,7 @@ namespace Amazon.MediaConvert.Model
         /// For instructions on creating a secret, see https://docs.aws.amazon.com/secretsmanager/latest/userguide/tutorials_basic.html,
         /// in the AWS Secrets Manager User Guide.
         /// </summary>
-        [AWSProperty(Min=1, Max=512)]
+        [AWSProperty(Min=1, Max=2048)]
         public string CredentialsSecretName
         {
             get { return this._credentialsSecretName; }

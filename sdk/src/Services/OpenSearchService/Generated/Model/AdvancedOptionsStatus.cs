@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -34,31 +35,31 @@ namespace Amazon.OpenSearchService.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    ///  <code>"rest.action.multi.allow_explicit_index": "true" | "false"</code> - Note the
-    /// use of a string rather than a boolean. Specifies whether explicit references to indexes
+    ///  <c>"rest.action.multi.allow_explicit_index": "true" | "false"</c> - Note the use
+    /// of a string rather than a boolean. Specifies whether explicit references to indexes
     /// are allowed inside the body of HTTP requests. If you want to configure access policies
     /// for domain sub-resources, such as specific indexes and domain APIs, you must disable
     /// this property. Default is true.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>"indices.fielddata.cache.size": "80" </code> - Note the use of a string rather
-    /// than a boolean. Specifies the percentage of heap space allocated to field data. Default
+    ///  <c>"indices.fielddata.cache.size": "80" </c> - Note the use of a string rather than
+    /// a boolean. Specifies the percentage of heap space allocated to field data. Default
     /// is unbounded.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>"indices.query.bool.max_clause_count": "1024"</code> - Note the use of a string
-    /// rather than a boolean. Specifies the maximum number of clauses allowed in a Lucene
-    /// boolean query. Default is 1,024. Queries with more than the permitted number of clauses
-    /// result in a <code>TooManyClauses</code> error.
+    ///  <c>"indices.query.bool.max_clause_count": "1024"</c> - Note the use of a string rather
+    /// than a boolean. Specifies the maximum number of clauses allowed in a Lucene boolean
+    /// query. Default is 1,024. Queries with more than the permitted number of clauses result
+    /// in a <c>TooManyClauses</c> error.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>"override_main_response_version": "true" | "false"</code> - Note the use of
-    /// a string rather than a boolean. Specifies whether the domain reports its version as
-    /// 7.10 to allow Elasticsearch OSS clients and plugins to continue working with it. Default
-    /// is false when creating a domain and true when upgrading a domain.
+    ///  <c>"override_main_response_version": "true" | "false"</c> - Note the use of a string
+    /// rather than a boolean. Specifies whether the domain reports its version as 7.10 to
+    /// allow Elasticsearch OSS clients and plugins to continue working with it. Default is
+    /// false when creating a domain and true when upgrading a domain.
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -68,7 +69,7 @@ namespace Amazon.OpenSearchService.Model
     /// </summary>
     public partial class AdvancedOptionsStatus
     {
-        private Dictionary<string, string> _options = new Dictionary<string, string>();
+        private Dictionary<string, string> _options = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private OptionStatus _status;
 
         /// <summary>
@@ -87,7 +88,7 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if Options property is set
         internal bool IsSetOptions()
         {
-            return this._options != null && this._options.Count > 0; 
+            return this._options != null && (this._options.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

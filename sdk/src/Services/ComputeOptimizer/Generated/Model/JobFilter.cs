@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComputeOptimizer.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.ComputeOptimizer.Model
     /// 
     ///  
     /// <para>
-    /// You can use <code>EBSFilter</code> with the <a>GetEBSVolumeRecommendations</a> action,
-    /// <code>LambdaFunctionRecommendationFilter</code> with the <a>GetLambdaFunctionRecommendations</a>
-    /// action, and <code>Filter</code> with the <a>GetAutoScalingGroupRecommendations</a>
-    /// and <a>GetEC2InstanceRecommendations</a> actions.
+    /// You can use <c>EBSFilter</c> with the <a>GetEBSVolumeRecommendations</a> action, <c>LambdaFunctionRecommendationFilter</c>
+    /// with the <a>GetLambdaFunctionRecommendations</a> action, and <c>Filter</c> with the
+    /// <a>GetAutoScalingGroupRecommendations</a> and <a>GetEC2InstanceRecommendations</a>
+    /// actions.
     /// </para>
     /// </summary>
     public partial class JobFilter
     {
         private JobFilterName _name;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Name. 
@@ -52,13 +53,12 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        /// Specify <code>ResourceType</code> to return export jobs of a specific resource type
-        /// (for example, <code>Ec2Instance</code>).
+        /// Specify <c>ResourceType</c> to return export jobs of a specific resource type (for
+        /// example, <c>Ec2Instance</c>).
         /// </para>
         ///  
         /// <para>
-        /// Specify <code>JobStatus</code> to return export jobs with a specific status (e.g,
-        /// <code>Complete</code>).
+        /// Specify <c>JobStatus</c> to return export jobs with a specific status (e.g, <c>Complete</c>).
         /// </para>
         /// </summary>
         public JobFilterName Name
@@ -81,18 +81,18 @@ namespace Amazon.ComputeOptimizer.Model
         ///  
         /// <para>
         /// The valid values for this parameter are as follows, depending on what you specify
-        /// for the <code>name</code> parameter:
+        /// for the <c>name</c> parameter:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Specify <code>Ec2Instance</code> or <code>AutoScalingGroup</code> if you specify the
-        /// <code>name</code> parameter as <code>ResourceType</code>. There is no filter for EBS
-        /// volumes because volume recommendations cannot be exported at this time.
+        /// Specify <c>Ec2Instance</c> or <c>AutoScalingGroup</c> if you specify the <c>name</c>
+        /// parameter as <c>ResourceType</c>. There is no filter for EBS volumes because volume
+        /// recommendations cannot be exported at this time.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Specify <code>Queued</code>, <code>InProgress</code>, <code>Complete</code>, or <code>Failed</code>
-        /// if you specify the <code>name</code> parameter as <code>JobStatus</code>.
+        /// Specify <c>Queued</c>, <c>InProgress</c>, <c>Complete</c>, or <c>Failed</c> if you
+        /// specify the <c>name</c> parameter as <c>JobStatus</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -105,7 +105,7 @@ namespace Amazon.ComputeOptimizer.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

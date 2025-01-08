@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideo.Model
 {
     /// <summary>
@@ -46,12 +47,11 @@ namespace Amazon.KinesisVideo.Model
     ///  To ensure that you have the latest version of the stream before deleting it, you
     /// can specify the stream version. Kinesis Video Streams assigns a version to each stream.
     /// When you update a stream, Kinesis Video Streams assigns a new version number. To get
-    /// the latest stream version, use the <code>DescribeStream</code> API. 
+    /// the latest stream version, use the <c>DescribeStream</c> API. 
     /// </para>
     ///  
     /// <para>
-    /// This operation requires permission for the <code>KinesisVideo:DeleteStream</code>
-    /// action.
+    /// This operation requires permission for the <c>KinesisVideo:DeleteStream</c> action.
     /// </para>
     /// </summary>
     public partial class DeleteStreamRequest : AmazonKinesisVideoRequest
@@ -67,12 +67,11 @@ namespace Amazon.KinesisVideo.Model
         ///  
         /// <para>
         /// Specify the version as a safeguard to ensure that your are deleting the correct stream.
-        /// To get the stream version, use the <code>DescribeStream</code> API.
+        /// To get the stream version, use the <c>DescribeStream</c> API.
         /// </para>
         ///  
         /// <para>
-        /// If not specified, only the <code>CreationTime</code> is checked before deleting the
-        /// stream.
+        /// If not specified, only the <c>CreationTime</c> is checked before deleting the stream.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]

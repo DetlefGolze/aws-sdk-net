@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
@@ -35,16 +36,16 @@ namespace Amazon.TranscribeService.Model
     {
         private string _nextToken;
         private TranscriptionJobStatus _status;
-        private List<TranscriptionJobSummary> _transcriptionJobSummaries = new List<TranscriptionJobSummary>();
+        private List<TranscriptionJobSummary> _transcriptionJobSummaries = AWSConfigs.InitializeCollections ? new List<TranscriptionJobSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If <code>NextToken</code> is present in your response, it indicates that not all results
+        /// If <c>NextToken</c> is present in your response, it indicates that not all results
         /// are displayed. To view the next set of results, copy the string associated with the
-        /// <code>NextToken</code> parameter in your results output, then run your request again
-        /// including <code>NextToken</code> with the value of the copied string. Repeat as needed
-        /// to view all your results.
+        /// <c>NextToken</c> parameter in your results output, then run your request again including
+        /// <c>NextToken</c> with the value of the copied string. Repeat as needed to view all
+        /// your results.
         /// </para>
         /// </summary>
         [AWSProperty(Max=8192)]
@@ -94,7 +95,7 @@ namespace Amazon.TranscribeService.Model
         // Check to see if TranscriptionJobSummaries property is set
         internal bool IsSetTranscriptionJobSummaries()
         {
-            return this._transcriptionJobSummaries != null && this._transcriptionJobSummaries.Count > 0; 
+            return this._transcriptionJobSummaries != null && (this._transcriptionJobSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

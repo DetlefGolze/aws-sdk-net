@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMakerGeospatial.Model
 {
     /// <summary>
@@ -101,8 +102,8 @@ namespace Amazon.SageMakerGeospatial.Model
         /// <summary>
         /// Gets and sets the property SortOrder. 
         /// <para>
-        /// An optional value that specifies whether you want the results sorted in <code>Ascending</code>
-        /// or <code>Descending</code> order.
+        /// An optional value that specifies whether you want the results sorted in <c>Ascending</c>
+        /// or <c>Descending</c> order.
         /// </para>
         /// </summary>
         public SortOrder SortOrder

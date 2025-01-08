@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancingV2.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.ElasticLoadBalancingV2.Model
     /// 
     ///  
     /// <para>
-    /// If the target is an EC2 instance, it must be in the <code>running</code> state when
-    /// you register it.
+    /// If the target is an EC2 instance, it must be in the <c>running</c> state when you
+    /// register it.
     /// </para>
     ///  
     /// <para>
@@ -46,7 +47,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
     /// </para>
     ///  
     /// <para>
-    /// With a Network Load Balancer, you cannot register instances by instance ID if they
+    /// With a Network Load Balancer, you can't register instances by instance ID if they
     /// have the following instance types: C1, CC1, CC2, CG1, CG2, CR1, CS1, G1, G2, HI1,
     /// HS1, M1, M2, M3, and T1. You can register instances of these types by IP address.
     /// </para>
@@ -54,7 +55,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
     public partial class RegisterTargetsRequest : AmazonElasticLoadBalancingV2Request
     {
         private string _targetGroupArn;
-        private List<TargetDescription> _targets = new List<TargetDescription>();
+        private List<TargetDescription> _targets = AWSConfigs.InitializeCollections ? new List<TargetDescription>() : null;
 
         /// <summary>
         /// Gets and sets the property TargetGroupArn. 
@@ -91,7 +92,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

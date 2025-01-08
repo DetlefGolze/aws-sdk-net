@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.RDS.Model
     /// </summary>
     public partial class DescribeDBProxyEndpointsResponse : AmazonWebServiceResponse
     {
-        private List<DBProxyEndpoint> _dbProxyEndpoints = new List<DBProxyEndpoint>();
+        private List<DBProxyEndpoint> _dbProxyEndpoints = AWSConfigs.InitializeCollections ? new List<DBProxyEndpoint>() : null;
         private string _marker;
 
         /// <summary>
         /// Gets and sets the property DBProxyEndpoints. 
         /// <para>
-        /// The list of <code>ProxyEndpoint</code> objects returned by the API operation.
+        /// The list of <c>ProxyEndpoint</c> objects returned by the API operation.
         /// </para>
         /// </summary>
         public List<DBProxyEndpoint> DBProxyEndpoints
@@ -51,7 +52,7 @@ namespace Amazon.RDS.Model
         // Check to see if DBProxyEndpoints property is set
         internal bool IsSetDBProxyEndpoints()
         {
-            return this._dbProxyEndpoints != null && this._dbProxyEndpoints.Count > 0; 
+            return this._dbProxyEndpoints != null && (this._dbProxyEndpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.RDS.Model
         /// <para>
         /// An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>.
+        /// by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker

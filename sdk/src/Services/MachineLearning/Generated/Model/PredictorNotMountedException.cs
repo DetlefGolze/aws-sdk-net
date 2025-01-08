@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MachineLearning.Model
 {
     /// <summary>
-    /// The exception is thrown when a predict request is made to an unmounted <code>MLModel</code>.
+    /// The exception is thrown when a predict request is made to an unmounted <c>MLModel</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

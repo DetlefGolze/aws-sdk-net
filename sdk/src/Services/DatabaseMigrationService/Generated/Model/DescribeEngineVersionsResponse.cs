@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.DatabaseMigrationService.Model
     /// </summary>
     public partial class DescribeEngineVersionsResponse : AmazonWebServiceResponse
     {
-        private List<EngineVersion> _engineVersions = new List<EngineVersion>();
+        private List<EngineVersion> _engineVersions = AWSConfigs.InitializeCollections ? new List<EngineVersion>() : null;
         private string _marker;
 
         /// <summary>
         /// Gets and sets the property EngineVersions. 
         /// <para>
-        /// Returned <code>EngineVersion</code> objects that describe the replication instance
-        /// engine versions used in the project.
+        /// Returned <c>EngineVersion</c> objects that describe the replication instance engine
+        /// versions used in the project.
         /// </para>
         /// </summary>
         public List<EngineVersion> EngineVersions
@@ -52,7 +53,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if EngineVersions property is set
         internal bool IsSetEngineVersions()
         {
-            return this._engineVersions != null && this._engineVersions.Count > 0; 
+            return this._engineVersions != null && (this._engineVersions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <para>
         /// An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>. 
+        /// by <c>MaxRecords</c>. 
         /// </para>
         /// </summary>
         public string Marker

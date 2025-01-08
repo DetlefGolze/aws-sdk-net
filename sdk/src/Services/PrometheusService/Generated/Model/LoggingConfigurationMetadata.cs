@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
-    /// Represents the properties of a logging configuration metadata.
+    /// Contains information about the logging configuration for the workspace.
     /// </summary>
     public partial class LoggingConfigurationMetadata
     {
@@ -42,7 +43,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// The time when the logging configuration was created.
+        /// The date and time that the logging configuration was created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -61,7 +62,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property LogGroupArn. 
         /// <para>
-        /// The ARN of the CW log group to which the vended log data will be published.
+        /// The ARN of the CloudWatch log group to which the vended log data will be published.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -80,7 +81,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property ModifiedAt. 
         /// <para>
-        /// The time when the logging configuration was modified.
+        /// The date and time that the logging configuration was most recently changed.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -99,7 +100,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the logging configuration.
+        /// The current status of the logging configuration.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -118,7 +119,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property Workspace. 
         /// <para>
-        /// The workspace where the logging configuration exists.
+        /// The ID of the workspace the logging configuration is for.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

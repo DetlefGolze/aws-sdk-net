@@ -26,18 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
     /// Container for the parameters to the BatchDetectSentiment operation.
     /// Inspects a batch of documents and returns an inference of the prevailing sentiment,
-    /// <code>POSITIVE</code>, <code>NEUTRAL</code>, <code>MIXED</code>, or <code>NEGATIVE</code>,
-    /// in each one.
+    /// <c>POSITIVE</c>, <c>NEUTRAL</c>, <c>MIXED</c>, or <c>NEGATIVE</c>, in each one.
     /// </summary>
     public partial class BatchDetectSentimentRequest : AmazonComprehendRequest
     {
         private LanguageCode _languageCode;
-        private List<string> _textList = new List<string>();
+        private List<string> _textList = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property LanguageCode. 
@@ -76,7 +76,7 @@ namespace Amazon.Comprehend.Model
         // Check to see if TextList property is set
         internal bool IsSetTextList()
         {
-            return this._textList != null && this._textList.Count > 0; 
+            return this._textList != null && (this._textList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

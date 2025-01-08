@@ -26,23 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
     /// Container for the parameters to the BatchGetTriggers operation.
     /// Returns a list of resource metadata for a given list of trigger names. After calling
-    /// the <code>ListTriggers</code> operation, you can call this operation to access the
-    /// data to which you have been granted permissions. This operation supports all IAM permissions,
+    /// the <c>ListTriggers</c> operation, you can call this operation to access the data
+    /// to which you have been granted permissions. This operation supports all IAM permissions,
     /// including permission conditions that uses tags.
     /// </summary>
     public partial class BatchGetTriggersRequest : AmazonGlueRequest
     {
-        private List<string> _triggerNames = new List<string>();
+        private List<string> _triggerNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property TriggerNames. 
         /// <para>
-        /// A list of trigger names, which may be the names returned from the <code>ListTriggers</code>
+        /// A list of trigger names, which may be the names returned from the <c>ListTriggers</c>
         /// operation.
         /// </para>
         /// </summary>
@@ -56,7 +57,7 @@ namespace Amazon.Glue.Model
         // Check to see if TriggerNames property is set
         internal bool IsSetTriggerNames()
         {
-            return this._triggerNames != null && this._triggerNames.Count > 0; 
+            return this._triggerNames != null && (this._triggerNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

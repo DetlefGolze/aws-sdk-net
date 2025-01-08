@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -82,7 +83,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property ParameterControlId. 
         /// <para>
-        /// The ID of the <code>ParameterListControl</code>.
+        /// The ID of the <c>ParameterListControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]
@@ -119,7 +120,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property SourceParameterName. 
         /// <para>
-        /// The source parameter name of the <code>ParameterListControl</code>.
+        /// The source parameter name of the <c>ParameterListControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]
@@ -138,7 +139,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Title. 
         /// <para>
-        /// The title of the <code>ParameterListControl</code>.
+        /// The title of the <c>ParameterListControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]
@@ -157,7 +158,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of <code>ParameterListControl</code>.
+        /// The type of <c>ParameterListControl</c>.
         /// </para>
         /// </summary>
         public SheetControlListType Type

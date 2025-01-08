@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ApplicationAutoScaling.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.ApplicationAutoScaling.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetPolicyName())
@@ -77,6 +79,17 @@ namespace Amazon.ApplicationAutoScaling.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("PolicyType");
                     context.Writer.Write(publicRequest.PolicyType);
+                }
+
+                if(publicRequest.IsSetPredictiveScalingPolicyConfiguration())
+                {
+                    context.Writer.WritePropertyName("PredictiveScalingPolicyConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = PredictiveScalingPolicyConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.PredictiveScalingPolicyConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetResourceId())

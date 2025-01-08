@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Proton.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Proton.Model
     /// </summary>
     public partial class ListServiceInstancesRequest : AmazonProtonRequest
     {
-        private List<ListServiceInstancesFilter> _filters = new List<ListServiceInstancesFilter>();
+        private List<ListServiceInstancesFilter> _filters = AWSConfigs.InitializeCollections ? new List<ListServiceInstancesFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
         private string _serviceName;
@@ -58,7 +59,7 @@ namespace Amazon.Proton.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -125,12 +126,12 @@ namespace Amazon.Proton.Model
         /// </para>
         ///  
         /// <para>
-        /// When you choose to sort by <code>serviceName</code>, service instances within each
-        /// service are sorted by service instance name.
+        /// When you choose to sort by <c>serviceName</c>, service instances within each service
+        /// are sorted by service instance name.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>serviceName</code> 
+        /// Default: <c>serviceName</c> 
         /// </para>
         /// </summary>
         public ListServiceInstancesSortBy SortBy
@@ -152,7 +153,7 @@ namespace Amazon.Proton.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>ASCENDING</code> 
+        /// Default: <c>ASCENDING</c> 
         /// </para>
         /// </summary>
         public SortOrder SortOrder

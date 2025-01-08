@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
@@ -56,10 +57,9 @@ namespace Amazon.KeyManagementService.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// When you disconnect a custom key store, its <code>ConnectionState</code> changes to
-    /// <code>Disconnected</code>. To find the connection state of a custom key store, use
-    /// the <a>DescribeCustomKeyStores</a> operation. To reconnect a custom key store, use
-    /// the <a>ConnectCustomKeyStore</a> operation.
+    /// When you disconnect a custom key store, its <c>ConnectionState</c> changes to <c>Disconnected</c>.
+    /// To find the connection state of a custom key store, use the <a>DescribeCustomKeyStores</a>
+    /// operation. To reconnect a custom key store, use the <a>ConnectCustomKeyStore</a> operation.
     /// </para>
     ///  
     /// <para>
@@ -99,7 +99,12 @@ namespace Amazon.KeyManagementService.Model
     /// <para>
     ///  <a>UpdateCustomKeyStore</a> 
     /// </para>
-    ///  </li> </ul>
+    ///  </li> </ul> 
+    /// <para>
+    ///  <b>Eventual consistency</b>: The KMS API follows an eventual consistency model. For
+    /// more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html">KMS
+    /// eventual consistency</a>.
+    /// </para>
     /// </summary>
     public partial class DisconnectCustomKeyStoreRequest : AmazonKeyManagementServiceRequest
     {

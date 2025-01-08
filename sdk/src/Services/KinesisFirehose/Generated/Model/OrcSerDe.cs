@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.KinesisFirehose.Model
     public partial class OrcSerDe
     {
         private int? _blockSizeBytes;
-        private List<string> _bloomFilterColumns = new List<string>();
+        private List<string> _bloomFilterColumns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private double? _bloomFilterFalsePositiveProbability;
         private OrcCompression _compression;
         private double? _dictionaryKeyThreshold;
@@ -50,7 +51,7 @@ namespace Amazon.KinesisFirehose.Model
         /// <para>
         /// The Hadoop Distributed File System (HDFS) block size. This is useful if you intend
         /// to copy the data from Amazon S3 to HDFS before querying. The default is 256 MiB and
-        /// the minimum is 64 MiB. Kinesis Data Firehose uses this value for padding calculations.
+        /// the minimum is 64 MiB. Firehose uses this value for padding calculations.
         /// </para>
         /// </summary>
         [AWSProperty(Min=67108864)]
@@ -69,8 +70,8 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property BloomFilterColumns. 
         /// <para>
-        /// The column names for which you want Kinesis Data Firehose to create bloom filters.
-        /// The default is <code>null</code>.
+        /// The column names for which you want Firehose to create bloom filters. The default
+        /// is <c>null</c>.
         /// </para>
         /// </summary>
         public List<string> BloomFilterColumns
@@ -82,7 +83,7 @@ namespace Amazon.KinesisFirehose.Model
         // Check to see if BloomFilterColumns property is set
         internal bool IsSetBloomFilterColumns()
         {
-            return this._bloomFilterColumns != null && this._bloomFilterColumns.Count > 0; 
+            return this._bloomFilterColumns != null && (this._bloomFilterColumns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -108,7 +109,7 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property Compression. 
         /// <para>
-        /// The compression code to use over data blocks. The default is <code>SNAPPY</code>.
+        /// The compression code to use over data blocks. The default is <c>SNAPPY</c>.
         /// </para>
         /// </summary>
         public OrcCompression Compression
@@ -147,9 +148,9 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property EnablePadding. 
         /// <para>
-        /// Set this to <code>true</code> to indicate that you want stripes to be padded to the
-        /// HDFS block boundaries. This is useful if you intend to copy the data from Amazon S3
-        /// to HDFS before querying. The default is <code>false</code>.
+        /// Set this to <c>true</c> to indicate that you want stripes to be padded to the HDFS
+        /// block boundaries. This is useful if you intend to copy the data from Amazon S3 to
+        /// HDFS before querying. The default is <c>false</c>.
         /// </para>
         /// </summary>
         public bool EnablePadding
@@ -167,8 +168,8 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property FormatVersion. 
         /// <para>
-        /// The version of the file to write. The possible values are <code>V0_11</code> and <code>V0_12</code>.
-        /// The default is <code>V0_12</code>.
+        /// The version of the file to write. The possible values are <c>V0_11</c> and <c>V0_12</c>.
+        /// The default is <c>V0_12</c>.
         /// </para>
         /// </summary>
         public OrcFormatVersion FormatVersion
@@ -201,8 +202,7 @@ namespace Amazon.KinesisFirehose.Model
         /// </para>
         ///  
         /// <para>
-        /// Kinesis Data Firehose ignores this parameter when <a>OrcSerDe$EnablePadding</a> is
-        /// <code>false</code>.
+        /// Firehose ignores this parameter when <a>OrcSerDe$EnablePadding</a> is <c>false</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1)]

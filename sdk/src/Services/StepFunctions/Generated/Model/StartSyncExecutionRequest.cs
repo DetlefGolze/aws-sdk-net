@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
     /// Container for the parameters to the StartSyncExecution operation.
-    /// Starts a Synchronous Express state machine execution. <code>StartSyncExecution</code>
-    /// is not available for <code>STANDARD</code> workflows.
+    /// Starts a Synchronous Express state machine execution. <c>StartSyncExecution</c> is
+    /// not available for <c>STANDARD</c> workflows.
     /// 
     ///  <note> 
     /// <para>
-    ///  <code>StartSyncExecution</code> will return a <code>200 OK</code> response, even
-    /// if your execution fails, because the status code in the API response doesn't reflect
-    /// function errors. Error codes are reserved for errors that prevent your execution from
-    /// running, such as permissions errors, limit errors, or issues with your state machine
-    /// code and configuration. 
+    ///  <c>StartSyncExecution</c> will return a <c>200 OK</c> response, even if your execution
+    /// fails, because the status code in the API response doesn't reflect function errors.
+    /// Error codes are reserved for errors that prevent your execution from running, such
+    /// as permissions errors, limit errors, or issues with your state machine code and configuration.
+    /// 
     /// </para>
     ///  </note> <note> 
     /// <para>
@@ -49,10 +50,31 @@ namespace Amazon.StepFunctions.Model
     /// </summary>
     public partial class StartSyncExecutionRequest : AmazonStepFunctionsRequest
     {
+        private IncludedData _includedData;
         private string _input;
         private string _name;
         private string _stateMachineArn;
         private string _traceHeader;
+
+        /// <summary>
+        /// Gets and sets the property IncludedData. 
+        /// <para>
+        /// If your state machine definition is encrypted with a KMS key, callers must have <c>kms:Decrypt</c>
+        /// permission to decrypt the definition. Alternatively, you can call the API with <c>includedData
+        /// = METADATA_ONLY</c> to get a successful response without the encrypted definition.
+        /// </para>
+        /// </summary>
+        public IncludedData IncludedData
+        {
+            get { return this._includedData; }
+            set { this._includedData = value; }
+        }
+
+        // Check to see if IncludedData property is set
+        internal bool IsSetIncludedData()
+        {
+            return this._includedData != null;
+        }
 
         /// <summary>
         /// Gets and sets the property Input. 
@@ -61,12 +83,12 @@ namespace Amazon.StepFunctions.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"input": "{\"first_name\" : \"test\"}"</code> 
+        ///  <c>"input": "{\"first_name\" : \"test\"}"</c> 
         /// </para>
         ///  <note> 
         /// <para>
         /// If you don't include any JSON input data, you still must include the two braces, for
-        /// example: <code>"input": "{}"</code> 
+        /// example: <c>"input": "{}"</c> 
         /// </para>
         ///  </note> 
         /// <para>

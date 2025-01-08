@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruReviewer.Model
 {
     /// <summary>
@@ -58,9 +59,9 @@ namespace Amazon.CodeGuruReviewer.Model
         /// <summary>
         /// Gets and sets the property MeteredLinesOfCodeCount. 
         /// <para>
-        ///  <code>MeteredLinesOfCodeCount</code> is the number of lines of code in the repository
-        /// where the code review happened. This does not include non-code lines such as comments
-        /// and blank lines.
+        ///  <c>MeteredLinesOfCodeCount</c> is the number of lines of code in the repository where
+        /// the code review happened. This does not include non-code lines such as comments and
+        /// blank lines.
         /// </para>
         /// </summary>
         public long MeteredLinesOfCodeCount
@@ -78,9 +79,9 @@ namespace Amazon.CodeGuruReviewer.Model
         /// <summary>
         /// Gets and sets the property SuppressedLinesOfCodeCount. 
         /// <para>
-        ///  <code>SuppressedLinesOfCodeCount</code> is the number of lines of code in the repository
+        ///  <c>SuppressedLinesOfCodeCount</c> is the number of lines of code in the repository
         /// where the code review happened that CodeGuru Reviewer did not analyze. The lines suppressed
-        /// in the analysis is based on the <code>excludeFiles</code> variable in the <code>aws-codeguru-reviewer.yml</code>
+        /// in the analysis is based on the <c>excludeFiles</c> variable in the <c>aws-codeguru-reviewer.yml</c>
         /// file. This number does not include non-code lines such as comments and blank lines.
         /// 
         /// </para>

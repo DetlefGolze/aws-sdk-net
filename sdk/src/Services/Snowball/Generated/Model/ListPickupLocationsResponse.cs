@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Snowball.Model
     /// </summary>
     public partial class ListPickupLocationsResponse : AmazonWebServiceResponse
     {
-        private List<Address> _addresses = new List<Address>();
+        private List<Address> _addresses = AWSConfigs.InitializeCollections ? new List<Address>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,15 +52,15 @@ namespace Amazon.Snowball.Model
         // Check to see if Addresses property is set
         internal bool IsSetAddresses()
         {
-            return this._addresses != null && this._addresses.Count > 0; 
+            return this._addresses != null && (this._addresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// HTTP requests are stateless. To identify what object comes "next" in the list of <code>ListPickupLocationsResult</code>
-        /// objects, you have the option of specifying <code>NextToken</code> as the starting
-        /// point for your returned list.
+        /// HTTP requests are stateless. To identify what object comes "next" in the list of <c>ListPickupLocationsResult</c>
+        /// objects, you have the option of specifying <c>NextToken</c> as the starting point
+        /// for your returned list.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

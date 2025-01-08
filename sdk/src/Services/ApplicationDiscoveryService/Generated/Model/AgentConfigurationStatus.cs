@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         /// <summary>
         /// Gets and sets the property OperationSucceeded. 
         /// <para>
-        /// Information about the status of the <code>StartDataCollection</code> and <code>StopDataCollection</code>
+        /// Information about the status of the <c>StartDataCollection</c> and <c>StopDataCollection</c>
         /// operations. The system has recorded the data collection operation. The agent receives
         /// this command the next time it polls for a new command. 
         /// </para>

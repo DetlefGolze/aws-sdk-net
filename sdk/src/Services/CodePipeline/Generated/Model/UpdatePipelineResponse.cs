@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
-    /// Represents the output of an <code>UpdatePipeline</code> action.
+    /// Represents the output of an <c>UpdatePipeline</c> action.
     /// </summary>
     public partial class UpdatePipelineResponse : AmazonWebServiceResponse
     {

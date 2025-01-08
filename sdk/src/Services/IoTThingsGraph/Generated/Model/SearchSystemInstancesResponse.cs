@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTThingsGraph.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.IoTThingsGraph.Model
     public partial class SearchSystemInstancesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<SystemInstanceSummary> _summaries = new List<SystemInstanceSummary>();
+        private List<SystemInstanceSummary> _summaries = AWSConfigs.InitializeCollections ? new List<SystemInstanceSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The string to specify as <code>nextToken</code> when you request the next page of
-        /// results. 
+        /// The string to specify as <c>nextToken</c> when you request the next page of results.
+        /// 
         /// </para>
         /// </summary>
         public string NextToken
@@ -71,7 +72,7 @@ namespace Amazon.IoTThingsGraph.Model
         // Check to see if Summaries property is set
         internal bool IsSetSummaries()
         {
-            return this._summaries != null && this._summaries.Count > 0; 
+            return this._summaries != null && (this._summaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

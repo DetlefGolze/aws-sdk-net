@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -38,14 +39,19 @@ namespace Amazon.LexModelsV2.Model
     /// <para>
     /// You can't create a resource policy statement that allows cross-account access.
     /// </para>
+    ///  
+    /// <para>
+    /// You need to add the <c>CreateResourcePolicy</c> or <c>UpdateResourcePolicy</c> action
+    /// to the bot role in order to call the API.
+    /// </para>
     /// </summary>
     public partial class CreateResourcePolicyStatementRequest : AmazonLexModelsV2Request
     {
-        private List<string> _action = new List<string>();
-        private Dictionary<string, Dictionary<string, string>> _condition = new Dictionary<string, Dictionary<string, string>>();
+        private List<string> _action = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, Dictionary<string, string>> _condition = AWSConfigs.InitializeCollections ? new Dictionary<string, Dictionary<string, string>>() : null;
         private Effect _effect;
         private string _expectedRevisionId;
-        private List<Principal> _principal = new List<Principal>();
+        private List<Principal> _principal = AWSConfigs.InitializeCollections ? new List<Principal>() : null;
         private string _resourceArn;
         private string _statementId;
 
@@ -67,7 +73,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if Action property is set
         internal bool IsSetAction()
         {
-            return this._action != null && this._action.Count > 0; 
+            return this._action != null && (this._action.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -93,7 +99,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if Condition property is set
         internal bool IsSetCondition()
         {
-            return this._condition != null && this._condition.Count > 0; 
+            return this._condition != null && (this._condition.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -158,7 +164,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if Principal property is set
         internal bool IsSetPrincipal()
         {
-            return this._principal != null && this._principal.Count > 0; 
+            return this._principal != null && (this._principal.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -184,9 +190,8 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property StatementId. 
         /// <para>
-        /// The name of the statement. The ID is the same as the <code>Sid</code> IAM property.
-        /// The statement name must be unique within the policy. For more information, see <a
-        /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_sid.html">IAM
+        /// The name of the statement. The ID is the same as the <c>Sid</c> IAM property. The
+        /// statement name must be unique within the policy. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_sid.html">IAM
         /// JSON policy elements: Sid</a>. 
         /// </para>
         /// </summary>

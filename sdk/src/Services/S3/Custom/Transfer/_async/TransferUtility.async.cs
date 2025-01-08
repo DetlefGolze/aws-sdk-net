@@ -72,10 +72,10 @@ namespace Amazon.S3.Transfer
         /// you should manually invoke TransferUtility.AbortMultipartUploadsAsync() to abort the incomplete multipart uploads.
         /// </para>
         /// <para>
-        /// For nonseekable streams or streams with an unknown length, TransferUtility will use multipart upload and buffer each part in memory 
+        /// For nonseekable streams or streams with an unknown length, TransferUtility will use multipart upload and buffer up to a part size in memory
         /// until the final part is reached and complete the upload. The buffer for the multipart upload is controlled by S3Constants.MinPartSize
-        /// and the default value is 5 megabytes. You can also adjust the read buffer size (i.e. how many bytes to read before adding it to the 
-        /// part buffer) via the BufferSize property on the ClientConfig. The default value for this is 8192 bytes.
+        /// and the default value is 5 megabytes. You can also adjust the read buffer size(i.e.how many bytes to read before writing to the part buffer)
+        /// via the BufferSize property on the ClientConfig.The default value for this is 8192 bytes.
         /// </para>
         /// </remarks>
         /// <param name="filePath">
@@ -88,10 +88,10 @@ namespace Amazon.S3.Transfer
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public Task UploadAsync(string filePath, string bucketName, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task UploadAsync(string filePath, string bucketName, CancellationToken cancellationToken = default(CancellationToken))
         {
             var request = ConstructUploadRequest(filePath, bucketName);
-            return UploadAsync(request, cancellationToken);
+            await UploadAsync(request, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -110,10 +110,10 @@ namespace Amazon.S3.Transfer
         /// you should manually invoke TransferUtility.AbortMultipartUploadsAsync() to abort the incomplete multipart uploads.
         /// </para>
         /// <para>
-        /// For nonseekable streams or streams with an unknown length, TransferUtility will use multipart upload and buffer each part in memory 
+        /// For nonseekable streams or streams with an unknown length, TransferUtility will use multipart upload and buffer up to a part size in memory
         /// until the final part is reached and complete the upload. The buffer for the multipart upload is controlled by S3Constants.MinPartSize
-        /// and the default value is 5 megabytes. You can also adjust the read buffer size (i.e. how many bytes to read before adding it to the 
-        /// part buffer) via the BufferSize property on the ClientConfig. The default value for this is 8192 bytes.
+        /// and the default value is 5 megabytes. You can also adjust the read buffer size(i.e.how many bytes to read before writing to the part buffer)
+        /// via the BufferSize property on the ClientConfig.The default value for this is 8192 bytes.
         /// </para>
         /// </remarks>
         /// <param name="filePath">
@@ -129,10 +129,10 @@ namespace Amazon.S3.Transfer
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public Task UploadAsync(string filePath, string bucketName, string key, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task UploadAsync(string filePath, string bucketName, string key, CancellationToken cancellationToken = default(CancellationToken))
         {
             var request = ConstructUploadRequest(filePath, bucketName,key);
-            return UploadAsync(request, cancellationToken);            
+            await UploadAsync(request, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -150,10 +150,10 @@ namespace Amazon.S3.Transfer
         /// you should manually invoke TransferUtility.AbortMultipartUploadsAsync() to abort the incomplete multipart uploads.
         /// </para>
         /// <para>
-        /// For nonseekable streams or streams with an unknown length, TransferUtility will use multipart upload and buffer each part in memory 
+        /// For nonseekable streams or streams with an unknown length, TransferUtility will use multipart upload and buffer up to a part size in memory
         /// until the final part is reached and complete the upload. The buffer for the multipart upload is controlled by S3Constants.MinPartSize
-        /// and the default value is 5 megabytes. You can also adjust the read buffer size (i.e. how many bytes to read before adding it to the 
-        /// part buffer) via the BufferSize property on the ClientConfig. The default value for this is 8192 bytes.
+        /// and the default value is 5 megabytes. You can also adjust the read buffer size(i.e.how many bytes to read before writing to the part buffer)
+        /// via the BufferSize property on the ClientConfig.The default value for this is 8192 bytes.
         /// </para>
         /// </remarks>
         /// <param name="stream">
@@ -169,10 +169,10 @@ namespace Amazon.S3.Transfer
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public Task UploadAsync(Stream stream, string bucketName, string key, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task UploadAsync(Stream stream, string bucketName, string key, CancellationToken cancellationToken = default(CancellationToken))
         {
             var request = ConstructUploadRequest(stream, bucketName, key);
-            return UploadAsync(request, cancellationToken);                    
+            await UploadAsync(request, cancellationToken).ConfigureAwait(false);
         }
 
 
@@ -194,9 +194,10 @@ namespace Amazon.S3.Transfer
         /// you should manually invoke TransferUtility.AbortMultipartUploadsAsync() to abort the incomplete multipart uploads.
         /// </para>
         /// <para>
-        /// For nonseekable streams or streams with an unknown length, TransferUtility will use multipart upload and buffer each part in memory 
-        /// until the final part is reached and complete the upload. The buffer for the multipart upload is controlled by S3Constants.MinPartSize
-        /// and the default value is 5 megabytes. You can also adjust the read buffer size (i.e. how many bytes to read before adding it to the 
+        /// For nonseekable streams or streams with an unknown length, TransferUtility will use multipart upload and buffer up to a part size in memory 
+        /// until the final part is reached and complete the upload. The part size buffer for the multipart upload is controlled by the partSize
+        /// specified on the TransferUtilityUploadRequest, and if none is specified it defaults to S3Constants.MinPartSize (5 megabytes).
+        /// You can also adjust the read buffer size (i.e. how many bytes to read before adding it to the 
         /// part buffer) via the BufferSize property on the ClientConfig. The default value for this is 8192 bytes.
         /// </para>
         /// </remarks>
@@ -207,11 +208,14 @@ namespace Amazon.S3.Transfer
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public Task UploadAsync(TransferUtilityUploadRequest request, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task UploadAsync(TransferUtilityUploadRequest request, CancellationToken cancellationToken = default(CancellationToken))
         {
-            CheckForBlockedArn(request.BucketName, "Upload");
-            var command = GetUploadCommand(request, null);
-            return command.ExecuteAsync(cancellationToken);
+            using(CreateSpan(nameof(UploadAsync), null, Amazon.Runtime.Telemetry.Tracing.SpanKind.CLIENT))
+            {
+                CheckForBlockedArn(request.BucketName, "Upload");
+                var command = GetUploadCommand(request, null);
+                await command.ExecuteAsync(cancellationToken).ConfigureAwait(false);
+            }
         }
     #endregion
 
@@ -229,11 +233,14 @@ namespace Amazon.S3.Transfer
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public Task AbortMultipartUploadsAsync(string bucketName, DateTime initiatedDate, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task AbortMultipartUploadsAsync(string bucketName, DateTime initiatedDate, CancellationToken cancellationToken = default(CancellationToken))
         {
-            CheckForBlockedArn(bucketName, "AbortMultipartUploads");
-            var command = new AbortMultipartUploadsCommand(this._s3Client, bucketName, initiatedDate, this._config);
-            return command.ExecuteAsync(cancellationToken);
+            using(CreateSpan(nameof(AbortMultipartUploadsAsync), null, Amazon.Runtime.Telemetry.Tracing.SpanKind.CLIENT))
+            {
+                CheckForBlockedArn(bucketName, "AbortMultipartUploads");
+                var command = new AbortMultipartUploadsCommand(this._s3Client, bucketName, initiatedDate, this._config);
+                await command.ExecuteAsync(cancellationToken).ConfigureAwait(false);
+            }
         }
         #endregion
 
@@ -251,11 +258,14 @@ namespace Amazon.S3.Transfer
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public Task DownloadAsync(TransferUtilityDownloadRequest request, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task DownloadAsync(TransferUtilityDownloadRequest request, CancellationToken cancellationToken = default(CancellationToken))
         {
-            CheckForBlockedArn(request.BucketName, "Download");
-            var command = new DownloadCommand(this._s3Client, request);
-            return command.ExecuteAsync(cancellationToken);
+            using(CreateSpan(nameof(DownloadAsync), null, Amazon.Runtime.Telemetry.Tracing.SpanKind.CLIENT))
+            {
+                CheckForBlockedArn(request.BucketName, "Download");
+                var command = new DownloadCommand(this._s3Client, request);
+                await command.ExecuteAsync(cancellationToken).ConfigureAwait(false);
+            }
         }
 
     #endregion
@@ -276,14 +286,14 @@ namespace Amazon.S3.Transfer
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public Task<Stream> OpenStreamAsync(string bucketName, string key, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Stream> OpenStreamAsync(string bucketName, string key, CancellationToken cancellationToken = default(CancellationToken))
         {
             TransferUtilityOpenStreamRequest request = new TransferUtilityOpenStreamRequest()
             {
                 BucketName = bucketName,
                 Key = key
             };
-            return OpenStreamAsync(request, cancellationToken);
+            return await OpenStreamAsync(request, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -300,10 +310,13 @@ namespace Amazon.S3.Transfer
         /// <returns>The task object representing the asynchronous operation.</returns>
         public async Task<Stream> OpenStreamAsync(TransferUtilityOpenStreamRequest request, CancellationToken cancellationToken = default(CancellationToken))
         {
-            CheckForBlockedArn(request.BucketName, "OpenStream");
-            OpenStreamCommand command = new OpenStreamCommand(this._s3Client, request);
-            await command.ExecuteAsync(cancellationToken).ConfigureAwait(continueOnCapturedContext: false);
-            return command.ResponseStream;
+            using(CreateSpan(nameof(OpenStreamAsync), null, Amazon.Runtime.Telemetry.Tracing.SpanKind.CLIENT))
+            {
+                CheckForBlockedArn(request.BucketName, "OpenStream");
+                OpenStreamCommand command = new OpenStreamCommand(this._s3Client, request);
+                await command.ExecuteAsync(cancellationToken).ConfigureAwait(continueOnCapturedContext: false);
+                return command.ResponseStream;
+            }
         }
 
         #endregion

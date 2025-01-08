@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -83,7 +84,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property DisplayName. 
         /// <para>
-        /// The name of the trial as displayed. If <code>DisplayName</code> isn't specified, <code>TrialName</code>
+        /// The name of the trial as displayed. If <c>DisplayName</c> isn't specified, <c>TrialName</c>
         /// is displayed.
         /// </para>
         /// </summary>

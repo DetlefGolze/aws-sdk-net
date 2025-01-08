@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Action Unmarshall(JsonUnmarshallerContext context)
         {
+            Action unmarshalledObject = new Action();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Action unmarshalledObject = new Action();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -88,6 +90,24 @@ namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
                     unmarshalledObject.KubernetesApiCallAction = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("kubernetesPermissionCheckedDetails", targetDepth))
+                {
+                    var unmarshaller = KubernetesPermissionCheckedDetailsUnmarshaller.Instance;
+                    unmarshalledObject.KubernetesPermissionCheckedDetails = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("kubernetesRoleBindingDetails", targetDepth))
+                {
+                    var unmarshaller = KubernetesRoleBindingDetailsUnmarshaller.Instance;
+                    unmarshalledObject.KubernetesRoleBindingDetails = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("kubernetesRoleDetails", targetDepth))
+                {
+                    var unmarshaller = KubernetesRoleDetailsUnmarshaller.Instance;
+                    unmarshalledObject.KubernetesRoleDetails = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("networkConnectionAction", targetDepth))
                 {
                     var unmarshaller = NetworkConnectionActionUnmarshaller.Instance;
@@ -107,7 +127,6 @@ namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

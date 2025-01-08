@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kinesis.Model
 {
     /// <summary>
     /// The resource is not available for this operation. For successful operation, the resource
-    /// must be in the <code>ACTIVE</code> state.
+    /// must be in the <c>ACTIVE</c> state.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

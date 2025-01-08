@@ -26,11 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptunedata.Model
 {
     /// <summary>
     /// Container for the parameters to the ListLoaderJobs operation.
-    /// Retrieves a list of the <code>loadIds</code> for all active loader jobs.
+    /// Retrieves a list of the <c>loadIds</c> for all active loader jobs.
+    /// 
+    ///  
+    /// <para>
+    /// When invoking this operation in a Neptune cluster that has IAM authentication enabled,
+    /// the IAM user or role making the request must have a policy attached that allows the
+    /// <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#listloaderjobs">neptune-db:ListLoaderJobs</a>
+    /// IAM action in that cluster..
+    /// </para>
     /// </summary>
     public partial class ListLoaderJobsRequest : AmazonNeptunedataRequest
     {
@@ -41,8 +50,8 @@ namespace Amazon.Neptunedata.Model
         /// Gets and sets the property IncludeQueuedLoads. 
         /// <para>
         /// An optional parameter that can be used to exclude the load IDs of queued load requests
-        /// when requesting a list of load IDs by setting the parameter to <code>FALSE</code>.
-        /// The default value is <code>TRUE</code>.
+        /// when requesting a list of load IDs by setting the parameter to <c>FALSE</c>. The default
+        /// value is <c>TRUE</c>.
         /// </para>
         /// </summary>
         public bool IncludeQueuedLoads
@@ -61,7 +70,7 @@ namespace Amazon.Neptunedata.Model
         /// Gets and sets the property Limit. 
         /// <para>
         /// The number of load IDs to list. Must be a positive integer greater than zero and not
-        /// more than <code>100</code> (which is the default).
+        /// more than <c>100</c> (which is the default).
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]

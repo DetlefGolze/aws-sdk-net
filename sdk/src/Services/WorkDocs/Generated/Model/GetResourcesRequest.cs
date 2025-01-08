@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkDocs.Model
 {
     /// <summary>
     /// Container for the parameters to the GetResources operation.
-    /// Retrieves a collection of resources, including folders and documents. The only <code>CollectionType</code>
-    /// supported is <code>SHARED_WITH_ME</code>.
+    /// Retrieves a collection of resources, including folders and documents. The only <c>CollectionType</c>
+    /// supported is <c>SHARED_WITH_ME</c>.
     /// </summary>
     public partial class GetResourcesRequest : AmazonWorkDocsRequest
     {
@@ -58,7 +59,7 @@ namespace Amazon.WorkDocs.Model
         // Check to see if AuthenticationToken property is set
         internal bool IsSetAuthenticationToken()
         {
-            return this._authenticationToken != null;
+            return !string.IsNullOrEmpty(this._authenticationToken);
         }
 
         /// <summary>

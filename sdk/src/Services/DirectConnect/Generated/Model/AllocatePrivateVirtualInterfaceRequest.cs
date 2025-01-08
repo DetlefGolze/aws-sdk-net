@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectConnect.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.DirectConnect.Model
     /// <para>
     /// Virtual interfaces created using this action must be confirmed by the owner using
     /// <a>ConfirmPrivateVirtualInterface</a>. Until then, the virtual interface is in the
-    /// <code>Confirming</code> state and is not available to handle traffic.
+    /// <c>Confirming</c> state and is not available to handle traffic.
     /// </para>
     /// </summary>
     public partial class AllocatePrivateVirtualInterfaceRequest : AmazonDirectConnectRequest

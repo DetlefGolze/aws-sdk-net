@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruSecurity.Model
 {
     /// <summary>
@@ -118,8 +119,8 @@ namespace Amazon.CodeGuruSecurity.Model
         /// <summary>
         /// Gets and sets the property ScanState. 
         /// <para>
-        /// The current state of the scan. Returns either <code>InProgress</code>, <code>Successful</code>,
-        /// or <code>Failed</code>.
+        /// The current state of the scan. Returns either <c>InProgress</c>, <c>Successful</c>,
+        /// or <c>Failed</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

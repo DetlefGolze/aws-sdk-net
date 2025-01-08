@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
     /// Container for the parameters to the PutClassificationExportConfiguration operation.
-    /// Creates or updates the configuration settings for storing data classification results.
+    /// Adds or updates the configuration settings for storing data classification results.
     /// </summary>
     public partial class PutClassificationExportConfigurationRequest : AmazonMacie2Request
     {

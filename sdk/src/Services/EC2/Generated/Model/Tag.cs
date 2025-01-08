@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Instantiates Tag with the parameterized properties
         /// </summary>
-        /// <param name="key">The key of the tag. Constraints: Tag keys are case-sensitive and accept a maximum of 127 Unicode characters. May not begin with <code>aws:</code>.</param>
+        /// <param name="key">The key of the tag. Constraints: Tag keys are case-sensitive and accept a maximum of 127 Unicode characters. May not begin with <c>aws:</c>.</param>
         /// <param name="value">The value of the tag. Constraints: Tag values are case-sensitive and accept a maximum of 256 Unicode characters.</param>
         public Tag(string key, string value)
         {
@@ -55,7 +56,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Instantiates Tag with the parameterized properties
         /// </summary>
-        /// <param name="key">The key of the tag. Constraints: Tag keys are case-sensitive and accept a maximum of 127 Unicode characters. May not begin with <code>aws:</code>.</param>
+        /// <param name="key">The key of the tag. Constraints: Tag keys are case-sensitive and accept a maximum of 127 Unicode characters. May not begin with <c>aws:</c>.</param>
         public Tag(string key)
         {
             _key = key;
@@ -69,7 +70,7 @@ namespace Amazon.EC2.Model
         ///  
         /// <para>
         /// Constraints: Tag keys are case-sensitive and accept a maximum of 127 Unicode characters.
-        /// May not begin with <code>aws:</code>.
+        /// May not begin with <c>aws:</c>.
         /// </para>
         /// </summary>
         public string Key

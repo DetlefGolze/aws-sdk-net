@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -34,10 +35,31 @@ namespace Amazon.Rekognition.Model
     /// </summary>
     public partial class ProjectDescription
     {
+        private ProjectAutoUpdate _autoUpdate;
         private DateTime? _creationTimestamp;
-        private List<DatasetMetadata> _datasets = new List<DatasetMetadata>();
+        private List<DatasetMetadata> _datasets = AWSConfigs.InitializeCollections ? new List<DatasetMetadata>() : null;
+        private CustomizationFeature _feature;
         private string _projectArn;
         private ProjectStatus _status;
+
+        /// <summary>
+        /// Gets and sets the property AutoUpdate. 
+        /// <para>
+        /// Indicates whether automatic retraining will be attempted for the versions of the project.
+        /// Applies only to adapters. 
+        /// </para>
+        /// </summary>
+        public ProjectAutoUpdate AutoUpdate
+        {
+            get { return this._autoUpdate; }
+            set { this._autoUpdate = value; }
+        }
+
+        // Check to see if AutoUpdate property is set
+        internal bool IsSetAutoUpdate()
+        {
+            return this._autoUpdate != null;
+        }
 
         /// <summary>
         /// Gets and sets the property CreationTimestamp. 
@@ -72,7 +94,25 @@ namespace Amazon.Rekognition.Model
         // Check to see if Datasets property is set
         internal bool IsSetDatasets()
         {
-            return this._datasets != null && this._datasets.Count > 0; 
+            return this._datasets != null && (this._datasets.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Feature. 
+        /// <para>
+        /// Specifies the project that is being customized.
+        /// </para>
+        /// </summary>
+        public CustomizationFeature Feature
+        {
+            get { return this._feature; }
+            set { this._feature = value; }
+        }
+
+        // Check to see if Feature property is set
+        internal bool IsSetFeature()
+        {
+            return this._feature != null;
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -49,7 +50,7 @@ namespace Amazon.Transfer.Model
         /// The identifier of the file system, assigned by Amazon EFS.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=128)]
+        [AWSProperty(Min=0, Max=128)]
         public string FileSystemId
         {
             get { return this._fileSystemId; }

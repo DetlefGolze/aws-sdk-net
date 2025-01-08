@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -39,21 +40,24 @@ namespace Amazon.Imagebuilder.Model
         private string _description;
         private InstanceMetadataOptions _instanceMetadataOptions;
         private string _instanceProfileName;
-        private List<string> _instanceTypes = new List<string>();
+        private List<string> _instanceTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _keyPair;
         private Logging _logging;
         private string _name;
-        private Dictionary<string, string> _resourceTags = new Dictionary<string, string>();
-        private List<string> _securityGroupIds = new List<string>();
+        private Placement _placement;
+        private Dictionary<string, string> _resourceTags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _snsTopicArn;
         private string _subnetId;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private bool? _terminateInstanceOnFailure;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
-        /// The idempotency token used to make this request idempotent.
+        /// Unique, case-sensitive identifier you provide to ensure idempotency of the request.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+        /// idempotency</a> in the <i>Amazon EC2 API Reference</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=36)]
@@ -144,7 +148,7 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if InstanceTypes property is set
         internal bool IsSetInstanceTypes()
         {
-            return this._instanceTypes != null && this._instanceTypes.Count > 0; 
+            return this._instanceTypes != null && (this._instanceTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -205,9 +209,29 @@ namespace Amazon.Imagebuilder.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Placement. 
+        /// <para>
+        /// The instance placement settings that define where the instances that are launched
+        /// from your image will run.
+        /// </para>
+        /// </summary>
+        public Placement Placement
+        {
+            get { return this._placement; }
+            set { this._placement = value; }
+        }
+
+        // Check to see if Placement property is set
+        internal bool IsSetPlacement()
+        {
+            return this._placement != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ResourceTags. 
         /// <para>
-        /// The tags attached to the resource created by Image Builder.
+        /// The metadata tags to assign to the Amazon EC2 instance that Image Builder launches
+        /// during the build process. Tags are formatted as key value pairs.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=30)]
@@ -220,7 +244,7 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if ResourceTags property is set
         internal bool IsSetResourceTags()
         {
-            return this._resourceTags != null && this._resourceTags.Count > 0; 
+            return this._resourceTags != null && (this._resourceTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -239,7 +263,7 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -290,7 +314,8 @@ namespace Amazon.Imagebuilder.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// The tags of the infrastructure configuration.
+        /// The metadata tags to assign to the infrastructure configuration resource that Image
+        /// Builder creates as output. Tags are formatted as key value pairs.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -303,7 +328,7 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

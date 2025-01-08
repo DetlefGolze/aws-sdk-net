@@ -26,39 +26,38 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MachineLearning.Model
 {
     /// <summary>
-    /// The output from a <code>Predict</code> operation: 
+    /// The output from a <c>Predict</c> operation: 
     /// 
     ///  <ul> <li> 
     /// <para>
-    ///  <code>Details</code> - Contains the following attributes: <code>DetailsAttributes.PREDICTIVE_MODEL_TYPE
-    /// - REGRESSION | BINARY | MULTICLASS</code> <code>DetailsAttributes.ALGORITHM - SGD</code>
-    /// 
+    ///  <c>Details</c> - Contains the following attributes: <c>DetailsAttributes.PREDICTIVE_MODEL_TYPE
+    /// - REGRESSION | BINARY | MULTICLASS</c> <c>DetailsAttributes.ALGORITHM - SGD</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>PredictedLabel</code> - Present for either a <code>BINARY</code> or <code>MULTICLASS</code>
-    /// <code>MLModel</code> request. 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <code>PredictedScores</code> - Contains the raw classification score corresponding
-    /// to each label. 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <code>PredictedValue</code> - Present for a <code>REGRESSION</code> <code>MLModel</code>
+    ///  <c>PredictedLabel</c> - Present for either a <c>BINARY</c> or <c>MULTICLASS</c> <c>MLModel</c>
     /// request. 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <c>PredictedScores</c> - Contains the raw classification score corresponding to each
+    /// label. 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <c>PredictedValue</c> - Present for a <c>REGRESSION</c> <c>MLModel</c> request. 
     /// </para>
     ///  </li> </ul>
     /// </summary>
     public partial class Prediction
     {
-        private Dictionary<string, string> _details = new Dictionary<string, string>();
+        private Dictionary<string, string> _details = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _predictedLabel;
-        private Dictionary<string, float> _predictedScores = new Dictionary<string, float>();
+        private Dictionary<string, float> _predictedScores = AWSConfigs.InitializeCollections ? new Dictionary<string, float>() : null;
         private float? _predictedValue;
 
         /// <summary>
@@ -73,13 +72,13 @@ namespace Amazon.MachineLearning.Model
         // Check to see if Details property is set
         internal bool IsSetDetails()
         {
-            return this._details != null && this._details.Count > 0; 
+            return this._details != null && (this._details.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PredictedLabel. 
         /// <para>
-        /// The prediction label for either a <code>BINARY</code> or <code>MULTICLASS</code> <code>MLModel</code>.
+        /// The prediction label for either a <c>BINARY</c> or <c>MULTICLASS</c> <c>MLModel</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -107,13 +106,13 @@ namespace Amazon.MachineLearning.Model
         // Check to see if PredictedScores property is set
         internal bool IsSetPredictedScores()
         {
-            return this._predictedScores != null && this._predictedScores.Count > 0; 
+            return this._predictedScores != null && (this._predictedScores.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PredictedValue. 
         /// <para>
-        /// The prediction value for <code>REGRESSION</code> <code>MLModel</code>.
+        /// The prediction value for <c>REGRESSION</c> <c>MLModel</c>.
         /// </para>
         /// </summary>
         public float PredictedValue

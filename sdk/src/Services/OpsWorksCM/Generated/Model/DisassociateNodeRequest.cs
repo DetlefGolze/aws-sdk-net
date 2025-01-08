@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorksCM.Model
 {
     /// <summary>
@@ -37,15 +38,15 @@ namespace Amazon.OpsWorksCM.Model
     /// 
     ///  
     /// <para>
-    /// A node can can only be disassociated from a server that is in a <code>HEALTHY</code>
-    /// state. Otherwise, an <code>InvalidStateException</code> is thrown. A <code>ResourceNotFoundException</code>
-    /// is thrown when the server does not exist. A <code>ValidationException</code> is raised
-    /// when parameters of the request are not valid. 
+    /// A node can can only be disassociated from a server that is in a <c>HEALTHY</c> state.
+    /// Otherwise, an <c>InvalidStateException</c> is thrown. A <c>ResourceNotFoundException</c>
+    /// is thrown when the server does not exist. A <c>ValidationException</c> is raised when
+    /// parameters of the request are not valid. 
     /// </para>
     /// </summary>
     public partial class DisassociateNodeRequest : AmazonOpsWorksCMRequest
     {
-        private List<EngineAttribute> _engineAttributes = new List<EngineAttribute>();
+        private List<EngineAttribute> _engineAttributes = AWSConfigs.InitializeCollections ? new List<EngineAttribute>() : null;
         private string _nodeName;
         private string _serverName;
 
@@ -61,8 +62,8 @@ namespace Amazon.OpsWorksCM.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CHEF_ORGANIZATION</code>: The Chef organization with which the node was associated.
-        /// By default only one organization named <code>default</code> can exist. 
+        ///  <c>CHEF_ORGANIZATION</c>: The Chef organization with which the node was associated.
+        /// By default only one organization named <c>default</c> can exist. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -75,7 +76,7 @@ namespace Amazon.OpsWorksCM.Model
         // Check to see if EngineAttributes property is set
         internal bool IsSetEngineAttributes()
         {
-            return this._engineAttributes != null && this._engineAttributes.Count > 0; 
+            return this._engineAttributes != null && (this._engineAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Shield.Model
 {
     /// <summary>
     /// Information about the volume of attacks during the time period, included in an <a>AttackStatisticsDataItem</a>.
-    /// If the accompanying <code>AttackCount</code> in the statistics object is zero, this
-    /// setting might be empty.
+    /// If the accompanying <c>AttackCount</c> in the statistics object is zero, this setting
+    /// might be empty.
     /// </summary>
     public partial class AttackVolume
     {

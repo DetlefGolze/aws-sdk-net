@@ -26,13 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
     /// Configures inspection of the response body. WAF can inspect the first 65,536 bytes
-    /// (64 KB) of the response body. This is part of the <code>ResponseInspection</code>
-    /// configuration for <code>AWSManagedRulesATPRuleSet</code> and <code>AWSManagedRulesACFPRuleSet</code>.
-    /// 
+    /// (64 KB) of the response body. This is part of the <c>ResponseInspection</c> configuration
+    /// for <c>AWSManagedRulesATPRuleSet</c> and <c>AWSManagedRulesACFPRuleSet</c>. 
     /// 
     ///  <note> 
     /// <para>
@@ -42,8 +42,8 @@ namespace Amazon.WAFV2.Model
     /// </summary>
     public partial class ResponseInspectionBodyContains
     {
-        private List<string> _failureStrings = new List<string>();
-        private List<string> _successStrings = new List<string>();
+        private List<string> _failureStrings = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _successStrings = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property FailureStrings. 
@@ -55,7 +55,7 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// JSON example: <code>"FailureStrings": [ "Request failed" ]</code> 
+        /// JSON example: <c>"FailureStrings": [ "Request failed" ]</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=5)]
@@ -68,7 +68,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if FailureStrings property is set
         internal bool IsSetFailureStrings()
         {
-            return this._failureStrings != null && this._failureStrings.Count > 0; 
+            return this._failureStrings != null && (this._failureStrings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -81,8 +81,8 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// JSON examples: <code>"SuccessStrings": [ "Login successful" ]</code> and <code>"SuccessStrings":
-        /// [ "Account creation successful", "Welcome to our site!" ]</code> 
+        /// JSON examples: <c>"SuccessStrings": [ "Login successful" ]</c> and <c>"SuccessStrings":
+        /// [ "Account creation successful", "Welcome to our site!" ]</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=5)]
@@ -95,7 +95,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if SuccessStrings property is set
         internal bool IsSetSuccessStrings()
         {
-            return this._successStrings != null && this._successStrings.Count > 0; 
+            return this._successStrings != null && (this._successStrings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

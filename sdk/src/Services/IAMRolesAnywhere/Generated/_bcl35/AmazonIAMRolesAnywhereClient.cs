@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.IAMRolesAnywhere
 {
     /// <summary>
-    /// Implementation for accessing IAMRolesAnywhere
+    /// <para>Implementation for accessing IAMRolesAnywhere</para>
     ///
     /// Identity and Access Management Roles Anywhere provides a secure way for your workloads
     /// such as servers, containers, and applications that run outside of Amazon Web Services
@@ -292,7 +293,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:CreateProfile</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:CreateProfile</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateProfile service method.</param>
@@ -361,7 +362,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:CreateTrustAnchor</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:CreateTrustAnchor</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateTrustAnchor service method.</param>
@@ -419,6 +420,69 @@ namespace Amazon.IAMRolesAnywhere
 
         #endregion
         
+        #region  DeleteAttributeMapping
+
+        /// <summary>
+        /// Delete an entry from the attribute mapping rules enforced by a given profile.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteAttributeMapping service method.</param>
+        /// 
+        /// <returns>The response from the DeleteAttributeMapping service method, as returned by IAMRolesAnywhere.</returns>
+        /// <exception cref="Amazon.IAMRolesAnywhere.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.IAMRolesAnywhere.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.IAMRolesAnywhere.Model.ValidationException">
+        /// Validation exception error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/DeleteAttributeMapping">REST API Reference for DeleteAttributeMapping Operation</seealso>
+        public virtual DeleteAttributeMappingResponse DeleteAttributeMapping(DeleteAttributeMappingRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteAttributeMappingRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteAttributeMappingResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteAttributeMappingResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteAttributeMapping operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteAttributeMapping operation on AmazonIAMRolesAnywhereClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteAttributeMapping
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/DeleteAttributeMapping">REST API Reference for DeleteAttributeMapping Operation</seealso>
+        public virtual IAsyncResult BeginDeleteAttributeMapping(DeleteAttributeMappingRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteAttributeMappingRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteAttributeMappingResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteAttributeMapping operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteAttributeMapping.</param>
+        /// 
+        /// <returns>Returns a  DeleteAttributeMappingResult from IAMRolesAnywhere.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/DeleteAttributeMapping">REST API Reference for DeleteAttributeMapping Operation</seealso>
+        public virtual DeleteAttributeMappingResponse EndDeleteAttributeMapping(IAsyncResult asyncResult)
+        {
+            return EndInvoke<DeleteAttributeMappingResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region  DeleteCrl
 
         /// <summary>
@@ -426,7 +490,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:DeleteCrl</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:DeleteCrl</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteCrl service method.</param>
@@ -491,7 +555,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:DeleteProfile</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:DeleteProfile</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteProfile service method.</param>
@@ -556,7 +620,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:DeleteTrustAnchor</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:DeleteTrustAnchor</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteTrustAnchor service method.</param>
@@ -621,7 +685,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:DisableCrl</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:DisableCrl</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DisableCrl service method.</param>
@@ -687,7 +751,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:DisableProfile</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:DisableProfile</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DisableProfile service method.</param>
@@ -753,7 +817,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:DisableTrustAnchor</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:DisableTrustAnchor</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DisableTrustAnchor service method.</param>
@@ -819,7 +883,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:EnableCrl</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:EnableCrl</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the EnableCrl service method.</param>
@@ -884,7 +948,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:EnableProfile</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:EnableProfile</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the EnableProfile service method.</param>
@@ -950,7 +1014,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:EnableTrustAnchor</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:EnableTrustAnchor</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the EnableTrustAnchor service method.</param>
@@ -1015,7 +1079,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:GetCrl</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:GetCrl</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetCrl service method.</param>
@@ -1077,7 +1141,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:GetProfile</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:GetProfile</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetProfile service method.</param>
@@ -1145,7 +1209,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:GetSubject</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:GetSubject</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetSubject service method.</param>
@@ -1210,7 +1274,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:GetTrustAnchor</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:GetTrustAnchor</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetTrustAnchor service method.</param>
@@ -1275,12 +1339,13 @@ namespace Amazon.IAMRolesAnywhere
 
         /// <summary>
         /// Imports the certificate revocation list (CRL). A CRL is a list of certificates that
-        /// have been revoked by the issuing certificate Authority (CA). IAM Roles Anywhere validates
-        /// against the CRL before issuing credentials. 
+        /// have been revoked by the issuing certificate Authority (CA).In order to be properly
+        /// imported, a CRL must be in PEM format. IAM Roles Anywhere validates against the CRL
+        /// before issuing credentials. 
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:ImportCrl</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:ImportCrl</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ImportCrl service method.</param>
@@ -1346,7 +1411,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:ListCrls</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:ListCrls</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListCrls service method.</param>
@@ -1411,7 +1476,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:ListProfiles</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:ListProfiles</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListProfiles service method.</param>
@@ -1476,7 +1541,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:ListSubjects</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:ListSubjects</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListSubjects service method.</param>
@@ -1541,7 +1606,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:ListTagsForResource</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:ListTagsForResource</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTagsForResource service method.</param>
@@ -1609,7 +1674,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:ListTrustAnchors</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:ListTrustAnchors</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTrustAnchors service method.</param>
@@ -1667,6 +1732,71 @@ namespace Amazon.IAMRolesAnywhere
 
         #endregion
         
+        #region  PutAttributeMapping
+
+        /// <summary>
+        /// Put an entry in the attribute mapping rules that will be enforced by a given profile.
+        /// A mapping specifies a certificate field and one or more specifiers that have contextual
+        /// meanings.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutAttributeMapping service method.</param>
+        /// 
+        /// <returns>The response from the PutAttributeMapping service method, as returned by IAMRolesAnywhere.</returns>
+        /// <exception cref="Amazon.IAMRolesAnywhere.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.IAMRolesAnywhere.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.IAMRolesAnywhere.Model.ValidationException">
+        /// Validation exception error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/PutAttributeMapping">REST API Reference for PutAttributeMapping Operation</seealso>
+        public virtual PutAttributeMappingResponse PutAttributeMapping(PutAttributeMappingRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = PutAttributeMappingRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = PutAttributeMappingResponseUnmarshaller.Instance;
+
+            return Invoke<PutAttributeMappingResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the PutAttributeMapping operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the PutAttributeMapping operation on AmazonIAMRolesAnywhereClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndPutAttributeMapping
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/PutAttributeMapping">REST API Reference for PutAttributeMapping Operation</seealso>
+        public virtual IAsyncResult BeginPutAttributeMapping(PutAttributeMappingRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = PutAttributeMappingRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = PutAttributeMappingResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  PutAttributeMapping operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginPutAttributeMapping.</param>
+        /// 
+        /// <returns>Returns a  PutAttributeMappingResult from IAMRolesAnywhere.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/PutAttributeMapping">REST API Reference for PutAttributeMapping Operation</seealso>
+        public virtual PutAttributeMappingResponse EndPutAttributeMapping(IAsyncResult asyncResult)
+        {
+            return EndInvoke<PutAttributeMappingResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region  PutNotificationSettings
 
         /// <summary>
@@ -1679,8 +1809,7 @@ namespace Amazon.IAMRolesAnywhere
         /// </para>
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:PutNotificationSettings</code>.
-        /// 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:PutNotificationSettings</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutNotificationSettings service method.</param>
@@ -1749,8 +1878,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:ResetNotificationSettings</code>.
-        /// 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:ResetNotificationSettings</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ResetNotificationSettings service method.</param>
@@ -1818,7 +1946,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:TagResource</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:TagResource</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the TagResource service method.</param>
@@ -1889,7 +2017,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:UntagResource</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:UntagResource</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
@@ -1959,7 +2087,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:UpdateCrl</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:UpdateCrl</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateCrl service method.</param>
@@ -2028,7 +2156,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:UpdateProfile</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:UpdateProfile</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateProfile service method.</param>
@@ -2100,7 +2228,7 @@ namespace Amazon.IAMRolesAnywhere
         /// 
         ///  
         /// <para>
-        ///  <b>Required permissions: </b> <code>rolesanywhere:UpdateTrustAnchor</code>. 
+        ///  <b>Required permissions: </b> <c>rolesanywhere:UpdateTrustAnchor</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateTrustAnchor service method.</param>
@@ -2170,11 +2298,11 @@ namespace Amazon.IAMRolesAnywhere
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

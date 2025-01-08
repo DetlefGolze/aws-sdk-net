@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -46,8 +47,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property DeploymentOption. 
         /// <para>
         /// The required deployment option for the Amazon RDS DB instance. Valid values include
-        /// <code>"MULTI_AZ"</code> for Multi-AZ deployments and <code>"SINGLE_AZ"</code> for
-        /// Single-AZ deployments.
+        /// <c>"MULTI_AZ"</c> for Multi-AZ deployments and <c>"SINGLE_AZ"</c> for Single-AZ deployments.
         /// </para>
         /// </summary>
         public string DeploymentOption

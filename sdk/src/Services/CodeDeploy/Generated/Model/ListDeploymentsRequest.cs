@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.CodeDeploy.Model
         private TimeRange _createTimeRange;
         private string _deploymentGroupName;
         private string _externalId;
-        private List<string> _includeOnlyStatuses = new List<string>();
+        private List<string> _includeOnlyStatuses = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -50,9 +51,8 @@ namespace Amazon.CodeDeploy.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If <code>applicationName</code> is specified, then <code>deploymentGroupName</code>
-        /// must be specified. If it is not specified, then <code>deploymentGroupName</code> must
-        /// not be specified. 
+        /// If <c>applicationName</c> is specified, then <c>deploymentGroupName</c> must be specified.
+        /// If it is not specified, then <c>deploymentGroupName</c> must not be specified. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -94,9 +94,8 @@ namespace Amazon.CodeDeploy.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If <code>deploymentGroupName</code> is specified, then <code>applicationName</code>
-        /// must be specified. If it is not specified, then <code>applicationName</code> must
-        /// not be specified. 
+        /// If <c>deploymentGroupName</c> is specified, then <c>applicationName</c> must be specified.
+        /// If it is not specified, then <c>applicationName</c> must not be specified. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -139,27 +138,27 @@ namespace Amazon.CodeDeploy.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Created</code>: Include created deployments in the resulting list.
+        ///  <c>Created</c>: Include created deployments in the resulting list.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Queued</code>: Include queued deployments in the resulting list.
+        ///  <c>Queued</c>: Include queued deployments in the resulting list.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>In Progress</code>: Include in-progress deployments in the resulting list.
+        ///  <c>In Progress</c>: Include in-progress deployments in the resulting list.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Succeeded</code>: Include successful deployments in the resulting list.
+        ///  <c>Succeeded</c>: Include successful deployments in the resulting list.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Failed</code>: Include failed deployments in the resulting list.
+        ///  <c>Failed</c>: Include failed deployments in the resulting list.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Stopped</code>: Include stopped deployments in the resulting list.
+        ///  <c>Stopped</c>: Include stopped deployments in the resulting list.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -172,7 +171,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if IncludeOnlyStatuses property is set
         internal bool IsSetIncludeOnlyStatuses()
         {
-            return this._includeOnlyStatuses != null && this._includeOnlyStatuses.Count > 0; 
+            return this._includeOnlyStatuses != null && (this._includeOnlyStatuses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

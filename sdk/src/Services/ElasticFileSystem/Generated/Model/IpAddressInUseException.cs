@@ -26,18 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
-    /// Returned if the request specified an <code>IpAddress</code> that is already in use
-    /// in the subnet.
+    /// Returned if the request specified an <c>IpAddress</c> that is already in use in the
+    /// subnet.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]
     #endif
     public partial class IpAddressInUseException : AmazonElasticFileSystemException
     {
-        private string _errorCode;
 
         /// <summary>
         /// Constructs a new IpAddressInUseException with the specified error
@@ -123,22 +123,6 @@ namespace Amazon.ElasticFileSystem.Model
             info.AddValue("ErrorCode", this.ErrorCode);
         }
 #endif
-
-        /// <summary>
-        /// Gets and sets the property ErrorCode.
-        /// </summary>
-        [AWSProperty(Required=true, Min=1)]
-        public string ErrorCode
-        {
-            get { return this._errorCode; }
-            set { this._errorCode = value; }
-        }
-
-        // Check to see if ErrorCode property is set
-        internal bool IsSetErrorCode()
-        {
-            return this._errorCode != null;
-        }
 
     }
 }

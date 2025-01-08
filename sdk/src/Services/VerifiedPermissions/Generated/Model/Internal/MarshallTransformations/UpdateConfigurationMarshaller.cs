@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.VerifiedPermissions.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.VerifiedPermissions.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(UpdateConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCognitoUserPoolConfiguration())
             {
                 context.Writer.WritePropertyName("cognitoUserPoolConfiguration");
@@ -52,6 +55,17 @@ namespace Amazon.VerifiedPermissions.Model.Internal.MarshallTransformations
 
                 var marshaller = UpdateCognitoUserPoolConfigurationMarshaller.Instance;
                 marshaller.Marshall(requestObject.CognitoUserPoolConfiguration, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetOpenIdConnectConfiguration())
+            {
+                context.Writer.WritePropertyName("openIdConnectConfiguration");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = UpdateOpenIdConnectConfigurationMarshaller.Instance;
+                marshaller.Marshall(requestObject.OpenIdConnectConfiguration, context);
 
                 context.Writer.WriteObjectEnd();
             }

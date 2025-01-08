@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RedshiftServerless.Model
 {
     /// <summary>
@@ -36,12 +37,13 @@ namespace Amazon.RedshiftServerless.Model
     {
         private int? _maxResults;
         private string _nextToken;
+        private string _ownerAccount;
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// An optional parameter that specifies the maximum number of results to return. You
-        /// can use <code>nextToken</code> to display the next page of results.
+        /// can use <c>nextToken</c> to display the next page of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -60,9 +62,9 @@ namespace Amazon.RedshiftServerless.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If your initial ListWorkgroups operation returns a <code>nextToken</code>, you can
-        /// include the returned <code>nextToken</code> in following ListNamespaces operations,
-        /// which returns results in the next page.
+        /// If your initial ListWorkgroups operation returns a <c>nextToken</c>, you can include
+        /// the returned <c>nextToken</c> in following ListNamespaces operations, which returns
+        /// results in the next page.
         /// </para>
         /// </summary>
         public string NextToken
@@ -75,6 +77,25 @@ namespace Amazon.RedshiftServerless.Model
         internal bool IsSetNextToken()
         {
             return this._nextToken != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OwnerAccount. 
+        /// <para>
+        /// The owner Amazon Web Services account for the Amazon Redshift Serverless workgroup.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=12)]
+        public string OwnerAccount
+        {
+            get { return this._ownerAccount; }
+            set { this._ownerAccount = value; }
+        }
+
+        // Check to see if OwnerAccount property is set
+        internal bool IsSetOwnerAccount()
+        {
+            return this._ownerAccount != null;
         }
 
     }

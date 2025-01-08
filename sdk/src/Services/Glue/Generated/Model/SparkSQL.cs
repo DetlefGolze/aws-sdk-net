@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
     /// Specifies a transform where you enter a SQL query using Spark SQL syntax to transform
-    /// the data. The output is a single <code>DynamicFrame</code>.
+    /// the data. The output is a single <c>DynamicFrame</c>.
     /// </summary>
     public partial class SparkSQL
     {
-        private List<string> _inputs = new List<string>();
+        private List<string> _inputs = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
-        private List<GlueSchema> _outputSchemas = new List<GlueSchema>();
-        private List<SqlAlias> _sqlAliases = new List<SqlAlias>();
+        private List<GlueSchema> _outputSchemas = AWSConfigs.InitializeCollections ? new List<GlueSchema>() : null;
+        private List<SqlAlias> _sqlAliases = AWSConfigs.InitializeCollections ? new List<SqlAlias>() : null;
         private string _sqlQuery;
 
         /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.Glue.Model
         // Check to see if Inputs property is set
         internal bool IsSetInputs()
         {
-            return this._inputs != null && this._inputs.Count > 0; 
+            return this._inputs != null && (this._inputs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -95,7 +96,7 @@ namespace Amazon.Glue.Model
         // Check to see if OutputSchemas property is set
         internal bool IsSetOutputSchemas()
         {
-            return this._outputSchemas != null && this._outputSchemas.Count > 0; 
+            return this._outputSchemas != null && (this._outputSchemas.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -103,12 +104,12 @@ namespace Amazon.Glue.Model
         /// <para>
         /// A list of aliases. An alias allows you to specify what name to use in the SQL for
         /// a given input. For example, you have a datasource named "MyDataSource". If you specify
-        /// <code>From</code> as MyDataSource, and <code>Alias</code> as SqlName, then in your
-        /// SQL you can do:
+        /// <c>From</c> as MyDataSource, and <c>Alias</c> as SqlName, then in your SQL you can
+        /// do:
         /// </para>
         ///  
         /// <para>
-        ///  <code>select * from SqlName</code> 
+        ///  <c>select * from SqlName</c> 
         /// </para>
         ///  
         /// <para>
@@ -125,7 +126,7 @@ namespace Amazon.Glue.Model
         // Check to see if SqlAliases property is set
         internal bool IsSetSqlAliases()
         {
-            return this._sqlAliases != null && this._sqlAliases.Count > 0; 
+            return this._sqlAliases != null && (this._sqlAliases.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

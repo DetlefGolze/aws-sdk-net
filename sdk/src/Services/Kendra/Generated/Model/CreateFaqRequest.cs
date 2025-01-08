@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -53,14 +54,14 @@ namespace Amazon.Kendra.Model
         private string _name;
         private string _roleArn;
         private S3Path _s3Path;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// A token that you provide to identify the request to create a FAQ. Multiple calls to
-        /// the <code>CreateFaqRequest</code> API with the same client token will create only
-        /// one FAQ. 
+        /// the <c>CreateFaqRequest</c> API with the same client token will create only one FAQ.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -109,7 +110,7 @@ namespace Amazon.Kendra.Model
         ///  
         /// <para>
         /// The format must match the format of the file stored in the S3 bucket identified in
-        /// the <code>S3Path</code> parameter.
+        /// the <c>S3Path</c> parameter.
         /// </para>
         ///  
         /// <para>
@@ -193,7 +194,7 @@ namespace Amazon.Kendra.Model
         /// Gets and sets the property RoleArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of an IAM role with permission to access the S3 bucket
-        /// that contains the FAQs. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html">IAM
+        /// that contains the FAQ file. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html">IAM
         /// access roles for Amazon Kendra</a>.
         /// </para>
         /// </summary>
@@ -246,7 +247,7 @@ namespace Amazon.Kendra.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

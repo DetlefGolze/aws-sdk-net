@@ -26,11 +26,27 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptunedata.Model
 {
     /// <summary>
     /// Container for the parameters to the GetGremlinQueryStatus operation.
     /// Gets the status of a specified Gremlin query.
+    /// 
+    ///  
+    /// <para>
+    /// When invoking this operation in a Neptune cluster that has IAM authentication enabled,
+    /// the IAM user or role making the request must have a policy attached that allows the
+    /// <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#getquerystatus">neptune-db:GetQueryStatus</a>
+    /// IAM action in that cluster.
+    /// </para>
+    ///  
+    /// <para>
+    /// Note that the <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html#iam-neptune-condition-keys">neptune-db:QueryLanguage:Gremlin</a>
+    /// IAM condition key can be used in the policy document to restrict the use of Gremlin
+    /// queries (see <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html">Condition
+    /// keys available in Neptune IAM data-access policy statements</a>).
+    /// </para>
     /// </summary>
     public partial class GetGremlinQueryStatusRequest : AmazonNeptunedataRequest
     {

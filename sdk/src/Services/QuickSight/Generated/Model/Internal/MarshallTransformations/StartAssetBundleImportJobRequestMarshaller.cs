@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,6 +67,7 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAssetBundleImportJobId())
@@ -98,6 +100,39 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 
                     var marshaller = AssetBundleImportJobOverrideParametersMarshaller.Instance;
                     marshaller.Marshall(publicRequest.OverrideParameters, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetOverridePermissions())
+                {
+                    context.Writer.WritePropertyName("OverridePermissions");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = AssetBundleImportJobOverridePermissionsMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.OverridePermissions, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetOverrideTags())
+                {
+                    context.Writer.WritePropertyName("OverrideTags");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = AssetBundleImportJobOverrideTagsMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.OverrideTags, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetOverrideValidationStrategy())
+                {
+                    context.Writer.WritePropertyName("OverrideValidationStrategy");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = AssetBundleImportJobOverrideValidationStrategyMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.OverrideValidationStrategy, context);
 
                     context.Writer.WriteObjectEnd();
                 }

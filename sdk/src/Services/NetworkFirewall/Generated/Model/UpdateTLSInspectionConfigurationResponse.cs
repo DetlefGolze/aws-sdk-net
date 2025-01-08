@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
@@ -70,7 +71,7 @@ namespace Amazon.NetworkFirewall.Model
         /// To make changes to the TLS inspection configuration, you provide the token in your
         /// request. Network Firewall uses the token to ensure that the TLS inspection configuration
         /// hasn't changed since you last retrieved it. If it has changed, the operation fails
-        /// with an <code>InvalidTokenException</code>. If this happens, retrieve the TLS inspection
+        /// with an <c>InvalidTokenException</c>. If this happens, retrieve the TLS inspection
         /// configuration again to get a current copy of it with a current token. Reapply your
         /// changes as needed, then try the operation again using the new token. 
         /// </para>

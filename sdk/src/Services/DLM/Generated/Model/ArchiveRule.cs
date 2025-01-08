@@ -26,10 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DLM.Model
 {
     /// <summary>
-    /// <b>[Snapshot policies only]</b> Specifies a snapshot archiving rule for a schedule.
+    /// <b>[Custom snapshot policies only]</b> Specifies a snapshot archiving rule for a
+    /// schedule.
     /// </summary>
     public partial class ArchiveRule
     {

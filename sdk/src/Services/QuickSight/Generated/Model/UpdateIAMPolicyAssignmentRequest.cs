@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateIAMPolicyAssignment operation.
     /// Updates an existing IAM policy assignment. This operation updates only the optional
     /// parameter or parameters that are specified in the request. This overwrites all of
-    /// the users included in <code>Identities</code>.
+    /// the users included in <c>Identities</c>.
     /// </summary>
     public partial class UpdateIAMPolicyAssignmentRequest : AmazonQuickSightRequest
     {
         private string _assignmentName;
         private AssignmentStatus _assignmentStatus;
         private string _awsAccountId;
-        private Dictionary<string, List<string>> _identities = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<string>> _identities = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
         private string _awsNamespace;
         private string _policyArn;
 
@@ -70,16 +71,16 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ENABLED</code> - Anything specified in this assignment is used when creating
-        /// the data source.
+        ///  <c>ENABLED</c> - Anything specified in this assignment is used when creating the
+        /// data source.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DISABLED</code> - This assignment isn't used when creating the data source.
+        ///  <c>DISABLED</c> - This assignment isn't used when creating the data source.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DRAFT</code> - This assignment is an unfinished draft and isn't used when creating
+        ///  <c>DRAFT</c> - This assignment is an unfinished draft and isn't used when creating
         /// the data source.
         /// </para>
         ///  </li> </ul>
@@ -131,7 +132,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Identities property is set
         internal bool IsSetIdentities()
         {
-            return this._identities != null && this._identities.Count > 0; 
+            return this._identities != null && (this._identities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

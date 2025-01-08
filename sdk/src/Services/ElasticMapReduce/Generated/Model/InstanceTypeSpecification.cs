@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -42,17 +43,18 @@ namespace Amazon.ElasticMapReduce.Model
     {
         private string _bidPrice;
         private double? _bidPriceAsPercentageOfOnDemandPrice;
-        private List<Configuration> _configurations = new List<Configuration>();
+        private List<Configuration> _configurations = AWSConfigs.InitializeCollections ? new List<Configuration>() : null;
         private string _customAmiId;
-        private List<EbsBlockDevice> _ebsBlockDevices = new List<EbsBlockDevice>();
+        private List<EbsBlockDevice> _ebsBlockDevices = AWSConfigs.InitializeCollections ? new List<EbsBlockDevice>() : null;
         private bool? _ebsOptimized;
         private string _instanceType;
+        private double? _priority;
         private int? _weightedCapacity;
 
         /// <summary>
         /// Gets and sets the property BidPrice. 
         /// <para>
-        /// The bid price for each Amazon EC2 Spot Instance type as defined by <code>InstanceType</code>.
+        /// The bid price for each Amazon EC2 Spot Instance type as defined by <c>InstanceType</c>.
         /// Expressed in USD.
         /// </para>
         /// </summary>
@@ -73,7 +75,7 @@ namespace Amazon.ElasticMapReduce.Model
         /// Gets and sets the property BidPriceAsPercentageOfOnDemandPrice. 
         /// <para>
         /// The bid price, as a percentage of On-Demand price, for each Amazon EC2 Spot Instance
-        /// as defined by <code>InstanceType</code>. Expressed as a number (for example, 20 specifies
+        /// as defined by <c>InstanceType</c>. Expressed as a number (for example, 20 specifies
         /// 20%).
         /// </para>
         /// </summary>
@@ -106,7 +108,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if Configurations property is set
         internal bool IsSetConfigurations()
         {
-            return this._configurations != null && this._configurations.Count > 0; 
+            return this._configurations != null && (this._configurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -132,7 +134,7 @@ namespace Amazon.ElasticMapReduce.Model
         /// Gets and sets the property EbsBlockDevices. 
         /// <para>
         /// The configuration of Amazon Elastic Block Store (Amazon EBS) attached to each instance
-        /// as defined by <code>InstanceType</code>.
+        /// as defined by <c>InstanceType</c>.
         /// </para>
         /// </summary>
         public List<EbsBlockDevice> EbsBlockDevices
@@ -144,13 +146,13 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if EbsBlockDevices property is set
         internal bool IsSetEbsBlockDevices()
         {
-            return this._ebsBlockDevices != null && this._ebsBlockDevices.Count > 0; 
+            return this._ebsBlockDevices != null && (this._ebsBlockDevices.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property EbsOptimized. 
         /// <para>
-        /// Evaluates to <code>TRUE</code> when the specified <code>InstanceType</code> is EBS-optimized.
+        /// Evaluates to <c>TRUE</c> when the specified <c>InstanceType</c> is EBS-optimized.
         /// </para>
         /// </summary>
         public bool EbsOptimized
@@ -168,7 +170,7 @@ namespace Amazon.ElasticMapReduce.Model
         /// <summary>
         /// Gets and sets the property InstanceType. 
         /// <para>
-        /// The Amazon EC2 instance type, for example <code>m3.xlarge</code>.
+        /// The Amazon EC2 instance type, for example <c>m3.xlarge</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]
@@ -182,6 +184,27 @@ namespace Amazon.ElasticMapReduce.Model
         internal bool IsSetInstanceType()
         {
             return this._instanceType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Priority. 
+        /// <para>
+        /// The priority at which Amazon EMR launches the Amazon EC2 instances with this instance
+        /// type. Priority starts at 0, which is the highest priority. Amazon EMR considers the
+        /// highest priority first.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0)]
+        public double Priority
+        {
+            get { return this._priority.GetValueOrDefault(); }
+            set { this._priority = value; }
+        }
+
+        // Check to see if Priority property is set
+        internal bool IsSetPriority()
+        {
+            return this._priority.HasValue; 
         }
 
         /// <summary>

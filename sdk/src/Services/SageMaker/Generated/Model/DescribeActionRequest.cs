@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.SageMaker.Model
         /// The name of the action to describe.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=120)]
+        [AWSProperty(Required=true, Min=1, Max=256)]
         public string ActionName
         {
             get { return this._actionName; }

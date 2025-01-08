@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,6 +34,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class SnapshotInfo
     {
+        private string _availabilityZone;
         private string _description;
         private bool? _encrypted;
         private string _outpostArn;
@@ -42,9 +44,28 @@ namespace Amazon.EC2.Model
         private SSEType _sseType;
         private DateTime? _startTime;
         private SnapshotState _state;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _volumeId;
         private int? _volumeSize;
+
+        /// <summary>
+        /// Gets and sets the property AvailabilityZone. 
+        /// <para>
+        /// The Availability Zone or Local Zone of the snapshots. For example, <c>us-west-1a</c>
+        /// (Availability Zone) or <c>us-west-2-lax-1a</c> (Local Zone).
+        /// </para>
+        /// </summary>
+        public string AvailabilityZone
+        {
+            get { return this._availabilityZone; }
+            set { this._availabilityZone = value; }
+        }
+
+        // Check to see if AvailabilityZone property is set
+        internal bool IsSetAvailabilityZone()
+        {
+            return this._availabilityZone != null;
+        }
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -86,8 +107,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property OutpostArn. 
         /// <para>
         /// The ARN of the Outpost on which the snapshot is stored. For more information, see
-        /// <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html">Amazon
-        /// EBS local snapshots on Outposts</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+        /// <a href="https://docs.aws.amazon.com/ebs/latest/userguide/snapshots-outposts.html">Amazon
+        /// EBS local snapshots on Outposts</a> in the <i>Amazon EBS User Guide</i>.
         /// </para>
         /// </summary>
         public string OutpostArn
@@ -226,7 +247,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kinesis.Model
 {
     /// <summary>
@@ -42,6 +43,12 @@ namespace Amazon.Kinesis.Model
     /// <para>
     /// This operation has a limit of 20 transactions per second per stream.
     /// </para>
+    ///  <note> 
+    /// <para>
+    /// When making a cross-account call with <c>DescribeStreamConsumer</c>, make sure to
+    /// provide the ARN of the consumer. 
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class DescribeStreamConsumerRequest : AmazonKinesisRequest
     {

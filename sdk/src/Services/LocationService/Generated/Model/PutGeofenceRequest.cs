@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.LocationService.Model
     {
         private string _collectionName;
         private string _geofenceId;
-        private Dictionary<string, string> _geofenceProperties = new Dictionary<string, string>();
+        private Dictionary<string, string> _geofenceProperties = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private GeofenceGeometry _geometry;
 
         /// <summary>
@@ -62,7 +63,7 @@ namespace Amazon.LocationService.Model
         /// <summary>
         /// Gets and sets the property GeofenceId. 
         /// <para>
-        /// An identifier for the geofence. For example, <code>ExampleGeofence-1</code>.
+        /// An identifier for the geofence. For example, <c>ExampleGeofence-1</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]
@@ -86,7 +87,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  
         /// <para>
-        /// Format: <code>"key" : "value"</code> 
+        /// Format: <c>"key" : "value"</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=0, Max=3)]
@@ -99,19 +100,21 @@ namespace Amazon.LocationService.Model
         // Check to see if GeofenceProperties property is set
         internal bool IsSetGeofenceProperties()
         {
-            return this._geofenceProperties != null && this._geofenceProperties.Count > 0; 
+            return this._geofenceProperties != null && (this._geofenceProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Geometry. 
         /// <para>
-        /// Contains the details to specify the position of the geofence. Can be either a polygon
-        /// or a circle. Including both will return a validation error.
+        /// Contains the details to specify the position of the geofence. Can be a polygon, a
+        /// circle or a polygon encoded in Geobuf format. Including multiple selections will return
+        /// a validation error.
         /// </para>
         ///  <note> 
         /// <para>
-        /// Each <a href="https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html">
-        /// geofence polygon</a> can have a maximum of 1,000 vertices.
+        /// The <a href="https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html">
+        /// geofence polygon</a> format supports a maximum of 1,000 vertices. The <a href="https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html">Geofence
+        /// Geobuf</a> format supports a maximum of 100,000 vertices.
         /// </para>
         ///  </note>
         /// </summary>

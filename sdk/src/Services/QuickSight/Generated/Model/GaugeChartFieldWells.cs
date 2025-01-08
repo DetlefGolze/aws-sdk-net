@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The field well configuration of a <code>GaugeChartVisual</code>.
+    /// The field well configuration of a <c>GaugeChartVisual</c>.
     /// </summary>
     public partial class GaugeChartFieldWells
     {
-        private List<MeasureField> _targetValues = new List<MeasureField>();
-        private List<MeasureField> _values = new List<MeasureField>();
+        private List<MeasureField> _targetValues = AWSConfigs.InitializeCollections ? new List<MeasureField>() : null;
+        private List<MeasureField> _values = AWSConfigs.InitializeCollections ? new List<MeasureField>() : null;
 
         /// <summary>
         /// Gets and sets the property TargetValues. 
         /// <para>
-        /// The target value field wells of a <code>GaugeChartVisual</code>.
+        /// The target value field wells of a <c>GaugeChartVisual</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=200)]
@@ -52,13 +53,13 @@ namespace Amazon.QuickSight.Model
         // Check to see if TargetValues property is set
         internal bool IsSetTargetValues()
         {
-            return this._targetValues != null && this._targetValues.Count > 0; 
+            return this._targetValues != null && (this._targetValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Values. 
         /// <para>
-        /// The value field wells of a <code>GaugeChartVisual</code>.
+        /// The value field wells of a <c>GaugeChartVisual</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=200)]
@@ -71,7 +72,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

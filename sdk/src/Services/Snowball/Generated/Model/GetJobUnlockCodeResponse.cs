@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.Snowball.Model
         /// <summary>
         /// Gets and sets the property UnlockCode. 
         /// <para>
-        /// The <code>UnlockCode</code> value for the specified job. The <code>UnlockCode</code>
-        /// value can be accessed for up to 360 days after the job has been created.
+        /// The <c>UnlockCode</c> value for the specified job. The <c>UnlockCode</c> value can
+        /// be accessed for up to 360 days after the job has been created.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudWatchLogs.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.CloudWatchLogs.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public LogGroup Unmarshall(JsonUnmarshallerContext context)
         {
+            LogGroup unmarshalledObject = new LogGroup();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            LogGroup unmarshalledObject = new LogGroup();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -94,6 +96,18 @@ namespace Amazon.CloudWatchLogs.Model.Internal.MarshallTransformations
                     unmarshalledObject.KmsKeyId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("logGroupArn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.LogGroupArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("logGroupClass", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.LogGroupClass = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("logGroupName", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -119,7 +133,6 @@ namespace Amazon.CloudWatchLogs.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

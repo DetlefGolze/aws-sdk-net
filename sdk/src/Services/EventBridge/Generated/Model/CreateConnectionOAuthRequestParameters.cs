@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -61,8 +62,7 @@ namespace Amazon.EventBridge.Model
         /// <summary>
         /// Gets and sets the property ClientParameters. 
         /// <para>
-        /// A <code>CreateConnectionOAuthClientRequestParameters</code> object that contains the
-        /// client parameters for OAuth authorization.
+        /// The client parameters for OAuth authorization.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -100,8 +100,7 @@ namespace Amazon.EventBridge.Model
         /// <summary>
         /// Gets and sets the property OAuthHttpParameters. 
         /// <para>
-        /// A <code>ConnectionHttpParameters</code> object that contains details about the additional
-        /// parameters to use for the connection.
+        /// Details about the additional parameters to use for the connection.
         /// </para>
         /// </summary>
         public ConnectionHttpParameters OAuthHttpParameters

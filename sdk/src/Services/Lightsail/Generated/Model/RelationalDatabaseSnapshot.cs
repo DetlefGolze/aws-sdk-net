@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.Lightsail.Model
         private int? _sizeInGb;
         private string _state;
         private string _supportCode;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -88,7 +89,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property Engine. 
         /// <para>
-        /// The software of the database snapshot (for example, <code>MySQL</code>)
+        /// The software of the database snapshot (for example, <c>MySQL</c>)
         /// </para>
         /// </summary>
         public string Engine
@@ -106,7 +107,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property EngineVersion. 
         /// <para>
-        /// The database engine version for the database snapshot (for example, <code>5.7.23</code>).
+        /// The database engine version for the database snapshot (for example, <c>5.7.23</c>).
         /// </para>
         /// </summary>
         public string EngineVersion
@@ -252,7 +253,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property SizeInGb. 
         /// <para>
-        /// The size of the disk in GB (for example, <code>32</code>) for the database snapshot.
+        /// The size of the disk in GB (for example, <c>32</c>) for the database snapshot.
         /// </para>
         /// </summary>
         public int SizeInGb
@@ -322,7 +323,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

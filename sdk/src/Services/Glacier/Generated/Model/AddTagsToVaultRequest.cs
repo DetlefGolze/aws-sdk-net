@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glacier.Model
 {
     /// <summary>
     /// Container for the parameters to the AddTagsToVault operation.
     /// This operation adds the specified tags to a vault. Each tag is composed of a key and
     /// a value. Each vault can have up to 10 tags. If your request would cause the tag limit
-    /// for the vault to be exceeded, the operation throws the <code>LimitExceededException</code>
+    /// for the vault to be exceeded, the operation throws the <c>LimitExceededException</c>
     /// error. If a tag already exists on the vault under a specified key, the existing key
     /// value will be overwritten. For more information about tags, see <a href="https://docs.aws.amazon.com/amazonglacier/latest/dev/tagging.html">Tagging
     /// Amazon S3 Glacier Resources</a>.
@@ -40,17 +41,17 @@ namespace Amazon.Glacier.Model
     public partial class AddTagsToVaultRequest : AmazonGlacierRequest
     {
         private string _accountId;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _vaultName;
 
         /// <summary>
         /// Gets and sets the property AccountId. 
         /// <para>
-        /// The <code>AccountId</code> value is the AWS account ID of the account that owns the
-        /// vault. You can either specify an AWS account ID or optionally a single '<code>-</code>'
-        /// (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with
-        /// the credentials used to sign the request. If you use an account ID, do not include
-        /// any hyphens ('-') in the ID.
+        /// The <c>AccountId</c> value is the AWS account ID of the account that owns the vault.
+        /// You can either specify an AWS account ID or optionally a single '<c>-</c>' (hyphen),
+        /// in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials
+        /// used to sign the request. If you use an account ID, do not include any hyphens ('-')
+        /// in the ID.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -82,7 +83,7 @@ namespace Amazon.Glacier.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

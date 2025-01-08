@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.EC2.Model
     public partial class SpotFleetTagSpecification
     {
         private ResourceType _resourceType;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The type of resource. Currently, the only resource type that is supported is <code>instance</code>.
-        /// To tag the Spot Fleet request on creation, use the <code>TagSpecifications</code>
-        /// parameter in <code> <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_SpotFleetRequestConfigData.html">SpotFleetRequestConfigData</a>
-        /// </code>.
+        /// The type of resource. Currently, the only resource type that is supported is <c>instance</c>.
+        /// To tag the Spot Fleet request on creation, use the <c>TagSpecifications</c> parameter
+        /// in <c> <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_SpotFleetRequestConfigData.html">SpotFleetRequestConfigData</a>
+        /// </c>.
         /// </para>
         /// </summary>
         public ResourceType ResourceType
@@ -72,7 +73,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

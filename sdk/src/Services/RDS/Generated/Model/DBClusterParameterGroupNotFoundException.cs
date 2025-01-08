@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// <code>DBClusterParameterGroupName</code> doesn't refer to an existing DB cluster
-    /// parameter group.
+    /// <c>DBClusterParameterGroupName</c> doesn't refer to an existing DB cluster parameter
+    /// group.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

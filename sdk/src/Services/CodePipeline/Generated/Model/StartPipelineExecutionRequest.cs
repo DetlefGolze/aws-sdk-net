@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
@@ -37,6 +38,8 @@ namespace Amazon.CodePipeline.Model
     {
         private string _clientRequestToken;
         private string _name;
+        private List<SourceRevisionOverride> _sourceRevisions = AWSConfigs.InitializeCollections ? new List<SourceRevisionOverride>() : null;
+        private List<PipelineVariable> _variables = AWSConfigs.InitializeCollections ? new List<PipelineVariable>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
@@ -74,6 +77,48 @@ namespace Amazon.CodePipeline.Model
         internal bool IsSetName()
         {
             return this._name != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SourceRevisions. 
+        /// <para>
+        /// A list that allows you to specify, or override, the source revision for a pipeline
+        /// execution that's being started. A source revision is the version with all the changes
+        /// to your application code, or source artifact, for the pipeline execution.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=50)]
+        public List<SourceRevisionOverride> SourceRevisions
+        {
+            get { return this._sourceRevisions; }
+            set { this._sourceRevisions = value; }
+        }
+
+        // Check to see if SourceRevisions property is set
+        internal bool IsSetSourceRevisions()
+        {
+            return this._sourceRevisions != null && (this._sourceRevisions.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Variables. 
+        /// <para>
+        /// A list that overrides pipeline variables for a pipeline execution that's being started.
+        /// Variable names must match <c>[A-Za-z0-9@\-_]+</c>, and the values can be anything
+        /// except an empty string.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=50)]
+        public List<PipelineVariable> Variables
+        {
+            get { return this._variables; }
+            set { this._variables = value; }
+        }
+
+        // Check to see if Variables property is set
+        internal bool IsSetVariables()
+        {
+            return this._variables != null && (this._variables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

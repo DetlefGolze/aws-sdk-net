@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.SageMaker.Model
         private string _modelPackageGroupDescription;
         private string _modelPackageGroupName;
         private ModelPackageGroupStatus _modelPackageGroupStatus;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property CreatedBy.
@@ -138,27 +139,27 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PENDING</code> - The model group is pending being created.
+        ///  <c>PENDING</c> - The model group is pending being created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IN_PROGRESS</code> - The model group is in the process of being created.
+        ///  <c>IN_PROGRESS</c> - The model group is in the process of being created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>COMPLETED</code> - The model group was successfully created.
+        ///  <c>COMPLETED</c> - The model group was successfully created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> - The model group failed.
+        ///  <c>FAILED</c> - The model group failed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETING</code> - The model group is in the process of being deleted.
+        ///  <c>DELETING</c> - The model group is in the process of being deleted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETE_FAILED</code> - SageMaker failed to delete the model group.
+        ///  <c>DELETE_FAILED</c> - SageMaker failed to delete the model group.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -192,7 +193,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

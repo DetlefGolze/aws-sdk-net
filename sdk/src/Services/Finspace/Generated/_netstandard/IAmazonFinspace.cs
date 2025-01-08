@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Finspace.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Finspace
 {
     /// <summary>
-    /// Interface for accessing Finspace
+    /// <para>Interface for accessing Finspace</para>
     ///
     /// The FinSpace management service provides the APIs for managing FinSpace environments.
     /// </summary>
@@ -75,6 +76,7 @@ namespace Amazon.Finspace
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/CreateEnvironment">REST API Reference for CreateEnvironment Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         Task<CreateEnvironmentResponse> CreateEnvironmentAsync(CreateEnvironmentRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
@@ -200,6 +202,50 @@ namespace Amazon.Finspace
 
         #endregion
                 
+        #region  CreateKxDataview
+
+
+
+        /// <summary>
+        /// Creates a snapshot of kdb database with tiered storage capabilities and a pre-warmed
+        /// cache, ready for mounting on kdb clusters. Dataviews are only available for clusters
+        /// running on a scaling group. They are not supported on dedicated clusters.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateKxDataview service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateKxDataview service method, as returned by Finspace.</returns>
+        /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ConflictException">
+        /// There was a conflict with this action, and it could not be completed.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.LimitExceededException">
+        /// A service limit or quota is exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ResourceAlreadyExistsException">
+        /// The specified resource group already exists.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ResourceNotFoundException">
+        /// One or more resources can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/CreateKxDataview">REST API Reference for CreateKxDataview Operation</seealso>
+        Task<CreateKxDataviewResponse> CreateKxDataviewAsync(CreateKxDataviewRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  CreateKxEnvironment
 
 
@@ -237,6 +283,45 @@ namespace Amazon.Finspace
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/CreateKxEnvironment">REST API Reference for CreateKxEnvironment Operation</seealso>
         Task<CreateKxEnvironmentResponse> CreateKxEnvironmentAsync(CreateKxEnvironmentRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  CreateKxScalingGroup
+
+
+
+        /// <summary>
+        /// Creates a new scaling group.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateKxScalingGroup service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateKxScalingGroup service method, as returned by Finspace.</returns>
+        /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ConflictException">
+        /// There was a conflict with this action, and it could not be completed.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.LimitExceededException">
+        /// A service limit or quota is exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ResourceNotFoundException">
+        /// One or more resources can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/CreateKxScalingGroup">REST API Reference for CreateKxScalingGroup Operation</seealso>
+        Task<CreateKxScalingGroupResponse> CreateKxScalingGroupAsync(CreateKxScalingGroupRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 
@@ -282,6 +367,48 @@ namespace Amazon.Finspace
 
         #endregion
                 
+        #region  CreateKxVolume
+
+
+
+        /// <summary>
+        /// Creates a new volume with a specific amount of throughput and storage capacity.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateKxVolume service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateKxVolume service method, as returned by Finspace.</returns>
+        /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ConflictException">
+        /// There was a conflict with this action, and it could not be completed.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.LimitExceededException">
+        /// A service limit or quota is exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ResourceAlreadyExistsException">
+        /// The specified resource group already exists.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ResourceNotFoundException">
+        /// One or more resources can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/CreateKxVolume">REST API Reference for CreateKxVolume Operation</seealso>
+        Task<CreateKxVolumeResponse> CreateKxVolumeAsync(CreateKxVolumeRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  DeleteEnvironment
 
 
@@ -311,6 +438,7 @@ namespace Amazon.Finspace
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/DeleteEnvironment">REST API Reference for DeleteEnvironment Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         Task<DeleteEnvironmentResponse> DeleteEnvironmentAsync(DeleteEnvironmentRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
@@ -354,6 +482,39 @@ namespace Amazon.Finspace
 
         #endregion
                 
+        #region  DeleteKxClusterNode
+
+
+
+        /// <summary>
+        /// Deletes the specified nodes from a cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteKxClusterNode service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteKxClusterNode service method, as returned by Finspace.</returns>
+        /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ResourceNotFoundException">
+        /// One or more resources can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/DeleteKxClusterNode">REST API Reference for DeleteKxClusterNode Operation</seealso>
+        Task<DeleteKxClusterNodeResponse> DeleteKxClusterNodeAsync(DeleteKxClusterNodeRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  DeleteKxDatabase
 
 
@@ -392,6 +553,43 @@ namespace Amazon.Finspace
 
         #endregion
                 
+        #region  DeleteKxDataview
+
+
+
+        /// <summary>
+        /// Deletes the specified dataview. Before deleting a dataview, make sure that it is
+        /// not in use by any cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteKxDataview service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteKxDataview service method, as returned by Finspace.</returns>
+        /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ConflictException">
+        /// There was a conflict with this action, and it could not be completed.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ResourceNotFoundException">
+        /// One or more resources can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/DeleteKxDataview">REST API Reference for DeleteKxDataview Operation</seealso>
+        Task<DeleteKxDataviewResponse> DeleteKxDataviewAsync(DeleteKxDataviewRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  DeleteKxEnvironment
 
 
@@ -409,6 +607,9 @@ namespace Amazon.Finspace
         /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
         /// You do not have sufficient access to perform this action.
         /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ConflictException">
+        /// There was a conflict with this action, and it could not be completed.
+        /// </exception>
         /// <exception cref="Amazon.Finspace.Model.InternalServerException">
         /// The request processing has failed because of an unknown error, exception or failure.
         /// </exception>
@@ -423,6 +624,46 @@ namespace Amazon.Finspace
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/DeleteKxEnvironment">REST API Reference for DeleteKxEnvironment Operation</seealso>
         Task<DeleteKxEnvironmentResponse> DeleteKxEnvironmentAsync(DeleteKxEnvironmentRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  DeleteKxScalingGroup
+
+
+
+        /// <summary>
+        /// Deletes the specified scaling group. This action is irreversible. You cannot delete
+        /// a scaling group until all the clusters running on it have been deleted.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteKxScalingGroup service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteKxScalingGroup service method, as returned by Finspace.</returns>
+        /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ConflictException">
+        /// There was a conflict with this action, and it could not be completed.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.LimitExceededException">
+        /// A service limit or quota is exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ResourceNotFoundException">
+        /// One or more resources can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/DeleteKxScalingGroup">REST API Reference for DeleteKxScalingGroup Operation</seealso>
+        Task<DeleteKxScalingGroupResponse> DeleteKxScalingGroupAsync(DeleteKxScalingGroupRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 
@@ -442,6 +683,9 @@ namespace Amazon.Finspace
         /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
         /// You do not have sufficient access to perform this action.
         /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ConflictException">
+        /// There was a conflict with this action, and it could not be completed.
+        /// </exception>
         /// <exception cref="Amazon.Finspace.Model.InternalServerException">
         /// The request processing has failed because of an unknown error, exception or failure.
         /// </exception>
@@ -456,6 +700,47 @@ namespace Amazon.Finspace
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/DeleteKxUser">REST API Reference for DeleteKxUser Operation</seealso>
         Task<DeleteKxUserResponse> DeleteKxUserAsync(DeleteKxUserRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  DeleteKxVolume
+
+
+
+        /// <summary>
+        /// Deletes a volume. You can only delete a volume if it's not attached to a cluster
+        /// or a dataview. When a volume is deleted, any data on the volume is lost. This action
+        /// is irreversible.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteKxVolume service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteKxVolume service method, as returned by Finspace.</returns>
+        /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ConflictException">
+        /// There was a conflict with this action, and it could not be completed.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.LimitExceededException">
+        /// A service limit or quota is exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ResourceNotFoundException">
+        /// One or more resources can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/DeleteKxVolume">REST API Reference for DeleteKxVolume Operation</seealso>
+        Task<DeleteKxVolumeResponse> DeleteKxVolumeAsync(DeleteKxVolumeRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 
@@ -485,6 +770,7 @@ namespace Amazon.Finspace
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/GetEnvironment">REST API Reference for GetEnvironment Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         Task<GetEnvironmentResponse> GetEnvironmentAsync(GetEnvironmentRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
@@ -628,6 +914,39 @@ namespace Amazon.Finspace
 
         #endregion
                 
+        #region  GetKxDataview
+
+
+
+        /// <summary>
+        /// Retrieves details of the dataview.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetKxDataview service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetKxDataview service method, as returned by Finspace.</returns>
+        /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ResourceNotFoundException">
+        /// One or more resources can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/GetKxDataview">REST API Reference for GetKxDataview Operation</seealso>
+        Task<GetKxDataviewResponse> GetKxDataviewAsync(GetKxDataviewRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  GetKxEnvironment
 
 
@@ -644,6 +963,9 @@ namespace Amazon.Finspace
         /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
         /// You do not have sufficient access to perform this action.
         /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ConflictException">
+        /// There was a conflict with this action, and it could not be completed.
+        /// </exception>
         /// <exception cref="Amazon.Finspace.Model.InternalServerException">
         /// The request processing has failed because of an unknown error, exception or failure.
         /// </exception>
@@ -655,6 +977,45 @@ namespace Amazon.Finspace
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/GetKxEnvironment">REST API Reference for GetKxEnvironment Operation</seealso>
         Task<GetKxEnvironmentResponse> GetKxEnvironmentAsync(GetKxEnvironmentRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  GetKxScalingGroup
+
+
+
+        /// <summary>
+        /// Retrieves details of a scaling group.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetKxScalingGroup service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetKxScalingGroup service method, as returned by Finspace.</returns>
+        /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ConflictException">
+        /// There was a conflict with this action, and it could not be completed.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.LimitExceededException">
+        /// A service limit or quota is exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ResourceNotFoundException">
+        /// One or more resources can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/GetKxScalingGroup">REST API Reference for GetKxScalingGroup Operation</seealso>
+        Task<GetKxScalingGroupResponse> GetKxScalingGroupAsync(GetKxScalingGroupRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 
@@ -691,6 +1052,45 @@ namespace Amazon.Finspace
 
         #endregion
                 
+        #region  GetKxVolume
+
+
+
+        /// <summary>
+        /// Retrieves the information about the volume.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetKxVolume service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetKxVolume service method, as returned by Finspace.</returns>
+        /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ConflictException">
+        /// There was a conflict with this action, and it could not be completed.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.LimitExceededException">
+        /// A service limit or quota is exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ResourceNotFoundException">
+        /// One or more resources can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/GetKxVolume">REST API Reference for GetKxVolume Operation</seealso>
+        Task<GetKxVolumeResponse> GetKxVolumeAsync(GetKxVolumeRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  ListEnvironments
 
 
@@ -704,6 +1104,9 @@ namespace Amazon.Finspace
         /// </param>
         /// 
         /// <returns>The response from the ListEnvironments service method, as returned by Finspace.</returns>
+        /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
         /// <exception cref="Amazon.Finspace.Model.InternalServerException">
         /// The request processing has failed because of an unknown error, exception or failure.
         /// </exception>
@@ -711,6 +1114,7 @@ namespace Amazon.Finspace
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/ListEnvironments">REST API Reference for ListEnvironments Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         Task<ListEnvironmentsResponse> ListEnvironmentsAsync(ListEnvironmentsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
@@ -856,6 +1260,39 @@ namespace Amazon.Finspace
 
         #endregion
                 
+        #region  ListKxDataviews
+
+
+
+        /// <summary>
+        /// Returns a list of all the dataviews in the database.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListKxDataviews service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListKxDataviews service method, as returned by Finspace.</returns>
+        /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ResourceNotFoundException">
+        /// One or more resources can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/ListKxDataviews">REST API Reference for ListKxDataviews Operation</seealso>
+        Task<ListKxDataviewsResponse> ListKxDataviewsAsync(ListKxDataviewsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  ListKxEnvironments
 
 
@@ -869,6 +1306,9 @@ namespace Amazon.Finspace
         /// </param>
         /// 
         /// <returns>The response from the ListKxEnvironments service method, as returned by Finspace.</returns>
+        /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
         /// <exception cref="Amazon.Finspace.Model.InternalServerException">
         /// The request processing has failed because of an unknown error, exception or failure.
         /// </exception>
@@ -877,6 +1317,45 @@ namespace Amazon.Finspace
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/ListKxEnvironments">REST API Reference for ListKxEnvironments Operation</seealso>
         Task<ListKxEnvironmentsResponse> ListKxEnvironmentsAsync(ListKxEnvironmentsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  ListKxScalingGroups
+
+
+
+        /// <summary>
+        /// Returns a list of scaling groups in a kdb environment.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListKxScalingGroups service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListKxScalingGroups service method, as returned by Finspace.</returns>
+        /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ConflictException">
+        /// There was a conflict with this action, and it could not be completed.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.LimitExceededException">
+        /// A service limit or quota is exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ResourceNotFoundException">
+        /// One or more resources can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/ListKxScalingGroups">REST API Reference for ListKxScalingGroups Operation</seealso>
+        Task<ListKxScalingGroupsResponse> ListKxScalingGroupsAsync(ListKxScalingGroupsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 
@@ -910,6 +1389,45 @@ namespace Amazon.Finspace
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/ListKxUsers">REST API Reference for ListKxUsers Operation</seealso>
         Task<ListKxUsersResponse> ListKxUsersAsync(ListKxUsersRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  ListKxVolumes
+
+
+
+        /// <summary>
+        /// Lists all the volumes in a kdb environment.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListKxVolumes service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListKxVolumes service method, as returned by Finspace.</returns>
+        /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ConflictException">
+        /// There was a conflict with this action, and it could not be completed.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.LimitExceededException">
+        /// A service limit or quota is exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ResourceNotFoundException">
+        /// One or more resources can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/ListKxVolumes">REST API Reference for ListKxVolumes Operation</seealso>
+        Task<ListKxVolumesResponse> ListKxVolumesAsync(ListKxVolumesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 
@@ -1023,7 +1541,50 @@ namespace Amazon.Finspace
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/UpdateEnvironment">REST API Reference for UpdateEnvironment Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         Task<UpdateEnvironmentResponse> UpdateEnvironmentAsync(UpdateEnvironmentRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  UpdateKxClusterCodeConfiguration
+
+
+
+        /// <summary>
+        /// Allows you to update code configuration on a running cluster. By using this API you
+        /// can update the code, the initialization script path, and the command line arguments
+        /// for a specific cluster. The configuration that you want to update will override any
+        /// existing configurations on the cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateKxClusterCodeConfiguration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateKxClusterCodeConfiguration service method, as returned by Finspace.</returns>
+        /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ConflictException">
+        /// There was a conflict with this action, and it could not be completed.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.LimitExceededException">
+        /// A service limit or quota is exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ResourceNotFoundException">
+        /// One or more resources can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/UpdateKxClusterCodeConfiguration">REST API Reference for UpdateKxClusterCodeConfiguration Operation</seealso>
+        Task<UpdateKxClusterCodeConfigurationResponse> UpdateKxClusterCodeConfigurationAsync(UpdateKxClusterCodeConfigurationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 
@@ -1032,7 +1593,7 @@ namespace Amazon.Finspace
 
 
         /// <summary>
-        /// Updates the databases mounted on a kdb cluster, which includes the <code>changesetId</code>
+        /// Updates the databases mounted on a kdb cluster, which includes the <c>changesetId</c>
         /// and all the dbPaths to be cached. This API does not allow you to change a database
         /// name or add a database if you created a cluster without one. 
         /// 
@@ -1107,6 +1668,47 @@ namespace Amazon.Finspace
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/UpdateKxDatabase">REST API Reference for UpdateKxDatabase Operation</seealso>
         Task<UpdateKxDatabaseResponse> UpdateKxDatabaseAsync(UpdateKxDatabaseRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  UpdateKxDataview
+
+
+
+        /// <summary>
+        /// Updates the specified dataview. The dataviews get automatically updated when any
+        /// new changesets are ingested. Each update of the dataview creates a new version, including
+        /// changeset details and cache configurations
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateKxDataview service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateKxDataview service method, as returned by Finspace.</returns>
+        /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ConflictException">
+        /// There was a conflict with this action, and it could not be completed.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ResourceAlreadyExistsException">
+        /// The specified resource group already exists.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ResourceNotFoundException">
+        /// One or more resources can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/UpdateKxDataview">REST API Reference for UpdateKxDataview Operation</seealso>
+        Task<UpdateKxDataviewResponse> UpdateKxDataviewAsync(UpdateKxDataviewRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 
@@ -1226,6 +1828,47 @@ namespace Amazon.Finspace
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/UpdateKxUser">REST API Reference for UpdateKxUser Operation</seealso>
         Task<UpdateKxUserResponse> UpdateKxUserAsync(UpdateKxUserRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  UpdateKxVolume
+
+
+
+        /// <summary>
+        /// Updates the throughput or capacity of a volume. During the update process, the filesystem
+        /// might be unavailable for a few minutes. You can retry any operations after the update
+        /// is complete.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateKxVolume service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateKxVolume service method, as returned by Finspace.</returns>
+        /// <exception cref="Amazon.Finspace.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ConflictException">
+        /// There was a conflict with this action, and it could not be completed.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.LimitExceededException">
+        /// A service limit or quota is exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ResourceNotFoundException">
+        /// One or more resources can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Finspace.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/UpdateKxVolume">REST API Reference for UpdateKxVolume Operation</seealso>
+        Task<UpdateKxVolumeResponse> UpdateKxVolumeAsync(UpdateKxVolumeRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 

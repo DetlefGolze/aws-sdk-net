@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.Rekognition.Model
         private string _jobTag;
         private string _nextToken;
         private string _statusMessage;
-        private List<TextDetectionResult> _textDetections = new List<TextDetectionResult>();
+        private List<TextDetectionResult> _textDetections = AWSConfigs.InitializeCollections ? new List<TextDetectionResult>() : null;
         private string _textModelVersion;
         private Video _video;
         private VideoMetadata _videoMetadata;
@@ -124,7 +125,7 @@ namespace Amazon.Rekognition.Model
         /// <summary>
         /// Gets and sets the property StatusMessage. 
         /// <para>
-        /// If the job fails, <code>StatusMessage</code> provides a descriptive error message.
+        /// If the job fails, <c>StatusMessage</c> provides a descriptive error message.
         /// </para>
         /// </summary>
         public string StatusMessage
@@ -156,7 +157,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if TextDetections property is set
         internal bool IsSetTextDetections()
         {
-            return this._textDetections != null && this._textDetections.Count > 0; 
+            return this._textDetections != null && (this._textDetections.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruProfiler.Model
 {
     /// <summary>
-    /// The structure representing the <code>getPolicyResponse</code>.
+    /// The structure representing the <c>getPolicyResponse</c>.
     /// </summary>
     public partial class GetPolicyResponse : AmazonWebServiceResponse
     {
@@ -39,7 +40,7 @@ namespace Amazon.CodeGuruProfiler.Model
         /// <summary>
         /// Gets and sets the property Policy. 
         /// <para>
-        /// The JSON-formatted resource-based policy attached to the <code>ProfilingGroup</code>.
+        /// The JSON-formatted resource-based policy attached to the <c>ProfilingGroup</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

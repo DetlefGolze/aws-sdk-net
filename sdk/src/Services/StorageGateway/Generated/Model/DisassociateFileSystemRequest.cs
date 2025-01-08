@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
@@ -63,8 +64,8 @@ namespace Amazon.StorageGateway.Model
         /// <para>
         /// If this value is set to true, the operation disassociates an Amazon FSx file system
         /// immediately. It ends all data uploads to the file system, and the file system association
-        /// enters the <code>FORCE_DELETING</code> status. If this value is set to false, the
-        /// Amazon FSx file system does not disassociate until all data is uploaded.
+        /// enters the <c>FORCE_DELETING</c> status. If this value is set to false, the Amazon
+        /// FSx file system does not disassociate until all data is uploaded.
         /// </para>
         /// </summary>
         public bool ForceDelete

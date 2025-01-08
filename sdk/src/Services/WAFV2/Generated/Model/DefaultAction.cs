@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
     /// In a <a>WebACL</a>, this is the action that you want WAF to perform when a web request
-    /// doesn't match any of the rules in the <code>WebACL</code>. The default action must
-    /// be a terminating action.
+    /// doesn't match any of the rules in the <c>WebACL</c>. The default action must be a
+    /// terminating action.
     /// </summary>
     public partial class DefaultAction
     {

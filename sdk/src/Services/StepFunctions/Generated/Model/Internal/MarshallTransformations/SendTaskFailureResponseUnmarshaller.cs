@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.StepFunctions.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -72,6 +73,18 @@ namespace Amazon.StepFunctions.Model.Internal.MarshallTransformations
                 if (errorResponse.Code != null && errorResponse.Code.Equals("InvalidToken"))
                 {
                     return InvalidTokenExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("KmsAccessDeniedException"))
+                {
+                    return KmsAccessDeniedExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("KmsInvalidStateException"))
+                {
+                    return KmsInvalidStateExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("KmsThrottlingException"))
+                {
+                    return KmsThrottlingExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("TaskDoesNotExist"))
                 {

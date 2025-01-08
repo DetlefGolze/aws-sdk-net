@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FMS.Model
 {
     /// <summary>
@@ -36,8 +37,8 @@ namespace Amazon.FMS.Model
     /// </summary>
     public partial class PolicyComplianceStatus
     {
-        private List<EvaluationResult> _evaluationResults = new List<EvaluationResult>();
-        private Dictionary<string, string> _issueInfoMap = new Dictionary<string, string>();
+        private List<EvaluationResult> _evaluationResults = AWSConfigs.InitializeCollections ? new List<EvaluationResult>() : null;
+        private Dictionary<string, string> _issueInfoMap = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private DateTime? _lastUpdated;
         private string _memberAccount;
         private string _policyId;
@@ -47,7 +48,7 @@ namespace Amazon.FMS.Model
         /// <summary>
         /// Gets and sets the property EvaluationResults. 
         /// <para>
-        /// An array of <code>EvaluationResult</code> objects.
+        /// An array of <c>EvaluationResult</c> objects.
         /// </para>
         /// </summary>
         public List<EvaluationResult> EvaluationResults
@@ -59,7 +60,7 @@ namespace Amazon.FMS.Model
         // Check to see if EvaluationResults property is set
         internal bool IsSetEvaluationResults()
         {
-            return this._evaluationResults != null && this._evaluationResults.Count > 0; 
+            return this._evaluationResults != null && (this._evaluationResults.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -78,13 +79,13 @@ namespace Amazon.FMS.Model
         // Check to see if IssueInfoMap property is set
         internal bool IsSetIssueInfoMap()
         {
-            return this._issueInfoMap != null && this._issueInfoMap.Count > 0; 
+            return this._issueInfoMap != null && (this._issueInfoMap.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property LastUpdated. 
         /// <para>
-        /// Timestamp of the last update to the <code>EvaluationResult</code> objects.
+        /// Timestamp of the last update to the <c>EvaluationResult</c> objects.
         /// </para>
         /// </summary>
         public DateTime LastUpdated

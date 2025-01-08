@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -33,8 +34,8 @@ namespace Amazon.QuickSight.Model
     /// 
     ///  
     /// <para>
-    /// The <code>BarChartVisual</code> structure describes a visual that is a member of the
-    /// bar chart family. The following charts can be described using this structure:
+    /// The <c>BarChartVisual</c> structure describes a visual that is a member of the bar
+    /// chart family. The following charts can be described using this structure:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -68,11 +69,12 @@ namespace Amazon.QuickSight.Model
     /// </summary>
     public partial class BarChartVisual
     {
-        private List<VisualCustomAction> _actions = new List<VisualCustomAction>();
+        private List<VisualCustomAction> _actions = AWSConfigs.InitializeCollections ? new List<VisualCustomAction>() : null;
         private BarChartConfiguration _chartConfiguration;
-        private List<ColumnHierarchy> _columnHierarchies = new List<ColumnHierarchy>();
+        private List<ColumnHierarchy> _columnHierarchies = AWSConfigs.InitializeCollections ? new List<ColumnHierarchy>() : null;
         private VisualSubtitleLabelOptions _subtitle;
         private VisualTitleLabelOptions _title;
+        private string _visualContentAltText;
         private string _visualId;
 
         /// <summary>
@@ -91,7 +93,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -128,7 +130,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if ColumnHierarchies property is set
         internal bool IsSetColumnHierarchies()
         {
-            return this._columnHierarchies != null && this._columnHierarchies.Count > 0; 
+            return this._columnHierarchies != null && (this._columnHierarchies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -165,6 +167,25 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetTitle()
         {
             return this._title != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property VisualContentAltText. 
+        /// <para>
+        /// The alt text for the visual.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=1024)]
+        public string VisualContentAltText
+        {
+            get { return this._visualContentAltText; }
+            set { this._visualContentAltText = value; }
+        }
+
+        // Check to see if VisualContentAltText property is set
+        internal bool IsSetVisualContentAltText()
+        {
+            return this._visualContentAltText != null;
         }
 
         /// <summary>

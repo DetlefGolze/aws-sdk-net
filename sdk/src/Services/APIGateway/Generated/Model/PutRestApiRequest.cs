@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.APIGateway.Model
         private MemoryStream _body;
         private bool? _failOnWarnings;
         private PutMode _mode;
-        private Dictionary<string, string> _parameters = new Dictionary<string, string>();
+        private Dictionary<string, string> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _restApiId;
 
         /// <summary>
@@ -66,8 +67,8 @@ namespace Amazon.APIGateway.Model
         /// <summary>
         /// Gets and sets the property FailOnWarnings. 
         /// <para>
-        /// A query parameter to indicate whether to rollback the API update (<code>true</code>)
-        /// or not (<code>false</code>) when a warning is encountered. The default value is <code>false</code>.
+        /// A query parameter to indicate whether to rollback the API update (<c>true</c>) or
+        /// not (<c>false</c>) when a warning is encountered. The default value is <c>false</c>.
         /// </para>
         /// </summary>
         public bool FailOnWarnings
@@ -85,8 +86,8 @@ namespace Amazon.APIGateway.Model
         /// <summary>
         /// Gets and sets the property Mode. 
         /// <para>
-        /// The <code>mode</code> query parameter to specify the update mode. Valid values are
-        /// "merge" and "overwrite". By default, the update mode is "merge".
+        /// The <c>mode</c> query parameter to specify the update mode. Valid values are "merge"
+        /// and "overwrite". By default, the update mode is "merge".
         /// </para>
         /// </summary>
         public PutMode Mode
@@ -105,9 +106,9 @@ namespace Amazon.APIGateway.Model
         /// Gets and sets the property Parameters. 
         /// <para>
         /// Custom header parameters as part of the request. For example, to exclude DocumentationParts
-        /// from an imported API, set <code>ignore=documentation</code> as a <code>parameters</code>
-        /// value, as in the AWS CLI command of <code>aws apigateway import-rest-api --parameters
-        /// ignore=documentation --body 'file:///path/to/imported-api-body.json'</code>.
+        /// from an imported API, set <c>ignore=documentation</c> as a <c>parameters</c> value,
+        /// as in the AWS CLI command of <c>aws apigateway import-rest-api --parameters ignore=documentation
+        /// --body 'file:///path/to/imported-api-body.json'</c>.
         /// </para>
         /// </summary>
         public Dictionary<string, string> Parameters
@@ -119,7 +120,7 @@ namespace Amazon.APIGateway.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

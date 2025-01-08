@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.CodeBuild.Model
     public partial class UpdateProjectRequest : AmazonCodeBuildRequest
     {
         private ProjectArtifacts _artifacts;
+        private int? _autoRetryLimit;
         private bool? _badgeEnabled;
         private ProjectBuildBatchConfig _buildBatchConfig;
         private ProjectCache _cache;
@@ -42,17 +44,17 @@ namespace Amazon.CodeBuild.Model
         private string _description;
         private string _encryptionKey;
         private ProjectEnvironment _environment;
-        private List<ProjectFileSystemLocation> _fileSystemLocations = new List<ProjectFileSystemLocation>();
+        private List<ProjectFileSystemLocation> _fileSystemLocations = AWSConfigs.InitializeCollections ? new List<ProjectFileSystemLocation>() : null;
         private LogsConfig _logsConfig;
         private string _name;
         private int? _queuedTimeoutInMinutes;
-        private List<ProjectArtifacts> _secondaryArtifacts = new List<ProjectArtifacts>();
-        private List<ProjectSource> _secondarySources = new List<ProjectSource>();
-        private List<ProjectSourceVersion> _secondarySourceVersions = new List<ProjectSourceVersion>();
+        private List<ProjectArtifacts> _secondaryArtifacts = AWSConfigs.InitializeCollections ? new List<ProjectArtifacts>() : null;
+        private List<ProjectSource> _secondarySources = AWSConfigs.InitializeCollections ? new List<ProjectSource>() : null;
+        private List<ProjectSourceVersion> _secondarySourceVersions = AWSConfigs.InitializeCollections ? new List<ProjectSourceVersion>() : null;
         private string _serviceRole;
         private ProjectSource _source;
         private string _sourceVersion;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private int? _timeoutInMinutes;
         private VpcConfig _vpcConfig;
 
@@ -72,6 +74,26 @@ namespace Amazon.CodeBuild.Model
         internal bool IsSetArtifacts()
         {
             return this._artifacts != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property AutoRetryLimit. 
+        /// <para>
+        /// The maximum number of additional automatic retries after a failed build. For example,
+        /// if the auto-retry limit is set to 2, CodeBuild will call the <c>RetryBuild</c> API
+        /// to automatically retry your build for up to 2 additional times.
+        /// </para>
+        /// </summary>
+        public int AutoRetryLimit
+        {
+            get { return this._autoRetryLimit.GetValueOrDefault(); }
+            set { this._autoRetryLimit = value; }
+        }
+
+        // Check to see if AutoRetryLimit property is set
+        internal bool IsSetAutoRetryLimit()
+        {
+            return this._autoRetryLimit.HasValue; 
         }
 
         /// <summary>
@@ -186,7 +208,7 @@ namespace Amazon.CodeBuild.Model
         ///  </note> 
         /// <para>
         /// You can specify either the Amazon Resource Name (ARN) of the CMK or, if available,
-        /// the CMK's alias (using the format <code>alias/&lt;alias-name&gt;</code>). 
+        /// the CMK's alias (using the format <c>alias/&lt;alias-name&gt;</c>). 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -223,10 +245,10 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property FileSystemLocations. 
         /// <para>
-        ///  An array of <code>ProjectFileSystemLocation</code> objects for a CodeBuild build
-        /// project. A <code>ProjectFileSystemLocation</code> object specifies the <code>identifier</code>,
-        /// <code>location</code>, <code>mountOptions</code>, <code>mountPoint</code>, and <code>type</code>
-        /// of a file system created using Amazon Elastic File System. 
+        ///  An array of <c>ProjectFileSystemLocation</c> objects for a CodeBuild build project.
+        /// A <c>ProjectFileSystemLocation</c> object specifies the <c>identifier</c>, <c>location</c>,
+        /// <c>mountOptions</c>, <c>mountPoint</c>, and <c>type</c> of a file system created using
+        /// Amazon Elastic File System. 
         /// </para>
         /// </summary>
         public List<ProjectFileSystemLocation> FileSystemLocations
@@ -238,7 +260,7 @@ namespace Amazon.CodeBuild.Model
         // Check to see if FileSystemLocations property is set
         internal bool IsSetFileSystemLocations()
         {
-            return this._fileSystemLocations != null && this._fileSystemLocations.Count > 0; 
+            return this._fileSystemLocations != null && (this._fileSystemLocations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -306,7 +328,7 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property SecondaryArtifacts. 
         /// <para>
-        ///  An array of <code>ProjectArtifact</code> objects. 
+        ///  An array of <c>ProjectArtifact</c> objects. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=12)]
@@ -319,13 +341,13 @@ namespace Amazon.CodeBuild.Model
         // Check to see if SecondaryArtifacts property is set
         internal bool IsSetSecondaryArtifacts()
         {
-            return this._secondaryArtifacts != null && this._secondaryArtifacts.Count > 0; 
+            return this._secondaryArtifacts != null && (this._secondaryArtifacts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SecondarySources. 
         /// <para>
-        ///  An array of <code>ProjectSource</code> objects. 
+        ///  An array of <c>ProjectSource</c> objects. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=12)]
@@ -338,14 +360,14 @@ namespace Amazon.CodeBuild.Model
         // Check to see if SecondarySources property is set
         internal bool IsSetSecondarySources()
         {
-            return this._secondarySources != null && this._secondarySources.Count > 0; 
+            return this._secondarySources != null && (this._secondarySources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SecondarySourceVersions. 
         /// <para>
-        ///  An array of <code>ProjectSourceVersion</code> objects. If <code>secondarySourceVersions</code>
-        /// is specified at the build level, then they take over these <code>secondarySourceVersions</code>
+        ///  An array of <c>ProjectSourceVersion</c> objects. If <c>secondarySourceVersions</c>
+        /// is specified at the build level, then they take over these <c>secondarySourceVersions</c>
         /// (at the project level). 
         /// </para>
         /// </summary>
@@ -359,7 +381,7 @@ namespace Amazon.CodeBuild.Model
         // Check to see if SecondarySourceVersions property is set
         internal bool IsSetSecondarySourceVersions()
         {
-            return this._secondarySourceVersions != null && this._secondarySourceVersions.Count > 0; 
+            return this._secondarySourceVersions != null && (this._secondarySourceVersions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -414,9 +436,13 @@ namespace Amazon.CodeBuild.Model
         /// <para>
         /// For GitHub: the commit ID, pull request ID, branch name, or tag name that corresponds
         /// to the version of the source code you want to build. If a pull request ID is specified,
-        /// it must use the format <code>pr/pull-request-ID</code> (for example <code>pr/25</code>).
-        /// If a branch name is specified, the branch's HEAD commit ID is used. If not specified,
-        /// the default branch's HEAD commit ID is used.
+        /// it must use the format <c>pr/pull-request-ID</c> (for example <c>pr/25</c>). If a
+        /// branch name is specified, the branch's HEAD commit ID is used. If not specified, the
+        /// default branch's HEAD commit ID is used.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For GitLab: the commit ID, branch, or Git tag to use.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -431,8 +457,8 @@ namespace Amazon.CodeBuild.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        ///  If <code>sourceVersion</code> is specified at the build level, then that version
-        /// takes precedence over this <code>sourceVersion</code> (at the project level). 
+        ///  If <c>sourceVersion</c> is specified at the build level, then that version takes
+        /// precedence over this <c>sourceVersion</c> (at the project level). 
         /// </para>
         ///  
         /// <para>
@@ -473,17 +499,17 @@ namespace Amazon.CodeBuild.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TimeoutInMinutes. 
         /// <para>
-        /// The replacement value in minutes, from 5 to 480 (8 hours), for CodeBuild to wait before
-        /// timing out any related build that did not get marked as completed.
+        /// The replacement value in minutes, from 5 to 2160 (36 hours), for CodeBuild to wait
+        /// before timing out any related build that did not get marked as completed.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=5, Max=480)]
+        [AWSProperty(Min=5, Max=2160)]
         public int TimeoutInMinutes
         {
             get { return this._timeoutInMinutes.GetValueOrDefault(); }

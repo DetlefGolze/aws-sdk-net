@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.SecurityHub.Model
     public partial class StandardsControlAssociationSummary
     {
         private AssociationStatus _associationStatus;
-        private List<string> _relatedRequirements = new List<string>();
+        private List<string> _relatedRequirements = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _securityControlArn;
         private string _securityControlId;
         private string _standardsArn;
@@ -79,13 +80,13 @@ namespace Amazon.SecurityHub.Model
         // Check to see if RelatedRequirements property is set
         internal bool IsSetRelatedRequirements()
         {
-            return this._relatedRequirements != null && this._relatedRequirements.Count > 0; 
+            return this._relatedRequirements != null && (this._relatedRequirements.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SecurityControlArn. 
         /// <para>
-        ///  The ARN of a control, such as <code>arn:aws:securityhub:eu-central-1:123456789012:security-control/S3.1</code>.
+        ///  The ARN of a control, such as <c>arn:aws:securityhub:eu-central-1:123456789012:security-control/S3.1</c>.
         /// This parameter doesn't mention a specific standard. 
         /// </para>
         /// </summary>
@@ -106,8 +107,8 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property SecurityControlId. 
         /// <para>
         ///  A unique standard-agnostic identifier for a control. Values for this field typically
-        /// consist of an Amazon Web Service and a number, such as APIGateway.5. This field doesn't
-        /// reference a specific standard. 
+        /// consist of an Amazon Web Services service and a number, such as APIGateway.5. This
+        /// field doesn't reference a specific standard. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -183,8 +184,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property UpdatedAt. 
         /// <para>
-        ///  The last time that a control's enablement status in a specified standard was updated.
-        /// 
+        /// The last time that a control's enablement status in a specified standard was updated.
         /// </para>
         /// </summary>
         public DateTime UpdatedAt
@@ -202,8 +202,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property UpdatedReason. 
         /// <para>
-        ///  The reason for updating the control's enablement status in a specified standard.
-        /// 
+        /// The reason for updating a control's enablement status in a specified standard.
         /// </para>
         /// </summary>
         public string UpdatedReason

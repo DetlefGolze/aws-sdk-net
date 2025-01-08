@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Chime.Model
     {
         private Address _address;
         private string _addressExternalId;
-        private List<CandidateAddress> _candidateAddressList = new List<CandidateAddress>();
+        private List<CandidateAddress> _candidateAddressList = AWSConfigs.InitializeCollections ? new List<CandidateAddress>() : null;
         private int? _validationResult;
 
         /// <summary>
@@ -89,16 +90,15 @@ namespace Amazon.Chime.Model
         // Check to see if CandidateAddressList property is set
         internal bool IsSetCandidateAddressList()
         {
-            return this._candidateAddressList != null && this._candidateAddressList.Count > 0; 
+            return this._candidateAddressList != null && (this._candidateAddressList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ValidationResult. 
         /// <para>
-        /// Number indicating the result of address validation. <code>0</code> means the address
-        /// was perfect as is and successfully validated. <code>1</code> means the address was
-        /// corrected. <code>2</code> means the address sent was not close enough and was not
-        /// validated.
+        /// Number indicating the result of address validation. <c>0</c> means the address was
+        /// perfect as is and successfully validated. <c>1</c> means the address was corrected.
+        /// <c>2</c> means the address sent was not close enough and was not validated.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=2)]

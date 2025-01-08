@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.AutoScaling.Model
     /// 
     ///  
     /// <para>
-    /// When you detach a traffic source, it enters the <code>Removing</code> state while
-    /// deregistering the instances in the group. When all instances are deregistered, then
-    /// you can no longer describe the traffic source using the <a>DescribeTrafficSources</a>
+    /// When you detach a traffic source, it enters the <c>Removing</c> state while deregistering
+    /// the instances in the group. When all instances are deregistered, then you can no longer
+    /// describe the traffic source using the <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeTrafficSources.html">DescribeTrafficSources</a>
     /// API call. The instances continue to run.
     /// </para>
     /// </summary>
     public partial class DetachTrafficSourcesRequest : AmazonAutoScalingRequest
     {
         private string _autoScalingGroupName;
-        private List<TrafficSourceIdentifier> _trafficSources = new List<TrafficSourceIdentifier>();
+        private List<TrafficSourceIdentifier> _trafficSources = AWSConfigs.InitializeCollections ? new List<TrafficSourceIdentifier>() : null;
 
         /// <summary>
         /// Gets and sets the property AutoScalingGroupName. 
@@ -81,7 +82,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if TrafficSources property is set
         internal bool IsSetTrafficSources()
         {
-            return this._trafficSources != null && this._trafficSources.Count > 0; 
+            return this._trafficSources != null && (this._trafficSources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

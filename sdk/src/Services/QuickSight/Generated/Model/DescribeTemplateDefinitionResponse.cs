@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.QuickSight.Model
     public partial class DescribeTemplateDefinitionResponse : AmazonWebServiceResponse
     {
         private TemplateVersionDefinition _definition;
-        private List<TemplateError> _errors = new List<TemplateError>();
+        private List<TemplateError> _errors = AWSConfigs.InitializeCollections ? new List<TemplateError>() : null;
         private string _name;
         private string _requestId;
         private ResourceStatus _resourceStatus;
@@ -80,7 +81,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Errors property is set
         internal bool IsSetErrors()
         {
-            return this._errors != null && this._errors.Count > 0; 
+            return this._errors != null && (this._errors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -127,31 +128,31 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CREATION_IN_PROGRESS</code> 
+        ///  <c>CREATION_IN_PROGRESS</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATION_SUCCESSFUL</code> 
+        ///  <c>CREATION_SUCCESSFUL</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATION_FAILED</code> 
+        ///  <c>CREATION_FAILED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPDATE_IN_PROGRESS</code> 
+        ///  <c>UPDATE_IN_PROGRESS</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPDATE_SUCCESSFUL</code> 
+        ///  <c>UPDATE_SUCCESSFUL</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPDATE_FAILED</code> 
+        ///  <c>UPDATE_FAILED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETED</code> 
+        ///  <c>DELETED</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

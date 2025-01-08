@@ -26,19 +26,32 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateWorldExportJob operation.
+    /// <important> 
+    /// <para>
+    /// End of support notice: On September 10, 2025, Amazon Web Services will discontinue
+    /// support for Amazon Web Services RoboMaker. After September 10, 2025, you will no longer
+    /// be able to access the Amazon Web Services RoboMaker console or Amazon Web Services
+    /// RoboMaker resources. For more information on transitioning to Batch to help run containerized
+    /// simulations, visit <a href="https://aws.amazon.com/blogs/hpc/run-simulations-using-multiple-containers-in-a-single-aws-batch-job/">https://aws.amazon.com/blogs/hpc/run-simulations-using-multiple-containers-in-a-single-aws-batch-job/</a>.
+    /// 
+    /// </para>
+    ///  </important> 
+    /// <para>
     /// Creates a world export job.
+    /// </para>
     /// </summary>
     public partial class CreateWorldExportJobRequest : AmazonRoboMakerRequest
     {
         private string _clientRequestToken;
         private string _iamRole;
         private OutputLocation _outputLocation;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
-        private List<string> _worlds = new List<string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<string> _worlds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
@@ -113,7 +126,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -132,7 +145,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if Worlds property is set
         internal bool IsSetWorlds()
         {
-            return this._worlds != null && this._worlds.Count > 0; 
+            return this._worlds != null && (this._worlds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

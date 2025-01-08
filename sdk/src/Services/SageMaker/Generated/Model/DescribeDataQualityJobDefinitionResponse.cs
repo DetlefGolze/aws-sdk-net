@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -211,8 +212,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property RoleArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to
-        /// perform tasks on your behalf.
+        /// The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker AI can assume
+        /// to perform tasks on your behalf.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]

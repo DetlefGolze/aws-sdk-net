@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.DirectoryService.Model
         /// Gets and sets the property SharedDirectoryId. 
         /// <para>
         /// Identifier of the directory stored in the directory consumer account that is to be
-        /// unshared from the specified directory (<code>DirectoryId</code>).
+        /// unshared from the specified directory (<c>DirectoryId</c>).
         /// </para>
         /// </summary>
         public string SharedDirectoryId

@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
     /// Container for the parameters to the AttachLoadBalancers operation.
     /// <note> 
     /// <para>
-    /// This API operation is superseded by <a>AttachTrafficSources</a>, which can attach
-    /// multiple traffic sources types. We recommend using <code>AttachTrafficSources</code>
-    /// to simplify how you manage traffic sources. However, we continue to support <code>AttachLoadBalancers</code>.
-    /// You can use both the original <code>AttachLoadBalancers</code> API operation and <code>AttachTrafficSources</code>
+    /// This API operation is superseded by <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_AttachTrafficSources.html">https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_AttachTrafficSources.html</a>,
+    /// which can attach multiple traffic sources types. We recommend using <c>AttachTrafficSources</c>
+    /// to simplify how you manage traffic sources. However, we continue to support <c>AttachLoadBalancers</c>.
+    /// You can use both the original <c>AttachLoadBalancers</c> API operation and <c>AttachTrafficSources</c>
     /// on the same Auto Scaling group.
     /// </para>
     ///  </note> 
@@ -45,8 +46,8 @@ namespace Amazon.AutoScaling.Model
     /// </para>
     ///  
     /// <para>
-    /// To describe the load balancers for an Auto Scaling group, call the <a>DescribeLoadBalancers</a>
-    /// API. To detach a load balancer from the Auto Scaling group, call the <a>DetachLoadBalancers</a>
+    /// To describe the load balancers for an Auto Scaling group, call the <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeLoadBalancers.html">DescribeLoadBalancers</a>
+    /// API. To detach a load balancer from the Auto Scaling group, call the <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DetachLoadBalancers.html">DetachLoadBalancers</a>
     /// API.
     /// </para>
     ///  
@@ -64,7 +65,7 @@ namespace Amazon.AutoScaling.Model
     public partial class AttachLoadBalancersRequest : AmazonAutoScalingRequest
     {
         private string _autoScalingGroupName;
-        private List<string> _loadBalancerNames = new List<string>();
+        private List<string> _loadBalancerNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AutoScalingGroupName. 
@@ -101,7 +102,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if LoadBalancerNames property is set
         internal bool IsSetLoadBalancerNames()
         {
-            return this._loadBalancerNames != null && this._loadBalancerNames.Count > 0; 
+            return this._loadBalancerNames != null && (this._loadBalancerNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

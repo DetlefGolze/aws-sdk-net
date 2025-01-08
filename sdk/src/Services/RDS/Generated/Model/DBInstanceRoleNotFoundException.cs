@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// The specified <code>RoleArn</code> value doesn't match the specified feature for the
-    /// DB instance.
+    /// The specified <c>RoleArn</c> value doesn't match the specified feature for the DB
+    /// instance.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

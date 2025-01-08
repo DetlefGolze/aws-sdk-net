@@ -26,17 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
     /// Container for the parameters to the ListInvitations operation.
-    /// Lists all Security Hub membership invitations that were sent to the current Amazon
-    /// Web Services account.
-    /// 
+    /// <note> 
+    /// <para>
+    /// We recommend using Organizations instead of Security Hub invitations to manage your
+    /// member accounts. For information, see <a href="https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-accounts-orgs.html">Managing
+    /// Security Hub administrator and member accounts with Organizations</a> in the <i>Security
+    /// Hub User Guide</i>.
+    /// </para>
+    ///  </note> 
+    /// <para>
+    /// Lists all Security Hub membership invitations that were sent to the calling account.
+    /// </para>
     ///  
     /// <para>
-    /// This operation is only used by accounts that are managed by invitation. Accounts that
-    /// are managed using the integration with Organizations do not receive invitations.
+    /// Only accounts that are managed by invitation can use this operation. Accounts that
+    /// are managed using the integration with Organizations don't receive invitations.
     /// </para>
     /// </summary>
     public partial class ListInvitationsRequest : AmazonSecurityHubRequest
@@ -66,8 +75,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token that is required for pagination. On your first call to the <code>ListInvitations</code>
-        /// operation, set the value of this parameter to <code>NULL</code>.
+        /// The token that is required for pagination. On your first call to the <c>ListInvitations</c>
+        /// operation, set the value of this parameter to <c>NULL</c>.
         /// </para>
         ///  
         /// <para>

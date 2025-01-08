@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Polly.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.Polly.Model
     public partial class DescribeVoicesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Voice> _voices = new List<Voice>();
+        private List<Voice> _voices = AWSConfigs.InitializeCollections ? new List<Voice>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The pagination token to use in the next request to continue the listing of voices.
-        /// <code>NextToken</code> is returned only if the response is truncated.
+        /// <c>NextToken</c> is returned only if the response is truncated.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=4096)]
@@ -71,7 +72,7 @@ namespace Amazon.Polly.Model
         // Check to see if Voices property is set
         internal bool IsSetVoices()
         {
-            return this._voices != null && this._voices.Count > 0; 
+            return this._voices != null && (this._voices.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

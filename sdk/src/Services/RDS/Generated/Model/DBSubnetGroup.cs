@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.RDS.Model
     /// 
     ///  
     /// <para>
-    /// This data type is used as a response element in the <code>DescribeDBSubnetGroups</code>
+    /// This data type is used as a response element in the <c>DescribeDBSubnetGroups</c>
     /// action.
     /// </para>
     /// </summary>
@@ -43,8 +44,8 @@ namespace Amazon.RDS.Model
         private string _dbSubnetGroupDescription;
         private string _dbSubnetGroupName;
         private string _subnetGroupStatus;
-        private List<Subnet> _subnets = new List<Subnet>();
-        private List<string> _supportedNetworkTypes = new List<string>();
+        private List<Subnet> _subnets = AWSConfigs.InitializeCollections ? new List<Subnet>() : null;
+        private List<string> _supportedNetworkTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _vpcId;
 
         /// <summary>
@@ -122,7 +123,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Subnets. 
         /// <para>
-        /// Contains a list of <code>Subnet</code> elements.
+        /// Contains a list of <c>Subnet</c> elements.
         /// </para>
         /// </summary>
         public List<Subnet> Subnets
@@ -134,7 +135,7 @@ namespace Amazon.RDS.Model
         // Check to see if Subnets property is set
         internal bool IsSetSubnets()
         {
-            return this._subnets != null && this._subnets.Count > 0; 
+            return this._subnets != null && (this._subnets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -148,16 +149,16 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>IPV4</code> 
+        ///  <c>IPV4</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DUAL</code> 
+        ///  <c>DUAL</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// A <code>DBSubnetGroup</code> can support only the IPv4 protocol or the IPv4 and the
-        /// IPv6 protocols (<code>DUAL</code>).
+        /// A <c>DBSubnetGroup</c> can support only the IPv4 protocol or the IPv4 and the IPv6
+        /// protocols (<c>DUAL</c>).
         /// </para>
         ///  
         /// <para>
@@ -174,7 +175,7 @@ namespace Amazon.RDS.Model
         // Check to see if SupportedNetworkTypes property is set
         internal bool IsSetSupportedNetworkTypes()
         {
-            return this._supportedNetworkTypes != null && this._supportedNetworkTypes.Count > 0; 
+            return this._supportedNetworkTypes != null && (this._supportedNetworkTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -43,8 +44,8 @@ namespace Amazon.WAFV2.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-    /// among the types available at <a>DefaultAction</a>.
+    /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+    /// types available at <a>DefaultAction</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>

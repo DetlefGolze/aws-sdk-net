@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -56,12 +57,12 @@ namespace Amazon.Neptune.Model
     public partial class CreateEventSubscriptionRequest : AmazonNeptuneRequest
     {
         private bool? _enabled;
-        private List<string> _eventCategories = new List<string>();
+        private List<string> _eventCategories = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _snsTopicArn;
-        private List<string> _sourceIds = new List<string>();
+        private List<string> _sourceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _sourceType;
         private string _subscriptionName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Enabled. 
@@ -99,7 +100,7 @@ namespace Amazon.Neptune.Model
         // Check to see if EventCategories property is set
         internal bool IsSetEventCategories()
         {
-            return this._eventCategories != null && this._eventCategories.Count > 0; 
+            return this._eventCategories != null && (this._eventCategories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -140,22 +141,20 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the source type is a DB instance, then a <code>DBInstanceIdentifier</code> must
-        /// be supplied.
+        /// If the source type is a DB instance, then a <c>DBInstanceIdentifier</c> must be supplied.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the source type is a DB security group, a <code>DBSecurityGroupName</code> must
-        /// be supplied.
+        /// If the source type is a DB security group, a <c>DBSecurityGroupName</c> must be supplied.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the source type is a DB parameter group, a <code>DBParameterGroupName</code> must
-        /// be supplied.
+        /// If the source type is a DB parameter group, a <c>DBParameterGroupName</c> must be
+        /// supplied.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the source type is a DB snapshot, a <code>DBSnapshotIdentifier</code> must be supplied.
+        /// If the source type is a DB snapshot, a <c>DBSnapshotIdentifier</c> must be supplied.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -168,7 +167,7 @@ namespace Amazon.Neptune.Model
         // Check to see if SourceIds property is set
         internal bool IsSetSourceIds()
         {
-            return this._sourceIds != null && this._sourceIds.Count > 0; 
+            return this._sourceIds != null && (this._sourceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -180,9 +179,8 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>db-instance</code> | <code>db-cluster</code> | <code>db-parameter-group</code>
-        /// | <code>db-security-group</code> | <code>db-snapshot</code> | <code>db-cluster-snapshot</code>
-        /// 
+        /// Valid values: <c>db-instance</c> | <c>db-cluster</c> | <c>db-parameter-group</c> |
+        /// <c>db-security-group</c> | <c>db-snapshot</c> | <c>db-cluster-snapshot</c> 
         /// </para>
         /// </summary>
         public string SourceType
@@ -235,7 +233,7 @@ namespace Amazon.Neptune.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

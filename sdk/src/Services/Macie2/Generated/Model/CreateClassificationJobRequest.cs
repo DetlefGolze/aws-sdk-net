@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
@@ -34,19 +35,19 @@ namespace Amazon.Macie2.Model
     /// </summary>
     public partial class CreateClassificationJobRequest : AmazonMacie2Request
     {
-        private List<string> _allowListIds = new List<string>();
+        private List<string> _allowListIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _clientToken;
-        private List<string> _customDataIdentifierIds = new List<string>();
+        private List<string> _customDataIdentifierIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _description;
         private bool? _initialRun;
         private JobType _jobType;
-        private List<string> _managedDataIdentifierIds = new List<string>();
+        private List<string> _managedDataIdentifierIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ManagedDataIdentifierSelector _managedDataIdentifierSelector;
         private string _name;
         private S3JobDefinition _s3JobDefinition;
         private int? _samplingPercentage;
         private JobScheduleFrequency _scheduleFrequency;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AllowListIds. 
@@ -64,7 +65,7 @@ namespace Amazon.Macie2.Model
         // Check to see if AllowListIds property is set
         internal bool IsSetAllowListIds()
         {
-            return this._allowListIds != null && this._allowListIds.Count > 0; 
+            return this._allowListIds != null && (this._allowListIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -103,7 +104,7 @@ namespace Amazon.Macie2.Model
         // Check to see if CustomDataIdentifierIds property is set
         internal bool IsSetCustomDataIdentifierIds()
         {
-            return this._customDataIdentifierIds != null && this._customDataIdentifierIds.Count > 0; 
+            return this._customDataIdentifierIds != null && (this._customDataIdentifierIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -162,7 +163,7 @@ namespace Amazon.Macie2.Model
         /// </li> <li>
         /// <para>
         /// SCHEDULED - Run the job on a daily, weekly, or monthly basis. If you specify this
-        /// value, use the scheduleFrequency property to define the recurrence pattern for the
+        /// value, use the scheduleFrequency property to specify the recurrence pattern for the
         /// job.
         /// </para>
         /// </li></ul>
@@ -202,7 +203,7 @@ namespace Amazon.Macie2.Model
         // Check to see if ManagedDataIdentifierIds property is set
         internal bool IsSetManagedDataIdentifierIds()
         {
-            return this._managedDataIdentifierIds != null && this._managedDataIdentifierIds.Count > 0; 
+            return this._managedDataIdentifierIds != null && (this._managedDataIdentifierIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -245,15 +246,16 @@ namespace Amazon.Macie2.Model
         ///  
         /// <para>
         /// If the job is a recurring job and you specify ALL or EXCLUDE, each job run automatically
-        /// uses new managed data identifiers that are released. If you specify RECOMMENDED for
-        /// a recurring job, each job run automatically uses all the managed data identifiers
-        /// that are in the recommended set when the run starts.
+        /// uses new managed data identifiers that are released. If you don't specify a value
+        /// for this property or you specify RECOMMENDED for a recurring job, each job run automatically
+        /// uses all the managed data identifiers that are in the recommended set when the run
+        /// starts.
         /// </para>
         ///  
         /// <para>
-        /// For information about individual managed data identifiers or to determine which ones
-        /// are in the recommended set, see <a href="https://docs.aws.amazon.com/macie/latest/user/managed-data-identifiers.html">Using
-        /// managed data identifiers</a> and <a href="https://docs.aws.amazon.com/macie/latest/user/discovery-jobs-mdis-recommended.html">Recommended
+        /// To learn about individual managed data identifiers or determine which ones are in
+        /// the recommended set, see <a href="https://docs.aws.amazon.com/macie/latest/user/managed-data-identifiers.html">Using
+        /// managed data identifiers</a> or <a href="https://docs.aws.amazon.com/macie/latest/user/discovery-jobs-mdis-recommended.html">Recommended
         /// managed data identifiers</a> in the <i>Amazon Macie User Guide</i>.
         /// </para>
         /// </summary>
@@ -368,7 +370,7 @@ namespace Amazon.Macie2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

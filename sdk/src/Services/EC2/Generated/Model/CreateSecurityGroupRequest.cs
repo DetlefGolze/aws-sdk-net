@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -36,9 +37,8 @@ namespace Amazon.EC2.Model
     /// <para>
     /// A security group acts as a virtual firewall for your instance to control inbound and
     /// outbound traffic. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">Amazon
-    /// EC2 security groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i> and
-    /// <a href="https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html">Security
-    /// groups for your VPC</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.
+    /// EC2 security groups</a> in the <i>Amazon EC2 User Guide</i> and <a href="https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html">Security
+    /// groups for your VPC</a> in the <i>Amazon VPC User Guide</i>.
     /// </para>
     ///  
     /// <para>
@@ -67,7 +67,7 @@ namespace Amazon.EC2.Model
     {
         private string _description;
         private string _groupName;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
         private string _vpcId;
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Instantiates CreateSecurityGroupRequest with the parameterized properties
         /// </summary>
-        /// <param name="groupName">The name of the security group. Constraints: Up to 255 characters in length. Cannot start with <code>sg-</code>. Valid characters: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&amp;;{}!$*</param>
+        /// <param name="groupName">The name of the security group. Constraints: Up to 255 characters in length. Cannot start with <c>sg-</c>. Valid characters: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&amp;;{}!$*</param>
         /// <param name="description">A description for the security group. Constraints: Up to 255 characters in length Valid characters: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&amp;;{}!$*</param>
         public CreateSecurityGroupRequest(string groupName, string description)
         {
@@ -120,7 +120,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Constraints: Up to 255 characters in length. Cannot start with <code>sg-</code>.
+        /// Constraints: Up to 255 characters in length. Cannot start with <c>sg-</c>.
         /// </para>
         ///  
         /// <para>
@@ -155,7 +155,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

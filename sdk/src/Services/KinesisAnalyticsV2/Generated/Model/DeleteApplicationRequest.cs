@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalyticsV2.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteApplication operation.
-    /// Deletes the specified application. Kinesis Data Analytics halts application execution
-    /// and deletes the application.
+    /// Deletes the specified application. Managed Service for Apache Flink halts application
+    /// execution and deletes the application.
     /// </summary>
     public partial class DeleteApplicationRequest : AmazonKinesisAnalyticsV2Request
     {
@@ -60,7 +61,7 @@ namespace Amazon.KinesisAnalyticsV2.Model
         /// <summary>
         /// Gets and sets the property CreateTimestamp. 
         /// <para>
-        /// Use the <code>DescribeApplication</code> operation to get this value.
+        /// Use the <c>DescribeApplication</c> operation to get this value.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

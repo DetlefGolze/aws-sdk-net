@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFRegional.Model
 {
     /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.WAFRegional.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// The bucket name must start with <code>aws-waf-migration-</code>. For example, <code>aws-waf-migration-my-web-acl</code>.
+        /// The bucket name must start with <c>aws-waf-migration-</c>. For example, <c>aws-waf-migration-my-web-acl</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>

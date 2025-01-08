@@ -18,6 +18,7 @@
  */
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.SecurityToken.Endpoints;
 using Amazon.SecurityToken.Internal;
@@ -845,10 +846,10 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void UseGlobalEndpoint_with_legacy_region_apnortheast1_Test()
         {
             var parameters = new SecurityTokenServiceEndpointParameters();
-            parameters["UseGlobalEndpoint"] = true;
-            parameters["UseDualStack"] = false;
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "ap-northeast-1";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["UseGlobalEndpoint"] = true;
             var endpoint = new AmazonSecurityTokenServiceEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://sts.amazonaws.com", endpoint.URL);
         }
@@ -861,10 +862,10 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void UseGlobalEndpoint_with_legacy_region_apsouth1_Test()
         {
             var parameters = new SecurityTokenServiceEndpointParameters();
-            parameters["UseGlobalEndpoint"] = true;
-            parameters["UseDualStack"] = false;
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "ap-south-1";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["UseGlobalEndpoint"] = true;
             var endpoint = new AmazonSecurityTokenServiceEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://sts.amazonaws.com", endpoint.URL);
         }
@@ -877,10 +878,10 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void UseGlobalEndpoint_with_legacy_region_apsoutheast1_Test()
         {
             var parameters = new SecurityTokenServiceEndpointParameters();
-            parameters["UseGlobalEndpoint"] = true;
-            parameters["UseDualStack"] = false;
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "ap-southeast-1";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["UseGlobalEndpoint"] = true;
             var endpoint = new AmazonSecurityTokenServiceEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://sts.amazonaws.com", endpoint.URL);
         }
@@ -893,10 +894,10 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void UseGlobalEndpoint_with_legacy_region_apsoutheast2_Test()
         {
             var parameters = new SecurityTokenServiceEndpointParameters();
-            parameters["UseGlobalEndpoint"] = true;
-            parameters["UseDualStack"] = false;
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "ap-southeast-2";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["UseGlobalEndpoint"] = true;
             var endpoint = new AmazonSecurityTokenServiceEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://sts.amazonaws.com", endpoint.URL);
         }
@@ -909,10 +910,10 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void UseGlobalEndpoint_with_legacy_region_awsglobal_Test()
         {
             var parameters = new SecurityTokenServiceEndpointParameters();
-            parameters["UseGlobalEndpoint"] = true;
-            parameters["UseDualStack"] = false;
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "aws-global";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["UseGlobalEndpoint"] = true;
             var endpoint = new AmazonSecurityTokenServiceEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://sts.amazonaws.com", endpoint.URL);
         }
@@ -925,10 +926,10 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void UseGlobalEndpoint_with_legacy_region_cacentral1_Test()
         {
             var parameters = new SecurityTokenServiceEndpointParameters();
-            parameters["UseGlobalEndpoint"] = true;
-            parameters["UseDualStack"] = false;
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "ca-central-1";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["UseGlobalEndpoint"] = true;
             var endpoint = new AmazonSecurityTokenServiceEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://sts.amazonaws.com", endpoint.URL);
         }
@@ -941,10 +942,10 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void UseGlobalEndpoint_with_legacy_region_eucentral1_Test()
         {
             var parameters = new SecurityTokenServiceEndpointParameters();
-            parameters["UseGlobalEndpoint"] = true;
-            parameters["UseDualStack"] = false;
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "eu-central-1";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["UseGlobalEndpoint"] = true;
             var endpoint = new AmazonSecurityTokenServiceEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://sts.amazonaws.com", endpoint.URL);
         }
@@ -957,10 +958,10 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void UseGlobalEndpoint_with_legacy_region_eunorth1_Test()
         {
             var parameters = new SecurityTokenServiceEndpointParameters();
-            parameters["UseGlobalEndpoint"] = true;
-            parameters["UseDualStack"] = false;
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "eu-north-1";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["UseGlobalEndpoint"] = true;
             var endpoint = new AmazonSecurityTokenServiceEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://sts.amazonaws.com", endpoint.URL);
         }
@@ -973,10 +974,10 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void UseGlobalEndpoint_with_legacy_region_euwest1_Test()
         {
             var parameters = new SecurityTokenServiceEndpointParameters();
-            parameters["UseGlobalEndpoint"] = true;
-            parameters["UseDualStack"] = false;
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "eu-west-1";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["UseGlobalEndpoint"] = true;
             var endpoint = new AmazonSecurityTokenServiceEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://sts.amazonaws.com", endpoint.URL);
         }
@@ -989,10 +990,10 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void UseGlobalEndpoint_with_legacy_region_euwest2_Test()
         {
             var parameters = new SecurityTokenServiceEndpointParameters();
-            parameters["UseGlobalEndpoint"] = true;
-            parameters["UseDualStack"] = false;
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "eu-west-2";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["UseGlobalEndpoint"] = true;
             var endpoint = new AmazonSecurityTokenServiceEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://sts.amazonaws.com", endpoint.URL);
         }
@@ -1005,10 +1006,10 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void UseGlobalEndpoint_with_legacy_region_euwest3_Test()
         {
             var parameters = new SecurityTokenServiceEndpointParameters();
-            parameters["UseGlobalEndpoint"] = true;
-            parameters["UseDualStack"] = false;
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "eu-west-3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["UseGlobalEndpoint"] = true;
             var endpoint = new AmazonSecurityTokenServiceEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://sts.amazonaws.com", endpoint.URL);
         }
@@ -1021,10 +1022,10 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void UseGlobalEndpoint_with_legacy_region_saeast1_Test()
         {
             var parameters = new SecurityTokenServiceEndpointParameters();
-            parameters["UseGlobalEndpoint"] = true;
-            parameters["UseDualStack"] = false;
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "sa-east-1";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["UseGlobalEndpoint"] = true;
             var endpoint = new AmazonSecurityTokenServiceEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://sts.amazonaws.com", endpoint.URL);
         }
@@ -1037,10 +1038,10 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void UseGlobalEndpoint_with_legacy_region_useast1_Test()
         {
             var parameters = new SecurityTokenServiceEndpointParameters();
-            parameters["UseGlobalEndpoint"] = true;
-            parameters["UseDualStack"] = false;
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "us-east-1";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["UseGlobalEndpoint"] = true;
             var endpoint = new AmazonSecurityTokenServiceEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://sts.amazonaws.com", endpoint.URL);
         }
@@ -1053,10 +1054,10 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void UseGlobalEndpoint_with_legacy_region_useast2_Test()
         {
             var parameters = new SecurityTokenServiceEndpointParameters();
-            parameters["UseGlobalEndpoint"] = true;
-            parameters["UseDualStack"] = false;
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "us-east-2";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["UseGlobalEndpoint"] = true;
             var endpoint = new AmazonSecurityTokenServiceEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://sts.amazonaws.com", endpoint.URL);
         }
@@ -1069,10 +1070,10 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void UseGlobalEndpoint_with_legacy_region_uswest1_Test()
         {
             var parameters = new SecurityTokenServiceEndpointParameters();
-            parameters["UseGlobalEndpoint"] = true;
-            parameters["UseDualStack"] = false;
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "us-west-1";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["UseGlobalEndpoint"] = true;
             var endpoint = new AmazonSecurityTokenServiceEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://sts.amazonaws.com", endpoint.URL);
         }
@@ -1085,10 +1086,10 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void UseGlobalEndpoint_with_legacy_region_uswest2_Test()
         {
             var parameters = new SecurityTokenServiceEndpointParameters();
-            parameters["UseGlobalEndpoint"] = true;
-            parameters["UseDualStack"] = false;
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "us-west-2";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["UseGlobalEndpoint"] = true;
             var endpoint = new AmazonSecurityTokenServiceEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://sts.amazonaws.com", endpoint.URL);
         }
@@ -1101,10 +1102,10 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void UseGlobalEndpoint_with_Nonlegacy_region_useast3_Test()
         {
             var parameters = new SecurityTokenServiceEndpointParameters();
-            parameters["UseGlobalEndpoint"] = true;
-            parameters["UseDualStack"] = false;
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "us-east-3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["UseGlobalEndpoint"] = true;
             var endpoint = new AmazonSecurityTokenServiceEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://sts.us-east-3.amazonaws.com", endpoint.URL);
         }
@@ -1117,10 +1118,10 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void UseGlobalEndpoint_with_legacy_region_and_custom_endpoint_Test()
         {
             var parameters = new SecurityTokenServiceEndpointParameters();
-            parameters["UseGlobalEndpoint"] = true;
-            parameters["UseDualStack"] = false;
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "us-west-1";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["UseGlobalEndpoint"] = true;
             parameters["Endpoint"] = "https://example.com";
             var endpoint = new AmazonSecurityTokenServiceEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://example.com", endpoint.URL);
@@ -1134,9 +1135,9 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void UseGlobalEndpoint_with_unset_region_and_custom_endpoint_Test()
         {
             var parameters = new SecurityTokenServiceEndpointParameters();
-            parameters["UseGlobalEndpoint"] = false;
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["UseGlobalEndpoint"] = false;
             parameters["Endpoint"] = "https://example.com";
             var endpoint = new AmazonSecurityTokenServiceEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://example.com", endpoint.URL);

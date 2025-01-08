@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationInsights.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.ApplicationInsights.Model
         private string _accountId;
         private string _affectedResource;
         private DateTime? _endTime;
-        private Dictionary<string, string> _feedback = new Dictionary<string, string>();
+        private Dictionary<string, string> _feedback = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _id;
         private string _insights;
         private DateTime? _lastRecurrenceTime;
@@ -44,6 +45,7 @@ namespace Amazon.ApplicationInsights.Model
         private ResolutionMethod _resolutionMethod;
         private string _resourceGroupName;
         private SeverityLevel _severityLevel;
+        private string _shortName;
         private DateTime? _startTime;
         private Status _status;
         private string _title;
@@ -52,7 +54,8 @@ namespace Amazon.ApplicationInsights.Model
         /// <summary>
         /// Gets and sets the property AccountId. 
         /// <para>
-        /// The AWS account ID for the owner of the resource group affected by the problem.
+        /// The Amazon Web Services account ID for the owner of the resource group affected by
+        /// the problem.
         /// </para>
         /// </summary>
         [AWSProperty(Min=12, Max=12)]
@@ -120,7 +123,7 @@ namespace Amazon.ApplicationInsights.Model
         // Check to see if Feedback property is set
         internal bool IsSetFeedback()
         {
-            return this._feedback != null && this._feedback.Count > 0; 
+            return this._feedback != null && (this._feedback.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -200,9 +203,9 @@ namespace Amazon.ApplicationInsights.Model
         /// <summary>
         /// Gets and sets the property ResolutionMethod. 
         /// <para>
-        /// Specifies how the problem was resolved. If the value is <code>AUTOMATIC</code>, the
-        /// system resolved the problem. If the value is <code>MANUAL</code>, the user resolved
-        /// the problem. If the value is <code>UNRESOLVED</code>, then the problem is not resolved.
+        /// Specifies how the problem was resolved. If the value is <c>AUTOMATIC</c>, the system
+        /// resolved the problem. If the value is <c>MANUAL</c>, the user resolved the problem.
+        /// If the value is <c>UNRESOLVED</c>, then the problem is not resolved.
         /// </para>
         /// </summary>
         public ResolutionMethod ResolutionMethod
@@ -252,6 +255,24 @@ namespace Amazon.ApplicationInsights.Model
         internal bool IsSetSeverityLevel()
         {
             return this._severityLevel != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ShortName. 
+        /// <para>
+        ///  The short name of the problem associated with the SNS notification. 
+        /// </para>
+        /// </summary>
+        public string ShortName
+        {
+            get { return this._shortName; }
+            set { this._shortName = value; }
+        }
+
+        // Check to see if ShortName property is set
+        internal bool IsSetShortName()
+        {
+            return this._shortName != null;
         }
 
         /// <summary>

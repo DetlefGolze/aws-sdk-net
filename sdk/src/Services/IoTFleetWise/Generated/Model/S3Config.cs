@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -93,17 +94,17 @@ namespace Amazon.IoTFleetWise.Model
         /// <summary>
         /// Gets and sets the property Prefix. 
         /// <para>
-        /// (Optional) Enter an S3 bucket prefix. The prefix is the string of characters after
-        /// the bucket name and before the object name. You can use the prefix to organize data
-        /// stored in Amazon S3 buckets. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html">Organizing
+        /// Enter an S3 bucket prefix. The prefix is the string of characters after the bucket
+        /// name and before the object name. You can use the prefix to organize data stored in
+        /// Amazon S3 buckets. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html">Organizing
         /// objects using prefixes</a> in the <i>Amazon Simple Storage Service User Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// By default, Amazon Web Services IoT FleetWise sets the prefix <code>processed-data/year=YY/month=MM/date=DD/hour=HH/</code>
+        /// By default, Amazon Web Services IoT FleetWise sets the prefix <c>processed-data/year=YY/month=MM/date=DD/hour=HH/</c>
         /// (in UTC) to data it delivers to Amazon S3. You can enter a prefix to append it to
-        /// this default prefix. For example, if you enter the prefix <code>vehicles</code>, the
-        /// prefix will be <code>vehicles/processed-data/year=YY/month=MM/date=DD/hour=HH/</code>.
+        /// this default prefix. For example, if you enter the prefix <c>vehicles</c>, the prefix
+        /// will be <c>vehicles/processed-data/year=YY/month=MM/date=DD/hour=HH/</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=512)]

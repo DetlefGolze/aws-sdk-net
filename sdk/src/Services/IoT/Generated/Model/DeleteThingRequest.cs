@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -49,7 +50,7 @@ namespace Amazon.IoT.Model
         /// <para>
         /// The expected version of the thing record in the registry. If the version of the record
         /// in the registry does not match the expected version specified in the request, the
-        /// <code>DeleteThing</code> request is rejected with a <code>VersionConflictException</code>.
+        /// <c>DeleteThing</c> request is rejected with a <c>VersionConflictException</c>.
         /// </para>
         /// </summary>
         public long ExpectedVersion

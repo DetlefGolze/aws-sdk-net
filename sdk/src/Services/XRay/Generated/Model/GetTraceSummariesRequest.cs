@@ -26,37 +26,38 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.XRay.Model
 {
     /// <summary>
     /// Container for the parameters to the GetTraceSummaries operation.
     /// Retrieves IDs and annotations for traces available for a specified time frame using
-    /// an optional filter. To get the full traces, pass the trace IDs to <code>BatchGetTraces</code>.
+    /// an optional filter. To get the full traces, pass the trace IDs to <c>BatchGetTraces</c>.
     /// 
     ///  
     /// <para>
     /// A filter expression can target traced requests that hit specific service nodes or
     /// edges, have errors, or come from a known user. For example, the following filter expression
-    /// targets traces that pass through <code>api.example.com</code>:
+    /// targets traces that pass through <c>api.example.com</c>:
     /// </para>
     ///  
     /// <para>
-    ///  <code>service("api.example.com")</code> 
+    ///  <c>service("api.example.com")</c> 
     /// </para>
     ///  
     /// <para>
-    /// This filter expression finds traces that have an annotation named <code>account</code>
-    /// with the value <code>12345</code>:
+    /// This filter expression finds traces that have an annotation named <c>account</c> with
+    /// the value <c>12345</c>:
     /// </para>
     ///  
     /// <para>
-    ///  <code>annotation.account = "12345"</code> 
+    ///  <c>annotation.account = "12345"</c> 
     /// </para>
     ///  
     /// <para>
     /// For a full list of indexed fields and keywords that you can use in filter expressions,
-    /// see <a href="https://docs.aws.amazon.com/xray/latest/devguide/xray-console-filters.html">Using
-    /// Filter Expressions</a> in the <i>Amazon Web Services X-Ray Developer Guide</i>.
+    /// see <a href="https://docs.aws.amazon.com/xray/latest/devguide/aws-xray-interface-console.html#xray-console-filters">Use
+    /// filter expressions</a> in the <i>Amazon Web Services X-Ray Developer Guide</i>.
     /// </para>
     /// </summary>
     public partial class GetTraceSummariesRequest : AmazonXRayRequest
@@ -129,7 +130,7 @@ namespace Amazon.XRay.Model
         /// <summary>
         /// Gets and sets the property Sampling. 
         /// <para>
-        /// Set to <code>true</code> to get summaries for only a subset of available traces.
+        /// Set to <c>true</c> to get summaries for only a subset of available traces.
         /// </para>
         /// </summary>
         public bool Sampling
@@ -185,7 +186,8 @@ namespace Amazon.XRay.Model
         /// <summary>
         /// Gets and sets the property TimeRangeType. 
         /// <para>
-        /// A parameter to indicate whether to query trace summaries by TraceId or Event time.
+        /// Query trace summaries by TraceId (trace start time), Event (trace update time), or
+        /// Service (trace segment end time).
         /// </para>
         /// </summary>
         public TimeRangeType TimeRangeType

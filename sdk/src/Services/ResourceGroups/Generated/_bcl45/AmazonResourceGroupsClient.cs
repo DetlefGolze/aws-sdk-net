@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.ResourceGroups
 {
     /// <summary>
-    /// Implementation for accessing ResourceGroups
+    /// <para>Implementation for accessing ResourceGroups</para>
     ///
     /// Resource Groups lets you organize Amazon Web Services resources such as Amazon Elastic
     /// Compute Cloud instances, Amazon Relational Database Service databases, and Amazon
@@ -77,7 +78,8 @@ namespace Amazon.ResourceGroups
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Resolving resource group member ARNs so they can be returned as search results
+    /// Resolving resource group member Amazon resource names (ARN)s so they can be returned
+    /// as search results
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -312,6 +314,121 @@ namespace Amazon.ResourceGroups
         #endregion
 
 
+        #region  CancelTagSyncTask
+
+
+        /// <summary>
+        /// Cancels the specified tag-sync task. 
+        /// 
+        ///  
+        /// <para>
+        ///  <b>Minimum permissions</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// To run this command, you must have the following permissions:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>resource-groups:CancelTagSyncTask</c> on the application group
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>resource-groups:DeleteGroup</c> 
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CancelTagSyncTask service method.</param>
+        /// 
+        /// <returns>The response from the CancelTagSyncTask service method, as returned by ResourceGroups.</returns>
+        /// <exception cref="Amazon.ResourceGroups.Model.BadRequestException">
+        /// The request includes one or more parameters that violate validation rules.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.ForbiddenException">
+        /// The caller isn't authorized to make the request. Check permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.InternalServerErrorException">
+        /// An internal error occurred while processing the request. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.MethodNotAllowedException">
+        /// The request uses an HTTP method that isn't allowed for the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.TooManyRequestsException">
+        /// You've exceeded throttling limits by making too many requests in a period of time.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.UnauthorizedException">
+        /// The request was rejected because it doesn't have valid credentials for the target
+        /// resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/CancelTagSyncTask">REST API Reference for CancelTagSyncTask Operation</seealso>
+        public virtual CancelTagSyncTaskResponse CancelTagSyncTask(CancelTagSyncTaskRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CancelTagSyncTaskRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CancelTagSyncTaskResponseUnmarshaller.Instance;
+
+            return Invoke<CancelTagSyncTaskResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Cancels the specified tag-sync task. 
+        /// 
+        ///  
+        /// <para>
+        ///  <b>Minimum permissions</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// To run this command, you must have the following permissions:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>resource-groups:CancelTagSyncTask</c> on the application group
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>resource-groups:DeleteGroup</c> 
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CancelTagSyncTask service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CancelTagSyncTask service method, as returned by ResourceGroups.</returns>
+        /// <exception cref="Amazon.ResourceGroups.Model.BadRequestException">
+        /// The request includes one or more parameters that violate validation rules.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.ForbiddenException">
+        /// The caller isn't authorized to make the request. Check permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.InternalServerErrorException">
+        /// An internal error occurred while processing the request. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.MethodNotAllowedException">
+        /// The request uses an HTTP method that isn't allowed for the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.TooManyRequestsException">
+        /// You've exceeded throttling limits by making too many requests in a period of time.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.UnauthorizedException">
+        /// The request was rejected because it doesn't have valid credentials for the target
+        /// resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/CancelTagSyncTask">REST API Reference for CancelTagSyncTask Operation</seealso>
+        public virtual Task<CancelTagSyncTaskResponse> CancelTagSyncTaskAsync(CancelTagSyncTaskRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CancelTagSyncTaskRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CancelTagSyncTaskResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CancelTagSyncTaskResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  CreateGroup
 
 
@@ -334,7 +451,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:CreateGroup</code> 
+        ///  <c>resource-groups:CreateGroup</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -386,7 +503,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:CreateGroup</code> 
+        ///  <c>resource-groups:CreateGroup</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -440,7 +557,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:DeleteGroup</code> 
+        ///  <c>resource-groups:DeleteGroup</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -490,7 +607,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:DeleteGroup</code> 
+        ///  <c>resource-groups:DeleteGroup</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -617,7 +734,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:GetGroup</code> 
+        ///  <c>resource-groups:GetGroup</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -666,7 +783,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:GetGroup</code> 
+        ///  <c>resource-groups:GetGroup</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -724,7 +841,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:GetGroupConfiguration</code> 
+        ///  <c>resource-groups:GetGroupConfiguration</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -775,7 +892,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:GetGroupConfiguration</code> 
+        ///  <c>resource-groups:GetGroupConfiguration</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -833,7 +950,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:GetGroupQuery</code> 
+        ///  <c>resource-groups:GetGroupQuery</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -884,7 +1001,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:GetGroupQuery</code> 
+        ///  <c>resource-groups:GetGroupQuery</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -929,7 +1046,7 @@ namespace Amazon.ResourceGroups
 
         /// <summary>
         /// Returns a list of tags that are associated with a resource group, specified by an
-        /// ARN.
+        /// Amazon resource name (ARN).
         /// 
         ///  
         /// <para>
@@ -941,7 +1058,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:GetTags</code> 
+        ///  <c>resource-groups:GetTags</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -979,7 +1096,7 @@ namespace Amazon.ResourceGroups
 
         /// <summary>
         /// Returns a list of tags that are associated with a resource group, specified by an
-        /// ARN.
+        /// Amazon resource name (ARN).
         /// 
         ///  
         /// <para>
@@ -991,7 +1108,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:GetTags</code> 
+        ///  <c>resource-groups:GetTags</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1031,6 +1148,119 @@ namespace Amazon.ResourceGroups
 
         #endregion
         
+        #region  GetTagSyncTask
+
+
+        /// <summary>
+        /// Returns information about a specified tag-sync task. 
+        /// 
+        ///  
+        /// <para>
+        ///  <b>Minimum permissions</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// To run this command, you must have the following permissions:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>resource-groups:GetTagSyncTask</c> on the application group
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetTagSyncTask service method.</param>
+        /// 
+        /// <returns>The response from the GetTagSyncTask service method, as returned by ResourceGroups.</returns>
+        /// <exception cref="Amazon.ResourceGroups.Model.BadRequestException">
+        /// The request includes one or more parameters that violate validation rules.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.ForbiddenException">
+        /// The caller isn't authorized to make the request. Check permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.InternalServerErrorException">
+        /// An internal error occurred while processing the request. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.MethodNotAllowedException">
+        /// The request uses an HTTP method that isn't allowed for the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.NotFoundException">
+        /// One or more of the specified resources don't exist.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.TooManyRequestsException">
+        /// You've exceeded throttling limits by making too many requests in a period of time.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.UnauthorizedException">
+        /// The request was rejected because it doesn't have valid credentials for the target
+        /// resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetTagSyncTask">REST API Reference for GetTagSyncTask Operation</seealso>
+        public virtual GetTagSyncTaskResponse GetTagSyncTask(GetTagSyncTaskRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetTagSyncTaskRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetTagSyncTaskResponseUnmarshaller.Instance;
+
+            return Invoke<GetTagSyncTaskResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Returns information about a specified tag-sync task. 
+        /// 
+        ///  
+        /// <para>
+        ///  <b>Minimum permissions</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// To run this command, you must have the following permissions:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>resource-groups:GetTagSyncTask</c> on the application group
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetTagSyncTask service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetTagSyncTask service method, as returned by ResourceGroups.</returns>
+        /// <exception cref="Amazon.ResourceGroups.Model.BadRequestException">
+        /// The request includes one or more parameters that violate validation rules.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.ForbiddenException">
+        /// The caller isn't authorized to make the request. Check permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.InternalServerErrorException">
+        /// An internal error occurred while processing the request. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.MethodNotAllowedException">
+        /// The request uses an HTTP method that isn't allowed for the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.NotFoundException">
+        /// One or more of the specified resources don't exist.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.TooManyRequestsException">
+        /// You've exceeded throttling limits by making too many requests in a period of time.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.UnauthorizedException">
+        /// The request was rejected because it doesn't have valid credentials for the target
+        /// resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetTagSyncTask">REST API Reference for GetTagSyncTask Operation</seealso>
+        public virtual Task<GetTagSyncTaskResponse> GetTagSyncTaskAsync(GetTagSyncTaskRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetTagSyncTaskRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetTagSyncTaskResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetTagSyncTaskResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  GroupResources
 
 
@@ -1039,20 +1269,24 @@ namespace Amazon.ResourceGroups
         /// 
         ///  <important> 
         /// <para>
-        /// You can use this operation with only resource groups that are configured with the
-        /// following types:
+        /// You can only use this operation with the following groups:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AWS::EC2::HostManagement</code> 
+        ///  <c>AWS::EC2::HostManagement</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AWS::EC2::CapacityReservationPool</code> 
+        ///  <c>AWS::EC2::CapacityReservationPool</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS::ResourceGroups::ApplicationGroup</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Other resource group type and resource types aren't currently supported by this operation.
+        /// Other resource group types and resource types are not currently supported by this
+        /// operation.
         /// </para>
         ///  </important> 
         /// <para>
@@ -1064,7 +1298,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:GroupResources</code> 
+        ///  <c>resource-groups:GroupResources</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1105,20 +1339,24 @@ namespace Amazon.ResourceGroups
         /// 
         ///  <important> 
         /// <para>
-        /// You can use this operation with only resource groups that are configured with the
-        /// following types:
+        /// You can only use this operation with the following groups:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AWS::EC2::HostManagement</code> 
+        ///  <c>AWS::EC2::HostManagement</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AWS::EC2::CapacityReservationPool</code> 
+        ///  <c>AWS::EC2::CapacityReservationPool</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS::ResourceGroups::ApplicationGroup</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Other resource group type and resource types aren't currently supported by this operation.
+        /// Other resource group types and resource types are not currently supported by this
+        /// operation.
         /// </para>
         ///  </important> 
         /// <para>
@@ -1130,7 +1368,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:GroupResources</code> 
+        ///  <c>resource-groups:GroupResources</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1170,11 +1408,85 @@ namespace Amazon.ResourceGroups
 
         #endregion
         
+        #region  ListGroupingStatuses
+
+
+        /// <summary>
+        /// Returns the status of the last grouping or ungrouping action for each resource in
+        /// the specified application group.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListGroupingStatuses service method.</param>
+        /// 
+        /// <returns>The response from the ListGroupingStatuses service method, as returned by ResourceGroups.</returns>
+        /// <exception cref="Amazon.ResourceGroups.Model.BadRequestException">
+        /// The request includes one or more parameters that violate validation rules.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.ForbiddenException">
+        /// The caller isn't authorized to make the request. Check permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.InternalServerErrorException">
+        /// An internal error occurred while processing the request. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.MethodNotAllowedException">
+        /// The request uses an HTTP method that isn't allowed for the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.TooManyRequestsException">
+        /// You've exceeded throttling limits by making too many requests in a period of time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupingStatuses">REST API Reference for ListGroupingStatuses Operation</seealso>
+        public virtual ListGroupingStatusesResponse ListGroupingStatuses(ListGroupingStatusesRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListGroupingStatusesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListGroupingStatusesResponseUnmarshaller.Instance;
+
+            return Invoke<ListGroupingStatusesResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Returns the status of the last grouping or ungrouping action for each resource in
+        /// the specified application group.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListGroupingStatuses service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListGroupingStatuses service method, as returned by ResourceGroups.</returns>
+        /// <exception cref="Amazon.ResourceGroups.Model.BadRequestException">
+        /// The request includes one or more parameters that violate validation rules.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.ForbiddenException">
+        /// The caller isn't authorized to make the request. Check permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.InternalServerErrorException">
+        /// An internal error occurred while processing the request. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.MethodNotAllowedException">
+        /// The request uses an HTTP method that isn't allowed for the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.TooManyRequestsException">
+        /// You've exceeded throttling limits by making too many requests in a period of time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupingStatuses">REST API Reference for ListGroupingStatuses Operation</seealso>
+        public virtual Task<ListGroupingStatusesResponse> ListGroupingStatusesAsync(ListGroupingStatusesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListGroupingStatusesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListGroupingStatusesResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListGroupingStatusesResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ListGroupResources
 
 
         /// <summary>
-        /// Returns a list of ARNs of the resources that are members of a specified resource group.
+        /// Returns a list of Amazon resource names (ARNs) of the resources that are members of
+        /// a specified resource group.
         /// 
         ///  
         /// <para>
@@ -1186,19 +1498,19 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:ListGroupResources</code> 
+        ///  <c>resource-groups:ListGroupResources</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>cloudformation:DescribeStacks</code> 
+        ///  <c>cloudformation:DescribeStacks</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>cloudformation:ListStackResources</code> 
+        ///  <c>cloudformation:ListStackResources</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag:GetResources</code> 
+        ///  <c>tag:GetResources</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1239,7 +1551,8 @@ namespace Amazon.ResourceGroups
 
 
         /// <summary>
-        /// Returns a list of ARNs of the resources that are members of a specified resource group.
+        /// Returns a list of Amazon resource names (ARNs) of the resources that are members of
+        /// a specified resource group.
         /// 
         ///  
         /// <para>
@@ -1251,19 +1564,19 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:ListGroupResources</code> 
+        ///  <c>resource-groups:ListGroupResources</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>cloudformation:DescribeStacks</code> 
+        ///  <c>cloudformation:DescribeStacks</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>cloudformation:ListStackResources</code> 
+        ///  <c>cloudformation:ListStackResources</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag:GetResources</code> 
+        ///  <c>tag:GetResources</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1323,7 +1636,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:ListGroups</code> 
+        ///  <c>resource-groups:ListGroups</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1369,7 +1682,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:ListGroups</code> 
+        ///  <c>resource-groups:ListGroups</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1406,6 +1719,115 @@ namespace Amazon.ResourceGroups
 
         #endregion
         
+        #region  ListTagSyncTasks
+
+
+        /// <summary>
+        /// Returns a list of tag-sync tasks. 
+        /// 
+        ///  
+        /// <para>
+        ///  <b>Minimum permissions</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// To run this command, you must have the following permissions:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>resource-groups:ListTagSyncTasks</c> with the group passed in the filters as the
+        /// resource or * if using no filters 
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListTagSyncTasks service method.</param>
+        /// 
+        /// <returns>The response from the ListTagSyncTasks service method, as returned by ResourceGroups.</returns>
+        /// <exception cref="Amazon.ResourceGroups.Model.BadRequestException">
+        /// The request includes one or more parameters that violate validation rules.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.ForbiddenException">
+        /// The caller isn't authorized to make the request. Check permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.InternalServerErrorException">
+        /// An internal error occurred while processing the request. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.MethodNotAllowedException">
+        /// The request uses an HTTP method that isn't allowed for the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.TooManyRequestsException">
+        /// You've exceeded throttling limits by making too many requests in a period of time.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.UnauthorizedException">
+        /// The request was rejected because it doesn't have valid credentials for the target
+        /// resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListTagSyncTasks">REST API Reference for ListTagSyncTasks Operation</seealso>
+        public virtual ListTagSyncTasksResponse ListTagSyncTasks(ListTagSyncTasksRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListTagSyncTasksRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListTagSyncTasksResponseUnmarshaller.Instance;
+
+            return Invoke<ListTagSyncTasksResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Returns a list of tag-sync tasks. 
+        /// 
+        ///  
+        /// <para>
+        ///  <b>Minimum permissions</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// To run this command, you must have the following permissions:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>resource-groups:ListTagSyncTasks</c> with the group passed in the filters as the
+        /// resource or * if using no filters 
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListTagSyncTasks service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListTagSyncTasks service method, as returned by ResourceGroups.</returns>
+        /// <exception cref="Amazon.ResourceGroups.Model.BadRequestException">
+        /// The request includes one or more parameters that violate validation rules.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.ForbiddenException">
+        /// The caller isn't authorized to make the request. Check permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.InternalServerErrorException">
+        /// An internal error occurred while processing the request. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.MethodNotAllowedException">
+        /// The request uses an HTTP method that isn't allowed for the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.TooManyRequestsException">
+        /// You've exceeded throttling limits by making too many requests in a period of time.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.UnauthorizedException">
+        /// The request was rejected because it doesn't have valid credentials for the target
+        /// resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListTagSyncTasks">REST API Reference for ListTagSyncTasks Operation</seealso>
+        public virtual Task<ListTagSyncTasksResponse> ListTagSyncTasksAsync(ListTagSyncTasksRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListTagSyncTasksRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListTagSyncTasksResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListTagSyncTasksResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  PutGroupConfiguration
 
 
@@ -1424,7 +1846,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:PutGroupConfiguration</code> 
+        ///  <c>resource-groups:PutGroupConfiguration</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1475,7 +1897,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:PutGroupConfiguration</code> 
+        ///  <c>resource-groups:PutGroupConfiguration</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1533,19 +1955,19 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:SearchResources</code> 
+        ///  <c>resource-groups:SearchResources</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>cloudformation:DescribeStacks</code> 
+        ///  <c>cloudformation:DescribeStacks</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>cloudformation:ListStackResources</code> 
+        ///  <c>cloudformation:ListStackResources</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag:GetResources</code> 
+        ///  <c>tag:GetResources</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1597,19 +2019,19 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:SearchResources</code> 
+        ///  <c>resource-groups:SearchResources</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>cloudformation:DescribeStacks</code> 
+        ///  <c>cloudformation:DescribeStacks</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>cloudformation:ListStackResources</code> 
+        ///  <c>cloudformation:ListStackResources</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag:GetResources</code> 
+        ///  <c>tag:GetResources</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1650,12 +2072,144 @@ namespace Amazon.ResourceGroups
 
         #endregion
         
+        #region  StartTagSyncTask
+
+
+        /// <summary>
+        /// Creates a new tag-sync task to onboard and sync resources tagged with a specific tag
+        /// key-value pair to an application. 
+        /// 
+        ///  
+        /// <para>
+        ///  <b>Minimum permissions</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// To run this command, you must have the following permissions:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>resource-groups:StartTagSyncTask</c> on the application group
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>resource-groups:CreateGroup</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>iam:PassRole</c> on the role provided in the request 
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartTagSyncTask service method.</param>
+        /// 
+        /// <returns>The response from the StartTagSyncTask service method, as returned by ResourceGroups.</returns>
+        /// <exception cref="Amazon.ResourceGroups.Model.BadRequestException">
+        /// The request includes one or more parameters that violate validation rules.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.ForbiddenException">
+        /// The caller isn't authorized to make the request. Check permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.InternalServerErrorException">
+        /// An internal error occurred while processing the request. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.MethodNotAllowedException">
+        /// The request uses an HTTP method that isn't allowed for the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.NotFoundException">
+        /// One or more of the specified resources don't exist.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.TooManyRequestsException">
+        /// You've exceeded throttling limits by making too many requests in a period of time.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.UnauthorizedException">
+        /// The request was rejected because it doesn't have valid credentials for the target
+        /// resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/StartTagSyncTask">REST API Reference for StartTagSyncTask Operation</seealso>
+        public virtual StartTagSyncTaskResponse StartTagSyncTask(StartTagSyncTaskRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartTagSyncTaskRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartTagSyncTaskResponseUnmarshaller.Instance;
+
+            return Invoke<StartTagSyncTaskResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates a new tag-sync task to onboard and sync resources tagged with a specific tag
+        /// key-value pair to an application. 
+        /// 
+        ///  
+        /// <para>
+        ///  <b>Minimum permissions</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// To run this command, you must have the following permissions:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>resource-groups:StartTagSyncTask</c> on the application group
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>resource-groups:CreateGroup</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>iam:PassRole</c> on the role provided in the request 
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartTagSyncTask service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StartTagSyncTask service method, as returned by ResourceGroups.</returns>
+        /// <exception cref="Amazon.ResourceGroups.Model.BadRequestException">
+        /// The request includes one or more parameters that violate validation rules.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.ForbiddenException">
+        /// The caller isn't authorized to make the request. Check permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.InternalServerErrorException">
+        /// An internal error occurred while processing the request. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.MethodNotAllowedException">
+        /// The request uses an HTTP method that isn't allowed for the specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.NotFoundException">
+        /// One or more of the specified resources don't exist.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.TooManyRequestsException">
+        /// You've exceeded throttling limits by making too many requests in a period of time.
+        /// </exception>
+        /// <exception cref="Amazon.ResourceGroups.Model.UnauthorizedException">
+        /// The request was rejected because it doesn't have valid credentials for the target
+        /// resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/StartTagSyncTask">REST API Reference for StartTagSyncTask Operation</seealso>
+        public virtual Task<StartTagSyncTaskResponse> StartTagSyncTaskAsync(StartTagSyncTaskRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartTagSyncTaskRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartTagSyncTaskResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<StartTagSyncTaskResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  Tag
 
 
         /// <summary>
-        /// Adds tags to a resource group with the specified ARN. Existing tags on a resource
-        /// group are not changed if they are not specified in the request parameters.
+        /// Adds tags to a resource group with the specified Amazon resource name (ARN). Existing
+        /// tags on a resource group are not changed if they are not specified in the request
+        /// parameters.
         /// 
         ///  <important> 
         /// <para>
@@ -1673,7 +2227,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:Tag</code> 
+        ///  <c>resource-groups:Tag</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1710,8 +2264,9 @@ namespace Amazon.ResourceGroups
 
 
         /// <summary>
-        /// Adds tags to a resource group with the specified ARN. Existing tags on a resource
-        /// group are not changed if they are not specified in the request parameters.
+        /// Adds tags to a resource group with the specified Amazon resource name (ARN). Existing
+        /// tags on a resource group are not changed if they are not specified in the request
+        /// parameters.
         /// 
         ///  <important> 
         /// <para>
@@ -1729,7 +2284,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:Tag</code> 
+        ///  <c>resource-groups:Tag</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1788,7 +2343,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:UngroupResources</code> 
+        ///  <c>resource-groups:UngroupResources</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1840,7 +2395,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:UngroupResources</code> 
+        ///  <c>resource-groups:UngroupResources</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1896,7 +2451,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:Untag</code> 
+        ///  <c>resource-groups:Untag</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1945,7 +2500,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:Untag</code> 
+        ///  <c>resource-groups:Untag</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1994,9 +2549,8 @@ namespace Amazon.ResourceGroups
         ///  
         /// <para>
         /// The preceding example shows that the request to turn on group lifecycle events is
-        /// <code>IN_PROGRESS</code>. You can call the <a>GetAccountSettings</a> operation to
-        /// check for completion by looking for <code>GroupLifecycleEventsStatus</code> to change
-        /// to <code>ACTIVE</code>.
+        /// <c>IN_PROGRESS</c>. You can call the <a>GetAccountSettings</a> operation to check
+        /// for completion by looking for <c>GroupLifecycleEventsStatus</c> to change to <c>ACTIVE</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateAccountSettings service method.</param>
@@ -2034,9 +2588,8 @@ namespace Amazon.ResourceGroups
         ///  
         /// <para>
         /// The preceding example shows that the request to turn on group lifecycle events is
-        /// <code>IN_PROGRESS</code>. You can call the <a>GetAccountSettings</a> operation to
-        /// check for completion by looking for <code>GroupLifecycleEventsStatus</code> to change
-        /// to <code>ACTIVE</code>.
+        /// <c>IN_PROGRESS</c>. You can call the <a>GetAccountSettings</a> operation to check
+        /// for completion by looking for <c>GroupLifecycleEventsStatus</c> to change to <c>ACTIVE</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateAccountSettings service method.</param>
@@ -2089,7 +2642,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:UpdateGroup</code> 
+        ///  <c>resource-groups:UpdateGroup</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -2139,7 +2692,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:UpdateGroup</code> 
+        ///  <c>resource-groups:UpdateGroup</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -2197,7 +2750,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:UpdateGroupQuery</code> 
+        ///  <c>resource-groups:UpdateGroupQuery</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -2248,7 +2801,7 @@ namespace Amazon.ResourceGroups
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-groups:UpdateGroupQuery</code> 
+        ///  <c>resource-groups:UpdateGroupQuery</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -2297,11 +2850,11 @@ namespace Amazon.ResourceGroups
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

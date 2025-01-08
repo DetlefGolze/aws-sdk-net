@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
@@ -35,13 +36,13 @@ namespace Amazon.OpsWorks.Model
     {
         private string _appId;
         private Source _appSource;
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _createdAt;
-        private List<DataSource> _dataSources = new List<DataSource>();
+        private List<DataSource> _dataSources = AWSConfigs.InitializeCollections ? new List<DataSource>() : null;
         private string _description;
-        private List<string> _domains = new List<string>();
+        private List<string> _domains = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _enableSsl;
-        private List<EnvironmentVariable> _environment = new List<EnvironmentVariable>();
+        private List<EnvironmentVariable> _environment = AWSConfigs.InitializeCollections ? new List<EnvironmentVariable>() : null;
         private string _name;
         private string _shortname;
         private SslConfiguration _sslConfiguration;
@@ -69,7 +70,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property AppSource. 
         /// <para>
-        /// A <code>Source</code> object that describes the app repository.
+        /// A <c>Source</c> object that describes the app repository.
         /// </para>
         /// </summary>
         public Source AppSource
@@ -99,7 +100,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -135,7 +136,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if DataSources property is set
         internal bool IsSetDataSources()
         {
-            return this._dataSources != null && this._dataSources.Count > 0; 
+            return this._dataSources != null && (this._dataSources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -159,8 +160,8 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Domains. 
         /// <para>
-        /// The app vhost settings with multiple domains separated by commas. For example: <code>'www.example.com,
-        /// example.com'</code> 
+        /// The app vhost settings with multiple domains separated by commas. For example: <c>'www.example.com,
+        /// example.com'</c> 
         /// </para>
         /// </summary>
         public List<string> Domains
@@ -172,7 +173,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if Domains property is set
         internal bool IsSetDomains()
         {
-            return this._domains != null && this._domains.Count > 0; 
+            return this._domains != null && (this._domains.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -196,7 +197,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Environment. 
         /// <para>
-        /// An array of <code>EnvironmentVariable</code> objects that specify environment variables
+        /// An array of <c>EnvironmentVariable</c> objects that specify environment variables
         /// to be associated with the app. After you deploy the app, these variables are defined
         /// on the associated app server instances. For more information, see <a href="https://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-creating.html#workingapps-creating-environment">
         /// Environment Variables</a>. 
@@ -220,7 +221,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if Environment property is set
         internal bool IsSetEnvironment()
         {
-            return this._environment != null && this._environment.Count > 0; 
+            return this._environment != null && (this._environment.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -262,7 +263,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property SslConfiguration. 
         /// <para>
-        /// An <code>SslConfiguration</code> object with the SSL configuration.
+        /// An <c>SslConfiguration</c> object with the SSL configuration.
         /// </para>
         /// </summary>
         public SslConfiguration SslConfiguration

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Omics.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.Omics.Model
         private string _description;
         private string _generatedFrom;
         private string _name;
+        private string _readSetId;
         private string _referenceArn;
         private string _sampleId;
         private SourceFiles _sourceFiles;
@@ -43,7 +45,7 @@ namespace Amazon.Omics.Model
         private ReadSetImportJobItemStatus _status;
         private string _statusMessage;
         private string _subjectId;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -100,6 +102,25 @@ namespace Amazon.Omics.Model
         internal bool IsSetName()
         {
             return this._name != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ReadSetId. 
+        /// <para>
+        /// The source's read set ID.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=10, Max=36)]
+        public string ReadSetId
+        {
+            get { return this._readSetId; }
+            set { this._readSetId = value; }
+        }
+
+        // Check to see if ReadSetId property is set
+        internal bool IsSetReadSetId()
+        {
+            return this._readSetId != null;
         }
 
         /// <summary>
@@ -250,7 +271,7 @@ namespace Amazon.Omics.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

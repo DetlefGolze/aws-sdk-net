@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CertificateManager.Model
 {
     /// <summary>
     /// Container for the parameters to the RequestCertificate operation.
     /// Requests an ACM certificate for use with other Amazon Web Services services. To request
-    /// an ACM certificate, you must specify a fully qualified domain name (FQDN) in the <code>DomainName</code>
-    /// parameter. You can also specify additional FQDNs in the <code>SubjectAlternativeNames</code>
+    /// an ACM certificate, you must specify a fully qualified domain name (FQDN) in the <c>DomainName</c>
+    /// parameter. You can also specify additional FQDNs in the <c>SubjectAlternativeNames</c>
     /// parameter. 
     /// 
     ///  
@@ -52,20 +53,20 @@ namespace Amazon.CertificateManager.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// After successful completion of the <code>RequestCertificate</code> action, there is
-    /// a delay of several seconds before you can retrieve information about the new certificate.
+    /// After successful completion of the <c>RequestCertificate</c> action, there is a delay
+    /// of several seconds before you can retrieve information about the new certificate.
     /// </para>
     /// </summary>
     public partial class RequestCertificateRequest : AmazonCertificateManagerRequest
     {
         private string _certificateAuthorityArn;
         private string _domainName;
-        private List<DomainValidationOption> _domainValidationOptions = new List<DomainValidationOption>();
+        private List<DomainValidationOption> _domainValidationOptions = AWSConfigs.InitializeCollections ? new List<DomainValidationOption>() : null;
         private string _idempotencyToken;
         private KeyAlgorithm _keyAlgorithm;
         private CertificateOptions _options;
-        private List<string> _subjectAlternativeNames = new List<string>();
-        private List<Tag> _tags = new List<Tag>();
+        private List<string> _subjectAlternativeNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private ValidationMethod _validationMethod;
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.CertificateManager.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012</code>
+        ///  <c>arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012</c>
         /// 
         /// </para>
         /// </summary>
@@ -144,14 +145,14 @@ namespace Amazon.CertificateManager.Model
         // Check to see if DomainValidationOptions property is set
         internal bool IsSetDomainValidationOptions()
         {
-            return this._domainValidationOptions != null && this._domainValidationOptions.Count > 0; 
+            return this._domainValidationOptions != null && (this._domainValidationOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property IdempotencyToken. 
         /// <para>
-        /// Customer chosen string that can be used to distinguish between calls to <code>RequestCertificate</code>.
-        /// Idempotency tokens time out after one hour. Therefore, if you call <code>RequestCertificate</code>
+        /// Customer chosen string that can be used to distinguish between calls to <c>RequestCertificate</c>.
+        /// Idempotency tokens time out after one hour. Therefore, if you call <c>RequestCertificate</c>
         /// multiple times with the same idempotency token within one hour, ACM recognizes that
         /// you are requesting only one certificate and will issue only one. If you change the
         /// idempotency token for each call, ACM recognizes that you are requesting multiple certificates.
@@ -177,12 +178,40 @@ namespace Amazon.CertificateManager.Model
         /// to encrypt data. RSA is the default key algorithm for ACM certificates. Elliptic Curve
         /// Digital Signature Algorithm (ECDSA) keys are smaller, offering security comparable
         /// to RSA keys but with greater computing efficiency. However, ECDSA is not supported
-        /// by all network clients. Some AWS services may require RSA keys, or only support ECDSA
-        /// keys of a particular size, while others allow the use of either RSA and ECDSA keys
-        /// to ensure that compatibility is not broken. Check the requirements for the AWS service
-        /// where you plan to deploy your certificate.
+        /// by all network clients. Some Amazon Web Services services may require RSA keys, or
+        /// only support ECDSA keys of a particular size, while others allow the use of either
+        /// RSA and ECDSA keys to ensure that compatibility is not broken. Check the requirements
+        /// for the Amazon Web Services service where you plan to deploy your certificate. For
+        /// more information about selecting an algorithm, see <a href="https://docs.aws.amazon.com/acm/latest/userguide/acm-certificate.html#algorithms">Key
+        /// algorithms</a>.
         /// </para>
-        ///  
+        ///  <note> 
+        /// <para>
+        /// Algorithms supported for an ACM certificate request include: 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>RSA_2048</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>EC_prime256v1</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>EC_secp384r1</c> 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Other listed algorithms are for imported certificates only. 
+        /// </para>
+        ///  </note> <note> 
+        /// <para>
+        /// When you request a private PKI certificate signed by a CA from Amazon Web Services
+        /// Private CA, the specified signing algorithm family (RSA or ECDSA) must match the algorithm
+        /// family of the CA's secret key.
+        /// </para>
+        ///  </note> 
         /// <para>
         /// Default: RSA_2048
         /// </para>
@@ -227,10 +256,10 @@ namespace Amazon.CertificateManager.Model
         /// <para>
         /// Additional FQDNs to be included in the Subject Alternative Name extension of the ACM
         /// certificate. For example, add the name www.example.net to a certificate for which
-        /// the <code>DomainName</code> field is www.example.com if users can reach your site
-        /// by using either name. The maximum number of domain names that you can add to an ACM
-        /// certificate is 100. However, the initial quota is 10 domain names. If you need more
-        /// than 10 names, you must request a quota increase. For more information, see <a href="https://docs.aws.amazon.com/acm/latest/userguide/acm-limits.html">Quotas</a>.
+        /// the <c>DomainName</c> field is www.example.com if users can reach your site by using
+        /// either name. The maximum number of domain names that you can add to an ACM certificate
+        /// is 100. However, the initial quota is 10 domain names. If you need more than 10 names,
+        /// you must request a quota increase. For more information, see <a href="https://docs.aws.amazon.com/acm/latest/userguide/acm-limits.html">Quotas</a>.
         /// </para>
         ///  
         /// <para>
@@ -240,19 +269,18 @@ namespace Amazon.CertificateManager.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>(63 octets).(63 octets).(63 octets).(61 octets)</code> is legal because the
-        /// total length is 253 octets (63+1+63+1+63+1+61) and no label exceeds 63 octets.
+        ///  <c>(63 octets).(63 octets).(63 octets).(61 octets)</c> is legal because the total
+        /// length is 253 octets (63+1+63+1+63+1+61) and no label exceeds 63 octets.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>(64 octets).(63 octets).(63 octets).(61 octets)</code> is not legal because
-        /// the total length exceeds 253 octets (64+1+63+1+63+1+61) and the first label exceeds
-        /// 63 octets.
+        ///  <c>(64 octets).(63 octets).(63 octets).(61 octets)</c> is not legal because the total
+        /// length exceeds 253 octets (64+1+63+1+63+1+61) and the first label exceeds 63 octets.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>(63 octets).(63 octets).(63 octets).(62 octets)</code> is not legal because
-        /// the total length of the DNS name (63+1+63+1+63+1+62) exceeds 253 octets.
+        ///  <c>(63 octets).(63 octets).(63 octets).(62 octets)</c> is not legal because the total
+        /// length of the DNS name (63+1+63+1+63+1+62) exceeds 253 octets.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -266,7 +294,7 @@ namespace Amazon.CertificateManager.Model
         // Check to see if SubjectAlternativeNames property is set
         internal bool IsSetSubjectAlternativeNames()
         {
-            return this._subjectAlternativeNames != null && this._subjectAlternativeNames.Count > 0; 
+            return this._subjectAlternativeNames != null && (this._subjectAlternativeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -285,7 +313,7 @@ namespace Amazon.CertificateManager.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

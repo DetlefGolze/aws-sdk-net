@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FinSpaceData.Model
 {
     /// <summary>
@@ -144,11 +145,11 @@ namespace Amazon.FinSpaceData.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>TABULAR</code> – Data is structured in a tabular format.
+        ///  <c>TABULAR</c> – Data is structured in a tabular format.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NON_TABULAR</code> – Data is structured in a non-tabular format.
+        ///  <c>NON_TABULAR</c> – Data is structured in a non-tabular format.
         /// </para>
         ///  </li> </ul>
         /// </summary>

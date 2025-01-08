@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.DevOpsGuru.Model
         /// <summary>
         /// Gets and sets the property Insight. 
         /// <para>
-        /// Represents the health of an Amazon Web Services service. This is a <code>ServiceInsightHealth</code>
+        /// Represents the health of an Amazon Web Services service. This is a <c>ServiceInsightHealth</c>
         /// that contains the number of open proactive and reactive insights for this service.
         /// </para>
         /// </summary>

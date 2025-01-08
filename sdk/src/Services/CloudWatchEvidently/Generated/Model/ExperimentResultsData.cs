@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvidently.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.CloudWatchEvidently.Model
         private string _metricName;
         private ExperimentResultResponseType _resultStat;
         private string _treatmentName;
-        private List<double> _values = new List<double>();
+        private List<double> _values = AWSConfigs.InitializeCollections ? new List<double>() : null;
 
         /// <summary>
         /// Gets and sets the property MetricName. 
@@ -79,7 +80,7 @@ namespace Amazon.CloudWatchEvidently.Model
         /// <summary>
         /// Gets and sets the property TreatmentName. 
         /// <para>
-        /// The treatment, or variation, that returned the <code>values</code> in this structure.
+        /// The treatment, or variation, that returned the <c>values</c> in this structure.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=127)]
@@ -98,7 +99,7 @@ namespace Amazon.CloudWatchEvidently.Model
         /// <summary>
         /// Gets and sets the property Values. 
         /// <para>
-        /// The values for the <code>metricName</code> that were recorded in the experiment.
+        /// The values for the <c>metricName</c> that were recorded in the experiment.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100800)]
@@ -111,7 +112,7 @@ namespace Amazon.CloudWatchEvidently.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

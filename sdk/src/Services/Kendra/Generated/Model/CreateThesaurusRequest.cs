@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -47,14 +48,14 @@ namespace Amazon.Kendra.Model
         private string _name;
         private string _roleArn;
         private S3Path _sourceS3Path;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// A token that you provide to identify the request to create a thesaurus. Multiple calls
-        /// to the <code>CreateThesaurus</code> API with the same client token will create only
-        /// one thesaurus. 
+        /// to the <c>CreateThesaurus</c> API with the same client token will create only one
+        /// thesaurus. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -186,7 +187,7 @@ namespace Amazon.Kendra.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

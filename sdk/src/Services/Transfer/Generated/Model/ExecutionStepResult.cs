@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -61,10 +62,10 @@ namespace Amazon.Transfer.Model
         /// Gets and sets the property Outputs. 
         /// <para>
         /// The values for the key/value pair applied as a tag to the file. Only applicable if
-        /// the step type is <code>TAG</code>.
+        /// the step type is <c>TAG</c>.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=65536)]
+        [AWSProperty(Min=0, Max=65536)]
         public string Outputs
         {
             get { return this._outputs; }
@@ -84,23 +85,23 @@ namespace Amazon.Transfer.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b> <code>COPY</code> </b> - Copy the file to another location.
+        ///  <b> <c>COPY</c> </b> - Copy the file to another location.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>CUSTOM</code> </b> - Perform a custom step with an Lambda function target.
+        ///  <b> <c>CUSTOM</c> </b> - Perform a custom step with an Lambda function target.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>DECRYPT</code> </b> - Decrypt a file that was encrypted before it was uploaded.
+        ///  <b> <c>DECRYPT</c> </b> - Decrypt a file that was encrypted before it was uploaded.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>DELETE</code> </b> - Delete the file.
+        ///  <b> <c>DELETE</c> </b> - Delete the file.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>TAG</code> </b> - Add a tag to the file.
+        ///  <b> <c>TAG</c> </b> - Add a tag to the file.
         /// </para>
         ///  </li> </ul>
         /// </summary>

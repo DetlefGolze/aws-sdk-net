@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EKS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,8 +67,20 @@ namespace Amazon.EKS.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetAccessConfig())
+                {
+                    context.Writer.WritePropertyName("accessConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = UpdateAccessConfigRequestMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.AccessConfig, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetClientRequestToken())
                 {
                     context.Writer.WritePropertyName("clientRequestToken");
@@ -79,6 +92,28 @@ namespace Amazon.EKS.Model.Internal.MarshallTransformations
                     context.Writer.WritePropertyName("clientRequestToken");
                     context.Writer.Write(Guid.NewGuid().ToString());
                 }
+                if(publicRequest.IsSetComputeConfig())
+                {
+                    context.Writer.WritePropertyName("computeConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ComputeConfigRequestMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.ComputeConfig, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetKubernetesNetworkConfig())
+                {
+                    context.Writer.WritePropertyName("kubernetesNetworkConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = KubernetesNetworkConfigRequestMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.KubernetesNetworkConfig, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetLogging())
                 {
                     context.Writer.WritePropertyName("logging");
@@ -97,6 +132,39 @@ namespace Amazon.EKS.Model.Internal.MarshallTransformations
 
                     var marshaller = VpcConfigRequestMarshaller.Instance;
                     marshaller.Marshall(publicRequest.ResourcesVpcConfig, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetStorageConfig())
+                {
+                    context.Writer.WritePropertyName("storageConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = StorageConfigRequestMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.StorageConfig, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetUpgradePolicy())
+                {
+                    context.Writer.WritePropertyName("upgradePolicy");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = UpgradePolicyRequestMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.UpgradePolicy, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetZonalShiftConfig())
+                {
+                    context.Writer.WritePropertyName("zonalShiftConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ZonalShiftConfigRequestMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.ZonalShiftConfig, context);
 
                     context.Writer.WriteObjectEnd();
                 }

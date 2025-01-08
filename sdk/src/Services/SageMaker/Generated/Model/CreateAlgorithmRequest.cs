@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.SageMaker.Model
         private string _algorithmName;
         private bool? _certifyForMarketplace;
         private InferenceSpecification _inferenceSpecification;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private TrainingSpecification _trainingSpecification;
         private AlgorithmValidationSpecification _validationSpecification;
 
@@ -150,7 +151,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -186,8 +187,7 @@ namespace Amazon.SageMaker.Model
         ///  </li> <li> 
         /// <para>
         /// The input channels that the algorithm supports for training data. For example, an
-        /// algorithm might support <code>train</code>, <code>validation</code>, and <code>test</code>
-        /// channels.
+        /// algorithm might support <c>train</c>, <c>validation</c>, and <c>test</c> channels.
         /// </para>
         ///  </li> </ul>
         /// </summary>

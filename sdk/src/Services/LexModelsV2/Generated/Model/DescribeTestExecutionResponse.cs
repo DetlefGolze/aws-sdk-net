@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.LexModelsV2.Model
     {
         private TestExecutionApiMode _apiMode;
         private DateTime? _creationDateTime;
-        private List<string> _failureReasons = new List<string>();
+        private List<string> _failureReasons = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _lastUpdatedDateTime;
         private TestExecutionTarget _target;
         private string _testExecutionId;
@@ -48,9 +49,9 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property ApiMode. 
         /// <para>
         /// Indicates whether we use streaming or non-streaming APIs are used for the test set
-        /// execution. For streaming, <code>StartConversation</code> Amazon Lex Runtime API is
-        /// used. Whereas for non-streaming, <code>RecognizeUtterance</code> and <code>RecognizeText</code>
-        /// Amazon Lex Runtime API is used.
+        /// execution. For streaming, <c>StartConversation</c> Amazon Lex Runtime API is used.
+        /// Whereas for non-streaming, <c>RecognizeUtterance</c> and <c>RecognizeText</c> Amazon
+        /// Lex Runtime API is used.
         /// </para>
         /// </summary>
         public TestExecutionApiMode ApiMode
@@ -98,7 +99,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if FailureReasons property is set
         internal bool IsSetFailureReasons()
         {
-            return this._failureReasons != null && this._failureReasons.Count > 0; 
+            return this._failureReasons != null && (this._failureReasons.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

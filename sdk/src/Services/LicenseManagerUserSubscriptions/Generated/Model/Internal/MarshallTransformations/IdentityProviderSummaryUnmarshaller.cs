@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.LicenseManagerUserSubscriptions.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.LicenseManagerUserSubscriptions.Model.Internal.MarshallTransfor
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public IdentityProviderSummary Unmarshall(JsonUnmarshallerContext context)
         {
+            IdentityProviderSummary unmarshalledObject = new IdentityProviderSummary();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            IdentityProviderSummary unmarshalledObject = new IdentityProviderSummary();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -74,6 +76,12 @@ namespace Amazon.LicenseManagerUserSubscriptions.Model.Internal.MarshallTransfor
                 {
                     var unmarshaller = IdentityProviderUnmarshaller.Instance;
                     unmarshalledObject.IdentityProvider = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("IdentityProviderArn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.IdentityProviderArn = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Product", targetDepth))
@@ -95,7 +103,6 @@ namespace Amazon.LicenseManagerUserSubscriptions.Model.Internal.MarshallTransfor
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

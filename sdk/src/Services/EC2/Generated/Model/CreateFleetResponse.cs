@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,15 +34,15 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class CreateFleetResponse : AmazonWebServiceResponse
     {
-        private List<CreateFleetError> _errors = new List<CreateFleetError>();
+        private List<CreateFleetError> _errors = AWSConfigs.InitializeCollections ? new List<CreateFleetError>() : null;
         private string _fleetId;
-        private List<CreateFleetInstance> _instances = new List<CreateFleetInstance>();
+        private List<CreateFleetInstance> _instances = AWSConfigs.InitializeCollections ? new List<CreateFleetInstance>() : null;
 
         /// <summary>
         /// Gets and sets the property Errors. 
         /// <para>
         /// Information about the instances that could not be launched by the fleet. Supported
-        /// only for fleets of type <code>instant</code>.
+        /// only for fleets of type <c>instant</c>.
         /// </para>
         /// </summary>
         public List<CreateFleetError> Errors
@@ -53,7 +54,7 @@ namespace Amazon.EC2.Model
         // Check to see if Errors property is set
         internal bool IsSetErrors()
         {
-            return this._errors != null && this._errors.Count > 0; 
+            return this._errors != null && (this._errors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -78,7 +79,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property Instances. 
         /// <para>
         /// Information about the instances that were launched by the fleet. Supported only for
-        /// fleets of type <code>instant</code>.
+        /// fleets of type <c>instant</c>.
         /// </para>
         /// </summary>
         public List<CreateFleetInstance> Instances
@@ -90,7 +91,7 @@ namespace Amazon.EC2.Model
         // Check to see if Instances property is set
         internal bool IsSetInstances()
         {
-            return this._instances != null && this._instances.Count > 0; 
+            return this._instances != null && (this._instances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

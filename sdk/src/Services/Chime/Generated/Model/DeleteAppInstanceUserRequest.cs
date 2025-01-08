@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteAppInstanceUser operation.
-    /// Deletes an <code>AppInstanceUser</code>.
+    /// Deletes an <c>AppInstanceUser</c>.
     /// 
     ///  <important> 
     /// <para>

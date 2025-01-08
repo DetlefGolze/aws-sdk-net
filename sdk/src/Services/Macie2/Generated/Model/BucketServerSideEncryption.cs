@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
@@ -67,13 +68,19 @@ namespace Amazon.Macie2.Model
         /// </para>
         ///  <ul><li>
         /// <para>
-        /// AES256 - New objects are encrypted with an Amazon S3 managed key. They use SSE-S3
-        /// encryption.
+        /// AES256 - New objects use SSE-S3 encryption. They're encrypted with an Amazon S3 managed
+        /// key.
         /// </para>
         /// </li> <li>
         /// <para>
-        /// aws:kms - New objects are encrypted with an KMS key (kmsMasterKeyId), either an Amazon
-        /// Web Services managed key or a customer managed key. They use SSE-KMS encryption.
+        /// aws:kms - New objects use SSE-KMS encryption. They're encrypted with an KMS key (kmsMasterKeyId),
+        /// either an Amazon Web Services managed key or a customer managed key.
+        /// </para>
+        /// </li> <li>
+        /// <para>
+        /// aws:kms:dsse - New objects use DSSE-KMS encryption. They're encrypted with an KMS
+        /// key (kmsMasterKeyId), either an Amazon Web Services managed key or a customer managed
+        /// key.
         /// </para>
         /// </li> <li>
         /// <para>

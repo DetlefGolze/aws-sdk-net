@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Personalize.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Personalize.Model
         /// Gets and sets the property MaxNumberOfTrainingJobs. 
         /// <para>
         /// The maximum number of training jobs when you create a solution version. The maximum
-        /// value for <code>maxNumberOfTrainingJobs</code> is <code>40</code>.
+        /// value for <c>maxNumberOfTrainingJobs</c> is <c>40</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=256)]
@@ -60,7 +61,7 @@ namespace Amazon.Personalize.Model
         /// Gets and sets the property MaxParallelTrainingJobs. 
         /// <para>
         /// The maximum number of parallel training jobs when you create a solution version. The
-        /// maximum value for <code>maxParallelTrainingJobs</code> is <code>10</code>.
+        /// maximum value for <c>maxParallelTrainingJobs</c> is <c>10</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=256)]

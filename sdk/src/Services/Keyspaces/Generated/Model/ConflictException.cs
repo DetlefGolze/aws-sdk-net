@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Keyspaces.Model
 {
     /// <summary>
-    /// Amazon Keyspaces could not complete the requested action. This error may occur if
-    /// you try to perform an action and the same or a different action is already in progress,
+    /// Amazon Keyspaces couldn't complete the requested action. This error may occur if you
+    /// try to perform an action and the same or a different action is already in progress,
     /// or if you try to create a resource that already exists.
     /// </summary>
     #if !NETSTANDARD

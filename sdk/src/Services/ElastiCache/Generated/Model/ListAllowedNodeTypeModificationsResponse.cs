@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.ElastiCache.Model
     /// </summary>
     public partial class ListAllowedNodeTypeModificationsResponse : AmazonWebServiceResponse
     {
-        private List<string> _scaleDownModifications = new List<string>();
-        private List<string> _scaleUpModifications = new List<string>();
+        private List<string> _scaleDownModifications = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _scaleUpModifications = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ScaleDownModifications. 
         /// <para>
         /// A string list, each element of which specifies a cache node type which you can use
-        /// to scale your cluster or replication group. When scaling down a Redis cluster or replication
-        /// group using ModifyCacheCluster or ModifyReplicationGroup, use a value from this list
-        /// for the CacheNodeType parameter. 
+        /// to scale your cluster or replication group. When scaling down a Valkey or Redis OSS
+        /// cluster or replication group using ModifyCacheCluster or ModifyReplicationGroup, use
+        /// a value from this list for the CacheNodeType parameter. 
         /// </para>
         /// </summary>
         public List<string> ScaleDownModifications
@@ -55,7 +56,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if ScaleDownModifications property is set
         internal bool IsSetScaleDownModifications()
         {
-            return this._scaleDownModifications != null && this._scaleDownModifications.Count > 0; 
+            return this._scaleDownModifications != null && (this._scaleDownModifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -66,8 +67,8 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  
         /// <para>
-        /// When scaling up a Redis cluster or replication group using <code>ModifyCacheCluster</code>
-        /// or <code>ModifyReplicationGroup</code>, use a value from this list for the <code>CacheNodeType</code>
+        /// When scaling up a Valkey or Redis OSS cluster or replication group using <c>ModifyCacheCluster</c>
+        /// or <c>ModifyReplicationGroup</c>, use a value from this list for the <c>CacheNodeType</c>
         /// parameter.
         /// </para>
         /// </summary>
@@ -80,7 +81,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if ScaleUpModifications property is set
         internal bool IsSetScaleUpModifications()
         {
-            return this._scaleUpModifications != null && this._scaleUpModifications.Count > 0; 
+            return this._scaleUpModifications != null && (this._scaleUpModifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

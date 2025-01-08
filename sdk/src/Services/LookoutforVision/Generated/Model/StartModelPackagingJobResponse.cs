@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LookoutforVision.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.LookoutforVision.Model
         /// <summary>
         /// Gets and sets the property JobName. 
         /// <para>
-        /// The job name for the model packaging job. If you don't supply a job name in the <code>JobName</code>
+        /// The job name for the model packaging job. If you don't supply a job name in the <c>JobName</c>
         /// input parameter, the service creates a job name for you. 
         /// </para>
         /// </summary>

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ECS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.ECS.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Deployment Unmarshall(JsonUnmarshallerContext context)
         {
+            Deployment unmarshalledObject = new Deployment();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Deployment unmarshalledObject = new Deployment();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -86,6 +88,12 @@ namespace Amazon.ECS.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = IntUnmarshaller.Instance;
                     unmarshalledObject.FailedTasks = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("fargateEphemeralStorage", targetDepth))
+                {
+                    var unmarshaller = DeploymentEphemeralStorageUnmarshaller.Instance;
+                    unmarshalledObject.FargateEphemeralStorage = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("id", targetDepth))
@@ -172,8 +180,19 @@ namespace Amazon.ECS.Model.Internal.MarshallTransformations
                     unmarshalledObject.UpdatedAt = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("volumeConfigurations", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<ServiceVolumeConfiguration, ServiceVolumeConfigurationUnmarshaller>(ServiceVolumeConfigurationUnmarshaller.Instance);
+                    unmarshalledObject.VolumeConfigurations = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("vpcLatticeConfigurations", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<VpcLatticeConfiguration, VpcLatticeConfigurationUnmarshaller>(VpcLatticeConfigurationUnmarshaller.Instance);
+                    unmarshalledObject.VpcLatticeConfigurations = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

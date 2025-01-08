@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the imagebuilder-2019-12-02.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -91,9 +92,39 @@ namespace Amazon.Imagebuilder.Model
         IListInfrastructureConfigurationsPaginator ListInfrastructureConfigurations(ListInfrastructureConfigurationsRequest request);
 
         /// <summary>
+        /// Paginator for ListLifecycleExecutionResources operation
+        ///</summary>
+        IListLifecycleExecutionResourcesPaginator ListLifecycleExecutionResources(ListLifecycleExecutionResourcesRequest request);
+
+        /// <summary>
+        /// Paginator for ListLifecycleExecutions operation
+        ///</summary>
+        IListLifecycleExecutionsPaginator ListLifecycleExecutions(ListLifecycleExecutionsRequest request);
+
+        /// <summary>
+        /// Paginator for ListLifecyclePolicies operation
+        ///</summary>
+        IListLifecyclePoliciesPaginator ListLifecyclePolicies(ListLifecyclePoliciesRequest request);
+
+        /// <summary>
+        /// Paginator for ListWaitingWorkflowSteps operation
+        ///</summary>
+        IListWaitingWorkflowStepsPaginator ListWaitingWorkflowSteps(ListWaitingWorkflowStepsRequest request);
+
+        /// <summary>
+        /// Paginator for ListWorkflowBuildVersions operation
+        ///</summary>
+        IListWorkflowBuildVersionsPaginator ListWorkflowBuildVersions(ListWorkflowBuildVersionsRequest request);
+
+        /// <summary>
         /// Paginator for ListWorkflowExecutions operation
         ///</summary>
         IListWorkflowExecutionsPaginator ListWorkflowExecutions(ListWorkflowExecutionsRequest request);
+
+        /// <summary>
+        /// Paginator for ListWorkflows operation
+        ///</summary>
+        IListWorkflowsPaginator ListWorkflows(ListWorkflowsRequest request);
 
         /// <summary>
         /// Paginator for ListWorkflowStepExecutions operation

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MemoryDB.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.MemoryDB.Model
         /// <summary>
         /// Gets and sets the property Cluster. 
         /// <para>
-        /// The updated cluster
+        /// The updated cluster.
         /// </para>
         /// </summary>
         public Cluster Cluster

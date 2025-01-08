@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VerifiedPermissions.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.VerifiedPermissions.Model
     public partial class ListPolicyTemplatesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<PolicyTemplateItem> _policyTemplates = new List<PolicyTemplateItem>();
+        private List<PolicyTemplateItem> _policyTemplates = AWSConfigs.InitializeCollections ? new List<PolicyTemplateItem>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If present, this value indicates that more output is available than is included in
-        /// the current response. Use this value in the <code>NextToken</code> request parameter
-        /// in a subsequent call to the operation to get the next part of the output. You should
-        /// repeat this until the <code>NextToken</code> response element comes back as <code>null</code>.
+        /// the current response. Use this value in the <c>NextToken</c> request parameter in
+        /// a subsequent call to the operation to get the next part of the output. You should
+        /// repeat this until the <c>NextToken</c> response element comes back as <c>null</c>.
         /// This indicates that this is the last page of results.
         /// </para>
         /// </summary>
@@ -75,7 +76,7 @@ namespace Amazon.VerifiedPermissions.Model
         // Check to see if PolicyTemplates property is set
         internal bool IsSetPolicyTemplates()
         {
-            return this._policyTemplates != null && this._policyTemplates.Count > 0; 
+            return this._policyTemplates != null && (this._policyTemplates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

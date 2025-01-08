@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -34,24 +35,24 @@ namespace Amazon.ForecastService.Model
     /// 
     ///  
     /// <para>
-    /// In addition to listing the properties provided in the <code>CreateWhatIfAnalysis</code>
+    /// In addition to listing the properties provided in the <c>CreateWhatIfAnalysis</c>
     /// request, this operation lists the following properties:
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>CreationTime</code> 
+    ///  <c>CreationTime</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>LastModificationTime</code> 
+    ///  <c>LastModificationTime</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>Message</code> - If an error occurred, information about the error.
+    ///  <c>Message</c> - If an error occurred, information about the error.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>Status</code> 
+    ///  <c>Status</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>

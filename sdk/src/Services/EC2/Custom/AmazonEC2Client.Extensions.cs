@@ -95,7 +95,9 @@ namespace Amazon.EC2
                 WebServiceRequestEventArgs wsrea = args as WebServiceRequestEventArgs;
                 if (wsrea != null)
                 {
+#pragma warning disable CS0612,CS0618
                     wsrea.Parameters["DryRun"] = "true";
+#pragma warning restore CS0612,CS0618
                 }
             }
         }
@@ -110,8 +112,7 @@ namespace Amazon.EC2
                     _methodCache = new Dictionary<Type, DryRunInfo>();
 
                     var ec2RequestType = typeof(AmazonEC2Request);
-                    var ec2RequestTypeInfo = TypeFactory.GetTypeInfo(ec2RequestType);
-                    var allMembers = TypeFactory.GetTypeInfo(typeof(AmazonEC2Client)).GetMembers();
+                    var allMembers = typeof(AmazonEC2Client).GetMembers();
                     foreach (var member in allMembers)
                     {
                         MethodInfo method = member as MethodInfo;
@@ -130,8 +131,7 @@ namespace Amazon.EC2
 
                         // The input parameter must extend EC2Request, but must not be EC2Request
                         var inputType = parameters[0].ParameterType;
-                        var inputTypeInfo = TypeFactory.GetTypeInfo(inputType);
-                        if (inputType == ec2RequestType || !ec2RequestTypeInfo.IsAssignableFrom(inputTypeInfo))
+                        if (inputType == ec2RequestType || !ec2RequestType.IsAssignableFrom(inputType))
                             continue;
 
                         // Method name must match: [Name]Request = [InputTypeName]

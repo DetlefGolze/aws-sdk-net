@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointEmail.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.PinpointEmail.Model
         private bool? _feedbackForwardingStatus;
         private IdentityType _identityType;
         private MailFromAttributes _mailFromAttributes;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private bool? _verifiedForSendingStatus;
 
         /// <summary>
@@ -67,18 +68,17 @@ namespace Amazon.PinpointEmail.Model
         /// </para>
         ///  
         /// <para>
-        /// If the value is <code>true</code>, Amazon Pinpoint sends you email notifications when
-        /// bounce or complaint events occur. Amazon Pinpoint sends this notification to the address
+        /// If the value is <c>true</c>, Amazon Pinpoint sends you email notifications when bounce
+        /// or complaint events occur. Amazon Pinpoint sends this notification to the address
         /// that you specified in the Return-Path header of the original email.
         /// </para>
         ///  
         /// <para>
-        /// When you set this value to <code>false</code>, Amazon Pinpoint sends notifications
-        /// through other mechanisms, such as by notifying an Amazon SNS topic or another event
-        /// destination. You're required to have a method of tracking bounces and complaints.
-        /// If you haven't set up another mechanism for receiving bounce or complaint notifications,
-        /// Amazon Pinpoint sends an email notification when these events occur (even if this
-        /// setting is disabled).
+        /// When you set this value to <c>false</c>, Amazon Pinpoint sends notifications through
+        /// other mechanisms, such as by notifying an Amazon SNS topic or another event destination.
+        /// You're required to have a method of tracking bounces and complaints. If you haven't
+        /// set up another mechanism for receiving bounce or complaint notifications, Amazon Pinpoint
+        /// sends an email notification when these events occur (even if this setting is disabled).
         /// </para>
         /// </summary>
         public bool FeedbackForwardingStatus
@@ -145,7 +145,7 @@ namespace Amazon.PinpointEmail.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

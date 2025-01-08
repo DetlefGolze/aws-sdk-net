@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -34,17 +35,17 @@ namespace Amazon.Redshift.Model
     public partial class DescribeSnapshotCopyGrantsResponse : AmazonWebServiceResponse
     {
         private string _marker;
-        private List<SnapshotCopyGrant> _snapshotCopyGrants = new List<SnapshotCopyGrant>();
+        private List<SnapshotCopyGrant> _snapshotCopyGrants = AWSConfigs.InitializeCollections ? new List<SnapshotCopyGrant>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         /// An optional parameter that specifies the starting point to return a set of response
-        /// records. When the results of a <code>DescribeSnapshotCopyGrant</code> request exceed
-        /// the value specified in <code>MaxRecords</code>, Amazon Web Services returns a value
-        /// in the <code>Marker</code> field of the response. You can retrieve the next set of
-        /// response records by providing the returned marker value in the <code>Marker</code>
-        /// parameter and retrying the request. 
+        /// records. When the results of a <c>DescribeSnapshotCopyGrant</c> request exceed the
+        /// value specified in <c>MaxRecords</c>, Amazon Web Services returns a value in the <c>Marker</c>
+        /// field of the response. You can retrieve the next set of response records by providing
+        /// the returned marker value in the <c>Marker</c> parameter and retrying the request.
+        /// 
         /// </para>
         ///  
         /// <para>
@@ -68,7 +69,7 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property SnapshotCopyGrants. 
         /// <para>
-        /// The list of <code>SnapshotCopyGrant</code> objects.
+        /// The list of <c>SnapshotCopyGrant</c> objects.
         /// </para>
         /// </summary>
         public List<SnapshotCopyGrant> SnapshotCopyGrants
@@ -80,7 +81,7 @@ namespace Amazon.Redshift.Model
         // Check to see if SnapshotCopyGrants property is set
         internal bool IsSetSnapshotCopyGrants()
         {
-            return this._snapshotCopyGrants != null && this._snapshotCopyGrants.Count > 0; 
+            return this._snapshotCopyGrants != null && (this._snapshotCopyGrants.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

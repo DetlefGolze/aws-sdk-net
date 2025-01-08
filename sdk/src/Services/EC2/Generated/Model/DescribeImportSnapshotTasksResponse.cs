@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeImportSnapshotTasksResponse : AmazonWebServiceResponse
     {
-        private List<ImportSnapshotTask> _importSnapshotTasks = new List<ImportSnapshotTask>();
+        private List<ImportSnapshotTask> _importSnapshotTasks = AWSConfigs.InitializeCollections ? new List<ImportSnapshotTask>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,14 +53,14 @@ namespace Amazon.EC2.Model
         // Check to see if ImportSnapshotTasks property is set
         internal bool IsSetImportSnapshotTasks()
         {
-            return this._importSnapshotTasks != null && this._importSnapshotTasks.Count > 0; 
+            return this._importSnapshotTasks != null && (this._importSnapshotTasks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to use to get the next page of results. This value is <code>null</code>
-        /// when there are no more results to return.
+        /// The token to use to get the next page of results. This value is <c>null</c> when there
+        /// are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken

@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.FinSpaceData
 {
     /// <summary>
-    /// Implementation for accessing FinSpaceData
+    /// <para>Implementation for accessing FinSpaceData</para>
     ///
     /// The FinSpace APIs let you take actions inside the FinSpace.
     /// </summary>
@@ -291,6 +292,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/AssociateUserToPermissionGroup">REST API Reference for AssociateUserToPermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual AssociateUserToPermissionGroupResponse AssociateUserToPermissionGroup(AssociateUserToPermissionGroupRequest request)
         {
             var options = new InvokeOptions();
@@ -312,6 +314,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndAssociateUserToPermissionGroup
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/AssociateUserToPermissionGroup">REST API Reference for AssociateUserToPermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginAssociateUserToPermissionGroup(AssociateUserToPermissionGroupRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -329,6 +332,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  AssociateUserToPermissionGroupResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/AssociateUserToPermissionGroup">REST API Reference for AssociateUserToPermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual AssociateUserToPermissionGroupResponse EndAssociateUserToPermissionGroup(IAsyncResult asyncResult)
         {
             return EndInvoke<AssociateUserToPermissionGroupResponse>(asyncResult);
@@ -366,6 +370,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreateChangeset">REST API Reference for CreateChangeset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual CreateChangesetResponse CreateChangeset(CreateChangesetRequest request)
         {
             var options = new InvokeOptions();
@@ -387,6 +392,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateChangeset
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreateChangeset">REST API Reference for CreateChangeset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginCreateChangeset(CreateChangesetRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -404,6 +410,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  CreateChangesetResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreateChangeset">REST API Reference for CreateChangeset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual CreateChangesetResponse EndCreateChangeset(IAsyncResult asyncResult)
         {
             return EndInvoke<CreateChangesetResponse>(asyncResult);
@@ -441,6 +448,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreateDataset">REST API Reference for CreateDataset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual CreateDatasetResponse CreateDataset(CreateDatasetRequest request)
         {
             var options = new InvokeOptions();
@@ -462,6 +470,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateDataset
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreateDataset">REST API Reference for CreateDataset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginCreateDataset(CreateDatasetRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -479,6 +488,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  CreateDatasetResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreateDataset">REST API Reference for CreateDataset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual CreateDatasetResponse EndCreateDataset(IAsyncResult asyncResult)
         {
             return EndInvoke<CreateDatasetResponse>(asyncResult);
@@ -513,6 +523,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreateDataView">REST API Reference for CreateDataView Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual CreateDataViewResponse CreateDataView(CreateDataViewRequest request)
         {
             var options = new InvokeOptions();
@@ -534,6 +545,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateDataView
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreateDataView">REST API Reference for CreateDataView Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginCreateDataView(CreateDataViewRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -551,6 +563,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  CreateDataViewResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreateDataView">REST API Reference for CreateDataView Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual CreateDataViewResponse EndCreateDataView(IAsyncResult asyncResult)
         {
             return EndInvoke<CreateDataViewResponse>(asyncResult);
@@ -585,6 +598,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreatePermissionGroup">REST API Reference for CreatePermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual CreatePermissionGroupResponse CreatePermissionGroup(CreatePermissionGroupRequest request)
         {
             var options = new InvokeOptions();
@@ -606,6 +620,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreatePermissionGroup
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreatePermissionGroup">REST API Reference for CreatePermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginCreatePermissionGroup(CreatePermissionGroupRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -623,6 +638,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  CreatePermissionGroupResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreatePermissionGroup">REST API Reference for CreatePermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual CreatePermissionGroupResponse EndCreatePermissionGroup(IAsyncResult asyncResult)
         {
             return EndInvoke<CreatePermissionGroupResponse>(asyncResult);
@@ -657,6 +673,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreateUser">REST API Reference for CreateUser Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual CreateUserResponse CreateUser(CreateUserRequest request)
         {
             var options = new InvokeOptions();
@@ -678,6 +695,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateUser
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreateUser">REST API Reference for CreateUser Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginCreateUser(CreateUserRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -695,6 +713,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  CreateUserResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreateUser">REST API Reference for CreateUser Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual CreateUserResponse EndCreateUser(IAsyncResult asyncResult)
         {
             return EndInvoke<CreateUserResponse>(asyncResult);
@@ -732,6 +751,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/DeleteDataset">REST API Reference for DeleteDataset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual DeleteDatasetResponse DeleteDataset(DeleteDatasetRequest request)
         {
             var options = new InvokeOptions();
@@ -753,6 +773,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteDataset
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/DeleteDataset">REST API Reference for DeleteDataset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginDeleteDataset(DeleteDatasetRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -770,6 +791,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  DeleteDatasetResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/DeleteDataset">REST API Reference for DeleteDataset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual DeleteDatasetResponse EndDeleteDataset(IAsyncResult asyncResult)
         {
             return EndInvoke<DeleteDatasetResponse>(asyncResult);
@@ -807,6 +829,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/DeletePermissionGroup">REST API Reference for DeletePermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual DeletePermissionGroupResponse DeletePermissionGroup(DeletePermissionGroupRequest request)
         {
             var options = new InvokeOptions();
@@ -828,6 +851,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeletePermissionGroup
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/DeletePermissionGroup">REST API Reference for DeletePermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginDeletePermissionGroup(DeletePermissionGroupRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -845,6 +869,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  DeletePermissionGroupResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/DeletePermissionGroup">REST API Reference for DeletePermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual DeletePermissionGroupResponse EndDeletePermissionGroup(IAsyncResult asyncResult)
         {
             return EndInvoke<DeletePermissionGroupResponse>(asyncResult);
@@ -879,6 +904,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/DisableUser">REST API Reference for DisableUser Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual DisableUserResponse DisableUser(DisableUserRequest request)
         {
             var options = new InvokeOptions();
@@ -900,6 +926,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDisableUser
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/DisableUser">REST API Reference for DisableUser Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginDisableUser(DisableUserRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -917,6 +944,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  DisableUserResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/DisableUser">REST API Reference for DisableUser Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual DisableUserResponse EndDisableUser(IAsyncResult asyncResult)
         {
             return EndInvoke<DisableUserResponse>(asyncResult);
@@ -951,6 +979,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/DisassociateUserFromPermissionGroup">REST API Reference for DisassociateUserFromPermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual DisassociateUserFromPermissionGroupResponse DisassociateUserFromPermissionGroup(DisassociateUserFromPermissionGroupRequest request)
         {
             var options = new InvokeOptions();
@@ -972,6 +1001,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDisassociateUserFromPermissionGroup
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/DisassociateUserFromPermissionGroup">REST API Reference for DisassociateUserFromPermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginDisassociateUserFromPermissionGroup(DisassociateUserFromPermissionGroupRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -989,6 +1019,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  DisassociateUserFromPermissionGroupResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/DisassociateUserFromPermissionGroup">REST API Reference for DisassociateUserFromPermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual DisassociateUserFromPermissionGroupResponse EndDisassociateUserFromPermissionGroup(IAsyncResult asyncResult)
         {
             return EndInvoke<DisassociateUserFromPermissionGroupResponse>(asyncResult);
@@ -1026,6 +1057,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/EnableUser">REST API Reference for EnableUser Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual EnableUserResponse EnableUser(EnableUserRequest request)
         {
             var options = new InvokeOptions();
@@ -1047,6 +1079,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndEnableUser
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/EnableUser">REST API Reference for EnableUser Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginEnableUser(EnableUserRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -1064,6 +1097,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  EnableUserResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/EnableUser">REST API Reference for EnableUser Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual EnableUserResponse EndEnableUser(IAsyncResult asyncResult)
         {
             return EndInvoke<EnableUserResponse>(asyncResult);
@@ -1098,6 +1132,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetChangeset">REST API Reference for GetChangeset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual GetChangesetResponse GetChangeset(GetChangesetRequest request)
         {
             var options = new InvokeOptions();
@@ -1119,6 +1154,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetChangeset
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetChangeset">REST API Reference for GetChangeset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginGetChangeset(GetChangesetRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -1136,6 +1172,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  GetChangesetResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetChangeset">REST API Reference for GetChangeset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual GetChangesetResponse EndGetChangeset(IAsyncResult asyncResult)
         {
             return EndInvoke<GetChangesetResponse>(asyncResult);
@@ -1170,6 +1207,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetDataset">REST API Reference for GetDataset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual GetDatasetResponse GetDataset(GetDatasetRequest request)
         {
             var options = new InvokeOptions();
@@ -1191,6 +1229,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetDataset
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetDataset">REST API Reference for GetDataset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginGetDataset(GetDatasetRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -1208,6 +1247,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  GetDatasetResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetDataset">REST API Reference for GetDataset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual GetDatasetResponse EndGetDataset(IAsyncResult asyncResult)
         {
             return EndInvoke<GetDatasetResponse>(asyncResult);
@@ -1239,6 +1279,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetDataView">REST API Reference for GetDataView Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual GetDataViewResponse GetDataView(GetDataViewRequest request)
         {
             var options = new InvokeOptions();
@@ -1260,6 +1301,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetDataView
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetDataView">REST API Reference for GetDataView Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginGetDataView(GetDataViewRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -1277,6 +1319,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  GetDataViewResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetDataView">REST API Reference for GetDataView Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual GetDataViewResponse EndGetDataView(IAsyncResult asyncResult)
         {
             return EndInvoke<GetDataViewResponse>(asyncResult);
@@ -1297,7 +1340,7 @@ namespace Amazon.FinSpaceData
         ///  </li> <li> 
         /// <para>
         /// You must be a member of a FinSpace user group, where the dataset that you want to
-        /// access has <code>Read Dataset Data</code> permissions.
+        /// access has <c>Read Dataset Data</c> permissions.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1320,6 +1363,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetExternalDataViewAccessDetails">REST API Reference for GetExternalDataViewAccessDetails Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual GetExternalDataViewAccessDetailsResponse GetExternalDataViewAccessDetails(GetExternalDataViewAccessDetailsRequest request)
         {
             var options = new InvokeOptions();
@@ -1341,6 +1385,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetExternalDataViewAccessDetails
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetExternalDataViewAccessDetails">REST API Reference for GetExternalDataViewAccessDetails Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginGetExternalDataViewAccessDetails(GetExternalDataViewAccessDetailsRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -1358,6 +1403,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  GetExternalDataViewAccessDetailsResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetExternalDataViewAccessDetails">REST API Reference for GetExternalDataViewAccessDetails Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual GetExternalDataViewAccessDetailsResponse EndGetExternalDataViewAccessDetails(IAsyncResult asyncResult)
         {
             return EndInvoke<GetExternalDataViewAccessDetailsResponse>(asyncResult);
@@ -1389,6 +1435,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetPermissionGroup">REST API Reference for GetPermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual GetPermissionGroupResponse GetPermissionGroup(GetPermissionGroupRequest request)
         {
             var options = new InvokeOptions();
@@ -1410,6 +1457,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetPermissionGroup
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetPermissionGroup">REST API Reference for GetPermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginGetPermissionGroup(GetPermissionGroupRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -1427,6 +1475,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  GetPermissionGroupResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetPermissionGroup">REST API Reference for GetPermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual GetPermissionGroupResponse EndGetPermissionGroup(IAsyncResult asyncResult)
         {
             return EndInvoke<GetPermissionGroupResponse>(asyncResult);
@@ -1457,6 +1506,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetProgrammaticAccessCredentials">REST API Reference for GetProgrammaticAccessCredentials Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual GetProgrammaticAccessCredentialsResponse GetProgrammaticAccessCredentials(GetProgrammaticAccessCredentialsRequest request)
         {
             var options = new InvokeOptions();
@@ -1478,6 +1528,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetProgrammaticAccessCredentials
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetProgrammaticAccessCredentials">REST API Reference for GetProgrammaticAccessCredentials Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginGetProgrammaticAccessCredentials(GetProgrammaticAccessCredentialsRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -1495,6 +1546,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  GetProgrammaticAccessCredentialsResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetProgrammaticAccessCredentials">REST API Reference for GetProgrammaticAccessCredentials Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual GetProgrammaticAccessCredentialsResponse EndGetProgrammaticAccessCredentials(IAsyncResult asyncResult)
         {
             return EndInvoke<GetProgrammaticAccessCredentialsResponse>(asyncResult);
@@ -1526,6 +1578,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetUser">REST API Reference for GetUser Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual GetUserResponse GetUser(GetUserRequest request)
         {
             var options = new InvokeOptions();
@@ -1547,6 +1600,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetUser
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetUser">REST API Reference for GetUser Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginGetUser(GetUserRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -1564,6 +1618,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  GetUserResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetUser">REST API Reference for GetUser Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual GetUserResponse EndGetUser(IAsyncResult asyncResult)
         {
             return EndInvoke<GetUserResponse>(asyncResult);
@@ -1593,6 +1648,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetWorkingLocation">REST API Reference for GetWorkingLocation Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual GetWorkingLocationResponse GetWorkingLocation(GetWorkingLocationRequest request)
         {
             var options = new InvokeOptions();
@@ -1614,6 +1670,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetWorkingLocation
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetWorkingLocation">REST API Reference for GetWorkingLocation Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginGetWorkingLocation(GetWorkingLocationRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -1631,6 +1688,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  GetWorkingLocationResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetWorkingLocation">REST API Reference for GetWorkingLocation Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual GetWorkingLocationResponse EndGetWorkingLocation(IAsyncResult asyncResult)
         {
             return EndInvoke<GetWorkingLocationResponse>(asyncResult);
@@ -1665,6 +1723,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListChangesets">REST API Reference for ListChangesets Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual ListChangesetsResponse ListChangesets(ListChangesetsRequest request)
         {
             var options = new InvokeOptions();
@@ -1686,6 +1745,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListChangesets
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListChangesets">REST API Reference for ListChangesets Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginListChangesets(ListChangesetsRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -1703,6 +1763,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  ListChangesetsResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListChangesets">REST API Reference for ListChangesets Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual ListChangesetsResponse EndListChangesets(IAsyncResult asyncResult)
         {
             return EndInvoke<ListChangesetsResponse>(asyncResult);
@@ -1734,6 +1795,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListDatasets">REST API Reference for ListDatasets Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual ListDatasetsResponse ListDatasets(ListDatasetsRequest request)
         {
             var options = new InvokeOptions();
@@ -1755,6 +1817,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListDatasets
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListDatasets">REST API Reference for ListDatasets Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginListDatasets(ListDatasetsRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -1772,6 +1835,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  ListDatasetsResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListDatasets">REST API Reference for ListDatasets Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual ListDatasetsResponse EndListDatasets(IAsyncResult asyncResult)
         {
             return EndInvoke<ListDatasetsResponse>(asyncResult);
@@ -1803,6 +1867,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListDataViews">REST API Reference for ListDataViews Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual ListDataViewsResponse ListDataViews(ListDataViewsRequest request)
         {
             var options = new InvokeOptions();
@@ -1824,6 +1889,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListDataViews
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListDataViews">REST API Reference for ListDataViews Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginListDataViews(ListDataViewsRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -1841,6 +1907,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  ListDataViewsResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListDataViews">REST API Reference for ListDataViews Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual ListDataViewsResponse EndListDataViews(IAsyncResult asyncResult)
         {
             return EndInvoke<ListDataViewsResponse>(asyncResult);
@@ -1869,6 +1936,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListPermissionGroups">REST API Reference for ListPermissionGroups Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual ListPermissionGroupsResponse ListPermissionGroups(ListPermissionGroupsRequest request)
         {
             var options = new InvokeOptions();
@@ -1890,6 +1958,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListPermissionGroups
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListPermissionGroups">REST API Reference for ListPermissionGroups Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginListPermissionGroups(ListPermissionGroupsRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -1907,6 +1976,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  ListPermissionGroupsResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListPermissionGroups">REST API Reference for ListPermissionGroups Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual ListPermissionGroupsResponse EndListPermissionGroups(IAsyncResult asyncResult)
         {
             return EndInvoke<ListPermissionGroupsResponse>(asyncResult);
@@ -1938,6 +2008,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListPermissionGroupsByUser">REST API Reference for ListPermissionGroupsByUser Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual ListPermissionGroupsByUserResponse ListPermissionGroupsByUser(ListPermissionGroupsByUserRequest request)
         {
             var options = new InvokeOptions();
@@ -1959,6 +2030,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListPermissionGroupsByUser
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListPermissionGroupsByUser">REST API Reference for ListPermissionGroupsByUser Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginListPermissionGroupsByUser(ListPermissionGroupsByUserRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -1976,6 +2048,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  ListPermissionGroupsByUserResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListPermissionGroupsByUser">REST API Reference for ListPermissionGroupsByUser Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual ListPermissionGroupsByUserResponse EndListPermissionGroupsByUser(IAsyncResult asyncResult)
         {
             return EndInvoke<ListPermissionGroupsByUserResponse>(asyncResult);
@@ -2004,6 +2077,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListUsers">REST API Reference for ListUsers Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual ListUsersResponse ListUsers(ListUsersRequest request)
         {
             var options = new InvokeOptions();
@@ -2025,6 +2099,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListUsers
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListUsers">REST API Reference for ListUsers Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginListUsers(ListUsersRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -2042,6 +2117,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  ListUsersResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListUsers">REST API Reference for ListUsers Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual ListUsersResponse EndListUsers(IAsyncResult asyncResult)
         {
             return EndInvoke<ListUsersResponse>(asyncResult);
@@ -2073,6 +2149,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListUsersByPermissionGroup">REST API Reference for ListUsersByPermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual ListUsersByPermissionGroupResponse ListUsersByPermissionGroup(ListUsersByPermissionGroupRequest request)
         {
             var options = new InvokeOptions();
@@ -2094,6 +2171,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListUsersByPermissionGroup
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListUsersByPermissionGroup">REST API Reference for ListUsersByPermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginListUsersByPermissionGroup(ListUsersByPermissionGroupRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -2111,6 +2189,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  ListUsersByPermissionGroupResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListUsersByPermissionGroup">REST API Reference for ListUsersByPermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual ListUsersByPermissionGroupResponse EndListUsersByPermissionGroup(IAsyncResult asyncResult)
         {
             return EndInvoke<ListUsersByPermissionGroupResponse>(asyncResult);
@@ -2147,6 +2226,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ResetUserPassword">REST API Reference for ResetUserPassword Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual ResetUserPasswordResponse ResetUserPassword(ResetUserPasswordRequest request)
         {
             var options = new InvokeOptions();
@@ -2168,6 +2248,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndResetUserPassword
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ResetUserPassword">REST API Reference for ResetUserPassword Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginResetUserPassword(ResetUserPasswordRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -2185,6 +2266,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  ResetUserPasswordResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ResetUserPassword">REST API Reference for ResetUserPassword Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual ResetUserPasswordResponse EndResetUserPassword(IAsyncResult asyncResult)
         {
             return EndInvoke<ResetUserPasswordResponse>(asyncResult);
@@ -2219,6 +2301,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/UpdateChangeset">REST API Reference for UpdateChangeset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual UpdateChangesetResponse UpdateChangeset(UpdateChangesetRequest request)
         {
             var options = new InvokeOptions();
@@ -2240,6 +2323,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateChangeset
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/UpdateChangeset">REST API Reference for UpdateChangeset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginUpdateChangeset(UpdateChangesetRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -2257,6 +2341,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  UpdateChangesetResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/UpdateChangeset">REST API Reference for UpdateChangeset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual UpdateChangesetResponse EndUpdateChangeset(IAsyncResult asyncResult)
         {
             return EndInvoke<UpdateChangesetResponse>(asyncResult);
@@ -2291,6 +2376,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/UpdateDataset">REST API Reference for UpdateDataset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual UpdateDatasetResponse UpdateDataset(UpdateDatasetRequest request)
         {
             var options = new InvokeOptions();
@@ -2312,6 +2398,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateDataset
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/UpdateDataset">REST API Reference for UpdateDataset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginUpdateDataset(UpdateDatasetRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -2329,6 +2416,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  UpdateDatasetResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/UpdateDataset">REST API Reference for UpdateDataset Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual UpdateDatasetResponse EndUpdateDataset(IAsyncResult asyncResult)
         {
             return EndInvoke<UpdateDatasetResponse>(asyncResult);
@@ -2339,7 +2427,7 @@ namespace Amazon.FinSpaceData
         #region  UpdatePermissionGroup
 
         /// <summary>
-        /// Modifies the details of a permission group. You cannot modify a <code>permissionGroupID</code>.
+        /// Modifies the details of a permission group. You cannot modify a <c>permissionGroupID</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdatePermissionGroup service method.</param>
         /// 
@@ -2363,6 +2451,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/UpdatePermissionGroup">REST API Reference for UpdatePermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual UpdatePermissionGroupResponse UpdatePermissionGroup(UpdatePermissionGroupRequest request)
         {
             var options = new InvokeOptions();
@@ -2384,6 +2473,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdatePermissionGroup
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/UpdatePermissionGroup">REST API Reference for UpdatePermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginUpdatePermissionGroup(UpdatePermissionGroupRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -2401,6 +2491,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  UpdatePermissionGroupResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/UpdatePermissionGroup">REST API Reference for UpdatePermissionGroup Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual UpdatePermissionGroupResponse EndUpdatePermissionGroup(IAsyncResult asyncResult)
         {
             return EndInvoke<UpdatePermissionGroupResponse>(asyncResult);
@@ -2411,8 +2502,8 @@ namespace Amazon.FinSpaceData
         #region  UpdateUser
 
         /// <summary>
-        /// Modifies the details of the specified user. You cannot update the <code>userId</code>
-        /// for a user.
+        /// Modifies the details of the specified user. You cannot update the <c>userId</c> for
+        /// a user.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateUser service method.</param>
         /// 
@@ -2436,6 +2527,7 @@ namespace Amazon.FinSpaceData
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/UpdateUser">REST API Reference for UpdateUser Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual UpdateUserResponse UpdateUser(UpdateUserRequest request)
         {
             var options = new InvokeOptions();
@@ -2457,6 +2549,7 @@ namespace Amazon.FinSpaceData
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateUser
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/UpdateUser">REST API Reference for UpdateUser Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual IAsyncResult BeginUpdateUser(UpdateUserRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -2474,6 +2567,7 @@ namespace Amazon.FinSpaceData
         /// 
         /// <returns>Returns a  UpdateUserResult from FinSpaceData.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/UpdateUser">REST API Reference for UpdateUser Operation</seealso>
+        [Obsolete("This method will be discontinued.")]
         public virtual UpdateUserResponse EndUpdateUser(IAsyncResult asyncResult)
         {
             return EndInvoke<UpdateUserResponse>(asyncResult);
@@ -2490,11 +2584,11 @@ namespace Amazon.FinSpaceData
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

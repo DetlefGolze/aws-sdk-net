@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.LexModelsV2.Model
     {
         private ImportFilterName _name;
         private ImportFilterOperator _operator;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Name. 
@@ -60,10 +61,10 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property Operator. 
         /// <para>
-        /// The operator to use for the filter. Specify EQ when the <code>ListImports</code> operation
+        /// The operator to use for the filter. Specify EQ when the <c>ListImports</c> operation
         /// should return only resource types that equal the specified value. Specify CO when
-        /// the <code>ListImports</code> operation should return resource types that contain the
-        /// specified value.
+        /// the <c>ListImports</c> operation should return resource types that contain the specified
+        /// value.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -82,8 +83,8 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property Values. 
         /// <para>
-        /// The values to use to filter the response. The values must be <code>Bot</code>, <code>BotLocale</code>,
-        /// or <code>CustomVocabulary</code>.
+        /// The values to use to filter the response. The values must be <c>Bot</c>, <c>BotLocale</c>,
+        /// or <c>CustomVocabulary</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1)]
@@ -96,7 +97,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property DeviceName. 
         /// <para>
-        /// The device name (for example, <code>/dev/sdh</code> or <code>xvdh</code>).
+        /// The device name (for example, <c>/dev/sdh</c> or <c>xvdh</c>).
         /// </para>
         /// </summary>
         public string DeviceName

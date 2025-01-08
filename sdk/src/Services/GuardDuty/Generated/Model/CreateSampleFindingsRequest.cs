@@ -26,23 +26,30 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateSampleFindings operation.
     /// Generates sample findings of types specified by the list of finding types. If 'NULL'
-    /// is specified for <code>findingTypes</code>, the API generates sample findings of all
-    /// supported finding types.
+    /// is specified for <c>findingTypes</c>, the API generates sample findings of all supported
+    /// finding types.
     /// </summary>
     public partial class CreateSampleFindingsRequest : AmazonGuardDutyRequest
     {
         private string _detectorId;
-        private List<string> _findingTypes = new List<string>();
+        private List<string> _findingTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DetectorId. 
         /// <para>
-        /// The ID of the detector to create sample findings for.
+        /// The ID of the detector for which you need to create sample findings.
+        /// </para>
+        ///  
+        /// <para>
+        /// To find the <c>detectorId</c> in the current Region, see the Settings page in the
+        /// GuardDuty console, or run the <a href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html">ListDetectors</a>
+        /// API.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=300)]
@@ -74,7 +81,7 @@ namespace Amazon.GuardDuty.Model
         // Check to see if FindingTypes property is set
         internal bool IsSetFindingTypes()
         {
-            return this._findingTypes != null && this._findingTypes.Count > 0; 
+            return this._findingTypes != null && (this._findingTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

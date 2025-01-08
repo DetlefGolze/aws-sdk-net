@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
-    /// Details about a reactive anomaly. This object is returned by <code>DescribeAnomaly.</code>
+    /// Details about a reactive anomaly. This object is returned by <c>DescribeAnomaly.</c>
     /// </summary>
     public partial class ReactiveAnomalySummary
     {
         private AnomalyReportedTimeRange _anomalyReportedTimeRange;
-        private List<AnomalyResource> _anomalyResources = new List<AnomalyResource>();
+        private List<AnomalyResource> _anomalyResources = AWSConfigs.InitializeCollections ? new List<AnomalyResource>() : null;
         private AnomalyTimeRange _anomalyTimeRange;
         private string _associatedInsightId;
         private string _causalAnomalyId;
@@ -50,8 +51,8 @@ namespace Amazon.DevOpsGuru.Model
         /// <summary>
         /// Gets and sets the property AnomalyReportedTimeRange. 
         /// <para>
-        ///  An <code>AnomalyReportedTimeRange</code> object that specifies the time range between
-        /// when the anomaly is opened and the time when it is closed. 
+        ///  An <c>AnomalyReportedTimeRange</c> object that specifies the time range between when
+        /// the anomaly is opened and the time when it is closed. 
         /// </para>
         /// </summary>
         public AnomalyReportedTimeRange AnomalyReportedTimeRange
@@ -82,7 +83,7 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if AnomalyResources property is set
         internal bool IsSetAnomalyResources()
         {
-            return this._anomalyResources != null && this._anomalyResources.Count > 0; 
+            return this._anomalyResources != null && (this._anomalyResources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -274,11 +275,11 @@ namespace Amazon.DevOpsGuru.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CAUSAL</code> - the anomaly can cause a new insight.
+        ///  <c>CAUSAL</c> - the anomaly can cause a new insight.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CONTEXTUAL</code> - the anomaly contains additional information about an insight
+        ///  <c>CONTEXTUAL</c> - the anomaly contains additional information about an insight
         /// or its causal anomaly.
         /// </para>
         ///  </li> </ul>

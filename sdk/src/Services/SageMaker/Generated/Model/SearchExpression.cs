@@ -26,46 +26,47 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// A multi-expression that searches for the specified resource or resources in a search.
     /// All resource objects that satisfy the expression's condition are included in the search
     /// results. You must specify at least one subexpression, filter, or nested filter. A
-    /// <code>SearchExpression</code> can contain up to twenty elements.
+    /// <c>SearchExpression</c> can contain up to twenty elements.
     /// 
     ///  
     /// <para>
-    /// A <code>SearchExpression</code> contains the following components:
+    /// A <c>SearchExpression</c> contains the following components:
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// A list of <code>Filter</code> objects. Each filter defines a simple Boolean expression
-    /// comprised of a resource property name, Boolean operator, and value.
+    /// A list of <c>Filter</c> objects. Each filter defines a simple Boolean expression comprised
+    /// of a resource property name, Boolean operator, and value.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// A list of <code>NestedFilter</code> objects. Each nested filter defines a list of
-    /// Boolean expressions using a list of resource properties. A nested filter is satisfied
-    /// if a single object in the list satisfies all Boolean expressions.
+    /// A list of <c>NestedFilter</c> objects. Each nested filter defines a list of Boolean
+    /// expressions using a list of resource properties. A nested filter is satisfied if a
+    /// single object in the list satisfies all Boolean expressions.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// A list of <code>SearchExpression</code> objects. A search expression object can be
-    /// nested in a list of search expression objects.
+    /// A list of <c>SearchExpression</c> objects. A search expression object can be nested
+    /// in a list of search expression objects.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// A Boolean operator: <code>And</code> or <code>Or</code>.
+    /// A Boolean operator: <c>And</c> or <c>Or</c>.
     /// </para>
     ///  </li> </ul>
     /// </summary>
     public partial class SearchExpression
     {
-        private List<Filter> _filters = new List<Filter>();
-        private List<NestedFilters> _nestedFilters = new List<NestedFilters>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
+        private List<NestedFilters> _nestedFilters = AWSConfigs.InitializeCollections ? new List<NestedFilters>() : null;
         private BooleanOperator _operator;
-        private List<SearchExpression> _subExpressions = new List<SearchExpression>();
+        private List<SearchExpression> _subExpressions = AWSConfigs.InitializeCollections ? new List<SearchExpression>() : null;
 
         /// <summary>
         /// Gets and sets the property Filters. 
@@ -83,7 +84,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -102,7 +103,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if NestedFilters property is set
         internal bool IsSetNestedFilters()
         {
-            return this._nestedFilters != null && this._nestedFilters.Count > 0; 
+            return this._nestedFilters != null && (this._nestedFilters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -110,9 +111,8 @@ namespace Amazon.SageMaker.Model
         /// <para>
         /// A Boolean operator used to evaluate the search expression. If you want every conditional
         /// statement in all lists to be satisfied for the entire search expression to be true,
-        /// specify <code>And</code>. If only a single conditional statement needs to be true
-        /// for the entire search expression to be true, specify <code>Or</code>. The default
-        /// value is <code>And</code>.
+        /// specify <c>And</c>. If only a single conditional statement needs to be true for the
+        /// entire search expression to be true, specify <c>Or</c>. The default value is <c>And</c>.
         /// </para>
         /// </summary>
         public BooleanOperator Operator
@@ -143,7 +143,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if SubExpressions property is set
         internal bool IsSetSubExpressions()
         {
-            return this._subExpressions != null && this._subExpressions.Count > 0; 
+            return this._subExpressions != null && (this._subExpressions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

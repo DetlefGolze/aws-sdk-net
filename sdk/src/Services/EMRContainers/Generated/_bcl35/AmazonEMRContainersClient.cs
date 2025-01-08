@@ -30,37 +30,38 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.EMRContainers
 {
     /// <summary>
-    /// Implementation for accessing EMRContainers
+    /// <para>Implementation for accessing EMRContainers</para>
     ///
     /// Amazon EMR on EKS provides a deployment option for Amazon EMR that allows you to run
     /// open-source big data frameworks on Amazon Elastic Kubernetes Service (Amazon EKS).
     /// With this deployment option, you can focus on running analytics workloads while Amazon
     /// EMR on EKS builds, configures, and manages containers for open-source applications.
     /// For more information about Amazon EMR on EKS concepts and tasks, see <a href="https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/emr-eks.html">What
-    /// is shared id="EMR-EKS"/&gt;</a>.
+    /// is Amazon EMR on EKS</a>.
     /// 
     ///  
     /// <para>
-    ///  <i>Amazon EMR containers</i> is the API name for Amazon EMR on EKS. The <code>emr-containers</code>
+    ///  <i>Amazon EMR containers</i> is the API name for Amazon EMR on EKS. The <c>emr-containers</c>
     /// prefix is used in the following scenarios: 
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// It is the prefix in the CLI commands for Amazon EMR on EKS. For example, <code>aws
-    /// emr-containers start-job-run</code>.
+    /// It is the prefix in the CLI commands for Amazon EMR on EKS. For example, <c>aws emr-containers
+    /// start-job-run</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// It is the prefix before IAM policy actions for Amazon EMR on EKS. For example, <code>"Action":
-    /// [ "emr-containers:StartJobRun"]</code>. For more information, see <a href="https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/security_iam_service-with-iam.html#security_iam_service-with-iam-id-based-policies-actions">Policy
+    /// It is the prefix before IAM policy actions for Amazon EMR on EKS. For example, <c>"Action":
+    /// [ "emr-containers:StartJobRun"]</c>. For more information, see <a href="https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/security_iam_service-with-iam.html#security_iam_service-with-iam-id-based-policies-actions">Policy
     /// actions for Amazon EMR on EKS</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// It is the prefix used in Amazon EMR on EKS service endpoints. For example, <code>emr-containers.us-east-2.amazonaws.com</code>.
+    /// It is the prefix used in Amazon EMR on EKS service endpoints. For example, <c>emr-containers.us-east-2.amazonaws.com</c>.
     /// For more information, see <a href="https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/service-quotas.html#service-endpoints">Amazon
     /// EMR on EKSService Endpoints</a>.
     /// </para>
@@ -484,6 +485,69 @@ namespace Amazon.EMRContainers
 
         #endregion
         
+        #region  CreateSecurityConfiguration
+
+        /// <summary>
+        /// Creates a security configuration. Security configurations in Amazon EMR on EKS are
+        /// templates for different security setups. You can use security configurations to configure
+        /// the Lake Formation integration setup. You can also create a security configuration
+        /// to re-use a security setup each time you create a virtual cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateSecurityConfiguration service method.</param>
+        /// 
+        /// <returns>The response from the CreateSecurityConfiguration service method, as returned by EMRContainers.</returns>
+        /// <exception cref="Amazon.EMRContainers.Model.InternalServerException">
+        /// This is an internal server exception.
+        /// </exception>
+        /// <exception cref="Amazon.EMRContainers.Model.ValidationException">
+        /// There are invalid parameters in the client request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/CreateSecurityConfiguration">REST API Reference for CreateSecurityConfiguration Operation</seealso>
+        public virtual CreateSecurityConfigurationResponse CreateSecurityConfiguration(CreateSecurityConfigurationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateSecurityConfigurationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateSecurityConfigurationResponseUnmarshaller.Instance;
+
+            return Invoke<CreateSecurityConfigurationResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreateSecurityConfiguration operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreateSecurityConfiguration operation on AmazonEMRContainersClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateSecurityConfiguration
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/CreateSecurityConfiguration">REST API Reference for CreateSecurityConfiguration Operation</seealso>
+        public virtual IAsyncResult BeginCreateSecurityConfiguration(CreateSecurityConfigurationRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateSecurityConfigurationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateSecurityConfigurationResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreateSecurityConfiguration operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreateSecurityConfiguration.</param>
+        /// 
+        /// <returns>Returns a  CreateSecurityConfigurationResult from EMRContainers.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/CreateSecurityConfiguration">REST API Reference for CreateSecurityConfiguration Operation</seealso>
+        public virtual CreateSecurityConfigurationResponse EndCreateSecurityConfiguration(IAsyncResult asyncResult)
+        {
+            return EndInvoke<CreateSecurityConfigurationResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region  CreateVirtualCluster
 
         /// <summary>
@@ -496,6 +560,9 @@ namespace Amazon.EMRContainers
         /// <param name="request">Container for the necessary parameters to execute the CreateVirtualCluster service method.</param>
         /// 
         /// <returns>The response from the CreateVirtualCluster service method, as returned by EMRContainers.</returns>
+        /// <exception cref="Amazon.EMRContainers.Model.EKSRequestThrottledException">
+        /// The request exceeded the Amazon EKS API operation limits.
+        /// </exception>
         /// <exception cref="Amazon.EMRContainers.Model.InternalServerException">
         /// This is an internal server exception.
         /// </exception>
@@ -935,6 +1002,73 @@ namespace Amazon.EMRContainers
 
         #endregion
         
+        #region  DescribeSecurityConfiguration
+
+        /// <summary>
+        /// Displays detailed information about a specified security configuration. Security configurations
+        /// in Amazon EMR on EKS are templates for different security setups. You can use security
+        /// configurations to configure the Lake Formation integration setup. You can also create
+        /// a security configuration to re-use a security setup each time you create a virtual
+        /// cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeSecurityConfiguration service method.</param>
+        /// 
+        /// <returns>The response from the DescribeSecurityConfiguration service method, as returned by EMRContainers.</returns>
+        /// <exception cref="Amazon.EMRContainers.Model.InternalServerException">
+        /// This is an internal server exception.
+        /// </exception>
+        /// <exception cref="Amazon.EMRContainers.Model.ResourceNotFoundException">
+        /// The specified resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.EMRContainers.Model.ValidationException">
+        /// There are invalid parameters in the client request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/DescribeSecurityConfiguration">REST API Reference for DescribeSecurityConfiguration Operation</seealso>
+        public virtual DescribeSecurityConfigurationResponse DescribeSecurityConfiguration(DescribeSecurityConfigurationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeSecurityConfigurationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeSecurityConfigurationResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeSecurityConfigurationResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DescribeSecurityConfiguration operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DescribeSecurityConfiguration operation on AmazonEMRContainersClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDescribeSecurityConfiguration
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/DescribeSecurityConfiguration">REST API Reference for DescribeSecurityConfiguration Operation</seealso>
+        public virtual IAsyncResult BeginDescribeSecurityConfiguration(DescribeSecurityConfigurationRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeSecurityConfigurationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeSecurityConfigurationResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DescribeSecurityConfiguration operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDescribeSecurityConfiguration.</param>
+        /// 
+        /// <returns>Returns a  DescribeSecurityConfigurationResult from EMRContainers.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/DescribeSecurityConfiguration">REST API Reference for DescribeSecurityConfiguration Operation</seealso>
+        public virtual DescribeSecurityConfigurationResponse EndDescribeSecurityConfiguration(IAsyncResult asyncResult)
+        {
+            return EndInvoke<DescribeSecurityConfigurationResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region  DescribeVirtualCluster
 
         /// <summary>
@@ -1250,6 +1384,70 @@ namespace Amazon.EMRContainers
         public virtual ListManagedEndpointsResponse EndListManagedEndpoints(IAsyncResult asyncResult)
         {
             return EndInvoke<ListManagedEndpointsResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  ListSecurityConfigurations
+
+        /// <summary>
+        /// Lists security configurations based on a set of parameters. Security configurations
+        /// in Amazon EMR on EKS are templates for different security setups. You can use security
+        /// configurations to configure the Lake Formation integration setup. You can also create
+        /// a security configuration to re-use a security setup each time you create a virtual
+        /// cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListSecurityConfigurations service method.</param>
+        /// 
+        /// <returns>The response from the ListSecurityConfigurations service method, as returned by EMRContainers.</returns>
+        /// <exception cref="Amazon.EMRContainers.Model.InternalServerException">
+        /// This is an internal server exception.
+        /// </exception>
+        /// <exception cref="Amazon.EMRContainers.Model.ValidationException">
+        /// There are invalid parameters in the client request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/ListSecurityConfigurations">REST API Reference for ListSecurityConfigurations Operation</seealso>
+        public virtual ListSecurityConfigurationsResponse ListSecurityConfigurations(ListSecurityConfigurationsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListSecurityConfigurationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListSecurityConfigurationsResponseUnmarshaller.Instance;
+
+            return Invoke<ListSecurityConfigurationsResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListSecurityConfigurations operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListSecurityConfigurations operation on AmazonEMRContainersClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListSecurityConfigurations
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/ListSecurityConfigurations">REST API Reference for ListSecurityConfigurations Operation</seealso>
+        public virtual IAsyncResult BeginListSecurityConfigurations(ListSecurityConfigurationsRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListSecurityConfigurationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListSecurityConfigurationsResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListSecurityConfigurations operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListSecurityConfigurations.</param>
+        /// 
+        /// <returns>Returns a  ListSecurityConfigurationsResult from EMRContainers.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/ListSecurityConfigurations">REST API Reference for ListSecurityConfigurations Operation</seealso>
+        public virtual ListSecurityConfigurationsResponse EndListSecurityConfigurations(IAsyncResult asyncResult)
+        {
+            return EndInvoke<ListSecurityConfigurationsResponse>(asyncResult);
         }
 
         #endregion
@@ -1588,11 +1786,11 @@ namespace Amazon.EMRContainers
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

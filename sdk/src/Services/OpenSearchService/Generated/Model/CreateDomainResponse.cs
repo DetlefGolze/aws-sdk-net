@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
-    /// The result of a <code>CreateDomain</code> operation. Contains the status of the newly
-    /// created domain.
+    /// The result of a <c>CreateDomain</c> operation. Contains the status of the newly created
+    /// domain.
     /// </summary>
     public partial class CreateDomainResponse : AmazonWebServiceResponse
     {

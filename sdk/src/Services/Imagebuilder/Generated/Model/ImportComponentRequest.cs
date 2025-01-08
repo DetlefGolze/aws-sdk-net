@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.Imagebuilder.Model
         private string _name;
         private Platform _platform;
         private string _semanticVersion;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private ComponentType _type;
         private string _uri;
 
@@ -52,7 +53,7 @@ namespace Amazon.Imagebuilder.Model
         /// <para>
         /// The change description of the component. This description indicates the change that
         /// has been made in this version, or what makes this version different from other versions
-        /// of this component.
+        /// of the component.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -71,7 +72,9 @@ namespace Amazon.Imagebuilder.Model
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
-        /// The idempotency token of the component.
+        /// Unique, case-sensitive identifier you provide to ensure idempotency of the request.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+        /// idempotency</a> in the <i>Amazon EC2 API Reference</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=36)]
@@ -90,8 +93,8 @@ namespace Amazon.Imagebuilder.Model
         /// <summary>
         /// Gets and sets the property Data. 
         /// <para>
-        /// The data of the component. Used to specify the data inline. Either <code>data</code>
-        /// or <code>uri</code> can be used to specify the data within the component.
+        /// The data of the component. Used to specify the data inline. Either <c>data</c> or
+        /// <c>uri</c> can be used to specify the data within the component.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -250,7 +253,7 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -278,8 +281,8 @@ namespace Amazon.Imagebuilder.Model
         /// <para>
         /// The uri of the component. Must be an Amazon S3 URL and the requester must have permission
         /// to access the Amazon S3 bucket. If you use Amazon S3, you can specify component content
-        /// up to your service quota. Either <code>data</code> or <code>uri</code> can be used
-        /// to specify the data within the component.
+        /// up to your service quota. Either <c>data</c> or <c>uri</c> can be used to specify
+        /// the data within the component.
         /// </para>
         /// </summary>
         public string Uri

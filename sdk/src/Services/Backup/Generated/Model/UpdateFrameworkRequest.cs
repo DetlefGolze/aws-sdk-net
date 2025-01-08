@@ -26,16 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateFramework operation.
-    /// Updates an existing framework identified by its <code>FrameworkName</code> with the
-    /// input document in JSON format.
+    /// Updates the specified framework.
     /// </summary>
     public partial class UpdateFrameworkRequest : AmazonBackupRequest
     {
-        private List<FrameworkControl> _frameworkControls = new List<FrameworkControl>();
+        private List<FrameworkControl> _frameworkControls = AWSConfigs.InitializeCollections ? new List<FrameworkControl>() : null;
         private string _frameworkDescription;
         private string _frameworkName;
         private string _idempotencyToken;
@@ -43,8 +43,8 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property FrameworkControls. 
         /// <para>
-        /// A list of the controls that make up the framework. Each control in the list has a
-        /// name, input parameters, and scope.
+        /// The controls that make up the framework. Each control in the list has a name, input
+        /// parameters, and scope.
         /// </para>
         /// </summary>
         public List<FrameworkControl> FrameworkControls
@@ -56,7 +56,7 @@ namespace Amazon.Backup.Model
         // Check to see if FrameworkControls property is set
         internal bool IsSetFrameworkControls()
         {
-            return this._frameworkControls != null && this._frameworkControls.Count > 0; 
+            return this._frameworkControls != null && (this._frameworkControls.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -103,8 +103,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property IdempotencyToken. 
         /// <para>
         /// A customer-chosen string that you can use to distinguish between otherwise identical
-        /// calls to <code>UpdateFrameworkInput</code>. Retrying a successful request with the
-        /// same idempotency token results in a success message with no action taken.
+        /// calls to <c>UpdateFrameworkInput</c>. Retrying a successful request with the same
+        /// idempotency token results in a success message with no action taken.
         /// </para>
         /// </summary>
         public string IdempotencyToken

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -47,8 +48,8 @@ namespace Amazon.CloudWatchLogs.Model
     /// </para>
     ///  
     /// <para>
-    /// CloudWatch Logs doesn’t support IAM policies that prevent users from assigning specified
-    /// tags to log groups using the <code>aws:Resource/<i>key-name</i> </code> or <code>aws:TagKeys</code>
+    /// CloudWatch Logs doesn't support IAM policies that prevent users from assigning specified
+    /// tags to log groups using the <c>aws:Resource/<i>key-name</i> </c> or <c>aws:TagKeys</c>
     /// condition keys. 
     /// </para>
     /// </summary>
@@ -56,7 +57,7 @@ namespace Amazon.CloudWatchLogs.Model
     public partial class UntagLogGroupRequest : AmazonCloudWatchLogsRequest
     {
         private string _logGroupName;
-        private List<string> _tags = new List<string>();
+        private List<string> _tags = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property LogGroupName. 
@@ -93,7 +94,7 @@ namespace Amazon.CloudWatchLogs.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

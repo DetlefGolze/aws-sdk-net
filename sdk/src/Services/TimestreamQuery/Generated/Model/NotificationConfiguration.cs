@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TimestreamQuery.Model
 {
     /// <summary>
@@ -39,7 +40,8 @@ namespace Amazon.TimestreamQuery.Model
         /// <summary>
         /// Gets and sets the property SnsConfiguration. 
         /// <para>
-        /// Details on SNS configuration. 
+        /// Details about the Amazon Simple Notification Service (SNS) configuration. This field
+        /// is visible only when SNS Topic is provided when updating the account settings. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

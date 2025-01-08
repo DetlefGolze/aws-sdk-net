@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.CloudFormation.Model
     public partial class ListStackSetsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<StackSetSummary> _summaries = new List<StackSetSummary>();
+        private List<StackSetSummary> _summaries = AWSConfigs.InitializeCollections ? new List<StackSetSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the request doesn't return all of the remaining results, <code>NextToken</code>
-        /// is set to a token. To retrieve the next set of results, call <code>ListStackInstances</code>
-        /// again and assign that token to the request object's <code>NextToken</code> parameter.
-        /// If the request returns all results, <code>NextToken</code> is set to <code>null</code>.
+        /// If the request doesn't return all of the remaining results, <c>NextToken</c> is set
+        /// to a token. To retrieve the next set of results, call <c>ListStackInstances</c> again
+        /// and assign that token to the request object's <c>NextToken</c> parameter. If the request
+        /// returns all results, <c>NextToken</c> is set to <c>null</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -61,8 +62,8 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property Summaries. 
         /// <para>
-        /// A list of <code>StackSetSummary</code> structures that contain information about the
-        /// user's stack sets.
+        /// A list of <c>StackSetSummary</c> structures that contain information about the user's
+        /// stack sets.
         /// </para>
         /// </summary>
         public List<StackSetSummary> Summaries
@@ -74,7 +75,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Summaries property is set
         internal bool IsSetSummaries()
         {
-            return this._summaries != null && this._summaries.Count > 0; 
+            return this._summaries != null && (this._summaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

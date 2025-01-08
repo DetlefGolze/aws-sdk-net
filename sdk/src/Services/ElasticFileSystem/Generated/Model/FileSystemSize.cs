@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
     /// The latest known metered size (in bytes) of data stored in the file system, in its
-    /// <code>Value</code> field, and the time at which that size was determined in its <code>Timestamp</code>
+    /// <c>Value</c> field, and the time at which that size was determined in its <c>Timestamp</c>
     /// field. The value doesn't represent the size of a consistent snapshot of the file system,
     /// but it is eventually consistent when there are no writes to the file system. That
     /// is, the value represents the actual size only if the file system is not modified for
@@ -41,14 +42,15 @@ namespace Amazon.ElasticFileSystem.Model
     {
         private DateTime? _timestamp;
         private long? _value;
+        private long? _valueInArchive;
         private long? _valueInIA;
         private long? _valueInStandard;
 
         /// <summary>
         /// Gets and sets the property Timestamp. 
         /// <para>
-        /// The time at which the size of data, returned in the <code>Value</code> field, was
-        /// determined. The value is the integer number of seconds since 1970-01-01T00:00:00Z.
+        /// The time at which the size of data, returned in the <c>Value</c> field, was determined.
+        /// The value is the integer number of seconds since 1970-01-01T00:00:00Z.
         /// </para>
         /// </summary>
         public DateTime Timestamp
@@ -80,6 +82,25 @@ namespace Amazon.ElasticFileSystem.Model
         internal bool IsSetValue()
         {
             return this._value.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ValueInArchive. 
+        /// <para>
+        /// The latest known metered size (in bytes) of data stored in the Archive storage class.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0)]
+        public long ValueInArchive
+        {
+            get { return this._valueInArchive.GetValueOrDefault(); }
+            set { this._valueInArchive = value; }
+        }
+
+        // Check to see if ValueInArchive property is set
+        internal bool IsSetValueInArchive()
+        {
+            return this._valueInArchive.HasValue; 
         }
 
         /// <summary>

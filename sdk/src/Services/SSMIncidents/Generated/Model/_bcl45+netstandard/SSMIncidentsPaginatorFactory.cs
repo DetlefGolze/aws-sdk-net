@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SSMIncidents.Model
 {
     /// <summary>
@@ -41,6 +42,14 @@ namespace Amazon.SSMIncidents.Model
         public IGetResourcePoliciesPaginator GetResourcePolicies(GetResourcePoliciesRequest request) 
         {
             return new GetResourcePoliciesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListIncidentFindings operation
+        ///</summary>
+        public IListIncidentFindingsPaginator ListIncidentFindings(ListIncidentFindingsRequest request) 
+        {
+            return new ListIncidentFindingsPaginator(this.client, request);
         }
 
         /// <summary>

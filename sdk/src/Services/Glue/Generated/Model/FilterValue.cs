@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
-    /// Represents a single entry in the list of values for a <code>FilterExpression</code>.
+    /// Represents a single entry in the list of values for a <c>FilterExpression</c>.
     /// </summary>
     public partial class FilterValue
     {
         private FilterValueType _type;
-        private List<string> _value = new List<string>();
+        private List<string> _value = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Type. 
@@ -71,7 +72,7 @@ namespace Amazon.Glue.Model
         // Check to see if Value property is set
         internal bool IsSetValue()
         {
-            return this._value != null && this._value.Count > 0; 
+            return this._value != null && (this._value.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

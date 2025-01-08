@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.Connect.Model
         /// The user's first name.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=100)]
+        [AWSProperty(Sensitive=true, Min=0, Max=255)]
         public string FirstName
         {
             get { return this._firstName; }
@@ -61,7 +62,7 @@ namespace Amazon.Connect.Model
         /// The user's last name.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=100)]
+        [AWSProperty(Sensitive=true, Min=0, Max=300)]
         public string LastName
         {
             get { return this._lastName; }

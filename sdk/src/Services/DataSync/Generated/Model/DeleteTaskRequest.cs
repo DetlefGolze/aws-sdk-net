@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteTask operation.
-    /// Deletes an DataSync transfer task.
+    /// Deletes a transfer task resource from DataSync.
     /// </summary>
     public partial class DeleteTaskRequest : AmazonDataSyncRequest
     {

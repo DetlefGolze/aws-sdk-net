@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.Inspector2.Model
     public partial class ListAccountPermissionsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Permission> _permissions = new List<Permission>();
+        private List<Permission> _permissions = AWSConfigs.InitializeCollections ? new List<Permission>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token to use for paginating results that are returned in the response. Set the value
         /// of this parameter to null for the first request to a list action. For subsequent calls,
-        /// use the <code>NextToken</code> value returned from the previous request to continue
-        /// listing results after the first page.
+        /// use the <c>NextToken</c> value returned from the previous request to continue listing
+        /// results after the first page.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1000000)]
@@ -74,7 +75,7 @@ namespace Amazon.Inspector2.Model
         // Check to see if Permissions property is set
         internal bool IsSetPermissions()
         {
-            return this._permissions != null && this._permissions.Count > 0; 
+            return this._permissions != null && (this._permissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -41,7 +42,8 @@ namespace Amazon.EC2.Model
         private DnsSupportValue _dnsSupport;
         private MulticastSupportValue _multicastSupport;
         private string _propagationDefaultRouteTableId;
-        private List<string> _transitGatewayCidrBlocks = new List<string>();
+        private SecurityGroupReferencingSupportValue _securityGroupReferencingSupport;
+        private List<string> _transitGatewayCidrBlocks = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private VpnEcmpSupportValue _vpnEcmpSupport;
 
         /// <summary>
@@ -192,6 +194,29 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SecurityGroupReferencingSupport. 
+        /// <para>
+        /// Enables you to reference a security group across VPCs attached to a transit gateway
+        /// to simplify security group management. 
+        /// </para>
+        ///  
+        /// <para>
+        /// This option is disabled by default.
+        /// </para>
+        /// </summary>
+        public SecurityGroupReferencingSupportValue SecurityGroupReferencingSupport
+        {
+            get { return this._securityGroupReferencingSupport; }
+            set { this._securityGroupReferencingSupport = value; }
+        }
+
+        // Check to see if SecurityGroupReferencingSupport property is set
+        internal bool IsSetSecurityGroupReferencingSupport()
+        {
+            return this._securityGroupReferencingSupport != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property TransitGatewayCidrBlocks. 
         /// <para>
         /// The transit gateway CIDR blocks.
@@ -206,7 +231,7 @@ namespace Amazon.EC2.Model
         // Check to see if TransitGatewayCidrBlocks property is set
         internal bool IsSetTransitGatewayCidrBlocks()
         {
-            return this._transitGatewayCidrBlocks != null && this._transitGatewayCidrBlocks.Count > 0; 
+            return this._transitGatewayCidrBlocks != null && (this._transitGatewayCidrBlocks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

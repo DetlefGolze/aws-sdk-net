@@ -26,13 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the AdminDisableUser operation.
-    /// Deactivates a user and revokes all access tokens for the user. A deactivated user
-    /// can't sign in, but still appears in the responses to <code>GetUser</code> and <code>ListUsers</code>
-    /// API requests.
+    /// Deactivates a user profile and revokes all access tokens for the user. A deactivated
+    /// user can't sign in, but still appears in the responses to <c>ListUsers</c> API requests.
     /// 
     ///  <note> 
     /// <para>
@@ -64,7 +64,10 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Username. 
         /// <para>
-        /// The user name of the user you want to disable.
+        /// The username of the user that you want to query or modify. The value of this parameter
+        /// is typically your user's username, but it can be any of their alias attributes. If
+        /// <c>username</c> isn't an alias attribute in your user pool, this value must be the
+        /// <c>sub</c> of a local user or the username of a user from a third-party IdP.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=128)]
@@ -83,7 +86,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID for the user pool where you want to disable the user.
+        /// The ID of the user pool where you want to disable the user.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

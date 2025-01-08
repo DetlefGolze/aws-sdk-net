@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the eks-2017-11-01.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -31,14 +32,39 @@ namespace Amazon.EKS.Model
         IDescribeAddonVersionsPaginator DescribeAddonVersions(DescribeAddonVersionsRequest request);
 
         /// <summary>
+        /// Paginator for DescribeClusterVersions operation
+        ///</summary>
+        IDescribeClusterVersionsPaginator DescribeClusterVersions(DescribeClusterVersionsRequest request);
+
+        /// <summary>
+        /// Paginator for ListAccessEntries operation
+        ///</summary>
+        IListAccessEntriesPaginator ListAccessEntries(ListAccessEntriesRequest request);
+
+        /// <summary>
+        /// Paginator for ListAccessPolicies operation
+        ///</summary>
+        IListAccessPoliciesPaginator ListAccessPolicies(ListAccessPoliciesRequest request);
+
+        /// <summary>
         /// Paginator for ListAddons operation
         ///</summary>
         IListAddonsPaginator ListAddons(ListAddonsRequest request);
 
         /// <summary>
+        /// Paginator for ListAssociatedAccessPolicies operation
+        ///</summary>
+        IListAssociatedAccessPoliciesPaginator ListAssociatedAccessPolicies(ListAssociatedAccessPoliciesRequest request);
+
+        /// <summary>
         /// Paginator for ListClusters operation
         ///</summary>
         IListClustersPaginator ListClusters(ListClustersRequest request);
+
+        /// <summary>
+        /// Paginator for ListEksAnywhereSubscriptions operation
+        ///</summary>
+        IListEksAnywhereSubscriptionsPaginator ListEksAnywhereSubscriptions(ListEksAnywhereSubscriptionsRequest request);
 
         /// <summary>
         /// Paginator for ListFargateProfiles operation
@@ -51,9 +77,19 @@ namespace Amazon.EKS.Model
         IListIdentityProviderConfigsPaginator ListIdentityProviderConfigs(ListIdentityProviderConfigsRequest request);
 
         /// <summary>
+        /// Paginator for ListInsights operation
+        ///</summary>
+        IListInsightsPaginator ListInsights(ListInsightsRequest request);
+
+        /// <summary>
         /// Paginator for ListNodegroups operation
         ///</summary>
         IListNodegroupsPaginator ListNodegroups(ListNodegroupsRequest request);
+
+        /// <summary>
+        /// Paginator for ListPodIdentityAssociations operation
+        ///</summary>
+        IListPodIdentityAssociationsPaginator ListPodIdentityAssociations(ListPodIdentityAssociationsRequest request);
 
         /// <summary>
         /// Paginator for ListUpdates operation

@@ -27,17 +27,25 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
     /// </summary>
     public class PutLifecycleConfigurationResponseUnmarshaller : S3ReponseUnmarshaller
     {
-
+        /// <summary>
+        /// Unmarshaller the response from the service to the response class.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public override AmazonWebServiceResponse Unmarshall(XmlUnmarshallerContext context) 
         {
             PutLifecycleConfigurationResponse response = new PutLifecycleConfigurationResponse();
             
-
+            if (context.ResponseData.IsHeaderPresent("x-amz-transition-default-minimum-object-size"))
+                response.TransitionDefaultMinimumObjectSize = context.ResponseData.GetHeaderValue("x-amz-transition-default-minimum-object-size");
             return response;
         }
 
         private static PutLifecycleConfigurationResponseUnmarshaller _instance;
 
+        /// <summary>
+        /// Singleton for the unmarshaller
+        /// </summary>
         public static PutLifecycleConfigurationResponseUnmarshaller Instance
         {
             get

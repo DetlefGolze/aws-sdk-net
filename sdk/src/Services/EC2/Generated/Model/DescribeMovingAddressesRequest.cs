@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -43,10 +44,10 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeMovingAddressesRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _publicIps = new List<string>();
+        private List<string> _publicIps = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Filters. 
@@ -55,8 +56,8 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>moving-status</code> - The status of the Elastic IP address (<code>MovingToVpc</code>
-        /// | <code>RestoringToClassic</code>).
+        ///  <c>moving-status</c> - The status of the Elastic IP address (<c>MovingToVpc</c> |
+        /// <c>RestoringToClassic</c>).
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -69,7 +70,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -77,7 +78,7 @@ namespace Amazon.EC2.Model
         /// <para>
         /// The maximum number of results to return for the request in a single page. The remaining
         /// results of the initial request can be seen by sending another request with the returned
-        /// <code>NextToken</code> value. This value can be between 5 and 1000; if <code>MaxResults</code>
+        /// <c>NextToken</c> value. This value can be between 5 and 1000; if <c>MaxResults</c>
         /// is given a value outside of this range, an error is returned.
         /// </para>
         ///  
@@ -131,7 +132,7 @@ namespace Amazon.EC2.Model
         // Check to see if PublicIps property is set
         internal bool IsSetPublicIps()
         {
-            return this._publicIps != null && this._publicIps.Count > 0; 
+            return this._publicIps != null && (this._publicIps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

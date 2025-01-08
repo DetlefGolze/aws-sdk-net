@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTWireless.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.IoTWireless.Model
     /// </summary>
     public partial class ListMulticastGroupsResponse : AmazonWebServiceResponse
     {
-        private List<MulticastGroup> _multicastGroupList = new List<MulticastGroup>();
+        private List<MulticastGroup> _multicastGroupList = AWSConfigs.InitializeCollections ? new List<MulticastGroup>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -48,14 +49,14 @@ namespace Amazon.IoTWireless.Model
         // Check to see if MulticastGroupList property is set
         internal bool IsSetMulticastGroupList()
         {
-            return this._multicastGroupList != null && this._multicastGroupList.Count > 0; 
+            return this._multicastGroupList != null && (this._multicastGroupList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// To retrieve the next set of results, the <code>nextToken</code> value from a previous
-        /// response; otherwise <b>null</b> to receive the first set of results.
+        /// To retrieve the next set of results, the <c>nextToken</c> value from a previous response;
+        /// otherwise <b>null</b> to receive the first set of results.
         /// </para>
         /// </summary>
         [AWSProperty(Max=4096)]

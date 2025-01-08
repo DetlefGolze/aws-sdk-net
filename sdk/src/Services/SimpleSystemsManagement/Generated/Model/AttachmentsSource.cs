@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.SimpleSystemsManagement.Model
     {
         private AttachmentsSourceKey _key;
         private string _name;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Key. 
@@ -86,7 +87,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"Values": [ "s3://doc-example-bucket/my-folder" ]</code> 
+        ///  <c>"Values": [ "s3://amzn-s3-demo-bucket/my-prefix" ]</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -94,7 +95,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"Values": [ "s3://doc-example-bucket/my-folder/my-file.py" ]</code> 
+        ///  <c>"Values": [ "s3://amzn-s3-demo-bucket/my-prefix/my-file.py" ]</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -104,7 +105,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"Values": [ "MyOtherDocument/3/my-other-file.py" ]</code> 
+        ///  <c>"Values": [ "MyOtherDocument/3/my-other-file.py" ]</c> 
         /// </para>
         ///  
         /// <para>
@@ -113,8 +114,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"Values": [ "arn:aws:ssm:us-east-2:111122223333:document/OtherAccountDocument/3/their-file.py"
-        /// ]</code> 
+        ///  <c>"Values": [ "arn:aws:ssm:us-east-2:111122223333:document/OtherAccountDocument/3/their-file.py"
+        /// ]</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -128,7 +129,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

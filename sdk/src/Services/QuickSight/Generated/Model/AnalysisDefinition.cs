@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -34,12 +35,15 @@ namespace Amazon.QuickSight.Model
     public partial class AnalysisDefinition
     {
         private AnalysisDefaults _analysisDefaults;
-        private List<CalculatedField> _calculatedFields = new List<CalculatedField>();
-        private List<ColumnConfiguration> _columnConfigurations = new List<ColumnConfiguration>();
-        private List<DataSetIdentifierDeclaration> _dataSetIdentifierDeclarations = new List<DataSetIdentifierDeclaration>();
-        private List<FilterGroup> _filterGroups = new List<FilterGroup>();
-        private List<ParameterDeclaration> _parameterDeclarations = new List<ParameterDeclaration>();
-        private List<SheetDefinition> _sheets = new List<SheetDefinition>();
+        private List<CalculatedField> _calculatedFields = AWSConfigs.InitializeCollections ? new List<CalculatedField>() : null;
+        private List<ColumnConfiguration> _columnConfigurations = AWSConfigs.InitializeCollections ? new List<ColumnConfiguration>() : null;
+        private List<DataSetIdentifierDeclaration> _dataSetIdentifierDeclarations = AWSConfigs.InitializeCollections ? new List<DataSetIdentifierDeclaration>() : null;
+        private List<FilterGroup> _filterGroups = AWSConfigs.InitializeCollections ? new List<FilterGroup>() : null;
+        private AssetOptions _options;
+        private List<ParameterDeclaration> _parameterDeclarations = AWSConfigs.InitializeCollections ? new List<ParameterDeclaration>() : null;
+        private QueryExecutionOptions _queryExecutionOptions;
+        private List<SheetDefinition> _sheets = AWSConfigs.InitializeCollections ? new List<SheetDefinition>() : null;
+        private List<StaticFile> _staticFiles = AWSConfigs.InitializeCollections ? new List<StaticFile>() : null;
 
         /// <summary>
         /// Gets and sets the property AnalysisDefaults.
@@ -72,7 +76,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if CalculatedFields property is set
         internal bool IsSetCalculatedFields()
         {
-            return this._calculatedFields != null && this._calculatedFields.Count > 0; 
+            return this._calculatedFields != null && (this._calculatedFields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -82,7 +86,7 @@ namespace Amazon.QuickSight.Model
         /// to set default formatting for a column to be used throughout an analysis. 
         /// </para>
         /// </summary>
-        [AWSProperty(Max=200)]
+        [AWSProperty(Max=2000)]
         public List<ColumnConfiguration> ColumnConfigurations
         {
             get { return this._columnConfigurations; }
@@ -92,7 +96,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if ColumnConfigurations property is set
         internal bool IsSetColumnConfigurations()
         {
-            return this._columnConfigurations != null && this._columnConfigurations.Count > 0; 
+            return this._columnConfigurations != null && (this._columnConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -112,7 +116,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if DataSetIdentifierDeclarations property is set
         internal bool IsSetDataSetIdentifierDeclarations()
         {
-            return this._dataSetIdentifierDeclarations != null && this._dataSetIdentifierDeclarations.Count > 0; 
+            return this._dataSetIdentifierDeclarations != null && (this._dataSetIdentifierDeclarations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -136,7 +140,25 @@ namespace Amazon.QuickSight.Model
         // Check to see if FilterGroups property is set
         internal bool IsSetFilterGroups()
         {
-            return this._filterGroups != null && this._filterGroups.Count > 0; 
+            return this._filterGroups != null && (this._filterGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Options. 
+        /// <para>
+        /// An array of option definitions for an analysis.
+        /// </para>
+        /// </summary>
+        public AssetOptions Options
+        {
+            get { return this._options; }
+            set { this._options = value; }
+        }
+
+        // Check to see if Options property is set
+        internal bool IsSetOptions()
+        {
+            return this._options != null;
         }
 
         /// <summary>
@@ -165,13 +187,28 @@ namespace Amazon.QuickSight.Model
         // Check to see if ParameterDeclarations property is set
         internal bool IsSetParameterDeclarations()
         {
-            return this._parameterDeclarations != null && this._parameterDeclarations.Count > 0; 
+            return this._parameterDeclarations != null && (this._parameterDeclarations.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property QueryExecutionOptions.
+        /// </summary>
+        public QueryExecutionOptions QueryExecutionOptions
+        {
+            get { return this._queryExecutionOptions; }
+            set { this._queryExecutionOptions = value; }
+        }
+
+        // Check to see if QueryExecutionOptions property is set
+        internal bool IsSetQueryExecutionOptions()
+        {
+            return this._queryExecutionOptions != null;
         }
 
         /// <summary>
         /// Gets and sets the property Sheets. 
         /// <para>
-        /// An array of sheet definitions for an analysis. Each <code>SheetDefinition</code> provides
+        /// An array of sheet definitions for an analysis. Each <c>SheetDefinition</c> provides
         /// detailed information about a sheet within this analysis.
         /// </para>
         /// </summary>
@@ -185,7 +222,26 @@ namespace Amazon.QuickSight.Model
         // Check to see if Sheets property is set
         internal bool IsSetSheets()
         {
-            return this._sheets != null && this._sheets.Count > 0; 
+            return this._sheets != null && (this._sheets.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property StaticFiles. 
+        /// <para>
+        /// The static files for the definition.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=200)]
+        public List<StaticFile> StaticFiles
+        {
+            get { return this._staticFiles; }
+            set { this._staticFiles = value; }
+        }
+
+        // Check to see if StaticFiles property is set
+        internal bool IsSetStaticFiles()
+        {
+            return this._staticFiles != null && (this._staticFiles.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

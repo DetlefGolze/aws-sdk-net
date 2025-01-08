@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SsmSap.Model
 {
     /// <summary>
@@ -34,8 +35,9 @@ namespace Amazon.SsmSap.Model
     public partial class ApplicationSummary
     {
         private string _arn;
+        private ApplicationDiscoveryStatus _discoveryStatus;
         private string _id;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private ApplicationType _type;
 
         /// <summary>
@@ -57,11 +59,30 @@ namespace Amazon.SsmSap.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DiscoveryStatus. 
+        /// <para>
+        /// The status of the latest discovery.
+        /// </para>
+        /// </summary>
+        public ApplicationDiscoveryStatus DiscoveryStatus
+        {
+            get { return this._discoveryStatus; }
+            set { this._discoveryStatus = value; }
+        }
+
+        // Check to see if DiscoveryStatus property is set
+        internal bool IsSetDiscoveryStatus()
+        {
+            return this._discoveryStatus != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
         /// The ID of the application.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=60)]
         public string Id
         {
             get { return this._id; }
@@ -89,7 +110,7 @@ namespace Amazon.SsmSap.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ElasticBeanstalk.Model
     public partial class DescribeEnvironmentHealthResponse : AmazonWebServiceResponse
     {
         private ApplicationMetrics _applicationMetrics;
-        private List<string> _causes = new List<string>();
+        private List<string> _causes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _color;
         private string _environmentName;
         private string _healthStatus;
@@ -75,7 +76,7 @@ namespace Amazon.ElasticBeanstalk.Model
         // Check to see if Causes property is set
         internal bool IsSetCauses()
         {
-            return this._causes != null && this._causes.Count > 0; 
+            return this._causes != null && (this._causes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -120,7 +121,7 @@ namespace Amazon.ElasticBeanstalk.Model
         /// Gets and sets the property HealthStatus. 
         /// <para>
         /// The <a href="https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html">health
-        /// status</a> of the environment. For example, <code>Ok</code>.
+        /// status</a> of the environment. For example, <c>Ok</c>.
         /// </para>
         /// </summary>
         public string HealthStatus
@@ -174,8 +175,8 @@ namespace Amazon.ElasticBeanstalk.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The environment's operational status. <code>Ready</code>, <code>Launching</code>,
-        /// <code>Updating</code>, <code>Terminating</code>, or <code>Terminated</code>.
+        /// The environment's operational status. <c>Ready</c>, <c>Launching</c>, <c>Updating</c>,
+        /// <c>Terminating</c>, or <c>Terminated</c>.
         /// </para>
         /// </summary>
         public EnvironmentHealth Status

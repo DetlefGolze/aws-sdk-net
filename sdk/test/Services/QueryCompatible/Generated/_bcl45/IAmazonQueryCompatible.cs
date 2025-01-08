@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.QueryCompatible.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.QueryCompatible
 {
     /// <summary>
-    /// Interface for accessing QueryCompatible
+    /// <para>Interface for accessing QueryCompatible</para>
     ///
     /// 
     /// </summary>
@@ -75,6 +76,62 @@ namespace Amazon.QueryCompatible
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/aws-query-compatible-2012-11-05/CreateQueue">REST API Reference for CreateQueue Operation</seealso>
         Task<CreateQueueResponse> CreateQueueAsync(CreateQueueRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  MemberRefOp
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the MemberRefOp service method.</param>
+        /// 
+        /// <returns>The response from the MemberRefOp service method, as returned by QueryCompatible.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/aws-query-compatible-2012-11-05/MemberRefOp">REST API Reference for MemberRefOp Operation</seealso>
+        MemberRefOpResponse MemberRefOp(MemberRefOpRequest request);
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the MemberRefOp service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the MemberRefOp service method, as returned by QueryCompatible.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/aws-query-compatible-2012-11-05/MemberRefOp">REST API Reference for MemberRefOp Operation</seealso>
+        Task<MemberRefOpResponse> MemberRefOpAsync(MemberRefOpRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  StaticOp
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StaticOp service method.</param>
+        /// 
+        /// <returns>The response from the StaticOp service method, as returned by QueryCompatible.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/aws-query-compatible-2012-11-05/StaticOp">REST API Reference for StaticOp Operation</seealso>
+        StaticOpResponse StaticOp(StaticOpRequest request);
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StaticOp service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StaticOp service method, as returned by QueryCompatible.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/aws-query-compatible-2012-11-05/StaticOp">REST API Reference for StaticOp Operation</seealso>
+        Task<StaticOpResponse> StaticOpAsync(StaticOpRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         

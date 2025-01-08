@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MedicalImaging.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.MedicalImaging.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public DICOMTags Unmarshall(JsonUnmarshallerContext context)
         {
+            DICOMTags unmarshalledObject = new DICOMTags();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            DICOMTags unmarshalledObject = new DICOMTags();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -106,6 +108,30 @@ namespace Amazon.MedicalImaging.Model.Internal.MarshallTransformations
                     unmarshalledObject.DICOMPatientSex = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("DICOMSeriesBodyPart", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DICOMSeriesBodyPart = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("DICOMSeriesInstanceUID", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DICOMSeriesInstanceUID = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("DICOMSeriesModality", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DICOMSeriesModality = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("DICOMSeriesNumber", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.DICOMSeriesNumber = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("DICOMStudyDate", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -137,7 +163,6 @@ namespace Amazon.MedicalImaging.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

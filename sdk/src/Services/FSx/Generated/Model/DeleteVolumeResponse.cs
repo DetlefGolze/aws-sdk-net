@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -40,8 +41,8 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property Lifecycle. 
         /// <para>
-        /// The lifecycle state of the volume being deleted. If the <code>DeleteVolume</code>
-        /// operation is successful, this value is <code>DELETING</code>.
+        /// The lifecycle state of the volume being deleted. If the <c>DeleteVolume</c> operation
+        /// is successful, this value is <c>DELETING</c>.
         /// </para>
         /// </summary>
         public VolumeLifecycle Lifecycle
@@ -59,8 +60,7 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property OntapResponse. 
         /// <para>
-        /// Returned after a <code>DeleteVolume</code> request, showing the status of the delete
-        /// request.
+        /// Returned after a <c>DeleteVolume</c> request, showing the status of the delete request.
         /// </para>
         /// </summary>
         public DeleteVolumeOntapResponse OntapResponse

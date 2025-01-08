@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
-    /// The result of a <code>DescribeDomainAutoTunes</code> request.
+    /// The result of a <c>DescribeDomainAutoTunes</c> request.
     /// </summary>
     public partial class DescribeDomainAutoTunesResponse : AmazonWebServiceResponse
     {
-        private List<AutoTune> _autoTunes = new List<AutoTune>();
+        private List<AutoTune> _autoTunes = AWSConfigs.InitializeCollections ? new List<AutoTune>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,15 +52,15 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if AutoTunes property is set
         internal bool IsSetAutoTunes()
         {
-            return this._autoTunes != null && this._autoTunes.Count > 0; 
+            return this._autoTunes != null && (this._autoTunes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page.
+        /// When <c>nextToken</c> is returned, there are more results available. The value of
+        /// <c>nextToken</c> is a unique pagination token for each page. Send the request again
+        /// using the returned token to retrieve the next page.
         /// </para>
         /// </summary>
         public string NextToken

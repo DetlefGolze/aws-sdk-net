@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMessaging.Model
 {
     /// <summary>
-    /// The channel membership preferences for an <code>AppInstanceUser</code>.
+    /// The channel membership preferences for an <c>AppInstanceUser</c>.
     /// </summary>
     public partial class ChannelMembershipPreferences
     {

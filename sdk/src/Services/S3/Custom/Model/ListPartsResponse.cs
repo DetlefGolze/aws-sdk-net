@@ -37,7 +37,7 @@ namespace Amazon.S3.Model
         private int? nextPartNumberMarker;
         private int? maxParts;
         private bool? isTruncated;
-        private List<PartDetail> parts = new List<PartDetail>();
+        private List<PartDetail> parts = AWSConfigs.InitializeCollections ? new List<PartDetail>() : null;
         private DateTime? abortDate;
         private string abortRuleId;
         private RequestCharged requestCharged;
@@ -112,8 +112,11 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// Part number after which listing begins.
-        ///  
+        /// Gets and sets the property PartNumberMarker. 
+        /// <para>
+        /// Specifies the part after which listing should begin. Only parts with higher part numbers
+        /// will be listed.
+        /// </para>
         /// </summary>
         public int PartNumberMarker
         {
@@ -131,7 +134,7 @@ namespace Amazon.S3.Model
         /// Gets and sets the property NextPartNumberMarker. 
         /// <para>
         /// When a list is truncated, this element specifies the last part in the list, as well
-        /// as the value to use for the <code>part-number-marker</code> request parameter in a
+        /// as the value to use for the <c>part-number-marker</c> request parameter in a
         /// subsequent request.
         /// </para>
         ///  
@@ -196,7 +199,7 @@ namespace Amazon.S3.Model
         // Check to see if Parts property is set
         internal bool IsSetParts()
         {
-            return this.parts.Count > 0;
+            return this.parts != null && (this.parts.Count > 0 || !AWSConfigs.InitializeCollections);
         }
 
         /// <summary>
@@ -204,7 +207,7 @@ namespace Amazon.S3.Model
         /// <para>
         /// Container element that identifies who initiated the multipart upload. If the initiator
         /// is an Amazon Web Services account, this element provides the same information as the
-        /// <code>Owner</code> element. If the initiator is an IAM User, this element provides
+        /// <c>Owner</c> element. If the initiator is an IAM User, this element provides
         /// the user ARN and display name.
         /// </para>
         /// </summary>
@@ -221,7 +224,18 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// Gets and sets the Owner property.
+        /// Gets and sets the property Owner. 
+        /// <para>
+        /// Container element that identifies the object owner, after the object is created. If
+        /// multipart upload is initiated by an IAM user, this element provides the parent account
+        /// ID and display name.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <b>Directory buckets</b> - The bucket owner is returned as the object owner for all
+        /// the parts.
+        /// </para>
+        ///  </note>
         /// </summary>
         public Owner Owner
         {
@@ -236,8 +250,16 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// The class of storage used to store the object.
-        ///  
+        /// Gets and sets the property StorageClass. 
+        /// <para>
+        /// The class of storage used to store the uploaded object.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <b>Directory buckets</b> - Only the S3 Express One Zone storage class is supported
+        /// by directory buckets to store objects.
+        /// </para>
+        ///  </note>
         /// </summary>
         public string StorageClass
         {
@@ -252,7 +274,24 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// Date when multipart upload will become eligible for abort operation by lifecycle.
+        /// Gets and sets the property AbortDate. 
+        /// <para>
+        /// If the bucket has a lifecycle rule configured with an action to abort incomplete multipart
+        /// uploads and the prefix in the lifecycle rule matches the object name in the request,
+        /// then the response includes this header indicating when the initiated multipart upload
+        /// will become eligible for abort operation. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config">Aborting
+        /// Incomplete Multipart Uploads Using a Bucket Lifecycle Configuration</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// The response will also include the <c>x-amz-abort-rule-id</c> header that will
+        /// provide the ID of the lifecycle configuration rule that defines this action.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public DateTime AbortDate
         {
@@ -267,7 +306,17 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// Id of the lifecycle rule that makes a multipart upload eligible for abort operation.
+        /// Gets and sets the property AbortRuleId. 
+        /// <para>
+        /// This header is returned along with the <c>x-amz-abort-date</c> header. It identifies
+        /// applicable lifecycle configuration rule that defines the action to abort incomplete
+        /// multipart uploads.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public string AbortRuleId
         {

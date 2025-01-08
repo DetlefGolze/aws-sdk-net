@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FraudDetector.Model
 {
     /// <summary>
     /// Container for the parameters to the GetDeleteEventsByEventTypeStatus operation.
-    /// Retrieves the status of a <code>DeleteEventsByEventType</code> action.
+    /// Retrieves the status of a <c>DeleteEventsByEventType</c> action.
     /// </summary>
     public partial class GetDeleteEventsByEventTypeStatusRequest : AmazonFraudDetectorRequest
     {

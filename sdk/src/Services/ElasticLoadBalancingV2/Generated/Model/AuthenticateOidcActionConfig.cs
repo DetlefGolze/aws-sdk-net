@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancingV2.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
     /// </summary>
     public partial class AuthenticateOidcActionConfig
     {
-        private Dictionary<string, string> _authenticationRequestExtraParams = new Dictionary<string, string>();
+        private Dictionary<string, string> _authenticationRequestExtraParams = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _authorizationEndpoint;
         private string _clientId;
         private string _clientSecret;
@@ -63,7 +64,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if AuthenticationRequestExtraParams property is set
         internal bool IsSetAuthenticationRequestExtraParams()
         {
-            return this._authenticationRequestExtraParams != null && this._authenticationRequestExtraParams.Count > 0; 
+            return this._authenticationRequestExtraParams != null && (this._authenticationRequestExtraParams.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -109,7 +110,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         /// Gets and sets the property ClientSecret. 
         /// <para>
         /// The OAuth 2.0 client secret. This parameter is required if you are creating a rule.
-        /// If you are modifying a rule, you can omit this parameter if you set <code>UseExistingClientSecret</code>
+        /// If you are modifying a rule, you can omit this parameter if you set <c>UseExistingClientSecret</c>
         /// to true.
         /// </para>
         /// </summary>
@@ -180,7 +181,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         /// <summary>
         /// Gets and sets the property Scope. 
         /// <para>
-        /// The set of user claims to be requested from the IdP. The default is <code>openid</code>.
+        /// The set of user claims to be requested from the IdP. The default is <c>openid</c>.
         /// </para>
         ///  
         /// <para>

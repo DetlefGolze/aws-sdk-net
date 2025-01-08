@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.DocDB.Model
     {
         private bool? _autoMinorVersionUpgrade;
         private string _availabilityZone;
+        private string _caCertificateIdentifier;
         private bool? _copyTagsToSnapshot;
         private string _dbClusterIdentifier;
         private string _dbInstanceClass;
@@ -45,7 +47,7 @@ namespace Amazon.DocDB.Model
         private string _performanceInsightsKMSKeyId;
         private string _preferredMaintenanceWindow;
         private int? _promotionTier;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AutoMinorVersionUpgrade. 
@@ -55,7 +57,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool AutoMinorVersionUpgrade
@@ -82,7 +84,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>us-east-1d</code> 
+        /// Example: <c>us-east-1d</c> 
         /// </para>
         /// </summary>
         public string AvailabilityZone
@@ -95,6 +97,30 @@ namespace Amazon.DocDB.Model
         internal bool IsSetAvailabilityZone()
         {
             return this._availabilityZone != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CACertificateIdentifier. 
+        /// <para>
+        /// The CA certificate identifier to use for the DB instance's server certificate.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/documentdb/latest/developerguide/ca_cert_rotation.html">Updating
+        /// Your Amazon DocumentDB TLS Certificates</a> and <a href="https://docs.aws.amazon.com/documentdb/latest/developerguide/security.encryption.ssl.html">
+        /// Encrypting Data in Transit</a> in the <i>Amazon DocumentDB Developer Guide</i>.
+        /// </para>
+        /// </summary>
+        public string CACertificateIdentifier
+        {
+            get { return this._caCertificateIdentifier; }
+            set { this._caCertificateIdentifier = value; }
+        }
+
+        // Check to see if CACertificateIdentifier property is set
+        internal bool IsSetCACertificateIdentifier()
+        {
+            return this._caCertificateIdentifier != null;
         }
 
         /// <summary>
@@ -138,7 +164,7 @@ namespace Amazon.DocDB.Model
         /// <summary>
         /// Gets and sets the property DBInstanceClass. 
         /// <para>
-        /// The compute and memory capacity of the instance; for example, <code>db.r5.large</code>.
+        /// The compute and memory capacity of the instance; for example, <c>db.r5.large</c>.
         /// 
         /// </para>
         /// </summary>
@@ -178,7 +204,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>mydbinstance</code> 
+        /// Example: <c>mydbinstance</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -221,7 +247,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid value: <code>docdb</code> 
+        /// Valid value: <c>docdb</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -275,7 +301,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        ///  Format: <code>ddd:hh24:mi-ddd:hh24:mi</code> 
+        ///  Format: <c>ddd:hh24:mi-ddd:hh24:mi</c> 
         /// </para>
         ///  
         /// <para>
@@ -345,7 +371,7 @@ namespace Amazon.DocDB.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

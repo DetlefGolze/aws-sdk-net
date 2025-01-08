@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -36,10 +37,11 @@ namespace Amazon.WorkSpaces.Model
         private string _bundleId;
         private string _directoryId;
         private bool? _rootVolumeEncryptionEnabled;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _userName;
         private bool? _userVolumeEncryptionEnabled;
         private string _volumeEncryptionKey;
+        private string _workspaceName;
         private WorkspaceProperties _workspaceProperties;
 
         /// <summary>
@@ -115,7 +117,7 @@ namespace Amazon.WorkSpaces.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -123,6 +125,15 @@ namespace Amazon.WorkSpaces.Model
         /// <para>
         /// The user name of the user for the WorkSpace. This user name must exist in the Directory
         /// Service directory for the WorkSpace.
+        /// </para>
+        ///  
+        /// <para>
+        /// The username is not case-sensitive, but we recommend matching the case in the Directory
+        /// Service directory to avoid potential incompatibilities.
+        /// </para>
+        ///  
+        /// <para>
+        /// The reserved keyword, <c>[UNDEFINED]</c>, is used when creating user-decoupled WorkSpaces.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=63)]
@@ -173,6 +184,31 @@ namespace Amazon.WorkSpaces.Model
         internal bool IsSetVolumeEncryptionKey()
         {
             return this._volumeEncryptionKey != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WorkspaceName. 
+        /// <para>
+        /// The name of the user-decoupled WorkSpace.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <c>WorkspaceName</c> is required if <c>UserName</c> is <c>[UNDEFINED]</c> for user-decoupled
+        /// WorkSpaces. <c>WorkspaceName</c> is not applicable if <c>UserName</c> is specified
+        /// for user-assigned WorkSpaces.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public string WorkspaceName
+        {
+            get { return this._workspaceName; }
+            set { this._workspaceName = value; }
+        }
+
+        // Check to see if WorkspaceName property is set
+        internal bool IsSetWorkspaceName()
+        {
+            return this._workspaceName != null;
         }
 
         /// <summary>

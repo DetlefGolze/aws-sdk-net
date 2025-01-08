@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// The result of a <code>ListTags</code> operation. Contains tags for all requested Elasticsearch
+    /// The result of a <c>ListTags</c> operation. Contains tags for all requested Elasticsearch
     /// domains.
     /// </summary>
     public partial class ListTagsResponse : AmazonWebServiceResponse
     {
-        private List<Tag> _tagList = new List<Tag>();
+        private List<Tag> _tagList = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property TagList. 
         /// <para>
-        ///  List of <code>Tag</code> for the requested Elasticsearch domain.
+        ///  List of <c>Tag</c> for the requested Elasticsearch domain.
         /// </para>
         /// </summary>
         public List<Tag> TagList
@@ -51,7 +52,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if TagList property is set
         internal bool IsSetTagList()
         {
-            return this._tagList != null && this._tagList.Count > 0; 
+            return this._tagList != null && (this._tagList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

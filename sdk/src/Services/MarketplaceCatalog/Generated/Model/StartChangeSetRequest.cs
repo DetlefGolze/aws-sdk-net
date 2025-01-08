@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MarketplaceCatalog.Model
 {
     /// <summary>
     /// Container for the parameters to the StartChangeSet operation.
-    /// Allows you to request changes for your entities. Within a single <code>ChangeSet</code>,
+    /// Allows you to request changes for your entities. Within a single <c>ChangeSet</c>,
     /// you can't start the same change type against the same entity multiple times. Additionally,
-    /// when a <code>ChangeSet</code> is running, all the entities targeted by the different
-    /// changes are locked until the change set has completed (either succeeded, cancelled,
-    /// or failed). If you try to start a change set containing a change against an entity
-    /// that is already locked, you will receive a <code>ResourceInUseException</code> error.
+    /// when a <c>ChangeSet</c> is running, all the entities targeted by the different changes
+    /// are locked until the change set has completed (either succeeded, cancelled, or failed).
+    /// If you try to start a change set containing a change against an entity that is already
+    /// locked, you will receive a <c>ResourceInUseException</c> error.
     /// 
     ///  
     /// <para>
-    /// For example, you can't start the <code>ChangeSet</code> described in the <a href="https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_StartChangeSet.html#API_StartChangeSet_Examples">example</a>
-    /// later in this topic because it contains two changes to run the same change type (<code>AddRevisions</code>)
-    /// against the same entity (<code>entity-id@1</code>).
+    /// For example, you can't start the <c>ChangeSet</c> described in the <a href="https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_StartChangeSet.html#API_StartChangeSet_Examples">example</a>
+    /// later in this topic because it contains two changes to run the same change type (<c>AddRevisions</c>)
+    /// against the same entity (<c>entity-id@1</c>).
     /// </para>
     ///  
     /// <para>
@@ -56,15 +57,16 @@ namespace Amazon.MarketplaceCatalog.Model
     public partial class StartChangeSetRequest : AmazonMarketplaceCatalogRequest
     {
         private string _catalog;
-        private List<Change> _changeSet = new List<Change>();
+        private List<Change> _changeSet = AWSConfigs.InitializeCollections ? new List<Change>() : null;
         private string _changeSetName;
-        private List<Tag> _changeSetTags = new List<Tag>();
+        private List<Tag> _changeSetTags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _clientRequestToken;
+        private Intent _intent;
 
         /// <summary>
         /// Gets and sets the property Catalog. 
         /// <para>
-        /// The catalog related to the request. Fixed value: <code>AWSMarketplace</code> 
+        /// The catalog related to the request. Fixed value: <c>AWSMarketplace</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]
@@ -83,7 +85,7 @@ namespace Amazon.MarketplaceCatalog.Model
         /// <summary>
         /// Gets and sets the property ChangeSet. 
         /// <para>
-        /// Array of <code>change</code> object.
+        /// Array of <c>change</c> object.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=20)]
@@ -96,7 +98,7 @@ namespace Amazon.MarketplaceCatalog.Model
         // Check to see if ChangeSet property is set
         internal bool IsSetChangeSet()
         {
-            return this._changeSet != null && this._changeSet.Count > 0; 
+            return this._changeSet != null && (this._changeSet.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -122,7 +124,7 @@ namespace Amazon.MarketplaceCatalog.Model
         /// <summary>
         /// Gets and sets the property ChangeSetTags. 
         /// <para>
-        /// A list of objects specifying each key name and value for the <code>ChangeSetTags</code>
+        /// A list of objects specifying each key name and value for the <c>ChangeSetTags</c>
         /// property.
         /// </para>
         /// </summary>
@@ -136,7 +138,7 @@ namespace Amazon.MarketplaceCatalog.Model
         // Check to see if ChangeSetTags property is set
         internal bool IsSetChangeSetTags()
         {
-            return this._changeSetTags != null && this._changeSetTags.Count > 0; 
+            return this._changeSetTags != null && (this._changeSetTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -156,6 +158,28 @@ namespace Amazon.MarketplaceCatalog.Model
         internal bool IsSetClientRequestToken()
         {
             return this._clientRequestToken != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Intent. 
+        /// <para>
+        /// The intent related to the request. The default is <c>APPLY</c>. To test your request
+        /// before applying changes to your entities, use <c>VALIDATE</c>. This feature is currently
+        /// available for adding versions to single-AMI products. For more information, see <a
+        /// href="https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#ami-add-version">Add
+        /// a new version</a>.
+        /// </para>
+        /// </summary>
+        public Intent Intent
+        {
+            get { return this._intent; }
+            set { this._intent = value; }
+        }
+
+        // Check to see if Intent property is set
+        internal bool IsSetIntent()
+        {
+            return this._intent != null;
         }
 
     }

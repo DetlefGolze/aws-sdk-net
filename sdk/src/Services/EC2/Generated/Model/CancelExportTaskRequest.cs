@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property ExportTaskId. 
         /// <para>
-        /// The ID of the export task. This is the ID returned by the <code>CreateInstanceExportTask</code>
-        /// and <code>ExportImage</code> operations.
+        /// The ID of the export task. This is the ID returned by the <c>CreateInstanceExportTask</c>
+        /// and <c>ExportImage</c> operations.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

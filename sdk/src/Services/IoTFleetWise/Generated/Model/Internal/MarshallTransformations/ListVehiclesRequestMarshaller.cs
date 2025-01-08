@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,8 +66,31 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetAttributeNames())
+                {
+                    context.Writer.WritePropertyName("attributeNames");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestAttributeNamesListValue in publicRequest.AttributeNames)
+                    {
+                            context.Writer.Write(publicRequestAttributeNamesListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetAttributeValues())
+                {
+                    context.Writer.WritePropertyName("attributeValues");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestAttributeValuesListValue in publicRequest.AttributeValues)
+                    {
+                            context.Writer.Write(publicRequestAttributeValuesListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+
                 if(publicRequest.IsSetMaxResults())
                 {
                     context.Writer.WritePropertyName("maxResults");

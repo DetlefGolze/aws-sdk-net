@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -54,22 +55,21 @@ namespace Amazon.EC2.Model
     /// </para>
     ///  
     /// <para>
-    /// If you attempt to start a T3 instance with <code>host</code> tenancy and the <code>unlimted</code>
-    /// CPU credit option, the request fails. The <code>unlimited</code> CPU credit option
-    /// is not supported on Dedicated Hosts. Before you start the instance, either change
-    /// its CPU credit option to <code>standard</code>, or change its tenancy to <code>default</code>
-    /// or <code>dedicated</code>.
+    /// If you attempt to start a T3 instance with <c>host</c> tenancy and the <c>unlimited</c>
+    /// CPU credit option, the request fails. The <c>unlimited</c> CPU credit option is not
+    /// supported on Dedicated Hosts. Before you start the instance, either change its CPU
+    /// credit option to <c>standard</c>, or change its tenancy to <c>default</c> or <c>dedicated</c>.
     /// </para>
     ///  
     /// <para>
     /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html">Stop
-    /// and start your instance</a> in the <i>Amazon EC2 User Guide</i>.
+    /// and start Amazon EC2 instances</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     /// </summary>
     public partial class StartInstancesRequest : AmazonEC2Request
     {
         private string _additionalInfo;
-        private List<string> _instanceIds = new List<string>();
+        private List<string> _instanceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -119,7 +119,7 @@ namespace Amazon.EC2.Model
         // Check to see if InstanceIds property is set
         internal bool IsSetInstanceIds()
         {
-            return this._instanceIds != null && this._instanceIds.Count > 0; 
+            return this._instanceIds != null && (this._instanceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

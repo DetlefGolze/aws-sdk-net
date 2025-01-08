@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaConvert.Model
 {
     /// <summary>
@@ -40,6 +41,7 @@ namespace Amazon.MediaConvert.Model
         private Hdr10Metadata _hdr10Metadata;
         private HDRToSDRToneMapper _hdrToSdrToneMapper;
         private int? _hue;
+        private int? _maxLuminance;
         private SampleRangeConversion _sampleRangeConversion;
         private int? _saturation;
         private int? _sdrReferenceWhiteLevel;
@@ -180,6 +182,24 @@ namespace Amazon.MediaConvert.Model
         internal bool IsSetHue()
         {
             return this._hue.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property MaxLuminance. Specify the maximum mastering display luminance.
+        /// Enter an integer from 0 to 2147483647, in units of 0.0001 nits. For example, enter
+        /// 10000000 for 1000 nits.
+        /// </summary>
+        [AWSProperty(Min=0, Max=2147483647)]
+        public int MaxLuminance
+        {
+            get { return this._maxLuminance.GetValueOrDefault(); }
+            set { this._maxLuminance = value; }
+        }
+
+        // Check to see if MaxLuminance property is set
+        internal bool IsSetMaxLuminance()
+        {
+            return this._maxLuminance.HasValue; 
         }
 
         /// <summary>

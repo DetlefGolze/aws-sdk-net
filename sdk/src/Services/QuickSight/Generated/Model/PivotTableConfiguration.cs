@@ -26,15 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The configuration for a <code>PivotTableVisual</code>.
+    /// The configuration for a <c>PivotTableVisual</c>.
     /// </summary>
     public partial class PivotTableConfiguration
     {
         private PivotTableFieldOptions _fieldOptions;
         private PivotTableFieldWells _fieldWells;
+        private VisualInteractionOptions _interactions;
         private PivotTablePaginatedReportOptions _paginatedReportOptions;
         private PivotTableSortConfiguration _sortConfiguration;
         private PivotTableOptions _tableOptions;
@@ -77,6 +79,24 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Interactions. 
+        /// <para>
+        /// The general visual interactions setup for a visual.
+        /// </para>
+        /// </summary>
+        public VisualInteractionOptions Interactions
+        {
+            get { return this._interactions; }
+            set { this._interactions = value; }
+        }
+
+        // Check to see if Interactions property is set
+        internal bool IsSetInteractions()
+        {
+            return this._interactions != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property PaginatedReportOptions. 
         /// <para>
         /// The paginated report options for a pivot table visual.
@@ -97,7 +117,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property SortConfiguration. 
         /// <para>
-        /// The sort configuration for a <code>PivotTableVisual</code>.
+        /// The sort configuration for a <c>PivotTableVisual</c>.
         /// </para>
         /// </summary>
         public PivotTableSortConfiguration SortConfiguration

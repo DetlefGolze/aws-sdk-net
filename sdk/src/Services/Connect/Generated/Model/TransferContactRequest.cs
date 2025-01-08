@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -42,11 +43,11 @@ namespace Amazon.Connect.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// Transfer is supported for only <code>TASK</code> contacts.
+    /// Transfer is supported for only <c>TASK</c> contacts.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Do not use both <code>QueueId</code> and <code>UserId</code> in the same call.
+    /// Do not use both <c>QueueId</c> and <c>UserId</c> in the same call.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -55,7 +56,7 @@ namespace Amazon.Connect.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// The <code>TransferContact</code> API can be called only on active contacts.
+    /// The <c>TransferContact</c> API can be called only on active contacts.
     /// </para>
     ///  </li> <li> 
     /// <para>

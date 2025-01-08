@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -38,11 +39,11 @@ namespace Amazon.Kendra.Model
     public partial class UpdateFeaturedResultsSetRequest : AmazonKendraRequest
     {
         private string _description;
-        private List<FeaturedDocument> _featuredDocuments = new List<FeaturedDocument>();
+        private List<FeaturedDocument> _featuredDocuments = AWSConfigs.InitializeCollections ? new List<FeaturedDocument>() : null;
         private string _featuredResultsSetId;
         private string _featuredResultsSetName;
         private string _indexId;
-        private List<string> _queryTexts = new List<string>();
+        private List<string> _queryTexts = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private FeaturedResultsSetStatus _status;
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.Kendra.Model
         // Check to see if FeaturedDocuments property is set
         internal bool IsSetFeaturedDocuments()
         {
-            return this._featuredDocuments != null && this._featuredDocuments.Count > 0; 
+            return this._featuredDocuments != null && (this._featuredDocuments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -157,17 +158,17 @@ namespace Amazon.Kendra.Model
         // Check to see if QueryTexts property is set
         internal bool IsSetQueryTexts()
         {
-            return this._queryTexts != null && this._queryTexts.Count > 0; 
+            return this._queryTexts != null && (this._queryTexts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// You can set the status to <code>ACTIVE</code> or <code>INACTIVE</code>. When the value
-        /// is <code>ACTIVE</code>, featured results are ready for use. You can still configure
-        /// your settings before setting the status to <code>ACTIVE</code>. The queries you specify
-        /// for featured results must be unique per featured results set for each index, whether
-        /// the status is <code>ACTIVE</code> or <code>INACTIVE</code>.
+        /// You can set the status to <c>ACTIVE</c> or <c>INACTIVE</c>. When the value is <c>ACTIVE</c>,
+        /// featured results are ready for use. You can still configure your settings before setting
+        /// the status to <c>ACTIVE</c>. The queries you specify for featured results must be
+        /// unique per featured results set for each index, whether the status is <c>ACTIVE</c>
+        /// or <c>INACTIVE</c>.
         /// </para>
         /// </summary>
         public FeaturedResultsSetStatus Status

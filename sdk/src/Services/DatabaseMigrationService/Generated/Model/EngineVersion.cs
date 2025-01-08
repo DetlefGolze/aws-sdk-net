@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.DatabaseMigrationService.Model
     public partial class EngineVersion
     {
         private DateTime? _autoUpgradeDate;
-        private List<string> _availableUpgrades = new List<string>();
+        private List<string> _availableUpgrades = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _deprecationDate;
         private DateTime? _forceUpgradeDate;
         private DateTime? _launchDate;
@@ -46,7 +47,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property AutoUpgradeDate. 
         /// <para>
         /// The date when the replication instance will be automatically upgraded. This setting
-        /// only applies if the <code>auto-minor-version</code> setting is enabled.
+        /// only applies if the <c>auto-minor-version</c> setting is enabled.
         /// </para>
         /// </summary>
         public DateTime AutoUpgradeDate
@@ -76,7 +77,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if AvailableUpgrades property is set
         internal bool IsSetAvailableUpgrades()
         {
-            return this._availableUpgrades != null && this._availableUpgrades.Count > 0; 
+            return this._availableUpgrades != null && (this._availableUpgrades.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -137,8 +138,8 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property Lifecycle. 
         /// <para>
-        /// The lifecycle status of the replication instance version. Valid values are <code>DEPRECATED</code>,
-        /// <code>DEFAULT_VERSION</code>, and <code>ACTIVE</code>.
+        /// The lifecycle status of the replication instance version. Valid values are <c>DEPRECATED</c>,
+        /// <c>DEFAULT_VERSION</c>, and <c>ACTIVE</c>.
         /// </para>
         /// </summary>
         public string Lifecycle

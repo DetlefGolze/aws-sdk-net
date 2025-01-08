@@ -26,11 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
     /// Container for the parameters to the GetCampaign operation.
-    /// Retrieves information about a campaign.
+    /// Retrieves information about a campaign. 
+    /// 
+    ///  <important> 
+    /// <para>
+    /// Access to certain Amazon Web Services IoT FleetWise features is currently gated. For
+    /// more information, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/fleetwise-regions.html">Amazon
+    /// Web Services Region and feature availability</a> in the <i>Amazon Web Services IoT
+    /// FleetWise Developer Guide</i>.
+    /// </para>
+    ///  </important>
     /// </summary>
     public partial class GetCampaignRequest : AmazonIoTFleetWiseRequest
     {

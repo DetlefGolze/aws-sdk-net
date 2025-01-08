@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTWireless.Model
 {
     /// <summary>
@@ -34,8 +35,9 @@ namespace Amazon.IoTWireless.Model
     public partial class GetLogLevelsByResourceTypesResponse : AmazonWebServiceResponse
     {
         private LogLevel _defaultLogLevel;
-        private List<WirelessDeviceLogOption> _wirelessDeviceLogOptions = new List<WirelessDeviceLogOption>();
-        private List<WirelessGatewayLogOption> _wirelessGatewayLogOptions = new List<WirelessGatewayLogOption>();
+        private List<FuotaTaskLogOption> _fuotaTaskLogOptions = AWSConfigs.InitializeCollections ? new List<FuotaTaskLogOption>() : null;
+        private List<WirelessDeviceLogOption> _wirelessDeviceLogOptions = AWSConfigs.InitializeCollections ? new List<WirelessDeviceLogOption>() : null;
+        private List<WirelessGatewayLogOption> _wirelessGatewayLogOptions = AWSConfigs.InitializeCollections ? new List<WirelessGatewayLogOption>() : null;
 
         /// <summary>
         /// Gets and sets the property DefaultLogLevel.
@@ -53,6 +55,21 @@ namespace Amazon.IoTWireless.Model
         }
 
         /// <summary>
+        /// Gets and sets the property FuotaTaskLogOptions.
+        /// </summary>
+        public List<FuotaTaskLogOption> FuotaTaskLogOptions
+        {
+            get { return this._fuotaTaskLogOptions; }
+            set { this._fuotaTaskLogOptions = value; }
+        }
+
+        // Check to see if FuotaTaskLogOptions property is set
+        internal bool IsSetFuotaTaskLogOptions()
+        {
+            return this._fuotaTaskLogOptions != null && (this._fuotaTaskLogOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property WirelessDeviceLogOptions.
         /// </summary>
         public List<WirelessDeviceLogOption> WirelessDeviceLogOptions
@@ -64,7 +81,7 @@ namespace Amazon.IoTWireless.Model
         // Check to see if WirelessDeviceLogOptions property is set
         internal bool IsSetWirelessDeviceLogOptions()
         {
-            return this._wirelessDeviceLogOptions != null && this._wirelessDeviceLogOptions.Count > 0; 
+            return this._wirelessDeviceLogOptions != null && (this._wirelessDeviceLogOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -79,7 +96,7 @@ namespace Amazon.IoTWireless.Model
         // Check to see if WirelessGatewayLogOptions property is set
         internal bool IsSetWirelessGatewayLogOptions()
         {
-            return this._wirelessGatewayLogOptions != null && this._wirelessGatewayLogOptions.Count > 0; 
+            return this._wirelessGatewayLogOptions != null && (this._wirelessGatewayLogOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

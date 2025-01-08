@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
@@ -45,7 +46,27 @@ namespace Amazon.ApplicationDiscoveryService.Model
     /// </summary>
     public partial class BatchDeleteImportDataRequest : AmazonApplicationDiscoveryServiceRequest
     {
-        private List<string> _importTaskIds = new List<string>();
+        private bool? _deleteHistory;
+        private List<string> _importTaskIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+
+        /// <summary>
+        /// Gets and sets the property DeleteHistory. 
+        /// <para>
+        ///  Set to <c>true</c> to remove the deleted import task from <a>DescribeImportTasks</a>.
+        /// 
+        /// </para>
+        /// </summary>
+        public bool DeleteHistory
+        {
+            get { return this._deleteHistory.GetValueOrDefault(); }
+            set { this._deleteHistory = value; }
+        }
+
+        // Check to see if DeleteHistory property is set
+        internal bool IsSetDeleteHistory()
+        {
+            return this._deleteHistory.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property ImportTaskIds. 
@@ -63,7 +84,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         // Check to see if ImportTaskIds property is set
         internal bool IsSetImportTaskIds()
         {
-            return this._importTaskIds != null && this._importTaskIds.Count > 0; 
+            return this._importTaskIds != null && (this._importTaskIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

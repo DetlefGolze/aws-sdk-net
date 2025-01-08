@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.DocDB.Model
     public partial class DBClusterSnapshotAttribute
     {
         private string _attributeName;
-        private List<string> _attributeValues = new List<string>();
+        private List<string> _attributeValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AttributeName. 
@@ -49,8 +50,8 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// The attribute named <code>restore</code> refers to the list of Amazon Web Services
-        /// accounts that have permission to copy or restore the manual cluster snapshot.
+        /// The attribute named <c>restore</c> refers to the list of Amazon Web Services accounts
+        /// that have permission to copy or restore the manual cluster snapshot.
         /// </para>
         /// </summary>
         public string AttributeName
@@ -72,11 +73,11 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// If the <code>AttributeName</code> field is set to <code>restore</code>, then this
-        /// element returns a list of IDs of the Amazon Web Services accounts that are authorized
-        /// to copy or restore the manual cluster snapshot. If a value of <code>all</code> is
-        /// in the list, then the manual cluster snapshot is public and available for any Amazon
-        /// Web Services account to copy or restore.
+        /// If the <c>AttributeName</c> field is set to <c>restore</c>, then this element returns
+        /// a list of IDs of the Amazon Web Services accounts that are authorized to copy or restore
+        /// the manual cluster snapshot. If a value of <c>all</c> is in the list, then the manual
+        /// cluster snapshot is public and available for any Amazon Web Services account to copy
+        /// or restore.
         /// </para>
         /// </summary>
         public List<string> AttributeValues
@@ -88,7 +89,7 @@ namespace Amazon.DocDB.Model
         // Check to see if AttributeValues property is set
         internal bool IsSetAttributeValues()
         {
-            return this._attributeValues != null && this._attributeValues.Count > 0; 
+            return this._attributeValues != null && (this._attributeValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

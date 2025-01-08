@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -42,8 +43,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property InstanceHealth. 
         /// <para>
         /// The health status of the instance. If the status of either the instance status check
-        /// or the system status check is <code>impaired</code>, the health status of the instance
-        /// is <code>unhealthy</code>. Otherwise, the health status is <code>healthy</code>.
+        /// or the system status check is <c>impaired</c>, the health status of the instance is
+        /// <c>unhealthy</c>. Otherwise, the health status is <c>healthy</c>.
         /// </para>
         /// </summary>
         public InstanceHealthStatus InstanceHealth

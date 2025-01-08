@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MachineLearning.Model
 {
     /// <summary>
     /// Container for the parameters to the Predict operation.
-    /// Generates a prediction for the observation using the specified <code>ML Model</code>.
+    /// Generates a prediction for the observation using the specified <c>ML Model</c>.
     /// 
     ///  
     /// <para>
@@ -42,12 +43,12 @@ namespace Amazon.MachineLearning.Model
     {
         private string _mlModelId;
         private string _predictEndpoint;
-        private Dictionary<string, string> _record = new Dictionary<string, string>();
+        private Dictionary<string, string> _record = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property MLModelId. 
         /// <para>
-        /// A unique identifier of the <code>MLModel</code>.
+        /// A unique identifier of the <c>MLModel</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]
@@ -92,7 +93,7 @@ namespace Amazon.MachineLearning.Model
         // Check to see if Record property is set
         internal bool IsSetRecord()
         {
-            return this._record != null && this._record.Count > 0; 
+            return this._record != null && (this._record.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

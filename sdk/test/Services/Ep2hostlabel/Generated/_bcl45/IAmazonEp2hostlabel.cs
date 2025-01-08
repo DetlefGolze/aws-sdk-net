@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Ep2hostlabel.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Ep2hostlabel
 {
     /// <summary>
-    /// Interface for accessing Ep2hostlabel
+    /// <para>Interface for accessing Ep2hostlabel</para>
     ///
     /// 
     /// </summary>

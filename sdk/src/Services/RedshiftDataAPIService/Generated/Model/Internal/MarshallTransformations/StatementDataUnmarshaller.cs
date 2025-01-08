@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RedshiftDataAPIService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.RedshiftDataAPIService.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public StatementData Unmarshall(JsonUnmarshallerContext context)
         {
+            StatementData unmarshalledObject = new StatementData();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            StatementData unmarshalledObject = new StatementData();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -100,10 +102,22 @@ namespace Amazon.RedshiftDataAPIService.Model.Internal.MarshallTransformations
                     unmarshalledObject.QueryStrings = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ResultFormat", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ResultFormat = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("SecretArn", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.SecretArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("SessionId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.SessionId = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("StatementName", targetDepth))
@@ -125,7 +139,6 @@ namespace Amazon.RedshiftDataAPIService.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

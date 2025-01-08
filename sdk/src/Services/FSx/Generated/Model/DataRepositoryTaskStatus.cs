@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -118,9 +119,9 @@ namespace Amazon.FSx.Model
         /// Gets and sets the property TotalCount. 
         /// <para>
         /// The total number of files that the task will process. While a task is executing, the
-        /// sum of <code>SucceededCount</code> plus <code>FailedCount</code> may not equal <code>TotalCount</code>.
-        /// When the task is complete, <code>TotalCount</code> equals the sum of <code>SucceededCount</code>
-        /// plus <code>FailedCount</code>.
+        /// sum of <c>SucceededCount</c> plus <c>FailedCount</c> may not equal <c>TotalCount</c>.
+        /// When the task is complete, <c>TotalCount</c> equals the sum of <c>SucceededCount</c>
+        /// plus <c>FailedCount</c>.
         /// </para>
         /// </summary>
         public long TotalCount

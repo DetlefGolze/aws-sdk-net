@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,9 +34,10 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class GetCoipPoolUsageResponse : AmazonWebServiceResponse
     {
-        private List<CoipAddressUsage> _coipAddressUsages = new List<CoipAddressUsage>();
+        private List<CoipAddressUsage> _coipAddressUsages = AWSConfigs.InitializeCollections ? new List<CoipAddressUsage>() : null;
         private string _coipPoolId;
         private string _localGatewayRouteTableId;
+        private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property CoipAddressUsages. 
@@ -52,7 +54,7 @@ namespace Amazon.EC2.Model
         // Check to see if CoipAddressUsages property is set
         internal bool IsSetCoipAddressUsages()
         {
-            return this._coipAddressUsages != null && this._coipAddressUsages.Count > 0; 
+            return this._coipAddressUsages != null && (this._coipAddressUsages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -89,6 +91,25 @@ namespace Amazon.EC2.Model
         internal bool IsSetLocalGatewayRouteTableId()
         {
             return this._localGatewayRouteTableId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property NextToken. 
+        /// <para>
+        /// The token to use to retrieve the next page of results. This value is <c>null</c> when
+        /// there are no more results to return.
+        /// </para>
+        /// </summary>
+        public string NextToken
+        {
+            get { return this._nextToken; }
+            set { this._nextToken = value; }
+        }
+
+        // Check to see if NextToken property is set
+        internal bool IsSetNextToken()
+        {
+            return this._nextToken != null;
         }
 
     }

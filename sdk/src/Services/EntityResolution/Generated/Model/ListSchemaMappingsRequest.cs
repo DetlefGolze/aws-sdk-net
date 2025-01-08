@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
     /// Container for the parameters to the ListSchemaMappings operation.
-    /// Returns a list of all the <code>SchemaMappings</code> that have been created for an
-    /// Amazon Web Services account.
+    /// Returns a list of all the <c>SchemaMappings</c> that have been created for an Amazon
+    /// Web Services account.
     /// </summary>
     public partial class ListSchemaMappingsRequest : AmazonEntityResolutionRequest
     {
@@ -60,7 +61,7 @@ namespace Amazon.EntityResolution.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The pagination token from the previous <code>ListSchemaMappings</code> API call.
+        /// The pagination token from the previous API call.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

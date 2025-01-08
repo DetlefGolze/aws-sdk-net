@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
     /// An Amazon FSx for NetApp ONTAP storage virtual machine (SVM) has four endpoints that
     /// are used to access data or to manage the SVM using the NetApp ONTAP CLI, REST API,
-    /// or NetApp CloudManager. They are the <code>Iscsi</code>, <code>Management</code>,
-    /// <code>Nfs</code>, and <code>Smb</code> endpoints.
+    /// or NetApp CloudManager. They are the <c>Iscsi</c>, <c>Management</c>, <c>Nfs</c>,
+    /// and <c>Smb</c> endpoints.
     /// </summary>
     public partial class SvmEndpoint
     {
         private string _dnsName;
-        private List<string> _ipAddresses = new List<string>();
+        private List<string> _ipAddresses = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DNSName.
@@ -61,7 +62,7 @@ namespace Amazon.FSx.Model
         /// The SVM endpoint's IP addresses.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=2)]
+        [AWSProperty(Min=1, Max=24)]
         public List<string> IpAddresses
         {
             get { return this._ipAddresses; }
@@ -71,7 +72,7 @@ namespace Amazon.FSx.Model
         // Check to see if IpAddresses property is set
         internal bool IsSetIpAddresses()
         {
-            return this._ipAddresses != null && this._ipAddresses.Count > 0; 
+            return this._ipAddresses != null && (this._ipAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

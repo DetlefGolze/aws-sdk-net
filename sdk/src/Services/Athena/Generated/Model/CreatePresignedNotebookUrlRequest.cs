@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Athena.Model
 {
     /// <summary>
     /// Container for the parameters to the CreatePresignedNotebookUrl operation.
     /// Gets an authentication token and the URL at which the notebook can be accessed. During
-    /// programmatic access, <code>CreatePresignedNotebookUrl</code> must be called every
-    /// 10 minutes to refresh the authentication token. For information about granting programmatic
-    /// access, see <a href="https://docs.aws.amazon.com/athena/latest/ug/setting-up.html#setting-up-grant-programmatic-access">Grant
+    /// programmatic access, <c>CreatePresignedNotebookUrl</c> must be called every 10 minutes
+    /// to refresh the authentication token. For information about granting programmatic access,
+    /// see <a href="https://docs.aws.amazon.com/athena/latest/ug/setting-up.html#setting-up-grant-programmatic-access">Grant
     /// programmatic access</a>.
     /// </summary>
     public partial class CreatePresignedNotebookUrlRequest : AmazonAthenaRequest

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
@@ -34,14 +35,13 @@ namespace Amazon.ElasticFileSystem.Model
     public partial class ListTagsForResourceResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  <code>NextToken</code> is present if the response payload is paginated. You can use
-        /// <code>NextToken</code> in a subsequent request to fetch the next page of access point
-        /// descriptions.
+        ///  <c>NextToken</c> is present if the response payload is paginated. You can use <c>NextToken</c>
+        /// in a subsequent request to fetch the next page of access point descriptions.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -72,7 +72,7 @@ namespace Amazon.ElasticFileSystem.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

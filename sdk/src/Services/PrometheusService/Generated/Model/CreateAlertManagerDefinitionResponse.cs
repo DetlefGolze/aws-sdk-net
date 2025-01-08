@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
-    /// Represents the output of a CreateAlertManagerDefinition operation.
+    /// Represents the output of a <c>CreateAlertManagerDefinition</c> operation.
     /// </summary>
     public partial class CreateAlertManagerDefinitionResponse : AmazonWebServiceResponse
     {
@@ -38,7 +39,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of alert manager definition.
+        /// A structure that displays the current status of the alert manager definition.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.TranscribeService.Model
         private string _dataAccessRoleArn;
         private string _vocabularyFilterFileUri;
         private string _vocabularyFilterName;
-        private List<string> _words = new List<string>();
+        private List<string> _words = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DataAccessRoleArn. 
@@ -51,8 +52,8 @@ namespace Amazon.TranscribeService.Model
         /// </para>
         ///  
         /// <para>
-        /// IAM role ARNs have the format <code>arn:partition:iam::account:role/role-name-with-path</code>.
-        /// For example: <code>arn:aws:iam::111122223333:role/Admin</code>.
+        /// IAM role ARNs have the format <c>arn:partition:iam::account:role/role-name-with-path</c>.
+        /// For example: <c>arn:aws:iam::111122223333:role/Admin</c>.
         /// </para>
         ///  
         /// <para>
@@ -82,13 +83,13 @@ namespace Amazon.TranscribeService.Model
         /// </para>
         ///  
         /// <para>
-        /// Here's an example URI path: <code>s3://DOC-EXAMPLE-BUCKET/my-vocab-filter-file.txt</code>
+        /// Here's an example URI path: <c>s3://DOC-EXAMPLE-BUCKET/my-vocab-filter-file.txt</c>
         /// 
         /// </para>
         ///  
         /// <para>
-        /// Note that if you include <code>VocabularyFilterFileUri</code> in your request, you
-        /// cannot use <code>Words</code>; you must choose one or the other.
+        /// Note that if you include <c>VocabularyFilterFileUri</c> in your request, you cannot
+        /// use <c>Words</c>; you must choose one or the other.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2000)]
@@ -130,12 +131,12 @@ namespace Amazon.TranscribeService.Model
         /// Use this parameter if you want to update your custom vocabulary filter by including
         /// all desired terms, as comma-separated values, within your request. The other option
         /// for updating your vocabulary filter is to save your entries in a text file and upload
-        /// them to an Amazon S3 bucket, then specify the location of your file using the <code>VocabularyFilterFileUri</code>
+        /// them to an Amazon S3 bucket, then specify the location of your file using the <c>VocabularyFilterFileUri</c>
         /// parameter.
         /// </para>
         ///  
         /// <para>
-        /// Note that if you include <code>Words</code> in your request, you cannot use <code>VocabularyFilterFileUri</code>;
+        /// Note that if you include <c>Words</c> in your request, you cannot use <c>VocabularyFilterFileUri</c>;
         /// you must choose one or the other.
         /// </para>
         ///  
@@ -156,7 +157,7 @@ namespace Amazon.TranscribeService.Model
         // Check to see if Words property is set
         internal bool IsSetWords()
         {
-            return this._words != null && this._words.Count > 0; 
+            return this._words != null && (this._words.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

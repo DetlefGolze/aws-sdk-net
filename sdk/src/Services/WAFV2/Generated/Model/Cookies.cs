@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -40,8 +41,8 @@ namespace Amazon.WAFV2.Model
     /// </para>
     ///  
     /// <para>
-    /// Example JSON: <code>"Cookies": { "MatchPattern": { "All": {} }, "MatchScope": "KEY",
-    /// "OversizeHandling": "MATCH" }</code> 
+    /// Example JSON: <c>"Cookies": { "MatchPattern": { "All": {} }, "MatchScope": "KEY",
+    /// "OversizeHandling": "MATCH" }</c> 
     /// </para>
     /// </summary>
     public partial class Cookies
@@ -57,13 +58,13 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// You must specify exactly one setting: either <code>All</code>, <code>IncludedCookies</code>,
-        /// or <code>ExcludedCookies</code>.
+        /// You must specify exactly one setting: either <c>All</c>, <c>IncludedCookies</c>, or
+        /// <c>ExcludedCookies</c>.
         /// </para>
         ///  
         /// <para>
-        /// Example JSON: <code>"MatchPattern": { "IncludedCookies": [ "session-id-time", "session-id"
-        /// ] }</code> 
+        /// Example JSON: <c>"MatchPattern": { "IncludedCookies": [ "session-id-time", "session-id"
+        /// ] }</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -83,7 +84,15 @@ namespace Amazon.WAFV2.Model
         /// Gets and sets the property MatchScope. 
         /// <para>
         /// The parts of the cookies to inspect with the rule inspection criteria. If you specify
-        /// <code>All</code>, WAF inspects both keys and values. 
+        /// <c>ALL</c>, WAF inspects both keys and values. 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>All</c> does not require a match to be found in the keys and a match to be found
+        /// in the values. It requires a match to be found in the keys or the values or both.
+        /// To require a match in the keys and in the values, use a logical <c>AND</c> statement
+        /// to combine two match rules, one that inspects the keys and another that inspects the
+        /// values. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -113,17 +122,17 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CONTINUE</code> - Inspect the available cookies normally, according to the
-        /// rule inspection criteria. 
+        ///  <c>CONTINUE</c> - Inspect the available cookies normally, according to the rule inspection
+        /// criteria. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MATCH</code> - Treat the web request as matching the rule statement. WAF applies
+        ///  <c>MATCH</c> - Treat the web request as matching the rule statement. WAF applies
         /// the rule action to the request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NO_MATCH</code> - Treat the web request as not matching the rule statement.
+        ///  <c>NO_MATCH</c> - Treat the web request as not matching the rule statement.
         /// </para>
         ///  </li> </ul>
         /// </summary>

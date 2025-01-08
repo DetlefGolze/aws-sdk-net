@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
@@ -41,9 +42,9 @@ namespace Amazon.StorageGateway.Model
     /// </para>
     ///  
     /// <para>
-    /// In the <code>CreateSnapshotFromVolumeRecoveryPoint</code> request, you identify the
-    /// volume by providing its Amazon Resource Name (ARN). You must also provide a description
-    /// for the snapshot. When the gateway takes a snapshot of the specified volume, the snapshot
+    /// In the <c>CreateSnapshotFromVolumeRecoveryPoint</c> request, you identify the volume
+    /// by providing its Amazon Resource Name (ARN). You must also provide a description for
+    /// the snapshot. When the gateway takes a snapshot of the specified volume, the snapshot
     /// and its description appear in the Storage Gateway console. In response, the gateway
     /// returns you a snapshot ID. You can use this snapshot ID to check the snapshot progress
     /// or later use it when you want to create a volume from a snapshot.
@@ -60,7 +61,7 @@ namespace Amazon.StorageGateway.Model
     public partial class CreateSnapshotFromVolumeRecoveryPointRequest : AmazonStorageGatewayRequest
     {
         private string _snapshotDescription;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _volumeARN;
 
         /// <summary>
@@ -108,7 +109,7 @@ namespace Amazon.StorageGateway.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

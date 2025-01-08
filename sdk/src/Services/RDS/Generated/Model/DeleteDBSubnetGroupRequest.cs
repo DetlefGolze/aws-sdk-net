@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -57,7 +58,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>mydbsubnetgroup</code> 
+        /// Example: <c>mydbsubnetgroup</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

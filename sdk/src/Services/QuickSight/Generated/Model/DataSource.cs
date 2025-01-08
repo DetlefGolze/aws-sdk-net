@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.QuickSight.Model
     /// </summary>
     public partial class DataSource
     {
-        private List<DataSourceParameters> _alternateDataSourceParameters = new List<DataSourceParameters>();
+        private List<DataSourceParameters> _alternateDataSourceParameters = AWSConfigs.InitializeCollections ? new List<DataSourceParameters>() : null;
         private string _arn;
         private DateTime? _createdTime;
         private string _dataSourceId;
@@ -53,11 +54,11 @@ namespace Amazon.QuickSight.Model
         /// A set of alternate data source parameters that you want to share for the credentials
         /// stored with this data source. The credentials are applied in tandem with the data
         /// source parameters when you copy a data source by using a create or update request.
-        /// The API operation compares the <code>DataSourceParameters</code> structure that's
-        /// in the request with the structures in the <code>AlternateDataSourceParameters</code>
-        /// allow list. If the structures are an exact match, the request is allowed to use the
-        /// credentials from this existing data source. If the <code>AlternateDataSourceParameters</code>
-        /// list is null, the <code>Credentials</code> originally used with this <code>DataSourceParameters</code>
+        /// The API operation compares the <c>DataSourceParameters</c> structure that's in the
+        /// request with the structures in the <c>AlternateDataSourceParameters</c> allow list.
+        /// If the structures are an exact match, the request is allowed to use the credentials
+        /// from this existing data source. If the <c>AlternateDataSourceParameters</c> list is
+        /// null, the <c>Credentials</c> originally used with this <c>DataSourceParameters</c>
         /// are automatically allowed.
         /// </para>
         /// </summary>
@@ -71,7 +72,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if AlternateDataSourceParameters property is set
         internal bool IsSetAlternateDataSourceParameters()
         {
-            return this._alternateDataSourceParameters != null && this._alternateDataSourceParameters.Count > 0; 
+            return this._alternateDataSourceParameters != null && (this._alternateDataSourceParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

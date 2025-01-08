@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -130,7 +131,10 @@ namespace Amazon.EKS.Model
 #endif
 
         /// <summary>
-        /// Gets and sets the property AddonName.
+        /// Gets and sets the property AddonName. 
+        /// <para>
+        /// The specified add-on name is in use.
+        /// </para>
         /// </summary>
         public string AddonName
         {

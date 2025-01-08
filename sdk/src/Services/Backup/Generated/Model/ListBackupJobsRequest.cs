@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -42,6 +43,7 @@ namespace Amazon.Backup.Model
         private DateTime? _byCompleteBefore;
         private DateTime? _byCreatedAfter;
         private DateTime? _byCreatedBefore;
+        private string _byMessageCategory;
         private string _byParentJobId;
         private string _byResourceArn;
         private string _byResourceType;
@@ -57,8 +59,8 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  
         /// <para>
-        /// If used from an Organizations management account, passing <code>*</code> returns all
-        /// jobs across the organization.
+        /// If used from an Organizations management account, passing <c>*</c> returns all jobs
+        /// across the organization.
         /// </para>
         /// </summary>
         public string ByAccountId
@@ -78,8 +80,7 @@ namespace Amazon.Backup.Model
         /// <para>
         /// Returns only backup jobs that will be stored in the specified backup vault. Backup
         /// vaults are identified by names that are unique to the account used to create them
-        /// and the Amazon Web Services Region where they are created. They consist of lowercase
-        /// letters, numbers, and hyphens.
+        /// and the Amazon Web Services Region where they are created.
         /// </para>
         /// </summary>
         public string ByBackupVaultName
@@ -169,6 +170,44 @@ namespace Amazon.Backup.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ByMessageCategory. 
+        /// <para>
+        /// This is an optional parameter that can be used to filter out jobs with a MessageCategory
+        /// which matches the value you input.
+        /// </para>
+        ///  
+        /// <para>
+        /// Example strings may include <c>AccessDenied</c>, <c>SUCCESS</c>, <c>AGGREGATE_ALL</c>,
+        /// and <c>InvalidParameters</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// View <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html">Monitoring</a>
+        /// 
+        /// </para>
+        ///  
+        /// <para>
+        /// The wildcard () returns count of all message categories.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>AGGREGATE_ALL</c> aggregates job counts for all message categories and returns
+        /// the sum.
+        /// </para>
+        /// </summary>
+        public string ByMessageCategory
+        {
+            get { return this._byMessageCategory; }
+            set { this._byMessageCategory = value; }
+        }
+
+        // Check to see if ByMessageCategory property is set
+        internal bool IsSetByMessageCategory()
+        {
+            return this._byMessageCategory != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ByParentJobId. 
         /// <para>
         /// This is a filter to list child (nested) jobs based on parent job ID.
@@ -211,51 +250,68 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Aurora</code> for Amazon Aurora
+        ///  <c>Aurora</c> for Amazon Aurora
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DocumentDB</code> for Amazon DocumentDB (with MongoDB compatibility)
+        ///  <c>CloudFormation</c> for CloudFormation
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DynamoDB</code> for Amazon DynamoDB
+        ///  <c>DocumentDB</c> for Amazon DocumentDB (with MongoDB compatibility)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EBS</code> for Amazon Elastic Block Store
+        ///  <c>DynamoDB</c> for Amazon DynamoDB
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EC2</code> for Amazon Elastic Compute Cloud
+        ///  <c>EBS</c> for Amazon Elastic Block Store
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EFS</code> for Amazon Elastic File System
+        ///  <c>EC2</c> for Amazon Elastic Compute Cloud
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FSx</code> for Amazon FSx
+        ///  <c>EFS</c> for Amazon Elastic File System
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Neptune</code> for Amazon Neptune
+        ///  <c>FSx</c> for Amazon FSx
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RDS</code> for Amazon Relational Database Service
+        ///  <c>Neptune</c> for Amazon Neptune
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Storage Gateway</code> for Storage Gateway
+        ///  <c>RDS</c> for Amazon Relational Database Service
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>S3</code> for Amazon S3
+        ///  <c>Redshift</c> for Amazon Redshift
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>VirtualMachine</code> for virtual machines
+        ///  <c>S3</c> for Amazon Simple Storage Service (Amazon S3)
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>SAP HANA on Amazon EC2</c> for SAP HANA databases on Amazon Elastic Compute Cloud
+        /// instances
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Storage Gateway</c> for Storage Gateway
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Timestream</c> for Amazon Timestream
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>VirtualMachine</c> for VMware virtual machines
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -275,6 +331,26 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property ByState. 
         /// <para>
         /// Returns only backup jobs that are in the specified state.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>Completed with issues</c> is a status found only in the Backup console. For API,
+        /// this status refers to jobs with a state of <c>COMPLETED</c> and a <c>MessageCategory</c>
+        /// with a value other than <c>SUCCESS</c>; that is, the status is completed but comes
+        /// with a status message.
+        /// </para>
+        ///  
+        /// <para>
+        /// To obtain the job count for <c>Completed with issues</c>, run two GET requests, and
+        /// subtract the second, smaller number:
+        /// </para>
+        ///  
+        /// <para>
+        /// GET /backup-jobs/?state=COMPLETED
+        /// </para>
+        ///  
+        /// <para>
+        /// GET /backup-jobs/?messageCategory=SUCCESS&amp;state=COMPLETED
         /// </para>
         /// </summary>
         public BackupJobState ByState
@@ -312,9 +388,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The next item following a partial list of returned items. For example, if a request
-        /// is made to return <code>maxResults</code> number of items, <code>NextToken</code>
-        /// allows you to return more items in your list starting at the location pointed to by
-        /// the next token.
+        /// is made to return <c>MaxResults</c> number of items, <c>NextToken</c> allows you to
+        /// return more items in your list starting at the location pointed to by the next token.
         /// </para>
         /// </summary>
         public string NextToken

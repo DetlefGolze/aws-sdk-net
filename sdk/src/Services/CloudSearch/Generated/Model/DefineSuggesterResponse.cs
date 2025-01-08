@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// The result of a <code>DefineSuggester</code> request. Contains the status of the newly-configured
+    /// The result of a <c>DefineSuggester</c> request. Contains the status of the newly-configured
     /// suggester.
     /// </summary>
     public partial class DefineSuggesterResponse : AmazonWebServiceResponse

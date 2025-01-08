@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -38,12 +39,14 @@ namespace Amazon.Imagebuilder.Model
         private string _clientToken;
         private string _description;
         private string _distributionConfigurationArn;
-        private List<Distribution> _distributions = new List<Distribution>();
+        private List<Distribution> _distributions = AWSConfigs.InitializeCollections ? new List<Distribution>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
-        /// The idempotency token of the distribution configuration.
+        /// Unique, case-sensitive identifier you provide to ensure idempotency of the request.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+        /// idempotency</a> in the <i>Amazon EC2 API Reference</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=36)]
@@ -114,7 +117,7 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if Distributions property is set
         internal bool IsSetDistributions()
         {
-            return this._distributions != null && this._distributions.Count > 0; 
+            return this._distributions != null && (this._distributions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

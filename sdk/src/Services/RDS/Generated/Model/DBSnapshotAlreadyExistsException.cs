@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// <code>DBSnapshotIdentifier</code> is already used by an existing snapshot.
+    /// <c>DBSnapshotIdentifier</c> is already used by an existing snapshot.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

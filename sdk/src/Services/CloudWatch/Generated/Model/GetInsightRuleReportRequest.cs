@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatch.Model
 {
     /// <summary>
@@ -40,43 +41,42 @@ namespace Amazon.CloudWatch.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>UniqueContributors</code> -- the number of unique contributors for each data
-    /// point.
+    ///  <c>UniqueContributors</c> -- the number of unique contributors for each data point.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>MaxContributorValue</code> -- the value of the top contributor for each data
-    /// point. The identity of the contributor might change for each data point in the graph.
+    ///  <c>MaxContributorValue</c> -- the value of the top contributor for each data point.
+    /// The identity of the contributor might change for each data point in the graph.
     /// </para>
     ///  
     /// <para>
     /// If this rule aggregates by COUNT, the top contributor for each data point is the contributor
     /// with the most occurrences in that period. If the rule aggregates by SUM, the top contributor
-    /// is the contributor with the highest sum in the log field specified by the rule's <code>Value</code>,
+    /// is the contributor with the highest sum in the log field specified by the rule's <c>Value</c>,
     /// during that period.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>SampleCount</code> -- the number of data points matched by the rule.
+    ///  <c>SampleCount</c> -- the number of data points matched by the rule.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>Sum</code> -- the sum of the values from all contributors during the time period
+    ///  <c>Sum</c> -- the sum of the values from all contributors during the time period
     /// represented by that data point.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>Minimum</code> -- the minimum value from a single observation during the time
-    /// period represented by that data point.
+    ///  <c>Minimum</c> -- the minimum value from a single observation during the time period
+    /// represented by that data point.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>Maximum</code> -- the maximum value from a single observation during the time
-    /// period represented by that data point.
+    ///  <c>Maximum</c> -- the maximum value from a single observation during the time period
+    /// represented by that data point.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>Average</code> -- the average value from all contributors during the time period
+    ///  <c>Average</c> -- the average value from all contributors during the time period
     /// represented by that data point.
     /// </para>
     ///  </li> </ul>
@@ -85,7 +85,7 @@ namespace Amazon.CloudWatch.Model
     {
         private DateTime? _endTime;
         private int? _maxContributorCount;
-        private List<string> _metrics = new List<string>();
+        private List<string> _metrics = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _orderBy;
         private int? _period;
         private string _ruleName;
@@ -95,7 +95,7 @@ namespace Amazon.CloudWatch.Model
         /// Gets and sets the property EndTime. 
         /// <para>
         /// The end time of the data to use in the report. When used in a raw HTTP Query API,
-        /// it is formatted as <code>yyyy-MM-dd'T'HH:mm:ss</code>. For example, <code>2019-07-01T23:59:59</code>.
+        /// it is formatted as <c>yyyy-MM-dd'T'HH:mm:ss</c>. For example, <c>2019-07-01T23:59:59</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -138,43 +138,42 @@ namespace Amazon.CloudWatch.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>UniqueContributors</code> -- the number of unique contributors for each data
-        /// point.
+        ///  <c>UniqueContributors</c> -- the number of unique contributors for each data point.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MaxContributorValue</code> -- the value of the top contributor for each data
-        /// point. The identity of the contributor might change for each data point in the graph.
+        ///  <c>MaxContributorValue</c> -- the value of the top contributor for each data point.
+        /// The identity of the contributor might change for each data point in the graph.
         /// </para>
         ///  
         /// <para>
         /// If this rule aggregates by COUNT, the top contributor for each data point is the contributor
         /// with the most occurrences in that period. If the rule aggregates by SUM, the top contributor
-        /// is the contributor with the highest sum in the log field specified by the rule's <code>Value</code>,
+        /// is the contributor with the highest sum in the log field specified by the rule's <c>Value</c>,
         /// during that period.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SampleCount</code> -- the number of data points matched by the rule.
+        ///  <c>SampleCount</c> -- the number of data points matched by the rule.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Sum</code> -- the sum of the values from all contributors during the time period
+        ///  <c>Sum</c> -- the sum of the values from all contributors during the time period
         /// represented by that data point.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Minimum</code> -- the minimum value from a single observation during the time
-        /// period represented by that data point.
+        ///  <c>Minimum</c> -- the minimum value from a single observation during the time period
+        /// represented by that data point.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Maximum</code> -- the maximum value from a single observation during the time
-        /// period represented by that data point.
+        ///  <c>Maximum</c> -- the maximum value from a single observation during the time period
+        /// represented by that data point.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Average</code> -- the average value from all contributors during the time period
+        ///  <c>Average</c> -- the average value from all contributors during the time period
         /// represented by that data point.
         /// </para>
         ///  </li> </ul>
@@ -188,14 +187,14 @@ namespace Amazon.CloudWatch.Model
         // Check to see if Metrics property is set
         internal bool IsSetMetrics()
         {
-            return this._metrics != null && this._metrics.Count > 0; 
+            return this._metrics != null && (this._metrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property OrderBy. 
         /// <para>
-        /// Determines what statistic to use to rank the contributors. Valid values are <code>Sum</code>
-        /// and <code>Maximum</code>.
+        /// Determines what statistic to use to rank the contributors. Valid values are <c>Sum</c>
+        /// and <c>Maximum</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=32)]
@@ -214,7 +213,7 @@ namespace Amazon.CloudWatch.Model
         /// <summary>
         /// Gets and sets the property Period. 
         /// <para>
-        /// The period, in seconds, to use for the statistics in the <code>InsightRuleMetricDatapoint</code>
+        /// The period, in seconds, to use for the statistics in the <c>InsightRuleMetricDatapoint</c>
         /// results.
         /// </para>
         /// </summary>
@@ -254,7 +253,7 @@ namespace Amazon.CloudWatch.Model
         /// Gets and sets the property StartTime. 
         /// <para>
         /// The start time of the data to use in the report. When used in a raw HTTP Query API,
-        /// it is formatted as <code>yyyy-MM-dd'T'HH:mm:ss</code>. For example, <code>2019-07-01T23:59:59</code>.
+        /// it is formatted as <c>yyyy-MM-dd'T'HH:mm:ss</c>. For example, <c>2019-07-01T23:59:59</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

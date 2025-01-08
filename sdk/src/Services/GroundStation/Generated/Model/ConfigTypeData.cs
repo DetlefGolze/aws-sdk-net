@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
-    /// Object containing the parameters of a <code>Config</code>.
+    /// Object containing the parameters of a <c>Config</c>.
     /// 
     ///  
     /// <para>
-    /// See the subtype definitions for what each type of <code>Config</code> contains.
+    /// See the subtype definitions for what each type of <c>Config</c> contains.
     /// </para>
     /// </summary>
     public partial class ConfigTypeData
@@ -106,7 +107,7 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property DataflowEndpointConfig. 
         /// <para>
-        /// Information about the dataflow endpoint <code>Config</code>.
+        /// Information about the dataflow endpoint <c>Config</c>.
         /// </para>
         /// </summary>
         public DataflowEndpointConfig DataflowEndpointConfig
@@ -124,7 +125,7 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property S3RecordingConfig. 
         /// <para>
-        /// Information about an S3 recording <code>Config</code>.
+        /// Information about an S3 recording <c>Config</c>.
         /// </para>
         /// </summary>
         public S3RecordingConfig S3RecordingConfig
@@ -143,7 +144,7 @@ namespace Amazon.GroundStation.Model
         /// Gets and sets the property TrackingConfig. 
         /// <para>
         /// Object that determines whether tracking should be used during a contact executed with
-        /// this <code>Config</code> in the mission profile. 
+        /// this <c>Config</c> in the mission profile. 
         /// </para>
         /// </summary>
         public TrackingConfig TrackingConfig
@@ -161,13 +162,12 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property UplinkEchoConfig. 
         /// <para>
-        /// Information about an uplink echo <code>Config</code>.
+        /// Information about an uplink echo <c>Config</c>.
         /// </para>
         ///  
         /// <para>
-        /// Parameters from the <code>AntennaUplinkConfig</code>, corresponding to the specified
-        /// <code>AntennaUplinkConfigArn</code>, are used when this <code>UplinkEchoConfig</code>
-        /// is used in a contact.
+        /// Parameters from the <c>AntennaUplinkConfig</c>, corresponding to the specified <c>AntennaUplinkConfigArn</c>,
+        /// are used when this <c>UplinkEchoConfig</c> is used in a contact.
         /// </para>
         /// </summary>
         public UplinkEchoConfig UplinkEchoConfig

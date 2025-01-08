@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(Recipe requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetInputs())
             {
                 context.Writer.WritePropertyName("Inputs");
@@ -71,6 +74,22 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
                 marshaller.Marshall(requestObject.RecipeReference, context);
 
                 context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetRecipeSteps())
+            {
+                context.Writer.WritePropertyName("RecipeSteps");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectRecipeStepsListValue in requestObject.RecipeSteps)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = RecipeStepMarshaller.Instance;
+                    marshaller.Marshall(requestObjectRecipeStepsListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
             }
 
         }

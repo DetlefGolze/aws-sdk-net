@@ -26,17 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
     /// Container for the parameters to the SearchDataSets operation.
-    /// Use the <code>SearchDataSets</code> operation to search for datasets that belong to
-    /// an account.
+    /// Use the <c>SearchDataSets</c> operation to search for datasets that belong to an account.
     /// </summary>
     public partial class SearchDataSetsRequest : AmazonQuickSightRequest
     {
         private string _awsAccountId;
-        private List<DataSetSearchFilter> _filters = new List<DataSetSearchFilter>();
+        private List<DataSetSearchFilter> _filters = AWSConfigs.InitializeCollections ? new List<DataSetSearchFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -75,7 +75,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
-    /// The <code>Status</code> and <code>TrackingNumber</code> information for an inbound
-    /// or outbound shipment.
+    /// The <c>Status</c> and <c>TrackingNumber</c> information for an inbound or outbound
+    /// shipment.
     /// </summary>
     public partial class Shipment
     {

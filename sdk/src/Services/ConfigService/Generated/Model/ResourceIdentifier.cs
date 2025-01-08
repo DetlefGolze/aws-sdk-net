@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property ResourceId. 
         /// <para>
-        /// The ID of the resource (for example, <code>sg-xxxxxx</code>).
+        /// The ID of the resource (for example, <c>sg-xxxxxx</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=768)]

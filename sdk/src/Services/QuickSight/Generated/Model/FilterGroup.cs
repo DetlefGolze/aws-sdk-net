@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.QuickSight.Model
     {
         private CrossDatasetTypes _crossDataset;
         private string _filterGroupId;
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private FilterScopeConfiguration _scopeConfiguration;
         private WidgetStatus _status;
 
@@ -54,11 +55,11 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ALL_DATASETS</code> 
+        ///  <c>ALL_DATASETS</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SINGLE_DATASET</code> 
+        ///  <c>SINGLE_DATASET</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -78,8 +79,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property FilterGroupId. 
         /// <para>
-        /// The value that uniquely identifies a <code>FilterGroup</code> within a dashboard,
-        /// template, or analysis.
+        /// The value that uniquely identifies a <c>FilterGroup</c> within a dashboard, template,
+        /// or analysis.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]
@@ -98,7 +99,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// The list of filters that are present in a <code>FilterGroup</code>.
+        /// The list of filters that are present in a <c>FilterGroup</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=20)]
@@ -111,13 +112,13 @@ namespace Amazon.QuickSight.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ScopeConfiguration. 
         /// <para>
-        /// The configuration that specifies what scope to apply to a <code>FilterGroup</code>.
+        /// The configuration that specifies what scope to apply to a <c>FilterGroup</c>.
         /// </para>
         ///  
         /// <para>
@@ -141,7 +142,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the <code>FilterGroup</code>.
+        /// The status of the <c>FilterGroup</c>.
         /// </para>
         /// </summary>
         public WidgetStatus Status

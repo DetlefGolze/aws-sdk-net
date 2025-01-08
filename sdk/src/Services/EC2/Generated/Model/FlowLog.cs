@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.EC2.Model
         private string _logGroupName;
         private int? _maxAggregationInterval;
         private string _resourceId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private TrafficType _trafficType;
 
         /// <summary>
@@ -89,12 +90,12 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property DeliverLogsErrorMessage. 
         /// <para>
-        /// Information about the error that occurred. <code>Rate limited</code> indicates that
-        /// CloudWatch Logs throttling has been applied for one or more network interfaces, or
-        /// that you've reached the limit on the number of log groups that you can create. <code>Access
-        /// error</code> indicates that the IAM role associated with the flow log does not have
-        /// sufficient permissions to publish to CloudWatch Logs. <code>Unknown error</code> indicates
-        /// an internal error.
+        /// Information about the error that occurred. <c>Rate limited</c> indicates that CloudWatch
+        /// Logs throttling has been applied for one or more network interfaces, or that you've
+        /// reached the limit on the number of log groups that you can create. <c>Access error</c>
+        /// indicates that the IAM role associated with the flow log does not have sufficient
+        /// permissions to publish to CloudWatch Logs. <c>Unknown error</c> indicates an internal
+        /// error.
         /// </para>
         /// </summary>
         public string DeliverLogsErrorMessage
@@ -130,7 +131,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property DeliverLogsStatus. 
         /// <para>
-        /// The status of the logs delivery (<code>SUCCESS</code> | <code>FAILED</code>).
+        /// The status of the logs delivery (<c>SUCCESS</c> | <c>FAILED</c>).
         /// </para>
         /// </summary>
         public string DeliverLogsStatus
@@ -184,7 +185,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property FlowLogStatus. 
         /// <para>
-        /// The status of the flow log (<code>ACTIVE</code>).
+        /// The status of the flow log (<c>ACTIVE</c>).
         /// </para>
         /// </summary>
         public string FlowLogStatus
@@ -279,13 +280,13 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// When a network interface is attached to a <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances">Nitro-based
+        /// When a network interface is attached to a <a href="https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-nitro-instances.html">Nitro-based
         /// instance</a>, the aggregation interval is always 60 seconds (1 minute) or less, regardless
         /// of the specified value.
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>60</code> | <code>600</code> 
+        /// Valid Values: <c>60</c> | <c>600</c> 
         /// </para>
         /// </summary>
         public int MaxAggregationInterval
@@ -333,7 +334,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

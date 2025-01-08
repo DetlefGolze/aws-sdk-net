@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property KmsKeyArn. 
         /// <para>
-        /// KMS key Arn used to encrypt the EBS volume.
+        /// KMS key ARN used to encrypt the EBS volume.
         /// </para>
         /// </summary>
         public string KmsKeyArn
@@ -98,7 +99,7 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property SnapshotArn. 
         /// <para>
-        /// Snapshot Arn of the EBS volume.
+        /// Snapshot ARN of the EBS volume.
         /// </para>
         /// </summary>
         public string SnapshotArn
@@ -116,7 +117,7 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property VolumeArn. 
         /// <para>
-        /// EBS volume Arn information.
+        /// EBS volume ARN information.
         /// </para>
         /// </summary>
         public string VolumeArn

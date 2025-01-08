@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -33,15 +34,15 @@ namespace Amazon.SimpleEmailV2.Model
     /// </summary>
     public partial class GetDomainStatisticsReportResponse : AmazonWebServiceResponse
     {
-        private List<DailyVolume> _dailyVolumes = new List<DailyVolume>();
+        private List<DailyVolume> _dailyVolumes = AWSConfigs.InitializeCollections ? new List<DailyVolume>() : null;
         private OverallVolume _overallVolume;
 
         /// <summary>
         /// Gets and sets the property DailyVolumes. 
         /// <para>
         /// An object that contains deliverability metrics for the domain that you specified.
-        /// This object contains data for each day, starting on the <code>StartDate</code> and
-        /// ending on the <code>EndDate</code>.
+        /// This object contains data for each day, starting on the <c>StartDate</c> and ending
+        /// on the <c>EndDate</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -54,7 +55,7 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if DailyVolumes property is set
         internal bool IsSetDailyVolumes()
         {
-            return this._dailyVolumes != null && this._dailyVolumes.Count > 0; 
+            return this._dailyVolumes != null && (this._dailyVolumes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -62,7 +63,7 @@ namespace Amazon.SimpleEmailV2.Model
         /// <para>
         /// An object that contains deliverability metrics for the domain that you specified.
         /// The data in this object is a summary of all of the data that was collected from the
-        /// <code>StartDate</code> to the <code>EndDate</code>.
+        /// <c>StartDate</c> to the <c>EndDate</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

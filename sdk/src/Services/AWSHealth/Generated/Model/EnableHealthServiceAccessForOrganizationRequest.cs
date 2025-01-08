@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSHealth.Model
 {
     /// <summary>
@@ -48,7 +49,7 @@ namespace Amazon.AWSHealth.Model
     /// You must have a Business, Enterprise On-Ramp, or Enterprise Support plan from <a href="http://aws.amazon.com/premiumsupport/">Amazon
     /// Web Services Support</a> to use the Health API. If you call the Health API from an
     /// Amazon Web Services account that doesn't have a Business, Enterprise On-Ramp, or Enterprise
-    /// Support plan, you receive a <code>SubscriptionRequiredException</code> error.
+    /// Support plan, you receive a <c>SubscriptionRequiredException</c> error.
     /// </para>
     ///  </li> <li> 
     /// <para>

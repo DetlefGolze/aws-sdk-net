@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EMRServerless.Model
 {
     /// <summary>
@@ -41,6 +42,14 @@ namespace Amazon.EMRServerless.Model
         public IListApplicationsPaginator ListApplications(ListApplicationsRequest request) 
         {
             return new ListApplicationsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListJobRunAttempts operation
+        ///</summary>
+        public IListJobRunAttemptsPaginator ListJobRunAttempts(ListJobRunAttemptsRequest request) 
+        {
+            return new ListJobRunAttemptsPaginator(this.client, request);
         }
 
         /// <summary>

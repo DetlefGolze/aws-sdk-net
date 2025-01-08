@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -34,8 +35,9 @@ namespace Amazon.AutoScaling.Model
     /// 
     ///  
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html">Health
-    /// checks for Auto Scaling instances</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/set-up-a-custom-health-check.html">Set
+    /// up a custom health check for your Auto Scaling group</a> in the <i>Amazon EC2 Auto
+    /// Scaling User Guide</i>.
     /// </para>
     /// </summary>
     public partial class SetInstanceHealthRequest : AmazonAutoScalingRequest
@@ -47,9 +49,9 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property HealthStatus. 
         /// <para>
-        /// The health status of the instance. Set to <code>Healthy</code> to have the instance
-        /// remain in service. Set to <code>Unhealthy</code> to have the instance be out of service.
-        /// Amazon EC2 Auto Scaling terminates and replaces the unhealthy instance.
+        /// The health status of the instance. Set to <c>Healthy</c> to have the instance remain
+        /// in service. Set to <c>Unhealthy</c> to have the instance be out of service. Amazon
+        /// EC2 Auto Scaling terminates and replaces the unhealthy instance.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=32)]
@@ -87,15 +89,16 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property ShouldRespectGracePeriod. 
         /// <para>
-        /// If the Auto Scaling group of the specified instance has a <code>HealthCheckGracePeriod</code>
+        /// If the Auto Scaling group of the specified instance has a <c>HealthCheckGracePeriod</c>
         /// specified for the group, by default, this call respects the grace period. Set this
-        /// to <code>False</code>, to have the call not respect the grace period associated with
-        /// the group.
+        /// to <c>False</c>, to have the call not respect the grace period associated with the
+        /// group.
         /// </para>
         ///  
         /// <para>
-        /// For more information about the health check grace period, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_CreateAutoScalingGroup.html">CreateAutoScalingGroup</a>
-        /// in the <i>Amazon EC2 Auto Scaling API Reference</i>.
+        /// For more information about the health check grace period, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/health-check-grace-period.html">Set
+        /// the health check grace period for an Auto Scaling group</a> in the <i>Amazon EC2 Auto
+        /// Scaling User Guide</i>.
         /// </para>
         /// </summary>
         public bool ShouldRespectGracePeriod

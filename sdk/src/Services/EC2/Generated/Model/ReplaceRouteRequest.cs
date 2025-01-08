@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -230,7 +231,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property LocalTarget. 
         /// <para>
-        /// Specifies whether to reset the local route to its default target (<code>local</code>).
+        /// Specifies whether to reset the local route to its default target (<c>local</c>).
         /// </para>
         /// </summary>
         public bool LocalTarget

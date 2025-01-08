@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
@@ -43,6 +44,7 @@ namespace Amazon.CodeDeploy.Model
         ///  The unique ID of a deployment. 
         /// </para>
         /// </summary>
+        [AWSProperty(Required=true)]
         public string DeploymentId
         {
             get { return this._deploymentId; }
@@ -61,6 +63,7 @@ namespace Amazon.CodeDeploy.Model
         ///  The unique ID of a deployment target. 
         /// </para>
         /// </summary>
+        [AWSProperty(Required=true)]
         public string TargetId
         {
             get { return this._targetId; }

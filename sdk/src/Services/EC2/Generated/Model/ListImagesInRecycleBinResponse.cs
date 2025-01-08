@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class ListImagesInRecycleBinResponse : AmazonWebServiceResponse
     {
-        private List<ImageRecycleBinInfo> _images = new List<ImageRecycleBinInfo>();
+        private List<ImageRecycleBinInfo> _images = AWSConfigs.InitializeCollections ? new List<ImageRecycleBinInfo>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.EC2.Model
         // Check to see if Images property is set
         internal bool IsSetImages()
         {
-            return this._images != null && this._images.Count > 0; 
+            return this._images != null && (this._images.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The token to include in another request to get the next page of items. This value
-        /// is <code>null</code> when there are no more items to return.
+        /// is <c>null</c> when there are no more items to return.
         /// </para>
         /// </summary>
         public string NextToken

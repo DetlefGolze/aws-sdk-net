@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaConnect.Model
 {
     /// <summary>
@@ -36,17 +37,18 @@ namespace Amazon.MediaConnect.Model
         private string _availabilityZone;
         private string _description;
         private string _egressIp;
-        private List<Entitlement> _entitlements = new List<Entitlement>();
+        private List<Entitlement> _entitlements = AWSConfigs.InitializeCollections ? new List<Entitlement>() : null;
         private string _flowArn;
         private Maintenance _maintenance;
-        private List<MediaStream> _mediaStreams = new List<MediaStream>();
+        private List<MediaStream> _mediaStreams = AWSConfigs.InitializeCollections ? new List<MediaStream>() : null;
         private string _name;
-        private List<Output> _outputs = new List<Output>();
+        private List<Output> _outputs = AWSConfigs.InitializeCollections ? new List<Output>() : null;
         private Source _source;
         private FailoverConfig _sourceFailoverConfig;
-        private List<Source> _sources = new List<Source>();
+        private MonitoringConfig _sourceMonitoringConfig;
+        private List<Source> _sources = AWSConfigs.InitializeCollections ? new List<Source>() : null;
         private Status _status;
-        private List<VpcInterface> _vpcInterfaces = new List<VpcInterface>();
+        private List<VpcInterface> _vpcInterfaces = AWSConfigs.InitializeCollections ? new List<VpcInterface>() : null;
 
         /// <summary>
         /// Gets and sets the property AvailabilityZone. The Availability Zone that you want to
@@ -111,7 +113,7 @@ namespace Amazon.MediaConnect.Model
         // Check to see if Entitlements property is set
         internal bool IsSetEntitlements()
         {
-            return this._entitlements != null && this._entitlements.Count > 0; 
+            return this._entitlements != null && (this._entitlements.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -159,7 +161,7 @@ namespace Amazon.MediaConnect.Model
         // Check to see if MediaStreams property is set
         internal bool IsSetMediaStreams()
         {
-            return this._mediaStreams != null && this._mediaStreams.Count > 0; 
+            return this._mediaStreams != null && (this._mediaStreams.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -191,7 +193,7 @@ namespace Amazon.MediaConnect.Model
         // Check to see if Outputs property is set
         internal bool IsSetOutputs()
         {
-            return this._outputs != null && this._outputs.Count > 0; 
+            return this._outputs != null && (this._outputs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -226,6 +228,21 @@ namespace Amazon.MediaConnect.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SourceMonitoringConfig.
+        /// </summary>
+        public MonitoringConfig SourceMonitoringConfig
+        {
+            get { return this._sourceMonitoringConfig; }
+            set { this._sourceMonitoringConfig = value; }
+        }
+
+        // Check to see if SourceMonitoringConfig property is set
+        internal bool IsSetSourceMonitoringConfig()
+        {
+            return this._sourceMonitoringConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Sources.
         /// </summary>
         public List<Source> Sources
@@ -237,7 +254,7 @@ namespace Amazon.MediaConnect.Model
         // Check to see if Sources property is set
         internal bool IsSetSources()
         {
-            return this._sources != null && this._sources.Count > 0; 
+            return this._sources != null && (this._sources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -268,7 +285,7 @@ namespace Amazon.MediaConnect.Model
         // Check to see if VpcInterfaces property is set
         internal bool IsSetVpcInterfaces()
         {
-            return this._vpcInterfaces != null && this._vpcInterfaces.Count > 0; 
+            return this._vpcInterfaces != null && (this._vpcInterfaces.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

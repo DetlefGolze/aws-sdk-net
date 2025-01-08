@@ -26,18 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
-    /// Returned if <code>IpAddress</code> was not specified in the request and there are
-    /// no free IP addresses in the subnet.
+    /// Returned if <c>IpAddress</c> was not specified in the request and there are no free
+    /// IP addresses in the subnet.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]
     #endif
     public partial class NoFreeAddressesInSubnetException : AmazonElasticFileSystemException
     {
-        private string _errorCode;
 
         /// <summary>
         /// Constructs a new NoFreeAddressesInSubnetException with the specified error
@@ -123,22 +123,6 @@ namespace Amazon.ElasticFileSystem.Model
             info.AddValue("ErrorCode", this.ErrorCode);
         }
 #endif
-
-        /// <summary>
-        /// Gets and sets the property ErrorCode.
-        /// </summary>
-        [AWSProperty(Required=true, Min=1)]
-        public string ErrorCode
-        {
-            get { return this._errorCode; }
-            set { this._errorCode = value; }
-        }
-
-        // Check to see if ErrorCode property is set
-        internal bool IsSetErrorCode()
-        {
-            return this._errorCode != null;
-        }
 
     }
 }

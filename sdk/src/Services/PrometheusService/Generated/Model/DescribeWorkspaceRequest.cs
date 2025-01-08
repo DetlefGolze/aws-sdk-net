@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeWorkspace operation.
-    /// Describes an existing AMP workspace.
+    /// Returns information about an existing workspace.
     /// </summary>
     public partial class DescribeWorkspaceRequest : AmazonPrometheusServiceRequest
     {

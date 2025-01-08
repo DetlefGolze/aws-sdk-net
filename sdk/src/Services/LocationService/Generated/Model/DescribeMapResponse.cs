@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.LocationService.Model
         private string _mapArn;
         private string _mapName;
         private PricingPlan _pricingPlan;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private DateTime? _updateTime;
 
         /// <summary>
@@ -66,7 +67,7 @@ namespace Amazon.LocationService.Model
         /// Gets and sets the property CreateTime. 
         /// <para>
         /// The timestamp for when the map resource was created in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-        /// 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+        /// 8601</a> format: <c>YYYY-MM-DDThh:mm:ss.sssZ</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -128,7 +129,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Format example: <code>arn:aws:geo:region:account-id:map/ExampleMap</code> 
+        /// Format example: <c>arn:aws:geo:region:account-id:map/ExampleMap</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -167,7 +168,7 @@ namespace Amazon.LocationService.Model
         /// <summary>
         /// Gets and sets the property PricingPlan. 
         /// <para>
-        /// No longer used. Always returns <code>RequestBasedUsage</code>.
+        /// No longer used. Always returns <c>RequestBasedUsage</c>.
         /// </para>
         /// </summary>
         [Obsolete("Deprecated. Always returns RequestBasedUsage.")]
@@ -199,14 +200,14 @@ namespace Amazon.LocationService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UpdateTime. 
         /// <para>
         /// The timestamp for when the map resource was last update in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-        /// 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+        /// 8601</a> format: <c>YYYY-MM-DDThh:mm:ss.sssZ</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

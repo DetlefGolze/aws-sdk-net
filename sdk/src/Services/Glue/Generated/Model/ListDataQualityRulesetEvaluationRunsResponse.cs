@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Glue.Model
     public partial class ListDataQualityRulesetEvaluationRunsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<DataQualityRulesetEvaluationRunDescription> _runs = new List<DataQualityRulesetEvaluationRunDescription>();
+        private List<DataQualityRulesetEvaluationRunDescription> _runs = AWSConfigs.InitializeCollections ? new List<DataQualityRulesetEvaluationRunDescription>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -57,8 +58,8 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property Runs. 
         /// <para>
-        /// A list of <code>DataQualityRulesetEvaluationRunDescription</code> objects representing
-        /// data quality ruleset runs.
+        /// A list of <c>DataQualityRulesetEvaluationRunDescription</c> objects representing data
+        /// quality ruleset runs.
         /// </para>
         /// </summary>
         public List<DataQualityRulesetEvaluationRunDescription> Runs
@@ -70,7 +71,7 @@ namespace Amazon.Glue.Model
         // Check to see if Runs property is set
         internal bool IsSetRuns()
         {
-            return this._runs != null && this._runs.Count > 0; 
+            return this._runs != null && (this._runs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.EC2.Model
     public partial class DescribeTrafficMirrorSessionsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<TrafficMirrorSession> _trafficMirrorSessions = new List<TrafficMirrorSession>();
+        private List<TrafficMirrorSession> _trafficMirrorSessions = AWSConfigs.InitializeCollections ? new List<TrafficMirrorSession>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to use to retrieve the next page of results. The value is <code>null</code>
-        /// when there are no more results to return.
+        /// The token to use to retrieve the next page of results. The value is <c>null</c> when
+        /// there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken
@@ -71,7 +72,7 @@ namespace Amazon.EC2.Model
         // Check to see if TrafficMirrorSessions property is set
         internal bool IsSetTrafficMirrorSessions()
         {
-            return this._trafficMirrorSessions != null && this._trafficMirrorSessions.Count > 0; 
+            return this._trafficMirrorSessions != null && (this._trafficMirrorSessions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

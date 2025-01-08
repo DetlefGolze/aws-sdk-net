@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -37,13 +38,13 @@ namespace Amazon.ServiceCatalog.Model
     /// 
     ///  
     /// <para>
-    /// When you call this API, Service Catalog calls <code>organizations:EnableAWSServiceAccess</code>
+    /// When you call this API, Service Catalog calls <c>organizations:EnableAWSServiceAccess</c>
     /// on your behalf so that your shares stay in sync with any changes in your Organizations
     /// structure.
     /// </para>
     ///  
     /// <para>
-    /// Note that a delegated administrator is not authorized to invoke <code>EnableAWSOrganizationsAccess</code>.
+    /// Note that a delegated administrator is not authorized to invoke <c>EnableAWSOrganizationsAccess</c>.
     /// </para>
     ///  <important> 
     /// <para>

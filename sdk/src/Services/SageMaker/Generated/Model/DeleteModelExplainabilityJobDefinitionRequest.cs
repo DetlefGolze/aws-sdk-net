@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteModelExplainabilityJobDefinition operation.
-    /// Deletes an Amazon SageMaker model explainability job definition.
+    /// Deletes an Amazon SageMaker AI model explainability job definition.
     /// </summary>
     public partial class DeleteModelExplainabilityJobDefinitionRequest : AmazonSageMakerRequest
     {

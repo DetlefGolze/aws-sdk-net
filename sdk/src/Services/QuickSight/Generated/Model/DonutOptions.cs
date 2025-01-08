@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -43,19 +44,19 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>WHOLE</code> - A pie chart
+        ///  <c>WHOLE</c> - A pie chart
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SMALL</code>- A small-sized donut chart
+        ///  <c>SMALL</c>- A small-sized donut chart
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MEDIUM</code>- A medium-sized donut chart
+        ///  <c>MEDIUM</c>- A medium-sized donut chart
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LARGE</code>- A large-sized donut chart
+        ///  <c>LARGE</c>- A large-sized donut chart
         /// </para>
         ///  </li> </ul>
         /// </summary>

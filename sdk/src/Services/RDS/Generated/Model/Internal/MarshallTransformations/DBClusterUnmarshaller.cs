@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RDS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -87,6 +88,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("AssociatedRoles/DBClusterRole", targetDepth))
                     {
                         var unmarshaller = DBClusterRoleUnmarshaller.Instance;
+                        if (unmarshalledObject.AssociatedRoles == null)
+                        {
+                            unmarshalledObject.AssociatedRoles = new List<DBClusterRole>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.AssociatedRoles.Add(item);
                         continue;
@@ -106,6 +111,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("AvailabilityZones/AvailabilityZone", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
+                        if (unmarshalledObject.AvailabilityZones == null)
+                        {
+                            unmarshalledObject.AvailabilityZones = new List<string>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.AvailabilityZones.Add(item);
                         continue;
@@ -140,6 +149,12 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                         unmarshalledObject.Capacity = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("CertificateDetails", targetDepth))
+                    {
+                        var unmarshaller = CertificateDetailsUnmarshaller.Instance;
+                        unmarshalledObject.CertificateDetails = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("CharacterSetName", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
@@ -158,6 +173,12 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                         unmarshalledObject.ClusterCreateTime = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("ClusterScalabilityType", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.ClusterScalabilityType = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("CopyTagsToSnapshot", targetDepth))
                     {
                         var unmarshaller = BoolUnmarshaller.Instance;
@@ -173,8 +194,18 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("CustomEndpoints/member", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
+                        if (unmarshalledObject.CustomEndpoints == null)
+                        {
+                            unmarshalledObject.CustomEndpoints = new List<string>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.CustomEndpoints.Add(item);
+                        continue;
+                    }
+                    if (context.TestExpression("DatabaseInsightsMode", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.DatabaseInsightsMode = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("DatabaseName", targetDepth))
@@ -204,6 +235,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("DBClusterMembers/DBClusterMember", targetDepth))
                     {
                         var unmarshaller = DBClusterMemberUnmarshaller.Instance;
+                        if (unmarshalledObject.DBClusterMembers == null)
+                        {
+                            unmarshalledObject.DBClusterMembers = new List<DBClusterMember>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.DBClusterMembers.Add(item);
                         continue;
@@ -211,6 +246,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("DBClusterOptionGroupMemberships/DBClusterOptionGroup", targetDepth))
                     {
                         var unmarshaller = DBClusterOptionGroupStatusUnmarshaller.Instance;
+                        if (unmarshalledObject.DBClusterOptionGroupMemberships == null)
+                        {
+                            unmarshalledObject.DBClusterOptionGroupMemberships = new List<DBClusterOptionGroupStatus>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.DBClusterOptionGroupMemberships.Add(item);
                         continue;
@@ -248,6 +287,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("DomainMemberships/DomainMembership", targetDepth))
                     {
                         var unmarshaller = DomainMembershipUnmarshaller.Instance;
+                        if (unmarshalledObject.DomainMemberships == null)
+                        {
+                            unmarshalledObject.DomainMemberships = new List<DomainMembership>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.DomainMemberships.Add(item);
                         continue;
@@ -267,6 +310,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("EnabledCloudwatchLogsExports/member", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
+                        if (unmarshalledObject.EnabledCloudwatchLogsExports == null)
+                        {
+                            unmarshalledObject.EnabledCloudwatchLogsExports = new List<string>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.EnabledCloudwatchLogsExports.Add(item);
                         continue;
@@ -281,6 +328,12 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
                         unmarshalledObject.Engine = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("EngineLifecycleSupport", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.EngineLifecycleSupport = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("EngineMode", targetDepth))
@@ -347,6 +400,12 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = DateTimeUnmarshaller.Instance;
                         unmarshalledObject.LatestRestorableTime = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("LimitlessDatabase", targetDepth))
+                    {
+                        var unmarshaller = LimitlessDatabaseUnmarshaller.Instance;
+                        unmarshalledObject.LimitlessDatabase = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("LocalWriteForwardingStatus", targetDepth))
@@ -445,6 +504,12 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                         unmarshalledObject.PubliclyAccessible = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("RdsCustomClusterConfiguration", targetDepth))
+                    {
+                        var unmarshaller = RdsCustomClusterConfigurationUnmarshaller.Instance;
+                        unmarshalledObject.RdsCustomClusterConfiguration = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("ReaderEndpoint", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
@@ -454,6 +519,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("ReadReplicaIdentifiers/ReadReplicaIdentifier", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
+                        if (unmarshalledObject.ReadReplicaIdentifiers == null)
+                        {
+                            unmarshalledObject.ReadReplicaIdentifiers = new List<string>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.ReadReplicaIdentifiers.Add(item);
                         continue;
@@ -482,10 +551,27 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                         unmarshalledObject.Status = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("StatusInfos/DBClusterStatusInfo", targetDepth))
+                    {
+                        var unmarshaller = DBClusterStatusInfoUnmarshaller.Instance;
+                        if (unmarshalledObject.StatusInfos == null)
+                        {
+                            unmarshalledObject.StatusInfos = new List<DBClusterStatusInfo>();
+                        }
+                        var item = unmarshaller.Unmarshall(context);
+                        unmarshalledObject.StatusInfos.Add(item);
+                        continue;
+                    }
                     if (context.TestExpression("StorageEncrypted", targetDepth))
                     {
                         var unmarshaller = BoolUnmarshaller.Instance;
                         unmarshalledObject.StorageEncrypted = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("StorageThroughput", targetDepth))
+                    {
+                        var unmarshaller = IntUnmarshaller.Instance;
+                        unmarshalledObject.StorageThroughput = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("StorageType", targetDepth))
@@ -497,6 +583,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("TagList/Tag", targetDepth))
                     {
                         var unmarshaller = TagUnmarshaller.Instance;
+                        if (unmarshalledObject.TagList == null)
+                        {
+                            unmarshalledObject.TagList = new List<Tag>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.TagList.Add(item);
                         continue;
@@ -504,6 +594,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("VpcSecurityGroups/VpcSecurityGroupMembership", targetDepth))
                     {
                         var unmarshaller = VpcSecurityGroupMembershipUnmarshaller.Instance;
+                        if (unmarshalledObject.VpcSecurityGroups == null)
+                        {
+                            unmarshalledObject.VpcSecurityGroups = new List<VpcSecurityGroupMembership>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.VpcSecurityGroups.Add(item);
                         continue;

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
@@ -59,8 +60,8 @@ namespace Amazon.APIGateway.Model
         /// <summary>
         /// Gets and sets the property IncludeValue. 
         /// <para>
-        /// A boolean flag to specify whether (<code>true</code>) or not (<code>false</code>)
-        /// the result contains the key value.
+        /// A boolean flag to specify whether (<c>true</c>) or not (<c>false</c>) the result contains
+        /// the key value.
         /// </para>
         /// </summary>
         public bool IncludeValue

@@ -133,7 +133,7 @@ namespace Amazon.Runtime.Documents
         /// </summary>
         public bool IsDictionary() => Type == DocumentType.Dictionary;
         /// <summary>
-        /// Returns the Document's backing value as a <see cref="Dictionary{string,Document}"/>.
+        /// Returns the Document's backing value.
         /// </summary>
         /// <exception cref="InvalidDocumentTypeConversionException">Thrown if <see cref="Type"/> is not <see cref="DocumentType.Dictionary"/></exception>
         public Dictionary<string, Document> AsDictionary()
@@ -410,6 +410,9 @@ namespace Amazon.Runtime.Documents
         /// for performance critical work.  Additionally, if <paramref name="o"/> is a known primitive (ie <see cref="int"/>),
         /// using a <see cref="Document"/> constructor directly will be more performant.
         /// </summary> 
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("FromObject is not currently supported for Native AOT compilation due unbounded reflection required.")]
+#endif
         public static Document FromObject(object o)
         {
             IJsonWrapper jsonData = JsonMapper.ToObject(JsonMapper.ToJson(o));
@@ -417,6 +420,9 @@ namespace Amazon.Runtime.Documents
             return FromObject(jsonData);
         }
 
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("FromObject is not currently supported for Native AOT compilation due unbounded reflection required.")]
+#endif  
         private static Document FromObject(IJsonWrapper jsonData)
         {
             switch (jsonData.GetJsonType())
@@ -434,7 +440,7 @@ namespace Amazon.Runtime.Documents
                 case JsonType.String:
                     return new Document(jsonData.GetString());
                 case JsonType.Array:
-                    return new Document(jsonData.Values.OfType<object>().Select(FromObject).ToArray());
+                    return new Document(jsonData.Cast<JsonData>().Select(FromObject).ToArray());
                 case JsonType.Object:
                     var dictionary = new Dictionary<string, Document>();
                     Copy(jsonData, dictionary);
@@ -444,6 +450,9 @@ namespace Amazon.Runtime.Documents
             throw new NotSupportedException($"Couldn't convert {jsonData.GetJsonType()}");
         }
 
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("FromObject is not currently supported for Native AOT compilation due unbounded reflection required.")]
+#endif  
         private static void Copy(IDictionary source, Dictionary<string, Document> target)
         {
             foreach (var key in source.Keys)

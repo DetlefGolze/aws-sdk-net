@@ -26,17 +26,63 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// A collection of settings that apply to spaces created in the Domain.
+    /// The default settings for shared spaces that users create in the domain.
+    /// 
+    ///  
+    /// <para>
+    /// SageMaker applies these settings only to shared spaces. It doesn't apply them to private
+    /// spaces.
+    /// </para>
     /// </summary>
     public partial class DefaultSpaceSettings
     {
+        private List<CustomFileSystemConfig> _customFileSystemConfigs = AWSConfigs.InitializeCollections ? new List<CustomFileSystemConfig>() : null;
+        private CustomPosixUserConfig _customPosixUserConfig;
         private string _executionRole;
+        private JupyterLabAppSettings _jupyterLabAppSettings;
         private JupyterServerAppSettings _jupyterServerAppSettings;
         private KernelGatewayAppSettings _kernelGatewayAppSettings;
-        private List<string> _securityGroups = new List<string>();
+        private List<string> _securityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private DefaultSpaceStorageSettings _spaceStorageSettings;
+
+        /// <summary>
+        /// Gets and sets the property CustomFileSystemConfigs. 
+        /// <para>
+        /// The settings for assigning a custom file system to a domain. Permitted users can access
+        /// this file system in Amazon SageMaker AI Studio.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=10)]
+        public List<CustomFileSystemConfig> CustomFileSystemConfigs
+        {
+            get { return this._customFileSystemConfigs; }
+            set { this._customFileSystemConfigs = value; }
+        }
+
+        // Check to see if CustomFileSystemConfigs property is set
+        internal bool IsSetCustomFileSystemConfigs()
+        {
+            return this._customFileSystemConfigs != null && (this._customFileSystemConfigs.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property CustomPosixUserConfig.
+        /// </summary>
+        public CustomPosixUserConfig CustomPosixUserConfig
+        {
+            get { return this._customPosixUserConfig; }
+            set { this._customPosixUserConfig = value; }
+        }
+
+        // Check to see if CustomPosixUserConfig property is set
+        internal bool IsSetCustomPosixUserConfig()
+        {
+            return this._customPosixUserConfig != null;
+        }
 
         /// <summary>
         /// Gets and sets the property ExecutionRole. 
@@ -55,6 +101,21 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetExecutionRole()
         {
             return this._executionRole != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property JupyterLabAppSettings.
+        /// </summary>
+        public JupyterLabAppSettings JupyterLabAppSettings
+        {
+            get { return this._jupyterLabAppSettings; }
+            set { this._jupyterLabAppSettings = value; }
+        }
+
+        // Check to see if JupyterLabAppSettings property is set
+        internal bool IsSetJupyterLabAppSettings()
+        {
+            return this._jupyterLabAppSettings != null;
         }
 
         /// <summary>
@@ -90,8 +151,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SecurityGroups. 
         /// <para>
-        /// The security group IDs for the Amazon Virtual Private Cloud that the space uses for
-        /// communication.
+        /// The security group IDs for the Amazon VPC that the space uses for communication.
         /// </para>
         /// </summary>
         [AWSProperty(Max=5)]
@@ -104,7 +164,22 @@ namespace Amazon.SageMaker.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SpaceStorageSettings.
+        /// </summary>
+        public DefaultSpaceStorageSettings SpaceStorageSettings
+        {
+            get { return this._spaceStorageSettings; }
+            set { this._spaceStorageSettings = value; }
+        }
+
+        // Check to see if SpaceStorageSettings property is set
+        internal bool IsSetSpaceStorageSettings()
+        {
+            return this._spaceStorageSettings != null;
         }
 
     }

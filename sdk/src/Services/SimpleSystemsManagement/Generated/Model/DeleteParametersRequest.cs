@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// </summary>
     public partial class DeleteParametersRequest : AmazonSimpleSystemsManagementRequest
     {
-        private List<string> _names = new List<string>();
+        private List<string> _names = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Names. 
@@ -43,6 +44,12 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// The names of the parameters to delete. After deleting a parameter, wait for at least
         /// 30 seconds to create a parameter with the same name.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// You can't enter the Amazon Resource Name (ARN) for a parameter, only the parameter
+        /// name itself.
+        /// </para>
+        ///  </note>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=10)]
         public List<string> Names
@@ -54,7 +61,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Names property is set
         internal bool IsSetNames()
         {
-            return this._names != null && this._names.Count > 0; 
+            return this._names != null && (this._names.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

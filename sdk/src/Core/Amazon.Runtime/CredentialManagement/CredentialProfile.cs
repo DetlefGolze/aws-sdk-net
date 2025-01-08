@@ -85,6 +85,11 @@ namespace Amazon.Runtime.CredentialManagement
         public bool? S3UseArnRegion { get; set; }
 
         /// <summary>
+        /// Disables this client's usage of Session Auth for S3Express buckets and reverts to using conventional SigV4.
+        /// </summary>
+        public bool? S3DisableExpressSessionAuth { get; set; }
+
+        /// <summary>
         /// If true, the use of multi-region access points is disabled.
         /// </summary>
         public bool? S3DisableMultiRegionAccessPoints { get; set; }
@@ -121,6 +126,14 @@ namespace Amazon.Runtime.CredentialManagement
         public EC2MetadataServiceEndpointMode? EC2MetadataServiceEndpointMode { get; set; }
 
         /// <summary>
+        /// If set to true the SDK logic for falling back to V1 will be disabled.
+        /// When using the SDK on an EC2 instance that has configured instance metadata service to 
+        /// use V1 only, a InvalidOperationException exception will be thrown when attempting to access
+        /// the metadata in EC2 instance metadata.This includes AWS credentials and region information.
+        /// </summary>
+        public bool? EC2MetadataV1Disabled { get; set; }
+
+        /// <summary>
         /// Configures the endpoint calculation to go to a dual stack (ipv6 enabled) endpoint
         /// for the configured region.
         /// </summary>
@@ -154,6 +167,17 @@ namespace Amazon.Runtime.CredentialManagement
         /// Minimum size in bytes that a request body should be to trigger compression.
         /// </summary>
         public long? RequestMinCompressionSizeBytes { get; set; }
+
+        /// <summary>
+        /// Customers can opt-in to provide an app id that is intended to identify their applications
+        /// in the user agent header string. The value should have a maximum length of 50.
+        /// </summary>
+        public string ClientAppId { get; set; }
+
+        /// <summary>
+        /// The Account ID endpoint mode as preferred, required, or disabled.
+        /// </summary>
+        public AccountIdEndpointMode? AccountIdEndpointMode { get; set; }
 
         /// <summary>
         /// An optional dictionary of name-value pairs stored with the CredentialProfile
@@ -257,6 +281,7 @@ namespace Amazon.Runtime.CredentialManagement
                 "CanCreateAWSCredentials = " + CanCreateAWSCredentials + "," +
                 "RetryMode= " + RetryMode + "," +
                 "MaxAttempts= " + MaxAttempts +
+                "AccountIdEndpointMode= " + AccountIdEndpointMode +
                 "]";
         }
 

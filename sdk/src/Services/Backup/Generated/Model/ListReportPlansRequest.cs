@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
     /// Container for the parameters to the ListReportPlans operation.
     /// Returns a list of your report plans. For detailed information about a single report
-    /// plan, use <code>DescribeReportPlan</code>.
+    /// plan, use <c>DescribeReportPlan</c>.
     /// </summary>
     public partial class ListReportPlansRequest : AmazonBackupRequest
     {

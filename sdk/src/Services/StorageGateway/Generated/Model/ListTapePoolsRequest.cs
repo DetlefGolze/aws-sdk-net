@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
@@ -36,9 +37,9 @@ namespace Amazon.StorageGateway.Model
     /// 
     ///  
     /// <para>
-    /// This operation supports pagination. You can optionally specify the <code>Limit</code>
-    /// parameter in the body to limit the number of tape pools in the response. If the number
-    /// of tape pools returned in the response is truncated, the response includes a <code>Marker</code>
+    /// This operation supports pagination. You can optionally specify the <c>Limit</c> parameter
+    /// in the body to limit the number of tape pools in the response. If the number of tape
+    /// pools returned in the response is truncated, the response includes a <c>Marker</c>
     /// element that you can use in your subsequent request to retrieve the next set of tape
     /// pools.
     /// </para>
@@ -47,7 +48,7 @@ namespace Amazon.StorageGateway.Model
     {
         private int? _limit;
         private string _marker;
-        private List<string> _poolARNs = new List<string>();
+        private List<string> _poolARNs = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Limit. 
@@ -104,7 +105,7 @@ namespace Amazon.StorageGateway.Model
         // Check to see if PoolARNs property is set
         internal bool IsSetPoolARNs()
         {
-            return this._poolARNs != null && this._poolARNs.Count > 0; 
+            return this._poolARNs != null && (this._poolARNs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,11 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Amplify.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateBackendEnvironment operation.
-    /// Creates a new backend environment for an Amplify app.
+    /// Creates a new backend environment for an Amplify app. 
+    /// 
+    ///  
+    /// <para>
+    /// This API is available only to Amplify Gen 1 applications where the backend is created
+    /// using Amplify Studio or the Amplify command line interface (CLI). This API isn’t available
+    /// to Amplify Gen 2 applications. When you deploy an application with Amplify Gen 2,
+    /// you provision the app's backend infrastructure using Typescript code.
+    /// </para>
     /// </summary>
     public partial class CreateBackendEnvironmentRequest : AmazonAmplifyRequest
     {
@@ -42,7 +51,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property AppId. 
         /// <para>
-        ///  The unique ID for an Amplify app. 
+        /// The unique ID for an Amplify app. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=20)]
@@ -61,7 +70,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property DeploymentArtifacts. 
         /// <para>
-        ///  The name of deployment artifacts. 
+        /// The name of deployment artifacts. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]
@@ -80,7 +89,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property EnvironmentName. 
         /// <para>
-        ///  The name for the backend environment. 
+        /// The name for the backend environment. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]
@@ -99,7 +108,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property StackName. 
         /// <para>
-        ///  The AWS CloudFormation stack name of a backend environment. 
+        /// The AWS CloudFormation stack name of a backend environment. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]

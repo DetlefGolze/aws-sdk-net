@@ -26,12 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
     /// Container for the parameters to the SendTaskSuccess operation.
-    /// Used by activity workers and task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token">callback</a>
-    /// pattern to report that the task identified by the <code>taskToken</code> completed
+    /// Used by activity workers, Task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token">callback</a>
+    /// pattern, and optionally Task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-sync">job
+    /// run</a> pattern to report that the task identified by the <c>taskToken</c> completed
     /// successfully.
     /// </summary>
     public partial class SendTaskSuccessRequest : AmazonStepFunctionsRequest
@@ -67,7 +69,7 @@ namespace Amazon.StepFunctions.Model
         /// object</a> when a workflow enters a task state. See <a>GetActivityTaskOutput$taskToken</a>.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=1024)]
+        [AWSProperty(Required=true, Min=1, Max=2048)]
         public string TaskToken
         {
             get { return this._taskToken; }

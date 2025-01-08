@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
-    /// One tag that you want to add to the specified resource. A tag consists of a <code>Key</code>
-    /// (a name for the tag) and a <code>Value</code>.
+    /// One tag that you want to add to the specified resource. A tag consists of a <c>Key</c>
+    /// (a name for the tag) and a <c>Value</c>.
     /// </summary>
     public partial class Tag
     {
@@ -41,8 +42,8 @@ namespace Amazon.Route53Resolver.Model
         /// Gets and sets the property Key. 
         /// <para>
         /// The name for the tag. For example, if you want to associate Resolver resources with
-        /// the account IDs of your customers for billing purposes, the value of <code>Key</code>
-        /// might be <code>account-id</code>.
+        /// the account IDs of your customers for billing purposes, the value of <c>Key</c> might
+        /// be <c>account-id</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=128)]
@@ -61,9 +62,8 @@ namespace Amazon.Route53Resolver.Model
         /// <summary>
         /// Gets and sets the property Value. 
         /// <para>
-        /// The value for the tag. For example, if <code>Key</code> is <code>account-id</code>,
-        /// then <code>Value</code> might be the ID of the customer account that you're creating
-        /// the resource for.
+        /// The value for the tag. For example, if <c>Key</c> is <c>account-id</c>, then <c>Value</c>
+        /// might be the ID of the customer account that you're creating the resource for.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=256)]

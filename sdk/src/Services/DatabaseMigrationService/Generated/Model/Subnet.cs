@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
-    /// In response to a request by the <code>DescribeReplicationSubnetGroups</code> operation,
+    /// In response to a request by the <c>DescribeReplicationSubnetGroups</c> operation,
     /// this object identifies a subnet by its given Availability Zone, subnet identifier,
     /// and status.
     /// </summary>

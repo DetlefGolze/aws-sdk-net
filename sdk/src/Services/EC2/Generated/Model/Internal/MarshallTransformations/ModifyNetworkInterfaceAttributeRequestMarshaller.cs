@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -58,6 +59,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
 
             if(publicRequest != null)
             {
+                if(publicRequest.IsSetAssociatePublicIpAddress())
+                {
+                    request.Parameters.Add("AssociatePublicIpAddress", StringUtils.FromBool(publicRequest.AssociatePublicIpAddress));
+                }
                 if(publicRequest.IsSetAttachment())
                 {
                     if(publicRequest.Attachment.IsSetAttachmentId())
@@ -67,6 +72,21 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                     if(publicRequest.Attachment.IsSetDeleteOnTermination())
                     {
                         request.Parameters.Add("Attachment" + "." + "DeleteOnTermination", StringUtils.FromBool(publicRequest.Attachment.DeleteOnTermination));
+                    }
+                }
+                if(publicRequest.IsSetConnectionTrackingSpecification())
+                {
+                    if(publicRequest.ConnectionTrackingSpecification.IsSetTcpEstablishedTimeout())
+                    {
+                        request.Parameters.Add("ConnectionTrackingSpecification" + "." + "TcpEstablishedTimeout", StringUtils.FromInt(publicRequest.ConnectionTrackingSpecification.TcpEstablishedTimeout));
+                    }
+                    if(publicRequest.ConnectionTrackingSpecification.IsSetUdpStreamTimeout())
+                    {
+                        request.Parameters.Add("ConnectionTrackingSpecification" + "." + "UdpStreamTimeout", StringUtils.FromInt(publicRequest.ConnectionTrackingSpecification.UdpStreamTimeout));
+                    }
+                    if(publicRequest.ConnectionTrackingSpecification.IsSetUdpTimeout())
+                    {
+                        request.Parameters.Add("ConnectionTrackingSpecification" + "." + "UdpTimeout", StringUtils.FromInt(publicRequest.ConnectionTrackingSpecification.UdpTimeout));
                     }
                 }
                 if(publicRequest.IsSetDescription())

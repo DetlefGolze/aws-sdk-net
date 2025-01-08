@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -34,8 +35,10 @@ namespace Amazon.IoTFleetWise.Model
     public partial class SignalDecoder
     {
         private CanSignal _canSignal;
+        private CustomDecodingSignal _customDecodingSignal;
         private string _fullyQualifiedName;
         private string _interfaceId;
+        private MessageSignal _messageSignal;
         private ObdSignal _obdSignal;
         private SignalDecoderType _type;
 
@@ -55,6 +58,33 @@ namespace Amazon.IoTFleetWise.Model
         internal bool IsSetCanSignal()
         {
             return this._canSignal != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CustomDecodingSignal. 
+        /// <para>
+        /// Information about a <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/APIReference/API_CustomDecodingSignal.html">custom
+        /// signal decoder</a>.
+        /// </para>
+        ///  <important> 
+        /// <para>
+        /// Access to certain Amazon Web Services IoT FleetWise features is currently gated. For
+        /// more information, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/fleetwise-regions.html">Amazon
+        /// Web Services Region and feature availability</a> in the <i>Amazon Web Services IoT
+        /// FleetWise Developer Guide</i>.
+        /// </para>
+        ///  </important>
+        /// </summary>
+        public CustomDecodingSignal CustomDecodingSignal
+        {
+            get { return this._customDecodingSignal; }
+            set { this._customDecodingSignal = value; }
+        }
+
+        // Check to see if CustomDecodingSignal property is set
+        internal bool IsSetCustomDecodingSignal()
+        {
+            return this._customDecodingSignal != null;
         }
 
         /// <summary>
@@ -96,9 +126,28 @@ namespace Amazon.IoTFleetWise.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MessageSignal. 
+        /// <para>
+        /// The decoding information for a specific message which supports higher order data types.
+        /// 
+        /// </para>
+        /// </summary>
+        public MessageSignal MessageSignal
+        {
+            get { return this._messageSignal; }
+            set { this._messageSignal = value; }
+        }
+
+        // Check to see if MessageSignal property is set
+        internal bool IsSetMessageSignal()
+        {
+            return this._messageSignal != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ObdSignal. 
         /// <para>
-        /// Information about signal decoder using the On-board diagnostic (OBD) II protocol.
+        /// Information about signal decoder using the on-board diagnostic (OBD) II protocol.
         /// </para>
         /// </summary>
         public ObdSignal ObdSignal
@@ -116,10 +165,10 @@ namespace Amazon.IoTFleetWise.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The network protocol for the vehicle. For example, <code>CAN_SIGNAL</code> specifies
-        /// a protocol that defines how data is communicated between electronic control units
-        /// (ECUs). <code>OBD_SIGNAL</code> specifies a protocol that defines how self-diagnostic
-        /// data is communicated between ECUs.
+        /// The network protocol for the vehicle. For example, <c>CAN_SIGNAL</c> specifies a protocol
+        /// that defines how data is communicated between electronic control units (ECUs). <c>OBD_SIGNAL</c>
+        /// specifies a protocol that defines how self-diagnostic data is communicated between
+        /// ECUs.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

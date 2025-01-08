@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.TranscribeService.Model
         /// </para>
         ///  
         /// <para>
-        /// Note that this is the Amazon S3 location you specified in your request using the <code>OutputBucketName</code>
+        /// Note that this is the Amazon S3 location you specified in your request using the <c>OutputBucketName</c>
         /// parameter.
         /// </para>
         /// </summary>

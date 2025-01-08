@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
-    /// A classifier that uses <code>grok</code> patterns.
+    /// A classifier that uses <c>grok</c> patterns.
     /// </summary>
     public partial class GrokClassifier
     {

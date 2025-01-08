@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -33,17 +34,17 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class ModelPackageValidationSpecification
     {
-        private List<ModelPackageValidationProfile> _validationProfiles = new List<ModelPackageValidationProfile>();
+        private List<ModelPackageValidationProfile> _validationProfiles = AWSConfigs.InitializeCollections ? new List<ModelPackageValidationProfile>() : null;
         private string _validationRole;
 
         /// <summary>
         /// Gets and sets the property ValidationProfiles. 
         /// <para>
-        /// An array of <code>ModelPackageValidationProfile</code> objects, each of which specifies
+        /// An array of <c>ModelPackageValidationProfile</c> objects, each of which specifies
         /// a batch transform job that SageMaker runs to validate your model package.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=1)]
+        [AWSProperty(Required=true, Min=0, Max=1)]
         public List<ModelPackageValidationProfile> ValidationProfiles
         {
             get { return this._validationProfiles; }
@@ -53,7 +54,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if ValidationProfiles property is set
         internal bool IsSetValidationProfiles()
         {
-            return this._validationProfiles != null && this._validationProfiles.Count > 0; 
+            return this._validationProfiles != null && (this._validationProfiles.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

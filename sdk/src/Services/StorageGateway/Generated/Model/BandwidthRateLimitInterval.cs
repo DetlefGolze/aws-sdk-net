@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
@@ -33,12 +34,18 @@ namespace Amazon.StorageGateway.Model
     /// consists of one or more bandwidth rate limit intervals. A bandwidth rate limit interval
     /// defines a period of time on one or more days of the week, during which bandwidth rate
     /// limits are specified for uploading, downloading, or both.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// FSx File Gateway does not support this feature.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class BandwidthRateLimitInterval
     {
         private long? _averageDownloadRateLimitInBitsPerSec;
         private long? _averageUploadRateLimitInBitsPerSec;
-        private List<int> _daysOfWeek = new List<int>();
+        private List<int> _daysOfWeek = AWSConfigs.InitializeCollections ? new List<int>() : null;
         private int? _endHourOfDay;
         private int? _endMinuteOfHour;
         private int? _startHourOfDay;
@@ -51,6 +58,11 @@ namespace Amazon.StorageGateway.Model
         /// bits per second. This field does not appear in the response if the download rate limit
         /// is not set. 
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// S3 File Gateway does not support this feature.
+        /// </para>
+        ///  </note>
         /// </summary>
         [AWSProperty(Min=102400)]
         public long AverageDownloadRateLimitInBitsPerSec
@@ -74,11 +86,11 @@ namespace Amazon.StorageGateway.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// For Tape Gateway and Volume Gateway, the minimum value is <code>51200</code>.
+        /// For Tape Gateway and Volume Gateway, the minimum value is <c>51200</c>.
         /// </para>
         ///  
         /// <para>
-        /// For S3 File Gateway and FSx File Gateway, the minimum value is <code>104857600</code>.
+        /// This field is required for S3 File Gateway, and the minimum value is <c>104857600</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -113,7 +125,7 @@ namespace Amazon.StorageGateway.Model
         // Check to see if DaysOfWeek property is set
         internal bool IsSetDaysOfWeek()
         {
-            return this._daysOfWeek != null && this._daysOfWeek.Count > 0; 
+            return this._daysOfWeek != null && (this._daysOfWeek.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -143,7 +155,7 @@ namespace Amazon.StorageGateway.Model
         ///  <important> 
         /// <para>
         ///  The bandwidth rate limit interval ends at the end of the minute. To end an interval
-        /// at the end of an hour, use the value <code>59</code>. 
+        /// at the end of an hour, use the value <c>59</c>. 
         /// </para>
         ///  </important>
         /// </summary>
@@ -184,7 +196,7 @@ namespace Amazon.StorageGateway.Model
         /// <para>
         ///  The minute of the hour to start the bandwidth rate limit interval. The interval begins
         /// at the start of that minute. To begin an interval exactly at the start of the hour,
-        /// use the value <code>0</code>. 
+        /// use the value <c>0</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=59)]

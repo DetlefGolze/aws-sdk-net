@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LicenseManagerUserSubscriptions.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.LicenseManagerUserSubscriptions.Model
     /// </summary>
     public partial class ListUserAssociationsRequest : AmazonLicenseManagerUserSubscriptionsRequest
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private IdentityProvider _identityProvider;
         private string _instanceId;
         private int? _maxResults;
@@ -43,9 +44,21 @@ namespace Amazon.LicenseManagerUserSubscriptions.Model
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// An array of structures that you can use to filter the results to those that match
-        /// one or more sets of key-value pairs that you specify.
+        /// You can use the following filters to streamline results:
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Status
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Username
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Domain
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public List<Filter> Filters
         {
@@ -56,7 +69,7 @@ namespace Amazon.LicenseManagerUserSubscriptions.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -100,7 +113,7 @@ namespace Amazon.LicenseManagerUserSubscriptions.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// Maximum number of results to return in a single call.
+        /// The maximum number of results to return from a single request.
         /// </para>
         /// </summary>
         public int MaxResults
@@ -118,7 +131,8 @@ namespace Amazon.LicenseManagerUserSubscriptions.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Token for the next set of results.
+        /// A token to specify where to start paginating. This is the nextToken from a previously
+        /// truncated response.
         /// </para>
         /// </summary>
         public string NextToken

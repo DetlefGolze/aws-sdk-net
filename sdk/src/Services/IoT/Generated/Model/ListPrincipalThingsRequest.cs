@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -49,8 +50,8 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// To retrieve the next set of results, the <code>nextToken</code> value from a previous
-        /// response; otherwise <b>null</b> to receive the first set of results.
+        /// To retrieve the next set of results, the <c>nextToken</c> value from a previous response;
+        /// otherwise <b>null</b> to receive the first set of results.
         /// </para>
         /// </summary>
         public string Marker
@@ -100,7 +101,7 @@ namespace Amazon.IoT.Model
         // Check to see if Principal property is set
         internal bool IsSetPrincipal()
         {
-            return this._principal != null;
+            return !string.IsNullOrEmpty(this._principal);
         }
 
     }

@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DeviceFarm.Model
 {
     /// <summary>
     /// Represents the device filters used in a test run and the maximum number of devices
-    /// to be included in the run. It is passed in as the <code>deviceSelectionConfiguration</code>
+    /// to be included in the run. It is passed in as the <c>deviceSelectionConfiguration</c>
     /// request parameter in <a>ScheduleRun</a>.
     /// </summary>
     public partial class DeviceSelectionConfiguration
     {
-        private List<DeviceFilter> _filters = new List<DeviceFilter>();
+        private List<DeviceFilter> _filters = AWSConfigs.InitializeCollections ? new List<DeviceFilter>() : null;
         private int? _maxDevices;
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.DeviceFarm.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// ARN: The Amazon Resource Name (ARN) of the device (for example, <code>arn:aws:devicefarm:us-west-2::device:12345Example</code>).
+        /// ARN: The Amazon Resource Name (ARN) of the device (for example, <c>arn:aws:devicefarm:us-west-2::device:12345Example</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -187,7 +188,7 @@ namespace Amazon.DeviceFarm.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

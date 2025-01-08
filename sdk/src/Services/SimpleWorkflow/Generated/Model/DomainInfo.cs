@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleWorkflow.Model
 {
     /// <summary>
@@ -102,14 +103,13 @@ namespace Amazon.SimpleWorkflow.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>REGISTERED</code> – The domain is properly registered and available. You can
-        /// use this domain for registering types and creating new workflow executions. 
+        ///  <c>REGISTERED</c> – The domain is properly registered and available. You can use
+        /// this domain for registering types and creating new workflow executions. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DEPRECATED</code> – The domain was deprecated using <a>DeprecateDomain</a>,
-        /// but is still in use. You should not create new workflow executions in this domain.
-        /// 
+        ///  <c>DEPRECATED</c> – The domain was deprecated using <a>DeprecateDomain</a>, but is
+        /// still in use. You should not create new workflow executions in this domain. 
         /// </para>
         ///  </li> </ul>
         /// </summary>

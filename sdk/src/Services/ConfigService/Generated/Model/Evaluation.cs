@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -105,16 +106,15 @@ namespace Amazon.ConfigService.Model
         /// </para>
         ///  
         /// <para>
-        /// For the <code>Evaluation</code> data type, Config supports only the <code>COMPLIANT</code>,
-        /// <code>NON_COMPLIANT</code>, and <code>NOT_APPLICABLE</code> values. Config does not
-        /// support the <code>INSUFFICIENT_DATA</code> value for this data type.
+        /// For the <c>Evaluation</c> data type, Config supports only the <c>COMPLIANT</c>, <c>NON_COMPLIANT</c>,
+        /// and <c>NOT_APPLICABLE</c> values. Config does not support the <c>INSUFFICIENT_DATA</c>
+        /// value for this data type.
         /// </para>
         ///  
         /// <para>
-        /// Similarly, Config does not accept <code>INSUFFICIENT_DATA</code> as the value for
-        /// <code>ComplianceType</code> from a <code>PutEvaluations</code> request. For example,
-        /// an Lambda function for a custom Config rule cannot pass an <code>INSUFFICIENT_DATA</code>
-        /// value to Config.
+        /// Similarly, Config does not accept <c>INSUFFICIENT_DATA</c> as the value for <c>ComplianceType</c>
+        /// from a <c>PutEvaluations</c> request. For example, an Lambda function for a custom
+        /// Config rule cannot pass an <c>INSUFFICIENT_DATA</c> value to Config.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

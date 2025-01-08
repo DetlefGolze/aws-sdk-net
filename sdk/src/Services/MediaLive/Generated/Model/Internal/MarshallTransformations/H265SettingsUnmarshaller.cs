@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public H265Settings Unmarshall(JsonUnmarshallerContext context)
         {
+            H265Settings unmarshalledObject = new H265Settings();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            H265Settings unmarshalledObject = new H265Settings();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -104,6 +106,12 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = H265ColorSpaceSettingsUnmarshaller.Instance;
                     unmarshalledObject.ColorSpaceSettings = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("deblocking", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Deblocking = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("filterSettings", targetDepth))
@@ -178,6 +186,24 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     unmarshalledObject.MinIInterval = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("minQp", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.MinQp = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("mvOverPictureBoundaries", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.MvOverPictureBoundaries = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("mvTemporalPredictor", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.MvTemporalPredictor = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("parDenominator", targetDepth))
                 {
                     var unmarshaller = IntUnmarshaller.Instance;
@@ -232,6 +258,24 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     unmarshalledObject.Tier = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("tileHeight", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.TileHeight = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("tilePadding", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.TilePadding = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("tileWidth", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.TileWidth = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("timecodeBurninSettings", targetDepth))
                 {
                     var unmarshaller = TimecodeBurninSettingsUnmarshaller.Instance;
@@ -244,8 +288,13 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     unmarshalledObject.TimecodeInsertion = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("treeblockSize", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.TreeblockSize = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

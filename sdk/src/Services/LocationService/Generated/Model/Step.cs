@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -36,14 +37,14 @@ namespace Amazon.LocationService.Model
     {
         private double? _distance;
         private double? _durationSeconds;
-        private List<double> _endPosition = new List<double>();
+        private List<double> _endPosition = AWSConfigs.InitializeCollections ? new List<double>() : null;
         private int? _geometryOffset;
-        private List<double> _startPosition = new List<double>();
+        private List<double> _startPosition = AWSConfigs.InitializeCollections ? new List<double>() : null;
 
         /// <summary>
         /// Gets and sets the property Distance. 
         /// <para>
-        /// The travel distance between the step's <code>StartPosition</code> and <code>EndPosition</code>.
+        /// The travel distance between the step's <c>StartPosition</c> and <c>EndPosition</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0)]
@@ -62,9 +63,9 @@ namespace Amazon.LocationService.Model
         /// <summary>
         /// Gets and sets the property DurationSeconds. 
         /// <para>
-        /// The estimated travel time, in seconds, from the step's <code>StartPosition</code>
-        /// to the <code>EndPosition</code>. . The travel mode and departure time that you specify
-        /// in the request determines the calculated time.
+        /// The estimated travel time, in seconds, from the step's <c>StartPosition</c> to the
+        /// <c>EndPosition</c>. . The travel mode and departure time that you specify in the request
+        /// determines the calculated time.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0)]
@@ -97,19 +98,19 @@ namespace Amazon.LocationService.Model
         // Check to see if EndPosition property is set
         internal bool IsSetEndPosition()
         {
-            return this._endPosition != null && this._endPosition.Count > 0; 
+            return this._endPosition != null && (this._endPosition.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property GeometryOffset. 
         /// <para>
         /// Represents the start position, or index, in a sequence of steps within the leg's line
-        /// string geometry. For example, the index of the first step in a leg geometry is <code>0</code>.
+        /// string geometry. For example, the index of the first step in a leg geometry is <c>0</c>.
         /// 
         /// </para>
         ///  
         /// <para>
-        /// Included in the response for queries that set <code>IncludeLegGeometry</code> to <code>True</code>.
+        /// Included in the response for queries that set <c>IncludeLegGeometry</c> to <c>True</c>.
         /// 
         /// </para>
         /// </summary>
@@ -143,7 +144,7 @@ namespace Amazon.LocationService.Model
         // Check to see if StartPosition property is set
         internal bool IsSetStartPosition()
         {
-            return this._startPosition != null && this._startPosition.Count > 0; 
+            return this._startPosition != null && (this._startPosition.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

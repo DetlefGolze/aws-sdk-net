@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.CloudDirectory.Model
     /// </summary>
     public partial class ListObjectAttributesResponse : AmazonWebServiceResponse
     {
-        private List<AttributeKeyAndValue> _attributes = new List<AttributeKeyAndValue>();
+        private List<AttributeKeyAndValue> _attributes = AWSConfigs.InitializeCollections ? new List<AttributeKeyAndValue>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Attributes. 
         /// <para>
-        /// Attributes map that is associated with the object. <code>AttributeArn</code> is the
-        /// key, and attribute value is the value.
+        /// Attributes map that is associated with the object. <c>AttributeArn</c> is the key,
+        /// and attribute value is the value.
         /// </para>
         /// </summary>
         public List<AttributeKeyAndValue> Attributes
@@ -52,7 +53,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

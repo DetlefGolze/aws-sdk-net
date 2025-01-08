@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityStore.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.IdentityStore.Model
     /// </summary>
     public partial class CreateUserRequest : AmazonIdentityStoreRequest
     {
-        private List<Address> _addresses = new List<Address>();
+        private List<Address> _addresses = AWSConfigs.InitializeCollections ? new List<Address>() : null;
         private string _displayName;
-        private List<Email> _emails = new List<Email>();
+        private List<Email> _emails = AWSConfigs.InitializeCollections ? new List<Email>() : null;
         private string _identityStoreId;
         private string _locale;
         private Name _name;
         private string _nickName;
-        private List<PhoneNumber> _phoneNumbers = new List<PhoneNumber>();
+        private List<PhoneNumber> _phoneNumbers = AWSConfigs.InitializeCollections ? new List<PhoneNumber>() : null;
         private string _preferredLanguage;
         private string _profileUrl;
         private string _timezone;
@@ -52,7 +53,7 @@ namespace Amazon.IdentityStore.Model
         /// <summary>
         /// Gets and sets the property Addresses. 
         /// <para>
-        /// A list of <code>Address</code> objects containing addresses associated with the user.
+        /// A list of <c>Address</c> objects containing addresses associated with the user.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1)]
@@ -65,7 +66,7 @@ namespace Amazon.IdentityStore.Model
         // Check to see if Addresses property is set
         internal bool IsSetAddresses()
         {
-            return this._addresses != null && this._addresses.Count > 0; 
+            return this._addresses != null && (this._addresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -91,8 +92,7 @@ namespace Amazon.IdentityStore.Model
         /// <summary>
         /// Gets and sets the property Emails. 
         /// <para>
-        /// A list of <code>Email</code> objects containing email addresses associated with the
-        /// user.
+        /// A list of <c>Email</c> objects containing email addresses associated with the user.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1)]
@@ -105,7 +105,7 @@ namespace Amazon.IdentityStore.Model
         // Check to see if Emails property is set
         internal bool IsSetEmails()
         {
-            return this._emails != null && this._emails.Count > 0; 
+            return this._emails != null && (this._emails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -186,8 +186,8 @@ namespace Amazon.IdentityStore.Model
         /// <summary>
         /// Gets and sets the property PhoneNumbers. 
         /// <para>
-        /// A list of <code>PhoneNumber</code> objects containing phone numbers associated with
-        /// the user.
+        /// A list of <c>PhoneNumber</c> objects containing phone numbers associated with the
+        /// user.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1)]
@@ -200,7 +200,7 @@ namespace Amazon.IdentityStore.Model
         // Check to see if PhoneNumbers property is set
         internal bool IsSetPhoneNumbers()
         {
-            return this._phoneNumbers != null && this._phoneNumbers.Count > 0; 
+            return this._phoneNumbers != null && (this._phoneNumbers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -287,7 +287,7 @@ namespace Amazon.IdentityStore.Model
         /// A unique string used to identify the user. The length limit is 128 characters. This
         /// value can consist of letters, accented characters, symbols, numbers, and punctuation.
         /// This value is specified at the time the user is created and stored as an attribute
-        /// of the user object in the identity store. <code>Administrator</code> and <code>AWSAdministrators</code>
+        /// of the user object in the identity store. <c>Administrator</c> and <c>AWSAdministrators</c>
         /// are reserved names and can't be used for users or groups.
         /// </para>
         /// </summary>

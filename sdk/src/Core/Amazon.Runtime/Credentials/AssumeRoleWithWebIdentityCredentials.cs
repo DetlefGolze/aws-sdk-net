@@ -15,7 +15,9 @@
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Util;
 using Amazon.Runtime.SharedInterfaces;
+using Amazon.RuntimeDependencies;
 using Amazon.Util;
+using Amazon.Util.Internal;
 using System;
 using System.Globalization;
 using System.IO;
@@ -31,7 +33,7 @@ namespace Amazon.Runtime
     /// AWS Credentials that automatically refresh by calling AssumeRole on
     /// the Amazon Security Token Service.
     /// </summary>
-    public class AssumeRoleWithWebIdentityCredentials : RefreshingAWSCredentials
+    public partial class AssumeRoleWithWebIdentityCredentials : RefreshingAWSCredentials
     {
         private const int PREEMPT_EXPIRY_MINUTES = 15;
         private static readonly RegionEndpoint _defaultSTSClientRegion = RegionEndpoint.USEast1;
@@ -46,7 +48,15 @@ namespace Amazon.Runtime
         public const string RoleArnEnvVariable = "AWS_ROLE_ARN";
         public const string RoleSessionNameEnvVariable = "AWS_ROLE_SESSION_NAME";
 
-        private static readonly Regex _roleSessionNameRegex = new Regex(@"^[\w+=,.@-]{2,64}$", RegexOptions.Compiled);
+        private const string RoleSessionNameRegexPattern = @"^[\w+=,.@-]{2,64}$";
+
+#if NET8_0_OR_GREATER
+        [GeneratedRegex(RoleSessionNameRegexPattern)]
+        private static partial Regex RoleSessionNameRegex();
+#else
+        private static Regex RoleSessionNameRegex() => _roleSessionNameRegex;
+        private static readonly Regex _roleSessionNameRegex = new Regex(RoleSessionNameRegexPattern, RegexOptions.Compiled);
+#endif
 
         private readonly Logger _logger = Logger.GetLogger(typeof(AssumeRoleWithWebIdentityCredentials));
 
@@ -104,9 +114,9 @@ namespace Amazon.Runtime
                 throw new ArgumentNullException(nameof(roleArn), "The role ARN must be specified.");
             }
 
-            if (!string.IsNullOrEmpty(roleSessionName) && !_roleSessionNameRegex.IsMatch(roleSessionName))
+            if (!string.IsNullOrEmpty(roleSessionName) && !RoleSessionNameRegex().IsMatch(roleSessionName))
             {
-                throw new ArgumentOutOfRangeException(nameof(roleSessionName), roleSessionName, $"The value must match the regex pattern @\"{_roleSessionNameRegex}\".");
+                throw new ArgumentOutOfRangeException(nameof(roleSessionName), roleSessionName, $"The value must match the regex pattern @\"{RoleSessionNameRegex()}\".");
             }
 
             WebIdentityTokenFile = webIdentityTokenFile;
@@ -212,30 +222,46 @@ namespace Amazon.Runtime
         /// Gets a client to be used for AssumeRoleWithWebIdentity requests.
         /// </summary>
         /// <returns>The STS client.</returns>
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("ReflectionAnalysis", "IL2026",
+            Justification = "Reflection code is only used as a fallback in case the SDK was not trimmed. Trimmed scenarios should register dependencies with Amazon.RuntimeDependencyRegistry.GlobalRuntimeDependencyRegistry")]
+#endif
         protected virtual ICoreAmazonSTS_WebIdentity CreateClient()
         {
             var region = FallbackRegionFactory.GetRegionEndpoint() ?? _defaultSTSClientRegion;
 
-            try
+            ICoreAmazonSTS_WebIdentity coreSTSClient = GlobalRuntimeDependencyRegistry.Instance.GetInstance<ICoreAmazonSTS_WebIdentity>(ServiceClientHelpers.STS_ASSEMBLY_NAME, ServiceClientHelpers.STS_SERVICE_CLASS_NAME,
+                new CreateInstanceContext(new SecurityTokenServiceClientContext { Action = SecurityTokenServiceClientContext.ActionContext.AssumeRoleAWSCredentials, Region = region, ProxySettings = _options?.ProxySettings }));
+            if(coreSTSClient == null)
             {
-                var stsConfig = ServiceClientHelpers.CreateServiceConfig(ServiceClientHelpers.STS_ASSEMBLY_NAME, ServiceClientHelpers.STS_SERVICE_CONFIG_NAME);
-                stsConfig.RegionEndpoint = region;
-
-                if (_options?.ProxySettings != null)
+                try
                 {
-                    stsConfig.SetWebProxy(_options.ProxySettings);
-                }
+                    var stsConfig = ServiceClientHelpers.CreateServiceConfig(ServiceClientHelpers.STS_ASSEMBLY_NAME, ServiceClientHelpers.STS_SERVICE_CONFIG_NAME);
+                    stsConfig.RegionEndpoint = region;
 
-                return ServiceClientHelpers.CreateServiceFromAssembly<ICoreAmazonSTS_WebIdentity>(
-                            ServiceClientHelpers.STS_ASSEMBLY_NAME, ServiceClientHelpers.STS_SERVICE_CLASS_NAME, new AnonymousAWSCredentials(), region);
+                    if (_options?.ProxySettings != null)
+                    {
+                        stsConfig.SetWebProxy(_options.ProxySettings);
+                    }
+
+                    coreSTSClient = ServiceClientHelpers.CreateServiceFromAssembly<ICoreAmazonSTS_WebIdentity>(
+                                ServiceClientHelpers.STS_ASSEMBLY_NAME, ServiceClientHelpers.STS_SERVICE_CLASS_NAME, new AnonymousAWSCredentials(), region);
+                }
+                catch (Exception e)
+                {
+                    if (InternalSDKUtils.IsRunningNativeAot())
+                    {
+                        throw new MissingRuntimeDependencyException(ServiceClientHelpers.STS_ASSEMBLY_NAME, ServiceClientHelpers.STS_SERVICE_CLASS_NAME, nameof(GlobalRuntimeDependencyRegistry.RegisterSecurityTokenServiceClient));
+                    }
+
+                    var msg = string.Format(CultureInfo.CurrentCulture,
+                        "Assembly {0} could not be found or loaded. This assembly must be available at runtime to use Amazon.Runtime.AssumeRoleAWSCredentials.",
+                        ServiceClientHelpers.STS_ASSEMBLY_NAME);
+                    throw new InvalidOperationException(msg, e);
+                }
             }
-            catch (Exception e)
-            {
-                var msg = string.Format(CultureInfo.CurrentCulture,
-                    "Assembly {0} could not be found or loaded. This assembly must be available at runtime to use Amazon.Runtime.AssumeRoleAWSCredentials.",
-                    ServiceClientHelpers.STS_ASSEMBLY_NAME);
-                throw new InvalidOperationException(msg, e);
-            }
+
+            return coreSTSClient;
         }
     }
 }

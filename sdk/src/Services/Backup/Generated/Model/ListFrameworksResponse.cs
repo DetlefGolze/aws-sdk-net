@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.Backup.Model
     /// </summary>
     public partial class ListFrameworksResponse : AmazonWebServiceResponse
     {
-        private List<Framework> _frameworks = new List<Framework>();
+        private List<Framework> _frameworks = AWSConfigs.InitializeCollections ? new List<Framework>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Frameworks. 
         /// <para>
-        /// A list of frameworks with details for each framework, including the framework name,
-        /// Amazon Resource Name (ARN), description, number of controls, creation time, and deployment
+        /// The frameworks with details for each framework, including the framework name, Amazon
+        /// Resource Name (ARN), description, number of controls, creation time, and deployment
         /// status.
         /// </para>
         /// </summary>
@@ -53,7 +54,7 @@ namespace Amazon.Backup.Model
         // Check to see if Frameworks property is set
         internal bool IsSetFrameworks()
         {
-            return this._frameworks != null && this._frameworks.Count > 0; 
+            return this._frameworks != null && (this._frameworks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

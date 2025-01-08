@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property IdempotencyToken. 
         /// <para>
         /// A customer-chosen string that you can use to distinguish between otherwise identical
-        /// calls to <code>StartReportJobInput</code>. Retrying a successful request with the
-        /// same idempotency token results in a success message with no action taken.
+        /// calls to <c>StartReportJobInput</c>. Retrying a successful request with the same idempotency
+        /// token results in a success message with no action taken.
         /// </para>
         /// </summary>
         public string IdempotencyToken

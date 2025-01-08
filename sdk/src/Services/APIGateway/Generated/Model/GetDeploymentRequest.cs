@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.APIGateway.Model
     public partial class GetDeploymentRequest : AmazonAPIGatewayRequest
     {
         private string _deploymentId;
-        private List<string> _embed = new List<string>();
+        private List<string> _embed = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _restApiId;
 
         /// <summary>
@@ -61,12 +62,12 @@ namespace Amazon.APIGateway.Model
         /// Gets and sets the property Embed. 
         /// <para>
         /// A query parameter to retrieve the specified embedded resources of the returned Deployment
-        /// resource in the response. In a REST API call, this <code>embed</code> parameter value
-        /// is a list of comma-separated strings, as in <code>GET /restapis/{restapi_id}/deployments/{deployment_id}?embed=var1,var2</code>.
+        /// resource in the response. In a REST API call, this <c>embed</c> parameter value is
+        /// a list of comma-separated strings, as in <c>GET /restapis/{restapi_id}/deployments/{deployment_id}?embed=var1,var2</c>.
         /// The SDK and other platform-dependent libraries might use a different format for the
         /// list. Currently, this request supports only retrieval of the embedded API summary
         /// this way. Hence, the parameter value must be a single-valued list containing only
-        /// the <code>"apisummary"</code> string. For example, <code>GET /restapis/{restapi_id}/deployments/{deployment_id}?embed=apisummary</code>.
+        /// the <c>"apisummary"</c> string. For example, <c>GET /restapis/{restapi_id}/deployments/{deployment_id}?embed=apisummary</c>.
         /// </para>
         /// </summary>
         public List<string> Embed
@@ -78,7 +79,7 @@ namespace Amazon.APIGateway.Model
         // Check to see if Embed property is set
         internal bool IsSetEmbed()
         {
-            return this._embed != null && this._embed.Count > 0; 
+            return this._embed != null && (this._embed.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

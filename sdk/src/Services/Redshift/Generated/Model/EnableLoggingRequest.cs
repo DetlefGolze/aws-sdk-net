@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.Redshift.Model
         private string _bucketName;
         private string _clusterIdentifier;
         private LogDestinationType _logDestinationType;
-        private List<string> _logExports = new List<string>();
+        private List<string> _logExports = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _s3KeyPrefix;
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>examplecluster</code> 
+        /// Example: <c>examplecluster</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=2147483647)]
@@ -99,7 +100,7 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property LogDestinationType. 
         /// <para>
-        /// The log destination type. An enum with possible values of <code>s3</code> and <code>cloudwatch</code>.
+        /// The log destination type. An enum with possible values of <c>s3</c> and <c>cloudwatch</c>.
         /// </para>
         /// </summary>
         public LogDestinationType LogDestinationType
@@ -117,8 +118,8 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property LogExports. 
         /// <para>
-        /// The collection of exported log types. Possible values are <code>connectionlog</code>,
-        /// <code>useractivitylog</code>, and <code>userlog</code>.
+        /// The collection of exported log types. Possible values are <c>connectionlog</c>, <c>useractivitylog</c>,
+        /// and <c>userlog</c>.
         /// </para>
         /// </summary>
         public List<string> LogExports
@@ -130,7 +131,7 @@ namespace Amazon.Redshift.Model
         // Check to see if LogExports property is set
         internal bool IsSetLogExports()
         {
-            return this._logExports != null && this._logExports.Count > 0; 
+            return this._logExports != null && (this._logExports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -140,40 +141,13 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  
         /// <para>
-        /// Constraints:
+        /// Valid characters are any letter from any language, any whitespace character, any numeric
+        /// character, and the following characters: underscore (<c>_</c>), period (<c>.</c>),
+        /// colon (<c>:</c>), slash (<c>/</c>), equal (<c>=</c>), plus (<c>+</c>), backslash (<c>\</c>),
+        /// hyphen (<c>-</c>), at symbol (<c>@</c>).
         /// </para>
-        ///  <ul> <li> 
-        /// <para>
-        /// Cannot exceed 512 characters
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Cannot contain spaces( ), double quotes ("), single quotes ('), a backslash (\), or
-        /// control characters. The hexadecimal codes for invalid characters are: 
-        /// </para>
-        ///  <ul> <li> 
-        /// <para>
-        /// x00 to x20
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// x22
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// x27
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// x5c
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// x7f or larger
-        /// </para>
-        ///  </li> </ul> </li> </ul>
         /// </summary>
-        [AWSProperty(Max=2147483647)]
+        [AWSProperty(Max=256)]
         public string S3KeyPrefix
         {
             get { return this._s3KeyPrefix; }

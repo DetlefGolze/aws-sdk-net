@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
     /// Provides information about the sensitivity inspection template for an Amazon Macie
-    /// account. Macie uses the template's settings when it performs automated sensitive data
-    /// discovery for the account.
+    /// account.
     /// </summary>
     public partial class SensitivityInspectionTemplatesEntry
     {

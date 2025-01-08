@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GlobalAccelerator.Model
 {
     /// <summary>
@@ -45,8 +46,8 @@ namespace Amazon.GlobalAccelerator.Model
     /// <para>
     /// Global Accelerator is a global service that supports endpoints in multiple Amazon
     /// Web Services Regions but you must specify the US West (Oregon) Region to create, update,
-    /// or otherwise work with accelerators. That is, for example, specify <code>--region
-    /// us-west-2</code> on Amazon Web Services CLI commands.
+    /// or otherwise work with accelerators. That is, for example, specify <c>--region us-west-2</c>
+    /// on Amazon Web Services CLI commands.
     /// </para>
     ///  </important>
     /// </summary>
@@ -54,10 +55,10 @@ namespace Amazon.GlobalAccelerator.Model
     {
         private bool? _enabled;
         private string _idempotencyToken;
-        private List<string> _ipAddresses = new List<string>();
+        private List<string> _ipAddresses = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private IpAddressType _ipAddressType;
         private string _name;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Enabled. 
@@ -146,7 +147,7 @@ namespace Amazon.GlobalAccelerator.Model
         // Check to see if IpAddresses property is set
         internal bool IsSetIpAddresses()
         {
-            return this._ipAddresses != null && this._ipAddresses.Count > 0; 
+            return this._ipAddresses != null && (this._ipAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -209,7 +210,7 @@ namespace Amazon.GlobalAccelerator.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

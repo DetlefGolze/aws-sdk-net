@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.SageMaker.Model
         /// The input configuration object for the model.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=1024)]
+        [AWSProperty(Required=true, Min=1, Max=16384)]
         public string DataInputConfig
         {
             get { return this._dataInputConfig; }

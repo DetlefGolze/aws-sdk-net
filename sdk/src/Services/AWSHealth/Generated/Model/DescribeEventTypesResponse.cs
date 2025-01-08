@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSHealth.Model
 {
     /// <summary>
@@ -33,17 +34,16 @@ namespace Amazon.AWSHealth.Model
     /// </summary>
     public partial class DescribeEventTypesResponse : AmazonWebServiceResponse
     {
-        private List<EventType> _eventTypes = new List<EventType>();
+        private List<EventType> _eventTypes = AWSConfigs.InitializeCollections ? new List<EventType>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property EventTypes. 
         /// <para>
         /// A list of event types that match the filter criteria. Event types have a category
-        /// (<code>issue</code>, <code>accountNotification</code>, or <code>scheduledChange</code>),
-        /// a service (for example, <code>EC2</code>, <code>RDS</code>, <code>DATAPIPELINE</code>,
-        /// <code>BILLING</code>), and a code (in the format <code>AWS_<i>SERVICE</i>_<i>DESCRIPTION</i>
-        /// </code>; for example, <code>AWS_EC2_SYSTEM_MAINTENANCE_EVENT</code>).
+        /// (<c>issue</c>, <c>accountNotification</c>, or <c>scheduledChange</c>), a service (for
+        /// example, <c>EC2</c>, <c>RDS</c>, <c>DATAPIPELINE</c>, <c>BILLING</c>), and a code
+        /// (in the format <c>AWS_<i>SERVICE</i>_<i>DESCRIPTION</i> </c>; for example, <c>AWS_EC2_SYSTEM_MAINTENANCE_EVENT</c>).
         /// </para>
         /// </summary>
         public List<EventType> EventTypes
@@ -55,15 +55,15 @@ namespace Amazon.AWSHealth.Model
         // Check to see if EventTypes property is set
         internal bool IsSetEventTypes()
         {
-            return this._eventTypes != null && this._eventTypes.Count > 0; 
+            return this._eventTypes != null && (this._eventTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If the results of a search are large, only a portion of the results are returned,
-        /// and a <code>nextToken</code> pagination token is returned in the response. To retrieve
-        /// the next batch of results, reissue the search request and include the returned token.
+        /// and a <c>nextToken</c> pagination token is returned in the response. To retrieve the
+        /// next batch of results, reissue the search request and include the returned token.
         /// When all results have been returned, the response does not contain a pagination token
         /// value.
         /// </para>

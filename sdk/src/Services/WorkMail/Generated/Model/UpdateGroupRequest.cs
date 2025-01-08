@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkMail.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateGroup operation.
-    /// Updates attibutes in a group.
+    /// Updates attributes in a group.
     /// </summary>
     public partial class UpdateGroupRequest : AmazonWorkMailRequest
     {

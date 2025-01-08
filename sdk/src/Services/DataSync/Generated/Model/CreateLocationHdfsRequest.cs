@@ -26,32 +26,40 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateLocationHdfs operation.
-    /// Creates an endpoint for a Hadoop Distributed File System (HDFS).
+    /// Creates a transfer <i>location</i> for a Hadoop Distributed File System (HDFS). DataSync
+    /// can use this location as a source or destination for transferring data.
+    /// 
+    ///  
+    /// <para>
+    /// Before you begin, make sure that you understand how DataSync <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-hdfs-location.html#accessing-hdfs">accesses
+    /// HDFS clusters</a>.
+    /// </para>
     /// </summary>
     public partial class CreateLocationHdfsRequest : AmazonDataSyncRequest
     {
-        private List<string> _agentArns = new List<string>();
+        private List<string> _agentArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private HdfsAuthenticationType _authenticationType;
         private int? _blockSize;
         private MemoryStream _kerberosKeytab;
         private MemoryStream _kerberosKrb5Conf;
         private string _kerberosPrincipal;
         private string _kmsKeyProviderUri;
-        private List<HdfsNameNode> _nameNodes = new List<HdfsNameNode>();
+        private List<HdfsNameNode> _nameNodes = AWSConfigs.InitializeCollections ? new List<HdfsNameNode>() : null;
         private QopConfiguration _qopConfiguration;
         private int? _replicationFactor;
         private string _simpleUser;
         private string _subdirectory;
-        private List<TagListEntry> _tags = new List<TagListEntry>();
+        private List<TagListEntry> _tags = AWSConfigs.InitializeCollections ? new List<TagListEntry>() : null;
 
         /// <summary>
         /// Gets and sets the property AgentArns. 
         /// <para>
-        /// The Amazon Resource Names (ARNs) of the agents that are used to connect to the HDFS
+        /// The Amazon Resource Names (ARNs) of the DataSync agents that can connect to your HDFS
         /// cluster.
         /// </para>
         /// </summary>
@@ -65,7 +73,7 @@ namespace Amazon.DataSync.Model
         // Check to see if AgentArns property is set
         internal bool IsSetAgentArns()
         {
-            return this._agentArns != null && this._agentArns.Count > 0; 
+            return this._agentArns != null && (this._agentArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -117,8 +125,8 @@ namespace Amazon.DataSync.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If <code>KERBEROS</code> is specified for <code>AuthenticationType</code>, this parameter
-        /// is required. 
+        /// If <c>KERBEROS</c> is specified for <c>AuthenticationType</c>, this parameter is required.
+        /// 
         /// </para>
         ///  </note>
         /// </summary>
@@ -138,15 +146,14 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property KerberosKrb5Conf. 
         /// <para>
-        /// The <code>krb5.conf</code> file that contains the Kerberos configuration information.
-        /// You can load the <code>krb5.conf</code> file by providing the file's address. If you're
-        /// using the CLI, it performs the base64 encoding for you. Otherwise, provide the base64-encoded
+        /// The <c>krb5.conf</c> file that contains the Kerberos configuration information. You
+        /// can load the <c>krb5.conf</c> file by providing the file's address. If you're using
+        /// the CLI, it performs the base64 encoding for you. Otherwise, provide the base64-encoded
         /// text. 
         /// </para>
         ///  <note> 
         /// <para>
-        /// If <code>KERBEROS</code> is specified for <code>AuthenticationType</code>, this parameter
-        /// is required.
+        /// If <c>KERBEROS</c> is specified for <c>AuthenticationType</c>, this parameter is required.
         /// </para>
         ///  </note>
         /// </summary>
@@ -170,8 +177,7 @@ namespace Amazon.DataSync.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If <code>KERBEROS</code> is specified for <code>AuthenticationType</code>, this parameter
-        /// is required.
+        /// If <c>KERBEROS</c> is specified for <c>AuthenticationType</c>, this parameter is required.
         /// </para>
         ///  </note>
         /// </summary>
@@ -225,7 +231,7 @@ namespace Amazon.DataSync.Model
         // Check to see if NameNodes property is set
         internal bool IsSetNameNodes()
         {
-            return this._nameNodes != null && this._nameNodes.Count > 0; 
+            return this._nameNodes != null && (this._nameNodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -233,10 +239,9 @@ namespace Amazon.DataSync.Model
         /// <para>
         /// The Quality of Protection (QOP) configuration specifies the Remote Procedure Call
         /// (RPC) and data transfer protection settings configured on the Hadoop Distributed File
-        /// System (HDFS) cluster. If <code>QopConfiguration</code> isn't specified, <code>RpcProtection</code>
-        /// and <code>DataTransferProtection</code> default to <code>PRIVACY</code>. If you set
-        /// <code>RpcProtection</code> or <code>DataTransferProtection</code>, the other parameter
-        /// assumes the same value. 
+        /// System (HDFS) cluster. If <c>QopConfiguration</c> isn't specified, <c>RpcProtection</c>
+        /// and <c>DataTransferProtection</c> default to <c>PRIVACY</c>. If you set <c>RpcProtection</c>
+        /// or <c>DataTransferProtection</c>, the other parameter assumes the same value. 
         /// </para>
         /// </summary>
         public QopConfiguration QopConfiguration
@@ -278,8 +283,8 @@ namespace Amazon.DataSync.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If <code>SIMPLE</code> is specified for <code>AuthenticationType</code>, this parameter
-        /// is required. 
+        /// If <c>SIMPLE</c> is specified for <c>AuthenticationType</c>, this parameter is required.
+        /// 
         /// </para>
         ///  </note>
         /// </summary>
@@ -301,7 +306,7 @@ namespace Amazon.DataSync.Model
         /// <para>
         /// A subdirectory in the HDFS cluster. This subdirectory is used to read data from or
         /// write data to the HDFS cluster. If the subdirectory isn't specified, it will default
-        /// to <code>/</code>.
+        /// to <c>/</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=4096)]
@@ -334,7 +339,7 @@ namespace Amazon.DataSync.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

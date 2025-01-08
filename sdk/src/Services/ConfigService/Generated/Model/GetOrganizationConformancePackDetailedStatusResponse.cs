@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ConfigService.Model
     public partial class GetOrganizationConformancePackDetailedStatusResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<OrganizationConformancePackDetailedStatus> _organizationConformancePackDetailedStatuses = new List<OrganizationConformancePackDetailedStatus>();
+        private List<OrganizationConformancePackDetailedStatus> _organizationConformancePackDetailedStatuses = AWSConfigs.InitializeCollections ? new List<OrganizationConformancePackDetailedStatus>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -58,7 +59,7 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property OrganizationConformancePackDetailedStatuses. 
         /// <para>
-        /// A list of <code>OrganizationConformancePackDetailedStatus</code> objects. 
+        /// A list of <c>OrganizationConformancePackDetailedStatus</c> objects. 
         /// </para>
         /// </summary>
         public List<OrganizationConformancePackDetailedStatus> OrganizationConformancePackDetailedStatuses
@@ -70,7 +71,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if OrganizationConformancePackDetailedStatuses property is set
         internal bool IsSetOrganizationConformancePackDetailedStatuses()
         {
-            return this._organizationConformancePackDetailedStatuses != null && this._organizationConformancePackDetailedStatuses.Count > 0; 
+            return this._organizationConformancePackDetailedStatuses != null && (this._organizationConformancePackDetailedStatuses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

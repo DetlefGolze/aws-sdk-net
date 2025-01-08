@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTDeviceAdvisor.Model
 {
     /// <summary>
@@ -40,8 +41,30 @@ namespace Amazon.IoTDeviceAdvisor.Model
     /// </summary>
     public partial class CreateSuiteDefinitionRequest : AmazonIoTDeviceAdvisorRequest
     {
+        private string _clientToken;
         private SuiteDefinitionConfiguration _suiteDefinitionConfiguration;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+
+        /// <summary>
+        /// Gets and sets the property ClientToken. 
+        /// <para>
+        /// The client token for the test suite definition creation. This token is used for tracking
+        /// test suite definition creation using retries and obtaining its status. This parameter
+        /// is optional.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=64)]
+        public string ClientToken
+        {
+            get { return this._clientToken; }
+            set { this._clientToken = value; }
+        }
+
+        // Check to see if ClientToken property is set
+        internal bool IsSetClientToken()
+        {
+            return this._clientToken != null;
+        }
 
         /// <summary>
         /// Gets and sets the property SuiteDefinitionConfiguration. 
@@ -78,7 +101,7 @@ namespace Amazon.IoTDeviceAdvisor.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

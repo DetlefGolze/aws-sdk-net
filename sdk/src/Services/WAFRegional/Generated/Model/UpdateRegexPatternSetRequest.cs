@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFRegional.Model
 {
     /// <summary>
@@ -43,13 +44,12 @@ namespace Amazon.WAFRegional.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// Inserts or deletes <code>RegexPatternString</code> objects in a <a>RegexPatternSet</a>.
-    /// For each <code>RegexPatternString</code> object, you specify the following values:
-    /// 
+    /// Inserts or deletes <c>RegexPatternString</c> objects in a <a>RegexPatternSet</a>.
+    /// For each <c>RegexPatternString</c> object, you specify the following values: 
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// Whether to insert or delete the <code>RegexPatternString</code>.
+    /// Whether to insert or delete the <c>RegexPatternString</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -58,8 +58,8 @@ namespace Amazon.WAFRegional.Model
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    ///  For example, you can create a <code>RegexPatternString</code> such as <code>B[a@]dB[o0]t</code>.
-    /// AWS WAF will match this <code>RegexPatternString</code> to:
+    ///  For example, you can create a <c>RegexPatternString</c> such as <c>B[a@]dB[o0]t</c>.
+    /// AWS WAF will match this <c>RegexPatternString</c> to:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -79,21 +79,21 @@ namespace Amazon.WAFRegional.Model
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// To create and configure a <code>RegexPatternSet</code>, perform the following steps:
+    /// To create and configure a <c>RegexPatternSet</c>, perform the following steps:
     /// </para>
     ///  <ol> <li> 
     /// <para>
-    /// Create a <code>RegexPatternSet.</code> For more information, see <a>CreateRegexPatternSet</a>.
+    /// Create a <c>RegexPatternSet.</c> For more information, see <a>CreateRegexPatternSet</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-    /// parameter of an <code>UpdateRegexPatternSet</code> request.
+    /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+    /// parameter of an <c>UpdateRegexPatternSet</c> request.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Submit an <code>UpdateRegexPatternSet</code> request to specify the regular expression
-    /// pattern that you want AWS WAF to watch for.
+    /// Submit an <c>UpdateRegexPatternSet</c> request to specify the regular expression pattern
+    /// that you want AWS WAF to watch for.
     /// </para>
     ///  </li> </ol> 
     /// <para>
@@ -106,7 +106,7 @@ namespace Amazon.WAFRegional.Model
     {
         private string _changeToken;
         private string _regexPatternSetId;
-        private List<RegexPatternSetUpdate> _updates = new List<RegexPatternSetUpdate>();
+        private List<RegexPatternSetUpdate> _updates = AWSConfigs.InitializeCollections ? new List<RegexPatternSetUpdate>() : null;
 
         /// <summary>
         /// Gets and sets the property ChangeToken. 
@@ -130,9 +130,8 @@ namespace Amazon.WAFRegional.Model
         /// <summary>
         /// Gets and sets the property RegexPatternSetId. 
         /// <para>
-        /// The <code>RegexPatternSetId</code> of the <a>RegexPatternSet</a> that you want to
-        /// update. <code>RegexPatternSetId</code> is returned by <a>CreateRegexPatternSet</a>
-        /// and by <a>ListRegexPatternSets</a>.
+        /// The <c>RegexPatternSetId</c> of the <a>RegexPatternSet</a> that you want to update.
+        /// <c>RegexPatternSetId</c> is returned by <a>CreateRegexPatternSet</a> and by <a>ListRegexPatternSets</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=128)]
@@ -151,8 +150,8 @@ namespace Amazon.WAFRegional.Model
         /// <summary>
         /// Gets and sets the property Updates. 
         /// <para>
-        /// An array of <code>RegexPatternSetUpdate</code> objects that you want to insert into
-        /// or delete from a <a>RegexPatternSet</a>.
+        /// An array of <c>RegexPatternSetUpdate</c> objects that you want to insert into or delete
+        /// from a <a>RegexPatternSet</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1)]
@@ -165,7 +164,7 @@ namespace Amazon.WAFRegional.Model
         // Check to see if Updates property is set
         internal bool IsSetUpdates()
         {
-            return this._updates != null && this._updates.Count > 0; 
+            return this._updates != null && (this._updates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

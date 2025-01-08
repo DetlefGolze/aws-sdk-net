@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ManagedBlockchainQuery.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,12 +64,24 @@ namespace Amazon.ManagedBlockchainQuery.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAddress())
                 {
                     context.Writer.WritePropertyName("address");
                     context.Writer.Write(publicRequest.Address);
+                }
+
+                if(publicRequest.IsSetConfirmationStatusFilter())
+                {
+                    context.Writer.WritePropertyName("confirmationStatusFilter");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ConfirmationStatusFilterMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.ConfirmationStatusFilter, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetFromBlockchainInstant())

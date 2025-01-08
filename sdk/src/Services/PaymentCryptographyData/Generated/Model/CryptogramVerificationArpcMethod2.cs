@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptographyData.Model
 {
     /// <summary>
@@ -64,7 +65,7 @@ namespace Amazon.PaymentCryptographyData.Model
         /// transaction using an EMV chip card.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=16)]
+        [AWSProperty(Sensitive=true, Min=1, Max=16)]
         public string ProprietaryAuthenticationData
         {
             get { return this._proprietaryAuthenticationData; }

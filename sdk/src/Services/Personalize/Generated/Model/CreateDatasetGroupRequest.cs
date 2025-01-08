@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Personalize.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Personalize.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    /// Interactions
+    /// Item interactions
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -45,6 +46,14 @@ namespace Amazon.Personalize.Model
     ///  </li> <li> 
     /// <para>
     /// Users
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Actions
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Action interactions
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -70,13 +79,13 @@ namespace Amazon.Personalize.Model
     ///  </li> </ul> 
     /// <para>
     /// To get the status of the dataset group, call <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetGroup.html">DescribeDatasetGroup</a>.
-    /// If the status shows as CREATE FAILED, the response includes a <code>failureReason</code>
+    /// If the status shows as CREATE FAILED, the response includes a <c>failureReason</c>
     /// key, which describes why the creation failed.
     /// </para>
     ///  <note> 
     /// <para>
-    /// You must wait until the <code>status</code> of the dataset group is <code>ACTIVE</code>
-    /// before adding a dataset to the group.
+    /// You must wait until the <c>status</c> of the dataset group is <c>ACTIVE</c> before
+    /// adding a dataset to the group.
     /// </para>
     ///  </note> 
     /// <para>
@@ -130,7 +139,7 @@ namespace Amazon.Personalize.Model
         private string _kmsKeyArn;
         private string _name;
         private string _roleArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Domain. 
@@ -230,7 +239,7 @@ namespace Amazon.Personalize.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

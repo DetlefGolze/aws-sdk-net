@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -42,13 +43,13 @@ namespace Amazon.Comprehend.Model
         private string _endpointName;
         private string _flywheelArn;
         private string _modelArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
         /// An idempotency token provided by the customer. If this token matches a previous endpoint
-        /// creation request, Amazon Comprehend will not return a <code>ResourceInUseException</code>.
+        /// creation request, Amazon Comprehend will not return a <c>ResourceInUseException</c>.
         /// 
         /// </para>
         /// </summary>
@@ -108,8 +109,8 @@ namespace Amazon.Comprehend.Model
         /// <summary>
         /// Gets and sets the property EndpointName. 
         /// <para>
-        /// This is the descriptive suffix that becomes part of the <code>EndpointArn</code> used
-        /// for all subsequent requests to this resource. 
+        /// This is the descriptive suffix that becomes part of the <c>EndpointArn</c> used for
+        /// all subsequent requests to this resource. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=40)]
@@ -180,7 +181,7 @@ namespace Amazon.Comprehend.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

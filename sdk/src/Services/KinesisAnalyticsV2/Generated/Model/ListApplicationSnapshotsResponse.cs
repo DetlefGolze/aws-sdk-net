@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalyticsV2.Model
 {
     /// <summary>
@@ -34,13 +35,12 @@ namespace Amazon.KinesisAnalyticsV2.Model
     public partial class ListApplicationSnapshotsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<SnapshotDetails> _snapshotSummaries = new List<SnapshotDetails>();
+        private List<SnapshotDetails> _snapshotSummaries = AWSConfigs.InitializeCollections ? new List<SnapshotDetails>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token for the next set of results, or <code>null</code> if there are no additional
-        /// results.
+        /// The token for the next set of results, or <c>null</c> if there are no additional results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=512)]
@@ -71,7 +71,7 @@ namespace Amazon.KinesisAnalyticsV2.Model
         // Check to see if SnapshotSummaries property is set
         internal bool IsSetSnapshotSummaries()
         {
-            return this._snapshotSummaries != null && this._snapshotSummaries.Count > 0; 
+            return this._snapshotSummaries != null && (this._snapshotSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

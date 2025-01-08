@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -79,9 +80,10 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property ResolvedValue. 
         /// <para>
-        /// Read-only. The value that corresponds to a SSM parameter key. This field is returned
-        /// only for <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html#aws-ssm-parameter-types">
-        /// SSM</a> parameter types in the template.
+        /// Read-only. The value that corresponds to a Systems Manager parameter key. This field
+        /// is returned only for Systems Manager parameter types in the template. For more information,
+        /// see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-supplied-parameter-types.html">Use
+        /// CloudFormation-supplied parameter types</a> in the <i>CloudFormation User Guide</i>.
         /// </para>
         /// </summary>
         public string ResolvedValue
@@ -100,8 +102,7 @@ namespace Amazon.CloudFormation.Model
         /// Gets and sets the property UsePreviousValue. 
         /// <para>
         /// During a stack update, use the existing parameter value that the stack is using for
-        /// a given parameter key. If you specify <code>true</code>, do not specify a parameter
-        /// value.
+        /// a given parameter key. If you specify <c>true</c>, do not specify a parameter value.
         /// </para>
         /// </summary>
         public bool UsePreviousValue

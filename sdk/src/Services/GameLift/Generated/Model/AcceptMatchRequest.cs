@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -38,17 +39,17 @@ namespace Amazon.GameLift.Model
     ///  
     /// <para>
     /// When FlexMatch builds a match, all the matchmaking tickets involved in the proposed
-    /// match are placed into status <code>REQUIRES_ACCEPTANCE</code>. This is a trigger for
-    /// your game to get acceptance from all players in each ticket. Calls to this action
-    /// are only valid for tickets that are in this status; calls for tickets not in this
-    /// status result in an error.
+    /// match are placed into status <c>REQUIRES_ACCEPTANCE</c>. This is a trigger for your
+    /// game to get acceptance from all players in each ticket. Calls to this action are only
+    /// valid for tickets that are in this status; calls for tickets not in this status result
+    /// in an error.
     /// </para>
     ///  
     /// <para>
     /// To register acceptance, specify the ticket ID, one or more players, and an acceptance
     /// response. When all players have accepted, Amazon GameLift advances the matchmaking
-    /// tickets to status <code>PLACING</code>, and attempts to create a new game session
-    /// for the match. 
+    /// tickets to status <c>PLACING</c>, and attempts to create a new game session for the
+    /// match. 
     /// </para>
     ///  
     /// <para>
@@ -59,12 +60,12 @@ namespace Amazon.GameLift.Model
     ///  <ul> <li> 
     /// <para>
     /// If the ticket has one or more players who rejected the match or failed to respond,
-    /// the ticket status is set <code>CANCELLED</code> and processing is terminated.
+    /// the ticket status is set <c>CANCELLED</c> and processing is terminated.
     /// </para>
     ///  </li> <li> 
     /// <para>
     /// If all players in the ticket accepted the match, the ticket status is returned to
-    /// <code>SEARCHING</code> to find a new match. 
+    /// <c>SEARCHING</c> to find a new match. 
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -84,7 +85,7 @@ namespace Amazon.GameLift.Model
     public partial class AcceptMatchRequest : AmazonGameLiftRequest
     {
         private AcceptanceType _acceptanceType;
-        private List<string> _playerIds = new List<string>();
+        private List<string> _playerIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _ticketId;
 
         /// <summary>
@@ -113,7 +114,7 @@ namespace Amazon.GameLift.Model
         /// one or multiple player IDs.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Sensitive=true)]
         public List<string> PlayerIds
         {
             get { return this._playerIds; }
@@ -123,13 +124,13 @@ namespace Amazon.GameLift.Model
         // Check to see if PlayerIds property is set
         internal bool IsSetPlayerIds()
         {
-            return this._playerIds != null && this._playerIds.Count > 0; 
+            return this._playerIds != null && (this._playerIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TicketId. 
         /// <para>
-        /// A unique identifier for a matchmaking ticket. The ticket must be in status <code>REQUIRES_ACCEPTANCE</code>;
+        /// A unique identifier for a matchmaking ticket. The ticket must be in status <c>REQUIRES_ACCEPTANCE</c>;
         /// otherwise this request will fail.
         /// </para>
         /// </summary>

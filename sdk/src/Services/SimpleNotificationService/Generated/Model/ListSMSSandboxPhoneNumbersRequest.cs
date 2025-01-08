@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
@@ -72,7 +73,7 @@ namespace Amazon.SimpleNotificationService.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Token that the previous <code>ListSMSSandboxPhoneNumbersInput</code> request returns.
+        /// Token that the previous <c>ListSMSSandboxPhoneNumbersInput</c> request returns.
         /// </para>
         /// </summary>
         public string NextToken

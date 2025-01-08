@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -38,10 +39,11 @@ namespace Amazon.EC2.Model
         private DeviceOptions _deviceOptions;
         private DeviceTrustProviderType _deviceTrustProviderType;
         private string _lastUpdatedTime;
+        private NativeApplicationOidcOptions _nativeApplicationOidcOptions;
         private OidcOptions _oidcOptions;
         private string _policyReferenceName;
         private VerifiedAccessSseSpecificationResponse _sseSpecification;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private TrustProviderType _trustProviderType;
         private UserTrustProviderType _userTrustProviderType;
         private string _verifiedAccessTrustProviderId;
@@ -137,6 +139,24 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property NativeApplicationOidcOptions. 
+        /// <para>
+        /// The OpenID Connect (OIDC) options.
+        /// </para>
+        /// </summary>
+        public NativeApplicationOidcOptions NativeApplicationOidcOptions
+        {
+            get { return this._nativeApplicationOidcOptions; }
+            set { this._nativeApplicationOidcOptions = value; }
+        }
+
+        // Check to see if NativeApplicationOidcOptions property is set
+        internal bool IsSetNativeApplicationOidcOptions()
+        {
+            return this._nativeApplicationOidcOptions != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property OidcOptions. 
         /// <para>
         /// The options for an OpenID Connect-compatible user-identity trust provider.
@@ -175,7 +195,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property SseSpecification. 
         /// <para>
-        ///  Describes the options in use for server side encryption. 
+        /// The options in use for server side encryption.
         /// </para>
         /// </summary>
         public VerifiedAccessSseSpecificationResponse SseSpecification
@@ -205,7 +225,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

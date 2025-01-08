@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.WorkSpaces
 {
     /// <summary>
-    /// Implementation for accessing WorkSpaces
+    /// <para>Implementation for accessing WorkSpaces</para>
     ///
     /// Amazon WorkSpaces Service 
     /// <para>
@@ -289,6 +290,91 @@ namespace Amazon.WorkSpaces
         #endregion
 
 
+        #region  AcceptAccountLinkInvitation
+
+
+        /// <summary>
+        /// Accepts the account link invitation.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// There's currently no unlinking capability after you accept the account linking invitation.
+        /// </para>
+        ///  </important>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AcceptAccountLinkInvitation service method.</param>
+        /// 
+        /// <returns>The response from the AcceptAccountLinkInvitation service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ConflictException">
+        /// The <c>TargetAccountId</c> is already linked or invited.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InternalServerException">
+        /// Unexpected server error occured.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ValidationException">
+        /// You either haven't provided a <c>TargetAccountId</c> or are using the same value for
+        /// <c>TargetAccountId</c> and <c>SourceAccountId</c>.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/AcceptAccountLinkInvitation">REST API Reference for AcceptAccountLinkInvitation Operation</seealso>
+        public virtual AcceptAccountLinkInvitationResponse AcceptAccountLinkInvitation(AcceptAccountLinkInvitationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = AcceptAccountLinkInvitationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = AcceptAccountLinkInvitationResponseUnmarshaller.Instance;
+
+            return Invoke<AcceptAccountLinkInvitationResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Accepts the account link invitation.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// There's currently no unlinking capability after you accept the account linking invitation.
+        /// </para>
+        ///  </important>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AcceptAccountLinkInvitation service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the AcceptAccountLinkInvitation service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ConflictException">
+        /// The <c>TargetAccountId</c> is already linked or invited.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InternalServerException">
+        /// Unexpected server error occured.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ValidationException">
+        /// You either haven't provided a <c>TargetAccountId</c> or are using the same value for
+        /// <c>TargetAccountId</c> and <c>SourceAccountId</c>.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/AcceptAccountLinkInvitation">REST API Reference for AcceptAccountLinkInvitation Operation</seealso>
+        public virtual Task<AcceptAccountLinkInvitationResponse> AcceptAccountLinkInvitationAsync(AcceptAccountLinkInvitationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = AcceptAccountLinkInvitationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = AcceptAccountLinkInvitationResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<AcceptAccountLinkInvitationResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  AssociateConnectionAlias
 
 
@@ -301,7 +387,7 @@ namespace Amazon.WorkSpaces
         /// <para>
         /// Before performing this operation, call <a href="https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeConnectionAliases.html">
         /// DescribeConnectionAliases</a> to make sure that the current state of the connection
-        /// alias is <code>CREATED</code>.
+        /// alias is <c>CREATED</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -346,7 +432,7 @@ namespace Amazon.WorkSpaces
         /// <para>
         /// Before performing this operation, call <a href="https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeConnectionAliases.html">
         /// DescribeConnectionAliases</a> to make sure that the current state of the connection
-        /// alias is <code>CREATED</code>.
+        /// alias is <c>CREATED</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -768,6 +854,73 @@ namespace Amazon.WorkSpaces
             options.ResponseUnmarshaller = CopyWorkspaceImageResponseUnmarshaller.Instance;
             
             return InvokeAsync<CopyWorkspaceImageResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateAccountLinkInvitation
+
+
+        /// <summary>
+        /// Creates the account link invitation.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateAccountLinkInvitation service method.</param>
+        /// 
+        /// <returns>The response from the CreateAccountLinkInvitation service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ConflictException">
+        /// The <c>TargetAccountId</c> is already linked or invited.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InternalServerException">
+        /// Unexpected server error occured.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ValidationException">
+        /// You either haven't provided a <c>TargetAccountId</c> or are using the same value for
+        /// <c>TargetAccountId</c> and <c>SourceAccountId</c>.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/CreateAccountLinkInvitation">REST API Reference for CreateAccountLinkInvitation Operation</seealso>
+        public virtual CreateAccountLinkInvitationResponse CreateAccountLinkInvitation(CreateAccountLinkInvitationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateAccountLinkInvitationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateAccountLinkInvitationResponseUnmarshaller.Instance;
+
+            return Invoke<CreateAccountLinkInvitationResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates the account link invitation.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateAccountLinkInvitation service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateAccountLinkInvitation service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ConflictException">
+        /// The <c>TargetAccountId</c> is already linked or invited.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InternalServerException">
+        /// Unexpected server error occured.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ValidationException">
+        /// You either haven't provided a <c>TargetAccountId</c> or are using the same value for
+        /// <c>TargetAccountId</c> and <c>SourceAccountId</c>.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/CreateAccountLinkInvitation">REST API Reference for CreateAccountLinkInvitation Operation</seealso>
+        public virtual Task<CreateAccountLinkInvitationResponse> CreateAccountLinkInvitationAsync(CreateAccountLinkInvitationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateAccountLinkInvitationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateAccountLinkInvitationResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateAccountLinkInvitationResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -1476,13 +1629,28 @@ namespace Amazon.WorkSpaces
         /// <para>
         /// This operation is asynchronous and returns before the WorkSpaces are created.
         /// </para>
-        ///  <note> 
+        ///  <note> <ul> <li> 
         /// <para>
-        /// The <code>MANUAL</code> running mode value is only supported by Amazon WorkSpaces
-        /// Core. Contact your account team to be allow-listed to use this value. For more information,
+        /// The <c>MANUAL</c> running mode value is only supported by Amazon WorkSpaces Core.
+        /// Contact your account team to be allow-listed to use this value. For more information,
         /// see <a href="http://aws.amazon.com/workspaces/core/">Amazon WorkSpaces Core</a>.
         /// </para>
-        ///  </note>
+        ///  </li> <li> 
+        /// <para>
+        /// You don't need to specify the <c>PCOIP</c> protocol for Linux bundles because <c>DCV</c>
+        /// (formerly WSP) is the default protocol for those bundles.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// User-decoupled WorkSpaces are only supported by Amazon WorkSpaces Core.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Review your running mode to ensure you are using one that is optimal for your needs
+        /// and budget. For more information on switching running modes, see <a href="http://aws.amazon.com/workspaces-family/workspaces/faqs/#:~:text=Can%20I%20switch%20between%20hourly%20and%20monthly%20billing%20on%20WorkSpaces%20Personal%3F">
+        /// Can I switch between hourly and monthly billing?</a> 
+        /// </para>
+        ///  </li> </ul> </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateWorkspaces service method.</param>
         /// 
@@ -1511,13 +1679,28 @@ namespace Amazon.WorkSpaces
         /// <para>
         /// This operation is asynchronous and returns before the WorkSpaces are created.
         /// </para>
-        ///  <note> 
+        ///  <note> <ul> <li> 
         /// <para>
-        /// The <code>MANUAL</code> running mode value is only supported by Amazon WorkSpaces
-        /// Core. Contact your account team to be allow-listed to use this value. For more information,
+        /// The <c>MANUAL</c> running mode value is only supported by Amazon WorkSpaces Core.
+        /// Contact your account team to be allow-listed to use this value. For more information,
         /// see <a href="http://aws.amazon.com/workspaces/core/">Amazon WorkSpaces Core</a>.
         /// </para>
-        ///  </note>
+        ///  </li> <li> 
+        /// <para>
+        /// You don't need to specify the <c>PCOIP</c> protocol for Linux bundles because <c>DCV</c>
+        /// (formerly WSP) is the default protocol for those bundles.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// User-decoupled WorkSpaces are only supported by Amazon WorkSpaces Core.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Review your running mode to ensure you are using one that is optimal for your needs
+        /// and budget. For more information on switching running modes, see <a href="http://aws.amazon.com/workspaces-family/workspaces/faqs/#:~:text=Can%20I%20switch%20between%20hourly%20and%20monthly%20billing%20on%20WorkSpaces%20Personal%3F">
+        /// Can I switch between hourly and monthly billing?</a> 
+        /// </para>
+        ///  </li> </ul> </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateWorkspaces service method.</param>
         /// <param name="cancellationToken">
@@ -1539,6 +1722,156 @@ namespace Amazon.WorkSpaces
             options.ResponseUnmarshaller = CreateWorkspacesResponseUnmarshaller.Instance;
             
             return InvokeAsync<CreateWorkspacesResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateWorkspacesPool
+
+
+        /// <summary>
+        /// Creates a pool of WorkSpaces.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateWorkspacesPool service method.</param>
+        /// 
+        /// <returns>The response from the CreateWorkspacesPool service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
+        /// One or more parameter values are not valid.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationNotSupportedException">
+        /// This operation is not supported.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceAlreadyExistsException">
+        /// The specified resource already exists.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceLimitExceededException">
+        /// Your resource limits have been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/CreateWorkspacesPool">REST API Reference for CreateWorkspacesPool Operation</seealso>
+        public virtual CreateWorkspacesPoolResponse CreateWorkspacesPool(CreateWorkspacesPoolRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateWorkspacesPoolRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateWorkspacesPoolResponseUnmarshaller.Instance;
+
+            return Invoke<CreateWorkspacesPoolResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates a pool of WorkSpaces.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateWorkspacesPool service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateWorkspacesPool service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
+        /// One or more parameter values are not valid.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationNotSupportedException">
+        /// This operation is not supported.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceAlreadyExistsException">
+        /// The specified resource already exists.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceLimitExceededException">
+        /// Your resource limits have been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/CreateWorkspacesPool">REST API Reference for CreateWorkspacesPool Operation</seealso>
+        public virtual Task<CreateWorkspacesPoolResponse> CreateWorkspacesPoolAsync(CreateWorkspacesPoolRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateWorkspacesPoolRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateWorkspacesPoolResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateWorkspacesPoolResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DeleteAccountLinkInvitation
+
+
+        /// <summary>
+        /// Deletes the account link invitation.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteAccountLinkInvitation service method.</param>
+        /// 
+        /// <returns>The response from the DeleteAccountLinkInvitation service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ConflictException">
+        /// The <c>TargetAccountId</c> is already linked or invited.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InternalServerException">
+        /// Unexpected server error occured.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ValidationException">
+        /// You either haven't provided a <c>TargetAccountId</c> or are using the same value for
+        /// <c>TargetAccountId</c> and <c>SourceAccountId</c>.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DeleteAccountLinkInvitation">REST API Reference for DeleteAccountLinkInvitation Operation</seealso>
+        public virtual DeleteAccountLinkInvitationResponse DeleteAccountLinkInvitation(DeleteAccountLinkInvitationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteAccountLinkInvitationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteAccountLinkInvitationResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteAccountLinkInvitationResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes the account link invitation.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteAccountLinkInvitation service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteAccountLinkInvitation service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ConflictException">
+        /// The <c>TargetAccountId</c> is already linked or invited.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InternalServerException">
+        /// Unexpected server error occured.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ValidationException">
+        /// You either haven't provided a <c>TargetAccountId</c> or are using the same value for
+        /// <c>TargetAccountId</c> and <c>SourceAccountId</c>.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DeleteAccountLinkInvitation">REST API Reference for DeleteAccountLinkInvitation Operation</seealso>
+        public virtual Task<DeleteAccountLinkInvitationResponse> DeleteAccountLinkInvitationAsync(DeleteAccountLinkInvitationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteAccountLinkInvitationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteAccountLinkInvitationResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteAccountLinkInvitationResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -3610,6 +3943,124 @@ namespace Amazon.WorkSpaces
 
         #endregion
         
+        #region  DescribeWorkspacesPools
+
+
+        /// <summary>
+        /// Describes the specified WorkSpaces Pools.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeWorkspacesPools service method.</param>
+        /// 
+        /// <returns>The response from the DescribeWorkspacesPools service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
+        /// One or more parameter values are not valid.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DescribeWorkspacesPools">REST API Reference for DescribeWorkspacesPools Operation</seealso>
+        public virtual DescribeWorkspacesPoolsResponse DescribeWorkspacesPools(DescribeWorkspacesPoolsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeWorkspacesPoolsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeWorkspacesPoolsResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeWorkspacesPoolsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Describes the specified WorkSpaces Pools.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeWorkspacesPools service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeWorkspacesPools service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
+        /// One or more parameter values are not valid.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DescribeWorkspacesPools">REST API Reference for DescribeWorkspacesPools Operation</seealso>
+        public virtual Task<DescribeWorkspacesPoolsResponse> DescribeWorkspacesPoolsAsync(DescribeWorkspacesPoolsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeWorkspacesPoolsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeWorkspacesPoolsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DescribeWorkspacesPoolsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DescribeWorkspacesPoolSessions
+
+
+        /// <summary>
+        /// Retrieves a list that describes the streaming sessions for a specified pool.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeWorkspacesPoolSessions service method.</param>
+        /// 
+        /// <returns>The response from the DescribeWorkspacesPoolSessions service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
+        /// One or more parameter values are not valid.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DescribeWorkspacesPoolSessions">REST API Reference for DescribeWorkspacesPoolSessions Operation</seealso>
+        public virtual DescribeWorkspacesPoolSessionsResponse DescribeWorkspacesPoolSessions(DescribeWorkspacesPoolSessionsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeWorkspacesPoolSessionsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeWorkspacesPoolSessionsResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeWorkspacesPoolSessionsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Retrieves a list that describes the streaming sessions for a specified pool.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeWorkspacesPoolSessions service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeWorkspacesPoolSessions service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
+        /// One or more parameter values are not valid.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DescribeWorkspacesPoolSessions">REST API Reference for DescribeWorkspacesPoolSessions Operation</seealso>
+        public virtual Task<DescribeWorkspacesPoolSessionsResponse> DescribeWorkspacesPoolSessionsAsync(DescribeWorkspacesPoolSessionsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeWorkspacesPoolSessionsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeWorkspacesPoolSessionsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DescribeWorkspacesPoolSessionsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  DisassociateConnectionAlias
 
 
@@ -3623,7 +4074,7 @@ namespace Amazon.WorkSpaces
         /// <para>
         /// Before performing this operation, call <a href="https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeConnectionAliases.html">
         /// DescribeConnectionAliases</a> to make sure that the current state of the connection
-        /// alias is <code>CREATED</code>.
+        /// alias is <c>CREATED</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3666,7 +4117,7 @@ namespace Amazon.WorkSpaces
         /// <para>
         /// Before performing this operation, call <a href="https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeConnectionAliases.html">
         /// DescribeConnectionAliases</a> to make sure that the current state of the connection
-        /// alias is <code>CREATED</code>.
+        /// alias is <c>CREATED</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3721,6 +4172,9 @@ namespace Amazon.WorkSpaces
         /// <exception cref="Amazon.WorkSpaces.Model.InvalidResourceStateException">
         /// The state of the resource is not valid for this operation.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationNotSupportedException">
+        /// This operation is not supported.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
         /// The resource could not be found.
         /// </exception>
@@ -3752,6 +4206,9 @@ namespace Amazon.WorkSpaces
         /// </exception>
         /// <exception cref="Amazon.WorkSpaces.Model.InvalidResourceStateException">
         /// The state of the resource is not valid for this operation.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationNotSupportedException">
+        /// This operation is not supported.
         /// </exception>
         /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
         /// The resource could not be found.
@@ -3839,6 +4296,73 @@ namespace Amazon.WorkSpaces
 
         #endregion
         
+        #region  GetAccountLink
+
+
+        /// <summary>
+        /// Retrieves account link information.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetAccountLink service method.</param>
+        /// 
+        /// <returns>The response from the GetAccountLink service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InternalServerException">
+        /// Unexpected server error occured.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ValidationException">
+        /// You either haven't provided a <c>TargetAccountId</c> or are using the same value for
+        /// <c>TargetAccountId</c> and <c>SourceAccountId</c>.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/GetAccountLink">REST API Reference for GetAccountLink Operation</seealso>
+        public virtual GetAccountLinkResponse GetAccountLink(GetAccountLinkRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetAccountLinkRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetAccountLinkResponseUnmarshaller.Instance;
+
+            return Invoke<GetAccountLinkResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Retrieves account link information.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetAccountLink service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetAccountLink service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InternalServerException">
+        /// Unexpected server error occured.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ValidationException">
+        /// You either haven't provided a <c>TargetAccountId</c> or are using the same value for
+        /// <c>TargetAccountId</c> and <c>SourceAccountId</c>.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/GetAccountLink">REST API Reference for GetAccountLink Operation</seealso>
+        public virtual Task<GetAccountLinkResponse> GetAccountLinkAsync(GetAccountLinkRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetAccountLinkRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetAccountLinkResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetAccountLinkResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ImportClientBranding
 
 
@@ -3865,9 +4389,9 @@ namespace Amazon.WorkSpaces
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// In each platform type, the <code>SupportEmail</code> and <code>SupportLink</code>
-        /// parameters are mutually exclusive. You can specify only one parameter for each platform
-        /// type, but not both.
+        /// In each platform type, the <c>SupportEmail</c> and <c>SupportLink</c> parameters are
+        /// mutually exclusive. You can specify only one parameter for each platform type, but
+        /// not both.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3924,9 +4448,9 @@ namespace Amazon.WorkSpaces
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// In each platform type, the <code>SupportEmail</code> and <code>SupportLink</code>
-        /// parameters are mutually exclusive. You can specify only one parameter for each platform
-        /// type, but not both.
+        /// In each platform type, the <c>SupportEmail</c> and <c>SupportLink</c> parameters are
+        /// mutually exclusive. You can specify only one parameter for each platform type, but
+        /// not both.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -4049,6 +4573,67 @@ namespace Amazon.WorkSpaces
 
         #endregion
         
+        #region  ListAccountLinks
+
+
+        /// <summary>
+        /// Lists all account links.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAccountLinks service method.</param>
+        /// 
+        /// <returns>The response from the ListAccountLinks service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InternalServerException">
+        /// Unexpected server error occured.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ValidationException">
+        /// You either haven't provided a <c>TargetAccountId</c> or are using the same value for
+        /// <c>TargetAccountId</c> and <c>SourceAccountId</c>.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ListAccountLinks">REST API Reference for ListAccountLinks Operation</seealso>
+        public virtual ListAccountLinksResponse ListAccountLinks(ListAccountLinksRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListAccountLinksRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListAccountLinksResponseUnmarshaller.Instance;
+
+            return Invoke<ListAccountLinksResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists all account links.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAccountLinks service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListAccountLinks service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InternalServerException">
+        /// Unexpected server error occured.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ValidationException">
+        /// You either haven't provided a <c>TargetAccountId</c> or are using the same value for
+        /// <c>TargetAccountId</c> and <c>SourceAccountId</c>.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ListAccountLinks">REST API Reference for ListAccountLinks Operation</seealso>
+        public virtual Task<ListAccountLinksResponse> ListAccountLinksAsync(ListAccountLinksRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListAccountLinksRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListAccountLinksResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListAccountLinksResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ListAvailableManagementCidrRanges
 
 
@@ -4060,7 +4645,7 @@ namespace Amazon.WorkSpaces
         ///  
         /// <para>
         /// This operation can be run only by Amazon Web Services accounts that are enabled for
-        /// BYOL. If your account isn't enabled for BYOL, you'll receive an <code>AccessDeniedException</code>
+        /// BYOL. If your account isn't enabled for BYOL, you'll receive an <c>AccessDeniedException</c>
         /// error.
         /// </para>
         ///  
@@ -4098,7 +4683,7 @@ namespace Amazon.WorkSpaces
         ///  
         /// <para>
         /// This operation can be run only by Amazon Web Services accounts that are enabled for
-        /// BYOL. If your account isn't enabled for BYOL, you'll receive an <code>AccessDeniedException</code>
+        /// BYOL. If your account isn't enabled for BYOL, you'll receive an <c>AccessDeniedException</c>
         /// error.
         /// </para>
         ///  
@@ -4143,10 +4728,10 @@ namespace Amazon.WorkSpaces
         /// <para>
         /// The migration process recreates the WorkSpace by using a new root volume from the
         /// target bundle image and the user volume from the last available snapshot of the original
-        /// WorkSpace. During migration, the original <code>D:\Users\%USERNAME%</code> user profile
-        /// folder is renamed to <code>D:\Users\%USERNAME%MMddyyTHHmmss%.NotMigrated</code>. A
-        /// new <code>D:\Users\%USERNAME%\</code> folder is generated by the new OS. Certain files
-        /// in the old user profile are moved to the new user profile.
+        /// WorkSpace. During migration, the original <c>D:\Users\%USERNAME%</c> user profile
+        /// folder is renamed to <c>D:\Users\%USERNAME%MMddyyTHHmmss%.NotMigrated</c>. A new <c>D:\Users\%USERNAME%\</c>
+        /// folder is generated by the new OS. Certain files in the old user profile are moved
+        /// to the new user profile.
         /// </para>
         ///  
         /// <para>
@@ -4195,10 +4780,10 @@ namespace Amazon.WorkSpaces
         /// <para>
         /// The migration process recreates the WorkSpace by using a new root volume from the
         /// target bundle image and the user volume from the last available snapshot of the original
-        /// WorkSpace. During migration, the original <code>D:\Users\%USERNAME%</code> user profile
-        /// folder is renamed to <code>D:\Users\%USERNAME%MMddyyTHHmmss%.NotMigrated</code>. A
-        /// new <code>D:\Users\%USERNAME%\</code> folder is generated by the new OS. Certain files
-        /// in the old user profile are moved to the new user profile.
+        /// WorkSpace. During migration, the original <c>D:\Users\%USERNAME%</c> user profile
+        /// folder is renamed to <c>D:\Users\%USERNAME%MMddyyTHHmmss%.NotMigrated</c>. A new <c>D:\Users\%USERNAME%\</c>
+        /// folder is generated by the new OS. Certain files in the old user profile are moved
+        /// to the new user profile.
         /// </para>
         ///  
         /// <para>
@@ -4396,6 +4981,9 @@ namespace Amazon.WorkSpaces
         /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
         /// One or more parameter values are not valid.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationNotSupportedException">
+        /// This operation is not supported.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
         /// The resource could not be found.
         /// </exception>
@@ -4424,6 +5012,9 @@ namespace Amazon.WorkSpaces
         /// </exception>
         /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
         /// One or more parameter values are not valid.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationNotSupportedException">
+        /// This operation is not supported.
         /// </exception>
         /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
         /// The resource could not be found.
@@ -4526,6 +5117,9 @@ namespace Amazon.WorkSpaces
         /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
         /// One or more parameter values are not valid.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationNotSupportedException">
+        /// This operation is not supported.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
         /// The resource could not be found.
         /// </exception>
@@ -4557,6 +5151,9 @@ namespace Amazon.WorkSpaces
         /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
         /// One or more parameter values are not valid.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationNotSupportedException">
+        /// This operation is not supported.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
         /// The resource could not be found.
         /// </exception>
@@ -4568,6 +5165,71 @@ namespace Amazon.WorkSpaces
             options.ResponseUnmarshaller = ModifySelfservicePermissionsResponseUnmarshaller.Instance;
             
             return InvokeAsync<ModifySelfservicePermissionsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ModifyStreamingProperties
+
+
+        /// <summary>
+        /// Modifies the specified streaming properties.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ModifyStreamingProperties service method.</param>
+        /// 
+        /// <returns>The response from the ModifyStreamingProperties service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
+        /// One or more parameter values are not valid.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationNotSupportedException">
+        /// This operation is not supported.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ModifyStreamingProperties">REST API Reference for ModifyStreamingProperties Operation</seealso>
+        public virtual ModifyStreamingPropertiesResponse ModifyStreamingProperties(ModifyStreamingPropertiesRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ModifyStreamingPropertiesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ModifyStreamingPropertiesResponseUnmarshaller.Instance;
+
+            return Invoke<ModifyStreamingPropertiesResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Modifies the specified streaming properties.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ModifyStreamingProperties service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ModifyStreamingProperties service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
+        /// One or more parameter values are not valid.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationNotSupportedException">
+        /// This operation is not supported.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ModifyStreamingProperties">REST API Reference for ModifyStreamingProperties Operation</seealso>
+        public virtual Task<ModifyStreamingPropertiesResponse> ModifyStreamingPropertiesAsync(ModifyStreamingPropertiesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ModifyStreamingPropertiesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ModifyStreamingPropertiesResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ModifyStreamingPropertiesResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -4704,8 +5366,8 @@ namespace Amazon.WorkSpaces
         /// 
         ///  <note> 
         /// <para>
-        /// The <code>MANUAL</code> running mode value is only supported by Amazon WorkSpaces
-        /// Core. Contact your account team to be allow-listed to use this value. For more information,
+        /// The <c>MANUAL</c> running mode value is only supported by Amazon WorkSpaces Core.
+        /// Contact your account team to be allow-listed to use this value. For more information,
         /// see <a href="http://aws.amazon.com/workspaces/core/">Amazon WorkSpaces Core</a>.
         /// </para>
         ///  </note>
@@ -4754,8 +5416,8 @@ namespace Amazon.WorkSpaces
         /// 
         ///  <note> 
         /// <para>
-        /// The <code>MANUAL</code> running mode value is only supported by Amazon WorkSpaces
-        /// Core. Contact your account team to be allow-listed to use this value. For more information,
+        /// The <c>MANUAL</c> running mode value is only supported by Amazon WorkSpaces Core.
+        /// Contact your account team to be allow-listed to use this value. For more information,
         /// see <a href="http://aws.amazon.com/workspaces/core/">Amazon WorkSpaces Core</a>.
         /// </para>
         ///  </note>
@@ -4809,10 +5471,10 @@ namespace Amazon.WorkSpaces
         /// 
         ///  
         /// <para>
-        /// To maintain a WorkSpace without being interrupted, set the WorkSpace state to <code>ADMIN_MAINTENANCE</code>.
+        /// To maintain a WorkSpace without being interrupted, set the WorkSpace state to <c>ADMIN_MAINTENANCE</c>.
         /// WorkSpaces in this state do not respond to requests to reboot, stop, start, rebuild,
         /// or restore. An AutoStop WorkSpace in this state is not stopped. Users cannot log into
-        /// a WorkSpace in the <code>ADMIN_MAINTENANCE</code> state.
+        /// a WorkSpace in the <c>ADMIN_MAINTENANCE</c> state.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ModifyWorkspaceState service method.</param>
@@ -4846,10 +5508,10 @@ namespace Amazon.WorkSpaces
         /// 
         ///  
         /// <para>
-        /// To maintain a WorkSpace without being interrupted, set the WorkSpace state to <code>ADMIN_MAINTENANCE</code>.
+        /// To maintain a WorkSpace without being interrupted, set the WorkSpace state to <c>ADMIN_MAINTENANCE</c>.
         /// WorkSpaces in this state do not respond to requests to reboot, stop, start, rebuild,
         /// or restore. An AutoStop WorkSpace in this state is not stopped. Users cannot log into
-        /// a WorkSpace in the <code>ADMIN_MAINTENANCE</code> state.
+        /// a WorkSpace in the <c>ADMIN_MAINTENANCE</c> state.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ModifyWorkspaceState service method.</param>
@@ -4890,7 +5552,9 @@ namespace Amazon.WorkSpaces
         /// 
         ///  
         /// <para>
-        /// You cannot reboot a WorkSpace unless its state is <code>AVAILABLE</code> or <code>UNHEALTHY</code>.
+        /// You cannot reboot a WorkSpace unless its state is <c>AVAILABLE</c>, <c>UNHEALTHY</c>,
+        /// or <c>REBOOTING</c>. Reboot a WorkSpace in the <c>REBOOTING</c> state only if your
+        /// WorkSpace has been stuck in the <c>REBOOTING</c> state for over 20 minutes.
         /// </para>
         ///  
         /// <para>
@@ -4919,7 +5583,9 @@ namespace Amazon.WorkSpaces
         /// 
         ///  
         /// <para>
-        /// You cannot reboot a WorkSpace unless its state is <code>AVAILABLE</code> or <code>UNHEALTHY</code>.
+        /// You cannot reboot a WorkSpace unless its state is <c>AVAILABLE</c>, <c>UNHEALTHY</c>,
+        /// or <c>REBOOTING</c>. Reboot a WorkSpace in the <c>REBOOTING</c> state only if your
+        /// WorkSpace has been stuck in the <c>REBOOTING</c> state for over 20 minutes.
         /// </para>
         ///  
         /// <para>
@@ -4955,8 +5621,8 @@ namespace Amazon.WorkSpaces
         /// 
         ///  
         /// <para>
-        /// You cannot rebuild a WorkSpace unless its state is <code>AVAILABLE</code>, <code>ERROR</code>,
-        /// <code>UNHEALTHY</code>, <code>STOPPED</code>, or <code>REBOOTING</code>.
+        /// You cannot rebuild a WorkSpace unless its state is <c>AVAILABLE</c>, <c>ERROR</c>,
+        /// <c>UNHEALTHY</c>, <c>STOPPED</c>, or <c>REBOOTING</c>.
         /// </para>
         ///  
         /// <para>
@@ -4992,8 +5658,8 @@ namespace Amazon.WorkSpaces
         /// 
         ///  
         /// <para>
-        /// You cannot rebuild a WorkSpace unless its state is <code>AVAILABLE</code>, <code>ERROR</code>,
-        /// <code>UNHEALTHY</code>, <code>STOPPED</code>, or <code>REBOOTING</code>.
+        /// You cannot rebuild a WorkSpace unless its state is <c>AVAILABLE</c>, <c>ERROR</c>,
+        /// <c>UNHEALTHY</c>, <c>STOPPED</c>, or <c>REBOOTING</c>.
         /// </para>
         ///  
         /// <para>
@@ -5053,6 +5719,9 @@ namespace Amazon.WorkSpaces
         /// <exception cref="Amazon.WorkSpaces.Model.OperationNotSupportedException">
         /// This operation is not supported.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceAlreadyExistsException">
+        /// The specified resource already exists.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpaces.Model.ResourceLimitExceededException">
         /// Your resource limits have been exceeded.
         /// </exception>
@@ -5107,6 +5776,9 @@ namespace Amazon.WorkSpaces
         /// <exception cref="Amazon.WorkSpaces.Model.OperationNotSupportedException">
         /// This operation is not supported.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceAlreadyExistsException">
+        /// The specified resource already exists.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpaces.Model.ResourceLimitExceededException">
         /// Your resource limits have been exceeded.
         /// </exception>
@@ -5137,6 +5809,79 @@ namespace Amazon.WorkSpaces
 
         #endregion
         
+        #region  RejectAccountLinkInvitation
+
+
+        /// <summary>
+        /// Rejects the account link invitation.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the RejectAccountLinkInvitation service method.</param>
+        /// 
+        /// <returns>The response from the RejectAccountLinkInvitation service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ConflictException">
+        /// The <c>TargetAccountId</c> is already linked or invited.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InternalServerException">
+        /// Unexpected server error occured.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ValidationException">
+        /// You either haven't provided a <c>TargetAccountId</c> or are using the same value for
+        /// <c>TargetAccountId</c> and <c>SourceAccountId</c>.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/RejectAccountLinkInvitation">REST API Reference for RejectAccountLinkInvitation Operation</seealso>
+        public virtual RejectAccountLinkInvitationResponse RejectAccountLinkInvitation(RejectAccountLinkInvitationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = RejectAccountLinkInvitationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = RejectAccountLinkInvitationResponseUnmarshaller.Instance;
+
+            return Invoke<RejectAccountLinkInvitationResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Rejects the account link invitation.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the RejectAccountLinkInvitation service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the RejectAccountLinkInvitation service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ConflictException">
+        /// The <c>TargetAccountId</c> is already linked or invited.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InternalServerException">
+        /// Unexpected server error occured.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ValidationException">
+        /// You either haven't provided a <c>TargetAccountId</c> or are using the same value for
+        /// <c>TargetAccountId</c> and <c>SourceAccountId</c>.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/RejectAccountLinkInvitation">REST API Reference for RejectAccountLinkInvitation Operation</seealso>
+        public virtual Task<RejectAccountLinkInvitationResponse> RejectAccountLinkInvitationAsync(RejectAccountLinkInvitationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = RejectAccountLinkInvitationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = RejectAccountLinkInvitationResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<RejectAccountLinkInvitationResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  RestoreWorkspace
 
 
@@ -5145,8 +5890,8 @@ namespace Amazon.WorkSpaces
         /// 
         ///  
         /// <para>
-        /// You cannot restore a WorkSpace unless its state is <code> AVAILABLE</code>, <code>ERROR</code>,
-        /// <code>UNHEALTHY</code>, or <code>STOPPED</code>.
+        /// You cannot restore a WorkSpace unless its state is <c> AVAILABLE</c>, <c>ERROR</c>,
+        /// <c>UNHEALTHY</c>, or <c>STOPPED</c>.
         /// </para>
         ///  
         /// <para>
@@ -5190,8 +5935,8 @@ namespace Amazon.WorkSpaces
         /// 
         ///  
         /// <para>
-        /// You cannot restore a WorkSpace unless its state is <code> AVAILABLE</code>, <code>ERROR</code>,
-        /// <code>UNHEALTHY</code>, or <code>STOPPED</code>.
+        /// You cannot restore a WorkSpace unless its state is <c> AVAILABLE</c>, <c>ERROR</c>,
+        /// <c>UNHEALTHY</c>, or <c>STOPPED</c>.
         /// </para>
         ///  
         /// <para>
@@ -5307,8 +6052,8 @@ namespace Amazon.WorkSpaces
         /// 
         ///  
         /// <para>
-        /// You cannot start a WorkSpace unless it has a running mode of <code>AutoStop</code>
-        /// and a state of <code>STOPPED</code>.
+        /// You cannot start a WorkSpace unless it has a running mode of <c>AutoStop</c> or <c>Manual</c>
+        /// and a state of <c>STOPPED</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartWorkspaces service method.</param>
@@ -5330,8 +6075,8 @@ namespace Amazon.WorkSpaces
         /// 
         ///  
         /// <para>
-        /// You cannot start a WorkSpace unless it has a running mode of <code>AutoStop</code>
-        /// and a state of <code>STOPPED</code>.
+        /// You cannot start a WorkSpace unless it has a running mode of <c>AutoStop</c> or <c>Manual</c>
+        /// and a state of <c>STOPPED</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartWorkspaces service method.</param>
@@ -5352,6 +6097,101 @@ namespace Amazon.WorkSpaces
 
         #endregion
         
+        #region  StartWorkspacesPool
+
+
+        /// <summary>
+        /// Starts the specified pool.
+        /// 
+        ///  
+        /// <para>
+        /// You cannot start a pool unless it has a running mode of <c>AutoStop</c> and a state
+        /// of <c>STOPPED</c>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartWorkspacesPool service method.</param>
+        /// 
+        /// <returns>The response from the StartWorkspacesPool service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
+        /// One or more parameter values are not valid.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidResourceStateException">
+        /// The state of the resource is not valid for this operation.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationInProgressException">
+        /// The properties of this WorkSpace are currently being modified. Try again in a moment.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationNotSupportedException">
+        /// This operation is not supported.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceLimitExceededException">
+        /// Your resource limits have been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/StartWorkspacesPool">REST API Reference for StartWorkspacesPool Operation</seealso>
+        public virtual StartWorkspacesPoolResponse StartWorkspacesPool(StartWorkspacesPoolRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartWorkspacesPoolRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartWorkspacesPoolResponseUnmarshaller.Instance;
+
+            return Invoke<StartWorkspacesPoolResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Starts the specified pool.
+        /// 
+        ///  
+        /// <para>
+        /// You cannot start a pool unless it has a running mode of <c>AutoStop</c> and a state
+        /// of <c>STOPPED</c>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartWorkspacesPool service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StartWorkspacesPool service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
+        /// One or more parameter values are not valid.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidResourceStateException">
+        /// The state of the resource is not valid for this operation.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationInProgressException">
+        /// The properties of this WorkSpace are currently being modified. Try again in a moment.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationNotSupportedException">
+        /// This operation is not supported.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceLimitExceededException">
+        /// Your resource limits have been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/StartWorkspacesPool">REST API Reference for StartWorkspacesPool Operation</seealso>
+        public virtual Task<StartWorkspacesPoolResponse> StartWorkspacesPoolAsync(StartWorkspacesPoolRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartWorkspacesPoolRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartWorkspacesPoolResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<StartWorkspacesPoolResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  StopWorkspaces
 
 
@@ -5360,9 +6200,8 @@ namespace Amazon.WorkSpaces
         /// 
         ///  
         /// <para>
-        /// You cannot stop a WorkSpace unless it has a running mode of <code>AutoStop</code>
-        /// and a state of <code>AVAILABLE</code>, <code>IMPAIRED</code>, <code>UNHEALTHY</code>,
-        /// or <code>ERROR</code>.
+        /// You cannot stop a WorkSpace unless it has a running mode of <c>AutoStop</c> or <c>Manual</c>
+        /// and a state of <c>AVAILABLE</c>, <c>IMPAIRED</c>, <c>UNHEALTHY</c>, or <c>ERROR</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StopWorkspaces service method.</param>
@@ -5384,9 +6223,8 @@ namespace Amazon.WorkSpaces
         /// 
         ///  
         /// <para>
-        /// You cannot stop a WorkSpace unless it has a running mode of <code>AutoStop</code>
-        /// and a state of <code>AVAILABLE</code>, <code>IMPAIRED</code>, <code>UNHEALTHY</code>,
-        /// or <code>ERROR</code>.
+        /// You cannot stop a WorkSpace unless it has a running mode of <c>AutoStop</c> or <c>Manual</c>
+        /// and a state of <c>AVAILABLE</c>, <c>IMPAIRED</c>, <c>UNHEALTHY</c>, or <c>ERROR</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StopWorkspaces service method.</param>
@@ -5407,6 +6245,89 @@ namespace Amazon.WorkSpaces
 
         #endregion
         
+        #region  StopWorkspacesPool
+
+
+        /// <summary>
+        /// Stops the specified pool.
+        /// 
+        ///  
+        /// <para>
+        /// You cannot stop a WorkSpace pool unless it has a running mode of <c>AutoStop</c> and
+        /// a state of <c>AVAILABLE</c>, <c>IMPAIRED</c>, <c>UNHEALTHY</c>, or <c>ERROR</c>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StopWorkspacesPool service method.</param>
+        /// 
+        /// <returns>The response from the StopWorkspacesPool service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
+        /// One or more parameter values are not valid.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidResourceStateException">
+        /// The state of the resource is not valid for this operation.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationInProgressException">
+        /// The properties of this WorkSpace are currently being modified. Try again in a moment.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/StopWorkspacesPool">REST API Reference for StopWorkspacesPool Operation</seealso>
+        public virtual StopWorkspacesPoolResponse StopWorkspacesPool(StopWorkspacesPoolRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StopWorkspacesPoolRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StopWorkspacesPoolResponseUnmarshaller.Instance;
+
+            return Invoke<StopWorkspacesPoolResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Stops the specified pool.
+        /// 
+        ///  
+        /// <para>
+        /// You cannot stop a WorkSpace pool unless it has a running mode of <c>AutoStop</c> and
+        /// a state of <c>AVAILABLE</c>, <c>IMPAIRED</c>, <c>UNHEALTHY</c>, or <c>ERROR</c>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StopWorkspacesPool service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StopWorkspacesPool service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
+        /// One or more parameter values are not valid.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidResourceStateException">
+        /// The state of the resource is not valid for this operation.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationInProgressException">
+        /// The properties of this WorkSpace are currently being modified. Try again in a moment.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/StopWorkspacesPool">REST API Reference for StopWorkspacesPool Operation</seealso>
+        public virtual Task<StopWorkspacesPoolResponse> StopWorkspacesPoolAsync(StopWorkspacesPoolRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StopWorkspacesPoolRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StopWorkspacesPoolResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<StopWorkspacesPoolResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  TerminateWorkspaces
 
 
@@ -5421,15 +6342,15 @@ namespace Amazon.WorkSpaces
         /// </para>
         ///  </important> 
         /// <para>
-        /// You can terminate a WorkSpace that is in any state except <code>SUSPENDED</code>.
+        /// You can terminate a WorkSpace that is in any state except <c>SUSPENDED</c>.
         /// </para>
         ///  
         /// <para>
         /// This operation is asynchronous and returns before the WorkSpaces have been completely
-        /// terminated. After a WorkSpace is terminated, the <code>TERMINATED</code> state is
-        /// returned only briefly before the WorkSpace directory metadata is cleaned up, so this
-        /// state is rarely returned. To confirm that a WorkSpace is terminated, check for the
-        /// WorkSpace ID by using <a href="https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaces.html">
+        /// terminated. After a WorkSpace is terminated, the <c>TERMINATED</c> state is returned
+        /// only briefly before the WorkSpace directory metadata is cleaned up, so this state
+        /// is rarely returned. To confirm that a WorkSpace is terminated, check for the WorkSpace
+        /// ID by using <a href="https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaces.html">
         /// DescribeWorkSpaces</a>. If the WorkSpace ID isn't returned, then the WorkSpace has
         /// been successfully terminated.
         /// </para>
@@ -5475,15 +6396,15 @@ namespace Amazon.WorkSpaces
         /// </para>
         ///  </important> 
         /// <para>
-        /// You can terminate a WorkSpace that is in any state except <code>SUSPENDED</code>.
+        /// You can terminate a WorkSpace that is in any state except <c>SUSPENDED</c>.
         /// </para>
         ///  
         /// <para>
         /// This operation is asynchronous and returns before the WorkSpaces have been completely
-        /// terminated. After a WorkSpace is terminated, the <code>TERMINATED</code> state is
-        /// returned only briefly before the WorkSpace directory metadata is cleaned up, so this
-        /// state is rarely returned. To confirm that a WorkSpace is terminated, check for the
-        /// WorkSpace ID by using <a href="https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaces.html">
+        /// terminated. After a WorkSpace is terminated, the <c>TERMINATED</c> state is returned
+        /// only briefly before the WorkSpace directory metadata is cleaned up, so this state
+        /// is rarely returned. To confirm that a WorkSpace is terminated, check for the WorkSpace
+        /// ID by using <a href="https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaces.html">
         /// DescribeWorkSpaces</a>. If the WorkSpace ID isn't returned, then the WorkSpace has
         /// been successfully terminated.
         /// </para>
@@ -5518,6 +6439,148 @@ namespace Amazon.WorkSpaces
             options.ResponseUnmarshaller = TerminateWorkspacesResponseUnmarshaller.Instance;
             
             return InvokeAsync<TerminateWorkspacesResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  TerminateWorkspacesPool
+
+
+        /// <summary>
+        /// Terminates the specified pool.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the TerminateWorkspacesPool service method.</param>
+        /// 
+        /// <returns>The response from the TerminateWorkspacesPool service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
+        /// One or more parameter values are not valid.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidResourceStateException">
+        /// The state of the resource is not valid for this operation.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationInProgressException">
+        /// The properties of this WorkSpace are currently being modified. Try again in a moment.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/TerminateWorkspacesPool">REST API Reference for TerminateWorkspacesPool Operation</seealso>
+        public virtual TerminateWorkspacesPoolResponse TerminateWorkspacesPool(TerminateWorkspacesPoolRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = TerminateWorkspacesPoolRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = TerminateWorkspacesPoolResponseUnmarshaller.Instance;
+
+            return Invoke<TerminateWorkspacesPoolResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Terminates the specified pool.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the TerminateWorkspacesPool service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the TerminateWorkspacesPool service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
+        /// One or more parameter values are not valid.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidResourceStateException">
+        /// The state of the resource is not valid for this operation.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationInProgressException">
+        /// The properties of this WorkSpace are currently being modified. Try again in a moment.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/TerminateWorkspacesPool">REST API Reference for TerminateWorkspacesPool Operation</seealso>
+        public virtual Task<TerminateWorkspacesPoolResponse> TerminateWorkspacesPoolAsync(TerminateWorkspacesPoolRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = TerminateWorkspacesPoolRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = TerminateWorkspacesPoolResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<TerminateWorkspacesPoolResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  TerminateWorkspacesPoolSession
+
+
+        /// <summary>
+        /// Terminates the pool session.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the TerminateWorkspacesPoolSession service method.</param>
+        /// 
+        /// <returns>The response from the TerminateWorkspacesPoolSession service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
+        /// One or more parameter values are not valid.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationInProgressException">
+        /// The properties of this WorkSpace are currently being modified. Try again in a moment.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationNotSupportedException">
+        /// This operation is not supported.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/TerminateWorkspacesPoolSession">REST API Reference for TerminateWorkspacesPoolSession Operation</seealso>
+        public virtual TerminateWorkspacesPoolSessionResponse TerminateWorkspacesPoolSession(TerminateWorkspacesPoolSessionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = TerminateWorkspacesPoolSessionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = TerminateWorkspacesPoolSessionResponseUnmarshaller.Instance;
+
+            return Invoke<TerminateWorkspacesPoolSessionResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Terminates the pool session.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the TerminateWorkspacesPoolSession service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the TerminateWorkspacesPoolSession service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
+        /// One or more parameter values are not valid.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationInProgressException">
+        /// The properties of this WorkSpace are currently being modified. Try again in a moment.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationNotSupportedException">
+        /// This operation is not supported.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/TerminateWorkspacesPoolSession">REST API Reference for TerminateWorkspacesPoolSession Operation</seealso>
+        public virtual Task<TerminateWorkspacesPoolSessionResponse> TerminateWorkspacesPoolSessionAsync(TerminateWorkspacesPoolSessionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = TerminateWorkspacesPoolSessionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = TerminateWorkspacesPoolSessionResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<TerminateWorkspacesPoolSessionResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -5598,7 +6661,7 @@ namespace Amazon.WorkSpaces
         /// <para>
         /// Before performing this operation, call <a href="https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeConnectionAliases.html">
         /// DescribeConnectionAliases</a> to make sure that the current state of the connection
-        /// alias is <code>CREATED</code>.
+        /// alias is <c>CREATED</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -5657,7 +6720,7 @@ namespace Amazon.WorkSpaces
         /// <para>
         /// Before performing this operation, call <a href="https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeConnectionAliases.html">
         /// DescribeConnectionAliases</a> to make sure that the current state of the connection
-        /// alias is <code>CREATED</code>.
+        /// alias is <c>CREATED</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -6015,6 +7078,89 @@ namespace Amazon.WorkSpaces
 
         #endregion
         
+        #region  UpdateWorkspacesPool
+
+
+        /// <summary>
+        /// Updates the specified pool.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateWorkspacesPool service method.</param>
+        /// 
+        /// <returns>The response from the UpdateWorkspacesPool service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
+        /// One or more parameter values are not valid.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidResourceStateException">
+        /// The state of the resource is not valid for this operation.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationInProgressException">
+        /// The properties of this WorkSpace are currently being modified. Try again in a moment.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationNotSupportedException">
+        /// This operation is not supported.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceLimitExceededException">
+        /// Your resource limits have been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/UpdateWorkspacesPool">REST API Reference for UpdateWorkspacesPool Operation</seealso>
+        public virtual UpdateWorkspacesPoolResponse UpdateWorkspacesPool(UpdateWorkspacesPoolRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateWorkspacesPoolRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateWorkspacesPoolResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateWorkspacesPoolResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Updates the specified pool.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateWorkspacesPool service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateWorkspacesPool service method, as returned by WorkSpaces.</returns>
+        /// <exception cref="Amazon.WorkSpaces.Model.AccessDeniedException">
+        /// The user is not authorized to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidParameterValuesException">
+        /// One or more parameter values are not valid.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.InvalidResourceStateException">
+        /// The state of the resource is not valid for this operation.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationInProgressException">
+        /// The properties of this WorkSpace are currently being modified. Try again in a moment.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.OperationNotSupportedException">
+        /// This operation is not supported.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceLimitExceededException">
+        /// Your resource limits have been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpaces.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/UpdateWorkspacesPool">REST API Reference for UpdateWorkspacesPool Operation</seealso>
+        public virtual Task<UpdateWorkspacesPoolResponse> UpdateWorkspacesPoolAsync(UpdateWorkspacesPoolRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateWorkspacesPoolRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateWorkspacesPoolResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdateWorkspacesPoolResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region DetermineServiceOperationEndpoint
 
         /// <summary>
@@ -6024,11 +7170,11 @@ namespace Amazon.WorkSpaces
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property GameServerGroup. 
         /// <para>
         /// An object that describes the deleted game server group resource, with status updated
-        /// to <code>DELETE_SCHEDULED</code>. 
+        /// to <c>DELETE_SCHEDULED</c>. 
         /// </para>
         /// </summary>
         public GameServerGroup GameServerGroup

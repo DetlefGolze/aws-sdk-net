@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.SageMaker.Model
         private RecommendationJobOutputConfig _outputConfig;
         private string _roleArn;
         private RecommendationJobStoppingConditions _stoppingConditions;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property InputConfig. 
@@ -109,10 +110,10 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property JobType. 
         /// <para>
-        /// Defines the type of recommendation job. Specify <code>Default</code> to initiate an
-        /// instance recommendation and <code>Advanced</code> to initiate a load test. If left
-        /// unspecified, Amazon SageMaker Inference Recommender will run an instance recommendation
-        /// (<code>DEFAULT</code>) job.
+        /// Defines the type of recommendation job. Specify <c>Default</c> to initiate an instance
+        /// recommendation and <c>Advanced</c> to initiate a load test. If left unspecified, Amazon
+        /// SageMaker Inference Recommender will run an instance recommendation (<c>DEFAULT</c>)
+        /// job.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -205,7 +206,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

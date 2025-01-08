@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityLake.Model
 {
     /// <summary>
@@ -33,28 +34,28 @@ namespace Amazon.SecurityLake.Model
     /// Initializes an Amazon Security Lake instance with the provided (or default) configuration.
     /// You can enable Security Lake in Amazon Web Services Regions with customized settings
     /// before enabling log collection in Regions. To specify particular Regions, configure
-    /// these Regions using the <code>configurations</code> parameter. If you have already
-    /// enabled Security Lake in a Region when you call this command, the command will update
-    /// the Region if you provide new configuration parameters. If you have not already enabled
+    /// these Regions using the <c>configurations</c> parameter. If you have already enabled
+    /// Security Lake in a Region when you call this command, the command will update the
+    /// Region if you provide new configuration parameters. If you have not already enabled
     /// Security Lake in the Region when you call this API, it will set up the data lake in
     /// the Region with the specified configurations.
     /// 
     ///  
     /// <para>
-    /// When you enable Security Lake, it starts ingesting security data after the <code>CreateAwsLogSource</code>
-    /// call. This includes ingesting security data from sources, storing data, and making
-    /// data accessible to subscribers. Security Lake also enables all the existing settings
-    /// and resources that it stores or maintains for your Amazon Web Services account in
-    /// the current Region, including security log and event data. For more information, see
-    /// the <a href="https://docs.aws.amazon.com/security-lake/latest/userguide/what-is-security-lake.html">Amazon
+    /// When you enable Security Lake, it starts ingesting security data after the <c>CreateAwsLogSource</c>
+    /// call and after you create subscribers using the <c>CreateSubscriber</c> API. This
+    /// includes ingesting security data from sources, storing data, and making data accessible
+    /// to subscribers. Security Lake also enables all the existing settings and resources
+    /// that it stores or maintains for your Amazon Web Services account in the current Region,
+    /// including security log and event data. For more information, see the <a href="https://docs.aws.amazon.com/security-lake/latest/userguide/what-is-security-lake.html">Amazon
     /// Security Lake User Guide</a>.
     /// </para>
     /// </summary>
     public partial class CreateDataLakeRequest : AmazonSecurityLakeRequest
     {
-        private List<DataLakeConfiguration> _configurations = new List<DataLakeConfiguration>();
+        private List<DataLakeConfiguration> _configurations = AWSConfigs.InitializeCollections ? new List<DataLakeConfiguration>() : null;
         private string _metaStoreManagerRoleArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Configurations. 
@@ -62,7 +63,7 @@ namespace Amazon.SecurityLake.Model
         /// Specify the Region or Regions that will contribute data to the rollup region.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1)]
         public List<DataLakeConfiguration> Configurations
         {
             get { return this._configurations; }
@@ -72,7 +73,7 @@ namespace Amazon.SecurityLake.Model
         // Check to see if Configurations property is set
         internal bool IsSetConfigurations()
         {
-            return this._configurations != null && this._configurations.Count > 0; 
+            return this._configurations != null && (this._configurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -114,7 +115,7 @@ namespace Amazon.SecurityLake.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

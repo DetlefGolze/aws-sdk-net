@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MTurk.Model
 {
     /// <summary>
     /// Container for the parameters to the ListQualificationTypes operation.
-    /// The <code>ListQualificationTypes</code> operation returns a list of Qualification
-    /// types, filtered by an optional search term.
+    /// The <c>ListQualificationTypes</c> operation returns a list of Qualification types,
+    /// filtered by an optional search term.
     /// </summary>
     public partial class ListQualificationTypesRequest : AmazonMTurkRequest
     {

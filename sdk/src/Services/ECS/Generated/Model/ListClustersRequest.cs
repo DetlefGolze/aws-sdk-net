@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -40,13 +41,13 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The maximum number of cluster results that <code>ListClusters</code> returned in paginated
-        /// output. When this parameter is used, <code>ListClusters</code> only returns <code>maxResults</code>
-        /// results in a single page along with a <code>nextToken</code> response element. The
-        /// remaining results of the initial request can be seen by sending another <code>ListClusters</code>
-        /// request with the returned <code>nextToken</code> value. This value can be between
-        /// 1 and 100. If this parameter isn't used, then <code>ListClusters</code> returns up
-        /// to 100 results and a <code>nextToken</code> value if applicable.
+        /// The maximum number of cluster results that <c>ListClusters</c> returned in paginated
+        /// output. When this parameter is used, <c>ListClusters</c> only returns <c>maxResults</c>
+        /// results in a single page along with a <c>nextToken</c> response element. The remaining
+        /// results of the initial request can be seen by sending another <c>ListClusters</c>
+        /// request with the returned <c>nextToken</c> value. This value can be between 1 and
+        /// 100. If this parameter isn't used, then <c>ListClusters</c> returns up to 100 results
+        /// and a <c>nextToken</c> value if applicable.
         /// </para>
         /// </summary>
         public int MaxResults
@@ -64,10 +65,10 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value returned from a <code>ListClusters</code> request
-        /// indicating that more results are available to fulfill the request and further calls
-        /// are needed. If <code>maxResults</code> was provided, it's possible the number of results
-        /// to be fewer than <code>maxResults</code>.
+        /// The <c>nextToken</c> value returned from a <c>ListClusters</c> request indicating
+        /// that more results are available to fulfill the request and further calls are needed.
+        /// If <c>maxResults</c> was provided, it's possible the number of results to be fewer
+        /// than <c>maxResults</c>.
         /// </para>
         ///  <note> 
         /// <para>

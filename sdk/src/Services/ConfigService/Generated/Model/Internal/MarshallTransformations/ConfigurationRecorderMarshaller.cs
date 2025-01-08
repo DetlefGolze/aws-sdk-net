@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ConfigService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,14 @@ namespace Amazon.ConfigService.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ConfigurationRecorder requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetArn())
+            {
+                context.Writer.WritePropertyName("arn");
+                context.Writer.Write(requestObject.Arn);
+            }
+
             if(requestObject.IsSetName())
             {
                 context.Writer.WritePropertyName("name");
@@ -62,10 +71,33 @@ namespace Amazon.ConfigService.Model.Internal.MarshallTransformations
                 context.Writer.WriteObjectEnd();
             }
 
+            if(requestObject.IsSetRecordingMode())
+            {
+                context.Writer.WritePropertyName("recordingMode");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = RecordingModeMarshaller.Instance;
+                marshaller.Marshall(requestObject.RecordingMode, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetRecordingScope())
+            {
+                context.Writer.WritePropertyName("recordingScope");
+                context.Writer.Write(requestObject.RecordingScope);
+            }
+
             if(requestObject.IsSetRoleARN())
             {
                 context.Writer.WritePropertyName("roleARN");
                 context.Writer.Write(requestObject.RoleARN);
+            }
+
+            if(requestObject.IsSetServicePrincipal())
+            {
+                context.Writer.WritePropertyName("servicePrincipal");
+                context.Writer.Write(requestObject.ServicePrincipal);
             }
 
         }

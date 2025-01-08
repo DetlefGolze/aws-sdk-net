@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.RDS.Model
     /// 
     ///  
     /// <para>
-    /// This data type is used as a response element in the <code>DescribeDBClusterSnapshots</code>
+    /// This data type is used as a response element in the <c>DescribeDBClusterSnapshots</c>
     /// action.
     /// </para>
     /// </summary>
     public partial class DBClusterSnapshot
     {
         private int? _allocatedStorage;
-        private List<string> _availabilityZones = new List<string>();
+        private List<string> _availabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _clusterCreateTime;
         private string _dbClusterIdentifier;
         private string _dbClusterResourceId;
@@ -61,8 +62,9 @@ namespace Amazon.RDS.Model
         private string _sourceDBClusterSnapshotArn;
         private string _status;
         private bool? _storageEncrypted;
+        private int? _storageThroughput;
         private string _storageType;
-        private List<Tag> _tagList = new List<Tag>();
+        private List<Tag> _tagList = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _vpcId;
 
         /// <summary>
@@ -99,7 +101,7 @@ namespace Amazon.RDS.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -287,8 +289,8 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// If <code>StorageEncrypted</code> is true, the Amazon Web Services KMS key identifier
-        /// for the encrypted DB cluster snapshot.
+        /// If <c>StorageEncrypted</c> is true, the Amazon Web Services KMS key identifier for
+        /// the encrypted DB cluster snapshot.
         /// </para>
         ///  
         /// <para>
@@ -442,15 +444,15 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>available</code> 
+        ///  <c>available</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>copying</code> 
+        ///  <c>copying</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>creating</code> 
+        ///  <c>creating</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -482,6 +484,29 @@ namespace Amazon.RDS.Model
         internal bool IsSetStorageEncrypted()
         {
             return this._storageEncrypted.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property StorageThroughput. 
+        /// <para>
+        /// The storage throughput for the DB cluster snapshot. The throughput is automatically
+        /// set based on the IOPS that you provision, and is not configurable.
+        /// </para>
+        ///  
+        /// <para>
+        /// This setting is only for non-Aurora Multi-AZ DB clusters.
+        /// </para>
+        /// </summary>
+        public int StorageThroughput
+        {
+            get { return this._storageThroughput.GetValueOrDefault(); }
+            set { this._storageThroughput = value; }
+        }
+
+        // Check to see if StorageThroughput property is set
+        internal bool IsSetStorageThroughput()
+        {
+            return this._storageThroughput.HasValue; 
         }
 
         /// <summary>
@@ -518,7 +543,7 @@ namespace Amazon.RDS.Model
         // Check to see if TagList property is set
         internal bool IsSetTagList()
         {
-            return this._tagList != null && this._tagList.Count > 0; 
+            return this._tagList != null && (this._tagList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

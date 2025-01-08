@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
-    /// You have provided an invalid command. Supported values are <code>ADD</code>, <code>REMOVE</code>,
-    /// or <code>REPLACE</code> a domain.
+    /// You have provided an invalid command. If you ran the <c>UpdateFirewallDomains</c>
+    /// request. supported values are <c>ADD</c>, <c>REMOVE</c>, or <c>REPLACE</c> a domain.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

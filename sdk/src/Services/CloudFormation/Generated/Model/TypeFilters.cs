@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -44,18 +45,18 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>REGISTERED</code>: Private extensions that have been registered for this account
+        ///  <c>REGISTERED</c>: Private extensions that have been registered for this account
         /// and Region.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ACTIVATED</code>: Public extensions that have been activated for this account
-        /// and Region.
+        ///  <c>ACTIVATED</c>: Public extensions that have been activated for this account and
+        /// Region.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>THIRD_PARTY</code>: Extensions available for use from publishers other than
-        /// Amazon. This includes:
+        ///  <c>THIRD_PARTY</c>: Extensions available for use from publishers other than Amazon.
+        /// This includes:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -67,7 +68,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
-        ///  <code>AWS_TYPES</code>: Extensions available for use from Amazon.
+        ///  <c>AWS_TYPES</c>: Extensions available for use from Amazon.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -90,7 +91,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Extensions published by Amazon aren't assigned a publisher ID. Use the <code>AWS_TYPES</code>
+        /// Extensions published by Amazon aren't assigned a publisher ID. Use the <c>AWS_TYPES</c>
         /// category to specify a list of types published by Amazon.
         /// </para>
         /// </summary>

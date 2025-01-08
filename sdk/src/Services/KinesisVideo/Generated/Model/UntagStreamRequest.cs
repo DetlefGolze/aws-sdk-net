@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideo.Model
 {
     /// <summary>
@@ -36,14 +37,14 @@ namespace Amazon.KinesisVideo.Model
     /// 
     ///  
     /// <para>
-    /// In the request, you must provide the <code>StreamName</code> or <code>StreamARN</code>.
+    /// In the request, you must provide the <c>StreamName</c> or <c>StreamARN</c>.
     /// </para>
     /// </summary>
     public partial class UntagStreamRequest : AmazonKinesisVideoRequest
     {
         private string _streamARN;
         private string _streamName;
-        private List<string> _tagKeyList = new List<string>();
+        private List<string> _tagKeyList = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property StreamARN. 
@@ -99,7 +100,7 @@ namespace Amazon.KinesisVideo.Model
         // Check to see if TagKeyList property is set
         internal bool IsSetTagKeyList()
         {
-            return this._tagKeyList != null && this._tagKeyList.Count > 0; 
+            return this._tagKeyList != null && (this._tagKeyList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

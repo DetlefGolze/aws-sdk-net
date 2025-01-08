@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -33,24 +34,51 @@ namespace Amazon.WorkSpaces.Model
     /// </summary>
     public partial class WorkspaceDirectory
     {
+        private ActiveDirectoryConfig _activeDirectoryConfig;
         private string _alias;
         private CertificateBasedAuthProperties _certificateBasedAuthProperties;
         private string _customerUserName;
         private string _directoryId;
         private string _directoryName;
         private WorkspaceDirectoryType _directoryType;
-        private List<string> _dnsIpAddresses = new List<string>();
+        private List<string> _dnsIpAddresses = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private string _errorMessage;
         private string _iamRoleId;
-        private List<string> _ipGroupIds = new List<string>();
+        private IDCConfig _idcConfig;
+        private List<string> _ipGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private MicrosoftEntraConfig _microsoftEntraConfig;
         private string _registrationCode;
         private SamlProperties _samlProperties;
         private SelfservicePermissions _selfservicePermissions;
         private WorkspaceDirectoryState _state;
-        private List<string> _subnetIds = new List<string>();
+        private StreamingProperties _streamingProperties;
+        private List<string> _subnetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private Tenancy _tenancy;
+        private UserIdentityType _userIdentityType;
         private WorkspaceAccessProperties _workspaceAccessProperties;
         private DefaultWorkspaceCreationProperties _workspaceCreationProperties;
+        private string _workspaceDirectoryDescription;
+        private string _workspaceDirectoryName;
         private string _workspaceSecurityGroupId;
+        private WorkspaceType _workspaceType;
+
+        /// <summary>
+        /// Gets and sets the property ActiveDirectoryConfig. 
+        /// <para>
+        /// Information about the Active Directory config.
+        /// </para>
+        /// </summary>
+        public ActiveDirectoryConfig ActiveDirectoryConfig
+        {
+            get { return this._activeDirectoryConfig; }
+            set { this._activeDirectoryConfig = value; }
+        }
+
+        // Check to see if ActiveDirectoryConfig property is set
+        internal bool IsSetActiveDirectoryConfig()
+        {
+            return this._activeDirectoryConfig != null;
+        }
 
         /// <summary>
         /// Gets and sets the property Alias. 
@@ -178,7 +206,25 @@ namespace Amazon.WorkSpaces.Model
         // Check to see if DnsIpAddresses property is set
         internal bool IsSetDnsIpAddresses()
         {
-            return this._dnsIpAddresses != null && this._dnsIpAddresses.Count > 0; 
+            return this._dnsIpAddresses != null && (this._dnsIpAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ErrorMessage. 
+        /// <para>
+        /// The error message returned.
+        /// </para>
+        /// </summary>
+        public string ErrorMessage
+        {
+            get { return this._errorMessage; }
+            set { this._errorMessage = value; }
+        }
+
+        // Check to see if ErrorMessage property is set
+        internal bool IsSetErrorMessage()
+        {
+            return this._errorMessage != null;
         }
 
         /// <summary>
@@ -201,6 +247,24 @@ namespace Amazon.WorkSpaces.Model
         }
 
         /// <summary>
+        /// Gets and sets the property IDCConfig. 
+        /// <para>
+        /// Specifies details about identity center configurations.
+        /// </para>
+        /// </summary>
+        public IDCConfig IDCConfig
+        {
+            get { return this._idcConfig; }
+            set { this._idcConfig = value; }
+        }
+
+        // Check to see if IDCConfig property is set
+        internal bool IsSetIDCConfig()
+        {
+            return this._idcConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property IpGroupIds. 
         /// <para>
         /// The identifiers of the IP access control groups associated with the directory.
@@ -215,7 +279,25 @@ namespace Amazon.WorkSpaces.Model
         // Check to see if IpGroupIds property is set
         internal bool IsSetIpGroupIds()
         {
-            return this._ipGroupIds != null && this._ipGroupIds.Count > 0; 
+            return this._ipGroupIds != null && (this._ipGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property MicrosoftEntraConfig. 
+        /// <para>
+        /// Specifies details about Microsoft Entra configurations.
+        /// </para>
+        /// </summary>
+        public MicrosoftEntraConfig MicrosoftEntraConfig
+        {
+            get { return this._microsoftEntraConfig; }
+            set { this._microsoftEntraConfig = value; }
+        }
+
+        // Check to see if MicrosoftEntraConfig property is set
+        internal bool IsSetMicrosoftEntraConfig()
+        {
+            return this._microsoftEntraConfig != null;
         }
 
         /// <summary>
@@ -279,9 +361,9 @@ namespace Amazon.WorkSpaces.Model
         /// Gets and sets the property State. 
         /// <para>
         /// The state of the directory's registration with Amazon WorkSpaces. After a directory
-        /// is deregistered, the <code>DEREGISTERED</code> state is returned very briefly before
-        /// the directory metadata is cleaned up, so this state is rarely returned. To confirm
-        /// that a directory is deregistered, check for the directory ID by using <a href="https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceDirectories.html">
+        /// is deregistered, the <c>DEREGISTERED</c> state is returned very briefly before the
+        /// directory metadata is cleaned up, so this state is rarely returned. To confirm that
+        /// a directory is deregistered, check for the directory ID by using <a href="https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceDirectories.html">
         /// DescribeWorkspaceDirectories</a>. If the directory ID isn't returned, then the directory
         /// has been successfully deregistered.
         /// </para>
@@ -296,6 +378,24 @@ namespace Amazon.WorkSpaces.Model
         internal bool IsSetState()
         {
             return this._state != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property StreamingProperties. 
+        /// <para>
+        /// The streaming properties to configure.
+        /// </para>
+        /// </summary>
+        public StreamingProperties StreamingProperties
+        {
+            get { return this._streamingProperties; }
+            set { this._streamingProperties = value; }
+        }
+
+        // Check to see if StreamingProperties property is set
+        internal bool IsSetStreamingProperties()
+        {
+            return this._streamingProperties != null;
         }
 
         /// <summary>
@@ -314,15 +414,14 @@ namespace Amazon.WorkSpaces.Model
         // Check to see if SubnetIds property is set
         internal bool IsSetSubnetIds()
         {
-            return this._subnetIds != null && this._subnetIds.Count > 0; 
+            return this._subnetIds != null && (this._subnetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Tenancy. 
         /// <para>
         /// Specifies whether the directory is dedicated or shared. To use Bring Your Own License
-        /// (BYOL), this value must be set to <code>DEDICATED</code>. For more information, see
-        /// <a href="https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html">Bring
+        /// (BYOL), this value must be set to <c>DEDICATED</c>. For more information, see <a href="https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html">Bring
         /// Your Own Windows Desktop Images</a>.
         /// </para>
         /// </summary>
@@ -336,6 +435,24 @@ namespace Amazon.WorkSpaces.Model
         internal bool IsSetTenancy()
         {
             return this._tenancy != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property UserIdentityType. 
+        /// <para>
+        /// Indicates the identity type of the specifired user.
+        /// </para>
+        /// </summary>
+        public UserIdentityType UserIdentityType
+        {
+            get { return this._userIdentityType; }
+            set { this._userIdentityType = value; }
+        }
+
+        // Check to see if UserIdentityType property is set
+        internal bool IsSetUserIdentityType()
+        {
+            return this._userIdentityType != null;
         }
 
         /// <summary>
@@ -375,6 +492,42 @@ namespace Amazon.WorkSpaces.Model
         }
 
         /// <summary>
+        /// Gets and sets the property WorkspaceDirectoryDescription. 
+        /// <para>
+        /// The description of the WorkSpace directory
+        /// </para>
+        /// </summary>
+        public string WorkspaceDirectoryDescription
+        {
+            get { return this._workspaceDirectoryDescription; }
+            set { this._workspaceDirectoryDescription = value; }
+        }
+
+        // Check to see if WorkspaceDirectoryDescription property is set
+        internal bool IsSetWorkspaceDirectoryDescription()
+        {
+            return this._workspaceDirectoryDescription != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WorkspaceDirectoryName. 
+        /// <para>
+        /// The name fo the WorkSpace directory.
+        /// </para>
+        /// </summary>
+        public string WorkspaceDirectoryName
+        {
+            get { return this._workspaceDirectoryName; }
+            set { this._workspaceDirectoryName = value; }
+        }
+
+        // Check to see if WorkspaceDirectoryName property is set
+        internal bool IsSetWorkspaceDirectoryName()
+        {
+            return this._workspaceDirectoryName != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property WorkspaceSecurityGroupId. 
         /// <para>
         /// The identifier of the security group that is assigned to new WorkSpaces.
@@ -391,6 +544,24 @@ namespace Amazon.WorkSpaces.Model
         internal bool IsSetWorkspaceSecurityGroupId()
         {
             return this._workspaceSecurityGroupId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WorkspaceType. 
+        /// <para>
+        /// Indicates whether the directory's WorkSpace type is personal or pools.
+        /// </para>
+        /// </summary>
+        public WorkspaceType WorkspaceType
+        {
+            get { return this._workspaceType; }
+            set { this._workspaceType = value; }
+        }
+
+        // Check to see if WorkspaceType property is set
+        internal bool IsSetWorkspaceType()
+        {
+            return this._workspaceType != null;
         }
 
     }

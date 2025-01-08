@@ -26,20 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
-    /// Contains the response to a <code>DescribeServiceErrors</code> request.
+    /// Contains the response to a <c>DescribeServiceErrors</c> request.
     /// </summary>
     public partial class DescribeServiceErrorsResponse : AmazonWebServiceResponse
     {
-        private List<ServiceError> _serviceErrors = new List<ServiceError>();
+        private List<ServiceError> _serviceErrors = AWSConfigs.InitializeCollections ? new List<ServiceError>() : null;
 
         /// <summary>
         /// Gets and sets the property ServiceErrors. 
         /// <para>
-        /// An array of <code>ServiceError</code> objects that describe the specified service
-        /// errors.
+        /// An array of <c>ServiceError</c> objects that describe the specified service errors.
         /// </para>
         /// </summary>
         public List<ServiceError> ServiceErrors
@@ -51,7 +51,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if ServiceErrors property is set
         internal bool IsSetServiceErrors()
         {
-            return this._serviceErrors != null && this._serviceErrors.Count > 0; 
+            return this._serviceErrors != null && (this._serviceErrors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

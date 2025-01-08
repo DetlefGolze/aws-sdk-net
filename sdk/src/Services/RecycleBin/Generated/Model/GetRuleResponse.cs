@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RecycleBin.Model
 {
     /// <summary>
@@ -34,13 +35,15 @@ namespace Amazon.RecycleBin.Model
     public partial class GetRuleResponse : AmazonWebServiceResponse
     {
         private string _description;
+        private List<ResourceTag> _excludeResourceTags = AWSConfigs.InitializeCollections ? new List<ResourceTag>() : null;
         private string _identifier;
         private LockConfiguration _lockConfiguration;
         private DateTime? _lockEndTime;
         private LockState _lockState;
-        private List<ResourceTag> _resourceTags = new List<ResourceTag>();
+        private List<ResourceTag> _resourceTags = AWSConfigs.InitializeCollections ? new List<ResourceTag>() : null;
         private ResourceType _resourceType;
         private RetentionPeriod _retentionPeriod;
+        private string _ruleArn;
         private RuleStatus _status;
 
         /// <summary>
@@ -59,6 +62,26 @@ namespace Amazon.RecycleBin.Model
         internal bool IsSetDescription()
         {
             return this._description != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExcludeResourceTags. 
+        /// <para>
+        /// [Region-level retention rules only] Information about the exclusion tags used to identify
+        /// resources that are to be excluded, or ignored, by the retention rule.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=5)]
+        public List<ResourceTag> ExcludeResourceTags
+        {
+            get { return this._excludeResourceTags; }
+            set { this._excludeResourceTags = value; }
+        }
+
+        // Check to see if ExcludeResourceTags property is set
+        internal bool IsSetExcludeResourceTags()
+        {
+            return this._excludeResourceTags != null && (this._excludeResourceTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -119,28 +142,28 @@ namespace Amazon.RecycleBin.Model
         /// <summary>
         /// Gets and sets the property LockState. 
         /// <para>
-        /// The lock state for the retention rule.
+        /// [Region-level retention rules only] The lock state for the retention rule.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>locked</code> - The retention rule is locked and can't be modified or deleted.
+        ///  <c>locked</c> - The retention rule is locked and can't be modified or deleted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>pending_unlock</code> - The retention rule has been unlocked but it is still
-        /// within the unlock delay period. The retention rule can be modified or deleted only
-        /// after the unlock delay period has expired.
+        ///  <c>pending_unlock</c> - The retention rule has been unlocked but it is still within
+        /// the unlock delay period. The retention rule can be modified or deleted only after
+        /// the unlock delay period has expired.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>unlocked</code> - The retention rule is unlocked and it can be modified or
-        /// deleted by any user with the required permissions.
+        ///  <c>unlocked</c> - The retention rule is unlocked and it can be modified or deleted
+        /// by any user with the required permissions.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>null</code> - The retention rule has never been locked. Once a retention rule
-        /// has been locked, it can transition between the <code>locked</code> and <code>unlocked</code>
-        /// states only; it can never transition back to <code>null</code>.
+        ///  <c>null</c> - The retention rule has never been locked. Once a retention rule has
+        /// been locked, it can transition between the <c>locked</c> and <c>unlocked</c> states
+        /// only; it can never transition back to <c>null</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -159,8 +182,8 @@ namespace Amazon.RecycleBin.Model
         /// <summary>
         /// Gets and sets the property ResourceTags. 
         /// <para>
-        /// Information about the resource tags used to identify resources that are retained by
-        /// the retention rule.
+        /// [Tag-level retention rules only] Information about the resource tags used to identify
+        /// resources that are retained by the retention rule.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -173,7 +196,7 @@ namespace Amazon.RecycleBin.Model
         // Check to see if ResourceTags property is set
         internal bool IsSetResourceTags()
         {
-            return this._resourceTags != null && this._resourceTags.Count > 0; 
+            return this._resourceTags != null && (this._resourceTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -213,9 +236,28 @@ namespace Amazon.RecycleBin.Model
         }
 
         /// <summary>
+        /// Gets and sets the property RuleArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the retention rule.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=1011)]
+        public string RuleArn
+        {
+            get { return this._ruleArn; }
+            set { this._ruleArn = value; }
+        }
+
+        // Check to see if RuleArn property is set
+        internal bool IsSetRuleArn()
+        {
+            return this._ruleArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The state of the retention rule. Only retention rules that are in the <code>available</code>
+        /// The state of the retention rule. Only retention rules that are in the <c>available</c>
         /// state retain resources.
         /// </para>
         /// </summary>

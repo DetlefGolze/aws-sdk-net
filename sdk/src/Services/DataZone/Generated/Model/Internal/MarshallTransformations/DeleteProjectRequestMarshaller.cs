@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DataZone.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -64,7 +65,11 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
             if (!publicRequest.IsSetIdentifier())
                 throw new AmazonDataZoneException("Request object does not have required field Identifier set");
             request.AddPathResource("{identifier}", StringUtils.FromString(publicRequest.Identifier));
+            
+            if (publicRequest.IsSetSkipDeletionCheck())
+                request.Parameters.Add("skipDeletionCheck", StringUtils.FromBool(publicRequest.SkipDeletionCheck));
             request.ResourcePath = "/v2/domains/{domainIdentifier}/projects/{identifier}";
+            request.UseQueryString = true;
 
             return request;
         }

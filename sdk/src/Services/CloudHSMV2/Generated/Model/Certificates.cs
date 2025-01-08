@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudHSMV2.Model
 {
     /// <summary>
@@ -42,10 +43,10 @@ namespace Amazon.CloudHSMV2.Model
         /// <summary>
         /// Gets and sets the property AwsHardwareCertificate. 
         /// <para>
-        /// The HSM hardware certificate issued (signed) by AWS CloudHSM.
+        /// The HSM hardware certificate issued (signed) by CloudHSM.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=5000)]
+        [AWSProperty(Max=20000)]
         public string AwsHardwareCertificate
         {
             get { return this._awsHardwareCertificate; }
@@ -65,7 +66,7 @@ namespace Amazon.CloudHSMV2.Model
         /// of the cluster's owner.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=5000)]
+        [AWSProperty(Max=20000)]
         public string ClusterCertificate
         {
             get { return this._clusterCertificate; }
@@ -82,10 +83,10 @@ namespace Amazon.CloudHSMV2.Model
         /// Gets and sets the property ClusterCsr. 
         /// <para>
         /// The cluster's certificate signing request (CSR). The CSR exists only when the cluster's
-        /// state is <code>UNINITIALIZED</code>.
+        /// state is <c>UNINITIALIZED</c>.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=5000)]
+        [AWSProperty(Max=20000)]
         public string ClusterCsr
         {
             get { return this._clusterCsr; }
@@ -104,7 +105,7 @@ namespace Amazon.CloudHSMV2.Model
         /// The HSM certificate issued (signed) by the HSM hardware.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=5000)]
+        [AWSProperty(Max=20000)]
         public string HsmCertificate
         {
             get { return this._hsmCertificate; }
@@ -123,7 +124,7 @@ namespace Amazon.CloudHSMV2.Model
         /// The HSM hardware certificate issued (signed) by the hardware manufacturer.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=5000)]
+        [AWSProperty(Max=20000)]
         public string ManufacturerHardwareCertificate
         {
             get { return this._manufacturerHardwareCertificate; }

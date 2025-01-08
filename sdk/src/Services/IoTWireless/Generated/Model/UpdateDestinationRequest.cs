@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTWireless.Model
 {
     /// <summary>
@@ -81,7 +82,7 @@ namespace Amazon.IoTWireless.Model
         /// <summary>
         /// Gets and sets the property ExpressionType. 
         /// <para>
-        /// The type of value in <code>Expression</code>.
+        /// The type of value in <c>Expression</c>.
         /// </para>
         /// </summary>
         public ExpressionType ExpressionType

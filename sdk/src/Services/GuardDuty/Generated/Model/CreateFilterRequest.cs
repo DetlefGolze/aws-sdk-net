@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.GuardDuty.Model
         private FindingCriteria _findingCriteria;
         private string _name;
         private int? _rank;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Action. 
@@ -88,9 +89,9 @@ namespace Amazon.GuardDuty.Model
         /// Gets and sets the property Description. 
         /// <para>
         /// The description of the filter. Valid characters include alphanumeric characters, and
-        /// special characters such as hyphen, period, colon, underscore, parentheses (<code>{
-        /// }</code>, <code>[ ]</code>, and <code>( )</code>), forward slash, horizontal tab,
-        /// vertical tab, newline, form feed, return, and whitespace.
+        /// special characters such as hyphen, period, colon, underscore, parentheses (<c>{ }</c>,
+        /// <c>[ ]</c>, and <c>( )</c>), forward slash, horizontal tab, vertical tab, newline,
+        /// form feed, return, and whitespace.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=512)]
@@ -109,8 +110,14 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property DetectorId. 
         /// <para>
-        /// The ID of the detector belonging to the GuardDuty account that you want to create
-        /// a filter for.
+        /// The detector ID associated with the GuardDuty account for which you want to create
+        /// a filter.
+        /// </para>
+        ///  
+        /// <para>
+        /// To find the <c>detectorId</c> in the current Region, see the Settings page in the
+        /// GuardDuty console, or run the <a href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html">ListDetectors</a>
+        /// API.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=300)]
@@ -159,20 +166,24 @@ namespace Amazon.GuardDuty.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>Low</b>: <code>["1", "2", "3"]</code> 
+        ///  <b>Low</b>: <c>["1", "2", "3"]</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Medium</b>: <code>["4", "5", "6"]</code> 
+        ///  <b>Medium</b>: <c>["4", "5", "6"]</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>High</b>: <code>["7", "8", "9"]</code> 
+        ///  <b>High</b>: <c>["7", "8"]</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>Critical</b>: <c>["9", "10"]</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For more information, see <a href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings.html#guardduty_findings-severity">Severity
-        /// levels for GuardDuty findings</a>.
+        /// For more information, see <a href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings-severity.html">Findings
+        /// severity levels</a> in the <i>Amazon GuardDuty User Guide</i>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -313,6 +324,10 @@ namespace Amazon.GuardDuty.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
+        /// service.action.awsApiCallAction.remoteIpDetails.ipAddressV6
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
         /// service.action.awsApiCallAction.remoteIpDetails.organization.asn
         /// </para>
         ///  </li> <li> 
@@ -326,6 +341,10 @@ namespace Amazon.GuardDuty.Model
         ///  </li> <li> 
         /// <para>
         /// service.action.dnsRequestAction.domain
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// service.action.dnsRequestAction.domainWithSuffix
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -357,6 +376,10 @@ namespace Amazon.GuardDuty.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
+        /// service.action.networkConnectionAction.remoteIpDetails.ipAddressV6
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
         /// service.action.networkConnectionAction.remoteIpDetails.organization.asn
         /// </para>
         ///  </li> <li> 
@@ -377,11 +400,31 @@ namespace Amazon.GuardDuty.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
+        /// service.action.kubernetesApiCallAction.remoteIpDetails.ipAddressV6
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// service.action.kubernetesApiCallAction.namespace
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// service.action.kubernetesApiCallAction.remoteIpDetails.organization.asn
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
         /// service.action.kubernetesApiCallAction.requestUri
         /// </para>
         ///  </li> <li> 
         /// <para>
+        /// service.action.kubernetesApiCallAction.statusCode
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
         /// service.action.networkConnectionAction.localIpDetails.ipAddressV4
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// service.action.networkConnectionAction.localIpDetails.ipAddressV6
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -582,7 +625,7 @@ namespace Amazon.GuardDuty.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostExplorer.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.CostExplorer.Model
         private AccountScope _accountScope;
         private LookbackPeriodInDays _lookbackPeriodInDays;
         private PaymentOption _paymentOption;
-        private List<ReservationPurchaseRecommendationDetail> _recommendationDetails = new List<ReservationPurchaseRecommendationDetail>();
+        private List<ReservationPurchaseRecommendationDetail> _recommendationDetails = AWSConfigs.InitializeCollections ? new List<ReservationPurchaseRecommendationDetail>() : null;
         private ReservationPurchaseRecommendationSummary _recommendationSummary;
         private ServiceSpecification _serviceSpecification;
         private TermInYears _termInYears;
@@ -83,7 +84,7 @@ namespace Amazon.CostExplorer.Model
         /// <summary>
         /// Gets and sets the property PaymentOption. 
         /// <para>
-        /// The payment option for the reservation (for example, <code>AllUpfront</code> or <code>NoUpfront</code>).
+        /// The payment option for the reservation (for example, <c>AllUpfront</c> or <c>NoUpfront</c>).
         /// </para>
         /// </summary>
         public PaymentOption PaymentOption
@@ -113,7 +114,7 @@ namespace Amazon.CostExplorer.Model
         // Check to see if RecommendationDetails property is set
         internal bool IsSetRecommendationDetails()
         {
-            return this._recommendationDetails != null && this._recommendationDetails.Count > 0; 
+            return this._recommendationDetails != null && (this._recommendationDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

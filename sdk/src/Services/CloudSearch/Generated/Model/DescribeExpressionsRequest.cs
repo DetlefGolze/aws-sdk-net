@@ -26,15 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeExpressions operation.
     /// Gets the expressions configured for the search domain. Can be limited to specific
     /// expressions by name. By default, shows all expressions and includes any pending changes
-    /// to the configuration. Set the <code>Deployed</code> option to <code>true</code> to
-    /// show the active configuration and exclude pending changes. For more information, see
-    /// <a href="http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
+    /// to the configuration. Set the <c>Deployed</c> option to <c>true</c> to show the active
+    /// configuration and exclude pending changes. For more information, see <a href="http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
     /// target="_blank">Configuring Expressions</a> in the <i>Amazon CloudSearch Developer
     /// Guide</i>.
     /// </summary>
@@ -42,13 +42,13 @@ namespace Amazon.CloudSearch.Model
     {
         private bool? _deployed;
         private string _domainName;
-        private List<string> _expressionNames = new List<string>();
+        private List<string> _expressionNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Deployed. 
         /// <para>
-        /// Whether to display the deployed configuration (<code>true</code>) or include any pending
-        /// changes (<code>false</code>). Defaults to <code>false</code>.
+        /// Whether to display the deployed configuration (<c>true</c>) or include any pending
+        /// changes (<c>false</c>). Defaults to <c>false</c>.
         /// </para>
         /// </summary>
         public bool Deployed
@@ -85,7 +85,7 @@ namespace Amazon.CloudSearch.Model
         /// <summary>
         /// Gets and sets the property ExpressionNames. 
         /// <para>
-        /// Limits the <code><a>DescribeExpressions</a></code> response to the specified expressions.
+        /// Limits the <c><a>DescribeExpressions</a></c> response to the specified expressions.
         /// If not specified, all expressions are shown.
         /// </para>
         /// </summary>
@@ -98,7 +98,7 @@ namespace Amazon.CloudSearch.Model
         // Check to see if ExpressionNames property is set
         internal bool IsSetExpressionNames()
         {
-            return this._expressionNames != null && this._expressionNames.Count > 0; 
+            return this._expressionNames != null && (this._expressionNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.ElastiCache.Model
     /// 
     ///  <note> 
     /// <para>
-    /// This operation is valid for Redis only.
+    /// This operation is valid for Valkey or Redis OSS only.
     /// </para>
     ///  </note>
     /// </summary>

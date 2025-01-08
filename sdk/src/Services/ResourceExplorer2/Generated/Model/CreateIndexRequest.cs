@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceExplorer2.Model
 {
     /// <summary>
@@ -60,30 +61,30 @@ namespace Amazon.ResourceExplorer2.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <b>Action</b>: <code>resource-explorer-2:CreateIndex</code> 
+    ///  <b>Action</b>: <c>resource-explorer-2:CreateIndex</c> 
     /// </para>
     ///  
     /// <para>
     ///  <b>Resource</b>: The ARN of the index (as it will exist after the operation completes)
     /// in the Amazon Web Services Region and account in which you're trying to create the
-    /// index. Use the wildcard character (<code>*</code>) at the end of the string to match
-    /// the eventual UUID. For example, the following <code>Resource</code> element restricts
-    /// the role or user to creating an index in only the <code>us-east-2</code> Region of
-    /// the specified account.
+    /// index. Use the wildcard character (<c>*</c>) at the end of the string to match the
+    /// eventual UUID. For example, the following <c>Resource</c> element restricts the role
+    /// or user to creating an index in only the <c>us-east-2</c> Region of the specified
+    /// account.
     /// </para>
     ///  
     /// <para>
-    ///  <code>"Resource": "arn:aws:resource-explorer-2:us-west-2:<i>&lt;account-id&gt;</i>:index/*"</code>
+    ///  <c>"Resource": "arn:aws:resource-explorer-2:us-west-2:<i>&lt;account-id&gt;</i>:index/*"</c>
     /// 
     /// </para>
     ///  
     /// <para>
-    /// Alternatively, you can use <code>"Resource": "*"</code> to allow the role or user
-    /// to create an index in any Region.
+    /// Alternatively, you can use <c>"Resource": "*"</c> to allow the role or user to create
+    /// an index in any Region.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <b>Action</b>: <code>iam:CreateServiceLinkedRole</code> 
+    ///  <b>Action</b>: <c>iam:CreateServiceLinkedRole</c> 
     /// </para>
     ///  
     /// <para>
@@ -101,7 +102,7 @@ namespace Amazon.ResourceExplorer2.Model
     public partial class CreateIndexRequest : AmazonResourceExplorer2Request
     {
         private string _clientToken;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
@@ -109,7 +110,7 @@ namespace Amazon.ResourceExplorer2.Model
         /// This value helps ensure idempotency. Resource Explorer uses this value to prevent
         /// the accidental creation of duplicate versions. We recommend that you generate a <a
         /// href="https://wikipedia.org/wiki/Universally_unique_identifier">UUID-type value</a>
-        /// to ensure the uniqueness of your views.
+        /// to ensure the uniqueness of your index.
         /// </para>
         /// </summary>
         public string ClientToken
@@ -131,6 +132,7 @@ namespace Amazon.ResourceExplorer2.Model
         /// Region. The tags aren't attached to any of the resources listed in the index.
         /// </para>
         /// </summary>
+        [AWSProperty(Sensitive=true)]
         public Dictionary<string, string> Tags
         {
             get { return this._tags; }
@@ -140,7 +142,7 @@ namespace Amazon.ResourceExplorer2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

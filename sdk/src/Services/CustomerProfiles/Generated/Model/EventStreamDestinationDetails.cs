@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.CustomerProfiles.Model
         /// <summary>
         /// Gets and sets the property UnhealthySince. 
         /// <para>
-        /// The timestamp when the status last changed to <code>UNHEALHY</code>.
+        /// The timestamp when the status last changed to <c>UNHEALHY</c>.
         /// </para>
         /// </summary>
         public DateTime UnhealthySince

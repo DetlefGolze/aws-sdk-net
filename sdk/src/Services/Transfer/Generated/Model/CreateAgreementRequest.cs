@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.Transfer.Model
     /// 
     ///  
     /// <para>
-    /// The partner is identified with the <code>PartnerProfileId</code>, and the AS2 process
-    /// is identified with the <code>LocalProfileId</code>.
+    /// The partner is identified with the <c>PartnerProfileId</c>, and the AS2 process is
+    /// identified with the <c>LocalProfileId</c>.
     /// </para>
     /// </summary>
     public partial class CreateAgreementRequest : AmazonTransferRequest
@@ -47,11 +48,13 @@ namespace Amazon.Transfer.Model
         private string _accessRole;
         private string _baseDirectory;
         private string _description;
+        private EnforceMessageSigningType _enforceMessageSigning;
         private string _localProfileId;
         private string _partnerProfileId;
+        private PreserveFilenameType _preserveFilename;
         private string _serverId;
         private AgreementStatusType _status;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AccessRole. 
@@ -66,23 +69,22 @@ namespace Amazon.Transfer.Model
         /// </para>
         ///  
         /// <para>
-        /// With AS2, you can send files by calling <code>StartFileTransfer</code> and specifying
-        /// the file paths in the request parameter, <code>SendFilePaths</code>. We use the file’s
-        /// parent directory (for example, for <code>--send-file-paths /bucket/dir/file.txt</code>,
-        /// parent directory is <code>/bucket/dir/</code>) to temporarily store a processed AS2
-        /// message file, store the MDN when we receive them from the partner, and write a final
-        /// JSON file containing relevant metadata of the transmission. So, the <code>AccessRole</code>
-        /// needs to provide read and write access to the parent directory of the file location
-        /// used in the <code>StartFileTransfer</code> request. Additionally, you need to provide
-        /// read and write access to the parent directory of the files that you intend to send
-        /// with <code>StartFileTransfer</code>.
+        /// With AS2, you can send files by calling <c>StartFileTransfer</c> and specifying the
+        /// file paths in the request parameter, <c>SendFilePaths</c>. We use the file’s parent
+        /// directory (for example, for <c>--send-file-paths /bucket/dir/file.txt</c>, parent
+        /// directory is <c>/bucket/dir/</c>) to temporarily store a processed AS2 message file,
+        /// store the MDN when we receive them from the partner, and write a final JSON file containing
+        /// relevant metadata of the transmission. So, the <c>AccessRole</c> needs to provide
+        /// read and write access to the parent directory of the file location used in the <c>StartFileTransfer</c>
+        /// request. Additionally, you need to provide read and write access to the parent directory
+        /// of the files that you intend to send with <c>StartFileTransfer</c>.
         /// </para>
         ///  
         /// <para>
         /// If you are using Basic authentication for your AS2 connector, the access role requires
-        /// the <code>secretsmanager:GetSecretValue</code> permission for the secret. If the secret
+        /// the <c>secretsmanager:GetSecretValue</c> permission for the secret. If the secret
         /// is encrypted using a customer-managed key instead of the Amazon Web Services managed
-        /// key in Secrets Manager, then the role also needs the <code>kms:Decrypt</code> permission
+        /// key in Secrets Manager, then the role also needs the <c>kms:Decrypt</c> permission
         /// for that key.
         /// </para>
         ///  
@@ -92,9 +94,9 @@ namespace Amazon.Transfer.Model
         ///  
         /// <para>
         /// Make sure that the access role provides read and write access to the parent directory
-        /// of the file location that's used in the <code>StartFileTransfer</code> request. Additionally,
-        /// make sure that the role provides <code>secretsmanager:GetSecretValue</code> permission
-        /// to Secrets Manager.
+        /// of the file location that's used in the <c>StartFileTransfer</c> request. Additionally,
+        /// make sure that the role provides <c>secretsmanager:GetSecretValue</c> permission to
+        /// Secrets Manager.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]
@@ -117,10 +119,10 @@ namespace Amazon.Transfer.Model
         /// </para>
         ///  
         /// <para>
-        /// A <code>BaseDirectory</code> example is <code>/DOC-EXAMPLE-BUCKET/home/mydirectory</code>.
+        /// A <c>BaseDirectory</c> example is <c>/<i>amzn-s3-demo-bucket</i>/home/mydirectory</c>.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=1024)]
+        [AWSProperty(Required=true, Min=0, Max=1024)]
         public string BaseDirectory
         {
             get { return this._baseDirectory; }
@@ -150,6 +152,35 @@ namespace Amazon.Transfer.Model
         internal bool IsSetDescription()
         {
             return this._description != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EnforceMessageSigning. 
+        /// <para>
+        ///  Determines whether or not unsigned messages from your trading partners will be accepted.
+        /// 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>ENABLED</c>: Transfer Family rejects unsigned messages from your trading partner.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>DISABLED</c> (default value): Transfer Family accepts unsigned messages from your
+        /// trading partner.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public EnforceMessageSigningType EnforceMessageSigning
+        {
+            get { return this._enforceMessageSigning; }
+            set { this._enforceMessageSigning = value; }
+        }
+
+        // Check to see if EnforceMessageSigning property is set
+        internal bool IsSetEnforceMessageSigning()
+        {
+            return this._enforceMessageSigning != null;
         }
 
         /// <summary>
@@ -191,6 +222,37 @@ namespace Amazon.Transfer.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PreserveFilename. 
+        /// <para>
+        ///  Determines whether or not Transfer Family appends a unique string of characters to
+        /// the end of the AS2 message payload filename when saving it. 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>ENABLED</c>: the filename provided by your trading parter is preserved when the
+        /// file is saved.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>DISABLED</c> (default value): when Transfer Family saves the file, the filename
+        /// is adjusted, as described in <a href="https://docs.aws.amazon.com/transfer/latest/userguide/send-as2-messages.html#file-names-as2">File
+        /// names and locations</a>.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public PreserveFilenameType PreserveFilename
+        {
+            get { return this._preserveFilename; }
+            set { this._preserveFilename = value; }
+        }
+
+        // Check to see if PreserveFilename property is set
+        internal bool IsSetPreserveFilename()
+        {
+            return this._preserveFilename != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ServerId. 
         /// <para>
         /// A system-assigned unique identifier for a server instance. This is the specific server
@@ -213,7 +275,7 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the agreement. The agreement can be either <code>ACTIVE</code> or <code>INACTIVE</code>.
+        /// The status of the agreement. The agreement can be either <c>ACTIVE</c> or <c>INACTIVE</c>.
         /// </para>
         /// </summary>
         public AgreementStatusType Status
@@ -244,7 +306,7 @@ namespace Amazon.Transfer.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

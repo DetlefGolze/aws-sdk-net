@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
@@ -44,8 +45,8 @@ namespace Amazon.TranscribeService.Model
         /// Gets and sets the property LanguageCode. 
         /// <para>
         /// The language code that represents the language of the entries in the custom vocabulary
-        /// you want to update. US English (<code>en-US</code>) is the only language supported
-        /// with Amazon Transcribe Medical.
+        /// you want to update. US English (<c>en-US</c>) is the only language supported with
+        /// Amazon Transcribe Medical.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -70,8 +71,7 @@ namespace Amazon.TranscribeService.Model
         /// </para>
         ///  
         /// <para>
-        /// Here's an example URI path: <code>s3://DOC-EXAMPLE-BUCKET/my-vocab-file.txt</code>
-        /// 
+        /// Here's an example URI path: <c>s3://DOC-EXAMPLE-BUCKET/my-vocab-file.txt</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2000)]

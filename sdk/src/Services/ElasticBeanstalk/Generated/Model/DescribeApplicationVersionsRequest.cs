@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.ElasticBeanstalk.Model
         private string _applicationName;
         private int? _maxRecords;
         private string _nextToken;
-        private List<string> _versionLabels = new List<string>();
+        private List<string> _versionLabels = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -71,8 +72,8 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  
         /// <para>
-        /// If no <code>MaxRecords</code> is specified, all available application versions are
-        /// retrieved in a single response.
+        /// If no <c>MaxRecords</c> is specified, all available application versions are retrieved
+        /// in a single response.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]
@@ -97,7 +98,7 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  
         /// <para>
-        /// If no <code>NextToken</code> is specified, the first page is retrieved.
+        /// If no <c>NextToken</c> is specified, the first page is retrieved.
         /// </para>
         /// </summary>
         public string NextToken
@@ -127,7 +128,7 @@ namespace Amazon.ElasticBeanstalk.Model
         // Check to see if VersionLabels property is set
         internal bool IsSetVersionLabels()
         {
-            return this._versionLabels != null && this._versionLabels.Count > 0; 
+            return this._versionLabels != null && (this._versionLabels.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

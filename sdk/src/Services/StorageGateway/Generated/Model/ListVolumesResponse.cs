@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
@@ -45,7 +46,7 @@ namespace Amazon.StorageGateway.Model
     {
         private string _gatewayARN;
         private string _marker;
-        private List<VolumeInfo> _volumeInfos = new List<VolumeInfo>();
+        private List<VolumeInfo> _volumeInfos = AWSConfigs.InitializeCollections ? new List<VolumeInfo>() : null;
 
         /// <summary>
         /// Gets and sets the property GatewayARN.
@@ -87,8 +88,8 @@ namespace Amazon.StorageGateway.Model
         /// Gets and sets the property VolumeInfos. 
         /// <para>
         /// An array of <a>VolumeInfo</a> objects, where each object describes an iSCSI volume.
-        /// If no volumes are defined for the gateway, then <code>VolumeInfos</code> is an empty
-        /// array "[]".
+        /// If no volumes are defined for the gateway, then <c>VolumeInfos</c> is an empty array
+        /// "[]".
         /// </para>
         /// </summary>
         public List<VolumeInfo> VolumeInfos
@@ -100,7 +101,7 @@ namespace Amazon.StorageGateway.Model
         // Check to see if VolumeInfos property is set
         internal bool IsSetVolumeInfos()
         {
-            return this._volumeInfos != null && this._volumeInfos.Count > 0; 
+            return this._volumeInfos != null && (this._volumeInfos.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

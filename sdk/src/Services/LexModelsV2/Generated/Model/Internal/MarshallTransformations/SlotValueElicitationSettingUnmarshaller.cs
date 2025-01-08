@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.LexModelsV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.LexModelsV2.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public SlotValueElicitationSetting Unmarshall(JsonUnmarshallerContext context)
         {
+            SlotValueElicitationSetting unmarshalledObject = new SlotValueElicitationSetting();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            SlotValueElicitationSetting unmarshalledObject = new SlotValueElicitationSetting();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -94,6 +96,12 @@ namespace Amazon.LexModelsV2.Model.Internal.MarshallTransformations
                     unmarshalledObject.SlotConstraint = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("slotResolutionSetting", targetDepth))
+                {
+                    var unmarshaller = SlotResolutionSettingUnmarshaller.Instance;
+                    unmarshalledObject.SlotResolutionSetting = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("waitAndContinueSpecification", targetDepth))
                 {
                     var unmarshaller = WaitAndContinueSpecificationUnmarshaller.Instance;
@@ -101,7 +109,6 @@ namespace Amazon.LexModelsV2.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

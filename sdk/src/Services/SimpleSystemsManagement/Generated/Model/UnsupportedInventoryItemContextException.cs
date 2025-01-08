@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
-    /// The <code>Context</code> attribute that you specified for the <code>InventoryItem</code>
-    /// isn't allowed for this inventory type. You can only use the <code>Context</code> attribute
-    /// with inventory types like <code>AWS:ComplianceItem</code>.
+    /// The <c>Context</c> attribute that you specified for the <c>InventoryItem</c> isn't
+    /// allowed for this inventory type. You can only use the <c>Context</c> attribute with
+    /// inventory types like <c>AWS:ComplianceItem</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

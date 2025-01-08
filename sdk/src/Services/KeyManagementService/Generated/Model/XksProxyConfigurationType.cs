@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
     /// Detailed information about the external key store proxy (XKS proxy). Your external
     /// key store proxy translates KMS requests into a format that your external key manager
     /// can understand. These fields appear in a <a>DescribeCustomKeyStores</a> response only
-    /// when the <code>CustomKeyStoreType</code> is <code>EXTERNAL_KEY_STORE</code>.
+    /// when the <c>CustomKeyStoreType</c> is <c>EXTERNAL_KEY_STORE</c>.
     /// </summary>
     public partial class XksProxyConfigurationType
     {

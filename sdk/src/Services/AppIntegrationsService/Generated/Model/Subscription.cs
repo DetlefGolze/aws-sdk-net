@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppIntegrationsService.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.AppIntegrationsService.Model
         /// The description of the subscription.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=1000)]
+        [AWSProperty(Min=0, Max=1000)]
         public string Description
         {
             get { return this._description; }

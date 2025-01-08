@@ -191,6 +191,106 @@ namespace Amazon.PaymentCryptographyData
 
 
     /// <summary>
+    /// Constants used for properties of type EmvEncryptionMode.
+    /// </summary>
+    public class EmvEncryptionMode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CBC for EmvEncryptionMode
+        /// </summary>
+        public static readonly EmvEncryptionMode CBC = new EmvEncryptionMode("CBC");
+        /// <summary>
+        /// Constant ECB for EmvEncryptionMode
+        /// </summary>
+        public static readonly EmvEncryptionMode ECB = new EmvEncryptionMode("ECB");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public EmvEncryptionMode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static EmvEncryptionMode FindValue(string value)
+        {
+            return FindValue<EmvEncryptionMode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator EmvEncryptionMode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type EmvMajorKeyDerivationMode.
+    /// </summary>
+    public class EmvMajorKeyDerivationMode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant EMV_OPTION_A for EmvMajorKeyDerivationMode
+        /// </summary>
+        public static readonly EmvMajorKeyDerivationMode EMV_OPTION_A = new EmvMajorKeyDerivationMode("EMV_OPTION_A");
+        /// <summary>
+        /// Constant EMV_OPTION_B for EmvMajorKeyDerivationMode
+        /// </summary>
+        public static readonly EmvMajorKeyDerivationMode EMV_OPTION_B = new EmvMajorKeyDerivationMode("EMV_OPTION_B");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public EmvMajorKeyDerivationMode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static EmvMajorKeyDerivationMode FindValue(string value)
+        {
+            return FindValue<EmvMajorKeyDerivationMode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator EmvMajorKeyDerivationMode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type EncryptionMode.
     /// </summary>
     public class EncryptionMode : ConstantClass
@@ -258,6 +358,160 @@ namespace Amazon.PaymentCryptographyData
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator EncryptionMode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type KeyCheckValueAlgorithm.
+    /// </summary>
+    public class KeyCheckValueAlgorithm : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ANSI_X9_24 for KeyCheckValueAlgorithm
+        /// </summary>
+        public static readonly KeyCheckValueAlgorithm ANSI_X9_24 = new KeyCheckValueAlgorithm("ANSI_X9_24");
+        /// <summary>
+        /// Constant CMAC for KeyCheckValueAlgorithm
+        /// </summary>
+        public static readonly KeyCheckValueAlgorithm CMAC = new KeyCheckValueAlgorithm("CMAC");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public KeyCheckValueAlgorithm(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static KeyCheckValueAlgorithm FindValue(string value)
+        {
+            return FindValue<KeyCheckValueAlgorithm>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator KeyCheckValueAlgorithm(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type KeyDerivationFunction.
+    /// </summary>
+    public class KeyDerivationFunction : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ANSI_X963 for KeyDerivationFunction
+        /// </summary>
+        public static readonly KeyDerivationFunction ANSI_X963 = new KeyDerivationFunction("ANSI_X963");
+        /// <summary>
+        /// Constant NIST_SP800 for KeyDerivationFunction
+        /// </summary>
+        public static readonly KeyDerivationFunction NIST_SP800 = new KeyDerivationFunction("NIST_SP800");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public KeyDerivationFunction(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static KeyDerivationFunction FindValue(string value)
+        {
+            return FindValue<KeyDerivationFunction>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator KeyDerivationFunction(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type KeyDerivationHashAlgorithm.
+    /// </summary>
+    public class KeyDerivationHashAlgorithm : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant SHA_256 for KeyDerivationHashAlgorithm
+        /// </summary>
+        public static readonly KeyDerivationHashAlgorithm SHA_256 = new KeyDerivationHashAlgorithm("SHA_256");
+        /// <summary>
+        /// Constant SHA_384 for KeyDerivationHashAlgorithm
+        /// </summary>
+        public static readonly KeyDerivationHashAlgorithm SHA_384 = new KeyDerivationHashAlgorithm("SHA_384");
+        /// <summary>
+        /// Constant SHA_512 for KeyDerivationHashAlgorithm
+        /// </summary>
+        public static readonly KeyDerivationHashAlgorithm SHA_512 = new KeyDerivationHashAlgorithm("SHA_512");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public KeyDerivationHashAlgorithm(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static KeyDerivationHashAlgorithm FindValue(string value)
+        {
+            return FindValue<KeyDerivationHashAlgorithm>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator KeyDerivationHashAlgorithm(string value)
         {
             return FindValue(value);
         }
@@ -443,6 +697,60 @@ namespace Amazon.PaymentCryptographyData
 
 
     /// <summary>
+    /// Constants used for properties of type PinBlockFormatForEmvPinChange.
+    /// </summary>
+    public class PinBlockFormatForEmvPinChange : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ISO_FORMAT_0 for PinBlockFormatForEmvPinChange
+        /// </summary>
+        public static readonly PinBlockFormatForEmvPinChange ISO_FORMAT_0 = new PinBlockFormatForEmvPinChange("ISO_FORMAT_0");
+        /// <summary>
+        /// Constant ISO_FORMAT_1 for PinBlockFormatForEmvPinChange
+        /// </summary>
+        public static readonly PinBlockFormatForEmvPinChange ISO_FORMAT_1 = new PinBlockFormatForEmvPinChange("ISO_FORMAT_1");
+        /// <summary>
+        /// Constant ISO_FORMAT_3 for PinBlockFormatForEmvPinChange
+        /// </summary>
+        public static readonly PinBlockFormatForEmvPinChange ISO_FORMAT_3 = new PinBlockFormatForEmvPinChange("ISO_FORMAT_3");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public PinBlockFormatForEmvPinChange(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static PinBlockFormatForEmvPinChange FindValue(string value)
+        {
+            return FindValue<PinBlockFormatForEmvPinChange>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator PinBlockFormatForEmvPinChange(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type PinBlockFormatForPinData.
     /// </summary>
     public class PinBlockFormatForPinData : ConstantClass
@@ -456,6 +764,10 @@ namespace Amazon.PaymentCryptographyData
         /// Constant ISO_FORMAT_3 for PinBlockFormatForPinData
         /// </summary>
         public static readonly PinBlockFormatForPinData ISO_FORMAT_3 = new PinBlockFormatForPinData("ISO_FORMAT_3");
+        /// <summary>
+        /// Constant ISO_FORMAT_4 for PinBlockFormatForPinData
+        /// </summary>
+        public static readonly PinBlockFormatForPinData ISO_FORMAT_4 = new PinBlockFormatForPinData("ISO_FORMAT_4");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -486,6 +798,106 @@ namespace Amazon.PaymentCryptographyData
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator PinBlockFormatForPinData(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type PinBlockLengthPosition.
+    /// </summary>
+    public class PinBlockLengthPosition : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant FRONT_OF_PIN_BLOCK for PinBlockLengthPosition
+        /// </summary>
+        public static readonly PinBlockLengthPosition FRONT_OF_PIN_BLOCK = new PinBlockLengthPosition("FRONT_OF_PIN_BLOCK");
+        /// <summary>
+        /// Constant NONE for PinBlockLengthPosition
+        /// </summary>
+        public static readonly PinBlockLengthPosition NONE = new PinBlockLengthPosition("NONE");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public PinBlockLengthPosition(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static PinBlockLengthPosition FindValue(string value)
+        {
+            return FindValue<PinBlockLengthPosition>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator PinBlockLengthPosition(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type PinBlockPaddingType.
+    /// </summary>
+    public class PinBlockPaddingType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ISO_IEC_7816_4 for PinBlockPaddingType
+        /// </summary>
+        public static readonly PinBlockPaddingType ISO_IEC_7816_4 = new PinBlockPaddingType("ISO_IEC_7816_4");
+        /// <summary>
+        /// Constant NO_PADDING for PinBlockPaddingType
+        /// </summary>
+        public static readonly PinBlockPaddingType NO_PADDING = new PinBlockPaddingType("NO_PADDING");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public PinBlockPaddingType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static PinBlockPaddingType FindValue(string value)
+        {
+            return FindValue<PinBlockPaddingType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator PinBlockPaddingType(string value)
         {
             return FindValue(value);
         }
@@ -548,6 +960,68 @@ namespace Amazon.PaymentCryptographyData
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator SessionKeyDerivationMode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type SymmetricKeyAlgorithm.
+    /// </summary>
+    public class SymmetricKeyAlgorithm : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant AES_128 for SymmetricKeyAlgorithm
+        /// </summary>
+        public static readonly SymmetricKeyAlgorithm AES_128 = new SymmetricKeyAlgorithm("AES_128");
+        /// <summary>
+        /// Constant AES_192 for SymmetricKeyAlgorithm
+        /// </summary>
+        public static readonly SymmetricKeyAlgorithm AES_192 = new SymmetricKeyAlgorithm("AES_192");
+        /// <summary>
+        /// Constant AES_256 for SymmetricKeyAlgorithm
+        /// </summary>
+        public static readonly SymmetricKeyAlgorithm AES_256 = new SymmetricKeyAlgorithm("AES_256");
+        /// <summary>
+        /// Constant TDES_2KEY for SymmetricKeyAlgorithm
+        /// </summary>
+        public static readonly SymmetricKeyAlgorithm TDES_2KEY = new SymmetricKeyAlgorithm("TDES_2KEY");
+        /// <summary>
+        /// Constant TDES_3KEY for SymmetricKeyAlgorithm
+        /// </summary>
+        public static readonly SymmetricKeyAlgorithm TDES_3KEY = new SymmetricKeyAlgorithm("TDES_3KEY");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public SymmetricKeyAlgorithm(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static SymmetricKeyAlgorithm FindValue(string value)
+        {
+            return FindValue<SymmetricKeyAlgorithm>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator SymmetricKeyAlgorithm(string value)
         {
             return FindValue(value);
         }

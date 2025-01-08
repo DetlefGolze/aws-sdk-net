@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lex.Model
 {
     /// <summary>
-    /// The Content-Type header (<code>PostContent</code> API) has an invalid value.
+    /// The Content-Type header (<c>PostContent</c> API) has an invalid value.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

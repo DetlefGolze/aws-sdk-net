@@ -14,9 +14,12 @@ namespace ServiceClientGenerator
             switch (serviceBasename)
             {
                 case "EventBridge":
+                case "SimpleEmailServiceV2":
                     // we should not continue to add new hardcoded service specific signers
                     // and instead implement a solution based on a signer selection specification
-                    return "EventBridgeSigner";
+                    return "AWSEndpointAuthSchemeSigner";
+                case "CloudFrontKeyValueStore":
+                    return "AWS4aSignerCRTWrapper";
             }
 
             switch (signatureVersion)
@@ -59,11 +62,13 @@ namespace ServiceClientGenerator
         // List members in EC2 are always considered flattened, so we drop the 'member' prefix
         public static string DetermineAWSQueryListMemberPrefix(Member member)
         {
-            if (member.model.IsEC2Protocol || member.Shape.IsFlattened)
+            if (member.model.IsEC2Protocol || member.Shape.IsFlattened || member.IsFlattened)
                 return string.Empty;
 
             if (member.Shape.IsList)
-                return "member";
+            {
+                return member.Shape.ListMarshallName == null ? "member" : member.Shape.ListMarshallName;
+            }
 
             if (member.Shape.IsMap)
                 return "entry";
@@ -279,7 +284,7 @@ namespace ServiceClientGenerator
             }
             else if (member.IsMap)
             {
-                if (!member.Shape.IsFlattened)
+                if (!member.IsFlattened)
                     testExpression += "/entry";
             }
             else
@@ -441,6 +446,7 @@ namespace ServiceClientGenerator
             {
                 case "string": return "string";
                 case "boolean": return "bool" + (useNullableTypes ? "?" : "");
+                case "stringarray": return "IEnumerable<string>";
                 default:
                     throw new Exception("Unsupported type");
             }
@@ -451,6 +457,12 @@ namespace ServiceClientGenerator
             if (value.IsBoolean) return value.ToString().ToLower();
             if (value.IsString) return $"\"{(string)value}\"";
             if (value.IsInt) return $"{(int)value}";
+            if (value.IsArray || (value.PropertyNames.Count() == 0 && value.IsObject)) //Empty arrays returns an object with no properties
+            {
+                var jsonList = value.ToJson();
+                return $"new List<string> {jsonList.Replace("[", "{ ").Replace("]", " }")}";
+            }
+
             throw new Exception("Unsupported type");
         }
 

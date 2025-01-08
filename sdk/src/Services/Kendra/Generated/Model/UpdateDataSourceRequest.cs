@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateDataSource operation.
-    /// Updates an existing Amazon Kendra data source connector.
+    /// Updates an Amazon Kendra data source connector.
     /// </summary>
     public partial class UpdateDataSourceRequest : AmazonKendraRequest
     {
@@ -190,7 +191,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property RoleArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of a role with permission to access the data source
+        /// The Amazon Resource Name (ARN) of an IAM role with permission to access the data source
         /// and required resources. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html">IAM
         /// roles for Amazon Kendra</a>.
         /// </para>

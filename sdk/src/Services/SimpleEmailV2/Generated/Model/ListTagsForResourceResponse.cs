@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.SimpleEmailV2.Model
     /// </summary>
     public partial class ListTagsForResourceResponse : AmazonWebServiceResponse
     {
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// An array that lists all the tags that are associated with the resource. Each tag consists
-        /// of a required tag key (<code>Key</code>) and an associated tag value (<code>Value</code>)
+        /// of a required tag key (<c>Key</c>) and an associated tag value (<c>Value</c>)
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -52,7 +53,7 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

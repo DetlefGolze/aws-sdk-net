@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
-    /// The <code>NextToken</code> string was altered unexpectedly, and the operation has
-    /// stopped. Run the operation without changing the <code>NextToken</code> string, and
-    /// try again.
+    /// The <c>NextToken</c> string was altered unexpectedly, and the operation has stopped.
+    /// Run the operation without changing the <c>NextToken</c> string, and try again.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

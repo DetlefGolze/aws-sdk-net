@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -36,8 +37,28 @@ namespace Amazon.OpenSearchService.Model
     /// </summary>
     public partial class AssociatePackageRequest : AmazonOpenSearchServiceRequest
     {
+        private PackageAssociationConfiguration _associationConfiguration;
         private string _domainName;
         private string _packageID;
+        private List<string> _prerequisitePackageIDList = AWSConfigs.InitializeCollections ? new List<string>() : null;
+
+        /// <summary>
+        /// Gets and sets the property AssociationConfiguration. 
+        /// <para>
+        /// The configuration for associating a package with an Amazon OpenSearch Service domain.
+        /// </para>
+        /// </summary>
+        public PackageAssociationConfiguration AssociationConfiguration
+        {
+            get { return this._associationConfiguration; }
+            set { this._associationConfiguration = value; }
+        }
+
+        // Check to see if AssociationConfiguration property is set
+        internal bool IsSetAssociationConfiguration()
+        {
+            return this._associationConfiguration != null;
+        }
 
         /// <summary>
         /// Gets and sets the property DomainName. 
@@ -61,7 +82,7 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property PackageID. 
         /// <para>
-        /// Internal ID of the package to associate with a domain. Use <code>DescribePackages</code>
+        /// Internal ID of the package to associate with a domain. Use <c>DescribePackages</c>
         /// to find this value. 
         /// </para>
         /// </summary>
@@ -76,6 +97,25 @@ namespace Amazon.OpenSearchService.Model
         internal bool IsSetPackageID()
         {
             return this._packageID != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PrerequisitePackageIDList. 
+        /// <para>
+        /// A list of package IDs that must be associated with the domain before the package specified
+        /// in the request can be associated.
+        /// </para>
+        /// </summary>
+        public List<string> PrerequisitePackageIDList
+        {
+            get { return this._prerequisitePackageIDList; }
+            set { this._prerequisitePackageIDList = value; }
+        }
+
+        // Check to see if PrerequisitePackageIDList property is set
+        internal bool IsSetPrerequisitePackageIDList()
+        {
+            return this._prerequisitePackageIDList != null && (this._prerequisitePackageIDList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

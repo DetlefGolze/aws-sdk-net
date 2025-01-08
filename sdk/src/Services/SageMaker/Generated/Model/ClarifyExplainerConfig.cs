@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.SageMaker.Model
         /// <para>
         /// A JMESPath boolean expression used to filter which records to explain. Explanations
         /// are activated by default. See <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html#clarify-online-explainability-create-endpoint-enable">
-        /// <code>EnableExplanations</code> </a>for additional information.
+        /// <c>EnableExplanations</c> </a>for additional information.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]

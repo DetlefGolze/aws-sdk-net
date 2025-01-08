@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -36,17 +37,32 @@ namespace Amazon.WorkSpaces.Model
     /// <para>
     /// This operation is asynchronous and returns before the WorkSpaces are created.
     /// </para>
-    ///  <note> 
+    ///  <note> <ul> <li> 
     /// <para>
-    /// The <code>MANUAL</code> running mode value is only supported by Amazon WorkSpaces
-    /// Core. Contact your account team to be allow-listed to use this value. For more information,
+    /// The <c>MANUAL</c> running mode value is only supported by Amazon WorkSpaces Core.
+    /// Contact your account team to be allow-listed to use this value. For more information,
     /// see <a href="http://aws.amazon.com/workspaces/core/">Amazon WorkSpaces Core</a>.
     /// </para>
-    ///  </note>
+    ///  </li> <li> 
+    /// <para>
+    /// You don't need to specify the <c>PCOIP</c> protocol for Linux bundles because <c>DCV</c>
+    /// (formerly WSP) is the default protocol for those bundles.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// User-decoupled WorkSpaces are only supported by Amazon WorkSpaces Core.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Review your running mode to ensure you are using one that is optimal for your needs
+    /// and budget. For more information on switching running modes, see <a href="http://aws.amazon.com/workspaces-family/workspaces/faqs/#:~:text=Can%20I%20switch%20between%20hourly%20and%20monthly%20billing%20on%20WorkSpaces%20Personal%3F">
+    /// Can I switch between hourly and monthly billing?</a> 
+    /// </para>
+    ///  </li> </ul> </note>
     /// </summary>
     public partial class CreateWorkspacesRequest : AmazonWorkSpacesRequest
     {
-        private List<WorkspaceRequest> _workspaces = new List<WorkspaceRequest>();
+        private List<WorkspaceRequest> _workspaces = AWSConfigs.InitializeCollections ? new List<WorkspaceRequest>() : null;
 
         /// <summary>
         /// Gets and sets the property Workspaces. 
@@ -64,7 +80,7 @@ namespace Amazon.WorkSpaces.Model
         // Check to see if Workspaces property is set
         internal bool IsSetWorkspaces()
         {
-            return this._workspaces != null && this._workspaces.Count > 0; 
+            return this._workspaces != null && (this._workspaces.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

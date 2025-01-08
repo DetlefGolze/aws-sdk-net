@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.EC2.Model
         private int? _allocationDefaultNetmaskLength;
         private int? _allocationMaxNetmaskLength;
         private int? _allocationMinNetmaskLength;
-        private List<IpamResourceTag> _allocationResourceTags = new List<IpamResourceTag>();
+        private List<IpamResourceTag> _allocationResourceTags = AWSConfigs.InitializeCollections ? new List<IpamResourceTag>() : null;
         private bool? _autoImport;
         private IpamPoolAwsService _awsService;
         private string _description;
@@ -56,9 +57,10 @@ namespace Amazon.EC2.Model
         private IpamPoolPublicIpSource _publicIpSource;
         private bool? _publiclyAdvertisable;
         private string _sourceIpamPoolId;
+        private IpamPoolSourceResource _sourceResource;
         private IpamPoolState _state;
         private string _stateMessage;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AddressFamily. 
@@ -161,7 +163,7 @@ namespace Amazon.EC2.Model
         // Check to see if AllocationResourceTags property is set
         internal bool IsSetAllocationResourceTags()
         {
-            return this._allocationResourceTags != null && this._allocationResourceTags.Count > 0; 
+            return this._allocationResourceTags != null && (this._allocationResourceTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -348,13 +350,27 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Locale. 
         /// <para>
-        /// The locale of the IPAM pool. In IPAM, the locale is the Amazon Web Services Region
-        /// where you want to make an IPAM pool available for allocations. Only resources in the
-        /// same Region as the locale of the pool can get IP address allocations from the pool.
-        /// You can only allocate a CIDR for a VPC, for example, from an IPAM pool that shares
-        /// a locale with the VPC’s Region. Note that once you choose a Locale for a pool, you
-        /// cannot modify it. If you choose an Amazon Web Services Region for locale that has
-        /// not been configured as an operating Region for the IPAM, you'll get an error.
+        /// The locale of the IPAM pool.
+        /// </para>
+        ///  
+        /// <para>
+        /// The locale for the pool should be one of the following:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// An Amazon Web Services Region where you want this IPAM pool to be available for allocations.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The network border group for an Amazon Web Services Local Zone where you want this
+        /// IPAM pool to be available for allocations (<a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html#byoip-zone-avail">supported
+        /// Local Zones</a>). This option is only available for IPAM IPv4 pools in the public
+        /// scope.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// If you choose an Amazon Web Services Region for locale that has not been configured
+        /// as an operating Region for the IPAM, you'll get an error.
         /// </para>
         /// </summary>
         public string Locale
@@ -411,12 +427,12 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property PublicIpSource. 
         /// <para>
         /// The IP address source for pools in the public scope. Only used for provisioning IP
-        /// address CIDRs to pools in the public scope. Default is <code>BYOIP</code>. For more
-        /// information, see <a href="https://docs.aws.amazon.com/vpc/latest/ipam/intro-create-ipv6-pools.html">Create
+        /// address CIDRs to pools in the public scope. Default is <c>BYOIP</c>. For more information,
+        /// see <a href="https://docs.aws.amazon.com/vpc/latest/ipam/intro-create-ipv6-pools.html">Create
         /// IPv6 pools</a> in the <i>Amazon VPC IPAM User Guide</i>. By default, you can add only
         /// one Amazon-provided IPv6 CIDR block to a top-level IPv6 pool. For information on increasing
-        /// the default limit, see <a href="https://docs.aws.amazon.com/vpc/latest/ipam/quotas-ipam.html">
-        /// Quotas for your IPAM</a> in the <i>Amazon VPC IPAM User Guide</i>.
+        /// the default limit, see <a href="https://docs.aws.amazon.com/vpc/latest/ipam/quotas-ipam.html">Quotas
+        /// for your IPAM</a> in the <i>Amazon VPC IPAM User Guide</i>.
         /// </para>
         /// </summary>
         public IpamPoolPublicIpSource PublicIpSource
@@ -435,7 +451,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property PubliclyAdvertisable. 
         /// <para>
         /// Determines if a pool is publicly advertisable. This option is not available for pools
-        /// with AddressFamily set to <code>ipv4</code>.
+        /// with AddressFamily set to <c>ipv4</c>.
         /// </para>
         /// </summary>
         public bool PubliclyAdvertisable
@@ -470,6 +486,24 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SourceResource. 
+        /// <para>
+        /// The resource used to provision CIDRs to a resource planning pool.
+        /// </para>
+        /// </summary>
+        public IpamPoolSourceResource SourceResource
+        {
+            get { return this._sourceResource; }
+            set { this._sourceResource = value; }
+        }
+
+        // Check to see if SourceResource property is set
+        internal bool IsSetSourceResource()
+        {
+            return this._sourceResource != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property State. 
         /// <para>
         /// The state of the IPAM pool.
@@ -490,7 +524,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property StateMessage. 
         /// <para>
-        /// A message related to the failed creation of an IPAM pool.
+        /// The state message.
         /// </para>
         /// </summary>
         public string StateMessage
@@ -510,9 +544,8 @@ namespace Amazon.EC2.Model
         /// <para>
         /// The key/value combination of a tag assigned to the resource. Use the tag key in the
         /// filter name and the tag value as the filter value. For example, to find all resources
-        /// that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>,
-        /// specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the
-        /// filter value.
+        /// that have a tag with the key <c>Owner</c> and the value <c>TeamA</c>, specify <c>tag:Owner</c>
+        /// for the filter name and <c>TeamA</c> for the filter value.
         /// </para>
         /// </summary>
         public List<Tag> Tags
@@ -524,7 +557,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

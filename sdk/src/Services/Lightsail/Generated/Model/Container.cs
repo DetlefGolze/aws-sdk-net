@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -34,10 +35,10 @@ namespace Amazon.Lightsail.Model
     /// </summary>
     public partial class Container
     {
-        private List<string> _command = new List<string>();
-        private Dictionary<string, string> _environment = new Dictionary<string, string>();
+        private List<string> _command = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, string> _environment = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _image;
-        private Dictionary<string, string> _ports = new Dictionary<string, string>();
+        private Dictionary<string, string> _ports = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Command. 
@@ -54,7 +55,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Command property is set
         internal bool IsSetCommand()
         {
-            return this._command != null && this._command.Count > 0; 
+            return this._command != null && (this._command.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -72,7 +73,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Environment property is set
         internal bool IsSetEnvironment()
         {
-            return this._environment != null && this._environment.Count > 0; 
+            return this._environment != null && (this._environment.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -83,19 +84,18 @@ namespace Amazon.Lightsail.Model
         ///  
         /// <para>
         /// Container images sourced from your Lightsail container service, that are registered
-        /// and stored on your service, start with a colon (<code>:</code>). For example, if your
-        /// container service name is <code>container-service-1</code>, the container image label
-        /// is <code>mystaticsite</code>, and you want to use the third (<code>3</code>) version
-        /// of the registered container image, then you should specify <code>:container-service-1.mystaticsite.3</code>.
-        /// To use the latest version of a container image, specify <code>latest</code> instead
-        /// of a version number (for example, <code>:container-service-1.mystaticsite.latest</code>).
-        /// Lightsail will automatically use the highest numbered version of the registered container
-        /// image.
+        /// and stored on your service, start with a colon (<c>:</c>). For example, if your container
+        /// service name is <c>container-service-1</c>, the container image label is <c>mystaticsite</c>,
+        /// and you want to use the third (<c>3</c>) version of the registered container image,
+        /// then you should specify <c>:container-service-1.mystaticsite.3</c>. To use the latest
+        /// version of a container image, specify <c>latest</c> instead of a version number (for
+        /// example, <c>:container-service-1.mystaticsite.latest</c>). Lightsail will automatically
+        /// use the highest numbered version of the registered container image.
         /// </para>
         ///  
         /// <para>
         /// Container images sourced from a public registry like Docker Hub don't start with a
-        /// colon. For example, <code>nginx:latest</code> or <code>nginx</code>.
+        /// colon. For example, <c>nginx:latest</c> or <c>nginx</c>.
         /// </para>
         /// </summary>
         public string Image
@@ -125,7 +125,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Ports property is set
         internal bool IsSetPorts()
         {
-            return this._ports != null && this._ports.Count > 0; 
+            return this._ports != null && (this._ports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

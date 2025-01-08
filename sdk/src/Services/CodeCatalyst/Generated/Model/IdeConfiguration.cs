@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeCatalyst.Model
 {
     /// <summary>
@@ -40,8 +41,8 @@ namespace Amazon.CodeCatalyst.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the IDE. Valid values include <code>Cloud9</code>, <code>IntelliJ</code>,
-        /// <code>PyCharm</code>, <code>GoLand</code>, and <code>VSCode</code>.
+        /// The name of the IDE. Valid values include <c>Cloud9</c>, <c>IntelliJ</c>, <c>PyCharm</c>,
+        /// <c>GoLand</c>, and <c>VSCode</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -64,7 +65,7 @@ namespace Amazon.CodeCatalyst.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// This parameter is not required for <code>VSCode</code>.
+        /// This parameter is not required for <c>VSCode</c>.
         /// </para>
         ///  </note>
         /// </summary>

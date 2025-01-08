@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -39,8 +40,8 @@ namespace Amazon.S3Control.Model
         /// Gets and sets the property Arn. 
         /// <para>
         /// A container for the Amazon Resource Name (ARN) of the Amazon Web Services organization.
-        /// This property is read-only and follows the following format: <code> arn:aws:organizations:<i>us-east-1</i>:<i>example-account-id</i>:organization/<i>o-ex2l495dck</i>
-        /// </code> 
+        /// This property is read-only and follows the following format: <c> arn:aws:organizations:<i>us-east-1</i>:<i>example-account-id</i>:organization/<i>o-ex2l495dck</i>
+        /// </c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1024)]

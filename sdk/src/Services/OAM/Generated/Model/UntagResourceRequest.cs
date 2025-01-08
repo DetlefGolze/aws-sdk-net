@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OAM.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.OAM.Model
     ///  <important> 
     /// <para>
     /// Unlike tagging permissions in other Amazon Web Services services, to tag or untag
-    /// links and sinks you must have the <code>oam:ResourceTag</code> permission. The <code>iam:TagResource</code>
+    /// links and sinks you must have the <c>oam:ResourceTag</c> permission. The <c>iam:TagResource</c>
     /// permission does not allow you to tag and untag links and sinks.
     /// </para>
     ///  </important>
@@ -43,7 +44,7 @@ namespace Amazon.OAM.Model
     public partial class UntagResourceRequest : AmazonOAMRequest
     {
         private string _resourceArn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -52,13 +53,13 @@ namespace Amazon.OAM.Model
         /// </para>
         ///  
         /// <para>
-        /// The ARN format of a sink is <code>arn:aws:oam:<i>Region</i>:<i>account-id</i>:sink/<i>sink-id</i>
-        /// </code> 
+        /// The ARN format of a sink is <c>arn:aws:oam:<i>Region</i>:<i>account-id</i>:sink/<i>sink-id</i>
+        /// </c> 
         /// </para>
         ///  
         /// <para>
-        /// The ARN format of a link is <code>arn:aws:oam:<i>Region</i>:<i>account-id</i>:link/<i>link-id</i>
-        /// </code> 
+        /// The ARN format of a link is <c>arn:aws:oam:<i>Region</i>:<i>account-id</i>:link/<i>link-id</i>
+        /// </c> 
         /// </para>
         ///  
         /// <para>
@@ -95,7 +96,7 @@ namespace Amazon.OAM.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

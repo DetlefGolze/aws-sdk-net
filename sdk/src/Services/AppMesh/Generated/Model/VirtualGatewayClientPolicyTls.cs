@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppMesh.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.AppMesh.Model
     {
         private VirtualGatewayClientTlsCertificate _certificate;
         private bool? _enforce;
-        private List<int> _ports = new List<int>();
+        private List<int> _ports = AWSConfigs.InitializeCollections ? new List<int>() : null;
         private VirtualGatewayTlsValidationContext _validation;
 
         /// <summary>
@@ -60,8 +61,7 @@ namespace Amazon.AppMesh.Model
         /// <summary>
         /// Gets and sets the property Enforce. 
         /// <para>
-        /// Whether the policy is enforced. The default is <code>True</code>, if a value isn't
-        /// specified.
+        /// Whether the policy is enforced. The default is <c>True</c>, if a value isn't specified.
         /// </para>
         /// </summary>
         public bool Enforce
@@ -91,7 +91,7 @@ namespace Amazon.AppMesh.Model
         // Check to see if Ports property is set
         internal bool IsSetPorts()
         {
-            return this._ports != null && this._ports.Count > 0; 
+            return this._ports != null && (this._ports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

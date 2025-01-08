@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -49,6 +50,14 @@ namespace Amazon.ResilienceHub.Model
         public IListAppAssessmentComplianceDriftsPaginator ListAppAssessmentComplianceDrifts(ListAppAssessmentComplianceDriftsRequest request) 
         {
             return new ListAppAssessmentComplianceDriftsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListAppAssessmentResourceDrifts operation
+        ///</summary>
+        public IListAppAssessmentResourceDriftsPaginator ListAppAssessmentResourceDrifts(ListAppAssessmentResourceDriftsRequest request) 
+        {
+            return new ListAppAssessmentResourceDriftsPaginator(this.client, request);
         }
 
         /// <summary>
@@ -124,6 +133,14 @@ namespace Amazon.ResilienceHub.Model
         }
 
         /// <summary>
+        /// Paginator for ListMetrics operation
+        ///</summary>
+        public IListMetricsPaginator ListMetrics(ListMetricsRequest request) 
+        {
+            return new ListMetricsPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListRecommendationTemplates operation
         ///</summary>
         public IListRecommendationTemplatesPaginator ListRecommendationTemplates(ListRecommendationTemplatesRequest request) 
@@ -137,6 +154,14 @@ namespace Amazon.ResilienceHub.Model
         public IListResiliencyPoliciesPaginator ListResiliencyPolicies(ListResiliencyPoliciesRequest request) 
         {
             return new ListResiliencyPoliciesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListResourceGroupingRecommendations operation
+        ///</summary>
+        public IListResourceGroupingRecommendationsPaginator ListResourceGroupingRecommendations(ListResourceGroupingRecommendationsRequest request) 
+        {
+            return new ListResourceGroupingRecommendationsPaginator(this.client, request);
         }
 
         /// <summary>

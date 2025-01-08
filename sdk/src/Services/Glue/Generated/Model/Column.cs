@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
-    /// A column in a <code>Table</code>.
+    /// A column in a <c>Table</c>.
     /// </summary>
     public partial class Column
     {
         private string _comment;
         private string _name;
-        private Dictionary<string, string> _parameters = new Dictionary<string, string>();
+        private Dictionary<string, string> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _type;
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the <code>Column</code>.
+        /// The name of the <c>Column</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]
@@ -91,13 +92,13 @@ namespace Amazon.Glue.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The data type of the <code>Column</code>.
+        /// The data type of the <c>Column</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=131072)]

@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.Macie2
 {
     /// <summary>
-    /// Implementation for accessing Macie2
+    /// <para>Implementation for accessing Macie2</para>
     ///
     /// Amazon Macie
     /// </summary>
@@ -385,6 +386,59 @@ namespace Amazon.Macie2
             options.ResponseUnmarshaller = BatchGetCustomDataIdentifiersResponseUnmarshaller.Instance;
 
             return InvokeAsync<BatchGetCustomDataIdentifiersResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  BatchUpdateAutomatedDiscoveryAccounts
+
+        internal virtual BatchUpdateAutomatedDiscoveryAccountsResponse BatchUpdateAutomatedDiscoveryAccounts(BatchUpdateAutomatedDiscoveryAccountsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = BatchUpdateAutomatedDiscoveryAccountsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = BatchUpdateAutomatedDiscoveryAccountsResponseUnmarshaller.Instance;
+
+            return Invoke<BatchUpdateAutomatedDiscoveryAccountsResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Changes the status of automated sensitive data discovery for one or more accounts.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the BatchUpdateAutomatedDiscoveryAccounts service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the BatchUpdateAutomatedDiscoveryAccounts service method, as returned by Macie2.</returns>
+        /// <exception cref="Amazon.Macie2.Model.AccessDeniedException">
+        /// Provides information about an error that occurred due to insufficient access to a
+        /// specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.Macie2.Model.ConflictException">
+        /// Provides information about an error that occurred due to a versioning conflict for
+        /// a specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.Macie2.Model.InternalServerException">
+        /// Provides information about an error that occurred due to an unknown internal server
+        /// error, exception, or failure.
+        /// </exception>
+        /// <exception cref="Amazon.Macie2.Model.ThrottlingException">
+        /// Provides information about an error that occurred because too many requests were sent
+        /// during a certain amount of time.
+        /// </exception>
+        /// <exception cref="Amazon.Macie2.Model.ValidationException">
+        /// Provides information about an error that occurred due to a syntax error in a request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/BatchUpdateAutomatedDiscoveryAccounts">REST API Reference for BatchUpdateAutomatedDiscoveryAccounts Operation</seealso>
+        public virtual Task<BatchUpdateAutomatedDiscoveryAccountsResponse> BatchUpdateAutomatedDiscoveryAccountsAsync(BatchUpdateAutomatedDiscoveryAccountsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = BatchUpdateAutomatedDiscoveryAccountsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = BatchUpdateAutomatedDiscoveryAccountsResponseUnmarshaller.Instance;
+
+            return InvokeAsync<BatchUpdateAutomatedDiscoveryAccountsResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -1918,7 +1972,7 @@ namespace Amazon.Macie2
 
         /// <summary>
         /// Retrieves the configuration settings and status of automated sensitive data discovery
-        /// for an account.
+        /// for an organization or standalone account.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetAutomatedDiscoveryConfiguration service method.</param>
         /// <param name="cancellationToken">
@@ -3121,6 +3175,59 @@ namespace Amazon.Macie2
 
         #endregion
         
+        #region  ListAutomatedDiscoveryAccounts
+
+        internal virtual ListAutomatedDiscoveryAccountsResponse ListAutomatedDiscoveryAccounts(ListAutomatedDiscoveryAccountsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListAutomatedDiscoveryAccountsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListAutomatedDiscoveryAccountsResponseUnmarshaller.Instance;
+
+            return Invoke<ListAutomatedDiscoveryAccountsResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Retrieves the status of automated sensitive data discovery for one or more accounts.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAutomatedDiscoveryAccounts service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListAutomatedDiscoveryAccounts service method, as returned by Macie2.</returns>
+        /// <exception cref="Amazon.Macie2.Model.AccessDeniedException">
+        /// Provides information about an error that occurred due to insufficient access to a
+        /// specified resource.
+        /// </exception>
+        /// <exception cref="Amazon.Macie2.Model.InternalServerException">
+        /// Provides information about an error that occurred due to an unknown internal server
+        /// error, exception, or failure.
+        /// </exception>
+        /// <exception cref="Amazon.Macie2.Model.ResourceNotFoundException">
+        /// Provides information about an error that occurred because a specified resource wasn't
+        /// found.
+        /// </exception>
+        /// <exception cref="Amazon.Macie2.Model.ThrottlingException">
+        /// Provides information about an error that occurred because too many requests were sent
+        /// during a certain amount of time.
+        /// </exception>
+        /// <exception cref="Amazon.Macie2.Model.ValidationException">
+        /// Provides information about an error that occurred due to a syntax error in a request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListAutomatedDiscoveryAccounts">REST API Reference for ListAutomatedDiscoveryAccounts Operation</seealso>
+        public virtual Task<ListAutomatedDiscoveryAccountsResponse> ListAutomatedDiscoveryAccountsAsync(ListAutomatedDiscoveryAccountsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListAutomatedDiscoveryAccountsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListAutomatedDiscoveryAccountsResponseUnmarshaller.Instance;
+
+            return InvokeAsync<ListAutomatedDiscoveryAccountsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ListClassificationJobs
 
         internal virtual ListClassificationJobsResponse ListClassificationJobs(ListClassificationJobsRequest request)
@@ -3245,7 +3352,7 @@ namespace Amazon.Macie2
 
 
         /// <summary>
-        /// Retrieves a subset of information about all the custom data identifiers for an account.
+        /// Retrieves a subset of information about the custom data identifiers for an account.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListCustomDataIdentifiers service method.</param>
         /// <param name="cancellationToken">
@@ -3428,7 +3535,7 @@ namespace Amazon.Macie2
 
 
         /// <summary>
-        /// Retrieves information about the Amazon Macie membership invitations that were received
+        /// Retrieves information about Amazon Macie membership invitations that were received
         /// by an account.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListInvitations service method.</param>
@@ -3649,8 +3756,8 @@ namespace Amazon.Macie2
 
 
         /// <summary>
-        /// Retrieves information about objects that were selected from an S3 bucket for automated
-        /// sensitive data discovery.
+        /// Retrieves information about objects that Amazon Macie selected from an S3 bucket for
+        /// automated sensitive data discovery.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListResourceProfileArtifacts service method.</param>
         /// <param name="cancellationToken">
@@ -3849,7 +3956,7 @@ namespace Amazon.Macie2
 
 
         /// <summary>
-        /// Creates or updates the configuration settings for storing data classification results.
+        /// Adds or updates the configuration settings for storing data classification results.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutClassificationExportConfiguration service method.</param>
         /// <param name="cancellationToken">
@@ -3972,7 +4079,7 @@ namespace Amazon.Macie2
 
         /// <summary>
         /// Retrieves (queries) statistical data and other information about Amazon Web Services
-        /// resources that Amazon Macie monitors and analyzes.
+        /// resources that Amazon Macie monitors and analyzes for an account.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the SearchResources service method.</param>
         /// <param name="cancellationToken">
@@ -4068,7 +4175,7 @@ namespace Amazon.Macie2
 
 
         /// <summary>
-        /// Tests a custom data identifier.
+        /// Tests criteria for a custom data identifier.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the TestCustomDataIdentifier service method.</param>
         /// <param name="cancellationToken">
@@ -4216,7 +4323,8 @@ namespace Amazon.Macie2
 
 
         /// <summary>
-        /// Enables or disables automated sensitive data discovery for an account.
+        /// Changes the configuration settings and status of automated sensitive data discovery
+        /// for an organization or standalone account.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateAutomatedDiscoveryConfiguration service method.</param>
         /// <param name="cancellationToken">
@@ -4836,11 +4944,11 @@ namespace Amazon.Macie2
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

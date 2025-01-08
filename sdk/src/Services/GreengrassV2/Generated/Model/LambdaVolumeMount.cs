@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GreengrassV2.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.GreengrassV2.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool AddGroupOwner
@@ -84,11 +85,11 @@ namespace Amazon.GreengrassV2.Model
         /// <summary>
         /// Gets and sets the property Permission. 
         /// <para>
-        /// The permission to access the volume: read/only (<code>ro</code>) or read/write (<code>rw</code>).
+        /// The permission to access the volume: read/only (<c>ro</c>) or read/write (<c>rw</c>).
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>ro</code> 
+        /// Default: <c>ro</c> 
         /// </para>
         /// </summary>
         public LambdaFilesystemPermission Permission

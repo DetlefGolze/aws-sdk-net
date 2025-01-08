@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -34,15 +35,17 @@ namespace Amazon.IoTSiteWise.Model
     public partial class DescribeAssetResponse : AmazonWebServiceResponse
     {
         private string _assetArn;
-        private List<AssetCompositeModel> _assetCompositeModels = new List<AssetCompositeModel>();
+        private List<AssetCompositeModel> _assetCompositeModels = AWSConfigs.InitializeCollections ? new List<AssetCompositeModel>() : null;
+        private List<AssetCompositeModelSummary> _assetCompositeModelSummaries = AWSConfigs.InitializeCollections ? new List<AssetCompositeModelSummary>() : null;
         private DateTime? _assetCreationDate;
         private string _assetDescription;
-        private List<AssetHierarchy> _assetHierarchies = new List<AssetHierarchy>();
+        private string _assetExternalId;
+        private List<AssetHierarchy> _assetHierarchies = AWSConfigs.InitializeCollections ? new List<AssetHierarchy>() : null;
         private string _assetId;
         private DateTime? _assetLastUpdateDate;
         private string _assetModelId;
         private string _assetName;
-        private List<AssetProperty> _assetProperties = new List<AssetProperty>();
+        private List<AssetProperty> _assetProperties = AWSConfigs.InitializeCollections ? new List<AssetProperty>() : null;
         private AssetStatus _assetStatus;
 
         /// <summary>
@@ -53,7 +56,7 @@ namespace Amazon.IoTSiteWise.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:${Partition}:iotsitewise:${Region}:${Account}:asset/${AssetId}</code> 
+        ///  <c>arn:${Partition}:iotsitewise:${Region}:${Account}:asset/${AssetId}</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1600)]
@@ -84,7 +87,25 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if AssetCompositeModels property is set
         internal bool IsSetAssetCompositeModels()
         {
-            return this._assetCompositeModels != null && this._assetCompositeModels.Count > 0; 
+            return this._assetCompositeModels != null && (this._assetCompositeModels.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property AssetCompositeModelSummaries. 
+        /// <para>
+        /// The list of the immediate child custom composite model summaries for the asset.
+        /// </para>
+        /// </summary>
+        public List<AssetCompositeModelSummary> AssetCompositeModelSummaries
+        {
+            get { return this._assetCompositeModelSummaries; }
+            set { this._assetCompositeModelSummaries = value; }
+        }
+
+        // Check to see if AssetCompositeModelSummaries property is set
+        internal bool IsSetAssetCompositeModelSummaries()
+        {
+            return this._assetCompositeModelSummaries != null && (this._assetCompositeModelSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -126,10 +147,29 @@ namespace Amazon.IoTSiteWise.Model
         }
 
         /// <summary>
+        /// Gets and sets the property AssetExternalId. 
+        /// <para>
+        /// The external ID of the asset, if any.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=2, Max=128)]
+        public string AssetExternalId
+        {
+            get { return this._assetExternalId; }
+            set { this._assetExternalId = value; }
+        }
+
+        // Check to see if AssetExternalId property is set
+        internal bool IsSetAssetExternalId()
+        {
+            return this._assetExternalId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property AssetHierarchies. 
         /// <para>
-        /// A list of asset hierarchies that each contain a <code>hierarchyId</code>. A hierarchy
-        /// specifies allowed parent/child asset relationships.
+        /// A list of asset hierarchies that each contain a <c>hierarchyId</c>. A hierarchy specifies
+        /// allowed parent/child asset relationships.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -142,13 +182,13 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if AssetHierarchies property is set
         internal bool IsSetAssetHierarchies()
         {
-            return this._assetHierarchies != null && this._assetHierarchies.Count > 0; 
+            return this._assetHierarchies != null && (this._assetHierarchies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AssetId. 
         /// <para>
-        /// The ID of the asset.
+        /// The ID of the asset, in UUID format.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=36, Max=36)]
@@ -229,7 +269,7 @@ namespace Amazon.IoTSiteWise.Model
         ///  
         /// <para>
         /// This object doesn't include properties that you define in composite models. You can
-        /// find composite model properties in the <code>assetCompositeModels</code> object.
+        /// find composite model properties in the <c>assetCompositeModels</c> object.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -242,7 +282,7 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if AssetProperties property is set
         internal bool IsSetAssetProperties()
         {
-            return this._assetProperties != null && this._assetProperties.Count > 0; 
+            return this._assetProperties != null && (this._assetProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

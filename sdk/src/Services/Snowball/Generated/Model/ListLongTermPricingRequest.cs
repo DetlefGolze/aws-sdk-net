@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Snowball.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The maximum number of <code>ListLongTermPricing</code> objects to return.
+        /// The maximum number of <c>ListLongTermPricing</c> objects to return.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]
@@ -60,7 +61,7 @@ namespace Amazon.Snowball.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// Because HTTP requests are stateless, this is the starting point for your next list
-        /// of <code>ListLongTermPricing</code> to return.
+        /// of <c>ListLongTermPricing</c> to return.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

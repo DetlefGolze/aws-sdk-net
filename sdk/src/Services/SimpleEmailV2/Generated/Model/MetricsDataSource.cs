@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -33,16 +34,16 @@ namespace Amazon.SimpleEmailV2.Model
     /// </summary>
     public partial class MetricsDataSource
     {
-        private Dictionary<string, List<string>> _dimensions = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<string>> _dimensions = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
         private DateTime? _endDate;
-        private List<ExportMetric> _metrics = new List<ExportMetric>();
+        private List<ExportMetric> _metrics = AWSConfigs.InitializeCollections ? new List<ExportMetric>() : null;
         private MetricNamespace _awsNamespace;
         private DateTime? _startDate;
 
         /// <summary>
         /// Gets and sets the property Dimensions. 
         /// <para>
-        /// An object that contains a mapping between a <code>MetricDimensionName</code> and <code>MetricDimensionValue</code>
+        /// An object that contains a mapping between a <c>MetricDimensionName</c> and <c>MetricDimensionValue</c>
         /// to filter metrics by. Must contain a least 1 dimension but no more than 3 unique ones.
         /// </para>
         /// </summary>
@@ -56,7 +57,7 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if Dimensions property is set
         internal bool IsSetDimensions()
         {
-            return this._dimensions != null && this._dimensions.Count > 0; 
+            return this._dimensions != null && (this._dimensions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace Amazon.SimpleEmailV2.Model
         /// <summary>
         /// Gets and sets the property Metrics. 
         /// <para>
-        /// A list of <code>ExportMetric</code> objects to export.
+        /// A list of <c>ExportMetric</c> objects to export.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=10)]
@@ -94,13 +95,13 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if Metrics property is set
         internal bool IsSetMetrics()
         {
-            return this._metrics != null && this._metrics.Count > 0; 
+            return this._metrics != null && (this._metrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Namespace. 
         /// <para>
-        /// The metrics namespace - e.g., <code>VDM</code>.
+        /// The metrics namespace - e.g., <c>VDM</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

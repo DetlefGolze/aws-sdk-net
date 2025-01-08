@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -35,8 +36,7 @@ namespace Amazon.AutoScaling.Model
     /// 
     ///  
     /// <para>
-    /// For more information about preventing instances that are part of an Auto Scaling group
-    /// from terminating on scale in, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-instance-protection.html">Using
+    /// For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-instance-protection.html">Use
     /// instance scale-in protection</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
     /// </para>
     ///  
@@ -48,7 +48,7 @@ namespace Amazon.AutoScaling.Model
     public partial class SetInstanceProtectionRequest : AmazonAutoScalingRequest
     {
         private string _autoScalingGroupName;
-        private List<string> _instanceIds = new List<string>();
+        private List<string> _instanceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _protectedFromScaleIn;
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if InstanceIds property is set
         internal bool IsSetInstanceIds()
         {
-            return this._instanceIds != null && this._instanceIds.Count > 0; 
+            return this._instanceIds != null && (this._instanceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

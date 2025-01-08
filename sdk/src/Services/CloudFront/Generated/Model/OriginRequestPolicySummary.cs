@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -58,8 +59,8 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of origin request policy, either <code>managed</code> (created by Amazon
-        /// Web Services) or <code>custom</code> (created in this Amazon Web Services account).
+        /// The type of origin request policy, either <c>managed</c> (created by Amazon Web Services)
+        /// or <c>custom</c> (created in this Amazon Web Services account).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTWireless.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.IoTWireless.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetClientRequestToken())
@@ -80,6 +82,12 @@ namespace Amazon.IoTWireless.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("Description");
                     context.Writer.Write(publicRequest.Description);
+                }
+
+                if(publicRequest.IsSetDescriptor())
+                {
+                    context.Writer.WritePropertyName("Descriptor");
+                    context.Writer.Write(publicRequest.Descriptor);
                 }
 
                 if(publicRequest.IsSetFirmwareUpdateImage())

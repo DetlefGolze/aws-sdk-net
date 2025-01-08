@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -33,19 +34,19 @@ namespace Amazon.Glue.Model
     /// </summary>
     public partial class StorageDescriptor
     {
-        private List<string> _additionalLocations = new List<string>();
-        private List<string> _bucketColumns = new List<string>();
-        private List<Column> _columns = new List<Column>();
+        private List<string> _additionalLocations = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _bucketColumns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Column> _columns = AWSConfigs.InitializeCollections ? new List<Column>() : null;
         private bool? _compressed;
         private string _inputFormat;
         private string _location;
         private int? _numberOfBuckets;
         private string _outputFormat;
-        private Dictionary<string, string> _parameters = new Dictionary<string, string>();
+        private Dictionary<string, string> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private SchemaReference _schemaReference;
         private SerDeInfo _serdeInfo;
         private SkewedInfo _skewedInfo;
-        private List<Order> _sortColumns = new List<Order>();
+        private List<Order> _sortColumns = AWSConfigs.InitializeCollections ? new List<Order>() : null;
         private bool? _storedAsSubDirectories;
 
         /// <summary>
@@ -63,7 +64,7 @@ namespace Amazon.Glue.Model
         // Check to see if AdditionalLocations property is set
         internal bool IsSetAdditionalLocations()
         {
-            return this._additionalLocations != null && this._additionalLocations.Count > 0; 
+            return this._additionalLocations != null && (this._additionalLocations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -82,13 +83,13 @@ namespace Amazon.Glue.Model
         // Check to see if BucketColumns property is set
         internal bool IsSetBucketColumns()
         {
-            return this._bucketColumns != null && this._bucketColumns.Count > 0; 
+            return this._bucketColumns != null && (this._bucketColumns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Columns. 
         /// <para>
-        /// A list of the <code>Columns</code> in the table.
+        /// A list of the <c>Columns</c> in the table.
         /// </para>
         /// </summary>
         public List<Column> Columns
@@ -100,14 +101,13 @@ namespace Amazon.Glue.Model
         // Check to see if Columns property is set
         internal bool IsSetColumns()
         {
-            return this._columns != null && this._columns.Count > 0; 
+            return this._columns != null && (this._columns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Compressed. 
         /// <para>
-        ///  <code>True</code> if the data in the table is compressed, or <code>False</code> if
-        /// not.
+        ///  <c>True</c> if the data in the table is compressed, or <c>False</c> if not.
         /// </para>
         /// </summary>
         public bool Compressed
@@ -125,7 +125,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property InputFormat. 
         /// <para>
-        /// The input format: <code>SequenceFileInputFormat</code> (binary), or <code>TextInputFormat</code>,
+        /// The input format: <c>SequenceFileInputFormat</c> (binary), or <c>TextInputFormat</c>,
         /// or a custom format.
         /// </para>
         /// </summary>
@@ -184,7 +184,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property OutputFormat. 
         /// <para>
-        /// The output format: <code>SequenceFileOutputFormat</code> (binary), or <code>IgnoreKeyTextOutputFormat</code>,
+        /// The output format: <c>SequenceFileOutputFormat</c> (binary), or <c>IgnoreKeyTextOutputFormat</c>,
         /// or a custom format.
         /// </para>
         /// </summary>
@@ -216,7 +216,7 @@ namespace Amazon.Glue.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -293,14 +293,13 @@ namespace Amazon.Glue.Model
         // Check to see if SortColumns property is set
         internal bool IsSetSortColumns()
         {
-            return this._sortColumns != null && this._sortColumns.Count > 0; 
+            return this._sortColumns != null && (this._sortColumns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property StoredAsSubDirectories. 
         /// <para>
-        ///  <code>True</code> if the table data is stored in subdirectories, or <code>False</code>
-        /// if not.
+        ///  <c>True</c> if the table data is stored in subdirectories, or <c>False</c> if not.
         /// </para>
         /// </summary>
         public bool StoredAsSubDirectories

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -62,7 +63,7 @@ namespace Amazon.IoTFleetWise.Model
         /// Gets and sets the property RegistrationStatus. 
         /// <para>
         /// The status of registering your Amazon Timestream resources. The status can be one
-        /// of <code>REGISTRATION_SUCCESS</code>, <code>REGISTRATION_PENDING</code>, <code>REGISTRATION_FAILURE</code>.
+        /// of <c>REGISTRATION_SUCCESS</c>, <c>REGISTRATION_PENDING</c>, <c>REGISTRATION_FAILURE</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

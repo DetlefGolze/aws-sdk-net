@@ -26,15 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectParticipant.Model
 {
     /// <summary>
     /// Container for the parameters to the DisconnectParticipant operation.
     /// Disconnects a participant. 
     /// 
+    ///  
+    /// <para>
+    /// For security recommendations, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/security-best-practices.html#bp-security-chat">Amazon
+    /// Connect Chat security best practices</a>.
+    /// </para>
     ///  <note> 
     /// <para>
-    ///  <code>ConnectionToken</code> is used for invoking this API instead of <code>ParticipantToken</code>.
+    ///  <c>ConnectionToken</c> is used for invoking this API instead of <c>ParticipantToken</c>.
     /// </para>
     ///  </note> 
     /// <para>
@@ -85,7 +91,7 @@ namespace Amazon.ConnectParticipant.Model
         // Check to see if ConnectionToken property is set
         internal bool IsSetConnectionToken()
         {
-            return this._connectionToken != null;
+            return !string.IsNullOrEmpty(this._connectionToken);
         }
 
     }

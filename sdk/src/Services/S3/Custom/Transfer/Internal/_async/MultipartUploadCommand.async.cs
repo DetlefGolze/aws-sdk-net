@@ -37,7 +37,7 @@ namespace Amazon.S3.Transfer.Internal
         {
             if ( (this._fileTransporterRequest.InputStream != null && !this._fileTransporterRequest.InputStream.CanSeek) || this._fileTransporterRequest.ContentLength == -1)
             {
-                await UploadNonSeekableStreamAsync(this._fileTransporterRequest, cancellationToken).ConfigureAwait(false);
+                await UploadUnseekableStreamAsync(this._fileTransporterRequest, cancellationToken).ConfigureAwait(false);
             }
             else
             {
@@ -127,6 +127,7 @@ namespace Amazon.S3.Transfer.Internal
                     {
                         this._fileTransporterRequest.InputStream.Dispose();
                     }
+
                     if (Logger != null)
                     {
                         Logger.Flush();
@@ -182,6 +183,7 @@ namespace Amazon.S3.Transfer.Internal
                 {
                     BucketName = this._fileTransporterRequest.BucketName,
                     Key = this._fileTransporterRequest.Key,
+                    RequestPayer = this._fileTransporterRequest.RequestPayer,
                     UploadId = uploadId
                 }).Wait();
             }
@@ -190,39 +192,36 @@ namespace Amazon.S3.Transfer.Internal
                 Logger.InfoFormat("Error attempting to abort multipart for key {0}: {1}", this._fileTransporterRequest.Key, e.Message);
             }
         }
-        private async Task UploadNonSeekableStreamAsync(TransferUtilityUploadRequest request, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task UploadUnseekableStreamAsync(TransferUtilityUploadRequest request, CancellationToken cancellationToken = default(CancellationToken))
         {
 
             int READ_BUFFER_SIZE = this._s3Client.Config.BufferSize;
 
-            var initiateRequest = new InitiateMultipartUploadRequest()
-            {
-                BucketName = request.BucketName,
-                Key = request.Key
-            };
-
-            ((Amazon.Runtime.Internal.IAmazonWebServiceRequest)initiateRequest).AddBeforeRequestHandler((o, args) =>
+            RequestEventHandler requestEventHandler = (o, args) =>
             {
                 WebServiceRequestEventArgs wsArgs = args as WebServiceRequestEventArgs;
                 if (wsArgs != null)
                 {
                     string currentUserAgent = wsArgs.Headers[AWSSDKUtils.UserAgentHeader];
                     wsArgs.Headers[AWSSDKUtils.UserAgentHeader] =
-                        currentUserAgent + " TransferManager/UploadNonSeekableStream";
+                        currentUserAgent + " ft/s3-transfer md/UploadNonSeekableStream";
                 }
-            });
+            };
+
+            var initiateRequest = ConstructInitiateMultipartUploadRequest(requestEventHandler);
             var initiateResponse = await _s3Client.InitiateMultipartUploadAsync(initiateRequest).ConfigureAwait(false);
 
             try
             {
-                var partETags = new List<PartETag>();
-
+                // if partSize is not specified on the request, the default value is 0
+                long minPartSize = request?.PartSize != 0 ? request.PartSize : S3Constants.MinPartSize;
+                var uploadPartResponses = new List<UploadPartResponse>();
 #if NETCOREAPP3_1 || NETCOREAPP3_1_OR_GREATER
                 var readBuffer = ArrayPool<byte>.Shared.Rent(READ_BUFFER_SIZE);
-                var partBuffer = ArrayPool<byte>.Shared.Rent((int)S3Constants.MinPartSize + (READ_BUFFER_SIZE) );
+                var partBuffer = ArrayPool<byte>.Shared.Rent((int)minPartSize + (READ_BUFFER_SIZE));
 #else
                 var readBuffer = new byte[READ_BUFFER_SIZE];
-                var partBuffer = new byte[(int)S3Constants.MinPartSize + (READ_BUFFER_SIZE)];
+                var partBuffer = new byte[(int)minPartSize + (READ_BUFFER_SIZE)];
 #endif
                 MemoryStream nextUploadBuffer = new MemoryStream(partBuffer);
                 using (var stream = request.InputStream)
@@ -230,36 +229,48 @@ namespace Amazon.S3.Transfer.Internal
                     try
                     {
                         int partNumber = 1;
-                        int readBytesCount;
-                        while (true)
+                        int readBytesCount, readAheadBytesCount = 0;
+
+                        readBytesCount = await stream.ReadAsync(readBuffer, 0, readBuffer.Length).ConfigureAwait(false);
+
+                        do
                         {
-                            readBytesCount = await stream.ReadAsync(readBuffer, 0, readBuffer.Length).ConfigureAwait(false);
                             await nextUploadBuffer.WriteAsync(readBuffer, 0, readBytesCount).ConfigureAwait(false);
-                            if (nextUploadBuffer.Position > S3Constants.MinPartSize || readBytesCount == 0)
+                            // read the stream ahead and process it in the next iteration.
+                            // this is used to set isLastPart when there is no data left in the stream.
+                            readAheadBytesCount = await stream.ReadAsync(readBuffer, 0, readBuffer.Length).ConfigureAwait(false);
+
+                            if ((nextUploadBuffer.Position > minPartSize || readAheadBytesCount == 0))
                             {
-                                bool isLastPart = readBytesCount == 0;
+                                if (nextUploadBuffer.Position == 0)
+                                {
+                                    if (partNumber == 1)
+                                    {
+                                        // if the input stream is empty then upload empty MemoryStream.
+                                        // without doing this the UploadPart call will use the length of the
+                                        // nextUploadBuffer as the pastSize. The length will be incorrectly computed
+                                        // for the part as (int)minPartSize + (READ_BUFFER_SIZE) as defined above for partBuffer.
+                                        nextUploadBuffer.Dispose();
+                                        nextUploadBuffer = new MemoryStream();
+                                    }
+                                }
+                                bool isLastPart = readAheadBytesCount == 0;
+
                                 var partSize = nextUploadBuffer.Position;
                                 nextUploadBuffer.Position = 0;
-                                var partResponse = await _s3Client.UploadPartAsync(new UploadPartRequest()
-                                {
-                                    BucketName = request.BucketName,
-                                    Key = request.Key,
-                                    UploadId = initiateResponse.UploadId,
-                                    InputStream = nextUploadBuffer,
-                                    PartSize = partSize,
-                                    PartNumber = partNumber,
-                                    IsLastPart = isLastPart
-                                }).ConfigureAwait(false);
-                                Logger.DebugFormat($"Uploaded part {partNumber}. (Last part = {isLastPart}, Part size = {partSize}, Upload Id: {initiateResponse.UploadId}");
-                                partETags.Add(new PartETag { PartNumber = partResponse.PartNumber, ETag = partResponse.ETag });
+                                UploadPartRequest uploadPartRequest = ConstructUploadPartRequestForNonSeekableStream(nextUploadBuffer, partNumber, partSize, isLastPart, initiateResponse);
+
+                                var partResponse = await _s3Client.UploadPartAsync(uploadPartRequest).ConfigureAwait(false);
+                                Logger.DebugFormat("Uploaded part {0}. (Last part = {1}, Part size = {2}, Upload Id: {3})", partNumber, isLastPart, partSize, initiateResponse.UploadId);
+                                uploadPartResponses.Add(partResponse);
                                 partNumber++;
+
+                                nextUploadBuffer.Dispose();
                                 nextUploadBuffer = new MemoryStream(partBuffer);
                             }
-                            if(readBytesCount == 0)
-                            {
-                                break;
-                            }
+                            readBytesCount = readAheadBytesCount;
                         }
+                        while (readAheadBytesCount > 0);
                     }
                     finally
                     {
@@ -267,18 +278,14 @@ namespace Amazon.S3.Transfer.Internal
 #if NETCOREAPP3_1 || NETCOREAPP3_1_OR_GREATER
                         ArrayPool<byte>.Shared.Return(partBuffer);
                         ArrayPool<byte>.Shared.Return(readBuffer);
-#endif  
+#endif
+                        nextUploadBuffer.Dispose();
                     }
-                    await _s3Client.CompleteMultipartUploadAsync(new CompleteMultipartUploadRequest()
-                    {
-                        BucketName = request.BucketName,
-                        Key = request.Key,
-                        UploadId = initiateResponse.UploadId,
-                        PartETags = partETags
-                    }).ConfigureAwait(false);
-                    Logger.DebugFormat($"Completed multi part upload. (Part count: {partETags.Count}, Upload Id:" +
-                    $"{initiateResponse.UploadId})");
 
+                    this._uploadResponses = uploadPartResponses;
+                    CompleteMultipartUploadRequest compRequest = ConstructCompleteMultipartUploadRequest(initiateResponse, true, requestEventHandler);
+                    await _s3Client.CompleteMultipartUploadAsync(compRequest).ConfigureAwait(false);
+                    Logger.DebugFormat("Completed multi part upload. (Part count: {0}, Upload Id: {1})", uploadPartResponses.Count, initiateResponse.UploadId);
                 }
             }
             catch (Exception ex)
@@ -287,10 +294,18 @@ namespace Amazon.S3.Transfer.Internal
                 {
                     BucketName = request.BucketName,
                     Key = request.Key,
+                    RequestPayer = request.RequestPayer,
                     UploadId = initiateResponse.UploadId
                 }).ConfigureAwait(false);
                 Logger.Error(ex, ex.Message);
                 throw;
+            }
+            finally
+            {
+                if (Logger != null)
+                {
+                    Logger.Flush();
+                }
             }
         }
     }

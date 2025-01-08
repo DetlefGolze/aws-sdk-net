@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.RoboMaker.Model
     [Obsolete("Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.")]
     public partial class ListFleetsResponse : AmazonWebServiceResponse
     {
-        private List<Fleet> _fleetDetails = new List<Fleet>();
+        private List<Fleet> _fleetDetails = AWSConfigs.InitializeCollections ? new List<Fleet>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -53,17 +54,17 @@ namespace Amazon.RoboMaker.Model
         // Check to see if FleetDetails property is set
         internal bool IsSetFleetDetails()
         {
-            return this._fleetDetails != null && this._fleetDetails.Count > 0; 
+            return this._fleetDetails != null && (this._fleetDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If the previous paginated request did not return all of the remaining results, the
-        /// response object's <code>nextToken</code> parameter value is set to a token. To retrieve
-        /// the next set of results, call <code>ListFleets</code> again and assign that token
-        /// to the request object's <code>nextToken</code> parameter. If there are no remaining
-        /// results, the previous response object's NextToken parameter is set to null. 
+        /// response object's <c>nextToken</c> parameter value is set to a token. To retrieve
+        /// the next set of results, call <c>ListFleets</c> again and assign that token to the
+        /// request object's <c>nextToken</c> parameter. If there are no remaining results, the
+        /// previous response object's NextToken parameter is set to null. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

@@ -26,30 +26,33 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityLake.Model
 {
     /// <summary>
-    /// Provides replication details of Amazon Security Lake object.
+    /// Provides replication details for objects stored in the Amazon Security Lake data lake.
     /// </summary>
     public partial class DataLakeReplicationConfiguration
     {
-        private List<string> _regions = new List<string>();
+        private List<string> _regions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _roleArn;
 
         /// <summary>
         /// Gets and sets the property Regions. 
         /// <para>
-        /// Replication enables automatic, asynchronous copying of objects across Amazon S3 buckets.
-        /// Amazon S3 buckets that are configured for object replication can be owned by the same
-        /// Amazon Web Services account or by different accounts. You can replicate objects to
-        /// a single destination bucket or to multiple destination buckets. The destination buckets
-        /// can be in different Amazon Web Services Regions or within the same Region as the source
-        /// bucket.
+        /// Specifies one or more centralized rollup Regions. The Amazon Web Services Region specified
+        /// in the <c>region</c> parameter of the <a href="https://docs.aws.amazon.com/security-lake/latest/APIReference/API_CreateDataLake.html">
+        /// <c>CreateDataLake</c> </a> or <a href="https://docs.aws.amazon.com/security-lake/latest/APIReference/API_UpdateDataLake.html">
+        /// <c>UpdateDataLake</c> </a> operations contributes data to the rollup Region or Regions
+        /// specified in this parameter.
         /// </para>
         ///  
         /// <para>
-        /// Set up one or more rollup Regions by providing the Region or Regions that should contribute
-        /// to the central rollup Region.
+        /// Replication enables automatic, asynchronous copying of objects across Amazon S3 buckets.
+        /// S3 buckets that are configured for object replication can be owned by the same Amazon
+        /// Web Services account or by different accounts. You can replicate objects to a single
+        /// destination bucket or to multiple destination buckets. The destination buckets can
+        /// be in different Regions or within the same Region as the source bucket.
         /// </para>
         /// </summary>
         public List<string> Regions
@@ -61,7 +64,7 @@ namespace Amazon.SecurityLake.Model
         // Check to see if Regions property is set
         internal bool IsSetRegions()
         {
-            return this._regions != null && this._regions.Count > 0; 
+            return this._regions != null && (this._regions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

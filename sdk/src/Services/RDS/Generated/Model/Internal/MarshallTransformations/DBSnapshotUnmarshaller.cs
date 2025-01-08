@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RDS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -96,6 +97,12 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                         unmarshalledObject.DBSystemId = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("DedicatedLogVolume", targetDepth))
+                    {
+                        var unmarshaller = BoolUnmarshaller.Instance;
+                        unmarshalledObject.DedicatedLogVolume = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("Encrypted", targetDepth))
                     {
                         var unmarshaller = BoolUnmarshaller.Instance;
@@ -150,6 +157,12 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                         unmarshalledObject.MasterUsername = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("MultiTenant", targetDepth))
+                    {
+                        var unmarshaller = BoolUnmarshaller.Instance;
+                        unmarshalledObject.MultiTenant = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("OptionGroupName", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
@@ -177,6 +190,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("ProcessorFeatures/ProcessorFeature", targetDepth))
                     {
                         var unmarshaller = ProcessorFeatureUnmarshaller.Instance;
+                        if (unmarshalledObject.ProcessorFeatures == null)
+                        {
+                            unmarshalledObject.ProcessorFeatures = new List<ProcessorFeature>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.ProcessorFeatures.Add(item);
                         continue;
@@ -238,6 +255,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("TagList/Tag", targetDepth))
                     {
                         var unmarshaller = TagUnmarshaller.Instance;
+                        if (unmarshalledObject.TagList == null)
+                        {
+                            unmarshalledObject.TagList = new List<Tag>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.TagList.Add(item);
                         continue;

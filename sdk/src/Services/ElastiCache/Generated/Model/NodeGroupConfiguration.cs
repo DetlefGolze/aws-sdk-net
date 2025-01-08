@@ -26,28 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
     /// Node group (shard) configuration options. Each node group (shard) configuration has
-    /// the following: <code>Slots</code>, <code>PrimaryAvailabilityZone</code>, <code>ReplicaAvailabilityZones</code>,
-    /// <code>ReplicaCount</code>.
+    /// the following: <c>Slots</c>, <c>PrimaryAvailabilityZone</c>, <c>ReplicaAvailabilityZones</c>,
+    /// <c>ReplicaCount</c>.
     /// </summary>
     public partial class NodeGroupConfiguration
     {
         private string _nodeGroupId;
         private string _primaryAvailabilityZone;
         private string _primaryOutpostArn;
-        private List<string> _replicaAvailabilityZones = new List<string>();
+        private List<string> _replicaAvailabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _replicaCount;
-        private List<string> _replicaOutpostArns = new List<string>();
+        private List<string> _replicaOutpostArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _slots;
 
         /// <summary>
         /// Gets and sets the property NodeGroupId. 
         /// <para>
-        /// Either the ElastiCache for Redis supplied 4-digit id or a user supplied id for the
-        /// node group these configuration values apply to.
+        /// Either the ElastiCache supplied 4-digit id or a user supplied id for the node group
+        /// these configuration values apply to.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4)]
@@ -103,7 +104,7 @@ namespace Amazon.ElastiCache.Model
         /// Gets and sets the property ReplicaAvailabilityZones. 
         /// <para>
         /// A list of Availability Zones to be used for the read replicas. The number of Availability
-        /// Zones in this list must match the value of <code>ReplicaCount</code> or <code>ReplicasPerNodeGroup</code>
+        /// Zones in this list must match the value of <c>ReplicaCount</c> or <c>ReplicasPerNodeGroup</c>
         /// if not specified.
         /// </para>
         /// </summary>
@@ -116,7 +117,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if ReplicaAvailabilityZones property is set
         internal bool IsSetReplicaAvailabilityZones()
         {
-            return this._replicaAvailabilityZones != null && this._replicaAvailabilityZones.Count > 0; 
+            return this._replicaAvailabilityZones != null && (this._replicaAvailabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -152,18 +153,18 @@ namespace Amazon.ElastiCache.Model
         // Check to see if ReplicaOutpostArns property is set
         internal bool IsSetReplicaOutpostArns()
         {
-            return this._replicaOutpostArns != null && this._replicaOutpostArns.Count > 0; 
+            return this._replicaOutpostArns != null && (this._replicaOutpostArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Slots. 
         /// <para>
         /// A string that specifies the keyspace for a particular node group. Keyspaces range
-        /// from 0 to 16,383. The string is in the format <code>startkey-endkey</code>.
+        /// from 0 to 16,383. The string is in the format <c>startkey-endkey</c>.
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>"0-3999"</code> 
+        /// Example: <c>"0-3999"</c> 
         /// </para>
         /// </summary>
         public string Slots

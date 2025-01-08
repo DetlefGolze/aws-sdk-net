@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
-    /// The full POSIX identity, including user ID (<code>Uid</code>), group ID (<code>Gid</code>),
-    /// and any secondary groups IDs (<code>SecondaryGids</code>), that controls your users'
-    /// access to your Amazon EFS file systems. The POSIX permissions that are set on files
-    /// and directories in your file system determine the level of access your users get when
-    /// transferring files into and out of your Amazon EFS file systems.
+    /// The full POSIX identity, including user ID (<c>Uid</c>), group ID (<c>Gid</c>), and
+    /// any secondary groups IDs (<c>SecondaryGids</c>), that controls your users' access
+    /// to your Amazon EFS file systems. The POSIX permissions that are set on files and directories
+    /// in your file system determine the level of access your users get when transferring
+    /// files into and out of your Amazon EFS file systems.
     /// </summary>
     public partial class PosixProfile
     {
         private long? _gid;
-        private List<long> _secondaryGids = new List<long>();
+        private List<long> _secondaryGids = AWSConfigs.InitializeCollections ? new List<long>() : null;
         private long? _uid;
 
         /// <summary>
@@ -76,7 +77,7 @@ namespace Amazon.Transfer.Model
         // Check to see if SecondaryGids property is set
         internal bool IsSetSecondaryGids()
         {
-            return this._secondaryGids != null && this._secondaryGids.Count > 0; 
+            return this._secondaryGids != null && (this._secondaryGids.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ECS.Model
     /// </summary>
     public partial class ListClustersResponse : AmazonWebServiceResponse
     {
-        private List<string> _clusterArns = new List<string>();
+        private List<string> _clusterArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,16 +53,16 @@ namespace Amazon.ECS.Model
         // Check to see if ClusterArns property is set
         internal bool IsSetClusterArns()
         {
-            return this._clusterArns != null && this._clusterArns.Count > 0; 
+            return this._clusterArns != null && (this._clusterArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value to include in a future <code>ListClusters</code>
-        /// request. When the results of a <code>ListClusters</code> request exceed <code>maxResults</code>,
-        /// this value can be used to retrieve the next page of results. This value is <code>null</code>
-        /// when there are no more results to return.
+        /// The <c>nextToken</c> value to include in a future <c>ListClusters</c> request. When
+        /// the results of a <c>ListClusters</c> request exceed <c>maxResults</c>, this value
+        /// can be used to retrieve the next page of results. This value is <c>null</c> when there
+        /// are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken

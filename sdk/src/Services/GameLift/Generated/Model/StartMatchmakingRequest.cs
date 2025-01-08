@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.GameLift.Model
     /// To start matchmaking, provide a unique ticket ID, specify a matchmaking configuration,
     /// and include the players to be matched. You must also include any player attributes
     /// that are required by the matchmaking configuration's rule set. If successful, a matchmaking
-    /// ticket is returned with status set to <code>QUEUED</code>. 
+    /// ticket is returned with status set to <c>QUEUED</c>. 
     /// </para>
     ///  
     /// <para>
@@ -75,7 +76,7 @@ namespace Amazon.GameLift.Model
     public partial class StartMatchmakingRequest : AmazonGameLiftRequest
     {
         private string _configurationName;
-        private List<Player> _players = new List<Player>();
+        private List<Player> _players = AWSConfigs.InitializeCollections ? new List<Player>() : null;
         private string _ticketId;
 
         /// <summary>
@@ -104,12 +105,12 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// Information on each player to be matched. This information must include a player ID,
         /// and may contain player attributes and latency data to be used in the matchmaking process.
-        /// After a successful match, <code>Player</code> objects contain the name of the team
-        /// the player is assigned to.
+        /// After a successful match, <c>Player</c> objects contain the name of the team the player
+        /// is assigned to.
         /// </para>
         ///  
         /// <para>
-        /// You can include up to 10 <code>Players</code> in a <code>StartMatchmaking</code> request.
+        /// You can include up to 10 <c>Players</c> in a <c>StartMatchmaking</c> request.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -122,7 +123,7 @@ namespace Amazon.GameLift.Model
         // Check to see if Players property is set
         internal bool IsSetPlayers()
         {
-            return this._players != null && this._players.Count > 0; 
+            return this._players != null && (this._players.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

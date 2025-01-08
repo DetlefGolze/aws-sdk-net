@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Redshift.Model
     /// </summary>
     public partial class DescribeClusterSecurityGroupsResponse : AmazonWebServiceResponse
     {
-        private List<ClusterSecurityGroup> _clusterSecurityGroups = new List<ClusterSecurityGroup>();
+        private List<ClusterSecurityGroup> _clusterSecurityGroups = AWSConfigs.InitializeCollections ? new List<ClusterSecurityGroup>() : null;
         private string _marker;
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace Amazon.Redshift.Model
         // Check to see if ClusterSecurityGroups property is set
         internal bool IsSetClusterSecurityGroups()
         {
-            return this._clusterSecurityGroups != null && this._clusterSecurityGroups.Count > 0; 
+            return this._clusterSecurityGroups != null && (this._clusterSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -59,9 +60,9 @@ namespace Amazon.Redshift.Model
         /// <para>
         /// A value that indicates the starting point for the next set of response records in
         /// a subsequent request. If a value is returned in a response, you can retrieve the next
-        /// set of records by providing this returned marker value in the <code>Marker</code>
-        /// parameter and retrying the command. If the <code>Marker</code> field is empty, all
-        /// response records have been retrieved for the request. 
+        /// set of records by providing this returned marker value in the <c>Marker</c> parameter
+        /// and retrying the command. If the <c>Marker</c> field is empty, all response records
+        /// have been retrieved for the request. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]

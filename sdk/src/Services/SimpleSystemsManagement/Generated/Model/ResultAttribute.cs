@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property TypeName. 
         /// <para>
-        /// Name of the inventory item type. Valid value: <code>AWS:InstanceInformation</code>.
-        /// Default Value: <code>AWS:InstanceInformation</code>.
+        /// Name of the inventory item type. Valid value: <c>AWS:InstanceInformation</c>. Default
+        /// Value: <c>AWS:InstanceInformation</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]

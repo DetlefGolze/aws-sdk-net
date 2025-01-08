@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property CancelDescription. 
         /// <para>
-        /// String describing the reason for removing the legal hold.
+        /// The reason for removing the legal hold.
         /// </para>
         /// </summary>
         public string CancelDescription
@@ -65,7 +66,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property CancellationDate. 
         /// <para>
-        /// Time in number when legal hold was cancelled.
+        /// The time when the legal hold was cancelled.
         /// </para>
         /// </summary>
         public DateTime CancellationDate
@@ -83,7 +84,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property CreationDate. 
         /// <para>
-        /// Time in number format when legal hold was created.
+        /// The time when the legal hold was created.
         /// </para>
         /// </summary>
         public DateTime CreationDate
@@ -101,7 +102,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
-        /// This is the returned string description of the legal hold.
+        /// The description of the legal hold.
         /// </para>
         /// </summary>
         public string Description
@@ -119,9 +120,8 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property LegalHoldArn. 
         /// <para>
-        /// This is the returned framework ARN for the specified legal hold. An Amazon Resource
-        /// Name (ARN) uniquely identifies a resource. The format of the ARN depends on the resource
-        /// type.
+        /// The framework ARN for the specified legal hold. The format of the ARN depends on the
+        /// resource type.
         /// </para>
         /// </summary>
         public string LegalHoldArn
@@ -139,7 +139,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property LegalHoldId. 
         /// <para>
-        /// This is the returned ID associated with a specified legal hold.
+        /// The ID of the legal hold.
         /// </para>
         /// </summary>
         public string LegalHoldId
@@ -157,8 +157,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property RecoveryPointSelection. 
         /// <para>
-        /// This specifies criteria to assign a set of resources, such as resource types or backup
-        /// vaults.
+        /// The criteria to assign a set of resources, such as resource types or backup vaults.
         /// </para>
         /// </summary>
         public RecoveryPointSelection RecoveryPointSelection
@@ -176,7 +175,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property RetainRecordUntil. 
         /// <para>
-        /// This is the date and time until which the legal hold record will be retained.
+        /// The date and time until which the legal hold record is retained.
         /// </para>
         /// </summary>
         public DateTime RetainRecordUntil
@@ -194,8 +193,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// This is the status of the legal hold. Statuses can be <code>ACTIVE</code>, <code>CREATING</code>,
-        /// <code>CANCELED</code>, and <code>CANCELING</code>.
+        /// The status of the legal hold.
         /// </para>
         /// </summary>
         public LegalHoldStatus Status
@@ -213,7 +211,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property Title. 
         /// <para>
-        /// This is the string title of the legal hold.
+        /// The title of the legal hold.
         /// </para>
         /// </summary>
         public string Title

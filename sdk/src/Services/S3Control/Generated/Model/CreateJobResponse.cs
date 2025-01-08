@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.S3Control.Model
         /// Gets and sets the property JobId. 
         /// <para>
         /// The ID for this job. Amazon S3 generates this ID automatically and returns it after
-        /// a successful <code>Create Job</code> request.
+        /// a successful <c>Create Job</c> request.
         /// </para>
         /// </summary>
         [AWSProperty(Min=5, Max=36)]

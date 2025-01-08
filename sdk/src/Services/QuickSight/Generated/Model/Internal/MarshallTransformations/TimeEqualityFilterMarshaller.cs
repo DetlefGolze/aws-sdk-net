@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(TimeEqualityFilter requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetColumn())
             {
                 context.Writer.WritePropertyName("Column");
@@ -52,6 +55,17 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 
                 var marshaller = ColumnIdentifierMarshaller.Instance;
                 marshaller.Marshall(requestObject.Column, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetDefaultFilterControlConfiguration())
+            {
+                context.Writer.WritePropertyName("DefaultFilterControlConfiguration");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = DefaultFilterControlConfigurationMarshaller.Instance;
+                marshaller.Marshall(requestObject.DefaultFilterControlConfiguration, context);
 
                 context.Writer.WriteObjectEnd();
             }
@@ -66,6 +80,17 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("ParameterName");
                 context.Writer.Write(requestObject.ParameterName);
+            }
+
+            if(requestObject.IsSetRollingDate())
+            {
+                context.Writer.WritePropertyName("RollingDate");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = RollingDateConfigurationMarshaller.Instance;
+                marshaller.Marshall(requestObject.RollingDate, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetTimeGranularity())

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMediaPipelines.Model
 {
     /// <summary>
     /// The configuration object of the Amazon Chime SDK meeting for a specified media pipeline.
-    /// <code>SourceType</code> must be <code>ChimeSdkMeeting</code>.
+    /// <c>SourceType</c> must be <c>ChimeSdkMeeting</c>.
     /// </summary>
     public partial class ChimeSdkMeetingConfiguration
     {

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
     /// </summary>
     public partial class DescribeContinuousExportsResponse : AmazonWebServiceResponse
     {
-        private List<ContinuousExportDescription> _descriptions = new List<ContinuousExportDescription>();
+        private List<ContinuousExportDescription> _descriptions = AWSConfigs.InitializeCollections ? new List<ContinuousExportDescription>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,13 +52,13 @@ namespace Amazon.ApplicationDiscoveryService.Model
         // Check to see if Descriptions property is set
         internal bool IsSetDescriptions()
         {
-            return this._descriptions != null && this._descriptions.Count > 0; 
+            return this._descriptions != null && (this._descriptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token from the previous call to <code>DescribeExportTasks</code>.
+        /// The token from the previous call to <c>DescribeExportTasks</c>.
         /// </para>
         /// </summary>
         public string NextToken

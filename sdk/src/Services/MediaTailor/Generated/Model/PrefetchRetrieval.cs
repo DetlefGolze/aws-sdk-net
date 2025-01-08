@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaTailor.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.MediaTailor.Model
     /// </summary>
     public partial class PrefetchRetrieval
     {
-        private Dictionary<string, string> _dynamicVariables = new Dictionary<string, string>();
+        private Dictionary<string, string> _dynamicVariables = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private DateTime? _endTime;
         private DateTime? _startTime;
 
@@ -49,8 +50,8 @@ namespace Amazon.MediaTailor.Model
         /// <para>
         /// You initially configure <a href="https://docs.aws.amazon.com/mediatailor/latest/ug/variables.html">dynamic
         /// variables</a> for the ADS URL when you set up your playback configuration. When you
-        /// specify <code>DynamicVariables</code> for prefetch retrieval, MediaTailor includes
-        /// the dynamic variables in the request to the ADS.
+        /// specify <c>DynamicVariables</c> for prefetch retrieval, MediaTailor includes the dynamic
+        /// variables in the request to the ADS.
         /// </para>
         /// </summary>
         public Dictionary<string, string> DynamicVariables
@@ -62,7 +63,7 @@ namespace Amazon.MediaTailor.Model
         // Check to see if DynamicVariables property is set
         internal bool IsSetDynamicVariables()
         {
-            return this._dynamicVariables != null && this._dynamicVariables.Count > 0; 
+            return this._dynamicVariables != null && (this._dynamicVariables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

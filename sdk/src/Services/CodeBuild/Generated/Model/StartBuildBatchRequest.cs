@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.CodeBuild.Model
         private bool? _debugSessionEnabled;
         private string _encryptionKeyOverride;
         private EnvironmentType _environmentTypeOverride;
-        private List<EnvironmentVariable> _environmentVariablesOverride = new List<EnvironmentVariable>();
+        private List<EnvironmentVariable> _environmentVariablesOverride = AWSConfigs.InitializeCollections ? new List<EnvironmentVariable>() : null;
         private int? _gitCloneDepthOverride;
         private GitSubmodulesConfig _gitSubmodulesConfigOverride;
         private string _idempotencyToken;
@@ -57,9 +58,9 @@ namespace Amazon.CodeBuild.Model
         private int? _queuedTimeoutInMinutesOverride;
         private RegistryCredential _registryCredentialOverride;
         private bool? _reportBuildBatchStatusOverride;
-        private List<ProjectArtifacts> _secondaryArtifactsOverride = new List<ProjectArtifacts>();
-        private List<ProjectSource> _secondarySourcesOverride = new List<ProjectSource>();
-        private List<ProjectSourceVersion> _secondarySourcesVersionOverride = new List<ProjectSourceVersion>();
+        private List<ProjectArtifacts> _secondaryArtifactsOverride = AWSConfigs.InitializeCollections ? new List<ProjectArtifacts>() : null;
+        private List<ProjectSource> _secondarySourcesOverride = AWSConfigs.InitializeCollections ? new List<ProjectSource>() : null;
+        private List<ProjectSourceVersion> _secondarySourcesVersionOverride = AWSConfigs.InitializeCollections ? new List<ProjectSourceVersion>() : null;
         private string _serviceRoleOverride;
         private SourceAuth _sourceAuthOverride;
         private string _sourceLocationOverride;
@@ -69,8 +70,8 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property ArtifactsOverride. 
         /// <para>
-        /// An array of <code>ProjectArtifacts</code> objects that contains information about
-        /// the build output artifact overrides for the build project.
+        /// An array of <c>ProjectArtifacts</c> objects that contains information about the build
+        /// output artifact overrides for the build project.
         /// </para>
         /// </summary>
         public ProjectArtifacts ArtifactsOverride
@@ -88,8 +89,7 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property BuildBatchConfigOverride. 
         /// <para>
-        /// A <code>BuildBatchConfigOverride</code> object that contains batch build configuration
-        /// overrides.
+        /// A <c>BuildBatchConfigOverride</c> object that contains batch build configuration overrides.
         /// </para>
         /// </summary>
         public ProjectBuildBatchConfig BuildBatchConfigOverride
@@ -113,11 +113,11 @@ namespace Amazon.CodeBuild.Model
         ///  
         /// <para>
         /// If this value is set, it can be either an inline buildspec definition, the path to
-        /// an alternate buildspec file relative to the value of the built-in <code>CODEBUILD_SRC_DIR</code>
+        /// an alternate buildspec file relative to the value of the built-in <c>CODEBUILD_SRC_DIR</c>
         /// environment variable, or the path to an S3 bucket. The bucket must be in the same
         /// Amazon Web Services Region as the build project. Specify the buildspec file using
-        /// its ARN (for example, <code>arn:aws:s3:::my-codebuild-sample2/buildspec.yml</code>).
-        /// If this value is not provided or is set to an empty string, the source code must contain
+        /// its ARN (for example, <c>arn:aws:s3:::my-codebuild-sample2/buildspec.yml</c>). If
+        /// this value is not provided or is set to an empty string, the source code must contain
         /// a buildspec file in its root directory. For more information, see <a href="https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html#build-spec-ref-name-storage">Buildspec
         /// File Name and Storage Location</a>. 
         /// </para>
@@ -140,7 +140,7 @@ namespace Amazon.CodeBuild.Model
         /// Overrides the build timeout specified in the batch build project.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=5, Max=480)]
+        [AWSProperty(Min=5, Max=2160)]
         public int BuildTimeoutInMinutesOverride
         {
             get { return this._buildTimeoutInMinutesOverride.GetValueOrDefault(); }
@@ -156,7 +156,7 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property CacheOverride. 
         /// <para>
-        /// A <code>ProjectCache</code> object that specifies cache overrides.
+        /// A <c>ProjectCache</c> object that specifies cache overrides.
         /// </para>
         /// </summary>
         public ProjectCache CacheOverride
@@ -244,7 +244,7 @@ namespace Amazon.CodeBuild.Model
         ///  </note> 
         /// <para>
         /// You can specify either the Amazon Resource Name (ARN) of the CMK or, if available,
-        /// the CMK's alias (using the format <code>alias/&lt;alias-name&gt;</code>).
+        /// the CMK's alias (using the format <c>alias/&lt;alias-name&gt;</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -282,8 +282,8 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property EnvironmentVariablesOverride. 
         /// <para>
-        /// An array of <code>EnvironmentVariable</code> objects that override, or add to, the
-        /// environment variables defined in the batch build project.
+        /// An array of <c>EnvironmentVariable</c> objects that override, or add to, the environment
+        /// variables defined in the batch build project.
         /// </para>
         /// </summary>
         public List<EnvironmentVariable> EnvironmentVariablesOverride
@@ -295,7 +295,7 @@ namespace Amazon.CodeBuild.Model
         // Check to see if EnvironmentVariablesOverride property is set
         internal bool IsSetEnvironmentVariablesOverride()
         {
-            return this._environmentVariablesOverride != null && this._environmentVariablesOverride.Count > 0; 
+            return this._environmentVariablesOverride != null && (this._environmentVariablesOverride.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -321,7 +321,7 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property GitSubmodulesConfigOverride. 
         /// <para>
-        /// A <code>GitSubmodulesConfig</code> object that overrides the Git submodules configuration
+        /// A <c>GitSubmodulesConfig</c> object that overrides the Git submodules configuration
         /// for this batch build.
         /// </para>
         /// </summary>
@@ -340,10 +340,10 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property IdempotencyToken. 
         /// <para>
-        /// A unique, case sensitive identifier you provide to ensure the idempotency of the <code>StartBuildBatch</code>
-        /// request. The token is included in the <code>StartBuildBatch</code> request and is
-        /// valid for five minutes. If you repeat the <code>StartBuildBatch</code> request with
-        /// the same token, but change a parameter, CodeBuild returns a parameter mismatch error.
+        /// A unique, case sensitive identifier you provide to ensure the idempotency of the <c>StartBuildBatch</c>
+        /// request. The token is included in the <c>StartBuildBatch</c> request and is valid
+        /// for five minutes. If you repeat the <c>StartBuildBatch</c> request with the same token,
+        /// but change a parameter, CodeBuild returns a parameter mismatch error.
         /// </para>
         /// </summary>
         public string IdempotencyToken
@@ -395,8 +395,8 @@ namespace Amazon.CodeBuild.Model
         /// </para>
         ///  </dd> </dl> 
         /// <para>
-        /// When using a cross-account or private registry image, you must use <code>SERVICE_ROLE</code>
-        /// credentials. When using an CodeBuild curated image, you must use <code>CODEBUILD</code>
+        /// When using a cross-account or private registry image, you must use <c>SERVICE_ROLE</c>
+        /// credentials. When using an CodeBuild curated image, you must use <c>CODEBUILD</c>
         /// credentials. 
         /// </para>
         /// </summary>
@@ -436,8 +436,8 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property LogsConfigOverride. 
         /// <para>
-        /// A <code>LogsConfig</code> object that override the log settings defined in the batch
-        /// build project.
+        /// A <c>LogsConfig</c> object that override the log settings defined in the batch build
+        /// project.
         /// </para>
         /// </summary>
         public LogsConfig LogsConfigOverride
@@ -511,8 +511,8 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property RegistryCredentialOverride. 
         /// <para>
-        /// A <code>RegistryCredential</code> object that overrides credentials for access to
-        /// a private registry.
+        /// A <c>RegistryCredential</c> object that overrides credentials for access to a private
+        /// registry.
         /// </para>
         /// </summary>
         public RegistryCredential RegistryCredentialOverride
@@ -530,10 +530,9 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property ReportBuildBatchStatusOverride. 
         /// <para>
-        /// Set to <code>true</code> to report to your source provider the status of a batch build's
+        /// Set to <c>true</c> to report to your source provider the status of a batch build's
         /// start and completion. If you use this option with a source provider other than GitHub,
-        /// GitHub Enterprise, or Bitbucket, an <code>invalidInputException</code> is thrown.
-        /// 
+        /// GitHub Enterprise, or Bitbucket, an <c>invalidInputException</c> is thrown. 
         /// </para>
         ///  <note> 
         /// <para>
@@ -557,7 +556,7 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property SecondaryArtifactsOverride. 
         /// <para>
-        /// An array of <code>ProjectArtifacts</code> objects that override the secondary artifacts
+        /// An array of <c>ProjectArtifacts</c> objects that override the secondary artifacts
         /// defined in the batch build project.
         /// </para>
         /// </summary>
@@ -571,14 +570,14 @@ namespace Amazon.CodeBuild.Model
         // Check to see if SecondaryArtifactsOverride property is set
         internal bool IsSetSecondaryArtifactsOverride()
         {
-            return this._secondaryArtifactsOverride != null && this._secondaryArtifactsOverride.Count > 0; 
+            return this._secondaryArtifactsOverride != null && (this._secondaryArtifactsOverride.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SecondarySourcesOverride. 
         /// <para>
-        /// An array of <code>ProjectSource</code> objects that override the secondary sources
-        /// defined in the batch build project.
+        /// An array of <c>ProjectSource</c> objects that override the secondary sources defined
+        /// in the batch build project.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=12)]
@@ -591,14 +590,14 @@ namespace Amazon.CodeBuild.Model
         // Check to see if SecondarySourcesOverride property is set
         internal bool IsSetSecondarySourcesOverride()
         {
-            return this._secondarySourcesOverride != null && this._secondarySourcesOverride.Count > 0; 
+            return this._secondarySourcesOverride != null && (this._secondarySourcesOverride.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SecondarySourcesVersionOverride. 
         /// <para>
-        /// An array of <code>ProjectSourceVersion</code> objects that override the secondary
-        /// source versions in the batch build project.
+        /// An array of <c>ProjectSourceVersion</c> objects that override the secondary source
+        /// versions in the batch build project.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=12)]
@@ -611,7 +610,7 @@ namespace Amazon.CodeBuild.Model
         // Check to see if SecondarySourcesVersionOverride property is set
         internal bool IsSetSecondarySourcesVersionOverride()
         {
-            return this._secondarySourcesVersionOverride != null && this._secondarySourcesVersionOverride.Count > 0; 
+            return this._secondarySourcesVersionOverride != null && (this._secondarySourcesVersionOverride.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -637,9 +636,8 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property SourceAuthOverride. 
         /// <para>
-        /// A <code>SourceAuth</code> object that overrides the one defined in the batch build
-        /// project. This override applies only if the build project's source is BitBucket or
-        /// GitHub.
+        /// A <c>SourceAuth</c> object that overrides the one defined in the batch build project.
+        /// This override applies only if the build project's source is BitBucket or GitHub.
         /// </para>
         /// </summary>
         public SourceAuth SourceAuthOverride
@@ -705,9 +703,9 @@ namespace Amazon.CodeBuild.Model
         /// <para>
         /// The commit ID, pull request ID, branch name, or tag name that corresponds to the version
         /// of the source code you want to build. If a pull request ID is specified, it must use
-        /// the format <code>pr/pull-request-ID</code> (for example <code>pr/25</code>). If a
-        /// branch name is specified, the branch's HEAD commit ID is used. If not specified, the
-        /// default branch's HEAD commit ID is used.
+        /// the format <c>pr/pull-request-ID</c> (for example <c>pr/25</c>). If a branch name
+        /// is specified, the branch's HEAD commit ID is used. If not specified, the default branch's
+        /// HEAD commit ID is used.
         /// </para>
         ///  </dd> <dt>Bitbucket</dt> <dd> 
         /// <para>
@@ -721,7 +719,7 @@ namespace Amazon.CodeBuild.Model
         /// </para>
         ///  </dd> </dl> 
         /// <para>
-        /// If <code>sourceVersion</code> is specified at the project level, then this <code>sourceVersion</code>
+        /// If <c>sourceVersion</c> is specified at the project level, then this <c>sourceVersion</c>
         /// (at the build level) takes precedence. 
         /// </para>
         ///  

@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MTurk.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteQualificationType operation.
-    /// The <code>DeleteQualificationType</code> deletes a Qualification type and deletes
-    /// any HIT types that are associated with the Qualification type. 
+    /// The <c>DeleteQualificationType</c> deletes a Qualification type and deletes any HIT
+    /// types that are associated with the Qualification type. 
     /// 
     ///  
     /// <para>

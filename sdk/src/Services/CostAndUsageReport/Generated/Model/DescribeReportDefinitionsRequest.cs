@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostAndUsageReport.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeReportDefinitions operation.
-    /// Lists the AWS Cost and Usage reports available to this account.
+    /// Lists the Amazon Web Services Cost and Usage Report available to this account.
     /// </summary>
     public partial class DescribeReportDefinitionsRequest : AmazonCostAndUsageReportRequest
     {

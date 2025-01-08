@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -35,12 +36,12 @@ namespace Amazon.CloudWatchLogs.Model
     /// 
     ///  
     /// <para>
-    /// Each <code>DeleteQueryDefinition</code> operation can delete one query definition.
+    /// Each <c>DeleteQueryDefinition</c> operation can delete one query definition.
     /// </para>
     ///  
     /// <para>
-    /// You must have the <code>logs:DeleteQueryDefinition</code> permission to be able to
-    /// perform this operation.
+    /// You must have the <c>logs:DeleteQueryDefinition</c> permission to be able to perform
+    /// this operation.
     /// </para>
     /// </summary>
     public partial class DeleteQueryDefinitionRequest : AmazonCloudWatchLogsRequest

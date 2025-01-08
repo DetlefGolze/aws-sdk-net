@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentity.Model
 {
     /// <summary>
-    /// Returned in response to a successful <code>MergeDeveloperIdentities</code> action.
+    /// Returned in response to a successful <c>MergeDeveloperIdentities</c> action.
     /// </summary>
     public partial class MergeDeveloperIdentitiesResponse : AmazonWebServiceResponse
     {

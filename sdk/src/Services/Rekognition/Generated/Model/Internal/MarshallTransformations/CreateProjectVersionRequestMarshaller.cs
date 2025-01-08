@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Rekognition.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,8 +66,20 @@ namespace Amazon.Rekognition.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetFeatureConfig())
+                {
+                    context.Writer.WritePropertyName("FeatureConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = CustomizationFeatureConfigMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.FeatureConfig, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetKmsKeyId())
                 {
                     context.Writer.WritePropertyName("KmsKeyId");
@@ -124,6 +137,12 @@ namespace Amazon.Rekognition.Model.Internal.MarshallTransformations
                     marshaller.Marshall(publicRequest.TrainingData, context);
 
                     context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetVersionDescription())
+                {
+                    context.Writer.WritePropertyName("VersionDescription");
+                    context.Writer.Write(publicRequest.VersionDescription);
                 }
 
                 if(publicRequest.IsSetVersionName())

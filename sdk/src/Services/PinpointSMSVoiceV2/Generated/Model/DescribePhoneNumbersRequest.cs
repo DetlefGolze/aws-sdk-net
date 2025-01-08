@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
@@ -42,15 +43,16 @@ namespace Amazon.PinpointSMSVoiceV2.Model
     /// </para>
     ///  
     /// <para>
-    /// If you specify a phone number ID that isn't valid, an Error is returned.
+    /// If you specify a phone number ID that isn't valid, an error is returned.
     /// </para>
     /// </summary>
     public partial class DescribePhoneNumbersRequest : AmazonPinpointSMSVoiceV2Request
     {
-        private List<PhoneNumberFilter> _filters = new List<PhoneNumberFilter>();
+        private List<PhoneNumberFilter> _filters = AWSConfigs.InitializeCollections ? new List<PhoneNumberFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _phoneNumberIds = new List<string>();
+        private Owner _owner;
+        private List<string> _phoneNumberIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Filters. 
@@ -68,7 +70,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -111,11 +113,37 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Owner. 
+        /// <para>
+        /// Use <c>SELF</c> to filter the list of phone numbers to ones your account owns or use
+        /// <c>SHARED</c> to filter on phone numbers shared with your account. The <c>Owner</c>
+        /// and <c>PhoneNumberIds</c> parameters can't be used at the same time.
+        /// </para>
+        /// </summary>
+        public Owner Owner
+        {
+            get { return this._owner; }
+            set { this._owner = value; }
+        }
+
+        // Check to see if Owner property is set
+        internal bool IsSetOwner()
+        {
+            return this._owner != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property PhoneNumberIds. 
         /// <para>
         /// The unique identifier of phone numbers to find information about. This is an array
         /// of strings that can be either the PhoneNumberId or PhoneNumberArn.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// If you are using a shared AWS End User Messaging SMS and Voice resource then you must
+        /// use the full Amazon Resource Name(ARN).
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Min=0, Max=5)]
         public List<string> PhoneNumberIds
@@ -127,7 +155,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         // Check to see if PhoneNumberIds property is set
         internal bool IsSetPhoneNumberIds()
         {
-            return this._phoneNumberIds != null && this._phoneNumberIds.Count > 0; 
+            return this._phoneNumberIds != null && (this._phoneNumberIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaConnect.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.MediaConnect.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAvailabilityZone())
@@ -154,6 +156,17 @@ namespace Amazon.MediaConnect.Model.Internal.MarshallTransformations
 
                     var marshaller = FailoverConfigMarshaller.Instance;
                     marshaller.Marshall(publicRequest.SourceFailoverConfig, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetSourceMonitoringConfig())
+                {
+                    context.Writer.WritePropertyName("sourceMonitoringConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = MonitoringConfigMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.SourceMonitoringConfig, context);
 
                     context.Writer.WriteObjectEnd();
                 }

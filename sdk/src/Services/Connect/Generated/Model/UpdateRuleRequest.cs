@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Connect.Model
     /// </summary>
     public partial class UpdateRuleRequest : AmazonConnectRequest
     {
-        private List<RuleAction> _actions = new List<RuleAction>();
+        private List<RuleAction> _actions = AWSConfigs.InitializeCollections ? new List<RuleAction>() : null;
         private string _function;
         private string _instanceId;
         private string _name;
@@ -63,7 +64,7 @@ namespace Amazon.Connect.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -108,9 +109,9 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the rule. You can change the name only if <code>TriggerEventSource</code>
-        /// is one of the following values: <code>OnZendeskTicketCreate</code> | <code>OnZendeskTicketStatusUpdate</code>
-        /// | <code>OnSalesforceCaseCreate</code> 
+        /// The name of the rule. You can change the name only if <c>TriggerEventSource</c> is
+        /// one of the following values: <c>OnZendeskTicketCreate</c> | <c>OnZendeskTicketStatusUpdate</c>
+        /// | <c>OnSalesforceCaseCreate</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=200)]

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Signer.Model
 {
     /// <summary>
-    /// Contains information about the ACM certificates and code signing configuration parameters
+    /// Contains information about the ACM certificates and signing configuration parameters
     /// that can be used by a given code signing user.
     /// </summary>
     public partial class SigningProfile
@@ -42,9 +43,9 @@ namespace Amazon.Signer.Model
         private string _profileVersionArn;
         private SignatureValidityPeriod _signatureValidityPeriod;
         private SigningMaterial _signingMaterial;
-        private Dictionary<string, string> _signingParameters = new Dictionary<string, string>();
+        private Dictionary<string, string> _signingParameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private SigningProfileStatus _status;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -196,7 +197,7 @@ namespace Amazon.Signer.Model
         /// <summary>
         /// Gets and sets the property SigningParameters. 
         /// <para>
-        /// The parameters that are available for use by a code signing user.
+        /// The parameters that are available for use by a Signer user.
         /// </para>
         /// </summary>
         public Dictionary<string, string> SigningParameters
@@ -208,13 +209,13 @@ namespace Amazon.Signer.Model
         // Check to see if SigningParameters property is set
         internal bool IsSetSigningParameters()
         {
-            return this._signingParameters != null && this._signingParameters.Count > 0; 
+            return this._signingParameters != null && (this._signingParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of a code signing profile.
+        /// The status of a signing profile.
         /// </para>
         /// </summary>
         public SigningProfileStatus Status
@@ -245,7 +246,7 @@ namespace Amazon.Signer.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

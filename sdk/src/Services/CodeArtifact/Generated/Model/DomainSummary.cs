@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeArtifact.Model
 {
     /// <summary>
     /// Information about a domain, including its name, Amazon Resource Name (ARN), and status.
     /// The <a href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListDomains.html">ListDomains</a>
-    /// operation returns a list of <code>DomainSummary</code> objects.
+    /// operation returns a list of <c>DomainSummary</c> objects.
     /// </summary>
     public partial class DomainSummary
     {

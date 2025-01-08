@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointEmail.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.PinpointEmail.Model
     public partial class UntagResourceRequest : AmazonPinpointEmailRequest
     {
         private string _resourceArn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -65,10 +66,9 @@ namespace Amazon.PinpointEmail.Model
         /// </para>
         ///  
         /// <para>
-        /// To remove more than one tag from the resource, append the <code>TagKeys</code> parameter
+        /// To remove more than one tag from the resource, append the <c>TagKeys</c> parameter
         /// and argument for each additional tag to remove, separated by an ampersand. For example:
-        /// <code>/v1/email/tags?ResourceArn=ResourceArn&amp;TagKeys=Key1&amp;TagKeys=Key2</code>
-        /// 
+        /// <c>/v1/email/tags?ResourceArn=ResourceArn&amp;TagKeys=Key1&amp;TagKeys=Key2</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -81,7 +81,7 @@ namespace Amazon.PinpointEmail.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

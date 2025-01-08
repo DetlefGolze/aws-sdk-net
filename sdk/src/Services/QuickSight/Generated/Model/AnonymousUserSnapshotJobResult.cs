@@ -26,24 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
     /// A structure that contains the file groups that are requested for the artifact generation
-    /// in a <code>StartDashboardSnapshotJob</code> API call.
+    /// in a <c>StartDashboardSnapshotJob</c> API call.
     /// </summary>
     public partial class AnonymousUserSnapshotJobResult
     {
-        private List<SnapshotJobResultFileGroup> _fileGroups = new List<SnapshotJobResultFileGroup>();
+        private List<SnapshotJobResultFileGroup> _fileGroups = AWSConfigs.InitializeCollections ? new List<SnapshotJobResultFileGroup>() : null;
 
         /// <summary>
         /// Gets and sets the property FileGroups. 
         /// <para>
-        /// A list of <code>SnapshotJobResultFileGroup</code> objects that contain information
-        /// on the files that are requested during a <code>StartDashboardSnapshotJob</code> API
-        /// call. If the job succeeds, these objects contain the location where the snapshot artifacts
-        /// are stored. If the job fails, the objects contain information about the error that
-        /// caused the job to fail.
+        /// A list of <c>SnapshotJobResultFileGroup</c> objects that contain information on the
+        /// files that are requested during a <c>StartDashboardSnapshotJob</c> API call. If the
+        /// job succeeds, these objects contain the location where the snapshot artifacts are
+        /// stored. If the job fails, the objects contain information about the error that caused
+        /// the job to fail.
         /// </para>
         /// </summary>
         public List<SnapshotJobResultFileGroup> FileGroups
@@ -55,7 +56,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if FileGroups property is set
         internal bool IsSetFileGroups()
         {
-            return this._fileGroups != null && this._fileGroups.Count > 0; 
+            return this._fileGroups != null && (this._fileGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Job Unmarshall(JsonUnmarshallerContext context)
         {
+            Job unmarshalledObject = new Job();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Job unmarshalledObject = new Job();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -124,6 +126,18 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
                     unmarshalledObject.GlueVersion = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("JobMode", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.JobMode = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("JobRunQueuingEnabled", targetDepth))
+                {
+                    var unmarshaller = BoolUnmarshaller.Instance;
+                    unmarshalledObject.JobRunQueuingEnabled = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("LastModifiedOn", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
@@ -134,6 +148,12 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.LogUri = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("MaintenanceWindow", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.MaintenanceWindow = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("MaxCapacity", targetDepth))
@@ -172,6 +192,12 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
                     unmarshalledObject.NumberOfWorkers = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ProfileName", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ProfileName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("Role", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -203,7 +229,6 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

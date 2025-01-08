@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MWAA.Model
 {
     /// <summary>
@@ -33,8 +34,48 @@ namespace Amazon.MWAA.Model
     /// </summary>
     public partial class CreateWebLoginTokenResponse : AmazonWebServiceResponse
     {
+        private string _airflowIdentity;
+        private string _iamIdentity;
         private string _webServerHostname;
         private string _webToken;
+
+        /// <summary>
+        /// Gets and sets the property AirflowIdentity. 
+        /// <para>
+        /// The user name of the Apache Airflow identity creating the web login token.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=64)]
+        public string AirflowIdentity
+        {
+            get { return this._airflowIdentity; }
+            set { this._airflowIdentity = value; }
+        }
+
+        // Check to see if AirflowIdentity property is set
+        internal bool IsSetAirflowIdentity()
+        {
+            return this._airflowIdentity != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IamIdentity. 
+        /// <para>
+        /// The name of the IAM identity creating the web login token. This might be an IAM user,
+        /// or an assumed or federated identity. For example, <c>assumed-role/Admin/your-name</c>.
+        /// </para>
+        /// </summary>
+        public string IamIdentity
+        {
+            get { return this._iamIdentity; }
+            set { this._iamIdentity = value; }
+        }
+
+        // Check to see if IamIdentity property is set
+        internal bool IsSetIamIdentity()
+        {
+            return this._iamIdentity != null;
+        }
 
         /// <summary>
         /// Gets and sets the property WebServerHostname. 

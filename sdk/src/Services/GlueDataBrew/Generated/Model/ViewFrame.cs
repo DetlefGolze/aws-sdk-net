@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GlueDataBrew.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.GlueDataBrew.Model
     {
         private AnalyticsMode _analytics;
         private int? _columnRange;
-        private List<string> _hiddenColumns = new List<string>();
+        private List<string> _hiddenColumns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _rowRange;
         private int? _startColumnIndex;
         private int? _startRowIndex;
@@ -61,8 +62,8 @@ namespace Amazon.GlueDataBrew.Model
         /// <summary>
         /// Gets and sets the property ColumnRange. 
         /// <para>
-        /// The number of columns to include in the view frame, beginning with the <code>StartColumnIndex</code>
-        /// value and ignoring any columns in the <code>HiddenColumns</code> list.
+        /// The number of columns to include in the view frame, beginning with the <c>StartColumnIndex</c>
+        /// value and ignoring any columns in the <c>HiddenColumns</c> list.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=20)]
@@ -93,13 +94,13 @@ namespace Amazon.GlueDataBrew.Model
         // Check to see if HiddenColumns property is set
         internal bool IsSetHiddenColumns()
         {
-            return this._hiddenColumns != null && this._hiddenColumns.Count > 0; 
+            return this._hiddenColumns != null && (this._hiddenColumns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property RowRange. 
         /// <para>
-        /// The number of rows to include in the view frame, beginning with the <code>StartRowIndex</code>
+        /// The number of rows to include in the view frame, beginning with the <c>StartRowIndex</c>
         /// value.
         /// </para>
         /// </summary>

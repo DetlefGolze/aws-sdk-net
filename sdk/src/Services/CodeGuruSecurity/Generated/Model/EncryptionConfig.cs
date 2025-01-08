@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruSecurity.Model
 {
     /// <summary>
-    /// Information about account-level configuration.
+    /// Information about the encryption configuration for an account. Required to call <c>UpdateAccountConfiguration</c>.
     /// </summary>
     public partial class EncryptionConfig
     {
@@ -38,8 +39,8 @@ namespace Amazon.CodeGuruSecurity.Model
         /// <summary>
         /// Gets and sets the property KmsKeyArn. 
         /// <para>
-        /// The KMS key ARN to use for encryption. This must be provided as a header when uploading
-        /// your code resource.
+        /// The KMS key ARN that is used for encryption. If an AWS-managed key is used for encryption,
+        /// returns empty.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

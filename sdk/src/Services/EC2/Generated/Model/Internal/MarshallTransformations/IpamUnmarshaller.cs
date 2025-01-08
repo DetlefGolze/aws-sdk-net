@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -72,6 +73,12 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                         unmarshalledObject.Description = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("enablePrivateGua", targetDepth))
+                    {
+                        var unmarshaller = BoolUnmarshaller.Instance;
+                        unmarshalledObject.EnablePrivateGua = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("ipamArn", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
@@ -93,6 +100,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                     if (context.TestExpression("operatingRegionSet/item", targetDepth))
                     {
                         var unmarshaller = IpamOperatingRegionUnmarshaller.Instance;
+                        if (unmarshalledObject.OperatingRegions == null)
+                        {
+                            unmarshalledObject.OperatingRegions = new List<IpamOperatingRegion>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.OperatingRegions.Add(item);
                         continue;
@@ -133,11 +144,27 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                         unmarshalledObject.State = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("stateMessage", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.StateMessage = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("tagSet/item", targetDepth))
                     {
                         var unmarshaller = TagUnmarshaller.Instance;
+                        if (unmarshalledObject.Tags == null)
+                        {
+                            unmarshalledObject.Tags = new List<Tag>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.Tags.Add(item);
+                        continue;
+                    }
+                    if (context.TestExpression("tier", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.Tier = unmarshaller.Unmarshall(context);
                         continue;
                     }
                 }

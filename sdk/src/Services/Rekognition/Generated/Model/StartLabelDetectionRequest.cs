@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -42,16 +43,16 @@ namespace Amazon.Rekognition.Model
     ///  
     /// <para>
     /// The video must be stored in an Amazon S3 bucket. Use <a>Video</a> to specify the bucket
-    /// name and the filename of the video. <code>StartLabelDetection</code> returns a job
-    /// identifier (<code>JobId</code>) which you use to get the results of the operation.
-    /// When label detection is finished, Amazon Rekognition Video publishes a completion
-    /// status to the Amazon Simple Notification Service topic that you specify in <code>NotificationChannel</code>.
+    /// name and the filename of the video. <c>StartLabelDetection</c> returns a job identifier
+    /// (<c>JobId</c>) which you use to get the results of the operation. When label detection
+    /// is finished, Amazon Rekognition Video publishes a completion status to the Amazon
+    /// Simple Notification Service topic that you specify in <c>NotificationChannel</c>.
     /// </para>
     ///  
     /// <para>
     /// To get the results of the label detection operation, first check that the status value
-    /// published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetLabelDetection</a>
-    /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartLabelDetection</code>.
+    /// published to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <a>GetLabelDetection</a>
+    /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartLabelDetection</c>.
     /// </para>
     ///  
     /// <para>
@@ -59,23 +60,23 @@ namespace Amazon.Rekognition.Model
     /// </para>
     ///  
     /// <para>
-    ///  <code>StartLabelDetection</code> has the <code>GENERAL_LABELS</code> Feature applied
-    /// by default. This feature allows you to provide filtering criteria to the <code>Settings</code>
-    /// parameter. You can filter with sets of individual labels or with label categories.
-    /// You can specify inclusive filters, exclusive filters, or a combination of inclusive
-    /// and exclusive filters. For more information on filtering, see <a href="https://docs.aws.amazon.com/rekognition/latest/dg/labels-detecting-labels-video.html">Detecting
+    ///  <c>StartLabelDetection</c> has the <c>GENERAL_LABELS</c> Feature applied by default.
+    /// This feature allows you to provide filtering criteria to the <c>Settings</c> parameter.
+    /// You can filter with sets of individual labels or with label categories. You can specify
+    /// inclusive filters, exclusive filters, or a combination of inclusive and exclusive
+    /// filters. For more information on filtering, see <a href="https://docs.aws.amazon.com/rekognition/latest/dg/labels-detecting-labels-video.html">Detecting
     /// labels in a video</a>.
     /// </para>
     ///  
     /// <para>
-    /// You can specify <code>MinConfidence</code> to control the confidence threshold for
-    /// the labels returned. The default is 50.
+    /// You can specify <c>MinConfidence</c> to control the confidence threshold for the labels
+    /// returned. The default is 50.
     /// </para>
     /// </summary>
     public partial class StartLabelDetectionRequest : AmazonRekognitionRequest
     {
         private string _clientRequestToken;
-        private List<string> _features = new List<string>();
+        private List<string> _features = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _jobTag;
         private float? _minConfidence;
         private NotificationChannel _notificationChannel;
@@ -86,9 +87,9 @@ namespace Amazon.Rekognition.Model
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
         /// Idempotent token used to identify the start request. If you use the same token with
-        /// multiple <code>StartLabelDetection</code> requests, the same <code>JobId</code> is
-        /// returned. Use <code>ClientRequestToken</code> to prevent the same job from being accidently
-        /// started more than once. 
+        /// multiple <c>StartLabelDetection</c> requests, the same <c>JobId</c> is returned. Use
+        /// <c>ClientRequestToken</c> to prevent the same job from being accidently started more
+        /// than once. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -121,14 +122,14 @@ namespace Amazon.Rekognition.Model
         // Check to see if Features property is set
         internal bool IsSetFeatures()
         {
-            return this._features != null && this._features.Count > 0; 
+            return this._features != null && (this._features.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property JobTag. 
         /// <para>
         /// An identifier you specify that's returned in the completion notification that's published
-        /// to your Amazon Simple Notification Service topic. For example, you can use <code>JobTag</code>
+        /// to your Amazon Simple Notification Service topic. For example, you can use <c>JobTag</c>
         /// to group related jobs and identify them in the completion notification.
         /// </para>
         /// </summary>
@@ -156,8 +157,8 @@ namespace Amazon.Rekognition.Model
         /// </para>
         ///  
         /// <para>
-        /// If you don't specify <code>MinConfidence</code>, the operation returns labels and
-        /// bounding boxes (if detected) with confidence values greater than or equal to 50 percent.
+        /// If you don't specify <c>MinConfidence</c>, the operation returns labels and bounding
+        /// boxes (if detected) with confidence values greater than or equal to 50 percent.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]

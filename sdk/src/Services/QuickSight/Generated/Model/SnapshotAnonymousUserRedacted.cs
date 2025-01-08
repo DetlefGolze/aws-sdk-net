@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace Amazon.QuickSight.Model
     /// </summary>
     public partial class SnapshotAnonymousUserRedacted
     {
-        private List<string> _rowLevelPermissionTagKeys = new List<string>();
+        private List<string> _rowLevelPermissionTagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property RowLevelPermissionTagKeys. 
         /// <para>
-        /// The tag keys for the <code>RowLevelPermissionTags</code>.
+        /// The tag keys for the <c>RowLevelPermissionTags</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -52,7 +53,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if RowLevelPermissionTagKeys property is set
         internal bool IsSetRowLevelPermissionTagKeys()
         {
-            return this._rowLevelPermissionTagKeys != null && this._rowLevelPermissionTagKeys.Count > 0; 
+            return this._rowLevelPermissionTagKeys != null && (this._rowLevelPermissionTagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

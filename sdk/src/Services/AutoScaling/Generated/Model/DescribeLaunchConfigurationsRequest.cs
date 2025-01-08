@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.AutoScaling.Model
     /// </summary>
     public partial class DescribeLaunchConfigurationsRequest : AmazonAutoScalingRequest
     {
-        private List<string> _launchConfigurationNames = new List<string>();
+        private List<string> _launchConfigurationNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxRecords;
         private string _nextToken;
 
@@ -58,14 +59,14 @@ namespace Amazon.AutoScaling.Model
         // Check to see if LaunchConfigurationNames property is set
         internal bool IsSetLaunchConfigurationNames()
         {
-            return this._launchConfigurationNames != null && this._launchConfigurationNames.Count > 0; 
+            return this._launchConfigurationNames != null && (this._launchConfigurationNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxRecords. 
         /// <para>
-        /// The maximum number of items to return with this call. The default value is <code>50</code>
-        /// and the maximum value is <code>100</code>.
+        /// The maximum number of items to return with this call. The default value is <c>50</c>
+        /// and the maximum value is <c>100</c>.
         /// </para>
         /// </summary>
         public int MaxRecords

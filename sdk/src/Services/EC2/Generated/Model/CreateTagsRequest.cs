@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -47,8 +48,8 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class CreateTagsRequest : AmazonEC2Request
     {
-        private List<string> _resources = new List<string>();
-        private List<Tag> _tags = new List<Tag>();
+        private List<string> _resources = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -59,7 +60,7 @@ namespace Amazon.EC2.Model
         /// Instantiates CreateTagsRequest with the parameterized properties
         /// </summary>
         /// <param name="resources">The IDs of the resources, separated by spaces. Constraints: Up to 1000 resource IDs. We recommend breaking up this request into smaller batches.</param>
-        /// <param name="tags">The tags. The <code>value</code> parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string.</param>
+        /// <param name="tags">The tags. The <c>value</c> parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string.</param>
         public CreateTagsRequest(List<string> resources, List<Tag> tags)
         {
             _resources = resources;
@@ -87,15 +88,15 @@ namespace Amazon.EC2.Model
         // Check to see if Resources property is set
         internal bool IsSetResources()
         {
-            return this._resources != null && this._resources.Count > 0; 
+            return this._resources != null && (this._resources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// The tags. The <code>value</code> parameter is required, but if you don't want the
-        /// tag to have a value, specify the parameter with no value, and we set the value to
-        /// an empty string.
+        /// The tags. The <c>value</c> parameter is required, but if you don't want the tag to
+        /// have a value, specify the parameter with no value, and we set the value to an empty
+        /// string.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -108,7 +109,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

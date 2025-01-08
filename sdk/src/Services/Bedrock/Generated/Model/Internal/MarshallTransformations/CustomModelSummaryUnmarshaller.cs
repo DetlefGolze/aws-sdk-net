@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Bedrock.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Bedrock.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public CustomModelSummary Unmarshall(JsonUnmarshallerContext context)
         {
+            CustomModelSummary unmarshalledObject = new CustomModelSummary();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            CustomModelSummary unmarshalledObject = new CustomModelSummary();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -82,6 +84,12 @@ namespace Amazon.Bedrock.Model.Internal.MarshallTransformations
                     unmarshalledObject.CreationTime = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("customizationType", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.CustomizationType = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("modelArn", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -94,8 +102,13 @@ namespace Amazon.Bedrock.Model.Internal.MarshallTransformations
                     unmarshalledObject.ModelName = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ownerAccountId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.OwnerAccountId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

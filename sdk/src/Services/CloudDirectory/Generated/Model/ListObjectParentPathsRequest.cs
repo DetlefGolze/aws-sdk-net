@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.CloudDirectory.Model
     /// <para>
     /// Use this API to evaluate all parents for an object. The call returns all objects from
     /// the root of the directory up to the requested object. The API returns the number of
-    /// paths based on user-defined <code>MaxResults</code>, in case there are multiple paths
-    /// to the parent. The order of the paths and nodes returned is consistent among multiple
+    /// paths based on user-defined <c>MaxResults</c>, in case there are multiple paths to
+    /// the parent. The order of the paths and nodes returned is consistent among multiple
     /// API calls unless the objects are deleted or moved. Paths not leading to the directory
     /// root are ignored from the target object.
     /// </para>
@@ -67,7 +68,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if DirectoryArn property is set
         internal bool IsSetDirectoryArn()
         {
-            return this._directoryArn != null;
+            return !string.IsNullOrEmpty(this._directoryArn);
         }
 
         /// <summary>

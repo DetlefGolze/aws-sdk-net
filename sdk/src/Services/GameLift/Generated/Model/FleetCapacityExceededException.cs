@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
-    /// The specified fleet has no available instances to fulfill a <code>CreateGameSession</code>
+    /// The specified fleet has no available instances to fulfill a <c>CreateGameSession</c>
     /// request. Clients can retry such requests immediately or after a waiting period.
     /// </summary>
     #if !NETSTANDARD

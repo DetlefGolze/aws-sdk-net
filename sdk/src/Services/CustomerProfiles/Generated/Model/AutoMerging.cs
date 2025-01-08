@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
@@ -42,9 +43,8 @@ namespace Amazon.CustomerProfiles.Model
         /// Gets and sets the property ConflictResolution. 
         /// <para>
         /// How the auto-merging process should resolve conflicts between different profiles.
-        /// For example, if Profile A and Profile B have the same <code>FirstName</code> and <code>LastName</code>
-        /// (and that is the matching criteria), which <code>EmailAddress</code> should be used?
-        /// 
+        /// For example, if Profile A and Profile B have the same <c>FirstName</c> and <c>LastName</c>
+        /// (and that is the matching criteria), which <c>EmailAddress</c> should be used? 
         /// </para>
         /// </summary>
         public ConflictResolution ConflictResolution

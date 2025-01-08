@@ -26,16 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RedshiftServerless.Model
 {
     /// <summary>
     /// Container for the parameters to the ListEndpointAccess operation.
-    /// Returns an array of <code>EndpointAccess</code> objects and relevant information.
+    /// Returns an array of <c>EndpointAccess</c> objects and relevant information.
     /// </summary>
     public partial class ListEndpointAccessRequest : AmazonRedshiftServerlessRequest
     {
         private int? _maxResults;
         private string _nextToken;
+        private string _ownerAccount;
         private string _vpcId;
         private string _workgroupName;
 
@@ -43,7 +45,7 @@ namespace Amazon.RedshiftServerless.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// An optional parameter that specifies the maximum number of results to return. You
-        /// can use <code>nextToken</code> to display the next page of results.
+        /// can use <c>nextToken</c> to display the next page of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -62,9 +64,9 @@ namespace Amazon.RedshiftServerless.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If your initial <code>ListEndpointAccess</code> operation returns a <code>nextToken</code>,
-        /// you can include the returned <code>nextToken</code> in following <code>ListEndpointAccess</code>
-        /// operations, which returns results in the next page.
+        /// If your initial <c>ListEndpointAccess</c> operation returns a <c>nextToken</c>, you
+        /// can include the returned <c>nextToken</c> in following <c>ListEndpointAccess</c> operations,
+        /// which returns results in the next page.
         /// </para>
         /// </summary>
         public string NextToken
@@ -77,6 +79,25 @@ namespace Amazon.RedshiftServerless.Model
         internal bool IsSetNextToken()
         {
             return this._nextToken != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OwnerAccount. 
+        /// <para>
+        /// The owner Amazon Web Services account for the Amazon Redshift Serverless workgroup.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=12)]
+        public string OwnerAccount
+        {
+            get { return this._ownerAccount; }
+            set { this._ownerAccount = value; }
+        }
+
+        // Check to see if OwnerAccount property is set
+        internal bool IsSetOwnerAccount()
+        {
+            return this._ownerAccount != null;
         }
 
         /// <summary>

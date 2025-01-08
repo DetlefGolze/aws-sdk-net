@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAF.Model
 {
     /// <summary>
@@ -72,8 +73,8 @@ namespace Amazon.WAF.Model
         /// <summary>
         /// Gets and sets the property IPSetDescriptor. 
         /// <para>
-        /// The IP address type (<code>IPV4</code> or <code>IPV6</code>) and the IP address range
-        /// (in CIDR notation) that web requests originate from.
+        /// The IP address type (<c>IPV4</c> or <c>IPV6</c>) and the IP address range (in CIDR
+        /// notation) that web requests originate from.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

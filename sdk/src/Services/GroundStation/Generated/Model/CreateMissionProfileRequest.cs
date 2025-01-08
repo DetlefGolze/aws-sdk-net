@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
@@ -34,27 +35,27 @@ namespace Amazon.GroundStation.Model
     /// 
     ///  
     /// <para>
-    ///  <code>dataflowEdges</code> is a list of lists of strings. Each lower level list of
-    /// strings has two elements: a <i>from</i> ARN and a <i>to</i> ARN.
+    ///  <c>dataflowEdges</c> is a list of lists of strings. Each lower level list of strings
+    /// has two elements: a <i>from</i> ARN and a <i>to</i> ARN.
     /// </para>
     /// </summary>
     public partial class CreateMissionProfileRequest : AmazonGroundStationRequest
     {
         private int? _contactPostPassDurationSeconds;
         private int? _contactPrePassDurationSeconds;
-        private List<List<string>> _dataflowEdges = new List<List<string>>();
+        private List<List<string>> _dataflowEdges = AWSConfigs.InitializeCollections ? new List<List<string>>() : null;
         private int? _minimumViableContactDurationSeconds;
         private string _name;
         private KmsKey _streamsKmsKey;
         private string _streamsKmsRole;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _trackingConfigArn;
 
         /// <summary>
         /// Gets and sets the property ContactPostPassDurationSeconds. 
         /// <para>
-        /// Amount of time after a contact ends that you’d like to receive a CloudWatch event
-        /// indicating the pass has finished.
+        /// Amount of time after a contact ends that you’d like to receive a Ground Station Contact
+        /// State Change event indicating the pass has finished.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=21600)]
@@ -73,8 +74,8 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property ContactPrePassDurationSeconds. 
         /// <para>
-        /// Amount of time prior to contact start you’d like to receive a CloudWatch event indicating
-        /// an upcoming pass.
+        /// Amount of time prior to contact start you’d like to receive a Ground Station Contact
+        /// State Change event indicating an upcoming pass.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=21600)]
@@ -93,8 +94,8 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property DataflowEdges. 
         /// <para>
-        /// A list of lists of ARNs. Each list of ARNs is an edge, with a <i>from</i> <code>Config</code>
-        /// and a <i>to</i> <code>Config</code>.
+        /// A list of lists of ARNs. Each list of ARNs is an edge, with a <i>from</i> <c>Config</c>
+        /// and a <i>to</i> <c>Config</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=500)]
@@ -107,7 +108,7 @@ namespace Amazon.GroundStation.Model
         // Check to see if DataflowEdges property is set
         internal bool IsSetDataflowEdges()
         {
-            return this._dataflowEdges != null && this._dataflowEdges.Count > 0; 
+            return this._dataflowEdges != null && (this._dataflowEdges.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -200,13 +201,13 @@ namespace Amazon.GroundStation.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TrackingConfigArn. 
         /// <para>
-        /// ARN of a tracking <code>Config</code>.
+        /// ARN of a tracking <c>Config</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

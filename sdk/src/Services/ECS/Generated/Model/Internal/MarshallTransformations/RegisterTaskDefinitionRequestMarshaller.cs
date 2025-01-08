@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ECS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.ECS.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetContainerDefinitions())
@@ -87,6 +89,12 @@ namespace Amazon.ECS.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("cpu");
                     context.Writer.Write(publicRequest.Cpu);
+                }
+
+                if(publicRequest.IsSetEnableFaultInjection())
+                {
+                    context.Writer.WritePropertyName("enableFaultInjection");
+                    context.Writer.Write(publicRequest.EnableFaultInjection);
                 }
 
                 if(publicRequest.IsSetEphemeralStorage())

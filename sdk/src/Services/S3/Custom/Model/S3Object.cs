@@ -27,7 +27,7 @@ namespace Amazon.S3.Model
     /// </summary>
     public class S3Object
     {
-        private List<string> _checksumAlgorithm = new List<string>();
+        private List<string> _checksumAlgorithm = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string eTag;
         private string key;
         private DateTime? lastModified;
@@ -53,7 +53,7 @@ namespace Amazon.S3.Model
         // Check to see if ChecksumAlgorithm property is set
         internal bool IsSetChecksumAlgorithm()
         {
-            return this._checksumAlgorithm != null && this._checksumAlgorithm.Count > 0;
+            return this._checksumAlgorithm != null && (this._checksumAlgorithm.Count > 0 || !AWSConfigs.InitializeCollections);
         }
 
         /// <summary>
@@ -128,7 +128,10 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// The date and time the object was last modified.
+        /// Gets and sets the property LastModified. 
+        /// <para>
+        /// Date and time when the object was last modified.
+        /// </para>
         /// <remarks>
         /// The date retrieved from S3 is in ISO8601 format. A GMT formatted date is passed back to the user.
         /// </remarks>

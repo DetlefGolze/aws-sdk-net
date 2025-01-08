@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
-    /// Encapsulates a <code>ColumnStatistics</code> object that failed and the reason for
-    /// failure.
+    /// Encapsulates a <c>ColumnStatistics</c> object that failed and the reason for failure.
     /// </summary>
     public partial class ColumnStatisticsError
     {
@@ -40,7 +40,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property ColumnStatistics. 
         /// <para>
-        /// The <code>ColumnStatistics</code> of the column.
+        /// The <c>ColumnStatistics</c> of the column.
         /// </para>
         /// </summary>
         public ColumnStatistics ColumnStatistics

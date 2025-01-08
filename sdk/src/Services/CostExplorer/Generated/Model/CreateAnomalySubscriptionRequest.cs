@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostExplorer.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.CostExplorer.Model
     public partial class CreateAnomalySubscriptionRequest : AmazonCostExplorerRequest
     {
         private AnomalySubscription _anomalySubscription;
-        private List<ResourceTag> _resourceTags = new List<ResourceTag>();
+        private List<ResourceTag> _resourceTags = AWSConfigs.InitializeCollections ? new List<ResourceTag>() : null;
 
         /// <summary>
         /// Gets and sets the property AnomalySubscription. 
@@ -62,8 +63,8 @@ namespace Amazon.CostExplorer.Model
         /// Gets and sets the property ResourceTags. 
         /// <para>
         /// An optional list of tags to associate with the specified <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_AnomalySubscription.html">
-        /// <code>AnomalySubscription</code> </a>. You can use resource tags to control access
-        /// to your <code>subscription</code> using IAM policies.
+        /// <c>AnomalySubscription</c> </a>. You can use resource tags to control access to your
+        /// <c>subscription</c> using IAM policies.
         /// </para>
         ///  
         /// <para>
@@ -86,7 +87,7 @@ namespace Amazon.CostExplorer.Model
         ///  </li> <li> 
         /// <para>
         /// Keys and values can only contain alphanumeric characters, spaces, and any of the following:
-        /// <code>_.:/=+@-</code> 
+        /// <c>_.:/=+@-</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -98,8 +99,8 @@ namespace Amazon.CostExplorer.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Don’t use <code>aws:</code> as a prefix for your keys. This prefix is reserved for
-        /// Amazon Web Services use
+        /// Don’t use <c>aws:</c> as a prefix for your keys. This prefix is reserved for Amazon
+        /// Web Services use
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -113,7 +114,7 @@ namespace Amazon.CostExplorer.Model
         // Check to see if ResourceTags property is set
         internal bool IsSetResourceTags()
         {
-            return this._resourceTags != null && this._resourceTags.Count > 0; 
+            return this._resourceTags != null && (this._resourceTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

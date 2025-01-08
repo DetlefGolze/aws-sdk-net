@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
     /// Container for the parameters to the PutPermissionPolicy operation.
-    /// Attaches an IAM policy to the specified resource. Use this to share a rule group across
-    /// accounts.
+    /// Use this to share a rule group with other accounts.
     /// 
     ///  
     /// <para>
-    /// You must be the owner of the rule group to perform this operation.
+    /// This action attaches an IAM policy to the specified resource. You must be the owner
+    /// of the rule group to perform this operation.
     /// </para>
     ///  
     /// <para>
@@ -43,7 +44,7 @@ namespace Amazon.WAFV2.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// You can attach only one policy with each <code>PutPermissionPolicy</code> request.
+    /// You can attach only one policy with each <c>PutPermissionPolicy</c> request.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -54,7 +55,13 @@ namespace Amazon.WAFV2.Model
     /// <para>
     /// The user making the request must be the owner of the rule group.
     /// </para>
-    ///  </li> </ul>
+    ///  </li> </ul> 
+    /// <para>
+    /// If a rule group has been shared with your account, you can access it through the call
+    /// <c>GetRuleGroup</c>, and you can reference it in <c>CreateWebACL</c> and <c>UpdateWebACL</c>.
+    /// Rule groups that are shared with you don't appear in your WAF console rule groups
+    /// listing. 
+    /// </para>
     /// </summary>
     public partial class PutPermissionPolicyRequest : AmazonWAFV2Request
     {
@@ -76,22 +83,21 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The policy must include specifications for <code>Effect</code>, <code>Action</code>,
-        /// and <code>Principal</code>.
+        /// The policy must include specifications for <c>Effect</c>, <c>Action</c>, and <c>Principal</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Effect</code> must specify <code>Allow</code>.
+        ///  <c>Effect</c> must specify <c>Allow</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Action</code> must specify <code>wafv2:CreateWebACL</code>, <code>wafv2:UpdateWebACL</code>,
-        /// and <code>wafv2:PutFirewallManagerRuleGroups</code> and may optionally specify <code>wafv2:GetRuleGroup</code>.
+        ///  <c>Action</c> must specify <c>wafv2:CreateWebACL</c>, <c>wafv2:UpdateWebACL</c>,
+        /// and <c>wafv2:PutFirewallManagerRuleGroups</c> and may optionally specify <c>wafv2:GetRuleGroup</c>.
         /// WAF rejects any extra actions or wildcard actions in the policy.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The policy must not include a <code>Resource</code> parameter.
+        /// The policy must not include a <c>Resource</c> parameter.
         /// </para>
         ///  </li> </ul> 
         /// <para>

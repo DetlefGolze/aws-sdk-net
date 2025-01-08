@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BillingConductor.Model
 {
     /// <summary>
     /// A representation of the line item filter for your custom line item. You can use line
     /// item filters to include or exclude specific resource values from the billing group's
     /// total cost. For example, if you create a custom line item and you want to filter out
-    /// a value, such as Savings Plan discounts, you can update <code>LineItemFilter</code>
-    /// to exclude it.
+    /// a value, such as Savings Plan discounts, you can update <c>LineItemFilter</c> to exclude
+    /// it.
     /// </summary>
     public partial class LineItemFilter
     {
         private LineItemFilterAttributeName _attribute;
         private MatchOption _matchOption;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Attribute. 
@@ -98,7 +99,7 @@ namespace Amazon.BillingConductor.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

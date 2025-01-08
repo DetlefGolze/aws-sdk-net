@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchain.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.ManagedBlockchain.Model
     /// </summary>
     public partial class ListMembersResponse : AmazonWebServiceResponse
     {
-        private List<MemberSummary> _members = new List<MemberSummary>();
+        private List<MemberSummary> _members = AWSConfigs.InitializeCollections ? new List<MemberSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Members. 
         /// <para>
-        /// An array of <code>MemberSummary</code> objects. Each object contains details about
-        /// a network member.
+        /// An array of <c>MemberSummary</c> objects. Each object contains details about a network
+        /// member.
         /// </para>
         /// </summary>
         public List<MemberSummary> Members
@@ -52,7 +53,7 @@ namespace Amazon.ManagedBlockchain.Model
         // Check to see if Members property is set
         internal bool IsSetMembers()
         {
-            return this._members != null && this._members.Count > 0; 
+            return this._members != null && (this._members.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

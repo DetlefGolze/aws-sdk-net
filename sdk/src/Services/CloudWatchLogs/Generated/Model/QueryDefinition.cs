@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -34,9 +35,10 @@ namespace Amazon.CloudWatchLogs.Model
     public partial class QueryDefinition
     {
         private long? _lastModified;
-        private List<string> _logGroupNames = new List<string>();
+        private List<string> _logGroupNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
         private string _queryDefinitionId;
+        private QueryLanguage _queryLanguage;
         private string _queryString;
 
         /// <summary>
@@ -74,7 +76,7 @@ namespace Amazon.CloudWatchLogs.Model
         // Check to see if LogGroupNames property is set
         internal bool IsSetLogGroupNames()
         {
-            return this._logGroupNames != null && this._logGroupNames.Count > 0; 
+            return this._logGroupNames != null && (this._logGroupNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -113,6 +115,26 @@ namespace Amazon.CloudWatchLogs.Model
         internal bool IsSetQueryDefinitionId()
         {
             return this._queryDefinitionId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property QueryLanguage. 
+        /// <para>
+        /// The query language used for this query. For more information about the query languages
+        /// that CloudWatch Logs supports, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_AnalyzeLogData_Languages.html">Supported
+        /// query languages</a>.
+        /// </para>
+        /// </summary>
+        public QueryLanguage QueryLanguage
+        {
+            get { return this._queryLanguage; }
+            set { this._queryLanguage = value; }
+        }
+
+        // Check to see if QueryLanguage property is set
+        internal bool IsSetQueryLanguage()
+        {
+            return this._queryLanguage != null;
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Domains.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.Route53Domains.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// You can register only the domains that are designated as <code>AVAILABLE</code>.
+        /// You can register only the domains that are designated as <c>AVAILABLE</c>.
         /// </para>
         ///  </note> 
         /// <para>

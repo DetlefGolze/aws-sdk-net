@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleWorkflow.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.SimpleWorkflow.Model
         /// <summary>
         /// Gets and sets the property OpenActivityTasks. 
         /// <para>
-        /// The count of activity tasks whose status is <code>OPEN</code>.
+        /// The count of activity tasks whose status is <c>OPEN</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0)]
@@ -62,7 +63,7 @@ namespace Amazon.SimpleWorkflow.Model
         /// <summary>
         /// Gets and sets the property OpenChildWorkflowExecutions. 
         /// <para>
-        /// The count of child workflow executions whose status is <code>OPEN</code>.
+        /// The count of child workflow executions whose status is <c>OPEN</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0)]
@@ -101,7 +102,7 @@ namespace Amazon.SimpleWorkflow.Model
         /// <summary>
         /// Gets and sets the property OpenLambdaFunctions. 
         /// <para>
-        /// The count of Lambda tasks whose status is <code>OPEN</code>.
+        /// The count of Lambda tasks whose status is <c>OPEN</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]

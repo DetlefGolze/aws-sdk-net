@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.XRay.Model
 {
     /// <summary>
@@ -35,12 +36,12 @@ namespace Amazon.XRay.Model
     /// </summary>
     public partial class Edge
     {
-        private List<Alias> _aliases = new List<Alias>();
+        private List<Alias> _aliases = AWSConfigs.InitializeCollections ? new List<Alias>() : null;
         private string _edgeType;
         private DateTime? _endTime;
-        private List<HistogramEntry> _receivedEventAgeHistogram = new List<HistogramEntry>();
+        private List<HistogramEntry> _receivedEventAgeHistogram = AWSConfigs.InitializeCollections ? new List<HistogramEntry>() : null;
         private int? _referenceId;
-        private List<HistogramEntry> _responseTimeHistogram = new List<HistogramEntry>();
+        private List<HistogramEntry> _responseTimeHistogram = AWSConfigs.InitializeCollections ? new List<HistogramEntry>() : null;
         private DateTime? _startTime;
         private EdgeStatistics _summaryStatistics;
 
@@ -59,13 +60,13 @@ namespace Amazon.XRay.Model
         // Check to see if Aliases property is set
         internal bool IsSetAliases()
         {
-            return this._aliases != null && this._aliases.Count > 0; 
+            return this._aliases != null && (this._aliases.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property EdgeType. 
         /// <para>
-        /// Describes an asynchronous connection, with a value of <code>link</code>.
+        /// Describes an asynchronous connection, with a value of <c>link</c>.
         /// </para>
         /// </summary>
         public string EdgeType
@@ -102,7 +103,7 @@ namespace Amazon.XRay.Model
         /// Gets and sets the property ReceivedEventAgeHistogram. 
         /// <para>
         /// A histogram that maps the spread of event age when received by consumers. Age is calculated
-        /// each time an event is received. Only populated when <i>EdgeType</i> is <code>link</code>.
+        /// each time an event is received. Only populated when <i>EdgeType</i> is <c>link</c>.
         /// </para>
         /// </summary>
         public List<HistogramEntry> ReceivedEventAgeHistogram
@@ -114,7 +115,7 @@ namespace Amazon.XRay.Model
         // Check to see if ReceivedEventAgeHistogram property is set
         internal bool IsSetReceivedEventAgeHistogram()
         {
-            return this._receivedEventAgeHistogram != null && this._receivedEventAgeHistogram.Count > 0; 
+            return this._receivedEventAgeHistogram != null && (this._receivedEventAgeHistogram.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -151,7 +152,7 @@ namespace Amazon.XRay.Model
         // Check to see if ResponseTimeHistogram property is set
         internal bool IsSetResponseTimeHistogram()
         {
-            return this._responseTimeHistogram != null && this._responseTimeHistogram.Count > 0; 
+            return this._responseTimeHistogram != null && (this._responseTimeHistogram.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

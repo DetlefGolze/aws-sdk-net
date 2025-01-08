@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IVS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,12 +64,19 @@ namespace Amazon.IVS.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetFilterByName())
                 {
                     context.Writer.WritePropertyName("filterByName");
                     context.Writer.Write(publicRequest.FilterByName);
+                }
+
+                if(publicRequest.IsSetFilterByPlaybackRestrictionPolicyArn())
+                {
+                    context.Writer.WritePropertyName("filterByPlaybackRestrictionPolicyArn");
+                    context.Writer.Write(publicRequest.FilterByPlaybackRestrictionPolicyArn);
                 }
 
                 if(publicRequest.IsSetFilterByRecordingConfigurationArn())

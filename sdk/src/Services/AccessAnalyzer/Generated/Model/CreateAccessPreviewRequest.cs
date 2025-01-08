@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AccessAnalyzer.Model
 {
     /// <summary>
@@ -37,15 +38,14 @@ namespace Amazon.AccessAnalyzer.Model
     {
         private string _analyzerArn;
         private string _clientToken;
-        private Dictionary<string, Configuration> _configurations = new Dictionary<string, Configuration>();
+        private Dictionary<string, Configuration> _configurations = AWSConfigs.InitializeCollections ? new Dictionary<string, Configuration>() : null;
 
         /// <summary>
         /// Gets and sets the property AnalyzerArn. 
         /// <para>
         /// The <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources">ARN
         /// of the account analyzer</a> used to generate the access preview. You can only create
-        /// an access preview for analyzers with an <code>Account</code> type and <code>Active</code>
-        /// status.
+        /// an access preview for analyzers with an <c>Account</c> type and <c>Active</c> status.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -98,7 +98,7 @@ namespace Amazon.AccessAnalyzer.Model
         // Check to see if Configurations property is set
         internal bool IsSetConfigurations()
         {
-            return this._configurations != null && this._configurations.Count > 0; 
+            return this._configurations != null && (this._configurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

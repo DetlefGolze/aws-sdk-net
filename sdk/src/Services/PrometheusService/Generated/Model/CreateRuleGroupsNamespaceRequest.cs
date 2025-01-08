@@ -26,25 +26,34 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateRuleGroupsNamespace operation.
-    /// Create a rule group namespace.
+    /// The <c>CreateRuleGroupsNamespace</c> operation creates a rule groups namespace within
+    /// a workspace. A rule groups namespace is associated with exactly one rules file. A
+    /// workspace can have multiple rule groups namespaces.
+    /// 
+    ///  
+    /// <para>
+    /// Use this operation only to create new rule groups namespaces. To update an existing
+    /// rule groups namespace, use <c>PutRuleGroupsNamespace</c>.
+    /// </para>
     /// </summary>
     public partial class CreateRuleGroupsNamespaceRequest : AmazonPrometheusServiceRequest
     {
         private string _clientToken;
         private MemoryStream _data;
         private string _name;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _workspaceId;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
-        /// Optional, unique, case-sensitive, user-provided identifier to ensure the idempotency
-        /// of the request.
+        /// A unique identifier that you can provide to ensure the idempotency of the request.
+        /// Case-sensitive.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -63,7 +72,15 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property Data. 
         /// <para>
-        /// The namespace data that define the rule groups.
+        /// The rules file to use in the new namespace.
+        /// </para>
+        ///  
+        /// <para>
+        /// Contains the base64-encoded version of the YAML rules file.
+        /// </para>
+        ///  
+        /// <para>
+        /// For details about the rule groups namespace structure, see <a href="https://docs.aws.amazon.com/prometheus/latest/APIReference/yaml-RuleGroupsNamespaceData.html">RuleGroupsNamespaceData</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -82,7 +99,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The rule groups namespace name.
+        /// The name for the new rule groups namespace.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]
@@ -101,7 +118,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// Optional, user-provided tags for this rule groups namespace.
+        /// The list of tag keys and values to associate with the rule groups namespace.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -114,13 +131,13 @@ namespace Amazon.PrometheusService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property WorkspaceId. 
         /// <para>
-        /// The ID of the workspace in which to create the rule group namespace.
+        /// The ID of the workspace to add the rule groups namespace.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VoiceID.Model
 {
     /// <summary>
@@ -216,7 +217,7 @@ namespace Amazon.VoiceID.Model
         /// <summary>
         /// Gets and sets the property WatchlistDetails. 
         /// <para>
-        /// Provides information about <code>watchlistDetails</code> and <code>DefaultWatchlistID</code>.
+        /// Provides information about <c>watchlistDetails</c> and <c>DefaultWatchlistID</c>.
         /// 
         /// </para>
         /// </summary>

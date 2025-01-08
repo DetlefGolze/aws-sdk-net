@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -48,13 +49,13 @@ namespace Amazon.RDS.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// Failing over - Specify the <code>AllowDataLoss</code> parameter and don't specify
-    /// the <code>Switchover</code> parameter.
+    /// Failing over - Specify the <c>AllowDataLoss</c> parameter and don't specify the <c>Switchover</c>
+    /// parameter.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Switching over - Specify the <code>Switchover</code> parameter or omit it, but don't
-    /// specify the <code>AllowDataLoss</code> parameter.
+    /// Switching over - Specify the <c>Switchover</c> parameter or omit it, but don't specify
+    /// the <c>AllowDataLoss</c> parameter.
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -108,8 +109,8 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// If you don't specify <code>AllowDataLoss</code>, the global database cluster operation
-        /// defaults to a switchover.
+        /// If you don't specify <c>AllowDataLoss</c>, the global database cluster operation defaults
+        /// to a switchover.
         /// </para>
         ///  
         /// <para>
@@ -117,7 +118,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Can't be specified together with the <code>Switchover</code> parameter.
+        /// Can't be specified together with the <c>Switchover</c> parameter.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -174,7 +175,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Can't be specified together with the <code>AllowDataLoss</code> parameter.
+        /// Can't be specified together with the <c>AllowDataLoss</c> parameter.
         /// </para>
         ///  </li> </ul>
         /// </summary>

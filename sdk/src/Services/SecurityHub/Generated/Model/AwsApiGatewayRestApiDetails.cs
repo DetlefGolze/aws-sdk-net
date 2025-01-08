@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.SecurityHub.Model
     public partial class AwsApiGatewayRestApiDetails
     {
         private string _apiKeySource;
-        private List<string> _binaryMediaTypes = new List<string>();
+        private List<string> _binaryMediaTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _createdDate;
         private string _description;
         private AwsApiGatewayEndpointConfiguration _endpointConfiguration;
@@ -50,12 +51,12 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>HEADER</code> indicates whether to read the API key from the X-API-Key header
-        /// of a request.
+        ///  <c>HEADER</c> indicates whether to read the API key from the X-API-Key header of
+        /// a request.
         /// </para>
         ///  
         /// <para>
-        ///  <code>AUTHORIZER</code> indicates whether to read the API key from the <code>UsageIdentifierKey</code>
+        ///  <c>AUTHORIZER</c> indicates whether to read the API key from the <c>UsageIdentifierKey</c>
         /// from a custom authorizer.
         /// </para>
         /// </summary>
@@ -86,7 +87,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if BinaryMediaTypes property is set
         internal bool IsSetBinaryMediaTypes()
         {
-            return this._binaryMediaTypes != null && this._binaryMediaTypes.Count > 0; 
+            return this._binaryMediaTypes != null && (this._binaryMediaTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -96,9 +97,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string CreatedDate
@@ -174,7 +174,7 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// If <code>null</code>, then compression is disabled.
+        /// If <c>null</c>, then compression is disabled.
         /// </para>
         ///  
         /// <para>

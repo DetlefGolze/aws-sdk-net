@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
-    /// An object containing <code>SchemaName</code>, <code>SchemaArn</code>, <code>CreatedAt</code>,
-    /// and<code>UpdatedAt</code>.
+    /// An object containing <c>SchemaName</c>, <c>SchemaArn</c>, <c>CreatedAt</c>, and<c>UpdatedAt</c>.
     /// </summary>
     public partial class SchemaMappingSummary
     {
         private DateTime? _createdAt;
+        private bool? _hasWorkflows;
         private string _schemaArn;
         private string _schemaName;
         private DateTime? _updatedAt;
@@ -42,7 +43,7 @@ namespace Amazon.EntityResolution.Model
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// The timestamp of when the <code>SchemaMapping</code> was created.
+        /// The timestamp of when the <c>SchemaMapping</c> was created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -59,9 +60,28 @@ namespace Amazon.EntityResolution.Model
         }
 
         /// <summary>
+        /// Gets and sets the property HasWorkflows. 
+        /// <para>
+        /// Specifies whether the schema mapping has been applied to a workflow.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Required=true)]
+        public bool HasWorkflows
+        {
+            get { return this._hasWorkflows.GetValueOrDefault(); }
+            set { this._hasWorkflows = value; }
+        }
+
+        // Check to see if HasWorkflows property is set
+        internal bool IsSetHasWorkflows()
+        {
+            return this._hasWorkflows.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property SchemaArn. 
         /// <para>
-        /// The ARN (Amazon Resource Name) that Entity Resolution generated for the <code>SchemaMapping</code>.
+        /// The ARN (Amazon Resource Name) that Entity Resolution generated for the <c>SchemaMapping</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -83,7 +103,7 @@ namespace Amazon.EntityResolution.Model
         /// The name of the schema.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=0, Max=255)]
+        [AWSProperty(Required=true, Min=1, Max=255)]
         public string SchemaName
         {
             get { return this._schemaName; }
@@ -99,7 +119,7 @@ namespace Amazon.EntityResolution.Model
         /// <summary>
         /// Gets and sets the property UpdatedAt. 
         /// <para>
-        /// The timestamp of when the <code>SchemaMapping</code> was last updated.
+        /// The timestamp of when the <c>SchemaMapping</c> was last updated.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

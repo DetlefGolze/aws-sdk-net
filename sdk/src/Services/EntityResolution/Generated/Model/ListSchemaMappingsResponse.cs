@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace Amazon.EntityResolution.Model
     public partial class ListSchemaMappingsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<SchemaMappingSummary> _schemaList = new List<SchemaMappingSummary>();
+        private List<SchemaMappingSummary> _schemaList = AWSConfigs.InitializeCollections ? new List<SchemaMappingSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The pagination token from the previous <code>ListDomains</code> API call.
+        /// The pagination token from the previous API call.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -58,8 +59,8 @@ namespace Amazon.EntityResolution.Model
         /// <summary>
         /// Gets and sets the property SchemaList. 
         /// <para>
-        /// A list of <code>SchemaMappingSummary</code> objects, each of which contain the fields
-        /// <code>SchemaName</code>, <code>SchemaArn</code>, <code>CreatedAt</code>, <code>UpdatedAt</code>.
+        /// A list of <c>SchemaMappingSummary</c> objects, each of which contain the fields <c>SchemaName</c>,
+        /// <c>SchemaArn</c>, <c>CreatedAt</c>, <c>UpdatedAt</c>.
         /// </para>
         /// </summary>
         public List<SchemaMappingSummary> SchemaList
@@ -71,7 +72,7 @@ namespace Amazon.EntityResolution.Model
         // Check to see if SchemaList property is set
         internal bool IsSetSchemaList()
         {
-            return this._schemaList != null && this._schemaList.Count > 0; 
+            return this._schemaList != null && (this._schemaList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

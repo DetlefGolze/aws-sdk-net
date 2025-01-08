@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IVSRealTime.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.IVSRealTime.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ParticipantSummary Unmarshall(JsonUnmarshallerContext context)
         {
+            ParticipantSummary unmarshalledObject = new ParticipantSummary();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ParticipantSummary unmarshalledObject = new ParticipantSummary();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -82,6 +84,12 @@ namespace Amazon.IVSRealTime.Model.Internal.MarshallTransformations
                     unmarshalledObject.Published = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("recordingState", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.RecordingState = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("state", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -95,7 +103,6 @@ namespace Amazon.IVSRealTime.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

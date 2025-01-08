@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SsmSap.Model
 {
     /// <summary>
@@ -34,14 +35,34 @@ namespace Amazon.SsmSap.Model
     /// </summary>
     public partial class ListApplicationsRequest : AmazonSsmSapRequest
     {
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
+
+        /// <summary>
+        /// Gets and sets the property Filters. 
+        /// <para>
+        /// The filter of name, value, and operator.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=10)]
+        public List<Filter> Filters
+        {
+            get { return this._filters; }
+            set { this._filters = value; }
+        }
+
+        // Check to see if Filters property is set
+        internal bool IsSetFilters()
+        {
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to return with a single call. To retrieve the remaining
-        /// results, make another call with the returned nextToken value. 
+        /// results, make another call with the returned nextToken value.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -34,12 +35,11 @@ namespace Amazon.CloudFront.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    /// CloudFront caches responses to <code>GET</code> and <code>HEAD</code> requests.
+    /// CloudFront caches responses to <c>GET</c> and <c>HEAD</c> requests.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// CloudFront caches responses to <code>GET</code>, <code>HEAD</code>, and <code>OPTIONS</code>
-    /// requests.
+    /// CloudFront caches responses to <c>GET</c>, <c>HEAD</c>, and <c>OPTIONS</c> requests.
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -50,14 +50,16 @@ namespace Amazon.CloudFront.Model
     /// </summary>
     public partial class CachedMethods
     {
-        private List<string> _items = new List<string>();
+        private List<string> _items = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _quantity;
 
         /// <summary>
         /// Gets and sets the property Items. 
         /// <para>
         /// A complex type that contains the HTTP methods that you want CloudFront to cache responses
-        /// to.
+        /// to. Valid values for <c>CachedMethods</c> include <c>GET</c>, <c>HEAD</c>, and <c>OPTIONS</c>,
+        /// depending on which caching option you choose. For more information, see the preceding
+        /// section.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -70,16 +72,16 @@ namespace Amazon.CloudFront.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Quantity. 
         /// <para>
         /// The number of HTTP methods for which you want CloudFront to cache responses. Valid
-        /// values are <code>2</code> (for caching responses to <code>GET</code> and <code>HEAD</code>
-        /// requests) and <code>3</code> (for caching responses to <code>GET</code>, <code>HEAD</code>,
-        /// and <code>OPTIONS</code> requests).
+        /// values are <c>2</c> (for caching responses to <c>GET</c> and <c>HEAD</c> requests)
+        /// and <c>3</c> (for caching responses to <c>GET</c>, <c>HEAD</c>, and <c>OPTIONS</c>
+        /// requests).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
@@ -59,8 +60,7 @@ namespace Amazon.DirectoryService.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of LDAP security to enable. Currently only the value <code>Client</code>
-        /// is supported.
+        /// The type of LDAP security to enable. Currently only the value <c>Client</c> is supported.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

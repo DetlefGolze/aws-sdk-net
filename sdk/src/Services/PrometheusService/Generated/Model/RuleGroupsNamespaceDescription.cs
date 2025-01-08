@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
-    /// Represents a description of the rule groups namespace.
+    /// The details about one rule groups namespace.
     /// </summary>
     public partial class RuleGroupsNamespaceDescription
     {
@@ -39,12 +40,12 @@ namespace Amazon.PrometheusService.Model
         private DateTime? _modifiedAt;
         private string _name;
         private RuleGroupsNamespaceStatus _status;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of this rule groups namespace.
+        /// The ARN of the rule groups namespace. For example, <c>arn:aws:aps:&lt;region&gt;:123456789012:rulegroupsnamespace/ws-example1-1234-abcd-5678-ef90abcd1234/rulesfile1</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -63,7 +64,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// The time when the rule groups namespace was created.
+        /// The date and time that the rule groups namespace was created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -82,7 +83,11 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property Data. 
         /// <para>
-        /// The rule groups namespace data.
+        /// The rule groups file used in the namespace.
+        /// </para>
+        ///  
+        /// <para>
+        /// For details about the rule groups namespace structure, see <a href="https://docs.aws.amazon.com/prometheus/latest/APIReference/yaml-RuleGroupsNamespaceData.html">RuleGroupsNamespaceData</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -101,7 +106,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property ModifiedAt. 
         /// <para>
-        /// The time when the rule groups namespace was modified.
+        /// The date and time that the rule groups namespace was most recently changed.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -120,7 +125,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The rule groups namespace name.
+        /// The name of the rule groups namespace.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]
@@ -139,7 +144,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of rule groups namespace.
+        /// The current status of the rule groups namespace.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -158,7 +163,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// The tags of this rule groups namespace.
+        /// The list of tag keys and values that are associated with the rule groups namespace.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -171,7 +176,7 @@ namespace Amazon.PrometheusService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudWatchLogs.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -55,6 +56,12 @@ namespace Amazon.CloudWatchLogs.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.NextSequenceToken = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("rejectedEntityInfo", targetDepth))
+                {
+                    var unmarshaller = RejectedEntityInfoUnmarshaller.Instance;
+                    response.RejectedEntityInfo = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("rejectedLogEventsInfo", targetDepth))

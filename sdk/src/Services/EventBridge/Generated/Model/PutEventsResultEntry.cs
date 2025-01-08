@@ -26,12 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
-    /// Represents an event that failed to be submitted. For information about the errors
-    /// that are common to all actions, see <a href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/CommonErrors.html">Common
+    /// Represents the results of an event submitted to an event bus.
+    /// 
+    ///  
+    /// <para>
+    /// If the submission was successful, the entry has the event ID in it. Otherwise, you
+    /// can use the error code and error message to identify the problem with the entry.
+    /// </para>
+    ///  
+    /// <para>
+    /// For information about the errors that are common to all actions, see <a href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/CommonErrors.html">Common
     /// Errors</a>.
+    /// </para>
     /// </summary>
     public partial class PutEventsResultEntry
     {
@@ -44,6 +54,91 @@ namespace Amazon.EventBridge.Model
         /// <para>
         /// The error code that indicates why the event submission failed.
         /// </para>
+        ///  
+        /// <para>
+        /// Retryable errors include:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c> <a href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/CommonErrors.html">InternalFailure</a>
+        /// </c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c> <a href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/CommonErrors.html">ThrottlingException</a>
+        /// </c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The request was denied due to request throttling.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Non-retryable errors include:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c> <a href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/CommonErrors.html">AccessDeniedException</a>
+        /// </c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// You do not have sufficient access to perform this action.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>InvalidAccountIdException</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The account ID provided is not valid.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>InvalidArgument</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// A specified parameter is not valid.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>MalformedDetail</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The JSON provided is not valid.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>RedactionFailure</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Redacting the CloudTrail event failed.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>NotAuthorizedForSourceException</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// You do not have permissions to publish events with this source onto this event bus.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>NotAuthorizedForDetailTypeException</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// You do not have permissions to publish events with this detail type onto this event
+        /// bus.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public string ErrorCode
         {

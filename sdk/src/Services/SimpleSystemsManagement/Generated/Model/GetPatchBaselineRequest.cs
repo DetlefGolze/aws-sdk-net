@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -45,8 +46,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <para>
         /// To retrieve information about an Amazon Web Services managed patch baseline, specify
         /// the full Amazon Resource Name (ARN) of the baseline. For example, for the baseline
-        /// <code>AWS-AmazonLinuxDefaultPatchBaseline</code>, specify <code>arn:aws:ssm:us-east-2:733109147000:patchbaseline/pb-0e392de35e7c563b7</code>
-        /// instead of <code>pb-0e392de35e7c563b7</code>.
+        /// <c>AWS-AmazonLinuxDefaultPatchBaseline</c>, specify <c>arn:aws:ssm:us-east-2:733109147000:patchbaseline/pb-0e392de35e7c563b7</c>
+        /// instead of <c>pb-0e392de35e7c563b7</c>.
         /// </para>
         ///  </note>
         /// </summary>

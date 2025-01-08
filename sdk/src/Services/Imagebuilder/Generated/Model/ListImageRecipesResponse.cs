@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Imagebuilder.Model
     /// </summary>
     public partial class ListImageRecipesResponse : AmazonWebServiceResponse
     {
-        private List<ImageRecipeSummary> _imageRecipeSummaryList = new List<ImageRecipeSummary>();
+        private List<ImageRecipeSummary> _imageRecipeSummaryList = AWSConfigs.InitializeCollections ? new List<ImageRecipeSummary>() : null;
         private string _nextToken;
         private string _requestId;
 
@@ -52,14 +53,14 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if ImageRecipeSummaryList property is set
         internal bool IsSetImageRecipeSummaryList()
         {
-            return this._imageRecipeSummaryList != null && this._imageRecipeSummaryList.Count > 0; 
+            return this._imageRecipeSummaryList != null && (this._imageRecipeSummaryList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The next token used for paginated responses. When this field isn't empty, there are
-        /// additional elements that the service has'ot included in this request. Use this token
+        /// additional elements that the service hasn't included in this request. Use this token
         /// with the next request to retrieve additional objects.
         /// </para>
         /// </summary>

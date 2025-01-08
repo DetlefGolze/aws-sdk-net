@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.PaymentCryptographyData.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,6 +67,7 @@ namespace Amazon.PaymentCryptographyData.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetCipherText())
@@ -81,6 +83,17 @@ namespace Amazon.PaymentCryptographyData.Model.Internal.MarshallTransformations
 
                     var marshaller = EncryptionDecryptionAttributesMarshaller.Instance;
                     marshaller.Marshall(publicRequest.DecryptionAttributes, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetWrappedKey())
+                {
+                    context.Writer.WritePropertyName("WrappedKey");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = WrappedKeyMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.WrappedKey, context);
 
                     context.Writer.WriteObjectEnd();
                 }

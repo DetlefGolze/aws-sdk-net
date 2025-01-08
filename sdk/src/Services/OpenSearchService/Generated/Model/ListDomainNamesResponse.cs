@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
-    /// The results of a <code>ListDomainNames</code> operation. Contains the names of all
-    /// domains owned by this account and their respective engine types.
+    /// The results of a <c>ListDomainNames</c> operation. Contains the names of all domains
+    /// owned by this account and their respective engine types.
     /// </summary>
     public partial class ListDomainNamesResponse : AmazonWebServiceResponse
     {
-        private List<DomainInfo> _domainNames = new List<DomainInfo>();
+        private List<DomainInfo> _domainNames = AWSConfigs.InitializeCollections ? new List<DomainInfo>() : null;
 
         /// <summary>
         /// Gets and sets the property DomainNames. 
@@ -52,7 +53,7 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if DomainNames property is set
         internal bool IsSetDomainNames()
         {
-            return this._domainNames != null && this._domainNames.Count > 0; 
+            return this._domainNames != null && (this._domainNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.ForecastService.Model
         private long? _estimatedTimeRemainingInMinutes;
         private string _forecastArn;
         private string _forecastName;
-        private List<string> _forecastTypes = new List<string>();
+        private List<string> _forecastTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _lastModificationTime;
         private string _message;
         private string _predictorArn;
@@ -154,7 +155,7 @@ namespace Amazon.ForecastService.Model
         // Check to see if ForecastTypes property is set
         internal bool IsSetForecastTypes()
         {
-            return this._forecastTypes != null && this._forecastTypes.Count > 0; 
+            return this._forecastTypes != null && (this._forecastTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -165,23 +166,23 @@ namespace Amazon.ForecastService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CREATE_PENDING</code> - The <code>CreationTime</code>.
+        ///  <c>CREATE_PENDING</c> - The <c>CreationTime</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATE_IN_PROGRESS</code> - The current timestamp.
+        ///  <c>CREATE_IN_PROGRESS</c> - The current timestamp.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATE_STOPPING</code> - The current timestamp.
+        ///  <c>CREATE_STOPPING</c> - The current timestamp.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATE_STOPPED</code> - When the job stopped.
+        ///  <c>CREATE_STOPPED</c> - When the job stopped.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or failed.
+        ///  <c>ACTIVE</c> or <c>CREATE_FAILED</c> - When the job finished or failed.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -241,26 +242,24 @@ namespace Amazon.ForecastService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ACTIVE</code> 
+        ///  <c>ACTIVE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>, <code>CREATE_FAILED</code>
-        /// 
+        ///  <c>CREATE_PENDING</c>, <c>CREATE_IN_PROGRESS</c>, <c>CREATE_FAILED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code> 
+        ///  <c>CREATE_STOPPING</c>, <c>CREATE_STOPPED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>, <code>DELETE_FAILED</code>
-        /// 
+        ///  <c>DELETE_PENDING</c>, <c>DELETE_IN_PROGRESS</c>, <c>DELETE_FAILED</c> 
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
-        /// The <code>Status</code> of the forecast must be <code>ACTIVE</code> before you can
-        /// query or export the forecast.
+        /// The <c>Status</c> of the forecast must be <c>ACTIVE</c> before you can query or export
+        /// the forecast.
         /// </para>
         ///  </note>
         /// </summary>

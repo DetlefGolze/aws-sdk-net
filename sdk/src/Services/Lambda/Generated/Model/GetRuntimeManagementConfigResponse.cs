@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.Lambda.Model
         /// Gets and sets the property RuntimeVersionArn. 
         /// <para>
         /// The ARN of the runtime the function is configured to use. If the runtime update mode
-        /// is <b>Manual</b>, the ARN is returned, otherwise <code>null</code> is returned.
+        /// is <b>Manual</b>, the ARN is returned, otherwise <c>null</c> is returned.
         /// </para>
         /// </summary>
         [AWSProperty(Min=26, Max=2048)]

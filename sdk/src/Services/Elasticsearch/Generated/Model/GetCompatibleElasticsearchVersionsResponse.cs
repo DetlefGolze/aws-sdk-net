@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// Container for response returned by <code> <a>GetCompatibleElasticsearchVersions</a>
-    /// </code> operation.
+    /// Container for response returned by <c> <a>GetCompatibleElasticsearchVersions</a>
+    /// </c> operation.
     /// </summary>
     public partial class GetCompatibleElasticsearchVersionsResponse : AmazonWebServiceResponse
     {
-        private List<CompatibleVersionsMap> _compatibleElasticsearchVersions = new List<CompatibleVersionsMap>();
+        private List<CompatibleVersionsMap> _compatibleElasticsearchVersions = AWSConfigs.InitializeCollections ? new List<CompatibleVersionsMap>() : null;
 
         /// <summary>
         /// Gets and sets the property CompatibleElasticsearchVersions. 
         /// <para>
-        ///  A map of compatible Elasticsearch versions returned as part of the <code> <a>GetCompatibleElasticsearchVersions</a>
-        /// </code> operation. 
+        ///  A map of compatible Elasticsearch versions returned as part of the <c> <a>GetCompatibleElasticsearchVersions</a>
+        /// </c> operation. 
         /// </para>
         /// </summary>
         public List<CompatibleVersionsMap> CompatibleElasticsearchVersions
@@ -52,7 +53,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if CompatibleElasticsearchVersions property is set
         internal bool IsSetCompatibleElasticsearchVersions()
         {
-            return this._compatibleElasticsearchVersions != null && this._compatibleElasticsearchVersions.Count > 0; 
+            return this._compatibleElasticsearchVersions != null && (this._compatibleElasticsearchVersions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

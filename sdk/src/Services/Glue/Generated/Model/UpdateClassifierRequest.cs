@@ -26,13 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateClassifier operation.
-    /// Modifies an existing classifier (a <code>GrokClassifier</code>, an <code>XMLClassifier</code>,
-    /// a <code>JsonClassifier</code>, or a <code>CsvClassifier</code>, depending on which
-    /// field is present).
+    /// Modifies an existing classifier (a <c>GrokClassifier</c>, an <c>XMLClassifier</c>,
+    /// a <c>JsonClassifier</c>, or a <c>CsvClassifier</c>, depending on which field is present).
     /// </summary>
     public partial class UpdateClassifierRequest : AmazonGlueRequest
     {
@@ -44,7 +44,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property CsvClassifier. 
         /// <para>
-        /// A <code>CsvClassifier</code> object with updated fields.
+        /// A <c>CsvClassifier</c> object with updated fields.
         /// </para>
         /// </summary>
         public UpdateCsvClassifierRequest CsvClassifier
@@ -62,7 +62,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property GrokClassifier. 
         /// <para>
-        /// A <code>GrokClassifier</code> object with updated fields.
+        /// A <c>GrokClassifier</c> object with updated fields.
         /// </para>
         /// </summary>
         public UpdateGrokClassifierRequest GrokClassifier
@@ -80,7 +80,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property JsonClassifier. 
         /// <para>
-        /// A <code>JsonClassifier</code> object with updated fields.
+        /// A <c>JsonClassifier</c> object with updated fields.
         /// </para>
         /// </summary>
         public UpdateJsonClassifierRequest JsonClassifier
@@ -98,7 +98,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property XMLClassifier. 
         /// <para>
-        /// An <code>XMLClassifier</code> object with updated fields.
+        /// An <c>XMLClassifier</c> object with updated fields.
         /// </para>
         /// </summary>
         public UpdateXMLClassifierRequest XMLClassifier

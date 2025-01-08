@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SimpleEmailV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,14 @@ namespace Amazon.SimpleEmailV2.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(DkimSigningAttributes requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetDomainSigningAttributesOrigin())
+            {
+                context.Writer.WritePropertyName("DomainSigningAttributesOrigin");
+                context.Writer.Write(requestObject.DomainSigningAttributesOrigin);
+            }
+
             if(requestObject.IsSetDomainSigningPrivateKey())
             {
                 context.Writer.WritePropertyName("DomainSigningPrivateKey");

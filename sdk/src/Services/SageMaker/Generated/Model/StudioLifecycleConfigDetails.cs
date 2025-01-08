@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// Details of the Studio Lifecycle Configuration.
+    /// Details of the Amazon SageMaker AI Studio Lifecycle Configuration.
     /// </summary>
     public partial class StudioLifecycleConfigDetails
     {
@@ -42,7 +43,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property CreationTime. 
         /// <para>
-        /// The creation time of the Studio Lifecycle Configuration.
+        /// The creation time of the Amazon SageMaker AI Studio Lifecycle Configuration.
         /// </para>
         /// </summary>
         public DateTime CreationTime
@@ -60,8 +61,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property LastModifiedTime. 
         /// <para>
-        /// This value is equivalent to CreationTime because Studio Lifecycle Configurations are
-        /// immutable.
+        /// This value is equivalent to CreationTime because Amazon SageMaker AI Studio Lifecycle
+        /// Configurations are immutable.
         /// </para>
         /// </summary>
         public DateTime LastModifiedTime
@@ -116,7 +117,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property StudioLifecycleConfigName. 
         /// <para>
-        /// The name of the Studio Lifecycle Configuration.
+        /// The name of the Amazon SageMaker AI Studio Lifecycle Configuration.
         /// </para>
         /// </summary>
         [AWSProperty(Max=63)]

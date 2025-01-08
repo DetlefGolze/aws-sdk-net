@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// A finding aggregator. A finding aggregator contains the configuration for finding
-    /// aggregation.
+    /// A finding aggregator is a Security Hub resource that specifies cross-Region aggregation
+    /// settings, including the home Region and any linked Regions.
     /// </summary>
     public partial class FindingAggregator
     {

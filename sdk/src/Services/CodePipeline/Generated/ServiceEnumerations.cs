@@ -39,6 +39,10 @@ namespace Amazon.CodePipeline
         /// </summary>
         public static readonly ActionCategory Build = new ActionCategory("Build");
         /// <summary>
+        /// Constant Compute for ActionCategory
+        /// </summary>
+        public static readonly ActionCategory Compute = new ActionCategory("Compute");
+        /// <summary>
         /// Constant Deploy for ActionCategory
         /// </summary>
         public static readonly ActionCategory Deploy = new ActionCategory("Deploy");
@@ -445,6 +449,126 @@ namespace Amazon.CodePipeline
 
 
     /// <summary>
+    /// Constants used for properties of type ConditionExecutionStatus.
+    /// </summary>
+    public class ConditionExecutionStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Abandoned for ConditionExecutionStatus
+        /// </summary>
+        public static readonly ConditionExecutionStatus Abandoned = new ConditionExecutionStatus("Abandoned");
+        /// <summary>
+        /// Constant Cancelled for ConditionExecutionStatus
+        /// </summary>
+        public static readonly ConditionExecutionStatus Cancelled = new ConditionExecutionStatus("Cancelled");
+        /// <summary>
+        /// Constant Errored for ConditionExecutionStatus
+        /// </summary>
+        public static readonly ConditionExecutionStatus Errored = new ConditionExecutionStatus("Errored");
+        /// <summary>
+        /// Constant Failed for ConditionExecutionStatus
+        /// </summary>
+        public static readonly ConditionExecutionStatus Failed = new ConditionExecutionStatus("Failed");
+        /// <summary>
+        /// Constant InProgress for ConditionExecutionStatus
+        /// </summary>
+        public static readonly ConditionExecutionStatus InProgress = new ConditionExecutionStatus("InProgress");
+        /// <summary>
+        /// Constant Overridden for ConditionExecutionStatus
+        /// </summary>
+        public static readonly ConditionExecutionStatus Overridden = new ConditionExecutionStatus("Overridden");
+        /// <summary>
+        /// Constant Succeeded for ConditionExecutionStatus
+        /// </summary>
+        public static readonly ConditionExecutionStatus Succeeded = new ConditionExecutionStatus("Succeeded");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ConditionExecutionStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ConditionExecutionStatus FindValue(string value)
+        {
+            return FindValue<ConditionExecutionStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ConditionExecutionStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ConditionType.
+    /// </summary>
+    public class ConditionType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant BEFORE_ENTRY for ConditionType
+        /// </summary>
+        public static readonly ConditionType BEFORE_ENTRY = new ConditionType("BEFORE_ENTRY");
+        /// <summary>
+        /// Constant ON_SUCCESS for ConditionType
+        /// </summary>
+        public static readonly ConditionType ON_SUCCESS = new ConditionType("ON_SUCCESS");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ConditionType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ConditionType FindValue(string value)
+        {
+            return FindValue<ConditionType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ConditionType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type EncryptionKeyType.
     /// </summary>
     public class EncryptionKeyType : ConstantClass
@@ -484,6 +608,110 @@ namespace Amazon.CodePipeline
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator EncryptionKeyType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ExecutionMode.
+    /// </summary>
+    public class ExecutionMode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant PARALLEL for ExecutionMode
+        /// </summary>
+        public static readonly ExecutionMode PARALLEL = new ExecutionMode("PARALLEL");
+        /// <summary>
+        /// Constant QUEUED for ExecutionMode
+        /// </summary>
+        public static readonly ExecutionMode QUEUED = new ExecutionMode("QUEUED");
+        /// <summary>
+        /// Constant SUPERSEDED for ExecutionMode
+        /// </summary>
+        public static readonly ExecutionMode SUPERSEDED = new ExecutionMode("SUPERSEDED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ExecutionMode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ExecutionMode FindValue(string value)
+        {
+            return FindValue<ExecutionMode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ExecutionMode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ExecutionType.
+    /// </summary>
+    public class ExecutionType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ROLLBACK for ExecutionType
+        /// </summary>
+        public static readonly ExecutionType ROLLBACK = new ExecutionType("ROLLBACK");
+        /// <summary>
+        /// Constant STANDARD for ExecutionType
+        /// </summary>
+        public static readonly ExecutionType STANDARD = new ExecutionType("STANDARD");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ExecutionType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ExecutionType FindValue(string value)
+        {
+            return FindValue<ExecutionType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ExecutionType(string value)
         {
             return FindValue(value);
         }
@@ -600,6 +828,60 @@ namespace Amazon.CodePipeline
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator FailureType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type GitPullRequestEventType.
+    /// </summary>
+    public class GitPullRequestEventType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CLOSED for GitPullRequestEventType
+        /// </summary>
+        public static readonly GitPullRequestEventType CLOSED = new GitPullRequestEventType("CLOSED");
+        /// <summary>
+        /// Constant OPEN for GitPullRequestEventType
+        /// </summary>
+        public static readonly GitPullRequestEventType OPEN = new GitPullRequestEventType("OPEN");
+        /// <summary>
+        /// Constant UPDATED for GitPullRequestEventType
+        /// </summary>
+        public static readonly GitPullRequestEventType UPDATED = new GitPullRequestEventType("UPDATED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public GitPullRequestEventType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static GitPullRequestEventType FindValue(string value)
+        {
+            return FindValue<GitPullRequestEventType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator GitPullRequestEventType(string value)
         {
             return FindValue(value);
         }
@@ -747,6 +1029,472 @@ namespace Amazon.CodePipeline
 
 
     /// <summary>
+    /// Constants used for properties of type PipelineTriggerProviderType.
+    /// </summary>
+    public class PipelineTriggerProviderType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CodeStarSourceConnection for PipelineTriggerProviderType
+        /// </summary>
+        public static readonly PipelineTriggerProviderType CodeStarSourceConnection = new PipelineTriggerProviderType("CodeStarSourceConnection");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public PipelineTriggerProviderType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static PipelineTriggerProviderType FindValue(string value)
+        {
+            return FindValue<PipelineTriggerProviderType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator PipelineTriggerProviderType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type PipelineType.
+    /// </summary>
+    public class PipelineType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant V1 for PipelineType
+        /// </summary>
+        public static readonly PipelineType V1 = new PipelineType("V1");
+        /// <summary>
+        /// Constant V2 for PipelineType
+        /// </summary>
+        public static readonly PipelineType V2 = new PipelineType("V2");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public PipelineType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static PipelineType FindValue(string value)
+        {
+            return FindValue<PipelineType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator PipelineType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type Result.
+    /// </summary>
+    public class Result : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant FAIL for Result
+        /// </summary>
+        public static readonly Result FAIL = new Result("FAIL");
+        /// <summary>
+        /// Constant RETRY for Result
+        /// </summary>
+        public static readonly Result RETRY = new Result("RETRY");
+        /// <summary>
+        /// Constant ROLLBACK for Result
+        /// </summary>
+        public static readonly Result ROLLBACK = new Result("ROLLBACK");
+        /// <summary>
+        /// Constant SKIP for Result
+        /// </summary>
+        public static readonly Result SKIP = new Result("SKIP");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public Result(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static Result FindValue(string value)
+        {
+            return FindValue<Result>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator Result(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type RetryTrigger.
+    /// </summary>
+    public class RetryTrigger : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant AutomatedStageRetry for RetryTrigger
+        /// </summary>
+        public static readonly RetryTrigger AutomatedStageRetry = new RetryTrigger("AutomatedStageRetry");
+        /// <summary>
+        /// Constant ManualStageRetry for RetryTrigger
+        /// </summary>
+        public static readonly RetryTrigger ManualStageRetry = new RetryTrigger("ManualStageRetry");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public RetryTrigger(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static RetryTrigger FindValue(string value)
+        {
+            return FindValue<RetryTrigger>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator RetryTrigger(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type RuleCategory.
+    /// </summary>
+    public class RuleCategory : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Rule for RuleCategory
+        /// </summary>
+        public static readonly RuleCategory Rule = new RuleCategory("Rule");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public RuleCategory(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static RuleCategory FindValue(string value)
+        {
+            return FindValue<RuleCategory>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator RuleCategory(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type RuleConfigurationPropertyType.
+    /// </summary>
+    public class RuleConfigurationPropertyType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Boolean for RuleConfigurationPropertyType
+        /// </summary>
+        public static readonly RuleConfigurationPropertyType Boolean = new RuleConfigurationPropertyType("Boolean");
+        /// <summary>
+        /// Constant Number for RuleConfigurationPropertyType
+        /// </summary>
+        public static readonly RuleConfigurationPropertyType Number = new RuleConfigurationPropertyType("Number");
+        /// <summary>
+        /// Constant String for RuleConfigurationPropertyType
+        /// </summary>
+        public static readonly RuleConfigurationPropertyType String = new RuleConfigurationPropertyType("String");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public RuleConfigurationPropertyType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static RuleConfigurationPropertyType FindValue(string value)
+        {
+            return FindValue<RuleConfigurationPropertyType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator RuleConfigurationPropertyType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type RuleExecutionStatus.
+    /// </summary>
+    public class RuleExecutionStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Abandoned for RuleExecutionStatus
+        /// </summary>
+        public static readonly RuleExecutionStatus Abandoned = new RuleExecutionStatus("Abandoned");
+        /// <summary>
+        /// Constant Failed for RuleExecutionStatus
+        /// </summary>
+        public static readonly RuleExecutionStatus Failed = new RuleExecutionStatus("Failed");
+        /// <summary>
+        /// Constant InProgress for RuleExecutionStatus
+        /// </summary>
+        public static readonly RuleExecutionStatus InProgress = new RuleExecutionStatus("InProgress");
+        /// <summary>
+        /// Constant Succeeded for RuleExecutionStatus
+        /// </summary>
+        public static readonly RuleExecutionStatus Succeeded = new RuleExecutionStatus("Succeeded");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public RuleExecutionStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static RuleExecutionStatus FindValue(string value)
+        {
+            return FindValue<RuleExecutionStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator RuleExecutionStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type RuleOwner.
+    /// </summary>
+    public class RuleOwner : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant AWS for RuleOwner
+        /// </summary>
+        public static readonly RuleOwner AWS = new RuleOwner("AWS");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public RuleOwner(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static RuleOwner FindValue(string value)
+        {
+            return FindValue<RuleOwner>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator RuleOwner(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type SourceRevisionType.
+    /// </summary>
+    public class SourceRevisionType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant COMMIT_ID for SourceRevisionType
+        /// </summary>
+        public static readonly SourceRevisionType COMMIT_ID = new SourceRevisionType("COMMIT_ID");
+        /// <summary>
+        /// Constant IMAGE_DIGEST for SourceRevisionType
+        /// </summary>
+        public static readonly SourceRevisionType IMAGE_DIGEST = new SourceRevisionType("IMAGE_DIGEST");
+        /// <summary>
+        /// Constant S3_OBJECT_KEY for SourceRevisionType
+        /// </summary>
+        public static readonly SourceRevisionType S3_OBJECT_KEY = new SourceRevisionType("S3_OBJECT_KEY");
+        /// <summary>
+        /// Constant S3_OBJECT_VERSION_ID for SourceRevisionType
+        /// </summary>
+        public static readonly SourceRevisionType S3_OBJECT_VERSION_ID = new SourceRevisionType("S3_OBJECT_VERSION_ID");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public SourceRevisionType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static SourceRevisionType FindValue(string value)
+        {
+            return FindValue<SourceRevisionType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator SourceRevisionType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type StageExecutionStatus.
     /// </summary>
     public class StageExecutionStatus : ConstantClass
@@ -764,6 +1512,10 @@ namespace Amazon.CodePipeline
         /// Constant InProgress for StageExecutionStatus
         /// </summary>
         public static readonly StageExecutionStatus InProgress = new StageExecutionStatus("InProgress");
+        /// <summary>
+        /// Constant Skipped for StageExecutionStatus
+        /// </summary>
+        public static readonly StageExecutionStatus Skipped = new StageExecutionStatus("Skipped");
         /// <summary>
         /// Constant Stopped for StageExecutionStatus
         /// </summary>
@@ -818,6 +1570,10 @@ namespace Amazon.CodePipeline
     public class StageRetryMode : ConstantClass
     {
 
+        /// <summary>
+        /// Constant ALL_ACTIONS for StageRetryMode
+        /// </summary>
+        public static readonly StageRetryMode ALL_ACTIONS = new StageRetryMode("ALL_ACTIONS");
         /// <summary>
         /// Constant FAILED_ACTIONS for StageRetryMode
         /// </summary>
@@ -909,11 +1665,65 @@ namespace Amazon.CodePipeline
 
 
     /// <summary>
+    /// Constants used for properties of type StartTimeRange.
+    /// </summary>
+    public class StartTimeRange : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant All for StartTimeRange
+        /// </summary>
+        public static readonly StartTimeRange All = new StartTimeRange("All");
+        /// <summary>
+        /// Constant Latest for StartTimeRange
+        /// </summary>
+        public static readonly StartTimeRange Latest = new StartTimeRange("Latest");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public StartTimeRange(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static StartTimeRange FindValue(string value)
+        {
+            return FindValue<StartTimeRange>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator StartTimeRange(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type TriggerType.
     /// </summary>
     public class TriggerType : ConstantClass
     {
 
+        /// <summary>
+        /// Constant AutomatedRollback for TriggerType
+        /// </summary>
+        public static readonly TriggerType AutomatedRollback = new TriggerType("AutomatedRollback");
         /// <summary>
         /// Constant CloudWatchEvent for TriggerType
         /// </summary>
@@ -922,6 +1732,10 @@ namespace Amazon.CodePipeline
         /// Constant CreatePipeline for TriggerType
         /// </summary>
         public static readonly TriggerType CreatePipeline = new TriggerType("CreatePipeline");
+        /// <summary>
+        /// Constant ManualRollback for TriggerType
+        /// </summary>
+        public static readonly TriggerType ManualRollback = new TriggerType("ManualRollback");
         /// <summary>
         /// Constant PollForSourceChanges for TriggerType
         /// </summary>
@@ -938,6 +1752,10 @@ namespace Amazon.CodePipeline
         /// Constant Webhook for TriggerType
         /// </summary>
         public static readonly TriggerType Webhook = new TriggerType("Webhook");
+        /// <summary>
+        /// Constant WebhookV2 for TriggerType
+        /// </summary>
+        public static readonly TriggerType WebhookV2 = new TriggerType("WebhookV2");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant

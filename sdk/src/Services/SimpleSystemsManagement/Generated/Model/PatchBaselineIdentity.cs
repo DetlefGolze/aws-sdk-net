@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -99,9 +100,9 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property DefaultBaseline. 
         /// <para>
-        /// Whether this is the default baseline. Amazon Web Services Systems Manager supports
-        /// creating multiple default patch baselines. For example, you can create a default patch
-        /// baseline for each operating system.
+        /// Indicates whether this is the default baseline. Amazon Web Services Systems Manager
+        /// supports creating multiple default patch baselines. For example, you can create a
+        /// default patch baseline for each operating system.
         /// </para>
         /// </summary>
         public bool DefaultBaseline
@@ -119,7 +120,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property OperatingSystem. 
         /// <para>
-        /// Defines the operating system the patch baseline applies to. The default value is <code>WINDOWS</code>.
+        /// Defines the operating system the patch baseline applies to. The default value is <c>WINDOWS</c>.
         /// 
         /// </para>
         /// </summary>

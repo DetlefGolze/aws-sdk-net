@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -54,16 +55,16 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for stack sets with
-        /// self-managed permissions.
+        /// By default, <c>SELF</c> is specified. Use <c>SELF</c> for stack sets with self-managed
+        /// permissions.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If you are signed in to the management account, specify <code>SELF</code>.
+        /// If you are signed in to the management account, specify <c>SELF</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If you are signed in to a delegated administrator account, specify <code>DELEGATED_ADMIN</code>.
+        /// If you are signed in to a delegated administrator account, specify <c>DELEGATED_ADMIN</c>.
         /// </para>
         ///  
         /// <para>

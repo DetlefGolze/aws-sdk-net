@@ -26,22 +26,35 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
     /// Container for the parameters to the GetComputeAuthToken operation.
-    /// Requests an authentication token from Amazon GameLift for a registered compute in
-    /// an Anywhere fleet. The game servers that are running on the compute use this token
-    /// to authenticate with the Amazon GameLift service. Each server process must provide
-    /// a valid authentication token in its call to the Amazon GameLift server SDK action
-    /// <code>InitSDK()</code>.
+    /// Requests an authentication token from Amazon GameLift for a compute resource in an
+    /// Amazon GameLift fleet. Game servers that are running on the compute use this token
+    /// to communicate with the Amazon GameLift service, such as when calling the Amazon GameLift
+    /// server SDK action <c>InitSDK()</c>. Authentication tokens are valid for a limited
+    /// time span, so you need to request a fresh token before the current token expires.
     /// 
     ///  
     /// <para>
-    /// Authentication tokens are valid for a limited time span. Use a mechanism to regularly
-    /// request a fresh authentication token before the current token expires.
+    ///  <b>Request options</b> 
     /// </para>
-    ///  
+    ///  <ul> <li> 
+    /// <para>
+    /// For managed EC2 fleets (compute type <c>EC2</c>), auth token retrieval and refresh
+    /// is handled automatically. All game servers that are running on all fleet instances
+    /// have access to a valid auth token.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// For Anywhere fleets (compute type <c>ANYWHERE</c>), if you're using the Amazon GameLift
+    /// Agent, auth token retrieval and refresh is handled automatically for any compute where
+    /// the Agent is running. If you're not using the Agent, create a mechanism to retrieve
+    /// and refresh auth tokens for computes that are running game server processes.
+    /// </para>
+    ///  </li> </ul> 
     /// <para>
     ///  <b>Learn more</b> 
     /// </para>
@@ -71,6 +84,8 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property ComputeName. 
         /// <para>
         /// The name of the compute resource you are requesting the authentication token for.
+        /// For an Anywhere fleet compute, use the registered compute name. For an EC2 fleet instance,
+        /// use the instance ID.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=1024)]
@@ -92,7 +107,7 @@ namespace Amazon.GameLift.Model
         /// A unique identifier for the fleet that the compute is registered to.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }

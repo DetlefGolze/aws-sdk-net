@@ -26,13 +26,27 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
-    /// The formatting or syntax of the <code>InsightSelectors</code> JSON statement in your
-    /// <code>PutInsightSelectors</code> or <code>GetInsightSelectors</code> request is not
-    /// valid, or the specified insight type in the <code>InsightSelectors</code> statement
-    /// is not a valid insight type.
+    /// For <c>PutInsightSelectors</c>, this exception is thrown when the formatting or syntax
+    /// of the <c>InsightSelectors</c> JSON statement is not valid, or the specified <c>InsightType</c>
+    /// in the <c>InsightSelectors</c> statement is not valid. Valid values for <c>InsightType</c>
+    /// are <c>ApiCallRateInsight</c> and <c>ApiErrorRateInsight</c>. To enable Insights on
+    /// an event data store, the destination event data store specified by the <c>InsightsDestination</c>
+    /// parameter must log Insights events and the source event data store specified by the
+    /// <c>EventDataStore</c> parameter must log management events.
+    /// 
+    ///  
+    /// <para>
+    /// For <c>UpdateEventDataStore</c>, this exception is thrown if Insights are enabled
+    /// on the event data store and the updated advanced event selectors are not compatible
+    /// with the configured <c>InsightSelectors</c>. If the <c>InsightSelectors</c> includes
+    /// an <c>InsightType</c> of <c>ApiCallRateInsight</c>, the source event data store must
+    /// log <c>write</c> management events. If the <c>InsightSelectors</c> includes an <c>InsightType</c>
+    /// of <c>ApiErrorRateInsight</c>, the source event data store must log management events.
+    /// </para>
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

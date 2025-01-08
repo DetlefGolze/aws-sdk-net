@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.LexModelsV2.Model
     public partial class UpdateBotResponse : AmazonWebServiceResponse
     {
         private string _botId;
-        private List<BotMember> _botMembers = new List<BotMember>();
+        private List<BotMember> _botMembers = AWSConfigs.InitializeCollections ? new List<BotMember>() : null;
         private string _botName;
         private BotStatus _botStatus;
         private BotType _botType;
@@ -80,7 +81,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if BotMembers property is set
         internal bool IsSetBotMembers()
         {
-            return this._botMembers != null && this._botMembers.Count > 0; 
+            return this._botMembers != null && (this._botMembers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -105,9 +106,9 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property BotStatus. 
         /// <para>
-        /// Shows the current status of the bot. The bot is first in the <code>Creating</code>
-        /// status. Once the bot is read for use, it changes to the <code>Available</code> status.
-        /// After the bot is created, you can use the <code>DRAFT</code> version of the bot.
+        /// Shows the current status of the bot. The bot is first in the <c>Creating</c> status.
+        /// Once the bot is read for use, it changes to the <c>Available</c> status. After the
+        /// bot is created, you can use the <c>DRAFT</c> version of the bot.
         /// </para>
         /// </summary>
         public BotStatus BotStatus

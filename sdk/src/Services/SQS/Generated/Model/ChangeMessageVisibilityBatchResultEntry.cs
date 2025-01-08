@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SQS.Model
 {
     /// <summary>
-    /// Encloses the <code>Id</code> of an entry in <code> <a>ChangeMessageVisibilityBatch</a>.</code>
+    /// Encloses the <c>Id</c> of an entry in <c> <a>ChangeMessageVisibilityBatch</a>.</c>
     /// </summary>
     public partial class ChangeMessageVisibilityBatchResultEntry
     {

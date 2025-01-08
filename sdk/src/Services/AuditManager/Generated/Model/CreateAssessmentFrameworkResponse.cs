@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AuditManager.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.AuditManager.Model
         /// <summary>
         /// Gets and sets the property Framework. 
         /// <para>
-        ///  The name of the new framework that the <code>CreateAssessmentFramework</code> API
-        /// returned. 
+        ///  The name of the new framework that the <c>CreateAssessmentFramework</c> API returned.
+        /// 
         /// </para>
         /// </summary>
         public Framework Framework

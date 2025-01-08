@@ -241,6 +241,10 @@ namespace Amazon.MainframeModernization
         /// </summary>
         public static readonly BatchJobExecutionStatus Holding = new BatchJobExecutionStatus("Holding");
         /// <summary>
+        /// Constant Purged for BatchJobExecutionStatus
+        /// </summary>
+        public static readonly BatchJobExecutionStatus Purged = new BatchJobExecutionStatus("Purged");
+        /// <summary>
         /// Constant Running for BatchJobExecutionStatus
         /// </summary>
         public static readonly BatchJobExecutionStatus Running = new BatchJobExecutionStatus("Running");
@@ -361,6 +365,10 @@ namespace Amazon.MainframeModernization
         /// </summary>
         public static readonly DataSetTaskLifecycle Creating = new DataSetTaskLifecycle("Creating");
         /// <summary>
+        /// Constant Failed for DataSetTaskLifecycle
+        /// </summary>
+        public static readonly DataSetTaskLifecycle Failed = new DataSetTaskLifecycle("Failed");
+        /// <summary>
         /// Constant Running for DataSetTaskLifecycle
         /// </summary>
         public static readonly DataSetTaskLifecycle Running = new DataSetTaskLifecycle("Running");
@@ -418,6 +426,10 @@ namespace Amazon.MainframeModernization
         /// Constant Succeeded for DeploymentLifecycle
         /// </summary>
         public static readonly DeploymentLifecycle Succeeded = new DeploymentLifecycle("Succeeded");
+        /// <summary>
+        /// Constant UpdatingDeployment for DeploymentLifecycle
+        /// </summary>
+        public static readonly DeploymentLifecycle UpdatingDeployment = new DeploymentLifecycle("Updating Deployment");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -527,6 +539,10 @@ namespace Amazon.MainframeModernization
         /// </summary>
         public static readonly EnvironmentLifecycle Failed = new EnvironmentLifecycle("Failed");
         /// <summary>
+        /// Constant UnHealthy for EnvironmentLifecycle
+        /// </summary>
+        public static readonly EnvironmentLifecycle UnHealthy = new EnvironmentLifecycle("UnHealthy");
+        /// <summary>
         /// Constant Updating for EnvironmentLifecycle
         /// </summary>
         public static readonly EnvironmentLifecycle Updating = new EnvironmentLifecycle("Updating");
@@ -567,6 +583,56 @@ namespace Amazon.MainframeModernization
 
 
     /// <summary>
+    /// Constants used for properties of type NetworkType.
+    /// </summary>
+    public class NetworkType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Dual for NetworkType
+        /// </summary>
+        public static readonly NetworkType Dual = new NetworkType("dual");
+        /// <summary>
+        /// Constant Ipv4 for NetworkType
+        /// </summary>
+        public static readonly NetworkType Ipv4 = new NetworkType("ipv4");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public NetworkType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static NetworkType FindValue(string value)
+        {
+            return FindValue<NetworkType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator NetworkType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ValidationExceptionReason.
     /// </summary>
     public class ValidationExceptionReason : ConstantClass
@@ -576,6 +642,10 @@ namespace Amazon.MainframeModernization
         /// Constant CannotParse for ValidationExceptionReason
         /// </summary>
         public static readonly ValidationExceptionReason CannotParse = new ValidationExceptionReason("cannotParse");
+        /// <summary>
+        /// Constant FeatureNotAvailable for ValidationExceptionReason
+        /// </summary>
+        public static readonly ValidationExceptionReason FeatureNotAvailable = new ValidationExceptionReason("featureNotAvailable");
         /// <summary>
         /// Constant FieldValidationFailed for ValidationExceptionReason
         /// </summary>
@@ -588,6 +658,10 @@ namespace Amazon.MainframeModernization
         /// Constant UnknownOperation for ValidationExceptionReason
         /// </summary>
         public static readonly ValidationExceptionReason UnknownOperation = new ValidationExceptionReason("unknownOperation");
+        /// <summary>
+        /// Constant UnsupportedEngineVersion for ValidationExceptionReason
+        /// </summary>
+        public static readonly ValidationExceptionReason UnsupportedEngineVersion = new ValidationExceptionReason("unsupportedEngineVersion");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant

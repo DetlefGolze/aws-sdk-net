@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.EC2.Model
         private CurrencyCodeValues _currencyCode;
         private int? _duration;
         private DateTime? _end;
-        private List<string> _hostIdSet = new List<string>();
+        private List<string> _hostIdSet = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _hostReservationId;
         private string _hourlyPrice;
         private string _instanceFamily;
@@ -45,7 +46,7 @@ namespace Amazon.EC2.Model
         private PaymentOption _paymentOption;
         private DateTime? _start;
         private ReservationState _state;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _upfrontPrice;
 
         /// <summary>
@@ -69,8 +70,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property CurrencyCode. 
         /// <para>
-        /// The currency in which the <code>upfrontPrice</code> and <code>hourlyPrice</code> amounts
-        /// are specified. At this time, the only supported currency is <code>USD</code>.
+        /// The currency in which the <c>upfrontPrice</c> and <c>hourlyPrice</c> amounts are specified.
+        /// At this time, the only supported currency is <c>USD</c>.
         /// </para>
         /// </summary>
         public CurrencyCodeValues CurrencyCode
@@ -88,8 +89,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Duration. 
         /// <para>
-        /// The length of the reservation's term, specified in seconds. Can be <code>31536000
-        /// (1 year)</code> | <code>94608000 (3 years)</code>.
+        /// The length of the reservation's term, specified in seconds. Can be <c>31536000 (1
+        /// year)</c> | <c>94608000 (3 years)</c>.
         /// </para>
         /// </summary>
         public int Duration
@@ -137,7 +138,7 @@ namespace Amazon.EC2.Model
         // Check to see if HostIdSet property is set
         internal bool IsSetHostIdSet()
         {
-            return this._hostIdSet != null && this._hostIdSet.Count > 0; 
+            return this._hostIdSet != null && (this._hostIdSet.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -283,7 +284,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

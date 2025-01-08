@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// Describes a work team of a vendor that does the a labelling job.
+    /// Describes a work team of a vendor that does the labelling job.
     /// </summary>
     public partial class SubscribedWorkteam
     {

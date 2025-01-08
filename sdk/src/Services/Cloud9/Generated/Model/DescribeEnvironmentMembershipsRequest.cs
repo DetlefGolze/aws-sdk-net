@@ -26,18 +26,27 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Cloud9.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeEnvironmentMemberships operation.
     /// Gets information about environment members for an Cloud9 development environment.
+    /// 
+    ///  <important> 
+    /// <para>
+    /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+    /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+    /// more"</a> 
+    /// </para>
+    ///  </important>
     /// </summary>
     public partial class DescribeEnvironmentMembershipsRequest : AmazonCloud9Request
     {
         private string _environmentId;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _permissions = new List<string>();
+        private List<string> _permissions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _userArn;
 
         /// <summary>
@@ -107,15 +116,15 @@ namespace Amazon.Cloud9.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>owner</code>: Owns the environment.
+        ///  <c>owner</c>: Owns the environment.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>read-only</code>: Has read-only access to the environment.
+        ///  <c>read-only</c>: Has read-only access to the environment.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>read-write</code>: Has read-write access to the environment.
+        ///  <c>read-write</c>: Has read-write access to the environment.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -131,7 +140,7 @@ namespace Amazon.Cloud9.Model
         // Check to see if Permissions property is set
         internal bool IsSetPermissions()
         {
-            return this._permissions != null && this._permissions.Count > 0; 
+            return this._permissions != null && (this._permissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

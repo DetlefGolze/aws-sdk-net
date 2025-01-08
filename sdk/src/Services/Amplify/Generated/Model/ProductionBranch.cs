@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Amplify.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property BranchName. 
         /// <para>
-        ///  The branch name for the production branch. 
+        /// The branch name for the production branch. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -60,7 +61,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property LastDeployTime. 
         /// <para>
-        ///  The last deploy time of the production branch. 
+        /// The last deploy time of the production branch. 
         /// </para>
         /// </summary>
         public DateTime LastDeployTime
@@ -78,7 +79,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        ///  The status of the production branch. 
+        /// The status of the production branch. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=3, Max=7)]
@@ -97,7 +98,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property ThumbnailUrl. 
         /// <para>
-        ///  The thumbnail URL for the production branch. 
+        /// The thumbnail URL for the production branch. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2000)]

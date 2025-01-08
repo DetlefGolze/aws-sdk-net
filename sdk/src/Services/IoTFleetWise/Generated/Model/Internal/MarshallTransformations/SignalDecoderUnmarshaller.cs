@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public SignalDecoder Unmarshall(JsonUnmarshallerContext context)
         {
+            SignalDecoder unmarshalledObject = new SignalDecoder();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            SignalDecoder unmarshalledObject = new SignalDecoder();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -68,6 +70,12 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = CanSignalUnmarshaller.Instance;
                     unmarshalledObject.CanSignal = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("customDecodingSignal", targetDepth))
+                {
+                    var unmarshaller = CustomDecodingSignalUnmarshaller.Instance;
+                    unmarshalledObject.CustomDecodingSignal = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("fullyQualifiedName", targetDepth))
@@ -80,6 +88,12 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.InterfaceId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("messageSignal", targetDepth))
+                {
+                    var unmarshaller = MessageSignalUnmarshaller.Instance;
+                    unmarshalledObject.MessageSignal = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("obdSignal", targetDepth))
@@ -95,7 +109,6 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

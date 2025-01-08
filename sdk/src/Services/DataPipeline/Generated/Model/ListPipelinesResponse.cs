@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataPipeline.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.DataPipeline.Model
     {
         private bool? _hasMoreResults;
         private string _marker;
-        private List<PipelineIdName> _pipelineIdList = new List<PipelineIdName>();
+        private List<PipelineIdName> _pipelineIdList = AWSConfigs.InitializeCollections ? new List<PipelineIdName>() : null;
 
         /// <summary>
         /// Gets and sets the property HasMoreResults. 
@@ -59,8 +60,8 @@ namespace Amazon.DataPipeline.Model
         /// Gets and sets the property Marker. 
         /// <para>
         /// The starting point for the next page of results. To view the next page of results,
-        /// call <code>ListPipelinesOutput</code> again with this marker value. If the value is
-        /// null, there are no more results.
+        /// call <c>ListPipelinesOutput</c> again with this marker value. If the value is null,
+        /// there are no more results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1024)]
@@ -93,7 +94,7 @@ namespace Amazon.DataPipeline.Model
         // Check to see if PipelineIdList property is set
         internal bool IsSetPipelineIdList()
         {
-            return this._pipelineIdList != null && this._pipelineIdList.Count > 0; 
+            return this._pipelineIdList != null && (this._pipelineIdList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

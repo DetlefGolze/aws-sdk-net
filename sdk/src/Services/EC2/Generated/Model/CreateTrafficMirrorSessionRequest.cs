@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.EC2.Model
     /// </para>
     ///  
     /// <para>
-    /// By default, no traffic is mirrored. Use <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTrafficMirrorFilter.htm">CreateTrafficMirrorFilter</a>
+    /// By default, no traffic is mirrored. Use <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTrafficMirrorFilter.html">CreateTrafficMirrorFilter</a>
     /// to create filter rules that specify the traffic to mirror.
     /// </para>
     /// </summary>
@@ -57,7 +58,7 @@ namespace Amazon.EC2.Model
         private string _networkInterfaceId;
         private int? _packetLength;
         private int? _sessionNumber;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
         private string _trafficMirrorFilterId;
         private string _trafficMirrorTargetId;
         private int? _virtualNetworkId;
@@ -66,7 +67,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// Unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        /// request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How
+        /// request. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html">How
         /// to ensure idempotency</a>.
         /// </para>
         /// </summary>
@@ -130,14 +131,14 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// If you do not want to mirror the entire packet, use the <code>PacketLength</code>
-        /// parameter to specify the number of bytes in each packet to mirror.
+        /// If you do not want to mirror the entire packet, use the <c>PacketLength</c> parameter
+        /// to specify the number of bytes in each packet to mirror.
         /// </para>
         ///  
         /// <para>
-        /// For sessions with Network Load Balancer (NLB) Traffic Mirror targets the default <code>PacketLength</code>
-        /// will be set to 8500. Valid values are 1-8500. Setting a <code>PacketLength</code>
-        /// greater than 8500 will result in an error response.
+        /// For sessions with Network Load Balancer (NLB) Traffic Mirror targets the default <c>PacketLength</c>
+        /// will be set to 8500. Valid values are 1-8500. Setting a <c>PacketLength</c> greater
+        /// than 8500 will result in an error response.
         /// </para>
         /// </summary>
         public int PacketLength
@@ -192,7 +193,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -237,9 +238,9 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property VirtualNetworkId. 
         /// <para>
         /// The VXLAN ID for the Traffic Mirror session. For more information about the VXLAN
-        /// protocol, see <a href="https://tools.ietf.org/html/rfc7348">RFC 7348</a>. If you do
-        /// not specify a <code>VirtualNetworkId</code>, an account-wide unique id is chosen at
-        /// random.
+        /// protocol, see <a href="https://datatracker.ietf.org/doc/html/rfc7348">RFC 7348</a>.
+        /// If you do not specify a <c>VirtualNetworkId</c>, an account-wide unique ID is chosen
+        /// at random.
         /// </para>
         /// </summary>
         public int VirtualNetworkId

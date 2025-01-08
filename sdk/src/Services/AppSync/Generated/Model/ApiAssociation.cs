@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
-    /// Describes an <code>ApiAssociation</code> object.
+    /// Describes an <c>ApiAssociation</c> object.
     /// </summary>
     public partial class ApiAssociation
     {

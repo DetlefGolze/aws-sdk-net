@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
-    /// An object representing the <code>certificate-authority-data</code> for your cluster.
+    /// An object representing the <c>certificate-authority-data</c> for your cluster.
     /// </summary>
     public partial class Certificate
     {
@@ -39,8 +40,8 @@ namespace Amazon.EKS.Model
         /// Gets and sets the property Data. 
         /// <para>
         /// The Base64-encoded certificate data required to communicate with your cluster. Add
-        /// this to the <code>certificate-authority-data</code> section of the <code>kubeconfig</code>
-        /// file for your cluster.
+        /// this to the <c>certificate-authority-data</c> section of the <c>kubeconfig</c> file
+        /// for your cluster.
         /// </para>
         /// </summary>
         public string Data

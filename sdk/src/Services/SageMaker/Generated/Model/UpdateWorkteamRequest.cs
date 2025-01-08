@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -35,8 +36,9 @@ namespace Amazon.SageMaker.Model
     public partial class UpdateWorkteamRequest : AmazonSageMakerRequest
     {
         private string _description;
-        private List<MemberDefinition> _memberDefinitions = new List<MemberDefinition>();
+        private List<MemberDefinition> _memberDefinitions = AWSConfigs.InitializeCollections ? new List<MemberDefinition>() : null;
         private NotificationConfiguration _notificationConfiguration;
+        private WorkerAccessConfiguration _workerAccessConfiguration;
         private string _workteamName;
 
         /// <summary>
@@ -61,34 +63,34 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property MemberDefinitions. 
         /// <para>
-        /// A list of <code>MemberDefinition</code> objects that contains objects that identify
-        /// the workers that make up the work team. 
+        /// A list of <c>MemberDefinition</c> objects that contains objects that identify the
+        /// workers that make up the work team. 
         /// </para>
         ///  
         /// <para>
         /// Workforces can be created using Amazon Cognito or your own OIDC Identity Provider
-        /// (IdP). For private workforces created using Amazon Cognito use <code>CognitoMemberDefinition</code>.
-        /// For workforces created using your own OIDC identity provider (IdP) use <code>OidcMemberDefinition</code>.
+        /// (IdP). For private workforces created using Amazon Cognito use <c>CognitoMemberDefinition</c>.
+        /// For workforces created using your own OIDC identity provider (IdP) use <c>OidcMemberDefinition</c>.
         /// You should not provide input for both of these parameters in a single request.
         /// </para>
         ///  
         /// <para>
         /// For workforces created using Amazon Cognito, private work teams correspond to Amazon
         /// Cognito <i>user groups</i> within the user pool used to create a workforce. All of
-        /// the <code>CognitoMemberDefinition</code> objects that make up the member definition
-        /// must have the same <code>ClientId</code> and <code>UserPool</code> values. To add
-        /// a Amazon Cognito user group to an existing worker pool, see <a href="">Adding groups
-        /// to a User Pool</a>. For more information about user pools, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html">Amazon
+        /// the <c>CognitoMemberDefinition</c> objects that make up the member definition must
+        /// have the same <c>ClientId</c> and <c>UserPool</c> values. To add a Amazon Cognito
+        /// user group to an existing worker pool, see <a href="">Adding groups to a User Pool</a>.
+        /// For more information about user pools, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html">Amazon
         /// Cognito User Pools</a>.
         /// </para>
         ///  
         /// <para>
         /// For workforces created using your own OIDC IdP, specify the user groups that you want
-        /// to include in your private work team in <code>OidcMemberDefinition</code> by listing
-        /// those groups in <code>Groups</code>. Be aware that user groups that are already in
-        /// the work team must also be listed in <code>Groups</code> when you make this request
-        /// to remain on the work team. If you do not include these user groups, they will no
-        /// longer be associated with the work team you update. 
+        /// to include in your private work team in <c>OidcMemberDefinition</c> by listing those
+        /// groups in <c>Groups</c>. Be aware that user groups that are already in the work team
+        /// must also be listed in <c>Groups</c> when you make this request to remain on the work
+        /// team. If you do not include these user groups, they will no longer be associated with
+        /// the work team you update. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
@@ -101,7 +103,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if MemberDefinitions property is set
         internal bool IsSetMemberDefinitions()
         {
-            return this._memberDefinitions != null && this._memberDefinitions.Count > 0; 
+            return this._memberDefinitions != null && (this._memberDefinitions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -120,6 +122,26 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetNotificationConfiguration()
         {
             return this._notificationConfiguration != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WorkerAccessConfiguration. 
+        /// <para>
+        /// Use this optional parameter to constrain access to an Amazon S3 resource based on
+        /// the IP address using supported IAM global condition keys. The Amazon S3 resource is
+        /// accessed in the worker portal using a Amazon S3 presigned URL.
+        /// </para>
+        /// </summary>
+        public WorkerAccessConfiguration WorkerAccessConfiguration
+        {
+            get { return this._workerAccessConfiguration; }
+            set { this._workerAccessConfiguration = value; }
+        }
+
+        // Check to see if WorkerAccessConfiguration property is set
+        internal bool IsSetWorkerAccessConfiguration()
+        {
+            return this._workerAccessConfiguration != null;
         }
 
         /// <summary>

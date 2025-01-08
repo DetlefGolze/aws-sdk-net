@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -70,13 +71,21 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                 {
                     request.Parameters.Add("ClientToken", StringUtils.FromString(publicRequest.ClientToken));
                 }
+                if(publicRequest.IsSetCommitmentDuration())
+                {
+                    request.Parameters.Add("CommitmentDuration", StringUtils.FromLong(publicRequest.CommitmentDuration));
+                }
+                if(publicRequest.IsSetDeliveryPreference())
+                {
+                    request.Parameters.Add("DeliveryPreference", StringUtils.FromString(publicRequest.DeliveryPreference));
+                }
                 if(publicRequest.IsSetEbsOptimized())
                 {
                     request.Parameters.Add("EbsOptimized", StringUtils.FromBool(publicRequest.EbsOptimized));
                 }
                 if(publicRequest.IsSetEndDate())
                 {
-                    request.Parameters.Add("EndDate", StringUtils.FromDateTimeToISO8601(publicRequest.EndDate));
+                    request.Parameters.Add("EndDate", StringUtils.FromDateTimeToISO8601WithOptionalMs(publicRequest.EndDate));
                 }
                 if(publicRequest.IsSetEndDateType())
                 {
@@ -109,6 +118,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                 if(publicRequest.IsSetPlacementGroupArn())
                 {
                     request.Parameters.Add("PlacementGroupArn", StringUtils.FromString(publicRequest.PlacementGroupArn));
+                }
+                if(publicRequest.IsSetStartDate())
+                {
+                    request.Parameters.Add("StartDate", StringUtils.FromDateTimeToISO8601WithOptionalMs(publicRequest.StartDate));
                 }
                 if(publicRequest.IsSetTagSpecifications())
                 {

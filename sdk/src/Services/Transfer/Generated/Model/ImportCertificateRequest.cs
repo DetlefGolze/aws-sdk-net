@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.Transfer.Model
         private string _description;
         private DateTime? _inactiveDate;
         private string _privateKey;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private CertificateUsageType _usage;
 
         /// <summary>
@@ -65,13 +66,13 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property Certificate. <ul> <li> 
         /// <para>
-        /// For the CLI, provide a file path for a certificate in URI format. For example, <code>--certificate
-        /// file://encryption-cert.pem</code>. Alternatively, you can provide the raw content.
+        /// For the CLI, provide a file path for a certificate in URI format. For example, <c>--certificate
+        /// file://encryption-cert.pem</c>. Alternatively, you can provide the raw content.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For the SDK, specify the raw content of a certificate file. For example, <code>--certificate
-        /// "`cat encryption-cert.pem`"</code>.
+        /// For the SDK, specify the raw content of a certificate file. For example, <c>--certificate
+        /// "`cat encryption-cert.pem`"</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -148,14 +149,14 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property PrivateKey. <ul> <li> 
         /// <para>
-        /// For the CLI, provide a file path for a private key in URI format.For example, <code>--private-key
-        /// file://encryption-key.pem</code>. Alternatively, you can provide the raw content of
-        /// the private key file.
+        /// For the CLI, provide a file path for a private key in URI format.For example, <c>--private-key
+        /// file://encryption-key.pem</c>. Alternatively, you can provide the raw content of the
+        /// private key file.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For the SDK, specify the raw content of a private key file. For example, <code>--private-key
-        /// "`cat encryption-key.pem`"</code> 
+        /// For the SDK, specify the raw content of a private key file. For example, <c>--private-key
+        /// "`cat encryption-key.pem`"</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -188,14 +189,27 @@ namespace Amazon.Transfer.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Usage. 
         /// <para>
-        /// Specifies whether this certificate is used for signing or encryption.
+        /// Specifies how this certificate is used. It can be used in the following ways:
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>SIGNING</c>: For signing AS2 messages
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>ENCRYPTION</c>: For encrypting AS2 messages
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>TLS</c>: For securing AS2 communications sent over HTTPS
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         [AWSProperty(Required=true)]
         public CertificateUsageType Usage

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -33,14 +34,42 @@ namespace Amazon.LocationService.Model
     /// </summary>
     public partial class MapConfigurationUpdate
     {
+        private List<string> _customLayers = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _politicalView;
+
+        /// <summary>
+        /// Gets and sets the property CustomLayers. 
+        /// <para>
+        /// Specifies the custom layers for the style. Leave unset to not enable any custom layer,
+        /// or, for styles that support custom layers, you can enable layer(s), such as POI layer
+        /// for the VectorEsriNavigation style. Default is <c>unset</c>.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// Not all map resources or styles support custom layers. See Custom Layers for more
+        /// information.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        [AWSProperty(Min=0, Max=10)]
+        public List<string> CustomLayers
+        {
+            get { return this._customLayers; }
+            set { this._customLayers = value; }
+        }
+
+        // Check to see if CustomLayers property is set
+        internal bool IsSetCustomLayers()
+        {
+            return this._customLayers != null && (this._customLayers.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
 
         /// <summary>
         /// Gets and sets the property PoliticalView. 
         /// <para>
         /// Specifies the political view for the style. Set to an empty string to not use a political
         /// view, or, for styles that support specific political views, you can choose a view,
-        /// such as <code>IND</code> for the Indian view.
+        /// such as <c>IND</c> for the Indian view.
         /// </para>
         ///  <note> 
         /// <para>

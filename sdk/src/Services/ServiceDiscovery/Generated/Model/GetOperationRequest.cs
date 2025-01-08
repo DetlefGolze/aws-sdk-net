@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceDiscovery.Model
 {
     /// <summary>
     /// Container for the parameters to the GetOperation operation.
     /// Gets information about any operation that returns an operation ID in the response,
-    /// such as a <code>CreateHttpNamespace</code> request.
+    /// such as a <c>CreateHttpNamespace</c> request.
     /// 
     ///  <note> 
     /// <para>

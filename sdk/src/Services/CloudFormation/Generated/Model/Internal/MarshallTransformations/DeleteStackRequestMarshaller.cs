@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudFormation.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -61,6 +62,10 @@ namespace Amazon.CloudFormation.Model.Internal.MarshallTransformations
                 if(publicRequest.IsSetClientRequestToken())
                 {
                     request.Parameters.Add("ClientRequestToken", StringUtils.FromString(publicRequest.ClientRequestToken));
+                }
+                if(publicRequest.IsSetDeletionMode())
+                {
+                    request.Parameters.Add("DeletionMode", StringUtils.FromString(publicRequest.DeletionMode));
                 }
                 if(publicRequest.IsSetRetainResources())
                 {

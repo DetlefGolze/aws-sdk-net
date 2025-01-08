@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMessaging.Model
 {
     /// <summary>
     /// Container for the parameters to the GetMessagingStreamingConfigurations operation.
-    /// Retrieves the data streaming configuration for an <code>AppInstance</code>. For more
-    /// information, see <a href="https://docs.aws.amazon.com/chime-sdk/latest/dg/streaming-export.html">Streaming
+    /// Retrieves the data streaming configuration for an <c>AppInstance</c>. For more information,
+    /// see <a href="https://docs.aws.amazon.com/chime-sdk/latest/dg/streaming-export.html">Streaming
     /// messaging data</a> in the <i>Amazon Chime SDK Developer Guide</i>.
     /// </summary>
     public partial class GetMessagingStreamingConfigurationsRequest : AmazonChimeSDKMessagingRequest

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -67,7 +68,7 @@ namespace Amazon.Connect.Model
         ///  
         /// <para>
         /// Amazon Connect supports only KMS keys with the default key spec of <a href="https://docs.aws.amazon.com/kms/latest/developerguide/asymmetric-key-specs.html#key-spec-symmetric-default">
-        /// <code>SYMMETRIC_DEFAULT</code> </a>. 
+        /// <c>SYMMETRIC_DEFAULT</c> </a>. 
         /// </para>
         ///  </note>
         /// </summary>

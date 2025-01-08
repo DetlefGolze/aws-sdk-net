@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Route53Resolver.Model
     /// 
     ///  
     /// <para>
-    /// To specify which VPCs you want to log queries for, you use <code>AssociateResolverQueryLogConfig</code>.
+    /// To specify which VPCs you want to log queries for, you use <c>AssociateResolverQueryLogConfig</c>.
     /// For more information, see <a href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_AssociateResolverQueryLogConfig.html">AssociateResolverQueryLogConfig</a>.
     /// 
     /// </para>
@@ -53,14 +54,14 @@ namespace Amazon.Route53Resolver.Model
         private string _creatorRequestId;
         private string _destinationArn;
         private string _name;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property CreatorRequestId. 
         /// <para>
         /// A unique string that identifies the request and that allows failed requests to be
-        /// retried without the risk of running the operation twice. <code>CreatorRequestId</code>
-        /// can be any unique string, for example, a date/time stamp. 
+        /// retried without the risk of running the operation twice. <c>CreatorRequestId</c> can
+        /// be any unique string, for example, a date/time stamp. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -89,7 +90,7 @@ namespace Amazon.Route53Resolver.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:s3:::examplebucket</code> 
+        ///  <c>arn:aws:s3:::amzn-s3-demo-bucket</c> 
         /// </para>
         ///  
         /// <para>
@@ -97,7 +98,7 @@ namespace Amazon.Route53Resolver.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:s3:::examplebucket/development/</code> 
+        ///  <c>arn:aws:s3:::amzn-s3-demo-bucket/development/</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -105,7 +106,7 @@ namespace Amazon.Route53Resolver.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:logs:us-west-1:123456789012:log-group:/mystack-testgroup-12ABC1AB12A1:*</code>
+        ///  <c>arn:aws:logs:us-west-1:123456789012:log-group:/mystack-testgroup-12ABC1AB12A1:*</c>
         /// 
         /// </para>
         ///  </li> <li> 
@@ -114,7 +115,7 @@ namespace Amazon.Route53Resolver.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:kinesis:us-east-2:0123456789:stream/my_stream_name</code> 
+        ///  <c>arn:aws:kinesis:us-east-2:0123456789:stream/my_stream_name</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -167,7 +168,7 @@ namespace Amazon.Route53Resolver.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

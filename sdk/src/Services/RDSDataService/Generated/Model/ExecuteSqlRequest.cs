@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDSDataService.Model
 {
     /// <summary>
@@ -34,8 +35,9 @@ namespace Amazon.RDSDataService.Model
     /// 
     ///  <note> 
     /// <para>
-    /// This operation is deprecated. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code>
-    /// operation.
+    /// This operation isn't supported for Aurora Serverless v2 and provisioned DB clusters.
+    /// For Aurora Serverless v1 DB clusters, the operation is deprecated. Use the <c>BatchExecuteStatement</c>
+    /// or <c>ExecuteStatement</c> operation.
     /// </para>
     ///  </note>
     /// </summary>

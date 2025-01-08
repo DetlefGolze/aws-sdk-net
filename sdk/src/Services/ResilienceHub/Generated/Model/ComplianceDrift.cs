@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.ResilienceHub.Model
     public partial class ComplianceDrift
     {
         private string _actualReferenceId;
-        private Dictionary<string, DisruptionCompliance> _actualValue = new Dictionary<string, DisruptionCompliance>();
+        private Dictionary<string, DisruptionCompliance> _actualValue = AWSConfigs.InitializeCollections ? new Dictionary<string, DisruptionCompliance>() : null;
         private string _appId;
         private string _appVersion;
         private DifferenceType _diffType;
@@ -43,7 +44,7 @@ namespace Amazon.ResilienceHub.Model
         private string _entityId;
         private string _entityType;
         private string _expectedReferenceId;
-        private Dictionary<string, DisruptionCompliance> _expectedValue = new Dictionary<string, DisruptionCompliance>();
+        private Dictionary<string, DisruptionCompliance> _expectedValue = AWSConfigs.InitializeCollections ? new Dictionary<string, DisruptionCompliance>() : null;
 
         /// <summary>
         /// Gets and sets the property ActualReferenceId. 
@@ -79,7 +80,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if ActualValue property is set
         internal bool IsSetActualValue()
         {
-            return this._actualValue != null && this._actualValue.Count > 0; 
+            return this._actualValue != null && (this._actualValue.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -124,7 +125,7 @@ namespace Amazon.ResilienceHub.Model
         /// Gets and sets the property DiffType. 
         /// <para>
         /// Difference type between actual and expected recovery point objective (RPO) and recovery
-        /// time objective (RTO) values. Currently, Resilience Hub supports only <b>NotEqual</b>
+        /// time objective (RTO) values. Currently, Resilience Hub supports only <c>NotEqual</c>
         /// difference type.
         /// </para>
         /// </summary>
@@ -183,7 +184,7 @@ namespace Amazon.ResilienceHub.Model
         /// Gets and sets the property EntityType. 
         /// <para>
         /// The type of entity in which drift was detected. For compliance drifts, Resilience
-        /// Hub supports <code>AWS::ResilienceHub::AppComponent</code> and <code>AWS::ResilienceHub::Application</code>.
+        /// Hub supports <c>AWS::ResilienceHub::AppComponent</c> and <c>AWS::ResilienceHub::Application</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -235,7 +236,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if ExpectedValue property is set
         internal bool IsSetExpectedValue()
         {
-            return this._expectedValue != null && this._expectedValue.Count > 0; 
+            return this._expectedValue != null && (this._expectedValue.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

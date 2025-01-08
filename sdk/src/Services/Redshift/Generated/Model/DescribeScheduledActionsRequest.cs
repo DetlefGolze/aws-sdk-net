@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Redshift.Model
     {
         private bool? _active;
         private DateTime? _endTime;
-        private List<ScheduledActionFilter> _filters = new List<ScheduledActionFilter>();
+        private List<ScheduledActionFilter> _filters = AWSConfigs.InitializeCollections ? new List<ScheduledActionFilter>() : null;
         private string _marker;
         private int? _maxRecords;
         private string _scheduledActionName;
@@ -96,7 +97,7 @@ namespace Amazon.Redshift.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -104,10 +105,10 @@ namespace Amazon.Redshift.Model
         /// <para>
         /// An optional parameter that specifies the starting point to return a set of response
         /// records. When the results of a <a>DescribeScheduledActions</a> request exceed the
-        /// value specified in <code>MaxRecords</code>, Amazon Web Services returns a value in
-        /// the <code>Marker</code> field of the response. You can retrieve the next set of response
-        /// records by providing the returned marker value in the <code>Marker</code> parameter
-        /// and retrying the request. 
+        /// value specified in <c>MaxRecords</c>, Amazon Web Services returns a value in the <c>Marker</c>
+        /// field of the response. You can retrieve the next set of response records by providing
+        /// the returned marker value in the <c>Marker</c> parameter and retrying the request.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]
@@ -127,13 +128,13 @@ namespace Amazon.Redshift.Model
         /// Gets and sets the property MaxRecords. 
         /// <para>
         /// The maximum number of response records to return in each call. If the number of remaining
-        /// response records exceeds the specified <code>MaxRecords</code> value, a value is returned
-        /// in a <code>marker</code> field of the response. You can retrieve the next set of records
+        /// response records exceeds the specified <c>MaxRecords</c> value, a value is returned
+        /// in a <c>marker</c> field of the response. You can retrieve the next set of records
         /// by retrying the command with the returned marker value. 
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>100</code> 
+        /// Default: <c>100</c> 
         /// </para>
         ///  
         /// <para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.CloudFront.Model
         /// Gets and sets the property StreamType. 
         /// <para>
         /// The type of data stream where you are sending real-time log data. The only valid value
-        /// is <code>Kinesis</code>.
+        /// is <c>Kinesis</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.EC2.Model
     public partial class DescribePublicIpv4PoolsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<PublicIpv4Pool> _publicIpv4Pools = new List<PublicIpv4Pool>();
+        private List<PublicIpv4Pool> _publicIpv4Pools = AWSConfigs.InitializeCollections ? new List<PublicIpv4Pool>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to use to retrieve the next page of results. This value is <code>null</code>
-        /// when there are no more results to return.
+        /// The token to use to retrieve the next page of results. This value is <c>null</c> when
+        /// there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken
@@ -70,7 +71,7 @@ namespace Amazon.EC2.Model
         // Check to see if PublicIpv4Pools property is set
         internal bool IsSetPublicIpv4Pools()
         {
-            return this._publicIpv4Pools != null && this._publicIpv4Pools.Count > 0; 
+            return this._publicIpv4Pools != null && (this._publicIpv4Pools.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

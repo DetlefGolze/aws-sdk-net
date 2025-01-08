@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace Amazon.StepFunctions.Model
     public partial class DescribeStateMachineForExecutionResponse : AmazonWebServiceResponse
     {
         private string _definition;
+        private EncryptionConfiguration _encryptionConfiguration;
         private string _label;
         private LoggingConfiguration _loggingConfiguration;
         private string _mapRunArn;
@@ -43,6 +45,7 @@ namespace Amazon.StepFunctions.Model
         private string _stateMachineArn;
         private TracingConfiguration _tracingConfiguration;
         private DateTime? _updateDate;
+        private Dictionary<string, List<string>> _variableReferences = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
 
         /// <summary>
         /// Gets and sets the property Definition. 
@@ -65,11 +68,29 @@ namespace Amazon.StepFunctions.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EncryptionConfiguration. 
+        /// <para>
+        /// Settings to configure server-side encryption. 
+        /// </para>
+        /// </summary>
+        public EncryptionConfiguration EncryptionConfiguration
+        {
+            get { return this._encryptionConfiguration; }
+            set { this._encryptionConfiguration = value; }
+        }
+
+        // Check to see if EncryptionConfiguration property is set
+        internal bool IsSetEncryptionConfiguration()
+        {
+            return this._encryptionConfiguration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Label. 
         /// <para>
-        /// A user-defined or an auto-generated string that identifies a <code>Map</code> state.
-        /// This ﬁeld is returned only if the <code>executionArn</code> is a child workflow execution
-        /// that was started by a Distributed Map state.
+        /// A user-defined or an auto-generated string that identifies a <c>Map</c> state. This
+        /// ﬁeld is returned only if the <c>executionArn</c> is a child workflow execution that
+        /// was started by a Distributed Map state.
         /// </para>
         /// </summary>
         public string Label
@@ -103,7 +124,7 @@ namespace Amazon.StepFunctions.Model
         /// Gets and sets the property MapRunArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the Map Run that started the child workflow execution.
-        /// This field is returned only if the <code>executionArn</code> is a child workflow execution
+        /// This field is returned only if the <c>executionArn</c> is a child workflow execution
         /// that was started by a Distributed Map state.
         /// </para>
         /// </summary>
@@ -147,9 +168,9 @@ namespace Amazon.StepFunctions.Model
         /// </para>
         ///  
         /// <para>
-        /// Use the state machine <code>revisionId</code> parameter to compare the revision of
-        /// a state machine with the configuration of the state machine used for executions without
-        /// performing a diff of the properties, such as <code>definition</code> and <code>roleArn</code>.
+        /// Use the state machine <c>revisionId</c> parameter to compare the revision of a state
+        /// machine with the configuration of the state machine used for executions without performing
+        /// a diff of the properties, such as <c>definition</c> and <c>roleArn</c>.
         /// </para>
         /// </summary>
         public string RevisionId
@@ -239,6 +260,26 @@ namespace Amazon.StepFunctions.Model
         internal bool IsSetUpdateDate()
         {
             return this._updateDate.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property VariableReferences. 
+        /// <para>
+        /// A map of <b>state name</b> to a list of variables referenced by that state. States
+        /// that do not use variable references will not be shown in the response.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Sensitive=true)]
+        public Dictionary<string, List<string>> VariableReferences
+        {
+            get { return this._variableReferences; }
+            set { this._variableReferences = value; }
+        }
+
+        // Check to see if VariableReferences property is set
+        internal bool IsSetVariableReferences()
+        {
+            return this._variableReferences != null && (this._variableReferences.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

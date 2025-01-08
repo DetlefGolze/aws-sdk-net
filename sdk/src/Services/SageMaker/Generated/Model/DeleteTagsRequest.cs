@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.SageMaker.Model
     /// 
     ///  
     /// <para>
-    /// To list a resource's tags, use the <code>ListTags</code> API. 
+    /// To list a resource's tags, use the <c>ListTags</c> API. 
     /// </para>
     ///  <note> 
     /// <para>
@@ -44,16 +45,16 @@ namespace Amazon.SageMaker.Model
     /// </para>
     ///  </note> <note> 
     /// <para>
-    /// When you call this API to delete tags from a SageMaker Studio Domain or User Profile,
-    /// the deleted tags are not removed from Apps that the SageMaker Studio Domain or User
-    /// Profile launched before you called this API.
+    /// When you call this API to delete tags from a SageMaker Domain or User Profile, the
+    /// deleted tags are not removed from Apps that the SageMaker Domain or User Profile launched
+    /// before you called this API.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class DeleteTagsRequest : AmazonSageMakerRequest
     {
         private string _resourceArn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -90,7 +91,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

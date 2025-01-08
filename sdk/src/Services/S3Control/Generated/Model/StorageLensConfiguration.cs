@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -102,8 +103,7 @@ namespace Amazon.S3Control.Model
         /// Gets and sets the property Exclude. 
         /// <para>
         /// A container for what is excluded in this configuration. This container can only be
-        /// valid if there is no <code>Include</code> container submitted, and it's not empty.
-        /// 
+        /// valid if there is no <c>Include</c> container submitted, and it's not empty. 
         /// </para>
         /// </summary>
         public Exclude Exclude
@@ -141,8 +141,7 @@ namespace Amazon.S3Control.Model
         /// Gets and sets the property Include. 
         /// <para>
         /// A container for what is included in this configuration. This container can only be
-        /// valid if there is no <code>Exclude</code> container submitted, and it's not empty.
-        /// 
+        /// valid if there is no <c>Exclude</c> container submitted, and it's not empty. 
         /// </para>
         /// </summary>
         public Include Include
@@ -180,8 +179,8 @@ namespace Amazon.S3Control.Model
         /// Gets and sets the property StorageLensArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the S3 Storage Lens configuration. This property
-        /// is read-only and follows the following format: <code> arn:aws:s3:<i>us-east-1</i>:<i>example-account-id</i>:storage-lens/<i>your-dashboard-name</i>
-        /// </code> 
+        /// is read-only and follows the following format: <c> arn:aws:s3:<i>us-east-1</i>:<i>example-account-id</i>:storage-lens/<i>your-dashboard-name</i>
+        /// </c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

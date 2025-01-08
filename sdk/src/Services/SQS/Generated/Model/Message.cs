@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SQS.Model
 {
     /// <summary>
@@ -33,11 +34,11 @@ namespace Amazon.SQS.Model
     /// </summary>
     public partial class Message
     {
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _body;
         private string _md5OfBody;
         private string _md5OfMessageAttributes;
-        private Dictionary<string, MessageAttributeValue> _messageAttributes = new Dictionary<string, MessageAttributeValue>();
+        private Dictionary<string, MessageAttributeValue> _messageAttributes = AWSConfigs.InitializeCollections ? new Dictionary<string, MessageAttributeValue>() : null;
         private string _messageId;
         private string _receiptHandle;
 
@@ -49,41 +50,41 @@ namespace Amazon.SQS.Model
         /// <summary>
         /// Gets and sets the property Attributes. 
         /// <para>
-        /// A map of the attributes requested in <code> <a>ReceiveMessage</a> </code> to their
-        /// respective values. Supported attributes:
+        /// A map of the attributes requested in <c> <a>ReceiveMessage</a> </c> to their respective
+        /// values. Supported attributes:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ApproximateReceiveCount</code> 
+        ///  <c>ApproximateReceiveCount</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ApproximateFirstReceiveTimestamp</code> 
+        ///  <c>ApproximateFirstReceiveTimestamp</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MessageDeduplicationId</code> 
+        ///  <c>MessageDeduplicationId</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MessageGroupId</code> 
+        ///  <c>MessageGroupId</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SenderId</code> 
+        ///  <c>SenderId</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SentTimestamp</code> 
+        ///  <c>SentTimestamp</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SequenceNumber</code> 
+        ///  <c>SequenceNumber</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        ///  <code>ApproximateFirstReceiveTimestamp</code> and <code>SentTimestamp</code> are
-        /// each returned as an integer representing the <a href="http://en.wikipedia.org/wiki/Unix_time">epoch
+        ///  <c>ApproximateFirstReceiveTimestamp</c> and <c>SentTimestamp</c> are each returned
+        /// as an integer representing the <a href="http://en.wikipedia.org/wiki/Unix_time">epoch
         /// time</a> in milliseconds.
         /// </para>
         /// </summary>
@@ -96,7 +97,7 @@ namespace Amazon.SQS.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -158,8 +159,8 @@ namespace Amazon.SQS.Model
         /// <summary>
         /// Gets and sets the property MessageAttributes. 
         /// <para>
-        /// Each message attribute consists of a <code>Name</code>, <code>Type</code>, and <code>Value</code>.
-        /// For more information, see <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-metadata.html#sqs-message-attributes">Amazon
+        /// Each message attribute consists of a <c>Name</c>, <c>Type</c>, and <c>Value</c>. For
+        /// more information, see <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-metadata.html#sqs-message-attributes">Amazon
         /// SQS message attributes</a> in the <i>Amazon SQS Developer Guide</i>.
         /// </para>
         /// </summary>
@@ -172,14 +173,14 @@ namespace Amazon.SQS.Model
         // Check to see if MessageAttributes property is set
         internal bool IsSetMessageAttributes()
         {
-            return this._messageAttributes != null && this._messageAttributes.Count > 0; 
+            return this._messageAttributes != null && (this._messageAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MessageId. 
         /// <para>
-        /// A unique identifier for the message. A <code>MessageId</code>is considered unique
-        /// across all Amazon Web Services accounts for an extended period of time.
+        /// A unique identifier for the message. A <c>MessageId</c>is considered unique across
+        /// all Amazon Web Services accounts for an extended period of time.
         /// </para>
         /// </summary>
         public string MessageId

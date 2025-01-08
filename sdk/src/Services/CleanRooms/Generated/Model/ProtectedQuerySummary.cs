@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CleanRooms.Model
 {
     /// <summary>
@@ -37,6 +38,7 @@ namespace Amazon.CleanRooms.Model
         private string _id;
         private string _membershipArn;
         private string _membershipId;
+        private List<ReceiverConfiguration> _receiverConfigurations = AWSConfigs.InitializeCollections ? new List<ReceiverConfiguration>() : null;
         private ProtectedQueryStatus _status;
 
         /// <summary>
@@ -116,10 +118,28 @@ namespace Amazon.CleanRooms.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ReceiverConfigurations. 
+        /// <para>
+        ///  The receiver configuration.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Required=true)]
+        public List<ReceiverConfiguration> ReceiverConfigurations
+        {
+            get { return this._receiverConfigurations; }
+            set { this._receiverConfigurations = value; }
+        }
+
+        // Check to see if ReceiverConfigurations property is set
+        internal bool IsSetReceiverConfigurations()
+        {
+            return this._receiverConfigurations != null && (this._receiverConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the protected query. Value values are `SUBMITTED`, `STARTED`, `CANCELLED`,
-        /// `CANCELLING`, `FAILED`, `SUCCESS`, `TIMED_OUT`.
+        /// The status of the protected query.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MemoryDB.Model
 {
     /// <summary>
@@ -34,14 +35,17 @@ namespace Amazon.MemoryDB.Model
     public partial class ClusterConfiguration
     {
         private string _description;
+        private string _engine;
         private string _engineVersion;
         private string _maintenanceWindow;
+        private string _multiRegionClusterName;
+        private string _multiRegionParameterGroupName;
         private string _name;
         private string _nodeType;
         private int? _numShards;
         private string _parameterGroupName;
         private int? _port;
-        private List<ShardDetail> _shards = new List<ShardDetail>();
+        private List<ShardDetail> _shards = AWSConfigs.InitializeCollections ? new List<ShardDetail>() : null;
         private int? _snapshotRetentionLimit;
         private string _snapshotWindow;
         private string _subnetGroupName;
@@ -67,9 +71,27 @@ namespace Amazon.MemoryDB.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Engine. 
+        /// <para>
+        /// The name of the engine used by the cluster configuration.
+        /// </para>
+        /// </summary>
+        public string Engine
+        {
+            get { return this._engine; }
+            set { this._engine = value; }
+        }
+
+        // Check to see if Engine property is set
+        internal bool IsSetEngine()
+        {
+            return this._engine != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property EngineVersion. 
         /// <para>
-        /// The Redis engine version used by the cluster
+        /// The Redis OSS engine version used by the cluster
         /// </para>
         /// </summary>
         public string EngineVersion
@@ -100,6 +122,42 @@ namespace Amazon.MemoryDB.Model
         internal bool IsSetMaintenanceWindow()
         {
             return this._maintenanceWindow != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property MultiRegionClusterName. 
+        /// <para>
+        /// The name for the multi-Region cluster associated with the cluster configuration.
+        /// </para>
+        /// </summary>
+        public string MultiRegionClusterName
+        {
+            get { return this._multiRegionClusterName; }
+            set { this._multiRegionClusterName = value; }
+        }
+
+        // Check to see if MultiRegionClusterName property is set
+        internal bool IsSetMultiRegionClusterName()
+        {
+            return this._multiRegionClusterName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property MultiRegionParameterGroupName. 
+        /// <para>
+        /// The name of the multi-Region parameter group associated with the cluster configuration.
+        /// </para>
+        /// </summary>
+        public string MultiRegionParameterGroupName
+        {
+            get { return this._multiRegionParameterGroupName; }
+            set { this._multiRegionParameterGroupName = value; }
+        }
+
+        // Check to see if MultiRegionParameterGroupName property is set
+        internal bool IsSetMultiRegionParameterGroupName()
+        {
+            return this._multiRegionParameterGroupName != null;
         }
 
         /// <summary>
@@ -207,7 +265,7 @@ namespace Amazon.MemoryDB.Model
         // Check to see if Shards property is set
         internal bool IsSetShards()
         {
-            return this._shards != null && this._shards.Count > 0; 
+            return this._shards != null && (this._shards.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TimestreamQuery.Model
 {
     /// <summary>
-    /// The request was denied due to request throttling.
+    /// The request was throttled due to excessive requests.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

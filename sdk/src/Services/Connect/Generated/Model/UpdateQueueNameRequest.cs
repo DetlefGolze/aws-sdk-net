@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Connect.Model
     /// 
     ///  
     /// <para>
-    /// Updates the name and description of a queue. At least <code>Name</code> or <code>Description</code>
+    /// Updates the name and description of a queue. At least <c>Name</c> or <c>Description</c>
     /// must be provided.
     /// </para>
     /// </summary>

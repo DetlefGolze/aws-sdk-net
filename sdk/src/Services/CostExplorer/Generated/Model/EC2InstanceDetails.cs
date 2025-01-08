@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostExplorer.Model
 {
     /// <summary>
-    /// Details about the Amazon EC2 instances that Amazon Web Services recommends that you
-    /// purchase.
+    /// Details about the Amazon EC2 reservations that Amazon Web Services recommends that
+    /// you purchase.
     /// </summary>
     public partial class EC2InstanceDetails
     {

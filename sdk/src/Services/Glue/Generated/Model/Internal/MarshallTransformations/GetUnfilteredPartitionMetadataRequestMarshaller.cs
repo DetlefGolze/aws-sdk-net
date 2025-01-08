@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAuditContext())
@@ -99,6 +101,23 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
                             context.Writer.Write(publicRequestPartitionValuesListValue);
                     }
                     context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetQuerySessionContext())
+                {
+                    context.Writer.WritePropertyName("QuerySessionContext");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = QuerySessionContextMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.QuerySessionContext, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetRegion())
+                {
+                    context.Writer.WritePropertyName("Region");
+                    context.Writer.Write(publicRequest.Region);
                 }
 
                 if(publicRequest.IsSetSupportedPermissionTypes())

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Personalize.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Personalize.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public BatchInferenceJob Unmarshall(JsonUnmarshallerContext context)
         {
+            BatchInferenceJob unmarshalledObject = new BatchInferenceJob();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            BatchInferenceJob unmarshalledObject = new BatchInferenceJob();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -74,6 +76,12 @@ namespace Amazon.Personalize.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = BatchInferenceJobConfigUnmarshaller.Instance;
                     unmarshalledObject.BatchInferenceJobConfig = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("batchInferenceJobMode", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.BatchInferenceJobMode = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("creationDateTime", targetDepth))
@@ -142,8 +150,13 @@ namespace Amazon.Personalize.Model.Internal.MarshallTransformations
                     unmarshalledObject.Status = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("themeGenerationConfig", targetDepth))
+                {
+                    var unmarshaller = ThemeGenerationConfigUnmarshaller.Instance;
+                    unmarshalledObject.ThemeGenerationConfig = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

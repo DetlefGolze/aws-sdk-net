@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleDB.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteDomain operation.
-    /// The <code>DeleteDomain</code> operation deletes a domain. Any items (and their attributes)
-    /// in the domain are deleted as well. The <code>DeleteDomain</code> operation might take
-    /// 10 or more seconds to complete.
+    /// The <c>DeleteDomain</c> operation deletes a domain. Any items (and their attributes)
+    /// in the domain are deleted as well. The <c>DeleteDomain</c> operation might take 10
+    /// or more seconds to complete.
     /// </summary>
     public partial class DeleteDomainRequest : AmazonSimpleDBRequest
     {

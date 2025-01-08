@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeCommit.Model
 {
     /// <summary>
@@ -34,9 +35,36 @@ namespace Amazon.CodeCommit.Model
     /// </summary>
     public partial class CreateRepositoryRequest : AmazonCodeCommitRequest
     {
+        private string _kmsKeyId;
         private string _repositoryDescription;
         private string _repositoryName;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+
+        /// <summary>
+        /// Gets and sets the property KmsKeyId. 
+        /// <para>
+        /// The ID of the encryption key. You can view the ID of an encryption key in the KMS
+        /// console, or use the KMS APIs to programmatically retrieve a key ID. For more information
+        /// about acceptable values for kmsKeyID, see <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html#KMS-Decrypt-request-KeyId">KeyId</a>
+        /// in the Decrypt API description in the <i>Key Management Service API Reference</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// If no key is specified, the default <c>aws/codecommit</c> Amazon Web Services managed
+        /// key is used.
+        /// </para>
+        /// </summary>
+        public string KmsKeyId
+        {
+            get { return this._kmsKeyId; }
+            set { this._kmsKeyId = value; }
+        }
+
+        // Check to see if KmsKeyId property is set
+        internal bool IsSetKmsKeyId()
+        {
+            return this._kmsKeyId != null;
+        }
 
         /// <summary>
         /// Gets and sets the property RepositoryDescription. 
@@ -109,7 +137,7 @@ namespace Amazon.CodeCommit.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

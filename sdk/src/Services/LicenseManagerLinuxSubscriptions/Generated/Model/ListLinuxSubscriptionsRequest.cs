@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LicenseManagerLinuxSubscriptions.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model
     /// </summary>
     public partial class ListLinuxSubscriptionsRequest : AmazonLicenseManagerLinuxSubscriptionsRequest
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -44,7 +45,7 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model
         /// <para>
         /// An array of structures that you can use to filter the results to those that match
         /// one or more sets of key-value pairs that you specify. For example, you can filter
-        /// by the name of <code>Subscription</code> with an optional operator to see subscriptions
+        /// by the name of <c>Subscription</c> with an optional operator to see subscriptions
         /// that match, partially match, or don't match a certain subscription's name.
         /// </para>
         ///  
@@ -53,7 +54,7 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Subscription</code> 
+        ///  <c>Subscription</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -61,15 +62,15 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>contains</code> 
+        ///  <c>contains</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>equals</code> 
+        ///  <c>equals</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Notequal</code> 
+        ///  <c>Notequal</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -82,13 +83,13 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// Maximum number of results to return in a single call.
+        /// The maximum items to return in a request.
         /// </para>
         /// </summary>
         public int MaxResults
@@ -106,7 +107,8 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Token for the next set of results.
+        /// A token to specify where to start paginating. This is the nextToken from a previously
+        /// truncated response.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=16384)]

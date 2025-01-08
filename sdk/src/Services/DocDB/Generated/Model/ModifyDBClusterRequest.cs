@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
@@ -44,12 +45,16 @@ namespace Amazon.DocDB.Model
         private string _dbClusterParameterGroupName;
         private bool? _deletionProtection;
         private string _engineVersion;
+        private bool? _manageMasterUserPassword;
         private string _masterUserPassword;
+        private string _masterUserSecretKmsKeyId;
         private string _newDBClusterIdentifier;
         private int? _port;
         private string _preferredBackupWindow;
         private string _preferredMaintenanceWindow;
-        private List<string> _vpcSecurityGroupIds = new List<string>();
+        private bool? _rotateMasterUserPassword;
+        private string _storageType;
+        private List<string> _vpcSecurityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AllowMajorVersionUpgrade. 
@@ -59,8 +64,8 @@ namespace Amazon.DocDB.Model
         ///  
         /// <para>
         /// Constraints: You must allow major version upgrades when specifying a value for the
-        /// <code>EngineVersion</code> parameter that is a different major version than the DB
-        /// cluster's current version.
+        /// <c>EngineVersion</c> parameter that is a different major version than the DB cluster's
+        /// current version.
         /// </para>
         /// </summary>
         public bool AllowMajorVersionUpgrade
@@ -79,21 +84,21 @@ namespace Amazon.DocDB.Model
         /// Gets and sets the property ApplyImmediately. 
         /// <para>
         /// A value that specifies whether the changes in this request and any pending changes
-        /// are asynchronously applied as soon as possible, regardless of the <code>PreferredMaintenanceWindow</code>
-        /// setting for the cluster. If this parameter is set to <code>false</code>, changes to
-        /// the cluster are applied during the next maintenance window.
+        /// are asynchronously applied as soon as possible, regardless of the <c>PreferredMaintenanceWindow</c>
+        /// setting for the cluster. If this parameter is set to <c>false</c>, changes to the
+        /// cluster are applied during the next maintenance window.
         /// </para>
         ///  
         /// <para>
-        /// The <code>ApplyImmediately</code> parameter affects only the <code>NewDBClusterIdentifier</code>
-        /// and <code>MasterUserPassword</code> values. If you set this parameter value to <code>false</code>,
-        /// the changes to the <code>NewDBClusterIdentifier</code> and <code>MasterUserPassword</code>
-        /// values are applied during the next maintenance window. All other changes are applied
-        /// immediately, regardless of the value of the <code>ApplyImmediately</code> parameter.
+        /// The <c>ApplyImmediately</c> parameter affects only the <c>NewDBClusterIdentifier</c>
+        /// and <c>MasterUserPassword</c> values. If you set this parameter value to <c>false</c>,
+        /// the changes to the <c>NewDBClusterIdentifier</c> and <c>MasterUserPassword</c> values
+        /// are applied during the next maintenance window. All other changes are applied immediately,
+        /// regardless of the value of the <c>ApplyImmediately</c> parameter.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool ApplyImmediately
@@ -144,7 +149,7 @@ namespace Amazon.DocDB.Model
         /// Gets and sets the property CloudwatchLogsExportConfiguration. 
         /// <para>
         /// The configuration setting for the log types to be enabled for export to Amazon CloudWatch
-        /// Logs for a specific instance or cluster. The <code>EnableLogTypes</code> and <code>DisableLogTypes</code>
+        /// Logs for a specific instance or cluster. The <c>EnableLogTypes</c> and <c>DisableLogTypes</c>
         /// arrays determine which logs are exported (or not exported) to CloudWatch Logs.
         /// </para>
         /// </summary>
@@ -172,7 +177,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Must match the identifier of an existing <code>DBCluster</code>.
+        /// Must match the identifier of an existing <c>DBCluster</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -210,10 +215,9 @@ namespace Amazon.DocDB.Model
         /// <summary>
         /// Gets and sets the property DeletionProtection. 
         /// <para>
-        /// Specifies whether this cluster can be deleted. If <code>DeletionProtection</code>
-        /// is enabled, the cluster cannot be deleted unless it is modified and <code>DeletionProtection</code>
-        /// is disabled. <code>DeletionProtection</code> protects clusters from being accidentally
-        /// deleted.
+        /// Specifies whether this cluster can be deleted. If <c>DeletionProtection</c> is enabled,
+        /// the cluster cannot be deleted unless it is modified and <c>DeletionProtection</c>
+        /// is disabled. <c>DeletionProtection</c> protects clusters from being accidentally deleted.
         /// </para>
         /// </summary>
         public bool DeletionProtection
@@ -233,7 +237,7 @@ namespace Amazon.DocDB.Model
         /// <para>
         /// The version number of the database engine to which you want to upgrade. Changing this
         /// parameter results in an outage. The change is applied during the next maintenance
-        /// window unless <code>ApplyImmediately</code> is enabled.
+        /// window unless <c>ApplyImmediately</c> is enabled.
         /// </para>
         ///  
         /// <para>
@@ -242,7 +246,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>aws docdb describe-db-engine-versions --engine docdb --query "DBEngineVersions[].EngineVersion"</code>
+        ///  <c>aws docdb describe-db-engine-versions --engine docdb --query "DBEngineVersions[].EngineVersion"</c>
         /// 
         /// </para>
         /// </summary>
@@ -256,6 +260,31 @@ namespace Amazon.DocDB.Model
         internal bool IsSetEngineVersion()
         {
             return this._engineVersion != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ManageMasterUserPassword. 
+        /// <para>
+        /// Specifies whether to manage the master user password with Amazon Web Services Secrets
+        /// Manager. If the cluster doesn't manage the master user password with Amazon Web Services
+        /// Secrets Manager, you can turn on this management. In this case, you can't specify
+        /// <c>MasterUserPassword</c>. If the cluster already manages the master user password
+        /// with Amazon Web Services Secrets Manager, and you specify that the master user password
+        /// is not managed with Amazon Web Services Secrets Manager, then you must specify <c>MasterUserPassword</c>.
+        /// In this case, Amazon DocumentDB deletes the secret and uses the new password for the
+        /// master user specified by <c>MasterUserPassword</c>.
+        /// </para>
+        /// </summary>
+        public bool ManageMasterUserPassword
+        {
+            get { return this._manageMasterUserPassword.GetValueOrDefault(); }
+            set { this._manageMasterUserPassword = value; }
+        }
+
+        // Check to see if ManageMasterUserPassword property is set
+        internal bool IsSetManageMasterUserPassword()
+        {
+            return this._manageMasterUserPassword.HasValue; 
         }
 
         /// <summary>
@@ -282,6 +311,55 @@ namespace Amazon.DocDB.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MasterUserSecretKmsKeyId. 
+        /// <para>
+        /// The Amazon Web Services KMS key identifier to encrypt a secret that is automatically
+        /// generated and managed in Amazon Web Services Secrets Manager.
+        /// </para>
+        ///  
+        /// <para>
+        /// This setting is valid only if both of the following conditions are met:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// The cluster doesn't manage the master user password in Amazon Web Services Secrets
+        /// Manager. If the cluster already manages the master user password in Amazon Web Services
+        /// Secrets Manager, you can't change the KMS key that is used to encrypt the secret.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are enabling <c>ManageMasterUserPassword</c> to manage the master user password
+        /// in Amazon Web Services Secrets Manager. If you are turning on <c>ManageMasterUserPassword</c>
+        /// and don't specify <c>MasterUserSecretKmsKeyId</c>, then the <c>aws/secretsmanager</c>
+        /// KMS key is used to encrypt the secret. If the secret is in a different Amazon Web
+        /// Services account, then you can't use the <c>aws/secretsmanager</c> KMS key to encrypt
+        /// the secret, and you must use a customer managed KMS key.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias ARN, or alias
+        /// name for the KMS key. To use a KMS key in a different Amazon Web Services account,
+        /// specify the key ARN or alias ARN.
+        /// </para>
+        ///  
+        /// <para>
+        /// There is a default KMS key for your Amazon Web Services account. Your Amazon Web Services
+        /// account has a different default KMS key for each Amazon Web Services Region.
+        /// </para>
+        /// </summary>
+        public string MasterUserSecretKmsKeyId
+        {
+            get { return this._masterUserSecretKmsKeyId; }
+            set { this._masterUserSecretKmsKeyId = value; }
+        }
+
+        // Check to see if MasterUserSecretKmsKeyId property is set
+        internal bool IsSetMasterUserSecretKmsKeyId()
+        {
+            return this._masterUserSecretKmsKeyId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property NewDBClusterIdentifier. 
         /// <para>
         /// The new cluster identifier for the cluster when renaming a cluster. This value is
@@ -305,7 +383,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>my-cluster2</code> 
+        /// Example: <c>my-cluster2</c> 
         /// </para>
         /// </summary>
         public string NewDBClusterIdentifier
@@ -327,7 +405,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// Constraints: Must be a value from <code>1150</code> to <code>65535</code>. 
+        /// Constraints: Must be a value from <c>1150</c> to <c>65535</c>. 
         /// </para>
         ///  
         /// <para>
@@ -350,7 +428,7 @@ namespace Amazon.DocDB.Model
         /// Gets and sets the property PreferredBackupWindow. 
         /// <para>
         /// The daily time range during which automated backups are created if automated backups
-        /// are enabled, using the <code>BackupRetentionPeriod</code> parameter. 
+        /// are enabled, using the <c>BackupRetentionPeriod</c> parameter. 
         /// </para>
         ///  
         /// <para>
@@ -363,7 +441,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Must be in the format <code>hh24:mi-hh24:mi</code>.
+        /// Must be in the format <c>hh24:mi-hh24:mi</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -399,7 +477,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// Format: <code>ddd:hh24:mi-ddd:hh24:mi</code> 
+        /// Format: <c>ddd:hh24:mi-ddd:hh24:mi</c> 
         /// </para>
         ///  
         /// <para>
@@ -428,6 +506,66 @@ namespace Amazon.DocDB.Model
         }
 
         /// <summary>
+        /// Gets and sets the property RotateMasterUserPassword. 
+        /// <para>
+        /// Specifies whether to rotate the secret managed by Amazon Web Services Secrets Manager
+        /// for the master user password.
+        /// </para>
+        ///  
+        /// <para>
+        /// This setting is valid only if the master user password is managed by Amazon DocumentDB
+        /// in Amazon Web Services Secrets Manager for the cluster. The secret value contains
+        /// the updated password.
+        /// </para>
+        ///  
+        /// <para>
+        /// Constraint: You must apply the change immediately when rotating the master user password.
+        /// </para>
+        /// </summary>
+        public bool RotateMasterUserPassword
+        {
+            get { return this._rotateMasterUserPassword.GetValueOrDefault(); }
+            set { this._rotateMasterUserPassword = value; }
+        }
+
+        // Check to see if RotateMasterUserPassword property is set
+        internal bool IsSetRotateMasterUserPassword()
+        {
+            return this._rotateMasterUserPassword.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property StorageType. 
+        /// <para>
+        /// The storage type to associate with the DB cluster.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information on storage types for Amazon DocumentDB clusters, see Cluster storage
+        /// configurations in the <i>Amazon DocumentDB Developer Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid values for storage type - <c>standard | iopt1</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Default value is <c>standard </c> 
+        /// </para>
+        /// </summary>
+        public string StorageType
+        {
+            get { return this._storageType; }
+            set { this._storageType = value; }
+        }
+
+        // Check to see if StorageType property is set
+        internal bool IsSetStorageType()
+        {
+            return this._storageType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property VpcSecurityGroupIds. 
         /// <para>
         /// A list of virtual private cloud (VPC) security groups that the cluster will belong
@@ -443,7 +581,7 @@ namespace Amazon.DocDB.Model
         // Check to see if VpcSecurityGroupIds property is set
         internal bool IsSetVpcSecurityGroupIds()
         {
-            return this._vpcSecurityGroupIds != null && this._vpcSecurityGroupIds.Count > 0; 
+            return this._vpcSecurityGroupIds != null && (this._vpcSecurityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

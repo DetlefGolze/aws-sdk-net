@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -35,9 +36,10 @@ namespace Amazon.SageMaker.Model
     public partial class ResourceConfig
     {
         private int? _instanceCount;
-        private List<InstanceGroup> _instanceGroups = new List<InstanceGroup>();
+        private List<InstanceGroup> _instanceGroups = AWSConfigs.InitializeCollections ? new List<InstanceGroup>() : null;
         private TrainingInstanceType _instanceType;
         private int? _keepAlivePeriodInSeconds;
+        private string _trainingPlanArn;
         private string _volumeKmsKeyId;
         private int? _volumeSizeInGB;
 
@@ -77,7 +79,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if InstanceGroups property is set
         internal bool IsSetInstanceGroups()
         {
-            return this._instanceGroups != null && this._instanceGroups.Count > 0; 
+            return this._instanceGroups != null && (this._instanceGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -96,9 +98,9 @@ namespace Amazon.SageMaker.Model
         /// (currently in preview) are powered by 8 NVIDIA A100 GPUs with 80GB high-performance
         /// HBM2e GPU memory, which accelerate the speed of training ML models that need to be
         /// trained on large datasets of high-resolution data. In this preview release, Amazon
-        /// SageMaker supports ML training jobs on P4de instances (<code>ml.p4de.24xlarge</code>)
-        /// to reduce model training time. The <code>ml.p4de.24xlarge</code> instances are available
-        /// in the following Amazon Web Services Regions. 
+        /// SageMaker supports ML training jobs on P4de instances (<c>ml.p4de.24xlarge</c>) to
+        /// reduce model training time. The <c>ml.p4de.24xlarge</c> instances are available in
+        /// the following Amazon Web Services Regions. 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -148,6 +150,25 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property TrainingPlanArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN); of the training plan to use for this resource configuration.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=50, Max=2048)]
+        public string TrainingPlanArn
+        {
+            get { return this._trainingPlanArn; }
+            set { this._trainingPlanArn = value; }
+        }
+
+        // Check to see if TrainingPlanArn property is set
+        internal bool IsSetTrainingPlanArn()
+        {
+            return this._trainingPlanArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property VolumeKmsKeyId. 
         /// <para>
         /// The Amazon Web Services KMS key that SageMaker uses to encrypt data on the storage
@@ -157,7 +178,7 @@ namespace Amazon.SageMaker.Model
         /// <para>
         /// Certain Nitro-based instances include local storage, dependent on the instance type.
         /// Local storage volumes are encrypted using a hardware module on the instance. You can't
-        /// request a <code>VolumeKmsKeyId</code> when using an instance type with local storage.
+        /// request a <c>VolumeKmsKeyId</c> when using an instance type with local storage.
         /// </para>
         ///  
         /// <para>
@@ -171,7 +192,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  </note> 
         /// <para>
-        /// The <code>VolumeKmsKeyId</code> can be in any of the following formats:
+        /// The <c>VolumeKmsKeyId</c> can be in any of the following formats:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -179,7 +200,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code> 
+        ///  <c>"1234abcd-12ab-34cd-56ef-1234567890ab"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -187,7 +208,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+        ///  <c>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</c>
         /// 
         /// </para>
         ///  </li> </ul>
@@ -214,7 +235,7 @@ namespace Amazon.SageMaker.Model
         /// <para>
         /// ML storage volumes store model artifacts and incremental states. Training algorithms
         /// might also use the ML storage volume for scratch space. If you want to store the training
-        /// data in the ML storage volume, choose <code>File</code> as the <code>TrainingInputMode</code>
+        /// data in the ML storage volume, choose <c>File</c> as the <c>TrainingInputMode</c>
         /// in the algorithm specification. 
         /// </para>
         ///  
@@ -224,15 +245,15 @@ namespace Amazon.SageMaker.Model
         /// storage. Available storage is fixed to the NVMe-type instance's storage capacity.
         /// SageMaker configures storage paths for training datasets, checkpoints, model artifacts,
         /// and outputs to use the entire capacity of the instance storage. For example, ML instance
-        /// families with the NVMe-type instance storage include <code>ml.p4d</code>, <code>ml.g4dn</code>,
-        /// and <code>ml.g5</code>. 
+        /// families with the NVMe-type instance storage include <c>ml.p4d</c>, <c>ml.g4dn</c>,
+        /// and <c>ml.g5</c>. 
         /// </para>
         ///  
         /// <para>
         /// When using an ML instance with the EBS-only storage option and without instance storage,
-        /// you must define the size of EBS volume through <code>VolumeSizeInGB</code> in the
-        /// <code>ResourceConfig</code> API. For example, ML instance families that use EBS volumes
-        /// include <code>ml.c5</code> and <code>ml.p2</code>. 
+        /// you must define the size of EBS volume through <c>VolumeSizeInGB</c> in the <c>ResourceConfig</c>
+        /// API. For example, ML instance families that use EBS volumes include <c>ml.c5</c> and
+        /// <c>ml.p2</c>. 
         /// </para>
         ///  
         /// <para>

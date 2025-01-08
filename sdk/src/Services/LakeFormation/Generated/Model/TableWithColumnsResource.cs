@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.LakeFormation.Model
     /// 
     ///  
     /// <para>
-    /// This object must take a value for at least one of <code>ColumnsNames</code>, <code>ColumnsIndexes</code>,
-    /// or <code>ColumnsWildcard</code>.
+    /// This object must take a value for at least one of <c>ColumnsNames</c>, <c>ColumnsIndexes</c>,
+    /// or <c>ColumnsWildcard</c>.
     /// </para>
     /// </summary>
     public partial class TableWithColumnsResource
     {
         private string _catalogId;
-        private List<string> _columnNames = new List<string>();
+        private List<string> _columnNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ColumnWildcard _columnWildcard;
         private string _databaseName;
         private string _name;
@@ -68,8 +69,8 @@ namespace Amazon.LakeFormation.Model
         /// <summary>
         /// Gets and sets the property ColumnNames. 
         /// <para>
-        /// The list of column names for the table. At least one of <code>ColumnNames</code> or
-        /// <code>ColumnWildcard</code> is required.
+        /// The list of column names for the table. At least one of <c>ColumnNames</c> or <c>ColumnWildcard</c>
+        /// is required.
         /// </para>
         /// </summary>
         public List<string> ColumnNames
@@ -81,14 +82,14 @@ namespace Amazon.LakeFormation.Model
         // Check to see if ColumnNames property is set
         internal bool IsSetColumnNames()
         {
-            return this._columnNames != null && this._columnNames.Count > 0; 
+            return this._columnNames != null && (this._columnNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ColumnWildcard. 
         /// <para>
-        /// A wildcard specified by a <code>ColumnWildcard</code> object. At least one of <code>ColumnNames</code>
-        /// or <code>ColumnWildcard</code> is required.
+        /// A wildcard specified by a <c>ColumnWildcard</c> object. At least one of <c>ColumnNames</c>
+        /// or <c>ColumnWildcard</c> is required.
         /// </para>
         /// </summary>
         public ColumnWildcard ColumnWildcard

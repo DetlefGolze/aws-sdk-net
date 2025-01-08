@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -57,7 +58,7 @@ namespace Amazon.IdentityManagement.Model
     /// </summary>
     public partial class GetContextKeysForPrincipalPolicyRequest : AmazonIdentityManagementServiceRequest
     {
-        private List<string> _policyInputList = new List<string>();
+        private List<string> _policyInputList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _policySourceArn;
 
         /// <summary>
@@ -73,18 +74,18 @@ namespace Amazon.IdentityManagement.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Any printable ASCII character ranging from the space character (<code>\u0020</code>)
-        /// through the end of the ASCII character range
+        /// Any printable ASCII character ranging from the space character (<c>\u0020</c>) through
+        /// the end of the ASCII character range
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The printable characters in the Basic Latin and Latin-1 Supplement character set (through
-        /// <code>\u00FF</code>)
+        /// <c>\u00FF</c>)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The special characters tab (<code>\u0009</code>), line feed (<code>\u000A</code>),
-        /// and carriage return (<code>\u000D</code>)
+        /// The special characters tab (<c>\u0009</c>), line feed (<c>\u000A</c>), and carriage
+        /// return (<c>\u000D</c>)
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -97,7 +98,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if PolicyInputList property is set
         internal bool IsSetPolicyInputList()
         {
-            return this._policyInputList != null && this._policyInputList.Count > 0; 
+            return this._policyInputList != null && (this._policyInputList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

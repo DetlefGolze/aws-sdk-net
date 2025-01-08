@@ -4,10 +4,12 @@
     "apiVersion":"2021-01-01",
     "endpointPrefix":"es",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"Amazon OpenSearch Service",
     "serviceId":"OpenSearch",
     "signatureVersion":"v4",
-    "uid":"opensearch-2021-01-01"
+    "uid":"opensearch-2021-01-01",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AcceptInboundConnection":{
@@ -25,6 +27,43 @@
       ],
       "documentation":"<p>Allows the destination Amazon OpenSearch Service domain owner to accept an inbound cross-cluster search connection request. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/cross-cluster-search.html\">Cross-cluster search for Amazon OpenSearch Service</a>.</p>"
     },
+    "AddDataSource":{
+      "name":"AddDataSource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/dataSource"
+      },
+      "input":{"shape":"AddDataSourceRequest"},
+      "output":{"shape":"AddDataSourceResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"},
+        {"shape":"DependencyFailureException"},
+        {"shape":"LimitExceededException"}
+      ],
+      "documentation":"<p>Creates a new direct-query data source to the specified domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/direct-query-s3-creating.html\">Creating Amazon OpenSearch Service data source integrations with Amazon S3</a>.</p>"
+    },
+    "AddDirectQueryDataSource":{
+      "name":"AddDirectQueryDataSource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2021-01-01/opensearch/directQueryDataSource"
+      },
+      "input":{"shape":"AddDirectQueryDataSourceRequest"},
+      "output":{"shape":"AddDirectQueryDataSourceResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"},
+        {"shape":"LimitExceededException"}
+      ],
+      "documentation":"<p> Adds a new data source in Amazon OpenSearch Service so that you can perform direct queries on external data. </p>"
+    },
     "AddTags":{
       "name":"AddTags",
       "http":{
@@ -38,7 +77,7 @@
         {"shape":"ValidationException"},
         {"shape":"InternalException"}
       ],
-      "documentation":"<p>Attaches tags to an existing Amazon OpenSearch Service domain. Tags are a set of case-sensitive key-value pairs. A domain can have up to 10 tags. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-awsresourcetagging.html\">Tagging Amazon OpenSearch Service domains</a>.</p>"
+      "documentation":"<p>Attaches tags to an existing Amazon OpenSearch Service domain, data source, or application. </p> <p>Tags are a set of case-sensitive key-value pairs. A domain, data source, or application can have up to 10 tags. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-awsresourcetagging.html\">Tagging Amazon OpenSearch Service resources</a>. </p>"
     },
     "AssociatePackage":{
       "name":"AssociatePackage",
@@ -58,6 +97,24 @@
       ],
       "documentation":"<p>Associates a package with an Amazon OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html\">Custom packages for Amazon OpenSearch Service</a>.</p>"
     },
+    "AssociatePackages":{
+      "name":"AssociatePackages",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2021-01-01/packages/associateMultiple"
+      },
+      "input":{"shape":"AssociatePackagesRequest"},
+      "output":{"shape":"AssociatePackagesResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"DisabledOperationException"}
+      ],
+      "documentation":"<p>Operation in the Amazon OpenSearch Service API for associating multiple packages with a domain simultaneously.</p>"
+    },
     "AuthorizeVpcEndpointAccess":{
       "name":"AuthorizeVpcEndpointAccess",
       "http":{
@@ -76,6 +133,23 @@
       ],
       "documentation":"<p>Provides access to an Amazon OpenSearch Service domain through the use of an interface VPC endpoint.</p>"
     },
+    "CancelDomainConfigChange":{
+      "name":"CancelDomainConfigChange",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/config/cancel"
+      },
+      "input":{"shape":"CancelDomainConfigChangeRequest"},
+      "output":{"shape":"CancelDomainConfigChangeResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"}
+      ],
+      "documentation":"<p>Cancels a pending configuration change on an Amazon OpenSearch Service domain.</p>"
+    },
     "CancelServiceSoftwareUpdate":{
       "name":"CancelServiceSoftwareUpdate",
       "http":{
@@ -91,6 +165,25 @@
         {"shape":"ValidationException"}
       ],
       "documentation":"<p>Cancels a scheduled service software update for an Amazon OpenSearch Service domain. You can only perform this operation before the <code>AutomatedUpdateDate</code> and when the domain's <code>UpdateStatus</code> is <code>PENDING_UPDATE</code>. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html\">Service software updates in Amazon OpenSearch Service</a>.</p>"
+    },
+    "CreateApplication":{
+      "name":"CreateApplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2021-01-01/opensearch/application",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateApplicationRequest"},
+      "output":{"shape":"CreateApplicationResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalException"},
+        {"shape":"DisabledOperationException"}
+      ],
+      "documentation":"<p>Creates an OpenSearch Application.</p>"
     },
     "CreateDomain":{
       "name":"CreateDomain",
@@ -163,6 +256,60 @@
         {"shape":"BaseException"}
       ],
       "documentation":"<p>Creates an Amazon OpenSearch Service-managed VPC endpoint.</p>"
+    },
+    "DeleteApplication":{
+      "name":"DeleteApplication",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2021-01-01/opensearch/application/{id}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteApplicationRequest"},
+      "output":{"shape":"DeleteApplicationResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalException"},
+        {"shape":"DisabledOperationException"}
+      ],
+      "documentation":"<p>Deletes an existing OpenSearch Application.</p>"
+    },
+    "DeleteDataSource":{
+      "name":"DeleteDataSource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/dataSource/{DataSourceName}"
+      },
+      "input":{"shape":"DeleteDataSourceRequest"},
+      "output":{"shape":"DeleteDataSourceResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"},
+        {"shape":"DependencyFailureException"}
+      ],
+      "documentation":"<p>Deletes a direct-query data source. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/direct-query-s3-delete.html\">Deleting an Amazon OpenSearch Service data source with Amazon S3</a>.</p>"
+    },
+    "DeleteDirectQueryDataSource":{
+      "name":"DeleteDirectQueryDataSource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2021-01-01/opensearch/directQueryDataSource/{DataSourceName}"
+      },
+      "input":{"shape":"DeleteDirectQueryDataSourceRequest"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"}
+      ],
+      "documentation":"<p> Deletes a previously configured direct query data source from Amazon OpenSearch Service. </p>"
     },
     "DeleteDomain":{
       "name":"DeleteDomain",
@@ -502,6 +649,43 @@
       ],
       "documentation":"<p>Removes a package from the specified Amazon OpenSearch Service domain. The package can't be in use with any OpenSearch index for the dissociation to succeed. The package is still available in OpenSearch Service for association later. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html\">Custom packages for Amazon OpenSearch Service</a>.</p>"
     },
+    "DissociatePackages":{
+      "name":"DissociatePackages",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2021-01-01/packages/dissociateMultiple"
+      },
+      "input":{"shape":"DissociatePackagesRequest"},
+      "output":{"shape":"DissociatePackagesResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"DisabledOperationException"}
+      ],
+      "documentation":"<p>Dissociates multiple packages from a domain simulatneously.</p>"
+    },
+    "GetApplication":{
+      "name":"GetApplication",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2021-01-01/opensearch/application/{id}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetApplicationRequest"},
+      "output":{"shape":"GetApplicationResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalException"},
+        {"shape":"DisabledOperationException"}
+      ],
+      "documentation":"<p>Check the configuration and status of an existing OpenSearch Application.</p>"
+    },
     "GetCompatibleVersions":{
       "name":"GetCompatibleVersions",
       "http":{
@@ -518,6 +702,58 @@
         {"shape":"InternalException"}
       ],
       "documentation":"<p>Returns a map of OpenSearch or Elasticsearch versions and the versions you can upgrade them to.</p>"
+    },
+    "GetDataSource":{
+      "name":"GetDataSource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/dataSource/{DataSourceName}"
+      },
+      "input":{"shape":"GetDataSourceRequest"},
+      "output":{"shape":"GetDataSourceResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"},
+        {"shape":"DependencyFailureException"}
+      ],
+      "documentation":"<p>Retrieves information about a direct query data source.</p>"
+    },
+    "GetDirectQueryDataSource":{
+      "name":"GetDirectQueryDataSource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2021-01-01/opensearch/directQueryDataSource/{DataSourceName}"
+      },
+      "input":{"shape":"GetDirectQueryDataSourceRequest"},
+      "output":{"shape":"GetDirectQueryDataSourceResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"}
+      ],
+      "documentation":"<p> Returns detailed configuration information for a specific direct query data source in Amazon OpenSearch Service. </p>"
+    },
+    "GetDomainMaintenanceStatus":{
+      "name":"GetDomainMaintenanceStatus",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/domainMaintenance"
+      },
+      "input":{"shape":"GetDomainMaintenanceStatusRequest"},
+      "output":{"shape":"GetDomainMaintenanceStatusResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"}
+      ],
+      "documentation":"<p>The status of the maintenance action.</p>"
     },
     "GetPackageVersionHistory":{
       "name":"GetPackageVersionHistory",
@@ -569,6 +805,77 @@
         {"shape":"InternalException"}
       ],
       "documentation":"<p>Returns the most recent status of the last upgrade or upgrade eligibility check performed on an Amazon OpenSearch Service domain.</p>"
+    },
+    "ListApplications":{
+      "name":"ListApplications",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2021-01-01/opensearch/list-applications",
+        "responseCode":200
+      },
+      "input":{"shape":"ListApplicationsRequest"},
+      "output":{"shape":"ListApplicationsResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalException"},
+        {"shape":"DisabledOperationException"}
+      ],
+      "documentation":"<p>List all OpenSearch Applications under your account.</p>"
+    },
+    "ListDataSources":{
+      "name":"ListDataSources",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/dataSource"
+      },
+      "input":{"shape":"ListDataSourcesRequest"},
+      "output":{"shape":"ListDataSourcesResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"},
+        {"shape":"DependencyFailureException"}
+      ],
+      "documentation":"<p>Lists direct-query data sources for a specific domain. For more information, see For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/direct-query-s3.html\">Working with Amazon OpenSearch Service direct queries with Amazon S3</a>.</p>"
+    },
+    "ListDirectQueryDataSources":{
+      "name":"ListDirectQueryDataSources",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2021-01-01/opensearch/directQueryDataSource"
+      },
+      "input":{"shape":"ListDirectQueryDataSourcesRequest"},
+      "output":{"shape":"ListDirectQueryDataSourcesResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"}
+      ],
+      "documentation":"<p> Lists an inventory of all the direct query data sources that you have configured within Amazon OpenSearch Service. </p>"
+    },
+    "ListDomainMaintenances":{
+      "name":"ListDomainMaintenances",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/domainMaintenances"
+      },
+      "input":{"shape":"ListDomainMaintenancesRequest"},
+      "output":{"shape":"ListDomainMaintenancesResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"}
+      ],
+      "documentation":"<p>A list of maintenance actions for the domain.</p>"
     },
     "ListDomainNames":{
       "name":"ListDomainNames",
@@ -665,7 +972,7 @@
         {"shape":"ValidationException"},
         {"shape":"InternalException"}
       ],
-      "documentation":"<p>Returns all resource tags for an Amazon OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-awsresourcetagging.html\">Tagging Amazon OpenSearch Service domains</a>.</p>"
+      "documentation":"<p>Returns all resource tags for an Amazon OpenSearch Service domain, data source, or application. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-awsresourcetagging.html\">Tagging Amazon OpenSearch Service resources</a>.</p>"
     },
     "ListVersions":{
       "name":"ListVersions",
@@ -774,7 +1081,7 @@
         {"shape":"ValidationException"},
         {"shape":"InternalException"}
       ],
-      "documentation":"<p>Removes the specified set of tags from an Amazon OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains.html#managedomains-awsresorcetagging\"> Tagging Amazon OpenSearch Service domains</a>.</p>"
+      "documentation":"<p>Removes the specified set of tags from an Amazon OpenSearch Service domain, data source, or application. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains.html#managedomains-awsresorcetagging\"> Tagging Amazon OpenSearch Service resources</a>.</p>"
     },
     "RevokeVpcEndpointAccess":{
       "name":"RevokeVpcEndpointAccess",
@@ -793,6 +1100,23 @@
       ],
       "documentation":"<p>Revokes access to an Amazon OpenSearch Service domain that was provided through an interface VPC endpoint.</p>"
     },
+    "StartDomainMaintenance":{
+      "name":"StartDomainMaintenance",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/domainMaintenance"
+      },
+      "input":{"shape":"StartDomainMaintenanceRequest"},
+      "output":{"shape":"StartDomainMaintenanceResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"}
+      ],
+      "documentation":"<p>Starts the node maintenance process on the data node. These processes can include a node reboot, an Opensearch or Elasticsearch process restart, or a Dashboard or Kibana restart.</p>"
+    },
     "StartServiceSoftwareUpdate":{
       "name":"StartServiceSoftwareUpdate",
       "http":{
@@ -808,6 +1132,61 @@
         {"shape":"ValidationException"}
       ],
       "documentation":"<p>Schedules a service software update for an Amazon OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html\">Service software updates in Amazon OpenSearch Service</a>.</p>"
+    },
+    "UpdateApplication":{
+      "name":"UpdateApplication",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2021-01-01/opensearch/application/{id}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateApplicationRequest"},
+      "output":{"shape":"UpdateApplicationResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalException"},
+        {"shape":"DisabledOperationException"}
+      ],
+      "documentation":"<p>Update the OpenSearch Application. </p>"
+    },
+    "UpdateDataSource":{
+      "name":"UpdateDataSource",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/dataSource/{DataSourceName}"
+      },
+      "input":{"shape":"UpdateDataSourceRequest"},
+      "output":{"shape":"UpdateDataSourceResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"},
+        {"shape":"DependencyFailureException"}
+      ],
+      "documentation":"<p>Updates a direct-query data source. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/direct-query-s3-creating.html\">Working with Amazon OpenSearch Service data source integrations with Amazon S3</a>.</p>"
+    },
+    "UpdateDirectQueryDataSource":{
+      "name":"UpdateDirectQueryDataSource",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2021-01-01/opensearch/directQueryDataSource/{DataSourceName}"
+      },
+      "input":{"shape":"UpdateDirectQueryDataSourceRequest"},
+      "output":{"shape":"UpdateDirectQueryDataSourceResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"}
+      ],
+      "documentation":"<p> Updates the configuration or properties of an existing direct query data source in Amazon OpenSearch Service. </p>"
     },
     "UpdateDomainConfig":{
       "name":"UpdateDomainConfig",
@@ -825,7 +1204,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
       ],
-      "documentation":"<p>Modifies the cluster configuration of the specified Amazon OpenSearch Service domain.sl</p>"
+      "documentation":"<p>Modifies the cluster configuration of the specified Amazon OpenSearch Service domain.</p>"
     },
     "UpdatePackage":{
       "name":"UpdatePackage",
@@ -844,6 +1223,23 @@
         {"shape":"ValidationException"}
       ],
       "documentation":"<p>Updates a package for use with Amazon OpenSearch Service domains. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html\">Custom packages for Amazon OpenSearch Service</a>.</p>"
+    },
+    "UpdatePackageScope":{
+      "name":"UpdatePackageScope",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2021-01-01/packages/updateScope"
+      },
+      "input":{"shape":"UpdatePackageScopeRequest"},
+      "output":{"shape":"UpdatePackageScopeResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"}
+      ],
+      "documentation":"<p>Updates the scope of a package. Scope of the package defines users who can view and associate a package.</p>"
     },
     "UpdateScheduledAction":{
       "name":"UpdateScheduledAction",
@@ -902,9 +1298,40 @@
     }
   },
   "shapes":{
+    "AIMLOptionsInput":{
+      "type":"structure",
+      "members":{
+        "NaturalLanguageQueryGenerationOptions":{
+          "shape":"NaturalLanguageQueryGenerationOptionsInput",
+          "documentation":"<p>Container for parameters required for natural language query generation on the specified domain.</p>"
+        }
+      },
+      "documentation":"<p>Container for parameters required to enable all machine learning features.</p>"
+    },
+    "AIMLOptionsOutput":{
+      "type":"structure",
+      "members":{
+        "NaturalLanguageQueryGenerationOptions":{
+          "shape":"NaturalLanguageQueryGenerationOptionsOutput",
+          "documentation":"<p>Container for parameters required for natural language query generation on the specified domain.</p>"
+        }
+      },
+      "documentation":"<p>Container for parameters representing the state of machine learning features on the specified domain.</p>"
+    },
+    "AIMLOptionsStatus":{
+      "type":"structure",
+      "members":{
+        "Options":{
+          "shape":"AIMLOptionsOutput",
+          "documentation":"<p>Machine learning options on the specified domain.</p>"
+        },
+        "Status":{"shape":"OptionStatus"}
+      },
+      "documentation":"<p>The status of machine learning options on the specified domain.</p>"
+    },
     "ARN":{
       "type":"string",
-      "documentation":"<p>The Amazon Resource Name (ARN) of the domain. See <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/index.html\">Identifiers for IAM Entities </a> in <i>Using AWS Identity and Access Management</i> for more information. </p>",
+      "documentation":"<p>The Amazon Resource Name (ARN) of the domain. See <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/index.html\">Identifiers for IAM Entities </a> in <i>Using Amazon Web Services Identity and Access Management</i> for more information. </p>",
       "max":2048,
       "min":20,
       "pattern":".*"
@@ -931,6 +1358,10 @@
         }
       },
       "documentation":"<p>Information about an Amazon OpenSearch Service domain.</p>"
+    },
+    "AWSServicePrincipal":{
+      "type":"string",
+      "enum":["application.opensearchservice.amazonaws.com"]
     },
     "AcceptInboundConnectionRequest":{
       "type":"structure",
@@ -1008,6 +1439,81 @@
         "JVM_YOUNG_GEN_TUNING"
       ]
     },
+    "AddDataSourceRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "Name",
+        "DataSourceType"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "documentation":"<p>The name of the domain to add the data source to.</p>",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "Name":{
+          "shape":"DataSourceName",
+          "documentation":"<p>A name for the data source.</p>"
+        },
+        "DataSourceType":{
+          "shape":"DataSourceType",
+          "documentation":"<p>The type of data source.</p>"
+        },
+        "Description":{
+          "shape":"DataSourceDescription",
+          "documentation":"<p>A description of the data source.</p>"
+        }
+      },
+      "documentation":"<p>Container for the parameters to the <code>AddDataSource</code> operation.</p>"
+    },
+    "AddDataSourceResponse":{
+      "type":"structure",
+      "members":{
+        "Message":{
+          "shape":"String",
+          "documentation":"<p>A message associated with creation of the data source.</p>"
+        }
+      },
+      "documentation":"<p>The result of an <code>AddDataSource</code> operation.</p>"
+    },
+    "AddDirectQueryDataSourceRequest":{
+      "type":"structure",
+      "required":[
+        "DataSourceName",
+        "DataSourceType",
+        "OpenSearchArns"
+      ],
+      "members":{
+        "DataSourceName":{
+          "shape":"DirectQueryDataSourceName",
+          "documentation":"<p> A unique, user-defined label to identify the data source within your OpenSearch Service environment. </p>"
+        },
+        "DataSourceType":{
+          "shape":"DirectQueryDataSourceType",
+          "documentation":"<p> The supported Amazon Web Services service that you want to use as the source for direct queries in OpenSearch Service. </p>"
+        },
+        "Description":{
+          "shape":"DirectQueryDataSourceDescription",
+          "documentation":"<p> An optional text field for providing additional context and details about the data source. </p>"
+        },
+        "OpenSearchArns":{
+          "shape":"DirectQueryOpenSearchARNList",
+          "documentation":"<p> A list of Amazon Resource Names (ARNs) for the OpenSearch collections that are associated with the direct query data source. </p>"
+        },
+        "TagList":{"shape":"TagList"}
+      }
+    },
+    "AddDirectQueryDataSourceResponse":{
+      "type":"structure",
+      "members":{
+        "DataSourceArn":{
+          "shape":"String",
+          "documentation":"<p> The unique, system-generated identifier that represents the data source. </p>"
+        }
+      }
+    },
     "AddTagsRequest":{
       "type":"structure",
       "required":[
@@ -1017,14 +1523,14 @@
       "members":{
         "ARN":{
           "shape":"ARN",
-          "documentation":"<p>Amazon Resource Name (ARN) for the OpenSearch Service domain to which you want to attach resource tags.</p>"
+          "documentation":"<p>Amazon Resource Name (ARN) for the OpenSearch Service domain, data source, or application to which you want to attach resource tags.</p>"
         },
         "TagList":{
           "shape":"TagList",
           "documentation":"<p>List of resource tags.</p>"
         }
       },
-      "documentation":"<p>Container for the parameters to the <code>AddTags</code> operation. Specifies the tags to attach to the domain.</p>"
+      "documentation":"<p>Container for the parameters to the <code>AddTags</code> operation. Specifies the tags to attach to the domain, data source, or application.</p>"
     },
     "AdditionalLimit":{
       "type":"structure",
@@ -1083,6 +1589,10 @@
           "shape":"SAMLOptionsOutput",
           "documentation":"<p>Container for information about the SAML configuration for OpenSearch Dashboards.</p>"
         },
+        "JWTOptions":{
+          "shape":"JWTOptionsOutput",
+          "documentation":"<p>Container for information about the JWT configuration of the Amazon OpenSearch Service.</p>"
+        },
         "AnonymousAuthDisableDate":{
           "shape":"DisableTimestamp",
           "documentation":"<p>Date and time when the migration period will be disabled. Only necessary when <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/fgac.html#fgac-enabling-existing\">enabling fine-grained access control on an existing domain</a>.</p>"
@@ -1113,6 +1623,10 @@
           "shape":"SAMLOptionsInput",
           "documentation":"<p>Container for information about the SAML configuration for OpenSearch Dashboards.</p>"
         },
+        "JWTOptions":{
+          "shape":"JWTOptionsInput",
+          "documentation":"<p>Container for information about the JWT configuration of the Amazon OpenSearch Service. </p>"
+        },
         "AnonymousAuthEnabled":{
           "shape":"Boolean",
           "documentation":"<p>True to enable a 30-day migration period during which administrators can create role mappings. Only necessary when <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/fgac.html#fgac-enabling-existing\">enabling fine-grained access control on an existing domain</a>.</p>"
@@ -1138,6 +1652,92 @@
       },
       "documentation":"<p>The status of fine-grained access control settings for a domain.</p>"
     },
+    "AppConfig":{
+      "type":"structure",
+      "members":{
+        "key":{
+          "shape":"AppConfigType",
+          "documentation":"<p>Specify the item to configure, such as admin role for the OpenSearch Application.</p>"
+        },
+        "value":{
+          "shape":"AppConfigValue",
+          "documentation":"<p>Specifies the value to configure for the key, such as an IAM user ARN.</p>"
+        }
+      },
+      "documentation":"<p>Configurations of the OpenSearch Application.</p>"
+    },
+    "AppConfigType":{
+      "type":"string",
+      "enum":[
+        "opensearchDashboards.dashboardAdmin.users",
+        "opensearchDashboards.dashboardAdmin.groups"
+      ]
+    },
+    "AppConfigValue":{
+      "type":"string",
+      "max":4096,
+      "min":1
+    },
+    "AppConfigs":{
+      "type":"list",
+      "member":{"shape":"AppConfig"},
+      "max":200
+    },
+    "ApplicationName":{
+      "type":"string",
+      "max":30,
+      "min":3,
+      "pattern":"[a-z][a-z0-9\\-]+"
+    },
+    "ApplicationStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "UPDATING",
+        "DELETING",
+        "ACTIVE",
+        "FAILED"
+      ]
+    },
+    "ApplicationStatuses":{
+      "type":"list",
+      "member":{"shape":"ApplicationStatus"}
+    },
+    "ApplicationSummaries":{
+      "type":"list",
+      "member":{"shape":"ApplicationSummary"}
+    },
+    "ApplicationSummary":{
+      "type":"structure",
+      "members":{
+        "id":{
+          "shape":"Id",
+          "documentation":"<p>Unique identifier for an OpenSearch application.</p>"
+        },
+        "arn":{"shape":"ARN"},
+        "name":{
+          "shape":"ApplicationName",
+          "documentation":"<p>Name of an OpenSearch Application.</p>"
+        },
+        "endpoint":{
+          "shape":"String",
+          "documentation":"<p>Endpoint URL of an OpenSearch Application.</p>"
+        },
+        "status":{
+          "shape":"ApplicationStatus",
+          "documentation":"<p>Status of an OpenSearch Application. Possible values are <code>CREATING</code>, <code>UPDATING</code>,<code> DELETING</code>, <code>FAILED</code>, <code>ACTIVE</code>, and <code>DELETED</code>.</p>"
+        },
+        "createdAt":{
+          "shape":"Timestamp",
+          "documentation":"<p>Timestamp at which an OpenSearch Application was created.</p>"
+        },
+        "lastUpdatedAt":{
+          "shape":"Timestamp",
+          "documentation":"<p>Timestamp at which an OpenSearch Application was last updated.</p>"
+        }
+      },
+      "documentation":"<p>Basic information of the OpenSearch Application.</p>"
+    },
     "AssociatePackageRequest":{
       "type":"structure",
       "required":[
@@ -1156,6 +1756,14 @@
           "documentation":"<p>Name of the domain to associate the package with.</p>",
           "location":"uri",
           "locationName":"DomainName"
+        },
+        "PrerequisitePackageIDList":{
+          "shape":"PackageIDList",
+          "documentation":"<p>A list of package IDs that must be associated with the domain before the package specified in the request can be associated.</p>"
+        },
+        "AssociationConfiguration":{
+          "shape":"PackageAssociationConfiguration",
+          "documentation":"<p>The configuration for associating a package with an Amazon OpenSearch Service domain.</p>"
         }
       },
       "documentation":"<p>Container for the request parameters to the <code>AssociatePackage</code> operation.</p>"
@@ -1170,12 +1778,32 @@
       },
       "documentation":"<p>Container for the response returned by the <code>AssociatePackage</code> operation.</p>"
     },
-    "AuthorizeVpcEndpointAccessRequest":{
+    "AssociatePackagesRequest":{
       "type":"structure",
       "required":[
-        "DomainName",
-        "Account"
+        "PackageList",
+        "DomainName"
       ],
+      "members":{
+        "PackageList":{
+          "shape":"PackageDetailsForAssociationList",
+          "documentation":"<p>A list of packages and their prerequisites to be associated with a domain.</p>"
+        },
+        "DomainName":{"shape":"DomainName"}
+      }
+    },
+    "AssociatePackagesResponse":{
+      "type":"structure",
+      "members":{
+        "DomainPackageDetailsList":{
+          "shape":"DomainPackageDetailsList",
+          "documentation":"<p>List of information about packages that are associated with a domain. </p>"
+        }
+      }
+    },
+    "AuthorizeVpcEndpointAccessRequest":{
+      "type":"structure",
+      "required":["DomainName"],
       "members":{
         "DomainName":{
           "shape":"DomainName",
@@ -1186,6 +1814,10 @@
         "Account":{
           "shape":"AWSAccount",
           "documentation":"<p>The Amazon Web Services account ID to grant access to.</p>"
+        },
+        "Service":{
+          "shape":"AWSServicePrincipal",
+          "documentation":"<p>The Amazon Web Services service SP to grant access to.</p>"
         }
       }
     },
@@ -1467,6 +2099,38 @@
       "exception":true
     },
     "Boolean":{"type":"boolean"},
+    "CancelDomainConfigChangeRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "DryRun":{
+          "shape":"DryRun",
+          "documentation":"<p>When set to <code>True</code>, returns the list of change IDs and properties that will be cancelled without actually cancelling the change.</p>"
+        }
+      }
+    },
+    "CancelDomainConfigChangeResponse":{
+      "type":"structure",
+      "members":{
+        "CancelledChangeIds":{
+          "shape":"GUIDList",
+          "documentation":"<p>The unique identifiers of the changes that were cancelled.</p>"
+        },
+        "CancelledChangeProperties":{
+          "shape":"CancelledChangePropertyList",
+          "documentation":"<p>The domain change properties that were cancelled.</p>"
+        },
+        "DryRun":{
+          "shape":"DryRun",
+          "documentation":"<p>Whether or not the request was a dry run. If <code>True</code>, the changes were not actually cancelled. </p>"
+        }
+      }
+    },
     "CancelServiceSoftwareUpdateRequest":{
       "type":"structure",
       "required":["DomainName"],
@@ -1488,6 +2152,28 @@
       },
       "documentation":"<p>Container for the response to a <code>CancelServiceSoftwareUpdate</code> operation. Contains the status of the update.</p>"
     },
+    "CancelledChangeProperty":{
+      "type":"structure",
+      "members":{
+        "PropertyName":{
+          "shape":"String",
+          "documentation":"<p>The name of the property whose change was cancelled.</p>"
+        },
+        "CancelledValue":{
+          "shape":"String",
+          "documentation":"<p>The pending value of the property that was cancelled. This would have been the eventual value of the property if the chance had not been cancelled.</p>"
+        },
+        "ActiveValue":{
+          "shape":"String",
+          "documentation":"<p>The current value of the property, after the change was cancelled.</p>"
+        }
+      },
+      "documentation":"<p>A property change that was cancelled for an Amazon OpenSearch Service domain.</p>"
+    },
+    "CancelledChangePropertyList":{
+      "type":"list",
+      "member":{"shape":"CancelledChangeProperty"}
+    },
     "ChangeProgressDetails":{
       "type":"structure",
       "members":{
@@ -1498,6 +2184,22 @@
         "Message":{
           "shape":"Message",
           "documentation":"<p>A message corresponding to the status of the configuration change.</p>"
+        },
+        "ConfigChangeStatus":{
+          "shape":"ConfigChangeStatus",
+          "documentation":"<p>The current status of the configuration change.</p>"
+        },
+        "InitiatedBy":{
+          "shape":"InitiatedBy",
+          "documentation":"<p>The IAM principal who initiated the configuration change.</p>"
+        },
+        "StartTime":{
+          "shape":"UpdateTimestamp",
+          "documentation":"<p>The time that the configuration change was initiated, in Universal Coordinated Time (UTC).</p>"
+        },
+        "LastUpdatedTime":{
+          "shape":"UpdateTimestamp",
+          "documentation":"<p>The last time that the configuration change was updated.</p>"
         }
       },
       "documentation":"<p>Container for information about a configuration change happening on a domain.</p>"
@@ -1569,6 +2271,18 @@
         "ChangeProgressStages":{
           "shape":"ChangeProgressStageList",
           "documentation":"<p>The specific stages that the domain is going through to perform the configuration change.</p>"
+        },
+        "LastUpdatedTime":{
+          "shape":"UpdateTimestamp",
+          "documentation":"<p>The last time that the status of the configuration change was updated.</p>"
+        },
+        "ConfigChangeStatus":{
+          "shape":"ConfigChangeStatus",
+          "documentation":"<p>The current status of the configuration change.</p>"
+        },
+        "InitiatedBy":{
+          "shape":"InitiatedBy",
+          "documentation":"<p>The IAM principal who initiated the configuration change.</p>"
         }
       },
       "documentation":"<p>The progress details of a specific domain configuration change.</p>"
@@ -1577,6 +2291,17 @@
       "type":"string",
       "max":64,
       "min":1
+    },
+    "CloudWatchDirectQueryDataSource":{
+      "type":"structure",
+      "required":["RoleArn"],
+      "members":{
+        "RoleArn":{
+          "shape":"DirectQueryDataSourceRoleArn",
+          "documentation":"<p> The unique identifier of the IAM role that grants OpenSearch Service permission to access the specified data source. </p>"
+        }
+      },
+      "documentation":"<p> Configuration details for a CloudWatch Logs data source that can be used for direct queries. </p>"
     },
     "CloudWatchLogsLogGroupArn":{
       "type":"string",
@@ -1594,7 +2319,7 @@
         },
         "InstanceCount":{
           "shape":"IntegerClass",
-          "documentation":"<p>Number of dedicated master nodes in the cluster. This number must be greater than 1, otherwise you receive a validation exception.</p>"
+          "documentation":"<p>Number of data nodes in the cluster. This number must be greater than 1, otherwise you receive a validation exception.</p>"
         },
         "DedicatedMasterEnabled":{
           "shape":"Boolean",
@@ -1635,6 +2360,10 @@
         "MultiAZWithStandbyEnabled":{
           "shape":"Boolean",
           "documentation":"<p>A boolean that indicates whether a multi-AZ domain is turned on with a standby AZ. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-multiaz.html\">Configuring a multi-AZ domain in Amazon OpenSearch Service</a>. </p>"
+        },
+        "NodeOptions":{
+          "shape":"NodeOptionsList",
+          "documentation":"<p>List of node options for the domain.</p>"
         }
       },
       "documentation":"<p>Container for the cluster configuration of an OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html\">Creating and managing Amazon OpenSearch Service domains</a>.</p>"
@@ -1703,7 +2432,7 @@
       "members":{
         "Enabled":{
           "shape":"Boolean",
-          "documentation":"<p>Whether to enable or disable cold storage on the domain.</p>"
+          "documentation":"<p>Whether to enable or disable cold storage on the domain. You must enable UltraWarm storage to enable cold storage.</p>"
         }
       },
       "documentation":"<p>Container for the parameters required to enable cold storage for an OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/cold-storage.html\">Cold storage for Amazon OpenSearch Service</a>.</p>"
@@ -1729,6 +2458,19 @@
         }
       },
       "documentation":"<p>A map of OpenSearch or Elasticsearch versions and the versions you can upgrade them to.</p>"
+    },
+    "ConfigChangeStatus":{
+      "type":"string",
+      "enum":[
+        "Pending",
+        "Initializing",
+        "Validating",
+        "ValidationFailed",
+        "ApplyingChanges",
+        "Completed",
+        "PendingUserInput",
+        "Cancelled"
+      ]
     },
     "ConflictException":{
       "type":"structure",
@@ -1773,6 +2515,65 @@
       "documentation":"<p>The connection properties of an outbound connection.</p>"
     },
     "ConnectionStatusMessage":{"type":"string"},
+    "CreateApplicationRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "documentation":"<p>A unique client idempotency token. It will be auto generated if not provided.</p>",
+          "idempotencyToken":true
+        },
+        "name":{
+          "shape":"ApplicationName",
+          "documentation":"<p>Name of the OpenSearch Appication to create. Application names are unique across the applications owned by an account within an Amazon Web Services Region.</p>"
+        },
+        "dataSources":{
+          "shape":"DataSources",
+          "documentation":"<p>Data sources to be associated with the OpenSearch Application.</p>"
+        },
+        "iamIdentityCenterOptions":{
+          "shape":"IamIdentityCenterOptionsInput",
+          "documentation":"<p>Settings of IAM Identity Center for the OpenSearch Application.</p>"
+        },
+        "appConfigs":{
+          "shape":"AppConfigs",
+          "documentation":"<p>Configurations of the OpenSearch Application, inlcuding admin configuration.</p>"
+        },
+        "tagList":{"shape":"TagList"}
+      }
+    },
+    "CreateApplicationResponse":{
+      "type":"structure",
+      "members":{
+        "id":{
+          "shape":"Id",
+          "documentation":"<p>Unique identifier for the created OpenSearch Application.</p>"
+        },
+        "name":{
+          "shape":"ApplicationName",
+          "documentation":"<p>Name of the created OpenSearch Application.</p>"
+        },
+        "arn":{"shape":"ARN"},
+        "dataSources":{
+          "shape":"DataSources",
+          "documentation":"<p>Data sources associated with the created OpenSearch Application.</p>"
+        },
+        "iamIdentityCenterOptions":{
+          "shape":"IamIdentityCenterOptions",
+          "documentation":"<p>Settings of IAM Identity Center for the created OpenSearch Application.</p>"
+        },
+        "appConfigs":{
+          "shape":"AppConfigs",
+          "documentation":"<p>Configurations of the OpenSearch Application, inlcuding admin configuration.</p>"
+        },
+        "tagList":{"shape":"TagList"},
+        "createdAt":{
+          "shape":"Timestamp",
+          "documentation":"<p>Timestamp when the OpenSearch Application was created.</p>"
+        }
+      }
+    },
     "CreateDomainRequest":{
       "type":"structure",
       "required":["DomainName"],
@@ -1796,6 +2597,10 @@
         "AccessPolicies":{
           "shape":"PolicyDocument",
           "documentation":"<p>Identity and Access Management (IAM) policy document specifying the access policies for the new domain.</p>"
+        },
+        "IPAddressType":{
+          "shape":"IPAddressType",
+          "documentation":"<p>Specify either dual stack or IPv4 as your IP address type. Dual stack allows you to share domain resources across IPv4 and IPv6 address types, and is the recommended option. If you set your IP address type to dual stack, you can't change your address type later.</p>"
         },
         "SnapshotOptions":{
           "shape":"SnapshotOptions",
@@ -1833,6 +2638,10 @@
           "shape":"AdvancedSecurityOptionsInput",
           "documentation":"<p>Options for fine-grained access control.</p>"
         },
+        "IdentityCenterOptions":{
+          "shape":"IdentityCenterOptionsInput",
+          "documentation":"<p>Options for IAM Identity Center Option control for the domain.</p>"
+        },
         "TagList":{
           "shape":"TagList",
           "documentation":"<p>List of tags to add to the domain upon creation.</p>"
@@ -1848,6 +2657,10 @@
         "SoftwareUpdateOptions":{
           "shape":"SoftwareUpdateOptions",
           "documentation":"<p>Software update options for the domain.</p>"
+        },
+        "AIMLOptions":{
+          "shape":"AIMLOptionsInput",
+          "documentation":"<p>Options for all machine learning features for the specified domain.</p>"
         }
       }
     },
@@ -1949,6 +2762,22 @@
         "PackageSource":{
           "shape":"PackageSource",
           "documentation":"<p>The Amazon S3 location from which to import the package.</p>"
+        },
+        "PackageConfiguration":{
+          "shape":"PackageConfiguration",
+          "documentation":"<p> The configuration parameters for the package being created.</p>"
+        },
+        "EngineVersion":{
+          "shape":"EngineVersion",
+          "documentation":"<p>The version of the Amazon OpenSearch Service engine for which is compatible with the package. This can only be specified for package type <code>ZIP-PLUGIN</code> </p>"
+        },
+        "PackageVendingOptions":{
+          "shape":"PackageVendingOptions",
+          "documentation":"<p> The vending options for the package being created. They determine if the package can be vended to other users.</p>"
+        },
+        "PackageEncryptionOptions":{
+          "shape":"PackageEncryptionOptions",
+          "documentation":"<p>The encryption parameters for the package being created.</p>"
         }
       },
       "documentation":"<p>Container for request parameters to the <code>CreatePackage</code> operation.</p>"
@@ -2000,10 +2829,141 @@
       "members":{
         "SkipUnavailable":{
           "shape":"SkipUnavailableStatus",
-          "documentation":"<p>Status of SkipUnavailable param for outbound connection.</p>"
+          "documentation":"<p>The status of the <code>SkipUnavailable</code> setting for the outbound connection. This feature allows you to specify some clusters as optional and ensure that your cross-cluster queries return partial results despite failures on one or more remote clusters.</p>"
         }
       },
-      "documentation":"<p>Cross cluster search specific connection properties.</p>"
+      "documentation":"<p>Cross-cluster search specific connection properties.</p>"
+    },
+    "DataSource":{
+      "type":"structure",
+      "members":{
+        "dataSourceArn":{"shape":"ARN"},
+        "dataSourceDescription":{
+          "shape":"DataSourceDescription",
+          "documentation":"<p>Detailed description of a data source.</p>"
+        }
+      },
+      "documentation":"<p>Data sources that are associated with an OpenSearch Application. </p>"
+    },
+    "DataSourceDescription":{
+      "type":"string",
+      "max":1000,
+      "pattern":"^([a-zA-Z0-9_])*[\\\\a-zA-Z0-9_@#%*+=:?./!\\s-]*$"
+    },
+    "DataSourceDetails":{
+      "type":"structure",
+      "members":{
+        "DataSourceType":{
+          "shape":"DataSourceType",
+          "documentation":"<p>The type of data source.</p>"
+        },
+        "Name":{
+          "shape":"DataSourceName",
+          "documentation":"<p>The name of the data source.</p>"
+        },
+        "Description":{
+          "shape":"DataSourceDescription",
+          "documentation":"<p>A description of the data source.</p>"
+        },
+        "Status":{
+          "shape":"DataSourceStatus",
+          "documentation":"<p>The status of the data source.</p>"
+        }
+      },
+      "documentation":"<p>Details about a direct-query data source.</p>"
+    },
+    "DataSourceList":{
+      "type":"list",
+      "member":{"shape":"DataSourceDetails"}
+    },
+    "DataSourceName":{
+      "type":"string",
+      "max":80,
+      "min":3,
+      "pattern":"[a-z][a-z0-9_]+"
+    },
+    "DataSourceStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "DISABLED"
+      ]
+    },
+    "DataSourceType":{
+      "type":"structure",
+      "members":{
+        "S3GlueDataCatalog":{
+          "shape":"S3GlueDataCatalog",
+          "documentation":"<p>An Amazon S3 data source.</p>"
+        }
+      },
+      "documentation":"<p>The type of data source.</p>",
+      "union":true
+    },
+    "DataSources":{
+      "type":"list",
+      "member":{"shape":"DataSource"}
+    },
+    "DeleteApplicationRequest":{
+      "type":"structure",
+      "required":["id"],
+      "members":{
+        "id":{
+          "shape":"Id",
+          "documentation":"<p>Unique identifier for the OpenSearch Application that you want to delete.</p>",
+          "location":"uri",
+          "locationName":"id"
+        }
+      }
+    },
+    "DeleteApplicationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteDataSourceRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "Name"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "documentation":"<p>The name of the domain.</p>",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "Name":{
+          "shape":"DataSourceName",
+          "documentation":"<p>The name of the data source to delete.</p>",
+          "location":"uri",
+          "locationName":"DataSourceName"
+        }
+      },
+      "documentation":"<p>Container for the parameters to the <code>DeleteDataSource</code> operation.</p>"
+    },
+    "DeleteDataSourceResponse":{
+      "type":"structure",
+      "members":{
+        "Message":{
+          "shape":"String",
+          "documentation":"<p>A message associated with deletion of the data source.</p>"
+        }
+      },
+      "documentation":"<p>The result of a <code>GetDataSource</code> operation.</p>"
+    },
+    "DeleteDirectQueryDataSourceRequest":{
+      "type":"structure",
+      "required":["DataSourceName"],
+      "members":{
+        "DataSourceName":{
+          "shape":"DirectQueryDataSourceName",
+          "documentation":"<p> A unique, user-defined label to identify the data source within your OpenSearch Service environment. </p>",
+          "location":"uri",
+          "locationName":"DataSourceName"
+        }
+      }
     },
     "DeleteDomainRequest":{
       "type":"structure",
@@ -2173,7 +3133,7 @@
         },
         "NextToken":{
           "shape":"NextToken",
-          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>"
+          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>"
         }
       },
       "documentation":"<p>The result of a <code>DescribeDomainAutoTunes</code> request.</p>"
@@ -2355,7 +3315,7 @@
       "members":{
         "DomainNames":{
           "shape":"DomainNameList",
-          "documentation":"<p>Array of OpenSearch Service domain names that you want information about. If you don't specify any domains, OpenSearch Service returns information about all domains owned by the account.</p>"
+          "documentation":"<p>Array of OpenSearch Service domain names that you want information about. You must specify at least one domain name.</p>"
         }
       },
       "documentation":"<p>Container for the parameters to the <code>DescribeDomains</code> operation.</p>"
@@ -2439,7 +3399,7 @@
         },
         "NextToken":{
           "shape":"NextToken",
-          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>"
+          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>"
         }
       },
       "documentation":"<p>Contains a list of connections matching the filter criteria.</p>"
@@ -2509,7 +3469,7 @@
         },
         "NextToken":{
           "shape":"NextToken",
-          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>"
+          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>"
         }
       },
       "documentation":"<p>Contains a list of connections matching the filter criteria.</p>"
@@ -2538,16 +3498,20 @@
       "enum":[
         "PackageID",
         "PackageName",
-        "PackageStatus"
+        "PackageStatus",
+        "PackageType",
+        "EngineVersion",
+        "PackageOwner"
       ]
     },
     "DescribePackagesFilterValue":{
       "type":"string",
-      "pattern":"^[0-9a-zA-Z\\*\\.\\\\/\\?-]*$"
+      "pattern":"^[0-9a-zA-Z\\*\\.\\_\\\\\\/\\?-]+$"
     },
     "DescribePackagesFilterValues":{
       "type":"list",
-      "member":{"shape":"DescribePackagesFilterValue"}
+      "member":{"shape":"DescribePackagesFilterValue"},
+      "min":1
     },
     "DescribePackagesRequest":{
       "type":"structure",
@@ -2576,7 +3540,7 @@
         },
         "NextToken":{
           "shape":"String",
-          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>"
+          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>"
         }
       },
       "documentation":"<p>Container for the response returned by the <code>DescribePackages</code> operation.</p>"
@@ -2610,7 +3574,7 @@
       "members":{
         "NextToken":{
           "shape":"NextToken",
-          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>"
+          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>"
         },
         "ReservedInstanceOfferings":{
           "shape":"ReservedInstanceOfferingList",
@@ -2648,7 +3612,7 @@
       "members":{
         "NextToken":{
           "shape":"String",
-          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>"
+          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>"
         },
         "ReservedInstances":{
           "shape":"ReservedInstanceList",
@@ -2685,6 +3649,76 @@
       }
     },
     "Description":{"type":"string"},
+    "DirectQueryDataSource":{
+      "type":"structure",
+      "members":{
+        "DataSourceName":{
+          "shape":"DirectQueryDataSourceName",
+          "documentation":"<p> A unique, user-defined label to identify the data source within your OpenSearch Service environment. </p>"
+        },
+        "DataSourceType":{
+          "shape":"DirectQueryDataSourceType",
+          "documentation":"<p> The supported Amazon Web Services service that is used as the source for direct queries in OpenSearch Service. </p>"
+        },
+        "Description":{
+          "shape":"DirectQueryDataSourceDescription",
+          "documentation":"<p> A description that provides additional context and details about the data source.</p>"
+        },
+        "OpenSearchArns":{
+          "shape":"DirectQueryOpenSearchARNList",
+          "documentation":"<p> A list of Amazon Resource Names (ARNs) for the OpenSearch collections that are associated with the direct query data source. </p>"
+        },
+        "DataSourceArn":{
+          "shape":"String",
+          "documentation":"<p> The unique, system-generated identifier that represents the data source.</p>"
+        },
+        "TagList":{
+          "shape":"TagList",
+          "documentation":"<p> A list of tags attached to a direct query data source.</p>"
+        }
+      },
+      "documentation":"<p> The configuration details for a data source that can be directly queried. </p>"
+    },
+    "DirectQueryDataSourceDescription":{
+      "type":"string",
+      "max":1000,
+      "pattern":"^([a-zA-Z0-9_])*[\\\\a-zA-Z0-9_@#%*+=:?./!\\s-]*$"
+    },
+    "DirectQueryDataSourceList":{
+      "type":"list",
+      "member":{"shape":"DirectQueryDataSource"}
+    },
+    "DirectQueryDataSourceName":{
+      "type":"string",
+      "max":80,
+      "min":3,
+      "pattern":"[a-z][a-z0-9_]+"
+    },
+    "DirectQueryDataSourceRoleArn":{
+      "type":"string",
+      "max":200,
+      "min":32,
+      "pattern":"^arn:aws[a-zA-Z-]*:iam::\\d{12}:role(\\/service-role)?\\/[A-Za-z0-9+=,.@\\-_]{1,64}$"
+    },
+    "DirectQueryDataSourceType":{
+      "type":"structure",
+      "members":{
+        "CloudWatchLog":{
+          "shape":"CloudWatchDirectQueryDataSource",
+          "documentation":"<p> Specifies CloudWatch Logs as a type of data source for direct queries. </p>"
+        },
+        "SecurityLake":{
+          "shape":"SecurityLakeDirectQueryDataSource",
+          "documentation":"<p> Specifies Security Lake as a type of data source for direct queries. </p>"
+        }
+      },
+      "documentation":"<p> The type of data source that is used for direct queries. This is a supported Amazon Web Services service, such as CloudWatch Logs or Security Lake. </p>",
+      "union":true
+    },
+    "DirectQueryOpenSearchARNList":{
+      "type":"list",
+      "member":{"shape":"ARN"}
+    },
     "DisableTimestamp":{"type":"timestamp"},
     "DisabledOperationException":{
       "type":"structure",
@@ -2726,6 +3760,29 @@
       },
       "documentation":"<p>Container for the response returned by an <code>DissociatePackage</code> operation.</p>"
     },
+    "DissociatePackagesRequest":{
+      "type":"structure",
+      "required":[
+        "PackageList",
+        "DomainName"
+      ],
+      "members":{
+        "PackageList":{
+          "shape":"PackageIDList",
+          "documentation":"<p>A list of package IDs to be dissociated from a domain.</p>"
+        },
+        "DomainName":{"shape":"DomainName"}
+      }
+    },
+    "DissociatePackagesResponse":{
+      "type":"structure",
+      "members":{
+        "DomainPackageDetailsList":{
+          "shape":"DomainPackageDetailsList",
+          "documentation":"<p>A list of package details for the packages that were dissociated from the domain.</p>"
+        }
+      }
+    },
     "DomainArn":{
       "type":"string",
       "max":512,
@@ -2750,6 +3807,10 @@
         "AccessPolicies":{
           "shape":"AccessPoliciesStatus",
           "documentation":"<p>Specifies the access policies for the domain.</p>"
+        },
+        "IPAddressType":{
+          "shape":"IPAddressTypeStatus",
+          "documentation":"<p>Choose either dual stack or IPv4 as your IP address type. Dual stack allows you to share domain resources across IPv4 and IPv6 address types, and is the recommended option. If you set your IP address type to dual stack, you can't change your address type later.</p>"
         },
         "SnapshotOptions":{
           "shape":"SnapshotOptionsStatus",
@@ -2787,6 +3848,10 @@
           "shape":"AdvancedSecurityOptionsStatus",
           "documentation":"<p>Container for fine-grained access control settings for the domain.</p>"
         },
+        "IdentityCenterOptions":{
+          "shape":"IdentityCenterOptionsStatus",
+          "documentation":"<p>Container for IAM Identity Center Option control for the domain.</p>"
+        },
         "AutoTuneOptions":{
           "shape":"AutoTuneOptionsStatus",
           "documentation":"<p>Container for Auto-Tune settings for the domain.</p>"
@@ -2802,6 +3867,14 @@
         "SoftwareUpdateOptions":{
           "shape":"SoftwareUpdateOptionsStatus",
           "documentation":"<p>Software update options for the domain.</p>"
+        },
+        "ModifyingProperties":{
+          "shape":"ModifyingPropertiesList",
+          "documentation":"<p>Information about the domain properties that are currently being modified.</p>"
+        },
+        "AIMLOptions":{
+          "shape":"AIMLOptionsStatus",
+          "documentation":"<p>Container for parameters required to enable all machine learning features.</p>"
         }
       },
       "documentation":"<p>Container for the configuration of an OpenSearch Service domain.</p>"
@@ -2815,7 +3888,7 @@
         },
         "TLSSecurityPolicy":{
           "shape":"TLSSecurityPolicy",
-          "documentation":"<p>Specify the TLS security policy to apply to the HTTPS endpoint of the domain.</p> <p> Can be one of the following values:</p> <ul> <li> <p> <b>Policy-Min-TLS-1-0-2019-07:</b> TLS security policy which supports TLS version 1.0 and higher.</p> </li> <li> <p> <b>Policy-Min-TLS-1-2-2019-07:</b> TLS security policy which supports only TLS version 1.2 </p> </li> </ul>"
+          "documentation":"<p>Specify the TLS security policy to apply to the HTTPS endpoint of the domain. The policy can be one of the following values:</p> <ul> <li> <p> <b>Policy-Min-TLS-1-0-2019-07:</b> TLS security policy that supports TLS version 1.0 to TLS version 1.2</p> </li> <li> <p> <b>Policy-Min-TLS-1-2-2019-07:</b> TLS security policy that supports only TLS version 1.2</p> </li> <li> <p> <b>Policy-Min-TLS-1-2-PFS-2023-10:</b> TLS security policy that supports TLS version 1.2 to TLS version 1.3 with perfect forward secrecy cipher suites</p> </li> </ul>"
         },
         "CustomEndpointEnabled":{
           "shape":"Boolean",
@@ -2893,6 +3966,48 @@
         }
       },
       "documentation":"<p>Container for information about an OpenSearch Service domain.</p>"
+    },
+    "DomainMaintenanceDetails":{
+      "type":"structure",
+      "members":{
+        "MaintenanceId":{
+          "shape":"RequestId",
+          "documentation":"<p>The ID of the requested action.</p>"
+        },
+        "DomainName":{
+          "shape":"DomainName",
+          "documentation":"<p>The name of the domain.</p>"
+        },
+        "Action":{
+          "shape":"MaintenanceType",
+          "documentation":"<p>The name of the action.</p>"
+        },
+        "NodeId":{
+          "shape":"NodeId",
+          "documentation":"<p>The ID of the data node.</p>"
+        },
+        "Status":{
+          "shape":"MaintenanceStatus",
+          "documentation":"<p>The status of the action.</p>"
+        },
+        "StatusMessage":{
+          "shape":"MaintenanceStatusMessage",
+          "documentation":"<p>The status message for the action.</p>"
+        },
+        "CreatedAt":{
+          "shape":"UpdateTimestamp",
+          "documentation":"<p>The time at which the action was created.</p>"
+        },
+        "UpdatedAt":{
+          "shape":"UpdateTimestamp",
+          "documentation":"<p>The time at which the action was updated.</p>"
+        }
+      },
+      "documentation":"<p>Container for the domain maintenance details.</p>"
+    },
+    "DomainMaintenanceList":{
+      "type":"list",
+      "member":{"shape":"DomainMaintenanceDetails"}
     },
     "DomainName":{
       "type":"string",
@@ -2986,6 +4101,10 @@
           "shape":"PackageVersion",
           "documentation":"<p>The current version of the package.</p>"
         },
+        "PrerequisitePackageIDList":{
+          "shape":"PackageIDList",
+          "documentation":"<p>A list of package IDs that must be associated with the domain before or with the package can be associated.</p>"
+        },
         "ReferencePath":{
           "shape":"ReferencePath",
           "documentation":"<p>The relative path of the package on the OpenSearch Service cluster nodes. This is <code>synonym_path</code> when the package is for synonym files.</p>"
@@ -2993,6 +4112,10 @@
         "ErrorDetails":{
           "shape":"ErrorDetails",
           "documentation":"<p>Additional information if the package is in an error state. Null otherwise.</p>"
+        },
+        "AssociationConfiguration":{
+          "shape":"PackageAssociationConfiguration",
+          "documentation":"<p>The configuration for associating a package with an Amazon OpenSearch Service domain.</p>"
         }
       },
       "documentation":"<p>Information about a package that is associated with a domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html\">Custom packages for Amazon OpenSearch Service</a>.</p>"
@@ -3009,6 +4132,18 @@
         "ACTIVE",
         "DISSOCIATING",
         "DISSOCIATION_FAILED"
+      ]
+    },
+    "DomainProcessingStatusType":{
+      "type":"string",
+      "enum":[
+        "Creating",
+        "Active",
+        "Modifying",
+        "UpgradingEngineVersion",
+        "UpdatingServiceSoftware",
+        "Isolated",
+        "Deleting"
       ]
     },
     "DomainState":{
@@ -3052,9 +4187,17 @@
           "shape":"ServiceUrl",
           "documentation":"<p>Domain-specific endpoint used to submit index, search, and data upload requests to the domain.</p>"
         },
+        "EndpointV2":{
+          "shape":"ServiceUrl",
+          "documentation":"<p>If <code>IPAddressType</code> to set to <code>dualstack</code>, a version 2 domain endpoint is provisioned. This endpoint functions like a normal endpoint, except that it works with both IPv4 and IPv6 IP addresses. Normal endpoints work only with IPv4 IP addresses. </p>"
+        },
         "Endpoints":{
           "shape":"EndpointsMap",
-          "documentation":"<p>The key-value pair that exists if the OpenSearch Service domain uses VPC endpoints.. Example <code>key, value</code>: <code>'vpc','vpc-endpoint-h2dsd34efgyghrtguk5gt6j2foh4.us-east-1.es.amazonaws.com'</code>.</p>"
+          "documentation":"<p>The key-value pair that exists if the OpenSearch Service domain uses VPC endpoints. For example:</p> <ul> <li> <p> <b>IPv4 IP addresses</b> - <code>'vpc','vpc-endpoint-h2dsd34efgyghrtguk5gt6j2foh4.us-east-1.es.amazonaws.com'</code> </p> </li> <li> <p> <b>Dual stack IP addresses</b> - <code>'vpcv2':'vpc-endpoint-h2dsd34efgyghrtguk5gt6j2foh4.aos.us-east-1.on.aws'</code> </p> </li> </ul>"
+        },
+        "DomainEndpointV2HostedZoneId":{
+          "shape":"HostedZoneId",
+          "documentation":"<p>The dual stack hosted zone ID for the domain. </p>"
         },
         "Processing":{
           "shape":"Boolean",
@@ -3079,6 +4222,10 @@
         "AccessPolicies":{
           "shape":"PolicyDocument",
           "documentation":"<p>Identity and Access Management (IAM) policy document specifying the access policies for the domain.</p>"
+        },
+        "IPAddressType":{
+          "shape":"IPAddressType",
+          "documentation":"<p>The type of IP addresses supported by the endpoint for the domain.</p>"
         },
         "SnapshotOptions":{
           "shape":"SnapshotOptions",
@@ -3120,6 +4267,10 @@
           "shape":"AdvancedSecurityOptions",
           "documentation":"<p>Settings for fine-grained access control.</p>"
         },
+        "IdentityCenterOptions":{
+          "shape":"IdentityCenterOptions",
+          "documentation":"<p>Container for IAM Identity Center Option control for the domain.</p>"
+        },
         "AutoTuneOptions":{
           "shape":"AutoTuneOptionsOutput",
           "documentation":"<p>Auto-Tune settings for the domain.</p>"
@@ -3135,6 +4286,18 @@
         "SoftwareUpdateOptions":{
           "shape":"SoftwareUpdateOptions",
           "documentation":"<p>Service software update options for the domain.</p>"
+        },
+        "DomainProcessingStatus":{
+          "shape":"DomainProcessingStatusType",
+          "documentation":"<p>The status of any changes that are currently in progress for the domain.</p>"
+        },
+        "ModifyingProperties":{
+          "shape":"ModifyingPropertiesList",
+          "documentation":"<p>Information about the domain properties that are currently being modified.</p>"
+        },
+        "AIMLOptions":{
+          "shape":"AIMLOptionsOutput",
+          "documentation":"<p>Container for parameters required to enable all machine learning features.</p>"
         }
       },
       "documentation":"<p>The current status of an OpenSearch Service domain.</p>"
@@ -3275,7 +4438,7 @@
           "documentation":"<p>The KMS key ID. Takes the form <code>1a2a3a4-1a2a-3a4a-5a6a-1a2a3a4a5a6a</code>.</p>"
         }
       },
-      "documentation":"<p>Specifies whether the domain should encrypt data at rest, and if so, the Key Management Service (KMS) key to use. Can be used only to create a new domain, not update an existing one.</p>"
+      "documentation":"<p>Specifies whether the domain should encrypt data at rest, and if so, the Key Management Service (KMS) key to use. Can only be used when creating a new domain or enabling encryption at rest for the first time on an existing domain. You can't modify this parameter after it's already been specified.</p>"
     },
     "EncryptionAtRestOptionsStatus":{
       "type":"structure",
@@ -3310,6 +4473,10 @@
         "OpenSearch",
         "Elasticsearch"
       ]
+    },
+    "EngineVersion":{
+      "type":"string",
+      "pattern":"^Elasticsearch_[0-9]{1}\\.[0-9]{1,2}$|^OpenSearch_[0-9]{1,2}\\.[0-9]{1,2}$"
     },
     "EnvironmentInfo":{
       "type":"structure",
@@ -3365,6 +4532,64 @@
       "min":36,
       "pattern":"\\p{XDigit}{8}-\\p{XDigit}{4}-\\p{XDigit}{4}-\\p{XDigit}{4}-\\p{XDigit}{12}"
     },
+    "GUIDList":{
+      "type":"list",
+      "member":{"shape":"GUID"}
+    },
+    "GetApplicationRequest":{
+      "type":"structure",
+      "required":["id"],
+      "members":{
+        "id":{
+          "shape":"Id",
+          "documentation":"<p>Unique identifier of the checked OpenSearch Application.</p>",
+          "location":"uri",
+          "locationName":"id"
+        }
+      }
+    },
+    "GetApplicationResponse":{
+      "type":"structure",
+      "members":{
+        "id":{
+          "shape":"Id",
+          "documentation":"<p>Unique identifier of the checked OpenSearch Application.</p>"
+        },
+        "arn":{"shape":"ARN"},
+        "name":{
+          "shape":"ApplicationName",
+          "documentation":"<p>Name of the checked OpenSearch Application.</p>"
+        },
+        "endpoint":{
+          "shape":"String",
+          "documentation":"<p>Endpoint URL of the checked OpenSearch Application.</p>"
+        },
+        "status":{
+          "shape":"ApplicationStatus",
+          "documentation":"<p>Current status of the checked OpenSearch Application. Possible values are <code>CREATING</code>, <code>UPDATING</code>, <code>DELETING</code>, <code>FAILED</code>, <code>ACTIVE</code>, and <code>DELETED</code>.</p>"
+        },
+        "iamIdentityCenterOptions":{
+          "shape":"IamIdentityCenterOptions",
+          "documentation":"<p>IAM Identity Center settings for the checked OpenSearch Application.</p>"
+        },
+        "dataSources":{
+          "shape":"DataSources",
+          "documentation":"<p>Associated data sources to the checked OpenSearch Application.</p>"
+        },
+        "appConfigs":{
+          "shape":"AppConfigs",
+          "documentation":"<p>App configurations of the checked OpenSearch Application.</p>"
+        },
+        "createdAt":{
+          "shape":"Timestamp",
+          "documentation":"<p>Timestamp at which the checked OpenSearch Application was created.</p>"
+        },
+        "lastUpdatedAt":{
+          "shape":"Timestamp",
+          "documentation":"<p>Timestamp at which the checked OpenSearch Application was last updated.</p>"
+        }
+      }
+    },
     "GetCompatibleVersionsRequest":{
       "type":"structure",
       "members":{
@@ -3386,6 +4611,139 @@
         }
       },
       "documentation":"<p>Container for the response returned by the <code>GetCompatibleVersions</code> operation.</p>"
+    },
+    "GetDataSourceRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "Name"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "documentation":"<p>The name of the domain.</p>",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "Name":{
+          "shape":"DataSourceName",
+          "documentation":"<p>The name of the data source to get information about.</p>",
+          "location":"uri",
+          "locationName":"DataSourceName"
+        }
+      },
+      "documentation":"<p>Container for the parameters to the <code>GetDataSource</code> operation.</p>"
+    },
+    "GetDataSourceResponse":{
+      "type":"structure",
+      "members":{
+        "DataSourceType":{
+          "shape":"DataSourceType",
+          "documentation":"<p>The type of data source.</p>"
+        },
+        "Name":{
+          "shape":"DataSourceName",
+          "documentation":"<p>The name of the data source.</p>"
+        },
+        "Description":{
+          "shape":"DataSourceDescription",
+          "documentation":"<p>A description of the data source.</p>"
+        },
+        "Status":{
+          "shape":"DataSourceStatus",
+          "documentation":"<p>The status of the data source.</p>"
+        }
+      },
+      "documentation":"<p>The result of a <code>GetDataSource</code> operation.</p>"
+    },
+    "GetDirectQueryDataSourceRequest":{
+      "type":"structure",
+      "required":["DataSourceName"],
+      "members":{
+        "DataSourceName":{
+          "shape":"DirectQueryDataSourceName",
+          "documentation":"<p> A unique, user-defined label that identifies the data source within your OpenSearch Service environment. </p>",
+          "location":"uri",
+          "locationName":"DataSourceName"
+        }
+      }
+    },
+    "GetDirectQueryDataSourceResponse":{
+      "type":"structure",
+      "members":{
+        "DataSourceName":{
+          "shape":"DirectQueryDataSourceName",
+          "documentation":"<p> A unique, user-defined label to identify the data source within your OpenSearch Service environment. </p>"
+        },
+        "DataSourceType":{
+          "shape":"DirectQueryDataSourceType",
+          "documentation":"<p> The supported Amazon Web Services service that is used as the source for direct queries in OpenSearch Service. </p>"
+        },
+        "Description":{
+          "shape":"DirectQueryDataSourceDescription",
+          "documentation":"<p> A description that provides additional context and details about the data source. </p>"
+        },
+        "OpenSearchArns":{
+          "shape":"DirectQueryOpenSearchARNList",
+          "documentation":"<p> A list of Amazon Resource Names (ARNs) for the OpenSearch collections that are associated with the direct query data source. </p>"
+        },
+        "DataSourceArn":{
+          "shape":"String",
+          "documentation":"<p> The unique, system-generated identifier that represents the data source. </p>"
+        }
+      }
+    },
+    "GetDomainMaintenanceStatusRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "MaintenanceId"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "documentation":"<p>The name of the domain.</p>",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "MaintenanceId":{
+          "shape":"RequestId",
+          "documentation":"<p>The request ID of the maintenance action.</p>",
+          "location":"querystring",
+          "locationName":"maintenanceId"
+        }
+      },
+      "documentation":"<p>Container for the parameters to the <code>GetDomainMaintenanceStatus</code> operation.</p>"
+    },
+    "GetDomainMaintenanceStatusResponse":{
+      "type":"structure",
+      "members":{
+        "Status":{
+          "shape":"MaintenanceStatus",
+          "documentation":"<p>The status of the maintenance action.</p>"
+        },
+        "StatusMessage":{
+          "shape":"MaintenanceStatusMessage",
+          "documentation":"<p>The status message of the maintenance action.</p>"
+        },
+        "NodeId":{
+          "shape":"NodeId",
+          "documentation":"<p>The node ID of the maintenance action.</p>"
+        },
+        "Action":{
+          "shape":"MaintenanceType",
+          "documentation":"<p>The action name.</p>"
+        },
+        "CreatedAt":{
+          "shape":"UpdateTimestamp",
+          "documentation":"<p>The time at which the action was created.</p>"
+        },
+        "UpdatedAt":{
+          "shape":"UpdateTimestamp",
+          "documentation":"<p>The time at which the action was updated.</p>"
+        }
+      },
+      "documentation":"<p>The result of a <code>GetDomainMaintenanceStatus</code> request that information about the requested action.</p>"
     },
     "GetPackageVersionHistoryRequest":{
       "type":"structure",
@@ -3425,7 +4783,7 @@
         },
         "NextToken":{
           "shape":"String",
-          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>"
+          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>"
         }
       },
       "documentation":"<p>Container for response returned by <code>GetPackageVersionHistory</code> operation.</p>"
@@ -3464,7 +4822,7 @@
         },
         "NextToken":{
           "shape":"String",
-          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>"
+          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>"
         }
       },
       "documentation":"<p>Container for the response returned by the <code>GetUpgradeHistory</code> operation.</p>"
@@ -3500,11 +4858,157 @@
       },
       "documentation":"<p>Container for the response returned by the <code>GetUpgradeStatus</code> operation.</p>"
     },
+    "HostedZoneId":{"type":"string"},
+    "IPAddressType":{
+      "type":"string",
+      "enum":[
+        "ipv4",
+        "dualstack"
+      ]
+    },
+    "IPAddressTypeStatus":{
+      "type":"structure",
+      "required":[
+        "Options",
+        "Status"
+      ],
+      "members":{
+        "Options":{
+          "shape":"IPAddressType",
+          "documentation":"<p>The IP address options for the domain.</p>"
+        },
+        "Status":{"shape":"OptionStatus"}
+      },
+      "documentation":"<p>The IP address type status for the domain.</p>"
+    },
+    "IamIdentityCenterOptions":{
+      "type":"structure",
+      "members":{
+        "enabled":{
+          "shape":"Boolean",
+          "documentation":"<p>IAM Identity Center is enabled for the OpenSearch Application.</p>"
+        },
+        "iamIdentityCenterInstanceArn":{"shape":"ARN"},
+        "iamRoleForIdentityCenterApplicationArn":{
+          "shape":"RoleArn",
+          "documentation":"<p>Amazon Resource Name of the IAM Identity Center's Application created for the OpenSearch Application after enabling IAM Identity Center.</p>"
+        },
+        "iamIdentityCenterApplicationArn":{"shape":"ARN"}
+      },
+      "documentation":"<p>Settings for IAM Identity Center for an OpenSearch Application.</p>"
+    },
+    "IamIdentityCenterOptionsInput":{
+      "type":"structure",
+      "members":{
+        "enabled":{
+          "shape":"Boolean",
+          "documentation":"<p>Enable/disable settings for IAM Identity Center.</p>"
+        },
+        "iamIdentityCenterInstanceArn":{"shape":"ARN"},
+        "iamRoleForIdentityCenterApplicationArn":{
+          "shape":"RoleArn",
+          "documentation":"<p>Amazon Resource Name of IAM Identity Center's application.</p>"
+        }
+      },
+      "documentation":"<p>Settings for IAM Identity Center.</p>"
+    },
+    "Id":{
+      "type":"string",
+      "pattern":"[a-z0-9]{3,30}"
+    },
+    "IdentityCenterApplicationARN":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:aws[a-z\\\\-]*:[a-z]+:[a-z0-9\\\\-]*:[0-9]*:[a-z0-9\\\\-]+\\/[a-z0-9\\\\-]+\\/[a-z0-9\\\\-]+"
+    },
+    "IdentityCenterInstanceARN":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:aws[a-z\\\\-]*:[a-z]+:[a-z0-9\\\\-]*:[0-9]*:[a-z0-9\\\\-]+\\/[a-z0-9\\\\-]+"
+    },
+    "IdentityCenterOptions":{
+      "type":"structure",
+      "members":{
+        "EnabledAPIAccess":{
+          "shape":"Boolean",
+          "documentation":"<p>True to enable IAM Identity Center for API access in Amazon OpenSearch Service.</p>"
+        },
+        "IdentityCenterInstanceARN":{
+          "shape":"IdentityCenterInstanceARN",
+          "documentation":"<p>The ARN for IAM Identity Center Instance.</p>"
+        },
+        "SubjectKey":{
+          "shape":"SubjectKeyIdCOption",
+          "documentation":"<p>Specify the attribute that contains the subject (username, userID, email) of IAM Identity Center.</p>"
+        },
+        "RolesKey":{
+          "shape":"RolesKeyIdCOption",
+          "documentation":"<p>Specify the attribute that contains the backend role (groupName, groupID) of IAM Identity Center</p>"
+        },
+        "IdentityCenterApplicationARN":{
+          "shape":"IdentityCenterApplicationARN",
+          "documentation":"<p>The ARN for IAM Identity Center Application which will integrate with Amazon OpenSearch Service.</p>"
+        },
+        "IdentityStoreId":{
+          "shape":"IdentityStoreId",
+          "documentation":"<p>The ID of IAM Identity Store.</p>"
+        }
+      },
+      "documentation":"<p>Container for IAM Identity Center Options settings.</p>"
+    },
+    "IdentityCenterOptionsInput":{
+      "type":"structure",
+      "members":{
+        "EnabledAPIAccess":{
+          "shape":"Boolean",
+          "documentation":"<p>True to enable IAM Identity Center for API access in Amazon OpenSearch Service.</p>"
+        },
+        "IdentityCenterInstanceARN":{
+          "shape":"IdentityCenterInstanceARN",
+          "documentation":"<p>The ARN for IAM Identity Center Instance which will be used for IAM Identity Center Application creation.</p>"
+        },
+        "SubjectKey":{
+          "shape":"SubjectKeyIdCOption",
+          "documentation":"<p>Specify the attribute that contains the subject (username, userID, email) of IAM Identity Center.</p>"
+        },
+        "RolesKey":{
+          "shape":"RolesKeyIdCOption",
+          "documentation":"<p>Specify the attribute that contains the backend role (groupName, groupID) of IAM Identity Center</p>"
+        }
+      },
+      "documentation":"<p>Container for IAM Identity Center Options settings.</p>"
+    },
+    "IdentityCenterOptionsStatus":{
+      "type":"structure",
+      "required":[
+        "Options",
+        "Status"
+      ],
+      "members":{
+        "Options":{
+          "shape":"IdentityCenterOptions",
+          "documentation":"<p>Container for IAM Identity Center Options settings.</p>"
+        },
+        "Status":{
+          "shape":"OptionStatus",
+          "documentation":"<p>The status of IAM Identity Center Options settings for a domain.</p>"
+        }
+      },
+      "documentation":"<p>The status of IAM Identity Center Options settings for a domain.</p>"
+    },
     "IdentityPoolId":{
       "type":"string",
       "max":55,
       "min":1,
       "pattern":"[\\w-]+:[0-9a-f-]+"
+    },
+    "IdentityStoreId":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^d-[0-9a-f]{10}$|^[0-9a-f]{8}\\\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\\\b[0-9a-f]{12}$"
     },
     "InboundConnection":{
       "type":"structure",
@@ -3562,6 +5066,13 @@
     "InboundConnections":{
       "type":"list",
       "member":{"shape":"InboundConnection"}
+    },
+    "InitiatedBy":{
+      "type":"string",
+      "enum":[
+        "CUSTOMER",
+        "SERVICE"
+      ]
     },
     "InstanceCount":{
       "type":"integer",
@@ -3676,6 +5187,65 @@
       "type":"list",
       "member":{"shape":"Issue"}
     },
+    "JWTOptionsInput":{
+      "type":"structure",
+      "members":{
+        "Enabled":{
+          "shape":"Boolean",
+          "documentation":"<p>True to enable JWT authentication and authorization for a domain.</p>"
+        },
+        "SubjectKey":{
+          "shape":"SubjectKey",
+          "documentation":"<p>Element of the JWT assertion to use for the user name.</p>"
+        },
+        "RolesKey":{
+          "shape":"RolesKey",
+          "documentation":"<p>Element of the JWT assertion to use for roles.</p>"
+        },
+        "PublicKey":{
+          "shape":"String",
+          "documentation":"<p>Element of the JWT assertion used by the cluster to verify JWT signatures.</p>"
+        }
+      },
+      "documentation":"<p>The JWT authentication and authorization configuration for an Amazon OpenSearch Service domain.</p>"
+    },
+    "JWTOptionsOutput":{
+      "type":"structure",
+      "members":{
+        "Enabled":{
+          "shape":"Boolean",
+          "documentation":"<p>True if JWT use is enabled.</p>"
+        },
+        "SubjectKey":{
+          "shape":"String",
+          "documentation":"<p>The key used for matching the JWT subject attribute.</p>"
+        },
+        "RolesKey":{
+          "shape":"String",
+          "documentation":"<p>The key used for matching the JWT roles attribute.</p>"
+        },
+        "PublicKey":{
+          "shape":"String",
+          "documentation":"<p>The key used to verify the signature of incoming JWT requests.</p>"
+        }
+      },
+      "documentation":"<p>Describes the JWT options configured for the domain.</p>"
+    },
+    "KeyStoreAccessOption":{
+      "type":"structure",
+      "required":["KeyStoreAccessEnabled"],
+      "members":{
+        "KeyAccessRoleArn":{
+          "shape":"RoleArn",
+          "documentation":"<p>Role ARN to access the KeyStore Key</p>"
+        },
+        "KeyStoreAccessEnabled":{
+          "shape":"Boolean",
+          "documentation":"<p>This indicates whether Key Store access is enabled </p>"
+        }
+      },
+      "documentation":"<p>The configuration parameters to enable access to the key store required by the package.</p>"
+    },
     "KmsKeyId":{
       "type":"string",
       "max":500,
@@ -3683,6 +5253,11 @@
       "pattern":".*"
     },
     "LastUpdated":{"type":"timestamp"},
+    "LicenseFilepath":{
+      "type":"string",
+      "max":256,
+      "pattern":"^(?!.*\\/\\.{2,})(?!.*\\.\\.)[a-zA-Z0-9_.-]+(?:\\/[a-zA-Z0-9_.-]+)*$"
+    },
     "LimitExceededException":{
       "type":"structure",
       "members":{
@@ -3720,6 +5295,131 @@
       "key":{"shape":"InstanceRole"},
       "value":{"shape":"Limits"},
       "documentation":"<p> The role of a given instance and all applicable limits. The role performed by a given OpenSearch instance can be one of the following: </p> <ul> <li> <p> <b>data</b> - A data node.</p> </li> <li> <p> <b>master</b> - A dedicated master node.</p> </li> <li> <p> <b>ultra_warm</b> - An UltraWarm node.</p> </li> </ul>"
+    },
+    "ListApplicationsRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "statuses":{
+          "shape":"ApplicationStatuses",
+          "documentation":"<p>OpenSearch Application Status can be used as filters for the listing request. Possible values are <code>CREATING</code>, <code>UPDATING</code>, <code>DELETING</code>, <code>FAILED</code>, <code>ACTIVE</code>, and <code>DELETED</code>.</p>",
+          "location":"querystring",
+          "locationName":"statuses"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListApplicationsResponse":{
+      "type":"structure",
+      "members":{
+        "ApplicationSummaries":{
+          "shape":"ApplicationSummaries",
+          "documentation":"<p>Summary of the OpenSearch Applications, including ID, ARN, name, endpoint, status, create time and last update time.</p>"
+        },
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListDataSourcesRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "documentation":"<p>The name of the domain.</p>",
+          "location":"uri",
+          "locationName":"DomainName"
+        }
+      },
+      "documentation":"<p>Container for the parameters to the <code>ListDataSources</code> operation.</p>"
+    },
+    "ListDataSourcesResponse":{
+      "type":"structure",
+      "members":{
+        "DataSources":{
+          "shape":"DataSourceList",
+          "documentation":"<p>A list of data sources associated with specified domain.</p>"
+        }
+      },
+      "documentation":"<p>The result of a <code>ListDataSources</code> operation.</p>"
+    },
+    "ListDirectQueryDataSourcesRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nexttoken"
+        }
+      }
+    },
+    "ListDirectQueryDataSourcesResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "DirectQueryDataSources":{
+          "shape":"DirectQueryDataSourceList",
+          "documentation":"<p> A list of the direct query data sources that are returned by the <code>ListDirectQueryDataSources</code> API operation. </p>"
+        }
+      }
+    },
+    "ListDomainMaintenancesRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "documentation":"<p>The name of the domain.</p>",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "Action":{
+          "shape":"MaintenanceType",
+          "documentation":"<p>The name of the action.</p>",
+          "location":"querystring",
+          "locationName":"action"
+        },
+        "Status":{
+          "shape":"MaintenanceStatus",
+          "documentation":"<p>The status of the action.</p>",
+          "location":"querystring",
+          "locationName":"status"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "documentation":"<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results.</p>",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>If your initial <code>ListDomainMaintenances</code> operation returns a <code>nextToken</code>, include the returned <code>nextToken</code> in subsequent <code>ListDomainMaintenances</code> operations, which returns results in the next page.</p>",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      },
+      "documentation":"<p>Container for the parameters to the <code>ListDomainMaintenances</code> operation.</p>"
+    },
+    "ListDomainMaintenancesResponse":{
+      "type":"structure",
+      "members":{
+        "DomainMaintenances":{
+          "shape":"DomainMaintenanceList",
+          "documentation":"<p>A list of the submitted maintenance actions.</p>"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>"
+        }
+      },
+      "documentation":"<p>The result of a <code>ListDomainMaintenances</code> request that contains information about the requested actions. </p>"
     },
     "ListDomainNamesRequest":{
       "type":"structure",
@@ -3777,7 +5477,7 @@
         },
         "NextToken":{
           "shape":"String",
-          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>"
+          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>"
         }
       },
       "documentation":"<p>Container for the response parameters to the <code>ListDomainsForPackage</code> operation.</p>"
@@ -3833,7 +5533,7 @@
         },
         "NextToken":{
           "shape":"NextToken",
-          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>"
+          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>"
         }
       }
     },
@@ -3871,7 +5571,7 @@
         },
         "NextToken":{
           "shape":"String",
-          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>"
+          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>"
         }
       },
       "documentation":"<p>Container for the response parameters to the <code>ListPackagesForDomain</code> operation.</p>"
@@ -3909,7 +5609,7 @@
         },
         "NextToken":{
           "shape":"NextToken",
-          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>"
+          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>"
         }
       }
     },
@@ -3919,7 +5619,7 @@
       "members":{
         "ARN":{
           "shape":"ARN",
-          "documentation":"<p>Amazon Resource Name (ARN) for the domain to view tags for.</p>",
+          "documentation":"<p>Amazon Resource Name (ARN) for the domain, data source, or application to view tags for.</p>",
           "location":"querystring",
           "locationName":"arn"
         }
@@ -3931,7 +5631,7 @@
       "members":{
         "TagList":{
           "shape":"TagList",
-          "documentation":"<p>List of resource tags associated with the specified domain.</p>"
+          "documentation":"<p>List of resource tags associated with the specified domain, data source, or application.</p>"
         }
       },
       "documentation":"<p>The results of a <code>ListTags</code> operation.</p>"
@@ -3963,7 +5663,7 @@
         },
         "NextToken":{
           "shape":"NextToken",
-          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>"
+          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>"
         }
       },
       "documentation":"<p>Container for the parameters for response received from the <code>ListVersions</code> operation.</p>"
@@ -3999,7 +5699,7 @@
         },
         "NextToken":{
           "shape":"NextToken",
-          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>"
+          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>"
         }
       }
     },
@@ -4034,7 +5734,7 @@
         },
         "NextToken":{
           "shape":"NextToken",
-          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>"
+          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>"
         }
       }
     },
@@ -4062,7 +5762,7 @@
         },
         "NextToken":{
           "shape":"NextToken",
-          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>"
+          "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>"
         }
       }
     },
@@ -4110,6 +5810,30 @@
       ]
     },
     "Long":{"type":"long"},
+    "MaintenanceStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "IN_PROGRESS",
+        "COMPLETED",
+        "FAILED",
+        "TIMED_OUT"
+      ]
+    },
+    "MaintenanceStatusMessage":{
+      "type":"string",
+      "max":1000,
+      "min":0,
+      "pattern":"^([\\s\\S]*)$"
+    },
+    "MaintenanceType":{
+      "type":"string",
+      "enum":[
+        "REBOOT_NODE",
+        "RESTART_SEARCH_PROCESS",
+        "RESTART_DASHBOARD"
+      ]
+    },
     "MasterNodeStatus":{
       "type":"string",
       "enum":[
@@ -4153,14 +5877,123 @@
       "type":"integer",
       "documentation":"<p> Minimum number of instances that can be instantiated for a given instance type.</p>"
     },
+    "ModifyingProperties":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"String",
+          "documentation":"<p>The name of the property that is currently being modified.</p>"
+        },
+        "ActiveValue":{
+          "shape":"String",
+          "documentation":"<p>The current value of the domain property that is being modified.</p>"
+        },
+        "PendingValue":{
+          "shape":"String",
+          "documentation":"<p>The value that the property that is currently being modified will eventually have.</p>"
+        },
+        "ValueType":{
+          "shape":"PropertyValueType",
+          "documentation":"<p>The type of value that is currently being modified. Properties can have two types:</p> <ul> <li> <p> <code>PLAIN_TEXT</code>: Contain direct values such as \"1\", \"True\", or \"c5.large.search\".</p> </li> <li> <p> <code>STRINGIFIED_JSON</code>: Contain content in JSON format, such as {\"Enabled\":\"True\"}\".</p> </li> </ul>"
+        }
+      },
+      "documentation":"<p>Information about the domain properties that are currently being modified.</p>"
+    },
+    "ModifyingPropertiesList":{
+      "type":"list",
+      "member":{"shape":"ModifyingProperties"}
+    },
+    "NaturalLanguageQueryGenerationCurrentState":{
+      "type":"string",
+      "enum":[
+        "NOT_ENABLED",
+        "ENABLE_COMPLETE",
+        "ENABLE_IN_PROGRESS",
+        "ENABLE_FAILED",
+        "DISABLE_COMPLETE",
+        "DISABLE_IN_PROGRESS",
+        "DISABLE_FAILED"
+      ]
+    },
+    "NaturalLanguageQueryGenerationDesiredState":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "NaturalLanguageQueryGenerationOptionsInput":{
+      "type":"structure",
+      "members":{
+        "DesiredState":{
+          "shape":"NaturalLanguageQueryGenerationDesiredState",
+          "documentation":"<p>The desired state of the natural language query generation feature. Valid values are ENABLED and DISABLED.</p>"
+        }
+      },
+      "documentation":"<p>Container for parameters required to enable the natural language query generation feature.</p>"
+    },
+    "NaturalLanguageQueryGenerationOptionsOutput":{
+      "type":"structure",
+      "members":{
+        "DesiredState":{
+          "shape":"NaturalLanguageQueryGenerationDesiredState",
+          "documentation":"<p>The desired state of the natural language query generation feature. Valid values are ENABLED and DISABLED.</p>"
+        },
+        "CurrentState":{
+          "shape":"NaturalLanguageQueryGenerationCurrentState",
+          "documentation":"<p>The current state of the natural language query generation feature, indicating completion, in progress, or failure.</p>"
+        }
+      },
+      "documentation":"<p>Container for parameters representing the state of the natural language query generation feature on the specified domain.</p>"
+    },
     "NextToken":{
       "type":"string",
-      "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>"
+      "documentation":"<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>"
+    },
+    "NodeConfig":{
+      "type":"structure",
+      "members":{
+        "Enabled":{
+          "shape":"Boolean",
+          "documentation":"<p>A boolean that indicates whether a particular node type is enabled or not.</p>"
+        },
+        "Type":{
+          "shape":"OpenSearchPartitionInstanceType",
+          "documentation":"<p>The instance type of a particular node type in the cluster.</p>"
+        },
+        "Count":{
+          "shape":"IntegerClass",
+          "documentation":"<p>The number of nodes of a particular node type in the cluster.</p>"
+        }
+      },
+      "documentation":"<p>Container for specifying configuration of any node type.</p>"
     },
     "NodeId":{
       "type":"string",
       "max":40,
       "min":10
+    },
+    "NodeOption":{
+      "type":"structure",
+      "members":{
+        "NodeType":{
+          "shape":"NodeOptionsNodeType",
+          "documentation":"<p>Container for node type like coordinating.</p>"
+        },
+        "NodeConfig":{
+          "shape":"NodeConfig",
+          "documentation":"<p>Container for specifying configuration of any node type.</p>"
+        }
+      },
+      "documentation":"<p>Container for specifying node type.</p>"
+    },
+    "NodeOptionsList":{
+      "type":"list",
+      "member":{"shape":"NodeOption"}
+    },
+    "NodeOptionsNodeType":{
+      "type":"string",
+      "enum":["coordinator"]
     },
     "NodeStatus":{
       "type":"string",
@@ -4299,6 +6132,14 @@
         "t3.large.search",
         "t3.xlarge.search",
         "t3.2xlarge.search",
+        "or1.medium.search",
+        "or1.large.search",
+        "or1.xlarge.search",
+        "or1.2xlarge.search",
+        "or1.4xlarge.search",
+        "or1.8xlarge.search",
+        "or1.12xlarge.search",
+        "or1.16xlarge.search",
         "ultrawarm1.medium.search",
         "ultrawarm1.large.search",
         "ultrawarm1.xlarge.search",
@@ -4493,6 +6334,42 @@
       "min":12,
       "pattern":"[0-9]+"
     },
+    "PackageAssociationConfiguration":{
+      "type":"structure",
+      "members":{
+        "KeyStoreAccessOption":{
+          "shape":"KeyStoreAccessOption",
+          "documentation":"<p>The configuration parameters to enable accessing the key store required by the package.</p>"
+        }
+      },
+      "documentation":"<p>The configuration for associating a package with a domain.</p>"
+    },
+    "PackageConfiguration":{
+      "type":"structure",
+      "required":[
+        "LicenseRequirement",
+        "ConfigurationRequirement"
+      ],
+      "members":{
+        "LicenseRequirement":{
+          "shape":"RequirementLevel",
+          "documentation":"<p>The license requirements for the package.</p>"
+        },
+        "LicenseFilepath":{
+          "shape":"LicenseFilepath",
+          "documentation":"<p>The relative file path for the license associated with the package.</p>"
+        },
+        "ConfigurationRequirement":{
+          "shape":"RequirementLevel",
+          "documentation":"<p>The configuration requirements for the package.</p>"
+        },
+        "RequiresRestartForConfigurationUpdate":{
+          "shape":"Boolean",
+          "documentation":"<p>This indicates whether a B/G deployment is required for updating the configuration that the plugin is prerequisite for.</p>"
+        }
+      },
+      "documentation":"<p> The configuration parameters for a package.</p>"
+    },
     "PackageDescription":{
       "type":"string",
       "max":1024
@@ -4535,20 +6412,105 @@
         "ErrorDetails":{
           "shape":"ErrorDetails",
           "documentation":"<p>Additional information if the package is in an error state. Null otherwise.</p>"
+        },
+        "EngineVersion":{
+          "shape":"EngineVersion",
+          "documentation":"<p>Version of OpenSearch or Elasticsearch, in the format Elasticsearch_X.Y or OpenSearch_X.Y. Defaults to the latest version of OpenSearch.</p>"
+        },
+        "AvailablePluginProperties":{
+          "shape":"PluginProperties",
+          "documentation":"<p>If the package is a <code>ZIP-PLUGIN</code> package, additional information about plugin properties.</p>"
+        },
+        "AvailablePackageConfiguration":{
+          "shape":"PackageConfiguration",
+          "documentation":"<p>This represents the available configuration parameters for the package.</p>"
+        },
+        "AllowListedUserList":{
+          "shape":"PackageUserList",
+          "documentation":"<p> A list of users who are allowed to view and associate the package. This field is only visible to the owner of a package.</p>"
+        },
+        "PackageOwner":{
+          "shape":"PackageOwner",
+          "documentation":"<p>The owner of the package who is allowed to create/update a package and add users to the package scope.</p>"
+        },
+        "PackageVendingOptions":{
+          "shape":"PackageVendingOptions",
+          "documentation":"<p>Package Vending Options for a package.</p>"
+        },
+        "PackageEncryptionOptions":{
+          "shape":"PackageEncryptionOptions",
+          "documentation":"<p>Package Encryption Options for a package.</p>"
         }
       },
       "documentation":"<p>Basic information about a package.</p>"
+    },
+    "PackageDetailsForAssociation":{
+      "type":"structure",
+      "required":["PackageID"],
+      "members":{
+        "PackageID":{
+          "shape":"PackageID",
+          "documentation":"<p>Internal ID of the package that you want to associate with a domain.</p>"
+        },
+        "PrerequisitePackageIDList":{
+          "shape":"PackageIDList",
+          "documentation":"<p>List of package IDs that must be associated with the domain with or before the package can be associated.</p>"
+        },
+        "AssociationConfiguration":{
+          "shape":"PackageAssociationConfiguration",
+          "documentation":"<p>The configuration parameters for associating the package with a domain.</p>"
+        }
+      },
+      "documentation":"<p> Details of a package that is associated with a domain.</p>"
+    },
+    "PackageDetailsForAssociationList":{
+      "type":"list",
+      "member":{"shape":"PackageDetailsForAssociation"}
     },
     "PackageDetailsList":{
       "type":"list",
       "member":{"shape":"PackageDetails"}
     },
-    "PackageID":{"type":"string"},
+    "PackageEncryptionOptions":{
+      "type":"structure",
+      "required":["EncryptionEnabled"],
+      "members":{
+        "KmsKeyIdentifier":{
+          "shape":"KmsKeyId",
+          "documentation":"<p> KMS key ID for encrypting the package.</p>"
+        },
+        "EncryptionEnabled":{
+          "shape":"Boolean",
+          "documentation":"<p>This indicates whether encryption is enabled for the package.</p>"
+        }
+      },
+      "documentation":"<p>Encryption options for a package.</p>"
+    },
+    "PackageID":{
+      "type":"string",
+      "pattern":"^([FG][0-9]+)$|^(pkg-[a-f0-9]+)$"
+    },
+    "PackageIDList":{
+      "type":"list",
+      "member":{"shape":"PackageID"}
+    },
     "PackageName":{
       "type":"string",
-      "max":28,
+      "max":256,
       "min":3,
       "pattern":"[a-z][a-z0-9\\-]+"
+    },
+    "PackageOwner":{
+      "type":"string",
+      "max":1024
+    },
+    "PackageScopeOperationEnum":{
+      "type":"string",
+      "enum":[
+        "ADD",
+        "OVERRIDE",
+        "REMOVE"
+      ]
     },
     "PackageSource":{
       "type":"structure",
@@ -4579,7 +6541,33 @@
     },
     "PackageType":{
       "type":"string",
-      "enum":["TXT-DICTIONARY"]
+      "enum":[
+        "TXT-DICTIONARY",
+        "ZIP-PLUGIN",
+        "PACKAGE-LICENSE",
+        "PACKAGE-CONFIG"
+      ]
+    },
+    "PackageUser":{
+      "type":"string",
+      "max":12,
+      "min":6,
+      "pattern":"^[0-9]{12}$|^GLOBAL$"
+    },
+    "PackageUserList":{
+      "type":"list",
+      "member":{"shape":"PackageUser"}
+    },
+    "PackageVendingOptions":{
+      "type":"structure",
+      "required":["VendingEnabled"],
+      "members":{
+        "VendingEnabled":{
+          "shape":"Boolean",
+          "documentation":"<p>This indicates whether vending is enabled for the package to determine if package can be used by other users. </p>"
+        }
+      },
+      "documentation":"<p>The vending options for a package to determine if the package can be used by other users. </p>"
     },
     "PackageVersion":{"type":"string"},
     "PackageVersionHistory":{
@@ -4596,6 +6584,14 @@
         "CreatedAt":{
           "shape":"CreatedAt",
           "documentation":"<p>The date and time when the package was created.</p>"
+        },
+        "PluginProperties":{
+          "shape":"PluginProperties",
+          "documentation":"<p>Additional information about plugin properties if the package is a <code>ZIP-PLUGIN</code> package.</p>"
+        },
+        "PackageConfiguration":{
+          "shape":"PackageConfiguration",
+          "documentation":"<p>The configuration details for a specific version of a package.</p>"
         }
       },
       "documentation":"<p>Details about a package version.</p>"
@@ -4611,6 +6607,48 @@
       "pattern":".*",
       "sensitive":true
     },
+    "PluginClassName":{
+      "type":"string",
+      "max":1024
+    },
+    "PluginDescription":{
+      "type":"string",
+      "max":1024
+    },
+    "PluginName":{
+      "type":"string",
+      "max":1024
+    },
+    "PluginProperties":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"PluginName",
+          "documentation":"<p>The name of the plugin.</p>"
+        },
+        "Description":{
+          "shape":"PluginDescription",
+          "documentation":"<p>The description of the plugin.</p>"
+        },
+        "Version":{
+          "shape":"PluginVersion",
+          "documentation":"<p>The version of the plugin.</p>"
+        },
+        "ClassName":{
+          "shape":"PluginClassName",
+          "documentation":"<p>The name of the class to load.</p>"
+        },
+        "UncompressedSizeInBytes":{
+          "shape":"UncompressedPluginSizeInBytes",
+          "documentation":"<p>The uncompressed size of the plugin.</p>"
+        }
+      },
+      "documentation":"<p>Basic information about the plugin.</p>"
+    },
+    "PluginVersion":{
+      "type":"string",
+      "max":1024
+    },
     "PolicyDocument":{
       "type":"string",
       "documentation":"<p>Access policy rules for an Amazon OpenSearch Service domain endpoint. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-access-policies\">Configuring access policies</a>. The maximum size of a policy document is 100 KB.</p>",
@@ -4623,6 +6661,13 @@
       "enum":[
         "AWS_ACCOUNT",
         "AWS_SERVICE"
+      ]
+    },
+    "PropertyValueType":{
+      "type":"string",
+      "enum":[
+        "PLAIN_TEXT",
+        "STRINGIFIED_JSON"
       ]
     },
     "PurchaseReservedInstanceOfferingRequest":{
@@ -4718,14 +6763,28 @@
       "members":{
         "ARN":{
           "shape":"ARN",
-          "documentation":"<p>The Amazon Resource Name (ARN) of the domain from which you want to delete the specified tags.</p>"
+          "documentation":"<p>The Amazon Resource Name (ARN) of the domain, data source, or application from which you want to delete the specified tags.</p>"
         },
         "TagKeys":{
           "shape":"StringList",
-          "documentation":"<p>The list of tag keys to remove from the domain.</p>"
+          "documentation":"<p>The list of tag keys to remove from the domain, data source, or application.</p>"
         }
       },
       "documentation":"<p>Container for the request parameters to the <code>RemoveTags</code> operation.</p>"
+    },
+    "RequestId":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^([\\s\\S]*)$"
+    },
+    "RequirementLevel":{
+      "type":"string",
+      "enum":[
+        "REQUIRED",
+        "OPTIONAL",
+        "NONE"
+      ]
     },
     "ReservationToken":{
       "type":"string",
@@ -4867,10 +6926,7 @@
     },
     "RevokeVpcEndpointAccessRequest":{
       "type":"structure",
-      "required":[
-        "DomainName",
-        "Account"
-      ],
+      "required":["DomainName"],
       "members":{
         "DomainName":{
           "shape":"DomainName",
@@ -4881,6 +6937,10 @@
         "Account":{
           "shape":"AWSAccount",
           "documentation":"<p>The account ID to revoke access from.</p>"
+        },
+        "Service":{
+          "shape":"AWSServicePrincipal",
+          "documentation":"<p>The service SP to revoke access from.</p>"
         }
       }
     },
@@ -4895,6 +6955,18 @@
       "min":20,
       "pattern":"arn:(aws|aws\\-cn|aws\\-us\\-gov|aws\\-iso|aws\\-iso\\-b):iam::[0-9]+:role\\/.*"
     },
+    "RolesKey":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "RolesKeyIdCOption":{
+      "type":"string",
+      "enum":[
+        "GroupName",
+        "GroupId"
+      ]
+    },
     "RollbackOnDisable":{
       "type":"string",
       "documentation":"<p>The rollback state while disabling Auto-Tune for the domain.</p>",
@@ -4907,6 +6979,16 @@
       "type":"string",
       "max":63,
       "min":3
+    },
+    "S3GlueDataCatalog":{
+      "type":"structure",
+      "members":{
+        "RoleArn":{
+          "shape":"RoleArn",
+          "documentation":"<p>&gt;The Amazon Resource Name (ARN) for the S3 Glue Data Catalog.</p>"
+        }
+      },
+      "documentation":"<p>Information about the Amazon S3 Glue Data Catalog.</p>"
     },
     "S3Key":{
       "type":"string",
@@ -5111,6 +7193,17 @@
         "SYSTEM"
       ]
     },
+    "SecurityLakeDirectQueryDataSource":{
+      "type":"structure",
+      "required":["RoleArn"],
+      "members":{
+        "RoleArn":{
+          "shape":"DirectQueryDataSourceRoleArn",
+          "documentation":"<p> The unique identifier of the IAM role that grants OpenSearch Service permission to access the specified data source. </p>"
+        }
+      },
+      "documentation":"<p> Configuration details for a Security Lake data source that can be used for direct queries. </p>"
+    },
     "ServiceSoftwareOptions":{
       "type":"structure",
       "members":{
@@ -5155,7 +7248,7 @@
     },
     "SkipUnavailableStatus":{
       "type":"string",
-      "documentation":"<p>Status of SkipUnavailable param for outbound connection.</p> <ul> <li> <p> <b>ENABLED</b> - The SkipUnavailable param is enabled for the connection.</p> </li> <li> <p> <b>DISABLED</b> - The SkipUnavailable param is disabled for the connection.</p> </li> </ul>",
+      "documentation":"<p>The status of <code>SkipUnavailable</code> setting for the outbound connection.</p> <ul> <li> <p> <b>ENABLED</b> - The <code>SkipUnavailable</code> setting is enabled for the connection.</p> </li> <li> <p> <b>DISABLED</b> - The <code>SkipUnavailable</code> setting is disabled for the connection.</p> </li> </ul>",
       "enum":[
         "ENABLED",
         "DISABLED"
@@ -5230,6 +7323,40 @@
       "documentation":"<p>The status of the service software options for a domain.</p>"
     },
     "StartAt":{"type":"timestamp"},
+    "StartDomainMaintenanceRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "Action"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "documentation":"<p>The name of the domain.</p>",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "Action":{
+          "shape":"MaintenanceType",
+          "documentation":"<p>The name of the action.</p>"
+        },
+        "NodeId":{
+          "shape":"NodeId",
+          "documentation":"<p>The ID of the data node.</p>"
+        }
+      },
+      "documentation":"<p>Container for the parameters to the <code>StartDomainMaintenance</code> operation.</p>"
+    },
+    "StartDomainMaintenanceResponse":{
+      "type":"structure",
+      "members":{
+        "MaintenanceId":{
+          "shape":"RequestId",
+          "documentation":"<p>The request ID of requested action.</p>"
+        }
+      },
+      "documentation":"<p>The result of a <code>StartDomainMaintenance</code> request that information about the requested action. </p>"
+    },
     "StartServiceSoftwareUpdateRequest":{
       "type":"structure",
       "required":["DomainName"],
@@ -5323,11 +7450,25 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "SubjectKey":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "SubjectKeyIdCOption":{
+      "type":"string",
+      "enum":[
+        "UserName",
+        "UserId",
+        "Email"
+      ]
+    },
     "TLSSecurityPolicy":{
       "type":"string",
       "enum":[
         "Policy-Min-TLS-1-0-2019-07",
-        "Policy-Min-TLS-1-2-2019-07"
+        "Policy-Min-TLS-1-2-2019-07",
+        "Policy-Min-TLS-1-2-PFS-2023-10"
       ]
     },
     "Tag":{
@@ -5372,10 +7513,148 @@
       "documentation":"<p>The unit of a maintenance schedule duration. Valid value is <code>HOUR</code>.</p>",
       "enum":["HOURS"]
     },
+    "Timestamp":{"type":"timestamp"},
     "TotalNumberOfStages":{"type":"integer"},
     "UIntValue":{
       "type":"integer",
       "min":0
+    },
+    "UncompressedPluginSizeInBytes":{"type":"long"},
+    "UpdateApplicationRequest":{
+      "type":"structure",
+      "required":["id"],
+      "members":{
+        "id":{
+          "shape":"Id",
+          "documentation":"<p>Unique identifier of the OpenSearch Application to be updated.</p>",
+          "location":"uri",
+          "locationName":"id"
+        },
+        "dataSources":{
+          "shape":"DataSources",
+          "documentation":"<p>Data sources to be associated with the OpenSearch Application.</p>"
+        },
+        "appConfigs":{
+          "shape":"AppConfigs",
+          "documentation":"<p>Configurations to be changed for the OpenSearch Application.</p>"
+        }
+      }
+    },
+    "UpdateApplicationResponse":{
+      "type":"structure",
+      "members":{
+        "id":{
+          "shape":"Id",
+          "documentation":"<p>Unique identifier of the updated OpenSearch Application.</p>"
+        },
+        "name":{
+          "shape":"ApplicationName",
+          "documentation":"<p>Name of the updated OpenSearch Application.</p>"
+        },
+        "arn":{"shape":"ARN"},
+        "dataSources":{
+          "shape":"DataSources",
+          "documentation":"<p>Data sources associated with the updated OpenSearch Application.</p>"
+        },
+        "iamIdentityCenterOptions":{
+          "shape":"IamIdentityCenterOptions",
+          "documentation":"<p>IAM Identity Center settings for the updated OpenSearch Application.</p>"
+        },
+        "appConfigs":{
+          "shape":"AppConfigs",
+          "documentation":"<p>Configurations for the updated OpenSearch Application.</p>"
+        },
+        "createdAt":{
+          "shape":"Timestamp",
+          "documentation":"<p>Timestamp at which the OpenSearch Application was created.</p>"
+        },
+        "lastUpdatedAt":{
+          "shape":"Timestamp",
+          "documentation":"<p>Timestamp at which the OpenSearch Application was last updated.</p>"
+        }
+      }
+    },
+    "UpdateDataSourceRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "Name",
+        "DataSourceType"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "documentation":"<p>The name of the domain.</p>",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "Name":{
+          "shape":"DataSourceName",
+          "documentation":"<p>The name of the data source to modify.</p>",
+          "location":"uri",
+          "locationName":"DataSourceName"
+        },
+        "DataSourceType":{
+          "shape":"DataSourceType",
+          "documentation":"<p>The type of data source.</p>"
+        },
+        "Description":{
+          "shape":"DataSourceDescription",
+          "documentation":"<p>A new description of the data source.</p>"
+        },
+        "Status":{
+          "shape":"DataSourceStatus",
+          "documentation":"<p>The status of the data source update.</p>"
+        }
+      },
+      "documentation":"<p>Container for the parameters to the <code>UpdateDataSource</code> operation.</p>"
+    },
+    "UpdateDataSourceResponse":{
+      "type":"structure",
+      "members":{
+        "Message":{
+          "shape":"String",
+          "documentation":"<p>A message associated with the updated data source.</p>"
+        }
+      },
+      "documentation":"<p>The result of an <code>UpdateDataSource</code> operation.</p>"
+    },
+    "UpdateDirectQueryDataSourceRequest":{
+      "type":"structure",
+      "required":[
+        "DataSourceName",
+        "DataSourceType",
+        "OpenSearchArns"
+      ],
+      "members":{
+        "DataSourceName":{
+          "shape":"DirectQueryDataSourceName",
+          "documentation":"<p> A unique, user-defined label to identify the data source within your OpenSearch Service environment. </p>",
+          "location":"uri",
+          "locationName":"DataSourceName"
+        },
+        "DataSourceType":{
+          "shape":"DirectQueryDataSourceType",
+          "documentation":"<p> The supported Amazon Web Services service that you want to use as the source for direct queries in OpenSearch Service. </p>"
+        },
+        "Description":{
+          "shape":"DirectQueryDataSourceDescription",
+          "documentation":"<p> An optional text field for providing additional context and details about the data source. </p>"
+        },
+        "OpenSearchArns":{
+          "shape":"DirectQueryOpenSearchARNList",
+          "documentation":"<p> A list of Amazon Resource Names (ARNs) for the OpenSearch collections that are associated with the direct query data source. </p>"
+        }
+      }
+    },
+    "UpdateDirectQueryDataSourceResponse":{
+      "type":"structure",
+      "members":{
+        "DataSourceArn":{
+          "shape":"String",
+          "documentation":"<p> The unique, system-generated identifier that represents the data source. </p>"
+        }
+      }
     },
     "UpdateDomainConfigRequest":{
       "type":"structure",
@@ -5415,6 +7694,10 @@
           "shape":"PolicyDocument",
           "documentation":"<p>Identity and Access Management (IAM) access policy as a JSON-formatted string.</p>"
         },
+        "IPAddressType":{
+          "shape":"IPAddressType",
+          "documentation":"<p>Specify either dual stack or IPv4 as your IP address type. Dual stack allows you to share domain resources across IPv4 and IPv6 address types, and is the recommended option. If your IP address type is currently set to dual stack, you can't change it. </p>"
+        },
         "LogPublishingOptions":{
           "shape":"LogPublishingOptions",
           "documentation":"<p>Options to publish OpenSearch logs to Amazon CloudWatch Logs.</p>"
@@ -5435,6 +7718,7 @@
           "shape":"AdvancedSecurityOptionsInput",
           "documentation":"<p>Options for fine-grained access control.</p>"
         },
+        "IdentityCenterOptions":{"shape":"IdentityCenterOptionsInput"},
         "AutoTuneOptions":{
           "shape":"AutoTuneOptions",
           "documentation":"<p>Options for Auto-Tune.</p>"
@@ -5454,6 +7738,10 @@
         "SoftwareUpdateOptions":{
           "shape":"SoftwareUpdateOptions",
           "documentation":"<p>Service software update options for the domain.</p>"
+        },
+        "AIMLOptions":{
+          "shape":"AIMLOptionsInput",
+          "documentation":"<p>Options for all machine learning features for the specified domain.</p>"
         }
       },
       "documentation":"<p>Container for the request parameters to the <code>UpdateDomain</code> operation.</p>"
@@ -5499,6 +7787,14 @@
         "CommitMessage":{
           "shape":"CommitMessage",
           "documentation":"<p>Commit message for the updated file, which is shown as part of <code>GetPackageVersionHistoryResponse</code>.</p>"
+        },
+        "PackageConfiguration":{
+          "shape":"PackageConfiguration",
+          "documentation":"<p>The updated configuration details for a package.</p>"
+        },
+        "PackageEncryptionOptions":{
+          "shape":"PackageEncryptionOptions",
+          "documentation":"<p>Encryption options for a package.</p>"
         }
       },
       "documentation":"<p>Container for request parameters to the <code>UpdatePackage</code> operation.</p>"
@@ -5512,6 +7808,45 @@
         }
       },
       "documentation":"<p>Container for the response returned by the <code>UpdatePackage</code> operation.</p>"
+    },
+    "UpdatePackageScopeRequest":{
+      "type":"structure",
+      "required":[
+        "PackageID",
+        "Operation",
+        "PackageUserList"
+      ],
+      "members":{
+        "PackageID":{
+          "shape":"PackageID",
+          "documentation":"<p>ID of the package whose scope is being updated.</p>"
+        },
+        "Operation":{
+          "shape":"PackageScopeOperationEnum",
+          "documentation":"<p> The operation to perform on the package scope (e.g., add/remove/override users).</p>"
+        },
+        "PackageUserList":{
+          "shape":"PackageUserList",
+          "documentation":"<p> List of users to be added or removed from the package scope.</p>"
+        }
+      }
+    },
+    "UpdatePackageScopeResponse":{
+      "type":"structure",
+      "members":{
+        "PackageID":{
+          "shape":"PackageID",
+          "documentation":"<p> ID of the package whose scope was updated.</p>"
+        },
+        "Operation":{
+          "shape":"PackageScopeOperationEnum",
+          "documentation":"<p>The operation that was performed on the package scope.</p>"
+        },
+        "PackageUserList":{
+          "shape":"PackageUserList",
+          "documentation":"<p> List of users who have access to the package after the scope update.</p>"
+        }
+      }
     },
     "UpdateScheduledActionRequest":{
       "type":"structure",
@@ -5995,5 +8330,5 @@
       ]
     }
   },
-  "documentation":"<p>Use the Amazon OpenSearch Service configuration API to create, configure, and manage OpenSearch Service domains.</p> <p>For sample code that uses the configuration API, see the <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/opensearch-configuration-samples.html\"> <i>Amazon OpenSearch Service Developer Guide</i> </a>. The guide also contains <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/request-signing.html\">sample code</a> for sending signed HTTP requests to the OpenSearch APIs. The endpoint for configuration service requests is Region specific: es.<i>region</i>.amazonaws.com. For example, es.us-east-1.amazonaws.com. For a current list of supported Regions and endpoints, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html#service-regions\">Amazon Web Services service endpoints</a>.</p>"
+  "documentation":"<p>Use the Amazon OpenSearch Service configuration API to create, configure, and manage OpenSearch Service domains. The endpoint for configuration service requests is Region specific: es.<i>region</i>.amazonaws.com. For example, es.us-east-1.amazonaws.com. For a current list of supported Regions and endpoints, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html#service-regions\">Amazon Web Services service endpoints</a>.</p>"
 }

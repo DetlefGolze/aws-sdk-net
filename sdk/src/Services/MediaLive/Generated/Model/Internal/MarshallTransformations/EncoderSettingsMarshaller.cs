@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(EncoderSettings requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAudioDescriptions())
             {
                 context.Writer.WritePropertyName("audioDescriptions");
@@ -108,6 +111,17 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     context.Writer.WriteObjectEnd();
                 }
                 context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetColorCorrectionSettings())
+            {
+                context.Writer.WritePropertyName("colorCorrectionSettings");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = ColorCorrectionSettingsMarshaller.Instance;
+                marshaller.Marshall(requestObject.ColorCorrectionSettings, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetFeatureActivations())

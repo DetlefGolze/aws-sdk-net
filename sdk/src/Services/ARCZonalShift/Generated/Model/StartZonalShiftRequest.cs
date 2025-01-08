@@ -26,16 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ARCZonalShift.Model
 {
     /// <summary>
     /// Container for the parameters to the StartZonalShift operation.
     /// You start a zonal shift to temporarily move load balancer traffic away from an Availability
-    /// Zone in a AWS Region, to help your application recover immediately, for example, from
-    /// a developer's bad code deployment or from an AWS infrastructure failure in a single
-    /// Availability Zone. You can start a zonal shift in Route 53 ARC only for managed resources
-    /// in your account in an AWS Region. Resources are automatically registered with Route
-    /// 53 ARC by AWS services.
+    /// Zone in an Amazon Web Services Region, to help your application recover immediately,
+    /// for example, from a developer's bad code deployment or from an Amazon Web Services
+    /// infrastructure failure in a single Availability Zone. You can start a zonal shift
+    /// in Route 53 ARC only for managed resources in your Amazon Web Services account in
+    /// an Amazon Web Services Region. Resources are automatically registered with Route 53
+    /// ARC by Amazon Web Services services.
     /// 
     ///  
     /// <para>
@@ -65,9 +67,10 @@ namespace Amazon.ARCZonalShift.Model
         /// <summary>
         /// Gets and sets the property AwayFrom. 
         /// <para>
-        /// The Availability Zone that traffic is moved away from for a resource when you start
-        /// a zonal shift. Until the zonal shift expires or you cancel it, traffic for the resource
-        /// is instead moved to other Availability Zones in the AWS Region.
+        /// The Availability Zone (for example, <c>use1-az1</c>) that traffic is moved away from
+        /// for a resource when you start a zonal shift. Until the zonal shift expires or you
+        /// cancel it, traffic for the resource is instead moved to other Availability Zones in
+        /// the Amazon Web Services Region.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=20)]
@@ -121,12 +124,19 @@ namespace Amazon.ARCZonalShift.Model
         /// To set a length of time for a zonal shift to be active, specify a whole number, and
         /// then one of the following, with no space:
         /// </para>
-        ///  <pre><code> &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;A lowercase letter m:&lt;/b&gt;
-        /// To specify that the value is in minutes.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;
-        /// &lt;b&gt;A lowercase letter h:&lt;/b&gt; To specify that the value is in hours.&lt;/p&gt;
-        /// &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;For example: &lt;code&gt;20h&lt;/code&gt; means the
-        /// zonal shift expires in 20 hours. &lt;code&gt;120m&lt;/code&gt; means the zonal shift
-        /// expires in 120 minutes (2 hours).&lt;/p&gt; </code></pre>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>A lowercase letter m:</b> To specify that the value is in minutes.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>A lowercase letter h:</b> To specify that the value is in hours.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For example: <c>20h</c> means the zonal shift expires in 20 hours. <c>120m</c> means
+        /// the zonal shift expires in 120 minutes (2 hours).
+        /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=2, Max=5)]
         public string ExpiresIn
@@ -144,13 +154,13 @@ namespace Amazon.ARCZonalShift.Model
         /// <summary>
         /// Gets and sets the property ResourceIdentifier. 
         /// <para>
-        /// The identifier for the resource to include in a zonal shift. The identifier is the
-        /// Amazon Resource Name (ARN) for the resource.
+        /// The identifier for the resource that Amazon Web Services shifts traffic for. The identifier
+        /// is the Amazon Resource Name (ARN) for the resource.
         /// </para>
         ///  
         /// <para>
-        /// At this time, you can only start a zonal shift for Network Load Balancers and Application
-        /// Load Balancers with cross-zone load balancing turned off.
+        /// At this time, supported resources are Network Load Balancers and Application Load
+        /// Balancers with cross-zone load balancing turned off.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=8, Max=1024)]

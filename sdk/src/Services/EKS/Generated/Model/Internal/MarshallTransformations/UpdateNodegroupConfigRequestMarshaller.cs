@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EKS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -69,6 +70,7 @@ namespace Amazon.EKS.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetClientRequestToken())
@@ -89,6 +91,17 @@ namespace Amazon.EKS.Model.Internal.MarshallTransformations
 
                     var marshaller = UpdateLabelsPayloadMarshaller.Instance;
                     marshaller.Marshall(publicRequest.Labels, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetNodeRepairConfig())
+                {
+                    context.Writer.WritePropertyName("nodeRepairConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = NodeRepairConfigMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.NodeRepairConfig, context);
 
                     context.Writer.WriteObjectEnd();
                 }

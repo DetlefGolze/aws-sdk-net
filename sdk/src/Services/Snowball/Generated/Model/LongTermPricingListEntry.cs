@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
-    /// Each <code>LongTermPricingListEntry</code> object contains information about a long-term
+    /// Each <c>LongTermPricingListEntry</c> object contains information about a long-term
     /// pricing type.
     /// </summary>
     public partial class LongTermPricingListEntry
     {
         private string _currentActiveJob;
         private bool? _isLongTermPricingAutoRenew;
-        private List<string> _jobIds = new List<string>();
+        private List<string> _jobIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _longTermPricingEndDate;
         private string _longTermPricingId;
         private DateTime? _longTermPricingStartDate;
@@ -67,8 +68,8 @@ namespace Amazon.Snowball.Model
         /// <summary>
         /// Gets and sets the property IsLongTermPricingAutoRenew. 
         /// <para>
-        /// If set to <code>true</code>, specifies that the current long-term pricing type for
-        /// the device should be automatically renewed before the long-term pricing contract expires.
+        /// If set to <c>true</c>, specifies that the current long-term pricing type for the device
+        /// should be automatically renewed before the long-term pricing contract expires.
         /// </para>
         /// </summary>
         public bool IsLongTermPricingAutoRenew
@@ -98,7 +99,7 @@ namespace Amazon.Snowball.Model
         // Check to see if JobIds property is set
         internal bool IsSetJobIds()
         {
-            return this._jobIds != null && this._jobIds.Count > 0; 
+            return this._jobIds != null && (this._jobIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

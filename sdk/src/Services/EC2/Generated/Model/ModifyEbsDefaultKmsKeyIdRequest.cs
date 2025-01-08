@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -48,8 +49,8 @@ namespace Amazon.EC2.Model
     /// </para>
     ///  
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
-    /// EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/ebs/latest/userguide/ebs-encryption.html">Amazon
+    /// EBS encryption</a> in the <i>Amazon EBS User Guide</i>.
     /// </para>
     /// </summary>
     public partial class ModifyEbsDefaultKmsKeyIdRequest : AmazonEC2Request
@@ -59,9 +60,9 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// The identifier of the Key Management Service (KMS) KMS key to use for Amazon EBS encryption.
-        /// If this parameter is not specified, your KMS key for Amazon EBS is used. If <code>KmsKeyId</code>
-        /// is specified, the encrypted state must be <code>true</code>.
+        /// The identifier of the KMS key to use for Amazon EBS encryption. If this parameter
+        /// is not specified, your KMS key for Amazon EBS is used. If <c>KmsKeyId</c> is specified,
+        /// the encrypted state must be <c>true</c>.
         /// </para>
         ///  
         /// <para>

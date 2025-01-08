@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppConfig.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.AppConfig.Model
         /// <summary>
         /// Gets and sets the property AlarmRoleArn. 
         /// <para>
-        /// ARN of an Identity and Access Management (IAM) role for AppConfig to monitor <code>AlarmArn</code>.
+        /// ARN of an Identity and Access Management (IAM) role for AppConfig to monitor <c>AlarmArn</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]

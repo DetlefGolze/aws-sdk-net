@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptunedata.Model
 {
     /// <summary>
@@ -37,6 +38,13 @@ namespace Amazon.Neptunedata.Model
     /// <para>
     /// See <a href="https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-status.htm">Neptune
     /// Loader Get-Status API</a> for more information.
+    /// </para>
+    ///  
+    /// <para>
+    /// When invoking this operation in a Neptune cluster that has IAM authentication enabled,
+    /// the IAM user or role making the request must have a policy attached that allows the
+    /// <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#getloaderjobstatus">neptune-db:GetLoaderJobStatus</a>
+    /// IAM action in that cluster..
     /// </para>
     /// </summary>
     public partial class GetLoaderJobStatusRequest : AmazonNeptunedataRequest
@@ -50,8 +58,8 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property Details. 
         /// <para>
-        /// Flag indicating whether or not to include details beyond the overall status (<code>TRUE</code>
-        /// or <code>FALSE</code>; the default is <code>FALSE</code>).
+        /// Flag indicating whether or not to include details beyond the overall status (<c>TRUE</c>
+        /// or <c>FALSE</c>; the default is <c>FALSE</c>).
         /// </para>
         /// </summary>
         public bool Details
@@ -69,13 +77,13 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property Errors. 
         /// <para>
-        /// Flag indicating whether or not to include a list of errors encountered (<code>TRUE</code>
-        /// or <code>FALSE</code>; the default is <code>FALSE</code>).
+        /// Flag indicating whether or not to include a list of errors encountered (<c>TRUE</c>
+        /// or <c>FALSE</c>; the default is <c>FALSE</c>).
         /// </para>
         ///  
         /// <para>
-        /// The list of errors is paged. The <code>page</code> and <code>errorsPerPage</code>
-        /// parameters allow you to page through all the errors.
+        /// The list of errors is paged. The <c>page</c> and <c>errorsPerPage</c> parameters allow
+        /// you to page through all the errors.
         /// </para>
         /// </summary>
         public bool Errors
@@ -93,8 +101,8 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property ErrorsPerPage. 
         /// <para>
-        /// The number of errors returned in each page (a positive integer; the default is <code>10</code>).
-        /// Only valid when the <code>errors</code> parameter set to <code>TRUE</code>.
+        /// The number of errors returned in each page (a positive integer; the default is <c>10</c>).
+        /// Only valid when the <c>errors</c> parameter set to <c>TRUE</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -132,8 +140,8 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property Page. 
         /// <para>
-        /// The error page number (a positive integer; the default is <code>1</code>). Only valid
-        /// when the <code>errors</code> parameter is set to <code>TRUE</code>.
+        /// The error page number (a positive integer; the default is <c>1</c>). Only valid when
+        /// the <c>errors</c> parameter is set to <c>TRUE</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]

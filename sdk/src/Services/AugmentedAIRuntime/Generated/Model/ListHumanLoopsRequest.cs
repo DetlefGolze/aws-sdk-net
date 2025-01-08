@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AugmentedAIRuntime.Model
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.AugmentedAIRuntime.Model
         /// Gets and sets the property CreationTimeAfter. 
         /// <para>
         /// (Optional) The timestamp of the date when you want the human loops to begin in ISO
-        /// 8601 format. For example, <code>2020-02-24</code>.
+        /// 8601 format. For example, <c>2020-02-24</c>.
         /// </para>
         /// </summary>
         public DateTime CreationTimeAfter
@@ -65,7 +66,7 @@ namespace Amazon.AugmentedAIRuntime.Model
         /// Gets and sets the property CreationTimeBefore. 
         /// <para>
         /// (Optional) The timestamp of the date before which you want the human loops to begin
-        /// in ISO 8601 format. For example, <code>2020-02-24</code>.
+        /// in ISO 8601 format. For example, <c>2020-02-24</c>.
         /// </para>
         /// </summary>
         public DateTime CreationTimeBefore
@@ -103,9 +104,8 @@ namespace Amazon.AugmentedAIRuntime.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The total number of items to return. If the total number of available items is more
-        /// than the value specified in <code>MaxResults</code>, then a <code>NextToken</code>
-        /// is returned in the output. You can use this token to display the next page of results.
-        /// 
+        /// than the value specified in <c>MaxResults</c>, then a <c>NextToken</c> is returned
+        /// in the output. You can use this token to display the next page of results. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -143,8 +143,7 @@ namespace Amazon.AugmentedAIRuntime.Model
         /// <summary>
         /// Gets and sets the property SortOrder. 
         /// <para>
-        /// Optional. The order for displaying results. Valid values: <code>Ascending</code> and
-        /// <code>Descending</code>.
+        /// Optional. The order for displaying results. Valid values: <c>Ascending</c> and <c>Descending</c>.
         /// </para>
         /// </summary>
         public SortOrder SortOrder

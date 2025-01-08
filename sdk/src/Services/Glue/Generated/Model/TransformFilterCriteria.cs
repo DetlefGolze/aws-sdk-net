@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.Glue.Model
         private DateTime? _lastModifiedAfter;
         private DateTime? _lastModifiedBefore;
         private string _name;
-        private List<SchemaColumn> _schema = new List<SchemaColumn>();
+        private List<SchemaColumn> _schema = AWSConfigs.InitializeCollections ? new List<SchemaColumn>() : null;
         private TransformStatusType _status;
         private TransformType _transformType;
 
@@ -159,10 +160,10 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property Schema. 
         /// <para>
-        /// Filters on datasets with a specific schema. The <code>Map&lt;Column, Type&gt;</code>
-        /// object is an array of key-value pairs representing the schema this transform accepts,
-        /// where <code>Column</code> is the name of a column, and <code>Type</code> is the type
-        /// of the data such as an integer or string. Has an upper bound of 100 columns.
+        /// Filters on datasets with a specific schema. The <c>Map&lt;Column, Type&gt;</c> object
+        /// is an array of key-value pairs representing the schema this transform accepts, where
+        /// <c>Column</c> is the name of a column, and <c>Type</c> is the type of the data such
+        /// as an integer or string. Has an upper bound of 100 columns.
         /// </para>
         /// </summary>
         [AWSProperty(Max=100)]
@@ -175,7 +176,7 @@ namespace Amazon.Glue.Model
         // Check to see if Schema property is set
         internal bool IsSetSchema()
         {
-            return this._schema != null && this._schema.Count > 0; 
+            return this._schema != null && (this._schema.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

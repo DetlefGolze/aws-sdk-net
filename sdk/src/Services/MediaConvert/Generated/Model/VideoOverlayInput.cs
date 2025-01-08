@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaConvert.Model
 {
     /// <summary>
@@ -35,15 +36,14 @@ namespace Amazon.MediaConvert.Model
     public partial class VideoOverlayInput
     {
         private string _fileInput;
-        private List<VideoOverlayInputClipping> _inputClippings = new List<VideoOverlayInputClipping>();
+        private List<VideoOverlayInputClipping> _inputClippings = AWSConfigs.InitializeCollections ? new List<VideoOverlayInputClipping>() : null;
         private InputTimecodeSource _timecodeSource;
         private string _timecodeStart;
 
         /// <summary>
-        /// Gets and sets the property FileInput. Specify the input file S3, HTTP, or HTTPS URI
-        /// for your video overlay. For consistency in color and formatting in your output video
-        /// image, we recommend that you specify a video with similar characteristics as the underlying
-        /// input video.
+        /// Gets and sets the property FileInput. Specify the input file S3, HTTP, or HTTPS URL
+        /// for your video overlay.To specify one or more Transitions for your base input video
+        /// instead: Leave blank.
         /// </summary>
         public string FileInput
         {
@@ -71,12 +71,12 @@ namespace Amazon.MediaConvert.Model
         // Check to see if InputClippings property is set
         internal bool IsSetInputClippings()
         {
-            return this._inputClippings != null && this._inputClippings.Count > 0; 
+            return this._inputClippings != null && (this._inputClippings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
-        /// Gets and sets the property TimecodeSource. Specify the starting timecode for your
-        /// video overlay. To use the timecode present in your video overlay: Choose Embedded.
+        /// Gets and sets the property TimecodeSource. Specify the timecode source for your video
+        /// overlay input clips. To use the timecode present in your video overlay: Choose Embedded.
         /// To use a zerobased timecode: Choose Start at 0. To choose a timecode: Choose Specified
         /// start. When you do, enter the starting timecode in Start timecode. If you don't specify
         /// a value for Timecode source, MediaConvert uses Embedded by default.

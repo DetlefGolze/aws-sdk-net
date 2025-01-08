@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateTimeToLive operation.
-    /// The <code>UpdateTimeToLive</code> method enables or disables Time to Live (TTL) for
-    /// the specified table. A successful <code>UpdateTimeToLive</code> call returns the current
-    /// <code>TimeToLiveSpecification</code>. It can take up to one hour for the change to
-    /// fully process. Any additional <code>UpdateTimeToLive</code> calls for the same table
-    /// during this one hour duration result in a <code>ValidationException</code>. 
+    /// The <c>UpdateTimeToLive</c> method enables or disables Time to Live (TTL) for the
+    /// specified table. A successful <c>UpdateTimeToLive</c> call returns the current <c>TimeToLiveSpecification</c>.
+    /// It can take up to one hour for the change to fully process. Any additional <c>UpdateTimeToLive</c>
+    /// calls for the same table during this one hour duration result in a <c>ValidationException</c>.
+    /// 
     /// 
     ///  
     /// <para>
@@ -78,10 +79,11 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property TableName. 
         /// <para>
-        /// The name of the table to be configured.
+        /// The name of the table to be configured. You can also provide the Amazon Resource Name
+        /// (ARN) of the table in this parameter.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=3, Max=255)]
+        [AWSProperty(Required=true, Min=1, Max=1024)]
         public string TableName
         {
             get { return this._tableName; }

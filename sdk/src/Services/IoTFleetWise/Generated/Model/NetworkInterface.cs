@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -41,9 +42,11 @@ namespace Amazon.IoTFleetWise.Model
     public partial class NetworkInterface
     {
         private CanInterface _canInterface;
+        private CustomDecodingInterface _customDecodingInterface;
         private string _interfaceId;
         private ObdInterface _obdInterface;
         private NetworkInterfaceType _type;
+        private VehicleMiddleware _vehicleMiddleware;
 
         /// <summary>
         /// Gets and sets the property CanInterface. 
@@ -62,6 +65,25 @@ namespace Amazon.IoTFleetWise.Model
         internal bool IsSetCanInterface()
         {
             return this._canInterface != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CustomDecodingInterface. 
+        /// <para>
+        /// Information about a <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/APIReference/API_CustomDecodingInterface.html">custom
+        /// network interface</a>.
+        /// </para>
+        /// </summary>
+        public CustomDecodingInterface CustomDecodingInterface
+        {
+            get { return this._customDecodingInterface; }
+            set { this._customDecodingInterface = value; }
+        }
+
+        // Check to see if CustomDecodingInterface property is set
+        internal bool IsSetCustomDecodingInterface()
+        {
+            return this._customDecodingInterface != null;
         }
 
         /// <summary>
@@ -86,7 +108,7 @@ namespace Amazon.IoTFleetWise.Model
         /// <summary>
         /// Gets and sets the property ObdInterface. 
         /// <para>
-        /// Information about a network interface specified by the On-board diagnostic (OBD) II
+        /// Information about a network interface specified by the on-board diagnostic (OBD) II
         /// protocol.
         /// </para>
         /// </summary>
@@ -105,10 +127,10 @@ namespace Amazon.IoTFleetWise.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The network protocol for the vehicle. For example, <code>CAN_SIGNAL</code> specifies
-        /// a protocol that defines how data is communicated between electronic control units
-        /// (ECUs). <code>OBD_SIGNAL</code> specifies a protocol that defines how self-diagnostic
-        /// data is communicated between ECUs.
+        /// The network protocol for the vehicle. For example, <c>CAN_SIGNAL</c> specifies a protocol
+        /// that defines how data is communicated between electronic control units (ECUs). <c>OBD_SIGNAL</c>
+        /// specifies a protocol that defines how self-diagnostic data is communicated between
+        /// ECUs.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -122,6 +144,25 @@ namespace Amazon.IoTFleetWise.Model
         internal bool IsSetType()
         {
             return this._type != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property VehicleMiddleware. 
+        /// <para>
+        /// The vehicle middleware defined as a type of network interface. Examples of vehicle
+        /// middleware include <c>ROS2</c> and <c>SOME/IP</c>.
+        /// </para>
+        /// </summary>
+        public VehicleMiddleware VehicleMiddleware
+        {
+            get { return this._vehicleMiddleware; }
+            set { this._vehicleMiddleware = value; }
+        }
+
+        // Check to see if VehicleMiddleware property is set
+        internal bool IsSetVehicleMiddleware()
+        {
+            return this._vehicleMiddleware != null;
         }
 
     }

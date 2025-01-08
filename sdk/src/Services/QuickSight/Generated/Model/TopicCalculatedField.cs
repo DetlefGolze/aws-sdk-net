@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -34,11 +35,11 @@ namespace Amazon.QuickSight.Model
     public partial class TopicCalculatedField
     {
         private DefaultAggregation _aggregation;
-        private List<string> _allowedAggregations = new List<string>();
+        private List<string> _allowedAggregations = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _calculatedFieldDescription;
         private string _calculatedFieldName;
-        private List<string> _calculatedFieldSynonyms = new List<string>();
-        private List<CellValueSynonym> _cellValueSynonyms = new List<CellValueSynonym>();
+        private List<string> _calculatedFieldSynonyms = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<CellValueSynonym> _cellValueSynonyms = AWSConfigs.InitializeCollections ? new List<CellValueSynonym>() : null;
         private ColumnDataRole _columnDataRole;
         private ComparativeOrder _comparativeOrder;
         private DefaultFormatting _defaultFormatting;
@@ -47,15 +48,15 @@ namespace Amazon.QuickSight.Model
         private bool? _isIncludedInTopic;
         private bool? _neverAggregateInFilter;
         private bool? _nonAdditive;
-        private List<string> _notAllowedAggregations = new List<string>();
+        private List<string> _notAllowedAggregations = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private SemanticType _semanticType;
         private TopicTimeGranularity _timeGranularity;
 
         /// <summary>
         /// Gets and sets the property Aggregation. 
         /// <para>
-        /// The default aggregation. Valid values for this structure are <code>SUM</code>, <code>MAX</code>,
-        /// <code>MIN</code>, <code>COUNT</code>, <code>DISTINCT_COUNT</code>, and <code>AVERAGE</code>.
+        /// The default aggregation. Valid values for this structure are <c>SUM</c>, <c>MAX</c>,
+        /// <c>MIN</c>, <c>COUNT</c>, <c>DISTINCT_COUNT</c>, and <c>AVERAGE</c>.
         /// </para>
         /// </summary>
         public DefaultAggregation Aggregation
@@ -74,9 +75,9 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property AllowedAggregations. 
         /// <para>
         /// The list of aggregation types that are allowed for the calculated field. Valid values
-        /// for this structure are <code>COUNT</code>, <code>DISTINCT_COUNT</code>, <code>MIN</code>,
-        /// <code>MAX</code>, <code>MEDIAN</code>, <code>SUM</code>, <code>AVERAGE</code>, <code>STDEV</code>,
-        /// <code>STDEVP</code>, <code>VAR</code>, <code>VARP</code>, and <code>PERCENTILE</code>.
+        /// for this structure are <c>COUNT</c>, <c>DISTINCT_COUNT</c>, <c>MIN</c>, <c>MAX</c>,
+        /// <c>MEDIAN</c>, <c>SUM</c>, <c>AVERAGE</c>, <c>STDEV</c>, <c>STDEVP</c>, <c>VAR</c>,
+        /// <c>VARP</c>, and <c>PERCENTILE</c>.
         /// </para>
         /// </summary>
         public List<string> AllowedAggregations
@@ -88,7 +89,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if AllowedAggregations property is set
         internal bool IsSetAllowedAggregations()
         {
-            return this._allowedAggregations != null && this._allowedAggregations.Count > 0; 
+            return this._allowedAggregations != null && (this._allowedAggregations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -144,7 +145,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if CalculatedFieldSynonyms property is set
         internal bool IsSetCalculatedFieldSynonyms()
         {
-            return this._calculatedFieldSynonyms != null && this._calculatedFieldSynonyms.Count > 0; 
+            return this._calculatedFieldSynonyms != null && (this._calculatedFieldSynonyms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -162,14 +163,14 @@ namespace Amazon.QuickSight.Model
         // Check to see if CellValueSynonyms property is set
         internal bool IsSetCellValueSynonyms()
         {
-            return this._cellValueSynonyms != null && this._cellValueSynonyms.Count > 0; 
+            return this._cellValueSynonyms != null && (this._cellValueSynonyms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ColumnDataRole. 
         /// <para>
-        /// The column data role for a calculated field. Valid values for this structure are <code>DIMENSION</code>
-        /// and <code>MEASURE</code>.
+        /// The column data role for a calculated field. Valid values for this structure are <c>DIMENSION</c>
+        /// and <c>MEASURE</c>.
         /// </para>
         /// </summary>
         public ColumnDataRole ColumnDataRole
@@ -316,9 +317,9 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property NotAllowedAggregations. 
         /// <para>
         /// The list of aggregation types that are not allowed for the calculated field. Valid
-        /// values for this structure are <code>COUNT</code>, <code>DISTINCT_COUNT</code>, <code>MIN</code>,
-        /// <code>MAX</code>, <code>MEDIAN</code>, <code>SUM</code>, <code>AVERAGE</code>, <code>STDEV</code>,
-        /// <code>STDEVP</code>, <code>VAR</code>, <code>VARP</code>, and <code>PERCENTILE</code>.
+        /// values for this structure are <c>COUNT</c>, <c>DISTINCT_COUNT</c>, <c>MIN</c>, <c>MAX</c>,
+        /// <c>MEDIAN</c>, <c>SUM</c>, <c>AVERAGE</c>, <c>STDEV</c>, <c>STDEVP</c>, <c>VAR</c>,
+        /// <c>VARP</c>, and <c>PERCENTILE</c>.
         /// </para>
         /// </summary>
         public List<string> NotAllowedAggregations
@@ -330,7 +331,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if NotAllowedAggregations property is set
         internal bool IsSetNotAllowedAggregations()
         {
-            return this._notAllowedAggregations != null && this._notAllowedAggregations.Count > 0; 
+            return this._notAllowedAggregations != null && (this._notAllowedAggregations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -354,7 +355,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property TimeGranularity. 
         /// <para>
-        /// The level of time precision that is used to aggregate <code>DateTime</code> values.
+        /// The level of time precision that is used to aggregate <c>DateTime</c> values.
         /// </para>
         /// </summary>
         public TopicTimeGranularity TimeGranularity

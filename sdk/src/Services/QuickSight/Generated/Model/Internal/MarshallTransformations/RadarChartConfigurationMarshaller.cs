@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(RadarChartConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAlternateBandColorsVisibility())
             {
                 context.Writer.WritePropertyName("AlternateBandColorsVisibility");
@@ -135,6 +138,17 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
                 context.Writer.WriteObjectEnd();
             }
 
+            if(requestObject.IsSetInteractions())
+            {
+                context.Writer.WritePropertyName("Interactions");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = VisualInteractionOptionsMarshaller.Instance;
+                marshaller.Marshall(requestObject.Interactions, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetLegend())
             {
                 context.Writer.WritePropertyName("Legend");
@@ -166,7 +180,14 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
             if(requestObject.IsSetStartAngle())
             {
                 context.Writer.WritePropertyName("StartAngle");
-                context.Writer.Write(requestObject.StartAngle);
+                if(StringUtils.IsSpecialDoubleValue(requestObject.StartAngle))
+                {
+                    context.Writer.Write(StringUtils.FromSpecialDoubleValue(requestObject.StartAngle));
+                }
+                else
+                {
+                    context.Writer.Write(requestObject.StartAngle);
+                }
             }
 
             if(requestObject.IsSetVisualPalette())

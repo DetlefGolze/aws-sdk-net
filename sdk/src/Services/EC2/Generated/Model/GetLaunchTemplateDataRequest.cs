@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -37,9 +38,9 @@ namespace Amazon.EC2.Model
     /// <para>
     /// This action calls on other describe actions to get instance information. Depending
     /// on your instance configuration, you may need to allow the following actions in your
-    /// IAM policy: <code>DescribeSpotInstanceRequests</code>, <code>DescribeInstanceCreditSpecifications</code>,
-    /// <code>DescribeVolumes</code>, <code>DescribeInstanceAttribute</code>, and <code>DescribeElasticGpus</code>.
-    /// Or, you can allow <code>describe*</code> depending on your instance requirements.
+    /// IAM policy: <c>DescribeSpotInstanceRequests</c>, <c>DescribeInstanceCreditSpecifications</c>,
+    /// <c>DescribeVolumes</c>, and <c>DescribeInstanceAttribute</c>. Or, you can allow <c>describe*</c>
+    /// depending on your instance requirements.
     /// </para>
     /// </summary>
     public partial class GetLaunchTemplateDataRequest : AmazonEC2Request

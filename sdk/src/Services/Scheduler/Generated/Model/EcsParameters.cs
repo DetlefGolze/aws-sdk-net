@@ -26,26 +26,27 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Scheduler.Model
 {
     /// <summary>
     /// The templated target type for the Amazon ECS <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html">
-    /// <code>RunTask</code> </a> API operation.
+    /// <c>RunTask</c> </a> API operation.
     /// </summary>
     public partial class EcsParameters
     {
-        private List<CapacityProviderStrategyItem> _capacityProviderStrategy = new List<CapacityProviderStrategyItem>();
+        private List<CapacityProviderStrategyItem> _capacityProviderStrategy = AWSConfigs.InitializeCollections ? new List<CapacityProviderStrategyItem>() : null;
         private bool? _enableECSManagedTags;
         private bool? _enableExecuteCommand;
         private string _group;
         private LaunchType _launchType;
         private NetworkConfiguration _networkConfiguration;
-        private List<PlacementConstraint> _placementConstraints = new List<PlacementConstraint>();
-        private List<PlacementStrategy> _placementStrategy = new List<PlacementStrategy>();
+        private List<PlacementConstraint> _placementConstraints = AWSConfigs.InitializeCollections ? new List<PlacementConstraint>() : null;
+        private List<PlacementStrategy> _placementStrategy = AWSConfigs.InitializeCollections ? new List<PlacementStrategy>() : null;
         private string _platformVersion;
         private PropagateTags _propagateTags;
         private string _referenceId;
-        private List<Dictionary<string, string>> _tags = new List<Dictionary<string, string>>();
+        private List<Dictionary<string, string>> _tags = AWSConfigs.InitializeCollections ? new List<Dictionary<string, string>>() : null;
         private int? _taskCount;
         private string _taskDefinitionArn;
 
@@ -65,7 +66,7 @@ namespace Amazon.Scheduler.Model
         // Check to see if CapacityProviderStrategy property is set
         internal bool IsSetCapacityProviderStrategy()
         {
-            return this._capacityProviderStrategy != null && this._capacityProviderStrategy.Count > 0; 
+            return this._capacityProviderStrategy != null && (this._capacityProviderStrategy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -132,8 +133,8 @@ namespace Amazon.Scheduler.Model
         /// <para>
         /// Specifies the launch type on which your task is running. The launch type that you
         /// specify here must match one of the launch type (compatibilities) of the target task.
-        /// The <code>FARGATE</code> value is supported only in the Regions where Fargate with
-        /// Amazon ECS is supported. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html">AWS
+        /// The <c>FARGATE</c> value is supported only in the Regions where Fargate with Amazon
+        /// ECS is supported. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html">AWS
         /// Fargate on Amazon ECS</a> in the <i>Amazon ECS Developer Guide</i>.
         /// </para>
         /// </summary>
@@ -185,7 +186,7 @@ namespace Amazon.Scheduler.Model
         // Check to see if PlacementConstraints property is set
         internal bool IsSetPlacementConstraints()
         {
-            return this._placementConstraints != null && this._placementConstraints.Count > 0; 
+            return this._placementConstraints != null && (this._placementConstraints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -204,14 +205,14 @@ namespace Amazon.Scheduler.Model
         // Check to see if PlacementStrategy property is set
         internal bool IsSetPlacementStrategy()
         {
-            return this._placementStrategy != null && this._placementStrategy.Count > 0; 
+            return this._placementStrategy != null && (this._placementStrategy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PlatformVersion. 
         /// <para>
         /// Specifies the platform version for the task. Specify only the numeric portion of the
-        /// platform version, such as <code>1.1.0</code>.
+        /// platform version, such as <c>1.1.0</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -234,7 +235,7 @@ namespace Amazon.Scheduler.Model
         /// value is specified, the tags are not propagated. Tags can only be propagated to the
         /// task during task creation. To add tags to a task after task creation, use Amazon ECS's
         /// <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_TagResource.html">
-        /// <code>TagResource</code> </a> API action. 
+        /// <c>TagResource</c> </a> API action. 
         /// </para>
         /// </summary>
         public PropagateTags PropagateTags
@@ -274,7 +275,7 @@ namespace Amazon.Scheduler.Model
         /// The metadata that you apply to the task to help you categorize and organize them.
         /// Each tag consists of a key and an optional value, both of which you define. For more
         /// information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html">
-        /// <code>RunTask</code> </a> in the <i>Amazon ECS API Reference</i>.
+        /// <c>RunTask</c> </a> in the <i>Amazon ECS API Reference</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -287,14 +288,13 @@ namespace Amazon.Scheduler.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TaskCount. 
         /// <para>
-        /// The number of tasks to create based on <code>TaskDefinition</code>. The default is
-        /// <code>1</code>.
+        /// The number of tasks to create based on <c>TaskDefinition</c>. The default is <c>1</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]

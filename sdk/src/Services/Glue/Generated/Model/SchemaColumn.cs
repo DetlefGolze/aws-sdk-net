@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
     /// A key-value pair representing a column and data type that this transform can run against.
-    /// The <code>Schema</code> parameter of the <code>MLTransform</code> may contain up to
-    /// 100 of these structures.
+    /// The <c>Schema</c> parameter of the <c>MLTransform</c> may contain up to 100 of these
+    /// structures.
     /// </summary>
     public partial class SchemaColumn
     {

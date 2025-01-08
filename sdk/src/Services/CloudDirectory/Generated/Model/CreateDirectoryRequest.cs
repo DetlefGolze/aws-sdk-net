@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.CloudDirectory.Model
     /// 
     ///  
     /// <para>
-    /// You can also quickly create a directory using a managed schema, called the <code>QuickStartSchema</code>.
+    /// You can also quickly create a directory using a managed schema, called the <c>QuickStartSchema</c>.
     /// For more information, see <a href="https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_managed.html">Managed
     /// Schema</a> in the <i>Amazon Cloud Directory Developer Guide</i>.
     /// </para>
@@ -81,7 +82,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if SchemaArn property is set
         internal bool IsSetSchemaArn()
         {
-            return this._schemaArn != null;
+            return !string.IsNullOrEmpty(this._schemaArn);
         }
 
     }

@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
-    /// A set of instructions for launching server processes on each instance in a fleet.
-    /// Server processes run either an executable in a custom game build or a Realtime Servers
-    /// script. Server process configurations are part of a fleet's runtime configuration.
+    /// A set of instructions for launching server processes on fleet computes. Server processes
+    /// run either an executable in a custom game build or a Realtime Servers script. Server
+    /// process configurations are part of a fleet's runtime configuration.
     /// </summary>
     public partial class ServerProcess
     {
@@ -43,7 +44,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property ConcurrentExecutions. 
         /// <para>
         /// The number of server processes using this configuration that run concurrently on each
-        /// instance.
+        /// instance or compute.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1)]
@@ -67,19 +68,18 @@ namespace Amazon.GameLift.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Windows (custom game builds only): <code>C:\game</code>. Example: "<code>C:\game\MyGame\server.exe</code>"
+        /// Windows (custom game builds only): <c>C:\game</c>. Example: "<c>C:\game\MyGame\server.exe</c>"
         /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Linux: <code>/local/game</code>. Examples: "<code>/local/game/MyGame/server.exe</code>"
-        /// or "<code>/local/game/MyRealtimeScript.js</code>"
+        /// Linux: <c>/local/game</c>. Examples: "<c>/local/game/MyGame/server.exe</c>" or "<c>/local/game/MyRealtimeScript.js</c>"
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
         /// Amazon GameLift doesn't support the use of setup scripts that launch the game executable.
         /// For custom game builds, this parameter must indicate the executable that calls the
-        /// server SDK operations <code>initSDK()</code> and <code>ProcessReady()</code>. 
+        /// server SDK operations <c>initSDK()</c> and <c>ProcessReady()</c>. 
         /// </para>
         ///  </note>
         /// </summary>

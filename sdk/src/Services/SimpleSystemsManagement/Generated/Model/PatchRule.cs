@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -43,10 +44,28 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property ApproveAfterDays. 
         /// <para>
         /// The number of days after the release date of each patch matched by the rule that the
-        /// patch is marked as approved in the patch baseline. For example, a value of <code>7</code>
-        /// means that patches are approved seven days after they are released. Not supported
-        /// on Debian Server or Ubuntu Server.
+        /// patch is marked as approved in the patch baseline. For example, a value of <c>7</c>
+        /// means that patches are approved seven days after they are released.
         /// </para>
+        ///  
+        /// <para>
+        /// This parameter is marked as <c>Required: No</c>, but your request must include a value
+        /// for either <c>ApproveAfterDays</c> or <c>ApproveUntilDate</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Not supported for Debian Server or Ubuntu Server.
+        /// </para>
+        ///  <important> 
+        /// <para>
+        /// Use caution when setting this value for Windows Server patch baselines. Because patch
+        /// updates that are replaced by later updates are removed, setting too broad a value
+        /// for this parameter can result in crucial patches not being installed. For more information,
+        /// see the <b>Windows Server</b> tab in the topic <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-selecting-patches.html">How
+        /// security patches are selected</a> in the <i>Amazon Web Services Systems Manager User
+        /// Guide</i>.
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Min=0, Max=360)]
         public int ApproveAfterDays
@@ -65,13 +84,31 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property ApproveUntilDate. 
         /// <para>
         /// The cutoff date for auto approval of released patches. Any patches released on or
-        /// before this date are installed automatically. Not supported on Debian Server or Ubuntu
-        /// Server.
+        /// before this date are installed automatically.
         /// </para>
         ///  
         /// <para>
-        /// Enter dates in the format <code>YYYY-MM-DD</code>. For example, <code>2021-12-31</code>.
+        /// Enter dates in the format <c>YYYY-MM-DD</c>. For example, <c>2024-12-31</c>.
         /// </para>
+        ///  
+        /// <para>
+        /// This parameter is marked as <c>Required: No</c>, but your request must include a value
+        /// for either <c>ApproveUntilDate</c> or <c>ApproveAfterDays</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Not supported for Debian Server or Ubuntu Server.
+        /// </para>
+        ///  <important> 
+        /// <para>
+        /// Use caution when setting this value for Windows Server patch baselines. Because patch
+        /// updates that are replaced by later updates are removed, setting too broad a value
+        /// for this parameter can result in crucial patches not being installed. For more information,
+        /// see the <b>Windows Server</b> tab in the topic <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-selecting-patches.html">How
+        /// security patches are selected</a> in the <i>Amazon Web Services Systems Manager User
+        /// Guide</i>.
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
         public string ApproveUntilDate
@@ -109,7 +146,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <para>
         /// For managed nodes identified by the approval rule filters, enables a patch baseline
         /// to apply non-security updates available in the specified repository. The default value
-        /// is <code>false</code>. Applies to Linux managed nodes only.
+        /// is <c>false</c>. Applies to Linux managed nodes only.
         /// </para>
         /// </summary>
         public bool EnableNonSecurity

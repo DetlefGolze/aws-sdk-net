@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.Transfer.Model
     /// </summary>
     public partial class ListExecutionsResponse : AmazonWebServiceResponse
     {
-        private List<ListedExecution> _executions = new List<ListedExecution>();
+        private List<ListedExecution> _executions = AWSConfigs.InitializeCollections ? new List<ListedExecution>() : null;
         private string _nextToken;
         private string _workflowId;
 
         /// <summary>
         /// Gets and sets the property Executions. 
         /// <para>
-        /// Returns the details for each execution, in a <code>ListedExecution</code> array.
+        /// Returns the details for each execution, in a <c>ListedExecution</c> array.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -53,15 +54,15 @@ namespace Amazon.Transfer.Model
         // Check to see if Executions property is set
         internal bool IsSetExecutions()
         {
-            return this._executions != null && this._executions.Count > 0; 
+            return this._executions != null && (this._executions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  <code>ListExecutions</code> returns the <code>NextToken</code> parameter in the output.
-        /// You can then pass the <code>NextToken</code> parameter in a subsequent command to
-        /// continue listing additional executions.
+        ///  <c>ListExecutions</c> returns the <c>NextToken</c> parameter in the output. You can
+        /// then pass the <c>NextToken</c> parameter in a subsequent command to continue listing
+        /// additional executions.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=6144)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -36,16 +37,35 @@ namespace Amazon.WorkSpaces.Model
     /// 
     ///  <note> 
     /// <para>
-    /// The <code>MANUAL</code> running mode value is only supported by Amazon WorkSpaces
-    /// Core. Contact your account team to be allow-listed to use this value. For more information,
+    /// The <c>MANUAL</c> running mode value is only supported by Amazon WorkSpaces Core.
+    /// Contact your account team to be allow-listed to use this value. For more information,
     /// see <a href="http://aws.amazon.com/workspaces/core/">Amazon WorkSpaces Core</a>.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class ModifyWorkspacePropertiesRequest : AmazonWorkSpacesRequest
     {
+        private DataReplication _dataReplication;
         private string _workspaceId;
         private WorkspaceProperties _workspaceProperties;
+
+        /// <summary>
+        /// Gets and sets the property DataReplication. 
+        /// <para>
+        /// Indicates the data replication status.
+        /// </para>
+        /// </summary>
+        public DataReplication DataReplication
+        {
+            get { return this._dataReplication; }
+            set { this._dataReplication = value; }
+        }
+
+        // Check to see if DataReplication property is set
+        internal bool IsSetDataReplication()
+        {
+            return this._dataReplication != null;
+        }
 
         /// <summary>
         /// Gets and sets the property WorkspaceId. 
@@ -72,7 +92,6 @@ namespace Amazon.WorkSpaces.Model
         /// The properties of the WorkSpace.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public WorkspaceProperties WorkspaceProperties
         {
             get { return this._workspaceProperties; }

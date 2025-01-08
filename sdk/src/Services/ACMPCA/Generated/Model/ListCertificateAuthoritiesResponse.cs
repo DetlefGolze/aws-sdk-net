@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ACMPCA.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ACMPCA.Model
     /// </summary>
     public partial class ListCertificateAuthoritiesResponse : AmazonWebServiceResponse
     {
-        private List<CertificateAuthority> _certificateAuthorities = new List<CertificateAuthority>();
+        private List<CertificateAuthority> _certificateAuthorities = AWSConfigs.InitializeCollections ? new List<CertificateAuthority>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,17 +52,17 @@ namespace Amazon.ACMPCA.Model
         // Check to see if CertificateAuthorities property is set
         internal bool IsSetCertificateAuthorities()
         {
-            return this._certificateAuthorities != null && this._certificateAuthorities.Count > 0; 
+            return this._certificateAuthorities != null && (this._certificateAuthorities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When the list is truncated, this value is present and should be used for the <code>NextToken</code>
+        /// When the list is truncated, this value is present and should be used for the <c>NextToken</c>
         /// parameter in a subsequent pagination request.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=500)]
+        [AWSProperty(Min=1, Max=43739)]
         public string NextToken
         {
             get { return this._nextToken; }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeCatalyst.Model
 {
     /// <summary>
@@ -63,7 +64,7 @@ namespace Amazon.CodeCatalyst.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to show in a single call to this API. If the number
-        /// of results is larger than the number you specified, the response will include a <code>NextToken</code>
+        /// of results is larger than the number you specified, the response will include a <c>NextToken</c>
         /// element, which you can use to obtain additional results.
         /// </para>
         /// </summary>

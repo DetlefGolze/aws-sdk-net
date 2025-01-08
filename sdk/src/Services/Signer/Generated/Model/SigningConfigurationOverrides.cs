@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Signer.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Signer.Model
         /// <summary>
         /// Gets and sets the property EncryptionAlgorithm. 
         /// <para>
-        /// A specified override of the default encryption algorithm that is used in a code signing
+        /// A specified override of the default encryption algorithm that is used in a code-signing
         /// job.
         /// </para>
         /// </summary>
@@ -59,7 +60,7 @@ namespace Amazon.Signer.Model
         /// <summary>
         /// Gets and sets the property HashAlgorithm. 
         /// <para>
-        /// A specified override of the default hash algorithm that is used in a code signing
+        /// A specified override of the default hash algorithm that is used in a code-signing
         /// job.
         /// </para>
         /// </summary>

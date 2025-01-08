@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Organizations.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.Organizations.Model
     /// <para>
     /// The management account in an organization with all features enabled can set service
     /// control policies (SCPs) that can restrict what administrators of member accounts can
-    /// do. This includes preventing them from successfully calling <code>LeaveOrganization</code>
+    /// do. This includes preventing them from successfully calling <c>LeaveOrganization</c>
     /// and leaving the organization.
     /// </para>
     ///  </li> <li> 
@@ -97,14 +98,13 @@ namespace Amazon.Organizations.Model
     ///  </li> <li> 
     /// <para>
     /// A newly created account has a waiting period before it can be removed from its organization.
-    /// If you get an error that indicates that a wait period is required, then try again
-    /// in a few days.
+    /// You must wait until at least seven days after the account was created. Invited accounts
+    /// aren't subject to this waiting period.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// If you are using an organization principal to call <code>LeaveOrganization</code>
-    /// across multiple accounts, you can only do this up to 5 accounts per second in a single
-    /// organization.
+    /// If you are using an organization principal to call <c>LeaveOrganization</c> across
+    /// multiple accounts, you can only do this up to 5 accounts per second in a single organization.
     /// </para>
     ///  </li> </ul> </important>
     /// </summary>

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.BedrockRuntime.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -50,6 +51,8 @@ namespace Amazon.BedrockRuntime.Model.Internal.MarshallTransformations
             response.Body = new ResponseStream(context.Stream);
             if (context.ResponseData.IsHeaderPresent("X-Amzn-Bedrock-Content-Type"))
                 response.ContentType = context.ResponseData.GetHeaderValue("X-Amzn-Bedrock-Content-Type");
+            if (context.ResponseData.IsHeaderPresent("X-Amzn-Bedrock-PerformanceConfig-Latency"))
+                response.PerformanceConfigLatency = context.ResponseData.GetHeaderValue("X-Amzn-Bedrock-PerformanceConfig-Latency");
 
             return response;
         }
@@ -104,6 +107,10 @@ namespace Amazon.BedrockRuntime.Model.Internal.MarshallTransformations
                 {
                     return ServiceQuotaExceededExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("ServiceUnavailableException"))
+                {
+                    return ServiceUnavailableExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("ThrottlingException"))
                 {
                     return ThrottlingExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
@@ -134,6 +141,12 @@ namespace Amazon.BedrockRuntime.Model.Internal.MarshallTransformations
             }
         }
 
+        /// <summary>
+        /// Return false for reading the entire response
+        /// </summary>
+        /// <param name="response"></param>
+        /// <param name="readEntireResponse"></param>
+        /// <returns></returns>
         protected override bool ShouldReadEntireResponse(IWebResponseData response, bool readEntireResponse)
         {
             return false;

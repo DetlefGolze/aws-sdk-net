@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.CloudWatchLogs.Model
         /// <summary>
         /// Gets and sets the property QueryId. 
         /// <para>
-        /// The ID number of the query to stop. To find this ID number, use <code>DescribeQueries</code>.
+        /// The ID number of the query to stop. To find this ID number, use <c>DescribeQueries</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=256)]

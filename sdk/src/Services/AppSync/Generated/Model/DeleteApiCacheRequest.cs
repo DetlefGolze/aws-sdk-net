@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteApiCache operation.
-    /// Deletes an <code>ApiCache</code> object.
+    /// Deletes an <c>ApiCache</c> object.
     /// </summary>
     public partial class DeleteApiCacheRequest : AmazonAppSyncRequest
     {

@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// Container for response parameters to the <code><a>DescribeVpcEndpoints</a></code>
-    /// operation. Returns a list containing configuration details and status of the VPC Endpoints
-    /// as well as a list containing error responses of the endpoints that could not be described
+    /// Container for response parameters to the <c><a>DescribeVpcEndpoints</a></c> operation.
+    /// Returns a list containing configuration details and status of the VPC Endpoints as
+    /// well as a list containing error responses of the endpoints that could not be described
     /// </summary>
     public partial class DescribeVpcEndpointsResponse : AmazonWebServiceResponse
     {
-        private List<VpcEndpointError> _vpcEndpointErrors = new List<VpcEndpointError>();
-        private List<VpcEndpoint> _vpcEndpoints = new List<VpcEndpoint>();
+        private List<VpcEndpointError> _vpcEndpointErrors = AWSConfigs.InitializeCollections ? new List<VpcEndpointError>() : null;
+        private List<VpcEndpoint> _vpcEndpoints = AWSConfigs.InitializeCollections ? new List<VpcEndpoint>() : null;
 
         /// <summary>
         /// Gets and sets the property VpcEndpointErrors. 
@@ -54,7 +55,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if VpcEndpointErrors property is set
         internal bool IsSetVpcEndpointErrors()
         {
-            return this._vpcEndpointErrors != null && this._vpcEndpointErrors.Count > 0; 
+            return this._vpcEndpointErrors != null && (this._vpcEndpointErrors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -73,7 +74,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if VpcEndpoints property is set
         internal bool IsSetVpcEndpoints()
         {
-            return this._vpcEndpoints != null && this._vpcEndpoints.Count > 0; 
+            return this._vpcEndpoints != null && (this._vpcEndpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.Inspector2.Model
     /// </summary>
     public partial class BatchGetMemberEc2DeepInspectionStatusResponse : AmazonWebServiceResponse
     {
-        private List<MemberAccountEc2DeepInspectionStatusState> _accountIds = new List<MemberAccountEc2DeepInspectionStatusState>();
-        private List<FailedMemberAccountEc2DeepInspectionStatusState> _failedAccountIds = new List<FailedMemberAccountEc2DeepInspectionStatusState>();
+        private List<MemberAccountEc2DeepInspectionStatusState> _accountIds = AWSConfigs.InitializeCollections ? new List<MemberAccountEc2DeepInspectionStatusState>() : null;
+        private List<FailedMemberAccountEc2DeepInspectionStatusState> _failedAccountIds = AWSConfigs.InitializeCollections ? new List<FailedMemberAccountEc2DeepInspectionStatusState>() : null;
 
         /// <summary>
         /// Gets and sets the property AccountIds. 
         /// <para>
         /// An array of objects that provide details on the activation status of Amazon Inspector
-        /// deep inspection for each of the requested accounts. <pre><code> &lt;/p&gt; </code></pre>
+        /// deep inspection for each of the requested accounts. <pre><c> &lt;/p&gt; </c></pre>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]
         public List<MemberAccountEc2DeepInspectionStatusState> AccountIds
@@ -52,14 +53,14 @@ namespace Amazon.Inspector2.Model
         // Check to see if AccountIds property is set
         internal bool IsSetAccountIds()
         {
-            return this._accountIds != null && this._accountIds.Count > 0; 
+            return this._accountIds != null && (this._accountIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property FailedAccountIds. 
         /// <para>
         /// An array of objects that provide details on any accounts that failed to activate Amazon
-        /// Inspector deep inspection and why. <pre><code> &lt;/p&gt; </code></pre>
+        /// Inspector deep inspection and why. <pre><c> &lt;/p&gt; </c></pre>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]
         public List<FailedMemberAccountEc2DeepInspectionStatusState> FailedAccountIds
@@ -71,7 +72,7 @@ namespace Amazon.Inspector2.Model
         // Check to see if FailedAccountIds property is set
         internal bool IsSetFailedAccountIds()
         {
-            return this._failedAccountIds != null && this._failedAccountIds.Count > 0; 
+            return this._failedAccountIds != null && (this._failedAccountIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

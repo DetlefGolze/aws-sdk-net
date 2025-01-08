@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticTranscoder.Model
 {
     /// <summary>
@@ -43,13 +44,13 @@ namespace Amazon.ElasticTranscoder.Model
     public partial class CreateJobRequest : AmazonElasticTranscoderRequest
     {
         private JobInput _input;
-        private List<JobInput> _inputs = new List<JobInput>();
+        private List<JobInput> _inputs = AWSConfigs.InitializeCollections ? new List<JobInput>() : null;
         private CreateJobOutput _output;
         private string _outputKeyPrefix;
-        private List<CreateJobOutput> _outputs = new List<CreateJobOutput>();
+        private List<CreateJobOutput> _outputs = AWSConfigs.InitializeCollections ? new List<CreateJobOutput>() : null;
         private string _pipelineId;
-        private List<CreateJobPlaylist> _playlists = new List<CreateJobPlaylist>();
-        private Dictionary<string, string> _userMetadata = new Dictionary<string, string>();
+        private List<CreateJobPlaylist> _playlists = AWSConfigs.InitializeCollections ? new List<CreateJobPlaylist>() : null;
+        private Dictionary<string, string> _userMetadata = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Input. 
@@ -87,15 +88,15 @@ namespace Amazon.ElasticTranscoder.Model
         // Check to see if Inputs property is set
         internal bool IsSetInputs()
         {
-            return this._inputs != null && this._inputs.Count > 0; 
+            return this._inputs != null && (this._inputs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Output. 
         /// <para>
         ///  A section of the request body that provides information about the transcoded (target)
-        /// file. We strongly recommend that you use the <code>Outputs</code> syntax instead of
-        /// the <code>Output</code> syntax. 
+        /// file. We strongly recommend that you use the <c>Outputs</c> syntax instead of the
+        /// <c>Output</c> syntax. 
         /// </para>
         /// </summary>
         public CreateJobOutput Output
@@ -134,7 +135,7 @@ namespace Amazon.ElasticTranscoder.Model
         /// Gets and sets the property Outputs. 
         /// <para>
         ///  A section of the request body that provides information about the transcoded (target)
-        /// files. We recommend that you use the <code>Outputs</code> syntax instead of the <code>Output</code>
+        /// files. We recommend that you use the <c>Outputs</c> syntax instead of the <c>Output</c>
         /// syntax. 
         /// </para>
         /// </summary>
@@ -148,13 +149,13 @@ namespace Amazon.ElasticTranscoder.Model
         // Check to see if Outputs property is set
         internal bool IsSetOutputs()
         {
-            return this._outputs != null && this._outputs.Count > 0; 
+            return this._outputs != null && (this._outputs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PipelineId. 
         /// <para>
-        /// The <code>Id</code> of the pipeline that you want Elastic Transcoder to use for transcoding.
+        /// The <c>Id</c> of the pipeline that you want Elastic Transcoder to use for transcoding.
         /// The pipeline determines several settings, including the Amazon S3 bucket from which
         /// Elastic Transcoder gets the files to transcode and the bucket into which Elastic Transcoder
         /// puts the transcoded files.
@@ -176,7 +177,7 @@ namespace Amazon.ElasticTranscoder.Model
         /// <summary>
         /// Gets and sets the property Playlists. 
         /// <para>
-        /// If you specify a preset in <code>PresetId</code> for which the value of <code>Container</code>
+        /// If you specify a preset in <c>PresetId</c> for which the value of <c>Container</c>
         /// is fmp4 (Fragmented MP4) or ts (MPEG-TS), Playlists contains information about the
         /// master playlists that you want Elastic Transcoder to create.
         /// </para>
@@ -195,16 +196,16 @@ namespace Amazon.ElasticTranscoder.Model
         // Check to see if Playlists property is set
         internal bool IsSetPlaylists()
         {
-            return this._playlists != null && this._playlists.Count > 0; 
+            return this._playlists != null && (this._playlists.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UserMetadata. 
         /// <para>
         /// User-defined metadata that you want to associate with an Elastic Transcoder job. You
-        /// specify metadata in <code>key/value</code> pairs, and you can add up to 10 <code>key/value</code>
-        /// pairs per job. Elastic Transcoder does not guarantee that <code>key/value</code> pairs
-        /// are returned in the same order in which you specify them.
+        /// specify metadata in <c>key/value</c> pairs, and you can add up to 10 <c>key/value</c>
+        /// pairs per job. Elastic Transcoder does not guarantee that <c>key/value</c> pairs are
+        /// returned in the same order in which you specify them.
         /// </para>
         /// </summary>
         public Dictionary<string, string> UserMetadata
@@ -216,7 +217,7 @@ namespace Amazon.ElasticTranscoder.Model
         // Check to see if UserMetadata property is set
         internal bool IsSetUserMetadata()
         {
-            return this._userMetadata != null && this._userMetadata.Count > 0; 
+            return this._userMetadata != null && (this._userMetadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

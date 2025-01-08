@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectWisdomService.Model
 {
     /// <summary>
-    /// The provided <code>revisionId</code> does not match, indicating the content has been
-    /// modified since it was last read.
+    /// The provided <c>revisionId</c> does not match, indicating the content has been modified
+    /// since it was last read.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

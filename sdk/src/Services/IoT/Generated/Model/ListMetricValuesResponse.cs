@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.IoT.Model
     /// </summary>
     public partial class ListMetricValuesResponse : AmazonWebServiceResponse
     {
-        private List<MetricDatum> _metricDatumList = new List<MetricDatum>();
+        private List<MetricDatum> _metricDatumList = AWSConfigs.InitializeCollections ? new List<MetricDatum>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.IoT.Model
         // Check to see if MetricDatumList property is set
         internal bool IsSetMetricDatumList()
         {
-            return this._metricDatumList != null && this._metricDatumList.Count > 0; 
+            return this._metricDatumList != null && (this._metricDatumList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token that can be used to retrieve the next set of results, or <code>null</code>
-        /// if there are no additional results.
+        /// A token that can be used to retrieve the next set of results, or <c>null</c> if there
+        /// are no additional results.
         /// </para>
         /// </summary>
         public string NextToken

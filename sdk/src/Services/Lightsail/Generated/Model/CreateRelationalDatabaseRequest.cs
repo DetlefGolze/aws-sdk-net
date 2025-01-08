@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Lightsail.Model
     /// 
     ///  
     /// <para>
-    /// The <code>create relational database</code> operation supports tag-based access control
+    /// The <c>create relational database</c> operation supports tag-based access control
     /// via request tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
     /// Lightsail Developer Guide</a>.
     /// </para>
@@ -51,18 +52,18 @@ namespace Amazon.Lightsail.Model
         private string _relationalDatabaseBlueprintId;
         private string _relationalDatabaseBundleId;
         private string _relationalDatabaseName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AvailabilityZone. 
         /// <para>
-        /// The Availability Zone in which to create your new database. Use the <code>us-east-2a</code>
+        /// The Availability Zone in which to create your new database. Use the <c>us-east-2a</c>
         /// case-sensitive format.
         /// </para>
         ///  
         /// <para>
-        /// You can get a list of Availability Zones by using the <code>get regions</code> operation.
-        /// Be sure to add the <code>include relational database Availability Zones</code> parameter
+        /// You can get a list of Availability Zones by using the <c>get regions</c> operation.
+        /// Be sure to add the <c>include relational database Availability Zones</c> parameter
         /// to your request.
         /// </para>
         /// </summary>
@@ -123,8 +124,8 @@ namespace Amazon.Lightsail.Model
         ///  
         /// <para>
         /// The name of the database to create when the Lightsail database resource is created.
-        /// If this parameter isn't specified, a database named <code>postgres</code> is created
-        /// in the database resource.
+        /// If this parameter isn't specified, a database named <c>postgres</c> is created in
+        /// the database resource.
         /// </para>
         ///  
         /// <para>
@@ -306,11 +307,11 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Must be in the <code>hh24:mi-hh24:mi</code> format.
+        /// Must be in the <c>hh24:mi-hh24:mi</c> format.
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>16:00-16:30</code> 
+        /// Example: <c>16:00-16:30</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -354,7 +355,7 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Must be in the <code>ddd:hh24:mi-ddd:hh24:mi</code> format.
+        /// Must be in the <c>ddd:hh24:mi-ddd:hh24:mi</c> format.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -370,7 +371,7 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Example: <code>Tue:17:00-Tue:17:30</code> 
+        /// Example: <c>Tue:17:00-Tue:17:30</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -389,10 +390,10 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property PubliclyAccessible. 
         /// <para>
-        /// Specifies the accessibility options for your new database. A value of <code>true</code>
+        /// Specifies the accessibility options for your new database. A value of <c>true</c>
         /// specifies a database that is available to resources outside of your Lightsail account.
-        /// A value of <code>false</code> specifies a database that is available only to your
-        /// Lightsail resources in the same region as your database.
+        /// A value of <c>false</c> specifies a database that is available only to your Lightsail
+        /// resources in the same region as your database.
         /// </para>
         /// </summary>
         public bool PubliclyAccessible
@@ -415,8 +416,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// You can get a list of database blueprints IDs by using the <code>get relational database
-        /// blueprints</code> operation.
+        /// You can get a list of database blueprints IDs by using the <c>get relational database
+        /// blueprints</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -440,8 +441,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// You can get a list of database bundle IDs by using the <code>get relational database
-        /// bundles</code> operation.
+        /// You can get a list of database bundle IDs by using the <c>get relational database
+        /// bundles</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -496,7 +497,7 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>TagResource</code> action to tag a resource after it's created.
+        /// Use the <c>TagResource</c> action to tag a resource after it's created.
         /// </para>
         /// </summary>
         public List<Tag> Tags
@@ -508,7 +509,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

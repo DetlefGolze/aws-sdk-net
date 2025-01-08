@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The arc axis configuration of a <code>GaugeChartVisual</code>.
+    /// The arc axis configuration of a <c>GaugeChartVisual</c>.
     /// </summary>
     public partial class ArcAxisConfiguration
     {
@@ -39,7 +40,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Range. 
         /// <para>
-        /// The arc axis range of a <code>GaugeChartVisual</code>.
+        /// The arc axis range of a <c>GaugeChartVisual</c>.
         /// </para>
         /// </summary>
         public ArcAxisDisplayRange Range

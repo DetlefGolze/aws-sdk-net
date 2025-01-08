@@ -2,9 +2,10 @@
   "version":"2.0",
   "metadata":{
     "apiVersion":"2018-05-10",
+    "auth":["aws.auth#sigv4"],
     "endpointPrefix":"ssm-sap",
-    "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceAbbreviation":"SsmSap",
     "serviceFullName":"AWS Systems Manager for SAP",
     "serviceId":"Ssm Sap",
@@ -39,6 +40,7 @@
       "input":{"shape":"DeregisterApplicationInput"},
       "output":{"shape":"DeregisterApplicationOutput"},
       "errors":[
+        {"shape":"UnauthorizedException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"}
       ],
@@ -69,6 +71,7 @@
       "input":{"shape":"GetComponentInput"},
       "output":{"shape":"GetComponentOutput"},
       "errors":[
+        {"shape":"UnauthorizedException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"}
       ],
@@ -146,6 +149,7 @@
       "input":{"shape":"ListComponentsInput"},
       "output":{"shape":"ListComponentsOutput"},
       "errors":[
+        {"shape":"UnauthorizedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"}
@@ -167,6 +171,21 @@
         {"shape":"InternalServerException"}
       ],
       "documentation":"<p>Lists the SAP HANA databases of an application registered with AWS Systems Manager for SAP.</p>"
+    },
+    "ListOperationEvents":{
+      "name":"ListOperationEvents",
+      "http":{
+        "method":"POST",
+        "requestUri":"/list-operation-events",
+        "responseCode":200
+      },
+      "input":{"shape":"ListOperationEventsInput"},
+      "output":{"shape":"ListOperationEventsOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ],
+      "documentation":"<p>Returns a list of operations events.</p> <p>Available parameters include <code>OperationID</code>, as well as optional parameters <code>MaxResults</code>, <code>NextToken</code>, and <code>Filters</code>.</p>"
     },
     "ListOperations":{
       "name":"ListOperations",
@@ -225,11 +244,29 @@
       "input":{"shape":"RegisterApplicationInput"},
       "output":{"shape":"RegisterApplicationOutput"},
       "errors":[
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"}
       ],
       "documentation":"<p>Register an SAP application with AWS Systems Manager for SAP. You must meet the following requirements before registering. </p> <p>The SAP application you want to register with AWS Systems Manager for SAP is running on Amazon EC2.</p> <p>AWS Systems Manager Agent must be setup on an Amazon EC2 instance along with the required IAM permissions.</p> <p>Amazon EC2 instance(s) must have access to the secrets created in AWS Secrets Manager to manage SAP applications and components.</p>"
+    },
+    "StartApplication":{
+      "name":"StartApplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/start-application",
+        "responseCode":200
+      },
+      "input":{"shape":"StartApplicationInput"},
+      "output":{"shape":"StartApplicationOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ],
+      "documentation":"<p>Request is an operation which starts an application.</p> <p>Parameter <code>ApplicationId</code> is required.</p>"
     },
     "StartApplicationRefresh":{
       "name":"StartApplicationRefresh",
@@ -241,12 +278,30 @@
       "input":{"shape":"StartApplicationRefreshInput"},
       "output":{"shape":"StartApplicationRefreshOutput"},
       "errors":[
+        {"shape":"UnauthorizedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"}
       ],
       "documentation":"<p>Refreshes a registered application.</p>"
+    },
+    "StopApplication":{
+      "name":"StopApplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/stop-application",
+        "responseCode":200
+      },
+      "input":{"shape":"StopApplicationInput"},
+      "output":{"shape":"StopApplicationOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ],
+      "documentation":"<p>Request is an operation to stop an application.</p> <p>Parameter <code>ApplicationId</code> is required. Parameters <code>StopConnectedEntity</code> and <code>IncludeEc2InstanceShutdown</code> are optional.</p>"
     },
     "TagResource":{
       "name":"TagResource",
@@ -291,6 +346,7 @@
       "input":{"shape":"UpdateApplicationSettingsInput"},
       "output":{"shape":"UpdateApplicationSettingsOutput"},
       "errors":[
+        {"shape":"UnauthorizedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"ConflictException"},
@@ -300,6 +356,15 @@
     }
   },
   "shapes":{
+    "AllocationType":{
+      "type":"string",
+      "enum":[
+        "VPC_SUBNET",
+        "ELASTIC_IP",
+        "OVERLAY",
+        "UNKNOWN"
+      ]
+    },
     "AppRegistryArn":{
       "type":"string",
       "pattern":"arn:aws:servicecatalog:[a-z0-9:\\/-]+"
@@ -342,9 +407,17 @@
         "StatusMessage":{
           "shape":"String",
           "documentation":"<p>The status message.</p>"
+        },
+        "AssociatedApplicationArns":{
+          "shape":"ApplicationArnList",
+          "documentation":"<p>The Amazon Resource Names of the associated AWS Systems Manager for SAP applications.</p>"
         }
       },
       "documentation":"<p>An SAP application registered with AWS Systems Manager for SAP.</p>"
+    },
+    "ApplicationArnList":{
+      "type":"list",
+      "member":{"shape":"SsmSapArn"}
     },
     "ApplicationCredential":{
       "type":"structure",
@@ -373,7 +446,7 @@
       "type":"list",
       "member":{"shape":"ApplicationCredential"},
       "max":20,
-      "min":1
+      "min":0
     },
     "ApplicationDiscoveryStatus":{
       "type":"string",
@@ -387,7 +460,9 @@
     },
     "ApplicationId":{
       "type":"string",
-      "pattern":"[\\w\\d]{1,50}"
+      "max":60,
+      "min":1,
+      "pattern":"[\\w\\d\\.-]+"
     },
     "ApplicationStatus":{
       "type":"string",
@@ -408,6 +483,10 @@
         "Id":{
           "shape":"ApplicationId",
           "documentation":"<p>The ID of the application.</p>"
+        },
+        "DiscoveryStatus":{
+          "shape":"ApplicationDiscoveryStatus",
+          "documentation":"<p>The status of the latest discovery.</p>"
         },
         "Type":{
           "shape":"ApplicationType",
@@ -430,7 +509,10 @@
     },
     "ApplicationType":{
       "type":"string",
-      "enum":["HANA"]
+      "enum":[
+        "HANA",
+        "SAP_ABAP"
+      ]
     },
     "Arn":{
       "type":"string",
@@ -446,6 +528,10 @@
         "Ec2InstanceId":{
           "shape":"String",
           "documentation":"<p>The ID of the Amazon EC2 instance.</p>"
+        },
+        "IpAddresses":{
+          "shape":"IpAddressList",
+          "documentation":"<p>The IP addresses of the associated host.</p>"
         },
         "OsVersion":{
           "shape":"String",
@@ -497,6 +583,14 @@
           "shape":"ComponentId",
           "documentation":"<p>The ID of the component.</p>"
         },
+        "Sid":{
+          "shape":"SID",
+          "documentation":"<p>The SAP System Identifier of the application component.</p>"
+        },
+        "SystemNumber":{
+          "shape":"SAPInstanceNumber",
+          "documentation":"<p>The SAP system number of the application component.</p>"
+        },
         "ParentComponent":{
           "shape":"ComponentId",
           "documentation":"<p>The parent component of a highly available environment. For example, in a highly available SAP on AWS workload, the parent component consists of the entire setup, including the child components.</p>"
@@ -515,11 +609,15 @@
         },
         "Status":{
           "shape":"ComponentStatus",
-          "documentation":"<p>The status of the component.</p>"
+          "documentation":"<p>The status of the component.</p> <ul> <li> <p>ACTIVATED - this status has been deprecated.</p> </li> <li> <p>STARTING - the component is in the process of being started.</p> </li> <li> <p>STOPPED - the component is not running.</p> </li> <li> <p>STOPPING - the component is in the process of being stopped.</p> </li> <li> <p>RUNNING - the component is running.</p> </li> <li> <p>RUNNING_WITH_ERROR - one or more child component(s) of the parent component is not running. Call <a href=\"https://docs.aws.amazon.com/ssmsap/latest/APIReference/API_GetComponent.html\"> <code>GetComponent</code> </a> to review the status of each child component.</p> </li> <li> <p>UNDEFINED - AWS Systems Manager for SAP cannot provide the component status based on the discovered information. Verify your SAP application.</p> </li> </ul>"
         },
         "SapHostname":{
           "shape":"String",
           "documentation":"<p>The hostname of the component.</p>"
+        },
+        "SapFeature":{
+          "shape":"String",
+          "documentation":"<p>The SAP feature of the component.</p>"
         },
         "SapKernelVersion":{
           "shape":"String",
@@ -553,6 +651,10 @@
           "deprecated":true,
           "deprecatedMessage":"This shape is no longer used. Please use AssociatedHost."
         },
+        "DatabaseConnection":{
+          "shape":"DatabaseConnection",
+          "documentation":"<p>The connection specifications for the database of the component.</p>"
+        },
         "LastUpdated":{
           "shape":"Timestamp",
           "documentation":"<p>The time at which the component was last updated.</p>"
@@ -564,13 +666,48 @@
       },
       "documentation":"<p>The SAP component of your application.</p>"
     },
+    "ComponentArnList":{
+      "type":"list",
+      "member":{"shape":"SsmSapArn"}
+    },
     "ComponentId":{
       "type":"string",
+      "max":100,
+      "min":1,
       "pattern":"[\\w\\d-]+"
     },
     "ComponentIdList":{
       "type":"list",
       "member":{"shape":"ComponentId"}
+    },
+    "ComponentInfo":{
+      "type":"structure",
+      "required":[
+        "ComponentType",
+        "Sid",
+        "Ec2InstanceId"
+      ],
+      "members":{
+        "ComponentType":{
+          "shape":"ComponentType",
+          "documentation":"<p>This string is the type of the component.</p> <p>Accepted value is <code>WD</code>.</p>"
+        },
+        "Sid":{
+          "shape":"SID",
+          "documentation":"<p>This string is the SAP System ID of the component.</p> <p>Accepted values are alphanumeric.</p>"
+        },
+        "Ec2InstanceId":{
+          "shape":"InstanceId",
+          "documentation":"<p>This is the Amazon EC2 instance on which your SAP component is running.</p> <p>Accepted values are alphanumeric.</p>"
+        }
+      },
+      "documentation":"<p>This is information about the component of your SAP application, such as Web Dispatcher.</p>"
+    },
+    "ComponentInfoList":{
+      "type":"list",
+      "member":{"shape":"ComponentInfo"},
+      "max":5,
+      "min":0
     },
     "ComponentStatus":{
       "type":"string",
@@ -618,7 +755,13 @@
       "type":"string",
       "enum":[
         "HANA",
-        "HANA_NODE"
+        "HANA_NODE",
+        "ABAP",
+        "ASCS",
+        "DIALOG",
+        "WEBDISP",
+        "WD",
+        "ERS"
       ]
     },
     "ConflictException":{
@@ -632,6 +775,10 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "ConnectedEntityType":{
+      "type":"string",
+      "enum":["DBMS"]
     },
     "CredentialType":{
       "type":"string",
@@ -683,12 +830,43 @@
         "LastUpdated":{
           "shape":"Timestamp",
           "documentation":"<p>The time at which the database was last updated.</p>"
+        },
+        "ConnectedComponentArns":{
+          "shape":"ComponentArnList",
+          "documentation":"<p>The Amazon Resource Names of the connected AWS Systems Manager for SAP components.</p>"
         }
       },
       "documentation":"<p>The SAP HANA database of the application registered with AWS Systems Manager for SAP.</p>"
     },
+    "DatabaseConnection":{
+      "type":"structure",
+      "members":{
+        "DatabaseConnectionMethod":{
+          "shape":"DatabaseConnectionMethod",
+          "documentation":"<p>The method of connection.</p>"
+        },
+        "DatabaseArn":{
+          "shape":"SsmSapArn",
+          "documentation":"<p>The Amazon Resource Name of the connected SAP HANA database.</p>"
+        },
+        "ConnectionIp":{
+          "shape":"String",
+          "documentation":"<p>The IP address for connection.</p>"
+        }
+      },
+      "documentation":"<p>The connection specifications for the database.</p>"
+    },
+    "DatabaseConnectionMethod":{
+      "type":"string",
+      "enum":[
+        "DIRECT",
+        "OVERLAY"
+      ]
+    },
     "DatabaseId":{
       "type":"string",
+      "max":300,
+      "min":1,
       "pattern":".*[\\w\\d]+"
     },
     "DatabaseIdList":{
@@ -1044,6 +1222,28 @@
       "exception":true,
       "fault":true
     },
+    "IpAddressList":{
+      "type":"list",
+      "member":{"shape":"IpAddressMember"}
+    },
+    "IpAddressMember":{
+      "type":"structure",
+      "members":{
+        "IpAddress":{
+          "shape":"String",
+          "documentation":"<p>The IP address.</p>"
+        },
+        "Primary":{
+          "shape":"Boolean",
+          "documentation":"<p>The primary IP address.</p>"
+        },
+        "AllocationType":{
+          "shape":"AllocationType",
+          "documentation":"<p>The type of allocation for the IP address.</p>"
+        }
+      },
+      "documentation":"<p>Provides information of the IP address.</p>"
+    },
     "ListApplicationsInput":{
       "type":"structure",
       "members":{
@@ -1053,8 +1253,11 @@
         },
         "MaxResults":{
           "shape":"MaxResults",
-          "documentation":"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value. </p>",
-          "box":true
+          "documentation":"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value.</p>"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "documentation":"<p>The filter of name, value, and operator.</p>"
         }
       }
     },
@@ -1084,8 +1287,7 @@
         },
         "MaxResults":{
           "shape":"MaxResults",
-          "documentation":"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value.</p> <p>If you do not specify a value for MaxResults, the request returns 50 items per page by default.</p>",
-          "box":true
+          "documentation":"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value.</p> <p>If you do not specify a value for MaxResults, the request returns 50 items per page by default.</p>"
         }
       }
     },
@@ -1119,8 +1321,7 @@
         },
         "MaxResults":{
           "shape":"MaxResults",
-          "documentation":"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value. If you do not specify a value for MaxResults, the request returns 50 items per page by default.</p>",
-          "box":true
+          "documentation":"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value. If you do not specify a value for MaxResults, the request returns 50 items per page by default.</p>"
         }
       }
     },
@@ -1130,6 +1331,41 @@
         "Databases":{
           "shape":"DatabaseSummaryList",
           "documentation":"<p>The SAP HANA databases of an application.</p>"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return.</p>"
+        }
+      }
+    },
+    "ListOperationEventsInput":{
+      "type":"structure",
+      "required":["OperationId"],
+      "members":{
+        "OperationId":{
+          "shape":"OperationId",
+          "documentation":"<p>The ID of the operation.</p>"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "documentation":"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value.</p> <p>If you do not specify a value for <code>MaxResults</code>, the request returns 50 items per page by default.</p>"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return.</p>"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "documentation":"<p>Optionally specify filters to narrow the returned operation event items.</p> <p>Valid filter names include <code>status</code>, <code>resourceID</code>, and <code>resourceType</code>. The valid operator for all three filters is <code>Equals</code>.</p>"
+        }
+      }
+    },
+    "ListOperationEventsOutput":{
+      "type":"structure",
+      "members":{
+        "OperationEvents":{
+          "shape":"OperationEventList",
+          "documentation":"<p>A returned list of operation events that meet the filter criteria.</p>"
         },
         "NextToken":{
           "shape":"NextToken",
@@ -1147,8 +1383,7 @@
         },
         "MaxResults":{
           "shape":"MaxResults",
-          "documentation":"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value. If you do not specify a value for MaxResults, the request returns 50 items per page by default.</p>",
-          "box":true
+          "documentation":"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value. If you do not specify a value for MaxResults, the request returns 50 items per page by default.</p>"
         },
         "NextToken":{
           "shape":"NextToken",
@@ -1196,6 +1431,7 @@
     },
     "MaxResults":{
       "type":"integer",
+      "box":true,
       "max":50,
       "min":1
     },
@@ -1252,6 +1488,48 @@
         }
       },
       "documentation":"<p>The operations performed by AWS Systems Manager for SAP.</p>"
+    },
+    "OperationEvent":{
+      "type":"structure",
+      "members":{
+        "Description":{
+          "shape":"String",
+          "documentation":"<p>A description of the operation event. For example, \"Stop the EC2 instance i-abcdefgh987654321\".</p>"
+        },
+        "Resource":{
+          "shape":"Resource",
+          "documentation":"<p>The resource involved in the operations event.</p> <p>Contains <code>ResourceArn</code> ARN and <code>ResourceType</code>.</p>"
+        },
+        "Status":{
+          "shape":"OperationEventStatus",
+          "documentation":"<p>The status of the operation event. The possible statuses are: <code>IN_PROGRESS</code>, <code>COMPLETED</code>, and <code>FAILED</code>.</p>"
+        },
+        "StatusMessage":{
+          "shape":"String",
+          "documentation":"<p>The status message relating to a specific operation event.</p>"
+        },
+        "Timestamp":{
+          "shape":"Timestamp",
+          "documentation":"<p>The timestamp of the specified operation event.</p>"
+        }
+      },
+      "documentation":"<p>An operation event returns details for an operation, including key milestones which can be used to monitor and track operations in progress.</p> <p>Operation events contain:</p> <ul> <li> <p>Description string</p> </li> <li> <p>Resource, including its ARN and type</p> </li> <li> <p>Status</p> </li> <li> <p>StatusMessage string</p> </li> <li> <p>TimeStamp</p> </li> </ul> <p>Operation event examples include StartApplication or StopApplication.</p>"
+    },
+    "OperationEventList":{
+      "type":"list",
+      "member":{"shape":"OperationEvent"}
+    },
+    "OperationEventResourceType":{
+      "type":"string",
+      "pattern":"[\\w]+::[\\w]+::[\\w]+"
+    },
+    "OperationEventStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "COMPLETED",
+        "FAILED"
+      ]
     },
     "OperationId":{
       "type":"string",
@@ -1329,8 +1607,7 @@
       "required":[
         "ApplicationId",
         "ApplicationType",
-        "Instances",
-        "Credentials"
+        "Instances"
       ],
       "members":{
         "ApplicationId":{
@@ -1360,6 +1637,14 @@
         "Credentials":{
           "shape":"ApplicationCredentialList",
           "documentation":"<p>The credentials of the SAP application.</p>"
+        },
+        "DatabaseArn":{
+          "shape":"SsmSapArn",
+          "documentation":"<p>The Amazon Resource Name of the SAP HANA database.</p>"
+        },
+        "ComponentsInfo":{
+          "shape":"ComponentInfoList",
+          "documentation":"<p>This is an optional parameter for component details to which the SAP ABAP application is attached, such as Web Dispatcher.</p> <p>This is an array of ApplicationComponent objects. You may input 0 to 5 items.</p>"
         }
       }
     },
@@ -1404,9 +1689,27 @@
         "ClusterStatus":{
           "shape":"ClusterStatus",
           "documentation":"<p>The cluster status of the component.</p>"
+        },
+        "EnqueueReplication":{
+          "shape":"Boolean",
+          "documentation":"<p>Indicates if or not enqueue replication is enabled for the ASCS component.</p>"
         }
       },
       "documentation":"<p>Details of the SAP HANA system replication for the instance.</p>"
+    },
+    "Resource":{
+      "type":"structure",
+      "members":{
+        "ResourceArn":{
+          "shape":"Arn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the source resource.</p> <p>Example of <code>ResourceArn</code>: \"<code>arn:aws:ec2:us-east-1:111111111111:instance/i-abcdefgh987654321</code>\"</p>"
+        },
+        "ResourceType":{
+          "shape":"OperationEventResourceType",
+          "documentation":"<p>The resource type.</p> <p>Example of <code>ResourceType</code>: \"<code>AWS::SystemsManagerSAP::Component</code>\" or \"<code>AWS::EC2::Instance</code>\".</p>"
+        }
+      },
+      "documentation":"<p>The resource contains a <code>ResourceArn</code> and the <code>ResourceType</code>.</p>"
     },
     "ResourceId":{
       "type":"string",
@@ -1448,6 +1751,25 @@
       "type":"string",
       "pattern":"arn:(.+:){2,4}.+$|^arn:(.+:){1,3}.+\\/.+"
     },
+    "StartApplicationInput":{
+      "type":"structure",
+      "required":["ApplicationId"],
+      "members":{
+        "ApplicationId":{
+          "shape":"ApplicationId",
+          "documentation":"<p>The ID of the application.</p>"
+        }
+      }
+    },
+    "StartApplicationOutput":{
+      "type":"structure",
+      "members":{
+        "OperationId":{
+          "shape":"OperationId",
+          "documentation":"<p>The ID of the operation.</p>"
+        }
+      }
+    },
     "StartApplicationRefreshInput":{
       "type":"structure",
       "required":["ApplicationId"],
@@ -1459,6 +1781,33 @@
       }
     },
     "StartApplicationRefreshOutput":{
+      "type":"structure",
+      "members":{
+        "OperationId":{
+          "shape":"OperationId",
+          "documentation":"<p>The ID of the operation.</p>"
+        }
+      }
+    },
+    "StopApplicationInput":{
+      "type":"structure",
+      "required":["ApplicationId"],
+      "members":{
+        "ApplicationId":{
+          "shape":"ApplicationId",
+          "documentation":"<p>The ID of the application.</p>"
+        },
+        "StopConnectedEntity":{
+          "shape":"ConnectedEntityType",
+          "documentation":"<p>Specify the <code>ConnectedEntityType</code>. Accepted type is <code>DBMS</code>.</p> <p>If this parameter is included, the connected DBMS (Database Management System) will be stopped.</p>"
+        },
+        "IncludeEc2InstanceShutdown":{
+          "shape":"Boolean",
+          "documentation":"<p>Boolean. If included and if set to <code>True</code>, the StopApplication operation will shut down the associated Amazon EC2 instance in addition to the application.</p>"
+        }
+      }
+    },
+    "StopApplicationOutput":{
       "type":"structure",
       "members":{
         "OperationId":{
@@ -1511,6 +1860,18 @@
       "min":1
     },
     "Timestamp":{"type":"timestamp"},
+    "UnauthorizedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "documentation":"<p>The request is not authorized.</p>",
+      "error":{
+        "httpStatusCode":401,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "UntagResourceRequest":{
       "type":"structure",
       "required":[
@@ -1556,6 +1917,10 @@
         "Backint":{
           "shape":"BackintConfig",
           "documentation":"<p>Installation of AWS Backint Agent for SAP HANA.</p>"
+        },
+        "DatabaseArn":{
+          "shape":"SsmSapArn",
+          "documentation":"<p>The Amazon Resource Name of the SAP HANA database that replaces the current SAP HANA connection with the SAP_ABAP application.</p>"
         }
       }
     },

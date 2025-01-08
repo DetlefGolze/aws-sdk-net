@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
-    /// Represents the output of a <code>DescribeLimits</code> operation.
+    /// Represents the output of a <c>DescribeLimits</c> operation.
     /// </summary>
     public partial class DescribeLimitsResponse : AmazonWebServiceResponse
     {

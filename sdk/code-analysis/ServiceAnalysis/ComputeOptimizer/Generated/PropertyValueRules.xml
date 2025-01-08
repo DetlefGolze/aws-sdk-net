@@ -31,12 +31,22 @@
     <max>1000</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.ComputeOptimizer.Model.GetIdleRecommendationsRequest.MaxResults</property>
+    <min>0</min>
+    <max>100</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.ComputeOptimizer.Model.GetLambdaFunctionRecommendationsRequest.MaxResults</property>
     <min>0</min>
     <max>1000</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ComputeOptimizer.Model.GetLicenseRecommendationsRequest.MaxResults</property>
+    <min>0</min>
+    <max>1000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ComputeOptimizer.Model.GetRDSDatabaseRecommendationsRequest.MaxResults</property>
     <min>0</min>
     <max>1000</max>
   </property-value-rule>
@@ -57,6 +67,11 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ComputeOptimizer.Model.InstanceRecommendationOption.PerformanceRisk</property>
+    <min>0</min>
+    <max>4</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ComputeOptimizer.Model.RDSDBInstanceRecommendationOption.PerformanceRisk</property>
     <min>0</min>
     <max>4</max>
   </property-value-rule>

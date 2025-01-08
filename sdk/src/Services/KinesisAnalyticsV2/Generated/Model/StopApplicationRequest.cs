@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalyticsV2.Model
 {
     /// <summary>
     /// Container for the parameters to the StopApplication operation.
     /// Stops the application from processing data. You can stop an application only if it
-    /// is in the running status, unless you set the <code>Force</code> parameter to <code>true</code>.
+    /// is in the running status, unless you set the <c>Force</c> parameter to <c>true</c>.
     /// 
     ///  
     /// <para>
@@ -40,8 +41,8 @@ namespace Amazon.KinesisAnalyticsV2.Model
     /// </para>
     ///  
     /// <para>
-    /// Kinesis Data Analytics takes a snapshot when the application is stopped, unless <code>Force</code>
-    /// is set to <code>true</code>.
+    /// Managed Service for Apache Flink takes a snapshot when the application is stopped,
+    /// unless <c>Force</c> is set to <c>true</c>.
     /// </para>
     /// </summary>
     public partial class StopApplicationRequest : AmazonKinesisAnalyticsV2Request
@@ -71,9 +72,9 @@ namespace Amazon.KinesisAnalyticsV2.Model
         /// <summary>
         /// Gets and sets the property Force. 
         /// <para>
-        /// Set to <code>true</code> to force the application to stop. If you set <code>Force</code>
-        /// to <code>true</code>, Kinesis Data Analytics stops the application without taking
-        /// a snapshot. 
+        /// Set to <c>true</c> to force the application to stop. If you set <c>Force</c> to <c>true</c>,
+        /// Managed Service for Apache Flink stops the application without taking a snapshot.
+        /// 
         /// </para>
         ///  <note> 
         /// <para>
@@ -83,13 +84,13 @@ namespace Amazon.KinesisAnalyticsV2.Model
         /// </para>
         ///  </note> 
         /// <para>
-        /// You can only force stop a Flink-based Kinesis Data Analytics application. You can't
+        /// You can only force stop a Managed Service for Apache Flink application. You can't
         /// force stop a SQL-based Kinesis Data Analytics application.
         /// </para>
         ///  
         /// <para>
-        /// The application must be in the <code>STARTING</code>, <code>UPDATING</code>, <code>STOPPING</code>,
-        /// <code>AUTOSCALING</code>, or <code>RUNNING</code> status. 
+        /// The application must be in the <c>STARTING</c>, <c>UPDATING</c>, <c>STOPPING</c>,
+        /// <c>AUTOSCALING</c>, or <c>RUNNING</c> status. 
         /// </para>
         /// </summary>
         public bool Force

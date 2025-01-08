@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.EKS.Model
     /// </summary>
     public partial class ListAddonsResponse : AmazonWebServiceResponse
     {
-        private List<string> _addons = new List<string>();
+        private List<string> _addons = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Addons. 
         /// <para>
-        /// A list of available add-ons.
+        /// A list of installed add-ons.
         /// </para>
         /// </summary>
         public List<string> Addons
@@ -51,16 +52,16 @@ namespace Amazon.EKS.Model
         // Check to see if Addons property is set
         internal bool IsSetAddons()
         {
-            return this._addons != null && this._addons.Count > 0; 
+            return this._addons != null && (this._addons.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value returned from a previous paginated <code>ListAddonsResponse</code>
-        /// where <code>maxResults</code> was used and the results exceeded the value of that
-        /// parameter. Pagination continues from the end of the previous results that returned
-        /// the <code>nextToken</code> value.
+        /// The <c>nextToken</c> value to include in a future <c>ListAddons</c> request. When
+        /// the results of a <c>ListAddons</c> request exceed <c>maxResults</c>, you can use this
+        /// value to retrieve the next page of results. This value is <c>null</c> when there are
+        /// no more results to return.
         /// </para>
         ///  <note> 
         /// <para>

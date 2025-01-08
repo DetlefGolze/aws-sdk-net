@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -103,12 +104,12 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property Force. 
         /// <para>
         /// Forces the container instance to be deregistered. If you have tasks running on the
-        /// container instance when you deregister it with the <code>force</code> option, these
-        /// tasks remain running until you terminate the instance or the tasks stop through some
-        /// other means, but they're orphaned (no longer monitored or accounted for by Amazon
-        /// ECS). If an orphaned task on your container instance is part of an Amazon ECS service,
-        /// then the service scheduler starts another copy of that task, on a different container
-        /// instance if possible. 
+        /// container instance when you deregister it with the <c>force</c> option, these tasks
+        /// remain running until you terminate the instance or the tasks stop through some other
+        /// means, but they're orphaned (no longer monitored or accounted for by Amazon ECS).
+        /// If an orphaned task on your container instance is part of an Amazon ECS service, then
+        /// the service scheduler starts another copy of that task, on a different container instance
+        /// if possible. 
         /// </para>
         ///  
         /// <para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.EC2.Model
     public partial class LaunchTemplateTagSpecificationRequest
     {
         private ResourceType _resourceType;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceType. 
@@ -45,10 +46,9 @@ namespace Amazon.EC2.Model
         /// <para>
         /// Valid Values lists all resource types for Amazon EC2 that can be tagged. When you
         /// create a launch template, you can specify tags for the following resource types only:
-        /// <code>instance</code> | <code>volume</code> | <code>elastic-gpu</code> | <code>network-interface</code>
-        /// | <code>spot-instances-request</code>. If the instance does include the resource type
-        /// that you specify, the instance launch fails. For example, not all instance types include
-        /// an Elastic GPU.
+        /// <c>instance</c> | <c>volume</c> | <c>network-interface</c> | <c>spot-instances-request</c>.
+        /// If the instance does not include the resource type that you specify, the instance
+        /// launch fails. For example, not all instance types include a volume.
         /// </para>
         ///  
         /// <para>
@@ -82,7 +82,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

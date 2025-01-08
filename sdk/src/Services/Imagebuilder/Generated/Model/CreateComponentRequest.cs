@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -36,11 +37,11 @@ namespace Amazon.Imagebuilder.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    /// Inline, using the <code>data</code> property in the request body.
+    /// Inline, using the <c>data</c> property in the request body.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// A URL that points to a YAML document file stored in Amazon S3, using the <code>uri</code>
+    /// A URL that points to a YAML document file stored in Amazon S3, using the <c>uri</c>
     /// property in the request body.
     /// </para>
     ///  </li> </ul>
@@ -55,15 +56,15 @@ namespace Amazon.Imagebuilder.Model
         private string _name;
         private Platform _platform;
         private string _semanticVersion;
-        private List<string> _supportedOsVersions = new List<string>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private List<string> _supportedOsVersions = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _uri;
 
         /// <summary>
         /// Gets and sets the property ChangeDescription. 
         /// <para>
         /// The change description of the component. Describes what change has been made in this
-        /// version, or what makes this version different from other versions of this component.
+        /// version, or what makes this version different from other versions of the component.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -82,7 +83,9 @@ namespace Amazon.Imagebuilder.Model
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
-        /// The idempotency token of the component.
+        /// Unique, case-sensitive identifier you provide to ensure idempotency of the request.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+        /// idempotency</a> in the <i>Amazon EC2 API Reference</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=36)]
@@ -101,9 +104,9 @@ namespace Amazon.Imagebuilder.Model
         /// <summary>
         /// Gets and sets the property Data. 
         /// <para>
-        /// Component <code>data</code> contains inline YAML document content for the component.
-        /// Alternatively, you can specify the <code>uri</code> of a YAML document file stored
-        /// in Amazon S3. However, you cannot specify both properties.
+        /// Component <c>data</c> contains inline YAML document content for the component. Alternatively,
+        /// you can specify the <c>uri</c> of a YAML document file stored in Amazon S3. However,
+        /// you cannot specify both properties.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=16000)]
@@ -250,7 +253,7 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if SupportedOsVersions property is set
         internal bool IsSetSupportedOsVersions()
         {
-            return this._supportedOsVersions != null && this._supportedOsVersions.Count > 0; 
+            return this._supportedOsVersions != null && (this._supportedOsVersions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -269,19 +272,19 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Uri. 
         /// <para>
-        /// The <code>uri</code> of a YAML component document file. This must be an S3 URL (<code>s3://bucket/key</code>),
+        /// The <c>uri</c> of a YAML component document file. This must be an S3 URL (<c>s3://bucket/key</c>),
         /// and the requester must have permission to access the S3 bucket it points to. If you
         /// use Amazon S3, you can specify component content up to your service quota.
         /// </para>
         ///  
         /// <para>
-        /// Alternatively, you can specify the YAML document inline, using the component <code>data</code>
+        /// Alternatively, you can specify the YAML document inline, using the component <c>data</c>
         /// property. You cannot specify both properties.
         /// </para>
         /// </summary>

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
-    /// Describes the Amazon CloudWatch logging options for your delivery stream.
+    /// Describes the Amazon CloudWatch logging options for your Firehose stream.
     /// </summary>
     public partial class CloudWatchLoggingOptions
     {

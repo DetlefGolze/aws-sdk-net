@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeFastLaunchImages operation.
-    /// Describe details for Windows AMIs that are configured for faster launching.
+    /// Describe details for Windows AMIs that are configured for Windows fast launch.
     /// </summary>
     public partial class DescribeFastLaunchImagesRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
-        private List<string> _imageIds = new List<string>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
+        private List<string> _imageIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -46,20 +47,15 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-type</code> - The resource type for pre-provisioning.
+        ///  <c>resource-type</c> - The resource type for pre-provisioning.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>launch-template</code> - The launch template that is associated with the pre-provisioned
-        /// Windows AMI.
+        ///  <c>owner-id</c> - The owner ID for the pre-provisioning resource.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>owner-id</code> - The owner ID for the pre-provisioning resource.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>state</code> - The current state of fast launching for the Windows AMI.
+        ///  <c>state</c> - The current state of fast launching for the Windows AMI.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -72,13 +68,13 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ImageIds. 
         /// <para>
-        /// Details for one or more Windows AMI image IDs.
+        /// Specify one or more Windows AMI image IDs for the request.
         /// </para>
         /// </summary>
         public List<string> ImageIds
@@ -90,7 +86,7 @@ namespace Amazon.EC2.Model
         // Check to see if ImageIds property is set
         internal bool IsSetImageIds()
         {
-            return this._imageIds != null && this._imageIds.Count > 0; 
+            return this._imageIds != null && (this._imageIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

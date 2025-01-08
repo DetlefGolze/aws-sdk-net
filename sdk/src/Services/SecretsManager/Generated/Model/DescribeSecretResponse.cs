@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecretsManager.Model
 {
     /// <summary>
@@ -45,12 +46,12 @@ namespace Amazon.SecretsManager.Model
         private DateTime? _nextRotationDate;
         private string _owningService;
         private string _primaryRegion;
-        private List<ReplicationStatusType> _replicationStatus = new List<ReplicationStatusType>();
+        private List<ReplicationStatusType> _replicationStatus = AWSConfigs.InitializeCollections ? new List<ReplicationStatusType>() : null;
         private bool? _rotationEnabled;
         private string _rotationLambdaARN;
         private RotationRulesType _rotationRules;
-        private List<Tag> _tags = new List<Tag>();
-        private Dictionary<string, List<string>> _versionIdsToStages = new Dictionary<string, List<string>>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private Dictionary<string, List<string>> _versionIdsToStages = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
 
         /// <summary>
         /// Gets and sets the property ARN. 
@@ -139,7 +140,7 @@ namespace Amazon.SecretsManager.Model
         /// Gets and sets the property KmsKeyId. 
         /// <para>
         /// The key ID or alias ARN of the KMS key that Secrets Manager uses to encrypt the secret
-        /// value. If the secret is encrypted with the Amazon Web Services managed key <code>aws/secretsmanager</code>,
+        /// value. If the secret is encrypted with the Amazon Web Services managed key <c>aws/secretsmanager</c>,
         /// this field is omitted. Secrets created using the console use an KMS key ID.
         /// </para>
         /// </summary>
@@ -197,7 +198,7 @@ namespace Amazon.SecretsManager.Model
         /// Gets and sets the property LastRotatedDate. 
         /// <para>
         /// The last date and time that Secrets Manager rotated the secret. If the secret isn't
-        /// configured for rotation, Secrets Manager returns null.
+        /// configured for rotation or rotation has been disabled, Secrets Manager returns null.
         /// </para>
         /// </summary>
         public DateTime LastRotatedDate
@@ -235,7 +236,15 @@ namespace Amazon.SecretsManager.Model
         /// Gets and sets the property NextRotationDate. 
         /// <para>
         /// The next rotation is scheduled to occur on or before this date. If the secret isn't
-        /// configured for rotation, Secrets Manager returns null.
+        /// configured for rotation or rotation has been disabled, Secrets Manager returns null.
+        /// If rotation fails, Secrets Manager retries the entire rotation process multiple times.
+        /// If rotation is unsuccessful, this date may be in the past.
+        /// </para>
+        ///  
+        /// <para>
+        /// This date represents the latest date that rotation will occur, but it is not an approximate
+        /// rotation date. In some cases, for example if you turn off automatic rotation and then
+        /// turn it back on, the next rotation may occur much sooner than this date.
         /// </para>
         /// </summary>
         public DateTime NextRotationDate
@@ -274,7 +283,7 @@ namespace Amazon.SecretsManager.Model
         /// Gets and sets the property PrimaryRegion. 
         /// <para>
         /// The Region the secret is in. If a secret is replicated to other Regions, the replicas
-        /// are listed in <code>ReplicationStatus</code>. 
+        /// are listed in <c>ReplicationStatus</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -297,16 +306,16 @@ namespace Amazon.SecretsManager.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Failed</code>, which indicates that the replica was not created.
+        ///  <c>Failed</c>, which indicates that the replica was not created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>InProgress</code>, which indicates that Secrets Manager is in the process of
-        /// creating the replica.
+        ///  <c>InProgress</c>, which indicates that Secrets Manager is in the process of creating
+        /// the replica.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>InSync</code>, which indicates that the replica was created.
+        ///  <c>InSync</c>, which indicates that the replica was created.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -319,13 +328,14 @@ namespace Amazon.SecretsManager.Model
         // Check to see if ReplicationStatus property is set
         internal bool IsSetReplicationStatus()
         {
-            return this._replicationStatus != null && this._replicationStatus.Count > 0; 
+            return this._replicationStatus != null && (this._replicationStatus.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property RotationEnabled. 
         /// <para>
-        /// Specifies whether automatic rotation is turned on for this secret.
+        /// Specifies whether automatic rotation is turned on for this secret. If the secret has
+        /// never been configured for rotation, Secrets Manager returns null.
         /// </para>
         ///  
         /// <para>
@@ -401,7 +411,7 @@ namespace Amazon.SecretsManager.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -418,22 +428,22 @@ namespace Amazon.SecretsManager.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AWSCURRENT</code>, which indicates the current version of the secret.
+        ///  <c>AWSCURRENT</c>, which indicates the current version of the secret.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AWSPENDING</code>, which indicates the version of the secret that contains
-        /// new secret information that will become the next current version when rotation finishes.
+        ///  <c>AWSPENDING</c>, which indicates the version of the secret that contains new secret
+        /// information that will become the next current version when rotation finishes.
         /// </para>
         ///  
         /// <para>
-        /// During rotation, Secrets Manager creates an <code>AWSPENDING</code> version ID before
-        /// creating the new secret version. To check if a secret version exists, call <a>GetSecretValue</a>.
+        /// During rotation, Secrets Manager creates an <c>AWSPENDING</c> version ID before creating
+        /// the new secret version. To check if a secret version exists, call <a>GetSecretValue</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AWSPREVIOUS</code>, which indicates the previous current version of the secret.
-        /// You can use this as the <i>last known good</i> version.
+        ///  <c>AWSPREVIOUS</c>, which indicates the previous current version of the secret. You
+        /// can use this as the <i>last known good</i> version.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -450,7 +460,7 @@ namespace Amazon.SecretsManager.Model
         // Check to see if VersionIdsToStages property is set
         internal bool IsSetVersionIdsToStages()
         {
-            return this._versionIdsToStages != null && this._versionIdsToStages.Count > 0; 
+            return this._versionIdsToStages != null && (this._versionIdsToStages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

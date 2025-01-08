@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QLDB.Model
 {
     /// <summary>
@@ -45,13 +46,11 @@ namespace Amazon.QLDB.Model
         /// </para>
         ///  
         /// <para>
-        /// You must provide a <code>KmsKeyArn</code> if you specify <code>SSE_KMS</code> as the
-        /// <code>ObjectEncryptionType</code>.
+        /// You must provide a <c>KmsKeyArn</c> if you specify <c>SSE_KMS</c> as the <c>ObjectEncryptionType</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>KmsKeyArn</code> is not required if you specify <code>SSE_S3</code> as the
-        /// <code>ObjectEncryptionType</code>.
+        ///  <c>KmsKeyArn</c> is not required if you specify <c>SSE_S3</c> as the <c>ObjectEncryptionType</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=1600)]

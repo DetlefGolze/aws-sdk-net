@@ -27,6 +27,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.CognitoIdentityProvider.Model
     /// for this API operation. For this operation, you can't use IAM credentials to authorize
     /// requests, and you can't grant IAM permissions in policies. For more information about
     /// authorization models in Amazon Cognito, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using
-    /// the Amazon Cognito native and OIDC APIs</a>.
+    /// the Amazon Cognito user pools API and user pool endpoints</a>.
     /// </para>
     ///  </note> <note> 
     /// <para>
@@ -55,32 +56,42 @@ namespace Amazon.CognitoIdentityProvider.Model
     ///  
     /// <para>
     /// If you have never used SMS text messages with Amazon Cognito or any other Amazon Web
-    /// Service, Amazon Simple Notification Service might place your account in the SMS sandbox.
-    /// In <i> <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+    /// Services service, Amazon Simple Notification Service might place your account in the
+    /// SMS sandbox. In <i> <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
     /// mode</a> </i>, you can send messages only to verified phone numbers. After you test
     /// your app while in the sandbox environment, you can move out of the sandbox and into
     /// production. For more information, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html">
     /// SMS message settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer
     /// Guide</i>.
     /// </para>
-    ///  </note>
+    ///  </note> 
+    /// <para>
+    /// You might receive a <c>LimitExceeded</c> exception in response to this request if
+    /// you have exceeded a rate quota for email or SMS messages, and if your user pool automatically
+    /// verifies email addresses or phone numbers. When you get this exception in the response,
+    /// the user is successfully created and is in an <c>UNCONFIRMED</c> state. You can send
+    /// a new code with the <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ResendConfirmationCode.html">
+    /// ResendConfirmationCode</a> request, or confirm the user as an administrator with an
+    /// <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminConfirmSignUp.html">
+    /// AdminConfirmSignUp</a> request.
+    /// </para>
     /// </summary>
     public partial class SignUpRequest : AmazonCognitoIdentityProviderRequest
     {
         private AnalyticsMetadataType _analyticsMetadata;
         private string _clientId;
-        private Dictionary<string, string> _clientMetadata = new Dictionary<string, string>();
+        private Dictionary<string, string> _clientMetadata = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _password;
         private string _secretHash;
-        private List<AttributeType> _userAttributes = new List<AttributeType>();
+        private List<AttributeType> _userAttributes = AWSConfigs.InitializeCollections ? new List<AttributeType>() : null;
         private UserContextDataType _userContextData;
         private string _username;
-        private List<AttributeType> _validationData = new List<AttributeType>();
+        private List<AttributeType> _validationData = AWSConfigs.InitializeCollections ? new List<AttributeType>() : null;
 
         /// <summary>
         /// Gets and sets the property AnalyticsMetadata. 
         /// <para>
-        /// The Amazon Pinpoint analytics metadata that contributes to your metrics for <code>SignUp</code>
+        /// The Amazon Pinpoint analytics metadata that contributes to your metrics for <c>SignUp</c>
         /// calls.
         /// </para>
         /// </summary>
@@ -127,9 +138,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// you use the SignUp API action, Amazon Cognito invokes any functions that are assigned
         /// to the following triggers: <i>pre sign-up</i>, <i>custom message</i>, and <i>post
         /// confirmation</i>. When Amazon Cognito invokes any of these functions, it passes a
-        /// JSON payload, which the function receives as input. This payload contains a <code>clientMetadata</code>
+        /// JSON payload, which the function receives as input. This payload contains a <c>clientMetadata</c>
         /// attribute, which provides the data that you assigned to the ClientMetadata parameter
-        /// in your SignUp request. In your function code in Lambda, you can process the <code>clientMetadata</code>
+        /// in your SignUp request. In your function code in Lambda, you can process the <c>clientMetadata</c>
         /// value to enhance your workflow for your specific needs.
         /// </para>
         ///  
@@ -140,22 +151,23 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// When you use the ClientMetadata parameter, remember that Amazon Cognito won't do the
-        /// following:
+        /// When you use the <c>ClientMetadata</c> parameter, note that Amazon Cognito won't do
+        /// the following:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Store the ClientMetadata value. This data is available only to Lambda triggers that
-        /// are assigned to a user pool to support custom workflows. If your user pool configuration
-        /// doesn't include triggers, the ClientMetadata parameter serves no purpose.
+        /// Store the <c>ClientMetadata</c> value. This data is available only to Lambda triggers
+        /// that are assigned to a user pool to support custom workflows. If your user pool configuration
+        /// doesn't include triggers, the <c>ClientMetadata</c> parameter serves no purpose.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Validate the ClientMetadata value.
+        /// Validate the <c>ClientMetadata</c> value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Encrypt the ClientMetadata value. Don't use Amazon Cognito to provide sensitive information.
+        /// Encrypt the <c>ClientMetadata</c> value. Don't send sensitive information in this
+        /// parameter.
         /// </para>
         ///  </li> </ul> </note>
         /// </summary>
@@ -168,7 +180,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if ClientMetadata property is set
         internal bool IsSetClientMetadata()
         {
-            return this._clientMetadata != null && this._clientMetadata.Count > 0; 
+            return this._clientMetadata != null && (this._clientMetadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -176,8 +188,17 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <para>
         /// The password of the user you want to register.
         /// </para>
+        ///  
+        /// <para>
+        /// Users can sign up without a password when your user pool supports passwordless sign-in
+        /// with email or SMS OTPs. To create a user with no password, omit this parameter or
+        /// submit a blank value. You can only create a passwordless user when passwordless sign-in
+        /// is available. See <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SignInPolicyType.html">the
+        /// SignInPolicyType</a> property of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserPool.html">CreateUserPool</a>
+        /// and <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserPool.html">UpdateUserPool</a>.
+        /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Sensitive=true, Max=256)]
+        [AWSProperty(Sensitive=true, Max=256)]
         public string Password
         {
             get { return this._password; }
@@ -194,7 +215,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// Gets and sets the property SecretHash. 
         /// <para>
         /// A keyed-hash message authentication code (HMAC) calculated using the secret key of
-        /// a user pool client and username plus the client ID in the message.
+        /// a user pool client and username plus the client ID in the message. For more information
+        /// about <c>SecretHash</c>, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash">Computing
+        /// secret hash values</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=128)]
@@ -217,7 +240,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// </para>
         ///  
         /// <para>
-        /// For custom attributes, you must prepend the <code>custom:</code> prefix to the attribute
+        /// For custom attributes, you must prepend the <c>custom:</c> prefix to the attribute
         /// name.
         /// </para>
         /// </summary>
@@ -230,7 +253,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if UserAttributes property is set
         internal bool IsSetUserAttributes()
         {
-            return this._userAttributes != null && this._userAttributes.Count > 0; 
+            return this._userAttributes != null && (this._userAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -240,6 +263,11 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// or location. Amazon Cognito advanced security evaluates the risk of an authentication
         /// event based on the context that your app generates and passes to Amazon Cognito when
         /// it makes API requests.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-viewing-threat-protection-app.html">Collecting
+        /// data for threat protection in applications</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -258,7 +286,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Username. 
         /// <para>
-        /// The user name of the user you want to register.
+        /// The username of the user that you want to sign up. The value of this parameter is
+        /// typically a username, but can be any alias attribute in your user pool.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=128)]
@@ -277,7 +306,22 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property ValidationData. 
         /// <para>
-        /// The validation data in the request to register a user.
+        /// Temporary user attributes that contribute to the outcomes of your pre sign-up Lambda
+        /// trigger. This set of key-value pairs are for custom validation of information that
+        /// you collect from your users but don't need to retain.
+        /// </para>
+        ///  
+        /// <para>
+        /// Your Lambda function can analyze this additional data and act on it. Your function
+        /// might perform external API operations like logging user attributes and validation
+        /// data to Amazon CloudWatch Logs. Validation data might also affect the response that
+        /// your function returns to Amazon Cognito, like automatically confirming the user if
+        /// they sign up from within your network.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about the pre sign-up Lambda trigger, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html">Pre
+        /// sign-up Lambda trigger</a>.
         /// </para>
         /// </summary>
         public List<AttributeType> ValidationData
@@ -289,7 +333,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if ValidationData property is set
         internal bool IsSetValidationData()
         {
-            return this._validationData != null && this._validationData.Count > 0; 
+            return this._validationData != null && (this._validationData.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

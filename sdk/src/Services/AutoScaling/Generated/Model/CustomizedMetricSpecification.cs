@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -65,10 +66,11 @@ namespace Amazon.AutoScaling.Model
     /// </summary>
     public partial class CustomizedMetricSpecification
     {
-        private List<MetricDimension> _dimensions = new List<MetricDimension>();
+        private List<MetricDimension> _dimensions = AWSConfigs.InitializeCollections ? new List<MetricDimension>() : null;
         private string _metricName;
-        private List<TargetTrackingMetricDataQuery> _metrics = new List<TargetTrackingMetricDataQuery>();
+        private List<TargetTrackingMetricDataQuery> _metrics = AWSConfigs.InitializeCollections ? new List<TargetTrackingMetricDataQuery>() : null;
         private string _awsNamespace;
+        private int? _period;
         private MetricStatistic _statistic;
         private string _unit;
 
@@ -92,7 +94,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if Dimensions property is set
         internal bool IsSetDimensions()
         {
-            return this._dimensions != null && this._dimensions.Count > 0; 
+            return this._dimensions != null && (this._dimensions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -131,7 +133,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if Metrics property is set
         internal bool IsSetMetrics()
         {
-            return this._metrics != null && this._metrics.Count > 0; 
+            return this._metrics != null && (this._metrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -150,6 +152,28 @@ namespace Amazon.AutoScaling.Model
         internal bool IsSetNamespace()
         {
             return this._awsNamespace != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Period. 
+        /// <para>
+        ///  The period of the metric in seconds. The default value is 60. Accepted values are
+        /// 10, 30, and 60. For high resolution metric, set the value to less than 60. For more
+        /// information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/policy-creating-high-resolution-metrics.html">Create
+        /// a target tracking policy using high-resolution metrics for faster response</a>. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1)]
+        public int Period
+        {
+            get { return this._period.GetValueOrDefault(); }
+            set { this._period = value; }
+        }
+
+        // Check to see if Period property is set
+        internal bool IsSetPeriod()
+        {
+            return this._period.HasValue; 
         }
 
         /// <summary>

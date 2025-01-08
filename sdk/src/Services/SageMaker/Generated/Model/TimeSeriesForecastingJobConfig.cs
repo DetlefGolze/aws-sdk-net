@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -34,14 +35,30 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class TimeSeriesForecastingJobConfig
     {
+        private CandidateGenerationConfig _candidateGenerationConfig;
         private AutoMLJobCompletionCriteria _completionCriteria;
         private string _featureSpecificationS3Uri;
         private string _forecastFrequency;
         private int? _forecastHorizon;
-        private List<string> _forecastQuantiles = new List<string>();
-        private List<HolidayConfigAttributes> _holidayConfig = new List<HolidayConfigAttributes>();
+        private List<string> _forecastQuantiles = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<HolidayConfigAttributes> _holidayConfig = AWSConfigs.InitializeCollections ? new List<HolidayConfigAttributes>() : null;
         private TimeSeriesConfig _timeSeriesConfig;
         private TimeSeriesTransformations _transformations;
+
+        /// <summary>
+        /// Gets and sets the property CandidateGenerationConfig.
+        /// </summary>
+        public CandidateGenerationConfig CandidateGenerationConfig
+        {
+            get { return this._candidateGenerationConfig; }
+            set { this._candidateGenerationConfig = value; }
+        }
+
+        // Check to see if CandidateGenerationConfig property is set
+        internal bool IsSetCandidateGenerationConfig()
+        {
+            return this._candidateGenerationConfig != null;
+        }
 
         /// <summary>
         /// Gets and sets the property CompletionCriteria.
@@ -62,20 +79,20 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property FeatureSpecificationS3Uri. 
         /// <para>
         /// A URL to the Amazon S3 data source containing additional selected features that complement
-        /// the target, itemID, timestamp, and grouped columns set in <code>TimeSeriesConfig</code>.
+        /// the target, itemID, timestamp, and grouped columns set in <c>TimeSeriesConfig</c>.
         /// When not provided, the AutoML job V2 includes all the columns from the original dataset
-        /// that are not already declared in <code>TimeSeriesConfig</code>. If provided, the AutoML
+        /// that are not already declared in <c>TimeSeriesConfig</c>. If provided, the AutoML
         /// job V2 only considers these additional columns as a complement to the ones declared
-        /// in <code>TimeSeriesConfig</code>.
+        /// in <c>TimeSeriesConfig</c>.
         /// </para>
         ///  
         /// <para>
-        /// You can input <code>FeatureAttributeNames</code> (optional) in JSON format as shown
-        /// below: 
+        /// You can input <c>FeatureAttributeNames</c> (optional) in JSON format as shown below:
+        /// 
         /// </para>
         ///  
         /// <para>
-        ///  <code>{ "FeatureAttributeNames":["col1", "col2", ...] }</code>.
+        ///  <c>{ "FeatureAttributeNames":["col1", "col2", ...] }</c>.
         /// </para>
         ///  
         /// <para>
@@ -83,17 +100,16 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>{ "FeatureDataTypes":{"col1":"numeric", "col2":"categorical" ... } }</code>
-        /// 
+        ///  <c>{ "FeatureDataTypes":{"col1":"numeric", "col2":"categorical" ... } }</c> 
         /// </para>
         ///  
         /// <para>
-        /// Autopilot supports the following data types: <code>numeric</code>, <code>categorical</code>,
-        /// <code>text</code>, and <code>datetime</code>.
+        /// Autopilot supports the following data types: <c>numeric</c>, <c>categorical</c>, <c>text</c>,
+        /// and <c>datetime</c>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// These column keys must not include any column set in <code>TimeSeriesConfig</code>.
+        /// These column keys must not include any column set in <c>TimeSeriesConfig</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -118,10 +134,9 @@ namespace Amazon.SageMaker.Model
         ///  
         /// <para>
         /// Valid intervals are an integer followed by Y (Year), M (Month), W (Week), D (Day),
-        /// H (Hour), and min (Minute). For example, <code>1D</code> indicates every day and <code>15min</code>
+        /// H (Hour), and min (Minute). For example, <c>1D</c> indicates every day and <c>15min</c>
         /// indicates every 15 minutes. The value of a frequency must not overlap with the next
-        /// larger frequency. For example, you must use a frequency of <code>1H</code> instead
-        /// of <code>60min</code>.
+        /// larger frequency. For example, you must use a frequency of <c>1H</c> instead of <c>60min</c>.
         /// </para>
         ///  
         /// <para>
@@ -191,8 +206,8 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property ForecastQuantiles. 
         /// <para>
         /// The quantiles used to train the model for forecasts at a specified quantile. You can
-        /// specify quantiles from <code>0.01</code> (p1) to <code>0.99</code> (p99), by increments
-        /// of 0.01 or higher. Up to five forecast quantiles can be specified. When <code>ForecastQuantiles</code>
+        /// specify quantiles from <c>0.01</c> (p1) to <c>0.99</c> (p99), by increments of 0.01
+        /// or higher. Up to five forecast quantiles can be specified. When <c>ForecastQuantiles</c>
         /// is not provided, the AutoML job uses the quantiles p10, p50, and p90 as default.
         /// </para>
         /// </summary>
@@ -206,7 +221,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if ForecastQuantiles property is set
         internal bool IsSetForecastQuantiles()
         {
-            return this._forecastQuantiles != null && this._forecastQuantiles.Count > 0; 
+            return this._forecastQuantiles != null && (this._forecastQuantiles.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -226,7 +241,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if HolidayConfig property is set
         internal bool IsSetHolidayConfig()
         {
-            return this._holidayConfig != null && this._holidayConfig.Count > 0; 
+            return this._holidayConfig != null && (this._holidayConfig.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.LexModelsV2.Model
     {
         private AudioLogDestination _destination;
         private bool? _enabled;
+        private bool? _selectiveLoggingEnabled;
 
         /// <summary>
         /// Gets and sets the property Destination.
@@ -70,6 +72,24 @@ namespace Amazon.LexModelsV2.Model
         internal bool IsSetEnabled()
         {
             return this._enabled.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SelectiveLoggingEnabled. 
+        /// <para>
+        /// The option to enable selective conversation log capture for audio.
+        /// </para>
+        /// </summary>
+        public bool SelectiveLoggingEnabled
+        {
+            get { return this._selectiveLoggingEnabled.GetValueOrDefault(); }
+            set { this._selectiveLoggingEnabled = value; }
+        }
+
+        // Check to see if SelectiveLoggingEnabled property is set
+        internal bool IsSetSelectiveLoggingEnabled()
+        {
+            return this._selectiveLoggingEnabled.HasValue; 
         }
 
     }

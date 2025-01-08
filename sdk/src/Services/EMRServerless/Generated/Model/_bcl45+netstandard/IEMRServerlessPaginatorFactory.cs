@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the emr-serverless-2021-07-13.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EMRServerless.Model
 {
     /// <summary>
@@ -29,6 +30,11 @@ namespace Amazon.EMRServerless.Model
         /// Paginator for ListApplications operation
         ///</summary>
         IListApplicationsPaginator ListApplications(ListApplicationsRequest request);
+
+        /// <summary>
+        /// Paginator for ListJobRunAttempts operation
+        ///</summary>
+        IListJobRunAttemptsPaginator ListJobRunAttempts(ListJobRunAttemptsRequest request);
 
         /// <summary>
         /// Paginator for ListJobRuns operation

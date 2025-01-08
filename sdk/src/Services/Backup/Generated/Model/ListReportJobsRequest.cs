@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -107,7 +108,7 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>CREATED | RUNNING | COMPLETED | FAILED</code> 
+        ///  <c>CREATED | RUNNING | COMPLETED | FAILED</c> 
         /// </para>
         /// </summary>
         public string ByStatus

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// <code>DBClusterIdentifier</code> doesn't refer to an existing DB cluster.
+    /// <c>DBClusterIdentifier</c> doesn't refer to an existing DB cluster.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

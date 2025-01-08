@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LookoutEquipment.Model
 {
     /// <summary>
@@ -118,7 +119,7 @@ namespace Amazon.LookoutEquipment.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the <code>ImportModelVersion</code> operation. 
+        /// The status of the <c>ImportModelVersion</c> operation. 
         /// </para>
         /// </summary>
         public ModelVersionStatus Status

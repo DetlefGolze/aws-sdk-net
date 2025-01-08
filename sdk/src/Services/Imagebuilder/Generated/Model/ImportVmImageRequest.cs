@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -51,7 +52,7 @@ namespace Amazon.Imagebuilder.Model
         private string _osVersion;
         private Platform _platform;
         private string _semanticVersion;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _vmImportTaskId;
 
         /// <summary>
@@ -205,15 +206,15 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property VmImportTaskId. 
         /// <para>
-        /// The <code>importTaskId</code> (API) or <code>ImportTaskId</code> (CLI) from the Amazon
-        /// EC2 VM import process. Image Builder retrieves information from the import process
-        /// to pull in the AMI that is created from the VM source as the base image for your recipe.
+        /// The <c>importTaskId</c> (API) or <c>ImportTaskId</c> (CLI) from the Amazon EC2 VM
+        /// import process. Image Builder retrieves information from the import process to pull
+        /// in the AMI that is created from the VM source as the base image for your recipe.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1024)]

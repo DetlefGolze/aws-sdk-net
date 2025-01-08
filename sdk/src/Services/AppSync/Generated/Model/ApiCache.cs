@@ -26,15 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
-    /// The <code>ApiCache</code> object.
+    /// The <c>ApiCache</c> object.
     /// </summary>
     public partial class ApiCache
     {
         private ApiCachingBehavior _apiCachingBehavior;
         private bool? _atRestEncryptionEnabled;
+        private CacheHealthMetricsConfig _healthMetricsConfig;
         private ApiCacheStatus _status;
         private bool? _transitEncryptionEnabled;
         private long? _ttl;
@@ -83,6 +85,40 @@ namespace Amazon.AppSync.Model
         internal bool IsSetAtRestEncryptionEnabled()
         {
             return this._atRestEncryptionEnabled.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property HealthMetricsConfig. 
+        /// <para>
+        /// Controls how cache health metrics will be emitted to CloudWatch. Cache health metrics
+        /// include:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// NetworkBandwidthOutAllowanceExceeded: The network packets dropped because the throughput
+        /// exceeded the aggregated bandwidth limit. This is useful for diagnosing bottlenecks
+        /// in a cache configuration.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// EngineCPUUtilization: The CPU utilization (percentage) allocated to the Redis process.
+        /// This is useful for diagnosing bottlenecks in a cache configuration.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Metrics will be recorded by API ID. You can set the value to <c>ENABLED</c> or <c>DISABLED</c>.
+        /// </para>
+        /// </summary>
+        public CacheHealthMetricsConfig HealthMetricsConfig
+        {
+            get { return this._healthMetricsConfig; }
+            set { this._healthMetricsConfig = value; }
+        }
+
+        // Check to see if HealthMetricsConfig property is set
+        internal bool IsSetHealthMetricsConfig()
+        {
+            return this._healthMetricsConfig != null;
         }
 
         /// <summary>
@@ -172,35 +208,35 @@ namespace Amazon.AppSync.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>SMALL</code> 
+        ///  <c>SMALL</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MEDIUM</code> 
+        ///  <c>MEDIUM</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LARGE</code> 
+        ///  <c>LARGE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>XLARGE</code> 
+        ///  <c>XLARGE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LARGE_2X</code> 
+        ///  <c>LARGE_2X</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LARGE_4X</code> 
+        ///  <c>LARGE_4X</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LARGE_8X</code> (not available in all regions)
+        ///  <c>LARGE_8X</c> (not available in all regions)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LARGE_12X</code> 
+        ///  <c>LARGE_12X</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>

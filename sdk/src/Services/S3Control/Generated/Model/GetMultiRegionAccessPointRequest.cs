@@ -26,21 +26,28 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
     /// Container for the parameters to the GetMultiRegionAccessPoint operation.
-    /// Returns configuration information about the specified Multi-Region Access Point.
-    /// 
-    ///  
+    /// <note> 
     /// <para>
-    /// This action will always be routed to the US West (Oregon) Region. For more information
-    /// about the restrictions around managing Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html">Managing
-    /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
+    /// This operation is not supported by directory buckets.
+    /// </para>
+    ///  </note> 
+    /// <para>
+    /// Returns configuration information about the specified Multi-Region Access Point.
     /// </para>
     ///  
     /// <para>
-    /// The following actions are related to <code>GetMultiRegionAccessPoint</code>:
+    /// This action will always be routed to the US West (Oregon) Region. For more information
+    /// about the restrictions around working with Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html">Multi-Region
+    /// Access Point restrictions and limitations</a> in the <i>Amazon S3 User Guide</i>.
+    /// </para>
+    ///  
+    /// <para>
+    /// The following actions are related to <c>GetMultiRegionAccessPoint</c>:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -85,7 +92,7 @@ namespace Amazon.S3Control.Model
         // Check to see if AccountId property is set
         internal bool IsSetAccountId()
         {
-            return this._accountId != null;
+            return !string.IsNullOrEmpty(this._accountId);
         }
 
         /// <summary>
@@ -94,8 +101,8 @@ namespace Amazon.S3Control.Model
         /// The name of the Multi-Region Access Point whose configuration information you want
         /// to receive. The name of the Multi-Region Access Point is different from the alias.
         /// For more information about the distinction between the name and the alias of an Multi-Region
-        /// Access Point, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html#multi-region-access-point-naming">Managing
-        /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
+        /// Access Point, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html#multi-region-access-point-naming">Rules
+        /// for naming Amazon S3 Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=50)]

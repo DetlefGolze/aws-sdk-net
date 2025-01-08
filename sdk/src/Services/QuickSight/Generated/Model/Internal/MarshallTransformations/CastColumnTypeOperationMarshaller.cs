@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(CastColumnTypeOperation requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetColumnName())
             {
                 context.Writer.WritePropertyName("ColumnName");
@@ -61,6 +64,12 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("NewColumnType");
                 context.Writer.Write(requestObject.NewColumnType);
+            }
+
+            if(requestObject.IsSetSubType())
+            {
+                context.Writer.WritePropertyName("SubType");
+                context.Writer.Write(requestObject.SubType);
             }
 
         }

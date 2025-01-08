@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -43,9 +44,8 @@ namespace Amazon.ResilienceHub.Model
         /// Gets and sets the property EventType. 
         /// <para>
         /// The type of event you would like to subscribe and get notification for. Currently,
-        /// Resilience Hub supports notifications only for <b>Drift detected</b> (<code>DriftDetected</code>)
-        /// and <b>Scheduled assessment failure</b> (<code>ScheduledAssessmentFailure</code>)
-        /// events.
+        /// Resilience Hub supports notifications only for <b>Drift detected</b> (<c>DriftDetected</c>)
+        /// and <b>Scheduled assessment failure</b> (<c>ScheduledAssessmentFailure</c>) events.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -84,9 +84,10 @@ namespace Amazon.ResilienceHub.Model
         /// Gets and sets the property SnsTopicArn. 
         /// <para>
         /// Amazon Resource Name (ARN) of the Amazon Simple Notification Service topic. The format
-        /// for this ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app/<code>app-id</code>.
-        /// For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
-        /// Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i> guide.
+        /// for this ARN is: <c>arn:partition:sns:region:account:topic-name</c>. For more information
+        /// about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
         /// </para>
         /// </summary>
         public string SnsTopicArn

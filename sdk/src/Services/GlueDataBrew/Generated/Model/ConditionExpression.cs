@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GlueDataBrew.Model
 {
     /// <summary>
@@ -39,8 +40,8 @@ namespace Amazon.GlueDataBrew.Model
     ///  
     /// <para>
     /// If a recipe requires more than one condition, then the recipe must specify multiple
-    /// <code>ConditionExpression</code> elements. Each condition is applied to the rows in
-    /// a dataset first, before the recipe action is performed.
+    /// <c>ConditionExpression</c> elements. Each condition is applied to the rows in a dataset
+    /// first, before the recipe action is performed.
     /// </para>
     /// </summary>
     public partial class ConditionExpression

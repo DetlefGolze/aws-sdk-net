@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LicenseManager.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.LicenseManager.Model
     /// </summary>
     public partial class ListUsageForLicenseConfigurationRequest : AmazonLicenseManagerRequest
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private string _licenseConfigurationArn;
         private int? _maxResults;
         private string _nextToken;
@@ -48,19 +49,19 @@ namespace Amazon.LicenseManager.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resourceArn</code> - The ARN of the license configuration resource. Logical
-        /// operators are <code>EQUALS</code> | <code>NOT_EQUALS</code>.
+        ///  <c>resourceArn</c> - The ARN of the license configuration resource. Logical operators
+        /// are <c>EQUALS</c> | <c>NOT_EQUALS</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>resourceType</code> - The resource type (<code>EC2_INSTANCE</code> | <code>EC2_HOST</code>
-        /// | <code>EC2_AMI</code> | <code>SYSTEMS_MANAGER_MANAGED_INSTANCE</code>). Logical operators
-        /// are <code>EQUALS</code> | <code>NOT_EQUALS</code>.
+        ///  <c>resourceType</c> - The resource type (<c>EC2_INSTANCE</c> | <c>EC2_HOST</c> |
+        /// <c>EC2_AMI</c> | <c>SYSTEMS_MANAGER_MANAGED_INSTANCE</c>). Logical operators are <c>EQUALS</c>
+        /// | <c>NOT_EQUALS</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>resourceAccount</code> - The ID of the account that owns the resource. Logical
-        /// operators are <code>EQUALS</code> | <code>NOT_EQUALS</code>.
+        ///  <c>resourceAccount</c> - The ID of the account that owns the resource. Logical operators
+        /// are <c>EQUALS</c> | <c>NOT_EQUALS</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -73,7 +74,7 @@ namespace Amazon.LicenseManager.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

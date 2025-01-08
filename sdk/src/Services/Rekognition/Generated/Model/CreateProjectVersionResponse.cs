@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.Rekognition.Model
         /// <summary>
         /// Gets and sets the property ProjectVersionArn. 
         /// <para>
-        /// The ARN of the model version that was created. Use <code>DescribeProjectVersion</code>
+        /// The ARN of the model or the project version that was created. Use <c>DescribeProjectVersion</c>
         /// to get the current status of the training operation.
         /// </para>
         /// </summary>

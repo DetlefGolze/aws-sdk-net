@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -33,13 +34,14 @@ namespace Amazon.FSx.Model
     /// </summary>
     public partial class UpdateFileSystemOpenZFSConfiguration
     {
-        private List<string> _addRouteTableIds = new List<string>();
+        private List<string> _addRouteTableIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _automaticBackupRetentionDays;
         private bool? _copyTagsToBackups;
         private bool? _copyTagsToVolumes;
         private string _dailyAutomaticBackupStartTime;
         private DiskIopsConfiguration _diskIopsConfiguration;
-        private List<string> _removeRouteTableIds = new List<string>();
+        private OpenZFSReadCacheConfiguration _readCacheConfiguration;
+        private List<string> _removeRouteTableIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _throughputCapacity;
         private string _weeklyMaintenanceStartTime;
 
@@ -60,7 +62,7 @@ namespace Amazon.FSx.Model
         // Check to see if AddRouteTableIds property is set
         internal bool IsSetAddRouteTableIds()
         {
-            return this._addRouteTableIds != null && this._addRouteTableIds.Count > 0; 
+            return this._addRouteTableIds != null && (this._addRouteTableIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -83,12 +85,12 @@ namespace Amazon.FSx.Model
         /// Gets and sets the property CopyTagsToBackups. 
         /// <para>
         /// A Boolean value indicating whether tags for the file system should be copied to backups.
-        /// This value defaults to <code>false</code>. If it's set to <code>true</code>, all tags
-        /// for the file system are copied to all automatic and user-initiated backups where the
-        /// user doesn't specify tags. If this value is <code>true</code> and you specify one
-        /// or more tags, only the specified tags are copied to backups. If you specify one or
-        /// more tags when creating a user-initiated backup, no tags are copied from the file
-        /// system, regardless of this value.
+        /// This value defaults to <c>false</c>. If it's set to <c>true</c>, all tags for the
+        /// file system are copied to all automatic and user-initiated backups where the user
+        /// doesn't specify tags. If this value is <c>true</c> and you specify one or more tags,
+        /// only the specified tags are copied to backups. If you specify one or more tags when
+        /// creating a user-initiated backup, no tags are copied from the file system, regardless
+        /// of this value.
         /// </para>
         /// </summary>
         public bool CopyTagsToBackups
@@ -107,11 +109,11 @@ namespace Amazon.FSx.Model
         /// Gets and sets the property CopyTagsToVolumes. 
         /// <para>
         /// A Boolean value indicating whether tags for the volume should be copied to snapshots.
-        /// This value defaults to <code>false</code>. If it's set to <code>true</code>, all tags
-        /// for the volume are copied to snapshots where the user doesn't specify tags. If this
-        /// value is <code>true</code> and you specify one or more tags, only the specified tags
-        /// are copied to snapshots. If you specify one or more tags when creating the snapshot,
-        /// no tags are copied from the volume, regardless of this value.
+        /// This value defaults to <c>false</c>. If it's set to <c>true</c>, all tags for the
+        /// volume are copied to snapshots where the user doesn't specify tags. If this value
+        /// is <c>true</c> and you specify one or more tags, only the specified tags are copied
+        /// to snapshots. If you specify one or more tags when creating the snapshot, no tags
+        /// are copied from the volume, regardless of this value.
         /// </para>
         /// </summary>
         public bool CopyTagsToVolumes
@@ -158,6 +160,25 @@ namespace Amazon.FSx.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ReadCacheConfiguration. 
+        /// <para>
+        ///  The configuration for the optional provisioned SSD read cache on file systems that
+        /// use the Intelligent-Tiering storage class.
+        /// </para>
+        /// </summary>
+        public OpenZFSReadCacheConfiguration ReadCacheConfiguration
+        {
+            get { return this._readCacheConfiguration; }
+            set { this._readCacheConfiguration = value; }
+        }
+
+        // Check to see if ReadCacheConfiguration property is set
+        internal bool IsSetReadCacheConfiguration()
+        {
+            return this._readCacheConfiguration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property RemoveRouteTableIds. 
         /// <para>
         /// (Multi-AZ only) A list of IDs of existing virtual private cloud (VPC) route tables
@@ -175,7 +196,7 @@ namespace Amazon.FSx.Model
         // Check to see if RemoveRouteTableIds property is set
         internal bool IsSetRemoveRouteTableIds()
         {
-            return this._removeRouteTableIds != null && this._removeRouteTableIds.Count > 0; 
+            return this._removeRouteTableIds != null && (this._removeRouteTableIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -186,13 +207,13 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For <code>MULTI_AZ_1</code> and <code>SINGLE_AZ_2</code>, valid values are 160, 320,
-        /// 640, 1280, 2560, 3840, 5120, 7680, or 10240 MBps.
+        /// For <c>MULTI_AZ_1</c> and <c>SINGLE_AZ_2</c>, valid values are 160, 320, 640, 1280,
+        /// 2560, 3840, 5120, 7680, or 10240 MB/s.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For <code>SINGLE_AZ_1</code>, valid values are 64, 128, 256, 512, 1024, 2048, 3072,
-        /// or 4096 MB/s.
+        /// For <c>SINGLE_AZ_1</c>, valid values are 64, 128, 256, 512, 1024, 2048, 3072, or 4096
+        /// MB/s.
         /// </para>
         ///  </li> </ul>
         /// </summary>

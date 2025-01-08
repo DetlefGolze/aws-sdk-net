@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MemoryDB.Model
 {
     /// <summary>
@@ -35,13 +36,13 @@ namespace Amazon.MemoryDB.Model
     public partial class UpdateACLRequest : AmazonMemoryDBRequest
     {
         private string _aclName;
-        private List<string> _userNamesToAdd = new List<string>();
-        private List<string> _userNamesToRemove = new List<string>();
+        private List<string> _userNamesToAdd = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _userNamesToRemove = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ACLName. 
         /// <para>
-        /// The name of the Access Control List
+        /// The name of the Access Control List.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -60,7 +61,7 @@ namespace Amazon.MemoryDB.Model
         /// <summary>
         /// Gets and sets the property UserNamesToAdd. 
         /// <para>
-        /// The list of users to add to the Access Control List
+        /// The list of users to add to the Access Control List.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -73,13 +74,13 @@ namespace Amazon.MemoryDB.Model
         // Check to see if UserNamesToAdd property is set
         internal bool IsSetUserNamesToAdd()
         {
-            return this._userNamesToAdd != null && this._userNamesToAdd.Count > 0; 
+            return this._userNamesToAdd != null && (this._userNamesToAdd.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UserNamesToRemove. 
         /// <para>
-        /// The list of users to remove from the Access Control List
+        /// The list of users to remove from the Access Control List.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -92,7 +93,7 @@ namespace Amazon.MemoryDB.Model
         // Check to see if UserNamesToRemove property is set
         internal bool IsSetUserNamesToRemove()
         {
-            return this._userNamesToRemove != null && this._userNamesToRemove.Count > 0; 
+            return this._userNamesToRemove != null && (this._userNamesToRemove.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

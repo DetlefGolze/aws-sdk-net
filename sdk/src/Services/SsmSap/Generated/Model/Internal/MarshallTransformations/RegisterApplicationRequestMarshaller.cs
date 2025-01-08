@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SsmSap.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.SsmSap.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetApplicationId())
@@ -75,6 +77,22 @@ namespace Amazon.SsmSap.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("ApplicationType");
                     context.Writer.Write(publicRequest.ApplicationType);
+                }
+
+                if(publicRequest.IsSetComponentsInfo())
+                {
+                    context.Writer.WritePropertyName("ComponentsInfo");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestComponentsInfoListValue in publicRequest.ComponentsInfo)
+                    {
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = ComponentInfoMarshaller.Instance;
+                        marshaller.Marshall(publicRequestComponentsInfoListValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteArrayEnd();
                 }
 
                 if(publicRequest.IsSetCredentials())
@@ -91,6 +109,12 @@ namespace Amazon.SsmSap.Model.Internal.MarshallTransformations
                         context.Writer.WriteObjectEnd();
                     }
                     context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetDatabaseArn())
+                {
+                    context.Writer.WritePropertyName("DatabaseArn");
+                    context.Writer.Write(publicRequest.DatabaseArn);
                 }
 
                 if(publicRequest.IsSetInstances())

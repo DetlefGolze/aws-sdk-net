@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
     /// A response headers policy with this name already exists. You must provide a unique
-    /// name. To modify an existing response headers policy, use <code>UpdateResponseHeadersPolicy</code>.
+    /// name. To modify an existing response headers policy, use <c>UpdateResponseHeadersPolicy</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

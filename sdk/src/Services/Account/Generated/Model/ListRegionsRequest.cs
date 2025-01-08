@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Account.Model
 {
     /// <summary>
     /// Container for the parameters to the ListRegions operation.
     /// Lists all the Regions for a given account and their respective opt-in statuses. Optionally,
-    /// this list can be filtered by the <code>region-opt-status-contains</code> parameter.
+    /// this list can be filtered by the <c>region-opt-status-contains</c> parameter.
     /// </summary>
     public partial class ListRegionsRequest : AmazonAccountRequest
     {
         private string _accountId;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _regionOptStatusContains = new List<string>();
+        private List<string> _regionOptStatusContains = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AccountId. 
@@ -48,16 +49,16 @@ namespace Amazon.Account.Model
         /// it defaults to the Amazon Web Services account of the identity used to call the operation.
         /// To use this parameter, the caller must be an identity in the <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account">organization's
         /// management account</a> or a delegated administrator account. The specified account
-        /// ID must also be a member account in the same organization. The organization must have
-        /// <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html">all
+        /// ID must be a member account in the same organization. The organization must have <a
+        /// href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html">all
         /// features enabled</a>, and the organization must have <a href="https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-trusted-access.html">trusted
         /// access</a> enabled for the Account Management service, and optionally a <a href="https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-delegated-admin.html">delegated
         /// admin</a> account assigned.
         /// </para>
         ///  <note> 
         /// <para>
-        /// The management account can't specify its own <code>AccountId</code>. It must call
-        /// the operation in standalone context by not including the <code>AccountId</code> parameter.
+        /// The management account can't specify its own <c>AccountId</c>. It must call the operation
+        /// in standalone context by not including the <c>AccountId</c> parameter.
         /// </para>
         ///  </note> 
         /// <para>
@@ -82,11 +83,11 @@ namespace Amazon.Account.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The total number of items to return in the command’s output. If the total number of
-        /// items available is more than the value specified, a <code>NextToken</code> is provided
-        /// in the command’s output. To resume pagination, provide the <code>NextToken</code>
-        /// value in the <code>starting-token</code> argument of a subsequent command. Do not
-        /// use the <code>NextToken</code> response element directly outside of the Amazon Web
-        /// Services CLI. For usage examples, see <a href="http://docs.aws.amazon.com/cli/latest/userguide/pagination.html">Pagination</a>
+        /// items available is more than the value specified, a <c>NextToken</c> is provided in
+        /// the command’s output. To resume pagination, provide the <c>NextToken</c> value in
+        /// the <c>starting-token</c> argument of a subsequent command. Do not use the <c>NextToken</c>
+        /// response element directly outside of the Amazon Web Services CLI. For usage examples,
+        /// see <a href="http://docs.aws.amazon.com/cli/latest/userguide/pagination.html">Pagination</a>
         /// in the <i>Amazon Web Services Command Line Interface User Guide</i>. 
         /// </para>
         /// </summary>
@@ -106,8 +107,8 @@ namespace Amazon.Account.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token used to specify where to start paginating. This is the <code>NextToken</code>
-        /// from a previously truncated response. For usage examples, see <a href="http://docs.aws.amazon.com/cli/latest/userguide/pagination.html">Pagination</a>
+        /// A token used to specify where to start paginating. This is the <c>NextToken</c> from
+        /// a previously truncated response. For usage examples, see <a href="http://docs.aws.amazon.com/cli/latest/userguide/pagination.html">Pagination</a>
         /// in the <i>Amazon Web Services Command Line Interface User Guide</i>.
         /// </para>
         /// </summary>
@@ -141,7 +142,7 @@ namespace Amazon.Account.Model
         // Check to see if RegionOptStatusContains property is set
         internal bool IsSetRegionOptStatusContains()
         {
-            return this._regionOptStatusContains != null && this._regionOptStatusContains.Count > 0; 
+            return this._regionOptStatusContains != null && (this._regionOptStatusContains.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

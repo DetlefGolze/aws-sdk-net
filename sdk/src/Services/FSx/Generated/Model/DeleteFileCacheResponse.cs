@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -58,8 +59,8 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property Lifecycle. 
         /// <para>
-        /// The cache lifecycle for the deletion request. If the <code>DeleteFileCache</code>
-        /// operation is successful, this status is <code>DELETING</code>.
+        /// The cache lifecycle for the deletion request. If the <c>DeleteFileCache</c> operation
+        /// is successful, this status is <c>DELETING</c>.
         /// </para>
         /// </summary>
         public FileCacheLifecycle Lifecycle

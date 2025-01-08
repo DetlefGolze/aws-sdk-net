@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Greengrass.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -55,7 +56,6 @@ namespace Amazon.Greengrass.Model.Internal.MarshallTransformations
         public IRequest Marshall(CreateGroupCertificateAuthorityRequest publicRequest)
         {
             IRequest request = new DefaultRequest(publicRequest, "Amazon.Greengrass");
-            request.Headers["Content-Type"] = "application/json";
             request.Headers[Amazon.Util.HeaderKeys.XAmzApiVersion] = "2017-06-07";
             request.HttpMethod = "POST";
 

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -57,16 +58,15 @@ namespace Amazon.GameLift.Model
     /// </summary>
     public partial class PriorityConfiguration
     {
-        private List<string> _locationOrder = new List<string>();
-        private List<string> _priorityOrder = new List<string>();
+        private List<string> _locationOrder = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _priorityOrder = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property LocationOrder. 
         /// <para>
-        /// The prioritization order to use for fleet locations, when the <code>PriorityOrder</code>
-        /// property includes <code>LOCATION</code>. Locations are identified by Amazon Web Services
-        /// Region codes such as <code>us-west-2</code>. Each location can only be listed once.
-        /// 
+        /// The prioritization order to use for fleet locations, when the <c>PriorityOrder</c>
+        /// property includes <c>LOCATION</c>. Locations are identified by Amazon Web Services
+        /// Region codes such as <c>us-west-2</c>. Each location can only be listed once. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -79,7 +79,7 @@ namespace Amazon.GameLift.Model
         // Check to see if LocationOrder property is set
         internal bool IsSetLocationOrder()
         {
-            return this._locationOrder != null && this._locationOrder.Count > 0; 
+            return this._locationOrder != null && (this._locationOrder.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -90,24 +90,24 @@ namespace Amazon.GameLift.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>LATENCY</code> -- FleetIQ prioritizes locations where the average player latency
+        ///  <c>LATENCY</c> -- FleetIQ prioritizes locations where the average player latency
         /// (provided in each game session request) is lowest. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>COST</code> -- FleetIQ prioritizes destinations with the lowest current hosting
-        /// costs. Cost is evaluated based on the location, instance type, and fleet type (Spot
-        /// or On-Demand) for each destination in the queue.
+        ///  <c>COST</c> -- FleetIQ prioritizes destinations with the lowest current hosting costs.
+        /// Cost is evaluated based on the location, instance type, and fleet type (Spot or On-Demand)
+        /// for each destination in the queue.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DESTINATION</code> -- FleetIQ prioritizes based on the order that destinations
-        /// are listed in the queue configuration.
+        ///  <c>DESTINATION</c> -- FleetIQ prioritizes based on the order that destinations are
+        /// listed in the queue configuration.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LOCATION</code> -- FleetIQ prioritizes based on the provided order of locations,
-        /// as defined in <code>LocationOrder</code>. 
+        ///  <c>LOCATION</c> -- FleetIQ prioritizes based on the provided order of locations,
+        /// as defined in <c>LocationOrder</c>. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -121,7 +121,7 @@ namespace Amazon.GameLift.Model
         // Check to see if PriorityOrder property is set
         internal bool IsSetPriorityOrder()
         {
-            return this._priorityOrder != null && this._priorityOrder.Count > 0; 
+            return this._priorityOrder != null && (this._priorityOrder.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

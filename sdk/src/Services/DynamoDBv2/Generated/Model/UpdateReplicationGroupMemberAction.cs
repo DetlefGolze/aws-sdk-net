@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -33,8 +34,9 @@ namespace Amazon.DynamoDBv2.Model
     /// </summary>
     public partial class UpdateReplicationGroupMemberAction
     {
-        private List<ReplicaGlobalSecondaryIndex> _globalSecondaryIndexes = new List<ReplicaGlobalSecondaryIndex>();
+        private List<ReplicaGlobalSecondaryIndex> _globalSecondaryIndexes = AWSConfigs.InitializeCollections ? new List<ReplicaGlobalSecondaryIndex>() : null;
         private string _kmsMasterKeyId;
+        private OnDemandThroughputOverride _onDemandThroughputOverride;
         private ProvisionedThroughputOverride _provisionedThroughputOverride;
         private string _regionName;
         private TableClass _tableClassOverride;
@@ -55,7 +57,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if GlobalSecondaryIndexes property is set
         internal bool IsSetGlobalSecondaryIndexes()
         {
-            return this._globalSecondaryIndexes != null && this._globalSecondaryIndexes.Count > 0; 
+            return this._globalSecondaryIndexes != null && (this._globalSecondaryIndexes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -64,7 +66,7 @@ namespace Amazon.DynamoDBv2.Model
         /// The KMS key of the replica that should be used for KMS encryption. To specify a key,
         /// use its key ID, Amazon Resource Name (ARN), alias name, or alias ARN. Note that you
         /// should only provide this parameter if the key is different from the default DynamoDB
-        /// KMS key <code>alias/aws/dynamodb</code>.
+        /// KMS key <c>alias/aws/dynamodb</c>.
         /// </para>
         /// </summary>
         public string KMSMasterKeyId
@@ -77,6 +79,24 @@ namespace Amazon.DynamoDBv2.Model
         internal bool IsSetKMSMasterKeyId()
         {
             return this._kmsMasterKeyId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OnDemandThroughputOverride. 
+        /// <para>
+        /// Overrides the maximum on-demand throughput for the replica table.
+        /// </para>
+        /// </summary>
+        public OnDemandThroughputOverride OnDemandThroughputOverride
+        {
+            get { return this._onDemandThroughputOverride; }
+            set { this._onDemandThroughputOverride = value; }
+        }
+
+        // Check to see if OnDemandThroughputOverride property is set
+        internal bool IsSetOnDemandThroughputOverride()
+        {
+            return this._onDemandThroughputOverride != null;
         }
 
         /// <summary>

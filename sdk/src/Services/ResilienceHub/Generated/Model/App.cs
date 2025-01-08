@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -35,11 +36,12 @@ namespace Amazon.ResilienceHub.Model
     {
         private string _appArn;
         private AppAssessmentScheduleType _assessmentSchedule;
+        private string _awsApplicationArn;
         private AppComplianceStatusType _complianceStatus;
         private DateTime? _creationTime;
         private string _description;
         private AppDriftStatusType _driftStatus;
-        private List<EventSubscription> _eventSubscriptions = new List<EventSubscription>();
+        private List<EventSubscription> _eventSubscriptions = AWSConfigs.InitializeCollections ? new List<EventSubscription>() : null;
         private DateTime? _lastAppComplianceEvaluationTime;
         private DateTime? _lastDriftEvaluationTime;
         private DateTime? _lastResiliencyScoreEvaluationTime;
@@ -47,16 +49,19 @@ namespace Amazon.ResilienceHub.Model
         private PermissionModel _permissionModel;
         private string _policyArn;
         private double? _resiliencyScore;
+        private int? _rpoInSecs;
+        private int? _rtoInSecs;
         private AppStatusType _status;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AppArn. 
         /// <para>
         /// Amazon Resource Name (ARN) of the Resilience Hub application. The format for this
-        /// ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app/<code>app-id</code>.
+        /// ARN is: arn:<c>partition</c>:resiliencehub:<c>region</c>:<c>account</c>:app/<c>app-id</c>.
         /// For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
-        /// Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i> guide.
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -91,6 +96,27 @@ namespace Amazon.ResilienceHub.Model
         }
 
         /// <summary>
+        /// Gets and sets the property AwsApplicationArn. 
+        /// <para>
+        /// Amazon Resource Name (ARN) of Resource Groups group that is integrated with an AppRegistry
+        /// application. For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
+        /// </para>
+        /// </summary>
+        public string AwsApplicationArn
+        {
+            get { return this._awsApplicationArn; }
+            set { this._awsApplicationArn = value; }
+        }
+
+        // Check to see if AwsApplicationArn property is set
+        internal bool IsSetAwsApplicationArn()
+        {
+            return this._awsApplicationArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ComplianceStatus. 
         /// <para>
         /// Current status of compliance for the resiliency policy.
@@ -111,7 +137,7 @@ namespace Amazon.ResilienceHub.Model
         /// <summary>
         /// Gets and sets the property CreationTime. 
         /// <para>
-        /// Timestamp for when the app was created.
+        /// Date and time when the application was created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -183,13 +209,13 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if EventSubscriptions property is set
         internal bool IsSetEventSubscriptions()
         {
-            return this._eventSubscriptions != null && this._eventSubscriptions.Count > 0; 
+            return this._eventSubscriptions != null && (this._eventSubscriptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property LastAppComplianceEvaluationTime. 
         /// <para>
-        /// Timestamp for the most recent compliance evaluation.
+        /// Date and time the most recent compliance evaluation.
         /// </para>
         /// </summary>
         public DateTime LastAppComplianceEvaluationTime
@@ -225,7 +251,7 @@ namespace Amazon.ResilienceHub.Model
         /// <summary>
         /// Gets and sets the property LastResiliencyScoreEvaluationTime. 
         /// <para>
-        /// Timestamp for the most recent resiliency score evaluation.
+        /// Date and time the most recent resiliency score evaluation.
         /// </para>
         /// </summary>
         public DateTime LastResiliencyScoreEvaluationTime
@@ -281,9 +307,10 @@ namespace Amazon.ResilienceHub.Model
         /// <summary>
         /// Gets and sets the property PolicyArn. 
         /// <para>
-        /// Amazon Resource Name (ARN) of the resiliency policy. The format for this ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:resiliency-policy/<code>policy-id</code>.
+        /// Amazon Resource Name (ARN) of the resiliency policy. The format for this ARN is: arn:<c>partition</c>:resiliencehub:<c>region</c>:<c>account</c>:resiliency-policy/<c>policy-id</c>.
         /// For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
-        /// Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i> guide.
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
         /// </para>
         /// </summary>
         public string PolicyArn
@@ -314,6 +341,42 @@ namespace Amazon.ResilienceHub.Model
         internal bool IsSetResiliencyScore()
         {
             return this._resiliencyScore.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property RpoInSecs. 
+        /// <para>
+        /// Recovery Point Objective (RPO) in seconds.
+        /// </para>
+        /// </summary>
+        public int RpoInSecs
+        {
+            get { return this._rpoInSecs.GetValueOrDefault(); }
+            set { this._rpoInSecs = value; }
+        }
+
+        // Check to see if RpoInSecs property is set
+        internal bool IsSetRpoInSecs()
+        {
+            return this._rpoInSecs.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property RtoInSecs. 
+        /// <para>
+        /// Recovery Time Objective (RTO) in seconds.
+        /// </para>
+        /// </summary>
+        public int RtoInSecs
+        {
+            get { return this._rtoInSecs.GetValueOrDefault(); }
+            set { this._rtoInSecs = value; }
+        }
+
+        // Check to see if RtoInSecs property is set
+        internal bool IsSetRtoInSecs()
+        {
+            return this._rtoInSecs.HasValue; 
         }
 
         /// <summary>
@@ -351,7 +414,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

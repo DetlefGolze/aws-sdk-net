@@ -26,12 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateSimulationJob operation.
-    /// Creates a simulation job.
+    /// <important> 
+    /// <para>
+    /// End of support notice: On September 10, 2025, Amazon Web Services will discontinue
+    /// support for Amazon Web Services RoboMaker. After September 10, 2025, you will no longer
+    /// be able to access the Amazon Web Services RoboMaker console or Amazon Web Services
+    /// RoboMaker resources. For more information on transitioning to Batch to help run containerized
+    /// simulations, visit <a href="https://aws.amazon.com/blogs/hpc/run-simulations-using-multiple-containers-in-a-single-aws-batch-job/">https://aws.amazon.com/blogs/hpc/run-simulations-using-multiple-containers-in-a-single-aws-batch-job/</a>.
     /// 
+    /// </para>
+    ///  </important> 
+    /// <para>
+    /// Creates a simulation job.
+    /// </para>
     ///  <note> 
     /// <para>
     /// After 90 days, simulation jobs expire and will be deleted. They will no longer be
@@ -43,15 +55,15 @@ namespace Amazon.RoboMaker.Model
     {
         private string _clientRequestToken;
         private Compute _compute;
-        private List<DataSourceConfig> _dataSources = new List<DataSourceConfig>();
+        private List<DataSourceConfig> _dataSources = AWSConfigs.InitializeCollections ? new List<DataSourceConfig>() : null;
         private FailureBehavior _failureBehavior;
         private string _iamRole;
         private LoggingConfig _loggingConfig;
         private long? _maxJobDurationInSeconds;
         private OutputLocation _outputLocation;
-        private List<RobotApplicationConfig> _robotApplications = new List<RobotApplicationConfig>();
-        private List<SimulationApplicationConfig> _simulationApplications = new List<SimulationApplicationConfig>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private List<RobotApplicationConfig> _robotApplications = AWSConfigs.InitializeCollections ? new List<RobotApplicationConfig>() : null;
+        private List<SimulationApplicationConfig> _simulationApplications = AWSConfigs.InitializeCollections ? new List<SimulationApplicationConfig>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private VPCConfig _vpcConfig;
 
         /// <summary>
@@ -96,12 +108,11 @@ namespace Amazon.RoboMaker.Model
         /// Gets and sets the property DataSources. 
         /// <para>
         /// Specify data sources to mount read-only files from S3 into your simulation. These
-        /// files are available under <code>/opt/robomaker/datasources/data_source_name</code>.
-        /// 
+        /// files are available under <c>/opt/robomaker/datasources/data_source_name</c>. 
         /// </para>
         ///  <note> 
         /// <para>
-        /// There is a limit of 100 files and a combined size of 25GB for all <code>DataSourceConfig</code>
+        /// There is a limit of 100 files and a combined size of 25GB for all <c>DataSourceConfig</c>
         /// objects. 
         /// </para>
         ///  </note>
@@ -116,7 +127,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if DataSources property is set
         internal bool IsSetDataSources()
         {
-            return this._dataSources != null && this._dataSources.Count > 0; 
+            return this._dataSources != null && (this._dataSources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -126,8 +137,8 @@ namespace Amazon.RoboMaker.Model
         /// </para>
         ///  <dl> <dt>Continue</dt> <dd> 
         /// <para>
-        /// Leaves the instance running for its maximum timeout duration after a <code>4XX</code>
-        /// error code.
+        /// Leaves the instance running for its maximum timeout duration after a <c>4XX</c> error
+        /// code.
         /// </para>
         ///  </dd> <dt>Fail</dt> <dd> 
         /// <para>
@@ -190,8 +201,8 @@ namespace Amazon.RoboMaker.Model
         /// Gets and sets the property MaxJobDurationInSeconds. 
         /// <para>
         /// The maximum simulation job duration in seconds (up to 14 days or 1,209,600 seconds.
-        /// When <code>maxJobDurationInSeconds</code> is reached, the simulation job will status
-        /// will transition to <code>Completed</code>.
+        /// When <c>maxJobDurationInSeconds</c> is reached, the simulation job will status will
+        /// transition to <c>Completed</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -241,7 +252,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if RobotApplications property is set
         internal bool IsSetRobotApplications()
         {
-            return this._robotApplications != null && this._robotApplications.Count > 0; 
+            return this._robotApplications != null && (this._robotApplications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -260,7 +271,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if SimulationApplications property is set
         internal bool IsSetSimulationApplications()
         {
-            return this._simulationApplications != null && this._simulationApplications.Count > 0; 
+            return this._simulationApplications != null && (this._simulationApplications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -279,7 +290,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

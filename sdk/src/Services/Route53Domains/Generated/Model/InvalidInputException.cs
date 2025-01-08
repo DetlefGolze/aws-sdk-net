@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Domains.Model
 {
     /// <summary>
     /// The requested item is not acceptable. For example, for APIs that accept a domain name,
     /// the request might specify a domain name that doesn't belong to the account that submitted
-    /// the request. For <code>AcceptDomainTransferFromAnotherAwsAccount</code>, the password
-    /// might be invalid.
+    /// the request. For <c>AcceptDomainTransferFromAnotherAwsAccount</c>, the password might
+    /// be invalid.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

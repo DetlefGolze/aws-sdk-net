@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchServerless.Model
 {
     /// <summary>
@@ -61,8 +62,8 @@ namespace Amazon.OpenSearchServerless.Model
         /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        /// The security configuration identifier. For SAML the ID will be <code>saml/&lt;accountId&gt;/&lt;idpProviderName&gt;</code>.
-        /// For example, <code>saml/123456789123/OKTADev</code>.
+        /// The security configuration identifier. For SAML the ID will be <c>saml/&lt;accountId&gt;/&lt;idpProviderName&gt;</c>.
+        /// For example, <c>saml/123456789123/OKTADev</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]

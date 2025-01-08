@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeArtifact.Model
 {
     /// <summary>
@@ -35,19 +36,35 @@ namespace Amazon.CodeArtifact.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    ///  <code>maven</code> 
+    ///  <c>cargo</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>npm</code> 
+    ///  <c>generic</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>nuget</code> 
+    ///  <c>maven</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>pypi</code> 
+    ///  <c>npm</c> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <c>nuget</c> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <c>pypi</c> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <c>ruby</c> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <c>swift</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -55,6 +72,7 @@ namespace Amazon.CodeArtifact.Model
     {
         private string _domain;
         private string _domainOwner;
+        private EndpointType _endpointType;
         private PackageFormat _format;
         private string _repository;
 
@@ -95,6 +113,24 @@ namespace Amazon.CodeArtifact.Model
         internal bool IsSetDomainOwner()
         {
             return this._domainOwner != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EndpointType. 
+        /// <para>
+        /// A string that specifies the type of endpoint.
+        /// </para>
+        /// </summary>
+        public EndpointType EndpointType
+        {
+            get { return this._endpointType; }
+            set { this._endpointType = value; }
+        }
+
+        // Check to see if EndpointType property is set
+        internal bool IsSetEndpointType()
+        {
+            return this._endpointType != null;
         }
 
         /// <summary>

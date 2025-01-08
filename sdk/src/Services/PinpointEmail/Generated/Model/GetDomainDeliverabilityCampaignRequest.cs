@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointEmail.Model
 {
     /// <summary>
     /// Container for the parameters to the GetDomainDeliverabilityCampaign operation.
     /// Retrieve all the deliverability data for a specific campaign. This data is available
     /// for a campaign only if the campaign sent email by using a domain that the Deliverability
-    /// dashboard is enabled for (<code>PutDeliverabilityDashboardOption</code> operation).
+    /// dashboard is enabled for (<c>PutDeliverabilityDashboardOption</c> operation).
     /// </summary>
     public partial class GetDomainDeliverabilityCampaignRequest : AmazonPinpointEmailRequest
     {

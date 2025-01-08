@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeLocationObjectStorage operation.
-    /// Returns metadata about your DataSync location for an object storage system.
+    /// Provides details about how an DataSync transfer location for an object storage system
+    /// is configured.
     /// </summary>
     public partial class DescribeLocationObjectStorageRequest : AmazonDataSyncRequest
     {
@@ -39,8 +41,7 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property LocationArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the object storage system location that you want
-        /// information about.
+        /// Specifies the Amazon Resource Name (ARN) of the object storage system location.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=128)]

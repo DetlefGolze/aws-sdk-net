@@ -27,12 +27,13 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the ForgotPassword operation.
     /// Calling this API causes a message to be sent to the end user with a confirmation code
-    /// that is required to change the user's password. For the <code>Username</code> parameter,
+    /// that is required to change the user's password. For the <c>Username</c> parameter,
     /// you can use the username or user alias. The method used to send the confirmation code
     /// is sent according to the specified AccountRecoverySetting. For more information, see
     /// <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-recover-a-user-account.html">Recovering
@@ -42,9 +43,15 @@ namespace Amazon.CognitoIdentityProvider.Model
     /// 
     ///  
     /// <para>
-    /// If neither a verified phone number nor a verified email exists, this API returns <code>InvalidParameterException</code>.
-    /// If your app client has a client secret and you don't provide a <code>SECRET_HASH</code>
-    /// parameter, this API returns <code>NotAuthorizedException</code>.
+    /// If neither a verified phone number nor a verified email exists, this API returns <c>InvalidParameterException</c>.
+    /// If your app client has a client secret and you don't provide a <c>SECRET_HASH</c>
+    /// parameter, this API returns <c>NotAuthorizedException</c>.
+    /// </para>
+    ///  
+    /// <para>
+    /// To use this API operation, your user pool must have self-service account recovery
+    /// configured. Use <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminSetUserPassword.html">AdminSetUserPassword</a>
+    /// if you manage passwords as an administrator.
     /// </para>
     ///  <note> 
     /// <para>
@@ -52,7 +59,7 @@ namespace Amazon.CognitoIdentityProvider.Model
     /// for this API operation. For this operation, you can't use IAM credentials to authorize
     /// requests, and you can't grant IAM permissions in policies. For more information about
     /// authorization models in Amazon Cognito, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using
-    /// the Amazon Cognito native and OIDC APIs</a>.
+    /// the Amazon Cognito user pools API and user pool endpoints</a>.
     /// </para>
     ///  </note> <note> 
     /// <para>
@@ -67,8 +74,8 @@ namespace Amazon.CognitoIdentityProvider.Model
     ///  
     /// <para>
     /// If you have never used SMS text messages with Amazon Cognito or any other Amazon Web
-    /// Service, Amazon Simple Notification Service might place your account in the SMS sandbox.
-    /// In <i> <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+    /// Services service, Amazon Simple Notification Service might place your account in the
+    /// SMS sandbox. In <i> <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
     /// mode</a> </i>, you can send messages only to verified phone numbers. After you test
     /// your app while in the sandbox environment, you can move out of the sandbox and into
     /// production. For more information, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html">
@@ -81,7 +88,7 @@ namespace Amazon.CognitoIdentityProvider.Model
     {
         private AnalyticsMetadataType _analyticsMetadata;
         private string _clientId;
-        private Dictionary<string, string> _clientMetadata = new Dictionary<string, string>();
+        private Dictionary<string, string> _clientMetadata = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _secretHash;
         private UserContextDataType _userContextData;
         private string _username;
@@ -89,7 +96,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property AnalyticsMetadata. 
         /// <para>
-        /// The Amazon Pinpoint analytics metadata that contributes to your metrics for <code>ForgotPassword</code>
+        /// The Amazon Pinpoint analytics metadata that contributes to your metrics for <c>ForgotPassword</c>
         /// calls.
         /// </para>
         /// </summary>
@@ -136,10 +143,10 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// you use the ForgotPassword API action, Amazon Cognito invokes any functions that are
         /// assigned to the following triggers: <i>pre sign-up</i>, <i>custom message</i>, and
         /// <i>user migration</i>. When Amazon Cognito invokes any of these functions, it passes
-        /// a JSON payload, which the function receives as input. This payload contains a <code>clientMetadata</code>
+        /// a JSON payload, which the function receives as input. This payload contains a <c>clientMetadata</c>
         /// attribute, which provides the data that you assigned to the ClientMetadata parameter
         /// in your ForgotPassword request. In your function code in Lambda, you can process the
-        /// <code>clientMetadata</code> value to enhance your workflow for your specific needs.
+        /// <c>clientMetadata</c> value to enhance your workflow for your specific needs.
         /// </para>
         ///  
         /// <para>
@@ -149,22 +156,23 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// When you use the ClientMetadata parameter, remember that Amazon Cognito won't do the
-        /// following:
+        /// When you use the <c>ClientMetadata</c> parameter, note that Amazon Cognito won't do
+        /// the following:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Store the ClientMetadata value. This data is available only to Lambda triggers that
-        /// are assigned to a user pool to support custom workflows. If your user pool configuration
-        /// doesn't include triggers, the ClientMetadata parameter serves no purpose.
+        /// Store the <c>ClientMetadata</c> value. This data is available only to Lambda triggers
+        /// that are assigned to a user pool to support custom workflows. If your user pool configuration
+        /// doesn't include triggers, the <c>ClientMetadata</c> parameter serves no purpose.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Validate the ClientMetadata value.
+        /// Validate the <c>ClientMetadata</c> value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Encrypt the ClientMetadata value. Don't use Amazon Cognito to provide sensitive information.
+        /// Encrypt the <c>ClientMetadata</c> value. Don't send sensitive information in this
+        /// parameter.
         /// </para>
         ///  </li> </ul> </note>
         /// </summary>
@@ -177,14 +185,16 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if ClientMetadata property is set
         internal bool IsSetClientMetadata()
         {
-            return this._clientMetadata != null && this._clientMetadata.Count > 0; 
+            return this._clientMetadata != null && (this._clientMetadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SecretHash. 
         /// <para>
         /// A keyed-hash message authentication code (HMAC) calculated using the secret key of
-        /// a user pool client and username plus the client ID in the message.
+        /// a user pool client and username plus the client ID in the message. For more information
+        /// about <c>SecretHash</c>, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash">Computing
+        /// secret hash values</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=128)]
@@ -208,6 +218,11 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// event based on the context that your app generates and passes to Amazon Cognito when
         /// it makes API requests.
         /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-viewing-threat-protection-app.html">Collecting
+        /// data for threat protection in applications</a>.
+        /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
         public UserContextDataType UserContextData
@@ -225,7 +240,10 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Username. 
         /// <para>
-        /// The user name of the user for whom you want to enter a code to reset a forgotten password.
+        /// The username of the user that you want to query or modify. The value of this parameter
+        /// is typically your user's username, but it can be any of their alias attributes. If
+        /// <c>username</c> isn't an alias attribute in your user pool, this value must be the
+        /// <c>sub</c> of a local user or the username of a user from a third-party IdP.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=128)]

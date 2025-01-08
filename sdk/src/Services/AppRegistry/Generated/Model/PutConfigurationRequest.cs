@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRegistry.Model
 {
     /// <summary>
     /// Container for the parameters to the PutConfiguration operation.
-    /// Associates a <code>TagKey</code> configuration to an account.
+    /// Associates a <c>TagKey</c> configuration to an account.
     /// </summary>
     public partial class PutConfigurationRequest : AmazonAppRegistryRequest
     {
@@ -39,7 +40,7 @@ namespace Amazon.AppRegistry.Model
         /// <summary>
         /// Gets and sets the property Configuration. 
         /// <para>
-        ///  Associates a <code>TagKey</code> configuration to an account. 
+        ///  Associates a <c>TagKey</c> configuration to an account. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

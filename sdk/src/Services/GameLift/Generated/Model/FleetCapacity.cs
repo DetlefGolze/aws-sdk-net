@@ -26,21 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
-    /// Current resource capacity settings in a specified fleet or location. The location
-    /// value might refer to a fleet's remote location or its home Region. 
+    /// Current resource capacity settings for managed EC2 fleets and managed container fleets.
+    /// For multi-location fleets, location values might refer to a fleet's remote location
+    /// or its home Region. 
     /// 
     ///  
     /// <para>
-    ///  <b>Related actions</b> 
-    /// </para>
-    ///  
-    /// <para>
-    ///  <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetCapacity.html">DescribeFleetCapacity</a>
-    /// | <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetLocationCapacity.html">DescribeFleetLocationCapacity</a>
-    /// | <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateFleetCapacity.html">UpdateFleetCapacity</a>
+    ///  <b>Returned by:</b> <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetCapacity.html">DescribeFleetCapacity</a>,
+    /// <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetLocationCapacity.html">DescribeFleetLocationCapacity</a>,
+    /// <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateFleetCapacity.html">UpdateFleetCapacity</a>
     /// 
     /// </para>
     /// </summary>
@@ -48,6 +46,7 @@ namespace Amazon.GameLift.Model
     {
         private string _fleetArn;
         private string _fleetId;
+        private GameServerContainerGroupCounts _gameServerContainerGroupCounts;
         private EC2InstanceCounts _instanceCounts;
         private EC2InstanceType _instanceType;
         private string _location;
@@ -57,9 +56,10 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// The Amazon Resource Name (<a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
         /// that is assigned to a Amazon GameLift fleet resource and uniquely identifies it. ARNs
-        /// are unique across all Regions. Format is <code>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+        /// are unique across all Regions. Format is <c>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</c>.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=512)]
         public string FleetArn
         {
             get { return this._fleetArn; }
@@ -78,6 +78,7 @@ namespace Amazon.GameLift.Model
         /// A unique identifier for the fleet associated with the location.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=128)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -91,7 +92,31 @@ namespace Amazon.GameLift.Model
         }
 
         /// <summary>
-        /// Gets and sets the property InstanceCounts.
+        /// Gets and sets the property GameServerContainerGroupCounts. 
+        /// <para>
+        /// The number and status of game server container groups deployed in a container fleet.
+        /// 
+        /// </para>
+        /// </summary>
+        public GameServerContainerGroupCounts GameServerContainerGroupCounts
+        {
+            get { return this._gameServerContainerGroupCounts; }
+            set { this._gameServerContainerGroupCounts = value; }
+        }
+
+        // Check to see if GameServerContainerGroupCounts property is set
+        internal bool IsSetGameServerContainerGroupCounts()
+        {
+            return this._gameServerContainerGroupCounts != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property InstanceCounts. 
+        /// <para>
+        /// The current number of instances in the fleet, listed by instance status. Counts for
+        /// pending and terminating instances might be non-zero if the fleet is adjusting to a
+        /// scaling event or if access to resources is temporarily affected.
+        /// </para>
         /// </summary>
         public EC2InstanceCounts InstanceCounts
         {
@@ -108,10 +133,10 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property InstanceType. 
         /// <para>
-        /// The Amazon EC2 instance type that is used for all instances in a fleet. The instance
-        /// type determines the computing resources in use, including CPU, memory, storage, and
-        /// networking capacity. See <a href="http://aws.amazon.com/ec2/instance-types/">Amazon
-        /// Elastic Compute Cloud Instance Types</a> for detailed descriptions.
+        /// The Amazon EC2 instance type that is used for instances in a fleet. Instance type
+        /// determines the computing resources in use, including CPU, memory, storage, and networking
+        /// capacity. See <a href="http://aws.amazon.com/ec2/instance-types/">Amazon Elastic Compute
+        /// Cloud Instance Types</a> for detailed descriptions.
         /// </para>
         /// </summary>
         public EC2InstanceType InstanceType
@@ -130,7 +155,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property Location. 
         /// <para>
         /// The fleet location for the instance count information, expressed as an Amazon Web
-        /// Services Region code, such as <code>us-west-2</code>. 
+        /// Services Region code, such as <c>us-west-2</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]

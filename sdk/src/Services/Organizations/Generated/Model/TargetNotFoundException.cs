@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Organizations.Model
 {
     /// <summary>
-    /// We can't find a root, OU, account, or policy with the <code>TargetId</code> that you
-    /// specified.
+    /// We can't find a root, OU, account, or policy with the <c>TargetId</c> that you specified.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

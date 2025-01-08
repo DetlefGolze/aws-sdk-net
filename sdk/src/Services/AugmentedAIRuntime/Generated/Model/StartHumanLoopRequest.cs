@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AugmentedAIRuntime.Model
 {
     /// <summary>
@@ -42,8 +43,8 @@ namespace Amazon.AugmentedAIRuntime.Model
         /// <summary>
         /// Gets and sets the property DataAttributes. 
         /// <para>
-        /// Attributes of the specified data. Use <code>DataAttributes</code> to specify if your
-        /// data is free of personally identifiable information and/or free of adult content.
+        /// Attributes of the specified data. Use <c>DataAttributes</c> to specify if your data
+        /// is free of personally identifiable information and/or free of adult content.
         /// </para>
         /// </summary>
         public HumanLoopDataAttributes DataAttributes

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TimestreamWrite.Model
 {
     /// <summary>
@@ -35,9 +36,9 @@ namespace Amazon.TimestreamWrite.Model
     /// 
     ///  
     /// <para>
-    ///  MeasureValue is only allowed for type <code>MULTI</code>. Using <code>MULTI</code>
-    /// type, you can pass multiple data attributes associated with the same time series in
-    /// a single record 
+    ///  MeasureValue is only allowed for type <c>MULTI</c>. Using <c>MULTI</c> type, you
+    /// can pass multiple data attributes associated with the same time series in a single
+    /// record 
     /// </para>
     /// </summary>
     public partial class MeasureValue

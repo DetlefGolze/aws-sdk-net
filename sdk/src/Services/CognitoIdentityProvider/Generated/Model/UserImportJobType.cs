@@ -26,10 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// The user import job type.
+    /// A user import job in a user pool. Describes the status of user import with a CSV file.
+    /// For more information, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-using-import-tool.html">Importing
+    /// users into user pools from a CSV file</a>.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a request parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserImportJob.html">CreateUserImportJob</a>,
+    /// <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeUserImportJob.html">DescribeUserImportJob</a>,
+    /// <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ListUserImportJobs.html">ListUserImportJobs</a>,
+    /// <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_StartUserImportJob.html">StartUserImportJob</a>,
+    /// and <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_StopUserImportJob.html">StopUserImportJob</a>.
+    /// </para>
     /// </summary>
     public partial class UserImportJobType
     {
@@ -108,8 +120,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property CreationDate. 
         /// <para>
-        /// The date and time, in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-        /// 8601</a> format, when the item was created.
+        /// The date and time when the item was created. Amazon Cognito returns this timestamp
+        /// in UNIX epoch time format. Your SDK might render the output in a human-readable format
+        /// like ISO 8601 or a Java <c>Date</c> object.
         /// </para>
         /// </summary>
         public DateTime CreationDate
@@ -163,7 +176,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property JobId. 
         /// <para>
-        /// The job ID for the user import job.
+        /// The ID of the user import job.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=55)]
@@ -182,7 +195,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property JobName. 
         /// <para>
-        /// The job name for the user import job.
+        /// The friendly name of the user import job.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -201,7 +214,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property PreSignedUrl. 
         /// <para>
-        /// The pre-signed URL to be used to upload the <code>.csv</code> file.
+        /// The pre-signed URL target for uploading the CSV file.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=2048)]
@@ -260,39 +273,38 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Created</code> - The job was created but not started.
+        ///  <c>Created</c> - The job was created but not started.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Pending</code> - A transition state. You have started the job, but it has not
-        /// begun importing users yet.
+        ///  <c>Pending</c> - A transition state. You have started the job, but it has not begun
+        /// importing users yet.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>InProgress</code> - The job has started, and users are being imported.
+        ///  <c>InProgress</c> - The job has started, and users are being imported.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Stopping</code> - You have stopped the job, but the job has not stopped importing
+        ///  <c>Stopping</c> - You have stopped the job, but the job has not stopped importing
         /// users yet.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Stopped</code> - You have stopped the job, and the job has stopped importing
-        /// users.
+        ///  <c>Stopped</c> - You have stopped the job, and the job has stopped importing users.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Succeeded</code> - The job has completed successfully.
+        ///  <c>Succeeded</c> - The job has completed successfully.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Failed</code> - The job has stopped due to an error.
+        ///  <c>Failed</c> - The job has stopped due to an error.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Expired</code> - You created a job, but did not start the job within 24-48
-        /// hours. All data associated with the job was deleted, and the job can't be started.
+        ///  <c>Expired</c> - You created a job, but did not start the job within 24-48 hours.
+        /// All data associated with the job was deleted, and the job can't be started.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -311,7 +323,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID for the user pool that the users are being imported into.
+        /// The ID of the user pool that the users are being imported into.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=55)]

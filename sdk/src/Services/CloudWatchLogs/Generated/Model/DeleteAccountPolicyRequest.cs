@@ -26,16 +26,45 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteAccountPolicy operation.
-    /// Deletes a CloudWatch Logs account policy.
+    /// Deletes a CloudWatch Logs account policy. This stops the account-wide policy from
+    /// applying to log groups in the account. If you delete a data protection policy or subscription
+    /// filter policy, any log-group level policies of those types remain in effect.
     /// 
     ///  
     /// <para>
-    /// To use this operation, you must be signed on with the <code>logs:DeleteDataProtectionPolicy</code>
-    /// and <code>logs:DeleteAccountPolicy</code> permissions.
+    /// To use this operation, you must be signed on with the correct permissions depending
+    /// on the type of policy that you are deleting.
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    /// To delete a data protection policy, you must have the <c>logs:DeleteDataProtectionPolicy</c>
+    /// and <c>logs:DeleteAccountPolicy</c> permissions.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// To delete a subscription filter policy, you must have the <c>logs:DeleteSubscriptionFilter</c>
+    /// and <c>logs:DeleteAccountPolicy</c> permissions.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// To delete a transformer policy, you must have the <c>logs:DeleteTransformer</c> and
+    /// <c>logs:DeleteAccountPolicy</c> permissions.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// To delete a field index policy, you must have the <c>logs:DeleteIndexPolicy</c> and
+    /// <c>logs:DeleteAccountPolicy</c> permissions.
+    /// </para>
+    ///  </li> </ul> 
+    /// <para>
+    /// If you delete a field index policy, the indexing of the log events that happened before
+    /// you deleted the policy will still be used for up to 30 days to improve CloudWatch
+    /// Logs Insights queries.
     /// </para>
     /// </summary>
     public partial class DeleteAccountPolicyRequest : AmazonCloudWatchLogsRequest
@@ -65,7 +94,7 @@ namespace Amazon.CloudWatchLogs.Model
         /// <summary>
         /// Gets and sets the property PolicyType. 
         /// <para>
-        /// The type of policy to delete. Currently, the only valid value is <code>DATA_PROTECTION_POLICY</code>.
+        /// The type of policy to delete.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -37,13 +38,24 @@ namespace Amazon.Connect.Model
     /// For a description of each historical metric, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html">Historical
     /// Metrics Definitions</a> in the <i>Amazon Connect Administrator Guide</i>.
     /// </para>
+    ///  <note> 
+    /// <para>
+    /// We recommend using the <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_GetMetricDataV2.html">GetMetricDataV2</a>
+    /// API. It provides more flexibility, features, and the ability to query longer time
+    /// ranges than <c>GetMetricData</c>. Use it to retrieve historical agent and contact
+    /// metrics for the last 3 months, at varying intervals. You can also use it to build
+    /// custom dashboards to measure historical queue and agent performance. For example,
+    /// you can track the number of incoming contacts for the last 7 days, with data split
+    /// by day, to see how contact volume changed per day of the week.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class GetMetricDataRequest : AmazonConnectRequest
     {
         private DateTime? _endTime;
         private Filters _filters;
-        private List<string> _groupings = new List<string>();
-        private List<HistoricalMetric> _historicalMetrics = new List<HistoricalMetric>();
+        private List<string> _groupings = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<HistoricalMetric> _historicalMetrics = AWSConfigs.InitializeCollections ? new List<HistoricalMetric>() : null;
         private string _instanceId;
         private int? _maxResults;
         private string _nextToken;
@@ -82,9 +94,14 @@ namespace Amazon.Connect.Model
         /// in the filter. You can include both queue IDs and queue ARNs in the same request.
         /// VOICE, CHAT, and TASK channels are supported.
         /// </para>
+        ///  
+        /// <para>
+        /// RoutingStepExpression is not a valid filter for GetMetricData and we recommend switching
+        /// to GetMetricDataV2 for more up-to-date features.
+        /// </para>
         ///  <note> 
         /// <para>
-        /// To filter by <code>Queues</code>, enter the queue ID/ARN, not the name of the queue.
+        /// To filter by <c>Queues</c>, enter the queue ID/ARN, not the name of the queue.
         /// </para>
         ///  </note>
         /// </summary>
@@ -112,6 +129,11 @@ namespace Amazon.Connect.Model
         /// <para>
         /// If no grouping is specified, a summary of metrics for all queues is returned.
         /// </para>
+        ///  
+        /// <para>
+        /// RoutingStepExpression is not a valid filter for GetMetricData and we recommend switching
+        /// to GetMetricDataV2 for more up-to-date features.
+        /// </para>
         /// </summary>
         [AWSProperty(Max=2)]
         public List<string> Groupings
@@ -123,7 +145,7 @@ namespace Amazon.Connect.Model
         // Check to see if Groupings property is set
         internal bool IsSetGroupings()
         {
-            return this._groupings != null && this._groupings.Count > 0; 
+            return this._groupings != null && (this._groupings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -345,9 +367,8 @@ namespace Amazon.Connect.Model
         /// </para>
         ///  
         /// <para>
-        /// Threshold: For <code>ThresholdValue</code>, enter any whole number from 1 to 604800
-        /// (inclusive), in seconds. For <code>Comparison</code>, you must enter <code>LT</code>
-        /// (for "Less than"). 
+        /// Threshold: For <c>ThresholdValue</c>, enter any whole number from 1 to 604800 (inclusive),
+        /// in seconds. For <c>Comparison</c>, you must enter <c>LT</c> (for "Less than"). 
         /// </para>
         ///  </dd> </dl>
         /// </summary>
@@ -361,7 +382,7 @@ namespace Amazon.Connect.Model
         // Check to see if HistoricalMetrics property is set
         internal bool IsSetHistoricalMetrics()
         {
-            return this._historicalMetrics != null && this._historicalMetrics.Count > 0; 
+            return this._historicalMetrics != null && (this._historicalMetrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

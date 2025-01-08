@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Batch.Model
     /// </summary>
     public partial class DescribeJobDefinitionsResponse : AmazonWebServiceResponse
     {
-        private List<JobDefinition> _jobDefinitions = new List<JobDefinition>();
+        private List<JobDefinition> _jobDefinitions = AWSConfigs.InitializeCollections ? new List<JobDefinition>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,16 +52,16 @@ namespace Amazon.Batch.Model
         // Check to see if JobDefinitions property is set
         internal bool IsSetJobDefinitions()
         {
-            return this._jobDefinitions != null && this._jobDefinitions.Count > 0; 
+            return this._jobDefinitions != null && (this._jobDefinitions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value to include in a future <code>DescribeJobDefinitions</code>
-        /// request. When the results of a <code>DescribeJobDefinitions</code> request exceed
-        /// <code>maxResults</code>, this value can be used to retrieve the next page of results.
-        /// This value is <code>null</code> when there are no more results to return.
+        /// The <c>nextToken</c> value to include in a future <c>DescribeJobDefinitions</c> request.
+        /// When the results of a <c>DescribeJobDefinitions</c> request exceed <c>maxResults</c>,
+        /// this value can be used to retrieve the next page of results. This value is <c>null</c>
+        /// when there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken

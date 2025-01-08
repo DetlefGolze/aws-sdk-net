@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -41,15 +42,15 @@ namespace Amazon.EC2.Model
     ///  
     /// <para>
     /// For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/tgw/tgw-connect.html#tgw-connect-peer">Connect
-    /// peers</a> in the <i>Transit Gateways Guide</i>.
+    /// peers</a> in the <i>Amazon Web Services Transit Gateways Guide</i>.
     /// </para>
     /// </summary>
     public partial class CreateTransitGatewayConnectPeerRequest : AmazonEC2Request
     {
         private TransitGatewayConnectRequestBgpOptions _bgpOptions;
-        private List<string> _insideCidrBlocks = new List<string>();
+        private List<string> _insideCidrBlocks = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _peerAddress;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
         private string _transitGatewayAddress;
         private string _transitGatewayAttachmentId;
 
@@ -75,10 +76,9 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property InsideCidrBlocks. 
         /// <para>
         /// The range of inside IP addresses that are used for BGP peering. You must specify a
-        /// size /29 IPv4 CIDR block from the <code>169.254.0.0/16</code> range. The first address
-        /// from the range must be configured on the appliance as the BGP IP address. You can
-        /// also optionally specify a size /125 IPv6 CIDR block from the <code>fd00::/8</code>
-        /// range.
+        /// size /29 IPv4 CIDR block from the <c>169.254.0.0/16</c> range. The first address from
+        /// the range must be configured on the appliance as the BGP IP address. You can also
+        /// optionally specify a size /125 IPv6 CIDR block from the <c>fd00::/8</c> range.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -91,7 +91,7 @@ namespace Amazon.EC2.Model
         // Check to see if InsideCidrBlocks property is set
         internal bool IsSetInsideCidrBlocks()
         {
-            return this._insideCidrBlocks != null && this._insideCidrBlocks.Count > 0; 
+            return this._insideCidrBlocks != null && (this._insideCidrBlocks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,14 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
     /// Container for the parameters to the ShutdownGateway operation.
-    /// Shuts down a gateway. To specify which gateway to shut down, use the Amazon Resource
-    /// Name (ARN) of the gateway in the body of your request.
+    /// Shuts down a Tape Gateway or Volume Gateway. To specify which gateway to shut down,
+    /// use the Amazon Resource Name (ARN) of the gateway in the body of your request.
     /// 
-    ///  
+    ///  <note> 
+    /// <para>
+    /// This API action cannot be used to shut down S3 File Gateway or FSx File Gateway.
+    /// </para>
+    ///  </note> 
     /// <para>
     /// The operation shuts down the gateway service component running in the gateway's virtual
     /// machine (VM) and not the host VM.
@@ -52,10 +57,9 @@ namespace Amazon.StorageGateway.Model
     /// </para>
     ///  <note> 
     /// <para>
-    /// When you make a shutdown request, you will get a <code>200 OK</code> success response
-    /// immediately. However, it might take some time for the gateway to shut down. You can
-    /// call the <a>DescribeGatewayInformation</a> API to check the status. For more information,
-    /// see <a>ActivateGateway</a>.
+    /// When you make a shutdown request, you will get a <c>200 OK</c> success response immediately.
+    /// However, it might take some time for the gateway to shut down. You can call the <a>DescribeGatewayInformation</a>
+    /// API to check the status. For more information, see <a>ActivateGateway</a>.
     /// </para>
     ///  </note> 
     /// <para>

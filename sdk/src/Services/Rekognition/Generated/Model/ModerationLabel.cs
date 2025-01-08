@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -39,6 +40,7 @@ namespace Amazon.Rekognition.Model
         private float? _confidence;
         private string _name;
         private string _parentName;
+        private int? _taxonomyLevel;
 
         /// <summary>
         /// Gets and sets the property Confidence. 
@@ -48,7 +50,7 @@ namespace Amazon.Rekognition.Model
         /// </para>
         ///  
         /// <para>
-        /// If you don't specify the <code>MinConfidence</code> parameter in the call to <code>DetectModerationLabels</code>,
+        /// If you don't specify the <c>MinConfidence</c> parameter in the call to <c>DetectModerationLabels</c>,
         /// the operation returns labels with a confidence value greater than or equal to 50 percent.
         /// </para>
         /// </summary>
@@ -87,7 +89,7 @@ namespace Amazon.Rekognition.Model
         /// Gets and sets the property ParentName. 
         /// <para>
         /// The name for the parent label. Labels at the top level of the hierarchy have the parent
-        /// label <code>""</code>.
+        /// label <c>""</c>.
         /// </para>
         /// </summary>
         public string ParentName
@@ -100,6 +102,25 @@ namespace Amazon.Rekognition.Model
         internal bool IsSetParentName()
         {
             return this._parentName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property TaxonomyLevel. 
+        /// <para>
+        /// The level of the moderation label with regard to its taxonomy, from 1 to 3.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0)]
+        public int TaxonomyLevel
+        {
+            get { return this._taxonomyLevel.GetValueOrDefault(); }
+            set { this._taxonomyLevel = value; }
+        }
+
+        // Check to see if TaxonomyLevel property is set
+        internal bool IsSetTaxonomyLevel()
+        {
+            return this._taxonomyLevel.HasValue; 
         }
 
     }

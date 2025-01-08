@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearchDomain.Model
 {
     /// <summary>
@@ -126,7 +127,7 @@ namespace Amazon.CloudSearchDomain.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The return status of a document upload request, <code>error</code> or <code>success</code>.
+        /// The return status of a document upload request, <c>error</c> or <c>success</c>.
         /// </para>
         /// </summary>
         public string Status

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationInsights.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.ApplicationInsights.Model
         /// <summary>
         /// Gets and sets the property AccountId. 
         /// <para>
-        /// The AWS account ID for the resource group owner.
+        /// The Amazon Web Services account ID for the resource group owner.
         /// </para>
         /// </summary>
         [AWSProperty(Min=12, Max=12)]
@@ -116,13 +117,12 @@ namespace Amazon.ApplicationInsights.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        ///  The maximum number of results returned by <code>ListConfigurationHistory</code> in
-        /// paginated output. When this parameter is used, <code>ListConfigurationHistory</code>
-        /// returns only <code>MaxResults</code> in a single page along with a <code>NextToken</code>
-        /// response element. The remaining results of the initial request can be seen by sending
-        /// another <code>ListConfigurationHistory</code> request with the returned <code>NextToken</code>
-        /// value. If this parameter is not used, then <code>ListConfigurationHistory</code> returns
-        /// all results. 
+        ///  The maximum number of results returned by <c>ListConfigurationHistory</c> in paginated
+        /// output. When this parameter is used, <c>ListConfigurationHistory</c> returns only
+        /// <c>MaxResults</c> in a single page along with a <c>NextToken</c> response element.
+        /// The remaining results of the initial request can be seen by sending another <c>ListConfigurationHistory</c>
+        /// request with the returned <c>NextToken</c> value. If this parameter is not used, then
+        /// <c>ListConfigurationHistory</c> returns all results. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=40)]
@@ -141,11 +141,11 @@ namespace Amazon.ApplicationInsights.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>NextToken</code> value returned from a previous paginated <code>ListConfigurationHistory</code>
-        /// request where <code>MaxResults</code> was used and the results exceeded the value
-        /// of that parameter. Pagination continues from the end of the previous results that
-        /// returned the <code>NextToken</code> value. This value is <code>null</code> when there
-        /// are no more results to return.
+        /// The <c>NextToken</c> value returned from a previous paginated <c>ListConfigurationHistory</c>
+        /// request where <c>MaxResults</c> was used and the results exceeded the value of that
+        /// parameter. Pagination continues from the end of the previous results that returned
+        /// the <c>NextToken</c> value. This value is <c>null</c> when there are no more results
+        /// to return.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

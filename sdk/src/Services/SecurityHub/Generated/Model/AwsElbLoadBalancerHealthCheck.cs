@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -89,16 +90,16 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// For the TCP protocol, the target is specified as <code>TCP: <i>&lt;port&gt;</i> </code>.
+        /// For the TCP protocol, the target is specified as <c>TCP: <i>&lt;port&gt;</i> </c>.
         /// </para>
         ///  
         /// <para>
-        /// For the SSL protocol, the target is specified as <code>SSL.<i>&lt;port&gt;</i> </code>.
+        /// For the SSL protocol, the target is specified as <c>SSL.<i>&lt;port&gt;</i> </c>.
         /// </para>
         ///  
         /// <para>
-        /// For the HTTP and HTTPS protocols, the target is specified as <code> <i>&lt;protocol&gt;</i>:<i>&lt;port&gt;</i>/<i>&lt;path
-        /// to ping&gt;</i> </code>.
+        /// For the HTTP and HTTPS protocols, the target is specified as <c> <i>&lt;protocol&gt;</i>:<i>&lt;port&gt;</i>/<i>&lt;path
+        /// to ping&gt;</i> </c>.
         /// </para>
         /// </summary>
         public string Target

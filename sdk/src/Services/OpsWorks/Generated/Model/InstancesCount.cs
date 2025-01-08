@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
@@ -75,7 +76,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Booting. 
         /// <para>
-        /// The number of instances with <code>booting</code> status.
+        /// The number of instances with <c>booting</c> status.
         /// </para>
         /// </summary>
         public int Booting
@@ -93,7 +94,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property ConnectionLost. 
         /// <para>
-        /// The number of instances with <code>connection_lost</code> status.
+        /// The number of instances with <c>connection_lost</c> status.
         /// </para>
         /// </summary>
         public int ConnectionLost
@@ -129,7 +130,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Online. 
         /// <para>
-        /// The number of instances with <code>online</code> status.
+        /// The number of instances with <c>online</c> status.
         /// </para>
         /// </summary>
         public int Online
@@ -147,7 +148,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Pending. 
         /// <para>
-        /// The number of instances with <code>pending</code> status.
+        /// The number of instances with <c>pending</c> status.
         /// </para>
         /// </summary>
         public int Pending
@@ -165,7 +166,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Rebooting. 
         /// <para>
-        /// The number of instances with <code>rebooting</code> status.
+        /// The number of instances with <c>rebooting</c> status.
         /// </para>
         /// </summary>
         public int Rebooting
@@ -219,7 +220,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Requested. 
         /// <para>
-        /// The number of instances with <code>requested</code> status.
+        /// The number of instances with <c>requested</c> status.
         /// </para>
         /// </summary>
         public int Requested
@@ -237,7 +238,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property RunningSetup. 
         /// <para>
-        /// The number of instances with <code>running_setup</code> status.
+        /// The number of instances with <c>running_setup</c> status.
         /// </para>
         /// </summary>
         public int RunningSetup
@@ -255,7 +256,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property SetupFailed. 
         /// <para>
-        /// The number of instances with <code>setup_failed</code> status.
+        /// The number of instances with <c>setup_failed</c> status.
         /// </para>
         /// </summary>
         public int SetupFailed
@@ -273,7 +274,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property ShuttingDown. 
         /// <para>
-        /// The number of instances with <code>shutting_down</code> status.
+        /// The number of instances with <c>shutting_down</c> status.
         /// </para>
         /// </summary>
         public int ShuttingDown
@@ -291,7 +292,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property StartFailed. 
         /// <para>
-        /// The number of instances with <code>start_failed</code> status.
+        /// The number of instances with <c>start_failed</c> status.
         /// </para>
         /// </summary>
         public int StartFailed
@@ -309,7 +310,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property StopFailed. 
         /// <para>
-        /// The number of instances with <code>stop_failed</code> status.
+        /// The number of instances with <c>stop_failed</c> status.
         /// </para>
         /// </summary>
         public int StopFailed
@@ -327,7 +328,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Stopped. 
         /// <para>
-        /// The number of instances with <code>stopped</code> status.
+        /// The number of instances with <c>stopped</c> status.
         /// </para>
         /// </summary>
         public int Stopped
@@ -345,7 +346,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Stopping. 
         /// <para>
-        /// The number of instances with <code>stopping</code> status.
+        /// The number of instances with <c>stopping</c> status.
         /// </para>
         /// </summary>
         public int Stopping
@@ -363,7 +364,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Terminated. 
         /// <para>
-        /// The number of instances with <code>terminated</code> status.
+        /// The number of instances with <c>terminated</c> status.
         /// </para>
         /// </summary>
         public int Terminated
@@ -381,7 +382,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Terminating. 
         /// <para>
-        /// The number of instances with <code>terminating</code> status.
+        /// The number of instances with <c>terminating</c> status.
         /// </para>
         /// </summary>
         public int Terminating

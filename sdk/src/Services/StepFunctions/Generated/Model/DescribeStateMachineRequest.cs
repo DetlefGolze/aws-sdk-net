@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
@@ -45,25 +46,25 @@ namespace Amazon.StepFunctions.Model
     ///  <ul> <li> 
     /// <para>
     /// The following qualified state machine ARN refers to a <i>Distributed Map state</i>
-    /// with a label <code>mapStateLabel</code> in a state machine named <code>myStateMachine</code>.
+    /// with a label <c>mapStateLabel</c> in a state machine named <c>myStateMachine</c>.
     /// </para>
     ///  
     /// <para>
-    ///  <code>arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel</code>
+    ///  <c>arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel</c>
     /// 
     /// </para>
     ///  <note> 
     /// <para>
     /// If you provide a qualified state machine ARN that refers to a <i>Distributed Map state</i>,
-    /// the request fails with <code>ValidationException</code>.
+    /// the request fails with <c>ValidationException</c>.
     /// </para>
     ///  </note> </li> <li> 
     /// <para>
-    /// The following qualified state machine ARN refers to an alias named <code>PROD</code>.
+    /// The following qualified state machine ARN refers to an alias named <c>PROD</c>.
     /// </para>
     ///  
     /// <para>
-    ///  <code>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine:PROD&gt;</code>
+    ///  <c>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine:PROD&gt;</c>
     /// 
     /// </para>
     ///  <note> 
@@ -73,16 +74,16 @@ namespace Amazon.StepFunctions.Model
     /// </para>
     ///  </note> </li> <li> 
     /// <para>
-    /// The following unqualified state machine ARN refers to a state machine named <code>myStateMachine</code>.
+    /// The following unqualified state machine ARN refers to a state machine named <c>myStateMachine</c>.
     /// </para>
     ///  
     /// <para>
-    ///  <code>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine&gt;</code>
+    ///  <c>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine&gt;</c>
     /// 
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// This API action returns the details for a state machine version if the <code>stateMachineArn</code>
+    /// This API action returns the details for a state machine version if the <c>stateMachineArn</c>
     /// you specify is a state machine version ARN.
     /// </para>
     ///  <note> 
@@ -94,7 +95,36 @@ namespace Amazon.StepFunctions.Model
     /// </summary>
     public partial class DescribeStateMachineRequest : AmazonStepFunctionsRequest
     {
+        private IncludedData _includedData;
         private string _stateMachineArn;
+
+        /// <summary>
+        /// Gets and sets the property IncludedData. 
+        /// <para>
+        /// If your state machine definition is encrypted with a KMS key, callers must have <c>kms:Decrypt</c>
+        /// permission to decrypt the definition. Alternatively, you can call the API with <c>includedData
+        /// = METADATA_ONLY</c> to get a successful response without the encrypted definition.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        ///  When calling a labelled ARN for an encrypted state machine, the <c>includedData =
+        /// METADATA_ONLY</c> parameter will not apply because Step Functions needs to decrypt
+        /// the entire state machine definition to get the Distributed Map state’s definition.
+        /// In this case, the API caller needs to have <c>kms:Decrypt</c> permission. 
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public IncludedData IncludedData
+        {
+            get { return this._includedData; }
+            set { this._includedData = value; }
+        }
+
+        // Check to see if IncludedData property is set
+        internal bool IsSetIncludedData()
+        {
+            return this._includedData != null;
+        }
 
         /// <summary>
         /// Gets and sets the property StateMachineArn. 
@@ -105,7 +135,7 @@ namespace Amazon.StepFunctions.Model
         /// <para>
         /// If you specify a state machine version ARN, this API returns details about that version.
         /// The version ARN is a combination of state machine ARN and the version number separated
-        /// by a colon (:). For example, <code>stateMachineARN:1</code>.
+        /// by a colon (:). For example, <c>stateMachineARN:1</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]

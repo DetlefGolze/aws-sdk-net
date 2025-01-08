@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EMRServerless.Model
 {
     /// <summary>
@@ -41,13 +42,15 @@ namespace Amazon.EMRServerless.Model
         private AutoStopConfig _autoStopConfiguration;
         private string _clientToken;
         private ImageConfigurationInput _imageConfiguration;
-        private Dictionary<string, InitialCapacityConfig> _initialCapacity = new Dictionary<string, InitialCapacityConfig>();
+        private Dictionary<string, InitialCapacityConfig> _initialCapacity = AWSConfigs.InitializeCollections ? new Dictionary<string, InitialCapacityConfig>() : null;
+        private InteractiveConfiguration _interactiveConfiguration;
         private MaximumAllowedResources _maximumCapacity;
         private MonitoringConfiguration _monitoringConfiguration;
         private NetworkConfiguration _networkConfiguration;
         private string _releaseLabel;
-        private List<Configuration> _runtimeConfiguration = new List<Configuration>();
-        private Dictionary<string, WorkerTypeSpecificationInput> _workerTypeSpecifications = new Dictionary<string, WorkerTypeSpecificationInput>();
+        private List<Configuration> _runtimeConfiguration = AWSConfigs.InitializeCollections ? new List<Configuration>() : null;
+        private SchedulerConfiguration _schedulerConfiguration;
+        private Dictionary<string, WorkerTypeSpecificationInput> _workerTypeSpecifications = AWSConfigs.InitializeCollections ? new Dictionary<string, WorkerTypeSpecificationInput>() : null;
 
         /// <summary>
         /// Gets and sets the property ApplicationId. 
@@ -147,7 +150,7 @@ namespace Amazon.EMRServerless.Model
         /// Gets and sets the property ImageConfiguration. 
         /// <para>
         /// The image configuration to be used for all worker types. You can either set this parameter
-        /// or <code>imageConfiguration</code> for each worker type in <code>WorkerTypeSpecificationInput</code>.
+        /// or <c>imageConfiguration</c> for each worker type in <c>WorkerTypeSpecificationInput</c>.
         /// </para>
         /// </summary>
         public ImageConfigurationInput ImageConfiguration
@@ -178,7 +181,26 @@ namespace Amazon.EMRServerless.Model
         // Check to see if InitialCapacity property is set
         internal bool IsSetInitialCapacity()
         {
-            return this._initialCapacity != null && this._initialCapacity.Count > 0; 
+            return this._initialCapacity != null && (this._initialCapacity.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property InteractiveConfiguration. 
+        /// <para>
+        /// The interactive configuration object that contains new interactive use cases when
+        /// the application is updated.
+        /// </para>
+        /// </summary>
+        public InteractiveConfiguration InteractiveConfiguration
+        {
+            get { return this._interactiveConfiguration; }
+            set { this._interactiveConfiguration = value; }
+        }
+
+        // Check to see if InteractiveConfiguration property is set
+        internal bool IsSetInteractiveConfiguration()
+        {
+            return this._interactiveConfiguration != null;
         }
 
         /// <summary>
@@ -273,17 +295,36 @@ namespace Amazon.EMRServerless.Model
         // Check to see if RuntimeConfiguration property is set
         internal bool IsSetRuntimeConfiguration()
         {
-            return this._runtimeConfiguration != null && this._runtimeConfiguration.Count > 0; 
+            return this._runtimeConfiguration != null && (this._runtimeConfiguration.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SchedulerConfiguration. 
+        /// <para>
+        /// The scheduler configuration for batch and streaming jobs running on this application.
+        /// Supported with release labels emr-7.0.0 and above.
+        /// </para>
+        /// </summary>
+        public SchedulerConfiguration SchedulerConfiguration
+        {
+            get { return this._schedulerConfiguration; }
+            set { this._schedulerConfiguration = value; }
+        }
+
+        // Check to see if SchedulerConfiguration property is set
+        internal bool IsSetSchedulerConfiguration()
+        {
+            return this._schedulerConfiguration != null;
         }
 
         /// <summary>
         /// Gets and sets the property WorkerTypeSpecifications. 
         /// <para>
-        /// The key-value pairs that specify worker type to <code>WorkerTypeSpecificationInput</code>.
+        /// The key-value pairs that specify worker type to <c>WorkerTypeSpecificationInput</c>.
         /// This parameter must contain all valid worker types for a Spark or Hive application.
-        /// Valid worker types include <code>Driver</code> and <code>Executor</code> for Spark
-        /// applications and <code>HiveDriver</code> and <code>TezTask</code> for Hive applications.
-        /// You can either set image details in this parameter for each worker type, or in <code>imageConfiguration</code>
+        /// Valid worker types include <c>Driver</c> and <c>Executor</c> for Spark applications
+        /// and <c>HiveDriver</c> and <c>TezTask</c> for Hive applications. You can either set
+        /// image details in this parameter for each worker type, or in <c>imageConfiguration</c>
         /// for all worker types.
         /// </para>
         /// </summary>
@@ -296,7 +337,7 @@ namespace Amazon.EMRServerless.Model
         // Check to see if WorkerTypeSpecifications property is set
         internal bool IsSetWorkerTypeSpecifications()
         {
-            return this._workerTypeSpecifications != null && this._workerTypeSpecifications.Count > 0; 
+            return this._workerTypeSpecifications != null && (this._workerTypeSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

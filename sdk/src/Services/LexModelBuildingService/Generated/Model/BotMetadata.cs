@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
@@ -136,7 +137,7 @@ namespace Amazon.LexModelBuildingService.Model
         /// <summary>
         /// Gets and sets the property Version. 
         /// <para>
-        /// The version of the bot. For a new bot, the version is always <code>$LATEST</code>.
+        /// The version of the bot. For a new bot, the version is always <c>$LATEST</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]

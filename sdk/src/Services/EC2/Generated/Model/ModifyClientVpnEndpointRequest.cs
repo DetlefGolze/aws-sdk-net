@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.EC2.Model
         private ConnectionLogOptions _connectionLogOptions;
         private string _description;
         private DnsServersOptionsModifyStructure _dnsServers;
-        private List<string> _securityGroupIds = new List<string>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private SelfServicePortal _selfServicePortal;
         private string _serverCertificateArn;
         private int? _sessionTimeoutHours;
@@ -197,7 +198,7 @@ namespace Amazon.EC2.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -244,11 +245,11 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>8 | 10 | 12 | 24</code> 
+        /// Valid values: <c>8 | 10 | 12 | 24</c> 
         /// </para>
         ///  
         /// <para>
-        /// Default value: <code>24</code> 
+        /// Default value: <c>24</c> 
         /// </para>
         /// </summary>
         public int SessionTimeoutHours
@@ -311,11 +312,11 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>443</code> | <code>1194</code> 
+        /// Valid Values: <c>443</c> | <c>1194</c> 
         /// </para>
         ///  
         /// <para>
-        /// Default Value: <code>443</code> 
+        /// Default Value: <c>443</c> 
         /// </para>
         /// </summary>
         public int VpnPort

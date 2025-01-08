@@ -26,24 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// A set of optional parameters that you can use to set the criteria that the text must
-    /// meet to be included in your response. <code>WordFilter</code> looks at a word’s height,
-    /// width, and minimum confidence. <code>RegionOfInterest</code> lets you set a specific
-    /// region of the image to look for text in.
+    /// meet to be included in your response. <c>WordFilter</c> looks at a word’s height,
+    /// width, and minimum confidence. <c>RegionOfInterest</c> lets you set a specific region
+    /// of the image to look for text in.
     /// </summary>
     public partial class DetectTextFilters
     {
-        private List<RegionOfInterest> _regionsOfInterest = new List<RegionOfInterest>();
+        private List<RegionOfInterest> _regionsOfInterest = AWSConfigs.InitializeCollections ? new List<RegionOfInterest>() : null;
         private DetectionFilter _wordFilter;
 
         /// <summary>
         /// Gets and sets the property RegionsOfInterest. 
         /// <para>
-        ///  A Filter focusing on a certain area of the image. Uses a <code>BoundingBox</code>
-        /// object to set the region of the image.
+        ///  A Filter focusing on a certain area of the image. Uses a <c>BoundingBox</c> object
+        /// to set the region of the image.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=10)]
@@ -56,7 +57,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if RegionsOfInterest property is set
         internal bool IsSetRegionsOfInterest()
         {
-            return this._regionsOfInterest != null && this._regionsOfInterest.Count > 0; 
+            return this._regionsOfInterest != null && (this._regionsOfInterest.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

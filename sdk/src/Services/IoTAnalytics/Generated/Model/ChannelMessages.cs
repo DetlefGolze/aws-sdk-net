@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTAnalytics.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.IoTAnalytics.Model
     /// </summary>
     public partial class ChannelMessages
     {
-        private List<string> _s3Paths = new List<string>();
+        private List<string> _s3Paths = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property S3Paths. 
@@ -47,7 +48,7 @@ namespace Amazon.IoTAnalytics.Model
         /// </para>
         ///  
         /// <para>
-        /// Example path: <code>channel/mychannel/__dt=2020-02-29 00:00:00/1582940490000_1582940520000_123456789012_mychannel_0_2118.0.json.gz</code>
+        /// Example path: <c>channel/mychannel/__dt=2020-02-29 00:00:00/1582940490000_1582940520000_123456789012_mychannel_0_2118.0.json.gz</c>
         /// 
         /// </para>
         /// </summary>
@@ -61,7 +62,7 @@ namespace Amazon.IoTAnalytics.Model
         // Check to see if S3Paths property is set
         internal bool IsSetS3Paths()
         {
-            return this._s3Paths != null && this._s3Paths.Count > 0; 
+            return this._s3Paths != null && (this._s3Paths.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

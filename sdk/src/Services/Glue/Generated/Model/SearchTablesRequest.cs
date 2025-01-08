@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -46,17 +47,18 @@ namespace Amazon.Glue.Model
     public partial class SearchTablesRequest : AmazonGlueRequest
     {
         private string _catalogId;
-        private List<PropertyPredicate> _filters = new List<PropertyPredicate>();
+        private List<PropertyPredicate> _filters = AWSConfigs.InitializeCollections ? new List<PropertyPredicate>() : null;
+        private bool? _includeStatusDetails;
         private int? _maxResults;
         private string _nextToken;
         private ResourceShareType _resourceShareType;
         private string _searchText;
-        private List<SortCriterion> _sortCriteria = new List<SortCriterion>();
+        private List<SortCriterion> _sortCriteria = AWSConfigs.InitializeCollections ? new List<SortCriterion>() : null;
 
         /// <summary>
         /// Gets and sets the property CatalogId. 
         /// <para>
-        /// A unique identifier, consisting of <code> <i>account_id</i> </code>.
+        /// A unique identifier, consisting of <c> <i>account_id</i> </c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -80,14 +82,14 @@ namespace Amazon.Glue.Model
         /// </para>
         ///  
         /// <para>
-        /// The <code>Comparator</code> member of the <code>PropertyPredicate</code> struct is
-        /// used only for time fields, and can be omitted for other field types. Also, when comparing
-        /// string values, such as when <code>Key=Name</code>, a fuzzy match algorithm is used.
-        /// The <code>Key</code> field (for example, the value of the <code>Name</code> field)
-        /// is split on certain punctuation characters, for example, -, :, #, etc. into tokens.
-        /// Then each token is exact-match compared with the <code>Value</code> member of <code>PropertyPredicate</code>.
-        /// For example, if <code>Key=Name</code> and <code>Value=link</code>, tables named <code>customer-link</code>
-        /// and <code>xx-link-yy</code> are returned, but <code>xxlinkyy</code> is not returned.
+        /// The <c>Comparator</c> member of the <c>PropertyPredicate</c> struct is used only for
+        /// time fields, and can be omitted for other field types. Also, when comparing string
+        /// values, such as when <c>Key=Name</c>, a fuzzy match algorithm is used. The <c>Key</c>
+        /// field (for example, the value of the <c>Name</c> field) is split on certain punctuation
+        /// characters, for example, -, :, #, etc. into tokens. Then each token is exact-match
+        /// compared with the <c>Value</c> member of <c>PropertyPredicate</c>. For example, if
+        /// <c>Key=Name</c> and <c>Value=link</c>, tables named <c>customer-link</c> and <c>xx-link-yy</c>
+        /// are returned, but <c>xxlinkyy</c> is not returned.
         /// </para>
         /// </summary>
         public List<PropertyPredicate> Filters
@@ -99,7 +101,26 @@ namespace Amazon.Glue.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property IncludeStatusDetails. 
+        /// <para>
+        /// Specifies whether to include status details related to a request to create or update
+        /// an Glue Data Catalog view.
+        /// </para>
+        /// </summary>
+        public bool IncludeStatusDetails
+        {
+            get { return this._includeStatusDetails.GetValueOrDefault(); }
+            set { this._includeStatusDetails = value; }
+        }
+
+        // Check to see if IncludeStatusDetails property is set
+        internal bool IsSetIncludeStatusDetails()
+        {
+            return this._includeStatusDetails.HasValue; 
         }
 
         /// <summary>
@@ -143,16 +164,16 @@ namespace Amazon.Glue.Model
         /// Gets and sets the property ResourceShareType. 
         /// <para>
         /// Allows you to specify that you want to search the tables shared with your account.
-        /// The allowable values are <code>FOREIGN</code> or <code>ALL</code>. 
+        /// The allowable values are <c>FOREIGN</c> or <c>ALL</c>. 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If set to <code>FOREIGN</code>, will search the tables shared with your account. 
+        /// If set to <c>FOREIGN</c>, will search the tables shared with your account. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If set to <code>ALL</code>, will search the tables shared with your account, as well
-        /// as the tables in yor local account. 
+        /// If set to <c>ALL</c>, will search the tables shared with your account, as well as
+        /// the tables in yor local account. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -178,7 +199,7 @@ namespace Amazon.Glue.Model
         /// Specifying a value in quotes filters based on an exact match to the value.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=1024)]
+        [AWSProperty(Min=1, Max=1024)]
         public string SearchText
         {
             get { return this._searchText; }
@@ -208,7 +229,7 @@ namespace Amazon.Glue.Model
         // Check to see if SortCriteria property is set
         internal bool IsSetSortCriteria()
         {
-            return this._sortCriteria != null && this._sortCriteria.Count > 0; 
+            return this._sortCriteria != null && (this._sortCriteria.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

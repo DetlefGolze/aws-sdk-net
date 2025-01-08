@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.LexModelsV2.Model
         private string _parentSlotTypeSignature;
         private string _slotTypeId;
         private string _slotTypeName;
-        private List<SlotTypeValue> _slotTypeValues = new List<SlotTypeValue>();
+        private List<SlotTypeValue> _slotTypeValues = AWSConfigs.InitializeCollections ? new List<SlotTypeValue>() : null;
         private SlotValueSelectionSetting _valueSelectionSetting;
 
         /// <summary>
@@ -69,7 +70,7 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property BotVersion. 
         /// <para>
-        /// The version of the bot that contains the slot type. This is always <code>DRAFT</code>.
+        /// The version of the bot that contains the slot type. This is always <c>DRAFT</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=5, Max=5)]
@@ -263,7 +264,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if SlotTypeValues property is set
         internal bool IsSetSlotTypeValues()
         {
-            return this._slotTypeValues != null && this._slotTypeValues.Count > 0; 
+            return this._slotTypeValues != null && (this._slotTypeValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

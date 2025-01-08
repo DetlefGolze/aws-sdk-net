@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.CloudFront.Model
         /// <para>
         /// Use this when paginating results to indicate where to begin in your list of configurations.
         /// The results include configurations in the list that occur after the marker. To get
-        /// the next page of results, set the <code>Marker</code> to the value of the <code>NextMarker</code>
+        /// the next page of results, set the <c>Marker</c> to the value of the <c>NextMarker</c>
         /// from the current page's response (which is also the ID of the last configuration on
         /// that page).
         /// </para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.Neptune.Model
     /// </summary>
     public partial class DescribeDBEngineVersionsResponse : AmazonWebServiceResponse
     {
-        private List<DBEngineVersion> _dbEngineVersions = new List<DBEngineVersion>();
+        private List<DBEngineVersion> _dbEngineVersions = AWSConfigs.InitializeCollections ? new List<DBEngineVersion>() : null;
         private string _marker;
 
         /// <summary>
         /// Gets and sets the property DBEngineVersions. 
         /// <para>
-        ///  A list of <code>DBEngineVersion</code> elements.
+        ///  A list of <c>DBEngineVersion</c> elements.
         /// </para>
         /// </summary>
         public List<DBEngineVersion> DBEngineVersions
@@ -51,7 +52,7 @@ namespace Amazon.Neptune.Model
         // Check to see if DBEngineVersions property is set
         internal bool IsSetDBEngineVersions()
         {
-            return this._dbEngineVersions != null && this._dbEngineVersions.Count > 0; 
+            return this._dbEngineVersions != null && (this._dbEngineVersions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.Neptune.Model
         /// <para>
         ///  An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>.
+        /// by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker

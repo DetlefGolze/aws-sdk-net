@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
-    /// The response object for the <code>DeleteBackup</code> operation.
+    /// The response object for the <c>DeleteBackup</c> operation.
     /// </summary>
     public partial class DeleteBackupResponse : AmazonWebServiceResponse
     {
@@ -58,8 +59,8 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property Lifecycle. 
         /// <para>
-        /// The lifecycle status of the backup. If the <code>DeleteBackup</code> operation is
-        /// successful, the status is <code>DELETED</code>.
+        /// The lifecycle status of the backup. If the <c>DeleteBackup</c> operation is successful,
+        /// the status is <c>DELETED</c>.
         /// </para>
         /// </summary>
         public BackupLifecycle Lifecycle

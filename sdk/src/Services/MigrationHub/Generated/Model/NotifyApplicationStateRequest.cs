@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHub.Model
 {
     /// <summary>
     /// Container for the parameters to the NotifyApplicationState operation.
     /// Sets the migration state of an application. For a given application identified by
-    /// the value passed to <code>ApplicationId</code>, its status is set or updated by passing
-    /// one of three values to <code>Status</code>: <code>NOT_STARTED | IN_PROGRESS | COMPLETED</code>.
+    /// the value passed to <c>ApplicationId</c>, its status is set or updated by passing
+    /// one of three values to <c>Status</c>: <c>NOT_STARTED | IN_PROGRESS | COMPLETED</c>.
     /// </summary>
     public partial class NotifyApplicationStateRequest : AmazonMigrationHubRequest
     {

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudHSM.Model
 {
     /// <summary>
-    /// Contains the output of the <code>CreateHsm</code> operation.
+    /// Contains the output of the <c>CreateHsm</c> operation.
     /// </summary>
     public partial class CreateHsmResponse : AmazonWebServiceResponse
     {

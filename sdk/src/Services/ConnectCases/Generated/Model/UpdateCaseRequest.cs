@@ -26,24 +26,27 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectCases.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateCase operation.
-    /// Updates the values of fields on a case. Fields to be updated are received as an array
-    /// of id/value pairs identical to the <code>CreateCase</code> input .
-    /// 
-    ///  
+    /// <note> 
     /// <para>
-    /// If the action is successful, the service sends back an HTTP 200 response with an empty
-    /// HTTP body.
+    /// If you provide a value for <c>PerformedBy.UserArn</c> you must also have <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribeUser.html">connect:DescribeUser</a>
+    /// permission on the User ARN resource that you provide
     /// </para>
+    ///  </note> <pre><c> &lt;p&gt;Updates the values of fields on a case. Fields to be updated
+    /// are received as an array of id/value pairs identical to the &lt;code&gt;CreateCase&lt;/code&gt;
+    /// input .&lt;/p&gt; &lt;p&gt;If the action is successful, the service sends back an
+    /// HTTP 200 response with an empty HTTP body.&lt;/p&gt; </c></pre>
     /// </summary>
     public partial class UpdateCaseRequest : AmazonConnectCasesRequest
     {
         private string _caseId;
         private string _domainId;
-        private List<FieldValue> _fields = new List<FieldValue>();
+        private List<FieldValue> _fields = AWSConfigs.InitializeCollections ? new List<FieldValue>() : null;
+        private UserUnion _performedBy;
 
         /// <summary>
         /// Gets and sets the property CaseId. 
@@ -86,8 +89,8 @@ namespace Amazon.ConnectCases.Model
         /// <summary>
         /// Gets and sets the property Fields. 
         /// <para>
-        /// An array of objects with <code>fieldId</code> (matching ListFields/DescribeField)
-        /// and value union data, structured identical to <code>CreateCase</code>.
+        /// An array of objects with <c>fieldId</c> (matching ListFields/DescribeField) and value
+        /// union data, structured identical to <c>CreateCase</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=100)]
@@ -100,7 +103,22 @@ namespace Amazon.ConnectCases.Model
         // Check to see if Fields property is set
         internal bool IsSetFields()
         {
-            return this._fields != null && this._fields.Count > 0; 
+            return this._fields != null && (this._fields.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property PerformedBy.
+        /// </summary>
+        public UserUnion PerformedBy
+        {
+            get { return this._performedBy; }
+            set { this._performedBy = value; }
+        }
+
+        // Check to see if PerformedBy property is set
+        internal bool IsSetPerformedBy()
+        {
+            return this._performedBy != null;
         }
 
     }

@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHub.Model
 {
     /// <summary>
     /// Container for the parameters to the PutResourceAttributes operation.
     /// Provides identifying details of the resource being migrated so that it can be associated
     /// in the Application Discovery Service repository. This association occurs asynchronously
-    /// after <code>PutResourceAttributes</code> returns.
+    /// after <c>PutResourceAttributes</c> returns.
     /// 
     ///  <important> <ul> <li> 
     /// <para>
@@ -44,14 +45,13 @@ namespace Amazon.MigrationHub.Model
     ///  </li> <li> 
     /// <para>
     /// Note the instructions regarding the special use case of the <a href="https://docs.aws.amazon.com/migrationhub/latest/ug/API_PutResourceAttributes.html#migrationhub-PutResourceAttributes-request-ResourceAttributeList">
-    /// <code>ResourceAttributeList</code> </a> parameter when specifying any "VM" related
-    /// value.
+    /// <c>ResourceAttributeList</c> </a> parameter when specifying any "VM" related value.
     /// </para>
     ///  </li> </ul> </important> <note> 
     /// <para>
     /// Because this is an asynchronous call, it will always return 200, whether an association
     /// occurs or not. To confirm if an association was found based on the provided details,
-    /// call <code>ListDiscoveredResources</code>.
+    /// call <c>ListDiscoveredResources</c>.
     /// </para>
     ///  </note>
     /// </summary>
@@ -60,7 +60,7 @@ namespace Amazon.MigrationHub.Model
         private bool? _dryRun;
         private string _migrationTaskName;
         private string _progressUpdateStream;
-        private List<ResourceAttribute> _resourceAttributeList = new List<ResourceAttribute>();
+        private List<ResourceAttribute> _resourceAttributeList = AWSConfigs.InitializeCollections ? new List<ResourceAttribute>() : null;
 
         /// <summary>
         /// Gets and sets the property DryRun. 
@@ -128,25 +128,25 @@ namespace Amazon.MigrationHub.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// Takes the object array of <code>ResourceAttribute</code> where the <code>Type</code>
-        /// field is reserved for the following values: <code>IPV4_ADDRESS | IPV6_ADDRESS | MAC_ADDRESS
-        /// | FQDN | VM_MANAGER_ID | VM_MANAGED_OBJECT_REFERENCE | VM_NAME | VM_PATH | BIOS_ID
-        /// | MOTHERBOARD_SERIAL_NUMBER</code> where the identifying value can be a string up
-        /// to 256 characters.
+        /// Takes the object array of <c>ResourceAttribute</c> where the <c>Type</c> field is
+        /// reserved for the following values: <c>IPV4_ADDRESS | IPV6_ADDRESS | MAC_ADDRESS |
+        /// FQDN | VM_MANAGER_ID | VM_MANAGED_OBJECT_REFERENCE | VM_NAME | VM_PATH | BIOS_ID |
+        /// MOTHERBOARD_SERIAL_NUMBER</c> where the identifying value can be a string up to 256
+        /// characters.
         /// </para>
         ///  </note> <important> <ul> <li> 
         /// <para>
-        /// If any "VM" related value is set for a <code>ResourceAttribute</code> object, it is
-        /// required that <code>VM_MANAGER_ID</code>, as a minimum, is always set. If <code>VM_MANAGER_ID</code>
-        /// is not set, then all "VM" fields will be discarded and "VM" fields will not be used
-        /// for matching the migration task to a server in Application Discovery Service repository.
+        /// If any "VM" related value is set for a <c>ResourceAttribute</c> object, it is required
+        /// that <c>VM_MANAGER_ID</c>, as a minimum, is always set. If <c>VM_MANAGER_ID</c> is
+        /// not set, then all "VM" fields will be discarded and "VM" fields will not be used for
+        /// matching the migration task to a server in Application Discovery Service repository.
         /// See the <a href="https://docs.aws.amazon.com/migrationhub/latest/ug/API_PutResourceAttributes.html#API_PutResourceAttributes_Examples">Example</a>
         /// section below for a use case of specifying "VM" related values.
         /// </para>
         ///  </li> <li> 
         /// <para>
         ///  If a server you are trying to match has multiple IP or MAC addresses, you should
-        /// provide as many as you know in separate type/value pairs passed to the <code>ResourceAttributeList</code>
+        /// provide as many as you know in separate type/value pairs passed to the <c>ResourceAttributeList</c>
         /// parameter to maximize the chances of matching.
         /// </para>
         ///  </li> </ul> </important>
@@ -161,7 +161,7 @@ namespace Amazon.MigrationHub.Model
         // Check to see if ResourceAttributeList property is set
         internal bool IsSetResourceAttributeList()
         {
-            return this._resourceAttributeList != null && this._resourceAttributeList.Count > 0; 
+            return this._resourceAttributeList != null && (this._resourceAttributeList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Backup.Model
     {
         private string _accountId;
         private string _backupJobId;
-        private Dictionary<string, string> _backupOptions = new Dictionary<string, string>();
+        private Dictionary<string, string> _backupOptions = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private long? _backupSizeInBytes;
         private string _backupType;
         private string _backupVaultArn;
@@ -46,7 +47,9 @@ namespace Amazon.Backup.Model
         private DateTime? _creationDate;
         private DateTime? _expectedCompletionDate;
         private string _iamRoleArn;
+        private DateTime? _initiationDate;
         private bool? _isParent;
+        private string _messageCategory;
         private string _parentJobId;
         private string _percentDone;
         private string _recoveryPointArn;
@@ -101,9 +104,9 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: Set to <code>"WindowsVSS":"enabled"</code> to enable the <code>WindowsVSS</code>
-        /// backup option and create a Windows VSS backup. Set to <code>"WindowsVSS":"disabled"</code>
-        /// to create a regular backup. If you specify an invalid option, you get an <code>InvalidParameterValueException</code>
+        /// Valid values: Set to <c>"WindowsVSS":"enabled"</c> to enable the <c>WindowsVSS</c>
+        /// backup option and create a Windows VSS backup. Set to <c>"WindowsVSS":"disabled"</c>
+        /// to create a regular backup. If you specify an invalid option, you get an <c>InvalidParameterValueException</c>
         /// exception.
         /// </para>
         /// </summary>
@@ -116,7 +119,7 @@ namespace Amazon.Backup.Model
         // Check to see if BackupOptions property is set
         internal bool IsSetBackupOptions()
         {
-            return this._backupOptions != null && this._backupOptions.Count > 0; 
+            return this._backupOptions != null && (this._backupOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -159,7 +162,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property BackupVaultArn. 
         /// <para>
         /// An Amazon Resource Name (ARN) that uniquely identifies a backup vault; for example,
-        /// <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>.
+        /// <c>arn:aws:backup:us-east-1:123456789012:backup-vault:aBackupVault</c>.
         /// </para>
         /// </summary>
         public string BackupVaultArn
@@ -179,7 +182,7 @@ namespace Amazon.Backup.Model
         /// <para>
         /// The name of a logical container where backups are stored. Backup vaults are identified
         /// by names that are unique to the account used to create them and the Amazon Web Services
-        /// Region where they are created. They consist of lowercase letters, numbers, and hyphens.
+        /// Region where they are created.
         /// </para>
         /// </summary>
         public string BackupVaultName
@@ -217,7 +220,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property CompletionDate. 
         /// <para>
         /// The date and time a job to create a backup job is completed, in Unix format and Coordinated
-        /// Universal Time (UTC). The value of <code>CompletionDate</code> is accurate to milliseconds.
+        /// Universal Time (UTC). The value of <c>CompletionDate</c> is accurate to milliseconds.
         /// For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087
         /// AM.
         /// </para>
@@ -238,8 +241,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property CreatedBy. 
         /// <para>
         /// Contains identifying information about the creation of a backup job, including the
-        /// <code>BackupPlanArn</code>, <code>BackupPlanId</code>, <code>BackupPlanVersion</code>,
-        /// and <code>BackupRuleId</code> of the backup plan used to create it.
+        /// <c>BackupPlanArn</c>, <c>BackupPlanId</c>, <c>BackupPlanVersion</c>, and <c>BackupRuleId</c>
+        /// of the backup plan used to create it.
         /// </para>
         /// </summary>
         public RecoveryPointCreator CreatedBy
@@ -258,9 +261,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property CreationDate. 
         /// <para>
         /// The date and time a backup job is created, in Unix format and Coordinated Universal
-        /// Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For
-        /// example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087
-        /// AM.
+        /// Time (UTC). The value of <c>CreationDate</c> is accurate to milliseconds. For example,
+        /// the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.
         /// </para>
         /// </summary>
         public DateTime CreationDate
@@ -279,7 +281,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property ExpectedCompletionDate. 
         /// <para>
         /// The date and time a job to back up resources is expected to be completed, in Unix
-        /// format and Coordinated Universal Time (UTC). The value of <code>ExpectedCompletionDate</code>
+        /// format and Coordinated Universal Time (UTC). The value of <c>ExpectedCompletionDate</c>
         /// is accurate to milliseconds. For example, the value 1516925490.087 represents Friday,
         /// January 26, 2018 12:11:30.087 AM.
         /// </para>
@@ -300,8 +302,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property IamRoleArn. 
         /// <para>
         /// Specifies the IAM role ARN used to create the target recovery point. IAM roles other
-        /// than the default role must include either <code>AWSBackup</code> or <code>AwsBackup</code>
-        /// in the role name. For example, <code>arn:aws:iam::123456789012:role/AWSBackupRDSAccess</code>.
+        /// than the default role must include either <c>AWSBackup</c> or <c>AwsBackup</c> in
+        /// the role name. For example, <c>arn:aws:iam::123456789012:role/AWSBackupRDSAccess</c>.
         /// Role names without those strings lack permissions to perform backup jobs.
         /// </para>
         /// </summary>
@@ -315,6 +317,24 @@ namespace Amazon.Backup.Model
         internal bool IsSetIamRoleArn()
         {
             return this._iamRoleArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property InitiationDate. 
+        /// <para>
+        /// The date on which the backup job was initiated.
+        /// </para>
+        /// </summary>
+        public DateTime InitiationDate
+        {
+            get { return this._initiationDate.GetValueOrDefault(); }
+            set { this._initiationDate = value; }
+        }
+
+        // Check to see if InitiationDate property is set
+        internal bool IsSetInitiationDate()
+        {
+            return this._initiationDate.HasValue; 
         }
 
         /// <summary>
@@ -333,6 +353,39 @@ namespace Amazon.Backup.Model
         internal bool IsSetIsParent()
         {
             return this._isParent.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property MessageCategory. 
+        /// <para>
+        /// This parameter is the job count for the specified message category.
+        /// </para>
+        ///  
+        /// <para>
+        /// Example strings may include <c>AccessDenied</c>, <c>SUCCESS</c>, <c>AGGREGATE_ALL</c>,
+        /// and <c>INVALIDPARAMETERS</c>. See <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html">Monitoring</a>
+        /// for a list of MessageCategory strings.
+        /// </para>
+        ///  
+        /// <para>
+        /// The the value ANY returns count of all message categories.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>AGGREGATE_ALL</c> aggregates job counts for all message categories and returns
+        /// the sum.
+        /// </para>
+        /// </summary>
+        public string MessageCategory
+        {
+            get { return this._messageCategory; }
+            set { this._messageCategory = value; }
+        }
+
+        // Check to see if MessageCategory property is set
+        internal bool IsSetMessageCategory()
+        {
+            return this._messageCategory != null;
         }
 
         /// <summary>
@@ -376,7 +429,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property RecoveryPointArn. 
         /// <para>
-        /// An ARN that uniquely identifies a recovery point; for example, <code>arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45</code>.
+        /// An ARN that uniquely identifies a recovery point; for example, <c>arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45</c>.
         /// </para>
         /// </summary>
         public string RecoveryPointArn
@@ -413,7 +466,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property ResourceName. 
         /// <para>
-        /// This is the non-unique name of the resource that belongs to the specified backup.
+        /// The non-unique name of the resource that belongs to the specified backup.
         /// </para>
         /// </summary>
         public string ResourceName
@@ -455,9 +508,9 @@ namespace Amazon.Backup.Model
         /// Specifies the time in Unix format and Coordinated Universal Time (UTC) when a backup
         /// job must be started before it is canceled. The value is calculated by adding the start
         /// window to the scheduled time. So if the scheduled time were 6:00 PM and the start
-        /// window is 2 hours, the <code>StartBy</code> time would be 8:00 PM on the date specified.
-        /// The value of <code>StartBy</code> is accurate to milliseconds. For example, the value
-        /// 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.
+        /// window is 2 hours, the <c>StartBy</c> time would be 8:00 PM on the date specified.
+        /// The value of <c>StartBy</c> is accurate to milliseconds. For example, the value 1516925490.087
+        /// represents Friday, January 26, 2018 12:11:30.087 AM.
         /// </para>
         /// </summary>
         public DateTime StartBy

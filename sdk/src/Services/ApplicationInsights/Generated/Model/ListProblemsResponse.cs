@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationInsights.Model
 {
     /// <summary>
@@ -35,13 +36,13 @@ namespace Amazon.ApplicationInsights.Model
     {
         private string _accountId;
         private string _nextToken;
-        private List<Problem> _problemList = new List<Problem>();
+        private List<Problem> _problemList = AWSConfigs.InitializeCollections ? new List<Problem>() : null;
         private string _resourceGroupName;
 
         /// <summary>
         /// Gets and sets the property AccountId. 
         /// <para>
-        /// The AWS account ID for the resource group owner.
+        /// The Amazon Web Services account ID for the resource group owner.
         /// </para>
         /// </summary>
         [AWSProperty(Min=12, Max=12)]
@@ -60,8 +61,8 @@ namespace Amazon.ApplicationInsights.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token used to retrieve the next page of results. This value is <code>null</code>
-        /// when there are no more results to return. 
+        /// The token used to retrieve the next page of results. This value is <c>null</c> when
+        /// there are no more results to return. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -92,7 +93,7 @@ namespace Amazon.ApplicationInsights.Model
         // Check to see if ProblemList property is set
         internal bool IsSetProblemList()
         {
-            return this._problemList != null && this._problemList.Count > 0; 
+            return this._problemList != null && (this._problemList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

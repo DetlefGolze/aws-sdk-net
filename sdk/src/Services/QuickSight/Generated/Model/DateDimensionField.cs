@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Column. 
         /// <para>
-        /// The column that is used in the <code>DateDimensionField</code>.
+        /// The column that is used in the <c>DateDimensionField</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -61,44 +62,44 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property DateGranularity. 
         /// <para>
-        /// The date granularity of the <code>DateDimensionField</code>. Choose one of the following
+        /// The date granularity of the <c>DateDimensionField</c>. Choose one of the following
         /// options:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>YEAR</code> 
+        ///  <c>YEAR</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>QUARTER</code> 
+        ///  <c>QUARTER</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MONTH</code> 
+        ///  <c>MONTH</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>WEEK</code> 
+        ///  <c>WEEK</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DAY</code> 
+        ///  <c>DAY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>HOUR</code> 
+        ///  <c>HOUR</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MINUTE</code> 
+        ///  <c>MINUTE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SECOND</code> 
+        ///  <c>SECOND</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MILLISECOND</code> 
+        ///  <c>MILLISECOND</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

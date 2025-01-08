@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -34,16 +35,22 @@ namespace Amazon.EKS.Model
     public partial class ListNodegroupsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<string> _nodegroups = new List<string>();
+        private List<string> _nodegroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value to include in a future <code>ListNodegroups</code>
-        /// request. When the results of a <code>ListNodegroups</code> request exceed <code>maxResults</code>,
-        /// you can use this value to retrieve the next page of results. This value is <code>null</code>
-        /// when there are no more results to return.
+        /// The <c>nextToken</c> value returned from a previous paginated request, where <c>maxResults</c>
+        /// was used and the results exceeded the value of that parameter. Pagination continues
+        /// from the end of the previous results that returned the <c>nextToken</c> value. This
+        /// value is null when there are no more results to return.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// This token should be treated as an opaque identifier that is used only to retrieve
+        /// the next items in a list and not for other programmatic purposes.
+        /// </para>
+        ///  </note>
         /// </summary>
         public string NextToken
         {
@@ -72,7 +79,7 @@ namespace Amazon.EKS.Model
         // Check to see if Nodegroups property is set
         internal bool IsSetNodegroups()
         {
-            return this._nodegroups != null && this._nodegroups.Count > 0; 
+            return this._nodegroups != null && (this._nodegroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

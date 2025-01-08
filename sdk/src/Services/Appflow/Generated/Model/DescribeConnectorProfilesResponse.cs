@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Appflow.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Appflow.Model
     /// </summary>
     public partial class DescribeConnectorProfilesResponse : AmazonWebServiceResponse
     {
-        private List<ConnectorProfile> _connectorProfileDetails = new List<ConnectorProfile>();
+        private List<ConnectorProfile> _connectorProfileDetails = AWSConfigs.InitializeCollections ? new List<ConnectorProfile>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.Appflow.Model
         // Check to see if ConnectorProfileDetails property is set
         internal bool IsSetConnectorProfileDetails()
         {
-            return this._connectorProfileDetails != null && this._connectorProfileDetails.Count > 0; 
+            return this._connectorProfileDetails != null && (this._connectorProfileDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  The pagination token for the next page of data. If <code>nextToken=null</code>, this
-        /// means that all records have been fetched. 
+        ///  The pagination token for the next page of data. If <c>nextToken=null</c>, this means
+        /// that all records have been fetched. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=2048)]

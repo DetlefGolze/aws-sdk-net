@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRegistry.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.AppRegistry.Model
         /// <summary>
         /// Gets and sets the property Configuration. 
         /// <para>
-        ///  Retrieves <code>TagKey</code> configuration from an account. 
+        ///  Retrieves <c>TagKey</c> configuration from an account. 
         /// </para>
         /// </summary>
         public AppRegistryConfiguration Configuration

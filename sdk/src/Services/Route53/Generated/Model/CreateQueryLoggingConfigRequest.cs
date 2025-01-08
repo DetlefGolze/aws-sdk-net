@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
@@ -52,7 +53,7 @@ namespace Amazon.Route53.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// DNS response code, such as <code>NoError</code> or <code>ServFail</code> 
+    /// DNS response code, such as <c>NoError</c> or <c>ServFail</c> 
     /// </para>
     ///  </li> </ul> <dl> <dt>Log Group and Resource Policy</dt> <dd> 
     /// <para>
@@ -84,7 +85,7 @@ namespace Amazon.Route53.Model
     /// </para>
     ///  
     /// <para>
-    ///  <code>/aws/route53/<i>hosted zone name</i> </code> 
+    ///  <c>/aws/route53/<i>hosted zone name</i> </c> 
     /// </para>
     ///  
     /// <para>
@@ -97,15 +98,15 @@ namespace Amazon.Route53.Model
     ///  </li> </ul> </li> <li> 
     /// <para>
     /// Create a CloudWatch Logs resource policy, and give it the permissions that Route 53
-    /// needs to create log streams and to send query logs to log streams. For the value of
-    /// <code>Resource</code>, specify the ARN for the log group that you created in the previous
-    /// step. To use the same resource policy for all the CloudWatch Logs log groups that
-    /// you created for query logging configurations, replace the hosted zone name with <code>*</code>,
-    /// for example:
+    /// needs to create log streams and to send query logs to log streams. You must create
+    /// the CloudWatch Logs resource policy in the us-east-1 region. For the value of <c>Resource</c>,
+    /// specify the ARN for the log group that you created in the previous step. To use the
+    /// same resource policy for all the CloudWatch Logs log groups that you created for query
+    /// logging configurations, replace the hosted zone name with <c>*</c>, for example:
     /// </para>
     ///  
     /// <para>
-    ///  <code>arn:aws:logs:us-east-1:123412341234:log-group:/aws/route53/*</code> 
+    ///  <c>arn:aws:logs:us-east-1:123412341234:log-group:/aws/route53/*</c> 
     /// </para>
     ///  
     /// <para>
@@ -116,14 +117,14 @@ namespace Amazon.Route53.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// For <code>aws:SourceArn</code>, supply the hosted zone ARN used in creating the query
-    /// logging configuration. For example, <code>aws:SourceArn: arn:aws:route53:::hostedzone/hosted
-    /// zone ID</code>.
+    /// For <c>aws:SourceArn</c>, supply the hosted zone ARN used in creating the query logging
+    /// configuration. For example, <c>aws:SourceArn: arn:aws:route53:::hostedzone/hosted
+    /// zone ID</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// For <code>aws:SourceAccount</code>, supply the account ID for the account that creates
-    /// the query logging configuration. For example, <code>aws:SourceAccount:111111111111</code>.
+    /// For <c>aws:SourceAccount</c>, supply the account ID for the account that creates the
+    /// query logging configuration. For example, <c>aws:SourceAccount:111111111111</c>.
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -156,7 +157,7 @@ namespace Amazon.Route53.Model
     /// </para>
     ///  
     /// <para>
-    ///  <code> <i>hosted zone ID</i>/<i>edge location code</i> </code> 
+    ///  <c> <i>hosted zone ID</i>/<i>edge location code</i> </c> 
     /// </para>
     ///  
     /// <para>

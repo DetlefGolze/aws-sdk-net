@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MTurk.Model
 {
     /// <summary>
     /// Container for the parameters to the RejectQualificationRequest operation.
-    /// The <code>RejectQualificationRequest</code> operation rejects a user's request for
-    /// a Qualification. 
+    /// The <c>RejectQualificationRequest</c> operation rejects a user's request for a Qualification.
+    /// 
     /// 
     ///  
     /// <para>
@@ -47,7 +48,7 @@ namespace Amazon.MTurk.Model
         /// <summary>
         /// Gets and sets the property QualificationRequestId. 
         /// <para>
-        ///  The ID of the Qualification request, as returned by the <code>ListQualificationRequests</code>
+        ///  The ID of the Qualification request, as returned by the <c>ListQualificationRequests</c>
         /// operation. 
         /// </para>
         /// </summary>

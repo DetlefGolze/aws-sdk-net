@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(AdvancedSecurityOptionsInput requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAnonymousAuthEnabled())
             {
                 context.Writer.WritePropertyName("AnonymousAuthEnabled");
@@ -61,6 +64,17 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("InternalUserDatabaseEnabled");
                 context.Writer.Write(requestObject.InternalUserDatabaseEnabled);
+            }
+
+            if(requestObject.IsSetJWTOptions())
+            {
+                context.Writer.WritePropertyName("JWTOptions");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = JWTOptionsInputMarshaller.Instance;
+                marshaller.Marshall(requestObject.JWTOptions, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetMasterUserOptions())

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaLive.Model
 {
     /// <summary>
@@ -34,12 +35,14 @@ namespace Amazon.MediaLive.Model
     public partial class OutputSettings
     {
         private ArchiveOutputSettings _archiveOutputSettings;
+        private CmafIngestOutputSettings _cmafIngestOutputSettings;
         private FrameCaptureOutputSettings _frameCaptureOutputSettings;
         private HlsOutputSettings _hlsOutputSettings;
         private MediaPackageOutputSettings _mediaPackageOutputSettings;
         private MsSmoothOutputSettings _msSmoothOutputSettings;
         private MultiplexOutputSettings _multiplexOutputSettings;
         private RtmpOutputSettings _rtmpOutputSettings;
+        private SrtOutputSettings _srtOutputSettings;
         private UdpOutputSettings _udpOutputSettings;
 
         /// <summary>
@@ -55,6 +58,21 @@ namespace Amazon.MediaLive.Model
         internal bool IsSetArchiveOutputSettings()
         {
             return this._archiveOutputSettings != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CmafIngestOutputSettings.
+        /// </summary>
+        public CmafIngestOutputSettings CmafIngestOutputSettings
+        {
+            get { return this._cmafIngestOutputSettings; }
+            set { this._cmafIngestOutputSettings = value; }
+        }
+
+        // Check to see if CmafIngestOutputSettings property is set
+        internal bool IsSetCmafIngestOutputSettings()
+        {
+            return this._cmafIngestOutputSettings != null;
         }
 
         /// <summary>
@@ -145,6 +163,21 @@ namespace Amazon.MediaLive.Model
         internal bool IsSetRtmpOutputSettings()
         {
             return this._rtmpOutputSettings != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SrtOutputSettings.
+        /// </summary>
+        public SrtOutputSettings SrtOutputSettings
+        {
+            get { return this._srtOutputSettings; }
+            set { this._srtOutputSettings = value; }
+        }
+
+        // Check to see if SrtOutputSettings property is set
+        internal bool IsSetSrtOutputSettings()
+        {
+            return this._srtOutputSettings != null;
         }
 
         /// <summary>

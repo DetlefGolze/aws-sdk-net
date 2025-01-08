@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -73,7 +74,7 @@ namespace Amazon.ForecastService.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the feature. Valid values: <code>"holiday"</code> and <code>"weather"</code>.
+        /// The name of the feature. Valid values: <c>"holiday"</c> and <c>"weather"</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=63)]
@@ -96,7 +97,7 @@ namespace Amazon.ForecastService.Model
         /// </para>
         ///  
         /// <para>
-        /// To enable the Weather Index, set the value to <code>"true"</code> 
+        /// To enable the Weather Index, set the value to <c>"true"</c> 
         /// </para>
         ///  
         /// <para>

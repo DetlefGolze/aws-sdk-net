@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -33,14 +34,20 @@ namespace Amazon.EventBridge.Model
     /// </summary>
     public partial class PutPartnerEventsResponse : AmazonWebServiceResponse
     {
-        private List<PutPartnerEventsResultEntry> _entries = new List<PutPartnerEventsResultEntry>();
+        private List<PutPartnerEventsResultEntry> _entries = AWSConfigs.InitializeCollections ? new List<PutPartnerEventsResultEntry>() : null;
         private int? _failedEntryCount;
 
         /// <summary>
         /// Gets and sets the property Entries. 
         /// <para>
-        /// The list of events from this operation that were successfully written to the partner
-        /// event bus.
+        /// The results for each event entry the partner submitted in this request. If the event
+        /// was successfully submitted, the entry has the event ID in it. Otherwise, you can use
+        /// the error code and error message to identify the problem with the entry.
+        /// </para>
+        ///  
+        /// <para>
+        /// For each record, the index of the response element is the same as the index in the
+        /// request array.
         /// </para>
         /// </summary>
         public List<PutPartnerEventsResultEntry> Entries
@@ -52,7 +59,7 @@ namespace Amazon.EventBridge.Model
         // Check to see if Entries property is set
         internal bool IsSetEntries()
         {
-            return this._entries != null && this._entries.Count > 0; 
+            return this._entries != null && (this._entries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

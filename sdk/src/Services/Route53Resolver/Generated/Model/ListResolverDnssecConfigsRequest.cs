@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Route53Resolver.Model
     /// </summary>
     public partial class ListResolverDnssecConfigsRequest : AmazonRoute53ResolverRequest
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -54,7 +55,7 @@ namespace Amazon.Route53Resolver.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -62,7 +63,7 @@ namespace Amazon.Route53Resolver.Model
         /// <para>
         ///  <i>Optional</i>: An integer that specifies the maximum number of DNSSEC configuration
         /// results that you want Amazon Route 53 to return. If you don't specify a value for
-        /// <code>MaxResults</code>, Route 53 returns up to 100 configuration per page.
+        /// <c>MaxResults</c>, Route 53 returns up to 100 configuration per page.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -81,18 +82,18 @@ namespace Amazon.Route53Resolver.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// (Optional) If the current Amazon Web Services account has more than <code>MaxResults</code>
-        /// DNSSEC configurations, use <code>NextToken</code> to get the second and subsequent
-        /// pages of results.
+        /// (Optional) If the current Amazon Web Services account has more than <c>MaxResults</c>
+        /// DNSSEC configurations, use <c>NextToken</c> to get the second and subsequent pages
+        /// of results.
         /// </para>
         ///  
         /// <para>
-        /// For the first <code>ListResolverDnssecConfigs</code> request, omit this value.
+        /// For the first <c>ListResolverDnssecConfigs</c> request, omit this value.
         /// </para>
         ///  
         /// <para>
-        /// For the second and subsequent requests, get the value of <code>NextToken</code> from
-        /// the previous response and specify that value for <code>NextToken</code> in the request.
+        /// For the second and subsequent requests, get the value of <c>NextToken</c> from the
+        /// previous response and specify that value for <c>NextToken</c> in the request.
         /// </para>
         /// </summary>
         public string NextToken

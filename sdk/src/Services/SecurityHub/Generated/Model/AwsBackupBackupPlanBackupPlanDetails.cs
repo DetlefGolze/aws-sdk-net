@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// Provides details about an Backup backup plan and an array of <code>BackupRule</code>
-    /// objects, each of which specifies a backup rule.
+    /// Provides details about an Backup backup plan and an array of <c>BackupRule</c> objects,
+    /// each of which specifies a backup rule.
     /// </summary>
     public partial class AwsBackupBackupPlanBackupPlanDetails
     {
-        private List<AwsBackupBackupPlanAdvancedBackupSettingsDetails> _advancedBackupSettings = new List<AwsBackupBackupPlanAdvancedBackupSettingsDetails>();
+        private List<AwsBackupBackupPlanAdvancedBackupSettingsDetails> _advancedBackupSettings = AWSConfigs.InitializeCollections ? new List<AwsBackupBackupPlanAdvancedBackupSettingsDetails>() : null;
         private string _backupPlanName;
-        private List<AwsBackupBackupPlanRuleDetails> _backupPlanRule = new List<AwsBackupBackupPlanRuleDetails>();
+        private List<AwsBackupBackupPlanRuleDetails> _backupPlanRule = AWSConfigs.InitializeCollections ? new List<AwsBackupBackupPlanRuleDetails>() : null;
 
         /// <summary>
         /// Gets and sets the property AdvancedBackupSettings. 
@@ -53,7 +54,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if AdvancedBackupSettings property is set
         internal bool IsSetAdvancedBackupSettings()
         {
-            return this._advancedBackupSettings != null && this._advancedBackupSettings.Count > 0; 
+            return this._advancedBackupSettings != null && (this._advancedBackupSettings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -77,8 +78,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property BackupPlanRule. 
         /// <para>
-        /// An array of <code>BackupRule</code> objects, each of which specifies a scheduled task
-        /// that is used to back up a selection of resources. 
+        /// An array of <c>BackupRule</c> objects, each of which specifies a scheduled task that
+        /// is used to back up a selection of resources. 
         /// </para>
         /// </summary>
         public List<AwsBackupBackupPlanRuleDetails> BackupPlanRule
@@ -90,7 +91,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if BackupPlanRule property is set
         internal bool IsSetBackupPlanRule()
         {
-            return this._backupPlanRule != null && this._backupPlanRule.Count > 0; 
+            return this._backupPlanRule != null && (this._backupPlanRule.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

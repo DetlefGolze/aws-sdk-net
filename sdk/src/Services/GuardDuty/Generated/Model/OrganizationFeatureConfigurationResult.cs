@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.GuardDuty.Model
     /// </summary>
     public partial class OrganizationFeatureConfigurationResult
     {
-        private List<OrganizationAdditionalConfigurationResult> _additionalConfiguration = new List<OrganizationAdditionalConfigurationResult>();
+        private List<OrganizationAdditionalConfigurationResult> _additionalConfiguration = AWSConfigs.InitializeCollections ? new List<OrganizationAdditionalConfigurationResult>() : null;
         private OrgFeatureStatus _autoEnable;
         private OrgFeature _name;
 
@@ -53,7 +54,7 @@ namespace Amazon.GuardDuty.Model
         // Check to see if AdditionalConfiguration property is set
         internal bool IsSetAdditionalConfiguration()
         {
-            return this._additionalConfiguration != null && this._additionalConfiguration.Count > 0; 
+            return this._additionalConfiguration != null && (this._additionalConfiguration.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -64,19 +65,19 @@ namespace Amazon.GuardDuty.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NEW</code>: Indicates that when a new account joins the organization, they
-        /// will have the feature enabled automatically. 
+        ///  <c>NEW</c>: Indicates that when a new account joins the organization, they will have
+        /// the feature enabled automatically. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ALL</code>: Indicates that all accounts in the organization have the feature
-        /// enabled automatically. This includes <code>NEW</code> accounts that join the organization
-        /// and accounts that may have been suspended or removed from the organization in GuardDuty.
+        ///  <c>ALL</c>: Indicates that all accounts in the organization have the feature enabled
+        /// automatically. This includes <c>NEW</c> accounts that join the organization and accounts
+        /// that may have been suspended or removed from the organization in GuardDuty.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NONE</code>: Indicates that the feature will not be automatically enabled for
-        /// any account in the organization. In this case, each account will be managed individually
+        ///  <c>NONE</c>: Indicates that the feature will not be automatically enabled for any
+        /// account in the organization. In this case, each account will be managed individually
         /// by the administrator.
         /// </para>
         ///  </li> </ul>

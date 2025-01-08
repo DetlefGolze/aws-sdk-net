@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSMIncidents.Model
 {
     /// <summary>
@@ -97,8 +98,8 @@ namespace Amazon.SSMIncidents.Model
         /// <summary>
         /// Gets and sets the property StatusUpdateDateTime. 
         /// <para>
-        /// The most recent date and time that Incident Manager updated the Amazon Web Services
-        /// Region's status.
+        /// The timestamp for when Incident Manager updated the status of the Amazon Web Services
+        /// Region.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

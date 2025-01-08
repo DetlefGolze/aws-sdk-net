@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MarketplaceCatalog.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,37 @@ namespace Amazon.MarketplaceCatalog.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public EntitySummary Unmarshall(JsonUnmarshallerContext context)
         {
+            EntitySummary unmarshalledObject = new EntitySummary();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            EntitySummary unmarshalledObject = new EntitySummary();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("AmiProductSummary", targetDepth))
+                {
+                    var unmarshaller = AmiProductSummaryUnmarshaller.Instance;
+                    unmarshalledObject.AmiProductSummary = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ContainerProductSummary", targetDepth))
+                {
+                    var unmarshaller = ContainerProductSummaryUnmarshaller.Instance;
+                    unmarshalledObject.ContainerProductSummary = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("DataProductSummary", targetDepth))
+                {
+                    var unmarshaller = DataProductSummaryUnmarshaller.Instance;
+                    unmarshalledObject.DataProductSummary = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("EntityArn", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -94,6 +114,24 @@ namespace Amazon.MarketplaceCatalog.Model.Internal.MarshallTransformations
                     unmarshalledObject.Name = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("OfferSummary", targetDepth))
+                {
+                    var unmarshaller = OfferSummaryUnmarshaller.Instance;
+                    unmarshalledObject.OfferSummary = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ResaleAuthorizationSummary", targetDepth))
+                {
+                    var unmarshaller = ResaleAuthorizationSummaryUnmarshaller.Instance;
+                    unmarshalledObject.ResaleAuthorizationSummary = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("SaaSProductSummary", targetDepth))
+                {
+                    var unmarshaller = SaaSProductSummaryUnmarshaller.Instance;
+                    unmarshalledObject.SaaSProductSummary = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("Visibility", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -101,7 +139,6 @@ namespace Amazon.MarketplaceCatalog.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

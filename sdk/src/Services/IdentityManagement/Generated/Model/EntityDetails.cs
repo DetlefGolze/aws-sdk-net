@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -46,8 +47,7 @@ namespace Amazon.IdentityManagement.Model
         /// <summary>
         /// Gets and sets the property EntityInfo. 
         /// <para>
-        /// The <code>EntityInfo</code> object that contains details about the entity (user or
-        /// role).
+        /// The <c>EntityInfo</c> object that contains details about the entity (user or role).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

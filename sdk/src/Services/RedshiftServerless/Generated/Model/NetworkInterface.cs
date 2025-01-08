@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RedshiftServerless.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.RedshiftServerless.Model
     public partial class NetworkInterface
     {
         private string _availabilityZone;
+        private string _ipv6Address;
         private string _networkInterfaceId;
         private string _privateIpAddress;
         private string _subnetId;
@@ -55,6 +57,24 @@ namespace Amazon.RedshiftServerless.Model
         internal bool IsSetAvailabilityZone()
         {
             return this._availabilityZone != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Ipv6Address. 
+        /// <para>
+        /// The IPv6 address of the network interface within the subnet.
+        /// </para>
+        /// </summary>
+        public string Ipv6Address
+        {
+            get { return this._ipv6Address; }
+            set { this._ipv6Address = value; }
+        }
+
+        // Check to see if Ipv6Address property is set
+        internal bool IsSetIpv6Address()
+        {
+            return this._ipv6Address != null;
         }
 
         /// <summary>

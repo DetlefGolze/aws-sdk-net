@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.ApplicationAutoScaling.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.ApplicationAutoScaling
 {
     /// <summary>
-    /// Interface for accessing ApplicationAutoScaling
+    /// <para>Interface for accessing ApplicationAutoScaling</para>
     ///
     /// With Application Auto Scaling, you can configure automatic scaling for the following
     /// resources:
@@ -84,11 +85,19 @@ namespace Amazon.ApplicationAutoScaling
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Amazon SageMaker Serverless endpoint provisioned concurrency
+    /// Amazon SageMaker inference components
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Amazon SageMaker serverless endpoint provisioned concurrency
     /// </para>
     ///  </li> <li> 
     /// <para>
     /// Spot Fleets (Amazon EC2)
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Pool of WorkSpaces
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -154,8 +163,8 @@ namespace Amazon.ApplicationAutoScaling
         /// </para>
         ///  
         /// <para>
-        /// For more information, see <a href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html#delete-step-scaling-policy">Delete
-        /// a step scaling policy</a> and <a href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html#delete-target-tracking-policy">Delete
+        /// For more information, see <a href="https://docs.aws.amazon.com/autoscaling/application/userguide/create-step-scaling-policy-cli.html#delete-step-scaling-policy">Delete
+        /// a step scaling policy</a> and <a href="https://docs.aws.amazon.com/autoscaling/application/userguide/create-target-tracking-policy-cli.html#delete-target-tracking-policy">Delete
         /// a target tracking scaling policy</a> in the <i>Application Auto Scaling User Guide</i>.
         /// </para>
         /// </summary>
@@ -284,7 +293,7 @@ namespace Amazon.ApplicationAutoScaling
         /// 
         ///  
         /// <para>
-        /// You can filter the results using <code>ResourceIds</code> and <code>ScalableDimension</code>.
+        /// You can filter the results using <c>ResourceIds</c> and <c>ScalableDimension</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeScalableTargets service method.</param>
@@ -322,7 +331,7 @@ namespace Amazon.ApplicationAutoScaling
         /// 
         ///  
         /// <para>
-        /// You can filter the results using <code>ResourceId</code> and <code>ScalableDimension</code>.
+        /// You can filter the results using <c>ResourceId</c> and <c>ScalableDimension</c>.
         /// </para>
         ///  
         /// <para>
@@ -366,8 +375,8 @@ namespace Amazon.ApplicationAutoScaling
         /// 
         ///  
         /// <para>
-        /// You can filter the results using <code>ResourceId</code>, <code>ScalableDimension</code>,
-        /// and <code>PolicyNames</code>.
+        /// You can filter the results using <c>ResourceId</c>, <c>ScalableDimension</c>, and
+        /// <c>PolicyNames</c>.
         /// </para>
         ///  
         /// <para>
@@ -418,14 +427,13 @@ namespace Amazon.ApplicationAutoScaling
         /// 
         ///  
         /// <para>
-        /// You can filter the results using the <code>ResourceId</code>, <code>ScalableDimension</code>,
-        /// and <code>ScheduledActionNames</code> parameters.
+        /// You can filter the results using the <c>ResourceId</c>, <c>ScalableDimension</c>,
+        /// and <c>ScheduledActionNames</c> parameters.
         /// </para>
         ///  
         /// <para>
         /// For more information, see <a href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scheduled-scaling.html">Scheduled
-        /// scaling</a> and <a href="https://docs.aws.amazon.com/autoscaling/application/userguide/scheduled-scaling-additional-cli-commands.html">Managing
-        /// scheduled scaling</a> in the <i>Application Auto Scaling User Guide</i>.
+        /// scaling</a> in the <i>Application Auto Scaling User Guide</i>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeScheduledActions service method.</param>
@@ -453,6 +461,44 @@ namespace Amazon.ApplicationAutoScaling
 
         #endregion
                 
+        #region  GetPredictiveScalingForecast
+
+
+
+        /// <summary>
+        /// Retrieves the forecast data for a predictive scaling policy.
+        /// 
+        ///  
+        /// <para>
+        /// Load forecasts are predictions of the hourly load values using historical load data
+        /// from CloudWatch and an analysis of historical trends. Capacity forecasts are represented
+        /// as predicted values for the minimum capacity that is needed on an hourly basis, based
+        /// on the hourly load forecast.
+        /// </para>
+        ///  
+        /// <para>
+        /// A minimum of 24 hours of data is required to create the initial forecasts. However,
+        /// having a full 14 days of historical data results in more accurate forecasts.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetPredictiveScalingForecast service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetPredictiveScalingForecast service method, as returned by ApplicationAutoScaling.</returns>
+        /// <exception cref="Amazon.ApplicationAutoScaling.Model.InternalServiceException">
+        /// The service encountered an internal error.
+        /// </exception>
+        /// <exception cref="Amazon.ApplicationAutoScaling.Model.ValidationException">
+        /// An exception was thrown for a validation issue. Review the available parameters for
+        /// the API request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/GetPredictiveScalingForecast">REST API Reference for GetPredictiveScalingForecast Operation</seealso>
+        Task<GetPredictiveScalingForecastResponse> GetPredictiveScalingForecastAsync(GetPredictiveScalingForecastRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  ListTagsForResource
 
 
@@ -463,7 +509,7 @@ namespace Amazon.ApplicationAutoScaling
         ///  
         /// <para>
         /// For general information about tags, including the format and syntax, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-        /// Amazon Web Services resources</a> in the <i>Amazon Web Services General Reference</i>.
+        /// your Amazon Web Services resources</a> in the <i>Amazon Web Services General Reference</i>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTagsForResource service method.</param>
@@ -683,20 +729,19 @@ namespace Amazon.ApplicationAutoScaling
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you call the <code>RegisterScalableTarget</code> API operation to create a scalable
-        /// target, there might be a brief delay until the operation achieves <a href="https://en.wikipedia.org/wiki/Eventual_consistency">eventual
+        /// If you call the <c>RegisterScalableTarget</c> API operation to create a scalable target,
+        /// there might be a brief delay until the operation achieves <a href="https://en.wikipedia.org/wiki/Eventual_consistency">eventual
         /// consistency</a>. You might become aware of this brief delay if you get unexpected
         /// errors when performing sequential operations. The typical strategy is to retry the
         /// request, and some Amazon Web Services SDKs include automatic backoff and retry logic.
         /// </para>
         ///  
         /// <para>
-        /// If you call the <code>RegisterScalableTarget</code> API operation to update an existing
+        /// If you call the <c>RegisterScalableTarget</c> API operation to update an existing
         /// scalable target, Application Auto Scaling retrieves the current capacity of the resource.
         /// If it's below the minimum capacity or above the maximum capacity, Application Auto
         /// Scaling adjusts the capacity of the scalable target to place it within these bounds,
-        /// even if you don't include the <code>MinCapacity</code> or <code>MaxCapacity</code>
-        /// request parameters.
+        /// even if you don't include the <c>MinCapacity</c> or <c>MaxCapacity</c> request parameters.
         /// </para>
         ///  </note>
         /// </summary>
@@ -747,12 +792,12 @@ namespace Amazon.ApplicationAutoScaling
         ///  
         /// <para>
         /// You can also add tags to an Application Auto Scaling scalable target while creating
-        /// it (<code>RegisterScalableTarget</code>).
+        /// it (<c>RegisterScalableTarget</c>).
         /// </para>
         ///  
         /// <para>
         /// For general information about tags, including the format and syntax, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-        /// Amazon Web Services resources</a> in the <i>Amazon Web Services General Reference</i>.
+        /// your Amazon Web Services resources</a> in the <i>Amazon Web Services General Reference</i>.
         /// </para>
         ///  
         /// <para>

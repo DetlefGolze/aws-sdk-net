@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
-    /// The results of a <code>DeleteDomain</code> request. Contains the status of the pending
-    /// deletion, or a "domain not found" error if the domain and all of its resources have
-    /// been deleted.
+    /// The results of a <c>DeleteDomain</c> request. Contains the status of the pending deletion,
+    /// or a "domain not found" error if the domain and all of its resources have been deleted.
     /// </summary>
     public partial class DeleteDomainResponse : AmazonWebServiceResponse
     {

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property FileFormat. 
         /// <para>
-        /// The format for the flow log. The default is <code>plain-text</code>.
+        /// The format for the flow log. The default is <c>plain-text</c>.
         /// </para>
         /// </summary>
         public DestinationFileFormat FileFormat
@@ -59,7 +60,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property HiveCompatiblePartitions. 
         /// <para>
         /// Indicates whether to use Hive-compatible prefixes for flow logs stored in Amazon S3.
-        /// The default is <code>false</code>.
+        /// The default is <c>false</c>.
         /// </para>
         /// </summary>
         public bool HiveCompatiblePartitions
@@ -78,7 +79,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property PerHourPartition. 
         /// <para>
         /// Indicates whether to partition the flow log per hour. This reduces the cost and response
-        /// time for queries. The default is <code>false</code>.
+        /// time for queries. The default is <c>false</c>.
         /// </para>
         /// </summary>
         public bool PerHourPartition

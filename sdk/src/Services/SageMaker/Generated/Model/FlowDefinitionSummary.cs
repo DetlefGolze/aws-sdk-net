@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -62,7 +63,7 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property FailureReason. 
         /// <para>
         /// The reason why the flow definition creation failed. A failure reason is returned only
-        /// when the flow definition status is <code>Failed</code>.
+        /// when the flow definition status is <c>Failed</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=1024)]

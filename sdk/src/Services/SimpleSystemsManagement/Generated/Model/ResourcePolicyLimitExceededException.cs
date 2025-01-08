@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
     /// The <a>PutResourcePolicy</a> API action enforces two limits. A policy can't be greater
-    /// than 1024 bytes in size. And only one policy can be attached to <code>OpsItemGroup</code>.
+    /// than 1024 bytes in size. And only one policy can be attached to <c>OpsItemGroup</c>.
     /// Verify these limits and try again.
     /// </summary>
     #if !NETSTANDARD

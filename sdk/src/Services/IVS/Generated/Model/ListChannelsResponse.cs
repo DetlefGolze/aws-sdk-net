@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IVS.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.IVS.Model
     /// </summary>
     public partial class ListChannelsResponse : AmazonWebServiceResponse
     {
-        private List<ChannelSummary> _channels = new List<ChannelSummary>();
+        private List<ChannelSummary> _channels = AWSConfigs.InitializeCollections ? new List<ChannelSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,14 +53,14 @@ namespace Amazon.IVS.Model
         // Check to see if Channels property is set
         internal bool IsSetChannels()
         {
-            return this._channels != null && this._channels.Count > 0; 
+            return this._channels != null && (this._channels.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If there are more channels than <code>maxResults</code>, use <code>nextToken</code>
-        /// in the request to get the next set.
+        /// If there are more channels than <c>maxResults</c>, use <c>nextToken</c> in the request
+        /// to get the next set.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1024)]

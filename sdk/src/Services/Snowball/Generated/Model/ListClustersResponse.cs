@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.Snowball.Model
     /// </summary>
     public partial class ListClustersResponse : AmazonWebServiceResponse
     {
-        private List<ClusterListEntry> _clusterListEntries = new List<ClusterListEntry>();
+        private List<ClusterListEntry> _clusterListEntries = AWSConfigs.InitializeCollections ? new List<ClusterListEntry>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property ClusterListEntries. 
         /// <para>
-        /// Each <code>ClusterListEntry</code> object contains a cluster's state, a cluster's
-        /// ID, and other important status information.
+        /// Each <c>ClusterListEntry</c> object contains a cluster's state, a cluster's ID, and
+        /// other important status information.
         /// </para>
         /// </summary>
         public List<ClusterListEntry> ClusterListEntries
@@ -52,15 +53,15 @@ namespace Amazon.Snowball.Model
         // Check to see if ClusterListEntries property is set
         internal bool IsSetClusterListEntries()
         {
-            return this._clusterListEntries != null && this._clusterListEntries.Count > 0; 
+            return this._clusterListEntries != null && (this._clusterListEntries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// HTTP requests are stateless. If you use the automatically generated <code>NextToken</code>
-        /// value in your next <code>ClusterListEntry</code> call, your list of returned clusters
-        /// will start from this point in the array.
+        /// HTTP requests are stateless. If you use the automatically generated <c>NextToken</c>
+        /// value in your next <c>ClusterListEntry</c> call, your list of returned clusters will
+        /// start from this point in the array.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

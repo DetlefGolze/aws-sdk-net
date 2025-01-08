@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMakerRuntime.Model
 {
     /// <summary>
@@ -53,14 +54,22 @@ namespace Amazon.SageMakerRuntime.Model
     /// </para>
     ///  </li> </ul> 
     /// <para>
+    /// Before you can use this operation, your IAM permissions must allow the <c>sagemaker:InvokeEndpoint</c>
+    /// action. For more information about Amazon SageMaker actions for IAM policies, see
+    /// <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonsagemaker.html">Actions,
+    /// resources, and condition keys for Amazon SageMaker</a> in the <i>IAM Service Authorization
+    /// Reference</i>.
+    /// </para>
+    ///  
+    /// <para>
     /// Amazon SageMaker strips all POST headers except those supported by the API. Amazon
     /// SageMaker might add additional headers. You should not rely on the behavior of headers
     /// outside those enumerated in the request syntax. 
     /// </para>
     ///  
     /// <para>
-    /// Calls to <code>InvokeEndpointWithResponseStream</code> are authenticated by using
-    /// Amazon Web Services Signature Version 4. For information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html">Authenticating
+    /// Calls to <c>InvokeEndpointWithResponseStream</c> are authenticated by using Amazon
+    /// Web Services Signature Version 4. For information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html">Authenticating
     /// Requests (Amazon Web Services Signature Version 4)</a> in the <i>Amazon S3 API Reference</i>.
     /// </para>
     /// </summary>
@@ -71,7 +80,9 @@ namespace Amazon.SageMakerRuntime.Model
         private string _contentType;
         private string _customAttributes;
         private string _endpointName;
+        private string _inferenceComponentName;
         private string _inferenceId;
+        private string _sessionId;
         private string _targetContainerHostname;
         private string _targetVariant;
 
@@ -91,14 +102,14 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if Accept property is set
         internal bool IsSetAccept()
         {
-            return this._accept != null;
+            return !string.IsNullOrEmpty(this._accept);
         }
 
         /// <summary>
         /// Gets and sets the property Body. 
         /// <para>
-        /// Provides input data, in the format specified in the <code>ContentType</code> request
-        /// header. Amazon SageMaker passes all of the data in the body to the model. 
+        /// Provides input data, in the format specified in the <c>ContentType</c> request header.
+        /// Amazon SageMaker passes all of the data in the body to the model. 
         /// </para>
         ///  
         /// <para>
@@ -135,7 +146,7 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if ContentType property is set
         internal bool IsSetContentType()
         {
-            return this._contentType != null;
+            return !string.IsNullOrEmpty(this._contentType);
         }
 
         /// <summary>
@@ -154,8 +165,8 @@ namespace Amazon.SageMakerRuntime.Model
         /// The code in your model is responsible for setting or updating any custom attributes
         /// in the response. If your code does not set this value in the response, an empty value
         /// is returned. For example, if a custom attribute represents the trace ID, your model
-        /// can prepend the custom attribute with <code>Trace ID:</code> in your post-processing
-        /// function. 
+        /// can prepend the custom attribute with <c>Trace ID:</c> in your post-processing function.
+        /// 
         /// </para>
         ///  
         /// <para>
@@ -173,7 +184,7 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if CustomAttributes property is set
         internal bool IsSetCustomAttributes()
         {
-            return this._customAttributes != null;
+            return !string.IsNullOrEmpty(this._customAttributes);
         }
 
         /// <summary>
@@ -198,6 +209,26 @@ namespace Amazon.SageMakerRuntime.Model
         }
 
         /// <summary>
+        /// Gets and sets the property InferenceComponentName. 
+        /// <para>
+        /// If the endpoint hosts one or more inference components, this parameter specifies the
+        /// name of inference component to invoke for a streaming response.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=63)]
+        public string InferenceComponentName
+        {
+            get { return this._inferenceComponentName; }
+            set { this._inferenceComponentName = value; }
+        }
+
+        // Check to see if InferenceComponentName property is set
+        internal bool IsSetInferenceComponentName()
+        {
+            return !string.IsNullOrEmpty(this._inferenceComponentName);
+        }
+
+        /// <summary>
         /// Gets and sets the property InferenceId. 
         /// <para>
         /// An identifier that you assign to your request.
@@ -213,7 +244,34 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if InferenceId property is set
         internal bool IsSetInferenceId()
         {
-            return this._inferenceId != null;
+            return !string.IsNullOrEmpty(this._inferenceId);
+        }
+
+        /// <summary>
+        /// Gets and sets the property SessionId. 
+        /// <para>
+        /// The ID of a stateful session to handle your request.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can't create a stateful session by using the <c>InvokeEndpointWithResponseStream</c>
+        /// action. Instead, you can create one by using the <c> <a>InvokeEndpoint</a> </c> action.
+        /// In your request, you specify <c>NEW_SESSION</c> for the <c>SessionId</c> request parameter.
+        /// The response to that request provides the session ID for the <c>NewSessionId</c> response
+        /// parameter.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=256)]
+        public string SessionId
+        {
+            get { return this._sessionId; }
+            set { this._sessionId = value; }
+        }
+
+        // Check to see if SessionId property is set
+        internal bool IsSetSessionId()
+        {
+            return !string.IsNullOrEmpty(this._sessionId);
         }
 
         /// <summary>
@@ -233,7 +291,7 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if TargetContainerHostname property is set
         internal bool IsSetTargetContainerHostname()
         {
-            return this._targetContainerHostname != null;
+            return !string.IsNullOrEmpty(this._targetContainerHostname);
         }
 
         /// <summary>
@@ -261,7 +319,7 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if TargetVariant property is set
         internal bool IsSetTargetVariant()
         {
-            return this._targetVariant != null;
+            return !string.IsNullOrEmpty(this._targetVariant);
         }
 
     }

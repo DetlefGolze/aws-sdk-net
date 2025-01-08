@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationInsights.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.ApplicationInsights.Model
         /// <summary>
         /// Gets and sets the property AccountId. 
         /// <para>
-        /// The AWS account ID for the resource group owner.
+        /// The Amazon Web Services account ID for the resource group owner.
         /// </para>
         /// </summary>
         [AWSProperty(Min=12, Max=12)]
@@ -61,7 +62,7 @@ namespace Amazon.ApplicationInsights.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to return in a single call. To retrieve the remaining
-        /// results, make another call with the returned <code>NextToken</code> value.
+        /// results, make another call with the returned <c>NextToken</c> value.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=40)]

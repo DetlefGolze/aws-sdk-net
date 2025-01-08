@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTWireless.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.IoTWireless.Model
         /// <summary>
         /// Gets and sets the property IdentifierType. 
         /// <para>
-        /// The type of identifier used in <code>identifier</code>.
+        /// The type of identifier used in <c>identifier</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

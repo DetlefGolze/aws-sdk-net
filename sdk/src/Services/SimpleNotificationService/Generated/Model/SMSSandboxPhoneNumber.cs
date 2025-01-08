@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
@@ -54,7 +55,7 @@ namespace Amazon.SimpleNotificationService.Model
         /// The destination phone number.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=20)]
+        [AWSProperty(Sensitive=true, Max=20)]
         public string PhoneNumber
         {
             get { return this._phoneNumber; }

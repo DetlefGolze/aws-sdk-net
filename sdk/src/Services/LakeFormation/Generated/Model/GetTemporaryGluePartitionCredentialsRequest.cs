@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
     /// Container for the parameters to the GetTemporaryGluePartitionCredentials operation.
-    /// This API is identical to <code>GetTemporaryTableCredentials</code> except that this
-    /// is used when the target Data Catalog resource is of type Partition. Lake Formation
-    /// restricts the permission of the vended credentials with the same scope down policy
-    /// which restricts access to a single Amazon S3 prefix.
+    /// This API is identical to <c>GetTemporaryTableCredentials</c> except that this is used
+    /// when the target Data Catalog resource is of type Partition. Lake Formation restricts
+    /// the permission of the vended credentials with the same scope down policy which restricts
+    /// access to a single Amazon S3 prefix.
     /// </summary>
     public partial class GetTemporaryGluePartitionCredentialsRequest : AmazonLakeFormationRequest
     {
         private AuditContext _auditContext;
         private int? _durationSeconds;
         private PartitionValueList _partition;
-        private List<string> _permissions = new List<string>();
-        private List<string> _supportedPermissionTypes = new List<string>();
+        private List<string> _permissions = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _supportedPermissionTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _tableArn;
 
         /// <summary>
@@ -117,14 +118,14 @@ namespace Amazon.LakeFormation.Model
         // Check to see if Permissions property is set
         internal bool IsSetPermissions()
         {
-            return this._permissions != null && this._permissions.Count > 0; 
+            return this._permissions != null && (this._permissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SupportedPermissionTypes. 
         /// <para>
-        /// A list of supported permission types for the partition. Valid values are <code>COLUMN_PERMISSION</code>
-        /// and <code>CELL_FILTER_PERMISSION</code>.
+        /// A list of supported permission types for the partition. Valid values are <c>COLUMN_PERMISSION</c>
+        /// and <c>CELL_FILTER_PERMISSION</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -137,7 +138,7 @@ namespace Amazon.LakeFormation.Model
         // Check to see if SupportedPermissionTypes property is set
         internal bool IsSetSupportedPermissionTypes()
         {
-            return this._supportedPermissionTypes != null && this._supportedPermissionTypes.Count > 0; 
+            return this._supportedPermissionTypes != null && (this._supportedPermissionTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

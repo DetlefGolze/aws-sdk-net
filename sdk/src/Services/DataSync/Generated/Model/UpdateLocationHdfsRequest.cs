@@ -26,16 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateLocationHdfs operation.
-    /// Updates some parameters of a previously created location for a Hadoop Distributed
-    /// File System cluster.
+    /// Modifies the following configuration parameters of the Hadoop Distributed File System
+    /// (HDFS) transfer location that you're using with DataSync.
+    /// 
+    ///  
+    /// <para>
+    /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-hdfs-location.html">Configuring
+    /// DataSync transfers with an HDFS cluster</a>.
+    /// </para>
     /// </summary>
     public partial class UpdateLocationHdfsRequest : AmazonDataSyncRequest
     {
-        private List<string> _agentArns = new List<string>();
+        private List<string> _agentArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private HdfsAuthenticationType _authenticationType;
         private int? _blockSize;
         private MemoryStream _kerberosKeytab;
@@ -43,7 +50,7 @@ namespace Amazon.DataSync.Model
         private string _kerberosPrincipal;
         private string _kmsKeyProviderUri;
         private string _locationArn;
-        private List<HdfsNameNode> _nameNodes = new List<HdfsNameNode>();
+        private List<HdfsNameNode> _nameNodes = AWSConfigs.InitializeCollections ? new List<HdfsNameNode>() : null;
         private QopConfiguration _qopConfiguration;
         private int? _replicationFactor;
         private string _simpleUser;
@@ -52,7 +59,8 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property AgentArns. 
         /// <para>
-        /// The ARNs of the agents that are used to connect to the HDFS cluster. 
+        /// The Amazon Resource Names (ARNs) of the DataSync agents that can connect to your HDFS
+        /// cluster.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4)]
@@ -65,7 +73,7 @@ namespace Amazon.DataSync.Model
         // Check to see if AgentArns property is set
         internal bool IsSetAgentArns()
         {
-            return this._agentArns != null && this._agentArns.Count > 0; 
+            return this._agentArns != null && (this._agentArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -130,9 +138,9 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property KerberosKrb5Conf. 
         /// <para>
-        /// The <code>krb5.conf</code> file that contains the Kerberos configuration information.
-        /// You can load the <code>krb5.conf</code> file by providing the file's address. If you're
-        /// using the CLI, it performs the base64 encoding for you. Otherwise, provide the base64-encoded
+        /// The <c>krb5.conf</c> file that contains the Kerberos configuration information. You
+        /// can load the <c>krb5.conf</c> file by providing the file's address. If you're using
+        /// the CLI, it performs the base64 encoding for you. Otherwise, provide the base64-encoded
         /// text.
         /// </para>
         /// </summary>
@@ -224,7 +232,7 @@ namespace Amazon.DataSync.Model
         // Check to see if NameNodes property is set
         internal bool IsSetNameNodes()
         {
-            return this._nameNodes != null && this._nameNodes.Count > 0; 
+            return this._nameNodes != null && (this._nameNodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmail.Model
 {
     /// <summary>
-    /// Represents sending statistics data. Each <code>SendDataPoint</code> contains statistics
+    /// Represents sending statistics data. Each <c>SendDataPoint</c> contains statistics
     /// for a 15-minute period of sending activity.
     /// </summary>
     public partial class SendDataPoint

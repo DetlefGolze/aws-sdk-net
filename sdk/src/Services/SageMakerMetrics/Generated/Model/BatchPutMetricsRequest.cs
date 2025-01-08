@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMakerMetrics.Model
 {
     /// <summary>
     /// Container for the parameters to the BatchPutMetrics operation.
     /// Used to ingest training metrics into SageMaker. These metrics can be visualized in
-    /// SageMaker Studio and retrieved with the <code>GetMetrics</code> API.
+    /// SageMaker Studio.
     /// </summary>
     public partial class BatchPutMetricsRequest : AmazonSageMakerMetricsRequest
     {
-        private List<RawMetricData> _metricData = new List<RawMetricData>();
+        private List<RawMetricData> _metricData = AWSConfigs.InitializeCollections ? new List<RawMetricData>() : null;
         private string _trialComponentName;
 
         /// <summary>
@@ -54,13 +55,14 @@ namespace Amazon.SageMakerMetrics.Model
         // Check to see if MetricData property is set
         internal bool IsSetMetricData()
         {
-            return this._metricData != null && this._metricData.Count > 0; 
+            return this._metricData != null && (this._metricData.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TrialComponentName. 
         /// <para>
-        /// The name of the Trial Component to associate with the metrics.
+        /// The name of the Trial Component to associate with the metrics. The Trial Component
+        /// name must be entirely lowercase.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=120)]

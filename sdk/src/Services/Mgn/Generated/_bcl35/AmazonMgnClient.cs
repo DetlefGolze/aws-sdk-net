@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.Mgn
 {
     /// <summary>
-    /// Implementation for accessing Mgn
+    /// <para>Implementation for accessing Mgn</para>
     ///
     /// The Application Migration Service service.
     /// </summary>
@@ -4322,6 +4323,12 @@ namespace Amazon.Mgn
 
         /// <summary>
         /// Updates multiple LaunchConfigurations by Source Server ID.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// bootMode valid values are <c>LEGACY_BIOS | UEFI</c> 
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateLaunchConfiguration service method.</param>
         /// 
@@ -4792,11 +4799,11 @@ namespace Amazon.Mgn
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

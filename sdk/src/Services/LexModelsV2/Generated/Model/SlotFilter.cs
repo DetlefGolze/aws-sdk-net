@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
-    /// Filters the response from the <code>ListSlots</code> operation.
+    /// Filters the response from the <c>ListSlots</c> operation.
     /// </summary>
     public partial class SlotFilter
     {
         private SlotFilterName _name;
         private SlotFilterOperator _operator;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Name. 
@@ -59,10 +60,9 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property Operator. 
         /// <para>
-        /// The operator to use for the filter. Specify <code>EQ</code> when the <code>ListSlots</code>
-        /// operation should return only aliases that equal the specified value. Specify <code>CO</code>
-        /// when the <code>ListSlots</code> operation should return aliases that contain the specified
-        /// value.
+        /// The operator to use for the filter. Specify <c>EQ</c> when the <c>ListSlots</c> operation
+        /// should return only aliases that equal the specified value. Specify <c>CO</c> when
+        /// the <c>ListSlots</c> operation should return aliases that contain the specified value.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -94,7 +94,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -33,16 +34,16 @@ namespace Amazon.Rekognition.Model
     /// </summary>
     public partial class CompareFacesResponse : AmazonWebServiceResponse
     {
-        private List<CompareFacesMatch> _faceMatches = new List<CompareFacesMatch>();
+        private List<CompareFacesMatch> _faceMatches = AWSConfigs.InitializeCollections ? new List<CompareFacesMatch>() : null;
         private ComparedSourceImageFace _sourceImageFace;
         private OrientationCorrection _sourceImageOrientationCorrection;
         private OrientationCorrection _targetImageOrientationCorrection;
-        private List<ComparedFace> _unmatchedFaces = new List<ComparedFace>();
+        private List<ComparedFace> _unmatchedFaces = AWSConfigs.InitializeCollections ? new List<ComparedFace>() : null;
 
         /// <summary>
         /// Gets and sets the property FaceMatches. 
         /// <para>
-        /// An array of faces in the target image that match the source image face. Each <code>CompareFacesMatch</code>
+        /// An array of faces in the target image that match the source image face. Each <c>CompareFacesMatch</c>
         /// object provides the bounding box, the confidence level that the bounding box contains
         /// a face, and the similarity score for the face in the bounding box and the face in
         /// the source image.
@@ -57,7 +58,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if FaceMatches property is set
         internal bool IsSetFaceMatches()
         {
-            return this._faceMatches != null && this._faceMatches.Count > 0; 
+            return this._faceMatches != null && (this._faceMatches.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace Amazon.Rekognition.Model
         /// <summary>
         /// Gets and sets the property SourceImageOrientationCorrection. 
         /// <para>
-        /// The value of <code>SourceImageOrientationCorrection</code> is always null.
+        /// The value of <c>SourceImageOrientationCorrection</c> is always null.
         /// </para>
         ///  
         /// <para>
@@ -115,7 +116,7 @@ namespace Amazon.Rekognition.Model
         /// <summary>
         /// Gets and sets the property TargetImageOrientationCorrection. 
         /// <para>
-        /// The value of <code>TargetImageOrientationCorrection</code> is always null.
+        /// The value of <c>TargetImageOrientationCorrection</c> is always null.
         /// </para>
         ///  
         /// <para>
@@ -161,7 +162,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if UnmatchedFaces property is set
         internal bool IsSetUnmatchedFaces()
         {
-            return this._unmatchedFaces != null && this._unmatchedFaces.Count > 0; 
+            return this._unmatchedFaces != null && (this._unmatchedFaces.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

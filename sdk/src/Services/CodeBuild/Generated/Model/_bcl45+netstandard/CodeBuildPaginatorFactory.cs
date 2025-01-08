@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -81,6 +82,14 @@ namespace Amazon.CodeBuild.Model
         public IListBuildsForProjectPaginator ListBuildsForProject(ListBuildsForProjectRequest request) 
         {
             return new ListBuildsForProjectPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListFleets operation
+        ///</summary>
+        public IListFleetsPaginator ListFleets(ListFleetsRequest request) 
+        {
+            return new ListFleetsPaginator(this.client, request);
         }
 
         /// <summary>

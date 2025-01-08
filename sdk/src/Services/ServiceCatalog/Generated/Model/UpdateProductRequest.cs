@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -35,13 +36,13 @@ namespace Amazon.ServiceCatalog.Model
     public partial class UpdateProductRequest : AmazonServiceCatalogRequest
     {
         private string _acceptLanguage;
-        private List<Tag> _addTags = new List<Tag>();
+        private List<Tag> _addTags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _description;
         private string _distributor;
         private string _id;
         private string _name;
         private string _owner;
-        private List<string> _removeTags = new List<string>();
+        private List<string> _removeTags = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private SourceConnection _sourceConnection;
         private string _supportDescription;
         private string _supportEmail;
@@ -54,11 +55,11 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>jp</code> - Japanese
+        ///  <c>jp</c> - Japanese
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>zh</code> - Chinese
+        ///  <c>zh</c> - Chinese
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -91,7 +92,7 @@ namespace Amazon.ServiceCatalog.Model
         // Check to see if AddTags property is set
         internal bool IsSetAddTags()
         {
-            return this._addTags != null && this._addTags.Count > 0; 
+            return this._addTags != null && (this._addTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -204,7 +205,7 @@ namespace Amazon.ServiceCatalog.Model
         // Check to see if RemoveTags property is set
         internal bool IsSetRemoveTags()
         {
-            return this._removeTags != null && this._removeTags.Count > 0; 
+            return this._removeTags != null && (this._removeTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -212,16 +213,16 @@ namespace Amazon.ServiceCatalog.Model
         /// <para>
         /// Specifies connection details for the updated product and syncs the product to the
         /// connection source artifact. This automatically manages the product's artifacts based
-        /// on changes to the source. The <code>SourceConnection</code> parameter consists of
-        /// the following sub-fields.
+        /// on changes to the source. The <c>SourceConnection</c> parameter consists of the following
+        /// sub-fields.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Type</code> 
+        ///  <c>Type</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ConnectionParamters</code> 
+        ///  <c>ConnectionParamters</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

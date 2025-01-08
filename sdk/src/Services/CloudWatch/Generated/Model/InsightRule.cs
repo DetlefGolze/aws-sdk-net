@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatch.Model
 {
     /// <summary>
@@ -104,9 +105,9 @@ namespace Amazon.CloudWatch.Model
         /// <summary>
         /// Gets and sets the property Schema. 
         /// <para>
-        /// For rules that you create, this is always <code>{"Name": "CloudWatchLogRule", "Version":
-        /// 1}</code>. For managed rules, this is <code>{"Name": "ServiceLogRule", "Version":
-        /// 1}</code> 
+        /// For rules that you create, this is always <c>{"Name": "CloudWatchLogRule", "Version":
+        /// 1}</c>. For managed rules, this is <c>{"Name": "ServiceLogRule", "Version": 1}</c>
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

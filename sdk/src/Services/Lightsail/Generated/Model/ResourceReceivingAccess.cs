@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -57,7 +58,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The Lightsail resource type (for example, <code>Instance</code>).
+        /// The Lightsail resource type (for example, <c>Instance</c>).
         /// </para>
         /// </summary>
         public string ResourceType

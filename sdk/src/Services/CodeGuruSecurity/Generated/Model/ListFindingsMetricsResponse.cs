@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruSecurity.Model
 {
     /// <summary>
@@ -33,14 +34,13 @@ namespace Amazon.CodeGuruSecurity.Model
     /// </summary>
     public partial class ListFindingsMetricsResponse : AmazonWebServiceResponse
     {
-        private List<AccountFindingsMetric> _findingsMetrics = new List<AccountFindingsMetric>();
+        private List<AccountFindingsMetric> _findingsMetrics = AWSConfigs.InitializeCollections ? new List<AccountFindingsMetric>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property FindingsMetrics. 
         /// <para>
-        /// A list of <code>AccountFindingsMetric</code> objects retrieved from the specified
-        /// time interval.
+        /// A list of <c>AccountFindingsMetric</c> objects retrieved from the specified time interval.
         /// </para>
         /// </summary>
         public List<AccountFindingsMetric> FindingsMetrics
@@ -52,13 +52,13 @@ namespace Amazon.CodeGuruSecurity.Model
         // Check to see if FindingsMetrics property is set
         internal bool IsSetFindingsMetrics()
         {
-            return this._findingsMetrics != null && this._findingsMetrics.Count > 0; 
+            return this._findingsMetrics != null && (this._findingsMetrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A pagination token. You can use this in future calls to <code>ListFindingMetrics</code>
+        /// A pagination token. You can use this in future calls to <c>ListFindingMetrics</c>
         /// to continue listing results after the current page. 
         /// </para>
         /// </summary>

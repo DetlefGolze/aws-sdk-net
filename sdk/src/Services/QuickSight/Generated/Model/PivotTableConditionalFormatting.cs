@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The conditional formatting for a <code>PivotTableVisual</code>.
+    /// The conditional formatting for a <c>PivotTableVisual</c>.
     /// </summary>
     public partial class PivotTableConditionalFormatting
     {
-        private List<PivotTableConditionalFormattingOption> _conditionalFormattingOptions = new List<PivotTableConditionalFormattingOption>();
+        private List<PivotTableConditionalFormattingOption> _conditionalFormattingOptions = AWSConfigs.InitializeCollections ? new List<PivotTableConditionalFormattingOption>() : null;
 
         /// <summary>
         /// Gets and sets the property ConditionalFormattingOptions. 
         /// <para>
-        /// Conditional formatting options for a <code>PivotTableVisual</code>.
+        /// Conditional formatting options for a <c>PivotTableVisual</c>.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=100)]
+        [AWSProperty(Max=500)]
         public List<PivotTableConditionalFormattingOption> ConditionalFormattingOptions
         {
             get { return this._conditionalFormattingOptions; }
@@ -51,7 +52,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if ConditionalFormattingOptions property is set
         internal bool IsSetConditionalFormattingOptions()
         {
-            return this._conditionalFormattingOptions != null && this._conditionalFormattingOptions.Count > 0; 
+            return this._conditionalFormattingOptions != null && (this._conditionalFormattingOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

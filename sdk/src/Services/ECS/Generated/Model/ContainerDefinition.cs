@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -34,56 +35,55 @@ namespace Amazon.ECS.Model
     /// </summary>
     public partial class ContainerDefinition
     {
-        private List<string> _command = new List<string>();
+        private List<string> _command = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _cpu;
-        private List<string> _credentialSpecs = new List<string>();
-        private List<ContainerDependency> _dependsOn = new List<ContainerDependency>();
+        private List<string> _credentialSpecs = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<ContainerDependency> _dependsOn = AWSConfigs.InitializeCollections ? new List<ContainerDependency>() : null;
         private bool? _disableNetworking;
-        private List<string> _dnsSearchDomains = new List<string>();
-        private List<string> _dnsServers = new List<string>();
-        private Dictionary<string, string> _dockerLabels = new Dictionary<string, string>();
-        private List<string> _dockerSecurityOptions = new List<string>();
-        private List<string> _entryPoint = new List<string>();
-        private List<KeyValuePair> _environment = new List<KeyValuePair>();
-        private List<EnvironmentFile> _environmentFiles = new List<EnvironmentFile>();
+        private List<string> _dnsSearchDomains = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _dnsServers = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, string> _dockerLabels = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<string> _dockerSecurityOptions = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _entryPoint = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<KeyValuePair> _environment = AWSConfigs.InitializeCollections ? new List<KeyValuePair>() : null;
+        private List<EnvironmentFile> _environmentFiles = AWSConfigs.InitializeCollections ? new List<EnvironmentFile>() : null;
         private bool? _essential;
-        private List<HostEntry> _extraHosts = new List<HostEntry>();
+        private List<HostEntry> _extraHosts = AWSConfigs.InitializeCollections ? new List<HostEntry>() : null;
         private FirelensConfiguration _firelensConfiguration;
         private HealthCheck _healthCheck;
         private string _hostname;
         private string _image;
         private bool? _interactive;
-        private List<string> _links = new List<string>();
+        private List<string> _links = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private LinuxParameters _linuxParameters;
         private LogConfiguration _logConfiguration;
         private int? _memory;
         private int? _memoryReservation;
-        private List<MountPoint> _mountPoints = new List<MountPoint>();
+        private List<MountPoint> _mountPoints = AWSConfigs.InitializeCollections ? new List<MountPoint>() : null;
         private string _name;
-        private List<PortMapping> _portMappings = new List<PortMapping>();
+        private List<PortMapping> _portMappings = AWSConfigs.InitializeCollections ? new List<PortMapping>() : null;
         private bool? _privileged;
         private bool? _pseudoTerminal;
         private bool? _readonlyRootFilesystem;
         private RepositoryCredentials _repositoryCredentials;
-        private List<ResourceRequirement> _resourceRequirements = new List<ResourceRequirement>();
-        private List<Secret> _secrets = new List<Secret>();
+        private List<ResourceRequirement> _resourceRequirements = AWSConfigs.InitializeCollections ? new List<ResourceRequirement>() : null;
+        private ContainerRestartPolicy _restartPolicy;
+        private List<Secret> _secrets = AWSConfigs.InitializeCollections ? new List<Secret>() : null;
         private int? _startTimeout;
         private int? _stopTimeout;
-        private List<SystemControl> _systemControls = new List<SystemControl>();
-        private List<Ulimit> _ulimits = new List<Ulimit>();
+        private List<SystemControl> _systemControls = AWSConfigs.InitializeCollections ? new List<SystemControl>() : null;
+        private List<Ulimit> _ulimits = AWSConfigs.InitializeCollections ? new List<Ulimit>() : null;
         private string _user;
-        private List<VolumeFrom> _volumesFrom = new List<VolumeFrom>();
+        private VersionConsistency _versionConsistency;
+        private List<VolumeFrom> _volumesFrom = AWSConfigs.InitializeCollections ? new List<VolumeFrom>() : null;
         private string _workingDirectory;
 
         /// <summary>
         /// Gets and sets the property Command. 
         /// <para>
-        /// The command that's passed to the container. This parameter maps to <code>Cmd</code>
-        /// in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>COMMAND</code> parameter to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>. For more information, see <a href="https://docs.docker.com/engine/reference/builder/#cmd">https://docs.docker.com/engine/reference/builder/#cmd</a>.
-        /// If there are multiple arguments, each argument is a separated string in the array.
+        /// The command that's passed to the container. This parameter maps to <c>Cmd</c> in the
+        /// docker container create command and the <c>COMMAND</c> parameter to docker run. If
+        /// there are multiple arguments, each argument is a separated string in the array.
         /// </para>
         /// </summary>
         public List<string> Command
@@ -95,23 +95,21 @@ namespace Amazon.ECS.Model
         // Check to see if Command property is set
         internal bool IsSetCommand()
         {
-            return this._command != null && this._command.Count > 0; 
+            return this._command != null && (this._command.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Cpu. 
         /// <para>
-        /// The number of <code>cpu</code> units reserved for the container. This parameter maps
-        /// to <code>CpuShares</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--cpu-shares</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// The number of <c>cpu</c> units reserved for the container. This parameter maps to
+        /// <c>CpuShares</c> in the docker container create commandand the <c>--cpu-shares</c>
+        /// option to docker run.
         /// </para>
         ///  
         /// <para>
         /// This field is optional for tasks using the Fargate launch type, and the only requirement
         /// is that the total amount of CPU reserved for all containers within a task be lower
-        /// than the task-level <code>cpu</code> value.
+        /// than the task-level <c>cpu</c> value.
         /// </para>
         ///  <note> 
         /// <para>
@@ -134,12 +132,12 @@ namespace Amazon.ECS.Model
         ///  
         /// <para>
         /// On Linux container instances, the Docker daemon on the container instance uses the
-        /// CPU value to calculate the relative CPU share ratios for running containers. For more
-        /// information, see <a href="https://docs.docker.com/engine/reference/run/#cpu-share-constraint">CPU
-        /// share constraint</a> in the Docker documentation. The minimum valid CPU share value
-        /// that the Linux kernel allows is 2. However, the CPU parameter isn't required, and
-        /// you can use CPU values below 2 in your container definitions. For CPU values below
-        /// 2 (including null), the behavior varies based on your Amazon ECS container agent version:
+        /// CPU value to calculate the relative CPU share ratios for running containers. The minimum
+        /// valid CPU share value that the Linux kernel allows is 2, and the maximum valid CPU
+        /// share value that the Linux kernel allows is 262144. However, the CPU parameter isn't
+        /// required, and you can use CPU values below 2 or above 262144 in your container definitions.
+        /// For CPU values below 2 (including null) or above 262144, the behavior varies based
+        /// on your Amazon ECS container agent version:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -152,12 +150,17 @@ namespace Amazon.ECS.Model
         ///  <b>Agent versions greater than or equal to 1.2.0:</b> Null, zero, and CPU values
         /// of 1 are passed to Docker as 2.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>Agent versions greater than or equal to 1.84.0:</b> CPU values greater than 256
+        /// vCPU are passed to Docker as 256, which is equivalent to 262144 CPU shares.
+        /// </para>
         ///  </li> </ul> 
         /// <para>
         /// On Windows container instances, the CPU limit is enforced as an absolute limit, or
         /// a quota. Windows containers only have access to the specified amount of CPU that's
         /// described in the task definition. A null or zero CPU value is passed to Docker as
-        /// <code>0</code>, which Windows interprets as 1% of one CPU.
+        /// <c>0</c>, which Windows interprets as 1% of one CPU.
         /// </para>
         /// </summary>
         public int Cpu
@@ -175,10 +178,10 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property CredentialSpecs. 
         /// <para>
-        /// A list of ARNs in SSM or Amazon S3 to a credential spec (<code>CredSpec</code>) file
-        /// that configures the container for Active Directory authentication. We recommend that
-        /// you use this parameter instead of the <code>dockerSecurityOptions</code>. The maximum
-        /// number of ARNs is 1.
+        /// A list of ARNs in SSM or Amazon S3 to a credential spec (<c>CredSpec</c>) file that
+        /// configures the container for Active Directory authentication. We recommend that you
+        /// use this parameter instead of the <c>dockerSecurityOptions</c>. The maximum number
+        /// of ARNs is 1.
         /// </para>
         ///  
         /// <para>
@@ -186,9 +189,9 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  <dl> <dt>credentialspecdomainless:MyARN</dt> <dd> 
         /// <para>
-        /// You use <code>credentialspecdomainless:MyARN</code> to provide a <code>CredSpec</code>
-        /// with an additional section for a secret in Secrets Manager. You provide the login
-        /// credentials to the domain in the secret.
+        /// You use <c>credentialspecdomainless:MyARN</c> to provide a <c>CredSpec</c> with an
+        /// additional section for a secret in Secrets Manager. You provide the login credentials
+        /// to the domain in the secret.
         /// </para>
         ///  
         /// <para>
@@ -200,8 +203,7 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  </dd> <dt>credentialspec:MyARN</dt> <dd> 
         /// <para>
-        /// You use <code>credentialspec:MyARN</code> to provide a <code>CredSpec</code> for a
-        /// single domain.
+        /// You use <c>credentialspec:MyARN</c> to provide a <c>CredSpec</c> for a single domain.
         /// </para>
         ///  
         /// <para>
@@ -210,16 +212,16 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  </dd> </dl> 
         /// <para>
-        /// In both formats, replace <code>MyARN</code> with the ARN in SSM or Amazon S3.
+        /// In both formats, replace <c>MyARN</c> with the ARN in SSM or Amazon S3.
         /// </para>
         ///  
         /// <para>
-        /// If you provide a <code>credentialspecdomainless:MyARN</code>, the <code>credspec</code>
-        /// must provide a ARN in Secrets Manager for a secret containing the username, password,
-        /// and the domain to connect to. For better security, the instance isn't joined to the
-        /// domain for domainless authentication. Other applications on the instance can't use
-        /// the domainless credentials. You can use this parameter to run tasks on the same instance,
-        /// even it the tasks need to join different domains. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/windows-gmsa.html">Using
+        /// If you provide a <c>credentialspecdomainless:MyARN</c>, the <c>credspec</c> must provide
+        /// a ARN in Secrets Manager for a secret containing the username, password, and the domain
+        /// to connect to. For better security, the instance isn't joined to the domain for domainless
+        /// authentication. Other applications on the instance can't use the domainless credentials.
+        /// You can use this parameter to run tasks on the same instance, even it the tasks need
+        /// to join different domains. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/windows-gmsa.html">Using
         /// gMSAs for Windows Containers</a> and <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/linux-gmsa.html">Using
         /// gMSAs for Linux Containers</a>.
         /// </para>
@@ -233,7 +235,7 @@ namespace Amazon.ECS.Model
         // Check to see if CredentialSpecs property is set
         internal bool IsSetCredentialSpecs()
         {
-            return this._credentialSpecs != null && this._credentialSpecs.Count > 0; 
+            return this._credentialSpecs != null && (this._credentialSpecs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -251,10 +253,10 @@ namespace Amazon.ECS.Model
         /// version and updating to the latest version, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html">Updating
         /// the Amazon ECS Container Agent</a> in the <i>Amazon Elastic Container Service Developer
         /// Guide</i>. If you're using an Amazon ECS-optimized Linux AMI, your instance needs
-        /// at least version 1.26.0-1 of the <code>ecs-init</code> package. If your container
-        /// instances are launched from version <code>20190301</code> or later, then they contain
-        /// the required versions of the container agent and <code>ecs-init</code>. For more information,
-        /// see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html">Amazon
+        /// at least version 1.26.0-1 of the <c>ecs-init</c> package. If your container instances
+        /// are launched from version <c>20190301</c> or later, then they contain the required
+        /// versions of the container agent and <c>ecs-init</c>. For more information, see <a
+        /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html">Amazon
         /// ECS-optimized Linux AMI</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
         /// </para>
         ///  
@@ -264,11 +266,11 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Linux platform version <code>1.3.0</code> or later.
+        /// Linux platform version <c>1.3.0</c> or later.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Windows platform version <code>1.0.0</code> or later.
+        /// Windows platform version <c>1.0.0</c> or later.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -281,16 +283,14 @@ namespace Amazon.ECS.Model
         // Check to see if DependsOn property is set
         internal bool IsSetDependsOn()
         {
-            return this._dependsOn != null && this._dependsOn.Count > 0; 
+            return this._dependsOn != null && (this._dependsOn.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DisableNetworking. 
         /// <para>
         /// When this parameter is true, networking is off within the container. This parameter
-        /// maps to <code>NetworkDisabled</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a>.
+        /// maps to <c>NetworkDisabled</c> in the docker container create command.
         /// </para>
         ///  <note> 
         /// <para>
@@ -314,10 +314,8 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property DnsSearchDomains. 
         /// <para>
         /// A list of DNS search domains that are presented to the container. This parameter maps
-        /// to <code>DnsSearch</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--dns-search</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// to <c>DnsSearch</c> in the docker container create command and the <c>--dns-search</c>
+        /// option to docker run.
         /// </para>
         ///  <note> 
         /// <para>
@@ -334,17 +332,15 @@ namespace Amazon.ECS.Model
         // Check to see if DnsSearchDomains property is set
         internal bool IsSetDnsSearchDomains()
         {
-            return this._dnsSearchDomains != null && this._dnsSearchDomains.Count > 0; 
+            return this._dnsSearchDomains != null && (this._dnsSearchDomains.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DnsServers. 
         /// <para>
         /// A list of DNS servers that are presented to the container. This parameter maps to
-        /// <code>Dns</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--dns</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// <c>Dns</c> in the docker container create command and the <c>--dns</c> option to docker
+        /// run.
         /// </para>
         ///  <note> 
         /// <para>
@@ -361,20 +357,18 @@ namespace Amazon.ECS.Model
         // Check to see if DnsServers property is set
         internal bool IsSetDnsServers()
         {
-            return this._dnsServers != null && this._dnsServers.Count > 0; 
+            return this._dnsServers != null && (this._dnsServers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DockerLabels. 
         /// <para>
-        /// A key/value map of labels to add to the container. This parameter maps to <code>Labels</code>
-        /// in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--label</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>. This parameter requires version 1.18 of the Docker Remote API or greater
-        /// on your container instance. To check the Docker Remote API version on your container
-        /// instance, log in to your container instance and run the following command: <code>sudo
-        /// docker version --format '{{.Server.APIVersion}}'</code> 
+        /// A key/value map of labels to add to the container. This parameter maps to <c>Labels</c>
+        /// in the docker container create command and the <c>--label</c> option to docker run.
+        /// This parameter requires version 1.18 of the Docker Remote API or greater on your container
+        /// instance. To check the Docker Remote API version on your container instance, log in
+        /// to your container instance and run the following command: <c>sudo docker version --format
+        /// '{{.Server.APIVersion}}'</c> 
         /// </para>
         /// </summary>
         public Dictionary<string, string> DockerLabels
@@ -386,16 +380,14 @@ namespace Amazon.ECS.Model
         // Check to see if DockerLabels property is set
         internal bool IsSetDockerLabels()
         {
-            return this._dockerLabels != null && this._dockerLabels.Count > 0; 
+            return this._dockerLabels != null && (this._dockerLabels.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DockerSecurityOptions. 
         /// <para>
-        /// A list of strings to provide custom configuration for multiple security systems. For
-        /// more information about valid values, see <a href="https://docs.docker.com/engine/reference/run/#security-configuration">Docker
-        /// Run Security Configuration</a>. This field isn't valid for containers in tasks using
-        /// the Fargate launch type.
+        /// A list of strings to provide custom configuration for multiple security systems. This
+        /// field isn't valid for containers in tasks using the Fargate launch type.
         /// </para>
         ///  
         /// <para>
@@ -413,26 +405,19 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  
         /// <para>
-        /// This parameter maps to <code>SecurityOpt</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--security-opt</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// This parameter maps to <c>SecurityOpt</c> in the docker container create command and
+        /// the <c>--security-opt</c> option to docker run.
         /// </para>
         ///  <note> 
         /// <para>
         /// The Amazon ECS container agent running on a container instance must register with
-        /// the <code>ECS_SELINUX_CAPABLE=true</code> or <code>ECS_APPARMOR_CAPABLE=true</code>
-        /// environment variables before containers placed on that instance can use these security
-        /// options. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-config.html">Amazon
+        /// the <c>ECS_SELINUX_CAPABLE=true</c> or <c>ECS_APPARMOR_CAPABLE=true</c> environment
+        /// variables before containers placed on that instance can use these security options.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-config.html">Amazon
         /// ECS Container Agent Configuration</a> in the <i>Amazon Elastic Container Service Developer
         /// Guide</i>.
         /// </para>
         ///  </note> 
-        /// <para>
-        /// For more information about valid values, see <a href="https://docs.docker.com/engine/reference/run/#security-configuration">Docker
-        /// Run Security Configuration</a>. 
-        /// </para>
-        ///  
         /// <para>
         /// Valid values: "no-new-privileges" | "apparmor:PROFILE" | "label:value" | "credentialspec:CredentialSpecFilePath"
         /// </para>
@@ -446,23 +431,21 @@ namespace Amazon.ECS.Model
         // Check to see if DockerSecurityOptions property is set
         internal bool IsSetDockerSecurityOptions()
         {
-            return this._dockerSecurityOptions != null && this._dockerSecurityOptions.Count > 0; 
+            return this._dockerSecurityOptions != null && (this._dockerSecurityOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property EntryPoint. <important> 
         /// <para>
-        /// Early versions of the Amazon ECS container agent don't properly handle <code>entryPoint</code>
-        /// parameters. If you have problems using <code>entryPoint</code>, update your container
-        /// agent or enter your commands and arguments as <code>command</code> array items instead.
+        /// Early versions of the Amazon ECS container agent don't properly handle <c>entryPoint</c>
+        /// parameters. If you have problems using <c>entryPoint</c>, update your container agent
+        /// or enter your commands and arguments as <c>command</c> array items instead.
         /// </para>
         ///  </important> 
         /// <para>
-        /// The entry point that's passed to the container. This parameter maps to <code>Entrypoint</code>
-        /// in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--entrypoint</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>. For more information, see <a href="https://docs.docker.com/engine/reference/builder/#entrypoint">https://docs.docker.com/engine/reference/builder/#entrypoint</a>.
+        /// The entry point that's passed to the container. This parameter maps to <c>Entrypoint</c>
+        /// in the docker container create command and the <c>--entrypoint</c> option to docker
+        /// run.
         /// </para>
         /// </summary>
         public List<string> EntryPoint
@@ -474,17 +457,14 @@ namespace Amazon.ECS.Model
         // Check to see if EntryPoint property is set
         internal bool IsSetEntryPoint()
         {
-            return this._entryPoint != null && this._entryPoint.Count > 0; 
+            return this._entryPoint != null && (this._entryPoint.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Environment. 
         /// <para>
-        /// The environment variables to pass to a container. This parameter maps to <code>Env</code>
-        /// in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--env</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// The environment variables to pass to a container. This parameter maps to <c>Env</c>
+        /// in the docker container create command and the <c>--env</c> option to docker run.
         /// </para>
         ///  <important> 
         /// <para>
@@ -502,28 +482,24 @@ namespace Amazon.ECS.Model
         // Check to see if Environment property is set
         internal bool IsSetEnvironment()
         {
-            return this._environment != null && this._environment.Count > 0; 
+            return this._environment != null && (this._environment.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property EnvironmentFiles. 
         /// <para>
         /// A list of files containing the environment variables to pass to a container. This
-        /// parameter maps to the <code>--env-file</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// parameter maps to the <c>--env-file</c> option to docker run.
         /// </para>
         ///  
         /// <para>
-        /// You can specify up to ten environment files. The file must have a <code>.env</code>
-        /// file extension. Each line in an environment file contains an environment variable
-        /// in <code>VARIABLE=VALUE</code> format. Lines beginning with <code>#</code> are treated
-        /// as comments and are ignored. For more information about the environment variable file
-        /// syntax, see <a href="https://docs.docker.com/compose/env-file/">Declare default environment
-        /// variables in file</a>.
+        /// You can specify up to ten environment files. The file must have a <c>.env</c> file
+        /// extension. Each line in an environment file contains an environment variable in <c>VARIABLE=VALUE</c>
+        /// format. Lines beginning with <c>#</c> are treated as comments and are ignored.
         /// </para>
         ///  
         /// <para>
-        /// If there are environment variables specified using the <code>environment</code> parameter
+        /// If there are environment variables specified using the <c>environment</c> parameter
         /// in a container definition, they take precedence over the variables contained within
         /// an environment file. If multiple environment files are specified that contain the
         /// same variable, they're processed from the top down. We recommend that you use unique
@@ -540,17 +516,17 @@ namespace Amazon.ECS.Model
         // Check to see if EnvironmentFiles property is set
         internal bool IsSetEnvironmentFiles()
         {
-            return this._environmentFiles != null && this._environmentFiles.Count > 0; 
+            return this._environmentFiles != null && (this._environmentFiles.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Essential. 
         /// <para>
-        /// If the <code>essential</code> parameter of a container is marked as <code>true</code>,
-        /// and that container fails or stops for any reason, all other containers that are part
-        /// of the task are stopped. If the <code>essential</code> parameter of a container is
-        /// marked as <code>false</code>, its failure doesn't affect the rest of the containers
-        /// in a task. If this parameter is omitted, a container is assumed to be essential.
+        /// If the <c>essential</c> parameter of a container is marked as <c>true</c>, and that
+        /// container fails or stops for any reason, all other containers that are part of the
+        /// task are stopped. If the <c>essential</c> parameter of a container is marked as <c>false</c>,
+        /// its failure doesn't affect the rest of the containers in a task. If this parameter
+        /// is omitted, a container is assumed to be essential.
         /// </para>
         ///  
         /// <para>
@@ -576,15 +552,13 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property ExtraHosts. 
         /// <para>
-        /// A list of hostnames and IP address mappings to append to the <code>/etc/hosts</code>
-        /// file on the container. This parameter maps to <code>ExtraHosts</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--add-host</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// A list of hostnames and IP address mappings to append to the <c>/etc/hosts</c> file
+        /// on the container. This parameter maps to <c>ExtraHosts</c> in the docker container
+        /// create command and the <c>--add-host</c> option to docker run.
         /// </para>
         ///  <note> 
         /// <para>
-        /// This parameter isn't supported for Windows containers or tasks that use the <code>awsvpc</code>
+        /// This parameter isn't supported for Windows containers or tasks that use the <c>awsvpc</c>
         /// network mode.
         /// </para>
         ///  </note>
@@ -598,7 +572,7 @@ namespace Amazon.ECS.Model
         // Check to see if ExtraHosts property is set
         internal bool IsSetExtraHosts()
         {
-            return this._extraHosts != null && this._extraHosts.Count > 0; 
+            return this._extraHosts != null && (this._extraHosts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -625,10 +599,8 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property HealthCheck. 
         /// <para>
         /// The container health check command and associated configuration parameters for the
-        /// container. This parameter maps to <code>HealthCheck</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>HEALTHCHECK</code> parameter of <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// container. This parameter maps to <c>HealthCheck</c> in the docker container create
+        /// command and the <c>HEALTHCHECK</c> parameter of docker run.
         /// </para>
         /// </summary>
         public HealthCheck HealthCheck
@@ -646,16 +618,13 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Hostname. 
         /// <para>
-        /// The hostname to use for your container. This parameter maps to <code>Hostname</code>
-        /// in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--hostname</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// The hostname to use for your container. This parameter maps to <c>Hostname</c> in
+        /// the docker container create command and the <c>--hostname</c> option to docker run.
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>hostname</code> parameter is not supported if you're using the <code>awsvpc</code>
-        /// network mode.
+        /// The <c>hostname</c> parameter is not supported if you're using the <c>awsvpc</c> network
+        /// mode.
         /// </para>
         ///  </note>
         /// </summary>
@@ -676,14 +645,11 @@ namespace Amazon.ECS.Model
         /// <para>
         /// The image used to start a container. This string is passed directly to the Docker
         /// daemon. By default, images in the Docker Hub registry are available. Other repositories
-        /// are specified with either <code> <i>repository-url</i>/<i>image</i>:<i>tag</i> </code>
-        /// or <code> <i>repository-url</i>/<i>image</i>@<i>digest</i> </code>. Up to 255 letters
-        /// (uppercase and lowercase), numbers, hyphens, underscores, colons, periods, forward
-        /// slashes, and number signs are allowed. This parameter maps to <code>Image</code> in
-        /// the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>IMAGE</code> parameter of <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// are specified with either <c> <i>repository-url</i>/<i>image</i>:<i>tag</i> </c> or
+        /// <c> <i>repository-url</i>/<i>image</i>@<i>digest</i> </c>. Up to 255 letters (uppercase
+        /// and lowercase), numbers, hyphens, underscores, colons, periods, forward slashes, and
+        /// number signs are allowed. This parameter maps to <c>Image</c> in the docker container
+        /// create command and the <c>IMAGE</c> parameter of docker run.
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -693,25 +659,25 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Images in Amazon ECR repositories can be specified by either using the full <code>registry/repository:tag</code>
-        /// or <code>registry/repository@digest</code>. For example, <code>012345678910.dkr.ecr.&lt;region-name&gt;.amazonaws.com/&lt;repository-name&gt;:latest</code>
-        /// or <code>012345678910.dkr.ecr.&lt;region-name&gt;.amazonaws.com/&lt;repository-name&gt;@sha256:94afd1f2e64d908bc90dbca0035a5b567EXAMPLE</code>.
+        /// Images in Amazon ECR repositories can be specified by either using the full <c>registry/repository:tag</c>
+        /// or <c>registry/repository@digest</c>. For example, <c>012345678910.dkr.ecr.&lt;region-name&gt;.amazonaws.com/&lt;repository-name&gt;:latest</c>
+        /// or <c>012345678910.dkr.ecr.&lt;region-name&gt;.amazonaws.com/&lt;repository-name&gt;@sha256:94afd1f2e64d908bc90dbca0035a5b567EXAMPLE</c>.
         /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Images in official repositories on Docker Hub use a single name (for example, <code>ubuntu</code>
-        /// or <code>mongo</code>).
+        /// Images in official repositories on Docker Hub use a single name (for example, <c>ubuntu</c>
+        /// or <c>mongo</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// Images in other repositories on Docker Hub are qualified with an organization name
-        /// (for example, <code>amazon/amazon-ecs-agent</code>).
+        /// (for example, <c>amazon/amazon-ecs-agent</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// Images in other online repositories are qualified further by a domain name (for example,
-        /// <code>quay.io/assemblyline/ubuntu</code>).
+        /// <c>quay.io/assemblyline/ubuntu</c>).
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -730,12 +696,10 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Interactive. 
         /// <para>
-        /// When this parameter is <code>true</code>, you can deploy containerized applications
-        /// that require <code>stdin</code> or a <code>tty</code> to be allocated. This parameter
-        /// maps to <code>OpenStdin</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--interactive</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// When this parameter is <c>true</c>, you can deploy containerized applications that
+        /// require <c>stdin</c> or a <c>tty</c> to be allocated. This parameter maps to <c>OpenStdin</c>
+        /// in the docker container create command and the <c>--interactive</c> option to docker
+        /// run.
         /// </para>
         /// </summary>
         public bool Interactive
@@ -753,17 +717,12 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Links. 
         /// <para>
-        /// The <code>links</code> parameter allows containers to communicate with each other
-        /// without the need for port mappings. This parameter is only supported if the network
-        /// mode of a task definition is <code>bridge</code>. The <code>name:internalName</code>
-        /// construct is analogous to <code>name:alias</code> in Docker links. Up to 255 letters
-        /// (uppercase and lowercase), numbers, underscores, and hyphens are allowed. For more
-        /// information about linking Docker containers, go to <a href="https://docs.docker.com/network/links/">Legacy
-        /// container links</a> in the Docker documentation. This parameter maps to <code>Links</code>
-        /// in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--link</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// The <c>links</c> parameter allows containers to communicate with each other without
+        /// the need for port mappings. This parameter is only supported if the network mode of
+        /// a task definition is <c>bridge</c>. The <c>name:internalName</c> construct is analogous
+        /// to <c>name:alias</c> in Docker links. Up to 255 letters (uppercase and lowercase),
+        /// numbers, underscores, and hyphens are allowed.. This parameter maps to <c>Links</c>
+        /// in the docker container create command and the <c>--link</c> option to docker run.
         /// </para>
         ///  <note> 
         /// <para>
@@ -786,14 +745,14 @@ namespace Amazon.ECS.Model
         // Check to see if Links property is set
         internal bool IsSetLinks()
         {
-            return this._links != null && this._links.Count > 0; 
+            return this._links != null && (this._links.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property LinuxParameters. 
         /// <para>
         /// Linux-specific modifications that are applied to the container, such as Linux kernel
-        /// capabilities. For more information see <a>KernelCapabilities</a>.
+        /// capabilities. For more information see <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_KernelCapabilities.html">KernelCapabilities</a>.
         /// </para>
         ///  <note> 
         /// <para>
@@ -820,36 +779,33 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  
         /// <para>
-        /// This parameter maps to <code>LogConfig</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--log-driver</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>. By default, containers use the same logging driver that the Docker daemon
-        /// uses. However the container can use a different logging driver than the Docker daemon
-        /// by specifying a log driver with this parameter in the container definition. To use
-        /// a different logging driver for a container, the log system must be configured properly
-        /// on the container instance (or on a different log server for remote logging options).
-        /// For more information about the options for different supported log drivers, see <a
-        /// href="https://docs.docker.com/engine/admin/logging/overview/">Configure logging drivers</a>
-        /// in the Docker documentation.
+        /// This parameter maps to <c>LogConfig</c> in the docker container create command and
+        /// the <c>--log-driver</c> option to docker run. By default, containers use the same
+        /// logging driver that the Docker daemon uses. However the container can use a different
+        /// logging driver than the Docker daemon by specifying a log driver with this parameter
+        /// in the container definition. To use a different logging driver for a container, the
+        /// log system must be configured properly on the container instance (or on a different
+        /// log server for remote logging options). 
         /// </para>
         ///  <note> 
         /// <para>
         /// Amazon ECS currently supports a subset of the logging drivers available to the Docker
-        /// daemon (shown in the <a>LogConfiguration</a> data type). Additional log drivers may
-        /// be available in future releases of the Amazon ECS container agent.
+        /// daemon (shown in the <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_LogConfiguration.html">LogConfiguration</a>
+        /// data type). Additional log drivers may be available in future releases of the Amazon
+        /// ECS container agent.
         /// </para>
         ///  </note> 
         /// <para>
         /// This parameter requires version 1.18 of the Docker Remote API or greater on your container
         /// instance. To check the Docker Remote API version on your container instance, log in
-        /// to your container instance and run the following command: <code>sudo docker version
-        /// --format '{{.Server.APIVersion}}'</code> 
+        /// to your container instance and run the following command: <c>sudo docker version --format
+        /// '{{.Server.APIVersion}}'</c> 
         /// </para>
         ///  <note> 
         /// <para>
         /// The Amazon ECS container agent running on a container instance must register the logging
-        /// drivers available on that instance with the <code>ECS_AVAILABLE_LOGGING_DRIVERS</code>
-        /// environment variable before containers placed on that instance can use these log configuration
+        /// drivers available on that instance with the <c>ECS_AVAILABLE_LOGGING_DRIVERS</c> environment
+        /// variable before containers placed on that instance can use these log configuration
         /// options. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-config.html">Amazon
         /// ECS Container Agent Configuration</a> in the <i>Amazon Elastic Container Service Developer
         /// Guide</i>.
@@ -873,11 +829,9 @@ namespace Amazon.ECS.Model
         /// <para>
         /// The amount (in MiB) of memory to present to the container. If your container attempts
         /// to exceed the memory specified here, the container is killed. The total amount of
-        /// memory reserved for all containers within a task must be lower than the task <code>memory</code>
-        /// value, if one is specified. This parameter maps to <code>Memory</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--memory</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// memory reserved for all containers within a task must be lower than the task <c>memory</c>
+        /// value, if one is specified. This parameter maps to <c>Memory</c> in the docker container
+        /// create command and the <c>--memory</c> option to docker run.
         /// </para>
         ///  
         /// <para>
@@ -886,11 +840,11 @@ namespace Amazon.ECS.Model
         ///  
         /// <para>
         /// If using the EC2 launch type, you must specify either a task-level memory value or
-        /// a container-level memory value. If you specify both a container-level <code>memory</code>
-        /// and <code>memoryReservation</code> value, <code>memory</code> must be greater than
-        /// <code>memoryReservation</code>. If you specify <code>memoryReservation</code>, then
-        /// that value is subtracted from the available memory resources for the container instance
-        /// where the container is placed. Otherwise, the value of <code>memory</code> is used.
+        /// a container-level memory value. If you specify both a container-level <c>memory</c>
+        /// and <c>memoryReservation</c> value, <c>memory</c> must be greater than <c>memoryReservation</c>.
+        /// If you specify <c>memoryReservation</c>, then that value is subtracted from the available
+        /// memory resources for the container instance where the container is placed. Otherwise,
+        /// the value of <c>memory</c> is used.
         /// </para>
         ///  
         /// <para>
@@ -921,29 +875,27 @@ namespace Amazon.ECS.Model
         /// The soft limit (in MiB) of memory to reserve for the container. When system memory
         /// is under heavy contention, Docker attempts to keep the container memory to this soft
         /// limit. However, your container can consume more memory when it needs to, up to either
-        /// the hard limit specified with the <code>memory</code> parameter (if applicable), or
-        /// all of the available memory on the container instance, whichever comes first. This
-        /// parameter maps to <code>MemoryReservation</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--memory-reservation</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// the hard limit specified with the <c>memory</c> parameter (if applicable), or all
+        /// of the available memory on the container instance, whichever comes first. This parameter
+        /// maps to <c>MemoryReservation</c> in the docker container create command and the <c>--memory-reservation</c>
+        /// option to docker run.
         /// </para>
         ///  
         /// <para>
         /// If a task-level memory value is not specified, you must specify a non-zero integer
-        /// for one or both of <code>memory</code> or <code>memoryReservation</code> in a container
-        /// definition. If you specify both, <code>memory</code> must be greater than <code>memoryReservation</code>.
-        /// If you specify <code>memoryReservation</code>, then that value is subtracted from
-        /// the available memory resources for the container instance where the container is placed.
-        /// Otherwise, the value of <code>memory</code> is used.
+        /// for one or both of <c>memory</c> or <c>memoryReservation</c> in a container definition.
+        /// If you specify both, <c>memory</c> must be greater than <c>memoryReservation</c>.
+        /// If you specify <c>memoryReservation</c>, then that value is subtracted from the available
+        /// memory resources for the container instance where the container is placed. Otherwise,
+        /// the value of <c>memory</c> is used.
         /// </para>
         ///  
         /// <para>
         /// For example, if your container normally uses 128 MiB of memory, but occasionally bursts
-        /// to 256 MiB of memory for short periods of time, you can set a <code>memoryReservation</code>
-        /// of 128 MiB, and a <code>memory</code> hard limit of 300 MiB. This configuration would
-        /// allow the container to only reserve 128 MiB of memory from the remaining resources
-        /// on the container instance, but also allow the container to consume more memory resources
+        /// to 256 MiB of memory for short periods of time, you can set a <c>memoryReservation</c>
+        /// of 128 MiB, and a <c>memory</c> hard limit of 300 MiB. This configuration would allow
+        /// the container to only reserve 128 MiB of memory from the remaining resources on the
+        /// container instance, but also allow the container to consume more memory resources
         /// when needed.
         /// </para>
         ///  
@@ -976,14 +928,12 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  
         /// <para>
-        /// This parameter maps to <code>Volumes</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--volume</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// This parameter maps to <c>Volumes</c> in the docker container create command and the
+        /// <c>--volume</c> option to docker run.
         /// </para>
         ///  
         /// <para>
-        /// Windows containers can mount whole directories on the same drive as <code>$env:ProgramData</code>.
+        /// Windows containers can mount whole directories on the same drive as <c>$env:ProgramData</c>.
         /// Windows containers can't mount directories on a different drive, and mount point can't
         /// be across drives.
         /// </para>
@@ -997,20 +947,18 @@ namespace Amazon.ECS.Model
         // Check to see if MountPoints property is set
         internal bool IsSetMountPoints()
         {
-            return this._mountPoints != null && this._mountPoints.Count > 0; 
+            return this._mountPoints != null && (this._mountPoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
         /// The name of a container. If you're linking multiple containers together in a task
-        /// definition, the <code>name</code> of one container can be entered in the <code>links</code>
-        /// of another container to connect the containers. Up to 255 letters (uppercase and lowercase),
-        /// numbers, underscores, and hyphens are allowed. This parameter maps to <code>name</code>
-        /// in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--name</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>. 
+        /// definition, the <c>name</c> of one container can be entered in the <c>links</c> of
+        /// another container to connect the containers. Up to 255 letters (uppercase and lowercase),
+        /// numbers, underscores, and hyphens are allowed. This parameter maps to <c>name</c>
+        /// in the docker container create command and the <c>--name</c> option to docker run.
+        /// 
         /// </para>
         /// </summary>
         public string Name
@@ -1033,32 +981,29 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  
         /// <para>
-        /// For task definitions that use the <code>awsvpc</code> network mode, only specify the
-        /// <code>containerPort</code>. The <code>hostPort</code> can be left blank or it must
-        /// be the same value as the <code>containerPort</code>.
+        /// For task definitions that use the <c>awsvpc</c> network mode, only specify the <c>containerPort</c>.
+        /// The <c>hostPort</c> can be left blank or it must be the same value as the <c>containerPort</c>.
         /// </para>
         ///  
         /// <para>
-        /// Port mappings on Windows use the <code>NetNAT</code> gateway address rather than <code>localhost</code>.
+        /// Port mappings on Windows use the <c>NetNAT</c> gateway address rather than <c>localhost</c>.
         /// There's no loopback for port mappings on Windows, so you can't access a container's
         /// mapped port from the host itself. 
         /// </para>
         ///  
         /// <para>
-        /// This parameter maps to <code>PortBindings</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--publish</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>. If the network mode of a task definition is set to <code>none</code>, then
-        /// you can't specify port mappings. If the network mode of a task definition is set to
-        /// <code>host</code>, then host ports must either be undefined or they must match the
-        /// container port in the port mapping.
+        /// This parameter maps to <c>PortBindings</c> in the the docker container create command
+        /// and the <c>--publish</c> option to docker run. If the network mode of a task definition
+        /// is set to <c>none</c>, then you can't specify port mappings. If the network mode of
+        /// a task definition is set to <c>host</c>, then host ports must either be undefined
+        /// or they must match the container port in the port mapping.
         /// </para>
         ///  <note> 
         /// <para>
-        /// After a task reaches the <code>RUNNING</code> status, manual and automatic host and
-        /// container port assignments are visible in the <b>Network Bindings</b> section of a
-        /// container description for a selected task in the Amazon ECS console. The assignments
-        /// are also visible in the <code>networkBindings</code> section <a>DescribeTasks</a>
+        /// After a task reaches the <c>RUNNING</c> status, manual and automatic host and container
+        /// port assignments are visible in the <b>Network Bindings</b> section of a container
+        /// description for a selected task in the Amazon ECS console. The assignments are also
+        /// visible in the <c>networkBindings</c> section <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTasks.html">DescribeTasks</a>
         /// responses.
         /// </para>
         ///  </note>
@@ -1072,18 +1017,16 @@ namespace Amazon.ECS.Model
         // Check to see if PortMappings property is set
         internal bool IsSetPortMappings()
         {
-            return this._portMappings != null && this._portMappings.Count > 0; 
+            return this._portMappings != null && (this._portMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Privileged. 
         /// <para>
         /// When this parameter is true, the container is given elevated privileges on the host
-        /// container instance (similar to the <code>root</code> user). This parameter maps to
-        /// <code>Privileged</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--privileged</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// container instance (similar to the <c>root</c> user). This parameter maps to <c>Privileged</c>
+        /// in the docker container create command and the <c>--privileged</c> option to docker
+        /// run
         /// </para>
         ///  <note> 
         /// <para>
@@ -1106,11 +1049,8 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property PseudoTerminal. 
         /// <para>
-        /// When this parameter is <code>true</code>, a TTY is allocated. This parameter maps
-        /// to <code>Tty</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--tty</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// When this parameter is <c>true</c>, a TTY is allocated. This parameter maps to <c>Tty</c>
+        /// in the docker container create command and the <c>--tty</c> option to docker run.
         /// </para>
         /// </summary>
         public bool PseudoTerminal
@@ -1129,10 +1069,8 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property ReadonlyRootFilesystem. 
         /// <para>
         /// When this parameter is true, the container is given read-only access to its root file
-        /// system. This parameter maps to <code>ReadonlyRootfs</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--read-only</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// system. This parameter maps to <c>ReadonlyRootfs</c> in the docker container create
+        /// command and the <c>--read-only</c> option to docker run.
         /// </para>
         ///  <note> 
         /// <para>
@@ -1186,7 +1124,29 @@ namespace Amazon.ECS.Model
         // Check to see if ResourceRequirements property is set
         internal bool IsSetResourceRequirements()
         {
-            return this._resourceRequirements != null && this._resourceRequirements.Count > 0; 
+            return this._resourceRequirements != null && (this._resourceRequirements.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property RestartPolicy. 
+        /// <para>
+        /// The restart policy for a container. When you set up a restart policy, Amazon ECS can
+        /// restart the container without needing to replace the task. For more information, see
+        /// <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/container-restart-policy.html">Restart
+        /// individual containers in Amazon ECS tasks with container restart policies</a> in the
+        /// <i>Amazon Elastic Container Service Developer Guide</i>.
+        /// </para>
+        /// </summary>
+        public ContainerRestartPolicy RestartPolicy
+        {
+            get { return this._restartPolicy; }
+            set { this._restartPolicy = value; }
+        }
+
+        // Check to see if RestartPolicy property is set
+        internal bool IsSetRestartPolicy()
+        {
+            return this._restartPolicy != null;
         }
 
         /// <summary>
@@ -1205,7 +1165,7 @@ namespace Amazon.ECS.Model
         // Check to see if Secrets property is set
         internal bool IsSetSecrets()
         {
-            return this._secrets != null && this._secrets.Count > 0; 
+            return this._secrets != null && (this._secrets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1213,15 +1173,14 @@ namespace Amazon.ECS.Model
         /// <para>
         /// Time duration (in seconds) to wait before giving up on resolving dependencies for
         /// a container. For example, you specify two containers in a task definition with containerA
-        /// having a dependency on containerB reaching a <code>COMPLETE</code>, <code>SUCCESS</code>,
-        /// or <code>HEALTHY</code> status. If a <code>startTimeout</code> value is specified
-        /// for containerB and it doesn't reach the desired status within that time then containerA
-        /// gives up and not start. This results in the task transitioning to a <code>STOPPED</code>
-        /// state.
+        /// having a dependency on containerB reaching a <c>COMPLETE</c>, <c>SUCCESS</c>, or <c>HEALTHY</c>
+        /// status. If a <c>startTimeout</c> value is specified for containerB and it doesn't
+        /// reach the desired status within that time then containerA gives up and not start.
+        /// This results in the task transitioning to a <c>STOPPED</c> state.
         /// </para>
         ///  <note> 
         /// <para>
-        /// When the <code>ECS_CONTAINER_START_TIMEOUT</code> container agent configuration variable
+        /// When the <c>ECS_CONTAINER_START_TIMEOUT</c> container agent configuration variable
         /// is used, it's enforced independently from this start timeout value.
         /// </para>
         ///  </note> 
@@ -1231,29 +1190,29 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Linux platform version <code>1.3.0</code> or later.
+        /// Linux platform version <c>1.3.0</c> or later.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Windows platform version <code>1.0.0</code> or later.
+        /// Windows platform version <c>1.0.0</c> or later.
         /// </para>
         ///  </li> </ul> 
         /// <para>
         /// For tasks using the EC2 launch type, your container instances require at least version
-        /// <code>1.26.0</code> of the container agent to use a container start timeout value.
-        /// However, we recommend using the latest container agent version. For information about
-        /// checking your agent version and updating to the latest version, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html">Updating
+        /// <c>1.26.0</c> of the container agent to use a container start timeout value. However,
+        /// we recommend using the latest container agent version. For information about checking
+        /// your agent version and updating to the latest version, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html">Updating
         /// the Amazon ECS Container Agent</a> in the <i>Amazon Elastic Container Service Developer
         /// Guide</i>. If you're using an Amazon ECS-optimized Linux AMI, your instance needs
-        /// at least version <code>1.26.0-1</code> of the <code>ecs-init</code> package. If your
-        /// container instances are launched from version <code>20190301</code> or later, then
-        /// they contain the required versions of the container agent and <code>ecs-init</code>.
-        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html">Amazon
+        /// at least version <c>1.26.0-1</c> of the <c>ecs-init</c> package. If your container
+        /// instances are launched from version <c>20190301</c> or later, then they contain the
+        /// required versions of the container agent and <c>ecs-init</c>. For more information,
+        /// see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html">Amazon
         /// ECS-optimized Linux AMI</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// The valid values are 2-120 seconds.
+        /// The valid values for Fargate are 2-120 seconds.
         /// </para>
         /// </summary>
         public int StartTimeout
@@ -1281,39 +1240,39 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Linux platform version <code>1.3.0</code> or later.
+        /// Linux platform version <c>1.3.0</c> or later.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Windows platform version <code>1.0.0</code> or later.
+        /// Windows platform version <c>1.0.0</c> or later.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// The max stop timeout value is 120 seconds and if the parameter is not specified, the
-        /// default value of 30 seconds is used.
+        /// For tasks that use the Fargate launch type, the max stop timeout value is 120 seconds
+        /// and if the parameter is not specified, the default value of 30 seconds is used.
         /// </para>
         ///  
         /// <para>
-        /// For tasks that use the EC2 launch type, if the <code>stopTimeout</code> parameter
-        /// isn't specified, the value set for the Amazon ECS container agent configuration variable
-        /// <code>ECS_CONTAINER_STOP_TIMEOUT</code> is used. If neither the <code>stopTimeout</code>
-        /// parameter or the <code>ECS_CONTAINER_STOP_TIMEOUT</code> agent configuration variable
-        /// are set, then the default values of 30 seconds for Linux containers and 30 seconds
-        /// on Windows containers are used. Your container instances require at least version
-        /// 1.26.0 of the container agent to use a container stop timeout value. However, we recommend
-        /// using the latest container agent version. For information about checking your agent
-        /// version and updating to the latest version, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html">Updating
+        /// For tasks that use the EC2 launch type, if the <c>stopTimeout</c> parameter isn't
+        /// specified, the value set for the Amazon ECS container agent configuration variable
+        /// <c>ECS_CONTAINER_STOP_TIMEOUT</c> is used. If neither the <c>stopTimeout</c> parameter
+        /// or the <c>ECS_CONTAINER_STOP_TIMEOUT</c> agent configuration variable are set, then
+        /// the default values of 30 seconds for Linux containers and 30 seconds on Windows containers
+        /// are used. Your container instances require at least version 1.26.0 of the container
+        /// agent to use a container stop timeout value. However, we recommend using the latest
+        /// container agent version. For information about checking your agent version and updating
+        /// to the latest version, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html">Updating
         /// the Amazon ECS Container Agent</a> in the <i>Amazon Elastic Container Service Developer
         /// Guide</i>. If you're using an Amazon ECS-optimized Linux AMI, your instance needs
-        /// at least version 1.26.0-1 of the <code>ecs-init</code> package. If your container
-        /// instances are launched from version <code>20190301</code> or later, then they contain
-        /// the required versions of the container agent and <code>ecs-init</code>. For more information,
-        /// see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html">Amazon
+        /// at least version 1.26.0-1 of the <c>ecs-init</c> package. If your container instances
+        /// are launched from version <c>20190301</c> or later, then they contain the required
+        /// versions of the container agent and <c>ecs-init</c>. For more information, see <a
+        /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html">Amazon
         /// ECS-optimized Linux AMI</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// The valid values are 2-120 seconds.
+        /// The valid values for Fargate are 2-120 seconds.
         /// </para>
         /// </summary>
         public int StopTimeout
@@ -1332,32 +1291,10 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property SystemControls. 
         /// <para>
         /// A list of namespaced kernel parameters to set in the container. This parameter maps
-        /// to <code>Sysctls</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--sysctl</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>. For example, you can configure <code>net.ipv4.tcp_keepalive_time</code> setting
+        /// to <c>Sysctls</c> in the docker container create command and the <c>--sysctl</c> option
+        /// to docker run. For example, you can configure <c>net.ipv4.tcp_keepalive_time</c> setting
         /// to maintain longer lived connections.
         /// </para>
-        ///  <note> 
-        /// <para>
-        /// We don't recommended that you specify network-related <code>systemControls</code>
-        /// parameters for multiple containers in a single task that also uses either the <code>awsvpc</code>
-        /// or <code>host</code> network modes. For tasks that use the <code>awsvpc</code> network
-        /// mode, the container that's started last determines which <code>systemControls</code>
-        /// parameters take effect. For tasks that use the <code>host</code> network mode, it
-        /// changes the container instance's namespaced kernel parameters as well as the containers.
-        /// </para>
-        ///  </note> <note> 
-        /// <para>
-        /// This parameter is not supported for Windows containers.
-        /// </para>
-        ///  </note> <note> 
-        /// <para>
-        /// This parameter is only supported for tasks that are hosted on Fargate if the tasks
-        /// are using platform version <code>1.4.0</code> or later (Linux). This isn't supported
-        /// for Windows containers on Fargate.
-        /// </para>
-        ///  </note>
         /// </summary>
         public List<SystemControl> SystemControls
         {
@@ -1368,33 +1305,32 @@ namespace Amazon.ECS.Model
         // Check to see if SystemControls property is set
         internal bool IsSetSystemControls()
         {
-            return this._systemControls != null && this._systemControls.Count > 0; 
+            return this._systemControls != null && (this._systemControls.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Ulimits. 
         /// <para>
-        /// A list of <code>ulimits</code> to set in the container. If a <code>ulimit</code> value
-        /// is specified in a task definition, it overrides the default values set by Docker.
-        /// This parameter maps to <code>Ulimits</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--ulimit</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>. Valid naming values are displayed in the <a>Ulimit</a> data type.
+        /// A list of <c>ulimits</c> to set in the container. If a <c>ulimit</c> value is specified
+        /// in a task definition, it overrides the default values set by Docker. This parameter
+        /// maps to <c>Ulimits</c> in the docker container create command and the <c>--ulimit</c>
+        /// option to docker run. Valid naming values are displayed in the <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Ulimit.html">Ulimit</a>
+        /// data type.
         /// </para>
         ///  
         /// <para>
         /// Amazon ECS tasks hosted on Fargate use the default resource limit values set by the
-        /// operating system with the exception of the <code>nofile</code> resource limit parameter
-        /// which Fargate overrides. The <code>nofile</code> resource limit sets a restriction
-        /// on the number of open files that a container can use. The default <code>nofile</code>
-        /// soft limit is <code>1024</code> and the default hard limit is <code>4096</code>.
+        /// operating system with the exception of the <c>nofile</c> resource limit parameter
+        /// which Fargate overrides. The <c>nofile</c> resource limit sets a restriction on the
+        /// number of open files that a container can use. The default <c>nofile</c> soft limit
+        /// is <c> 65535</c> and the default hard limit is <c>65535</c>.
         /// </para>
         ///  
         /// <para>
         /// This parameter requires version 1.18 of the Docker Remote API or greater on your container
         /// instance. To check the Docker Remote API version on your container instance, log in
-        /// to your container instance and run the following command: <code>sudo docker version
-        /// --format '{{.Server.APIVersion}}'</code> 
+        /// to your container instance and run the following command: <c>sudo docker version --format
+        /// '{{.Server.APIVersion}}'</c> 
         /// </para>
         ///  <note> 
         /// <para>
@@ -1411,51 +1347,48 @@ namespace Amazon.ECS.Model
         // Check to see if Ulimits property is set
         internal bool IsSetUlimits()
         {
-            return this._ulimits != null && this._ulimits.Count > 0; 
+            return this._ulimits != null && (this._ulimits.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property User. 
         /// <para>
-        /// The user to use inside the container. This parameter maps to <code>User</code> in
-        /// the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--user</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// The user to use inside the container. This parameter maps to <c>User</c> in the docker
+        /// container create command and the <c>--user</c> option to docker run.
         /// </para>
         ///  <important> 
         /// <para>
-        /// When running tasks using the <code>host</code> network mode, don't run containers
-        /// using the root user (UID 0). We recommend using a non-root user for better security.
+        /// When running tasks using the <c>host</c> network mode, don't run containers using
+        /// the root user (UID 0). We recommend using a non-root user for better security.
         /// </para>
         ///  </important> 
         /// <para>
-        /// You can specify the <code>user</code> using the following formats. If specifying a
-        /// UID or GID, you must specify it as a positive integer.
+        /// You can specify the <c>user</c> using the following formats. If specifying a UID or
+        /// GID, you must specify it as a positive integer.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>user</code> 
+        ///  <c>user</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>user:group</code> 
+        ///  <c>user:group</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>uid</code> 
+        ///  <c>uid</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>uid:gid</code> 
+        ///  <c>uid:gid</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>user:gid</code> 
+        ///  <c>user:gid</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>uid:group</code> 
+        ///  <c>uid:group</c> 
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
@@ -1476,13 +1409,35 @@ namespace Amazon.ECS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property VersionConsistency. 
+        /// <para>
+        /// Specifies whether Amazon ECS will resolve the container image tag provided in the
+        /// container definition to an image digest. By default, the value is <c>enabled</c>.
+        /// If you set the value for a container as <c>disabled</c>, Amazon ECS will not resolve
+        /// the provided container image tag to a digest and will use the original image URI specified
+        /// in the container definition for deployment. For more information about container image
+        /// resolution, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-ecs.html#deployment-container-image-stability">Container
+        /// image resolution</a> in the <i>Amazon ECS Developer Guide</i>.
+        /// </para>
+        /// </summary>
+        public VersionConsistency VersionConsistency
+        {
+            get { return this._versionConsistency; }
+            set { this._versionConsistency = value; }
+        }
+
+        // Check to see if VersionConsistency property is set
+        internal bool IsSetVersionConsistency()
+        {
+            return this._versionConsistency != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property VolumesFrom. 
         /// <para>
-        /// Data volumes to mount from another container. This parameter maps to <code>VolumesFrom</code>
-        /// in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--volumes-from</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// Data volumes to mount from another container. This parameter maps to <c>VolumesFrom</c>
+        /// in the docker container create command and the <c>--volumes-from</c> option to docker
+        /// run.
         /// </para>
         /// </summary>
         public List<VolumeFrom> VolumesFrom
@@ -1494,17 +1449,15 @@ namespace Amazon.ECS.Model
         // Check to see if VolumesFrom property is set
         internal bool IsSetVolumesFrom()
         {
-            return this._volumesFrom != null && this._volumesFrom.Count > 0; 
+            return this._volumesFrom != null && (this._volumesFrom.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property WorkingDirectory. 
         /// <para>
         /// The working directory to run commands inside the container in. This parameter maps
-        /// to <code>WorkingDir</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--workdir</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// to <c>WorkingDir</c> in the docker container create command and the <c>--workdir</c>
+        /// option to docker run.
         /// </para>
         /// </summary>
         public string WorkingDirectory

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchain.Model
 {
     /// <summary>
@@ -44,9 +45,9 @@ namespace Amazon.ManagedBlockchain.Model
         /// Gets and sets the property ApprovalThresholdPolicy. 
         /// <para>
         /// Defines the rules for the network for voting on proposals, such as the percentage
-        /// of <code>YES</code> votes required for the proposal to be approved and the duration
-        /// of the proposal. The policy applies to all proposals and is specified when the network
-        /// is created.
+        /// of <c>YES</c> votes required for the proposal to be approved and the duration of the
+        /// proposal. The policy applies to all proposals and is specified when the network is
+        /// created.
         /// </para>
         /// </summary>
         public ApprovalThresholdPolicy ApprovalThresholdPolicy

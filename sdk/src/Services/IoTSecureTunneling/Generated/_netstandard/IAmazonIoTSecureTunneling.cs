@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.IoTSecureTunneling.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.IoTSecureTunneling
 {
     /// <summary>
-    /// Interface for accessing IoTSecureTunneling
+    /// <para>Interface for accessing IoTSecureTunneling</para>
     ///
     /// IoT Secure Tunneling 
     /// <para>
@@ -55,9 +56,9 @@ namespace Amazon.IoTSecureTunneling
 
 
         /// <summary>
-        /// Closes a tunnel identified by the unique tunnel id. When a <code>CloseTunnel</code>
-        /// request is received, we close the WebSocket connections between the client and proxy
-        /// server so no data can be transmitted.
+        /// Closes a tunnel identified by the unique tunnel id. When a <c>CloseTunnel</c> request
+        /// is received, we close the WebSocket connections between the client and proxy server
+        /// so no data can be transmitted.
         /// 
         ///  
         /// <para>

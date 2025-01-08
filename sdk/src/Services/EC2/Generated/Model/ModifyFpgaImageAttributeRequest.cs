@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -40,9 +41,9 @@ namespace Amazon.EC2.Model
         private LoadPermissionModifications _loadPermission;
         private string _name;
         private OperationType _operationType;
-        private List<string> _productCodes = new List<string>();
-        private List<string> _userGroups = new List<string>();
-        private List<string> _userIds = new List<string>();
+        private List<string> _productCodes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _userGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _userIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Attribute. 
@@ -157,7 +158,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property ProductCodes. 
         /// <para>
         /// The product codes. After you add a product code to an AFI, it can't be removed. This
-        /// parameter is valid only when modifying the <code>productCodes</code> attribute.
+        /// parameter is valid only when modifying the <c>productCodes</c> attribute.
         /// </para>
         /// </summary>
         public List<string> ProductCodes
@@ -169,13 +170,13 @@ namespace Amazon.EC2.Model
         // Check to see if ProductCodes property is set
         internal bool IsSetProductCodes()
         {
-            return this._productCodes != null && this._productCodes.Count > 0; 
+            return this._productCodes != null && (this._productCodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UserGroups. 
         /// <para>
-        /// The user groups. This parameter is valid only when modifying the <code>loadPermission</code>
+        /// The user groups. This parameter is valid only when modifying the <c>loadPermission</c>
         /// attribute.
         /// </para>
         /// </summary>
@@ -188,14 +189,14 @@ namespace Amazon.EC2.Model
         // Check to see if UserGroups property is set
         internal bool IsSetUserGroups()
         {
-            return this._userGroups != null && this._userGroups.Count > 0; 
+            return this._userGroups != null && (this._userGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UserIds. 
         /// <para>
         /// The Amazon Web Services account IDs. This parameter is valid only when modifying the
-        /// <code>loadPermission</code> attribute.
+        /// <c>loadPermission</c> attribute.
         /// </para>
         /// </summary>
         public List<string> UserIds
@@ -207,7 +208,7 @@ namespace Amazon.EC2.Model
         // Check to see if UserIds property is set
         internal bool IsSetUserIds()
         {
-            return this._userIds != null && this._userIds.Count > 0; 
+            return this._userIds != null && (this._userIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

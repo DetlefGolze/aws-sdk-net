@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -40,14 +41,14 @@ namespace Amazon.FSx.Model
         private string _name;
         private StorageVirtualMachineRootVolumeSecurityStyle _rootVolumeSecurityStyle;
         private string _svmAdminPassword;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ActiveDirectoryConfiguration. 
         /// <para>
         /// Describes the self-managed Microsoft Active Directory to which you want to join the
         /// SVM. Joining an Active Directory provides user authentication and access control for
-        /// SMB clients, including Microsoft Windows and macOS client accessing the file system.
+        /// SMB clients, including Microsoft Windows and macOS clients accessing the file system.
         /// </para>
         /// </summary>
         public CreateSvmActiveDirectoryConfiguration ActiveDirectoryConfiguration
@@ -120,20 +121,20 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>UNIX</code> if the file system is managed by a UNIX administrator, the majority
-        /// of users are NFS clients, and an application accessing the data uses a UNIX user as
-        /// the service account.
+        ///  <c>UNIX</c> if the file system is managed by a UNIX administrator, the majority of
+        /// users are NFS clients, and an application accessing the data uses a UNIX user as the
+        /// service account.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NTFS</code> if the file system is managed by a Windows administrator, the majority
-        /// of users are SMB clients, and an application accessing the data uses a Windows user
-        /// as the service account.
+        ///  <c>NTFS</c> if the file system is managed by a Microsoft Windows administrator, the
+        /// majority of users are SMB clients, and an application accessing the data uses a Microsoft
+        /// Windows user as the service account.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MIXED</code> if the file system is managed by both UNIX and Windows administrators
-        /// and users consist of both NFS and SMB clients.
+        ///  <c>MIXED</c> This is an advanced setting. For more information, see <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-security-style.html">Volume
+        /// security style</a> in the Amazon FSx for NetApp ONTAP User Guide.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -153,7 +154,7 @@ namespace Amazon.FSx.Model
         /// Gets and sets the property SvmAdminPassword. 
         /// <para>
         /// The password to use when managing the SVM using the NetApp ONTAP CLI or REST API.
-        /// If you do not specify a password, you can still use the file system's <code>fsxadmin</code>
+        /// If you do not specify a password, you can still use the file system's <c>fsxadmin</c>
         /// user to manage the SVM.
         /// </para>
         /// </summary>
@@ -183,7 +184,7 @@ namespace Amazon.FSx.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

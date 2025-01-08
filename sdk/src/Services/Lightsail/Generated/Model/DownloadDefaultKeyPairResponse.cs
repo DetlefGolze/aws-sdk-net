@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -76,7 +77,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property PublicKeyBase64. 
         /// <para>
-        /// A base64-encoded public key of the <code>ssh-rsa</code> type.
+        /// A base64-encoded public key of the <c>ssh-rsa</c> type.
         /// </para>
         /// </summary>
         public string PublicKeyBase64

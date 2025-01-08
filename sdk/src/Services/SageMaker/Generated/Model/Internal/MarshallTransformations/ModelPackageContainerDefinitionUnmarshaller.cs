@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ModelPackageContainerDefinition Unmarshall(JsonUnmarshallerContext context)
         {
+            ModelPackageContainerDefinition unmarshalledObject = new ModelPackageContainerDefinition();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ModelPackageContainerDefinition unmarshalledObject = new ModelPackageContainerDefinition();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -106,6 +108,18 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     unmarshalledObject.ImageDigest = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ModelDataETag", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ModelDataETag = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ModelDataSource", targetDepth))
+                {
+                    var unmarshaller = ModelDataSourceUnmarshaller.Instance;
+                    unmarshalledObject.ModelDataSource = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ModelDataUrl", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -131,7 +145,6 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

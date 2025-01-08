@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.KendraRanking
 {
     /// <summary>
-    /// Implementation for accessing KendraRanking
+    /// <para>Implementation for accessing KendraRanking</para>
     ///
     /// Amazon Kendra Intelligent Ranking uses Amazon Kendra semantic search capabilities
     /// to intelligently re-rank a search service's results.
@@ -268,14 +269,14 @@ namespace Amazon.KendraRanking
 
         /// <summary>
         /// Creates a rescore execution plan. A rescore execution plan is an Amazon Kendra Intelligent
-        /// Ranking resource used for provisioning the <code>Rescore</code> API. You set the number
+        /// Ranking resource used for provisioning the <c>Rescore</c> API. You set the number
         /// of capacity units that you require for Amazon Kendra Intelligent Ranking to rescore
         /// or re-rank a search service's results.
         /// 
         ///  
         /// <para>
-        /// For an example of using the <code>CreateRescoreExecutionPlan</code> API, including
-        /// using the Python and Java SDKs, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/search-service-rerank.html">Semantically
+        /// For an example of using the <c>CreateRescoreExecutionPlan</c> API, including using
+        /// the Python and Java SDKs, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/search-service-rerank.html">Semantically
         /// ranking a search service's results</a>.
         /// </para>
         /// </summary>
@@ -359,7 +360,7 @@ namespace Amazon.KendraRanking
 
         /// <summary>
         /// Deletes a rescore execution plan. A rescore execution plan is an Amazon Kendra Intelligent
-        /// Ranking resource used for provisioning the <code>Rescore</code> API.
+        /// Ranking resource used for provisioning the <c>Rescore</c> API.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteRescoreExecutionPlan service method.</param>
         /// 
@@ -439,8 +440,7 @@ namespace Amazon.KendraRanking
 
         /// <summary>
         /// Gets information about a rescore execution plan. A rescore execution plan is an Amazon
-        /// Kendra Intelligent Ranking resource used for provisioning the <code>Rescore</code>
-        /// API.
+        /// Kendra Intelligent Ranking resource used for provisioning the <c>Rescore</c> API.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeRescoreExecutionPlan service method.</param>
         /// 
@@ -516,7 +516,7 @@ namespace Amazon.KendraRanking
 
         /// <summary>
         /// Lists your rescore execution plans. A rescore execution plan is an Amazon Kendra Intelligent
-        /// Ranking resource used for provisioning the <code>Rescore</code> API.
+        /// Ranking resource used for provisioning the <c>Rescore</c> API.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListRescoreExecutionPlans service method.</param>
         /// 
@@ -745,7 +745,7 @@ namespace Amazon.KendraRanking
 
         /// <summary>
         /// Adds a specified tag to a specified rescore execution plan. A rescore execution plan
-        /// is an Amazon Kendra Intelligent Ranking resource used for provisioning the <code>Rescore</code>
+        /// is an Amazon Kendra Intelligent Ranking resource used for provisioning the <c>Rescore</c>
         /// API. If the tag already exists, the existing value is replaced with the new value.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the TagResource service method.</param>
@@ -822,8 +822,7 @@ namespace Amazon.KendraRanking
 
         /// <summary>
         /// Removes a tag from a rescore execution plan. A rescore execution plan is an Amazon
-        /// Kendra Intelligent Ranking resource used for provisioning the <code>Rescore</code>
-        /// operation.
+        /// Kendra Intelligent Ranking resource used for provisioning the <c>Rescore</c> operation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
         /// 
@@ -899,9 +898,9 @@ namespace Amazon.KendraRanking
 
         /// <summary>
         /// Updates a rescore execution plan. A rescore execution plan is an Amazon Kendra Intelligent
-        /// Ranking resource used for provisioning the <code>Rescore</code> API. You can update
-        /// the number of capacity units you require for Amazon Kendra Intelligent Ranking to
-        /// rescore or re-rank a search service's results.
+        /// Ranking resource used for provisioning the <c>Rescore</c> API. You can update the
+        /// number of capacity units you require for Amazon Kendra Intelligent Ranking to rescore
+        /// or re-rank a search service's results.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateRescoreExecutionPlan service method.</param>
         /// 
@@ -992,11 +991,11 @@ namespace Amazon.KendraRanking
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

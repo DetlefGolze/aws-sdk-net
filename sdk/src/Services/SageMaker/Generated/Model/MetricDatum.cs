@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -82,7 +83,7 @@ namespace Amazon.SageMaker.Model
         ///  <note> 
         /// <para>
         /// For definitions of the standard metrics, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-model-support-validation.html#autopilot-metrics">
-        /// <code>Autopilot candidate metrics</code> </a>.
+        /// <c>Autopilot candidate metrics</c> </a>.
         /// </para>
         ///  </note>
         /// </summary>

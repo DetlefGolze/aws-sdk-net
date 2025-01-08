@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the accessanalyzer-2019-11-01.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AccessAnalyzer.Model
 {
     /// <summary>
@@ -24,6 +25,16 @@ namespace Amazon.AccessAnalyzer.Model
     ///</summary>
     public interface IAccessAnalyzerPaginatorFactory
     {
+
+        /// <summary>
+        /// Paginator for GetFindingRecommendation operation
+        ///</summary>
+        IGetFindingRecommendationPaginator GetFindingRecommendation(GetFindingRecommendationRequest request);
+
+        /// <summary>
+        /// Paginator for GetFindingV2 operation
+        ///</summary>
+        IGetFindingV2Paginator GetFindingV2(GetFindingV2Request request);
 
         /// <summary>
         /// Paginator for ListAccessPreviewFindings operation
@@ -54,6 +65,11 @@ namespace Amazon.AccessAnalyzer.Model
         /// Paginator for ListFindings operation
         ///</summary>
         IListFindingsPaginator ListFindings(ListFindingsRequest request);
+
+        /// <summary>
+        /// Paginator for ListFindingsV2 operation
+        ///</summary>
+        IListFindingsV2Paginator ListFindingsV2(ListFindingsV2Request request);
 
         /// <summary>
         /// Paginator for ListPolicyGenerations operation

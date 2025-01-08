@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// A <code>DataSourceSummary</code> object that returns a summary of a data source.
+    /// A <c>DataSourceSummary</c> object that returns a summary of a data source.
     /// </summary>
     public partial class DataSourceSummary
     {

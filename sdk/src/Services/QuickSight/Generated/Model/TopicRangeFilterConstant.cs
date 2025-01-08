@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property ConstantType. 
         /// <para>
         /// The data type of the constant value that is used in a range filter. Valid values for
-        /// this structure are <code>RANGE</code>.
+        /// this structure are <c>RANGE</c>.
         /// </para>
         /// </summary>
         public ConstantType ConstantType

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.CloudFront.Model
     ///  
     /// <para>
     /// To delete an origin request policy, you must provide the policy's identifier and version.
-    /// To get the identifier, you can use <code>ListOriginRequestPolicies</code> or <code>GetOriginRequestPolicy</code>.
+    /// To get the identifier, you can use <c>ListOriginRequestPolicies</c> or <c>GetOriginRequestPolicy</c>.
     /// </para>
     /// </summary>
     public partial class DeleteOriginRequestPolicyRequest : AmazonCloudFrontRequest
@@ -53,7 +54,7 @@ namespace Amazon.CloudFront.Model
         /// Gets and sets the property Id. 
         /// <para>
         /// The unique identifier for the origin request policy that you are deleting. To get
-        /// the identifier, you can use <code>ListOriginRequestPolicies</code>.
+        /// the identifier, you can use <c>ListOriginRequestPolicies</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -73,8 +74,8 @@ namespace Amazon.CloudFront.Model
         /// Gets and sets the property IfMatch. 
         /// <para>
         /// The version of the origin request policy that you are deleting. The version is the
-        /// origin request policy's <code>ETag</code> value, which you can get using <code>ListOriginRequestPolicies</code>,
-        /// <code>GetOriginRequestPolicy</code>, or <code>GetOriginRequestPolicyConfig</code>.
+        /// origin request policy's <c>ETag</c> value, which you can get using <c>ListOriginRequestPolicies</c>,
+        /// <c>GetOriginRequestPolicy</c>, or <c>GetOriginRequestPolicyConfig</c>.
         /// </para>
         /// </summary>
         public string IfMatch
@@ -86,7 +87,7 @@ namespace Amazon.CloudFront.Model
         // Check to see if IfMatch property is set
         internal bool IsSetIfMatch()
         {
-            return this._ifMatch != null;
+            return !string.IsNullOrEmpty(this._ifMatch);
         }
 
     }

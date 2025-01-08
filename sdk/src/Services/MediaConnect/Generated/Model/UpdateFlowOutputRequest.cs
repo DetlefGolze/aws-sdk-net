@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaConnect.Model
 {
     /// <summary>
@@ -34,15 +35,16 @@ namespace Amazon.MediaConnect.Model
     /// </summary>
     public partial class UpdateFlowOutputRequest : AmazonMediaConnectRequest
     {
-        private List<string> _cidrAllowList = new List<string>();
+        private List<string> _cidrAllowList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _description;
         private string _destination;
         private UpdateEncryption _encryption;
         private string _flowArn;
         private int? _maxLatency;
-        private List<MediaStreamOutputConfigurationRequest> _mediaStreamOutputConfigurations = new List<MediaStreamOutputConfigurationRequest>();
+        private List<MediaStreamOutputConfigurationRequest> _mediaStreamOutputConfigurations = AWSConfigs.InitializeCollections ? new List<MediaStreamOutputConfigurationRequest>() : null;
         private int? _minLatency;
         private string _outputArn;
+        private OutputStatus _outputStatus;
         private int? _port;
         private Protocol _protocol;
         private string _remoteId;
@@ -66,7 +68,7 @@ namespace Amazon.MediaConnect.Model
         // Check to see if CidrAllowList property is set
         internal bool IsSetCidrAllowList()
         {
-            return this._cidrAllowList != null && this._cidrAllowList.Count > 0; 
+            return this._cidrAllowList != null && (this._cidrAllowList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -165,7 +167,7 @@ namespace Amazon.MediaConnect.Model
         // Check to see if MediaStreamOutputConfigurations property is set
         internal bool IsSetMediaStreamOutputConfigurations()
         {
-            return this._mediaStreamOutputConfigurations != null && this._mediaStreamOutputConfigurations.Count > 0; 
+            return this._mediaStreamOutputConfigurations != null && (this._mediaStreamOutputConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -201,6 +203,23 @@ namespace Amazon.MediaConnect.Model
         internal bool IsSetOutputArn()
         {
             return this._outputArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OutputStatus. An indication of whether the output should
+        /// transmit data or not. If you don't specify the outputStatus field in your request,
+        /// MediaConnect leaves the value unchanged.
+        /// </summary>
+        public OutputStatus OutputStatus
+        {
+            get { return this._outputStatus; }
+            set { this._outputStatus = value; }
+        }
+
+        // Check to see if OutputStatus property is set
+        internal bool IsSetOutputStatus()
+        {
+            return this._outputStatus != null;
         }
 
         /// <summary>

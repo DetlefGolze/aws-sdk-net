@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Tnb.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Tnb.Model
     /// </summary>
     public partial class ListSolNetworkInstancesResponse : AmazonWebServiceResponse
     {
-        private List<ListSolNetworkInstanceInfo> _networkInstances = new List<ListSolNetworkInstanceInfo>();
+        private List<ListSolNetworkInstanceInfo> _networkInstances = AWSConfigs.InitializeCollections ? new List<ListSolNetworkInstanceInfo>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.Tnb.Model
         // Check to see if NetworkInstances property is set
         internal bool IsSetNetworkInstances()
         {
-            return this._networkInstances != null && this._networkInstances.Count > 0; 
+            return this._networkInstances != null && (this._networkInstances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to use to retrieve the next page of results. This value is <code>null</code>
-        /// when there are no more results to return.
+        /// The token to use to retrieve the next page of results. This value is <c>null</c> when
+        /// there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken

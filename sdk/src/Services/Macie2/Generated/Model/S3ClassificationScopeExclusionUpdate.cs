@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Macie2.Model
     /// </summary>
     public partial class S3ClassificationScopeExclusionUpdate
     {
-        private List<string> _bucketNames = new List<string>();
+        private List<string> _bucketNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ClassificationScopeUpdateOperation _operation;
 
         /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.Macie2.Model
         /// Depending on the value specified for the update operation (ClassificationScopeUpdateOperation),
         /// an array of strings that: lists the names of buckets to add or remove from the list,
         /// or specifies a new set of bucket names that overwrites all existing names in the list.
-        /// Each string must be the full name of an S3 bucket. Values are case sensitive.
+        /// Each string must be the full name of an existing S3 bucket. Values are case sensitive.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -56,7 +57,7 @@ namespace Amazon.Macie2.Model
         // Check to see if BucketNames property is set
         internal bool IsSetBucketNames()
         {
-            return this._bucketNames != null && this._bucketNames.Count > 0; 
+            return this._bucketNames != null && (this._bucketNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

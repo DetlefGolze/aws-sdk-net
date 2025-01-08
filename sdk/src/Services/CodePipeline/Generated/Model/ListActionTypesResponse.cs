@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
-    /// Represents the output of a <code>ListActionTypes</code> action.
+    /// Represents the output of a <c>ListActionTypes</c> action.
     /// </summary>
     public partial class ListActionTypesResponse : AmazonWebServiceResponse
     {
-        private List<ActionType> _actionTypes = new List<ActionType>();
+        private List<ActionType> _actionTypes = AWSConfigs.InitializeCollections ? new List<ActionType>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace Amazon.CodePipeline.Model
         // Check to see if ActionTypes property is set
         internal bool IsSetActionTypes()
         {
-            return this._actionTypes != null && this._actionTypes.Count > 0; 
+            return this._actionTypes != null && (this._actionTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

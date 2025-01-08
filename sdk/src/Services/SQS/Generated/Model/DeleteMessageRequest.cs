@@ -26,24 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SQS.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteMessage operation.
     /// Deletes the specified message from the specified queue. To select the message to delete,
-    /// use the <code>ReceiptHandle</code> of the message (<i>not</i> the <code>MessageId</code>
-    /// which you receive when you send the message). Amazon SQS can delete a message from
-    /// a queue even if a visibility timeout setting causes the message to be locked by another
-    /// consumer. Amazon SQS automatically deletes messages left in a queue longer than the
-    /// retention period configured for the queue. 
+    /// use the <c>ReceiptHandle</c> of the message (<i>not</i> the <c>MessageId</c> which
+    /// you receive when you send the message). Amazon SQS can delete a message from a queue
+    /// even if a visibility timeout setting causes the message to be locked by another consumer.
+    /// Amazon SQS automatically deletes messages left in a queue longer than the retention
+    /// period configured for the queue. 
     /// 
     ///  <note> 
     /// <para>
-    /// The <code>ReceiptHandle</code> is associated with a <i>specific instance</i> of receiving
-    /// a message. If you receive a message more than once, the <code>ReceiptHandle</code>
-    /// is different each time you receive a message. When you use the <code>DeleteMessage</code>
-    /// action, you must provide the most recently received <code>ReceiptHandle</code> for
-    /// the message (otherwise, the request succeeds, but the message will not be deleted).
+    /// Each time you receive a message, meaning when a consumer retrieves a message from
+    /// the queue, it comes with a unique <c>ReceiptHandle</c>. If you receive the same message
+    /// more than once, you will get a different <c>ReceiptHandle</c> each time. When you
+    /// want to delete a message using the <c>DeleteMessage</c> action, you must use the <c>ReceiptHandle</c>
+    /// from the most recent time you received the message. If you use an old <c>ReceiptHandle</c>,
+    /// the request will succeed, but the message might not be deleted. 
     /// </para>
     ///  
     /// <para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.ElasticMapReduce.Model
     /// </summary>
     public partial class Ec2InstanceAttributes
     {
-        private List<string> _additionalMasterSecurityGroups = new List<string>();
-        private List<string> _additionalSlaveSecurityGroups = new List<string>();
+        private List<string> _additionalMasterSecurityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _additionalSlaveSecurityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _ec2AvailabilityZone;
         private string _ec2KeyName;
         private string _ec2SubnetId;
         private string _emrManagedMasterSecurityGroup;
         private string _emrManagedSlaveSecurityGroup;
         private string _iamInstanceProfile;
-        private List<string> _requestedEc2AvailabilityZones = new List<string>();
-        private List<string> _requestedEc2SubnetIds = new List<string>();
+        private List<string> _requestedEc2AvailabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _requestedEc2SubnetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _serviceAccessSecurityGroup;
 
         /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if AdditionalMasterSecurityGroups property is set
         internal bool IsSetAdditionalMasterSecurityGroups()
         {
-            return this._additionalMasterSecurityGroups != null && this._additionalMasterSecurityGroups.Count > 0; 
+            return this._additionalMasterSecurityGroups != null && (this._additionalMasterSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -79,7 +80,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if AdditionalSlaveSecurityGroups property is set
         internal bool IsSetAdditionalSlaveSecurityGroups()
         {
-            return this._additionalSlaveSecurityGroups != null && this._additionalSlaveSecurityGroups.Count > 0; 
+            return this._additionalSlaveSecurityGroups != null && (this._additionalSlaveSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -200,10 +201,10 @@ namespace Amazon.ElasticMapReduce.Model
         /// Applies to clusters configured with the instance fleets option. Specifies one or more
         /// Availability Zones in which to launch Amazon EC2 cluster instances when the EC2-Classic
         /// network configuration is supported. Amazon EMR chooses the Availability Zone with
-        /// the best fit from among the list of <code>RequestedEc2AvailabilityZones</code>, and
-        /// then launches all cluster instances within that Availability Zone. If you do not specify
-        /// this value, Amazon EMR chooses the Availability Zone for you. <code>RequestedEc2SubnetIDs</code>
-        /// and <code>RequestedEc2AvailabilityZones</code> cannot be specified together.
+        /// the best fit from among the list of <c>RequestedEc2AvailabilityZones</c>, and then
+        /// launches all cluster instances within that Availability Zone. If you do not specify
+        /// this value, Amazon EMR chooses the Availability Zone for you. <c>RequestedEc2SubnetIDs</c>
+        /// and <c>RequestedEc2AvailabilityZones</c> cannot be specified together.
         /// </para>
         /// </summary>
         public List<string> RequestedEc2AvailabilityZones
@@ -215,7 +216,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if RequestedEc2AvailabilityZones property is set
         internal bool IsSetRequestedEc2AvailabilityZones()
         {
-            return this._requestedEc2AvailabilityZones != null && this._requestedEc2AvailabilityZones.Count > 0; 
+            return this._requestedEc2AvailabilityZones != null && (this._requestedEc2AvailabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -224,12 +225,12 @@ namespace Amazon.ElasticMapReduce.Model
         /// Applies to clusters configured with the instance fleets option. Specifies the unique
         /// identifier of one or more Amazon EC2 subnets in which to launch Amazon EC2 cluster
         /// instances. Subnets must exist within the same VPC. Amazon EMR chooses the Amazon EC2
-        /// subnet with the best fit from among the list of <code>RequestedEc2SubnetIds</code>,
-        /// and then launches all cluster instances within that Subnet. If this value is not specified,
+        /// subnet with the best fit from among the list of <c>RequestedEc2SubnetIds</c>, and
+        /// then launches all cluster instances within that Subnet. If this value is not specified,
         /// and the account and Region support EC2-Classic networks, the cluster launches instances
-        /// in the EC2-Classic network and uses <code>RequestedEc2AvailabilityZones</code> instead
-        /// of this setting. If EC2-Classic is not supported, and no Subnet is specified, Amazon
-        /// EMR chooses the subnet for you. <code>RequestedEc2SubnetIDs</code> and <code>RequestedEc2AvailabilityZones</code>
+        /// in the EC2-Classic network and uses <c>RequestedEc2AvailabilityZones</c> instead of
+        /// this setting. If EC2-Classic is not supported, and no Subnet is specified, Amazon
+        /// EMR chooses the subnet for you. <c>RequestedEc2SubnetIDs</c> and <c>RequestedEc2AvailabilityZones</c>
         /// cannot be specified together.
         /// </para>
         /// </summary>
@@ -242,7 +243,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if RequestedEc2SubnetIds property is set
         internal bool IsSetRequestedEc2SubnetIds()
         {
-            return this._requestedEc2SubnetIds != null && this._requestedEc2SubnetIds.Count > 0; 
+            return this._requestedEc2SubnetIds != null && (this._requestedEc2SubnetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

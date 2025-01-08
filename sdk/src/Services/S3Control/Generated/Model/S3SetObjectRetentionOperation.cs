@@ -26,13 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
     /// Contains the configuration parameters for the Object Lock retention action for an
-    /// S3 Batch Operations job. Batch Operations passes every object to the underlying <code>PutObjectRetention</code>
+    /// S3 Batch Operations job. Batch Operations passes every object to the underlying <c>PutObjectRetention</c>
     /// API operation. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-retention-date.html">Using
     /// S3 Object Lock retention with S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// This functionality is not supported by directory buckets.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class S3SetObjectRetentionOperation
     {
@@ -43,7 +50,7 @@ namespace Amazon.S3Control.Model
         /// Gets and sets the property BypassGovernanceRetention. 
         /// <para>
         /// Indicates if the action should be applied to objects in the Batch Operations job even
-        /// if they have Object Lock <code> GOVERNANCE</code> type in place.
+        /// if they have Object Lock <c> GOVERNANCE</c> type in place.
         /// </para>
         /// </summary>
         public bool BypassGovernanceRetention

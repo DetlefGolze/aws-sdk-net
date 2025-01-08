@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the kafka-2018-11-14.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Kafka.Model
 {
     /// <summary>
@@ -69,6 +70,11 @@ namespace Amazon.Kafka.Model
         /// Paginator for ListNodes operation
         ///</summary>
         IListNodesPaginator ListNodes(ListNodesRequest request);
+
+        /// <summary>
+        /// Paginator for ListReplicators operation
+        ///</summary>
+        IListReplicatorsPaginator ListReplicators(ListReplicatorsRequest request);
 
         /// <summary>
         /// Paginator for ListScramSecrets operation

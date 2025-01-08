@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property Policy. 
         /// <para>
-        /// An IAM policy.
+        /// An IAM policy. The policy string in JSON must not contain newlines or blank lines.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=10000)]
@@ -61,8 +62,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The ID or Amazon Resource Name (ARN) of the service network or service for which the
-        /// policy is created.
+        /// The ID or ARN of the service network or service for which the policy is created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=200)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.QuickSight.Model
     /// You can use customizations for your Amazon Web Services account or, if you specify
     /// a namespace, for a Amazon QuickSight namespace instead. Customizations that apply
     /// to a namespace override customizations that apply to an Amazon Web Services account.
-    /// To find out which customizations apply, use the <code>DescribeAccountCustomization</code>
+    /// To find out which customizations apply, use the <c>DescribeAccountCustomization</c>
     /// API operation. 
     /// </para>
     /// </summary>

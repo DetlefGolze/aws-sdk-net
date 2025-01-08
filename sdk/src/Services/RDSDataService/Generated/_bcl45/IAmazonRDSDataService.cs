@@ -26,24 +26,33 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.RDSDataService.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.RDSDataService
 {
     /// <summary>
-    /// Interface for accessing RDSDataService
+    /// <para>Interface for accessing RDSDataService</para>
     ///
-    /// Amazon RDS Data Service 
+    /// RDS Data API 
     /// <para>
-    /// Amazon RDS provides an HTTP endpoint to run SQL statements on an Amazon Aurora Serverless
-    /// v1 DB cluster. To run these statements, you work with the Data Service API.
+    /// Amazon RDS provides an HTTP endpoint to run SQL statements on an Amazon Aurora DB
+    /// cluster. To run these statements, you use the RDS Data API (Data API).
     /// 
-    ///  <note> 
+    ///  
     /// <para>
-    /// The Data Service API isn't supported on Amazon Aurora Serverless v2 DB clusters.
+    /// Data API is available with the following types of Aurora databases:
     /// </para>
-    ///  </note> 
+    ///  <ul> <li> 
     /// <para>
-    /// For more information about the Data Service API, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html">Using
-    /// the Data API</a> in the <i>Amazon Aurora User Guide</i>.
+    /// Aurora PostgreSQL - Serverless v2, provisioned, and Serverless v1
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Aurora MySQL - Serverless v2, provisioned, and Serverless v1
+    /// </para>
+    ///  </li> </ul> 
+    /// <para>
+    /// For more information about the Data API, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html">Using
+    /// RDS Data API</a> in the <i>Amazon Aurora User Guide</i>.
     /// </para>
     /// 
     /// </para>
@@ -67,7 +76,7 @@ namespace Amazon.RDSDataService
         /// </para>
         ///  <note> 
         /// <para>
-        /// If a call isn't part of a transaction because it doesn't include the <code>transactionID</code>
+        /// If a call isn't part of a transaction because it doesn't include the <c>transactionID</c>
         /// parameter, changes that result from the call are committed automatically.
         /// </para>
         ///  
@@ -90,22 +99,64 @@ namespace Amazon.RDSDataService
         /// 
         /// <returns>The response from the BatchExecuteStatement service method, as returned by RDSDataService.</returns>
         /// <exception cref="Amazon.RDSDataService.Model.AccessDeniedException">
-        /// You do not have sufficient access to perform this action.
+        /// You don't have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.BadRequestException">
-        /// There is an error in the call or in a SQL statement.
+        /// There is an error in the call or in a SQL statement. (This error only appears in calls
+        /// from Aurora Serverless v1 databases.)
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseErrorException">
+        /// There was an error in processing the SQL statement.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseNotFoundException">
+        /// The DB cluster doesn't have a DB instance.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseResumingException">
+        /// A request was canceled because the Aurora Serverless v2 DB instance was in a paused
+        /// state. The Data API request automatically causes the DB instance to begin resuming.
+        /// Wait a few seconds and try again.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseUnavailableException">
+        /// The writer instance in the DB cluster isn't available.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ForbiddenException">
         /// There are insufficient privileges to make the call.
         /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.HttpEndpointNotEnabledException">
+        /// The HTTP endpoint for using RDS Data API isn't enabled for the DB cluster.
+        /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.InternalServerErrorException">
         /// An internal error occurred.
         /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.InvalidSecretException">
+        /// The Secrets Manager secret used with the request isn't valid.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.SecretsErrorException">
+        /// There was a problem with the Secrets Manager secret used with the request, caused
+        /// by one of the following conditions:
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// RDS Data API timed out retrieving the secret.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The secret provided wasn't found.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The secret couldn't be decrypted.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ServiceUnavailableErrorException">
-        /// The service specified by the <code>resourceArn</code> parameter is not available.
+        /// The service specified by the <c>resourceArn</c> parameter isn't available.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.StatementTimeoutException">
         /// The execution of the SQL statement timed out.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.TransactionNotFoundException">
+        /// The transaction ID wasn't found.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/BatchExecuteStatement">REST API Reference for BatchExecuteStatement Operation</seealso>
         BatchExecuteStatementResponse BatchExecuteStatement(BatchExecuteStatementRequest request);
@@ -123,7 +174,7 @@ namespace Amazon.RDSDataService
         /// </para>
         ///  <note> 
         /// <para>
-        /// If a call isn't part of a transaction because it doesn't include the <code>transactionID</code>
+        /// If a call isn't part of a transaction because it doesn't include the <c>transactionID</c>
         /// parameter, changes that result from the call are committed automatically.
         /// </para>
         ///  
@@ -149,22 +200,64 @@ namespace Amazon.RDSDataService
         /// 
         /// <returns>The response from the BatchExecuteStatement service method, as returned by RDSDataService.</returns>
         /// <exception cref="Amazon.RDSDataService.Model.AccessDeniedException">
-        /// You do not have sufficient access to perform this action.
+        /// You don't have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.BadRequestException">
-        /// There is an error in the call or in a SQL statement.
+        /// There is an error in the call or in a SQL statement. (This error only appears in calls
+        /// from Aurora Serverless v1 databases.)
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseErrorException">
+        /// There was an error in processing the SQL statement.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseNotFoundException">
+        /// The DB cluster doesn't have a DB instance.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseResumingException">
+        /// A request was canceled because the Aurora Serverless v2 DB instance was in a paused
+        /// state. The Data API request automatically causes the DB instance to begin resuming.
+        /// Wait a few seconds and try again.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseUnavailableException">
+        /// The writer instance in the DB cluster isn't available.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ForbiddenException">
         /// There are insufficient privileges to make the call.
         /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.HttpEndpointNotEnabledException">
+        /// The HTTP endpoint for using RDS Data API isn't enabled for the DB cluster.
+        /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.InternalServerErrorException">
         /// An internal error occurred.
         /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.InvalidSecretException">
+        /// The Secrets Manager secret used with the request isn't valid.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.SecretsErrorException">
+        /// There was a problem with the Secrets Manager secret used with the request, caused
+        /// by one of the following conditions:
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// RDS Data API timed out retrieving the secret.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The secret provided wasn't found.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The secret couldn't be decrypted.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ServiceUnavailableErrorException">
-        /// The service specified by the <code>resourceArn</code> parameter is not available.
+        /// The service specified by the <c>resourceArn</c> parameter isn't available.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.StatementTimeoutException">
         /// The execution of the SQL statement timed out.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.TransactionNotFoundException">
+        /// The transaction ID wasn't found.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/BatchExecuteStatement">REST API Reference for BatchExecuteStatement Operation</seealso>
         Task<BatchExecuteStatementResponse> BatchExecuteStatementAsync(BatchExecuteStatementRequest request, CancellationToken cancellationToken = default(CancellationToken));
@@ -189,9 +282,9 @@ namespace Amazon.RDSDataService
         /// </para>
         ///  
         /// <para>
-        /// DDL statements inside a transaction cause an implicit commit. We recommend that you
-        /// run each DDL statement in a separate <code>ExecuteStatement</code> call with <code>continueAfterTimeout</code>
-        /// enabled.
+        /// For Aurora MySQL, DDL statements inside a transaction cause an implicit commit. We
+        /// recommend that you run each MySQL DDL statement in a separate <c>ExecuteStatement</c>
+        /// call with <c>continueAfterTimeout</c> enabled.
         /// </para>
         ///  </note>
         /// </summary>
@@ -199,22 +292,64 @@ namespace Amazon.RDSDataService
         /// 
         /// <returns>The response from the BeginTransaction service method, as returned by RDSDataService.</returns>
         /// <exception cref="Amazon.RDSDataService.Model.AccessDeniedException">
-        /// You do not have sufficient access to perform this action.
+        /// You don't have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.BadRequestException">
-        /// There is an error in the call or in a SQL statement.
+        /// There is an error in the call or in a SQL statement. (This error only appears in calls
+        /// from Aurora Serverless v1 databases.)
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseErrorException">
+        /// There was an error in processing the SQL statement.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseNotFoundException">
+        /// The DB cluster doesn't have a DB instance.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseResumingException">
+        /// A request was canceled because the Aurora Serverless v2 DB instance was in a paused
+        /// state. The Data API request automatically causes the DB instance to begin resuming.
+        /// Wait a few seconds and try again.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseUnavailableException">
+        /// The writer instance in the DB cluster isn't available.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ForbiddenException">
         /// There are insufficient privileges to make the call.
         /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.HttpEndpointNotEnabledException">
+        /// The HTTP endpoint for using RDS Data API isn't enabled for the DB cluster.
+        /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.InternalServerErrorException">
         /// An internal error occurred.
         /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.InvalidSecretException">
+        /// The Secrets Manager secret used with the request isn't valid.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.SecretsErrorException">
+        /// There was a problem with the Secrets Manager secret used with the request, caused
+        /// by one of the following conditions:
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// RDS Data API timed out retrieving the secret.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The secret provided wasn't found.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The secret couldn't be decrypted.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ServiceUnavailableErrorException">
-        /// The service specified by the <code>resourceArn</code> parameter is not available.
+        /// The service specified by the <c>resourceArn</c> parameter isn't available.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.StatementTimeoutException">
         /// The execution of the SQL statement timed out.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.TransactionNotFoundException">
+        /// The transaction ID wasn't found.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/BeginTransaction">REST API Reference for BeginTransaction Operation</seealso>
         BeginTransactionResponse BeginTransaction(BeginTransactionRequest request);
@@ -236,9 +371,9 @@ namespace Amazon.RDSDataService
         /// </para>
         ///  
         /// <para>
-        /// DDL statements inside a transaction cause an implicit commit. We recommend that you
-        /// run each DDL statement in a separate <code>ExecuteStatement</code> call with <code>continueAfterTimeout</code>
-        /// enabled.
+        /// For Aurora MySQL, DDL statements inside a transaction cause an implicit commit. We
+        /// recommend that you run each MySQL DDL statement in a separate <c>ExecuteStatement</c>
+        /// call with <c>continueAfterTimeout</c> enabled.
         /// </para>
         ///  </note>
         /// </summary>
@@ -249,22 +384,64 @@ namespace Amazon.RDSDataService
         /// 
         /// <returns>The response from the BeginTransaction service method, as returned by RDSDataService.</returns>
         /// <exception cref="Amazon.RDSDataService.Model.AccessDeniedException">
-        /// You do not have sufficient access to perform this action.
+        /// You don't have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.BadRequestException">
-        /// There is an error in the call or in a SQL statement.
+        /// There is an error in the call or in a SQL statement. (This error only appears in calls
+        /// from Aurora Serverless v1 databases.)
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseErrorException">
+        /// There was an error in processing the SQL statement.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseNotFoundException">
+        /// The DB cluster doesn't have a DB instance.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseResumingException">
+        /// A request was canceled because the Aurora Serverless v2 DB instance was in a paused
+        /// state. The Data API request automatically causes the DB instance to begin resuming.
+        /// Wait a few seconds and try again.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseUnavailableException">
+        /// The writer instance in the DB cluster isn't available.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ForbiddenException">
         /// There are insufficient privileges to make the call.
         /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.HttpEndpointNotEnabledException">
+        /// The HTTP endpoint for using RDS Data API isn't enabled for the DB cluster.
+        /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.InternalServerErrorException">
         /// An internal error occurred.
         /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.InvalidSecretException">
+        /// The Secrets Manager secret used with the request isn't valid.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.SecretsErrorException">
+        /// There was a problem with the Secrets Manager secret used with the request, caused
+        /// by one of the following conditions:
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// RDS Data API timed out retrieving the secret.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The secret provided wasn't found.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The secret couldn't be decrypted.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ServiceUnavailableErrorException">
-        /// The service specified by the <code>resourceArn</code> parameter is not available.
+        /// The service specified by the <c>resourceArn</c> parameter isn't available.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.StatementTimeoutException">
         /// The execution of the SQL statement timed out.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.TransactionNotFoundException">
+        /// The transaction ID wasn't found.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/BeginTransaction">REST API Reference for BeginTransaction Operation</seealso>
         Task<BeginTransactionResponse> BeginTransactionAsync(BeginTransactionRequest request, CancellationToken cancellationToken = default(CancellationToken));
@@ -275,33 +452,69 @@ namespace Amazon.RDSDataService
 
 
         /// <summary>
-        /// Ends a SQL transaction started with the <code>BeginTransaction</code> operation and
-        /// commits the changes.
+        /// Ends a SQL transaction started with the <c>BeginTransaction</c> operation and commits
+        /// the changes.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CommitTransaction service method.</param>
         /// 
         /// <returns>The response from the CommitTransaction service method, as returned by RDSDataService.</returns>
         /// <exception cref="Amazon.RDSDataService.Model.AccessDeniedException">
-        /// You do not have sufficient access to perform this action.
+        /// You don't have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.BadRequestException">
-        /// There is an error in the call or in a SQL statement.
+        /// There is an error in the call or in a SQL statement. (This error only appears in calls
+        /// from Aurora Serverless v1 databases.)
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseErrorException">
+        /// There was an error in processing the SQL statement.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseNotFoundException">
+        /// The DB cluster doesn't have a DB instance.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseUnavailableException">
+        /// The writer instance in the DB cluster isn't available.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ForbiddenException">
         /// There are insufficient privileges to make the call.
         /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.HttpEndpointNotEnabledException">
+        /// The HTTP endpoint for using RDS Data API isn't enabled for the DB cluster.
+        /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.InternalServerErrorException">
         /// An internal error occurred.
         /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.InvalidSecretException">
+        /// The Secrets Manager secret used with the request isn't valid.
+        /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.NotFoundException">
-        /// The <code>resourceArn</code>, <code>secretArn</code>, or <code>transactionId</code>
-        /// value can't be found.
+        /// The <c>resourceArn</c>, <c>secretArn</c>, or <c>transactionId</c> value can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.SecretsErrorException">
+        /// There was a problem with the Secrets Manager secret used with the request, caused
+        /// by one of the following conditions:
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// RDS Data API timed out retrieving the secret.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The secret provided wasn't found.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The secret couldn't be decrypted.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ServiceUnavailableErrorException">
-        /// The service specified by the <code>resourceArn</code> parameter is not available.
+        /// The service specified by the <c>resourceArn</c> parameter isn't available.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.StatementTimeoutException">
         /// The execution of the SQL statement timed out.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.TransactionNotFoundException">
+        /// The transaction ID wasn't found.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/CommitTransaction">REST API Reference for CommitTransaction Operation</seealso>
         CommitTransactionResponse CommitTransaction(CommitTransactionRequest request);
@@ -309,8 +522,8 @@ namespace Amazon.RDSDataService
 
 
         /// <summary>
-        /// Ends a SQL transaction started with the <code>BeginTransaction</code> operation and
-        /// commits the changes.
+        /// Ends a SQL transaction started with the <c>BeginTransaction</c> operation and commits
+        /// the changes.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CommitTransaction service method.</param>
         /// <param name="cancellationToken">
@@ -319,26 +532,62 @@ namespace Amazon.RDSDataService
         /// 
         /// <returns>The response from the CommitTransaction service method, as returned by RDSDataService.</returns>
         /// <exception cref="Amazon.RDSDataService.Model.AccessDeniedException">
-        /// You do not have sufficient access to perform this action.
+        /// You don't have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.BadRequestException">
-        /// There is an error in the call or in a SQL statement.
+        /// There is an error in the call or in a SQL statement. (This error only appears in calls
+        /// from Aurora Serverless v1 databases.)
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseErrorException">
+        /// There was an error in processing the SQL statement.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseNotFoundException">
+        /// The DB cluster doesn't have a DB instance.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseUnavailableException">
+        /// The writer instance in the DB cluster isn't available.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ForbiddenException">
         /// There are insufficient privileges to make the call.
         /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.HttpEndpointNotEnabledException">
+        /// The HTTP endpoint for using RDS Data API isn't enabled for the DB cluster.
+        /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.InternalServerErrorException">
         /// An internal error occurred.
         /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.InvalidSecretException">
+        /// The Secrets Manager secret used with the request isn't valid.
+        /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.NotFoundException">
-        /// The <code>resourceArn</code>, <code>secretArn</code>, or <code>transactionId</code>
-        /// value can't be found.
+        /// The <c>resourceArn</c>, <c>secretArn</c>, or <c>transactionId</c> value can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.SecretsErrorException">
+        /// There was a problem with the Secrets Manager secret used with the request, caused
+        /// by one of the following conditions:
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// RDS Data API timed out retrieving the secret.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The secret provided wasn't found.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The secret couldn't be decrypted.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ServiceUnavailableErrorException">
-        /// The service specified by the <code>resourceArn</code> parameter is not available.
+        /// The service specified by the <c>resourceArn</c> parameter isn't available.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.StatementTimeoutException">
         /// The execution of the SQL statement timed out.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.TransactionNotFoundException">
+        /// The transaction ID wasn't found.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/CommitTransaction">REST API Reference for CommitTransaction Operation</seealso>
         Task<CommitTransactionResponse> CommitTransactionAsync(CommitTransactionRequest request, CancellationToken cancellationToken = default(CancellationToken));
@@ -353,8 +602,9 @@ namespace Amazon.RDSDataService
         /// 
         ///  <note> 
         /// <para>
-        /// This operation is deprecated. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code>
-        /// operation.
+        /// This operation isn't supported for Aurora Serverless v2 and provisioned DB clusters.
+        /// For Aurora Serverless v1 DB clusters, the operation is deprecated. Use the <c>BatchExecuteStatement</c>
+        /// or <c>ExecuteStatement</c> operation.
         /// </para>
         ///  </note>
         /// </summary>
@@ -362,10 +612,11 @@ namespace Amazon.RDSDataService
         /// 
         /// <returns>The response from the ExecuteSql service method, as returned by RDSDataService.</returns>
         /// <exception cref="Amazon.RDSDataService.Model.AccessDeniedException">
-        /// You do not have sufficient access to perform this action.
+        /// You don't have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.BadRequestException">
-        /// There is an error in the call or in a SQL statement.
+        /// There is an error in the call or in a SQL statement. (This error only appears in calls
+        /// from Aurora Serverless v1 databases.)
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ForbiddenException">
         /// There are insufficient privileges to make the call.
@@ -374,7 +625,7 @@ namespace Amazon.RDSDataService
         /// An internal error occurred.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ServiceUnavailableErrorException">
-        /// The service specified by the <code>resourceArn</code> parameter is not available.
+        /// The service specified by the <c>resourceArn</c> parameter isn't available.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/ExecuteSql">REST API Reference for ExecuteSql Operation</seealso>
         [Obsolete("ExecuteSql has been deprecated.  Please use ExecuteStatement or BatchExecuteStatement instead.")]
@@ -387,8 +638,9 @@ namespace Amazon.RDSDataService
         /// 
         ///  <note> 
         /// <para>
-        /// This operation is deprecated. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code>
-        /// operation.
+        /// This operation isn't supported for Aurora Serverless v2 and provisioned DB clusters.
+        /// For Aurora Serverless v1 DB clusters, the operation is deprecated. Use the <c>BatchExecuteStatement</c>
+        /// or <c>ExecuteStatement</c> operation.
         /// </para>
         ///  </note>
         /// </summary>
@@ -399,10 +651,11 @@ namespace Amazon.RDSDataService
         /// 
         /// <returns>The response from the ExecuteSql service method, as returned by RDSDataService.</returns>
         /// <exception cref="Amazon.RDSDataService.Model.AccessDeniedException">
-        /// You do not have sufficient access to perform this action.
+        /// You don't have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.BadRequestException">
-        /// There is an error in the call or in a SQL statement.
+        /// There is an error in the call or in a SQL statement. (This error only appears in calls
+        /// from Aurora Serverless v1 databases.)
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ForbiddenException">
         /// There are insufficient privileges to make the call.
@@ -411,7 +664,7 @@ namespace Amazon.RDSDataService
         /// An internal error occurred.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ServiceUnavailableErrorException">
-        /// The service specified by the <code>resourceArn</code> parameter is not available.
+        /// The service specified by the <c>resourceArn</c> parameter isn't available.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/ExecuteSql">REST API Reference for ExecuteSql Operation</seealso>
         [Obsolete("ExecuteSql has been deprecated.  Please use ExecuteStatement or BatchExecuteStatement instead.")]
@@ -427,7 +680,7 @@ namespace Amazon.RDSDataService
         /// 
         ///  <note> 
         /// <para>
-        /// If a call isn't part of a transaction because it doesn't include the <code>transactionID</code>
+        /// If a call isn't part of a transaction because it doesn't include the <c>transactionID</c>
         /// parameter, changes that result from the call are committed automatically.
         /// </para>
         ///  
@@ -440,22 +693,81 @@ namespace Amazon.RDSDataService
         /// 
         /// <returns>The response from the ExecuteStatement service method, as returned by RDSDataService.</returns>
         /// <exception cref="Amazon.RDSDataService.Model.AccessDeniedException">
-        /// You do not have sufficient access to perform this action.
+        /// You don't have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.BadRequestException">
-        /// There is an error in the call or in a SQL statement.
+        /// There is an error in the call or in a SQL statement. (This error only appears in calls
+        /// from Aurora Serverless v1 databases.)
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseErrorException">
+        /// There was an error in processing the SQL statement.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseNotFoundException">
+        /// The DB cluster doesn't have a DB instance.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseResumingException">
+        /// A request was canceled because the Aurora Serverless v2 DB instance was in a paused
+        /// state. The Data API request automatically causes the DB instance to begin resuming.
+        /// Wait a few seconds and try again.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseUnavailableException">
+        /// The writer instance in the DB cluster isn't available.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ForbiddenException">
         /// There are insufficient privileges to make the call.
         /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.HttpEndpointNotEnabledException">
+        /// The HTTP endpoint for using RDS Data API isn't enabled for the DB cluster.
+        /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.InternalServerErrorException">
         /// An internal error occurred.
         /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.InvalidSecretException">
+        /// The Secrets Manager secret used with the request isn't valid.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.SecretsErrorException">
+        /// There was a problem with the Secrets Manager secret used with the request, caused
+        /// by one of the following conditions:
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// RDS Data API timed out retrieving the secret.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The secret provided wasn't found.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The secret couldn't be decrypted.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ServiceUnavailableErrorException">
-        /// The service specified by the <code>resourceArn</code> parameter is not available.
+        /// The service specified by the <c>resourceArn</c> parameter isn't available.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.StatementTimeoutException">
         /// The execution of the SQL statement timed out.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.TransactionNotFoundException">
+        /// The transaction ID wasn't found.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.UnsupportedResultException">
+        /// There was a problem with the result because of one of the following conditions:
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// It contained an unsupported data type.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// It contained a multidimensional array.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The size was too large.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/ExecuteStatement">REST API Reference for ExecuteStatement Operation</seealso>
         ExecuteStatementResponse ExecuteStatement(ExecuteStatementRequest request);
@@ -467,7 +779,7 @@ namespace Amazon.RDSDataService
         /// 
         ///  <note> 
         /// <para>
-        /// If a call isn't part of a transaction because it doesn't include the <code>transactionID</code>
+        /// If a call isn't part of a transaction because it doesn't include the <c>transactionID</c>
         /// parameter, changes that result from the call are committed automatically.
         /// </para>
         ///  
@@ -483,22 +795,81 @@ namespace Amazon.RDSDataService
         /// 
         /// <returns>The response from the ExecuteStatement service method, as returned by RDSDataService.</returns>
         /// <exception cref="Amazon.RDSDataService.Model.AccessDeniedException">
-        /// You do not have sufficient access to perform this action.
+        /// You don't have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.BadRequestException">
-        /// There is an error in the call or in a SQL statement.
+        /// There is an error in the call or in a SQL statement. (This error only appears in calls
+        /// from Aurora Serverless v1 databases.)
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseErrorException">
+        /// There was an error in processing the SQL statement.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseNotFoundException">
+        /// The DB cluster doesn't have a DB instance.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseResumingException">
+        /// A request was canceled because the Aurora Serverless v2 DB instance was in a paused
+        /// state. The Data API request automatically causes the DB instance to begin resuming.
+        /// Wait a few seconds and try again.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseUnavailableException">
+        /// The writer instance in the DB cluster isn't available.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ForbiddenException">
         /// There are insufficient privileges to make the call.
         /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.HttpEndpointNotEnabledException">
+        /// The HTTP endpoint for using RDS Data API isn't enabled for the DB cluster.
+        /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.InternalServerErrorException">
         /// An internal error occurred.
         /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.InvalidSecretException">
+        /// The Secrets Manager secret used with the request isn't valid.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.SecretsErrorException">
+        /// There was a problem with the Secrets Manager secret used with the request, caused
+        /// by one of the following conditions:
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// RDS Data API timed out retrieving the secret.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The secret provided wasn't found.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The secret couldn't be decrypted.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ServiceUnavailableErrorException">
-        /// The service specified by the <code>resourceArn</code> parameter is not available.
+        /// The service specified by the <c>resourceArn</c> parameter isn't available.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.StatementTimeoutException">
         /// The execution of the SQL statement timed out.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.TransactionNotFoundException">
+        /// The transaction ID wasn't found.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.UnsupportedResultException">
+        /// There was a problem with the result because of one of the following conditions:
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// It contained an unsupported data type.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// It contained a multidimensional array.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The size was too large.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/ExecuteStatement">REST API Reference for ExecuteStatement Operation</seealso>
         Task<ExecuteStatementResponse> ExecuteStatementAsync(ExecuteStatementRequest request, CancellationToken cancellationToken = default(CancellationToken));
@@ -515,26 +886,62 @@ namespace Amazon.RDSDataService
         /// 
         /// <returns>The response from the RollbackTransaction service method, as returned by RDSDataService.</returns>
         /// <exception cref="Amazon.RDSDataService.Model.AccessDeniedException">
-        /// You do not have sufficient access to perform this action.
+        /// You don't have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.BadRequestException">
-        /// There is an error in the call or in a SQL statement.
+        /// There is an error in the call or in a SQL statement. (This error only appears in calls
+        /// from Aurora Serverless v1 databases.)
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseErrorException">
+        /// There was an error in processing the SQL statement.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseNotFoundException">
+        /// The DB cluster doesn't have a DB instance.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseUnavailableException">
+        /// The writer instance in the DB cluster isn't available.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ForbiddenException">
         /// There are insufficient privileges to make the call.
         /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.HttpEndpointNotEnabledException">
+        /// The HTTP endpoint for using RDS Data API isn't enabled for the DB cluster.
+        /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.InternalServerErrorException">
         /// An internal error occurred.
         /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.InvalidSecretException">
+        /// The Secrets Manager secret used with the request isn't valid.
+        /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.NotFoundException">
-        /// The <code>resourceArn</code>, <code>secretArn</code>, or <code>transactionId</code>
-        /// value can't be found.
+        /// The <c>resourceArn</c>, <c>secretArn</c>, or <c>transactionId</c> value can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.SecretsErrorException">
+        /// There was a problem with the Secrets Manager secret used with the request, caused
+        /// by one of the following conditions:
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// RDS Data API timed out retrieving the secret.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The secret provided wasn't found.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The secret couldn't be decrypted.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ServiceUnavailableErrorException">
-        /// The service specified by the <code>resourceArn</code> parameter is not available.
+        /// The service specified by the <c>resourceArn</c> parameter isn't available.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.StatementTimeoutException">
         /// The execution of the SQL statement timed out.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.TransactionNotFoundException">
+        /// The transaction ID wasn't found.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/RollbackTransaction">REST API Reference for RollbackTransaction Operation</seealso>
         RollbackTransactionResponse RollbackTransaction(RollbackTransactionRequest request);
@@ -551,26 +958,62 @@ namespace Amazon.RDSDataService
         /// 
         /// <returns>The response from the RollbackTransaction service method, as returned by RDSDataService.</returns>
         /// <exception cref="Amazon.RDSDataService.Model.AccessDeniedException">
-        /// You do not have sufficient access to perform this action.
+        /// You don't have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.BadRequestException">
-        /// There is an error in the call or in a SQL statement.
+        /// There is an error in the call or in a SQL statement. (This error only appears in calls
+        /// from Aurora Serverless v1 databases.)
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseErrorException">
+        /// There was an error in processing the SQL statement.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseNotFoundException">
+        /// The DB cluster doesn't have a DB instance.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.DatabaseUnavailableException">
+        /// The writer instance in the DB cluster isn't available.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ForbiddenException">
         /// There are insufficient privileges to make the call.
         /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.HttpEndpointNotEnabledException">
+        /// The HTTP endpoint for using RDS Data API isn't enabled for the DB cluster.
+        /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.InternalServerErrorException">
         /// An internal error occurred.
         /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.InvalidSecretException">
+        /// The Secrets Manager secret used with the request isn't valid.
+        /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.NotFoundException">
-        /// The <code>resourceArn</code>, <code>secretArn</code>, or <code>transactionId</code>
-        /// value can't be found.
+        /// The <c>resourceArn</c>, <c>secretArn</c>, or <c>transactionId</c> value can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.SecretsErrorException">
+        /// There was a problem with the Secrets Manager secret used with the request, caused
+        /// by one of the following conditions:
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// RDS Data API timed out retrieving the secret.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The secret provided wasn't found.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The secret couldn't be decrypted.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.ServiceUnavailableErrorException">
-        /// The service specified by the <code>resourceArn</code> parameter is not available.
+        /// The service specified by the <c>resourceArn</c> parameter isn't available.
         /// </exception>
         /// <exception cref="Amazon.RDSDataService.Model.StatementTimeoutException">
         /// The execution of the SQL statement timed out.
+        /// </exception>
+        /// <exception cref="Amazon.RDSDataService.Model.TransactionNotFoundException">
+        /// The transaction ID wasn't found.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/RollbackTransaction">REST API Reference for RollbackTransaction Operation</seealso>
         Task<RollbackTransactionResponse> RollbackTransactionAsync(RollbackTransactionRequest request, CancellationToken cancellationToken = default(CancellationToken));

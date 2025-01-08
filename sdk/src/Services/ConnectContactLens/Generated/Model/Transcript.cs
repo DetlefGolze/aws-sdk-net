@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectContactLens.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.ConnectContactLens.Model
         private string _content;
         private int? _endOffsetMillis;
         private string _id;
-        private List<IssueDetected> _issuesDetected = new List<IssueDetected>();
+        private List<IssueDetected> _issuesDetected = AWSConfigs.InitializeCollections ? new List<IssueDetected>() : null;
         private string _participantId;
         private string _participantRole;
         private SentimentValue _sentiment;
@@ -134,13 +135,13 @@ namespace Amazon.ConnectContactLens.Model
         // Check to see if IssuesDetected property is set
         internal bool IsSetIssuesDetected()
         {
-            return this._issuesDetected != null && this._issuesDetected.Count > 0; 
+            return this._issuesDetected != null && (this._issuesDetected.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ParticipantId. 
         /// <para>
-        /// The identifier of the participant.
+        /// The identifier of the participant. Valid values are CUSTOMER or AGENT.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]
@@ -178,7 +179,7 @@ namespace Amazon.ConnectContactLens.Model
         /// <summary>
         /// Gets and sets the property Sentiment. 
         /// <para>
-        /// The sentiment of the detected for this piece of transcript.
+        /// The sentiment detected for this piece of transcript.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

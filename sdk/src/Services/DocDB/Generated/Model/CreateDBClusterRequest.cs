@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
@@ -34,26 +35,29 @@ namespace Amazon.DocDB.Model
     /// </summary>
     public partial class CreateDBClusterRequest : AmazonDocDBRequest
     {
-        private List<string> _availabilityZones = new List<string>();
+        private List<string> _availabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _backupRetentionPeriod;
         private string _dbClusterIdentifier;
         private string _dbClusterParameterGroupName;
         private string _dbSubnetGroupName;
         private bool? _deletionProtection;
-        private List<string> _enableCloudwatchLogsExports = new List<string>();
+        private List<string> _enableCloudwatchLogsExports = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _engine;
         private string _engineVersion;
         private string _globalClusterIdentifier;
         private string _kmsKeyId;
+        private bool? _manageMasterUserPassword;
         private string _masterUsername;
         private string _masterUserPassword;
+        private string _masterUserSecretKmsKeyId;
         private int? _port;
         private string _preferredBackupWindow;
         private string _preferredMaintenanceWindow;
         private string _preSignedUrl;
         private bool? _storageEncrypted;
-        private List<Tag> _tags = new List<Tag>();
-        private List<string> _vpcSecurityGroupIds = new List<string>();
+        private string _storageType;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private List<string> _vpcSecurityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AvailabilityZones. 
@@ -71,7 +75,7 @@ namespace Amazon.DocDB.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -129,7 +133,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>my-cluster</code> 
+        /// Example: <c>my-cluster</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -170,12 +174,12 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// Constraints: Must match the name of an existing <code>DBSubnetGroup</code>. Must not
-        /// be default.
+        /// Constraints: Must match the name of an existing <c>DBSubnetGroup</c>. Must not be
+        /// default.
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>mySubnetgroup</code> 
+        /// Example: <c>mySubnetgroup</c> 
         /// </para>
         /// </summary>
         public string DBSubnetGroupName
@@ -193,10 +197,9 @@ namespace Amazon.DocDB.Model
         /// <summary>
         /// Gets and sets the property DeletionProtection. 
         /// <para>
-        /// Specifies whether this cluster can be deleted. If <code>DeletionProtection</code>
-        /// is enabled, the cluster cannot be deleted unless it is modified and <code>DeletionProtection</code>
-        /// is disabled. <code>DeletionProtection</code> protects clusters from being accidentally
-        /// deleted.
+        /// Specifies whether this cluster can be deleted. If <c>DeletionProtection</c> is enabled,
+        /// the cluster cannot be deleted unless it is modified and <c>DeletionProtection</c>
+        /// is disabled. <c>DeletionProtection</c> protects clusters from being accidentally deleted.
         /// </para>
         /// </summary>
         public bool DeletionProtection
@@ -229,7 +232,7 @@ namespace Amazon.DocDB.Model
         // Check to see if EnableCloudwatchLogsExports property is set
         internal bool IsSetEnableCloudwatchLogsExports()
         {
-            return this._enableCloudwatchLogsExports != null && this._enableCloudwatchLogsExports.Count > 0; 
+            return this._enableCloudwatchLogsExports != null && (this._enableCloudwatchLogsExports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -239,7 +242,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>docdb</code> 
+        /// Valid values: <c>docdb</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -258,8 +261,8 @@ namespace Amazon.DocDB.Model
         /// <summary>
         /// Gets and sets the property EngineVersion. 
         /// <para>
-        /// The version number of the database engine to use. The <code>--engine-version</code>
-        /// will default to the latest major engine version. For production workloads, we recommend
+        /// The version number of the database engine to use. The <c>--engine-version</c> will
+        /// default to the latest major engine version. For production workloads, we recommend
         /// explicitly declaring this parameter with the intended major engine version.
         /// </para>
         /// </summary>
@@ -308,12 +311,12 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// If an encryption key is not specified in <code>KmsKeyId</code>: 
+        /// If an encryption key is not specified in <c>KmsKeyId</c>: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If the <code>StorageEncrypted</code> parameter is <code>true</code>, Amazon DocumentDB
-        /// uses your default encryption key. 
+        /// If the <c>StorageEncrypted</c> parameter is <c>true</c>, Amazon DocumentDB uses your
+        /// default encryption key. 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -332,6 +335,30 @@ namespace Amazon.DocDB.Model
         internal bool IsSetKmsKeyId()
         {
             return this._kmsKeyId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ManageMasterUserPassword. 
+        /// <para>
+        /// Specifies whether to manage the master user password with Amazon Web Services Secrets
+        /// Manager.
+        /// </para>
+        ///  
+        /// <para>
+        /// Constraint: You can't manage the master user password with Amazon Web Services Secrets
+        /// Manager if <c>MasterUserPassword</c> is specified.
+        /// </para>
+        /// </summary>
+        public bool ManageMasterUserPassword
+        {
+            get { return this._manageMasterUserPassword.GetValueOrDefault(); }
+            set { this._manageMasterUserPassword = value; }
+        }
+
+        // Check to see if ManageMasterUserPassword property is set
+        internal bool IsSetManageMasterUserPassword()
+        {
+            return this._manageMasterUserPassword.HasValue; 
         }
 
         /// <summary>
@@ -393,6 +420,45 @@ namespace Amazon.DocDB.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MasterUserSecretKmsKeyId. 
+        /// <para>
+        /// The Amazon Web Services KMS key identifier to encrypt a secret that is automatically
+        /// generated and managed in Amazon Web Services Secrets Manager. This setting is valid
+        /// only if the master user password is managed by Amazon DocumentDB in Amazon Web Services
+        /// Secrets Manager for the DB cluster.
+        /// </para>
+        ///  
+        /// <para>
+        /// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias ARN, or alias
+        /// name for the KMS key. To use a KMS key in a different Amazon Web Services account,
+        /// specify the key ARN or alias ARN.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you don't specify <c>MasterUserSecretKmsKeyId</c>, then the <c>aws/secretsmanager</c>
+        /// KMS key is used to encrypt the secret. If the secret is in a different Amazon Web
+        /// Services account, then you can't use the <c>aws/secretsmanager</c> KMS key to encrypt
+        /// the secret, and you must use a customer managed KMS key.
+        /// </para>
+        ///  
+        /// <para>
+        /// There is a default KMS key for your Amazon Web Services account. Your Amazon Web Services
+        /// account has a different default KMS key for each Amazon Web Services Region.
+        /// </para>
+        /// </summary>
+        public string MasterUserSecretKmsKeyId
+        {
+            get { return this._masterUserSecretKmsKeyId; }
+            set { this._masterUserSecretKmsKeyId = value; }
+        }
+
+        // Check to see if MasterUserSecretKmsKeyId property is set
+        internal bool IsSetMasterUserSecretKmsKeyId()
+        {
+            return this._masterUserSecretKmsKeyId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Port. 
         /// <para>
         /// The port number on which the instances in the cluster accept connections.
@@ -414,7 +480,7 @@ namespace Amazon.DocDB.Model
         /// Gets and sets the property PreferredBackupWindow. 
         /// <para>
         /// The daily time range during which automated backups are created if automated backups
-        /// are enabled using the <code>BackupRetentionPeriod</code> parameter. 
+        /// are enabled using the <c>BackupRetentionPeriod</c> parameter. 
         /// </para>
         ///  
         /// <para>
@@ -427,7 +493,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Must be in the format <code>hh24:mi-hh24:mi</code>.
+        /// Must be in the format <c>hh24:mi-hh24:mi</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -463,7 +529,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// Format: <code>ddd:hh24:mi-ddd:hh24:mi</code> 
+        /// Format: <c>ddd:hh24:mi-ddd:hh24:mi</c> 
         /// </para>
         ///  
         /// <para>
@@ -528,6 +594,44 @@ namespace Amazon.DocDB.Model
         }
 
         /// <summary>
+        /// Gets and sets the property StorageType. 
+        /// <para>
+        /// The storage type to associate with the DB cluster.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information on storage types for Amazon DocumentDB clusters, see Cluster storage
+        /// configurations in the <i>Amazon DocumentDB Developer Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid values for storage type - <c>standard | iopt1</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Default value is <c>standard </c> 
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// When you create a DocumentDB DB cluster with the storage type set to <c>iopt1</c>,
+        /// the storage type is returned in the response. The storage type isn't returned when
+        /// you set it to <c>standard</c>.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public string StorageType
+        {
+            get { return this._storageType; }
+            set { this._storageType = value; }
+        }
+
+        // Check to see if StorageType property is set
+        internal bool IsSetStorageType()
+        {
+            return this._storageType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// The tags to be assigned to the cluster.
@@ -542,7 +646,7 @@ namespace Amazon.DocDB.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -560,7 +664,7 @@ namespace Amazon.DocDB.Model
         // Check to see if VpcSecurityGroupIds property is set
         internal bool IsSetVpcSecurityGroupIds()
         {
-            return this._vpcSecurityGroupIds != null && this._vpcSecurityGroupIds.Count > 0; 
+            return this._vpcSecurityGroupIds != null && (this._vpcSecurityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

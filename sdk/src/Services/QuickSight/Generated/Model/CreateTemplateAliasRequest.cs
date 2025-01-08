@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -43,8 +44,8 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property AliasName. 
         /// <para>
         /// The name that you want to give to the template alias that you're creating. Don't start
-        /// the alias name with the <code>$</code> character. Alias names that start with <code>$</code>
-        /// are reserved by Amazon QuickSight. 
+        /// the alias name with the <c>$</c> character. Alias names that start with <c>$</c> are
+        /// reserved by Amazon QuickSight. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]

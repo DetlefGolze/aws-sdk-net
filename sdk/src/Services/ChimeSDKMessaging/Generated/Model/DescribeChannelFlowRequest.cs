@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMessaging.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeChannelFlow operation.
-    /// Returns the full details of a channel flow in an Amazon Chime <code>AppInstance</code>.
+    /// Returns the full details of a channel flow in an Amazon Chime <c>AppInstance</c>.
     /// This is a developer API.
     /// </summary>
     public partial class DescribeChannelFlowRequest : AmazonChimeSDKMessagingRequest

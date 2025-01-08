@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorksCM.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.OpsWorksCM.Model
     /// </summary>
     public partial class DescribeNodeAssociationStatusResponse : AmazonWebServiceResponse
     {
-        private List<EngineAttribute> _engineAttributes = new List<EngineAttribute>();
+        private List<EngineAttribute> _engineAttributes = AWSConfigs.InitializeCollections ? new List<EngineAttribute>() : null;
         private NodeAssociationStatus _nodeAssociationStatus;
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace Amazon.OpsWorksCM.Model
         // Check to see if EngineAttributes property is set
         internal bool IsSetEngineAttributes()
         {
-            return this._engineAttributes != null && this._engineAttributes.Count > 0; 
+            return this._engineAttributes != null && (this._engineAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -66,16 +67,15 @@ namespace Amazon.OpsWorksCM.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>SUCCESS</code>: The association or disassociation succeeded. 
+        ///  <c>SUCCESS</c>: The association or disassociation succeeded. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code>: The association or disassociation failed. 
+        ///  <c>FAILED</c>: The association or disassociation failed. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IN_PROGRESS</code>: The association or disassociation is still in progress.
-        /// 
+        ///  <c>IN_PROGRESS</c>: The association or disassociation is still in progress. 
         /// </para>
         ///  </li> </ul>
         /// </summary>

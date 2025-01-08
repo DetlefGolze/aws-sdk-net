@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MWAA.Model
 {
     /// <summary>
-    /// Describes the Apache Airflow log details for the log type (e.g. <code>DagProcessingLogs</code>).
+    /// Describes the Apache Airflow log details for the log type (e.g. <c>DagProcessingLogs</c>).
     /// </summary>
     public partial class ModuleLoggingConfiguration
     {
@@ -41,7 +42,7 @@ namespace Amazon.MWAA.Model
         /// Gets and sets the property CloudWatchLogGroupArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) for the CloudWatch Logs group where the Apache Airflow
-        /// log type (e.g. <code>DagProcessingLogs</code>) is published. For example, <code>arn:aws:logs:us-east-1:123456789012:log-group:airflow-MyMWAAEnvironment-MwaaEnvironment-DAGProcessing:*</code>.
+        /// log type (e.g. <c>DagProcessingLogs</c>) is published. For example, <c>arn:aws:logs:us-east-1:123456789012:log-group:airflow-MyMWAAEnvironment-MwaaEnvironment-DAGProcessing:*</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1224)]
@@ -60,8 +61,7 @@ namespace Amazon.MWAA.Model
         /// <summary>
         /// Gets and sets the property Enabled. 
         /// <para>
-        /// Indicates whether the Apache Airflow log type (e.g. <code>DagProcessingLogs</code>)
-        /// is enabled.
+        /// Indicates whether the Apache Airflow log type (e.g. <c>DagProcessingLogs</c>) is enabled.
         /// </para>
         /// </summary>
         public bool Enabled
@@ -79,8 +79,7 @@ namespace Amazon.MWAA.Model
         /// <summary>
         /// Gets and sets the property LogLevel. 
         /// <para>
-        /// The Apache Airflow log level for the log type (e.g. <code>DagProcessingLogs</code>).
-        /// 
+        /// The Apache Airflow log level for the log type (e.g. <c>DagProcessingLogs</c>). 
         /// </para>
         /// </summary>
         public LoggingLevel LogLevel

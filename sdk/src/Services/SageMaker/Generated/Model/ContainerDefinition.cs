@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -33,8 +34,9 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class ContainerDefinition
     {
+        private List<AdditionalModelDataSource> _additionalModelDataSources = AWSConfigs.InitializeCollections ? new List<AdditionalModelDataSource>() : null;
         private string _containerHostname;
-        private Dictionary<string, string> _environment = new Dictionary<string, string>();
+        private Dictionary<string, string> _environment = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _image;
         private ImageConfig _imageConfig;
         private string _inferenceSpecificationName;
@@ -45,22 +47,41 @@ namespace Amazon.SageMaker.Model
         private MultiModelConfig _multiModelConfig;
 
         /// <summary>
+        /// Gets and sets the property AdditionalModelDataSources. 
+        /// <para>
+        /// Data sources that are available to your model in addition to the one that you specify
+        /// for <c>ModelDataSource</c> when you use the <c>CreateModel</c> action.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=5)]
+        public List<AdditionalModelDataSource> AdditionalModelDataSources
+        {
+            get { return this._additionalModelDataSources; }
+            set { this._additionalModelDataSources = value; }
+        }
+
+        // Check to see if AdditionalModelDataSources property is set
+        internal bool IsSetAdditionalModelDataSources()
+        {
+            return this._additionalModelDataSources != null && (this._additionalModelDataSources.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property ContainerHostname. 
         /// <para>
-        /// This parameter is ignored for models that contain only a <code>PrimaryContainer</code>.
+        /// This parameter is ignored for models that contain only a <c>PrimaryContainer</c>.
         /// </para>
         ///  
         /// <para>
-        /// When a <code>ContainerDefinition</code> is part of an inference pipeline, the value
-        /// of the parameter uniquely identifies the container for the purposes of logging and
-        /// metrics. For information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/inference-pipeline-logs-metrics.html">Use
+        /// When a <c>ContainerDefinition</c> is part of an inference pipeline, the value of the
+        /// parameter uniquely identifies the container for the purposes of logging and metrics.
+        /// For information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/inference-pipeline-logs-metrics.html">Use
         /// Logs and Metrics to Monitor an Inference Pipeline</a>. If you don't specify a value
-        /// for this parameter for a <code>ContainerDefinition</code> that is part of an inference
-        /// pipeline, a unique name is automatically assigned based on the position of the <code>ContainerDefinition</code>
-        /// in the pipeline. If you specify a value for the <code>ContainerHostName</code> for
-        /// any <code>ContainerDefinition</code> that is part of an inference pipeline, you must
-        /// specify a value for the <code>ContainerHostName</code> parameter of every <code>ContainerDefinition</code>
-        /// in that pipeline.
+        /// for this parameter for a <c>ContainerDefinition</c> that is part of an inference pipeline,
+        /// a unique name is automatically assigned based on the position of the <c>ContainerDefinition</c>
+        /// in the pipeline. If you specify a value for the <c>ContainerHostName</c> for any <c>ContainerDefinition</c>
+        /// that is part of an inference pipeline, you must specify a value for the <c>ContainerHostName</c>
+        /// parameter of every <c>ContainerDefinition</c> in that pipeline.
         /// </para>
         /// </summary>
         [AWSProperty(Max=63)]
@@ -79,12 +100,18 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property Environment. 
         /// <para>
-        /// The environment variables to set in the Docker container. Each key and value in the
-        /// <code>Environment</code> string to string map can have length of up to 1024. We support
-        /// up to 16 entries in the map. 
+        /// The environment variables to set in the Docker container. Don't include any sensitive
+        /// data in your environment variables.
+        /// </para>
+        ///  
+        /// <para>
+        /// The maximum length of each key and value in the <c>Environment</c> map is 1024 bytes.
+        /// The maximum length of all keys and values in the map, combined, is 32 KB. If you pass
+        /// multiple containers to a <c>CreateModel</c> request, then the maximum length of all
+        /// of their maps, combined, is also 32 KB.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=16)]
+        [AWSProperty(Max=100)]
         public Dictionary<string, string> Environment
         {
             get { return this._environment; }
@@ -94,7 +121,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Environment property is set
         internal bool IsSetEnvironment()
         {
-            return this._environment != null && this._environment.Count > 0; 
+            return this._environment != null && (this._environment.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -104,7 +131,7 @@ namespace Amazon.SageMaker.Model
         /// Registry or in a Docker registry that is accessible from the same VPC that you configure
         /// for your endpoint. If you are using your own custom algorithm instead of an algorithm
         /// provided by SageMaker, the inference code must meet SageMaker requirements. SageMaker
-        /// supports both <code>registry/repository[:tag]</code> and <code>registry/repository[@digest]</code>
+        /// supports both <c>registry/repository[:tag]</c> and <c>registry/repository[@digest]</c>
         /// image path formats. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html">Using
         /// Your Own Algorithms with Amazon SageMaker</a>. 
         /// </para>
@@ -201,9 +228,9 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// Currently you cannot use <code>ModelDataSource</code> in conjunction with SageMaker
-        /// batch transform, SageMaker serverless endpoints, SageMaker multi-model endpoints,
-        /// and SageMaker Marketplace.
+        /// Currently you cannot use <c>ModelDataSource</c> in conjunction with SageMaker batch
+        /// transform, SageMaker serverless endpoints, SageMaker multi-model endpoints, and SageMaker
+        /// Marketplace.
         /// </para>
         ///  </note>
         /// </summary>
@@ -246,7 +273,7 @@ namespace Amazon.SageMaker.Model
         ///  <important> 
         /// <para>
         /// If you use a built-in algorithm to create a model, SageMaker requires that you provide
-        /// a S3 path to the model artifacts in <code>ModelDataUrl</code>.
+        /// a S3 path to the model artifacts in <c>ModelDataUrl</c>.
         /// </para>
         ///  </important>
         /// </summary>

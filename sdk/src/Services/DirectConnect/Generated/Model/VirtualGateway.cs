@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectConnect.Model
 {
     /// <summary>
@@ -61,20 +62,20 @@ namespace Amazon.DirectConnect.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>pending</code>: Initial state after creating the virtual private gateway.
+        ///  <c>pending</c>: Initial state after creating the virtual private gateway.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>available</code>: Ready for use by a private virtual interface.
+        ///  <c>available</c>: Ready for use by a private virtual interface.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deleting</code>: Initial state after deleting the virtual private gateway.
+        ///  <c>deleting</c>: Initial state after deleting the virtual private gateway.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deleted</code>: The virtual private gateway is deleted. The private virtual
-        /// interface is unable to send traffic over this gateway.
+        ///  <c>deleted</c>: The virtual private gateway is deleted. The private virtual interface
+        /// is unable to send traffic over this gateway.
         /// </para>
         ///  </li> </ul>
         /// </summary>

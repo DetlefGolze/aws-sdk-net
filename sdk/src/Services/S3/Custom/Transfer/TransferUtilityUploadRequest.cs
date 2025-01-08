@@ -52,6 +52,9 @@ namespace Amazon.S3.Transfer
         private string serverSideEncryptionCustomerProvidedKeyMD5;
         private string serverSideEncryptionKeyManagementServiceKeyId;
         private ChecksumAlgorithm checksumAlgorithm;
+        private string _ifNoneMatch;
+        
+        private string _ifMatch;
 
         private HeadersCollection headersCollection = new HeadersCollection();
         private MetadataCollection metadataCollection = new MetadataCollection();
@@ -497,16 +500,43 @@ namespace Amazon.S3.Transfer
 
         /// <summary>
         /// <para><b>WARNING: Setting DisableMD5Stream to true disables the MD5 data integrity check 
-        /// on this request.</b></para>
-        /// <para>When true, MD5Stream will not be used in the upload request. This may increase 
-        /// upload performance under high CPU loads. The default value is null. When null, the 
-        /// AWSConfigsS3.DisableMD5Stream property value will be used.</para>
+        /// on upload requests.This property has been deprecated in favor of <see cref="DisableDefaultChecksumValidation"/>
+        /// Setting the value of DisableMD5Stream will set DisableDefaultChecksumValidation to the same value 
+        /// and vice versa. This property was left here for backwards compatibility.</b></para>
+        /// <para> 
+        /// When true, MD5Stream will not be used in upload requests. This may increase upload 
+        /// performance under high CPU loads. The default value is false. Set this value to true to 
+        /// disable MD5Stream use in all S3 upload requests or override this value per request by 
+        /// setting the DisableMD5Stream property on PutObjectRequest, UploadPartRequest, or 
+        /// TransferUtilityUploadRequest.</para>
         /// <para>MD5Stream, SigV4 payload signing, and HTTPS each provide some data integrity 
         /// verification. If DisableMD5Stream is true and DisablePayloadSigning is true, then the 
         /// possibility of data corruption is completely dependant on HTTPS being the only remaining 
         /// source of data integrity verification.</para>
         /// </summary>
-        public bool? DisableMD5Stream { get; set; }
+        [Obsolete("This property is deprecated in favor of DisableDefaultChecksumValidation.")]
+        public bool? DisableMD5Stream
+        {
+            get { return DisableDefaultChecksumValidation; }
+            set { DisableDefaultChecksumValidation = value; }
+        }
+
+        /// <summary>
+        /// <para><b>WARNING: Setting DisableDefaultChecksumValidation to true disables the default data 
+        /// integrity check on upload requests.</b></para>
+        /// <para>When true, checksum verification will not be used in upload requests. This may increase upload 
+        /// performance under high CPU loads. Setting DisableDefaultChecksumValidation sets the deprecated property
+        /// DisableMD5Stream to the same value. The default value is false. Set this value to true to 
+        /// disable the default checksum validation used in all S3 upload requests or override this value per
+        /// request by setting the DisableDefaultChecksumValidation property on <see cref="S3.Model.PutObjectRequest"/>,
+        /// <see cref="S3.Model.UploadPartRequest"/>, or <see cref="S3.Transfer.TransferUtilityUploadRequest"/>.</para>
+        /// <para>Checksums, SigV4 payload signing, and HTTPS each provide some data integrity 
+        /// verification. If DisableDefaultChecksumValidation is true and DisablePayloadSigning is true, then the 
+        /// possibility of data corruption is completely dependent on HTTPS being the only remaining 
+        /// source of data integrity verification.</para>
+        /// <para>This flag is a rename of the <see cref="DisableMD5Stream"/> property</para>
+        /// </summary>
+        public bool? DisableDefaultChecksumValidation { get; set; }
 
         /// <summary>      
         /// <para><b>WARNING: Setting DisablePayloadSigning to true disables the SigV4 payload signing 
@@ -598,8 +628,57 @@ namespace Amazon.S3.Transfer
             get { return this.checksumAlgorithm; }
             set { this.checksumAlgorithm = value; }
         }
-    }
 
+        /// <summary>
+        /// Gets and sets the property IfNoneMatch used when CompleteMultipartUploadRequest is called to 
+        /// complete the multipart upload.
+        /// <para>Uploads the object only if the object key name does not already exist in the bucket specified. Otherwise, 
+        /// Amazon S3 returns a <c>412 Precondition Failed</c> error.</para> <para>If a conflicting operation occurs 
+        /// during the upload S3 returns a <c>409 ConditionalRequestConflict</c> response. On a 409 failure you should 
+        /// re-initiate the multipart upload with <c>CreateMultipartUpload</c> and re-upload each part.</para> <para>Expects 
+        /// the '*' (asterisk) character.</para> <para>For more information about conditional requests, 
+        /// see <a href="https://tools.ietf.org/html/rfc7232">RFC 7232</a>, or <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/conditional-requests.html">Conditional requests</a> 
+        /// in the <i>Amazon S3 User Guide</i>.</para>
+        /// </summary>
+        public string IfNoneMatch
+        {
+            get { return this._ifNoneMatch; }
+            set { this._ifNoneMatch = value; }
+        }
+
+        /// <summary>
+        /// Checks to see if IfNoneMatch is set.
+        /// </summary>
+        /// <returns>true, if IfNoneMatch property is set.</returns>
+        internal bool IsSetIfNoneMatch()
+        {
+            return !string.IsNullOrEmpty(this._ifNoneMatch);
+        }
+
+        /// <summary>
+        /// Gets and sets the property IfMatch used when CompleteMultipartUploadRequest is called to 
+        /// complete the multipart upload.
+        /// <para>Uploads the object only if the ETag (entity tag) value provided during the WRITE operation matches the ETag of the object in S3. If the ETag values do not match, the operation returns a <c>412 Precondition Failed</c> error.</para>
+        /// <para>If a conflicting operation occurs during the upload S3 returns a <c>409 ConditionalRequestConflict</c> response. On a 409 failure you should fetch the object's ETag and retry the upload.</para>
+        /// <para>Expects the ETag value as a string.</para>
+        /// <para>For more information about conditional requests, see <a href="https://tools.ietf.org/html/rfc7232">RFC 7232</a>, or <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/conditional-requests.html">Conditional requests</a> in the <i>Amazon S3 User Guide</i>.</para>
+        /// </summary>
+        public string IfMatch
+        {
+            get { return this._ifMatch; }
+            set { this._ifMatch = value; }
+        }
+
+        /// <summary>
+        /// Checks to see if IfMatch is set.
+        /// </summary>
+        /// <returns>true, if IfMatch property is set.</returns>
+        internal bool IsSetIfMatch()
+        {
+            return !string.IsNullOrEmpty(this._ifMatch);
+        }
+    }
+    
     /// <summary>
     /// Encapsulates the information needed to provide
     /// transfer progress to subscribers of the Put Object

@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.MobileAnalytics.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.MobileAnalytics
 {
     /// <summary>
-    /// Interface for accessing MobileAnalytics
+    /// <para>Interface for accessing MobileAnalytics</para>
     ///
     /// Amazon Mobile Analytics is a service for collecting, visualizing, and understanding
     /// app usage data at scale.

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -42,20 +43,14 @@ namespace Amazon.SageMaker.Model
     /// </para>
     ///  
     /// <para>
-    /// To host your model, you create an endpoint configuration with the <code>CreateEndpointConfig</code>
-    /// API, and then create an endpoint with the <code>CreateEndpoint</code> API. SageMaker
-    /// then deploys all of the containers that you defined for the model in the hosting environment.
+    /// To host your model, you create an endpoint configuration with the <c>CreateEndpointConfig</c>
+    /// API, and then create an endpoint with the <c>CreateEndpoint</c> API. SageMaker then
+    /// deploys all of the containers that you defined for the model in the hosting environment.
     /// 
     /// </para>
     ///  
     /// <para>
-    /// For an example that calls this method when deploying a model to SageMaker hosting
-    /// services, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints-deployment.html#realtime-endpoints-deployment-create-model">Create
-    /// a Model (Amazon Web Services SDK for Python (Boto 3)).</a> 
-    /// </para>
-    ///  
-    /// <para>
-    /// To run a batch transform using your model, you start a job with the <code>CreateTransformJob</code>
+    /// To run a batch transform using your model, you start a job with the <c>CreateTransformJob</c>
     /// API. SageMaker uses your model and your dataset to get inferences which are then saved
     /// to a specified S3 location.
     /// </para>
@@ -70,13 +65,13 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class CreateModelRequest : AmazonSageMakerRequest
     {
-        private List<ContainerDefinition> _containers = new List<ContainerDefinition>();
+        private List<ContainerDefinition> _containers = AWSConfigs.InitializeCollections ? new List<ContainerDefinition>() : null;
         private bool? _enableNetworkIsolation;
         private string _executionRoleArn;
         private InferenceExecutionConfig _inferenceExecutionConfig;
         private string _modelName;
         private ContainerDefinition _primaryContainer;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private VpcConfig _vpcConfig;
 
         /// <summary>
@@ -95,7 +90,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Containers property is set
         internal bool IsSetContainers()
         {
-            return this._containers != null && this._containers.Count > 0; 
+            return this._containers != null && (this._containers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -128,12 +123,12 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// To be able to pass this role to SageMaker, the caller of this API must have the <code>iam:PassRole</code>
+        /// To be able to pass this role to SageMaker, the caller of this API must have the <c>iam:PassRole</c>
         /// permission.
         /// </para>
         ///  </note>
         /// </summary>
-        [AWSProperty(Required=true, Min=20, Max=2048)]
+        [AWSProperty(Min=20, Max=2048)]
         public string ExecutionRoleArn
         {
             get { return this._executionRoleArn; }
@@ -222,7 +217,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -230,8 +225,8 @@ namespace Amazon.SageMaker.Model
         /// <para>
         /// A <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_VpcConfig.html">VpcConfig</a>
         /// object that specifies the VPC that you want your model to connect to. Control access
-        /// to and from your model container by configuring the VPC. <code>VpcConfig</code> is
-        /// used in hosting services and in batch transform. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html">Protect
+        /// to and from your model container by configuring the VPC. <c>VpcConfig</c> is used
+        /// in hosting services and in batch transform. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html">Protect
         /// Endpoints by Using an Amazon Virtual Private Cloud</a> and <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/batch-vpc.html">Protect
         /// Data in Batch Transform Jobs by Using an Amazon Virtual Private Cloud</a>.
         /// </para>

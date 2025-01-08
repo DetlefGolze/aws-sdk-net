@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AuditManager.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.AuditManager.Model
     /// </summary>
     public partial class ListControlsResponse : AmazonWebServiceResponse
     {
-        private List<ControlMetadata> _controlMetadataList = new List<ControlMetadata>();
+        private List<ControlMetadata> _controlMetadataList = AWSConfigs.InitializeCollections ? new List<ControlMetadata>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property ControlMetadataList. 
         /// <para>
-        ///  A list of metadata that the <code>ListControls</code> API returns for each control.
+        ///  A list of metadata that the <c>ListControls</c> API returns for each control.
         /// </para>
         /// </summary>
         public List<ControlMetadata> ControlMetadataList
@@ -51,13 +52,13 @@ namespace Amazon.AuditManager.Model
         // Check to see if ControlMetadataList property is set
         internal bool IsSetControlMetadataList()
         {
-            return this._controlMetadataList != null && this._controlMetadataList.Count > 0; 
+            return this._controlMetadataList != null && (this._controlMetadataList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  The pagination token that's used to fetch the next set of results. 
+        /// The pagination token that's used to fetch the next set of results. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]

@@ -26,27 +26,28 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// For tasks that use the <code>awsvpc</code> networking mode, the VPC subnet and security
+    /// For tasks that use the <c>awsvpc</c> networking mode, the VPC subnet and security
     /// group configuration.
     /// </summary>
     public partial class AwsEcsServiceNetworkConfigurationAwsVpcConfigurationDetails
     {
         private string _assignPublicIp;
-        private List<string> _securityGroups = new List<string>();
-        private List<string> _subnets = new List<string>();
+        private List<string> _securityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _subnets = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AssignPublicIp. 
         /// <para>
         /// Whether the task's elastic network interface receives a public IP address. The default
-        /// value is <code>DISABLED</code>.
+        /// value is <c>DISABLED</c>.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>ENABLED</code> | <code>DISABLED</code> 
+        /// Valid values: <c>ENABLED</c> | <c>DISABLED</c> 
         /// </para>
         /// </summary>
         public string AssignPublicIp
@@ -80,7 +81,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -102,7 +103,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Subnets property is set
         internal bool IsSetSubnets()
         {
-            return this._subnets != null && this._subnets.Count > 0; 
+            return this._subnets != null && (this._subnets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -33,24 +34,24 @@ namespace Amazon.ECS.Model
     /// Deletes a specified service within a cluster. You can delete a service if you have
     /// no running tasks in it and the desired task count is zero. If the service is actively
     /// maintaining tasks, you can't delete it, and you must update the service to a desired
-    /// task count of zero. For more information, see <a>UpdateService</a>.
+    /// task count of zero. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateService.html">UpdateService</a>.
     /// 
     ///  <note> 
     /// <para>
     /// When you delete a service, if there are still running tasks that require cleanup,
-    /// the service status moves from <code>ACTIVE</code> to <code>DRAINING</code>, and the
-    /// service is no longer visible in the console or in the <a>ListServices</a> API operation.
-    /// After all tasks have transitioned to either <code>STOPPING</code> or <code>STOPPED</code>
-    /// status, the service status moves from <code>DRAINING</code> to <code>INACTIVE</code>.
-    /// Services in the <code>DRAINING</code> or <code>INACTIVE</code> status can still be
-    /// viewed with the <a>DescribeServices</a> API operation. However, in the future, <code>INACTIVE</code>
-    /// services may be cleaned up and purged from Amazon ECS record keeping, and <a>DescribeServices</a>
-    /// calls on those services return a <code>ServiceNotFoundException</code> error.
+    /// the service status moves from <c>ACTIVE</c> to <c>DRAINING</c>, and the service is
+    /// no longer visible in the console or in the <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ListServices.html">ListServices</a>
+    /// API operation. After all tasks have transitioned to either <c>STOPPING</c> or <c>STOPPED</c>
+    /// status, the service status moves from <c>DRAINING</c> to <c>INACTIVE</c>. Services
+    /// in the <c>DRAINING</c> or <c>INACTIVE</c> status can still be viewed with the <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeServices.html">DescribeServices</a>
+    /// API operation. However, in the future, <c>INACTIVE</c> services may be cleaned up
+    /// and purged from Amazon ECS record keeping, and <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeServices.html">DescribeServices</a>
+    /// calls on those services return a <c>ServiceNotFoundException</c> error.
     /// </para>
     ///  </note> <important> 
     /// <para>
     /// If you attempt to create a new service with the same name as an existing service in
-    /// either <code>ACTIVE</code> or <code>DRAINING</code> status, you receive an error.
+    /// either <c>ACTIVE</c> or <c>DRAINING</c> status, you receive an error.
     /// </para>
     ///  </important>
     /// </summary>
@@ -82,9 +83,9 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Force. 
         /// <para>
-        /// If <code>true</code>, allows you to delete a service even if it wasn't scaled down
-        /// to zero tasks. It's only necessary to use this if the service uses the <code>REPLICA</code>
-        /// scheduling strategy.
+        /// If <c>true</c>, allows you to delete a service even if it wasn't scaled down to zero
+        /// tasks. It's only necessary to use this if the service uses the <c>REPLICA</c> scheduling
+        /// strategy.
         /// </para>
         /// </summary>
         public bool Force

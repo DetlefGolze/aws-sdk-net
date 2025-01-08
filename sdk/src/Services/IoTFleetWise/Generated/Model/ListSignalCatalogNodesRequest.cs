@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.IoTFleetWise.Model
     /// 
     ///  <note> 
     /// <para>
-    /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-    /// the request to return more results.
+    /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+    /// request to return more results.
     /// </para>
     ///  </note>
     /// </summary>
@@ -44,11 +45,12 @@ namespace Amazon.IoTFleetWise.Model
         private int? _maxResults;
         private string _name;
         private string _nextToken;
+        private SignalNodeType _signalNodeType;
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        ///  The maximum number of items to return, between 1 and 100, inclusive. 
+        /// The maximum number of items to return, between 1 and 100, inclusive.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -91,10 +93,10 @@ namespace Amazon.IoTFleetWise.Model
         ///  
         /// <para>
         /// If the results of a search are large, only a portion of the results are returned,
-        /// and a <code>nextToken</code> pagination token is returned in the response. To retrieve
-        /// the next set of results, reissue the search request and include the returned token.
-        /// When all results have been returned, the response does not contain a pagination token
-        /// value. 
+        /// and a <c>nextToken</c> pagination token is returned in the response. To retrieve the
+        /// next set of results, reissue the search request and include the returned token. When
+        /// all results have been returned, the response does not contain a pagination token value.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4096)]
@@ -108,6 +110,24 @@ namespace Amazon.IoTFleetWise.Model
         internal bool IsSetNextToken()
         {
             return this._nextToken != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SignalNodeType. 
+        /// <para>
+        /// The type of node in the signal catalog.
+        /// </para>
+        /// </summary>
+        public SignalNodeType SignalNodeType
+        {
+            get { return this._signalNodeType; }
+            set { this._signalNodeType = value; }
+        }
+
+        // Check to see if SignalNodeType property is set
+        internal bool IsSetSignalNodeType()
+        {
+            return this._signalNodeType != null;
         }
 
     }

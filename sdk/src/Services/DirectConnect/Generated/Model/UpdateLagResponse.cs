@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectConnect.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.DirectConnect.Model
         private string _awsDevice;
         private string _awsDeviceV2;
         private string _awsLogicalDeviceId;
-        private List<Connection> _connections = new List<Connection>();
+        private List<Connection> _connections = AWSConfigs.InitializeCollections ? new List<Connection>() : null;
         private string _connectionsBandwidth;
         private string _encryptionMode;
         private HasLogicalRedundancy _hasLogicalRedundancy;
@@ -47,13 +48,13 @@ namespace Amazon.DirectConnect.Model
         private LagState _lagState;
         private string _location;
         private bool? _macSecCapable;
-        private List<MacSecKey> _macSecKeys = new List<MacSecKey>();
+        private List<MacSecKey> _macSecKeys = AWSConfigs.InitializeCollections ? new List<MacSecKey>() : null;
         private int? _minimumLinks;
         private int? _numberOfConnections;
         private string _ownerAccount;
         private string _providerName;
         private string _region;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AllowsHostedConnections. 
@@ -143,14 +144,14 @@ namespace Amazon.DirectConnect.Model
         // Check to see if Connections property is set
         internal bool IsSetConnections()
         {
-            return this._connections != null && this._connections.Count > 0; 
+            return this._connections != null && (this._connections.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ConnectionsBandwidth. 
         /// <para>
         /// The individual bandwidth of the physical connections bundled by the LAG. The possible
-        /// values are 1Gbps and 10Gbps. 
+        /// values are 1Gbps, 10Gbps, 100Gbps, or 400 Gbps.. 
         /// </para>
         /// </summary>
         public string ConnectionsBandwidth
@@ -172,7 +173,7 @@ namespace Amazon.DirectConnect.Model
         /// </para>
         ///  
         /// <para>
-        /// The valid values are <code>no_encrypt</code>, <code>should_encrypt</code>, and <code>must_encrypt</code>.
+        /// The valid values are <c>no_encrypt</c>, <c>should_encrypt</c>, and <c>must_encrypt</c>.
         /// </para>
         /// </summary>
         public string EncryptionMode
@@ -267,33 +268,32 @@ namespace Amazon.DirectConnect.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>requested</code>: The initial state of a LAG. The LAG stays in the requested
-        /// state until the Letter of Authorization (LOA) is available.
+        ///  <c>requested</c>: The initial state of a LAG. The LAG stays in the requested state
+        /// until the Letter of Authorization (LOA) is available.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>pending</code>: The LAG has been approved and is being initialized.
+        ///  <c>pending</c>: The LAG has been approved and is being initialized.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>available</code>: The network link is established and the LAG is ready for
-        /// use.
+        ///  <c>available</c>: The network link is established and the LAG is ready for use.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>down</code>: The network link is down.
+        ///  <c>down</c>: The network link is down.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deleting</code>: The LAG is being deleted.
+        ///  <c>deleting</c>: The LAG is being deleted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deleted</code>: The LAG is deleted.
+        ///  <c>deleted</c>: The LAG is deleted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>unknown</code>: The state of the LAG is not available.
+        ///  <c>unknown</c>: The state of the LAG is not available.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -360,7 +360,7 @@ namespace Amazon.DirectConnect.Model
         // Check to see if MacSecKeys property is set
         internal bool IsSetMacSecKeys()
         {
-            return this._macSecKeys != null && this._macSecKeys.Count > 0; 
+            return this._macSecKeys != null && (this._macSecKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -385,8 +385,9 @@ namespace Amazon.DirectConnect.Model
         /// <summary>
         /// Gets and sets the property NumberOfConnections. 
         /// <para>
-        /// The number of physical dedicated connections bundled by the LAG, up to a maximum of
-        /// 10.
+        /// The number of physical dedicated connections initially provisioned and bundled by
+        /// the LAG. You can have a maximum of four connections when the port speed is 1 Gbps
+        /// or 10 Gbps, or two when the port speed is 100 Gbps or 400 Gbps.
         /// </para>
         /// </summary>
         public int NumberOfConnections
@@ -471,7 +472,7 @@ namespace Amazon.DirectConnect.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

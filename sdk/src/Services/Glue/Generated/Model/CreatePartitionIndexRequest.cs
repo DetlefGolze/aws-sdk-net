@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -80,8 +81,8 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property PartitionIndex. 
         /// <para>
-        /// Specifies a <code>PartitionIndex</code> structure to create a partition index in an
-        /// existing table.
+        /// Specifies a <c>PartitionIndex</c> structure to create a partition index in an existing
+        /// table.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

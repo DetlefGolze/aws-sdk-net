@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTEventsData.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.IoTEventsData.Model
         /// <summary>
         /// Gets and sets the property EventType. 
         /// <para>
-        /// The event type. If the value is <code>STATE_CHANGE</code>, the event contains information
+        /// The event type. If the value is <c>STATE_CHANGE</c>, the event contains information
         /// about alarm state changes.
         /// </para>
         /// </summary>

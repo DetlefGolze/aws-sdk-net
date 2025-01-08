@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.DataZone
 {
     /// <summary>
-    /// Implementation for accessing DataZone
+    /// <para>Implementation for accessing DataZone</para>
     ///
     /// Amazon DataZone is a data management service that enables you to catalog, discover,
     /// govern, share, and analyze your data. With Amazon DataZone, you can share and access
@@ -435,6 +436,346 @@ namespace Amazon.DataZone
 
         #endregion
         
+        #region  AddEntityOwner
+
+
+        /// <summary>
+        /// Adds the owner of an entity (a domain unit).
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AddEntityOwner service method.</param>
+        /// 
+        /// <returns>The response from the AddEntityOwner service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/AddEntityOwner">REST API Reference for AddEntityOwner Operation</seealso>
+        public virtual AddEntityOwnerResponse AddEntityOwner(AddEntityOwnerRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = AddEntityOwnerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = AddEntityOwnerResponseUnmarshaller.Instance;
+
+            return Invoke<AddEntityOwnerResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Adds the owner of an entity (a domain unit).
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AddEntityOwner service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the AddEntityOwner service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/AddEntityOwner">REST API Reference for AddEntityOwner Operation</seealso>
+        public virtual Task<AddEntityOwnerResponse> AddEntityOwnerAsync(AddEntityOwnerRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = AddEntityOwnerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = AddEntityOwnerResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<AddEntityOwnerResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  AddPolicyGrant
+
+
+        /// <summary>
+        /// Adds a policy grant (an authorization policy) to a specified entity, including domain
+        /// units, environment blueprint configurations, or environment profiles.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AddPolicyGrant service method.</param>
+        /// 
+        /// <returns>The response from the AddPolicyGrant service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/AddPolicyGrant">REST API Reference for AddPolicyGrant Operation</seealso>
+        public virtual AddPolicyGrantResponse AddPolicyGrant(AddPolicyGrantRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = AddPolicyGrantRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = AddPolicyGrantResponseUnmarshaller.Instance;
+
+            return Invoke<AddPolicyGrantResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Adds a policy grant (an authorization policy) to a specified entity, including domain
+        /// units, environment blueprint configurations, or environment profiles.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AddPolicyGrant service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the AddPolicyGrant service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/AddPolicyGrant">REST API Reference for AddPolicyGrant Operation</seealso>
+        public virtual Task<AddPolicyGrantResponse> AddPolicyGrantAsync(AddPolicyGrantRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = AddPolicyGrantRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = AddPolicyGrantResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<AddPolicyGrantResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  AssociateEnvironmentRole
+
+
+        /// <summary>
+        /// Associates the environment role in Amazon DataZone.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AssociateEnvironmentRole service method.</param>
+        /// 
+        /// <returns>The response from the AssociateEnvironmentRole service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/AssociateEnvironmentRole">REST API Reference for AssociateEnvironmentRole Operation</seealso>
+        public virtual AssociateEnvironmentRoleResponse AssociateEnvironmentRole(AssociateEnvironmentRoleRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = AssociateEnvironmentRoleRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = AssociateEnvironmentRoleResponseUnmarshaller.Instance;
+
+            return Invoke<AssociateEnvironmentRoleResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Associates the environment role in Amazon DataZone.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AssociateEnvironmentRole service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the AssociateEnvironmentRole service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/AssociateEnvironmentRole">REST API Reference for AssociateEnvironmentRole Operation</seealso>
+        public virtual Task<AssociateEnvironmentRoleResponse> AssociateEnvironmentRoleAsync(AssociateEnvironmentRoleRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = AssociateEnvironmentRoleRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = AssociateEnvironmentRoleResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<AssociateEnvironmentRoleResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CancelMetadataGenerationRun
+
+
+        /// <summary>
+        /// Cancels the metadata generation run.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CancelMetadataGenerationRun service method.</param>
+        /// 
+        /// <returns>The response from the CancelMetadataGenerationRun service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/CancelMetadataGenerationRun">REST API Reference for CancelMetadataGenerationRun Operation</seealso>
+        public virtual CancelMetadataGenerationRunResponse CancelMetadataGenerationRun(CancelMetadataGenerationRunRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CancelMetadataGenerationRunRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CancelMetadataGenerationRunResponseUnmarshaller.Instance;
+
+            return Invoke<CancelMetadataGenerationRunResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Cancels the metadata generation run.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CancelMetadataGenerationRun service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CancelMetadataGenerationRun service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/CancelMetadataGenerationRun">REST API Reference for CancelMetadataGenerationRun Operation</seealso>
+        public virtual Task<CancelMetadataGenerationRunResponse> CancelMetadataGenerationRunAsync(CancelMetadataGenerationRunRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CancelMetadataGenerationRunRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CancelMetadataGenerationRunResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CancelMetadataGenerationRunResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  CancelSubscription
 
 
@@ -607,6 +948,95 @@ namespace Amazon.DataZone
 
         #endregion
         
+        #region  CreateAssetFilter
+
+
+        /// <summary>
+        /// Creates a data asset filter.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateAssetFilter service method.</param>
+        /// 
+        /// <returns>The response from the CreateAssetFilter service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/CreateAssetFilter">REST API Reference for CreateAssetFilter Operation</seealso>
+        public virtual CreateAssetFilterResponse CreateAssetFilter(CreateAssetFilterRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateAssetFilterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateAssetFilterResponseUnmarshaller.Instance;
+
+            return Invoke<CreateAssetFilterResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates a data asset filter.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateAssetFilter service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateAssetFilter service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/CreateAssetFilter">REST API Reference for CreateAssetFilter Operation</seealso>
+        public virtual Task<CreateAssetFilterResponse> CreateAssetFilterAsync(CreateAssetFilterRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateAssetFilterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateAssetFilterResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateAssetFilterResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  CreateAssetRevision
 
 
@@ -769,6 +1199,269 @@ namespace Amazon.DataZone
             options.ResponseUnmarshaller = CreateAssetTypeResponseUnmarshaller.Instance;
             
             return InvokeAsync<CreateAssetTypeResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateConnection
+
+
+        /// <summary>
+        /// Creates a new connection. In Amazon DataZone, a connection enables you to connect
+        /// your resources (domains, projects, and environments) to external resources and services.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateConnection service method.</param>
+        /// 
+        /// <returns>The response from the CreateConnection service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/CreateConnection">REST API Reference for CreateConnection Operation</seealso>
+        public virtual CreateConnectionResponse CreateConnection(CreateConnectionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateConnectionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateConnectionResponseUnmarshaller.Instance;
+
+            return Invoke<CreateConnectionResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates a new connection. In Amazon DataZone, a connection enables you to connect
+        /// your resources (domains, projects, and environments) to external resources and services.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateConnection service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateConnection service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/CreateConnection">REST API Reference for CreateConnection Operation</seealso>
+        public virtual Task<CreateConnectionResponse> CreateConnectionAsync(CreateConnectionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateConnectionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateConnectionResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateConnectionResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateDataProduct
+
+
+        /// <summary>
+        /// Creates a data product.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateDataProduct service method.</param>
+        /// 
+        /// <returns>The response from the CreateDataProduct service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/CreateDataProduct">REST API Reference for CreateDataProduct Operation</seealso>
+        public virtual CreateDataProductResponse CreateDataProduct(CreateDataProductRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateDataProductRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateDataProductResponseUnmarshaller.Instance;
+
+            return Invoke<CreateDataProductResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates a data product.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateDataProduct service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateDataProduct service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/CreateDataProduct">REST API Reference for CreateDataProduct Operation</seealso>
+        public virtual Task<CreateDataProductResponse> CreateDataProductAsync(CreateDataProductRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateDataProductRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateDataProductResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateDataProductResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateDataProductRevision
+
+
+        /// <summary>
+        /// Creates a data product revision.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateDataProductRevision service method.</param>
+        /// 
+        /// <returns>The response from the CreateDataProductRevision service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/CreateDataProductRevision">REST API Reference for CreateDataProductRevision Operation</seealso>
+        public virtual CreateDataProductRevisionResponse CreateDataProductRevision(CreateDataProductRevisionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateDataProductRevisionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateDataProductRevisionResponseUnmarshaller.Instance;
+
+            return Invoke<CreateDataProductRevisionResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates a data product revision.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateDataProductRevision service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateDataProductRevision service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/CreateDataProductRevision">REST API Reference for CreateDataProductRevision Operation</seealso>
+        public virtual Task<CreateDataProductRevisionResponse> CreateDataProductRevisionAsync(CreateDataProductRevisionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateDataProductRevisionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateDataProductRevisionResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateDataProductRevisionResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -951,6 +1644,89 @@ namespace Amazon.DataZone
 
         #endregion
         
+        #region  CreateDomainUnit
+
+
+        /// <summary>
+        /// Creates a domain unit in Amazon DataZone.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateDomainUnit service method.</param>
+        /// 
+        /// <returns>The response from the CreateDomainUnit service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/CreateDomainUnit">REST API Reference for CreateDomainUnit Operation</seealso>
+        public virtual CreateDomainUnitResponse CreateDomainUnit(CreateDomainUnitRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateDomainUnitRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateDomainUnitResponseUnmarshaller.Instance;
+
+            return Invoke<CreateDomainUnitResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates a domain unit in Amazon DataZone.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateDomainUnit service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateDomainUnit service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/CreateDomainUnit">REST API Reference for CreateDomainUnit Operation</seealso>
+        public virtual Task<CreateDomainUnitResponse> CreateDomainUnitAsync(CreateDomainUnitRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateDomainUnitRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateDomainUnitResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateDomainUnitResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  CreateEnvironment
 
 
@@ -1030,6 +1806,91 @@ namespace Amazon.DataZone
             options.ResponseUnmarshaller = CreateEnvironmentResponseUnmarshaller.Instance;
             
             return InvokeAsync<CreateEnvironmentResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateEnvironmentAction
+
+
+        /// <summary>
+        /// Creates an action for the environment, for example, creates a console link for an
+        /// analytics tool that is available in this environment.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateEnvironmentAction service method.</param>
+        /// 
+        /// <returns>The response from the CreateEnvironmentAction service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/CreateEnvironmentAction">REST API Reference for CreateEnvironmentAction Operation</seealso>
+        public virtual CreateEnvironmentActionResponse CreateEnvironmentAction(CreateEnvironmentActionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateEnvironmentActionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateEnvironmentActionResponseUnmarshaller.Instance;
+
+            return Invoke<CreateEnvironmentActionResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates an action for the environment, for example, creates a console link for an
+        /// analytics tool that is available in this environment.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateEnvironmentAction service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateEnvironmentAction service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/CreateEnvironmentAction">REST API Reference for CreateEnvironmentAction Operation</seealso>
+        public virtual Task<CreateEnvironmentActionResponse> CreateEnvironmentActionAsync(CreateEnvironmentActionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateEnvironmentActionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateEnvironmentActionResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateEnvironmentActionResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -1459,7 +2320,8 @@ namespace Amazon.DataZone
 
 
         /// <summary>
-        /// 
+        /// Publishes a listing (a record of an asset at a given time) or removes a listing from
+        /// the catalog.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateListingChangeSet service method.</param>
         /// 
@@ -1500,7 +2362,8 @@ namespace Amazon.DataZone
 
 
         /// <summary>
-        /// 
+        /// Publishes a listing (a record of an asset at a given time) or removes a listing from
+        /// the catalog.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateListingChangeSet service method.</param>
         /// <param name="cancellationToken">
@@ -1706,6 +2569,196 @@ namespace Amazon.DataZone
             options.ResponseUnmarshaller = CreateProjectMembershipResponseUnmarshaller.Instance;
             
             return InvokeAsync<CreateProjectMembershipResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateProjectProfile
+
+
+        /// <summary>
+        /// Creates a project profile.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateProjectProfile service method.</param>
+        /// 
+        /// <returns>The response from the CreateProjectProfile service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/CreateProjectProfile">REST API Reference for CreateProjectProfile Operation</seealso>
+        public virtual CreateProjectProfileResponse CreateProjectProfile(CreateProjectProfileRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateProjectProfileRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateProjectProfileResponseUnmarshaller.Instance;
+
+            return Invoke<CreateProjectProfileResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates a project profile.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateProjectProfile service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateProjectProfile service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/CreateProjectProfile">REST API Reference for CreateProjectProfile Operation</seealso>
+        public virtual Task<CreateProjectProfileResponse> CreateProjectProfileAsync(CreateProjectProfileRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateProjectProfileRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateProjectProfileResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateProjectProfileResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateRule
+
+
+        /// <summary>
+        /// Creates a rule in Amazon DataZone. A rule is a formal agreement that enforces specific
+        /// requirements across user workflows (e.g., publishing assets to the catalog, requesting
+        /// subscriptions, creating projects) within the Amazon DataZone data portal. These rules
+        /// help maintain consistency, ensure compliance, and uphold governance standards in data
+        /// management processes. For instance, a metadata enforcement rule can specify the required
+        /// information for creating a subscription request or publishing a data asset to the
+        /// catalog, ensuring alignment with organizational standards.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateRule service method.</param>
+        /// 
+        /// <returns>The response from the CreateRule service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/CreateRule">REST API Reference for CreateRule Operation</seealso>
+        public virtual CreateRuleResponse CreateRule(CreateRuleRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateRuleRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateRuleResponseUnmarshaller.Instance;
+
+            return Invoke<CreateRuleResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates a rule in Amazon DataZone. A rule is a formal agreement that enforces specific
+        /// requirements across user workflows (e.g., publishing assets to the catalog, requesting
+        /// subscriptions, creating projects) within the Amazon DataZone data portal. These rules
+        /// help maintain consistency, ensure compliance, and uphold governance standards in data
+        /// management processes. For instance, a metadata enforcement rule can specify the required
+        /// information for creating a subscription request or publishing a data asset to the
+        /// catalog, ensuring alignment with organizational standards.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateRule service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateRule service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/CreateRule">REST API Reference for CreateRule Operation</seealso>
+        public virtual Task<CreateRuleResponse> CreateRuleAsync(CreateRuleRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateRuleRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateRuleResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateRuleResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -2040,13 +3093,16 @@ namespace Amazon.DataZone
 
 
         /// <summary>
-        /// Delets an asset in Amazon DataZone.
+        /// Deletes an asset in Amazon DataZone.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteAsset service method.</param>
         /// 
         /// <returns>The response from the DeleteAsset service method, as returned by DataZone.</returns>
         /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
         /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
         /// </exception>
         /// <exception cref="Amazon.DataZone.Model.InternalServerException">
         /// The request has failed because of an unknown error, exception or failure.
@@ -2075,7 +3131,7 @@ namespace Amazon.DataZone
 
 
         /// <summary>
-        /// Delets an asset in Amazon DataZone.
+        /// Deletes an asset in Amazon DataZone.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteAsset service method.</param>
         /// <param name="cancellationToken">
@@ -2085,6 +3141,9 @@ namespace Amazon.DataZone
         /// <returns>The response from the DeleteAsset service method, as returned by DataZone.</returns>
         /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
         /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
         /// </exception>
         /// <exception cref="Amazon.DataZone.Model.InternalServerException">
         /// The request has failed because of an unknown error, exception or failure.
@@ -2109,6 +3168,89 @@ namespace Amazon.DataZone
             options.ResponseUnmarshaller = DeleteAssetResponseUnmarshaller.Instance;
             
             return InvokeAsync<DeleteAssetResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DeleteAssetFilter
+
+
+        /// <summary>
+        /// Deletes an asset filter.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteAssetFilter service method.</param>
+        /// 
+        /// <returns>The response from the DeleteAssetFilter service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/DeleteAssetFilter">REST API Reference for DeleteAssetFilter Operation</seealso>
+        public virtual DeleteAssetFilterResponse DeleteAssetFilter(DeleteAssetFilterRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteAssetFilterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteAssetFilterResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteAssetFilterResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes an asset filter.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteAssetFilter service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteAssetFilter service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/DeleteAssetFilter">REST API Reference for DeleteAssetFilter Operation</seealso>
+        public virtual Task<DeleteAssetFilterResponse> DeleteAssetFilterAsync(DeleteAssetFilterRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteAssetFilterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteAssetFilterResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteAssetFilterResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -2192,6 +3334,168 @@ namespace Amazon.DataZone
             options.ResponseUnmarshaller = DeleteAssetTypeResponseUnmarshaller.Instance;
             
             return InvokeAsync<DeleteAssetTypeResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DeleteConnection
+
+
+        /// <summary>
+        /// Deletes and connection. In Amazon DataZone, a connection enables you to connect your
+        /// resources (domains, projects, and environments) to external resources and services.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteConnection service method.</param>
+        /// 
+        /// <returns>The response from the DeleteConnection service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/DeleteConnection">REST API Reference for DeleteConnection Operation</seealso>
+        public virtual DeleteConnectionResponse DeleteConnection(DeleteConnectionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteConnectionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteConnectionResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteConnectionResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes and connection. In Amazon DataZone, a connection enables you to connect your
+        /// resources (domains, projects, and environments) to external resources and services.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteConnection service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteConnection service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/DeleteConnection">REST API Reference for DeleteConnection Operation</seealso>
+        public virtual Task<DeleteConnectionResponse> DeleteConnectionAsync(DeleteConnectionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteConnectionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteConnectionResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteConnectionResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DeleteDataProduct
+
+
+        /// <summary>
+        /// Deletes a data product in Amazon DataZone.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDataProduct service method.</param>
+        /// 
+        /// <returns>The response from the DeleteDataProduct service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/DeleteDataProduct">REST API Reference for DeleteDataProduct Operation</seealso>
+        public virtual DeleteDataProductResponse DeleteDataProduct(DeleteDataProductRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteDataProductRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteDataProductResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteDataProductResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes a data product in Amazon DataZone.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDataProduct service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteDataProduct service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/DeleteDataProduct">REST API Reference for DeleteDataProduct Operation</seealso>
+        public virtual Task<DeleteDataProductResponse> DeleteDataProductAsync(DeleteDataProductRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteDataProductRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteDataProductResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteDataProductResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -2368,6 +3672,89 @@ namespace Amazon.DataZone
 
         #endregion
         
+        #region  DeleteDomainUnit
+
+
+        /// <summary>
+        /// Deletes a domain unit.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDomainUnit service method.</param>
+        /// 
+        /// <returns>The response from the DeleteDomainUnit service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/DeleteDomainUnit">REST API Reference for DeleteDomainUnit Operation</seealso>
+        public virtual DeleteDomainUnitResponse DeleteDomainUnit(DeleteDomainUnitRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteDomainUnitRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteDomainUnitResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteDomainUnitResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes a domain unit.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDomainUnit service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteDomainUnit service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/DeleteDomainUnit">REST API Reference for DeleteDomainUnit Operation</seealso>
+        public virtual Task<DeleteDomainUnitResponse> DeleteDomainUnitAsync(DeleteDomainUnitRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteDomainUnitRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteDomainUnitResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteDomainUnitResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  DeleteEnvironment
 
 
@@ -2441,6 +3828,91 @@ namespace Amazon.DataZone
             options.ResponseUnmarshaller = DeleteEnvironmentResponseUnmarshaller.Instance;
             
             return InvokeAsync<DeleteEnvironmentResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DeleteEnvironmentAction
+
+
+        /// <summary>
+        /// Deletes an action for the environment, for example, deletes a console link for an
+        /// analytics tool that is available in this environment.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteEnvironmentAction service method.</param>
+        /// 
+        /// <returns>The response from the DeleteEnvironmentAction service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/DeleteEnvironmentAction">REST API Reference for DeleteEnvironmentAction Operation</seealso>
+        public virtual DeleteEnvironmentActionResponse DeleteEnvironmentAction(DeleteEnvironmentActionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteEnvironmentActionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteEnvironmentActionResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteEnvironmentActionResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes an action for the environment, for example, deletes a console link for an
+        /// analytics tool that is available in this environment.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteEnvironmentAction service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteEnvironmentAction service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/DeleteEnvironmentAction">REST API Reference for DeleteEnvironmentAction Operation</seealso>
+        public virtual Task<DeleteEnvironmentActionResponse> DeleteEnvironmentActionAsync(DeleteEnvironmentActionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteEnvironmentActionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteEnvironmentActionResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteEnvironmentActionResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -2846,7 +4318,7 @@ namespace Amazon.DataZone
 
 
         /// <summary>
-        /// 
+        /// Deletes a listing (a record of an asset at a given time).
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteListing service method.</param>
         /// 
@@ -2884,7 +4356,7 @@ namespace Amazon.DataZone
 
 
         /// <summary>
-        /// 
+        /// Deletes a listing (a record of an asset at a given time).
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteListing service method.</param>
         /// <param name="cancellationToken">
@@ -3081,6 +4553,178 @@ namespace Amazon.DataZone
             options.ResponseUnmarshaller = DeleteProjectMembershipResponseUnmarshaller.Instance;
             
             return InvokeAsync<DeleteProjectMembershipResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DeleteProjectProfile
+
+
+        /// <summary>
+        /// Deletes a project profile.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteProjectProfile service method.</param>
+        /// 
+        /// <returns>The response from the DeleteProjectProfile service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/DeleteProjectProfile">REST API Reference for DeleteProjectProfile Operation</seealso>
+        public virtual DeleteProjectProfileResponse DeleteProjectProfile(DeleteProjectProfileRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteProjectProfileRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteProjectProfileResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteProjectProfileResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes a project profile.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteProjectProfile service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteProjectProfile service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/DeleteProjectProfile">REST API Reference for DeleteProjectProfile Operation</seealso>
+        public virtual Task<DeleteProjectProfileResponse> DeleteProjectProfileAsync(DeleteProjectProfileRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteProjectProfileRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteProjectProfileResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteProjectProfileResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DeleteRule
+
+
+        /// <summary>
+        /// Deletes a rule in Amazon DataZone. A rule is a formal agreement that enforces specific
+        /// requirements across user workflows (e.g., publishing assets to the catalog, requesting
+        /// subscriptions, creating projects) within the Amazon DataZone data portal. These rules
+        /// help maintain consistency, ensure compliance, and uphold governance standards in data
+        /// management processes. For instance, a metadata enforcement rule can specify the required
+        /// information for creating a subscription request or publishing a data asset to the
+        /// catalog, ensuring alignment with organizational standards.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteRule service method.</param>
+        /// 
+        /// <returns>The response from the DeleteRule service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/DeleteRule">REST API Reference for DeleteRule Operation</seealso>
+        public virtual DeleteRuleResponse DeleteRule(DeleteRuleRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteRuleRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteRuleResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteRuleResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes a rule in Amazon DataZone. A rule is a formal agreement that enforces specific
+        /// requirements across user workflows (e.g., publishing assets to the catalog, requesting
+        /// subscriptions, creating projects) within the Amazon DataZone data portal. These rules
+        /// help maintain consistency, ensure compliance, and uphold governance standards in data
+        /// management processes. For instance, a metadata enforcement rule can specify the required
+        /// information for creating a subscription request or publishing a data asset to the
+        /// catalog, ensuring alignment with organizational standards.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteRule service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteRule service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/DeleteRule">REST API Reference for DeleteRule Operation</seealso>
+        public virtual Task<DeleteRuleResponse> DeleteRuleAsync(DeleteRuleRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteRuleRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteRuleResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteRuleResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -3334,6 +4978,166 @@ namespace Amazon.DataZone
 
         #endregion
         
+        #region  DeleteTimeSeriesDataPoints
+
+
+        /// <summary>
+        /// Deletes the specified time series form for the specified asset.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteTimeSeriesDataPoints service method.</param>
+        /// 
+        /// <returns>The response from the DeleteTimeSeriesDataPoints service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/DeleteTimeSeriesDataPoints">REST API Reference for DeleteTimeSeriesDataPoints Operation</seealso>
+        public virtual DeleteTimeSeriesDataPointsResponse DeleteTimeSeriesDataPoints(DeleteTimeSeriesDataPointsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteTimeSeriesDataPointsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteTimeSeriesDataPointsResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteTimeSeriesDataPointsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes the specified time series form for the specified asset.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteTimeSeriesDataPoints service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteTimeSeriesDataPoints service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/DeleteTimeSeriesDataPoints">REST API Reference for DeleteTimeSeriesDataPoints Operation</seealso>
+        public virtual Task<DeleteTimeSeriesDataPointsResponse> DeleteTimeSeriesDataPointsAsync(DeleteTimeSeriesDataPointsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteTimeSeriesDataPointsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteTimeSeriesDataPointsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteTimeSeriesDataPointsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DisassociateEnvironmentRole
+
+
+        /// <summary>
+        /// Disassociates the environment role in Amazon DataZone.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DisassociateEnvironmentRole service method.</param>
+        /// 
+        /// <returns>The response from the DisassociateEnvironmentRole service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/DisassociateEnvironmentRole">REST API Reference for DisassociateEnvironmentRole Operation</seealso>
+        public virtual DisassociateEnvironmentRoleResponse DisassociateEnvironmentRole(DisassociateEnvironmentRoleRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DisassociateEnvironmentRoleRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DisassociateEnvironmentRoleResponseUnmarshaller.Instance;
+
+            return Invoke<DisassociateEnvironmentRoleResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Disassociates the environment role in Amazon DataZone.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DisassociateEnvironmentRole service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DisassociateEnvironmentRole service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/DisassociateEnvironmentRole">REST API Reference for DisassociateEnvironmentRole Operation</seealso>
+        public virtual Task<DisassociateEnvironmentRoleResponse> DisassociateEnvironmentRoleAsync(DisassociateEnvironmentRoleRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DisassociateEnvironmentRoleRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DisassociateEnvironmentRoleResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DisassociateEnvironmentRoleResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  GetAsset
 
 
@@ -3411,6 +5215,83 @@ namespace Amazon.DataZone
 
         #endregion
         
+        #region  GetAssetFilter
+
+
+        /// <summary>
+        /// Gets an asset filter.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetAssetFilter service method.</param>
+        /// 
+        /// <returns>The response from the GetAssetFilter service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetAssetFilter">REST API Reference for GetAssetFilter Operation</seealso>
+        public virtual GetAssetFilterResponse GetAssetFilter(GetAssetFilterRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetAssetFilterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetAssetFilterResponseUnmarshaller.Instance;
+
+            return Invoke<GetAssetFilterResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Gets an asset filter.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetAssetFilter service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetAssetFilter service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetAssetFilter">REST API Reference for GetAssetFilter Operation</seealso>
+        public virtual Task<GetAssetFilterResponse> GetAssetFilterAsync(GetAssetFilterRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetAssetFilterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetAssetFilterResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetAssetFilterResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  GetAssetType
 
 
@@ -3484,6 +5365,162 @@ namespace Amazon.DataZone
             options.ResponseUnmarshaller = GetAssetTypeResponseUnmarshaller.Instance;
             
             return InvokeAsync<GetAssetTypeResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetConnection
+
+
+        /// <summary>
+        /// Gets a connection. In Amazon DataZone, a connection enables you to connect your resources
+        /// (domains, projects, and environments) to external resources and services.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetConnection service method.</param>
+        /// 
+        /// <returns>The response from the GetConnection service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetConnection">REST API Reference for GetConnection Operation</seealso>
+        public virtual GetConnectionResponse GetConnection(GetConnectionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetConnectionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetConnectionResponseUnmarshaller.Instance;
+
+            return Invoke<GetConnectionResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Gets a connection. In Amazon DataZone, a connection enables you to connect your resources
+        /// (domains, projects, and environments) to external resources and services.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetConnection service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetConnection service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetConnection">REST API Reference for GetConnection Operation</seealso>
+        public virtual Task<GetConnectionResponse> GetConnectionAsync(GetConnectionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetConnectionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetConnectionResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetConnectionResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetDataProduct
+
+
+        /// <summary>
+        /// Gets the data product.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDataProduct service method.</param>
+        /// 
+        /// <returns>The response from the GetDataProduct service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetDataProduct">REST API Reference for GetDataProduct Operation</seealso>
+        public virtual GetDataProductResponse GetDataProduct(GetDataProductRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetDataProductRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetDataProductResponseUnmarshaller.Instance;
+
+            return Invoke<GetDataProductResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Gets the data product.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDataProduct service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetDataProduct service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetDataProduct">REST API Reference for GetDataProduct Operation</seealso>
+        public virtual Task<GetDataProductResponse> GetDataProductAsync(GetDataProductRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetDataProductRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetDataProductResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetDataProductResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -3749,6 +5786,83 @@ namespace Amazon.DataZone
 
         #endregion
         
+        #region  GetDomainUnit
+
+
+        /// <summary>
+        /// Gets the details of the specified domain unit.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDomainUnit service method.</param>
+        /// 
+        /// <returns>The response from the GetDomainUnit service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetDomainUnit">REST API Reference for GetDomainUnit Operation</seealso>
+        public virtual GetDomainUnitResponse GetDomainUnit(GetDomainUnitRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetDomainUnitRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetDomainUnitResponseUnmarshaller.Instance;
+
+            return Invoke<GetDomainUnitResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Gets the details of the specified domain unit.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDomainUnit service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetDomainUnit service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetDomainUnit">REST API Reference for GetDomainUnit Operation</seealso>
+        public virtual Task<GetDomainUnitResponse> GetDomainUnitAsync(GetDomainUnitRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetDomainUnitRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetDomainUnitResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetDomainUnitResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  GetEnvironment
 
 
@@ -3822,6 +5936,83 @@ namespace Amazon.DataZone
             options.ResponseUnmarshaller = GetEnvironmentResponseUnmarshaller.Instance;
             
             return InvokeAsync<GetEnvironmentResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetEnvironmentAction
+
+
+        /// <summary>
+        /// Gets the specified environment action.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetEnvironmentAction service method.</param>
+        /// 
+        /// <returns>The response from the GetEnvironmentAction service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetEnvironmentAction">REST API Reference for GetEnvironmentAction Operation</seealso>
+        public virtual GetEnvironmentActionResponse GetEnvironmentAction(GetEnvironmentActionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetEnvironmentActionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetEnvironmentActionResponseUnmarshaller.Instance;
+
+            return Invoke<GetEnvironmentActionResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Gets the specified environment action.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetEnvironmentAction service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetEnvironmentAction service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetEnvironmentAction">REST API Reference for GetEnvironmentAction Operation</seealso>
+        public virtual Task<GetEnvironmentActionResponse> GetEnvironmentActionAsync(GetEnvironmentActionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetEnvironmentActionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetEnvironmentActionResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetEnvironmentActionResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -3976,6 +6167,83 @@ namespace Amazon.DataZone
             options.ResponseUnmarshaller = GetEnvironmentBlueprintConfigurationResponseUnmarshaller.Instance;
             
             return InvokeAsync<GetEnvironmentBlueprintConfigurationResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetEnvironmentCredentials
+
+
+        /// <summary>
+        /// Gets the credentials of an environment in Amazon DataZone.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetEnvironmentCredentials service method.</param>
+        /// 
+        /// <returns>The response from the GetEnvironmentCredentials service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetEnvironmentCredentials">REST API Reference for GetEnvironmentCredentials Operation</seealso>
+        public virtual GetEnvironmentCredentialsResponse GetEnvironmentCredentials(GetEnvironmentCredentialsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetEnvironmentCredentialsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetEnvironmentCredentialsResponseUnmarshaller.Instance;
+
+            return Invoke<GetEnvironmentCredentialsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Gets the credentials of an environment in Amazon DataZone.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetEnvironmentCredentials service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetEnvironmentCredentials service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetEnvironmentCredentials">REST API Reference for GetEnvironmentCredentials Operation</seealso>
+        public virtual Task<GetEnvironmentCredentialsResponse> GetEnvironmentCredentialsAsync(GetEnvironmentCredentialsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetEnvironmentCredentialsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetEnvironmentCredentialsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetEnvironmentCredentialsResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -4448,11 +6716,243 @@ namespace Amazon.DataZone
 
         #endregion
         
+        #region  GetJobRun
+
+
+        /// <summary>
+        /// The details of the job run.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetJobRun service method.</param>
+        /// 
+        /// <returns>The response from the GetJobRun service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetJobRun">REST API Reference for GetJobRun Operation</seealso>
+        public virtual GetJobRunResponse GetJobRun(GetJobRunRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetJobRunRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetJobRunResponseUnmarshaller.Instance;
+
+            return Invoke<GetJobRunResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// The details of the job run.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetJobRun service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetJobRun service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetJobRun">REST API Reference for GetJobRun Operation</seealso>
+        public virtual Task<GetJobRunResponse> GetJobRunAsync(GetJobRunRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetJobRunRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetJobRunResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetJobRunResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetLineageEvent
+
+
+        /// <summary>
+        /// Describes the lineage event.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetLineageEvent service method.</param>
+        /// 
+        /// <returns>The response from the GetLineageEvent service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetLineageEvent">REST API Reference for GetLineageEvent Operation</seealso>
+        public virtual GetLineageEventResponse GetLineageEvent(GetLineageEventRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetLineageEventRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetLineageEventResponseUnmarshaller.Instance;
+
+            return Invoke<GetLineageEventResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Describes the lineage event.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetLineageEvent service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetLineageEvent service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetLineageEvent">REST API Reference for GetLineageEvent Operation</seealso>
+        public virtual Task<GetLineageEventResponse> GetLineageEventAsync(GetLineageEventRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetLineageEventRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetLineageEventResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetLineageEventResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetLineageNode
+
+
+        /// <summary>
+        /// Gets the data lineage node.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetLineageNode service method.</param>
+        /// 
+        /// <returns>The response from the GetLineageNode service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetLineageNode">REST API Reference for GetLineageNode Operation</seealso>
+        public virtual GetLineageNodeResponse GetLineageNode(GetLineageNodeRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetLineageNodeRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetLineageNodeResponseUnmarshaller.Instance;
+
+            return Invoke<GetLineageNodeResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Gets the data lineage node.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetLineageNode service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetLineageNode service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetLineageNode">REST API Reference for GetLineageNode Operation</seealso>
+        public virtual Task<GetLineageNodeResponse> GetLineageNodeAsync(GetLineageNodeRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetLineageNodeRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetLineageNodeResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetLineageNodeResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  GetListing
 
 
         /// <summary>
-        /// 
+        /// Gets a listing (a record of an asset at a given time). If you specify a listing version,
+        /// only details that are specific to that version are returned.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetListing service method.</param>
         /// 
@@ -4487,7 +6987,8 @@ namespace Amazon.DataZone
 
 
         /// <summary>
-        /// 
+        /// Gets a listing (a record of an asset at a given time). If you specify a listing version,
+        /// only details that are specific to that version are returned.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetListing service method.</param>
         /// <param name="cancellationToken">
@@ -4521,6 +7022,83 @@ namespace Amazon.DataZone
             options.ResponseUnmarshaller = GetListingResponseUnmarshaller.Instance;
             
             return InvokeAsync<GetListingResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetMetadataGenerationRun
+
+
+        /// <summary>
+        /// Gets a metadata generation run in Amazon DataZone.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetMetadataGenerationRun service method.</param>
+        /// 
+        /// <returns>The response from the GetMetadataGenerationRun service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetMetadataGenerationRun">REST API Reference for GetMetadataGenerationRun Operation</seealso>
+        public virtual GetMetadataGenerationRunResponse GetMetadataGenerationRun(GetMetadataGenerationRunRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetMetadataGenerationRunRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetMetadataGenerationRunResponseUnmarshaller.Instance;
+
+            return Invoke<GetMetadataGenerationRunResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Gets a metadata generation run in Amazon DataZone.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetMetadataGenerationRun service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetMetadataGenerationRun service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetMetadataGenerationRun">REST API Reference for GetMetadataGenerationRun Operation</seealso>
+        public virtual Task<GetMetadataGenerationRunResponse> GetMetadataGenerationRunAsync(GetMetadataGenerationRunRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetMetadataGenerationRunRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetMetadataGenerationRunResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetMetadataGenerationRunResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -4598,6 +7176,172 @@ namespace Amazon.DataZone
             options.ResponseUnmarshaller = GetProjectResponseUnmarshaller.Instance;
             
             return InvokeAsync<GetProjectResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetProjectProfile
+
+
+        /// <summary>
+        /// The details of the project profile.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetProjectProfile service method.</param>
+        /// 
+        /// <returns>The response from the GetProjectProfile service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetProjectProfile">REST API Reference for GetProjectProfile Operation</seealso>
+        public virtual GetProjectProfileResponse GetProjectProfile(GetProjectProfileRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetProjectProfileRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetProjectProfileResponseUnmarshaller.Instance;
+
+            return Invoke<GetProjectProfileResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// The details of the project profile.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetProjectProfile service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetProjectProfile service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetProjectProfile">REST API Reference for GetProjectProfile Operation</seealso>
+        public virtual Task<GetProjectProfileResponse> GetProjectProfileAsync(GetProjectProfileRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetProjectProfileRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetProjectProfileResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetProjectProfileResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetRule
+
+
+        /// <summary>
+        /// Gets the details of a rule in Amazon DataZone. A rule is a formal agreement that enforces
+        /// specific requirements across user workflows (e.g., publishing assets to the catalog,
+        /// requesting subscriptions, creating projects) within the Amazon DataZone data portal.
+        /// These rules help maintain consistency, ensure compliance, and uphold governance standards
+        /// in data management processes. For instance, a metadata enforcement rule can specify
+        /// the required information for creating a subscription request or publishing a data
+        /// asset to the catalog, ensuring alignment with organizational standards.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetRule service method.</param>
+        /// 
+        /// <returns>The response from the GetRule service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetRule">REST API Reference for GetRule Operation</seealso>
+        public virtual GetRuleResponse GetRule(GetRuleRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetRuleRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetRuleResponseUnmarshaller.Instance;
+
+            return Invoke<GetRuleResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Gets the details of a rule in Amazon DataZone. A rule is a formal agreement that enforces
+        /// specific requirements across user workflows (e.g., publishing assets to the catalog,
+        /// requesting subscriptions, creating projects) within the Amazon DataZone data portal.
+        /// These rules help maintain consistency, ensure compliance, and uphold governance standards
+        /// in data management processes. For instance, a metadata enforcement rule can specify
+        /// the required information for creating a subscription request or publishing a data
+        /// asset to the catalog, ensuring alignment with organizational standards.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetRule service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetRule service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetRule">REST API Reference for GetRule Operation</seealso>
+        public virtual Task<GetRuleResponse> GetRuleAsync(GetRuleRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetRuleRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetRuleResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetRuleResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -4910,6 +7654,83 @@ namespace Amazon.DataZone
 
         #endregion
         
+        #region  GetTimeSeriesDataPoint
+
+
+        /// <summary>
+        /// Gets the existing data point for the asset.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetTimeSeriesDataPoint service method.</param>
+        /// 
+        /// <returns>The response from the GetTimeSeriesDataPoint service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetTimeSeriesDataPoint">REST API Reference for GetTimeSeriesDataPoint Operation</seealso>
+        public virtual GetTimeSeriesDataPointResponse GetTimeSeriesDataPoint(GetTimeSeriesDataPointRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetTimeSeriesDataPointRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetTimeSeriesDataPointResponseUnmarshaller.Instance;
+
+            return Invoke<GetTimeSeriesDataPointResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Gets the existing data point for the asset.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetTimeSeriesDataPoint service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetTimeSeriesDataPoint service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetTimeSeriesDataPoint">REST API Reference for GetTimeSeriesDataPoint Operation</seealso>
+        public virtual Task<GetTimeSeriesDataPointResponse> GetTimeSeriesDataPointAsync(GetTimeSeriesDataPointRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetTimeSeriesDataPointRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetTimeSeriesDataPointResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetTimeSeriesDataPointResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  GetUserProfile
 
 
@@ -4987,6 +7808,83 @@ namespace Amazon.DataZone
 
         #endregion
         
+        #region  ListAssetFilters
+
+
+        /// <summary>
+        /// Lists asset filters.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAssetFilters service method.</param>
+        /// 
+        /// <returns>The response from the ListAssetFilters service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListAssetFilters">REST API Reference for ListAssetFilters Operation</seealso>
+        public virtual ListAssetFiltersResponse ListAssetFilters(ListAssetFiltersRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListAssetFiltersRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListAssetFiltersResponseUnmarshaller.Instance;
+
+            return Invoke<ListAssetFiltersResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists asset filters.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAssetFilters service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListAssetFilters service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListAssetFilters">REST API Reference for ListAssetFilters Operation</seealso>
+        public virtual Task<ListAssetFiltersResponse> ListAssetFiltersAsync(ListAssetFiltersRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListAssetFiltersRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListAssetFiltersResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListAssetFiltersResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ListAssetRevisions
 
 
@@ -5060,6 +7958,156 @@ namespace Amazon.DataZone
             options.ResponseUnmarshaller = ListAssetRevisionsResponseUnmarshaller.Instance;
             
             return InvokeAsync<ListAssetRevisionsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListConnections
+
+
+        /// <summary>
+        /// Lists connections. In Amazon DataZone, a connection enables you to connect your resources
+        /// (domains, projects, and environments) to external resources and services.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListConnections service method.</param>
+        /// 
+        /// <returns>The response from the ListConnections service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListConnections">REST API Reference for ListConnections Operation</seealso>
+        public virtual ListConnectionsResponse ListConnections(ListConnectionsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListConnectionsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListConnectionsResponseUnmarshaller.Instance;
+
+            return Invoke<ListConnectionsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists connections. In Amazon DataZone, a connection enables you to connect your resources
+        /// (domains, projects, and environments) to external resources and services.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListConnections service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListConnections service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListConnections">REST API Reference for ListConnections Operation</seealso>
+        public virtual Task<ListConnectionsResponse> ListConnectionsAsync(ListConnectionsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListConnectionsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListConnectionsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListConnectionsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListDataProductRevisions
+
+
+        /// <summary>
+        /// Lists data product revisions.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListDataProductRevisions service method.</param>
+        /// 
+        /// <returns>The response from the ListDataProductRevisions service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListDataProductRevisions">REST API Reference for ListDataProductRevisions Operation</seealso>
+        public virtual ListDataProductRevisionsResponse ListDataProductRevisions(ListDataProductRevisionsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListDataProductRevisionsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListDataProductRevisionsResponseUnmarshaller.Instance;
+
+            return Invoke<ListDataProductRevisionsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists data product revisions.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListDataProductRevisions service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListDataProductRevisions service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListDataProductRevisions">REST API Reference for ListDataProductRevisions Operation</seealso>
+        public virtual Task<ListDataProductRevisionsResponse> ListDataProductRevisionsAsync(ListDataProductRevisionsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListDataProductRevisionsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListDataProductRevisionsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListDataProductRevisionsResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -5420,6 +8468,219 @@ namespace Amazon.DataZone
 
         #endregion
         
+        #region  ListDomainUnitsForParent
+
+
+        /// <summary>
+        /// Lists child domain units for the specified parent domain unit.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListDomainUnitsForParent service method.</param>
+        /// 
+        /// <returns>The response from the ListDomainUnitsForParent service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListDomainUnitsForParent">REST API Reference for ListDomainUnitsForParent Operation</seealso>
+        public virtual ListDomainUnitsForParentResponse ListDomainUnitsForParent(ListDomainUnitsForParentRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListDomainUnitsForParentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListDomainUnitsForParentResponseUnmarshaller.Instance;
+
+            return Invoke<ListDomainUnitsForParentResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists child domain units for the specified parent domain unit.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListDomainUnitsForParent service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListDomainUnitsForParent service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListDomainUnitsForParent">REST API Reference for ListDomainUnitsForParent Operation</seealso>
+        public virtual Task<ListDomainUnitsForParentResponse> ListDomainUnitsForParentAsync(ListDomainUnitsForParentRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListDomainUnitsForParentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListDomainUnitsForParentResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListDomainUnitsForParentResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListEntityOwners
+
+
+        /// <summary>
+        /// Lists the entity (domain units) owners.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListEntityOwners service method.</param>
+        /// 
+        /// <returns>The response from the ListEntityOwners service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListEntityOwners">REST API Reference for ListEntityOwners Operation</seealso>
+        public virtual ListEntityOwnersResponse ListEntityOwners(ListEntityOwnersRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListEntityOwnersRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListEntityOwnersResponseUnmarshaller.Instance;
+
+            return Invoke<ListEntityOwnersResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists the entity (domain units) owners.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListEntityOwners service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListEntityOwners service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListEntityOwners">REST API Reference for ListEntityOwners Operation</seealso>
+        public virtual Task<ListEntityOwnersResponse> ListEntityOwnersAsync(ListEntityOwnersRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListEntityOwnersRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListEntityOwnersResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListEntityOwnersResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListEnvironmentActions
+
+
+        /// <summary>
+        /// Lists existing environment actions.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListEnvironmentActions service method.</param>
+        /// 
+        /// <returns>The response from the ListEnvironmentActions service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListEnvironmentActions">REST API Reference for ListEnvironmentActions Operation</seealso>
+        public virtual ListEnvironmentActionsResponse ListEnvironmentActions(ListEnvironmentActionsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListEnvironmentActionsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListEnvironmentActionsResponseUnmarshaller.Instance;
+
+            return Invoke<ListEnvironmentActionsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists existing environment actions.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListEnvironmentActions service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListEnvironmentActions service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListEnvironmentActions">REST API Reference for ListEnvironmentActions Operation</seealso>
+        public virtual Task<ListEnvironmentActionsResponse> ListEnvironmentActionsAsync(ListEnvironmentActionsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListEnvironmentActionsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListEnvironmentActionsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListEnvironmentActionsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ListEnvironmentBlueprintConfigurations
 
 
@@ -5716,6 +8977,308 @@ namespace Amazon.DataZone
 
         #endregion
         
+        #region  ListJobRuns
+
+
+        /// <summary>
+        /// Lists job runs.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListJobRuns service method.</param>
+        /// 
+        /// <returns>The response from the ListJobRuns service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListJobRuns">REST API Reference for ListJobRuns Operation</seealso>
+        public virtual ListJobRunsResponse ListJobRuns(ListJobRunsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListJobRunsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListJobRunsResponseUnmarshaller.Instance;
+
+            return Invoke<ListJobRunsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists job runs.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListJobRuns service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListJobRuns service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListJobRuns">REST API Reference for ListJobRuns Operation</seealso>
+        public virtual Task<ListJobRunsResponse> ListJobRunsAsync(ListJobRunsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListJobRunsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListJobRunsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListJobRunsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListLineageEvents
+
+
+        /// <summary>
+        /// Lists lineage events.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListLineageEvents service method.</param>
+        /// 
+        /// <returns>The response from the ListLineageEvents service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListLineageEvents">REST API Reference for ListLineageEvents Operation</seealso>
+        public virtual ListLineageEventsResponse ListLineageEvents(ListLineageEventsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListLineageEventsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListLineageEventsResponseUnmarshaller.Instance;
+
+            return Invoke<ListLineageEventsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists lineage events.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListLineageEvents service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListLineageEvents service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListLineageEvents">REST API Reference for ListLineageEvents Operation</seealso>
+        public virtual Task<ListLineageEventsResponse> ListLineageEventsAsync(ListLineageEventsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListLineageEventsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListLineageEventsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListLineageEventsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListLineageNodeHistory
+
+
+        /// <summary>
+        /// Lists the history of the specified data lineage node.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListLineageNodeHistory service method.</param>
+        /// 
+        /// <returns>The response from the ListLineageNodeHistory service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListLineageNodeHistory">REST API Reference for ListLineageNodeHistory Operation</seealso>
+        public virtual ListLineageNodeHistoryResponse ListLineageNodeHistory(ListLineageNodeHistoryRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListLineageNodeHistoryRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListLineageNodeHistoryResponseUnmarshaller.Instance;
+
+            return Invoke<ListLineageNodeHistoryResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists the history of the specified data lineage node.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListLineageNodeHistory service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListLineageNodeHistory service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListLineageNodeHistory">REST API Reference for ListLineageNodeHistory Operation</seealso>
+        public virtual Task<ListLineageNodeHistoryResponse> ListLineageNodeHistoryAsync(ListLineageNodeHistoryRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListLineageNodeHistoryRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListLineageNodeHistoryResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListLineageNodeHistoryResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListMetadataGenerationRuns
+
+
+        /// <summary>
+        /// Lists all metadata generation runs.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListMetadataGenerationRuns service method.</param>
+        /// 
+        /// <returns>The response from the ListMetadataGenerationRuns service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListMetadataGenerationRuns">REST API Reference for ListMetadataGenerationRuns Operation</seealso>
+        public virtual ListMetadataGenerationRunsResponse ListMetadataGenerationRuns(ListMetadataGenerationRunsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListMetadataGenerationRunsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListMetadataGenerationRunsResponseUnmarshaller.Instance;
+
+            return Invoke<ListMetadataGenerationRunsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists all metadata generation runs.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListMetadataGenerationRuns service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListMetadataGenerationRuns service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListMetadataGenerationRuns">REST API Reference for ListMetadataGenerationRuns Operation</seealso>
+        public virtual Task<ListMetadataGenerationRunsResponse> ListMetadataGenerationRunsAsync(ListMetadataGenerationRunsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListMetadataGenerationRunsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListMetadataGenerationRunsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListMetadataGenerationRunsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ListNotifications
 
 
@@ -5789,6 +9352,77 @@ namespace Amazon.DataZone
             options.ResponseUnmarshaller = ListNotificationsResponseUnmarshaller.Instance;
             
             return InvokeAsync<ListNotificationsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListPolicyGrants
+
+
+        /// <summary>
+        /// Lists policy grants.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListPolicyGrants service method.</param>
+        /// 
+        /// <returns>The response from the ListPolicyGrants service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListPolicyGrants">REST API Reference for ListPolicyGrants Operation</seealso>
+        public virtual ListPolicyGrantsResponse ListPolicyGrants(ListPolicyGrantsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListPolicyGrantsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListPolicyGrantsResponseUnmarshaller.Instance;
+
+            return Invoke<ListPolicyGrantsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists policy grants.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListPolicyGrants service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListPolicyGrants service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListPolicyGrants">REST API Reference for ListPolicyGrants Operation</seealso>
+        public virtual Task<ListPolicyGrantsResponse> ListPolicyGrantsAsync(ListPolicyGrantsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListPolicyGrantsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListPolicyGrantsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListPolicyGrantsResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -5870,6 +9504,77 @@ namespace Amazon.DataZone
 
         #endregion
         
+        #region  ListProjectProfiles
+
+
+        /// <summary>
+        /// Lists project profiles.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListProjectProfiles service method.</param>
+        /// 
+        /// <returns>The response from the ListProjectProfiles service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListProjectProfiles">REST API Reference for ListProjectProfiles Operation</seealso>
+        public virtual ListProjectProfilesResponse ListProjectProfiles(ListProjectProfilesRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListProjectProfilesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListProjectProfilesResponseUnmarshaller.Instance;
+
+            return Invoke<ListProjectProfilesResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists project profiles.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListProjectProfiles service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListProjectProfiles service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListProjectProfiles">REST API Reference for ListProjectProfiles Operation</seealso>
+        public virtual Task<ListProjectProfilesResponse> ListProjectProfilesAsync(ListProjectProfilesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListProjectProfilesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListProjectProfilesResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListProjectProfilesResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ListProjects
 
 
@@ -5937,6 +9642,95 @@ namespace Amazon.DataZone
             options.ResponseUnmarshaller = ListProjectsResponseUnmarshaller.Instance;
             
             return InvokeAsync<ListProjectsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListRules
+
+
+        /// <summary>
+        /// Lists existing rules. In Amazon DataZone, a rule is a formal agreement that enforces
+        /// specific requirements across user workflows (e.g., publishing assets to the catalog,
+        /// requesting subscriptions, creating projects) within the Amazon DataZone data portal.
+        /// These rules help maintain consistency, ensure compliance, and uphold governance standards
+        /// in data management processes. For instance, a metadata enforcement rule can specify
+        /// the required information for creating a subscription request or publishing a data
+        /// asset to the catalog, ensuring alignment with organizational standards.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListRules service method.</param>
+        /// 
+        /// <returns>The response from the ListRules service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListRules">REST API Reference for ListRules Operation</seealso>
+        public virtual ListRulesResponse ListRules(ListRulesRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListRulesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListRulesResponseUnmarshaller.Instance;
+
+            return Invoke<ListRulesResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists existing rules. In Amazon DataZone, a rule is a formal agreement that enforces
+        /// specific requirements across user workflows (e.g., publishing assets to the catalog,
+        /// requesting subscriptions, creating projects) within the Amazon DataZone data portal.
+        /// These rules help maintain consistency, ensure compliance, and uphold governance standards
+        /// in data management processes. For instance, a metadata enforcement rule can specify
+        /// the required information for creating a subscription request or publishing a data
+        /// asset to the catalog, ensuring alignment with organizational standards.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListRules service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListRules service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListRules">REST API Reference for ListRules Operation</seealso>
+        public virtual Task<ListRulesResponse> ListRulesAsync(ListRulesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListRulesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListRulesResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListRulesResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -6326,6 +10120,261 @@ namespace Amazon.DataZone
 
         #endregion
         
+        #region  ListTimeSeriesDataPoints
+
+
+        /// <summary>
+        /// Lists time series data points.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListTimeSeriesDataPoints service method.</param>
+        /// 
+        /// <returns>The response from the ListTimeSeriesDataPoints service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListTimeSeriesDataPoints">REST API Reference for ListTimeSeriesDataPoints Operation</seealso>
+        public virtual ListTimeSeriesDataPointsResponse ListTimeSeriesDataPoints(ListTimeSeriesDataPointsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListTimeSeriesDataPointsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListTimeSeriesDataPointsResponseUnmarshaller.Instance;
+
+            return Invoke<ListTimeSeriesDataPointsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists time series data points.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListTimeSeriesDataPoints service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListTimeSeriesDataPoints service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListTimeSeriesDataPoints">REST API Reference for ListTimeSeriesDataPoints Operation</seealso>
+        public virtual Task<ListTimeSeriesDataPointsResponse> ListTimeSeriesDataPointsAsync(ListTimeSeriesDataPointsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListTimeSeriesDataPointsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListTimeSeriesDataPointsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListTimeSeriesDataPointsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  PostLineageEvent
+
+
+        /// <summary>
+        /// Posts a data lineage event.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PostLineageEvent service method.</param>
+        /// 
+        /// <returns>The response from the PostLineageEvent service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/PostLineageEvent">REST API Reference for PostLineageEvent Operation</seealso>
+        public virtual PostLineageEventResponse PostLineageEvent(PostLineageEventRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = PostLineageEventRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = PostLineageEventResponseUnmarshaller.Instance;
+
+            return Invoke<PostLineageEventResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Posts a data lineage event.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PostLineageEvent service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the PostLineageEvent service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/PostLineageEvent">REST API Reference for PostLineageEvent Operation</seealso>
+        public virtual Task<PostLineageEventResponse> PostLineageEventAsync(PostLineageEventRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = PostLineageEventRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = PostLineageEventResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<PostLineageEventResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  PostTimeSeriesDataPoints
+
+
+        /// <summary>
+        /// Posts time series data points to Amazon DataZone for the specified asset.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PostTimeSeriesDataPoints service method.</param>
+        /// 
+        /// <returns>The response from the PostTimeSeriesDataPoints service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/PostTimeSeriesDataPoints">REST API Reference for PostTimeSeriesDataPoints Operation</seealso>
+        public virtual PostTimeSeriesDataPointsResponse PostTimeSeriesDataPoints(PostTimeSeriesDataPointsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = PostTimeSeriesDataPointsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = PostTimeSeriesDataPointsResponseUnmarshaller.Instance;
+
+            return Invoke<PostTimeSeriesDataPointsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Posts time series data points to Amazon DataZone for the specified asset.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PostTimeSeriesDataPoints service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the PostTimeSeriesDataPoints service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/PostTimeSeriesDataPoints">REST API Reference for PostTimeSeriesDataPoints Operation</seealso>
+        public virtual Task<PostTimeSeriesDataPointsResponse> PostTimeSeriesDataPointsAsync(PostTimeSeriesDataPointsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = PostTimeSeriesDataPointsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = PostTimeSeriesDataPointsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<PostTimeSeriesDataPointsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  PutEnvironmentBlueprintConfiguration
 
 
@@ -6422,6 +10471,9 @@ namespace Amazon.DataZone
         /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
         /// You do not have sufficient access to perform this action.
         /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
         /// <exception cref="Amazon.DataZone.Model.InternalServerException">
         /// The request has failed because of an unknown error, exception or failure.
         /// </exception>
@@ -6460,6 +10512,9 @@ namespace Amazon.DataZone
         /// <returns>The response from the RejectPredictions service method, as returned by DataZone.</returns>
         /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
         /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
         /// </exception>
         /// <exception cref="Amazon.DataZone.Model.InternalServerException">
         /// The request has failed because of an unknown error, exception or failure.
@@ -6567,6 +10622,154 @@ namespace Amazon.DataZone
             options.ResponseUnmarshaller = RejectSubscriptionRequestResponseUnmarshaller.Instance;
             
             return InvokeAsync<RejectSubscriptionRequestResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  RemoveEntityOwner
+
+
+        /// <summary>
+        /// Removes an owner from an entity.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the RemoveEntityOwner service method.</param>
+        /// 
+        /// <returns>The response from the RemoveEntityOwner service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/RemoveEntityOwner">REST API Reference for RemoveEntityOwner Operation</seealso>
+        public virtual RemoveEntityOwnerResponse RemoveEntityOwner(RemoveEntityOwnerRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = RemoveEntityOwnerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = RemoveEntityOwnerResponseUnmarshaller.Instance;
+
+            return Invoke<RemoveEntityOwnerResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Removes an owner from an entity.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the RemoveEntityOwner service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the RemoveEntityOwner service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/RemoveEntityOwner">REST API Reference for RemoveEntityOwner Operation</seealso>
+        public virtual Task<RemoveEntityOwnerResponse> RemoveEntityOwnerAsync(RemoveEntityOwnerRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = RemoveEntityOwnerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = RemoveEntityOwnerResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<RemoveEntityOwnerResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  RemovePolicyGrant
+
+
+        /// <summary>
+        /// Removes a policy grant.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the RemovePolicyGrant service method.</param>
+        /// 
+        /// <returns>The response from the RemovePolicyGrant service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/RemovePolicyGrant">REST API Reference for RemovePolicyGrant Operation</seealso>
+        public virtual RemovePolicyGrantResponse RemovePolicyGrant(RemovePolicyGrantRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = RemovePolicyGrantRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = RemovePolicyGrantResponseUnmarshaller.Instance;
+
+            return Invoke<RemovePolicyGrantResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Removes a policy grant.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the RemovePolicyGrant service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the RemovePolicyGrant service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/RemovePolicyGrant">REST API Reference for RemovePolicyGrant Operation</seealso>
+        public virtual Task<RemovePolicyGrantResponse> RemovePolicyGrantAsync(RemovePolicyGrantRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = RemovePolicyGrantRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = RemovePolicyGrantResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<RemovePolicyGrantResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -6806,7 +11009,7 @@ namespace Amazon.DataZone
 
 
         /// <summary>
-        /// Searches listings in Amazon DataZone.
+        /// Searches listings (records of an asset at a given time) in Amazon DataZone.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the SearchListings service method.</param>
         /// 
@@ -6838,7 +11041,7 @@ namespace Amazon.DataZone
 
 
         /// <summary>
-        /// Searches listings in Amazon DataZone.
+        /// Searches listings (records of an asset at a given time) in Amazon DataZone.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the SearchListings service method.</param>
         /// <param name="cancellationToken">
@@ -7110,6 +11313,95 @@ namespace Amazon.DataZone
 
         #endregion
         
+        #region  StartMetadataGenerationRun
+
+
+        /// <summary>
+        /// Starts the metadata generation run.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartMetadataGenerationRun service method.</param>
+        /// 
+        /// <returns>The response from the StartMetadataGenerationRun service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/StartMetadataGenerationRun">REST API Reference for StartMetadataGenerationRun Operation</seealso>
+        public virtual StartMetadataGenerationRunResponse StartMetadataGenerationRun(StartMetadataGenerationRunRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartMetadataGenerationRunRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartMetadataGenerationRunResponseUnmarshaller.Instance;
+
+            return Invoke<StartMetadataGenerationRunResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Starts the metadata generation run.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartMetadataGenerationRun service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StartMetadataGenerationRun service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/StartMetadataGenerationRun">REST API Reference for StartMetadataGenerationRun Operation</seealso>
+        public virtual Task<StartMetadataGenerationRunResponse> StartMetadataGenerationRunAsync(StartMetadataGenerationRunRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartMetadataGenerationRunRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartMetadataGenerationRunResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<StartMetadataGenerationRunResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  TagResource
 
 
@@ -7254,6 +11546,180 @@ namespace Amazon.DataZone
             options.ResponseUnmarshaller = UntagResourceResponseUnmarshaller.Instance;
             
             return InvokeAsync<UntagResourceResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  UpdateAssetFilter
+
+
+        /// <summary>
+        /// Updates an asset filter.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateAssetFilter service method.</param>
+        /// 
+        /// <returns>The response from the UpdateAssetFilter service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/UpdateAssetFilter">REST API Reference for UpdateAssetFilter Operation</seealso>
+        public virtual UpdateAssetFilterResponse UpdateAssetFilter(UpdateAssetFilterRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateAssetFilterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateAssetFilterResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateAssetFilterResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Updates an asset filter.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateAssetFilter service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateAssetFilter service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/UpdateAssetFilter">REST API Reference for UpdateAssetFilter Operation</seealso>
+        public virtual Task<UpdateAssetFilterResponse> UpdateAssetFilterAsync(UpdateAssetFilterRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateAssetFilterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateAssetFilterResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdateAssetFilterResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  UpdateConnection
+
+
+        /// <summary>
+        /// Updates a connection. In Amazon DataZone, a connection enables you to connect your
+        /// resources (domains, projects, and environments) to external resources and services.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateConnection service method.</param>
+        /// 
+        /// <returns>The response from the UpdateConnection service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/UpdateConnection">REST API Reference for UpdateConnection Operation</seealso>
+        public virtual UpdateConnectionResponse UpdateConnection(UpdateConnectionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateConnectionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateConnectionResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateConnectionResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Updates a connection. In Amazon DataZone, a connection enables you to connect your
+        /// resources (domains, projects, and environments) to external resources and services.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateConnection service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateConnection service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/UpdateConnection">REST API Reference for UpdateConnection Operation</seealso>
+        public virtual Task<UpdateConnectionResponse> UpdateConnectionAsync(UpdateConnectionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateConnectionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateConnectionResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdateConnectionResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -7436,6 +11902,89 @@ namespace Amazon.DataZone
 
         #endregion
         
+        #region  UpdateDomainUnit
+
+
+        /// <summary>
+        /// Updates the domain unit.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateDomainUnit service method.</param>
+        /// 
+        /// <returns>The response from the UpdateDomainUnit service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/UpdateDomainUnit">REST API Reference for UpdateDomainUnit Operation</seealso>
+        public virtual UpdateDomainUnitResponse UpdateDomainUnit(UpdateDomainUnitRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateDomainUnitRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateDomainUnitResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateDomainUnitResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Updates the domain unit.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateDomainUnit service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateDomainUnit service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/UpdateDomainUnit">REST API Reference for UpdateDomainUnit Operation</seealso>
+        public virtual Task<UpdateDomainUnitResponse> UpdateDomainUnitAsync(UpdateDomainUnitRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateDomainUnitRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateDomainUnitResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdateDomainUnitResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  UpdateEnvironment
 
 
@@ -7515,6 +12064,89 @@ namespace Amazon.DataZone
             options.ResponseUnmarshaller = UpdateEnvironmentResponseUnmarshaller.Instance;
             
             return InvokeAsync<UpdateEnvironmentResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  UpdateEnvironmentAction
+
+
+        /// <summary>
+        /// Updates an environment action.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateEnvironmentAction service method.</param>
+        /// 
+        /// <returns>The response from the UpdateEnvironmentAction service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/UpdateEnvironmentAction">REST API Reference for UpdateEnvironmentAction Operation</seealso>
+        public virtual UpdateEnvironmentActionResponse UpdateEnvironmentAction(UpdateEnvironmentActionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateEnvironmentActionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateEnvironmentActionResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateEnvironmentActionResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Updates an environment action.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateEnvironmentAction service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateEnvironmentAction service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/UpdateEnvironmentAction">REST API Reference for UpdateEnvironmentAction Operation</seealso>
+        public virtual Task<UpdateEnvironmentActionResponse> UpdateEnvironmentActionAsync(UpdateEnvironmentActionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateEnvironmentActionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateEnvironmentActionResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdateEnvironmentActionResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -7940,6 +12572,196 @@ namespace Amazon.DataZone
 
         #endregion
         
+        #region  UpdateProjectProfile
+
+
+        /// <summary>
+        /// Updates a project profile.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateProjectProfile service method.</param>
+        /// 
+        /// <returns>The response from the UpdateProjectProfile service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/UpdateProjectProfile">REST API Reference for UpdateProjectProfile Operation</seealso>
+        public virtual UpdateProjectProfileResponse UpdateProjectProfile(UpdateProjectProfileRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateProjectProfileRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateProjectProfileResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateProjectProfileResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Updates a project profile.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateProjectProfile service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateProjectProfile service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/UpdateProjectProfile">REST API Reference for UpdateProjectProfile Operation</seealso>
+        public virtual Task<UpdateProjectProfileResponse> UpdateProjectProfileAsync(UpdateProjectProfileRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateProjectProfileRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateProjectProfileResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdateProjectProfileResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  UpdateRule
+
+
+        /// <summary>
+        /// Updates a rule. In Amazon DataZone, a rule is a formal agreement that enforces specific
+        /// requirements across user workflows (e.g., publishing assets to the catalog, requesting
+        /// subscriptions, creating projects) within the Amazon DataZone data portal. These rules
+        /// help maintain consistency, ensure compliance, and uphold governance standards in data
+        /// management processes. For instance, a metadata enforcement rule can specify the required
+        /// information for creating a subscription request or publishing a data asset to the
+        /// catalog, ensuring alignment with organizational standards.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateRule service method.</param>
+        /// 
+        /// <returns>The response from the UpdateRule service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/UpdateRule">REST API Reference for UpdateRule Operation</seealso>
+        public virtual UpdateRuleResponse UpdateRule(UpdateRuleRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateRuleRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateRuleResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateRuleResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Updates a rule. In Amazon DataZone, a rule is a formal agreement that enforces specific
+        /// requirements across user workflows (e.g., publishing assets to the catalog, requesting
+        /// subscriptions, creating projects) within the Amazon DataZone data portal. These rules
+        /// help maintain consistency, ensure compliance, and uphold governance standards in data
+        /// management processes. For instance, a metadata enforcement rule can specify the required
+        /// information for creating a subscription request or publishing a data asset to the
+        /// catalog, ensuring alignment with organizational standards.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateRule service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateRule service method, as returned by DataZone.</returns>
+        /// <exception cref="Amazon.DataZone.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ConflictException">
+        /// There is a conflict while performing this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.InternalServerException">
+        /// The request has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ServiceQuotaExceededException">
+        /// The request has exceeded the specified service quota.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.UnauthorizedException">
+        /// You do not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.DataZone.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by the Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/UpdateRule">REST API Reference for UpdateRule Operation</seealso>
+        public virtual Task<UpdateRuleResponse> UpdateRuleAsync(UpdateRuleRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateRuleRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateRuleResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdateRuleResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  UpdateSubscriptionGrantStatus
 
 
@@ -8275,11 +13097,11 @@ namespace Amazon.DataZone
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -34,10 +35,10 @@ namespace Amazon.IoT.Model
     /// </summary>
     public partial class ThingIndexingConfiguration
     {
-        private List<Field> _customFields = new List<Field>();
+        private List<Field> _customFields = AWSConfigs.InitializeCollections ? new List<Field>() : null;
         private DeviceDefenderIndexingMode _deviceDefenderIndexingMode;
         private IndexingFilter _filter;
-        private List<Field> _managedFields = new List<Field>();
+        private List<Field> _managedFields = AWSConfigs.InitializeCollections ? new List<Field>() : null;
         private NamedShadowIndexingMode _namedShadowIndexingMode;
         private ThingConnectivityIndexingMode _thingConnectivityIndexingMode;
         private ThingIndexingMode _thingIndexingMode;
@@ -57,7 +58,7 @@ namespace Amazon.IoT.Model
         // Check to see if CustomFields property is set
         internal bool IsSetCustomFields()
         {
-            return this._customFields != null && this._customFields.Count > 0; 
+            return this._customFields != null && (this._customFields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -95,11 +96,32 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property Filter. 
         /// <para>
-        /// Provides additional filters for specific data sources. Named shadow is the only data
-        /// source that currently supports and requires a filter. To add named shadows to your
-        /// fleet indexing configuration, set <code>namedShadowIndexingMode</code> to be <code>ON</code>
-        /// and specify your shadow names in <code>filter</code>.
+        /// Provides additional selections for named shadows and geolocation data. 
         /// </para>
+        ///  
+        /// <para>
+        /// To add named shadows to your fleet indexing configuration, set <c>namedShadowIndexingMode</c>
+        /// to be ON and specify your shadow names in <c>namedShadowNames</c> filter.
+        /// </para>
+        ///  
+        /// <para>
+        /// To add geolocation data to your fleet indexing configuration: 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// If you store geolocation data in a class/unnamed shadow, set <c>thingIndexingMode</c>
+        /// to be <c>REGISTRY_AND_SHADOW</c> and specify your geolocation data in <c>geoLocations</c>
+        /// filter. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If you store geolocation data in a named shadow, set <c>namedShadowIndexingMode</c>
+        /// to be <c>ON</c>, add the shadow name in <c>namedShadowNames</c> filter, and specify
+        /// your geolocation data in <c>geoLocations</c> filter. For more information, see <a
+        /// href="https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html">Managing
+        /// fleet indexing</a>.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public IndexingFilter Filter
         {
@@ -117,8 +139,14 @@ namespace Amazon.IoT.Model
         /// Gets and sets the property ManagedFields. 
         /// <para>
         /// Contains fields that are indexed and whose types are already known by the Fleet Indexing
-        /// service.
+        /// service. This is an optional field. For more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html#managed-field">Managed
+        /// fields</a> in the <i>Amazon Web Services IoT Core Developer Guide</i>.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// You can't modify managed fields by updating fleet indexing configuration.
+        /// </para>
+        ///  </note>
         /// </summary>
         public List<Field> ManagedFields
         {
@@ -129,7 +157,7 @@ namespace Amazon.IoT.Model
         // Check to see if ManagedFields property is set
         internal bool IsSetManagedFields()
         {
-            return this._managedFields != null && this._managedFields.Count > 0; 
+            return this._managedFields != null && (this._managedFields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

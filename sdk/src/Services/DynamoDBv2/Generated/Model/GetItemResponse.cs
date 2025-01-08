@@ -26,25 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
-    /// Represents the output of a <code>GetItem</code> operation.
+    /// Represents the output of a <c>GetItem</c> operation.
     /// </summary>
     public partial class GetItemResponse : AmazonWebServiceResponse
     {
         private ConsumedCapacity _consumedCapacity;
-        private Dictionary<string, AttributeValue> _item = new Dictionary<string, AttributeValue>();
+        private Dictionary<string, AttributeValue> _item = AWSConfigs.InitializeCollections ? new Dictionary<string, AttributeValue>() : null;
 
         /// <summary>
         /// Gets and sets the property ConsumedCapacity. 
         /// <para>
-        /// The capacity units consumed by the <code>GetItem</code> operation. The data returned
-        /// includes the total provisioned throughput consumed, along with statistics for the
-        /// table and any indexes involved in the operation. <code>ConsumedCapacity</code> is
-        /// only returned if the <code>ReturnConsumedCapacity</code> parameter was specified.
-        /// For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughput.html#ItemSizeCalculations.Reads">Provisioned
-        /// Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+        /// The capacity units consumed by the <c>GetItem</c> operation. The data returned includes
+        /// the total provisioned throughput consumed, along with statistics for the table and
+        /// any indexes involved in the operation. <c>ConsumedCapacity</c> is only returned if
+        /// the <c>ReturnConsumedCapacity</c> parameter was specified. For more information, see
+        /// <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/read-write-operations.html#read-operation-consumption">Capacity
+        /// unit consumption for read operations</a> in the <i>Amazon DynamoDB Developer Guide</i>.
         /// </para>
         /// </summary>
         public ConsumedCapacity ConsumedCapacity
@@ -62,7 +63,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property Item. 
         /// <para>
-        /// A map of attribute names to <code>AttributeValue</code> objects, as specified by <code>ProjectionExpression</code>.
+        /// A map of attribute names to <c>AttributeValue</c> objects, as specified by <c>ProjectionExpression</c>.
         /// </para>
         /// </summary>
         public Dictionary<string, AttributeValue> Item

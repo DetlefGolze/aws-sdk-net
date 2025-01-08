@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaConvert.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.MediaConvert.Model
     public partial class Queue
     {
         private string _arn;
+        private int? _concurrentJobs;
         private DateTime? _createdAt;
         private string _description;
         private DateTime? _lastUpdated;
@@ -43,6 +45,7 @@ namespace Amazon.MediaConvert.Model
         private PricingPlan _pricingPlan;
         private int? _progressingJobsCount;
         private ReservationPlan _reservationPlan;
+        private List<ServiceOverride> _serviceOverrides = AWSConfigs.InitializeCollections ? new List<ServiceOverride>() : null;
         private QueueStatus _status;
         private int? _submittedJobsCount;
         private Type _type;
@@ -61,6 +64,22 @@ namespace Amazon.MediaConvert.Model
         internal bool IsSetArn()
         {
             return this._arn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ConcurrentJobs. The maximum number of jobs your queue can
+        /// process concurrently.
+        /// </summary>
+        public int ConcurrentJobs
+        {
+            get { return this._concurrentJobs.GetValueOrDefault(); }
+            set { this._concurrentJobs = value; }
+        }
+
+        // Check to see if ConcurrentJobs property is set
+        internal bool IsSetConcurrentJobs()
+        {
+            return this._concurrentJobs.HasValue; 
         }
 
         /// <summary>
@@ -177,6 +196,23 @@ namespace Amazon.MediaConvert.Model
         internal bool IsSetReservationPlan()
         {
             return this._reservationPlan != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ServiceOverrides. A list of any service overrides applied
+        /// by MediaConvert to the settings that you have configured. If you see any overrides,
+        /// we recommend that you contact AWS Support.
+        /// </summary>
+        public List<ServiceOverride> ServiceOverrides
+        {
+            get { return this._serviceOverrides; }
+            set { this._serviceOverrides = value; }
+        }
+
+        // Check to see if ServiceOverrides property is set
+        internal bool IsSetServiceOverrides()
+        {
+            return this._serviceOverrides != null && (this._serviceOverrides.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

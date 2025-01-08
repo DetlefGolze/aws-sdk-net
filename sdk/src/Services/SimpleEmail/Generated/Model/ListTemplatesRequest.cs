@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmail.Model
 {
     /// <summary>
@@ -66,8 +67,8 @@ namespace Amazon.SimpleEmail.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token returned from a previous call to <code>ListTemplates</code> to indicate the
-        /// position in the list of email templates.
+        /// A token returned from a previous call to <c>ListTemplates</c> to indicate the position
+        /// in the list of email templates.
         /// </para>
         /// </summary>
         public string NextToken

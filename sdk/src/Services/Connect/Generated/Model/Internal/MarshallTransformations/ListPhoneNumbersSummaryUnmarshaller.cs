@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Connect.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ListPhoneNumbersSummary Unmarshall(JsonUnmarshallerContext context)
         {
+            ListPhoneNumbersSummary unmarshalledObject = new ListPhoneNumbersSummary();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ListPhoneNumbersSummary unmarshalledObject = new ListPhoneNumbersSummary();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("InstanceId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.InstanceId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("PhoneNumber", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -82,6 +90,12 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
                     unmarshalledObject.PhoneNumberCountryCode = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("PhoneNumberDescription", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.PhoneNumberDescription = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("PhoneNumberId", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -94,6 +108,12 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
                     unmarshalledObject.PhoneNumberType = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("SourcePhoneNumberArn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.SourcePhoneNumberArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("TargetArn", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -101,7 +121,6 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

@@ -26,28 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FraudDetector.Model
 {
     /// <summary>
     /// Container for the parameters to the SendEvent operation.
     /// Stores events in Amazon Fraud Detector without generating fraud predictions for those
-    /// events. For example, you can use <code>SendEvent</code> to upload a historical dataset,
+    /// events. For example, you can use <c>SendEvent</c> to upload a historical dataset,
     /// which you can then later use to train a model.
     /// </summary>
     public partial class SendEventRequest : AmazonFraudDetectorRequest
     {
         private string _assignedLabel;
-        private List<Entity> _entities = new List<Entity>();
+        private List<Entity> _entities = AWSConfigs.InitializeCollections ? new List<Entity>() : null;
         private string _eventId;
         private string _eventTimestamp;
         private string _eventTypeName;
-        private Dictionary<string, string> _eventVariables = new Dictionary<string, string>();
+        private Dictionary<string, string> _eventVariables = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _labelTimestamp;
 
         /// <summary>
         /// Gets and sets the property AssignedLabel. 
         /// <para>
-        /// The label to associate with the event. Required if specifying <code>labelTimestamp</code>.
+        /// The label to associate with the event. Required if specifying <c>labelTimestamp</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -79,7 +80,7 @@ namespace Amazon.FraudDetector.Model
         // Check to see if Entities property is set
         internal bool IsSetEntities()
         {
-            return this._entities != null && this._entities.Count > 0; 
+            return this._entities != null && (this._entities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -157,13 +158,13 @@ namespace Amazon.FraudDetector.Model
         // Check to see if EventVariables property is set
         internal bool IsSetEventVariables()
         {
-            return this._eventVariables != null && this._eventVariables.Count > 0; 
+            return this._eventVariables != null && (this._eventVariables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property LabelTimestamp. 
         /// <para>
-        /// The timestamp associated with the label. Required if specifying <code>assignedLabel</code>.
+        /// The timestamp associated with the label. Required if specifying <c>assignedLabel</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=10, Max=30)]

@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.WorkMail
 {
     /// <summary>
-    /// Implementation for accessing WorkMail
+    /// <para>Implementation for accessing WorkMail</para>
     ///
     /// WorkMail is a secure, managed business email and calendaring service with support
     /// for existing desktop and mobile email clients. You can access your email, contacts,
@@ -689,8 +690,8 @@ namespace Amazon.WorkMail
         #region  CreateAvailabilityConfiguration
 
         /// <summary>
-        /// Creates an <code>AvailabilityConfiguration</code> for the given WorkMail organization
-        /// and domain.
+        /// Creates an <c>AvailabilityConfiguration</c> for the given WorkMail organization and
+        /// domain.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateAvailabilityConfiguration service method.</param>
         /// 
@@ -835,6 +836,65 @@ namespace Amazon.WorkMail
         public virtual CreateGroupResponse EndCreateGroup(IAsyncResult asyncResult)
         {
             return EndInvoke<CreateGroupResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  CreateIdentityCenterApplication
+
+        /// <summary>
+        /// Creates the WorkMail application in IAM Identity Center that can be used later in
+        /// the WorkMail - IdC integration. For more information, see PutIdentityProviderConfiguration.
+        /// This action does not affect the authentication settings for any WorkMail organizations.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateIdentityCenterApplication service method.</param>
+        /// 
+        /// <returns>The response from the CreateIdentityCenterApplication service method, as returned by WorkMail.</returns>
+        /// <exception cref="Amazon.WorkMail.Model.InvalidParameterException">
+        /// One or more of the input parameters don't match the service's restrictions.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/CreateIdentityCenterApplication">REST API Reference for CreateIdentityCenterApplication Operation</seealso>
+        public virtual CreateIdentityCenterApplicationResponse CreateIdentityCenterApplication(CreateIdentityCenterApplicationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateIdentityCenterApplicationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateIdentityCenterApplicationResponseUnmarshaller.Instance;
+
+            return Invoke<CreateIdentityCenterApplicationResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreateIdentityCenterApplication operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreateIdentityCenterApplication operation on AmazonWorkMailClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateIdentityCenterApplication
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/CreateIdentityCenterApplication">REST API Reference for CreateIdentityCenterApplication Operation</seealso>
+        public virtual IAsyncResult BeginCreateIdentityCenterApplication(CreateIdentityCenterApplicationRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateIdentityCenterApplicationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateIdentityCenterApplicationResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreateIdentityCenterApplication operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreateIdentityCenterApplication.</param>
+        /// 
+        /// <returns>Returns a  CreateIdentityCenterApplicationResult from WorkMail.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/CreateIdentityCenterApplication">REST API Reference for CreateIdentityCenterApplication Operation</seealso>
+        public virtual CreateIdentityCenterApplicationResponse EndCreateIdentityCenterApplication(IAsyncResult asyncResult)
+        {
+            return EndInvoke<CreateIdentityCenterApplicationResponse>(asyncResult);
         }
 
         #endregion
@@ -1388,8 +1448,8 @@ namespace Amazon.WorkMail
         #region  DeleteAvailabilityConfiguration
 
         /// <summary>
-        /// Deletes the <code>AvailabilityConfiguration</code> for the given WorkMail organization
-        /// and domain.
+        /// Deletes the <c>AvailabilityConfiguration</c> for the given WorkMail organization and
+        /// domain.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteAvailabilityConfiguration service method.</param>
         /// 
@@ -1587,6 +1647,135 @@ namespace Amazon.WorkMail
         public virtual DeleteGroupResponse EndDeleteGroup(IAsyncResult asyncResult)
         {
             return EndInvoke<DeleteGroupResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  DeleteIdentityCenterApplication
+
+        /// <summary>
+        /// Deletes the IAM Identity Center application from WorkMail. This action does not affect
+        /// the authentication settings for any WorkMail organizations.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteIdentityCenterApplication service method.</param>
+        /// 
+        /// <returns>The response from the DeleteIdentityCenterApplication service method, as returned by WorkMail.</returns>
+        /// <exception cref="Amazon.WorkMail.Model.InvalidParameterException">
+        /// One or more of the input parameters don't match the service's restrictions.
+        /// </exception>
+        /// <exception cref="Amazon.WorkMail.Model.OrganizationStateException">
+        /// The organization must have a valid state to perform certain operations on the organization
+        /// or its members.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeleteIdentityCenterApplication">REST API Reference for DeleteIdentityCenterApplication Operation</seealso>
+        public virtual DeleteIdentityCenterApplicationResponse DeleteIdentityCenterApplication(DeleteIdentityCenterApplicationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteIdentityCenterApplicationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteIdentityCenterApplicationResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteIdentityCenterApplicationResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteIdentityCenterApplication operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteIdentityCenterApplication operation on AmazonWorkMailClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteIdentityCenterApplication
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeleteIdentityCenterApplication">REST API Reference for DeleteIdentityCenterApplication Operation</seealso>
+        public virtual IAsyncResult BeginDeleteIdentityCenterApplication(DeleteIdentityCenterApplicationRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteIdentityCenterApplicationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteIdentityCenterApplicationResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteIdentityCenterApplication operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteIdentityCenterApplication.</param>
+        /// 
+        /// <returns>Returns a  DeleteIdentityCenterApplicationResult from WorkMail.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeleteIdentityCenterApplication">REST API Reference for DeleteIdentityCenterApplication Operation</seealso>
+        public virtual DeleteIdentityCenterApplicationResponse EndDeleteIdentityCenterApplication(IAsyncResult asyncResult)
+        {
+            return EndInvoke<DeleteIdentityCenterApplicationResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  DeleteIdentityProviderConfiguration
+
+        /// <summary>
+        /// Disables the integration between IdC and WorkMail. Authentication will continue with
+        /// the directory as it was before the IdC integration. You might have to reset your directory
+        /// passwords and reconfigure your desktop and mobile email clients.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteIdentityProviderConfiguration service method.</param>
+        /// 
+        /// <returns>The response from the DeleteIdentityProviderConfiguration service method, as returned by WorkMail.</returns>
+        /// <exception cref="Amazon.WorkMail.Model.InvalidParameterException">
+        /// One or more of the input parameters don't match the service's restrictions.
+        /// </exception>
+        /// <exception cref="Amazon.WorkMail.Model.OrganizationNotFoundException">
+        /// An operation received a valid organization identifier that either doesn't belong or
+        /// exist in the system.
+        /// </exception>
+        /// <exception cref="Amazon.WorkMail.Model.OrganizationStateException">
+        /// The organization must have a valid state to perform certain operations on the organization
+        /// or its members.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeleteIdentityProviderConfiguration">REST API Reference for DeleteIdentityProviderConfiguration Operation</seealso>
+        public virtual DeleteIdentityProviderConfigurationResponse DeleteIdentityProviderConfiguration(DeleteIdentityProviderConfigurationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteIdentityProviderConfigurationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteIdentityProviderConfigurationResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteIdentityProviderConfigurationResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteIdentityProviderConfiguration operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteIdentityProviderConfiguration operation on AmazonWorkMailClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteIdentityProviderConfiguration
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeleteIdentityProviderConfiguration">REST API Reference for DeleteIdentityProviderConfiguration Operation</seealso>
+        public virtual IAsyncResult BeginDeleteIdentityProviderConfiguration(DeleteIdentityProviderConfigurationRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteIdentityProviderConfigurationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteIdentityProviderConfigurationResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteIdentityProviderConfiguration operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteIdentityProviderConfiguration.</param>
+        /// 
+        /// <returns>Returns a  DeleteIdentityProviderConfigurationResult from WorkMail.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeleteIdentityProviderConfiguration">REST API Reference for DeleteIdentityProviderConfiguration Operation</seealso>
+        public virtual DeleteIdentityProviderConfigurationResponse EndDeleteIdentityProviderConfiguration(IAsyncResult asyncResult)
+        {
+            return EndInvoke<DeleteIdentityProviderConfigurationResponse>(asyncResult);
         }
 
         #endregion
@@ -1944,6 +2133,71 @@ namespace Amazon.WorkMail
 
         #endregion
         
+        #region  DeletePersonalAccessToken
+
+        /// <summary>
+        /// Deletes the Personal Access Token from the provided WorkMail Organization.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeletePersonalAccessToken service method.</param>
+        /// 
+        /// <returns>The response from the DeletePersonalAccessToken service method, as returned by WorkMail.</returns>
+        /// <exception cref="Amazon.WorkMail.Model.InvalidParameterException">
+        /// One or more of the input parameters don't match the service's restrictions.
+        /// </exception>
+        /// <exception cref="Amazon.WorkMail.Model.OrganizationNotFoundException">
+        /// An operation received a valid organization identifier that either doesn't belong or
+        /// exist in the system.
+        /// </exception>
+        /// <exception cref="Amazon.WorkMail.Model.OrganizationStateException">
+        /// The organization must have a valid state to perform certain operations on the organization
+        /// or its members.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeletePersonalAccessToken">REST API Reference for DeletePersonalAccessToken Operation</seealso>
+        public virtual DeletePersonalAccessTokenResponse DeletePersonalAccessToken(DeletePersonalAccessTokenRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeletePersonalAccessTokenRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeletePersonalAccessTokenResponseUnmarshaller.Instance;
+
+            return Invoke<DeletePersonalAccessTokenResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeletePersonalAccessToken operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeletePersonalAccessToken operation on AmazonWorkMailClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeletePersonalAccessToken
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeletePersonalAccessToken">REST API Reference for DeletePersonalAccessToken Operation</seealso>
+        public virtual IAsyncResult BeginDeletePersonalAccessToken(DeletePersonalAccessTokenRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeletePersonalAccessTokenRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeletePersonalAccessTokenResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeletePersonalAccessToken operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeletePersonalAccessToken.</param>
+        /// 
+        /// <returns>Returns a  DeletePersonalAccessTokenResult from WorkMail.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeletePersonalAccessToken">REST API Reference for DeletePersonalAccessToken Operation</seealso>
+        public virtual DeletePersonalAccessTokenResponse EndDeletePersonalAccessToken(IAsyncResult asyncResult)
+        {
+            return EndInvoke<DeletePersonalAccessTokenResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region  DeleteResource
 
         /// <summary>
@@ -2085,8 +2339,8 @@ namespace Amazon.WorkMail
 
         /// <summary>
         /// Deletes a user from WorkMail and all subsequent systems. Before you can delete a user,
-        /// the user state must be <code>DISABLED</code>. Use the <a>DescribeUser</a> action to
-        /// confirm the user state.
+        /// the user state must be <c>DISABLED</c>. Use the <a>DescribeUser</a> action to confirm
+        /// the user state.
         /// 
         ///  
         /// <para>
@@ -2521,6 +2775,74 @@ namespace Amazon.WorkMail
 
         #endregion
         
+        #region  DescribeIdentityProviderConfiguration
+
+        /// <summary>
+        /// Returns detailed information on the current IdC setup for the WorkMail organization.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeIdentityProviderConfiguration service method.</param>
+        /// 
+        /// <returns>The response from the DescribeIdentityProviderConfiguration service method, as returned by WorkMail.</returns>
+        /// <exception cref="Amazon.WorkMail.Model.InvalidParameterException">
+        /// One or more of the input parameters don't match the service's restrictions.
+        /// </exception>
+        /// <exception cref="Amazon.WorkMail.Model.OrganizationNotFoundException">
+        /// An operation received a valid organization identifier that either doesn't belong or
+        /// exist in the system.
+        /// </exception>
+        /// <exception cref="Amazon.WorkMail.Model.OrganizationStateException">
+        /// The organization must have a valid state to perform certain operations on the organization
+        /// or its members.
+        /// </exception>
+        /// <exception cref="Amazon.WorkMail.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DescribeIdentityProviderConfiguration">REST API Reference for DescribeIdentityProviderConfiguration Operation</seealso>
+        public virtual DescribeIdentityProviderConfigurationResponse DescribeIdentityProviderConfiguration(DescribeIdentityProviderConfigurationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeIdentityProviderConfigurationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeIdentityProviderConfigurationResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeIdentityProviderConfigurationResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DescribeIdentityProviderConfiguration operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DescribeIdentityProviderConfiguration operation on AmazonWorkMailClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDescribeIdentityProviderConfiguration
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DescribeIdentityProviderConfiguration">REST API Reference for DescribeIdentityProviderConfiguration Operation</seealso>
+        public virtual IAsyncResult BeginDescribeIdentityProviderConfiguration(DescribeIdentityProviderConfigurationRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeIdentityProviderConfigurationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeIdentityProviderConfigurationResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DescribeIdentityProviderConfiguration operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDescribeIdentityProviderConfiguration.</param>
+        /// 
+        /// <returns>Returns a  DescribeIdentityProviderConfigurationResult from WorkMail.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DescribeIdentityProviderConfiguration">REST API Reference for DescribeIdentityProviderConfiguration Operation</seealso>
+        public virtual DescribeIdentityProviderConfigurationResponse EndDescribeIdentityProviderConfiguration(IAsyncResult asyncResult)
+        {
+            return EndInvoke<DescribeIdentityProviderConfigurationResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region  DescribeInboundDmarcSettings
 
         /// <summary>
@@ -2791,6 +3113,12 @@ namespace Amazon.WorkMail
         /// <param name="request">Container for the necessary parameters to execute the DescribeUser service method.</param>
         /// 
         /// <returns>The response from the DescribeUser service method, as returned by WorkMail.</returns>
+        /// <exception cref="Amazon.WorkMail.Model.DirectoryServiceAuthenticationFailedException">
+        /// The directory service doesn't recognize the credentials supplied by WorkMail.
+        /// </exception>
+        /// <exception cref="Amazon.WorkMail.Model.DirectoryUnavailableException">
+        /// The directory is unavailable. It might be located in another Region or deleted.
+        /// </exception>
         /// <exception cref="Amazon.WorkMail.Model.EntityNotFoundException">
         /// The identifier supplied for the user, group, or resource does not exist in your organization.
         /// </exception>
@@ -3568,6 +3896,74 @@ namespace Amazon.WorkMail
 
         #endregion
         
+        #region  GetPersonalAccessTokenMetadata
+
+        /// <summary>
+        /// Requests details of a specific Personal Access Token within the WorkMail organization.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetPersonalAccessTokenMetadata service method.</param>
+        /// 
+        /// <returns>The response from the GetPersonalAccessTokenMetadata service method, as returned by WorkMail.</returns>
+        /// <exception cref="Amazon.WorkMail.Model.InvalidParameterException">
+        /// One or more of the input parameters don't match the service's restrictions.
+        /// </exception>
+        /// <exception cref="Amazon.WorkMail.Model.OrganizationNotFoundException">
+        /// An operation received a valid organization identifier that either doesn't belong or
+        /// exist in the system.
+        /// </exception>
+        /// <exception cref="Amazon.WorkMail.Model.OrganizationStateException">
+        /// The organization must have a valid state to perform certain operations on the organization
+        /// or its members.
+        /// </exception>
+        /// <exception cref="Amazon.WorkMail.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/GetPersonalAccessTokenMetadata">REST API Reference for GetPersonalAccessTokenMetadata Operation</seealso>
+        public virtual GetPersonalAccessTokenMetadataResponse GetPersonalAccessTokenMetadata(GetPersonalAccessTokenMetadataRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetPersonalAccessTokenMetadataRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetPersonalAccessTokenMetadataResponseUnmarshaller.Instance;
+
+            return Invoke<GetPersonalAccessTokenMetadataResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetPersonalAccessTokenMetadata operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetPersonalAccessTokenMetadata operation on AmazonWorkMailClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetPersonalAccessTokenMetadata
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/GetPersonalAccessTokenMetadata">REST API Reference for GetPersonalAccessTokenMetadata Operation</seealso>
+        public virtual IAsyncResult BeginGetPersonalAccessTokenMetadata(GetPersonalAccessTokenMetadataRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetPersonalAccessTokenMetadataRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetPersonalAccessTokenMetadataResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetPersonalAccessTokenMetadata operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetPersonalAccessTokenMetadata.</param>
+        /// 
+        /// <returns>Returns a  GetPersonalAccessTokenMetadataResult from WorkMail.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/GetPersonalAccessTokenMetadata">REST API Reference for GetPersonalAccessTokenMetadata Operation</seealso>
+        public virtual GetPersonalAccessTokenMetadataResponse EndGetPersonalAccessTokenMetadata(IAsyncResult asyncResult)
+        {
+            return EndInvoke<GetPersonalAccessTokenMetadataResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region  ListAccessControlRules
 
         /// <summary>
@@ -3705,11 +4101,14 @@ namespace Amazon.WorkMail
         #region  ListAvailabilityConfigurations
 
         /// <summary>
-        /// List all the <code>AvailabilityConfiguration</code>'s for the given WorkMail organization.
+        /// List all the <c>AvailabilityConfiguration</c>'s for the given WorkMail organization.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListAvailabilityConfigurations service method.</param>
         /// 
         /// <returns>The response from the ListAvailabilityConfigurations service method, as returned by WorkMail.</returns>
+        /// <exception cref="Amazon.WorkMail.Model.InvalidParameterException">
+        /// One or more of the input parameters don't match the service's restrictions.
+        /// </exception>
         /// <exception cref="Amazon.WorkMail.Model.OrganizationNotFoundException">
         /// An operation received a valid organization identifier that either doesn't belong or
         /// exist in the system.
@@ -4432,6 +4831,78 @@ namespace Amazon.WorkMail
 
         #endregion
         
+        #region  ListPersonalAccessTokens
+
+        /// <summary>
+        /// Returns a summary of your Personal Access Tokens.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListPersonalAccessTokens service method.</param>
+        /// 
+        /// <returns>The response from the ListPersonalAccessTokens service method, as returned by WorkMail.</returns>
+        /// <exception cref="Amazon.WorkMail.Model.EntityNotFoundException">
+        /// The identifier supplied for the user, group, or resource does not exist in your organization.
+        /// </exception>
+        /// <exception cref="Amazon.WorkMail.Model.EntityStateException">
+        /// You are performing an operation on a user, group, or resource that isn't in the expected
+        /// state, such as trying to delete an active user.
+        /// </exception>
+        /// <exception cref="Amazon.WorkMail.Model.InvalidParameterException">
+        /// One or more of the input parameters don't match the service's restrictions.
+        /// </exception>
+        /// <exception cref="Amazon.WorkMail.Model.OrganizationNotFoundException">
+        /// An operation received a valid organization identifier that either doesn't belong or
+        /// exist in the system.
+        /// </exception>
+        /// <exception cref="Amazon.WorkMail.Model.OrganizationStateException">
+        /// The organization must have a valid state to perform certain operations on the organization
+        /// or its members.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/ListPersonalAccessTokens">REST API Reference for ListPersonalAccessTokens Operation</seealso>
+        public virtual ListPersonalAccessTokensResponse ListPersonalAccessTokens(ListPersonalAccessTokensRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListPersonalAccessTokensRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListPersonalAccessTokensResponseUnmarshaller.Instance;
+
+            return Invoke<ListPersonalAccessTokensResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListPersonalAccessTokens operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListPersonalAccessTokens operation on AmazonWorkMailClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListPersonalAccessTokens
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/ListPersonalAccessTokens">REST API Reference for ListPersonalAccessTokens Operation</seealso>
+        public virtual IAsyncResult BeginListPersonalAccessTokens(ListPersonalAccessTokensRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListPersonalAccessTokensRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListPersonalAccessTokensResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListPersonalAccessTokens operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListPersonalAccessTokens.</param>
+        /// 
+        /// <returns>Returns a  ListPersonalAccessTokensResult from WorkMail.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/ListPersonalAccessTokens">REST API Reference for ListPersonalAccessTokens Operation</seealso>
+        public virtual ListPersonalAccessTokensResponse EndListPersonalAccessTokens(IAsyncResult asyncResult)
+        {
+            return EndInvoke<ListPersonalAccessTokensResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region  ListResourceDelegates
 
         /// <summary>
@@ -4839,6 +5310,78 @@ namespace Amazon.WorkMail
         public virtual PutEmailMonitoringConfigurationResponse EndPutEmailMonitoringConfiguration(IAsyncResult asyncResult)
         {
             return EndInvoke<PutEmailMonitoringConfigurationResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  PutIdentityProviderConfiguration
+
+        /// <summary>
+        /// Enables integration between IAM Identity Center (IdC) and WorkMail to proxy authentication
+        /// requests for mailbox users. You can connect your IdC directory or your external directory
+        /// to WorkMail through IdC and manage access to WorkMail mailboxes in a single place.
+        /// For enhanced protection, you could enable Multifactor Authentication (MFA) and Personal
+        /// Access Tokens.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutIdentityProviderConfiguration service method.</param>
+        /// 
+        /// <returns>The response from the PutIdentityProviderConfiguration service method, as returned by WorkMail.</returns>
+        /// <exception cref="Amazon.WorkMail.Model.InvalidParameterException">
+        /// One or more of the input parameters don't match the service's restrictions.
+        /// </exception>
+        /// <exception cref="Amazon.WorkMail.Model.OrganizationNotFoundException">
+        /// An operation received a valid organization identifier that either doesn't belong or
+        /// exist in the system.
+        /// </exception>
+        /// <exception cref="Amazon.WorkMail.Model.OrganizationStateException">
+        /// The organization must have a valid state to perform certain operations on the organization
+        /// or its members.
+        /// </exception>
+        /// <exception cref="Amazon.WorkMail.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/PutIdentityProviderConfiguration">REST API Reference for PutIdentityProviderConfiguration Operation</seealso>
+        public virtual PutIdentityProviderConfigurationResponse PutIdentityProviderConfiguration(PutIdentityProviderConfigurationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = PutIdentityProviderConfigurationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = PutIdentityProviderConfigurationResponseUnmarshaller.Instance;
+
+            return Invoke<PutIdentityProviderConfigurationResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the PutIdentityProviderConfiguration operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the PutIdentityProviderConfiguration operation on AmazonWorkMailClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndPutIdentityProviderConfiguration
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/PutIdentityProviderConfiguration">REST API Reference for PutIdentityProviderConfiguration Operation</seealso>
+        public virtual IAsyncResult BeginPutIdentityProviderConfiguration(PutIdentityProviderConfigurationRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = PutIdentityProviderConfigurationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = PutIdentityProviderConfigurationResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  PutIdentityProviderConfiguration operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginPutIdentityProviderConfiguration.</param>
+        /// 
+        /// <returns>Returns a  PutIdentityProviderConfigurationResult from WorkMail.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/PutIdentityProviderConfiguration">REST API Reference for PutIdentityProviderConfiguration Operation</seealso>
+        public virtual PutIdentityProviderConfigurationResponse EndPutIdentityProviderConfiguration(IAsyncResult asyncResult)
+        {
+            return EndInvoke<PutIdentityProviderConfigurationResponse>(asyncResult);
         }
 
         #endregion
@@ -5528,15 +6071,13 @@ namespace Amazon.WorkMail
         /// EWS, it verifies the provided credentials can be used to successfully log in. For
         /// Lambda, it verifies that the Lambda function can be invoked and that the resource
         /// access policy was configured to deny anonymous access. An anonymous invocation is
-        /// one done without providing either a <code>SourceArn</code> or <code>SourceAccount</code>
-        /// header.
+        /// one done without providing either a <c>SourceArn</c> or <c>SourceAccount</c> header.
         /// 
         ///  <note> 
         /// <para>
-        /// The request must contain either one provider definition (<code>EwsProvider</code>
-        /// or <code>LambdaProvider</code>) or the <code>DomainName</code> parameter. If the <code>DomainName</code>
-        /// parameter is provided, the configuration stored under the <code>DomainName</code>
-        /// will be tested.
+        /// The request must contain either one provider definition (<c>EwsProvider</c> or <c>LambdaProvider</c>)
+        /// or the <c>DomainName</c> parameter. If the <c>DomainName</c> parameter is provided,
+        /// the configuration stored under the <c>DomainName</c> will be tested.
         /// </para>
         ///  </note>
         /// </summary>
@@ -5663,8 +6204,8 @@ namespace Amazon.WorkMail
         #region  UpdateAvailabilityConfiguration
 
         /// <summary>
-        /// Updates an existing <code>AvailabilityConfiguration</code> for the given WorkMail
-        /// organization and domain.
+        /// Updates an existing <c>AvailabilityConfiguration</c> for the given WorkMail organization
+        /// and domain.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateAvailabilityConfiguration service method.</param>
         /// 
@@ -5806,7 +6347,7 @@ namespace Amazon.WorkMail
         #region  UpdateGroup
 
         /// <summary>
-        /// Updates attibutes in a group.
+        /// Updates attributes in a group.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateGroup service method.</param>
         /// 
@@ -6195,7 +6736,7 @@ namespace Amazon.WorkMail
         /// <summary>
         /// Updates data for the resource. To have the latest information, it must be preceded
         /// by a <a>DescribeResource</a> call. The dataset in the request should be the one expected
-        /// when performing another <code>DescribeResource</code> call.
+        /// when performing another <c>DescribeResource</c> call.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateResource service method.</param>
         /// 
@@ -6293,7 +6834,7 @@ namespace Amazon.WorkMail
         /// <summary>
         /// Updates data for the user. To have the latest information, it must be preceded by
         /// a <a>DescribeUser</a> call. The dataset in the request should be the one expected
-        /// when performing another <code>DescribeUser</code> call.
+        /// when performing another <c>DescribeUser</c> call.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateUser service method.</param>
         /// 
@@ -6380,11 +6921,11 @@ namespace Amazon.WorkMail
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

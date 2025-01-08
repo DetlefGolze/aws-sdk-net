@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -33,9 +34,10 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class DescribeAutoMLJobV2Response : AmazonWebServiceResponse
     {
+        private AutoMLComputeConfig _autoMLComputeConfig;
         private string _autoMLJobArn;
         private AutoMLJobArtifacts _autoMLJobArtifacts;
-        private List<AutoMLJobChannel> _autoMLJobInputDataConfig = new List<AutoMLJobChannel>();
+        private List<AutoMLJobChannel> _autoMLJobInputDataConfig = AWSConfigs.InitializeCollections ? new List<AutoMLJobChannel>() : null;
         private string _autoMLJobName;
         private AutoMLJobObjective _autoMLJobObjective;
         private AutoMLJobSecondaryStatus _autoMLJobSecondaryStatus;
@@ -51,10 +53,28 @@ namespace Amazon.SageMaker.Model
         private ModelDeployConfig _modelDeployConfig;
         private ModelDeployResult _modelDeployResult;
         private AutoMLOutputDataConfig _outputDataConfig;
-        private List<AutoMLPartialFailureReason> _partialFailureReasons = new List<AutoMLPartialFailureReason>();
+        private List<AutoMLPartialFailureReason> _partialFailureReasons = AWSConfigs.InitializeCollections ? new List<AutoMLPartialFailureReason>() : null;
         private AutoMLResolvedAttributes _resolvedAttributes;
         private string _roleArn;
         private AutoMLSecurityConfig _securityConfig;
+
+        /// <summary>
+        /// Gets and sets the property AutoMLComputeConfig. 
+        /// <para>
+        /// The compute configuration used for the AutoML job V2.
+        /// </para>
+        /// </summary>
+        public AutoMLComputeConfig AutoMLComputeConfig
+        {
+            get { return this._autoMLComputeConfig; }
+            set { this._autoMLComputeConfig = value; }
+        }
+
+        // Check to see if AutoMLComputeConfig property is set
+        internal bool IsSetAutoMLComputeConfig()
+        {
+            return this._autoMLComputeConfig != null;
+        }
 
         /// <summary>
         /// Gets and sets the property AutoMLJobArn. 
@@ -106,7 +126,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if AutoMLJobInputDataConfig property is set
         internal bool IsSetAutoMLJobInputDataConfig()
         {
-            return this._autoMLJobInputDataConfig != null && this._autoMLJobInputDataConfig.Count > 0; 
+            return this._autoMLJobInputDataConfig != null && (this._autoMLJobInputDataConfig.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -405,7 +425,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if PartialFailureReasons property is set
         internal bool IsSetPartialFailureReasons()
         {
-            return this._partialFailureReasons != null && this._partialFailureReasons.Count > 0; 
+            return this._partialFailureReasons != null && (this._partialFailureReasons.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -429,8 +449,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property RoleArn. 
         /// <para>
-        /// The ARN of the Identity and Access Management role that has read permission to the
-        /// input data location and write permission to the output data location in Amazon S3.
+        /// The ARN of the IAM role that has read permission to the input data location and write
+        /// permission to the output data location in Amazon S3.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]

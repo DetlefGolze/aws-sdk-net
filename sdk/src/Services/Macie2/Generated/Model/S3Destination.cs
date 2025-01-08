@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.Macie2.Model
         /// <summary>
         /// Gets and sets the property BucketName. 
         /// <para>
-        /// The name of the bucket.
+        /// The name of the bucket. This must be the name of an existing general purpose bucket.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -81,7 +82,7 @@ namespace Amazon.Macie2.Model
         /// <para>
         /// The Amazon Resource Name (ARN) of the customer managed KMS key to use for encryption
         /// of the results. This must be the ARN of an existing, symmetric encryption KMS key
-        /// that's in the same Amazon Web Services Region as the bucket.
+        /// that's enabled in the same Amazon Web Services Region as the bucket.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

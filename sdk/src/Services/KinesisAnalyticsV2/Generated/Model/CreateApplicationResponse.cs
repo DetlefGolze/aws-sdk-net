@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalyticsV2.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.KinesisAnalyticsV2.Model
         /// <summary>
         /// Gets and sets the property ApplicationDetail. 
         /// <para>
-        /// In response to your <code>CreateApplication</code> request, Kinesis Data Analytics
+        /// In response to your <c>CreateApplication</c> request, Managed Service for Apache Flink
         /// returns a response with details of the application it created.
         /// </para>
         /// </summary>

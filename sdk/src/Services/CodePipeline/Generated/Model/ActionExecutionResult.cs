@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
@@ -33,9 +34,26 @@ namespace Amazon.CodePipeline.Model
     /// </summary>
     public partial class ActionExecutionResult
     {
+        private ErrorDetails _errorDetails;
         private string _externalExecutionId;
         private string _externalExecutionSummary;
         private string _externalExecutionUrl;
+        private string _logStreamARN;
+
+        /// <summary>
+        /// Gets and sets the property ErrorDetails.
+        /// </summary>
+        public ErrorDetails ErrorDetails
+        {
+            get { return this._errorDetails; }
+            set { this._errorDetails = value; }
+        }
+
+        // Check to see if ErrorDetails property is set
+        internal bool IsSetErrorDetails()
+        {
+            return this._errorDetails != null;
+        }
 
         /// <summary>
         /// Gets and sets the property ExternalExecutionId. 
@@ -91,6 +109,25 @@ namespace Amazon.CodePipeline.Model
         internal bool IsSetExternalExecutionUrl()
         {
             return this._externalExecutionUrl != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property LogStreamARN. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the log stream for the action compute.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=250)]
+        public string LogStreamARN
+        {
+            get { return this._logStreamARN; }
+            set { this._logStreamARN = value; }
+        }
+
+        // Check to see if LogStreamARN property is set
+        internal bool IsSetLogStreamARN()
+        {
+            return this._logStreamARN != null;
         }
 
     }

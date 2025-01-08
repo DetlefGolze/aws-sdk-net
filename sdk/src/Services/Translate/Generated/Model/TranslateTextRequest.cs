@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Translate.Model
 {
     /// <summary>
@@ -39,15 +40,27 @@ namespace Amazon.Translate.Model
         private TranslationSettings _settings;
         private string _sourceLanguageCode;
         private string _targetLanguageCode;
-        private List<string> _terminologyNames = new List<string>();
+        private List<string> _terminologyNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _text;
 
         /// <summary>
         /// Gets and sets the property Settings. 
         /// <para>
-        /// Settings to configure your translation output, including the option to set the formality
-        /// level of the output text and the option to mask profane words and phrases.
+        /// Settings to configure your translation output. You can configure the following options:
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Brevity: reduces the length of the translated output for most translations.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Formality: sets the formality level of the output text.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Profanity: masks profane words and phrases in your translation output.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public TranslationSettings Settings
         {
@@ -71,15 +84,15 @@ namespace Amazon.Translate.Model
         ///  
         /// <para>
         /// To have Amazon Translate determine the source language of your text, you can specify
-        /// <code>auto</code> in the <code>SourceLanguageCode</code> field. If you specify <code>auto</code>,
-        /// Amazon Translate will call <a href="https://docs.aws.amazon.com/comprehend/latest/dg/comprehend-general.html">Amazon
+        /// <c>auto</c> in the <c>SourceLanguageCode</c> field. If you specify <c>auto</c>, Amazon
+        /// Translate will call <a href="https://docs.aws.amazon.com/comprehend/latest/dg/comprehend-general.html">Amazon
         /// Comprehend</a> to determine the source language.
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you specify <code>auto</code>, you must send the <code>TranslateText</code> request
-        /// in a region that supports Amazon Comprehend. Otherwise, the request returns an error
-        /// indicating that autodetect is not supported. 
+        /// If you specify <c>auto</c>, you must send the <c>TranslateText</c> request in a region
+        /// that supports Amazon Comprehend. Otherwise, the request returns an error indicating
+        /// that autodetect is not supported. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -144,7 +157,7 @@ namespace Amazon.Translate.Model
         // Check to see if TerminologyNames property is set
         internal bool IsSetTerminologyNames()
         {
-            return this._terminologyNames != null && this._terminologyNames.Count > 0; 
+            return this._terminologyNames != null && (this._terminologyNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

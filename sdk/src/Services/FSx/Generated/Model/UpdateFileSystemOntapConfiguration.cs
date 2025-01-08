@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -33,13 +34,15 @@ namespace Amazon.FSx.Model
     /// </summary>
     public partial class UpdateFileSystemOntapConfiguration
     {
-        private List<string> _addRouteTableIds = new List<string>();
+        private List<string> _addRouteTableIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _automaticBackupRetentionDays;
         private string _dailyAutomaticBackupStartTime;
         private DiskIopsConfiguration _diskIopsConfiguration;
         private string _fsxAdminPassword;
-        private List<string> _removeRouteTableIds = new List<string>();
+        private int? _haPairs;
+        private List<string> _removeRouteTableIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _throughputCapacity;
+        private int? _throughputCapacityPerHAPair;
         private string _weeklyMaintenanceStartTime;
 
         /// <summary>
@@ -59,7 +62,7 @@ namespace Amazon.FSx.Model
         // Check to see if AddRouteTableIds property is set
         internal bool IsSetAddRouteTableIds()
         {
-            return this._addRouteTableIds != null && this._addRouteTableIds.Count > 0; 
+            return this._addRouteTableIds != null && (this._addRouteTableIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -100,9 +103,8 @@ namespace Amazon.FSx.Model
         /// The SSD IOPS (input output operations per second) configuration for an Amazon FSx
         /// for NetApp ONTAP file system. The default is 3 IOPS per GB of storage capacity, but
         /// you can provision additional IOPS per GB of storage. The configuration consists of
-        /// an IOPS mode (<code>AUTOMATIC</code> or <code>USER_PROVISIONED</code>), and in the
-        /// case of <code>USER_PROVISIONED</code> IOPS, the total number of SSD IOPS provisioned.
-        /// For more information, see <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/increase-primary-storage.html">Updating
+        /// an IOPS mode (<c>AUTOMATIC</c> or <c>USER_PROVISIONED</c>), and in the case of <c>USER_PROVISIONED</c>
+        /// IOPS, the total number of SSD IOPS provisioned. For more information, see <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/increase-primary-storage.html">Updating
         /// SSD storage capacity and IOPS</a>.
         /// </para>
         /// </summary>
@@ -121,9 +123,9 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property FsxAdminPassword. 
         /// <para>
-        /// Update the password for the <code>fsxadmin</code> user by entering a new password.
-        /// You use the <code>fsxadmin</code> user to access the NetApp ONTAP CLI and REST API
-        /// to manage your file system resources. For more information, see <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-resources-ontap-apps.html">Managing
+        /// Update the password for the <c>fsxadmin</c> user by entering a new password. You use
+        /// the <c>fsxadmin</c> user to access the NetApp ONTAP CLI and REST API to manage your
+        /// file system resources. For more information, see <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-resources-ontap-apps.html">Managing
         /// resources using NetApp Applicaton</a>.
         /// </para>
         /// </summary>
@@ -138,6 +140,32 @@ namespace Amazon.FSx.Model
         internal bool IsSetFsxAdminPassword()
         {
             return this._fsxAdminPassword != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property HAPairs. 
+        /// <para>
+        /// Use to update the number of high-availability (HA) pairs for a second-generation single-AZ
+        /// file system. If you increase the number of HA pairs for your file system, you must
+        /// specify proportional increases for <c>StorageCapacity</c>, <c>Iops</c>, and <c>ThroughputCapacity</c>.
+        /// For more information, see <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/administering-file-systems.html#HA-pairs">High-availability
+        /// (HA) pairs</a> in the FSx for ONTAP user guide. Block storage protocol support (iSCSI
+        /// and NVMe over TCP) is disabled on file systems with more than 6 HA pairs. For more
+        /// information, see <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html#using-block-storage">Using
+        /// block storage protocols</a>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=12)]
+        public int HAPairs
+        {
+            get { return this._haPairs.GetValueOrDefault(); }
+            set { this._haPairs = value; }
+        }
+
+        // Check to see if HAPairs property is set
+        internal bool IsSetHAPairs()
+        {
+            return this._haPairs.HasValue; 
         }
 
         /// <summary>
@@ -158,17 +186,31 @@ namespace Amazon.FSx.Model
         // Check to see if RemoveRouteTableIds property is set
         internal bool IsSetRemoveRouteTableIds()
         {
-            return this._removeRouteTableIds != null && this._removeRouteTableIds.Count > 0; 
+            return this._removeRouteTableIds != null && (this._removeRouteTableIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ThroughputCapacity. 
         /// <para>
-        /// Enter a new value to change the amount of throughput capacity for the file system.
-        /// Throughput capacity is measured in megabytes per second (MBps). Valid values are 128,
-        /// 256, 512, 1024, 2048, and 4096 MBps. For more information, see <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-throughput-capacity.html">Managing
+        /// Enter a new value to change the amount of throughput capacity for the file system
+        /// in megabytes per second (MBps). For more information, see <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-throughput-capacity.html">Managing
         /// throughput capacity</a> in the FSx for ONTAP User Guide.
         /// </para>
+        ///  
+        /// <para>
+        /// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following conditions:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// The value of <c>ThroughputCapacity</c> and <c>ThroughputCapacityPerHAPair</c> are
+        /// not the same value.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The value of <c>ThroughputCapacity</c> when divided by the value of <c>HAPairs</c>
+        /// is outside of the valid range for <c>ThroughputCapacity</c>.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         [AWSProperty(Min=8, Max=100000)]
         public int ThroughputCapacity
@@ -181,6 +223,68 @@ namespace Amazon.FSx.Model
         internal bool IsSetThroughputCapacity()
         {
             return this._throughputCapacity.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ThroughputCapacityPerHAPair. 
+        /// <para>
+        /// Use to choose the throughput capacity per HA pair, rather than the total throughput
+        /// for the file system. 
+        /// </para>
+        ///  
+        /// <para>
+        /// This field and <c>ThroughputCapacity</c> cannot be defined in the same API call, but
+        /// one is required.
+        /// </para>
+        ///  
+        /// <para>
+        /// This field and <c>ThroughputCapacity</c> are the same for file systems with one HA
+        /// pair.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// For <c>SINGLE_AZ_1</c> and <c>MULTI_AZ_1</c> file systems, valid values are 128, 256,
+        /// 512, 1024, 2048, or 4096 MBps.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For <c>SINGLE_AZ_2</c>, valid values are 1536, 3072, or 6144 MBps.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For <c>MULTI_AZ_2</c>, valid values are 384, 768, 1536, 3072, or 6144 MBps.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following conditions:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// The value of <c>ThroughputCapacity</c> and <c>ThroughputCapacityPerHAPair</c> are
+        /// not the same value for file systems with one HA pair.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The value of deployment type is <c>SINGLE_AZ_2</c> and <c>ThroughputCapacity</c> /
+        /// <c>ThroughputCapacityPerHAPair</c> is not a valid HA pair (a value between 1 and 12).
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The value of <c>ThroughputCapacityPerHAPair</c> is not a valid value.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        [AWSProperty(Min=128, Max=6144)]
+        public int ThroughputCapacityPerHAPair
+        {
+            get { return this._throughputCapacityPerHAPair.GetValueOrDefault(); }
+            set { this._throughputCapacityPerHAPair = value; }
+        }
+
+        // Check to see if ThroughputCapacityPerHAPair property is set
+        internal bool IsSetThroughputCapacityPerHAPair()
+        {
+            return this._throughputCapacityPerHAPair.HasValue; 
         }
 
         /// <summary>

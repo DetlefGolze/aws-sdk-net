@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GreengrassV2.Model
 {
     /// <summary>
@@ -54,8 +55,8 @@ namespace Amazon.GreengrassV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NOTIFY_COMPONENTS</code> – The deployment notifies each component before it
-        /// stops and updates that component. Components can use the <a href="https://docs.aws.amazon.com/greengrass/v2/developerguide/interprocess-communication.html#ipc-operation-subscribetocomponentupdates">SubscribeToComponentUpdates</a>
+        ///  <c>NOTIFY_COMPONENTS</c> – The deployment notifies each component before it stops
+        /// and updates that component. Components can use the <a href="https://docs.aws.amazon.com/greengrass/v2/developerguide/interprocess-communication.html#ipc-operation-subscribetocomponentupdates">SubscribeToComponentUpdates</a>
         /// IPC operation to receive these notifications. Then, components can respond with the
         /// <a href="https://docs.aws.amazon.com/greengrass/v2/developerguide/interprocess-communication.html#ipc-operation-defercomponentupdate">DeferComponentUpdate</a>
         /// IPC operation. For more information, see <a href="https://docs.aws.amazon.com/greengrass/v2/developerguide/create-deployments.html">Create
@@ -63,12 +64,12 @@ namespace Amazon.GreengrassV2.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SKIP_NOTIFY_COMPONENTS</code> – The deployment doesn't notify components or
-        /// wait for them to be safe to update.
+        ///  <c>SKIP_NOTIFY_COMPONENTS</c> – The deployment doesn't notify components or wait
+        /// for them to be safe to update.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Default: <code>NOTIFY_COMPONENTS</code> 
+        /// Default: <c>NOTIFY_COMPONENTS</c> 
         /// </para>
         /// </summary>
         public DeploymentComponentUpdatePolicyAction Action
@@ -92,7 +93,7 @@ namespace Amazon.GreengrassV2.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>60</code> 
+        /// Default: <c>60</c> 
         /// </para>
         /// </summary>
         public int TimeoutInSeconds

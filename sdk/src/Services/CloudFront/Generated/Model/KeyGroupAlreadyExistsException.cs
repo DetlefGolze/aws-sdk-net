@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
     /// A key group with this name already exists. You must provide a unique name. To modify
-    /// an existing key group, use <code>UpdateKeyGroup</code>.
+    /// an existing key group, use <c>UpdateKeyGroup</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

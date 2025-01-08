@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComprehendMedical.Model
 {
     /// <summary>
     /// The extracted attributes that relate to this entity. The attributes recognized by
-    /// InferRxNorm are <code>DOSAGE</code>, <code>DURATION</code>, <code>FORM</code>, <code>FREQUENCY</code>,
-    /// <code>RATE</code>, <code>ROUTE_OR_MODE</code>.
+    /// InferRxNorm are <c>DOSAGE</c>, <c>DURATION</c>, <c>FORM</c>, <c>FREQUENCY</c>, <c>RATE</c>,
+    /// <c>ROUTE_OR_MODE</c>.
     /// </summary>
     public partial class RxNormAttribute
     {
@@ -41,7 +42,7 @@ namespace Amazon.ComprehendMedical.Model
         private float? _relationshipScore;
         private float? _score;
         private string _text;
-        private List<RxNormTrait> _traits = new List<RxNormTrait>();
+        private List<RxNormTrait> _traits = AWSConfigs.InitializeCollections ? new List<RxNormTrait>() : null;
         private RxNormAttributeType _type;
 
         /// <summary>
@@ -161,7 +162,7 @@ namespace Amazon.ComprehendMedical.Model
         /// <summary>
         /// Gets and sets the property Traits. 
         /// <para>
-        /// Contextual information for the attribute. InferRxNorm recognizes the trait <code>NEGATION</code>
+        /// Contextual information for the attribute. InferRxNorm recognizes the trait <c>NEGATION</c>
         /// for attributes, i.e. that the patient is not taking a specific dose or form of a medication.
         /// </para>
         /// </summary>
@@ -174,14 +175,14 @@ namespace Amazon.ComprehendMedical.Model
         // Check to see if Traits property is set
         internal bool IsSetTraits()
         {
-            return this._traits != null && this._traits.Count > 0; 
+            return this._traits != null && (this._traits.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of attribute. The types of attributes recognized by InferRxNorm are <code>BRAND_NAME</code>
-        /// and <code>GENERIC_NAME</code>.
+        /// The type of attribute. The types of attributes recognized by InferRxNorm are <c>BRAND_NAME</c>
+        /// and <c>GENERIC_NAME</c>.
         /// </para>
         /// </summary>
         public RxNormAttributeType Type

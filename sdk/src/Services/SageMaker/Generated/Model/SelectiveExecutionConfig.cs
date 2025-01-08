@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class SelectiveExecutionConfig
     {
-        private List<SelectedStep> _selectedSteps = new List<SelectedStep>();
+        private List<SelectedStep> _selectedSteps = AWSConfigs.InitializeCollections ? new List<SelectedStep>() : null;
         private string _sourcePipelineExecutionArn;
 
         /// <summary>
@@ -53,7 +54,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if SelectedSteps property is set
         internal bool IsSetSelectedSteps()
         {
-            return this._selectedSteps != null && this._selectedSteps.Count > 0; 
+            return this._selectedSteps != null && (this._selectedSteps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -61,10 +62,17 @@ namespace Amazon.SageMaker.Model
         /// <para>
         /// The ARN from a reference execution of the current pipeline. Used to copy input collaterals
         /// needed for the selected steps to run. The execution status of the pipeline can be
-        /// either <code>Failed</code> or <code>Success</code>.
+        /// either <c>Failed</c> or <c>Success</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// This field is required if the steps you specify for <c>SelectedSteps</c> depend on
+        /// output collaterals from any non-specified pipeline steps. For more information, see
+        /// <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-selective-ex.html">Selective
+        /// Execution for Pipeline Steps</a>.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=256)]
+        [AWSProperty(Max=2048)]
         public string SourcePipelineExecutionArn
         {
             get { return this._sourcePipelineExecutionArn; }

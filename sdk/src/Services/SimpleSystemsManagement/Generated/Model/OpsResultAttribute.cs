@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property TypeName. 
         /// <para>
-        /// Name of the data type. Valid value: <code>AWS:OpsItem</code>, <code>AWS:EC2InstanceInformation</code>,
-        /// <code>AWS:OpsItemTrendline</code>, or <code>AWS:ComplianceSummary</code>.
+        /// Name of the data type. Valid value: <c>AWS:OpsItem</c>, <c>AWS:EC2InstanceInformation</c>,
+        /// <c>AWS:OpsItemTrendline</c>, or <c>AWS:ComplianceSummary</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]

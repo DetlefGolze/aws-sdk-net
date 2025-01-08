@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataExchange.Model
 {
     /// <summary>
@@ -33,7 +34,26 @@ namespace Amazon.DataExchange.Model
     /// </summary>
     public partial class OriginDetails
     {
+        private string _dataGrantId;
         private string _productId;
+
+        /// <summary>
+        /// Gets and sets the property DataGrantId. 
+        /// <para>
+        /// The ID of the data grant.
+        /// </para>
+        /// </summary>
+        public string DataGrantId
+        {
+            get { return this._dataGrantId; }
+            set { this._dataGrantId = value; }
+        }
+
+        // Check to see if DataGrantId property is set
+        internal bool IsSetDataGrantId()
+        {
+            return this._dataGrantId != null;
+        }
 
         /// <summary>
         /// Gets and sets the property ProductId. 
@@ -41,7 +61,6 @@ namespace Amazon.DataExchange.Model
         /// The product ID of the origin of the data set.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public string ProductId
         {
             get { return this._productId; }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -66,7 +67,7 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property MaxRecords. 
         /// <para>
-        /// The maximum number of instances to return with this call. The maximum value is <code>50</code>.
+        /// The maximum number of instances to return with this call. The maximum value is <c>50</c>.
         /// </para>
         /// </summary>
         public int MaxRecords

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// </summary>
     public partial class DescribeMaintenanceWindowExecutionsRequest : AmazonSimpleSystemsManagementRequest
     {
-        private List<MaintenanceWindowFilter> _filters = new List<MaintenanceWindowFilter>();
+        private List<MaintenanceWindowFilter> _filters = AWSConfigs.InitializeCollections ? new List<MaintenanceWindowFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
         private string _windowId;
@@ -48,13 +49,13 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Key. A string between 1 and 128 characters. Supported keys include <code>ExecutedBefore</code>
-        /// and <code>ExecutedAfter</code>.
+        /// Key. A string between 1 and 128 characters. Supported keys include <c>ExecutedBefore</c>
+        /// and <c>ExecutedAfter</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// Values. An array of strings, each between 1 and 256 characters. Supported values are
-        /// date/time strings in a valid ISO 8601 date/time format, such as <code>2021-11-04T05:00:00Z</code>.
+        /// date/time strings in a valid ISO 8601 date/time format, such as <c>2024-11-04T05:00:00Z</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -68,7 +69,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -34,17 +35,17 @@ namespace Amazon.RDS.Model
     ///  
     /// <para>
     /// For an Amazon Aurora DB cluster, this data type is used as a response element in the
-    /// operations <code>CreateDBCluster</code>, <code>DeleteDBCluster</code>, <code>DescribeDBClusters</code>,
-    /// <code>FailoverDBCluster</code>, <code>ModifyDBCluster</code>, <code>PromoteReadReplicaDBCluster</code>,
-    /// <code>RestoreDBClusterFromS3</code>, <code>RestoreDBClusterFromSnapshot</code>, <code>RestoreDBClusterToPointInTime</code>,
-    /// <code>StartDBCluster</code>, and <code>StopDBCluster</code>.
+    /// operations <c>CreateDBCluster</c>, <c>DeleteDBCluster</c>, <c>DescribeDBClusters</c>,
+    /// <c>FailoverDBCluster</c>, <c>ModifyDBCluster</c>, <c>PromoteReadReplicaDBCluster</c>,
+    /// <c>RestoreDBClusterFromS3</c>, <c>RestoreDBClusterFromSnapshot</c>, <c>RestoreDBClusterToPointInTime</c>,
+    /// <c>StartDBCluster</c>, and <c>StopDBCluster</c>.
     /// </para>
     ///  
     /// <para>
     /// For a Multi-AZ DB cluster, this data type is used as a response element in the operations
-    /// <code>CreateDBCluster</code>, <code>DeleteDBCluster</code>, <code>DescribeDBClusters</code>,
-    /// <code>FailoverDBCluster</code>, <code>ModifyDBCluster</code>, <code>RebootDBCluster</code>,
-    /// <code>RestoreDBClusterFromSnapshot</code>, and <code>RestoreDBClusterToPointInTime</code>.
+    /// <c>CreateDBCluster</c>, <c>DeleteDBCluster</c>, <c>DescribeDBClusters</c>, <c>FailoverDBCluster</c>,
+    /// <c>ModifyDBCluster</c>, <c>RebootDBCluster</c>, <c>RestoreDBClusterFromSnapshot</c>,
+    /// and <c>RestoreDBClusterToPointInTime</c>.
     /// </para>
     ///  
     /// <para>
@@ -65,38 +66,42 @@ namespace Amazon.RDS.Model
         private ActivityStreamMode _activityStreamMode;
         private ActivityStreamStatus _activityStreamStatus;
         private int? _allocatedStorage;
-        private List<DBClusterRole> _associatedRoles = new List<DBClusterRole>();
+        private List<DBClusterRole> _associatedRoles = AWSConfigs.InitializeCollections ? new List<DBClusterRole>() : null;
         private DateTime? _automaticRestartTime;
         private bool? _autoMinorVersionUpgrade;
-        private List<string> _availabilityZones = new List<string>();
+        private List<string> _availabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _awsBackupRecoveryPointArn;
         private long? _backtrackConsumedChangeRecords;
         private long? _backtrackWindow;
         private int? _backupRetentionPeriod;
         private int? _capacity;
+        private CertificateDetails _certificateDetails;
         private string _characterSetName;
         private string _cloneGroupId;
         private DateTime? _clusterCreateTime;
+        private ClusterScalabilityType _clusterScalabilityType;
         private bool? _copyTagsToSnapshot;
         private bool? _crossAccountClone;
-        private List<string> _customEndpoints = new List<string>();
+        private List<string> _customEndpoints = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private DatabaseInsightsMode _databaseInsightsMode;
         private string _databaseName;
         private string _dbClusterArn;
         private string _dbClusterIdentifier;
         private string _dbClusterInstanceClass;
-        private List<DBClusterMember> _dbClusterMembers = new List<DBClusterMember>();
-        private List<DBClusterOptionGroupStatus> _dbClusterOptionGroupMemberships = new List<DBClusterOptionGroupStatus>();
+        private List<DBClusterMember> _dbClusterMembers = AWSConfigs.InitializeCollections ? new List<DBClusterMember>() : null;
+        private List<DBClusterOptionGroupStatus> _dbClusterOptionGroupMemberships = AWSConfigs.InitializeCollections ? new List<DBClusterOptionGroupStatus>() : null;
         private string _dbClusterParameterGroup;
         private string _dbClusterResourceId;
         private string _dbSubnetGroup;
         private string _dbSystemId;
         private bool? _deletionProtection;
-        private List<DomainMembership> _domainMemberships = new List<DomainMembership>();
+        private List<DomainMembership> _domainMemberships = AWSConfigs.InitializeCollections ? new List<DomainMembership>() : null;
         private DateTime? _earliestBacktrackTime;
         private DateTime? _earliestRestorableTime;
-        private List<string> _enabledCloudwatchLogsExports = new List<string>();
+        private List<string> _enabledCloudwatchLogsExports = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _endpoint;
         private string _engine;
+        private string _engineLifecycleSupport;
         private string _engineMode;
         private string _engineVersion;
         private bool? _globalWriteForwardingRequested;
@@ -108,6 +113,7 @@ namespace Amazon.RDS.Model
         private int? _iops;
         private string _kmsKeyId;
         private DateTime? _latestRestorableTime;
+        private LimitlessDatabase _limitlessDatabase;
         private LocalWriteForwardingStatus _localWriteForwardingStatus;
         private string _masterUsername;
         private MasterUserSecret _masterUserSecret;
@@ -124,16 +130,19 @@ namespace Amazon.RDS.Model
         private string _preferredBackupWindow;
         private string _preferredMaintenanceWindow;
         private bool? _publiclyAccessible;
+        private RdsCustomClusterConfiguration _rdsCustomClusterConfiguration;
         private string _readerEndpoint;
-        private List<string> _readReplicaIdentifiers = new List<string>();
+        private List<string> _readReplicaIdentifiers = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _replicationSourceIdentifier;
         private ScalingConfigurationInfo _scalingConfigurationInfo;
         private ServerlessV2ScalingConfigurationInfo _serverlessV2ScalingConfiguration;
         private string _status;
+        private List<DBClusterStatusInfo> _statusInfos = AWSConfigs.InitializeCollections ? new List<DBClusterStatusInfo>() : null;
         private bool? _storageEncrypted;
+        private int? _storageThroughput;
         private string _storageType;
-        private List<Tag> _tagList = new List<Tag>();
-        private List<VpcSecurityGroupMembership> _vpcSecurityGroups = new List<VpcSecurityGroupMembership>();
+        private List<Tag> _tagList = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private List<VpcSecurityGroupMembership> _vpcSecurityGroups = AWSConfigs.InitializeCollections ? new List<VpcSecurityGroupMembership>() : null;
 
         /// <summary>
         /// Gets and sets the property ActivityStreamKinesisStreamName. 
@@ -218,10 +227,10 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property AllocatedStorage. 
         /// <para>
-        /// For all database engines except Amazon Aurora, <code>AllocatedStorage</code> specifies
-        /// the allocated storage size in gibibytes (GiB). For Aurora, <code>AllocatedStorage</code>
-        /// always returns 1, because Aurora DB cluster storage size isn't fixed, but instead
-        /// automatically adjusts as needed.
+        /// For all database engines except Amazon Aurora, <c>AllocatedStorage</c> specifies the
+        /// allocated storage size in gibibytes (GiB). For Aurora, <c>AllocatedStorage</c> always
+        /// returns 1, because Aurora DB cluster storage size isn't fixed, but instead automatically
+        /// adjusts as needed.
         /// </para>
         /// </summary>
         public int AllocatedStorage
@@ -253,7 +262,7 @@ namespace Amazon.RDS.Model
         // Check to see if AssociatedRoles property is set
         internal bool IsSetAssociatedRoles()
         {
-            return this._associatedRoles != null && this._associatedRoles.Count > 0; 
+            return this._associatedRoles != null && (this._associatedRoles.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -281,7 +290,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// This setting is only for non-Aurora Multi-AZ DB clusters.
+        /// This setting is for Aurora DB clusters and Multi-AZ DB clusters.
         /// </para>
         /// </summary>
         public bool AutoMinorVersionUpgrade
@@ -311,7 +320,7 @@ namespace Amazon.RDS.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -353,7 +362,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property BacktrackWindow. 
         /// <para>
-        /// The target backtrack window, in seconds. If this value is set to <code>0</code>, backtracking
+        /// The target backtrack window, in seconds. If this value is set to <c>0</c>, backtracking
         /// is disabled for the DB cluster. Otherwise, backtracking is enabled.
         /// </para>
         /// </summary>
@@ -390,7 +399,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Capacity. 
         /// <para>
-        /// The current capacity of an Aurora Serverless v1 DB cluster. The capacity is <code>0</code>
+        /// The current capacity of an Aurora Serverless v1 DB cluster. The capacity is <c>0</c>
         /// (zero) when the cluster is paused.
         /// </para>
         ///  
@@ -409,6 +418,21 @@ namespace Amazon.RDS.Model
         internal bool IsSetCapacity()
         {
             return this._capacity.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property CertificateDetails.
+        /// </summary>
+        public CertificateDetails CertificateDetails
+        {
+            get { return this._certificateDetails; }
+            set { this._certificateDetails = value; }
+        }
+
+        // Check to see if CertificateDetails property is set
+        internal bool IsSetCertificateDetails()
+        {
+            return this._certificateDetails != null;
         }
 
         /// <summary>
@@ -467,6 +491,26 @@ namespace Amazon.RDS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ClusterScalabilityType. 
+        /// <para>
+        /// The scalability mode of the Aurora DB cluster. When set to <c>limitless</c>, the cluster
+        /// operates as an Aurora Limitless Database. When set to <c>standard</c> (the default),
+        /// the cluster uses normal DB instance creation.
+        /// </para>
+        /// </summary>
+        public ClusterScalabilityType ClusterScalabilityType
+        {
+            get { return this._clusterScalabilityType; }
+            set { this._clusterScalabilityType = value; }
+        }
+
+        // Check to see if ClusterScalabilityType property is set
+        internal bool IsSetClusterScalabilityType()
+        {
+            return this._clusterScalabilityType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property CopyTagsToSnapshot. 
         /// <para>
         /// Indicates whether tags are copied from the DB cluster to snapshots of the DB cluster.
@@ -518,7 +562,25 @@ namespace Amazon.RDS.Model
         // Check to see if CustomEndpoints property is set
         internal bool IsSetCustomEndpoints()
         {
-            return this._customEndpoints != null && this._customEndpoints.Count > 0; 
+            return this._customEndpoints != null && (this._customEndpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property DatabaseInsightsMode. 
+        /// <para>
+        /// The mode of Database Insights that is enabled for the DB cluster.
+        /// </para>
+        /// </summary>
+        public DatabaseInsightsMode DatabaseInsightsMode
+        {
+            get { return this._databaseInsightsMode; }
+            set { this._databaseInsightsMode = value; }
+        }
+
+        // Check to see if DatabaseInsightsMode property is set
+        internal bool IsSetDatabaseInsightsMode()
+        {
+            return this._databaseInsightsMode != null;
         }
 
         /// <summary>
@@ -614,7 +676,7 @@ namespace Amazon.RDS.Model
         // Check to see if DBClusterMembers property is set
         internal bool IsSetDBClusterMembers()
         {
-            return this._dbClusterMembers != null && this._dbClusterMembers.Count > 0; 
+            return this._dbClusterMembers != null && (this._dbClusterMembers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -632,7 +694,7 @@ namespace Amazon.RDS.Model
         // Check to see if DBClusterOptionGroupMemberships property is set
         internal bool IsSetDBClusterOptionGroupMemberships()
         {
-            return this._dbClusterOptionGroupMemberships != null && this._dbClusterOptionGroupMemberships.Count > 0; 
+            return this._dbClusterOptionGroupMemberships != null && (this._dbClusterOptionGroupMemberships.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -744,7 +806,7 @@ namespace Amazon.RDS.Model
         // Check to see if DomainMemberships property is set
         internal bool IsSetDomainMemberships()
         {
-            return this._domainMemberships != null && this._domainMemberships.Count > 0; 
+            return this._domainMemberships != null && (this._domainMemberships.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -804,7 +866,7 @@ namespace Amazon.RDS.Model
         // Check to see if EnabledCloudwatchLogsExports property is set
         internal bool IsSetEnabledCloudwatchLogsExports()
         {
-            return this._enabledCloudwatchLogsExports != null && this._enabledCloudwatchLogsExports.Count > 0; 
+            return this._enabledCloudwatchLogsExports != null && (this._enabledCloudwatchLogsExports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -844,9 +906,31 @@ namespace Amazon.RDS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EngineLifecycleSupport. 
+        /// <para>
+        /// The life cycle type for the DB cluster.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see CreateDBCluster.
+        /// </para>
+        /// </summary>
+        public string EngineLifecycleSupport
+        {
+            get { return this._engineLifecycleSupport; }
+            set { this._engineLifecycleSupport = value; }
+        }
+
+        // Check to see if EngineLifecycleSupport property is set
+        internal bool IsSetEngineLifecycleSupport()
+        {
+            return this._engineLifecycleSupport != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property EngineMode. 
         /// <para>
-        /// The DB engine mode of the DB cluster, either <code>provisioned</code> or <code>serverless</code>.
+        /// The DB engine mode of the DB cluster, either <c>provisioned</c> or <c>serverless</c>.
         /// </para>
         ///  
         /// <para>
@@ -889,8 +973,8 @@ namespace Amazon.RDS.Model
         /// <para>
         /// Indicates whether write forwarding is enabled for a secondary cluster in an Aurora
         /// global database. Because write forwarding takes time to enable, check the value of
-        /// <code>GlobalWriteForwardingStatus</code> to confirm that the request has completed
-        /// before using the write forwarding feature for this cluster.
+        /// <c>GlobalWriteForwardingStatus</c> to confirm that the request has completed before
+        /// using the write forwarding feature for this cluster.
         /// </para>
         /// </summary>
         public bool GlobalWriteForwardingRequested
@@ -944,18 +1028,18 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property HttpEndpointEnabled. 
         /// <para>
-        /// Indicates whether the HTTP endpoint for an Aurora Serverless v1 DB cluster is enabled.
+        /// Indicates whether the HTTP endpoint is enabled for an Aurora DB cluster.
         /// </para>
         ///  
         /// <para>
-        /// When enabled, the HTTP endpoint provides a connectionless web service API for running
-        /// SQL queries on the Aurora Serverless v1 DB cluster. You can also query your database
-        /// from inside the RDS console with the query editor.
+        /// When enabled, the HTTP endpoint provides a connectionless web service API (RDS Data
+        /// API) for running SQL queries on the DB cluster. You can also query your database from
+        /// inside the RDS console with the RDS query editor.
         /// </para>
         ///  
         /// <para>
         /// For more information, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html">Using
-        /// the Data API for Aurora Serverless v1</a> in the <i>Amazon Aurora User Guide</i>.
+        /// RDS Data API</a> in the <i>Amazon Aurora User Guide</i>.
         /// </para>
         /// </summary>
         public bool HttpEndpointEnabled
@@ -992,7 +1076,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property IOOptimizedNextAllowedModificationTime. 
         /// <para>
-        /// The next time you can modify the DB cluster to use the <code>aurora-iopt1</code> storage
+        /// The next time you can modify the DB cluster to use the <c>aurora-iopt1</c> storage
         /// type.
         /// </para>
         ///  
@@ -1037,7 +1121,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// If <code>StorageEncrypted</code> is enabled, the Amazon Web Services KMS key identifier
+        /// If <c>StorageEncrypted</c> is enabled, the Amazon Web Services KMS key identifier
         /// for the encrypted DB cluster.
         /// </para>
         ///  
@@ -1074,6 +1158,24 @@ namespace Amazon.RDS.Model
         internal bool IsSetLatestRestorableTime()
         {
             return this._latestRestorableTime.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property LimitlessDatabase. 
+        /// <para>
+        /// The details for Aurora Limitless Database.
+        /// </para>
+        /// </summary>
+        public LimitlessDatabase LimitlessDatabase
+        {
+            get { return this._limitlessDatabase; }
+            set { this._limitlessDatabase = value; }
+        }
+
+        // Check to see if LimitlessDatabase property is set
+        internal bool IsSetLimitlessDatabase()
+        {
+            return this._limitlessDatabase != null;
         }
 
         /// <summary>
@@ -1148,7 +1250,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// This setting is only for non-Aurora Multi-AZ DB clusters.
+        /// This setting is only for -Aurora DB clusters and Multi-AZ DB clusters.
         /// </para>
         /// </summary>
         public int MonitoringInterval
@@ -1171,7 +1273,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// This setting is only for non-Aurora Multi-AZ DB clusters.
+        /// This setting is only for Aurora DB clusters and Multi-AZ DB clusters.
         /// </para>
         /// </summary>
         public string MonitoringRoleArn
@@ -1211,9 +1313,9 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// The network type is determined by the <code>DBSubnetGroup</code> specified for the
-        /// DB cluster. A <code>DBSubnetGroup</code> can support only the IPv4 protocol or the
-        /// IPv4 and the IPv6 protocols (<code>DUAL</code>).
+        /// The network type is determined by the <c>DBSubnetGroup</c> specified for the DB cluster.
+        /// A <c>DBSubnetGroup</c> can support only the IPv4 protocol or the IPv4 and the IPv6
+        /// protocols (<c>DUAL</c>).
         /// </para>
         ///  
         /// <para>
@@ -1226,7 +1328,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>IPV4 | DUAL</code> 
+        /// Valid Values: <c>IPV4 | DUAL</c> 
         /// </para>
         /// </summary>
         public string NetworkType
@@ -1285,7 +1387,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// This setting is only for non-Aurora Multi-AZ DB clusters.
+        /// This setting is only for Aurora DB clusters and Multi-AZ DB clusters.
         /// </para>
         /// </summary>
         public bool PerformanceInsightsEnabled
@@ -1313,7 +1415,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// This setting is only for non-Aurora Multi-AZ DB clusters.
+        /// This setting is only for Aurora DB clusters and Multi-AZ DB clusters.
         /// </para>
         /// </summary>
         public string PerformanceInsightsKMSKeyId
@@ -1335,7 +1437,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// This setting is only for non-Aurora Multi-AZ DB clusters.
+        /// This setting is only for Aurora DB clusters and Multi-AZ DB clusters.
         /// </para>
         ///  
         /// <para>
@@ -1343,21 +1445,20 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>7</code> 
+        ///  <c>7</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
         ///  <i>month</i> * 31, where <i>month</i> is a number of months from 1-23. Examples:
-        /// <code>93</code> (3 months * 31), <code>341</code> (11 months * 31), <code>589</code>
-        /// (19 months * 31)
+        /// <c>93</c> (3 months * 31), <c>341</c> (11 months * 31), <c>589</c> (19 months * 31)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>731</code> 
+        ///  <c>731</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Default: <code>7</code> days
+        /// Default: <c>7</c> days
         /// </para>
         /// </summary>
         public int PerformanceInsightsRetentionPeriod
@@ -1394,7 +1495,7 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property PreferredBackupWindow. 
         /// <para>
         /// The daily time range during which automated backups are created if automated backups
-        /// are enabled, as determined by the <code>BackupRetentionPeriod</code>.
+        /// are enabled, as determined by the <c>BackupRetentionPeriod</c>.
         /// </para>
         /// </summary>
         public string PreferredBackupWindow
@@ -1435,12 +1536,12 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// When the DB cluster is publicly accessible, its Domain Name System (DNS) endpoint
-        /// resolves to the private IP address from within the DB cluster's virtual private cloud
-        /// (VPC). It resolves to the public IP address from outside of the DB cluster's VPC.
-        /// Access to the DB cluster is ultimately controlled by the security group it uses. That
-        /// public access isn't permitted if the security group assigned to the DB cluster doesn't
-        /// permit it.
+        /// When the DB cluster is publicly accessible and you connect from outside of the DB
+        /// cluster's virtual private cloud (VPC), its Domain Name System (DNS) endpoint resolves
+        /// to the public IP address. When you connect from within the same VPC as the DB cluster,
+        /// the endpoint resolves to the private IP address. Access to the DB cluster is ultimately
+        /// controlled by the security group it uses. That public access isn't permitted if the
+        /// security group assigned to the DB cluster doesn't permit it.
         /// </para>
         ///  
         /// <para>
@@ -1466,6 +1567,24 @@ namespace Amazon.RDS.Model
         internal bool IsSetPubliclyAccessible()
         {
             return this._publiclyAccessible.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property RdsCustomClusterConfiguration. 
+        /// <para>
+        /// Reserved for future use.
+        /// </para>
+        /// </summary>
+        public RdsCustomClusterConfiguration RdsCustomClusterConfiguration
+        {
+            get { return this._rdsCustomClusterConfiguration; }
+            set { this._rdsCustomClusterConfiguration = value; }
+        }
+
+        // Check to see if RdsCustomClusterConfiguration property is set
+        internal bool IsSetRdsCustomClusterConfiguration()
+        {
+            return this._rdsCustomClusterConfiguration != null;
         }
 
         /// <summary>
@@ -1512,7 +1631,7 @@ namespace Amazon.RDS.Model
         // Check to see if ReadReplicaIdentifiers property is set
         internal bool IsSetReadReplicaIdentifiers()
         {
-            return this._readReplicaIdentifiers != null && this._readReplicaIdentifiers.Count > 0; 
+            return this._readReplicaIdentifiers != null && (this._readReplicaIdentifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1582,6 +1701,24 @@ namespace Amazon.RDS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property StatusInfos. 
+        /// <para>
+        /// Reserved for future use.
+        /// </para>
+        /// </summary>
+        public List<DBClusterStatusInfo> StatusInfos
+        {
+            get { return this._statusInfos; }
+            set { this._statusInfos = value; }
+        }
+
+        // Check to see if StatusInfos property is set
+        internal bool IsSetStatusInfos()
+        {
+            return this._statusInfos != null && (this._statusInfos.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property StorageEncrypted. 
         /// <para>
         /// Indicates whether the DB cluster is encrypted.
@@ -1597,6 +1734,29 @@ namespace Amazon.RDS.Model
         internal bool IsSetStorageEncrypted()
         {
             return this._storageEncrypted.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property StorageThroughput. 
+        /// <para>
+        /// The storage throughput for the DB cluster. The throughput is automatically set based
+        /// on the IOPS that you provision, and is not configurable.
+        /// </para>
+        ///  
+        /// <para>
+        /// This setting is only for non-Aurora Multi-AZ DB clusters.
+        /// </para>
+        /// </summary>
+        public int StorageThroughput
+        {
+            get { return this._storageThroughput.GetValueOrDefault(); }
+            set { this._storageThroughput = value; }
+        }
+
+        // Check to see if StorageThroughput property is set
+        internal bool IsSetStorageThroughput()
+        {
+            return this._storageThroughput.HasValue; 
         }
 
         /// <summary>
@@ -1629,7 +1789,7 @@ namespace Amazon.RDS.Model
         // Check to see if TagList property is set
         internal bool IsSetTagList()
         {
-            return this._tagList != null && this._tagList.Count > 0; 
+            return this._tagList != null && (this._tagList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1647,7 +1807,7 @@ namespace Amazon.RDS.Model
         // Check to see if VpcSecurityGroups property is set
         internal bool IsSetVpcSecurityGroups()
         {
-            return this._vpcSecurityGroups != null && this._vpcSecurityGroups.Count > 0; 
+            return this._vpcSecurityGroups != null && (this._vpcSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

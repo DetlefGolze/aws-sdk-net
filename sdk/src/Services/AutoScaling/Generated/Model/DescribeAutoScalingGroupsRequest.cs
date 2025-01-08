@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -43,14 +44,14 @@ namespace Amazon.AutoScaling.Model
     ///  
     /// <para>
     /// This operation also returns information about instances in Auto Scaling groups. To
-    /// retrieve information about the instances in a warm pool, you must call the <a>DescribeWarmPool</a>
+    /// retrieve information about the instances in a warm pool, you must call the <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeWarmPool.html">DescribeWarmPool</a>
     /// API. 
     /// </para>
     /// </summary>
     public partial class DescribeAutoScalingGroupsRequest : AmazonAutoScalingRequest
     {
-        private List<string> _autoScalingGroupNames = new List<string>();
-        private List<Filter> _filters = new List<Filter>();
+        private List<string> _autoScalingGroupNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxRecords;
         private string _nextToken;
 
@@ -58,7 +59,7 @@ namespace Amazon.AutoScaling.Model
         /// Gets and sets the property AutoScalingGroupNames. 
         /// <para>
         /// The names of the Auto Scaling groups. By default, you can only specify up to 50 names.
-        /// You can optionally increase this limit using the <code>MaxRecords</code> property.
+        /// You can optionally increase this limit using the <c>MaxRecords</c> property.
         /// </para>
         ///  
         /// <para>
@@ -74,7 +75,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if AutoScalingGroupNames property is set
         internal bool IsSetAutoScalingGroupNames()
         {
-            return this._autoScalingGroupNames != null && this._autoScalingGroupNames.Count > 0; 
+            return this._autoScalingGroupNames != null && (this._autoScalingGroupNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -92,14 +93,14 @@ namespace Amazon.AutoScaling.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxRecords. 
         /// <para>
-        /// The maximum number of items to return with this call. The default value is <code>50</code>
-        /// and the maximum value is <code>100</code>.
+        /// The maximum number of items to return with this call. The default value is <c>50</c>
+        /// and the maximum value is <c>100</c>.
         /// </para>
         /// </summary>
         public int MaxRecords

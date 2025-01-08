@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Synthetics.Model
 {
     /// <summary>
@@ -36,8 +37,28 @@ namespace Amazon.Synthetics.Model
     /// </summary>
     public partial class VpcConfigInput
     {
-        private List<string> _securityGroupIds = new List<string>();
-        private List<string> _subnetIds = new List<string>();
+        private bool? _ipv6AllowedForDualStack;
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _subnetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+
+        /// <summary>
+        /// Gets and sets the property Ipv6AllowedForDualStack. 
+        /// <para>
+        /// Set this to <c>true</c> to allow outbound IPv6 traffic on VPC canaries that are connected
+        /// to dual-stack subnets. The default is <c>false</c> 
+        /// </para>
+        /// </summary>
+        public bool Ipv6AllowedForDualStack
+        {
+            get { return this._ipv6AllowedForDualStack.GetValueOrDefault(); }
+            set { this._ipv6AllowedForDualStack = value; }
+        }
+
+        // Check to see if Ipv6AllowedForDualStack property is set
+        internal bool IsSetIpv6AllowedForDualStack()
+        {
+            return this._ipv6AllowedForDualStack.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property SecurityGroupIds. 
@@ -55,7 +76,7 @@ namespace Amazon.Synthetics.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -74,7 +95,7 @@ namespace Amazon.Synthetics.Model
         // Check to see if SubnetIds property is set
         internal bool IsSetSubnetIds()
         {
-            return this._subnetIds != null && this._subnetIds.Count > 0; 
+            return this._subnetIds != null && (this._subnetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

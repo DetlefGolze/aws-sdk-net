@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the ivs-2020-07-14.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IVS.Model
 {
     /// <summary>
@@ -34,6 +35,11 @@ namespace Amazon.IVS.Model
         /// Paginator for ListPlaybackKeyPairs operation
         ///</summary>
         IListPlaybackKeyPairsPaginator ListPlaybackKeyPairs(ListPlaybackKeyPairsRequest request);
+
+        /// <summary>
+        /// Paginator for ListPlaybackRestrictionPolicies operation
+        ///</summary>
+        IListPlaybackRestrictionPoliciesPaginator ListPlaybackRestrictionPolicies(ListPlaybackRestrictionPoliciesRequest request);
 
         /// <summary>
         /// Paginator for ListRecordingConfigurations operation

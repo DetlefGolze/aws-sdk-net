@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
-    /// Your Amazon S3 bucket policy does not permit Config to write to it.
+    /// Your Amazon S3 bucket policy does not allow Config to write to it.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

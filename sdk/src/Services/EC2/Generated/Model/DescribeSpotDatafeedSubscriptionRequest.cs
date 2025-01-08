@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeSpotDatafeedSubscription operation.
     /// Describes the data feed for Spot Instances. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html">Spot
-    /// Instance data feed</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.
+    /// Instance data feed</a> in the <i>Amazon EC2 User Guide</i>.
     /// </summary>
     public partial class DescribeSpotDatafeedSubscriptionRequest : AmazonEC2Request
     {

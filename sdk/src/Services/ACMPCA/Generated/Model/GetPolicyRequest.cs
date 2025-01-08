@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ACMPCA.Model
 {
     /// <summary>
     /// Container for the parameters to the GetPolicy operation.
     /// Retrieves the resource-based policy attached to a private CA. If either the private
-    /// CA resource or the policy cannot be found, this action returns a <code>ResourceNotFoundException</code>.
+    /// CA resource or the policy cannot be found, this action returns a <c>ResourceNotFoundException</c>.
     /// 
     /// 
     ///  
@@ -80,8 +81,8 @@ namespace Amazon.ACMPCA.Model
         /// Gets and sets the property ResourceArn. 
         /// <para>
         /// The Amazon Resource Number (ARN) of the private CA that will have its policy retrieved.
-        /// You can find the CA's ARN by calling the ListCertificateAuthorities action. 
-        /// </para>
+        /// You can find the CA's ARN by calling the ListCertificateAuthorities action. <pre><c>
+        /// &lt;/p&gt; </c></pre>
         /// </summary>
         [AWSProperty(Required=true, Min=5, Max=200)]
         public string ResourceArn

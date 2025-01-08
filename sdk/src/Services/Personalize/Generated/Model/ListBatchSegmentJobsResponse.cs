@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Personalize.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Personalize.Model
     /// </summary>
     public partial class ListBatchSegmentJobsResponse : AmazonWebServiceResponse
     {
-        private List<BatchSegmentJobSummary> _batchSegmentJobs = new List<BatchSegmentJobSummary>();
+        private List<BatchSegmentJobSummary> _batchSegmentJobs = AWSConfigs.InitializeCollections ? new List<BatchSegmentJobSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,14 +53,14 @@ namespace Amazon.Personalize.Model
         // Check to see if BatchSegmentJobs property is set
         internal bool IsSetBatchSegmentJobs()
         {
-            return this._batchSegmentJobs != null && this._batchSegmentJobs.Count > 0; 
+            return this._batchSegmentJobs != null && (this._batchSegmentJobs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to use to retrieve the next page of results. The value is <code>null</code>
-        /// when there are no more results to return.
+        /// The token to use to retrieve the next page of results. The value is <c>null</c> when
+        /// there are no more results to return.
         /// </para>
         /// </summary>
         [AWSProperty(Max=1500)]

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.LicenseManagerLinuxSubscriptions.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model.Internal.MarshallTransfo
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Instance Unmarshall(JsonUnmarshallerContext context)
         {
+            Instance unmarshalledObject = new Instance();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Instance unmarshalledObject = new Instance();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -74,6 +76,12 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model.Internal.MarshallTransfo
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.AmiId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("DualSubscription", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DualSubscription = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("InstanceID", targetDepth))
@@ -94,6 +102,12 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model.Internal.MarshallTransfo
                     unmarshalledObject.LastUpdatedTime = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("OsVersion", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.OsVersion = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ProductCode", targetDepth))
                 {
                     var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
@@ -104,6 +118,12 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model.Internal.MarshallTransfo
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.Region = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("RegisteredWithSubscriptionProvider", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.RegisteredWithSubscriptionProvider = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Status", targetDepth))
@@ -118,6 +138,18 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model.Internal.MarshallTransfo
                     unmarshalledObject.SubscriptionName = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("SubscriptionProviderCreateTime", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.SubscriptionProviderCreateTime = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("SubscriptionProviderUpdateTime", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.SubscriptionProviderUpdateTime = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("UsageOperation", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -125,7 +157,6 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model.Internal.MarshallTransfo
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

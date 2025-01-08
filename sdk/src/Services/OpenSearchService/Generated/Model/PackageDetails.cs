@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -33,15 +34,59 @@ namespace Amazon.OpenSearchService.Model
     /// </summary>
     public partial class PackageDetails
     {
+        private List<string> _allowListedUserList = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private PackageConfiguration _availablePackageConfiguration;
         private string _availablePackageVersion;
+        private PluginProperties _availablePluginProperties;
         private DateTime? _createdAt;
+        private string _engineVersion;
         private ErrorDetails _errorDetails;
         private DateTime? _lastUpdatedAt;
         private string _packageDescription;
+        private PackageEncryptionOptions _packageEncryptionOptions;
         private string _packageID;
         private string _packageName;
+        private string _packageOwner;
         private PackageStatus _packageStatus;
         private PackageType _packageType;
+        private PackageVendingOptions _packageVendingOptions;
+
+        /// <summary>
+        /// Gets and sets the property AllowListedUserList. 
+        /// <para>
+        ///  A list of users who are allowed to view and associate the package. This field is
+        /// only visible to the owner of a package.
+        /// </para>
+        /// </summary>
+        public List<string> AllowListedUserList
+        {
+            get { return this._allowListedUserList; }
+            set { this._allowListedUserList = value; }
+        }
+
+        // Check to see if AllowListedUserList property is set
+        internal bool IsSetAllowListedUserList()
+        {
+            return this._allowListedUserList != null && (this._allowListedUserList.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property AvailablePackageConfiguration. 
+        /// <para>
+        /// This represents the available configuration parameters for the package.
+        /// </para>
+        /// </summary>
+        public PackageConfiguration AvailablePackageConfiguration
+        {
+            get { return this._availablePackageConfiguration; }
+            set { this._availablePackageConfiguration = value; }
+        }
+
+        // Check to see if AvailablePackageConfiguration property is set
+        internal bool IsSetAvailablePackageConfiguration()
+        {
+            return this._availablePackageConfiguration != null;
+        }
 
         /// <summary>
         /// Gets and sets the property AvailablePackageVersion. 
@@ -62,6 +107,25 @@ namespace Amazon.OpenSearchService.Model
         }
 
         /// <summary>
+        /// Gets and sets the property AvailablePluginProperties. 
+        /// <para>
+        /// If the package is a <c>ZIP-PLUGIN</c> package, additional information about plugin
+        /// properties.
+        /// </para>
+        /// </summary>
+        public PluginProperties AvailablePluginProperties
+        {
+            get { return this._availablePluginProperties; }
+            set { this._availablePluginProperties = value; }
+        }
+
+        // Check to see if AvailablePluginProperties property is set
+        internal bool IsSetAvailablePluginProperties()
+        {
+            return this._availablePluginProperties != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
         /// The timestamp when the package was created.
@@ -77,6 +141,25 @@ namespace Amazon.OpenSearchService.Model
         internal bool IsSetCreatedAt()
         {
             return this._createdAt.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property EngineVersion. 
+        /// <para>
+        /// Version of OpenSearch or Elasticsearch, in the format Elasticsearch_X.Y or OpenSearch_X.Y.
+        /// Defaults to the latest version of OpenSearch.
+        /// </para>
+        /// </summary>
+        public string EngineVersion
+        {
+            get { return this._engineVersion; }
+            set { this._engineVersion = value; }
+        }
+
+        // Check to see if EngineVersion property is set
+        internal bool IsSetEngineVersion()
+        {
+            return this._engineVersion != null;
         }
 
         /// <summary>
@@ -135,6 +218,24 @@ namespace Amazon.OpenSearchService.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PackageEncryptionOptions. 
+        /// <para>
+        /// Package Encryption Options for a package.
+        /// </para>
+        /// </summary>
+        public PackageEncryptionOptions PackageEncryptionOptions
+        {
+            get { return this._packageEncryptionOptions; }
+            set { this._packageEncryptionOptions = value; }
+        }
+
+        // Check to see if PackageEncryptionOptions property is set
+        internal bool IsSetPackageEncryptionOptions()
+        {
+            return this._packageEncryptionOptions != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property PackageID. 
         /// <para>
         /// The unique identifier of the package.
@@ -158,7 +259,7 @@ namespace Amazon.OpenSearchService.Model
         /// The user-specified name of the package.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=3, Max=28)]
+        [AWSProperty(Min=3, Max=256)]
         public string PackageName
         {
             get { return this._packageName; }
@@ -172,11 +273,31 @@ namespace Amazon.OpenSearchService.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PackageOwner. 
+        /// <para>
+        /// The owner of the package who is allowed to create/update a package and add users to
+        /// the package scope.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=1024)]
+        public string PackageOwner
+        {
+            get { return this._packageOwner; }
+            set { this._packageOwner = value; }
+        }
+
+        // Check to see if PackageOwner property is set
+        internal bool IsSetPackageOwner()
+        {
+            return this._packageOwner != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property PackageStatus. 
         /// <para>
-        /// The current status of the package. The available options are <code>AVAILABLE</code>,
-        /// <code>COPYING</code>, <code>COPY_FAILED</code>, <code>VALIDATNG</code>, <code>VALIDATION_FAILED</code>,
-        /// <code>DELETING</code>, and <code>DELETE_FAILED</code>.
+        /// The current status of the package. The available options are <c>AVAILABLE</c>, <c>COPYING</c>,
+        /// <c>COPY_FAILED</c>, <c>VALIDATNG</c>, <c>VALIDATION_FAILED</c>, <c>DELETING</c>, and
+        /// <c>DELETE_FAILED</c>.
         /// </para>
         /// </summary>
         public PackageStatus PackageStatus
@@ -207,6 +328,24 @@ namespace Amazon.OpenSearchService.Model
         internal bool IsSetPackageType()
         {
             return this._packageType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PackageVendingOptions. 
+        /// <para>
+        /// Package Vending Options for a package.
+        /// </para>
+        /// </summary>
+        public PackageVendingOptions PackageVendingOptions
+        {
+            get { return this._packageVendingOptions; }
+            set { this._packageVendingOptions = value; }
+        }
+
+        // Check to see if PackageVendingOptions property is set
+        internal bool IsSetPackageVendingOptions()
+        {
+            return this._packageVendingOptions != null;
         }
 
     }

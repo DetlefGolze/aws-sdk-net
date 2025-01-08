@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -33,18 +34,20 @@ namespace Amazon.QuickSight.Model
     /// </summary>
     public partial class LineChartConfiguration
     {
-        private List<ContributionAnalysisDefault> _contributionAnalysisDefaults = new List<ContributionAnalysisDefault>();
+        private List<ContributionAnalysisDefault> _contributionAnalysisDefaults = AWSConfigs.InitializeCollections ? new List<ContributionAnalysisDefault>() : null;
         private DataLabelOptions _dataLabels;
         private LineChartDefaultSeriesSettings _defaultSeriesSettings;
         private LineChartFieldWells _fieldWells;
-        private List<ForecastConfiguration> _forecastConfigurations = new List<ForecastConfiguration>();
+        private List<ForecastConfiguration> _forecastConfigurations = AWSConfigs.InitializeCollections ? new List<ForecastConfiguration>() : null;
+        private VisualInteractionOptions _interactions;
         private LegendOptions _legend;
         private LineSeriesAxisDisplayOptions _primaryYAxisDisplayOptions;
         private ChartAxisLabelOptions _primaryYAxisLabelOptions;
-        private List<ReferenceLine> _referenceLines = new List<ReferenceLine>();
+        private List<ReferenceLine> _referenceLines = AWSConfigs.InitializeCollections ? new List<ReferenceLine>() : null;
         private LineSeriesAxisDisplayOptions _secondaryYAxisDisplayOptions;
         private ChartAxisLabelOptions _secondaryYAxisLabelOptions;
-        private List<SeriesItem> _series = new List<SeriesItem>();
+        private List<SeriesItem> _series = AWSConfigs.InitializeCollections ? new List<SeriesItem>() : null;
+        private SingleAxisOptions _singleAxisOptions;
         private SmallMultiplesOptions _smallMultiplesOptions;
         private LineChartSortConfiguration _sortConfiguration;
         private TooltipOptions _tooltip;
@@ -69,7 +72,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if ContributionAnalysisDefaults property is set
         internal bool IsSetContributionAnalysisDefaults()
         {
-            return this._contributionAnalysisDefaults != null && this._contributionAnalysisDefaults.Count > 0; 
+            return this._contributionAnalysisDefaults != null && (this._contributionAnalysisDefaults.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -93,7 +96,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property DefaultSeriesSettings. 
         /// <para>
-        /// The options that determine the default presentation of all line series in <code>LineChartVisual</code>.
+        /// The options that determine the default presentation of all line series in <c>LineChartVisual</c>.
         /// </para>
         /// </summary>
         public LineChartDefaultSeriesSettings DefaultSeriesSettings
@@ -142,7 +145,25 @@ namespace Amazon.QuickSight.Model
         // Check to see if ForecastConfigurations property is set
         internal bool IsSetForecastConfigurations()
         {
-            return this._forecastConfigurations != null && this._forecastConfigurations.Count > 0; 
+            return this._forecastConfigurations != null && (this._forecastConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Interactions. 
+        /// <para>
+        /// The general visual interactions setup for a visual.
+        /// </para>
+        /// </summary>
+        public VisualInteractionOptions Interactions
+        {
+            get { return this._interactions; }
+            set { this._interactions = value; }
+        }
+
+        // Check to see if Interactions property is set
+        internal bool IsSetInteractions()
+        {
+            return this._interactions != null;
         }
 
         /// <summary>
@@ -215,7 +236,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if ReferenceLines property is set
         internal bool IsSetReferenceLines()
         {
-            return this._referenceLines != null && this._referenceLines.Count > 0; 
+            return this._referenceLines != null && (this._referenceLines.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -260,7 +281,7 @@ namespace Amazon.QuickSight.Model
         /// The series item configuration of a line chart.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=10)]
+        [AWSProperty(Max=2000)]
         public List<SeriesItem> Series
         {
             get { return this._series; }
@@ -270,7 +291,22 @@ namespace Amazon.QuickSight.Model
         // Check to see if Series property is set
         internal bool IsSetSeries()
         {
-            return this._series != null && this._series.Count > 0; 
+            return this._series != null && (this._series.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SingleAxisOptions.
+        /// </summary>
+        public SingleAxisOptions SingleAxisOptions
+        {
+            get { return this._singleAxisOptions; }
+            set { this._singleAxisOptions = value; }
+        }
+
+        // Check to see if SingleAxisOptions property is set
+        internal bool IsSetSingleAxisOptions()
+        {
+            return this._singleAxisOptions != null;
         }
 
         /// <summary>

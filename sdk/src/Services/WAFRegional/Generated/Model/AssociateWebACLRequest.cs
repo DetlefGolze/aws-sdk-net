@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFRegional.Model
 {
     /// <summary>
@@ -65,13 +66,13 @@ namespace Amazon.WAFRegional.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For an Application Load Balancer: <code>arn:aws:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/app/<i>load-balancer-name</i>/<i>load-balancer-id</i>
-        /// </code> 
+        /// For an Application Load Balancer: <c>arn:aws:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/app/<i>load-balancer-name</i>/<i>load-balancer-id</i>
+        /// </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For an Amazon API Gateway stage: <code>arn:aws:apigateway:<i>region</i>::/restapis/<i>api-id</i>/stages/<i>stage-name</i>
-        /// </code> 
+        /// For an Amazon API Gateway stage: <c>arn:aws:apigateway:<i>region</i>::/restapis/<i>api-id</i>/stages/<i>stage-name</i>
+        /// </c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

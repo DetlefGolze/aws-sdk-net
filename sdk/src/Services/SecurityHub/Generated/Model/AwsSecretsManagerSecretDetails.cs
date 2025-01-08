@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -81,8 +82,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// The ARN, Key ID, or alias of the KMS key used to encrypt the <code>SecretString</code>
-        /// or <code>SecretBinary</code> values for versions of this secret.
+        /// The ARN, Key ID, or alias of the KMS key used to encrypt the <c>SecretString</c> or
+        /// <c>SecretBinary</c> values for versions of this secret.
         /// </para>
         /// </summary>
         public string KmsKeyId

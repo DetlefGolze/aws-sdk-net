@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.AutoScaling.Model
     ///  
     /// <para>
     /// This call simply makes a termination request. The instance is not terminated immediately.
-    /// When an instance is terminated, the instance status changes to <code>terminated</code>.
+    /// When an instance is terminated, the instance status changes to <c>terminated</c>.
     /// You can't connect to or start an instance after you've terminated it.
     /// </para>
     ///  
@@ -50,8 +51,8 @@ namespace Amazon.AutoScaling.Model
     /// If you decrement the desired capacity, your Auto Scaling group can become unbalanced
     /// between Availability Zones. Amazon EC2 Auto Scaling tries to rebalance the group,
     /// and rebalancing might terminate instances in other zones. For more information, see
-    /// <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-benefits.html#AutoScalingBehavior.InstanceUsage">Rebalancing
-    /// activities</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+    /// <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-scaling-manually.html">Manual
+    /// scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
     /// </para>
     /// </summary>
     public partial class TerminateInstanceInAutoScalingGroupRequest : AmazonAutoScalingRequest

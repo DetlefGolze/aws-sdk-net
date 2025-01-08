@@ -192,7 +192,7 @@ namespace Amazon.S3.IO
                     ((Amazon.Runtime.Internal.IAmazonWebServiceRequest)request).AddBeforeRequestHandler(S3Helper.FileIORequestEventHandler);
 
                     var response = s3Client.ListObjects(request);
-                    return response.S3Objects.Count > 0;
+                    return response.S3Objects?.Count > 0;
                 }
             }
             catch (AmazonS3Exception e)
@@ -250,12 +250,24 @@ namespace Amazon.S3.IO
                         var listRequest = new ListBucketsRequest();
                         ((Amazon.Runtime.Internal.IAmazonWebServiceRequest)listRequest).AddBeforeRequestHandler(S3Helper.FileIORequestEventHandler);
 
-                        foreach (S3Bucket s3Bucket in s3Client.ListBuckets(listRequest).Buckets)
+                        var paginatedResourceInfo = new PaginatedResourceInfo()
+                            .WithClient(S3Client)
+                            .WithItemListPropertyPath("Buckets")
+                            .WithMethodName("ListBuckets")
+                            .WithRequest(listRequest)
+                            .WithTokenRequestPropertyPath("ContinuationToken")
+                            .WithTokenResponsePropertyPath("ContinuationToken");
+                        
+                        var buckets = (IEnumerable<S3Bucket>) PaginatedResourceFactory.Create<S3Bucket, ListBucketsRequest, ListBucketsResponse>(paginatedResourceInfo);
+                        if (buckets != null)
                         {
-                            DateTime currentBucketLastWriteTime = new S3DirectoryInfo(s3Client, s3Bucket.BucketName, String.Empty).LastWriteTime;
-                            if (currentBucketLastWriteTime > ret)
+                            foreach (S3Bucket s3Bucket in buckets)
                             {
-                                ret = currentBucketLastWriteTime;
+                                DateTime currentBucketLastWriteTime = new S3DirectoryInfo(s3Client, s3Bucket.BucketName, String.Empty).LastWriteTime;
+                                if (currentBucketLastWriteTime > ret)
+                                {
+                                    ret = currentBucketLastWriteTime;
+                                }
                             }
                         }
                     }
@@ -488,19 +500,21 @@ namespace Amazon.S3.IO
                 {
                     listResponse = s3Client.ListObjects(listRequest);
 
-                    // Sort to make sure the Marker for paging is set to the last lexiographical key.
-                    foreach (S3Object s3o in listResponse.S3Objects.OrderBy(x => x.Key))
+                    if (listResponse.S3Objects != null)
                     {
-                        deleteRequest.AddKey(s3o.Key);
-                        if (deleteRequest.Objects.Count == Util.S3Constants.MULTIPLE_OBJECT_DELETE_LIMIT)
+                        // Sort to make sure the Marker for paging is set to the last lexiographical key.
+                        foreach (S3Object s3o in listResponse.S3Objects.OrderBy(x => x.Key))
                         {
-                            s3Client.DeleteObjects(deleteRequest);
-                            deleteRequest.Objects.Clear();
-                        }
+                            deleteRequest.AddKey(s3o.Key);
+                            if (deleteRequest.Objects.Count == Util.S3Constants.MULTIPLE_OBJECT_DELETE_LIMIT)
+                            {
+                                s3Client.DeleteObjects(deleteRequest);
+                                deleteRequest.Objects.Clear();
+                            }
 
-                        listRequest.Marker = s3o.Key;
+                            listRequest.Marker = s3o.Key;
+                        }
                     }
-                    
                 } while (listResponse.IsTruncated);
 
                 if (deleteRequest.Objects.Count > 0)
@@ -567,8 +581,17 @@ namespace Amazon.S3.IO
             {
                 var request = new ListBucketsRequest();
                 ((Amazon.Runtime.Internal.IAmazonWebServiceRequest)request).AddBeforeRequestHandler(S3Helper.FileIORequestEventHandler);
-                folders = s3Client.ListBuckets(request).Buckets
-                    .ConvertAll(s3Bucket => new S3DirectoryInfo(s3Client,s3Bucket.BucketName,""));
+
+                var paginatedResourceInfo = new PaginatedResourceInfo()
+                    .WithClient(S3Client)
+                    .WithItemListPropertyPath("Buckets")
+                    .WithMethodName("ListBuckets")
+                    .WithRequest(request)
+                    .WithTokenRequestPropertyPath("ContinuationToken")
+                    .WithTokenResponsePropertyPath("ContinuationToken");
+
+                var buckets = (IEnumerable<S3Bucket>)PaginatedResourceFactory.Create<S3Bucket, ListBucketsRequest, ListBucketsResponse>(paginatedResourceInfo);
+                folders = new EnumerableConverter<S3Bucket, S3DirectoryInfo>(buckets, s3Bucket => new S3DirectoryInfo(s3Client, s3Bucket.BucketName, ""));
             }
             else
             {
@@ -1207,8 +1230,20 @@ namespace Amazon.S3.IO
             var start = this.S3Client.Config.CorrectedUtcNow;
             do
             {
-                var buckets = this.S3Client.ListBuckets().Buckets;
-                currentState = buckets.FirstOrDefault(x => string.Equals(x.BucketName, this.BucketName)) != null;
+                var allBuckets = new List<S3Bucket>();
+                var listRequest = new ListBucketsRequest();
+                do
+                {
+                    var listResponse = this.S3Client.ListBuckets(listRequest);
+                    if (listResponse.Buckets != null)
+                    {
+                        allBuckets.AddRange(listResponse.Buckets);
+                    }
+
+                    listRequest.ContinuationToken = listResponse.ContinuationToken;
+                } while (!string.IsNullOrEmpty(listRequest.ContinuationToken));
+
+                currentState = allBuckets?.FirstOrDefault(x => string.Equals(x.BucketName, this.BucketName)) != null;
 
                 if (currentState == exists)
                 {

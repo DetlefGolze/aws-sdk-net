@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectCases.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateTemplate operation.
     /// Updates the attributes of an existing template. The template attributes that can be
-    /// modified include <code>name</code>, <code>description</code>, <code>layoutConfiguration</code>,
-    /// <code>requiredFields</code>, and <code>status</code>. At least one of these attributes
-    /// must not be null. If a null value is provided for a given attribute, that attribute
-    /// is ignored and its current value is preserved.
+    /// modified include <c>name</c>, <c>description</c>, <c>layoutConfiguration</c>, <c>requiredFields</c>,
+    /// and <c>status</c>. At least one of these attributes must not be null. If a null value
+    /// is provided for a given attribute, that attribute is ignored and its current value
+    /// is preserved.
     /// </summary>
     public partial class UpdateTemplateRequest : AmazonConnectCasesRequest
     {
@@ -42,7 +43,7 @@ namespace Amazon.ConnectCases.Model
         private string _domainId;
         private LayoutConfiguration _layoutConfiguration;
         private string _name;
-        private List<RequiredField> _requiredFields = new List<RequiredField>();
+        private List<RequiredField> _requiredFields = AWSConfigs.InitializeCollections ? new List<RequiredField>() : null;
         private TemplateStatus _status;
         private string _templateId;
 
@@ -138,7 +139,7 @@ namespace Amazon.ConnectCases.Model
         // Check to see if RequiredFields property is set
         internal bool IsSetRequiredFields()
         {
-            return this._requiredFields != null && this._requiredFields.Count > 0; 
+            return this._requiredFields != null && (this._requiredFields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

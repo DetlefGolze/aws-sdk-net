@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         private string _name;
         private string _ownerInformation;
         private MaintenanceWindowResourceType _resourceType;
-        private List<Target> _targets = new List<Target>();
+        private List<Target> _targets = AWSConfigs.InitializeCollections ? new List<Target>() : null;
         private string _windowId;
 
         /// <summary>
@@ -162,7 +163,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>Key=InstanceIds,Values=&lt;instance-id-1&gt;,&lt;instance-id-2&gt;,&lt;instance-id-3&gt;</code>
+        ///  <c>Key=InstanceIds,Values=&lt;instance-id-1&gt;,&lt;instance-id-2&gt;,&lt;instance-id-3&gt;</c>
         /// 
         /// </para>
         ///  
@@ -171,7 +172,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>Key=tag:&lt;my-tag-key&gt;,Values=&lt;my-tag-value-1&gt;,&lt;my-tag-value-2&gt;</code>
+        ///  <c>Key=tag:&lt;my-tag-key&gt;,Values=&lt;my-tag-value-1&gt;,&lt;my-tag-value-2&gt;</c>
         /// 
         /// </para>
         ///  
@@ -180,7 +181,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>Key=tag-key,Values=&lt;my-tag-key-1&gt;,&lt;my-tag-key-2&gt;</code> 
+        ///  <c>Key=tag-key,Values=&lt;my-tag-key-1&gt;,&lt;my-tag-key-2&gt;</c> 
         /// </para>
         ///  
         /// <para>
@@ -188,7 +189,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>Key=resource-groups:Name,Values=&lt;resource-group-name&gt;</code> 
+        ///  <c>Key=resource-groups:Name,Values=&lt;resource-group-name&gt;</c> 
         /// </para>
         ///  
         /// <para>
@@ -196,17 +197,17 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>Key=resource-groups:ResourceTypeFilters,Values=&lt;resource-type-1&gt;,&lt;resource-type-2&gt;</code>
+        ///  <c>Key=resource-groups:ResourceTypeFilters,Values=&lt;resource-type-1&gt;,&lt;resource-type-2&gt;</c>
         /// 
         /// </para>
         ///  <note> 
         /// <para>
-        /// For <code>Key=resource-groups:ResourceTypeFilters</code>, specify resource types in
-        /// the following format
+        /// For <c>Key=resource-groups:ResourceTypeFilters</c>, specify resource types in the
+        /// following format
         /// </para>
         ///  
         /// <para>
-        ///  <code>Key=resource-groups:ResourceTypeFilters,Values=AWS::EC2::INSTANCE,AWS::EC2::VPC</code>
+        ///  <c>Key=resource-groups:ResourceTypeFilters,Values=AWS::EC2::INSTANCE,AWS::EC2::VPC</c>
         /// 
         /// </para>
         ///  </note> 
@@ -227,7 +228,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

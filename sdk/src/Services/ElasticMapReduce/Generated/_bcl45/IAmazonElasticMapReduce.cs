@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.ElasticMapReduce.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.ElasticMapReduce
 {
     /// <summary>
-    /// Interface for accessing ElasticMapReduce
+    /// <para>Interface for accessing ElasticMapReduce</para>
     ///
     /// Amazon EMR is a web service that makes it easier to process large amounts of data
     /// efficiently. Amazon EMR uses Hadoop processing combined with several Amazon Web Services
@@ -169,8 +170,8 @@ namespace Amazon.ElasticMapReduce
         /// </para>
         ///  <note> 
         /// <para>
-        /// The string values passed into <code>HadoopJarStep</code> object cannot exceed a total
-        /// of 10240 characters.
+        /// The string values passed into <c>HadoopJarStep</c> object cannot exceed a total of
+        /// 10240 characters.
         /// </para>
         ///  </note>
         /// </summary>
@@ -217,8 +218,8 @@ namespace Amazon.ElasticMapReduce
         /// </para>
         ///  <note> 
         /// <para>
-        /// The string values passed into <code>HadoopJarStep</code> object cannot exceed a total
-        /// of 10240 characters.
+        /// The string values passed into <c>HadoopJarStep</c> object cannot exceed a total of
+        /// 10240 characters.
         /// </para>
         ///  </note>
         /// </summary>
@@ -292,8 +293,8 @@ namespace Amazon.ElasticMapReduce
         /// in each CancelSteps request. CancelSteps is idempotent but asynchronous; it does not
         /// guarantee that a step will be canceled, even if the request is successfully submitted.
         /// When you use Amazon EMR releases 5.28.0 and later, you can cancel steps that are in
-        /// a <code>PENDING</code> or <code>RUNNING</code> state. In earlier versions of Amazon
-        /// EMR, you can only cancel steps that are in a <code>PENDING</code> state.
+        /// a <c>PENDING</c> or <c>RUNNING</c> state. In earlier versions of Amazon EMR, you can
+        /// only cancel steps that are in a <c>PENDING</c> state.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CancelSteps service method.</param>
         /// 
@@ -316,8 +317,8 @@ namespace Amazon.ElasticMapReduce
         /// in each CancelSteps request. CancelSteps is idempotent but asynchronous; it does not
         /// guarantee that a step will be canceled, even if the request is successfully submitted.
         /// When you use Amazon EMR releases 5.28.0 and later, you can cancel steps that are in
-        /// a <code>PENDING</code> or <code>RUNNING</code> state. In earlier versions of Amazon
-        /// EMR, you can only cancel steps that are in a <code>PENDING</code> state.
+        /// a <c>PENDING</c> or <c>RUNNING</c> state. In earlier versions of Amazon EMR, you can
+        /// only cancel steps that are in a <c>PENDING</c> state.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CancelSteps service method.</param>
         /// <param name="cancellationToken">
@@ -423,11 +424,10 @@ namespace Amazon.ElasticMapReduce
 
 
         /// <summary>
-        /// Maps a user or group to the Amazon EMR Studio specified by <code>StudioId</code>,
-        /// and applies a session policy to refine Studio permissions for that user or group.
-        /// Use <code>CreateStudioSessionMapping</code> to assign users to a Studio when you use
-        /// IAM Identity Center authentication. For instructions on how to assign users to a Studio
-        /// when you use IAM authentication, see <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-studio-manage-users.html#emr-studio-assign-users-groups">Assign
+        /// Maps a user or group to the Amazon EMR Studio specified by <c>StudioId</c>, and applies
+        /// a session policy to refine Studio permissions for that user or group. Use <c>CreateStudioSessionMapping</c>
+        /// to assign users to a Studio when you use IAM Identity Center authentication. For instructions
+        /// on how to assign users to a Studio when you use IAM authentication, see <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-studio-manage-users.html#emr-studio-assign-users-groups">Assign
         /// a user or group to your EMR Studio</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateStudioSessionMapping service method.</param>
@@ -446,11 +446,10 @@ namespace Amazon.ElasticMapReduce
 
 
         /// <summary>
-        /// Maps a user or group to the Amazon EMR Studio specified by <code>StudioId</code>,
-        /// and applies a session policy to refine Studio permissions for that user or group.
-        /// Use <code>CreateStudioSessionMapping</code> to assign users to a Studio when you use
-        /// IAM Identity Center authentication. For instructions on how to assign users to a Studio
-        /// when you use IAM authentication, see <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-studio-manage-users.html#emr-studio-assign-users-groups">Assign
+        /// Maps a user or group to the Amazon EMR Studio specified by <c>StudioId</c>, and applies
+        /// a session policy to refine Studio permissions for that user or group. Use <c>CreateStudioSessionMapping</c>
+        /// to assign users to a Studio when you use IAM Identity Center authentication. For instructions
+        /// on how to assign users to a Studio when you use IAM authentication, see <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-studio-manage-users.html#emr-studio-assign-users-groups">Assign
         /// a user or group to your EMR Studio</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateStudioSessionMapping service method.</param>
@@ -701,8 +700,7 @@ namespace Amazon.ElasticMapReduce
         ///  </li> <li> 
         /// <para>
         ///  Job flows created within the last two months that are in one of the following states:
-        /// <code>RUNNING</code>, <code>WAITING</code>, <code>SHUTTING_DOWN</code>, <code>STARTING</code>
-        /// 
+        /// <c>RUNNING</c>, <c>WAITING</c>, <c>SHUTTING_DOWN</c>, <c>STARTING</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -748,8 +746,7 @@ namespace Amazon.ElasticMapReduce
         ///  </li> <li> 
         /// <para>
         ///  Job flows created within the last two months that are in one of the following states:
-        /// <code>RUNNING</code>, <code>WAITING</code>, <code>SHUTTING_DOWN</code>, <code>STARTING</code>
-        /// 
+        /// <c>RUNNING</c>, <c>WAITING</c>, <c>SHUTTING_DOWN</c>, <c>STARTING</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -796,8 +793,7 @@ namespace Amazon.ElasticMapReduce
         ///  </li> <li> 
         /// <para>
         ///  Job flows created within the last two months that are in one of the following states:
-        /// <code>RUNNING</code>, <code>WAITING</code>, <code>SHUTTING_DOWN</code>, <code>STARTING</code>
-        /// 
+        /// <c>RUNNING</c>, <c>WAITING</c>, <c>SHUTTING_DOWN</c>, <c>STARTING</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -847,8 +843,7 @@ namespace Amazon.ElasticMapReduce
         ///  </li> <li> 
         /// <para>
         ///  Job flows created within the last two months that are in one of the following states:
-        /// <code>RUNNING</code>, <code>WAITING</code>, <code>SHUTTING_DOWN</code>, <code>STARTING</code>
-        /// 
+        /// <c>RUNNING</c>, <c>WAITING</c>, <c>SHUTTING_DOWN</c>, <c>STARTING</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -1687,7 +1682,7 @@ namespace Amazon.ElasticMapReduce
         /// Provides summaries of all notebook executions. You can filter the list based on multiple
         /// criteria such as status, time range, and editor id. Returns a maximum of 50 notebook
         /// executions and a marker to track the paging of a longer notebook execution list across
-        /// multiple <code>ListNotebookExecutions</code> calls.
+        /// multiple <c>ListNotebookExecutions</c> calls.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListNotebookExecutions service method.</param>
         /// 
@@ -1708,7 +1703,7 @@ namespace Amazon.ElasticMapReduce
         /// Provides summaries of all notebook executions. You can filter the list based on multiple
         /// criteria such as status, time range, and editor id. Returns a maximum of 50 notebook
         /// executions and a marker to track the paging of a longer notebook execution list across
-        /// multiple <code>ListNotebookExecutions</code> calls.
+        /// multiple <c>ListNotebookExecutions</c> calls.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListNotebookExecutions service method.</param>
         /// <param name="cancellationToken">
@@ -1818,11 +1813,11 @@ namespace Amazon.ElasticMapReduce
 
 
         /// <summary>
-        /// Provides a list of steps for the cluster in reverse order unless you specify <code>stepIds</code>
-        /// with the request or filter by <code>StepStates</code>. You can specify a maximum of
-        /// 10 <code>stepIDs</code>. The CLI automatically paginates results to return a list
-        /// greater than 50 steps. To return more than 50 steps using the CLI, specify a <code>Marker</code>,
-        /// which is a pagination token that indicates the next set of steps to retrieve.
+        /// Provides a list of steps for the cluster in reverse order unless you specify <c>stepIds</c>
+        /// with the request or filter by <c>StepStates</c>. You can specify a maximum of 10 <c>stepIDs</c>.
+        /// The CLI automatically paginates results to return a list greater than 50 steps. To
+        /// return more than 50 steps using the CLI, specify a <c>Marker</c>, which is a pagination
+        /// token that indicates the next set of steps to retrieve.
         /// </summary>
         /// 
         /// <returns>The response from the ListSteps service method, as returned by ElasticMapReduce.</returns>
@@ -1837,11 +1832,11 @@ namespace Amazon.ElasticMapReduce
 
 
         /// <summary>
-        /// Provides a list of steps for the cluster in reverse order unless you specify <code>stepIds</code>
-        /// with the request or filter by <code>StepStates</code>. You can specify a maximum of
-        /// 10 <code>stepIDs</code>. The CLI automatically paginates results to return a list
-        /// greater than 50 steps. To return more than 50 steps using the CLI, specify a <code>Marker</code>,
-        /// which is a pagination token that indicates the next set of steps to retrieve.
+        /// Provides a list of steps for the cluster in reverse order unless you specify <c>stepIds</c>
+        /// with the request or filter by <c>StepStates</c>. You can specify a maximum of 10 <c>stepIDs</c>.
+        /// The CLI automatically paginates results to return a list greater than 50 steps. To
+        /// return more than 50 steps using the CLI, specify a <c>Marker</c>, which is a pagination
+        /// token that indicates the next set of steps to retrieve.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListSteps service method.</param>
         /// 
@@ -1857,11 +1852,11 @@ namespace Amazon.ElasticMapReduce
 
 
         /// <summary>
-        /// Provides a list of steps for the cluster in reverse order unless you specify <code>stepIds</code>
-        /// with the request or filter by <code>StepStates</code>. You can specify a maximum of
-        /// 10 <code>stepIDs</code>. The CLI automatically paginates results to return a list
-        /// greater than 50 steps. To return more than 50 steps using the CLI, specify a <code>Marker</code>,
-        /// which is a pagination token that indicates the next set of steps to retrieve.
+        /// Provides a list of steps for the cluster in reverse order unless you specify <c>stepIds</c>
+        /// with the request or filter by <c>StepStates</c>. You can specify a maximum of 10 <c>stepIDs</c>.
+        /// The CLI automatically paginates results to return a list greater than 50 steps. To
+        /// return more than 50 steps using the CLI, specify a <c>Marker</c>, which is a pagination
+        /// token that indicates the next set of steps to retrieve.
         /// </summary>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
@@ -1880,11 +1875,11 @@ namespace Amazon.ElasticMapReduce
 
 
         /// <summary>
-        /// Provides a list of steps for the cluster in reverse order unless you specify <code>stepIds</code>
-        /// with the request or filter by <code>StepStates</code>. You can specify a maximum of
-        /// 10 <code>stepIDs</code>. The CLI automatically paginates results to return a list
-        /// greater than 50 steps. To return more than 50 steps using the CLI, specify a <code>Marker</code>,
-        /// which is a pagination token that indicates the next set of steps to retrieve.
+        /// Provides a list of steps for the cluster in reverse order unless you specify <c>stepIds</c>
+        /// with the request or filter by <c>StepStates</c>. You can specify a maximum of 10 <c>stepIDs</c>.
+        /// The CLI automatically paginates results to return a list greater than 50 steps. To
+        /// return more than 50 steps using the CLI, specify a <c>Marker</c>, which is a pagination
+        /// token that indicates the next set of steps to retrieve.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListSteps service method.</param>
         /// <param name="cancellationToken">
@@ -1952,7 +1947,7 @@ namespace Amazon.ElasticMapReduce
 
         /// <summary>
         /// Returns a list of all user or group session mappings for the Amazon EMR Studio specified
-        /// by <code>StudioId</code>.
+        /// by <c>StudioId</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListStudioSessionMappings service method.</param>
         /// 
@@ -1971,7 +1966,7 @@ namespace Amazon.ElasticMapReduce
 
         /// <summary>
         /// Returns a list of all user or group session mappings for the Amazon EMR Studio specified
-        /// by <code>StudioId</code>.
+        /// by <c>StudioId</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListStudioSessionMappings service method.</param>
         /// <param name="cancellationToken">
@@ -2488,14 +2483,14 @@ namespace Amazon.ElasticMapReduce
         /// RunJobFlow creates and starts running a new cluster (job flow). The cluster runs the
         /// steps specified. After the steps complete, the cluster stops and the HDFS partition
         /// is lost. To prevent loss of data, configure the last step of the job flow to store
-        /// results in Amazon S3. If the <a>JobFlowInstancesConfig</a> <code>KeepJobFlowAliveWhenNoSteps</code>
-        /// parameter is set to <code>TRUE</code>, the cluster transitions to the WAITING state
-        /// rather than shutting down after the steps have completed. 
+        /// results in Amazon S3. If the <a>JobFlowInstancesConfig</a> <c>KeepJobFlowAliveWhenNoSteps</c>
+        /// parameter is set to <c>TRUE</c>, the cluster transitions to the WAITING state rather
+        /// than shutting down after the steps have completed. 
         /// 
         ///  
         /// <para>
-        /// For additional protection, you can set the <a>JobFlowInstancesConfig</a> <code>TerminationProtected</code>
-        /// parameter to <code>TRUE</code> to lock the cluster and prevent it from being terminated
+        /// For additional protection, you can set the <a>JobFlowInstancesConfig</a> <c>TerminationProtected</c>
+        /// parameter to <c>TRUE</c> to lock the cluster and prevent it from being terminated
         /// by API call, user intervention, or in the event of a job flow error.
         /// </para>
         ///  
@@ -2537,14 +2532,14 @@ namespace Amazon.ElasticMapReduce
         /// RunJobFlow creates and starts running a new cluster (job flow). The cluster runs the
         /// steps specified. After the steps complete, the cluster stops and the HDFS partition
         /// is lost. To prevent loss of data, configure the last step of the job flow to store
-        /// results in Amazon S3. If the <a>JobFlowInstancesConfig</a> <code>KeepJobFlowAliveWhenNoSteps</code>
-        /// parameter is set to <code>TRUE</code>, the cluster transitions to the WAITING state
-        /// rather than shutting down after the steps have completed. 
+        /// results in Amazon S3. If the <a>JobFlowInstancesConfig</a> <c>KeepJobFlowAliveWhenNoSteps</c>
+        /// parameter is set to <c>TRUE</c>, the cluster transitions to the WAITING state rather
+        /// than shutting down after the steps have completed. 
         /// 
         ///  
         /// <para>
-        /// For additional protection, you can set the <a>JobFlowInstancesConfig</a> <code>TerminationProtected</code>
-        /// parameter to <code>TRUE</code> to lock the cluster and prevent it from being terminated
+        /// For additional protection, you can set the <a>JobFlowInstancesConfig</a> <c>TerminationProtected</c>
+        /// parameter to <c>TRUE</c> to lock the cluster and prevent it from being terminated
         /// by API call, user intervention, or in the event of a job flow error.
         /// </para>
         ///  
@@ -2585,6 +2580,64 @@ namespace Amazon.ElasticMapReduce
 
         #endregion
         
+        #region  SetKeepJobFlowAliveWhenNoSteps
+
+
+        /// <summary>
+        /// You can use the <c>SetKeepJobFlowAliveWhenNoSteps</c> to configure a cluster (job
+        /// flow) to terminate after the step execution, i.e., all your steps are executed. If
+        /// you want a transient cluster that shuts down after the last of the current executing
+        /// steps are completed, you can configure <c>SetKeepJobFlowAliveWhenNoSteps</c> to false.
+        /// If you want a long running cluster, configure <c>SetKeepJobFlowAliveWhenNoSteps</c>
+        /// to true.
+        /// 
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/UsingEMR_TerminationProtection.html">Managing
+        /// Cluster Termination</a> in the <i>Amazon EMR Management Guide</i>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the SetKeepJobFlowAliveWhenNoSteps service method.</param>
+        /// 
+        /// <returns>The response from the SetKeepJobFlowAliveWhenNoSteps service method, as returned by ElasticMapReduce.</returns>
+        /// <exception cref="Amazon.ElasticMapReduce.Model.InternalServerErrorException">
+        /// Indicates that an error occurred while processing the request and that the request
+        /// was not completed.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/SetKeepJobFlowAliveWhenNoSteps">REST API Reference for SetKeepJobFlowAliveWhenNoSteps Operation</seealso>
+        SetKeepJobFlowAliveWhenNoStepsResponse SetKeepJobFlowAliveWhenNoSteps(SetKeepJobFlowAliveWhenNoStepsRequest request);
+
+
+
+        /// <summary>
+        /// You can use the <c>SetKeepJobFlowAliveWhenNoSteps</c> to configure a cluster (job
+        /// flow) to terminate after the step execution, i.e., all your steps are executed. If
+        /// you want a transient cluster that shuts down after the last of the current executing
+        /// steps are completed, you can configure <c>SetKeepJobFlowAliveWhenNoSteps</c> to false.
+        /// If you want a long running cluster, configure <c>SetKeepJobFlowAliveWhenNoSteps</c>
+        /// to true.
+        /// 
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/UsingEMR_TerminationProtection.html">Managing
+        /// Cluster Termination</a> in the <i>Amazon EMR Management Guide</i>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the SetKeepJobFlowAliveWhenNoSteps service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the SetKeepJobFlowAliveWhenNoSteps service method, as returned by ElasticMapReduce.</returns>
+        /// <exception cref="Amazon.ElasticMapReduce.Model.InternalServerErrorException">
+        /// Indicates that an error occurred while processing the request and that the request
+        /// was not completed.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/SetKeepJobFlowAliveWhenNoSteps">REST API Reference for SetKeepJobFlowAliveWhenNoSteps Operation</seealso>
+        Task<SetKeepJobFlowAliveWhenNoStepsResponse> SetKeepJobFlowAliveWhenNoStepsAsync(SetKeepJobFlowAliveWhenNoStepsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  SetTerminationProtection
 
 
@@ -2592,25 +2645,24 @@ namespace Amazon.ElasticMapReduce
         /// SetTerminationProtection locks a cluster (job flow) so the Amazon EC2 instances in
         /// the cluster cannot be terminated by user intervention, an API call, or in the event
         /// of a job-flow error. The cluster still terminates upon successful completion of the
-        /// job flow. Calling <code>SetTerminationProtection</code> on a cluster is similar to
-        /// calling the Amazon EC2 <code>DisableAPITermination</code> API on all Amazon EC2 instances
-        /// in a cluster.
+        /// job flow. Calling <c>SetTerminationProtection</c> on a cluster is similar to calling
+        /// the Amazon EC2 <c>DisableAPITermination</c> API on all Amazon EC2 instances in a cluster.
         /// 
         ///  
         /// <para>
-        ///  <code>SetTerminationProtection</code> is used to prevent accidental termination of
-        /// a cluster and to ensure that in the event of an error, the instances persist so that
-        /// you can recover any data stored in their ephemeral instance storage.
+        ///  <c>SetTerminationProtection</c> is used to prevent accidental termination of a cluster
+        /// and to ensure that in the event of an error, the instances persist so that you can
+        /// recover any data stored in their ephemeral instance storage.
         /// </para>
         ///  
         /// <para>
-        ///  To terminate a cluster that has been locked by setting <code>SetTerminationProtection</code>
-        /// to <code>true</code>, you must first unlock the job flow by a subsequent call to <code>SetTerminationProtection</code>
-        /// in which you set the value to <code>false</code>. 
+        ///  To terminate a cluster that has been locked by setting <c>SetTerminationProtection</c>
+        /// to <c>true</c>, you must first unlock the job flow by a subsequent call to <c>SetTerminationProtection</c>
+        /// in which you set the value to <c>false</c>. 
         /// </para>
         ///  
         /// <para>
-        ///  For more information, see<a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/UsingEMR_TerminationProtection.html">Managing
+        ///  For more information, see <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/UsingEMR_TerminationProtection.html">Managing
         /// Cluster Termination</a> in the <i>Amazon EMR Management Guide</i>. 
         /// </para>
         /// </summary>
@@ -2630,25 +2682,24 @@ namespace Amazon.ElasticMapReduce
         /// SetTerminationProtection locks a cluster (job flow) so the Amazon EC2 instances in
         /// the cluster cannot be terminated by user intervention, an API call, or in the event
         /// of a job-flow error. The cluster still terminates upon successful completion of the
-        /// job flow. Calling <code>SetTerminationProtection</code> on a cluster is similar to
-        /// calling the Amazon EC2 <code>DisableAPITermination</code> API on all Amazon EC2 instances
-        /// in a cluster.
+        /// job flow. Calling <c>SetTerminationProtection</c> on a cluster is similar to calling
+        /// the Amazon EC2 <c>DisableAPITermination</c> API on all Amazon EC2 instances in a cluster.
         /// 
         ///  
         /// <para>
-        ///  <code>SetTerminationProtection</code> is used to prevent accidental termination of
-        /// a cluster and to ensure that in the event of an error, the instances persist so that
-        /// you can recover any data stored in their ephemeral instance storage.
+        ///  <c>SetTerminationProtection</c> is used to prevent accidental termination of a cluster
+        /// and to ensure that in the event of an error, the instances persist so that you can
+        /// recover any data stored in their ephemeral instance storage.
         /// </para>
         ///  
         /// <para>
-        ///  To terminate a cluster that has been locked by setting <code>SetTerminationProtection</code>
-        /// to <code>true</code>, you must first unlock the job flow by a subsequent call to <code>SetTerminationProtection</code>
-        /// in which you set the value to <code>false</code>. 
+        ///  To terminate a cluster that has been locked by setting <c>SetTerminationProtection</c>
+        /// to <c>true</c>, you must first unlock the job flow by a subsequent call to <c>SetTerminationProtection</c>
+        /// in which you set the value to <c>false</c>. 
         /// </para>
         ///  
         /// <para>
-        ///  For more information, see<a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/UsingEMR_TerminationProtection.html">Managing
+        ///  For more information, see <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/UsingEMR_TerminationProtection.html">Managing
         /// Cluster Termination</a> in the <i>Amazon EMR Management Guide</i>. 
         /// </para>
         /// </summary>
@@ -2667,6 +2718,78 @@ namespace Amazon.ElasticMapReduce
 
         #endregion
         
+        #region  SetUnhealthyNodeReplacement
+
+
+        /// <summary>
+        /// Specify whether to enable unhealthy node replacement, which lets Amazon EMR gracefully
+        /// replace core nodes on a cluster if any nodes become unhealthy. For example, a node
+        /// becomes unhealthy if disk usage is above 90%. If unhealthy node replacement is on
+        /// and <c>TerminationProtected</c> are off, Amazon EMR immediately terminates the unhealthy
+        /// core nodes. To use unhealthy node replacement and retain unhealthy core nodes, use
+        /// to turn on termination protection. In such cases, Amazon EMR adds the unhealthy nodes
+        /// to a denylist, reducing job interruptions and failures.
+        /// 
+        ///  
+        /// <para>
+        /// If unhealthy node replacement is on, Amazon EMR notifies YARN and other applications
+        /// on the cluster to stop scheduling tasks with these nodes, moves the data, and then
+        /// terminates the nodes.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-node-replacement.html">graceful
+        /// node replacement</a> in the <i>Amazon EMR Management Guide</i>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the SetUnhealthyNodeReplacement service method.</param>
+        /// 
+        /// <returns>The response from the SetUnhealthyNodeReplacement service method, as returned by ElasticMapReduce.</returns>
+        /// <exception cref="Amazon.ElasticMapReduce.Model.InternalServerErrorException">
+        /// Indicates that an error occurred while processing the request and that the request
+        /// was not completed.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/SetUnhealthyNodeReplacement">REST API Reference for SetUnhealthyNodeReplacement Operation</seealso>
+        SetUnhealthyNodeReplacementResponse SetUnhealthyNodeReplacement(SetUnhealthyNodeReplacementRequest request);
+
+
+
+        /// <summary>
+        /// Specify whether to enable unhealthy node replacement, which lets Amazon EMR gracefully
+        /// replace core nodes on a cluster if any nodes become unhealthy. For example, a node
+        /// becomes unhealthy if disk usage is above 90%. If unhealthy node replacement is on
+        /// and <c>TerminationProtected</c> are off, Amazon EMR immediately terminates the unhealthy
+        /// core nodes. To use unhealthy node replacement and retain unhealthy core nodes, use
+        /// to turn on termination protection. In such cases, Amazon EMR adds the unhealthy nodes
+        /// to a denylist, reducing job interruptions and failures.
+        /// 
+        ///  
+        /// <para>
+        /// If unhealthy node replacement is on, Amazon EMR notifies YARN and other applications
+        /// on the cluster to stop scheduling tasks with these nodes, moves the data, and then
+        /// terminates the nodes.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-node-replacement.html">graceful
+        /// node replacement</a> in the <i>Amazon EMR Management Guide</i>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the SetUnhealthyNodeReplacement service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the SetUnhealthyNodeReplacement service method, as returned by ElasticMapReduce.</returns>
+        /// <exception cref="Amazon.ElasticMapReduce.Model.InternalServerErrorException">
+        /// Indicates that an error occurred while processing the request and that the request
+        /// was not completed.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/SetUnhealthyNodeReplacement">REST API Reference for SetUnhealthyNodeReplacement Operation</seealso>
+        Task<SetUnhealthyNodeReplacementResponse> SetUnhealthyNodeReplacementAsync(SetUnhealthyNodeReplacementRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  SetVisibleToAllUsers
 
 
@@ -2680,12 +2803,11 @@ namespace Amazon.ElasticMapReduce
         /// </para>
         ///  </important> 
         /// <para>
-        /// Sets the <a>Cluster$VisibleToAllUsers</a> value for an Amazon EMR cluster. When <code>true</code>,
+        /// Sets the <a>Cluster$VisibleToAllUsers</a> value for an Amazon EMR cluster. When <c>true</c>,
         /// IAM principals in the Amazon Web Services account can perform Amazon EMR cluster actions
-        /// that their IAM policies allow. When <code>false</code>, only the IAM principal that
-        /// created the cluster and the Amazon Web Services account root user can perform Amazon
-        /// EMR actions on the cluster, regardless of IAM permissions policies attached to other
-        /// IAM principals.
+        /// that their IAM policies allow. When <c>false</c>, only the IAM principal that created
+        /// the cluster and the Amazon Web Services account root user can perform Amazon EMR actions
+        /// on the cluster, regardless of IAM permissions policies attached to other IAM principals.
         /// </para>
         ///  
         /// <para>
@@ -2721,12 +2843,11 @@ namespace Amazon.ElasticMapReduce
         /// </para>
         ///  </important> 
         /// <para>
-        /// Sets the <a>Cluster$VisibleToAllUsers</a> value for an Amazon EMR cluster. When <code>true</code>,
+        /// Sets the <a>Cluster$VisibleToAllUsers</a> value for an Amazon EMR cluster. When <c>true</c>,
         /// IAM principals in the Amazon Web Services account can perform Amazon EMR cluster actions
-        /// that their IAM policies allow. When <code>false</code>, only the IAM principal that
-        /// created the cluster and the Amazon Web Services account root user can perform Amazon
-        /// EMR actions on the cluster, regardless of IAM permissions policies attached to other
-        /// IAM principals.
+        /// that their IAM policies allow. When <c>false</c>, only the IAM principal that created
+        /// the cluster and the Amazon Web Services account root user can perform Amazon EMR actions
+        /// on the cluster, regardless of IAM permissions policies attached to other IAM principals.
         /// </para>
         ///  
         /// <para>
@@ -2848,7 +2969,7 @@ namespace Amazon.ElasticMapReduce
         /// 
         ///  
         /// <para>
-        /// The maximum number of clusters allowed is 10. The call to <code>TerminateJobFlows</code>
+        /// The maximum number of clusters allowed is 10. The call to <c>TerminateJobFlows</c>
         /// is asynchronous. Depending on the configuration of the cluster, it may take up to
         /// 1-5 minutes for the cluster to completely terminate and release allocated resources,
         /// such as Amazon EC2 instances.
@@ -2874,7 +2995,7 @@ namespace Amazon.ElasticMapReduce
         /// 
         ///  
         /// <para>
-        /// The maximum number of clusters allowed is 10. The call to <code>TerminateJobFlows</code>
+        /// The maximum number of clusters allowed is 10. The call to <c>TerminateJobFlows</c>
         /// is asynchronous. Depending on the configuration of the cluster, it may take up to
         /// 1-5 minutes for the cluster to completely terminate and release allocated resources,
         /// such as Amazon EC2 instances.

@@ -26,22 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
-    /// Metadata includes information like the ARN of the last user and the date/time the
-    /// parameter was last used.
+    /// Metadata includes information like the Amazon Resource Name (ARN) of the last user
+    /// to update the parameter and the date and time the parameter was last used.
     /// </summary>
     public partial class ParameterMetadata
     {
         private string _allowedPattern;
+        private string _arn;
         private string _dataType;
         private string _description;
         private string _keyId;
         private DateTime? _lastModifiedDate;
         private string _lastModifiedUser;
         private string _name;
-        private List<ParameterInlinePolicy> _policies = new List<ParameterInlinePolicy>();
+        private List<ParameterInlinePolicy> _policies = AWSConfigs.InitializeCollections ? new List<ParameterInlinePolicy>() : null;
         private ParameterTier _tier;
         private ParameterType _type;
         private long? _version;
@@ -70,10 +72,28 @@ namespace Amazon.SimpleSystemsManagement.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ARN. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the parameter.
+        /// </para>
+        /// </summary>
+        public string ARN
+        {
+            get { return this._arn; }
+            set { this._arn = value; }
+        }
+
+        // Check to see if ARN property is set
+        internal bool IsSetARN()
+        {
+            return this._arn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property DataType. 
         /// <para>
-        /// The data type of the parameter, such as <code>text</code> or <code>aws:ec2:image</code>.
-        /// The default is <code>text</code>.
+        /// The data type of the parameter, such as <c>text</c> or <c>aws:ec2:image</c>. The default
+        /// is <c>text</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=128)]
@@ -111,7 +131,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property KeyId. 
         /// <para>
-        /// The ID of the query key used for this parameter.
+        /// The alias of the Key Management Service (KMS) key used to encrypt the parameter. Applies
+        /// to <c>SecureString</c> parameters only.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]
@@ -197,7 +218,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Policies property is set
         internal bool IsSetPolicies()
         {
-            return this._policies != null && this._policies.Count > 0; 
+            return this._policies != null && (this._policies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -221,8 +242,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of parameter. Valid parameter types include the following: <code>String</code>,
-        /// <code>StringList</code>, and <code>SecureString</code>.
+        /// The type of parameter. Valid parameter types include the following: <c>String</c>,
+        /// <c>StringList</c>, and <c>SecureString</c>.
         /// </para>
         /// </summary>
         public ParameterType Type

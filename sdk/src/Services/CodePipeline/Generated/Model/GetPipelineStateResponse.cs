@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
-    /// Represents the output of a <code>GetPipelineState</code> action.
+    /// Represents the output of a <c>GetPipelineState</c> action.
     /// </summary>
     public partial class GetPipelineStateResponse : AmazonWebServiceResponse
     {
         private DateTime? _created;
         private string _pipelineName;
         private int? _pipelineVersion;
-        private List<StageState> _stageStates = new List<StageState>();
+        private List<StageState> _stageStates = AWSConfigs.InitializeCollections ? new List<StageState>() : null;
         private DateTime? _updated;
 
         /// <summary>
@@ -83,7 +84,7 @@ namespace Amazon.CodePipeline.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// A newly created pipeline is always assigned a version number of <code>1</code>.
+        /// A newly created pipeline is always assigned a version number of <c>1</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -116,7 +117,7 @@ namespace Amazon.CodePipeline.Model
         // Check to see if StageStates property is set
         internal bool IsSetStageStates()
         {
-            return this._stageStates != null && this._stageStates.Count > 0; 
+            return this._stageStates != null && (this._stageStates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

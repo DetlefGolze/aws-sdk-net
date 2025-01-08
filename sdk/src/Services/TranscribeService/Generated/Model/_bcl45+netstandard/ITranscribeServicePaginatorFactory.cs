@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the transcribe-2017-10-26.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
@@ -39,6 +40,11 @@ namespace Amazon.TranscribeService.Model
         /// Paginator for ListLanguageModels operation
         ///</summary>
         IListLanguageModelsPaginator ListLanguageModels(ListLanguageModelsRequest request);
+
+        /// <summary>
+        /// Paginator for ListMedicalScribeJobs operation
+        ///</summary>
+        IListMedicalScribeJobsPaginator ListMedicalScribeJobs(ListMedicalScribeJobsRequest request);
 
         /// <summary>
         /// Paginator for ListMedicalTranscriptionJobs operation

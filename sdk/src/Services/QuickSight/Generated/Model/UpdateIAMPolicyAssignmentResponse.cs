@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.QuickSight.Model
         private string _assignmentId;
         private string _assignmentName;
         private AssignmentStatus _assignmentStatus;
-        private Dictionary<string, List<string>> _identities = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<string>> _identities = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
         private string _policyArn;
         private string _requestId;
         private int? _status;
@@ -85,16 +86,16 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ENABLED</code> - Anything specified in this assignment is used when creating
-        /// the data source.
+        ///  <c>ENABLED</c> - Anything specified in this assignment is used when creating the
+        /// data source.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DISABLED</code> - This assignment isn't used when creating the data source.
+        ///  <c>DISABLED</c> - This assignment isn't used when creating the data source.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DRAFT</code> - This assignment is an unfinished draft and isn't used when creating
+        ///  <c>DRAFT</c> - This assignment is an unfinished draft and isn't used when creating
         /// the data source.
         /// </para>
         ///  </li> </ul>
@@ -126,7 +127,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Identities property is set
         internal bool IsSetIdentities()
         {
-            return this._identities != null && this._identities.Count > 0; 
+            return this._identities != null && (this._identities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.BackupGateway.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.BackupGateway
 {
     /// <summary>
-    /// Interface for accessing BackupGateway
+    /// <para>Interface for accessing BackupGateway</para>
     ///
     /// Backup gateway 
     /// <para>
@@ -126,7 +127,7 @@ namespace Amazon.BackupGateway
 
         /// <summary>
         /// Creates a backup gateway. After you create a gateway, you can associate it with a
-        /// server using the <code>AssociateGatewayToServer</code> operation.
+        /// server using the <c>AssociateGatewayToServer</c> operation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateGateway service method.</param>
         /// 
@@ -1329,7 +1330,7 @@ namespace Amazon.BackupGateway
         /// 
         ///  <note> 
         /// <para>
-        /// When you make this request, you get a <code>200 OK</code> success response immediately.
+        /// When you make this request, you get a <c>200 OK</c> success response immediately.
         /// However, it might take some time for the update to complete.
         /// </para>
         ///  </note>

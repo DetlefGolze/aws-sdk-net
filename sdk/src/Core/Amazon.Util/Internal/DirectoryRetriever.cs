@@ -23,13 +23,18 @@ namespace Amazon.Util.Internal
     /// </summary>
     public interface IDirectory
     {
-        /// <inheritdoc cref="Directory.CreateDirectory"/>
+        /// <inheritdoc cref="Directory.CreateDirectory(string)"/>
         DirectoryInfo CreateDirectory(string path);
+        /// <inheritdoc cref="Directory.GetFiles(string, string)"/>
+        string[] GetFiles(string path, string searchPattern);
     }
 
     /// <inheritdoc cref="IDirectory"/>
     public class DirectoryRetriever : IDirectory
     {
         public DirectoryInfo CreateDirectory(string path) => Directory.CreateDirectory(path);
+
+        public string[] GetFiles(string path, string searchPattern) => Directory.GetFiles(path, searchPattern);
+
     }
 }

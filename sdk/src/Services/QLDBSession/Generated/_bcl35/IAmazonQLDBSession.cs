@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.QLDBSession.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.QLDBSession
 {
     /// <summary>
-    /// Interface for accessing QLDBSession
+    /// <para>Interface for accessing QLDBSession</para>
     ///
     /// The transactional data APIs for Amazon QLDB
     /// 
@@ -39,7 +40,7 @@ namespace Amazon.QLDBSession
     ///  <ul> <li> 
     /// <para>
     /// If you are working with an AWS SDK, use the QLDB driver. The driver provides a high-level
-    /// abstraction layer above this <i>QLDB Session</i> data plane and manages <code>SendCommand</code>
+    /// abstraction layer above this <i>QLDB Session</i> data plane and manages <c>SendCommand</c>
     /// API calls for you. For information and a list of supported programming languages,
     /// see <a href="https://docs.aws.amazon.com/qldb/latest/developerguide/getting-started-driver.html">Getting
     /// started with the driver</a> in the <i>Amazon QLDB Developer Guide</i>.
@@ -74,7 +75,7 @@ namespace Amazon.QLDBSession
         ///  <ul> <li> 
         /// <para>
         /// If you are working with an AWS SDK, use the QLDB driver. The driver provides a high-level
-        /// abstraction layer above this <i>QLDB Session</i> data plane and manages <code>SendCommand</code>
+        /// abstraction layer above this <i>QLDB Session</i> data plane and manages <c>SendCommand</c>
         /// API calls for you. For information and a list of supported programming languages,
         /// see <a href="https://docs.aws.amazon.com/qldb/latest/developerguide/getting-started-driver.html">Getting
         /// started with the driver</a> in the <i>Amazon QLDB Developer Guide</i>.

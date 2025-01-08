@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.FSx.Model
     /// Use this action to disassociate, or remove, one or more Domain Name Service (DNS)
     /// aliases from an Amazon FSx for Windows File Server file system. If you attempt to
     /// disassociate a DNS alias that is not associated with the file system, Amazon FSx responds
-    /// with a 400 Bad Request. For more information, see <a href="https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-dns-aliases.html">Working
+    /// with an HTTP status code 400 (Bad Request). For more information, see <a href="https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-dns-aliases.html">Working
     /// with DNS Aliases</a>.
     /// 
     ///  
@@ -45,7 +46,7 @@ namespace Amazon.FSx.Model
     /// </summary>
     public partial class DisassociateFileSystemAliasesRequest : AmazonFSxRequest
     {
-        private List<string> _aliases = new List<string>();
+        private List<string> _aliases = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _clientRequestToken;
         private string _fileSystemId;
 
@@ -66,7 +67,7 @@ namespace Amazon.FSx.Model
         // Check to see if Aliases property is set
         internal bool IsSetAliases()
         {
-            return this._aliases != null && this._aliases.Count > 0; 
+            return this._aliases != null && (this._aliases.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

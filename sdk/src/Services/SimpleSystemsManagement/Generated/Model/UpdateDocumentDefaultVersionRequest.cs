@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.SimpleSystemsManagement.Model
     ///  <note> 
     /// <para>
     /// If you change a document version for a State Manager association, Systems Manager
-    /// immediately runs the association unless you previously specifed the <code>apply-only-at-cron-interval</code>
+    /// immediately runs the association unless you previously specifed the <c>apply-only-at-cron-interval</c>
     /// parameter.
     /// </para>
     ///  </note>

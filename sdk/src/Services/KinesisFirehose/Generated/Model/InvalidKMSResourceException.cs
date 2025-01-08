@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
-    /// Kinesis Data Firehose throws this exception when an attempt to put records or to start
-    /// or stop delivery stream encryption fails. This happens when the KMS service throws
-    /// one of the following exception types: <code>AccessDeniedException</code>, <code>InvalidStateException</code>,
-    /// <code>DisabledException</code>, or <code>NotFoundException</code>.
+    /// Firehose throws this exception when an attempt to put records or to start or stop
+    /// Firehose stream encryption fails. This happens when the KMS service throws one of
+    /// the following exception types: <c>AccessDeniedException</c>, <c>InvalidStateException</c>,
+    /// <c>DisabledException</c>, or <c>NotFoundException</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

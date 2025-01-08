@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,10 +35,10 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeSecurityGroupRulesRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _securityGroupRuleIds = new List<string>();
+        private List<string> _securityGroupRuleIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Filters. 
@@ -46,19 +47,18 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>group-id</code> - The ID of the security group.
+        ///  <c>group-id</c> - The ID of the security group.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>security-group-rule-id</code> - The ID of the security group rule.
+        ///  <c>security-group-rule-id</c> - The ID of the security group rule.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the
-        /// resource. Use the tag key in the filter name and the tag value as the filter value.
-        /// For example, to find all resources that have a tag with the key <code>Owner</code>
-        /// and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name
-        /// and <code>TeamA</code> for the filter value.
+        ///  <c>tag</c>:&lt;key&gt; - The key/value combination of a tag assigned to the resource.
+        /// Use the tag key in the filter name and the tag value as the filter value. For example,
+        /// to find all resources that have a tag with the key <c>Owner</c> and the value <c>TeamA</c>,
+        /// specify <c>tag:Owner</c> for the filter name and <c>TeamA</c> for the filter value.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -71,7 +71,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace Amazon.EC2.Model
         // Check to see if SecurityGroupRuleIds property is set
         internal bool IsSetSecurityGroupRuleIds()
         {
-            return this._securityGroupRuleIds != null && this._securityGroupRuleIds.Count > 0; 
+            return this._securityGroupRuleIds != null && (this._securityGroupRuleIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

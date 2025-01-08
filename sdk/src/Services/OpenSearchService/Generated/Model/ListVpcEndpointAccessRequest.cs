@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -61,8 +62,8 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If your initial <code>ListVpcEndpointAccess</code> operation returns a <code>nextToken</code>,
-        /// you can include the returned <code>nextToken</code> in subsequent <code>ListVpcEndpointAccess</code>
+        /// If your initial <c>ListVpcEndpointAccess</c> operation returns a <c>nextToken</c>,
+        /// you can include the returned <c>nextToken</c> in subsequent <c>ListVpcEndpointAccess</c>
         /// operations, which returns results in the next page.
         /// </para>
         /// </summary>

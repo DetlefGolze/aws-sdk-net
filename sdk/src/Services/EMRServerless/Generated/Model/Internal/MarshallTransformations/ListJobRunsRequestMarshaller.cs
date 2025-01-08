@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,13 +64,16 @@ namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
             request.AddPathResource("{applicationId}", StringUtils.FromString(publicRequest.ApplicationId));
             
             if (publicRequest.IsSetCreatedAtAfter())
-                request.Parameters.Add("createdAtAfter", StringUtils.FromDateTimeToISO8601(publicRequest.CreatedAtAfter));
+                request.Parameters.Add("createdAtAfter", StringUtils.FromDateTimeToISO8601WithOptionalMs(publicRequest.CreatedAtAfter));
             
             if (publicRequest.IsSetCreatedAtBefore())
-                request.Parameters.Add("createdAtBefore", StringUtils.FromDateTimeToISO8601(publicRequest.CreatedAtBefore));
+                request.Parameters.Add("createdAtBefore", StringUtils.FromDateTimeToISO8601WithOptionalMs(publicRequest.CreatedAtBefore));
             
             if (publicRequest.IsSetMaxResults())
                 request.Parameters.Add("maxResults", StringUtils.FromInt(publicRequest.MaxResults));
+            
+            if (publicRequest.IsSetMode())
+                request.Parameters.Add("mode", StringUtils.FromString(publicRequest.Mode));
             
             if (publicRequest.IsSetNextToken())
                 request.Parameters.Add("nextToken", StringUtils.FromString(publicRequest.NextToken));

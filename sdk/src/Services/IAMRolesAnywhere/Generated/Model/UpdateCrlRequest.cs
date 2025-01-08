@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IAMRolesAnywhere.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.IAMRolesAnywhere.Model
     /// 
     ///  
     /// <para>
-    ///  <b>Required permissions: </b> <code>rolesanywhere:UpdateCrl</code>. 
+    ///  <b>Required permissions: </b> <c>rolesanywhere:UpdateCrl</c>. 
     /// </para>
     /// </summary>
     public partial class UpdateCrlRequest : AmazonIAMRolesAnywhereRequest

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.LexModelsV2.Model
     /// </summary>
     public partial class RuntimeHints
     {
-        private Dictionary<string, Dictionary<string, RuntimeHintDetails>> _slotHints = new Dictionary<string, Dictionary<string, RuntimeHintDetails>>();
+        private Dictionary<string, Dictionary<string, RuntimeHintDetails>> _slotHints = AWSConfigs.InitializeCollections ? new Dictionary<string, Dictionary<string, RuntimeHintDetails>>() : null;
 
         /// <summary>
         /// Gets and sets the property SlotHints. 
@@ -57,7 +58,7 @@ namespace Amazon.LexModelsV2.Model
         /// </para>
         ///  
         /// <para>
-        /// The first level of the <code>slotHints</code> map is the name of the intent. The second
+        /// The first level of the <c>slotHints</c> map is the name of the intent. The second
         /// level is the name of the slot within the intent. For more information, see <a href="https://docs.aws.amazon.com/lexv2/latest/dg/using-hints.html">Using
         /// hints to improve accuracy</a>.
         /// </para>
@@ -75,7 +76,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if SlotHints property is set
         internal bool IsSetSlotHints()
         {
-            return this._slotHints != null && this._slotHints.Count > 0; 
+            return this._slotHints != null && (this._slotHints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

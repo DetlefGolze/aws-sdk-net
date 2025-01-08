@@ -26,13 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
     /// Container for the parameters to the CancelKeyDeletion operation.
     /// Cancels the deletion of a KMS key. When this operation succeeds, the key state of
-    /// the KMS key is <code>Disabled</code>. To enable the KMS key, use <a>EnableKey</a>.
-    /// 
+    /// the KMS key is <c>Disabled</c>. To enable the KMS key, use <a>EnableKey</a>. 
     /// 
     ///  
     /// <para>
@@ -60,6 +60,12 @@ namespace Amazon.KeyManagementService.Model
     /// <para>
     ///  <b>Related operations</b>: <a>ScheduleKeyDeletion</a> 
     /// </para>
+    ///  
+    /// <para>
+    ///  <b>Eventual consistency</b>: The KMS API follows an eventual consistency model. For
+    /// more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html">KMS
+    /// eventual consistency</a>.
+    /// </para>
     /// </summary>
     public partial class CancelKeyDeletionRequest : AmazonKeyManagementServiceRequest
     {
@@ -80,11 +86,11 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> 
+        /// Key ID: <c>1234abcd-12ab-34cd-56ef-1234567890ab</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Key ARN: <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
+        /// Key ARN: <c>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</c>
         /// 
         /// </para>
         ///  </li> </ul> 

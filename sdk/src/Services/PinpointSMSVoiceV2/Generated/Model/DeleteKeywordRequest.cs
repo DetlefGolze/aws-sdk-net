@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
@@ -37,8 +38,8 @@ namespace Amazon.PinpointSMSVoiceV2.Model
     /// A keyword is a word that you can search for on a particular phone number or pool.
     /// It is also a specific word or phrase that an end user can send to your number to elicit
     /// a response, such as an informational message or a special offer. When your number
-    /// receives a message that begins with a keyword, Amazon Pinpoint responds with a customizable
-    /// message.
+    /// receives a message that begins with a keyword, AWS End User Messaging SMS and Voice
+    /// responds with a customizable message.
     /// </para>
     ///  
     /// <para>
@@ -76,6 +77,12 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// PoolArn. You can use <a>DescribePhoneNumbers</a> to find the values for PhoneNumberId
         /// and PhoneNumberArn and <a>DescribePools</a> to find the values of PoolId and PoolArn.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// If you are using a shared AWS End User Messaging SMS and Voice resource then you must
+        /// use the full Amazon Resource Name(ARN).
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]
         public string OriginationIdentity

@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatch.Model
 {
     /// <summary>
-    /// A <code>GetMetricData</code> call returns an array of <code>MetricDataResult</code>
-    /// structures. Each of these structures includes the data points for that metric, along
-    /// with the timestamps of those data points and other identifying information.
+    /// A <c>GetMetricData</c> call returns an array of <c>MetricDataResult</c> structures.
+    /// Each of these structures includes the data points for that metric, along with the
+    /// timestamps of those data points and other identifying information.
     /// </summary>
     public partial class MetricDataResult
     {
         private string _id;
         private string _label;
-        private List<MessageData> _messages = new List<MessageData>();
+        private List<MessageData> _messages = AWSConfigs.InitializeCollections ? new List<MessageData>() : null;
         private StatusCode _statusCode;
-        private List<DateTime> _timestamps = new List<DateTime>();
-        private List<double> _values = new List<double>();
+        private List<DateTime> _timestamps = AWSConfigs.InitializeCollections ? new List<DateTime>() : null;
+        private List<double> _values = AWSConfigs.InitializeCollections ? new List<double>() : null;
 
         /// <summary>
         /// Gets and sets the property Id. 
@@ -94,19 +95,18 @@ namespace Amazon.CloudWatch.Model
         // Check to see if Messages property is set
         internal bool IsSetMessages()
         {
-            return this._messages != null && this._messages.Count > 0; 
+            return this._messages != null && (this._messages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property StatusCode. 
         /// <para>
-        /// The status of the returned data. <code>Complete</code> indicates that all data points
-        /// in the requested time range were returned. <code>PartialData</code> means that an
-        /// incomplete set of data points were returned. You can use the <code>NextToken</code>
-        /// value that was returned and repeat your request to get more data points. <code>NextToken</code>
-        /// is not returned if you are performing a math expression. <code>InternalError</code>
-        /// indicates that an error occurred. Retry your request using <code>NextToken</code>,
-        /// if present.
+        /// The status of the returned data. <c>Complete</c> indicates that all data points in
+        /// the requested time range were returned. <c>PartialData</c> means that an incomplete
+        /// set of data points were returned. You can use the <c>NextToken</c> value that was
+        /// returned and repeat your request to get more data points. <c>NextToken</c> is not
+        /// returned if you are performing a math expression. <c>InternalError</c> indicates that
+        /// an error occurred. Retry your request using <c>NextToken</c>, if present.
         /// </para>
         /// </summary>
         public StatusCode StatusCode
@@ -138,15 +138,14 @@ namespace Amazon.CloudWatch.Model
         // Check to see if Timestamps property is set
         internal bool IsSetTimestamps()
         {
-            return this._timestamps != null && this._timestamps.Count > 0; 
+            return this._timestamps != null && (this._timestamps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Values. 
         /// <para>
-        /// The data points for the metric corresponding to <code>Timestamps</code>. The number
-        /// of values always matches the number of timestamps and the timestamp for Values[x]
-        /// is Timestamps[x].
+        /// The data points for the metric corresponding to <c>Timestamps</c>. The number of values
+        /// always matches the number of timestamps and the timestamp for Values[x] is Timestamps[x].
         /// </para>
         /// </summary>
         public List<double> Values
@@ -158,7 +157,7 @@ namespace Amazon.CloudWatch.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

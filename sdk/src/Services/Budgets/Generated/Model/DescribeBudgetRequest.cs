@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Budgets.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Budgets.Model
     /// 
     ///  <important> 
     /// <para>
-    /// The Request Syntax section shows the <code>BudgetLimit</code> syntax. For <code>PlannedBudgetLimits</code>,
+    /// The Request Syntax section shows the <c>BudgetLimit</c> syntax. For <c>PlannedBudgetLimits</c>,
     /// see the <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_DescribeBudget.html#API_DescribeBudget_Examples">Examples</a>
     /// section. 
     /// </para>
@@ -48,7 +49,7 @@ namespace Amazon.Budgets.Model
         /// <summary>
         /// Gets and sets the property AccountId. 
         /// <para>
-        /// The <code>accountId</code> that is associated with the budget that you want a description
+        /// The <c>accountId</c> that is associated with the budget that you want a description
         /// of.
         /// </para>
         /// </summary>

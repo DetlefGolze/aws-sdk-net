@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pipes.Model
 {
     /// <summary>
@@ -81,8 +82,16 @@ namespace Amazon.Pipes.Model
         /// <summary>
         /// Gets and sets the property FilterCriteria. 
         /// <para>
-        /// The collection of event patterns used to filter events. For more information, see
-        /// <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html">Events
+        /// The collection of event patterns used to filter events.
+        /// </para>
+        ///  
+        /// <para>
+        /// To remove a filter, specify a <c>FilterCriteria</c> object with an empty array of
+        /// <c>Filter</c> objects.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html">Events
         /// and Event Patterns</a> in the <i>Amazon EventBridge User Guide</i>.
         /// </para>
         /// </summary>
@@ -156,6 +165,15 @@ namespace Amazon.Pipes.Model
         /// Gets and sets the property SelfManagedKafkaParameters. 
         /// <para>
         /// The parameters for using a self-managed Apache Kafka stream as a source.
+        /// </para>
+        ///  
+        /// <para>
+        /// A <i>self managed</i> cluster refers to any Apache Kafka cluster not hosted by Amazon
+        /// Web Services. This includes both clusters you manage yourself, as well as those hosted
+        /// by a third-party provider, such as <a href="https://www.confluent.io/">Confluent Cloud</a>,
+        /// <a href="https://www.cloudkarafka.com/">CloudKarafka</a>, or <a href="https://redpanda.com/">Redpanda</a>.
+        /// For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-kafka.html">Apache
+        /// Kafka streams as a source</a> in the <i>Amazon EventBridge User Guide</i>.
         /// </para>
         /// </summary>
         public UpdatePipeSourceSelfManagedKafkaParameters SelfManagedKafkaParameters

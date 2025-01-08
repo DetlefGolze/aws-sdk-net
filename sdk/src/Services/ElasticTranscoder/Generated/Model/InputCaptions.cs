@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticTranscoder.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.ElasticTranscoder.Model
     /// </summary>
     public partial class InputCaptions
     {
-        private List<CaptionSource> _captionSources = new List<CaptionSource>();
+        private List<CaptionSource> _captionSources = AWSConfigs.InitializeCollections ? new List<CaptionSource>() : null;
         private string _mergePolicy;
 
         /// <summary>
         /// Gets and sets the property CaptionSources. 
         /// <para>
         /// Source files for the input sidecar captions used during the transcoding process. To
-        /// omit all sidecar captions, leave <code>CaptionSources</code> blank.
+        /// omit all sidecar captions, leave <c>CaptionSources</c> blank.
         /// </para>
         /// </summary>
         [AWSProperty(Max=20)]
@@ -53,7 +54,7 @@ namespace Amazon.ElasticTranscoder.Model
         // Check to see if CaptionSources property is set
         internal bool IsSetCaptionSources()
         {
-            return this._captionSources != null && this._captionSources.Count > 0; 
+            return this._captionSources != null && (this._captionSources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -74,17 +75,17 @@ namespace Amazon.ElasticTranscoder.Model
         ///  <b>MergeRetain:</b> Elastic Transcoder transcodes both embedded and sidecar captions
         /// into outputs. If captions for a language are embedded in the input file and also appear
         /// in a sidecar file, Elastic Transcoder uses the embedded captions and ignores the sidecar
-        /// captions for that language. If <code>CaptionSources</code> is empty, Elastic Transcoder
+        /// captions for that language. If <c>CaptionSources</c> is empty, Elastic Transcoder
         /// omits all sidecar captions from the output files.
         /// </para>
         ///  </li> <li> 
         /// <para>
         ///  <b>Override:</b> Elastic Transcoder transcodes only the sidecar captions that you
-        /// specify in <code>CaptionSources</code>.
+        /// specify in <c>CaptionSources</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        ///  <code>MergePolicy</code> cannot be null.
+        ///  <c>MergePolicy</c> cannot be null.
         /// </para>
         /// </summary>
         public string MergePolicy

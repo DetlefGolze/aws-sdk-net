@@ -31,6 +31,14 @@ namespace Amazon.Polly
     {
 
         /// <summary>
+        /// Constant Generative for Engine
+        /// </summary>
+        public static readonly Engine Generative = new Engine("generative");
+        /// <summary>
+        /// Constant LongForm for Engine
+        /// </summary>
+        public static readonly Engine LongForm = new Engine("long-form");
+        /// <summary>
         /// Constant Neural for Engine
         /// </summary>
         public static readonly Engine Neural = new Engine("neural");
@@ -147,6 +155,10 @@ namespace Amazon.Polly
         /// </summary>
         public static readonly LanguageCode CmnCN = new LanguageCode("cmn-CN");
         /// <summary>
+        /// Constant CsCZ for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode CsCZ = new LanguageCode("cs-CZ");
+        /// <summary>
         /// Constant CyGB for LanguageCode
         /// </summary>
         public static readonly LanguageCode CyGB = new LanguageCode("cy-GB");
@@ -158,6 +170,10 @@ namespace Amazon.Polly
         /// Constant DeAT for LanguageCode
         /// </summary>
         public static readonly LanguageCode DeAT = new LanguageCode("de-AT");
+        /// <summary>
+        /// Constant DeCH for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode DeCH = new LanguageCode("de-CH");
         /// <summary>
         /// Constant DeDE for LanguageCode
         /// </summary>
@@ -597,6 +613,10 @@ namespace Amazon.Polly
         /// </summary>
         public static readonly VoiceId Brian = new VoiceId("Brian");
         /// <summary>
+        /// Constant Burcu for VoiceId
+        /// </summary>
+        public static readonly VoiceId Burcu = new VoiceId("Burcu");
+        /// <summary>
         /// Constant Camila for VoiceId
         /// </summary>
         public static readonly VoiceId Camila = new VoiceId("Camila");
@@ -628,6 +648,10 @@ namespace Amazon.Polly
         /// Constant Daniel for VoiceId
         /// </summary>
         public static readonly VoiceId Daniel = new VoiceId("Daniel");
+        /// <summary>
+        /// Constant Danielle for VoiceId
+        /// </summary>
+        public static readonly VoiceId Danielle = new VoiceId("Danielle");
         /// <summary>
         /// Constant Dora for VoiceId
         /// </summary>
@@ -664,6 +688,10 @@ namespace Amazon.Polly
         /// Constant Giorgio for VoiceId
         /// </summary>
         public static readonly VoiceId Giorgio = new VoiceId("Giorgio");
+        /// <summary>
+        /// Constant Gregory for VoiceId
+        /// </summary>
+        public static readonly VoiceId Gregory = new VoiceId("Gregory");
         /// <summary>
         /// Constant Gwyneth for VoiceId
         /// </summary>
@@ -708,6 +736,10 @@ namespace Amazon.Polly
         /// Constant Jan for VoiceId
         /// </summary>
         public static readonly VoiceId Jan = new VoiceId("Jan");
+        /// <summary>
+        /// Constant Jitka for VoiceId
+        /// </summary>
+        public static readonly VoiceId Jitka = new VoiceId("Jitka");
         /// <summary>
         /// Constant Joanna for VoiceId
         /// </summary>
@@ -864,6 +896,10 @@ namespace Amazon.Polly
         /// Constant Ruth for VoiceId
         /// </summary>
         public static readonly VoiceId Ruth = new VoiceId("Ruth");
+        /// <summary>
+        /// Constant Sabrina for VoiceId
+        /// </summary>
+        public static readonly VoiceId Sabrina = new VoiceId("Sabrina");
         /// <summary>
         /// Constant Salli for VoiceId
         /// </summary>

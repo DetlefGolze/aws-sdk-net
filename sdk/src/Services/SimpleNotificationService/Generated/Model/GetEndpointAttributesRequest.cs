@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.SimpleNotificationService.Model
         /// <summary>
         /// Gets and sets the property EndpointArn. 
         /// <para>
-        /// EndpointArn for GetEndpointAttributes input.
+        ///  <c>EndpointArn</c> for <c>GetEndpointAttributes</c> input.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

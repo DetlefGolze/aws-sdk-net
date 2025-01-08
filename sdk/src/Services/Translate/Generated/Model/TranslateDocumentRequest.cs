@@ -26,24 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Translate.Model
 {
     /// <summary>
     /// Container for the parameters to the TranslateDocument operation.
     /// Translates the input document from the source language to the target language. This
-    /// synchronous operation supports plain text or HTML for the input document. <code>TranslateDocument</code>
-    /// supports translations from English to any supported language, and from any supported
-    /// language to English. Therefore, specify either the source language code or the target
-    /// language code as “en” (English). 
+    /// synchronous operation supports text, HTML, or Word documents as the input document.
+    /// <c>TranslateDocument</c> supports translations from English to any supported language,
+    /// and from any supported language to English. Therefore, specify either the source language
+    /// code or the target language code as “en” (English). 
     /// 
     ///  
     /// <para>
-    ///  <code>TranslateDocument</code> does not support language auto-detection. 
-    /// </para>
-    ///  
-    /// <para>
-    ///  If you set the <code>Formality</code> parameter, the request will fail if the target
-    /// language does not support formality. For a list of target languages that support formality,
+    ///  If you set the <c>Formality</c> parameter, the request will fail if the target language
+    /// does not support formality. For a list of target languages that support formality,
     /// see <a href="https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-formality.html">Setting
     /// formality</a>. 
     /// </para>
@@ -54,7 +51,7 @@ namespace Amazon.Translate.Model
         private TranslationSettings _settings;
         private string _sourceLanguageCode;
         private string _targetLanguageCode;
-        private List<string> _terminologyNames = new List<string>();
+        private List<string> _terminologyNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Document. 
@@ -77,7 +74,23 @@ namespace Amazon.Translate.Model
         }
 
         /// <summary>
-        /// Gets and sets the property Settings.
+        /// Gets and sets the property Settings. 
+        /// <para>
+        /// Settings to configure your translation output. You can configure the following options:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Brevity: not supported.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Formality: sets the formality level of the output text.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Profanity: masks profane words and phrases in your translation output.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public TranslationSettings Settings
         {
@@ -94,11 +107,24 @@ namespace Amazon.Translate.Model
         /// <summary>
         /// Gets and sets the property SourceLanguageCode. 
         /// <para>
-        /// The language code for the language of the source text. Do not use <code>auto</code>,
-        /// because <code>TranslateDocument</code> does not support language auto-detection. For
-        /// a list of supported language codes, see <a href="https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html">Supported
+        /// The language code for the language of the source text. For a list of supported language
+        /// codes, see <a href="https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html">Supported
         /// languages</a>.
         /// </para>
+        ///  
+        /// <para>
+        /// To have Amazon Translate determine the source language of your text, you can specify
+        /// <c>auto</c> in the <c>SourceLanguageCode</c> field. If you specify <c>auto</c>, Amazon
+        /// Translate will call <a href="https://docs.aws.amazon.com/comprehend/latest/dg/comprehend-general.html">Amazon
+        /// Comprehend</a> to determine the source language.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// If you specify <c>auto</c>, you must send the <c>TranslateDocument</c> request in
+        /// a region that supports Amazon Comprehend. Otherwise, the request returns an error
+        /// indicating that autodetect is not supported. 
+        /// </para>
+        ///  </note>
         /// </summary>
         [AWSProperty(Required=true, Min=2, Max=5)]
         public string SourceLanguageCode
@@ -161,7 +187,7 @@ namespace Amazon.Translate.Model
         // Check to see if TerminologyNames property is set
         internal bool IsSetTerminologyNames()
         {
-            return this._terminologyNames != null && this._terminologyNames.Count > 0; 
+            return this._terminologyNames != null && (this._terminologyNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

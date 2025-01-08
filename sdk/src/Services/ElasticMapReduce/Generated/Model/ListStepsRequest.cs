@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
     /// Container for the parameters to the ListSteps operation.
-    /// Provides a list of steps for the cluster in reverse order unless you specify <code>stepIds</code>
-    /// with the request or filter by <code>StepStates</code>. You can specify a maximum of
-    /// 10 <code>stepIDs</code>. The CLI automatically paginates results to return a list
-    /// greater than 50 steps. To return more than 50 steps using the CLI, specify a <code>Marker</code>,
-    /// which is a pagination token that indicates the next set of steps to retrieve.
+    /// Provides a list of steps for the cluster in reverse order unless you specify <c>stepIds</c>
+    /// with the request or filter by <c>StepStates</c>. You can specify a maximum of 10 <c>stepIDs</c>.
+    /// The CLI automatically paginates results to return a list greater than 50 steps. To
+    /// return more than 50 steps using the CLI, specify a <c>Marker</c>, which is a pagination
+    /// token that indicates the next set of steps to retrieve.
     /// </summary>
     public partial class ListStepsRequest : AmazonElasticMapReduceRequest
     {
         private string _clusterId;
         private string _marker;
-        private List<string> _stepIds = new List<string>();
-        private List<string> _stepStates = new List<string>();
+        private List<string> _stepIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _stepStates = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClusterId. 
@@ -65,10 +66,10 @@ namespace Amazon.ElasticMapReduce.Model
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// The maximum number of steps that a single <code>ListSteps</code> action returns is
-        /// 50. To return a longer list of steps, use multiple <code>ListSteps</code> actions
-        /// along with the <code>Marker</code> parameter, which is a pagination token that indicates
-        /// the next set of results to retrieve.
+        /// The maximum number of steps that a single <c>ListSteps</c> action returns is 50. To
+        /// return a longer list of steps, use multiple <c>ListSteps</c> actions along with the
+        /// <c>Marker</c> parameter, which is a pagination token that indicates the next set of
+        /// results to retrieve.
         /// </para>
         /// </summary>
         public string Marker
@@ -100,7 +101,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if StepIds property is set
         internal bool IsSetStepIds()
         {
-            return this._stepIds != null && this._stepIds.Count > 0; 
+            return this._stepIds != null && (this._stepIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -118,7 +119,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if StepStates property is set
         internal bool IsSetStepStates()
         {
-            return this._stepStates != null && this._stepStates.Count > 0; 
+            return this._stepStates != null && (this._stepStates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

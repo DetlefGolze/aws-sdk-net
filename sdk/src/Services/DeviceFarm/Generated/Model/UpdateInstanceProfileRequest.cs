@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DeviceFarm.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.DeviceFarm.Model
     {
         private string _arn;
         private string _description;
-        private List<string> _excludeAppPackagesFromCleanup = new List<string>();
+        private List<string> _excludeAppPackagesFromCleanup = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
         private bool? _packageCleanup;
         private bool? _rebootAfterUse;
@@ -87,8 +88,7 @@ namespace Amazon.DeviceFarm.Model
         /// </para>
         ///  
         /// <para>
-        /// The list of packages is only considered if you set <code>packageCleanup</code> to
-        /// <code>true</code>.
+        /// The list of packages is only considered if you set <c>packageCleanup</c> to <c>true</c>.
         /// </para>
         /// </summary>
         public List<string> ExcludeAppPackagesFromCleanup
@@ -100,7 +100,7 @@ namespace Amazon.DeviceFarm.Model
         // Check to see if ExcludeAppPackagesFromCleanup property is set
         internal bool IsSetExcludeAppPackagesFromCleanup()
         {
-            return this._excludeAppPackagesFromCleanup != null && this._excludeAppPackagesFromCleanup.Count > 0; 
+            return this._excludeAppPackagesFromCleanup != null && (this._excludeAppPackagesFromCleanup.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace Amazon.DeviceFarm.Model
         /// Gets and sets the property PackageCleanup. 
         /// <para>
         /// The updated choice for whether you want to specify package cleanup. The default value
-        /// is <code>false</code> for private devices.
+        /// is <c>false</c> for private devices.
         /// </para>
         /// </summary>
         public bool PackageCleanup
@@ -145,7 +145,7 @@ namespace Amazon.DeviceFarm.Model
         /// Gets and sets the property RebootAfterUse. 
         /// <para>
         /// The updated choice for whether you want to reboot the device after use. The default
-        /// value is <code>true</code>.
+        /// value is <c>true</c>.
         /// </para>
         /// </summary>
         public bool RebootAfterUse

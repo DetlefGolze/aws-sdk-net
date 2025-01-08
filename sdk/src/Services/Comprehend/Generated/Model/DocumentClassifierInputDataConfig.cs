@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.Comprehend.Model
     /// </summary>
     public partial class DocumentClassifierInputDataConfig
     {
-        private List<AugmentedManifestsListItem> _augmentedManifests = new List<AugmentedManifestsListItem>();
+        private List<AugmentedManifestsListItem> _augmentedManifests = AWSConfigs.InitializeCollections ? new List<AugmentedManifestsListItem>() : null;
         private DocumentClassifierDataFormat _dataFormat;
         private DocumentReaderConfig _documentReaderConfig;
         private DocumentClassifierDocuments _documents;
@@ -57,7 +58,7 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  
         /// <para>
-        /// This parameter is required if you set <code>DataFormat</code> to <code>AUGMENTED_MANIFEST</code>.
+        /// This parameter is required if you set <c>DataFormat</c> to <c>AUGMENTED_MANIFEST</c>.
         /// </para>
         /// </summary>
         public List<AugmentedManifestsListItem> AugmentedManifests
@@ -69,7 +70,7 @@ namespace Amazon.Comprehend.Model
         // Check to see if AugmentedManifests property is set
         internal bool IsSetAugmentedManifests()
         {
-            return this._augmentedManifests != null && this._augmentedManifests.Count > 0; 
+            return this._augmentedManifests != null && (this._augmentedManifests.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -79,25 +80,25 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>COMPREHEND_CSV</code>: A two-column CSV file, where labels are provided in
-        /// the first column, and documents are provided in the second. If you use this value,
-        /// you must provide the <code>S3Uri</code> parameter in your request.
+        ///  <c>COMPREHEND_CSV</c>: A two-column CSV file, where labels are provided in the first
+        /// column, and documents are provided in the second. If you use this value, you must
+        /// provide the <c>S3Uri</c> parameter in your request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AUGMENTED_MANIFEST</code>: A labeled dataset that is produced by Amazon SageMaker
+        ///  <c>AUGMENTED_MANIFEST</c>: A labeled dataset that is produced by Amazon SageMaker
         /// Ground Truth. This file is in JSON lines format. Each line is a complete JSON object
         /// that contains a training document and its associated labels. 
         /// </para>
         ///  
         /// <para>
-        /// If you use this value, you must provide the <code>AugmentedManifests</code> parameter
-        /// in your request.
+        /// If you use this value, you must provide the <c>AugmentedManifests</c> parameter in
+        /// your request.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If you don't specify a value, Amazon Comprehend uses <code>COMPREHEND_CSV</code> as
-        /// the default.
+        /// If you don't specify a value, Amazon Comprehend uses <c>COMPREHEND_CSV</c> as the
+        /// default.
         /// </para>
         /// </summary>
         public DocumentClassifierDataFormat DataFormat
@@ -131,7 +132,7 @@ namespace Amazon.Comprehend.Model
         /// Gets and sets the property Documents. 
         /// <para>
         /// The S3 location of the training documents. This parameter is required in a request
-        /// to create a native classifier model.
+        /// to create a native document model.
         /// </para>
         /// </summary>
         public DocumentClassifierDocuments Documents
@@ -151,7 +152,7 @@ namespace Amazon.Comprehend.Model
         /// <para>
         /// The type of input documents for training the model. Provide plain-text documents to
         /// create a plain-text model, and provide semi-structured documents to create a native
-        /// model.
+        /// document model.
         /// </para>
         /// </summary>
         public DocumentClassifierDocumentTypeFormat DocumentType
@@ -199,13 +200,13 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  
         /// <para>
-        /// For example, if you use the URI <code>S3://bucketName/prefix</code>, if the prefix
-        /// is a single file, Amazon Comprehend uses that file as input. If more than one file
-        /// begins with the prefix, Amazon Comprehend uses all of them as input.
+        /// For example, if you use the URI <c>S3://bucketName/prefix</c>, if the prefix is a
+        /// single file, Amazon Comprehend uses that file as input. If more than one file begins
+        /// with the prefix, Amazon Comprehend uses all of them as input.
         /// </para>
         ///  
         /// <para>
-        /// This parameter is required if you set <code>DataFormat</code> to <code>COMPREHEND_CSV</code>.
+        /// This parameter is required if you set <c>DataFormat</c> to <c>COMPREHEND_CSV</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=1024)]
@@ -224,8 +225,8 @@ namespace Amazon.Comprehend.Model
         /// <summary>
         /// Gets and sets the property TestS3Uri. 
         /// <para>
-        /// This specifies the Amazon S3 location where the test annotations for an entity recognizer
-        /// are located. The URI must be in the same Amazon Web Services Region as the API endpoint
+        /// This specifies the Amazon S3 location that contains the test annotations for the document
+        /// classifier. The URI must be in the same Amazon Web Services Region as the API endpoint
         /// that you are calling. 
         /// </para>
         /// </summary>

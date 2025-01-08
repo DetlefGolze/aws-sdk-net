@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Connect.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(Filters requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetChannels())
             {
                 context.Writer.WritePropertyName("Channels");
@@ -74,6 +77,17 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
                 foreach(var requestObjectRoutingProfilesListValue in requestObject.RoutingProfiles)
                 {
                         context.Writer.Write(requestObjectRoutingProfilesListValue);
+                }
+                context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetRoutingStepExpressions())
+            {
+                context.Writer.WritePropertyName("RoutingStepExpressions");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectRoutingStepExpressionsListValue in requestObject.RoutingStepExpressions)
+                {
+                        context.Writer.Write(requestObjectRoutingStepExpressionsListValue);
                 }
                 context.Writer.WriteArrayEnd();
             }

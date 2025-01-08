@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
@@ -34,10 +35,10 @@ namespace Amazon.TranscribeService.Model
     /// 
     ///  
     /// <para>
-    /// To view the status of the specified custom medical vocabulary, check the <code>VocabularyState</code>
-    /// field. If the status is <code>READY</code>, your custom vocabulary is available to
-    /// use. If the status is <code>FAILED</code>, <code>FailureReason</code> provides details
-    /// on why your vocabulary failed.
+    /// To view the status of the specified custom medical vocabulary, check the <c>VocabularyState</c>
+    /// field. If the status is <c>READY</c>, your custom vocabulary is available to use.
+    /// If the status is <c>FAILED</c>, <c>FailureReason</c> provides details on why your
+    /// vocabulary failed.
     /// </para>
     ///  
     /// <para>

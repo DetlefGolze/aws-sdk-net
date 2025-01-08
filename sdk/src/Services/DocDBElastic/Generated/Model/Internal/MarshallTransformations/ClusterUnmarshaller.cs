@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DocDBElastic.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.DocDBElastic.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Cluster Unmarshall(JsonUnmarshallerContext context)
         {
+            Cluster unmarshalledObject = new Cluster();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Cluster unmarshalledObject = new Cluster();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -74,6 +76,12 @@ namespace Amazon.DocDBElastic.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.AuthType = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("backupRetentionPeriod", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.BackupRetentionPeriod = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("clusterArn", targetDepth))
@@ -106,6 +114,12 @@ namespace Amazon.DocDBElastic.Model.Internal.MarshallTransformations
                     unmarshalledObject.KmsKeyId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("preferredBackupWindow", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.PreferredBackupWindow = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("preferredMaintenanceWindow", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -122,6 +136,18 @@ namespace Amazon.DocDBElastic.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = IntUnmarshaller.Instance;
                     unmarshalledObject.ShardCount = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("shardInstanceCount", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.ShardInstanceCount = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("shards", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<Shard, ShardUnmarshaller>(ShardUnmarshaller.Instance);
+                    unmarshalledObject.Shards = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("status", targetDepth))
@@ -143,7 +169,6 @@ namespace Amazon.DocDBElastic.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

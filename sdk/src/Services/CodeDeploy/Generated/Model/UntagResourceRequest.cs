@@ -26,24 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
     /// Container for the parameters to the UntagResource operation.
-    /// Disassociates a resource from a list of tags. The resource is identified by the <code>ResourceArn</code>
-    /// input parameter. The tags are identified by the list of keys in the <code>TagKeys</code>
+    /// Disassociates a resource from a list of tags. The resource is identified by the <c>ResourceArn</c>
+    /// input parameter. The tags are identified by the list of keys in the <c>TagKeys</c>
     /// input parameter.
     /// </summary>
     public partial class UntagResourceRequest : AmazonCodeDeployRequest
     {
         private string _resourceArn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
         ///  The Amazon Resource Name (ARN) that specifies from which resource to disassociate
-        /// the tags with the keys in the <code>TagKeys</code> input parameter. 
+        /// the tags with the keys in the <c>TagKeys</c> input parameter. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1011)]
@@ -62,9 +63,9 @@ namespace Amazon.CodeDeploy.Model
         /// <summary>
         /// Gets and sets the property TagKeys. 
         /// <para>
-        ///  A list of keys of <code>Tag</code> objects. The <code>Tag</code> objects identified
-        /// by the keys are disassociated from the resource specified by the <code>ResourceArn</code>
-        /// input parameter. 
+        ///  A list of keys of <c>Tag</c> objects. The <c>Tag</c> objects identified by the keys
+        /// are disassociated from the resource specified by the <c>ResourceArn</c> input parameter.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -77,7 +78,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

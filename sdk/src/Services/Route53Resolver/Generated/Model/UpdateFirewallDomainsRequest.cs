@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Route53Resolver.Model
     /// </summary>
     public partial class UpdateFirewallDomainsRequest : AmazonRoute53ResolverRequest
     {
-        private List<string> _domains = new List<string>();
+        private List<string> _domains = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _firewallDomainListId;
         private FirewallDomainUpdateOperation _operation;
 
@@ -54,12 +55,12 @@ namespace Amazon.Route53Resolver.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// It can optionally start with <code>*</code> (asterisk).
+        /// It can optionally start with <c>*</c> (asterisk).
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// With the exception of the optional starting asterisk, it must only contain the following
-        /// characters: <code>A-Z</code>, <code>a-z</code>, <code>0-9</code>, <code>-</code> (hyphen).
+        /// characters: <c>A-Z</c>, <c>a-z</c>, <c>0-9</c>, <c>-</c> (hyphen).
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -77,7 +78,7 @@ namespace Amazon.Route53Resolver.Model
         // Check to see if Domains property is set
         internal bool IsSetDomains()
         {
-            return this._domains != null && this._domains.Count > 0; 
+            return this._domains != null && (this._domains.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -106,18 +107,16 @@ namespace Amazon.Route53Resolver.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ADD</code> - Add the domains to the ones that are already in the domain list.
+        ///  <c>ADD</c> - Add the domains to the ones that are already in the domain list. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>REMOVE</c> - Search the domain list for the domains and remove them from the list.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>REPLACE</c> - Update the domain list to exactly match the list that you are providing.
         /// 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>REMOVE</code> - Search the domain list for the domains and remove them from
-        /// the list.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>REPLACE</code> - Update the domain list to exactly match the list that you
-        /// are providing. 
         /// </para>
         ///  </li> </ul>
         /// </summary>

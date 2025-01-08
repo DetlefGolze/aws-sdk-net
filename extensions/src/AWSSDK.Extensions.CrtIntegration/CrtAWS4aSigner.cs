@@ -102,7 +102,8 @@ namespace Amazon.Extensions.CrtIntegration
                                               ImmutableCredentials credentials)
         {
             var signedAt = AWS4Signer.InitializeHeaders(request.Headers, request.Endpoint);
-            
+            request.SignedAt = CorrectClockSkew.GetCorrectedUtcNowForEndpoint(request.Endpoint.ToString());
+
             var serviceSigningName = !string.IsNullOrEmpty(request.OverrideSigningServiceName) ? request.OverrideSigningServiceName : AWS4Signer.DetermineService(clientConfig);
             if (serviceSigningName == "s3")
             {
@@ -187,6 +188,7 @@ namespace Amazon.Extensions.CrtIntegration
             }
 
             var signedAt = AWS4Signer.InitializeHeaders(request.Headers, request.Endpoint);
+            request.SignedAt = CorrectClockSkew.GetCorrectedUtcNowForEndpoint(request.Endpoint.ToString());
             var regionSet = overrideSigningRegion ?? AWS4Signer.DetermineSigningRegion(clientConfig, clientConfig.RegionEndpointServiceName, request.AlternateEndpoint, request);
 
             var signingConfig = PrepareCRTSigningConfig(
@@ -317,7 +319,40 @@ namespace Amazon.Extensions.CrtIntegration
             signingConfig.UseDoubleUriEncode = useDoubleEncoding;
             signingConfig.ShouldNormalizeUriPath = useDoubleEncoding;
 
+            // The request headers aren't an input for chunked signing, so don't pass the callback that filters headers.
+            var addCallback = signatureType != AwsSignatureType.HTTP_REQUEST_CHUNK && signatureType != AwsSignatureType.HTTP_REQUEST_TRAILING_HEADERS;
+            if (addCallback)
+            {
+                signingConfig.ShouldSignHeader = ShouldSignHeader;
+            }
+
             return signingConfig;
+        }
+
+        private readonly static List<byte[]> HeadersToIgnore = new List<byte[]>
+        {
+            Encoding.ASCII.GetBytes(HeaderKeys.XAmznTraceIdHeader),
+            Encoding.ASCII.GetBytes(HeaderKeys.TransferEncodingHeader),
+            Encoding.ASCII.GetBytes(HeaderKeys.AmzSdkInvocationId),
+            Encoding.ASCII.GetBytes(HeaderKeys.AmzSdkRequest)
+        };
+
+        /// <summary>
+        /// <para>
+        /// Callback invoked by the CRT that determines whether the specified header should be signed.
+        /// </para>
+        /// <para>
+        /// Similar to SigV4, we'll exclude headers that do not impact the final signature (for example, "amz-sdk-request" will
+        /// be different for the same input in a retried request).
+        /// </para>
+        /// </summary>
+        /// <remarks>
+        /// Based on the example from the CRT repository: https://github.com/awslabs/aws-crt-dotnet/blob/v0.4.4/tests/SigningTest.cs#L40-L43
+        /// </remarks>
+        private static bool ShouldSignHeader(byte[] headerName, uint length)
+        {
+            var shouldBeSigned = !HeadersToIgnore.Any(x => x.SequenceEqual(headerName));
+            return shouldBeSigned;
         }
     }
 }

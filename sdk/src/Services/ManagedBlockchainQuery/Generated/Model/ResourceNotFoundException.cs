@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchainQuery.Model
 {
     /// <summary>
@@ -129,7 +130,7 @@ namespace Amazon.ManagedBlockchainQuery.Model
         /// <summary>
         /// Gets and sets the property ResourceId. 
         /// <para>
-        /// The <code>resourceId</code> of the resource that caused the exception.
+        /// The <c>resourceId</c> of the resource that caused the exception.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -148,7 +149,7 @@ namespace Amazon.ManagedBlockchainQuery.Model
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The <code>resourceType</code> of the resource that caused the exception.
+        /// The <c>resourceType</c> of the resource that caused the exception.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

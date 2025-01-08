@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
     /// Container for the parameters to the ListCustomDataIdentifiers operation.
-    /// Retrieves a subset of information about all the custom data identifiers for an account.
+    /// Retrieves a subset of information about the custom data identifiers for an account.
     /// </summary>
     public partial class ListCustomDataIdentifiersRequest : AmazonMacie2Request
     {

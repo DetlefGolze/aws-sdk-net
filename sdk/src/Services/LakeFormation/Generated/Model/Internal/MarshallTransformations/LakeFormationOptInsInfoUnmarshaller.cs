@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.LakeFormation.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.LakeFormation.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public LakeFormationOptInsInfo Unmarshall(JsonUnmarshallerContext context)
         {
+            LakeFormationOptInsInfo unmarshalledObject = new LakeFormationOptInsInfo();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            LakeFormationOptInsInfo unmarshalledObject = new LakeFormationOptInsInfo();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("Condition", targetDepth))
+                {
+                    var unmarshaller = ConditionUnmarshaller.Instance;
+                    unmarshalledObject.Condition = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("LastModified", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
@@ -89,7 +97,6 @@ namespace Amazon.LakeFormation.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

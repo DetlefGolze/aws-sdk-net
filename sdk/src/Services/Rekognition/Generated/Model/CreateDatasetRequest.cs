@@ -26,35 +26,42 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateDataset operation.
+    /// <note> 
+    /// <para>
+    /// This operation applies only to Amazon Rekognition Custom Labels.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Creates a new Amazon Rekognition Custom Labels dataset. You can create a dataset by
     /// using an Amazon Sagemaker format manifest file or by copying an existing Amazon Rekognition
     /// Custom Labels dataset.
-    /// 
-    ///  
-    /// <para>
-    /// To create a training dataset for a project, specify <code>TRAIN</code> for the value
-    /// of <code>DatasetType</code>. To create the test dataset for a project, specify <code>TEST</code>
-    /// for the value of <code>DatasetType</code>. 
     /// </para>
     ///  
     /// <para>
-    /// The response from <code>CreateDataset</code> is the Amazon Resource Name (ARN) for
-    /// the dataset. Creating a dataset takes a while to complete. Use <a>DescribeDataset</a>
-    /// to check the current status. The dataset created successfully if the value of <code>Status</code>
-    /// is <code>CREATE_COMPLETE</code>. 
+    /// To create a training dataset for a project, specify <c>TRAIN</c> for the value of
+    /// <c>DatasetType</c>. To create the test dataset for a project, specify <c>TEST</c>
+    /// for the value of <c>DatasetType</c>. 
+    /// </para>
+    ///  
+    /// <para>
+    /// The response from <c>CreateDataset</c> is the Amazon Resource Name (ARN) for the dataset.
+    /// Creating a dataset takes a while to complete. Use <a>DescribeDataset</a> to check
+    /// the current status. The dataset created successfully if the value of <c>Status</c>
+    /// is <c>CREATE_COMPLETE</c>. 
     /// </para>
     ///  
     /// <para>
     /// To check if any non-terminal errors occurred, call <a>ListDatasetEntries</a> and check
-    /// for the presence of <code>errors</code> lists in the JSON Lines.
+    /// for the presence of <c>errors</c> lists in the JSON Lines.
     /// </para>
     ///  
     /// <para>
-    /// Dataset creation fails if a terminal error occurs (<code>Status</code> = <code>CREATE_FAILED</code>).
+    /// Dataset creation fails if a terminal error occurs (<c>Status</c> = <c>CREATE_FAILED</c>).
     /// Currently, you can't access the terminal error information. 
     /// </para>
     ///  
@@ -64,9 +71,9 @@ namespace Amazon.Rekognition.Model
     /// </para>
     ///  
     /// <para>
-    /// This operation requires permissions to perform the <code>rekognition:CreateDataset</code>
+    /// This operation requires permissions to perform the <c>rekognition:CreateDataset</c>
     /// action. If you want to copy an existing dataset, you also require permission to perform
-    /// the <code>rekognition:ListDatasetEntries</code> action.
+    /// the <c>rekognition:ListDatasetEntries</c> action.
     /// </para>
     /// </summary>
     public partial class CreateDatasetRequest : AmazonRekognitionRequest
@@ -74,14 +81,15 @@ namespace Amazon.Rekognition.Model
         private DatasetSource _datasetSource;
         private DatasetType _datasetType;
         private string _projectArn;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property DatasetSource. 
         /// <para>
         ///  The source files for the dataset. You can specify the ARN of an existing dataset
         /// or specify the Amazon S3 bucket location of an Amazon Sagemaker format manifest file.
-        /// If you don't specify <code>datasetSource</code>, an empty dataset is created. To add
-        /// labeled images to the dataset, You can use the console or call <a>UpdateDatasetEntries</a>.
+        /// If you don't specify <c>datasetSource</c>, an empty dataset is created. To add labeled
+        /// images to the dataset, You can use the console or call <a>UpdateDatasetEntries</a>.
         /// 
         /// </para>
         /// </summary>
@@ -100,8 +108,8 @@ namespace Amazon.Rekognition.Model
         /// <summary>
         /// Gets and sets the property DatasetType. 
         /// <para>
-        ///  The type of the dataset. Specify <code>TRAIN</code> to create a training dataset.
-        /// Specify <code>TEST</code> to create a test dataset. 
+        ///  The type of the dataset. Specify <c>TRAIN</c> to create a training dataset. Specify
+        /// <c>TEST</c> to create a test dataset. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -135,6 +143,25 @@ namespace Amazon.Rekognition.Model
         internal bool IsSetProjectArn()
         {
             return this._projectArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Tags. 
+        /// <para>
+        /// A set of tags (key-value pairs) that you want to attach to the dataset.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=200)]
+        public Dictionary<string, string> Tags
+        {
+            get { return this._tags; }
+            set { this._tags = value; }
+        }
+
+        // Check to see if Tags property is set
+        internal bool IsSetTags()
+        {
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

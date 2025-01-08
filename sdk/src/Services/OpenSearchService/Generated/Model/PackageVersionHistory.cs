@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -35,7 +36,9 @@ namespace Amazon.OpenSearchService.Model
     {
         private string _commitMessage;
         private DateTime? _createdAt;
+        private PackageConfiguration _packageConfiguration;
         private string _packageVersion;
+        private PluginProperties _pluginProperties;
 
         /// <summary>
         /// Gets and sets the property CommitMessage. 
@@ -75,6 +78,24 @@ namespace Amazon.OpenSearchService.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PackageConfiguration. 
+        /// <para>
+        /// The configuration details for a specific version of a package.
+        /// </para>
+        /// </summary>
+        public PackageConfiguration PackageConfiguration
+        {
+            get { return this._packageConfiguration; }
+            set { this._packageConfiguration = value; }
+        }
+
+        // Check to see if PackageConfiguration property is set
+        internal bool IsSetPackageConfiguration()
+        {
+            return this._packageConfiguration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property PackageVersion. 
         /// <para>
         /// The package version.
@@ -90,6 +111,25 @@ namespace Amazon.OpenSearchService.Model
         internal bool IsSetPackageVersion()
         {
             return this._packageVersion != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PluginProperties. 
+        /// <para>
+        /// Additional information about plugin properties if the package is a <c>ZIP-PLUGIN</c>
+        /// package.
+        /// </para>
+        /// </summary>
+        public PluginProperties PluginProperties
+        {
+            get { return this._pluginProperties; }
+            set { this._pluginProperties = value; }
+        }
+
+        // Check to see if PluginProperties property is set
+        internal bool IsSetPluginProperties()
+        {
+            return this._pluginProperties != null;
         }
 
     }

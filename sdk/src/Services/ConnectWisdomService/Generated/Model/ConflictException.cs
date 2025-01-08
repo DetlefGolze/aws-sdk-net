@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectWisdomService.Model
 {
     /// <summary>
     /// The request could not be processed because of conflict in the current state of the
-    /// resource. For example, if you're using a <code>Create</code> API (such as <code>CreateAssistant</code>)
+    /// resource. For example, if you're using a <c>Create</c> API (such as <c>CreateAssistant</c>)
     /// that accepts name, a conflicting resource (usually with the same name) is being created
     /// or mutated.
     /// </summary>

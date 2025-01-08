@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.SimpleNotificationService.Model
     /// </summary>
     public partial class PublishBatchResponse : AmazonWebServiceResponse
     {
-        private List<BatchResultErrorEntry> _failed = new List<BatchResultErrorEntry>();
-        private List<PublishBatchResultEntry> _successful = new List<PublishBatchResultEntry>();
+        private List<BatchResultErrorEntry> _failed = AWSConfigs.InitializeCollections ? new List<BatchResultErrorEntry>() : null;
+        private List<PublishBatchResultEntry> _successful = AWSConfigs.InitializeCollections ? new List<PublishBatchResultEntry>() : null;
 
         /// <summary>
         /// Gets and sets the property Failed. 
         /// <para>
-        /// A list of failed <code>PublishBatch</code> responses. 
+        /// A list of failed <c>PublishBatch</c> responses. 
         /// </para>
         /// </summary>
         public List<BatchResultErrorEntry> Failed
@@ -51,13 +52,13 @@ namespace Amazon.SimpleNotificationService.Model
         // Check to see if Failed property is set
         internal bool IsSetFailed()
         {
-            return this._failed != null && this._failed.Count > 0; 
+            return this._failed != null && (this._failed.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Successful. 
         /// <para>
-        /// A list of successful <code>PublishBatch</code> responses.
+        /// A list of successful <c>PublishBatch</c> responses.
         /// </para>
         /// </summary>
         public List<PublishBatchResultEntry> Successful
@@ -69,7 +70,7 @@ namespace Amazon.SimpleNotificationService.Model
         // Check to see if Successful property is set
         internal bool IsSetSuccessful()
         {
-            return this._successful != null && this._successful.Count > 0; 
+            return this._successful != null && (this._successful.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

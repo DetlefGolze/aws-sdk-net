@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
     /// Container for the parameters to the PutAppInstanceStreamingConfigurations operation.
-    /// The data streaming configurations of an <code>AppInstance</code>.
+    /// The data streaming configurations of an <c>AppInstance</c>.
     /// 
     ///  <important> 
     /// <para>
@@ -49,12 +50,12 @@ namespace Amazon.Chime.Model
     public partial class PutAppInstanceStreamingConfigurationsRequest : AmazonChimeRequest
     {
         private string _appInstanceArn;
-        private List<AppInstanceStreamingConfiguration> _appInstanceStreamingConfigurations = new List<AppInstanceStreamingConfiguration>();
+        private List<AppInstanceStreamingConfiguration> _appInstanceStreamingConfigurations = AWSConfigs.InitializeCollections ? new List<AppInstanceStreamingConfiguration>() : null;
 
         /// <summary>
         /// Gets and sets the property AppInstanceArn. 
         /// <para>
-        /// The ARN of the <code>AppInstance</code>.
+        /// The ARN of the <c>AppInstance</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=5, Max=1600)]
@@ -73,7 +74,7 @@ namespace Amazon.Chime.Model
         /// <summary>
         /// Gets and sets the property AppInstanceStreamingConfigurations. 
         /// <para>
-        /// The streaming configurations set for an <code>AppInstance</code>.
+        /// The streaming configurations set for an <c>AppInstance</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2)]
@@ -86,7 +87,7 @@ namespace Amazon.Chime.Model
         // Check to see if AppInstanceStreamingConfigurations property is set
         internal bool IsSetAppInstanceStreamingConfigurations()
         {
-            return this._appInstanceStreamingConfigurations != null && this._appInstanceStreamingConfigurations.Count > 0; 
+            return this._appInstanceStreamingConfigurations != null && (this._appInstanceStreamingConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

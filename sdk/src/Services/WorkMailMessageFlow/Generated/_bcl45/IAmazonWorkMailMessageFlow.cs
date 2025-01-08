@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.WorkMailMessageFlow.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.WorkMailMessageFlow
 {
     /// <summary>
-    /// Interface for accessing WorkMailMessageFlow
+    /// <para>Interface for accessing WorkMailMessageFlow</para>
     ///
     /// The WorkMail Message Flow API provides access to email messages as they are being
     /// sent and received by a WorkMail organization.
@@ -87,10 +88,10 @@ namespace Amazon.WorkMailMessageFlow
         /// </para>
         ///  <note> 
         /// <para>
-        /// Updates to an in-transit message only appear when you call <code>PutRawMessageContent</code>
+        /// Updates to an in-transit message only appear when you call <c>PutRawMessageContent</c>
         /// from an AWS Lambda function configured with a synchronous <a href="https://docs.aws.amazon.com/workmail/latest/adminguide/lambda.html#synchronous-rules">
-        /// Run Lambda</a> rule. If you call <code>PutRawMessageContent</code> on a delivered
-        /// or sent message, the message remains unchanged, even though <a href="https://docs.aws.amazon.com/workmail/latest/APIReference/API_messageflow_GetRawMessageContent.html">GetRawMessageContent</a>
+        /// Run Lambda</a> rule. If you call <c>PutRawMessageContent</c> on a delivered or sent
+        /// message, the message remains unchanged, even though <a href="https://docs.aws.amazon.com/workmail/latest/APIReference/API_messageflow_GetRawMessageContent.html">GetRawMessageContent</a>
         /// returns an updated message. 
         /// </para>
         ///  </note>
@@ -145,10 +146,10 @@ namespace Amazon.WorkMailMessageFlow
         /// </para>
         ///  <note> 
         /// <para>
-        /// Updates to an in-transit message only appear when you call <code>PutRawMessageContent</code>
+        /// Updates to an in-transit message only appear when you call <c>PutRawMessageContent</c>
         /// from an AWS Lambda function configured with a synchronous <a href="https://docs.aws.amazon.com/workmail/latest/adminguide/lambda.html#synchronous-rules">
-        /// Run Lambda</a> rule. If you call <code>PutRawMessageContent</code> on a delivered
-        /// or sent message, the message remains unchanged, even though <a href="https://docs.aws.amazon.com/workmail/latest/APIReference/API_messageflow_GetRawMessageContent.html">GetRawMessageContent</a>
+        /// Run Lambda</a> rule. If you call <c>PutRawMessageContent</c> on a delivered or sent
+        /// message, the message remains unchanged, even though <a href="https://docs.aws.amazon.com/workmail/latest/APIReference/API_messageflow_GetRawMessageContent.html">GetRawMessageContent</a>
         /// returns an updated message. 
         /// </para>
         ///  </note>

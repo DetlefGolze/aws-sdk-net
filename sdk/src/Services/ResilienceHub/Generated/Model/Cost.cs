@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.ResilienceHub.Model
         /// <summary>
         /// Gets and sets the property Currency. 
         /// <para>
-        /// The cost currency, for example <code>USD</code>.
+        /// The cost currency, for example <c>USD</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=3)]

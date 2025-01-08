@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.StepFunctions.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.StepFunctions.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public HistoryEvent Unmarshall(JsonUnmarshallerContext context)
         {
+            HistoryEvent unmarshalledObject = new HistoryEvent();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            HistoryEvent unmarshalledObject = new HistoryEvent();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -100,6 +102,12 @@ namespace Amazon.StepFunctions.Model.Internal.MarshallTransformations
                     unmarshalledObject.ActivityTimedOutEventDetails = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("evaluationFailedEventDetails", targetDepth))
+                {
+                    var unmarshaller = EvaluationFailedEventDetailsUnmarshaller.Instance;
+                    unmarshalledObject.EvaluationFailedEventDetails = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("executionAbortedEventDetails", targetDepth))
                 {
                     var unmarshaller = ExecutionAbortedEventDetailsUnmarshaller.Instance;
@@ -110,6 +118,12 @@ namespace Amazon.StepFunctions.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = ExecutionFailedEventDetailsUnmarshaller.Instance;
                     unmarshalledObject.ExecutionFailedEventDetails = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("executionRedrivenEventDetails", targetDepth))
+                {
+                    var unmarshaller = ExecutionRedrivenEventDetailsUnmarshaller.Instance;
+                    unmarshalledObject.ExecutionRedrivenEventDetails = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("executionStartedEventDetails", targetDepth))
@@ -200,6 +214,12 @@ namespace Amazon.StepFunctions.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = MapRunFailedEventDetailsUnmarshaller.Instance;
                     unmarshalledObject.MapRunFailedEventDetails = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("mapRunRedrivenEventDetails", targetDepth))
+                {
+                    var unmarshaller = MapRunRedrivenEventDetailsUnmarshaller.Instance;
+                    unmarshalledObject.MapRunRedrivenEventDetails = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("mapRunStartedEventDetails", targetDepth))
@@ -293,7 +313,6 @@ namespace Amazon.StepFunctions.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

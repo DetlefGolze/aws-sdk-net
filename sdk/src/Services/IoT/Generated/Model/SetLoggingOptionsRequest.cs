@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -34,8 +35,7 @@ namespace Amazon.IoT.Model
     /// 
     ///  
     /// <para>
-    /// NOTE: use of this command is not recommended. Use <code>SetV2LoggingOptions</code>
-    /// instead.
+    /// NOTE: use of this command is not recommended. Use <c>SetV2LoggingOptions</c> instead.
     /// </para>
     ///  
     /// <para>

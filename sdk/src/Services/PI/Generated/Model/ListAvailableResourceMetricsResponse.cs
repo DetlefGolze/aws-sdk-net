@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PI.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.PI.Model
     /// </summary>
     public partial class ListAvailableResourceMetricsResponse : AmazonWebServiceResponse
     {
-        private List<ResponseResourceMetric> _metrics = new List<ResponseResourceMetric>();
+        private List<ResponseResourceMetric> _metrics = AWSConfigs.InitializeCollections ? new List<ResponseResourceMetric>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,16 +53,15 @@ namespace Amazon.PI.Model
         // Check to see if Metrics property is set
         internal bool IsSetMetrics()
         {
-            return this._metrics != null && this._metrics.Count > 0; 
+            return this._metrics != null && (this._metrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A pagination token that indicates the response didn’t return all available records
-        /// because <code>MaxRecords</code> was specified in the previous request. To get the
-        /// remaining records, specify <code>NextToken</code> in a separate request with this
-        /// value. 
+        /// because <c>MaxRecords</c> was specified in the previous request. To get the remaining
+        /// records, specify <c>NextToken</c> in a separate request with this value. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=8192)]

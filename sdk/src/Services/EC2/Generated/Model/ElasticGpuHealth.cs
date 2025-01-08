@@ -26,10 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
+    /// <note> 
+    /// <para>
+    /// Amazon Elastic Graphics reached end of life on January 8, 2024.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Describes the status of an Elastic Graphics accelerator.
+    /// </para>
     /// </summary>
     public partial class ElasticGpuHealth
     {

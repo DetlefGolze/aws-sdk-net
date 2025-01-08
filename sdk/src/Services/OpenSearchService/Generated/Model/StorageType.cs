@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -35,13 +36,13 @@ namespace Amazon.OpenSearchService.Model
     public partial class StorageType
     {
         private string _storageSubTypeName;
-        private List<StorageTypeLimit> _storageTypeLimits = new List<StorageTypeLimit>();
+        private List<StorageTypeLimit> _storageTypeLimits = AWSConfigs.InitializeCollections ? new List<StorageTypeLimit>() : null;
         private string _storageTypeName;
 
         /// <summary>
         /// Gets and sets the property StorageSubTypeName. 
         /// <para>
-        /// The storage sub-type, such as <code>gp3</code> or <code>io1</code>.
+        /// The storage sub-type, such as <c>gp3</c> or <c>io1</c>.
         /// </para>
         /// </summary>
         public string StorageSubTypeName
@@ -71,7 +72,7 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if StorageTypeLimits property is set
         internal bool IsSetStorageTypeLimits()
         {
-            return this._storageTypeLimits != null && this._storageTypeLimits.Count > 0; 
+            return this._storageTypeLimits != null && (this._storageTypeLimits.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

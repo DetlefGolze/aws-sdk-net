@@ -26,19 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
-    /// The DataSync agents that are connecting to a Network File System (NFS) location.
+    /// The DataSync agents that can connect to your Network File System (NFS) file server.
     /// </summary>
     public partial class OnPremConfig
     {
-        private List<string> _agentArns = new List<string>();
+        private List<string> _agentArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AgentArns. 
         /// <para>
-        /// The Amazon Resource Names (ARNs) of the agents connecting to a transfer location.
+        /// The Amazon Resource Names (ARNs) of the DataSync agents that can connect to your NFS
+        /// file server.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can specify more than one agent. For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/do-i-need-datasync-agent.html#multiple-agents">Using
+        /// multiple DataSync agents</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=4)]
@@ -51,7 +58,7 @@ namespace Amazon.DataSync.Model
         // Check to see if AgentArns property is set
         internal bool IsSetAgentArns()
         {
-            return this._agentArns != null && this._agentArns.Count > 0; 
+            return this._agentArns != null && (this._agentArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

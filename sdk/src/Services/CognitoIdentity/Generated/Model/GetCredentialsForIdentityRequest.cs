@@ -27,6 +27,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentity.Model
 {
     /// <summary>
@@ -45,7 +46,7 @@ namespace Amazon.CognitoIdentity.Model
     {
         private string _customRoleArn;
         private string _identityId;
-        private Dictionary<string, string> _logins = new Dictionary<string, string>();
+        private Dictionary<string, string> _logins = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property CustomRoleArn. 
@@ -102,8 +103,8 @@ namespace Amazon.CognitoIdentity.Model
         ///  
         /// <para>
         /// The Logins parameter is required when using identities associated with external identity
-        /// providers such as Facebook. For examples of <code>Logins</code> maps, see the code
-        /// examples in the <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/external-identity-providers.html">External
+        /// providers such as Facebook. For examples of <c>Logins</c> maps, see the code examples
+        /// in the <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/external-identity-providers.html">External
         /// Identity Providers</a> section of the Amazon Cognito Developer Guide.
         /// </para>
         /// </summary>
@@ -117,7 +118,7 @@ namespace Amazon.CognitoIdentity.Model
         // Check to see if Logins property is set
         internal bool IsSetLogins()
         {
-            return this._logins != null && this._logins.Count > 0; 
+            return this._logins != null && (this._logins.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

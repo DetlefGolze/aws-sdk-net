@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,16 +46,41 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(SnowflakeParameters requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetAuthenticationType())
+            {
+                context.Writer.WritePropertyName("AuthenticationType");
+                context.Writer.Write(requestObject.AuthenticationType);
+            }
+
             if(requestObject.IsSetDatabase())
             {
                 context.Writer.WritePropertyName("Database");
                 context.Writer.Write(requestObject.Database);
             }
 
+            if(requestObject.IsSetDatabaseAccessControlRole())
+            {
+                context.Writer.WritePropertyName("DatabaseAccessControlRole");
+                context.Writer.Write(requestObject.DatabaseAccessControlRole);
+            }
+
             if(requestObject.IsSetHost())
             {
                 context.Writer.WritePropertyName("Host");
                 context.Writer.Write(requestObject.Host);
+            }
+
+            if(requestObject.IsSetOAuthParameters())
+            {
+                context.Writer.WritePropertyName("OAuthParameters");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = OAuthParametersMarshaller.Instance;
+                marshaller.Marshall(requestObject.OAuthParameters, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetWarehouse())

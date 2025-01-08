@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
     /// </summary>
     public partial class StartDataCollectionByAgentIdsRequest : AmazonApplicationDiscoveryServiceRequest
     {
-        private List<string> _agentIds = new List<string>();
+        private List<string> _agentIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AgentIds. 
@@ -44,8 +45,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         /// Services account, the service does not throw an exception. Instead, it returns the
         /// error in the <i>Description</i> field. If you send a request to multiple agents and
         /// you do not have permission to contact some of those agents, the system does not throw
-        /// an exception. Instead, the system shows <code>Failed</code> in the <i>Description</i>
-        /// field.
+        /// an exception. Instead, the system shows <c>Failed</c> in the <i>Description</i> field.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -58,7 +58,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         // Check to see if AgentIds property is set
         internal bool IsSetAgentIds()
         {
-            return this._agentIds != null && this._agentIds.Count > 0; 
+            return this._agentIds != null && (this._agentIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

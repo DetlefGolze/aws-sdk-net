@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.Cloud9
 {
     /// <summary>
-    /// Implementation for accessing Cloud9
+    /// <para>Implementation for accessing Cloud9</para>
     ///
     /// Cloud9 
     /// <para>
@@ -48,64 +49,70 @@ namespace Amazon.Cloud9
     /// For more information about Cloud9, see the <a href="https://docs.aws.amazon.com/cloud9/latest/user-guide">Cloud9
     /// User Guide</a>.
     /// </para>
-    ///  
+    ///  <important> 
+    /// <para>
+    /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+    /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+    /// more"</a> 
+    /// </para>
+    ///  </important> 
     /// <para>
     /// Cloud9 supports these operations:
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>CreateEnvironmentEC2</code>: Creates an Cloud9 development environment, launches
+    ///  <c>CreateEnvironmentEC2</c>: Creates an Cloud9 development environment, launches
     /// an Amazon EC2 instance, and then connects from the instance to the environment.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>CreateEnvironmentMembership</code>: Adds an environment member to an environment.
+    ///  <c>CreateEnvironmentMembership</c>: Adds an environment member to an environment.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>DeleteEnvironment</code>: Deletes an environment. If an Amazon EC2 instance
-    /// is connected to the environment, also terminates the instance.
+    ///  <c>DeleteEnvironment</c>: Deletes an environment. If an Amazon EC2 instance is connected
+    /// to the environment, also terminates the instance.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>DeleteEnvironmentMembership</code>: Deletes an environment member from an environment.
+    ///  <c>DeleteEnvironmentMembership</c>: Deletes an environment member from an environment.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>DescribeEnvironmentMemberships</code>: Gets information about environment members
+    ///  <c>DescribeEnvironmentMemberships</c>: Gets information about environment members
     /// for an environment.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>DescribeEnvironments</code>: Gets information about environments.
+    ///  <c>DescribeEnvironments</c>: Gets information about environments.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>DescribeEnvironmentStatus</code>: Gets status information for an environment.
+    ///  <c>DescribeEnvironmentStatus</c>: Gets status information for an environment.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ListEnvironments</code>: Gets a list of environment identifiers.
+    ///  <c>ListEnvironments</c>: Gets a list of environment identifiers.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ListTagsForResource</code>: Gets the tags for an environment.
+    ///  <c>ListTagsForResource</c>: Gets the tags for an environment.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>TagResource</code>: Adds tags to an environment.
+    ///  <c>TagResource</c>: Adds tags to an environment.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>UntagResource</code>: Removes tags from an environment.
+    ///  <c>UntagResource</c>: Removes tags from an environment.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>UpdateEnvironment</code>: Changes the settings of an existing environment.
+    ///  <c>UpdateEnvironment</c>: Changes the settings of an existing environment.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>UpdateEnvironmentMembership</code>: Changes the settings of an existing environment
+    ///  <c>UpdateEnvironmentMembership</c>: Changes the settings of an existing environment
     /// member for an environment.
     /// </para>
     ///  </li> </ul>
@@ -339,6 +346,14 @@ namespace Amazon.Cloud9
         /// <summary>
         /// Creates an Cloud9 development environment, launches an Amazon Elastic Compute Cloud
         /// (Amazon EC2) instance, and then connects from the instance to the environment.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateEnvironmentEC2 service method.</param>
         /// 
@@ -378,6 +393,14 @@ namespace Amazon.Cloud9
         /// <summary>
         /// Creates an Cloud9 development environment, launches an Amazon Elastic Compute Cloud
         /// (Amazon EC2) instance, and then connects from the instance to the environment.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateEnvironmentEC2 service method.</param>
         /// <param name="cancellationToken">
@@ -423,6 +446,14 @@ namespace Amazon.Cloud9
 
         /// <summary>
         /// Adds an environment member to an Cloud9 development environment.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateEnvironmentMembership service method.</param>
         /// 
@@ -461,6 +492,14 @@ namespace Amazon.Cloud9
 
         /// <summary>
         /// Adds an environment member to an Cloud9 development environment.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateEnvironmentMembership service method.</param>
         /// <param name="cancellationToken">
@@ -507,6 +546,14 @@ namespace Amazon.Cloud9
         /// <summary>
         /// Deletes an Cloud9 development environment. If an Amazon EC2 instance is connected
         /// to the environment, also terminates the instance.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteEnvironment service method.</param>
         /// 
@@ -546,6 +593,14 @@ namespace Amazon.Cloud9
         /// <summary>
         /// Deletes an Cloud9 development environment. If an Amazon EC2 instance is connected
         /// to the environment, also terminates the instance.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteEnvironment service method.</param>
         /// <param name="cancellationToken">
@@ -591,6 +646,14 @@ namespace Amazon.Cloud9
 
         /// <summary>
         /// Deletes an environment member from a development environment.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteEnvironmentMembership service method.</param>
         /// 
@@ -629,6 +692,14 @@ namespace Amazon.Cloud9
 
         /// <summary>
         /// Deletes an environment member from a development environment.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteEnvironmentMembership service method.</param>
         /// <param name="cancellationToken">
@@ -674,6 +745,14 @@ namespace Amazon.Cloud9
 
         /// <summary>
         /// Gets information about environment members for an Cloud9 development environment.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeEnvironmentMemberships service method.</param>
         /// 
@@ -712,6 +791,14 @@ namespace Amazon.Cloud9
 
         /// <summary>
         /// Gets information about environment members for an Cloud9 development environment.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeEnvironmentMemberships service method.</param>
         /// <param name="cancellationToken">
@@ -757,6 +844,14 @@ namespace Amazon.Cloud9
 
         /// <summary>
         /// Gets information about Cloud9 development environments.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeEnvironments service method.</param>
         /// 
@@ -795,6 +890,14 @@ namespace Amazon.Cloud9
 
         /// <summary>
         /// Gets information about Cloud9 development environments.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeEnvironments service method.</param>
         /// <param name="cancellationToken">
@@ -840,6 +943,14 @@ namespace Amazon.Cloud9
 
         /// <summary>
         /// Gets status information for an Cloud9 development environment.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeEnvironmentStatus service method.</param>
         /// 
@@ -878,6 +989,14 @@ namespace Amazon.Cloud9
 
         /// <summary>
         /// Gets status information for an Cloud9 development environment.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeEnvironmentStatus service method.</param>
         /// <param name="cancellationToken">
@@ -923,6 +1042,20 @@ namespace Amazon.Cloud9
 
         /// <summary>
         /// Gets a list of Cloud9 development environment identifiers.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important> <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListEnvironments service method.</param>
         /// 
@@ -961,6 +1094,20 @@ namespace Amazon.Cloud9
 
         /// <summary>
         /// Gets a list of Cloud9 development environment identifiers.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important> <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListEnvironments service method.</param>
         /// <param name="cancellationToken">
@@ -1006,6 +1153,14 @@ namespace Amazon.Cloud9
 
         /// <summary>
         /// Gets a list of the tags associated with an Cloud9 development environment.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTagsForResource service method.</param>
         /// 
@@ -1032,6 +1187,14 @@ namespace Amazon.Cloud9
 
         /// <summary>
         /// Gets a list of the tags associated with an Cloud9 development environment.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTagsForResource service method.</param>
         /// <param name="cancellationToken">
@@ -1068,6 +1231,12 @@ namespace Amazon.Cloud9
         /// 
         ///  <important> 
         /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important> <important> 
+        /// <para>
         /// Tags that you add to an Cloud9 environment by using this method will NOT be automatically
         /// propagated to underlying resources.
         /// </para>
@@ -1103,6 +1272,12 @@ namespace Amazon.Cloud9
         /// Adds tags to an Cloud9 development environment.
         /// 
         ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important> <important> 
         /// <para>
         /// Tags that you add to an Cloud9 environment by using this method will NOT be automatically
         /// propagated to underlying resources.
@@ -1144,6 +1319,14 @@ namespace Amazon.Cloud9
 
         /// <summary>
         /// Removes tags from an Cloud9 development environment.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
         /// 
@@ -1173,6 +1356,14 @@ namespace Amazon.Cloud9
 
         /// <summary>
         /// Removes tags from an Cloud9 development environment.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
         /// <param name="cancellationToken">
@@ -1209,6 +1400,14 @@ namespace Amazon.Cloud9
 
         /// <summary>
         /// Changes the settings of an existing Cloud9 development environment.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateEnvironment service method.</param>
         /// 
@@ -1247,6 +1446,14 @@ namespace Amazon.Cloud9
 
         /// <summary>
         /// Changes the settings of an existing Cloud9 development environment.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateEnvironment service method.</param>
         /// <param name="cancellationToken">
@@ -1292,6 +1499,14 @@ namespace Amazon.Cloud9
 
         /// <summary>
         /// Changes the settings of an existing environment member for an Cloud9 development environment.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateEnvironmentMembership service method.</param>
         /// 
@@ -1330,6 +1545,14 @@ namespace Amazon.Cloud9
 
         /// <summary>
         /// Changes the settings of an existing environment member for an Cloud9 development environment.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+        /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+        /// more"</a> 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateEnvironmentMembership service method.</param>
         /// <param name="cancellationToken">
@@ -1379,11 +1602,11 @@ namespace Amazon.Cloud9
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

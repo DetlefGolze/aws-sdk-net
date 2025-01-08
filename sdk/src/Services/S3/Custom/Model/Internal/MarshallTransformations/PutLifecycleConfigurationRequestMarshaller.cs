@@ -23,13 +23,13 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Util;
 using Amazon.Runtime.Internal.Util;
 
-#pragma warning disable 1591
+#pragma warning disable 1591,CS0612,CS0618
 
 namespace Amazon.S3.Model.Internal.MarshallTransformations
 {
     /// <summary>
     /// Put Bucket Lifecycle Request Marshaller
-    /// </summary>       
+    /// </summary>
     public class PutLifecycleConfigurationRequestMarshaller : IMarshaller<IRequest, PutLifecycleConfigurationRequest> ,IMarshaller<IRequest,Amazon.Runtime.AmazonWebServiceRequest>
 	{
 		public IRequest Marshall(Amazon.Runtime.AmazonWebServiceRequest input)
@@ -57,7 +57,7 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
             request.AddSubResource("lifecycle");
 
             var stringWriter = new XMLEncodedStringWriter(System.Globalization.CultureInfo.InvariantCulture);
-            using (var xmlWriter = XmlWriter.Create(stringWriter, new XmlWriterSettings(){Encoding = Encoding.UTF8, OmitXmlDeclaration = true, NewLineHandling = NewLineHandling.Entitize }))
+            using (var xmlWriter = XmlWriter.Create(stringWriter, new XmlWriterSettings() { Encoding = Encoding.UTF8, OmitXmlDeclaration = true, NewLineHandling = NewLineHandling.Entitize }))
             {
                 var lifecycleConfigurationLifecycleConfiguration = putLifecycleConfigurationRequest.Configuration;
                 if (lifecycleConfigurationLifecycleConfiguration != null)
@@ -122,6 +122,10 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
                                     if (noncurrentVersionExpiration != null)
                                     {
                                         xmlWriter.WriteStartElement("NoncurrentVersionExpiration");
+                                        if (noncurrentVersionExpiration.IsSetNewerNoncurrentVersions())
+                                        {
+                                            xmlWriter.WriteElementString("NewerNoncurrentVersions", S3Transforms.ToXmlStringValue(noncurrentVersionExpiration.NewerNoncurrentVersions));
+                                        }
                                         if (noncurrentVersionExpiration.IsSetNoncurrentDays())
                                         {
                                             xmlWriter.WriteElementString("NoncurrentDays", S3Transforms.ToXmlStringValue(noncurrentVersionExpiration.NoncurrentDays));
@@ -137,6 +141,10 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
                                             if (noncurrentVersionTransition != null)
                                             {
                                                 xmlWriter.WriteStartElement("NoncurrentVersionTransition");
+                                                if (noncurrentVersionTransition.IsSetNewerNoncurrentVersions())
+                                                {
+                                                    xmlWriter.WriteElementString("NewerNoncurrentVersions", S3Transforms.ToXmlStringValue(noncurrentVersionTransition.NewerNoncurrentVersions));
+                                                }
                                                 if (noncurrentVersionTransition.IsSetNoncurrentDays())
                                                 {
                                                     xmlWriter.WriteElementString("NoncurrentDays", S3Transforms.ToXmlStringValue(noncurrentVersionTransition.NoncurrentDays));
@@ -219,7 +227,10 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
 
 	    private static PutLifecycleConfigurationRequestMarshaller _instance;
 
-	    public static PutLifecycleConfigurationRequestMarshaller Instance
+        /// <summary>
+        /// Singleton for marshaller
+        /// </summary>
+        public static PutLifecycleConfigurationRequestMarshaller Instance
 	    {
 	        get
 	        {

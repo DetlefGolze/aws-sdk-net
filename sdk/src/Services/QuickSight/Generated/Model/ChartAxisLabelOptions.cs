@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.QuickSight.Model
     /// </summary>
     public partial class ChartAxisLabelOptions
     {
-        private List<AxisLabelOptions> _axisLabelOptions = new List<AxisLabelOptions>();
+        private List<AxisLabelOptions> _axisLabelOptions = AWSConfigs.InitializeCollections ? new List<AxisLabelOptions>() : null;
         private Visibility _sortIconVisibility;
         private Visibility _visibility;
 
@@ -53,7 +54,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if AxisLabelOptions property is set
         internal bool IsSetAxisLabelOptions()
         {
-            return this._axisLabelOptions != null && this._axisLabelOptions.Count > 0; 
+            return this._axisLabelOptions != null && (this._axisLabelOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -81,11 +82,11 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>VISIBLE</code>: Shows the axis.
+        ///  <c>VISIBLE</c>: Shows the axis.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>HIDDEN</code>: Hides the axis.
+        ///  <c>HIDDEN</c>: Hides the axis.
         /// </para>
         ///  </li> </ul>
         /// </summary>

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectCases.Model
 {
     /// <summary>
-    /// A filter for related items of type <code>Comment</code>.
+    /// A filter for related items of type <c>Comment</c>.
     /// </summary>
     public partial class CommentFilter
     {

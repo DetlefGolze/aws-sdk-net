@@ -26,18 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
     /// Object representing any Kubernetes overrides to a job definition that's used in a
-    /// <a>SubmitJob</a> API operation.
+    /// <a href="https://docs.aws.amazon.com/batch/latest/APIReference/API_SubmitJob.html">SubmitJob</a>
+    /// API operation.
     /// </summary>
     public partial class EksContainerOverride
     {
-        private List<string> _args = new List<string>();
-        private List<string> _command = new List<string>();
-        private List<EksContainerEnvironmentVariable> _env = new List<EksContainerEnvironmentVariable>();
+        private List<string> _args = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _command = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<EksContainerEnvironmentVariable> _env = AWSConfigs.InitializeCollections ? new List<EksContainerEnvironmentVariable>() : null;
         private string _image;
+        private string _name;
         private EksContainerResourceRequirements _resources;
 
         /// <summary>
@@ -45,8 +48,8 @@ namespace Amazon.Batch.Model
         /// <para>
         /// The arguments to the entrypoint to send to the container that overrides the default
         /// arguments from the Docker image or the job definition. For more information, see <a
-        /// href="https://docs.docker.com/engine/reference/builder/#cmd">CMD</a> in the <i>Dockerfile
-        /// reference</i> and <a href="https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/">Define
+        /// href="https://docs.docker.com/engine/reference/builder/#cmd">Dockerfile reference:
+        /// CMD</a> and <a href="https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/">Define
         /// a command an arguments for a pod</a> in the <i>Kubernetes documentation</i>.
         /// </para>
         /// </summary>
@@ -59,7 +62,7 @@ namespace Amazon.Batch.Model
         // Check to see if Args property is set
         internal bool IsSetArgs()
         {
-            return this._args != null && this._args.Count > 0; 
+            return this._args != null && (this._args.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -78,7 +81,7 @@ namespace Amazon.Batch.Model
         // Check to see if Command property is set
         internal bool IsSetCommand()
         {
-            return this._command != null && this._command.Count > 0; 
+            return this._command != null && (this._command.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -90,7 +93,7 @@ namespace Amazon.Batch.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// Environment variables cannot start with "<code>AWS_BATCH</code>". This naming convention
+        /// Environment variables cannot start with "<c>AWS_BATCH</c>". This naming convention
         /// is reserved for variables that Batch sets.
         /// </para>
         ///  </note>
@@ -104,7 +107,7 @@ namespace Amazon.Batch.Model
         // Check to see if Env property is set
         internal bool IsSetEnv()
         {
-            return this._env != null && this._env.Count > 0; 
+            return this._env != null && (this._env.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -126,11 +129,30 @@ namespace Amazon.Batch.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Name. 
+        /// <para>
+        /// A pointer to the container that you want to override. The name must match a unique
+        /// container name that you wish to override.
+        /// </para>
+        /// </summary>
+        public string Name
+        {
+            get { return this._name; }
+            set { this._name = value; }
+        }
+
+        // Check to see if Name property is set
+        internal bool IsSetName()
+        {
+            return this._name != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Resources. 
         /// <para>
         /// The type and amount of resources to assign to a container. These override the settings
-        /// in the job definition. The supported resources include <code>memory</code>, <code>cpu</code>,
-        /// and <code>nvidia.com/gpu</code>. For more information, see <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/">Resource
+        /// in the job definition. The supported resources include <c>memory</c>, <c>cpu</c>,
+        /// and <c>nvidia.com/gpu</c>. For more information, see <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/">Resource
         /// management for pods and containers</a> in the <i>Kubernetes documentation</i>.
         /// </para>
         /// </summary>

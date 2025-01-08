@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Translate.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.Translate.Model
         /// Gets and sets the property Status. 
         /// <para>
         /// The status of the parallel data resource. When the resource is ready for you to use,
-        /// the status is <code>ACTIVE</code>.
+        /// the status is <c>ACTIVE</c>.
         /// </para>
         /// </summary>
         public ParallelDataStatus Status

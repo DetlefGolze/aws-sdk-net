@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.CloudTrail.Model
     /// log files. Changes to a trail do not require stopping the CloudTrail service. Use
     /// this action to designate an existing bucket for log delivery. If the existing bucket
     /// has previously been a target for CloudTrail log files, an IAM policy exists for the
-    /// bucket. <code>UpdateTrail</code> must be called from the Region in which the trail
-    /// was created; otherwise, an <code>InvalidHomeRegionException</code> is thrown.
+    /// bucket. <c>UpdateTrail</c> must be called from the Region in which the trail was created;
+    /// otherwise, an <c>InvalidHomeRegionException</c> is thrown.
     /// </summary>
     public partial class UpdateTrailRequest : AmazonCloudTrailRequest
     {
@@ -60,7 +61,7 @@ namespace Amazon.CloudTrail.Model
         /// </para>
         ///  
         /// <para>
-        /// Not required unless you specify <code>CloudWatchLogsRoleArn</code>.
+        /// Not required unless you specify <c>CloudWatchLogsRoleArn</c>.
         /// </para>
         /// </summary>
         public string CloudWatchLogsLogGroupArn
@@ -172,13 +173,19 @@ namespace Amazon.CloudTrail.Model
         /// Specifies whether the trail is applied to all accounts in an organization in Organizations,
         /// or only for the current Amazon Web Services account. The default is false, and cannot
         /// be true unless the call is made on behalf of an Amazon Web Services account that is
-        /// the management account or delegated administrator account for an organization in Organizations.
-        /// If the trail is not an organization trail and this is set to <code>true</code>, the
-        /// trail will be created in all Amazon Web Services accounts that belong to the organization.
-        /// If the trail is an organization trail and this is set to <code>false</code>, the trail
-        /// will remain in the current Amazon Web Services account but be deleted from all member
-        /// accounts in the organization.
+        /// the management account for an organization in Organizations. If the trail is not an
+        /// organization trail and this is set to <c>true</c>, the trail will be created in all
+        /// Amazon Web Services accounts that belong to the organization. If the trail is an organization
+        /// trail and this is set to <c>false</c>, the trail will remain in the current Amazon
+        /// Web Services account but be deleted from all member accounts in the organization.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// Only the management account for the organization can convert an organization trail
+        /// to a non-organization trail, or convert a non-organization trail to an organization
+        /// trail.
+        /// </para>
+        ///  </note>
         /// </summary>
         public bool IsOrganizationTrail
         {
@@ -242,8 +249,8 @@ namespace Amazon.CloudTrail.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// Specifies the name of the trail or trail ARN. If <code>Name</code> is a trail name,
-        /// the string must meet the following requirements:
+        /// Specifies the name of the trail or trail ARN. If <c>Name</c> is a trail name, the
+        /// string must meet the following requirements:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -260,8 +267,8 @@ namespace Amazon.CloudTrail.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Have no adjacent periods, underscores or dashes. Names like <code>my-_namespace</code>
-        /// and <code>my--namespace</code> are not valid.
+        /// Have no adjacent periods, underscores or dashes. Names like <c>my-_namespace</c> and
+        /// <c>my--namespace</c> are not valid.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -269,11 +276,11 @@ namespace Amazon.CloudTrail.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If <code>Name</code> is a trail ARN, it must be in the following format.
+        /// If <c>Name</c> is a trail ARN, it must be in the following format.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</code> 
+        ///  <c>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -293,8 +300,8 @@ namespace Amazon.CloudTrail.Model
         /// Gets and sets the property S3BucketName. 
         /// <para>
         /// Specifies the name of the Amazon S3 bucket designated for publishing log files. See
-        /// <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/create_trail_naming_policy.html">Amazon
-        /// S3 Bucket Naming Requirements</a>.
+        /// <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html">Amazon
+        /// S3 Bucket naming rules</a>.
         /// </para>
         /// </summary>
         public string S3BucketName
@@ -313,7 +320,7 @@ namespace Amazon.CloudTrail.Model
         /// Gets and sets the property S3KeyPrefix. 
         /// <para>
         /// Specifies the Amazon S3 key prefix that comes after the name of the bucket you have
-        /// designated for log file delivery. For more information, see <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-find-log-files.html">Finding
+        /// designated for log file delivery. For more information, see <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/get-and-view-cloudtrail-log-files.html#cloudtrail-find-log-files">Finding
         /// Your CloudTrail Log Files</a>. The maximum length is 200 characters.
         /// </para>
         /// </summary>

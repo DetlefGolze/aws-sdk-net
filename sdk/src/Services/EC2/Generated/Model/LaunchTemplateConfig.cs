@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.EC2.Model
     public partial class LaunchTemplateConfig
     {
         private FleetLaunchTemplateSpecification _launchTemplateSpecification;
-        private List<LaunchTemplateOverrides> _overrides = new List<LaunchTemplateOverrides>();
+        private List<LaunchTemplateOverrides> _overrides = AWSConfigs.InitializeCollections ? new List<LaunchTemplateOverrides>() : null;
 
         /// <summary>
         /// Gets and sets the property LaunchTemplateSpecification. 
         /// <para>
         /// The launch template to use. Make sure that the launch template does not contain the
-        /// <code>NetworkInterfaceId</code> parameter because you can't specify a network interface
+        /// <c>NetworkInterfaceId</c> parameter because you can't specify a network interface
         /// ID in a Spot Fleet.
         /// </para>
         /// </summary>
@@ -71,7 +72,7 @@ namespace Amazon.EC2.Model
         // Check to see if Overrides property is set
         internal bool IsSetOverrides()
         {
-            return this._overrides != null && this._overrides.Count > 0; 
+            return this._overrides != null && (this._overrides.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CleanRooms.Model
 {
     /// <summary>
@@ -34,13 +35,38 @@ namespace Amazon.CleanRooms.Model
     /// </summary>
     public partial class AnalysisRuleAggregation
     {
-        private List<AggregateColumn> _aggregateColumns = new List<AggregateColumn>();
-        private List<string> _allowedJoinOperators = new List<string>();
-        private List<string> _dimensionColumns = new List<string>();
-        private List<string> _joinColumns = new List<string>();
+        private AdditionalAnalyses _additionalAnalyses;
+        private List<AggregateColumn> _aggregateColumns = AWSConfigs.InitializeCollections ? new List<AggregateColumn>() : null;
+        private List<string> _allowedJoinOperators = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _dimensionColumns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _joinColumns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private JoinRequiredOption _joinRequired;
-        private List<AggregationConstraint> _outputConstraints = new List<AggregationConstraint>();
-        private List<string> _scalarFunctions = new List<string>();
+        private List<AggregationConstraint> _outputConstraints = AWSConfigs.InitializeCollections ? new List<AggregationConstraint>() : null;
+        private List<string> _scalarFunctions = AWSConfigs.InitializeCollections ? new List<string>() : null;
+
+        /// <summary>
+        /// Gets and sets the property AdditionalAnalyses. 
+        /// <para>
+        ///  An indicator as to whether additional analyses (such as Clean Rooms ML) can be applied
+        /// to the output of the direct query. 
+        /// </para>
+        ///  
+        /// <para>
+        /// The <c>additionalAnalyses</c> parameter is currently supported for the list analysis
+        /// rule (<c>AnalysisRuleList</c>) and the custom analysis rule (<c>AnalysisRuleCustom</c>).
+        /// </para>
+        /// </summary>
+        public AdditionalAnalyses AdditionalAnalyses
+        {
+            get { return this._additionalAnalyses; }
+            set { this._additionalAnalyses = value; }
+        }
+
+        // Check to see if AdditionalAnalyses property is set
+        internal bool IsSetAdditionalAnalyses()
+        {
+            return this._additionalAnalyses != null;
+        }
 
         /// <summary>
         /// Gets and sets the property AggregateColumns. 
@@ -58,14 +84,14 @@ namespace Amazon.CleanRooms.Model
         // Check to see if AggregateColumns property is set
         internal bool IsSetAggregateColumns()
         {
-            return this._aggregateColumns != null && this._aggregateColumns.Count > 0; 
+            return this._aggregateColumns != null && (this._aggregateColumns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AllowedJoinOperators. 
         /// <para>
         /// Which logical operators (if any) are to be used in an INNER JOIN match condition.
-        /// Default is <code>AND</code>.
+        /// Default is <c>AND</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=2)]
@@ -78,7 +104,7 @@ namespace Amazon.CleanRooms.Model
         // Check to see if AllowedJoinOperators property is set
         internal bool IsSetAllowedJoinOperators()
         {
-            return this._allowedJoinOperators != null && this._allowedJoinOperators.Count > 0; 
+            return this._allowedJoinOperators != null && (this._allowedJoinOperators.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -97,7 +123,7 @@ namespace Amazon.CleanRooms.Model
         // Check to see if DimensionColumns property is set
         internal bool IsSetDimensionColumns()
         {
-            return this._dimensionColumns != null && this._dimensionColumns.Count > 0; 
+            return this._dimensionColumns != null && (this._dimensionColumns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -117,7 +143,7 @@ namespace Amazon.CleanRooms.Model
         // Check to see if JoinColumns property is set
         internal bool IsSetJoinColumns()
         {
-            return this._joinColumns != null && this._joinColumns.Count > 0; 
+            return this._joinColumns != null && (this._joinColumns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -156,7 +182,7 @@ namespace Amazon.CleanRooms.Model
         // Check to see if OutputConstraints property is set
         internal bool IsSetOutputConstraints()
         {
-            return this._outputConstraints != null && this._outputConstraints.Count > 0; 
+            return this._outputConstraints != null && (this._outputConstraints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -176,7 +202,7 @@ namespace Amazon.CleanRooms.Model
         // Check to see if ScalarFunctions property is set
         internal bool IsSetScalarFunctions()
         {
-            return this._scalarFunctions != null && this._scalarFunctions.Count > 0; 
+            return this._scalarFunctions != null && (this._scalarFunctions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

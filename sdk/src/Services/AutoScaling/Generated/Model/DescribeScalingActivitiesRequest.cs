@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -35,23 +36,23 @@ namespace Amazon.AutoScaling.Model
     ///  
     /// <para>
     /// When scaling events occur, you see a record of the scaling activity in the scaling
-    /// activities. For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-verify-scaling-activity.html">Verifying
+    /// activities. For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-verify-scaling-activity.html">Verify
     /// a scaling activity for an Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling
     /// User Guide</i>.
     /// </para>
     ///  
     /// <para>
-    /// If the scaling event succeeds, the value of the <code>StatusCode</code> element in
-    /// the response is <code>Successful</code>. If an attempt to launch instances failed,
-    /// the <code>StatusCode</code> value is <code>Failed</code> or <code>Cancelled</code>
-    /// and the <code>StatusMessage</code> element in the response indicates the cause of
-    /// the failure. For help interpreting the <code>StatusMessage</code>, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/CHAP_Troubleshooting.html">Troubleshooting
+    /// If the scaling event succeeds, the value of the <c>StatusCode</c> element in the response
+    /// is <c>Successful</c>. If an attempt to launch instances failed, the <c>StatusCode</c>
+    /// value is <c>Failed</c> or <c>Cancelled</c> and the <c>StatusMessage</c> element in
+    /// the response indicates the cause of the failure. For help interpreting the <c>StatusMessage</c>,
+    /// see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/CHAP_Troubleshooting.html">Troubleshooting
     /// Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. 
     /// </para>
     /// </summary>
     public partial class DescribeScalingActivitiesRequest : AmazonAutoScalingRequest
     {
-        private List<string> _activityIds = new List<string>();
+        private List<string> _activityIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _autoScalingGroupName;
         private bool? _includeDeletedGroups;
         private int? _maxRecords;
@@ -79,7 +80,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if ActivityIds property is set
         internal bool IsSetActivityIds()
         {
-            return this._activityIds != null && this._activityIds.Count > 0; 
+            return this._activityIds != null && (this._activityIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -122,8 +123,8 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property MaxRecords. 
         /// <para>
-        /// The maximum number of items to return with this call. The default value is <code>100</code>
-        /// and the maximum value is <code>100</code>.
+        /// The maximum number of items to return with this call. The default value is <c>100</c>
+        /// and the maximum value is <c>100</c>.
         /// </para>
         /// </summary>
         public int MaxRecords

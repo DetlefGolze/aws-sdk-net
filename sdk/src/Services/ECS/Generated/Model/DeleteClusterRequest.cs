@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteCluster operation.
-    /// Deletes the specified cluster. The cluster transitions to the <code>INACTIVE</code>
-    /// state. Clusters with an <code>INACTIVE</code> status might remain discoverable in
-    /// your account for a period of time. However, this behavior is subject to change in
-    /// the future. We don't recommend that you rely on <code>INACTIVE</code> clusters persisting.
+    /// Deletes the specified cluster. The cluster transitions to the <c>INACTIVE</c> state.
+    /// Clusters with an <c>INACTIVE</c> status might remain discoverable in your account
+    /// for a period of time. However, this behavior is subject to change in the future. We
+    /// don't recommend that you rely on <c>INACTIVE</c> clusters persisting.
     /// 
     ///  
     /// <para>
     /// You must deregister all container instances from this cluster before you may delete
-    /// it. You can list the container instances in a cluster with <a>ListContainerInstances</a>
-    /// and deregister them with <a>DeregisterContainerInstance</a>.
+    /// it. You can list the container instances in a cluster with <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ListContainerInstances.html">ListContainerInstances</a>
+    /// and deregister them with <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DeregisterContainerInstance.html">DeregisterContainerInstance</a>.
     /// </para>
     /// </summary>
     public partial class DeleteClusterRequest : AmazonECSRequest

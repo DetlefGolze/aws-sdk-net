@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
@@ -38,18 +39,18 @@ namespace Amazon.PinpointSMSVoiceV2.Model
     /// A keyword is a word that you can search for on a particular phone number or pool.
     /// It is also a specific word or phrase that an end user can send to your number to elicit
     /// a response, such as an informational message or a special offer. When your number
-    /// receives a message that begins with a keyword, Amazon Pinpoint responds with a customizable
-    /// message.
+    /// receives a message that begins with a keyword, AWS End User Messaging SMS and Voice
+    /// responds with a customizable message.
     /// </para>
     ///  
     /// <para>
-    /// If you specify a keyword that isn't valid, an Error is returned.
+    /// If you specify a keyword that isn't valid, an error is returned.
     /// </para>
     /// </summary>
     public partial class DescribeKeywordsRequest : AmazonPinpointSMSVoiceV2Request
     {
-        private List<KeywordFilter> _filters = new List<KeywordFilter>();
-        private List<string> _keywords = new List<string>();
+        private List<KeywordFilter> _filters = AWSConfigs.InitializeCollections ? new List<KeywordFilter>() : null;
+        private List<string> _keywords = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _nextToken;
         private string _originationIdentity;
@@ -70,7 +71,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -89,7 +90,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         // Check to see if Keywords property is set
         internal bool IsSetKeywords()
         {
-            return this._keywords != null && this._keywords.Count > 0; 
+            return this._keywords != null && (this._keywords.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -139,6 +140,12 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// and PhoneNumberArn while <a>DescribeSenderIds</a> can be used to get the values for
         /// SenderId and SenderIdArn.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// If you are using a shared AWS End User Messaging SMS and Voice resource then you must
+        /// use the full Amazon Resource Name(ARN).
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]
         public string OriginationIdentity

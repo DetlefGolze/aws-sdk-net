@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Athena.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.Athena.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(WorkGroupConfigurationUpdates requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAdditionalConfiguration())
             {
                 context.Writer.WritePropertyName("AdditionalConfiguration");
@@ -101,6 +104,17 @@ namespace Amazon.Athena.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("PublishCloudWatchMetricsEnabled");
                 context.Writer.Write(requestObject.PublishCloudWatchMetricsEnabled);
+            }
+
+            if(requestObject.IsSetQueryResultsS3AccessGrantsConfiguration())
+            {
+                context.Writer.WritePropertyName("QueryResultsS3AccessGrantsConfiguration");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = QueryResultsS3AccessGrantsConfigurationMarshaller.Instance;
+                marshaller.Marshall(requestObject.QueryResultsS3AccessGrantsConfiguration, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetRemoveBytesScannedCutoffPerQuery())

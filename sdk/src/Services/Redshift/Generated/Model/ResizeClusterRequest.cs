@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -45,14 +46,6 @@ namespace Amazon.Redshift.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// dc1.large (if your cluster is in a VPC)
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// dc1.8xlarge (if your cluster is in a VPC)
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
     /// dc2.large
     /// </para>
     ///  </li> <li> 
@@ -61,11 +54,7 @@ namespace Amazon.Redshift.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// ds2.xlarge
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// ds2.8xlarge
+    /// ra3.large
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -99,8 +88,8 @@ namespace Amazon.Redshift.Model
         /// Gets and sets the property Classic. 
         /// <para>
         /// A boolean value indicating whether the resize operation is using the classic resize
-        /// process. If you don't provide this parameter or set the value to <code>false</code>,
-        /// the resize type is elastic. 
+        /// process. If you don't provide this parameter or set the value to <c>false</c>, the
+        /// resize type is elastic. 
         /// </para>
         /// </summary>
         public bool Classic

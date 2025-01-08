@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
@@ -36,9 +37,9 @@ namespace Amazon.TranscribeService.Model
     /// <para>
     /// Before creating a new custom medical vocabulary, you must first upload a text file
     /// that contains your vocabulary table into an Amazon S3 bucket. Note that this differs
-    /// from , where you can include a list of terms within your request using the <code>Phrases</code>
-    /// flag; <code>CreateMedicalVocabulary</code> does not support the <code>Phrases</code>
-    /// flag and only accepts vocabularies in table format.
+    /// from , where you can include a list of terms within your request using the <c>Phrases</c>
+    /// flag; <c>CreateMedicalVocabulary</c> does not support the <c>Phrases</c> flag and
+    /// only accepts vocabularies in table format.
     /// </para>
     ///  
     /// <para>
@@ -56,7 +57,7 @@ namespace Amazon.TranscribeService.Model
     public partial class CreateMedicalVocabularyRequest : AmazonTranscribeServiceRequest
     {
         private LanguageCode _languageCode;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _vocabularyFileUri;
         private string _vocabularyName;
 
@@ -64,8 +65,7 @@ namespace Amazon.TranscribeService.Model
         /// Gets and sets the property LanguageCode. 
         /// <para>
         /// The language code that represents the language of the entries in your custom vocabulary.
-        /// US English (<code>en-US</code>) is the only language supported with Amazon Transcribe
-        /// Medical.
+        /// US English (<c>en-US</c>) is the only language supported with Amazon Transcribe Medical.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -103,7 +103,7 @@ namespace Amazon.TranscribeService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -114,8 +114,7 @@ namespace Amazon.TranscribeService.Model
         /// </para>
         ///  
         /// <para>
-        /// Here's an example URI path: <code>s3://DOC-EXAMPLE-BUCKET/my-vocab-file.txt</code>
-        /// 
+        /// Here's an example URI path: <c>s3://DOC-EXAMPLE-BUCKET/my-vocab-file.txt</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2000)]
@@ -140,7 +139,7 @@ namespace Amazon.TranscribeService.Model
         /// <para>
         /// This name is case sensitive, cannot contain spaces, and must be unique within an Amazon
         /// Web Services account. If you try to create a new custom medical vocabulary with the
-        /// same name as an existing custom medical vocabulary, you get a <code>ConflictException</code>
+        /// same name as an existing custom medical vocabulary, you get a <c>ConflictException</c>
         /// error.
         /// </para>
         /// </summary>

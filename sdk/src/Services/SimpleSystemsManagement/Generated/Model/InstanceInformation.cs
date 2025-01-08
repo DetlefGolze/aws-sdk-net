@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -150,10 +151,15 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property IamRole. 
         /// <para>
-        /// The Identity and Access Management (IAM) role assigned to the on-premises Systems
-        /// Manager managed node. This call doesn't return the IAM role for Amazon Elastic Compute
-        /// Cloud (Amazon EC2) instances. To retrieve the IAM role for an EC2 instance, use the
-        /// Amazon EC2 <code>DescribeInstances</code> operation. For information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html">DescribeInstances</a>
+        /// The role assigned to an Amazon EC2 instance configured with a Systems Manager Quick
+        /// Setup host management configuration or the role assigned to an on-premises managed
+        /// node.
+        /// </para>
+        ///  
+        /// <para>
+        ///  This call doesn't return the IAM role for <i>unmanaged</i> Amazon EC2 instances (instances
+        /// not configured for Systems Manager). To retrieve the role for an unmanaged instance,
+        /// use the Amazon EC2 <c>DescribeInstances</c> operation. For information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html">DescribeInstances</a>
         /// in the <i>Amazon EC2 API Reference</i> or <a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html">describe-instances</a>
         /// in the <i>Amazon Web Services CLI Command Reference</i>.
         /// </para>
@@ -195,7 +201,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// The IP address of the managed node.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=46)]
+        [AWSProperty(Sensitive=true, Min=1, Max=46)]
         public string IPAddress
         {
             get { return this._ipAddress; }
@@ -287,14 +293,14 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property Name. 
         /// <para>
         /// The name assigned to an on-premises server, edge device, or virtual machine (VM) when
-        /// it is activated as a Systems Manager managed node. The name is specified as the <code>DefaultInstanceName</code>
+        /// it is activated as a Systems Manager managed node. The name is specified as the <c>DefaultInstanceName</c>
         /// property using the <a>CreateActivation</a> command. It is applied to the managed node
         /// by specifying the Activation Code and Activation ID when you install SSM Agent on
-        /// the node, as explained in <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-managed-linux.html">Install
-        /// SSM Agent for a hybrid environment (Linux)</a> and <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-managed-win.html">Install
-        /// SSM Agent for a hybrid environment (Windows)</a>. To retrieve the <code>Name</code>
-        /// tag of an EC2 instance, use the Amazon EC2 <code>DescribeInstances</code> operation.
-        /// For information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html">DescribeInstances</a>
+        /// the node, as explained in <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/hybrid-multicloud-ssm-agent-install-linux.html">How
+        /// to install SSM Agent on hybrid Linux nodes</a> and <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/hybrid-multicloud-ssm-agent-install-windows.html">How
+        /// to install SSM Agent on hybrid Windows Server nodes</a>. To retrieve the <c>Name</c>
+        /// tag of an EC2 instance, use the Amazon EC2 <c>DescribeInstances</c> operation. For
+        /// information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html">DescribeInstances</a>
         /// in the <i>Amazon EC2 API Reference</i> or <a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html">describe-instances</a>
         /// in the <i>Amazon Web Services CLI Command Reference</i>.
         /// </para>
@@ -318,7 +324,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The status <code>Inactive</code> has been deprecated and is no longer in use.
+        /// The status <c>Inactive</c> has been deprecated and is no longer in use.
         /// </para>
         ///  </note>
         /// </summary>
@@ -355,7 +361,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property PlatformType. 
         /// <para>
-        /// The operating system platform type. 
+        /// The operating system platform type.
         /// </para>
         /// </summary>
         public PlatformType PlatformType
@@ -427,8 +433,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property SourceId. 
         /// <para>
-        /// The ID of the source resource. For IoT Greengrass devices, <code>SourceId</code> is
-        /// the Thing name. 
+        /// The ID of the source resource. For IoT Greengrass devices, <c>SourceId</c> is the
+        /// Thing name. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=128)]
@@ -447,8 +453,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property SourceType. 
         /// <para>
-        /// The type of the source resource. For IoT Greengrass devices, <code>SourceType</code>
-        /// is <code>AWS::IoT::Thing</code>. 
+        /// The type of the source resource. For IoT Greengrass devices, <c>SourceType</c> is
+        /// <c>AWS::IoT::Thing</c>. 
         /// </para>
         /// </summary>
         public SourceType SourceType

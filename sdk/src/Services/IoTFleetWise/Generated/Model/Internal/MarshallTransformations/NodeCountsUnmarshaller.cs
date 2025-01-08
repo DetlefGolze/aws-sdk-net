@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public NodeCounts Unmarshall(JsonUnmarshallerContext context)
         {
+            NodeCounts unmarshalledObject = new NodeCounts();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            NodeCounts unmarshalledObject = new NodeCounts();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -88,14 +90,25 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
                     unmarshalledObject.TotalNodes = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("totalProperties", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.TotalProperties = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("totalSensors", targetDepth))
                 {
                     var unmarshaller = IntUnmarshaller.Instance;
                     unmarshalledObject.TotalSensors = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("totalStructs", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.TotalStructs = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

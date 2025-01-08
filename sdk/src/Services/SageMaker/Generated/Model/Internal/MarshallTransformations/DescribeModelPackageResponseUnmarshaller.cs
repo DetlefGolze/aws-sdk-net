@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -129,6 +130,18 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     response.ModelApprovalStatus = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ModelCard", targetDepth))
+                {
+                    var unmarshaller = ModelPackageModelCardUnmarshaller.Instance;
+                    response.ModelCard = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ModelLifeCycle", targetDepth))
+                {
+                    var unmarshaller = ModelLifeCycleUnmarshaller.Instance;
+                    response.ModelLifeCycle = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ModelMetrics", targetDepth))
                 {
                     var unmarshaller = ModelMetricsUnmarshaller.Instance;
@@ -183,6 +196,12 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     response.SamplePayloadUrl = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("SecurityConfig", targetDepth))
+                {
+                    var unmarshaller = ModelPackageSecurityConfigUnmarshaller.Instance;
+                    response.SecurityConfig = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("SkipModelValidation", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -193,6 +212,12 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = SourceAlgorithmSpecificationUnmarshaller.Instance;
                     response.SourceAlgorithmSpecification = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("SourceUri", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.SourceUri = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Task", targetDepth))

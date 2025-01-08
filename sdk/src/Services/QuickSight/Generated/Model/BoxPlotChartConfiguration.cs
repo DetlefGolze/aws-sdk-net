@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The configuration of a <code>BoxPlotVisual</code>.
+    /// The configuration of a <c>BoxPlotVisual</c>.
     /// </summary>
     public partial class BoxPlotChartConfiguration
     {
@@ -37,10 +38,11 @@ namespace Amazon.QuickSight.Model
         private AxisDisplayOptions _categoryAxis;
         private ChartAxisLabelOptions _categoryLabelOptions;
         private BoxPlotFieldWells _fieldWells;
+        private VisualInteractionOptions _interactions;
         private LegendOptions _legend;
         private AxisDisplayOptions _primaryYAxisDisplayOptions;
         private ChartAxisLabelOptions _primaryYAxisLabelOptions;
-        private List<ReferenceLine> _referenceLines = new List<ReferenceLine>();
+        private List<ReferenceLine> _referenceLines = AWSConfigs.InitializeCollections ? new List<ReferenceLine>() : null;
         private BoxPlotSortConfiguration _sortConfiguration;
         private TooltipOptions _tooltip;
         private VisualPalette _visualPalette;
@@ -119,6 +121,24 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Interactions. 
+        /// <para>
+        /// The general visual interactions setup for a visual.
+        /// </para>
+        /// </summary>
+        public VisualInteractionOptions Interactions
+        {
+            get { return this._interactions; }
+            set { this._interactions = value; }
+        }
+
+        // Check to see if Interactions property is set
+        internal bool IsSetInteractions()
+        {
+            return this._interactions != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Legend.
         /// </summary>
         public LegendOptions Legend
@@ -186,13 +206,13 @@ namespace Amazon.QuickSight.Model
         // Check to see if ReferenceLines property is set
         internal bool IsSetReferenceLines()
         {
-            return this._referenceLines != null && this._referenceLines.Count > 0; 
+            return this._referenceLines != null && (this._referenceLines.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SortConfiguration. 
         /// <para>
-        /// The sort configuration of a <code>BoxPlotVisual</code>.
+        /// The sort configuration of a <c>BoxPlotVisual</c>.
         /// </para>
         /// </summary>
         public BoxPlotSortConfiguration SortConfiguration

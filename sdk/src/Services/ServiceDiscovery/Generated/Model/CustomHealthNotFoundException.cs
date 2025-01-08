@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceDiscovery.Model
 {
     /// <summary>
-    /// The health check for the instance that's specified by <code>ServiceId</code> and <code>InstanceId</code>
+    /// The health check for the instance that's specified by <c>ServiceId</c> and <c>InstanceId</c>
     /// isn't a custom health check.
     /// </summary>
     #if !NETSTANDARD

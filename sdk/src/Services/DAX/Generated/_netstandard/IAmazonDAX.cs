@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.DAX.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.DAX
 {
     /// <summary>
-    /// Interface for accessing DAX
+    /// <para>Interface for accessing DAX</para>
     ///
     /// DAX is a managed caching service engineered for Amazon DynamoDB. DAX dramatically
     /// speeds up database reads by caching frequently-accessed data from DynamoDB, so applications
@@ -188,8 +189,8 @@ namespace Amazon.DAX
         /// 
         ///  <note> 
         /// <para>
-        /// You cannot use <code>DecreaseReplicationFactor</code> to remove the last node in a
-        /// DAX cluster. If you need to do this, use <code>DeleteCluster</code> instead.
+        /// You cannot use <c>DecreaseReplicationFactor</c> to remove the last node in a DAX cluster.
+        /// If you need to do this, use <c>DeleteCluster</c> instead.
         /// </para>
         ///  </note>
         /// </summary>
@@ -577,8 +578,8 @@ namespace Amazon.DAX
 
 
         /// <summary>
-        /// List all of the tags for a DAX cluster. You can call <code>ListTags</code> up to 10
-        /// times per second, per account.
+        /// List all of the tags for a DAX cluster. You can call <c>ListTags</c> up to 10 times
+        /// per second, per account.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTags service method.</param>
         /// <param name="cancellationToken">
@@ -619,7 +620,7 @@ namespace Amazon.DAX
         /// 
         ///  <note> 
         /// <para>
-        ///  <code>RebootNode</code> restarts the DAX engine process and does not remove the contents
+        ///  <c>RebootNode</c> restarts the DAX engine process and does not remove the contents
         /// of the cache. 
         /// </para>
         ///  </note>
@@ -658,8 +659,8 @@ namespace Amazon.DAX
 
 
         /// <summary>
-        /// Associates a set of tags with a DAX resource. You can call <code>TagResource</code>
-        /// up to 5 times per second, per account.
+        /// Associates a set of tags with a DAX resource. You can call <c>TagResource</c> up to
+        /// 5 times per second, per account.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the TagResource service method.</param>
         /// <param name="cancellationToken">
@@ -698,7 +699,7 @@ namespace Amazon.DAX
 
 
         /// <summary>
-        /// Removes the association of tags from a DAX resource. You can call <code>UntagResource</code>
+        /// Removes the association of tags from a DAX resource. You can call <c>UntagResource</c>
         /// up to 5 times per second, per account.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>

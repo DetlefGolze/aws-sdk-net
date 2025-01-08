@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
@@ -37,12 +38,12 @@ namespace Amazon.ApplicationDiscoveryService.Model
     {
         private string _condition;
         private string _name;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Condition. 
         /// <para>
-        /// Supported condition: <code>EQUALS</code> 
+        /// Supported condition: <c>EQUALS</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=200)]
@@ -61,7 +62,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// A single <code>ExportFilter</code> name. Supported filters: <code>agentIds</code>.
+        /// A single <c>ExportFilter</c> name. Supported filters: <c>agentIds</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=1000)]
@@ -81,7 +82,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         /// Gets and sets the property Values. 
         /// <para>
         /// A single agent ID for a Discovery Agent. An agent ID can be found using the <a href="http://docs.aws.amazon.com/application-discovery/latest/APIReference/API_DescribeAgents.html">DescribeAgents</a>
-        /// action. Typically an ADS agent ID is in the form <code>o-0123456789abcdef0</code>.
+        /// action. Typically an ADS agent ID is in the form <c>o-0123456789abcdef0</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -94,7 +95,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

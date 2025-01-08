@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ElasticBeanstalk.Model
     /// 
     ///  <note> 
     /// <para>
-    /// This action returns the most recent 1,000 events from the specified <code>NextToken</code>.
+    /// This action returns the most recent 1,000 events from the specified <c>NextToken</c>.
     /// </para>
     ///  </note>
     /// </summary>
@@ -82,7 +83,7 @@ namespace Amazon.ElasticBeanstalk.Model
         /// Gets and sets the property EndTimeUtc. 
         /// <para>
         ///  If specified, AWS Elastic Beanstalk restricts the returned descriptions to those
-        /// that occur up to, but not including, the <code>EndTime</code>. 
+        /// that occur up to, but not including, the <c>EndTime</c>. 
         /// </para>
         /// </summary>
         public DateTime EndTimeUtc
@@ -307,7 +308,7 @@ namespace Amazon.ElasticBeanstalk.Model
         ///  
         /// <para>
         ///  If specified, AWS Elastic Beanstalk restricts the returned descriptions to those
-        /// that occur up to, but not including, the <code>EndTime</code>. 
+        /// that occur up to, but not including, the <c>EndTime</c>. 
         /// </para>
         /// </summary>
         [Obsolete("Setting this property results in non-UTC DateTimes not being marshalled correctly. " +

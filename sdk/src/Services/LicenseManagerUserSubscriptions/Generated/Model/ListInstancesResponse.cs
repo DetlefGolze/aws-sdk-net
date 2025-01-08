@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LicenseManagerUserSubscriptions.Model
 {
     /// <summary>
@@ -33,13 +34,14 @@ namespace Amazon.LicenseManagerUserSubscriptions.Model
     /// </summary>
     public partial class ListInstancesResponse : AmazonWebServiceResponse
     {
-        private List<InstanceSummary> _instanceSummaries = new List<InstanceSummary>();
+        private List<InstanceSummary> _instanceSummaries = AWSConfigs.InitializeCollections ? new List<InstanceSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property InstanceSummaries. 
         /// <para>
-        /// Metadata that describes the list instances operation.
+        /// An array of <c>InstanceSummary</c> resources that contain details about the instances
+        /// that provide user-based subscriptions and also meet the request criteria.
         /// </para>
         /// </summary>
         public List<InstanceSummary> InstanceSummaries
@@ -51,13 +53,15 @@ namespace Amazon.LicenseManagerUserSubscriptions.Model
         // Check to see if InstanceSummaries property is set
         internal bool IsSetInstanceSummaries()
         {
-            return this._instanceSummaries != null && this._instanceSummaries.Count > 0; 
+            return this._instanceSummaries != null && (this._instanceSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Token for the next set of results.
+        /// The next token used for paginated responses. When this field isn't empty, there are
+        /// additional elements that the service hasn't included in this request. Use this token
+        /// with the next request to retrieve additional objects.
         /// </para>
         /// </summary>
         public string NextToken

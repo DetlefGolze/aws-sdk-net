@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -51,8 +52,8 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property Active. 
         /// <para>
         /// Specifies whether the intent's confirmation is sent to the user. When this field is
-        /// false, confirmation and declination responses aren't sent. If the <code>active</code>
-        /// field isn't specified, the default is true.
+        /// false, confirmation and declination responses aren't sent. If the <c>active</c> field
+        /// isn't specified, the default is true.
         /// </para>
         /// </summary>
         public bool Active
@@ -70,9 +71,9 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property CodeHook. 
         /// <para>
-        /// The <code>DialogCodeHookInvocationSetting</code> object associated with intent's confirmation
+        /// The <c>DialogCodeHookInvocationSetting</c> object associated with intent's confirmation
         /// step. The dialog code hook is triggered based on these invocation settings when the
-        /// confirmation next step or declination next step or failure next step is <code>InvokeDialogCodeHook</code>.
+        /// confirmation next step or declination next step or failure next step is <c>InvokeDialogCodeHook</c>.
         /// 
         /// </para>
         /// </summary>
@@ -178,7 +179,7 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property DeclinationResponse. 
         /// <para>
-        /// When the user answers "no" to the question defined in <code>promptSpecification</code>,
+        /// When the user answers "no" to the question defined in <c>promptSpecification</c>,
         /// Amazon Lex responds with this response to acknowledge that the intent was canceled.
         /// 
         /// </para>
@@ -198,8 +199,8 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property ElicitationCodeHook. 
         /// <para>
-        /// The <code>DialogCodeHookInvocationSetting</code> used when the code hook is invoked
-        /// during confirmation prompt retries.
+        /// The <c>DialogCodeHookInvocationSetting</c> used when the code hook is invoked during
+        /// confirmation prompt retries.
         /// </para>
         /// </summary>
         public ElicitationCodeHookInvocationSetting ElicitationCodeHook
@@ -270,9 +271,9 @@ namespace Amazon.LexModelsV2.Model
         ///  
         /// <para>
         /// Amazon Lex uses this prompt to ensure that the user acknowledges that the intent is
-        /// ready for fulfillment. For example, with the <code>OrderPizza</code> intent, you might
-        /// want to confirm that the order is correct before placing it. For other intents, such
-        /// as intents that simply respond to user questions, you might not need to ask the user
+        /// ready for fulfillment. For example, with the <c>OrderPizza</c> intent, you might want
+        /// to confirm that the order is correct before placing it. For other intents, such as
+        /// intents that simply respond to user questions, you might not need to ask the user
         /// for confirmation before providing the information. 
         /// </para>
         /// </summary>

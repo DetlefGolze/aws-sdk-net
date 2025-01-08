@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -41,19 +42,19 @@ namespace Amazon.LocationService.Model
     /// </para>
     ///  <note> 
     /// <para>
-    /// You can search for suggested place names near a specified position by using <code>BiasPosition</code>,
-    /// or filter results within a bounding box by using <code>FilterBBox</code>. These parameters
-    /// are mutually exclusive; using both <code>BiasPosition</code> and <code>FilterBBox</code>
-    /// in the same command returns an error.
+    /// You can search for suggested place names near a specified position by using <c>BiasPosition</c>,
+    /// or filter results within a bounding box by using <c>FilterBBox</c>. These parameters
+    /// are mutually exclusive; using both <c>BiasPosition</c> and <c>FilterBBox</c> in the
+    /// same command returns an error.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class SearchPlaceIndexForSuggestionsRequest : AmazonLocationServiceRequest
     {
-        private List<double> _biasPosition = new List<double>();
-        private List<double> _filterBBox = new List<double>();
-        private List<string> _filterCategories = new List<string>();
-        private List<string> _filterCountries = new List<string>();
+        private List<double> _biasPosition = AWSConfigs.InitializeCollections ? new List<double>() : null;
+        private List<double> _filterBBox = AWSConfigs.InitializeCollections ? new List<double>() : null;
+        private List<string> _filterCategories = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _filterCountries = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _indexName;
         private string _key;
         private string _language;
@@ -74,13 +75,13 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  
         /// <para>
-        /// For example, <code>[-123.1174, 49.2847]</code> represents the position with longitude
-        /// <code>-123.1174</code> and latitude <code>49.2847</code>.
+        /// For example, <c>[-123.1174, 49.2847]</c> represents the position with longitude <c>-123.1174</c>
+        /// and latitude <c>49.2847</c>.
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>BiasPosition</code> and <code>FilterBBox</code> are mutually exclusive. Specifying
-        /// both options results in an error. 
+        ///  <c>BiasPosition</c> and <c>FilterBBox</c> are mutually exclusive. Specifying both
+        /// options results in an error. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -94,7 +95,7 @@ namespace Amazon.LocationService.Model
         // Check to see if BiasPosition property is set
         internal bool IsSetBiasPosition()
         {
-            return this._biasPosition != null && this._biasPosition.Count > 0; 
+            return this._biasPosition != null && (this._biasPosition.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -113,14 +114,14 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  
         /// <para>
-        /// For example, <code>[-12.7935, -37.4835, -12.0684, -36.9542]</code> represents a bounding
-        /// box where the southwest corner has longitude <code>-12.7935</code> and latitude <code>-37.4835</code>,
-        /// and the northeast corner has longitude <code>-12.0684</code> and latitude <code>-36.9542</code>.
+        /// For example, <c>[-12.7935, -37.4835, -12.0684, -36.9542]</c> represents a bounding
+        /// box where the southwest corner has longitude <c>-12.7935</c> and latitude <c>-37.4835</c>,
+        /// and the northeast corner has longitude <c>-12.0684</c> and latitude <c>-36.9542</c>.
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>FilterBBox</code> and <code>BiasPosition</code> are mutually exclusive. Specifying
-        /// both options results in an error. 
+        ///  <c>FilterBBox</c> and <c>BiasPosition</c> are mutually exclusive. Specifying both
+        /// options results in an error. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -134,7 +135,7 @@ namespace Amazon.LocationService.Model
         // Check to see if FilterBBox property is set
         internal bool IsSetFilterBBox()
         {
-            return this._filterBBox != null && this._filterBBox.Count > 0; 
+            return this._filterBBox != null && (this._filterBBox.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -161,7 +162,7 @@ namespace Amazon.LocationService.Model
         // Check to see if FilterCategories property is set
         internal bool IsSetFilterCategories()
         {
-            return this._filterCategories != null && this._filterCategories.Count > 0; 
+            return this._filterCategories != null && (this._filterCategories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -173,7 +174,7 @@ namespace Amazon.LocationService.Model
         ///  <ul> <li> 
         /// <para>
         /// Use the <a href="https://www.iso.org/iso-3166-country-codes.html">ISO 3166</a> 3-digit
-        /// country code. For example, Australia uses three upper-case characters: <code>AUS</code>.
+        /// country code. For example, Australia uses three upper-case characters: <c>AUS</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -187,7 +188,7 @@ namespace Amazon.LocationService.Model
         // Check to see if FilterCountries property is set
         internal bool IsSetFilterCountries()
         {
-            return this._filterCountries != null && this._filterCountries.Count > 0; 
+            return this._filterCountries != null && (this._filterCountries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -233,7 +234,7 @@ namespace Amazon.LocationService.Model
         /// Gets and sets the property Language. 
         /// <para>
         /// The preferred language used to return results. The value must be a valid <a href="https://tools.ietf.org/search/bcp47">BCP
-        /// 47</a> language tag, for example, <code>en</code> for English.
+        /// 47</a> language tag, for example, <c>en</c> for English.
         /// </para>
         ///  
         /// <para>
@@ -243,14 +244,14 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  
         /// <para>
-        /// For an example, we'll use the Greek language. You search for <code>Athens, Gr</code>
-        /// to get suggestions with the <code>language</code> parameter set to <code>en</code>.
-        /// The results found will most likely be returned as <code>Athens, Greece</code>.
+        /// For an example, we'll use the Greek language. You search for <c>Athens, Gr</c> to
+        /// get suggestions with the <c>language</c> parameter set to <c>en</c>. The results found
+        /// will most likely be returned as <c>Athens, Greece</c>.
         /// </para>
         ///  
         /// <para>
-        /// If you set the <code>language</code> parameter to <code>el</code>, for Greek, then
-        /// the result found will more likely be returned as <code>Αθήνα, Ελλάδα</code>.
+        /// If you set the <c>language</c> parameter to <c>el</c>, for Greek, then the result
+        /// found will more likely be returned as <c>Αθήνα, Ελλάδα</c>.
         /// </para>
         ///  
         /// <para>
@@ -278,7 +279,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  
         /// <para>
-        /// The default: <code>5</code> 
+        /// The default: <c>5</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=15)]
@@ -297,8 +298,8 @@ namespace Amazon.LocationService.Model
         /// <summary>
         /// Gets and sets the property Text. 
         /// <para>
-        /// The free-form partial text to use to generate place suggestions. For example, <code>eiffel
-        /// tow</code>.
+        /// The free-form partial text to use to generate place suggestions. For example, <c>eiffel
+        /// tow</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=200)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.WorkSpaces.Model
     /// <para>
     /// Before performing this operation, call <a href="https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeConnectionAliases.html">
     /// DescribeConnectionAliases</a> to make sure that the current state of the connection
-    /// alias is <code>CREATED</code>.
+    /// alias is <c>CREATED</c>.
     /// </para>
     ///  </note>
     /// </summary>

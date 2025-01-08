@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.EC2.Model
     /// or from an address pool created from a public IPv4 address range that you have brought
     /// to Amazon Web Services for use with your Amazon Web Services resources using bring
     /// your own IP addresses (BYOIP). For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html">Bring
-    /// Your Own IP Addresses (BYOIP)</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+    /// Your Own IP Addresses (BYOIP)</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     ///  
     /// <para>
@@ -53,7 +54,7 @@ namespace Amazon.EC2.Model
     ///  
     /// <para>
     /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic
-    /// IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+    /// IP Addresses</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     ///  
     /// <para>
@@ -67,9 +68,10 @@ namespace Amazon.EC2.Model
         private string _address;
         private string _customerOwnedIpv4Pool;
         private DomainType _domain;
+        private string _ipamPoolId;
         private string _networkBorderGroup;
         private string _publicIpv4Pool;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
 
         /// <summary>
         /// Gets and sets the property Address. 
@@ -112,7 +114,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Domain. 
         /// <para>
-        /// The network (<code>vpc</code>).
+        /// The network (<c>vpc</c>).
         /// </para>
         /// </summary>
         public DomainType Domain
@@ -128,16 +130,32 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property IpamPoolId. 
+        /// <para>
+        /// The ID of an IPAM pool which has an Amazon-provided or BYOIP public IPv4 CIDR provisioned
+        /// to it. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/ipam/tutorials-eip-pool.html">Allocate
+        /// sequential Elastic IP addresses from an IPAM pool</a> in the <i>Amazon VPC IPAM User
+        /// Guide</i>.
+        /// </para>
+        /// </summary>
+        public string IpamPoolId
+        {
+            get { return this._ipamPoolId; }
+            set { this._ipamPoolId = value; }
+        }
+
+        // Check to see if IpamPoolId property is set
+        internal bool IsSetIpamPoolId()
+        {
+            return this._ipamPoolId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property NetworkBorderGroup. 
         /// <para>
         ///  A unique set of Availability Zones, Local Zones, or Wavelength Zones from which Amazon
         /// Web Services advertises IP addresses. Use this parameter to limit the IP address to
         /// this location. IP addresses cannot move between network border groups.
-        /// </para>
-        ///  
-        /// <para>
-        /// Use <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html">DescribeAvailabilityZones</a>
-        /// to view the network border groups.
         /// </para>
         /// </summary>
         public string NetworkBorderGroup
@@ -157,7 +175,7 @@ namespace Amazon.EC2.Model
         /// <para>
         /// The ID of an address pool that you own. Use this parameter to let Amazon EC2 select
         /// an address from the address pool. To specify a specific address from the address pool,
-        /// use the <code>Address</code> parameter instead.
+        /// use the <c>Address</c> parameter instead.
         /// </para>
         /// </summary>
         public string PublicIpv4Pool
@@ -187,7 +205,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.QuickSight.Model
         private string _height;
         private LegendPosition _position;
         private LabelOptions _title;
+        private FontConfiguration _valueFontConfiguration;
         private Visibility _visibility;
         private string _width;
 
@@ -65,19 +67,19 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AUTO</code> 
+        ///  <c>AUTO</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RIGHT</code> 
+        ///  <c>RIGHT</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>BOTTOM</code> 
+        ///  <c>BOTTOM</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LEFT</code> 
+        ///  <c>LEFT</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -109,6 +111,21 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetTitle()
         {
             return this._title != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ValueFontConfiguration.
+        /// </summary>
+        public FontConfiguration ValueFontConfiguration
+        {
+            get { return this._valueFontConfiguration; }
+            set { this._valueFontConfiguration = value; }
+        }
+
+        // Check to see if ValueFontConfiguration property is set
+        internal bool IsSetValueFontConfiguration()
+        {
+            return this._valueFontConfiguration != null;
         }
 
         /// <summary>

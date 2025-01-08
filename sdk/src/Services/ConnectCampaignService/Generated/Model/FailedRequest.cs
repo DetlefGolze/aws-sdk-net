@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectCampaignService.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.ConnectCampaignService.Model
         /// <summary>
         /// Gets and sets the property ClientToken.
         /// </summary>
-        [AWSProperty(Min=0, Max=64)]
+        [AWSProperty(Min=0, Max=200)]
         public string ClientToken
         {
             get { return this._clientToken; }
@@ -71,6 +72,7 @@ namespace Amazon.ConnectCampaignService.Model
         /// <summary>
         /// Gets and sets the property Id.
         /// </summary>
+        [AWSProperty(Min=0, Max=256)]
         public string Id
         {
             get { return this._id; }

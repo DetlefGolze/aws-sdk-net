@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaPackageV2.Model
 {
     /// <summary>
@@ -45,6 +46,9 @@ namespace Amazon.MediaPackageV2.Model
         private string _channelGroupName;
         private string _channelName;
         private string _description;
+        private string _eTag;
+        private InputSwitchConfiguration _inputSwitchConfiguration;
+        private OutputHeaderConfiguration _outputHeaderConfiguration;
 
         /// <summary>
         /// Gets and sets the property ChannelGroupName. 
@@ -104,6 +108,66 @@ namespace Amazon.MediaPackageV2.Model
         internal bool IsSetDescription()
         {
             return this._description != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ETag. 
+        /// <para>
+        /// The expected current Entity Tag (ETag) for the resource. If the specified ETag does
+        /// not match the resource's current entity tag, the update request will be rejected.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=256)]
+        public string ETag
+        {
+            get { return this._eTag; }
+            set { this._eTag = value; }
+        }
+
+        // Check to see if ETag property is set
+        internal bool IsSetETag()
+        {
+            return !string.IsNullOrEmpty(this._eTag);
+        }
+
+        /// <summary>
+        /// Gets and sets the property InputSwitchConfiguration. 
+        /// <para>
+        /// The configuration for input switching based on the media quality confidence score
+        /// (MQCS) as provided from AWS Elemental MediaLive. This setting is valid only when <c>InputType</c>
+        /// is <c>CMAF</c>.
+        /// </para>
+        /// </summary>
+        public InputSwitchConfiguration InputSwitchConfiguration
+        {
+            get { return this._inputSwitchConfiguration; }
+            set { this._inputSwitchConfiguration = value; }
+        }
+
+        // Check to see if InputSwitchConfiguration property is set
+        internal bool IsSetInputSwitchConfiguration()
+        {
+            return this._inputSwitchConfiguration != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OutputHeaderConfiguration. 
+        /// <para>
+        /// The settings for what common media server data (CMSD) headers AWS Elemental MediaPackage
+        /// includes in responses to the CDN. This setting is valid only when <c>InputType</c>
+        /// is <c>CMAF</c>.
+        /// </para>
+        /// </summary>
+        public OutputHeaderConfiguration OutputHeaderConfiguration
+        {
+            get { return this._outputHeaderConfiguration; }
+            set { this._outputHeaderConfiguration = value; }
+        }
+
+        // Check to see if OutputHeaderConfiguration property is set
+        internal bool IsSetOutputHeaderConfiguration()
+        {
+            return this._outputHeaderConfiguration != null;
         }
 
     }

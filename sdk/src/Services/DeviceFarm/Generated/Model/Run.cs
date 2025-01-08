@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DeviceFarm.Model
 {
     /// <summary>
@@ -108,13 +109,13 @@ namespace Amazon.DeviceFarm.Model
         /// <summary>
         /// Gets and sets the property BillingMethod. 
         /// <para>
-        /// Specifies the billing method for a test run: <code>metered</code> or <code>unmetered</code>.
-        /// If the parameter is not specified, the default value is <code>metered</code>.
+        /// Specifies the billing method for a test run: <c>metered</c> or <c>unmetered</c>. If
+        /// the parameter is not specified, the default value is <c>metered</c>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you have unmetered device slots, you must set this to <code>unmetered</code> to
-        /// use them. Otherwise, the run is counted toward metered device minutes.
+        /// If you have unmetered device slots, you must set this to <c>unmetered</c> to use them.
+        /// Otherwise, the run is counted toward metered device minutes.
         /// </para>
         ///  </note>
         /// </summary>
@@ -187,7 +188,7 @@ namespace Amazon.DeviceFarm.Model
         /// <summary>
         /// Gets and sets the property CustomerArtifactPaths. 
         /// <para>
-        /// Output <code>CustomerArtifactPaths</code> object for the test run.
+        /// Output <c>CustomerArtifactPaths</c> object for the test run.
         /// </para>
         /// </summary>
         public CustomerArtifactPaths CustomerArtifactPaths
@@ -509,9 +510,8 @@ namespace Amazon.DeviceFarm.Model
         /// <summary>
         /// Gets and sets the property ResultCode. 
         /// <para>
-        /// Supporting field for the result field. Set only if <code>result</code> is <code>SKIPPED</code>.
-        /// <code>PARSING_FAILED</code> if the result is skipped because of test package parsing
-        /// failure.
+        /// Supporting field for the result field. Set only if <c>result</c> is <c>SKIPPED</c>.
+        /// <c>PARSING_FAILED</c> if the result is skipped because of test package parsing failure.
         /// </para>
         /// </summary>
         public ExecutionResultCode ResultCode
@@ -548,8 +548,8 @@ namespace Amazon.DeviceFarm.Model
         /// <summary>
         /// Gets and sets the property SkipAppResign. 
         /// <para>
-        /// When set to <code>true</code>, for private devices, Device Farm does not sign your
-        /// app again. For public devices, Device Farm always signs your apps again.
+        /// When set to <c>true</c>, for private devices, Device Farm does not sign your app again.
+        /// For public devices, Device Farm always signs your apps again.
         /// </para>
         ///  
         /// <para>
@@ -716,15 +716,6 @@ namespace Amazon.DeviceFarm.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// BUILTIN_EXPLORER
-        /// </para>
-        ///  <note> 
-        /// <para>
-        /// For Android, an app explorer that traverses an Android app, interacting with it and
-        /// capturing screenshots at the same time.
-        /// </para>
-        ///  </note> </li> <li> 
-        /// <para>
         /// APPIUM_JAVA_JUNIT
         /// </para>
         ///  </li> <li> 
@@ -765,19 +756,7 @@ namespace Amazon.DeviceFarm.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// CALABASH
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
         /// INSTRUMENTATION
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// UIAUTOMATION
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// UIAUTOMATOR
         /// </para>
         ///  </li> <li> 
         /// <para>

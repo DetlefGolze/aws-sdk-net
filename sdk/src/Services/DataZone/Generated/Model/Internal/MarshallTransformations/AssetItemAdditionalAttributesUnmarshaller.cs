@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DataZone.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public AssetItemAdditionalAttributes Unmarshall(JsonUnmarshallerContext context)
         {
+            AssetItemAdditionalAttributes unmarshalledObject = new AssetItemAdditionalAttributes();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            AssetItemAdditionalAttributes unmarshalledObject = new AssetItemAdditionalAttributes();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -70,6 +72,12 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
                     unmarshalledObject.FormsOutput = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("latestTimeSeriesDataPointFormsOutput", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<TimeSeriesDataPointSummaryFormOutput, TimeSeriesDataPointSummaryFormOutputUnmarshaller>(TimeSeriesDataPointSummaryFormOutputUnmarshaller.Instance);
+                    unmarshalledObject.LatestTimeSeriesDataPointFormsOutput = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("readOnlyFormsOutput", targetDepth))
                 {
                     var unmarshaller = new ListUnmarshaller<FormOutput, FormOutputUnmarshaller>(FormOutputUnmarshaller.Instance);
@@ -77,7 +85,6 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

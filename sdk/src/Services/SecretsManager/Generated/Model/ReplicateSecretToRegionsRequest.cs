@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecretsManager.Model
 {
     /// <summary>
@@ -42,15 +43,18 @@ namespace Amazon.SecretsManager.Model
     /// </para>
     ///  
     /// <para>
-    ///  <b>Required permissions: </b> <code>secretsmanager:ReplicateSecretToRegions</code>.
-    /// For more information, see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">
+    ///  <b>Required permissions: </b> <c>secretsmanager:ReplicateSecretToRegions</c>. If
+    /// the primary secret is encrypted with a KMS key other than <c>aws/secretsmanager</c>,
+    /// you also need <c>kms:Decrypt</c> permission to the key. To encrypt the replicated
+    /// secret with a KMS key other than <c>aws/secretsmanager</c>, you need <c>kms:GenerateDataKey</c>
+    /// and <c>kms:Encrypt</c> to the key. For more information, see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">
     /// IAM policy actions for Secrets Manager</a> and <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
     /// and access control in Secrets Manager</a>. 
     /// </para>
     /// </summary>
     public partial class ReplicateSecretToRegionsRequest : AmazonSecretsManagerRequest
     {
-        private List<ReplicaRegionType> _addReplicaRegions = new List<ReplicaRegionType>();
+        private List<ReplicaRegionType> _addReplicaRegions = AWSConfigs.InitializeCollections ? new List<ReplicaRegionType>() : null;
         private bool? _forceOverwriteReplicaSecret;
         private string _secretId;
 
@@ -70,7 +74,7 @@ namespace Amazon.SecretsManager.Model
         // Check to see if AddReplicaRegions property is set
         internal bool IsSetAddReplicaRegions()
         {
-            return this._addReplicaRegions != null && this._addReplicaRegions.Count > 0; 
+            return this._addReplicaRegions != null && (this._addReplicaRegions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

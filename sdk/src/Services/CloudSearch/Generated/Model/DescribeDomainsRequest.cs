@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeDomains operation.
     /// Gets information about the search domains owned by this account. Can be limited to
     /// specific domains. Shows all domains by default. To get the number of searchable documents
-    /// in a domain, use the console or submit a <code>matchall</code> request to your domain's
-    /// search endpoint: <code>q=matchall&amp;amp;q.parser=structured&amp;amp;size=0</code>.
-    /// For more information, see <a href="http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-domain-info.html"
+    /// in a domain, use the console or submit a <c>matchall</c> request to your domain's
+    /// search endpoint: <c>q=matchall&amp;amp;q.parser=structured&amp;amp;size=0</c>. For
+    /// more information, see <a href="http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-domain-info.html"
     /// target="_blank">Getting Information about a Search Domain</a> in the <i>Amazon CloudSearch
     /// Developer Guide</i>.
     /// </summary>
     public partial class DescribeDomainsRequest : AmazonCloudSearchRequest
     {
-        private List<string> _domainNames = new List<string>();
+        private List<string> _domainNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DomainNames. 
@@ -57,7 +58,7 @@ namespace Amazon.CloudSearch.Model
         // Check to see if DomainNames property is set
         internal bool IsSetDomainNames()
         {
-            return this._domainNames != null && this._domainNames.Count > 0; 
+            return this._domainNames != null && (this._domainNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

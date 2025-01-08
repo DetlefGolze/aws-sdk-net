@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchServerless.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.OpenSearchServerless.Model
     public partial class ListSecurityConfigsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<SecurityConfigSummary> _securityConfigSummaries = new List<SecurityConfigSummary>();
+        private List<SecurityConfigSummary> _securityConfigSummaries = AWSConfigs.InitializeCollections ? new List<SecurityConfigSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page.
+        /// When <c>nextToken</c> is returned, there are more results available. The value of
+        /// <c>nextToken</c> is a unique pagination token for each page. Make the call again using
+        /// the returned token to retrieve the next page.
         /// </para>
         /// </summary>
         public string NextToken
@@ -71,7 +72,7 @@ namespace Amazon.OpenSearchServerless.Model
         // Check to see if SecurityConfigSummaries property is set
         internal bool IsSetSecurityConfigSummaries()
         {
-            return this._securityConfigSummaries != null && this._securityConfigSummaries.Count > 0; 
+            return this._securityConfigSummaries != null && (this._securityConfigSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

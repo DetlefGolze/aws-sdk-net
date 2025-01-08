@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MachineLearning.Model
 {
     /// <summary>
@@ -120,7 +121,7 @@ namespace Amazon.MachineLearning.Model
         /// Gets and sets the property SelectSqlQuery. 
         /// <para>
         /// The SQL query that is supplied during <a>CreateDataSourceFromRDS</a>. Returns only
-        /// if <code>Verbose</code> is true in <code>GetDataSourceInput</code>. 
+        /// if <c>Verbose</c> is true in <c>GetDataSourceInput</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=16777216)]

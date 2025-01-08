@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AmplifyUIBuilder.Model
 {
     /// <summary>
     /// Contains a summary of a component. This is a read-only data type that is returned
-    /// by <code>ListComponents</code>.
+    /// by <c>ListComponents</c>.
     /// </summary>
     public partial class ComponentSummary
     {

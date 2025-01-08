@@ -26,16 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
     /// Container for the parameters to the GetJobTagging operation.
-    /// Returns the tags on an S3 Batch Operations job. To use the <code>GetJobTagging</code>
-    /// operation, you must have permission to perform the <code>s3:GetJobTagging</code> action.
-    /// For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags">Controlling
-    /// access and labeling jobs using tags</a> in the <i>Amazon S3 User Guide</i>.
+    /// Returns the tags on an S3 Batch Operations job. 
     /// 
-    ///   
+    ///  <dl> <dt>Permissions</dt> <dd> 
+    /// <para>
+    /// To use the <c>GetJobTagging</c> operation, you must have permission to perform the
+    /// <c>s3:GetJobTagging</c> action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags">Controlling
+    /// access and labeling jobs using tags</a> in the <i>Amazon S3 User Guide</i>.
+    /// </para>
+    ///  </dd> </dl> 
     /// <para>
     /// Related actions include:
     /// </para>
@@ -77,7 +81,7 @@ namespace Amazon.S3Control.Model
         // Check to see if AccountId property is set
         internal bool IsSetAccountId()
         {
-            return this._accountId != null;
+            return !string.IsNullOrEmpty(this._accountId);
         }
 
         /// <summary>

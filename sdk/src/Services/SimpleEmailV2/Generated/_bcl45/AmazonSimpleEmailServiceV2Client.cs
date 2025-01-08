@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.SimpleEmailV2
 {
     /// <summary>
-    /// Implementation for accessing SimpleEmailServiceV2
+    /// <para>Implementation for accessing SimpleEmailServiceV2</para>
     ///
     /// Amazon SES API v2 
     /// <para>
@@ -236,7 +237,7 @@ namespace Amazon.SimpleEmailV2
         /// </summary>
         protected override AbstractAWSSigner CreateSigner()
         {
-            return new AWS4Signer();
+            return new AWSEndpointAuthSchemeSigner();
         }    
 
         /// <summary>
@@ -504,8 +505,7 @@ namespace Amazon.SimpleEmailV2
         /// Create an event destination. <i>Events</i> include message sends, deliveries, opens,
         /// clicks, bounces, and complaints. <i>Event destinations</i> are places that you can
         /// send information about these events to. For example, you can send event data to Amazon
-        /// SNS to receive notifications when you receive bounces or complaints, or you can use
-        /// Amazon Kinesis Data Firehose to stream data to Amazon S3 for long-term storage.
+        /// EventBridge and associate a rule to send the event to the specified target.
         /// 
         ///  
         /// <para>
@@ -545,8 +545,7 @@ namespace Amazon.SimpleEmailV2
         /// Create an event destination. <i>Events</i> include message sends, deliveries, opens,
         /// clicks, bounces, and complaints. <i>Event destinations</i> are places that you can
         /// send information about these events to. For example, you can send event data to Amazon
-        /// SNS to receive notifications when you receive bounces or complaints, or you can use
-        /// Amazon Kinesis Data Firehose to stream data to Amazon S3 for long-term storage.
+        /// EventBridge and associate a rule to send the event to the specified target.
         /// 
         ///  
         /// <para>
@@ -895,7 +894,7 @@ namespace Amazon.SimpleEmailV2
         /// the world. When you perform a predictive inbox placement test, you provide a sample
         /// message that contains the content that you plan to send to your customers. Amazon
         /// SES then sends that message to special email addresses spread across several major
-        /// email providers. After about 24 hours, the test is complete, and you can use the <code>GetDeliverabilityTestReport</code>
+        /// email providers. After about 24 hours, the test is complete, and you can use the <c>GetDeliverabilityTestReport</c>
         /// operation to view the results of the test.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateDeliverabilityTestReport service method.</param>
@@ -947,7 +946,7 @@ namespace Amazon.SimpleEmailV2
         /// the world. When you perform a predictive inbox placement test, you provide a sample
         /// message that contains the content that you plan to send to your customers. Amazon
         /// SES then sends that message to special email addresses spread across several major
-        /// email providers. After about 24 hours, the test is complete, and you can use the <code>GetDeliverabilityTestReport</code>
+        /// email providers. After about 24 hours, the test is complete, and you can use the <c>GetDeliverabilityTestReport</c>
         /// operation to view the results of the test.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateDeliverabilityTestReport service method.</param>
@@ -1014,21 +1013,21 @@ namespace Amazon.SimpleEmailV2
         /// </para>
         ///  
         /// <para>
-        /// When you verify a domain without specifying the <code>DkimSigningAttributes</code>
-        /// object, this operation provides a set of DKIM tokens. You can convert these tokens
-        /// into CNAME records, which you then add to the DNS configuration for your domain. Your
-        /// domain is verified when Amazon SES detects these records in the DNS configuration
-        /// for your domain. This verification method is known as <a href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html">Easy
+        /// When you verify a domain without specifying the <c>DkimSigningAttributes</c> object,
+        /// this operation provides a set of DKIM tokens. You can convert these tokens into CNAME
+        /// records, which you then add to the DNS configuration for your domain. Your domain
+        /// is verified when Amazon SES detects these records in the DNS configuration for your
+        /// domain. This verification method is known as <a href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html">Easy
         /// DKIM</a>.
         /// </para>
         ///  
         /// <para>
         /// Alternatively, you can perform the verification process by providing your own public-private
         /// key pair. This verification method is known as Bring Your Own DKIM (BYODKIM). To use
-        /// BYODKIM, your call to the <code>CreateEmailIdentity</code> operation has to include
-        /// the <code>DkimSigningAttributes</code> object. When you specify this object, you provide
-        /// a selector (a component of the DNS record name that identifies the public key to use
-        /// for DKIM authentication) and a private key.
+        /// BYODKIM, your call to the <c>CreateEmailIdentity</c> operation has to include the
+        /// <c>DkimSigningAttributes</c> object. When you specify this object, you provide a selector
+        /// (a component of the DNS record name that identifies the public key to use for DKIM
+        /// authentication) and a private key.
         /// </para>
         ///  
         /// <para>
@@ -1090,21 +1089,21 @@ namespace Amazon.SimpleEmailV2
         /// </para>
         ///  
         /// <para>
-        /// When you verify a domain without specifying the <code>DkimSigningAttributes</code>
-        /// object, this operation provides a set of DKIM tokens. You can convert these tokens
-        /// into CNAME records, which you then add to the DNS configuration for your domain. Your
-        /// domain is verified when Amazon SES detects these records in the DNS configuration
-        /// for your domain. This verification method is known as <a href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html">Easy
+        /// When you verify a domain without specifying the <c>DkimSigningAttributes</c> object,
+        /// this operation provides a set of DKIM tokens. You can convert these tokens into CNAME
+        /// records, which you then add to the DNS configuration for your domain. Your domain
+        /// is verified when Amazon SES detects these records in the DNS configuration for your
+        /// domain. This verification method is known as <a href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html">Easy
         /// DKIM</a>.
         /// </para>
         ///  
         /// <para>
         /// Alternatively, you can perform the verification process by providing your own public-private
         /// key pair. This verification method is known as Bring Your Own DKIM (BYODKIM). To use
-        /// BYODKIM, your call to the <code>CreateEmailIdentity</code> operation has to include
-        /// the <code>DkimSigningAttributes</code> object. When you specify this object, you provide
-        /// a selector (a component of the DNS record name that identifies the public key to use
-        /// for DKIM authentication) and a private key.
+        /// BYODKIM, your call to the <c>CreateEmailIdentity</c> operation has to include the
+        /// <c>DkimSigningAttributes</c> object. When you specify this object, you provide a selector
+        /// (a component of the DNS record name that identifies the public key to use for DKIM
+        /// authentication) and a private key.
         /// </para>
         ///  
         /// <para>
@@ -1478,6 +1477,89 @@ namespace Amazon.SimpleEmailV2
 
         #endregion
         
+        #region  CreateMultiRegionEndpoint
+
+
+        /// <summary>
+        /// Creates a multi-region endpoint (global-endpoint).
+        /// 
+        ///  
+        /// <para>
+        /// The primary region is going to be the AWS-Region where the operation is executed.
+        /// The secondary region has to be provided in request's parameters. From the data flow
+        /// standpoint there is no difference between primary and secondary regions - sending
+        /// traffic will be split equally between the two. The primary region is the region where
+        /// the resource has been created and where it can be managed. 
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateMultiRegionEndpoint service method.</param>
+        /// 
+        /// <returns>The response from the CreateMultiRegionEndpoint service method, as returned by SimpleEmailServiceV2.</returns>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.AlreadyExistsException">
+        /// The resource specified in your request already exists.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.LimitExceededException">
+        /// There are too many instances of the specified resource type.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.TooManyRequestsException">
+        /// Too many requests have been made to the operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/CreateMultiRegionEndpoint">REST API Reference for CreateMultiRegionEndpoint Operation</seealso>
+        public virtual CreateMultiRegionEndpointResponse CreateMultiRegionEndpoint(CreateMultiRegionEndpointRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateMultiRegionEndpointRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateMultiRegionEndpointResponseUnmarshaller.Instance;
+
+            return Invoke<CreateMultiRegionEndpointResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates a multi-region endpoint (global-endpoint).
+        /// 
+        ///  
+        /// <para>
+        /// The primary region is going to be the AWS-Region where the operation is executed.
+        /// The secondary region has to be provided in request's parameters. From the data flow
+        /// standpoint there is no difference between primary and secondary regions - sending
+        /// traffic will be split equally between the two. The primary region is the region where
+        /// the resource has been created and where it can be managed. 
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateMultiRegionEndpoint service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateMultiRegionEndpoint service method, as returned by SimpleEmailServiceV2.</returns>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.AlreadyExistsException">
+        /// The resource specified in your request already exists.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.LimitExceededException">
+        /// There are too many instances of the specified resource type.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.TooManyRequestsException">
+        /// Too many requests have been made to the operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/CreateMultiRegionEndpoint">REST API Reference for CreateMultiRegionEndpoint Operation</seealso>
+        public virtual Task<CreateMultiRegionEndpointResponse> CreateMultiRegionEndpointAsync(CreateMultiRegionEndpointRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateMultiRegionEndpointRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateMultiRegionEndpointResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateMultiRegionEndpointResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  DeleteConfigurationSet
 
 
@@ -1569,9 +1651,8 @@ namespace Amazon.SimpleEmailV2
         /// <para>
         ///  <i>Events</i> include message sends, deliveries, opens, clicks, bounces, and complaints.
         /// <i>Event destinations</i> are places that you can send information about these events
-        /// to. For example, you can send event data to Amazon SNS to receive notifications when
-        /// you receive bounces or complaints, or you can use Amazon Kinesis Data Firehose to
-        /// stream data to Amazon S3 for long-term storage.
+        /// to. For example, you can send event data to Amazon EventBridge and associate a rule
+        /// to send the event to the specified target.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteConfigurationSetEventDestination service method.</param>
@@ -1604,9 +1685,8 @@ namespace Amazon.SimpleEmailV2
         /// <para>
         ///  <i>Events</i> include message sends, deliveries, opens, clicks, bounces, and complaints.
         /// <i>Event destinations</i> are places that you can send information about these events
-        /// to. For example, you can send event data to Amazon SNS to receive notifications when
-        /// you receive bounces or complaints, or you can use Amazon Kinesis Data Firehose to
-        /// stream data to Amazon S3 for long-term storage.
+        /// to. For example, you can send event data to Amazon EventBridge and associate a rule
+        /// to send the event to the specified target.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteConfigurationSetEventDestination service method.</param>
@@ -2137,6 +2217,83 @@ namespace Amazon.SimpleEmailV2
 
         #endregion
         
+        #region  DeleteMultiRegionEndpoint
+
+
+        /// <summary>
+        /// Deletes a multi-region endpoint (global-endpoint).
+        /// 
+        ///  
+        /// <para>
+        /// Only multi-region endpoints (global-endpoints) whose primary region is the AWS-Region
+        /// where operation is executed can be deleted.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteMultiRegionEndpoint service method.</param>
+        /// 
+        /// <returns>The response from the DeleteMultiRegionEndpoint service method, as returned by SimpleEmailServiceV2.</returns>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.ConcurrentModificationException">
+        /// The resource is being modified by another operation or thread.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.NotFoundException">
+        /// The resource you attempted to access doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.TooManyRequestsException">
+        /// Too many requests have been made to the operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/DeleteMultiRegionEndpoint">REST API Reference for DeleteMultiRegionEndpoint Operation</seealso>
+        public virtual DeleteMultiRegionEndpointResponse DeleteMultiRegionEndpoint(DeleteMultiRegionEndpointRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteMultiRegionEndpointRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteMultiRegionEndpointResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteMultiRegionEndpointResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes a multi-region endpoint (global-endpoint).
+        /// 
+        ///  
+        /// <para>
+        /// Only multi-region endpoints (global-endpoints) whose primary region is the AWS-Region
+        /// where operation is executed can be deleted.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteMultiRegionEndpoint service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteMultiRegionEndpoint service method, as returned by SimpleEmailServiceV2.</returns>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.ConcurrentModificationException">
+        /// The resource is being modified by another operation or thread.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.NotFoundException">
+        /// The resource you attempted to access doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.TooManyRequestsException">
+        /// Too many requests have been made to the operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/DeleteMultiRegionEndpoint">REST API Reference for DeleteMultiRegionEndpoint Operation</seealso>
+        public virtual Task<DeleteMultiRegionEndpointResponse> DeleteMultiRegionEndpointAsync(DeleteMultiRegionEndpointRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteMultiRegionEndpointRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteMultiRegionEndpointResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteMultiRegionEndpointResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  DeleteSuppressedDestination
 
 
@@ -2397,9 +2554,8 @@ namespace Amazon.SimpleEmailV2
         /// <para>
         ///  <i>Events</i> include message sends, deliveries, opens, clicks, bounces, and complaints.
         /// <i>Event destinations</i> are places that you can send information about these events
-        /// to. For example, you can send event data to Amazon SNS to receive notifications when
-        /// you receive bounces or complaints, or you can use Amazon Kinesis Data Firehose to
-        /// stream data to Amazon S3 for long-term storage.
+        /// to. For example, you can send event data to Amazon EventBridge and associate a rule
+        /// to send the event to the specified target.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetConfigurationSetEventDestinations service method.</param>
@@ -2432,9 +2588,8 @@ namespace Amazon.SimpleEmailV2
         /// <para>
         ///  <i>Events</i> include message sends, deliveries, opens, clicks, bounces, and complaints.
         /// <i>Event destinations</i> are places that you can send information about these events
-        /// to. For example, you can send event data to Amazon SNS to receive notifications when
-        /// you receive bounces or complaints, or you can use Amazon Kinesis Data Firehose to
-        /// stream data to Amazon S3 for long-term storage.
+        /// to. For example, you can send event data to Amazon EventBridge and associate a rule
+        /// to send the event to the specified target.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetConfigurationSetEventDestinations service method.</param>
@@ -3532,6 +3687,77 @@ namespace Amazon.SimpleEmailV2
 
         #endregion
         
+        #region  GetMultiRegionEndpoint
+
+
+        /// <summary>
+        /// Displays the multi-region endpoint (global-endpoint) configuration.
+        /// 
+        ///  
+        /// <para>
+        /// Only multi-region endpoints (global-endpoints) whose primary region is the AWS-Region
+        /// where operation is executed can be displayed.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetMultiRegionEndpoint service method.</param>
+        /// 
+        /// <returns>The response from the GetMultiRegionEndpoint service method, as returned by SimpleEmailServiceV2.</returns>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.NotFoundException">
+        /// The resource you attempted to access doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.TooManyRequestsException">
+        /// Too many requests have been made to the operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetMultiRegionEndpoint">REST API Reference for GetMultiRegionEndpoint Operation</seealso>
+        public virtual GetMultiRegionEndpointResponse GetMultiRegionEndpoint(GetMultiRegionEndpointRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetMultiRegionEndpointRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetMultiRegionEndpointResponseUnmarshaller.Instance;
+
+            return Invoke<GetMultiRegionEndpointResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Displays the multi-region endpoint (global-endpoint) configuration.
+        /// 
+        ///  
+        /// <para>
+        /// Only multi-region endpoints (global-endpoints) whose primary region is the AWS-Region
+        /// where operation is executed can be displayed.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetMultiRegionEndpoint service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetMultiRegionEndpoint service method, as returned by SimpleEmailServiceV2.</returns>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.NotFoundException">
+        /// The resource you attempted to access doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.TooManyRequestsException">
+        /// Too many requests have been made to the operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetMultiRegionEndpoint">REST API Reference for GetMultiRegionEndpoint Operation</seealso>
+        public virtual Task<GetMultiRegionEndpointResponse> GetMultiRegionEndpointAsync(GetMultiRegionEndpointRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetMultiRegionEndpointRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetMultiRegionEndpointResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetMultiRegionEndpointResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  GetSuppressedDestination
 
 
@@ -3910,7 +4136,7 @@ namespace Amazon.SimpleEmailV2
         /// <summary>
         /// Show a list of the predictive inbox placement tests that you've performed, regardless
         /// of their statuses. For predictive inbox placement tests that are complete, you can
-        /// use the <code>GetDeliverabilityTestReport</code> operation to view the results.
+        /// use the <c>GetDeliverabilityTestReport</c> operation to view the results.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListDeliverabilityTestReports service method.</param>
         /// 
@@ -3938,7 +4164,7 @@ namespace Amazon.SimpleEmailV2
         /// <summary>
         /// Show a list of the predictive inbox placement tests that you've performed, regardless
         /// of their statuses. For predictive inbox placement tests that are complete, you can
-        /// use the <code>GetDeliverabilityTestReport</code> operation to view the results.
+        /// use the <c>GetDeliverabilityTestReport</c> operation to view the results.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListDeliverabilityTestReports service method.</param>
         /// <param name="cancellationToken">
@@ -4256,6 +4482,71 @@ namespace Amazon.SimpleEmailV2
             options.ResponseUnmarshaller = ListImportJobsResponseUnmarshaller.Instance;
             
             return InvokeAsync<ListImportJobsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListMultiRegionEndpoints
+
+
+        /// <summary>
+        /// List the multi-region endpoints (global-endpoints).
+        /// 
+        ///  
+        /// <para>
+        /// Only multi-region endpoints (global-endpoints) whose primary region is the AWS-Region
+        /// where operation is executed will be listed.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListMultiRegionEndpoints service method.</param>
+        /// 
+        /// <returns>The response from the ListMultiRegionEndpoints service method, as returned by SimpleEmailServiceV2.</returns>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.TooManyRequestsException">
+        /// Too many requests have been made to the operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListMultiRegionEndpoints">REST API Reference for ListMultiRegionEndpoints Operation</seealso>
+        public virtual ListMultiRegionEndpointsResponse ListMultiRegionEndpoints(ListMultiRegionEndpointsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListMultiRegionEndpointsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListMultiRegionEndpointsResponseUnmarshaller.Instance;
+
+            return Invoke<ListMultiRegionEndpointsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// List the multi-region endpoints (global-endpoints).
+        /// 
+        ///  
+        /// <para>
+        /// Only multi-region endpoints (global-endpoints) whose primary region is the AWS-Region
+        /// where operation is executed will be listed.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListMultiRegionEndpoints service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListMultiRegionEndpoints service method, as returned by SimpleEmailServiceV2.</returns>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleEmailV2.Model.TooManyRequestsException">
+        /// Too many requests have been made to the operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListMultiRegionEndpoints">REST API Reference for ListMultiRegionEndpoints Operation</seealso>
+        public virtual Task<ListMultiRegionEndpointsResponse> ListMultiRegionEndpointsAsync(ListMultiRegionEndpointsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListMultiRegionEndpointsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListMultiRegionEndpointsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListMultiRegionEndpointsResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -5124,7 +5415,7 @@ namespace Amazon.SimpleEmailV2
         ///  
         /// <para>
         /// The dedicated IP pool you specify must already exist. You can create a new pool by
-        /// using the <code>CreateDedicatedIpPool</code> operation.
+        /// using the <c>CreateDedicatedIpPool</c> operation.
         /// </para>
         ///  </note>
         /// </summary>
@@ -5162,7 +5453,7 @@ namespace Amazon.SimpleEmailV2
         ///  
         /// <para>
         /// The dedicated IP pool you specify must already exist. You can create a new pool by
-        /// using the <code>CreateDedicatedIpPool</code> operation.
+        /// using the <c>CreateDedicatedIpPool</c> operation.
         /// </para>
         ///  </note>
         /// </summary>
@@ -5201,7 +5492,7 @@ namespace Amazon.SimpleEmailV2
         /// 
         ///  <note> 
         /// <para>
-        ///  <code>MANAGED</code> pools cannot be converted to <code>STANDARD</code> scaling mode.
+        ///  <c>MANAGED</c> pools cannot be converted to <c>STANDARD</c> scaling mode.
         /// </para>
         ///  </note>
         /// </summary>
@@ -5236,7 +5527,7 @@ namespace Amazon.SimpleEmailV2
         /// 
         ///  <note> 
         /// <para>
-        ///  <code>MANAGED</code> pools cannot be converted to <code>STANDARD</code> scaling mode.
+        ///  <c>MANAGED</c> pools cannot be converted to <c>STANDARD</c> scaling mode.
         /// </para>
         ///  </note>
         /// </summary>
@@ -5665,9 +5956,9 @@ namespace Amazon.SimpleEmailV2
         /// 
         ///  
         /// <para>
-        /// If the value is <code>true</code>, you receive email notifications when bounce or
-        /// complaint events occur. These notifications are sent to the address that you specified
-        /// in the <code>Return-Path</code> header of the original email.
+        /// If the value is <c>true</c>, you receive email notifications when bounce or complaint
+        /// events occur. These notifications are sent to the address that you specified in the
+        /// <c>Return-Path</c> header of the original email.
         /// </para>
         ///  
         /// <para>
@@ -5707,9 +5998,9 @@ namespace Amazon.SimpleEmailV2
         /// 
         ///  
         /// <para>
-        /// If the value is <code>true</code>, you receive email notifications when bounce or
-        /// complaint events occur. These notifications are sent to the address that you specified
-        /// in the <code>Return-Path</code> header of the original email.
+        /// If the value is <c>true</c>, you receive email notifications when bounce or complaint
+        /// events occur. These notifications are sent to the address that you specified in the
+        /// <c>Return-Path</c> header of the original email.
         /// </para>
         ///  
         /// <para>
@@ -6432,9 +6723,8 @@ namespace Amazon.SimpleEmailV2
         /// <para>
         ///  <i>Events</i> include message sends, deliveries, opens, clicks, bounces, and complaints.
         /// <i>Event destinations</i> are places that you can send information about these events
-        /// to. For example, you can send event data to Amazon SNS to receive notifications when
-        /// you receive bounces or complaints, or you can use Amazon Kinesis Data Firehose to
-        /// stream data to Amazon S3 for long-term storage.
+        /// to. For example, you can send event data to Amazon EventBridge and associate a rule
+        /// to send the event to the specified target.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateConfigurationSetEventDestination service method.</param>
@@ -6467,9 +6757,8 @@ namespace Amazon.SimpleEmailV2
         /// <para>
         ///  <i>Events</i> include message sends, deliveries, opens, clicks, bounces, and complaints.
         /// <i>Event destinations</i> are places that you can send information about these events
-        /// to. For example, you can send event data to Amazon SNS to receive notifications when
-        /// you receive bounces or complaints, or you can use Amazon Kinesis Data Firehose to
-        /// stream data to Amazon S3 for long-term storage.
+        /// to. For example, you can send event data to Amazon EventBridge and associate a rule
+        /// to send the event to the specified target.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateConfigurationSetEventDestination service method.</param>
@@ -6503,8 +6792,15 @@ namespace Amazon.SimpleEmailV2
 
 
         /// <summary>
-        /// Updates a contact's preferences for a list. It is not necessary to specify all existing
-        /// topic preferences in the TopicPreferences object, just the ones that need updating.
+        /// Updates a contact's preferences for a list.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// You must specify all existing topic preferences in the <c>TopicPreferences</c> object,
+        /// not just the ones that need updating; otherwise, all your existing preferences will
+        /// be removed.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateContact service method.</param>
         /// 
@@ -6533,8 +6829,15 @@ namespace Amazon.SimpleEmailV2
 
 
         /// <summary>
-        /// Updates a contact's preferences for a list. It is not necessary to specify all existing
-        /// topic preferences in the TopicPreferences object, just the ones that need updating.
+        /// Updates a contact's preferences for a list.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// You must specify all existing topic preferences in the <c>TopicPreferences</c> object,
+        /// not just the ones that need updating; otherwise, all your existing preferences will
+        /// be removed.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateContact service method.</param>
         /// <param name="cancellationToken">
@@ -6891,11 +7194,11 @@ namespace Amazon.SimpleEmailV2
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

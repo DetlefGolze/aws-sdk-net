@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAttributes())
@@ -97,6 +99,33 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("modelManifestArn");
                     context.Writer.Write(publicRequest.ModelManifestArn);
+                }
+
+                if(publicRequest.IsSetStateTemplatesToAdd())
+                {
+                    context.Writer.WritePropertyName("stateTemplatesToAdd");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestStateTemplatesToAddListValue in publicRequest.StateTemplatesToAdd)
+                    {
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = StateTemplateAssociationMarshaller.Instance;
+                        marshaller.Marshall(publicRequestStateTemplatesToAddListValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetStateTemplatesToRemove())
+                {
+                    context.Writer.WritePropertyName("stateTemplatesToRemove");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestStateTemplatesToRemoveListValue in publicRequest.StateTemplatesToRemove)
+                    {
+                            context.Writer.Write(publicRequestStateTemplatesToRemoveListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
                 }
 
                 if(publicRequest.IsSetVehicleName())

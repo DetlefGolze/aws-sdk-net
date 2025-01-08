@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
-    /// Represents an attribute for describing the key schema for the table and indexes.
+    /// Represents an attribute for describing the schema for the table and indexes.
     /// </summary>
     public partial class AttributeDefinition
     {
@@ -45,7 +46,7 @@ namespace Amazon.DynamoDBv2.Model
         /// Instantiates AttributeDefinition with the parameterized properties
         /// </summary>
         /// <param name="attributeName">A name for the attribute.</param>
-        /// <param name="attributeType">The data type for the attribute, where: <ul> <li>  <code>S</code> - the attribute is of type String </li> <li>  <code>N</code> - the attribute is of type Number </li> <li>  <code>B</code> - the attribute is of type Binary </li> </ul></param>
+        /// <param name="attributeType">The data type for the attribute, where: <ul> <li>  <c>S</c> - the attribute is of type String </li> <li>  <c>N</c> - the attribute is of type Number </li> <li>  <c>B</c> - the attribute is of type Binary </li> </ul></param>
         public AttributeDefinition(string attributeName, ScalarAttributeType attributeType)
         {
             _attributeName = attributeName;
@@ -78,15 +79,15 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>S</code> - the attribute is of type String
+        ///  <c>S</c> - the attribute is of type String
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>N</code> - the attribute is of type Number
+        ///  <c>N</c> - the attribute is of type Number
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>B</code> - the attribute is of type Binary
+        ///  <c>B</c> - the attribute is of type Binary
         /// </para>
         ///  </li> </ul>
         /// </summary>

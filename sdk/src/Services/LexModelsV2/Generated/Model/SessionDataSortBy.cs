@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -44,17 +45,16 @@ namespace Amazon.LexModelsV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>conversationStartTime</code> – The date and time when the conversation began.
-        /// A conversation is defined as a unique combination of a <code>sessionId</code> and
-        /// an <code>originatingRequestId</code>.
+        ///  <c>conversationStartTime</c> – The date and time when the conversation began. A conversation
+        /// is defined as a unique combination of a <c>sessionId</c> and an <c>originatingRequestId</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>numberOfTurns</code> – The number of turns that the session took.
+        ///  <c>numberOfTurns</c> – The number of turns that the session took.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>conversationDurationSeconds</code> – The duration of the conversation in seconds.
+        ///  <c>conversationDurationSeconds</c> – The duration of the conversation in seconds.
         /// </para>
         ///  </li> </ul>
         /// </summary>

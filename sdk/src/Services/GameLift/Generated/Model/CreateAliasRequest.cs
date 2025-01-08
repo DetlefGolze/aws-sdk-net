@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -48,7 +49,7 @@ namespace Amazon.GameLift.Model
     /// To create a fleet alias, specify an alias name, routing strategy, and optional description.
     /// Each simple alias can point to only one fleet, but a fleet can have multiple aliases.
     /// If successful, a new alias record is returned, including an alias ID and an ARN. You
-    /// can reassign an alias to another fleet by calling <code>UpdateAlias</code>.
+    /// can reassign an alias to another fleet by calling <c>UpdateAlias</c>.
     /// </para>
     ///  
     /// <para>
@@ -65,7 +66,7 @@ namespace Amazon.GameLift.Model
         private string _description;
         private string _name;
         private RoutingStrategy _routingStrategy;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -145,7 +146,7 @@ namespace Amazon.GameLift.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

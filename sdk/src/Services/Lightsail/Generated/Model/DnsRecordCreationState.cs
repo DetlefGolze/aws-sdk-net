@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -62,15 +63,15 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>SUCCEEDED</code> - The validation records were successfully added to the domain.
+        ///  <c>SUCCEEDED</c> - The validation records were successfully added to the domain.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>STARTED</code> - The automatic DNS record creation has started.
+        ///  <c>STARTED</c> - The automatic DNS record creation has started.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> - The validation records failed to be added to the domain.
+        ///  <c>FAILED</c> - The validation records failed to be added to the domain.
         /// </para>
         ///  </li> </ul>
         /// </summary>

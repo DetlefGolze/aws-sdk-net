@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -34,15 +35,14 @@ namespace Amazon.SageMaker.Model
     /// 
     ///  
     /// <para>
-    ///  To stop a job, Amazon SageMaker sends the algorithm the SIGTERM signal. This gracefully
+    ///  To stop a job, Amazon SageMaker AI sends the algorithm the SIGTERM signal. This gracefully
     /// shuts the job down. If the job hasn't stopped, it sends the SIGKILL signal.
     /// </para>
     ///  
     /// <para>
-    /// When it receives a <code>StopCompilationJob</code> request, Amazon SageMaker changes
-    /// the <code>CompilationJobStatus</code> of the job to <code>Stopping</code>. After Amazon
-    /// SageMaker stops the job, it sets the <code>CompilationJobStatus</code> to <code>Stopped</code>.
-    /// 
+    /// When it receives a <c>StopCompilationJob</c> request, Amazon SageMaker AI changes
+    /// the <c>CompilationJobStatus</c> of the job to <c>Stopping</c>. After Amazon SageMaker
+    /// stops the job, it sets the <c>CompilationJobStatus</c> to <c>Stopped</c>. 
     /// </para>
     /// </summary>
     public partial class StopCompilationJobRequest : AmazonSageMakerRequest

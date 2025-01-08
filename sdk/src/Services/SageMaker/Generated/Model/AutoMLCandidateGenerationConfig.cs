@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -33,44 +34,44 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class AutoMLCandidateGenerationConfig
     {
-        private List<AutoMLAlgorithmConfig> _algorithmsConfig = new List<AutoMLAlgorithmConfig>();
+        private List<AutoMLAlgorithmConfig> _algorithmsConfig = AWSConfigs.InitializeCollections ? new List<AutoMLAlgorithmConfig>() : null;
         private string _featureSpecificationS3Uri;
 
         /// <summary>
         /// Gets and sets the property AlgorithmsConfig. 
         /// <para>
-        /// Stores the configuration information for the selection of algorithms used to train
-        /// the model candidates.
+        /// Stores the configuration information for the selection of algorithms trained on tabular
+        /// data.
         /// </para>
         ///  
         /// <para>
         /// The list of available algorithms to choose from depends on the training mode set in
-        /// <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLJobConfig.html">
-        /// <code>AutoMLJobConfig.Mode</code> </a>.
+        /// <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TabularJobConfig.html">
+        /// <c>TabularJobConfig.Mode</c> </a>.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AlgorithmsConfig</code> should not be set in <code>AUTO</code> training mode.
+        ///  <c>AlgorithmsConfig</c> should not be set if the training mode is set on <c>AUTO</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// When <code>AlgorithmsConfig</code> is provided, one <code>AutoMLAlgorithms</code>
-        /// attribute must be set and one only.
+        /// When <c>AlgorithmsConfig</c> is provided, one <c>AutoMLAlgorithms</c> attribute must
+        /// be set and one only.
         /// </para>
         ///  
         /// <para>
-        /// If the list of algorithms provided as values for <code>AutoMLAlgorithms</code> is
-        /// empty, <code>AutoMLCandidateGenerationConfig</code> uses the full set of algorithms
-        /// for the given training mode.
+        /// If the list of algorithms provided as values for <c>AutoMLAlgorithms</c> is empty,
+        /// <c>CandidateGenerationConfig</c> uses the full set of algorithms for the given training
+        /// mode.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// When <code>AlgorithmsConfig</code> is not provided, <code>AutoMLCandidateGenerationConfig</code>
-        /// uses the full set of algorithms for the given training mode.
+        /// When <c>AlgorithmsConfig</c> is not provided, <c>CandidateGenerationConfig</c> uses
+        /// the full set of algorithms for the given training mode.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For the list of all algorithms per training mode, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLAlgorithmConfig.html">
+        /// For the list of all algorithms per problem type and training mode, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLAlgorithmConfig.html">
         /// AutoMLAlgorithmConfig</a>.
         /// </para>
         ///  
@@ -89,19 +90,19 @@ namespace Amazon.SageMaker.Model
         // Check to see if AlgorithmsConfig property is set
         internal bool IsSetAlgorithmsConfig()
         {
-            return this._algorithmsConfig != null && this._algorithmsConfig.Count > 0; 
+            return this._algorithmsConfig != null && (this._algorithmsConfig.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property FeatureSpecificationS3Uri. 
         /// <para>
         /// A URL to the Amazon S3 data source containing selected features from the input data
-        /// source to run an Autopilot job. You can input <code>FeatureAttributeNames</code> (optional)
+        /// source to run an Autopilot job. You can input <c>FeatureAttributeNames</c> (optional)
         /// in JSON format as shown below: 
         /// </para>
         ///  
         /// <para>
-        ///  <code>{ "FeatureAttributeNames":["col1", "col2", ...] }</code>.
+        ///  <c>{ "FeatureAttributeNames":["col1", "col2", ...] }</c>.
         /// </para>
         ///  
         /// <para>
@@ -109,8 +110,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>{ "FeatureDataTypes":{"col1":"numeric", "col2":"categorical" ... } }</code>
-        /// 
+        ///  <c>{ "FeatureDataTypes":{"col1":"numeric", "col2":"categorical" ... } }</c> 
         /// </para>
         ///  <note> 
         /// <para>
@@ -118,28 +118,27 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  </note> 
         /// <para>
-        /// In ensembling mode, Autopilot only supports the following data types: <code>numeric</code>,
-        /// <code>categorical</code>, <code>text</code>, and <code>datetime</code>. In HPO mode,
-        /// Autopilot can support <code>numeric</code>, <code>categorical</code>, <code>text</code>,
-        /// <code>datetime</code>, and <code>sequence</code>.
+        /// In ensembling mode, Autopilot only supports the following data types: <c>numeric</c>,
+        /// <c>categorical</c>, <c>text</c>, and <c>datetime</c>. In HPO mode, Autopilot can support
+        /// <c>numeric</c>, <c>categorical</c>, <c>text</c>, <c>datetime</c>, and <c>sequence</c>.
         /// </para>
         ///  
         /// <para>
-        /// If only <code>FeatureDataTypes</code> is provided, the column keys (<code>col1</code>,
-        /// <code>col2</code>,..) should be a subset of the column names in the input data. 
+        /// If only <c>FeatureDataTypes</c> is provided, the column keys (<c>col1</c>, <c>col2</c>,..)
+        /// should be a subset of the column names in the input data. 
         /// </para>
         ///  
         /// <para>
-        /// If both <code>FeatureDataTypes</code> and <code>FeatureAttributeNames</code> are provided,
-        /// then the column keys should be a subset of the column names provided in <code>FeatureAttributeNames</code>.
+        /// If both <c>FeatureDataTypes</c> and <c>FeatureAttributeNames</c> are provided, then
+        /// the column keys should be a subset of the column names provided in <c>FeatureAttributeNames</c>.
         /// 
         /// </para>
         ///  
         /// <para>
-        /// The key name <code>FeatureAttributeNames</code> is fixed. The values listed in <code>["col1",
-        /// "col2", ...]</code> are case sensitive and should be a list of strings containing
-        /// unique values that are a subset of the column names in the input data. The list of
-        /// columns provided must not include the target column.
+        /// The key name <c>FeatureAttributeNames</c> is fixed. The values listed in <c>["col1",
+        /// "col2", ...]</c> are case sensitive and should be a list of strings containing unique
+        /// values that are a subset of the column names in the input data. The list of columns
+        /// provided must not include the target column.
         /// </para>
         /// </summary>
         [AWSProperty(Max=1024)]

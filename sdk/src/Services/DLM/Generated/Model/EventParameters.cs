@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DLM.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.DLM.Model
     {
         private string _descriptionRegex;
         private EventTypeValues _eventType;
-        private List<string> _snapshotOwner = new List<string>();
+        private List<string> _snapshotOwner = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DescriptionRegex. 
@@ -47,8 +48,8 @@ namespace Amazon.DLM.Model
         /// </para>
         ///  
         /// <para>
-        /// For example, specifying <code>^.*Created for policy: policy-1234567890abcdef0.*$</code>
-        /// configures the policy to run only if snapshots created by policy <code>policy-1234567890abcdef0</code>
+        /// For example, specifying <c>^.*Created for policy: policy-1234567890abcdef0.*$</c>
+        /// configures the policy to run only if snapshots created by policy <c>policy-1234567890abcdef0</c>
         /// are shared with your account.
         /// </para>
         /// </summary>
@@ -102,7 +103,7 @@ namespace Amazon.DLM.Model
         // Check to see if SnapshotOwner property is set
         internal bool IsSetSnapshotOwner()
         {
-            return this._snapshotOwner != null && this._snapshotOwner.Count > 0; 
+            return this._snapshotOwner != null && (this._snapshotOwner.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -76,12 +77,11 @@ namespace Amazon.IdentityManagement.Model
     /// </para>
     ///  <note> 
     /// <para>
-    /// Amazon Web Services secures communication with some OIDC identity providers (IdPs)
-    /// through our library of trusted root certificate authorities (CAs) instead of using
-    /// a certificate thumbprint to verify your IdP server certificate. These OIDC IdPs include
-    /// Auth0, GitHub, Google, and those that use an Amazon S3 bucket to host a JSON Web Key
-    /// Set (JWKS) endpoint. In these cases, your legacy thumbprint remains in your configuration,
-    /// but is no longer used for validation.
+    /// Amazon Web Services secures communication with OIDC identity providers (IdPs) using
+    /// our library of trusted root certificate authorities (CAs) to verify the JSON Web Key
+    /// Set (JWKS) endpoint's TLS certificate. If your OIDC IdP relies on a certificate that
+    /// is not signed by one of these trusted CAs, only then we secure communication using
+    /// the thumbprints set in the IdP's configuration.
     /// </para>
     ///  </note> <note> 
     /// <para>
@@ -93,9 +93,9 @@ namespace Amazon.IdentityManagement.Model
     /// </summary>
     public partial class CreateOpenIDConnectProviderRequest : AmazonIdentityManagementServiceRequest
     {
-        private List<string> _clientIDList = new List<string>();
-        private List<Tag> _tags = new List<Tag>();
-        private List<string> _thumbprintList = new List<string>();
+        private List<string> _clientIDList = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private List<string> _thumbprintList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _url;
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace Amazon.IdentityManagement.Model
         /// <para>
         /// Provides a list of client IDs, also known as audiences. When a mobile or web app registers
         /// with an OpenID Connect provider, they establish a value that identifies the application.
-        /// This is the value that's sent as the <code>client_id</code> parameter on OAuth requests.
+        /// This is the value that's sent as the <c>client_id</c> parameter on OAuth requests.
         /// </para>
         ///  
         /// <para>
@@ -113,7 +113,7 @@ namespace Amazon.IdentityManagement.Model
         /// </para>
         ///  
         /// <para>
-        /// There is no defined format for a client ID. The <code>CreateOpenIDConnectProviderRequest</code>
+        /// There is no defined format for a client ID. The <c>CreateOpenIDConnectProviderRequest</c>
         /// operation accepts client IDs up to 255 characters long.
         /// </para>
         /// </summary>
@@ -126,7 +126,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if ClientIDList property is set
         internal bool IsSetClientIDList()
         {
-            return this._clientIDList != null && this._clientIDList.Count > 0; 
+            return this._clientIDList != null && (this._clientIDList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -167,17 +167,22 @@ namespace Amazon.IdentityManagement.Model
         /// </para>
         ///  
         /// <para>
+        /// This parameter is optional. If it is not included, IAM will retrieve and use the top
+        /// intermediate certificate authority (CA) thumbprint of the OpenID Connect identity
+        /// provider server certificate.
+        /// </para>
+        ///  
+        /// <para>
         /// The server certificate thumbprint is the hex-encoded SHA-1 hash value of the X.509
         /// certificate used by the domain where the OpenID Connect provider makes its keys available.
         /// It is always a 40-character string.
         /// </para>
         ///  
         /// <para>
-        /// You must provide at least one thumbprint when creating an IAM OIDC provider. For example,
-        /// assume that the OIDC provider is <code>server.example.com</code> and the provider
+        /// For example, assume that the OIDC provider is <c>server.example.com</c> and the provider
         /// stores its keys at https://keys.server.example.com/openid-connect. In that case, the
         /// thumbprint string would be the hex-encoded SHA-1 hash value of the certificate used
-        /// by <code>https://keys.server.example.com.</code> 
+        /// by <c>https://keys.server.example.com.</c> 
         /// </para>
         ///  
         /// <para>
@@ -185,7 +190,6 @@ namespace Amazon.IdentityManagement.Model
         /// the thumbprint for an OpenID Connect provider</a> in the <i>IAM user Guide</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public List<string> ThumbprintList
         {
             get { return this._thumbprintList; }
@@ -195,17 +199,17 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if ThumbprintList property is set
         internal bool IsSetThumbprintList()
         {
-            return this._thumbprintList != null && this._thumbprintList.Count > 0; 
+            return this._thumbprintList != null && (this._thumbprintList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Url. 
         /// <para>
-        /// The URL of the identity provider. The URL must begin with <code>https://</code> and
-        /// should correspond to the <code>iss</code> claim in the provider's OpenID Connect ID
-        /// tokens. Per the OIDC standard, path components are allowed but query parameters are
-        /// not. Typically the URL consists of only a hostname, like <code>https://server.example.org</code>
-        /// or <code>https://example.com</code>. The URL should not contain a port number. 
+        /// The URL of the identity provider. The URL must begin with <c>https://</c> and should
+        /// correspond to the <c>iss</c> claim in the provider's OpenID Connect ID tokens. Per
+        /// the OIDC standard, path components are allowed but query parameters are not. Typically
+        /// the URL consists of only a hostname, like <c>https://server.example.org</c> or <c>https://example.com</c>.
+        /// The URL should not contain a port number. 
         /// </para>
         ///  
         /// <para>

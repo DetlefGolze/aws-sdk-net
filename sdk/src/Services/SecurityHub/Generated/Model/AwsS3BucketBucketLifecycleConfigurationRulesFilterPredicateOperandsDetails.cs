@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -76,8 +77,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of filter value. Valid values are <code>LifecyclePrefixPredicate</code> or
-        /// <code>LifecycleTagPredicate</code>.
+        /// The type of filter value. Valid values are <c>LifecyclePrefixPredicate</c> or <c>LifecycleTagPredicate</c>.
         /// </para>
         /// </summary>
         public string Type

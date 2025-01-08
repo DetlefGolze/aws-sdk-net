@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VerifiedPermissions.Model
 {
     /// <summary>
@@ -62,9 +63,9 @@ namespace Amazon.VerifiedPermissions.Model
         /// </para>
         ///  </li> </ul> <important> 
         /// <para>
-        /// If <code>Mode=STRICT</code> and the policy store doesn't contain a schema, Verified
-        /// Permissions rejects all static policies and policy templates because there is no schema
-        /// to validate against. 
+        /// If <c>Mode=STRICT</c> and the policy store doesn't contain a schema, Verified Permissions
+        /// rejects all static policies and policy templates because there is no schema to validate
+        /// against. 
         /// </para>
         ///  
         /// <para>

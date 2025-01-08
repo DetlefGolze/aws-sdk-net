@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// The result of an <code>UpdateServiceAccessPolicies</code> request. Contains the new
-    /// access policies.
+    /// The result of an <c>UpdateServiceAccessPolicies</c> request. Contains the new access
+    /// policies.
     /// </summary>
     public partial class UpdateServiceAccessPoliciesResponse : AmazonWebServiceResponse
     {

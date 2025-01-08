@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -48,7 +49,7 @@ namespace Amazon.EC2.Model
         private int? _allocationDefaultNetmaskLength;
         private int? _allocationMaxNetmaskLength;
         private int? _allocationMinNetmaskLength;
-        private List<RequestIpamResourceTag> _allocationResourceTags = new List<RequestIpamResourceTag>();
+        private List<RequestIpamResourceTag> _allocationResourceTags = AWSConfigs.InitializeCollections ? new List<RequestIpamResourceTag>() : null;
         private bool? _autoImport;
         private IpamPoolAwsService _awsService;
         private string _clientToken;
@@ -58,7 +59,8 @@ namespace Amazon.EC2.Model
         private IpamPoolPublicIpSource _publicIpSource;
         private bool? _publiclyAdvertisable;
         private string _sourceIpamPoolId;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private IpamPoolSourceResourceRequest _sourceResource;
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
 
         /// <summary>
         /// Gets and sets the property AddressFamily. 
@@ -163,7 +165,7 @@ namespace Amazon.EC2.Model
         // Check to see if AllocationResourceTags property is set
         internal bool IsSetAllocationResourceTags()
         {
-            return this._allocationResourceTags != null && this._allocationResourceTags.Count > 0; 
+            return this._allocationResourceTags != null && (this._allocationResourceTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -218,8 +220,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// A unique, case-sensitive identifier that you provide to ensure the idempotency of
-        /// the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
-        /// Idempotency</a>.
+        /// the request. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html">Ensuring
+        /// idempotency</a>.
         /// </para>
         /// </summary>
         public string ClientToken
@@ -274,17 +276,23 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Locale. 
         /// <para>
-        /// In IPAM, the locale is the Amazon Web Services Region where you want to make an IPAM
-        /// pool available for allocations. Only resources in the same Region as the locale of
-        /// the pool can get IP address allocations from the pool. You can only allocate a CIDR
-        /// for a VPC, for example, from an IPAM pool that shares a locale with the VPC’s Region.
-        /// Note that once you choose a Locale for a pool, you cannot modify it. If you do not
-        /// choose a locale, resources in Regions others than the IPAM's home region cannot use
-        /// CIDRs from this pool.
+        /// The locale for the pool should be one of the following:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// Possible values: Any Amazon Web Services Region, such as us-east-1.
+        /// An Amazon Web Services Region where you want this IPAM pool to be available for allocations.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The network border group for an Amazon Web Services Local Zone where you want this
+        /// IPAM pool to be available for allocations (<a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html#byoip-zone-avail">supported
+        /// Local Zones</a>). This option is only available for IPAM IPv4 pools in the public
+        /// scope.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Possible values: Any Amazon Web Services Region or supported Amazon Web Services Local
+        /// Zone. Default is <c>none</c> and means any locale.
         /// </para>
         /// </summary>
         public string Locale
@@ -303,11 +311,11 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property PublicIpSource. 
         /// <para>
         /// The IP address source for pools in the public scope. Only used for provisioning IP
-        /// address CIDRs to pools in the public scope. Default is <code>byoip</code>. For more
-        /// information, see <a href="https://docs.aws.amazon.com/vpc/latest/ipam/intro-create-ipv6-pools.html">Create
+        /// address CIDRs to pools in the public scope. Default is <c>byoip</c>. For more information,
+        /// see <a href="https://docs.aws.amazon.com/vpc/latest/ipam/intro-create-ipv6-pools.html">Create
         /// IPv6 pools</a> in the <i>Amazon VPC IPAM User Guide</i>. By default, you can add only
         /// one Amazon-provided IPv6 CIDR block to a top-level IPv6 pool if PublicIpSource is
-        /// <code>amazon</code>. For information on increasing the default limit, see <a href="https://docs.aws.amazon.com/vpc/latest/ipam/quotas-ipam.html">
+        /// <c>amazon</c>. For information on increasing the default limit, see <a href="https://docs.aws.amazon.com/vpc/latest/ipam/quotas-ipam.html">
         /// Quotas for your IPAM</a> in the <i>Amazon VPC IPAM User Guide</i>.
         /// </para>
         /// </summary>
@@ -326,8 +334,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property PubliclyAdvertisable. 
         /// <para>
-        /// Determines if the pool is publicly advertisable. This option is not available for
-        /// pools with AddressFamily set to <code>ipv4</code>.
+        /// Determines if the pool is publicly advertisable. The request can only contain <c>PubliclyAdvertisable</c>
+        /// if <c>AddressFamily</c> is <c>ipv6</c> and <c>PublicIpSource</c> is <c>byoip</c>.
         /// </para>
         /// </summary>
         public bool PubliclyAdvertisable
@@ -363,13 +371,30 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SourceResource. 
+        /// <para>
+        /// The resource used to provision CIDRs to a resource planning pool.
+        /// </para>
+        /// </summary>
+        public IpamPoolSourceResourceRequest SourceResource
+        {
+            get { return this._sourceResource; }
+            set { this._sourceResource = value; }
+        }
+
+        // Check to see if SourceResource property is set
+        internal bool IsSetSourceResource()
+        {
+            return this._sourceResource != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property TagSpecifications. 
         /// <para>
         /// The key/value combination of a tag assigned to the resource. Use the tag key in the
         /// filter name and the tag value as the filter value. For example, to find all resources
-        /// that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>,
-        /// specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the
-        /// filter value.
+        /// that have a tag with the key <c>Owner</c> and the value <c>TeamA</c>, specify <c>tag:Owner</c>
+        /// for the filter name and <c>TeamA</c> for the filter value.
         /// </para>
         /// </summary>
         public List<TagSpecification> TagSpecifications
@@ -381,7 +406,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

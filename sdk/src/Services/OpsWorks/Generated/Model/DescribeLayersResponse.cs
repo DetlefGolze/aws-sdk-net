@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
-    /// Contains the response to a <code>DescribeLayers</code> request.
+    /// Contains the response to a <c>DescribeLayers</c> request.
     /// </summary>
     public partial class DescribeLayersResponse : AmazonWebServiceResponse
     {
-        private List<Layer> _layers = new List<Layer>();
+        private List<Layer> _layers = AWSConfigs.InitializeCollections ? new List<Layer>() : null;
 
         /// <summary>
         /// Gets and sets the property Layers. 
         /// <para>
-        /// An array of <code>Layer</code> objects that describe the layers.
+        /// An array of <c>Layer</c> objects that describe the layers.
         /// </para>
         /// </summary>
         public List<Layer> Layers
@@ -50,7 +51,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if Layers property is set
         internal bool IsSetLayers()
         {
-            return this._layers != null && this._layers.Count > 0; 
+            return this._layers != null && (this._layers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

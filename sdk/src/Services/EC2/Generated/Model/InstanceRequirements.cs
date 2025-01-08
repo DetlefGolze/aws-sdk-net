@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.EC2.Model
     /// 
     ///  
     /// <para>
-    /// You must specify <code>VCpuCount</code> and <code>MemoryMiB</code>. All other attributes
-    /// are optional. Any unspecified optional attribute is set to its default.
+    /// You must specify <c>VCpuCount</c> and <c>MemoryMiB</c>. All other attributes are optional.
+    /// Any unspecified optional attribute is set to its default.
     /// </para>
     ///  
     /// <para>
@@ -50,17 +51,17 @@ namespace Amazon.EC2.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>AllowedInstanceTypes</code> - The instance types to include in the list. All
-    /// other instance types are ignored, even if they match your specified attributes.
+    ///  <c>AllowedInstanceTypes</c> - The instance types to include in the list. All other
+    /// instance types are ignored, even if they match your specified attributes.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ExcludedInstanceTypes</code> - The instance types to exclude from the list,
-    /// even if they match your specified attributes.
+    ///  <c>ExcludedInstanceTypes</c> - The instance types to exclude from the list, even
+    /// if they match your specified attributes.
     /// </para>
     ///  </li> </ul> <note> 
     /// <para>
-    /// If you specify <code>InstanceRequirements</code>, you can't specify <code>InstanceType</code>.
+    /// If you specify <c>InstanceRequirements</c>, you can't specify <c>InstanceType</c>.
     /// </para>
     ///  
     /// <para>
@@ -68,32 +69,35 @@ namespace Amazon.EC2.Model
     /// groups, EC2 Fleet, and Spot Fleet to launch instances. If you plan to use the launch
     /// template in the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-instance-wizard.html">launch
     /// instance wizard</a> or with the <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html">RunInstances
-    /// API</a>, you can't specify <code>InstanceRequirements</code>.
+    /// API</a>, you can't specify <c>InstanceRequirements</c>.
     /// </para>
     ///  </note> 
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html">Attribute-based
-    /// instance type selection for EC2 Fleet</a>, <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-attribute-based-instance-type-selection.html">Attribute-based
-    /// instance type selection for Spot Fleet</a>, and <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html">Spot
+    /// For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-mixed-instances-group-attribute-based-instance-type-selection.html">Create
+    /// mixed instances group using attribute-based instance type selection</a> in the <i>Amazon
+    /// EC2 Auto Scaling User Guide</i>, and also <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html">Specify
+    /// attributes for instance type selection for EC2 Fleet or Spot Fleet</a> and <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html">Spot
     /// placement score</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     /// </summary>
     public partial class InstanceRequirements
     {
         private AcceleratorCount _acceleratorCount;
-        private List<string> _acceleratorManufacturers = new List<string>();
-        private List<string> _acceleratorNames = new List<string>();
+        private List<string> _acceleratorManufacturers = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _acceleratorNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private AcceleratorTotalMemoryMiB _acceleratorTotalMemoryMiB;
-        private List<string> _acceleratorTypes = new List<string>();
-        private List<string> _allowedInstanceTypes = new List<string>();
+        private List<string> _acceleratorTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _allowedInstanceTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private BareMetal _bareMetal;
         private BaselineEbsBandwidthMbps _baselineEbsBandwidthMbps;
+        private BaselinePerformanceFactors _baselinePerformanceFactors;
         private BurstablePerformance _burstablePerformance;
-        private List<string> _cpuManufacturers = new List<string>();
-        private List<string> _excludedInstanceTypes = new List<string>();
-        private List<string> _instanceGenerations = new List<string>();
+        private List<string> _cpuManufacturers = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _excludedInstanceTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _instanceGenerations = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private LocalStorage _localStorage;
-        private List<string> _localStorageTypes = new List<string>();
+        private List<string> _localStorageTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private int? _maxSpotPriceAsPercentageOfOptimalOnDemandPrice;
         private MemoryGiBPerVCpu _memoryGiBPerVCpu;
         private MemoryMiB _memoryMiB;
         private NetworkBandwidthGbps _networkBandwidthGbps;
@@ -112,7 +116,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// To exclude accelerator-enabled instance types, set <code>Max</code> to <code>0</code>.
+        /// To exclude accelerator-enabled instance types, set <c>Max</c> to <c>0</c>.
         /// </para>
         ///  
         /// <para>
@@ -138,19 +142,23 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For instance types with NVIDIA devices, specify <code>nvidia</code>.
+        /// For instance types with Amazon Web Services devices, specify <c>amazon-web-services</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For instance types with AMD devices, specify <code>amd</code>.
+        /// For instance types with AMD devices, specify <c>amd</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For instance types with Amazon Web Services devices, specify <code>amazon-web-services</code>.
+        /// For instance types with Habana devices, specify <c>habana</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For instance types with Xilinx devices, specify <code>xilinx</code>.
+        /// For instance types with NVIDIA devices, specify <c>nvidia</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For instance types with Xilinx devices, specify <c>xilinx</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -166,7 +174,7 @@ namespace Amazon.EC2.Model
         // Check to see if AcceleratorManufacturers property is set
         internal bool IsSetAcceleratorManufacturers()
         {
-            return this._acceleratorManufacturers != null && this._acceleratorManufacturers.Count > 0; 
+            return this._acceleratorManufacturers != null && (this._acceleratorManufacturers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -176,39 +184,51 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For instance types with NVIDIA A100 GPUs, specify <code>a100</code>.
+        /// For instance types with NVIDIA A10G GPUs, specify <c>a10g</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For instance types with NVIDIA V100 GPUs, specify <code>v100</code>.
+        /// For instance types with NVIDIA A100 GPUs, specify <c>a100</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For instance types with NVIDIA K80 GPUs, specify <code>k80</code>.
+        /// For instance types with NVIDIA H100 GPUs, specify <c>h100</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For instance types with NVIDIA T4 GPUs, specify <code>t4</code>.
+        /// For instance types with Amazon Web Services Inferentia chips, specify <c>inferentia</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For instance types with NVIDIA M60 GPUs, specify <code>m60</code>.
+        /// For instance types with NVIDIA GRID K520 GPUs, specify <c>k520</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For instance types with AMD Radeon Pro V520 GPUs, specify <code>radeon-pro-v520</code>.
+        /// For instance types with NVIDIA K80 GPUs, specify <c>k80</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For instance types with Xilinx VU9P FPGAs, specify <code>vu9p</code>.
+        /// For instance types with NVIDIA M60 GPUs, specify <c>m60</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For instance types with Amazon Web Services Inferentia chips, specify <code>inferentia</code>.
+        /// For instance types with AMD Radeon Pro V520 GPUs, specify <c>radeon-pro-v520</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For instance types with NVIDIA GRID K520 GPUs, specify <code>k520</code>.
+        /// For instance types with NVIDIA T4 GPUs, specify <c>t4</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For instance types with NVIDIA T4G GPUs, specify <c>t4g</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For instance types with Xilinx VU9P FPGAs, specify <c>vu9p</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For instance types with NVIDIA V100 GPUs, specify <c>v100</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -224,7 +244,7 @@ namespace Amazon.EC2.Model
         // Check to see if AcceleratorNames property is set
         internal bool IsSetAcceleratorNames()
         {
-            return this._acceleratorNames != null && this._acceleratorNames.Count > 0; 
+            return this._acceleratorNames != null && (this._acceleratorNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -256,15 +276,11 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For instance types with GPU accelerators, specify <code>gpu</code>.
+        /// For instance types with GPU accelerators, specify <c>gpu</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For instance types with FPGA accelerators, specify <code>fpga</code>.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// For instance types with inference accelerators, specify <code>inference</code>.
+        /// For instance types with FPGA accelerators, specify <c>fpga</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -280,7 +296,7 @@ namespace Amazon.EC2.Model
         // Check to see if AcceleratorTypes property is set
         internal bool IsSetAcceleratorTypes()
         {
-            return this._acceleratorTypes != null && this._acceleratorTypes.Count > 0; 
+            return this._acceleratorTypes != null && (this._acceleratorTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -291,19 +307,19 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// You can use strings with one or more wild cards, represented by an asterisk (<code>*</code>),
-        /// to allow an instance type, size, or generation. The following are examples: <code>m5.8xlarge</code>,
-        /// <code>c5*.*</code>, <code>m5a.*</code>, <code>r*</code>, <code>*3*</code>.
+        /// You can use strings with one or more wild cards, represented by an asterisk (<c>*</c>),
+        /// to allow an instance type, size, or generation. The following are examples: <c>m5.8xlarge</c>,
+        /// <c>c5*.*</c>, <c>m5a.*</c>, <c>r*</c>, <c>*3*</c>.
         /// </para>
         ///  
         /// <para>
-        /// For example, if you specify <code>c5*</code>,Amazon EC2 will allow the entire C5 instance
-        /// family, which includes all C5a and C5n instance types. If you specify <code>m5a.*</code>,
+        /// For example, if you specify <c>c5*</c>,Amazon EC2 will allow the entire C5 instance
+        /// family, which includes all C5a and C5n instance types. If you specify <c>m5a.*</c>,
         /// Amazon EC2 will allow all the M5a instance types, but not the M5n instance types.
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you specify <code>AllowedInstanceTypes</code>, you can't specify <code>ExcludedInstanceTypes</code>.
+        /// If you specify <c>AllowedInstanceTypes</c>, you can't specify <c>ExcludedInstanceTypes</c>.
         /// </para>
         ///  </note> 
         /// <para>
@@ -320,7 +336,7 @@ namespace Amazon.EC2.Model
         // Check to see if AllowedInstanceTypes property is set
         internal bool IsSetAllowedInstanceTypes()
         {
-            return this._allowedInstanceTypes != null && this._allowedInstanceTypes.Count > 0; 
+            return this._allowedInstanceTypes != null && (this._allowedInstanceTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -330,19 +346,19 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// To include bare metal instance types, specify <code>included</code>.
+        /// To include bare metal instance types, specify <c>included</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// To require only bare metal instance types, specify <code>required</code>.
+        /// To require only bare metal instance types, specify <c>required</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// To exclude bare metal instance types, specify <code>excluded</code>.
+        /// To exclude bare metal instance types, specify <c>excluded</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Default: <code>excluded</code> 
+        /// Default: <c>excluded</c> 
         /// </para>
         /// </summary>
         public BareMetal BareMetal
@@ -382,6 +398,30 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property BaselinePerformanceFactors. 
+        /// <para>
+        /// The baseline performance to consider, using an instance family as a baseline reference.
+        /// The instance family establishes the lowest acceptable level of performance. Amazon
+        /// EC2 uses this baseline to guide instance type selection, but there is no guarantee
+        /// that the selected instance types will always exceed the baseline for every application.
+        /// Currently, this parameter only supports CPU performance as a baseline performance
+        /// factor. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html#ec2fleet-abis-performance-protection">Performance
+        /// protection</a> in the <i>Amazon EC2 User Guide</i>.
+        /// </para>
+        /// </summary>
+        public BaselinePerformanceFactors BaselinePerformanceFactors
+        {
+            get { return this._baselinePerformanceFactors; }
+            set { this._baselinePerformanceFactors = value; }
+        }
+
+        // Check to see if BaselinePerformanceFactors property is set
+        internal bool IsSetBaselinePerformanceFactors()
+        {
+            return this._baselinePerformanceFactors != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property BurstablePerformance. 
         /// <para>
         /// Indicates whether burstable performance T instance types are included, excluded, or
@@ -390,19 +430,19 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// To include burstable performance instance types, specify <code>included</code>.
+        /// To include burstable performance instance types, specify <c>included</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// To require only burstable performance instance types, specify <code>required</code>.
+        /// To require only burstable performance instance types, specify <c>required</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// To exclude burstable performance instance types, specify <code>excluded</code>.
+        /// To exclude burstable performance instance types, specify <c>excluded</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Default: <code>excluded</code> 
+        /// Default: <c>excluded</c> 
         /// </para>
         /// </summary>
         public BurstablePerformance BurstablePerformance
@@ -424,15 +464,19 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For instance types with Intel CPUs, specify <code>intel</code>.
+        /// For instance types with Intel CPUs, specify <c>intel</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For instance types with AMD CPUs, specify <code>amd</code>.
+        /// For instance types with AMD CPUs, specify <c>amd</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For instance types with Amazon Web Services CPUs, specify <code>amazon-web-services</code>.
+        /// For instance types with Amazon Web Services CPUs, specify <c>amazon-web-services</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For instance types with Apple CPUs, specify <c>apple</c>.
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
@@ -454,7 +498,7 @@ namespace Amazon.EC2.Model
         // Check to see if CpuManufacturers property is set
         internal bool IsSetCpuManufacturers()
         {
-            return this._cpuManufacturers != null && this._cpuManufacturers.Count > 0; 
+            return this._cpuManufacturers != null && (this._cpuManufacturers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -464,19 +508,19 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// You can use strings with one or more wild cards, represented by an asterisk (<code>*</code>),
-        /// to exclude an instance type, size, or generation. The following are examples: <code>m5.8xlarge</code>,
-        /// <code>c5*.*</code>, <code>m5a.*</code>, <code>r*</code>, <code>*3*</code>.
+        /// You can use strings with one or more wild cards, represented by an asterisk (<c>*</c>),
+        /// to exclude an instance type, size, or generation. The following are examples: <c>m5.8xlarge</c>,
+        /// <c>c5*.*</c>, <c>m5a.*</c>, <c>r*</c>, <c>*3*</c>.
         /// </para>
         ///  
         /// <para>
-        /// For example, if you specify <code>c5*</code>,Amazon EC2 will exclude the entire C5
-        /// instance family, which includes all C5a and C5n instance types. If you specify <code>m5a.*</code>,
+        /// For example, if you specify <c>c5*</c>,Amazon EC2 will exclude the entire C5 instance
+        /// family, which includes all C5a and C5n instance types. If you specify <c>m5a.*</c>,
         /// Amazon EC2 will exclude all the M5a instance types, but not the M5n instance types.
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you specify <code>ExcludedInstanceTypes</code>, you can't specify <code>AllowedInstanceTypes</code>.
+        /// If you specify <c>ExcludedInstanceTypes</c>, you can't specify <c>AllowedInstanceTypes</c>.
         /// </para>
         ///  </note> 
         /// <para>
@@ -493,7 +537,7 @@ namespace Amazon.EC2.Model
         // Check to see if ExcludedInstanceTypes property is set
         internal bool IsSetExcludedInstanceTypes()
         {
-            return this._excludedInstanceTypes != null && this._excludedInstanceTypes.Count > 0; 
+            return this._excludedInstanceTypes != null && (this._excludedInstanceTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -507,11 +551,11 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// For current generation instance types, specify <code>current</code>.
+        /// For current generation instance types, specify <c>current</c>.
         /// </para>
         ///  
         /// <para>
-        /// For previous generation instance types, specify <code>previous</code>.
+        /// For previous generation instance types, specify <c>previous</c>.
         /// </para>
         ///  
         /// <para>
@@ -527,7 +571,7 @@ namespace Amazon.EC2.Model
         // Check to see if InstanceGenerations property is set
         internal bool IsSetInstanceGenerations()
         {
-            return this._instanceGenerations != null && this._instanceGenerations.Count > 0; 
+            return this._instanceGenerations != null && (this._instanceGenerations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -539,19 +583,19 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// To include instance types with instance store volumes, specify <code>included</code>.
+        /// To include instance types with instance store volumes, specify <c>included</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// To require only instance types with instance store volumes, specify <code>required</code>.
+        /// To require only instance types with instance store volumes, specify <c>required</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// To exclude instance types with instance store volumes, specify <code>excluded</code>.
+        /// To exclude instance types with instance store volumes, specify <c>excluded</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Default: <code>included</code> 
+        /// Default: <c>included</c> 
         /// </para>
         /// </summary>
         public LocalStorage LocalStorage
@@ -573,15 +617,15 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For instance types with hard disk drive (HDD) storage, specify <code>hdd</code>.
+        /// For instance types with hard disk drive (HDD) storage, specify <c>hdd</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For instance types with solid state drive (SSD) storage, specify <code>ssd</code>.
+        /// For instance types with solid state drive (SSD) storage, specify <c>ssd</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Default: <code>hdd</code> and <code>ssd</code> 
+        /// Default: <c>hdd</c> and <c>ssd</c> 
         /// </para>
         /// </summary>
         public List<string> LocalStorageTypes
@@ -593,7 +637,52 @@ namespace Amazon.EC2.Model
         // Check to see if LocalStorageTypes property is set
         internal bool IsSetLocalStorageTypes()
         {
-            return this._localStorageTypes != null && this._localStorageTypes.Count > 0; 
+            return this._localStorageTypes != null && (this._localStorageTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property MaxSpotPriceAsPercentageOfOptimalOnDemandPrice. 
+        /// <para>
+        /// [Price protection] The price protection threshold for Spot Instances, as a percentage
+        /// of an identified On-Demand price. The identified On-Demand price is the price of the
+        /// lowest priced current generation C, M, or R instance type with your specified attributes.
+        /// If no current generation C, M, or R instance type matches your attributes, then the
+        /// identified price is from the lowest priced current generation instance types, and
+        /// failing that, from the lowest priced previous generation instance types that match
+        /// your attributes. When Amazon EC2 selects instance types with your attributes, it will
+        /// exclude instance types whose price exceeds your specified threshold.
+        /// </para>
+        ///  
+        /// <para>
+        /// The parameter accepts an integer, which Amazon EC2 interprets as a percentage.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you set <c>TargetCapacityUnitType</c> to <c>vcpu</c> or <c>memory-mib</c>, the
+        /// price protection threshold is based on the per vCPU or per memory price instead of
+        /// the per instance price.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// Only one of <c>SpotMaxPricePercentageOverLowestPrice</c> or <c>MaxSpotPriceAsPercentageOfOptimalOnDemandPrice</c>
+        /// can be specified. If you don't specify either, Amazon EC2 will automatically apply
+        /// optimal price protection to consistently select from a wide range of instance types.
+        /// To indicate no price protection threshold for Spot Instances, meaning you want to
+        /// consider all instance types that match your attributes, include one of these parameters
+        /// and specify a high value, such as <c>999999</c>.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public int MaxSpotPriceAsPercentageOfOptimalOnDemandPrice
+        {
+            get { return this._maxSpotPriceAsPercentageOfOptimalOnDemandPrice.GetValueOrDefault(); }
+            set { this._maxSpotPriceAsPercentageOfOptimalOnDemandPrice = value; }
+        }
+
+        // Check to see if MaxSpotPriceAsPercentageOfOptimalOnDemandPrice property is set
+        internal bool IsSetMaxSpotPriceAsPercentageOfOptimalOnDemandPrice()
+        {
+            return this._maxSpotPriceAsPercentageOfOptimalOnDemandPrice.HasValue; 
         }
 
         /// <summary>
@@ -683,11 +772,11 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property OnDemandMaxPricePercentageOverLowestPrice. 
         /// <para>
-        /// The price protection threshold for On-Demand Instances. This is the maximum you’ll
-        /// pay for an On-Demand Instance, expressed as a percentage above the least expensive
-        /// current generation M, C, or R instance type with your specified attributes. When Amazon
-        /// EC2 selects instance types with your attributes, it excludes instance types priced
-        /// above your threshold.
+        /// [Price protection] The price protection threshold for On-Demand Instances, as a percentage
+        /// higher than an identified On-Demand price. The identified On-Demand price is the price
+        /// of the lowest priced current generation C, M, or R instance type with your specified
+        /// attributes. When Amazon EC2 selects instance types with your attributes, it will exclude
+        /// instance types whose price exceeds your specified threshold.
         /// </para>
         ///  
         /// <para>
@@ -695,7 +784,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// To turn off price protection, specify a high value, such as <code>999999</code>.
+        /// To turn off price protection, specify a high value, such as <c>999999</c>.
         /// </para>
         ///  
         /// <para>
@@ -704,13 +793,13 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you set <code>TargetCapacityUnitType</code> to <code>vcpu</code> or <code>memory-mib</code>,
-        /// the price protection threshold is applied based on the per-vCPU or per-memory price
-        /// instead of the per-instance price.
+        /// If you set <c>TargetCapacityUnitType</c> to <c>vcpu</c> or <c>memory-mib</c>, the
+        /// price protection threshold is applied based on the per-vCPU or per-memory price instead
+        /// of the per-instance price.
         /// </para>
         ///  </note> 
         /// <para>
-        /// Default: <code>20</code> 
+        /// Default: <c>20</c> 
         /// </para>
         /// </summary>
         public int OnDemandMaxPricePercentageOverLowestPrice
@@ -736,7 +825,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool RequireHibernateSupport
@@ -754,10 +843,14 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property SpotMaxPricePercentageOverLowestPrice. 
         /// <para>
-        /// The price protection threshold for Spot Instances. This is the maximum you’ll pay
-        /// for a Spot Instance, expressed as a percentage above the least expensive current generation
-        /// M, C, or R instance type with your specified attributes. When Amazon EC2 selects instance
-        /// types with your attributes, it excludes instance types priced above your threshold.
+        /// [Price protection] The price protection threshold for Spot Instances, as a percentage
+        /// higher than an identified Spot price. The identified Spot price is the Spot price
+        /// of the lowest priced current generation C, M, or R instance type with your specified
+        /// attributes. If no current generation C, M, or R instance type matches your attributes,
+        /// then the identified Spot price is from the lowest priced current generation instance
+        /// types, and failing that, from the lowest priced previous generation instance types
+        /// that match your attributes. When Amazon EC2 selects instance types with your attributes,
+        /// it will exclude instance types whose Spot price exceeds your specified threshold.
         /// </para>
         ///  
         /// <para>
@@ -765,7 +858,9 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// To turn off price protection, specify a high value, such as <code>999999</code>.
+        /// If you set <c>TargetCapacityUnitType</c> to <c>vcpu</c> or <c>memory-mib</c>, the
+        /// price protection threshold is applied based on the per-vCPU or per-memory price instead
+        /// of the per-instance price.
         /// </para>
         ///  
         /// <para>
@@ -774,13 +869,16 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you set <code>TargetCapacityUnitType</code> to <code>vcpu</code> or <code>memory-mib</code>,
-        /// the price protection threshold is applied based on the per-vCPU or per-memory price
-        /// instead of the per-instance price.
+        /// Only one of <c>SpotMaxPricePercentageOverLowestPrice</c> or <c>MaxSpotPriceAsPercentageOfOptimalOnDemandPrice</c>
+        /// can be specified. If you don't specify either, Amazon EC2 will automatically apply
+        /// optimal price protection to consistently select from a wide range of instance types.
+        /// To indicate no price protection threshold for Spot Instances, meaning you want to
+        /// consider all instance types that match your attributes, include one of these parameters
+        /// and specify a high value, such as <c>999999</c>.
         /// </para>
         ///  </note> 
         /// <para>
-        /// Default: <code>100</code> 
+        /// Default: <c>100</c> 
         /// </para>
         /// </summary>
         public int SpotMaxPricePercentageOverLowestPrice

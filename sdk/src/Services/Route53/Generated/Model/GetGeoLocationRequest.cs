@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
@@ -44,8 +45,8 @@ namespace Amazon.Route53.Model
     /// </para>
     ///  
     /// <para>
-    ///  <code>GET /2013-04-01/geolocation?continentcode=<i>two-letter abbreviation for a
-    /// continent</i> </code> 
+    ///  <c>GET /2013-04-01/geolocation?continentcode=<i>two-letter abbreviation for a continent</i>
+    /// </c> 
     /// </para>
     ///  
     /// <para>
@@ -53,7 +54,7 @@ namespace Amazon.Route53.Model
     /// </para>
     ///  
     /// <para>
-    ///  <code>GET /2013-04-01/geolocation?countrycode=<i>two-character country code</i> </code>
+    ///  <c>GET /2013-04-01/geolocation?countrycode=<i>two-character country code</i> </c>
     /// 
     /// </para>
     ///  
@@ -63,8 +64,8 @@ namespace Amazon.Route53.Model
     /// </para>
     ///  
     /// <para>
-    ///  <code>GET /2013-04-01/geolocation?countrycode=<i>two-character country code</i>&amp;subdivisioncode=<i>subdivision
-    /// code</i> </code> 
+    ///  <c>GET /2013-04-01/geolocation?countrycode=<i>two-character country code</i>&amp;subdivisioncode=<i>subdivision
+    /// code</i> </c> 
     /// </para>
     /// </summary>
     public partial class GetGeoLocationRequest : AmazonRoute53Request
@@ -130,7 +131,7 @@ namespace Amazon.Route53.Model
         /// </para>
         ///  
         /// <para>
-        /// Route 53 also supports the contry code <b>UA</b> forr Ukraine.
+        /// Route 53 also supports the country code <b>UA</b> for Ukraine.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -41,11 +42,14 @@ namespace Amazon.SageMaker.Model
         private int? _containerStartupHealthCheckTimeoutInSeconds;
         private ProductionVariantCoreDumpConfig _coreDumpConfig;
         private bool? _enableSSMAccess;
+        private ProductionVariantInferenceAmiVersion _inferenceAmiVersion;
         private int? _initialInstanceCount;
         private float? _initialVariantWeight;
         private ProductionVariantInstanceType _instanceType;
+        private ProductionVariantManagedInstanceScaling _managedInstanceScaling;
         private int? _modelDataDownloadTimeoutInSeconds;
         private string _modelName;
+        private ProductionVariantRoutingConfig _routingConfig;
         private ProductionVariantServerlessConfig _serverlessConfig;
         private string _variantName;
         private int? _volumeSizeInGB;
@@ -53,10 +57,12 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property AcceleratorType. 
         /// <para>
-        /// The size of the Elastic Inference (EI) instance to use for the production variant.
-        /// EI instances provide on-demand GPU computing for inference. For more information,
-        /// see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/ei.html">Using Elastic
-        /// Inference in Amazon SageMaker</a>.
+        /// This parameter is no longer supported. Elastic Inference (EI) is no longer available.
+        /// </para>
+        ///  
+        /// <para>
+        /// This parameter was used to specify the size of the EI instance to use for the production
+        /// variant.
         /// </para>
         /// </summary>
         public ProductionVariantAcceleratorType AcceleratorType
@@ -118,7 +124,7 @@ namespace Amazon.SageMaker.Model
         /// (SSM) access for a production variant behind an endpoint. By default, SSM access is
         /// disabled for all production variants behind an endpoint. You can turn on or turn off
         /// SSM access for a production variant behind an existing endpoint by creating a new
-        /// endpoint configuration and calling <code>UpdateEndpoint</code>. 
+        /// endpoint configuration and calling <c>UpdateEndpoint</c>. 
         /// </para>
         /// </summary>
         public bool EnableSSMAccess
@@ -131,6 +137,55 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetEnableSSMAccess()
         {
             return this._enableSSMAccess.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property InferenceAmiVersion. 
+        /// <para>
+        /// Specifies an option from a collection of preconfigured Amazon Machine Image (AMI)
+        /// images. Each image is configured by Amazon Web Services with a set of software and
+        /// driver versions. Amazon Web Services optimizes these configurations for different
+        /// machine learning workloads.
+        /// </para>
+        ///  
+        /// <para>
+        /// By selecting an AMI version, you can ensure that your inference environment is compatible
+        /// with specific software requirements, such as CUDA driver versions, Linux kernel versions,
+        /// or Amazon Web Services Neuron driver versions.
+        /// </para>
+        ///  
+        /// <para>
+        /// The AMI version names, and their configurations, are the following:
+        /// </para>
+        ///  <dl> <dt>al2-ami-sagemaker-inference-gpu-2</dt> <dd> <ul> <li> 
+        /// <para>
+        /// Accelerator: GPU
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// NVIDIA driver version: 535.54.03
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// CUDA driver version: 12.2
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Supported instance types: ml.g4dn.*, ml.g5.*, ml.g6.*, ml.p3.*, ml.p4d.*, ml.p4de.*,
+        /// ml.p5.*
+        /// </para>
+        ///  </li> </ul> </dd> </dl>
+        /// </summary>
+        public ProductionVariantInferenceAmiVersion InferenceAmiVersion
+        {
+            get { return this._inferenceAmiVersion; }
+            set { this._inferenceAmiVersion = value; }
+        }
+
+        // Check to see if InferenceAmiVersion property is set
+        internal bool IsSetInferenceAmiVersion()
+        {
+            return this._inferenceAmiVersion != null;
         }
 
         /// <summary>
@@ -157,8 +212,8 @@ namespace Amazon.SageMaker.Model
         /// <para>
         /// Determines initial traffic distribution among all of the models that you specify in
         /// the endpoint configuration. The traffic to a production variant is determined by the
-        /// ratio of the <code>VariantWeight</code> to the sum of all <code>VariantWeight</code>
-        /// values across all ProductionVariants. If unspecified, it defaults to 1.0. 
+        /// ratio of the <c>VariantWeight</c> to the sum of all <c>VariantWeight</c> values across
+        /// all ProductionVariants. If unspecified, it defaults to 1.0. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]
@@ -193,6 +248,25 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ManagedInstanceScaling. 
+        /// <para>
+        /// Settings that control the range in the number of instances that the endpoint provisions
+        /// as it scales up or down to accommodate traffic. 
+        /// </para>
+        /// </summary>
+        public ProductionVariantManagedInstanceScaling ManagedInstanceScaling
+        {
+            get { return this._managedInstanceScaling; }
+            set { this._managedInstanceScaling = value; }
+        }
+
+        // Check to see if ManagedInstanceScaling property is set
+        internal bool IsSetManagedInstanceScaling()
+        {
+            return this._managedInstanceScaling != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ModelDataDownloadTimeoutInSeconds. 
         /// <para>
         /// The timeout value, in seconds, to download and extract the model that you want to
@@ -220,7 +294,7 @@ namespace Amazon.SageMaker.Model
         /// creating the model.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=63)]
+        [AWSProperty(Max=63)]
         public string ModelName
         {
             get { return this._modelName; }
@@ -231,6 +305,25 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetModelName()
         {
             return this._modelName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RoutingConfig. 
+        /// <para>
+        /// Settings that control how the endpoint routes incoming traffic to the instances that
+        /// the endpoint hosts.
+        /// </para>
+        /// </summary>
+        public ProductionVariantRoutingConfig RoutingConfig
+        {
+            get { return this._routingConfig; }
+            set { this._routingConfig = value; }
+        }
+
+        // Check to see if RoutingConfig property is set
+        internal bool IsSetRoutingConfig()
+        {
+            return this._routingConfig != null;
         }
 
         /// <summary>

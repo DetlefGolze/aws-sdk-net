@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.EC2.Model
     /// 
     ///  
     /// <para>
-    /// The VPC attachment must be in the <code>pendingAcceptance</code> state. Use <a>DescribeTransitGatewayVpcAttachments</a>
+    /// The VPC attachment must be in the <c>pendingAcceptance</c> state. Use <a>DescribeTransitGatewayVpcAttachments</a>
     /// to view your pending VPC attachment requests. Use <a>AcceptTransitGatewayVpcAttachment</a>
     /// to accept a VPC attachment request.
     /// </para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Synthetics.Model
 {
     /// <summary>
@@ -33,7 +34,27 @@ namespace Amazon.Synthetics.Model
     /// the Lambda handler with the location where the canary should start running the script.
     /// If the script is stored in an S3 bucket, the bucket name, key, and version are also
     /// included. If the script was passed into the canary directly, the script code is contained
-    /// in the value of <code>Zipfile</code>.
+    /// in the value of <c>Zipfile</c>. 
+    /// 
+    ///  
+    /// <para>
+    /// If you are uploading your canary scripts with an Amazon S3 bucket, your zip file should
+    /// include your script in a certain folder structure.
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    /// For Node.js canaries, the folder structure must be <c>nodejs/node_modules/<i>myCanaryFilename.js</i>
+    /// </c> For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_WritingCanary_Nodejs.html#CloudWatch_Synthetics_Canaries_package">Packaging
+    /// your Node.js canary files</a> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// For Python canaries, the folder structure must be <c>python/<i>myCanaryFilename.p</i>
+    /// </c> or <c>python/<i>myFolder/myCanaryFilename.py</i> </c> For more information, see
+    /// <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_WritingCanary_Python.html#CloudWatch_Synthetics_Canaries_WritingCanary_Python_package">Packaging
+    /// your Python canary files</a> 
+    /// </para>
+    ///  </li> </ul>
     /// </summary>
     public partial class CanaryCodeInput
     {
@@ -47,13 +68,12 @@ namespace Amazon.Synthetics.Model
         /// Gets and sets the property Handler. 
         /// <para>
         /// The entry point to use for the source code when running the canary. For canaries that
-        /// use the <code>syn-python-selenium-1.0</code> runtime or a <code>syn-nodejs.puppeteer</code>
-        /// runtime earlier than <code>syn-nodejs.puppeteer-3.4</code>, the handler must be specified
-        /// as <code> <i>fileName</i>.handler</code>. For <code>syn-python-selenium-1.1</code>,
-        /// <code>syn-nodejs.puppeteer-3.4</code>, and later runtimes, the handler can be specified
-        /// as <code> <i>fileName</i>.<i>functionName</i> </code>, or you can specify a folder
-        /// where canary scripts reside as <code> <i>folder</i>/<i>fileName</i>.<i>functionName</i>
-        /// </code>.
+        /// use the <c>syn-python-selenium-1.0</c> runtime or a <c>syn-nodejs.puppeteer</c> runtime
+        /// earlier than <c>syn-nodejs.puppeteer-3.4</c>, the handler must be specified as <c>
+        /// <i>fileName</i>.handler</c>. For <c>syn-python-selenium-1.1</c>, <c>syn-nodejs.puppeteer-3.4</c>,
+        /// and later runtimes, the handler can be specified as <c> <i>fileName</i>.<i>functionName</i>
+        /// </c>, or you can specify a folder where canary scripts reside as <c> <i>folder</i>/<i>fileName</i>.<i>functionName</i>
+        /// </c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=128)]
@@ -73,7 +93,7 @@ namespace Amazon.Synthetics.Model
         /// Gets and sets the property S3Bucket. 
         /// <para>
         /// If your canary script is located in S3, specify the bucket name here. Do not include
-        /// <code>s3://</code> as the start of the bucket name.
+        /// <c>s3://</c> as the start of the bucket name.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

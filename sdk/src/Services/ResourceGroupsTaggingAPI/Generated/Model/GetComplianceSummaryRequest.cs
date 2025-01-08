@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroupsTaggingAPI.Model
 {
     /// <summary>
@@ -46,22 +47,22 @@ namespace Amazon.ResourceGroupsTaggingAPI.Model
     ///  
     /// <para>
     /// This operation supports pagination, where the response can be sent in multiple pages.
-    /// You should check the <code>PaginationToken</code> response parameter to determine
-    /// if there are additional results available to return. Repeat the query, passing the
-    /// <code>PaginationToken</code> response parameter value as an input to the next request
-    /// until you recieve a <code>null</code> value. A null value for <code>PaginationToken</code>
-    /// indicates that there are no more results waiting to be returned.
+    /// You should check the <c>PaginationToken</c> response parameter to determine if there
+    /// are additional results available to return. Repeat the query, passing the <c>PaginationToken</c>
+    /// response parameter value as an input to the next request until you recieve a <c>null</c>
+    /// value. A null value for <c>PaginationToken</c> indicates that there are no more results
+    /// waiting to be returned.
     /// </para>
     /// </summary>
     public partial class GetComplianceSummaryRequest : AmazonResourceGroupsTaggingAPIRequest
     {
-        private List<string> _groupBy = new List<string>();
+        private List<string> _groupBy = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _paginationToken;
-        private List<string> _regionFilters = new List<string>();
-        private List<string> _resourceTypeFilters = new List<string>();
-        private List<string> _tagKeyFilters = new List<string>();
-        private List<string> _targetIdFilters = new List<string>();
+        private List<string> _regionFilters = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _resourceTypeFilters = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _tagKeyFilters = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _targetIdFilters = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property GroupBy. 
@@ -79,7 +80,7 @@ namespace Amazon.ResourceGroupsTaggingAPI.Model
         // Check to see if GroupBy property is set
         internal bool IsSetGroupBy()
         {
-            return this._groupBy != null && this._groupBy.Count > 0; 
+            return this._groupBy != null && (this._groupBy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -87,8 +88,8 @@ namespace Amazon.ResourceGroupsTaggingAPI.Model
         /// <para>
         /// Specifies the maximum number of results to be returned in each page. A query can return
         /// fewer than this maximum, even if there are more results still to return. You should
-        /// always check the <code>PaginationToken</code> response value to see if there are more
-        /// results. You can specify a minimum of 1 and a maximum value of 100.
+        /// always check the <c>PaginationToken</c> response value to see if there are more results.
+        /// You can specify a minimum of 1 and a maximum value of 100.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]
@@ -107,9 +108,9 @@ namespace Amazon.ResourceGroupsTaggingAPI.Model
         /// <summary>
         /// Gets and sets the property PaginationToken. 
         /// <para>
-        /// Specifies a <code>PaginationToken</code> response value from a previous request to
-        /// indicate that you want the next page of results. Leave this parameter empty in your
-        /// initial request.
+        /// Specifies a <c>PaginationToken</c> response value from a previous request to indicate
+        /// that you want the next page of results. Leave this parameter empty in your initial
+        /// request.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=2048)]
@@ -143,16 +144,16 @@ namespace Amazon.ResourceGroupsTaggingAPI.Model
         // Check to see if RegionFilters property is set
         internal bool IsSetRegionFilters()
         {
-            return this._regionFilters != null && this._regionFilters.Count > 0; 
+            return this._regionFilters != null && (this._regionFilters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ResourceTypeFilters. 
         /// <para>
         /// Specifies that you want the response to include information for only resources of
-        /// the specified types. The format of each resource type is <code>service[:resourceType]</code>.
-        /// For example, specifying a resource type of <code>ec2</code> returns all Amazon EC2
-        /// resources (which includes EC2 instances). Specifying a resource type of <code>ec2:instance</code>
+        /// the specified types. The format of each resource type is <c>service[:resourceType]</c>.
+        /// For example, specifying a resource type of <c>ec2</c> returns all Amazon EC2 resources
+        /// (which includes EC2 instances). Specifying a resource type of <c>ec2:instance</c>
         /// returns only EC2 instances.
         /// </para>
         ///  
@@ -192,7 +193,7 @@ namespace Amazon.ResourceGroupsTaggingAPI.Model
         // Check to see if ResourceTypeFilters property is set
         internal bool IsSetResourceTypeFilters()
         {
-            return this._resourceTypeFilters != null && this._resourceTypeFilters.Count > 0; 
+            return this._resourceTypeFilters != null && (this._resourceTypeFilters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -213,7 +214,7 @@ namespace Amazon.ResourceGroupsTaggingAPI.Model
         // Check to see if TagKeyFilters property is set
         internal bool IsSetTagKeyFilters()
         {
-            return this._tagKeyFilters != null && this._tagKeyFilters.Count > 0; 
+            return this._tagKeyFilters != null && (this._tagKeyFilters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -234,7 +235,7 @@ namespace Amazon.ResourceGroupsTaggingAPI.Model
         // Check to see if TargetIdFilters property is set
         internal bool IsSetTargetIdFilters()
         {
-            return this._targetIdFilters != null && this._targetIdFilters.Count > 0; 
+            return this._targetIdFilters != null && (this._targetIdFilters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

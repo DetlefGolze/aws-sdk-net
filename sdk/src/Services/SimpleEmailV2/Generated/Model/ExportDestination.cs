@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -43,11 +44,11 @@ namespace Amazon.SimpleEmailV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CSV</code> - A comma-separated values file.
+        ///  <c>CSV</c> - A comma-separated values file.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>JSON</code> - A Json file.
+        ///  <c>JSON</c> - A Json file.
         /// </para>
         ///  </li> </ul>
         /// </summary>

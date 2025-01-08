@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EntityResolution.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.EntityResolution.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(SchemaInputAttribute requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetFieldName())
             {
                 context.Writer.WritePropertyName("fieldName");
@@ -57,10 +60,22 @@ namespace Amazon.EntityResolution.Model.Internal.MarshallTransformations
                 context.Writer.Write(requestObject.GroupName);
             }
 
+            if(requestObject.IsSetHashed())
+            {
+                context.Writer.WritePropertyName("hashed");
+                context.Writer.Write(requestObject.Hashed);
+            }
+
             if(requestObject.IsSetMatchKey())
             {
                 context.Writer.WritePropertyName("matchKey");
                 context.Writer.Write(requestObject.MatchKey);
+            }
+
+            if(requestObject.IsSetSubType())
+            {
+                context.Writer.WritePropertyName("subType");
+                context.Writer.Write(requestObject.SubType);
             }
 
             if(requestObject.IsSetType())

@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.CertificateManager
 {
     /// <summary>
-    /// Implementation for accessing CertificateManager
+    /// <para>Implementation for accessing CertificateManager</para>
     ///
     /// Certificate Manager 
     /// <para>
@@ -273,9 +274,9 @@ namespace Amazon.CertificateManager
 
         /// <summary>
         /// Adds one or more tags to an ACM certificate. Tags are labels that you can use to identify
-        /// and organize your Amazon Web Services resources. Each tag consists of a <code>key</code>
-        /// and an optional <code>value</code>. You specify the certificate on input by its Amazon
-        /// Resource Name (ARN). You specify the tag by using a key-value pair. 
+        /// and organize your Amazon Web Services resources. Each tag consists of a <c>key</c>
+        /// and an optional <c>value</c>. You specify the certificate on input by its Amazon Resource
+        /// Name (ARN). You specify the tag by using a key-value pair. 
         /// 
         ///  
         /// <para>
@@ -306,7 +307,7 @@ namespace Amazon.CertificateManager
         /// </exception>
         /// <exception cref="Amazon.CertificateManager.Model.InvalidTagException">
         /// One or both of the values that make up the key-value pair is not valid. For example,
-        /// you cannot specify a tag value that begins with <code>aws:</code>.
+        /// you cannot specify a tag value that begins with <c>aws:</c>.
         /// </exception>
         /// <exception cref="Amazon.CertificateManager.Model.ResourceNotFoundException">
         /// The specified certificate cannot be found in the caller's account or the caller's
@@ -384,7 +385,7 @@ namespace Amazon.CertificateManager
         /// </para>
         ///  </note>
         /// </summary>
-        /// <param name="certificateArn">String that contains the ARN of the ACM certificate to be deleted. This must be of the form:  <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code>  For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs)</a>.</param>
+        /// <param name="certificateArn">String that contains the ARN of the ACM certificate to be deleted. This must be of the form:  <c>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</c>  For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs)</a>.</param>
         /// 
         /// <returns>The response from the DeleteCertificate service method, as returned by CertificateManager.</returns>
         /// <exception cref="Amazon.CertificateManager.Model.AccessDeniedException">
@@ -509,11 +510,11 @@ namespace Amazon.CertificateManager
         /// 
         ///  
         /// <para>
-        /// If you have just created a certificate using the <code>RequestCertificate</code> action,
+        /// If you have just created a certificate using the <c>RequestCertificate</c> action,
         /// there is a delay of several seconds before you can retrieve information about it.
         /// </para>
         /// </summary>
-        /// <param name="certificateArn">The Amazon Resource Name (ARN) of the ACM certificate. The ARN must have the following form:  <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code>  For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs)</a>.</param>
+        /// <param name="certificateArn">The Amazon Resource Name (ARN) of the ACM certificate. The ARN must have the following form:  <c>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</c>  For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs)</a>.</param>
         /// 
         /// <returns>The response from the DescribeCertificate service method, as returned by CertificateManager.</returns>
         /// <exception cref="Amazon.CertificateManager.Model.InvalidArnException">
@@ -537,7 +538,7 @@ namespace Amazon.CertificateManager
         /// 
         ///  
         /// <para>
-        /// If you have just created a certificate using the <code>RequestCertificate</code> action,
+        /// If you have just created a certificate using the <c>RequestCertificate</c> action,
         /// there is a delay of several seconds before you can retrieve information about it.
         /// </para>
         /// </summary>
@@ -736,12 +737,15 @@ namespace Amazon.CertificateManager
         #region  GetCertificate
 
         /// <summary>
-        /// Retrieves an Amazon-issued certificate and its certificate chain. The chain consists
-        /// of the certificate of the issuing CA and the intermediate certificates of any other
-        /// subordinate CAs. All of the certificates are base64 encoded. You can use <a href="https://wiki.openssl.org/index.php/Command_Line_Utilities">OpenSSL</a>
+        /// Retrieves a certificate and its certificate chain. The certificate may be either a
+        /// public or private certificate issued using the ACM <c>RequestCertificate</c> action,
+        /// or a certificate imported into ACM using the <c>ImportCertificate</c> action. The
+        /// chain consists of the certificate of the issuing CA and the intermediate certificates
+        /// of any other subordinate CAs. All of the certificates are base64 encoded. You can
+        /// use <a href="https://wiki.openssl.org/index.php/Command_Line_Utilities">OpenSSL</a>
         /// to decode the certificates and inspect individual fields.
         /// </summary>
-        /// <param name="certificateArn">String that contains a certificate ARN in the following format:  <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code>  For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs)</a>.</param>
+        /// <param name="certificateArn">String that contains a certificate ARN in the following format:  <c>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</c>  For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs)</a>.</param>
         /// 
         /// <returns>The response from the GetCertificate service method, as returned by CertificateManager.</returns>
         /// <exception cref="Amazon.CertificateManager.Model.InvalidArnException">
@@ -765,9 +769,12 @@ namespace Amazon.CertificateManager
 
 
         /// <summary>
-        /// Retrieves an Amazon-issued certificate and its certificate chain. The chain consists
-        /// of the certificate of the issuing CA and the intermediate certificates of any other
-        /// subordinate CAs. All of the certificates are base64 encoded. You can use <a href="https://wiki.openssl.org/index.php/Command_Line_Utilities">OpenSSL</a>
+        /// Retrieves a certificate and its certificate chain. The certificate may be either a
+        /// public or private certificate issued using the ACM <c>RequestCertificate</c> action,
+        /// or a certificate imported into ACM using the <c>ImportCertificate</c> action. The
+        /// chain consists of the certificate of the issuing CA and the intermediate certificates
+        /// of any other subordinate CAs. All of the certificates are base64 encoded. You can
+        /// use <a href="https://wiki.openssl.org/index.php/Command_Line_Utilities">OpenSSL</a>
         /// to decode the certificates and inspect individual fields.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetCertificate service method.</param>
@@ -865,26 +872,16 @@ namespace Amazon.CertificateManager
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the certificate you are importing is not self-signed, you must enter its certificate
-        /// chain.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// If a certificate chain is included, the issuer must be the subject of one of the certificates
-        /// in the chain.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
         /// The certificate, private key, and certificate chain must be PEM-encoded.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The current time must be between the <code>Not Before</code> and <code>Not After</code>
-        /// certificate fields.
+        /// The current time must be between the <c>Not Before</c> and <c>Not After</c> certificate
+        /// fields.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>Issuer</code> field must not be empty.
+        /// The <c>Issuer</c> field must not be empty.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -892,16 +889,16 @@ namespace Amazon.CertificateManager
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// To import a new certificate, omit the <code>CertificateArn</code> argument. Include
-        /// this argument only when you want to replace a previously imported certificate.
+        /// To import a new certificate, omit the <c>CertificateArn</c> argument. Include this
+        /// argument only when you want to replace a previously imported certificate.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// When you import a certificate by using the CLI, you must specify the certificate,
-        /// the certificate chain, and the private key by their file names preceded by <code>fileb://</code>.
-        /// For example, you can specify a certificate saved in the <code>C:\temp</code> folder
-        /// as <code>fileb://C:\temp\certificate_to_import.pem</code>. If you are making an HTTP
-        /// or HTTPS Query request, include these arguments as BLOBs. 
+        /// the certificate chain, and the private key by their file names preceded by <c>fileb://</c>.
+        /// For example, you can specify a certificate saved in the <c>C:\temp</c> folder as <c>fileb://C:\temp\certificate_to_import.pem</c>.
+        /// If you are making an HTTP or HTTPS Query request, include these arguments as BLOBs.
+        /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -932,7 +929,7 @@ namespace Amazon.CertificateManager
         /// </exception>
         /// <exception cref="Amazon.CertificateManager.Model.InvalidTagException">
         /// One or both of the values that make up the key-value pair is not valid. For example,
-        /// you cannot specify a tag value that begins with <code>aws:</code>.
+        /// you cannot specify a tag value that begins with <c>aws:</c>.
         /// </exception>
         /// <exception cref="Amazon.CertificateManager.Model.LimitExceededException">
         /// An ACM quota has been exceeded.
@@ -996,10 +993,17 @@ namespace Amazon.CertificateManager
         #region  ListCertificates
 
         /// <summary>
-        /// Retrieves a list of certificate ARNs and domain names. You can request that only certificates
-        /// that match a specific status be listed. You can also filter by specific attributes
-        /// of the certificate. Default filtering returns only <code>RSA_2048</code> certificates.
-        /// For more information, see <a>Filters</a>.
+        /// Retrieves a list of certificate ARNs and domain names. By default, the API returns
+        /// RSA_2048 certificates. To return all certificates in the account, include the <c>keyType</c>
+        /// filter with the values <c>[RSA_1024, RSA_2048, RSA_3072, RSA_4096, EC_prime256v1,
+        /// EC_secp384r1, EC_secp521r1]</c>.
+        /// 
+        ///  
+        /// <para>
+        /// In addition to <c>keyType</c>, you can also filter by the <c>CertificateStatuses</c>,
+        /// <c>keyUsage</c>, and <c>extendedKeyUsage</c> attributes on the certificate. For more
+        /// information, see <a>Filters</a>.
+        /// </para>
         /// </summary>
         /// 
         /// <returns>The response from the ListCertificates service method, as returned by CertificateManager.</returns>
@@ -1016,10 +1020,17 @@ namespace Amazon.CertificateManager
         }
 
         /// <summary>
-        /// Retrieves a list of certificate ARNs and domain names. You can request that only certificates
-        /// that match a specific status be listed. You can also filter by specific attributes
-        /// of the certificate. Default filtering returns only <code>RSA_2048</code> certificates.
-        /// For more information, see <a>Filters</a>.
+        /// Retrieves a list of certificate ARNs and domain names. By default, the API returns
+        /// RSA_2048 certificates. To return all certificates in the account, include the <c>keyType</c>
+        /// filter with the values <c>[RSA_1024, RSA_2048, RSA_3072, RSA_4096, EC_prime256v1,
+        /// EC_secp384r1, EC_secp521r1]</c>.
+        /// 
+        ///  
+        /// <para>
+        /// In addition to <c>keyType</c>, you can also filter by the <c>CertificateStatuses</c>,
+        /// <c>keyUsage</c>, and <c>extendedKeyUsage</c> attributes on the certificate. For more
+        /// information, see <a>Filters</a>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListCertificates service method.</param>
         /// 
@@ -1147,8 +1158,8 @@ namespace Amazon.CertificateManager
         /// 
         ///  
         /// <para>
-        /// The supported configuration option is <code>DaysBeforeExpiry</code>. This option specifies
-        /// the number of days prior to certificate expiration when ACM starts generating <code>EventBridge</code>
+        /// The supported configuration option is <c>DaysBeforeExpiry</c>. This option specifies
+        /// the number of days prior to certificate expiration when ACM starts generating <c>EventBridge</c>
         /// events. ACM sends one event per day per certificate until the certificate expires.
         /// By default, accounts receive events starting 45 days before certificate expiration.
         /// </para>
@@ -1241,7 +1252,7 @@ namespace Amazon.CertificateManager
         /// </exception>
         /// <exception cref="Amazon.CertificateManager.Model.InvalidTagException">
         /// One or both of the values that make up the key-value pair is not valid. For example,
-        /// you cannot specify a tag value that begins with <code>aws:</code>.
+        /// you cannot specify a tag value that begins with <c>aws:</c>.
         /// </exception>
         /// <exception cref="Amazon.CertificateManager.Model.ResourceNotFoundException">
         /// The specified certificate cannot be found in the caller's account or the caller's
@@ -1368,8 +1379,8 @@ namespace Amazon.CertificateManager
 
         /// <summary>
         /// Requests an ACM certificate for use with other Amazon Web Services services. To request
-        /// an ACM certificate, you must specify a fully qualified domain name (FQDN) in the <code>DomainName</code>
-        /// parameter. You can also specify additional FQDNs in the <code>SubjectAlternativeNames</code>
+        /// an ACM certificate, you must specify a fully qualified domain name (FQDN) in the <c>DomainName</c>
+        /// parameter. You can also specify additional FQDNs in the <c>SubjectAlternativeNames</c>
         /// parameter. 
         /// 
         ///  
@@ -1389,8 +1400,8 @@ namespace Amazon.CertificateManager
         /// </para>
         ///  </note> 
         /// <para>
-        /// After successful completion of the <code>RequestCertificate</code> action, there is
-        /// a delay of several seconds before you can retrieve information about the new certificate.
+        /// After successful completion of the <c>RequestCertificate</c> action, there is a delay
+        /// of several seconds before you can retrieve information about the new certificate.
         /// </para>
         /// </summary>
         /// <param name="domainName">Fully qualified domain name (FQDN), such as www.example.com, that you want to secure with an ACM certificate. Use an asterisk (*) to create a wildcard certificate that protects several sites in the same domain. For example, *.example.com protects www.example.com, site.example.com, and images.example.com.  In compliance with <a href="https://datatracker.ietf.org/doc/html/rfc5280">RFC 5280</a>, the length of the domain name (technically, the Common Name) that you provide cannot exceed 64 octets (characters), including periods. To add a longer domain name, specify it in the Subject Alternative Name field, which supports names up to 253 octets in length. </param>
@@ -1407,7 +1418,7 @@ namespace Amazon.CertificateManager
         /// </exception>
         /// <exception cref="Amazon.CertificateManager.Model.InvalidTagException">
         /// One or both of the values that make up the key-value pair is not valid. For example,
-        /// you cannot specify a tag value that begins with <code>aws:</code>.
+        /// you cannot specify a tag value that begins with <c>aws:</c>.
         /// </exception>
         /// <exception cref="Amazon.CertificateManager.Model.LimitExceededException">
         /// An ACM quota has been exceeded.
@@ -1429,8 +1440,8 @@ namespace Amazon.CertificateManager
 
         /// <summary>
         /// Requests an ACM certificate for use with other Amazon Web Services services. To request
-        /// an ACM certificate, you must specify a fully qualified domain name (FQDN) in the <code>DomainName</code>
-        /// parameter. You can also specify additional FQDNs in the <code>SubjectAlternativeNames</code>
+        /// an ACM certificate, you must specify a fully qualified domain name (FQDN) in the <c>DomainName</c>
+        /// parameter. You can also specify additional FQDNs in the <c>SubjectAlternativeNames</c>
         /// parameter. 
         /// 
         ///  
@@ -1450,8 +1461,8 @@ namespace Amazon.CertificateManager
         /// </para>
         ///  </note> 
         /// <para>
-        /// After successful completion of the <code>RequestCertificate</code> action, there is
-        /// a delay of several seconds before you can retrieve information about the new certificate.
+        /// After successful completion of the <c>RequestCertificate</c> action, there is a delay
+        /// of several seconds before you can retrieve information about the new certificate.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the RequestCertificate service method.</param>
@@ -1468,7 +1479,7 @@ namespace Amazon.CertificateManager
         /// </exception>
         /// <exception cref="Amazon.CertificateManager.Model.InvalidTagException">
         /// One or both of the values that make up the key-value pair is not valid. For example,
-        /// you cannot specify a tag value that begins with <code>aws:</code>.
+        /// you cannot specify a tag value that begins with <c>aws:</c>.
         /// </exception>
         /// <exception cref="Amazon.CertificateManager.Model.LimitExceededException">
         /// An ACM quota has been exceeded.
@@ -1680,11 +1691,11 @@ namespace Amazon.CertificateManager
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

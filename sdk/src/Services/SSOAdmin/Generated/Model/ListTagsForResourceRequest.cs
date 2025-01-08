@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSOAdmin.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.SSOAdmin.Model
         /// Web Services General Reference</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=10, Max=1224)]
+        [AWSProperty(Min=10, Max=1224)]
         public string InstanceArn
         {
             get { return this._instanceArn; }

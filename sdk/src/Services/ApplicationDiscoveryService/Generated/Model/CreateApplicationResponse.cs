@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         /// <summary>
         /// Gets and sets the property ConfigurationId. 
         /// <para>
-        /// Configuration ID of an application to be created.
+        /// The configuration ID of an application to be created.
         /// </para>
         /// </summary>
         [AWSProperty(Max=10000)]

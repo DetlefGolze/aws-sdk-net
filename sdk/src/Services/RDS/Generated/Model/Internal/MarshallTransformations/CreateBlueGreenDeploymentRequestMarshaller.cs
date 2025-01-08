@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RDS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -73,18 +74,26 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     {
                         if(publicRequestlistValue.IsSetKey())
                         {
-                            request.Parameters.Add("Tags" + "." + "member" + "." + publicRequestlistValueIndex + "." + "Key", StringUtils.FromString(publicRequestlistValue.Key));
+                            request.Parameters.Add("Tags" + "." + "Tag" + "." + publicRequestlistValueIndex + "." + "Key", StringUtils.FromString(publicRequestlistValue.Key));
                         }
                         if(publicRequestlistValue.IsSetValue())
                         {
-                            request.Parameters.Add("Tags" + "." + "member" + "." + publicRequestlistValueIndex + "." + "Value", StringUtils.FromString(publicRequestlistValue.Value));
+                            request.Parameters.Add("Tags" + "." + "Tag" + "." + publicRequestlistValueIndex + "." + "Value", StringUtils.FromString(publicRequestlistValue.Value));
                         }
                         publicRequestlistValueIndex++;
                     }
                 }
+                if(publicRequest.IsSetTargetAllocatedStorage())
+                {
+                    request.Parameters.Add("TargetAllocatedStorage", StringUtils.FromInt(publicRequest.TargetAllocatedStorage));
+                }
                 if(publicRequest.IsSetTargetDBClusterParameterGroupName())
                 {
                     request.Parameters.Add("TargetDBClusterParameterGroupName", StringUtils.FromString(publicRequest.TargetDBClusterParameterGroupName));
+                }
+                if(publicRequest.IsSetTargetDBInstanceClass())
+                {
+                    request.Parameters.Add("TargetDBInstanceClass", StringUtils.FromString(publicRequest.TargetDBInstanceClass));
                 }
                 if(publicRequest.IsSetTargetDBParameterGroupName())
                 {
@@ -93,6 +102,22 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                 if(publicRequest.IsSetTargetEngineVersion())
                 {
                     request.Parameters.Add("TargetEngineVersion", StringUtils.FromString(publicRequest.TargetEngineVersion));
+                }
+                if(publicRequest.IsSetTargetIops())
+                {
+                    request.Parameters.Add("TargetIops", StringUtils.FromInt(publicRequest.TargetIops));
+                }
+                if(publicRequest.IsSetTargetStorageThroughput())
+                {
+                    request.Parameters.Add("TargetStorageThroughput", StringUtils.FromInt(publicRequest.TargetStorageThroughput));
+                }
+                if(publicRequest.IsSetTargetStorageType())
+                {
+                    request.Parameters.Add("TargetStorageType", StringUtils.FromString(publicRequest.TargetStorageType));
+                }
+                if(publicRequest.IsSetUpgradeTargetStorageConfig())
+                {
+                    request.Parameters.Add("UpgradeTargetStorageConfig", StringUtils.FromBool(publicRequest.UpgradeTargetStorageConfig));
                 }
             }
             return request;

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancing.Model
 {
     /// <summary>
@@ -37,9 +38,8 @@ namespace Amazon.ElasticLoadBalancing.Model
     /// 
     ///  
     /// <para>
-    /// Each time you use <code>SetLoadBalancerPoliciesForBackendServer</code> to enable the
-    /// policies, use the <code>PolicyNames</code> parameter to list the policies that you
-    /// want to enable.
+    /// Each time you use <c>SetLoadBalancerPoliciesForBackendServer</c> to enable the policies,
+    /// use the <c>PolicyNames</c> parameter to list the policies that you want to enable.
     /// </para>
     ///  
     /// <para>
@@ -58,7 +58,7 @@ namespace Amazon.ElasticLoadBalancing.Model
     {
         private int? _instancePort;
         private string _loadBalancerName;
-        private List<string> _policyNames = new List<string>();
+        private List<string> _policyNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property InstancePort. 
@@ -115,7 +115,7 @@ namespace Amazon.ElasticLoadBalancing.Model
         // Check to see if PolicyNames property is set
         internal bool IsSetPolicyNames()
         {
-            return this._policyNames != null && this._policyNames.Count > 0; 
+            return this._policyNames != null && (this._policyNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

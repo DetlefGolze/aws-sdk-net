@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
     /// Container for the parameters to the ListIdentityResolutionJobs operation.
     /// Lists all of the Identity Resolution Jobs in your domain. The response sorts the list
-    /// by <code>JobStartTime</code>.
+    /// by <c>JobStartTime</c>.
     /// </summary>
     public partial class ListIdentityResolutionJobsRequest : AmazonCustomerProfilesRequest
     {

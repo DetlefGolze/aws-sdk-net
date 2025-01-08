@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruSecurity.Model
 {
     /// <summary>
@@ -35,13 +36,13 @@ namespace Amazon.CodeGuruSecurity.Model
     public partial class UntagResourceRequest : AmazonCodeGuruSecurityRequest
     {
         private string _resourceArn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The ARN of the <code>ScanName</code> object. You can retrieve this ARN by calling
-        /// <code>ListScans</code> or <code>GetScan</code>.
+        /// The ARN of the <c>ScanName</c> object. You can retrieve this ARN by calling <c>CreateScan</c>,
+        /// <c>ListScans</c>, or <c>GetScan</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=300)]
@@ -73,7 +74,7 @@ namespace Amazon.CodeGuruSecurity.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

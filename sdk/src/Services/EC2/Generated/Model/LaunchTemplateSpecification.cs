@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
-    /// The launch template to use. You must specify either the launch template ID or launch
-    /// template name in the request, but not both.
+    /// Describes the launch template to use.
     /// </summary>
     public partial class LaunchTemplateSpecification
     {
@@ -45,8 +45,8 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// You must specify the <code>LaunchTemplateId</code> or the <code>LaunchTemplateName</code>,
-        /// but not both.
+        /// You must specify either the launch template ID or the launch template name, but not
+        /// both.
         /// </para>
         /// </summary>
         public string LaunchTemplateId
@@ -68,8 +68,8 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// You must specify the <code>LaunchTemplateName</code> or the <code>LaunchTemplateId</code>,
-        /// but not both.
+        /// You must specify either the launch template ID or the launch template name, but not
+        /// both.
         /// </para>
         /// </summary>
         public string LaunchTemplateName
@@ -87,17 +87,15 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Version. 
         /// <para>
-        /// The launch template version number, <code>$Latest</code>, or <code>$Default</code>.
+        /// The launch template version number, <c>$Latest</c>, or <c>$Default</c>.
         /// </para>
         ///  
         /// <para>
-        /// If the value is <code>$Latest</code>, Amazon EC2 uses the latest version of the launch
-        /// template.
+        /// A value of <c>$Latest</c> uses the latest version of the launch template.
         /// </para>
         ///  
         /// <para>
-        /// If the value is <code>$Default</code>, Amazon EC2 uses the default version of the
-        /// launch template.
+        /// A value of <c>$Default</c> uses the default version of the launch template.
         /// </para>
         ///  
         /// <para>

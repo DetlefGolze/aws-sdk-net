@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -46,16 +47,16 @@ namespace Amazon.ECS.Model
     public partial class DescribeTasksRequest : AmazonECSRequest
     {
         private string _cluster;
-        private List<string> _include = new List<string>();
-        private List<string> _tasks = new List<string>();
+        private List<string> _include = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _tasks = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Cluster. 
         /// <para>
         /// The short name or full Amazon Resource Name (ARN) of the cluster that hosts the task
         /// or tasks to describe. If you do not specify a cluster, the default cluster is assumed.
-        /// This parameter is required if the task or tasks you are describing were launched in
-        /// any cluster other than the default cluster.
+        /// This parameter is required. If you do not specify a value, the <c>default</c> cluster
+        /// is used.
         /// </para>
         /// </summary>
         public string Cluster
@@ -73,9 +74,9 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Include. 
         /// <para>
-        /// Specifies whether you want to see the resource tags for the task. If <code>TAGS</code>
-        /// is specified, the tags are included in the response. If this field is omitted, tags
-        /// aren't included in the response.
+        /// Specifies whether you want to see the resource tags for the task. If <c>TAGS</c> is
+        /// specified, the tags are included in the response. If this field is omitted, tags aren't
+        /// included in the response.
         /// </para>
         /// </summary>
         public List<string> Include
@@ -87,7 +88,7 @@ namespace Amazon.ECS.Model
         // Check to see if Include property is set
         internal bool IsSetInclude()
         {
-            return this._include != null && this._include.Count > 0; 
+            return this._include != null && (this._include.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -106,7 +107,7 @@ namespace Amazon.ECS.Model
         // Check to see if Tasks property is set
         internal bool IsSetTasks()
         {
-            return this._tasks != null && this._tasks.Count > 0; 
+            return this._tasks != null && (this._tasks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

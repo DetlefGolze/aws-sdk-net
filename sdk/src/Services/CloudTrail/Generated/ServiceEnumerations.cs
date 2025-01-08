@@ -25,6 +25,168 @@ namespace Amazon.CloudTrail
 {
 
     /// <summary>
+    /// Constants used for properties of type BillingMode.
+    /// </summary>
+    public class BillingMode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant EXTENDABLE_RETENTION_PRICING for BillingMode
+        /// </summary>
+        public static readonly BillingMode EXTENDABLE_RETENTION_PRICING = new BillingMode("EXTENDABLE_RETENTION_PRICING");
+        /// <summary>
+        /// Constant FIXED_RETENTION_PRICING for BillingMode
+        /// </summary>
+        public static readonly BillingMode FIXED_RETENTION_PRICING = new BillingMode("FIXED_RETENTION_PRICING");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public BillingMode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static BillingMode FindValue(string value)
+        {
+            return FindValue<BillingMode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator BillingMode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type DashboardStatus.
+    /// </summary>
+    public class DashboardStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CREATED for DashboardStatus
+        /// </summary>
+        public static readonly DashboardStatus CREATED = new DashboardStatus("CREATED");
+        /// <summary>
+        /// Constant CREATING for DashboardStatus
+        /// </summary>
+        public static readonly DashboardStatus CREATING = new DashboardStatus("CREATING");
+        /// <summary>
+        /// Constant DELETING for DashboardStatus
+        /// </summary>
+        public static readonly DashboardStatus DELETING = new DashboardStatus("DELETING");
+        /// <summary>
+        /// Constant UPDATED for DashboardStatus
+        /// </summary>
+        public static readonly DashboardStatus UPDATED = new DashboardStatus("UPDATED");
+        /// <summary>
+        /// Constant UPDATING for DashboardStatus
+        /// </summary>
+        public static readonly DashboardStatus UPDATING = new DashboardStatus("UPDATING");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public DashboardStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static DashboardStatus FindValue(string value)
+        {
+            return FindValue<DashboardStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator DashboardStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type DashboardType.
+    /// </summary>
+    public class DashboardType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CUSTOM for DashboardType
+        /// </summary>
+        public static readonly DashboardType CUSTOM = new DashboardType("CUSTOM");
+        /// <summary>
+        /// Constant MANAGED for DashboardType
+        /// </summary>
+        public static readonly DashboardType MANAGED = new DashboardType("MANAGED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public DashboardType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static DashboardType FindValue(string value)
+        {
+            return FindValue<DashboardType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator DashboardType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type DeliveryStatus.
     /// </summary>
     public class DeliveryStatus : ConstantClass
@@ -265,6 +427,64 @@ namespace Amazon.CloudTrail
 
 
     /// <summary>
+    /// Constants used for properties of type FederationStatus.
+    /// </summary>
+    public class FederationStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DISABLED for FederationStatus
+        /// </summary>
+        public static readonly FederationStatus DISABLED = new FederationStatus("DISABLED");
+        /// <summary>
+        /// Constant DISABLING for FederationStatus
+        /// </summary>
+        public static readonly FederationStatus DISABLING = new FederationStatus("DISABLING");
+        /// <summary>
+        /// Constant ENABLED for FederationStatus
+        /// </summary>
+        public static readonly FederationStatus ENABLED = new FederationStatus("ENABLED");
+        /// <summary>
+        /// Constant ENABLING for FederationStatus
+        /// </summary>
+        public static readonly FederationStatus ENABLING = new FederationStatus("ENABLING");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public FederationStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static FederationStatus FindValue(string value)
+        {
+            return FindValue<FederationStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator FederationStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ImportFailureStatus.
     /// </summary>
     public class ImportFailureStatus : ConstantClass
@@ -374,6 +594,56 @@ namespace Amazon.CloudTrail
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator ImportStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type InsightsMetricDataType.
+    /// </summary>
+    public class InsightsMetricDataType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant FillWithZeros for InsightsMetricDataType
+        /// </summary>
+        public static readonly InsightsMetricDataType FillWithZeros = new InsightsMetricDataType("FillWithZeros");
+        /// <summary>
+        /// Constant NonZeroData for InsightsMetricDataType
+        /// </summary>
+        public static readonly InsightsMetricDataType NonZeroData = new InsightsMetricDataType("NonZeroData");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public InsightsMetricDataType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static InsightsMetricDataType FindValue(string value)
+        {
+            return FindValue<InsightsMetricDataType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator InsightsMetricDataType(string value)
         {
             return FindValue(value);
         }
@@ -618,6 +888,106 @@ namespace Amazon.CloudTrail
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator ReadWriteType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type RefreshScheduleFrequencyUnit.
+    /// </summary>
+    public class RefreshScheduleFrequencyUnit : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DAYS for RefreshScheduleFrequencyUnit
+        /// </summary>
+        public static readonly RefreshScheduleFrequencyUnit DAYS = new RefreshScheduleFrequencyUnit("DAYS");
+        /// <summary>
+        /// Constant HOURS for RefreshScheduleFrequencyUnit
+        /// </summary>
+        public static readonly RefreshScheduleFrequencyUnit HOURS = new RefreshScheduleFrequencyUnit("HOURS");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public RefreshScheduleFrequencyUnit(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static RefreshScheduleFrequencyUnit FindValue(string value)
+        {
+            return FindValue<RefreshScheduleFrequencyUnit>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator RefreshScheduleFrequencyUnit(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type RefreshScheduleStatus.
+    /// </summary>
+    public class RefreshScheduleStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DISABLED for RefreshScheduleStatus
+        /// </summary>
+        public static readonly RefreshScheduleStatus DISABLED = new RefreshScheduleStatus("DISABLED");
+        /// <summary>
+        /// Constant ENABLED for RefreshScheduleStatus
+        /// </summary>
+        public static readonly RefreshScheduleStatus ENABLED = new RefreshScheduleStatus("ENABLED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public RefreshScheduleStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static RefreshScheduleStatus FindValue(string value)
+        {
+            return FindValue<RefreshScheduleStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator RefreshScheduleStatus(string value)
         {
             return FindValue(value);
         }

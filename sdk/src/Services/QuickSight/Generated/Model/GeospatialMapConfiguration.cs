@@ -26,14 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The configuration of a <code>GeospatialMapVisual</code>.
+    /// The configuration of a <c>GeospatialMapVisual</c>.
     /// </summary>
     public partial class GeospatialMapConfiguration
     {
         private GeospatialMapFieldWells _fieldWells;
+        private VisualInteractionOptions _interactions;
         private LegendOptions _legend;
         private GeospatialMapStyleOptions _mapStyleOptions;
         private GeospatialPointStyleOptions _pointStyleOptions;
@@ -57,6 +59,24 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetFieldWells()
         {
             return this._fieldWells != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Interactions. 
+        /// <para>
+        /// The general visual interactions setup for a visual.
+        /// </para>
+        /// </summary>
+        public VisualInteractionOptions Interactions
+        {
+            get { return this._interactions; }
+            set { this._interactions = value; }
+        }
+
+        // Check to see if Interactions property is set
+        internal bool IsSetInteractions()
+        {
+            return this._interactions != null;
         }
 
         /// <summary>

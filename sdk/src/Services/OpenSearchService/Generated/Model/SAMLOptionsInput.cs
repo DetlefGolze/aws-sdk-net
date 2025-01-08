@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -118,7 +119,7 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property RolesKey. 
         /// <para>
-        /// Element of the SAML assertion to use for backend roles. Default is <code>roles</code>.
+        /// Element of the SAML assertion to use for backend roles. Default is <c>roles</c>.
         /// </para>
         /// </summary>
         public string RolesKey
@@ -155,7 +156,7 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property SubjectKey. 
         /// <para>
-        /// Element of the SAML assertion to use for the user name. Default is <code>NameID</code>.
+        /// Element of the SAML assertion to use for the user name. Default is <c>NameID</c>.
         /// </para>
         /// </summary>
         public string SubjectKey

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ConnectCases.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.ConnectCases.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(RelatedItemTypeFilter requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetComment())
             {
                 context.Writer.WritePropertyName("comment");
@@ -63,6 +66,17 @@ namespace Amazon.ConnectCases.Model.Internal.MarshallTransformations
 
                 var marshaller = ContactFilterMarshaller.Instance;
                 marshaller.Marshall(requestObject.Contact, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetFile())
+            {
+                context.Writer.WritePropertyName("file");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = FileFilterMarshaller.Instance;
+                marshaller.Marshall(requestObject.File, context);
 
                 context.Writer.WriteObjectEnd();
             }

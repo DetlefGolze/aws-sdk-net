@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAccountRecoverySetting())
@@ -168,6 +170,12 @@ namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
                     context.Writer.WriteObjectEnd();
                 }
 
+                if(publicRequest.IsSetPoolName())
+                {
+                    context.Writer.WritePropertyName("PoolName");
+                    context.Writer.Write(publicRequest.PoolName);
+                }
+
                 if(publicRequest.IsSetSmsAuthenticationMessage())
                 {
                     context.Writer.WritePropertyName("SmsAuthenticationMessage");
@@ -231,6 +239,12 @@ namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
                             context.Writer.Write(publicRequestUserPoolTagsValue);
                     }
                     context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetUserPoolTier())
+                {
+                    context.Writer.WritePropertyName("UserPoolTier");
+                    context.Writer.Write(publicRequest.UserPoolTier);
                 }
 
                 if(publicRequest.IsSetVerificationMessageTemplate())

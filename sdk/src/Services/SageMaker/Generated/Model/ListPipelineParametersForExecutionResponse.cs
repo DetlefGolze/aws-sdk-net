@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.SageMaker.Model
     public partial class ListPipelineParametersForExecutionResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Parameter> _pipelineParameters = new List<Parameter>();
+        private List<Parameter> _pipelineParameters = AWSConfigs.InitializeCollections ? new List<Parameter>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the result of the previous <code>ListPipelineParametersForExecution</code> request
-        /// was truncated, the response includes a <code>NextToken</code>. To retrieve the next
-        /// set of parameters, use the token in the next request.
+        /// If the result of the previous <c>ListPipelineParametersForExecution</c> request was
+        /// truncated, the response includes a <c>NextToken</c>. To retrieve the next set of parameters,
+        /// use the token in the next request.
         /// </para>
         /// </summary>
         [AWSProperty(Max=8192)]
@@ -63,7 +64,7 @@ namespace Amazon.SageMaker.Model
         /// Contains a list of pipeline parameters. This list can be empty. 
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=50)]
+        [AWSProperty(Min=0, Max=200)]
         public List<Parameter> PipelineParameters
         {
             get { return this._pipelineParameters; }
@@ -73,7 +74,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if PipelineParameters property is set
         internal bool IsSetPipelineParameters()
         {
-            return this._pipelineParameters != null && this._pipelineParameters.Count > 0; 
+            return this._pipelineParameters != null && (this._pipelineParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

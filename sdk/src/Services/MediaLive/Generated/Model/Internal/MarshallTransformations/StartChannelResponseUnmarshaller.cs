@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -51,6 +52,12 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("anywhereSettings", targetDepth))
+                {
+                    var unmarshaller = DescribeAnywhereSettingsUnmarshaller.Instance;
+                    response.AnywhereSettings = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("arn", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -67,6 +74,12 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.ChannelClass = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("channelEngineVersion", targetDepth))
+                {
+                    var unmarshaller = ChannelEngineVersionResponseUnmarshaller.Instance;
+                    response.ChannelEngineVersion = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("destinations", targetDepth))

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSHealth.Model
 {
     /// <summary>
@@ -35,12 +36,13 @@ namespace Amazon.AWSHealth.Model
     {
         private string _awsAccountId;
         private string _entityArn;
+        private Dictionary<string, string> _entityMetadata = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _entityUrl;
         private string _entityValue;
         private string _eventArn;
         private DateTime? _lastUpdatedTime;
         private EntityStatusCode _statusCode;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AwsAccountId. 
@@ -64,8 +66,8 @@ namespace Amazon.AWSHealth.Model
         /// <summary>
         /// Gets and sets the property EntityArn. 
         /// <para>
-        /// The unique identifier for the entity. Format: <code>arn:aws:health:<i>entity-region</i>:<i>aws-account</i>:entity/<i>entity-id</i>
-        /// </code>. Example: <code>arn:aws:health:us-east-1:111222333444:entity/AVh5GGT7ul1arKr1sE1K</code>
+        /// The unique identifier for the entity. Format: <c>arn:aws:health:<i>entity-region</i>:<i>aws-account</i>:entity/<i>entity-id</i>
+        /// </c>. Example: <c>arn:aws:health:us-east-1:111222333444:entity/AVh5GGT7ul1arKr1sE1K</c>
         /// 
         /// </para>
         /// </summary>
@@ -80,6 +82,24 @@ namespace Amazon.AWSHealth.Model
         internal bool IsSetEntityArn()
         {
             return this._entityArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EntityMetadata. 
+        /// <para>
+        /// Additional metadata about the affected entity.
+        /// </para>
+        /// </summary>
+        public Dictionary<string, string> EntityMetadata
+        {
+            get { return this._entityMetadata; }
+            set { this._entityMetadata = value; }
+        }
+
+        // Check to see if EntityMetadata property is set
+        internal bool IsSetEntityMetadata()
+        {
+            return this._entityMetadata != null && (this._entityMetadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -122,8 +142,8 @@ namespace Amazon.AWSHealth.Model
         /// <summary>
         /// Gets and sets the property EventArn. 
         /// <para>
-        /// The unique identifier for the event. The event ARN has the <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i>
-        /// </code> format.
+        /// The unique identifier for the event. The event ARN has the <c>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i>
+        /// </c> format.
         /// </para>
         ///  
         /// <para>
@@ -131,7 +151,7 @@ namespace Amazon.AWSHealth.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
+        ///  <c>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</c>
         /// 
         /// </para>
         /// </summary>
@@ -170,7 +190,7 @@ namespace Amazon.AWSHealth.Model
         /// Gets and sets the property StatusCode. 
         /// <para>
         /// The most recent status of the entity affected by the event. The possible values are
-        /// <code>IMPAIRED</code>, <code>UNIMPAIRED</code>, and <code>UNKNOWN</code>.
+        /// <c>IMPAIRED</c>, <c>UNIMPAIRED</c>, and <c>UNKNOWN</c>.
         /// </para>
         /// </summary>
         public EntityStatusCode StatusCode
@@ -192,7 +212,7 @@ namespace Amazon.AWSHealth.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// Currently, the <code>tags</code> property isn't supported.
+        /// Currently, the <c>tags</c> property isn't supported.
         /// </para>
         ///  </note>
         /// </summary>
@@ -206,7 +226,7 @@ namespace Amazon.AWSHealth.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

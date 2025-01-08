@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,22 +53,35 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public DateTimePickerControlDisplayOptions Unmarshall(JsonUnmarshallerContext context)
         {
+            DateTimePickerControlDisplayOptions unmarshalledObject = new DateTimePickerControlDisplayOptions();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            DateTimePickerControlDisplayOptions unmarshalledObject = new DateTimePickerControlDisplayOptions();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("DateIconVisibility", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DateIconVisibility = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("DateTimeFormat", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.DateTimeFormat = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("HelperTextVisibility", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.HelperTextVisibility = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("InfoIconLabelOptions", targetDepth))
@@ -83,7 +97,6 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

@@ -26,10 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
-    /// You have provided a name for the configuration recorder that is not valid.
+    /// You have provided a name for the customer managed configuration recorder that is not
+    /// valid.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

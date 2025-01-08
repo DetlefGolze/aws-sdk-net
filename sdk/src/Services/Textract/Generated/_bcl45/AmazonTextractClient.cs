@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.Textract
 {
     /// <summary>
-    /// Implementation for accessing Textract
+    /// <para>Implementation for accessing Textract</para>
     ///
     /// Amazon Textract detects and analyzes text in documents and converts it into machine-readable
     /// text. This is the API reference documentation for Amazon Textract.
@@ -44,6 +45,22 @@ namespace Amazon.Textract
     public partial class AmazonTextractClient : AmazonServiceClient, IAmazonTextract
     {
         private static IServiceMetadata serviceMetadata = new AmazonTextractMetadata();
+        private ITextractPaginatorFactory _paginators;
+
+        /// <summary>
+        /// Paginators for the service
+        /// </summary>
+        public ITextractPaginatorFactory Paginators 
+        {
+            get 
+            {
+                if (this._paginators == null) 
+                {
+                    this._paginators = new TextractPaginatorFactory(this);
+                }
+                return this._paginators;
+            }
+        }
         #region Constructors
 
         /// <summary>
@@ -261,28 +278,25 @@ namespace Amazon.Textract
         ///  <ul> <li> 
         /// <para>
         /// Form data (key-value pairs). The related information is returned in two <a>Block</a>
-        /// objects, each of type <code>KEY_VALUE_SET</code>: a KEY <code>Block</code> object
-        /// and a VALUE <code>Block</code> object. For example, <i>Name: Ana Silva Carolina</i>
-        /// contains a key and value. <i>Name:</i> is the key. <i>Ana Silva Carolina</i> is the
-        /// value.
+        /// objects, each of type <c>KEY_VALUE_SET</c>: a KEY <c>Block</c> object and a VALUE
+        /// <c>Block</c> object. For example, <i>Name: Ana Silva Carolina</i> contains a key and
+        /// value. <i>Name:</i> is the key. <i>Ana Silva Carolina</i> is the value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Table and table cell data. A TABLE <code>Block</code> object contains information
-        /// about a detected table. A CELL <code>Block</code> object is returned for each cell
-        /// in a table.
+        /// Table and table cell data. A TABLE <c>Block</c> object contains information about
+        /// a detected table. A CELL <c>Block</c> object is returned for each cell in a table.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Lines and words of text. A LINE <code>Block</code> object contains one or more WORD
-        /// <code>Block</code> objects. All lines and words that are detected in the document
-        /// are returned (including text that doesn't have a relationship with the value of <code>FeatureTypes</code>).
-        /// 
+        /// Lines and words of text. A LINE <c>Block</c> object contains one or more WORD <c>Block</c>
+        /// objects. All lines and words that are detected in the document are returned (including
+        /// text that doesn't have a relationship with the value of <c>FeatureTypes</c>). 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Signatures. A SIGNATURE <code>Block</code> object contains the location information
-        /// of a signature in a document. If used in conjunction with forms or tables, a signature
+        /// Signatures. A SIGNATURE <c>Block</c> object contains the location information of a
+        /// signature in a document. If used in conjunction with forms or tables, a signature
         /// can be given a Key-Value pairing or be detected in the cell of a table.
         /// </para>
         ///  </li> <li> 
@@ -298,21 +312,21 @@ namespace Amazon.Textract
         ///  </li> </ul> 
         /// <para>
         /// Selection elements such as check boxes and option buttons (radio buttons) can be detected
-        /// in form data and in tables. A SELECTION_ELEMENT <code>Block</code> object contains
-        /// information about a selection element, including the selection status.
+        /// in form data and in tables. A SELECTION_ELEMENT <c>Block</c> object contains information
+        /// about a selection element, including the selection status.
         /// </para>
         ///  
         /// <para>
-        /// You can choose which type of analysis to perform by specifying the <code>FeatureTypes</code>
+        /// You can choose which type of analysis to perform by specifying the <c>FeatureTypes</c>
         /// list. 
         /// </para>
         ///  
         /// <para>
-        /// The output is returned in a list of <code>Block</code> objects.
+        /// The output is returned in a list of <c>Block</c> objects.
         /// </para>
         ///  
         /// <para>
-        ///  <code>AnalyzeDocument</code> is a synchronous operation. To analyze documents asynchronously,
+        ///  <c>AnalyzeDocument</c> is a synchronous operation. To analyze documents asynchronously,
         /// use <a>StartDocumentAnalysis</a>.
         /// </para>
         ///  
@@ -346,9 +360,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -388,28 +402,25 @@ namespace Amazon.Textract
         ///  <ul> <li> 
         /// <para>
         /// Form data (key-value pairs). The related information is returned in two <a>Block</a>
-        /// objects, each of type <code>KEY_VALUE_SET</code>: a KEY <code>Block</code> object
-        /// and a VALUE <code>Block</code> object. For example, <i>Name: Ana Silva Carolina</i>
-        /// contains a key and value. <i>Name:</i> is the key. <i>Ana Silva Carolina</i> is the
-        /// value.
+        /// objects, each of type <c>KEY_VALUE_SET</c>: a KEY <c>Block</c> object and a VALUE
+        /// <c>Block</c> object. For example, <i>Name: Ana Silva Carolina</i> contains a key and
+        /// value. <i>Name:</i> is the key. <i>Ana Silva Carolina</i> is the value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Table and table cell data. A TABLE <code>Block</code> object contains information
-        /// about a detected table. A CELL <code>Block</code> object is returned for each cell
-        /// in a table.
+        /// Table and table cell data. A TABLE <c>Block</c> object contains information about
+        /// a detected table. A CELL <c>Block</c> object is returned for each cell in a table.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Lines and words of text. A LINE <code>Block</code> object contains one or more WORD
-        /// <code>Block</code> objects. All lines and words that are detected in the document
-        /// are returned (including text that doesn't have a relationship with the value of <code>FeatureTypes</code>).
-        /// 
+        /// Lines and words of text. A LINE <c>Block</c> object contains one or more WORD <c>Block</c>
+        /// objects. All lines and words that are detected in the document are returned (including
+        /// text that doesn't have a relationship with the value of <c>FeatureTypes</c>). 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Signatures. A SIGNATURE <code>Block</code> object contains the location information
-        /// of a signature in a document. If used in conjunction with forms or tables, a signature
+        /// Signatures. A SIGNATURE <c>Block</c> object contains the location information of a
+        /// signature in a document. If used in conjunction with forms or tables, a signature
         /// can be given a Key-Value pairing or be detected in the cell of a table.
         /// </para>
         ///  </li> <li> 
@@ -425,21 +436,21 @@ namespace Amazon.Textract
         ///  </li> </ul> 
         /// <para>
         /// Selection elements such as check boxes and option buttons (radio buttons) can be detected
-        /// in form data and in tables. A SELECTION_ELEMENT <code>Block</code> object contains
-        /// information about a selection element, including the selection status.
+        /// in form data and in tables. A SELECTION_ELEMENT <c>Block</c> object contains information
+        /// about a selection element, including the selection status.
         /// </para>
         ///  
         /// <para>
-        /// You can choose which type of analysis to perform by specifying the <code>FeatureTypes</code>
+        /// You can choose which type of analysis to perform by specifying the <c>FeatureTypes</c>
         /// list. 
         /// </para>
         ///  
         /// <para>
-        /// The output is returned in a list of <code>Block</code> objects.
+        /// The output is returned in a list of <c>Block</c> objects.
         /// </para>
         ///  
         /// <para>
-        ///  <code>AnalyzeDocument</code> is a synchronous operation. To analyze documents asynchronously,
+        ///  <c>AnalyzeDocument</c> is a synchronous operation. To analyze documents asynchronously,
         /// use <a>StartDocumentAnalysis</a>.
         /// </para>
         ///  
@@ -476,9 +487,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -513,23 +524,22 @@ namespace Amazon.Textract
 
 
         /// <summary>
-        /// <code>AnalyzeExpense</code> synchronously analyzes an input document for financially
-        /// related relationships between text.
+        /// <c>AnalyzeExpense</c> synchronously analyzes an input document for financially related
+        /// relationships between text.
         /// 
         ///  
         /// <para>
-        /// Information is returned as <code>ExpenseDocuments</code> and seperated as follows:
+        /// Information is returned as <c>ExpenseDocuments</c> and seperated as follows:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>LineItemGroups</code>- A data set containing <code>LineItems</code> which store
-        /// information about the lines of text, such as an item purchased and its price on a
-        /// receipt.
+        ///  <c>LineItemGroups</c>- A data set containing <c>LineItems</c> which store information
+        /// about the lines of text, such as an item purchased and its price on a receipt.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SummaryFields</code>- Contains all other information a receipt, such as header
-        /// information or the vendors name.
+        ///  <c>SummaryFields</c>- Contains all other information a receipt, such as header information
+        /// or the vendors name.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -554,9 +564,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -587,23 +597,22 @@ namespace Amazon.Textract
 
 
         /// <summary>
-        /// <code>AnalyzeExpense</code> synchronously analyzes an input document for financially
-        /// related relationships between text.
+        /// <c>AnalyzeExpense</c> synchronously analyzes an input document for financially related
+        /// relationships between text.
         /// 
         ///  
         /// <para>
-        /// Information is returned as <code>ExpenseDocuments</code> and seperated as follows:
+        /// Information is returned as <c>ExpenseDocuments</c> and seperated as follows:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>LineItemGroups</code>- A data set containing <code>LineItems</code> which store
-        /// information about the lines of text, such as an item purchased and its price on a
-        /// receipt.
+        ///  <c>LineItemGroups</c>- A data set containing <c>LineItems</c> which store information
+        /// about the lines of text, such as an item purchased and its price on a receipt.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SummaryFields</code>- Contains all other information a receipt, such as header
-        /// information or the vendors name.
+        ///  <c>SummaryFields</c>- Contains all other information a receipt, such as header information
+        /// or the vendors name.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -631,9 +640,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -669,8 +678,8 @@ namespace Amazon.Textract
 
         /// <summary>
         /// Analyzes identity documents for relevant information. This information is extracted
-        /// and returned as <code>IdentityDocumentFields</code>, which records both the normalized
-        /// field and value of the extracted text. Unlike other Amazon Textract operations, <code>AnalyzeID</code>
+        /// and returned as <c>IdentityDocumentFields</c>, which records both the normalized field
+        /// and value of the extracted text. Unlike other Amazon Textract operations, <c>AnalyzeID</c>
         /// doesn't return any Geometry data.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the AnalyzeID service method.</param>
@@ -694,9 +703,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -728,8 +737,8 @@ namespace Amazon.Textract
 
         /// <summary>
         /// Analyzes identity documents for relevant information. This information is extracted
-        /// and returned as <code>IdentityDocumentFields</code>, which records both the normalized
-        /// field and value of the extracted text. Unlike other Amazon Textract operations, <code>AnalyzeID</code>
+        /// and returned as <c>IdentityDocumentFields</c>, which records both the normalized field
+        /// and value of the extracted text. Unlike other Amazon Textract operations, <c>AnalyzeID</c>
         /// doesn't return any Geometry data.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the AnalyzeID service method.</param>
@@ -756,9 +765,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -789,27 +798,508 @@ namespace Amazon.Textract
 
         #endregion
         
+        #region  CreateAdapter
+
+
+        /// <summary>
+        /// Creates an adapter, which can be fine-tuned for enhanced performance on user provided
+        /// documents. Takes an AdapterName and FeatureType. Currently the only supported feature
+        /// type is <c>QUERIES</c>. You can also provide a Description, Tags, and a ClientRequestToken.
+        /// You can choose whether or not the adapter should be AutoUpdated with the AutoUpdate
+        /// argument. By default, AutoUpdate is set to DISABLED.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateAdapter service method.</param>
+        /// 
+        /// <returns>The response from the CreateAdapter service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ConflictException">
+        /// Updating or deleting a resource can cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.IdempotentParameterMismatchException">
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.LimitExceededException">
+        /// An Amazon Textract service limit was exceeded. For example, if you start too many
+        /// asynchronous jobs concurrently, calls to start operations (<c>StartDocumentTextDetection</c>,
+        /// for example) raise a LimitExceededException exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Textract service limit.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ServiceQuotaExceededException">
+        /// Returned when a request cannot be completed as it would exceed a maximum service quota.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/CreateAdapter">REST API Reference for CreateAdapter Operation</seealso>
+        public virtual CreateAdapterResponse CreateAdapter(CreateAdapterRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateAdapterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateAdapterResponseUnmarshaller.Instance;
+
+            return Invoke<CreateAdapterResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates an adapter, which can be fine-tuned for enhanced performance on user provided
+        /// documents. Takes an AdapterName and FeatureType. Currently the only supported feature
+        /// type is <c>QUERIES</c>. You can also provide a Description, Tags, and a ClientRequestToken.
+        /// You can choose whether or not the adapter should be AutoUpdated with the AutoUpdate
+        /// argument. By default, AutoUpdate is set to DISABLED.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateAdapter service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateAdapter service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ConflictException">
+        /// Updating or deleting a resource can cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.IdempotentParameterMismatchException">
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.LimitExceededException">
+        /// An Amazon Textract service limit was exceeded. For example, if you start too many
+        /// asynchronous jobs concurrently, calls to start operations (<c>StartDocumentTextDetection</c>,
+        /// for example) raise a LimitExceededException exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Textract service limit.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ServiceQuotaExceededException">
+        /// Returned when a request cannot be completed as it would exceed a maximum service quota.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/CreateAdapter">REST API Reference for CreateAdapter Operation</seealso>
+        public virtual Task<CreateAdapterResponse> CreateAdapterAsync(CreateAdapterRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateAdapterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateAdapterResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateAdapterResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateAdapterVersion
+
+
+        /// <summary>
+        /// Creates a new version of an adapter. Operates on a provided AdapterId and a specified
+        /// dataset provided via the DatasetConfig argument. Requires that you specify an Amazon
+        /// S3 bucket with the OutputConfig argument. You can provide an optional KMSKeyId, an
+        /// optional ClientRequestToken, and optional tags.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateAdapterVersion service method.</param>
+        /// 
+        /// <returns>The response from the CreateAdapterVersion service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ConflictException">
+        /// Updating or deleting a resource can cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.IdempotentParameterMismatchException">
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidKMSKeyException">
+        /// Indicates you do not have decrypt permissions with the KMS key entered, or the KMS
+        /// key was entered incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
+        /// Amazon Textract is unable to access the S3 object that's specified in the request.
+        /// for more information, <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html">Configure
+        /// Access to Amazon S3</a> For troubleshooting information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/troubleshooting.html">Troubleshooting
+        /// Amazon S3</a>
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.LimitExceededException">
+        /// An Amazon Textract service limit was exceeded. For example, if you start too many
+        /// asynchronous jobs concurrently, calls to start operations (<c>StartDocumentTextDetection</c>,
+        /// for example) raise a LimitExceededException exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Textract service limit.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ResourceNotFoundException">
+        /// Returned when an operation tried to access a nonexistent resource.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ServiceQuotaExceededException">
+        /// Returned when a request cannot be completed as it would exceed a maximum service quota.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/CreateAdapterVersion">REST API Reference for CreateAdapterVersion Operation</seealso>
+        public virtual CreateAdapterVersionResponse CreateAdapterVersion(CreateAdapterVersionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateAdapterVersionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateAdapterVersionResponseUnmarshaller.Instance;
+
+            return Invoke<CreateAdapterVersionResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates a new version of an adapter. Operates on a provided AdapterId and a specified
+        /// dataset provided via the DatasetConfig argument. Requires that you specify an Amazon
+        /// S3 bucket with the OutputConfig argument. You can provide an optional KMSKeyId, an
+        /// optional ClientRequestToken, and optional tags.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateAdapterVersion service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateAdapterVersion service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ConflictException">
+        /// Updating or deleting a resource can cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.IdempotentParameterMismatchException">
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidKMSKeyException">
+        /// Indicates you do not have decrypt permissions with the KMS key entered, or the KMS
+        /// key was entered incorrectly.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
+        /// Amazon Textract is unable to access the S3 object that's specified in the request.
+        /// for more information, <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html">Configure
+        /// Access to Amazon S3</a> For troubleshooting information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/troubleshooting.html">Troubleshooting
+        /// Amazon S3</a>
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.LimitExceededException">
+        /// An Amazon Textract service limit was exceeded. For example, if you start too many
+        /// asynchronous jobs concurrently, calls to start operations (<c>StartDocumentTextDetection</c>,
+        /// for example) raise a LimitExceededException exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Textract service limit.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ResourceNotFoundException">
+        /// Returned when an operation tried to access a nonexistent resource.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ServiceQuotaExceededException">
+        /// Returned when a request cannot be completed as it would exceed a maximum service quota.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/CreateAdapterVersion">REST API Reference for CreateAdapterVersion Operation</seealso>
+        public virtual Task<CreateAdapterVersionResponse> CreateAdapterVersionAsync(CreateAdapterVersionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateAdapterVersionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateAdapterVersionResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateAdapterVersionResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DeleteAdapter
+
+
+        /// <summary>
+        /// Deletes an Amazon Textract adapter. Takes an AdapterId and deletes the adapter specified
+        /// by the ID.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteAdapter service method.</param>
+        /// 
+        /// <returns>The response from the DeleteAdapter service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ConflictException">
+        /// Updating or deleting a resource can cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ResourceNotFoundException">
+        /// Returned when an operation tried to access a nonexistent resource.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/DeleteAdapter">REST API Reference for DeleteAdapter Operation</seealso>
+        public virtual DeleteAdapterResponse DeleteAdapter(DeleteAdapterRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteAdapterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteAdapterResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteAdapterResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes an Amazon Textract adapter. Takes an AdapterId and deletes the adapter specified
+        /// by the ID.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteAdapter service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteAdapter service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ConflictException">
+        /// Updating or deleting a resource can cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ResourceNotFoundException">
+        /// Returned when an operation tried to access a nonexistent resource.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/DeleteAdapter">REST API Reference for DeleteAdapter Operation</seealso>
+        public virtual Task<DeleteAdapterResponse> DeleteAdapterAsync(DeleteAdapterRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteAdapterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteAdapterResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteAdapterResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DeleteAdapterVersion
+
+
+        /// <summary>
+        /// Deletes an Amazon Textract adapter version. Requires that you specify both an AdapterId
+        /// and a AdapterVersion. Deletes the adapter version specified by the AdapterId and the
+        /// AdapterVersion.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteAdapterVersion service method.</param>
+        /// 
+        /// <returns>The response from the DeleteAdapterVersion service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ConflictException">
+        /// Updating or deleting a resource can cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ResourceNotFoundException">
+        /// Returned when an operation tried to access a nonexistent resource.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/DeleteAdapterVersion">REST API Reference for DeleteAdapterVersion Operation</seealso>
+        public virtual DeleteAdapterVersionResponse DeleteAdapterVersion(DeleteAdapterVersionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteAdapterVersionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteAdapterVersionResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteAdapterVersionResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes an Amazon Textract adapter version. Requires that you specify both an AdapterId
+        /// and a AdapterVersion. Deletes the adapter version specified by the AdapterId and the
+        /// AdapterVersion.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteAdapterVersion service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteAdapterVersion service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ConflictException">
+        /// Updating or deleting a resource can cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ResourceNotFoundException">
+        /// Returned when an operation tried to access a nonexistent resource.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/DeleteAdapterVersion">REST API Reference for DeleteAdapterVersion Operation</seealso>
+        public virtual Task<DeleteAdapterVersionResponse> DeleteAdapterVersionAsync(DeleteAdapterVersionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteAdapterVersionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteAdapterVersionResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteAdapterVersionResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  DetectDocumentText
 
 
         /// <summary>
         /// Detects text in the input document. Amazon Textract can detect lines of text and the
         /// words that make up a line of text. The input document must be in one of the following
-        /// image formats: JPEG, PNG, PDF, or TIFF. <code>DetectDocumentText</code> returns the
-        /// detected text in an array of <a>Block</a> objects. 
+        /// image formats: JPEG, PNG, PDF, or TIFF. <c>DetectDocumentText</c> returns the detected
+        /// text in an array of <a>Block</a> objects. 
         /// 
         ///  
         /// <para>
-        /// Each document page has as an associated <code>Block</code> of type PAGE. Each PAGE
-        /// <code>Block</code> object is the parent of LINE <code>Block</code> objects that represent
-        /// the lines of detected text on a page. A LINE <code>Block</code> object is a parent
-        /// for each word that makes up the line. Words are represented by <code>Block</code>
-        /// objects of type WORD.
+        /// Each document page has as an associated <c>Block</c> of type PAGE. Each PAGE <c>Block</c>
+        /// object is the parent of LINE <c>Block</c> objects that represent the lines of detected
+        /// text on a page. A LINE <c>Block</c> object is a parent for each word that makes up
+        /// the line. Words are represented by <c>Block</c> objects of type WORD.
         /// </para>
         ///  
         /// <para>
-        ///  <code>DetectDocumentText</code> is a synchronous operation. To analyze documents
-        /// asynchronously, use <a>StartDocumentTextDetection</a>.
+        ///  <c>DetectDocumentText</c> is a synchronous operation. To analyze documents asynchronously,
+        /// use <a>StartDocumentTextDetection</a>.
         /// </para>
         ///  
         /// <para>
@@ -838,9 +1328,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -873,21 +1363,20 @@ namespace Amazon.Textract
         /// <summary>
         /// Detects text in the input document. Amazon Textract can detect lines of text and the
         /// words that make up a line of text. The input document must be in one of the following
-        /// image formats: JPEG, PNG, PDF, or TIFF. <code>DetectDocumentText</code> returns the
-        /// detected text in an array of <a>Block</a> objects. 
+        /// image formats: JPEG, PNG, PDF, or TIFF. <c>DetectDocumentText</c> returns the detected
+        /// text in an array of <a>Block</a> objects. 
         /// 
         ///  
         /// <para>
-        /// Each document page has as an associated <code>Block</code> of type PAGE. Each PAGE
-        /// <code>Block</code> object is the parent of LINE <code>Block</code> objects that represent
-        /// the lines of detected text on a page. A LINE <code>Block</code> object is a parent
-        /// for each word that makes up the line. Words are represented by <code>Block</code>
-        /// objects of type WORD.
+        /// Each document page has as an associated <c>Block</c> of type PAGE. Each PAGE <c>Block</c>
+        /// object is the parent of LINE <c>Block</c> objects that represent the lines of detected
+        /// text on a page. A LINE <c>Block</c> object is a parent for each word that makes up
+        /// the line. Words are represented by <c>Block</c> objects of type WORD.
         /// </para>
         ///  
         /// <para>
-        ///  <code>DetectDocumentText</code> is a synchronous operation. To analyze documents
-        /// asynchronously, use <a>StartDocumentTextDetection</a>.
+        ///  <c>DetectDocumentText</c> is a synchronous operation. To analyze documents asynchronously,
+        /// use <a>StartDocumentTextDetection</a>.
         /// </para>
         ///  
         /// <para>
@@ -919,9 +1408,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -952,6 +1441,198 @@ namespace Amazon.Textract
 
         #endregion
         
+        #region  GetAdapter
+
+
+        /// <summary>
+        /// Gets configuration information for an adapter specified by an AdapterId, returning
+        /// information on AdapterName, Description, CreationTime, AutoUpdate status, and FeatureTypes.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetAdapter service method.</param>
+        /// 
+        /// <returns>The response from the GetAdapter service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ResourceNotFoundException">
+        /// Returned when an operation tried to access a nonexistent resource.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/GetAdapter">REST API Reference for GetAdapter Operation</seealso>
+        public virtual GetAdapterResponse GetAdapter(GetAdapterRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetAdapterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetAdapterResponseUnmarshaller.Instance;
+
+            return Invoke<GetAdapterResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Gets configuration information for an adapter specified by an AdapterId, returning
+        /// information on AdapterName, Description, CreationTime, AutoUpdate status, and FeatureTypes.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetAdapter service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetAdapter service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ResourceNotFoundException">
+        /// Returned when an operation tried to access a nonexistent resource.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/GetAdapter">REST API Reference for GetAdapter Operation</seealso>
+        public virtual Task<GetAdapterResponse> GetAdapterAsync(GetAdapterRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetAdapterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetAdapterResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetAdapterResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetAdapterVersion
+
+
+        /// <summary>
+        /// Gets configuration information for the specified adapter version, including: AdapterId,
+        /// AdapterVersion, FeatureTypes, Status, StatusMessage, DatasetConfig, KMSKeyId, OutputConfig,
+        /// Tags and EvaluationMetrics.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetAdapterVersion service method.</param>
+        /// 
+        /// <returns>The response from the GetAdapterVersion service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ResourceNotFoundException">
+        /// Returned when an operation tried to access a nonexistent resource.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/GetAdapterVersion">REST API Reference for GetAdapterVersion Operation</seealso>
+        public virtual GetAdapterVersionResponse GetAdapterVersion(GetAdapterVersionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetAdapterVersionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetAdapterVersionResponseUnmarshaller.Instance;
+
+            return Invoke<GetAdapterVersionResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Gets configuration information for the specified adapter version, including: AdapterId,
+        /// AdapterVersion, FeatureTypes, Status, StatusMessage, DatasetConfig, KMSKeyId, OutputConfig,
+        /// Tags and EvaluationMetrics.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetAdapterVersion service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetAdapterVersion service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ResourceNotFoundException">
+        /// Returned when an operation tried to access a nonexistent resource.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/GetAdapterVersion">REST API Reference for GetAdapterVersion Operation</seealso>
+        public virtual Task<GetAdapterVersionResponse> GetAdapterVersionAsync(GetAdapterVersionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetAdapterVersionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetAdapterVersionResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetAdapterVersionResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  GetDocumentAnalysis
 
 
@@ -962,38 +1643,36 @@ namespace Amazon.Textract
         ///  
         /// <para>
         /// You start asynchronous text analysis by calling <a>StartDocumentAnalysis</a>, which
-        /// returns a job identifier (<code>JobId</code>). When the text analysis operation finishes,
+        /// returns a job identifier (<c>JobId</c>). When the text analysis operation finishes,
         /// Amazon Textract publishes a completion status to the Amazon Simple Notification Service
-        /// (Amazon SNS) topic that's registered in the initial call to <code>StartDocumentAnalysis</code>.
+        /// (Amazon SNS) topic that's registered in the initial call to <c>StartDocumentAnalysis</c>.
         /// To get the results of the text-detection operation, first check that the status value
-        /// published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <code>GetDocumentAnalysis</code>,
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentAnalysis</code>.
+        /// published to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <c>GetDocumentAnalysis</c>,
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartDocumentAnalysis</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetDocumentAnalysis</code> returns an array of <a>Block</a> objects. The following
+        ///  <c>GetDocumentAnalysis</c> returns an array of <a>Block</a> objects. The following
         /// types of information are returned: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
         /// Form data (key-value pairs). The related information is returned in two <a>Block</a>
-        /// objects, each of type <code>KEY_VALUE_SET</code>: a KEY <code>Block</code> object
-        /// and a VALUE <code>Block</code> object. For example, <i>Name: Ana Silva Carolina</i>
-        /// contains a key and value. <i>Name:</i> is the key. <i>Ana Silva Carolina</i> is the
-        /// value.
+        /// objects, each of type <c>KEY_VALUE_SET</c>: a KEY <c>Block</c> object and a VALUE
+        /// <c>Block</c> object. For example, <i>Name: Ana Silva Carolina</i> contains a key and
+        /// value. <i>Name:</i> is the key. <i>Ana Silva Carolina</i> is the value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Table and table cell data. A TABLE <code>Block</code> object contains information
-        /// about a detected table. A CELL <code>Block</code> object is returned for each cell
-        /// in a table.
+        /// Table and table cell data. A TABLE <c>Block</c> object contains information about
+        /// a detected table. A CELL <c>Block</c> object is returned for each cell in a table.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Lines and words of text. A LINE <code>Block</code> object contains one or more WORD
-        /// <code>Block</code> objects. All lines and words that are detected in the document
-        /// are returned (including text that doesn't have a relationship with the value of the
-        /// <code>StartDocumentAnalysis</code> <code>FeatureTypes</code> input parameter). 
+        /// Lines and words of text. A LINE <c>Block</c> object contains one or more WORD <c>Block</c>
+        /// objects. All lines and words that are detected in the document are returned (including
+        /// text that doesn't have a relationship with the value of the <c>StartDocumentAnalysis</c>
+        /// <c>FeatureTypes</c> input parameter). 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1007,24 +1686,24 @@ namespace Amazon.Textract
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
-        /// While processing a document with queries, look out for <code>INVALID_REQUEST_PARAMETERS</code>
+        /// While processing a document with queries, look out for <c>INVALID_REQUEST_PARAMETERS</c>
         /// output. This indicates that either the per page query limit has been exceeded or that
         /// the operation is trying to query a page in the document which doesn’t exist. 
         /// </para>
         ///  </note> 
         /// <para>
         /// Selection elements such as check boxes and option buttons (radio buttons) can be detected
-        /// in form data and in tables. A SELECTION_ELEMENT <code>Block</code> object contains
-        /// information about a selection element, including the selection status.
+        /// in form data and in tables. A SELECTION_ELEMENT <c>Block</c> object contains information
+        /// about a selection element, including the selection status.
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>MaxResults</code> parameter to limit the number of blocks that are returned.
-        /// If there are more results than specified in <code>MaxResults</code>, the value of
-        /// <code>NextToken</code> in the operation response contains a pagination token for getting
-        /// the next set of results. To get the next page of results, call <code>GetDocumentAnalysis</code>,
-        /// and populate the <code>NextToken</code> request parameter with the token value that's
-        /// returned from the previous call to <code>GetDocumentAnalysis</code>.
+        /// Use the <c>MaxResults</c> parameter to limit the number of blocks that are returned.
+        /// If there are more results than specified in <c>MaxResults</c>, the value of <c>NextToken</c>
+        /// in the operation response contains a pagination token for getting the next set of
+        /// results. To get the next page of results, call <c>GetDocumentAnalysis</c>, and populate
+        /// the <c>NextToken</c> request parameter with the token value that's returned from the
+        /// previous call to <c>GetDocumentAnalysis</c>.
         /// </para>
         ///  
         /// <para>
@@ -1051,9 +1730,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -1086,38 +1765,36 @@ namespace Amazon.Textract
         ///  
         /// <para>
         /// You start asynchronous text analysis by calling <a>StartDocumentAnalysis</a>, which
-        /// returns a job identifier (<code>JobId</code>). When the text analysis operation finishes,
+        /// returns a job identifier (<c>JobId</c>). When the text analysis operation finishes,
         /// Amazon Textract publishes a completion status to the Amazon Simple Notification Service
-        /// (Amazon SNS) topic that's registered in the initial call to <code>StartDocumentAnalysis</code>.
+        /// (Amazon SNS) topic that's registered in the initial call to <c>StartDocumentAnalysis</c>.
         /// To get the results of the text-detection operation, first check that the status value
-        /// published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <code>GetDocumentAnalysis</code>,
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentAnalysis</code>.
+        /// published to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <c>GetDocumentAnalysis</c>,
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartDocumentAnalysis</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetDocumentAnalysis</code> returns an array of <a>Block</a> objects. The following
+        ///  <c>GetDocumentAnalysis</c> returns an array of <a>Block</a> objects. The following
         /// types of information are returned: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
         /// Form data (key-value pairs). The related information is returned in two <a>Block</a>
-        /// objects, each of type <code>KEY_VALUE_SET</code>: a KEY <code>Block</code> object
-        /// and a VALUE <code>Block</code> object. For example, <i>Name: Ana Silva Carolina</i>
-        /// contains a key and value. <i>Name:</i> is the key. <i>Ana Silva Carolina</i> is the
-        /// value.
+        /// objects, each of type <c>KEY_VALUE_SET</c>: a KEY <c>Block</c> object and a VALUE
+        /// <c>Block</c> object. For example, <i>Name: Ana Silva Carolina</i> contains a key and
+        /// value. <i>Name:</i> is the key. <i>Ana Silva Carolina</i> is the value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Table and table cell data. A TABLE <code>Block</code> object contains information
-        /// about a detected table. A CELL <code>Block</code> object is returned for each cell
-        /// in a table.
+        /// Table and table cell data. A TABLE <c>Block</c> object contains information about
+        /// a detected table. A CELL <c>Block</c> object is returned for each cell in a table.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Lines and words of text. A LINE <code>Block</code> object contains one or more WORD
-        /// <code>Block</code> objects. All lines and words that are detected in the document
-        /// are returned (including text that doesn't have a relationship with the value of the
-        /// <code>StartDocumentAnalysis</code> <code>FeatureTypes</code> input parameter). 
+        /// Lines and words of text. A LINE <c>Block</c> object contains one or more WORD <c>Block</c>
+        /// objects. All lines and words that are detected in the document are returned (including
+        /// text that doesn't have a relationship with the value of the <c>StartDocumentAnalysis</c>
+        /// <c>FeatureTypes</c> input parameter). 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1131,24 +1808,24 @@ namespace Amazon.Textract
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
-        /// While processing a document with queries, look out for <code>INVALID_REQUEST_PARAMETERS</code>
+        /// While processing a document with queries, look out for <c>INVALID_REQUEST_PARAMETERS</c>
         /// output. This indicates that either the per page query limit has been exceeded or that
         /// the operation is trying to query a page in the document which doesn’t exist. 
         /// </para>
         ///  </note> 
         /// <para>
         /// Selection elements such as check boxes and option buttons (radio buttons) can be detected
-        /// in form data and in tables. A SELECTION_ELEMENT <code>Block</code> object contains
-        /// information about a selection element, including the selection status.
+        /// in form data and in tables. A SELECTION_ELEMENT <c>Block</c> object contains information
+        /// about a selection element, including the selection status.
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>MaxResults</code> parameter to limit the number of blocks that are returned.
-        /// If there are more results than specified in <code>MaxResults</code>, the value of
-        /// <code>NextToken</code> in the operation response contains a pagination token for getting
-        /// the next set of results. To get the next page of results, call <code>GetDocumentAnalysis</code>,
-        /// and populate the <code>NextToken</code> request parameter with the token value that's
-        /// returned from the previous call to <code>GetDocumentAnalysis</code>.
+        /// Use the <c>MaxResults</c> parameter to limit the number of blocks that are returned.
+        /// If there are more results than specified in <c>MaxResults</c>, the value of <c>NextToken</c>
+        /// in the operation response contains a pagination token for getting the next set of
+        /// results. To get the next page of results, call <c>GetDocumentAnalysis</c>, and populate
+        /// the <c>NextToken</c> request parameter with the token value that's returned from the
+        /// previous call to <c>GetDocumentAnalysis</c>.
         /// </para>
         ///  
         /// <para>
@@ -1178,9 +1855,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -1218,33 +1895,32 @@ namespace Amazon.Textract
         ///  
         /// <para>
         /// You start asynchronous text detection by calling <a>StartDocumentTextDetection</a>,
-        /// which returns a job identifier (<code>JobId</code>). When the text detection operation
-        /// finishes, Amazon Textract publishes a completion status to the Amazon Simple Notification
-        /// Service (Amazon SNS) topic that's registered in the initial call to <code>StartDocumentTextDetection</code>.
+        /// which returns a job identifier (<c>JobId</c>). When the text detection operation finishes,
+        /// Amazon Textract publishes a completion status to the Amazon Simple Notification Service
+        /// (Amazon SNS) topic that's registered in the initial call to <c>StartDocumentTextDetection</c>.
         /// To get the results of the text-detection operation, first check that the status value
-        /// published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <code>GetDocumentTextDetection</code>,
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentTextDetection</code>.
+        /// published to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <c>GetDocumentTextDetection</c>,
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartDocumentTextDetection</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetDocumentTextDetection</code> returns an array of <a>Block</a> objects. 
+        ///  <c>GetDocumentTextDetection</c> returns an array of <a>Block</a> objects. 
         /// </para>
         ///  
         /// <para>
-        /// Each document page has as an associated <code>Block</code> of type PAGE. Each PAGE
-        /// <code>Block</code> object is the parent of LINE <code>Block</code> objects that represent
-        /// the lines of detected text on a page. A LINE <code>Block</code> object is a parent
-        /// for each word that makes up the line. Words are represented by <code>Block</code>
-        /// objects of type WORD.
+        /// Each document page has as an associated <c>Block</c> of type PAGE. Each PAGE <c>Block</c>
+        /// object is the parent of LINE <c>Block</c> objects that represent the lines of detected
+        /// text on a page. A LINE <c>Block</c> object is a parent for each word that makes up
+        /// the line. Words are represented by <c>Block</c> objects of type WORD.
         /// </para>
         ///  
         /// <para>
         /// Use the MaxResults parameter to limit the number of blocks that are returned. If there
-        /// are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code>
+        /// are more results than specified in <c>MaxResults</c>, the value of <c>NextToken</c>
         /// in the operation response contains a pagination token for getting the next set of
-        /// results. To get the next page of results, call <code>GetDocumentTextDetection</code>,
-        /// and populate the <code>NextToken</code> request parameter with the token value that's
-        /// returned from the previous call to <code>GetDocumentTextDetection</code>.
+        /// results. To get the next page of results, call <c>GetDocumentTextDetection</c>, and
+        /// populate the <c>NextToken</c> request parameter with the token value that's returned
+        /// from the previous call to <c>GetDocumentTextDetection</c>.
         /// </para>
         ///  
         /// <para>
@@ -1271,9 +1947,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -1307,33 +1983,32 @@ namespace Amazon.Textract
         ///  
         /// <para>
         /// You start asynchronous text detection by calling <a>StartDocumentTextDetection</a>,
-        /// which returns a job identifier (<code>JobId</code>). When the text detection operation
-        /// finishes, Amazon Textract publishes a completion status to the Amazon Simple Notification
-        /// Service (Amazon SNS) topic that's registered in the initial call to <code>StartDocumentTextDetection</code>.
+        /// which returns a job identifier (<c>JobId</c>). When the text detection operation finishes,
+        /// Amazon Textract publishes a completion status to the Amazon Simple Notification Service
+        /// (Amazon SNS) topic that's registered in the initial call to <c>StartDocumentTextDetection</c>.
         /// To get the results of the text-detection operation, first check that the status value
-        /// published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <code>GetDocumentTextDetection</code>,
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentTextDetection</code>.
+        /// published to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <c>GetDocumentTextDetection</c>,
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartDocumentTextDetection</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetDocumentTextDetection</code> returns an array of <a>Block</a> objects. 
+        ///  <c>GetDocumentTextDetection</c> returns an array of <a>Block</a> objects. 
         /// </para>
         ///  
         /// <para>
-        /// Each document page has as an associated <code>Block</code> of type PAGE. Each PAGE
-        /// <code>Block</code> object is the parent of LINE <code>Block</code> objects that represent
-        /// the lines of detected text on a page. A LINE <code>Block</code> object is a parent
-        /// for each word that makes up the line. Words are represented by <code>Block</code>
-        /// objects of type WORD.
+        /// Each document page has as an associated <c>Block</c> of type PAGE. Each PAGE <c>Block</c>
+        /// object is the parent of LINE <c>Block</c> objects that represent the lines of detected
+        /// text on a page. A LINE <c>Block</c> object is a parent for each word that makes up
+        /// the line. Words are represented by <c>Block</c> objects of type WORD.
         /// </para>
         ///  
         /// <para>
         /// Use the MaxResults parameter to limit the number of blocks that are returned. If there
-        /// are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code>
+        /// are more results than specified in <c>MaxResults</c>, the value of <c>NextToken</c>
         /// in the operation response contains a pagination token for getting the next set of
-        /// results. To get the next page of results, call <code>GetDocumentTextDetection</code>,
-        /// and populate the <code>NextToken</code> request parameter with the token value that's
-        /// returned from the previous call to <code>GetDocumentTextDetection</code>.
+        /// results. To get the next page of results, call <c>GetDocumentTextDetection</c>, and
+        /// populate the <c>NextToken</c> request parameter with the token value that's returned
+        /// from the previous call to <c>GetDocumentTextDetection</c>.
         /// </para>
         ///  
         /// <para>
@@ -1363,9 +2038,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -1403,22 +2078,21 @@ namespace Amazon.Textract
         ///  
         /// <para>
         /// You start asynchronous invoice/receipt analysis by calling <a>StartExpenseAnalysis</a>,
-        /// which returns a job identifier (<code>JobId</code>). Upon completion of the invoice/receipt
+        /// which returns a job identifier (<c>JobId</c>). Upon completion of the invoice/receipt
         /// analysis, Amazon Textract publishes the completion status to the Amazon Simple Notification
-        /// Service (Amazon SNS) topic. This topic must be registered in the initial call to <code>StartExpenseAnalysis</code>.
+        /// Service (Amazon SNS) topic. This topic must be registered in the initial call to <c>StartExpenseAnalysis</c>.
         /// To get the results of the invoice/receipt analysis operation, first ensure that the
-        /// status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call
-        /// <code>GetExpenseAnalysis</code>, and pass the job identifier (<code>JobId</code>)
-        /// from the initial call to <code>StartExpenseAnalysis</code>.
+        /// status value published to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <c>GetExpenseAnalysis</c>,
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartExpenseAnalysis</c>.
         /// </para>
         ///  
         /// <para>
         /// Use the MaxResults parameter to limit the number of blocks that are returned. If there
-        /// are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code>
+        /// are more results than specified in <c>MaxResults</c>, the value of <c>NextToken</c>
         /// in the operation response contains a pagination token for getting the next set of
-        /// results. To get the next page of results, call <code>GetExpenseAnalysis</code>, and
-        /// populate the <code>NextToken</code> request parameter with the token value that's
-        /// returned from the previous call to <code>GetExpenseAnalysis</code>.
+        /// results. To get the next page of results, call <c>GetExpenseAnalysis</c>, and populate
+        /// the <c>NextToken</c> request parameter with the token value that's returned from the
+        /// previous call to <c>GetExpenseAnalysis</c>.
         /// </para>
         ///  
         /// <para>
@@ -1445,9 +2119,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -1481,22 +2155,21 @@ namespace Amazon.Textract
         ///  
         /// <para>
         /// You start asynchronous invoice/receipt analysis by calling <a>StartExpenseAnalysis</a>,
-        /// which returns a job identifier (<code>JobId</code>). Upon completion of the invoice/receipt
+        /// which returns a job identifier (<c>JobId</c>). Upon completion of the invoice/receipt
         /// analysis, Amazon Textract publishes the completion status to the Amazon Simple Notification
-        /// Service (Amazon SNS) topic. This topic must be registered in the initial call to <code>StartExpenseAnalysis</code>.
+        /// Service (Amazon SNS) topic. This topic must be registered in the initial call to <c>StartExpenseAnalysis</c>.
         /// To get the results of the invoice/receipt analysis operation, first ensure that the
-        /// status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call
-        /// <code>GetExpenseAnalysis</code>, and pass the job identifier (<code>JobId</code>)
-        /// from the initial call to <code>StartExpenseAnalysis</code>.
+        /// status value published to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <c>GetExpenseAnalysis</c>,
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartExpenseAnalysis</c>.
         /// </para>
         ///  
         /// <para>
         /// Use the MaxResults parameter to limit the number of blocks that are returned. If there
-        /// are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code>
+        /// are more results than specified in <c>MaxResults</c>, the value of <c>NextToken</c>
         /// in the operation response contains a pagination token for getting the next set of
-        /// results. To get the next page of results, call <code>GetExpenseAnalysis</code>, and
-        /// populate the <code>NextToken</code> request parameter with the token value that's
-        /// returned from the previous call to <code>GetExpenseAnalysis</code>.
+        /// results. To get the next page of results, call <c>GetExpenseAnalysis</c>, and populate
+        /// the <c>NextToken</c> request parameter with the token value that's returned from the
+        /// previous call to <c>GetExpenseAnalysis</c>.
         /// </para>
         ///  
         /// <para>
@@ -1526,9 +2199,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -1564,17 +2237,17 @@ namespace Amazon.Textract
         /// 
         ///  
         /// <para>
-        /// You start asynchronous text analysis by calling <code>StartLendingAnalysis</code>,
-        /// which returns a job identifier (<code>JobId</code>). When the text analysis operation
-        /// finishes, Amazon Textract publishes a completion status to the Amazon Simple Notification
-        /// Service (Amazon SNS) topic that's registered in the initial call to <code>StartLendingAnalysis</code>.
+        /// You start asynchronous text analysis by calling <c>StartLendingAnalysis</c>, which
+        /// returns a job identifier (<c>JobId</c>). When the text analysis operation finishes,
+        /// Amazon Textract publishes a completion status to the Amazon Simple Notification Service
+        /// (Amazon SNS) topic that's registered in the initial call to <c>StartLendingAnalysis</c>.
         /// 
         /// </para>
         ///  
         /// <para>
         /// To get the results of the text analysis operation, first check that the status value
         /// published to the Amazon SNS topic is SUCCEEDED. If so, call GetLendingAnalysis, and
-        /// pass the job identifier (<code>JobId</code>) from the initial call to <code>StartLendingAnalysis</code>.
+        /// pass the job identifier (<c>JobId</c>) from the initial call to <c>StartLendingAnalysis</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetLendingAnalysis service method.</param>
@@ -1596,9 +2269,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -1630,17 +2303,17 @@ namespace Amazon.Textract
         /// 
         ///  
         /// <para>
-        /// You start asynchronous text analysis by calling <code>StartLendingAnalysis</code>,
-        /// which returns a job identifier (<code>JobId</code>). When the text analysis operation
-        /// finishes, Amazon Textract publishes a completion status to the Amazon Simple Notification
-        /// Service (Amazon SNS) topic that's registered in the initial call to <code>StartLendingAnalysis</code>.
+        /// You start asynchronous text analysis by calling <c>StartLendingAnalysis</c>, which
+        /// returns a job identifier (<c>JobId</c>). When the text analysis operation finishes,
+        /// Amazon Textract publishes a completion status to the Amazon Simple Notification Service
+        /// (Amazon SNS) topic that's registered in the initial call to <c>StartLendingAnalysis</c>.
         /// 
         /// </para>
         ///  
         /// <para>
         /// To get the results of the text analysis operation, first check that the status value
         /// published to the Amazon SNS topic is SUCCEEDED. If so, call GetLendingAnalysis, and
-        /// pass the job identifier (<code>JobId</code>) from the initial call to <code>StartLendingAnalysis</code>.
+        /// pass the job identifier (<c>JobId</c>) from the initial call to <c>StartLendingAnalysis</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetLendingAnalysis service method.</param>
@@ -1665,9 +2338,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -1698,25 +2371,25 @@ namespace Amazon.Textract
 
 
         /// <summary>
-        /// Gets summarized results for the <code>StartLendingAnalysis</code> operation, which
-        /// analyzes text in a lending document. The returned summary consists of information
-        /// about documents grouped together by a common document type. Information like detected
-        /// signatures, page numbers, and split documents is returned with respect to the type
-        /// of grouped document. 
+        /// Gets summarized results for the <c>StartLendingAnalysis</c> operation, which analyzes
+        /// text in a lending document. The returned summary consists of information about documents
+        /// grouped together by a common document type. Information like detected signatures,
+        /// page numbers, and split documents is returned with respect to the type of grouped
+        /// document. 
         /// 
         ///  
         /// <para>
-        /// You start asynchronous text analysis by calling <code>StartLendingAnalysis</code>,
-        /// which returns a job identifier (<code>JobId</code>). When the text analysis operation
-        /// finishes, Amazon Textract publishes a completion status to the Amazon Simple Notification
-        /// Service (Amazon SNS) topic that's registered in the initial call to <code>StartLendingAnalysis</code>.
+        /// You start asynchronous text analysis by calling <c>StartLendingAnalysis</c>, which
+        /// returns a job identifier (<c>JobId</c>). When the text analysis operation finishes,
+        /// Amazon Textract publishes a completion status to the Amazon Simple Notification Service
+        /// (Amazon SNS) topic that's registered in the initial call to <c>StartLendingAnalysis</c>.
         /// 
         /// </para>
         ///  
         /// <para>
         /// To get the results of the text analysis operation, first check that the status value
-        /// published to the Amazon SNS topic is SUCCEEDED. If so, call <code>GetLendingAnalysisSummary</code>,
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartLendingAnalysis</code>.
+        /// published to the Amazon SNS topic is SUCCEEDED. If so, call <c>GetLendingAnalysisSummary</c>,
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartLendingAnalysis</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetLendingAnalysisSummary service method.</param>
@@ -1738,9 +2411,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -1767,25 +2440,25 @@ namespace Amazon.Textract
 
 
         /// <summary>
-        /// Gets summarized results for the <code>StartLendingAnalysis</code> operation, which
-        /// analyzes text in a lending document. The returned summary consists of information
-        /// about documents grouped together by a common document type. Information like detected
-        /// signatures, page numbers, and split documents is returned with respect to the type
-        /// of grouped document. 
+        /// Gets summarized results for the <c>StartLendingAnalysis</c> operation, which analyzes
+        /// text in a lending document. The returned summary consists of information about documents
+        /// grouped together by a common document type. Information like detected signatures,
+        /// page numbers, and split documents is returned with respect to the type of grouped
+        /// document. 
         /// 
         ///  
         /// <para>
-        /// You start asynchronous text analysis by calling <code>StartLendingAnalysis</code>,
-        /// which returns a job identifier (<code>JobId</code>). When the text analysis operation
-        /// finishes, Amazon Textract publishes a completion status to the Amazon Simple Notification
-        /// Service (Amazon SNS) topic that's registered in the initial call to <code>StartLendingAnalysis</code>.
+        /// You start asynchronous text analysis by calling <c>StartLendingAnalysis</c>, which
+        /// returns a job identifier (<c>JobId</c>). When the text analysis operation finishes,
+        /// Amazon Textract publishes a completion status to the Amazon Simple Notification Service
+        /// (Amazon SNS) topic that's registered in the initial call to <c>StartLendingAnalysis</c>.
         /// 
         /// </para>
         ///  
         /// <para>
         /// To get the results of the text analysis operation, first check that the status value
-        /// published to the Amazon SNS topic is SUCCEEDED. If so, call <code>GetLendingAnalysisSummary</code>,
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartLendingAnalysis</code>.
+        /// published to the Amazon SNS topic is SUCCEEDED. If so, call <c>GetLendingAnalysisSummary</c>,
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartLendingAnalysis</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetLendingAnalysisSummary service method.</param>
@@ -1810,9 +2483,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -1839,6 +2512,279 @@ namespace Amazon.Textract
 
         #endregion
         
+        #region  ListAdapters
+
+
+        /// <summary>
+        /// Lists all adapters that match the specified filtration criteria.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAdapters service method.</param>
+        /// 
+        /// <returns>The response from the ListAdapters service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/ListAdapters">REST API Reference for ListAdapters Operation</seealso>
+        public virtual ListAdaptersResponse ListAdapters(ListAdaptersRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListAdaptersRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListAdaptersResponseUnmarshaller.Instance;
+
+            return Invoke<ListAdaptersResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists all adapters that match the specified filtration criteria.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAdapters service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListAdapters service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/ListAdapters">REST API Reference for ListAdapters Operation</seealso>
+        public virtual Task<ListAdaptersResponse> ListAdaptersAsync(ListAdaptersRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListAdaptersRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListAdaptersResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListAdaptersResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListAdapterVersions
+
+
+        /// <summary>
+        /// List all version of an adapter that meet the specified filtration criteria.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAdapterVersions service method.</param>
+        /// 
+        /// <returns>The response from the ListAdapterVersions service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ResourceNotFoundException">
+        /// Returned when an operation tried to access a nonexistent resource.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/ListAdapterVersions">REST API Reference for ListAdapterVersions Operation</seealso>
+        public virtual ListAdapterVersionsResponse ListAdapterVersions(ListAdapterVersionsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListAdapterVersionsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListAdapterVersionsResponseUnmarshaller.Instance;
+
+            return Invoke<ListAdapterVersionsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// List all version of an adapter that meet the specified filtration criteria.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAdapterVersions service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListAdapterVersions service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ResourceNotFoundException">
+        /// Returned when an operation tried to access a nonexistent resource.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/ListAdapterVersions">REST API Reference for ListAdapterVersions Operation</seealso>
+        public virtual Task<ListAdapterVersionsResponse> ListAdapterVersionsAsync(ListAdapterVersionsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListAdapterVersionsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListAdapterVersionsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListAdapterVersionsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListTagsForResource
+
+
+        /// <summary>
+        /// Lists all tags for an Amazon Textract resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListTagsForResource service method.</param>
+        /// 
+        /// <returns>The response from the ListTagsForResource service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ResourceNotFoundException">
+        /// Returned when an operation tried to access a nonexistent resource.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/ListTagsForResource">REST API Reference for ListTagsForResource Operation</seealso>
+        public virtual ListTagsForResourceResponse ListTagsForResource(ListTagsForResourceRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListTagsForResourceRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListTagsForResourceResponseUnmarshaller.Instance;
+
+            return Invoke<ListTagsForResourceResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists all tags for an Amazon Textract resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListTagsForResource service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListTagsForResource service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ResourceNotFoundException">
+        /// Returned when an operation tried to access a nonexistent resource.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/ListTagsForResource">REST API Reference for ListTagsForResource Operation</seealso>
+        public virtual Task<ListTagsForResourceResponse> ListTagsForResourceAsync(ListTagsForResourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListTagsForResourceRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListTagsForResourceResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListTagsForResourceResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  StartDocumentAnalysis
 
 
@@ -1848,19 +2794,19 @@ namespace Amazon.Textract
         /// 
         ///  
         /// <para>
-        ///  <code>StartDocumentAnalysis</code> can analyze text in documents that are in JPEG,
-        /// PNG, TIFF, and PDF format. The documents are stored in an Amazon S3 bucket. Use <a>DocumentLocation</a>
+        ///  <c>StartDocumentAnalysis</c> can analyze text in documents that are in JPEG, PNG,
+        /// TIFF, and PDF format. The documents are stored in an Amazon S3 bucket. Use <a>DocumentLocation</a>
         /// to specify the bucket name and file name of the document. 
         /// </para>
         ///  
         /// <para>
-        ///  <code>StartDocumentAnalysis</code> returns a job identifier (<code>JobId</code>)
-        /// that you use to get the results of the operation. When text analysis is finished,
-        /// Amazon Textract publishes a completion status to the Amazon Simple Notification Service
-        /// (Amazon SNS) topic that you specify in <code>NotificationChannel</code>. To get the
-        /// results of the text analysis operation, first check that the status value published
-        /// to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetDocumentAnalysis</a>,
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentAnalysis</code>.
+        ///  <c>StartDocumentAnalysis</c> returns a job identifier (<c>JobId</c>) that you use
+        /// to get the results of the operation. When text analysis is finished, Amazon Textract
+        /// publishes a completion status to the Amazon Simple Notification Service (Amazon SNS)
+        /// topic that you specify in <c>NotificationChannel</c>. To get the results of the text
+        /// analysis operation, first check that the status value published to the Amazon SNS
+        /// topic is <c>SUCCEEDED</c>. If so, call <a>GetDocumentAnalysis</a>, and pass the job
+        /// identifier (<c>JobId</c>) from the initial call to <c>StartDocumentAnalysis</c>.
         /// </para>
         ///  
         /// <para>
@@ -1885,9 +2831,8 @@ namespace Amazon.Textract
         /// is 500 MB for PDF files.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
         /// Amazon Textract experienced a service issue. Try your call again.
@@ -1898,9 +2843,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -1910,7 +2855,7 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.LimitExceededException">
         /// An Amazon Textract service limit was exceeded. For example, if you start too many
-        /// asynchronous jobs concurrently, calls to start operations (<code>StartDocumentTextDetection</code>,
+        /// asynchronous jobs concurrently, calls to start operations (<c>StartDocumentTextDetection</c>,
         /// for example) raise a LimitExceededException exception (HTTP status code: 400) until
         /// the number of concurrently running jobs is below the Amazon Textract service limit.
         /// </exception>
@@ -1942,19 +2887,19 @@ namespace Amazon.Textract
         /// 
         ///  
         /// <para>
-        ///  <code>StartDocumentAnalysis</code> can analyze text in documents that are in JPEG,
-        /// PNG, TIFF, and PDF format. The documents are stored in an Amazon S3 bucket. Use <a>DocumentLocation</a>
+        ///  <c>StartDocumentAnalysis</c> can analyze text in documents that are in JPEG, PNG,
+        /// TIFF, and PDF format. The documents are stored in an Amazon S3 bucket. Use <a>DocumentLocation</a>
         /// to specify the bucket name and file name of the document. 
         /// </para>
         ///  
         /// <para>
-        ///  <code>StartDocumentAnalysis</code> returns a job identifier (<code>JobId</code>)
-        /// that you use to get the results of the operation. When text analysis is finished,
-        /// Amazon Textract publishes a completion status to the Amazon Simple Notification Service
-        /// (Amazon SNS) topic that you specify in <code>NotificationChannel</code>. To get the
-        /// results of the text analysis operation, first check that the status value published
-        /// to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetDocumentAnalysis</a>,
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentAnalysis</code>.
+        ///  <c>StartDocumentAnalysis</c> returns a job identifier (<c>JobId</c>) that you use
+        /// to get the results of the operation. When text analysis is finished, Amazon Textract
+        /// publishes a completion status to the Amazon Simple Notification Service (Amazon SNS)
+        /// topic that you specify in <c>NotificationChannel</c>. To get the results of the text
+        /// analysis operation, first check that the status value published to the Amazon SNS
+        /// topic is <c>SUCCEEDED</c>. If so, call <a>GetDocumentAnalysis</a>, and pass the job
+        /// identifier (<c>JobId</c>) from the initial call to <c>StartDocumentAnalysis</c>.
         /// </para>
         ///  
         /// <para>
@@ -1982,9 +2927,8 @@ namespace Amazon.Textract
         /// is 500 MB for PDF files.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
         /// Amazon Textract experienced a service issue. Try your call again.
@@ -1995,9 +2939,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -2007,7 +2951,7 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.LimitExceededException">
         /// An Amazon Textract service limit was exceeded. For example, if you start too many
-        /// asynchronous jobs concurrently, calls to start operations (<code>StartDocumentTextDetection</code>,
+        /// asynchronous jobs concurrently, calls to start operations (<c>StartDocumentTextDetection</c>,
         /// for example) raise a LimitExceededException exception (HTTP status code: 400) until
         /// the number of concurrently running jobs is below the Amazon Textract service limit.
         /// </exception>
@@ -2043,20 +2987,19 @@ namespace Amazon.Textract
         /// 
         ///  
         /// <para>
-        ///  <code>StartDocumentTextDetection</code> can analyze text in documents that are in
-        /// JPEG, PNG, TIFF, and PDF format. The documents are stored in an Amazon S3 bucket.
-        /// Use <a>DocumentLocation</a> to specify the bucket name and file name of the document.
-        /// 
+        ///  <c>StartDocumentTextDetection</c> can analyze text in documents that are in JPEG,
+        /// PNG, TIFF, and PDF format. The documents are stored in an Amazon S3 bucket. Use <a>DocumentLocation</a>
+        /// to specify the bucket name and file name of the document. 
         /// </para>
         ///  
         /// <para>
-        ///  <code>StartTextDetection</code> returns a job identifier (<code>JobId</code>) that
-        /// you use to get the results of the operation. When text detection is finished, Amazon
-        /// Textract publishes a completion status to the Amazon Simple Notification Service (Amazon
-        /// SNS) topic that you specify in <code>NotificationChannel</code>. To get the results
-        /// of the text detection operation, first check that the status value published to the
-        /// Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetDocumentTextDetection</a>,
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentTextDetection</code>.
+        ///  <c>StartTextDetection</c> returns a job identifier (<c>JobId</c>) that you use to
+        /// get the results of the operation. When text detection is finished, Amazon Textract
+        /// publishes a completion status to the Amazon Simple Notification Service (Amazon SNS)
+        /// topic that you specify in <c>NotificationChannel</c>. To get the results of the text
+        /// detection operation, first check that the status value published to the Amazon SNS
+        /// topic is <c>SUCCEEDED</c>. If so, call <a>GetDocumentTextDetection</a>, and pass the
+        /// job identifier (<c>JobId</c>) from the initial call to <c>StartDocumentTextDetection</c>.
         /// </para>
         ///  
         /// <para>
@@ -2081,9 +3024,8 @@ namespace Amazon.Textract
         /// is 500 MB for PDF files.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
         /// Amazon Textract experienced a service issue. Try your call again.
@@ -2094,9 +3036,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -2106,7 +3048,7 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.LimitExceededException">
         /// An Amazon Textract service limit was exceeded. For example, if you start too many
-        /// asynchronous jobs concurrently, calls to start operations (<code>StartDocumentTextDetection</code>,
+        /// asynchronous jobs concurrently, calls to start operations (<c>StartDocumentTextDetection</c>,
         /// for example) raise a LimitExceededException exception (HTTP status code: 400) until
         /// the number of concurrently running jobs is below the Amazon Textract service limit.
         /// </exception>
@@ -2138,20 +3080,19 @@ namespace Amazon.Textract
         /// 
         ///  
         /// <para>
-        ///  <code>StartDocumentTextDetection</code> can analyze text in documents that are in
-        /// JPEG, PNG, TIFF, and PDF format. The documents are stored in an Amazon S3 bucket.
-        /// Use <a>DocumentLocation</a> to specify the bucket name and file name of the document.
-        /// 
+        ///  <c>StartDocumentTextDetection</c> can analyze text in documents that are in JPEG,
+        /// PNG, TIFF, and PDF format. The documents are stored in an Amazon S3 bucket. Use <a>DocumentLocation</a>
+        /// to specify the bucket name and file name of the document. 
         /// </para>
         ///  
         /// <para>
-        ///  <code>StartTextDetection</code> returns a job identifier (<code>JobId</code>) that
-        /// you use to get the results of the operation. When text detection is finished, Amazon
-        /// Textract publishes a completion status to the Amazon Simple Notification Service (Amazon
-        /// SNS) topic that you specify in <code>NotificationChannel</code>. To get the results
-        /// of the text detection operation, first check that the status value published to the
-        /// Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetDocumentTextDetection</a>,
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentTextDetection</code>.
+        ///  <c>StartTextDetection</c> returns a job identifier (<c>JobId</c>) that you use to
+        /// get the results of the operation. When text detection is finished, Amazon Textract
+        /// publishes a completion status to the Amazon Simple Notification Service (Amazon SNS)
+        /// topic that you specify in <c>NotificationChannel</c>. To get the results of the text
+        /// detection operation, first check that the status value published to the Amazon SNS
+        /// topic is <c>SUCCEEDED</c>. If so, call <a>GetDocumentTextDetection</a>, and pass the
+        /// job identifier (<c>JobId</c>) from the initial call to <c>StartDocumentTextDetection</c>.
         /// </para>
         ///  
         /// <para>
@@ -2179,9 +3120,8 @@ namespace Amazon.Textract
         /// is 500 MB for PDF files.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
         /// Amazon Textract experienced a service issue. Try your call again.
@@ -2192,9 +3132,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -2204,7 +3144,7 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.LimitExceededException">
         /// An Amazon Textract service limit was exceeded. For example, if you start too many
-        /// asynchronous jobs concurrently, calls to start operations (<code>StartDocumentTextDetection</code>,
+        /// asynchronous jobs concurrently, calls to start operations (<c>StartDocumentTextDetection</c>,
         /// for example) raise a LimitExceededException exception (HTTP status code: 400) until
         /// the number of concurrently running jobs is below the Amazon Textract service limit.
         /// </exception>
@@ -2240,22 +3180,21 @@ namespace Amazon.Textract
         /// 
         ///  
         /// <para>
-        ///  <code>StartExpenseAnalysis</code> can analyze text in documents that are in JPEG,
-        /// PNG, and PDF format. The documents must be stored in an Amazon S3 bucket. Use the
-        /// <a>DocumentLocation</a> parameter to specify the name of your S3 bucket and the name
-        /// of the document in that bucket. 
+        ///  <c>StartExpenseAnalysis</c> can analyze text in documents that are in JPEG, PNG,
+        /// and PDF format. The documents must be stored in an Amazon S3 bucket. Use the <a>DocumentLocation</a>
+        /// parameter to specify the name of your S3 bucket and the name of the document in that
+        /// bucket. 
         /// </para>
         ///  
         /// <para>
-        ///  <code>StartExpenseAnalysis</code> returns a job identifier (<code>JobId</code>) that
-        /// you will provide to <code>GetExpenseAnalysis</code> to retrieve the results of the
-        /// operation. When the analysis of the input invoices/receipts is finished, Amazon Textract
-        /// publishes a completion status to the Amazon Simple Notification Service (Amazon SNS)
-        /// topic that you provide to the <code>NotificationChannel</code>. To obtain the results
-        /// of the invoice and receipt analysis operation, ensure that the status value published
-        /// to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetExpenseAnalysis</a>,
-        /// and pass the job identifier (<code>JobId</code>) that was returned by your call to
-        /// <code>StartExpenseAnalysis</code>.
+        ///  <c>StartExpenseAnalysis</c> returns a job identifier (<c>JobId</c>) that you will
+        /// provide to <c>GetExpenseAnalysis</c> to retrieve the results of the operation. When
+        /// the analysis of the input invoices/receipts is finished, Amazon Textract publishes
+        /// a completion status to the Amazon Simple Notification Service (Amazon SNS) topic that
+        /// you provide to the <c>NotificationChannel</c>. To obtain the results of the invoice
+        /// and receipt analysis operation, ensure that the status value published to the Amazon
+        /// SNS topic is <c>SUCCEEDED</c>. If so, call <a>GetExpenseAnalysis</a>, and pass the
+        /// job identifier (<c>JobId</c>) that was returned by your call to <c>StartExpenseAnalysis</c>.
         /// </para>
         ///  
         /// <para>
@@ -2280,9 +3219,8 @@ namespace Amazon.Textract
         /// is 500 MB for PDF files.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
         /// Amazon Textract experienced a service issue. Try your call again.
@@ -2293,9 +3231,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -2305,7 +3243,7 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.LimitExceededException">
         /// An Amazon Textract service limit was exceeded. For example, if you start too many
-        /// asynchronous jobs concurrently, calls to start operations (<code>StartDocumentTextDetection</code>,
+        /// asynchronous jobs concurrently, calls to start operations (<c>StartDocumentTextDetection</c>,
         /// for example) raise a LimitExceededException exception (HTTP status code: 400) until
         /// the number of concurrently running jobs is below the Amazon Textract service limit.
         /// </exception>
@@ -2337,22 +3275,21 @@ namespace Amazon.Textract
         /// 
         ///  
         /// <para>
-        ///  <code>StartExpenseAnalysis</code> can analyze text in documents that are in JPEG,
-        /// PNG, and PDF format. The documents must be stored in an Amazon S3 bucket. Use the
-        /// <a>DocumentLocation</a> parameter to specify the name of your S3 bucket and the name
-        /// of the document in that bucket. 
+        ///  <c>StartExpenseAnalysis</c> can analyze text in documents that are in JPEG, PNG,
+        /// and PDF format. The documents must be stored in an Amazon S3 bucket. Use the <a>DocumentLocation</a>
+        /// parameter to specify the name of your S3 bucket and the name of the document in that
+        /// bucket. 
         /// </para>
         ///  
         /// <para>
-        ///  <code>StartExpenseAnalysis</code> returns a job identifier (<code>JobId</code>) that
-        /// you will provide to <code>GetExpenseAnalysis</code> to retrieve the results of the
-        /// operation. When the analysis of the input invoices/receipts is finished, Amazon Textract
-        /// publishes a completion status to the Amazon Simple Notification Service (Amazon SNS)
-        /// topic that you provide to the <code>NotificationChannel</code>. To obtain the results
-        /// of the invoice and receipt analysis operation, ensure that the status value published
-        /// to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetExpenseAnalysis</a>,
-        /// and pass the job identifier (<code>JobId</code>) that was returned by your call to
-        /// <code>StartExpenseAnalysis</code>.
+        ///  <c>StartExpenseAnalysis</c> returns a job identifier (<c>JobId</c>) that you will
+        /// provide to <c>GetExpenseAnalysis</c> to retrieve the results of the operation. When
+        /// the analysis of the input invoices/receipts is finished, Amazon Textract publishes
+        /// a completion status to the Amazon Simple Notification Service (Amazon SNS) topic that
+        /// you provide to the <c>NotificationChannel</c>. To obtain the results of the invoice
+        /// and receipt analysis operation, ensure that the status value published to the Amazon
+        /// SNS topic is <c>SUCCEEDED</c>. If so, call <a>GetExpenseAnalysis</a>, and pass the
+        /// job identifier (<c>JobId</c>) that was returned by your call to <c>StartExpenseAnalysis</c>.
         /// </para>
         ///  
         /// <para>
@@ -2380,9 +3317,8 @@ namespace Amazon.Textract
         /// is 500 MB for PDF files.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
         /// Amazon Textract experienced a service issue. Try your call again.
@@ -2393,9 +3329,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -2405,7 +3341,7 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.LimitExceededException">
         /// An Amazon Textract service limit was exceeded. For example, if you start too many
-        /// asynchronous jobs concurrently, calls to start operations (<code>StartDocumentTextDetection</code>,
+        /// asynchronous jobs concurrently, calls to start operations (<c>StartDocumentTextDetection</c>,
         /// for example) raise a LimitExceededException exception (HTTP status code: 400) until
         /// the number of concurrently running jobs is below the Amazon Textract service limit.
         /// </exception>
@@ -2436,32 +3372,32 @@ namespace Amazon.Textract
 
 
         /// <summary>
-        /// Starts the classification and analysis of an input document. <code>StartLendingAnalysis</code>
-        /// initiates the classification and analysis of a packet of lending documents. <code>StartLendingAnalysis</code>
+        /// Starts the classification and analysis of an input document. <c>StartLendingAnalysis</c>
+        /// initiates the classification and analysis of a packet of lending documents. <c>StartLendingAnalysis</c>
         /// operates on a document file located in an Amazon S3 bucket.
         /// 
         ///  
         /// <para>
-        ///  <code>StartLendingAnalysis</code> can analyze text in documents that are in one of
-        /// the following formats: JPEG, PNG, TIFF, PDF. Use <code>DocumentLocation</code> to
-        /// specify the bucket name and the file name of the document. 
+        ///  <c>StartLendingAnalysis</c> can analyze text in documents that are in one of the
+        /// following formats: JPEG, PNG, TIFF, PDF. Use <c>DocumentLocation</c> to specify the
+        /// bucket name and the file name of the document. 
         /// </para>
         ///  
         /// <para>
-        ///  <code>StartLendingAnalysis</code> returns a job identifier (<code>JobId</code>) that
-        /// you use to get the results of the operation. When the text analysis is finished, Amazon
-        /// Textract publishes a completion status to the Amazon Simple Notification Service (Amazon
-        /// SNS) topic that you specify in <code>NotificationChannel</code>. To get the results
-        /// of the text analysis operation, first check that the status value published to the
-        /// Amazon SNS topic is SUCCEEDED. If the status is SUCCEEDED you can call either <code>GetLendingAnalysis</code>
-        /// or <code>GetLendingAnalysisSummary</code> and provide the <code>JobId</code> to obtain
-        /// the results of the analysis.
+        ///  <c>StartLendingAnalysis</c> returns a job identifier (<c>JobId</c>) that you use
+        /// to get the results of the operation. When the text analysis is finished, Amazon Textract
+        /// publishes a completion status to the Amazon Simple Notification Service (Amazon SNS)
+        /// topic that you specify in <c>NotificationChannel</c>. To get the results of the text
+        /// analysis operation, first check that the status value published to the Amazon SNS
+        /// topic is SUCCEEDED. If the status is SUCCEEDED you can call either <c>GetLendingAnalysis</c>
+        /// or <c>GetLendingAnalysisSummary</c> and provide the <c>JobId</c> to obtain the results
+        /// of the analysis.
         /// </para>
         ///  
         /// <para>
-        /// If using <code>OutputConfig</code> to specify an Amazon S3 bucket, the output will
-        /// be contained within the specified prefix in a directory labeled with the job-id. In
-        /// the directory there are 3 sub-directories: 
+        /// If using <c>OutputConfig</c> to specify an Amazon S3 bucket, the output will be contained
+        /// within the specified prefix in a directory labeled with the job-id. In the directory
+        /// there are 3 sub-directories: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -2494,9 +3430,8 @@ namespace Amazon.Textract
         /// is 500 MB for PDF files.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
         /// Amazon Textract experienced a service issue. Try your call again.
@@ -2507,9 +3442,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -2519,7 +3454,7 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.LimitExceededException">
         /// An Amazon Textract service limit was exceeded. For example, if you start too many
-        /// asynchronous jobs concurrently, calls to start operations (<code>StartDocumentTextDetection</code>,
+        /// asynchronous jobs concurrently, calls to start operations (<c>StartDocumentTextDetection</c>,
         /// for example) raise a LimitExceededException exception (HTTP status code: 400) until
         /// the number of concurrently running jobs is below the Amazon Textract service limit.
         /// </exception>
@@ -2546,32 +3481,32 @@ namespace Amazon.Textract
 
 
         /// <summary>
-        /// Starts the classification and analysis of an input document. <code>StartLendingAnalysis</code>
-        /// initiates the classification and analysis of a packet of lending documents. <code>StartLendingAnalysis</code>
+        /// Starts the classification and analysis of an input document. <c>StartLendingAnalysis</c>
+        /// initiates the classification and analysis of a packet of lending documents. <c>StartLendingAnalysis</c>
         /// operates on a document file located in an Amazon S3 bucket.
         /// 
         ///  
         /// <para>
-        ///  <code>StartLendingAnalysis</code> can analyze text in documents that are in one of
-        /// the following formats: JPEG, PNG, TIFF, PDF. Use <code>DocumentLocation</code> to
-        /// specify the bucket name and the file name of the document. 
+        ///  <c>StartLendingAnalysis</c> can analyze text in documents that are in one of the
+        /// following formats: JPEG, PNG, TIFF, PDF. Use <c>DocumentLocation</c> to specify the
+        /// bucket name and the file name of the document. 
         /// </para>
         ///  
         /// <para>
-        ///  <code>StartLendingAnalysis</code> returns a job identifier (<code>JobId</code>) that
-        /// you use to get the results of the operation. When the text analysis is finished, Amazon
-        /// Textract publishes a completion status to the Amazon Simple Notification Service (Amazon
-        /// SNS) topic that you specify in <code>NotificationChannel</code>. To get the results
-        /// of the text analysis operation, first check that the status value published to the
-        /// Amazon SNS topic is SUCCEEDED. If the status is SUCCEEDED you can call either <code>GetLendingAnalysis</code>
-        /// or <code>GetLendingAnalysisSummary</code> and provide the <code>JobId</code> to obtain
-        /// the results of the analysis.
+        ///  <c>StartLendingAnalysis</c> returns a job identifier (<c>JobId</c>) that you use
+        /// to get the results of the operation. When the text analysis is finished, Amazon Textract
+        /// publishes a completion status to the Amazon Simple Notification Service (Amazon SNS)
+        /// topic that you specify in <c>NotificationChannel</c>. To get the results of the text
+        /// analysis operation, first check that the status value published to the Amazon SNS
+        /// topic is SUCCEEDED. If the status is SUCCEEDED you can call either <c>GetLendingAnalysis</c>
+        /// or <c>GetLendingAnalysisSummary</c> and provide the <c>JobId</c> to obtain the results
+        /// of the analysis.
         /// </para>
         ///  
         /// <para>
-        /// If using <code>OutputConfig</code> to specify an Amazon S3 bucket, the output will
-        /// be contained within the specified prefix in a directory labeled with the job-id. In
-        /// the directory there are 3 sub-directories: 
+        /// If using <c>OutputConfig</c> to specify an Amazon S3 bucket, the output will be contained
+        /// within the specified prefix in a directory labeled with the job-id. In the directory
+        /// there are 3 sub-directories: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -2607,9 +3542,8 @@ namespace Amazon.Textract
         /// is 500 MB for PDF files.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
         /// Amazon Textract experienced a service issue. Try your call again.
@@ -2620,9 +3554,9 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
         /// An input parameter violated a constraint. For example, in synchronous operations,
-        /// an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code>
-        /// or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter.
-        /// Validate your parameter before calling the API operation again.
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.InvalidS3ObjectException">
         /// Amazon Textract is unable to access the S3 object that's specified in the request.
@@ -2632,7 +3566,7 @@ namespace Amazon.Textract
         /// </exception>
         /// <exception cref="Amazon.Textract.Model.LimitExceededException">
         /// An Amazon Textract service limit was exceeded. For example, if you start too many
-        /// asynchronous jobs concurrently, calls to start operations (<code>StartDocumentTextDetection</code>,
+        /// asynchronous jobs concurrently, calls to start operations (<c>StartDocumentTextDetection</c>,
         /// for example) raise a LimitExceededException exception (HTTP status code: 400) until
         /// the number of concurrently running jobs is below the Amazon Textract service limit.
         /// </exception>
@@ -2659,6 +3593,299 @@ namespace Amazon.Textract
 
         #endregion
         
+        #region  TagResource
+
+
+        /// <summary>
+        /// Adds one or more tags to the specified resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the TagResource service method.</param>
+        /// 
+        /// <returns>The response from the TagResource service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ResourceNotFoundException">
+        /// Returned when an operation tried to access a nonexistent resource.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ServiceQuotaExceededException">
+        /// Returned when a request cannot be completed as it would exceed a maximum service quota.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/TagResource">REST API Reference for TagResource Operation</seealso>
+        public virtual TagResourceResponse TagResource(TagResourceRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = TagResourceRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = TagResourceResponseUnmarshaller.Instance;
+
+            return Invoke<TagResourceResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Adds one or more tags to the specified resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the TagResource service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the TagResource service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ResourceNotFoundException">
+        /// Returned when an operation tried to access a nonexistent resource.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ServiceQuotaExceededException">
+        /// Returned when a request cannot be completed as it would exceed a maximum service quota.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/TagResource">REST API Reference for TagResource Operation</seealso>
+        public virtual Task<TagResourceResponse> TagResourceAsync(TagResourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = TagResourceRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = TagResourceResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<TagResourceResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  UntagResource
+
+
+        /// <summary>
+        /// Removes any tags with the specified keys from the specified resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
+        /// 
+        /// <returns>The response from the UntagResource service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ResourceNotFoundException">
+        /// Returned when an operation tried to access a nonexistent resource.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/UntagResource">REST API Reference for UntagResource Operation</seealso>
+        public virtual UntagResourceResponse UntagResource(UntagResourceRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UntagResourceRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UntagResourceResponseUnmarshaller.Instance;
+
+            return Invoke<UntagResourceResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Removes any tags with the specified keys from the specified resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UntagResource service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ResourceNotFoundException">
+        /// Returned when an operation tried to access a nonexistent resource.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/UntagResource">REST API Reference for UntagResource Operation</seealso>
+        public virtual Task<UntagResourceResponse> UntagResourceAsync(UntagResourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UntagResourceRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UntagResourceResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UntagResourceResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  UpdateAdapter
+
+
+        /// <summary>
+        /// Update the configuration for an adapter. FeatureTypes configurations cannot be updated.
+        /// At least one new parameter must be specified as an argument.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateAdapter service method.</param>
+        /// 
+        /// <returns>The response from the UpdateAdapter service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ConflictException">
+        /// Updating or deleting a resource can cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ResourceNotFoundException">
+        /// Returned when an operation tried to access a nonexistent resource.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/UpdateAdapter">REST API Reference for UpdateAdapter Operation</seealso>
+        public virtual UpdateAdapterResponse UpdateAdapter(UpdateAdapterRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateAdapterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateAdapterResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateAdapterResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Update the configuration for an adapter. FeatureTypes configurations cannot be updated.
+        /// At least one new parameter must be specified as an argument.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateAdapter service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateAdapter service method, as returned by Textract.</returns>
+        /// <exception cref="Amazon.Textract.Model.AccessDeniedException">
+        /// You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of
+        /// an authorized user or IAM role to perform the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ConflictException">
+        /// Updating or deleting a resource can cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InternalServerErrorException">
+        /// Amazon Textract experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.InvalidParameterException">
+        /// An input parameter violated a constraint. For example, in synchronous operations,
+        /// an <c>InvalidParameterException</c> exception occurs when neither of the <c>S3Object</c>
+        /// or <c>Bytes</c> values are supplied in the <c>Document</c> request parameter. Validate
+        /// your parameter before calling the API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Textract.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ResourceNotFoundException">
+        /// Returned when an operation tried to access a nonexistent resource.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ThrottlingException">
+        /// Amazon Textract is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Textract.Model.ValidationException">
+        /// Indicates that a request was not valid. Check request for proper formatting.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/UpdateAdapter">REST API Reference for UpdateAdapter Operation</seealso>
+        public virtual Task<UpdateAdapterResponse> UpdateAdapterAsync(UpdateAdapterRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateAdapterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateAdapterResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdateAdapterResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region DetermineServiceOperationEndpoint
 
         /// <summary>
@@ -2668,11 +3895,11 @@ namespace Amazon.Textract
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

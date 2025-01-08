@@ -26,25 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateLocationNfs operation.
-    /// Creates an endpoint for a Network File System (NFS) file server that DataSync can
-    /// use for a data transfer.
+    /// Creates a transfer <i>location</i> for a Network File System (NFS) file server. DataSync
+    /// can use this location as a source or destination for transferring data.
     /// 
     ///  
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html">Configuring
-    /// transfers to or from an NFS file server</a>.
+    /// Before you begin, make sure that you understand how DataSync <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#accessing-nfs">accesses
+    /// NFS file servers</a>.
     /// </para>
-    ///  <note> 
-    /// <para>
-    /// If you're copying data to or from an Snowcone device, you can also use <code>CreateLocationNfs</code>
-    /// to create your transfer location. For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/nfs-on-snowcone.html">Configuring
-    /// transfers with Snowcone</a>.
-    /// </para>
-    ///  </note>
     /// </summary>
     public partial class CreateLocationNfsRequest : AmazonDataSyncRequest
     {
@@ -52,7 +46,7 @@ namespace Amazon.DataSync.Model
         private OnPremConfig _onPremConfig;
         private string _serverHostname;
         private string _subdirectory;
-        private List<TagListEntry> _tags = new List<TagListEntry>();
+        private List<TagListEntry> _tags = AWSConfigs.InitializeCollections ? new List<TagListEntry>() : null;
 
         /// <summary>
         /// Gets and sets the property MountOptions. 
@@ -75,13 +69,13 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property OnPremConfig. 
         /// <para>
-        /// Specifies the Amazon Resource Name (ARN) of the DataSync agent that want to connect
-        /// to your NFS file server.
+        /// Specifies the Amazon Resource Name (ARN) of the DataSync agent that can connect to
+        /// your NFS file server.
         /// </para>
         ///  
         /// <para>
-        /// You can specify more than one agent. For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/multiple-agents.html">Using
-        /// multiple agents for transfers</a>.
+        /// You can specify more than one agent. For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/do-i-need-datasync-agent.html#multiple-agents">Using
+        /// multiple DataSync agents</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -159,7 +153,7 @@ namespace Amazon.DataSync.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

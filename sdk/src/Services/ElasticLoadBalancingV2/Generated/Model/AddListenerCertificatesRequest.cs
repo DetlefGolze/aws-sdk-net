@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancingV2.Model
 {
     /// <summary>
@@ -47,14 +48,14 @@ namespace Amazon.ElasticLoadBalancingV2.Model
     /// </summary>
     public partial class AddListenerCertificatesRequest : AmazonElasticLoadBalancingV2Request
     {
-        private List<Certificate> _certificates = new List<Certificate>();
+        private List<Certificate> _certificates = AWSConfigs.InitializeCollections ? new List<Certificate>() : null;
         private string _listenerArn;
 
         /// <summary>
         /// Gets and sets the property Certificates. 
         /// <para>
-        /// The certificate to add. You can specify one certificate per call. Set <code>CertificateArn</code>
-        /// to the certificate ARN but do not set <code>IsDefault</code>.
+        /// The certificate to add. You can specify one certificate per call. Set <c>CertificateArn</c>
+        /// to the certificate ARN but do not set <c>IsDefault</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -67,7 +68,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if Certificates property is set
         internal bool IsSetCertificates()
         {
-            return this._certificates != null && this._certificates.Count > 0; 
+            return this._certificates != null && (this._certificates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

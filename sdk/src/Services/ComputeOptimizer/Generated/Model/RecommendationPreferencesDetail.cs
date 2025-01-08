@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComputeOptimizer.Model
 {
     /// <summary>
@@ -36,8 +37,12 @@ namespace Amazon.ComputeOptimizer.Model
         private EnhancedInfrastructureMetrics _enhancedInfrastructureMetrics;
         private ExternalMetricsPreference _externalMetricsPreference;
         private InferredWorkloadTypesPreference _inferredWorkloadTypes;
+        private LookBackPeriodPreference _lookBackPeriod;
+        private List<EffectivePreferredResource> _preferredResources = AWSConfigs.InitializeCollections ? new List<EffectivePreferredResource>() : null;
         private ResourceType _resourceType;
+        private SavingsEstimationMode _savingsEstimationMode;
         private Scope _scope;
+        private List<UtilizationPreference> _utilizationPreferences = AWSConfigs.InitializeCollections ? new List<UtilizationPreference>() : null;
 
         /// <summary>
         /// Gets and sets the property EnhancedInfrastructureMetrics. 
@@ -46,8 +51,8 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        /// When the recommendations page is refreshed, a status of <code>Active</code> confirms
-        /// that the preference is applied to the recommendations, and a status of <code>Inactive</code>
+        /// When the recommendations page is refreshed, a status of <c>Active</c> confirms that
+        /// the preference is applied to the recommendations, and a status of <c>Inactive</c>
         /// confirms that the preference isn't yet applied to recommendations.
         /// </para>
         ///  
@@ -76,9 +81,8 @@ namespace Amazon.ComputeOptimizer.Model
         ///  
         /// <para>
         ///  If the preference is applied in the latest recommendation refresh, an object with
-        /// a valid <code>source</code> value appears in the response. If the preference isn't
-        /// applied to the recommendations already, then this object doesn't appear in the response.
-        /// 
+        /// a valid <c>source</c> value appears in the response. If the preference isn't applied
+        /// to the recommendations already, then this object doesn't appear in the response. 
         /// </para>
         /// </summary>
         public ExternalMetricsPreference ExternalMetricsPreference
@@ -100,8 +104,8 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        /// When the recommendations page is refreshed, a status of <code>Active</code> confirms
-        /// that the preference is applied to the recommendations, and a status of <code>Inactive</code>
+        /// When the recommendations page is refreshed, a status of <c>Active</c> confirms that
+        /// the preference is applied to the recommendations, and a status of <c>Inactive</c>
         /// confirms that the preference isn't yet applied to recommendations.
         /// </para>
         /// </summary>
@@ -118,15 +122,56 @@ namespace Amazon.ComputeOptimizer.Model
         }
 
         /// <summary>
+        /// Gets and sets the property LookBackPeriod. 
+        /// <para>
+        ///  The preference to control the number of days the utilization metrics of the Amazon
+        /// Web Services resource are analyzed. If the preference isn’t set, this object is null.
+        /// 
+        /// </para>
+        /// </summary>
+        public LookBackPeriodPreference LookBackPeriod
+        {
+            get { return this._lookBackPeriod; }
+            set { this._lookBackPeriod = value; }
+        }
+
+        // Check to see if LookBackPeriod property is set
+        internal bool IsSetLookBackPeriod()
+        {
+            return this._lookBackPeriod != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PreferredResources. 
+        /// <para>
+        ///  The preference to control which resource type values are considered when generating
+        /// rightsizing recommendations. This object resolves any wildcard expressions and returns
+        /// the effective list of candidate resource type values. If the preference isn’t set,
+        /// this object is null. 
+        /// </para>
+        /// </summary>
+        public List<EffectivePreferredResource> PreferredResources
+        {
+            get { return this._preferredResources; }
+            set { this._preferredResources = value; }
+        }
+
+        // Check to see if PreferredResources property is set
+        internal bool IsSetPreferredResources()
+        {
+            return this._preferredResources != null && (this._preferredResources.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
         /// The target resource type of the recommendation preference to create.
         /// </para>
         ///  
         /// <para>
-        /// The <code>Ec2Instance</code> option encompasses standalone instances and instances
-        /// that are part of Auto Scaling groups. The <code>AutoScalingGroup</code> option encompasses
-        /// only instances that are part of an Auto Scaling group.
+        /// The <c>Ec2Instance</c> option encompasses standalone instances and instances that
+        /// are part of Auto Scaling groups. The <c>AutoScalingGroup</c> option encompasses only
+        /// instances that are part of an Auto Scaling group.
         /// </para>
         /// </summary>
         public ResourceType ResourceType
@@ -139,6 +184,29 @@ namespace Amazon.ComputeOptimizer.Model
         internal bool IsSetResourceType()
         {
             return this._resourceType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SavingsEstimationMode. 
+        /// <para>
+        ///  Describes the savings estimation mode used for calculating savings opportunity. 
+        /// </para>
+        ///  
+        /// <para>
+        /// Only the account manager or delegated administrator of your organization can activate
+        /// this preference.
+        /// </para>
+        /// </summary>
+        public SavingsEstimationMode SavingsEstimationMode
+        {
+            get { return this._savingsEstimationMode; }
+            set { this._savingsEstimationMode = value; }
+        }
+
+        // Check to see if SavingsEstimationMode property is set
+        internal bool IsSetSavingsEstimationMode()
+        {
+            return this._savingsEstimationMode != null;
         }
 
         /// <summary>
@@ -164,6 +232,31 @@ namespace Amazon.ComputeOptimizer.Model
         internal bool IsSetScope()
         {
             return this._scope != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property UtilizationPreferences. 
+        /// <para>
+        ///  The preference to control the resource’s CPU utilization threshold, CPU utilization
+        /// headroom, and memory utilization headroom. If the preference isn’t set, this object
+        /// is null. 
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// This preference is only available for the Amazon EC2 instance resource type.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public List<UtilizationPreference> UtilizationPreferences
+        {
+            get { return this._utilizationPreferences; }
+            set { this._utilizationPreferences = value; }
+        }
+
+        // Check to see if UtilizationPreferences property is set
+        internal bool IsSetUtilizationPreferences()
+        {
+            return this._utilizationPreferences != null && (this._utilizationPreferences.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

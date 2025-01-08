@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancing.Model
 {
     /// <summary>
@@ -41,17 +42,17 @@ namespace Amazon.ElasticLoadBalancing.Model
     /// </para>
     ///  
     /// <para>
-    /// Note that <code>RegisterInstanceWithLoadBalancer</code> completes when the request
-    /// has been registered. Instance registration takes a little time to complete. To check
-    /// the state of the registered instances, use <a>DescribeLoadBalancers</a> or <a>DescribeInstanceHealth</a>.
+    /// Note that <c>RegisterInstanceWithLoadBalancer</c> completes when the request has been
+    /// registered. Instance registration takes a little time to complete. To check the state
+    /// of the registered instances, use <a>DescribeLoadBalancers</a> or <a>DescribeInstanceHealth</a>.
     /// </para>
     ///  
     /// <para>
     /// After the instance is registered, it starts receiving traffic and requests from the
     /// load balancer. Any instance that is not in one of the Availability Zones registered
-    /// for the load balancer is moved to the <code>OutOfService</code> state. If an Availability
+    /// for the load balancer is moved to the <c>OutOfService</c> state. If an Availability
     /// Zone is added to the load balancer later, any instances registered with the load balancer
-    /// move to the <code>InService</code> state.
+    /// move to the <c>InService</c> state.
     /// </para>
     ///  
     /// <para>
@@ -65,7 +66,7 @@ namespace Amazon.ElasticLoadBalancing.Model
     /// </summary>
     public partial class RegisterInstancesWithLoadBalancerRequest : AmazonElasticLoadBalancingRequest
     {
-        private List<Instance> _instances = new List<Instance>();
+        private List<Instance> _instances = AWSConfigs.InitializeCollections ? new List<Instance>() : null;
         private string _loadBalancerName;
 
         /// <summary>
@@ -100,7 +101,7 @@ namespace Amazon.ElasticLoadBalancing.Model
         // Check to see if Instances property is set
         internal bool IsSetInstances()
         {
-            return this._instances != null && this._instances.Count > 0; 
+            return this._instances != null && (this._instances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

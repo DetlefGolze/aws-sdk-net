@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.KafkaConnect.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.KafkaConnect.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public WorkerConfigurationSummary Unmarshall(JsonUnmarshallerContext context)
         {
+            WorkerConfigurationSummary unmarshalledObject = new WorkerConfigurationSummary();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            WorkerConfigurationSummary unmarshalledObject = new WorkerConfigurationSummary();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -94,8 +96,13 @@ namespace Amazon.KafkaConnect.Model.Internal.MarshallTransformations
                     unmarshalledObject.WorkerConfigurationArn = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("workerConfigurationState", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.WorkerConfigurationState = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

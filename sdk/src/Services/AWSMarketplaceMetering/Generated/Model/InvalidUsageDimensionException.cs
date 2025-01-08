@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSMarketplaceMetering.Model
 {
     /// <summary>
-    /// The usage dimension does not match one of the <code>UsageDimensions</code> associated
-    /// with products.
+    /// The usage dimension does not match one of the <c>UsageDimensions</c> associated with
+    /// products.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

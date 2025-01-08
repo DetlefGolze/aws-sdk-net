@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudControlApi.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.CloudControlApi.Model
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>RequestToken</code> of the <code>ProgressEvent</code> with <a href="https://docs.aws.amazon.com/cloudcontrolapi/latest/APIReference/API_GetResourceRequestStatus.html">GetResourceRequestStatus</a>
+        /// Use the <c>RequestToken</c> of the <c>ProgressEvent</c> with <a href="https://docs.aws.amazon.com/cloudcontrolapi/latest/APIReference/API_GetResourceRequestStatus.html">GetResourceRequestStatus</a>
         /// to return the current status of a resource operation request.
         /// </para>
         /// </summary>

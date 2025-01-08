@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -37,15 +38,21 @@ namespace Amazon.EC2.Model
     /// 
     ///  
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html">Modifying
+    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html">Modify
     /// Reserved Instances</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
+    ///  <note> 
+    /// <para>
+    /// The order of the elements in the response, including those within nested structures,
+    /// might vary. Applications should not assume the elements appear in a particular order.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class DescribeReservedInstancesModificationsRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private string _nextToken;
-        private List<string> _reservedInstancesModificationIds = new List<string>();
+        private List<string> _reservedInstancesModificationIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Filters. 
@@ -54,57 +61,57 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>client-token</code> - The idempotency token for the modification request.
+        ///  <c>client-token</c> - The idempotency token for the modification request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>create-date</code> - The time when the modification request was created.
+        ///  <c>create-date</c> - The time when the modification request was created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>effective-date</code> - The time when the modification becomes effective.
+        ///  <c>effective-date</c> - The time when the modification becomes effective.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>modification-result.reserved-instances-id</code> - The ID for the Reserved
-        /// Instances created as part of the modification request. This ID is only available when
-        /// the status of the modification is <code>fulfilled</code>.
+        ///  <c>modification-result.reserved-instances-id</c> - The ID for the Reserved Instances
+        /// created as part of the modification request. This ID is only available when the status
+        /// of the modification is <c>fulfilled</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>modification-result.target-configuration.availability-zone</code> - The Availability
+        ///  <c>modification-result.target-configuration.availability-zone</c> - The Availability
         /// Zone for the new Reserved Instances.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>modification-result.target-configuration.instance-count </code> - The number
-        /// of new Reserved Instances.
+        ///  <c>modification-result.target-configuration.instance-count </c> - The number of new
+        /// Reserved Instances.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>modification-result.target-configuration.instance-type</code> - The instance
-        /// type of the new Reserved Instances.
+        ///  <c>modification-result.target-configuration.instance-type</c> - The instance type
+        /// of the new Reserved Instances.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>reserved-instances-id</code> - The ID of the Reserved Instances modified.
+        ///  <c>reserved-instances-id</c> - The ID of the Reserved Instances modified.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>reserved-instances-modification-id</code> - The ID of the modification request.
+        ///  <c>reserved-instances-modification-id</c> - The ID of the modification request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>status</code> - The status of the Reserved Instances modification request (<code>processing</code>
-        /// | <code>fulfilled</code> | <code>failed</code>).
+        ///  <c>status</c> - The status of the Reserved Instances modification request (<c>processing</c>
+        /// | <c>fulfilled</c> | <c>failed</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>status-message</code> - The reason for the status.
+        ///  <c>status-message</c> - The reason for the status.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>update-date</code> - The time when the modification request was last updated.
+        ///  <c>update-date</c> - The time when the modification request was last updated.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -117,7 +124,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -153,7 +160,7 @@ namespace Amazon.EC2.Model
         // Check to see if ReservedInstancesModificationIds property is set
         internal bool IsSetReservedInstancesModificationIds()
         {
-            return this._reservedInstancesModificationIds != null && this._reservedInstancesModificationIds.Count > 0; 
+            return this._reservedInstancesModificationIds != null && (this._reservedInstancesModificationIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

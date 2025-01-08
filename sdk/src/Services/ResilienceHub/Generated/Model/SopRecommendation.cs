@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -35,10 +36,11 @@ namespace Amazon.ResilienceHub.Model
     {
         private string _appComponentName;
         private string _description;
-        private List<RecommendationItem> _items = new List<RecommendationItem>();
+        private List<RecommendationItem> _items = AWSConfigs.InitializeCollections ? new List<RecommendationItem>() : null;
         private string _name;
         private string _prerequisite;
         private string _recommendationId;
+        private RecommendationStatus _recommendationStatus;
         private string _referenceId;
         private SopServiceType _serviceType;
 
@@ -94,7 +96,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -152,6 +154,24 @@ namespace Amazon.ResilienceHub.Model
         internal bool IsSetRecommendationId()
         {
             return this._recommendationId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RecommendationStatus. 
+        /// <para>
+        /// Status of the recommended standard operating procedure.
+        /// </para>
+        /// </summary>
+        public RecommendationStatus RecommendationStatus
+        {
+            get { return this._recommendationStatus; }
+            set { this._recommendationStatus = value; }
+        }
+
+        // Check to see if RecommendationStatus property is set
+        internal bool IsSetRecommendationStatus()
+        {
+            return this._recommendationStatus != null;
         }
 
         /// <summary>

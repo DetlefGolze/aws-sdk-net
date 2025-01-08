@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public OidcConfigForResponse Unmarshall(JsonUnmarshallerContext context)
         {
+            OidcConfigForResponse unmarshalledObject = new OidcConfigForResponse();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            OidcConfigForResponse unmarshalledObject = new OidcConfigForResponse();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("AuthenticationRequestExtraParams", targetDepth))
+                {
+                    var unmarshaller = new DictionaryUnmarshaller<string, string, StringUnmarshaller, StringUnmarshaller>(StringUnmarshaller.Instance, StringUnmarshaller.Instance);
+                    unmarshalledObject.AuthenticationRequestExtraParams = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("AuthorizationEndpoint", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -94,6 +102,12 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     unmarshalledObject.LogoutEndpoint = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("Scope", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Scope = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("TokenEndpoint", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -107,7 +121,6 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

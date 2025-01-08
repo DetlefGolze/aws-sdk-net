@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
@@ -34,30 +35,29 @@ namespace Amazon.TranscribeService.Model
     /// 
     ///  
     /// <para>
-    /// If you include <code>UntagResource</code> in your request, you must also include <code>ResourceArn</code>
-    /// and <code>TagKeys</code>.
+    /// If you include <c>UntagResource</c> in your request, you must also include <c>ResourceArn</c>
+    /// and <c>TagKeys</c>.
     /// </para>
     /// </summary>
     public partial class UntagResourceRequest : AmazonTranscribeServiceRequest
     {
         private string _resourceArn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the Amazon Transcribe resource you want to remove
-        /// tags from. ARNs have the format <code>arn:partition:service:region:account-id:resource-type/resource-id</code>.
+        /// tags from. ARNs have the format <c>arn:partition:service:region:account-id:resource-type/resource-id</c>.
         /// </para>
         ///  
         /// <para>
-        /// For example, <code>arn:aws:transcribe:us-west-2:111122223333:transcription-job/transcription-job-name</code>.
+        /// For example, <c>arn:aws:transcribe:us-west-2:111122223333:transcription-job/transcription-job-name</c>.
         /// </para>
         ///  
         /// <para>
-        /// Valid values for <code>resource-type</code> are: <code>transcription-job</code>, <code>medical-transcription-job</code>,
-        /// <code>vocabulary</code>, <code>medical-vocabulary</code>, <code>vocabulary-filter</code>,
-        /// and <code>language-model</code>.
+        /// Valid values for <c>resource-type</c> are: <c>transcription-job</c>, <c>medical-transcription-job</c>,
+        /// <c>vocabulary</c>, <c>medical-vocabulary</c>, <c>vocabulary-filter</c>, and <c>language-model</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1011)]
@@ -89,7 +89,7 @@ namespace Amazon.TranscribeService.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

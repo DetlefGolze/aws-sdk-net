@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
     /// A complex type that contains the codes and full continent, country, and subdivision
-    /// names for the specified <code>geolocation</code> code.
+    /// names for the specified <c>geolocation</c> code.
     /// </summary>
     public partial class GeoLocationDetails
     {

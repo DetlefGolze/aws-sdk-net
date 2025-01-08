@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaStore.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.MediaStore.Model
     /// </summary>
     public partial class ListContainersResponse : AmazonWebServiceResponse
     {
-        private List<Container> _containers = new List<Container>();
+        private List<Container> _containers = AWSConfigs.InitializeCollections ? new List<Container>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,15 +53,15 @@ namespace Amazon.MediaStore.Model
         // Check to see if Containers property is set
         internal bool IsSetContainers()
         {
-            return this._containers != null && this._containers.Count > 0; 
+            return this._containers != null && (this._containers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  <code>NextToken</code> is the token to use in the next call to <code>ListContainers</code>.
-        /// This token is returned only if you included the <code>MaxResults</code> tag in the
-        /// original command, and only if there are still containers to return. 
+        ///  <c>NextToken</c> is the token to use in the next call to <c>ListContainers</c>. This
+        /// token is returned only if you included the <c>MaxResults</c> tag in the original command,
+        /// and only if there are still containers to return. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

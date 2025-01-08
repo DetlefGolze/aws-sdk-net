@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -33,12 +34,12 @@ namespace Amazon.IdentityManagement.Model
     /// </summary>
     public partial class GetAccountAuthorizationDetailsResponse : AmazonWebServiceResponse
     {
-        private List<GroupDetail> _groupDetailList = new List<GroupDetail>();
+        private List<GroupDetail> _groupDetailList = AWSConfigs.InitializeCollections ? new List<GroupDetail>() : null;
         private bool? _isTruncated;
         private string _marker;
-        private List<ManagedPolicyDetail> _policies = new List<ManagedPolicyDetail>();
-        private List<RoleDetail> _roleDetailList = new List<RoleDetail>();
-        private List<UserDetail> _userDetailList = new List<UserDetail>();
+        private List<ManagedPolicyDetail> _policies = AWSConfigs.InitializeCollections ? new List<ManagedPolicyDetail>() : null;
+        private List<RoleDetail> _roleDetailList = AWSConfigs.InitializeCollections ? new List<RoleDetail>() : null;
+        private List<UserDetail> _userDetailList = AWSConfigs.InitializeCollections ? new List<UserDetail>() : null;
 
         /// <summary>
         /// Gets and sets the property GroupDetailList. 
@@ -55,18 +56,17 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if GroupDetailList property is set
         internal bool IsSetGroupDetailList()
         {
-            return this._groupDetailList != null && this._groupDetailList.Count > 0; 
+            return this._groupDetailList != null && (this._groupDetailList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property IsTruncated. 
         /// <para>
         /// A flag that indicates whether there are more items to return. If your results were
-        /// truncated, you can make a subsequent pagination request using the <code>Marker</code>
-        /// request parameter to retrieve more items. Note that IAM might return fewer than the
-        /// <code>MaxItems</code> number of results even when there are more results available.
-        /// We recommend that you check <code>IsTruncated</code> after every call to ensure that
-        /// you receive all your results.
+        /// truncated, you can make a subsequent pagination request using the <c>Marker</c> request
+        /// parameter to retrieve more items. Note that IAM might return fewer than the <c>MaxItems</c>
+        /// number of results even when there are more results available. We recommend that you
+        /// check <c>IsTruncated</c> after every call to ensure that you receive all your results.
         /// </para>
         /// </summary>
         public bool IsTruncated
@@ -84,9 +84,8 @@ namespace Amazon.IdentityManagement.Model
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// When <code>IsTruncated</code> is <code>true</code>, this element is present and contains
-        /// the value to use for the <code>Marker</code> parameter in a subsequent pagination
-        /// request.
+        /// When <c>IsTruncated</c> is <c>true</c>, this element is present and contains the value
+        /// to use for the <c>Marker</c> parameter in a subsequent pagination request.
         /// </para>
         /// </summary>
         public string Marker
@@ -116,7 +115,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if Policies property is set
         internal bool IsSetPolicies()
         {
-            return this._policies != null && this._policies.Count > 0; 
+            return this._policies != null && (this._policies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -134,7 +133,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if RoleDetailList property is set
         internal bool IsSetRoleDetailList()
         {
-            return this._roleDetailList != null && this._roleDetailList.Count > 0; 
+            return this._roleDetailList != null && (this._roleDetailList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -152,7 +151,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if UserDetailList property is set
         internal bool IsSetUserDetailList()
         {
-            return this._userDetailList != null && this._userDetailList.Count > 0; 
+            return this._userDetailList != null && (this._userDetailList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

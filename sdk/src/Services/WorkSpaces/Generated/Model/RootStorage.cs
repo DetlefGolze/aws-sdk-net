@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.WorkSpaces.Model
         /// The size of the root volume.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1)]
+        [AWSProperty(Required=true, Min=1)]
         public string Capacity
         {
             get { return this._capacity; }

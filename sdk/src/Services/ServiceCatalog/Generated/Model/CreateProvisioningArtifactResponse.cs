@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ServiceCatalog.Model
     /// </summary>
     public partial class CreateProvisioningArtifactResponse : AmazonWebServiceResponse
     {
-        private Dictionary<string, string> _info = new Dictionary<string, string>();
+        private Dictionary<string, string> _info = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private ProvisioningArtifactDetail _provisioningArtifactDetail;
         private Status _status;
 
@@ -41,7 +42,7 @@ namespace Amazon.ServiceCatalog.Model
         /// Gets and sets the property Info. 
         /// <para>
         /// Specify the template source with one of the following options, but not both. Keys
-        /// accepted: [ <code>LoadTemplateFromURL</code>, <code>ImportFromPhysicalId</code> ].
+        /// accepted: [ <c>LoadTemplateFromURL</c>, <c>ImportFromPhysicalId</c> ].
         /// </para>
         ///  
         /// <para>
@@ -50,7 +51,7 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>LoadTemplateFromURL</code> 
+        ///  <c>LoadTemplateFromURL</c> 
         /// </para>
         ///  
         /// <para>
@@ -58,7 +59,7 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>ImportFromPhysicalId</code> 
+        ///  <c>ImportFromPhysicalId</c> 
         /// </para>
         ///  
         /// <para>
@@ -76,7 +77,7 @@ namespace Amazon.ServiceCatalog.Model
         // Check to see if Info property is set
         internal bool IsSetInfo()
         {
-            return this._info != null && this._info.Count > 0; 
+            return this._info != null && (this._info.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

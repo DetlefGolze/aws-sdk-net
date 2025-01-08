@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Lightsail.Model
     public partial class GetBucketsResponse : AmazonWebServiceResponse
     {
         private AccountLevelBpaSync _accountLevelBpaSync;
-        private List<Bucket> _buckets = new List<Bucket>();
+        private List<Bucket> _buckets = AWSConfigs.InitializeCollections ? new List<Bucket>() : null;
         private string _nextPageToken;
 
         /// <summary>
@@ -77,7 +78,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Buckets property is set
         internal bool IsSetBuckets()
         {
-            return this._buckets != null && this._buckets.Count > 0; 
+            return this._buckets != null && (this._buckets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -91,8 +92,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// To get the next page of results, perform another <code>GetBuckets</code> request and
-        /// specify the next page token using the <code>pageToken</code> parameter.
+        /// To get the next page of results, perform another <c>GetBuckets</c> request and specify
+        /// the next page token using the <c>pageToken</c> parameter.
         /// </para>
         /// </summary>
         public string NextPageToken

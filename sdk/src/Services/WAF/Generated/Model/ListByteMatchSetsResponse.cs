@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAF.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.WAF.Model
     /// </summary>
     public partial class ListByteMatchSetsResponse : AmazonWebServiceResponse
     {
-        private List<ByteMatchSetSummary> _byteMatchSets = new List<ByteMatchSetSummary>();
+        private List<ByteMatchSetSummary> _byteMatchSets = AWSConfigs.InitializeCollections ? new List<ByteMatchSetSummary>() : null;
         private string _nextMarker;
 
         /// <summary>
@@ -51,16 +52,16 @@ namespace Amazon.WAF.Model
         // Check to see if ByteMatchSets property is set
         internal bool IsSetByteMatchSets()
         {
-            return this._byteMatchSets != null && this._byteMatchSets.Count > 0; 
+            return this._byteMatchSets != null && (this._byteMatchSets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextMarker. 
         /// <para>
-        /// If you have more <code>ByteMatchSet</code> objects than the number that you specified
-        /// for <code>Limit</code> in the request, the response includes a <code>NextMarker</code>
-        /// value. To list more <code>ByteMatchSet</code> objects, submit another <code>ListByteMatchSets</code>
-        /// request, and specify the <code>NextMarker</code> value from the response in the <code>NextMarker</code>
+        /// If you have more <c>ByteMatchSet</c> objects than the number that you specified for
+        /// <c>Limit</c> in the request, the response includes a <c>NextMarker</c> value. To list
+        /// more <c>ByteMatchSet</c> objects, submit another <c>ListByteMatchSets</c> request,
+        /// and specify the <c>NextMarker</c> value from the response in the <c>NextMarker</c>
         /// value in the next request.
         /// </para>
         /// </summary>

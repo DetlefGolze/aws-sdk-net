@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(AssetBundleCloudFormationOverridePropertyConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAnalyses())
             {
                 context.Writer.WritePropertyName("Analyses");
@@ -103,6 +106,22 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 
                     var marshaller = AssetBundleExportJobDataSourceOverridePropertiesMarshaller.Instance;
                     marshaller.Marshall(requestObjectDataSourcesListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetFolders())
+            {
+                context.Writer.WritePropertyName("Folders");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectFoldersListValue in requestObject.Folders)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = AssetBundleExportJobFolderOverridePropertiesMarshaller.Instance;
+                    marshaller.Marshall(requestObjectFoldersListValue, context);
 
                     context.Writer.WriteObjectEnd();
                 }

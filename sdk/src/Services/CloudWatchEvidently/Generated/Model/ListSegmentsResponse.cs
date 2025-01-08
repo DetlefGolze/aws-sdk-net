@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvidently.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.CloudWatchEvidently.Model
     public partial class ListSegmentsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Segment> _segments = new List<Segment>();
+        private List<Segment> _segments = AWSConfigs.InitializeCollections ? new List<Segment>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to use in a subsequent <code>ListSegments</code> operation to return the
-        /// next set of results.
+        /// The token to use in a subsequent <c>ListSegments</c> operation to return the next
+        /// set of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=8192)]
@@ -71,7 +72,7 @@ namespace Amazon.CloudWatchEvidently.Model
         // Check to see if Segments property is set
         internal bool IsSetSegments()
         {
-            return this._segments != null && this._segments.Count > 0; 
+            return this._segments != null && (this._segments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

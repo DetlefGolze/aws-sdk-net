@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -44,19 +45,19 @@ namespace Amazon.LexModelsV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Count</code> – The number of utterances.
+        ///  <c>Count</c> – The number of utterances.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Missed</code> – The number of utterances that Amazon Lex failed to recognize.
+        ///  <c>Missed</c> – The number of utterances that Amazon Lex failed to recognize.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Detected</code> – The number of utterances that Amazon Lex managed to detect.
+        ///  <c>Detected</c> – The number of utterances that Amazon Lex managed to detect.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UtteranceTimestamp</code> – The date and time of the utterance.
+        ///  <c>UtteranceTimestamp</c> – The date and time of the utterance.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -79,16 +80,16 @@ namespace Amazon.LexModelsV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Sum</code> – The total count for the category you provide in <code>name</code>.
+        ///  <c>Sum</c> – The total count for the category you provide in <c>name</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Average</code> – The total count divided by the number of utterances in the
-        /// category you provide in <code>name</code>.
+        ///  <c>Average</c> – The total count divided by the number of utterances in the category
+        /// you provide in <c>name</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Max</code> – The highest count in the category you provide in <code>name</code>.
+        ///  <c>Max</c> – The highest count in the category you provide in <c>name</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>

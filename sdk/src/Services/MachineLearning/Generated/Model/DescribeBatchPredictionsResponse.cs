@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MachineLearning.Model
 {
     /// <summary>
-    /// Represents the output of a <code>DescribeBatchPredictions</code> operation. The content
-    /// is essentially a list of <code>BatchPrediction</code>s.
+    /// Represents the output of a <c>DescribeBatchPredictions</c> operation. The content
+    /// is essentially a list of <c>BatchPrediction</c>s.
     /// </summary>
     public partial class DescribeBatchPredictionsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<BatchPrediction> _results = new List<BatchPrediction>();
+        private List<BatchPrediction> _results = AWSConfigs.InitializeCollections ? new List<BatchPrediction>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -59,7 +60,7 @@ namespace Amazon.MachineLearning.Model
         /// <summary>
         /// Gets and sets the property Results. 
         /// <para>
-        /// A list of <code>BatchPrediction</code> objects that meet the search criteria. 
+        /// A list of <c>BatchPrediction</c> objects that meet the search criteria. 
         /// </para>
         /// </summary>
         public List<BatchPrediction> Results
@@ -71,7 +72,7 @@ namespace Amazon.MachineLearning.Model
         // Check to see if Results property is set
         internal bool IsSetResults()
         {
-            return this._results != null && this._results.Count > 0; 
+            return this._results != null && (this._results.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

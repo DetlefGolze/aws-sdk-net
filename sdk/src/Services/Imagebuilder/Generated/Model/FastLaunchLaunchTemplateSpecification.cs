@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Imagebuilder.Model
     /// 
     ///  <note> 
     /// <para>
-    /// You can specify either the <code>launchTemplateName</code> or the <code>launchTemplateId</code>,
+    /// You can specify either the <c>launchTemplateName</c> or the <c>launchTemplateId</c>,
     /// but not both.
     /// </para>
     ///  </note>

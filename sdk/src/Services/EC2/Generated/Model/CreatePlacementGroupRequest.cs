@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,9 +36,9 @@ namespace Amazon.EC2.Model
     /// 
     ///  
     /// <para>
-    /// A <code>cluster</code> placement group is a logical grouping of instances within a
-    /// single Availability Zone that benefit from low network latency, high network throughput.
-    /// A <code>spread</code> placement group places instances on distinct hardware. A <code>partition</code>
+    /// A <c>cluster</c> placement group is a logical grouping of instances within a single
+    /// Availability Zone that benefit from low network latency, high network throughput.
+    /// A <c>spread</c> placement group places instances on distinct hardware. A <c>partition</c>
     /// placement group places groups of instances in different partitions, where instances
     /// in one partition do not share the same hardware with instances in another partition.
     /// </para>
@@ -53,7 +54,7 @@ namespace Amazon.EC2.Model
         private int? _partitionCount;
         private SpreadLevel _spreadLevel;
         private PlacementStrategy _strategy;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -97,7 +98,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property PartitionCount. 
         /// <para>
-        /// The number of partitions. Valid only when <b>Strategy</b> is set to <code>partition</code>.
+        /// The number of partitions. Valid only when <b>Strategy</b> is set to <c>partition</c>.
         /// </para>
         /// </summary>
         public int PartitionCount
@@ -119,7 +120,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Host – You can use <code>host</code> only with Outpost placement groups.
+        /// Host – You can use <c>host</c> only with Outpost placement groups.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -172,7 +173,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

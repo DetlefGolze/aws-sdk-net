@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECR.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.ECR.Model
     ///  <note> 
     /// <para>
     /// This operation is used by the Amazon ECR proxy and is not generally used by customers
-    /// for pulling and pushing images. In most cases, you should use the <code>docker</code>
-    /// CLI to pull, tag, and push images.
+    /// for pulling and pushing images. In most cases, you should use the <c>docker</c> CLI
+    /// to pull, tag, and push images.
     /// </para>
     ///  </note>
     /// </summary>
@@ -96,7 +97,7 @@ namespace Amazon.ECR.Model
         /// Gets and sets the property ImageManifestMediaType. 
         /// <para>
         /// The media type of the image manifest. If you push an image manifest that does not
-        /// contain the <code>mediaType</code> field, you must specify the <code>imageManifestMediaType</code>
+        /// contain the <c>mediaType</c> field, you must specify the <c>imageManifestMediaType</c>
         /// in the request.
         /// </para>
         /// </summary>

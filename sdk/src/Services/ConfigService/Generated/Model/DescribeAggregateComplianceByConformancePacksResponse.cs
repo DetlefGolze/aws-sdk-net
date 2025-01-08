@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.ConfigService.Model
     /// </summary>
     public partial class DescribeAggregateComplianceByConformancePacksResponse : AmazonWebServiceResponse
     {
-        private List<AggregateComplianceByConformancePack> _aggregateComplianceByConformancePacks = new List<AggregateComplianceByConformancePack>();
+        private List<AggregateComplianceByConformancePack> _aggregateComplianceByConformancePacks = AWSConfigs.InitializeCollections ? new List<AggregateComplianceByConformancePack>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property AggregateComplianceByConformancePacks. 
         /// <para>
-        /// Returns the <code>AggregateComplianceByConformancePack</code> object.
+        /// Returns the <c>AggregateComplianceByConformancePack</c> object.
         /// </para>
         /// </summary>
         public List<AggregateComplianceByConformancePack> AggregateComplianceByConformancePacks
@@ -51,14 +52,14 @@ namespace Amazon.ConfigService.Model
         // Check to see if AggregateComplianceByConformancePacks property is set
         internal bool IsSetAggregateComplianceByConformancePacks()
         {
-            return this._aggregateComplianceByConformancePacks != null && this._aggregateComplianceByConformancePacks.Count > 0; 
+            return this._aggregateComplianceByConformancePacks != null && (this._aggregateComplianceByConformancePacks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> string returned on a previous page that you use to get
-        /// the next page of results in a paginated response.
+        /// The <c>nextToken</c> string returned on a previous page that you use to get the next
+        /// page of results in a paginated response.
         /// </para>
         /// </summary>
         public string NextToken

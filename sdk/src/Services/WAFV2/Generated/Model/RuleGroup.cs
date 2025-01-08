@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -37,15 +38,15 @@ namespace Amazon.WAFV2.Model
     public partial class RuleGroup
     {
         private string _arn;
-        private List<LabelSummary> _availableLabels = new List<LabelSummary>();
+        private List<LabelSummary> _availableLabels = AWSConfigs.InitializeCollections ? new List<LabelSummary>() : null;
         private long? _capacity;
-        private List<LabelSummary> _consumedLabels = new List<LabelSummary>();
-        private Dictionary<string, CustomResponseBody> _customResponseBodies = new Dictionary<string, CustomResponseBody>();
+        private List<LabelSummary> _consumedLabels = AWSConfigs.InitializeCollections ? new List<LabelSummary>() : null;
+        private Dictionary<string, CustomResponseBody> _customResponseBodies = AWSConfigs.InitializeCollections ? new Dictionary<string, CustomResponseBody>() : null;
         private string _description;
         private string _id;
         private string _labelNamespace;
         private string _name;
-        private List<Rule> _rules = new List<Rule>();
+        private List<Rule> _rules = AWSConfigs.InitializeCollections ? new List<Rule>() : null;
         private VisibilityConfig _visibilityConfig;
 
         /// <summary>
@@ -71,7 +72,7 @@ namespace Amazon.WAFV2.Model
         /// Gets and sets the property AvailableLabels. 
         /// <para>
         /// The labels that one or more rules in this rule group add to matching web requests.
-        /// These labels are defined in the <code>RuleLabels</code> for a <a>Rule</a>.
+        /// These labels are defined in the <c>RuleLabels</c> for a <a>Rule</a>.
         /// </para>
         /// </summary>
         public List<LabelSummary> AvailableLabels
@@ -83,7 +84,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if AvailableLabels property is set
         internal bool IsSetAvailableLabels()
         {
-            return this._availableLabels != null && this._availableLabels.Count > 0; 
+            return this._availableLabels != null && (this._availableLabels.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -125,7 +126,7 @@ namespace Amazon.WAFV2.Model
         /// Gets and sets the property ConsumedLabels. 
         /// <para>
         /// The labels that one or more rules in this rule group match against in label match
-        /// statements. These labels are defined in a <code>LabelMatchStatement</code> specification,
+        /// statements. These labels are defined in a <c>LabelMatchStatement</c> specification,
         /// in the <a>Statement</a> definition of a rule. 
         /// </para>
         /// </summary>
@@ -138,7 +139,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if ConsumedLabels property is set
         internal bool IsSetConsumedLabels()
         {
-            return this._consumedLabels != null && this._consumedLabels.Count > 0; 
+            return this._consumedLabels != null && (this._consumedLabels.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -170,7 +171,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if CustomResponseBodies property is set
         internal bool IsSetCustomResponseBodies()
         {
-            return this._customResponseBodies != null && this._customResponseBodies.Count > 0; 
+            return this._customResponseBodies != null && (this._customResponseBodies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -224,7 +225,7 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>awswaf:&lt;account ID&gt;:rulegroup:&lt;rule group name&gt;:</code> 
+        ///  <c>awswaf:&lt;account ID&gt;:rulegroup:&lt;rule group name&gt;:</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -235,7 +236,7 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>&lt;label namespace&gt;:&lt;label from rule&gt;</code> 
+        ///  <c>&lt;label namespace&gt;:&lt;label from rule&gt;</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -289,7 +290,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if Rules property is set
         internal bool IsSetRules()
         {
-            return this._rules != null && this._rules.Count > 0; 
+            return this._rules != null && (this._rules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

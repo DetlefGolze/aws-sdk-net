@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GreengrassV2.Model
 {
     /// <summary>
@@ -38,9 +39,8 @@ namespace Amazon.GreengrassV2.Model
     /// <para>
     /// This operation identifies components that meet all dependency requirements for a deployment.
     /// If the requirements conflict, then this operation returns an error and the deployment
-    /// fails. For example, this occurs if component <code>A</code> requires version <code>&gt;2.0.0</code>
-    /// and component <code>B</code> requires version <code>&lt;2.0.0</code> of a component
-    /// dependency.
+    /// fails. For example, this occurs if component <c>A</c> requires version <c>&gt;2.0.0</c>
+    /// and component <c>B</c> requires version <c>&lt;2.0.0</c> of a component dependency.
     /// </para>
     ///  
     /// <para>
@@ -59,7 +59,7 @@ namespace Amazon.GreengrassV2.Model
     /// </summary>
     public partial class ResolveComponentCandidatesRequest : AmazonGreengrassV2Request
     {
-        private List<ComponentCandidate> _componentCandidates = new List<ComponentCandidate>();
+        private List<ComponentCandidate> _componentCandidates = AWSConfigs.InitializeCollections ? new List<ComponentCandidate>() : null;
         private ComponentPlatform _platform;
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Amazon.GreengrassV2.Model
         // Check to see if ComponentCandidates property is set
         internal bool IsSetComponentCandidates()
         {
-            return this._componentCandidates != null && this._componentCandidates.Count > 0; 
+            return this._componentCandidates != null && (this._componentCandidates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

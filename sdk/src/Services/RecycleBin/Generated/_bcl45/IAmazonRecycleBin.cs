@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.RecycleBin.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.RecycleBin
 {
     /// <summary>
-    /// Interface for accessing RecycleBin
+    /// <para>Interface for accessing RecycleBin</para>
     ///
     /// This is the <i>Recycle Bin API Reference</i>. This documentation provides descriptions
     /// and syntax for each of the actions and data types in Recycle Bin.
@@ -47,7 +48,7 @@ namespace Amazon.RecycleBin
     /// from the Recycle Bin, and you can then use it in the same way you use any other resource
     /// of that type in your account. If the retention period expires and the resource is
     /// not restored, the resource is permanently deleted from the Recycle Bin and is no longer
-    /// available for recovery. For more information about Recycle Bin, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshot-recycle-bin.html">
+    /// available for recovery. For more information about Recycle Bin, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin.html">
     /// Recycle Bin</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
     /// </para>
     /// </summary>
@@ -64,9 +65,30 @@ namespace Amazon.RecycleBin
 
 
         /// <summary>
-        /// Creates a Recycle Bin retention rule. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin-working-with-rules.html#recycle-bin-create-rule">
-        /// Create Recycle Bin retention rules</a> in the <i>Amazon Elastic Compute Cloud User
-        /// Guide</i>.
+        /// Creates a Recycle Bin retention rule. You can create two types of retention rules:
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>Tag-level retention rules</b> - These retention rules use resource tags to identify
+        /// the resources to protect. For each retention rule, you specify one or more tag key
+        /// and value pairs. Resources (of the specified type) that have at least one of these
+        /// tag key and value pairs are automatically retained in the Recycle Bin upon deletion.
+        /// Use this type of retention rule to protect specific resources in your account based
+        /// on their tags.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>Region-level retention rules</b> - These retention rules, by default, apply to
+        /// all of the resources (of the specified type) in the Region, even if the resources
+        /// are not tagged. However, you can specify exclusion tags to exclude resources that
+        /// have specific tags. Use this type of retention rule to protect all resources of a
+        /// specific type in a Region.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/ebs/latest/userguide/recycle-bin.html">
+        /// Create Recycle Bin retention rules</a> in the <i>Amazon EBS User Guide</i>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateRule service method.</param>
         /// 
@@ -87,9 +109,30 @@ namespace Amazon.RecycleBin
 
 
         /// <summary>
-        /// Creates a Recycle Bin retention rule. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin-working-with-rules.html#recycle-bin-create-rule">
-        /// Create Recycle Bin retention rules</a> in the <i>Amazon Elastic Compute Cloud User
-        /// Guide</i>.
+        /// Creates a Recycle Bin retention rule. You can create two types of retention rules:
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>Tag-level retention rules</b> - These retention rules use resource tags to identify
+        /// the resources to protect. For each retention rule, you specify one or more tag key
+        /// and value pairs. Resources (of the specified type) that have at least one of these
+        /// tag key and value pairs are automatically retained in the Recycle Bin upon deletion.
+        /// Use this type of retention rule to protect specific resources in your account based
+        /// on their tags.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>Region-level retention rules</b> - These retention rules, by default, apply to
+        /// all of the resources (of the specified type) in the Region, even if the resources
+        /// are not tagged. However, you can specify exclusion tags to exclude resources that
+        /// have specific tags. Use this type of retention rule to protect all resources of a
+        /// specific type in a Region.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/ebs/latest/userguide/recycle-bin.html">
+        /// Create Recycle Bin retention rules</a> in the <i>Amazon EBS User Guide</i>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateRule service method.</param>
         /// <param name="cancellationToken">
@@ -304,7 +347,15 @@ namespace Amazon.RecycleBin
 
 
         /// <summary>
-        /// Locks a retention rule. A locked retention rule can't be modified or deleted.
+        /// Locks a Region-level retention rule. A locked retention rule can't be modified or
+        /// deleted.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// You can't lock tag-level retention rules, or Region-level retention rules that have
+        /// exclusion tags.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the LockRule service method.</param>
         /// 
@@ -327,7 +378,15 @@ namespace Amazon.RecycleBin
 
 
         /// <summary>
-        /// Locks a retention rule. A locked retention rule can't be modified or deleted.
+        /// Locks a Region-level retention rule. A locked retention rule can't be modified or
+        /// deleted.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// You can't lock tag-level retention rules, or Region-level retention rules that have
+        /// exclusion tags.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the LockRule service method.</param>
         /// <param name="cancellationToken">
@@ -529,6 +588,10 @@ namespace Amazon.RecycleBin
         /// <exception cref="Amazon.RecycleBin.Model.ResourceNotFoundException">
         /// The specified resource was not found.
         /// </exception>
+        /// <exception cref="Amazon.RecycleBin.Model.ServiceQuotaExceededException">
+        /// The request would cause a service quota for the number of tags per resource to be
+        /// exceeded.
+        /// </exception>
         /// <exception cref="Amazon.RecycleBin.Model.ValidationException">
         /// One or more of the parameters in the request is not valid.
         /// </exception>
@@ -559,6 +622,10 @@ namespace Amazon.RecycleBin
         /// </exception>
         /// <exception cref="Amazon.RecycleBin.Model.ResourceNotFoundException">
         /// The specified resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.RecycleBin.Model.ServiceQuotaExceededException">
+        /// The request would cause a service quota for the number of tags per resource to be
+        /// exceeded.
         /// </exception>
         /// <exception cref="Amazon.RecycleBin.Model.ValidationException">
         /// One or more of the parameters in the request is not valid.

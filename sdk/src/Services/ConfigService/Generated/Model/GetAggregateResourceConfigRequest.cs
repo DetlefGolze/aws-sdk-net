@@ -26,12 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
     /// Container for the parameters to the GetAggregateResourceConfig operation.
     /// Returns configuration item that is aggregated for your specific resource in a specific
     /// source account and region.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// The API does not return results for deleted resources.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class GetAggregateResourceConfigRequest : AmazonConfigServiceRequest
     {

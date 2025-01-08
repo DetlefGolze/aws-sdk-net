@@ -27,6 +27,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -41,19 +42,32 @@ namespace Amazon.CognitoIdentityProvider.Model
     /// to be applied selectively based on the assessed risk level of sign-in attempts, deactivate
     /// MFA for users and turn on Adaptive Authentication for the user pool.
     /// 
+    ///  
+    /// <para>
+    /// This operation doesn't reset an existing TOTP MFA for a user. To register a new TOTP
+    /// factor for a user, make an <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AssociateSoftwareToken.html">AssociateSoftwareToken</a>
+    /// request. For more information, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-mfa-totp.html">TOTP
+    /// software token MFA</a>.
+    /// </para>
+    ///  
+    /// <para>
+    /// Authorize this action with a signed-in user's access token. It must include the scope
+    /// <c>aws.cognito.signin.user.admin</c>.
+    /// </para>
     ///  <note> 
     /// <para>
     /// Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests
     /// for this API operation. For this operation, you can't use IAM credentials to authorize
     /// requests, and you can't grant IAM permissions in policies. For more information about
     /// authorization models in Amazon Cognito, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using
-    /// the Amazon Cognito native and OIDC APIs</a>.
+    /// the Amazon Cognito user pools API and user pool endpoints</a>.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class SetUserMFAPreferenceRequest : AmazonCognitoIdentityProviderRequest
     {
         private string _accessToken;
+        private EmailMfaSettingsType _emailMfaSettings;
         private SMSMfaSettingsType _smsMfaSettings;
         private SoftwareTokenMfaSettingsType _softwareTokenMfaSettings;
 
@@ -78,9 +92,31 @@ namespace Amazon.CognitoIdentityProvider.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EmailMfaSettings. 
+        /// <para>
+        /// User preferences for email message MFA. Activates or deactivates email MFA and sets
+        /// it as the preferred MFA method when multiple methods are available. To activate this
+        /// setting, <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-advanced-security.html">
+        /// advanced security features</a> must be active in your user pool.
+        /// </para>
+        /// </summary>
+        public EmailMfaSettingsType EmailMfaSettings
+        {
+            get { return this._emailMfaSettings; }
+            set { this._emailMfaSettings = value; }
+        }
+
+        // Check to see if EmailMfaSettings property is set
+        internal bool IsSetEmailMfaSettings()
+        {
+            return this._emailMfaSettings != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property SMSMfaSettings. 
         /// <para>
-        /// The SMS text message multi-factor authentication (MFA) settings.
+        /// User preferences for SMS message MFA. Activates or deactivates SMS MFA and sets it
+        /// as the preferred MFA method when multiple methods are available.
         /// </para>
         /// </summary>
         public SMSMfaSettingsType SMSMfaSettings
@@ -98,7 +134,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property SoftwareTokenMfaSettings. 
         /// <para>
-        /// The time-based one-time password (TOTP) software token MFA settings.
+        /// User preferences for time-based one-time password (TOTP) MFA. Activates or deactivates
+        /// TOTP MFA and sets it as the preferred MFA method when multiple methods are available.
         /// </para>
         /// </summary>
         public SoftwareTokenMfaSettingsType SoftwareTokenMfaSettings

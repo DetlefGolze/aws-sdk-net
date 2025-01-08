@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeLocationHdfs operation.
-    /// Returns metadata, such as the authentication information about the Hadoop Distributed
-    /// File System (HDFS) location.
+    /// Provides details about how an DataSync transfer location for a Hadoop Distributed
+    /// File System (HDFS) is configured.
     /// </summary>
     public partial class DescribeLocationHdfsRequest : AmazonDataSyncRequest
     {
@@ -40,7 +41,7 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property LocationArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the HDFS cluster location to describe.
+        /// Specifies the Amazon Resource Name (ARN) of the HDFS location.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=128)]

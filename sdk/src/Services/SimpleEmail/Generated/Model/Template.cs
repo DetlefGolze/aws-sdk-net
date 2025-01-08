@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmail.Model
 {
     /// <summary>
@@ -78,8 +79,8 @@ namespace Amazon.SimpleEmail.Model
         /// <summary>
         /// Gets and sets the property TemplateName. 
         /// <para>
-        /// The name of the template. You use this name when you send email using the <code>SendTemplatedEmail</code>
-        /// or <code>SendBulkTemplatedEmail</code> operations.
+        /// The name of the template. You use this name when you send email using the <c>SendTemplatedEmail</c>
+        /// or <c>SendBulkTemplatedEmail</c> operations.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

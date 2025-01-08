@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the resiliencehub-2020-04-30.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -34,6 +35,11 @@ namespace Amazon.ResilienceHub.Model
         /// Paginator for ListAppAssessmentComplianceDrifts operation
         ///</summary>
         IListAppAssessmentComplianceDriftsPaginator ListAppAssessmentComplianceDrifts(ListAppAssessmentComplianceDriftsRequest request);
+
+        /// <summary>
+        /// Paginator for ListAppAssessmentResourceDrifts operation
+        ///</summary>
+        IListAppAssessmentResourceDriftsPaginator ListAppAssessmentResourceDrifts(ListAppAssessmentResourceDriftsRequest request);
 
         /// <summary>
         /// Paginator for ListAppAssessments operation
@@ -81,6 +87,11 @@ namespace Amazon.ResilienceHub.Model
         IListAppVersionsPaginator ListAppVersions(ListAppVersionsRequest request);
 
         /// <summary>
+        /// Paginator for ListMetrics operation
+        ///</summary>
+        IListMetricsPaginator ListMetrics(ListMetricsRequest request);
+
+        /// <summary>
         /// Paginator for ListRecommendationTemplates operation
         ///</summary>
         IListRecommendationTemplatesPaginator ListRecommendationTemplates(ListRecommendationTemplatesRequest request);
@@ -89,6 +100,11 @@ namespace Amazon.ResilienceHub.Model
         /// Paginator for ListResiliencyPolicies operation
         ///</summary>
         IListResiliencyPoliciesPaginator ListResiliencyPolicies(ListResiliencyPoliciesRequest request);
+
+        /// <summary>
+        /// Paginator for ListResourceGroupingRecommendations operation
+        ///</summary>
+        IListResourceGroupingRecommendationsPaginator ListResourceGroupingRecommendations(ListResourceGroupingRecommendationsRequest request);
 
         /// <summary>
         /// Paginator for ListSopRecommendations operation

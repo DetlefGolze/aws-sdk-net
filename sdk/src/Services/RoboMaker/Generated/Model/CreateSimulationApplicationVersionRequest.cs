@@ -26,18 +26,31 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateSimulationApplicationVersion operation.
+    /// <important> 
+    /// <para>
+    /// End of support notice: On September 10, 2025, Amazon Web Services will discontinue
+    /// support for Amazon Web Services RoboMaker. After September 10, 2025, you will no longer
+    /// be able to access the Amazon Web Services RoboMaker console or Amazon Web Services
+    /// RoboMaker resources. For more information on transitioning to Batch to help run containerized
+    /// simulations, visit <a href="https://aws.amazon.com/blogs/hpc/run-simulations-using-multiple-containers-in-a-single-aws-batch-job/">https://aws.amazon.com/blogs/hpc/run-simulations-using-multiple-containers-in-a-single-aws-batch-job/</a>.
+    /// 
+    /// </para>
+    ///  </important> 
+    /// <para>
     /// Creates a simulation application with a specific revision id.
+    /// </para>
     /// </summary>
     public partial class CreateSimulationApplicationVersionRequest : AmazonRoboMakerRequest
     {
         private string _application;
         private string _currentRevisionId;
         private string _imageDigest;
-        private List<string> _s3Etags = new List<string>();
+        private List<string> _s3Etags = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Application. 
@@ -114,7 +127,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if S3Etags property is set
         internal bool IsSetS3Etags()
         {
-            return this._s3Etags != null && this._s3Etags.Count > 0; 
+            return this._s3Etags != null && (this._s3Etags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

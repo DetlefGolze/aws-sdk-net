@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
@@ -43,8 +44,8 @@ namespace Amazon.CloudDirectory.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The <code>MaxResults</code> parameter sets the maximum number of results returned
-        /// in a single page. This is for future use and is not supported currently.
+        /// The <c>MaxResults</c> parameter sets the maximum number of results returned in a single
+        /// page. This is for future use and is not supported currently.
         /// </para>
         /// </summary>
         [AWSProperty(Min=50)]

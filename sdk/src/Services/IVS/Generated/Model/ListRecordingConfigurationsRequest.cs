@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IVS.Model
 {
     /// <summary>
@@ -62,7 +63,7 @@ namespace Amazon.IVS.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The first recording configuration to retrieve. This is used for pagination; see the
-        /// <code>nextToken</code> response field.
+        /// <c>nextToken</c> response field.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1024)]

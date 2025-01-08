@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Amplify.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property Branch. 
         /// <para>
-        ///  The branch for an Amplify app, which maps to a third-party repository branch. 
+        /// The branch for an Amplify app, which maps to a third-party repository branch. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

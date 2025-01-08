@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeProfile operation.
-    /// Returns the details of the profile that's specified by the <code>ProfileId</code>.
+    /// Returns the details of the profile that's specified by the <c>ProfileId</c>.
     /// </summary>
     public partial class DescribeProfileRequest : AmazonTransferRequest
     {

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.CloudTrail.Model
     public partial class DescribeTrailsRequest : AmazonCloudTrailRequest
     {
         private bool? _includeShadowTrails;
-        private List<string> _trailNameList = new List<string>();
+        private List<string> _trailNameList = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property IncludeShadowTrails. 
@@ -68,7 +69,7 @@ namespace Amazon.CloudTrail.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</code> 
+        ///  <c>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</c> 
         /// </para>
         ///  
         /// <para>
@@ -77,8 +78,8 @@ namespace Amazon.CloudTrail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If an empty list is specified and <code>IncludeShadowTrails</code> is false, then
-        /// information for all trails in the current Region is returned.
+        /// If an empty list is specified and <c>IncludeShadowTrails</c> is false, then information
+        /// for all trails in the current Region is returned.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -104,7 +105,7 @@ namespace Amazon.CloudTrail.Model
         // Check to see if TrailNameList property is set
         internal bool IsSetTrailNameList()
         {
-            return this._trailNameList != null && this._trailNameList.Count > 0; 
+            return this._trailNameList != null && (this._trailNameList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

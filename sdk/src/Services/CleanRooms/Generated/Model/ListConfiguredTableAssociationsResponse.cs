@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CleanRooms.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.CleanRooms.Model
     /// </summary>
     public partial class ListConfiguredTableAssociationsResponse : AmazonWebServiceResponse
     {
-        private List<ConfiguredTableAssociationSummary> _configuredTableAssociationSummaries = new List<ConfiguredTableAssociationSummary>();
+        private List<ConfiguredTableAssociationSummary> _configuredTableAssociationSummaries = AWSConfigs.InitializeCollections ? new List<ConfiguredTableAssociationSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,13 +53,13 @@ namespace Amazon.CleanRooms.Model
         // Check to see if ConfiguredTableAssociationSummaries property is set
         internal bool IsSetConfiguredTableAssociationSummaries()
         {
-            return this._configuredTableAssociationSummaries != null && this._configuredTableAssociationSummaries.Count > 0; 
+            return this._configuredTableAssociationSummaries != null && (this._configuredTableAssociationSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token value retrieved from a previous call to access the next page of results.
+        /// The pagination token that's used to fetch the next set of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=10240)]

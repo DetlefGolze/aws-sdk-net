@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Kendra.Model
     {
         private string _id;
         private string _indexId;
-        private List<EntityPersonaConfiguration> _personas = new List<EntityPersonaConfiguration>();
+        private List<EntityPersonaConfiguration> _personas = AWSConfigs.InitializeCollections ? new List<EntityPersonaConfiguration>() : null;
 
         /// <summary>
         /// Gets and sets the property Id. 
@@ -84,8 +85,8 @@ namespace Amazon.Kendra.Model
         /// Gets and sets the property Personas. 
         /// <para>
         /// The personas that define the specific permissions of users or groups in your IAM Identity
-        /// Center identity source. The available personas or access roles are <code>Owner</code>
-        /// and <code>Viewer</code>. For more information on these personas, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html#access-search-experience">Providing
+        /// Center identity source. The available personas or access roles are <c>Owner</c> and
+        /// <c>Viewer</c>. For more information on these personas, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html#access-search-experience">Providing
         /// access to your search page</a>.
         /// </para>
         /// </summary>
@@ -99,7 +100,7 @@ namespace Amazon.Kendra.Model
         // Check to see if Personas property is set
         internal bool IsSetPersonas()
         {
-            return this._personas != null && this._personas.Count > 0; 
+            return this._personas != null && (this._personas.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

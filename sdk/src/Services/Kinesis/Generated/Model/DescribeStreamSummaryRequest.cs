@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kinesis.Model
 {
     /// <summary>
@@ -35,8 +36,9 @@ namespace Amazon.Kinesis.Model
     /// 
     ///  <note> 
     /// <para>
-    /// When invoking this API, it is recommended you use the <code>StreamARN</code> input
-    /// parameter rather than the <code>StreamName</code> input parameter.
+    /// When invoking this API, you must use either the <c>StreamARN</c> or the <c>StreamName</c>
+    /// parameter, or both. It is recommended that you use the <c>StreamARN</c> input parameter
+    /// when you invoke this API.
     /// </para>
     ///  </note> 
     /// <para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -34,9 +35,9 @@ namespace Amazon.Connect.Model
     /// 
     ///  
     /// <para>
-    /// If you do not specify a <code>QueueTypes</code> parameter, both standard and agent
-    /// queues are returned. This might cause an unexpected truncation of results if you have
-    /// more than 1000 agents and you limit the number of results of the API call in code.
+    /// If you do not specify a <c>QueueTypes</c> parameter, both standard and agent queues
+    /// are returned. This might cause an unexpected truncation of results if you have more
+    /// than 1000 agents and you limit the number of results of the API call in code.
     /// </para>
     ///  
     /// <para>
@@ -49,7 +50,7 @@ namespace Amazon.Connect.Model
         private string _instanceId;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _queueTypes = new List<string>();
+        private List<string> _queueTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property InstanceId. 
@@ -125,7 +126,7 @@ namespace Amazon.Connect.Model
         // Check to see if QueueTypes property is set
         internal bool IsSetQueueTypes()
         {
-            return this._queueTypes != null && this._queueTypes.Count > 0; 
+            return this._queueTypes != null && (this._queueTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

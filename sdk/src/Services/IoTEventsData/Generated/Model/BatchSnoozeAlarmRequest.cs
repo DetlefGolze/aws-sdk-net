@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTEventsData.Model
 {
     /// <summary>
     /// Container for the parameters to the BatchSnoozeAlarm operation.
-    /// Changes one or more alarms to the snooze mode. The alarms change to the <code>SNOOZE_DISABLED</code>
+    /// Changes one or more alarms to the snooze mode. The alarms change to the <c>SNOOZE_DISABLED</c>
     /// state after you set them to the snooze mode.
     /// </summary>
     public partial class BatchSnoozeAlarmRequest : AmazonIoTEventsDataRequest
     {
-        private List<SnoozeAlarmActionRequest> _snoozeActionRequests = new List<SnoozeAlarmActionRequest>();
+        private List<SnoozeAlarmActionRequest> _snoozeActionRequests = AWSConfigs.InitializeCollections ? new List<SnoozeAlarmActionRequest>() : null;
 
         /// <summary>
         /// Gets and sets the property SnoozeActionRequests. 
@@ -53,7 +54,7 @@ namespace Amazon.IoTEventsData.Model
         // Check to see if SnoozeActionRequests property is set
         internal bool IsSetSnoozeActionRequests()
         {
-            return this._snoozeActionRequests != null && this._snoozeActionRequests.Count > 0; 
+            return this._snoozeActionRequests != null && (this._snoozeActionRequests.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

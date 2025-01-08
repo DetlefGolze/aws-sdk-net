@@ -26,12 +26,28 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptunedata.Model
 {
     /// <summary>
     /// Container for the parameters to the ExecuteOpenCypherExplainQuery operation.
-    /// Executes an openCypher <code>explain</code> request. See <a href="https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher-explain.html">The
+    /// Executes an openCypher <c>explain</c> request. See <a href="https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher-explain.html">The
     /// openCypher explain feature</a> for more information.
+    /// 
+    ///  
+    /// <para>
+    /// When invoking this operation in a Neptune cluster that has IAM authentication enabled,
+    /// the IAM user or role making the request must have a policy attached that allows the
+    /// <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#readdataviaquery">neptune-db:ReadDataViaQuery</a>
+    /// IAM action in that cluster.
+    /// </para>
+    ///  
+    /// <para>
+    /// Note that the <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html#iam-neptune-condition-keys">neptune-db:QueryLanguage:OpenCypher</a>
+    /// IAM condition key can be used in the policy document to restrict the use of openCypher
+    /// queries (see <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html">Condition
+    /// keys available in Neptune IAM data-access policy statements</a>).
+    /// </para>
     /// </summary>
     public partial class ExecuteOpenCypherExplainQueryRequest : AmazonNeptunedataRequest
     {
@@ -42,8 +58,8 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property ExplainMode. 
         /// <para>
-        /// The openCypher <code>explain</code> mode. Can be one of: <code>static</code>, <code>dynamic</code>,
-        /// or <code>details</code>.
+        /// The openCypher <c>explain</c> mode. Can be one of: <c>static</c>, <c>dynamic</c>,
+        /// or <c>details</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

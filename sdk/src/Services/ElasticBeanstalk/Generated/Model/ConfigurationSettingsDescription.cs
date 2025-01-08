@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.ElasticBeanstalk.Model
         private ConfigurationDeploymentStatus _deploymentStatus;
         private string _description;
         private string _environmentName;
-        private List<ConfigurationOptionSetting> _optionSettings = new List<ConfigurationOptionSetting>();
+        private List<ConfigurationOptionSetting> _optionSettings = AWSConfigs.InitializeCollections ? new List<ConfigurationOptionSetting>() : null;
         private string _platformArn;
         private string _solutionStackName;
         private string _templateName;
@@ -102,26 +103,26 @@ namespace Amazon.ElasticBeanstalk.Model
         /// <summary>
         /// Gets and sets the property DeploymentStatus. 
         /// <para>
-        ///  If this configuration set is associated with an environment, the <code>DeploymentStatus</code>
+        ///  If this configuration set is associated with an environment, the <c>DeploymentStatus</c>
         /// parameter indicates the deployment status of this configuration set: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>null</code>: This configuration is not associated with a running environment.
+        ///  <c>null</c>: This configuration is not associated with a running environment.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>pending</code>: This is a draft configuration that is not deployed to the associated
+        ///  <c>pending</c>: This is a draft configuration that is not deployed to the associated
         /// environment but is in the process of deploying.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deployed</code>: This is the configuration that is currently deployed to the
-        /// associated running environment.
+        ///  <c>deployed</c>: This is the configuration that is currently deployed to the associated
+        /// running environment.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>failed</code>: This is a draft configuration that failed to successfully deploy.
+        ///  <c>failed</c>: This is a draft configuration that failed to successfully deploy.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -159,8 +160,7 @@ namespace Amazon.ElasticBeanstalk.Model
         /// <summary>
         /// Gets and sets the property EnvironmentName. 
         /// <para>
-        ///  If not <code>null</code>, the name of the environment for this configuration set.
-        /// 
+        ///  If not <c>null</c>, the name of the environment for this configuration set. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=4, Max=40)]
@@ -191,7 +191,7 @@ namespace Amazon.ElasticBeanstalk.Model
         // Check to see if OptionSettings property is set
         internal bool IsSetOptionSettings()
         {
-            return this._optionSettings != null && this._optionSettings.Count > 0; 
+            return this._optionSettings != null && (this._optionSettings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -233,7 +233,7 @@ namespace Amazon.ElasticBeanstalk.Model
         /// <summary>
         /// Gets and sets the property TemplateName. 
         /// <para>
-        ///  If not <code>null</code>, the name of the configuration template for this configuration
+        ///  If not <c>null</c>, the name of the configuration template for this configuration
         /// set. 
         /// </para>
         /// </summary>

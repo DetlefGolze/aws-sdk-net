@@ -26,14 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FraudDetector.Model
 {
     /// <summary>
     /// Container for the parameters to the GetRules operation.
-    /// Get all rules for a detector (paginated) if <code>ruleId</code> and <code>ruleVersion</code>
-    /// are not specified. Gets all rules for the detector and the <code>ruleId</code> if
-    /// present (paginated). Gets a specific rule if both the <code>ruleId</code> and the
-    /// <code>ruleVersion</code> are specified.
+    /// Get all rules for a detector (paginated) if <c>ruleId</c> and <c>ruleVersion</c> are
+    /// not specified. Gets all rules for the detector and the <c>ruleId</c> if present (paginated).
+    /// Gets a specific rule if both the <c>ruleId</c> and the <c>ruleVersion</c> are specified.
     /// 
     ///  
     /// <para>

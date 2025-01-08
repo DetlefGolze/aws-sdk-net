@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
@@ -43,15 +44,15 @@ namespace Amazon.PinpointSMSVoiceV2.Model
     /// </para>
     ///  
     /// <para>
-    /// If you specify an opted out number that isn't valid, an Error is returned.
+    /// If you specify an opted out number that isn't valid, an exception is returned.
     /// </para>
     /// </summary>
     public partial class DescribeOptedOutNumbersRequest : AmazonPinpointSMSVoiceV2Request
     {
-        private List<OptedOutFilter> _filters = new List<OptedOutFilter>();
+        private List<OptedOutFilter> _filters = AWSConfigs.InitializeCollections ? new List<OptedOutFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _optedOutNumbers = new List<string>();
+        private List<string> _optedOutNumbers = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _optOutListName;
 
         /// <summary>
@@ -70,7 +71,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -117,6 +118,10 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// <para>
         /// An array of phone numbers to search for in the OptOutList.
         /// </para>
+        ///  
+        /// <para>
+        /// If you specify an opted out number that isn't valid, an exception is returned.
+        /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=5)]
         public List<string> OptedOutNumbers
@@ -128,7 +133,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         // Check to see if OptedOutNumbers property is set
         internal bool IsSetOptedOutNumbers()
         {
-            return this._optedOutNumbers != null && this._optedOutNumbers.Count > 0; 
+            return this._optedOutNumbers != null && (this._optedOutNumbers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -137,6 +142,12 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// The OptOutListName or OptOutListArn of the OptOutList. You can use <a>DescribeOptOutLists</a>
         /// to find the values for OptOutListName and OptOutListArn.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// If you are using a shared AWS End User Messaging SMS and Voice resource then you must
+        /// use the full Amazon Resource Name(ARN).
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]
         public string OptOutListName

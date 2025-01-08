@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
@@ -38,6 +39,8 @@ namespace Amazon.StepFunctions.Model
         private MapRunItemCounts _itemCounts;
         private string _mapRunArn;
         private int? _maxConcurrency;
+        private int? _redriveCount;
+        private DateTime? _redriveDate;
         private DateTime? _startDate;
         private MapRunStatus _status;
         private DateTime? _stopDate;
@@ -69,7 +72,7 @@ namespace Amazon.StepFunctions.Model
         /// <para>
         /// A JSON object that contains information about the total number of child workflow executions
         /// for the Map Run, and the count of child workflow executions for each status, such
-        /// as <code>failed</code> and <code>succeeded</code>.
+        /// as <c>failed</c> and <c>succeeded</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -89,7 +92,7 @@ namespace Amazon.StepFunctions.Model
         /// Gets and sets the property ItemCounts. 
         /// <para>
         /// A JSON object that contains information about the total number of items, and the item
-        /// count for each processing status, such as <code>pending</code> and <code>failed</code>.
+        /// count for each processing status, such as <c>pending</c> and <c>failed</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -142,6 +145,45 @@ namespace Amazon.StepFunctions.Model
         internal bool IsSetMaxConcurrency()
         {
             return this._maxConcurrency.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property RedriveCount. 
+        /// <para>
+        /// The number of times you've redriven a Map Run. If you have not yet redriven a Map
+        /// Run, the <c>redriveCount</c> is 0. This count is only updated if you successfully
+        /// redrive a Map Run.
+        /// </para>
+        /// </summary>
+        public int RedriveCount
+        {
+            get { return this._redriveCount.GetValueOrDefault(); }
+            set { this._redriveCount = value; }
+        }
+
+        // Check to see if RedriveCount property is set
+        internal bool IsSetRedriveCount()
+        {
+            return this._redriveCount.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property RedriveDate. 
+        /// <para>
+        /// The date a Map Run was last redriven. If you have not yet redriven a Map Run, the
+        /// <c>redriveDate</c> is null.
+        /// </para>
+        /// </summary>
+        public DateTime RedriveDate
+        {
+            get { return this._redriveDate.GetValueOrDefault(); }
+            set { this._redriveDate = value; }
+        }
+
+        // Check to see if RedriveDate property is set
+        internal bool IsSetRedriveDate()
+        {
+            return this._redriveDate.HasValue; 
         }
 
         /// <summary>

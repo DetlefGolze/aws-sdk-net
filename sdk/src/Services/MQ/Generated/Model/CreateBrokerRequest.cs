@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MQ.Model
 {
     /// <summary>
@@ -120,11 +121,11 @@ namespace Amazon.MQ.Model
         private Logs _logs;
         private WeeklyStartTime _maintenanceWindowStartTime;
         private bool? _publiclyAccessible;
-        private List<string> _securityGroups = new List<string>();
+        private List<string> _securityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private BrokerStorageType _storageType;
-        private List<string> _subnetIds = new List<string>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
-        private List<User> _users = new List<User>();
+        private List<string> _subnetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<User> _users = AWSConfigs.InitializeCollections ? new List<User>() : null;
 
         /// <summary>
         /// Gets and sets the property AuthenticationStrategy. 
@@ -147,13 +148,17 @@ namespace Amazon.MQ.Model
         /// <summary>
         /// Gets and sets the property AutoMinorVersionUpgrade. 
         /// <para>
-        /// Enables automatic upgrades to new minor versions for brokers, as new versions are
-        /// released and supported by Amazon MQ. Automatic upgrades occur during the scheduled
-        /// maintenance window of the broker or after a manual broker reboot. Set to true by default,
-        /// if no value is specified.
+        /// Enables automatic upgrades to new patch versions for brokers as new versions are released
+        /// and supported by Amazon MQ. Automatic upgrades occur during the scheduled maintenance
+        /// window or after a manual broker reboot. Set to true by default, if no value is specified.
         /// </para>
+        ///  <note>
+        /// <para>
+        /// Must be set to true for ActiveMQ brokers version 5.18 and above and for RabbitMQ brokers
+        /// version 3.13 and above.
+        /// </para>
+        /// </note>
         /// </summary>
-        [AWSProperty(Required=true)]
         public bool AutoMinorVersionUpgrade
         {
             get { return this._autoMinorVersionUpgrade.GetValueOrDefault(); }
@@ -335,12 +340,12 @@ namespace Amazon.MQ.Model
         /// <summary>
         /// Gets and sets the property EngineVersion. 
         /// <para>
-        /// Required. The broker engine's version. For a list of supported engine versions, see
-        /// <a href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker-engine.html">Supported
-        /// engines</a>.
+        /// The broker engine version. Defaults to the latest available version for the specified
+        /// broker engine type. For more information, see the <a href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/activemq-version-management.html">ActiveMQ
+        /// version management</a> and the <a href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/rabbitmq-version-management.html">RabbitMQ
+        /// version management</a> sections in the Amazon MQ Developer Guide.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public string EngineVersion
         {
             get { return this._engineVersion; }
@@ -462,7 +467,7 @@ namespace Amazon.MQ.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -513,7 +518,7 @@ namespace Amazon.MQ.Model
         // Check to see if SubnetIds property is set
         internal bool IsSetSubnetIds()
         {
-            return this._subnetIds != null && this._subnetIds.Count > 0; 
+            return this._subnetIds != null && (this._subnetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -531,7 +536,7 @@ namespace Amazon.MQ.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -553,7 +558,7 @@ namespace Amazon.MQ.Model
         // Check to see if Users property is set
         internal bool IsSetUsers()
         {
-            return this._users != null && this._users.Count > 0; 
+            return this._users != null && (this._users.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

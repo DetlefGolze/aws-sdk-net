@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,41 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(CanvasAppSettings requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetDirectDeploySettings())
+            {
+                context.Writer.WritePropertyName("DirectDeploySettings");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = DirectDeploySettingsMarshaller.Instance;
+                marshaller.Marshall(requestObject.DirectDeploySettings, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetEmrServerlessSettings())
+            {
+                context.Writer.WritePropertyName("EmrServerlessSettings");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = EmrServerlessSettingsMarshaller.Instance;
+                marshaller.Marshall(requestObject.EmrServerlessSettings, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetGenerativeAiSettings())
+            {
+                context.Writer.WritePropertyName("GenerativeAiSettings");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = GenerativeAiSettingsMarshaller.Instance;
+                marshaller.Marshall(requestObject.GenerativeAiSettings, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetIdentityProviderOAuthSettings())
             {
                 context.Writer.WritePropertyName("IdentityProviderOAuthSettings");
@@ -59,6 +95,17 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     context.Writer.WriteObjectEnd();
                 }
                 context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetKendraSettings())
+            {
+                context.Writer.WritePropertyName("KendraSettings");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = KendraSettingsMarshaller.Instance;
+                marshaller.Marshall(requestObject.KendraSettings, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetModelRegisterSettings())

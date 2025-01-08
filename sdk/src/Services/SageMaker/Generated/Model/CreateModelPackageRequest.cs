@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -38,9 +39,9 @@ namespace Amazon.SageMaker.Model
     ///  
     /// <para>
     /// To create a model package by specifying a Docker container that contains your inference
-    /// code and the Amazon S3 location of your model artifacts, provide values for <code>InferenceSpecification</code>.
+    /// code and the Amazon S3 location of your model artifacts, provide values for <c>InferenceSpecification</c>.
     /// To create a model from an algorithm resource that you created or subscribed to in
-    /// Amazon Web Services Marketplace, provide a value for <code>SourceAlgorithmSpecification</code>.
+    /// Amazon Web Services Marketplace, provide a value for <c>SourceAlgorithmSpecification</c>.
     /// </para>
     ///  <note> 
     /// <para>
@@ -58,23 +59,27 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class CreateModelPackageRequest : AmazonSageMakerRequest
     {
-        private List<AdditionalInferenceSpecificationDefinition> _additionalInferenceSpecifications = new List<AdditionalInferenceSpecificationDefinition>();
+        private List<AdditionalInferenceSpecificationDefinition> _additionalInferenceSpecifications = AWSConfigs.InitializeCollections ? new List<AdditionalInferenceSpecificationDefinition>() : null;
         private bool? _certifyForMarketplace;
         private string _clientToken;
-        private Dictionary<string, string> _customerMetadataProperties = new Dictionary<string, string>();
+        private Dictionary<string, string> _customerMetadataProperties = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _domain;
         private DriftCheckBaselines _driftCheckBaselines;
         private InferenceSpecification _inferenceSpecification;
         private MetadataProperties _metadataProperties;
         private ModelApprovalStatus _modelApprovalStatus;
+        private ModelPackageModelCard _modelCard;
+        private ModelLifeCycle _modelLifeCycle;
         private ModelMetrics _modelMetrics;
         private string _modelPackageDescription;
         private string _modelPackageGroupName;
         private string _modelPackageName;
         private string _samplePayloadUrl;
+        private ModelPackageSecurityConfig _securityConfig;
         private SkipModelValidation _skipModelValidation;
         private SourceAlgorithmSpecification _sourceAlgorithmSpecification;
-        private List<Tag> _tags = new List<Tag>();
+        private string _sourceUri;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _task;
         private ModelPackageValidationSpecification _validationSpecification;
 
@@ -97,7 +102,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if AdditionalInferenceSpecifications property is set
         internal bool IsSetAdditionalInferenceSpecifications()
         {
-            return this._additionalInferenceSpecifications != null && this._additionalInferenceSpecifications.Count > 0; 
+            return this._additionalInferenceSpecifications != null && (this._additionalInferenceSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -158,7 +163,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if CustomerMetadataProperties property is set
         internal bool IsSetCustomerMetadataProperties()
         {
-            return this._customerMetadataProperties != null && this._customerMetadataProperties.Count > 0; 
+            return this._customerMetadataProperties != null && (this._customerMetadataProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -204,8 +209,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property InferenceSpecification. 
         /// <para>
-        /// Specifies details about inference jobs that can be run with models based on this model
-        /// package, including the following:
+        /// Specifies details about inference jobs that you can run with models based on this
+        /// model package, including the following information:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -261,8 +266,8 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        /// For versioned models, the value of this parameter must be set to <code>Approved</code>
-        /// to deploy the model.
+        /// For versioned models, the value of this parameter must be set to <c>Approved</c> to
+        /// deploy the model.
         /// </para>
         /// </summary>
         public ModelApprovalStatus ModelApprovalStatus
@@ -275,6 +280,50 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetModelApprovalStatus()
         {
             return this._modelApprovalStatus != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ModelCard. 
+        /// <para>
+        /// The model card associated with the model package. Since <c>ModelPackageModelCard</c>
+        /// is tied to a model package, it is a specific usage of a model card and its schema
+        /// is simplified compared to the schema of <c>ModelCard</c>. The <c>ModelPackageModelCard</c>
+        /// schema does not include <c>model_package_details</c>, and <c>model_overview</c> is
+        /// composed of the <c>model_creator</c> and <c>model_artifact</c> properties. For more
+        /// information about the model package model card schema, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry-details.html#model-card-schema">Model
+        /// package model card schema</a>. For more information about the model card associated
+        /// with the model package, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry-details.html">View
+        /// the Details of a Model Version</a>.
+        /// </para>
+        /// </summary>
+        public ModelPackageModelCard ModelCard
+        {
+            get { return this._modelCard; }
+            set { this._modelCard = value; }
+        }
+
+        // Check to see if ModelCard property is set
+        internal bool IsSetModelCard()
+        {
+            return this._modelCard != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ModelLifeCycle. 
+        /// <para>
+        ///  A structure describing the current state of the model in its life cycle. 
+        /// </para>
+        /// </summary>
+        public ModelLifeCycle ModelLifeCycle
+        {
+            get { return this._modelLifeCycle; }
+            set { this._modelLifeCycle = value; }
+        }
+
+        // Check to see if ModelLifeCycle property is set
+        internal bool IsSetModelLifeCycle()
+        {
+            return this._modelLifeCycle != null;
         }
 
         /// <summary>
@@ -388,6 +437,24 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SecurityConfig. 
+        /// <para>
+        /// The KMS Key ID (<c>KMSKeyId</c>) used for encryption of model package information.
+        /// </para>
+        /// </summary>
+        public ModelPackageSecurityConfig SecurityConfig
+        {
+            get { return this._securityConfig; }
+            set { this._securityConfig = value; }
+        }
+
+        // Check to see if SecurityConfig property is set
+        internal bool IsSetSecurityConfig()
+        {
+            return this._securityConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property SkipModelValidation. 
         /// <para>
         /// Indicates if you want to skip model validation.
@@ -424,6 +491,27 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SourceUri. 
+        /// <para>
+        /// The URI of the source for the model package. If you want to clone a model package,
+        /// set it to the model package Amazon Resource Name (ARN). If you want to register a
+        /// model, set it to the model ARN.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=1024)]
+        public string SourceUri
+        {
+            get { return this._sourceUri; }
+            set { this._sourceUri = value; }
+        }
+
+        // Check to see if SourceUri property is set
+        internal bool IsSetSourceUri()
+        {
+            return this._sourceUri != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// A list of key value pairs associated with the model. For more information, see <a
@@ -432,9 +520,9 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        /// If you supply <code>ModelPackageGroupName</code>, your model package belongs to the
-        /// model group you specify and uses the tags associated with the model group. In this
-        /// case, you cannot supply a <code>tag</code> argument. 
+        /// If you supply <c>ModelPackageGroupName</c>, your model package belongs to the model
+        /// group you specify and uses the tags associated with the model group. In this case,
+        /// you cannot supply a <c>tag</c> argument. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -447,7 +535,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -455,9 +543,9 @@ namespace Amazon.SageMaker.Model
         /// <para>
         /// The machine learning task your model package accomplishes. Common machine learning
         /// tasks include object detection and image classification. The following tasks are supported
-        /// by Inference Recommender: <code>"IMAGE_CLASSIFICATION"</code> | <code>"OBJECT_DETECTION"</code>
-        /// | <code>"TEXT_GENERATION"</code> |<code>"IMAGE_SEGMENTATION"</code> | <code>"FILL_MASK"</code>
-        /// | <code>"CLASSIFICATION"</code> | <code>"REGRESSION"</code> | <code>"OTHER"</code>.
+        /// by Inference Recommender: <c>"IMAGE_CLASSIFICATION"</c> | <c>"OBJECT_DETECTION"</c>
+        /// | <c>"TEXT_GENERATION"</c> |<c>"IMAGE_SEGMENTATION"</c> | <c>"FILL_MASK"</c> | <c>"CLASSIFICATION"</c>
+        /// | <c>"REGRESSION"</c> | <c>"OTHER"</c>.
         /// </para>
         ///  
         /// <para>

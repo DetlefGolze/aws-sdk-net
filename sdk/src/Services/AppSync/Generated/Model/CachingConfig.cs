@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.AppSync.Model
     /// </summary>
     public partial class CachingConfig
     {
-        private List<string> _cachingKeys = new List<string>();
+        private List<string> _cachingKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private long? _ttl;
 
         /// <summary>
@@ -43,8 +44,8 @@ namespace Amazon.AppSync.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values are entries from the <code>$context.arguments</code>, <code>$context.source</code>,
-        /// and <code>$context.identity</code> maps.
+        /// Valid values are entries from the <c>$context.arguments</c>, <c>$context.source</c>,
+        /// and <c>$context.identity</c> maps.
         /// </para>
         /// </summary>
         public List<string> CachingKeys
@@ -56,7 +57,7 @@ namespace Amazon.AppSync.Model
         // Check to see if CachingKeys property is set
         internal bool IsSetCachingKeys()
         {
-            return this._cachingKeys != null && this._cachingKeys.Count > 0; 
+            return this._cachingKeys != null && (this._cachingKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticTranscoder.Model
 {
     /// <summary>
-    /// The <code>UpdatePipelineNotificationsResponse</code> structure.
+    /// The <c>UpdatePipelineNotificationsResponse</c> structure.
     /// </summary>
     public partial class UpdatePipelineNotificationsResponse : AmazonWebServiceResponse
     {

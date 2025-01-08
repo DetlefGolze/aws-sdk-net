@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -139,9 +140,9 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property TerminationProtectionEnabled. 
         /// <para>
         /// A boolean value that determines whether or not an Amazon QuickSight account can be
-        /// deleted. A <code>True</code> value doesn't allow the account to be deleted and results
-        /// in an error message if a user tries to make a <code>DeleteAccountSubsctiption</code>
-        /// request. A <code>False</code> value will allow the ccount to be deleted. 
+        /// deleted. A <c>True</c> value doesn't allow the account to be deleted and results in
+        /// an error message if a user tries to make a <c>DeleteAccountSubsctiption</c> request.
+        /// A <c>False</c> value will allow the ccount to be deleted. 
         /// </para>
         /// </summary>
         public bool TerminationProtectionEnabled

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Amplify.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property AppId. 
         /// <para>
-        ///  The unique ID for an Amplify app. 
+        /// The unique ID for an Amplify app. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=20)]
@@ -60,10 +61,10 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        ///  The maximum number of records to list in a single response. 
+        /// The maximum number of records to list in a single response. 
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=100)]
+        [AWSProperty(Min=0, Max=50)]
         public int MaxResults
         {
             get { return this._maxResults.GetValueOrDefault(); }
@@ -79,7 +80,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  A pagination token. Set to null to start listing webhooks from the start. If non-null,the
+        /// A pagination token. Set to null to start listing webhooks from the start. If non-null,the
         /// pagination token is returned in a result. Pass its value in here to list more webhooks.
         /// 
         /// </para>

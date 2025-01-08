@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
     /// Container for the parameters to the CancelElasticsearchServiceSoftwareUpdate operation.
     /// Cancels a scheduled service software update for an Amazon ES domain. You can only
-    /// perform this operation before the <code>AutomatedUpdateDate</code> and when the <code>UpdateStatus</code>
-    /// is in the <code>PENDING_UPDATE</code> state.
+    /// perform this operation before the <c>AutomatedUpdateDate</c> and when the <c>UpdateStatus</c>
+    /// is in the <c>PENDING_UPDATE</c> state.
     /// </summary>
     public partial class CancelElasticsearchServiceSoftwareUpdateRequest : AmazonElasticsearchRequest
     {

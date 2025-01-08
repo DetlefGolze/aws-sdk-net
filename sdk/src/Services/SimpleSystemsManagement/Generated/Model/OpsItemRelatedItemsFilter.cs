@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -35,13 +36,13 @@ namespace Amazon.SimpleSystemsManagement.Model
     {
         private OpsItemRelatedItemsFilterKey _key;
         private OpsItemRelatedItemsFilterOperator _operator;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Key. 
         /// <para>
-        /// The name of the filter key. Supported values include <code>ResourceUri</code>, <code>ResourceType</code>,
-        /// or <code>AssociationId</code>.
+        /// The name of the filter key. Supported values include <c>ResourceUri</c>, <c>ResourceType</c>,
+        /// or <c>AssociationId</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -60,7 +61,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property Operator. 
         /// <para>
-        /// The operator used by the filter call. The only supported operator is <code>EQUAL</code>.
+        /// The operator used by the filter call. The only supported operator is <c>EQUAL</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -92,7 +93,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

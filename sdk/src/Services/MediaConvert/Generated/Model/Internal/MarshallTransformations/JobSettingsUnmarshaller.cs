@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public JobSettings Unmarshall(JsonUnmarshallerContext context)
         {
+            JobSettings unmarshalledObject = new JobSettings();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            JobSettings unmarshalledObject = new JobSettings();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -76,6 +78,12 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
                     unmarshalledObject.AvailBlanking = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("colorConversion3DLUTSettings", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<ColorConversion3DLUTSetting, ColorConversion3DLUTSettingUnmarshaller>(ColorConversion3DLUTSettingUnmarshaller.Instance);
+                    unmarshalledObject.ColorConversion3DLUTSettings = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("esam", targetDepth))
                 {
                     var unmarshaller = EsamSettingsUnmarshaller.Instance;
@@ -86,6 +94,12 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = ExtendedDataServicesUnmarshaller.Instance;
                     unmarshalledObject.ExtendedDataServices = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("followSource", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.FollowSource = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("inputs", targetDepth))
@@ -137,7 +151,6 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

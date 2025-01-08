@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.SimpleNotificationService.Model
     /// </summary>
     public partial class SetPlatformApplicationAttributesRequest : AmazonSimpleNotificationServiceRequest
     {
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _platformApplicationArn;
 
         /// <summary>
@@ -49,97 +50,105 @@ namespace Amazon.SimpleNotificationService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PlatformCredential</code> – The credential received from the notification service.
+        ///  <c>PlatformCredential</c> – The credential received from the notification service.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For ADM, <code>PlatformCredential</code>is client secret.
+        /// For ADM, <c>PlatformCredential</c>is client secret.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For Apple Services using certificate credentials, <code>PlatformCredential</code>
-        /// is private key.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// For Apple Services using token credentials, <code>PlatformCredential</code> is signing
+        /// For Apple Services using certificate credentials, <c>PlatformCredential</c> is private
         /// key.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For GCM (Firebase Cloud Messaging), <code>PlatformCredential</code> is API key. 
+        /// For Apple Services using token credentials, <c>PlatformCredential</c> is signing key.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For GCM (Firebase Cloud Messaging) using key credentials, there is no <c>PlatformPrincipal</c>.
+        /// The <c>PlatformCredential</c> is <c>API key</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For GCM (Firebase Cloud Messaging) using token credentials, there is no <c>PlatformPrincipal</c>.
+        /// The <c>PlatformCredential</c> is a JSON formatted private key file. When using the
+        /// Amazon Web Services CLI, the file must be in string format and special characters
+        /// must be ignored. To format the file correctly, Amazon SNS recommends using the following
+        /// command: <c>SERVICE_JSON=`jq @json &lt;&lt;&lt; cat service.json`</c>.
         /// </para>
         ///  </li> </ul> </li> </ul> <ul> <li> 
         /// <para>
-        ///  <code>PlatformPrincipal</code> – The principal received from the notification service.
+        ///  <c>PlatformPrincipal</c> – The principal received from the notification service.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For ADM, <code>PlatformPrincipal</code>is client id.
+        /// For ADM, <c>PlatformPrincipal</c>is client id.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For Apple Services using certificate credentials, <code>PlatformPrincipal</code> is
-        /// SSL certificate.
+        /// For Apple Services using certificate credentials, <c>PlatformPrincipal</c> is SSL
+        /// certificate.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For Apple Services using token credentials, <code>PlatformPrincipal</code> is signing
-        /// key ID.
+        /// For Apple Services using token credentials, <c>PlatformPrincipal</c> is signing key
+        /// ID.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For GCM (Firebase Cloud Messaging), there is no <code>PlatformPrincipal</code>. 
+        /// For GCM (Firebase Cloud Messaging), there is no <c>PlatformPrincipal</c>. 
         /// </para>
         ///  </li> </ul> </li> </ul> <ul> <li> 
         /// <para>
-        ///  <code>EventEndpointCreated</code> – Topic ARN to which <code>EndpointCreated</code>
-        /// event notifications are sent.
+        ///  <c>EventEndpointCreated</c> – Topic ARN to which <c>EndpointCreated</c> event notifications
+        /// are sent.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EventEndpointDeleted</code> – Topic ARN to which <code>EndpointDeleted</code>
-        /// event notifications are sent.
+        ///  <c>EventEndpointDeleted</c> – Topic ARN to which <c>EndpointDeleted</c> event notifications
+        /// are sent.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EventEndpointUpdated</code> – Topic ARN to which <code>EndpointUpdate</code>
-        /// event notifications are sent.
+        ///  <c>EventEndpointUpdated</c> – Topic ARN to which <c>EndpointUpdate</c> event notifications
+        /// are sent.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EventDeliveryFailure</code> – Topic ARN to which <code>DeliveryFailure</code>
-        /// event notifications are sent upon Direct Publish delivery failure (permanent) to one
-        /// of the application's endpoints.
+        ///  <c>EventDeliveryFailure</c> – Topic ARN to which <c>DeliveryFailure</c> event notifications
+        /// are sent upon Direct Publish delivery failure (permanent) to one of the application's
+        /// endpoints.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SuccessFeedbackRoleArn</code> – IAM role ARN used to give Amazon SNS write
-        /// access to use CloudWatch Logs on your behalf.
+        ///  <c>SuccessFeedbackRoleArn</c> – IAM role ARN used to give Amazon SNS write access
+        /// to use CloudWatch Logs on your behalf.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FailureFeedbackRoleArn</code> – IAM role ARN used to give Amazon SNS write
-        /// access to use CloudWatch Logs on your behalf.
+        ///  <c>FailureFeedbackRoleArn</c> – IAM role ARN used to give Amazon SNS write access
+        /// to use CloudWatch Logs on your behalf.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SuccessFeedbackSampleRate</code> – Sample rate percentage (0-100) of successfully
+        ///  <c>SuccessFeedbackSampleRate</c> – Sample rate percentage (0-100) of successfully
         /// delivered messages.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// The following attributes only apply to <code>APNs</code> token-based authentication:
+        /// The following attributes only apply to <c>APNs</c> token-based authentication:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ApplePlatformTeamID</code> – The identifier that's assigned to your Apple developer
+        ///  <c>ApplePlatformTeamID</c> – The identifier that's assigned to your Apple developer
         /// account team.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ApplePlatformBundleID</code> – The bundle identifier that's assigned to your
-        /// iOS app.
+        ///  <c>ApplePlatformBundleID</c> – The bundle identifier that's assigned to your iOS
+        /// app.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -153,13 +162,13 @@ namespace Amazon.SimpleNotificationService.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PlatformApplicationArn. 
         /// <para>
-        /// PlatformApplicationArn for SetPlatformApplicationAttributes action.
+        ///  <c>PlatformApplicationArn</c> for <c>SetPlatformApplicationAttributes</c> action.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

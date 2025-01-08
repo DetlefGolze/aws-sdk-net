@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmail.Model
 {
     /// <summary>
@@ -51,7 +52,7 @@ namespace Amazon.SimpleEmail.Model
     /// </summary>
     public partial class SendBounceRequest : AmazonSimpleEmailServiceRequest
     {
-        private List<BouncedRecipientInfo> _bouncedRecipientInfoList = new List<BouncedRecipientInfo>();
+        private List<BouncedRecipientInfo> _bouncedRecipientInfoList = AWSConfigs.InitializeCollections ? new List<BouncedRecipientInfo>() : null;
         private string _bounceSender;
         private string _bounceSenderArn;
         private string _explanation;
@@ -63,7 +64,7 @@ namespace Amazon.SimpleEmail.Model
         /// <para>
         /// A list of recipients of the bounced message, including the information required to
         /// create the Delivery Status Notifications (DSNs) for the recipients. You must specify
-        /// at least one <code>BouncedRecipientInfo</code> in the list.
+        /// at least one <c>BouncedRecipientInfo</c> in the list.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -76,7 +77,7 @@ namespace Amazon.SimpleEmail.Model
         // Check to see if BouncedRecipientInfoList property is set
         internal bool IsSetBouncedRecipientInfoList()
         {
-            return this._bouncedRecipientInfoList != null && this._bouncedRecipientInfoList.Count > 0; 
+            return this._bouncedRecipientInfoList != null && (this._bouncedRecipientInfoList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

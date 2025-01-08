@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Inspector2.Model
     /// </summary>
     public partial class ListCoverageResponse : AmazonWebServiceResponse
     {
-        private List<CoveredResource> _coveredResources = new List<CoveredResource>();
+        private List<CoveredResource> _coveredResources = AWSConfigs.InitializeCollections ? new List<CoveredResource>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace Amazon.Inspector2.Model
         // Check to see if CoveredResources property is set
         internal bool IsSetCoveredResources()
         {
-            return this._coveredResources != null && this._coveredResources.Count > 0; 
+            return this._coveredResources != null && (this._coveredResources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -59,8 +60,8 @@ namespace Amazon.Inspector2.Model
         /// <para>
         /// A token to use for paginating results that are returned in the response. Set the value
         /// of this parameter to null for the first request to a list action. For subsequent calls,
-        /// use the <code>NextToken</code> value returned from the previous request to continue
-        /// listing results after the first page.
+        /// use the <c>NextToken</c> value returned from the previous request to continue listing
+        /// results after the first page.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1000000)]

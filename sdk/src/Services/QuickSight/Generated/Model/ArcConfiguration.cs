@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The arc configuration of a <code>GaugeChartVisual</code>.
+    /// The arc configuration of a <c>GaugeChartVisual</c>.
     /// </summary>
     public partial class ArcConfiguration
     {
@@ -39,7 +40,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property ArcAngle. 
         /// <para>
-        /// The option that determines the arc angle of a <code>GaugeChartVisual</code>.
+        /// The option that determines the arc angle of a <c>GaugeChartVisual</c>.
         /// </para>
         /// </summary>
         public double ArcAngle
@@ -57,7 +58,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property ArcThickness. 
         /// <para>
-        /// The options that determine the arc thickness of a <code>GaugeChartVisual</code>.
+        /// The options that determine the arc thickness of a <c>GaugeChartVisual</c>.
         /// </para>
         /// </summary>
         public ArcThicknessOptions ArcThickness

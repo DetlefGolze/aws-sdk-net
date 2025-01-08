@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.WAFV2.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    ///  <code>AvailableLabels</code> - Labels that rules add to matching requests. These
-    /// labels are defined in the <code>RuleLabels</code> for a <a>Rule</a>. 
+    ///  <c>AvailableLabels</c> - Labels that rules add to matching requests. These labels
+    /// are defined in the <c>RuleLabels</c> for a <a>Rule</a>. 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ConsumedLabels</code> - Labels that rules match against. These labels are defined
-    /// in a <code>LabelMatchStatement</code> specification, in the <a>Statement</a> definition
+    ///  <c>ConsumedLabels</c> - Labels that rules match against. These labels are defined
+    /// in a <c>LabelMatchStatement</c> specification, in the <a>Statement</a> definition
     /// of a rule. 
     /// </para>
     ///  </li> </ul>

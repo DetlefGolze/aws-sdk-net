@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
@@ -36,17 +37,17 @@ namespace Amazon.APIGateway.Model
     {
         private string _accepts;
         private string _exportType;
-        private Dictionary<string, string> _parameters = new Dictionary<string, string>();
+        private Dictionary<string, string> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _restApiId;
         private string _stageName;
 
         /// <summary>
         /// Gets and sets the property Accepts. 
         /// <para>
-        /// The content-type of the export, for example <code>application/json</code>. Currently
-        /// <code>application/json</code> and <code>application/yaml</code> are supported for
-        /// <code>exportType</code> of<code>oas30</code> and <code>swagger</code>. This should
-        /// be specified in the <code>Accept</code> header for direct API requests.
+        /// The content-type of the export, for example <c>application/json</c>. Currently <c>application/json</c>
+        /// and <c>application/yaml</c> are supported for <c>exportType</c> of<c>oas30</c> and
+        /// <c>swagger</c>. This should be specified in the <c>Accept</c> header for direct API
+        /// requests.
         /// </para>
         /// </summary>
         public string Accepts
@@ -58,7 +59,7 @@ namespace Amazon.APIGateway.Model
         // Check to see if Accepts property is set
         internal bool IsSetAccepts()
         {
-            return this._accepts != null;
+            return !string.IsNullOrEmpty(this._accepts);
         }
 
         /// <summary>
@@ -85,12 +86,12 @@ namespace Amazon.APIGateway.Model
         /// Gets and sets the property Parameters. 
         /// <para>
         /// A key-value map of query string parameters that specify properties of the export,
-        /// depending on the requested <code>exportType</code>. For <code>exportType</code> <code>oas30</code>
-        /// and <code>swagger</code>, any combination of the following parameters are supported:
-        /// <code>extensions='integrations'</code> or <code>extensions='apigateway'</code> will
-        /// export the API with x-amazon-apigateway-integration extensions. <code>extensions='authorizers'</code>
-        /// will export the API with x-amazon-apigateway-authorizer extensions. <code>postman</code>
-        /// will export the API with Postman extensions, allowing for import to the Postman tool
+        /// depending on the requested <c>exportType</c>. For <c>exportType</c> <c>oas30</c> and
+        /// <c>swagger</c>, any combination of the following parameters are supported: <c>extensions='integrations'</c>
+        /// or <c>extensions='apigateway'</c> will export the API with x-amazon-apigateway-integration
+        /// extensions. <c>extensions='authorizers'</c> will export the API with x-amazon-apigateway-authorizer
+        /// extensions. <c>postman</c> will export the API with Postman extensions, allowing for
+        /// import to the Postman tool
         /// </para>
         /// </summary>
         public Dictionary<string, string> Parameters
@@ -102,7 +103,7 @@ namespace Amazon.APIGateway.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.WAFV2.Model
     /// </para>
     ///  
     /// <para>
-    /// JSON specification: <code>"AllQueryArguments": {}</code> 
+    /// JSON specification: <c>"AllQueryArguments": {}</c> 
     /// </para>
     /// </summary>
     public partial class AllQueryArguments

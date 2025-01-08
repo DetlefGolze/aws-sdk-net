@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IVS.Model
 {
     /// <summary>
@@ -36,9 +37,9 @@ namespace Amazon.IVS.Model
     /// <para>
     ///  <b>Known issue:</b> In the us-east-1 region, if you use the Amazon Web Services CLI
     /// to create a recording configuration, it returns success even if the S3 bucket is in
-    /// a different region. In this case, the <code>state</code> of the recording configuration
-    /// is <code>CREATE_FAILED</code> (instead of <code>ACTIVE</code>). (In other regions,
-    /// the CLI correctly returns failure if the bucket is in a different region.)
+    /// a different region. In this case, the <c>state</c> of the recording configuration
+    /// is <c>CREATE_FAILED</c> (instead of <c>ACTIVE</c>). (In other regions, the CLI correctly
+    /// returns failure if the bucket is in a different region.)
     /// </para>
     ///  
     /// <para>
@@ -54,7 +55,7 @@ namespace Amazon.IVS.Model
         private string _name;
         private int? _recordingReconnectWindowSeconds;
         private RenditionConfiguration _renditionConfiguration;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private ThumbnailConfiguration _thumbnailConfiguration;
 
         /// <summary>
@@ -138,11 +139,11 @@ namespace Amazon.IVS.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// Array of 1-50 maps, each of the form <code>string:string (key:value)</code>. See <a
-        /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging Amazon
-        /// Web Services Resources</a> for more information, including restrictions that apply
-        /// to tags and "Tag naming limits and requirements"; Amazon IVS has no service-specific
-        /// constraints beyond what is documented there.
+        /// Array of 1-50 maps, each of the form <c>string:string (key:value)</c>. See <a href="https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html">Best
+        /// practices and strategies</a> in <i>Tagging Amazon Web Services Resources and Tag Editor</i>
+        /// for details, including restrictions that apply to tags and "Tag naming limits and
+        /// requirements"; Amazon IVS has no service-specific constraints beyond what is documented
+        /// there.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -155,7 +156,7 @@ namespace Amazon.IVS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

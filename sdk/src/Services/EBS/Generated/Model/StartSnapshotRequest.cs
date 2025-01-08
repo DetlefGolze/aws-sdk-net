@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EBS.Model
 {
     /// <summary>
     /// Container for the parameters to the StartSnapshot operation.
-    /// Creates a new Amazon EBS snapshot. The new snapshot enters the <code>pending</code>
-    /// state after the request completes. 
+    /// Creates a new Amazon EBS snapshot. The new snapshot enters the <c>pending</c> state
+    /// after the request completes. 
     /// 
     ///  
     /// <para>
@@ -40,9 +41,9 @@ namespace Amazon.EBS.Model
     /// </para>
     ///  <note> 
     /// <para>
-    /// You should always retry requests that receive server (<code>5xx</code>) error responses,
-    /// and <code>ThrottlingException</code> and <code>RequestThrottledException</code> client
-    /// error responses. For more information see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html">Error
+    /// You should always retry requests that receive server (<c>5xx</c>) error responses,
+    /// and <c>ThrottlingException</c> and <c>RequestThrottledException</c> client error responses.
+    /// For more information see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html">Error
     /// retries</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
     /// </para>
     ///  </note>
@@ -54,7 +55,7 @@ namespace Amazon.EBS.Model
         private bool? _encrypted;
         private string _kmsKeyArn;
         private string _parentSnapshotId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private int? _timeout;
         private long? _volumeSize;
 
@@ -119,7 +120,7 @@ namespace Amazon.EBS.Model
         ///  
         /// <para>
         /// You can't specify <b>Encrypted</b> and <b> ParentSnapshotId</b> in the same request.
-        /// If you specify both parameters, the request fails with <code>ValidationException</code>.
+        /// If you specify both parameters, the request fails with <c>ValidationException</c>.
         /// </para>
         ///  
         /// <para>
@@ -195,7 +196,7 @@ namespace Amazon.EBS.Model
         ///  
         /// <para>
         /// You can't specify <b>ParentSnapshotId</b> and <b>Encrypted</b> in the same request.
-        /// If you specify both parameters, the request fails with <code>ValidationException</code>.
+        /// If you specify both parameters, the request fails with <c>ValidationException</c>.
         /// </para>
         ///  
         /// <para>
@@ -242,7 +243,7 @@ namespace Amazon.EBS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -261,7 +262,7 @@ namespace Amazon.EBS.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If no value is specified, the timeout defaults to <code>60</code> minutes.
+        /// If no value is specified, the timeout defaults to <c>60</c> minutes.
         /// </para>
         /// </summary>
         [AWSProperty(Min=10, Max=4320)]
@@ -280,7 +281,7 @@ namespace Amazon.EBS.Model
         /// <summary>
         /// Gets and sets the property VolumeSize. 
         /// <para>
-        /// The size of the volume, in GiB. The maximum size is <code>65536</code> GiB (64 TiB).
+        /// The size of the volume, in GiB. The maximum size is <c>65536</c> GiB (64 TiB).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1)]

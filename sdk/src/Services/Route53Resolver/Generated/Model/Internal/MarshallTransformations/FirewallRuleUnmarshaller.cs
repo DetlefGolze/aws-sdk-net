@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Route53Resolver.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Route53Resolver.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public FirewallRule Unmarshall(JsonUnmarshallerContext context)
         {
+            FirewallRule unmarshalledObject = new FirewallRule();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            FirewallRule unmarshalledObject = new FirewallRule();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -94,6 +96,12 @@ namespace Amazon.Route53Resolver.Model.Internal.MarshallTransformations
                     unmarshalledObject.BlockResponse = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ConfidenceThreshold", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ConfidenceThreshold = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("CreationTime", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -106,16 +114,34 @@ namespace Amazon.Route53Resolver.Model.Internal.MarshallTransformations
                     unmarshalledObject.CreatorRequestId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("DnsThreatProtection", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DnsThreatProtection = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("FirewallDomainListId", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.FirewallDomainListId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("FirewallDomainRedirectionAction", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.FirewallDomainRedirectionAction = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("FirewallRuleGroupId", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.FirewallRuleGroupId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("FirewallThreatProtectionId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.FirewallThreatProtectionId = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("ModificationTime", targetDepth))
@@ -136,8 +162,13 @@ namespace Amazon.Route53Resolver.Model.Internal.MarshallTransformations
                     unmarshalledObject.Priority = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("Qtype", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Qtype = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

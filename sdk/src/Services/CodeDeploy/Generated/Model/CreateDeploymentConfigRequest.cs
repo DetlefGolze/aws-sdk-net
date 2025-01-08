@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
@@ -38,12 +39,13 @@ namespace Amazon.CodeDeploy.Model
         private string _deploymentConfigName;
         private MinimumHealthyHosts _minimumHealthyHosts;
         private TrafficRoutingConfig _trafficRoutingConfig;
+        private ZonalConfig _zonalConfig;
 
         /// <summary>
         /// Gets and sets the property ComputePlatform. 
         /// <para>
-        /// The destination platform type for the deployment (<code>Lambda</code>, <code>Server</code>,
-        /// or <code>ECS</code>).
+        /// The destination platform type for the deployment (<c>Lambda</c>, <c>Server</c>, or
+        /// <c>ECS</c>).
         /// </para>
         /// </summary>
         public ComputePlatform ComputePlatform
@@ -137,6 +139,31 @@ namespace Amazon.CodeDeploy.Model
         internal bool IsSetTrafficRoutingConfig()
         {
             return this._trafficRoutingConfig != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ZonalConfig. 
+        /// <para>
+        /// Configure the <c>ZonalConfig</c> object if you want CodeDeploy to deploy your application
+        /// to one <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones">Availability
+        /// Zone</a> at a time, within an Amazon Web Services Region.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about the zonal configuration feature, see <a href="https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations-create.html#zonal-config">zonal
+        /// configuration</a> in the <i>CodeDeploy User Guide</i>.
+        /// </para>
+        /// </summary>
+        public ZonalConfig ZonalConfig
+        {
+            get { return this._zonalConfig; }
+            set { this._zonalConfig = value; }
+        }
+
+        // Check to see if ZonalConfig property is set
+        internal bool IsSetZonalConfig()
+        {
+            return this._zonalConfig != null;
         }
 
     }

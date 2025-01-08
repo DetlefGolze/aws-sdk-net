@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// Contains the result of a successful invocation of the <code>DescribeDBInstanceAutomatedBackups</code>
+    /// Contains the result of a successful invocation of the <c>DescribeDBInstanceAutomatedBackups</c>
     /// action.
     /// </summary>
     public partial class DescribeDBInstanceAutomatedBackupsResponse : AmazonWebServiceResponse
     {
-        private List<DBInstanceAutomatedBackup> _dbInstanceAutomatedBackups = new List<DBInstanceAutomatedBackup>();
+        private List<DBInstanceAutomatedBackup> _dbInstanceAutomatedBackups = AWSConfigs.InitializeCollections ? new List<DBInstanceAutomatedBackup>() : null;
         private string _marker;
 
         /// <summary>
         /// Gets and sets the property DBInstanceAutomatedBackups. 
         /// <para>
-        /// A list of <code>DBInstanceAutomatedBackup</code> instances.
+        /// A list of <c>DBInstanceAutomatedBackup</c> instances.
         /// </para>
         /// </summary>
         public List<DBInstanceAutomatedBackup> DBInstanceAutomatedBackups
@@ -52,7 +53,7 @@ namespace Amazon.RDS.Model
         // Check to see if DBInstanceAutomatedBackups property is set
         internal bool IsSetDBInstanceAutomatedBackups()
         {
-            return this._dbInstanceAutomatedBackups != null && this._dbInstanceAutomatedBackups.Count > 0; 
+            return this._dbInstanceAutomatedBackups != null && (this._dbInstanceAutomatedBackups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.RDS.Model
         /// <para>
         /// An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>.
+        /// by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker

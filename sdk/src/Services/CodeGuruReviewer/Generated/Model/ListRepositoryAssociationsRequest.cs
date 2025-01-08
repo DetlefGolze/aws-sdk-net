@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruReviewer.Model
 {
     /// <summary>
@@ -40,22 +41,22 @@ namespace Amazon.CodeGuruReviewer.Model
     public partial class ListRepositoryAssociationsRequest : AmazonCodeGuruReviewerRequest
     {
         private int? _maxResults;
-        private List<string> _names = new List<string>();
+        private List<string> _names = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
-        private List<string> _owners = new List<string>();
-        private List<string> _providerTypes = new List<string>();
-        private List<string> _states = new List<string>();
+        private List<string> _owners = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _providerTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _states = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The maximum number of repository association results returned by <code>ListRepositoryAssociations</code>
-        /// in paginated output. When this parameter is used, <code>ListRepositoryAssociations</code>
-        /// only returns <code>maxResults</code> results in a single page with a <code>nextToken</code>
-        /// response element. The remaining results of the initial request can be seen by sending
-        /// another <code>ListRepositoryAssociations</code> request with the returned <code>nextToken</code>
-        /// value. This value can be between 1 and 100. If this parameter is not used, <code>ListRepositoryAssociations</code>
-        /// returns up to 100 results and a <code>nextToken</code> value if applicable. 
+        /// The maximum number of repository association results returned by <c>ListRepositoryAssociations</c>
+        /// in paginated output. When this parameter is used, <c>ListRepositoryAssociations</c>
+        /// only returns <c>maxResults</c> results in a single page with a <c>nextToken</c> response
+        /// element. The remaining results of the initial request can be seen by sending another
+        /// <c>ListRepositoryAssociations</c> request with the returned <c>nextToken</c> value.
+        /// This value can be between 1 and 100. If this parameter is not used, <c>ListRepositoryAssociations</c>
+        /// returns up to 100 results and a <c>nextToken</c> value if applicable. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -87,16 +88,16 @@ namespace Amazon.CodeGuruReviewer.Model
         // Check to see if Names property is set
         internal bool IsSetNames()
         {
-            return this._names != null && this._names.Count > 0; 
+            return this._names != null && (this._names.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value returned from a previous paginated <code>ListRepositoryAssociations</code>
-        /// request where <code>maxResults</code> was used and the results exceeded the value
-        /// of that parameter. Pagination continues from the end of the previous results that
-        /// returned the <code>nextToken</code> value. 
+        /// The <c>nextToken</c> value returned from a previous paginated <c>ListRepositoryAssociations</c>
+        /// request where <c>maxResults</c> was used and the results exceeded the value of that
+        /// parameter. Pagination continues from the end of the previous results that returned
+        /// the <c>nextToken</c> value. 
         /// </para>
         ///  <note> 
         /// <para>
@@ -137,7 +138,7 @@ namespace Amazon.CodeGuruReviewer.Model
         // Check to see if Owners property is set
         internal bool IsSetOwners()
         {
-            return this._owners != null && this._owners.Count > 0; 
+            return this._owners != null && (this._owners.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -156,7 +157,7 @@ namespace Amazon.CodeGuruReviewer.Model
         // Check to see if ProviderTypes property is set
         internal bool IsSetProviderTypes()
         {
-            return this._providerTypes != null && this._providerTypes.Count > 0; 
+            return this._providerTypes != null && (this._providerTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -183,10 +184,10 @@ namespace Amazon.CodeGuruReviewer.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If your repository <code>ProviderType</code> is <code>GitHub</code>, <code>GitHub
-        /// Enterprise Server</code>, or <code>Bitbucket</code>, CodeGuru Reviewer creates webhooks
-        /// in your repository to trigger CodeGuru Reviewer reviews. If you delete these webhooks,
-        /// reviews of code in your repository cannot be triggered.
+        /// If your repository <c>ProviderType</c> is <c>GitHub</c>, <c>GitHub Enterprise Server</c>,
+        /// or <c>Bitbucket</c>, CodeGuru Reviewer creates webhooks in your repository to trigger
+        /// CodeGuru Reviewer reviews. If you delete these webhooks, reviews of code in your repository
+        /// cannot be triggered.
         /// </para>
         ///  </note> </li> <li> 
         /// <para>
@@ -223,7 +224,7 @@ namespace Amazon.CodeGuruReviewer.Model
         // Check to see if States property is set
         internal bool IsSetStates()
         {
-            return this._states != null && this._states.Count > 0; 
+            return this._states != null && (this._states.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

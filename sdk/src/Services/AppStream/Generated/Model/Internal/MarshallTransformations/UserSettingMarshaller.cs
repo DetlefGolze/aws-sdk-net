@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AppStream.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,10 +46,18 @@ namespace Amazon.AppStream.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(UserSetting requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAction())
             {
                 context.Writer.WritePropertyName("Action");
                 context.Writer.Write(requestObject.Action);
+            }
+
+            if(requestObject.IsSetMaximumLength())
+            {
+                context.Writer.WritePropertyName("MaximumLength");
+                context.Writer.Write(requestObject.MaximumLength);
             }
 
             if(requestObject.IsSetPermission())

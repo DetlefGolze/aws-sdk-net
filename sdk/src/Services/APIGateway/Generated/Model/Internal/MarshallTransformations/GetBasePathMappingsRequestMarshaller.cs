@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.APIGateway.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -61,6 +62,9 @@ namespace Amazon.APIGateway.Model.Internal.MarshallTransformations
             if (!publicRequest.IsSetDomainName())
                 throw new AmazonAPIGatewayException("Request object does not have required field DomainName set");
             request.AddPathResource("{domain_name}", StringUtils.FromString(publicRequest.DomainName));
+            
+            if (publicRequest.IsSetDomainNameId())
+                request.Parameters.Add("domainNameId", StringUtils.FromString(publicRequest.DomainNameId));
             
             if (publicRequest.IsSetLimit())
                 request.Parameters.Add("limit", StringUtils.FromInt(publicRequest.Limit));

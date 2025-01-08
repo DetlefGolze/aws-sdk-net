@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECR.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.ECR.Model
         private ImageScanFindingsSummary _imageScanFindingsSummary;
         private ImageScanStatus _imageScanStatus;
         private long? _imageSizeInBytes;
-        private List<string> _imageTags = new List<string>();
+        private List<string> _imageTags = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _lastRecordedPullTime;
         private string _registryId;
         private string _repositoryName;
@@ -66,7 +67,7 @@ namespace Amazon.ECR.Model
         /// <summary>
         /// Gets and sets the property ImageDigest. 
         /// <para>
-        /// The <code>sha256</code> digest of the image manifest.
+        /// The <c>sha256</c> digest of the image manifest.
         /// </para>
         /// </summary>
         public string ImageDigest
@@ -167,9 +168,9 @@ namespace Amazon.ECR.Model
         ///  <note> 
         /// <para>
         /// Beginning with Docker version 1.9, the Docker client compresses image layers before
-        /// pushing them to a V2 Docker registry. The output of the <code>docker images</code>
-        /// command shows the uncompressed image size, so it may return a larger image size than
-        /// the image sizes returned by <a>DescribeImages</a>.
+        /// pushing them to a V2 Docker registry. The output of the <c>docker images</c> command
+        /// shows the uncompressed image size, so it may return a larger image size than the image
+        /// sizes returned by <a>DescribeImages</a>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -200,7 +201,7 @@ namespace Amazon.ECR.Model
         // Check to see if ImageTags property is set
         internal bool IsSetImageTags()
         {
-            return this._imageTags != null && this._imageTags.Count > 0; 
+            return this._imageTags != null && (this._imageTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -212,9 +213,9 @@ namespace Amazon.ECR.Model
         ///  <note> 
         /// <para>
         /// Amazon ECR refreshes the last image pull timestamp at least once every 24 hours. For
-        /// example, if you pull an image once a day then the <code>lastRecordedPullTime</code>
-        /// timestamp will indicate the exact time that the image was last pulled. However, if
-        /// you pull an image once an hour, because Amazon ECR refreshes the <code>lastRecordedPullTime</code>
+        /// example, if you pull an image once a day then the <c>lastRecordedPullTime</c> timestamp
+        /// will indicate the exact time that the image was last pulled. However, if you pull
+        /// an image once an hour, because Amazon ECR refreshes the <c>lastRecordedPullTime</c>
         /// timestamp at least once every 24 hours, the result may not be the exact time that
         /// the image was last pulled.
         /// </para>

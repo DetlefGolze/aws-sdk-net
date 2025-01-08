@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvidently.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.CloudWatchEvidently.Model
     public partial class ListProjectsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ProjectSummary> _projects = new List<ProjectSummary>();
+        private List<ProjectSummary> _projects = AWSConfigs.InitializeCollections ? new List<ProjectSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to use in a subsequent <code>ListProjects</code> operation to return the
-        /// next set of results.
+        /// The token to use in a subsequent <c>ListProjects</c> operation to return the next
+        /// set of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=8192)]
@@ -72,7 +73,7 @@ namespace Amazon.CloudWatchEvidently.Model
         // Check to see if Projects property is set
         internal bool IsSetProjects()
         {
-            return this._projects != null && this._projects.Count > 0; 
+            return this._projects != null && (this._projects.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

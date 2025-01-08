@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
-    /// The input fails to satisfy the constraints specified by an AWS service.
+    /// The input fails to satisfy the constraints specified by an Amazon Web Services service.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]
     #endif
     public partial class ValidationException : AmazonPrometheusServiceException
     {
-        private List<ValidationExceptionField> _fieldList = new List<ValidationExceptionField>();
+        private List<ValidationExceptionField> _fieldList = AWSConfigs.InitializeCollections ? new List<ValidationExceptionField>() : null;
         private ValidationExceptionReason _reason;
 
         /// <summary>
@@ -129,8 +130,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property FieldList. 
         /// <para>
-        /// The field that caused the error, if applicable. If more than one field caused the
-        /// error, pick one and elaborate in the message.
+        /// The field that caused the error, if applicable.
         /// </para>
         /// </summary>
         public List<ValidationExceptionField> FieldList
@@ -142,7 +142,7 @@ namespace Amazon.PrometheusService.Model
         // Check to see if FieldList property is set
         internal bool IsSetFieldList()
         {
-            return this._fieldList != null && this._fieldList.Count > 0; 
+            return this._fieldList != null && (this._fieldList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

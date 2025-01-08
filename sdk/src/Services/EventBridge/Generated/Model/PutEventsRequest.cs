@@ -26,32 +26,47 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
     /// Container for the parameters to the PutEvents operation.
     /// Sends custom events to Amazon EventBridge so that they can be matched to rules.
     /// 
+    ///  
+    /// <para>
+    /// The maximum size for a PutEvents event entry is 256 KB. Entry size is calculated including
+    /// the event and any necessary characters and keys of the JSON representation of the
+    /// event. To learn more, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-putevent-size.html">Calculating
+    /// PutEvents event entry size</a> in the <i> <i>Amazon EventBridge User Guide</i> </i>
+    /// 
+    /// </para>
+    ///  
+    /// <para>
+    /// PutEvents accepts the data in JSON format. For the JSON number (integer) data type,
+    /// the constraints are: a minimum value of -9,223,372,036,854,775,808 and a maximum value
+    /// of 9,223,372,036,854,775,807.
+    /// </para>
     ///  <note> 
     /// <para>
-    /// PutEvents will only process nested JSON up to 1100 levels deep.
+    /// PutEvents will only process nested JSON up to 1000 levels deep.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class PutEventsRequest : AmazonEventBridgeRequest
     {
         private string _endpointId;
-        private List<PutEventsRequestEntry> _entries = new List<PutEventsRequestEntry>();
+        private List<PutEventsRequestEntry> _entries = AWSConfigs.InitializeCollections ? new List<PutEventsRequestEntry>() : null;
 
         /// <summary>
         /// Gets and sets the property EndpointId. 
         /// <para>
         /// The URL subdomain of the endpoint. For example, if the URL for Endpoint is https://abcde.veo.endpoints.event.amazonaws.com,
-        /// then the EndpointId is <code>abcde.veo</code>.
+        /// then the EndpointId is <c>abcde.veo</c>.
         /// </para>
         ///  <important> 
         /// <para>
-        /// When using Java, you must include <code>auth-crt</code> on the class path.
+        /// When using Java, you must include <c>auth-crt</c> on the class path.
         /// </para>
         ///  </important>
         /// </summary>
@@ -86,7 +101,7 @@ namespace Amazon.EventBridge.Model
         // Check to see if Entries property is set
         internal bool IsSetEntries()
         {
-            return this._entries != null && this._entries.Count > 0; 
+            return this._entries != null && (this._entries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

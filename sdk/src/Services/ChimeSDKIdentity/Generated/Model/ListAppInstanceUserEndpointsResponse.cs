@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKIdentity.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.ChimeSDKIdentity.Model
     /// </summary>
     public partial class ListAppInstanceUserEndpointsResponse : AmazonWebServiceResponse
     {
-        private List<AppInstanceUserEndpointSummary> _appInstanceUserEndpoints = new List<AppInstanceUserEndpointSummary>();
+        private List<AppInstanceUserEndpointSummary> _appInstanceUserEndpoints = AWSConfigs.InitializeCollections ? new List<AppInstanceUserEndpointSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property AppInstanceUserEndpoints. 
         /// <para>
-        /// The information for each requested <code>AppInstanceUserEndpoint</code>.
+        /// The information for each requested <c>AppInstanceUserEndpoint</c>.
         /// </para>
         /// </summary>
         public List<AppInstanceUserEndpointSummary> AppInstanceUserEndpoints
@@ -51,7 +52,7 @@ namespace Amazon.ChimeSDKIdentity.Model
         // Check to see if AppInstanceUserEndpoints property is set
         internal bool IsSetAppInstanceUserEndpoints()
         {
-            return this._appInstanceUserEndpoints != null && this._appInstanceUserEndpoints.Count > 0; 
+            return this._appInstanceUserEndpoints != null && (this._appInstanceUserEndpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

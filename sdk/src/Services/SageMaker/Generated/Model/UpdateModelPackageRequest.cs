@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -34,12 +35,17 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class UpdateModelPackageRequest : AmazonSageMakerRequest
     {
-        private List<AdditionalInferenceSpecificationDefinition> _additionalInferenceSpecificationsToAdd = new List<AdditionalInferenceSpecificationDefinition>();
+        private List<AdditionalInferenceSpecificationDefinition> _additionalInferenceSpecificationsToAdd = AWSConfigs.InitializeCollections ? new List<AdditionalInferenceSpecificationDefinition>() : null;
         private string _approvalDescription;
-        private Dictionary<string, string> _customerMetadataProperties = new Dictionary<string, string>();
-        private List<string> _customerMetadataPropertiesToRemove = new List<string>();
+        private string _clientToken;
+        private Dictionary<string, string> _customerMetadataProperties = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<string> _customerMetadataPropertiesToRemove = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private InferenceSpecification _inferenceSpecification;
         private ModelApprovalStatus _modelApprovalStatus;
+        private ModelPackageModelCard _modelCard;
+        private ModelLifeCycle _modelLifeCycle;
         private string _modelPackageArn;
+        private string _sourceUri;
 
         /// <summary>
         /// Gets and sets the property AdditionalInferenceSpecificationsToAdd. 
@@ -61,7 +67,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if AdditionalInferenceSpecificationsToAdd property is set
         internal bool IsSetAdditionalInferenceSpecificationsToAdd()
         {
-            return this._additionalInferenceSpecificationsToAdd != null && this._additionalInferenceSpecificationsToAdd.Count > 0; 
+            return this._additionalInferenceSpecificationsToAdd != null && (this._additionalInferenceSpecificationsToAdd.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -84,6 +90,25 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ClientToken. 
+        /// <para>
+        ///  A unique token that guarantees that the call to this API is idempotent. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=36)]
+        public string ClientToken
+        {
+            get { return this._clientToken; }
+            set { this._clientToken = value; }
+        }
+
+        // Check to see if ClientToken property is set
+        internal bool IsSetClientToken()
+        {
+            return this._clientToken != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property CustomerMetadataProperties. 
         /// <para>
         /// The metadata properties associated with the model package versions.
@@ -99,7 +124,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if CustomerMetadataProperties property is set
         internal bool IsSetCustomerMetadataProperties()
         {
-            return this._customerMetadataProperties != null && this._customerMetadataProperties.Count > 0; 
+            return this._customerMetadataProperties != null && (this._customerMetadataProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -117,7 +142,40 @@ namespace Amazon.SageMaker.Model
         // Check to see if CustomerMetadataPropertiesToRemove property is set
         internal bool IsSetCustomerMetadataPropertiesToRemove()
         {
-            return this._customerMetadataPropertiesToRemove != null && this._customerMetadataPropertiesToRemove.Count > 0; 
+            return this._customerMetadataPropertiesToRemove != null && (this._customerMetadataPropertiesToRemove.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property InferenceSpecification. 
+        /// <para>
+        /// Specifies details about inference jobs that you can run with models based on this
+        /// model package, including the following information:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// The Amazon ECR paths of containers that contain the inference code and model artifacts.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The instance types that the model package supports for transform jobs and real-time
+        /// endpoints used for inference.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input and output content formats that the model package supports for inference.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public InferenceSpecification InferenceSpecification
+        {
+            get { return this._inferenceSpecification; }
+            set { this._inferenceSpecification = value; }
+        }
+
+        // Check to see if InferenceSpecification property is set
+        internal bool IsSetInferenceSpecification()
+        {
+            return this._inferenceSpecification != null;
         }
 
         /// <summary>
@@ -139,6 +197,50 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ModelCard. 
+        /// <para>
+        /// The model card associated with the model package. Since <c>ModelPackageModelCard</c>
+        /// is tied to a model package, it is a specific usage of a model card and its schema
+        /// is simplified compared to the schema of <c>ModelCard</c>. The <c>ModelPackageModelCard</c>
+        /// schema does not include <c>model_package_details</c>, and <c>model_overview</c> is
+        /// composed of the <c>model_creator</c> and <c>model_artifact</c> properties. For more
+        /// information about the model package model card schema, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry-details.html#model-card-schema">Model
+        /// package model card schema</a>. For more information about the model card associated
+        /// with the model package, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry-details.html">View
+        /// the Details of a Model Version</a>.
+        /// </para>
+        /// </summary>
+        public ModelPackageModelCard ModelCard
+        {
+            get { return this._modelCard; }
+            set { this._modelCard = value; }
+        }
+
+        // Check to see if ModelCard property is set
+        internal bool IsSetModelCard()
+        {
+            return this._modelCard != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ModelLifeCycle. 
+        /// <para>
+        ///  A structure describing the current state of the model in its life cycle. 
+        /// </para>
+        /// </summary>
+        public ModelLifeCycle ModelLifeCycle
+        {
+            get { return this._modelLifeCycle; }
+            set { this._modelLifeCycle = value; }
+        }
+
+        // Check to see if ModelLifeCycle property is set
+        internal bool IsSetModelLifeCycle()
+        {
+            return this._modelLifeCycle != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ModelPackageArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the model package.
@@ -155,6 +257,25 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetModelPackageArn()
         {
             return this._modelPackageArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SourceUri. 
+        /// <para>
+        /// The URI of the source for the model package.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=1024)]
+        public string SourceUri
+        {
+            get { return this._sourceUri; }
+            set { this._sourceUri = value; }
+        }
+
+        // Check to see if SourceUri property is set
+        internal bool IsSetSourceUri()
+        {
+            return this._sourceUri != null;
         }
 
     }

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.VerifiedPermissions.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,10 +46,18 @@ namespace Amazon.VerifiedPermissions.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(AttributeValue requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetBoolean())
             {
                 context.Writer.WritePropertyName("boolean");
                 context.Writer.Write(requestObject.Boolean);
+            }
+
+            if(requestObject.IsSetDecimal())
+            {
+                context.Writer.WritePropertyName("decimal");
+                context.Writer.Write(requestObject.Decimal);
             }
 
             if(requestObject.IsSetEntityIdentifier())
@@ -60,6 +69,12 @@ namespace Amazon.VerifiedPermissions.Model.Internal.MarshallTransformations
                 marshaller.Marshall(requestObject.EntityIdentifier, context);
 
                 context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetIpaddr())
+            {
+                context.Writer.WritePropertyName("ipaddr");
+                context.Writer.Write(requestObject.Ipaddr);
             }
 
             if(requestObject.IsSetLong())

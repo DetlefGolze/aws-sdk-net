@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
     /// Container for the parameters to the SetSMBGuestPassword operation.
-    /// Sets the password for the guest user <code>smbguest</code>. The <code>smbguest</code>
-    /// user is the user when the authentication method for the file share is set to <code>GuestAccess</code>.
+    /// Sets the password for the guest user <c>smbguest</c>. The <c>smbguest</c> user is
+    /// the user when the authentication method for the file share is set to <c>GuestAccess</c>.
     /// This operation only supported for S3 File Gateways
     /// </summary>
     public partial class SetSMBGuestPasswordRequest : AmazonStorageGatewayRequest

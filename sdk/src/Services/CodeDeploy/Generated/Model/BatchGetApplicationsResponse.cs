@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
-    /// Represents the output of a <code>BatchGetApplications</code> operation.
+    /// Represents the output of a <c>BatchGetApplications</c> operation.
     /// </summary>
     public partial class BatchGetApplicationsResponse : AmazonWebServiceResponse
     {
-        private List<ApplicationInfo> _applicationsInfo = new List<ApplicationInfo>();
+        private List<ApplicationInfo> _applicationsInfo = AWSConfigs.InitializeCollections ? new List<ApplicationInfo>() : null;
 
         /// <summary>
         /// Gets and sets the property ApplicationsInfo. 
@@ -50,7 +51,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if ApplicationsInfo property is set
         internal bool IsSetApplicationsInfo()
         {
-            return this._applicationsInfo != null && this._applicationsInfo.Count > 0; 
+            return this._applicationsInfo != null && (this._applicationsInfo.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

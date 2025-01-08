@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Rekognition.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.Rekognition.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ProjectDescription Unmarshall(JsonUnmarshallerContext context)
         {
+            ProjectDescription unmarshalledObject = new ProjectDescription();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ProjectDescription unmarshalledObject = new ProjectDescription();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("AutoUpdate", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.AutoUpdate = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("CreationTimestamp", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
@@ -74,6 +82,12 @@ namespace Amazon.Rekognition.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = new ListUnmarshaller<DatasetMetadata, DatasetMetadataUnmarshaller>(DatasetMetadataUnmarshaller.Instance);
                     unmarshalledObject.Datasets = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("Feature", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Feature = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("ProjectArn", targetDepth))
@@ -89,7 +103,6 @@ namespace Amazon.Rekognition.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityLake.Model
 {
     /// <summary>
@@ -35,13 +36,13 @@ namespace Amazon.SecurityLake.Model
     /// </summary>
     public partial class SubscriberResource
     {
-        private List<string> _accessTypes = new List<string>();
+        private List<string> _accessTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _createdAt;
         private string _resourceShareArn;
         private string _resourceShareName;
         private string _roleArn;
         private string _s3BucketArn;
-        private List<LogSourceResource> _sources = new List<LogSourceResource>();
+        private List<LogSourceResource> _sources = AWSConfigs.InitializeCollections ? new List<LogSourceResource>() : null;
         private string _subscriberArn;
         private string _subscriberDescription;
         private string _subscriberEndpoint;
@@ -61,7 +62,7 @@ namespace Amazon.SecurityLake.Model
         /// <para>
         ///  Subscribers can consume data by directly querying Lake Formation tables in your Amazon
         /// S3 bucket through services like Amazon Athena. This subscription type is defined as
-        /// <code>LAKEFORMATION</code>.
+        /// <c>LAKEFORMATION</c>.
         /// </para>
         /// </summary>
         public List<string> AccessTypes
@@ -73,7 +74,7 @@ namespace Amazon.SecurityLake.Model
         // Check to see if AccessTypes property is set
         internal bool IsSetAccessTypes()
         {
-            return this._accessTypes != null && this._accessTypes.Count > 0; 
+            return this._accessTypes != null && (this._accessTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -97,9 +98,9 @@ namespace Amazon.SecurityLake.Model
         /// <summary>
         /// Gets and sets the property ResourceShareArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) which uniquely defines the AWS RAM resource share.
-        /// Before accepting the RAM resource share invitation, you can view details related to
-        /// the RAM resource share.
+        /// The Amazon Resource Name (ARN) which uniquely defines the Amazon Web Services RAM
+        /// resource share. Before accepting the RAM resource share invitation, you can view details
+        /// related to the RAM resource share.
         /// </para>
         ///  
         /// <para>
@@ -177,7 +178,7 @@ namespace Amazon.SecurityLake.Model
         /// Gets and sets the property Sources. 
         /// <para>
         /// Amazon Security Lake supports log and event collection for natively supported Amazon
-        /// Web Services. For more information, see the <a href="https://docs.aws.amazon.com/security-lake/latest/userguide/source-management.html">Amazon
+        /// Web Services services. For more information, see the <a href="https://docs.aws.amazon.com/security-lake/latest/userguide/source-management.html">Amazon
         /// Security Lake User Guide</a>.
         /// </para>
         /// </summary>
@@ -191,7 +192,7 @@ namespace Amazon.SecurityLake.Model
         // Check to see if Sources property is set
         internal bool IsSetSources()
         {
-            return this._sources != null && this._sources.Count > 0; 
+            return this._sources != null && (this._sources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -217,8 +218,7 @@ namespace Amazon.SecurityLake.Model
         /// Gets and sets the property SubscriberDescription. 
         /// <para>
         /// The subscriber descriptions for a subscriber account. The description for a subscriber
-        /// includes <code>subscriberName</code>, <code>accountID</code>, <code>externalID</code>,
-        /// and <code>subscriberId</code>.
+        /// includes <c>subscriberName</c>, <c>accountID</c>, <c>externalID</c>, and <c>subscriberId</c>.
         /// </para>
         /// </summary>
         public string SubscriberDescription
@@ -273,7 +273,7 @@ namespace Amazon.SecurityLake.Model
         /// <summary>
         /// Gets and sets the property SubscriberIdentity. 
         /// <para>
-        /// The AWS identity used to access your data.
+        /// The Amazon Web Services identity used to access your data.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

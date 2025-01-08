@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudHSMV2.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.CloudHSMV2.Model
     public partial class ListTagsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Tag> _tagList = new List<Tag>();
+        private List<Tag> _tagList = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// An opaque string that indicates that the response contains only a subset of tags.
-        /// Use this value in a subsequent <code>ListTags</code> request to get more tags.
+        /// Use this value in a subsequent <c>ListTags</c> request to get more tags.
         /// </para>
         /// </summary>
         [AWSProperty(Max=256)]
@@ -72,7 +73,7 @@ namespace Amazon.CloudHSMV2.Model
         // Check to see if TagList property is set
         internal bool IsSetTagList()
         {
-            return this._tagList != null && this._tagList.Count > 0; 
+            return this._tagList != null && (this._tagList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

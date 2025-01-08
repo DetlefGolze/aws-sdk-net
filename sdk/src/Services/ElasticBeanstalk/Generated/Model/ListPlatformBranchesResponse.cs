@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.ElasticBeanstalk.Model
     public partial class ListPlatformBranchesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<PlatformBranchSummary> _platformBranchSummaryList = new List<PlatformBranchSummary>();
+        private List<PlatformBranchSummary> _platformBranchSummaryList = AWSConfigs.InitializeCollections ? new List<PlatformBranchSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// In a paginated request, if this value isn't <code>null</code>, it's the token that
-        /// you can pass in a subsequent request to get the next response page.
+        /// In a paginated request, if this value isn't <c>null</c>, it's the token that you can
+        /// pass in a subsequent request to get the next response page.
         /// </para>
         /// </summary>
         public string NextToken
@@ -70,7 +71,7 @@ namespace Amazon.ElasticBeanstalk.Model
         // Check to see if PlatformBranchSummaryList property is set
         internal bool IsSetPlatformBranchSummaryList()
         {
-            return this._platformBranchSummaryList != null && this._platformBranchSummaryList.Count > 0; 
+            return this._platformBranchSummaryList != null && (this._platformBranchSummaryList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

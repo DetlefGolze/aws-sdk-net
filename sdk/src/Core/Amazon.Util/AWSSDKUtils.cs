@@ -86,7 +86,7 @@ namespace Amazon.Util
 
         private const int DefaultMarshallerVersion = 2;
 
-        private static readonly string _userAgent = InternalSDKUtils.BuildUserAgentString(string.Empty);
+        private static readonly string _userAgent = InternalSDKUtils.BuildUserAgentString(string.Empty, string.Empty);
 
 #endregion
 
@@ -131,7 +131,12 @@ namespace Amazon.Util
             var sb = new StringBuilder();
             foreach (var c in basePathCharacters)
             {
+                // This warning is suggesting EscapeDataString when escaping full query string components
+                // and will always escape the base path characters. We don't need to worry about the
+                // corruption warning because we are only attempting to scape a single character.
+#pragma warning disable SYSLIB0013
                 var escaped = Uri.EscapeUriString(c.ToString());
+#pragma warning restore SYSLIB0013
                 if (escaped.Length == 1 && escaped[0] == c)
                     sb.Append(c);
             }
@@ -173,9 +178,14 @@ namespace Amazon.Util
         /// </summary>
         public const string RFC822DateFormat = "ddd, dd MMM yyyy HH:mm:ss \\G\\M\\T";
 
-#endregion
+        /// <summary>
+        /// Represents the ISO8601 basic date/time format with a UTC offset
+        /// </summary>
+        public const string ISO8601WithUTCOffset = "yyyy-MM-ddTHH:mm:ssZ";
 
-#region Internal Methods
+        #endregion
+
+        #region Internal Methods
 
         /// <summary>
         /// Returns an extension of a path.
@@ -398,9 +408,9 @@ namespace Amazon.Util
                     pathWasPreEncoded = true;
                 }
             }
-
+#pragma warning disable 0618
             var canonicalizedResourcePath = AWSSDKUtils.JoinResourcePathSegments(encodedSegments, false);
-
+#pragma warning restore 0618
             // Get the logger each time (it's cached) because we shouldn't store it in a static variable.
             Logger.GetLogger(typeof(AWSSDKUtils)).DebugFormat("{0} encoded {1}{2} for canonicalization: {3}",
                 pathWasPreEncoded ? "Double" : "Single",
@@ -422,25 +432,32 @@ namespace Amazon.Util
         /// <returns>Canonicalized resource path for the endpoint.</returns>
         public static string CanonicalizeResourcePathV2(Uri endpoint, string resourcePath, bool encode, IDictionary<string, string> pathResources)
         {
+            // Single encode the resourcepath from the endpoint i.e. treat it like a regular uri.
+            // Double encode the resource path from the request
+            string resourcePathFromRequest = resourcePath != null ? resourcePath : string.Empty;
+            string resourcePathFromEndpoint = endpoint != null? endpoint.AbsolutePath : string.Empty;
+
             if (endpoint != null)
             {
-                var path = endpoint.AbsolutePath;
-                if (string.IsNullOrEmpty(path) || string.Equals(path, Slash, StringComparison.Ordinal))
-                    path = string.Empty;
+                // If the resource path from the endpoint is just a slash, it is the equivalent of being empty, so just set it to empty.
+                if (string.IsNullOrEmpty(resourcePathFromEndpoint) || string.Equals(resourcePathFromEndpoint, Slash, StringComparison.Ordinal))
+                    resourcePathFromEndpoint = string.Empty;
 
-                if (!string.IsNullOrEmpty(resourcePath) && resourcePath.StartsWith(Slash, StringComparison.Ordinal))
-                    resourcePath = resourcePath.Substring(1);
+                if (!string.IsNullOrEmpty(resourcePathFromRequest) && resourcePathFromRequest.StartsWith(Slash, StringComparison.Ordinal))
+                    resourcePathFromRequest = resourcePathFromRequest.Substring(1);
 
-                if (!string.IsNullOrEmpty(resourcePath))
-                    path = path + Slash + resourcePath;
+                // If the resource path from the endpoint is empty, add a slash in front of the resource path from the request,
+                // so that when we split and join the resource path segments, we don't encode the slash. Removing this will cause odd unwanted behavior.
+                // We don't want to add a slash if the resource path from the endpoint has a value because that will result in two slashes, one from the
+                // endpoint and one from the resource path.
+                if (string.IsNullOrEmpty(resourcePathFromEndpoint) && !string.IsNullOrEmpty(resourcePathFromRequest))
+                    resourcePathFromRequest = Slash + resourcePathFromRequest;
 
-                resourcePath = path;
             }
 
-            if (string.IsNullOrEmpty(resourcePath))
+            if (string.IsNullOrEmpty(resourcePathFromRequest) && string.IsNullOrEmpty(resourcePathFromEndpoint))
                 return Slash;
-
-            IEnumerable<string> encodedSegments = AWSSDKUtils.SplitResourcePathIntoSegments(resourcePath, pathResources);
+            IEnumerable<string> encodedSegments = AWSSDKUtils.SplitResourcePathIntoSegments(resourcePathFromRequest, pathResources);
 
             var pathWasPreEncoded = false;
             if (encode)
@@ -448,11 +465,10 @@ namespace Amazon.Util
                 if (endpoint == null)
                     throw new ArgumentNullException(nameof(endpoint), "A non-null endpoint is necessary to decide whether or not to pre URL encode.");
 
-                encodedSegments = encodedSegments.Select(segment => UrlEncode(segment, true).Replace(Slash, EncodedSlash));
+                encodedSegments = encodedSegments.Select(segment => UrlEncode(segment, false));
                 pathWasPreEncoded = true;
             }
-
-            var canonicalizedResourcePath = AWSSDKUtils.JoinResourcePathSegments(encodedSegments, false);
+            string canonicalizedResourcePath = GetFullCanonicalizedResourcePath(resourcePathFromEndpoint, encodedSegments);
 
             // Get the logger each time (it's cached) because we shouldn't store it in a static variable.
             Logger.GetLogger(typeof(AWSSDKUtils)).DebugFormat("{0} encoded {1}{2} for canonicalization: {3}",
@@ -464,6 +480,29 @@ namespace Amazon.Util
             return canonicalizedResourcePath;
         }
 
+        /// <summary>
+        /// This method returns the full canonicalized resource path which includes the resource path from the request and the resource path from the endpoint.
+        /// </summary>
+        /// <param name="resourcePathFromEndpoint">This is the resource path that comes from the endpoint itself and not the request</param>
+        /// <param name="encodedSegments">If double encoded, encoded segments contains the encoded segments from the resource path from the request</param>
+        /// <returns>The full canonicalized resource path that contains the single encoded canonicalized resource path from the endpoint and the double encoded
+        /// resource path from the request</returns>
+        private static string GetFullCanonicalizedResourcePath(string resourcePathFromEndpoint, IEnumerable<string> encodedSegments)
+        {
+            // Most of the time resourcePathFromEndpoint will just be "/", meaning it is essentially empty, so check to see if the length is > 1.
+            if (resourcePathFromEndpoint.Length > 1)
+            {
+                // Since we are resolving the configured endpoint here, we don't want to subsitute any key/value pairs from path resources.
+                IEnumerable<string> absolutePathSegment = AWSSDKUtils.SplitResourcePathIntoSegments(resourcePathFromEndpoint, null);
+                // If encodedSegments' first value is empty, that means the resourcePath was empty, so no need to concatenate it since that will produce an extra "/" character at the end.
+                IEnumerable<string> fullPath = string.IsNullOrEmpty(encodedSegments.FirstOrDefault()) ? absolutePathSegment : absolutePathSegment.Concat(encodedSegments);
+                return AWSSDKUtils.JoinResourcePathSegmentsV2(fullPath);
+            }
+            else
+            {
+                return AWSSDKUtils.JoinResourcePathSegmentsV2(encodedSegments);
+            }
+        }
         /// <summary>
         /// Splits the resourcePath at / into segments then resolves any keys with the path resource values. Greedy
         /// key values will be split into multiple segments at each /.
@@ -511,6 +550,7 @@ namespace Amazon.Util
         /// <param name="path">If the path property is specified,
         /// the accepted path characters {/+:} are not encoded.</param>
         /// <returns>A joined URL with encoded segments</returns>
+        [Obsolete("This method has been deprecated due to an issue with not encoding special characters. Use JoinResourcePathSegmentsV2 instead.")]
         public static string JoinResourcePathSegments(IEnumerable<string> pathSegments, bool path)
         {
             // Encode for canonicalization
@@ -524,6 +564,18 @@ namespace Amazon.Util
             // join the encoded segments with /
             return string.Join(Slash, pathSegments.ToArray());
         }
+        /// <summary>
+        /// Joins all path segments with the / character and encodes each segment before joining
+        /// </summary>
+        /// <param name="pathSegments"></param>
+        /// <returns></returns>
+        public static string JoinResourcePathSegmentsV2(IEnumerable<string> pathSegments)
+        {
+            pathSegments = pathSegments.Select(segment => UrlEncode(segment, false));
+
+            // join the encoded segments with /
+            return string.Join(Slash, pathSegments.ToArray());
+        }
 
         /// <summary>
         /// Takes a patterned resource path and resolves it using the key/value path resources into
@@ -532,9 +584,12 @@ namespace Amazon.Util
         /// <param name="resourcePath">The patterned resourcePath</param>
         /// <param name="pathResources">The key/value lookup for the patterned resourcePath</param>
         /// <returns>A segmented encoded URL</returns>
+        [Obsolete("ResolveResourcePath has been deprecated in favor of ResolveResourcePathV2 due to an encoding issue. Use ResolveResourcePathV2 instead.")]
         public static string ResolveResourcePath(string resourcePath, IDictionary<string, string> pathResources)
         {
+#pragma warning disable 0618
             return ResolveResourcePath(resourcePath, pathResources, true);
+#pragma warning restore 0618
         }
 
         /// <summary>
@@ -545,6 +600,7 @@ namespace Amazon.Util
         /// <param name="pathResources">The key/value lookup for the patterned resourcePath</param>
         /// <param name="skipEncodingValidPathChars">If true valid path characters {/+:} are not encoded</param>
         /// <returns>A segmented encoded URL</returns>
+        [Obsolete("This method has been deprecated in favor of ResolveResourcePathV2 due to an encoding issue with special characters. Please use ResolveResourcePathV2.")]
         public static string ResolveResourcePath(string resourcePath, IDictionary<string, string> pathResources, bool skipEncodingValidPathChars)
         {
             if (string.IsNullOrEmpty(resourcePath))
@@ -553,6 +609,21 @@ namespace Amazon.Util
             }
 
             return JoinResourcePathSegments(SplitResourcePathIntoSegments(resourcePath, pathResources), skipEncodingValidPathChars);
+        }
+        /// <summary>
+        /// Takes a patterned resource path and resolves it using the key/value path resources into
+        /// a segmented encoded URL.
+        /// </summary>
+        /// <param name="resourcePath">The patterned resourcePath</param>
+        /// <param name="pathResources">The key/value lookup for the patterned resourcePath</param>
+        /// <returns></returns>
+        public static string ResolveResourcePathV2(string resourcePath, IDictionary<string, string> pathResources)
+        {
+            if (string.IsNullOrEmpty(resourcePath))
+            {
+                return resourcePath; 
+            }
+            return JoinResourcePathSegmentsV2(SplitResourcePathIntoSegments(resourcePath, pathResources));
         }
 
         /// <summary>
@@ -960,9 +1031,9 @@ namespace Amazon.Util
         /// <returns>The ISO8601 formatted future timestamp.</returns>
         public static string GetFormattedTimestampRFC822(int minutesFromNow)
         {
-#pragma warning disable CS0612 // Type or member is obsolete
+#pragma warning disable CS0612,CS0618 // Type or member is obsolete
             DateTime dateTime = AWSSDKUtils.CorrectedUtcNow.AddMinutes(minutesFromNow);
-#pragma warning restore CS0612 // Type or member is obsolete
+#pragma warning restore CS0612,CS0618 // Type or member is obsolete
             return dateTime.ToString(AWSSDKUtils.RFC822DateFormat, CultureInfo.InvariantCulture);
         }
 
@@ -980,8 +1051,9 @@ namespace Amazon.Util
         {
 #if NETSTANDARD
             return RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-#endif
+#else
             return true;
+#endif
         }
 
         #region The code in this region has been minimally adapted from Microsoft's PathInternal.Windows.cs class as of 11/19/2019.  The logic remains the same.
@@ -1072,7 +1144,6 @@ namespace Amazon.Util
                 validUrlCharacters = ValidUrlCharacters;
 
             string unreservedChars = String.Concat(validUrlCharacters, (path ? ValidPathCharacters : ""));
-
             foreach (char symbol in System.Text.Encoding.UTF8.GetBytes(data))
             {
                 if (unreservedChars.IndexOf(symbol) != -1)
@@ -1303,7 +1374,6 @@ namespace Amazon.Util
         /// <seealso cref="AWSConfigs.ManualClockCorrection"/> is set.
         /// This value should be used instead of DateTime.UtcNow to factor in manual clock correction
         /// </summary>
-        [Obsolete("This property does not account for endpoint specific clock skew.  Use CorrectClockSkew.GetCorrectedUtcNowForEndpoint() instead.")]
         public static DateTime CorrectedUtcNow
         {
             get
@@ -1504,7 +1574,16 @@ namespace Amazon.Util
             {
                 foreach (var header in headers)
                 {
-                    request.Headers.Add(header.Key, header.Value);
+                    // HttpWebRequest requires that UserAgent be set via the explicit property instead of using the headers collection.
+                    // If you use the Headers collection an exception will be thrown.
+                    if(string.Equals(header.Key, HeaderKeys.UserAgentHeader, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        request.UserAgent = header.Value;
+                    }
+                    else
+                    {
+                        request.Headers.Add(header.Key, header.Value);
+                    }
                 }
             }
 
@@ -1562,6 +1641,22 @@ namespace Amazon.Util
                 }
             }
             return stringBuilder.ToString();
+        }
+
+        /// <summary>
+        /// Extracts the operation name from a given request name.
+        /// </summary>
+        /// <param name="requestName">The name of the request from which the operation name is to be extracted.</param>
+        /// <returns>
+        /// The operation name if the request name ends with "Request"; otherwise, returns the original request name.
+        /// </returns>
+        internal static string ExtractOperationName(string requestName)
+        {
+            if (requestName.EndsWith("Request", StringComparison.Ordinal))
+            {
+                return requestName.Substring(0, requestName.Length - 7);
+            }
+            return requestName;
         }
 
         /// <summary>

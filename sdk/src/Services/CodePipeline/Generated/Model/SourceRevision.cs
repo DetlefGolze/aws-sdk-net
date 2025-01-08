@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
@@ -82,8 +83,8 @@ namespace Amazon.CodePipeline.Model
         /// <para>
         /// Summary information about the most recent revision of the artifact. For GitHub and
         /// CodeCommit repositories, the commit message. For Amazon S3 buckets or actions, the
-        /// user-provided content of a <code>codepipeline-artifact-revision-summary</code> key
-        /// specified in the object metadata.
+        /// user-provided content of a <c>codepipeline-artifact-revision-summary</c> key specified
+        /// in the object metadata.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

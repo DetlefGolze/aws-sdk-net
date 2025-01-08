@@ -26,32 +26,32 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMessaging.Model
 {
     /// <summary>
     /// Container for the parameters to the SearchChannels operation.
-    /// Allows the <code>ChimeBearer</code> to search channels by channel members. Users or
-    /// bots can search across the channels that they belong to. Users in the <code>AppInstanceAdmin</code>
+    /// Allows the <c>ChimeBearer</c> to search channels by channel members. Users or bots
+    /// can search across the channels that they belong to. Users in the <c>AppInstanceAdmin</c>
     /// role can search across all channels.
     /// 
     ///  
     /// <para>
-    /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the ARN of the
-    /// <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that makes the API call
-    /// as the value in the header.
+    /// The <c>x-amz-chime-bearer</c> request header is mandatory. Use the ARN of the <c>AppInstanceUser</c>
+    /// or <c>AppInstanceBot</c> that makes the API call as the value in the header.
     /// </para>
     /// </summary>
     public partial class SearchChannelsRequest : AmazonChimeSDKMessagingRequest
     {
         private string _chimeBearer;
-        private List<SearchField> _fields = new List<SearchField>();
+        private List<SearchField> _fields = AWSConfigs.InitializeCollections ? new List<SearchField>() : null;
         private int? _maxResults;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property ChimeBearer. 
         /// <para>
-        /// The <code>AppInstanceUserArn</code> of the user making the API call.
+        /// The <c>AppInstanceUserArn</c> of the user making the API call.
         /// </para>
         /// </summary>
         [AWSProperty(Min=5, Max=1600)]
@@ -64,13 +64,13 @@ namespace Amazon.ChimeSDKMessaging.Model
         // Check to see if ChimeBearer property is set
         internal bool IsSetChimeBearer()
         {
-            return this._chimeBearer != null;
+            return !string.IsNullOrEmpty(this._chimeBearer);
         }
 
         /// <summary>
         /// Gets and sets the property Fields. 
         /// <para>
-        /// A list of the <code>Field</code> objects in the channel being searched.
+        /// A list of the <c>Field</c> objects in the channel being searched.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=20)]
@@ -83,7 +83,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         // Check to see if Fields property is set
         internal bool IsSetFields()
         {
-            return this._fields != null && this._fields.Count > 0; 
+            return this._fields != null && (this._fields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

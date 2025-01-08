@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ControlTower.Model
 {
     /// <summary>
@@ -33,11 +34,53 @@ namespace Amazon.ControlTower.Model
     /// </summary>
     public partial class ControlOperation
     {
+        private string _controlIdentifier;
+        private string _enabledControlIdentifier;
         private DateTime? _endTime;
+        private string _operationIdentifier;
         private ControlOperationType _operationType;
         private DateTime? _startTime;
         private ControlOperationStatus _status;
         private string _statusMessage;
+        private string _targetIdentifier;
+
+        /// <summary>
+        /// Gets and sets the property ControlIdentifier. 
+        /// <para>
+        /// The <c>controlIdentifier</c> of the control for the operation.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=2048)]
+        public string ControlIdentifier
+        {
+            get { return this._controlIdentifier; }
+            set { this._controlIdentifier = value; }
+        }
+
+        // Check to see if ControlIdentifier property is set
+        internal bool IsSetControlIdentifier()
+        {
+            return this._controlIdentifier != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EnabledControlIdentifier. 
+        /// <para>
+        /// The <c>controlIdentifier</c> of the enabled control.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=2048)]
+        public string EnabledControlIdentifier
+        {
+            get { return this._enabledControlIdentifier; }
+            set { this._enabledControlIdentifier = value; }
+        }
+
+        // Check to see if EnabledControlIdentifier property is set
+        internal bool IsSetEnabledControlIdentifier()
+        {
+            return this._enabledControlIdentifier != null;
+        }
 
         /// <summary>
         /// Gets and sets the property EndTime. 
@@ -58,9 +101,28 @@ namespace Amazon.ControlTower.Model
         }
 
         /// <summary>
+        /// Gets and sets the property OperationIdentifier. 
+        /// <para>
+        /// The identifier of the specified operation.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=36, Max=36)]
+        public string OperationIdentifier
+        {
+            get { return this._operationIdentifier; }
+            set { this._operationIdentifier = value; }
+        }
+
+        // Check to see if OperationIdentifier property is set
+        internal bool IsSetOperationIdentifier()
+        {
+            return this._operationIdentifier != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property OperationType. 
         /// <para>
-        /// One of <code>ENABLE_CONTROL</code> or <code>DISABLE_CONTROL</code>.
+        /// One of <c>ENABLE_CONTROL</c> or <c>DISABLE_CONTROL</c>.
         /// </para>
         /// </summary>
         public ControlOperationType OperationType
@@ -96,7 +158,7 @@ namespace Amazon.ControlTower.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// One of <code>IN_PROGRESS</code>, <code>SUCEEDED</code>, or <code>FAILED</code>.
+        /// One of <c>IN_PROGRESS</c>, <c>SUCEEDED</c>, or <c>FAILED</c>.
         /// </para>
         /// </summary>
         public ControlOperationStatus Status
@@ -114,7 +176,7 @@ namespace Amazon.ControlTower.Model
         /// <summary>
         /// Gets and sets the property StatusMessage. 
         /// <para>
-        /// If the operation result is <code>FAILED</code>, this string contains a message explaining
+        /// If the operation result is <c>FAILED</c>, this string contains a message explaining
         /// why the operation failed.
         /// </para>
         /// </summary>
@@ -128,6 +190,25 @@ namespace Amazon.ControlTower.Model
         internal bool IsSetStatusMessage()
         {
             return this._statusMessage != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property TargetIdentifier. 
+        /// <para>
+        /// The target upon which the control operation is working.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=2048)]
+        public string TargetIdentifier
+        {
+            get { return this._targetIdentifier; }
+            set { this._targetIdentifier = value; }
+        }
+
+        // Check to see if TargetIdentifier property is set
+        internal bool IsSetTargetIdentifier()
+        {
+            return this._targetIdentifier != null;
         }
 
     }

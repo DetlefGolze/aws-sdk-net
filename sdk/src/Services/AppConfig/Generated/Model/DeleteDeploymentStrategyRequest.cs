@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppConfig.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteDeploymentStrategy operation.
-    /// Deletes a deployment strategy. Deleting a deployment strategy does not delete a configuration
-    /// from a host.
+    /// Deletes a deployment strategy.
     /// </summary>
     public partial class DeleteDeploymentStrategyRequest : AmazonAppConfigRequest
     {

@@ -20,11 +20,6 @@
     "service_envvar_name": "AWS_ENDPOINT_URL_ACM_PCA"
   },
   {
-    "service_id": "Alexa For Business",
-    "services_section_name": "alexa_for_business",
-    "service_envvar_name": "AWS_ENDPOINT_URL_ALEXA_FOR_BUSINESS"
-  },
-  {
     "service_id": "amp",
     "services_section_name": "amp",
     "service_envvar_name": "AWS_ENDPOINT_URL_AMP"
@@ -143,11 +138,6 @@
     "service_id": "Backup Gateway",
     "services_section_name": "backup_gateway",
     "service_envvar_name": "AWS_ENDPOINT_URL_BACKUP_GATEWAY"
-  },
-  {
-    "service_id": "BackupStorage",
-    "services_section_name": "backupstorage",
-    "service_envvar_name": "AWS_ENDPOINT_URL_BACKUPSTORAGE"
   },
   {
     "service_id": "Batch",
@@ -293,11 +283,6 @@
     "service_id": "CodePipeline",
     "services_section_name": "codepipeline",
     "service_envvar_name": "AWS_ENDPOINT_URL_CODEPIPELINE"
-  },
-  {
-    "service_id": "CodeStar",
-    "services_section_name": "codestar",
-    "service_envvar_name": "AWS_ENDPOINT_URL_CODESTAR"
   },
   {
     "service_id": "CodeStar connections",
@@ -620,11 +605,6 @@
     "service_envvar_name": "AWS_ENDPOINT_URL_GAMELIFT"
   },
   {
-    "service_id": "GameSparks",
-    "services_section_name": "gamesparks",
-    "service_envvar_name": "AWS_ENDPOINT_URL_GAMESPARKS"
-  },
-  {
     "service_id": "Glacier",
     "services_section_name": "glacier",
     "service_envvar_name": "AWS_ENDPOINT_URL_GLACIER"
@@ -673,11 +653,6 @@
     "service_id": "HealthLake",
     "services_section_name": "healthlake",
     "service_envvar_name": "AWS_ENDPOINT_URL_HEALTHLAKE"
-  },
-  {
-    "service_id": "Honeycode",
-    "services_section_name": "honeycode",
-    "service_envvar_name": "AWS_ENDPOINT_URL_HONEYCODE"
   },
   {
     "service_id": "IAM",
@@ -940,11 +915,6 @@
     "service_envvar_name": "AWS_ENDPOINT_URL_MACHINE_LEARNING"
   },
   {
-    "service_id": "Macie",
-    "services_section_name": "macie",
-    "service_envvar_name": "AWS_ENDPOINT_URL_MACIE"
-  },
-  {
     "service_id": "Macie2",
     "services_section_name": "macie2",
     "service_envvar_name": "AWS_ENDPOINT_URL_MACIE2"
@@ -1050,11 +1020,6 @@
     "service_envvar_name": "AWS_ENDPOINT_URL_MIGRATIONHUBSTRATEGY"
   },
   {
-    "service_id": "Mobile",
-    "services_section_name": "mobile",
-    "service_envvar_name": "AWS_ENDPOINT_URL_MOBILE"
-  },
-  {
     "service_id": "mq",
     "services_section_name": "mq",
     "service_envvar_name": "AWS_ENDPOINT_URL_MQ"
@@ -1083,11 +1048,6 @@
     "service_id": "NetworkManager",
     "services_section_name": "networkmanager",
     "service_envvar_name": "AWS_ENDPOINT_URL_NETWORKMANAGER"
-  },
-  {
-    "service_id": "nimble",
-    "services_section_name": "nimble",
-    "service_envvar_name": "AWS_ENDPOINT_URL_NIMBLE"
   },
   {
     "service_id": "OpenSearch",
@@ -1563,11 +1523,6 @@
     "service_id": "WorkDocs",
     "services_section_name": "workdocs",
     "service_envvar_name": "AWS_ENDPOINT_URL_WORKDOCS"
-  },
-  {
-    "service_id": "WorkLink",
-    "services_section_name": "worklink",
-    "service_envvar_name": "AWS_ENDPOINT_URL_WORKLINK"
   },
   {
     "service_id": "WorkMail",

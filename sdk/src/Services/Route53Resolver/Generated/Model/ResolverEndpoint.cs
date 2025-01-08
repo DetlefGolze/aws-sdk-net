@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -49,8 +50,9 @@ namespace Amazon.Route53Resolver.Model
         private string _name;
         private string _outpostArn;
         private string _preferredInstanceType;
+        private List<string> _protocols = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ResolverEndpointType _resolverEndpointType;
-        private List<string> _securityGroupIds = new List<string>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ResolverEndpointStatus _status;
         private string _statusMessage;
 
@@ -97,8 +99,8 @@ namespace Amazon.Route53Resolver.Model
         /// Gets and sets the property CreatorRequestId. 
         /// <para>
         /// A unique string that identifies the request that created the Resolver endpoint. The
-        /// <code>CreatorRequestId</code> allows failed requests to be retried without the risk
-        /// of running the operation twice.
+        /// <c>CreatorRequestId</c> allows failed requests to be retried without the risk of running
+        /// the operation twice.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -121,11 +123,11 @@ namespace Amazon.Route53Resolver.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>INBOUND</code>: allows DNS queries to your VPC from your network
+        ///  <c>INBOUND</c>: allows DNS queries to your VPC from your network
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OUTBOUND</code>: allows DNS queries from your VPC to your network
+        ///  <c>OUTBOUND</c>: allows DNS queries from your VPC to your network
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -276,6 +278,75 @@ namespace Amazon.Route53Resolver.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Protocols. 
+        /// <para>
+        ///  Protocols used for the endpoint. DoH-FIPS is applicable for inbound endpoints only.
+        /// 
+        /// </para>
+        ///  
+        /// <para>
+        /// For an inbound endpoint you can apply the protocols as follows:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  Do53 and DoH in combination.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Do53 and DoH-FIPS in combination.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Do53 alone.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// DoH alone.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// DoH-FIPS alone.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// None, which is treated as Do53.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For an outbound endpoint you can apply the protocols as follows:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  Do53 and DoH in combination.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Do53 alone.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// DoH alone.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// None, which is treated as Do53.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        [AWSProperty(Min=1, Max=2)]
+        public List<string> Protocols
+        {
+            get { return this._protocols; }
+            set { this._protocols = value; }
+        }
+
+        // Check to see if Protocols property is set
+        internal bool IsSetProtocols()
+        {
+            return this._protocols != null && (this._protocols.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property ResolverEndpointType. 
         /// <para>
         ///  The Resolver endpoint IP address type. 
@@ -312,7 +383,7 @@ namespace Amazon.Route53Resolver.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -323,23 +394,23 @@ namespace Amazon.Route53Resolver.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CREATING</code>: Resolver is creating and configuring one or more Amazon VPC
-        /// network interfaces for this endpoint.
+        ///  <c>CREATING</c>: Resolver is creating and configuring one or more Amazon VPC network
+        /// interfaces for this endpoint.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OPERATIONAL</code>: The Amazon VPC network interfaces for this endpoint are
-        /// correctly configured and able to pass inbound or outbound DNS queries between your
-        /// network and Resolver.
+        ///  <c>OPERATIONAL</c>: The Amazon VPC network interfaces for this endpoint are correctly
+        /// configured and able to pass inbound or outbound DNS queries between your network and
+        /// Resolver.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPDATING</code>: Resolver is associating or disassociating one or more network
-        /// interfaces with this endpoint.
+        ///  <c>UPDATING</c>: Resolver is associating or disassociating one or more network interfaces
+        /// with this endpoint.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AUTO_RECOVERING</code>: Resolver is trying to recover one or more of the network
+        ///  <c>AUTO_RECOVERING</c>: Resolver is trying to recover one or more of the network
         /// interfaces that are associated with this endpoint. During the recovery process, the
         /// endpoint functions with limited capacity because of the limit on the number of DNS
         /// queries per IP address (per network interface). For the current limit, see <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html#limits-api-entities-resolver">Limits
@@ -347,12 +418,12 @@ namespace Amazon.Route53Resolver.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ACTION_NEEDED</code>: This endpoint is unhealthy, and Resolver can't automatically
+        ///  <c>ACTION_NEEDED</c>: This endpoint is unhealthy, and Resolver can't automatically
         /// recover it. To resolve the problem, we recommend that you check each IP address that
         /// you associated with the endpoint. For each IP address that isn't available, add another
         /// IP address and then delete the IP address that isn't available. (An endpoint must
-        /// always include at least two IP addresses.) A status of <code>ACTION_NEEDED</code>
-        /// can have a variety of causes. Here are two common causes:
+        /// always include at least two IP addresses.) A status of <c>ACTION_NEEDED</c> can have
+        /// a variety of causes. Here are two common causes:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -366,8 +437,7 @@ namespace Amazon.Route53Resolver.Model
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
-        ///  <code>DELETING</code>: Resolver is deleting this endpoint and the associated network
-        /// interfaces.
+        ///  <c>DELETING</c>: Resolver is deleting this endpoint and the associated network interfaces.
         /// </para>
         ///  </li> </ul>
         /// </summary>

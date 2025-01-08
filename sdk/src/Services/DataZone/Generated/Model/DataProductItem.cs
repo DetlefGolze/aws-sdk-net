@@ -26,44 +26,93 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
-    /// 
+    /// The data product.
     /// </summary>
     public partial class DataProductItem
     {
-        private string _domainId;
-        private string _itemId;
+        private List<string> _glossaryTerms = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private string _identifier;
+        private DataProductItemType _itemType;
+        private string _revision;
 
         /// <summary>
-        /// Gets and sets the property DomainId.
+        /// Gets and sets the property GlossaryTerms. 
+        /// <para>
+        /// The glossary terms of the data product.
+        /// </para>
         /// </summary>
-        public string DomainId
+        [AWSProperty(Min=1, Max=2)]
+        public List<string> GlossaryTerms
         {
-            get { return this._domainId; }
-            set { this._domainId = value; }
+            get { return this._glossaryTerms; }
+            set { this._glossaryTerms = value; }
         }
 
-        // Check to see if DomainId property is set
-        internal bool IsSetDomainId()
+        // Check to see if GlossaryTerms property is set
+        internal bool IsSetGlossaryTerms()
         {
-            return this._domainId != null;
+            return this._glossaryTerms != null && (this._glossaryTerms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
-        /// Gets and sets the property ItemId.
+        /// Gets and sets the property Identifier. 
+        /// <para>
+        /// The ID of the data product.
+        /// </para>
         /// </summary>
-        public string ItemId
+        [AWSProperty(Required=true)]
+        public string Identifier
         {
-            get { return this._itemId; }
-            set { this._itemId = value; }
+            get { return this._identifier; }
+            set { this._identifier = value; }
         }
 
-        // Check to see if ItemId property is set
-        internal bool IsSetItemId()
+        // Check to see if Identifier property is set
+        internal bool IsSetIdentifier()
         {
-            return this._itemId != null;
+            return this._identifier != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ItemType. 
+        /// <para>
+        /// The type of the data product.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Required=true)]
+        public DataProductItemType ItemType
+        {
+            get { return this._itemType; }
+            set { this._itemType = value; }
+        }
+
+        // Check to see if ItemType property is set
+        internal bool IsSetItemType()
+        {
+            return this._itemType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Revision. 
+        /// <para>
+        /// The revision of the data product.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=64)]
+        public string Revision
+        {
+            get { return this._revision; }
+            set { this._revision = value; }
+        }
+
+        // Check to see if Revision property is set
+        internal bool IsSetRevision()
+        {
+            return this._revision != null;
         }
 
     }

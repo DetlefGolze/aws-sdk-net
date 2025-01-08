@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
     /// The operation tried to access a nonexistent table or index. The resource might not
-    /// be specified correctly, or its status might not be <code>ACTIVE</code>.
+    /// be specified correctly, or its status might not be <c>ACTIVE</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

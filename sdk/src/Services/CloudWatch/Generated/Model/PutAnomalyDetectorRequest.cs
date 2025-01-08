@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatch.Model
 {
     /// <summary>
@@ -35,6 +36,13 @@ namespace Amazon.CloudWatch.Model
     /// 
     ///  
     /// <para>
+    /// If you have enabled unified cross-account observability, and this account is a monitoring
+    /// account, the metric can be in the same account or a source account. You can specify
+    /// the account ID in the object you specify in the <c>SingleMetricAnomalyDetector</c>
+    /// parameter.
+    /// </para>
+    ///  
+    /// <para>
     /// For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Anomaly_Detection.html">CloudWatch
     /// Anomaly Detection</a>.
     /// </para>
@@ -42,7 +50,8 @@ namespace Amazon.CloudWatch.Model
     public partial class PutAnomalyDetectorRequest : AmazonCloudWatchRequest
     {
         private AnomalyDetectorConfiguration _configuration;
-        private List<Dimension> _dimensions = new List<Dimension>();
+        private List<Dimension> _dimensions = AWSConfigs.InitializeCollections ? new List<Dimension>() : null;
+        private MetricCharacteristics _metricCharacteristics;
         private MetricMathAnomalyDetector _metricMathAnomalyDetector;
         private string _metricName;
         private string _awsNamespace;
@@ -90,7 +99,27 @@ namespace Amazon.CloudWatch.Model
         // Check to see if Dimensions property is set
         internal bool IsSetDimensions()
         {
-            return this._dimensions != null && this._dimensions.Count > 0; 
+            return this._dimensions != null && (this._dimensions.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property MetricCharacteristics. 
+        /// <para>
+        /// Use this object to include parameters to provide information about your metric to
+        /// CloudWatch to help it build more accurate anomaly detection models. Currently, it
+        /// includes the <c>PeriodicSpikes</c> parameter.
+        /// </para>
+        /// </summary>
+        public MetricCharacteristics MetricCharacteristics
+        {
+            get { return this._metricCharacteristics; }
+            set { this._metricCharacteristics = value; }
+        }
+
+        // Check to see if MetricCharacteristics property is set
+        internal bool IsSetMetricCharacteristics()
+        {
+            return this._metricCharacteristics != null;
         }
 
         /// <summary>
@@ -100,34 +129,34 @@ namespace Amazon.CloudWatch.Model
         /// </para>
         ///  
         /// <para>
-        /// When using <code>MetricMathAnomalyDetector</code>, you cannot include the following
-        /// parameters in the same operation:
+        /// When using <c>MetricMathAnomalyDetector</c>, you cannot include the following parameters
+        /// in the same operation:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Dimensions</code> 
+        ///  <c>Dimensions</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MetricName</code> 
+        ///  <c>MetricName</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Namespace</code> 
+        ///  <c>Namespace</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Stat</code> 
+        ///  <c>Stat</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// the <code>SingleMetricAnomalyDetector</code> parameters of <code>PutAnomalyDetectorInput</code>
+        /// the <c>SingleMetricAnomalyDetector</c> parameters of <c>PutAnomalyDetectorInput</c>
         /// 
         /// </para>
         ///  </li> </ul> 
         /// <para>
         /// Instead, specify the metric math anomaly detector attributes as part of the property
-        /// <code>MetricMathAnomalyDetector</code>.
+        /// <c>MetricMathAnomalyDetector</c>.
         /// </para>
         /// </summary>
         public MetricMathAnomalyDetector MetricMathAnomalyDetector
@@ -189,34 +218,34 @@ namespace Amazon.CloudWatch.Model
         /// </para>
         ///  
         /// <para>
-        /// When using <code>SingleMetricAnomalyDetector</code>, you cannot include the following
-        /// parameters in the same operation:
+        /// When using <c>SingleMetricAnomalyDetector</c>, you cannot include the following parameters
+        /// in the same operation:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Dimensions</code> 
+        ///  <c>Dimensions</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MetricName</code> 
+        ///  <c>MetricName</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Namespace</code> 
+        ///  <c>Namespace</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Stat</code> 
+        ///  <c>Stat</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// the <code>MetricMatchAnomalyDetector</code> parameters of <code>PutAnomalyDetectorInput</code>
+        /// the <c>MetricMathAnomalyDetector</c> parameters of <c>PutAnomalyDetectorInput</c>
         /// 
         /// </para>
         ///  </li> </ul> 
         /// <para>
         /// Instead, specify the single metric anomaly detector attributes as part of the property
-        /// <code>SingleMetricAnomalyDetector</code>.
+        /// <c>SingleMetricAnomalyDetector</c>.
         /// </para>
         /// </summary>
         public SingleMetricAnomalyDetector SingleMetricAnomalyDetector

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Amplify.Model
 {
     /// <summary>
@@ -37,32 +38,35 @@ namespace Amazon.Amplify.Model
         private string _appArn;
         private string _appId;
         private AutoBranchCreationConfig _autoBranchCreationConfig;
-        private List<string> _autoBranchCreationPatterns = new List<string>();
+        private List<string> _autoBranchCreationPatterns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _basicAuthCredentials;
         private string _buildSpec;
+        private CacheConfig _cacheConfig;
         private DateTime? _createTime;
         private string _customHeaders;
-        private List<CustomRule> _customRules = new List<CustomRule>();
+        private List<CustomRule> _customRules = AWSConfigs.InitializeCollections ? new List<CustomRule>() : null;
         private string _defaultDomain;
         private string _description;
         private bool? _enableAutoBranchCreation;
         private bool? _enableBasicAuth;
         private bool? _enableBranchAutoBuild;
         private bool? _enableBranchAutoDeletion;
-        private Dictionary<string, string> _environmentVariables = new Dictionary<string, string>();
+        private Dictionary<string, string> _environmentVariables = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _iamServiceRoleArn;
         private string _name;
         private Platform _platform;
         private ProductionBranch _productionBranch;
         private string _repository;
         private RepositoryCloneMethod _repositoryCloneMethod;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private DateTime? _updateTime;
+        private WafConfiguration _wafConfiguration;
+        private DateTime? _webhookCreateTime;
 
         /// <summary>
         /// Gets and sets the property AppArn. 
         /// <para>
-        ///  The Amazon Resource Name (ARN) of the Amplify app. 
+        /// The Amazon Resource Name (ARN) of the Amplify app. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=1000)]
@@ -81,7 +85,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property AppId. 
         /// <para>
-        ///  The unique ID of the Amplify app. 
+        /// The unique ID of the Amplify app. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=20)]
@@ -100,7 +104,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property AutoBranchCreationConfig. 
         /// <para>
-        ///  Describes the automated branch creation configuration for the Amplify app. 
+        /// Describes the automated branch creation configuration for the Amplify app. 
         /// </para>
         /// </summary>
         public AutoBranchCreationConfig AutoBranchCreationConfig
@@ -118,7 +122,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property AutoBranchCreationPatterns. 
         /// <para>
-        ///  Describes the automated branch creation glob patterns for the Amplify app. 
+        /// Describes the automated branch creation glob patterns for the Amplify app. 
         /// </para>
         /// </summary>
         public List<string> AutoBranchCreationPatterns
@@ -130,14 +134,14 @@ namespace Amazon.Amplify.Model
         // Check to see if AutoBranchCreationPatterns property is set
         internal bool IsSetAutoBranchCreationPatterns()
         {
-            return this._autoBranchCreationPatterns != null && this._autoBranchCreationPatterns.Count > 0; 
+            return this._autoBranchCreationPatterns != null && (this._autoBranchCreationPatterns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property BasicAuthCredentials. 
         /// <para>
-        ///  The basic authorization credentials for branches for the Amplify app. You must base64-encode
-        /// the authorization credentials and provide them in the format <code>user:password</code>.
+        /// The basic authorization credentials for branches for the Amplify app. You must base64-encode
+        /// the authorization credentials and provide them in the format <c>user:password</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Max=2000)]
@@ -156,7 +160,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property BuildSpec. 
         /// <para>
-        ///  Describes the content of the build specification (build spec) for the Amplify app.
+        /// Describes the content of the build specification (build spec) for the Amplify app.
         /// 
         /// </para>
         /// </summary>
@@ -174,9 +178,28 @@ namespace Amazon.Amplify.Model
         }
 
         /// <summary>
+        /// Gets and sets the property CacheConfig. 
+        /// <para>
+        /// The cache configuration for the Amplify app. If you don't specify the cache configuration
+        /// <c>type</c>, Amplify uses the default <c>AMPLIFY_MANAGED</c> setting.
+        /// </para>
+        /// </summary>
+        public CacheConfig CacheConfig
+        {
+            get { return this._cacheConfig; }
+            set { this._cacheConfig = value; }
+        }
+
+        // Check to see if CacheConfig property is set
+        internal bool IsSetCacheConfig()
+        {
+            return this._cacheConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property CreateTime. 
         /// <para>
-        ///  Creates a date and time for the Amplify app. 
+        /// A timestamp of when Amplify created the application.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -214,7 +237,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property CustomRules. 
         /// <para>
-        ///  Describes the custom redirect and rewrite rules for the Amplify app. 
+        /// Describes the custom redirect and rewrite rules for the Amplify app. 
         /// </para>
         /// </summary>
         public List<CustomRule> CustomRules
@@ -226,13 +249,13 @@ namespace Amazon.Amplify.Model
         // Check to see if CustomRules property is set
         internal bool IsSetCustomRules()
         {
-            return this._customRules != null && this._customRules.Count > 0; 
+            return this._customRules != null && (this._customRules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DefaultDomain. 
         /// <para>
-        ///  The default domain for the Amplify app. 
+        /// The default domain for the Amplify app. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1000)]
@@ -251,7 +274,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
-        ///  The description for the Amplify app. 
+        /// The description for the Amplify app. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=1000)]
@@ -270,7 +293,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property EnableAutoBranchCreation. 
         /// <para>
-        ///  Enables automated branch creation for the Amplify app. 
+        /// Enables automated branch creation for the Amplify app. 
         /// </para>
         /// </summary>
         public bool EnableAutoBranchCreation
@@ -288,7 +311,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property EnableBasicAuth. 
         /// <para>
-        ///  Enables basic authorization for the Amplify app's branches. 
+        /// Enables basic authorization for the Amplify app's branches. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -307,7 +330,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property EnableBranchAutoBuild. 
         /// <para>
-        ///  Enables the auto-building of branches for the Amplify app. 
+        /// Enables the auto-building of branches for the Amplify app. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -326,8 +349,8 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property EnableBranchAutoDeletion. 
         /// <para>
-        ///  Automatically disconnect a branch in the Amplify Console when you delete a branch
-        /// from your Git repository. 
+        /// Automatically disconnect a branch in the Amplify console when you delete a branch
+        /// from your Git repository.
         /// </para>
         /// </summary>
         public bool EnableBranchAutoDeletion
@@ -345,7 +368,13 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property EnvironmentVariables. 
         /// <para>
-        ///  The environment variables for the Amplify app. 
+        /// The environment variables for the Amplify app. 
+        /// </para>
+        ///  
+        /// <para>
+        /// For a list of the environment variables that are accessible to Amplify by default,
+        /// see <a href="https://docs.aws.amazon.com/amplify/latest/userguide/amplify-console-environment-variables.html">Amplify
+        /// Environment variables</a> in the <i>Amplify Hosting User Guide</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -358,13 +387,13 @@ namespace Amazon.Amplify.Model
         // Check to see if EnvironmentVariables property is set
         internal bool IsSetEnvironmentVariables()
         {
-            return this._environmentVariables != null && this._environmentVariables.Count > 0; 
+            return this._environmentVariables != null && (this._environmentVariables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property IamServiceRoleArn. 
         /// <para>
-        ///  The AWS Identity and Access Management (IAM) service role for the Amazon Resource
+        /// The AWS Identity and Access Management (IAM) service role for the Amazon Resource
         /// Name (ARN) of the Amplify app. 
         /// </para>
         /// </summary>
@@ -384,7 +413,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        ///  The name for the Amplify app. 
+        /// The name for the Amplify app. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]
@@ -403,10 +432,15 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property Platform. 
         /// <para>
-        ///  The platform for the Amplify app. For a static app, set the platform type to <code>WEB</code>.
-        /// For a dynamic server-side rendered (SSR) app, set the platform type to <code>WEB_COMPUTE</code>.
+        /// The platform for the Amplify app. For a static app, set the platform type to <c>WEB</c>.
+        /// For a dynamic server-side rendered (SSR) app, set the platform type to <c>WEB_COMPUTE</c>.
         /// For an app requiring Amplify Hosting's original SSR support only, set the platform
-        /// type to <code>WEB_DYNAMIC</code>.
+        /// type to <c>WEB_DYNAMIC</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you are deploying an SSG only app with Next.js 14 or later, you must use the platform
+        /// type <c>WEB_COMPUTE</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -425,7 +459,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property ProductionBranch. 
         /// <para>
-        ///  Describes the information about a production branch of the Amplify app. 
+        /// Describes the information about a production branch of the Amplify app. 
         /// </para>
         /// </summary>
         public ProductionBranch ProductionBranch
@@ -443,7 +477,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property Repository. 
         /// <para>
-        ///  The Git repository for the Amplify app. 
+        /// The Git repository for the Amplify app. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=1000)]
@@ -467,9 +501,9 @@ namespace Amazon.Amplify.Model
         ///  </note> 
         /// <para>
         /// The Amplify service uses this parameter to specify the authentication protocol to
-        /// use to access the Git repository for an Amplify app. Amplify specifies <code>TOKEN</code>
-        /// for a GitHub repository, <code>SIGV4</code> for an Amazon Web Services CodeCommit
-        /// repository, and <code>SSH</code> for GitLab and Bitbucket repositories.
+        /// use to access the Git repository for an Amplify app. Amplify specifies <c>TOKEN</c>
+        /// for a GitHub repository, <c>SIGV4</c> for an Amazon Web Services CodeCommit repository,
+        /// and <c>SSH</c> for GitLab and Bitbucket repositories.
         /// </para>
         /// </summary>
         public RepositoryCloneMethod RepositoryCloneMethod
@@ -487,7 +521,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        ///  The tag for the Amplify app. 
+        /// The tag for the Amplify app. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -500,13 +534,13 @@ namespace Amazon.Amplify.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UpdateTime. 
         /// <para>
-        ///  Updates the date and time for the Amplify app. 
+        /// A timestamp of when Amplify updated the application.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -520,6 +554,43 @@ namespace Amazon.Amplify.Model
         internal bool IsSetUpdateTime()
         {
             return this._updateTime.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property WafConfiguration. 
+        /// <para>
+        /// Describes the Firewall configuration for the Amplify app. Firewall support enables
+        /// you to protect your hosted applications with a direct integration with WAF.
+        /// </para>
+        /// </summary>
+        public WafConfiguration WafConfiguration
+        {
+            get { return this._wafConfiguration; }
+            set { this._wafConfiguration = value; }
+        }
+
+        // Check to see if WafConfiguration property is set
+        internal bool IsSetWafConfiguration()
+        {
+            return this._wafConfiguration != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WebhookCreateTime. 
+        /// <para>
+        /// A timestamp of when Amplify created the webhook in your Git repository.
+        /// </para>
+        /// </summary>
+        public DateTime WebhookCreateTime
+        {
+            get { return this._webhookCreateTime.GetValueOrDefault(); }
+            set { this._webhookCreateTime = value; }
+        }
+
+        // Check to see if WebhookCreateTime property is set
+        internal bool IsSetWebhookCreateTime()
+        {
+            return this._webhookCreateTime.HasValue; 
         }
 
     }

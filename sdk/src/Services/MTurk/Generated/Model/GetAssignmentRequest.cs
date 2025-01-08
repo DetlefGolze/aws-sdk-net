@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MTurk.Model
 {
     /// <summary>
     /// Container for the parameters to the GetAssignment operation.
-    /// The <code>GetAssignment</code> operation retrieves the details of the specified Assignment.
+    /// The <c>GetAssignment</c> operation retrieves the details of the specified Assignment.
     /// </summary>
     public partial class GetAssignmentRequest : AmazonMTurkRequest
     {

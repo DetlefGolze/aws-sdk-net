@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FMS.Model
 {
     /// <summary>
@@ -34,19 +35,19 @@ namespace Amazon.FMS.Model
     public partial class Policy
     {
         private bool? _deleteUnusedFMManagedResources;
-        private Dictionary<string, List<string>> _excludeMap = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<string>> _excludeMap = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
         private bool? _excludeResourceTags;
-        private Dictionary<string, List<string>> _includeMap = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<string>> _includeMap = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
         private string _policyDescription;
         private string _policyId;
         private string _policyName;
         private CustomerPolicyStatus _policyStatus;
         private string _policyUpdateToken;
         private bool? _remediationEnabled;
-        private List<string> _resourceSetIds = new List<string>();
-        private List<ResourceTag> _resourceTags = new List<ResourceTag>();
+        private List<string> _resourceSetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<ResourceTag> _resourceTags = AWSConfigs.InitializeCollections ? new List<ResourceTag>() : null;
         private string _resourceType;
-        private List<string> _resourceTypeList = new List<string>();
+        private List<string> _resourceTypeList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private SecurityServicePolicyData _securityServicePolicyData;
 
         /// <summary>
@@ -90,11 +91,11 @@ namespace Amazon.FMS.Model
         /// </para>
         ///  
         /// <para>
-        /// You can specify inclusions or exclusions, but not both. If you specify an <code>IncludeMap</code>,
-        /// Firewall Manager applies the policy to all accounts specified by the <code>IncludeMap</code>,
-        /// and does not evaluate any <code>ExcludeMap</code> specifications. If you do not specify
-        /// an <code>IncludeMap</code>, then Firewall Manager applies the policy to all accounts
-        /// except for those specified by the <code>ExcludeMap</code>.
+        /// You can specify inclusions or exclusions, but not both. If you specify an <c>IncludeMap</c>,
+        /// Firewall Manager applies the policy to all accounts specified by the <c>IncludeMap</c>,
+        /// and does not evaluate any <c>ExcludeMap</c> specifications. If you do not specify
+        /// an <c>IncludeMap</c>, then Firewall Manager applies the policy to all accounts except
+        /// for those specified by the <c>ExcludeMap</c>.
         /// </para>
         ///  
         /// <para>
@@ -102,19 +103,19 @@ namespace Amazon.FMS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Specify account IDs by setting the key to <code>ACCOUNT</code>. For example, the following
-        /// is a valid map: <code>{“ACCOUNT” : [“accountID1”, “accountID2”]}</code>.
+        /// Specify account IDs by setting the key to <c>ACCOUNT</c>. For example, the following
+        /// is a valid map: <c>{“ACCOUNT” : [“accountID1”, “accountID2”]}</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Specify OUs by setting the key to <code>ORG_UNIT</code>. For example, the following
-        /// is a valid map: <code>{“ORG_UNIT” : [“ouid111”, “ouid112”]}</code>.
+        /// Specify OUs by setting the key to <c>ORG_UNIT</c>. For example, the following is a
+        /// valid map: <c>{“ORG_UNIT” : [“ouid111”, “ouid112”]}</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// Specify accounts and OUs together in a single map, separated with a comma. For example,
-        /// the following is a valid map: <code>{“ACCOUNT” : [“accountID1”, “accountID2”], “ORG_UNIT”
-        /// : [“ouid111”, “ouid112”]}</code>.
+        /// the following is a valid map: <c>{“ACCOUNT” : [“accountID1”, “accountID2”], “ORG_UNIT”
+        /// : [“ouid111”, “ouid112”]}</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -127,14 +128,14 @@ namespace Amazon.FMS.Model
         // Check to see if ExcludeMap property is set
         internal bool IsSetExcludeMap()
         {
-            return this._excludeMap != null && this._excludeMap.Count > 0; 
+            return this._excludeMap != null && (this._excludeMap.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ExcludeResourceTags. 
         /// <para>
-        /// If set to <code>True</code>, resources with the tags that are specified in the <code>ResourceTag</code>
-        /// array are not in scope of the policy. If set to <code>False</code>, and the <code>ResourceTag</code>
+        /// If set to <c>True</c>, resources with the tags that are specified in the <c>ResourceTag</c>
+        /// array are not in scope of the policy. If set to <c>False</c>, and the <c>ResourceTag</c>
         /// array is not null, only resources with the specified tags are in scope of the policy.
         /// </para>
         /// </summary>
@@ -161,11 +162,11 @@ namespace Amazon.FMS.Model
         /// </para>
         ///  
         /// <para>
-        /// You can specify inclusions or exclusions, but not both. If you specify an <code>IncludeMap</code>,
-        /// Firewall Manager applies the policy to all accounts specified by the <code>IncludeMap</code>,
-        /// and does not evaluate any <code>ExcludeMap</code> specifications. If you do not specify
-        /// an <code>IncludeMap</code>, then Firewall Manager applies the policy to all accounts
-        /// except for those specified by the <code>ExcludeMap</code>.
+        /// You can specify inclusions or exclusions, but not both. If you specify an <c>IncludeMap</c>,
+        /// Firewall Manager applies the policy to all accounts specified by the <c>IncludeMap</c>,
+        /// and does not evaluate any <c>ExcludeMap</c> specifications. If you do not specify
+        /// an <c>IncludeMap</c>, then Firewall Manager applies the policy to all accounts except
+        /// for those specified by the <c>ExcludeMap</c>.
         /// </para>
         ///  
         /// <para>
@@ -173,19 +174,19 @@ namespace Amazon.FMS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Specify account IDs by setting the key to <code>ACCOUNT</code>. For example, the following
-        /// is a valid map: <code>{“ACCOUNT” : [“accountID1”, “accountID2”]}</code>.
+        /// Specify account IDs by setting the key to <c>ACCOUNT</c>. For example, the following
+        /// is a valid map: <c>{“ACCOUNT” : [“accountID1”, “accountID2”]}</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Specify OUs by setting the key to <code>ORG_UNIT</code>. For example, the following
-        /// is a valid map: <code>{“ORG_UNIT” : [“ouid111”, “ouid112”]}</code>.
+        /// Specify OUs by setting the key to <c>ORG_UNIT</c>. For example, the following is a
+        /// valid map: <c>{“ORG_UNIT” : [“ouid111”, “ouid112”]}</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// Specify accounts and OUs together in a single map, separated with a comma. For example,
-        /// the following is a valid map: <code>{“ACCOUNT” : [“accountID1”, “accountID2”], “ORG_UNIT”
-        /// : [“ouid111”, “ouid112”]}</code>.
+        /// the following is a valid map: <c>{“ACCOUNT” : [“accountID1”, “accountID2”], “ORG_UNIT”
+        /// : [“ouid111”, “ouid112”]}</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -198,13 +199,13 @@ namespace Amazon.FMS.Model
         // Check to see if IncludeMap property is set
         internal bool IsSetIncludeMap()
         {
-            return this._includeMap != null && this._includeMap.Count > 0; 
+            return this._includeMap != null && (this._includeMap.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PolicyDescription. 
         /// <para>
-        /// The definition of the Network Firewall firewall policy.
+        /// Your description of the Firewall Manager policy.
         /// </para>
         /// </summary>
         [AWSProperty(Max=256)]
@@ -265,13 +266,13 @@ namespace Amazon.FMS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ACTIVE</code> - The administrator can manage and delete the policy.
+        ///  <c>ACTIVE</c> - The administrator can manage and delete the policy.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OUT_OF_ADMIN_SCOPE</code> - The administrator can view the policy, but they
-        /// can't edit or delete the policy. Existing policy protections stay in place. Any new
-        /// resources that come into scope of the policy won't be protected.
+        ///  <c>OUT_OF_ADMIN_SCOPE</c> - The administrator can view the policy, but they can't
+        /// edit or delete the policy. Existing policy protections stay in place. Any new resources
+        /// that come into scope of the policy won't be protected.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -290,10 +291,10 @@ namespace Amazon.FMS.Model
         /// <summary>
         /// Gets and sets the property PolicyUpdateToken. 
         /// <para>
-        /// A unique identifier for each update to the policy. When issuing a <code>PutPolicy</code>
-        /// request, the <code>PolicyUpdateToken</code> in the request must match the <code>PolicyUpdateToken</code>
-        /// of the current policy version. To get the <code>PolicyUpdateToken</code> of the current
-        /// policy version, use a <code>GetPolicy</code> request.
+        /// A unique identifier for each update to the policy. When issuing a <c>PutPolicy</c>
+        /// request, the <c>PolicyUpdateToken</c> in the request must match the <c>PolicyUpdateToken</c>
+        /// of the current policy version. To get the <c>PolicyUpdateToken</c> of the current
+        /// policy version, use a <c>GetPolicy</c> request.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -343,16 +344,16 @@ namespace Amazon.FMS.Model
         // Check to see if ResourceSetIds property is set
         internal bool IsSetResourceSetIds()
         {
-            return this._resourceSetIds != null && this._resourceSetIds.Count > 0; 
+            return this._resourceSetIds != null && (this._resourceSetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ResourceTags. 
         /// <para>
-        /// An array of <code>ResourceTag</code> objects.
+        /// An array of <c>ResourceTag</c> objects.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=8)]
+        [AWSProperty(Min=0, Max=50)]
         public List<ResourceTag> ResourceTags
         {
             get { return this._resourceTags; }
@@ -362,7 +363,7 @@ namespace Amazon.FMS.Model
         // Check to see if ResourceTags property is set
         internal bool IsSetResourceTags()
         {
-            return this._resourceTags != null && this._resourceTags.Count > 0; 
+            return this._resourceTags != null && (this._resourceTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -371,20 +372,46 @@ namespace Amazon.FMS.Model
         /// The type of resource protected by or in scope of the policy. This is in the format
         /// shown in the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">Amazon
         /// Web Services Resource Types Reference</a>. To apply this policy to multiple resource
-        /// types, specify a resource type of <code>ResourceTypeList</code> and then specify the
-        /// resource types in a <code>ResourceTypeList</code>.
+        /// types, specify a resource type of <c>ResourceTypeList</c> and then specify the resource
+        /// types in a <c>ResourceTypeList</c>.
         /// </para>
         ///  
         /// <para>
-        /// For WAF and Shield Advanced, resource types include <code>AWS::ElasticLoadBalancingV2::LoadBalancer</code>,
-        /// <code>AWS::ElasticLoadBalancing::LoadBalancer</code>, <code>AWS::EC2::EIP</code>,
-        /// and <code>AWS::CloudFront::Distribution</code>. For a security group common policy,
-        /// valid values are <code>AWS::EC2::NetworkInterface</code> and <code>AWS::EC2::Instance</code>.
-        /// For a security group content audit policy, valid values are <code>AWS::EC2::SecurityGroup</code>,
-        /// <code>AWS::EC2::NetworkInterface</code>, and <code>AWS::EC2::Instance</code>. For
-        /// a security group usage audit policy, the value is <code>AWS::EC2::SecurityGroup</code>.
-        /// For an Network Firewall policy or DNS Firewall policy, the value is <code>AWS::EC2::VPC</code>.
+        /// The following are valid resource types for each Firewall Manager policy type:
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Amazon Web Services WAF Classic - <c>AWS::ApiGateway::Stage</c>, <c>AWS::CloudFront::Distribution</c>,
+        /// and <c>AWS::ElasticLoadBalancingV2::LoadBalancer</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// WAF - <c>AWS::ApiGateway::Stage</c>, <c>AWS::ElasticLoadBalancingV2::LoadBalancer</c>,
+        /// and <c>AWS::CloudFront::Distribution</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Shield Advanced - <c>AWS::ElasticLoadBalancingV2::LoadBalancer</c>, <c>AWS::ElasticLoadBalancing::LoadBalancer</c>,
+        /// <c>AWS::EC2::EIP</c>, and <c>AWS::CloudFront::Distribution</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Network ACL - <c>AWS::EC2::Subnet</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Security group usage audit - <c>AWS::EC2::SecurityGroup</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Security group content audit - <c>AWS::EC2::SecurityGroup</c>, <c>AWS::EC2::NetworkInterface</c>,
+        /// and <c>AWS::EC2::Instance</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// DNS Firewall, Network Firewall, and third-party firewall - <c>AWS::EC2::VPC</c>.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=128)]
         public string ResourceType
@@ -402,8 +429,8 @@ namespace Amazon.FMS.Model
         /// <summary>
         /// Gets and sets the property ResourceTypeList. 
         /// <para>
-        /// An array of <code>ResourceType</code> objects. Use this only to specify multiple resource
-        /// types. To specify a single resource type, use <code>ResourceType</code>.
+        /// An array of <c>ResourceType</c> objects. Use this only to specify multiple resource
+        /// types. To specify a single resource type, use <c>ResourceType</c>.
         /// </para>
         /// </summary>
         public List<string> ResourceTypeList
@@ -415,7 +442,7 @@ namespace Amazon.FMS.Model
         // Check to see if ResourceTypeList property is set
         internal bool IsSetResourceTypeList()
         {
-            return this._resourceTypeList != null && this._resourceTypeList.Count > 0; 
+            return this._resourceTypeList != null && (this._resourceTypeList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -48,11 +49,11 @@ namespace Amazon.GameLift.Model
     public partial class UpdateGameSessionQueueRequest : AmazonGameLiftRequest
     {
         private string _customEventData;
-        private List<GameSessionQueueDestination> _destinations = new List<GameSessionQueueDestination>();
+        private List<GameSessionQueueDestination> _destinations = AWSConfigs.InitializeCollections ? new List<GameSessionQueueDestination>() : null;
         private FilterConfiguration _filterConfiguration;
         private string _name;
         private string _notificationTarget;
-        private List<PlayerLatencyPolicy> _playerLatencyPolicies = new List<PlayerLatencyPolicy>();
+        private List<PlayerLatencyPolicy> _playerLatencyPolicies = AWSConfigs.InitializeCollections ? new List<PlayerLatencyPolicy>() : null;
         private PriorityConfiguration _priorityConfiguration;
         private int? _timeoutInSeconds;
 
@@ -122,7 +123,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property FilterConfiguration. 
         /// <para>
         /// A list of locations where a queue is allowed to place new game sessions. Locations
-        /// are specified in the form of Amazon Web Services Region codes, such as <code>us-west-2</code>.
+        /// are specified in the form of Amazon Web Services Region codes, such as <c>us-west-2</c>.
         /// If this parameter is not set, game sessions can be placed in any queue location. To
         /// remove an existing filter configuration, pass in an empty set.
         /// </para>
@@ -183,12 +184,11 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property PlayerLatencyPolicies. 
         /// <para>
-        /// A set of policies that act as a sliding cap on player latency. FleetIQ works to deliver
-        /// low latency for most players in a game session. These policies ensure that no individual
-        /// player can be placed into a game with unreasonably high latency. Use multiple policies
-        /// to gradually relax latency requirements a step at a time. Multiple policies are applied
-        /// based on their maximum allowed latency, starting with the lowest value. When updating
-        /// policies, provide a complete collection of policies.
+        /// A set of policies that enforce a sliding cap on player latency when processing game
+        /// sessions placement requests. Use multiple policies to gradually relax the cap over
+        /// time if Amazon GameLift can't make a placement. Policies are evaluated in order starting
+        /// with the lowest maximum latency value. When updating policies, provide a complete
+        /// collection of policies.
         /// </para>
         /// </summary>
         public List<PlayerLatencyPolicy> PlayerLatencyPolicies
@@ -252,7 +252,7 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// The maximum time, in seconds, that a new game session placement request remains in
         /// the queue. When a request exceeds this time, the game session placement changes to
-        /// a <code>TIMED_OUT</code> status. By default, this property is set to <code>600</code>.
+        /// a <c>TIMED_OUT</c> status.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]

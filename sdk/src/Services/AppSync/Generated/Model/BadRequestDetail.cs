@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
-    /// Provides further details for the reason behind the bad request. For reason type <code>CODE_ERROR</code>,
+    /// Provides further details for the reason behind the bad request. For reason type <c>CODE_ERROR</c>,
     /// the detail will contain a list of code errors.
     /// </summary>
     public partial class BadRequestDetail
     {
-        private List<CodeError> _codeErrors = new List<CodeError>();
+        private List<CodeError> _codeErrors = AWSConfigs.InitializeCollections ? new List<CodeError>() : null;
 
         /// <summary>
         /// Gets and sets the property CodeErrors. 
@@ -51,7 +52,7 @@ namespace Amazon.AppSync.Model
         // Check to see if CodeErrors property is set
         internal bool IsSetCodeErrors()
         {
-            return this._codeErrors != null && this._codeErrors.Count > 0; 
+            return this._codeErrors != null && (this._codeErrors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

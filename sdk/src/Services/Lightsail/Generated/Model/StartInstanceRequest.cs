@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
     /// Container for the parameters to the StartInstance operation.
     /// Starts a specific Amazon Lightsail instance from a stopped state. To restart an instance,
-    /// use the <code>reboot instance</code> operation.
+    /// use the <c>reboot instance</c> operation.
     /// 
     ///  <note> 
     /// <para>
@@ -43,8 +44,8 @@ namespace Amazon.Lightsail.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// The <code>start instance</code> operation supports tag-based access control via resource
-    /// tags applied to the resource identified by <code>instance name</code>. For more information,
+    /// The <c>start instance</c> operation supports tag-based access control via resource
+    /// tags applied to the resource identified by <c>instance name</c>. For more information,
     /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
     /// Lightsail Developer Guide</a>.
     /// </para>

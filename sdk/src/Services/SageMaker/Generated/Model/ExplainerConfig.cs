@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property ClarifyExplainerConfig. 
         /// <para>
-        /// A member of <code>ExplainerConfig</code> that contains configuration parameters for
-        /// the SageMaker Clarify explainer.
+        /// A member of <c>ExplainerConfig</c> that contains configuration parameters for the
+        /// SageMaker Clarify explainer.
         /// </para>
         /// </summary>
         public ClarifyExplainerConfig ClarifyExplainerConfig

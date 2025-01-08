@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -91,7 +92,7 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"{\"attribute\": \"value\", \"attribute\": [\"value\"]}"</code> 
+        ///  <c>"{\"attribute\": \"value\", \"attribute\": [\"value\"]}"</c> 
         /// </para>
         ///  
         /// <para>
@@ -100,7 +101,7 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>'{"attribute": "value", "attribute": ["value"]}'</code> 
+        ///  <c>'{"attribute": "value", "attribute": ["value"]}'</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=20000)]

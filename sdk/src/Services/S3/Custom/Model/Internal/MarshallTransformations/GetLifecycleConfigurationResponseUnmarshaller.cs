@@ -27,6 +27,11 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
     /// </summary>
     public class GetLifecycleConfigurationResponseUnmarshaller : S3ReponseUnmarshaller
     {
+        /// <summary>
+        /// Unmarshaller the response from the service to the response class.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public override AmazonWebServiceResponse Unmarshall(XmlUnmarshallerContext context) 
         {   
             GetLifecycleConfigurationResponse response = new GetLifecycleConfigurationResponse();
@@ -52,15 +57,20 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
             
             if (context.IsStartOfDocument) 
                targetDepth += 2;
-            
+            if (context.ResponseData.IsHeaderPresent("x-amz-transition-default-minimum-object-size"))
+                response.TransitionDefaultMinimumObjectSize = context.ResponseData.GetHeaderValue("x-amz-transition-default-minimum-object-size");
+
             while (context.Read())
             {
                 if (context.IsStartElement || context.IsAttribute)
                 {
                     if (context.TestExpression("Rule", targetDepth))
                     {
+                        if (response.Configuration.Rules == null)
+                        {
+                            response.Configuration.Rules = new List<LifecycleRule>();
+                        }
                         response.Configuration.Rules.Add(RulesItemUnmarshaller.Instance.Unmarshall(context));
-                            
                         continue;
                     }
                 }
@@ -77,6 +87,9 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
 
         private static GetLifecycleConfigurationResponseUnmarshaller _instance;
 
+        /// <summary>
+        /// Singleton for the unmarshaller
+        /// </summary>
         public static GetLifecycleConfigurationResponseUnmarshaller Instance
         {
             get

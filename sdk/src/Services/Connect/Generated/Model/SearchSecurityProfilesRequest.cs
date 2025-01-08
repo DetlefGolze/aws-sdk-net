@@ -26,11 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
     /// Container for the parameters to the SearchSecurityProfiles operation.
     /// Searches security profiles in an Amazon Connect instance, with optional filtering.
+    /// 
+    ///  
+    /// <para>
+    /// For information about security profiles, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/connect-security-profiles.html">Security
+    /// Profiles</a> in the <i>Amazon Connect Administrator Guide</i>. For a mapping of the
+    /// API name and user interface name of the security profile permissions, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html">List
+    /// of security profile permissions</a>. 
+    /// </para>
     /// </summary>
     public partial class SearchSecurityProfilesRequest : AmazonConnectRequest
     {
@@ -106,13 +115,13 @@ namespace Amazon.Connect.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>name</code> field support "contains" queries with a minimum of 2 characters
-        /// and maximum of 25 characters. Any queries with character lengths outside of this range
+        /// The <c>name</c> field support "contains" queries with a minimum of 2 characters and
+        /// maximum of 25 characters. Any queries with character lengths outside of this range
         /// will throw invalid results.
         /// </para>
         ///  </note> <note> 
         /// <para>
-        /// The currently supported value for <code>FieldName</code>: <code>name</code> 
+        /// The currently supported value for <c>FieldName</c>: <c>name</c> 
         /// </para>
         ///  </note>
         /// </summary>

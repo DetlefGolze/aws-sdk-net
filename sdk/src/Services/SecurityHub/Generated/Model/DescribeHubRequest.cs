@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeHub operation.
-    /// Returns details about the Hub resource in your account, including the <code>HubArn</code>
+    /// Returns details about the Hub resource in your account, including the <c>HubArn</c>
     /// and the time when you enabled Security Hub.
     /// </summary>
     public partial class DescribeHubRequest : AmazonSecurityHubRequest

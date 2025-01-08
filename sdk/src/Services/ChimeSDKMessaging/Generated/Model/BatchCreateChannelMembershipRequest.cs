@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMessaging.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.ChimeSDKMessaging.Model
     {
         private string _channelArn;
         private string _chimeBearer;
-        private List<string> _memberArns = new List<string>();
+        private List<string> _memberArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _subChannelId;
         private ChannelMembershipType _type;
 
@@ -62,8 +63,8 @@ namespace Amazon.ChimeSDKMessaging.Model
         /// <summary>
         /// Gets and sets the property ChimeBearer. 
         /// <para>
-        /// The ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that makes
-        /// the API call.
+        /// The ARN of the <c>AppInstanceUser</c> or <c>AppInstanceBot</c> that makes the API
+        /// call.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=5, Max=1600)]
@@ -76,14 +77,14 @@ namespace Amazon.ChimeSDKMessaging.Model
         // Check to see if ChimeBearer property is set
         internal bool IsSetChimeBearer()
         {
-            return this._chimeBearer != null;
+            return !string.IsNullOrEmpty(this._chimeBearer);
         }
 
         /// <summary>
         /// Gets and sets the property MemberArns. 
         /// <para>
-        /// The ARNs of the members you want to add to the channel. Only <code>AppInstanceUsers</code>
-        /// and <code>AppInstanceBots</code> can be added as a channel member.
+        /// The ARNs of the members you want to add to the channel. Only <c>AppInstanceUsers</c>
+        /// and <c>AppInstanceBots</c> can be added as a channel member.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]
@@ -96,7 +97,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         // Check to see if MemberArns property is set
         internal bool IsSetMemberArns()
         {
-            return this._memberArns != null && this._memberArns.Count > 0; 
+            return this._memberArns != null && (this._memberArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -127,11 +128,10 @@ namespace Amazon.ChimeSDKMessaging.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The membership type of a user, <code>DEFAULT</code> or <code>HIDDEN</code>. Default
-        /// members are always returned as part of <code>ListChannelMemberships</code>. Hidden
-        /// members are only returned if the type filter in <code>ListChannelMemberships</code>
-        /// equals <code>HIDDEN</code>. Otherwise hidden members are not returned. This is only
-        /// supported by moderators.
+        /// The membership type of a user, <c>DEFAULT</c> or <c>HIDDEN</c>. Default members are
+        /// always returned as part of <c>ListChannelMemberships</c>. Hidden members are only
+        /// returned if the type filter in <c>ListChannelMemberships</c> equals <c>HIDDEN</c>.
+        /// Otherwise hidden members are not returned. This is only supported by moderators.
         /// </para>
         /// </summary>
         public ChannelMembershipType Type

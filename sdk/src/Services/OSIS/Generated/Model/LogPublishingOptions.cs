@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OSIS.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.OSIS.Model
         /// Gets and sets the property CloudWatchLogDestination. 
         /// <para>
         /// The destination for OpenSearch Ingestion logs sent to Amazon CloudWatch Logs. This
-        /// parameter is required if <code>IsLoggingEnabled</code> is set to <code>true</code>.
+        /// parameter is required if <c>IsLoggingEnabled</c> is set to <c>true</c>.
         /// </para>
         /// </summary>
         public CloudWatchLogDestination CloudWatchLogDestination

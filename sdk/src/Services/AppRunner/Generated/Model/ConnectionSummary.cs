@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRunner.Model
 {
     /// <summary>
@@ -116,7 +117,7 @@ namespace Amazon.AppRunner.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The current state of the App Runner connection. When the state is <code>AVAILABLE</code>,
+        /// The current state of the App Runner connection. When the state is <c>AVAILABLE</c>,
         /// you can use the connection to create an App Runner service.
         /// </para>
         /// </summary>

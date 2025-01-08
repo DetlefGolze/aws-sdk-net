@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -36,10 +37,10 @@ namespace Amazon.EC2.Model
     /// 
     ///  
     /// <para>
-    /// For more information see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/working-with-snapshot-archiving.html#restore-archived-snapshot">
-    /// Restore an archived snapshot</a> and <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/working-with-snapshot-archiving.html#modify-temp-restore-period">
+    /// For more information see <a href="https://docs.aws.amazon.com/ebs/latest/userguide/working-with-snapshot-archiving.html#restore-archived-snapshot">
+    /// Restore an archived snapshot</a> and <a href="https://docs.aws.amazon.com/ebs/latest/userguide/working-with-snapshot-archiving.html#modify-temp-restore-period">
     /// modify the restore period or restore type for a temporarily restored snapshot</a>
-    /// in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+    /// in the <i>Amazon EBS User Guide</i>.
     /// </para>
     /// </summary>
     public partial class RestoreSnapshotTierRequest : AmazonEC2Request
@@ -52,7 +53,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property PermanentRestore. 
         /// <para>
         /// Indicates whether to permanently restore an archived snapshot. To permanently restore
-        /// an archived snapshot, specify <code>true</code> and omit the <b>RestoreSnapshotTierRequest$TemporaryRestoreDays</b>
+        /// an archived snapshot, specify <c>true</c> and omit the <b>RestoreSnapshotTierRequest$TemporaryRestoreDays</b>
         /// parameter.
         /// </para>
         /// </summary>
@@ -97,7 +98,7 @@ namespace Amazon.EC2.Model
         ///  
         /// <para>
         /// To temporarily restore an archived snapshot, specify the number of days and omit the
-        /// <b>PermanentRestore</b> parameter or set it to <code>false</code>.
+        /// <b>PermanentRestore</b> parameter or set it to <c>false</c>.
         /// </para>
         /// </summary>
         public int TemporaryRestoreDays

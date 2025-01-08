@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
@@ -33,11 +34,33 @@ namespace Amazon.PinpointSMSVoiceV2.Model
     /// </summary>
     public partial class SenderIdInformation
     {
+        private bool? _deletionProtectionEnabled;
         private string _isoCountryCode;
-        private List<string> _messageTypes = new List<string>();
+        private List<string> _messageTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _monthlyLeasingPrice;
+        private bool? _registered;
+        private string _registrationId;
         private string _senderId;
         private string _senderIdArn;
+
+        /// <summary>
+        /// Gets and sets the property DeletionProtectionEnabled. 
+        /// <para>
+        /// By default this is set to false. When set to true the sender ID can't be deleted.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Required=true)]
+        public bool DeletionProtectionEnabled
+        {
+            get { return this._deletionProtectionEnabled.GetValueOrDefault(); }
+            set { this._deletionProtectionEnabled = value; }
+        }
+
+        // Check to see if DeletionProtectionEnabled property is set
+        internal bool IsSetDeletionProtectionEnabled()
+        {
+            return this._deletionProtectionEnabled.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property IsoCountryCode. 
@@ -65,7 +88,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// or time-sensitive and PROMOTIONAL for messages that aren't critical or time-sensitive.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=0, Max=2)]
         public List<string> MessageTypes
         {
             get { return this._messageTypes; }
@@ -75,7 +98,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         // Check to see if MessageTypes property is set
         internal bool IsSetMessageTypes()
         {
-            return this._messageTypes != null && this._messageTypes.Count > 0; 
+            return this._messageTypes != null && (this._messageTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -95,6 +118,43 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         internal bool IsSetMonthlyLeasingPrice()
         {
             return this._monthlyLeasingPrice != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Registered. 
+        /// <para>
+        /// True if the sender ID is registered.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Required=true)]
+        public bool Registered
+        {
+            get { return this._registered.GetValueOrDefault(); }
+            set { this._registered = value; }
+        }
+
+        // Check to see if Registered property is set
+        internal bool IsSetRegistered()
+        {
+            return this._registered.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property RegistrationId. 
+        /// <para>
+        /// The unique identifier for the registration.
+        /// </para>
+        /// </summary>
+        public string RegistrationId
+        {
+            get { return this._registrationId; }
+            set { this._registrationId = value; }
+        }
+
+        // Check to see if RegistrationId property is set
+        internal bool IsSetRegistrationId()
+        {
+            return this._registrationId != null;
         }
 
         /// <summary>

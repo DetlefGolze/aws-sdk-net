@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class ModifyTransitGatewayOptions
     {
-        private List<string> _addTransitGatewayCidrBlocks = new List<string>();
+        private List<string> _addTransitGatewayCidrBlocks = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private long? _amazonSideAsn;
         private string _associationDefaultRouteTableId;
         private AutoAcceptSharedAttachmentsValue _autoAcceptSharedAttachments;
@@ -41,7 +42,8 @@ namespace Amazon.EC2.Model
         private DefaultRouteTablePropagationValue _defaultRouteTablePropagation;
         private DnsSupportValue _dnsSupport;
         private string _propagationDefaultRouteTableId;
-        private List<string> _removeTransitGatewayCidrBlocks = new List<string>();
+        private List<string> _removeTransitGatewayCidrBlocks = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private SecurityGroupReferencingSupportValue _securityGroupReferencingSupport;
         private VpnEcmpSupportValue _vpnEcmpSupport;
 
         /// <summary>
@@ -60,7 +62,7 @@ namespace Amazon.EC2.Model
         // Check to see if AddTransitGatewayCidrBlocks property is set
         internal bool IsSetAddTransitGatewayCidrBlocks()
         {
-            return this._addTransitGatewayCidrBlocks != null && this._addTransitGatewayCidrBlocks.Count > 0; 
+            return this._addTransitGatewayCidrBlocks != null && (this._addTransitGatewayCidrBlocks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -71,9 +73,29 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// The modify ASN operation is not allowed on a transit gateway with active BGP sessions.
-        /// You must first delete all transit gateway attachments that have BGP configured prior
-        /// to modifying the ASN on the transit gateway.
+        /// The modify ASN operation is not allowed on a transit gateway if it has the following
+        /// attachments:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Dynamic VPN
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Static VPN
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Direct Connect Gateway
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Connect
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// You must first delete all transit gateway attachments configured prior to modifying
+        /// the ASN on the transit gateway.
         /// </para>
         /// </summary>
         public long AmazonSideAsn
@@ -212,7 +234,35 @@ namespace Amazon.EC2.Model
         // Check to see if RemoveTransitGatewayCidrBlocks property is set
         internal bool IsSetRemoveTransitGatewayCidrBlocks()
         {
-            return this._removeTransitGatewayCidrBlocks != null && this._removeTransitGatewayCidrBlocks.Count > 0; 
+            return this._removeTransitGatewayCidrBlocks != null && (this._removeTransitGatewayCidrBlocks.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SecurityGroupReferencingSupport. 
+        /// <para>
+        /// Enables you to reference a security group across VPCs attached to a transit gateway
+        /// to simplify security group management. 
+        /// </para>
+        ///  
+        /// <para>
+        /// This option is disabled by default.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about security group referencing, see <a href="https://docs.aws.amazon.com/vpc/latest/tgw/tgw-vpc-attachments.html#vpc-attachment-security">Security
+        /// group referencing</a> in the <i>Amazon Web Services Transit Gateways Guide</i>.
+        /// </para>
+        /// </summary>
+        public SecurityGroupReferencingSupportValue SecurityGroupReferencingSupport
+        {
+            get { return this._securityGroupReferencingSupport; }
+            set { this._securityGroupReferencingSupport = value; }
+        }
+
+        // Check to see if SecurityGroupReferencingSupport property is set
+        internal bool IsSetSecurityGroupReferencingSupport()
+        {
+            return this._securityGroupReferencingSupport != null;
         }
 
         /// <summary>

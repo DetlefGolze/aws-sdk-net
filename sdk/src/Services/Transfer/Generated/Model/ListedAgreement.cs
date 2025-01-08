@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -83,7 +84,7 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
-        /// The current description for the agreement. You can change it by calling the <code>UpdateAgreement</code>
+        /// The current description for the agreement. You can change it by calling the <c>UpdateAgreement</c>
         /// operation and providing a new description. 
         /// </para>
         /// </summary>
@@ -160,7 +161,7 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The agreement can be either <code>ACTIVE</code> or <code>INACTIVE</code>.
+        /// The agreement can be either <c>ACTIVE</c> or <c>INACTIVE</c>.
         /// </para>
         /// </summary>
         public AgreementStatusType Status

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.DatabaseMigrationService.Model
     {
         private string _bucketName;
         private string _marker;
-        private List<ReplicationTaskAssessmentResult> _replicationTaskAssessmentResults = new List<ReplicationTaskAssessmentResult>();
+        private List<ReplicationTaskAssessmentResult> _replicationTaskAssessmentResults = AWSConfigs.InitializeCollections ? new List<ReplicationTaskAssessmentResult>() : null;
 
         /// <summary>
         /// Gets and sets the property BucketName. 
@@ -60,7 +61,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <para>
         ///  An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>. 
+        /// by <c>MaxRecords</c>. 
         /// </para>
         /// </summary>
         public string Marker
@@ -90,7 +91,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if ReplicationTaskAssessmentResults property is set
         internal bool IsSetReplicationTaskAssessmentResults()
         {
-            return this._replicationTaskAssessmentResults != null && this._replicationTaskAssessmentResults.Count > 0; 
+            return this._replicationTaskAssessmentResults != null && (this._replicationTaskAssessmentResults.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

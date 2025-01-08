@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
-    /// Describes an Amazon FSx for NetApp ONTAP or Amazon FSx for OpenZFS volume.
+    /// Describes an Amazon FSx volume.
     /// </summary>
     public partial class Volume
     {
-        private List<AdministrativeAction> _administrativeActions = new List<AdministrativeAction>();
+        private List<AdministrativeAction> _administrativeActions = AWSConfigs.InitializeCollections ? new List<AdministrativeAction>() : null;
         private DateTime? _creationTime;
         private string _fileSystemId;
         private VolumeLifecycle _lifecycle;
@@ -42,7 +43,7 @@ namespace Amazon.FSx.Model
         private OntapVolumeConfiguration _ontapConfiguration;
         private OpenZFSVolumeConfiguration _openZFSConfiguration;
         private string _resourceARN;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _volumeId;
         private VolumeType _volumeType;
 
@@ -51,7 +52,7 @@ namespace Amazon.FSx.Model
         /// <para>
         /// A list of administrative actions for the volume that are in process or waiting to
         /// be processed. Administrative actions describe changes to the volume that you have
-        /// initiated using the <code>UpdateVolume</code> action.
+        /// initiated using the <c>UpdateVolume</c> action.
         /// </para>
         /// </summary>
         [AWSProperty(Max=50)]
@@ -64,7 +65,7 @@ namespace Amazon.FSx.Model
         // Check to see if AdministrativeActions property is set
         internal bool IsSetAdministrativeActions()
         {
-            return this._administrativeActions != null && this._administrativeActions.Count > 0; 
+            return this._administrativeActions != null && (this._administrativeActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -105,31 +106,31 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AVAILABLE</code> - The volume is fully available for use.
+        ///  <c>AVAILABLE</c> - The volume is fully available for use.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATED</code> - The volume has been created.
+        ///  <c>CREATED</c> - The volume has been created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATING</code> - Amazon FSx is creating the new volume.
+        ///  <c>CREATING</c> - Amazon FSx is creating the new volume.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETING</code> - Amazon FSx is deleting an existing volume.
+        ///  <c>DELETING</c> - Amazon FSx is deleting an existing volume.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> - Amazon FSx was unable to create the volume.
+        ///  <c>FAILED</c> - Amazon FSx was unable to create the volume.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MISCONFIGURED</code> - The volume is in a failed but recoverable state.
+        ///  <c>MISCONFIGURED</c> - The volume is in a failed but recoverable state.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PENDING</code> - Amazon FSx hasn't started creating the volume.
+        ///  <c>PENDING</c> - Amazon FSx hasn't started creating the volume.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -244,7 +245,7 @@ namespace Amazon.FSx.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

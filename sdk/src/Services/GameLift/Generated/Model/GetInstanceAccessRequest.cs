@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.GameLift.Model
     /// Requests authorization to remotely connect to an instance in an Amazon GameLift managed
     /// fleet. Use this operation to connect to instances with game servers that use Amazon
     /// GameLift server SDK 4.x or earlier. To connect to instances with game servers that
-    /// use server SDK 5.x or later, call <a>GetComputeAccess</a>.
+    /// use server SDK 5.x or later, call <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_GetComputeAccess">https://docs.aws.amazon.com/gamelift/latest/apireference/API_GetComputeAccess</a>.
     /// 
     ///  
     /// <para>
@@ -54,10 +55,10 @@ namespace Amazon.GameLift.Model
     ///  </li> <li> 
     /// <para>
     /// For a Linux instance: returns a user name and secret (RSA private key) for use with
-    /// an SSH client. You must save the secret to a <code>.pem</code> file. If you're using
-    /// the CLI, see the example <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_GetInstanceAccess.html#API_GetInstanceAccess_Examples">
+    /// an SSH client. You must save the secret to a <c>.pem</c> file. If you're using the
+    /// CLI, see the example <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_GetInstanceAccess.html#API_GetInstanceAccess_Examples">
     /// Get credentials for a Linux instance</a> for tips on automatically saving the secret
-    /// to a <code>.pem</code> file. 
+    /// to a <c>.pem</c> file. 
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -92,18 +93,17 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property FleetId. 
         /// <para>
         /// A unique identifier for the fleet that contains the instance you want to access. You
-        /// can request access to instances in EC2 fleets with the following statuses: <code>ACTIVATING</code>,
-        /// <code>ACTIVE</code>, or <code>ERROR</code>. Use either a fleet ID or an ARN value.
-        /// 
+        /// can request access to instances in EC2 fleets with the following statuses: <c>ACTIVATING</c>,
+        /// <c>ACTIVE</c>, or <c>ERROR</c>. Use either a fleet ID or an ARN value. 
         /// </para>
         ///  <note> 
         /// <para>
-        /// You can access fleets in <code>ERROR</code> status for a short period of time before
-        /// Amazon GameLift deletes them.
+        /// You can access fleets in <c>ERROR</c> status for a short period of time before Amazon
+        /// GameLift deletes them.
         /// </para>
         ///  </note>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }

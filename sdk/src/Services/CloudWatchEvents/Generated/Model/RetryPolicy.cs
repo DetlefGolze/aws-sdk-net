@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvents.Model
 {
     /// <summary>
-    /// A <code>RetryPolicy</code> object that includes information about the retry policy
-    /// settings.
+    /// A <c>RetryPolicy</c> object that includes information about the retry policy settings.
     /// </summary>
     public partial class RetryPolicy
     {
@@ -61,7 +61,7 @@ namespace Amazon.CloudWatchEvents.Model
         /// <para>
         /// The maximum number of retry attempts to make before the request fails. Retry attempts
         /// continue until either the maximum number of attempts is made or until the duration
-        /// of the <code>MaximumEventAgeInSeconds</code> is met.
+        /// of the <c>MaximumEventAgeInSeconds</c> is met.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=185)]

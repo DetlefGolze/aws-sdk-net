@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.ForecastQueryService.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.ForecastQueryService
 {
     /// <summary>
-    /// Interface for accessing ForecastQueryService
+    /// <para>Interface for accessing ForecastQueryService</para>
     ///
     /// Provides APIs for creating and managing Amazon Forecast resources.
     /// </summary>
@@ -45,14 +46,13 @@ namespace Amazon.ForecastQueryService
         /// 
         ///  
         /// <para>
-        /// The criteria is a key-value pair. The key is either <code>item_id</code> (or the equivalent
-        /// non-timestamp, non-target field) from the <code>TARGET_TIME_SERIES</code> dataset,
-        /// or one of the forecast dimensions specified as part of the <code>FeaturizationConfig</code>
-        /// object.
+        /// The criteria is a key-value pair. The key is either <c>item_id</c> (or the equivalent
+        /// non-timestamp, non-target field) from the <c>TARGET_TIME_SERIES</c> dataset, or one
+        /// of the forecast dimensions specified as part of the <c>FeaturizationConfig</c> object.
         /// </para>
         ///  
         /// <para>
-        /// By default, <code>QueryForecast</code> returns the complete date range for the filtered
+        /// By default, <c>QueryForecast</c> returns the complete date range for the filtered
         /// forecast. You can request a specific date range.
         /// </para>
         ///  

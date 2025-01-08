@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -39,6 +40,7 @@ namespace Amazon.DataZone.Model
         private string _domainId;
         private DataSourceErrorMessage _errorMessage;
         private string _id;
+        private DataSourceRunLineageSummary _lineageSummary;
         private string _projectId;
         private RunStatisticsForAssets _runStatisticsForAssets;
         private DateTime? _startedAt;
@@ -158,6 +160,24 @@ namespace Amazon.DataZone.Model
         internal bool IsSetId()
         {
             return this._id != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property LineageSummary. 
+        /// <para>
+        /// The summary of the data lineage.
+        /// </para>
+        /// </summary>
+        public DataSourceRunLineageSummary LineageSummary
+        {
+            get { return this._lineageSummary; }
+            set { this._lineageSummary = value; }
+        }
+
+        // Check to see if LineageSummary property is set
+        internal bool IsSetLineageSummary()
+        {
+            return this._lineageSummary != null;
         }
 
         /// <summary>

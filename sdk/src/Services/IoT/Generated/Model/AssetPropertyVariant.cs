@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property BooleanValue. 
         /// <para>
-        /// Optional. A string that contains the boolean value (<code>true</code> or <code>false</code>)
-        /// of the value entry. Accepts substitution templates.
+        /// Optional. A string that contains the boolean value (<c>true</c> or <c>false</c>) of
+        /// the value entry. Accepts substitution templates.
         /// </para>
         /// </summary>
         public string BooleanValue

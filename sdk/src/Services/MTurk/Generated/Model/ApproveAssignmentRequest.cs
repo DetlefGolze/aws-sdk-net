@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MTurk.Model
 {
     /// <summary>
     /// Container for the parameters to the ApproveAssignment operation.
-    /// The <code>ApproveAssignment</code> operation approves the results of a completed
-    /// assignment. 
+    /// The <c>ApproveAssignment</c> operation approves the results of a completed assignment.
+    /// 
     /// 
     ///  
     /// <para>
@@ -91,7 +92,7 @@ namespace Amazon.MTurk.Model
         /// Gets and sets the property OverrideRejection. 
         /// <para>
         ///  A flag indicating that an assignment should be approved even if it was previously
-        /// rejected. Defaults to <code>False</code>. 
+        /// rejected. Defaults to <c>False</c>. 
         /// </para>
         /// </summary>
         public bool OverrideRejection

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -41,15 +42,15 @@ namespace Amazon.DatabaseMigrationService.Model
         private string _networkType;
         private bool? _publiclyAccessible;
         private string _subnetGroupIdentifier;
-        private List<Tag> _tags = new List<Tag>();
-        private List<string> _vpcSecurityGroups = new List<string>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private List<string> _vpcSecurityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AvailabilityZone. 
         /// <para>
         /// The Availability Zone where the instance profile will be created. The default value
         /// is a random, system-chosen Availability Zone in the Amazon Web Services Region where
-        /// your data provider is created, for examplem <code>us-east-1d</code>.
+        /// your data provider is created, for examplem <c>us-east-1d</c>.
         /// </para>
         /// </summary>
         public string AvailabilityZone
@@ -108,8 +109,8 @@ namespace Amazon.DatabaseMigrationService.Model
         /// </para>
         ///  
         /// <para>
-        /// If you don't specify a value for the <code>KmsKeyArn</code> parameter, then DMS uses
-        /// your default encryption key.
+        /// If you don't specify a value for the <c>KmsKeyArn</c> parameter, then DMS uses your
+        /// default encryption key.
         /// </para>
         ///  
         /// <para>
@@ -133,11 +134,11 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property NetworkType. 
         /// <para>
-        /// Specifies the network type for the instance profile. A value of <code>IPV4</code>
-        /// represents an instance profile with IPv4 network type and only supports IPv4 addressing.
-        /// A value of <code>IPV6</code> represents an instance profile with IPv6 network type
-        /// and only supports IPv6 addressing. A value of <code>DUAL</code> represents an instance
-        /// profile with dual network type that supports IPv4 and IPv6 addressing.
+        /// Specifies the network type for the instance profile. A value of <c>IPV4</c> represents
+        /// an instance profile with IPv4 network type and only supports IPv4 addressing. A value
+        /// of <c>IPV6</c> represents an instance profile with IPv6 network type and only supports
+        /// IPv6 addressing. A value of <c>DUAL</c> represents an instance profile with dual network
+        /// type that supports IPv4 and IPv6 addressing.
         /// </para>
         /// </summary>
         public string NetworkType
@@ -155,9 +156,9 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property PubliclyAccessible. 
         /// <para>
-        /// Specifies the accessibility options for the instance profile. A value of <code>true</code>
-        /// represents an instance profile with a public IP address. A value of <code>false</code>
-        /// represents an instance profile with a private IP address. The default value is <code>true</code>.
+        /// Specifies the accessibility options for the instance profile. A value of <c>true</c>
+        /// represents an instance profile with a public IP address. A value of <c>false</c> represents
+        /// an instance profile with a private IP address. The default value is <c>true</c>.
         /// </para>
         /// </summary>
         public bool PubliclyAccessible
@@ -205,7 +206,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -224,7 +225,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if VpcSecurityGroups property is set
         internal bool IsSetVpcSecurityGroups()
         {
-            return this._vpcSecurityGroups != null && this._vpcSecurityGroups.Count > 0; 
+            return this._vpcSecurityGroups != null && (this._vpcSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

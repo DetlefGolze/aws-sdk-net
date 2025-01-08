@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MainframeModernization.Model
 {
     /// <summary>
@@ -67,6 +68,7 @@ namespace Amazon.MainframeModernization.Model
         /// handles deleting the clientToken after it expires. 
         /// </para>
         /// </summary>
+        [AWSProperty(Min=0, Max=128)]
         public string ClientToken
         {
             get { return this._clientToken; }

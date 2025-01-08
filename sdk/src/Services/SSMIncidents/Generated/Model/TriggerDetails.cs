@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSMIncidents.Model
 {
     /// <summary>
@@ -62,9 +63,9 @@ namespace Amazon.SSMIncidents.Model
         /// Gets and sets the property Source. 
         /// <para>
         /// Identifies the service that sourced the event. All events sourced from within Amazon
-        /// Web Services begin with "<code>aws.</code>" Customer-generated events can have any
-        /// value here, as long as it doesn't begin with "<code>aws.</code>" We recommend the
-        /// use of Java package-name style reverse domain-name strings. 
+        /// Web Services begin with "<c>aws.</c>" Customer-generated events can have any value
+        /// here, as long as it doesn't begin with "<c>aws.</c>" We recommend the use of Java
+        /// package-name style reverse domain-name strings. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=50)]
@@ -83,7 +84,7 @@ namespace Amazon.SSMIncidents.Model
         /// <summary>
         /// Gets and sets the property Timestamp. 
         /// <para>
-        /// The time that the incident was detected.
+        /// The timestamp for when the incident was detected.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

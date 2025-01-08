@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
@@ -33,8 +34,28 @@ namespace Amazon.CloudTrail.Model
     /// </summary>
     public partial class CancelQueryResponse : AmazonWebServiceResponse
     {
+        private string _eventDataStoreOwnerAccountId;
         private string _queryId;
         private QueryStatus _queryStatus;
+
+        /// <summary>
+        /// Gets and sets the property EventDataStoreOwnerAccountId. 
+        /// <para>
+        ///  The account ID of the event data store owner. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=12, Max=16)]
+        public string EventDataStoreOwnerAccountId
+        {
+            get { return this._eventDataStoreOwnerAccountId; }
+            set { this._eventDataStoreOwnerAccountId = value; }
+        }
+
+        // Check to see if EventDataStoreOwnerAccountId property is set
+        internal bool IsSetEventDataStoreOwnerAccountId()
+        {
+            return this._eventDataStoreOwnerAccountId != null;
+        }
 
         /// <summary>
         /// Gets and sets the property QueryId. 
@@ -58,8 +79,8 @@ namespace Amazon.CloudTrail.Model
         /// <summary>
         /// Gets and sets the property QueryStatus. 
         /// <para>
-        /// Shows the status of a query after a <code>CancelQuery</code> request. Typically, the
-        /// values shown are either <code>RUNNING</code> or <code>CANCELLED</code>.
+        /// Shows the status of a query after a <c>CancelQuery</c> request. Typically, the values
+        /// shown are either <c>RUNNING</c> or <c>CANCELLED</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

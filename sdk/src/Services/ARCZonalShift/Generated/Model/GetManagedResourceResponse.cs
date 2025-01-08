@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ARCZonalShift.Model
 {
     /// <summary>
@@ -33,10 +34,13 @@ namespace Amazon.ARCZonalShift.Model
     /// </summary>
     public partial class GetManagedResourceResponse : AmazonWebServiceResponse
     {
-        private Dictionary<string, float> _appliedWeights = new Dictionary<string, float>();
+        private Dictionary<string, float> _appliedWeights = AWSConfigs.InitializeCollections ? new Dictionary<string, float>() : null;
         private string _arn;
+        private List<AutoshiftInResource> _autoshifts = AWSConfigs.InitializeCollections ? new List<AutoshiftInResource>() : null;
         private string _name;
-        private List<ZonalShiftInResource> _zonalShifts = new List<ZonalShiftInResource>();
+        private PracticeRunConfiguration _practiceRunConfiguration;
+        private ZonalAutoshiftStatus _zonalAutoshiftStatus;
+        private List<ZonalShiftInResource> _zonalShifts = AWSConfigs.InitializeCollections ? new List<ZonalShiftInResource>() : null;
 
         /// <summary>
         /// Gets and sets the property AppliedWeights. 
@@ -56,7 +60,7 @@ namespace Amazon.ARCZonalShift.Model
         // Check to see if AppliedWeights property is set
         internal bool IsSetAppliedWeights()
         {
-            return this._appliedWeights != null && this._appliedWeights.Count > 0; 
+            return this._appliedWeights != null && (this._appliedWeights.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -79,6 +83,24 @@ namespace Amazon.ARCZonalShift.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Autoshifts. 
+        /// <para>
+        /// An array of the autoshifts that are active for the resource.
+        /// </para>
+        /// </summary>
+        public List<AutoshiftInResource> Autoshifts
+        {
+            get { return this._autoshifts; }
+            set { this._autoshifts = value; }
+        }
+
+        // Check to see if Autoshifts property is set
+        internal bool IsSetAutoshifts()
+        {
+            return this._autoshifts != null && (this._autoshifts.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
         /// The name of the resource.
@@ -98,6 +120,45 @@ namespace Amazon.ARCZonalShift.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PracticeRunConfiguration. 
+        /// <para>
+        /// The practice run configuration for zonal autoshift that's associated with the resource.
+        /// </para>
+        /// </summary>
+        public PracticeRunConfiguration PracticeRunConfiguration
+        {
+            get { return this._practiceRunConfiguration; }
+            set { this._practiceRunConfiguration = value; }
+        }
+
+        // Check to see if PracticeRunConfiguration property is set
+        internal bool IsSetPracticeRunConfiguration()
+        {
+            return this._practiceRunConfiguration != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ZonalAutoshiftStatus. 
+        /// <para>
+        /// The status for zonal autoshift for a resource. When the autoshift status is <c>ENABLED</c>,
+        /// Amazon Web Services shifts traffic for a resource away from an Availability Zone,
+        /// on your behalf, when Amazon Web Services determines that there's an issue in the Availability
+        /// Zone that could potentially affect customers.
+        /// </para>
+        /// </summary>
+        public ZonalAutoshiftStatus ZonalAutoshiftStatus
+        {
+            get { return this._zonalAutoshiftStatus; }
+            set { this._zonalAutoshiftStatus = value; }
+        }
+
+        // Check to see if ZonalAutoshiftStatus property is set
+        internal bool IsSetZonalAutoshiftStatus()
+        {
+            return this._zonalAutoshiftStatus != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ZonalShifts. 
         /// <para>
         /// The zonal shifts that are currently active for a resource. 
@@ -113,7 +174,7 @@ namespace Amazon.ARCZonalShift.Model
         // Check to see if ZonalShifts property is set
         internal bool IsSetZonalShifts()
         {
-            return this._zonalShifts != null && this._zonalShifts.Count > 0; 
+            return this._zonalShifts != null && (this._zonalShifts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

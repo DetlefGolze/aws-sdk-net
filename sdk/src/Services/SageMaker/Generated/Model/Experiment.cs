@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.SageMaker.Model
         private UserContext _lastModifiedBy;
         private DateTime? _lastModifiedTime;
         private ExperimentSource _source;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property CreatedBy. 
@@ -103,8 +104,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property DisplayName. 
         /// <para>
-        /// The name of the experiment as displayed. If <code>DisplayName</code> isn't specified,
-        /// <code>ExperimentName</code> is displayed.
+        /// The name of the experiment as displayed. If <c>DisplayName</c> isn't specified, <c>ExperimentName</c>
+        /// is displayed.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=120)]
@@ -223,7 +224,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

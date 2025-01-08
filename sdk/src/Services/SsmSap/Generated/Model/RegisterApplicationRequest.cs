@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SsmSap.Model
 {
     /// <summary>
@@ -53,11 +54,13 @@ namespace Amazon.SsmSap.Model
     {
         private string _applicationId;
         private ApplicationType _applicationType;
-        private List<ApplicationCredential> _credentials = new List<ApplicationCredential>();
-        private List<string> _instances = new List<string>();
+        private List<ComponentInfo> _componentsInfo = AWSConfigs.InitializeCollections ? new List<ComponentInfo>() : null;
+        private List<ApplicationCredential> _credentials = AWSConfigs.InitializeCollections ? new List<ApplicationCredential>() : null;
+        private string _databaseArn;
+        private List<string> _instances = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _sapInstanceNumber;
         private string _sid;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ApplicationId. 
@@ -65,7 +68,7 @@ namespace Amazon.SsmSap.Model
         /// The ID of the application.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=60)]
         public string ApplicationId
         {
             get { return this._applicationId; }
@@ -98,12 +101,36 @@ namespace Amazon.SsmSap.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ComponentsInfo. 
+        /// <para>
+        /// This is an optional parameter for component details to which the SAP ABAP application
+        /// is attached, such as Web Dispatcher.
+        /// </para>
+        ///  
+        /// <para>
+        /// This is an array of ApplicationComponent objects. You may input 0 to 5 items.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=5)]
+        public List<ComponentInfo> ComponentsInfo
+        {
+            get { return this._componentsInfo; }
+            set { this._componentsInfo = value; }
+        }
+
+        // Check to see if ComponentsInfo property is set
+        internal bool IsSetComponentsInfo()
+        {
+            return this._componentsInfo != null && (this._componentsInfo.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Credentials. 
         /// <para>
         /// The credentials of the SAP application.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=20)]
+        [AWSProperty(Min=0, Max=20)]
         public List<ApplicationCredential> Credentials
         {
             get { return this._credentials; }
@@ -113,7 +140,25 @@ namespace Amazon.SsmSap.Model
         // Check to see if Credentials property is set
         internal bool IsSetCredentials()
         {
-            return this._credentials != null && this._credentials.Count > 0; 
+            return this._credentials != null && (this._credentials.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property DatabaseArn. 
+        /// <para>
+        /// The Amazon Resource Name of the SAP HANA database.
+        /// </para>
+        /// </summary>
+        public string DatabaseArn
+        {
+            get { return this._databaseArn; }
+            set { this._databaseArn = value; }
+        }
+
+        // Check to see if DatabaseArn property is set
+        internal bool IsSetDatabaseArn()
+        {
+            return this._databaseArn != null;
         }
 
         /// <summary>
@@ -132,7 +177,7 @@ namespace Amazon.SsmSap.Model
         // Check to see if Instances property is set
         internal bool IsSetInstances()
         {
-            return this._instances != null && this._instances.Count > 0; 
+            return this._instances != null && (this._instances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -186,7 +231,7 @@ namespace Amazon.SsmSap.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

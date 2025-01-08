@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateDataSource operation.
-    /// Creates a <code>DataSource</code> object.
+    /// Creates a <c>DataSource</c> object.
     /// </summary>
     public partial class CreateDataSourceRequest : AmazonAppSyncRequest
     {
@@ -41,6 +42,7 @@ namespace Amazon.AppSync.Model
         private EventBridgeDataSourceConfig _eventBridgeConfig;
         private HttpDataSourceConfig _httpConfig;
         private LambdaDataSourceConfig _lambdaConfig;
+        private DataSourceLevelMetricsConfig _metricsConfig;
         private string _name;
         private OpenSearchServiceDataSourceConfig _openSearchServiceConfig;
         private RelationalDatabaseDataSourceConfig _relationalDatabaseConfig;
@@ -50,7 +52,7 @@ namespace Amazon.AppSync.Model
         /// <summary>
         /// Gets and sets the property ApiId. 
         /// <para>
-        /// The API ID for the GraphQL API for the <code>DataSource</code>.
+        /// The API ID for the GraphQL API for the <c>DataSource</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -69,7 +71,7 @@ namespace Amazon.AppSync.Model
         /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
-        /// A description of the <code>DataSource</code>.
+        /// A description of the <c>DataSource</c>.
         /// </para>
         /// </summary>
         public string Description
@@ -181,9 +183,35 @@ namespace Amazon.AppSync.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MetricsConfig. 
+        /// <para>
+        /// Enables or disables enhanced data source metrics for specified data sources. Note
+        /// that <c>metricsConfig</c> won't be used unless the <c>dataSourceLevelMetricsBehavior</c>
+        /// value is set to <c>PER_DATA_SOURCE_METRICS</c>. If the <c>dataSourceLevelMetricsBehavior</c>
+        /// is set to <c>FULL_REQUEST_DATA_SOURCE_METRICS</c> instead, <c>metricsConfig</c> will
+        /// be ignored. However, you can still set its value.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>metricsConfig</c> can be <c>ENABLED</c> or <c>DISABLED</c>.
+        /// </para>
+        /// </summary>
+        public DataSourceLevelMetricsConfig MetricsConfig
+        {
+            get { return this._metricsConfig; }
+            set { this._metricsConfig = value; }
+        }
+
+        // Check to see if MetricsConfig property is set
+        internal bool IsSetMetricsConfig()
+        {
+            return this._metricsConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// A user-supplied name for the <code>DataSource</code>.
+        /// A user-supplied name for the <c>DataSource</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=65536)]
@@ -257,7 +285,7 @@ namespace Amazon.AppSync.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of the <code>DataSource</code>.
+        /// The type of the <c>DataSource</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

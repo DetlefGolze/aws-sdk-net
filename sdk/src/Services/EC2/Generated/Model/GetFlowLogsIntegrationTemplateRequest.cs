@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -54,8 +55,8 @@ namespace Amazon.EC2.Model
     /// </para>
     ///  </li> </ul> <note> 
     /// <para>
-    ///  <code>GetFlowLogsIntegrationTemplate</code> does not support integration between
-    /// Amazon Web Services Transit Gateway Flow Logs and Amazon Athena.
+    ///  <c>GetFlowLogsIntegrationTemplate</c> does not support integration between Amazon
+    /// Web Services Transit Gateway Flow Logs and Amazon Athena.
     /// </para>
     ///  </note>
     /// </summary>

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
-    /// A lifecycle event hook is invalid. Review the <code>hooks</code> section in your AppSpec
-    /// file to ensure the lifecycle events and <code>hooks</code> functions are valid.
+    /// A lifecycle event hook is invalid. Review the <c>hooks</c> section in your AppSpec
+    /// file to ensure the lifecycle events and <c>hooks</c> functions are valid.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

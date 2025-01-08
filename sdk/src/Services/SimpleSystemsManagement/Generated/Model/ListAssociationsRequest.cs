@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// </summary>
     public partial class ListAssociationsRequest : AmazonSimpleSystemsManagementRequest
     {
-        private List<AssociationFilter> _associationFilterList = new List<AssociationFilter>();
+        private List<AssociationFilter> _associationFilterList = AWSConfigs.InitializeCollections ? new List<AssociationFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -49,7 +50,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Instantiates ListAssociationsRequest with the parameterized properties
         /// </summary>
-        /// <param name="associationFilterList">One or more filters. Use a filter to return a more specific list of results. <note> Filtering associations using the <code>InstanceID</code> attribute only returns legacy associations created using the <code>InstanceID</code> attribute. Associations targeting the managed node that are part of the Target Attributes <code>ResourceGroup</code> or <code>Tags</code> aren't returned. </note></param>
+        /// <param name="associationFilterList">One or more filters. Use a filter to return a more specific list of results. <note> Filtering associations using the <c>InstanceID</c> attribute only returns legacy associations created using the <c>InstanceID</c> attribute. Associations targeting the managed node that are part of the Target Attributes <c>ResourceGroup</c> or <c>Tags</c> aren't returned. </note></param>
         public ListAssociationsRequest(List<AssociationFilter> associationFilterList)
         {
             _associationFilterList = associationFilterList;
@@ -62,10 +63,10 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// Filtering associations using the <code>InstanceID</code> attribute only returns legacy
-        /// associations created using the <code>InstanceID</code> attribute. Associations targeting
-        /// the managed node that are part of the Target Attributes <code>ResourceGroup</code>
-        /// or <code>Tags</code> aren't returned.
+        /// Filtering associations using the <c>InstanceID</c> attribute only returns legacy associations
+        /// created using the <c>InstanceID</c> attribute. Associations targeting the managed
+        /// node that are part of the Target Attributes <c>ResourceGroup</c> or <c>Tags</c> aren't
+        /// returned.
         /// </para>
         ///  </note>
         /// </summary>
@@ -79,7 +80,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if AssociationFilterList property is set
         internal bool IsSetAssociationFilterList()
         {
-            return this._associationFilterList != null && this._associationFilterList.Count > 0; 
+            return this._associationFilterList != null && (this._associationFilterList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

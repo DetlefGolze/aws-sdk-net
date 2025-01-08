@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -43,22 +44,22 @@ namespace Amazon.CloudFormation.Model
     /// </summary>
     public partial class UpdateStackSetRequest : AmazonCloudFormationRequest
     {
-        private List<string> _accounts = new List<string>();
+        private List<string> _accounts = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _administrationRoleARN;
         private AutoDeployment _autoDeployment;
         private CallAs _callAs;
-        private List<string> _capabilities = new List<string>();
+        private List<string> _capabilities = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DeploymentTargets _deploymentTargets;
         private string _description;
         private string _executionRoleName;
         private ManagedExecution _managedExecution;
         private string _operationId;
         private StackSetOperationPreferences _operationPreferences;
-        private List<Parameter> _parameters = new List<Parameter>();
+        private List<Parameter> _parameters = AWSConfigs.InitializeCollections ? new List<Parameter>() : null;
         private PermissionModels _permissionModel;
-        private List<string> _regions = new List<string>();
+        private List<string> _regions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _stackSetName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _templateBody;
         private string _templateURL;
         private bool? _usePreviousTemplate;
@@ -73,18 +74,17 @@ namespace Amazon.CloudFormation.Model
         ///  
         /// <para>
         /// To update <i>all</i> the stack instances associated with this stack set, don't specify
-        /// the <code>Accounts</code> or <code>Regions</code> properties.
+        /// the <c>Accounts</c> or <c>Regions</c> properties.
         /// </para>
         ///  
         /// <para>
-        /// If the stack set update includes changes to the template (that is, if the <code>TemplateBody</code>
-        /// or <code>TemplateURL</code> properties are specified), or the <code>Parameters</code>
-        /// property, CloudFormation marks all stack instances with a status of <code>OUTDATED</code>
-        /// prior to updating the stack instances in the specified accounts and Amazon Web Services
-        /// Regions. If the stack set update does not include changes to the template or parameters,
-        /// CloudFormation updates the stack instances in the specified accounts and Amazon Web
-        /// Services Regions, while leaving all other stack instances with their existing stack
-        /// instance status.
+        /// If the stack set update includes changes to the template (that is, if the <c>TemplateBody</c>
+        /// or <c>TemplateURL</c> properties are specified), or the <c>Parameters</c> property,
+        /// CloudFormation marks all stack instances with a status of <c>OUTDATED</c> prior to
+        /// updating the stack instances in the specified accounts and Amazon Web Services Regions.
+        /// If the stack set update does not include changes to the template or parameters, CloudFormation
+        /// updates the stack instances in the specified accounts and Amazon Web Services Regions,
+        /// while leaving all other stack instances with their existing stack instance status.
         /// </para>
         /// </summary>
         public List<string> Accounts
@@ -96,7 +96,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Accounts property is set
         internal bool IsSetAccounts()
         {
-            return this._accounts != null && this._accounts.Count > 0; 
+            return this._accounts != null && (this._accounts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -140,8 +140,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// If you specify <code>AutoDeployment</code>, don't specify <code>DeploymentTargets</code>
-        /// or <code>Regions</code>.
+        /// If you specify <c>AutoDeployment</c>, don't specify <c>DeploymentTargets</c> or <c>Regions</c>.
         /// </para>
         /// </summary>
         public AutoDeployment AutoDeployment
@@ -165,16 +164,16 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for stack sets with
-        /// self-managed permissions.
+        /// By default, <c>SELF</c> is specified. Use <c>SELF</c> for stack sets with self-managed
+        /// permissions.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If you are signed in to the management account, specify <code>SELF</code>.
+        /// If you are signed in to the management account, specify <c>SELF</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If you are signed in to a delegated administrator account, specify <code>DELEGATED_ADMIN</code>.
+        /// If you are signed in to a delegated administrator account, specify <c>DELEGATED_ADMIN</c>.
         /// </para>
         ///  
         /// <para>
@@ -205,19 +204,18 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CAPABILITY_IAM</code> and <code>CAPABILITY_NAMED_IAM</code> 
+        ///  <c>CAPABILITY_IAM</c> and <c>CAPABILITY_NAMED_IAM</c> 
         /// </para>
         ///  
         /// <para>
         /// Some stack templates might include resources that can affect permissions in your Amazon
-        /// Web Services account; for example, by creating new Identity and Access Management
-        /// (IAM) users. For those stacks sets, you must explicitly acknowledge this by specifying
-        /// one of these capabilities.
+        /// Web Services account, for example, by creating new IAM users. For those stacks sets,
+        /// you must explicitly acknowledge this by specifying one of these capabilities.
         /// </para>
         ///  
         /// <para>
-        /// The following IAM resources require you to specify either the <code>CAPABILITY_IAM</code>
-        /// or <code>CAPABILITY_NAMED_IAM</code> capability.
+        /// The following IAM resources require you to specify either the <c>CAPABILITY_IAM</c>
+        /// or <c>CAPABILITY_NAMED_IAM</c> capability.
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -225,11 +223,11 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If you have IAM resources with custom names, you <i>must</i> specify <code>CAPABILITY_NAMED_IAM</code>.
+        /// If you have IAM resources with custom names, you <i>must</i> specify <c>CAPABILITY_NAMED_IAM</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If you don't specify either of these capabilities, CloudFormation returns an <code>InsufficientCapabilities</code>
+        /// If you don't specify either of these capabilities, CloudFormation returns an <c>InsufficientCapabilities</c>
         /// error.
         /// </para>
         ///  </li> </ul> 
@@ -239,47 +237,47 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html">
-        /// AWS::IAM::AccessKey</a> 
+        ///  <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-accesskey.html">AWS::IAM::AccessKey</a>
+        /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html">
-        /// AWS::IAM::Group</a> 
+        ///  <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-group.html">AWS::IAM::Group</a>
+        /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html">
-        /// AWS::IAM::InstanceProfile</a> 
+        ///  <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html">AWS::IAM::InstanceProfile</a>
+        /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html">
-        /// AWS::IAM::Policy</a> 
+        ///  <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html">AWS::IAM::Policy</a>
+        /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html">
-        /// AWS::IAM::Role</a> 
+        ///  <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html">AWS::IAM::Role</a>
+        /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html">
-        /// AWS::IAM::User</a> 
+        ///  <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-user.html">AWS::IAM::User</a>
+        /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-addusertogroup.html">
-        /// AWS::IAM::UserToGroupAddition</a> 
+        ///  <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-usertogroupaddition.html">AWS::IAM::UserToGroupAddition</a>
+        /// 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html#capabilities">Acknowledging
-        /// IAM Resources in CloudFormation Templates</a>.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html#using-iam-capabilities">Acknowledging
+        /// IAM resources in CloudFormation templates</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CAPABILITY_AUTO_EXPAND</code> 
+        ///  <c>CAPABILITY_AUTO_EXPAND</c> 
         /// </para>
         ///  
         /// <para>
@@ -309,7 +307,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Capabilities property is set
         internal bool IsSetCapabilities()
         {
-            return this._capabilities != null && this._capabilities.Count > 0; 
+            return this._capabilities != null && (this._capabilities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -320,18 +318,18 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// To update all the stack instances associated with this stack set, do not specify <code>DeploymentTargets</code>
-        /// or <code>Regions</code>.
+        /// To update all the stack instances associated with this stack set, do not specify <c>DeploymentTargets</c>
+        /// or <c>Regions</c>.
         /// </para>
         ///  
         /// <para>
-        /// If the stack set update includes changes to the template (that is, if <code>TemplateBody</code>
-        /// or <code>TemplateURL</code> is specified), or the <code>Parameters</code>, CloudFormation
-        /// marks all stack instances with a status of <code>OUTDATED</code> prior to updating
-        /// the stack instances in the specified accounts and Amazon Web Services Regions. If
-        /// the stack set update doesn't include changes to the template or parameters, CloudFormation
-        /// updates the stack instances in the specified accounts and Regions, while leaving all
-        /// other stack instances with their existing stack instance status.
+        /// If the stack set update includes changes to the template (that is, if <c>TemplateBody</c>
+        /// or <c>TemplateURL</c> is specified), or the <c>Parameters</c>, CloudFormation marks
+        /// all stack instances with a status of <c>OUTDATED</c> prior to updating the stack instances
+        /// in the specified accounts and Amazon Web Services Regions. If the stack set update
+        /// doesn't include changes to the template or parameters, CloudFormation updates the
+        /// stack instances in the specified accounts and Regions, while leaving all other stack
+        /// instances with their existing stack instance status.
         /// </para>
         /// </summary>
         public DeploymentTargets DeploymentTargets
@@ -369,7 +367,7 @@ namespace Amazon.CloudFormation.Model
         /// Gets and sets the property ExecutionRoleName. 
         /// <para>
         /// The name of the IAM execution role to use to update the stack set. If you do not specify
-        /// an execution role, CloudFormation uses the <code>AWSCloudFormationStackSetExecutionRole</code>
+        /// an execution role, CloudFormation uses the <c>AWSCloudFormationStackSetExecutionRole</c>
         /// role for the stack set operation.
         /// </para>
         ///  
@@ -436,7 +434,7 @@ namespace Amazon.CloudFormation.Model
         ///  
         /// <para>
         /// Repeating this stack set operation with a new operation ID retries all stack instances
-        /// whose status is <code>OUTDATED</code>.
+        /// whose status is <c>OUTDATED</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -485,28 +483,27 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PermissionModel. 
         /// <para>
         /// Describes how the IAM roles required for stack set operations are created. You cannot
-        /// modify <code>PermissionModel</code> if there are stack instances associated with your
-        /// stack set.
+        /// modify <c>PermissionModel</c> if there are stack instances associated with your stack
+        /// set.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// With <code>self-managed</code> permissions, you must create the administrator and
-        /// execution roles required to deploy to target accounts. For more information, see <a
-        /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-prereqs-self-managed.html">Grant
+        /// With <c>self-managed</c> permissions, you must create the administrator and execution
+        /// roles required to deploy to target accounts. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-prereqs-self-managed.html">Grant
         /// Self-Managed Stack Set Permissions</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// With <code>service-managed</code> permissions, StackSets automatically creates the
-        /// IAM roles required to deploy to accounts managed by Organizations. For more information,
-        /// see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-prereqs-service-managed.html">Grant
+        /// With <c>service-managed</c> permissions, StackSets automatically creates the IAM roles
+        /// required to deploy to accounts managed by Organizations. For more information, see
+        /// <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-prereqs-service-managed.html">Grant
         /// Service-Managed Stack Set Permissions</a>.
         /// </para>
         ///  </li> </ul>
@@ -532,17 +529,17 @@ namespace Amazon.CloudFormation.Model
         ///  
         /// <para>
         /// To update <i>all</i> the stack instances associated with this stack set, do not specify
-        /// the <code>Accounts</code> or <code>Regions</code> properties.
+        /// the <c>Accounts</c> or <c>Regions</c> properties.
         /// </para>
         ///  
         /// <para>
-        /// If the stack set update includes changes to the template (that is, if the <code>TemplateBody</code>
-        /// or <code>TemplateURL</code> properties are specified), or the <code>Parameters</code>
-        /// property, CloudFormation marks all stack instances with a status of <code>OUTDATED</code>
-        /// prior to updating the stack instances in the specified accounts and Regions. If the
-        /// stack set update does not include changes to the template or parameters, CloudFormation
-        /// updates the stack instances in the specified accounts and Regions, while leaving all
-        /// other stack instances with their existing stack instance status.
+        /// If the stack set update includes changes to the template (that is, if the <c>TemplateBody</c>
+        /// or <c>TemplateURL</c> properties are specified), or the <c>Parameters</c> property,
+        /// CloudFormation marks all stack instances with a status of <c>OUTDATED</c> prior to
+        /// updating the stack instances in the specified accounts and Regions. If the stack set
+        /// update does not include changes to the template or parameters, CloudFormation updates
+        /// the stack instances in the specified accounts and Regions, while leaving all other
+        /// stack instances with their existing stack instance status.
         /// </para>
         /// </summary>
         public List<string> Regions
@@ -554,7 +551,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Regions property is set
         internal bool IsSetRegions()
         {
-            return this._regions != null && this._regions.Count > 0; 
+            return this._regions != null && (this._regions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -606,13 +603,13 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If you specify new tags as part of an <code>UpdateStackSet</code> action, CloudFormation
+        /// If you specify new tags as part of an <c>UpdateStackSet</c> action, CloudFormation
         /// checks to see if you have the required IAM permission to tag resources. If you omit
         /// tags that are currently associated with the stack set from the list of tags you specify,
         /// CloudFormation assumes that you want to remove those tags from the stack set, and
         /// checks to see if you have permission to untag resources. If you don't have the necessary
-        /// permission(s), the entire <code>UpdateStackSet</code> action fails with an <code>access
-        /// denied</code> error, and the stack set is not updated.
+        /// permission(s), the entire <c>UpdateStackSet</c> action fails with an <c>access denied</c>
+        /// error, and the stack set is not updated.
         /// </para>
         /// </summary>
         [AWSProperty(Max=50)]
@@ -625,20 +622,19 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TemplateBody. 
         /// <para>
         /// The structure that contains the template body, with a minimum length of 1 byte and
-        /// a maximum length of 51,200 bytes. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html">Template
-        /// Anatomy</a> in the CloudFormation User Guide.
+        /// a maximum length of 51,200 bytes.
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify only one of the following parameters: <code>TemplateBody</code>
-        /// or <code>TemplateURL</code>—or set <code>UsePreviousTemplate</code> to true.
+        /// Conditional: You must specify only one of the following parameters: <c>TemplateBody</c>
+        /// or <c>TemplateURL</c>—or set <c>UsePreviousTemplate</c> to true.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -659,13 +655,12 @@ namespace Amazon.CloudFormation.Model
         /// <para>
         /// The location of the file that contains the template body. The URL must point to a
         /// template (maximum size: 460,800 bytes) that is located in an Amazon S3 bucket or a
-        /// Systems Manager document. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html">Template
-        /// Anatomy</a> in the CloudFormation User Guide.
+        /// Systems Manager document.
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify only one of the following parameters: <code>TemplateBody</code>
-        /// or <code>TemplateURL</code>—or set <code>UsePreviousTemplate</code> to true.
+        /// Conditional: You must specify only one of the following parameters: <c>TemplateBody</c>
+        /// or <c>TemplateURL</c>—or set <c>UsePreviousTemplate</c> to true.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -688,8 +683,8 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify only one of the following parameters: <code>TemplateBody</code>
-        /// or <code>TemplateURL</code>—or set <code>UsePreviousTemplate</code> to true.
+        /// Conditional: You must specify only one of the following parameters: <c>TemplateBody</c>
+        /// or <c>TemplateURL</c>—or set <c>UsePreviousTemplate</c> to true.
         /// </para>
         /// </summary>
         public bool UsePreviousTemplate

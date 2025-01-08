@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MTurk.Model
 {
     /// <summary>
     /// Container for the parameters to the NotifyWorkers operation.
-    /// The <code>NotifyWorkers</code> operation sends an email to one or more Workers that
-    /// you specify with the Worker ID. You can specify up to 100 Worker IDs to send the same
+    /// The <c>NotifyWorkers</c> operation sends an email to one or more Workers that you
+    /// specify with the Worker ID. You can specify up to 100 Worker IDs to send the same
     /// message with a single call to the NotifyWorkers operation. The NotifyWorkers operation
     /// will send a notification email to a Worker only if you have previously approved or
     /// rejected work from the Worker.
@@ -40,7 +41,7 @@ namespace Amazon.MTurk.Model
     {
         private string _messageText;
         private string _subject;
-        private List<string> _workerIds = new List<string>();
+        private List<string> _workerIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property MessageText. 
@@ -96,7 +97,7 @@ namespace Amazon.MTurk.Model
         // Check to see if WorkerIds property is set
         internal bool IsSetWorkerIds()
         {
-            return this._workerIds != null && this._workerIds.Count > 0; 
+            return this._workerIds != null && (this._workerIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

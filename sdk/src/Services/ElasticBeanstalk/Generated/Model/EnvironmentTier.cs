@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -48,11 +49,11 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For <i>Web server tier</i> – <code>WebServer</code> 
+        /// For <i>Web server tier</i> – <c>WebServer</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For <i>Worker tier</i> – <code>Worker</code> 
+        /// For <i>Worker tier</i> – <c>Worker</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -79,11 +80,11 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For <i>Web server tier</i> – <code>Standard</code> 
+        /// For <i>Web server tier</i> – <c>Standard</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For <i>Worker tier</i> – <code>SQS/HTTP</code> 
+        /// For <i>Worker tier</i> – <c>SQS/HTTP</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
-    /// The Region provided for <code>SourceRegion</code> is not valid or is in a different
-    /// Amazon Web Services partition.
+    /// The Region provided for <c>SourceRegion</c> is not valid or is in a different Amazon
+    /// Web Services partition.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

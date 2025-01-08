@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.ElasticFileSystem.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Present if there are more records than returned in the response. You can use the <code>NextToken</code>
+        /// Present if there are more records than returned in the response. You can use the <c>NextToken</c>
         /// in the subsequent request to fetch the additional descriptions.
         /// </para>
         /// </summary>

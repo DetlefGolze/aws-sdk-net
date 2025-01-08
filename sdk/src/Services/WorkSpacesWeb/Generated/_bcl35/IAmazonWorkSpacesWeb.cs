@@ -24,17 +24,19 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.WorkSpacesWeb.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.WorkSpacesWeb
 {
     /// <summary>
-    /// Interface for accessing WorkSpacesWeb
+    /// <para>Interface for accessing WorkSpacesWeb</para>
     ///
-    /// WorkSpaces Web is a low cost, fully managed WorkSpace built specifically to facilitate
-    /// secure, web-based workloads. WorkSpaces Web makes it easy for customers to safely
-    /// provide their employees with access to internal websites and SaaS web applications
-    /// without the administrative burden of appliances or specialized client software. WorkSpaces
-    /// Web provides simple policy tools tailored for user interactions, while offloading
-    /// common tasks like capacity management, scaling, and maintaining browser images.
+    /// Amazon WorkSpaces Secure Browser is a low cost, fully managed WorkSpace built specifically
+    /// to facilitate secure, web-based workloads. WorkSpaces Secure Browser makes it easy
+    /// for customers to safely provide their employees with access to internal websites and
+    /// SaaS web applications without the administrative burden of appliances or specialized
+    /// client software. WorkSpaces Secure Browser provides simple policy tools tailored for
+    /// user interactions, while offloading common tasks like capacity management, scaling,
+    /// and maintaining browser images.
     /// </summary>
     public partial interface IAmazonWorkSpacesWeb : IAmazonService, IDisposable
     {
@@ -104,6 +106,64 @@ namespace Amazon.WorkSpacesWeb
         /// <returns>Returns a  AssociateBrowserSettingsResult from WorkSpacesWeb.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/AssociateBrowserSettings">REST API Reference for AssociateBrowserSettings Operation</seealso>
         AssociateBrowserSettingsResponse EndAssociateBrowserSettings(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  AssociateDataProtectionSettings
+
+
+        /// <summary>
+        /// Associates a data protection settings resource with a web portal.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AssociateDataProtectionSettings service method.</param>
+        /// 
+        /// <returns>The response from the AssociateDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/AssociateDataProtectionSettings">REST API Reference for AssociateDataProtectionSettings Operation</seealso>
+        AssociateDataProtectionSettingsResponse AssociateDataProtectionSettings(AssociateDataProtectionSettingsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the AssociateDataProtectionSettings operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the AssociateDataProtectionSettings operation on AmazonWorkSpacesWebClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndAssociateDataProtectionSettings
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/AssociateDataProtectionSettings">REST API Reference for AssociateDataProtectionSettings Operation</seealso>
+        IAsyncResult BeginAssociateDataProtectionSettings(AssociateDataProtectionSettingsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  AssociateDataProtectionSettings operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginAssociateDataProtectionSettings.</param>
+        /// 
+        /// <returns>Returns a  AssociateDataProtectionSettingsResult from WorkSpacesWeb.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/AssociateDataProtectionSettings">REST API Reference for AssociateDataProtectionSettings Operation</seealso>
+        AssociateDataProtectionSettingsResponse EndAssociateDataProtectionSettings(IAsyncResult asyncResult);
 
         #endregion
         
@@ -234,6 +294,9 @@ namespace Amazon.WorkSpacesWeb
         /// <returns>The response from the AssociateTrustStore service method, as returned by WorkSpacesWeb.</returns>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
         /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
@@ -454,6 +517,67 @@ namespace Amazon.WorkSpacesWeb
         /// <returns>Returns a  CreateBrowserSettingsResult from WorkSpacesWeb.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/CreateBrowserSettings">REST API Reference for CreateBrowserSettings Operation</seealso>
         CreateBrowserSettingsResponse EndCreateBrowserSettings(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  CreateDataProtectionSettings
+
+
+        /// <summary>
+        /// Creates a data protection settings resource that can be associated with a web portal.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateDataProtectionSettings service method.</param>
+        /// 
+        /// <returns>The response from the CreateDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ServiceQuotaExceededException">
+        /// The service quota has been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/CreateDataProtectionSettings">REST API Reference for CreateDataProtectionSettings Operation</seealso>
+        CreateDataProtectionSettingsResponse CreateDataProtectionSettings(CreateDataProtectionSettingsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreateDataProtectionSettings operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreateDataProtectionSettings operation on AmazonWorkSpacesWebClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateDataProtectionSettings
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/CreateDataProtectionSettings">REST API Reference for CreateDataProtectionSettings Operation</seealso>
+        IAsyncResult BeginCreateDataProtectionSettings(CreateDataProtectionSettingsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreateDataProtectionSettings operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreateDataProtectionSettings.</param>
+        /// 
+        /// <returns>Returns a  CreateDataProtectionSettingsResult from WorkSpacesWeb.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/CreateDataProtectionSettings">REST API Reference for CreateDataProtectionSettings Operation</seealso>
+        CreateDataProtectionSettingsResponse EndCreateDataProtectionSettings(IAsyncResult asyncResult);
 
         #endregion
         
@@ -934,6 +1058,61 @@ namespace Amazon.WorkSpacesWeb
 
         #endregion
         
+        #region  DeleteDataProtectionSettings
+
+
+        /// <summary>
+        /// Deletes data protection settings.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDataProtectionSettings service method.</param>
+        /// 
+        /// <returns>The response from the DeleteDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DeleteDataProtectionSettings">REST API Reference for DeleteDataProtectionSettings Operation</seealso>
+        DeleteDataProtectionSettingsResponse DeleteDataProtectionSettings(DeleteDataProtectionSettingsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteDataProtectionSettings operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDataProtectionSettings operation on AmazonWorkSpacesWebClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteDataProtectionSettings
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DeleteDataProtectionSettings">REST API Reference for DeleteDataProtectionSettings Operation</seealso>
+        IAsyncResult BeginDeleteDataProtectionSettings(DeleteDataProtectionSettingsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteDataProtectionSettings operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteDataProtectionSettings.</param>
+        /// 
+        /// <returns>Returns a  DeleteDataProtectionSettingsResult from WorkSpacesWeb.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DeleteDataProtectionSettings">REST API Reference for DeleteDataProtectionSettings Operation</seealso>
+        DeleteDataProtectionSettingsResponse EndDeleteDataProtectionSettings(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  DeleteIdentityProvider
 
 
@@ -1331,6 +1510,9 @@ namespace Amazon.WorkSpacesWeb
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
         /// </exception>
@@ -1374,6 +1556,64 @@ namespace Amazon.WorkSpacesWeb
 
         #endregion
         
+        #region  DisassociateDataProtectionSettings
+
+
+        /// <summary>
+        /// Disassociates data protection settings from a web portal.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DisassociateDataProtectionSettings service method.</param>
+        /// 
+        /// <returns>The response from the DisassociateDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DisassociateDataProtectionSettings">REST API Reference for DisassociateDataProtectionSettings Operation</seealso>
+        DisassociateDataProtectionSettingsResponse DisassociateDataProtectionSettings(DisassociateDataProtectionSettingsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DisassociateDataProtectionSettings operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DisassociateDataProtectionSettings operation on AmazonWorkSpacesWebClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDisassociateDataProtectionSettings
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DisassociateDataProtectionSettings">REST API Reference for DisassociateDataProtectionSettings Operation</seealso>
+        IAsyncResult BeginDisassociateDataProtectionSettings(DisassociateDataProtectionSettingsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DisassociateDataProtectionSettings operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDisassociateDataProtectionSettings.</param>
+        /// 
+        /// <returns>Returns a  DisassociateDataProtectionSettingsResult from WorkSpacesWeb.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DisassociateDataProtectionSettings">REST API Reference for DisassociateDataProtectionSettings Operation</seealso>
+        DisassociateDataProtectionSettingsResponse EndDisassociateDataProtectionSettings(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  DisassociateIpAccessSettings
 
 
@@ -1385,6 +1625,9 @@ namespace Amazon.WorkSpacesWeb
         /// <returns>The response from the DisassociateIpAccessSettings service method, as returned by WorkSpacesWeb.</returns>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
         /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
@@ -1441,6 +1684,9 @@ namespace Amazon.WorkSpacesWeb
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
         /// </exception>
@@ -1495,6 +1741,9 @@ namespace Amazon.WorkSpacesWeb
         /// <returns>The response from the DisassociateTrustStore service method, as returned by WorkSpacesWeb.</returns>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
         /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
@@ -1551,6 +1800,9 @@ namespace Amazon.WorkSpacesWeb
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
         /// </exception>
@@ -1606,6 +1858,9 @@ namespace Amazon.WorkSpacesWeb
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
         /// </exception>
@@ -1646,6 +1901,61 @@ namespace Amazon.WorkSpacesWeb
         /// <returns>Returns a  DisassociateUserSettingsResult from WorkSpacesWeb.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DisassociateUserSettings">REST API Reference for DisassociateUserSettings Operation</seealso>
         DisassociateUserSettingsResponse EndDisassociateUserSettings(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  ExpireSession
+
+
+        /// <summary>
+        /// Expires an active secure browser session.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ExpireSession service method.</param>
+        /// 
+        /// <returns>The response from the ExpireSession service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ExpireSession">REST API Reference for ExpireSession Operation</seealso>
+        ExpireSessionResponse ExpireSession(ExpireSessionRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ExpireSession operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ExpireSession operation on AmazonWorkSpacesWebClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndExpireSession
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ExpireSession">REST API Reference for ExpireSession Operation</seealso>
+        IAsyncResult BeginExpireSession(ExpireSessionRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ExpireSession operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginExpireSession.</param>
+        /// 
+        /// <returns>Returns a  ExpireSessionResult from WorkSpacesWeb.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ExpireSession">REST API Reference for ExpireSession Operation</seealso>
+        ExpireSessionResponse EndExpireSession(IAsyncResult asyncResult);
 
         #endregion
         
@@ -1701,6 +2011,61 @@ namespace Amazon.WorkSpacesWeb
         /// <returns>Returns a  GetBrowserSettingsResult from WorkSpacesWeb.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/GetBrowserSettings">REST API Reference for GetBrowserSettings Operation</seealso>
         GetBrowserSettingsResponse EndGetBrowserSettings(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  GetDataProtectionSettings
+
+
+        /// <summary>
+        /// Gets the data protection settings.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDataProtectionSettings service method.</param>
+        /// 
+        /// <returns>The response from the GetDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/GetDataProtectionSettings">REST API Reference for GetDataProtectionSettings Operation</seealso>
+        GetDataProtectionSettingsResponse GetDataProtectionSettings(GetDataProtectionSettingsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetDataProtectionSettings operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetDataProtectionSettings operation on AmazonWorkSpacesWebClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetDataProtectionSettings
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/GetDataProtectionSettings">REST API Reference for GetDataProtectionSettings Operation</seealso>
+        IAsyncResult BeginGetDataProtectionSettings(GetDataProtectionSettingsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetDataProtectionSettings operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetDataProtectionSettings.</param>
+        /// 
+        /// <returns>Returns a  GetDataProtectionSettingsResult from WorkSpacesWeb.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/GetDataProtectionSettings">REST API Reference for GetDataProtectionSettings Operation</seealso>
+        GetDataProtectionSettingsResponse EndGetDataProtectionSettings(IAsyncResult asyncResult);
 
         #endregion
         
@@ -1979,6 +2344,61 @@ namespace Amazon.WorkSpacesWeb
 
         #endregion
         
+        #region  GetSession
+
+
+        /// <summary>
+        /// Gets information for a secure browser session.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetSession service method.</param>
+        /// 
+        /// <returns>The response from the GetSession service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/GetSession">REST API Reference for GetSession Operation</seealso>
+        GetSessionResponse GetSession(GetSessionRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetSession operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetSession operation on AmazonWorkSpacesWebClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetSession
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/GetSession">REST API Reference for GetSession Operation</seealso>
+        IAsyncResult BeginGetSession(GetSessionRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetSession operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetSession.</param>
+        /// 
+        /// <returns>Returns a  GetSessionResult from WorkSpacesWeb.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/GetSession">REST API Reference for GetSession Operation</seealso>
+        GetSessionResponse EndGetSession(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  GetTrustStore
 
 
@@ -2251,6 +2671,58 @@ namespace Amazon.WorkSpacesWeb
 
         #endregion
         
+        #region  ListDataProtectionSettings
+
+
+        /// <summary>
+        /// Retrieves a list of data protection settings.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListDataProtectionSettings service method.</param>
+        /// 
+        /// <returns>The response from the ListDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ListDataProtectionSettings">REST API Reference for ListDataProtectionSettings Operation</seealso>
+        ListDataProtectionSettingsResponse ListDataProtectionSettings(ListDataProtectionSettingsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListDataProtectionSettings operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListDataProtectionSettings operation on AmazonWorkSpacesWebClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListDataProtectionSettings
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ListDataProtectionSettings">REST API Reference for ListDataProtectionSettings Operation</seealso>
+        IAsyncResult BeginListDataProtectionSettings(ListDataProtectionSettingsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListDataProtectionSettings operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListDataProtectionSettings.</param>
+        /// 
+        /// <returns>Returns a  ListDataProtectionSettingsResult from WorkSpacesWeb.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ListDataProtectionSettings">REST API Reference for ListDataProtectionSettings Operation</seealso>
+        ListDataProtectionSettingsResponse EndListDataProtectionSettings(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  ListIdentityProviders
 
 
@@ -2456,6 +2928,61 @@ namespace Amazon.WorkSpacesWeb
         /// <returns>Returns a  ListPortalsResult from WorkSpacesWeb.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ListPortals">REST API Reference for ListPortals Operation</seealso>
         ListPortalsResponse EndListPortals(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  ListSessions
+
+
+        /// <summary>
+        /// Lists information for multiple secure browser sessions from a specific portal.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListSessions service method.</param>
+        /// 
+        /// <returns>The response from the ListSessions service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ListSessions">REST API Reference for ListSessions Operation</seealso>
+        ListSessionsResponse ListSessions(ListSessionsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListSessions operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListSessions operation on AmazonWorkSpacesWebClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListSessions
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ListSessions">REST API Reference for ListSessions Operation</seealso>
+        IAsyncResult BeginListSessions(ListSessionsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListSessions operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListSessions.</param>
+        /// 
+        /// <returns>Returns a  ListSessionsResult from WorkSpacesWeb.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ListSessions">REST API Reference for ListSessions Operation</seealso>
+        ListSessionsResponse EndListSessions(IAsyncResult asyncResult);
 
         #endregion
         
@@ -2893,6 +3420,61 @@ namespace Amazon.WorkSpacesWeb
 
         #endregion
         
+        #region  UpdateDataProtectionSettings
+
+
+        /// <summary>
+        /// Updates data protection settings.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateDataProtectionSettings service method.</param>
+        /// 
+        /// <returns>The response from the UpdateDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/UpdateDataProtectionSettings">REST API Reference for UpdateDataProtectionSettings Operation</seealso>
+        UpdateDataProtectionSettingsResponse UpdateDataProtectionSettings(UpdateDataProtectionSettingsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateDataProtectionSettings operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateDataProtectionSettings operation on AmazonWorkSpacesWebClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateDataProtectionSettings
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/UpdateDataProtectionSettings">REST API Reference for UpdateDataProtectionSettings Operation</seealso>
+        IAsyncResult BeginUpdateDataProtectionSettings(UpdateDataProtectionSettingsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateDataProtectionSettings operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateDataProtectionSettings.</param>
+        /// 
+        /// <returns>Returns a  UpdateDataProtectionSettingsResult from WorkSpacesWeb.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/UpdateDataProtectionSettings">REST API Reference for UpdateDataProtectionSettings Operation</seealso>
+        UpdateDataProtectionSettingsResponse EndUpdateDataProtectionSettings(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  UpdateIdentityProvider
 
 
@@ -3078,6 +3660,9 @@ namespace Amazon.WorkSpacesWeb
         /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
         /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ServiceQuotaExceededException">
+        /// The service quota has been exceeded.
         /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
         /// There is a throttling error.

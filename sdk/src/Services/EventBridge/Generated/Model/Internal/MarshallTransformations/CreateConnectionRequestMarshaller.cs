@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EventBridge.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.EventBridge.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAuthorizationType())
@@ -88,6 +90,17 @@ namespace Amazon.EventBridge.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("Description");
                     context.Writer.Write(publicRequest.Description);
+                }
+
+                if(publicRequest.IsSetInvocationConnectivityParameters())
+                {
+                    context.Writer.WritePropertyName("InvocationConnectivityParameters");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ConnectivityResourceParametersMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.InvocationConnectivityParameters, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetName())

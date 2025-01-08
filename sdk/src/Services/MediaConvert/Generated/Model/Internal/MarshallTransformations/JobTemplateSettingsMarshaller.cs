@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(JobTemplateSettings requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAdAvailOffset())
             {
                 context.Writer.WritePropertyName("adAvailOffset");
@@ -60,6 +63,22 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
                 marshaller.Marshall(requestObject.AvailBlanking, context);
 
                 context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetColorConversion3DLUTSettings())
+            {
+                context.Writer.WritePropertyName("colorConversion3DLUTSettings");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectColorConversion3DLUTSettingsListValue in requestObject.ColorConversion3DLUTSettings)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ColorConversion3DLUTSettingMarshaller.Instance;
+                    marshaller.Marshall(requestObjectColorConversion3DLUTSettingsListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
             }
 
             if(requestObject.IsSetEsam())
@@ -82,6 +101,12 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
                 marshaller.Marshall(requestObject.ExtendedDataServices, context);
 
                 context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetFollowSource())
+            {
+                context.Writer.WritePropertyName("followSource");
+                context.Writer.Write(requestObject.FollowSource);
             }
 
             if(requestObject.IsSetInputs())

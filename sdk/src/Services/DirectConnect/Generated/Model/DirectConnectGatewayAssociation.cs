@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectConnect.Model
 {
     /// <summary>
@@ -34,7 +35,8 @@ namespace Amazon.DirectConnect.Model
     /// </summary>
     public partial class DirectConnectGatewayAssociation
     {
-        private List<RouteFilterPrefix> _allowedPrefixesToDirectConnectGateway = new List<RouteFilterPrefix>();
+        private List<RouteFilterPrefix> _allowedPrefixesToDirectConnectGateway = AWSConfigs.InitializeCollections ? new List<RouteFilterPrefix>() : null;
+        private AssociatedCoreNetwork _associatedCoreNetwork;
         private AssociatedGateway _associatedGateway;
         private string _associationId;
         private DirectConnectGatewayAssociationState _associationState;
@@ -60,7 +62,25 @@ namespace Amazon.DirectConnect.Model
         // Check to see if AllowedPrefixesToDirectConnectGateway property is set
         internal bool IsSetAllowedPrefixesToDirectConnectGateway()
         {
-            return this._allowedPrefixesToDirectConnectGateway != null && this._allowedPrefixesToDirectConnectGateway.Count > 0; 
+            return this._allowedPrefixesToDirectConnectGateway != null && (this._allowedPrefixesToDirectConnectGateway.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property AssociatedCoreNetwork. 
+        /// <para>
+        /// The ID of the Cloud WAN core network associated with the Direct Connect attachment.
+        /// </para>
+        /// </summary>
+        public AssociatedCoreNetwork AssociatedCoreNetwork
+        {
+            get { return this._associatedCoreNetwork; }
+            set { this._associatedCoreNetwork = value; }
+        }
+
+        // Check to see if AssociatedCoreNetwork property is set
+        internal bool IsSetAssociatedCoreNetwork()
+        {
+            return this._associatedCoreNetwork != null;
         }
 
         /// <summary>
@@ -106,28 +126,28 @@ namespace Amazon.DirectConnect.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>associating</code>: The initial state after calling <a>CreateDirectConnectGatewayAssociation</a>.
+        ///  <c>associating</c>: The initial state after calling <a>CreateDirectConnectGatewayAssociation</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>associated</code>: The Direct Connect gateway and virtual private gateway or
-        /// transit gateway are successfully associated and ready to pass traffic.
+        ///  <c>associated</c>: The Direct Connect gateway and virtual private gateway or transit
+        /// gateway are successfully associated and ready to pass traffic.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>disassociating</code>: The initial state after calling <a>DeleteDirectConnectGatewayAssociation</a>.
+        ///  <c>disassociating</c>: The initial state after calling <a>DeleteDirectConnectGatewayAssociation</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>disassociated</code>: The virtual private gateway or transit gateway is disassociated
+        ///  <c>disassociated</c>: The virtual private gateway or transit gateway is disassociated
         /// from the Direct Connect gateway. Traffic flow between the Direct Connect gateway and
         /// virtual private gateway or transit gateway is stopped.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>updating</code>: The CIDR blocks for the virtual private gateway or transit
-        /// gateway are currently being updated. This could be new CIDR blocks added or current
-        /// CIDR blocks removed.
+        ///  <c>updating</c>: The CIDR blocks for the virtual private gateway or transit gateway
+        /// are currently being updated. This could be new CIDR blocks added or current CIDR blocks
+        /// removed.
         /// </para>
         ///  </li> </ul>
         /// </summary>

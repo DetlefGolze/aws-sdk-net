@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RedshiftDataAPIService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.RedshiftDataAPIService.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetClientToken())
@@ -112,10 +114,28 @@ namespace Amazon.RedshiftDataAPIService.Model.Internal.MarshallTransformations
                     context.Writer.WriteArrayEnd();
                 }
 
+                if(publicRequest.IsSetResultFormat())
+                {
+                    context.Writer.WritePropertyName("ResultFormat");
+                    context.Writer.Write(publicRequest.ResultFormat);
+                }
+
                 if(publicRequest.IsSetSecretArn())
                 {
                     context.Writer.WritePropertyName("SecretArn");
                     context.Writer.Write(publicRequest.SecretArn);
+                }
+
+                if(publicRequest.IsSetSessionId())
+                {
+                    context.Writer.WritePropertyName("SessionId");
+                    context.Writer.Write(publicRequest.SessionId);
+                }
+
+                if(publicRequest.IsSetSessionKeepAliveSeconds())
+                {
+                    context.Writer.WritePropertyName("SessionKeepAliveSeconds");
+                    context.Writer.Write(publicRequest.SessionKeepAliveSeconds);
                 }
 
                 if(publicRequest.IsSetSql())

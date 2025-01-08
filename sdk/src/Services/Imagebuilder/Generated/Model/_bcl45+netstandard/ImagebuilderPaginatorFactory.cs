@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -140,11 +141,59 @@ namespace Amazon.Imagebuilder.Model
         }
 
         /// <summary>
+        /// Paginator for ListLifecycleExecutionResources operation
+        ///</summary>
+        public IListLifecycleExecutionResourcesPaginator ListLifecycleExecutionResources(ListLifecycleExecutionResourcesRequest request) 
+        {
+            return new ListLifecycleExecutionResourcesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListLifecycleExecutions operation
+        ///</summary>
+        public IListLifecycleExecutionsPaginator ListLifecycleExecutions(ListLifecycleExecutionsRequest request) 
+        {
+            return new ListLifecycleExecutionsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListLifecyclePolicies operation
+        ///</summary>
+        public IListLifecyclePoliciesPaginator ListLifecyclePolicies(ListLifecyclePoliciesRequest request) 
+        {
+            return new ListLifecyclePoliciesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListWaitingWorkflowSteps operation
+        ///</summary>
+        public IListWaitingWorkflowStepsPaginator ListWaitingWorkflowSteps(ListWaitingWorkflowStepsRequest request) 
+        {
+            return new ListWaitingWorkflowStepsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListWorkflowBuildVersions operation
+        ///</summary>
+        public IListWorkflowBuildVersionsPaginator ListWorkflowBuildVersions(ListWorkflowBuildVersionsRequest request) 
+        {
+            return new ListWorkflowBuildVersionsPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListWorkflowExecutions operation
         ///</summary>
         public IListWorkflowExecutionsPaginator ListWorkflowExecutions(ListWorkflowExecutionsRequest request) 
         {
             return new ListWorkflowExecutionsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListWorkflows operation
+        ///</summary>
+        public IListWorkflowsPaginator ListWorkflows(ListWorkflowsRequest request) 
+        {
+            return new ListWorkflowsPaginator(this.client, request);
         }
 
         /// <summary>

@@ -26,19 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
-    /// Returned if the <code>FileSystemPolicy</code> is malformed or contains an error such
-    /// as a parameter value that is not valid or a missing required parameter. Returned in
-    /// the case of a policy lockout safety check error.
+    /// Returned if the <c>FileSystemPolicy</c> is malformed or contains an error such as
+    /// a parameter value that is not valid or a missing required parameter. Returned in the
+    /// case of a policy lockout safety check error.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]
     #endif
     public partial class InvalidPolicyException : AmazonElasticFileSystemException
     {
-        private string _errorCode;
 
         /// <summary>
         /// Constructs a new InvalidPolicyException with the specified error
@@ -124,22 +124,6 @@ namespace Amazon.ElasticFileSystem.Model
             info.AddValue("ErrorCode", this.ErrorCode);
         }
 #endif
-
-        /// <summary>
-        /// Gets and sets the property ErrorCode.
-        /// </summary>
-        [AWSProperty(Min=1)]
-        public string ErrorCode
-        {
-            get { return this._errorCode; }
-            set { this._errorCode = value; }
-        }
-
-        // Check to see if ErrorCode property is set
-        internal bool IsSetErrorCode()
-        {
-            return this._errorCode != null;
-        }
 
     }
 }

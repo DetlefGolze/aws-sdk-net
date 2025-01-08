@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
-    /// Container for the response parameters to the <code>DeletePackage</code> operation.
+    /// Container for the response parameters to the <c>DeletePackage</c> operation.
     /// </summary>
     public partial class DeletePackageResponse : AmazonWebServiceResponse
     {

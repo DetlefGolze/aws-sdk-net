@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
@@ -82,8 +83,8 @@ namespace Amazon.Inspector2.Model
         /// <summary>
         /// Gets and sets the property Lambda. 
         /// <para>
-        /// Represents whether AWS Lambda standard scans are automatically enabled for new members
-        /// of your Amazon Inspector organization. 
+        /// Represents whether Amazon Web Services Lambda standard scans are automatically enabled
+        /// for new members of your Amazon Inspector organization. 
         /// </para>
         /// </summary>
         public bool Lambda
@@ -101,8 +102,8 @@ namespace Amazon.Inspector2.Model
         /// <summary>
         /// Gets and sets the property LambdaCode. 
         /// <para>
-        /// Represents whether AWS Lambda code scans are automatically enabled for new members
-        /// of your Amazon Inspector organization. <pre><code> &lt;/p&gt; </code></pre>
+        /// Represents whether Lambda code scans are automatically enabled for new members of
+        /// your Amazon Inspector organization. <pre><c> &lt;/p&gt; </c></pre>
         /// </summary>
         public bool LambdaCode
         {

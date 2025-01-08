@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatch.Model
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.CloudWatch.Model
         private string _ruleDefinition;
         private string _ruleName;
         private string _ruleState;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property RuleDefinition. 
@@ -121,8 +122,8 @@ namespace Amazon.CloudWatch.Model
         /// </para>
         ///  
         /// <para>
-        /// To be able to associate tags with a rule, you must have the <code>cloudwatch:TagResource</code>
-        /// permission in addition to the <code>cloudwatch:PutInsightRule</code> permission.
+        /// To be able to associate tags with a rule, you must have the <c>cloudwatch:TagResource</c>
+        /// permission in addition to the <c>cloudwatch:PutInsightRule</c> permission.
         /// </para>
         ///  
         /// <para>
@@ -140,7 +141,7 @@ namespace Amazon.CloudWatch.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.AppStream
 {
     /// <summary>
-    /// Implementation for accessing AppStream
+    /// <para>Implementation for accessing AppStream</para>
     ///
     /// Amazon AppStream 2.0 
     /// <para>
@@ -1394,8 +1395,8 @@ namespace Amazon.AppStream
         /// 
         ///  
         /// <para>
-        /// The initial state of the builder is <code>PENDING</code>. When it is ready, the state
-        /// is <code>RUNNING</code>.
+        /// The initial state of the builder is <c>PENDING</c>. When it is ready, the state is
+        /// <c>RUNNING</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateImageBuilder service method.</param>
@@ -1453,8 +1454,8 @@ namespace Amazon.AppStream
         /// 
         ///  
         /// <para>
-        /// The initial state of the builder is <code>PENDING</code>. When it is ready, the state
-        /// is <code>RUNNING</code>.
+        /// The initial state of the builder is <c>PENDING</c>. When it is ready, the state is
+        /// <c>RUNNING</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateImageBuilder service method.</param>
@@ -1589,6 +1590,9 @@ namespace Amazon.AppStream
         /// <exception cref="Amazon.AppStream.Model.LimitExceededException">
         /// The requested limit exceeds the permitted limit for an account.
         /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.OperationNotPermittedException">
+        /// The attempted operation is not permitted.
+        /// </exception>
         /// <exception cref="Amazon.AppStream.Model.ResourceAlreadyExistsException">
         /// The specified resource already exists.
         /// </exception>
@@ -1631,6 +1635,9 @@ namespace Amazon.AppStream
         /// </exception>
         /// <exception cref="Amazon.AppStream.Model.LimitExceededException">
         /// The requested limit exceeds the permitted limit for an account.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.OperationNotPermittedException">
+        /// The attempted operation is not permitted.
         /// </exception>
         /// <exception cref="Amazon.AppStream.Model.ResourceAlreadyExistsException">
         /// The specified resource already exists.
@@ -1713,6 +1720,87 @@ namespace Amazon.AppStream
             options.ResponseUnmarshaller = CreateStreamingURLResponseUnmarshaller.Instance;
             
             return InvokeAsync<CreateStreamingURLResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateThemeForStack
+
+
+        /// <summary>
+        /// Creates custom branding that customizes the appearance of the streaming application
+        /// catalog page.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateThemeForStack service method.</param>
+        /// 
+        /// <returns>The response from the CreateThemeForStack service method, as returned by AppStream.</returns>
+        /// <exception cref="Amazon.AppStream.Model.ConcurrentModificationException">
+        /// An API error occurred. Wait a few minutes and try again.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.InvalidAccountStatusException">
+        /// The resource cannot be created because your AWS account is suspended. For assistance,
+        /// contact AWS Support.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.LimitExceededException">
+        /// The requested limit exceeds the permitted limit for an account.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.OperationNotPermittedException">
+        /// The attempted operation is not permitted.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.ResourceAlreadyExistsException">
+        /// The specified resource already exists.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.ResourceNotFoundException">
+        /// The specified resource was not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateThemeForStack">REST API Reference for CreateThemeForStack Operation</seealso>
+        public virtual CreateThemeForStackResponse CreateThemeForStack(CreateThemeForStackRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateThemeForStackRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateThemeForStackResponseUnmarshaller.Instance;
+
+            return Invoke<CreateThemeForStackResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates custom branding that customizes the appearance of the streaming application
+        /// catalog page.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateThemeForStack service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateThemeForStack service method, as returned by AppStream.</returns>
+        /// <exception cref="Amazon.AppStream.Model.ConcurrentModificationException">
+        /// An API error occurred. Wait a few minutes and try again.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.InvalidAccountStatusException">
+        /// The resource cannot be created because your AWS account is suspended. For assistance,
+        /// contact AWS Support.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.LimitExceededException">
+        /// The requested limit exceeds the permitted limit for an account.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.OperationNotPermittedException">
+        /// The attempted operation is not permitted.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.ResourceAlreadyExistsException">
+        /// The specified resource already exists.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.ResourceNotFoundException">
+        /// The specified resource was not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateThemeForStack">REST API Reference for CreateThemeForStack Operation</seealso>
+        public virtual Task<CreateThemeForStackResponse> CreateThemeForStackAsync(CreateThemeForStackRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateThemeForStackRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateThemeForStackResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateThemeForStackResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -2582,6 +2670,67 @@ namespace Amazon.AppStream
 
         #endregion
         
+        #region  DeleteThemeForStack
+
+
+        /// <summary>
+        /// Deletes custom branding that customizes the appearance of the streaming application
+        /// catalog page.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteThemeForStack service method.</param>
+        /// 
+        /// <returns>The response from the DeleteThemeForStack service method, as returned by AppStream.</returns>
+        /// <exception cref="Amazon.AppStream.Model.ConcurrentModificationException">
+        /// An API error occurred. Wait a few minutes and try again.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.OperationNotPermittedException">
+        /// The attempted operation is not permitted.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.ResourceNotFoundException">
+        /// The specified resource was not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteThemeForStack">REST API Reference for DeleteThemeForStack Operation</seealso>
+        public virtual DeleteThemeForStackResponse DeleteThemeForStack(DeleteThemeForStackRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteThemeForStackRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteThemeForStackResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteThemeForStackResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes custom branding that customizes the appearance of the streaming application
+        /// catalog page.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteThemeForStack service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteThemeForStack service method, as returned by AppStream.</returns>
+        /// <exception cref="Amazon.AppStream.Model.ConcurrentModificationException">
+        /// An API error occurred. Wait a few minutes and try again.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.OperationNotPermittedException">
+        /// The attempted operation is not permitted.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.ResourceNotFoundException">
+        /// The specified resource was not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteThemeForStack">REST API Reference for DeleteThemeForStack Operation</seealso>
+        public virtual Task<DeleteThemeForStackResponse> DeleteThemeForStackAsync(DeleteThemeForStackRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteThemeForStackRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteThemeForStackResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteThemeForStackResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  DeleteUsageReportSubscription
 
 
@@ -3377,6 +3526,61 @@ namespace Amazon.AppStream
             options.ResponseUnmarshaller = DescribeStacksResponseUnmarshaller.Instance;
             
             return InvokeAsync<DescribeStacksResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DescribeThemeForStack
+
+
+        /// <summary>
+        /// Retrieves a list that describes the theme for a specified stack. A theme is custom
+        /// branding that customizes the appearance of the streaming application catalog page.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeThemeForStack service method.</param>
+        /// 
+        /// <returns>The response from the DescribeThemeForStack service method, as returned by AppStream.</returns>
+        /// <exception cref="Amazon.AppStream.Model.OperationNotPermittedException">
+        /// The attempted operation is not permitted.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.ResourceNotFoundException">
+        /// The specified resource was not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeThemeForStack">REST API Reference for DescribeThemeForStack Operation</seealso>
+        public virtual DescribeThemeForStackResponse DescribeThemeForStack(DescribeThemeForStackRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeThemeForStackRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeThemeForStackResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeThemeForStackResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Retrieves a list that describes the theme for a specified stack. A theme is custom
+        /// branding that customizes the appearance of the streaming application catalog page.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeThemeForStack service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeThemeForStack service method, as returned by AppStream.</returns>
+        /// <exception cref="Amazon.AppStream.Model.OperationNotPermittedException">
+        /// The attempted operation is not permitted.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.ResourceNotFoundException">
+        /// The specified resource was not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeThemeForStack">REST API Reference for DescribeThemeForStack Operation</seealso>
+        public virtual Task<DescribeThemeForStackResponse> DescribeThemeForStackAsync(DescribeThemeForStackRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeThemeForStackRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeThemeForStackResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DescribeThemeForStackResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -4795,10 +4999,10 @@ namespace Amazon.AppStream
         /// 
         ///  
         /// <para>
-        /// If the app block builder is in the <code>STARTING</code> or <code>STOPPING</code>
-        /// state, you can't update it. If the app block builder is in the <code>RUNNING</code>
-        /// state, you can only update the DisplayName and Description. If the app block builder
-        /// is in the <code>STOPPED</code> state, you can update any attribute except the Name.
+        /// If the app block builder is in the <c>STARTING</c> or <c>STOPPING</c> state, you can't
+        /// update it. If the app block builder is in the <c>RUNNING</c> state, you can only update
+        /// the DisplayName and Description. If the app block builder is in the <c>STOPPED</c>
+        /// state, you can update any attribute except the Name.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateAppBlockBuilder service method.</param>
@@ -4852,10 +5056,10 @@ namespace Amazon.AppStream
         /// 
         ///  
         /// <para>
-        /// If the app block builder is in the <code>STARTING</code> or <code>STOPPING</code>
-        /// state, you can't update it. If the app block builder is in the <code>RUNNING</code>
-        /// state, you can only update the DisplayName and Description. If the app block builder
-        /// is in the <code>STOPPED</code> state, you can update any attribute except the Name.
+        /// If the app block builder is in the <c>STARTING</c> or <c>STOPPING</c> state, you can't
+        /// update it. If the app block builder is in the <c>RUNNING</c> state, you can only update
+        /// the DisplayName and Description. If the app block builder is in the <c>STOPPED</c>
+        /// state, you can update any attribute except the Name.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateAppBlockBuilder service method.</param>
@@ -5115,13 +5319,13 @@ namespace Amazon.AppStream
         /// 
         ///  
         /// <para>
-        /// If the fleet is in the <code>STOPPED</code> state, you can update any attribute except
-        /// the fleet name.
+        /// If the fleet is in the <c>STOPPED</c> state, you can update any attribute except the
+        /// fleet name.
         /// </para>
         ///  
         /// <para>
-        /// If the fleet is in the <code>RUNNING</code> state, you can update the following based
-        /// on the fleet type:
+        /// If the fleet is in the <c>RUNNING</c> state, you can update the following based on
+        /// the fleet type:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5129,9 +5333,8 @@ namespace Amazon.AppStream
         /// </para>
         ///  
         /// <para>
-        /// You can update the <code>DisplayName</code>, <code>ComputeCapacity</code>, <code>ImageARN</code>,
-        /// <code>ImageName</code>, <code>IdleDisconnectTimeoutInSeconds</code>, and <code>DisconnectTimeoutInSeconds</code>
-        /// attributes.
+        /// You can update the <c>DisplayName</c>, <c>ComputeCapacity</c>, <c>ImageARN</c>, <c>ImageName</c>,
+        /// <c>IdleDisconnectTimeoutInSeconds</c>, and <c>DisconnectTimeoutInSeconds</c> attributes.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -5139,14 +5342,13 @@ namespace Amazon.AppStream
         /// </para>
         ///  
         /// <para>
-        /// You can update the <code>DisplayName</code>, <code>IdleDisconnectTimeoutInSeconds</code>,
-        /// <code>DisconnectTimeoutInSeconds</code>, <code>MaxConcurrentSessions</code>, <code>SessionScriptS3Location</code>
-        /// and <code>UsbDeviceFilterStrings</code> attributes.
+        /// You can update the <c>DisplayName</c>, <c>IdleDisconnectTimeoutInSeconds</c>, <c>DisconnectTimeoutInSeconds</c>,
+        /// <c>MaxConcurrentSessions</c>, <c>SessionScriptS3Location</c> and <c>UsbDeviceFilterStrings</c>
+        /// attributes.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If the fleet is in the <code>STARTING</code> or <code>STOPPED</code> state, you can't
-        /// update it.
+        /// If the fleet is in the <c>STARTING</c> or <c>STOPPED</c> state, you can't update it.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateFleet service method.</param>
@@ -5203,13 +5405,13 @@ namespace Amazon.AppStream
         /// 
         ///  
         /// <para>
-        /// If the fleet is in the <code>STOPPED</code> state, you can update any attribute except
-        /// the fleet name.
+        /// If the fleet is in the <c>STOPPED</c> state, you can update any attribute except the
+        /// fleet name.
         /// </para>
         ///  
         /// <para>
-        /// If the fleet is in the <code>RUNNING</code> state, you can update the following based
-        /// on the fleet type:
+        /// If the fleet is in the <c>RUNNING</c> state, you can update the following based on
+        /// the fleet type:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5217,9 +5419,8 @@ namespace Amazon.AppStream
         /// </para>
         ///  
         /// <para>
-        /// You can update the <code>DisplayName</code>, <code>ComputeCapacity</code>, <code>ImageARN</code>,
-        /// <code>ImageName</code>, <code>IdleDisconnectTimeoutInSeconds</code>, and <code>DisconnectTimeoutInSeconds</code>
-        /// attributes.
+        /// You can update the <c>DisplayName</c>, <c>ComputeCapacity</c>, <c>ImageARN</c>, <c>ImageName</c>,
+        /// <c>IdleDisconnectTimeoutInSeconds</c>, and <c>DisconnectTimeoutInSeconds</c> attributes.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -5227,14 +5428,13 @@ namespace Amazon.AppStream
         /// </para>
         ///  
         /// <para>
-        /// You can update the <code>DisplayName</code>, <code>IdleDisconnectTimeoutInSeconds</code>,
-        /// <code>DisconnectTimeoutInSeconds</code>, <code>MaxConcurrentSessions</code>, <code>SessionScriptS3Location</code>
-        /// and <code>UsbDeviceFilterStrings</code> attributes.
+        /// You can update the <c>DisplayName</c>, <c>IdleDisconnectTimeoutInSeconds</c>, <c>DisconnectTimeoutInSeconds</c>,
+        /// <c>MaxConcurrentSessions</c>, <c>SessionScriptS3Location</c> and <c>UsbDeviceFilterStrings</c>
+        /// attributes.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If the fleet is in the <code>STARTING</code> or <code>STOPPED</code> state, you can't
-        /// update it.
+        /// If the fleet is in the <c>STARTING</c> or <c>STOPPED</c> state, you can't update it.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateFleet service method.</param>
@@ -5446,6 +5646,87 @@ namespace Amazon.AppStream
 
         #endregion
         
+        #region  UpdateThemeForStack
+
+
+        /// <summary>
+        /// Updates custom branding that customizes the appearance of the streaming application
+        /// catalog page.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateThemeForStack service method.</param>
+        /// 
+        /// <returns>The response from the UpdateThemeForStack service method, as returned by AppStream.</returns>
+        /// <exception cref="Amazon.AppStream.Model.ConcurrentModificationException">
+        /// An API error occurred. Wait a few minutes and try again.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.InvalidAccountStatusException">
+        /// The resource cannot be created because your AWS account is suspended. For assistance,
+        /// contact AWS Support.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.InvalidParameterCombinationException">
+        /// Indicates an incorrect combination of parameters, or a missing parameter.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.LimitExceededException">
+        /// The requested limit exceeds the permitted limit for an account.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.OperationNotPermittedException">
+        /// The attempted operation is not permitted.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.ResourceNotFoundException">
+        /// The specified resource was not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateThemeForStack">REST API Reference for UpdateThemeForStack Operation</seealso>
+        public virtual UpdateThemeForStackResponse UpdateThemeForStack(UpdateThemeForStackRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateThemeForStackRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateThemeForStackResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateThemeForStackResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Updates custom branding that customizes the appearance of the streaming application
+        /// catalog page.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateThemeForStack service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateThemeForStack service method, as returned by AppStream.</returns>
+        /// <exception cref="Amazon.AppStream.Model.ConcurrentModificationException">
+        /// An API error occurred. Wait a few minutes and try again.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.InvalidAccountStatusException">
+        /// The resource cannot be created because your AWS account is suspended. For assistance,
+        /// contact AWS Support.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.InvalidParameterCombinationException">
+        /// Indicates an incorrect combination of parameters, or a missing parameter.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.LimitExceededException">
+        /// The requested limit exceeds the permitted limit for an account.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.OperationNotPermittedException">
+        /// The attempted operation is not permitted.
+        /// </exception>
+        /// <exception cref="Amazon.AppStream.Model.ResourceNotFoundException">
+        /// The specified resource was not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateThemeForStack">REST API Reference for UpdateThemeForStack Operation</seealso>
+        public virtual Task<UpdateThemeForStackResponse> UpdateThemeForStackAsync(UpdateThemeForStackRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateThemeForStackRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateThemeForStackResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdateThemeForStackResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region DetermineServiceOperationEndpoint
 
         /// <summary>
@@ -5455,11 +5736,11 @@ namespace Amazon.AppStream
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

@@ -26,14 +26,30 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
     /// Container for the parameters to the UntagResource operation.
-    /// Removes the association of tags from an Amazon DynamoDB resource. You can call <code>UntagResource</code>
+    /// Removes the association of tags from an Amazon DynamoDB resource. You can call <c>UntagResource</c>
     /// up to five times per second, per account. 
     /// 
-    ///  
+    ///  <ul> <li> 
+    /// <para>
+    ///  <c>UntagResource</c> is an asynchronous operation. If you issue a <a>ListTagsOfResource</a>
+    /// request immediately after an <c>UntagResource</c> request, DynamoDB might return your
+    /// previous tag set, if there was one, or an empty tag set. This is because <c>ListTagsOfResource</c>
+    /// uses an eventually consistent query, and the metadata for your tags or table might
+    /// not be available at that moment. Wait for a few seconds, and then try the <c>ListTagsOfResource</c>
+    /// request again.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// The application or removal of tags using <c>TagResource</c> and <c>UntagResource</c>
+    /// APIs is eventually consistent. <c>ListTagsOfResource</c> API will only reflect the
+    /// changes after a few seconds.
+    /// </para>
+    ///  </li> </ul> 
     /// <para>
     /// For an overview on tagging DynamoDB resources, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html">Tagging
     /// for DynamoDB</a> in the <i>Amazon DynamoDB Developer Guide</i>.
@@ -42,7 +58,7 @@ namespace Amazon.DynamoDBv2.Model
     public partial class UntagResourceRequest : AmazonDynamoDBRequest
     {
         private string _resourceArn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -81,7 +97,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.IoT.Model
         /// Gets and sets the property Action. 
         /// <para>
         /// The action that you want to apply to the CA certificate. The only supported value
-        /// is <code>DEACTIVATE</code>.
+        /// is <c>DEACTIVATE</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

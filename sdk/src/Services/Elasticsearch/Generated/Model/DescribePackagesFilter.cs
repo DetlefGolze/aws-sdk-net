@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// Filter to apply in <code>DescribePackage</code> response.
+    /// Filter to apply in <c>DescribePackage</c> response.
     /// </summary>
     public partial class DescribePackagesFilter
     {
         private DescribePackagesFilterName _name;
-        private List<string> _value = new List<string>();
+        private List<string> _value = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// Any field from <code>PackageDetails</code>.
+        /// Any field from <c>PackageDetails</c>.
         /// </para>
         /// </summary>
         public DescribePackagesFilterName Name
@@ -70,7 +71,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if Value property is set
         internal bool IsSetValue()
         {
-            return this._value != null && this._value.Count > 0; 
+            return this._value != null && (this._value.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

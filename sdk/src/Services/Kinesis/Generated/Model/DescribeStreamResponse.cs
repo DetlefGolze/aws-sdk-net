@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kinesis.Model
 {
     /// <summary>
-    /// Represents the output for <code>DescribeStream</code>.
+    /// Represents the output for <c>DescribeStream</c>.
     /// </summary>
     public partial class DescribeStreamResponse : AmazonWebServiceResponse
     {

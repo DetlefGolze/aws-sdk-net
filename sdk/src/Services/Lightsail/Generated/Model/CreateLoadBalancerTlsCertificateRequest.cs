@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -38,26 +39,26 @@ namespace Amazon.Lightsail.Model
     /// </para>
     ///  
     /// <para>
-    /// The <code>CreateLoadBalancerTlsCertificate</code> operation supports tag-based access
-    /// control via resource tags applied to the resource identified by <code>load balancer
-    /// name</code>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+    /// The <c>CreateLoadBalancerTlsCertificate</c> operation supports tag-based access control
+    /// via resource tags applied to the resource identified by <c>load balancer name</c>.
+    /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
     /// Lightsail Developer Guide</a>.
     /// </para>
     /// </summary>
     public partial class CreateLoadBalancerTlsCertificateRequest : AmazonLightsailRequest
     {
-        private List<string> _certificateAlternativeNames = new List<string>();
+        private List<string> _certificateAlternativeNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _certificateDomainName;
         private string _certificateName;
         private string _loadBalancerName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property CertificateAlternativeNames. 
         /// <para>
         /// An array of strings listing alternative domains and subdomains for your SSL/TLS certificate.
         /// Lightsail will de-dupe the names for you. You can have a maximum of 9 alternative
-        /// names (in addition to the 1 primary domain). We do not support wildcards (e.g., <code>*.example.com</code>).
+        /// names (in addition to the 1 primary domain). We do not support wildcards (<c>*.example.com</c>).
         /// </para>
         /// </summary>
         public List<string> CertificateAlternativeNames
@@ -69,13 +70,13 @@ namespace Amazon.Lightsail.Model
         // Check to see if CertificateAlternativeNames property is set
         internal bool IsSetCertificateAlternativeNames()
         {
-            return this._certificateAlternativeNames != null && this._certificateAlternativeNames.Count > 0; 
+            return this._certificateAlternativeNames != null && (this._certificateAlternativeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property CertificateDomainName. 
         /// <para>
-        /// The domain name (e.g., <code>example.com</code>) for your SSL/TLS certificate.
+        /// The domain name (<c>example.com</c>) for your SSL/TLS certificate.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -143,7 +144,7 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>TagResource</code> action to tag a resource after it's created.
+        /// Use the <c>TagResource</c> action to tag a resource after it's created.
         /// </para>
         /// </summary>
         public List<Tag> Tags
@@ -155,7 +156,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

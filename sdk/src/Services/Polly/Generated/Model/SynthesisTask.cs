@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Polly.Model
 {
     /// <summary>
@@ -36,13 +37,13 @@ namespace Amazon.Polly.Model
         private DateTime? _creationTime;
         private Engine _engine;
         private LanguageCode _languageCode;
-        private List<string> _lexiconNames = new List<string>();
+        private List<string> _lexiconNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private OutputFormat _outputFormat;
         private string _outputUri;
         private int? _requestCharacters;
         private string _sampleRate;
         private string _snsTopicArn;
-        private List<string> _speechMarkTypes = new List<string>();
+        private List<string> _speechMarkTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _taskId;
         private TaskStatus _taskStatus;
         private string _taskStatusReason;
@@ -70,9 +71,9 @@ namespace Amazon.Polly.Model
         /// <summary>
         /// Gets and sets the property Engine. 
         /// <para>
-        /// Specifies the engine (<code>standard</code> or <code>neural</code>) for Amazon Polly
-        /// to use when processing input text for speech synthesis. Using a voice that is not
-        /// supported for the engine selected will result in an error.
+        /// Specifies the engine (<c>standard</c>, <c>neural</c>, <c>long-form</c> or <c>generative</c>)
+        /// for Amazon Polly to use when processing input text for speech synthesis. Using a voice
+        /// that is not supported for the engine selected will result in an error.
         /// </para>
         /// </summary>
         public Engine Engine
@@ -99,8 +100,8 @@ namespace Amazon.Polly.Model
         /// If a bilingual voice is used and no language code is specified, Amazon Polly uses
         /// the default language of the bilingual voice. The default language for any voice is
         /// the one returned by the <a href="https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html">DescribeVoices</a>
-        /// operation for the <code>LanguageCode</code> parameter. For example, if no language
-        /// code is specified, Aditi will use Indian English rather than Hindi.
+        /// operation for the <c>LanguageCode</c> parameter. For example, if no language code
+        /// is specified, Aditi will use Indian English rather than Hindi.
         /// </para>
         /// </summary>
         public LanguageCode LanguageCode
@@ -133,7 +134,7 @@ namespace Amazon.Polly.Model
         // Check to see if LexiconNames property is set
         internal bool IsSetLexiconNames()
         {
-            return this._lexiconNames != null && this._lexiconNames.Count > 0; 
+            return this._lexiconNames != null && (this._lexiconNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -200,7 +201,8 @@ namespace Amazon.Polly.Model
         /// <para>
         /// The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and "24000".
         /// The default value for standard voices is "22050". The default value for neural voices
-        /// is "24000".
+        /// is "24000". The default value for long-form voices is "24000". The default value for
+        /// generative voices is "24000".
         /// </para>
         ///  
         /// <para>
@@ -254,7 +256,7 @@ namespace Amazon.Polly.Model
         // Check to see if SpeechMarkTypes property is set
         internal bool IsSetSpeechMarkTypes()
         {
-            return this._speechMarkTypes != null && this._speechMarkTypes.Count > 0; 
+            return this._speechMarkTypes != null && (this._speechMarkTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

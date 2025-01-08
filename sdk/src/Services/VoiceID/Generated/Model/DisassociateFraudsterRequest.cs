@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VoiceID.Model
 {
     /// <summary>
     /// Container for the parameters to the DisassociateFraudster operation.
     /// Disassociates the fraudsters from the watchlist specified. Voice ID always expects
     /// a fraudster to be a part of at least one watchlist. If you try to disassociate a fraudster
-    /// from its only watchlist, a <code>ValidationException</code> is thrown.
+    /// from its only watchlist, a <c>ValidationException</c> is thrown.
     /// </summary>
     public partial class DisassociateFraudsterRequest : AmazonVoiceIDRequest
     {

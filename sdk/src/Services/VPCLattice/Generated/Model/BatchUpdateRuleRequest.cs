@@ -26,23 +26,34 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
     /// Container for the parameters to the BatchUpdateRule operation.
     /// Updates the listener rules in a batch. You can use this operation to change the priority
     /// of listener rules. This can be useful when bulk updating or swapping rule priority.
+    /// 
+    ///  
+    /// <para>
+    ///  <b>Required permissions:</b> <c>vpc-lattice:UpdateRule</c> 
+    /// </para>
+    ///  
+    /// <para>
+    /// For more information, see <a href="https://docs.aws.amazon.com/vpc-lattice/latest/ug/security_iam_service-with-iam.html">How
+    /// Amazon VPC Lattice works with IAM</a> in the <i>Amazon VPC Lattice User Guide</i>.
+    /// </para>
     /// </summary>
     public partial class BatchUpdateRuleRequest : AmazonVPCLatticeRequest
     {
         private string _listenerIdentifier;
-        private List<RuleUpdate> _rules = new List<RuleUpdate>();
+        private List<RuleUpdate> _rules = AWSConfigs.InitializeCollections ? new List<RuleUpdate>() : null;
         private string _serviceIdentifier;
 
         /// <summary>
         /// Gets and sets the property ListenerIdentifier. 
         /// <para>
-        /// The ID or Amazon Resource Name (ARN) of the listener.
+        /// The ID or ARN of the listener.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]
@@ -74,13 +85,13 @@ namespace Amazon.VPCLattice.Model
         // Check to see if Rules property is set
         internal bool IsSetRules()
         {
-            return this._rules != null && this._rules.Count > 0; 
+            return this._rules != null && (this._rules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ServiceIdentifier. 
         /// <para>
-        /// The ID or Amazon Resource Name (ARN) of the service.
+        /// The ID or ARN of the service.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=17, Max=2048)]

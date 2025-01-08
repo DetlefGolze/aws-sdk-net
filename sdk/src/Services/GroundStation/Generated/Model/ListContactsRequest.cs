@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.GroundStation.Model
     /// 
     ///  
     /// <para>
-    /// If <code>statusList</code> contains AVAILABLE, the request must include <code>groundStation</code>,
-    /// <code>missionprofileArn</code>, and <code>satelliteArn</code>. 
+    /// If <c>statusList</c> contains AVAILABLE, the request must include <c>groundStation</c>,
+    /// <c>missionprofileArn</c>, and <c>satelliteArn</c>. 
     /// </para>
     /// </summary>
     public partial class ListContactsRequest : AmazonGroundStationRequest
@@ -47,7 +48,7 @@ namespace Amazon.GroundStation.Model
         private string _nextToken;
         private string _satelliteArn;
         private DateTime? _startTime;
-        private List<string> _statusList = new List<string>();
+        private List<string> _statusList = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property EndTime. 
@@ -127,8 +128,8 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Next token returned in the request of a previous <code>ListContacts</code> call. Used
-        /// to get the next page of results.
+        /// Next token returned in the request of a previous <c>ListContacts</c> call. Used to
+        /// get the next page of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=3, Max=1000)]
@@ -197,7 +198,7 @@ namespace Amazon.GroundStation.Model
         // Check to see if StatusList property is set
         internal bool IsSetStatusList()
         {
-            return this._statusList != null && this._statusList.Count > 0; 
+            return this._statusList != null && (this._statusList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

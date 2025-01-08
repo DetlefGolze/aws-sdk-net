@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
@@ -41,9 +42,8 @@ namespace Amazon.APIGateway.Model
         /// <summary>
         /// Gets and sets the property Flatten. 
         /// <para>
-        /// A query parameter of a Boolean value to resolve (<code>true</code>) all external model
-        /// references and returns a flattened model schema or not (<code>false</code>) The default
-        /// is <code>false</code>.
+        /// A query parameter of a Boolean value to resolve (<c>true</c>) all external model references
+        /// and returns a flattened model schema or not (<c>false</c>) The default is <c>false</c>.
         /// </para>
         /// </summary>
         public bool Flatten

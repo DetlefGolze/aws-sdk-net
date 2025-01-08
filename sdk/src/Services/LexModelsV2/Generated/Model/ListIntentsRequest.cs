@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.LexModelsV2.Model
     {
         private string _botId;
         private string _botVersion;
-        private List<IntentFilter> _filters = new List<IntentFilter>();
+        private List<IntentFilter> _filters = AWSConfigs.InitializeCollections ? new List<IntentFilter>() : null;
         private string _localeId;
         private int? _maxResults;
         private string _nextToken;
@@ -98,7 +99,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -145,16 +146,14 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the response from the <code>ListIntents</code> operation contains more results
-        /// than specified in the <code>maxResults</code> parameter, a token is returned in the
-        /// response.
+        /// If the response from the <c>ListIntents</c> operation contains more results than specified
+        /// in the <c>maxResults</c> parameter, a token is returned in the response.
         /// </para>
         ///  
         /// <para>
-        /// Use the returned token in the <code>nextToken</code> parameter of a <code>ListIntents</code>
-        /// request to return the next page of results. For a complete set of results, call the
-        /// <code>ListIntents</code> operation until the <code>nextToken</code> returned in the
-        /// response is null.
+        /// Use the returned token in the <c>nextToken</c> parameter of a <c>ListIntents</c> request
+        /// to return the next page of results. For a complete set of results, call the <c>ListIntents</c>
+        /// operation until the <c>nextToken</c> returned in the response is null.
         /// </para>
         /// </summary>
         public string NextToken
@@ -172,7 +171,7 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property SortBy. 
         /// <para>
-        /// Determines the sort order for the response from the <code>ListIntents</code> operation.
+        /// Determines the sort order for the response from the <c>ListIntents</c> operation.
         /// You can choose to sort by the intent name or last updated date in either ascending
         /// or descending order.
         /// </para>

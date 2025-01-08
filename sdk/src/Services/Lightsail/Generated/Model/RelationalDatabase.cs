@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.Lightsail.Model
         private string _masterUsername;
         private string _name;
         private string _parameterApplyStatus;
-        private List<PendingMaintenanceAction> _pendingMaintenanceActions = new List<PendingMaintenanceAction>();
+        private List<PendingMaintenanceAction> _pendingMaintenanceActions = AWSConfigs.InitializeCollections ? new List<PendingMaintenanceAction>() : null;
         private PendingModifiedRelationalDatabaseValues _pendingModifiedValues;
         private string _preferredBackupWindow;
         private string _preferredMaintenanceWindow;
@@ -58,7 +59,7 @@ namespace Amazon.Lightsail.Model
         private string _secondaryAvailabilityZone;
         private string _state;
         private string _supportCode;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -135,7 +136,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property Engine. 
         /// <para>
-        /// The database software (for example, <code>MySQL</code>).
+        /// The database software (for example, <c>MySQL</c>).
         /// </para>
         /// </summary>
         public string Engine
@@ -153,7 +154,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property EngineVersion. 
         /// <para>
-        /// The database engine version (for example, <code>5.7.23</code>).
+        /// The database engine version (for example, <c>5.7.23</c>).
         /// </para>
         /// </summary>
         public string EngineVersion
@@ -328,7 +329,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if PendingMaintenanceActions property is set
         internal bool IsSetPendingMaintenanceActions()
         {
-            return this._pendingMaintenanceActions != null && this._pendingMaintenanceActions.Count > 0; 
+            return this._pendingMaintenanceActions != null && (this._pendingMaintenanceActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -353,7 +354,7 @@ namespace Amazon.Lightsail.Model
         /// Gets and sets the property PreferredBackupWindow. 
         /// <para>
         /// The daily time range during which automated backups are created for the database (for
-        /// example, <code>16:00-16:30</code>).
+        /// example, <c>16:00-16:30</c>).
         /// </para>
         /// </summary>
         public string PreferredBackupWindow
@@ -375,7 +376,7 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// In the format <code>ddd:hh24:mi-ddd:hh24:mi</code>. For example, <code>Tue:17:00-Tue:17:30</code>.
+        /// In the format <c>ddd:hh24:mi-ddd:hh24:mi</c>. For example, <c>Tue:17:00-Tue:17:30</c>.
         /// </para>
         /// </summary>
         public string PreferredMaintenanceWindow
@@ -449,7 +450,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The Lightsail resource type for the database (for example, <code>RelationalDatabase</code>).
+        /// The Lightsail resource type for the database (for example, <c>RelationalDatabase</c>).
         /// </para>
         /// </summary>
         public ResourceType ResourceType
@@ -541,7 +542,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

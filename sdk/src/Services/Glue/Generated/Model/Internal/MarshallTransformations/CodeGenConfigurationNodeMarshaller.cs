@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(CodeGenConfigurationNode requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAggregate())
             {
                 context.Writer.WritePropertyName("Aggregate");
@@ -162,6 +165,28 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
 
                 var marshaller = BasicCatalogTargetMarshaller.Instance;
                 marshaller.Marshall(requestObject.CatalogTarget, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetConnectorDataSource())
+            {
+                context.Writer.WritePropertyName("ConnectorDataSource");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = ConnectorDataSourceMarshaller.Instance;
+                marshaller.Marshall(requestObject.ConnectorDataSource, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetConnectorDataTarget())
+            {
+                context.Writer.WritePropertyName("ConnectorDataTarget");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = ConnectorDataTargetMarshaller.Instance;
+                marshaller.Marshall(requestObject.ConnectorDataTarget, context);
 
                 context.Writer.WriteObjectEnd();
             }

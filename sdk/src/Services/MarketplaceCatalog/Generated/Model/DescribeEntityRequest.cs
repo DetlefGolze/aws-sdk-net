@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MarketplaceCatalog.Model
 {
     /// <summary>
@@ -40,8 +41,7 @@ namespace Amazon.MarketplaceCatalog.Model
         /// <summary>
         /// Gets and sets the property Catalog. 
         /// <para>
-        /// Required. The catalog related to the request. Fixed value: <code>AWSMarketplace</code>
-        /// 
+        /// Required. The catalog related to the request. Fixed value: <c>AWSMarketplace</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

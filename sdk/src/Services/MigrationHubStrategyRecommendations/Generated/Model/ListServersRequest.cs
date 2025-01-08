@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHubStrategyRecommendations.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.MigrationHubStrategyRecommendations.Model
     public partial class ListServersRequest : AmazonMigrationHubStrategyRecommendationsRequest
     {
         private string _filterValue;
-        private List<Group> _groupIdFilter = new List<Group>();
+        private List<Group> _groupIdFilter = AWSConfigs.InitializeCollections ? new List<Group>() : null;
         private int? _maxResults;
         private string _nextToken;
         private ServerCriteria _serverCriteria;
@@ -45,9 +46,9 @@ namespace Amazon.MigrationHubStrategyRecommendations.Model
         /// Gets and sets the property FilterValue. 
         /// <para>
         ///  Specifies the filter value, which is based on the type of server criteria. For example,
-        /// if <code>serverCriteria</code> is <code>OS_NAME</code>, and the <code>filterValue</code>
-        /// is equal to <code>WindowsServer</code>, then <code>ListServers</code> returns all
-        /// of the servers matching the OS name <code>WindowsServer</code>. 
+        /// if <c>serverCriteria</c> is <c>OS_NAME</c>, and the <c>filterValue</c> is equal to
+        /// <c>WindowsServer</c>, then <c>ListServers</c> returns all of the servers matching
+        /// the OS name <c>WindowsServer</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1024)]
@@ -78,7 +79,7 @@ namespace Amazon.MigrationHubStrategyRecommendations.Model
         // Check to see if GroupIdFilter property is set
         internal bool IsSetGroupIdFilter()
         {
-            return this._groupIdFilter != null && this._groupIdFilter.Count > 0; 
+            return this._groupIdFilter != null && (this._groupIdFilter.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -104,7 +105,7 @@ namespace Amazon.MigrationHubStrategyRecommendations.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         ///  The token from a previous call that you use to retrieve the next set of results.
-        /// For example, if a previous call to this action returned 100 items, but you set <code>maxResults</code>
+        /// For example, if a previous call to this action returned 100 items, but you set <c>maxResults</c>
         /// to 10. You'll receive a set of 10 results along with a token. You then use the returned
         /// token to retrieve the next set of 10. 
         /// </para>
@@ -143,8 +144,8 @@ namespace Amazon.MigrationHubStrategyRecommendations.Model
         /// <summary>
         /// Gets and sets the property Sort. 
         /// <para>
-        ///  Specifies whether to sort by ascending (<code>ASC</code>) or descending (<code>DESC</code>)
-        /// order. 
+        ///  Specifies whether to sort by ascending (<c>ASC</c>) or descending (<c>DESC</c>) order.
+        /// 
         /// </para>
         /// </summary>
         public SortOrder Sort

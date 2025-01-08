@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
-    /// Details about the configuration for the <code>Lambda</code> action engine, or executor.
+    /// Details about the configuration for the <c>Lambda</c> action engine, or executor.
     /// </summary>
     public partial class LambdaExecutorConfiguration
     {

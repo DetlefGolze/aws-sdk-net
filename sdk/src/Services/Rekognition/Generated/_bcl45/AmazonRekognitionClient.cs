@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.Rekognition
 {
     /// <summary>
-    /// Implementation for accessing Rekognition
+    /// <para>Implementation for accessing Rekognition</para>
     ///
     /// This is the API Reference for <a href="https://docs.aws.amazon.com/rekognition/latest/dg/images.html">Amazon
     /// Rekognition Image</a>, <a href="https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/what-is.html">Amazon
@@ -126,12 +127,22 @@ namespace Amazon.Rekognition
     /// </para>
     ///  </li> <li> 
     /// <para>
+    ///  <a href="https://docs.aws.amazon.com/rekognition/latest/APIReference/API_GetMediaAnalysisJob.html">GetMediaAnalysisJob</a>
+    /// 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
     ///  <a href="https://docs.aws.amazon.com/rekognition/latest/APIReference/API_IndexFaces.html">IndexFaces</a>
     /// 
     /// </para>
     ///  </li> <li> 
     /// <para>
     ///  <a href="https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ListCollections.html">ListCollections</a>
+    /// 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ListMediaAnalysisJob.html">ListMediaAnalysisJob</a>
     /// 
     /// </para>
     ///  </li> <li> 
@@ -167,6 +178,11 @@ namespace Amazon.Rekognition
     ///  </li> <li> 
     /// <para>
     ///  <a href="https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchUsersByImage.html">SearchUsersByImage</a>
+    /// 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/rekognition/latest/APIReference/API_StartMediaAnalysisJob.html">StartMediaAnalysisJob</a>
     /// 
     /// </para>
     ///  </li> </ul> 
@@ -625,32 +641,32 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Associates one or more faces with an existing UserID. Takes an array of <code>FaceIds</code>.
-        /// Each <code>FaceId</code> that are present in the <code>FaceIds</code> list is associated
-        /// with the provided UserID. The maximum number of total <code>FaceIds</code> per UserID
-        /// is 100. 
+        /// Associates one or more faces with an existing UserID. Takes an array of <c>FaceIds</c>.
+        /// Each <c>FaceId</c> that are present in the <c>FaceIds</c> list is associated with
+        /// the provided UserID. The maximum number of total <c>FaceIds</c> per UserID is 100.
+        /// 
         /// 
         ///  
         /// <para>
-        /// The <code>UserMatchThreshold</code> parameter specifies the minimum user match confidence
-        /// required for the face to be associated with a UserID that has at least one <code>FaceID</code>
-        /// already associated. This ensures that the <code>FaceIds</code> are associated with
-        /// the right UserID. The value ranges from 0-100 and default value is 75. 
+        /// The <c>UserMatchThreshold</c> parameter specifies the minimum user match confidence
+        /// required for the face to be associated with a UserID that has at least one <c>FaceID</c>
+        /// already associated. This ensures that the <c>FaceIds</c> are associated with the right
+        /// UserID. The value ranges from 0-100 and default value is 75. 
         /// </para>
         ///  
         /// <para>
-        /// If successful, an array of <code>AssociatedFace</code> objects containing the associated
-        /// <code>FaceIds</code> is returned. If a given face is already associated with the given
-        /// <code>UserID</code>, it will be ignored and will not be returned in the response.
-        /// If a given face is already associated to a different <code>UserID</code>, isn't found
-        /// in the collection, doesn’t meet the <code>UserMatchThreshold</code>, or there are
-        /// already 100 faces associated with the <code>UserID</code>, it will be returned as
-        /// part of an array of <code>UnsuccessfulFaceAssociations.</code> 
+        /// If successful, an array of <c>AssociatedFace</c> objects containing the associated
+        /// <c>FaceIds</c> is returned. If a given face is already associated with the given <c>UserID</c>,
+        /// it will be ignored and will not be returned in the response. If a given face is already
+        /// associated to a different <c>UserID</c>, isn't found in the collection, doesn’t meet
+        /// the <c>UserMatchThreshold</c>, or there are already 100 faces associated with the
+        /// <c>UserID</c>, it will be returned as part of an array of <c>UnsuccessfulFaceAssociations.</c>
+        /// 
         /// </para>
         ///  
         /// <para>
-        /// The <code>UserStatus</code> reflects the status of an operation which updates a UserID
-        /// representation with a list of given faces. The <code>UserStatus</code> can be: 
+        /// The <c>UserStatus</c> reflects the status of an operation which updates a UserID representation
+        /// with a list of given faces. The <c>UserStatus</c> can be: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -678,9 +694,8 @@ namespace Amazon.Rekognition
         /// of the User caused an inconsistent state. **
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -715,32 +730,32 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Associates one or more faces with an existing UserID. Takes an array of <code>FaceIds</code>.
-        /// Each <code>FaceId</code> that are present in the <code>FaceIds</code> list is associated
-        /// with the provided UserID. The maximum number of total <code>FaceIds</code> per UserID
-        /// is 100. 
+        /// Associates one or more faces with an existing UserID. Takes an array of <c>FaceIds</c>.
+        /// Each <c>FaceId</c> that are present in the <c>FaceIds</c> list is associated with
+        /// the provided UserID. The maximum number of total <c>FaceIds</c> per UserID is 100.
+        /// 
         /// 
         ///  
         /// <para>
-        /// The <code>UserMatchThreshold</code> parameter specifies the minimum user match confidence
-        /// required for the face to be associated with a UserID that has at least one <code>FaceID</code>
-        /// already associated. This ensures that the <code>FaceIds</code> are associated with
-        /// the right UserID. The value ranges from 0-100 and default value is 75. 
+        /// The <c>UserMatchThreshold</c> parameter specifies the minimum user match confidence
+        /// required for the face to be associated with a UserID that has at least one <c>FaceID</c>
+        /// already associated. This ensures that the <c>FaceIds</c> are associated with the right
+        /// UserID. The value ranges from 0-100 and default value is 75. 
         /// </para>
         ///  
         /// <para>
-        /// If successful, an array of <code>AssociatedFace</code> objects containing the associated
-        /// <code>FaceIds</code> is returned. If a given face is already associated with the given
-        /// <code>UserID</code>, it will be ignored and will not be returned in the response.
-        /// If a given face is already associated to a different <code>UserID</code>, isn't found
-        /// in the collection, doesn’t meet the <code>UserMatchThreshold</code>, or there are
-        /// already 100 faces associated with the <code>UserID</code>, it will be returned as
-        /// part of an array of <code>UnsuccessfulFaceAssociations.</code> 
+        /// If successful, an array of <c>AssociatedFace</c> objects containing the associated
+        /// <c>FaceIds</c> is returned. If a given face is already associated with the given <c>UserID</c>,
+        /// it will be ignored and will not be returned in the response. If a given face is already
+        /// associated to a different <c>UserID</c>, isn't found in the collection, doesn’t meet
+        /// the <c>UserMatchThreshold</c>, or there are already 100 faces associated with the
+        /// <c>UserID</c>, it will be returned as part of an array of <c>UnsuccessfulFaceAssociations.</c>
+        /// 
         /// </para>
         ///  
         /// <para>
-        /// The <code>UserStatus</code> reflects the status of an operation which updates a UserID
-        /// representation with a list of given faces. The <code>UserStatus</code> can be: 
+        /// The <c>UserStatus</c> reflects the status of an operation which updates a UserID representation
+        /// with a list of given faces. The <c>UserStatus</c> can be: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -771,9 +786,8 @@ namespace Amazon.Rekognition
         /// of the User caused an inconsistent state. **
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -826,9 +840,9 @@ namespace Amazon.Rekognition
         /// is an incorrect prediction that a face in the target image has a low similarity confidence
         /// score when compared to the face in the source image. To reduce the probability of
         /// false negatives, we recommend that you compare the target image against multiple source
-        /// images. If you plan to use <code>CompareFaces</code> to make a decision that impacts
-        /// an individual's rights, privacy, or access to services, we recommend that you pass
-        /// the result to a human for review and further validation before taking action.
+        /// images. If you plan to use <c>CompareFaces</c> to make a decision that impacts an
+        /// individual's rights, privacy, or access to services, we recommend that you pass the
+        /// result to a human for review and further validation before taking action.
         /// </para>
         ///  </note> 
         /// <para>
@@ -849,34 +863,34 @@ namespace Amazon.Rekognition
         ///  <note> 
         /// <para>
         /// By default, only faces with a similarity score of greater than or equal to 80% are
-        /// returned in the response. You can change this value by specifying the <code>SimilarityThreshold</code>
+        /// returned in the response. You can change this value by specifying the <c>SimilarityThreshold</c>
         /// parameter.
         /// </para>
         ///  </note> 
         /// <para>
-        ///  <code>CompareFaces</code> also returns an array of faces that don't match the source
-        /// image. For each face, it returns a bounding box, confidence value, landmarks, pose
-        /// details, and quality. The response also returns information about the face in the
-        /// source image, including the bounding box of the face and confidence value.
+        ///  <c>CompareFaces</c> also returns an array of faces that don't match the source image.
+        /// For each face, it returns a bounding box, confidence value, landmarks, pose details,
+        /// and quality. The response also returns information about the face in the source image,
+        /// including the bounding box of the face and confidence value.
         /// </para>
         ///  
         /// <para>
-        /// The <code>QualityFilter</code> input parameter allows you to filter out detected faces
-        /// that don’t meet a required quality bar. The quality bar is based on a variety of common
-        /// use cases. Use <code>QualityFilter</code> to set the quality bar by specifying <code>LOW</code>,
-        /// <code>MEDIUM</code>, or <code>HIGH</code>. If you do not want to filter detected faces,
-        /// specify <code>NONE</code>. The default value is <code>NONE</code>. 
+        /// The <c>QualityFilter</c> input parameter allows you to filter out detected faces that
+        /// don’t meet a required quality bar. The quality bar is based on a variety of common
+        /// use cases. Use <c>QualityFilter</c> to set the quality bar by specifying <c>LOW</c>,
+        /// <c>MEDIUM</c>, or <c>HIGH</c>. If you do not want to filter detected faces, specify
+        /// <c>NONE</c>. The default value is <c>NONE</c>. 
         /// </para>
         ///  
         /// <para>
-        /// If the image doesn't contain Exif metadata, <code>CompareFaces</code> returns orientation
+        /// If the image doesn't contain Exif metadata, <c>CompareFaces</c> returns orientation
         /// information for the source and target images. Use these values to display the images
         /// with the correct image orientation.
         /// </para>
         ///  
         /// <para>
-        /// If no faces are detected in the source or target images, <code>CompareFaces</code>
-        /// returns an <code>InvalidParameterException</code> error. 
+        /// If no faces are detected in the source or target images, <c>CompareFaces</c> returns
+        /// an <c>InvalidParameterException</c> error. 
         /// </para>
         ///  <note> 
         /// <para>
@@ -890,7 +904,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:CompareFaces</code>
+        /// This operation requires permissions to perform the <c>rekognition:CompareFaces</c>
         /// action.
         /// </para>
         /// </summary>
@@ -951,9 +965,9 @@ namespace Amazon.Rekognition
         /// is an incorrect prediction that a face in the target image has a low similarity confidence
         /// score when compared to the face in the source image. To reduce the probability of
         /// false negatives, we recommend that you compare the target image against multiple source
-        /// images. If you plan to use <code>CompareFaces</code> to make a decision that impacts
-        /// an individual's rights, privacy, or access to services, we recommend that you pass
-        /// the result to a human for review and further validation before taking action.
+        /// images. If you plan to use <c>CompareFaces</c> to make a decision that impacts an
+        /// individual's rights, privacy, or access to services, we recommend that you pass the
+        /// result to a human for review and further validation before taking action.
         /// </para>
         ///  </note> 
         /// <para>
@@ -974,34 +988,34 @@ namespace Amazon.Rekognition
         ///  <note> 
         /// <para>
         /// By default, only faces with a similarity score of greater than or equal to 80% are
-        /// returned in the response. You can change this value by specifying the <code>SimilarityThreshold</code>
+        /// returned in the response. You can change this value by specifying the <c>SimilarityThreshold</c>
         /// parameter.
         /// </para>
         ///  </note> 
         /// <para>
-        ///  <code>CompareFaces</code> also returns an array of faces that don't match the source
-        /// image. For each face, it returns a bounding box, confidence value, landmarks, pose
-        /// details, and quality. The response also returns information about the face in the
-        /// source image, including the bounding box of the face and confidence value.
+        ///  <c>CompareFaces</c> also returns an array of faces that don't match the source image.
+        /// For each face, it returns a bounding box, confidence value, landmarks, pose details,
+        /// and quality. The response also returns information about the face in the source image,
+        /// including the bounding box of the face and confidence value.
         /// </para>
         ///  
         /// <para>
-        /// The <code>QualityFilter</code> input parameter allows you to filter out detected faces
-        /// that don’t meet a required quality bar. The quality bar is based on a variety of common
-        /// use cases. Use <code>QualityFilter</code> to set the quality bar by specifying <code>LOW</code>,
-        /// <code>MEDIUM</code>, or <code>HIGH</code>. If you do not want to filter detected faces,
-        /// specify <code>NONE</code>. The default value is <code>NONE</code>. 
+        /// The <c>QualityFilter</c> input parameter allows you to filter out detected faces that
+        /// don’t meet a required quality bar. The quality bar is based on a variety of common
+        /// use cases. Use <c>QualityFilter</c> to set the quality bar by specifying <c>LOW</c>,
+        /// <c>MEDIUM</c>, or <c>HIGH</c>. If you do not want to filter detected faces, specify
+        /// <c>NONE</c>. The default value is <c>NONE</c>. 
         /// </para>
         ///  
         /// <para>
-        /// If the image doesn't contain Exif metadata, <code>CompareFaces</code> returns orientation
+        /// If the image doesn't contain Exif metadata, <c>CompareFaces</c> returns orientation
         /// information for the source and target images. Use these values to display the images
         /// with the correct image orientation.
         /// </para>
         ///  
         /// <para>
-        /// If no faces are detected in the source or target images, <code>CompareFaces</code>
-        /// returns an <code>InvalidParameterException</code> error. 
+        /// If no faces are detected in the source or target images, <c>CompareFaces</c> returns
+        /// an <c>InvalidParameterException</c> error. 
         /// </para>
         ///  <note> 
         /// <para>
@@ -1015,7 +1029,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:CompareFaces</code>
+        /// This operation requires permissions to perform the <c>rekognition:CompareFaces</c>
         /// action.
         /// </para>
         /// </summary>
@@ -1069,11 +1083,17 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Copies a version of an Amazon Rekognition Custom Labels model from a source project
         /// to a destination project. The source and destination projects can be in different
         /// AWS accounts but must be in the same AWS Region. You can't copy a model to another
         /// AWS service. 
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// To copy a model version to a different AWS account, you need to create a resource-based
@@ -1093,18 +1113,22 @@ namespace Amazon.Rekognition
         /// </para>
         ///  <note> 
         /// <para>
+        /// Copying project versions is supported only for Custom Labels models. 
+        /// </para>
+        ///  
+        /// <para>
         /// To copy a model, the destination project, source project, and source model version
         /// must already exist.
         /// </para>
         ///  </note> 
         /// <para>
         /// Copying a model version takes a while to complete. To get the current status, call
-        /// <a>DescribeProjectVersions</a> and check the value of <code>Status</code> in the <a>ProjectVersionDescription</a>
-        /// object. The copy operation has finished when the value of <code>Status</code> is <code>COPYING_COMPLETED</code>.
+        /// <a>DescribeProjectVersions</a> and check the value of <c>Status</c> in the <a>ProjectVersionDescription</a>
+        /// object. The copy operation has finished when the value of <c>Status</c> is <c>COPYING_COMPLETED</c>.
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:CopyProjectVersion</code>
+        /// This operation requires permissions to perform the <c>rekognition:CopyProjectVersion</c>
         /// action.
         /// </para>
         /// </summary>
@@ -1123,10 +1147,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -1157,11 +1180,17 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Copies a version of an Amazon Rekognition Custom Labels model from a source project
         /// to a destination project. The source and destination projects can be in different
         /// AWS accounts but must be in the same AWS Region. You can't copy a model to another
         /// AWS service. 
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// To copy a model version to a different AWS account, you need to create a resource-based
@@ -1181,18 +1210,22 @@ namespace Amazon.Rekognition
         /// </para>
         ///  <note> 
         /// <para>
+        /// Copying project versions is supported only for Custom Labels models. 
+        /// </para>
+        ///  
+        /// <para>
         /// To copy a model, the destination project, source project, and source model version
         /// must already exist.
         /// </para>
         ///  </note> 
         /// <para>
         /// Copying a model version takes a while to complete. To get the current status, call
-        /// <a>DescribeProjectVersions</a> and check the value of <code>Status</code> in the <a>ProjectVersionDescription</a>
-        /// object. The copy operation has finished when the value of <code>Status</code> is <code>COPYING_COMPLETED</code>.
+        /// <a>DescribeProjectVersions</a> and check the value of <c>Status</c> in the <a>ProjectVersionDescription</a>
+        /// object. The copy operation has finished when the value of <c>Status</c> is <c>COPYING_COMPLETED</c>.
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:CopyProjectVersion</code>
+        /// This operation requires permissions to perform the <c>rekognition:CopyProjectVersion</c>
         /// action.
         /// </para>
         /// </summary>
@@ -1214,10 +1247,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -1258,9 +1290,9 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// For example, you might create collections, one for each of your application users.
-        /// A user can then index faces using the <code>IndexFaces</code> operation and persist
-        /// results in a specific collection. Then, a user can search the collection for faces
-        /// in the user-specific container. 
+        /// A user can then index faces using the <c>IndexFaces</c> operation and persist results
+        /// in a specific collection. Then, a user can search the collection for faces in the
+        /// user-specific container. 
         /// </para>
         ///  
         /// <para>
@@ -1273,9 +1305,9 @@ namespace Amazon.Rekognition
         /// </para>
         ///  </note> 
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:CreateCollection</code>
+        /// This operation requires permissions to perform the <c>rekognition:CreateCollection</c>
         /// action. If you want to tag your collection, you also require permission to perform
-        /// the <code>rekognition:TagResource</code> operation.
+        /// the <c>rekognition:TagResource</c> operation.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateCollection service method.</param>
@@ -1323,9 +1355,9 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// For example, you might create collections, one for each of your application users.
-        /// A user can then index faces using the <code>IndexFaces</code> operation and persist
-        /// results in a specific collection. Then, a user can search the collection for faces
-        /// in the user-specific container. 
+        /// A user can then index faces using the <c>IndexFaces</c> operation and persist results
+        /// in a specific collection. Then, a user can search the collection for faces in the
+        /// user-specific container. 
         /// </para>
         ///  
         /// <para>
@@ -1338,9 +1370,9 @@ namespace Amazon.Rekognition
         /// </para>
         ///  </note> 
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:CreateCollection</code>
+        /// This operation requires permissions to perform the <c>rekognition:CreateCollection</c>
         /// action. If you want to tag your collection, you also require permission to perform
-        /// the <code>rekognition:TagResource</code> operation.
+        /// the <c>rekognition:TagResource</c> operation.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateCollection service method.</param>
@@ -1389,31 +1421,37 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Creates a new Amazon Rekognition Custom Labels dataset. You can create a dataset by
         /// using an Amazon Sagemaker format manifest file or by copying an existing Amazon Rekognition
         /// Custom Labels dataset.
-        /// 
-        ///  
-        /// <para>
-        /// To create a training dataset for a project, specify <code>TRAIN</code> for the value
-        /// of <code>DatasetType</code>. To create the test dataset for a project, specify <code>TEST</code>
-        /// for the value of <code>DatasetType</code>. 
         /// </para>
         ///  
         /// <para>
-        /// The response from <code>CreateDataset</code> is the Amazon Resource Name (ARN) for
-        /// the dataset. Creating a dataset takes a while to complete. Use <a>DescribeDataset</a>
-        /// to check the current status. The dataset created successfully if the value of <code>Status</code>
-        /// is <code>CREATE_COMPLETE</code>. 
+        /// To create a training dataset for a project, specify <c>TRAIN</c> for the value of
+        /// <c>DatasetType</c>. To create the test dataset for a project, specify <c>TEST</c>
+        /// for the value of <c>DatasetType</c>. 
+        /// </para>
+        ///  
+        /// <para>
+        /// The response from <c>CreateDataset</c> is the Amazon Resource Name (ARN) for the dataset.
+        /// Creating a dataset takes a while to complete. Use <a>DescribeDataset</a> to check
+        /// the current status. The dataset created successfully if the value of <c>Status</c>
+        /// is <c>CREATE_COMPLETE</c>. 
         /// </para>
         ///  
         /// <para>
         /// To check if any non-terminal errors occurred, call <a>ListDatasetEntries</a> and check
-        /// for the presence of <code>errors</code> lists in the JSON Lines.
+        /// for the presence of <c>errors</c> lists in the JSON Lines.
         /// </para>
         ///  
         /// <para>
-        /// Dataset creation fails if a terminal error occurs (<code>Status</code> = <code>CREATE_FAILED</code>).
+        /// Dataset creation fails if a terminal error occurs (<c>Status</c> = <c>CREATE_FAILED</c>).
         /// Currently, you can't access the terminal error information. 
         /// </para>
         ///  
@@ -1423,9 +1461,9 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:CreateDataset</code>
+        /// This operation requires permissions to perform the <c>rekognition:CreateDataset</c>
         /// action. If you want to copy an existing dataset, you also require permission to perform
-        /// the <code>rekognition:ListDatasetEntries</code> action.
+        /// the <c>rekognition:ListDatasetEntries</c> action.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateDataset service method.</param>
@@ -1446,10 +1484,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -1476,31 +1513,37 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Creates a new Amazon Rekognition Custom Labels dataset. You can create a dataset by
         /// using an Amazon Sagemaker format manifest file or by copying an existing Amazon Rekognition
         /// Custom Labels dataset.
-        /// 
-        ///  
-        /// <para>
-        /// To create a training dataset for a project, specify <code>TRAIN</code> for the value
-        /// of <code>DatasetType</code>. To create the test dataset for a project, specify <code>TEST</code>
-        /// for the value of <code>DatasetType</code>. 
         /// </para>
         ///  
         /// <para>
-        /// The response from <code>CreateDataset</code> is the Amazon Resource Name (ARN) for
-        /// the dataset. Creating a dataset takes a while to complete. Use <a>DescribeDataset</a>
-        /// to check the current status. The dataset created successfully if the value of <code>Status</code>
-        /// is <code>CREATE_COMPLETE</code>. 
+        /// To create a training dataset for a project, specify <c>TRAIN</c> for the value of
+        /// <c>DatasetType</c>. To create the test dataset for a project, specify <c>TEST</c>
+        /// for the value of <c>DatasetType</c>. 
+        /// </para>
+        ///  
+        /// <para>
+        /// The response from <c>CreateDataset</c> is the Amazon Resource Name (ARN) for the dataset.
+        /// Creating a dataset takes a while to complete. Use <a>DescribeDataset</a> to check
+        /// the current status. The dataset created successfully if the value of <c>Status</c>
+        /// is <c>CREATE_COMPLETE</c>. 
         /// </para>
         ///  
         /// <para>
         /// To check if any non-terminal errors occurred, call <a>ListDatasetEntries</a> and check
-        /// for the presence of <code>errors</code> lists in the JSON Lines.
+        /// for the presence of <c>errors</c> lists in the JSON Lines.
         /// </para>
         ///  
         /// <para>
-        /// Dataset creation fails if a terminal error occurs (<code>Status</code> = <code>CREATE_FAILED</code>).
+        /// Dataset creation fails if a terminal error occurs (<c>Status</c> = <c>CREATE_FAILED</c>).
         /// Currently, you can't access the terminal error information. 
         /// </para>
         ///  
@@ -1510,9 +1553,9 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:CreateDataset</code>
+        /// This operation requires permissions to perform the <c>rekognition:CreateDataset</c>
         /// action. If you want to copy an existing dataset, you also require permission to perform
-        /// the <code>rekognition:ListDatasetEntries</code> action.
+        /// the <c>rekognition:ListDatasetEntries</c> action.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateDataset service method.</param>
@@ -1536,10 +1579,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -1570,22 +1612,22 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// This API operation initiates a Face Liveness session. It returns a <code>SessionId</code>,
+        /// This API operation initiates a Face Liveness session. It returns a <c>SessionId</c>,
         /// which you can use to start streaming Face Liveness video and get the results for a
         /// Face Liveness session. 
         /// 
         ///  
         /// <para>
-        /// You can use the <code>OutputConfig</code> option in the Settings parameter to provide
-        /// an Amazon S3 bucket location. The Amazon S3 bucket stores reference images and audit
+        /// You can use the <c>OutputConfig</c> option in the Settings parameter to provide an
+        /// Amazon S3 bucket location. The Amazon S3 bucket stores reference images and audit
         /// images. If no Amazon S3 bucket is defined, raw bytes are sent instead. 
         /// </para>
         ///  
         /// <para>
-        /// You can use <code>AuditImagesLimit</code> to limit the number of audit images returned
-        /// when <code>GetFaceLivenessSessionResults</code> is called. This number is between
-        /// 0 and 4. By default, it is set to 0. The limit is best effort and based on the duration
-        /// of the selfie-video. 
+        /// You can use <c>AuditImagesLimit</c> to limit the number of audit images returned when
+        /// <c>GetFaceLivenessSessionResults</c> is called. This number is between 0 and 4. By
+        /// default, it is set to 0. The limit is best effort and based on the duration of the
+        /// selfie-video. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateFaceLivenessSession service method.</param>
@@ -1620,22 +1662,22 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// This API operation initiates a Face Liveness session. It returns a <code>SessionId</code>,
+        /// This API operation initiates a Face Liveness session. It returns a <c>SessionId</c>,
         /// which you can use to start streaming Face Liveness video and get the results for a
         /// Face Liveness session. 
         /// 
         ///  
         /// <para>
-        /// You can use the <code>OutputConfig</code> option in the Settings parameter to provide
-        /// an Amazon S3 bucket location. The Amazon S3 bucket stores reference images and audit
+        /// You can use the <c>OutputConfig</c> option in the Settings parameter to provide an
+        /// Amazon S3 bucket location. The Amazon S3 bucket stores reference images and audit
         /// images. If no Amazon S3 bucket is defined, raw bytes are sent instead. 
         /// </para>
         ///  
         /// <para>
-        /// You can use <code>AuditImagesLimit</code> to limit the number of audit images returned
-        /// when <code>GetFaceLivenessSessionResults</code> is called. This number is between
-        /// 0 and 4. By default, it is set to 0. The limit is best effort and based on the duration
-        /// of the selfie-video. 
+        /// You can use <c>AuditImagesLimit</c> to limit the number of audit images returned when
+        /// <c>GetFaceLivenessSessionResults</c> is called. This number is between 0 and 4. By
+        /// default, it is set to 0. The limit is best effort and based on the duration of the
+        /// selfie-video. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateFaceLivenessSession service method.</param>
@@ -1677,15 +1719,13 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Creates a new Amazon Rekognition Custom Labels project. A project is a group of resources
-        /// (datasets, model versions) that you use to create and manage Amazon Rekognition Custom
-        /// Labels models. 
-        /// 
-        ///  
-        /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:CreateProject</code>
+        /// Creates a new Amazon Rekognition project. A project is a group of resources (datasets,
+        /// model versions) that you use to create and manage a Amazon Rekognition Custom Labels
+        /// Model or custom adapter. You can specify a feature to create the project with, if
+        /// no feature is specified then Custom Labels is used by default. For adapters, you can
+        /// also choose whether or not to have the project auto update by using the AutoUpdate
+        /// argument. This operation requires permissions to perform the <c>rekognition:CreateProject</c>
         /// action.
-        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateProject service method.</param>
         /// 
@@ -1702,10 +1742,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -1729,15 +1768,13 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Creates a new Amazon Rekognition Custom Labels project. A project is a group of resources
-        /// (datasets, model versions) that you use to create and manage Amazon Rekognition Custom
-        /// Labels models. 
-        /// 
-        ///  
-        /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:CreateProject</code>
+        /// Creates a new Amazon Rekognition project. A project is a group of resources (datasets,
+        /// model versions) that you use to create and manage a Amazon Rekognition Custom Labels
+        /// Model or custom adapter. You can specify a feature to create the project with, if
+        /// no feature is specified then Custom Labels is used by default. For adapters, you can
+        /// also choose whether or not to have the project auto update by using the AutoUpdate
+        /// argument. This operation requires permissions to perform the <c>rekognition:CreateProject</c>
         /// action.
-        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateProject service method.</param>
         /// <param name="cancellationToken">
@@ -1757,10 +1794,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -1788,21 +1824,35 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Creates a new version of a model and begins training. Models are managed as part of
-        /// an Amazon Rekognition Custom Labels project. The response from <code>CreateProjectVersion</code>
-        /// is an Amazon Resource Name (ARN) for the version of the model. 
+        /// Creates a new version of Amazon Rekognition project (like a Custom Labels model or
+        /// a custom adapter) and begins training. Models and adapters are managed as part of
+        /// a Rekognition project. The response from <c>CreateProjectVersion</c> is an Amazon
+        /// Resource Name (ARN) for the project version. 
         /// 
         ///  
         /// <para>
-        /// Training uses the training and test datasets associated with the project. For more
-        /// information, see Creating training and test dataset in the <i>Amazon Rekognition Custom
-        /// Labels Developer Guide</i>. 
+        /// The FeatureConfig operation argument allows you to configure specific model or adapter
+        /// settings. You can provide a description to the project version by using the VersionDescription
+        /// argment. Training can take a while to complete. You can get the current status by
+        /// calling <a>DescribeProjectVersions</a>. Training completed successfully if the value
+        /// of the <c>Status</c> field is <c>TRAINING_COMPLETED</c>. Once training has successfully
+        /// completed, call <a>DescribeProjectVersions</a> to get the training results and evaluate
+        /// the model.
+        /// </para>
+        ///  
+        /// <para>
+        /// This operation requires permissions to perform the <c>rekognition:CreateProjectVersion</c>
+        /// action.
         /// </para>
         ///  <note> 
         /// <para>
+        ///  <i>The following applies only to projects with Amazon Rekognition Custom Labels as
+        /// the chosen feature:</i> 
+        /// </para>
+        ///  
+        /// <para>
         /// You can train a model in a project that doesn't have associated datasets by specifying
-        /// manifest files in the <code>TrainingData</code> and <code>TestingData</code> fields.
-        /// 
+        /// manifest files in the <c>TrainingData</c> and <c>TestingData</c> fields. 
         /// </para>
         ///  
         /// <para>
@@ -1816,32 +1866,7 @@ namespace Amazon.Rekognition
         /// Instead of training with a project without associated datasets, we recommend that
         /// you use the manifest files to create training and test datasets for the project.
         /// </para>
-        ///  </note> 
-        /// <para>
-        /// Training takes a while to complete. You can get the current status by calling <a>DescribeProjectVersions</a>.
-        /// Training completed successfully if the value of the <code>Status</code> field is <code>TRAINING_COMPLETED</code>.
-        /// </para>
-        ///  
-        /// <para>
-        /// If training fails, see Debugging a failed model training in the <i>Amazon Rekognition
-        /// Custom Labels</i> developer guide. 
-        /// </para>
-        ///  
-        /// <para>
-        /// Once training has successfully completed, call <a>DescribeProjectVersions</a> to get
-        /// the training results and evaluate the model. For more information, see Improving a
-        /// trained Amazon Rekognition Custom Labels model in the <i>Amazon Rekognition Custom
-        /// Labels</i> developers guide. 
-        /// </para>
-        ///  
-        /// <para>
-        /// After evaluating the model, you start the model by calling <a>StartProjectVersion</a>.
-        /// </para>
-        ///  
-        /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:CreateProjectVersion</code>
-        /// action.
-        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateProjectVersion service method.</param>
         /// 
@@ -1858,10 +1883,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -1892,21 +1916,35 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Creates a new version of a model and begins training. Models are managed as part of
-        /// an Amazon Rekognition Custom Labels project. The response from <code>CreateProjectVersion</code>
-        /// is an Amazon Resource Name (ARN) for the version of the model. 
+        /// Creates a new version of Amazon Rekognition project (like a Custom Labels model or
+        /// a custom adapter) and begins training. Models and adapters are managed as part of
+        /// a Rekognition project. The response from <c>CreateProjectVersion</c> is an Amazon
+        /// Resource Name (ARN) for the project version. 
         /// 
         ///  
         /// <para>
-        /// Training uses the training and test datasets associated with the project. For more
-        /// information, see Creating training and test dataset in the <i>Amazon Rekognition Custom
-        /// Labels Developer Guide</i>. 
+        /// The FeatureConfig operation argument allows you to configure specific model or adapter
+        /// settings. You can provide a description to the project version by using the VersionDescription
+        /// argment. Training can take a while to complete. You can get the current status by
+        /// calling <a>DescribeProjectVersions</a>. Training completed successfully if the value
+        /// of the <c>Status</c> field is <c>TRAINING_COMPLETED</c>. Once training has successfully
+        /// completed, call <a>DescribeProjectVersions</a> to get the training results and evaluate
+        /// the model.
+        /// </para>
+        ///  
+        /// <para>
+        /// This operation requires permissions to perform the <c>rekognition:CreateProjectVersion</c>
+        /// action.
         /// </para>
         ///  <note> 
         /// <para>
+        ///  <i>The following applies only to projects with Amazon Rekognition Custom Labels as
+        /// the chosen feature:</i> 
+        /// </para>
+        ///  
+        /// <para>
         /// You can train a model in a project that doesn't have associated datasets by specifying
-        /// manifest files in the <code>TrainingData</code> and <code>TestingData</code> fields.
-        /// 
+        /// manifest files in the <c>TrainingData</c> and <c>TestingData</c> fields. 
         /// </para>
         ///  
         /// <para>
@@ -1920,32 +1958,7 @@ namespace Amazon.Rekognition
         /// Instead of training with a project without associated datasets, we recommend that
         /// you use the manifest files to create training and test datasets for the project.
         /// </para>
-        ///  </note> 
-        /// <para>
-        /// Training takes a while to complete. You can get the current status by calling <a>DescribeProjectVersions</a>.
-        /// Training completed successfully if the value of the <code>Status</code> field is <code>TRAINING_COMPLETED</code>.
-        /// </para>
-        ///  
-        /// <para>
-        /// If training fails, see Debugging a failed model training in the <i>Amazon Rekognition
-        /// Custom Labels</i> developer guide. 
-        /// </para>
-        ///  
-        /// <para>
-        /// Once training has successfully completed, call <a>DescribeProjectVersions</a> to get
-        /// the training results and evaluate the model. For more information, see Improving a
-        /// trained Amazon Rekognition Custom Labels model in the <i>Amazon Rekognition Custom
-        /// Labels</i> developers guide. 
-        /// </para>
-        ///  
-        /// <para>
-        /// After evaluating the model, you start the model by calling <a>StartProjectVersion</a>.
-        /// </para>
-        ///  
-        /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:CreateProjectVersion</code>
-        /// action.
-        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateProjectVersion service method.</param>
         /// <param name="cancellationToken">
@@ -1965,10 +1978,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -2015,36 +2027,36 @@ namespace Amazon.Rekognition
         ///  <ul> <li> 
         /// <para>
         /// If you are creating a stream processor for detecting faces, you provide as input a
-        /// Kinesis video stream (<code>Input</code>) and a Kinesis data stream (<code>Output</code>)
-        /// stream for receiving the output. You must use the <code>FaceSearch</code> option in
-        /// <code>Settings</code>, specifying the collection that contains the faces you want
-        /// to recognize. After you have finished analyzing a streaming video, use <a>StopStreamProcessor</a>
-        /// to stop processing.
+        /// Kinesis video stream (<c>Input</c>) and a Kinesis data stream (<c>Output</c>) stream
+        /// for receiving the output. You must use the <c>FaceSearch</c> option in <c>Settings</c>,
+        /// specifying the collection that contains the faces you want to recognize. After you
+        /// have finished analyzing a streaming video, use <a>StopStreamProcessor</a> to stop
+        /// processing.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// If you are creating a stream processor to detect labels, you provide as input a Kinesis
-        /// video stream (<code>Input</code>), Amazon S3 bucket information (<code>Output</code>),
-        /// and an Amazon SNS topic ARN (<code>NotificationChannel</code>). You can also provide
-        /// a KMS key ID to encrypt the data sent to your Amazon S3 bucket. You specify what you
-        /// want to detect by using the <code>ConnectedHome</code> option in settings, and selecting
-        /// one of the following: <code>PERSON</code>, <code>PET</code>, <code>PACKAGE</code>,
-        /// <code>ALL</code> You can also specify where in the frame you want Amazon Rekognition
-        /// to monitor with <code>RegionsOfInterest</code>. When you run the <a>StartStreamProcessor</a>
-        /// operation on a label detection stream processor, you input start and stop information
-        /// to determine the length of the processing time.
+        /// video stream (<c>Input</c>), Amazon S3 bucket information (<c>Output</c>), and an
+        /// Amazon SNS topic ARN (<c>NotificationChannel</c>). You can also provide a KMS key
+        /// ID to encrypt the data sent to your Amazon S3 bucket. You specify what you want to
+        /// detect by using the <c>ConnectedHome</c> option in settings, and selecting one of
+        /// the following: <c>PERSON</c>, <c>PET</c>, <c>PACKAGE</c>, <c>ALL</c> You can also
+        /// specify where in the frame you want Amazon Rekognition to monitor with <c>RegionsOfInterest</c>.
+        /// When you run the <a>StartStreamProcessor</a> operation on a label detection stream
+        /// processor, you input start and stop information to determine the length of the processing
+        /// time.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        ///  Use <code>Name</code> to assign an identifier for the stream processor. You use <code>Name</code>
+        ///  Use <c>Name</c> to assign an identifier for the stream processor. You use <c>Name</c>
         /// to manage the stream processor. For example, you can start processing the source video
-        /// by calling <a>StartStreamProcessor</a> with the <code>Name</code> field. 
+        /// by calling <a>StartStreamProcessor</a> with the <c>Name</c> field. 
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:CreateStreamProcessor</code>
+        /// This operation requires permissions to perform the <c>rekognition:CreateStreamProcessor</c>
         /// action. If you want to tag your stream processor, you also require permission to perform
-        /// the <code>rekognition:TagResource</code> operation.
+        /// the <c>rekognition:TagResource</c> operation.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateStreamProcessor service method.</param>
@@ -2062,10 +2074,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -2105,36 +2116,36 @@ namespace Amazon.Rekognition
         ///  <ul> <li> 
         /// <para>
         /// If you are creating a stream processor for detecting faces, you provide as input a
-        /// Kinesis video stream (<code>Input</code>) and a Kinesis data stream (<code>Output</code>)
-        /// stream for receiving the output. You must use the <code>FaceSearch</code> option in
-        /// <code>Settings</code>, specifying the collection that contains the faces you want
-        /// to recognize. After you have finished analyzing a streaming video, use <a>StopStreamProcessor</a>
-        /// to stop processing.
+        /// Kinesis video stream (<c>Input</c>) and a Kinesis data stream (<c>Output</c>) stream
+        /// for receiving the output. You must use the <c>FaceSearch</c> option in <c>Settings</c>,
+        /// specifying the collection that contains the faces you want to recognize. After you
+        /// have finished analyzing a streaming video, use <a>StopStreamProcessor</a> to stop
+        /// processing.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// If you are creating a stream processor to detect labels, you provide as input a Kinesis
-        /// video stream (<code>Input</code>), Amazon S3 bucket information (<code>Output</code>),
-        /// and an Amazon SNS topic ARN (<code>NotificationChannel</code>). You can also provide
-        /// a KMS key ID to encrypt the data sent to your Amazon S3 bucket. You specify what you
-        /// want to detect by using the <code>ConnectedHome</code> option in settings, and selecting
-        /// one of the following: <code>PERSON</code>, <code>PET</code>, <code>PACKAGE</code>,
-        /// <code>ALL</code> You can also specify where in the frame you want Amazon Rekognition
-        /// to monitor with <code>RegionsOfInterest</code>. When you run the <a>StartStreamProcessor</a>
-        /// operation on a label detection stream processor, you input start and stop information
-        /// to determine the length of the processing time.
+        /// video stream (<c>Input</c>), Amazon S3 bucket information (<c>Output</c>), and an
+        /// Amazon SNS topic ARN (<c>NotificationChannel</c>). You can also provide a KMS key
+        /// ID to encrypt the data sent to your Amazon S3 bucket. You specify what you want to
+        /// detect by using the <c>ConnectedHome</c> option in settings, and selecting one of
+        /// the following: <c>PERSON</c>, <c>PET</c>, <c>PACKAGE</c>, <c>ALL</c> You can also
+        /// specify where in the frame you want Amazon Rekognition to monitor with <c>RegionsOfInterest</c>.
+        /// When you run the <a>StartStreamProcessor</a> operation on a label detection stream
+        /// processor, you input start and stop information to determine the length of the processing
+        /// time.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        ///  Use <code>Name</code> to assign an identifier for the stream processor. You use <code>Name</code>
+        ///  Use <c>Name</c> to assign an identifier for the stream processor. You use <c>Name</c>
         /// to manage the stream processor. For example, you can start processing the source video
-        /// by calling <a>StartStreamProcessor</a> with the <code>Name</code> field. 
+        /// by calling <a>StartStreamProcessor</a> with the <c>Name</c> field. 
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:CreateStreamProcessor</code>
+        /// This operation requires permissions to perform the <c>rekognition:CreateStreamProcessor</c>
         /// action. If you want to tag your stream processor, you also require permission to perform
-        /// the <code>rekognition:TagResource</code> operation.
+        /// the <c>rekognition:TagResource</c> operation.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateStreamProcessor service method.</param>
@@ -2155,10 +2166,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -2190,17 +2200,17 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Creates a new User within a collection specified by <code>CollectionId</code>. Takes
-        /// <code>UserId</code> as a parameter, which is a user provided ID which should be unique
-        /// within the collection. The provided <code>UserId</code> will alias the system generated
-        /// UUID to make the <code>UserId</code> more user friendly. 
+        /// Creates a new User within a collection specified by <c>CollectionId</c>. Takes <c>UserId</c>
+        /// as a parameter, which is a user provided ID which should be unique within the collection.
+        /// The provided <c>UserId</c> will alias the system generated UUID to make the <c>UserId</c>
+        /// more user friendly. 
         /// 
         ///  
         /// <para>
-        /// Uses a <code>ClientToken</code>, an idempotency token that ensures a call to <code>CreateUser</code>
+        /// Uses a <c>ClientToken</c>, an idempotency token that ensures a call to <c>CreateUser</c>
         /// completes only once. If the value is not supplied, the AWS SDK generates an idempotency
         /// token for the requests. This prevents retries after a network error results from making
-        /// multiple <code>CreateUser</code> calls. 
+        /// multiple <c>CreateUser</c> calls. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateUser service method.</param>
@@ -2214,9 +2224,8 @@ namespace Amazon.Rekognition
         /// of the User caused an inconsistent state. **
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -2251,17 +2260,17 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Creates a new User within a collection specified by <code>CollectionId</code>. Takes
-        /// <code>UserId</code> as a parameter, which is a user provided ID which should be unique
-        /// within the collection. The provided <code>UserId</code> will alias the system generated
-        /// UUID to make the <code>UserId</code> more user friendly. 
+        /// Creates a new User within a collection specified by <c>CollectionId</c>. Takes <c>UserId</c>
+        /// as a parameter, which is a user provided ID which should be unique within the collection.
+        /// The provided <c>UserId</c> will alias the system generated UUID to make the <c>UserId</c>
+        /// more user friendly. 
         /// 
         ///  
         /// <para>
-        /// Uses a <code>ClientToken</code>, an idempotency token that ensures a call to <code>CreateUser</code>
+        /// Uses a <c>ClientToken</c>, an idempotency token that ensures a call to <c>CreateUser</c>
         /// completes only once. If the value is not supplied, the AWS SDK generates an idempotency
         /// token for the requests. This prevents retries after a network error results from making
-        /// multiple <code>CreateUser</code> calls. 
+        /// multiple <c>CreateUser</c> calls. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateUser service method.</param>
@@ -2278,9 +2287,8 @@ namespace Amazon.Rekognition
         /// of the User caused an inconsistent state. **
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -2325,7 +2333,7 @@ namespace Amazon.Rekognition
         /// 
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DeleteCollection</code>
+        /// This operation requires permissions to perform the <c>rekognition:DeleteCollection</c>
         /// action.
         /// </para>
         /// </summary>
@@ -2370,7 +2378,7 @@ namespace Amazon.Rekognition
         /// 
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DeleteCollection</code>
+        /// This operation requires permissions to perform the <c>rekognition:DeleteCollection</c>
         /// action.
         /// </para>
         /// </summary>
@@ -2416,20 +2424,26 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Deletes an existing Amazon Rekognition Custom Labels dataset. Deleting a dataset might
         /// take while. Use <a>DescribeDataset</a> to check the current status. The dataset is
-        /// still deleting if the value of <code>Status</code> is <code>DELETE_IN_PROGRESS</code>.
-        /// If you try to access the dataset after it is deleted, you get a <code>ResourceNotFoundException</code>
+        /// still deleting if the value of <c>Status</c> is <c>DELETE_IN_PROGRESS</c>. If you
+        /// try to access the dataset after it is deleted, you get a <c>ResourceNotFoundException</c>
         /// exception. 
-        /// 
-        ///  
-        /// <para>
-        /// You can't delete a dataset while it is creating (<code>Status</code> = <code>CREATE_IN_PROGRESS</code>)
-        /// or if the dataset is updating (<code>Status</code> = <code>UPDATE_IN_PROGRESS</code>).
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DeleteDataset</code>
+        /// You can't delete a dataset while it is creating (<c>Status</c> = <c>CREATE_IN_PROGRESS</c>)
+        /// or if the dataset is updating (<c>Status</c> = <c>UPDATE_IN_PROGRESS</c>).
+        /// </para>
+        ///  
+        /// <para>
+        /// This operation requires permissions to perform the <c>rekognition:DeleteDataset</c>
         /// action.
         /// </para>
         /// </summary>
@@ -2448,10 +2462,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -2478,20 +2491,26 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Deletes an existing Amazon Rekognition Custom Labels dataset. Deleting a dataset might
         /// take while. Use <a>DescribeDataset</a> to check the current status. The dataset is
-        /// still deleting if the value of <code>Status</code> is <code>DELETE_IN_PROGRESS</code>.
-        /// If you try to access the dataset after it is deleted, you get a <code>ResourceNotFoundException</code>
+        /// still deleting if the value of <c>Status</c> is <c>DELETE_IN_PROGRESS</c>. If you
+        /// try to access the dataset after it is deleted, you get a <c>ResourceNotFoundException</c>
         /// exception. 
-        /// 
-        ///  
-        /// <para>
-        /// You can't delete a dataset while it is creating (<code>Status</code> = <code>CREATE_IN_PROGRESS</code>)
-        /// or if the dataset is updating (<code>Status</code> = <code>UPDATE_IN_PROGRESS</code>).
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DeleteDataset</code>
+        /// You can't delete a dataset while it is creating (<c>Status</c> = <c>CREATE_IN_PROGRESS</c>)
+        /// or if the dataset is updating (<c>Status</c> = <c>UPDATE_IN_PROGRESS</c>).
+        /// </para>
+        ///  
+        /// <para>
+        /// This operation requires permissions to perform the <c>rekognition:DeleteDataset</c>
         /// action.
         /// </para>
         /// </summary>
@@ -2513,10 +2532,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -2552,7 +2570,7 @@ namespace Amazon.Rekognition
         /// 
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DeleteFaces</code>
+        /// This operation requires permissions to perform the <c>rekognition:DeleteFaces</c>
         /// action.
         /// </para>
         /// </summary>
@@ -2596,7 +2614,7 @@ namespace Amazon.Rekognition
         /// 
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DeleteFaces</code>
+        /// This operation requires permissions to perform the <c>rekognition:DeleteFaces</c>
         /// action.
         /// </para>
         /// </summary>
@@ -2642,19 +2660,20 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Deletes an Amazon Rekognition Custom Labels project. To delete a project you must
-        /// first delete all models associated with the project. To delete a model, see <a>DeleteProjectVersion</a>.
+        /// Deletes a Amazon Rekognition project. To delete a project you must first delete all
+        /// models or adapters associated with the project. To delete a model or adapter, see
+        /// <a>DeleteProjectVersion</a>.
         /// 
         ///  
         /// <para>
-        ///  <code>DeleteProject</code> is an asynchronous operation. To check if the project
-        /// is deleted, call <a>DescribeProjects</a>. The project is deleted when the project
-        /// no longer appears in the response. Be aware that deleting a given project will also
-        /// delete any <code>ProjectPolicies</code> associated with that project.
+        ///  <c>DeleteProject</c> is an asynchronous operation. To check if the project is deleted,
+        /// call <a>DescribeProjects</a>. The project is deleted when the project no longer appears
+        /// in the response. Be aware that deleting a given project will also delete any <c>ProjectPolicies</c>
+        /// associated with that project.
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DeleteProject</code>
+        /// This operation requires permissions to perform the <c>rekognition:DeleteProject</c>
         /// action. 
         /// </para>
         /// </summary>
@@ -2696,19 +2715,20 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Deletes an Amazon Rekognition Custom Labels project. To delete a project you must
-        /// first delete all models associated with the project. To delete a model, see <a>DeleteProjectVersion</a>.
+        /// Deletes a Amazon Rekognition project. To delete a project you must first delete all
+        /// models or adapters associated with the project. To delete a model or adapter, see
+        /// <a>DeleteProjectVersion</a>.
         /// 
         ///  
         /// <para>
-        ///  <code>DeleteProject</code> is an asynchronous operation. To check if the project
-        /// is deleted, call <a>DescribeProjects</a>. The project is deleted when the project
-        /// no longer appears in the response. Be aware that deleting a given project will also
-        /// delete any <code>ProjectPolicies</code> associated with that project.
+        ///  <c>DeleteProject</c> is an asynchronous operation. To check if the project is deleted,
+        /// call <a>DescribeProjects</a>. The project is deleted when the project no longer appears
+        /// in the response. Be aware that deleting a given project will also delete any <c>ProjectPolicies</c>
+        /// associated with that project.
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DeleteProject</code>
+        /// This operation requires permissions to perform the <c>rekognition:DeleteProject</c>
         /// action. 
         /// </para>
         /// </summary>
@@ -2757,8 +2777,14 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Deletes an existing project policy.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// To get a list of project policies attached to a project, call <a>ListProjectPolicies</a>.
@@ -2766,7 +2792,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DeleteProjectPolicy</code>
+        /// This operation requires permissions to perform the <c>rekognition:DeleteProjectPolicy</c>
         /// action.
         /// </para>
         /// </summary>
@@ -2808,8 +2834,14 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Deletes an existing project policy.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// To get a list of project policies attached to a project, call <a>ListProjectPolicies</a>.
@@ -2817,7 +2849,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DeleteProjectPolicy</code>
+        /// This operation requires permissions to perform the <c>rekognition:DeleteProjectPolicy</c>
         /// action.
         /// </para>
         /// </summary>
@@ -2866,18 +2898,19 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Deletes an Amazon Rekognition Custom Labels model. 
+        /// Deletes a Rekognition project model or project version, like a Amazon Rekognition
+        /// Custom Labels model or a custom adapter.
         /// 
         ///  
         /// <para>
-        /// You can't delete a model if it is running or if it is training. To check the status
-        /// of a model, use the <code>Status</code> field returned from <a>DescribeProjectVersions</a>.
-        /// To stop a running model call <a>StopProjectVersion</a>. If the model is training,
-        /// wait until it finishes.
+        /// You can't delete a project version if it is running or if it is training. To check
+        /// the status of a project version, use the Status field returned from <a>DescribeProjectVersions</a>.
+        /// To stop a project version call <a>StopProjectVersion</a>. If the project version is
+        /// training, wait until it finishes.
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DeleteProjectVersion</code>
+        /// This operation requires permissions to perform the <c>rekognition:DeleteProjectVersion</c>
         /// action. 
         /// </para>
         /// </summary>
@@ -2919,18 +2952,19 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Deletes an Amazon Rekognition Custom Labels model. 
+        /// Deletes a Rekognition project model or project version, like a Amazon Rekognition
+        /// Custom Labels model or a custom adapter.
         /// 
         ///  
         /// <para>
-        /// You can't delete a model if it is running or if it is training. To check the status
-        /// of a model, use the <code>Status</code> field returned from <a>DescribeProjectVersions</a>.
-        /// To stop a running model call <a>StopProjectVersion</a>. If the model is training,
-        /// wait until it finishes.
+        /// You can't delete a project version if it is running or if it is training. To check
+        /// the status of a project version, use the Status field returned from <a>DescribeProjectVersions</a>.
+        /// To stop a project version call <a>StopProjectVersion</a>. If the project version is
+        /// training, wait until it finishes.
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DeleteProjectVersion</code>
+        /// This operation requires permissions to perform the <c>rekognition:DeleteProjectVersion</c>
         /// action. 
         /// </para>
         /// </summary>
@@ -2979,10 +3013,10 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Deletes the stream processor identified by <code>Name</code>. You assign the value
-        /// for <code>Name</code> when you create the stream processor with <a>CreateStreamProcessor</a>.
-        /// You might not be able to use the same name for a stream processor for a few seconds
-        /// after calling <code>DeleteStreamProcessor</code>.
+        /// Deletes the stream processor identified by <c>Name</c>. You assign the value for <c>Name</c>
+        /// when you create the stream processor with <a>CreateStreamProcessor</a>. You might
+        /// not be able to use the same name for a stream processor for a few seconds after calling
+        /// <c>DeleteStreamProcessor</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteStreamProcessor service method.</param>
         /// 
@@ -3022,10 +3056,10 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Deletes the stream processor identified by <code>Name</code>. You assign the value
-        /// for <code>Name</code> when you create the stream processor with <a>CreateStreamProcessor</a>.
-        /// You might not be able to use the same name for a stream processor for a few seconds
-        /// after calling <code>DeleteStreamProcessor</code>.
+        /// Deletes the stream processor identified by <c>Name</c>. You assign the value for <c>Name</c>
+        /// when you create the stream processor with <a>CreateStreamProcessor</a>. You might
+        /// not be able to use the same name for a stream processor for a few seconds after calling
+        /// <c>DeleteStreamProcessor</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteStreamProcessor service method.</param>
         /// <param name="cancellationToken">
@@ -3074,9 +3108,9 @@ namespace Amazon.Rekognition
         /// <summary>
         /// Deletes the specified UserID within the collection. Faces that are associated with
         /// the UserID are disassociated from the UserID before deleting the specified UserID.
-        /// If the specified <code>Collection</code> or <code>UserID</code> is already deleted
-        /// or not found, a <code>ResourceNotFoundException</code> will be thrown. If the action
-        /// is successful with a 200 response, an empty HTTP body is returned.
+        /// If the specified <c>Collection</c> or <c>UserID</c> is already deleted or not found,
+        /// a <c>ResourceNotFoundException</c> will be thrown. If the action is successful with
+        /// a 200 response, an empty HTTP body is returned.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteUser service method.</param>
         /// 
@@ -3089,9 +3123,8 @@ namespace Amazon.Rekognition
         /// of the User caused an inconsistent state. **
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -3124,9 +3157,9 @@ namespace Amazon.Rekognition
         /// <summary>
         /// Deletes the specified UserID within the collection. Faces that are associated with
         /// the UserID are disassociated from the UserID before deleting the specified UserID.
-        /// If the specified <code>Collection</code> or <code>UserID</code> is already deleted
-        /// or not found, a <code>ResourceNotFoundException</code> will be thrown. If the action
-        /// is successful with a 200 response, an empty HTTP body is returned.
+        /// If the specified <c>Collection</c> or <c>UserID</c> is already deleted or not found,
+        /// a <c>ResourceNotFoundException</c> will be thrown. If the action is successful with
+        /// a 200 response, an empty HTTP body is returned.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteUser service method.</param>
         /// <param name="cancellationToken">
@@ -3142,9 +3175,8 @@ namespace Amazon.Rekognition
         /// of the User caused an inconsistent state. **
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -3179,9 +3211,9 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Describes the specified collection. You can use <code>DescribeCollection</code> to
-        /// get information, such as the number of faces indexed into a collection and the version
-        /// of the model used by the collection for face detection.
+        /// Describes the specified collection. You can use <c>DescribeCollection</c> to get information,
+        /// such as the number of faces indexed into a collection and the version of the model
+        /// used by the collection for face detection.
         /// 
         ///  
         /// <para>
@@ -3224,9 +3256,9 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Describes the specified collection. You can use <code>DescribeCollection</code> to
-        /// get information, such as the number of faces indexed into a collection and the version
-        /// of the model used by the collection for face detection.
+        /// Describes the specified collection. You can use <c>DescribeCollection</c> to get information,
+        /// such as the number of faces indexed into a collection and the version of the model
+        /// used by the collection for face detection.
         /// 
         ///  
         /// <para>
@@ -3276,13 +3308,19 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Describes an Amazon Rekognition Custom Labels dataset. You can get information such
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        ///  Describes an Amazon Rekognition Custom Labels dataset. You can get information such
         /// as the current status of a dataset and statistics about the images and labels in a
         /// dataset. 
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DescribeDataset</code>
+        /// This operation requires permissions to perform the <c>rekognition:DescribeDataset</c>
         /// action.
         /// </para>
         /// </summary>
@@ -3321,13 +3359,19 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Describes an Amazon Rekognition Custom Labels dataset. You can get information such
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        ///  Describes an Amazon Rekognition Custom Labels dataset. You can get information such
         /// as the current status of a dataset and statistics about the images and labels in a
         /// dataset. 
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DescribeDataset</code>
+        /// This operation requires permissions to perform the <c>rekognition:DescribeDataset</c>
         /// action.
         /// </para>
         /// </summary>
@@ -3373,11 +3417,11 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Gets information about your Amazon Rekognition Custom Labels projects. 
+        /// Gets information about your Rekognition projects.
         /// 
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DescribeProjects</code>
+        /// This operation requires permissions to perform the <c>rekognition:DescribeProjects</c>
         /// action.
         /// </para>
         /// </summary>
@@ -3416,11 +3460,11 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Gets information about your Amazon Rekognition Custom Labels projects. 
+        /// Gets information about your Rekognition projects.
         /// 
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DescribeProjects</code>
+        /// This operation requires permissions to perform the <c>rekognition:DescribeProjects</c>
         /// action.
         /// </para>
         /// </summary>
@@ -3466,14 +3510,13 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Lists and describes the versions of a model in an Amazon Rekognition Custom Labels
-        /// project. You can specify up to 10 model versions in <code>ProjectVersionArns</code>.
-        /// If you don't specify a value, descriptions for all model versions in the project are
-        /// returned.
+        /// Lists and describes the versions of an Amazon Rekognition project. You can specify
+        /// up to 10 model or adapter versions in <c>ProjectVersionArns</c>. If you don't specify
+        /// a value, descriptions for all model/adapter versions in the project are returned.
         /// 
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DescribeProjectVersions</code>
+        /// This operation requires permissions to perform the <c>rekognition:DescribeProjectVersions</c>
         /// action.
         /// </para>
         /// </summary>
@@ -3515,14 +3558,13 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Lists and describes the versions of a model in an Amazon Rekognition Custom Labels
-        /// project. You can specify up to 10 model versions in <code>ProjectVersionArns</code>.
-        /// If you don't specify a value, descriptions for all model versions in the project are
-        /// returned.
+        /// Lists and describes the versions of an Amazon Rekognition project. You can specify
+        /// up to 10 model or adapter versions in <c>ProjectVersionArns</c>. If you don't specify
+        /// a value, descriptions for all model/adapter versions in the project are returned.
         /// 
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DescribeProjectVersions</code>
+        /// This operation requires permissions to perform the <c>rekognition:DescribeProjectVersions</c>
         /// action.
         /// </para>
         /// </summary>
@@ -3656,12 +3698,18 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Detects custom labels in a supplied image by using an Amazon Rekognition Custom Labels
         /// model. 
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// You specify which version of a model version to use by using the <code>ProjectVersionArn</code>
+        /// You specify which version of a model version to use by using the <c>ProjectVersionArn</c>
         /// input parameter. 
         /// </para>
         ///  
@@ -3673,30 +3721,31 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        ///  For each object that the model version detects on an image, the API returns a (<code>CustomLabel</code>)
-        /// object in an array (<code>CustomLabels</code>). Each <code>CustomLabel</code> object
-        /// provides the label name (<code>Name</code>), the level of confidence that the image
-        /// contains the object (<code>Confidence</code>), and object location information, if
-        /// it exists, for the label on the image (<code>Geometry</code>). 
+        ///  For each object that the model version detects on an image, the API returns a (<c>CustomLabel</c>)
+        /// object in an array (<c>CustomLabels</c>). Each <c>CustomLabel</c> object provides
+        /// the label name (<c>Name</c>), the level of confidence that the image contains the
+        /// object (<c>Confidence</c>), and object location information, if it exists, for the
+        /// label on the image (<c>Geometry</c>). Note that for the <c>DetectCustomLabelsLabels</c>
+        /// operation, <c>Polygons</c> are not returned in the <c>Geometry</c> section of the
+        /// response.
         /// </para>
         ///  
         /// <para>
-        /// To filter labels that are returned, specify a value for <code>MinConfidence</code>.
-        /// <code>DetectCustomLabelsLabels</code> only returns labels with a confidence that's
-        /// higher than the specified value. The value of <code>MinConfidence</code> maps to the
-        /// assumed threshold values created during training. For more information, see <i>Assumed
-        /// threshold</i> in the Amazon Rekognition Custom Labels Developer Guide. Amazon Rekognition
-        /// Custom Labels metrics expresses an assumed threshold as a floating point value between
-        /// 0-1. The range of <code>MinConfidence</code> normalizes the threshold value to a percentage
-        /// value (0-100). Confidence responses from <code>DetectCustomLabels</code> are also
-        /// returned as a percentage. You can use <code>MinConfidence</code> to change the precision
-        /// and recall or your model. For more information, see <i>Analyzing an image</i> in the
-        /// Amazon Rekognition Custom Labels Developer Guide. 
+        /// To filter labels that are returned, specify a value for <c>MinConfidence</c>. <c>DetectCustomLabelsLabels</c>
+        /// only returns labels with a confidence that's higher than the specified value. The
+        /// value of <c>MinConfidence</c> maps to the assumed threshold values created during
+        /// training. For more information, see <i>Assumed threshold</i> in the Amazon Rekognition
+        /// Custom Labels Developer Guide. Amazon Rekognition Custom Labels metrics expresses
+        /// an assumed threshold as a floating point value between 0-1. The range of <c>MinConfidence</c>
+        /// normalizes the threshold value to a percentage value (0-100). Confidence responses
+        /// from <c>DetectCustomLabels</c> are also returned as a percentage. You can use <c>MinConfidence</c>
+        /// to change the precision and recall or your model. For more information, see <i>Analyzing
+        /// an image</i> in the Amazon Rekognition Custom Labels Developer Guide. 
         /// </para>
         ///  
         /// <para>
-        /// If you don't specify a value for <code>MinConfidence</code>, <code>DetectCustomLabels</code>
-        /// returns labels based on the assumed threshold of each label.
+        /// If you don't specify a value for <c>MinConfidence</c>, <c>DetectCustomLabels</c> returns
+        /// labels based on the assumed threshold of each label.
         /// </para>
         ///  
         /// <para>
@@ -3704,7 +3753,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DetectCustomLabels</code>
+        /// This operation requires permissions to perform the <c>rekognition:DetectCustomLabels</c>
         /// action. 
         /// </para>
         ///  
@@ -3739,10 +3788,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -3753,7 +3801,7 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ResourceNotReadyException">
         /// The requested resource isn't ready. For example, this exception occurs when you call
-        /// <code>DetectCustomLabels</code> with a model version that isn't deployed.
+        /// <c>DetectCustomLabels</c> with a model version that isn't deployed.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ThrottlingException">
         /// Amazon Rekognition is temporarily unable to process the request. Try your call again.
@@ -3770,12 +3818,18 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Detects custom labels in a supplied image by using an Amazon Rekognition Custom Labels
         /// model. 
-        /// 
+        /// </para>
         ///  
         /// <para>
-        /// You specify which version of a model version to use by using the <code>ProjectVersionArn</code>
+        /// You specify which version of a model version to use by using the <c>ProjectVersionArn</c>
         /// input parameter. 
         /// </para>
         ///  
@@ -3787,30 +3841,31 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        ///  For each object that the model version detects on an image, the API returns a (<code>CustomLabel</code>)
-        /// object in an array (<code>CustomLabels</code>). Each <code>CustomLabel</code> object
-        /// provides the label name (<code>Name</code>), the level of confidence that the image
-        /// contains the object (<code>Confidence</code>), and object location information, if
-        /// it exists, for the label on the image (<code>Geometry</code>). 
+        ///  For each object that the model version detects on an image, the API returns a (<c>CustomLabel</c>)
+        /// object in an array (<c>CustomLabels</c>). Each <c>CustomLabel</c> object provides
+        /// the label name (<c>Name</c>), the level of confidence that the image contains the
+        /// object (<c>Confidence</c>), and object location information, if it exists, for the
+        /// label on the image (<c>Geometry</c>). Note that for the <c>DetectCustomLabelsLabels</c>
+        /// operation, <c>Polygons</c> are not returned in the <c>Geometry</c> section of the
+        /// response.
         /// </para>
         ///  
         /// <para>
-        /// To filter labels that are returned, specify a value for <code>MinConfidence</code>.
-        /// <code>DetectCustomLabelsLabels</code> only returns labels with a confidence that's
-        /// higher than the specified value. The value of <code>MinConfidence</code> maps to the
-        /// assumed threshold values created during training. For more information, see <i>Assumed
-        /// threshold</i> in the Amazon Rekognition Custom Labels Developer Guide. Amazon Rekognition
-        /// Custom Labels metrics expresses an assumed threshold as a floating point value between
-        /// 0-1. The range of <code>MinConfidence</code> normalizes the threshold value to a percentage
-        /// value (0-100). Confidence responses from <code>DetectCustomLabels</code> are also
-        /// returned as a percentage. You can use <code>MinConfidence</code> to change the precision
-        /// and recall or your model. For more information, see <i>Analyzing an image</i> in the
-        /// Amazon Rekognition Custom Labels Developer Guide. 
+        /// To filter labels that are returned, specify a value for <c>MinConfidence</c>. <c>DetectCustomLabelsLabels</c>
+        /// only returns labels with a confidence that's higher than the specified value. The
+        /// value of <c>MinConfidence</c> maps to the assumed threshold values created during
+        /// training. For more information, see <i>Assumed threshold</i> in the Amazon Rekognition
+        /// Custom Labels Developer Guide. Amazon Rekognition Custom Labels metrics expresses
+        /// an assumed threshold as a floating point value between 0-1. The range of <c>MinConfidence</c>
+        /// normalizes the threshold value to a percentage value (0-100). Confidence responses
+        /// from <c>DetectCustomLabels</c> are also returned as a percentage. You can use <c>MinConfidence</c>
+        /// to change the precision and recall or your model. For more information, see <i>Analyzing
+        /// an image</i> in the Amazon Rekognition Custom Labels Developer Guide. 
         /// </para>
         ///  
         /// <para>
-        /// If you don't specify a value for <code>MinConfidence</code>, <code>DetectCustomLabels</code>
-        /// returns labels based on the assumed threshold of each label.
+        /// If you don't specify a value for <c>MinConfidence</c>, <c>DetectCustomLabels</c> returns
+        /// labels based on the assumed threshold of each label.
         /// </para>
         ///  
         /// <para>
@@ -3818,7 +3873,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DetectCustomLabels</code>
+        /// This operation requires permissions to perform the <c>rekognition:DetectCustomLabels</c>
         /// action. 
         /// </para>
         ///  
@@ -3856,10 +3911,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -3870,7 +3924,7 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ResourceNotReadyException">
         /// The requested resource isn't ready. For example, this exception occurs when you call
-        /// <code>DetectCustomLabels</code> with a model version that isn't deployed.
+        /// <c>DetectCustomLabels</c> with a model version that isn't deployed.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ThrottlingException">
         /// Amazon Rekognition is temporarily unable to process the request. Try your call again.
@@ -3895,11 +3949,11 @@ namespace Amazon.Rekognition
         /// 
         ///  
         /// <para>
-        ///  <code>DetectFaces</code> detects the 100 largest faces in the image. For each face
-        /// detected, the operation returns face details. These details include a bounding box
-        /// of the face, a confidence value (that the bounding box contains a face), and a fixed
-        /// set of attributes such as facial landmarks (for example, coordinates of eye and mouth),
-        /// pose, presence of facial occlusion, and so on.
+        ///  <c>DetectFaces</c> detects the 100 largest faces in the image. For each face detected,
+        /// the operation returns face details. These details include a bounding box of the face,
+        /// a confidence value (that the bounding box contains a face), and a fixed set of attributes
+        /// such as facial landmarks (for example, coordinates of eye and mouth), pose, presence
+        /// of facial occlusion, and so on.
         /// </para>
         ///  
         /// <para>
@@ -3920,7 +3974,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  </note> 
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DetectFaces</code>
+        /// This operation requires permissions to perform the <c>rekognition:DetectFaces</c>
         /// action. 
         /// </para>
         /// </summary>
@@ -3971,11 +4025,11 @@ namespace Amazon.Rekognition
         /// 
         ///  
         /// <para>
-        ///  <code>DetectFaces</code> detects the 100 largest faces in the image. For each face
-        /// detected, the operation returns face details. These details include a bounding box
-        /// of the face, a confidence value (that the bounding box contains a face), and a fixed
-        /// set of attributes such as facial landmarks (for example, coordinates of eye and mouth),
-        /// pose, presence of facial occlusion, and so on.
+        ///  <c>DetectFaces</c> detects the 100 largest faces in the image. For each face detected,
+        /// the operation returns face details. These details include a bounding box of the face,
+        /// a confidence value (that the bounding box contains a face), and a fixed set of attributes
+        /// such as facial landmarks (for example, coordinates of eye and mouth), pose, presence
+        /// of facial occlusion, and so on.
         /// </para>
         ///  
         /// <para>
@@ -3996,7 +4050,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  </note> 
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DetectFaces</code>
+        /// This operation requires permissions to perform the <c>rekognition:DetectFaces</c>
         /// action. 
         /// </para>
         /// </summary>
@@ -4072,25 +4126,25 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// You can specify one or both of the <code>GENERAL_LABELS</code> and <code>IMAGE_PROPERTIES</code>
-        /// feature types when calling the DetectLabels API. Including <code>GENERAL_LABELS</code>
-        /// will ensure the response includes the labels detected in the input image, while including
-        /// <code>IMAGE_PROPERTIES </code>will ensure the response includes information about
-        /// the image quality and color.
+        /// You can specify one or both of the <c>GENERAL_LABELS</c> and <c>IMAGE_PROPERTIES</c>
+        /// feature types when calling the DetectLabels API. Including <c>GENERAL_LABELS</c> will
+        /// ensure the response includes the labels detected in the input image, while including
+        /// <c>IMAGE_PROPERTIES </c>will ensure the response includes information about the image
+        /// quality and color.
         /// </para>
         ///  
         /// <para>
-        /// When using <code>GENERAL_LABELS</code> and/or <code>IMAGE_PROPERTIES</code> you can
-        /// provide filtering criteria to the Settings parameter. You can filter with sets of
-        /// individual labels or with label categories. You can specify inclusive filters, exclusive
-        /// filters, or a combination of inclusive and exclusive filters. For more information
-        /// on filtering see <a href="https://docs.aws.amazon.com/rekognition/latest/dg/labels-detect-labels-image.html">Detecting
+        /// When using <c>GENERAL_LABELS</c> and/or <c>IMAGE_PROPERTIES</c> you can provide filtering
+        /// criteria to the Settings parameter. You can filter with sets of individual labels
+        /// or with label categories. You can specify inclusive filters, exclusive filters, or
+        /// a combination of inclusive and exclusive filters. For more information on filtering
+        /// see <a href="https://docs.aws.amazon.com/rekognition/latest/dg/labels-detect-labels-image.html">Detecting
         /// Labels in an Image</a>.
         /// </para>
         ///  
         /// <para>
-        /// When getting labels, you can specify <code>MinConfidence</code> to control the confidence
-        /// threshold for the labels returned. The default is 55%. You can also add the <code>MaxLabels</code>
+        /// When getting labels, you can specify <c>MinConfidence</c> to control the confidence
+        /// threshold for the labels returned. The default is 55%. You can also add the <c>MaxLabels</c>
         /// parameter to limit the number of labels returned. The default and upper limit is 1000
         /// labels. These arguments are only valid when supplying GENERAL_LABELS as a feature
         /// type.
@@ -4171,15 +4225,15 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        ///  <code>{Name: lighthouse, Confidence: 98.4629}</code> 
+        ///  <c>{Name: lighthouse, Confidence: 98.4629}</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>{Name: rock,Confidence: 79.2097}</code> 
+        ///  <c>{Name: rock,Confidence: 79.2097}</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code> {Name: sea,Confidence: 75.061}</code> 
+        ///  <c> {Name: sea,Confidence: 75.061}</c> 
         /// </para>
         ///  
         /// <para>
@@ -4189,15 +4243,15 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        ///  <code>{Name: flower,Confidence: 99.0562}</code> 
+        ///  <c>{Name: flower,Confidence: 99.0562}</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>{Name: plant,Confidence: 99.0562}</code> 
+        ///  <c>{Name: plant,Confidence: 99.0562}</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>{Name: tulip,Confidence: 99.0562}</code> 
+        ///  <c>{Name: tulip,Confidence: 99.0562}</c> 
         /// </para>
         ///  
         /// <para>
@@ -4215,7 +4269,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DetectLabels</code>
+        /// This operation requires permissions to perform the <c>rekognition:DetectLabels</c>
         /// action. 
         /// </para>
         /// </summary>
@@ -4284,25 +4338,25 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// You can specify one or both of the <code>GENERAL_LABELS</code> and <code>IMAGE_PROPERTIES</code>
-        /// feature types when calling the DetectLabels API. Including <code>GENERAL_LABELS</code>
-        /// will ensure the response includes the labels detected in the input image, while including
-        /// <code>IMAGE_PROPERTIES </code>will ensure the response includes information about
-        /// the image quality and color.
+        /// You can specify one or both of the <c>GENERAL_LABELS</c> and <c>IMAGE_PROPERTIES</c>
+        /// feature types when calling the DetectLabels API. Including <c>GENERAL_LABELS</c> will
+        /// ensure the response includes the labels detected in the input image, while including
+        /// <c>IMAGE_PROPERTIES </c>will ensure the response includes information about the image
+        /// quality and color.
         /// </para>
         ///  
         /// <para>
-        /// When using <code>GENERAL_LABELS</code> and/or <code>IMAGE_PROPERTIES</code> you can
-        /// provide filtering criteria to the Settings parameter. You can filter with sets of
-        /// individual labels or with label categories. You can specify inclusive filters, exclusive
-        /// filters, or a combination of inclusive and exclusive filters. For more information
-        /// on filtering see <a href="https://docs.aws.amazon.com/rekognition/latest/dg/labels-detect-labels-image.html">Detecting
+        /// When using <c>GENERAL_LABELS</c> and/or <c>IMAGE_PROPERTIES</c> you can provide filtering
+        /// criteria to the Settings parameter. You can filter with sets of individual labels
+        /// or with label categories. You can specify inclusive filters, exclusive filters, or
+        /// a combination of inclusive and exclusive filters. For more information on filtering
+        /// see <a href="https://docs.aws.amazon.com/rekognition/latest/dg/labels-detect-labels-image.html">Detecting
         /// Labels in an Image</a>.
         /// </para>
         ///  
         /// <para>
-        /// When getting labels, you can specify <code>MinConfidence</code> to control the confidence
-        /// threshold for the labels returned. The default is 55%. You can also add the <code>MaxLabels</code>
+        /// When getting labels, you can specify <c>MinConfidence</c> to control the confidence
+        /// threshold for the labels returned. The default is 55%. You can also add the <c>MaxLabels</c>
         /// parameter to limit the number of labels returned. The default and upper limit is 1000
         /// labels. These arguments are only valid when supplying GENERAL_LABELS as a feature
         /// type.
@@ -4383,15 +4437,15 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        ///  <code>{Name: lighthouse, Confidence: 98.4629}</code> 
+        ///  <c>{Name: lighthouse, Confidence: 98.4629}</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>{Name: rock,Confidence: 79.2097}</code> 
+        ///  <c>{Name: rock,Confidence: 79.2097}</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code> {Name: sea,Confidence: 75.061}</code> 
+        ///  <c> {Name: sea,Confidence: 75.061}</c> 
         /// </para>
         ///  
         /// <para>
@@ -4401,15 +4455,15 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        ///  <code>{Name: flower,Confidence: 99.0562}</code> 
+        ///  <c>{Name: flower,Confidence: 99.0562}</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>{Name: plant,Confidence: 99.0562}</code> 
+        ///  <c>{Name: plant,Confidence: 99.0562}</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>{Name: tulip,Confidence: 99.0562}</code> 
+        ///  <c>{Name: tulip,Confidence: 99.0562}</c> 
         /// </para>
         ///  
         /// <para>
@@ -4427,7 +4481,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DetectLabels</code>
+        /// This operation requires permissions to perform the <c>rekognition:DetectLabels</c>
         /// action. 
         /// </para>
         /// </summary>
@@ -4481,14 +4535,14 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Detects unsafe content in a specified JPEG or PNG format image. Use <code>DetectModerationLabels</code>
+        /// Detects unsafe content in a specified JPEG or PNG format image. Use <c>DetectModerationLabels</c>
         /// to moderate images depending on your requirements. For example, you might want to
         /// filter images that contain nudity, but not images containing suggestive content.
         /// 
         ///  
         /// <para>
-        /// To filter images, use the labels returned by <code>DetectModerationLabels</code> to
-        /// determine which types of content are appropriate.
+        /// To filter images, use the labels returned by <c>DetectModerationLabels</c> to determine
+        /// which types of content are appropriate.
         /// </para>
         ///  
         /// <para>
@@ -4501,6 +4555,11 @@ namespace Amazon.Rekognition
         /// an image in an Amazon S3 bucket. If you use the AWS CLI to call Amazon Rekognition
         /// operations, passing image bytes is not supported. The image must be either a PNG or
         /// JPEG formatted file. 
+        /// </para>
+        ///  
+        /// <para>
+        /// You can specify an adapter to use when retrieving label predictions by providing a
+        /// <c>ProjectVersionArn</c> to the <c>ProjectVersion</c> argument.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DetectModerationLabels service method.</param>
@@ -4534,6 +4593,13 @@ namespace Amazon.Rekognition
         /// The number of requests exceeded your throughput limit. If you want to increase this
         /// limit, contact Amazon Rekognition.
         /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ResourceNotFoundException">
+        /// The resource specified in the request cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ResourceNotReadyException">
+        /// The requested resource isn't ready. For example, this exception occurs when you call
+        /// <c>DetectCustomLabels</c> with a model version that isn't deployed.
+        /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ThrottlingException">
         /// Amazon Rekognition is temporarily unable to process the request. Try your call again.
         /// </exception>
@@ -4549,14 +4615,14 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Detects unsafe content in a specified JPEG or PNG format image. Use <code>DetectModerationLabels</code>
+        /// Detects unsafe content in a specified JPEG or PNG format image. Use <c>DetectModerationLabels</c>
         /// to moderate images depending on your requirements. For example, you might want to
         /// filter images that contain nudity, but not images containing suggestive content.
         /// 
         ///  
         /// <para>
-        /// To filter images, use the labels returned by <code>DetectModerationLabels</code> to
-        /// determine which types of content are appropriate.
+        /// To filter images, use the labels returned by <c>DetectModerationLabels</c> to determine
+        /// which types of content are appropriate.
         /// </para>
         ///  
         /// <para>
@@ -4569,6 +4635,11 @@ namespace Amazon.Rekognition
         /// an image in an Amazon S3 bucket. If you use the AWS CLI to call Amazon Rekognition
         /// operations, passing image bytes is not supported. The image must be either a PNG or
         /// JPEG formatted file. 
+        /// </para>
+        ///  
+        /// <para>
+        /// You can specify an adapter to use when retrieving label predictions by providing a
+        /// <c>ProjectVersionArn</c> to the <c>ProjectVersion</c> argument.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DetectModerationLabels service method.</param>
@@ -4604,6 +4675,13 @@ namespace Amazon.Rekognition
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
         /// limit, contact Amazon Rekognition.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ResourceNotFoundException">
+        /// The resource specified in the request cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ResourceNotReadyException">
+        /// The requested resource isn't ready. For example, this exception occurs when you call
+        /// <c>DetectCustomLabels</c> with a model version that isn't deployed.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ThrottlingException">
         /// Amazon Rekognition is temporarily unable to process the request. Try your call again.
@@ -4646,8 +4724,8 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        ///  <code>DetectProtectiveEquipment</code> detects PPE worn by up to 15 persons detected
-        /// in an image.
+        ///  <c>DetectProtectiveEquipment</c> detects PPE worn by up to 15 persons detected in
+        /// an image.
         /// </para>
         ///  
         /// <para>
@@ -4660,7 +4738,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// You can optionally request a summary of detected PPE items with the <code>SummarizationAttributes</code>
+        /// You can optionally request a summary of detected PPE items with the <c>SummarizationAttributes</c>
         /// input parameter. The summary provides the following information. 
         /// </para>
         ///  <ul> <li> 
@@ -4681,7 +4759,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DetectProtectiveEquipment</code>
+        /// This operation requires permissions to perform the <c>rekognition:DetectProtectiveEquipment</c>
         /// action. 
         /// </para>
         /// </summary>
@@ -4750,8 +4828,8 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        ///  <code>DetectProtectiveEquipment</code> detects PPE worn by up to 15 persons detected
-        /// in an image.
+        ///  <c>DetectProtectiveEquipment</c> detects PPE worn by up to 15 persons detected in
+        /// an image.
         /// </para>
         ///  
         /// <para>
@@ -4764,7 +4842,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// You can optionally request a summary of detected PPE items with the <code>SummarizationAttributes</code>
+        /// You can optionally request a summary of detected PPE items with the <c>SummarizationAttributes</c>
         /// input parameter. The summary provides the following information. 
         /// </para>
         ///  <ul> <li> 
@@ -4785,7 +4863,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DetectProtectiveEquipment</code>
+        /// This operation requires permissions to perform the <c>rekognition:DetectProtectiveEquipment</c>
         /// action. 
         /// </para>
         /// </summary>
@@ -4851,13 +4929,13 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// The <code>DetectText</code> operation returns text in an array of <a>TextDetection</a>
-        /// elements, <code>TextDetections</code>. Each <code>TextDetection</code> element provides
-        /// information about a single word or line of text that was detected in the image. 
+        /// The <c>DetectText</c> operation returns text in an array of <a>TextDetection</a> elements,
+        /// <c>TextDetections</c>. Each <c>TextDetection</c> element provides information about
+        /// a single word or line of text that was detected in the image. 
         /// </para>
         ///  
         /// <para>
-        /// A word is one or more script characters that are not separated by spaces. <code>DetectText</code>
+        /// A word is one or more script characters that are not separated by spaces. <c>DetectText</c>
         /// can detect up to 100 words in an image.
         /// </para>
         ///  
@@ -4868,12 +4946,12 @@ namespace Amazon.Rekognition
         /// relative to the length of the words. This means, depending on the gap between words,
         /// Amazon Rekognition may detect multiple lines in text aligned in the same direction.
         /// Periods don't represent the end of a line. If a sentence spans multiple lines, the
-        /// <code>DetectText</code> operation returns multiple lines.
+        /// <c>DetectText</c> operation returns multiple lines.
         /// </para>
         ///  
         /// <para>
-        /// To determine whether a <code>TextDetection</code> element is a line of text or a word,
-        /// use the <code>TextDetection</code> object <code>Type</code> field. 
+        /// To determine whether a <c>TextDetection</c> element is a line of text or a word, use
+        /// the <c>TextDetection</c> object <c>Type</c> field. 
         /// </para>
         ///  
         /// <para>
@@ -4939,13 +5017,13 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// The <code>DetectText</code> operation returns text in an array of <a>TextDetection</a>
-        /// elements, <code>TextDetections</code>. Each <code>TextDetection</code> element provides
-        /// information about a single word or line of text that was detected in the image. 
+        /// The <c>DetectText</c> operation returns text in an array of <a>TextDetection</a> elements,
+        /// <c>TextDetections</c>. Each <c>TextDetection</c> element provides information about
+        /// a single word or line of text that was detected in the image. 
         /// </para>
         ///  
         /// <para>
-        /// A word is one or more script characters that are not separated by spaces. <code>DetectText</code>
+        /// A word is one or more script characters that are not separated by spaces. <c>DetectText</c>
         /// can detect up to 100 words in an image.
         /// </para>
         ///  
@@ -4956,12 +5034,12 @@ namespace Amazon.Rekognition
         /// relative to the length of the words. This means, depending on the gap between words,
         /// Amazon Rekognition may detect multiple lines in text aligned in the same direction.
         /// Periods don't represent the end of a line. If a sentence spans multiple lines, the
-        /// <code>DetectText</code> operation returns multiple lines.
+        /// <c>DetectText</c> operation returns multiple lines.
         /// </para>
         ///  
         /// <para>
-        /// To determine whether a <code>TextDetection</code> element is a line of text or a word,
-        /// use the <code>TextDetection</code> object <code>Type</code> field. 
+        /// To determine whether a <c>TextDetection</c> element is a line of text or a word, use
+        /// the <c>TextDetection</c> object <c>Type</c> field. 
         /// </para>
         ///  
         /// <para>
@@ -5022,14 +5100,14 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Removes the association between a <code>Face</code> supplied in an array of <code>FaceIds</code>
-        /// and the User. If the User is not present already, then a <code>ResourceNotFound</code>
-        /// exception is thrown. If successful, an array of faces that are disassociated from
-        /// the User is returned. If a given face is already disassociated from the given UserID,
-        /// it will be ignored and not be returned in the response. If a given face is already
-        /// associated with a different User or not found in the collection it will be returned
-        /// as part of <code>UnsuccessfulDisassociations</code>. You can remove 1 - 100 face IDs
-        /// from a user at one time.
+        /// Removes the association between a <c>Face</c> supplied in an array of <c>FaceIds</c>
+        /// and the User. If the User is not present already, then a <c>ResourceNotFound</c> exception
+        /// is thrown. If successful, an array of faces that are disassociated from the User is
+        /// returned. If a given face is already disassociated from the given UserID, it will
+        /// be ignored and not be returned in the response. If a given face is already associated
+        /// with a different User or not found in the collection it will be returned as part of
+        /// <c>UnsuccessfulDisassociations</c>. You can remove 1 - 100 face IDs from a user at
+        /// one time.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DisassociateFaces service method.</param>
         /// 
@@ -5042,9 +5120,8 @@ namespace Amazon.Rekognition
         /// of the User caused an inconsistent state. **
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -5075,14 +5152,14 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Removes the association between a <code>Face</code> supplied in an array of <code>FaceIds</code>
-        /// and the User. If the User is not present already, then a <code>ResourceNotFound</code>
-        /// exception is thrown. If successful, an array of faces that are disassociated from
-        /// the User is returned. If a given face is already disassociated from the given UserID,
-        /// it will be ignored and not be returned in the response. If a given face is already
-        /// associated with a different User or not found in the collection it will be returned
-        /// as part of <code>UnsuccessfulDisassociations</code>. You can remove 1 - 100 face IDs
-        /// from a user at one time.
+        /// Removes the association between a <c>Face</c> supplied in an array of <c>FaceIds</c>
+        /// and the User. If the User is not present already, then a <c>ResourceNotFound</c> exception
+        /// is thrown. If successful, an array of faces that are disassociated from the User is
+        /// returned. If a given face is already disassociated from the given UserID, it will
+        /// be ignored and not be returned in the response. If a given face is already associated
+        /// with a different User or not found in the collection it will be returned as part of
+        /// <c>UnsuccessfulDisassociations</c>. You can remove 1 - 100 face IDs from a user at
+        /// one time.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DisassociateFaces service method.</param>
         /// <param name="cancellationToken">
@@ -5098,9 +5175,8 @@ namespace Amazon.Rekognition
         /// of the User caused an inconsistent state. **
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -5135,11 +5211,17 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Distributes the entries (images) in a training dataset across the training dataset
-        /// and the test dataset for a project. <code>DistributeDatasetEntries</code> moves 20%
-        /// of the training dataset images to the test dataset. An entry is a JSON Line that describes
+        /// and the test dataset for a project. <c>DistributeDatasetEntries</c> moves 20% of the
+        /// training dataset images to the test dataset. An entry is a JSON Line that describes
         /// an image. 
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// You supply the Amazon Resource Names (ARN) of a project's training dataset and test
@@ -5149,14 +5231,14 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// Distributing a dataset takes a while to complete. To check the status call <code>DescribeDataset</code>.
-        /// The operation is complete when the <code>Status</code> field for the training dataset
-        /// and the test dataset is <code>UPDATE_COMPLETE</code>. If the dataset split fails,
-        /// the value of <code>Status</code> is <code>UPDATE_FAILED</code>.
+        /// Distributing a dataset takes a while to complete. To check the status call <c>DescribeDataset</c>.
+        /// The operation is complete when the <c>Status</c> field for the training dataset and
+        /// the test dataset is <c>UPDATE_COMPLETE</c>. If the dataset split fails, the value
+        /// of <c>Status</c> is <c>UPDATE_FAILED</c>.
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DistributeDatasetEntries</code>
+        /// This operation requires permissions to perform the <c>rekognition:DistributeDatasetEntries</c>
         /// action.
         /// </para>
         /// </summary>
@@ -5182,7 +5264,7 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ResourceNotReadyException">
         /// The requested resource isn't ready. For example, this exception occurs when you call
-        /// <code>DetectCustomLabels</code> with a model version that isn't deployed.
+        /// <c>DetectCustomLabels</c> with a model version that isn't deployed.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ThrottlingException">
         /// Amazon Rekognition is temporarily unable to process the request. Try your call again.
@@ -5199,11 +5281,17 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Distributes the entries (images) in a training dataset across the training dataset
-        /// and the test dataset for a project. <code>DistributeDatasetEntries</code> moves 20%
-        /// of the training dataset images to the test dataset. An entry is a JSON Line that describes
+        /// and the test dataset for a project. <c>DistributeDatasetEntries</c> moves 20% of the
+        /// training dataset images to the test dataset. An entry is a JSON Line that describes
         /// an image. 
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// You supply the Amazon Resource Names (ARN) of a project's training dataset and test
@@ -5213,14 +5301,14 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// Distributing a dataset takes a while to complete. To check the status call <code>DescribeDataset</code>.
-        /// The operation is complete when the <code>Status</code> field for the training dataset
-        /// and the test dataset is <code>UPDATE_COMPLETE</code>. If the dataset split fails,
-        /// the value of <code>Status</code> is <code>UPDATE_FAILED</code>.
+        /// Distributing a dataset takes a while to complete. To check the status call <c>DescribeDataset</c>.
+        /// The operation is complete when the <c>Status</c> field for the training dataset and
+        /// the test dataset is <c>UPDATE_COMPLETE</c>. If the dataset split fails, the value
+        /// of <c>Status</c> is <c>UPDATE_FAILED</c>.
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:DistributeDatasetEntries</code>
+        /// This operation requires permissions to perform the <c>rekognition:DistributeDatasetEntries</c>
         /// action.
         /// </para>
         /// </summary>
@@ -5249,7 +5337,7 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ResourceNotReadyException">
         /// The requested resource isn't ready. For example, this exception occurs when you call
-        /// <code>DetectCustomLabels</code> with a model version that isn't deployed.
+        /// <c>DetectCustomLabels</c> with a model version that isn't deployed.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ThrottlingException">
         /// Amazon Rekognition is temporarily unable to process the request. Try your call again.
@@ -5281,7 +5369,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:GetCelebrityInfo</code>
+        /// This operation requires permissions to perform the <c>rekognition:GetCelebrityInfo</c>
         /// action. 
         /// </para>
         /// </summary>
@@ -5331,7 +5419,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:GetCelebrityInfo</code>
+        /// This operation requires permissions to perform the <c>rekognition:GetCelebrityInfo</c>
         /// action. 
         /// </para>
         /// </summary>
@@ -5383,17 +5471,17 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// Celebrity recognition in a video is an asynchronous operation. Analysis is started
-        /// by a call to <a>StartCelebrityRecognition</a> which returns a job identifier (<code>JobId</code>).
+        /// by a call to <a>StartCelebrityRecognition</a> which returns a job identifier (<c>JobId</c>).
         /// 
         /// </para>
         ///  
         /// <para>
         /// When the celebrity recognition operation finishes, Amazon Rekognition Video publishes
         /// a completion status to the Amazon Simple Notification Service topic registered in
-        /// the initial call to <code>StartCelebrityRecognition</code>. To get the results of
-        /// the celebrity recognition analysis, first check that the status value published to
-        /// the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <code>GetCelebrityDetection</code>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartCelebrityDetection</code>.
+        /// the initial call to <c>StartCelebrityRecognition</c>. To get the results of the celebrity
+        /// recognition analysis, first check that the status value published to the Amazon SNS
+        /// topic is <c>SUCCEEDED</c>. If so, call <c>GetCelebrityDetection</c> and pass the job
+        /// identifier (<c>JobId</c>) from the initial call to <c>StartCelebrityDetection</c>.
         /// 
         /// </para>
         ///  
@@ -5403,32 +5491,30 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetCelebrityRecognition</code> returns detected celebrities and the time(s)
-        /// they are detected in an array (<code>Celebrities</code>) of <a>CelebrityRecognition</a>
-        /// objects. Each <code>CelebrityRecognition</code> contains information about the celebrity
-        /// in a <a>CelebrityDetail</a> object and the time, <code>Timestamp</code>, the celebrity
-        /// was detected. This <a>CelebrityDetail</a> object stores information about the detected
-        /// celebrity's face attributes, a face bounding box, known gender, the celebrity's name,
-        /// and a confidence estimate.
+        ///  <c>GetCelebrityRecognition</c> returns detected celebrities and the time(s) they
+        /// are detected in an array (<c>Celebrities</c>) of <a>CelebrityRecognition</a> objects.
+        /// Each <c>CelebrityRecognition</c> contains information about the celebrity in a <a>CelebrityDetail</a>
+        /// object and the time, <c>Timestamp</c>, the celebrity was detected. This <a>CelebrityDetail</a>
+        /// object stores information about the detected celebrity's face attributes, a face bounding
+        /// box, known gender, the celebrity's name, and a confidence estimate.
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>GetCelebrityRecognition</code> only returns the default facial attributes (<code>BoundingBox</code>,
-        /// <code>Confidence</code>, <code>Landmarks</code>, <code>Pose</code>, and <code>Quality</code>).
-        /// The <code>BoundingBox</code> field only applies to the detected face instance. The
-        /// other facial attributes listed in the <code>Face</code> object of the following response
-        /// syntax are not returned. For more information, see FaceDetail in the Amazon Rekognition
-        /// Developer Guide. 
+        ///  <c>GetCelebrityRecognition</c> only returns the default facial attributes (<c>BoundingBox</c>,
+        /// <c>Confidence</c>, <c>Landmarks</c>, <c>Pose</c>, and <c>Quality</c>). The <c>BoundingBox</c>
+        /// field only applies to the detected face instance. The other facial attributes listed
+        /// in the <c>Face</c> object of the following response syntax are not returned. For more
+        /// information, see FaceDetail in the Amazon Rekognition Developer Guide. 
         /// </para>
         ///  </note> 
         /// <para>
-        /// By default, the <code>Celebrities</code> array is sorted by time (milliseconds from
-        /// the start of the video). You can also sort the array by celebrity by specifying the
-        /// value <code>ID</code> in the <code>SortBy</code> input parameter.
+        /// By default, the <c>Celebrities</c> array is sorted by time (milliseconds from the
+        /// start of the video). You can also sort the array by celebrity by specifying the value
+        /// <c>ID</c> in the <c>SortBy</c> input parameter.
         /// </para>
         ///  
         /// <para>
-        /// The <code>CelebrityDetail</code> object includes the celebrity identifer and additional
+        /// The <c>CelebrityDetail</c> object includes the celebrity identifer and additional
         /// information urls. If you don't store the additional information urls, you can get
         /// them later by calling <a>GetCelebrityInfo</a> with the celebrity identifer.
         /// </para>
@@ -5439,11 +5525,11 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// Use MaxResults parameter to limit the number of labels returned. If there are more
-        /// results than specified in <code>MaxResults</code>, the value of <code>NextToken</code>
-        /// in the operation response contains a pagination token for getting the next set of
-        /// results. To get the next page of results, call <code>GetCelebrityDetection</code>
-        /// and populate the <code>NextToken</code> request parameter with the token value returned
-        /// from the previous call to <code>GetCelebrityRecognition</code>.
+        /// results than specified in <c>MaxResults</c>, the value of <c>NextToken</c> in the
+        /// operation response contains a pagination token for getting the next set of results.
+        /// To get the next page of results, call <c>GetCelebrityDetection</c> and populate the
+        /// <c>NextToken</c> request parameter with the token value returned from the previous
+        /// call to <c>GetCelebrityRecognition</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetCelebrityRecognition service method.</param>
@@ -5490,17 +5576,17 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// Celebrity recognition in a video is an asynchronous operation. Analysis is started
-        /// by a call to <a>StartCelebrityRecognition</a> which returns a job identifier (<code>JobId</code>).
+        /// by a call to <a>StartCelebrityRecognition</a> which returns a job identifier (<c>JobId</c>).
         /// 
         /// </para>
         ///  
         /// <para>
         /// When the celebrity recognition operation finishes, Amazon Rekognition Video publishes
         /// a completion status to the Amazon Simple Notification Service topic registered in
-        /// the initial call to <code>StartCelebrityRecognition</code>. To get the results of
-        /// the celebrity recognition analysis, first check that the status value published to
-        /// the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <code>GetCelebrityDetection</code>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartCelebrityDetection</code>.
+        /// the initial call to <c>StartCelebrityRecognition</c>. To get the results of the celebrity
+        /// recognition analysis, first check that the status value published to the Amazon SNS
+        /// topic is <c>SUCCEEDED</c>. If so, call <c>GetCelebrityDetection</c> and pass the job
+        /// identifier (<c>JobId</c>) from the initial call to <c>StartCelebrityDetection</c>.
         /// 
         /// </para>
         ///  
@@ -5510,32 +5596,30 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetCelebrityRecognition</code> returns detected celebrities and the time(s)
-        /// they are detected in an array (<code>Celebrities</code>) of <a>CelebrityRecognition</a>
-        /// objects. Each <code>CelebrityRecognition</code> contains information about the celebrity
-        /// in a <a>CelebrityDetail</a> object and the time, <code>Timestamp</code>, the celebrity
-        /// was detected. This <a>CelebrityDetail</a> object stores information about the detected
-        /// celebrity's face attributes, a face bounding box, known gender, the celebrity's name,
-        /// and a confidence estimate.
+        ///  <c>GetCelebrityRecognition</c> returns detected celebrities and the time(s) they
+        /// are detected in an array (<c>Celebrities</c>) of <a>CelebrityRecognition</a> objects.
+        /// Each <c>CelebrityRecognition</c> contains information about the celebrity in a <a>CelebrityDetail</a>
+        /// object and the time, <c>Timestamp</c>, the celebrity was detected. This <a>CelebrityDetail</a>
+        /// object stores information about the detected celebrity's face attributes, a face bounding
+        /// box, known gender, the celebrity's name, and a confidence estimate.
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>GetCelebrityRecognition</code> only returns the default facial attributes (<code>BoundingBox</code>,
-        /// <code>Confidence</code>, <code>Landmarks</code>, <code>Pose</code>, and <code>Quality</code>).
-        /// The <code>BoundingBox</code> field only applies to the detected face instance. The
-        /// other facial attributes listed in the <code>Face</code> object of the following response
-        /// syntax are not returned. For more information, see FaceDetail in the Amazon Rekognition
-        /// Developer Guide. 
+        ///  <c>GetCelebrityRecognition</c> only returns the default facial attributes (<c>BoundingBox</c>,
+        /// <c>Confidence</c>, <c>Landmarks</c>, <c>Pose</c>, and <c>Quality</c>). The <c>BoundingBox</c>
+        /// field only applies to the detected face instance. The other facial attributes listed
+        /// in the <c>Face</c> object of the following response syntax are not returned. For more
+        /// information, see FaceDetail in the Amazon Rekognition Developer Guide. 
         /// </para>
         ///  </note> 
         /// <para>
-        /// By default, the <code>Celebrities</code> array is sorted by time (milliseconds from
-        /// the start of the video). You can also sort the array by celebrity by specifying the
-        /// value <code>ID</code> in the <code>SortBy</code> input parameter.
+        /// By default, the <c>Celebrities</c> array is sorted by time (milliseconds from the
+        /// start of the video). You can also sort the array by celebrity by specifying the value
+        /// <c>ID</c> in the <c>SortBy</c> input parameter.
         /// </para>
         ///  
         /// <para>
-        /// The <code>CelebrityDetail</code> object includes the celebrity identifer and additional
+        /// The <c>CelebrityDetail</c> object includes the celebrity identifer and additional
         /// information urls. If you don't store the additional information urls, you can get
         /// them later by calling <a>GetCelebrityInfo</a> with the celebrity identifer.
         /// </para>
@@ -5546,11 +5630,11 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// Use MaxResults parameter to limit the number of labels returned. If there are more
-        /// results than specified in <code>MaxResults</code>, the value of <code>NextToken</code>
-        /// in the operation response contains a pagination token for getting the next set of
-        /// results. To get the next page of results, call <code>GetCelebrityDetection</code>
-        /// and populate the <code>NextToken</code> request parameter with the token value returned
-        /// from the previous call to <code>GetCelebrityRecognition</code>.
+        /// results than specified in <c>MaxResults</c>, the value of <c>NextToken</c> in the
+        /// operation response contains a pagination token for getting the next set of results.
+        /// To get the next page of results, call <c>GetCelebrityDetection</c> and populate the
+        /// <c>NextToken</c> request parameter with the token value returned from the previous
+        /// call to <c>GetCelebrityRecognition</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetCelebrityRecognition service method.</param>
@@ -5607,12 +5691,12 @@ namespace Amazon.Rekognition
         /// <para>
         /// Amazon Rekognition Video inappropriate or offensive content detection in a stored
         /// video is an asynchronous operation. You start analysis by calling <a>StartContentModeration</a>
-        /// which returns a job identifier (<code>JobId</code>). When analysis finishes, Amazon
-        /// Rekognition Video publishes a completion status to the Amazon Simple Notification
-        /// Service topic registered in the initial call to <code>StartContentModeration</code>.
-        /// To get the results of the content analysis, first check that the status value published
-        /// to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <code>GetContentModeration</code>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartContentModeration</code>.
+        /// which returns a job identifier (<c>JobId</c>). When analysis finishes, Amazon Rekognition
+        /// Video publishes a completion status to the Amazon Simple Notification Service topic
+        /// registered in the initial call to <c>StartContentModeration</c>. To get the results
+        /// of the content analysis, first check that the status value published to the Amazon
+        /// SNS topic is <c>SUCCEEDED</c>. If so, call <c>GetContentModeration</c> and pass the
+        /// job identifier (<c>JobId</c>) from the initial call to <c>StartContentModeration</c>.
         /// 
         /// </para>
         ///  
@@ -5622,25 +5706,25 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetContentModeration</code> returns detected inappropriate, unwanted, or offensive
-        /// content moderation labels, and the time they are detected, in an array, <code>ModerationLabels</code>,
+        ///  <c>GetContentModeration</c> returns detected inappropriate, unwanted, or offensive
+        /// content moderation labels, and the time they are detected, in an array, <c>ModerationLabels</c>,
         /// of <a>ContentModerationDetection</a> objects. 
         /// </para>
         ///  
         /// <para>
         /// By default, the moderated labels are returned sorted by time, in milliseconds from
-        /// the start of the video. You can also sort them by moderated label by specifying <code>NAME</code>
-        /// for the <code>SortBy</code> input parameter. 
+        /// the start of the video. You can also sort them by moderated label by specifying <c>NAME</c>
+        /// for the <c>SortBy</c> input parameter. 
         /// </para>
         ///  
         /// <para>
-        /// Since video analysis can return a large number of results, use the <code>MaxResults</code>
-        /// parameter to limit the number of labels returned in a single call to <code>GetContentModeration</code>.
-        /// If there are more results than specified in <code>MaxResults</code>, the value of
-        /// <code>NextToken</code> in the operation response contains a pagination token for getting
-        /// the next set of results. To get the next page of results, call <code>GetContentModeration</code>
-        /// and populate the <code>NextToken</code> request parameter with the value of <code>NextToken</code>
-        /// returned from the previous call to <code>GetContentModeration</code>.
+        /// Since video analysis can return a large number of results, use the <c>MaxResults</c>
+        /// parameter to limit the number of labels returned in a single call to <c>GetContentModeration</c>.
+        /// If there are more results than specified in <c>MaxResults</c>, the value of <c>NextToken</c>
+        /// in the operation response contains a pagination token for getting the next set of
+        /// results. To get the next page of results, call <c>GetContentModeration</c> and populate
+        /// the <c>NextToken</c> request parameter with the value of <c>NextToken</c> returned
+        /// from the previous call to <c>GetContentModeration</c>.
         /// </para>
         ///  
         /// <para>
@@ -5694,12 +5778,12 @@ namespace Amazon.Rekognition
         /// <para>
         /// Amazon Rekognition Video inappropriate or offensive content detection in a stored
         /// video is an asynchronous operation. You start analysis by calling <a>StartContentModeration</a>
-        /// which returns a job identifier (<code>JobId</code>). When analysis finishes, Amazon
-        /// Rekognition Video publishes a completion status to the Amazon Simple Notification
-        /// Service topic registered in the initial call to <code>StartContentModeration</code>.
-        /// To get the results of the content analysis, first check that the status value published
-        /// to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <code>GetContentModeration</code>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartContentModeration</code>.
+        /// which returns a job identifier (<c>JobId</c>). When analysis finishes, Amazon Rekognition
+        /// Video publishes a completion status to the Amazon Simple Notification Service topic
+        /// registered in the initial call to <c>StartContentModeration</c>. To get the results
+        /// of the content analysis, first check that the status value published to the Amazon
+        /// SNS topic is <c>SUCCEEDED</c>. If so, call <c>GetContentModeration</c> and pass the
+        /// job identifier (<c>JobId</c>) from the initial call to <c>StartContentModeration</c>.
         /// 
         /// </para>
         ///  
@@ -5709,25 +5793,25 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetContentModeration</code> returns detected inappropriate, unwanted, or offensive
-        /// content moderation labels, and the time they are detected, in an array, <code>ModerationLabels</code>,
+        ///  <c>GetContentModeration</c> returns detected inappropriate, unwanted, or offensive
+        /// content moderation labels, and the time they are detected, in an array, <c>ModerationLabels</c>,
         /// of <a>ContentModerationDetection</a> objects. 
         /// </para>
         ///  
         /// <para>
         /// By default, the moderated labels are returned sorted by time, in milliseconds from
-        /// the start of the video. You can also sort them by moderated label by specifying <code>NAME</code>
-        /// for the <code>SortBy</code> input parameter. 
+        /// the start of the video. You can also sort them by moderated label by specifying <c>NAME</c>
+        /// for the <c>SortBy</c> input parameter. 
         /// </para>
         ///  
         /// <para>
-        /// Since video analysis can return a large number of results, use the <code>MaxResults</code>
-        /// parameter to limit the number of labels returned in a single call to <code>GetContentModeration</code>.
-        /// If there are more results than specified in <code>MaxResults</code>, the value of
-        /// <code>NextToken</code> in the operation response contains a pagination token for getting
-        /// the next set of results. To get the next page of results, call <code>GetContentModeration</code>
-        /// and populate the <code>NextToken</code> request parameter with the value of <code>NextToken</code>
-        /// returned from the previous call to <code>GetContentModeration</code>.
+        /// Since video analysis can return a large number of results, use the <c>MaxResults</c>
+        /// parameter to limit the number of labels returned in a single call to <c>GetContentModeration</c>.
+        /// If there are more results than specified in <c>MaxResults</c>, the value of <c>NextToken</c>
+        /// in the operation response contains a pagination token for getting the next set of
+        /// results. To get the next page of results, call <c>GetContentModeration</c> and populate
+        /// the <c>NextToken</c> request parameter with the value of <c>NextToken</c> returned
+        /// from the previous call to <c>GetContentModeration</c>.
         /// </para>
         ///  
         /// <para>
@@ -5785,31 +5869,30 @@ namespace Amazon.Rekognition
         /// <para>
         /// Face detection with Amazon Rekognition Video is an asynchronous operation. You start
         /// face detection by calling <a>StartFaceDetection</a> which returns a job identifier
-        /// (<code>JobId</code>). When the face detection operation finishes, Amazon Rekognition
-        /// Video publishes a completion status to the Amazon Simple Notification Service topic
-        /// registered in the initial call to <code>StartFaceDetection</code>. To get the results
-        /// of the face detection operation, first check that the status value published to the
-        /// Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetFaceDetection</a> and
-        /// pass the job identifier (<code>JobId</code>) from the initial call to <code>StartFaceDetection</code>.
+        /// (<c>JobId</c>). When the face detection operation finishes, Amazon Rekognition Video
+        /// publishes a completion status to the Amazon Simple Notification Service topic registered
+        /// in the initial call to <c>StartFaceDetection</c>. To get the results of the face detection
+        /// operation, first check that the status value published to the Amazon SNS topic is
+        /// <c>SUCCEEDED</c>. If so, call <a>GetFaceDetection</a> and pass the job identifier
+        /// (<c>JobId</c>) from the initial call to <c>StartFaceDetection</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetFaceDetection</code> returns an array of detected faces (<code>Faces</code>)
-        /// sorted by the time the faces were detected. 
+        ///  <c>GetFaceDetection</c> returns an array of detected faces (<c>Faces</c>) sorted
+        /// by the time the faces were detected. 
         /// </para>
         ///  
         /// <para>
         /// Use MaxResults parameter to limit the number of labels returned. If there are more
-        /// results than specified in <code>MaxResults</code>, the value of <code>NextToken</code>
-        /// in the operation response contains a pagination token for getting the next set of
-        /// results. To get the next page of results, call <code>GetFaceDetection</code> and populate
-        /// the <code>NextToken</code> request parameter with the token value returned from the
-        /// previous call to <code>GetFaceDetection</code>.
+        /// results than specified in <c>MaxResults</c>, the value of <c>NextToken</c> in the
+        /// operation response contains a pagination token for getting the next set of results.
+        /// To get the next page of results, call <c>GetFaceDetection</c> and populate the <c>NextToken</c>
+        /// request parameter with the token value returned from the previous call to <c>GetFaceDetection</c>.
         /// </para>
         ///  
         /// <para>
-        /// Note that for the <code>GetFaceDetection</code> operation, the returned values for
-        /// <code>FaceOccluded</code> and <code>EyeDirection</code> will always be "null".
+        /// Note that for the <c>GetFaceDetection</c> operation, the returned values for <c>FaceOccluded</c>
+        /// and <c>EyeDirection</c> will always be "null".
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetFaceDetection service method.</param>
@@ -5856,31 +5939,30 @@ namespace Amazon.Rekognition
         /// <para>
         /// Face detection with Amazon Rekognition Video is an asynchronous operation. You start
         /// face detection by calling <a>StartFaceDetection</a> which returns a job identifier
-        /// (<code>JobId</code>). When the face detection operation finishes, Amazon Rekognition
-        /// Video publishes a completion status to the Amazon Simple Notification Service topic
-        /// registered in the initial call to <code>StartFaceDetection</code>. To get the results
-        /// of the face detection operation, first check that the status value published to the
-        /// Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetFaceDetection</a> and
-        /// pass the job identifier (<code>JobId</code>) from the initial call to <code>StartFaceDetection</code>.
+        /// (<c>JobId</c>). When the face detection operation finishes, Amazon Rekognition Video
+        /// publishes a completion status to the Amazon Simple Notification Service topic registered
+        /// in the initial call to <c>StartFaceDetection</c>. To get the results of the face detection
+        /// operation, first check that the status value published to the Amazon SNS topic is
+        /// <c>SUCCEEDED</c>. If so, call <a>GetFaceDetection</a> and pass the job identifier
+        /// (<c>JobId</c>) from the initial call to <c>StartFaceDetection</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetFaceDetection</code> returns an array of detected faces (<code>Faces</code>)
-        /// sorted by the time the faces were detected. 
+        ///  <c>GetFaceDetection</c> returns an array of detected faces (<c>Faces</c>) sorted
+        /// by the time the faces were detected. 
         /// </para>
         ///  
         /// <para>
         /// Use MaxResults parameter to limit the number of labels returned. If there are more
-        /// results than specified in <code>MaxResults</code>, the value of <code>NextToken</code>
-        /// in the operation response contains a pagination token for getting the next set of
-        /// results. To get the next page of results, call <code>GetFaceDetection</code> and populate
-        /// the <code>NextToken</code> request parameter with the token value returned from the
-        /// previous call to <code>GetFaceDetection</code>.
+        /// results than specified in <c>MaxResults</c>, the value of <c>NextToken</c> in the
+        /// operation response contains a pagination token for getting the next set of results.
+        /// To get the next page of results, call <c>GetFaceDetection</c> and populate the <c>NextToken</c>
+        /// request parameter with the token value returned from the previous call to <c>GetFaceDetection</c>.
         /// </para>
         ///  
         /// <para>
-        /// Note that for the <code>GetFaceDetection</code> operation, the returned values for
-        /// <code>FaceOccluded</code> and <code>EyeDirection</code> will always be "null".
+        /// Note that for the <c>GetFaceDetection</c> operation, the returned values for <c>FaceOccluded</c>
+        /// and <c>EyeDirection</c> will always be "null".
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetFaceDetection service method.</param>
@@ -5928,16 +6010,16 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Retrieves the results of a specific Face Liveness session. It requires the <code>sessionId</code>
-        /// as input, which was created using <code>CreateFaceLivenessSession</code>. Returns
-        /// the corresponding Face Liveness confidence score, a reference image that includes
-        /// a face bounding box, and audit images that also contain face bounding boxes. The Face
-        /// Liveness confidence score ranges from 0 to 100. 
+        /// Retrieves the results of a specific Face Liveness session. It requires the <c>sessionId</c>
+        /// as input, which was created using <c>CreateFaceLivenessSession</c>. Returns the corresponding
+        /// Face Liveness confidence score, a reference image that includes a face bounding box,
+        /// and audit images that also contain face bounding boxes. The Face Liveness confidence
+        /// score ranges from 0 to 100. 
         /// 
         ///  
         /// <para>
-        /// The number of audit images returned by <code>GetFaceLivenessSessionResults</code>
-        /// is defined by the <code>AuditImagesLimit</code> paramater when calling <code>CreateFaceLivenessSession</code>.
+        /// The number of audit images returned by <c>GetFaceLivenessSessionResults</c> is defined
+        /// by the <c>AuditImagesLimit</c> paramater when calling <c>CreateFaceLivenessSession</c>.
         /// Reference images are always returned when possible.
         /// </para>
         /// </summary>
@@ -5976,16 +6058,16 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Retrieves the results of a specific Face Liveness session. It requires the <code>sessionId</code>
-        /// as input, which was created using <code>CreateFaceLivenessSession</code>. Returns
-        /// the corresponding Face Liveness confidence score, a reference image that includes
-        /// a face bounding box, and audit images that also contain face bounding boxes. The Face
-        /// Liveness confidence score ranges from 0 to 100. 
+        /// Retrieves the results of a specific Face Liveness session. It requires the <c>sessionId</c>
+        /// as input, which was created using <c>CreateFaceLivenessSession</c>. Returns the corresponding
+        /// Face Liveness confidence score, a reference image that includes a face bounding box,
+        /// and audit images that also contain face bounding boxes. The Face Liveness confidence
+        /// score ranges from 0 to 100. 
         /// 
         ///  
         /// <para>
-        /// The number of audit images returned by <code>GetFaceLivenessSessionResults</code>
-        /// is defined by the <code>AuditImagesLimit</code> paramater when calling <code>CreateFaceLivenessSession</code>.
+        /// The number of audit images returned by <c>GetFaceLivenessSessionResults</c> is defined
+        /// by the <c>AuditImagesLimit</c> paramater when calling <c>CreateFaceLivenessSession</c>.
         /// Reference images are always returned when possible.
         /// </para>
         /// </summary>
@@ -6038,12 +6120,12 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// Face search in a video is an asynchronous operation. You start face search by calling
-        /// to <a>StartFaceSearch</a> which returns a job identifier (<code>JobId</code>). When
-        /// the search operation finishes, Amazon Rekognition Video publishes a completion status
+        /// to <a>StartFaceSearch</a> which returns a job identifier (<c>JobId</c>). When the
+        /// search operation finishes, Amazon Rekognition Video publishes a completion status
         /// to the Amazon Simple Notification Service topic registered in the initial call to
-        /// <code>StartFaceSearch</code>. To get the search results, first check that the status
-        /// value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <code>GetFaceSearch</code>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartFaceSearch</code>.
+        /// <c>StartFaceSearch</c>. To get the search results, first check that the status value
+        /// published to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <c>GetFaceSearch</c>
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartFaceSearch</c>.
         /// </para>
         ///  
         /// <para>
@@ -6052,25 +6134,25 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// The search results are retured in an array, <code>Persons</code>, of <a>PersonMatch</a>
-        /// objects. Each<code>PersonMatch</code> element contains details about the matching
-        /// faces in the input collection, person information (facial attributes, bounding boxes,
-        /// and person identifer) for the matched person, and the time the person was matched
-        /// in the video.
+        /// The search results are retured in an array, <c>Persons</c>, of <a>PersonMatch</a>
+        /// objects. Each<c>PersonMatch</c> element contains details about the matching faces
+        /// in the input collection, person information (facial attributes, bounding boxes, and
+        /// person identifer) for the matched person, and the time the person was matched in the
+        /// video.
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>GetFaceSearch</code> only returns the default facial attributes (<code>BoundingBox</code>,
-        /// <code>Confidence</code>, <code>Landmarks</code>, <code>Pose</code>, and <code>Quality</code>).
-        /// The other facial attributes listed in the <code>Face</code> object of the following
-        /// response syntax are not returned. For more information, see FaceDetail in the Amazon
-        /// Rekognition Developer Guide. 
+        ///  <c>GetFaceSearch</c> only returns the default facial attributes (<c>BoundingBox</c>,
+        /// <c>Confidence</c>, <c>Landmarks</c>, <c>Pose</c>, and <c>Quality</c>). The other facial
+        /// attributes listed in the <c>Face</c> object of the following response syntax are not
+        /// returned. For more information, see FaceDetail in the Amazon Rekognition Developer
+        /// Guide. 
         /// </para>
         ///  </note> 
         /// <para>
-        /// By default, the <code>Persons</code> array is sorted by the time, in milliseconds
-        /// from the start of the video, persons are matched. You can also sort by persons by
-        /// specifying <code>INDEX</code> for the <code>SORTBY</code> input parameter.
+        /// By default, the <c>Persons</c> array is sorted by the time, in milliseconds from the
+        /// start of the video, persons are matched. You can also sort by persons by specifying
+        /// <c>INDEX</c> for the <c>SORTBY</c> input parameter.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetFaceSearch service method.</param>
@@ -6118,12 +6200,12 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// Face search in a video is an asynchronous operation. You start face search by calling
-        /// to <a>StartFaceSearch</a> which returns a job identifier (<code>JobId</code>). When
-        /// the search operation finishes, Amazon Rekognition Video publishes a completion status
+        /// to <a>StartFaceSearch</a> which returns a job identifier (<c>JobId</c>). When the
+        /// search operation finishes, Amazon Rekognition Video publishes a completion status
         /// to the Amazon Simple Notification Service topic registered in the initial call to
-        /// <code>StartFaceSearch</code>. To get the search results, first check that the status
-        /// value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <code>GetFaceSearch</code>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartFaceSearch</code>.
+        /// <c>StartFaceSearch</c>. To get the search results, first check that the status value
+        /// published to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <c>GetFaceSearch</c>
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartFaceSearch</c>.
         /// </para>
         ///  
         /// <para>
@@ -6132,25 +6214,25 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// The search results are retured in an array, <code>Persons</code>, of <a>PersonMatch</a>
-        /// objects. Each<code>PersonMatch</code> element contains details about the matching
-        /// faces in the input collection, person information (facial attributes, bounding boxes,
-        /// and person identifer) for the matched person, and the time the person was matched
-        /// in the video.
+        /// The search results are retured in an array, <c>Persons</c>, of <a>PersonMatch</a>
+        /// objects. Each<c>PersonMatch</c> element contains details about the matching faces
+        /// in the input collection, person information (facial attributes, bounding boxes, and
+        /// person identifer) for the matched person, and the time the person was matched in the
+        /// video.
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>GetFaceSearch</code> only returns the default facial attributes (<code>BoundingBox</code>,
-        /// <code>Confidence</code>, <code>Landmarks</code>, <code>Pose</code>, and <code>Quality</code>).
-        /// The other facial attributes listed in the <code>Face</code> object of the following
-        /// response syntax are not returned. For more information, see FaceDetail in the Amazon
-        /// Rekognition Developer Guide. 
+        ///  <c>GetFaceSearch</c> only returns the default facial attributes (<c>BoundingBox</c>,
+        /// <c>Confidence</c>, <c>Landmarks</c>, <c>Pose</c>, and <c>Quality</c>). The other facial
+        /// attributes listed in the <c>Face</c> object of the following response syntax are not
+        /// returned. For more information, see FaceDetail in the Amazon Rekognition Developer
+        /// Guide. 
         /// </para>
         ///  </note> 
         /// <para>
-        /// By default, the <code>Persons</code> array is sorted by the time, in milliseconds
-        /// from the start of the video, persons are matched. You can also sort by persons by
-        /// specifying <code>INDEX</code> for the <code>SORTBY</code> input parameter.
+        /// By default, the <c>Persons</c> array is sorted by the time, in milliseconds from the
+        /// start of the video, persons are matched. You can also sort by persons by specifying
+        /// <c>INDEX</c> for the <c>SORTBY</c> input parameter.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetFaceSearch service method.</param>
@@ -6204,30 +6286,28 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// The label detection operation is started by a call to <a>StartLabelDetection</a> which
-        /// returns a job identifier (<code>JobId</code>). When the label detection operation
-        /// finishes, Amazon Rekognition publishes a completion status to the Amazon Simple Notification
-        /// Service topic registered in the initial call to <code>StartlabelDetection</code>.
-        /// 
+        /// returns a job identifier (<c>JobId</c>). When the label detection operation finishes,
+        /// Amazon Rekognition publishes a completion status to the Amazon Simple Notification
+        /// Service topic registered in the initial call to <c>StartlabelDetection</c>. 
         /// </para>
         ///  
         /// <para>
         /// To get the results of the label detection operation, first check that the status value
-        /// published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetLabelDetection</a>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartLabelDetection</code>.
+        /// published to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <a>GetLabelDetection</a>
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartLabelDetection</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetLabelDetection</code> returns an array of detected labels (<code>Labels</code>)
-        /// sorted by the time the labels were detected. You can also sort by the label name by
-        /// specifying <code>NAME</code> for the <code>SortBy</code> input parameter. If there
-        /// is no <code>NAME</code> specified, the default sort is by timestamp.
+        ///  <c>GetLabelDetection</c> returns an array of detected labels (<c>Labels</c>) sorted
+        /// by the time the labels were detected. You can also sort by the label name by specifying
+        /// <c>NAME</c> for the <c>SortBy</c> input parameter. If there is no <c>NAME</c> specified,
+        /// the default sort is by timestamp.
         /// </para>
         ///  
         /// <para>
-        /// You can select how results are aggregated by using the <code>AggregateBy</code> input
-        /// parameter. The default aggregation method is <code>TIMESTAMPS</code>. You can also
-        /// aggregate by <code>SEGMENTS</code>, which aggregates all instances of labels detected
-        /// in a given segment. 
+        /// You can select how results are aggregated by using the <c>AggregateBy</c> input parameter.
+        /// The default aggregation method is <c>TIMESTAMPS</c>. You can also aggregate by <c>SEGMENTS</c>,
+        /// which aggregates all instances of labels detected in a given segment. 
         /// </para>
         ///  
         /// <para>
@@ -6268,16 +6348,15 @@ namespace Amazon.Rekognition
         ///  </li> <li> 
         /// <para>
         /// Timestamp - Time, in milliseconds from the start of the video, that the label was
-        /// detected. For aggregation by <code>SEGMENTS</code>, the <code>StartTimestampMillis</code>,
-        /// <code>EndTimestampMillis</code>, and <code>DurationMillis</code> structures are what
-        /// define a segment. Although the “Timestamp” structure is still returned with each label,
-        /// its value is set to be the same as <code>StartTimestampMillis</code>.
+        /// detected. For aggregation by <c>SEGMENTS</c>, the <c>StartTimestampMillis</c>, <c>EndTimestampMillis</c>,
+        /// and <c>DurationMillis</c> structures are what define a segment. Although the “Timestamp”
+        /// structure is still returned with each label, its value is set to be the same as <c>StartTimestampMillis</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
         /// Timestamp and Bounding box information are returned for detected Instances, only if
-        /// aggregation is done by <code>TIMESTAMPS</code>. If aggregating by <code>SEGMENTS</code>,
-        /// information about detected instances isn’t returned. 
+        /// aggregation is done by <c>TIMESTAMPS</c>. If aggregating by <c>SEGMENTS</c>, information
+        /// about detected instances isn’t returned. 
         /// </para>
         ///  
         /// <para>
@@ -6285,17 +6364,21 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        ///  <b>Note <code>DominantColors</code> isn't returned for <code>Instances</code>, although
-        /// it is shown as part of the response in the sample seen below.</b> 
+        ///  <b>Note <c>DominantColors</c> isn't returned for <c>Instances</c>, although it is
+        /// shown as part of the response in the sample seen below.</b> 
         /// </para>
         ///  
         /// <para>
-        /// Use <code>MaxResults</code> parameter to limit the number of labels returned. If there
-        /// are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code>
-        /// in the operation response contains a pagination token for getting the next set of
-        /// results. To get the next page of results, call <code>GetlabelDetection</code> and
-        /// populate the <code>NextToken</code> request parameter with the token value returned
-        /// from the previous call to <code>GetLabelDetection</code>.
+        /// Use <c>MaxResults</c> parameter to limit the number of labels returned. If there are
+        /// more results than specified in <c>MaxResults</c>, the value of <c>NextToken</c> in
+        /// the operation response contains a pagination token for getting the next set of results.
+        /// To get the next page of results, call <c>GetlabelDetection</c> and populate the <c>NextToken</c>
+        /// request parameter with the token value returned from the previous call to <c>GetLabelDetection</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you are retrieving results while using the Amazon Simple Notification Service,
+        /// note that you will receive an "ERROR" notification if the job encounters an issue.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetLabelDetection service method.</param>
@@ -6342,30 +6425,28 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// The label detection operation is started by a call to <a>StartLabelDetection</a> which
-        /// returns a job identifier (<code>JobId</code>). When the label detection operation
-        /// finishes, Amazon Rekognition publishes a completion status to the Amazon Simple Notification
-        /// Service topic registered in the initial call to <code>StartlabelDetection</code>.
-        /// 
+        /// returns a job identifier (<c>JobId</c>). When the label detection operation finishes,
+        /// Amazon Rekognition publishes a completion status to the Amazon Simple Notification
+        /// Service topic registered in the initial call to <c>StartlabelDetection</c>. 
         /// </para>
         ///  
         /// <para>
         /// To get the results of the label detection operation, first check that the status value
-        /// published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetLabelDetection</a>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartLabelDetection</code>.
+        /// published to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <a>GetLabelDetection</a>
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartLabelDetection</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetLabelDetection</code> returns an array of detected labels (<code>Labels</code>)
-        /// sorted by the time the labels were detected. You can also sort by the label name by
-        /// specifying <code>NAME</code> for the <code>SortBy</code> input parameter. If there
-        /// is no <code>NAME</code> specified, the default sort is by timestamp.
+        ///  <c>GetLabelDetection</c> returns an array of detected labels (<c>Labels</c>) sorted
+        /// by the time the labels were detected. You can also sort by the label name by specifying
+        /// <c>NAME</c> for the <c>SortBy</c> input parameter. If there is no <c>NAME</c> specified,
+        /// the default sort is by timestamp.
         /// </para>
         ///  
         /// <para>
-        /// You can select how results are aggregated by using the <code>AggregateBy</code> input
-        /// parameter. The default aggregation method is <code>TIMESTAMPS</code>. You can also
-        /// aggregate by <code>SEGMENTS</code>, which aggregates all instances of labels detected
-        /// in a given segment. 
+        /// You can select how results are aggregated by using the <c>AggregateBy</c> input parameter.
+        /// The default aggregation method is <c>TIMESTAMPS</c>. You can also aggregate by <c>SEGMENTS</c>,
+        /// which aggregates all instances of labels detected in a given segment. 
         /// </para>
         ///  
         /// <para>
@@ -6406,16 +6487,15 @@ namespace Amazon.Rekognition
         ///  </li> <li> 
         /// <para>
         /// Timestamp - Time, in milliseconds from the start of the video, that the label was
-        /// detected. For aggregation by <code>SEGMENTS</code>, the <code>StartTimestampMillis</code>,
-        /// <code>EndTimestampMillis</code>, and <code>DurationMillis</code> structures are what
-        /// define a segment. Although the “Timestamp” structure is still returned with each label,
-        /// its value is set to be the same as <code>StartTimestampMillis</code>.
+        /// detected. For aggregation by <c>SEGMENTS</c>, the <c>StartTimestampMillis</c>, <c>EndTimestampMillis</c>,
+        /// and <c>DurationMillis</c> structures are what define a segment. Although the “Timestamp”
+        /// structure is still returned with each label, its value is set to be the same as <c>StartTimestampMillis</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
         /// Timestamp and Bounding box information are returned for detected Instances, only if
-        /// aggregation is done by <code>TIMESTAMPS</code>. If aggregating by <code>SEGMENTS</code>,
-        /// information about detected instances isn’t returned. 
+        /// aggregation is done by <c>TIMESTAMPS</c>. If aggregating by <c>SEGMENTS</c>, information
+        /// about detected instances isn’t returned. 
         /// </para>
         ///  
         /// <para>
@@ -6423,17 +6503,21 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        ///  <b>Note <code>DominantColors</code> isn't returned for <code>Instances</code>, although
-        /// it is shown as part of the response in the sample seen below.</b> 
+        ///  <b>Note <c>DominantColors</c> isn't returned for <c>Instances</c>, although it is
+        /// shown as part of the response in the sample seen below.</b> 
         /// </para>
         ///  
         /// <para>
-        /// Use <code>MaxResults</code> parameter to limit the number of labels returned. If there
-        /// are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code>
-        /// in the operation response contains a pagination token for getting the next set of
-        /// results. To get the next page of results, call <code>GetlabelDetection</code> and
-        /// populate the <code>NextToken</code> request parameter with the token value returned
-        /// from the previous call to <code>GetLabelDetection</code>.
+        /// Use <c>MaxResults</c> parameter to limit the number of labels returned. If there are
+        /// more results than specified in <c>MaxResults</c>, the value of <c>NextToken</c> in
+        /// the operation response contains a pagination token for getting the next set of results.
+        /// To get the next page of results, call <c>GetlabelDetection</c> and populate the <c>NextToken</c>
+        /// request parameter with the token value returned from the previous call to <c>GetLabelDetection</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you are retrieving results while using the Amazon Simple Notification Service,
+        /// note that you will receive an "ERROR" notification if the job encounters an issue.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetLabelDetection service method.</param>
@@ -6477,6 +6561,89 @@ namespace Amazon.Rekognition
 
         #endregion
         
+        #region  GetMediaAnalysisJob
+
+
+        /// <summary>
+        /// Retrieves the results for a given media analysis job. Takes a <c>JobId</c> returned
+        /// by StartMediaAnalysisJob.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetMediaAnalysisJob service method.</param>
+        /// 
+        /// <returns>The response from the GetMediaAnalysisJob service method, as returned by Rekognition.</returns>
+        /// <exception cref="Amazon.Rekognition.Model.AccessDeniedException">
+        /// You are not authorized to perform the action.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
+        /// Amazon Rekognition experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.InvalidParameterException">
+        /// Input parameter violated a constraint. Validate your parameter before calling the
+        /// API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Rekognition.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ResourceNotFoundException">
+        /// The resource specified in the request cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ThrottlingException">
+        /// Amazon Rekognition is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/GetMediaAnalysisJob">REST API Reference for GetMediaAnalysisJob Operation</seealso>
+        public virtual GetMediaAnalysisJobResponse GetMediaAnalysisJob(GetMediaAnalysisJobRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetMediaAnalysisJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetMediaAnalysisJobResponseUnmarshaller.Instance;
+
+            return Invoke<GetMediaAnalysisJobResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Retrieves the results for a given media analysis job. Takes a <c>JobId</c> returned
+        /// by StartMediaAnalysisJob.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetMediaAnalysisJob service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetMediaAnalysisJob service method, as returned by Rekognition.</returns>
+        /// <exception cref="Amazon.Rekognition.Model.AccessDeniedException">
+        /// You are not authorized to perform the action.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
+        /// Amazon Rekognition experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.InvalidParameterException">
+        /// Input parameter violated a constraint. Validate your parameter before calling the
+        /// API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Rekognition.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ResourceNotFoundException">
+        /// The resource specified in the request cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ThrottlingException">
+        /// Amazon Rekognition is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/GetMediaAnalysisJob">REST API Reference for GetMediaAnalysisJob Operation</seealso>
+        public virtual Task<GetMediaAnalysisJobResponse> GetMediaAnalysisJobAsync(GetMediaAnalysisJobRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetMediaAnalysisJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetMediaAnalysisJobResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetMediaAnalysisJobResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  GetPersonTracking
 
 
@@ -6485,28 +6652,28 @@ namespace Amazon.Rekognition
         /// 
         ///  
         /// <para>
-        /// The person path tracking operation is started by a call to <code>StartPersonTracking</code>
-        /// which returns a job identifier (<code>JobId</code>). When the operation finishes,
-        /// Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification
-        /// Service topic registered in the initial call to <code>StartPersonTracking</code>.
+        /// The person path tracking operation is started by a call to <c>StartPersonTracking</c>
+        /// which returns a job identifier (<c>JobId</c>). When the operation finishes, Amazon
+        /// Rekognition Video publishes a completion status to the Amazon Simple Notification
+        /// Service topic registered in the initial call to <c>StartPersonTracking</c>.
         /// </para>
         ///  
         /// <para>
         /// To get the results of the person path tracking operation, first check that the status
-        /// value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetPersonTracking</a>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartPersonTracking</code>.
+        /// value published to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <a>GetPersonTracking</a>
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartPersonTracking</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetPersonTracking</code> returns an array, <code>Persons</code>, of tracked
-        /// persons and the time(s) their paths were tracked in the video. 
+        ///  <c>GetPersonTracking</c> returns an array, <c>Persons</c>, of tracked persons and
+        /// the time(s) their paths were tracked in the video. 
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>GetPersonTracking</code> only returns the default facial attributes (<code>BoundingBox</code>,
-        /// <code>Confidence</code>, <code>Landmarks</code>, <code>Pose</code>, and <code>Quality</code>).
-        /// The other facial attributes listed in the <code>Face</code> object of the following
-        /// response syntax are not returned. 
+        ///  <c>GetPersonTracking</c> only returns the default facial attributes (<c>BoundingBox</c>,
+        /// <c>Confidence</c>, <c>Landmarks</c>, <c>Pose</c>, and <c>Quality</c>). The other facial
+        /// attributes listed in the <c>Face</c> object of the following response syntax are not
+        /// returned. 
         /// </para>
         ///  
         /// <para>
@@ -6515,17 +6682,17 @@ namespace Amazon.Rekognition
         ///  </note> 
         /// <para>
         /// By default, the array is sorted by the time(s) a person's path is tracked in the video.
-        /// You can sort by tracked persons by specifying <code>INDEX</code> for the <code>SortBy</code>
-        /// input parameter.
+        /// You can sort by tracked persons by specifying <c>INDEX</c> for the <c>SortBy</c> input
+        /// parameter.
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>MaxResults</code> parameter to limit the number of items returned. If
-        /// there are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code>
+        /// Use the <c>MaxResults</c> parameter to limit the number of items returned. If there
+        /// are more results than specified in <c>MaxResults</c>, the value of <c>NextToken</c>
         /// in the operation response contains a pagination token for getting the next set of
-        /// results. To get the next page of results, call <code>GetPersonTracking</code> and
-        /// populate the <code>NextToken</code> request parameter with the token value returned
-        /// from the previous call to <code>GetPersonTracking</code>.
+        /// results. To get the next page of results, call <c>GetPersonTracking</c> and populate
+        /// the <c>NextToken</c> request parameter with the token value returned from the previous
+        /// call to <c>GetPersonTracking</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetPersonTracking service method.</param>
@@ -6570,28 +6737,28 @@ namespace Amazon.Rekognition
         /// 
         ///  
         /// <para>
-        /// The person path tracking operation is started by a call to <code>StartPersonTracking</code>
-        /// which returns a job identifier (<code>JobId</code>). When the operation finishes,
-        /// Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification
-        /// Service topic registered in the initial call to <code>StartPersonTracking</code>.
+        /// The person path tracking operation is started by a call to <c>StartPersonTracking</c>
+        /// which returns a job identifier (<c>JobId</c>). When the operation finishes, Amazon
+        /// Rekognition Video publishes a completion status to the Amazon Simple Notification
+        /// Service topic registered in the initial call to <c>StartPersonTracking</c>.
         /// </para>
         ///  
         /// <para>
         /// To get the results of the person path tracking operation, first check that the status
-        /// value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetPersonTracking</a>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartPersonTracking</code>.
+        /// value published to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <a>GetPersonTracking</a>
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartPersonTracking</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetPersonTracking</code> returns an array, <code>Persons</code>, of tracked
-        /// persons and the time(s) their paths were tracked in the video. 
+        ///  <c>GetPersonTracking</c> returns an array, <c>Persons</c>, of tracked persons and
+        /// the time(s) their paths were tracked in the video. 
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>GetPersonTracking</code> only returns the default facial attributes (<code>BoundingBox</code>,
-        /// <code>Confidence</code>, <code>Landmarks</code>, <code>Pose</code>, and <code>Quality</code>).
-        /// The other facial attributes listed in the <code>Face</code> object of the following
-        /// response syntax are not returned. 
+        ///  <c>GetPersonTracking</c> only returns the default facial attributes (<c>BoundingBox</c>,
+        /// <c>Confidence</c>, <c>Landmarks</c>, <c>Pose</c>, and <c>Quality</c>). The other facial
+        /// attributes listed in the <c>Face</c> object of the following response syntax are not
+        /// returned. 
         /// </para>
         ///  
         /// <para>
@@ -6600,17 +6767,17 @@ namespace Amazon.Rekognition
         ///  </note> 
         /// <para>
         /// By default, the array is sorted by the time(s) a person's path is tracked in the video.
-        /// You can sort by tracked persons by specifying <code>INDEX</code> for the <code>SortBy</code>
-        /// input parameter.
+        /// You can sort by tracked persons by specifying <c>INDEX</c> for the <c>SortBy</c> input
+        /// parameter.
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>MaxResults</code> parameter to limit the number of items returned. If
-        /// there are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code>
+        /// Use the <c>MaxResults</c> parameter to limit the number of items returned. If there
+        /// are more results than specified in <c>MaxResults</c>, the value of <c>NextToken</c>
         /// in the operation response contains a pagination token for getting the next set of
-        /// results. To get the next page of results, call <code>GetPersonTracking</code> and
-        /// populate the <code>NextToken</code> request parameter with the token value returned
-        /// from the previous call to <code>GetPersonTracking</code>.
+        /// results. To get the next page of results, call <c>GetPersonTracking</c> and populate
+        /// the <c>NextToken</c> request parameter with the token value returned from the previous
+        /// call to <c>GetPersonTracking</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetPersonTracking service method.</param>
@@ -6665,35 +6832,35 @@ namespace Amazon.Rekognition
         /// <para>
         /// Segment detection with Amazon Rekognition Video is an asynchronous operation. You
         /// start segment detection by calling <a>StartSegmentDetection</a> which returns a job
-        /// identifier (<code>JobId</code>). When the segment detection operation finishes, Amazon
-        /// Rekognition publishes a completion status to the Amazon Simple Notification Service
-        /// topic registered in the initial call to <code>StartSegmentDetection</code>. To get
-        /// the results of the segment detection operation, first check that the status value
-        /// published to the Amazon SNS topic is <code>SUCCEEDED</code>. if so, call <code>GetSegmentDetection</code>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call of <code>StartSegmentDetection</code>.
+        /// identifier (<c>JobId</c>). When the segment detection operation finishes, Amazon Rekognition
+        /// publishes a completion status to the Amazon Simple Notification Service topic registered
+        /// in the initial call to <c>StartSegmentDetection</c>. To get the results of the segment
+        /// detection operation, first check that the status value published to the Amazon SNS
+        /// topic is <c>SUCCEEDED</c>. if so, call <c>GetSegmentDetection</c> and pass the job
+        /// identifier (<c>JobId</c>) from the initial call of <c>StartSegmentDetection</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetSegmentDetection</code> returns detected segments in an array (<code>Segments</code>)
-        /// of <a>SegmentDetection</a> objects. <code>Segments</code> is sorted by the segment
-        /// types specified in the <code>SegmentTypes</code> input parameter of <code>StartSegmentDetection</code>.
+        ///  <c>GetSegmentDetection</c> returns detected segments in an array (<c>Segments</c>)
+        /// of <a>SegmentDetection</a> objects. <c>Segments</c> is sorted by the segment types
+        /// specified in the <c>SegmentTypes</c> input parameter of <c>StartSegmentDetection</c>.
         /// Each element of the array includes the detected segment, the precentage confidence
         /// in the acuracy of the detected segment, the type of the segment, and the frame in
         /// which the segment was detected.
         /// </para>
         ///  
         /// <para>
-        /// Use <code>SelectedSegmentTypes</code> to find out the type of segment detection requested
-        /// in the call to <code>StartSegmentDetection</code>.
+        /// Use <c>SelectedSegmentTypes</c> to find out the type of segment detection requested
+        /// in the call to <c>StartSegmentDetection</c>.
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>MaxResults</code> parameter to limit the number of segment detections
-        /// returned. If there are more results than specified in <code>MaxResults</code>, the
-        /// value of <code>NextToken</code> in the operation response contains a pagination token
-        /// for getting the next set of results. To get the next page of results, call <code>GetSegmentDetection</code>
-        /// and populate the <code>NextToken</code> request parameter with the token value returned
-        /// from the previous call to <code>GetSegmentDetection</code>.
+        /// Use the <c>MaxResults</c> parameter to limit the number of segment detections returned.
+        /// If there are more results than specified in <c>MaxResults</c>, the value of <c>NextToken</c>
+        /// in the operation response contains a pagination token for getting the next set of
+        /// results. To get the next page of results, call <c>GetSegmentDetection</c> and populate
+        /// the <c>NextToken</c> request parameter with the token value returned from the previous
+        /// call to <c>GetSegmentDetection</c>.
         /// </para>
         ///  
         /// <para>
@@ -6746,35 +6913,35 @@ namespace Amazon.Rekognition
         /// <para>
         /// Segment detection with Amazon Rekognition Video is an asynchronous operation. You
         /// start segment detection by calling <a>StartSegmentDetection</a> which returns a job
-        /// identifier (<code>JobId</code>). When the segment detection operation finishes, Amazon
-        /// Rekognition publishes a completion status to the Amazon Simple Notification Service
-        /// topic registered in the initial call to <code>StartSegmentDetection</code>. To get
-        /// the results of the segment detection operation, first check that the status value
-        /// published to the Amazon SNS topic is <code>SUCCEEDED</code>. if so, call <code>GetSegmentDetection</code>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call of <code>StartSegmentDetection</code>.
+        /// identifier (<c>JobId</c>). When the segment detection operation finishes, Amazon Rekognition
+        /// publishes a completion status to the Amazon Simple Notification Service topic registered
+        /// in the initial call to <c>StartSegmentDetection</c>. To get the results of the segment
+        /// detection operation, first check that the status value published to the Amazon SNS
+        /// topic is <c>SUCCEEDED</c>. if so, call <c>GetSegmentDetection</c> and pass the job
+        /// identifier (<c>JobId</c>) from the initial call of <c>StartSegmentDetection</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetSegmentDetection</code> returns detected segments in an array (<code>Segments</code>)
-        /// of <a>SegmentDetection</a> objects. <code>Segments</code> is sorted by the segment
-        /// types specified in the <code>SegmentTypes</code> input parameter of <code>StartSegmentDetection</code>.
+        ///  <c>GetSegmentDetection</c> returns detected segments in an array (<c>Segments</c>)
+        /// of <a>SegmentDetection</a> objects. <c>Segments</c> is sorted by the segment types
+        /// specified in the <c>SegmentTypes</c> input parameter of <c>StartSegmentDetection</c>.
         /// Each element of the array includes the detected segment, the precentage confidence
         /// in the acuracy of the detected segment, the type of the segment, and the frame in
         /// which the segment was detected.
         /// </para>
         ///  
         /// <para>
-        /// Use <code>SelectedSegmentTypes</code> to find out the type of segment detection requested
-        /// in the call to <code>StartSegmentDetection</code>.
+        /// Use <c>SelectedSegmentTypes</c> to find out the type of segment detection requested
+        /// in the call to <c>StartSegmentDetection</c>.
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>MaxResults</code> parameter to limit the number of segment detections
-        /// returned. If there are more results than specified in <code>MaxResults</code>, the
-        /// value of <code>NextToken</code> in the operation response contains a pagination token
-        /// for getting the next set of results. To get the next page of results, call <code>GetSegmentDetection</code>
-        /// and populate the <code>NextToken</code> request parameter with the token value returned
-        /// from the previous call to <code>GetSegmentDetection</code>.
+        /// Use the <c>MaxResults</c> parameter to limit the number of segment detections returned.
+        /// If there are more results than specified in <c>MaxResults</c>, the value of <c>NextToken</c>
+        /// in the operation response contains a pagination token for getting the next set of
+        /// results. To get the next page of results, call <c>GetSegmentDetection</c> and populate
+        /// the <c>NextToken</c> request parameter with the token value returned from the previous
+        /// call to <c>GetSegmentDetection</c>.
         /// </para>
         ///  
         /// <para>
@@ -6834,16 +7001,16 @@ namespace Amazon.Rekognition
         /// <para>
         /// Text detection with Amazon Rekognition Video is an asynchronous operation. You start
         /// text detection by calling <a>StartTextDetection</a> which returns a job identifier
-        /// (<code>JobId</code>) When the text detection operation finishes, Amazon Rekognition
-        /// publishes a completion status to the Amazon Simple Notification Service topic registered
-        /// in the initial call to <code>StartTextDetection</code>. To get the results of the
-        /// text detection operation, first check that the status value published to the Amazon
-        /// SNS topic is <code>SUCCEEDED</code>. if so, call <code>GetTextDetection</code> and
-        /// pass the job identifier (<code>JobId</code>) from the initial call of <code>StartLabelDetection</code>.
+        /// (<c>JobId</c>) When the text detection operation finishes, Amazon Rekognition publishes
+        /// a completion status to the Amazon Simple Notification Service topic registered in
+        /// the initial call to <c>StartTextDetection</c>. To get the results of the text detection
+        /// operation, first check that the status value published to the Amazon SNS topic is
+        /// <c>SUCCEEDED</c>. if so, call <c>GetTextDetection</c> and pass the job identifier
+        /// (<c>JobId</c>) from the initial call of <c>StartLabelDetection</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetTextDetection</code> returns an array of detected text (<code>TextDetections</code>)
+        ///  <c>GetTextDetection</c> returns an array of detected text (<c>TextDetections</c>)
         /// sorted by the time the text was detected, up to 100 words per frame of video.
         /// </para>
         ///  
@@ -6855,11 +7022,11 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// Use MaxResults parameter to limit the number of text detections returned. If there
-        /// are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code>
+        /// are more results than specified in <c>MaxResults</c>, the value of <c>NextToken</c>
         /// in the operation response contains a pagination token for getting the next set of
-        /// results. To get the next page of results, call <code>GetTextDetection</code> and populate
-        /// the <code>NextToken</code> request parameter with the token value returned from the
-        /// previous call to <code>GetTextDetection</code>.
+        /// results. To get the next page of results, call <c>GetTextDetection</c> and populate
+        /// the <c>NextToken</c> request parameter with the token value returned from the previous
+        /// call to <c>GetTextDetection</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetTextDetection service method.</param>
@@ -6907,16 +7074,16 @@ namespace Amazon.Rekognition
         /// <para>
         /// Text detection with Amazon Rekognition Video is an asynchronous operation. You start
         /// text detection by calling <a>StartTextDetection</a> which returns a job identifier
-        /// (<code>JobId</code>) When the text detection operation finishes, Amazon Rekognition
-        /// publishes a completion status to the Amazon Simple Notification Service topic registered
-        /// in the initial call to <code>StartTextDetection</code>. To get the results of the
-        /// text detection operation, first check that the status value published to the Amazon
-        /// SNS topic is <code>SUCCEEDED</code>. if so, call <code>GetTextDetection</code> and
-        /// pass the job identifier (<code>JobId</code>) from the initial call of <code>StartLabelDetection</code>.
+        /// (<c>JobId</c>) When the text detection operation finishes, Amazon Rekognition publishes
+        /// a completion status to the Amazon Simple Notification Service topic registered in
+        /// the initial call to <c>StartTextDetection</c>. To get the results of the text detection
+        /// operation, first check that the status value published to the Amazon SNS topic is
+        /// <c>SUCCEEDED</c>. if so, call <c>GetTextDetection</c> and pass the job identifier
+        /// (<c>JobId</c>) from the initial call of <c>StartLabelDetection</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetTextDetection</code> returns an array of detected text (<code>TextDetections</code>)
+        ///  <c>GetTextDetection</c> returns an array of detected text (<c>TextDetections</c>)
         /// sorted by the time the text was detected, up to 100 words per frame of video.
         /// </para>
         ///  
@@ -6928,11 +7095,11 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// Use MaxResults parameter to limit the number of text detections returned. If there
-        /// are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code>
+        /// are more results than specified in <c>MaxResults</c>, the value of <c>NextToken</c>
         /// in the operation response contains a pagination token for getting the next set of
-        /// results. To get the next page of results, call <code>GetTextDetection</code> and populate
-        /// the <code>NextToken</code> request parameter with the token value returned from the
-        /// previous call to <code>GetTextDetection</code>.
+        /// results. To get the next page of results, call <c>GetTextDetection</c> and populate
+        /// the <c>NextToken</c> request parameter with the token value returned from the previous
+        /// call to <c>GetTextDetection</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetTextDetection service method.</param>
@@ -7001,20 +7168,20 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// If you're using version 1.0 of the face detection model, <code>IndexFaces</code> indexes
+        /// If you're using version 1.0 of the face detection model, <c>IndexFaces</c> indexes
         /// the 15 largest faces in the input image. Later versions of the face detection model
         /// index the 100 largest faces in the input image. 
         /// </para>
         ///  
         /// <para>
         /// If you're using version 4 or later of the face model, image orientation information
-        /// is not returned in the <code>OrientationCorrection</code> field. 
+        /// is not returned in the <c>OrientationCorrection</c> field. 
         /// </para>
         ///  
         /// <para>
         /// To determine which version of the model you're using, call <a>DescribeCollection</a>
         /// and supply the collection ID. You can also get the model version from the value of
-        /// <code>FaceModelVersion</code> in the response from <code>IndexFaces</code> 
+        /// <c>FaceModelVersion</c> in the response from <c>IndexFaces</c> 
         /// </para>
         ///  
         /// <para>
@@ -7022,7 +7189,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// If you provide the optional <code>ExternalImageId</code> for the input image you provided,
+        /// If you provide the optional <c>ExternalImageId</c> for the input image you provided,
         /// Amazon Rekognition associates this ID with all faces that it detects. When you call
         /// the <a>ListFaces</a> operation, the response returns the external ID. You can use
         /// this external image ID to create a client-side index to associate the faces with each
@@ -7030,19 +7197,19 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// You can specify the maximum number of faces to index with the <code>MaxFaces</code>
-        /// input parameter. This is useful when you want to index the largest faces in an image
-        /// and don't want to index smaller faces, such as those belonging to people standing
-        /// in the background.
+        /// You can specify the maximum number of faces to index with the <c>MaxFaces</c> input
+        /// parameter. This is useful when you want to index the largest faces in an image and
+        /// don't want to index smaller faces, such as those belonging to people standing in the
+        /// background.
         /// </para>
         ///  
         /// <para>
-        /// The <code>QualityFilter</code> input parameter allows you to filter out detected faces
-        /// that don’t meet a required quality bar. The quality bar is based on a variety of common
-        /// use cases. By default, <code>IndexFaces</code> chooses the quality bar that's used
-        /// to filter faces. You can also explicitly choose the quality bar. Use <code>QualityFilter</code>,
-        /// to set the quality bar by specifying <code>LOW</code>, <code>MEDIUM</code>, or <code>HIGH</code>.
-        /// If you do not want to filter detected faces, specify <code>NONE</code>. 
+        /// The <c>QualityFilter</c> input parameter allows you to filter out detected faces that
+        /// don’t meet a required quality bar. The quality bar is based on a variety of common
+        /// use cases. By default, <c>IndexFaces</c> chooses the quality bar that's used to filter
+        /// faces. You can also explicitly choose the quality bar. Use <c>QualityFilter</c>, to
+        /// set the quality bar by specifying <c>LOW</c>, <c>MEDIUM</c>, or <c>HIGH</c>. If you
+        /// do not want to filter detected faces, specify <c>NONE</c>. 
         /// </para>
         ///  <note> 
         /// <para>
@@ -7053,13 +7220,12 @@ namespace Amazon.Rekognition
         ///  </note> 
         /// <para>
         /// Information about faces detected in an image, but not indexed, is returned in an array
-        /// of <a>UnindexedFace</a> objects, <code>UnindexedFaces</code>. Faces aren't indexed
-        /// for reasons such as:
+        /// of <a>UnindexedFace</a> objects, <c>UnindexedFaces</c>. Faces aren't indexed for reasons
+        /// such as:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// The number of faces detected exceeds the value of the <code>MaxFaces</code> request
-        /// parameter.
+        /// The number of faces detected exceeds the value of the <c>MaxFaces</c> request parameter.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -7083,30 +7249,30 @@ namespace Amazon.Rekognition
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// In response, the <code>IndexFaces</code> operation returns an array of metadata for
-        /// all detected faces, <code>FaceRecords</code>. This includes: 
+        /// In response, the <c>IndexFaces</c> operation returns an array of metadata for all
+        /// detected faces, <c>FaceRecords</c>. This includes: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// The bounding box, <code>BoundingBox</code>, of the detected face. 
+        /// The bounding box, <c>BoundingBox</c>, of the detected face. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A confidence value, <code>Confidence</code>, which indicates the confidence that the
-        /// bounding box contains a face.
+        /// A confidence value, <c>Confidence</c>, which indicates the confidence that the bounding
+        /// box contains a face.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A face ID, <code>FaceId</code>, assigned by the service for each face that's detected
-        /// and stored.
+        /// A face ID, <c>FaceId</c>, assigned by the service for each face that's detected and
+        /// stored.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// An image ID, <code>ImageId</code>, assigned by the service for the input image.
+        /// An image ID, <c>ImageId</c>, assigned by the service for the input image.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If you request <code>ALL</code> or specific facial attributes (e.g., <code>FACE_OCCLUDED</code>)
+        /// If you request <c>ALL</c> or specific facial attributes (e.g., <c>FACE_OCCLUDED</c>)
         /// by using the detectionAttributes parameter, Amazon Rekognition returns detailed facial
         /// attributes, such as facial landmarks (for example, location of eye and mouth), facial
         /// occlusion, and other facial attributes.
@@ -7114,8 +7280,8 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// If you provide the same image, specify the same collection, and use the same external
-        /// ID in the <code>IndexFaces</code> operation, Amazon Rekognition doesn't save duplicate
-        /// face metadata.
+        /// ID in the <c>IndexFaces</c> operation, Amazon Rekognition doesn't save duplicate face
+        /// metadata.
         /// </para>
         ///   
         /// <para>
@@ -7126,8 +7292,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:IndexFaces</code>
-        /// action.
+        /// This operation requires permissions to perform the <c>rekognition:IndexFaces</c> action.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the IndexFaces service method.</param>
@@ -7201,20 +7366,20 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// If you're using version 1.0 of the face detection model, <code>IndexFaces</code> indexes
+        /// If you're using version 1.0 of the face detection model, <c>IndexFaces</c> indexes
         /// the 15 largest faces in the input image. Later versions of the face detection model
         /// index the 100 largest faces in the input image. 
         /// </para>
         ///  
         /// <para>
         /// If you're using version 4 or later of the face model, image orientation information
-        /// is not returned in the <code>OrientationCorrection</code> field. 
+        /// is not returned in the <c>OrientationCorrection</c> field. 
         /// </para>
         ///  
         /// <para>
         /// To determine which version of the model you're using, call <a>DescribeCollection</a>
         /// and supply the collection ID. You can also get the model version from the value of
-        /// <code>FaceModelVersion</code> in the response from <code>IndexFaces</code> 
+        /// <c>FaceModelVersion</c> in the response from <c>IndexFaces</c> 
         /// </para>
         ///  
         /// <para>
@@ -7222,7 +7387,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// If you provide the optional <code>ExternalImageId</code> for the input image you provided,
+        /// If you provide the optional <c>ExternalImageId</c> for the input image you provided,
         /// Amazon Rekognition associates this ID with all faces that it detects. When you call
         /// the <a>ListFaces</a> operation, the response returns the external ID. You can use
         /// this external image ID to create a client-side index to associate the faces with each
@@ -7230,19 +7395,19 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// You can specify the maximum number of faces to index with the <code>MaxFaces</code>
-        /// input parameter. This is useful when you want to index the largest faces in an image
-        /// and don't want to index smaller faces, such as those belonging to people standing
-        /// in the background.
+        /// You can specify the maximum number of faces to index with the <c>MaxFaces</c> input
+        /// parameter. This is useful when you want to index the largest faces in an image and
+        /// don't want to index smaller faces, such as those belonging to people standing in the
+        /// background.
         /// </para>
         ///  
         /// <para>
-        /// The <code>QualityFilter</code> input parameter allows you to filter out detected faces
-        /// that don’t meet a required quality bar. The quality bar is based on a variety of common
-        /// use cases. By default, <code>IndexFaces</code> chooses the quality bar that's used
-        /// to filter faces. You can also explicitly choose the quality bar. Use <code>QualityFilter</code>,
-        /// to set the quality bar by specifying <code>LOW</code>, <code>MEDIUM</code>, or <code>HIGH</code>.
-        /// If you do not want to filter detected faces, specify <code>NONE</code>. 
+        /// The <c>QualityFilter</c> input parameter allows you to filter out detected faces that
+        /// don’t meet a required quality bar. The quality bar is based on a variety of common
+        /// use cases. By default, <c>IndexFaces</c> chooses the quality bar that's used to filter
+        /// faces. You can also explicitly choose the quality bar. Use <c>QualityFilter</c>, to
+        /// set the quality bar by specifying <c>LOW</c>, <c>MEDIUM</c>, or <c>HIGH</c>. If you
+        /// do not want to filter detected faces, specify <c>NONE</c>. 
         /// </para>
         ///  <note> 
         /// <para>
@@ -7253,13 +7418,12 @@ namespace Amazon.Rekognition
         ///  </note> 
         /// <para>
         /// Information about faces detected in an image, but not indexed, is returned in an array
-        /// of <a>UnindexedFace</a> objects, <code>UnindexedFaces</code>. Faces aren't indexed
-        /// for reasons such as:
+        /// of <a>UnindexedFace</a> objects, <c>UnindexedFaces</c>. Faces aren't indexed for reasons
+        /// such as:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// The number of faces detected exceeds the value of the <code>MaxFaces</code> request
-        /// parameter.
+        /// The number of faces detected exceeds the value of the <c>MaxFaces</c> request parameter.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -7283,30 +7447,30 @@ namespace Amazon.Rekognition
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// In response, the <code>IndexFaces</code> operation returns an array of metadata for
-        /// all detected faces, <code>FaceRecords</code>. This includes: 
+        /// In response, the <c>IndexFaces</c> operation returns an array of metadata for all
+        /// detected faces, <c>FaceRecords</c>. This includes: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// The bounding box, <code>BoundingBox</code>, of the detected face. 
+        /// The bounding box, <c>BoundingBox</c>, of the detected face. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A confidence value, <code>Confidence</code>, which indicates the confidence that the
-        /// bounding box contains a face.
+        /// A confidence value, <c>Confidence</c>, which indicates the confidence that the bounding
+        /// box contains a face.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A face ID, <code>FaceId</code>, assigned by the service for each face that's detected
-        /// and stored.
+        /// A face ID, <c>FaceId</c>, assigned by the service for each face that's detected and
+        /// stored.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// An image ID, <code>ImageId</code>, assigned by the service for the input image.
+        /// An image ID, <c>ImageId</c>, assigned by the service for the input image.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If you request <code>ALL</code> or specific facial attributes (e.g., <code>FACE_OCCLUDED</code>)
+        /// If you request <c>ALL</c> or specific facial attributes (e.g., <c>FACE_OCCLUDED</c>)
         /// by using the detectionAttributes parameter, Amazon Rekognition returns detailed facial
         /// attributes, such as facial landmarks (for example, location of eye and mouth), facial
         /// occlusion, and other facial attributes.
@@ -7314,8 +7478,8 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// If you provide the same image, specify the same collection, and use the same external
-        /// ID in the <code>IndexFaces</code> operation, Amazon Rekognition doesn't save duplicate
-        /// face metadata.
+        /// ID in the <c>IndexFaces</c> operation, Amazon Rekognition doesn't save duplicate face
+        /// metadata.
         /// </para>
         ///   
         /// <para>
@@ -7326,8 +7490,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:IndexFaces</code>
-        /// action.
+        /// This operation requires permissions to perform the <c>rekognition:IndexFaces</c> action.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the IndexFaces service method.</param>
@@ -7388,8 +7551,8 @@ namespace Amazon.Rekognition
 
         /// <summary>
         /// Returns list of collection IDs in your account. If the result is truncated, the response
-        /// also provides a <code>NextToken</code> that you can use in the subsequent request
-        /// to fetch the next set of collection IDs.
+        /// also provides a <c>NextToken</c> that you can use in the subsequent request to fetch
+        /// the next set of collection IDs.
         /// 
         ///  
         /// <para>
@@ -7397,7 +7560,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:ListCollections</code>
+        /// This operation requires permissions to perform the <c>rekognition:ListCollections</c>
         /// action.
         /// </para>
         /// </summary>
@@ -7440,8 +7603,8 @@ namespace Amazon.Rekognition
 
         /// <summary>
         /// Returns list of collection IDs in your account. If the result is truncated, the response
-        /// also provides a <code>NextToken</code> that you can use in the subsequent request
-        /// to fetch the next set of collection IDs.
+        /// also provides a <c>NextToken</c> that you can use in the subsequent request to fetch
+        /// the next set of collection IDs.
         /// 
         ///  
         /// <para>
@@ -7449,7 +7612,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:ListCollections</code>
+        /// This operation requires permissions to perform the <c>rekognition:ListCollections</c>
         /// action.
         /// </para>
         /// </summary>
@@ -7498,18 +7661,23 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Lists the entries (images) within a dataset. An entry is a JSON Line that contains
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        ///  Lists the entries (images) within a dataset. An entry is a JSON Line that contains
         /// the information for a single image, including the image location, assigned labels,
         /// and object location bounding boxes. For more information, see <a href="https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/md-manifest-files.html">Creating
         /// a manifest file</a>.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// JSON Lines in the response include information about non-terminal errors found in
-        /// the dataset. Non terminal errors are reported in <code>errors</code> lists within
-        /// each JSON Line. The same information is reported in the training and testing validation
-        /// result manifests that Amazon Rekognition Custom Labels creates during model training.
-        /// 
+        /// the dataset. Non terminal errors are reported in <c>errors</c> lists within each JSON
+        /// Line. The same information is reported in the training and testing validation result
+        /// manifests that Amazon Rekognition Custom Labels creates during model training. 
         /// </para>
         ///  
         /// <para>
@@ -7518,7 +7686,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:ListDatasetEntries</code>
+        /// This operation requires permissions to perform the <c>rekognition:ListDatasetEntries</c>
         /// action.
         /// </para>
         /// </summary>
@@ -7550,7 +7718,7 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ResourceNotReadyException">
         /// The requested resource isn't ready. For example, this exception occurs when you call
-        /// <code>DetectCustomLabels</code> with a model version that isn't deployed.
+        /// <c>DetectCustomLabels</c> with a model version that isn't deployed.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ThrottlingException">
         /// Amazon Rekognition is temporarily unable to process the request. Try your call again.
@@ -7567,18 +7735,23 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Lists the entries (images) within a dataset. An entry is a JSON Line that contains
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        ///  Lists the entries (images) within a dataset. An entry is a JSON Line that contains
         /// the information for a single image, including the image location, assigned labels,
         /// and object location bounding boxes. For more information, see <a href="https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/md-manifest-files.html">Creating
         /// a manifest file</a>.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// JSON Lines in the response include information about non-terminal errors found in
-        /// the dataset. Non terminal errors are reported in <code>errors</code> lists within
-        /// each JSON Line. The same information is reported in the training and testing validation
-        /// result manifests that Amazon Rekognition Custom Labels creates during model training.
-        /// 
+        /// the dataset. Non terminal errors are reported in <c>errors</c> lists within each JSON
+        /// Line. The same information is reported in the training and testing validation result
+        /// manifests that Amazon Rekognition Custom Labels creates during model training. 
         /// </para>
         ///  
         /// <para>
@@ -7587,7 +7760,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:ListDatasetEntries</code>
+        /// This operation requires permissions to perform the <c>rekognition:ListDatasetEntries</c>
         /// action.
         /// </para>
         /// </summary>
@@ -7622,7 +7795,7 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ResourceNotReadyException">
         /// The requested resource isn't ready. For example, this exception occurs when you call
-        /// <code>DetectCustomLabels</code> with a model version that isn't deployed.
+        /// <c>DetectCustomLabels</c> with a model version that isn't deployed.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ThrottlingException">
         /// Amazon Rekognition is temporarily unable to process the request. Try your call again.
@@ -7643,10 +7816,16 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Lists the labels in a dataset. Amazon Rekognition Custom Labels uses labels to describe
         /// images. For more information, see <a href="https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/md-labeling-images.html">Labeling
         /// images</a>. 
-        /// 
+        /// </para>
         ///  
         /// <para>
         ///  Lists the labels in a dataset. Amazon Rekognition Custom Labels uses labels to describe
@@ -7682,7 +7861,7 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ResourceNotReadyException">
         /// The requested resource isn't ready. For example, this exception occurs when you call
-        /// <code>DetectCustomLabels</code> with a model version that isn't deployed.
+        /// <c>DetectCustomLabels</c> with a model version that isn't deployed.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ThrottlingException">
         /// Amazon Rekognition is temporarily unable to process the request. Try your call again.
@@ -7699,10 +7878,16 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Lists the labels in a dataset. Amazon Rekognition Custom Labels uses labels to describe
         /// images. For more information, see <a href="https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/md-labeling-images.html">Labeling
         /// images</a>. 
-        /// 
+        /// </para>
         ///  
         /// <para>
         ///  Lists the labels in a dataset. Amazon Rekognition Custom Labels uses labels to describe
@@ -7741,7 +7926,7 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ResourceNotReadyException">
         /// The requested resource isn't ready. For example, this exception occurs when you call
-        /// <code>DetectCustomLabels</code> with a model version that isn't deployed.
+        /// <c>DetectCustomLabels</c> with a model version that isn't deployed.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ThrottlingException">
         /// Amazon Rekognition is temporarily unable to process the request. Try your call again.
@@ -7769,8 +7954,7 @@ namespace Amazon.Rekognition
         /// 
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:ListFaces</code>
-        /// action.
+        /// This operation requires permissions to perform the <c>rekognition:ListFaces</c> action.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListFaces service method.</param>
@@ -7818,8 +8002,7 @@ namespace Amazon.Rekognition
         /// 
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:ListFaces</code>
-        /// action.
+        /// This operation requires permissions to perform the <c>rekognition:ListFaces</c> action.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListFaces service method.</param>
@@ -7863,12 +8046,101 @@ namespace Amazon.Rekognition
 
         #endregion
         
+        #region  ListMediaAnalysisJobs
+
+
+        /// <summary>
+        /// Returns a list of media analysis jobs. Results are sorted by <c>CreationTimestamp</c>
+        /// in descending order.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListMediaAnalysisJobs service method.</param>
+        /// 
+        /// <returns>The response from the ListMediaAnalysisJobs service method, as returned by Rekognition.</returns>
+        /// <exception cref="Amazon.Rekognition.Model.AccessDeniedException">
+        /// You are not authorized to perform the action.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
+        /// Amazon Rekognition experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.InvalidPaginationTokenException">
+        /// Pagination token in the request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.InvalidParameterException">
+        /// Input parameter violated a constraint. Validate your parameter before calling the
+        /// API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Rekognition.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ThrottlingException">
+        /// Amazon Rekognition is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/ListMediaAnalysisJobs">REST API Reference for ListMediaAnalysisJobs Operation</seealso>
+        public virtual ListMediaAnalysisJobsResponse ListMediaAnalysisJobs(ListMediaAnalysisJobsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListMediaAnalysisJobsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListMediaAnalysisJobsResponseUnmarshaller.Instance;
+
+            return Invoke<ListMediaAnalysisJobsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Returns a list of media analysis jobs. Results are sorted by <c>CreationTimestamp</c>
+        /// in descending order.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListMediaAnalysisJobs service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListMediaAnalysisJobs service method, as returned by Rekognition.</returns>
+        /// <exception cref="Amazon.Rekognition.Model.AccessDeniedException">
+        /// You are not authorized to perform the action.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
+        /// Amazon Rekognition experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.InvalidPaginationTokenException">
+        /// Pagination token in the request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.InvalidParameterException">
+        /// Input parameter violated a constraint. Validate your parameter before calling the
+        /// API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Rekognition.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ThrottlingException">
+        /// Amazon Rekognition is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/ListMediaAnalysisJobs">REST API Reference for ListMediaAnalysisJobs Operation</seealso>
+        public virtual Task<ListMediaAnalysisJobsResponse> ListMediaAnalysisJobsAsync(ListMediaAnalysisJobsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListMediaAnalysisJobsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListMediaAnalysisJobsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListMediaAnalysisJobsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ListProjectPolicies
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Gets a list of the project policies attached to a project.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// To attach a project policy to a project, call <a>PutProjectPolicy</a>. To remove a
@@ -7876,7 +8148,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:ListProjectPolicies</code>
+        /// This operation requires permissions to perform the <c>rekognition:ListProjectPolicies</c>
         /// action.
         /// </para>
         /// </summary>
@@ -7918,8 +8190,14 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Gets a list of the project policies attached to a project.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// To attach a project policy to a project, call <a>PutProjectPolicy</a>. To remove a
@@ -7927,7 +8205,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:ListProjectPolicies</code>
+        /// This operation requires permissions to perform the <c>rekognition:ListProjectPolicies</c>
         /// action.
         /// </para>
         /// </summary>
@@ -8062,7 +8340,7 @@ namespace Amazon.Rekognition
         /// 
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:ListTagsForResource</code>
+        /// This operation requires permissions to perform the <c>rekognition:ListTagsForResource</c>
         /// action. 
         /// </para>
         /// </summary>
@@ -8106,7 +8384,7 @@ namespace Amazon.Rekognition
         /// 
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:ListTagsForResource</code>
+        /// This operation requires permissions to perform the <c>rekognition:ListTagsForResource</c>
         /// action. 
         /// </para>
         /// </summary>
@@ -8152,11 +8430,11 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Returns metadata of the User such as <code>UserID</code> in the specified collection.
-        /// Anonymous User (to reserve faces without any identity) is not returned as part of
-        /// this request. The results are sorted by system generated primary key ID. If the response
-        /// is truncated, <code>NextToken</code> is returned in the response that can be used
-        /// in the subsequent request to retrieve the next set of identities.
+        /// Returns metadata of the User such as <c>UserID</c> in the specified collection. Anonymous
+        /// User (to reserve faces without any identity) is not returned as part of this request.
+        /// The results are sorted by system generated primary key ID. If the response is truncated,
+        /// <c>NextToken</c> is returned in the response that can be used in the subsequent request
+        /// to retrieve the next set of identities.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListUsers service method.</param>
         /// 
@@ -8196,11 +8474,11 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Returns metadata of the User such as <code>UserID</code> in the specified collection.
-        /// Anonymous User (to reserve faces without any identity) is not returned as part of
-        /// this request. The results are sorted by system generated primary key ID. If the response
-        /// is truncated, <code>NextToken</code> is returned in the response that can be used
-        /// in the subsequent request to retrieve the next set of identities.
+        /// Returns metadata of the User such as <c>UserID</c> in the specified collection. Anonymous
+        /// User (to reserve faces without any identity) is not returned as part of this request.
+        /// The results are sorted by system generated primary key ID. If the response is truncated,
+        /// <c>NextToken</c> is returned in the response that can be used in the subsequent request
+        /// to retrieve the next set of identities.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListUsers service method.</param>
         /// <param name="cancellationToken">
@@ -8247,11 +8525,18 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Attaches a project policy to a Amazon Rekognition Custom Labels project in a trusting
         /// AWS account. A project policy specifies that a trusted AWS account can copy a model
         /// version from a trusting AWS account to a project in the trusted AWS account. To copy
-        /// a model version you use the <a>CopyProjectVersion</a> operation.
-        /// 
+        /// a model version you use the <a>CopyProjectVersion</a> operation. Only applies to Custom
+        /// Labels projects.
+        /// </para>
         ///  
         /// <para>
         /// For more information about the format of a project policy document, see Attaching
@@ -8260,7 +8545,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// The response from <code>PutProjectPolicy</code> is a revision ID for the project policy.
+        /// The response from <c>PutProjectPolicy</c> is a revision ID for the project policy.
         /// You can attach multiple project policies to a project. You can also update an existing
         /// project policy by specifying the policy revision ID of the existing policy.
         /// </para>
@@ -8276,7 +8561,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:PutProjectPolicy</code>
+        /// This operation requires permissions to perform the <c>rekognition:PutProjectPolicy</c>
         /// action.
         /// </para>
         /// </summary>
@@ -8298,13 +8583,12 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.MalformedPolicyDocumentException">
-        /// The format of the project policy document that you supplied to <code>PutProjectPolicy</code>
+        /// The format of the project policy document that you supplied to <c>PutProjectPolicy</c>
         /// is incorrect.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
@@ -8336,11 +8620,18 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Attaches a project policy to a Amazon Rekognition Custom Labels project in a trusting
         /// AWS account. A project policy specifies that a trusted AWS account can copy a model
         /// version from a trusting AWS account to a project in the trusted AWS account. To copy
-        /// a model version you use the <a>CopyProjectVersion</a> operation.
-        /// 
+        /// a model version you use the <a>CopyProjectVersion</a> operation. Only applies to Custom
+        /// Labels projects.
+        /// </para>
         ///  
         /// <para>
         /// For more information about the format of a project policy document, see Attaching
@@ -8349,7 +8640,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// The response from <code>PutProjectPolicy</code> is a revision ID for the project policy.
+        /// The response from <c>PutProjectPolicy</c> is a revision ID for the project policy.
         /// You can attach multiple project policies to a project. You can also update an existing
         /// project policy by specifying the policy revision ID of the existing policy.
         /// </para>
@@ -8365,7 +8656,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:PutProjectPolicy</code>
+        /// This operation requires permissions to perform the <c>rekognition:PutProjectPolicy</c>
         /// action.
         /// </para>
         /// </summary>
@@ -8390,13 +8681,12 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.MalformedPolicyDocumentException">
-        /// The format of the project policy document that you supplied to <code>PutProjectPolicy</code>
+        /// The format of the project policy document that you supplied to <c>PutProjectPolicy</c>
         /// is incorrect.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
@@ -8437,26 +8727,25 @@ namespace Amazon.Rekognition
         /// 
         ///  
         /// <para>
-        ///  <code>RecognizeCelebrities</code> returns the 64 largest faces in the image. It lists
-        /// the recognized celebrities in the <code>CelebrityFaces</code> array and any unrecognized
-        /// faces in the <code>UnrecognizedFaces</code> array. <code>RecognizeCelebrities</code>
-        /// doesn't return celebrities whose faces aren't among the largest 64 faces in the image.
+        ///  <c>RecognizeCelebrities</c> returns the 64 largest faces in the image. It lists the
+        /// recognized celebrities in the <c>CelebrityFaces</c> array and any unrecognized faces
+        /// in the <c>UnrecognizedFaces</c> array. <c>RecognizeCelebrities</c> doesn't return
+        /// celebrities whose faces aren't among the largest 64 faces in the image.
         /// </para>
         ///  
         /// <para>
-        /// For each celebrity recognized, <code>RecognizeCelebrities</code> returns a <code>Celebrity</code>
-        /// object. The <code>Celebrity</code> object contains the celebrity name, ID, URL links
-        /// to additional information, match confidence, and a <code>ComparedFace</code> object
-        /// that you can use to locate the celebrity's face on the image.
+        /// For each celebrity recognized, <c>RecognizeCelebrities</c> returns a <c>Celebrity</c>
+        /// object. The <c>Celebrity</c> object contains the celebrity name, ID, URL links to
+        /// additional information, match confidence, and a <c>ComparedFace</c> object that you
+        /// can use to locate the celebrity's face on the image.
         /// </para>
         ///  
         /// <para>
         /// Amazon Rekognition doesn't retain information about which images a celebrity has been
-        /// recognized in. Your application must store this information and use the <code>Celebrity</code>
+        /// recognized in. Your application must store this information and use the <c>Celebrity</c>
         /// ID property as a unique identifier for the celebrity. If you don't store the celebrity
-        /// name or additional information URLs returned by <code>RecognizeCelebrities</code>,
-        /// you will need the ID to identify the celebrity in a call to the <a>GetCelebrityInfo</a>
-        /// operation.
+        /// name or additional information URLs returned by <c>RecognizeCelebrities</c>, you will
+        /// need the ID to identify the celebrity in a call to the <a>GetCelebrityInfo</a> operation.
         /// </para>
         ///  
         /// <para>
@@ -8472,7 +8761,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:RecognizeCelebrities</code>
+        /// This operation requires permissions to perform the <c>rekognition:RecognizeCelebrities</c>
         /// operation.
         /// </para>
         /// </summary>
@@ -8524,26 +8813,25 @@ namespace Amazon.Rekognition
         /// 
         ///  
         /// <para>
-        ///  <code>RecognizeCelebrities</code> returns the 64 largest faces in the image. It lists
-        /// the recognized celebrities in the <code>CelebrityFaces</code> array and any unrecognized
-        /// faces in the <code>UnrecognizedFaces</code> array. <code>RecognizeCelebrities</code>
-        /// doesn't return celebrities whose faces aren't among the largest 64 faces in the image.
+        ///  <c>RecognizeCelebrities</c> returns the 64 largest faces in the image. It lists the
+        /// recognized celebrities in the <c>CelebrityFaces</c> array and any unrecognized faces
+        /// in the <c>UnrecognizedFaces</c> array. <c>RecognizeCelebrities</c> doesn't return
+        /// celebrities whose faces aren't among the largest 64 faces in the image.
         /// </para>
         ///  
         /// <para>
-        /// For each celebrity recognized, <code>RecognizeCelebrities</code> returns a <code>Celebrity</code>
-        /// object. The <code>Celebrity</code> object contains the celebrity name, ID, URL links
-        /// to additional information, match confidence, and a <code>ComparedFace</code> object
-        /// that you can use to locate the celebrity's face on the image.
+        /// For each celebrity recognized, <c>RecognizeCelebrities</c> returns a <c>Celebrity</c>
+        /// object. The <c>Celebrity</c> object contains the celebrity name, ID, URL links to
+        /// additional information, match confidence, and a <c>ComparedFace</c> object that you
+        /// can use to locate the celebrity's face on the image.
         /// </para>
         ///  
         /// <para>
         /// Amazon Rekognition doesn't retain information about which images a celebrity has been
-        /// recognized in. Your application must store this information and use the <code>Celebrity</code>
+        /// recognized in. Your application must store this information and use the <c>Celebrity</c>
         /// ID property as a unique identifier for the celebrity. If you don't store the celebrity
-        /// name or additional information URLs returned by <code>RecognizeCelebrities</code>,
-        /// you will need the ID to identify the celebrity in a call to the <a>GetCelebrityInfo</a>
-        /// operation.
+        /// name or additional information URLs returned by <c>RecognizeCelebrities</c>, you will
+        /// need the ID to identify the celebrity in a call to the <a>GetCelebrityInfo</a> operation.
         /// </para>
         ///  
         /// <para>
@@ -8559,7 +8847,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:RecognizeCelebrities</code>
+        /// This operation requires permissions to perform the <c>rekognition:RecognizeCelebrities</c>
         /// operation.
         /// </para>
         /// </summary>
@@ -8620,7 +8908,7 @@ namespace Amazon.Rekognition
         /// 
         ///  <note> 
         /// <para>
-        /// You can also search faces without indexing faces by using the <code>SearchFacesByImage</code>
+        /// You can also search faces without indexing faces by using the <c>SearchFacesByImage</c>
         /// operation.
         /// </para>
         ///  </note> 
@@ -8628,8 +8916,8 @@ namespace Amazon.Rekognition
         ///  The operation response returns an array of faces that match, ordered by similarity
         /// score with the highest similarity first. More specifically, it is an array of metadata
         /// for each face match that is found. Along with the metadata, the response also includes
-        /// a <code>confidence</code> value for each face match, indicating the confidence that
-        /// the specific face matches the input face. 
+        /// a <c>confidence</c> value for each face match, indicating the confidence that the
+        /// specific face matches the input face. 
         /// </para>
         ///  
         /// <para>
@@ -8638,7 +8926,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:SearchFaces</code>
+        /// This operation requires permissions to perform the <c>rekognition:SearchFaces</c>
         /// action.
         /// </para>
         /// </summary>
@@ -8684,7 +8972,7 @@ namespace Amazon.Rekognition
         /// 
         ///  <note> 
         /// <para>
-        /// You can also search faces without indexing faces by using the <code>SearchFacesByImage</code>
+        /// You can also search faces without indexing faces by using the <c>SearchFacesByImage</c>
         /// operation.
         /// </para>
         ///  </note> 
@@ -8692,8 +8980,8 @@ namespace Amazon.Rekognition
         ///  The operation response returns an array of faces that match, ordered by similarity
         /// score with the highest similarity first. More specifically, it is an array of metadata
         /// for each face match that is found. Along with the metadata, the response also includes
-        /// a <code>confidence</code> value for each face match, indicating the confidence that
-        /// the specific face matches the input face. 
+        /// a <c>confidence</c> value for each face match, indicating the confidence that the
+        /// specific face matches the input face. 
         /// </para>
         ///  
         /// <para>
@@ -8702,7 +8990,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:SearchFaces</code>
+        /// This operation requires permissions to perform the <c>rekognition:SearchFaces</c>
         /// action.
         /// </para>
         /// </summary>
@@ -8760,8 +9048,8 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        ///  You can also call the <code>DetectFaces</code> operation and use the bounding boxes
-        /// in the response to make face crops, which then you can pass in to the <code>SearchFacesByImage</code>
+        ///  You can also call the <c>DetectFaces</c> operation and use the bounding boxes in
+        /// the response to make face crops, which then you can pass in to the <c>SearchFacesByImage</c>
         /// operation. 
         /// </para>
         ///  </note> 
@@ -8775,15 +9063,15 @@ namespace Amazon.Rekognition
         /// <para>
         ///  The response returns an array of faces that match, ordered by similarity score with
         /// the highest similarity first. More specifically, it is an array of metadata for each
-        /// face match found. Along with the metadata, the response also includes a <code>similarity</code>
+        /// face match found. Along with the metadata, the response also includes a <c>similarity</c>
         /// indicating how similar the face is to the input face. In the response, the operation
         /// also returns the bounding box (and a confidence level that the bounding box contains
         /// a face) of the face that Amazon Rekognition used for the input image. 
         /// </para>
         ///  
         /// <para>
-        /// If no faces are detected in the input image, <code>SearchFacesByImage</code> returns
-        /// an <code>InvalidParameterException</code> error. 
+        /// If no faces are detected in the input image, <c>SearchFacesByImage</c> returns an
+        /// <c>InvalidParameterException</c> error. 
         /// </para>
         ///  
         /// <para>
@@ -8792,12 +9080,11 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// The <code>QualityFilter</code> input parameter allows you to filter out detected faces
-        /// that don’t meet a required quality bar. The quality bar is based on a variety of common
-        /// use cases. Use <code>QualityFilter</code> to set the quality bar for filtering by
-        /// specifying <code>LOW</code>, <code>MEDIUM</code>, or <code>HIGH</code>. If you do
-        /// not want to filter detected faces, specify <code>NONE</code>. The default value is
-        /// <code>NONE</code>.
+        /// The <c>QualityFilter</c> input parameter allows you to filter out detected faces that
+        /// don’t meet a required quality bar. The quality bar is based on a variety of common
+        /// use cases. Use <c>QualityFilter</c> to set the quality bar for filtering by specifying
+        /// <c>LOW</c>, <c>MEDIUM</c>, or <c>HIGH</c>. If you do not want to filter detected faces,
+        /// specify <c>NONE</c>. The default value is <c>NONE</c>.
         /// </para>
         ///  <note> 
         /// <para>
@@ -8807,7 +9094,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  </note> 
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:SearchFacesByImage</code>
+        /// This operation requires permissions to perform the <c>rekognition:SearchFacesByImage</c>
         /// action.
         /// </para>
         /// </summary>
@@ -8869,8 +9156,8 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        ///  You can also call the <code>DetectFaces</code> operation and use the bounding boxes
-        /// in the response to make face crops, which then you can pass in to the <code>SearchFacesByImage</code>
+        ///  You can also call the <c>DetectFaces</c> operation and use the bounding boxes in
+        /// the response to make face crops, which then you can pass in to the <c>SearchFacesByImage</c>
         /// operation. 
         /// </para>
         ///  </note> 
@@ -8884,15 +9171,15 @@ namespace Amazon.Rekognition
         /// <para>
         ///  The response returns an array of faces that match, ordered by similarity score with
         /// the highest similarity first. More specifically, it is an array of metadata for each
-        /// face match found. Along with the metadata, the response also includes a <code>similarity</code>
+        /// face match found. Along with the metadata, the response also includes a <c>similarity</c>
         /// indicating how similar the face is to the input face. In the response, the operation
         /// also returns the bounding box (and a confidence level that the bounding box contains
         /// a face) of the face that Amazon Rekognition used for the input image. 
         /// </para>
         ///  
         /// <para>
-        /// If no faces are detected in the input image, <code>SearchFacesByImage</code> returns
-        /// an <code>InvalidParameterException</code> error. 
+        /// If no faces are detected in the input image, <c>SearchFacesByImage</c> returns an
+        /// <c>InvalidParameterException</c> error. 
         /// </para>
         ///  
         /// <para>
@@ -8901,12 +9188,11 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        /// The <code>QualityFilter</code> input parameter allows you to filter out detected faces
-        /// that don’t meet a required quality bar. The quality bar is based on a variety of common
-        /// use cases. Use <code>QualityFilter</code> to set the quality bar for filtering by
-        /// specifying <code>LOW</code>, <code>MEDIUM</code>, or <code>HIGH</code>. If you do
-        /// not want to filter detected faces, specify <code>NONE</code>. The default value is
-        /// <code>NONE</code>.
+        /// The <c>QualityFilter</c> input parameter allows you to filter out detected faces that
+        /// don’t meet a required quality bar. The quality bar is based on a variety of common
+        /// use cases. Use <c>QualityFilter</c> to set the quality bar for filtering by specifying
+        /// <c>LOW</c>, <c>MEDIUM</c>, or <c>HIGH</c>. If you do not want to filter detected faces,
+        /// specify <c>NONE</c>. The default value is <c>NONE</c>.
         /// </para>
         ///  <note> 
         /// <para>
@@ -8916,7 +9202,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  </note> 
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:SearchFacesByImage</code>
+        /// This operation requires permissions to perform the <c>rekognition:SearchFacesByImage</c>
         /// action.
         /// </para>
         /// </summary>
@@ -8973,10 +9259,10 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Searches for UserIDs within a collection based on a <code>FaceId</code> or <code>UserId</code>.
+        /// Searches for UserIDs within a collection based on a <c>FaceId</c> or <c>UserId</c>.
         /// This API can be used to find the closest UserID (with a highest similarity) to associate
-        /// a face. The request must be provided with either <code>FaceId</code> or <code>UserId</code>.
-        /// The operation returns an array of UserID that match the <code>FaceId</code> or <code>UserId</code>,
+        /// a face. The request must be provided with either <c>FaceId</c> or <c>UserId</c>. The
+        /// operation returns an array of UserID that match the <c>FaceId</c> or <c>UserId</c>,
         /// ordered by similarity score with the highest similarity first.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the SearchUsers service method.</param>
@@ -9014,10 +9300,10 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
-        /// Searches for UserIDs within a collection based on a <code>FaceId</code> or <code>UserId</code>.
+        /// Searches for UserIDs within a collection based on a <c>FaceId</c> or <c>UserId</c>.
         /// This API can be used to find the closest UserID (with a highest similarity) to associate
-        /// a face. The request must be provided with either <code>FaceId</code> or <code>UserId</code>.
-        /// The operation returns an array of UserID that match the <code>FaceId</code> or <code>UserId</code>,
+        /// a face. The request must be provided with either <c>FaceId</c> or <c>UserId</c>. The
+        /// operation returns an array of UserID that match the <c>FaceId</c> or <c>UserId</c>,
         /// ordered by similarity score with the highest similarity first.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the SearchUsers service method.</param>
@@ -9074,9 +9360,9 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// Information about faces detected in the supplied image, but not used for the search,
-        /// is returned in an array of <code>UnsearchedFace</code> objects. If no valid face is
-        /// detected in the image, the response will contain an empty <code>UserMatches</code>
-        /// list and no <code>SearchedFace</code> object. 
+        /// is returned in an array of <c>UnsearchedFace</c> objects. If no valid face is detected
+        /// in the image, the response will contain an empty <c>UserMatches</c> list and no <c>SearchedFace</c>
+        /// object. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the SearchUsersByImage service method.</param>
@@ -9137,9 +9423,9 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// Information about faces detected in the supplied image, but not used for the search,
-        /// is returned in an array of <code>UnsearchedFace</code> objects. If no valid face is
-        /// detected in the image, the response will contain an empty <code>UserMatches</code>
-        /// list and no <code>SearchedFace</code> object. 
+        /// is returned in an array of <c>UnsearchedFace</c> objects. If no valid face is detected
+        /// in the image, the response will contain an empty <c>UserMatches</c> list and no <c>SearchedFace</c>
+        /// object. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the SearchUsersByImage service method.</param>
@@ -9201,13 +9487,13 @@ namespace Amazon.Rekognition
         /// <para>
         /// Amazon Rekognition Video can detect celebrities in a video must be stored in an Amazon
         /// S3 bucket. Use <a>Video</a> to specify the bucket name and the filename of the video.
-        /// <code>StartCelebrityRecognition</code> returns a job identifier (<code>JobId</code>)
-        /// which you use to get the results of the analysis. When celebrity recognition analysis
-        /// is finished, Amazon Rekognition Video publishes a completion status to the Amazon
-        /// Simple Notification Service topic that you specify in <code>NotificationChannel</code>.
-        /// To get the results of the celebrity recognition analysis, first check that the status
-        /// value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetCelebrityRecognition</a>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartCelebrityRecognition</code>.
+        /// <c>StartCelebrityRecognition</c> returns a job identifier (<c>JobId</c>) which you
+        /// use to get the results of the analysis. When celebrity recognition analysis is finished,
+        /// Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification
+        /// Service topic that you specify in <c>NotificationChannel</c>. To get the results of
+        /// the celebrity recognition analysis, first check that the status value published to
+        /// the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <a>GetCelebrityRecognition</a>
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartCelebrityRecognition</c>.
         /// 
         /// </para>
         ///  
@@ -9223,9 +9509,8 @@ namespace Amazon.Rekognition
         /// You are not authorized to perform the action.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -9239,10 +9524,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -9273,13 +9557,13 @@ namespace Amazon.Rekognition
         /// <para>
         /// Amazon Rekognition Video can detect celebrities in a video must be stored in an Amazon
         /// S3 bucket. Use <a>Video</a> to specify the bucket name and the filename of the video.
-        /// <code>StartCelebrityRecognition</code> returns a job identifier (<code>JobId</code>)
-        /// which you use to get the results of the analysis. When celebrity recognition analysis
-        /// is finished, Amazon Rekognition Video publishes a completion status to the Amazon
-        /// Simple Notification Service topic that you specify in <code>NotificationChannel</code>.
-        /// To get the results of the celebrity recognition analysis, first check that the status
-        /// value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetCelebrityRecognition</a>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartCelebrityRecognition</code>.
+        /// <c>StartCelebrityRecognition</c> returns a job identifier (<c>JobId</c>) which you
+        /// use to get the results of the analysis. When celebrity recognition analysis is finished,
+        /// Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification
+        /// Service topic that you specify in <c>NotificationChannel</c>. To get the results of
+        /// the celebrity recognition analysis, first check that the status value published to
+        /// the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <a>GetCelebrityRecognition</a>
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartCelebrityRecognition</c>.
         /// 
         /// </para>
         ///  
@@ -9298,9 +9582,8 @@ namespace Amazon.Rekognition
         /// You are not authorized to perform the action.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -9314,10 +9597,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -9353,17 +9635,16 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// Amazon Rekognition Video can moderate content in a video stored in an Amazon S3 bucket.
-        /// Use <a>Video</a> to specify the bucket name and the filename of the video. <code>StartContentModeration</code>
-        /// returns a job identifier (<code>JobId</code>) which you use to get the results of
-        /// the analysis. When content analysis is finished, Amazon Rekognition Video publishes
-        /// a completion status to the Amazon Simple Notification Service topic that you specify
-        /// in <code>NotificationChannel</code>.
+        /// Use <a>Video</a> to specify the bucket name and the filename of the video. <c>StartContentModeration</c>
+        /// returns a job identifier (<c>JobId</c>) which you use to get the results of the analysis.
+        /// When content analysis is finished, Amazon Rekognition Video publishes a completion
+        /// status to the Amazon Simple Notification Service topic that you specify in <c>NotificationChannel</c>.
         /// </para>
         ///  
         /// <para>
         /// To get the results of the content analysis, first check that the status value published
-        /// to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetContentModeration</a>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartContentModeration</code>.
+        /// to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <a>GetContentModeration</a>
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartContentModeration</c>.
         /// 
         /// </para>
         ///  
@@ -9378,9 +9659,8 @@ namespace Amazon.Rekognition
         /// You are not authorized to perform the action.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -9394,10 +9674,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -9429,17 +9708,16 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// Amazon Rekognition Video can moderate content in a video stored in an Amazon S3 bucket.
-        /// Use <a>Video</a> to specify the bucket name and the filename of the video. <code>StartContentModeration</code>
-        /// returns a job identifier (<code>JobId</code>) which you use to get the results of
-        /// the analysis. When content analysis is finished, Amazon Rekognition Video publishes
-        /// a completion status to the Amazon Simple Notification Service topic that you specify
-        /// in <code>NotificationChannel</code>.
+        /// Use <a>Video</a> to specify the bucket name and the filename of the video. <c>StartContentModeration</c>
+        /// returns a job identifier (<c>JobId</c>) which you use to get the results of the analysis.
+        /// When content analysis is finished, Amazon Rekognition Video publishes a completion
+        /// status to the Amazon Simple Notification Service topic that you specify in <c>NotificationChannel</c>.
         /// </para>
         ///  
         /// <para>
         /// To get the results of the content analysis, first check that the status value published
-        /// to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetContentModeration</a>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartContentModeration</code>.
+        /// to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <a>GetContentModeration</a>
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartContentModeration</c>.
         /// 
         /// </para>
         ///  
@@ -9457,9 +9735,8 @@ namespace Amazon.Rekognition
         /// You are not authorized to perform the action.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -9473,10 +9750,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -9510,13 +9786,13 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// Amazon Rekognition Video can detect faces in a video stored in an Amazon S3 bucket.
-        /// Use <a>Video</a> to specify the bucket name and the filename of the video. <code>StartFaceDetection</code>
-        /// returns a job identifier (<code>JobId</code>) that you use to get the results of the
-        /// operation. When face detection is finished, Amazon Rekognition Video publishes a completion
-        /// status to the Amazon Simple Notification Service topic that you specify in <code>NotificationChannel</code>.
+        /// Use <a>Video</a> to specify the bucket name and the filename of the video. <c>StartFaceDetection</c>
+        /// returns a job identifier (<c>JobId</c>) that you use to get the results of the operation.
+        /// When face detection is finished, Amazon Rekognition Video publishes a completion status
+        /// to the Amazon Simple Notification Service topic that you specify in <c>NotificationChannel</c>.
         /// To get the results of the face detection operation, first check that the status value
-        /// published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetFaceDetection</a>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartFaceDetection</code>.
+        /// published to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <a>GetFaceDetection</a>
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartFaceDetection</c>.
         /// </para>
         ///  
         /// <para>
@@ -9531,9 +9807,8 @@ namespace Amazon.Rekognition
         /// You are not authorized to perform the action.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -9547,10 +9822,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -9580,13 +9854,13 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// Amazon Rekognition Video can detect faces in a video stored in an Amazon S3 bucket.
-        /// Use <a>Video</a> to specify the bucket name and the filename of the video. <code>StartFaceDetection</code>
-        /// returns a job identifier (<code>JobId</code>) that you use to get the results of the
-        /// operation. When face detection is finished, Amazon Rekognition Video publishes a completion
-        /// status to the Amazon Simple Notification Service topic that you specify in <code>NotificationChannel</code>.
+        /// Use <a>Video</a> to specify the bucket name and the filename of the video. <c>StartFaceDetection</c>
+        /// returns a job identifier (<c>JobId</c>) that you use to get the results of the operation.
+        /// When face detection is finished, Amazon Rekognition Video publishes a completion status
+        /// to the Amazon Simple Notification Service topic that you specify in <c>NotificationChannel</c>.
         /// To get the results of the face detection operation, first check that the status value
-        /// published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetFaceDetection</a>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartFaceDetection</code>.
+        /// published to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <a>GetFaceDetection</a>
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartFaceDetection</c>.
         /// </para>
         ///  
         /// <para>
@@ -9604,9 +9878,8 @@ namespace Amazon.Rekognition
         /// You are not authorized to perform the action.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -9620,10 +9893,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -9658,14 +9930,14 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// The video must be stored in an Amazon S3 bucket. Use <a>Video</a> to specify the bucket
-        /// name and the filename of the video. <code>StartFaceSearch</code> returns a job identifier
-        /// (<code>JobId</code>) which you use to get the search results once the search has completed.
+        /// name and the filename of the video. <c>StartFaceSearch</c> returns a job identifier
+        /// (<c>JobId</c>) which you use to get the search results once the search has completed.
         /// When searching is finished, Amazon Rekognition Video publishes a completion status
-        /// to the Amazon Simple Notification Service topic that you specify in <code>NotificationChannel</code>.
+        /// to the Amazon Simple Notification Service topic that you specify in <c>NotificationChannel</c>.
         /// To get the search results, first check that the status value published to the Amazon
-        /// SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetFaceSearch</a> and pass the
-        /// job identifier (<code>JobId</code>) from the initial call to <code>StartFaceSearch</code>.
-        /// For more information, see <a href="https://docs.aws.amazon.com/rekognition/latest/dg/procedure-person-search-videos.html">Searching
+        /// SNS topic is <c>SUCCEEDED</c>. If so, call <a>GetFaceSearch</a> and pass the job identifier
+        /// (<c>JobId</c>) from the initial call to <c>StartFaceSearch</c>. For more information,
+        /// see <a href="https://docs.aws.amazon.com/rekognition/latest/dg/procedure-person-search-videos.html">Searching
         /// stored videos for faces</a>. 
         /// </para>
         /// </summary>
@@ -9676,9 +9948,8 @@ namespace Amazon.Rekognition
         /// You are not authorized to perform the action.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -9692,10 +9963,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -9729,14 +9999,14 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// The video must be stored in an Amazon S3 bucket. Use <a>Video</a> to specify the bucket
-        /// name and the filename of the video. <code>StartFaceSearch</code> returns a job identifier
-        /// (<code>JobId</code>) which you use to get the search results once the search has completed.
+        /// name and the filename of the video. <c>StartFaceSearch</c> returns a job identifier
+        /// (<c>JobId</c>) which you use to get the search results once the search has completed.
         /// When searching is finished, Amazon Rekognition Video publishes a completion status
-        /// to the Amazon Simple Notification Service topic that you specify in <code>NotificationChannel</code>.
+        /// to the Amazon Simple Notification Service topic that you specify in <c>NotificationChannel</c>.
         /// To get the search results, first check that the status value published to the Amazon
-        /// SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetFaceSearch</a> and pass the
-        /// job identifier (<code>JobId</code>) from the initial call to <code>StartFaceSearch</code>.
-        /// For more information, see <a href="https://docs.aws.amazon.com/rekognition/latest/dg/procedure-person-search-videos.html">Searching
+        /// SNS topic is <c>SUCCEEDED</c>. If so, call <a>GetFaceSearch</a> and pass the job identifier
+        /// (<c>JobId</c>) from the initial call to <c>StartFaceSearch</c>. For more information,
+        /// see <a href="https://docs.aws.amazon.com/rekognition/latest/dg/procedure-person-search-videos.html">Searching
         /// stored videos for faces</a>. 
         /// </para>
         /// </summary>
@@ -9750,9 +10020,8 @@ namespace Amazon.Rekognition
         /// You are not authorized to perform the action.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -9766,10 +10035,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -9813,16 +10081,16 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// The video must be stored in an Amazon S3 bucket. Use <a>Video</a> to specify the bucket
-        /// name and the filename of the video. <code>StartLabelDetection</code> returns a job
-        /// identifier (<code>JobId</code>) which you use to get the results of the operation.
-        /// When label detection is finished, Amazon Rekognition Video publishes a completion
-        /// status to the Amazon Simple Notification Service topic that you specify in <code>NotificationChannel</code>.
+        /// name and the filename of the video. <c>StartLabelDetection</c> returns a job identifier
+        /// (<c>JobId</c>) which you use to get the results of the operation. When label detection
+        /// is finished, Amazon Rekognition Video publishes a completion status to the Amazon
+        /// Simple Notification Service topic that you specify in <c>NotificationChannel</c>.
         /// </para>
         ///  
         /// <para>
         /// To get the results of the label detection operation, first check that the status value
-        /// published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetLabelDetection</a>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartLabelDetection</code>.
+        /// published to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <a>GetLabelDetection</a>
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartLabelDetection</c>.
         /// </para>
         ///  
         /// <para>
@@ -9830,17 +10098,17 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        ///  <code>StartLabelDetection</code> has the <code>GENERAL_LABELS</code> Feature applied
-        /// by default. This feature allows you to provide filtering criteria to the <code>Settings</code>
-        /// parameter. You can filter with sets of individual labels or with label categories.
-        /// You can specify inclusive filters, exclusive filters, or a combination of inclusive
-        /// and exclusive filters. For more information on filtering, see <a href="https://docs.aws.amazon.com/rekognition/latest/dg/labels-detecting-labels-video.html">Detecting
+        ///  <c>StartLabelDetection</c> has the <c>GENERAL_LABELS</c> Feature applied by default.
+        /// This feature allows you to provide filtering criteria to the <c>Settings</c> parameter.
+        /// You can filter with sets of individual labels or with label categories. You can specify
+        /// inclusive filters, exclusive filters, or a combination of inclusive and exclusive
+        /// filters. For more information on filtering, see <a href="https://docs.aws.amazon.com/rekognition/latest/dg/labels-detecting-labels-video.html">Detecting
         /// labels in a video</a>.
         /// </para>
         ///  
         /// <para>
-        /// You can specify <code>MinConfidence</code> to control the confidence threshold for
-        /// the labels returned. The default is 50.
+        /// You can specify <c>MinConfidence</c> to control the confidence threshold for the labels
+        /// returned. The default is 50.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartLabelDetection service method.</param>
@@ -9850,9 +10118,8 @@ namespace Amazon.Rekognition
         /// You are not authorized to perform the action.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -9866,10 +10133,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -9906,16 +10172,16 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// The video must be stored in an Amazon S3 bucket. Use <a>Video</a> to specify the bucket
-        /// name and the filename of the video. <code>StartLabelDetection</code> returns a job
-        /// identifier (<code>JobId</code>) which you use to get the results of the operation.
-        /// When label detection is finished, Amazon Rekognition Video publishes a completion
-        /// status to the Amazon Simple Notification Service topic that you specify in <code>NotificationChannel</code>.
+        /// name and the filename of the video. <c>StartLabelDetection</c> returns a job identifier
+        /// (<c>JobId</c>) which you use to get the results of the operation. When label detection
+        /// is finished, Amazon Rekognition Video publishes a completion status to the Amazon
+        /// Simple Notification Service topic that you specify in <c>NotificationChannel</c>.
         /// </para>
         ///  
         /// <para>
         /// To get the results of the label detection operation, first check that the status value
-        /// published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetLabelDetection</a>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartLabelDetection</code>.
+        /// published to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <a>GetLabelDetection</a>
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartLabelDetection</c>.
         /// </para>
         ///  
         /// <para>
@@ -9923,17 +10189,17 @@ namespace Amazon.Rekognition
         /// </para>
         ///  
         /// <para>
-        ///  <code>StartLabelDetection</code> has the <code>GENERAL_LABELS</code> Feature applied
-        /// by default. This feature allows you to provide filtering criteria to the <code>Settings</code>
-        /// parameter. You can filter with sets of individual labels or with label categories.
-        /// You can specify inclusive filters, exclusive filters, or a combination of inclusive
-        /// and exclusive filters. For more information on filtering, see <a href="https://docs.aws.amazon.com/rekognition/latest/dg/labels-detecting-labels-video.html">Detecting
+        ///  <c>StartLabelDetection</c> has the <c>GENERAL_LABELS</c> Feature applied by default.
+        /// This feature allows you to provide filtering criteria to the <c>Settings</c> parameter.
+        /// You can filter with sets of individual labels or with label categories. You can specify
+        /// inclusive filters, exclusive filters, or a combination of inclusive and exclusive
+        /// filters. For more information on filtering, see <a href="https://docs.aws.amazon.com/rekognition/latest/dg/labels-detecting-labels-video.html">Detecting
         /// labels in a video</a>.
         /// </para>
         ///  
         /// <para>
-        /// You can specify <code>MinConfidence</code> to control the confidence threshold for
-        /// the labels returned. The default is 50.
+        /// You can specify <c>MinConfidence</c> to control the confidence threshold for the labels
+        /// returned. The default is 50.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartLabelDetection service method.</param>
@@ -9946,9 +10212,8 @@ namespace Amazon.Rekognition
         /// You are not authorized to perform the action.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -9962,10 +10227,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -9990,6 +10254,131 @@ namespace Amazon.Rekognition
 
         #endregion
         
+        #region  StartMediaAnalysisJob
+
+
+        /// <summary>
+        /// Initiates a new media analysis job. Accepts a manifest file in an Amazon S3 bucket.
+        /// The output is a manifest file and a summary of the manifest stored in the Amazon S3
+        /// bucket.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartMediaAnalysisJob service method.</param>
+        /// 
+        /// <returns>The response from the StartMediaAnalysisJob service method, as returned by Rekognition.</returns>
+        /// <exception cref="Amazon.Rekognition.Model.AccessDeniedException">
+        /// You are not authorized to perform the action.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
+        /// Amazon Rekognition experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.InvalidManifestException">
+        /// Indicates that a provided manifest file is empty or larger than the allowed limit.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.InvalidParameterException">
+        /// Input parameter violated a constraint. Validate your parameter before calling the
+        /// API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.InvalidS3ObjectException">
+        /// Amazon Rekognition is unable to access the S3 object specified in the request.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
+        /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Rekognition.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ResourceNotFoundException">
+        /// The resource specified in the request cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ResourceNotReadyException">
+        /// The requested resource isn't ready. For example, this exception occurs when you call
+        /// <c>DetectCustomLabels</c> with a model version that isn't deployed.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ThrottlingException">
+        /// Amazon Rekognition is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/StartMediaAnalysisJob">REST API Reference for StartMediaAnalysisJob Operation</seealso>
+        public virtual StartMediaAnalysisJobResponse StartMediaAnalysisJob(StartMediaAnalysisJobRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartMediaAnalysisJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartMediaAnalysisJobResponseUnmarshaller.Instance;
+
+            return Invoke<StartMediaAnalysisJobResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Initiates a new media analysis job. Accepts a manifest file in an Amazon S3 bucket.
+        /// The output is a manifest file and a summary of the manifest stored in the Amazon S3
+        /// bucket.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartMediaAnalysisJob service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StartMediaAnalysisJob service method, as returned by Rekognition.</returns>
+        /// <exception cref="Amazon.Rekognition.Model.AccessDeniedException">
+        /// You are not authorized to perform the action.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
+        /// Amazon Rekognition experienced a service issue. Try your call again.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.InvalidManifestException">
+        /// Indicates that a provided manifest file is empty or larger than the allowed limit.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.InvalidParameterException">
+        /// Input parameter violated a constraint. Validate your parameter before calling the
+        /// API operation again.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.InvalidS3ObjectException">
+        /// Amazon Rekognition is unable to access the S3 object specified in the request.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
+        /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
+        /// The number of requests exceeded your throughput limit. If you want to increase this
+        /// limit, contact Amazon Rekognition.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ResourceNotFoundException">
+        /// The resource specified in the request cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ResourceNotReadyException">
+        /// The requested resource isn't ready. For example, this exception occurs when you call
+        /// <c>DetectCustomLabels</c> with a model version that isn't deployed.
+        /// </exception>
+        /// <exception cref="Amazon.Rekognition.Model.ThrottlingException">
+        /// Amazon Rekognition is temporarily unable to process the request. Try your call again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/StartMediaAnalysisJob">REST API Reference for StartMediaAnalysisJob Operation</seealso>
+        public virtual Task<StartMediaAnalysisJobResponse> StartMediaAnalysisJobAsync(StartMediaAnalysisJobRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartMediaAnalysisJobRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartMediaAnalysisJobResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<StartMediaAnalysisJobResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  StartPersonTracking
 
 
@@ -10000,16 +10389,16 @@ namespace Amazon.Rekognition
         /// <para>
         /// Amazon Rekognition Video can track the path of people in a video stored in an Amazon
         /// S3 bucket. Use <a>Video</a> to specify the bucket name and the filename of the video.
-        /// <code>StartPersonTracking</code> returns a job identifier (<code>JobId</code>) which
-        /// you use to get the results of the operation. When label detection is finished, Amazon
-        /// Rekognition publishes a completion status to the Amazon Simple Notification Service
-        /// topic that you specify in <code>NotificationChannel</code>. 
+        /// <c>StartPersonTracking</c> returns a job identifier (<c>JobId</c>) which you use to
+        /// get the results of the operation. When label detection is finished, Amazon Rekognition
+        /// publishes a completion status to the Amazon Simple Notification Service topic that
+        /// you specify in <c>NotificationChannel</c>. 
         /// </para>
         ///  
         /// <para>
         /// To get the results of the person detection operation, first check that the status
-        /// value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetPersonTracking</a>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartPersonTracking</code>.
+        /// value published to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <a>GetPersonTracking</a>
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartPersonTracking</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartPersonTracking service method.</param>
@@ -10019,9 +10408,8 @@ namespace Amazon.Rekognition
         /// You are not authorized to perform the action.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -10035,10 +10423,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -10069,16 +10456,16 @@ namespace Amazon.Rekognition
         /// <para>
         /// Amazon Rekognition Video can track the path of people in a video stored in an Amazon
         /// S3 bucket. Use <a>Video</a> to specify the bucket name and the filename of the video.
-        /// <code>StartPersonTracking</code> returns a job identifier (<code>JobId</code>) which
-        /// you use to get the results of the operation. When label detection is finished, Amazon
-        /// Rekognition publishes a completion status to the Amazon Simple Notification Service
-        /// topic that you specify in <code>NotificationChannel</code>. 
+        /// <c>StartPersonTracking</c> returns a job identifier (<c>JobId</c>) which you use to
+        /// get the results of the operation. When label detection is finished, Amazon Rekognition
+        /// publishes a completion status to the Amazon Simple Notification Service topic that
+        /// you specify in <c>NotificationChannel</c>. 
         /// </para>
         ///  
         /// <para>
         /// To get the results of the person detection operation, first check that the status
-        /// value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetPersonTracking</a>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartPersonTracking</code>.
+        /// value published to the Amazon SNS topic is <c>SUCCEEDED</c>. If so, call <a>GetPersonTracking</a>
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartPersonTracking</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartPersonTracking service method.</param>
@@ -10091,9 +10478,8 @@ namespace Amazon.Rekognition
         /// You are not authorized to perform the action.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -10107,10 +10493,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -10139,9 +10524,15 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Starts the running of the version of a model. Starting a model takes a while to complete.
-        /// To check the current state of the model, use <a>DescribeProjectVersions</a>.
-        /// 
+        /// To check the current state of the model, use <a>DescribeProjectVersions</a>. 
+        /// </para>
         ///  
         /// <para>
         /// Once the model is running, you can detect custom labels in new images by calling <a>DetectCustomLabels</a>.
@@ -10153,12 +10544,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  </note> 
         /// <para>
-        /// For more information, see <i>Running a trained Amazon Rekognition Custom Labels model</i>
-        /// in the Amazon Rekognition Custom Labels Guide.
-        /// </para>
-        ///  
-        /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:StartProjectVersion</code>
+        /// This operation requires permissions to perform the <c>rekognition:StartProjectVersion</c>
         /// action.
         /// </para>
         /// </summary>
@@ -10177,10 +10563,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -10207,9 +10592,15 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Starts the running of the version of a model. Starting a model takes a while to complete.
-        /// To check the current state of the model, use <a>DescribeProjectVersions</a>.
-        /// 
+        /// To check the current state of the model, use <a>DescribeProjectVersions</a>. 
+        /// </para>
         ///  
         /// <para>
         /// Once the model is running, you can detect custom labels in new images by calling <a>DetectCustomLabels</a>.
@@ -10221,12 +10612,7 @@ namespace Amazon.Rekognition
         /// </para>
         ///  </note> 
         /// <para>
-        /// For more information, see <i>Running a trained Amazon Rekognition Custom Labels model</i>
-        /// in the Amazon Rekognition Custom Labels Guide.
-        /// </para>
-        ///  
-        /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:StartProjectVersion</code>
+        /// This operation requires permissions to perform the <c>rekognition:StartProjectVersion</c>
         /// action.
         /// </para>
         /// </summary>
@@ -10248,10 +10634,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -10287,25 +10672,24 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// Amazon Rekognition Video can detect segments in a video stored in an Amazon S3 bucket.
-        /// Use <a>Video</a> to specify the bucket name and the filename of the video. <code>StartSegmentDetection</code>
-        /// returns a job identifier (<code>JobId</code>) which you use to get the results of
-        /// the operation. When segment detection is finished, Amazon Rekognition Video publishes
-        /// a completion status to the Amazon Simple Notification Service topic that you specify
-        /// in <code>NotificationChannel</code>.
+        /// Use <a>Video</a> to specify the bucket name and the filename of the video. <c>StartSegmentDetection</c>
+        /// returns a job identifier (<c>JobId</c>) which you use to get the results of the operation.
+        /// When segment detection is finished, Amazon Rekognition Video publishes a completion
+        /// status to the Amazon Simple Notification Service topic that you specify in <c>NotificationChannel</c>.
         /// </para>
         ///  
         /// <para>
-        /// You can use the <code>Filters</code> (<a>StartSegmentDetectionFilters</a>) input parameter
-        /// to specify the minimum detection confidence returned in the response. Within <code>Filters</code>,
-        /// use <code>ShotFilter</code> (<a>StartShotDetectionFilter</a>) to filter detected shots.
-        /// Use <code>TechnicalCueFilter</code> (<a>StartTechnicalCueDetectionFilter</a>) to filter
+        /// You can use the <c>Filters</c> (<a>StartSegmentDetectionFilters</a>) input parameter
+        /// to specify the minimum detection confidence returned in the response. Within <c>Filters</c>,
+        /// use <c>ShotFilter</c> (<a>StartShotDetectionFilter</a>) to filter detected shots.
+        /// Use <c>TechnicalCueFilter</c> (<a>StartTechnicalCueDetectionFilter</a>) to filter
         /// technical cues. 
         /// </para>
         ///  
         /// <para>
         /// To get the results of the segment detection operation, first check that the status
-        /// value published to the Amazon SNS topic is <code>SUCCEEDED</code>. if so, call <a>GetSegmentDetection</a>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartSegmentDetection</code>.
+        /// value published to the Amazon SNS topic is <c>SUCCEEDED</c>. if so, call <a>GetSegmentDetection</a>
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartSegmentDetection</c>.
         /// 
         /// </para>
         ///  
@@ -10321,9 +10705,8 @@ namespace Amazon.Rekognition
         /// You are not authorized to perform the action.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -10337,10 +10720,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -10370,25 +10752,24 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// Amazon Rekognition Video can detect segments in a video stored in an Amazon S3 bucket.
-        /// Use <a>Video</a> to specify the bucket name and the filename of the video. <code>StartSegmentDetection</code>
-        /// returns a job identifier (<code>JobId</code>) which you use to get the results of
-        /// the operation. When segment detection is finished, Amazon Rekognition Video publishes
-        /// a completion status to the Amazon Simple Notification Service topic that you specify
-        /// in <code>NotificationChannel</code>.
+        /// Use <a>Video</a> to specify the bucket name and the filename of the video. <c>StartSegmentDetection</c>
+        /// returns a job identifier (<c>JobId</c>) which you use to get the results of the operation.
+        /// When segment detection is finished, Amazon Rekognition Video publishes a completion
+        /// status to the Amazon Simple Notification Service topic that you specify in <c>NotificationChannel</c>.
         /// </para>
         ///  
         /// <para>
-        /// You can use the <code>Filters</code> (<a>StartSegmentDetectionFilters</a>) input parameter
-        /// to specify the minimum detection confidence returned in the response. Within <code>Filters</code>,
-        /// use <code>ShotFilter</code> (<a>StartShotDetectionFilter</a>) to filter detected shots.
-        /// Use <code>TechnicalCueFilter</code> (<a>StartTechnicalCueDetectionFilter</a>) to filter
+        /// You can use the <c>Filters</c> (<a>StartSegmentDetectionFilters</a>) input parameter
+        /// to specify the minimum detection confidence returned in the response. Within <c>Filters</c>,
+        /// use <c>ShotFilter</c> (<a>StartShotDetectionFilter</a>) to filter detected shots.
+        /// Use <c>TechnicalCueFilter</c> (<a>StartTechnicalCueDetectionFilter</a>) to filter
         /// technical cues. 
         /// </para>
         ///  
         /// <para>
         /// To get the results of the segment detection operation, first check that the status
-        /// value published to the Amazon SNS topic is <code>SUCCEEDED</code>. if so, call <a>GetSegmentDetection</a>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartSegmentDetection</code>.
+        /// value published to the Amazon SNS topic is <c>SUCCEEDED</c>. if so, call <a>GetSegmentDetection</a>
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartSegmentDetection</c>.
         /// 
         /// </para>
         ///  
@@ -10407,9 +10788,8 @@ namespace Amazon.Rekognition
         /// You are not authorized to perform the action.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -10423,10 +10803,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -10456,14 +10835,14 @@ namespace Amazon.Rekognition
 
         /// <summary>
         /// Starts processing a stream processor. You create a stream processor by calling <a>CreateStreamProcessor</a>.
-        /// To tell <code>StartStreamProcessor</code> which stream processor to start, use the
-        /// value of the <code>Name</code> field specified in the call to <code>CreateStreamProcessor</code>.
+        /// To tell <c>StartStreamProcessor</c> which stream processor to start, use the value
+        /// of the <c>Name</c> field specified in the call to <c>CreateStreamProcessor</c>.
         /// 
         ///  
         /// <para>
         /// If you are using a label detection stream processor to detect labels, you need to
-        /// provide a <code>Start selector</code> and a <code>Stop selector</code> to determine
-        /// the length of the stream processing time.
+        /// provide a <c>Start selector</c> and a <c>Stop selector</c> to determine the length
+        /// of the stream processing time.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartStreamProcessor service method.</param>
@@ -10505,14 +10884,14 @@ namespace Amazon.Rekognition
 
         /// <summary>
         /// Starts processing a stream processor. You create a stream processor by calling <a>CreateStreamProcessor</a>.
-        /// To tell <code>StartStreamProcessor</code> which stream processor to start, use the
-        /// value of the <code>Name</code> field specified in the call to <code>CreateStreamProcessor</code>.
+        /// To tell <c>StartStreamProcessor</c> which stream processor to start, use the value
+        /// of the <c>Name</c> field specified in the call to <c>CreateStreamProcessor</c>.
         /// 
         ///  
         /// <para>
         /// If you are using a label detection stream processor to detect labels, you need to
-        /// provide a <code>Start selector</code> and a <code>Stop selector</code> to determine
-        /// the length of the stream processing time.
+        /// provide a <c>Start selector</c> and a <c>Stop selector</c> to determine the length
+        /// of the stream processing time.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartStreamProcessor service method.</param>
@@ -10565,17 +10944,16 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// Amazon Rekognition Video can detect text in a video stored in an Amazon S3 bucket.
-        /// Use <a>Video</a> to specify the bucket name and the filename of the video. <code>StartTextDetection</code>
-        /// returns a job identifier (<code>JobId</code>) which you use to get the results of
-        /// the operation. When text detection is finished, Amazon Rekognition Video publishes
-        /// a completion status to the Amazon Simple Notification Service topic that you specify
-        /// in <code>NotificationChannel</code>.
+        /// Use <a>Video</a> to specify the bucket name and the filename of the video. <c>StartTextDetection</c>
+        /// returns a job identifier (<c>JobId</c>) which you use to get the results of the operation.
+        /// When text detection is finished, Amazon Rekognition Video publishes a completion status
+        /// to the Amazon Simple Notification Service topic that you specify in <c>NotificationChannel</c>.
         /// </para>
         ///  
         /// <para>
         /// To get the results of the text detection operation, first check that the status value
-        /// published to the Amazon SNS topic is <code>SUCCEEDED</code>. if so, call <a>GetTextDetection</a>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartTextDetection</code>.
+        /// published to the Amazon SNS topic is <c>SUCCEEDED</c>. if so, call <a>GetTextDetection</a>
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartTextDetection</c>.
         /// 
         /// </para>
         /// </summary>
@@ -10586,9 +10964,8 @@ namespace Amazon.Rekognition
         /// You are not authorized to perform the action.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -10602,10 +10979,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -10635,17 +11011,16 @@ namespace Amazon.Rekognition
         ///  
         /// <para>
         /// Amazon Rekognition Video can detect text in a video stored in an Amazon S3 bucket.
-        /// Use <a>Video</a> to specify the bucket name and the filename of the video. <code>StartTextDetection</code>
-        /// returns a job identifier (<code>JobId</code>) which you use to get the results of
-        /// the operation. When text detection is finished, Amazon Rekognition Video publishes
-        /// a completion status to the Amazon Simple Notification Service topic that you specify
-        /// in <code>NotificationChannel</code>.
+        /// Use <a>Video</a> to specify the bucket name and the filename of the video. <c>StartTextDetection</c>
+        /// returns a job identifier (<c>JobId</c>) which you use to get the results of the operation.
+        /// When text detection is finished, Amazon Rekognition Video publishes a completion status
+        /// to the Amazon Simple Notification Service topic that you specify in <c>NotificationChannel</c>.
         /// </para>
         ///  
         /// <para>
         /// To get the results of the text detection operation, first check that the status value
-        /// published to the Amazon SNS topic is <code>SUCCEEDED</code>. if so, call <a>GetTextDetection</a>
-        /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartTextDetection</code>.
+        /// published to the Amazon SNS topic is <c>SUCCEEDED</c>. if so, call <a>GetTextDetection</a>
+        /// and pass the job identifier (<c>JobId</c>) from the initial call to <c>StartTextDetection</c>.
         /// 
         /// </para>
         /// </summary>
@@ -10659,9 +11034,8 @@ namespace Amazon.Rekognition
         /// You are not authorized to perform the action.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.IdempotentParameterMismatchException">
-        /// A <code>ClientRequestToken</code> input parameter was reused with an operation, but
-        /// at least one of the other input parameters is different from the previous call to
-        /// the operation.
+        /// A <c>ClientRequestToken</c> input parameter was reused with an operation, but at least
+        /// one of the other input parameters is different from the previous call to the operation.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.InternalServerErrorException">
         /// Amazon Rekognition experienced a service issue. Try your call again.
@@ -10675,10 +11049,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -10707,12 +11080,19 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Stops a running model. The operation might take a while to complete. To check the
-        /// current status, call <a>DescribeProjectVersions</a>. 
-        /// 
+        /// current status, call <a>DescribeProjectVersions</a>. Only applies to Custom Labels
+        /// projects.
+        /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:StopProjectVersion</code>
+        /// This operation requires permissions to perform the <c>rekognition:StopProjectVersion</c>
         /// action.
         /// </para>
         /// </summary>
@@ -10754,12 +11134,19 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Stops a running model. The operation might take a while to complete. To check the
-        /// current status, call <a>DescribeProjectVersions</a>. 
-        /// 
+        /// current status, call <a>DescribeProjectVersions</a>. Only applies to Custom Labels
+        /// projects.
+        /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:StopProjectVersion</code>
+        /// This operation requires permissions to perform the <c>rekognition:StopProjectVersion</c>
         /// action.
         /// </para>
         /// </summary>
@@ -10901,7 +11288,7 @@ namespace Amazon.Rekognition
         /// 
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:TagResource</code>
+        /// This operation requires permissions to perform the <c>rekognition:TagResource</c>
         /// action. 
         /// </para>
         /// </summary>
@@ -10950,7 +11337,7 @@ namespace Amazon.Rekognition
         /// 
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:TagResource</code>
+        /// This operation requires permissions to perform the <c>rekognition:TagResource</c>
         /// action. 
         /// </para>
         /// </summary>
@@ -11005,7 +11392,7 @@ namespace Amazon.Rekognition
         /// 
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:UntagResource</code>
+        /// This operation requires permissions to perform the <c>rekognition:UntagResource</c>
         /// action. 
         /// </para>
         /// </summary>
@@ -11049,7 +11436,7 @@ namespace Amazon.Rekognition
         /// 
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:UntagResource</code>
+        /// This operation requires permissions to perform the <c>rekognition:UntagResource</c>
         /// action. 
         /// </para>
         /// </summary>
@@ -11095,45 +11482,50 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Adds or updates one or more entries (images) in a dataset. An entry is a JSON Line
         /// which contains the information for a single image, including the image location, assigned
         /// labels, and object location bounding boxes. For more information, see Image-Level
         /// labels in manifest files and Object localization in manifest files in the <i>Amazon
         /// Rekognition Custom Labels Developer Guide</i>. 
-        /// 
-        ///  
-        /// <para>
-        /// If the <code>source-ref</code> field in the JSON line references an existing image,
-        /// the existing image in the dataset is updated. If <code>source-ref</code> field doesn't
-        /// reference an existing image, the image is added as a new image to the dataset. 
         /// </para>
         ///  
         /// <para>
-        /// You specify the changes that you want to make in the <code>Changes</code> input parameter.
+        /// If the <c>source-ref</c> field in the JSON line references an existing image, the
+        /// existing image in the dataset is updated. If <c>source-ref</c> field doesn't reference
+        /// an existing image, the image is added as a new image to the dataset. 
+        /// </para>
+        ///  
+        /// <para>
+        /// You specify the changes that you want to make in the <c>Changes</c> input parameter.
         /// There isn't a limit to the number JSON Lines that you can change, but the size of
-        /// <code>Changes</code> must be less than 5MB.
+        /// <c>Changes</c> must be less than 5MB.
         /// </para>
         ///  
         /// <para>
-        ///  <code>UpdateDatasetEntries</code> returns immediatly, but the dataset update might
-        /// take a while to complete. Use <a>DescribeDataset</a> to check the current status.
-        /// The dataset updated successfully if the value of <code>Status</code> is <code>UPDATE_COMPLETE</code>.
-        /// 
+        ///  <c>UpdateDatasetEntries</c> returns immediatly, but the dataset update might take
+        /// a while to complete. Use <a>DescribeDataset</a> to check the current status. The dataset
+        /// updated successfully if the value of <c>Status</c> is <c>UPDATE_COMPLETE</c>. 
         /// </para>
         ///  
         /// <para>
         /// To check if any non-terminal errors occured, call <a>ListDatasetEntries</a> and check
-        /// for the presence of <code>errors</code> lists in the JSON Lines.
+        /// for the presence of <c>errors</c> lists in the JSON Lines.
         /// </para>
         ///  
         /// <para>
-        /// Dataset update fails if a terminal error occurs (<code>Status</code> = <code>UPDATE_FAILED</code>).
+        /// Dataset update fails if a terminal error occurs (<c>Status</c> = <c>UPDATE_FAILED</c>).
         /// Currently, you can't access the terminal error information from the Amazon Rekognition
         /// Custom Labels SDK. 
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:UpdateDatasetEntries</code>
+        /// This operation requires permissions to perform the <c>rekognition:UpdateDatasetEntries</c>
         /// action.
         /// </para>
         /// </summary>
@@ -11152,10 +11544,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -11182,45 +11573,50 @@ namespace Amazon.Rekognition
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// This operation applies only to Amazon Rekognition Custom Labels.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Adds or updates one or more entries (images) in a dataset. An entry is a JSON Line
         /// which contains the information for a single image, including the image location, assigned
         /// labels, and object location bounding boxes. For more information, see Image-Level
         /// labels in manifest files and Object localization in manifest files in the <i>Amazon
         /// Rekognition Custom Labels Developer Guide</i>. 
-        /// 
-        ///  
-        /// <para>
-        /// If the <code>source-ref</code> field in the JSON line references an existing image,
-        /// the existing image in the dataset is updated. If <code>source-ref</code> field doesn't
-        /// reference an existing image, the image is added as a new image to the dataset. 
         /// </para>
         ///  
         /// <para>
-        /// You specify the changes that you want to make in the <code>Changes</code> input parameter.
+        /// If the <c>source-ref</c> field in the JSON line references an existing image, the
+        /// existing image in the dataset is updated. If <c>source-ref</c> field doesn't reference
+        /// an existing image, the image is added as a new image to the dataset. 
+        /// </para>
+        ///  
+        /// <para>
+        /// You specify the changes that you want to make in the <c>Changes</c> input parameter.
         /// There isn't a limit to the number JSON Lines that you can change, but the size of
-        /// <code>Changes</code> must be less than 5MB.
+        /// <c>Changes</c> must be less than 5MB.
         /// </para>
         ///  
         /// <para>
-        ///  <code>UpdateDatasetEntries</code> returns immediatly, but the dataset update might
-        /// take a while to complete. Use <a>DescribeDataset</a> to check the current status.
-        /// The dataset updated successfully if the value of <code>Status</code> is <code>UPDATE_COMPLETE</code>.
-        /// 
+        ///  <c>UpdateDatasetEntries</c> returns immediatly, but the dataset update might take
+        /// a while to complete. Use <a>DescribeDataset</a> to check the current status. The dataset
+        /// updated successfully if the value of <c>Status</c> is <c>UPDATE_COMPLETE</c>. 
         /// </para>
         ///  
         /// <para>
         /// To check if any non-terminal errors occured, call <a>ListDatasetEntries</a> and check
-        /// for the presence of <code>errors</code> lists in the JSON Lines.
+        /// for the presence of <c>errors</c> lists in the JSON Lines.
         /// </para>
         ///  
         /// <para>
-        /// Dataset update fails if a terminal error occurs (<code>Status</code> = <code>UPDATE_FAILED</code>).
+        /// Dataset update fails if a terminal error occurs (<c>Status</c> = <c>UPDATE_FAILED</c>).
         /// Currently, you can't access the terminal error information from the Amazon Rekognition
         /// Custom Labels SDK. 
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permissions to perform the <code>rekognition:UpdateDatasetEntries</code>
+        /// This operation requires permissions to perform the <c>rekognition:UpdateDatasetEntries</c>
         /// action.
         /// </para>
         /// </summary>
@@ -11242,10 +11638,9 @@ namespace Amazon.Rekognition
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.LimitExceededException">
         /// An Amazon Rekognition service limit was exceeded. For example, if you start too many
-        /// Amazon Rekognition Video jobs concurrently, calls to start operations (<code>StartLabelDetection</code>,
-        /// for example) will raise a <code>LimitExceededException</code> exception (HTTP status
-        /// code: 400) until the number of concurrently running jobs is below the Amazon Rekognition
-        /// service limit.
+        /// jobs concurrently, subsequent calls to start operations (ex: <c>StartLabelDetection</c>)
+        /// will raise a <c>LimitExceededException</c> exception (HTTP status code: 400) until
+        /// the number of concurrently running jobs is below the Amazon Rekognition service limit.
         /// </exception>
         /// <exception cref="Amazon.Rekognition.Model.ProvisionedThroughputExceededException">
         /// The number of requests exceeded your throughput limit. If you want to increase this
@@ -11370,11 +11765,11 @@ namespace Amazon.Rekognition
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

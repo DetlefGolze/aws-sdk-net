@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(VideoDescription requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAfdSignaling())
             {
                 context.Writer.WritePropertyName("afdSignaling");
@@ -136,6 +139,12 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("timecodeInsertion");
                 context.Writer.Write(requestObject.TimecodeInsertion);
+            }
+
+            if(requestObject.IsSetTimecodeTrack())
+            {
+                context.Writer.WritePropertyName("timecodeTrack");
+                context.Writer.Write(requestObject.TimecodeTrack);
             }
 
             if(requestObject.IsSetVideoPreprocessors())

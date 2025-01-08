@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.DirectoryService.Model
     /// </summary>
     public partial class DescribeDomainControllersResponse : AmazonWebServiceResponse
     {
-        private List<DomainController> _domainControllers = new List<DomainController>();
+        private List<DomainController> _domainControllers = AWSConfigs.InitializeCollections ? new List<DomainController>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,13 +52,13 @@ namespace Amazon.DirectoryService.Model
         // Check to see if DomainControllers property is set
         internal bool IsSetDomainControllers()
         {
-            return this._domainControllers != null && this._domainControllers.Count > 0; 
+            return this._domainControllers != null && (this._domainControllers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If not null, more results are available. Pass this value for the <code>NextToken</code>
+        /// If not null, more results are available. Pass this value for the <c>NextToken</c>
         /// parameter in a subsequent call to <a>DescribeDomainControllers</a> retrieve the next
         /// set of items.
         /// </para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
@@ -34,9 +35,12 @@ namespace Amazon.Batch.Model
     /// </summary>
     public partial class EksAttemptDetail
     {
-        private List<EksAttemptContainerDetail> _containers = new List<EksAttemptContainerDetail>();
+        private List<EksAttemptContainerDetail> _containers = AWSConfigs.InitializeCollections ? new List<EksAttemptContainerDetail>() : null;
+        private string _eksClusterArn;
+        private List<EksAttemptContainerDetail> _initContainers = AWSConfigs.InitializeCollections ? new List<EksAttemptContainerDetail>() : null;
         private string _nodeName;
         private string _podName;
+        private string _podNamespace;
         private long? _startedAt;
         private string _statusReason;
         private long? _stoppedAt;
@@ -56,7 +60,43 @@ namespace Amazon.Batch.Model
         // Check to see if Containers property is set
         internal bool IsSetContainers()
         {
-            return this._containers != null && this._containers.Count > 0; 
+            return this._containers != null && (this._containers.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property EksClusterArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the Amazon EKS cluster.
+        /// </para>
+        /// </summary>
+        public string EksClusterArn
+        {
+            get { return this._eksClusterArn; }
+            set { this._eksClusterArn = value; }
+        }
+
+        // Check to see if EksClusterArn property is set
+        internal bool IsSetEksClusterArn()
+        {
+            return this._eksClusterArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property InitContainers. 
+        /// <para>
+        /// The details for the init containers.
+        /// </para>
+        /// </summary>
+        public List<EksAttemptContainerDetail> InitContainers
+        {
+            get { return this._initContainers; }
+            set { this._initContainers = value; }
+        }
+
+        // Check to see if InitContainers property is set
+        internal bool IsSetInitContainers()
+        {
+            return this._initContainers != null && (this._initContainers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -96,10 +136,28 @@ namespace Amazon.Batch.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PodNamespace. 
+        /// <para>
+        /// The namespace of the Amazon EKS cluster that the pod exists in.
+        /// </para>
+        /// </summary>
+        public string PodNamespace
+        {
+            get { return this._podNamespace; }
+            set { this._podNamespace = value; }
+        }
+
+        // Check to see if PodNamespace property is set
+        internal bool IsSetPodNamespace()
+        {
+            return this._podNamespace != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property StartedAt. 
         /// <para>
         /// The Unix timestamp (in milliseconds) for when the attempt was started (when the attempt
-        /// transitioned from the <code>STARTING</code> state to the <code>RUNNING</code> state).
+        /// transitioned from the <c>STARTING</c> state to the <c>RUNNING</c> state).
         /// </para>
         /// </summary>
         public long StartedAt
@@ -137,8 +195,8 @@ namespace Amazon.Batch.Model
         /// Gets and sets the property StoppedAt. 
         /// <para>
         /// The Unix timestamp (in milliseconds) for when the attempt was stopped. This happens
-        /// when the attempt transitioned from the <code>RUNNING</code> state to a terminal state,
-        /// such as <code>SUCCEEDED</code> or <code>FAILED</code>.
+        /// when the attempt transitioned from the <c>RUNNING</c> state to a terminal state, such
+        /// as <c>SUCCEEDED</c> or <c>FAILED</c>.
         /// </para>
         /// </summary>
         public long StoppedAt

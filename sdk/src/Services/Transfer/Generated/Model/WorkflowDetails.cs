@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
-    /// Container for the <code>WorkflowDetail</code> data type. It is used by actions that
-    /// trigger a workflow to begin execution.
+    /// Container for the <c>WorkflowDetail</c> data type. It is used by actions that trigger
+    /// a workflow to begin execution.
     /// </summary>
     public partial class WorkflowDetails
     {
-        private List<WorkflowDetail> _onPartialUpload = new List<WorkflowDetail>();
-        private List<WorkflowDetail> _onUpload = new List<WorkflowDetail>();
+        private List<WorkflowDetail> _onPartialUpload = AWSConfigs.InitializeCollections ? new List<WorkflowDetail>() : null;
+        private List<WorkflowDetail> _onUpload = AWSConfigs.InitializeCollections ? new List<WorkflowDetail>() : null;
 
         /// <summary>
         /// Gets and sets the property OnPartialUpload. 
@@ -47,8 +48,13 @@ namespace Amazon.Transfer.Model
         /// <para>
         /// A <i>partial upload</i> occurs when a file is open when the session disconnects.
         /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <c>OnPartialUpload</c> can contain a maximum of one <c>WorkflowDetail</c> object.
+        /// </para>
+        ///  </note>
         /// </summary>
-        [AWSProperty(Max=1)]
+        [AWSProperty(Min=0, Max=1)]
         public List<WorkflowDetail> OnPartialUpload
         {
             get { return this._onPartialUpload; }
@@ -58,7 +64,7 @@ namespace Amazon.Transfer.Model
         // Check to see if OnPartialUpload property is set
         internal bool IsSetOnPartialUpload()
         {
-            return this._onPartialUpload != null && this._onPartialUpload.Count > 0; 
+            return this._onPartialUpload != null && (this._onPartialUpload.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -68,16 +74,21 @@ namespace Amazon.Transfer.Model
         /// </para>
         ///  
         /// <para>
-        /// To remove an associated workflow from a server, you can provide an empty <code>OnUpload</code>
+        /// To remove an associated workflow from a server, you can provide an empty <c>OnUpload</c>
         /// object, as in the following example.
         /// </para>
         ///  
         /// <para>
-        ///  <code>aws transfer update-server --server-id s-01234567890abcdef --workflow-details
-        /// '{"OnUpload":[]}'</code> 
+        ///  <c>aws transfer update-server --server-id s-01234567890abcdef --workflow-details
+        /// '{"OnUpload":[]}'</c> 
         /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <c>OnUpload</c> can contain a maximum of one <c>WorkflowDetail</c> object.
+        /// </para>
+        ///  </note>
         /// </summary>
-        [AWSProperty(Max=1)]
+        [AWSProperty(Min=0, Max=1)]
         public List<WorkflowDetail> OnUpload
         {
             get { return this._onUpload; }
@@ -87,7 +98,7 @@ namespace Amazon.Transfer.Model
         // Check to see if OnUpload property is set
         internal bool IsSetOnUpload()
         {
-            return this._onUpload != null && this._onUpload.Count > 0; 
+            return this._onUpload != null && (this._onUpload.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

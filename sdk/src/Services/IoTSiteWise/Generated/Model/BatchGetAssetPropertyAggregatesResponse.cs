@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -33,16 +34,16 @@ namespace Amazon.IoTSiteWise.Model
     /// </summary>
     public partial class BatchGetAssetPropertyAggregatesResponse : AmazonWebServiceResponse
     {
-        private List<BatchGetAssetPropertyAggregatesErrorEntry> _errorEntries = new List<BatchGetAssetPropertyAggregatesErrorEntry>();
+        private List<BatchGetAssetPropertyAggregatesErrorEntry> _errorEntries = AWSConfigs.InitializeCollections ? new List<BatchGetAssetPropertyAggregatesErrorEntry>() : null;
         private string _nextToken;
-        private List<BatchGetAssetPropertyAggregatesSkippedEntry> _skippedEntries = new List<BatchGetAssetPropertyAggregatesSkippedEntry>();
-        private List<BatchGetAssetPropertyAggregatesSuccessEntry> _successEntries = new List<BatchGetAssetPropertyAggregatesSuccessEntry>();
+        private List<BatchGetAssetPropertyAggregatesSkippedEntry> _skippedEntries = AWSConfigs.InitializeCollections ? new List<BatchGetAssetPropertyAggregatesSkippedEntry>() : null;
+        private List<BatchGetAssetPropertyAggregatesSuccessEntry> _successEntries = AWSConfigs.InitializeCollections ? new List<BatchGetAssetPropertyAggregatesSuccessEntry>() : null;
 
         /// <summary>
         /// Gets and sets the property ErrorEntries. 
         /// <para>
         /// A list of the errors (if any) associated with the batch request. Each error entry
-        /// contains the <code>entryId</code> of the entry that failed.
+        /// contains the <c>entryId</c> of the entry that failed.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -55,7 +56,7 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if ErrorEntries property is set
         internal bool IsSetErrorEntries()
         {
-            return this._errorEntries != null && this._errorEntries.Count > 0; 
+            return this._errorEntries != null && (this._errorEntries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -82,7 +83,7 @@ namespace Amazon.IoTSiteWise.Model
         /// <para>
         /// A list of entries that were not processed by this batch request. because these entries
         /// had been completely processed by previous paginated requests. Each skipped entry contains
-        /// the <code>entryId</code> of the entry that skipped.
+        /// the <c>entryId</c> of the entry that skipped.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -95,15 +96,15 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if SkippedEntries property is set
         internal bool IsSetSkippedEntries()
         {
-            return this._skippedEntries != null && this._skippedEntries.Count > 0; 
+            return this._skippedEntries != null && (this._skippedEntries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SuccessEntries. 
         /// <para>
         /// A list of entries that were processed successfully by this batch request. Each success
-        /// entry contains the <code>entryId</code> of the entry that succeeded and the latest
-        /// query result.
+        /// entry contains the <c>entryId</c> of the entry that succeeded and the latest query
+        /// result.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -116,7 +117,7 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if SuccessEntries property is set
         internal bool IsSetSuccessEntries()
         {
-            return this._successEntries != null && this._successEntries.Count > 0; 
+            return this._successEntries != null && (this._successEntries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

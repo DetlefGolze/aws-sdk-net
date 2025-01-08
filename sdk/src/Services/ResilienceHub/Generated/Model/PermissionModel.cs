@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ResilienceHub.Model
     /// </summary>
     public partial class PermissionModel
     {
-        private List<string> _crossAccountRoleArns = new List<string>();
+        private List<string> _crossAccountRoleArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _invokerRoleName;
         private PermissionModelType _type;
 
@@ -53,8 +54,8 @@ namespace Amazon.ResilienceHub.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// These roles must have a trust policy with <code>iam:AssumeRole</code> permission to
-        /// the invoker role in the primary account.
+        /// These roles must have a trust policy with <c>iam:AssumeRole</c> permission to the
+        /// invoker role in the primary account.
         /// </para>
         ///  </li> </ul> </note>
         /// </summary>
@@ -68,7 +69,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if CrossAccountRoleArns property is set
         internal bool IsSetCrossAccountRoleArns()
         {
-            return this._crossAccountRoleArns != null && this._crossAccountRoleArns.Count > 0; 
+            return this._crossAccountRoleArns != null && (this._crossAccountRoleArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -76,14 +77,24 @@ namespace Amazon.ResilienceHub.Model
         /// <para>
         /// Existing Amazon Web Services IAM role name in the primary Amazon Web Services account
         /// that will be assumed by Resilience Hub Service Principle to obtain a read-only access
-        /// to your application resources while running an assessment.
+        /// to your application resources while running an assessment. 
         /// </para>
-        ///  <note> 
+        ///  
         /// <para>
-        /// You must have <code>iam:passRole</code> permission for this role while creating or
-        /// updating the application.
+        /// If your IAM role includes a path, you must include the path in the <c>invokerRoleName</c>
+        /// parameter. For example, if your IAM role's ARN is <c>arn:aws:iam:123456789012:role/my-path/role-name</c>,
+        /// you should pass <c>my-path/role-name</c>. 
         /// </para>
-        ///  </note>
+        ///  <note> <ul> <li> 
+        /// <para>
+        /// You must have <c>iam:passRole</c> permission for this role while creating or updating
+        /// the application.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Currently, <c>invokerRoleName</c> accepts only <c>[A-Za-z0-9_+=,.@-]</c> characters.
+        /// </para>
+        ///  </li> </ul> </note>
         /// </summary>
         public string InvokerRoleName
         {

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// Provides a consistent format for Security Hub findings. <code>AwsSecurityFinding</code>
+    /// Provides a consistent format for Security Hub findings. <c>AwsSecurityFinding</c>
     /// format allows you to share findings between Amazon Web Services security services
     /// and third-party solutions.
     /// 
@@ -44,44 +45,47 @@ namespace Amazon.SecurityHub.Model
     {
         private Action _action;
         private string _awsAccountId;
+        private string _awsAccountName;
         private string _companyName;
         private Compliance _compliance;
         private int? _confidence;
         private string _createdAt;
         private int? _criticality;
         private string _description;
+        private Detection _detection;
         private FindingProviderFields _findingProviderFields;
         private string _firstObservedAt;
         private GeneratorDetails _generatorDetails;
         private string _generatorId;
         private string _id;
         private string _lastObservedAt;
-        private List<Malware> _malware = new List<Malware>();
+        private List<Malware> _malware = AWSConfigs.InitializeCollections ? new List<Malware>() : null;
         private Network _network;
-        private List<NetworkPathComponent> _networkPath = new List<NetworkPathComponent>();
+        private List<NetworkPathComponent> _networkPath = AWSConfigs.InitializeCollections ? new List<NetworkPathComponent>() : null;
         private Note _note;
         private PatchSummary _patchSummary;
         private ProcessDetails _process;
+        private string _processedAt;
         private string _productArn;
-        private Dictionary<string, string> _productFields = new Dictionary<string, string>();
+        private Dictionary<string, string> _productFields = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _productName;
         private RecordState _recordState;
         private string _region;
-        private List<RelatedFinding> _relatedFindings = new List<RelatedFinding>();
+        private List<RelatedFinding> _relatedFindings = AWSConfigs.InitializeCollections ? new List<RelatedFinding>() : null;
         private Remediation _remediation;
-        private List<Resource> _resources = new List<Resource>();
+        private List<Resource> _resources = AWSConfigs.InitializeCollections ? new List<Resource>() : null;
         private bool? _sample;
         private string _schemaVersion;
         private Severity _severity;
         private string _sourceUrl;
-        private List<ThreatIntelIndicator> _threatIntelIndicators = new List<ThreatIntelIndicator>();
-        private List<Threat> _threats = new List<Threat>();
+        private List<ThreatIntelIndicator> _threatIntelIndicators = AWSConfigs.InitializeCollections ? new List<ThreatIntelIndicator>() : null;
+        private List<Threat> _threats = AWSConfigs.InitializeCollections ? new List<Threat>() : null;
         private string _title;
-        private List<string> _types = new List<string>();
+        private List<string> _types = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _updatedAt;
-        private Dictionary<string, string> _userDefinedFields = new Dictionary<string, string>();
+        private Dictionary<string, string> _userDefinedFields = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private VerificationState _verificationState;
-        private List<Vulnerability> _vulnerabilities = new List<Vulnerability>();
+        private List<Vulnerability> _vulnerabilities = AWSConfigs.InitializeCollections ? new List<Vulnerability>() : null;
         private Workflow _workflow;
         private WorkflowState _workflowState;
 
@@ -108,6 +112,10 @@ namespace Amazon.SecurityHub.Model
         /// <para>
         /// The Amazon Web Services account ID that a finding is generated in.
         /// </para>
+        ///  
+        /// <para>
+        /// Length Constraints: 12.
+        /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
         public string AwsAccountId
@@ -123,6 +131,28 @@ namespace Amazon.SecurityHub.Model
         }
 
         /// <summary>
+        /// Gets and sets the property AwsAccountName. 
+        /// <para>
+        /// The name of the Amazon Web Services account from which a finding was generated. 
+        /// </para>
+        ///  
+        /// <para>
+        /// Length Constraints: Minimum length of 1. Maximum length of 50. 
+        /// </para>
+        /// </summary>
+        public string AwsAccountName
+        {
+            get { return this._awsAccountName; }
+            set { this._awsAccountName = value; }
+        }
+
+        // Check to see if AwsAccountName property is set
+        internal bool IsSetAwsAccountName()
+        {
+            return this._awsAccountName != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property CompanyName. 
         /// <para>
         /// The name of the company for the product that generated the finding.
@@ -130,13 +160,17 @@ namespace Amazon.SecurityHub.Model
         ///  
         /// <para>
         /// Security Hub populates this attribute automatically for each finding. You cannot update
-        /// this attribute with <code>BatchImportFindings</code> or <code>BatchUpdateFindings</code>.
-        /// The exception to this is a custom integration.
+        /// this attribute with <c>BatchImportFindings</c> or <c>BatchUpdateFindings</c>. The
+        /// exception to this is a custom integration.
         /// </para>
         ///  
         /// <para>
         /// When you use the Security Hub console or API to filter findings by company name, you
         /// use this attribute.
+        /// </para>
+        ///  
+        /// <para>
+        /// Length Constraints: Minimum length of 1. Maximum length of 128. 
         /// </para>
         /// </summary>
         public string CompanyName
@@ -203,9 +237,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -247,13 +280,12 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
-        /// A finding's description.
+        /// A finding's description. <c>Description</c> is a required property.
         /// </para>
-        ///  <note> 
+        ///  
         /// <para>
-        /// In this release, <code>Description</code> is a required property.
+        /// Length Constraints: Minimum length of 1. Maximum length of 1024.
         /// </para>
-        ///  </note>
         /// </summary>
         [AWSProperty(Required=true)]
         public string Description
@@ -269,9 +301,31 @@ namespace Amazon.SecurityHub.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Detection. 
+        /// <para>
+        ///  Provides details about an Amazon GuardDuty Extended Threat Detection attack sequence.
+        /// GuardDuty generates an attack sequence finding when multiple events align to a potentially
+        /// suspicious activity. To receive GuardDuty attack sequence findings in Security Hub,
+        /// you must have GuardDuty enabled. For more information, see <a href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty-extended-threat-detection.html">GuardDuty
+        /// Extended Threat Detection </a> in the <i>Amazon GuardDuty User Guide</i>. 
+        /// </para>
+        /// </summary>
+        public Detection Detection
+        {
+            get { return this._detection; }
+            set { this._detection = value; }
+        }
+
+        // Check to see if Detection property is set
+        internal bool IsSetDetection()
+        {
+            return this._detection != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property FindingProviderFields. 
         /// <para>
-        /// In a <code>BatchImportFindings</code> request, finding providers use <code>FindingProviderFields</code>
+        /// In a <c>BatchImportFindings</c> request, finding providers use <c>FindingProviderFields</c>
         /// to provide and update their own values for confidence, criticality, related findings,
         /// severity, and types.
         /// </para>
@@ -296,9 +350,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string FirstObservedAt
@@ -340,7 +393,11 @@ namespace Amazon.SecurityHub.Model
         /// <para>
         /// The identifier for the solution-specific component (a discrete unit of logic) that
         /// generated a finding. In various security findings providers' solutions, this generator
-        /// can be called a rule, a check, a detector, a plugin, etc. 
+        /// can be called a rule, a check, a detector, a plugin, or something else.
+        /// </para>
+        ///  
+        /// <para>
+        /// Length Constraints: Minimum length of 1. Maximum length of 512.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -361,6 +418,10 @@ namespace Amazon.SecurityHub.Model
         /// <para>
         /// The security findings provider-specific identifier for a finding.
         /// </para>
+        ///  
+        /// <para>
+        /// Length Constraints: Minimum length of 1. Maximum length of 512.
+        /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
         public string Id
@@ -378,14 +439,13 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property LastObservedAt. 
         /// <para>
-        /// Indicates when the security findings provider most recently observed the potential
-        /// security issue that a finding captured.
+        /// Indicates when the security findings provider most recently observed a change in the
+        /// resource that is involved in the finding.
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string LastObservedAt
@@ -405,6 +465,10 @@ namespace Amazon.SecurityHub.Model
         /// <para>
         /// A list of malware related to a finding.
         /// </para>
+        ///  
+        /// <para>
+        /// Array Members: Maximum number of 5 items.
+        /// </para>
         /// </summary>
         public List<Malware> Malware
         {
@@ -415,7 +479,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Malware property is set
         internal bool IsSetMalware()
         {
-            return this._malware != null && this._malware.Count > 0; 
+            return this._malware != null && (this._malware.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -440,7 +504,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property NetworkPath. 
         /// <para>
         /// Provides information about a network path that is relevant to a finding. Each entry
-        /// under <code>NetworkPath</code> represents a component of that path.
+        /// under <c>NetworkPath</c> represents a component of that path.
         /// </para>
         /// </summary>
         public List<NetworkPathComponent> NetworkPath
@@ -452,7 +516,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if NetworkPath property is set
         internal bool IsSetNetworkPath()
         {
-            return this._networkPath != null && this._networkPath.Count > 0; 
+            return this._networkPath != null && (this._networkPath.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -511,11 +575,39 @@ namespace Amazon.SecurityHub.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ProcessedAt. 
+        /// <para>
+        /// A timestamp that indicates when Security Hub received a finding and begins to process
+        /// it.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
+        /// </para>
+        /// </summary>
+        public string ProcessedAt
+        {
+            get { return this._processedAt; }
+            set { this._processedAt = value; }
+        }
+
+        // Check to see if ProcessedAt property is set
+        internal bool IsSetProcessedAt()
+        {
+            return this._processedAt != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ProductArn. 
         /// <para>
         /// The ARN generated by Security Hub that uniquely identifies a product that generates
         /// findings. This can be the ARN for a third-party product that is integrated with Security
         /// Hub, or the ARN for a custom integration.
+        /// </para>
+        ///  
+        /// <para>
+        /// Length Constraints: Minimum length of 12. Maximum length of 2048.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -535,7 +627,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property ProductFields. 
         /// <para>
         /// A data type where security findings providers can include additional solution-specific
-        /// details that aren't part of the defined <code>AwsSecurityFinding</code> format.
+        /// details that aren't part of the defined <c>AwsSecurityFinding</c> format.
         /// </para>
         ///  
         /// <para>
@@ -552,7 +644,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ProductFields property is set
         internal bool IsSetProductFields()
         {
-            return this._productFields != null && this._productFields.Count > 0; 
+            return this._productFields != null && (this._productFields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -563,13 +655,17 @@ namespace Amazon.SecurityHub.Model
         ///  
         /// <para>
         /// Security Hub populates this attribute automatically for each finding. You cannot update
-        /// this attribute with <code>BatchImportFindings</code> or <code>BatchUpdateFindings</code>.
-        /// The exception to this is a custom integration.
+        /// this attribute with <c>BatchImportFindings</c> or <c>BatchUpdateFindings</c>. The
+        /// exception to this is a custom integration.
         /// </para>
         ///  
         /// <para>
         /// When you use the Security Hub console or API to filter findings by product name, you
         /// use this attribute.
+        /// </para>
+        ///  
+        /// <para>
+        /// Length Constraints: Minimum length of 1. Maximum length of 128.
         /// </para>
         /// </summary>
         public string ProductName
@@ -610,7 +706,11 @@ namespace Amazon.SecurityHub.Model
         ///  
         /// <para>
         /// Security Hub populates this attribute automatically for each finding. You cannot update
-        /// it using <code>BatchImportFindings</code> or <code>BatchUpdateFindings</code>.
+        /// it using <c>BatchImportFindings</c> or <c>BatchUpdateFindings</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Length Constraints: Minimum length of 1. Maximum length of 16. 
         /// </para>
         /// </summary>
         public string Region
@@ -630,6 +730,10 @@ namespace Amazon.SecurityHub.Model
         /// <para>
         /// A list of related findings.
         /// </para>
+        ///  
+        /// <para>
+        /// Array Members: Minimum number of 1 item. Maximum number of 10 items.
+        /// </para>
         /// </summary>
         public List<RelatedFinding> RelatedFindings
         {
@@ -640,7 +744,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if RelatedFindings property is set
         internal bool IsSetRelatedFindings()
         {
-            return this._relatedFindings != null && this._relatedFindings.Count > 0; 
+            return this._relatedFindings != null && (this._relatedFindings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -666,6 +770,10 @@ namespace Amazon.SecurityHub.Model
         /// <para>
         /// A set of resource data types that describe the resources that the finding refers to.
         /// </para>
+        ///  
+        /// <para>
+        /// Array Members: Minimum number of 1 item. Maximum number of 32 items.
+        /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
         public List<Resource> Resources
@@ -677,7 +785,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Resources property is set
         internal bool IsSetResources()
         {
-            return this._resources != null && this._resources.Count > 0; 
+            return this._resources != null && (this._resources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -701,7 +809,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property SchemaVersion. 
         /// <para>
-        /// The schema version that a finding is formatted for.
+        /// The schema version that a finding is formatted for. The value is <c>2018-10-08</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -759,6 +867,10 @@ namespace Amazon.SecurityHub.Model
         /// <para>
         /// Threat intelligence details related to a finding.
         /// </para>
+        ///  
+        /// <para>
+        /// Array Members: Minimum number of 1 item. Maximum number of 5 items.
+        /// </para>
         /// </summary>
         public List<ThreatIntelIndicator> ThreatIntelIndicators
         {
@@ -769,7 +881,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ThreatIntelIndicators property is set
         internal bool IsSetThreatIntelIndicators()
         {
-            return this._threatIntelIndicators != null && this._threatIntelIndicators.Count > 0; 
+            return this._threatIntelIndicators != null && (this._threatIntelIndicators.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -777,6 +889,10 @@ namespace Amazon.SecurityHub.Model
         /// <para>
         /// Details about the threat detected in a security finding and the file paths that were
         /// affected by the threat. 
+        /// </para>
+        ///  
+        /// <para>
+        /// Array Members: Minimum number of 1 item. Maximum number of 32 items.
         /// </para>
         /// </summary>
         public List<Threat> Threats
@@ -788,19 +904,18 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Threats property is set
         internal bool IsSetThreats()
         {
-            return this._threats != null && this._threats.Count > 0; 
+            return this._threats != null && (this._threats.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Title. 
         /// <para>
-        /// A finding's title.
+        /// A finding's title. <c>Title</c> is a required property.
         /// </para>
-        ///  <note> 
+        ///  
         /// <para>
-        /// In this release, <code>Title</code> is a required property.
+        /// Length Constraints: Minimum length of 1. Maximum length of 256.
         /// </para>
-        ///  </note>
         /// </summary>
         [AWSProperty(Required=true)]
         public string Title
@@ -818,13 +933,17 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Types. 
         /// <para>
-        /// One or more finding types in the format of <code>namespace/category/classifier</code>
-        /// that classify a finding.
+        /// One or more finding types in the format of <c>namespace/category/classifier</c> that
+        /// classify a finding.
         /// </para>
         ///  
         /// <para>
         /// Valid namespace values are: Software and Configuration Checks | TTPs | Effects | Unusual
         /// Behaviors | Sensitive Data Identifications
+        /// </para>
+        ///  
+        /// <para>
+        /// Array Members: Maximum number of 50 items.
         /// </para>
         /// </summary>
         public List<string> Types
@@ -836,7 +955,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Types property is set
         internal bool IsSetTypes()
         {
-            return this._types != null && this._types.Count > 0; 
+            return this._types != null && (this._types.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -846,9 +965,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -868,7 +986,12 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property UserDefinedFields. 
         /// <para>
         /// A list of name/value string pairs associated with the finding. These are custom, user-defined
-        /// fields added to a finding. 
+        /// fields added to a finding.
+        /// </para>
+        ///  
+        /// <para>
+        /// Can contain up to 50 key-value pairs. For each key-value pair, the key can contain
+        /// up to 128 characters, and the value can contain up to 1024 characters.
         /// </para>
         /// </summary>
         public Dictionary<string, string> UserDefinedFields
@@ -880,7 +1003,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if UserDefinedFields property is set
         internal bool IsSetUserDefinedFields()
         {
-            return this._userDefinedFields != null && this._userDefinedFields.Count > 0; 
+            return this._userDefinedFields != null && (this._userDefinedFields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -916,7 +1039,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Vulnerabilities property is set
         internal bool IsSetVulnerabilities()
         {
-            return this._vulnerabilities != null && this._vulnerabilities.Count > 0; 
+            return this._vulnerabilities != null && (this._vulnerabilities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

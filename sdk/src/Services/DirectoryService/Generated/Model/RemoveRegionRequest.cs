@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
     /// Container for the parameters to the RemoveRegion operation.
     /// Stops all replication and removes the domain controllers from the specified Region.
-    /// You cannot remove the primary Region with this operation. Instead, use the <code>DeleteDirectory</code>
+    /// You cannot remove the primary Region with this operation. Instead, use the <c>DeleteDirectory</c>
     /// API.
     /// </summary>
     public partial class RemoveRegionRequest : AmazonDirectoryServiceRequest

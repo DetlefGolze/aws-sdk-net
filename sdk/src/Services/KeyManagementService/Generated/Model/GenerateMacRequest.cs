@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
@@ -63,7 +64,7 @@ namespace Amazon.KeyManagementService.Model
     /// <para>
     ///  <b>Cross-account use</b>: Yes. To perform this operation with a KMS key in a different
     /// Amazon Web Services account, specify the key ARN or alias ARN in the value of the
-    /// <code>KeyId</code> parameter. 
+    /// <c>KeyId</c> parameter. 
     /// </para>
     ///  
     /// <para>
@@ -74,11 +75,17 @@ namespace Amazon.KeyManagementService.Model
     /// <para>
     ///  <b>Related operations</b>: <a>VerifyMac</a> 
     /// </para>
+    ///  
+    /// <para>
+    ///  <b>Eventual consistency</b>: The KMS API follows an eventual consistency model. For
+    /// more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html">KMS
+    /// eventual consistency</a>.
+    /// </para>
     /// </summary>
     public partial class GenerateMacRequest : AmazonKeyManagementServiceRequest
     {
         private bool? _dryRun;
-        private List<string> _grantTokens = new List<string>();
+        private List<string> _grantTokens = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _keyId;
         private MacAlgorithmSpec _macAlgorithm;
         private MemoryStream _message;
@@ -86,8 +93,7 @@ namespace Amazon.KeyManagementService.Model
         /// <summary>
         /// Gets and sets the property DryRun. 
         /// <para>
-        /// Checks if your request will succeed. <code>DryRun</code> is an optional parameter.
-        /// 
+        /// Checks if your request will succeed. <c>DryRun</c> is an optional parameter. 
         /// </para>
         ///  
         /// <para>
@@ -131,7 +137,7 @@ namespace Amazon.KeyManagementService.Model
         // Check to see if GrantTokens property is set
         internal bool IsSetGrantTokens()
         {
-            return this._grantTokens != null && this._grantTokens.Count > 0; 
+            return this._grantTokens != null && (this._grantTokens.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -143,7 +149,7 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  
         /// <para>
-        /// To identify an HMAC KMS key, use the <a>DescribeKey</a> operation and see the <code>KeySpec</code>
+        /// To identify an HMAC KMS key, use the <a>DescribeKey</a> operation and see the <c>KeySpec</c>
         /// field in the response.
         /// </para>
         /// </summary>
@@ -169,7 +175,7 @@ namespace Amazon.KeyManagementService.Model
         /// <para>
         ///  The algorithm must be compatible with the HMAC KMS key that you specify. To find
         /// the MAC algorithms that your HMAC KMS key supports, use the <a>DescribeKey</a> operation
-        /// and see the <code>MacAlgorithms</code> field in the <code>DescribeKey</code> response.
+        /// and see the <c>MacAlgorithms</c> field in the <c>DescribeKey</c> response.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -192,9 +198,9 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>GenerateMac</code> and <a>VerifyMac</a> do not provide special handling for
-        /// message digests. If you generate an HMAC for a hash digest of a message, you must
-        /// verify the HMAC of the same hash digest.
+        ///  <c>GenerateMac</c> and <a>VerifyMac</a> do not provide special handling for message
+        /// digests. If you generate an HMAC for a hash digest of a message, you must verify the
+        /// HMAC of the same hash digest.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=4096)]

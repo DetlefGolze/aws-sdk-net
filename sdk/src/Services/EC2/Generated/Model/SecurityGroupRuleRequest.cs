@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -54,8 +55,8 @@ namespace Amazon.EC2.Model
     ///  </li> </ul> 
     /// <para>
     /// When you modify a rule, you cannot change the rule type. For example, if the rule
-    /// uses an IPv4 address range, you must use <code>CidrIpv4</code> to specify a new IPv4
-    /// address range.
+    /// uses an IPv4 address range, you must use <c>CidrIpv4</c> to specify a new IPv4 address
+    /// range.
     /// </para>
     /// </summary>
     public partial class SecurityGroupRuleRequest
@@ -128,8 +129,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property FromPort. 
         /// <para>
         /// If the protocol is TCP or UDP, this is the start of the port range. If the protocol
-        /// is ICMP or ICMPv6, this is the type number. A value of -1 indicates all ICMP/ICMPv6
-        /// types. If you specify all ICMP/ICMPv6 types, you must specify all ICMP/ICMPv6 codes.
+        /// is ICMP or ICMPv6, this is the ICMP type or -1 (all ICMP types).
         /// </para>
         /// </summary>
         public int FromPort
@@ -147,13 +147,13 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property IpProtocol. 
         /// <para>
-        /// The IP protocol name (<code>tcp</code>, <code>udp</code>, <code>icmp</code>, <code>icmpv6</code>)
-        /// or number (see <a href="http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">Protocol
+        /// The IP protocol name (<c>tcp</c>, <c>udp</c>, <c>icmp</c>, <c>icmpv6</c>) or number
+        /// (see <a href="http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">Protocol
         /// Numbers</a>). 
         /// </para>
         ///  
         /// <para>
-        /// Use <code>-1</code> to specify all protocols.
+        /// Use <c>-1</c> to specify all protocols.
         /// </para>
         /// </summary>
         public string IpProtocol
@@ -208,8 +208,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property ToPort. 
         /// <para>
         /// If the protocol is TCP or UDP, this is the end of the port range. If the protocol
-        /// is ICMP or ICMPv6, this is the code. A value of -1 indicates all ICMP/ICMPv6 codes.
-        /// If you specify all ICMP/ICMPv6 types, you must specify all ICMP/ICMPv6 codes.
+        /// is ICMP or ICMPv6, this is the ICMP code or -1 (all ICMP codes). If the start port
+        /// is -1 (all ICMP types), then the end port must be -1 (all ICMP codes).
         /// </para>
         /// </summary>
         public int ToPort

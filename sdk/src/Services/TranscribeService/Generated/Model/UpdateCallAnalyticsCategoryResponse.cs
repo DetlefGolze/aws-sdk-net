@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.TranscribeService.Model
         /// Gets and sets the property CategoryProperties. 
         /// <para>
         /// Provides you with the properties of the Call Analytics category you specified in your
-        /// <code>UpdateCallAnalyticsCategory</code> request.
+        /// <c>UpdateCallAnalyticsCategory</c> request.
         /// </para>
         /// </summary>
         public CategoryProperties CategoryProperties

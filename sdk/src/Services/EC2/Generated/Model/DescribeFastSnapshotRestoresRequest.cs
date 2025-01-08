@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeFastSnapshotRestoresRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -45,21 +46,21 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>availability-zone</code>: The Availability Zone of the snapshot.
+        ///  <c>availability-zone</c>: The Availability Zone of the snapshot.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>owner-id</code>: The ID of the Amazon Web Services account that enabled fast
-        /// snapshot restore on the snapshot.
+        ///  <c>owner-id</c>: The ID of the Amazon Web Services account that enabled fast snapshot
+        /// restore on the snapshot.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>snapshot-id</code>: The ID of the snapshot.
+        ///  <c>snapshot-id</c>: The ID of the snapshot.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>state</code>: The state of fast snapshot restores for the snapshot (<code>enabling</code>
-        /// | <code>optimizing</code> | <code>enabled</code> | <code>disabling</code> | <code>disabled</code>).
+        ///  <c>state</c>: The state of fast snapshot restores for the snapshot (<c>enabling</c>
+        /// | <c>optimizing</c> | <c>enabled</c> | <c>disabling</c> | <c>disabled</c>).
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -72,7 +73,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

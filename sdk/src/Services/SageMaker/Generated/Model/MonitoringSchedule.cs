@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -45,7 +46,7 @@ namespace Amazon.SageMaker.Model
         private string _monitoringScheduleName;
         private ScheduleStatus _monitoringScheduleStatus;
         private MonitoringType _monitoringType;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property CreationTime. 
@@ -196,19 +197,19 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PENDING</code> - The schedule is pending being created.
+        ///  <c>PENDING</c> - The schedule is pending being created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> - The schedule failed.
+        ///  <c>FAILED</c> - The schedule failed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SCHEDULED</code> - The schedule was successfully created.
+        ///  <c>SCHEDULED</c> - The schedule was successfully created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>STOPPED</code> - The schedule was stopped.
+        ///  <c>STOPPED</c> - The schedule was stopped.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -261,7 +262,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

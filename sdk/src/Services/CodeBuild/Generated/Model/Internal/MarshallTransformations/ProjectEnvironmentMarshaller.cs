@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,10 +46,23 @@ namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ProjectEnvironment requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCertificate())
             {
                 context.Writer.WritePropertyName("certificate");
                 context.Writer.Write(requestObject.Certificate);
+            }
+
+            if(requestObject.IsSetComputeConfiguration())
+            {
+                context.Writer.WritePropertyName("computeConfiguration");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = ComputeConfigurationMarshaller.Instance;
+                marshaller.Marshall(requestObject.ComputeConfiguration, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetComputeType())
@@ -71,6 +85,17 @@ namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
                     context.Writer.WriteObjectEnd();
                 }
                 context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetFleet())
+            {
+                context.Writer.WritePropertyName("fleet");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = ProjectFleetMarshaller.Instance;
+                marshaller.Marshall(requestObject.Fleet, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetImage())

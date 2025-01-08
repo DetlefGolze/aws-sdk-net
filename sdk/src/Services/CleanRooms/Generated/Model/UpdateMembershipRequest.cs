@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CleanRooms.Model
 {
     /// <summary>
@@ -79,7 +80,7 @@ namespace Amazon.CleanRooms.Model
         /// <summary>
         /// Gets and sets the property QueryLogStatus. 
         /// <para>
-        /// An indicator as to whether query logging has been enabled or disabled for the collaboration.
+        /// An indicator as to whether query logging has been enabled or disabled for the membership.
         /// </para>
         /// </summary>
         public MembershipQueryLogStatus QueryLogStatus

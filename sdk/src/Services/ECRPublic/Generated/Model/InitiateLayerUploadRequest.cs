@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECRPublic.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.ECRPublic.Model
     ///  <note> 
     /// <para>
     /// This operation is used by the Amazon ECR proxy and is not generally used by customers
-    /// for pulling and pushing images. In most cases, you should use the <code>docker</code>
-    /// CLI to pull, tag, and push images.
+    /// for pulling and pushing images. In most cases, you should use the <c>docker</c> CLI
+    /// to pull, tag, and push images.
     /// </para>
     ///  </note>
     /// </summary>

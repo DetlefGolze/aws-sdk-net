@@ -26,10 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
     /// A list of additional configurations which will be configured for the organization.
+    /// 
+    /// 
+    ///  
+    /// <para>
+    /// Additional configuration applies to only GuardDuty Runtime Monitoring protection plan.
+    /// </para>
     /// </summary>
     public partial class OrganizationAdditionalConfiguration
     {
@@ -44,15 +51,14 @@ namespace Amazon.GuardDuty.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NEW</code>: Indicates that when a new account joins the organization, they
-        /// will have the additional configuration enabled automatically. 
+        ///  <c>NEW</c>: Indicates that when a new account joins the organization, they will have
+        /// the additional configuration enabled automatically. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ALL</code>: Indicates that all accounts in the organization have the additional
-        /// configuration enabled automatically. This includes <code>NEW</code> accounts that
-        /// join the organization and accounts that may have been suspended or removed from the
-        /// organization in GuardDuty.
+        ///  <c>ALL</c>: Indicates that all accounts in the organization have the additional configuration
+        /// enabled automatically. This includes <c>NEW</c> accounts that join the organization
+        /// and accounts that may have been suspended or removed from the organization in GuardDuty.
         /// </para>
         ///  
         /// <para>
@@ -60,7 +66,7 @@ namespace Amazon.GuardDuty.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NONE</code>: Indicates that the additional configuration will not be automatically
+        ///  <c>NONE</c>: Indicates that the additional configuration will not be automatically
         /// enabled for any account in the organization. The administrator must manage the additional
         /// configuration for each account individually.
         /// </para>
@@ -82,6 +88,7 @@ namespace Amazon.GuardDuty.Model
         /// Gets and sets the property Name. 
         /// <para>
         /// The name of the additional configuration that will be configured for the organization.
+        /// These values are applicable to only Runtime Monitoring protection plan.
         /// </para>
         /// </summary>
         public OrgFeatureAdditionalConfiguration Name

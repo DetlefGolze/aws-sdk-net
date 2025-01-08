@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -33,22 +34,22 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// 
     ///  
     /// <para>
-    ///  <code>OrganizationNotExists</code> (Your organization doesn't exist)
+    ///  <c>OrganizationNotExists</c> (Your organization doesn't exist)
     /// </para>
     ///  
     /// <para>
-    ///  <code>NoPermissions</code> (The system can't locate the service-linked role. This
-    /// role is automatically created when a user creates a resource data sync in Amazon Web
-    /// Services Systems Manager Explorer.)
+    ///  <c>NoPermissions</c> (The system can't locate the service-linked role. This role
+    /// is automatically created when a user creates a resource data sync in Amazon Web Services
+    /// Systems Manager Explorer.)
     /// </para>
     ///  
     /// <para>
-    ///  <code>InvalidOrganizationalUnit</code> (You specified or selected an invalid unit
-    /// in the resource data sync configuration.)
+    ///  <c>InvalidOrganizationalUnit</c> (You specified or selected an invalid unit in the
+    /// resource data sync configuration.)
     /// </para>
     ///  
     /// <para>
-    ///  <code>TrustedAccessDisabled</code> (You disabled Systems Manager access in the organization
+    ///  <c>TrustedAccessDisabled</c> (You disabled Systems Manager access in the organization
     /// in Organizations.)
     /// </para>
     /// </summary>
@@ -57,14 +58,14 @@ namespace Amazon.SimpleSystemsManagement.Model
         private ResourceDataSyncAwsOrganizationsSource _awsOrganizationsSource;
         private bool? _enableAllOpsDataSources;
         private bool? _includeFutureRegions;
-        private List<string> _sourceRegions = new List<string>();
+        private List<string> _sourceRegions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _sourceType;
         private string _state;
 
         /// <summary>
         /// Gets and sets the property AwsOrganizationsSource. 
         /// <para>
-        /// The field name in <code>SyncSource</code> for the <code>ResourceDataSyncAwsOrganizationsSource</code>
+        /// The field name in <c>SyncSource</c> for the <c>ResourceDataSyncAwsOrganizationsSource</c>
         /// type.
         /// </para>
         /// </summary>
@@ -86,9 +87,9 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// When you create a resource data sync, if you choose one of the Organizations options,
         /// then Systems Manager automatically enables all OpsData sources in the selected Amazon
         /// Web Services Regions for all Amazon Web Services accounts in your organization (or
-        /// in the selected organization units). For more information, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/Explorer-resouce-data-sync-multiple-accounts-and-regions.html">About
-        /// multiple account and Region resource data syncs</a> in the <i>Amazon Web Services
-        /// Systems Manager User Guide</i>.
+        /// in the selected organization units). For more information, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/Explorer-resource-data-sync.html">Setting
+        /// up Systems Manager Explorer to display data from multiple accounts and Regions</a>
+        /// in the <i>Amazon Web Services Systems Manager User Guide</i>.
         /// </para>
         /// </summary>
         public bool EnableAllOpsDataSources
@@ -125,8 +126,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property SourceRegions. 
         /// <para>
-        /// The <code>SyncSource</code> Amazon Web Services Regions included in the resource data
-        /// sync.
+        /// The <c>SyncSource</c> Amazon Web Services Regions included in the resource data sync.
         /// </para>
         /// </summary>
         public List<string> SourceRegions
@@ -138,15 +138,14 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if SourceRegions property is set
         internal bool IsSetSourceRegions()
         {
-            return this._sourceRegions != null && this._sourceRegions.Count > 0; 
+            return this._sourceRegions != null && (this._sourceRegions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SourceType. 
         /// <para>
-        /// The type of data source for the resource data sync. <code>SourceType</code> is either
-        /// <code>AwsOrganizations</code> (if an organization is present in Organizations) or
-        /// <code>singleAccountMultiRegions</code>.
+        /// The type of data source for the resource data sync. <c>SourceType</c> is either <c>AwsOrganizations</c>
+        /// (if an organization is present in Organizations) or <c>singleAccountMultiRegions</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -169,21 +168,21 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>OrganizationNotExists</code>: Your organization doesn't exist.
+        ///  <c>OrganizationNotExists</c>: Your organization doesn't exist.
         /// </para>
         ///  
         /// <para>
-        ///  <code>NoPermissions</code>: The system can't locate the service-linked role. This
-        /// role is automatically created when a user creates a resource data sync in Explorer.
+        ///  <c>NoPermissions</c>: The system can't locate the service-linked role. This role
+        /// is automatically created when a user creates a resource data sync in Explorer.
         /// </para>
         ///  
         /// <para>
-        ///  <code>InvalidOrganizationalUnit</code>: You specified or selected an invalid unit
-        /// in the resource data sync configuration.
+        ///  <c>InvalidOrganizationalUnit</c>: You specified or selected an invalid unit in the
+        /// resource data sync configuration.
         /// </para>
         ///  
         /// <para>
-        ///  <code>TrustedAccessDisabled</code>: You disabled Systems Manager access in the organization
+        ///  <c>TrustedAccessDisabled</c>: You disabled Systems Manager access in the organization
         /// in Organizations.
         /// </para>
         /// </summary>

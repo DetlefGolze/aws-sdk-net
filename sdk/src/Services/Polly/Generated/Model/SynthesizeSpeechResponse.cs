@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Polly.Model
 {
     /// <summary>
@@ -58,29 +59,28 @@ namespace Amazon.Polly.Model
         /// <summary>
         /// Gets and sets the property ContentType. 
         /// <para>
-        ///  Specifies the type audio stream. This should reflect the <code>OutputFormat</code>
-        /// parameter in your request. 
+        ///  Specifies the type audio stream. This should reflect the <c>OutputFormat</c> parameter
+        /// in your request. 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  If you request <code>mp3</code> as the <code>OutputFormat</code>, the <code>ContentType</code>
-        /// returned is audio/mpeg. 
+        ///  If you request <c>mp3</c> as the <c>OutputFormat</c>, the <c>ContentType</c> returned
+        /// is audio/mpeg. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  If you request <code>ogg_vorbis</code> as the <code>OutputFormat</code>, the <code>ContentType</code>
+        ///  If you request <c>ogg_vorbis</c> as the <c>OutputFormat</c>, the <c>ContentType</c>
         /// returned is audio/ogg. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  If you request <code>pcm</code> as the <code>OutputFormat</code>, the <code>ContentType</code>
-        /// returned is audio/pcm in a signed 16-bit, 1 channel (mono), little-endian format.
-        /// 
+        ///  If you request <c>pcm</c> as the <c>OutputFormat</c>, the <c>ContentType</c> returned
+        /// is audio/pcm in a signed 16-bit, 1 channel (mono), little-endian format. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If you request <code>json</code> as the <code>OutputFormat</code>, the <code>ContentType</code>
-        /// returned is application/x-json-stream.
+        /// If you request <c>json</c> as the <c>OutputFormat</c>, the <c>ContentType</c> returned
+        /// is application/x-json-stream.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -96,7 +96,7 @@ namespace Amazon.Polly.Model
         // Check to see if ContentType property is set
         internal bool IsSetContentType()
         {
-            return this._contentType != null;
+            return !string.IsNullOrEmpty(this._contentType);
         }
 
         /// <summary>
@@ -130,6 +130,9 @@ namespace Amazon.Polly.Model
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Disposes of all managed and unmanaged resources.
+        /// </summary>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

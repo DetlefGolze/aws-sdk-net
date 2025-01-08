@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECR.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.ECR.Model
     public partial class DescribePullThroughCacheRulesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<PullThroughCacheRule> _pullThroughCacheRules = new List<PullThroughCacheRule>();
+        private List<PullThroughCacheRule> _pullThroughCacheRules = AWSConfigs.InitializeCollections ? new List<PullThroughCacheRule>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value to include in a future <code>DescribePullThroughCacheRulesRequest</code>
-        /// request. When the results of a <code>DescribePullThroughCacheRulesRequest</code> request
-        /// exceed <code>maxResults</code>, this value can be used to retrieve the next page of
-        /// results. This value is null when there are no more results to return.
+        /// The <c>nextToken</c> value to include in a future <c>DescribePullThroughCacheRulesRequest</c>
+        /// request. When the results of a <c>DescribePullThroughCacheRulesRequest</c> request
+        /// exceed <c>maxResults</c>, this value can be used to retrieve the next page of results.
+        /// This value is null when there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken
@@ -72,7 +73,7 @@ namespace Amazon.ECR.Model
         // Check to see if PullThroughCacheRules property is set
         internal bool IsSetPullThroughCacheRules()
         {
-            return this._pullThroughCacheRules != null && this._pullThroughCacheRules.Count > 0; 
+            return this._pullThroughCacheRules != null && (this._pullThroughCacheRules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

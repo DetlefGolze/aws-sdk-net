@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glacier.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.Glacier.Model
         /// <summary>
         /// Gets and sets the property ExpressionType. 
         /// <para>
-        /// The type of the provided expression, for example <code>SQL</code>.
+        /// The type of the provided expression, for example <c>SQL</c>.
         /// </para>
         /// </summary>
         public ExpressionType ExpressionType

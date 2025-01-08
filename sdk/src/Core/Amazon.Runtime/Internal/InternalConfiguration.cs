@@ -13,16 +13,13 @@
  * permissions and limitations under the License.
  */
 using System;
-using System.Globalization;
 
 using Amazon.Runtime.Internal.Util;
 using System.Collections.Generic;
-using Amazon.Util;
 using System.Linq;
 #if BCL || NETSTANDARD
 using Amazon.Runtime.CredentialManagement;
 #endif
-using System.ComponentModel;
 
 namespace Amazon.Runtime.Internal
 {
@@ -53,6 +50,11 @@ namespace Amazon.Runtime.Internal
         /// Endpoint of the EC2 Instance Metadata Service
         /// </summary>
         public string EC2MetadataServiceEndpoint { get; set; }
+
+        /// <summary>
+        /// Controls whether request EC2 metadata v1 fallback is disabled.
+        /// </summary>
+        public bool? EC2MetadataV1Disabled { get; set; }
 
         /// <summary>
         /// Internet protocol version to be used for communicating with the EC2 Instance Metadata Service
@@ -92,6 +94,19 @@ namespace Amazon.Runtime.Internal
         /// Minimum size in bytes that a request body should be to trigger compression.
         /// </summary>
         public long? RequestMinCompressionSizeBytes { get; set; }
+
+        /// <summary>
+        /// Customers can opt-in to provide an app id that is intended to identify their applications
+        /// in the user agent header string. The value should have a maximum length of 50.
+        /// </summary>
+        public string ClientAppId { get; set; }
+
+        /// <summary>
+        /// Controls whether the resolved endpoint will include the account id. This allows for direct routing of traffic
+        /// to the cell responsible for a given account, which avoids the additional latency of extra backend hops and reduces
+        /// complexity in the routing layer.
+        /// </summary>
+        public AccountIdEndpointMode? AccountIdEndpointMode { get; set; }
     }
 
 #if BCL || NETSTANDARD
@@ -109,11 +124,15 @@ namespace Amazon.Runtime.Internal
         public const string ENVIRONMENT_VARIABLE_AWS_RETRY_MODE = "AWS_RETRY_MODE";
         public const string ENVIRONMENT_VARIABLE_AWS_EC2_METADATA_SERVICE_ENDPOINT = "AWS_EC2_METADATA_SERVICE_ENDPOINT";
         public const string ENVIRONMENT_VARIABLE_AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE = "AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE";
+        public const string ENVIRONMENT_VARIABLE_AWS_EC2_METADATA_V1_DISABLED = "AWS_EC2_METADATA_V1_DISABLED";
         public const string ENVIRONMENT_VARIABLE_AWS_USE_DUALSTACK_ENDPOINT = "AWS_USE_DUALSTACK_ENDPOINT";
         public const string ENVIRONMENT_VARIABLE_AWS_USE_FIPS_ENDPOINT = "AWS_USE_FIPS_ENDPOINT";
         public const string ENVIRONMENT_VARIABLE_AWS_IGNORE_CONFIGURED_ENDPOINT_URLS = "AWS_IGNORE_CONFIGURED_ENDPOINT_URLS";
         public const string ENVIRONMENT_VARIABLE_AWS_DISABLE_REQUEST_COMPRESSION = "AWS_DISABLE_REQUEST_COMPRESSION";
         public const string ENVIRONMENT_VARIABLE_AWS_REQUEST_MIN_COMPRESSION_SIZE_BYTES = "AWS_REQUEST_MIN_COMPRESSION_SIZE_BYTES";
+        public const string ENVIRONMENT_VARIABLE_AWS_SDK_UA_APP_ID = "AWS_SDK_UA_APP_ID";
+        public const string ENVIRONMENT_VARAIBLE_AWS_ACCOUNT_ID_ENDPOINT_MODE = "AWS_ACCOUNT_ID_ENDPOINT_MODE";
+        public const int AWS_SDK_UA_APP_ID_MAX_LENGTH = 50;
 
         /// <summary>
         /// Attempts to construct a configuration instance of configuration environment 
@@ -129,11 +148,14 @@ namespace Amazon.Runtime.Internal
             RetryMode = GetEnvironmentVariable<RequestRetryMode>(ENVIRONMENT_VARIABLE_AWS_RETRY_MODE);
             EC2MetadataServiceEndpoint = GetEC2MetadataEndpointEnvironmentVariable();
             EC2MetadataServiceEndpointMode = GetEnvironmentVariable<EC2MetadataServiceEndpointMode>(ENVIRONMENT_VARIABLE_AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE);
+            EC2MetadataV1Disabled = GetEnvironmentVariable<bool>(ENVIRONMENT_VARIABLE_AWS_EC2_METADATA_V1_DISABLED);
             UseDualstackEndpoint = GetEnvironmentVariable<bool>(ENVIRONMENT_VARIABLE_AWS_USE_DUALSTACK_ENDPOINT);
             UseFIPSEndpoint = GetEnvironmentVariable<bool>(ENVIRONMENT_VARIABLE_AWS_USE_FIPS_ENDPOINT);
             IgnoreConfiguredEndpointUrls = GetEnvironmentVariable(ENVIRONMENT_VARIABLE_AWS_IGNORE_CONFIGURED_ENDPOINT_URLS, false);
             DisableRequestCompression = GetEnvironmentVariable<bool>(ENVIRONMENT_VARIABLE_AWS_DISABLE_REQUEST_COMPRESSION);
             RequestMinCompressionSizeBytes = GetEnvironmentVariable<long>(ENVIRONMENT_VARIABLE_AWS_REQUEST_MIN_COMPRESSION_SIZE_BYTES);
+            AccountIdEndpointMode = GetEnvironmentVariable<AccountIdEndpointMode>(ENVIRONMENT_VARAIBLE_AWS_ACCOUNT_ID_ENDPOINT_MODE);
+            ClientAppId = GetClientAppIdEnvironmentVariable();
         }
 
         private bool GetEnvironmentVariable(string name, bool defaultValue)
@@ -174,17 +196,39 @@ namespace Amazon.Runtime.Internal
                 return null;
             }
 
-            var converter = TypeDescriptor.GetConverter(typeof(T?));
-            if (converter == null)
-            {
-                throw new InvalidOperationException($"Unable to obtain type converter for type {typeof(T?)} " +
-                    $"to convert environment variable {name}.");
-            }
-
-
             try
             {
-                return (T?)converter.ConvertFromString(value);
+                object convertedValue;
+                if(typeof(T) == typeof(bool))
+                {
+                    convertedValue = bool.Parse(value);
+                }
+                else if (typeof(T) == typeof(int))
+                {
+                    convertedValue = int.Parse(value);
+                }
+                else if (typeof(T) == typeof(long))
+                {
+                    convertedValue = long.Parse(value);
+                }
+                else if (typeof(T).IsEnum)
+                {
+                    convertedValue = Enum.Parse(typeof(T), value, true);
+                }
+                else if (typeof(T) == typeof(string))
+                {
+                    convertedValue = value.ToString();
+                }
+                else
+                {
+                    throw new InvalidOperationException($"Unable to convert type {typeof(T?)} for environment variable {name}.");
+                }
+
+                return (T?)convertedValue;
+            }
+            catch(InvalidOperationException)
+            {
+                throw;
             }
             catch (Exception e)
             {
@@ -208,6 +252,26 @@ namespace Amazon.Runtime.Internal
             {
                 throw new AmazonClientException($"The environment variable {ENVIRONMENT_VARIABLE_AWS_EC2_METADATA_SERVICE_ENDPOINT} was set with value " +
                     $"{rawValue}, but it could not be parsed as a well-formed Uri.");
+            }
+
+            return rawValue;
+        }       
+
+        /// <summary>
+        /// Loads client app id from the environment variable.
+        /// Throws an exception if the length of client app id is longer than 50.
+        /// </summary>
+        /// <returns>Client app id string</returns>
+        private string GetClientAppIdEnvironmentVariable()
+        {
+            if (!TryGetEnvironmentVariable(ENVIRONMENT_VARIABLE_AWS_SDK_UA_APP_ID, out var rawValue))
+            {
+                return null;
+            }
+
+            if (rawValue?.Length > AWS_SDK_UA_APP_ID_MAX_LENGTH)
+            {
+                Logger.GetLogger(typeof(InternalConfiguration)).InfoFormat("Warning: Client app id exceeds recommended maximum length of {0} characters: \"{1}\"", AWS_SDK_UA_APP_ID_MAX_LENGTH, rawValue);
             }
 
             return rawValue;
@@ -258,11 +322,14 @@ namespace Amazon.Runtime.Internal
                 MaxAttempts = profile.MaxAttempts;
                 EC2MetadataServiceEndpoint = profile.EC2MetadataServiceEndpoint;
                 EC2MetadataServiceEndpointMode = profile.EC2MetadataServiceEndpointMode;
+                EC2MetadataV1Disabled = profile.EC2MetadataV1Disabled;
                 UseDualstackEndpoint = profile.UseDualstackEndpoint;
                 UseFIPSEndpoint = profile.UseFIPSEndpoint;
                 IgnoreConfiguredEndpointUrls = profile.IgnoreConfiguredEndpointUrls;
                 DisableRequestCompression = profile.DisableRequestCompression;
                 RequestMinCompressionSizeBytes = profile.RequestMinCompressionSizeBytes;
+                ClientAppId = profile.ClientAppId;
+                AccountIdEndpointMode = profile.AccountIdEndpointMode;
             }
             else
             {
@@ -278,12 +345,15 @@ namespace Amazon.Runtime.Internal
                 new KeyValuePair<string, object>("max_attempts", profile.MaxAttempts),
                 new KeyValuePair<string, object>("ec2_metadata_service_endpoint", profile.EC2MetadataServiceEndpoint),
                 new KeyValuePair<string, object>("ec2_metadata_service_endpoint_mode", profile.EC2MetadataServiceEndpointMode),
+                new KeyValuePair<string, object>("ec2_metadata_v1_disabled", profile.EC2MetadataV1Disabled),
                 new KeyValuePair<string, object>("use_dualstack_endpoint", profile.UseDualstackEndpoint),
                 new KeyValuePair<string, object>("use_fips_endpoint", profile.UseFIPSEndpoint),
                 new KeyValuePair<string,object>( "ignore_configured_endpoint_urls", profile.IgnoreConfiguredEndpointUrls),
                 new KeyValuePair<string, object>("endpoint_url", profile.EndpointUrl),
                 new KeyValuePair<string, object>("disable_request_compression", profile.DisableRequestCompression),
-                new KeyValuePair<string, object>("request_min_compression_size_bytes", profile.RequestMinCompressionSizeBytes)
+                new KeyValuePair<string, object>("request_min_compression_size_bytes", profile.RequestMinCompressionSizeBytes),
+                new KeyValuePair<string, object>("sdk_ua_app_id", profile.ClientAppId),
+                new KeyValuePair<string, object>("account_id_endpoint_mode", profile.AccountIdEndpointMode)
             };
 
             foreach(var item in items)
@@ -345,12 +415,15 @@ namespace Amazon.Runtime.Internal
             _cachedConfiguration.MaxAttempts = SeekValue(standardGenerators, (c) => c.MaxAttempts);
             _cachedConfiguration.EC2MetadataServiceEndpoint = SeekString(standardGenerators, (c) => c.EC2MetadataServiceEndpoint);
             _cachedConfiguration.EC2MetadataServiceEndpointMode = SeekValue(standardGenerators, (c) => c.EC2MetadataServiceEndpointMode);
+            _cachedConfiguration.EC2MetadataV1Disabled = SeekValue(standardGenerators, (c) => c.EC2MetadataV1Disabled);
             _cachedConfiguration.UseDualstackEndpoint = SeekValue(standardGenerators, (c) => c.UseDualstackEndpoint);
             _cachedConfiguration.UseFIPSEndpoint = SeekValue(standardGenerators, (c) => c.UseFIPSEndpoint);
             _cachedConfiguration.IgnoreConfiguredEndpointUrls = SeekValue(standardGenerators, (c) => c.IgnoreConfiguredEndpointUrls);
 
             _cachedConfiguration.DisableRequestCompression = SeekValue(standardGenerators, (c) => c.DisableRequestCompression);
             _cachedConfiguration.RequestMinCompressionSizeBytes = SeekValue(standardGenerators, (c) => c.RequestMinCompressionSizeBytes);
+            _cachedConfiguration.ClientAppId = SeekString(standardGenerators, (c) => c.ClientAppId, defaultValue: null);
+            _cachedConfiguration.AccountIdEndpointMode = SeekValue(standardGenerators,(c) => c.AccountIdEndpointMode);
         }        
                 
         private static T? SeekValue<T>(List<ConfigGenerator> generators, Func<InternalConfiguration, T?> getValue) where T : struct
@@ -433,6 +506,17 @@ namespace Amazon.Runtime.Internal
         }
 
         /// <summary>
+        /// Controls whether request EC2 metadata v1 fallback is disabled.
+        /// </summary>
+        public static bool? EC2MetadataV1Disabled
+        {
+            get
+            {
+                return _cachedConfiguration.EC2MetadataV1Disabled;
+            }
+        }
+
+        /// <summary>
         /// Internet protocol version to be used for communicating with the EC2 Instance Metadata Service
         /// </summary>
         public static EC2MetadataServiceEndpointMode? EC2MetadataServiceEndpointMode
@@ -506,6 +590,31 @@ namespace Amazon.Runtime.Internal
             get
             {
                 return _cachedConfiguration.RequestMinCompressionSizeBytes;
+            }
+        }
+
+        /// <summary>
+        /// Customers can opt-in to provide an app id that is intended to identify their applications
+        /// in the user agent header string. The value should have a maximum length of 50.
+        /// </summary>
+        public static string ClientAppId
+        {
+            get
+            {
+                return _cachedConfiguration.ClientAppId;
+            }
+        }
+
+        /// <summary>
+        /// Controls whether the resolved endpoint will include the account id. This allows for direct routing of traffic
+        /// to the cell responsible for a given account, which avoids the additional latency of extra backend hops and reduces
+        /// complexity in the routing layer.
+        /// </summary>
+        public static AccountIdEndpointMode? AccountIdEndpointMode
+        {
+            get
+            {
+                return _cachedConfiguration.AccountIdEndpointMode;
             }
         }
     }

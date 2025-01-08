@@ -26,16 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
     /// Container for the parameters to the PutPartnerEvents operation.
     /// This is used by SaaS partners to write events to a customer's partner event bus. Amazon
     /// Web Services customers do not use this operation.
+    /// 
+    ///  
+    /// <para>
+    /// For information on calculating event batch size, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-putevent-size.html">Calculating
+    /// EventBridge PutEvents event entry size</a> in the <i>EventBridge User Guide</i>.
+    /// </para>
     /// </summary>
     public partial class PutPartnerEventsRequest : AmazonEventBridgeRequest
     {
-        private List<PutPartnerEventsRequestEntry> _entries = new List<PutPartnerEventsRequestEntry>();
+        private List<PutPartnerEventsRequestEntry> _entries = AWSConfigs.InitializeCollections ? new List<PutPartnerEventsRequestEntry>() : null;
 
         /// <summary>
         /// Gets and sets the property Entries. 
@@ -53,7 +60,7 @@ namespace Amazon.EventBridge.Model
         // Check to see if Entries property is set
         internal bool IsSetEntries()
         {
-            return this._entries != null && this._entries.Count > 0; 
+            return this._entries != null && (this._entries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

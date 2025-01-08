@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.ConfigService.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.ConfigService
 {
     /// <summary>
-    /// Interface for accessing ConfigService
+    /// <para>Interface for accessing ConfigService</para>
     ///
     /// Config 
     /// <para>
@@ -65,6 +66,129 @@ namespace Amazon.ConfigService
         IConfigServicePaginatorFactory Paginators { get; }
 #endif
                 
+        #region  AssociateResourceTypes
+
+
+
+        /// <summary>
+        /// Adds all resource types specified in the <c>ResourceTypes</c> list to the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_RecordingGroup.html">RecordingGroup</a>
+        /// of specified configuration recorder and includes those resource types when recording.
+        /// 
+        ///  
+        /// <para>
+        /// For this operation, the specified configuration recorder must use a <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_RecordingStrategy.html">RecordingStrategy</a>
+        /// that is either <c>INCLUSION_BY_RESOURCE_TYPES</c> or <c>EXCLUSION_BY_RESOURCE_TYPES</c>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AssociateResourceTypes service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the AssociateResourceTypes service method, as returned by ConfigService.</returns>
+        /// <exception cref="Amazon.ConfigService.Model.ConflictException">
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutServiceLinkedConfigurationRecorder.html">PutServiceLinkedConfigurationRecorder</a>,
+        /// you cannot create a service-linked recorder because a service-linked recorder already
+        /// exists for the specified service.
+        /// 
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteServiceLinkedConfigurationRecorder.html">DeleteServiceLinkedConfigurationRecorder</a>,
+        /// you cannot delete the service-linked recorder because it is currently in use by the
+        /// linked Amazon Web Services service.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteDeliveryChannel.html">DeleteDeliveryChannel</a>,
+        /// you cannot delete the specified delivery channel because the customer managed configuration
+        /// recorder is running. Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_StopConfigurationRecorder.html">StopConfigurationRecorder</a>
+        /// operation to stop the customer managed configuration recorder.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder is not in use
+        /// by the service. No association or dissociation of resource types is permitted.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, your requested change to the configuration
+        /// recorder has been denied by its linked Amazon Web Services service.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
+        /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigurationRecorderException">
+        /// You have specified a configuration recorder that does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.ConfigService.Model.ValidationException">
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
+        /// 
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// There are missing required fields.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/AssociateResourceTypes">REST API Reference for AssociateResourceTypes Operation</seealso>
+        Task<AssociateResourceTypesResponse> AssociateResourceTypesAsync(AssociateResourceTypesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  BatchGetAggregateResourceConfig
 
 
@@ -73,7 +197,7 @@ namespace Amazon.ConfigService
         /// Returns the current configuration items for resources that are present in your Config
         /// aggregator. The operation also returns a list of resources that are not processed
         /// in the current request. If there are no unprocessed resources, the operation returns
-        /// an empty <code>unprocessedResourceIdentifiers</code> list. 
+        /// an empty <c>unprocessedResourceIdentifiers</c> list. 
         /// 
         ///  <note> <ul> <li> 
         /// <para>
@@ -95,19 +219,63 @@ namespace Amazon.ConfigService
         /// You have specified a configuration aggregator that does not exist.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/BatchGetAggregateResourceConfig">REST API Reference for BatchGetAggregateResourceConfig Operation</seealso>
         Task<BatchGetAggregateResourceConfigResponse> BatchGetAggregateResourceConfigAsync(BatchGetAggregateResourceConfigRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -119,9 +287,9 @@ namespace Amazon.ConfigService
 
 
         /// <summary>
-        /// Returns the <code>BaseConfigurationItem</code> for one or more requested resources.
-        /// The operation also returns a list of resources that are not processed in the current
-        /// request. If there are no unprocessed resources, the operation returns an empty unprocessedResourceKeys
+        /// Returns the <c>BaseConfigurationItem</c> for one or more requested resources. The
+        /// operation also returns a list of resources that are not processed in the current request.
+        /// If there are no unprocessed resources, the operation returns an empty unprocessedResourceKeys
         /// list. 
         /// 
         ///  <note> <ul> <li> 
@@ -142,23 +310,68 @@ namespace Amazon.ConfigService
         /// 
         /// <returns>The response from the BatchGetResourceConfig service method, as returned by ConfigService.</returns>
         /// <exception cref="Amazon.ConfigService.Model.NoAvailableConfigurationRecorderException">
-        /// There are no configuration recorders available to provide the role needed to describe
-        /// your resources. Create a configuration recorder.
+        /// There are no customer managed configuration recorders available to record your resources.
+        /// Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigurationRecorder.html">PutConfigurationRecorder</a>
+        /// operation to create the customer managed configuration recorder.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/BatchGetResourceConfig">REST API Reference for BatchGetResourceConfig Operation</seealso>
         Task<BatchGetResourceConfigResponse> BatchGetResourceConfigAsync(BatchGetResourceConfigRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -197,14 +410,43 @@ namespace Amazon.ConfigService
         /// 
         ///  
         /// <para>
-        /// Config sets the state of a rule to <code>DELETING</code> until the deletion is complete.
-        /// You cannot update a rule while it is in this state. If you make a <code>PutConfigRule</code>
-        /// or <code>DeleteConfigRule</code> request for the rule, you will receive a <code>ResourceInUseException</code>.
+        /// Config sets the state of a rule to <c>DELETING</c> until the deletion is complete.
+        /// You cannot update a rule while it is in this state. If you make a <c>PutConfigRule</c>
+        /// or <c>DeleteConfigRule</c> request for the rule, you will receive a <c>ResourceInUseException</c>.
         /// </para>
         ///  
         /// <para>
-        /// You can check the state of a rule by using the <code>DescribeConfigRules</code> request.
+        /// You can check the state of a rule by using the <c>DescribeConfigRules</c> request.
         /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <b>Recommendation: Stop recording resource compliance before deleting rules</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// It is highly recommended that you stop recording for the <c>AWS::Config::ResourceCompliance</c>
+        /// resource type before you delete rules in your account. Deleting rules creates CIs
+        /// for <c>AWS::Config::ResourceCompliance</c> and can affect your Config <a href="https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html">configuration
+        /// recorder</a> costs. If you are deleting rules which evaluate a large number of resource
+        /// types, this can lead to a spike in the number of CIs recorded.
+        /// </para>
+        ///  
+        /// <para>
+        /// Best practice:
+        /// </para>
+        ///  <ol> <li> 
+        /// <para>
+        /// Stop recording <c>AWS::Config::ResourceCompliance</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Delete rule(s)
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Turn on recording for <c>AWS::Config::ResourceCompliance</c> 
+        /// </para>
+        ///  </li> </ol> </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteConfigRule service method.</param>
         /// <param name="cancellationToken">
@@ -289,19 +531,14 @@ namespace Amazon.ConfigService
 
 
         /// <summary>
-        /// Deletes the configuration recorder.
+        /// Deletes the customer managed configuration recorder.
         /// 
         ///  
         /// <para>
-        /// After the configuration recorder is deleted, Config will not record resource configuration
-        /// changes until you create a new configuration recorder.
-        /// </para>
-        ///  
-        /// <para>
-        /// This action does not delete the configuration information that was previously recorded.
-        /// You will be able to access the previously recorded information by using the <code>GetResourceConfigHistory</code>
-        /// action, but you will not be able to access this information in the Config console
-        /// until you create a new configuration recorder.
+        /// This operation does not delete the configuration information that was previously recorded.
+        /// You will be able to access the previously recorded information by using the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_GetResourceConfigHistory.html">GetResourceConfigHistory</a>
+        /// operation, but you will not be able to access this information in the Config console
+        /// until you have created a new customer managed configuration recorder.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteConfigurationRecorder service method.</param>
@@ -312,6 +549,34 @@ namespace Amazon.ConfigService
         /// <returns>The response from the DeleteConfigurationRecorder service method, as returned by ConfigService.</returns>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigurationRecorderException">
         /// You have specified a configuration recorder that does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.ConfigService.Model.UnmodifiableEntityException">
+        /// The requested operation is not valid.
+        /// 
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigurationRecorder.html">PutConfigurationRecorder</a>,
+        /// you will see this exception because you cannot use this operation to create a service-linked
+        /// configuration recorder. Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutServiceLinkedConfigurationRecorder.html">PutServiceLinkedConfigurationRecorder</a>
+        /// operation to create a service-linked configuration recorder.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteConfigurationRecorder.html">DeleteConfigurationRecorder</a>,
+        /// you will see this exception because you cannot use this operation to delete a service-linked
+        /// configuration recorder. Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteServiceLinkedConfigurationRecorder.html">DeleteServiceLinkedConfigurationRecorder</a>
+        /// operation to delete a service-linked configuration recorder.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_StartConfigurationRecorder.html">StartConfigurationRecorder</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_StopConfigurationRecorder.html">StopConfigurationRecorder</a>,
+        /// you will see this exception because these operations do not affect service-linked
+        /// configuration recorders. Service-linked configuration recorders are always recording.
+        /// To stop recording, you must delete the service-linked configuration recorder. Use
+        /// the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteServiceLinkedConfigurationRecorder.html">DeleteServiceLinkedConfigurationRecorder</a>
+        /// operation to delete a service-linked configuration recorder.
+        /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DeleteConfigurationRecorder">REST API Reference for DeleteConfigurationRecorder Operation</seealso>
         Task<DeleteConfigurationRecorderResponse> DeleteConfigurationRecorderAsync(DeleteConfigurationRecorderRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -328,8 +593,8 @@ namespace Amazon.ConfigService
         /// 
         ///  
         /// <para>
-        /// Config sets the conformance pack to <code>DELETE_IN_PROGRESS</code> until the deletion
-        /// is complete. You cannot update a conformance pack while it is in this state.
+        /// Config sets the conformance pack to <c>DELETE_IN_PROGRESS</c> until the deletion is
+        /// complete. You cannot update a conformance pack while it is in this state.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteConformancePack service method.</param>
@@ -394,19 +659,20 @@ namespace Amazon.ConfigService
         /// 
         ///  
         /// <para>
-        /// Before you can delete the delivery channel, you must stop the configuration recorder
-        /// by using the <a>StopConfigurationRecorder</a> action.
+        /// Before you can delete the delivery channel, you must stop the customer managed configuration
+        /// recorder. You can use the <a>StopConfigurationRecorder</a> operation to stop the customer
+        /// managed configuration recorder.
         /// </para>
         /// </summary>
-        /// <param name="deliveryChannelName">The name of the delivery channel to delete.</param>
+        /// <param name="deliveryChannelName">The name of the delivery channel that you want to delete.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
         /// 
         /// <returns>The response from the DeleteDeliveryChannel service method, as returned by ConfigService.</returns>
         /// <exception cref="Amazon.ConfigService.Model.LastDeliveryChannelDeleteFailedException">
-        /// You cannot delete the delivery channel you specified because the configuration recorder
-        /// is running.
+        /// You cannot delete the delivery channel you specified because the customer managed
+        /// configuration recorder is running.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchDeliveryChannelException">
         /// You have specified a delivery channel that does not exist.
@@ -420,8 +686,9 @@ namespace Amazon.ConfigService
         /// 
         ///  
         /// <para>
-        /// Before you can delete the delivery channel, you must stop the configuration recorder
-        /// by using the <a>StopConfigurationRecorder</a> action.
+        /// Before you can delete the delivery channel, you must stop the customer managed configuration
+        /// recorder. You can use the <a>StopConfigurationRecorder</a> operation to stop the customer
+        /// managed configuration recorder.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteDeliveryChannel service method.</param>
@@ -431,8 +698,8 @@ namespace Amazon.ConfigService
         /// 
         /// <returns>The response from the DeleteDeliveryChannel service method, as returned by ConfigService.</returns>
         /// <exception cref="Amazon.ConfigService.Model.LastDeliveryChannelDeleteFailedException">
-        /// You cannot delete the delivery channel you specified because the configuration recorder
-        /// is running.
+        /// You cannot delete the delivery channel you specified because the customer managed
+        /// configuration recorder is running.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchDeliveryChannelException">
         /// You have specified a delivery channel that does not exist.
@@ -520,7 +787,7 @@ namespace Amazon.ConfigService
         /// <para>
         /// Only a management account and a delegated administrator account can delete an organization
         /// Config rule. When calling this API with a delegated administrator, you must ensure
-        /// Organizations <code>ListDelegatedAdministrator</code> permissions are added.
+        /// Organizations <c>ListDelegatedAdministrator</c> permissions are added.
         /// </para>
         ///  
         /// <para>
@@ -540,12 +807,12 @@ namespace Amazon.ConfigService
         /// Names (ARNs) are used before trying again.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.OrganizationAccessDeniedException">
-        /// For <code>PutConfigurationAggregator</code> API, you can see this exception for the
-        /// following reasons:
+        /// For <c>PutConfigurationAggregator</c> API, you can see this exception for the following
+        /// reasons:
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// No permission to call <code>EnableAWSServiceAccess</code> API
+        /// No permission to call <c>EnableAWSServiceAccess</c> API
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -562,15 +829,15 @@ namespace Amazon.ConfigService
         ///  </li> <li> 
         /// <para>
         /// You are not a registered delegated administrator for Config with permissions to call
-        /// <code>ListDelegatedAdministrators</code> API. Ensure that the management account registers
-        /// delagated administrator for Config service principle name before the delegated administrator
+        /// <c>ListDelegatedAdministrators</c> API. Ensure that the management account registers
+        /// delagated administrator for Config service principal name before the delegated administrator
         /// creates an aggregator.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For all <code>OrganizationConfigRule</code> and <code>OrganizationConformancePack</code>
-        /// APIs, Config throws an exception if APIs are called from member accounts. All APIs
-        /// must be called from organization management account.
+        /// For all <c>OrganizationConfigRule</c> and <c>OrganizationConformancePack</c> APIs,
+        /// Config throws an exception if APIs are called from member accounts. All APIs must
+        /// be called from organization management account.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ResourceInUseException">
@@ -630,7 +897,7 @@ namespace Amazon.ConfigService
         /// <para>
         ///  Only a management account or a delegated administrator account can delete an organization
         /// conformance pack. When calling this API with a delegated administrator, you must ensure
-        /// Organizations <code>ListDelegatedAdministrator</code> permissions are added.
+        /// Organizations <c>ListDelegatedAdministrator</c> permissions are added.
         /// </para>
         ///  
         /// <para>
@@ -654,12 +921,12 @@ namespace Amazon.ConfigService
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.OrganizationAccessDeniedException">
-        /// For <code>PutConfigurationAggregator</code> API, you can see this exception for the
-        /// following reasons:
+        /// For <c>PutConfigurationAggregator</c> API, you can see this exception for the following
+        /// reasons:
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// No permission to call <code>EnableAWSServiceAccess</code> API
+        /// No permission to call <c>EnableAWSServiceAccess</c> API
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -676,15 +943,15 @@ namespace Amazon.ConfigService
         ///  </li> <li> 
         /// <para>
         /// You are not a registered delegated administrator for Config with permissions to call
-        /// <code>ListDelegatedAdministrators</code> API. Ensure that the management account registers
-        /// delagated administrator for Config service principle name before the delegated administrator
+        /// <c>ListDelegatedAdministrators</c> API. Ensure that the management account registers
+        /// delagated administrator for Config service principal name before the delegated administrator
         /// creates an aggregator.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For all <code>OrganizationConfigRule</code> and <code>OrganizationConformancePack</code>
-        /// APIs, Config throws an exception if APIs are called from member accounts. All APIs
-        /// must be called from organization management account.
+        /// For all <c>OrganizationConfigRule</c> and <c>OrganizationConformancePack</c> APIs,
+        /// Config throws an exception if APIs are called from member accounts. All APIs must
+        /// be called from organization management account.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ResourceInUseException">
@@ -773,35 +1040,45 @@ namespace Amazon.ConfigService
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// For PutConfigRule, the rule cannot be created because the IAM role assigned to Config
-        /// lacks permissions to perform the config:Put* action.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigRule.html">PutConfigRule</a>,
+        /// the rule cannot be created because the IAM role assigned to Config lacks permissions
+        /// to perform the config:Put* action.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutConfigRule, the Lambda function cannot be invoked. Check the function ARN,
-        /// and check the function's permissions.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigRule.html">PutConfigRule</a>,
+        /// the Lambda function cannot be invoked. Check the function ARN, and check the function's
+        /// permissions.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutOrganizationConfigRule, organization Config rule cannot be created because
-        /// you do not have permissions to call IAM <code>GetRole</code> action or create a service-linked
-        /// role.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutOrganizationConfigRule.html">PutOrganizationConfigRule</a>,
+        /// organization Config rule cannot be created because you do not have permissions to
+        /// call IAM <c>GetRole</c> action or create a service-linked role.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutConformancePack and PutOrganizationConformancePack, a conformance pack cannot
-        /// be created because you do not have the following permissions: 
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConformancePack.html">PutConformancePack</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutOrganizationConformancePack.html">PutOrganizationConformancePack</a>,
+        /// a conformance pack cannot be created because you do not have the following permissions:
+        /// 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// You do not have permission to call IAM <code>GetRole</code> action or create a service-linked
+        /// You do not have permission to call IAM <c>GetRole</c> action or create a service-linked
         /// role.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
         /// </para>
-        ///  </li> </ul> </li> </ul>
+        ///  </li> </ul> </li> <li> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutServiceLinkedConfigurationRecorder.html">PutServiceLinkedConfigurationRecorder</a>,
+        /// a service-linked configuration recorder cannot be created because you do not have
+        /// the following permissions: IAM <c>CreateServiceLinkedRole</c>.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -867,19 +1144,63 @@ namespace Amazon.ConfigService
         /// There is no configuration recorder running.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DeleteResourceConfig">REST API Reference for DeleteResourceConfig Operation</seealso>
         Task<DeleteResourceConfigResponse> DeleteResourceConfigAsync(DeleteResourceConfigRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -911,6 +1232,141 @@ namespace Amazon.ConfigService
 
         #endregion
                 
+        #region  DeleteServiceLinkedConfigurationRecorder
+
+
+
+        /// <summary>
+        /// Deletes an existing service-linked configuration recorder.
+        /// 
+        ///  
+        /// <para>
+        /// This operation does not delete the configuration information that was previously recorded.
+        /// You will be able to access the previously recorded information by using the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_GetResourceConfigHistory.html">GetResourceConfigHistory</a>
+        /// operation, but you will not be able to access this information in the Config console
+        /// until you have created a new service-linked configuration recorder for the same service.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <b>The recording scope determines if you receive configuration items</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The recording scope is set by the service that is linked to the configuration recorder
+        /// and determines whether you receive configuration items (CIs) in the delivery channel.
+        /// If the recording scope is internal, you will not receive CIs in the delivery channel.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteServiceLinkedConfigurationRecorder service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteServiceLinkedConfigurationRecorder service method, as returned by ConfigService.</returns>
+        /// <exception cref="Amazon.ConfigService.Model.ConflictException">
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutServiceLinkedConfigurationRecorder.html">PutServiceLinkedConfigurationRecorder</a>,
+        /// you cannot create a service-linked recorder because a service-linked recorder already
+        /// exists for the specified service.
+        /// 
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteServiceLinkedConfigurationRecorder.html">DeleteServiceLinkedConfigurationRecorder</a>,
+        /// you cannot delete the service-linked recorder because it is currently in use by the
+        /// linked Amazon Web Services service.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteDeliveryChannel.html">DeleteDeliveryChannel</a>,
+        /// you cannot delete the specified delivery channel because the customer managed configuration
+        /// recorder is running. Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_StopConfigurationRecorder.html">StopConfigurationRecorder</a>
+        /// operation to stop the customer managed configuration recorder.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder is not in use
+        /// by the service. No association or dissociation of resource types is permitted.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, your requested change to the configuration
+        /// recorder has been denied by its linked Amazon Web Services service.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
+        /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigurationRecorderException">
+        /// You have specified a configuration recorder that does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.ConfigService.Model.ValidationException">
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
+        /// 
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// There are missing required fields.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DeleteServiceLinkedConfigurationRecorder">REST API Reference for DeleteServiceLinkedConfigurationRecorder Operation</seealso>
+        Task<DeleteServiceLinkedConfigurationRecorderResponse> DeleteServiceLinkedConfigurationRecorderAsync(DeleteServiceLinkedConfigurationRecorderRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  DeleteStoredQuery
 
 
@@ -929,19 +1385,63 @@ namespace Amazon.ConfigService
         /// You have specified a resource that does not exist.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DeleteStoredQuery">REST API Reference for DeleteStoredQuery Operation</seealso>
         Task<DeleteStoredQueryResponse> DeleteStoredQueryAsync(DeleteStoredQueryRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -977,8 +1477,9 @@ namespace Amazon.ConfigService
         /// 
         /// <returns>The response from the DeliverConfigSnapshot service method, as returned by ConfigService.</returns>
         /// <exception cref="Amazon.ConfigService.Model.NoAvailableConfigurationRecorderException">
-        /// There are no configuration recorders available to provide the role needed to describe
-        /// your resources. Create a configuration recorder.
+        /// There are no customer managed configuration recorders available to record your resources.
+        /// Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigurationRecorder.html">PutConfigurationRecorder</a>
+        /// operation to create the customer managed configuration recorder.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoRunningConfigurationRecorderException">
         /// There is no configuration recorder running.
@@ -1016,8 +1517,9 @@ namespace Amazon.ConfigService
         /// 
         /// <returns>The response from the DeliverConfigSnapshot service method, as returned by ConfigService.</returns>
         /// <exception cref="Amazon.ConfigService.Model.NoAvailableConfigurationRecorderException">
-        /// There are no configuration recorders available to provide the role needed to describe
-        /// your resources. Create a configuration recorder.
+        /// There are no customer managed configuration recorders available to record your resources.
+        /// Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigurationRecorder.html">PutConfigurationRecorder</a>
+        /// operation to create the customer managed configuration recorder.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoRunningConfigurationRecorderException">
         /// There is no configuration recorder running.
@@ -1041,8 +1543,8 @@ namespace Amazon.ConfigService
         /// 
         ///  <note> 
         /// <para>
-        /// The results can return an empty result page, but if you have a <code>nextToken</code>,
-        /// the results are displayed on the next page.
+        /// The results can return an empty result page, but if you have a <c>nextToken</c>, the
+        /// results are displayed on the next page.
         /// </para>
         ///  </note>
         /// </summary>
@@ -1056,26 +1558,70 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigurationAggregatorException">
         /// You have specified a configuration aggregator that does not exist.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeAggregateComplianceByConfigRules">REST API Reference for DescribeAggregateComplianceByConfigRules Operation</seealso>
         Task<DescribeAggregateComplianceByConfigRulesResponse> DescribeAggregateComplianceByConfigRulesAsync(DescribeAggregateComplianceByConfigRulesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -1087,15 +1633,16 @@ namespace Amazon.ConfigService
 
 
         /// <summary>
-        /// Returns a list of the conformance packs and their associated compliance status with
-        /// the count of compliant and noncompliant Config rules within each conformance pack.
-        /// Also returns the total rule count which includes compliant rules, noncompliant rules,
-        /// and rules that cannot be evaluated due to insufficient data.
+        /// Returns a list of the existing and deleted conformance packs and their associated
+        /// compliance status with the count of compliant and noncompliant Config rules within
+        /// each conformance pack. Also returns the total rule count which includes compliant
+        /// rules, noncompliant rules, and rules that cannot be evaluated due to insufficient
+        /// data.
         /// 
         ///  <note> 
         /// <para>
-        /// The results can return an empty result page, but if you have a <code>nextToken</code>,
-        /// the results are displayed on the next page.
+        /// The results can return an empty result page, but if you have a <c>nextToken</c>, the
+        /// results are displayed on the next page.
         /// </para>
         ///  </note>
         /// </summary>
@@ -1109,26 +1656,70 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigurationAggregatorException">
         /// You have specified a configuration aggregator that does not exist.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeAggregateComplianceByConformancePacks">REST API Reference for DescribeAggregateComplianceByConformancePacks Operation</seealso>
         Task<DescribeAggregateComplianceByConformancePacksResponse> DescribeAggregateComplianceByConformancePacksAsync(DescribeAggregateComplianceByConformancePacksRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -1152,8 +1743,8 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -1170,7 +1761,7 @@ namespace Amazon.ConfigService
 
         /// <summary>
         /// Indicates whether the specified Config rules are compliant. If a rule is noncompliant,
-        /// this action returns the number of Amazon Web Services resources that do not comply
+        /// this operation returns the number of Amazon Web Services resources that do not comply
         /// with the rule.
         /// 
         ///  
@@ -1180,26 +1771,26 @@ namespace Amazon.ConfigService
         /// </para>
         ///  
         /// <para>
-        /// If Config has no current evaluation results for the rule, it returns <code>INSUFFICIENT_DATA</code>.
+        /// If Config has no current evaluation results for the rule, it returns <c>INSUFFICIENT_DATA</c>.
         /// This result might indicate one of the following conditions:
         /// </para>
         ///  <ul> <li> 
         /// <para>
         /// Config has never invoked an evaluation for the rule. To check whether it has, use
-        /// the <code>DescribeConfigRuleEvaluationStatus</code> action to get the <code>LastSuccessfulInvocationTime</code>
-        /// and <code>LastFailedInvocationTime</code>.
+        /// the <c>DescribeConfigRuleEvaluationStatus</c> action to get the <c>LastSuccessfulInvocationTime</c>
+        /// and <c>LastFailedInvocationTime</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The rule's Lambda function is failing to send evaluation results to Config. Verify
-        /// that the role you assigned to your configuration recorder includes the <code>config:PutEvaluations</code>
+        /// that the role you assigned to your configuration recorder includes the <c>config:PutEvaluations</c>
         /// permission. If the rule is a custom rule, verify that the Lambda execution role includes
-        /// the <code>config:PutEvaluations</code> permission.
+        /// the <c>config:PutEvaluations</c> permission.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The rule's Lambda function has returned <code>NOT_APPLICABLE</code> for all evaluation
-        /// results. This can occur if the resources were deleted or removed from the rule's scope.
+        /// The rule's Lambda function has returned <c>NOT_APPLICABLE</c> for all evaluation results.
+        /// This can occur if the resources were deleted or removed from the rule's scope.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1210,8 +1801,8 @@ namespace Amazon.ConfigService
         /// 
         /// <returns>The response from the DescribeComplianceByConfigRule service method, as returned by ConfigService.</returns>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -1233,7 +1824,7 @@ namespace Amazon.ConfigService
 
         /// <summary>
         /// Indicates whether the specified Amazon Web Services resources are compliant. If a
-        /// resource is noncompliant, this action returns the number of Config rules that the
+        /// resource is noncompliant, this operation returns the number of Config rules that the
         /// resource does not comply with.
         /// 
         ///  
@@ -1243,27 +1834,27 @@ namespace Amazon.ConfigService
         /// </para>
         ///  
         /// <para>
-        /// If Config has no current evaluation results for the resource, it returns <code>INSUFFICIENT_DATA</code>.
+        /// If Config has no current evaluation results for the resource, it returns <c>INSUFFICIENT_DATA</c>.
         /// This result might indicate one of the following conditions about the rules that evaluate
         /// the resource:
         /// </para>
         ///  <ul> <li> 
         /// <para>
         /// Config has never invoked an evaluation for the rule. To check whether it has, use
-        /// the <code>DescribeConfigRuleEvaluationStatus</code> action to get the <code>LastSuccessfulInvocationTime</code>
-        /// and <code>LastFailedInvocationTime</code>.
+        /// the <c>DescribeConfigRuleEvaluationStatus</c> action to get the <c>LastSuccessfulInvocationTime</c>
+        /// and <c>LastFailedInvocationTime</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The rule's Lambda function is failing to send evaluation results to Config. Verify
-        /// that the role that you assigned to your configuration recorder includes the <code>config:PutEvaluations</code>
+        /// that the role that you assigned to your configuration recorder includes the <c>config:PutEvaluations</c>
         /// permission. If the rule is a custom rule, verify that the Lambda execution role includes
-        /// the <code>config:PutEvaluations</code> permission.
+        /// the <c>config:PutEvaluations</c> permission.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The rule's Lambda function has returned <code>NOT_APPLICABLE</code> for all evaluation
-        /// results. This can occur if the resources were deleted or removed from the rule's scope.
+        /// The rule's Lambda function has returned <c>NOT_APPLICABLE</c> for all evaluation results.
+        /// This can occur if the resources were deleted or removed from the rule's scope.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1274,8 +1865,8 @@ namespace Amazon.ConfigService
         /// 
         /// <returns>The response from the DescribeComplianceByResource service method, as returned by ConfigService.</returns>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -1302,8 +1893,8 @@ namespace Amazon.ConfigService
         /// 
         /// <returns>The response from the DescribeConfigRuleEvaluationStatus service method, as returned by ConfigService.</returns>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -1333,8 +1924,8 @@ namespace Amazon.ConfigService
         /// 
         /// <returns>The response from the DescribeConfigRules service method, as returned by ConfigService.</returns>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -1356,7 +1947,7 @@ namespace Amazon.ConfigService
 
         /// <summary>
         /// Returns the details of one or more configuration aggregators. If the configuration
-        /// aggregator is not specified, this action returns the details for all the configuration
+        /// aggregator is not specified, this operation returns the details for all the configuration
         /// aggregators associated with the account.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeConfigurationAggregators service method.</param>
@@ -1369,8 +1960,8 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -1404,8 +1995,8 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -1423,14 +2014,16 @@ namespace Amazon.ConfigService
 
 
         /// <summary>
-        /// Returns the details for the specified configuration recorders. If the configuration
-        /// recorder is not specified, this action returns the details for all configuration recorders
-        /// associated with the account.
+        /// Returns details for the configuration recorder you specify.
         /// 
+        ///  
+        /// <para>
+        /// If a configuration recorder is not specified, this operation returns details for the
+        /// customer managed configuration recorder configured for the account, if applicable.
+        /// </para>
         ///  <note> 
         /// <para>
-        /// You can specify only one configuration recorder for each Amazon Web Services Region
-        /// for each account.
+        /// When making a request to this operation, you can only specify one configuration recorder.
         /// </para>
         ///  </note>
         /// </summary>
@@ -1442,20 +2035,81 @@ namespace Amazon.ConfigService
         /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigurationRecorderException">
         /// You have specified a configuration recorder that does not exist.
         /// </exception>
+        /// <exception cref="Amazon.ConfigService.Model.ValidationException">
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
+        /// 
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// There are missing required fields.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeConfigurationRecorders">REST API Reference for DescribeConfigurationRecorders Operation</seealso>
         Task<DescribeConfigurationRecordersResponse> DescribeConfigurationRecordersAsync(System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
 
 
         /// <summary>
-        /// Returns the details for the specified configuration recorders. If the configuration
-        /// recorder is not specified, this action returns the details for all configuration recorders
-        /// associated with the account.
+        /// Returns details for the configuration recorder you specify.
         /// 
+        ///  
+        /// <para>
+        /// If a configuration recorder is not specified, this operation returns details for the
+        /// customer managed configuration recorder configured for the account, if applicable.
+        /// </para>
         ///  <note> 
         /// <para>
-        /// You can specify only one configuration recorder for each Amazon Web Services Region
-        /// for each account.
+        /// When making a request to this operation, you can only specify one configuration recorder.
         /// </para>
         ///  </note>
         /// </summary>
@@ -1468,6 +2122,65 @@ namespace Amazon.ConfigService
         /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigurationRecorderException">
         /// You have specified a configuration recorder that does not exist.
         /// </exception>
+        /// <exception cref="Amazon.ConfigService.Model.ValidationException">
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
+        /// 
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// There are missing required fields.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeConfigurationRecorders">REST API Reference for DescribeConfigurationRecorders Operation</seealso>
         Task<DescribeConfigurationRecordersResponse> DescribeConfigurationRecordersAsync(DescribeConfigurationRecordersRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
@@ -1477,16 +2190,22 @@ namespace Amazon.ConfigService
 
 
         /// <summary>
-        /// Returns the current status of the specified configuration recorder as well as the
-        /// status of the last recording event for the recorder. If a configuration recorder is
-        /// not specified, this action returns the status of all configuration recorders associated
-        /// with the account.
+        /// Returns the current status of the configuration recorder you specify as well as the
+        /// status of the last recording event for the configuration recorders.
         /// 
+        ///  
+        /// <para>
+        /// For a detailed status of recording events over time, add your Config events to Amazon
+        /// CloudWatch metrics and use CloudWatch metrics.
+        /// </para>
+        ///  
+        /// <para>
+        /// If a configuration recorder is not specified, this operation returns the status for
+        /// the customer managed configuration recorder configured for the account, if applicable.
+        /// </para>
         ///  <note> 
         /// <para>
-        /// &gt;You can specify only one configuration recorder for each Amazon Web Services Region
-        /// for each account. For a detailed status of recording events over time, add your Config
-        /// events to Amazon CloudWatch metrics and use CloudWatch metrics.
+        /// When making a request to this operation, you can only specify one configuration recorder.
         /// </para>
         ///  </note>
         /// </summary>
@@ -1498,22 +2217,87 @@ namespace Amazon.ConfigService
         /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigurationRecorderException">
         /// You have specified a configuration recorder that does not exist.
         /// </exception>
+        /// <exception cref="Amazon.ConfigService.Model.ValidationException">
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
+        /// 
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// There are missing required fields.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeConfigurationRecorderStatus">REST API Reference for DescribeConfigurationRecorderStatus Operation</seealso>
         Task<DescribeConfigurationRecorderStatusResponse> DescribeConfigurationRecorderStatusAsync(System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
 
 
         /// <summary>
-        /// Returns the current status of the specified configuration recorder as well as the
-        /// status of the last recording event for the recorder. If a configuration recorder is
-        /// not specified, this action returns the status of all configuration recorders associated
-        /// with the account.
+        /// Returns the current status of the configuration recorder you specify as well as the
+        /// status of the last recording event for the configuration recorders.
         /// 
+        ///  
+        /// <para>
+        /// For a detailed status of recording events over time, add your Config events to Amazon
+        /// CloudWatch metrics and use CloudWatch metrics.
+        /// </para>
+        ///  
+        /// <para>
+        /// If a configuration recorder is not specified, this operation returns the status for
+        /// the customer managed configuration recorder configured for the account, if applicable.
+        /// </para>
         ///  <note> 
         /// <para>
-        /// &gt;You can specify only one configuration recorder for each Amazon Web Services Region
-        /// for each account. For a detailed status of recording events over time, add your Config
-        /// events to Amazon CloudWatch metrics and use CloudWatch metrics.
+        /// When making a request to this operation, you can only specify one configuration recorder.
         /// </para>
         ///  </note>
         /// </summary>
@@ -1525,6 +2309,65 @@ namespace Amazon.ConfigService
         /// <returns>The response from the DescribeConfigurationRecorderStatus service method, as returned by ConfigService.</returns>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigurationRecorderException">
         /// You have specified a configuration recorder that does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.ConfigService.Model.ValidationException">
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
+        /// 
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// There are missing required fields.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeConfigurationRecorderStatus">REST API Reference for DescribeConfigurationRecorderStatus Operation</seealso>
         Task<DescribeConfigurationRecorderStatusResponse> DescribeConfigurationRecorderStatusAsync(DescribeConfigurationRecorderStatusRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -1554,8 +2397,8 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -1589,8 +2432,8 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -1627,8 +2470,8 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -1644,8 +2487,8 @@ namespace Amazon.ConfigService
 
         /// <summary>
         /// Returns details about the specified delivery channel. If a delivery channel is not
-        /// specified, this action returns the details of all delivery channels associated with
-        /// the account.
+        /// specified, this operation returns the details of all delivery channels associated
+        /// with the account.
         /// 
         ///  <note> 
         /// <para>
@@ -1668,8 +2511,8 @@ namespace Amazon.ConfigService
 
         /// <summary>
         /// Returns details about the specified delivery channel. If a delivery channel is not
-        /// specified, this action returns the details of all delivery channels associated with
-        /// the account.
+        /// specified, this operation returns the details of all delivery channels associated
+        /// with the account.
         /// 
         ///  <note> 
         /// <para>
@@ -1696,7 +2539,7 @@ namespace Amazon.ConfigService
 
         /// <summary>
         /// Returns the current status of the specified delivery channel. If a delivery channel
-        /// is not specified, this action returns the current status of all delivery channels
+        /// is not specified, this operation returns the current status of all delivery channels
         /// associated with the account.
         /// 
         ///  <note> 
@@ -1720,7 +2563,7 @@ namespace Amazon.ConfigService
 
         /// <summary>
         /// Returns the current status of the specified delivery channel. If a delivery channel
-        /// is not specified, this action returns the current status of all delivery channels
+        /// is not specified, this operation returns the current status of all delivery channels
         /// associated with the account.
         /// 
         ///  <note> 
@@ -1761,7 +2604,7 @@ namespace Amazon.ConfigService
         /// </para>
         ///  
         /// <para>
-        ///  <i>For accounts within an organzation</i> 
+        ///  <i>For accounts within an organization</i> 
         /// </para>
         ///  
         /// <para>
@@ -1771,7 +2614,7 @@ namespace Amazon.ConfigService
         /// to see the organizational rule or conformance pack in the organization administrator
         /// account from the delegated administrator account or see the organizational rule or
         /// conformance pack in the delegated administrator account from organization administrator
-        /// account. The <code>DescribeOrganizationConfigRules</code> and <code>DescribeOrganizationConformancePacks</code>
+        /// account. The <c>DescribeOrganizationConfigRules</c> and <c>DescribeOrganizationConformancePacks</c>
         /// APIs can only see and interact with the organization-related resource that were deployed
         /// from within the account calling those APIs.
         /// </para>
@@ -1787,8 +2630,8 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchOrganizationConfigRuleException">
         /// The Config rule in the request is not valid. Verify that the rule is an organization
@@ -1796,12 +2639,12 @@ namespace Amazon.ConfigService
         /// Names (ARNs) are used before trying again.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.OrganizationAccessDeniedException">
-        /// For <code>PutConfigurationAggregator</code> API, you can see this exception for the
-        /// following reasons:
+        /// For <c>PutConfigurationAggregator</c> API, you can see this exception for the following
+        /// reasons:
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// No permission to call <code>EnableAWSServiceAccess</code> API
+        /// No permission to call <c>EnableAWSServiceAccess</c> API
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1818,15 +2661,15 @@ namespace Amazon.ConfigService
         ///  </li> <li> 
         /// <para>
         /// You are not a registered delegated administrator for Config with permissions to call
-        /// <code>ListDelegatedAdministrators</code> API. Ensure that the management account registers
-        /// delagated administrator for Config service principle name before the delegated administrator
+        /// <c>ListDelegatedAdministrators</c> API. Ensure that the management account registers
+        /// delagated administrator for Config service principal name before the delegated administrator
         /// creates an aggregator.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For all <code>OrganizationConfigRule</code> and <code>OrganizationConformancePack</code>
-        /// APIs, Config throws an exception if APIs are called from member accounts. All APIs
-        /// must be called from organization management account.
+        /// For all <c>OrganizationConfigRule</c> and <c>OrganizationConformancePack</c> APIs,
+        /// Config throws an exception if APIs are called from member accounts. All APIs must
+        /// be called from organization management account.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeOrganizationConfigRules">REST API Reference for DescribeOrganizationConfigRules Operation</seealso>
@@ -1864,8 +2707,8 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchOrganizationConfigRuleException">
         /// The Config rule in the request is not valid. Verify that the rule is an organization
@@ -1873,12 +2716,12 @@ namespace Amazon.ConfigService
         /// Names (ARNs) are used before trying again.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.OrganizationAccessDeniedException">
-        /// For <code>PutConfigurationAggregator</code> API, you can see this exception for the
-        /// following reasons:
+        /// For <c>PutConfigurationAggregator</c> API, you can see this exception for the following
+        /// reasons:
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// No permission to call <code>EnableAWSServiceAccess</code> API
+        /// No permission to call <c>EnableAWSServiceAccess</c> API
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1895,15 +2738,15 @@ namespace Amazon.ConfigService
         ///  </li> <li> 
         /// <para>
         /// You are not a registered delegated administrator for Config with permissions to call
-        /// <code>ListDelegatedAdministrators</code> API. Ensure that the management account registers
-        /// delagated administrator for Config service principle name before the delegated administrator
+        /// <c>ListDelegatedAdministrators</c> API. Ensure that the management account registers
+        /// delagated administrator for Config service principal name before the delegated administrator
         /// creates an aggregator.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For all <code>OrganizationConfigRule</code> and <code>OrganizationConformancePack</code>
-        /// APIs, Config throws an exception if APIs are called from member accounts. All APIs
-        /// must be called from organization management account.
+        /// For all <c>OrganizationConfigRule</c> and <c>OrganizationConformancePack</c> APIs,
+        /// Config throws an exception if APIs are called from member accounts. All APIs must
+        /// be called from organization management account.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeOrganizationConfigRuleStatuses">REST API Reference for DescribeOrganizationConfigRuleStatuses Operation</seealso>
@@ -1930,7 +2773,7 @@ namespace Amazon.ConfigService
         /// </para>
         ///  
         /// <para>
-        ///  <i>For accounts within an organzation</i> 
+        ///  <i>For accounts within an organization</i> 
         /// </para>
         ///  
         /// <para>
@@ -1940,7 +2783,7 @@ namespace Amazon.ConfigService
         /// to see the organizational rule or conformance pack in the organization administrator
         /// account from the delegated administrator account or see the organizational rule or
         /// conformance pack in the delegated administrator account from organization administrator
-        /// account. The <code>DescribeOrganizationConfigRules</code> and <code>DescribeOrganizationConformancePacks</code>
+        /// account. The <c>DescribeOrganizationConfigRules</c> and <c>DescribeOrganizationConformancePacks</c>
         /// APIs can only see and interact with the organization-related resource that were deployed
         /// from within the account calling those APIs.
         /// </para>
@@ -1956,8 +2799,8 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchOrganizationConformancePackException">
         /// Config organization conformance pack that you passed in the filter does not exist.
@@ -1969,12 +2812,12 @@ namespace Amazon.ConfigService
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.OrganizationAccessDeniedException">
-        /// For <code>PutConfigurationAggregator</code> API, you can see this exception for the
-        /// following reasons:
+        /// For <c>PutConfigurationAggregator</c> API, you can see this exception for the following
+        /// reasons:
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// No permission to call <code>EnableAWSServiceAccess</code> API
+        /// No permission to call <c>EnableAWSServiceAccess</c> API
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1991,15 +2834,15 @@ namespace Amazon.ConfigService
         ///  </li> <li> 
         /// <para>
         /// You are not a registered delegated administrator for Config with permissions to call
-        /// <code>ListDelegatedAdministrators</code> API. Ensure that the management account registers
-        /// delagated administrator for Config service principle name before the delegated administrator
+        /// <c>ListDelegatedAdministrators</c> API. Ensure that the management account registers
+        /// delagated administrator for Config service principal name before the delegated administrator
         /// creates an aggregator.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For all <code>OrganizationConfigRule</code> and <code>OrganizationConformancePack</code>
-        /// APIs, Config throws an exception if APIs are called from member accounts. All APIs
-        /// must be called from organization management account.
+        /// For all <c>OrganizationConfigRule</c> and <c>OrganizationConformancePack</c> APIs,
+        /// Config throws an exception if APIs are called from member accounts. All APIs must
+        /// be called from organization management account.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeOrganizationConformancePacks">REST API Reference for DescribeOrganizationConformancePacks Operation</seealso>
@@ -2037,8 +2880,8 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchOrganizationConformancePackException">
         /// Config organization conformance pack that you passed in the filter does not exist.
@@ -2050,12 +2893,12 @@ namespace Amazon.ConfigService
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.OrganizationAccessDeniedException">
-        /// For <code>PutConfigurationAggregator</code> API, you can see this exception for the
-        /// following reasons:
+        /// For <c>PutConfigurationAggregator</c> API, you can see this exception for the following
+        /// reasons:
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// No permission to call <code>EnableAWSServiceAccess</code> API
+        /// No permission to call <c>EnableAWSServiceAccess</c> API
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2072,15 +2915,15 @@ namespace Amazon.ConfigService
         ///  </li> <li> 
         /// <para>
         /// You are not a registered delegated administrator for Config with permissions to call
-        /// <code>ListDelegatedAdministrators</code> API. Ensure that the management account registers
-        /// delagated administrator for Config service principle name before the delegated administrator
+        /// <c>ListDelegatedAdministrators</c> API. Ensure that the management account registers
+        /// delagated administrator for Config service principal name before the delegated administrator
         /// creates an aggregator.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For all <code>OrganizationConfigRule</code> and <code>OrganizationConformancePack</code>
-        /// APIs, Config throws an exception if APIs are called from member accounts. All APIs
-        /// must be called from organization management account.
+        /// For all <c>OrganizationConfigRule</c> and <c>OrganizationConformancePack</c> APIs,
+        /// Config throws an exception if APIs are called from member accounts. All APIs must
+        /// be called from organization management account.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeOrganizationConformancePackStatuses">REST API Reference for DescribeOrganizationConformancePackStatuses Operation</seealso>
@@ -2105,8 +2948,8 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -2169,8 +3012,8 @@ namespace Amazon.ConfigService
         /// 
         /// <returns>The response from the DescribeRemediationExceptions service method, as returned by ConfigService.</returns>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -2198,8 +3041,8 @@ namespace Amazon.ConfigService
         /// 
         /// <returns>The response from the DescribeRemediationExecutionStatus service method, as returned by ConfigService.</returns>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -2219,7 +3062,7 @@ namespace Amazon.ConfigService
 
         /// <summary>
         /// Returns the details of one or more retention configurations. If the retention configuration
-        /// name is not specified, this action returns the details for all the retention configurations
+        /// name is not specified, this operation returns the details for all the retention configurations
         /// for that account.
         /// 
         ///  <note> 
@@ -2235,8 +3078,8 @@ namespace Amazon.ConfigService
         /// 
         /// <returns>The response from the DescribeRetentionConfigurations service method, as returned by ConfigService.</returns>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -2247,6 +3090,130 @@ namespace Amazon.ConfigService
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeRetentionConfigurations">REST API Reference for DescribeRetentionConfigurations Operation</seealso>
         Task<DescribeRetentionConfigurationsResponse> DescribeRetentionConfigurationsAsync(DescribeRetentionConfigurationsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  DisassociateResourceTypes
+
+
+
+        /// <summary>
+        /// Removes all resource types specified in the <c>ResourceTypes</c> list from the <a
+        /// href="https://docs.aws.amazon.com/config/latest/APIReference/API_RecordingGroup.html">RecordingGroup</a>
+        /// of configuration recorder and excludes these resource types when recording.
+        /// 
+        ///  
+        /// <para>
+        /// For this operation, the configuration recorder must use a <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_RecordingStrategy.html">RecordingStrategy</a>
+        /// that is either <c>INCLUSION_BY_RESOURCE_TYPES</c> or <c>EXCLUSION_BY_RESOURCE_TYPES</c>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DisassociateResourceTypes service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DisassociateResourceTypes service method, as returned by ConfigService.</returns>
+        /// <exception cref="Amazon.ConfigService.Model.ConflictException">
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutServiceLinkedConfigurationRecorder.html">PutServiceLinkedConfigurationRecorder</a>,
+        /// you cannot create a service-linked recorder because a service-linked recorder already
+        /// exists for the specified service.
+        /// 
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteServiceLinkedConfigurationRecorder.html">DeleteServiceLinkedConfigurationRecorder</a>,
+        /// you cannot delete the service-linked recorder because it is currently in use by the
+        /// linked Amazon Web Services service.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteDeliveryChannel.html">DeleteDeliveryChannel</a>,
+        /// you cannot delete the specified delivery channel because the customer managed configuration
+        /// recorder is running. Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_StopConfigurationRecorder.html">StopConfigurationRecorder</a>
+        /// operation to stop the customer managed configuration recorder.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder is not in use
+        /// by the service. No association or dissociation of resource types is permitted.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, your requested change to the configuration
+        /// recorder has been denied by its linked Amazon Web Services service.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
+        /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigurationRecorderException">
+        /// You have specified a configuration recorder that does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.ConfigService.Model.ValidationException">
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
+        /// 
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// There are missing required fields.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DisassociateResourceTypes">REST API Reference for DisassociateResourceTypes Operation</seealso>
+        Task<DisassociateResourceTypesResponse> DisassociateResourceTypesAsync(DisassociateResourceTypesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 
@@ -2262,8 +3229,8 @@ namespace Amazon.ConfigService
         /// 
         ///  <note> 
         /// <para>
-        /// The results can return an empty result page. But if you have a <code>nextToken</code>,
-        /// the results are displayed on the next page.
+        /// The results can return an empty result page. But if you have a <c>nextToken</c>, the
+        /// results are displayed on the next page.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2277,26 +3244,70 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigurationAggregatorException">
         /// You have specified a configuration aggregator that does not exist.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetAggregateComplianceDetailsByConfigRule">REST API Reference for GetAggregateComplianceDetailsByConfigRule Operation</seealso>
         Task<GetAggregateComplianceDetailsByConfigRuleResponse> GetAggregateComplianceDetailsByConfigRuleAsync(GetAggregateComplianceDetailsByConfigRuleRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -2328,26 +3339,70 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigurationAggregatorException">
         /// You have specified a configuration aggregator that does not exist.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetAggregateConfigRuleComplianceSummary">REST API Reference for GetAggregateConfigRuleComplianceSummary Operation</seealso>
         Task<GetAggregateConfigRuleComplianceSummaryResponse> GetAggregateConfigRuleComplianceSummaryAsync(GetAggregateConfigRuleComplianceSummaryRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -2380,26 +3435,70 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigurationAggregatorException">
         /// You have specified a configuration aggregator that does not exist.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetAggregateConformancePackComplianceSummary">REST API Reference for GetAggregateConformancePackComplianceSummary Operation</seealso>
         Task<GetAggregateConformancePackComplianceSummaryResponse> GetAggregateConformancePackComplianceSummaryAsync(GetAggregateConformancePackComplianceSummaryRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -2432,26 +3531,70 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigurationAggregatorException">
         /// You have specified a configuration aggregator that does not exist.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetAggregateDiscoveredResourceCounts">REST API Reference for GetAggregateDiscoveredResourceCounts Operation</seealso>
         Task<GetAggregateDiscoveredResourceCountsResponse> GetAggregateDiscoveredResourceCountsAsync(GetAggregateDiscoveredResourceCountsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -2465,6 +3608,12 @@ namespace Amazon.ConfigService
         /// <summary>
         /// Returns configuration item that is aggregated for your specific resource in a specific
         /// source account and region.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// The API does not return results for deleted resources.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetAggregateResourceConfig service method.</param>
         /// <param name="cancellationToken">
@@ -2482,19 +3631,63 @@ namespace Amazon.ConfigService
         /// You have specified a resource that is either unknown or has not been discovered.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetAggregateResourceConfig">REST API Reference for GetAggregateResourceConfig Operation</seealso>
         Task<GetAggregateResourceConfigResponse> GetAggregateResourceConfigAsync(GetAggregateResourceConfigRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -2517,8 +3710,8 @@ namespace Amazon.ConfigService
         /// 
         /// <returns>The response from the GetComplianceDetailsByConfigRule service method, as returned by ConfigService.</returns>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -2619,8 +3812,8 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -2655,8 +3848,8 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchConformancePackException">
         /// You specified one or more conformance packs that do not exist.
@@ -2709,8 +3902,8 @@ namespace Amazon.ConfigService
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You make a call to the <code>GetDiscoveredResourceCounts</code> action and specify
-        /// that you want all resource types. 
+        /// You make a call to the <c>GetDiscoveredResourceCounts</c> action and specify that
+        /// you want all resource types. 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2731,9 +3924,9 @@ namespace Amazon.ConfigService
         ///  </li> </ul> </li> </ol> 
         /// <para>
         /// The response is paginated. By default, Config lists 100 <a>ResourceCount</a> objects
-        /// on each page. You can customize this number with the <code>limit</code> parameter.
-        /// The response includes a <code>nextToken</code> string. To get the next page of results,
-        /// run the request again and specify the string for the <code>nextToken</code> parameter.
+        /// on each page. You can customize this number with the <c>limit</c> parameter. The response
+        /// includes a <c>nextToken</c> string. To get the next page of results, run the request
+        /// again and specify the string for the <c>nextToken</c> parameter.
         /// </para>
         ///  <note> 
         /// <para>
@@ -2765,23 +3958,67 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetDiscoveredResourceCounts">REST API Reference for GetDiscoveredResourceCounts Operation</seealso>
         Task<GetDiscoveredResourceCountsResponse> GetDiscoveredResourceCountsAsync(GetDiscoveredResourceCountsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -2806,8 +4043,8 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchOrganizationConfigRuleException">
         /// The Config rule in the request is not valid. Verify that the rule is an organization
@@ -2815,12 +4052,12 @@ namespace Amazon.ConfigService
         /// Names (ARNs) are used before trying again.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.OrganizationAccessDeniedException">
-        /// For <code>PutConfigurationAggregator</code> API, you can see this exception for the
-        /// following reasons:
+        /// For <c>PutConfigurationAggregator</c> API, you can see this exception for the following
+        /// reasons:
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// No permission to call <code>EnableAWSServiceAccess</code> API
+        /// No permission to call <c>EnableAWSServiceAccess</c> API
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2837,15 +4074,15 @@ namespace Amazon.ConfigService
         ///  </li> <li> 
         /// <para>
         /// You are not a registered delegated administrator for Config with permissions to call
-        /// <code>ListDelegatedAdministrators</code> API. Ensure that the management account registers
-        /// delagated administrator for Config service principle name before the delegated administrator
+        /// <c>ListDelegatedAdministrators</c> API. Ensure that the management account registers
+        /// delagated administrator for Config service principal name before the delegated administrator
         /// creates an aggregator.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For all <code>OrganizationConfigRule</code> and <code>OrganizationConformancePack</code>
-        /// APIs, Config throws an exception if APIs are called from member accounts. All APIs
-        /// must be called from organization management account.
+        /// For all <c>OrganizationConfigRule</c> and <c>OrganizationConformancePack</c> APIs,
+        /// Config throws an exception if APIs are called from member accounts. All APIs must
+        /// be called from organization management account.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetOrganizationConfigRuleDetailedStatus">REST API Reference for GetOrganizationConfigRuleDetailedStatus Operation</seealso>
@@ -2871,8 +4108,8 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchOrganizationConformancePackException">
         /// Config organization conformance pack that you passed in the filter does not exist.
@@ -2884,12 +4121,12 @@ namespace Amazon.ConfigService
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.OrganizationAccessDeniedException">
-        /// For <code>PutConfigurationAggregator</code> API, you can see this exception for the
-        /// following reasons:
+        /// For <c>PutConfigurationAggregator</c> API, you can see this exception for the following
+        /// reasons:
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// No permission to call <code>EnableAWSServiceAccess</code> API
+        /// No permission to call <c>EnableAWSServiceAccess</c> API
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2906,15 +4143,15 @@ namespace Amazon.ConfigService
         ///  </li> <li> 
         /// <para>
         /// You are not a registered delegated administrator for Config with permissions to call
-        /// <code>ListDelegatedAdministrators</code> API. Ensure that the management account registers
-        /// delagated administrator for Config service principle name before the delegated administrator
+        /// <c>ListDelegatedAdministrators</c> API. Ensure that the management account registers
+        /// delagated administrator for Config service principal name before the delegated administrator
         /// creates an aggregator.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For all <code>OrganizationConfigRule</code> and <code>OrganizationConformancePack</code>
-        /// APIs, Config throws an exception if APIs are called from member accounts. All APIs
-        /// must be called from organization management account.
+        /// For all <c>OrganizationConfigRule</c> and <c>OrganizationConformancePack</c> APIs,
+        /// Config throws an exception if APIs are called from member accounts. All APIs must
+        /// be called from organization management account.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetOrganizationConformancePackDetailedStatus">REST API Reference for GetOrganizationConformancePackDetailedStatus Operation</seealso>
@@ -2942,12 +4179,12 @@ namespace Amazon.ConfigService
         /// Names (ARNs) are used before trying again.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.OrganizationAccessDeniedException">
-        /// For <code>PutConfigurationAggregator</code> API, you can see this exception for the
-        /// following reasons:
+        /// For <c>PutConfigurationAggregator</c> API, you can see this exception for the following
+        /// reasons:
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// No permission to call <code>EnableAWSServiceAccess</code> API
+        /// No permission to call <c>EnableAWSServiceAccess</c> API
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2964,15 +4201,15 @@ namespace Amazon.ConfigService
         ///  </li> <li> 
         /// <para>
         /// You are not a registered delegated administrator for Config with permissions to call
-        /// <code>ListDelegatedAdministrators</code> API. Ensure that the management account registers
-        /// delagated administrator for Config service principle name before the delegated administrator
+        /// <c>ListDelegatedAdministrators</c> API. Ensure that the management account registers
+        /// delagated administrator for Config service principal name before the delegated administrator
         /// creates an aggregator.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For all <code>OrganizationConfigRule</code> and <code>OrganizationConformancePack</code>
-        /// APIs, Config throws an exception if APIs are called from member accounts. All APIs
-        /// must be called from organization management account.
+        /// For all <c>OrganizationConfigRule</c> and <c>OrganizationConformancePack</c> APIs,
+        /// Config throws an exception if APIs are called from member accounts. All APIs must
+        /// be called from organization management account.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetOrganizationCustomRulePolicy">REST API Reference for GetOrganizationCustomRulePolicy Operation</seealso>
@@ -2985,24 +4222,32 @@ namespace Amazon.ConfigService
 
 
         /// <summary>
-        /// Returns a list of <code>ConfigurationItems</code> for the specified resource. The
-        /// list contains details about each state of the resource during the specified time interval.
-        /// If you specified a retention period to retain your <code>ConfigurationItems</code>
-        /// between a minimum of 30 days and a maximum of 7 years (2557 days), Config returns
-        /// the <code>ConfigurationItems</code> for the specified retention period. 
-        /// 
+        /// <important> 
+        /// <para>
+        /// For accurate reporting on the compliance status, you must record the <c>AWS::Config::ResourceCompliance</c>
+        /// resource type. For more information, see <a href="https://docs.aws.amazon.com/config/latest/developerguide/select-resources.html">Selecting
+        /// Which Resources Config Records</a>.
+        /// </para>
+        ///  </important> 
+        /// <para>
+        /// Returns a list of <c>ConfigurationItems</c> for the specified resource. The list contains
+        /// details about each state of the resource during the specified time interval. If you
+        /// specified a retention period to retain your <c>ConfigurationItems</c> between a minimum
+        /// of 30 days and a maximum of 7 years (2557 days), Config returns the <c>ConfigurationItems</c>
+        /// for the specified retention period. 
+        /// </para>
         ///  
         /// <para>
         /// The response is paginated. By default, Config returns a limit of 10 configuration
-        /// items per page. You can customize this number with the <code>limit</code> parameter.
-        /// The response includes a <code>nextToken</code> string. To get the next page of results,
-        /// run the request again and specify the string for the <code>nextToken</code> parameter.
+        /// items per page. You can customize this number with the <c>limit</c> parameter. The
+        /// response includes a <c>nextToken</c> string. To get the next page of results, run
+        /// the request again and specify the string for the <c>nextToken</c> parameter.
         /// </para>
         ///  <note> 
         /// <para>
         /// Each call to the API is limited to span a duration of seven days. It is likely that
-        /// the number of records returned is smaller than the specified <code>limit</code>. In
-        /// such cases, you can make another call, using the <code>nextToken</code>.
+        /// the number of records returned is smaller than the specified <c>limit</c>. In such
+        /// cases, you can make another call, using the <c>nextToken</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3016,34 +4261,79 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidTimeRangeException">
         /// The specified time range is not valid. The earlier time is not chronologically before
         /// the later time.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoAvailableConfigurationRecorderException">
-        /// There are no configuration recorders available to provide the role needed to describe
-        /// your resources. Create a configuration recorder.
+        /// There are no customer managed configuration recorders available to record your resources.
+        /// Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigurationRecorder.html">PutConfigurationRecorder</a>
+        /// operation to create the customer managed configuration recorder.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ResourceNotDiscoveredException">
         /// You have specified a resource that is either unknown or has not been discovered.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetResourceConfigHistory">REST API Reference for GetResourceConfigHistory Operation</seealso>
         Task<GetResourceConfigHistoryResponse> GetResourceConfigHistoryAsync(GetResourceConfigHistoryRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -3101,19 +4391,63 @@ namespace Amazon.ConfigService
         /// You have specified a resource that does not exist.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetStoredQuery">REST API Reference for GetStoredQuery Operation</seealso>
         Task<GetStoredQueryResponse> GetStoredQueryAsync(GetStoredQueryRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -3134,8 +4468,8 @@ namespace Amazon.ConfigService
         ///  
         /// <para>
         /// For example, if the input consists of accountID 12345678910 and the region is us-east-1
-        /// for resource type <code>AWS::EC2::Instance</code> then the API returns all the EC2
-        /// instance identifiers of accountID 12345678910 and region us-east-1.
+        /// for resource type <c>AWS::EC2::Instance</c> then the API returns all the EC2 instance
+        /// identifiers of accountID 12345678910 and region us-east-1.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListAggregateDiscoveredResources service method.</param>
@@ -3148,29 +4482,150 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigurationAggregatorException">
         /// You have specified a configuration aggregator that does not exist.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/ListAggregateDiscoveredResources">REST API Reference for ListAggregateDiscoveredResources Operation</seealso>
         Task<ListAggregateDiscoveredResourcesResponse> ListAggregateDiscoveredResourcesAsync(ListAggregateDiscoveredResourcesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  ListConfigurationRecorders
+
+
+
+        /// <summary>
+        /// Returns a list of configuration recorders depending on the filters you specify.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListConfigurationRecorders service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListConfigurationRecorders service method, as returned by ConfigService.</returns>
+        /// <exception cref="Amazon.ConfigService.Model.ValidationException">
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
+        /// 
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// There are missing required fields.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/ListConfigurationRecorders">REST API Reference for ListConfigurationRecorders Operation</seealso>
+        Task<ListConfigurationRecordersResponse> ListConfigurationRecordersAsync(ListConfigurationRecordersRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 
@@ -3188,7 +4643,7 @@ namespace Amazon.ConfigService
         /// 
         ///  <note> 
         /// <para>
-        /// Conformance packs with no evaluation results will have a compliance score of <code>INSUFFICIENT_DATA</code>.
+        /// Conformance packs with no evaluation results will have a compliance score of <c>INSUFFICIENT_DATA</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3202,8 +4657,8 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -3233,9 +4688,9 @@ namespace Amazon.ConfigService
         ///  </note> 
         /// <para>
         /// The response is paginated. By default, Config lists 100 resource identifiers on each
-        /// page. You can customize this number with the <code>limit</code> parameter. The response
-        /// includes a <code>nextToken</code> string. To get the next page of results, run the
-        /// request again and specify the string for the <code>nextToken</code> parameter.
+        /// page. You can customize this number with the <c>limit</c> parameter. The response
+        /// includes a <c>nextToken</c> string. To get the next page of results, run the request
+        /// again and specify the string for the <c>nextToken</c> parameter.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListDiscoveredResources service method.</param>
@@ -3248,27 +4703,72 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoAvailableConfigurationRecorderException">
-        /// There are no configuration recorders available to provide the role needed to describe
-        /// your resources. Create a configuration recorder.
+        /// There are no customer managed configuration recorders available to record your resources.
+        /// Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigurationRecorder.html">PutConfigurationRecorder</a>
+        /// operation to create the customer managed configuration recorder.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/ListDiscoveredResources">REST API Reference for ListDiscoveredResources Operation</seealso>
         Task<ListDiscoveredResourcesResponse> ListDiscoveredResourcesAsync(ListDiscoveredResourcesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -3289,8 +4789,8 @@ namespace Amazon.ConfigService
         /// 
         /// <returns>The response from the ListResourceEvaluations service method, as returned by ConfigService.</returns>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -3320,23 +4820,67 @@ namespace Amazon.ConfigService
         /// 
         /// <returns>The response from the ListStoredQueries service method, as returned by ConfigService.</returns>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/ListStoredQueries">REST API Reference for ListStoredQueries Operation</seealso>
         Task<ListStoredQueriesResponse> ListStoredQueriesAsync(ListStoredQueriesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -3360,26 +4904,70 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ResourceNotFoundException">
         /// You have specified a resource that does not exist.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/ListTagsForResource">REST API Reference for ListTagsForResource Operation</seealso>
         Task<ListTagsForResourceResponse> ListTagsForResourceAsync(ListTagsForResourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -3396,11 +4984,21 @@ namespace Amazon.ConfigService
         /// 
         ///  <note> 
         /// <para>
-        ///  <code>PutAggregationAuthorization</code> is an idempotent API. Subsequent requests
-        /// won’t create a duplicate resource if one was already created. If a following request
-        /// has different <code>tags</code> values, Config will ignore these differences and treat
-        /// it as an idempotent request of the previous. In this case, <code>tags</code> will
-        /// not be updated, even if they are different.
+        ///  <b>Tags are added at creation and cannot be updated with this operation</b> 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>PutAggregationAuthorization</c> is an idempotent API. Subsequent requests won’t
+        /// create a duplicate resource if one was already created. If a following request has
+        /// different <c>tags</c> values, Config will ignore these differences and treat it as
+        /// an idempotent request of the previous. In this case, <c>tags</c> will not be updated,
+        /// even if they are different.
+        /// </para>
+        ///  
+        /// <para>
+        /// Use <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_TagResource.html">TagResource</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_UntagResource.html">UntagResource</a>
+        /// to update tags after creation.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3432,15 +5030,15 @@ namespace Amazon.ConfigService
         ///  
         /// <para>
         /// There are two types of rules: <i>Config Managed Rules</i> and <i>Config Custom Rules</i>.
-        /// You can use <code>PutConfigRule</code> to create both Config Managed Rules and Config
-        /// Custom Rules.
+        /// You can use <c>PutConfigRule</c> to create both Config Managed Rules and Config Custom
+        /// Rules.
         /// </para>
         ///  
         /// <para>
         /// Config Managed Rules are predefined, customizable rules created by Config. For a list
         /// of managed rules, see <a href="https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html">List
         /// of Config Managed Rules</a>. If you are adding an Config managed rule, you must specify
-        /// the rule's identifier for the <code>SourceIdentifier</code> key.
+        /// the rule's identifier for the <c>SourceIdentifier</c> key.
         /// </para>
         ///  
         /// <para>
@@ -3454,23 +5052,23 @@ namespace Amazon.ConfigService
         ///  
         /// <para>
         /// If you are adding a new Config Custom Lambda rule, you first need to create an Lambda
-        /// function that the rule invokes to evaluate your resources. When you use <code>PutConfigRule</code>
+        /// function that the rule invokes to evaluate your resources. When you use <c>PutConfigRule</c>
         /// to add a Custom Lambda rule to Config, you must specify the Amazon Resource Name (ARN)
-        /// that Lambda assigns to the function. You specify the ARN in the <code>SourceIdentifier</code>
-        /// key. This key is part of the <code>Source</code> object, which is part of the <code>ConfigRule</code>
+        /// that Lambda assigns to the function. You specify the ARN in the <c>SourceIdentifier</c>
+        /// key. This key is part of the <c>Source</c> object, which is part of the <c>ConfigRule</c>
         /// object. 
         /// </para>
         ///  
         /// <para>
-        /// For any new Config rule that you add, specify the <code>ConfigRuleName</code> in the
-        /// <code>ConfigRule</code> object. Do not specify the <code>ConfigRuleArn</code> or the
-        /// <code>ConfigRuleId</code>. These values are generated by Config for new rules.
+        /// For any new Config rule that you add, specify the <c>ConfigRuleName</c> in the <c>ConfigRule</c>
+        /// object. Do not specify the <c>ConfigRuleArn</c> or the <c>ConfigRuleId</c>. These
+        /// values are generated by Config for new rules.
         /// </para>
         ///  
         /// <para>
         /// If you are updating a rule that you added previously, you can specify the rule by
-        /// <code>ConfigRuleName</code>, <code>ConfigRuleId</code>, or <code>ConfigRuleArn</code>
-        /// in the <code>ConfigRule</code> data type that you use in this request.
+        /// <c>ConfigRuleName</c>, <c>ConfigRuleId</c>, or <c>ConfigRuleArn</c> in the <c>ConfigRule</c>
+        /// data type that you use in this request.
         /// </para>
         ///  
         /// <para>
@@ -3479,11 +5077,20 @@ namespace Amazon.ConfigService
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>PutConfigRule</code> is an idempotent API. Subsequent requests won’t create
-        /// a duplicate resource if one was already created. If a following request has different
-        /// <code>tags</code> values, Config will ignore these differences and treat it as an
-        /// idempotent request of the previous. In this case, <code>tags</code> will not be updated,
-        /// even if they are different.
+        ///  <b>Tags are added at creation and cannot be updated with this operation</b> 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>PutConfigRule</c> is an idempotent API. Subsequent requests won’t create a duplicate
+        /// resource if one was already created. If a following request has different <c>tags</c>
+        /// values, Config will ignore these differences and treat it as an idempotent request
+        /// of the previous. In this case, <c>tags</c> will not be updated, even if they are different.
+        /// </para>
+        ///  
+        /// <para>
+        /// Use <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_TagResource.html">TagResource</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_UntagResource.html">UntagResource</a>
+        /// to update tags after creation.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3498,35 +5105,45 @@ namespace Amazon.ConfigService
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// For PutConfigRule, the rule cannot be created because the IAM role assigned to Config
-        /// lacks permissions to perform the config:Put* action.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigRule.html">PutConfigRule</a>,
+        /// the rule cannot be created because the IAM role assigned to Config lacks permissions
+        /// to perform the config:Put* action.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutConfigRule, the Lambda function cannot be invoked. Check the function ARN,
-        /// and check the function's permissions.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigRule.html">PutConfigRule</a>,
+        /// the Lambda function cannot be invoked. Check the function ARN, and check the function's
+        /// permissions.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutOrganizationConfigRule, organization Config rule cannot be created because
-        /// you do not have permissions to call IAM <code>GetRole</code> action or create a service-linked
-        /// role.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutOrganizationConfigRule.html">PutOrganizationConfigRule</a>,
+        /// organization Config rule cannot be created because you do not have permissions to
+        /// call IAM <c>GetRole</c> action or create a service-linked role.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutConformancePack and PutOrganizationConformancePack, a conformance pack cannot
-        /// be created because you do not have the following permissions: 
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConformancePack.html">PutConformancePack</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutOrganizationConformancePack.html">PutOrganizationConformancePack</a>,
+        /// a conformance pack cannot be created because you do not have the following permissions:
+        /// 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// You do not have permission to call IAM <code>GetRole</code> action or create a service-linked
+        /// You do not have permission to call IAM <c>GetRole</c> action or create a service-linked
         /// role.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
         /// </para>
-        ///  </li> </ul> </li> </ul>
+        ///  </li> </ul> </li> <li> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutServiceLinkedConfigurationRecorder.html">PutServiceLinkedConfigurationRecorder</a>,
+        /// a service-linked configuration recorder cannot be created because you do not have
+        /// the following permissions: IAM <c>CreateServiceLinkedRole</c>.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -3534,11 +5151,12 @@ namespace Amazon.ConfigService
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.MaxNumberOfConfigRulesExceededException">
         /// Failed to add the Config rule because the account already contains the maximum number
-        /// of 150 rules. Consider deleting any deactivated rules before you add new rules.
+        /// of 1000 rules. Consider deleting any deactivated rules before you add new rules.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoAvailableConfigurationRecorderException">
-        /// There are no configuration recorders available to provide the role needed to describe
-        /// your resources. Create a configuration recorder.
+        /// There are no customer managed configuration recorders available to record your resources.
+        /// Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigurationRecorder.html">PutConfigurationRecorder</a>
+        /// operation to create the customer managed configuration recorder.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ResourceInUseException">
         /// You see this exception in the following cases: 
@@ -3595,8 +5213,8 @@ namespace Amazon.ConfigService
         /// 
         ///  
         /// <para>
-        ///  <code>accountIds</code> that are passed will be replaced with existing accounts.
-        /// If you want to add additional accounts into the aggregator, call <code>DescribeConfigurationAggregators</code>
+        ///  <c>accountIds</c> that are passed will be replaced with existing accounts. If you
+        /// want to add additional accounts into the aggregator, call <c>DescribeConfigurationAggregators</c>
         /// to get the previous accounts and then append new ones.
         /// </para>
         ///  <note> 
@@ -3607,10 +5225,10 @@ namespace Amazon.ConfigService
         /// <para>
         /// If your source type is an organization, you must be signed in to the management account
         /// or a registered delegated administrator and all the features must be enabled in your
-        /// organization. If the caller is a management account, Config calls <code>EnableAwsServiceAccess</code>
+        /// organization. If the caller is a management account, Config calls <c>EnableAwsServiceAccess</c>
         /// API to enable integration between Config and Organizations. If the caller is a registered
-        /// delegated administrator, Config calls <code>ListDelegatedAdministrators</code> API
-        /// to verify whether the caller is a valid delegated administrator.
+        /// delegated administrator, Config calls <c>ListDelegatedAdministrators</c> API to verify
+        /// whether the caller is a valid delegated administrator.
         /// </para>
         ///  
         /// <para>
@@ -3619,11 +5237,21 @@ namespace Amazon.ConfigService
         /// </para>
         ///  </note> <note> 
         /// <para>
-        ///  <code>PutConfigurationAggregator</code> is an idempotent API. Subsequent requests
-        /// won’t create a duplicate resource if one was already created. If a following request
-        /// has different <code>tags</code> values, Config will ignore these differences and treat
-        /// it as an idempotent request of the previous. In this case, <code>tags</code> will
-        /// not be updated, even if they are different.
+        ///  <b>Tags are added at creation and cannot be updated with this operation</b> 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>PutConfigurationAggregator</c> is an idempotent API. Subsequent requests won’t
+        /// create a duplicate resource if one was already created. If a following request has
+        /// different <c>tags</c> values, Config will ignore these differences and treat it as
+        /// an idempotent request of the previous. In this case, <c>tags</c> will not be updated,
+        /// even if they are different.
+        /// </para>
+        ///  
+        /// <para>
+        /// Use <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_TagResource.html">TagResource</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_UntagResource.html">UntagResource</a>
+        /// to update tags after creation.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3639,16 +5267,21 @@ namespace Amazon.ConfigService
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidRoleException">
         /// You have provided a null or empty Amazon Resource Name (ARN) for the IAM role assumed
-        /// by Config and used by the configuration recorder.
+        /// by Config and used by the customer managed configuration recorder.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.LimitExceededException">
-        /// For <code>StartConfigRulesEvaluation</code> API, this exception is thrown if an evaluation
-        /// is in progress or if you call the <a>StartConfigRulesEvaluation</a> API more than
-        /// once per minute.
+        /// For <c>PutServiceLinkedConfigurationRecorder</c> API, this exception is thrown if
+        /// the number of service-linked roles in the account exceeds the limit.
         /// 
         ///  
         /// <para>
-        /// For <code>PutConfigurationAggregator</code> API, this exception is thrown if the number
+        /// For <c>StartConfigRulesEvaluation</c> API, this exception is thrown if an evaluation
+        /// is in progress or if you call the <a>StartConfigRulesEvaluation</a> API more than
+        /// once per minute.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <c>PutConfigurationAggregator</c> API, this exception is thrown if the number
         /// of accounts and aggregators exceeds the limit.
         /// </para>
         /// </exception>
@@ -3656,12 +5289,12 @@ namespace Amazon.ConfigService
         /// Organization is no longer available.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.OrganizationAccessDeniedException">
-        /// For <code>PutConfigurationAggregator</code> API, you can see this exception for the
-        /// following reasons:
+        /// For <c>PutConfigurationAggregator</c> API, you can see this exception for the following
+        /// reasons:
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// No permission to call <code>EnableAWSServiceAccess</code> API
+        /// No permission to call <c>EnableAWSServiceAccess</c> API
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3678,15 +5311,15 @@ namespace Amazon.ConfigService
         ///  </li> <li> 
         /// <para>
         /// You are not a registered delegated administrator for Config with permissions to call
-        /// <code>ListDelegatedAdministrators</code> API. Ensure that the management account registers
-        /// delagated administrator for Config service principle name before the delegated administrator
+        /// <c>ListDelegatedAdministrators</c> API. Ensure that the management account registers
+        /// delagated administrator for Config service principal name before the delegated administrator
         /// creates an aggregator.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For all <code>OrganizationConfigRule</code> and <code>OrganizationConformancePack</code>
-        /// APIs, Config throws an exception if APIs are called from member accounts. All APIs
-        /// must be called from organization management account.
+        /// For all <c>OrganizationConfigRule</c> and <c>OrganizationConformancePack</c> APIs,
+        /// Config throws an exception if APIs are called from member accounts. All APIs must
+        /// be called from organization management account.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.OrganizationAllFeaturesNotEnabledException">
@@ -3703,24 +5336,62 @@ namespace Amazon.ConfigService
 
 
         /// <summary>
-        /// Creates a new configuration recorder to record configuration changes for specified
-        /// resource types.
+        /// Creates or updates the customer managed configuration recorder.
         /// 
         ///  
         /// <para>
-        /// You can also use this action to change the <code>roleARN</code> or the <code>recordingGroup</code>
-        /// of an existing recorder. For more information, see <a href="https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html">
-        /// <b>Managing the Configuration Recorder</b> </a> in the <i>Config Developer Guide</i>.
-        /// </para>
-        ///  <note> 
-        /// <para>
-        /// You can specify only one configuration recorder for each Amazon Web Services Region
-        /// for each account.
+        /// You can use this operation to create a new customer managed configuration recorder
+        /// or to update the <c>roleARN</c> and the <c>recordingGroup</c> for an existing customer
+        /// managed configuration recorder.
         /// </para>
         ///  
         /// <para>
-        /// If the configuration recorder does not have the <code>recordingGroup</code> field
-        /// specified, the default is to record all supported resource types.
+        /// To start the customer managed configuration recorder and begin recording configuration
+        /// changes for the resource types you specify, use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_StartConfigurationRecorder.html">StartConfigurationRecorder</a>
+        /// operation.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html">
+        /// <b>Working with the Configuration Recorder</b> </a> in the <i>Config Developer Guide</i>.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <b>One customer managed configuration recorder per account per Region</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// You can create only one customer managed configuration recorder for each account for
+        /// each Amazon Web Services Region.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Default is to record all supported resource types, excluding the global IAM resource
+        /// types</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// If you have not specified values for the <c>recordingGroup</c> field, the default
+        /// for the customer managed configuration recorder is to record all supported resource
+        /// types, excluding the global IAM resource types: <c>AWS::IAM::Group</c>, <c>AWS::IAM::Policy</c>,
+        /// <c>AWS::IAM::Role</c>, and <c>AWS::IAM::User</c>.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Tags are added at creation and cannot be updated</b> 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>PutConfigurationRecorder</c> is an idempotent API. Subsequent requests won’t create
+        /// a duplicate resource if one was already created. If a following request has different
+        /// tags values, Config will ignore these differences and treat it as an idempotent request
+        /// of the previous. In this case, tags will not be updated, even if they are different.
+        /// </para>
+        ///  
+        /// <para>
+        /// Use <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_TagResource.html">TagResource</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_UntagResource.html">UntagResource</a>
+        /// to update tags after creation.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3731,10 +5402,11 @@ namespace Amazon.ConfigService
         /// 
         /// <returns>The response from the PutConfigurationRecorder service method, as returned by ConfigService.</returns>
         /// <exception cref="Amazon.ConfigService.Model.InvalidConfigurationRecorderNameException">
-        /// You have provided a name for the configuration recorder that is not valid.
+        /// You have provided a name for the customer managed configuration recorder that is not
+        /// valid.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidRecordingGroupException">
-        /// Indicates one of the following errors:
+        /// One of the following errors:
         /// 
         ///  <ul> <li> 
         /// <para>
@@ -3742,15 +5414,15 @@ namespace Amazon.ConfigService
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Setting the <code>allSupported</code> field of <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_RecordingGroup.html">RecordingGroup</a>
-        /// to <code>true</code>, but providing a non-empty list for the <code>resourceTypes</code>field
-        /// of <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_RecordingGroup.html">RecordingGroup</a>.
+        /// Setting the <c>allSupported</c> field of <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_RecordingGroup.html">RecordingGroup</a>
+        /// to <c>true</c>, but providing a non-empty list for the <c>resourceTypes</c>field of
+        /// <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_RecordingGroup.html">RecordingGroup</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Setting the <code>allSupported</code> field of <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_RecordingGroup.html">RecordingGroup</a>
-        /// to <code>true</code>, but also setting the <code>useOnly</code> field of <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_RecordingStrategy.html">RecordingStrategy</a>
-        /// to <code>EXCLUSION_BY_RESOURCE_TYPES</code>.
+        /// Setting the <c>allSupported</c> field of <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_RecordingGroup.html">RecordingGroup</a>
+        /// to <c>true</c>, but also setting the <c>useOnly</c> field of <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_RecordingStrategy.html">RecordingStrategy</a>
+        /// to <c>EXCLUSION_BY_RESOURCE_TYPES</c>.
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
@@ -3769,10 +5441,97 @@ namespace Amazon.ConfigService
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidRoleException">
         /// You have provided a null or empty Amazon Resource Name (ARN) for the IAM role assumed
-        /// by Config and used by the configuration recorder.
+        /// by Config and used by the customer managed configuration recorder.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.MaxNumberOfConfigurationRecordersExceededException">
         /// You have reached the limit of the number of configuration recorders you can create.
+        /// </exception>
+        /// <exception cref="Amazon.ConfigService.Model.UnmodifiableEntityException">
+        /// The requested operation is not valid.
+        /// 
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigurationRecorder.html">PutConfigurationRecorder</a>,
+        /// you will see this exception because you cannot use this operation to create a service-linked
+        /// configuration recorder. Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutServiceLinkedConfigurationRecorder.html">PutServiceLinkedConfigurationRecorder</a>
+        /// operation to create a service-linked configuration recorder.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteConfigurationRecorder.html">DeleteConfigurationRecorder</a>,
+        /// you will see this exception because you cannot use this operation to delete a service-linked
+        /// configuration recorder. Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteServiceLinkedConfigurationRecorder.html">DeleteServiceLinkedConfigurationRecorder</a>
+        /// operation to delete a service-linked configuration recorder.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_StartConfigurationRecorder.html">StartConfigurationRecorder</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_StopConfigurationRecorder.html">StopConfigurationRecorder</a>,
+        /// you will see this exception because these operations do not affect service-linked
+        /// configuration recorders. Service-linked configuration recorders are always recording.
+        /// To stop recording, you must delete the service-linked configuration recorder. Use
+        /// the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteServiceLinkedConfigurationRecorder.html">DeleteServiceLinkedConfigurationRecorder</a>
+        /// operation to delete a service-linked configuration recorder.
+        /// </para>
+        /// </exception>
+        /// <exception cref="Amazon.ConfigService.Model.ValidationException">
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
+        /// 
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// There are missing required fields.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutConfigurationRecorder">REST API Reference for PutConfigurationRecorder Operation</seealso>
         Task<PutConfigurationRecorderResponse> PutConfigurationRecorderAsync(PutConfigurationRecorderRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -3791,14 +5550,14 @@ namespace Amazon.ConfigService
         /// 
         ///  
         /// <para>
-        /// This API creates a service-linked role <code>AWSServiceRoleForConfigConforms</code>
-        /// in your account. The service-linked role is created only when the role does not exist
-        /// in your account. 
+        /// This API creates a service-linked role <c>AWSServiceRoleForConfigConforms</c> in your
+        /// account. The service-linked role is created only when the role does not exist in your
+        /// account. 
         /// </para>
         ///  <note> 
         /// <para>
-        /// You must specify only one of the follow parameters: <code>TemplateS3Uri</code>, <code>TemplateBody</code>
-        /// or <code>TemplateSSMDocumentDetails</code>.
+        /// You must specify only one of the follow parameters: <c>TemplateS3Uri</c>, <c>TemplateBody</c>
+        /// or <c>TemplateSSMDocumentDetails</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3816,35 +5575,45 @@ namespace Amazon.ConfigService
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// For PutConfigRule, the rule cannot be created because the IAM role assigned to Config
-        /// lacks permissions to perform the config:Put* action.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigRule.html">PutConfigRule</a>,
+        /// the rule cannot be created because the IAM role assigned to Config lacks permissions
+        /// to perform the config:Put* action.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutConfigRule, the Lambda function cannot be invoked. Check the function ARN,
-        /// and check the function's permissions.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigRule.html">PutConfigRule</a>,
+        /// the Lambda function cannot be invoked. Check the function ARN, and check the function's
+        /// permissions.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutOrganizationConfigRule, organization Config rule cannot be created because
-        /// you do not have permissions to call IAM <code>GetRole</code> action or create a service-linked
-        /// role.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutOrganizationConfigRule.html">PutOrganizationConfigRule</a>,
+        /// organization Config rule cannot be created because you do not have permissions to
+        /// call IAM <c>GetRole</c> action or create a service-linked role.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutConformancePack and PutOrganizationConformancePack, a conformance pack cannot
-        /// be created because you do not have the following permissions: 
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConformancePack.html">PutConformancePack</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutOrganizationConformancePack.html">PutOrganizationConformancePack</a>,
+        /// a conformance pack cannot be created because you do not have the following permissions:
+        /// 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// You do not have permission to call IAM <code>GetRole</code> action or create a service-linked
+        /// You do not have permission to call IAM <c>GetRole</c> action or create a service-linked
         /// role.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
         /// </para>
-        ///  </li> </ul> </li> </ul>
+        ///  </li> </ul> </li> <li> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutServiceLinkedConfigurationRecorder.html">PutServiceLinkedConfigurationRecorder</a>,
+        /// a service-linked configuration recorder cannot be created because you do not have
+        /// the following permissions: IAM <c>CreateServiceLinkedRole</c>.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -3905,24 +5674,28 @@ namespace Amazon.ConfigService
 
 
         /// <summary>
-        /// Creates a delivery channel object to deliver configuration information to an Amazon
-        /// S3 bucket and Amazon SNS topic.
+        /// Creates or updates a delivery channel to deliver configuration information and other
+        /// compliance information.
         /// 
         ///  
         /// <para>
-        /// Before you can create a delivery channel, you must create a configuration recorder.
+        /// You can use this operation to create a new delivery channel or to update the Amazon
+        /// S3 bucket and the Amazon SNS topic of an existing delivery channel.
         /// </para>
         ///  
         /// <para>
-        /// You can use this action to change the Amazon S3 bucket or an Amazon SNS topic of the
-        /// existing delivery channel. To change the Amazon S3 bucket or an Amazon SNS topic,
-        /// call this action and specify the changed values for the S3 bucket and the SNS topic.
-        /// If you specify a different value for either the S3 bucket or the SNS topic, this action
-        /// will keep the existing value for the parameter that is not changed.
+        /// For more information, see <a href="https://docs.aws.amazon.com/config/latest/developerguide/manage-delivery-channel.html">
+        /// <b>Working with the Delivery Channel</b> </a> in the <i>Config Developer Guide.</i>
+        /// 
         /// </para>
         ///  <note> 
         /// <para>
-        /// You can have only one delivery channel per region in your account.
+        ///  <b>One delivery channel per account per Region</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// You can have only one delivery channel for each account for each Amazon Web Services
+        /// Region.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3933,7 +5706,7 @@ namespace Amazon.ConfigService
         /// 
         /// <returns>The response from the PutDeliveryChannel service method, as returned by ConfigService.</returns>
         /// <exception cref="Amazon.ConfigService.Model.InsufficientDeliveryPolicyException">
-        /// Your Amazon S3 bucket policy does not permit Config to write to it.
+        /// Your Amazon S3 bucket policy does not allow Config to write to it.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidDeliveryChannelNameException">
         /// The specified delivery channel name is not valid.
@@ -3951,8 +5724,9 @@ namespace Amazon.ConfigService
         /// You have reached the limit of the number of delivery channels you can create.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoAvailableConfigurationRecorderException">
-        /// There are no configuration recorders available to provide the role needed to describe
-        /// your resources. Create a configuration recorder.
+        /// There are no customer managed configuration recorders available to record your resources.
+        /// Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigurationRecorder.html">PutConfigurationRecorder</a>
+        /// operation to create the customer managed configuration recorder.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchBucketException">
         /// The specified Amazon S3 bucket does not exist.
@@ -3967,8 +5741,8 @@ namespace Amazon.ConfigService
 
 
         /// <summary>
-        /// Used by an Lambda function to deliver evaluation results to Config. This action is
-        /// required in every Lambda function that is invoked by an Config rule.
+        /// Used by an Lambda function to deliver evaluation results to Config. This operation
+        /// is required in every Lambda function that is invoked by an Config rule.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutEvaluations service method.</param>
         /// <param name="cancellationToken">
@@ -3981,7 +5755,7 @@ namespace Amazon.ConfigService
         /// are valid and try again.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidResultTokenException">
-        /// The specified <code>ResultToken</code> is not valid.
+        /// The specified <c>ResultToken</c> is not valid.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigRuleException">
         /// The Config rule in the request is not valid. Verify that the rule is an Config Process
@@ -4035,35 +5809,35 @@ namespace Amazon.ConfigService
         /// <para>
         ///  Only a management account and a delegated administrator can create or update an organization
         /// Config rule. When calling this API with a delegated administrator, you must ensure
-        /// Organizations <code>ListDelegatedAdministrator</code> permissions are added. An organization
+        /// Organizations <c>ListDelegatedAdministrator</c> permissions are added. An organization
         /// can have up to 3 delegated administrators.
         /// </para>
         ///  
         /// <para>
-        /// This API enables organization service access through the <code>EnableAWSServiceAccess</code>
-        /// action and creates a service-linked role <code>AWSServiceRoleForConfigMultiAccountSetup</code>
+        /// This API enables organization service access through the <c>EnableAWSServiceAccess</c>
+        /// action and creates a service-linked role <c>AWSServiceRoleForConfigMultiAccountSetup</c>
         /// in the management or delegated administrator account of your organization. The service-linked
         /// role is created only when the role does not exist in the caller account. Config verifies
-        /// the existence of role with <code>GetRole</code> action.
+        /// the existence of role with <c>GetRole</c> action.
         /// </para>
         ///  
         /// <para>
         /// To use this API with delegated administrator, register a delegated administrator by
-        /// calling Amazon Web Services Organization <code>register-delegated-administrator</code>
-        /// for <code>config-multiaccountsetup.amazonaws.com</code>. 
+        /// calling Amazon Web Services Organization <c>register-delegated-administrator</c> for
+        /// <c>config-multiaccountsetup.amazonaws.com</c>. 
         /// </para>
         ///  
         /// <para>
         /// There are two types of rules: <i>Config Managed Rules</i> and <i>Config Custom Rules</i>.
-        /// You can use <code>PutOrganizationConfigRule</code> to create both Config Managed Rules
-        /// and Config Custom Rules.
+        /// You can use <c>PutOrganizationConfigRule</c> to create both Config Managed Rules and
+        /// Config Custom Rules.
         /// </para>
         ///  
         /// <para>
         /// Config Managed Rules are predefined, customizable rules created by Config. For a list
         /// of managed rules, see <a href="https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html">List
         /// of Config Managed Rules</a>. If you are adding an Config managed rule, you must specify
-        /// the rule's identifier for the <code>RuleIdentifier</code> key.
+        /// the rule's identifier for the <c>RuleIdentifier</c> key.
         /// </para>
         ///  
         /// <para>
@@ -4079,20 +5853,20 @@ namespace Amazon.ConfigService
         /// If you are adding a new Config Custom Lambda rule, you first need to create an Lambda
         /// function in the management account or a delegated administrator that the rule invokes
         /// to evaluate your resources. You also need to create an IAM role in the managed account
-        /// that can be assumed by the Lambda function. When you use <code>PutOrganizationConfigRule</code>
+        /// that can be assumed by the Lambda function. When you use <c>PutOrganizationConfigRule</c>
         /// to add a Custom Lambda rule to Config, you must specify the Amazon Resource Name (ARN)
         /// that Lambda assigns to the function.
         /// </para>
         ///  <note> 
         /// <para>
-        /// Prerequisite: Ensure you call <code>EnableAllFeatures</code> API to enable all features
+        /// Prerequisite: Ensure you call <c>EnableAllFeatures</c> API to enable all features
         /// in an organization.
         /// </para>
         ///  
         /// <para>
-        /// Make sure to specify one of either <code>OrganizationCustomPolicyRuleMetadata</code>
-        /// for Custom Policy rules, <code>OrganizationCustomRuleMetadata</code> for Custom Lambda
-        /// rules, or <code>OrganizationManagedRuleMetadata</code> for managed rules.
+        /// Make sure to specify one of either <c>OrganizationCustomPolicyRuleMetadata</c> for
+        /// Custom Policy rules, <c>OrganizationCustomRuleMetadata</c> for Custom Lambda rules,
+        /// or <c>OrganizationManagedRuleMetadata</c> for managed rules.
         /// </para>
         ///  </note>
         /// </summary>
@@ -4107,35 +5881,45 @@ namespace Amazon.ConfigService
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// For PutConfigRule, the rule cannot be created because the IAM role assigned to Config
-        /// lacks permissions to perform the config:Put* action.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigRule.html">PutConfigRule</a>,
+        /// the rule cannot be created because the IAM role assigned to Config lacks permissions
+        /// to perform the config:Put* action.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutConfigRule, the Lambda function cannot be invoked. Check the function ARN,
-        /// and check the function's permissions.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigRule.html">PutConfigRule</a>,
+        /// the Lambda function cannot be invoked. Check the function ARN, and check the function's
+        /// permissions.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutOrganizationConfigRule, organization Config rule cannot be created because
-        /// you do not have permissions to call IAM <code>GetRole</code> action or create a service-linked
-        /// role.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutOrganizationConfigRule.html">PutOrganizationConfigRule</a>,
+        /// organization Config rule cannot be created because you do not have permissions to
+        /// call IAM <c>GetRole</c> action or create a service-linked role.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutConformancePack and PutOrganizationConformancePack, a conformance pack cannot
-        /// be created because you do not have the following permissions: 
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConformancePack.html">PutConformancePack</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutOrganizationConformancePack.html">PutOrganizationConformancePack</a>,
+        /// a conformance pack cannot be created because you do not have the following permissions:
+        /// 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// You do not have permission to call IAM <code>GetRole</code> action or create a service-linked
+        /// You do not have permission to call IAM <c>GetRole</c> action or create a service-linked
         /// role.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
         /// </para>
-        ///  </li> </ul> </li> </ul>
+        ///  </li> </ul> </li> <li> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutServiceLinkedConfigurationRecorder.html">PutServiceLinkedConfigurationRecorder</a>,
+        /// a service-linked configuration recorder cannot be created because you do not have
+        /// the following permissions: IAM <c>CreateServiceLinkedRole</c>.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -4150,12 +5934,12 @@ namespace Amazon.ConfigService
         /// Organization is no longer available.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.OrganizationAccessDeniedException">
-        /// For <code>PutConfigurationAggregator</code> API, you can see this exception for the
-        /// following reasons:
+        /// For <c>PutConfigurationAggregator</c> API, you can see this exception for the following
+        /// reasons:
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// No permission to call <code>EnableAWSServiceAccess</code> API
+        /// No permission to call <c>EnableAWSServiceAccess</c> API
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -4172,15 +5956,15 @@ namespace Amazon.ConfigService
         ///  </li> <li> 
         /// <para>
         /// You are not a registered delegated administrator for Config with permissions to call
-        /// <code>ListDelegatedAdministrators</code> API. Ensure that the management account registers
-        /// delagated administrator for Config service principle name before the delegated administrator
+        /// <c>ListDelegatedAdministrators</c> API. Ensure that the management account registers
+        /// delagated administrator for Config service principal name before the delegated administrator
         /// creates an aggregator.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For all <code>OrganizationConfigRule</code> and <code>OrganizationConformancePack</code>
-        /// APIs, Config throws an exception if APIs are called from member accounts. All APIs
-        /// must be called from organization management account.
+        /// For all <c>OrganizationConfigRule</c> and <c>OrganizationConformancePack</c> APIs,
+        /// Config throws an exception if APIs are called from member accounts. All APIs must
+        /// be called from organization management account.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.OrganizationAllFeaturesNotEnabledException">
@@ -4228,19 +6012,63 @@ namespace Amazon.ConfigService
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutOrganizationConfigRule">REST API Reference for PutOrganizationConfigRule Operation</seealso>
         Task<PutOrganizationConfigRuleResponse> PutOrganizationConfigRuleAsync(PutOrganizationConfigRuleRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -4260,29 +6088,29 @@ namespace Amazon.ConfigService
         ///  
         /// <para>
         /// Only a management account and a delegated administrator can call this API. When calling
-        /// this API with a delegated administrator, you must ensure Organizations <code>ListDelegatedAdministrator</code>
+        /// this API with a delegated administrator, you must ensure Organizations <c>ListDelegatedAdministrator</c>
         /// permissions are added. An organization can have up to 3 delegated administrators.
         /// </para>
         ///  
         /// <para>
-        /// This API enables organization service access for <code>config-multiaccountsetup.amazonaws.com</code>
-        /// through the <code>EnableAWSServiceAccess</code> action and creates a service-linked
-        /// role <code>AWSServiceRoleForConfigMultiAccountSetup</code> in the management or delegated
-        /// administrator account of your organization. The service-linked role is created only
-        /// when the role does not exist in the caller account. To use this API with delegated
-        /// administrator, register a delegated administrator by calling Amazon Web Services Organization
-        /// <code>register-delegate-admin</code> for <code>config-multiaccountsetup.amazonaws.com</code>.
+        /// This API enables organization service access for <c>config-multiaccountsetup.amazonaws.com</c>
+        /// through the <c>EnableAWSServiceAccess</c> action and creates a service-linked role
+        /// <c>AWSServiceRoleForConfigMultiAccountSetup</c> in the management or delegated administrator
+        /// account of your organization. The service-linked role is created only when the role
+        /// does not exist in the caller account. To use this API with delegated administrator,
+        /// register a delegated administrator by calling Amazon Web Services Organization <c>register-delegate-admin</c>
+        /// for <c>config-multiaccountsetup.amazonaws.com</c>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// Prerequisite: Ensure you call <code>EnableAllFeatures</code> API to enable all features
+        /// Prerequisite: Ensure you call <c>EnableAllFeatures</c> API to enable all features
         /// in an organization.
         /// </para>
         ///  
         /// <para>
-        /// You must specify either the <code>TemplateS3Uri</code> or the <code>TemplateBody</code>
-        /// parameter, but not both. If you provide both Config uses the <code>TemplateS3Uri</code>
-        /// parameter and ignores the <code>TemplateBody</code> parameter.
+        /// You must specify either the <c>TemplateS3Uri</c> or the <c>TemplateBody</c> parameter,
+        /// but not both. If you provide both Config uses the <c>TemplateS3Uri</c> parameter and
+        /// ignores the <c>TemplateBody</c> parameter.
         /// </para>
         ///  
         /// <para>
@@ -4303,35 +6131,45 @@ namespace Amazon.ConfigService
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// For PutConfigRule, the rule cannot be created because the IAM role assigned to Config
-        /// lacks permissions to perform the config:Put* action.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigRule.html">PutConfigRule</a>,
+        /// the rule cannot be created because the IAM role assigned to Config lacks permissions
+        /// to perform the config:Put* action.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutConfigRule, the Lambda function cannot be invoked. Check the function ARN,
-        /// and check the function's permissions.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigRule.html">PutConfigRule</a>,
+        /// the Lambda function cannot be invoked. Check the function ARN, and check the function's
+        /// permissions.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutOrganizationConfigRule, organization Config rule cannot be created because
-        /// you do not have permissions to call IAM <code>GetRole</code> action or create a service-linked
-        /// role.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutOrganizationConfigRule.html">PutOrganizationConfigRule</a>,
+        /// organization Config rule cannot be created because you do not have permissions to
+        /// call IAM <c>GetRole</c> action or create a service-linked role.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutConformancePack and PutOrganizationConformancePack, a conformance pack cannot
-        /// be created because you do not have the following permissions: 
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConformancePack.html">PutConformancePack</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutOrganizationConformancePack.html">PutOrganizationConformancePack</a>,
+        /// a conformance pack cannot be created because you do not have the following permissions:
+        /// 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// You do not have permission to call IAM <code>GetRole</code> action or create a service-linked
+        /// You do not have permission to call IAM <c>GetRole</c> action or create a service-linked
         /// role.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
         /// </para>
-        ///  </li> </ul> </li> </ul>
+        ///  </li> </ul> </li> <li> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutServiceLinkedConfigurationRecorder.html">PutServiceLinkedConfigurationRecorder</a>,
+        /// a service-linked configuration recorder cannot be created because you do not have
+        /// the following permissions: IAM <c>CreateServiceLinkedRole</c>.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.MaxNumberOfOrganizationConformancePacksExceededException">
         /// You have reached the limit of the number of organization conformance packs you can
@@ -4342,12 +6180,12 @@ namespace Amazon.ConfigService
         /// Organization is no longer available.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.OrganizationAccessDeniedException">
-        /// For <code>PutConfigurationAggregator</code> API, you can see this exception for the
-        /// following reasons:
+        /// For <c>PutConfigurationAggregator</c> API, you can see this exception for the following
+        /// reasons:
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// No permission to call <code>EnableAWSServiceAccess</code> API
+        /// No permission to call <c>EnableAWSServiceAccess</c> API
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -4364,15 +6202,15 @@ namespace Amazon.ConfigService
         ///  </li> <li> 
         /// <para>
         /// You are not a registered delegated administrator for Config with permissions to call
-        /// <code>ListDelegatedAdministrators</code> API. Ensure that the management account registers
-        /// delagated administrator for Config service principle name before the delegated administrator
+        /// <c>ListDelegatedAdministrators</c> API. Ensure that the management account registers
+        /// delagated administrator for Config service principal name before the delegated administrator
         /// creates an aggregator.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For all <code>OrganizationConfigRule</code> and <code>OrganizationConformancePack</code>
-        /// APIs, Config throws an exception if APIs are called from member accounts. All APIs
-        /// must be called from organization management account.
+        /// For all <c>OrganizationConfigRule</c> and <c>OrganizationConformancePack</c> APIs,
+        /// Config throws an exception if APIs are called from member accounts. All APIs must
+        /// be called from organization management account.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.OrganizationAllFeaturesNotEnabledException">
@@ -4423,19 +6261,63 @@ namespace Amazon.ConfigService
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutOrganizationConformancePack">REST API Reference for PutOrganizationConformancePack Operation</seealso>
         Task<PutOrganizationConformancePackResponse> PutOrganizationConformancePackAsync(PutOrganizationConformancePackRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -4448,12 +6330,16 @@ namespace Amazon.ConfigService
 
         /// <summary>
         /// Adds or updates the remediation configuration with a specific Config rule with the
-        /// selected target or action. The API creates the <code>RemediationConfiguration</code>
-        /// object for the Config rule. The Config rule must already exist for you to add a remediation
+        /// selected target or action. The API creates the <c>RemediationConfiguration</c> object
+        /// for the Config rule. The Config rule must already exist for you to add a remediation
         /// configuration. The target (SSM document) must exist and have permissions to use the
         /// target. 
         /// 
         ///  <note> 
+        /// <para>
+        ///  <b>Be aware of backward incompatible changes</b> 
+        /// </para>
+        ///  
         /// <para>
         /// If you make backward incompatible changes to the SSM document, you must call this
         /// again to ensure the remediations can run.
@@ -4466,15 +6352,38 @@ namespace Amazon.ConfigService
         /// </para>
         ///  </note> <note> 
         /// <para>
-        /// For manual remediation configuration, you need to provide a value for <code>automationAssumeRole</code>
-        /// or use a value in the <code>assumeRole</code>field to remediate your resources. The
-        /// SSM automation document can use either as long as it maps to a valid parameter.
+        ///  <b>Required fields</b> 
         /// </para>
         ///  
         /// <para>
-        /// However, for automatic remediation configuration, the only valid <code>assumeRole</code>
-        /// field value is <code>AutomationAssumeRole</code> and you need to provide a value for
-        /// <code>AutomationAssumeRole</code> to remediate your resources.
+        /// For manual remediation configuration, you need to provide a value for <c>automationAssumeRole</c>
+        /// or use a value in the <c>assumeRole</c>field to remediate your resources. The SSM
+        /// automation document can use either as long as it maps to a valid parameter.
+        /// </para>
+        ///  
+        /// <para>
+        /// However, for automatic remediation configuration, the only valid <c>assumeRole</c>
+        /// field value is <c>AutomationAssumeRole</c> and you need to provide a value for <c>AutomationAssumeRole</c>
+        /// to remediate your resources.
+        /// </para>
+        ///  </note> <note> 
+        /// <para>
+        ///  <b>Auto remediation can be initiated even for compliant resources</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// If you enable auto remediation for a specific Config rule using the <a href="https://docs.aws.amazon.com/config/latest/APIReference/emAPI_PutRemediationConfigurations.html">PutRemediationConfigurations</a>
+        /// API or the Config console, it initiates the remediation process for all non-compliant
+        /// resources for that specific rule. The auto remediation process relies on the compliance
+        /// data snapshot which is captured on a periodic basis. Any non-compliant resource that
+        /// is updated between the snapshot schedule will continue to be remediated based on the
+        /// last known compliance data snapshot.
+        /// </para>
+        ///  
+        /// <para>
+        /// This means that in some cases auto remediation can be initiated even for compliant
+        /// resources, since the bootstrap processor uses a database that can have stale evaluation
+        /// results based on the last known compliance data snapshot.
         /// </para>
         ///  </note>
         /// </summary>
@@ -4489,35 +6398,45 @@ namespace Amazon.ConfigService
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// For PutConfigRule, the rule cannot be created because the IAM role assigned to Config
-        /// lacks permissions to perform the config:Put* action.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigRule.html">PutConfigRule</a>,
+        /// the rule cannot be created because the IAM role assigned to Config lacks permissions
+        /// to perform the config:Put* action.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutConfigRule, the Lambda function cannot be invoked. Check the function ARN,
-        /// and check the function's permissions.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigRule.html">PutConfigRule</a>,
+        /// the Lambda function cannot be invoked. Check the function ARN, and check the function's
+        /// permissions.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutOrganizationConfigRule, organization Config rule cannot be created because
-        /// you do not have permissions to call IAM <code>GetRole</code> action or create a service-linked
-        /// role.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutOrganizationConfigRule.html">PutOrganizationConfigRule</a>,
+        /// organization Config rule cannot be created because you do not have permissions to
+        /// call IAM <c>GetRole</c> action or create a service-linked role.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutConformancePack and PutOrganizationConformancePack, a conformance pack cannot
-        /// be created because you do not have the following permissions: 
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConformancePack.html">PutConformancePack</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutOrganizationConformancePack.html">PutOrganizationConformancePack</a>,
+        /// a conformance pack cannot be created because you do not have the following permissions:
+        /// 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// You do not have permission to call IAM <code>GetRole</code> action or create a service-linked
+        /// You do not have permission to call IAM <c>GetRole</c> action or create a service-linked
         /// role.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
         /// </para>
-        ///  </li> </ul> </li> </ul>
+        ///  </li> </ul> </li> <li> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutServiceLinkedConfigurationRecorder.html">PutServiceLinkedConfigurationRecorder</a>,
+        /// a service-linked configuration recorder cannot be created because you do not have
+        /// the following permissions: IAM <c>CreateServiceLinkedRole</c>.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -4539,27 +6458,67 @@ namespace Amazon.ConfigService
         /// 
         ///  <note> 
         /// <para>
+        ///  <b>Exceptions block auto remediation</b> 
+        /// </para>
+        ///  
+        /// <para>
         /// Config generates a remediation exception when a problem occurs running a remediation
         /// action for a specified resource. Remediation exceptions blocks auto-remediation until
         /// the exception is cleared.
         /// </para>
         ///  </note> <note> 
         /// <para>
+        ///  <b>Manual remediation is recommended when placing an exception</b> 
+        /// </para>
+        ///  
+        /// <para>
         /// When placing an exception on an Amazon Web Services resource, it is recommended that
         /// remediation is set as manual remediation until the given Config rule for the specified
-        /// resource evaluates the resource as <code>NON_COMPLIANT</code>. Once the resource has
-        /// been evaluated as <code>NON_COMPLIANT</code>, you can add remediation exceptions and
-        /// change the remediation type back from Manual to Auto if you want to use auto-remediation.
-        /// Otherwise, using auto-remediation before a <code>NON_COMPLIANT</code> evaluation result
-        /// can delete resources before the exception is applied.
+        /// resource evaluates the resource as <c>NON_COMPLIANT</c>. Once the resource has been
+        /// evaluated as <c>NON_COMPLIANT</c>, you can add remediation exceptions and change the
+        /// remediation type back from Manual to Auto if you want to use auto-remediation. Otherwise,
+        /// using auto-remediation before a <c>NON_COMPLIANT</c> evaluation result can delete
+        /// resources before the exception is applied.
         /// </para>
         ///  </note> <note> 
         /// <para>
-        /// Placing an exception can only be performed on resources that are <code>NON_COMPLIANT</code>.
-        /// If you use this API for <code>COMPLIANT</code> resources or resources that are <code>NOT_APPLICABLE</code>,
+        ///  <b>Exceptions can only be performed on non-compliant resources</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Placing an exception can only be performed on resources that are <c>NON_COMPLIANT</c>.
+        /// If you use this API for <c>COMPLIANT</c> resources or resources that are <c>NOT_APPLICABLE</c>,
         /// a remediation exception will not be generated. For more information on the conditions
         /// that initiate the possible Config evaluation results, see <a href="https://docs.aws.amazon.com/config/latest/developerguide/config-concepts.html#aws-config-rules">Concepts
         /// | Config Rules</a> in the <i>Config Developer Guide</i>.
+        /// </para>
+        ///  </note> <note> 
+        /// <para>
+        ///  <b>Exceptions cannot be placed on service-linked remediation actions</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// You cannot place an exception on service-linked remediation actions, such as remediation
+        /// actions put by an organizational conformance pack.
+        /// </para>
+        ///  </note> <note> 
+        /// <para>
+        ///  <b>Auto remediation can be initiated even for compliant resources</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// If you enable auto remediation for a specific Config rule using the <a href="https://docs.aws.amazon.com/config/latest/APIReference/emAPI_PutRemediationConfigurations.html">PutRemediationConfigurations</a>
+        /// API or the Config console, it initiates the remediation process for all non-compliant
+        /// resources for that specific rule. The auto remediation process relies on the compliance
+        /// data snapshot which is captured on a periodic basis. Any non-compliant resource that
+        /// is updated between the snapshot schedule will continue to be remediated based on the
+        /// last known compliance data snapshot.
+        /// </para>
+        ///  
+        /// <para>
+        /// This means that in some cases auto remediation can be initiated even for compliant
+        /// resources, since the bootstrap processor uses a database that can have stale evaluation
+        /// results based on the last known compliance data snapshot.
         /// </para>
         ///  </note>
         /// </summary>
@@ -4574,35 +6533,45 @@ namespace Amazon.ConfigService
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// For PutConfigRule, the rule cannot be created because the IAM role assigned to Config
-        /// lacks permissions to perform the config:Put* action.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigRule.html">PutConfigRule</a>,
+        /// the rule cannot be created because the IAM role assigned to Config lacks permissions
+        /// to perform the config:Put* action.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutConfigRule, the Lambda function cannot be invoked. Check the function ARN,
-        /// and check the function's permissions.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigRule.html">PutConfigRule</a>,
+        /// the Lambda function cannot be invoked. Check the function ARN, and check the function's
+        /// permissions.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutOrganizationConfigRule, organization Config rule cannot be created because
-        /// you do not have permissions to call IAM <code>GetRole</code> action or create a service-linked
-        /// role.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutOrganizationConfigRule.html">PutOrganizationConfigRule</a>,
+        /// organization Config rule cannot be created because you do not have permissions to
+        /// call IAM <c>GetRole</c> action or create a service-linked role.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutConformancePack and PutOrganizationConformancePack, a conformance pack cannot
-        /// be created because you do not have the following permissions: 
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConformancePack.html">PutConformancePack</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutOrganizationConformancePack.html">PutOrganizationConformancePack</a>,
+        /// a conformance pack cannot be created because you do not have the following permissions:
+        /// 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// You do not have permission to call IAM <code>GetRole</code> action or create a service-linked
+        /// You do not have permission to call IAM <c>GetRole</c> action or create a service-linked
         /// role.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
         /// </para>
-        ///  </li> </ul> </li> </ul>
+        ///  </li> </ul> </li> <li> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutServiceLinkedConfigurationRecorder.html">PutServiceLinkedConfigurationRecorder</a>,
+        /// a service-linked configuration recorder cannot be created because you do not have
+        /// the following permissions: IAM <c>CreateServiceLinkedRole</c>.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -4652,35 +6621,45 @@ namespace Amazon.ConfigService
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// For PutConfigRule, the rule cannot be created because the IAM role assigned to Config
-        /// lacks permissions to perform the config:Put* action.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigRule.html">PutConfigRule</a>,
+        /// the rule cannot be created because the IAM role assigned to Config lacks permissions
+        /// to perform the config:Put* action.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutConfigRule, the Lambda function cannot be invoked. Check the function ARN,
-        /// and check the function's permissions.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigRule.html">PutConfigRule</a>,
+        /// the Lambda function cannot be invoked. Check the function ARN, and check the function's
+        /// permissions.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutOrganizationConfigRule, organization Config rule cannot be created because
-        /// you do not have permissions to call IAM <code>GetRole</code> action or create a service-linked
-        /// role.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutOrganizationConfigRule.html">PutOrganizationConfigRule</a>,
+        /// organization Config rule cannot be created because you do not have permissions to
+        /// call IAM <c>GetRole</c> action or create a service-linked role.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutConformancePack and PutOrganizationConformancePack, a conformance pack cannot
-        /// be created because you do not have the following permissions: 
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConformancePack.html">PutConformancePack</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutOrganizationConformancePack.html">PutOrganizationConformancePack</a>,
+        /// a conformance pack cannot be created because you do not have the following permissions:
+        /// 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// You do not have permission to call IAM <code>GetRole</code> action or create a service-linked
+        /// You do not have permission to call IAM <c>GetRole</c> action or create a service-linked
         /// role.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
         /// </para>
-        ///  </li> </ul> </li> </ul>
+        ///  </li> </ul> </li> <li> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutServiceLinkedConfigurationRecorder.html">PutServiceLinkedConfigurationRecorder</a>,
+        /// a service-linked configuration recorder cannot be created because you do not have
+        /// the following permissions: IAM <c>CreateServiceLinkedRole</c>.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.MaxActiveResourcesExceededException">
         /// You have reached the limit of active custom resource types in your account. There
@@ -4691,19 +6670,63 @@ namespace Amazon.ConfigService
         /// There is no configuration recorder running.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutResourceConfig">REST API Reference for PutResourceConfig Operation</seealso>
         Task<PutResourceConfigResponse> PutResourceConfigAsync(PutResourceConfigRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -4717,9 +6740,9 @@ namespace Amazon.ConfigService
         /// <summary>
         /// Creates and updates the retention configuration with details about retention period
         /// (number of days) that Config stores your historical information. The API creates the
-        /// <code>RetentionConfiguration</code> object and names the object as <b>default</b>.
-        /// When you have a <code>RetentionConfiguration</code> object named <b>default</b>, calling
-        /// the API modifies the default object. 
+        /// <c>RetentionConfiguration</c> object and names the object as <b>default</b>. When
+        /// you have a <c>RetentionConfiguration</c> object named <b>default</b>, calling the
+        /// API modifies the default object. 
         /// 
         ///  <note> 
         /// <para>
@@ -4746,23 +6769,239 @@ namespace Amazon.ConfigService
 
         #endregion
                 
+        #region  PutServiceLinkedConfigurationRecorder
+
+
+
+        /// <summary>
+        /// Creates a service-linked configuration recorder that is linked to a specific Amazon
+        /// Web Services service based on the <c>ServicePrincipal</c> you specify.
+        /// 
+        ///  
+        /// <para>
+        /// The configuration recorder's <c>name</c>, <c>recordingGroup</c>, <c>recordingMode</c>,
+        /// and <c>recordingScope</c> is set by the service that is linked to the configuration
+        /// recorder.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html">
+        /// <b>Working with the Configuration Recorder</b> </a> in the <i>Config Developer Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// This API creates a service-linked role <c>AWSServiceRoleForConfig</c> in your account.
+        /// The service-linked role is created only when the role does not exist in your account.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <b>The recording scope determines if you receive configuration items</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The recording scope is set by the service that is linked to the configuration recorder
+        /// and determines whether you receive configuration items (CIs) in the delivery channel.
+        /// If the recording scope is internal, you will not receive CIs in the delivery channel.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Tags are added at creation and cannot be updated with this operation</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Use <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_TagResource.html">TagResource</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_UntagResource.html">UntagResource</a>
+        /// to update tags after creation.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutServiceLinkedConfigurationRecorder service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the PutServiceLinkedConfigurationRecorder service method, as returned by ConfigService.</returns>
+        /// <exception cref="Amazon.ConfigService.Model.ConflictException">
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutServiceLinkedConfigurationRecorder.html">PutServiceLinkedConfigurationRecorder</a>,
+        /// you cannot create a service-linked recorder because a service-linked recorder already
+        /// exists for the specified service.
+        /// 
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteServiceLinkedConfigurationRecorder.html">DeleteServiceLinkedConfigurationRecorder</a>,
+        /// you cannot delete the service-linked recorder because it is currently in use by the
+        /// linked Amazon Web Services service.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteDeliveryChannel.html">DeleteDeliveryChannel</a>,
+        /// you cannot delete the specified delivery channel because the customer managed configuration
+        /// recorder is running. Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_StopConfigurationRecorder.html">StopConfigurationRecorder</a>
+        /// operation to stop the customer managed configuration recorder.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder is not in use
+        /// by the service. No association or dissociation of resource types is permitted.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, your requested change to the configuration
+        /// recorder has been denied by its linked Amazon Web Services service.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
+        /// <exception cref="Amazon.ConfigService.Model.InsufficientPermissionsException">
+        /// Indicates one of the following errors:
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigRule.html">PutConfigRule</a>,
+        /// the rule cannot be created because the IAM role assigned to Config lacks permissions
+        /// to perform the config:Put* action.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigRule.html">PutConfigRule</a>,
+        /// the Lambda function cannot be invoked. Check the function ARN, and check the function's
+        /// permissions.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutOrganizationConfigRule.html">PutOrganizationConfigRule</a>,
+        /// organization Config rule cannot be created because you do not have permissions to
+        /// call IAM <c>GetRole</c> action or create a service-linked role.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConformancePack.html">PutConformancePack</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutOrganizationConformancePack.html">PutOrganizationConformancePack</a>,
+        /// a conformance pack cannot be created because you do not have the following permissions:
+        /// 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You do not have permission to call IAM <c>GetRole</c> action or create a service-linked
+        /// role.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
+        /// </para>
+        ///  </li> </ul> </li> <li> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutServiceLinkedConfigurationRecorder.html">PutServiceLinkedConfigurationRecorder</a>,
+        /// a service-linked configuration recorder cannot be created because you do not have
+        /// the following permissions: IAM <c>CreateServiceLinkedRole</c>.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
+        /// <exception cref="Amazon.ConfigService.Model.LimitExceededException">
+        /// For <c>PutServiceLinkedConfigurationRecorder</c> API, this exception is thrown if
+        /// the number of service-linked roles in the account exceeds the limit.
+        /// 
+        ///  
+        /// <para>
+        /// For <c>StartConfigRulesEvaluation</c> API, this exception is thrown if an evaluation
+        /// is in progress or if you call the <a>StartConfigRulesEvaluation</a> API more than
+        /// once per minute.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <c>PutConfigurationAggregator</c> API, this exception is thrown if the number
+        /// of accounts and aggregators exceeds the limit.
+        /// </para>
+        /// </exception>
+        /// <exception cref="Amazon.ConfigService.Model.ValidationException">
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
+        /// 
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// There are missing required fields.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutServiceLinkedConfigurationRecorder">REST API Reference for PutServiceLinkedConfigurationRecorder Operation</seealso>
+        Task<PutServiceLinkedConfigurationRecorderResponse> PutServiceLinkedConfigurationRecorderAsync(PutServiceLinkedConfigurationRecorderRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  PutStoredQuery
 
 
 
         /// <summary>
-        /// Saves a new query or updates an existing saved query. The <code>QueryName</code> must
-        /// be unique for a single Amazon Web Services account and a single Amazon Web Services
-        /// Region. You can create upto 300 queries in a single Amazon Web Services account and
-        /// a single Amazon Web Services Region.
+        /// Saves a new query or updates an existing saved query. The <c>QueryName</c> must be
+        /// unique for a single Amazon Web Services account and a single Amazon Web Services Region.
+        /// You can create upto 300 queries in a single Amazon Web Services account and a single
+        /// Amazon Web Services Region.
         /// 
         ///  <note> 
         /// <para>
-        ///  <code>PutStoredQuery</code> is an idempotent API. Subsequent requests won’t create
-        /// a duplicate resource if one was already created. If a following request has different
-        /// <code>tags</code> values, Config will ignore these differences and treat it as an
-        /// idempotent request of the previous. In this case, <code>tags</code> will not be updated,
-        /// even if they are different.
+        ///  <b>Tags are added at creation and cannot be updated</b> 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>PutStoredQuery</c> is an idempotent API. Subsequent requests won’t create a duplicate
+        /// resource if one was already created. If a following request has different <c>tags</c>
+        /// values, Config will ignore these differences and treat it as an idempotent request
+        /// of the previous. In this case, <c>tags</c> will not be updated, even if they are different.
         /// </para>
         ///  </note>
         /// </summary>
@@ -4782,19 +7021,63 @@ namespace Amazon.ConfigService
         /// <b>Service Limits</b> </a> in the <i>Config Developer Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutStoredQuery">REST API Reference for PutStoredQuery Operation</seealso>
         Task<PutStoredQueryResponse> PutStoredQueryAsync(PutStoredQueryRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -4818,18 +7101,17 @@ namespace Amazon.ConfigService
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you run an aggregation query (i.e., using <code>GROUP BY</code> or using aggregate
-        /// functions such as <code>COUNT</code>; e.g., <code>SELECT resourceId, COUNT(*) WHERE
-        /// resourceType = 'AWS::IAM::Role' GROUP BY resourceId</code>) and do not specify the
-        /// <code>MaxResults</code> or the <code>Limit</code> query parameters, the default page
-        /// size is set to 500.
+        /// If you run an aggregation query (i.e., using <c>GROUP BY</c> or using aggregate functions
+        /// such as <c>COUNT</c>; e.g., <c>SELECT resourceId, COUNT(*) WHERE resourceType = 'AWS::IAM::Role'
+        /// GROUP BY resourceId</c>) and do not specify the <c>MaxResults</c> or the <c>Limit</c>
+        /// query parameters, the default page size is set to 500.
         /// </para>
         ///  
         /// <para>
-        /// If you run a non-aggregation query (i.e., not using <code>GROUP BY</code> or aggregate
-        /// function; e.g., <code>SELECT * WHERE resourceType = 'AWS::IAM::Role'</code>) and do
-        /// not specify the <code>MaxResults</code> or the <code>Limit</code> query parameters,
-        /// the default page size is set to 25.
+        /// If you run a non-aggregation query (i.e., not using <c>GROUP BY</c> or aggregate function;
+        /// e.g., <c>SELECT * WHERE resourceType = 'AWS::IAM::Role'</c>) and do not specify the
+        /// <c>MaxResults</c> or the <c>Limit</c> query parameters, the default page size is set
+        /// to 25.
         /// </para>
         ///  </note>
         /// </summary>
@@ -4846,8 +7128,8 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigurationAggregatorException">
         /// You have specified a configuration aggregator that does not exist.
@@ -4862,8 +7144,8 @@ namespace Amazon.ConfigService
 
 
         /// <summary>
-        /// Accepts a structured query language (SQL) <code>SELECT</code> command, performs the
-        /// corresponding search, and returns resource configurations matching the properties.
+        /// Accepts a structured query language (SQL) <c>SELECT</c> command, performs the corresponding
+        /// search, and returns resource configurations matching the properties.
         /// 
         ///  
         /// <para>
@@ -4884,8 +7166,8 @@ namespace Amazon.ConfigService
         /// The specified limit is outside the allowable range.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidNextTokenException">
-        /// The specified next token is not valid. Specify the <code>nextToken</code> string that
-        /// was returned in the previous response to get the next page of results.
+        /// The specified next token is not valid. Specify the <c>nextToken</c> string that was
+        /// returned in the previous response to get the next page of results.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/SelectResourceConfig">REST API Reference for SelectResourceConfig Operation</seealso>
         Task<SelectResourceConfigResponse> SelectResourceConfigAsync(SelectResourceConfigRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -4898,8 +7180,8 @@ namespace Amazon.ConfigService
 
         /// <summary>
         /// Runs an on-demand evaluation for the specified Config rules against the last known
-        /// configuration state of the resources. Use <code>StartConfigRulesEvaluation</code>
-        /// when you want to test that a rule you updated is working as expected. <code>StartConfigRulesEvaluation</code>
+        /// configuration state of the resources. Use <c>StartConfigRulesEvaluation</c> when you
+        /// want to test that a rule you updated is working as expected. <c>StartConfigRulesEvaluation</c>
         /// does not re-record the latest configuration state for your resources. It re-runs an
         /// evaluation against the last known state of your resources. 
         /// 
@@ -4909,21 +7191,21 @@ namespace Amazon.ConfigService
         /// </para>
         ///  
         /// <para>
-        /// An existing <code>StartConfigRulesEvaluation</code> call for the specified rules must
-        /// complete before you can call the API again. If you chose to have Config stream to
-        /// an Amazon SNS topic, you will receive a <code>ConfigRuleEvaluationStarted</code> notification
-        /// when the evaluation starts.
+        /// An existing <c>StartConfigRulesEvaluation</c> call for the specified rules must complete
+        /// before you can call the API again. If you chose to have Config stream to an Amazon
+        /// SNS topic, you will receive a <c>ConfigRuleEvaluationStarted</c> notification when
+        /// the evaluation starts.
         /// </para>
         ///  <note> 
         /// <para>
-        /// You don't need to call the <code>StartConfigRulesEvaluation</code> API to run an evaluation
+        /// You don't need to call the <c>StartConfigRulesEvaluation</c> API to run an evaluation
         /// for a new rule. When you create a rule, Config evaluates your resources against the
         /// rule automatically. 
         /// </para>
         ///  </note> 
         /// <para>
-        /// The <code>StartConfigRulesEvaluation</code> API is useful if you want to run on-demand
-        /// evaluations, such as the following example:
+        /// The <c>StartConfigRulesEvaluation</c> API is useful if you want to run on-demand evaluations,
+        /// such as the following example:
         /// </para>
         ///  <ol> <li> 
         /// <para>
@@ -4935,7 +7217,7 @@ namespace Amazon.ConfigService
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Instead of waiting for the next periodic evaluation, you call the <code>StartConfigRulesEvaluation</code>
+        /// Instead of waiting for the next periodic evaluation, you call the <c>StartConfigRulesEvaluation</c>
         /// API.
         /// </para>
         ///  </li> <li> 
@@ -4959,13 +7241,18 @@ namespace Amazon.ConfigService
         /// are valid and try again.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.LimitExceededException">
-        /// For <code>StartConfigRulesEvaluation</code> API, this exception is thrown if an evaluation
-        /// is in progress or if you call the <a>StartConfigRulesEvaluation</a> API more than
-        /// once per minute.
+        /// For <c>PutServiceLinkedConfigurationRecorder</c> API, this exception is thrown if
+        /// the number of service-linked roles in the account exceeds the limit.
         /// 
         ///  
         /// <para>
-        /// For <code>PutConfigurationAggregator</code> API, this exception is thrown if the number
+        /// For <c>StartConfigRulesEvaluation</c> API, this exception is thrown if an evaluation
+        /// is in progress or if you call the <a>StartConfigRulesEvaluation</a> API more than
+        /// once per minute.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <c>PutConfigurationAggregator</c> API, this exception is thrown if the number
         /// of accounts and aggregators exceeds the limit.
         /// </para>
         /// </exception>
@@ -5023,16 +7310,17 @@ namespace Amazon.ConfigService
 
 
         /// <summary>
-        /// Starts recording configurations of the Amazon Web Services resources you have selected
-        /// to record in your Amazon Web Services account.
+        /// Starts the customer managed configuration recorder. The customer managed configuration
+        /// recorder will begin recording configuration changes for the resource types you specify.
         /// 
         ///  
         /// <para>
-        /// You must have created at least one delivery channel to successfully start the configuration
-        /// recorder.
+        /// You must have created a delivery channel to successfully start the customer managed
+        /// configuration recorder. You can use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutDeliveryChannel.html">PutDeliveryChannel</a>
+        /// operation to create a delivery channel.
         /// </para>
         /// </summary>
-        /// <param name="configurationRecorderName">The name of the recorder object that records each configuration change made to the resources.</param>
+        /// <param name="configurationRecorderName">The name of the customer managed configuration recorder that you want to start.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -5044,18 +7332,47 @@ namespace Amazon.ConfigService
         /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigurationRecorderException">
         /// You have specified a configuration recorder that does not exist.
         /// </exception>
+        /// <exception cref="Amazon.ConfigService.Model.UnmodifiableEntityException">
+        /// The requested operation is not valid.
+        /// 
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigurationRecorder.html">PutConfigurationRecorder</a>,
+        /// you will see this exception because you cannot use this operation to create a service-linked
+        /// configuration recorder. Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutServiceLinkedConfigurationRecorder.html">PutServiceLinkedConfigurationRecorder</a>
+        /// operation to create a service-linked configuration recorder.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteConfigurationRecorder.html">DeleteConfigurationRecorder</a>,
+        /// you will see this exception because you cannot use this operation to delete a service-linked
+        /// configuration recorder. Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteServiceLinkedConfigurationRecorder.html">DeleteServiceLinkedConfigurationRecorder</a>
+        /// operation to delete a service-linked configuration recorder.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_StartConfigurationRecorder.html">StartConfigurationRecorder</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_StopConfigurationRecorder.html">StopConfigurationRecorder</a>,
+        /// you will see this exception because these operations do not affect service-linked
+        /// configuration recorders. Service-linked configuration recorders are always recording.
+        /// To stop recording, you must delete the service-linked configuration recorder. Use
+        /// the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteServiceLinkedConfigurationRecorder.html">DeleteServiceLinkedConfigurationRecorder</a>
+        /// operation to delete a service-linked configuration recorder.
+        /// </para>
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/StartConfigurationRecorder">REST API Reference for StartConfigurationRecorder Operation</seealso>
         Task<StartConfigurationRecorderResponse> StartConfigurationRecorderAsync(string configurationRecorderName, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
 
         /// <summary>
-        /// Starts recording configurations of the Amazon Web Services resources you have selected
-        /// to record in your Amazon Web Services account.
+        /// Starts the customer managed configuration recorder. The customer managed configuration
+        /// recorder will begin recording configuration changes for the resource types you specify.
         /// 
         ///  
         /// <para>
-        /// You must have created at least one delivery channel to successfully start the configuration
-        /// recorder.
+        /// You must have created a delivery channel to successfully start the customer managed
+        /// configuration recorder. You can use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutDeliveryChannel.html">PutDeliveryChannel</a>
+        /// operation to create a delivery channel.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartConfigurationRecorder service method.</param>
@@ -5069,6 +7386,34 @@ namespace Amazon.ConfigService
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigurationRecorderException">
         /// You have specified a configuration recorder that does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.ConfigService.Model.UnmodifiableEntityException">
+        /// The requested operation is not valid.
+        /// 
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigurationRecorder.html">PutConfigurationRecorder</a>,
+        /// you will see this exception because you cannot use this operation to create a service-linked
+        /// configuration recorder. Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutServiceLinkedConfigurationRecorder.html">PutServiceLinkedConfigurationRecorder</a>
+        /// operation to create a service-linked configuration recorder.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteConfigurationRecorder.html">DeleteConfigurationRecorder</a>,
+        /// you will see this exception because you cannot use this operation to delete a service-linked
+        /// configuration recorder. Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteServiceLinkedConfigurationRecorder.html">DeleteServiceLinkedConfigurationRecorder</a>
+        /// operation to delete a service-linked configuration recorder.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_StartConfigurationRecorder.html">StartConfigurationRecorder</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_StopConfigurationRecorder.html">StopConfigurationRecorder</a>,
+        /// you will see this exception because these operations do not affect service-linked
+        /// configuration recorders. Service-linked configuration recorders are always recording.
+        /// To stop recording, you must delete the service-linked configuration recorder. Use
+        /// the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteServiceLinkedConfigurationRecorder.html">DeleteServiceLinkedConfigurationRecorder</a>
+        /// operation to delete a service-linked configuration recorder.
+        /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/StartConfigurationRecorder">REST API Reference for StartConfigurationRecorder Operation</seealso>
         Task<StartConfigurationRecorderResponse> StartConfigurationRecorderAsync(StartConfigurationRecorderRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -5101,35 +7446,45 @@ namespace Amazon.ConfigService
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// For PutConfigRule, the rule cannot be created because the IAM role assigned to Config
-        /// lacks permissions to perform the config:Put* action.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigRule.html">PutConfigRule</a>,
+        /// the rule cannot be created because the IAM role assigned to Config lacks permissions
+        /// to perform the config:Put* action.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutConfigRule, the Lambda function cannot be invoked. Check the function ARN,
-        /// and check the function's permissions.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigRule.html">PutConfigRule</a>,
+        /// the Lambda function cannot be invoked. Check the function ARN, and check the function's
+        /// permissions.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutOrganizationConfigRule, organization Config rule cannot be created because
-        /// you do not have permissions to call IAM <code>GetRole</code> action or create a service-linked
-        /// role.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutOrganizationConfigRule.html">PutOrganizationConfigRule</a>,
+        /// organization Config rule cannot be created because you do not have permissions to
+        /// call IAM <c>GetRole</c> action or create a service-linked role.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For PutConformancePack and PutOrganizationConformancePack, a conformance pack cannot
-        /// be created because you do not have the following permissions: 
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConformancePack.html">PutConformancePack</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutOrganizationConformancePack.html">PutOrganizationConformancePack</a>,
+        /// a conformance pack cannot be created because you do not have the following permissions:
+        /// 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// You do not have permission to call IAM <code>GetRole</code> action or create a service-linked
+        /// You do not have permission to call IAM <c>GetRole</c> action or create a service-linked
         /// role.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
         /// </para>
-        ///  </li> </ul> </li> </ul>
+        ///  </li> </ul> </li> <li> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutServiceLinkedConfigurationRecorder.html">PutServiceLinkedConfigurationRecorder</a>,
+        /// a service-linked configuration recorder cannot be created because you do not have
+        /// the following permissions: IAM <c>CreateServiceLinkedRole</c>.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.InvalidParameterValueException">
         /// One or more of the specified parameters are not valid. Verify that your parameters
@@ -5156,15 +7511,15 @@ namespace Amazon.ConfigService
         /// 
         ///  <note> 
         /// <para>
-        /// Ensure you have the <code>cloudformation:DescribeType</code> role setup to validate
-        /// the resource type schema.
+        /// Ensure you have the <c>cloudformation:DescribeType</c> role setup to validate the
+        /// resource type schema.
         /// </para>
         ///  
         /// <para>
         /// You can find the <a href="https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-schema.html">Resource
         /// type schema</a> in "<i>Amazon Web Services public extensions</i>" within the CloudFormation
-        /// registry or with the following CLI commmand: <code>aws cloudformation describe-type
-        /// --type-name "AWS::S3::Bucket" --type RESOURCE</code>.
+        /// registry or with the following CLI commmand: <c>aws cloudformation describe-type --type-name
+        /// "AWS::S3::Bucket" --type RESOURCE</c>.
         /// </para>
         ///  
         /// <para>
@@ -5198,10 +7553,11 @@ namespace Amazon.ConfigService
 
 
         /// <summary>
-        /// Stops recording configurations of the Amazon Web Services resources you have selected
-        /// to record in your Amazon Web Services account.
+        /// Stops the customer managed configuration recorder. The customer managed configuration
+        /// recorder will stop recording configuration changes for the resource types you have
+        /// specified.
         /// </summary>
-        /// <param name="configurationRecorderName">The name of the recorder object that records each configuration change made to the resources.</param>
+        /// <param name="configurationRecorderName">The name of the customer managed configuration recorder that you want to stop.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -5210,13 +7566,42 @@ namespace Amazon.ConfigService
         /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigurationRecorderException">
         /// You have specified a configuration recorder that does not exist.
         /// </exception>
+        /// <exception cref="Amazon.ConfigService.Model.UnmodifiableEntityException">
+        /// The requested operation is not valid.
+        /// 
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigurationRecorder.html">PutConfigurationRecorder</a>,
+        /// you will see this exception because you cannot use this operation to create a service-linked
+        /// configuration recorder. Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutServiceLinkedConfigurationRecorder.html">PutServiceLinkedConfigurationRecorder</a>
+        /// operation to create a service-linked configuration recorder.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteConfigurationRecorder.html">DeleteConfigurationRecorder</a>,
+        /// you will see this exception because you cannot use this operation to delete a service-linked
+        /// configuration recorder. Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteServiceLinkedConfigurationRecorder.html">DeleteServiceLinkedConfigurationRecorder</a>
+        /// operation to delete a service-linked configuration recorder.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_StartConfigurationRecorder.html">StartConfigurationRecorder</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_StopConfigurationRecorder.html">StopConfigurationRecorder</a>,
+        /// you will see this exception because these operations do not affect service-linked
+        /// configuration recorders. Service-linked configuration recorders are always recording.
+        /// To stop recording, you must delete the service-linked configuration recorder. Use
+        /// the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteServiceLinkedConfigurationRecorder.html">DeleteServiceLinkedConfigurationRecorder</a>
+        /// operation to delete a service-linked configuration recorder.
+        /// </para>
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/StopConfigurationRecorder">REST API Reference for StopConfigurationRecorder Operation</seealso>
         Task<StopConfigurationRecorderResponse> StopConfigurationRecorderAsync(string configurationRecorderName, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
 
         /// <summary>
-        /// Stops recording configurations of the Amazon Web Services resources you have selected
-        /// to record in your Amazon Web Services account.
+        /// Stops the customer managed configuration recorder. The customer managed configuration
+        /// recorder will stop recording configuration changes for the resource types you have
+        /// specified.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StopConfigurationRecorder service method.</param>
         /// <param name="cancellationToken">
@@ -5226,6 +7611,34 @@ namespace Amazon.ConfigService
         /// <returns>The response from the StopConfigurationRecorder service method, as returned by ConfigService.</returns>
         /// <exception cref="Amazon.ConfigService.Model.NoSuchConfigurationRecorderException">
         /// You have specified a configuration recorder that does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.ConfigService.Model.UnmodifiableEntityException">
+        /// The requested operation is not valid.
+        /// 
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigurationRecorder.html">PutConfigurationRecorder</a>,
+        /// you will see this exception because you cannot use this operation to create a service-linked
+        /// configuration recorder. Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutServiceLinkedConfigurationRecorder.html">PutServiceLinkedConfigurationRecorder</a>
+        /// operation to create a service-linked configuration recorder.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteConfigurationRecorder.html">DeleteConfigurationRecorder</a>,
+        /// you will see this exception because you cannot use this operation to delete a service-linked
+        /// configuration recorder. Use the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteServiceLinkedConfigurationRecorder.html">DeleteServiceLinkedConfigurationRecorder</a>
+        /// operation to delete a service-linked configuration recorder.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_StartConfigurationRecorder.html">StartConfigurationRecorder</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_StopConfigurationRecorder.html">StopConfigurationRecorder</a>,
+        /// you will see this exception because these operations do not affect service-linked
+        /// configuration recorders. Service-linked configuration recorders are always recording.
+        /// To stop recording, you must delete the service-linked configuration recorder. Use
+        /// the <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteServiceLinkedConfigurationRecorder.html">DeleteServiceLinkedConfigurationRecorder</a>
+        /// operation to delete a service-linked configuration recorder.
+        /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/StopConfigurationRecorder">REST API Reference for StopConfigurationRecorder Operation</seealso>
         Task<StopConfigurationRecorderResponse> StopConfigurationRecorderAsync(StopConfigurationRecorderRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -5237,10 +7650,11 @@ namespace Amazon.ConfigService
 
 
         /// <summary>
-        /// Associates the specified tags to a resource with the specified resourceArn. If existing
-        /// tags on a resource are not specified in the request parameters, they are not changed.
-        /// If existing tags are specified, however, then their values will be updated. When a
-        /// resource is deleted, the tags associated with that resource are deleted as well.
+        /// Associates the specified tags to a resource with the specified <c>ResourceArn</c>.
+        /// If existing tags on a resource are not specified in the request parameters, they are
+        /// not changed. If existing tags are specified, however, then their values will be updated.
+        /// When a resource is deleted, the tags associated with that resource are deleted as
+        /// well.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the TagResource service method.</param>
         /// <param name="cancellationToken">
@@ -5257,19 +7671,63 @@ namespace Amazon.ConfigService
         /// <b>Service Limits</b> </a> in the <i>Config Developer Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/TagResource">REST API Reference for TagResource Operation</seealso>
         Task<TagResourceResponse> TagResourceAsync(TagResourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -5293,19 +7751,63 @@ namespace Amazon.ConfigService
         /// You have specified a resource that does not exist.
         /// </exception>
         /// <exception cref="Amazon.ConfigService.Model.ValidationException">
-        /// The requested action is not valid.
+        /// The requested operation is not valid. You will see this exception if there are missing
+        /// required fields or if the input value fails the validation.
         /// 
         ///  
         /// <para>
-        /// For PutStoredQuery, you will see this exception if there are missing required fields
-        /// or if the input value fails the validation, or if you are trying to create more than
-        /// 300 queries.
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutStoredQuery.html">PutStoredQuery</a>,
+        /// one of the following errors:
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception
-        /// if there are missing required fields or if the input value fails the validation.
+        /// There are missing required fields.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The input value fails the validation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You are trying to create more than 300 queries.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorders.html">DescribeConfigurationRecorders</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">DescribeConfigurationRecorderStatus</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You have specified more than one configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You have provided a service principal for service-linked configuration recorder that
+        /// is not valid.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_AssociateResourceTypes.html">AssociateResourceTypes</a>
+        /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DisassociateResourceTypes.html">DisassociateResourceTypes</a>,
+        /// one of the following errors:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Your configuraiton recorder has a recording strategy that does not allow the association
+        /// or disassociation of resource types.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// One or more of the specified resource types are already associated or disassociated
+        /// with the configuration recorder.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For service-linked configuration recorders, the configuration recorder does not record
+        /// one or more of the specified resource types.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/UntagResource">REST API Reference for UntagResource Operation</seealso>
         Task<UntagResourceResponse> UntagResourceAsync(UntagResourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));

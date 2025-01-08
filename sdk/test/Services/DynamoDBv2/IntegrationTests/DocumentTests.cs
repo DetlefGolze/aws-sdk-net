@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -10,9 +9,8 @@ using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.Model;
 using Amazon.DynamoDBv2.DocumentModel;
 using System.IO;
-using ThirdParty.Json.LitJson;
-using System.Xml;
 using ReturnValuesOnConditionCheckFailure = Amazon.DynamoDBv2.DocumentModel.ReturnValuesOnConditionCheckFailure;
+using Amazon;
 
 
 namespace AWSSDK_DotNet.IntegrationTests.Tests.DynamoDB
@@ -78,6 +76,9 @@ namespace AWSSDK_DotNet.IntegrationTests.Tests.DynamoDB
 
                 // Test storing some attributes as epoch seconds
                 TestStoreAsEpoch(hashRangeTable, numericHashRangeTable);
+
+                // Test that attributes stored as Datetimes can be retrieved in UTC.
+                TestAsDateTimeUtc(numericHashRangeTable);
             }
         }
 
@@ -154,7 +155,38 @@ namespace AWSSDK_DotNet.IntegrationTests.Tests.DynamoDB
 
                 // Test storing some attributes as epoch seconds
                 TestStoreAsEpoch(hashRangeTable, numericHashRangeTable);
+
+                // Test that attributes stored as Datetimes can be retrieved in UTC.
+                TestAsDateTimeUtc(numericHashRangeTable);
             }
+        }
+
+        private void TestAsDateTimeUtc(Table numericHashRangeTable)
+        {
+            var config = new TableConfig(numericHashRangeTable.TableName)
+            {
+                AttributesToStoreAsEpoch = new List<string> { "CreationTime", "EpochDate2" }
+            };
+            var numericEpochTable = Table.LoadTable(Client, config);
+
+            // Capture current time
+            var currTime = DateTime.Now;
+            var currTimeUtc = currTime.ToUniversalTime();
+
+            // Save Item
+            var doc = new Document();
+            doc["Name"] = "Bob";
+            doc["Age"] = 42;
+            doc["CreationTime"] = currTime;
+            doc["EpochDate2"] = currTime;
+            doc["NonEpochDate"] = currTime;
+            numericEpochTable.PutItem(doc);
+
+            // Load Item
+            var storedDoc = numericEpochTable.GetItem(currTime, "Bob", new GetItemOperationConfig { ConsistentRead = true});
+            ApproximatelyEqual(currTimeUtc, storedDoc["CreationTime"].AsDateTimeUtc());
+            ApproximatelyEqual(currTimeUtc, storedDoc["EpochDate2"].AsDateTimeUtc());
+            ApproximatelyEqual(currTimeUtc, storedDoc["NonEpochDate"].AsDateTimeUtc());
         }
 
         private void TestEmptyString(Table hashTable)
@@ -1132,11 +1164,24 @@ namespace AWSSDK_DotNet.IntegrationTests.Tests.DynamoDB
                 Assert.IsNotNull(ex);
                 Assert.AreEqual(3, ex.CancellationReasons.Count);
                 Assert.AreEqual(BatchStatementErrorCodeEnum.ConditionalCheckFailed.Value, ex.CancellationReasons[0].Code);
-                Assert.AreEqual(0, ex.CancellationReasons[0].Item.Count);
+
+                if (AWSConfigs.InitializeCollections)
+                {
+                    Assert.AreEqual(0, ex.CancellationReasons[0].Item.Count);
+                    Assert.AreEqual(0, ex.CancellationReasons[1].Item.Count);
+                    Assert.AreEqual(0, ex.CancellationReasons[2].Item.Count);
+                    Assert.AreEqual(0, transactWrite.ConditionCheckFailedItems.Count);
+                }
+                else
+                {
+                    Assert.IsNull(ex.CancellationReasons[0].Item);
+                    Assert.IsNull(ex.CancellationReasons[1].Item);
+                    Assert.IsNull(ex.CancellationReasons[2].Item);
+                    
+                }
+
                 Assert.AreEqual(BatchStatementErrorCodeEnum.ConditionalCheckFailed.Value, ex.CancellationReasons[1].Code);
-                Assert.AreEqual(0, ex.CancellationReasons[1].Item.Count);
                 Assert.AreEqual("None", ex.CancellationReasons[2].Code);
-                Assert.AreEqual(0, ex.CancellationReasons[2].Item.Count);
                 Assert.AreEqual(0, transactWrite.ConditionCheckFailedItems.Count);
             }
 
@@ -1241,7 +1286,12 @@ namespace AWSSDK_DotNet.IntegrationTests.Tests.DynamoDB
                 Assert.AreEqual(BatchStatementErrorCodeEnum.ConditionalCheckFailed.Value, ex.CancellationReasons[1].Code);
                 Assert.AreNotEqual(0, ex.CancellationReasons[1].Item.Count);
                 Assert.AreEqual("None", ex.CancellationReasons[2].Code);
-                Assert.AreEqual(0, ex.CancellationReasons[2].Item.Count);
+
+                if (AWSConfigs.InitializeCollections)
+                    Assert.AreEqual(0, ex.CancellationReasons[2].Item.Count);
+                else
+                    Assert.IsNull(ex.CancellationReasons[2].Item);
+
                 Assert.AreEqual(2, transactWrite.ConditionCheckFailedItems.Count);
                 Assert.IsTrue(AreValuesEqual(doc1, transactWrite.ConditionCheckFailedItems[0], conversion));
                 Assert.IsTrue(AreValuesEqual(doc2, transactWrite.ConditionCheckFailedItems[1], conversion));
@@ -1300,13 +1350,22 @@ namespace AWSSDK_DotNet.IntegrationTests.Tests.DynamoDB
                 Assert.IsNotNull(ex);
                 Assert.AreEqual(3, ex.CancellationReasons.Count);
                 Assert.AreEqual("None", ex.CancellationReasons[0].Code);
-                Assert.AreEqual(0, ex.CancellationReasons[0].Item.Count);
                 Assert.AreEqual("None", ex.CancellationReasons[1].Code);
-                Assert.AreEqual(0, ex.CancellationReasons[1].Item.Count);
                 Assert.AreEqual(BatchStatementErrorCodeEnum.ConditionalCheckFailed.Value, ex.CancellationReasons[2].Code);
                 Assert.AreNotEqual(0, ex.CancellationReasons[2].Item.Count);
                 Assert.AreEqual(1, transactWrite.ConditionCheckFailedItems.Count);
                 Assert.IsTrue(AreValuesEqual(doc3, transactWrite.ConditionCheckFailedItems[0], conversion));
+
+                if (AWSConfigs.InitializeCollections)
+                {
+                    Assert.AreEqual(0, ex.CancellationReasons[0].Item.Count);
+                    Assert.AreEqual(0, ex.CancellationReasons[1].Item.Count);
+                }
+                else
+                {
+                    Assert.IsNull(ex.CancellationReasons[0].Item);
+                    Assert.IsNull(ex.CancellationReasons[1].Item);
+                }
             }
 
             {
@@ -1385,13 +1444,162 @@ namespace AWSSDK_DotNet.IntegrationTests.Tests.DynamoDB
 
             {
                 var transactWrite = hashTable.CreateTransactWrite();
+                AssertExtensions.ExpectException<ArgumentException>(() => transactWrite.AddDocumentToUpdate(hashKey: 7001,
+                    new Expression
+                    {
+                        ExpressionStatement = "SET #garbage = :garbage",
+                        ExpressionAttributeNames = { ["#garbage"] = "Garbage" },
+                        ExpressionAttributeValues = { [":garbage"] = "asdf" }
+                    },
+                    new TransactWriteItemOperationConfig
+                    {
+                        ConditionalExpression = new Expression
+                        {
+                            ExpressionStatement = "#garbage <> :garbage",
+                            ExpressionAttributeNames = { ["#garbage"] = "Garbage2" },
+                            ExpressionAttributeValues = { [":garbage"] = "asdf" }
+                        },
+                        ReturnValuesOnConditionCheckFailure = ReturnValuesOnConditionCheckFailure.AllOldAttributes
+                    }));
+                AssertExtensions.ExpectException<ArgumentException>(() => transactWrite.AddDocumentToUpdate(hashKey: 7001,
+                    new Expression
+                    {
+                        ExpressionStatement = "SET #garbage = :garbage",
+                        ExpressionAttributeNames = { ["#garbage"] = "Garbage" },
+                        ExpressionAttributeValues = { [":garbage"] = "asdf" }
+                    },
+                    new TransactWriteItemOperationConfig
+                    {
+                        ConditionalExpression = new Expression
+                        {
+                            ExpressionStatement = "#garbage <> :garbage",
+                            ExpressionAttributeNames = { ["#garbage"] = "Garbage" },
+                            ExpressionAttributeValues = { [":garbage"] = "hjkl" }
+                        },
+                        ReturnValuesOnConditionCheckFailure = ReturnValuesOnConditionCheckFailure.AllOldAttributes
+                    }));
+            }
+
+            {
+                var transactWrite = hashTable.CreateTransactWrite();
+                transactWrite.AddDocumentToUpdate(hashKey: 7001,
+                    new Expression
+                    {
+                        ExpressionStatement = "SET #price = #price + :inc",
+                        ExpressionAttributeNames = { ["#price"] = "Price" },
+                        ExpressionAttributeValues = { [":inc"] = 1 }
+                    },
+                    new TransactWriteItemOperationConfig
+                    {
+                        ConditionalExpression = new Expression
+                        {
+                            ExpressionStatement = "#price = :price",
+                            ExpressionAttributeNames = { ["#price"] = "Price" },
+                            ExpressionAttributeValues = { [":price"] = 51 }
+                        },
+                        ReturnValuesOnConditionCheckFailure = ReturnValuesOnConditionCheckFailure.AllOldAttributes
+                    });
+                transactWrite.AddDocumentToUpdate(hashKey: 7002,
+                    new Expression
+                    {
+                        ExpressionStatement = "SET #price = #price + :inc",
+                        ExpressionAttributeNames = { ["#price"] = "Price" },
+                        ExpressionAttributeValues = { [":inc"] = 1 }
+                    },
+                    new TransactWriteItemOperationConfig
+                    {
+                        ConditionalExpression = new Expression
+                        {
+                            ExpressionStatement = "#price = :price",
+                            ExpressionAttributeNames = { ["#price"] = "Price" },
+                            ExpressionAttributeValues = { [":price"] = 100 }
+                        },
+                        ReturnValuesOnConditionCheckFailure = ReturnValuesOnConditionCheckFailure.AllOldAttributes
+                    });
+
+                var ex = AssertExtensions.ExpectException<TransactionCanceledException>(() => transactWrite.Execute());
+                Assert.IsNotNull(ex);
+                Assert.AreEqual(2, ex.CancellationReasons.Count);
+                Assert.AreEqual("None", ex.CancellationReasons[0].Code);
+                Assert.AreEqual(BatchStatementErrorCodeEnum.ConditionalCheckFailed.Value, ex.CancellationReasons[1].Code);
+                Assert.AreNotEqual(0, ex.CancellationReasons[1].Item.Count);
+                Assert.AreEqual(1, transactWrite.ConditionCheckFailedItems.Count);
+                Assert.IsTrue(AreValuesEqual(doc2, transactWrite.ConditionCheckFailedItems[0], conversion));
+            }
+
+            {
+                var transactGet = hashTable.CreateTransactGet();
+                transactGet.AddKey(7001);
+                transactGet.AddKey(7002);
+                transactGet.Execute();
+                Assert.AreEqual(2, transactGet.Results.Count);
+                Assert.IsTrue(AreValuesEqual(doc1, transactGet.Results[0], conversion));
+                Assert.IsTrue(AreValuesEqual(doc2, transactGet.Results[1], conversion));
+            }
+
+            {
+                var transactWrite = hashTable.CreateTransactWrite();
+                transactWrite.AddDocumentToUpdate(hashKey: 7001,
+                    new Expression
+                    {
+                        ExpressionStatement = "SET #price = #price + :inc",
+                        ExpressionAttributeNames = { ["#price"] = "Price" },
+                        ExpressionAttributeValues = { [":inc"] = 1 }
+                    },
+                    new TransactWriteItemOperationConfig
+                    {
+                        ConditionalExpression = new Expression
+                        {
+                            ExpressionStatement = "#price = :price",
+                            ExpressionAttributeNames = { ["#price"] = "Price" },
+                            ExpressionAttributeValues = { [":price"] = 51 }
+                        },
+                        ReturnValuesOnConditionCheckFailure = ReturnValuesOnConditionCheckFailure.AllOldAttributes
+                    });
+                transactWrite.AddDocumentToUpdate(hashKey: 7002,
+                    new Expression
+                    {
+                        ExpressionStatement = "SET #price = #price + :inc",
+                        ExpressionAttributeNames = { ["#price"] = "Price" },
+                        ExpressionAttributeValues = { [":inc"] = 1 }
+                    },
+                    new TransactWriteItemOperationConfig
+                    {
+                        ConditionalExpression = new Expression
+                        {
+                            ExpressionStatement = "#price = :price",
+                            ExpressionAttributeNames = { ["#price"] = "Price" },
+                            ExpressionAttributeValues = { [":price"] = 101 }
+                        },
+                        ReturnValuesOnConditionCheckFailure = ReturnValuesOnConditionCheckFailure.AllOldAttributes
+                    });
+
+                transactWrite.Execute();
+            }
+
+            {
+                var transactGet = hashTable.CreateTransactGet();
+                transactGet.AddKey(7001);
+                transactGet.AddKey(7002);
+                transactGet.Execute();
+                Assert.AreEqual(2, transactGet.Results.Count);
+                Assert.IsFalse(AreValuesEqual(doc1, transactGet.Results[0], conversion));
+                doc1["Price"] = 52;
+                Assert.IsTrue(AreValuesEqual(doc1, transactGet.Results[0], conversion));
+                Assert.IsFalse(AreValuesEqual(doc2, transactGet.Results[1], conversion));
+                doc2["Price"] = 102;
+                Assert.IsTrue(AreValuesEqual(doc2, transactGet.Results[1], conversion));
+            }
+
+            {
+                var transactWrite = hashTable.CreateTransactWrite();
                 transactWrite.AddItemToDelete(doc1, new TransactWriteItemOperationConfig
                 {
                     ConditionalExpression = new Expression
                     {
                         ExpressionStatement = "#price = :price",
                         ExpressionAttributeNames = { ["#price"] = "Price" },
-                        ExpressionAttributeValues = { [":price"] = 51 }
+                        ExpressionAttributeValues = { [":price"] = 52 }
                     },
                     ReturnValuesOnConditionCheckFailure = ReturnValuesOnConditionCheckFailure.AllOldAttributes
                 });
@@ -1401,7 +1609,7 @@ namespace AWSSDK_DotNet.IntegrationTests.Tests.DynamoDB
                     {
                         ExpressionStatement = "#price = :price",
                         ExpressionAttributeNames = { ["#price"] = "Price" },
-                        ExpressionAttributeValues = { [":price"] = 101 }
+                        ExpressionAttributeValues = { [":price"] = 102 }
                     },
                     ReturnValuesOnConditionCheckFailure = ReturnValuesOnConditionCheckFailure.AllOldAttributes
                 });

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.EC2.Model
     {
         private string _clientToken;
         private CurrencyCodeValues _currencyCode;
-        private List<Purchase> _purchase = new List<Purchase>();
+        private List<Purchase> _purchase = AWSConfigs.InitializeCollections ? new List<Purchase>() : null;
         private string _totalHourlyPrice;
         private string _totalUpfrontPrice;
 
@@ -62,8 +63,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property CurrencyCode. 
         /// <para>
-        /// The currency in which the <code>totalUpfrontPrice</code> and <code>totalHourlyPrice</code>
-        /// amounts are specified. At this time, the only supported currency is <code>USD</code>.
+        /// The currency in which the <c>totalUpfrontPrice</c> and <c>totalHourlyPrice</c> amounts
+        /// are specified. At this time, the only supported currency is <c>USD</c>.
         /// </para>
         /// </summary>
         public CurrencyCodeValues CurrencyCode
@@ -93,7 +94,7 @@ namespace Amazon.EC2.Model
         // Check to see if Purchase property is set
         internal bool IsSetPurchase()
         {
-            return this._purchase != null && this._purchase.Count > 0; 
+            return this._purchase != null && (this._purchase.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

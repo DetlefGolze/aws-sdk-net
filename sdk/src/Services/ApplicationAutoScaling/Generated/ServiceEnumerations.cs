@@ -285,6 +285,18 @@ namespace Amazon.ApplicationAutoScaling
         /// </summary>
         public static readonly MetricType RDSReaderAverageDatabaseConnections = new MetricType("RDSReaderAverageDatabaseConnections");
         /// <summary>
+        /// Constant SageMakerInferenceComponentConcurrentRequestsPerCopyHighResolution for MetricType
+        /// </summary>
+        public static readonly MetricType SageMakerInferenceComponentConcurrentRequestsPerCopyHighResolution = new MetricType("SageMakerInferenceComponentConcurrentRequestsPerCopyHighResolution");
+        /// <summary>
+        /// Constant SageMakerInferenceComponentInvocationsPerCopy for MetricType
+        /// </summary>
+        public static readonly MetricType SageMakerInferenceComponentInvocationsPerCopy = new MetricType("SageMakerInferenceComponentInvocationsPerCopy");
+        /// <summary>
+        /// Constant SageMakerVariantConcurrentRequestsPerModelHighResolution for MetricType
+        /// </summary>
+        public static readonly MetricType SageMakerVariantConcurrentRequestsPerModelHighResolution = new MetricType("SageMakerVariantConcurrentRequestsPerModelHighResolution");
+        /// <summary>
         /// Constant SageMakerVariantInvocationsPerInstance for MetricType
         /// </summary>
         public static readonly MetricType SageMakerVariantInvocationsPerInstance = new MetricType("SageMakerVariantInvocationsPerInstance");
@@ -292,6 +304,10 @@ namespace Amazon.ApplicationAutoScaling
         /// Constant SageMakerVariantProvisionedConcurrencyUtilization for MetricType
         /// </summary>
         public static readonly MetricType SageMakerVariantProvisionedConcurrencyUtilization = new MetricType("SageMakerVariantProvisionedConcurrencyUtilization");
+        /// <summary>
+        /// Constant WorkSpacesAverageUserSessionsCapacityUtilization for MetricType
+        /// </summary>
+        public static readonly MetricType WorkSpacesAverageUserSessionsCapacityUtilization = new MetricType("WorkSpacesAverageUserSessionsCapacityUtilization");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -335,6 +351,10 @@ namespace Amazon.ApplicationAutoScaling
     {
 
         /// <summary>
+        /// Constant PredictiveScaling for PolicyType
+        /// </summary>
+        public static readonly PolicyType PredictiveScaling = new PolicyType("PredictiveScaling");
+        /// <summary>
         /// Constant StepScaling for PolicyType
         /// </summary>
         public static readonly PolicyType StepScaling = new PolicyType("StepScaling");
@@ -372,6 +392,106 @@ namespace Amazon.ApplicationAutoScaling
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator PolicyType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type PredictiveScalingMaxCapacityBreachBehavior.
+    /// </summary>
+    public class PredictiveScalingMaxCapacityBreachBehavior : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant HonorMaxCapacity for PredictiveScalingMaxCapacityBreachBehavior
+        /// </summary>
+        public static readonly PredictiveScalingMaxCapacityBreachBehavior HonorMaxCapacity = new PredictiveScalingMaxCapacityBreachBehavior("HonorMaxCapacity");
+        /// <summary>
+        /// Constant IncreaseMaxCapacity for PredictiveScalingMaxCapacityBreachBehavior
+        /// </summary>
+        public static readonly PredictiveScalingMaxCapacityBreachBehavior IncreaseMaxCapacity = new PredictiveScalingMaxCapacityBreachBehavior("IncreaseMaxCapacity");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public PredictiveScalingMaxCapacityBreachBehavior(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static PredictiveScalingMaxCapacityBreachBehavior FindValue(string value)
+        {
+            return FindValue<PredictiveScalingMaxCapacityBreachBehavior>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator PredictiveScalingMaxCapacityBreachBehavior(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type PredictiveScalingMode.
+    /// </summary>
+    public class PredictiveScalingMode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ForecastAndScale for PredictiveScalingMode
+        /// </summary>
+        public static readonly PredictiveScalingMode ForecastAndScale = new PredictiveScalingMode("ForecastAndScale");
+        /// <summary>
+        /// Constant ForecastOnly for PredictiveScalingMode
+        /// </summary>
+        public static readonly PredictiveScalingMode ForecastOnly = new PredictiveScalingMode("ForecastOnly");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public PredictiveScalingMode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static PredictiveScalingMode FindValue(string value)
+        {
+            return FindValue<PredictiveScalingMode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator PredictiveScalingMode(string value)
         {
             return FindValue(value);
         }
@@ -461,6 +581,10 @@ namespace Amazon.ApplicationAutoScaling
         /// </summary>
         public static readonly ScalableDimension RdsClusterReadReplicaCount = new ScalableDimension("rds:cluster:ReadReplicaCount");
         /// <summary>
+        /// Constant SagemakerInferenceComponentDesiredCopyCount for ScalableDimension
+        /// </summary>
+        public static readonly ScalableDimension SagemakerInferenceComponentDesiredCopyCount = new ScalableDimension("sagemaker:inference-component:DesiredCopyCount");
+        /// <summary>
         /// Constant SagemakerVariantDesiredInstanceCount for ScalableDimension
         /// </summary>
         public static readonly ScalableDimension SagemakerVariantDesiredInstanceCount = new ScalableDimension("sagemaker:variant:DesiredInstanceCount");
@@ -468,6 +592,10 @@ namespace Amazon.ApplicationAutoScaling
         /// Constant SagemakerVariantDesiredProvisionedConcurrency for ScalableDimension
         /// </summary>
         public static readonly ScalableDimension SagemakerVariantDesiredProvisionedConcurrency = new ScalableDimension("sagemaker:variant:DesiredProvisionedConcurrency");
+        /// <summary>
+        /// Constant WorkspacesWorkspacespoolDesiredUserSessions for ScalableDimension
+        /// </summary>
+        public static readonly ScalableDimension WorkspacesWorkspacespoolDesiredUserSessions = new ScalableDimension("workspaces:workspacespool:DesiredUserSessions");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -632,6 +760,10 @@ namespace Amazon.ApplicationAutoScaling
         /// Constant Sagemaker for ServiceNamespace
         /// </summary>
         public static readonly ServiceNamespace Sagemaker = new ServiceNamespace("sagemaker");
+        /// <summary>
+        /// Constant Workspaces for ServiceNamespace
+        /// </summary>
+        public static readonly ServiceNamespace Workspaces = new ServiceNamespace("workspaces");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant

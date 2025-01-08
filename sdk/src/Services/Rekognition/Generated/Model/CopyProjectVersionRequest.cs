@@ -26,15 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// Container for the parameters to the CopyProjectVersion operation.
+    /// <note> 
+    /// <para>
+    /// This operation applies only to Amazon Rekognition Custom Labels.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Copies a version of an Amazon Rekognition Custom Labels model from a source project
     /// to a destination project. The source and destination projects can be in different
     /// AWS accounts but must be in the same AWS Region. You can't copy a model to another
     /// AWS service. 
-    /// 
+    /// </para>
     ///  
     /// <para>
     /// To copy a model version to a different AWS account, you need to create a resource-based
@@ -54,18 +61,22 @@ namespace Amazon.Rekognition.Model
     /// </para>
     ///  <note> 
     /// <para>
+    /// Copying project versions is supported only for Custom Labels models. 
+    /// </para>
+    ///  
+    /// <para>
     /// To copy a model, the destination project, source project, and source model version
     /// must already exist.
     /// </para>
     ///  </note> 
     /// <para>
     /// Copying a model version takes a while to complete. To get the current status, call
-    /// <a>DescribeProjectVersions</a> and check the value of <code>Status</code> in the <a>ProjectVersionDescription</a>
-    /// object. The copy operation has finished when the value of <code>Status</code> is <code>COPYING_COMPLETED</code>.
+    /// <a>DescribeProjectVersions</a> and check the value of <c>Status</c> in the <a>ProjectVersionDescription</a>
+    /// object. The copy operation has finished when the value of <c>Status</c> is <c>COPYING_COMPLETED</c>.
     /// </para>
     ///  
     /// <para>
-    /// This operation requires permissions to perform the <code>rekognition:CopyProjectVersion</code>
+    /// This operation requires permissions to perform the <c>rekognition:CopyProjectVersion</c>
     /// action.
     /// </para>
     /// </summary>
@@ -76,7 +87,7 @@ namespace Amazon.Rekognition.Model
         private OutputConfig _outputConfig;
         private string _sourceProjectArn;
         private string _sourceProjectVersionArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _versionName;
 
         /// <summary>
@@ -105,7 +116,7 @@ namespace Amazon.Rekognition.Model
         /// The identifier for your AWS Key Management Service key (AWS KMS key). You can supply
         /// the Amazon Resource Name (ARN) of your KMS key, the ID of your KMS key, an alias for
         /// your KMS key, or an alias ARN. The key is used to encrypt training results and manifest
-        /// files written to the output Amazon S3 bucket (<code>OutputConfig</code>).
+        /// files written to the output Amazon S3 bucket (<c>OutputConfig</c>).
         /// </para>
         ///  
         /// <para>
@@ -130,8 +141,8 @@ namespace Amazon.Rekognition.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If you don't specify a value for <code>KmsKeyId</code>, images copied into the service
-        /// are encrypted using a key that AWS owns and manages.
+        /// If you don't specify a value for <c>KmsKeyId</c>, images copied into the service are
+        /// encrypted using a key that AWS owns and manages.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]
@@ -222,7 +233,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

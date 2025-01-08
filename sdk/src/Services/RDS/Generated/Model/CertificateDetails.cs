@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// Returns the details of the DB instance’s server certificate.
+    /// The details of the DB instance’s server certificate.
     /// 
     ///  
     /// <para>

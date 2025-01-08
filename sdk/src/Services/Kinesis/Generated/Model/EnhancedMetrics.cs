@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kinesis.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Kinesis.Model
     /// </summary>
     public partial class EnhancedMetrics
     {
-        private List<string> _shardLevelMetrics = new List<string>();
+        private List<string> _shardLevelMetrics = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ShardLevelMetrics. 
@@ -42,40 +43,40 @@ namespace Amazon.Kinesis.Model
         /// </para>
         ///  
         /// <para>
-        /// The following are the valid shard-level metrics. The value "<code>ALL</code>" enhances
-        /// every metric.
+        /// The following are the valid shard-level metrics. The value "<c>ALL</c>" enhances every
+        /// metric.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>IncomingBytes</code> 
+        ///  <c>IncomingBytes</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IncomingRecords</code> 
+        ///  <c>IncomingRecords</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OutgoingBytes</code> 
+        ///  <c>OutgoingBytes</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OutgoingRecords</code> 
+        ///  <c>OutgoingRecords</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>WriteProvisionedThroughputExceeded</code> 
+        ///  <c>WriteProvisionedThroughputExceeded</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ReadProvisionedThroughputExceeded</code> 
+        ///  <c>ReadProvisionedThroughputExceeded</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IteratorAgeMilliseconds</code> 
+        ///  <c>IteratorAgeMilliseconds</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ALL</code> 
+        ///  <c>ALL</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -94,7 +95,7 @@ namespace Amazon.Kinesis.Model
         // Check to see if ShardLevelMetrics property is set
         internal bool IsSetShardLevelMetrics()
         {
-            return this._shardLevelMetrics != null && this._shardLevelMetrics.Count > 0; 
+            return this._shardLevelMetrics != null && (this._shardLevelMetrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

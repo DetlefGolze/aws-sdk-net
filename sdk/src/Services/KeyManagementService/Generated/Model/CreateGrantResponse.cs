@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
@@ -43,8 +44,8 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  
         /// <para>
-        /// You can use the <code>GrantId</code> in a <a>ListGrants</a>, <a>RetireGrant</a>, or
-        /// <a>RevokeGrant</a> operation.
+        /// You can use the <c>GrantId</c> in a <a>ListGrants</a>, <a>RetireGrant</a>, or <a>RevokeGrant</a>
+        /// operation.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]

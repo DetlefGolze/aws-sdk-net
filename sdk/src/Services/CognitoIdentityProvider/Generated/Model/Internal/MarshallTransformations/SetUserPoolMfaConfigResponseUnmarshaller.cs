@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -51,6 +52,12 @@ namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("EmailMfaConfiguration", targetDepth))
+                {
+                    var unmarshaller = EmailMfaConfigTypeUnmarshaller.Instance;
+                    response.EmailMfaConfiguration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("MfaConfiguration", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -67,6 +74,12 @@ namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = SoftwareTokenMfaConfigTypeUnmarshaller.Instance;
                     response.SoftwareTokenMfaConfiguration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("WebAuthnConfiguration", targetDepth))
+                {
+                    var unmarshaller = WebAuthnConfigurationTypeUnmarshaller.Instance;
+                    response.WebAuthnConfiguration = unmarshaller.Unmarshall(context);
                     continue;
                 }
             }
@@ -92,6 +105,14 @@ namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
             using (var streamCopy = new MemoryStream(responseBodyBytes))
             using (var contextCopy = new JsonUnmarshallerContext(streamCopy, false, null))
             {
+                if (errorResponse.Code != null && errorResponse.Code.Equals("ConcurrentModificationException"))
+                {
+                    return ConcurrentModificationExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("FeatureUnavailableInTierException"))
+                {
+                    return FeatureUnavailableInTierExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("InternalErrorException"))
                 {
                     return InternalErrorExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);

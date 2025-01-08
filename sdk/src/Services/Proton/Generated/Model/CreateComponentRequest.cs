@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Proton.Model
 {
     /// <summary>
@@ -49,7 +50,7 @@ namespace Amazon.Proton.Model
         private string _serviceInstanceName;
         private string _serviceName;
         private string _serviceSpec;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _templateFile;
 
         /// <summary>
@@ -94,8 +95,7 @@ namespace Amazon.Proton.Model
         /// Gets and sets the property EnvironmentName. 
         /// <para>
         /// The name of the Proton environment that you want to associate this component with.
-        /// You must specify this when you don't specify <code>serviceInstanceName</code> and
-        /// <code>serviceName</code>.
+        /// You must specify this when you don't specify <c>serviceInstanceName</c> and <c>serviceName</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -155,7 +155,7 @@ namespace Amazon.Proton.Model
         /// <para>
         /// The name of the service instance that you want to attach this component to. If you
         /// don't specify this, the component isn't attached to any service instance. Specify
-        /// both <code>serviceInstanceName</code> and <code>serviceName</code> or neither of them.
+        /// both <c>serviceInstanceName</c> and <c>serviceName</c> or neither of them.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -174,9 +174,9 @@ namespace Amazon.Proton.Model
         /// <summary>
         /// Gets and sets the property ServiceName. 
         /// <para>
-        /// The name of the service that <code>serviceInstanceName</code> is associated with.
-        /// If you don't specify this, the component isn't attached to any service instance. Specify
-        /// both <code>serviceInstanceName</code> and <code>serviceName</code> or neither of them.
+        /// The name of the service that <c>serviceInstanceName</c> is associated with. If you
+        /// don't specify this, the component isn't attached to any service instance. Specify
+        /// both <c>serviceInstanceName</c> and <c>serviceName</c> or neither of them.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -234,7 +234,7 @@ namespace Amazon.Proton.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -34,10 +35,10 @@ namespace Amazon.SecurityHub.Model
     public partial class AwsRdsDbClusterSnapshotDetails
     {
         private int? _allocatedStorage;
-        private List<string> _availabilityZones = new List<string>();
+        private List<string> _availabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _clusterCreateTime;
         private string _dbClusterIdentifier;
-        private List<AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute> _dbClusterSnapshotAttributes = new List<AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute>();
+        private List<AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute> _dbClusterSnapshotAttributes = AWSConfigs.InitializeCollections ? new List<AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute>() : null;
         private string _dbClusterSnapshotIdentifier;
         private string _engine;
         private string _engineVersion;
@@ -86,7 +87,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -96,9 +97,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string ClusterCreateTime
@@ -146,7 +146,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if DbClusterSnapshotAttributes property is set
         internal bool IsSetDbClusterSnapshotAttributes()
         {
-            return this._dbClusterSnapshotAttributes != null && this._dbClusterSnapshotAttributes.Count > 0; 
+            return this._dbClusterSnapshotAttributes != null && (this._dbClusterSnapshotAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -319,9 +319,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string SnapshotCreateTime

@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteVpcPeeringConnection operation.
     /// Deletes a VPC peering connection. Either the owner of the requester VPC or the owner
-    /// of the accepter VPC can delete the VPC peering connection if it's in the <code>active</code>
-    /// state. The owner of the requester VPC can delete a VPC peering connection in the <code>pending-acceptance</code>
-    /// state. You cannot delete a VPC peering connection that's in the <code>failed</code>
+    /// of the accepter VPC can delete the VPC peering connection if it's in the <c>active</c>
+    /// state. The owner of the requester VPC can delete a VPC peering connection in the <c>pending-acceptance</c>
+    /// state. You cannot delete a VPC peering connection that's in the <c>failed</c> or <c>rejected</c>
     /// state.
     /// </summary>
     public partial class DeleteVpcPeeringConnectionRequest : AmazonEC2Request

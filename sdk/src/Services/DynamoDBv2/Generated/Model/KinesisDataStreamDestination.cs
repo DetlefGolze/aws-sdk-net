@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -33,9 +34,29 @@ namespace Amazon.DynamoDBv2.Model
     /// </summary>
     public partial class KinesisDataStreamDestination
     {
+        private ApproximateCreationDateTimePrecision _approximateCreationDateTimePrecision;
         private DestinationStatus _destinationStatus;
         private string _destinationStatusDescription;
         private string _streamArn;
+
+        /// <summary>
+        /// Gets and sets the property ApproximateCreationDateTimePrecision. 
+        /// <para>
+        /// The precision of the Kinesis data stream timestamp. The values are either <c>MILLISECOND</c>
+        /// or <c>MICROSECOND</c>.
+        /// </para>
+        /// </summary>
+        public ApproximateCreationDateTimePrecision ApproximateCreationDateTimePrecision
+        {
+            get { return this._approximateCreationDateTimePrecision; }
+            set { this._approximateCreationDateTimePrecision = value; }
+        }
+
+        // Check to see if ApproximateCreationDateTimePrecision property is set
+        internal bool IsSetApproximateCreationDateTimePrecision()
+        {
+            return this._approximateCreationDateTimePrecision != null;
+        }
 
         /// <summary>
         /// Gets and sets the property DestinationStatus. 

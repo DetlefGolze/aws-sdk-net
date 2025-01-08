@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
@@ -36,15 +37,15 @@ namespace Amazon.CodeDeploy.Model
     /// <para>
     /// You can use load balancers and target groups in combination. For example, if you have
     /// two Classic Load Balancers, and five target groups tied to an Application Load Balancer,
-    /// you can specify the two Classic Load Balancers in <code>elbInfoList</code>, and the
-    /// five target groups in <code>targetGroupInfoList</code>.
+    /// you can specify the two Classic Load Balancers in <c>elbInfoList</c>, and the five
+    /// target groups in <c>targetGroupInfoList</c>.
     /// </para>
     /// </summary>
     public partial class LoadBalancerInfo
     {
-        private List<ELBInfo> _elbInfoList = new List<ELBInfo>();
-        private List<TargetGroupInfo> _targetGroupInfoList = new List<TargetGroupInfo>();
-        private List<TargetGroupPairInfo> _targetGroupPairInfoList = new List<TargetGroupPairInfo>();
+        private List<ELBInfo> _elbInfoList = AWSConfigs.InitializeCollections ? new List<ELBInfo>() : null;
+        private List<TargetGroupInfo> _targetGroupInfoList = AWSConfigs.InitializeCollections ? new List<TargetGroupInfo>() : null;
+        private List<TargetGroupPairInfo> _targetGroupPairInfoList = AWSConfigs.InitializeCollections ? new List<TargetGroupPairInfo>() : null;
 
         /// <summary>
         /// Gets and sets the property ElbInfoList. 
@@ -59,7 +60,7 @@ namespace Amazon.CodeDeploy.Model
         /// </para>
         ///  </note> <note> 
         /// <para>
-        /// If you're using Application Load Balancers or Network Load Balancers, use the <code>targetGroupInfoList</code>
+        /// If you're using Application Load Balancers or Network Load Balancers, use the <c>targetGroupInfoList</c>
         /// array instead of this one.
         /// </para>
         ///  </note>
@@ -73,7 +74,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if ElbInfoList property is set
         internal bool IsSetElbInfoList()
         {
-            return this._elbInfoList != null && this._elbInfoList.Count > 0; 
+            return this._elbInfoList != null && (this._elbInfoList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -89,8 +90,8 @@ namespace Amazon.CodeDeploy.Model
         /// </para>
         ///  </note> <note> 
         /// <para>
-        /// If you're using Classic Load Balancers, use the <code>elbInfoList</code> array instead
-        /// of this one.
+        /// If you're using Classic Load Balancers, use the <c>elbInfoList</c> array instead of
+        /// this one.
         /// </para>
         ///  </note>
         /// </summary>
@@ -103,13 +104,13 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if TargetGroupInfoList property is set
         internal bool IsSetTargetGroupInfoList()
         {
-            return this._targetGroupInfoList != null && this._targetGroupInfoList.Count > 0; 
+            return this._targetGroupInfoList != null && (this._targetGroupInfoList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TargetGroupPairInfoList. 
         /// <para>
-        ///  The target group pair information. This is an array of <code>TargeGroupPairInfo</code>
+        ///  The target group pair information. This is an array of <c>TargeGroupPairInfo</c>
         /// objects with a maximum size of one. 
         /// </para>
         /// </summary>
@@ -122,7 +123,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if TargetGroupPairInfoList property is set
         internal bool IsSetTargetGroupPairInfoList()
         {
-            return this._targetGroupPairInfoList != null && this._targetGroupPairInfoList.Count > 0; 
+            return this._targetGroupPairInfoList != null && (this._targetGroupPairInfoList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

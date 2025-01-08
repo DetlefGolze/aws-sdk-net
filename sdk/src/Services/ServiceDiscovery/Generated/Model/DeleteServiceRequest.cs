@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceDiscovery.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteService operation.
-    /// Deletes a specified service. If the service still contains one or more registered
-    /// instances, the request fails.
+    /// Deletes a specified service and all associated service attributes. If the service
+    /// still contains one or more registered instances, the request fails.
     /// </summary>
     public partial class DeleteServiceRequest : AmazonServiceDiscoveryRequest
     {

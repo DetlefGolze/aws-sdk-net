@@ -191,7 +191,7 @@ namespace Amazon.Kendra
         /// <summary>
         /// Constant Equals for ConditionOperator
         /// </summary>
-        public static readonly ConditionOperator Equals = new ConditionOperator("Equals");
+        public new static readonly ConditionOperator Equals = new ConditionOperator("Equals");
         /// <summary>
         /// Constant Exists for ConditionOperator
         /// </summary>
@@ -1674,6 +1674,10 @@ namespace Amazon.Kendra
         /// Constant ENTERPRISE_EDITION for IndexEdition
         /// </summary>
         public static readonly IndexEdition ENTERPRISE_EDITION = new IndexEdition("ENTERPRISE_EDITION");
+        /// <summary>
+        /// Constant GEN_AI_ENTERPRISE_EDITION for IndexEdition
+        /// </summary>
+        public static readonly IndexEdition GEN_AI_ENTERPRISE_EDITION = new IndexEdition("GEN_AI_ENTERPRISE_EDITION");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -2006,6 +2010,60 @@ namespace Amazon.Kendra
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator MetricType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type MissingAttributeKeyStrategy.
+    /// </summary>
+    public class MissingAttributeKeyStrategy : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant COLLAPSE for MissingAttributeKeyStrategy
+        /// </summary>
+        public static readonly MissingAttributeKeyStrategy COLLAPSE = new MissingAttributeKeyStrategy("COLLAPSE");
+        /// <summary>
+        /// Constant EXPAND for MissingAttributeKeyStrategy
+        /// </summary>
+        public static readonly MissingAttributeKeyStrategy EXPAND = new MissingAttributeKeyStrategy("EXPAND");
+        /// <summary>
+        /// Constant IGNORE for MissingAttributeKeyStrategy
+        /// </summary>
+        public static readonly MissingAttributeKeyStrategy IGNORE = new MissingAttributeKeyStrategy("IGNORE");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public MissingAttributeKeyStrategy(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static MissingAttributeKeyStrategy FindValue(string value)
+        {
+            return FindValue<MissingAttributeKeyStrategy>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator MissingAttributeKeyStrategy(string value)
         {
             return FindValue(value);
         }

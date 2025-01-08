@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.VPCLattice.Model
         private int? _maxResults;
         private string _nextToken;
         private string _targetGroupIdentifier;
-        private List<Target> _targets = new List<Target>();
+        private List<Target> _targets = AWSConfigs.InitializeCollections ? new List<Target>() : null;
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
@@ -82,7 +83,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property TargetGroupIdentifier. 
         /// <para>
-        /// The ID or Amazon Resource Name (ARN) of the target group.
+        /// The ID or ARN of the target group.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=17, Max=2048)]
@@ -101,7 +102,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property Targets. 
         /// <para>
-        /// The targets to list.
+        /// The targets.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=20)]
@@ -114,7 +115,7 @@ namespace Amazon.VPCLattice.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetArtifactsOverride())
@@ -76,6 +78,12 @@ namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
                     marshaller.Marshall(publicRequest.ArtifactsOverride, context);
 
                     context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetAutoRetryLimitOverride())
+                {
+                    context.Writer.WritePropertyName("autoRetryLimitOverride");
+                    context.Writer.Write(publicRequest.AutoRetryLimitOverride);
                 }
 
                 if(publicRequest.IsSetBuildspecOverride())
@@ -150,6 +158,17 @@ namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
                         context.Writer.WriteObjectEnd();
                     }
                     context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetFleetOverride())
+                {
+                    context.Writer.WritePropertyName("fleetOverride");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ProjectFleetMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.FleetOverride, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetGitCloneDepthOverride())

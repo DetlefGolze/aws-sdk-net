@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -37,12 +38,13 @@ namespace Amazon.NetworkManager.Model
         private string _coreNetworkId;
         private DateTime? _createdAt;
         private string _edgeLocation;
+        private List<PeeringError> _lastModificationErrors = AWSConfigs.InitializeCollections ? new List<PeeringError>() : null;
         private string _ownerAccountId;
         private string _peeringId;
         private PeeringType _peeringType;
         private string _resourceArn;
         private PeeringState _state;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property CoreNetworkArn. 
@@ -120,6 +122,25 @@ namespace Amazon.NetworkManager.Model
         }
 
         /// <summary>
+        /// Gets and sets the property LastModificationErrors. 
+        /// <para>
+        /// Describes the error associated with the Connect peer request.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=20)]
+        public List<PeeringError> LastModificationErrors
+        {
+            get { return this._lastModificationErrors; }
+            set { this._lastModificationErrors = value; }
+        }
+
+        // Check to see if LastModificationErrors property is set
+        internal bool IsSetLastModificationErrors()
+        {
+            return this._lastModificationErrors != null && (this._lastModificationErrors.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property OwnerAccountId. 
         /// <para>
         /// The ID of the account owner.
@@ -160,7 +181,7 @@ namespace Amazon.NetworkManager.Model
         /// <summary>
         /// Gets and sets the property PeeringType. 
         /// <para>
-        /// The type of peering. This will be <code>TRANSIT_GATEWAY</code>.
+        /// The type of peering. This will be <c>TRANSIT_GATEWAY</c>.
         /// </para>
         /// </summary>
         public PeeringType PeeringType
@@ -227,7 +248,7 @@ namespace Amazon.NetworkManager.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// Provided if <code>ActionType</code> is <code>NETWORK_CONNECTION</code>. It provides
-    /// details about the attempted network connection that was detected.
+    /// Provided if <c>ActionType</c> is <c>NETWORK_CONNECTION</c>. It provides details about
+    /// the attempted network connection that was detected.
     /// </summary>
     public partial class NetworkConnectionAction
     {
@@ -62,7 +63,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property ConnectionDirection. 
         /// <para>
-        /// The direction of the network connection request (<code>IN</code> or <code>OUT</code>).
+        /// The direction of the network connection request (<c>IN</c> or <c>OUT</c>).
         /// </para>
         /// </summary>
         public string ConnectionDirection
@@ -99,6 +100,10 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Protocol. 
         /// <para>
         /// The protocol used to make the network connection request.
+        /// </para>
+        ///  
+        /// <para>
+        /// Length Constraints: Minimum length of 1. Maximum length of 64.
         /// </para>
         /// </summary>
         public string Protocol

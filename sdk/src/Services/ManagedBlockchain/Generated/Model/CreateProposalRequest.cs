@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchain.Model
 {
     /// <summary>
@@ -46,15 +47,14 @@ namespace Amazon.ManagedBlockchain.Model
         private string _description;
         private string _memberId;
         private string _networkId;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Actions. 
         /// <para>
         /// The type of actions proposed, such as inviting a member or removing a member. The
-        /// types of <code>Actions</code> in a proposal are mutually exclusive. For example, a
-        /// proposal with <code>Invitations</code> actions cannot also contain <code>Removals</code>
-        /// actions.
+        /// types of <c>Actions</c> in a proposal are mutually exclusive. For example, a proposal
+        /// with <c>Invitations</c> actions cannot also contain <c>Removals</c> actions.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -180,7 +180,7 @@ namespace Amazon.ManagedBlockchain.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

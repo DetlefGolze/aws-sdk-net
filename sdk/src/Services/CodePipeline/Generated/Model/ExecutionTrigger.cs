@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.CodePipeline.Model
         /// <para>
         /// Detail related to the event that started a pipeline execution, such as the webhook
         /// ARN of the webhook that triggered the pipeline execution or the user ARN for a user-initiated
-        /// <code>start-pipeline-execution</code> CLI command.
+        /// <c>start-pipeline-execution</c> CLI command.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1024)]

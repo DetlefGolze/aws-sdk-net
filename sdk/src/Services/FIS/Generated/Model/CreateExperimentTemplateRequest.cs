@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FIS.Model
 {
     /// <summary>
@@ -55,20 +56,22 @@ namespace Amazon.FIS.Model
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/fis/latest/userguide/experiment-templates.html">Experiment
-    /// templates</a> in the <i>Fault Injection Simulator User Guide</i>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/fis/latest/userguide/experiment-templates.html">experiment
+    /// templates</a> in the <i>Fault Injection Service User Guide</i>.
     /// </para>
     /// </summary>
     public partial class CreateExperimentTemplateRequest : AmazonFISRequest
     {
-        private Dictionary<string, CreateExperimentTemplateActionInput> _actions = new Dictionary<string, CreateExperimentTemplateActionInput>();
+        private Dictionary<string, CreateExperimentTemplateActionInput> _actions = AWSConfigs.InitializeCollections ? new Dictionary<string, CreateExperimentTemplateActionInput>() : null;
         private string _clientToken;
         private string _description;
+        private CreateExperimentTemplateExperimentOptionsInput _experimentOptions;
+        private CreateExperimentTemplateReportConfigurationInput _experimentReportConfiguration;
         private CreateExperimentTemplateLogConfigurationInput _logConfiguration;
         private string _roleArn;
-        private List<CreateExperimentTemplateStopConditionInput> _stopConditions = new List<CreateExperimentTemplateStopConditionInput>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
-        private Dictionary<string, CreateExperimentTemplateTargetInput> _targets = new Dictionary<string, CreateExperimentTemplateTargetInput>();
+        private List<CreateExperimentTemplateStopConditionInput> _stopConditions = AWSConfigs.InitializeCollections ? new List<CreateExperimentTemplateStopConditionInput>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private Dictionary<string, CreateExperimentTemplateTargetInput> _targets = AWSConfigs.InitializeCollections ? new Dictionary<string, CreateExperimentTemplateTargetInput>() : null;
 
         /// <summary>
         /// Gets and sets the property Actions. 
@@ -86,7 +89,7 @@ namespace Amazon.FIS.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -126,6 +129,42 @@ namespace Amazon.FIS.Model
         internal bool IsSetDescription()
         {
             return this._description != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExperimentOptions. 
+        /// <para>
+        /// The experiment options for the experiment template.
+        /// </para>
+        /// </summary>
+        public CreateExperimentTemplateExperimentOptionsInput ExperimentOptions
+        {
+            get { return this._experimentOptions; }
+            set { this._experimentOptions = value; }
+        }
+
+        // Check to see if ExperimentOptions property is set
+        internal bool IsSetExperimentOptions()
+        {
+            return this._experimentOptions != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExperimentReportConfiguration. 
+        /// <para>
+        /// The experiment report configuration for the experiment template.
+        /// </para>
+        /// </summary>
+        public CreateExperimentTemplateReportConfigurationInput ExperimentReportConfiguration
+        {
+            get { return this._experimentReportConfiguration; }
+            set { this._experimentReportConfiguration = value; }
+        }
+
+        // Check to see if ExperimentReportConfiguration property is set
+        internal bool IsSetExperimentReportConfiguration()
+        {
+            return this._experimentReportConfiguration != null;
         }
 
         /// <summary>
@@ -182,7 +221,7 @@ namespace Amazon.FIS.Model
         // Check to see if StopConditions property is set
         internal bool IsSetStopConditions()
         {
-            return this._stopConditions != null && this._stopConditions.Count > 0; 
+            return this._stopConditions != null && (this._stopConditions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -201,7 +240,7 @@ namespace Amazon.FIS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -219,7 +258,7 @@ namespace Amazon.FIS.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

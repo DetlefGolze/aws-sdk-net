@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.IdentityManagement.Model
     /// 
     ///  
     /// <para>
-    /// This operation creates a policy version with a version identifier of <code>v1</code>
-    /// and sets v1 as the policy's default version. For more information about policy versions,
+    /// This operation creates a policy version with a version identifier of <c>v1</c> and
+    /// sets v1 as the policy's default version. For more information about policy versions,
     /// see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-versions.html">Versioning
     /// for managed policies</a> in the <i>IAM User Guide</i>.
     /// </para>
@@ -56,7 +57,7 @@ namespace Amazon.IdentityManagement.Model
         private string _path;
         private string _policyDocument;
         private string _policyName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -105,7 +106,7 @@ namespace Amazon.IdentityManagement.Model
         /// This parameter allows (through its <a href="http://wikipedia.org/wiki/regex">regex
         /// pattern</a>) a string of characters consisting of either a forward slash (/) by itself
         /// or a string that must begin and end with forward slashes. In addition, it can contain
-        /// any ASCII character from the ! (<code>\u0021</code>) through the DEL character (<code>\u007F</code>),
+        /// any ASCII character from the ! (<c>\u0021</c>) through the DEL character (<c>\u007F</c>),
         /// including most punctuation characters, digits, and upper and lowercased letters.
         /// </para>
         ///  <note> 
@@ -157,18 +158,18 @@ namespace Amazon.IdentityManagement.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Any printable ASCII character ranging from the space character (<code>\u0020</code>)
-        /// through the end of the ASCII character range
+        /// Any printable ASCII character ranging from the space character (<c>\u0020</c>) through
+        /// the end of the ASCII character range
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The printable characters in the Basic Latin and Latin-1 Supplement character set (through
-        /// <code>\u00FF</code>)
+        /// <c>\u00FF</c>)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The special characters tab (<code>\u0009</code>), line feed (<code>\u000A</code>),
-        /// and carriage return (<code>\u000D</code>)
+        /// The special characters tab (<c>\u0009</c>), line feed (<c>\u000A</c>), and carriage
+        /// return (<c>\u000D</c>)
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -235,7 +236,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

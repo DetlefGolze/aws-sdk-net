@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Appflow.Model
 {
     /// <summary>
@@ -64,8 +65,8 @@ namespace Amazon.Appflow.Model
         ///  The settings that determine how Amazon AppFlow handles an error when placing data
         /// in the Snowflake destination. For example, this setting would determine if the flow
         /// should fail after one insertion error, or continue and attempt to insert every record
-        /// regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the
-        /// destination connector details. 
+        /// regardless of the initial failure. <c>ErrorHandlingConfig</c> is a part of the destination
+        /// connector details. 
         /// </para>
         /// </summary>
         public ErrorHandlingConfig ErrorHandlingConfig

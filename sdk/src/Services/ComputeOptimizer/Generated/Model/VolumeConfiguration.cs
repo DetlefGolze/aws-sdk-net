@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComputeOptimizer.Model
 {
     /// <summary>
@@ -156,10 +157,29 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        /// This can be <code>gp2</code> for General Purpose SSD, <code>io1</code> or <code>io2</code>
-        /// for Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD, <code>sc1</code>
-        /// for Cold HDD, or <code>standard</code> for Magnetic volumes.
+        /// The volume types can be the following:
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// General Purpose SSD <c>gp2</c> and <c>gp3</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Provisioned IOPS SSD <c>io1</c>, <c>io2</c>, and <c>io2 Block Express</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Throughput Optimized HDD <c>st1</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Cold HDD <c>sc1</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Magnetic volumes <c>standard</c> 
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public string VolumeType
         {

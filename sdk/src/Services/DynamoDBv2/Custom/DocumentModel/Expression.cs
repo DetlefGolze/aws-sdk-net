@@ -26,6 +26,9 @@ namespace Amazon.DynamoDBv2.DocumentModel
     /// <summary>
     /// Expressions are used for conditional deletes and filtering for query and scan operations.
     /// </summary>
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode(Amazon.DynamoDBv2.Custom.Internal.InternalConstants.RequiresUnreferencedCodeMessage)]
+#endif
     public class Expression
     {
         private Dictionary<string, string> _expressionAttributeNames = new Dictionary<string, string>(StringComparer.Ordinal);
@@ -86,29 +89,45 @@ namespace Amazon.DynamoDBv2.DocumentModel
         internal void ApplyExpression(ScanRequest request, Table table)
         {
             request.FilterExpression = this.ExpressionStatement;
-            request.ExpressionAttributeNames = new Dictionary<string, string>(this.ExpressionAttributeNames);
             request.ExpressionAttributeValues = ConvertToAttributeValues(this.ExpressionAttributeValues, table);
+
+            if (this.ExpressionAttributeNames?.Count > 0)
+            {
+                request.ExpressionAttributeNames = new Dictionary<string, string>(this.ExpressionAttributeNames);
+            }
         }
 
         internal void ApplyExpression(DeleteItemRequest request, Table table)
         {
             request.ConditionExpression = this.ExpressionStatement;
-            request.ExpressionAttributeNames = new Dictionary<string, string>(this.ExpressionAttributeNames);
             request.ExpressionAttributeValues = ConvertToAttributeValues(this.ExpressionAttributeValues, table);
+
+            if (this.ExpressionAttributeNames?.Count > 0)
+            {
+                request.ExpressionAttributeNames = new Dictionary<string, string>(this.ExpressionAttributeNames);
+            }
         }
 
         internal void ApplyExpression(PutItemRequest request, Table table)
         {
             request.ConditionExpression = this.ExpressionStatement;
-            request.ExpressionAttributeNames = new Dictionary<string, string>(this.ExpressionAttributeNames);
             request.ExpressionAttributeValues = ConvertToAttributeValues(this.ExpressionAttributeValues, table);
+        
+            if (this.ExpressionAttributeNames?.Count > 0)
+            {
+                request.ExpressionAttributeNames = new Dictionary<string, string>(this.ExpressionAttributeNames);
+            }
         }
 
         internal void ApplyExpression(UpdateItemRequest request, Table table)
         {
             request.ConditionExpression = this.ExpressionStatement;
-            request.ExpressionAttributeNames = new Dictionary<string,string>(this.ExpressionAttributeNames);
             request.ExpressionAttributeValues = ConvertToAttributeValues(this.ExpressionAttributeValues, table);
+
+            if (this.ExpressionAttributeNames?.Count > 0)
+            {
+                request.ExpressionAttributeNames = new Dictionary<string, string>(this.ExpressionAttributeNames);
+            }
         }
 
         internal void ApplyExpression(Get request, Table table)
@@ -120,29 +139,45 @@ namespace Amazon.DynamoDBv2.DocumentModel
         internal void ApplyExpression(Put request, Table table)
         {
             request.ConditionExpression = ExpressionStatement;
-            request.ExpressionAttributeNames = new Dictionary<string,string>(ExpressionAttributeNames);
             request.ExpressionAttributeValues = ConvertToAttributeValues(ExpressionAttributeValues, table);
+
+            if (this.ExpressionAttributeNames?.Count > 0)
+            {
+                request.ExpressionAttributeNames = new Dictionary<string, string>(this.ExpressionAttributeNames);
+            }
         }
 
         internal void ApplyExpression(Update request, Table table)
         {
             request.ConditionExpression = ExpressionStatement;
-            request.ExpressionAttributeNames = new Dictionary<string,string>(ExpressionAttributeNames);
             request.ExpressionAttributeValues = ConvertToAttributeValues(ExpressionAttributeValues, table);
+
+            if (this.ExpressionAttributeNames?.Count > 0)
+            {
+                request.ExpressionAttributeNames = new Dictionary<string, string>(this.ExpressionAttributeNames);
+            }
         }
 
         internal void ApplyExpression(Delete request, Table table)
         {
             request.ConditionExpression = ExpressionStatement;
-            request.ExpressionAttributeNames = new Dictionary<string,string>(ExpressionAttributeNames);
             request.ExpressionAttributeValues = ConvertToAttributeValues(ExpressionAttributeValues, table);
+
+            if (this.ExpressionAttributeNames?.Count > 0)
+            {
+                request.ExpressionAttributeNames = new Dictionary<string, string>(this.ExpressionAttributeNames);
+            }
         }
 
         internal void ApplyExpression(ConditionCheck request, Table table)
         {
             request.ConditionExpression = ExpressionStatement;
-            request.ExpressionAttributeNames = new Dictionary<string,string>(ExpressionAttributeNames);
             request.ExpressionAttributeValues = ConvertToAttributeValues(ExpressionAttributeValues, table);
+
+            if (this.ExpressionAttributeNames?.Count > 0)
+            {
+                request.ExpressionAttributeNames = new Dictionary<string, string>(this.ExpressionAttributeNames);
+            }
         }
 
 
@@ -165,12 +200,22 @@ namespace Amazon.DynamoDBv2.DocumentModel
             var kean = keyExpression.ExpressionAttributeNames;
             var fean = filterExpression.ExpressionAttributeNames;
             var combinedEan = Common.Combine(kean, fean, StringComparer.Ordinal);
-            request.ExpressionAttributeNames = combinedEan;
+
+            if(combinedEan?.Count > 0)
+            {
+                request.ExpressionAttributeNames = combinedEan;
+            }
 
             var keav = new Document(keyExpression.ExpressionAttributeValues).ForceConversion(table.Conversion);
             var feav = new Document(filterExpression.ExpressionAttributeValues).ForceConversion(table.Conversion);
             var combinedEav = Common.Combine(keav, feav, null);
-            request.ExpressionAttributeValues = ConvertToAttributeValues(combinedEav, table);
+
+            var attributeValues = ConvertToAttributeValues(combinedEav, table);
+
+            if (attributeValues?.Count > 0)
+            {
+                request.ExpressionAttributeValues = attributeValues;
+            }
         }
 
         internal static Dictionary<string, AttributeValue> ConvertToAttributeValues(

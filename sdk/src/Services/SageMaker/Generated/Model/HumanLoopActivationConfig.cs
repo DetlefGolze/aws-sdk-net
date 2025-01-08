@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Provides information about how and under what conditions SageMaker creates a human
-    /// loop. If <code>HumanLoopActivationConfig</code> is not given, then all requests go
-    /// to humans.
+    /// loop. If <c>HumanLoopActivationConfig</c> is not given, then all requests go to humans.
     /// </summary>
     public partial class HumanLoopActivationConfig
     {

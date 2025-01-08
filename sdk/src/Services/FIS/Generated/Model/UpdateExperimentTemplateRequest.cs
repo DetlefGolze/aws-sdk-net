@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FIS.Model
 {
     /// <summary>
@@ -34,13 +35,15 @@ namespace Amazon.FIS.Model
     /// </summary>
     public partial class UpdateExperimentTemplateRequest : AmazonFISRequest
     {
-        private Dictionary<string, UpdateExperimentTemplateActionInputItem> _actions = new Dictionary<string, UpdateExperimentTemplateActionInputItem>();
+        private Dictionary<string, UpdateExperimentTemplateActionInputItem> _actions = AWSConfigs.InitializeCollections ? new Dictionary<string, UpdateExperimentTemplateActionInputItem>() : null;
         private string _description;
+        private UpdateExperimentTemplateExperimentOptionsInput _experimentOptions;
+        private UpdateExperimentTemplateReportConfigurationInput _experimentReportConfiguration;
         private string _id;
         private UpdateExperimentTemplateLogConfigurationInput _logConfiguration;
         private string _roleArn;
-        private List<UpdateExperimentTemplateStopConditionInput> _stopConditions = new List<UpdateExperimentTemplateStopConditionInput>();
-        private Dictionary<string, UpdateExperimentTemplateTargetInput> _targets = new Dictionary<string, UpdateExperimentTemplateTargetInput>();
+        private List<UpdateExperimentTemplateStopConditionInput> _stopConditions = AWSConfigs.InitializeCollections ? new List<UpdateExperimentTemplateStopConditionInput>() : null;
+        private Dictionary<string, UpdateExperimentTemplateTargetInput> _targets = AWSConfigs.InitializeCollections ? new Dictionary<string, UpdateExperimentTemplateTargetInput>() : null;
 
         /// <summary>
         /// Gets and sets the property Actions. 
@@ -57,7 +60,7 @@ namespace Amazon.FIS.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -77,6 +80,42 @@ namespace Amazon.FIS.Model
         internal bool IsSetDescription()
         {
             return this._description != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExperimentOptions. 
+        /// <para>
+        /// The experiment options for the experiment template.
+        /// </para>
+        /// </summary>
+        public UpdateExperimentTemplateExperimentOptionsInput ExperimentOptions
+        {
+            get { return this._experimentOptions; }
+            set { this._experimentOptions = value; }
+        }
+
+        // Check to see if ExperimentOptions property is set
+        internal bool IsSetExperimentOptions()
+        {
+            return this._experimentOptions != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExperimentReportConfiguration. 
+        /// <para>
+        /// The experiment report configuration for the experiment template.
+        /// </para>
+        /// </summary>
+        public UpdateExperimentTemplateReportConfigurationInput ExperimentReportConfiguration
+        {
+            get { return this._experimentReportConfiguration; }
+            set { this._experimentReportConfiguration = value; }
+        }
+
+        // Check to see if ExperimentReportConfiguration property is set
+        internal bool IsSetExperimentReportConfiguration()
+        {
+            return this._experimentReportConfiguration != null;
         }
 
         /// <summary>
@@ -151,7 +190,7 @@ namespace Amazon.FIS.Model
         // Check to see if StopConditions property is set
         internal bool IsSetStopConditions()
         {
-            return this._stopConditions != null && this._stopConditions.Count > 0; 
+            return this._stopConditions != null && (this._stopConditions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -169,7 +208,7 @@ namespace Amazon.FIS.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

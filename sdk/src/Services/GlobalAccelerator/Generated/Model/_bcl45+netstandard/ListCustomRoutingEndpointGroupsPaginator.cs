@@ -24,7 +24,8 @@ using System.Collections;
 using System.Threading;
 using System.Threading.Tasks;
 using Amazon.Runtime;
- 
+
+#pragma warning disable CS0612,CS0618
 namespace Amazon.GlobalAccelerator.Model
 {
     /// <summary>
@@ -40,6 +41,12 @@ namespace Amazon.GlobalAccelerator.Model
         /// Enumerable containing all full responses for the operation
         /// </summary>
         public IPaginatedEnumerable<ListCustomRoutingEndpointGroupsResponse> Responses => new PaginatedResponse<ListCustomRoutingEndpointGroupsResponse>(this);
+
+        /// <summary>
+        /// Enumerable containing all of the EndpointGroups
+        /// </summary>
+        public IPaginatedEnumerable<CustomRoutingEndpointGroup> EndpointGroups => 
+            new PaginatedResultKeyResponse<ListCustomRoutingEndpointGroupsResponse, CustomRoutingEndpointGroup>(this, (i) => i.EndpointGroups ?? new List<CustomRoutingEndpointGroup>());
 
         internal ListCustomRoutingEndpointGroupsPaginator(IAmazonGlobalAccelerator client, ListCustomRoutingEndpointGroupsRequest request)
         {
@@ -67,7 +74,7 @@ namespace Amazon.GlobalAccelerator.Model
         }
 #endif
 #if AWS_ASYNC_ENUMERABLES_API
-        async IAsyncEnumerable<ListCustomRoutingEndpointGroupsResponse> IPaginator<ListCustomRoutingEndpointGroupsResponse>.PaginateAsync(CancellationToken cancellationToken = default)
+        async IAsyncEnumerable<ListCustomRoutingEndpointGroupsResponse> IPaginator<ListCustomRoutingEndpointGroupsResponse>.PaginateAsync([System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken cancellationToken)
         {
             if (Interlocked.Exchange(ref _isPaginatorInUse, 1) != 0)
             {

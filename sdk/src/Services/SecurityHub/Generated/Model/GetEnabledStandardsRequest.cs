@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.SecurityHub.Model
     {
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _standardsSubscriptionArns = new List<string>();
+        private List<string> _standardsSubscriptionArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
@@ -60,8 +61,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token that is required for pagination. On your first call to the <code>GetEnabledStandards</code>
-        /// operation, set the value of this parameter to <code>NULL</code>.
+        /// The token that is required for pagination. On your first call to the <c>GetEnabledStandards</c>
+        /// operation, set the value of this parameter to <c>NULL</c>.
         /// </para>
         ///  
         /// <para>
@@ -97,7 +98,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if StandardsSubscriptionArns property is set
         internal bool IsSetStandardsSubscriptionArns()
         {
-            return this._standardsSubscriptionArns != null && this._standardsSubscriptionArns.Count > 0; 
+            return this._standardsSubscriptionArns != null && (this._standardsSubscriptionArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

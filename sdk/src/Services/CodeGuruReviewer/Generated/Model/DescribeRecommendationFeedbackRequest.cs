@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruReviewer.Model
 {
     /// <summary>
@@ -86,9 +87,8 @@ namespace Amazon.CodeGuruReviewer.Model
         /// </para>
         ///  
         /// <para>
-        ///  The <code>UserId</code> is an IAM principal that can be specified as an Amazon Web
-        /// Services account ID or an Amazon Resource Name (ARN). For more information, see <a
-        /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying">
+        ///  The <c>UserId</c> is an IAM principal that can be specified as an Amazon Web Services
+        /// account ID or an Amazon Resource Name (ARN). For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying">
         /// Specifying a Principal</a> in the <i>Amazon Web Services Identity and Access Management
         /// User Guide</i>.
         /// </para>

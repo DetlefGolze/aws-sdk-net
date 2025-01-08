@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TimestreamWrite.Model
 {
     /// <summary>
@@ -40,20 +41,20 @@ namespace Amazon.TimestreamWrite.Model
     /// 
     ///  
     /// <para>
-    ///  Records have a <code>Version</code> field, which is a 64-bit <code>long</code> that
-    /// you can use for updating data points. Writes of a duplicate record with the same dimension,
-    /// timestamp, and measure name but different measure value will only succeed if the <code>Version</code>
+    ///  Records have a <c>Version</c> field, which is a 64-bit <c>long</c> that you can use
+    /// for updating data points. Writes of a duplicate record with the same dimension, timestamp,
+    /// and measure name but different measure value will only succeed if the <c>Version</c>
     /// attribute of the record in the write request is higher than that of the existing record.
-    /// Timestream defaults to a <code>Version</code> of <code>1</code> for records without
-    /// the <code>Version</code> field. 
+    /// Timestream defaults to a <c>Version</c> of <c>1</c> for records without the <c>Version</c>
+    /// field. 
     /// </para>
     /// </summary>
     public partial class Record
     {
-        private List<Dimension> _dimensions = new List<Dimension>();
+        private List<Dimension> _dimensions = AWSConfigs.InitializeCollections ? new List<Dimension>() : null;
         private string _measureName;
         private string _measureValue;
-        private List<MeasureValue> _measureValues = new List<MeasureValue>();
+        private List<MeasureValue> _measureValues = AWSConfigs.InitializeCollections ? new List<MeasureValue>() : null;
         private MeasureValueType _measureValueType;
         private string _time;
         private TimeUnit _timeUnit;
@@ -75,7 +76,7 @@ namespace Amazon.TimestreamWrite.Model
         // Check to see if Dimensions property is set
         internal bool IsSetDimensions()
         {
-            return this._dimensions != null && this._dimensions.Count > 0; 
+            return this._dimensions != null && (this._dimensions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -124,7 +125,7 @@ namespace Amazon.TimestreamWrite.Model
         /// </para>
         ///  
         /// <para>
-        ///  This is only allowed for type <code>MULTI</code>. For scalar values, use <code>MeasureValue</code>
+        ///  This is only allowed for type <c>MULTI</c>. For scalar values, use <c>MeasureValue</c>
         /// attribute of the record directly. 
         /// </para>
         /// </summary>
@@ -137,14 +138,14 @@ namespace Amazon.TimestreamWrite.Model
         // Check to see if MeasureValues property is set
         internal bool IsSetMeasureValues()
         {
-            return this._measureValues != null && this._measureValues.Count > 0; 
+            return this._measureValues != null && (this._measureValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MeasureValueType. 
         /// <para>
         ///  Contains the data type of the measure value for the time-series data point. Default
-        /// type is <code>DOUBLE</code>. For more information, see <a href="https://docs.aws.amazon.com/timestream/latest/developerguide/writes.html#writes.data-types">Data
+        /// type is <c>DOUBLE</c>. For more information, see <a href="https://docs.aws.amazon.com/timestream/latest/developerguide/writes.html#writes.data-types">Data
         /// types</a>.
         /// </para>
         /// </summary>
@@ -165,8 +166,8 @@ namespace Amazon.TimestreamWrite.Model
         /// <para>
         ///  Contains the time at which the measure value for the data point was collected. The
         /// time value plus the unit provides the time elapsed since the epoch. For example, if
-        /// the time value is <code>12345</code> and the unit is <code>ms</code>, then <code>12345
-        /// ms</code> have elapsed since the epoch. 
+        /// the time value is <c>12345</c> and the unit is <c>ms</c>, then <c>12345 ms</c> have
+        /// elapsed since the epoch. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]
@@ -186,7 +187,7 @@ namespace Amazon.TimestreamWrite.Model
         /// Gets and sets the property TimeUnit. 
         /// <para>
         ///  The granularity of the timestamp unit. It indicates if the time value is in seconds,
-        /// milliseconds, nanoseconds, or other supported values. Default is <code>MILLISECONDS</code>.
+        /// milliseconds, nanoseconds, or other supported values. Default is <c>MILLISECONDS</c>.
         /// 
         /// </para>
         /// </summary>
@@ -207,12 +208,12 @@ namespace Amazon.TimestreamWrite.Model
         /// <para>
         /// 64-bit attribute used for record updates. Write requests for duplicate data with a
         /// higher version number will update the existing measure value and version. In cases
-        /// where the measure value is the same, <code>Version</code> will still be updated. Default
-        /// value is <code>1</code>.
+        /// where the measure value is the same, <c>Version</c> will still be updated. Default
+        /// value is <c>1</c>.
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>Version</code> must be <code>1</code> or greater, or you will receive a <code>ValidationException</code>
+        ///  <c>Version</c> must be <c>1</c> or greater, or you will receive a <c>ValidationException</c>
         /// error.
         /// </para>
         ///  </note>

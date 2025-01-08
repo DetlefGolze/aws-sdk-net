@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -39,6 +40,7 @@ namespace Amazon.CloudWatchLogs.Model
         private string _policyName;
         private PolicyType _policyType;
         private Scope _scope;
+        private string _selectionCriteria;
 
         /// <summary>
         /// Gets and sets the property AccountId. 
@@ -85,7 +87,7 @@ namespace Amazon.CloudWatchLogs.Model
         /// </para>
         ///  
         /// <para>
-        /// The JSON specified in <code>policyDocument</code> can be up to 30,720 characters.
+        /// The JSON specified in <c>policyDocument</c> can be up to 30,720 characters.
         /// </para>
         /// </summary>
         public string PolicyDocument
@@ -152,6 +154,24 @@ namespace Amazon.CloudWatchLogs.Model
         internal bool IsSetScope()
         {
             return this._scope != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SelectionCriteria. 
+        /// <para>
+        /// The log group selection criteria that is used for this policy.
+        /// </para>
+        /// </summary>
+        public string SelectionCriteria
+        {
+            get { return this._selectionCriteria; }
+            set { this._selectionCriteria = value; }
+        }
+
+        // Check to see if SelectionCriteria property is set
+        internal bool IsSetSelectionCriteria()
+        {
+            return this._selectionCriteria != null;
         }
 
     }

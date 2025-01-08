@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -34,11 +35,13 @@ namespace Amazon.Connect.Model
     public partial class QuickConnect
     {
         private string _description;
+        private string _lastModifiedRegion;
+        private DateTime? _lastModifiedTime;
         private string _name;
         private string _quickConnectARN;
         private QuickConnectConfig _quickConnectConfig;
         private string _quickConnectId;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -57,6 +60,42 @@ namespace Amazon.Connect.Model
         internal bool IsSetDescription()
         {
             return this._description != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property LastModifiedRegion. 
+        /// <para>
+        /// The Amazon Web Services Region where this resource was last modified.
+        /// </para>
+        /// </summary>
+        public string LastModifiedRegion
+        {
+            get { return this._lastModifiedRegion; }
+            set { this._lastModifiedRegion = value; }
+        }
+
+        // Check to see if LastModifiedRegion property is set
+        internal bool IsSetLastModifiedRegion()
+        {
+            return this._lastModifiedRegion != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property LastModifiedTime. 
+        /// <para>
+        /// The timestamp when this resource was last modified.
+        /// </para>
+        /// </summary>
+        public DateTime LastModifiedTime
+        {
+            get { return this._lastModifiedTime.GetValueOrDefault(); }
+            set { this._lastModifiedTime = value; }
+        }
+
+        // Check to see if LastModifiedTime property is set
+        internal bool IsSetLastModifiedTime()
+        {
+            return this._lastModifiedTime.HasValue; 
         }
 
         /// <summary>
@@ -136,7 +175,7 @@ namespace Amazon.Connect.Model
         /// Gets and sets the property Tags. 
         /// <para>
         /// The tags used to organize, track, or control access for this resource. For example,
-        /// { "tags": {"key1":"value1", "key2":"value2"} }.
+        /// { "Tags": {"key1":"value1", "key2":"value2"} }.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -149,7 +188,7 @@ namespace Amazon.Connect.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// This data type is used as a response element in the <code>DescribeReservedDBInstances</code>
-    /// and <code>DescribeReservedDBInstancesOfferings</code> actions.
+    /// This data type is used as a response element in the <c>DescribeReservedDBInstances</c>
+    /// and <c>DescribeReservedDBInstancesOfferings</c> actions.
     /// </summary>
     public partial class RecurringCharge
     {

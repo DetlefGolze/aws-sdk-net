@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -34,6 +35,8 @@ namespace Amazon.Backup.Model
     public partial class ProtectedResource
     {
         private DateTime? _lastBackupTime;
+        private string _lastBackupVaultArn;
+        private string _lastRecoveryPointArn;
         private string _resourceArn;
         private string _resourceName;
         private string _resourceType;
@@ -42,9 +45,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property LastBackupTime. 
         /// <para>
         /// The date and time a resource was last backed up, in Unix format and Coordinated Universal
-        /// Time (UTC). The value of <code>LastBackupTime</code> is accurate to milliseconds.
-        /// For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087
-        /// AM.
+        /// Time (UTC). The value of <c>LastBackupTime</c> is accurate to milliseconds. For example,
+        /// the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.
         /// </para>
         /// </summary>
         public DateTime LastBackupTime
@@ -57,6 +59,43 @@ namespace Amazon.Backup.Model
         internal bool IsSetLastBackupTime()
         {
             return this._lastBackupTime.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property LastBackupVaultArn. 
+        /// <para>
+        /// The ARN (Amazon Resource Name) of the backup vault that contains the most recent backup
+        /// recovery point.
+        /// </para>
+        /// </summary>
+        public string LastBackupVaultArn
+        {
+            get { return this._lastBackupVaultArn; }
+            set { this._lastBackupVaultArn = value; }
+        }
+
+        // Check to see if LastBackupVaultArn property is set
+        internal bool IsSetLastBackupVaultArn()
+        {
+            return this._lastBackupVaultArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property LastRecoveryPointArn. 
+        /// <para>
+        /// The ARN (Amazon Resource Name) of the most recent recovery point.
+        /// </para>
+        /// </summary>
+        public string LastRecoveryPointArn
+        {
+            get { return this._lastRecoveryPointArn; }
+            set { this._lastRecoveryPointArn = value; }
+        }
+
+        // Check to see if LastRecoveryPointArn property is set
+        internal bool IsSetLastRecoveryPointArn()
+        {
+            return this._lastRecoveryPointArn != null;
         }
 
         /// <summary>
@@ -81,7 +120,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property ResourceName. 
         /// <para>
-        /// This is the non-unique name of the resource that belongs to the specified backup.
+        /// The non-unique name of the resource that belongs to the specified backup.
         /// </para>
         /// </summary>
         public string ResourceName

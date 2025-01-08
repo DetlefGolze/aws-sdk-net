@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ForecastService.Model
     /// 
     ///  
     /// <para>
-    /// The resource undergoes the following states: <code>CREATE_STOPPING</code> and <code>CREATE_STOPPED</code>.
+    /// The resource undergoes the following states: <c>CREATE_STOPPING</c> and <c>CREATE_STOPPED</c>.
     /// You cannot resume a resource once it has been stopped.
     /// </para>
     ///  
@@ -80,9 +81,9 @@ namespace Amazon.ForecastService.Model
         /// Gets and sets the property ResourceArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) that identifies the resource to stop. The supported
-        /// ARNs are <code>DatasetImportJobArn</code>, <code>PredictorArn</code>, <code>PredictorBacktestExportJobArn</code>,
-        /// <code>ForecastArn</code>, <code>ForecastExportJobArn</code>, <code>ExplainabilityArn</code>,
-        /// and <code>ExplainabilityExportArn</code>. 
+        /// ARNs are <c>DatasetImportJobArn</c>, <c>PredictorArn</c>, <c>PredictorBacktestExportJobArn</c>,
+        /// <c>ForecastArn</c>, <c>ForecastExportJobArn</c>, <c>ExplainabilityArn</c>, and <c>ExplainabilityExportArn</c>.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=256)]

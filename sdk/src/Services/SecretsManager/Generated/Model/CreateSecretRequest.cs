@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecretsManager.Model
 {
     /// <summary>
@@ -51,59 +52,66 @@ namespace Amazon.SecretsManager.Model
     ///  
     /// <para>
     /// To create a secret, you can provide the secret value to be encrypted in either the
-    /// <code>SecretString</code> parameter or the <code>SecretBinary</code> parameter, but
-    /// not both. If you include <code>SecretString</code> or <code>SecretBinary</code> then
-    /// Secrets Manager creates an initial secret version and automatically attaches the staging
-    /// label <code>AWSCURRENT</code> to it.
+    /// <c>SecretString</c> parameter or the <c>SecretBinary</c> parameter, but not both.
+    /// If you include <c>SecretString</c> or <c>SecretBinary</c> then Secrets Manager creates
+    /// an initial secret version and automatically attaches the staging label <c>AWSCURRENT</c>
+    /// to it.
     /// </para>
     ///  
     /// <para>
     /// For database credentials you want to rotate, for Secrets Manager to be able to rotate
-    /// the secret, you must make sure the JSON you store in the <code>SecretString</code>
-    /// matches the <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_secret_json_structure.html">JSON
+    /// the secret, you must make sure the JSON you store in the <c>SecretString</c> matches
+    /// the <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_secret_json_structure.html">JSON
     /// structure of a database secret</a>.
     /// </para>
     ///  
     /// <para>
     /// If you don't specify an KMS encryption key, Secrets Manager uses the Amazon Web Services
-    /// managed key <code>aws/secretsmanager</code>. If this key doesn't already exist in
-    /// your account, then Secrets Manager creates it for you automatically. All users and
-    /// roles in the Amazon Web Services account automatically have access to use <code>aws/secretsmanager</code>.
-    /// Creating <code>aws/secretsmanager</code> can result in a one-time significant delay
-    /// in returning the result.
+    /// managed key <c>aws/secretsmanager</c>. If this key doesn't already exist in your account,
+    /// then Secrets Manager creates it for you automatically. All users and roles in the
+    /// Amazon Web Services account automatically have access to use <c>aws/secretsmanager</c>.
+    /// Creating <c>aws/secretsmanager</c> can result in a one-time significant delay in returning
+    /// the result.
     /// </para>
     ///  
     /// <para>
     /// If the secret is in a different Amazon Web Services account from the credentials calling
-    /// the API, then you can't use <code>aws/secretsmanager</code> to encrypt the secret,
-    /// and you must create and use a customer managed KMS key. 
+    /// the API, then you can't use <c>aws/secretsmanager</c> to encrypt the secret, and you
+    /// must create and use a customer managed KMS key. 
     /// </para>
     ///  
     /// <para>
     /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not
-    /// include sensitive information in request parameters except <code>SecretBinary</code>
-    /// or <code>SecretString</code> because it might be logged. For more information, see
-    /// <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// include sensitive information in request parameters except <c>SecretBinary</c> or
+    /// <c>SecretString</c> because it might be logged. For more information, see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
     /// Secrets Manager events with CloudTrail</a>.
     /// </para>
     ///  
     /// <para>
-    ///  <b>Required permissions: </b> <code>secretsmanager:CreateSecret</code>. If you include
-    /// tags in the secret, you also need <code>secretsmanager:TagResource</code>. For more
+    ///  <b>Required permissions: </b> <c>secretsmanager:CreateSecret</c>. If you include
+    /// tags in the secret, you also need <c>secretsmanager:TagResource</c>. To add replica
+    /// Regions, you must also have <c>secretsmanager:ReplicateSecretToRegions</c>. For more
     /// information, see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">
     /// IAM policy actions for Secrets Manager</a> and <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
     /// and access control in Secrets Manager</a>. 
     /// </para>
     ///  
     /// <para>
-    /// To encrypt the secret with a KMS key other than <code>aws/secretsmanager</code>, you
-    /// need <code>kms:GenerateDataKey</code> and <code>kms:Decrypt</code> permission to the
-    /// key. 
+    /// To encrypt the secret with a KMS key other than <c>aws/secretsmanager</c>, you need
+    /// <c>kms:GenerateDataKey</c> and <c>kms:Decrypt</c> permission to the key. 
     /// </para>
+    ///  <important> 
+    /// <para>
+    /// When you enter commands in a command shell, there is a risk of the command history
+    /// being accessed or utilities having access to your command parameters. This is a concern
+    /// if the command includes the value of a secret. Learn how to <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/security_cli-exposure-risks.html">Mitigate
+    /// the risks of using command-line tools to store Secrets Manager secrets</a>.
+    /// </para>
+    ///  </important>
     /// </summary>
     public partial class CreateSecretRequest : AmazonSecretsManagerRequest
     {
-        private List<ReplicaRegionType> _addReplicaRegions = new List<ReplicaRegionType>();
+        private List<ReplicaRegionType> _addReplicaRegions = AWSConfigs.InitializeCollections ? new List<ReplicaRegionType>() : null;
         private string _clientRequestToken;
         private string _description;
         private bool? _forceOverwriteReplicaSecret;
@@ -111,7 +119,7 @@ namespace Amazon.SecretsManager.Model
         private string _name;
         private MemoryStream _secretBinary;
         private string _secretString;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AddReplicaRegions. 
@@ -129,26 +137,29 @@ namespace Amazon.SecretsManager.Model
         // Check to see if AddReplicaRegions property is set
         internal bool IsSetAddReplicaRegions()
         {
-            return this._addReplicaRegions != null && this._addReplicaRegions.Count > 0; 
+            return this._addReplicaRegions != null && (this._addReplicaRegions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
-        /// If you include <code>SecretString</code> or <code>SecretBinary</code>, then Secrets
-        /// Manager creates an initial version for the secret, and this parameter specifies the
-        /// unique identifier for the new version. 
+        /// If you include <c>SecretString</c> or <c>SecretBinary</c>, then Secrets Manager creates
+        /// an initial version for the secret, and this parameter specifies the unique identifier
+        /// for the new version. 
         /// </para>
         ///  <note> 
         /// <para>
         /// If you use the Amazon Web Services CLI or one of the Amazon Web Services SDKs to call
         /// this operation, then you can leave this parameter empty. The CLI or SDK generates
         /// a random UUID for you and includes it as the value for this parameter in the request.
-        /// If you don't use the SDK and instead generate a raw HTTP request to the Secrets Manager
-        /// service endpoint, then you must generate a <code>ClientRequestToken</code> yourself
-        /// for the new version and include the value in the request.
+        /// 
         /// </para>
         ///  </note> 
+        /// <para>
+        /// If you generate a raw HTTP request to the Secrets Manager service endpoint, then you
+        /// must generate a <c>ClientRequestToken</c> and include it in the request.
+        /// </para>
+        ///  
         /// <para>
         /// This value helps ensure idempotency. Secrets Manager uses this value to prevent the
         /// accidental creation of duplicate versions if there are failures and retries during
@@ -157,25 +168,25 @@ namespace Amazon.SecretsManager.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If the <code>ClientRequestToken</code> value isn't already associated with a version
-        /// of the secret then a new version of the secret is created. 
+        /// If the <c>ClientRequestToken</c> value isn't already associated with a version of
+        /// the secret then a new version of the secret is created. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If a version with this value already exists and the version <code>SecretString</code>
-        /// and <code>SecretBinary</code> values are the same as those in the request, then the
-        /// request is ignored.
+        /// If a version with this value already exists and the version <c>SecretString</c> and
+        /// <c>SecretBinary</c> values are the same as those in the request, then the request
+        /// is ignored.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If a version with this value already exists and that version's <code>SecretString</code>
-        /// and <code>SecretBinary</code> values are different from those in the request, then
-        /// the request fails because you cannot modify an existing version. Instead, use <a>PutSecretValue</a>
+        /// If a version with this value already exists and that version's <c>SecretString</c>
+        /// and <c>SecretBinary</c> values are different from those in the request, then the request
+        /// fails because you cannot modify an existing version. Instead, use <a>PutSecretValue</a>
         /// to create a new version.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// This value becomes the <code>VersionId</code> of the new version.
+        /// This value becomes the <c>VersionId</c> of the new version.
         /// </para>
         /// </summary>
         [AWSProperty(Min=32, Max=64)]
@@ -233,8 +244,8 @@ namespace Amazon.SecretsManager.Model
         /// Gets and sets the property KmsKeyId. 
         /// <para>
         /// The ARN, key ID, or alias of the KMS key that Secrets Manager uses to encrypt the
-        /// secret value in the secret. An alias is always prefixed by <code>alias/</code>, for
-        /// example <code>alias/aws/secretsmanager</code>. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/alias-about.html">About
+        /// secret value in the secret. An alias is always prefixed by <c>alias/</c>, for example
+        /// <c>alias/aws/secretsmanager</c>. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/alias-about.html">About
         /// aliases</a>.
         /// </para>
         ///  
@@ -243,15 +254,15 @@ namespace Amazon.SecretsManager.Model
         /// </para>
         ///  
         /// <para>
-        /// If you don't specify this value, then Secrets Manager uses the key <code>aws/secretsmanager</code>.
+        /// If you don't specify this value, then Secrets Manager uses the key <c>aws/secretsmanager</c>.
         /// If that key doesn't yet exist, then Secrets Manager creates it for you automatically
         /// the first time it encrypts the secret value.
         /// </para>
         ///  
         /// <para>
         /// If the secret is in a different Amazon Web Services account from the credentials calling
-        /// the API, then you can't use <code>aws/secretsmanager</code> to encrypt the secret,
-        /// and you must create and use a customer managed KMS key. 
+        /// the API, then you can't use <c>aws/secretsmanager</c> to encrypt the secret, and you
+        /// must create and use a customer managed KMS key. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=2048)]
@@ -307,12 +318,17 @@ namespace Amazon.SecretsManager.Model
         /// </para>
         ///  
         /// <para>
-        /// Either <code>SecretString</code> or <code>SecretBinary</code> must have a value, but
-        /// not both.
+        /// Either <c>SecretString</c> or <c>SecretBinary</c> must have a value, but not both.
         /// </para>
         ///  
         /// <para>
         /// This parameter is not available in the Secrets Manager console.
+        /// </para>
+        ///  
+        /// <para>
+        /// Sensitive: This field contains sensitive information, so the service does not include
+        /// it in CloudTrail log entries. If you create your own log entries, you must also avoid
+        /// logging the information in this field.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=65536)]
@@ -336,15 +352,20 @@ namespace Amazon.SecretsManager.Model
         /// </para>
         ///  
         /// <para>
-        /// Either <code>SecretString</code> or <code>SecretBinary</code> must have a value, but
-        /// not both.
+        /// Either <c>SecretString</c> or <c>SecretBinary</c> must have a value, but not both.
         /// </para>
         ///  
         /// <para>
         /// If you create a secret by using the Secrets Manager console then Secrets Manager puts
-        /// the protected secret text in only the <code>SecretString</code> parameter. The Secrets
-        /// Manager console stores the information as a JSON structure of key/value pairs that
-        /// a Lambda rotation function can parse.
+        /// the protected secret text in only the <c>SecretString</c> parameter. The Secrets Manager
+        /// console stores the information as a JSON structure of key/value pairs that a Lambda
+        /// rotation function can parse.
+        /// </para>
+        ///  
+        /// <para>
+        /// Sensitive: This field contains sensitive information, so the service does not include
+        /// it in CloudTrail log entries. If you create your own log entries, you must also avoid
+        /// logging the information in this field.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=65536)]
@@ -368,7 +389,7 @@ namespace Amazon.SecretsManager.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>[{"Key":"CostCenter","Value":"12345"},{"Key":"environment","Value":"production"}]</code>
+        ///  <c>[{"Key":"CostCenter","Value":"12345"},{"Key":"environment","Value":"production"}]</c>
         /// 
         /// </para>
         ///  
@@ -381,7 +402,7 @@ namespace Amazon.SecretsManager.Model
         /// If you check tags in permissions policies as part of your security strategy, then
         /// adding or removing a tag can change permissions. If the completion of this operation
         /// would result in you losing your permissions for this secret, then Secrets Manager
-        /// blocks the operation and returns an <code>Access Denied</code> error. For more information,
+        /// blocks the operation and returns an <c>Access Denied</c> error. For more information,
         /// see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_examples.html#tag-secrets-abac">Control
         /// access to secrets using tags</a> and <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_examples.html#auth-and-access_tags2">Limit
         /// access to identities with tags that match secrets' tags</a>.
@@ -396,39 +417,9 @@ namespace Amazon.SecretsManager.Model
         /// </para>
         ///  
         /// <para>
-        /// The following restrictions apply to tags:
+        /// For tag quotas and naming restrictions, see <a href="https://docs.aws.amazon.com/general/latest/gr/arg.html#taged-reference-quotas">Service
+        /// quotas for Tagging</a> in the <i>Amazon Web Services General Reference guide</i>.
         /// </para>
-        ///  <ul> <li> 
-        /// <para>
-        /// Maximum number of tags per secret: 50
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Maximum key length: 127 Unicode characters in UTF-8
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Maximum value length: 255 Unicode characters in UTF-8
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Tag keys and values are case sensitive.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Do not use the <code>aws:</code> prefix in your tag names or values because Amazon
-        /// Web Services reserves it for Amazon Web Services use. You can't edit or delete tag
-        /// names or values with this prefix. Tags with this prefix do not count against your
-        /// tags per secret limit.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// If you use your tagging schema across multiple services and resources, other services
-        /// might have restrictions on allowed characters. Generally allowed characters: letters,
-        /// spaces, and numbers representable in UTF-8, plus the following special characters:
-        /// + - = . _ : / @.
-        /// </para>
-        ///  </li> </ul>
         /// </summary>
         public List<Tag> Tags
         {
@@ -439,7 +430,7 @@ namespace Amazon.SecretsManager.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

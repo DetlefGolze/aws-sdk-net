@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property BackupVaultArn. 
         /// <para>
-        /// An ARN that uniquely identifies a backup vault; for example, <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>.
+        /// An ARN that uniquely identifies a backup vault; for example, <c>arn:aws:backup:us-east-1:123456789012:backup-vault:aBackupVault</c>.
         /// </para>
         /// </summary>
         public string BackupVaultArn
@@ -59,7 +60,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property CalculatedLifecycle. 
         /// <para>
-        /// A <code>CalculatedLifecycle</code> object containing <code>DeleteAt</code> and <code>MoveToColdStorageAt</code>
+        /// A <c>CalculatedLifecycle</c> object containing <c>DeleteAt</c> and <c>MoveToColdStorageAt</c>
         /// timestamps.
         /// </para>
         /// </summary>
@@ -91,10 +92,9 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  
         /// <para>
-        /// Resource types that are able to be transitioned to cold storage are listed in the
-        /// "Lifecycle to cold storage" section of the <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource">
-        /// Feature availability by resource</a> table. Backup ignores this expression for other
-        /// resource types.
+        /// Resource types that can transition to cold storage are listed in the <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/backup-feature-availability.html#features-by-resource">Feature
+        /// availability by resource</a> table. Backup ignores this expression for other resource
+        /// types.
         /// </para>
         /// </summary>
         public Lifecycle Lifecycle
@@ -113,7 +113,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property RecoveryPointArn. 
         /// <para>
         /// An Amazon Resource Name (ARN) that uniquely identifies a recovery point; for example,
-        /// <code>arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45</code>.
+        /// <c>arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45</c>.
         /// </para>
         /// </summary>
         public string RecoveryPointArn

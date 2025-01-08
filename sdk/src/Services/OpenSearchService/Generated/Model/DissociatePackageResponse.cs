@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
-    /// Container for the response returned by an <code>DissociatePackage</code> operation.
+    /// Container for the response returned by an <c>DissociatePackage</c> operation.
     /// </summary>
     public partial class DissociatePackageResponse : AmazonWebServiceResponse
     {

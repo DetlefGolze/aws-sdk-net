@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchServerless.Model
 {
     /// <summary>
@@ -42,8 +43,7 @@ namespace Amazon.OpenSearchServerless.Model
         /// Gets and sets the property ResourceArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the resource. The resource must be active (not in
-        /// the <code>DELETING</code> state), and must be owned by the account ID included in
-        /// the request.
+        /// the <c>DELETING</c> state), and must be owned by the account ID included in the request.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1011)]

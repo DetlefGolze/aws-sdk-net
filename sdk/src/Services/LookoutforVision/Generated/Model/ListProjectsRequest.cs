@@ -26,22 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LookoutforVision.Model
 {
     /// <summary>
     /// Container for the parameters to the ListProjects operation.
     /// Lists the Amazon Lookout for Vision projects in your AWS account that are in the AWS
-    /// Region in which you call <code>ListProjects</code>.
+    /// Region in which you call <c>ListProjects</c>.
     /// 
     ///  
     /// <para>
-    /// The <code>ListProjects</code> operation is eventually consistent. Recent calls to
-    /// <code>CreateProject</code> and <code>DeleteProject</code> might take a while to appear
-    /// in the response from <code>ListProjects</code>.
+    /// The <c>ListProjects</c> operation is eventually consistent. Recent calls to <c>CreateProject</c>
+    /// and <c>DeleteProject</c> might take a while to appear in the response from <c>ListProjects</c>.
     /// </para>
     ///  
     /// <para>
-    /// This operation requires permissions to perform the <code>lookoutvision:ListProjects</code>
+    /// This operation requires permissions to perform the <c>lookoutvision:ListProjects</c>
     /// operation.
     /// </para>
     /// </summary>

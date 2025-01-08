@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -78,7 +79,7 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property Name. 
         /// <para>
         /// The name of the managed agent. When the execute command feature is turned on, the
-        /// managed agent name is <code>ExecuteCommandAgent</code>.
+        /// managed agent name is <c>ExecuteCommandAgent</c>.
         /// </para>
         /// </summary>
         public ManagedAgentName Name

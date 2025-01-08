@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
     /// Container for the parameters to the UntagResource operation.
     /// Removes one or more tags from the specified Entity Resolution resource. In Entity
-    /// Resolution, <code>SchemaMapping</code>, and <code>MatchingWorkflow</code> can be tagged.
+    /// Resolution, <c>SchemaMapping</c>, and <c>MatchingWorkflow</c> can be tagged.
     /// </summary>
     public partial class UntagResourceRequest : AmazonEntityResolutionRequest
     {
         private string _resourceArn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -73,7 +74,7 @@ namespace Amazon.EntityResolution.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

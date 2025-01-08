@@ -30,23 +30,24 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.BillingConductor
 {
     /// <summary>
-    /// Implementation for accessing BillingConductor
+    /// <para>Implementation for accessing BillingConductor</para>
     ///
     /// Amazon Web Services Billing Conductor is a fully managed service that you can use
-    /// to customize a <a href="https://docs.aws.amazon.com/billingconductor/latest/userguide/understanding-eb.html#eb-other-definitions">pro
-    /// forma</a> version of your billing data each month, to accurately show or chargeback
-    /// your end customers. Amazon Web Services Billing Conductor doesn't change the way you're
-    /// billed by Amazon Web Services each month by design. Instead, it provides you with
-    /// a mechanism to configure, generate, and display rates to certain customers over a
-    /// given billing period. You can also analyze the difference between the rates you apply
-    /// to your accounting groupings relative to your actual rates from Amazon Web Services.
-    /// As a result of your Amazon Web Services Billing Conductor configuration, the payer
-    /// account can also see the custom rate applied on the billing details page of the <a
-    /// href="https://console.aws.amazon.com/billing">Amazon Web Services Billing console</a>,
-    /// or configure a cost and usage report per billing group.
+    /// to customize a <a href="https://docs.aws.amazon.com/billingconductor/latest/userguide/understanding-eb.html#eb-other-definitions">proforma</a>
+    /// version of your billing data each month, to accurately show or chargeback your end
+    /// customers. Amazon Web Services Billing Conductor doesn't change the way you're billed
+    /// by Amazon Web Services each month by design. Instead, it provides you with a mechanism
+    /// to configure, generate, and display rates to certain customers over a given billing
+    /// period. You can also analyze the difference between the rates you apply to your accounting
+    /// groupings relative to your actual rates from Amazon Web Services. As a result of your
+    /// Amazon Web Services Billing Conductor configuration, the payer account can also see
+    /// the custom rate applied on the billing details page of the <a href="https://console.aws.amazon.com/billing">Amazon
+    /// Web Services Billing console</a>, or configure a cost and usage report per billing
+    /// group.
     /// 
     ///  
     /// <para>
@@ -363,9 +364,8 @@ namespace Amazon.BillingConductor
         #region  AssociatePricingRules
 
         /// <summary>
-        /// Connects an array of <code>PricingRuleArns</code> to a defined <code>PricingPlan</code>.
-        /// The maximum number <code>PricingRuleArn</code> that can be associated in one call
-        /// is 30.
+        /// Connects an array of <c>PricingRuleArns</c> to a defined <c>PricingPlan</c>. The maximum
+        /// number <c>PricingRuleArn</c> that can be associated in one call is 30.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the AssociatePricingRules service method.</param>
         /// 
@@ -1298,6 +1298,76 @@ namespace Amazon.BillingConductor
 
         #endregion
         
+        #region  GetBillingGroupCostReport
+
+        /// <summary>
+        /// Retrieves the margin summary report, which includes the Amazon Web Services cost and
+        /// charged amount (pro forma cost) by Amazon Web Service for a specific billing group.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetBillingGroupCostReport service method.</param>
+        /// 
+        /// <returns>The response from the GetBillingGroupCostReport service method, as returned by BillingConductor.</returns>
+        /// <exception cref="Amazon.BillingConductor.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.BillingConductor.Model.InternalServerException">
+        /// An unexpected error occurred while processing a request.
+        /// </exception>
+        /// <exception cref="Amazon.BillingConductor.Model.ResourceNotFoundException">
+        /// The request references a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.BillingConductor.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.BillingConductor.Model.ValidationException">
+        /// The input doesn't match with the constraints specified by Amazon Web Services.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/billingconductor-2021-07-30/GetBillingGroupCostReport">REST API Reference for GetBillingGroupCostReport Operation</seealso>
+        public virtual GetBillingGroupCostReportResponse GetBillingGroupCostReport(GetBillingGroupCostReportRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetBillingGroupCostReportRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetBillingGroupCostReportResponseUnmarshaller.Instance;
+
+            return Invoke<GetBillingGroupCostReportResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetBillingGroupCostReport operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetBillingGroupCostReport operation on AmazonBillingConductorClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetBillingGroupCostReport
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/billingconductor-2021-07-30/GetBillingGroupCostReport">REST API Reference for GetBillingGroupCostReport Operation</seealso>
+        public virtual IAsyncResult BeginGetBillingGroupCostReport(GetBillingGroupCostReportRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetBillingGroupCostReportRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetBillingGroupCostReportResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetBillingGroupCostReport operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetBillingGroupCostReport.</param>
+        /// 
+        /// <returns>Returns a  GetBillingGroupCostReportResult from BillingConductor.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/billingconductor-2021-07-30/GetBillingGroupCostReport">REST API Reference for GetBillingGroupCostReport Operation</seealso>
+        public virtual GetBillingGroupCostReportResponse EndGetBillingGroupCostReport(IAsyncResult asyncResult)
+        {
+            return EndInvoke<GetBillingGroupCostReportResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region  ListAccountAssociations
 
         /// <summary>
@@ -2060,7 +2130,7 @@ namespace Amazon.BillingConductor
         #region  TagResource
 
         /// <summary>
-        /// Associates the specified tags to a resource with the specified <code>resourceArn</code>.
+        /// Associates the specified tags to a resource with the specified <c>resourceArn</c>.
         /// If existing tags on a resource are not specified in the request parameters, they are
         /// not changed.
         /// </summary>
@@ -2491,11 +2561,11 @@ namespace Amazon.BillingConductor
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

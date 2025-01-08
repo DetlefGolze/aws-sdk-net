@@ -765,6 +765,52 @@ namespace Amazon.CloudFront
 
 
     /// <summary>
+    /// Constants used for properties of type ImportSourceType.
+    /// </summary>
+    public class ImportSourceType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant S3 for ImportSourceType
+        /// </summary>
+        public static readonly ImportSourceType S3 = new ImportSourceType("S3");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ImportSourceType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ImportSourceType FindValue(string value)
+        {
+            return FindValue<ImportSourceType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ImportSourceType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ItemSelection.
     /// </summary>
     public class ItemSelection : ConstantClass
@@ -965,6 +1011,14 @@ namespace Amazon.CloudFront
     {
 
         /// <summary>
+        /// Constant Lambda for OriginAccessControlOriginTypes
+        /// </summary>
+        public static readonly OriginAccessControlOriginTypes Lambda = new OriginAccessControlOriginTypes("lambda");
+        /// <summary>
+        /// Constant Mediapackagev2 for OriginAccessControlOriginTypes
+        /// </summary>
+        public static readonly OriginAccessControlOriginTypes Mediapackagev2 = new OriginAccessControlOriginTypes("mediapackagev2");
+        /// <summary>
         /// Constant Mediastore for OriginAccessControlOriginTypes
         /// </summary>
         public static readonly OriginAccessControlOriginTypes Mediastore = new OriginAccessControlOriginTypes("mediastore");
@@ -1102,6 +1156,56 @@ namespace Amazon.CloudFront
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator OriginAccessControlSigningProtocols(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type OriginGroupSelectionCriteria.
+    /// </summary>
+    public class OriginGroupSelectionCriteria : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Default for OriginGroupSelectionCriteria
+        /// </summary>
+        public static readonly OriginGroupSelectionCriteria Default = new OriginGroupSelectionCriteria("default");
+        /// <summary>
+        /// Constant MediaQualityBased for OriginGroupSelectionCriteria
+        /// </summary>
+        public static readonly OriginGroupSelectionCriteria MediaQualityBased = new OriginGroupSelectionCriteria("media-quality-based");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public OriginGroupSelectionCriteria(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static OriginGroupSelectionCriteria FindValue(string value)
+        {
+            return FindValue<OriginGroupSelectionCriteria>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator OriginGroupSelectionCriteria(string value)
         {
             return FindValue(value);
         }

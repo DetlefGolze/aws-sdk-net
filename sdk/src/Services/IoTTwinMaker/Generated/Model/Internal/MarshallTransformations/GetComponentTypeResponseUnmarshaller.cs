@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTTwinMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -67,6 +68,12 @@ namespace Amazon.IoTTwinMaker.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.ComponentTypeName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("compositeComponentTypes", targetDepth))
+                {
+                    var unmarshaller = new DictionaryUnmarshaller<string, CompositeComponentTypeResponse, StringUnmarshaller, CompositeComponentTypeResponseUnmarshaller>(StringUnmarshaller.Instance, CompositeComponentTypeResponseUnmarshaller.Instance);
+                    response.CompositeComponentTypes = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("creationDateTime", targetDepth))

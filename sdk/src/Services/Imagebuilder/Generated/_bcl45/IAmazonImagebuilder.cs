@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Imagebuilder.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Imagebuilder
 {
     /// <summary>
-    /// Interface for accessing Imagebuilder
+    /// <para>Interface for accessing Imagebuilder</para>
     ///
     /// EC2 Image Builder is a fully managed Amazon Web Services service that makes it easier
     /// to automate the creation, management, and deployment of customized, secure, and up-to-date
@@ -131,6 +132,90 @@ namespace Amazon.Imagebuilder
 
         #endregion
         
+        #region  CancelLifecycleExecution
+
+
+        /// <summary>
+        /// Cancel a specific image lifecycle policy runtime instance.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CancelLifecycleExecution service method.</param>
+        /// 
+        /// <returns>The response from the CancelLifecycleExecution service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.IdempotentParameterMismatchException">
+        /// You have specified a client token for an operation using parameter values that differ
+        /// from a previous request that used the same client token.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceInUseException">
+        /// The resource that you are trying to operate on is currently in use. Review the message
+        /// details and retry later.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/CancelLifecycleExecution">REST API Reference for CancelLifecycleExecution Operation</seealso>
+        CancelLifecycleExecutionResponse CancelLifecycleExecution(CancelLifecycleExecutionRequest request);
+
+
+
+        /// <summary>
+        /// Cancel a specific image lifecycle policy runtime instance.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CancelLifecycleExecution service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CancelLifecycleExecution service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.IdempotentParameterMismatchException">
+        /// You have specified a client token for an operation using parameter values that differ
+        /// from a previous request that used the same client token.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceInUseException">
+        /// The resource that you are trying to operate on is currently in use. Review the message
+        /// details and retry later.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/CancelLifecycleExecution">REST API Reference for CancelLifecycleExecution Operation</seealso>
+        Task<CancelLifecycleExecutionResponse> CancelLifecycleExecutionAsync(CancelLifecycleExecutionRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  CreateComponent
 
 
@@ -141,11 +226,11 @@ namespace Amazon.Imagebuilder
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// Inline, using the <code>data</code> property in the request body.
+        /// Inline, using the <c>data</c> property in the request body.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A URL that points to a YAML document file stored in Amazon S3, using the <code>uri</code>
+        /// A URL that points to a YAML document file stored in Amazon S3, using the <c>uri</c>
         /// property in the request body.
         /// </para>
         ///  </li> </ul>
@@ -205,11 +290,11 @@ namespace Amazon.Imagebuilder
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// Inline, using the <code>data</code> property in the request body.
+        /// Inline, using the <c>data</c> property in the request body.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A URL that points to a YAML document file stored in Amazon S3, using the <code>uri</code>
+        /// A URL that points to a YAML document file stored in Amazon S3, using the <c>uri</c>
         /// property in the request body.
         /// </para>
         ///  </li> </ul>
@@ -893,6 +978,214 @@ namespace Amazon.Imagebuilder
 
         #endregion
         
+        #region  CreateLifecyclePolicy
+
+
+        /// <summary>
+        /// Create a lifecycle policy resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateLifecyclePolicy service method.</param>
+        /// 
+        /// <returns>The response from the CreateLifecyclePolicy service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.IdempotentParameterMismatchException">
+        /// You have specified a client token for an operation using parameter values that differ
+        /// from a previous request that used the same client token.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceAlreadyExistsException">
+        /// The resource that you are trying to create already exists.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceInUseException">
+        /// The resource that you are trying to operate on is currently in use. Review the message
+        /// details and retry later.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceQuotaExceededException">
+        /// You have exceeded the number of permitted resources or operations for this service.
+        /// For service quotas, see <a href="https://docs.aws.amazon.com/general/latest/gr/imagebuilder.html#limits_imagebuilder">EC2
+        /// Image Builder endpoints and quotas</a>.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/CreateLifecyclePolicy">REST API Reference for CreateLifecyclePolicy Operation</seealso>
+        CreateLifecyclePolicyResponse CreateLifecyclePolicy(CreateLifecyclePolicyRequest request);
+
+
+
+        /// <summary>
+        /// Create a lifecycle policy resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateLifecyclePolicy service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateLifecyclePolicy service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.IdempotentParameterMismatchException">
+        /// You have specified a client token for an operation using parameter values that differ
+        /// from a previous request that used the same client token.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceAlreadyExistsException">
+        /// The resource that you are trying to create already exists.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceInUseException">
+        /// The resource that you are trying to operate on is currently in use. Review the message
+        /// details and retry later.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceQuotaExceededException">
+        /// You have exceeded the number of permitted resources or operations for this service.
+        /// For service quotas, see <a href="https://docs.aws.amazon.com/general/latest/gr/imagebuilder.html#limits_imagebuilder">EC2
+        /// Image Builder endpoints and quotas</a>.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/CreateLifecyclePolicy">REST API Reference for CreateLifecyclePolicy Operation</seealso>
+        Task<CreateLifecyclePolicyResponse> CreateLifecyclePolicyAsync(CreateLifecyclePolicyRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  CreateWorkflow
+
+
+        /// <summary>
+        /// Create a new workflow or a new version of an existing workflow.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateWorkflow service method.</param>
+        /// 
+        /// <returns>The response from the CreateWorkflow service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.IdempotentParameterMismatchException">
+        /// You have specified a client token for an operation using parameter values that differ
+        /// from a previous request that used the same client token.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidParameterCombinationException">
+        /// You have specified two or more mutually exclusive parameters. Review the error message
+        /// for details.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidVersionNumberException">
+        /// Your version number is out of bounds or does not follow the required syntax.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceInUseException">
+        /// The resource that you are trying to operate on is currently in use. Review the message
+        /// details and retry later.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceQuotaExceededException">
+        /// You have exceeded the number of permitted resources or operations for this service.
+        /// For service quotas, see <a href="https://docs.aws.amazon.com/general/latest/gr/imagebuilder.html#limits_imagebuilder">EC2
+        /// Image Builder endpoints and quotas</a>.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/CreateWorkflow">REST API Reference for CreateWorkflow Operation</seealso>
+        CreateWorkflowResponse CreateWorkflow(CreateWorkflowRequest request);
+
+
+
+        /// <summary>
+        /// Create a new workflow or a new version of an existing workflow.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateWorkflow service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateWorkflow service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.IdempotentParameterMismatchException">
+        /// You have specified a client token for an operation using parameter values that differ
+        /// from a previous request that used the same client token.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidParameterCombinationException">
+        /// You have specified two or more mutually exclusive parameters. Review the error message
+        /// for details.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidVersionNumberException">
+        /// Your version number is out of bounds or does not follow the required syntax.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceInUseException">
+        /// The resource that you are trying to operate on is currently in use. Review the message
+        /// details and retry later.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceQuotaExceededException">
+        /// You have exceeded the number of permitted resources or operations for this service.
+        /// For service quotas, see <a href="https://docs.aws.amazon.com/general/latest/gr/imagebuilder.html#limits_imagebuilder">EC2
+        /// Image Builder endpoints and quotas</a>.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/CreateWorkflow">REST API Reference for CreateWorkflow Operation</seealso>
+        Task<CreateWorkflowResponse> CreateWorkflowAsync(CreateWorkflowRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  DeleteComponent
 
 
@@ -1462,6 +1755,158 @@ namespace Amazon.Imagebuilder
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/DeleteInfrastructureConfiguration">REST API Reference for DeleteInfrastructureConfiguration Operation</seealso>
         Task<DeleteInfrastructureConfigurationResponse> DeleteInfrastructureConfigurationAsync(DeleteInfrastructureConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DeleteLifecyclePolicy
+
+
+        /// <summary>
+        /// Delete the specified lifecycle policy resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteLifecyclePolicy service method.</param>
+        /// 
+        /// <returns>The response from the DeleteLifecyclePolicy service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceDependencyException">
+        /// You have attempted to mutate or delete a resource with a dependency that prohibits
+        /// this action. See the error message for more details.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/DeleteLifecyclePolicy">REST API Reference for DeleteLifecyclePolicy Operation</seealso>
+        DeleteLifecyclePolicyResponse DeleteLifecyclePolicy(DeleteLifecyclePolicyRequest request);
+
+
+
+        /// <summary>
+        /// Delete the specified lifecycle policy resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteLifecyclePolicy service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteLifecyclePolicy service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceDependencyException">
+        /// You have attempted to mutate or delete a resource with a dependency that prohibits
+        /// this action. See the error message for more details.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/DeleteLifecyclePolicy">REST API Reference for DeleteLifecyclePolicy Operation</seealso>
+        Task<DeleteLifecyclePolicyResponse> DeleteLifecyclePolicyAsync(DeleteLifecyclePolicyRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DeleteWorkflow
+
+
+        /// <summary>
+        /// Deletes a specific workflow resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteWorkflow service method.</param>
+        /// 
+        /// <returns>The response from the DeleteWorkflow service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceDependencyException">
+        /// You have attempted to mutate or delete a resource with a dependency that prohibits
+        /// this action. See the error message for more details.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/DeleteWorkflow">REST API Reference for DeleteWorkflow Operation</seealso>
+        DeleteWorkflowResponse DeleteWorkflow(DeleteWorkflowRequest request);
+
+
+
+        /// <summary>
+        /// Deletes a specific workflow resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteWorkflow service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteWorkflow service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceDependencyException">
+        /// You have attempted to mutate or delete a resource with a dependency that prohibits
+        /// this action. See the error message for more details.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/DeleteWorkflow">REST API Reference for DeleteWorkflow Operation</seealso>
+        Task<DeleteWorkflowResponse> DeleteWorkflowAsync(DeleteWorkflowRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -2197,6 +2642,284 @@ namespace Amazon.Imagebuilder
 
         #endregion
         
+        #region  GetLifecycleExecution
+
+
+        /// <summary>
+        /// Get the runtime information that was logged for a specific runtime instance of the
+        /// lifecycle policy.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetLifecycleExecution service method.</param>
+        /// 
+        /// <returns>The response from the GetLifecycleExecution service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/GetLifecycleExecution">REST API Reference for GetLifecycleExecution Operation</seealso>
+        GetLifecycleExecutionResponse GetLifecycleExecution(GetLifecycleExecutionRequest request);
+
+
+
+        /// <summary>
+        /// Get the runtime information that was logged for a specific runtime instance of the
+        /// lifecycle policy.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetLifecycleExecution service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetLifecycleExecution service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/GetLifecycleExecution">REST API Reference for GetLifecycleExecution Operation</seealso>
+        Task<GetLifecycleExecutionResponse> GetLifecycleExecutionAsync(GetLifecycleExecutionRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  GetLifecyclePolicy
+
+
+        /// <summary>
+        /// Get details for the specified image lifecycle policy.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetLifecyclePolicy service method.</param>
+        /// 
+        /// <returns>The response from the GetLifecyclePolicy service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/GetLifecyclePolicy">REST API Reference for GetLifecyclePolicy Operation</seealso>
+        GetLifecyclePolicyResponse GetLifecyclePolicy(GetLifecyclePolicyRequest request);
+
+
+
+        /// <summary>
+        /// Get details for the specified image lifecycle policy.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetLifecyclePolicy service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetLifecyclePolicy service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/GetLifecyclePolicy">REST API Reference for GetLifecyclePolicy Operation</seealso>
+        Task<GetLifecyclePolicyResponse> GetLifecyclePolicyAsync(GetLifecyclePolicyRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  GetMarketplaceResource
+
+
+        /// <summary>
+        /// Verify the subscription and perform resource dependency checks on the requested Amazon
+        /// Web Services Marketplace resource. For Amazon Web Services Marketplace components,
+        /// the response contains fields to download the components and their artifacts.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetMarketplaceResource service method.</param>
+        /// 
+        /// <returns>The response from the GetMarketplaceResource service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/GetMarketplaceResource">REST API Reference for GetMarketplaceResource Operation</seealso>
+        GetMarketplaceResourceResponse GetMarketplaceResource(GetMarketplaceResourceRequest request);
+
+
+
+        /// <summary>
+        /// Verify the subscription and perform resource dependency checks on the requested Amazon
+        /// Web Services Marketplace resource. For Amazon Web Services Marketplace components,
+        /// the response contains fields to download the components and their artifacts.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetMarketplaceResource service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetMarketplaceResource service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/GetMarketplaceResource">REST API Reference for GetMarketplaceResource Operation</seealso>
+        Task<GetMarketplaceResourceResponse> GetMarketplaceResourceAsync(GetMarketplaceResourceRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  GetWorkflow
+
+
+        /// <summary>
+        /// Get a workflow resource object.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetWorkflow service method.</param>
+        /// 
+        /// <returns>The response from the GetWorkflow service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/GetWorkflow">REST API Reference for GetWorkflow Operation</seealso>
+        GetWorkflowResponse GetWorkflow(GetWorkflowRequest request);
+
+
+
+        /// <summary>
+        /// Get a workflow resource object.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetWorkflow service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetWorkflow service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/GetWorkflow">REST API Reference for GetWorkflow Operation</seealso>
+        Task<GetWorkflowResponse> GetWorkflowAsync(GetWorkflowRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  GetWorkflowExecution
 
 
@@ -2511,21 +3234,8 @@ namespace Amazon.Imagebuilder
 
 
         /// <summary>
-        /// Returns the list of component build versions for the specified semantic version.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;.
-        /// You can assign values for the first three, and can filter on all of them.
-        /// </para>
-        ///  
-        /// <para>
-        ///  <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards
-        /// (x) to specify the most recent versions or nodes when selecting the base image or
-        /// components for your recipe. When you use a wildcard in any node, all nodes to the
-        /// right of the first wildcard must also be wildcards.
-        /// </para>
-        ///  </note>
+        /// Returns the list of component build versions for the specified component version Amazon
+        /// Resource Name (ARN).
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListComponentBuildVersions service method.</param>
         /// 
@@ -2559,21 +3269,8 @@ namespace Amazon.Imagebuilder
 
 
         /// <summary>
-        /// Returns the list of component build versions for the specified semantic version.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;.
-        /// You can assign values for the first three, and can filter on all of them.
-        /// </para>
-        ///  
-        /// <para>
-        ///  <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards
-        /// (x) to specify the most recent versions or nodes when selecting the base image or
-        /// components for your recipe. When you use a wildcard in any node, all nodes to the
-        /// right of the first wildcard must also be wildcards.
-        /// </para>
-        ///  </note>
+        /// Returns the list of component build versions for the specified component version Amazon
+        /// Resource Name (ARN).
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListComponentBuildVersions service method.</param>
         /// <param name="cancellationToken">
@@ -2614,8 +3311,8 @@ namespace Amazon.Imagebuilder
 
         /// <summary>
         /// Returns the list of components that can be filtered by name, or by using the listed
-        /// <code>filters</code> to streamline results. Newly created components can take up to
-        /// two minutes to appear in the ListComponents API Results.
+        /// <c>filters</c> to streamline results. Newly created components can take up to two
+        /// minutes to appear in the ListComponents API Results.
         /// 
         ///  <note> 
         /// <para>
@@ -2664,8 +3361,8 @@ namespace Amazon.Imagebuilder
 
         /// <summary>
         /// Returns the list of components that can be filtered by name, or by using the listed
-        /// <code>filters</code> to streamline results. Newly created components can take up to
-        /// two minutes to appear in the ListComponents API Results.
+        /// <c>filters</c> to streamline results. Newly created components can take up to two
+        /// minutes to appear in the ListComponents API Results.
         /// 
         ///  <note> 
         /// <para>
@@ -3330,8 +4027,8 @@ namespace Amazon.Imagebuilder
         /// Returns a list of image scan aggregations for your account. You can filter by the
         /// type of key that Image Builder uses to group results. For example, if you want to
         /// get a list of findings by severity level for one of your pipelines, you might specify
-        /// your pipeline with the <code>imagePipelineArn</code> filter. If you don't specify
-        /// a filter, Image Builder returns an aggregation for your account.
+        /// your pipeline with the <c>imagePipelineArn</c> filter. If you don't specify a filter,
+        /// Image Builder returns an aggregation for your account.
         /// 
         ///  
         /// <para>
@@ -3339,19 +4036,19 @@ namespace Amazon.Imagebuilder
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>accountId</code> 
+        ///  <c>accountId</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>imageBuildVersionArn</code> 
+        ///  <c>imageBuildVersionArn</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>imagePipelineArn</code> 
+        ///  <c>imagePipelineArn</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>vulnerabilityId</code> 
+        ///  <c>vulnerabilityId</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3390,8 +4087,8 @@ namespace Amazon.Imagebuilder
         /// Returns a list of image scan aggregations for your account. You can filter by the
         /// type of key that Image Builder uses to group results. For example, if you want to
         /// get a list of findings by severity level for one of your pipelines, you might specify
-        /// your pipeline with the <code>imagePipelineArn</code> filter. If you don't specify
-        /// a filter, Image Builder returns an aggregation for your account.
+        /// your pipeline with the <c>imagePipelineArn</c> filter. If you don't specify a filter,
+        /// Image Builder returns an aggregation for your account.
         /// 
         ///  
         /// <para>
@@ -3399,19 +4096,19 @@ namespace Amazon.Imagebuilder
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>accountId</code> 
+        ///  <c>accountId</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>imageBuildVersionArn</code> 
+        ///  <c>imageBuildVersionArn</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>imagePipelineArn</code> 
+        ///  <c>imagePipelineArn</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>vulnerabilityId</code> 
+        ///  <c>vulnerabilityId</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3597,6 +4294,230 @@ namespace Amazon.Imagebuilder
 
         #endregion
         
+        #region  ListLifecycleExecutionResources
+
+
+        /// <summary>
+        /// List resources that the runtime instance of the image lifecycle identified for lifecycle
+        /// actions.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListLifecycleExecutionResources service method.</param>
+        /// 
+        /// <returns>The response from the ListLifecycleExecutionResources service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidPaginationTokenException">
+        /// You have provided an invalid pagination token in your request.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListLifecycleExecutionResources">REST API Reference for ListLifecycleExecutionResources Operation</seealso>
+        ListLifecycleExecutionResourcesResponse ListLifecycleExecutionResources(ListLifecycleExecutionResourcesRequest request);
+
+
+
+        /// <summary>
+        /// List resources that the runtime instance of the image lifecycle identified for lifecycle
+        /// actions.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListLifecycleExecutionResources service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListLifecycleExecutionResources service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidPaginationTokenException">
+        /// You have provided an invalid pagination token in your request.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListLifecycleExecutionResources">REST API Reference for ListLifecycleExecutionResources Operation</seealso>
+        Task<ListLifecycleExecutionResourcesResponse> ListLifecycleExecutionResourcesAsync(ListLifecycleExecutionResourcesRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListLifecycleExecutions
+
+
+        /// <summary>
+        /// Get the lifecycle runtime history for the specified resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListLifecycleExecutions service method.</param>
+        /// 
+        /// <returns>The response from the ListLifecycleExecutions service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidPaginationTokenException">
+        /// You have provided an invalid pagination token in your request.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListLifecycleExecutions">REST API Reference for ListLifecycleExecutions Operation</seealso>
+        ListLifecycleExecutionsResponse ListLifecycleExecutions(ListLifecycleExecutionsRequest request);
+
+
+
+        /// <summary>
+        /// Get the lifecycle runtime history for the specified resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListLifecycleExecutions service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListLifecycleExecutions service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidPaginationTokenException">
+        /// You have provided an invalid pagination token in your request.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListLifecycleExecutions">REST API Reference for ListLifecycleExecutions Operation</seealso>
+        Task<ListLifecycleExecutionsResponse> ListLifecycleExecutionsAsync(ListLifecycleExecutionsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListLifecyclePolicies
+
+
+        /// <summary>
+        /// Get a list of lifecycle policies in your Amazon Web Services account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListLifecyclePolicies service method.</param>
+        /// 
+        /// <returns>The response from the ListLifecyclePolicies service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidPaginationTokenException">
+        /// You have provided an invalid pagination token in your request.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListLifecyclePolicies">REST API Reference for ListLifecyclePolicies Operation</seealso>
+        ListLifecyclePoliciesResponse ListLifecyclePolicies(ListLifecyclePoliciesRequest request);
+
+
+
+        /// <summary>
+        /// Get a list of lifecycle policies in your Amazon Web Services account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListLifecyclePolicies service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListLifecyclePolicies service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidPaginationTokenException">
+        /// You have provided an invalid pagination token in your request.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListLifecyclePolicies">REST API Reference for ListLifecyclePolicies Operation</seealso>
+        Task<ListLifecyclePoliciesResponse> ListLifecyclePoliciesAsync(ListLifecyclePoliciesRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  ListTagsForResource
 
 
@@ -3640,6 +4561,156 @@ namespace Amazon.Imagebuilder
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListTagsForResource">REST API Reference for ListTagsForResource Operation</seealso>
         Task<ListTagsForResourceResponse> ListTagsForResourceAsync(ListTagsForResourceRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListWaitingWorkflowSteps
+
+
+        /// <summary>
+        /// Get a list of workflow steps that are waiting for action for workflows in your Amazon
+        /// Web Services account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListWaitingWorkflowSteps service method.</param>
+        /// 
+        /// <returns>The response from the ListWaitingWorkflowSteps service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidPaginationTokenException">
+        /// You have provided an invalid pagination token in your request.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListWaitingWorkflowSteps">REST API Reference for ListWaitingWorkflowSteps Operation</seealso>
+        ListWaitingWorkflowStepsResponse ListWaitingWorkflowSteps(ListWaitingWorkflowStepsRequest request);
+
+
+
+        /// <summary>
+        /// Get a list of workflow steps that are waiting for action for workflows in your Amazon
+        /// Web Services account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListWaitingWorkflowSteps service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListWaitingWorkflowSteps service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidPaginationTokenException">
+        /// You have provided an invalid pagination token in your request.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListWaitingWorkflowSteps">REST API Reference for ListWaitingWorkflowSteps Operation</seealso>
+        Task<ListWaitingWorkflowStepsResponse> ListWaitingWorkflowStepsAsync(ListWaitingWorkflowStepsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListWorkflowBuildVersions
+
+
+        /// <summary>
+        /// Returns a list of build versions for a specific workflow resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListWorkflowBuildVersions service method.</param>
+        /// 
+        /// <returns>The response from the ListWorkflowBuildVersions service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidPaginationTokenException">
+        /// You have provided an invalid pagination token in your request.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListWorkflowBuildVersions">REST API Reference for ListWorkflowBuildVersions Operation</seealso>
+        ListWorkflowBuildVersionsResponse ListWorkflowBuildVersions(ListWorkflowBuildVersionsRequest request);
+
+
+
+        /// <summary>
+        /// Returns a list of build versions for a specific workflow resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListWorkflowBuildVersions service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListWorkflowBuildVersions service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidPaginationTokenException">
+        /// You have provided an invalid pagination token in your request.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListWorkflowBuildVersions">REST API Reference for ListWorkflowBuildVersions Operation</seealso>
+        Task<ListWorkflowBuildVersionsResponse> ListWorkflowBuildVersionsAsync(ListWorkflowBuildVersionsRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -3719,12 +4790,86 @@ namespace Amazon.Imagebuilder
 
         #endregion
         
+        #region  ListWorkflows
+
+
+        /// <summary>
+        /// Lists workflow build versions based on filtering parameters.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListWorkflows service method.</param>
+        /// 
+        /// <returns>The response from the ListWorkflows service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidPaginationTokenException">
+        /// You have provided an invalid pagination token in your request.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListWorkflows">REST API Reference for ListWorkflows Operation</seealso>
+        ListWorkflowsResponse ListWorkflows(ListWorkflowsRequest request);
+
+
+
+        /// <summary>
+        /// Lists workflow build versions based on filtering parameters.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListWorkflows service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListWorkflows service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidPaginationTokenException">
+        /// You have provided an invalid pagination token in your request.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListWorkflows">REST API Reference for ListWorkflows Operation</seealso>
+        Task<ListWorkflowsResponse> ListWorkflowsAsync(ListWorkflowsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  ListWorkflowStepExecutions
 
 
         /// <summary>
-        /// Shows runtime data for each step in a runtime instance of the workflow that you specify
-        /// in the request.
+        /// Returns runtime data for each step in a runtime instance of the workflow that you
+        /// specify in the request.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListWorkflowStepExecutions service method.</param>
         /// 
@@ -3758,8 +4903,8 @@ namespace Amazon.Imagebuilder
 
 
         /// <summary>
-        /// Shows runtime data for each step in a runtime instance of the workflow that you specify
-        /// in the request.
+        /// Returns runtime data for each step in a runtime instance of the workflow that you
+        /// specify in the request.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListWorkflowStepExecutions service method.</param>
         /// <param name="cancellationToken">
@@ -3800,8 +4945,8 @@ namespace Amazon.Imagebuilder
 
         /// <summary>
         /// Applies a policy to a component. We recommend that you call the RAM API <a href="https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html">CreateResourceShare</a>
-        /// to share resources. If you call the Image Builder API <code>PutComponentPolicy</code>,
-        /// you must also call the RAM API <a href="https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html">PromoteResourceShareCreatedFromPolicy</a>
+        /// to share resources. If you call the Image Builder API <c>PutComponentPolicy</c>, you
+        /// must also call the RAM API <a href="https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html">PromoteResourceShareCreatedFromPolicy</a>
         /// in order for the resource to be visible to all principals with whom the resource is
         /// shared.
         /// </summary>
@@ -3841,8 +4986,8 @@ namespace Amazon.Imagebuilder
 
         /// <summary>
         /// Applies a policy to a component. We recommend that you call the RAM API <a href="https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html">CreateResourceShare</a>
-        /// to share resources. If you call the Image Builder API <code>PutComponentPolicy</code>,
-        /// you must also call the RAM API <a href="https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html">PromoteResourceShareCreatedFromPolicy</a>
+        /// to share resources. If you call the Image Builder API <c>PutComponentPolicy</c>, you
+        /// must also call the RAM API <a href="https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html">PromoteResourceShareCreatedFromPolicy</a>
         /// in order for the resource to be visible to all principals with whom the resource is
         /// shared.
         /// </summary>
@@ -3889,7 +5034,7 @@ namespace Amazon.Imagebuilder
         /// <summary>
         /// Applies a policy to a container image. We recommend that you call the RAM API CreateResourceShare
         /// (https://docs.aws.amazon.com//ram/latest/APIReference/API_CreateResourceShare.html)
-        /// to share resources. If you call the Image Builder API <code>PutContainerImagePolicy</code>,
+        /// to share resources. If you call the Image Builder API <c>PutContainerImagePolicy</c>,
         /// you must also call the RAM API PromoteResourceShareCreatedFromPolicy (https://docs.aws.amazon.com//ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html)
         /// in order for the resource to be visible to all principals with whom the resource is
         /// shared.
@@ -3931,7 +5076,7 @@ namespace Amazon.Imagebuilder
         /// <summary>
         /// Applies a policy to a container image. We recommend that you call the RAM API CreateResourceShare
         /// (https://docs.aws.amazon.com//ram/latest/APIReference/API_CreateResourceShare.html)
-        /// to share resources. If you call the Image Builder API <code>PutContainerImagePolicy</code>,
+        /// to share resources. If you call the Image Builder API <c>PutContainerImagePolicy</c>,
         /// you must also call the RAM API PromoteResourceShareCreatedFromPolicy (https://docs.aws.amazon.com//ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html)
         /// in order for the resource to be visible to all principals with whom the resource is
         /// shared.
@@ -3978,8 +5123,8 @@ namespace Amazon.Imagebuilder
 
         /// <summary>
         /// Applies a policy to an image. We recommend that you call the RAM API <a href="https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html">CreateResourceShare</a>
-        /// to share resources. If you call the Image Builder API <code>PutImagePolicy</code>,
-        /// you must also call the RAM API <a href="https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html">PromoteResourceShareCreatedFromPolicy</a>
+        /// to share resources. If you call the Image Builder API <c>PutImagePolicy</c>, you must
+        /// also call the RAM API <a href="https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html">PromoteResourceShareCreatedFromPolicy</a>
         /// in order for the resource to be visible to all principals with whom the resource is
         /// shared.
         /// </summary>
@@ -4019,8 +5164,8 @@ namespace Amazon.Imagebuilder
 
         /// <summary>
         /// Applies a policy to an image. We recommend that you call the RAM API <a href="https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html">CreateResourceShare</a>
-        /// to share resources. If you call the Image Builder API <code>PutImagePolicy</code>,
-        /// you must also call the RAM API <a href="https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html">PromoteResourceShareCreatedFromPolicy</a>
+        /// to share resources. If you call the Image Builder API <c>PutImagePolicy</c>, you must
+        /// also call the RAM API <a href="https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html">PromoteResourceShareCreatedFromPolicy</a>
         /// in order for the resource to be visible to all principals with whom the resource is
         /// shared.
         /// </summary>
@@ -4066,7 +5211,7 @@ namespace Amazon.Imagebuilder
 
         /// <summary>
         /// Applies a policy to an image recipe. We recommend that you call the RAM API <a href="https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html">CreateResourceShare</a>
-        /// to share resources. If you call the Image Builder API <code>PutImageRecipePolicy</code>,
+        /// to share resources. If you call the Image Builder API <c>PutImageRecipePolicy</c>,
         /// you must also call the RAM API <a href="https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html">PromoteResourceShareCreatedFromPolicy</a>
         /// in order for the resource to be visible to all principals with whom the resource is
         /// shared.
@@ -4107,7 +5252,7 @@ namespace Amazon.Imagebuilder
 
         /// <summary>
         /// Applies a policy to an image recipe. We recommend that you call the RAM API <a href="https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html">CreateResourceShare</a>
-        /// to share resources. If you call the Image Builder API <code>PutImageRecipePolicy</code>,
+        /// to share resources. If you call the Image Builder API <c>PutImageRecipePolicy</c>,
         /// you must also call the RAM API <a href="https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html">PromoteResourceShareCreatedFromPolicy</a>
         /// in order for the resource to be visible to all principals with whom the resource is
         /// shared.
@@ -4146,6 +5291,104 @@ namespace Amazon.Imagebuilder
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/PutImageRecipePolicy">REST API Reference for PutImageRecipePolicy Operation</seealso>
         Task<PutImageRecipePolicyResponse> PutImageRecipePolicyAsync(PutImageRecipePolicyRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  SendWorkflowStepAction
+
+
+        /// <summary>
+        /// Pauses or resumes image creation when the associated workflow runs a <c>WaitForAction</c>
+        /// step.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the SendWorkflowStepAction service method.</param>
+        /// 
+        /// <returns>The response from the SendWorkflowStepAction service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.IdempotentParameterMismatchException">
+        /// You have specified a client token for an operation using parameter values that differ
+        /// from a previous request that used the same client token.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidParameterValueException">
+        /// The value that you provided for the specified parameter is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceInUseException">
+        /// The resource that you are trying to operate on is currently in use. Review the message
+        /// details and retry later.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceNotFoundException">
+        /// At least one of the resources referenced by your request does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/SendWorkflowStepAction">REST API Reference for SendWorkflowStepAction Operation</seealso>
+        SendWorkflowStepActionResponse SendWorkflowStepAction(SendWorkflowStepActionRequest request);
+
+
+
+        /// <summary>
+        /// Pauses or resumes image creation when the associated workflow runs a <c>WaitForAction</c>
+        /// step.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the SendWorkflowStepAction service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the SendWorkflowStepAction service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.IdempotentParameterMismatchException">
+        /// You have specified a client token for an operation using parameter values that differ
+        /// from a previous request that used the same client token.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidParameterValueException">
+        /// The value that you provided for the specified parameter is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceInUseException">
+        /// The resource that you are trying to operate on is currently in use. Review the message
+        /// details and retry later.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceNotFoundException">
+        /// At least one of the resources referenced by your request does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/SendWorkflowStepAction">REST API Reference for SendWorkflowStepAction Operation</seealso>
+        Task<SendWorkflowStepActionResponse> SendWorkflowStepActionAsync(SendWorkflowStepActionRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -4236,6 +5479,98 @@ namespace Amazon.Imagebuilder
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/StartImagePipelineExecution">REST API Reference for StartImagePipelineExecution Operation</seealso>
         Task<StartImagePipelineExecutionResponse> StartImagePipelineExecutionAsync(StartImagePipelineExecutionRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  StartResourceStateUpdate
+
+
+        /// <summary>
+        /// Begin asynchronous resource state update for lifecycle changes to the specified image
+        /// resources.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartResourceStateUpdate service method.</param>
+        /// 
+        /// <returns>The response from the StartResourceStateUpdate service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.IdempotentParameterMismatchException">
+        /// You have specified a client token for an operation using parameter values that differ
+        /// from a previous request that used the same client token.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceInUseException">
+        /// The resource that you are trying to operate on is currently in use. Review the message
+        /// details and retry later.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceNotFoundException">
+        /// At least one of the resources referenced by your request does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/StartResourceStateUpdate">REST API Reference for StartResourceStateUpdate Operation</seealso>
+        StartResourceStateUpdateResponse StartResourceStateUpdate(StartResourceStateUpdateRequest request);
+
+
+
+        /// <summary>
+        /// Begin asynchronous resource state update for lifecycle changes to the specified image
+        /// resources.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartResourceStateUpdate service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StartResourceStateUpdate service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.IdempotentParameterMismatchException">
+        /// You have specified a client token for an operation using parameter values that differ
+        /// from a previous request that used the same client token.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceInUseException">
+        /// The resource that you are trying to operate on is currently in use. Review the message
+        /// details and retry later.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceNotFoundException">
+        /// At least one of the resources referenced by your request does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/StartResourceStateUpdate">REST API Reference for StartResourceStateUpdate Operation</seealso>
+        Task<StartResourceStateUpdateResponse> StartResourceStateUpdateAsync(StartResourceStateUpdateRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -4430,7 +5765,8 @@ namespace Amazon.Imagebuilder
 
         /// <summary>
         /// Updates an image pipeline. Image pipelines enable you to automate the creation and
-        /// distribution of images.
+        /// distribution of images. You must specify exactly one recipe for your image, using
+        /// either a <c>containerRecipeArn</c> or an <c>imageRecipeArn</c>.
         /// 
         ///  <note> 
         /// <para>
@@ -4478,7 +5814,8 @@ namespace Amazon.Imagebuilder
 
         /// <summary>
         /// Updates an image pipeline. Image pipelines enable you to automate the creation and
-        /// distribution of images.
+        /// distribution of images. You must specify exactly one recipe for your image, using
+        /// either a <c>containerRecipeArn</c> or an <c>imageRecipeArn</c>.
         /// 
         ///  <note> 
         /// <para>
@@ -4610,6 +5947,98 @@ namespace Amazon.Imagebuilder
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/UpdateInfrastructureConfiguration">REST API Reference for UpdateInfrastructureConfiguration Operation</seealso>
         Task<UpdateInfrastructureConfigurationResponse> UpdateInfrastructureConfigurationAsync(UpdateInfrastructureConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  UpdateLifecyclePolicy
+
+
+        /// <summary>
+        /// Update the specified lifecycle policy.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateLifecyclePolicy service method.</param>
+        /// 
+        /// <returns>The response from the UpdateLifecyclePolicy service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.IdempotentParameterMismatchException">
+        /// You have specified a client token for an operation using parameter values that differ
+        /// from a previous request that used the same client token.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidParameterCombinationException">
+        /// You have specified two or more mutually exclusive parameters. Review the error message
+        /// for details.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceInUseException">
+        /// The resource that you are trying to operate on is currently in use. Review the message
+        /// details and retry later.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/UpdateLifecyclePolicy">REST API Reference for UpdateLifecyclePolicy Operation</seealso>
+        UpdateLifecyclePolicyResponse UpdateLifecyclePolicy(UpdateLifecyclePolicyRequest request);
+
+
+
+        /// <summary>
+        /// Update the specified lifecycle policy.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateLifecyclePolicy service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateLifecyclePolicy service method, as returned by Imagebuilder.</returns>
+        /// <exception cref="Amazon.Imagebuilder.Model.CallRateLimitExceededException">
+        /// You have exceeded the permitted request rate for the specific operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ClientException">
+        /// These errors are usually caused by a client action, such as using an action or resource
+        /// on behalf of a user that doesn't have permissions to use the action or resource, or
+        /// specifying an invalid resource identifier.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ForbiddenException">
+        /// You are not authorized to perform the requested operation.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.IdempotentParameterMismatchException">
+        /// You have specified a client token for an operation using parameter values that differ
+        /// from a previous request that used the same client token.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidParameterCombinationException">
+        /// You have specified two or more mutually exclusive parameters. Review the error message
+        /// for details.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.InvalidRequestException">
+        /// You have requested an action that that the service doesn't support.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ResourceInUseException">
+        /// The resource that you are trying to operate on is currently in use. Review the message
+        /// details and retry later.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceException">
+        /// This exception is thrown when the service encounters an unrecoverable exception.
+        /// </exception>
+        /// <exception cref="Amazon.Imagebuilder.Model.ServiceUnavailableException">
+        /// The service is unable to process your request at this time.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/UpdateLifecyclePolicy">REST API Reference for UpdateLifecyclePolicy Operation</seealso>
+        Task<UpdateLifecyclePolicyResponse> UpdateLifecyclePolicyAsync(UpdateLifecyclePolicyRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 

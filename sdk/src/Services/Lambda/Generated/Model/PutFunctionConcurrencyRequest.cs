@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property FunctionName. 
         /// <para>
-        /// The name of the Lambda function.
+        /// The name or ARN of the Lambda function.
         /// </para>
         ///  
         /// <para>
@@ -66,15 +67,15 @@ namespace Amazon.Lambda.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>Function name</b> – <code>my-function</code>.
+        ///  <b>Function name</b> – <c>my-function</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.
+        ///  <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Partial ARN</b> – <code>123456789012:function:my-function</code>.
+        ///  <b>Partial ARN</b> – <c>123456789012:function:my-function</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>

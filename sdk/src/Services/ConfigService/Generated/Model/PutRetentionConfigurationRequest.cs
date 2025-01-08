@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
     /// Container for the parameters to the PutRetentionConfiguration operation.
     /// Creates and updates the retention configuration with details about retention period
     /// (number of days) that Config stores your historical information. The API creates the
-    /// <code>RetentionConfiguration</code> object and names the object as <b>default</b>.
-    /// When you have a <code>RetentionConfiguration</code> object named <b>default</b>, calling
-    /// the API modifies the default object. 
+    /// <c>RetentionConfiguration</c> object and names the object as <b>default</b>. When
+    /// you have a <c>RetentionConfiguration</c> object named <b>default</b>, calling the
+    /// API modifies the default object. 
     /// 
     ///  <note> 
     /// <para>

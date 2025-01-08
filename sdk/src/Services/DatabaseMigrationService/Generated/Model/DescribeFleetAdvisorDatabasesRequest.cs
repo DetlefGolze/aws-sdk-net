@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.DatabaseMigrationService.Model
     /// </summary>
     public partial class DescribeFleetAdvisorDatabasesRequest : AmazonDatabaseMigrationServiceRequest
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxRecords;
         private string _nextToken;
 
@@ -46,31 +47,31 @@ namespace Amazon.DatabaseMigrationService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>database-id</code> – The ID of the database.
+        ///  <c>database-id</c> – The ID of the database.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>database-name</code> – The name of the database.
+        ///  <c>database-name</c> – The name of the database.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>database-engine</code> – The name of the database engine.
+        ///  <c>database-engine</c> – The name of the database engine.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>server-ip-address</code> – The IP address of the database server.
+        ///  <c>server-ip-address</c> – The IP address of the database server.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>database-ip-address</code> – The IP address of the database.
+        ///  <c>database-ip-address</c> – The IP address of the database.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>collector-name</code> – The name of the associated Fleet Advisor collector.
+        ///  <c>collector-name</c> – The name of the associated Fleet Advisor collector.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// An example is: <code>describe-fleet-advisor-databases --filter Name="database-id",Values="45"</code>
+        /// An example is: <c>describe-fleet-advisor-databases --filter Name="database-id",Values="45"</c>
         /// 
         /// </para>
         /// </summary>
@@ -83,7 +84,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -107,10 +108,10 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If <code>NextToken</code> is returned by a previous response, there are more results
-        /// available. The value of <code>NextToken</code> is a unique pagination token for each
-        /// page. Make the call again using the returned token to retrieve the next page. Keep
-        /// all other arguments unchanged. 
+        /// If <c>NextToken</c> is returned by a previous response, there are more results available.
+        /// The value of <c>NextToken</c> is a unique pagination token for each page. Make the
+        /// call again using the returned token to retrieve the next page. Keep all other arguments
+        /// unchanged. 
         /// </para>
         /// </summary>
         public string NextToken

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSMIncidents.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.SSMIncidents.Model
     {
         private string _clientToken;
         private int? _impact;
-        private List<RelatedItem> _relatedItems = new List<RelatedItem>();
+        private List<RelatedItem> _relatedItems = AWSConfigs.InitializeCollections ? new List<RelatedItem>() : null;
         private string _responsePlanArn;
         private string _title;
         private TriggerDetails _triggerDetails;
@@ -68,29 +69,27 @@ namespace Amazon.SSMIncidents.Model
         /// </para>
         ///  
         /// <para>
-        ///  <b>Possible impacts:</b> 
+        ///  <b>Supported impact codes</b> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>1</code> - Critical impact, this typically relates to full application failure
-        /// that impacts many to all customers. 
+        ///  <c>1</c> - Critical
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>2</code> - High impact, partial application failure with impact to many customers.
+        ///  <c>2</c> - High
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>3</code> - Medium impact, the application is providing reduced service to customers.
+        ///  <c>3</c> - Medium
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>4</code> - Low impact, customer might aren't impacted by the problem yet.
+        ///  <c>4</c> - Low
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>5</code> - No impact, customers aren't currently impacted but urgent action
-        /// is needed to avoid impact.
+        ///  <c>5</c> - No Impact
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -125,7 +124,7 @@ namespace Amazon.SSMIncidents.Model
         // Check to see if RelatedItems property is set
         internal bool IsSetRelatedItems()
         {
-            return this._relatedItems != null && this._relatedItems.Count > 0; 
+            return this._relatedItems != null && (this._relatedItems.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

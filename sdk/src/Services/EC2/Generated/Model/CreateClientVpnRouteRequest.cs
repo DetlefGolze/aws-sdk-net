@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -46,8 +47,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// Unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        /// request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How
-        /// to ensure idempotency</a>.
+        /// request. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html">Ensuring
+        /// idempotency</a>.
         /// </para>
         /// </summary>
         public string ClientToken
@@ -106,7 +107,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// To add a route for Internet access, enter <code>0.0.0.0/0</code> 
+        /// To add a route for Internet access, enter <c>0.0.0.0/0</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -144,7 +145,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Alternatively, if you're adding a route for the local network, specify <code>local</code>.
+        /// Alternatively, if you're adding a route for the local network, specify <c>local</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

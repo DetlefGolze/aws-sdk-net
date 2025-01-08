@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -36,9 +37,9 @@ namespace Amazon.Lightsail.Model
     /// 
     ///  
     /// <para>
-    /// The <code>create domain entry</code> operation supports tag-based access control via
-    /// resource tags applied to the resource identified by <code>domain name</code>. For
-    /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+    /// The <c>create domain entry</c> operation supports tag-based access control via resource
+    /// tags applied to the resource identified by <c>domain name</c>. For more information,
+    /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
     /// Lightsail Developer Guide</a>.
     /// </para>
     /// </summary>
@@ -69,8 +70,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property DomainName. 
         /// <para>
-        /// The domain name (e.g., <code>example.com</code>) for which you want to create the
-        /// domain entry.
+        /// The domain name (<c>example.com</c>) for which you want to create the domain entry.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

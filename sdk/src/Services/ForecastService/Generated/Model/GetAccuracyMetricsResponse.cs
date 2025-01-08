@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -36,19 +37,19 @@ namespace Amazon.ForecastService.Model
         private AutoMLOverrideStrategy _autoMLOverrideStrategy;
         private bool? _isAutoPredictor;
         private OptimizationMetric _optimizationMetric;
-        private List<EvaluationResult> _predictorEvaluationResults = new List<EvaluationResult>();
+        private List<EvaluationResult> _predictorEvaluationResults = AWSConfigs.InitializeCollections ? new List<EvaluationResult>() : null;
 
         /// <summary>
         /// Gets and sets the property AutoMLOverrideStrategy. <note> 
         /// <para>
-        ///  The <code>LatencyOptimized</code> AutoML override strategy is only available in private
+        ///  The <c>LatencyOptimized</c> AutoML override strategy is only available in private
         /// beta. Contact Amazon Web Services Support or your account manager to learn more about
         /// access privileges. 
         /// </para>
         ///  </note> 
         /// <para>
-        /// The AutoML strategy used to train the predictor. Unless <code>LatencyOptimized</code>
-        /// is specified, the AutoML strategy optimizes predictor accuracy.
+        /// The AutoML strategy used to train the predictor. Unless <c>LatencyOptimized</c> is
+        /// specified, the AutoML strategy optimizes predictor accuracy.
         /// </para>
         ///  
         /// <para>
@@ -118,7 +119,7 @@ namespace Amazon.ForecastService.Model
         // Check to see if PredictorEvaluationResults property is set
         internal bool IsSetPredictorEvaluationResults()
         {
-            return this._predictorEvaluationResults != null && this._predictorEvaluationResults.Count > 0; 
+            return this._predictorEvaluationResults != null && (this._predictorEvaluationResults.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

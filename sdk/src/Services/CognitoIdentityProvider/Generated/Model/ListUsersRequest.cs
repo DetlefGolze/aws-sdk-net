@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -56,7 +57,7 @@ namespace Amazon.CognitoIdentityProvider.Model
     /// </summary>
     public partial class ListUsersRequest : AmazonCognitoIdentityProviderRequest
     {
-        private List<string> _attributesToGet = new List<string>();
+        private List<string> _attributesToGet = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _filter;
         private int? _limit;
         private string _paginationToken;
@@ -65,10 +66,17 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property AttributesToGet. 
         /// <para>
-        /// A JSON array of user attribute names, for example <code>given_name</code>, that you
-        /// want Amazon Cognito to include in the response for each user. When you don't provide
-        /// an <code>AttributesToGet</code> parameter, Amazon Cognito returns all attributes for
-        /// each user.
+        /// A JSON array of user attribute names, for example <c>given_name</c>, that you want
+        /// Amazon Cognito to include in the response for each user. When you don't provide an
+        /// <c>AttributesToGet</c> parameter, Amazon Cognito returns all attributes for each user.
+        /// </para>
+        ///  
+        /// <para>
+        /// Use <c>AttributesToGet</c> with required attributes in your user pool, or in conjunction
+        /// with <c>Filter</c>. Amazon Cognito returns an error if not all users in the results
+        /// have set a value for the attribute you request. Attributes that you can't filter on,
+        /// including custom attributes, must have a value set in every user profile before an
+        /// <c>AttributesToGet</c> parameter returns results.
         /// </para>
         /// </summary>
         public List<string> AttributesToGet
@@ -80,15 +88,15 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if AttributesToGet property is set
         internal bool IsSetAttributesToGet()
         {
-            return this._attributesToGet != null && this._attributesToGet.Count > 0; 
+            return this._attributesToGet != null && (this._attributesToGet.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Filter. 
         /// <para>
-        /// A filter string of the form "<i>AttributeName</i> <i>Filter-Type</i> "<i>AttributeValue</i>"".
-        /// Quotation marks within the filter string must be escaped using the backslash (\) character.
-        /// For example, "<code>family_name</code> = \"Reddy\"".
+        /// A filter string of the form <c>"AttributeName Filter-Type "AttributeValue"</c>. Quotation
+        /// marks within the filter string must be escaped using the backslash (<c>\</c>) character.
+        /// For example, <c>"family_name = \"Reddy\""</c>.
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -97,9 +105,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <i>Filter-Type</i>: For an exact match, use =, for example, "<code>given_name</code>
-        /// = \"Jon\"". For a prefix ("starts with") match, use ^=, for example, "<code>given_name</code>
-        /// ^= \"Jon\"". 
+        ///  <i>Filter-Type</i>: For an exact match, use <c>=</c>, for example, "<c>given_name
+        /// = \"Jon\"</c>". For a prefix ("starts with") match, use <c>^=</c>, for example, "<c>given_name
+        /// ^= \"Jon\"</c>". 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -107,8 +115,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If the filter string is empty, <code>ListUsers</code> returns all users in the user
-        /// pool.
+        /// If the filter string is empty, <c>ListUsers</c> returns all users in the user pool.
         /// </para>
         ///  
         /// <para>
@@ -116,43 +123,43 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>username</code> (case-sensitive)
+        ///  <c>username</c> (case-sensitive)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>email</code> 
+        ///  <c>email</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>phone_number</code> 
+        ///  <c>phone_number</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>name</code> 
+        ///  <c>name</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>given_name</code> 
+        ///  <c>given_name</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>family_name</code> 
+        ///  <c>family_name</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>preferred_username</code> 
+        ///  <c>preferred_username</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>cognito:user_status</code> (called <b>Status</b> in the Console) (case-insensitive)
+        ///  <c>cognito:user_status</c> (called <b>Status</b> in the Console) (case-insensitive)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>status (called <b>Enabled</b> in the Console) (case-sensitive)</code> 
+        ///  <c>status (called <b>Enabled</b> in the Console) (case-sensitive)</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sub</code> 
+        ///  <c>sub</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -162,11 +169,11 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <para>
         /// You can also list users with a client-side filter. The server-side filter matches
         /// no more than one attribute. For an advanced search, use a client-side filter with
-        /// the <code>--query</code> parameter of the <code>list-users</code> action in the CLI.
-        /// When you use a client-side filter, ListUsers returns a paginated list of zero or more
-        /// users. You can receive multiple pages in a row with zero results. Repeat the query
-        /// with each pagination token that is returned until you receive a null pagination token
-        /// value, and then review the combined result. 
+        /// the <c>--query</c> parameter of the <c>list-users</c> action in the CLI. When you
+        /// use a client-side filter, ListUsers returns a paginated list of zero or more users.
+        /// You can receive multiple pages in a row with zero results. Repeat the query with each
+        /// pagination token that is returned until you receive a null pagination token value,
+        /// and then review the combined result. 
         /// </para>
         ///  
         /// <para>
@@ -216,8 +223,11 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property PaginationToken. 
         /// <para>
-        /// An identifier that was returned from the previous call to this operation, which can
-        /// be used to return the next set of items in the list.
+        /// This API operation returns a limited number of results. The pagination token is an
+        /// identifier that you can present in an additional API request with the same parameters.
+        /// When you include the pagination token, Amazon Cognito returns the next set of items
+        /// after the current list. Subsequent requests return a new pagination token. By use
+        /// of this token, you can paginate through the full list of items.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -236,7 +246,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID for the user pool on which the search should be performed.
+        /// The ID of the user pool on which the search should be performed.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

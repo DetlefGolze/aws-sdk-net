@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DataZone.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -67,6 +68,9 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
             else            
                 request.Parameters.Add("clientToken", System.Guid.NewGuid().ToString());
                 
+            
+            if (publicRequest.IsSetSkipDeletionCheck())
+                request.Parameters.Add("skipDeletionCheck", StringUtils.FromBool(publicRequest.SkipDeletionCheck));
             request.ResourcePath = "/v2/domains/{identifier}";
             request.UseQueryString = true;
 

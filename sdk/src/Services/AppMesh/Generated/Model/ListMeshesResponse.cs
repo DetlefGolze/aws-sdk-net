@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppMesh.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.AppMesh.Model
     /// </summary>
     public partial class ListMeshesResponse : AmazonWebServiceResponse
     {
-        private List<MeshRef> _meshes = new List<MeshRef>();
+        private List<MeshRef> _meshes = AWSConfigs.InitializeCollections ? new List<MeshRef>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,16 +53,16 @@ namespace Amazon.AppMesh.Model
         // Check to see if Meshes property is set
         internal bool IsSetMeshes()
         {
-            return this._meshes != null && this._meshes.Count > 0; 
+            return this._meshes != null && (this._meshes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value to include in a future <code>ListMeshes</code> request.
-        /// When the results of a <code>ListMeshes</code> request exceed <code>limit</code>, you
-        /// can use this value to retrieve the next page of results. This value is <code>null</code>
-        /// when there are no more results to return.
+        /// The <c>nextToken</c> value to include in a future <c>ListMeshes</c> request. When
+        /// the results of a <c>ListMeshes</c> request exceed <c>limit</c>, you can use this value
+        /// to retrieve the next page of results. This value is <c>null</c> when there are no
+        /// more results to return.
         /// </para>
         /// </summary>
         public string NextToken

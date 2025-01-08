@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMessaging.Model
 {
     /// <summary>
-    /// Summary of the details of a <code>Channel</code>.
+    /// Summary of the details of a <c>Channel</c>.
     /// </summary>
     public partial class ChannelSummary
     {

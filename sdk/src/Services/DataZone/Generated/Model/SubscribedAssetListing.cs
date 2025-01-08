@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -33,11 +34,30 @@ namespace Amazon.DataZone.Model
     /// </summary>
     public partial class SubscribedAssetListing
     {
+        private AssetScope _assetScope;
         private string _entityId;
         private string _entityRevision;
         private string _entityType;
         private string _forms;
-        private List<DetailedGlossaryTerm> _glossaryTerms = new List<DetailedGlossaryTerm>();
+        private List<DetailedGlossaryTerm> _glossaryTerms = AWSConfigs.InitializeCollections ? new List<DetailedGlossaryTerm>() : null;
+
+        /// <summary>
+        /// Gets and sets the property AssetScope. 
+        /// <para>
+        /// The asset scope of the subscribed asset listing.
+        /// </para>
+        /// </summary>
+        public AssetScope AssetScope
+        {
+            get { return this._assetScope; }
+            set { this._assetScope = value; }
+        }
+
+        // Check to see if AssetScope property is set
+        internal bool IsSetAssetScope()
+        {
+            return this._assetScope != null;
+        }
 
         /// <summary>
         /// Gets and sets the property EntityId. 
@@ -129,7 +149,7 @@ namespace Amazon.DataZone.Model
         // Check to see if GlossaryTerms property is set
         internal bool IsSetGlossaryTerms()
         {
-            return this._glossaryTerms != null && this._glossaryTerms.Count > 0; 
+            return this._glossaryTerms != null && (this._glossaryTerms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

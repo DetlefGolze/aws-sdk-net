@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -55,10 +56,10 @@ namespace Amazon.Neptune.Model
     /// action before the DB cluster parameter group is used as the default for a new DB cluster.
     /// This is especially important for parameters that are critical when creating the default
     /// database for a DB cluster, such as the character set for the default database defined
-    /// by the <code>character_set_database</code> parameter. You can use the <i>Parameter
-    /// Groups</i> option of the <a href="https://console.aws.amazon.com/rds/">Amazon Neptune
-    /// console</a> or the <a>DescribeDBClusterParameters</a> command to verify that your
-    /// DB cluster parameter group has been created or modified.
+    /// by the <c>character_set_database</c> parameter. You can use the <i>Parameter Groups</i>
+    /// option of the <a href="https://console.aws.amazon.com/rds/">Amazon Neptune console</a>
+    /// or the <a>DescribeDBClusterParameters</a> command to verify that your DB cluster parameter
+    /// group has been created or modified.
     /// </para>
     ///  </important>
     /// </summary>
@@ -67,7 +68,7 @@ namespace Amazon.Neptune.Model
         private string _dbClusterParameterGroupName;
         private string _dbParameterGroupFamily;
         private string _description;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property DBClusterParameterGroupName. 
@@ -157,7 +158,7 @@ namespace Amazon.Neptune.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

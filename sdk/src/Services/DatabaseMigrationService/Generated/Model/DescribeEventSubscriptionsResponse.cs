@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.DatabaseMigrationService.Model
     /// </summary>
     public partial class DescribeEventSubscriptionsResponse : AmazonWebServiceResponse
     {
-        private List<EventSubscription> _eventSubscriptionsList = new List<EventSubscription>();
+        private List<EventSubscription> _eventSubscriptionsList = AWSConfigs.InitializeCollections ? new List<EventSubscription>() : null;
         private string _marker;
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if EventSubscriptionsList property is set
         internal bool IsSetEventSubscriptionsList()
         {
-            return this._eventSubscriptionsList != null && this._eventSubscriptionsList.Count > 0; 
+            return this._eventSubscriptionsList != null && (this._eventSubscriptionsList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <para>
         ///  An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>. 
+        /// by <c>MaxRecords</c>. 
         /// </para>
         /// </summary>
         public string Marker

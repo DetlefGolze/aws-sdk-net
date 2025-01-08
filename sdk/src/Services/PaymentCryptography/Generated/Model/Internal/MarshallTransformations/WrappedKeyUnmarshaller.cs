@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.PaymentCryptography.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,31 @@ namespace Amazon.PaymentCryptography.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public WrappedKey Unmarshall(JsonUnmarshallerContext context)
         {
+            WrappedKey unmarshalledObject = new WrappedKey();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            WrappedKey unmarshalledObject = new WrappedKey();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("KeyCheckValue", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.KeyCheckValue = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("KeyCheckValueAlgorithm", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.KeyCheckValueAlgorithm = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("KeyMaterial", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -83,7 +97,6 @@ namespace Amazon.PaymentCryptography.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

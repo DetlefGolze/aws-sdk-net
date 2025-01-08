@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CleanRooms.Model
 {
     /// <summary>
@@ -33,7 +34,9 @@ namespace Amazon.CleanRooms.Model
     /// </summary>
     public partial class ProtectedQuery
     {
+        private ComputeConfiguration _computeConfiguration;
         private DateTime? _createTime;
+        private DifferentialPrivacyParameters _differentialPrivacy;
         private ProtectedQueryError _error;
         private string _id;
         private string _membershipArn;
@@ -43,6 +46,24 @@ namespace Amazon.CleanRooms.Model
         private ProtectedQuerySQLParameters _sqlParameters;
         private ProtectedQueryStatistics _statistics;
         private ProtectedQueryStatus _status;
+
+        /// <summary>
+        /// Gets and sets the property ComputeConfiguration. 
+        /// <para>
+        ///  The compute configuration for the protected query.
+        /// </para>
+        /// </summary>
+        public ComputeConfiguration ComputeConfiguration
+        {
+            get { return this._computeConfiguration; }
+            set { this._computeConfiguration = value; }
+        }
+
+        // Check to see if ComputeConfiguration property is set
+        internal bool IsSetComputeConfiguration()
+        {
+            return this._computeConfiguration != null;
+        }
 
         /// <summary>
         /// Gets and sets the property CreateTime. 
@@ -61,6 +82,24 @@ namespace Amazon.CleanRooms.Model
         internal bool IsSetCreateTime()
         {
             return this._createTime.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property DifferentialPrivacy. 
+        /// <para>
+        /// The sensitivity parameters of the differential privacy results of the protected query.
+        /// </para>
+        /// </summary>
+        public DifferentialPrivacyParameters DifferentialPrivacy
+        {
+            get { return this._differentialPrivacy; }
+            set { this._differentialPrivacy = value; }
+        }
+
+        // Check to see if DifferentialPrivacy property is set
+        internal bool IsSetDifferentialPrivacy()
+        {
+            return this._differentialPrivacy != null;
         }
 
         /// <summary>

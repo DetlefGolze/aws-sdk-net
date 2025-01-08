@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -34,9 +35,9 @@ namespace Amazon.Lightsail.Model
     /// 
     ///  
     /// <para>
-    /// The <code>delete domain entry</code> operation supports tag-based access control via
-    /// resource tags applied to the resource identified by <code>domain name</code>. For
-    /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+    /// The <c>delete domain entry</c> operation supports tag-based access control via resource
+    /// tags applied to the resource identified by <c>domain name</c>. For more information,
+    /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
     /// Lightsail Developer Guide</a>.
     /// </para>
     /// </summary>

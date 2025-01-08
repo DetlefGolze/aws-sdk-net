@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
-    /// An object that contains a mapping between a <code>Metric</code> and <code>MetricAggregation</code>.
+    /// An object that contains a mapping between a <c>Metric</c> and <c>MetricAggregation</c>.
     /// </summary>
     public partial class ExportMetric
     {

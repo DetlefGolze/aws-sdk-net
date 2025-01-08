@@ -26,13 +26,33 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the CancelCapacityReservation operation.
     /// Cancels the specified Capacity Reservation, releases the reserved capacity, and changes
-    /// the Capacity Reservation's state to <code>cancelled</code>.
+    /// the Capacity Reservation's state to <c>cancelled</c>.
     /// 
+    ///  
+    /// <para>
+    /// You can cancel a Capacity Reservation that is in the following states:
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    ///  <c>assessing</c> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <c>active</c> and there is no commitment duration or the commitment duration has
+    /// elapsed. You can't cancel a future-dated Capacity Reservation during the commitment
+    /// duration.
+    /// </para>
+    ///  </li> </ul> 
+    /// <para>
+    /// If a future-dated Capacity Reservation enters the <c>delayed</c> state, the commitment
+    /// duration is waived, and you can cancel it as soon as it enters the <c>active</c> state.
+    /// </para>
     ///  
     /// <para>
     /// Instances running in the reserved capacity continue running until you stop them. Stopped

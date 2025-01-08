@@ -26,21 +26,57 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
-    /// Describes the destination file system to create in the replication configuration.
+    /// Describes the new or existing destination file system for the replication configuration.
+    /// 
+    ///  <ul> <li> 
+    /// <para>
+    /// If you want to replicate to a new file system, do not specify the File System ID for
+    /// the destination file system. Amazon EFS creates a new, empty file system. For One
+    /// Zone storage, specify the Availability Zone to create the file system in. To use an
+    /// Key Management Service key other than the default KMS key, then specify it. For more
+    /// information, see <a href="https://docs.aws.amazon.com/efs/latest/ug/create-replication.html">Configuring
+    /// replication to new Amazon EFS file system</a> in the <i>Amazon EFS User Guide</i>.
+    /// </para>
+    ///  <note> 
+    /// <para>
+    /// After the file system is created, you cannot change the KMS key or the performance
+    /// mode.
+    /// </para>
+    ///  </note> </li> <li> 
+    /// <para>
+    /// If you want to replicate to an existing file system that's in the same account as
+    /// the source file system, then you need to provide the ID or Amazon Resource Name (ARN)
+    /// of the file system to which to replicate. The file system's replication overwrite
+    /// protection must be disabled. For more information, see <a href="https://docs.aws.amazon.com/efs/latest/ug/efs-replication#replicate-existing-destination">Replicating
+    /// to an existing file system</a> in the <i>Amazon EFS User Guide</i>.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// If you are replicating the file system to a file system that's in a different account
+    /// than the source file system (cross-account replication), you need to provide the ARN
+    /// for the file system and the IAM role that allows Amazon EFS to perform replication
+    /// on the destination account. The file system's replication overwrite protection must
+    /// be disabled. For more information, see <a href="https://docs.aws.amazon.com/efs/latest/ug/cross-account-replication.html">Replicating
+    /// across Amazon Web Services accounts</a> in the <i>Amazon EFS User Guide</i>.
+    /// </para>
+    ///  </li> </ul>
     /// </summary>
     public partial class DestinationToCreate
     {
         private string _availabilityZoneName;
+        private string _fileSystemId;
         private string _kmsKeyId;
         private string _region;
+        private string _roleArn;
 
         /// <summary>
         /// Gets and sets the property AvailabilityZoneName. 
         /// <para>
-        /// To create a file system that uses EFS One Zone storage, specify the name of the Availability
+        /// To create a file system that uses One Zone storage, specify the name of the Availability
         /// Zone in which to create the destination file system.
         /// </para>
         /// </summary>
@@ -58,28 +94,49 @@ namespace Amazon.ElasticFileSystem.Model
         }
 
         /// <summary>
+        /// Gets and sets the property FileSystemId. 
+        /// <para>
+        /// The ID or ARN of the file system to use for the destination. For cross-account replication,
+        /// this must be an ARN. The file system's replication overwrite replication must be disabled.
+        /// If no ID or ARN is specified, then a new file system is created. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=128)]
+        public string FileSystemId
+        {
+            get { return this._fileSystemId; }
+            set { this._fileSystemId = value; }
+        }
+
+        // Check to see if FileSystemId property is set
+        internal bool IsSetFileSystemId()
+        {
+            return this._fileSystemId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// Specifies the Key Management Service (KMS) key that you want to use to encrypt the
-        /// destination file system. If you do not specify a KMS key, Amazon EFS uses your default
-        /// KMS key for Amazon EFS, <code>/aws/elasticfilesystem</code>. This ID can be in one
-        /// of the following formats:
+        /// Specify the Key Management Service (KMS) key that you want to use to encrypt the destination
+        /// file system. If you do not specify a KMS key, Amazon EFS uses your default KMS key
+        /// for Amazon EFS, <c>/aws/elasticfilesystem</c>. This ID can be in one of the following
+        /// formats:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Key ID - The unique identifier of the key, for example <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>.
+        /// Key ID - The unique identifier of the key, for example <c>1234abcd-12ab-34cd-56ef-1234567890ab</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// ARN - The Amazon Resource Name (ARN) for the key, for example <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>.
+        /// ARN - The ARN for the key, for example <c>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Key alias - A previously created display name for a key, for example <code>alias/projectKey1</code>.
+        /// Key alias - A previously created display name for a key, for example <c>alias/projectKey1</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Key alias ARN - The ARN for a key alias, for example <code>arn:aws:kms:us-west-2:444455556666:alias/projectKey1</code>.
+        /// Key alias ARN - The ARN for a key alias, for example <c>arn:aws:kms:us-west-2:444455556666:alias/projectKey1</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -100,7 +157,11 @@ namespace Amazon.ElasticFileSystem.Model
         /// Gets and sets the property Region. 
         /// <para>
         /// To create a file system that uses Regional storage, specify the Amazon Web Services
-        /// Region in which to create the destination file system.
+        /// Region in which to create the destination file system. The Region must be enabled
+        /// for the Amazon Web Services account that owns the source file system. For more information,
+        /// see <a href="https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-enable">Managing
+        /// Amazon Web Services Regions</a> in the <i>Amazon Web Services General Reference Reference
+        /// Guide</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -114,6 +175,27 @@ namespace Amazon.ElasticFileSystem.Model
         internal bool IsSetRegion()
         {
             return this._region != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RoleArn. 
+        /// <para>
+        /// Amazon Resource Name (ARN) of the IAM role in the source account that allows Amazon
+        /// EFS to perform replication on its behalf. This is optional for same-account replication
+        /// and required for cross-account replication.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=2048)]
+        public string RoleArn
+        {
+            get { return this._roleArn; }
+            set { this._roleArn = value; }
+        }
+
+        // Check to see if RoleArn property is set
+        internal bool IsSetRoleArn()
+        {
+            return this._roleArn != null;
         }
 
     }

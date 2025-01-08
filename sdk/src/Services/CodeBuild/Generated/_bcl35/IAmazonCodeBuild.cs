@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.CodeBuild.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.CodeBuild
 {
     /// <summary>
-    /// Interface for accessing CodeBuild
+    /// <para>Interface for accessing CodeBuild</para>
     ///
     /// CodeBuild 
     /// <para>
@@ -184,6 +185,49 @@ namespace Amazon.CodeBuild
 
         #endregion
         
+        #region  BatchGetFleets
+
+
+        /// <summary>
+        /// Gets information about one or more compute fleets.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the BatchGetFleets service method.</param>
+        /// 
+        /// <returns>The response from the BatchGetFleets service method, as returned by CodeBuild.</returns>
+        /// <exception cref="Amazon.CodeBuild.Model.InvalidInputException">
+        /// The input value that was provided is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/BatchGetFleets">REST API Reference for BatchGetFleets Operation</seealso>
+        BatchGetFleetsResponse BatchGetFleets(BatchGetFleetsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the BatchGetFleets operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the BatchGetFleets operation on AmazonCodeBuildClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndBatchGetFleets
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/BatchGetFleets">REST API Reference for BatchGetFleets Operation</seealso>
+        IAsyncResult BeginBatchGetFleets(BatchGetFleetsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  BatchGetFleets operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginBatchGetFleets.</param>
+        /// 
+        /// <returns>Returns a  BatchGetFleetsResult from CodeBuild.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/BatchGetFleets">REST API Reference for BatchGetFleets Operation</seealso>
+        BatchGetFleetsResponse EndBatchGetFleets(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  BatchGetProjects
 
 
@@ -310,6 +354,57 @@ namespace Amazon.CodeBuild
         /// <returns>Returns a  BatchGetReportsResult from CodeBuild.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/BatchGetReports">REST API Reference for BatchGetReports Operation</seealso>
         BatchGetReportsResponse EndBatchGetReports(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  CreateFleet
+
+
+        /// <summary>
+        /// Creates a compute fleet.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateFleet service method.</param>
+        /// 
+        /// <returns>The response from the CreateFleet service method, as returned by CodeBuild.</returns>
+        /// <exception cref="Amazon.CodeBuild.Model.AccountLimitExceededException">
+        /// An Amazon Web Services service limit was exceeded for the calling Amazon Web Services
+        /// account.
+        /// </exception>
+        /// <exception cref="Amazon.CodeBuild.Model.InvalidInputException">
+        /// The input value that was provided is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.CodeBuild.Model.ResourceAlreadyExistsException">
+        /// The specified Amazon Web Services resource cannot be created, because an Amazon Web
+        /// Services resource with the same settings already exists.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/CreateFleet">REST API Reference for CreateFleet Operation</seealso>
+        CreateFleetResponse CreateFleet(CreateFleetRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreateFleet operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreateFleet operation on AmazonCodeBuildClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateFleet
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/CreateFleet">REST API Reference for CreateFleet Operation</seealso>
+        IAsyncResult BeginCreateFleet(CreateFleetRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreateFleet operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreateFleet.</param>
+        /// 
+        /// <returns>Returns a  CreateFleetResult from CodeBuild.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/CreateFleet">REST API Reference for CreateFleet Operation</seealso>
+        CreateFleetResponse EndCreateFleet(IAsyncResult asyncResult);
 
         #endregion
         
@@ -522,6 +617,49 @@ namespace Amazon.CodeBuild
         /// <returns>Returns a  DeleteBuildBatchResult from CodeBuild.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/DeleteBuildBatch">REST API Reference for DeleteBuildBatch Operation</seealso>
         DeleteBuildBatchResponse EndDeleteBuildBatch(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  DeleteFleet
+
+
+        /// <summary>
+        /// Deletes a compute fleet. When you delete a compute fleet, its builds are not deleted.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteFleet service method.</param>
+        /// 
+        /// <returns>The response from the DeleteFleet service method, as returned by CodeBuild.</returns>
+        /// <exception cref="Amazon.CodeBuild.Model.InvalidInputException">
+        /// The input value that was provided is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/DeleteFleet">REST API Reference for DeleteFleet Operation</seealso>
+        DeleteFleetResponse DeleteFleet(DeleteFleetRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteFleet operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteFleet operation on AmazonCodeBuildClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteFleet
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/DeleteFleet">REST API Reference for DeleteFleet Operation</seealso>
+        IAsyncResult BeginDeleteFleet(DeleteFleetRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteFleet operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteFleet.</param>
+        /// 
+        /// <returns>Returns a  DeleteFleetResult from CodeBuild.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/DeleteFleet">REST API Reference for DeleteFleet Operation</seealso>
+        DeleteFleetResponse EndDeleteFleet(IAsyncResult asyncResult);
 
         #endregion
         
@@ -980,7 +1118,8 @@ namespace Amazon.CodeBuild
 
         /// <summary>
         /// Imports the source repository credentials for an CodeBuild project that has its source
-        /// code stored in a GitHub, GitHub Enterprise, or Bitbucket repository.
+        /// code stored in a GitHub, GitHub Enterprise, GitLab, GitLab Self Managed, or Bitbucket
+        /// repository.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ImportSourceCredentials service method.</param>
         /// 
@@ -1292,6 +1431,50 @@ namespace Amazon.CodeBuild
 
         #endregion
         
+        #region  ListFleets
+
+
+        /// <summary>
+        /// Gets a list of compute fleet names with each compute fleet name representing a single
+        /// compute fleet.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListFleets service method.</param>
+        /// 
+        /// <returns>The response from the ListFleets service method, as returned by CodeBuild.</returns>
+        /// <exception cref="Amazon.CodeBuild.Model.InvalidInputException">
+        /// The input value that was provided is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/ListFleets">REST API Reference for ListFleets Operation</seealso>
+        ListFleetsResponse ListFleets(ListFleetsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListFleets operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListFleets operation on AmazonCodeBuildClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListFleets
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/ListFleets">REST API Reference for ListFleets Operation</seealso>
+        IAsyncResult BeginListFleets(ListFleetsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListFleets operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListFleets.</param>
+        /// 
+        /// <returns>Returns a  ListFleetsResult from CodeBuild.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/ListFleets">REST API Reference for ListFleets Operation</seealso>
+        ListFleetsResponse EndListFleets(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  ListProjects
 
 
@@ -1426,7 +1609,7 @@ namespace Amazon.CodeBuild
 
 
         /// <summary>
-        /// Returns a list of ARNs for the reports that belong to a <code>ReportGroup</code>.
+        /// Returns a list of ARNs for the reports that belong to a <c>ReportGroup</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListReportsForReportGroup service method.</param>
         /// 
@@ -1560,7 +1743,7 @@ namespace Amazon.CodeBuild
 
 
         /// <summary>
-        /// Returns a list of <code>SourceCredentialsInfo</code> objects.
+        /// Returns a list of <c>SourceCredentialsInfo</c> objects.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListSourceCredentials service method.</param>
         /// 
@@ -1603,8 +1786,7 @@ namespace Amazon.CodeBuild
 
 
         /// <summary>
-        /// Stores a resource policy for the ARN of a <code>Project</code> or <code>ReportGroup</code>
-        /// object.
+        /// Stores a resource policy for the ARN of a <c>Project</c> or <c>ReportGroup</c> object.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutResourcePolicy service method.</param>
         /// 
@@ -1746,7 +1928,16 @@ namespace Amazon.CodeBuild
 
 
         /// <summary>
-        /// Starts running a build.
+        /// Starts running a build with the settings defined in the project. These setting include:
+        /// how to run a build, where to get the source code, which build environment to use,
+        /// which build commands to run, and where to store the build output.
+        /// 
+        ///  
+        /// <para>
+        /// You can also start a build run by overriding some of the build settings in the project.
+        /// The overrides only apply for that specific start build request. The settings in the
+        /// project are unaltered.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartBuild service method.</param>
         /// 
@@ -1930,6 +2121,56 @@ namespace Amazon.CodeBuild
 
         #endregion
         
+        #region  UpdateFleet
+
+
+        /// <summary>
+        /// Updates a compute fleet.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateFleet service method.</param>
+        /// 
+        /// <returns>The response from the UpdateFleet service method, as returned by CodeBuild.</returns>
+        /// <exception cref="Amazon.CodeBuild.Model.AccountLimitExceededException">
+        /// An Amazon Web Services service limit was exceeded for the calling Amazon Web Services
+        /// account.
+        /// </exception>
+        /// <exception cref="Amazon.CodeBuild.Model.InvalidInputException">
+        /// The input value that was provided is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.CodeBuild.Model.ResourceNotFoundException">
+        /// The specified Amazon Web Services resource cannot be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/UpdateFleet">REST API Reference for UpdateFleet Operation</seealso>
+        UpdateFleetResponse UpdateFleet(UpdateFleetRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateFleet operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateFleet operation on AmazonCodeBuildClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateFleet
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/UpdateFleet">REST API Reference for UpdateFleet Operation</seealso>
+        IAsyncResult BeginUpdateFleet(UpdateFleetRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateFleet operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateFleet.</param>
+        /// 
+        /// <returns>Returns a  UpdateFleetResult from CodeBuild.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/UpdateFleet">REST API Reference for UpdateFleet Operation</seealso>
+        UpdateFleetResponse EndUpdateFleet(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  UpdateProject
 
 
@@ -2002,9 +2243,9 @@ namespace Amazon.CodeBuild
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Do not store sensitive values, especially Amazon Web Services access key IDs and secret
-        /// access keys, in environment variables. We recommend that you use an Amazon EC2 Systems
-        /// Manager Parameter Store or Secrets Manager to store sensitive values.
+        /// Do not store sensitive values in environment variables. We recommend that you use
+        /// an Amazon EC2 Systems Manager Parameter Store or Secrets Manager to store sensitive
+        /// values.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2116,7 +2357,7 @@ namespace Amazon.CodeBuild
         /// 
         ///  <note> 
         /// <para>
-        ///  If you use Bitbucket for your repository, <code>rotateSecret</code> is ignored. 
+        ///  If you use Bitbucket for your repository, <c>rotateSecret</c> is ignored. 
         /// </para>
         ///  </note>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.Glue.Model
     /// </summary>
     public partial class GetDevEndpointsResponse : AmazonWebServiceResponse
     {
-        private List<DevEndpoint> _devEndpoints = new List<DevEndpoint>();
+        private List<DevEndpoint> _devEndpoints = AWSConfigs.InitializeCollections ? new List<DevEndpoint>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property DevEndpoints. 
         /// <para>
-        /// A list of <code>DevEndpoint</code> definitions.
+        /// A list of <c>DevEndpoint</c> definitions.
         /// </para>
         /// </summary>
         public List<DevEndpoint> DevEndpoints
@@ -51,14 +52,13 @@ namespace Amazon.Glue.Model
         // Check to see if DevEndpoints property is set
         internal bool IsSetDevEndpoints()
         {
-            return this._devEndpoints != null && this._devEndpoints.Count > 0; 
+            return this._devEndpoints != null && (this._devEndpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A continuation token, if not all <code>DevEndpoint</code> definitions have yet been
-        /// returned.
+        /// A continuation token, if not all <c>DevEndpoint</c> definitions have yet been returned.
         /// </para>
         /// </summary>
         public string NextToken

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmail.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.SimpleEmail.Model
         /// <summary>
         /// Gets and sets the property Scope. 
         /// <para>
-        /// The scope of the StopAction. The only acceptable value is <code>RuleSet</code>.
+        /// The scope of the StopAction. The only acceptable value is <c>RuleSet</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

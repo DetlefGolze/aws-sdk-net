@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MarketplaceCatalog.Model
 {
     /// <summary>
@@ -33,20 +34,21 @@ namespace Amazon.MarketplaceCatalog.Model
     /// </summary>
     public partial class DescribeChangeSetResponse : AmazonWebServiceResponse
     {
-        private List<ChangeSummary> _changeSet = new List<ChangeSummary>();
+        private List<ChangeSummary> _changeSet = AWSConfigs.InitializeCollections ? new List<ChangeSummary>() : null;
         private string _changeSetArn;
         private string _changeSetId;
         private string _changeSetName;
         private string _endTime;
         private FailureCode _failureCode;
         private string _failureDescription;
+        private Intent _intent;
         private string _startTime;
         private ChangeStatus _status;
 
         /// <summary>
         /// Gets and sets the property ChangeSet. 
         /// <para>
-        /// An array of <code>ChangeSummary</code> objects.
+        /// An array of <c>ChangeSummary</c> objects.
         /// </para>
         /// </summary>
         public List<ChangeSummary> ChangeSet
@@ -58,7 +60,7 @@ namespace Amazon.MarketplaceCatalog.Model
         // Check to see if ChangeSet property is set
         internal bool IsSetChangeSet()
         {
-            return this._changeSet != null && this._changeSet.Count > 0; 
+            return this._changeSet != null && (this._changeSet.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -103,8 +105,8 @@ namespace Amazon.MarketplaceCatalog.Model
         /// <summary>
         /// Gets and sets the property ChangeSetName. 
         /// <para>
-        /// The optional name provided in the <code>StartChangeSet</code> request. If you do not
-        /// provide a name, one is set by default.
+        /// The optional name provided in the <c>StartChangeSet</c> request. If you do not provide
+        /// a name, one is set by default.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -144,10 +146,10 @@ namespace Amazon.MarketplaceCatalog.Model
         /// <summary>
         /// Gets and sets the property FailureCode. 
         /// <para>
-        /// Returned if the change set is in <code>FAILED</code> status. Can be either <code>CLIENT_ERROR</code>,
-        /// which means that there are issues with the request (see the <code>ErrorDetailList</code>),
-        /// or <code>SERVER_FAULT</code>, which means that there is a problem in the system, and
-        /// you should retry your request.
+        /// Returned if the change set is in <c>FAILED</c> status. Can be either <c>CLIENT_ERROR</c>,
+        /// which means that there are issues with the request (see the <c>ErrorDetailList</c>),
+        /// or <c>SERVER_FAULT</c>, which means that there is a problem in the system, and you
+        /// should retry your request.
         /// </para>
         /// </summary>
         public FailureCode FailureCode
@@ -180,6 +182,25 @@ namespace Amazon.MarketplaceCatalog.Model
         internal bool IsSetFailureDescription()
         {
             return this._failureDescription != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Intent. 
+        /// <para>
+        /// The optional intent provided in the <c>StartChangeSet</c> request. If you do not provide
+        /// an intent, <c>APPLY</c> is set by default.
+        /// </para>
+        /// </summary>
+        public Intent Intent
+        {
+            get { return this._intent; }
+            set { this._intent = value; }
+        }
+
+        // Check to see if Intent property is set
+        internal bool IsSetIntent()
+        {
+            return this._intent != null;
         }
 
         /// <summary>

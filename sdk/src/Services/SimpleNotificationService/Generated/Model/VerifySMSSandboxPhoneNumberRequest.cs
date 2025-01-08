@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
@@ -53,7 +54,7 @@ namespace Amazon.SimpleNotificationService.Model
         /// <summary>
         /// Gets and sets the property OneTimePassword. 
         /// <para>
-        /// The OTP sent to the destination number from the <code>CreateSMSSandBoxPhoneNumber</code>
+        /// The OTP sent to the destination number from the <c>CreateSMSSandBoxPhoneNumber</c>
         /// call.
         /// </para>
         /// </summary>
@@ -76,7 +77,7 @@ namespace Amazon.SimpleNotificationService.Model
         /// The destination phone number to verify.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=20)]
+        [AWSProperty(Required=true, Sensitive=true, Max=20)]
         public string PhoneNumber
         {
             get { return this._phoneNumber; }

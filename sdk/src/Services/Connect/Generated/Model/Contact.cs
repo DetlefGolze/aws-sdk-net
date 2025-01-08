@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -33,22 +34,61 @@ namespace Amazon.Connect.Model
     /// </summary>
     public partial class Contact
     {
+        private AdditionalEmailRecipients _additionalEmailRecipients;
         private AgentInfo _agentInfo;
+        private AnsweringMachineDetectionStatus _answeringMachineDetectionStatus;
         private string _arn;
+        private Campaign _campaign;
         private Channel _channel;
+        private DateTime? _connectedToSystemTimestamp;
+        private string _contactAssociationId;
+        private Customer _customer;
+        private EndpointInfo _customerEndpoint;
+        private string _customerId;
+        private CustomerVoiceActivity _customerVoiceActivity;
         private string _description;
+        private DisconnectDetails _disconnectDetails;
         private DateTime? _disconnectTimestamp;
         private string _id;
         private string _initialContactId;
         private ContactInitiationMethod _initiationMethod;
         private DateTime? _initiationTimestamp;
+        private DateTime? _lastPausedTimestamp;
+        private DateTime? _lastResumedTimestamp;
         private DateTime? _lastUpdateTimestamp;
         private string _name;
         private string _previousContactId;
+        private QualityMetrics _qualityMetrics;
         private QueueInfo _queueInfo;
+        private long? _queuePriority;
+        private int? _queueTimeAdjustmentSeconds;
         private string _relatedContactId;
+        private RoutingCriteria _routingCriteria;
         private DateTime? _scheduledTimestamp;
+        private Dictionary<string, SegmentAttributeValue> _segmentAttributes = AWSConfigs.InitializeCollections ? new Dictionary<string, SegmentAttributeValue>() : null;
+        private EndpointInfo _systemEndpoint;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private int? _totalPauseCount;
+        private int? _totalPauseDurationInSeconds;
         private WisdomInfo _wisdomInfo;
+
+        /// <summary>
+        /// Gets and sets the property AdditionalEmailRecipients. 
+        /// <para>
+        /// List of additional email addresses for an email contact.
+        /// </para>
+        /// </summary>
+        public AdditionalEmailRecipients AdditionalEmailRecipients
+        {
+            get { return this._additionalEmailRecipients; }
+            set { this._additionalEmailRecipients = value; }
+        }
+
+        // Check to see if AdditionalEmailRecipients property is set
+        internal bool IsSetAdditionalEmailRecipients()
+        {
+            return this._additionalEmailRecipients != null;
+        }
 
         /// <summary>
         /// Gets and sets the property AgentInfo. 
@@ -66,6 +106,25 @@ namespace Amazon.Connect.Model
         internal bool IsSetAgentInfo()
         {
             return this._agentInfo != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property AnsweringMachineDetectionStatus. 
+        /// <para>
+        /// Indicates how an <a href="https://docs.aws.amazon.com/connect/latest/adminguide/how-to-create-campaigns.html">outbound
+        /// campaign</a> call is actually disposed if the contact is connected to Amazon Connect.
+        /// </para>
+        /// </summary>
+        public AnsweringMachineDetectionStatus AnsweringMachineDetectionStatus
+        {
+            get { return this._answeringMachineDetectionStatus; }
+            set { this._answeringMachineDetectionStatus = value; }
+        }
+
+        // Check to see if AnsweringMachineDetectionStatus property is set
+        internal bool IsSetAnsweringMachineDetectionStatus()
+        {
+            return this._answeringMachineDetectionStatus != null;
         }
 
         /// <summary>
@@ -87,6 +146,21 @@ namespace Amazon.Connect.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Campaign.
+        /// </summary>
+        public Campaign Campaign
+        {
+            get { return this._campaign; }
+            set { this._campaign = value; }
+        }
+
+        // Check to see if Campaign property is set
+        internal bool IsSetCampaign()
+        {
+            return this._campaign != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Channel. 
         /// <para>
         /// How the contact reached your contact center.
@@ -105,12 +179,127 @@ namespace Amazon.Connect.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ConnectedToSystemTimestamp. 
+        /// <para>
+        /// The timestamp when customer endpoint connected to Amazon Connect.
+        /// </para>
+        /// </summary>
+        public DateTime ConnectedToSystemTimestamp
+        {
+            get { return this._connectedToSystemTimestamp.GetValueOrDefault(); }
+            set { this._connectedToSystemTimestamp = value; }
+        }
+
+        // Check to see if ConnectedToSystemTimestamp property is set
+        internal bool IsSetConnectedToSystemTimestamp()
+        {
+            return this._connectedToSystemTimestamp.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ContactAssociationId. 
+        /// <para>
+        /// This is the root contactId which is used as a unique identifier for all subsequent
+        /// contacts in a contact tree.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=256)]
+        public string ContactAssociationId
+        {
+            get { return this._contactAssociationId; }
+            set { this._contactAssociationId = value; }
+        }
+
+        // Check to see if ContactAssociationId property is set
+        internal bool IsSetContactAssociationId()
+        {
+            return this._contactAssociationId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Customer. 
+        /// <para>
+        /// Information about the Customer on the contact.
+        /// </para>
+        /// </summary>
+        public Customer Customer
+        {
+            get { return this._customer; }
+            set { this._customer = value; }
+        }
+
+        // Check to see if Customer property is set
+        internal bool IsSetCustomer()
+        {
+            return this._customer != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CustomerEndpoint. 
+        /// <para>
+        /// The customer or external third party participant endpoint.
+        /// </para>
+        /// </summary>
+        public EndpointInfo CustomerEndpoint
+        {
+            get { return this._customerEndpoint; }
+            set { this._customerEndpoint = value; }
+        }
+
+        // Check to see if CustomerEndpoint property is set
+        internal bool IsSetCustomerEndpoint()
+        {
+            return this._customerEndpoint != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CustomerId. 
+        /// <para>
+        /// The customer's identification number. For example, the <c>CustomerId</c> may be a
+        /// customer number from your CRM. You can create a Lambda function to pull the unique
+        /// customer ID of the caller from your CRM system. If you enable Amazon Connect Voice
+        /// ID capability, this attribute is populated with the <c>CustomerSpeakerId</c> of the
+        /// caller.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=128)]
+        public string CustomerId
+        {
+            get { return this._customerId; }
+            set { this._customerId = value; }
+        }
+
+        // Check to see if CustomerId property is set
+        internal bool IsSetCustomerId()
+        {
+            return this._customerId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CustomerVoiceActivity. 
+        /// <para>
+        /// Information about customer’s voice activity.
+        /// </para>
+        /// </summary>
+        public CustomerVoiceActivity CustomerVoiceActivity
+        {
+            get { return this._customerVoiceActivity; }
+            set { this._customerVoiceActivity = value; }
+        }
+
+        // Check to see if CustomerVoiceActivity property is set
+        internal bool IsSetCustomerVoiceActivity()
+        {
+            return this._customerVoiceActivity != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
         /// The description of the contact.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=4096)]
+        [AWSProperty(Sensitive=true, Min=0, Max=4096)]
         public string Description
         {
             get { return this._description; }
@@ -121,6 +310,24 @@ namespace Amazon.Connect.Model
         internal bool IsSetDescription()
         {
             return this._description != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DisconnectDetails. 
+        /// <para>
+        /// Information about the call disconnect experience.
+        /// </para>
+        /// </summary>
+        public DisconnectDetails DisconnectDetails
+        {
+            get { return this._disconnectDetails; }
+            set { this._disconnectDetails = value; }
+        }
+
+        // Check to see if DisconnectDetails property is set
+        internal bool IsSetDisconnectDetails()
+        {
+            return this._disconnectDetails != null;
         }
 
         /// <summary>
@@ -200,13 +407,13 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property InitiationTimestamp. 
         /// <para>
-        /// The date and time this contact was initiated, in UTC time. For <code>INBOUND</code>,
-        /// this is when the contact arrived. For <code>OUTBOUND</code>, this is when the agent
-        /// began dialing. For <code>CALLBACK</code>, this is when the callback contact was created.
-        /// For <code>TRANSFER</code> and <code>QUEUE_TRANSFER</code>, this is when the transfer
-        /// was initiated. For <code>API</code>, this is when the request arrived. For <code>EXTERNAL_OUTBOUND</code>,
-        /// this is when the agent started dialing the external participant. For <code>MONITOR</code>,
-        /// this is when the supervisor started listening to a contact.
+        /// The date and time this contact was initiated, in UTC time. For <c>INBOUND</c>, this
+        /// is when the contact arrived. For <c>OUTBOUND</c>, this is when the agent began dialing.
+        /// For <c>CALLBACK</c>, this is when the callback contact was created. For <c>TRANSFER</c>
+        /// and <c>QUEUE_TRANSFER</c>, this is when the transfer was initiated. For <c>API</c>,
+        /// this is when the request arrived. For <c>EXTERNAL_OUTBOUND</c>, this is when the agent
+        /// started dialing the external participant. For <c>MONITOR</c>, this is when the supervisor
+        /// started listening to a contact.
         /// </para>
         /// </summary>
         public DateTime InitiationTimestamp
@@ -219,6 +426,42 @@ namespace Amazon.Connect.Model
         internal bool IsSetInitiationTimestamp()
         {
             return this._initiationTimestamp.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property LastPausedTimestamp. 
+        /// <para>
+        /// The timestamp when the contact was last paused.
+        /// </para>
+        /// </summary>
+        public DateTime LastPausedTimestamp
+        {
+            get { return this._lastPausedTimestamp.GetValueOrDefault(); }
+            set { this._lastPausedTimestamp = value; }
+        }
+
+        // Check to see if LastPausedTimestamp property is set
+        internal bool IsSetLastPausedTimestamp()
+        {
+            return this._lastPausedTimestamp.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property LastResumedTimestamp. 
+        /// <para>
+        /// The timestamp when the contact was last resumed.
+        /// </para>
+        /// </summary>
+        public DateTime LastResumedTimestamp
+        {
+            get { return this._lastResumedTimestamp.GetValueOrDefault(); }
+            set { this._lastResumedTimestamp = value; }
+        }
+
+        // Check to see if LastResumedTimestamp property is set
+        internal bool IsSetLastResumedTimestamp()
+        {
+            return this._lastResumedTimestamp.HasValue; 
         }
 
         /// <summary>
@@ -245,7 +488,7 @@ namespace Amazon.Connect.Model
         /// The name of the contact.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=512)]
+        [AWSProperty(Sensitive=true, Min=0, Max=1024)]
         public string Name
         {
             get { return this._name; }
@@ -278,6 +521,24 @@ namespace Amazon.Connect.Model
         }
 
         /// <summary>
+        /// Gets and sets the property QualityMetrics. 
+        /// <para>
+        /// Information about the quality of the participant's media connection.
+        /// </para>
+        /// </summary>
+        public QualityMetrics QualityMetrics
+        {
+            get { return this._qualityMetrics; }
+            set { this._qualityMetrics = value; }
+        }
+
+        // Check to see if QualityMetrics property is set
+        internal bool IsSetQualityMetrics()
+        {
+            return this._qualityMetrics != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property QueueInfo. 
         /// <para>
         /// If this contact was queued, this contains information about the queue. 
@@ -293,6 +554,49 @@ namespace Amazon.Connect.Model
         internal bool IsSetQueueInfo()
         {
             return this._queueInfo != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property QueuePriority. 
+        /// <para>
+        /// An integer that represents the queue priority to be applied to the contact (lower
+        /// priorities are routed preferentially). Cannot be specified if the QueueTimeAdjustmentSeconds
+        /// is specified. Must be statically defined, must be larger than zero, and a valid integer
+        /// value. Default Value is 5.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=9223372036854775807)]
+        public long QueuePriority
+        {
+            get { return this._queuePriority.GetValueOrDefault(); }
+            set { this._queuePriority = value; }
+        }
+
+        // Check to see if QueuePriority property is set
+        internal bool IsSetQueuePriority()
+        {
+            return this._queuePriority.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property QueueTimeAdjustmentSeconds. 
+        /// <para>
+        /// An integer that represents the queue time adjust to be applied to the contact, in
+        /// seconds (longer / larger queue time are routed preferentially). Cannot be specified
+        /// if the QueuePriority is specified. Must be statically defined and a valid integer
+        /// value.
+        /// </para>
+        /// </summary>
+        public int QueueTimeAdjustmentSeconds
+        {
+            get { return this._queueTimeAdjustmentSeconds.GetValueOrDefault(); }
+            set { this._queueTimeAdjustmentSeconds = value; }
+        }
+
+        // Check to see if QueueTimeAdjustmentSeconds property is set
+        internal bool IsSetQueueTimeAdjustmentSeconds()
+        {
+            return this._queueTimeAdjustmentSeconds.HasValue; 
         }
 
         /// <summary>
@@ -316,6 +620,24 @@ namespace Amazon.Connect.Model
         }
 
         /// <summary>
+        /// Gets and sets the property RoutingCriteria. 
+        /// <para>
+        /// Latest routing criteria on the contact.
+        /// </para>
+        /// </summary>
+        public RoutingCriteria RoutingCriteria
+        {
+            get { return this._routingCriteria; }
+            set { this._routingCriteria = value; }
+        }
+
+        // Check to see if RoutingCriteria property is set
+        internal bool IsSetRoutingCriteria()
+        {
+            return this._routingCriteria != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ScheduledTimestamp. 
         /// <para>
         /// The timestamp, in Unix epoch time format, at which to start running the inbound flow.
@@ -332,6 +654,108 @@ namespace Amazon.Connect.Model
         internal bool IsSetScheduledTimestamp()
         {
             return this._scheduledTimestamp.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SegmentAttributes. 
+        /// <para>
+        /// A set of system defined key-value pairs stored on individual contact segments using
+        /// an attribute map. The attributes are standard Amazon Connect attributes and can be
+        /// accessed in flows. Attribute keys can include only alphanumeric, -, and _ characters.
+        /// This field can be used to show channel subtype. For example, <c>connect:Guide</c>
+        /// or <c>connect:SMS</c>.
+        /// </para>
+        /// </summary>
+        public Dictionary<string, SegmentAttributeValue> SegmentAttributes
+        {
+            get { return this._segmentAttributes; }
+            set { this._segmentAttributes = value; }
+        }
+
+        // Check to see if SegmentAttributes property is set
+        internal bool IsSetSegmentAttributes()
+        {
+            return this._segmentAttributes != null && (this._segmentAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SystemEndpoint. 
+        /// <para>
+        /// The system endpoint. For <c>INBOUND</c>, this is the phone number or email address
+        /// that the customer dialed. For <c>OUTBOUND</c> and <c>EXTERNAL_OUTBOUND</c>, this is
+        /// the outbound caller ID number assigned to the outbound queue that is used to dial
+        /// the customer. For callback, this shows up as Softphone for calls handled by agents
+        /// with softphone.
+        /// </para>
+        /// </summary>
+        public EndpointInfo SystemEndpoint
+        {
+            get { return this._systemEndpoint; }
+            set { this._systemEndpoint = value; }
+        }
+
+        // Check to see if SystemEndpoint property is set
+        internal bool IsSetSystemEndpoint()
+        {
+            return this._systemEndpoint != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Tags. 
+        /// <para>
+        /// Tags associated with the contact. This contains both Amazon Web Services generated
+        /// and user-defined tags.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=6)]
+        public Dictionary<string, string> Tags
+        {
+            get { return this._tags; }
+            set { this._tags = value; }
+        }
+
+        // Check to see if Tags property is set
+        internal bool IsSetTags()
+        {
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property TotalPauseCount. 
+        /// <para>
+        /// Total pause count for a contact.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=10)]
+        public int TotalPauseCount
+        {
+            get { return this._totalPauseCount.GetValueOrDefault(); }
+            set { this._totalPauseCount = value; }
+        }
+
+        // Check to see if TotalPauseCount property is set
+        internal bool IsSetTotalPauseCount()
+        {
+            return this._totalPauseCount.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property TotalPauseDurationInSeconds. 
+        /// <para>
+        /// Total pause duration for a contact in seconds.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0)]
+        public int TotalPauseDurationInSeconds
+        {
+            get { return this._totalPauseDurationInSeconds.GetValueOrDefault(); }
+            set { this._totalPauseDurationInSeconds = value; }
+        }
+
+        // Check to see if TotalPauseDurationInSeconds property is set
+        internal bool IsSetTotalPauseDurationInSeconds()
+        {
+            return this._totalPauseDurationInSeconds.HasValue; 
         }
 
         /// <summary>

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MainframeModernization.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.MainframeModernization.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public BatchJobIdentifier Unmarshall(JsonUnmarshallerContext context)
         {
+            BatchJobIdentifier unmarshalledObject = new BatchJobIdentifier();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            BatchJobIdentifier unmarshalledObject = new BatchJobIdentifier();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -70,6 +72,18 @@ namespace Amazon.MainframeModernization.Model.Internal.MarshallTransformations
                     unmarshalledObject.FileBatchJobIdentifier = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("restartBatchJobIdentifier", targetDepth))
+                {
+                    var unmarshaller = RestartBatchJobIdentifierUnmarshaller.Instance;
+                    unmarshalledObject.RestartBatchJobIdentifier = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("s3BatchJobIdentifier", targetDepth))
+                {
+                    var unmarshaller = S3BatchJobIdentifierUnmarshaller.Instance;
+                    unmarshalledObject.S3BatchJobIdentifier = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("scriptBatchJobIdentifier", targetDepth))
                 {
                     var unmarshaller = ScriptBatchJobIdentifierUnmarshaller.Instance;
@@ -77,7 +91,6 @@ namespace Amazon.MainframeModernization.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

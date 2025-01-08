@@ -26,15 +26,17 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.MedicalImaging.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.MedicalImaging
 {
     /// <summary>
-    /// Interface for accessing MedicalImaging
+    /// <para>Interface for accessing MedicalImaging</para>
     ///
-    /// This is the <i>AWS HealthImaging API Reference</i>. AWS HealthImaging is an AWS service
-    /// for storing, accessing, and analyzing medical images. For an introduction to the service,
-    /// see the <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide"> <i>AWS
-    /// HealthImaging Developer Guide</i> </a>.
+    /// This is the <i>AWS HealthImaging API Reference</i>. AWS HealthImaging is a HIPAA eligible
+    /// service that empowers healthcare providers, life science organizations, and their
+    /// software partners to store, analyze, and share medical images in the cloud at petabyte
+    /// scale. For an introduction to the service, see the <a href="https://docs.aws.amazon.com/healthimaging/latest/devguide/what-is.html">
+    /// <i>AWS HealthImaging Developer Guide</i> </a>.
     /// 
     ///  <note> 
     /// <para>
@@ -43,18 +45,12 @@ namespace Amazon.MedicalImaging
     /// management. For more information, see <a href="http://aws.amazon.com/developer/tools">Tools
     /// to build on AWS</a>.
     /// </para>
-    ///  
-    /// <para>
-    /// For information about using AWS HealthImaging API actions in one of the language-specific
-    /// AWS SDKs, refer to the <i>See Also</i> link at the end of each section that describes
-    /// an API action or data type.
-    /// </para>
     ///  </note> 
     /// <para>
     /// The following sections list AWS HealthImaging API actions categorized according to
     /// functionality. Links are provided to actions within this Reference, along with links
-    /// back to corresponding sections in the <i>AWS HealthImaging Developer Guide</i> so
-    /// you can view console procedures and CLI/SDK code examples.
+    /// back to corresponding sections in the <i>AWS HealthImaging Developer Guide</i> where
+    /// you can view tested code examples.
     /// </para>
     ///  
     /// <para>
@@ -62,26 +58,26 @@ namespace Amazon.MedicalImaging
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/medical-imaging/latest/APIReference/API_CreateDatastore.html">CreateDatastore</a>
-    /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/create-data-store.html">Creating
+    ///  <a href="https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_CreateDatastore.html">CreateDatastore</a>
+    /// – See <a href="https://docs.aws.amazon.com/healthimaging/latest/devguide/create-data-store.html">Creating
     /// a data store</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/medical-imaging/latest/APIReference/API_GetDatastore.html">GetDatastore</a>
-    /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/get-data-store.html">Getting
+    ///  <a href="https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_GetDatastore.html">GetDatastore</a>
+    /// – See <a href="https://docs.aws.amazon.com/healthimaging/latest/devguide/get-data-store.html">Getting
     /// data store properties</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/medical-imaging/latest/APIReference/API_ListDatastores.html">ListDatastores</a>
-    /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/list-data-stores.html">Listing
+    ///  <a href="https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_ListDatastores.html">ListDatastores</a>
+    /// – See <a href="https://docs.aws.amazon.com/healthimaging/latest/devguide/list-data-stores.html">Listing
     /// data stores</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/medical-imaging/latest/APIReference/API_DeleteDatastore.html">DeleteDatastore</a>
-    /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/delete-data-store.html">Deleting
+    ///  <a href="https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_DeleteDatastore.html">DeleteDatastore</a>
+    /// – See <a href="https://docs.aws.amazon.com/healthimaging/latest/devguide/delete-data-store.html">Deleting
     /// a data store</a>.
     /// </para>
     ///  </li> </ul> 
@@ -90,20 +86,20 @@ namespace Amazon.MedicalImaging
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/medical-imaging/latest/APIReference/API_StartDICOMImportJob.html">StartDICOMImportJob</a>
-    /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/start-dicom-import-job.html">Starting
+    ///  <a href="https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_StartDICOMImportJob.html">StartDICOMImportJob</a>
+    /// – See <a href="https://docs.aws.amazon.com/healthimaging/latest/devguide/start-dicom-import-job.html">Starting
     /// an import job</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/medical-imaging/latest/APIReference/API_GetDICOMImportJob.html">GetDICOMImportJob</a>
-    /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/get-dicom-import-job.html">Getting
+    ///  <a href="https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_GetDICOMImportJob.html">GetDICOMImportJob</a>
+    /// – See <a href="https://docs.aws.amazon.com/healthimaging/latest/devguide/get-dicom-import-job.html">Getting
     /// import job properties</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/medical-imaging/latest/APIReference/API_ListDICOMImportJobs.html">ListDICOMImportJobs</a>
-    /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/list-dicom-import-jobs.html">Listing
+    ///  <a href="https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_ListDICOMImportJobs.html">ListDICOMImportJobs</a>
+    /// – See <a href="https://docs.aws.amazon.com/healthimaging/latest/devguide/list-dicom-import-jobs.html">Listing
     /// import jobs</a>.
     /// </para>
     ///  </li> </ul> 
@@ -112,26 +108,26 @@ namespace Amazon.MedicalImaging
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/medical-imaging/latest/APIReference/API_SearchImageSets.html">SearchImageSets</a>
-    /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/search-image-sets.html">Searching
+    ///  <a href="https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_SearchImageSets.html">SearchImageSets</a>
+    /// – See <a href="https://docs.aws.amazon.com/healthimaging/latest/devguide/search-image-sets.html">Searching
     /// image sets</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/medical-imaging/latest/APIReference/API_GetImageSet.html">GetImageSet</a>
-    /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/get-image-set-properties.html">Getting
+    ///  <a href="https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_GetImageSet.html">GetImageSet</a>
+    /// – See <a href="https://docs.aws.amazon.com/healthimaging/latest/devguide/get-image-set-properties.html">Getting
     /// image set properties</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/medical-imaging/latest/APIReference/API_GetImageSetMetadata.html">GetImageSetMetadata</a>
-    /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/get-image-set-metadata.html">Getting
+    ///  <a href="https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_GetImageSetMetadata.html">GetImageSetMetadata</a>
+    /// – See <a href="https://docs.aws.amazon.com/healthimaging/latest/devguide/get-image-set-metadata.html">Getting
     /// image set metadata</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/medical-imaging/latest/APIReference/API_GetImageFrame.html">GetImageFrame</a>
-    /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/get-image-frame.html">Getting
+    ///  <a href="https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_GetImageFrame.html">GetImageFrame</a>
+    /// – See <a href="https://docs.aws.amazon.com/healthimaging/latest/devguide/get-image-frame.html">Getting
     /// image set pixel data</a>.
     /// </para>
     ///  </li> </ul> 
@@ -140,26 +136,26 @@ namespace Amazon.MedicalImaging
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/medical-imaging/latest/APIReference/API_ListImageSetVersions.html">ListImageSetVersions</a>
-    /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/list-image-set-versions.html">Listing
+    ///  <a href="https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_ListImageSetVersions.html">ListImageSetVersions</a>
+    /// – See <a href="https://docs.aws.amazon.com/healthimaging/latest/devguide/list-image-set-versions.html">Listing
     /// image set versions</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/medical-imaging/latest/APIReference/API_UpdateImageSetMetadata.html">UpdateImageSetMetadata</a>
-    /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/update-image-set-metadata.html">Updating
+    ///  <a href="https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_UpdateImageSetMetadata.html">UpdateImageSetMetadata</a>
+    /// – See <a href="https://docs.aws.amazon.com/healthimaging/latest/devguide/update-image-set-metadata.html">Updating
     /// image set metadata</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/medical-imaging/latest/APIReference/API_CopyImageSet.html">CopyImageSet</a>
-    /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/copy-image-set.html">Copying
+    ///  <a href="https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_CopyImageSet.html">CopyImageSet</a>
+    /// – See <a href="https://docs.aws.amazon.com/healthimaging/latest/devguide/copy-image-set.html">Copying
     /// an image set</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/medical-imaging/latest/APIReference/API_DeleteImageSet.html">DeleteImageSet</a>
-    /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/delete-image-set.html">Deleting
+    ///  <a href="https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_DeleteImageSet.html">DeleteImageSet</a>
+    /// – See <a href="https://docs.aws.amazon.com/healthimaging/latest/devguide/delete-image-set.html">Deleting
     /// an image set</a>.
     /// </para>
     ///  </li> </ul> 
@@ -168,24 +164,21 @@ namespace Amazon.MedicalImaging
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/medical-imaging/latest/APIReference/API_TagResource.html">TagResource</a>
-    /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/tag-list-untag-data-store.html">Tagging
-    /// a data store</a> and <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/tag-list-untag-image-set.html">Tagging
-    /// an image set</a>.
+    ///  <a href="https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_TagResource.html">TagResource</a>
+    /// – See <a href="https://docs.aws.amazon.com/healthimaging/latest/devguide/tag-resource.html">Tagging
+    /// a resource</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/medical-imaging/latest/APIReference/API_ListTagsForResource.html">ListTagsForResource</a>
-    /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/tag-list-untag-data-store.html">Tagging
-    /// a data store</a> and <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/tag-list-untag-image-set.html">Tagging
-    /// an image set</a>.
+    ///  <a href="https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_ListTagsForResource.html">ListTagsForResource</a>
+    /// – See <a href="https://docs.aws.amazon.com/healthimaging/latest/devguide/list-tag-resource.html">Listing
+    /// tags for a resource</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/medical-imaging/latest/APIReference/API_UntagResource.html">UntagResource</a>
-    /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/tag-list-untag-data-store.html">Tagging
-    /// a data store</a> and <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/tag-list-untag-image-set.html">Tagging
-    /// an image set</a>.
+    ///  <a href="https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_UntagResource.html">UntagResource</a>
+    /// – See <a href="https://docs.aws.amazon.com/healthimaging/latest/devguide/untag-resource.html">Untagging
+    /// a resource</a>.
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -230,7 +223,7 @@ namespace Amazon.MedicalImaging
         /// The request was denied due to throttling.
         /// </exception>
         /// <exception cref="Amazon.MedicalImaging.Model.ValidationException">
-        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// The input fails to satisfy the constraints set by the service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medical-imaging-2023-07-19/CopyImageSet">REST API Reference for CopyImageSet Operation</seealso>
         Task<CopyImageSetResponse> CopyImageSetAsync(CopyImageSetRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -266,7 +259,7 @@ namespace Amazon.MedicalImaging
         /// The request was denied due to throttling.
         /// </exception>
         /// <exception cref="Amazon.MedicalImaging.Model.ValidationException">
-        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// The input fails to satisfy the constraints set by the service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medical-imaging-2023-07-19/CreateDatastore">REST API Reference for CreateDatastore Operation</seealso>
         Task<CreateDatastoreResponse> CreateDatastoreAsync(CreateDatastoreRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -308,7 +301,7 @@ namespace Amazon.MedicalImaging
         /// The request was denied due to throttling.
         /// </exception>
         /// <exception cref="Amazon.MedicalImaging.Model.ValidationException">
-        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// The input fails to satisfy the constraints set by the service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medical-imaging-2023-07-19/DeleteDatastore">REST API Reference for DeleteDatastore Operation</seealso>
         Task<DeleteDatastoreResponse> DeleteDatastoreAsync(DeleteDatastoreRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -344,7 +337,7 @@ namespace Amazon.MedicalImaging
         /// The request was denied due to throttling.
         /// </exception>
         /// <exception cref="Amazon.MedicalImaging.Model.ValidationException">
-        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// The input fails to satisfy the constraints set by the service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medical-imaging-2023-07-19/DeleteImageSet">REST API Reference for DeleteImageSet Operation</seealso>
         Task<DeleteImageSetResponse> DeleteImageSetAsync(DeleteImageSetRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -377,7 +370,7 @@ namespace Amazon.MedicalImaging
         /// The request was denied due to throttling.
         /// </exception>
         /// <exception cref="Amazon.MedicalImaging.Model.ValidationException">
-        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// The input fails to satisfy the constraints set by the service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medical-imaging-2023-07-19/GetDatastore">REST API Reference for GetDatastore Operation</seealso>
         Task<GetDatastoreResponse> GetDatastoreAsync(GetDatastoreRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -390,6 +383,16 @@ namespace Amazon.MedicalImaging
 
         /// <summary>
         /// Get the import job properties to learn more about the job or job progress.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// The <c>jobStatus</c> refers to the execution of the import job. Therefore, an import
+        /// job can return a <c>jobStatus</c> as <c>COMPLETED</c> even if validation issues are
+        /// discovered during the import process. If a <c>jobStatus</c> returns as <c>COMPLETED</c>,
+        /// we still recommend you review the output manifests written to S3, as they provide
+        /// details on the success or failure of individual P10 object imports.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetDICOMImportJob service method.</param>
         /// <param name="cancellationToken">
@@ -413,7 +416,7 @@ namespace Amazon.MedicalImaging
         /// The request was denied due to throttling.
         /// </exception>
         /// <exception cref="Amazon.MedicalImaging.Model.ValidationException">
-        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// The input fails to satisfy the constraints set by the service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medical-imaging-2023-07-19/GetDICOMImportJob">REST API Reference for GetDICOMImportJob Operation</seealso>
         Task<GetDICOMImportJobResponse> GetDICOMImportJobAsync(GetDICOMImportJobRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -449,7 +452,7 @@ namespace Amazon.MedicalImaging
         /// The request was denied due to throttling.
         /// </exception>
         /// <exception cref="Amazon.MedicalImaging.Model.ValidationException">
-        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// The input fails to satisfy the constraints set by the service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medical-imaging-2023-07-19/GetImageFrame">REST API Reference for GetImageFrame Operation</seealso>
         Task<GetImageFrameResponse> GetImageFrameAsync(GetImageFrameRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -485,7 +488,7 @@ namespace Amazon.MedicalImaging
         /// The request was denied due to throttling.
         /// </exception>
         /// <exception cref="Amazon.MedicalImaging.Model.ValidationException">
-        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// The input fails to satisfy the constraints set by the service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medical-imaging-2023-07-19/GetImageSet">REST API Reference for GetImageSet Operation</seealso>
         Task<GetImageSetResponse> GetImageSetAsync(GetImageSetRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -521,7 +524,7 @@ namespace Amazon.MedicalImaging
         /// The request was denied due to throttling.
         /// </exception>
         /// <exception cref="Amazon.MedicalImaging.Model.ValidationException">
-        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// The input fails to satisfy the constraints set by the service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medical-imaging-2023-07-19/GetImageSetMetadata">REST API Reference for GetImageSetMetadata Operation</seealso>
         Task<GetImageSetMetadataResponse> GetImageSetMetadataAsync(GetImageSetMetadataRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -533,7 +536,7 @@ namespace Amazon.MedicalImaging
 
 
         /// <summary>
-        /// List data stores created by this AWS account.
+        /// List data stores.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListDatastores service method.</param>
         /// <param name="cancellationToken">
@@ -551,7 +554,7 @@ namespace Amazon.MedicalImaging
         /// The request was denied due to throttling.
         /// </exception>
         /// <exception cref="Amazon.MedicalImaging.Model.ValidationException">
-        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// The input fails to satisfy the constraints set by the service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medical-imaging-2023-07-19/ListDatastores">REST API Reference for ListDatastores Operation</seealso>
         Task<ListDatastoresResponse> ListDatastoresAsync(ListDatastoresRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -563,7 +566,7 @@ namespace Amazon.MedicalImaging
 
 
         /// <summary>
-        /// List import jobs created by this AWS account for a specific data store.
+        /// List import jobs created for a specific data store.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListDICOMImportJobs service method.</param>
         /// <param name="cancellationToken">
@@ -587,7 +590,7 @@ namespace Amazon.MedicalImaging
         /// The request was denied due to throttling.
         /// </exception>
         /// <exception cref="Amazon.MedicalImaging.Model.ValidationException">
-        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// The input fails to satisfy the constraints set by the service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medical-imaging-2023-07-19/ListDICOMImportJobs">REST API Reference for ListDICOMImportJobs Operation</seealso>
         Task<ListDICOMImportJobsResponse> ListDICOMImportJobsAsync(ListDICOMImportJobsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -623,7 +626,7 @@ namespace Amazon.MedicalImaging
         /// The request was denied due to throttling.
         /// </exception>
         /// <exception cref="Amazon.MedicalImaging.Model.ValidationException">
-        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// The input fails to satisfy the constraints set by the service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medical-imaging-2023-07-19/ListImageSetVersions">REST API Reference for ListImageSetVersions Operation</seealso>
         Task<ListImageSetVersionsResponse> ListImageSetVersionsAsync(ListImageSetVersionsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -656,7 +659,7 @@ namespace Amazon.MedicalImaging
         /// The request was denied due to throttling.
         /// </exception>
         /// <exception cref="Amazon.MedicalImaging.Model.ValidationException">
-        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// The input fails to satisfy the constraints set by the service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medical-imaging-2023-07-19/ListTagsForResource">REST API Reference for ListTagsForResource Operation</seealso>
         Task<ListTagsForResourceResponse> ListTagsForResourceAsync(ListTagsForResourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -669,6 +672,19 @@ namespace Amazon.MedicalImaging
 
         /// <summary>
         /// Search image sets based on defined input attributes.
+        /// 
+        ///  <note> 
+        /// <para>
+        ///  <c>SearchImageSets</c> accepts a single search query parameter and returns a paginated
+        /// response of all image sets that have the matching criteria. All date range queries
+        /// must be input as <c>(lowerBound, upperBound)</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// By default, <c>SearchImageSets</c> uses the <c>updatedAt</c> field for sorting in
+        /// descending order from newest to oldest.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the SearchImageSets service method.</param>
         /// <param name="cancellationToken">
@@ -692,7 +708,7 @@ namespace Amazon.MedicalImaging
         /// The request was denied due to throttling.
         /// </exception>
         /// <exception cref="Amazon.MedicalImaging.Model.ValidationException">
-        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// The input fails to satisfy the constraints set by the service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medical-imaging-2023-07-19/SearchImageSets">REST API Reference for SearchImageSets Operation</seealso>
         Task<SearchImageSetsResponse> SearchImageSetsAsync(SearchImageSetsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -704,9 +720,9 @@ namespace Amazon.MedicalImaging
 
 
         /// <summary>
-        /// Start importing bulk data into an <code>ACTIVE</code> data store. The import job imports
-        /// DICOM P10 files found in the S3 prefix specified by the <code>inputS3Uri</code> parameter.
-        /// The import job stores processing results in the file specified by the <code>outputS3Uri</code>
+        /// Start importing bulk data into an <c>ACTIVE</c> data store. The import job imports
+        /// DICOM P10 files found in the S3 prefix specified by the <c>inputS3Uri</c> parameter.
+        /// The import job stores processing results in the file specified by the <c>outputS3Uri</c>
         /// parameter.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartDICOMImportJob service method.</param>
@@ -734,7 +750,7 @@ namespace Amazon.MedicalImaging
         /// The request was denied due to throttling.
         /// </exception>
         /// <exception cref="Amazon.MedicalImaging.Model.ValidationException">
-        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// The input fails to satisfy the constraints set by the service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medical-imaging-2023-07-19/StartDICOMImportJob">REST API Reference for StartDICOMImportJob Operation</seealso>
         Task<StartDICOMImportJobResponse> StartDICOMImportJobAsync(StartDICOMImportJobRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -767,7 +783,7 @@ namespace Amazon.MedicalImaging
         /// The request was denied due to throttling.
         /// </exception>
         /// <exception cref="Amazon.MedicalImaging.Model.ValidationException">
-        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// The input fails to satisfy the constraints set by the service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medical-imaging-2023-07-19/TagResource">REST API Reference for TagResource Operation</seealso>
         Task<TagResourceResponse> TagResourceAsync(TagResourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -800,7 +816,7 @@ namespace Amazon.MedicalImaging
         /// The request was denied due to throttling.
         /// </exception>
         /// <exception cref="Amazon.MedicalImaging.Model.ValidationException">
-        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// The input fails to satisfy the constraints set by the service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medical-imaging-2023-07-19/UntagResource">REST API Reference for UntagResource Operation</seealso>
         Task<UntagResourceResponse> UntagResourceAsync(UntagResourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
@@ -839,7 +855,7 @@ namespace Amazon.MedicalImaging
         /// The request was denied due to throttling.
         /// </exception>
         /// <exception cref="Amazon.MedicalImaging.Model.ValidationException">
-        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// The input fails to satisfy the constraints set by the service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medical-imaging-2023-07-19/UpdateImageSetMetadata">REST API Reference for UpdateImageSetMetadata Operation</seealso>
         Task<UpdateImageSetMetadataResponse> UpdateImageSetMetadataAsync(UpdateImageSetMetadataRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));

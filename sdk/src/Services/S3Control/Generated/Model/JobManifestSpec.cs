@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.S3Control.Model
     /// </summary>
     public partial class JobManifestSpec
     {
-        private List<string> _fields = new List<string>();
+        private List<string> _fields = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private JobManifestFormat _format;
 
         /// <summary>
         /// Gets and sets the property Fields. 
         /// <para>
-        /// If the specified manifest object is in the <code>S3BatchOperations_CSV_20180820</code>
-        /// format, this element describes which columns contain the required data.
+        /// If the specified manifest object is in the <c>S3BatchOperations_CSV_20180820</c> format,
+        /// this element describes which columns contain the required data.
         /// </para>
         /// </summary>
         public List<string> Fields
@@ -53,7 +54,7 @@ namespace Amazon.S3Control.Model
         // Check to see if Fields property is set
         internal bool IsSetFields()
         {
-            return this._fields != null && this._fields.Count > 0; 
+            return this._fields != null && (this._fields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

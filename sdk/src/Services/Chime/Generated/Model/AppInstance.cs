@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
-    /// The details of an <code>AppInstance</code>, an instance of an Amazon Chime SDK messaging
+    /// The details of an <c>AppInstance</c>, an instance of an Amazon Chime SDK messaging
     /// application.
     /// </summary>
     public partial class AppInstance
@@ -62,7 +63,7 @@ namespace Amazon.Chime.Model
         /// <summary>
         /// Gets and sets the property CreatedTimestamp. 
         /// <para>
-        /// The time at which an <code>AppInstance</code> was created. In epoch milliseconds.
+        /// The time at which an <c>AppInstance</c> was created. In epoch milliseconds.
         /// </para>
         /// </summary>
         public DateTime CreatedTimestamp
@@ -80,7 +81,7 @@ namespace Amazon.Chime.Model
         /// <summary>
         /// Gets and sets the property LastUpdatedTimestamp. 
         /// <para>
-        /// The time an <code>AppInstance</code> was last updated. In epoch milliseconds.
+        /// The time an <c>AppInstance</c> was last updated. In epoch milliseconds.
         /// </para>
         /// </summary>
         public DateTime LastUpdatedTimestamp
@@ -98,7 +99,7 @@ namespace Amazon.Chime.Model
         /// <summary>
         /// Gets and sets the property Metadata. 
         /// <para>
-        /// The metadata of an <code>AppInstance</code>.
+        /// The metadata of an <c>AppInstance</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=0, Max=1024)]
@@ -117,7 +118,7 @@ namespace Amazon.Chime.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of an <code>AppInstance</code>.
+        /// The name of an <c>AppInstance</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=256)]

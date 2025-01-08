@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleWorkflow.Model
 {
     /// <summary>
-    /// Provides the details of the <code>ActivityTaskStarted</code> event.
+    /// Provides the details of the <c>ActivityTaskStarted</c> event.
     /// </summary>
     public partial class ActivityTaskStartedEventAttributes
     {
@@ -59,9 +60,9 @@ namespace Amazon.SimpleWorkflow.Model
         /// <summary>
         /// Gets and sets the property ScheduledEventId. 
         /// <para>
-        /// The ID of the <code>ActivityTaskScheduled</code> event that was recorded when this
-        /// activity task was scheduled. This information can be useful for diagnosing problems
-        /// by tracing back the chain of events leading up to this event.
+        /// The ID of the <c>ActivityTaskScheduled</c> event that was recorded when this activity
+        /// task was scheduled. This information can be useful for diagnosing problems by tracing
+        /// back the chain of events leading up to this event.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QLDB.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.QLDB.Model
         /// <summary>
         /// Gets and sets the property ExportDescription. 
         /// <para>
-        /// Information about the journal export job returned by a <code>DescribeJournalS3Export</code>
+        /// Information about the journal export job returned by a <c>DescribeJournalS3Export</c>
         /// request.
         /// </para>
         /// </summary>

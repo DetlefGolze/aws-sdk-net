@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -40,21 +41,21 @@ namespace Amazon.EC2.Model
         private string _customerGatewayId;
         private GatewayAssociationState _gatewayAssociationState;
         private VpnConnectionOptions _options;
-        private List<VpnStaticRoute> _routes = new List<VpnStaticRoute>();
+        private List<VpnStaticRoute> _routes = AWSConfigs.InitializeCollections ? new List<VpnStaticRoute>() : null;
         private VpnState _state;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _transitGatewayId;
         private GatewayType _type;
-        private List<VgwTelemetry> _vgwTelemetry = new List<VgwTelemetry>();
+        private List<VgwTelemetry> _vgwTelemetry = AWSConfigs.InitializeCollections ? new List<VgwTelemetry>() : null;
         private string _vpnConnectionId;
         private string _vpnGatewayId;
 
         /// <summary>
         /// Gets and sets the property Category. 
         /// <para>
-        /// The category of the VPN connection. A value of <code>VPN</code> indicates an Amazon
-        /// Web Services VPN connection. A value of <code>VPN-Classic</code> indicates an Amazon
-        /// Web Services Classic VPN connection.
+        /// The category of the VPN connection. A value of <c>VPN</c> indicates an Amazon Web
+        /// Services VPN connection. A value of <c>VPN-Classic</c> indicates an Amazon Web Services
+        /// Classic VPN connection.
         /// </para>
         /// </summary>
         public string Category
@@ -111,7 +112,7 @@ namespace Amazon.EC2.Model
         /// The configuration information for the VPN connection's customer gateway (in the native
         /// XML format). This element is always present in the <a>CreateVpnConnection</a> response;
         /// however, it's present in the <a>DescribeVpnConnections</a> response only if the VPN
-        /// connection is in the <code>pending</code> or <code>available</code> state.
+        /// connection is in the <c>pending</c> or <c>available</c> state.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -196,7 +197,7 @@ namespace Amazon.EC2.Model
         // Check to see if Routes property is set
         internal bool IsSetRoutes()
         {
-            return this._routes != null && this._routes.Count > 0; 
+            return this._routes != null && (this._routes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -232,7 +233,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -286,7 +287,7 @@ namespace Amazon.EC2.Model
         // Check to see if VgwTelemetry property is set
         internal bool IsSetVgwTelemetry()
         {
-            return this._vgwTelemetry != null && this._vgwTelemetry.Count > 0; 
+            return this._vgwTelemetry != null && (this._vgwTelemetry.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

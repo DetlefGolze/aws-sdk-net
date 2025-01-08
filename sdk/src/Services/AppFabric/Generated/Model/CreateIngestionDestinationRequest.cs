@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppFabric.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.AppFabric.Model
         private DestinationConfiguration _destinationConfiguration;
         private string _ingestionIdentifier;
         private ProcessingConfiguration _processingConfiguration;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AppBundleIdentifier. 
@@ -79,8 +80,8 @@ namespace Amazon.AppFabric.Model
         /// </para>
         ///  
         /// <para>
-        /// If you retry the operation with the same <code>ClientToken</code>, but with different
-        /// parameters, the retry fails with an <code>IdempotentParameterMismatch</code> error.
+        /// If you retry the operation with the same <c>ClientToken</c>, but with different parameters,
+        /// the retry fails with an <c>IdempotentParameterMismatch</c> error.
         /// </para>
         /// </summary>
         public string ClientToken
@@ -169,7 +170,7 @@ namespace Amazon.AppFabric.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

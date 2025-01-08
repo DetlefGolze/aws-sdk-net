@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECR.Model
 {
     /// <summary>
@@ -36,16 +37,16 @@ namespace Amazon.ECR.Model
     /// 
     ///  
     /// <para>
-    /// The <code>authorizationToken</code> returned is a base64 encoded string that can be
-    /// decoded and used in a <code>docker login</code> command to authenticate to a registry.
-    /// The CLI offers an <code>get-login-password</code> command that simplifies the login
-    /// process. For more information, see <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth">Registry
+    /// The <c>authorizationToken</c> returned is a base64 encoded string that can be decoded
+    /// and used in a <c>docker login</c> command to authenticate to a registry. The CLI offers
+    /// an <c>get-login-password</c> command that simplifies the login process. For more information,
+    /// see <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth">Registry
     /// authentication</a> in the <i>Amazon Elastic Container Registry User Guide</i>.
     /// </para>
     /// </summary>
     public partial class GetAuthorizationTokenRequest : AmazonECRRequest
     {
-        private List<string> _registryIds = new List<string>();
+        private List<string> _registryIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property RegistryIds. 
@@ -66,7 +67,7 @@ namespace Amazon.ECR.Model
         // Check to see if RegistryIds property is set
         internal bool IsSetRegistryIds()
         {
-            return this._registryIds != null && this._registryIds.Count > 0; 
+            return this._registryIds != null && (this._registryIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

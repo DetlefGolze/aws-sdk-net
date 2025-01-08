@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKVoice.Model
 {
     /// <summary>
@@ -123,8 +124,8 @@ namespace Amazon.ChimeSDKVoice.Model
         /// <summary>
         /// Gets and sets the property PostDirectional. 
         /// <para>
-        /// An address suffix location, such as the <code>S. Unit A</code> in <code>Central Park
-        /// S. Unit A</code>.
+        /// An address suffix location, such as the <c>S. Unit A</c> in <c>Central Park S. Unit
+        /// A</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -143,8 +144,7 @@ namespace Amazon.ChimeSDKVoice.Model
         /// <summary>
         /// Gets and sets the property PreDirectional. 
         /// <para>
-        /// An address prefix location, such as the <code>N</code> in <code>N. Third St.</code>
-        /// 
+        /// An address prefix location, such as the <c>N</c> in <c>N. Third St.</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -182,7 +182,7 @@ namespace Amazon.ChimeSDKVoice.Model
         /// <summary>
         /// Gets and sets the property StreetName. 
         /// <para>
-        /// The address street, such as <code>8th Avenue</code>.
+        /// The address street, such as <c>8th Avenue</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -220,7 +220,7 @@ namespace Amazon.ChimeSDKVoice.Model
         /// <summary>
         /// Gets and sets the property StreetSuffix. 
         /// <para>
-        /// The address suffix, such as the <code>N</code> in <code>8th Avenue N</code>.
+        /// The address suffix, such as the <c>N</c> in <c>8th Avenue N</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]

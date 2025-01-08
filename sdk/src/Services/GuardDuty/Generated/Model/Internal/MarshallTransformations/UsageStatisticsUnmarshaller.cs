@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public UsageStatistics Unmarshall(JsonUnmarshallerContext context)
         {
+            UsageStatistics unmarshalledObject = new UsageStatistics();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            UsageStatistics unmarshalledObject = new UsageStatistics();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -88,6 +90,12 @@ namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
                     unmarshalledObject.SumByResource = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("topAccountsByFeature", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<UsageTopAccountsResult, UsageTopAccountsResultUnmarshaller>(UsageTopAccountsResultUnmarshaller.Instance);
+                    unmarshalledObject.TopAccountsByFeature = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("topResources", targetDepth))
                 {
                     var unmarshaller = new ListUnmarshaller<UsageResourceResult, UsageResourceResultUnmarshaller>(UsageResourceResultUnmarshaller.Instance);
@@ -95,7 +103,6 @@ namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

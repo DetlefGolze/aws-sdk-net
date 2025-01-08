@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property DatasetRowDateGranularity. 
         /// <para>
-        /// The level of time precision that is used to aggregate <code>DateTime</code> values.
+        /// The level of time precision that is used to aggregate <c>DateTime</c> values.
         /// </para>
         /// </summary>
         public TopicTimeGranularity DatasetRowDateGranularity

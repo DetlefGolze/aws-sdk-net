@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
-    /// The <code>Id</code> of a batch entry in a batch request doesn't abide by the specification.
+    /// The <c>Id</c> of a batch entry in a batch request doesn't abide by the specification.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

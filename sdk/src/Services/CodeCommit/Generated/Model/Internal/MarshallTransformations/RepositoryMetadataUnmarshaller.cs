@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodeCommit.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.CodeCommit.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public RepositoryMetadata Unmarshall(JsonUnmarshallerContext context)
         {
+            RepositoryMetadata unmarshalledObject = new RepositoryMetadata();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            RepositoryMetadata unmarshalledObject = new RepositoryMetadata();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -100,6 +102,12 @@ namespace Amazon.CodeCommit.Model.Internal.MarshallTransformations
                     unmarshalledObject.DefaultBranch = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("kmsKeyId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.KmsKeyId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("lastModifiedDate", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
@@ -125,7 +133,6 @@ namespace Amazon.CodeCommit.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

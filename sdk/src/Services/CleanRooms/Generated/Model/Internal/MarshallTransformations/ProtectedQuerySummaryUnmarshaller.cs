@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ProtectedQuerySummary Unmarshall(JsonUnmarshallerContext context)
         {
+            ProtectedQuerySummary unmarshalledObject = new ProtectedQuerySummary();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ProtectedQuerySummary unmarshalledObject = new ProtectedQuerySummary();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -88,6 +90,12 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
                     unmarshalledObject.MembershipId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("receiverConfigurations", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<ReceiverConfiguration, ReceiverConfigurationUnmarshaller>(ReceiverConfigurationUnmarshaller.Instance);
+                    unmarshalledObject.ReceiverConfigurations = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("status", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -95,7 +103,6 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

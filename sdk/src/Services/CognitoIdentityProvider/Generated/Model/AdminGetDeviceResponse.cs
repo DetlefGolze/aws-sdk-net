@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -38,7 +39,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Device. 
         /// <para>
-        /// The device.
+        /// Details of the requested device. Includes device information, last-accessed and created
+        /// dates, and the device key.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

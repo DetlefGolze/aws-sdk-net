@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -50,7 +51,7 @@ namespace Amazon.IoT.Model
         /// Gets and sets the property AscendingOrder. 
         /// <para>
         ///  Determines whether suppressions are listed in ascending order by expiration date
-        /// or not. If parameter isn't provided, <code>ascendingOrder=true</code>. 
+        /// or not. If parameter isn't provided, <c>ascendingOrder=true</c>. 
         /// </para>
         /// </summary>
         public bool AscendingOrder

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
@@ -65,7 +66,7 @@ namespace Amazon.Chime.Model
         /// <summary>
         /// Gets and sets the property CreatedBy. 
         /// <para>
-        /// The <code>AppInstanceUser</code> who created the channel.
+        /// The <c>AppInstanceUser</c> who created the channel.
         /// </para>
         /// </summary>
         public Identity CreatedBy
@@ -83,7 +84,7 @@ namespace Amazon.Chime.Model
         /// <summary>
         /// Gets and sets the property CreatedTimestamp. 
         /// <para>
-        /// The time at which the <code>AppInstanceUser</code> created the channel.
+        /// The time at which the <c>AppInstanceUser</c> created the channel.
         /// </para>
         /// </summary>
         public DateTime CreatedTimestamp

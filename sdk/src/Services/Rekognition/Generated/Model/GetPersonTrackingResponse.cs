@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.Rekognition.Model
         private VideoJobStatus _jobStatus;
         private string _jobTag;
         private string _nextToken;
-        private List<PersonDetection> _persons = new List<PersonDetection>();
+        private List<PersonDetection> _persons = AWSConfigs.InitializeCollections ? new List<PersonDetection>() : null;
         private string _statusMessage;
         private Video _video;
         private VideoMetadata _videoMetadata;
@@ -137,13 +138,13 @@ namespace Amazon.Rekognition.Model
         // Check to see if Persons property is set
         internal bool IsSetPersons()
         {
-            return this._persons != null && this._persons.Count > 0; 
+            return this._persons != null && (this._persons.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property StatusMessage. 
         /// <para>
-        /// If the job fails, <code>StatusMessage</code> provides a descriptive error message.
+        /// If the job fails, <c>StatusMessage</c> provides a descriptive error message.
         /// </para>
         /// </summary>
         public string StatusMessage
@@ -176,7 +177,7 @@ namespace Amazon.Rekognition.Model
         /// <summary>
         /// Gets and sets the property VideoMetadata. 
         /// <para>
-        /// Information about a video that Amazon Rekognition Video analyzed. <code>Videometadata</code>
+        /// Information about a video that Amazon Rekognition Video analyzed. <c>Videometadata</c>
         /// is returned in every page of paginated responses from a Amazon Rekognition Video operation.
         /// </para>
         /// </summary>

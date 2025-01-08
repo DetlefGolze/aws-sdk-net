@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.DynamoDBv2.Model
     {
         private string _regionName;
         private BillingModeSummary _replicaBillingModeSummary;
-        private List<ReplicaGlobalSecondaryIndexSettingsDescription> _replicaGlobalSecondaryIndexSettings = new List<ReplicaGlobalSecondaryIndexSettingsDescription>();
+        private List<ReplicaGlobalSecondaryIndexSettingsDescription> _replicaGlobalSecondaryIndexSettings = AWSConfigs.InitializeCollections ? new List<ReplicaGlobalSecondaryIndexSettingsDescription>() : null;
         private AutoScalingSettingsDescription _replicaProvisionedReadCapacityAutoScalingSettings;
         private long? _replicaProvisionedReadCapacityUnits;
         private AutoScalingSettingsDescription _replicaProvisionedWriteCapacityAutoScalingSettings;
@@ -95,7 +96,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if ReplicaGlobalSecondaryIndexSettings property is set
         internal bool IsSetReplicaGlobalSecondaryIndexSettings()
         {
-            return this._replicaGlobalSecondaryIndexSettings != null && this._replicaGlobalSecondaryIndexSettings.Count > 0; 
+            return this._replicaGlobalSecondaryIndexSettings != null && (this._replicaGlobalSecondaryIndexSettings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -120,7 +121,7 @@ namespace Amazon.DynamoDBv2.Model
         /// Gets and sets the property ReplicaProvisionedReadCapacityUnits. 
         /// <para>
         /// The maximum number of strongly consistent reads consumed per second before DynamoDB
-        /// returns a <code>ThrottlingException</code>. For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput">Specifying
+        /// returns a <c>ThrottlingException</c>. For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput">Specifying
         /// Read and Write Requirements</a> in the <i>Amazon DynamoDB Developer Guide</i>. 
         /// </para>
         /// </summary>
@@ -158,7 +159,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property ReplicaProvisionedWriteCapacityUnits. 
         /// <para>
-        /// The maximum number of writes consumed per second before DynamoDB returns a <code>ThrottlingException</code>.
+        /// The maximum number of writes consumed per second before DynamoDB returns a <c>ThrottlingException</c>.
         /// For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput">Specifying
         /// Read and Write Requirements</a> in the <i>Amazon DynamoDB Developer Guide</i>.
         /// </para>
@@ -183,19 +184,19 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CREATING</code> - The Region is being created.
+        ///  <c>CREATING</c> - The Region is being created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPDATING</code> - The Region is being updated.
+        ///  <c>UPDATING</c> - The Region is being updated.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETING</code> - The Region is being deleted.
+        ///  <c>DELETING</c> - The Region is being deleted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ACTIVE</code> - The Region is ready for use.
+        ///  <c>ACTIVE</c> - The Region is ready for use.
         /// </para>
         ///  </li> </ul>
         /// </summary>

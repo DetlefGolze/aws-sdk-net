@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GlueDataBrew.Model
 {
     /// <summary>
@@ -35,25 +36,25 @@ namespace Amazon.GlueDataBrew.Model
     public partial class Rule
     {
         private string _checkExpression;
-        private List<ColumnSelector> _columnSelectors = new List<ColumnSelector>();
+        private List<ColumnSelector> _columnSelectors = AWSConfigs.InitializeCollections ? new List<ColumnSelector>() : null;
         private bool? _disabled;
         private string _name;
-        private Dictionary<string, string> _substitutionMap = new Dictionary<string, string>();
+        private Dictionary<string, string> _substitutionMap = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private Threshold _threshold;
 
         /// <summary>
         /// Gets and sets the property CheckExpression. 
         /// <para>
         /// The expression which includes column references, condition names followed by variable
-        /// references, possibly grouped and combined with other conditions. For example, <code>(:col1
+        /// references, possibly grouped and combined with other conditions. For example, <c>(:col1
         /// starts_with :prefix1 or :col1 starts_with :prefix2) and (:col1 ends_with :suffix1
-        /// or :col1 ends_with :suffix2)</code>. Column and value references are substitution
-        /// variables that should start with the ':' symbol. Depending on the context, substitution
-        /// variables' values can be either an actual value or a column name. These values are
-        /// defined in the SubstitutionMap. If a CheckExpression starts with a column reference,
-        /// then ColumnSelectors in the rule should be null. If ColumnSelectors has been defined,
-        /// then there should be no column reference in the left side of a condition, for example,
-        /// <code>is_between :val1 and :val2</code>.
+        /// or :col1 ends_with :suffix2)</c>. Column and value references are substitution variables
+        /// that should start with the ':' symbol. Depending on the context, substitution variables'
+        /// values can be either an actual value or a column name. These values are defined in
+        /// the SubstitutionMap. If a CheckExpression starts with a column reference, then ColumnSelectors
+        /// in the rule should be null. If ColumnSelectors has been defined, then there should
+        /// be no column reference in the left side of a condition, for example, <c>is_between
+        /// :val1 and :val2</c>.
         /// </para>
         ///  
         /// <para>
@@ -91,7 +92,7 @@ namespace Amazon.GlueDataBrew.Model
         // Check to see if ColumnSelectors property is set
         internal bool IsSetColumnSelectors()
         {
-            return this._columnSelectors != null && this._columnSelectors.Count > 0; 
+            return this._columnSelectors != null && (this._columnSelectors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -138,7 +139,7 @@ namespace Amazon.GlueDataBrew.Model
         /// The map of substitution variable names to their values used in a check expression.
         /// Variable names should start with a ':' (colon). Variable values can either be actual
         /// values or column names. To differentiate between the two, column names should be enclosed
-        /// in backticks, for example, <code>":col1": "`Column A`".</code> 
+        /// in backticks, for example, <c>":col1": "`Column A`".</c> 
         /// </para>
         /// </summary>
         public Dictionary<string, string> SubstitutionMap
@@ -150,7 +151,7 @@ namespace Amazon.GlueDataBrew.Model
         // Check to see if SubstitutionMap property is set
         internal bool IsSetSubstitutionMap()
         {
-            return this._substitutionMap != null && this._substitutionMap.Count > 0; 
+            return this._substitutionMap != null && (this._substitutionMap.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

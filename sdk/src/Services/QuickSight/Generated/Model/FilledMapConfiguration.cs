@@ -26,14 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The configuration for a <code>FilledMapVisual</code>.
+    /// The configuration for a <c>FilledMapVisual</c>.
     /// </summary>
     public partial class FilledMapConfiguration
     {
         private FilledMapFieldWells _fieldWells;
+        private VisualInteractionOptions _interactions;
         private LegendOptions _legend;
         private GeospatialMapStyleOptions _mapStyleOptions;
         private FilledMapSortConfiguration _sortConfiguration;
@@ -56,6 +58,24 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetFieldWells()
         {
             return this._fieldWells != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Interactions. 
+        /// <para>
+        /// The general visual interactions setup for a visual.
+        /// </para>
+        /// </summary>
+        public VisualInteractionOptions Interactions
+        {
+            get { return this._interactions; }
+            set { this._interactions = value; }
+        }
+
+        // Check to see if Interactions property is set
+        internal bool IsSetInteractions()
+        {
+            return this._interactions != null;
         }
 
         /// <summary>
@@ -97,7 +117,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property SortConfiguration. 
         /// <para>
-        /// The sort configuration of a <code>FilledMapVisual</code>.
+        /// The sort configuration of a <c>FilledMapVisual</c>.
         /// </para>
         /// </summary>
         public FilledMapSortConfiguration SortConfiguration

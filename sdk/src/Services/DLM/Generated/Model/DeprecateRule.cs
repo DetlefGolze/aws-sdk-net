@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DLM.Model
 {
     /// <summary>
-    /// <b>[AMI policies only]</b> Specifies an AMI deprecation rule for AMIs created by
-    /// an AMI lifecycle policy.
+    /// <b>[Custom AMI policies only]</b> Specifies an AMI deprecation rule for AMIs created
+    /// by an AMI lifecycle policy.
     /// 
     ///  
     /// <para>

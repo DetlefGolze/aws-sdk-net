@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RAM.Model
 {
     /// <summary>
@@ -40,20 +41,20 @@ namespace Amazon.RAM.Model
         private string _permissionArn;
         private int? _permissionVersion;
         private ResourceOwner _resourceOwner;
-        private List<string> _resourceShareArns = new List<string>();
+        private List<string> _resourceShareArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ResourceShareStatus _resourceShareStatus;
-        private List<TagFilter> _tagFilters = new List<TagFilter>();
+        private List<TagFilter> _tagFilters = AWSConfigs.InitializeCollections ? new List<TagFilter>() : null;
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// Specifies the total number of results that you want included on each page of the response.
         /// If you do not include this parameter, it defaults to a value that is specific to the
-        /// operation. If additional items exist beyond the number you specify, the <code>NextToken</code>
+        /// operation. If additional items exist beyond the number you specify, the <c>NextToken</c>
         /// response element is returned with a value (not null). Include the specified value
-        /// as the <code>NextToken</code> request parameter in the next call to the operation
-        /// to get the next part of the results. Note that the service might return fewer results
-        /// than the maximum even when there are more results available. You should check <code>NextToken</code>
+        /// as the <c>NextToken</c> request parameter in the next call to the operation to get
+        /// the next part of the results. Note that the service might return fewer results than
+        /// the maximum even when there are more results available. You should check <c>NextToken</c>
         /// after every operation to ensure that you receive all of the results.
         /// </para>
         /// </summary>
@@ -93,9 +94,9 @@ namespace Amazon.RAM.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// Specifies that you want to receive the next page of results. Valid only if you received
-        /// a <code>NextToken</code> response in the previous request. If you did, it indicates
-        /// that more output is available. Set this parameter to the value provided by the previous
-        /// call's <code>NextToken</code> response to request the next page of results.
+        /// a <c>NextToken</c> response in the previous request. If you did, it indicates that
+        /// more output is available. Set this parameter to the value provided by the previous
+        /// call's <c>NextToken</c> response to request the next page of results.
         /// </para>
         /// </summary>
         public string NextToken
@@ -157,13 +158,12 @@ namespace Amazon.RAM.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b> <code>SELF</code> </b> – resource shares that your account shares with other
-        /// accounts
+        ///  <b> <c>SELF</c> </b> – resource shares that your account shares with other accounts
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>OTHER-ACCOUNTS</code> </b> – resource shares that other accounts share
-        /// with your account
+        ///  <b> <c>OTHER-ACCOUNTS</c> </b> – resource shares that other accounts share with your
+        /// account
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -197,7 +197,7 @@ namespace Amazon.RAM.Model
         // Check to see if ResourceShareArns property is set
         internal bool IsSetResourceShareArns()
         {
-            return this._resourceShareArns != null && this._resourceShareArns.Count > 0; 
+            return this._resourceShareArns != null && (this._resourceShareArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -235,7 +235,7 @@ namespace Amazon.RAM.Model
         // Check to see if TagFilters property is set
         internal bool IsSetTagFilters()
         {
-            return this._tagFilters != null && this._tagFilters.Count > 0; 
+            return this._tagFilters != null && (this._tagFilters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

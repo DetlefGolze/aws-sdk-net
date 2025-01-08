@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Translate.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.Translate.Model
         /// Gets and sets the property JobStatus. 
         /// <para>
         /// The status of the designated job. Upon successful completion, the job's status will
-        /// be <code>STOPPED</code>.
+        /// be <c>STOPPED</c>.
         /// </para>
         /// </summary>
         public JobStatus JobStatus

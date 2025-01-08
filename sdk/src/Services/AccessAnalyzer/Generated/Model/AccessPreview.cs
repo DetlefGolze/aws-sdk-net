@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AccessAnalyzer.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.AccessAnalyzer.Model
     public partial class AccessPreview
     {
         private string _analyzerArn;
-        private Dictionary<string, Configuration> _configurations = new Dictionary<string, Configuration>();
+        private Dictionary<string, Configuration> _configurations = AWSConfigs.InitializeCollections ? new Dictionary<string, Configuration>() : null;
         private DateTime? _createdAt;
         private string _id;
         private AccessPreviewStatus _status;
@@ -75,7 +76,7 @@ namespace Amazon.AccessAnalyzer.Model
         // Check to see if Configurations property is set
         internal bool IsSetConfigurations()
         {
-            return this._configurations != null && this._configurations.Count > 0; 
+            return this._configurations != null && (this._configurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -123,16 +124,16 @@ namespace Amazon.AccessAnalyzer.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Creating</code> - The access preview creation is in progress.
+        ///  <c>Creating</c> - The access preview creation is in progress.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Completed</code> - The access preview is complete. You can preview findings
-        /// for external access to the resource.
+        ///  <c>Completed</c> - The access preview is complete. You can preview findings for external
+        /// access to the resource.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Failed</code> - The access preview creation has failed.
+        ///  <c>Failed</c> - The access preview creation has failed.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -156,9 +157,9 @@ namespace Amazon.AccessAnalyzer.Model
         /// </para>
         ///  
         /// <para>
-        /// For example, if the creation of the access preview fails, a <code>Failed</code> status
-        /// is returned. This failure can be due to an internal issue with the analysis or due
-        /// to an invalid resource configuration.
+        /// For example, if the creation of the access preview fails, a <c>Failed</c> status is
+        /// returned. This failure can be due to an internal issue with the analysis or due to
+        /// an invalid resource configuration.
         /// </para>
         /// </summary>
         public AccessPreviewStatusReason StatusReason

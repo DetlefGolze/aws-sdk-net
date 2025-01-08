@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchain.Model
 {
     /// <summary>
@@ -37,8 +38,9 @@ namespace Amazon.ManagedBlockchain.Model
         private string _billingToken;
         private DateTime? _creationDate;
         private string _id;
+        private AccessorNetworkType _networkType;
         private AccessorStatus _status;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private AccessorType _type;
 
         /// <summary>
@@ -65,9 +67,9 @@ namespace Amazon.ManagedBlockchain.Model
         /// <summary>
         /// Gets and sets the property BillingToken. 
         /// <para>
-        /// The billing token is a property of the accessor. Use this token to make Ethereum API
-        /// calls to your Ethereum node. The billing token is used to track your accessor object
-        /// for billing Ethereum API requests made to your Ethereum nodes.
+        /// The billing token is a property of the Accessor. Use this token to when making calls
+        /// to the blockchain network. The billing token is used to track your accessor token
+        /// for billing requests.
         /// </para>
         /// </summary>
         [AWSProperty(Min=42, Max=42)]
@@ -121,6 +123,24 @@ namespace Amazon.ManagedBlockchain.Model
         }
 
         /// <summary>
+        /// Gets and sets the property NetworkType. 
+        /// <para>
+        /// The blockchain network that the Accessor token is created for.
+        /// </para>
+        /// </summary>
+        public AccessorNetworkType NetworkType
+        {
+            get { return this._networkType; }
+            set { this._networkType = value; }
+        }
+
+        // Check to see if NetworkType property is set
+        internal bool IsSetNetworkType()
+        {
+            return this._networkType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
         /// The current status of the accessor.
@@ -161,7 +181,7 @@ namespace Amazon.ManagedBlockchain.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -171,7 +191,7 @@ namespace Amazon.ManagedBlockchain.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// Currently, accessor type is restricted to <code>BILLING_TOKEN</code>.
+        /// Currently, accessor type is restricted to <c>BILLING_TOKEN</c>.
         /// </para>
         ///  </note>
         /// </summary>

@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the globalaccelerator-2018-08-08.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.GlobalAccelerator.Model
 {
     /// <summary>
@@ -34,6 +35,16 @@ namespace Amazon.GlobalAccelerator.Model
         /// Paginator for ListByoipCidrs operation
         ///</summary>
         IListByoipCidrsPaginator ListByoipCidrs(ListByoipCidrsRequest request);
+
+        /// <summary>
+        /// Paginator for ListCrossAccountAttachments operation
+        ///</summary>
+        IListCrossAccountAttachmentsPaginator ListCrossAccountAttachments(ListCrossAccountAttachmentsRequest request);
+
+        /// <summary>
+        /// Paginator for ListCrossAccountResources operation
+        ///</summary>
+        IListCrossAccountResourcesPaginator ListCrossAccountResources(ListCrossAccountResourcesRequest request);
 
         /// <summary>
         /// Paginator for ListCustomRoutingAccelerators operation

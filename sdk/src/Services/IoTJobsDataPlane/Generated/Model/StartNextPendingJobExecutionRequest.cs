@@ -26,16 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTJobsDataPlane.Model
 {
     /// <summary>
     /// Container for the parameters to the StartNextPendingJobExecution operation.
     /// Gets and starts the next pending (status IN_PROGRESS or QUEUED) job execution for
     /// a thing.
+    /// 
+    ///  
+    /// <para>
+    /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">StartNextPendingJobExecution</a>
+    /// action.
+    /// </para>
     /// </summary>
     public partial class StartNextPendingJobExecutionRequest : AmazonIoTJobsDataPlaneRequest
     {
-        private Dictionary<string, string> _statusDetails = new Dictionary<string, string>();
+        private Dictionary<string, string> _statusDetails = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private long? _stepTimeoutInMinutes;
         private string _thingName;
 
@@ -44,6 +51,10 @@ namespace Amazon.IoTJobsDataPlane.Model
         /// <para>
         /// A collection of name/value pairs that describe the status of the job execution. If
         /// not specified, the statusDetails are unchanged.
+        /// </para>
+        ///  
+        /// <para>
+        /// The maximum length of the value in the name/value pair is 1,024 characters.
         /// </para>
         /// </summary>
         public Dictionary<string, string> StatusDetails
@@ -55,7 +66,7 @@ namespace Amazon.IoTJobsDataPlane.Model
         // Check to see if StatusDetails property is set
         internal bool IsSetStatusDetails()
         {
-            return this._statusDetails != null && this._statusDetails.Count > 0; 
+            return this._statusDetails != null && (this._statusDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -63,11 +74,15 @@ namespace Amazon.IoTJobsDataPlane.Model
         /// <para>
         /// Specifies the amount of time this device has to finish execution of this job. If the
         /// job execution status is not set to a terminal state before this timer expires, or
-        /// before the timer is reset (by calling <code>UpdateJobExecution</code>, setting the
-        /// status to <code>IN_PROGRESS</code> and specifying a new timeout value in field <code>stepTimeoutInMinutes</code>)
-        /// the job execution status will be automatically set to <code>TIMED_OUT</code>. Note
-        /// that setting this timeout has no effect on that job execution timeout which may have
-        /// been specified when the job was created (<code>CreateJob</code> using field <code>timeoutConfig</code>).
+        /// before the timer is reset (by calling <c>UpdateJobExecution</c>, setting the status
+        /// to <c>IN_PROGRESS</c>, and specifying a new timeout value in field <c>stepTimeoutInMinutes</c>)
+        /// the job execution status will be automatically set to <c>TIMED_OUT</c>. Note that
+        /// setting the step timeout has no effect on the in progress timeout that may have been
+        /// specified when the job was created (<c>CreateJob</c> using field <c>timeoutConfig</c>).
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid values for this parameter range from 1 to 10080 (1 minute to 7 days).
         /// </para>
         /// </summary>
         public long StepTimeoutInMinutes

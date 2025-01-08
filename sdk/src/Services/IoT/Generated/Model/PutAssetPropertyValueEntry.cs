@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -37,14 +38,13 @@ namespace Amazon.IoT.Model
         private string _entryId;
         private string _propertyAlias;
         private string _propertyId;
-        private List<AssetPropertyValue> _propertyValues = new List<AssetPropertyValue>();
+        private List<AssetPropertyValue> _propertyValues = AWSConfigs.InitializeCollections ? new List<AssetPropertyValue>() : null;
 
         /// <summary>
         /// Gets and sets the property AssetId. 
         /// <para>
-        /// The ID of the IoT SiteWise asset. You must specify either a <code>propertyAlias</code>
-        /// or both an <code>aliasId</code> and a <code>propertyId</code>. Accepts substitution
-        /// templates.
+        /// The ID of the IoT SiteWise asset. You must specify either a <c>propertyAlias</c> or
+        /// both an <c>aliasId</c> and a <c>propertyId</c>. Accepts substitution templates.
         /// </para>
         /// </summary>
         public string AssetId
@@ -83,8 +83,8 @@ namespace Amazon.IoT.Model
         /// Gets and sets the property PropertyAlias. 
         /// <para>
         /// The name of the property alias associated with your asset property. You must specify
-        /// either a <code>propertyAlias</code> or both an <code>aliasId</code> and a <code>propertyId</code>.
-        /// Accepts substitution templates.
+        /// either a <c>propertyAlias</c> or both an <c>aliasId</c> and a <c>propertyId</c>. Accepts
+        /// substitution templates.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -103,9 +103,8 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property PropertyId. 
         /// <para>
-        /// The ID of the asset's property. You must specify either a <code>propertyAlias</code>
-        /// or both an <code>aliasId</code> and a <code>propertyId</code>. Accepts substitution
-        /// templates.
+        /// The ID of the asset's property. You must specify either a <c>propertyAlias</c> or
+        /// both an <c>aliasId</c> and a <c>propertyId</c>. Accepts substitution templates.
         /// </para>
         /// </summary>
         public string PropertyId
@@ -137,7 +136,7 @@ namespace Amazon.IoT.Model
         // Check to see if PropertyValues property is set
         internal bool IsSetPropertyValues()
         {
-            return this._propertyValues != null && this._propertyValues.Count > 0; 
+            return this._propertyValues != null && (this._propertyValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataPipeline.Model
 {
     /// <summary>
     /// Container for the parameters to the DeactivatePipeline operation.
-    /// Deactivates the specified running pipeline. The pipeline is set to the <code>DEACTIVATING</code>
+    /// Deactivates the specified running pipeline. The pipeline is set to the <c>DEACTIVATING</c>
     /// state until the deactivation process completes.
     /// 
     ///  
@@ -49,8 +50,8 @@ namespace Amazon.DataPipeline.Model
         /// Gets and sets the property CancelActive. 
         /// <para>
         /// Indicates whether to cancel any running objects. The default is true, which sets the
-        /// state of any running objects to <code>CANCELED</code>. If this value is false, the
-        /// pipeline is deactivated after all running objects finish.
+        /// state of any running objects to <c>CANCELED</c>. If this value is false, the pipeline
+        /// is deactivated after all running objects finish.
         /// </para>
         /// </summary>
         public bool CancelActive

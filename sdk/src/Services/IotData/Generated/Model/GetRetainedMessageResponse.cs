@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IotData.Model
 {
     /// <summary>
@@ -121,12 +122,12 @@ namespace Amazon.IotData.Model
         /// </para>
         ///  
         /// <para>
-        /// The following example <code>userProperties</code> parameter is a JSON string that
-        /// represents two user properties. Note that it will be base64-encoded:
+        /// The following example <c>userProperties</c> parameter is a JSON string that represents
+        /// two user properties. Note that it will be base64-encoded:
         /// </para>
         ///  
         /// <para>
-        ///  <code>[{"deviceName": "alpha"}, {"deviceCnt": "45"}]</code> 
+        ///  <c>[{"deviceName": "alpha"}, {"deviceCnt": "45"}]</c> 
         /// </para>
         /// </summary>
         public MemoryStream UserProperties

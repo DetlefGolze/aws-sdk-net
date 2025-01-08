@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -169,6 +170,38 @@ namespace Amazon.GameLift.Model
         public IListComputePaginator ListCompute(ListComputeRequest request) 
         {
             return new ListComputePaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListContainerFleets operation
+        ///</summary>
+        public IListContainerFleetsPaginator ListContainerFleets(ListContainerFleetsRequest request) 
+        {
+            return new ListContainerFleetsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListContainerGroupDefinitions operation
+        ///</summary>
+        public IListContainerGroupDefinitionsPaginator ListContainerGroupDefinitions(ListContainerGroupDefinitionsRequest request) 
+        {
+            return new ListContainerGroupDefinitionsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListContainerGroupDefinitionVersions operation
+        ///</summary>
+        public IListContainerGroupDefinitionVersionsPaginator ListContainerGroupDefinitionVersions(ListContainerGroupDefinitionVersionsRequest request) 
+        {
+            return new ListContainerGroupDefinitionVersionsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListFleetDeployments operation
+        ///</summary>
+        public IListFleetDeploymentsPaginator ListFleetDeployments(ListFleetDeploymentsRequest request) 
+        {
+            return new ListFleetDeploymentsPaginator(this.client, request);
         }
 
         /// <summary>

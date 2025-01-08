@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -34,9 +35,8 @@ namespace Amazon.CloudFormation.Model
     /// 
     ///  
     /// <para>
-    /// If you don't supply a <code>PublisherId</code>, and you have registered as an extension
-    /// publisher, <code>DescribePublisher</code> returns information about your own publisher
-    /// account.
+    /// If you don't supply a <c>PublisherId</c>, and you have registered as an extension
+    /// publisher, <c>DescribePublisher</c> returns information about your own publisher account.
     /// </para>
     ///  
     /// <para>
@@ -50,8 +50,8 @@ namespace Amazon.CloudFormation.Model
     ///  </li> <li> 
     /// <para>
     ///  <a href="https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/publish-extension.html">Publishing
-    /// extensions to make them available for public use</a> in the <i>CloudFormation CLI
-    /// User Guide</i> 
+    /// extensions to make them available for public use</a> in the <i>CloudFormation Command
+    /// Line Interface (CLI) User Guide</i> 
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -66,9 +66,8 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// If you don't supply a <code>PublisherId</code>, and you have registered as an extension
-        /// publisher, <code>DescribePublisher</code> returns information about your own publisher
-        /// account.
+        /// If you don't supply a <c>PublisherId</c>, and you have registered as an extension
+        /// publisher, <c>DescribePublisher</c> returns information about your own publisher account.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=40)]

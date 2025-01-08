@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(Compliance requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAssociatedStandards())
             {
                 context.Writer.WritePropertyName("AssociatedStandards");
@@ -76,6 +79,22 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("SecurityControlId");
                 context.Writer.Write(requestObject.SecurityControlId);
+            }
+
+            if(requestObject.IsSetSecurityControlParameters())
+            {
+                context.Writer.WritePropertyName("SecurityControlParameters");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectSecurityControlParametersListValue in requestObject.SecurityControlParameters)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = SecurityControlParameterMarshaller.Instance;
+                    marshaller.Marshall(requestObjectSecurityControlParametersListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
             }
 
             if(requestObject.IsSetStatus())

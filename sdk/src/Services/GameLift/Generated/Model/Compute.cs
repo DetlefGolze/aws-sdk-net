@@ -26,22 +26,39 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
-    /// An Amazon GameLift compute resource for hosting your game servers. A compute can be
-    /// an EC2instance in a managed EC2 fleet or a registered compute in an Anywhere fleet.
+    /// An Amazon GameLift compute resource for hosting your game servers. Computes in an
+    /// Amazon GameLift fleet differs depending on the fleet's compute type property as follows:
+    /// 
+    /// 
+    ///  <ul> <li> 
+    /// <para>
+    /// For managed EC2 fleets, a compute is an EC2 instance.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// For Anywhere fleets, a compute is a computing resource that you provide and is registered
+    /// to the fleet.
+    /// </para>
+    ///  </li> </ul>
     /// </summary>
     public partial class Compute
     {
         private string _computeArn;
         private string _computeName;
         private ComputeStatus _computeStatus;
+        private List<ContainerAttribute> _containerAttributes = AWSConfigs.InitializeCollections ? new List<ContainerAttribute>() : null;
         private DateTime? _creationTime;
         private string _dnsName;
         private string _fleetArn;
         private string _fleetId;
+        private string _gameLiftAgentEndpoint;
         private string _gameLiftServiceSdkEndpoint;
+        private string _gameServerContainerGroupDefinitionArn;
+        private string _instanceId;
         private string _ipAddress;
         private string _location;
         private OperatingSystem _operatingSystem;
@@ -51,7 +68,8 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property ComputeArn. 
         /// <para>
         /// The ARN that is assigned to a compute resource and uniquely identifies it. ARNs are
-        /// unique across locations. Instances in managed EC2 fleets are not assigned a ComputeARN.
+        /// unique across locations. Instances in managed EC2 fleets are not assigned a Compute
+        /// ARN.
         /// </para>
         /// </summary>
         [AWSProperty(Max=1024)]
@@ -71,7 +89,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property ComputeName. 
         /// <para>
         /// A descriptive label for the compute resource. For instances in a managed EC2 fleet,
-        /// the compute name is an instance ID.
+        /// the compute name is the same value as the <c>InstanceId</c> ID.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -90,8 +108,8 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property ComputeStatus. 
         /// <para>
-        /// Current status of the compute. A compute must have an <code>ACTIVE</code> status to
-        /// host game sessions.
+        /// Current status of the compute. A compute must have an <c>ACTIVE</c> status to host
+        /// game sessions.
         /// </para>
         /// </summary>
         public ComputeStatus ComputeStatus
@@ -107,10 +125,29 @@ namespace Amazon.GameLift.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ContainerAttributes. 
+        /// <para>
+        /// A set of attributes for each container in the compute. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=10)]
+        public List<ContainerAttribute> ContainerAttributes
+        {
+            get { return this._containerAttributes; }
+            set { this._containerAttributes = value; }
+        }
+
+        // Check to see if ContainerAttributes property is set
+        internal bool IsSetContainerAttributes()
+        {
+            return this._containerAttributes != null && (this._containerAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property CreationTime. 
         /// <para>
         /// A time stamp indicating when this data object was created. Format is a number expressed
-        /// in Unix time as milliseconds (for example <code>"1469498468.057"</code>).
+        /// in Unix time as milliseconds (for example <c>"1469498468.057"</c>).
         /// </para>
         /// </summary>
         public DateTime CreationTime
@@ -150,6 +187,7 @@ namespace Amazon.GameLift.Model
         /// The Amazon Resource Name (ARN) of the fleet that the compute belongs to.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=512)]
         public string FleetArn
         {
             get { return this._fleetArn; }
@@ -168,6 +206,7 @@ namespace Amazon.GameLift.Model
         /// A unique identifier for the fleet that the compute belongs to.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=128)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -178,6 +217,25 @@ namespace Amazon.GameLift.Model
         internal bool IsSetFleetId()
         {
             return this._fleetId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property GameLiftAgentEndpoint. 
+        /// <para>
+        ///  The endpoint of the Amazon GameLift Agent. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=128)]
+        public string GameLiftAgentEndpoint
+        {
+            get { return this._gameLiftAgentEndpoint; }
+            set { this._gameLiftAgentEndpoint = value; }
+        }
+
+        // Check to see if GameLiftAgentEndpoint property is set
+        internal bool IsSetGameLiftAgentEndpoint()
+        {
+            return this._gameLiftAgentEndpoint != null;
         }
 
         /// <summary>
@@ -202,13 +260,50 @@ namespace Amazon.GameLift.Model
         }
 
         /// <summary>
+        /// Gets and sets the property GameServerContainerGroupDefinitionArn. 
+        /// <para>
+        /// The game server container group definition for the compute.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=512)]
+        public string GameServerContainerGroupDefinitionArn
+        {
+            get { return this._gameServerContainerGroupDefinitionArn; }
+            set { this._gameServerContainerGroupDefinitionArn = value; }
+        }
+
+        // Check to see if GameServerContainerGroupDefinitionArn property is set
+        internal bool IsSetGameServerContainerGroupDefinitionArn()
+        {
+            return this._gameServerContainerGroupDefinitionArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property InstanceId. 
+        /// <para>
+        ///  The <c>InstanceID</c> of the EC2 instance that is hosting the compute. 
+        /// </para>
+        /// </summary>
+        public string InstanceId
+        {
+            get { return this._instanceId; }
+            set { this._instanceId = value; }
+        }
+
+        // Check to see if InstanceId property is set
+        internal bool IsSetInstanceId()
+        {
+            return this._instanceId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property IpAddress. 
         /// <para>
         /// The IP address of a compute resource. Amazon GameLift requires a DNS name or IP address
         /// for a compute.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=128)]
+        [AWSProperty(Sensitive=true, Min=1, Max=128)]
         public string IpAddress
         {
             get { return this._ipAddress; }
@@ -246,6 +341,16 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// The type of operating system on the compute resource.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// Amazon Linux 2 (AL2) will reach end of support on 6/30/2025. See more details in the
+        /// <a href="https://aws.amazon.com/amazon-linux-2/faqs/">Amazon Linux 2 FAQs</a>. For
+        /// game servers that are hosted on AL2 and use Amazon GameLift server SDK 4.x., first
+        /// update the game server build to server SDK 5.x, and then deploy to AL2023 instances.
+        /// See <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-serversdk5-migration.html">
+        /// Migrate to Amazon GameLift server SDK version 5.</a> 
+        /// </para>
+        ///  </note>
         /// </summary>
         public OperatingSystem OperatingSystem
         {

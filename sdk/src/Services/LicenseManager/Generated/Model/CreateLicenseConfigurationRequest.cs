@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LicenseManager.Model
 {
     /// <summary>
@@ -49,10 +50,10 @@ namespace Amazon.LicenseManager.Model
         private long? _licenseCount;
         private bool? _licenseCountHardLimit;
         private LicenseCountingType _licenseCountingType;
-        private List<string> _licenseRules = new List<string>();
+        private List<string> _licenseRules = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
-        private List<ProductInformation> _productInformationList = new List<ProductInformation>();
-        private List<Tag> _tags = new List<Tag>();
+        private List<ProductInformation> _productInformationList = AWSConfigs.InitializeCollections ? new List<ProductInformation>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -154,31 +155,31 @@ namespace Amazon.LicenseManager.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Cores</code> dimension: <code>allowedTenancy</code> | <code>licenseAffinityToHost</code>
-        /// | <code>maximumCores</code> | <code>minimumCores</code> 
+        ///  <c>Cores</c> dimension: <c>allowedTenancy</c> | <c>licenseAffinityToHost</c> | <c>maximumCores</c>
+        /// | <c>minimumCores</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Instances</code> dimension: <code>allowedTenancy</code> | <code>maximumCores</code>
-        /// | <code>minimumCores</code> | <code>maximumSockets</code> | <code>minimumSockets</code>
-        /// | <code>maximumVcpus</code> | <code>minimumVcpus</code> 
+        ///  <c>Instances</c> dimension: <c>allowedTenancy</c> | <c>maximumCores</c> | <c>minimumCores</c>
+        /// | <c>maximumSockets</c> | <c>minimumSockets</c> | <c>maximumVcpus</c> | <c>minimumVcpus</c>
+        /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Sockets</code> dimension: <code>allowedTenancy</code> | <code>licenseAffinityToHost</code>
-        /// | <code>maximumSockets</code> | <code>minimumSockets</code> 
+        ///  <c>Sockets</c> dimension: <c>allowedTenancy</c> | <c>licenseAffinityToHost</c> |
+        /// <c>maximumSockets</c> | <c>minimumSockets</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>vCPUs</code> dimension: <code>allowedTenancy</code> | <code>honorVcpuOptimization</code>
-        /// | <code>maximumVcpus</code> | <code>minimumVcpus</code> 
+        ///  <c>vCPUs</c> dimension: <c>allowedTenancy</c> | <c>honorVcpuOptimization</c> | <c>maximumVcpus</c>
+        /// | <c>minimumVcpus</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// The unit for <code>licenseAffinityToHost</code> is days and the range is 1 to 180.
-        /// The possible values for <code>allowedTenancy</code> are <code>EC2-Default</code>,
-        /// <code>EC2-DedicatedHost</code>, and <code>EC2-DedicatedInstance</code>. The possible
-        /// values for <code>honorVcpuOptimization</code> are <code>True</code> and <code>False</code>.
+        /// The unit for <c>licenseAffinityToHost</c> is days and the range is 1 to 180. The possible
+        /// values for <c>allowedTenancy</c> are <c>EC2-Default</c>, <c>EC2-DedicatedHost</c>,
+        /// and <c>EC2-DedicatedInstance</c>. The possible values for <c>honorVcpuOptimization</c>
+        /// are <c>True</c> and <c>False</c>.
         /// </para>
         /// </summary>
         public List<string> LicenseRules
@@ -190,7 +191,7 @@ namespace Amazon.LicenseManager.Model
         // Check to see if LicenseRules property is set
         internal bool IsSetLicenseRules()
         {
-            return this._licenseRules != null && this._licenseRules.Count > 0; 
+            return this._licenseRules != null && (this._licenseRules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -227,7 +228,7 @@ namespace Amazon.LicenseManager.Model
         // Check to see if ProductInformationList property is set
         internal bool IsSetProductInformationList()
         {
-            return this._productInformationList != null && this._productInformationList.Count > 0; 
+            return this._productInformationList != null && (this._productInformationList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -245,7 +246,7 @@ namespace Amazon.LicenseManager.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSSupport.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.AWSSupport.Model
     /// </summary>
     public partial class Service
     {
-        private List<Category> _categories = new List<Category>();
+        private List<Category> _categories = AWSConfigs.InitializeCollections ? new List<Category>() : null;
         private string _code;
         private string _name;
 
@@ -55,14 +56,14 @@ namespace Amazon.AWSSupport.Model
         // Check to see if Categories property is set
         internal bool IsSetCategories()
         {
-            return this._categories != null && this._categories.Count > 0; 
+            return this._categories != null && (this._categories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Code. 
         /// <para>
         /// The code for an Amazon Web Services service returned by the <a>DescribeServices</a>
-        /// response. The <code>name</code> element contains the corresponding friendly name.
+        /// response. The <c>name</c> element contains the corresponding friendly name.
         /// </para>
         /// </summary>
         public string Code
@@ -80,8 +81,8 @@ namespace Amazon.AWSSupport.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The friendly name for an Amazon Web Services service. The <code>code</code> element
-        /// contains the corresponding code.
+        /// The friendly name for an Amazon Web Services service. The <c>code</c> element contains
+        /// the corresponding code.
         /// </para>
         /// </summary>
         public string Name

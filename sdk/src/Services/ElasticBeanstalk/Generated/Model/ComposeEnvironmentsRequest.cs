@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.ElasticBeanstalk.Model
     /// application. Takes a list of version labels that specify application source bundles
     /// for each of the environments to create or update. The name of each environment and
     /// other required information must be included in the source bundles in an environment
-    /// manifest named <code>env.yaml</code>. See <a href="https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-mgmt-compose.html">Compose
+    /// manifest named <c>env.yaml</c>. See <a href="https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-mgmt-compose.html">Compose
     /// Environments</a> for details.
     /// </summary>
     public partial class ComposeEnvironmentsRequest : AmazonElasticBeanstalkRequest
     {
         private string _applicationName;
         private string _groupName;
-        private List<string> _versionLabels = new List<string>();
+        private List<string> _versionLabels = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ApplicationName. 
@@ -102,7 +103,7 @@ namespace Amazon.ElasticBeanstalk.Model
         // Check to see if VersionLabels property is set
         internal bool IsSetVersionLabels()
         {
-            return this._versionLabels != null && this._versionLabels.Count > 0; 
+            return this._versionLabels != null && (this._versionLabels.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

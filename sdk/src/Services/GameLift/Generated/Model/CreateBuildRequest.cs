@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.GameLift.Model
     /// </para>
     ///  </important> 
     /// <para>
-    /// You can use the <code>CreateBuild</code> operation in the following scenarios:
+    /// You can use the <c>CreateBuild</c> operation in the following scenarios:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -65,8 +66,8 @@ namespace Amazon.GameLift.Model
     ///  </li> </ul> 
     /// <para>
     /// If successful, this operation creates a new build resource with a unique build ID
-    /// and places it in <code>INITIALIZED</code> status. A build must be in <code>READY</code>
-    /// status before you can create fleets with it.
+    /// and places it in <c>INITIALIZED</c> status. A build must be in <c>READY</c> status
+    /// before you can create fleets with it.
     /// </para>
     ///  
     /// <para>
@@ -94,14 +95,14 @@ namespace Amazon.GameLift.Model
         private OperatingSystem _operatingSystem;
         private string _serverSdkVersion;
         private S3Location _storageLocation;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _version;
 
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// A descriptive label associated with a build. Build names don't need to be unique.
-        /// You can change this value later. 
+        /// A descriptive label that is associated with a build. Build names do not need to be
+        /// unique. You can change this value later. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -128,10 +129,12 @@ namespace Amazon.GameLift.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you have active fleets using the Windows Server 2012 operating system, you can
-        /// continue to create new builds using this OS until October 10, 2023, when Microsoft
-        /// ends its support. All others must use Windows Server 2016 when creating new Windows-based
-        /// builds.
+        /// Amazon Linux 2 (AL2) will reach end of support on 6/30/2025. See more details in the
+        /// <a href="https://aws.amazon.com/amazon-linux-2/faqs/">Amazon Linux 2 FAQs</a>. For
+        /// game servers that are hosted on AL2 and use Amazon GameLift server SDK 4.x., first
+        /// update the game server build to server SDK 5.x, and then deploy to AL2023 instances.
+        /// See <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-serversdk5-migration.html">
+        /// Migrate to Amazon GameLift server SDK version 5.</a> 
         /// </para>
         ///  </note>
         /// </summary>
@@ -153,7 +156,7 @@ namespace Amazon.GameLift.Model
         /// A server SDK version you used when integrating your game server build with Amazon
         /// GameLift. For more information see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/integration-custom-intro.html">Integrate
         /// games with custom game servers</a>. By default Amazon GameLift sets this value to
-        /// <code>4.0.2</code>.
+        /// <c>4.0.2</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=128)]
@@ -180,9 +183,8 @@ namespace Amazon.GameLift.Model
         /// </para>
         ///  
         /// <para>
-        /// If a <code>StorageLocation</code> is specified, the size of your file can be found
-        /// in your Amazon S3 bucket. Amazon GameLift will report a <code>SizeOnDisk</code> of
-        /// 0. 
+        /// If a <c>StorageLocation</c> is specified, the size of your file can be found in your
+        /// Amazon S3 bucket. Amazon GameLift will report a <c>SizeOnDisk</c> of 0. 
         /// </para>
         /// </summary>
         public S3Location StorageLocation
@@ -221,14 +223,14 @@ namespace Amazon.GameLift.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Version. 
         /// <para>
-        /// Version information associated with a build or script. Version strings don't need
-        /// to be unique. You can change this value later. 
+        /// Version information that is associated with a build or script. Version strings do
+        /// not need to be unique. You can change this value later. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

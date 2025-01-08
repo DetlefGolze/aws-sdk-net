@@ -26,15 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MemoryDB.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeEngineVersions operation.
-    /// Returns a list of the available Redis engine versions.
+    /// Returns a list of the available Redis OSS engine versions.
     /// </summary>
     public partial class DescribeEngineVersionsRequest : AmazonMemoryDBRequest
     {
         private bool? _defaultOnly;
+        private string _engine;
         private string _engineVersion;
         private int? _maxResults;
         private string _nextToken;
@@ -60,9 +62,27 @@ namespace Amazon.MemoryDB.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Engine. 
+        /// <para>
+        /// The name of the engine for which to list available versions.
+        /// </para>
+        /// </summary>
+        public string Engine
+        {
+            get { return this._engine; }
+            set { this._engine = value; }
+        }
+
+        // Check to see if Engine property is set
+        internal bool IsSetEngine()
+        {
+            return this._engine != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property EngineVersion. 
         /// <para>
-        /// The Redis engine version
+        /// The Redis OSS engine version
         /// </para>
         /// </summary>
         public string EngineVersion

@@ -18,6 +18,7 @@
  */
 using Amazon.Runtime;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
@@ -29,5 +30,10 @@ namespace Amazon.ElasticFileSystem.Model
         /// Enumerable containing all full responses for the operation
         /// </summary>
         IPaginatedEnumerable<DescribeFileSystemsResponse> Responses { get; }
+
+        /// <summary>
+        /// Enumerable containing all of the FileSystems
+        /// </summary>
+        IPaginatedEnumerable<FileSystemDescription> FileSystems { get; }
     }
 }

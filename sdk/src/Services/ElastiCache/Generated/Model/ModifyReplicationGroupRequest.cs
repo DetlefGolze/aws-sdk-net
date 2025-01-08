@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
     /// Container for the parameters to the ModifyReplicationGroup operation.
-    /// Modifies the settings for a replication group.
+    /// Modifies the settings for a replication group. This is limited to Valkey and Redis
+    /// OSS 7 and above.
     /// 
     ///  <ul> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/scaling-redis-cluster-mode-enabled.html">Scaling
-    /// for Amazon ElastiCache for Redis (cluster mode enabled)</a> in the ElastiCache User
-    /// Guide
+    ///  <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/scaling-redis-cluster-mode-enabled.html">Scaling
+    /// for Valkey or Redis OSS (cluster mode enabled)</a> in the ElastiCache User Guide
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -45,7 +46,7 @@ namespace Amazon.ElastiCache.Model
     /// </para>
     ///  </li> </ul> <note> 
     /// <para>
-    /// This operation is valid for Redis only.
+    /// This operation is valid for Valkey or Redis OSS only.
     /// </para>
     ///  </note>
     /// </summary>
@@ -58,11 +59,12 @@ namespace Amazon.ElastiCache.Model
         private bool? _autoMinorVersionUpgrade;
         private string _cacheNodeType;
         private string _cacheParameterGroupName;
-        private List<string> _cacheSecurityGroupNames = new List<string>();
+        private List<string> _cacheSecurityGroupNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ClusterMode _clusterMode;
+        private string _engine;
         private string _engineVersion;
         private IpDiscovery _ipDiscovery;
-        private List<LogDeliveryConfigurationRequest> _logDeliveryConfigurations = new List<LogDeliveryConfigurationRequest>();
+        private List<LogDeliveryConfigurationRequest> _logDeliveryConfigurations = AWSConfigs.InitializeCollections ? new List<LogDeliveryConfigurationRequest>() : null;
         private bool? _multiAZEnabled;
         private string _nodeGroupId;
         private string _notificationTopicArn;
@@ -72,34 +74,34 @@ namespace Amazon.ElastiCache.Model
         private bool? _removeUserGroups;
         private string _replicationGroupDescription;
         private string _replicationGroupId;
-        private List<string> _securityGroupIds = new List<string>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _snapshotRetentionLimit;
         private string _snapshottingClusterId;
         private string _snapshotWindow;
         private bool? _transitEncryptionEnabled;
         private TransitEncryptionMode _transitEncryptionMode;
-        private List<string> _userGroupIdsToAdd = new List<string>();
-        private List<string> _userGroupIdsToRemove = new List<string>();
+        private List<string> _userGroupIdsToAdd = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _userGroupIdsToRemove = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ApplyImmediately. 
         /// <para>
-        /// If <code>true</code>, this parameter causes the modifications in this request and
-        /// any pending modifications to be applied, asynchronously and as soon as possible, regardless
-        /// of the <code>PreferredMaintenanceWindow</code> setting for the replication group.
+        /// If <c>true</c>, this parameter causes the modifications in this request and any pending
+        /// modifications to be applied, asynchronously and as soon as possible, regardless of
+        /// the <c>PreferredMaintenanceWindow</c> setting for the replication group.
         /// </para>
         ///  
         /// <para>
-        /// If <code>false</code>, changes to the nodes in the replication group are applied on
-        /// the next maintenance reboot, or the next failure reboot, whichever occurs first.
+        /// If <c>false</c>, changes to the nodes in the replication group are applied on the
+        /// next maintenance reboot, or the next failure reboot, whichever occurs first.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>true</code> | <code>false</code> 
+        /// Valid values: <c>true</c> | <c>false</c> 
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool ApplyImmediately
@@ -118,7 +120,7 @@ namespace Amazon.ElastiCache.Model
         /// Gets and sets the property AuthToken. 
         /// <para>
         /// Reserved parameter. The password used to access a password protected server. This
-        /// parameter must be specified with the <code>auth-token-update-strategy </code> parameter.
+        /// parameter must be specified with the <c>auth-token-update-strategy </c> parameter.
         /// Password constraints:
         /// </para>
         ///  <ul> <li> 
@@ -154,20 +156,24 @@ namespace Amazon.ElastiCache.Model
         /// Gets and sets the property AuthTokenUpdateStrategy. 
         /// <para>
         /// Specifies the strategy to use to update the AUTH token. This parameter must be specified
-        /// with the <code>auth-token</code> parameter. Possible values:
+        /// with the <c>auth-token</c> parameter. Possible values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Rotate
+        /// ROTATE - default, if no update strategy is provided
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Set
+        /// SET - allowed only after ROTATE
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// DELETE - allowed only when transitioning to RBAC
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        ///  For more information, see <a href="http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/auth.html">Authenticating
-        /// Users with Redis AUTH</a> 
+        ///  For more information, see <a href="http://docs.aws.amazon.com/AmazonElastiCache/latest/dg/auth.html">Authenticating
+        /// Users with AUTH</a> 
         /// </para>
         /// </summary>
         public AuthTokenUpdateStrategyType AuthTokenUpdateStrategy
@@ -190,7 +196,7 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>true</code> | <code>false</code> 
+        /// Valid values: <c>true</c> | <c>false</c> 
         /// </para>
         /// </summary>
         public bool AutomaticFailoverEnabled
@@ -208,9 +214,9 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property AutoMinorVersionUpgrade. 
         /// <para>
-        ///  If you are running Redis engine version 6.0 or later, set this parameter to yes if
-        /// you want to opt-in to the next auto minor version upgrade campaign. This parameter
-        /// is disabled for previous versions.  
+        ///  If you are running Valkey or Redis OSS engine version 6.0 or later, set this parameter
+        /// to yes if you want to opt-in to the next auto minor version upgrade campaign. This
+        /// parameter is disabled for previous versions.  
         /// </para>
         /// </summary>
         public bool AutoMinorVersionUpgrade
@@ -248,8 +254,7 @@ namespace Amazon.ElastiCache.Model
         /// <para>
         /// The name of the cache parameter group to apply to all of the clusters in this replication
         /// group. This change is asynchronously applied as soon as possible for parameters when
-        /// the <code>ApplyImmediately</code> parameter is specified as <code>true</code> for
-        /// this request.
+        /// the <c>ApplyImmediately</c> parameter is specified as <c>true</c> for this request.
         /// </para>
         /// </summary>
         public string CacheParameterGroupName
@@ -277,7 +282,7 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  
         /// <para>
-        /// Constraints: Must contain no more than 255 alphanumeric characters. Must not be <code>Default</code>.
+        /// Constraints: Must contain no more than 255 alphanumeric characters. Must not be <c>Default</c>.
         /// </para>
         /// </summary>
         public List<string> CacheSecurityGroupNames
@@ -289,17 +294,17 @@ namespace Amazon.ElastiCache.Model
         // Check to see if CacheSecurityGroupNames property is set
         internal bool IsSetCacheSecurityGroupNames()
         {
-            return this._cacheSecurityGroupNames != null && this._cacheSecurityGroupNames.Count > 0; 
+            return this._cacheSecurityGroupNames != null && (this._cacheSecurityGroupNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ClusterMode. 
         /// <para>
         /// Enabled or Disabled. To modify cluster mode from Disabled to Enabled, you must first
-        /// set the cluster mode to Compatible. Compatible mode allows your Redis clients to connect
-        /// using both cluster mode enabled and cluster mode disabled. After you migrate all Redis
-        /// clients to use cluster mode enabled, you can then complete cluster mode configuration
-        /// and set the cluster mode to Enabled.
+        /// set the cluster mode to Compatible. Compatible mode allows your Valkey or Redis OSS
+        /// clients to connect using both cluster mode enabled and cluster mode disabled. After
+        /// you migrate all Valkey or Redis OSS clients to use cluster mode enabled, you can then
+        /// complete cluster mode configuration and set the cluster mode to Enabled.
         /// </para>
         /// </summary>
         public ClusterMode ClusterMode
@@ -315,6 +320,25 @@ namespace Amazon.ElastiCache.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Engine. 
+        /// <para>
+        /// Modifies the engine listed in a replication group message. The options are redis,
+        /// memcached or valkey.
+        /// </para>
+        /// </summary>
+        public string Engine
+        {
+            get { return this._engine; }
+            set { this._engine = value; }
+        }
+
+        // Check to see if Engine property is set
+        internal bool IsSetEngine()
+        {
+            return this._engine != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property EngineVersion. 
         /// <para>
         /// The upgraded version of the cache engine to be run on the clusters in the replication
@@ -322,7 +346,7 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  
         /// <para>
-        ///  <b>Important:</b> You can upgrade to a newer engine version (see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/SelectEngine.html#VersionManagement">Selecting
+        ///  <b>Important:</b> You can upgrade to a newer engine version (see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/SelectEngine.html#VersionManagement">Selecting
         /// a Cache Engine and Version</a>), but you cannot downgrade to an earlier engine version.
         /// If you want to use an earlier engine version, you must delete the existing replication
         /// group and create it anew with the earlier engine version. 
@@ -343,10 +367,10 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property IpDiscovery. 
         /// <para>
-        /// The network type you choose when modifying a cluster, either <code>ipv4</code> | <code>ipv6</code>.
-        /// IPv6 is supported for workloads using Redis engine version 6.2 onward or Memcached
-        /// engine version 1.6.6 on all instances built on the <a href="http://aws.amazon.com/ec2/nitro/">Nitro
-        /// system</a>.
+        /// The network type you choose when modifying a cluster, either <c>ipv4</c> | <c>ipv6</c>.
+        /// IPv6 is supported for workloads using Valkey 7.2 and above, Redis OSS engine version
+        /// 6.2 and above or Memcached engine version 1.6.6 and above on all instances built on
+        /// the <a href="http://aws.amazon.com/ec2/nitro/">Nitro system</a>.
         /// </para>
         /// </summary>
         public IpDiscovery IpDiscovery
@@ -376,7 +400,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if LogDeliveryConfigurations property is set
         internal bool IsSetLogDeliveryConfigurations()
         {
-            return this._logDeliveryConfigurations != null && this._logDeliveryConfigurations.Count > 0; 
+            return this._logDeliveryConfigurations != null && (this._logDeliveryConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -444,11 +468,11 @@ namespace Amazon.ElastiCache.Model
         /// Gets and sets the property NotificationTopicStatus. 
         /// <para>
         /// The status of the Amazon SNS notification topic for the replication group. Notifications
-        /// are sent only if the status is <code>active</code>.
+        /// are sent only if the status is <c>active</c>.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>active</code> | <code>inactive</code> 
+        /// Valid values: <c>active</c> | <c>inactive</c> 
         /// </para>
         /// </summary>
         public string NotificationTopicStatus
@@ -472,39 +496,39 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values for <code>ddd</code> are:
+        /// Valid values for <c>ddd</c> are:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>sun</code> 
+        ///  <c>sun</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mon</code> 
+        ///  <c>mon</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tue</code> 
+        ///  <c>tue</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>wed</code> 
+        ///  <c>wed</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>thu</code> 
+        ///  <c>thu</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>fri</code> 
+        ///  <c>fri</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sat</code> 
+        ///  <c>sat</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>sun:23:00-mon:01:30</code> 
+        /// Example: <c>sun:23:00-mon:01:30</c> 
         /// </para>
         /// </summary>
         public string PreferredMaintenanceWindow
@@ -615,15 +639,15 @@ namespace Amazon.ElastiCache.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SnapshotRetentionLimit. 
         /// <para>
         /// The number of days for which ElastiCache retains automatic node group (shard) snapshots
-        /// before deleting them. For example, if you set <code>SnapshotRetentionLimit</code>
-        /// to 5, a snapshot that was taken today is retained for 5 days before being deleted.
+        /// before deleting them. For example, if you set <c>SnapshotRetentionLimit</c> to 5,
+        /// a snapshot that was taken today is retained for 5 days before being deleted.
         /// </para>
         ///  
         /// <para>
@@ -647,7 +671,8 @@ namespace Amazon.ElastiCache.Model
         /// Gets and sets the property SnapshottingClusterId. 
         /// <para>
         /// The cluster ID that is used as the daily snapshot source for the replication group.
-        /// This parameter cannot be set for Redis (cluster mode enabled) replication groups.
+        /// This parameter cannot be set for Valkey or Redis OSS (cluster mode enabled) replication
+        /// groups.
         /// </para>
         /// </summary>
         public string SnapshottingClusterId
@@ -666,11 +691,11 @@ namespace Amazon.ElastiCache.Model
         /// Gets and sets the property SnapshotWindow. 
         /// <para>
         /// The daily time range (in UTC) during which ElastiCache begins taking a daily snapshot
-        /// of the node group (shard) specified by <code>SnapshottingClusterId</code>.
+        /// of the node group (shard) specified by <c>SnapshottingClusterId</c>.
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>05:00-09:00</code> 
+        /// Example: <c>05:00-09:00</c> 
         /// </para>
         ///  
         /// <para>
@@ -694,8 +719,8 @@ namespace Amazon.ElastiCache.Model
         /// Gets and sets the property TransitEncryptionEnabled. 
         /// <para>
         /// A flag that enables in-transit encryption when set to true. If you are enabling in-transit
-        /// encryption for an existing cluster, you must also set <code>TransitEncryptionMode</code>
-        /// to <code>preferred</code>.
+        /// encryption for an existing cluster, you must also set <c>TransitEncryptionMode</c>
+        /// to <c>preferred</c>.
         /// </para>
         /// </summary>
         public bool TransitEncryptionEnabled
@@ -718,18 +743,17 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  
         /// <para>
-        /// You must set <code>TransitEncryptionEnabled</code> to <code>true</code>, for your
-        /// existing cluster, and set <code>TransitEncryptionMode</code> to <code>preferred</code>
-        /// in the same request to allow both encrypted and unencrypted connections at the same
-        /// time. Once you migrate all your Redis clients to use encrypted connections you can
-        /// set the value to <code>required</code> to allow encrypted connections only.
+        /// You must set <c>TransitEncryptionEnabled</c> to <c>true</c>, for your existing cluster,
+        /// and set <c>TransitEncryptionMode</c> to <c>preferred</c> in the same request to allow
+        /// both encrypted and unencrypted connections at the same time. Once you migrate all
+        /// your Valkey or Redis OSS clients to use encrypted connections you can set the value
+        /// to <c>required</c> to allow encrypted connections only.
         /// </para>
         ///  
         /// <para>
-        /// Setting <code>TransitEncryptionMode</code> to <code>required</code> is a two-step
-        /// process that requires you to first set the <code>TransitEncryptionMode</code> to <code>preferred</code>,
-        /// after that you can set <code>TransitEncryptionMode</code> to <code>required</code>.
-        /// 
+        /// Setting <c>TransitEncryptionMode</c> to <c>required</c> is a two-step process that
+        /// requires you to first set the <c>TransitEncryptionMode</c> to <c>preferred</c>, after
+        /// that you can set <c>TransitEncryptionMode</c> to <c>required</c>. 
         /// </para>
         /// </summary>
         public TransitEncryptionMode TransitEncryptionMode
@@ -759,7 +783,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if UserGroupIdsToAdd property is set
         internal bool IsSetUserGroupIdsToAdd()
         {
-            return this._userGroupIdsToAdd != null && this._userGroupIdsToAdd.Count > 0; 
+            return this._userGroupIdsToAdd != null && (this._userGroupIdsToAdd.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -778,7 +802,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if UserGroupIdsToRemove property is set
         internal bool IsSetUserGroupIdsToRemove()
         {
-            return this._userGroupIdsToRemove != null && this._userGroupIdsToRemove.Count > 0; 
+            return this._userGroupIdsToRemove != null && (this._userGroupIdsToRemove.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

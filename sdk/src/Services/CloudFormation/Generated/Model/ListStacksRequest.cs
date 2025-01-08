@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.CloudFormation.Model
     public partial class ListStacksRequest : AmazonCloudFormationRequest
     {
         private string _nextToken;
-        private List<string> _stackStatusFilter = new List<string>();
+        private List<string> _stackStatusFilter = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -64,7 +65,7 @@ namespace Amazon.CloudFormation.Model
         /// <para>
         /// Stack status to use as a filter. Specify one or more stack status codes to list only
         /// stacks with the specified status codes. For a complete list of stack status codes,
-        /// see the <code>StackStatus</code> parameter of the <a>Stack</a> data type.
+        /// see the <c>StackStatus</c> parameter of the <a>Stack</a> data type.
         /// </para>
         /// </summary>
         public List<string> StackStatusFilter
@@ -76,7 +77,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if StackStatusFilter property is set
         internal bool IsSetStackStatusFilter()
         {
-            return this._stackStatusFilter != null && this._stackStatusFilter.Count > 0; 
+            return this._stackStatusFilter != null && (this._stackStatusFilter.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

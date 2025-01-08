@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
@@ -37,17 +38,17 @@ namespace Amazon.Lambda.Model
     public partial class Cors
     {
         private bool? _allowCredentials;
-        private List<string> _allowHeaders = new List<string>();
-        private List<string> _allowMethods = new List<string>();
-        private List<string> _allowOrigins = new List<string>();
-        private List<string> _exposeHeaders = new List<string>();
+        private List<string> _allowHeaders = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _allowMethods = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _allowOrigins = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _exposeHeaders = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxAge;
 
         /// <summary>
         /// Gets and sets the property AllowCredentials. 
         /// <para>
         /// Whether to allow cookies or other credentials in requests to your function URL. The
-        /// default is <code>false</code>.
+        /// default is <c>false</c>.
         /// </para>
         /// </summary>
         public bool AllowCredentials
@@ -66,7 +67,7 @@ namespace Amazon.Lambda.Model
         /// Gets and sets the property AllowHeaders. 
         /// <para>
         /// The HTTP headers that origins can include in requests to your function URL. For example:
-        /// <code>Date</code>, <code>Keep-Alive</code>, <code>X-Custom-Header</code>.
+        /// <c>Date</c>, <c>Keep-Alive</c>, <c>X-Custom-Header</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=100)]
@@ -79,14 +80,14 @@ namespace Amazon.Lambda.Model
         // Check to see if AllowHeaders property is set
         internal bool IsSetAllowHeaders()
         {
-            return this._allowHeaders != null && this._allowHeaders.Count > 0; 
+            return this._allowHeaders != null && (this._allowHeaders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AllowMethods. 
         /// <para>
-        /// The HTTP methods that are allowed when calling your function URL. For example: <code>GET</code>,
-        /// <code>POST</code>, <code>DELETE</code>, or the wildcard character (<code>*</code>).
+        /// The HTTP methods that are allowed when calling your function URL. For example: <c>GET</c>,
+        /// <c>POST</c>, <c>DELETE</c>, or the wildcard character (<c>*</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Max=6)]
@@ -99,19 +100,18 @@ namespace Amazon.Lambda.Model
         // Check to see if AllowMethods property is set
         internal bool IsSetAllowMethods()
         {
-            return this._allowMethods != null && this._allowMethods.Count > 0; 
+            return this._allowMethods != null && (this._allowMethods.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AllowOrigins. 
         /// <para>
         /// The origins that can access your function URL. You can list any number of specific
-        /// origins, separated by a comma. For example: <code>https://www.example.com</code>,
-        /// <code>http://localhost:60905</code>.
+        /// origins, separated by a comma. For example: <c>https://www.example.com</c>, <c>http://localhost:60905</c>.
         /// </para>
         ///  
         /// <para>
-        /// Alternatively, you can grant access to all origins using the wildcard character (<code>*</code>).
+        /// Alternatively, you can grant access to all origins using the wildcard character (<c>*</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Max=100)]
@@ -124,14 +124,14 @@ namespace Amazon.Lambda.Model
         // Check to see if AllowOrigins property is set
         internal bool IsSetAllowOrigins()
         {
-            return this._allowOrigins != null && this._allowOrigins.Count > 0; 
+            return this._allowOrigins != null && (this._allowOrigins.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ExposeHeaders. 
         /// <para>
         /// The HTTP headers in your function response that you want to expose to origins that
-        /// call your function URL. For example: <code>Date</code>, <code>Keep-Alive</code>, <code>X-Custom-Header</code>.
+        /// call your function URL. For example: <c>Date</c>, <c>Keep-Alive</c>, <c>X-Custom-Header</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=100)]
@@ -144,14 +144,14 @@ namespace Amazon.Lambda.Model
         // Check to see if ExposeHeaders property is set
         internal bool IsSetExposeHeaders()
         {
-            return this._exposeHeaders != null && this._exposeHeaders.Count > 0; 
+            return this._exposeHeaders != null && (this._exposeHeaders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxAge. 
         /// <para>
         /// The maximum amount of time, in seconds, that web browsers can cache results of a preflight
-        /// request. By default, this is set to <code>0</code>, which means that the browser doesn't
+        /// request. By default, this is set to <c>0</c>, which means that the browser doesn't
         /// cache results.
         /// </para>
         /// </summary>

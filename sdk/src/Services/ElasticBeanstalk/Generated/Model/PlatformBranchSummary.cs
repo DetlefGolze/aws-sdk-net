@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.ElasticBeanstalk.Model
         private int? _branchOrder;
         private string _lifecycleState;
         private string _platformName;
-        private List<string> _supportedTierList = new List<string>();
+        private List<string> _supportedTierList = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property BranchName. 
@@ -61,13 +62,12 @@ namespace Amazon.ElasticBeanstalk.Model
         /// Gets and sets the property BranchOrder. 
         /// <para>
         /// An ordinal number that designates the order in which platform branches have been added
-        /// to a platform. This can be helpful, for example, if your code calls the <code>ListPlatformBranches</code>
+        /// to a platform. This can be helpful, for example, if your code calls the <c>ListPlatformBranches</c>
         /// action and then displays a list of platform branches.
         /// </para>
         ///  
         /// <para>
-        /// A larger <code>BranchOrder</code> value designates a newer platform branch within
-        /// the platform.
+        /// A larger <c>BranchOrder</c> value designates a newer platform branch within the platform.
         /// </para>
         /// </summary>
         public int BranchOrder
@@ -89,8 +89,8 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  
         /// <para>
-        /// Possible values: <code>beta</code> | <code>supported</code> | <code>deprecated</code>
-        /// | <code>retired</code> 
+        /// Possible values: <c>beta</c> | <c>supported</c> | <c>deprecated</c> | <c>retired</c>
+        /// 
         /// </para>
         /// </summary>
         public string LifecycleState
@@ -130,7 +130,7 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  
         /// <para>
-        /// Possible values: <code>WebServer/Standard</code> | <code>Worker/SQS/HTTP</code> 
+        /// Possible values: <c>WebServer/Standard</c> | <c>Worker/SQS/HTTP</c> 
         /// </para>
         /// </summary>
         public List<string> SupportedTierList
@@ -142,7 +142,7 @@ namespace Amazon.ElasticBeanstalk.Model
         // Check to see if SupportedTierList property is set
         internal bool IsSetSupportedTierList()
         {
-            return this._supportedTierList != null && this._supportedTierList.Count > 0; 
+            return this._supportedTierList != null && (this._supportedTierList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

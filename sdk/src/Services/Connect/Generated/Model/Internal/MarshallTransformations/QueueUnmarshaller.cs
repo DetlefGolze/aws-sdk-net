@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Connect.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Queue Unmarshall(JsonUnmarshallerContext context)
         {
+            Queue unmarshalledObject = new Queue();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Queue unmarshalledObject = new Queue();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -74,6 +76,18 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.HoursOfOperationId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("LastModifiedRegion", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.LastModifiedRegion = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("LastModifiedTime", targetDepth))
+                {
+                    var unmarshaller = DateTimeUnmarshaller.Instance;
+                    unmarshalledObject.LastModifiedTime = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("MaxContacts", targetDepth))
@@ -92,6 +106,12 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = OutboundCallerConfigUnmarshaller.Instance;
                     unmarshalledObject.OutboundCallerConfig = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("OutboundEmailConfig", targetDepth))
+                {
+                    var unmarshaller = OutboundEmailConfigUnmarshaller.Instance;
+                    unmarshalledObject.OutboundEmailConfig = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("QueueArn", targetDepth))
@@ -119,7 +139,6 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

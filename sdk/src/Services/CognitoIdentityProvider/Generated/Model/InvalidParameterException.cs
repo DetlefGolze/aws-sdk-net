@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.CognitoIdentityProvider.Model
     #endif
     public partial class InvalidParameterException : AmazonCognitoIdentityProviderException
     {
+        private string _reasonCode;
 
         /// <summary>
         /// Constructs a new InvalidParameterException with the specified error
@@ -97,6 +99,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         protected InvalidParameterException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
             : base(info, context)
         {
+            this.ReasonCode = (string)info.GetValue("ReasonCode", typeof(string));
         }
 
         /// <summary>
@@ -117,8 +120,27 @@ namespace Amazon.CognitoIdentityProvider.Model
         public override void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
         {
             base.GetObjectData(info, context);
+            info.AddValue("ReasonCode", this.ReasonCode);
         }
 #endif
+
+        /// <summary>
+        /// Gets and sets the property ReasonCode. 
+        /// <para>
+        /// The reason code of the exception.
+        /// </para>
+        /// </summary>
+        public string ReasonCode
+        {
+            get { return this._reasonCode; }
+            set { this._reasonCode = value; }
+        }
+
+        // Check to see if ReasonCode property is set
+        internal bool IsSetReasonCode()
+        {
+            return this._reasonCode != null;
+        }
 
     }
 }

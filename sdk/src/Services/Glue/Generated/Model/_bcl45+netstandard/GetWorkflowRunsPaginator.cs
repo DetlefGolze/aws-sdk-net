@@ -24,7 +24,8 @@ using System.Collections;
 using System.Threading;
 using System.Threading.Tasks;
 using Amazon.Runtime;
- 
+
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -40,6 +41,12 @@ namespace Amazon.Glue.Model
         /// Enumerable containing all full responses for the operation
         /// </summary>
         public IPaginatedEnumerable<GetWorkflowRunsResponse> Responses => new PaginatedResponse<GetWorkflowRunsResponse>(this);
+
+        /// <summary>
+        /// Enumerable containing all of the Runs
+        /// </summary>
+        public IPaginatedEnumerable<WorkflowRun> Runs => 
+            new PaginatedResultKeyResponse<GetWorkflowRunsResponse, WorkflowRun>(this, (i) => i.Runs ?? new List<WorkflowRun>());
 
         internal GetWorkflowRunsPaginator(IAmazonGlue client, GetWorkflowRunsRequest request)
         {
@@ -67,7 +74,7 @@ namespace Amazon.Glue.Model
         }
 #endif
 #if AWS_ASYNC_ENUMERABLES_API
-        async IAsyncEnumerable<GetWorkflowRunsResponse> IPaginator<GetWorkflowRunsResponse>.PaginateAsync(CancellationToken cancellationToken = default)
+        async IAsyncEnumerable<GetWorkflowRunsResponse> IPaginator<GetWorkflowRunsResponse>.PaginateAsync([System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken cancellationToken)
         {
             if (Interlocked.Exchange(ref _isPaginatorInUse, 1) != 0)
             {

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Synthetics.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.Synthetics.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// Specify this parameter to limit how many runs are returned each time you use the <code>GetCanaryRuns</code>
+        /// Specify this parameter to limit how many runs are returned each time you use the <c>GetCanaryRuns</c>
         /// operation. If you omit this parameter, the default of 100 is used.
         /// </para>
         /// </summary>
@@ -64,7 +65,7 @@ namespace Amazon.Synthetics.Model
         /// The name of the canary that you want to see runs for.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=21)]
+        [AWSProperty(Required=true, Min=1, Max=255)]
         public string Name
         {
             get { return this._name; }
@@ -81,7 +82,7 @@ namespace Amazon.Synthetics.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token that indicates that there is more data available. You can use this token in
-        /// a subsequent <code>GetCanaryRuns</code> operation to retrieve the next set of results.
+        /// a subsequent <c>GetCanaryRuns</c> operation to retrieve the next set of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=4, Max=252)]

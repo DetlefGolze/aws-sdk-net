@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptunedata.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property GraphSummary. 
         /// <para>
-        /// The graph summary of an RDF graph. See <a href="https://docs.aws.amazon.com/neptune-graph-summary.html#neptune-graph-summary-rdf-response">Graph
+        /// The graph summary of an RDF graph. See <a href="https://docs.aws.amazon.com/neptune/latest/userguide/neptune-graph-summary.html#neptune-graph-summary-rdf-response">Graph
         /// summary response for an RDF graph</a>.
         /// </para>
         /// </summary>

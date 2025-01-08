@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Glue.Model
     /// 
     ///  
     /// <para>
-    /// For IAM authorization, the public IAM action associated with this API is <code>glue:GetPartition</code>.
+    /// For IAM authorization, the public IAM action associated with this API is <c>glue:GetPartition</c>.
     /// </para>
     /// </summary>
     public partial class GetUnfilteredPartitionMetadataRequest : AmazonGlueRequest
@@ -42,8 +43,10 @@ namespace Amazon.Glue.Model
         private AuditContext _auditContext;
         private string _catalogId;
         private string _databaseName;
-        private List<string> _partitionValues = new List<string>();
-        private List<string> _supportedPermissionTypes = new List<string>();
+        private List<string> _partitionValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private QuerySessionContext _querySessionContext;
+        private string _region;
+        private List<string> _supportedPermissionTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _tableName;
 
         /// <summary>
@@ -118,7 +121,46 @@ namespace Amazon.Glue.Model
         // Check to see if PartitionValues property is set
         internal bool IsSetPartitionValues()
         {
-            return this._partitionValues != null && this._partitionValues.Count > 0; 
+            return this._partitionValues != null && (this._partitionValues.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property QuerySessionContext. 
+        /// <para>
+        /// A structure used as a protocol between query engines and Lake Formation or Glue. Contains
+        /// both a Lake Formation generated authorization identifier and information from the
+        /// request's authorization context.
+        /// </para>
+        /// </summary>
+        public QuerySessionContext QuerySessionContext
+        {
+            get { return this._querySessionContext; }
+            set { this._querySessionContext = value; }
+        }
+
+        // Check to see if QuerySessionContext property is set
+        internal bool IsSetQuerySessionContext()
+        {
+            return this._querySessionContext != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Region. 
+        /// <para>
+        /// Specified only if the base tables belong to a different Amazon Web Services Region.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=1024)]
+        public string Region
+        {
+            get { return this._region; }
+            set { this._region = value; }
+        }
+
+        // Check to see if Region property is set
+        internal bool IsSetRegion()
+        {
+            return this._region != null;
         }
 
         /// <summary>
@@ -137,7 +179,7 @@ namespace Amazon.Glue.Model
         // Check to see if SupportedPermissionTypes property is set
         internal bool IsSetSupportedPermissionTypes()
         {
-            return this._supportedPermissionTypes != null && this._supportedPermissionTypes.Count > 0; 
+            return this._supportedPermissionTypes != null && (this._supportedPermissionTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

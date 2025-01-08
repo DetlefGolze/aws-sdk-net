@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
-    /// You specified the <code>Safe</code> option for the DeregisterTargetFromMaintenanceWindow
+    /// You specified the <c>Safe</c> option for the DeregisterTargetFromMaintenanceWindow
     /// operation, but the target is still referenced in a task.
     /// </summary>
     #if !NETSTANDARD

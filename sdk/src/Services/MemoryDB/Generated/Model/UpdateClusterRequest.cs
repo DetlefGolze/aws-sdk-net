@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MemoryDB.Model
 {
     /// <summary>
@@ -38,12 +39,13 @@ namespace Amazon.MemoryDB.Model
         private string _aclName;
         private string _clusterName;
         private string _description;
+        private string _engine;
         private string _engineVersion;
         private string _maintenanceWindow;
         private string _nodeType;
         private string _parameterGroupName;
         private ReplicaConfigurationRequest _replicaConfiguration;
-        private List<string> _securityGroupIds = new List<string>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ShardConfigurationRequest _shardConfiguration;
         private int? _snapshotRetentionLimit;
         private string _snapshotWindow;
@@ -53,7 +55,7 @@ namespace Amazon.MemoryDB.Model
         /// <summary>
         /// Gets and sets the property ACLName. 
         /// <para>
-        /// The Access Control List that is associated with the cluster
+        /// The Access Control List that is associated with the cluster.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -72,7 +74,7 @@ namespace Amazon.MemoryDB.Model
         /// <summary>
         /// Gets and sets the property ClusterName. 
         /// <para>
-        /// The name of the cluster to update
+        /// The name of the cluster to update.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -91,7 +93,7 @@ namespace Amazon.MemoryDB.Model
         /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
-        /// The description of the cluster to update
+        /// The description of the cluster to update.
         /// </para>
         /// </summary>
         public string Description
@@ -104,6 +106,24 @@ namespace Amazon.MemoryDB.Model
         internal bool IsSetDescription()
         {
             return this._description != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Engine. 
+        /// <para>
+        /// The name of the engine to be used for the cluster.
+        /// </para>
+        /// </summary>
+        public string Engine
+        {
+            get { return this._engine; }
+            set { this._engine = value; }
+        }
+
+        // Check to see if Engine property is set
+        internal bool IsSetEngine()
+        {
+            return this._engine != null;
         }
 
         /// <summary>
@@ -136,39 +156,39 @@ namespace Amazon.MemoryDB.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values for <code>ddd</code> are:
+        /// Valid values for <c>ddd</c> are:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>sun</code> 
+        ///  <c>sun</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mon</code> 
+        ///  <c>mon</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tue</code> 
+        ///  <c>tue</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>wed</code> 
+        ///  <c>wed</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>thu</code> 
+        ///  <c>thu</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>fri</code> 
+        ///  <c>fri</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sat</code> 
+        ///  <c>sat</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>sun:23:00-mon:01:30</code> 
+        /// Example: <c>sun:23:00-mon:01:30</c> 
         /// </para>
         /// </summary>
         public string MaintenanceWindow
@@ -204,7 +224,7 @@ namespace Amazon.MemoryDB.Model
         /// <summary>
         /// Gets and sets the property ParameterGroupName. 
         /// <para>
-        /// The name of the parameter group to update
+        /// The name of the parameter group to update.
         /// </para>
         /// </summary>
         public string ParameterGroupName
@@ -222,7 +242,7 @@ namespace Amazon.MemoryDB.Model
         /// <summary>
         /// Gets and sets the property ReplicaConfiguration. 
         /// <para>
-        /// The number of replicas that will reside in each shard
+        /// The number of replicas that will reside in each shard.
         /// </para>
         /// </summary>
         public ReplicaConfigurationRequest ReplicaConfiguration
@@ -240,7 +260,7 @@ namespace Amazon.MemoryDB.Model
         /// <summary>
         /// Gets and sets the property SecurityGroupIds. 
         /// <para>
-        /// The SecurityGroupIds to update
+        /// The SecurityGroupIds to update.
         /// </para>
         /// </summary>
         public List<string> SecurityGroupIds
@@ -252,13 +272,13 @@ namespace Amazon.MemoryDB.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ShardConfiguration. 
         /// <para>
-        /// The number of shards in the cluster
+        /// The number of shards in the cluster.
         /// </para>
         /// </summary>
         public ShardConfigurationRequest ShardConfiguration
@@ -315,7 +335,7 @@ namespace Amazon.MemoryDB.Model
         /// <summary>
         /// Gets and sets the property SnsTopicArn. 
         /// <para>
-        /// The SNS topic ARN to update
+        /// The SNS topic ARN to update.
         /// </para>
         /// </summary>
         public string SnsTopicArn

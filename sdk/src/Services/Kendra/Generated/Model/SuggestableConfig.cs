@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -59,8 +60,8 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property Suggestable. 
         /// <para>
-        ///  <code>TRUE</code> means the document field/attribute is suggestible, so the contents
-        /// within the field can be used for query suggestions.
+        ///  <c>TRUE</c> means the document field/attribute is suggestible, so the contents within
+        /// the field can be used for query suggestions.
         /// </para>
         /// </summary>
         public bool Suggestable

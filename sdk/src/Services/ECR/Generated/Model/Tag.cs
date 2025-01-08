@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECR.Model
 {
     /// <summary>
@@ -42,8 +43,8 @@ namespace Amazon.ECR.Model
         /// <summary>
         /// Gets and sets the property Key. 
         /// <para>
-        /// One part of a key-value pair that make up a tag. A <code>key</code> is a general label
-        /// that acts like a category for more specific tag values.
+        /// One part of a key-value pair that make up a tag. A <c>key</c> is a general label that
+        /// acts like a category for more specific tag values.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -62,7 +63,7 @@ namespace Amazon.ECR.Model
         /// <summary>
         /// Gets and sets the property Value. 
         /// <para>
-        /// A <code>value</code> acts as a descriptor within a tag category (key).
+        /// A <c>value</c> acts as a descriptor within a tag category (key).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

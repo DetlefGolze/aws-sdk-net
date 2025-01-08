@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTWireless.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.IoTWireless.Model
     /// </summary>
     public partial class ListQueuedMessagesResponse : AmazonWebServiceResponse
     {
-        private List<DownlinkQueueMessage> _downlinkQueueMessagesList = new List<DownlinkQueueMessage>();
+        private List<DownlinkQueueMessage> _downlinkQueueMessagesList = AWSConfigs.InitializeCollections ? new List<DownlinkQueueMessage>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.IoTWireless.Model
         // Check to see if DownlinkQueueMessagesList property is set
         internal bool IsSetDownlinkQueueMessagesList()
         {
-            return this._downlinkQueueMessagesList != null && this._downlinkQueueMessagesList.Count > 0; 
+            return this._downlinkQueueMessagesList != null && (this._downlinkQueueMessagesList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// To retrieve the next set of results, the <code>nextToken</code> value from a previous
-        /// response; otherwise <b>null</b> to receive the first set of results.
+        /// To retrieve the next set of results, the <c>nextToken</c> value from a previous response;
+        /// otherwise <b>null</b> to receive the first set of results.
         /// </para>
         /// </summary>
         [AWSProperty(Max=4096)]

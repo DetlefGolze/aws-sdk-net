@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
     /// Your request contains forward cookies option which doesn't match with the expectation
-    /// for the <code>whitelisted</code> list of cookie names. Either list of cookie names
-    /// has been specified when not allowed or list of cookie names is missing when expected.
+    /// for the <c>whitelisted</c> list of cookie names. Either list of cookie names has been
+    /// specified when not allowed or list of cookie names is missing when expected.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

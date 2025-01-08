@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the ivs-realtime-2020-07-14.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IVSRealTime.Model
 {
     /// <summary>
@@ -24,6 +25,21 @@ namespace Amazon.IVSRealTime.Model
     ///</summary>
     public interface IIVSRealTimePaginatorFactory
     {
+
+        /// <summary>
+        /// Paginator for ListCompositions operation
+        ///</summary>
+        IListCompositionsPaginator ListCompositions(ListCompositionsRequest request);
+
+        /// <summary>
+        /// Paginator for ListEncoderConfigurations operation
+        ///</summary>
+        IListEncoderConfigurationsPaginator ListEncoderConfigurations(ListEncoderConfigurationsRequest request);
+
+        /// <summary>
+        /// Paginator for ListIngestConfigurations operation
+        ///</summary>
+        IListIngestConfigurationsPaginator ListIngestConfigurations(ListIngestConfigurationsRequest request);
 
         /// <summary>
         /// Paginator for ListParticipantEvents operation
@@ -36,6 +52,11 @@ namespace Amazon.IVSRealTime.Model
         IListParticipantsPaginator ListParticipants(ListParticipantsRequest request);
 
         /// <summary>
+        /// Paginator for ListPublicKeys operation
+        ///</summary>
+        IListPublicKeysPaginator ListPublicKeys(ListPublicKeysRequest request);
+
+        /// <summary>
         /// Paginator for ListStages operation
         ///</summary>
         IListStagesPaginator ListStages(ListStagesRequest request);
@@ -44,5 +65,10 @@ namespace Amazon.IVSRealTime.Model
         /// Paginator for ListStageSessions operation
         ///</summary>
         IListStageSessionsPaginator ListStageSessions(ListStageSessionsRequest request);
+
+        /// <summary>
+        /// Paginator for ListStorageConfigurations operation
+        ///</summary>
+        IListStorageConfigurationsPaginator ListStorageConfigurations(ListStorageConfigurationsRequest request);
     }
 }

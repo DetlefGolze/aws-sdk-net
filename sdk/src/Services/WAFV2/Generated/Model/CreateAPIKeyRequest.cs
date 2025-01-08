@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -49,7 +50,7 @@ namespace Amazon.WAFV2.Model
     public partial class CreateAPIKeyRequest : AmazonWAFV2Request
     {
         private Scope _scope;
-        private List<string> _tokenDomains = new List<string>();
+        private List<string> _tokenDomains = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Scope. 
@@ -66,8 +67,8 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// CLI - Specify the Region when you use the CloudFront scope: <code>--scope=CLOUDFRONT
-        /// --region=us-east-1</code>. 
+        /// CLI - Specify the Region when you use the CloudFront scope: <c>--scope=CLOUDFRONT
+        /// --region=us-east-1</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -95,12 +96,12 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// Example JSON: <code>"TokenDomains": ["abc.com", "store.abc.com"]</code> 
+        /// Example JSON: <c>"TokenDomains": ["abc.com", "store.abc.com"]</c> 
         /// </para>
         ///  
         /// <para>
-        /// Public suffixes aren't allowed. For example, you can't use <code>usa.gov</code> or
-        /// <code>co.uk</code> as token domains.
+        /// Public suffixes aren't allowed. For example, you can't use <c>gov.au</c> or <c>co.uk</c>
+        /// as token domains.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1)]
@@ -113,7 +114,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if TokenDomains property is set
         internal bool IsSetTokenDomains()
         {
-            return this._tokenDomains != null && this._tokenDomains.Count > 0; 
+            return this._tokenDomains != null && (this._tokenDomains.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

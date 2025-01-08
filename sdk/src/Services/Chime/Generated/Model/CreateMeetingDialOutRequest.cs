@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.Chime.Model
     /// 
     ///  
     /// <para>
-    /// To play welcome audio or implement an interactive voice response (IVR), use the <code>CreateSipMediaApplicationCall</code>
+    /// To play welcome audio or implement an interactive voice response (IVR), use the <c>CreateSipMediaApplicationCall</c>
     /// action with the corresponding SIP media application ID.
     /// </para>
     ///  <important> 

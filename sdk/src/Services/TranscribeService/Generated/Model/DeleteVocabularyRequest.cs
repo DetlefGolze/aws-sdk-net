@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteVocabulary operation.
     /// Deletes a custom vocabulary. To use this operation, specify the name of the custom
-    /// vocabulary you want to delete using <code>VocabularyName</code>. Custom vocabulary
-    /// names are case sensitive.
+    /// vocabulary you want to delete using <c>VocabularyName</c>. Custom vocabulary names
+    /// are case sensitive.
     /// </summary>
     public partial class DeleteVocabularyRequest : AmazonTranscribeServiceRequest
     {

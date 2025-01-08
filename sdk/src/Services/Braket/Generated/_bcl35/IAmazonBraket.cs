@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Braket.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Braket
 {
     /// <summary>
-    /// Interface for accessing Braket
+    /// <para>Interface for accessing Braket</para>
     ///
     /// The Amazon Braket API Reference provides information about the operations and structures
     /// supported in Amazon Braket.
@@ -186,6 +187,9 @@ namespace Amazon.Braket
         /// </exception>
         /// <exception cref="Amazon.Braket.Model.ConflictException">
         /// An error occurred due to a conflict.
+        /// </exception>
+        /// <exception cref="Amazon.Braket.Model.DeviceOfflineException">
+        /// The specified device is currently offline.
         /// </exception>
         /// <exception cref="Amazon.Braket.Model.DeviceRetiredException">
         /// The specified device has been retired.

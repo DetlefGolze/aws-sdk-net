@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the AssociateNatGatewayAddress operation.
     /// Associates Elastic IP addresses (EIPs) and private IPv4 addresses with a public NAT
-    /// gateway. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-working-with">Work
+    /// gateway. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-working-with.html">Work
     /// with NAT gateways</a> in the <i>Amazon VPC User Guide</i>.
     /// 
     ///  
@@ -49,16 +50,16 @@ namespace Amazon.EC2.Model
     /// associate. You can see the network border group for the subnet's AZ by viewing the
     /// details of the subnet. Similarly, you can view the network border group of an EIP
     /// by viewing the details of the EIP address. For more information about network border
-    /// groups and EIPs, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#allocate-eip">Allocate
+    /// groups and EIPs, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/WorkWithEIPs.html">Allocate
     /// an Elastic IP address</a> in the <i>Amazon VPC User Guide</i>. 
     /// </para>
     ///  </important>
     /// </summary>
     public partial class AssociateNatGatewayAddressRequest : AmazonEC2Request
     {
-        private List<string> _allocationIds = new List<string>();
+        private List<string> _allocationIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _natGatewayId;
-        private List<string> _privateIpAddresses = new List<string>();
+        private List<string> _privateIpAddresses = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AllocationIds. 
@@ -76,7 +77,7 @@ namespace Amazon.EC2.Model
         // Check to see if AllocationIds property is set
         internal bool IsSetAllocationIds()
         {
-            return this._allocationIds != null && this._allocationIds.Count > 0; 
+            return this._allocationIds != null && (this._allocationIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -113,7 +114,7 @@ namespace Amazon.EC2.Model
         // Check to see if PrivateIpAddresses property is set
         internal bool IsSetPrivateIpAddresses()
         {
-            return this._privateIpAddresses != null && this._privateIpAddresses.Count > 0; 
+            return this._privateIpAddresses != null && (this._privateIpAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

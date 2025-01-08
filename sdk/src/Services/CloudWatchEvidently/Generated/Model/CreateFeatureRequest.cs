@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvidently.Model
 {
     /// <summary>
@@ -45,12 +46,12 @@ namespace Amazon.CloudWatchEvidently.Model
     {
         private string _defaultVariation;
         private string _description;
-        private Dictionary<string, string> _entityOverrides = new Dictionary<string, string>();
+        private Dictionary<string, string> _entityOverrides = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private FeatureEvaluationStrategy _evaluationStrategy;
         private string _name;
         private string _project;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
-        private List<VariationConfig> _variations = new List<VariationConfig>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<VariationConfig> _variations = AWSConfigs.InitializeCollections ? new List<VariationConfig>() : null;
 
         /// <summary>
         /// Gets and sets the property DefaultVariation. 
@@ -61,11 +62,11 @@ namespace Amazon.CloudWatchEvidently.Model
         /// </para>
         ///  
         /// <para>
-        /// This variation must also be listed in the <code>variations</code> structure.
+        /// This variation must also be listed in the <c>variations</c> structure.
         /// </para>
         ///  
         /// <para>
-        /// If you omit <code>defaultVariation</code>, the first variation listed in the <code>variations</code>
+        /// If you omit <c>defaultVariation</c>, the first variation listed in the <c>variations</c>
         /// structure is used as the default variation.
         /// </para>
         /// </summary>
@@ -125,15 +126,15 @@ namespace Amazon.CloudWatchEvidently.Model
         // Check to see if EntityOverrides property is set
         internal bool IsSetEntityOverrides()
         {
-            return this._entityOverrides != null && this._entityOverrides.Count > 0; 
+            return this._entityOverrides != null && (this._entityOverrides.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property EvaluationStrategy. 
         /// <para>
-        /// Specify <code>ALL_RULES</code> to activate the traffic allocation specified by any
-        /// ongoing launches or experiments. Specify <code>DEFAULT_VARIATION</code> to serve the
-        /// default variation to all users instead.
+        /// Specify <c>ALL_RULES</c> to activate the traffic allocation specified by any ongoing
+        /// launches or experiments. Specify <c>DEFAULT_VARIATION</c> to serve the default variation
+        /// to all users instead.
         /// </para>
         /// </summary>
         public FeatureEvaluationStrategy EvaluationStrategy
@@ -221,7 +222,7 @@ namespace Amazon.CloudWatchEvidently.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -240,7 +241,7 @@ namespace Amazon.CloudWatchEvidently.Model
         // Check to see if Variations property is set
         internal bool IsSetVariations()
         {
-            return this._variations != null && this._variations.Count > 0; 
+            return this._variations != null && (this._variations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

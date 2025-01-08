@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
     /// Container for the parameters to the DeregisterType operation.
-    /// Marks an extension or extension version as <code>DEPRECATED</code> in the CloudFormation
+    /// Marks an extension or extension version as <c>DEPRECATED</c> in the CloudFormation
     /// registry, removing it from active use. Deprecated extensions or extension versions
     /// cannot be used in CloudFormation operations.
     /// 
@@ -66,8 +67,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify either <code>TypeName</code> and <code>Type</code>,
-        /// or <code>Arn</code>.
+        /// Conditional: You must specify either <c>TypeName</c> and <c>Type</c>, or <c>Arn</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=1024)]
@@ -90,8 +90,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify either <code>TypeName</code> and <code>Type</code>,
-        /// or <code>Arn</code>.
+        /// Conditional: You must specify either <c>TypeName</c> and <c>Type</c>, or <c>Arn</c>.
         /// </para>
         /// </summary>
         public RegistryType Type
@@ -113,8 +112,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify either <code>TypeName</code> and <code>Type</code>,
-        /// or <code>Arn</code>.
+        /// Conditional: You must specify either <c>TypeName</c> and <c>Type</c>, or <c>Arn</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=10, Max=204)]

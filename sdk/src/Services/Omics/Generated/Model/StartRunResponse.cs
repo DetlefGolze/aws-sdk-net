@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Omics.Model
 {
     /// <summary>
@@ -35,13 +36,15 @@ namespace Amazon.Omics.Model
     {
         private string _arn;
         private string _id;
+        private string _runOutputUri;
         private RunStatus _status;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private string _uuid;
 
         /// <summary>
         /// Gets and sets the property Arn. 
         /// <para>
-        /// The run's ARN.
+        /// Unique resource identifier for the run.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -74,6 +77,25 @@ namespace Amazon.Omics.Model
         internal bool IsSetId()
         {
             return this._id != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RunOutputUri. 
+        /// <para>
+        /// The destination for workflow outputs.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=750)]
+        public string RunOutputUri
+        {
+            get { return this._runOutputUri; }
+            set { this._runOutputUri = value; }
+        }
+
+        // Check to see if RunOutputUri property is set
+        internal bool IsSetRunOutputUri()
+        {
+            return this._runOutputUri != null;
         }
 
         /// <summary>
@@ -110,7 +132,26 @@ namespace Amazon.Omics.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Uuid. 
+        /// <para>
+        /// The universally unique identifier for a run.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=128)]
+        public string Uuid
+        {
+            get { return this._uuid; }
+            set { this._uuid = value; }
+        }
+
+        // Check to see if Uuid property is set
+        internal bool IsSetUuid()
+        {
+            return this._uuid != null;
         }
 
     }

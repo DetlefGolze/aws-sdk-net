@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.ChimeSDKIdentity.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.ChimeSDKIdentity
 {
     /// <summary>
-    /// Interface for accessing ChimeSDKIdentity
+    /// <para>Interface for accessing ChimeSDKIdentity</para>
     ///
     /// The Amazon Chime SDK Identity APIs in this section allow software developers to create
     /// and manage unique instances of their messaging applications. These APIs provide the
@@ -50,9 +51,9 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Creates an Amazon Chime SDK messaging <code>AppInstance</code> under an AWS account.
-        /// Only SDK messaging customers use this API. <code>CreateAppInstance</code> supports
-        /// idempotency behavior as described in the AWS API Standard.
+        /// Creates an Amazon Chime SDK messaging <c>AppInstance</c> under an AWS account. Only
+        /// SDK messaging customers use this API. <c>CreateAppInstance</c> supports idempotency
+        /// behavior as described in the AWS API Standard.
         /// 
         ///  
         /// <para>
@@ -93,9 +94,9 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Creates an Amazon Chime SDK messaging <code>AppInstance</code> under an AWS account.
-        /// Only SDK messaging customers use this API. <code>CreateAppInstance</code> supports
-        /// idempotency behavior as described in the AWS API Standard.
+        /// Creates an Amazon Chime SDK messaging <c>AppInstance</c> under an AWS account. Only
+        /// SDK messaging customers use this API. <c>CreateAppInstance</c> supports idempotency
+        /// behavior as described in the AWS API Standard.
         /// 
         ///  
         /// <para>
@@ -142,21 +143,21 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Promotes an <code>AppInstanceUser</code> or <code>AppInstanceBot</code> to an <code>AppInstanceAdmin</code>.
+        /// Promotes an <c>AppInstanceUser</c> or <c>AppInstanceBot</c> to an <c>AppInstanceAdmin</c>.
         /// The promoted entity can perform the following actions. 
         /// 
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ChannelModerator</code> actions across all channels in the <code>AppInstance</code>.
+        ///  <c>ChannelModerator</c> actions across all channels in the <c>AppInstance</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DeleteChannelMessage</code> actions.
+        ///  <c>DeleteChannelMessage</c> actions.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Only an <code>AppInstanceUser</code> and <code>AppInstanceBot</code> can be promoted
-        /// to an <code>AppInstanceAdmin</code> role.
+        /// Only an <c>AppInstanceUser</c> and <c>AppInstanceBot</c> can be promoted to an <c>AppInstanceAdmin</c>
+        /// role.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateAppInstanceAdmin service method.</param>
@@ -193,21 +194,21 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Promotes an <code>AppInstanceUser</code> or <code>AppInstanceBot</code> to an <code>AppInstanceAdmin</code>.
+        /// Promotes an <c>AppInstanceUser</c> or <c>AppInstanceBot</c> to an <c>AppInstanceAdmin</c>.
         /// The promoted entity can perform the following actions. 
         /// 
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ChannelModerator</code> actions across all channels in the <code>AppInstance</code>.
+        ///  <c>ChannelModerator</c> actions across all channels in the <c>AppInstance</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DeleteChannelMessage</code> actions.
+        ///  <c>DeleteChannelMessage</c> actions.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Only an <code>AppInstanceUser</code> and <code>AppInstanceBot</code> can be promoted
-        /// to an <code>AppInstanceAdmin</code> role.
+        /// Only an <c>AppInstanceUser</c> and <c>AppInstanceBot</c> can be promoted to an <c>AppInstanceAdmin</c>
+        /// role.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateAppInstanceAdmin service method.</param>
@@ -250,8 +251,8 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Creates a bot under an Amazon Chime <code>AppInstance</code>. The request consists
-        /// of a unique <code>Configuration</code> and <code>Name</code> for that bot.
+        /// Creates a bot under an Amazon Chime <c>AppInstance</c>. The request consists of a
+        /// unique <c>Configuration</c> and <c>Name</c> for that bot.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateAppInstanceBot service method.</param>
         /// 
@@ -287,8 +288,8 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Creates a bot under an Amazon Chime <code>AppInstance</code>. The request consists
-        /// of a unique <code>Configuration</code> and <code>Name</code> for that bot.
+        /// Creates a bot under an Amazon Chime <c>AppInstance</c>. The request consists of a
+        /// unique <c>Configuration</c> and <c>Name</c> for that bot.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateAppInstanceBot service method.</param>
         /// <param name="cancellationToken">
@@ -330,8 +331,8 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Creates a user under an Amazon Chime <code>AppInstance</code>. The request consists
-        /// of a unique <code>appInstanceUserId</code> and <code>Name</code> for that user.
+        /// Creates a user under an Amazon Chime <c>AppInstance</c>. The request consists of a
+        /// unique <c>appInstanceUserId</c> and <c>Name</c> for that user.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateAppInstanceUser service method.</param>
         /// 
@@ -367,8 +368,8 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Creates a user under an Amazon Chime <code>AppInstance</code>. The request consists
-        /// of a unique <code>appInstanceUserId</code> and <code>Name</code> for that user.
+        /// Creates a user under an Amazon Chime <c>AppInstance</c>. The request consists of a
+        /// unique <c>appInstanceUserId</c> and <c>Name</c> for that user.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateAppInstanceUser service method.</param>
         /// <param name="cancellationToken">
@@ -410,7 +411,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Deletes an <code>AppInstance</code> and all associated data asynchronously.
+        /// Deletes an <c>AppInstance</c> and all associated data asynchronously.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteAppInstance service method.</param>
         /// 
@@ -442,7 +443,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Deletes an <code>AppInstance</code> and all associated data asynchronously.
+        /// Deletes an <c>AppInstance</c> and all associated data asynchronously.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteAppInstance service method.</param>
         /// <param name="cancellationToken">
@@ -480,7 +481,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Demotes an <code>AppInstanceAdmin</code> to an <code>AppInstanceUser</code> or <code>AppInstanceBot</code>.
+        /// Demotes an <c>AppInstanceAdmin</c> to an <c>AppInstanceUser</c> or <c>AppInstanceBot</c>.
         /// This action does not delete the user.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteAppInstanceAdmin service method.</param>
@@ -517,7 +518,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Demotes an <code>AppInstanceAdmin</code> to an <code>AppInstanceUser</code> or <code>AppInstanceBot</code>.
+        /// Demotes an <c>AppInstanceAdmin</c> to an <c>AppInstanceUser</c> or <c>AppInstanceBot</c>.
         /// This action does not delete the user.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteAppInstanceAdmin service method.</param>
@@ -560,7 +561,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Deletes an <code>AppInstanceBot</code>.
+        /// Deletes an <c>AppInstanceBot</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteAppInstanceBot service method.</param>
         /// 
@@ -596,7 +597,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Deletes an <code>AppInstanceBot</code>.
+        /// Deletes an <c>AppInstanceBot</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteAppInstanceBot service method.</param>
         /// <param name="cancellationToken">
@@ -638,7 +639,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Deletes an <code>AppInstanceUser</code>.
+        /// Deletes an <c>AppInstanceUser</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteAppInstanceUser service method.</param>
         /// 
@@ -674,7 +675,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Deletes an <code>AppInstanceUser</code>.
+        /// Deletes an <c>AppInstanceUser</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteAppInstanceUser service method.</param>
         /// <param name="cancellationToken">
@@ -716,7 +717,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Deregisters an <code>AppInstanceUserEndpoint</code>.
+        /// Deregisters an <c>AppInstanceUserEndpoint</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeregisterAppInstanceUserEndpoint service method.</param>
         /// 
@@ -745,7 +746,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Deregisters an <code>AppInstanceUserEndpoint</code>.
+        /// Deregisters an <c>AppInstanceUserEndpoint</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeregisterAppInstanceUserEndpoint service method.</param>
         /// <param name="cancellationToken">
@@ -780,7 +781,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Returns the full details of an <code>AppInstance</code>.
+        /// Returns the full details of an <c>AppInstance</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeAppInstance service method.</param>
         /// 
@@ -809,7 +810,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Returns the full details of an <code>AppInstance</code>.
+        /// Returns the full details of an <c>AppInstance</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeAppInstance service method.</param>
         /// <param name="cancellationToken">
@@ -844,7 +845,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Returns the full details of an <code>AppInstanceAdmin</code>.
+        /// Returns the full details of an <c>AppInstanceAdmin</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeAppInstanceAdmin service method.</param>
         /// 
@@ -873,7 +874,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Returns the full details of an <code>AppInstanceAdmin</code>.
+        /// Returns the full details of an <c>AppInstanceAdmin</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeAppInstanceAdmin service method.</param>
         /// <param name="cancellationToken">
@@ -908,7 +909,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// The <code>AppInstanceBot's</code> information.
+        /// The <c>AppInstanceBot's</c> information.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeAppInstanceBot service method.</param>
         /// 
@@ -940,7 +941,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// The <code>AppInstanceBot's</code> information.
+        /// The <c>AppInstanceBot's</c> information.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeAppInstanceBot service method.</param>
         /// <param name="cancellationToken">
@@ -978,7 +979,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Returns the full details of an <code>AppInstanceUser</code>.
+        /// Returns the full details of an <c>AppInstanceUser</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeAppInstanceUser service method.</param>
         /// 
@@ -1007,7 +1008,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Returns the full details of an <code>AppInstanceUser</code>.
+        /// Returns the full details of an <c>AppInstanceUser</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeAppInstanceUser service method.</param>
         /// <param name="cancellationToken">
@@ -1042,7 +1043,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Returns the full details of an <code>AppInstanceUserEndpoint</code>.
+        /// Returns the full details of an <c>AppInstanceUserEndpoint</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeAppInstanceUserEndpoint service method.</param>
         /// 
@@ -1071,7 +1072,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Returns the full details of an <code>AppInstanceUserEndpoint</code>.
+        /// Returns the full details of an <c>AppInstanceUserEndpoint</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeAppInstanceUserEndpoint service method.</param>
         /// <param name="cancellationToken">
@@ -1106,7 +1107,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Gets the retention settings for an <code>AppInstance</code>.
+        /// Gets the retention settings for an <c>AppInstance</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetAppInstanceRetentionSettings service method.</param>
         /// 
@@ -1135,7 +1136,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Gets the retention settings for an <code>AppInstance</code>.
+        /// Gets the retention settings for an <c>AppInstance</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetAppInstanceRetentionSettings service method.</param>
         /// <param name="cancellationToken">
@@ -1170,7 +1171,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Returns a list of the administrators in the <code>AppInstance</code>.
+        /// Returns a list of the administrators in the <c>AppInstance</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListAppInstanceAdmins service method.</param>
         /// 
@@ -1202,7 +1203,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Returns a list of the administrators in the <code>AppInstance</code>.
+        /// Returns a list of the administrators in the <c>AppInstance</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListAppInstanceAdmins service method.</param>
         /// <param name="cancellationToken">
@@ -1240,7 +1241,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Lists all <code>AppInstanceBots</code> created under a single <code>AppInstance</code>.
+        /// Lists all <c>AppInstanceBots</c> created under a single <c>AppInstance</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListAppInstanceBots service method.</param>
         /// 
@@ -1272,7 +1273,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Lists all <code>AppInstanceBots</code> created under a single <code>AppInstance</code>.
+        /// Lists all <c>AppInstanceBots</c> created under a single <c>AppInstance</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListAppInstanceBots service method.</param>
         /// <param name="cancellationToken">
@@ -1310,7 +1311,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Lists all Amazon Chime <code>AppInstance</code>s created under a single AWS account.
+        /// Lists all Amazon Chime <c>AppInstance</c>s created under a single AWS account.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListAppInstances service method.</param>
         /// 
@@ -1339,7 +1340,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Lists all Amazon Chime <code>AppInstance</code>s created under a single AWS account.
+        /// Lists all Amazon Chime <c>AppInstance</c>s created under a single AWS account.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListAppInstances service method.</param>
         /// <param name="cancellationToken">
@@ -1374,7 +1375,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Lists all the <code>AppInstanceUserEndpoints</code> created under a single <code>AppInstanceUser</code>.
+        /// Lists all the <c>AppInstanceUserEndpoints</c> created under a single <c>AppInstanceUser</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListAppInstanceUserEndpoints service method.</param>
         /// 
@@ -1403,7 +1404,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Lists all the <code>AppInstanceUserEndpoints</code> created under a single <code>AppInstanceUser</code>.
+        /// Lists all the <c>AppInstanceUserEndpoints</c> created under a single <c>AppInstanceUser</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListAppInstanceUserEndpoints service method.</param>
         /// <param name="cancellationToken">
@@ -1438,7 +1439,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// List all <code>AppInstanceUsers</code> created under a single <code>AppInstance</code>.
+        /// List all <c>AppInstanceUsers</c> created under a single <c>AppInstance</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListAppInstanceUsers service method.</param>
         /// 
@@ -1467,7 +1468,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// List all <code>AppInstanceUsers</code> created under a single <code>AppInstance</code>.
+        /// List all <c>AppInstanceUsers</c> created under a single <c>AppInstance</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListAppInstanceUsers service method.</param>
         /// <param name="cancellationToken">
@@ -1566,7 +1567,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Sets the amount of time in days that a given <code>AppInstance</code> retains data.
+        /// Sets the amount of time in days that a given <c>AppInstance</c> retains data.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutAppInstanceRetentionSettings service method.</param>
         /// 
@@ -1595,7 +1596,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Sets the amount of time in days that a given <code>AppInstance</code> retains data.
+        /// Sets the amount of time in days that a given <c>AppInstance</c> retains data.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutAppInstanceRetentionSettings service method.</param>
         /// <param name="cancellationToken">
@@ -1630,17 +1631,17 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Sets the number of days before the <code>AppInstanceUser</code> is automatically deleted.
+        /// Sets the number of days before the <c>AppInstanceUser</c> is automatically deleted.
         /// 
         ///  <note> 
         /// <para>
-        /// A background process deletes expired <code>AppInstanceUsers</code> within 6 hours
-        /// of expiration. Actual deletion times may vary.
+        /// A background process deletes expired <c>AppInstanceUsers</c> within 6 hours of expiration.
+        /// Actual deletion times may vary.
         /// </para>
         ///  
         /// <para>
-        /// Expired <code>AppInstanceUsers</code> that have not yet been deleted appear as active,
-        /// and you can update their expiration settings. The system honors the new settings.
+        /// Expired <c>AppInstanceUsers</c> that have not yet been deleted appear as active, and
+        /// you can update their expiration settings. The system honors the new settings.
         /// </para>
         ///  </note>
         /// </summary>
@@ -1675,17 +1676,17 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Sets the number of days before the <code>AppInstanceUser</code> is automatically deleted.
+        /// Sets the number of days before the <c>AppInstanceUser</c> is automatically deleted.
         /// 
         ///  <note> 
         /// <para>
-        /// A background process deletes expired <code>AppInstanceUsers</code> within 6 hours
-        /// of expiration. Actual deletion times may vary.
+        /// A background process deletes expired <c>AppInstanceUsers</c> within 6 hours of expiration.
+        /// Actual deletion times may vary.
         /// </para>
         ///  
         /// <para>
-        /// Expired <code>AppInstanceUsers</code> that have not yet been deleted appear as active,
-        /// and you can update their expiration settings. The system honors the new settings.
+        /// Expired <c>AppInstanceUsers</c> that have not yet been deleted appear as active, and
+        /// you can update their expiration settings. The system honors the new settings.
         /// </para>
         ///  </note>
         /// </summary>
@@ -1726,9 +1727,9 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Registers an endpoint under an Amazon Chime <code>AppInstanceUser</code>. The endpoint
-        /// receives messages for a user. For push notifications, the endpoint is a mobile device
-        /// used to receive mobile push notifications for a user.
+        /// Registers an endpoint under an Amazon Chime <c>AppInstanceUser</c>. The endpoint receives
+        /// messages for a user. For push notifications, the endpoint is a mobile device used
+        /// to receive mobile push notifications for a user.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the RegisterAppInstanceUserEndpoint service method.</param>
         /// 
@@ -1764,9 +1765,9 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Registers an endpoint under an Amazon Chime <code>AppInstanceUser</code>. The endpoint
-        /// receives messages for a user. For push notifications, the endpoint is a mobile device
-        /// used to receive mobile push notifications for a user.
+        /// Registers an endpoint under an Amazon Chime <c>AppInstanceUser</c>. The endpoint receives
+        /// messages for a user. For push notifications, the endpoint is a mobile device used
+        /// to receive mobile push notifications for a user.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the RegisterAppInstanceUserEndpoint service method.</param>
         /// <param name="cancellationToken">
@@ -1942,7 +1943,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Updates <code>AppInstance</code> metadata.
+        /// Updates <c>AppInstance</c> metadata.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateAppInstance service method.</param>
         /// 
@@ -1975,7 +1976,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Updates <code>AppInstance</code> metadata.
+        /// Updates <c>AppInstance</c> metadata.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateAppInstance service method.</param>
         /// <param name="cancellationToken">
@@ -2014,7 +2015,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Updates the name and metadata of an <code>AppInstanceBot</code>.
+        /// Updates the name and metadata of an <c>AppInstanceBot</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateAppInstanceBot service method.</param>
         /// 
@@ -2050,7 +2051,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Updates the name and metadata of an <code>AppInstanceBot</code>.
+        /// Updates the name and metadata of an <c>AppInstanceBot</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateAppInstanceBot service method.</param>
         /// <param name="cancellationToken">
@@ -2092,7 +2093,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Updates the details of an <code>AppInstanceUser</code>. You can update names and metadata.
+        /// Updates the details of an <c>AppInstanceUser</c>. You can update names and metadata.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateAppInstanceUser service method.</param>
         /// 
@@ -2128,7 +2129,7 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Updates the details of an <code>AppInstanceUser</code>. You can update names and metadata.
+        /// Updates the details of an <c>AppInstanceUser</c>. You can update names and metadata.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateAppInstanceUser service method.</param>
         /// <param name="cancellationToken">
@@ -2170,8 +2171,8 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Updates the details of an <code>AppInstanceUserEndpoint</code>. You can update the
-        /// name and <code>AllowMessage</code> values.
+        /// Updates the details of an <c>AppInstanceUserEndpoint</c>. You can update the name
+        /// and <c>AllowMessage</c> values.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateAppInstanceUserEndpoint service method.</param>
         /// 
@@ -2204,8 +2205,8 @@ namespace Amazon.ChimeSDKIdentity
 
 
         /// <summary>
-        /// Updates the details of an <code>AppInstanceUserEndpoint</code>. You can update the
-        /// name and <code>AllowMessage</code> values.
+        /// Updates the details of an <c>AppInstanceUserEndpoint</c>. You can update the name
+        /// and <c>AllowMessage</c> values.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateAppInstanceUserEndpoint service method.</param>
         /// <param name="cancellationToken">

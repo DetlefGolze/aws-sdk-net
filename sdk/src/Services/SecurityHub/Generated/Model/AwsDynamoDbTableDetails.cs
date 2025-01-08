@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -33,18 +34,19 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class AwsDynamoDbTableDetails
     {
-        private List<AwsDynamoDbTableAttributeDefinition> _attributeDefinitions = new List<AwsDynamoDbTableAttributeDefinition>();
+        private List<AwsDynamoDbTableAttributeDefinition> _attributeDefinitions = AWSConfigs.InitializeCollections ? new List<AwsDynamoDbTableAttributeDefinition>() : null;
         private AwsDynamoDbTableBillingModeSummary _billingModeSummary;
         private string _creationDateTime;
-        private List<AwsDynamoDbTableGlobalSecondaryIndex> _globalSecondaryIndexes = new List<AwsDynamoDbTableGlobalSecondaryIndex>();
+        private bool? _deletionProtectionEnabled;
+        private List<AwsDynamoDbTableGlobalSecondaryIndex> _globalSecondaryIndexes = AWSConfigs.InitializeCollections ? new List<AwsDynamoDbTableGlobalSecondaryIndex>() : null;
         private string _globalTableVersion;
         private int? _itemCount;
-        private List<AwsDynamoDbTableKeySchema> _keySchema = new List<AwsDynamoDbTableKeySchema>();
+        private List<AwsDynamoDbTableKeySchema> _keySchema = AWSConfigs.InitializeCollections ? new List<AwsDynamoDbTableKeySchema>() : null;
         private string _latestStreamArn;
         private string _latestStreamLabel;
-        private List<AwsDynamoDbTableLocalSecondaryIndex> _localSecondaryIndexes = new List<AwsDynamoDbTableLocalSecondaryIndex>();
+        private List<AwsDynamoDbTableLocalSecondaryIndex> _localSecondaryIndexes = AWSConfigs.InitializeCollections ? new List<AwsDynamoDbTableLocalSecondaryIndex>() : null;
         private AwsDynamoDbTableProvisionedThroughput _provisionedThroughput;
-        private List<AwsDynamoDbTableReplica> _replicas = new List<AwsDynamoDbTableReplica>();
+        private List<AwsDynamoDbTableReplica> _replicas = AWSConfigs.InitializeCollections ? new List<AwsDynamoDbTableReplica>() : null;
         private AwsDynamoDbTableRestoreSummary _restoreSummary;
         private AwsDynamoDbTableSseDescription _sseDescription;
         private AwsDynamoDbTableStreamSpecification _streamSpecification;
@@ -68,7 +70,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if AttributeDefinitions property is set
         internal bool IsSetAttributeDefinitions()
         {
-            return this._attributeDefinitions != null && this._attributeDefinitions.Count > 0; 
+            return this._attributeDefinitions != null && (this._attributeDefinitions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -96,9 +98,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string CreationDateTime
@@ -111,6 +112,25 @@ namespace Amazon.SecurityHub.Model
         internal bool IsSetCreationDateTime()
         {
             return this._creationDateTime != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DeletionProtectionEnabled. 
+        /// <para>
+        ///  Indicates whether deletion protection is to be enabled (true) or disabled (false)
+        /// on the table. 
+        /// </para>
+        /// </summary>
+        public bool DeletionProtectionEnabled
+        {
+            get { return this._deletionProtectionEnabled.GetValueOrDefault(); }
+            set { this._deletionProtectionEnabled = value; }
+        }
+
+        // Check to see if DeletionProtectionEnabled property is set
+        internal bool IsSetDeletionProtectionEnabled()
+        {
+            return this._deletionProtectionEnabled.HasValue; 
         }
 
         /// <summary>
@@ -128,7 +148,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if GlobalSecondaryIndexes property is set
         internal bool IsSetGlobalSecondaryIndexes()
         {
-            return this._globalSecondaryIndexes != null && this._globalSecondaryIndexes.Count > 0; 
+            return this._globalSecondaryIndexes != null && (this._globalSecondaryIndexes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -182,7 +202,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if KeySchema property is set
         internal bool IsSetKeySchema()
         {
-            return this._keySchema != null && this._keySchema.Count > 0; 
+            return this._keySchema != null && (this._keySchema.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -236,7 +256,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if LocalSecondaryIndexes property is set
         internal bool IsSetLocalSecondaryIndexes()
         {
-            return this._localSecondaryIndexes != null && this._localSecondaryIndexes.Count > 0; 
+            return this._localSecondaryIndexes != null && (this._localSecondaryIndexes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -272,7 +292,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Replicas property is set
         internal bool IsSetReplicas()
         {
-            return this._replicas != null && this._replicas.Count > 0; 
+            return this._replicas != null && (this._replicas.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -390,31 +410,31 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ACTIVE</code> 
+        ///  <c>ACTIVE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ARCHIVED</code> 
+        ///  <c>ARCHIVED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ARCHIVING</code> 
+        ///  <c>ARCHIVING</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATING</code> 
+        ///  <c>CREATING</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETING</code> 
+        ///  <c>DELETING</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INACCESSIBLE_ENCRYPTION_CREDENTIALS</code> 
+        ///  <c>INACCESSIBLE_ENCRYPTION_CREDENTIALS</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPDATING</code> 
+        ///  <c>UPDATING</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

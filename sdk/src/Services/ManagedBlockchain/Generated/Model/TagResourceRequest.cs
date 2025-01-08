@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchain.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.ManagedBlockchain.Model
     ///  
     /// <para>
     /// When you specify a tag key that already exists, the tag value is overwritten with
-    /// the new value. Use <code>UntagResource</code> to remove tag keys.
+    /// the new value. Use <c>UntagResource</c> to remove tag keys.
     /// </para>
     ///  
     /// <para>
@@ -54,7 +55,7 @@ namespace Amazon.ManagedBlockchain.Model
     public partial class TagResourceRequest : AmazonManagedBlockchainRequest
     {
         private string _resourceArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -81,8 +82,8 @@ namespace Amazon.ManagedBlockchain.Model
         /// Gets and sets the property Tags. 
         /// <para>
         /// The tags to assign to the specified resource. Tag values can be empty, for example,
-        /// <code>"MyTagKey" : ""</code>. You can specify multiple key-value pairs in a single
-        /// request, with an overall maximum of 50 tags added to each resource.
+        /// <c>"MyTagKey" : ""</c>. You can specify multiple key-value pairs in a single request,
+        /// with an overall maximum of 50 tags added to each resource.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=50)]
@@ -95,7 +96,7 @@ namespace Amazon.ManagedBlockchain.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

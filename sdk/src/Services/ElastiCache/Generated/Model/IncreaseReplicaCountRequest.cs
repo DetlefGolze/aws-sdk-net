@@ -26,26 +26,27 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
     /// Container for the parameters to the IncreaseReplicaCount operation.
-    /// Dynamically increases the number of replicas in a Redis (cluster mode disabled) replication
-    /// group or the number of replica nodes in one or more node groups (shards) of a Redis
-    /// (cluster mode enabled) replication group. This operation is performed with no cluster
-    /// down time.
+    /// Dynamically increases the number of replicas in a Valkey or Redis OSS (cluster mode
+    /// disabled) replication group or the number of replica nodes in one or more node groups
+    /// (shards) of a Valkey or Redis OSS (cluster mode enabled) replication group. This operation
+    /// is performed with no cluster down time.
     /// </summary>
     public partial class IncreaseReplicaCountRequest : AmazonElastiCacheRequest
     {
         private bool? _applyImmediately;
         private int? _newReplicaCount;
-        private List<ConfigureShard> _replicaConfiguration = new List<ConfigureShard>();
+        private List<ConfigureShard> _replicaConfiguration = AWSConfigs.InitializeCollections ? new List<ConfigureShard>() : null;
         private string _replicationGroupId;
 
         /// <summary>
         /// Gets and sets the property ApplyImmediately. 
         /// <para>
-        /// If <code>True</code>, the number of replica nodes is increased immediately. <code>ApplyImmediately=False</code>
+        /// If <c>True</c>, the number of replica nodes is increased immediately. <c>ApplyImmediately=False</c>
         /// is not currently supported.
         /// </para>
         /// </summary>
@@ -66,9 +67,10 @@ namespace Amazon.ElastiCache.Model
         /// Gets and sets the property NewReplicaCount. 
         /// <para>
         /// The number of read replica nodes you want at the completion of this operation. For
-        /// Redis (cluster mode disabled) replication groups, this is the number of replica nodes
-        /// in the replication group. For Redis (cluster mode enabled) replication groups, this
-        /// is the number of replica nodes in each of the replication group's node groups.
+        /// Valkey or Redis OSS (cluster mode disabled) replication groups, this is the number
+        /// of replica nodes in the replication group. For Valkey or Redis OSS (cluster mode enabled)
+        /// replication groups, this is the number of replica nodes in each of the replication
+        /// group's node groups.
         /// </para>
         /// </summary>
         public int NewReplicaCount
@@ -86,9 +88,9 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property ReplicaConfiguration. 
         /// <para>
-        /// A list of <code>ConfigureShard</code> objects that can be used to configure each shard
-        /// in a Redis (cluster mode enabled) replication group. The <code>ConfigureShard</code>
-        /// has three members: <code>NewReplicaCount</code>, <code>NodeGroupId</code>, and <code>PreferredAvailabilityZones</code>.
+        /// A list of <c>ConfigureShard</c> objects that can be used to configure each shard in
+        /// a Valkey or Redis OSS (cluster mode enabled) replication group. The <c>ConfigureShard</c>
+        /// has three members: <c>NewReplicaCount</c>, <c>NodeGroupId</c>, and <c>PreferredAvailabilityZones</c>.
         /// </para>
         /// </summary>
         public List<ConfigureShard> ReplicaConfiguration
@@ -100,7 +102,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if ReplicaConfiguration property is set
         internal bool IsSetReplicaConfiguration()
         {
-            return this._replicaConfiguration != null && this._replicaConfiguration.Count > 0; 
+            return this._replicaConfiguration != null && (this._replicaConfiguration.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

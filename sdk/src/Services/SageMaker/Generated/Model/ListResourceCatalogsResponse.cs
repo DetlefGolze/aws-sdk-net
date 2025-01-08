@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace Amazon.SageMaker.Model
     public partial class ListResourceCatalogsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ResourceCatalog> _resourceCatalogs = new List<ResourceCatalog>();
+        private List<ResourceCatalog> _resourceCatalogs = AWSConfigs.InitializeCollections ? new List<ResourceCatalog>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  A token to resume pagination of <code>ListResourceCatalogs</code> results. 
+        ///  A token to resume pagination of <c>ListResourceCatalogs</c> results. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=8192)]
@@ -58,7 +59,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property ResourceCatalogs. 
         /// <para>
-        ///  A list of the requested <code>ResourceCatalog</code>s. 
+        ///  A list of the requested <c>ResourceCatalog</c>s. 
         /// </para>
         /// </summary>
         public List<ResourceCatalog> ResourceCatalogs
@@ -70,7 +71,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if ResourceCatalogs property is set
         internal bool IsSetResourceCatalogs()
         {
-            return this._resourceCatalogs != null && this._resourceCatalogs.Count > 0; 
+            return this._resourceCatalogs != null && (this._resourceCatalogs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

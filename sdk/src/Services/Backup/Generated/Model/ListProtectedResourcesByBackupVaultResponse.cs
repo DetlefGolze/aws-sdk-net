@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -34,15 +35,14 @@ namespace Amazon.Backup.Model
     public partial class ListProtectedResourcesByBackupVaultResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ProtectedResource> _results = new List<ProtectedResource>();
+        private List<ProtectedResource> _results = AWSConfigs.InitializeCollections ? new List<ProtectedResource>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The next item following a partial list of returned items. For example, if a request
-        /// is made to return <code>maxResults</code> number of items, <code>NextToken</code>
-        /// allows you to return more items in your list starting at the location pointed to by
-        /// the next token.
+        /// is made to return <c>MaxResults</c> number of items, <c>NextToken</c> allows you to
+        /// return more items in your list starting at the location pointed to by the next token.
         /// </para>
         /// </summary>
         public string NextToken
@@ -72,7 +72,7 @@ namespace Amazon.Backup.Model
         // Check to see if Results property is set
         internal bool IsSetResults()
         {
-            return this._results != null && this._results.Count > 0; 
+            return this._results != null && (this._results.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

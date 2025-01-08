@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
-    /// The CIDR collection version you provided, doesn't match the one in the <code>ListCidrCollections</code>
+    /// The CIDR collection version you provided, doesn't match the one in the <c>ListCidrCollections</c>
     /// operation.
     /// </summary>
     #if !NETSTANDARD

@@ -26,21 +26,27 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateLocationFsxOntap operation.
-    /// Creates an endpoint for an Amazon FSx for NetApp ONTAP file system that DataSync can
-    /// access for a transfer. For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-ontap-location.html">Creating
-    /// a location for FSx for ONTAP</a>.
+    /// Creates a transfer <i>location</i> for an Amazon FSx for NetApp ONTAP file system.
+    /// DataSync can use this location as a source or destination for transferring data.
+    /// 
+    ///  
+    /// <para>
+    /// Before you begin, make sure that you understand how DataSync <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-ontap-location.html#create-ontap-location-access">accesses
+    /// FSx for ONTAP file systems</a>.
+    /// </para>
     /// </summary>
     public partial class CreateLocationFsxOntapRequest : AmazonDataSyncRequest
     {
         private FsxProtocol _protocol;
-        private List<string> _securityGroupArns = new List<string>();
+        private List<string> _securityGroupArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _storageVirtualMachineArn;
         private string _subdirectory;
-        private List<TagListEntry> _tags = new List<TagListEntry>();
+        private List<TagListEntry> _tags = AWSConfigs.InitializeCollections ? new List<TagListEntry>() : null;
 
         /// <summary>
         /// Gets and sets the property Protocol.
@@ -92,7 +98,7 @@ namespace Amazon.DataSync.Model
         // Check to see if SecurityGroupArns property is set
         internal bool IsSetSecurityGroupArns()
         {
-            return this._securityGroupArns != null && this._securityGroupArns.Count > 0; 
+            return this._securityGroupArns != null && (this._securityGroupArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -118,13 +124,14 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property Subdirectory. 
         /// <para>
-        /// Specifies a path to the file share in the SVM where you'll copy your data.
+        /// Specifies a path to the file share in the SVM where you want to transfer data to or
+        /// from.
         /// </para>
         ///  
         /// <para>
         /// You can specify a junction path (also known as a mount point), qtree path (for NFS
         /// file shares), or share name (for SMB file shares). For example, your mount path might
-        /// be <code>/vol1</code>, <code>/vol1/tree1</code>, or <code>/share1</code>.
+        /// be <c>/vol1</c>, <c>/vol1/tree1</c>, or <c>/share1</c>.
         /// </para>
         ///  <note> 
         /// <para>
@@ -165,7 +172,7 @@ namespace Amazon.DataSync.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

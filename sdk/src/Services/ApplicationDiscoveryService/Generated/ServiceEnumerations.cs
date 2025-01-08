@@ -91,6 +91,68 @@ namespace Amazon.ApplicationDiscoveryService
 
 
     /// <summary>
+    /// Constants used for properties of type BatchDeleteConfigurationTaskStatus.
+    /// </summary>
+    public class BatchDeleteConfigurationTaskStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant COMPLETED for BatchDeleteConfigurationTaskStatus
+        /// </summary>
+        public static readonly BatchDeleteConfigurationTaskStatus COMPLETED = new BatchDeleteConfigurationTaskStatus("COMPLETED");
+        /// <summary>
+        /// Constant DELETING for BatchDeleteConfigurationTaskStatus
+        /// </summary>
+        public static readonly BatchDeleteConfigurationTaskStatus DELETING = new BatchDeleteConfigurationTaskStatus("DELETING");
+        /// <summary>
+        /// Constant FAILED for BatchDeleteConfigurationTaskStatus
+        /// </summary>
+        public static readonly BatchDeleteConfigurationTaskStatus FAILED = new BatchDeleteConfigurationTaskStatus("FAILED");
+        /// <summary>
+        /// Constant INITIALIZING for BatchDeleteConfigurationTaskStatus
+        /// </summary>
+        public static readonly BatchDeleteConfigurationTaskStatus INITIALIZING = new BatchDeleteConfigurationTaskStatus("INITIALIZING");
+        /// <summary>
+        /// Constant VALIDATING for BatchDeleteConfigurationTaskStatus
+        /// </summary>
+        public static readonly BatchDeleteConfigurationTaskStatus VALIDATING = new BatchDeleteConfigurationTaskStatus("VALIDATING");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public BatchDeleteConfigurationTaskStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static BatchDeleteConfigurationTaskStatus FindValue(string value)
+        {
+            return FindValue<BatchDeleteConfigurationTaskStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator BatchDeleteConfigurationTaskStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type BatchDeleteImportDataErrorCode.
     /// </summary>
     public class BatchDeleteImportDataErrorCode : ConstantClass
@@ -319,6 +381,106 @@ namespace Amazon.ApplicationDiscoveryService
 
 
     /// <summary>
+    /// Constants used for properties of type DeleteAgentErrorCode.
+    /// </summary>
+    public class DeleteAgentErrorCode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant AGENT_IN_USE for DeleteAgentErrorCode
+        /// </summary>
+        public static readonly DeleteAgentErrorCode AGENT_IN_USE = new DeleteAgentErrorCode("AGENT_IN_USE");
+        /// <summary>
+        /// Constant INTERNAL_SERVER_ERROR for DeleteAgentErrorCode
+        /// </summary>
+        public static readonly DeleteAgentErrorCode INTERNAL_SERVER_ERROR = new DeleteAgentErrorCode("INTERNAL_SERVER_ERROR");
+        /// <summary>
+        /// Constant NOT_FOUND for DeleteAgentErrorCode
+        /// </summary>
+        public static readonly DeleteAgentErrorCode NOT_FOUND = new DeleteAgentErrorCode("NOT_FOUND");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public DeleteAgentErrorCode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static DeleteAgentErrorCode FindValue(string value)
+        {
+            return FindValue<DeleteAgentErrorCode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator DeleteAgentErrorCode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type DeletionConfigurationItemType.
+    /// </summary>
+    public class DeletionConfigurationItemType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant SERVER for DeletionConfigurationItemType
+        /// </summary>
+        public static readonly DeletionConfigurationItemType SERVER = new DeletionConfigurationItemType("SERVER");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public DeletionConfigurationItemType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static DeletionConfigurationItemType FindValue(string value)
+        {
+            return FindValue<DeletionConfigurationItemType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator DeletionConfigurationItemType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ExportDataFormat.
     /// </summary>
     public class ExportDataFormat : ConstantClass
@@ -419,6 +581,64 @@ namespace Amazon.ApplicationDiscoveryService
 
 
     /// <summary>
+    /// Constants used for properties of type FileClassification.
+    /// </summary>
+    public class FileClassification : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant IMPORT_TEMPLATE for FileClassification
+        /// </summary>
+        public static readonly FileClassification IMPORT_TEMPLATE = new FileClassification("IMPORT_TEMPLATE");
+        /// <summary>
+        /// Constant MODELIZEIT_EXPORT for FileClassification
+        /// </summary>
+        public static readonly FileClassification MODELIZEIT_EXPORT = new FileClassification("MODELIZEIT_EXPORT");
+        /// <summary>
+        /// Constant RVTOOLS_EXPORT for FileClassification
+        /// </summary>
+        public static readonly FileClassification RVTOOLS_EXPORT = new FileClassification("RVTOOLS_EXPORT");
+        /// <summary>
+        /// Constant VMWARE_NSX_EXPORT for FileClassification
+        /// </summary>
+        public static readonly FileClassification VMWARE_NSX_EXPORT = new FileClassification("VMWARE_NSX_EXPORT");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public FileClassification(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static FileClassification FindValue(string value)
+        {
+            return FindValue<FileClassification>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator FileClassification(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ImportStatus.
     /// </summary>
     public class ImportStatus : ConstantClass
@@ -460,6 +680,10 @@ namespace Amazon.ApplicationDiscoveryService
         /// Constant IMPORT_FAILED_SERVER_LIMIT_EXCEEDED for ImportStatus
         /// </summary>
         public static readonly ImportStatus IMPORT_FAILED_SERVER_LIMIT_EXCEEDED = new ImportStatus("IMPORT_FAILED_SERVER_LIMIT_EXCEEDED");
+        /// <summary>
+        /// Constant IMPORT_FAILED_UNSUPPORTED_FILE_TYPE for ImportStatus
+        /// </summary>
+        public static readonly ImportStatus IMPORT_FAILED_UNSUPPORTED_FILE_TYPE = new ImportStatus("IMPORT_FAILED_UNSUPPORTED_FILE_TYPE");
         /// <summary>
         /// Constant IMPORT_IN_PROGRESS for ImportStatus
         /// </summary>
@@ -510,6 +734,10 @@ namespace Amazon.ApplicationDiscoveryService
     public class ImportTaskFilterName : ConstantClass
     {
 
+        /// <summary>
+        /// Constant FILE_CLASSIFICATION for ImportTaskFilterName
+        /// </summary>
+        public static readonly ImportTaskFilterName FILE_CLASSIFICATION = new ImportTaskFilterName("FILE_CLASSIFICATION");
         /// <summary>
         /// Constant IMPORT_TASK_ID for ImportTaskFilterName
         /// </summary>

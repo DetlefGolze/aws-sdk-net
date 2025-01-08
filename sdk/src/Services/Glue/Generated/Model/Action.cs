@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Glue.Model
     /// </summary>
     public partial class Action
     {
-        private Dictionary<string, string> _arguments = new Dictionary<string, string>();
+        private Dictionary<string, string> _arguments = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _crawlerName;
         private string _jobName;
         private NotificationProperty _notificationProperty;
@@ -73,7 +74,7 @@ namespace Amazon.Glue.Model
         // Check to see if Arguments property is set
         internal bool IsSetArguments()
         {
-            return this._arguments != null && this._arguments.Count > 0; 
+            return this._arguments != null && (this._arguments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -135,8 +136,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property SecurityConfiguration. 
         /// <para>
-        /// The name of the <code>SecurityConfiguration</code> structure to be used with this
-        /// action.
+        /// The name of the <c>SecurityConfiguration</c> structure to be used with this action.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -155,10 +155,9 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property Timeout. 
         /// <para>
-        /// The <code>JobRun</code> timeout in minutes. This is the maximum time that a job run
-        /// can consume resources before it is terminated and enters <code>TIMEOUT</code> status.
-        /// The default is 2,880 minutes (48 hours). This overrides the timeout value set in the
-        /// parent job.
+        /// The <c>JobRun</c> timeout in minutes. This is the maximum time that a job run can
+        /// consume resources before it is terminated and enters <c>TIMEOUT</c> status. The default
+        /// is 2,880 minutes (48 hours). This overrides the timeout value set in the parent job.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]

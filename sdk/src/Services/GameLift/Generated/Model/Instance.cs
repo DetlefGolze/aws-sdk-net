@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -49,7 +50,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property CreationTime. 
         /// <para>
         /// A time stamp indicating when this data object was created. Format is a number expressed
-        /// in Unix time as milliseconds (for example <code>"1469498468.057"</code>).
+        /// in Unix time as milliseconds (for example <c>"1469498468.057"</c>).
         /// </para>
         /// </summary>
         public DateTime CreationTime
@@ -72,13 +73,13 @@ namespace Amazon.GameLift.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// TLS-enabled fleets: <code>&lt;unique identifier&gt;.&lt;region identifier&gt;.amazongamelift.com</code>.
+        /// TLS-enabled fleets: <c>&lt;unique identifier&gt;.&lt;region identifier&gt;.amazongamelift.com</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Non-TLS-enabled fleets: <code>ec2-&lt;unique identifier&gt;.compute.amazonaws.com</code>.
+        /// Non-TLS-enabled fleets: <c>ec2-&lt;unique identifier&gt;.compute.amazonaws.com</c>.
         /// (See <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html#concepts-public-addresses">Amazon
-        /// Elastic Compute Cloud Instance IP Addressing</a>.)
+        /// EC2 Instance IP Addressing</a>.)
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -103,9 +104,10 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// The Amazon Resource Name (<a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
         /// that is assigned to a Amazon GameLift fleet resource and uniquely identifies it. ARNs
-        /// are unique across all Regions. Format is <code>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+        /// are unique across all Regions. Format is <c>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</c>.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=512)]
         public string FleetArn
         {
             get { return this._fleetArn; }
@@ -124,6 +126,7 @@ namespace Amazon.GameLift.Model
         /// A unique identifier for the fleet that the instance belongs to.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=128)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -160,7 +163,7 @@ namespace Amazon.GameLift.Model
         /// IP address that is assigned to the instance.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=128)]
+        [AWSProperty(Sensitive=true, Min=1, Max=128)]
         public string IpAddress
         {
             get { return this._ipAddress; }
@@ -177,7 +180,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property Location. 
         /// <para>
         /// The fleet location of the instance, expressed as an Amazon Web Services Region code,
-        /// such as <code>us-west-2</code>. 
+        /// such as <c>us-west-2</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -198,6 +201,16 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// Operating system that is running on this EC2 instance. 
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// Amazon Linux 2 (AL2) will reach end of support on 6/30/2025. See more details in the
+        /// <a href="https://aws.amazon.com/amazon-linux-2/faqs/">Amazon Linux 2 FAQs</a>. For
+        /// game servers that are hosted on AL2 and use Amazon GameLift server SDK 4.x., first
+        /// update the game server build to server SDK 5.x, and then deploy to AL2023 instances.
+        /// See <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-serversdk5-migration.html">
+        /// Migrate to Amazon GameLift server SDK version 5.</a> 
+        /// </para>
+        ///  </note>
         /// </summary>
         public OperatingSystem OperatingSystem
         {

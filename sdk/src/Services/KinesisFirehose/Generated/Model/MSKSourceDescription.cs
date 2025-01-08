@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
-    /// Details about the Amazon MSK cluster used as the source for a Kinesis Data Firehose
-    /// delivery stream.
+    /// Details about the Amazon MSK cluster used as the source for a Firehose Firehose stream.
     /// </summary>
     public partial class MSKSourceDescription
     {
         private AuthenticationConfiguration _authenticationConfiguration;
         private DateTime? _deliveryStartTimestamp;
         private string _mskClusterARN;
+        private DateTime? _readFromTimestamp;
         private string _topicName;
 
         /// <summary>
@@ -60,8 +61,8 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property DeliveryStartTimestamp. 
         /// <para>
-        /// Kinesis Data Firehose starts retrieving records from the topic within the Amazon MSK
-        /// cluster starting with this timestamp.
+        /// Firehose starts retrieving records from the topic within the Amazon MSK cluster starting
+        /// with this timestamp.
         /// </para>
         /// </summary>
         public DateTime DeliveryStartTimestamp
@@ -93,6 +94,32 @@ namespace Amazon.KinesisFirehose.Model
         internal bool IsSetMSKClusterARN()
         {
             return this._mskClusterARN != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ReadFromTimestamp. 
+        /// <para>
+        /// The start date and time in UTC for the offset position within your MSK topic from
+        /// where Firehose begins to read. By default, this is set to timestamp when Firehose
+        /// becomes Active. 
+        /// </para>
+        ///  
+        /// <para>
+        /// If you want to create a Firehose stream with Earliest start position from SDK or CLI,
+        /// you need to set the <c>ReadFromTimestampUTC</c> parameter to Epoch (1970-01-01T00:00:00Z).
+        /// 
+        /// </para>
+        /// </summary>
+        public DateTime ReadFromTimestamp
+        {
+            get { return this._readFromTimestamp.GetValueOrDefault(); }
+            set { this._readFromTimestamp = value; }
+        }
+
+        // Check to see if ReadFromTimestamp property is set
+        internal bool IsSetReadFromTimestamp()
+        {
+            return this._readFromTimestamp.HasValue; 
         }
 
         /// <summary>

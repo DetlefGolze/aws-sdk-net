@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Kendra.Model
     {
         private int? _count;
         private DocumentAttributeValue _documentAttributeValue;
-        private List<FacetResult> _facetResults = new List<FacetResult>();
+        private List<FacetResult> _facetResults = AWSConfigs.InitializeCollections ? new List<FacetResult>() : null;
 
         /// <summary>
         /// Gets and sets the property Count. 
@@ -78,7 +79,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property FacetResults. 
         /// <para>
-        /// Contains the results of a document attribute/field that is a nested facet. A <code>FacetResult</code>
+        /// Contains the results of a document attribute/field that is a nested facet. A <c>FacetResult</c>
         /// contains the counts for each facet nested within a facet.
         /// </para>
         ///  
@@ -101,7 +102,7 @@ namespace Amazon.Kendra.Model
         // Check to see if FacetResults property is set
         internal bool IsSetFacetResults()
         {
-            return this._facetResults != null && this._facetResults.Count > 0; 
+            return this._facetResults != null && (this._facetResults.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

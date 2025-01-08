@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
@@ -36,21 +37,21 @@ namespace Amazon.Lambda.Model
     /// 
     ///  
     /// <para>
-    /// If the function's package type is <code>Image</code>, then you must specify the code
-    /// package in <code>ImageUri</code> as the URI of a <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html">container
+    /// If the function's package type is <c>Image</c>, then you must specify the code package
+    /// in <c>ImageUri</c> as the URI of a <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html">container
     /// image</a> in the Amazon ECR registry.
     /// </para>
     ///  
     /// <para>
-    /// If the function's package type is <code>Zip</code>, then you must specify the deployment
+    /// If the function's package type is <c>Zip</c>, then you must specify the deployment
     /// package as a <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip">.zip
     /// file archive</a>. Enter the Amazon S3 bucket and key of the code .zip file location.
-    /// You can also provide the function code inline using the <code>ZipFile</code> field.
+    /// You can also provide the function code inline using the <c>ZipFile</c> field.
     /// </para>
     ///  
     /// <para>
     /// The code in the deployment package must be compatible with the target instruction
-    /// set architecture of the function (<code>x86-64</code> or <code>arm64</code>).
+    /// set architecture of the function (<c>x86-64</c> or <c>arm64</c>).
     /// </para>
     ///  
     /// <para>
@@ -67,7 +68,7 @@ namespace Amazon.Lambda.Model
     /// </summary>
     public partial class UpdateFunctionCodeRequest : AmazonLambdaRequest
     {
-        private List<string> _architectures = new List<string>();
+        private List<string> _architectures = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _dryRun;
         private string _functionName;
         private string _imageUri;
@@ -76,13 +77,14 @@ namespace Amazon.Lambda.Model
         private string _s3Bucket;
         private string _s3Key;
         private string _s3ObjectVersion;
+        private string _sourceKMSKeyArn;
         private MemoryStream _zipFile;
 
         /// <summary>
         /// Gets and sets the property Architectures. 
         /// <para>
         /// The instruction set architecture that the function supports. Enter a string array
-        /// with one of the valid values (arm64 or x86_64). The default value is <code>x86_64</code>.
+        /// with one of the valid values (arm64 or x86_64). The default value is <c>x86_64</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1)]
@@ -95,7 +97,7 @@ namespace Amazon.Lambda.Model
         // Check to see if Architectures property is set
         internal bool IsSetArchitectures()
         {
-            return this._architectures != null && this._architectures.Count > 0; 
+            return this._architectures != null && (this._architectures.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -120,7 +122,7 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property FunctionName. 
         /// <para>
-        /// The name of the Lambda function.
+        /// The name or ARN of the Lambda function.
         /// </para>
         ///  
         /// <para>
@@ -128,15 +130,15 @@ namespace Amazon.Lambda.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>Function name</b> – <code>my-function</code>.
+        ///  <b>Function name</b> – <c>my-function</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.
+        ///  <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Partial ARN</b> – <code>123456789012:function:my-function</code>.
+        ///  <b>Partial ARN</b> – <c>123456789012:function:my-function</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -272,6 +274,26 @@ namespace Amazon.Lambda.Model
         internal bool IsSetS3ObjectVersion()
         {
             return this._s3ObjectVersion != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SourceKMSKeyArn. 
+        /// <para>
+        /// The ARN of the Key Management Service (KMS) customer managed key that's used to encrypt
+        /// your function's .zip deployment package. If you don't provide a customer managed key,
+        /// Lambda uses an Amazon Web Services managed key.
+        /// </para>
+        /// </summary>
+        public string SourceKMSKeyArn
+        {
+            get { return this._sourceKMSKeyArn; }
+            set { this._sourceKMSKeyArn = value; }
+        }
+
+        // Check to see if SourceKMSKeyArn property is set
+        internal bool IsSetSourceKMSKeyArn()
+        {
+            return this._sourceKMSKeyArn != null;
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BillingConductor.Model
 {
     /// <summary>
@@ -66,16 +67,16 @@ namespace Amazon.BillingConductor.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>MONITORED</code>: linked accounts that are associated to billing groups.
+        ///  <c>MONITORED</c>: linked accounts that are associated to billing groups.
         /// </para>
         ///  
         /// <para>
-        ///  <code>UNMONITORED</code>: linked accounts that aren't associated to billing groups.
+        ///  <c>UNMONITORED</c>: linked accounts that aren't associated to billing groups.
         /// </para>
         ///  
         /// <para>
-        ///  <code>Billing Group Arn</code>: linked accounts that are associated to the provided
-        /// billing group Arn. 
+        ///  <c>Billing Group Arn</c>: linked accounts that are associated to the provided billing
+        /// group Arn. 
         /// </para>
         /// </summary>
         public ListAccountAssociationsFilter Filters

@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ARCZonalShift.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateZonalShift operation.
     /// Update an active zonal shift in Amazon Route 53 Application Recovery Controller in
-    /// your AWS account. You can update a zonal shift to set a new expiration, or edit or
-    /// replace the comment for the zonal shift.
+    /// your Amazon Web Services account. You can update a zonal shift to set a new expiration,
+    /// or edit or replace the comment for the zonal shift.
     /// </summary>
     public partial class UpdateZonalShiftRequest : AmazonARCZonalShiftRequest
     {
@@ -88,8 +89,8 @@ namespace Amazon.ARCZonalShift.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For example: <code>20h</code> means the zonal shift expires in 20 hours. <code>120m</code>
-        /// means the zonal shift expires in 120 minutes (2 hours).
+        /// For example: <c>20h</c> means the zonal shift expires in 20 hours. <c>120m</c> means
+        /// the zonal shift expires in 120 minutes (2 hours).
         /// </para>
         /// </summary>
         [AWSProperty(Min=2, Max=5)]

@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RAM.Model
 {
     /// <summary>
-    /// The operation failed because the specified value for <code>MaxResults</code> isn't
-    /// valid.
+    /// The operation failed because the specified value for <c>MaxResults</c> isn't valid.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

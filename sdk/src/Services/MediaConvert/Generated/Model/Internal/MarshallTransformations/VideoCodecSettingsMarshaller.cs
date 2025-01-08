@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(VideoCodecSettings requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAv1Settings())
             {
                 context.Writer.WritePropertyName("av1Settings");
@@ -124,6 +127,17 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
 
                 var marshaller = ProresSettingsMarshaller.Instance;
                 marshaller.Marshall(requestObject.ProresSettings, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetUncompressedSettings())
+            {
+                context.Writer.WritePropertyName("uncompressedSettings");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = UncompressedSettingsMarshaller.Instance;
+                marshaller.Marshall(requestObject.UncompressedSettings, context);
 
                 context.Writer.WriteObjectEnd();
             }

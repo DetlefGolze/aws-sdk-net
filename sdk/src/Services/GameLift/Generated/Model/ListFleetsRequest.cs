@@ -26,30 +26,28 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
     /// Container for the parameters to the ListFleets operation.
     /// Retrieves a collection of fleet resources in an Amazon Web Services Region. You can
-    /// call this operation to get fleets in a previously selected default Region (see <a
-    /// href="https://docs.aws.amazon.com/credref/latest/refdocs/setting-global-region.html">https://docs.aws.amazon.com/credref/latest/refdocs/setting-global-region.html</a>or
-    /// specify a Region in your request. You can filter the result set to find only those
-    /// fleets that are deployed with a specific build or script. For fleets that have multiple
-    /// locations, this operation retrieves fleets based on their home Region only.
+    /// filter the result set to find only those fleets that are deployed with a specific
+    /// build or script. For fleets that have multiple locations, this operation retrieves
+    /// fleets based on their home Region only.
     /// 
     ///  
     /// <para>
-    /// This operation can be used in the following ways: 
+    /// You can use operation in the following ways: 
     /// </para>
     ///  <ul> <li> 
     /// <para>
     /// To get a list of all fleets in a Region, don't provide a build or script identifier.
-    /// 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// To get a list of all fleets where a specific custom game build is deployed, provide
-    /// the build ID.
+    /// To get a list of all fleets where a specific game build is deployed, provide the build
+    /// ID.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -62,22 +60,14 @@ namespace Amazon.GameLift.Model
     /// </para>
     ///  
     /// <para>
-    /// If successful, a list of fleet IDs that match the request parameters is returned.
+    /// If successful, this operation returns a list of fleet IDs that match the request parameters.
     /// A NextToken value is also returned if there are more result pages to retrieve.
     /// </para>
     ///  <note> 
     /// <para>
-    /// Fleet resources are not listed in a particular order.
+    /// Fleet IDs are returned in no particular order.
     /// </para>
-    ///  </note> 
-    /// <para>
-    ///  <b>Learn more</b> 
-    /// </para>
-    ///  
-    /// <para>
-    ///  <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
-    /// up Amazon GameLift fleets</a> 
-    /// </para>
+    ///  </note>
     /// </summary>
     public partial class ListFleetsRequest : AmazonGameLiftRequest
     {
@@ -108,7 +98,7 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property Limit. 
         /// <para>
-        /// The maximum number of results to return. Use this parameter with <code>NextToken</code>
+        /// The maximum number of results to return. Use this parameter with <c>NextToken</c>
         /// to get results as a set of sequential pages.
         /// </para>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WellArchitected.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.WellArchitected.Model
     /// 
     ///  
     /// <para>
-    /// To update an existing custom lens, specify its ARN as the <code>LensAlias</code>.
-    /// If no ARN is specified, a new custom lens is created.
+    /// To update an existing custom lens, specify its ARN as the <c>LensAlias</c>. If no
+    /// ARN is specified, a new custom lens is created.
     /// </para>
     ///  
     /// <para>
-    /// The new or updated lens will have a status of <code>DRAFT</code>. The lens cannot
-    /// be applied to workloads or shared with other Amazon Web Services accounts until it's
-    /// published with <a>CreateLensVersion</a>.
+    /// The new or updated lens will have a status of <c>DRAFT</c>. The lens cannot be applied
+    /// to workloads or shared with other Amazon Web Services accounts until it's published
+    /// with <a>CreateLensVersion</a>.
     /// </para>
     ///  
     /// <para>
@@ -72,7 +73,7 @@ namespace Amazon.WellArchitected.Model
         private string _clientRequestToken;
         private string _jsonString;
         private string _lensAlias;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken.
@@ -141,7 +142,7 @@ namespace Amazon.WellArchitected.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

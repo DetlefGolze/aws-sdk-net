@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.ConfigService.Model
     /// </summary>
     public partial class DescribeConformancePackStatusRequest : AmazonConfigServiceRequest
     {
-        private List<string> _conformancePackNames = new List<string>();
+        private List<string> _conformancePackNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _limit;
         private string _nextToken;
 
@@ -60,7 +61,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if ConformancePackNames property is set
         internal bool IsSetConformancePackNames()
         {
-            return this._conformancePackNames != null && this._conformancePackNames.Count > 0; 
+            return this._conformancePackNames != null && (this._conformancePackNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -85,7 +86,7 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> string returned in a previous request that you use to request
+        /// The <c>nextToken</c> string returned in a previous request that you use to request
         /// the next page of results in a paginated response.
         /// </para>
         /// </summary>

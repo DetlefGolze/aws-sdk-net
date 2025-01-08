@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKVoice.Model
 {
     /// <summary>
-    /// A <code>Call</code> instance for a SIP media application.
+    /// A <c>Call</c> instance for a SIP media application.
     /// </summary>
     public partial class SipMediaApplicationCall
     {

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvents.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.CloudWatchEvents.Model
         /// <summary>
         /// Gets and sets the property ErrorCode. 
         /// <para>
-        /// The error code that indicates why the target removal failed. If the value is <code>ConcurrentModificationException</code>,
+        /// The error code that indicates why the target removal failed. If the value is <c>ConcurrentModificationException</c>,
         /// too many requests were made at the same time.
         /// </para>
         /// </summary>

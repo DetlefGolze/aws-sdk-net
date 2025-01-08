@@ -26,24 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateHub operation.
     /// Update a hub.
-    /// 
-    ///  <note> 
-    /// <para>
-    /// Hub APIs are only callable through SageMaker Studio.
-    /// </para>
-    ///  </note>
     /// </summary>
     public partial class UpdateHubRequest : AmazonSageMakerRequest
     {
         private string _hubDescription;
         private string _hubDisplayName;
         private string _hubName;
-        private List<string> _hubSearchKeywords = new List<string>();
+        private List<string> _hubSearchKeywords = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property HubDescription. 
@@ -89,7 +84,7 @@ namespace Amazon.SageMaker.Model
         /// The name of the hub to update.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=63)]
+        [AWSProperty(Required=true)]
         public string HubName
         {
             get { return this._hubName; }
@@ -118,7 +113,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if HubSearchKeywords property is set
         internal bool IsSetHubSearchKeywords()
         {
-            return this._hubSearchKeywords != null && this._hubSearchKeywords.Count > 0; 
+            return this._hubSearchKeywords != null && (this._hubSearchKeywords.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

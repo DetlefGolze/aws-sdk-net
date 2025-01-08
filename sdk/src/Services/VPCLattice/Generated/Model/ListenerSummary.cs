@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
@@ -63,7 +64,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// The date and time that the listener was created, specified in ISO-8601 format.
+        /// The date and time that the listener was created, in ISO-8601 format.
         /// </para>
         /// </summary>
         public DateTime CreatedAt
@@ -100,7 +101,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property LastUpdatedAt. 
         /// <para>
-        /// The date and time that the listener was last updated, specified in ISO-8601 format.
+        /// The date and time that the listener was last updated, in ISO-8601 format.
         /// </para>
         /// </summary>
         public DateTime LastUpdatedAt

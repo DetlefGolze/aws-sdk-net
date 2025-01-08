@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SsmSap.Model
 {
     /// <summary>
@@ -36,19 +37,23 @@ namespace Amazon.SsmSap.Model
         private string _applicationId;
         private string _arn;
         private AssociatedHost _associatedHost;
-        private List<string> _childComponents = new List<string>();
+        private List<string> _childComponents = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _componentId;
         private ComponentType _componentType;
-        private List<string> _databases = new List<string>();
+        private DatabaseConnection _databaseConnection;
+        private List<string> _databases = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _hdbVersion;
-        private List<Host> _hosts = new List<Host>();
+        private List<Host> _hosts = AWSConfigs.InitializeCollections ? new List<Host>() : null;
         private DateTime? _lastUpdated;
         private string _parentComponent;
         private string _primaryHost;
         private Resilience _resilience;
+        private string _sapFeature;
         private string _sapHostname;
         private string _sapKernelVersion;
+        private string _sid;
         private ComponentStatus _status;
+        private string _systemNumber;
 
         /// <summary>
         /// Gets and sets the property ApplicationId. 
@@ -56,6 +61,7 @@ namespace Amazon.SsmSap.Model
         /// The ID of the application.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=60)]
         public string ApplicationId
         {
             get { return this._applicationId; }
@@ -120,7 +126,7 @@ namespace Amazon.SsmSap.Model
         // Check to see if ChildComponents property is set
         internal bool IsSetChildComponents()
         {
-            return this._childComponents != null && this._childComponents.Count > 0; 
+            return this._childComponents != null && (this._childComponents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -129,6 +135,7 @@ namespace Amazon.SsmSap.Model
         /// The ID of the component.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=100)]
         public string ComponentId
         {
             get { return this._componentId; }
@@ -160,6 +167,24 @@ namespace Amazon.SsmSap.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DatabaseConnection. 
+        /// <para>
+        /// The connection specifications for the database of the component.
+        /// </para>
+        /// </summary>
+        public DatabaseConnection DatabaseConnection
+        {
+            get { return this._databaseConnection; }
+            set { this._databaseConnection = value; }
+        }
+
+        // Check to see if DatabaseConnection property is set
+        internal bool IsSetDatabaseConnection()
+        {
+            return this._databaseConnection != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Databases. 
         /// <para>
         /// The SAP HANA databases of the component.
@@ -174,7 +199,7 @@ namespace Amazon.SsmSap.Model
         // Check to see if Databases property is set
         internal bool IsSetDatabases()
         {
-            return this._databases != null && this._databases.Count > 0; 
+            return this._databases != null && (this._databases.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -211,7 +236,7 @@ namespace Amazon.SsmSap.Model
         // Check to see if Hosts property is set
         internal bool IsSetHosts()
         {
-            return this._hosts != null && this._hosts.Count > 0; 
+            return this._hosts != null && (this._hosts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -240,6 +265,7 @@ namespace Amazon.SsmSap.Model
         /// the child components.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=100)]
         public string ParentComponent
         {
             get { return this._parentComponent; }
@@ -290,6 +316,24 @@ namespace Amazon.SsmSap.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SapFeature. 
+        /// <para>
+        /// The SAP feature of the component.
+        /// </para>
+        /// </summary>
+        public string SapFeature
+        {
+            get { return this._sapFeature; }
+            set { this._sapFeature = value; }
+        }
+
+        // Check to see if SapFeature property is set
+        internal bool IsSetSapFeature()
+        {
+            return this._sapFeature != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property SapHostname. 
         /// <para>
         /// The hostname of the component.
@@ -326,10 +370,60 @@ namespace Amazon.SsmSap.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Sid. 
+        /// <para>
+        /// The SAP System Identifier of the application component.
+        /// </para>
+        /// </summary>
+        public string Sid
+        {
+            get { return this._sid; }
+            set { this._sid = value; }
+        }
+
+        // Check to see if Sid property is set
+        internal bool IsSetSid()
+        {
+            return this._sid != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
         /// The status of the component.
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// ACTIVATED - this status has been deprecated.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// STARTING - the component is in the process of being started.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// STOPPED - the component is not running.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// STOPPING - the component is in the process of being stopped.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// RUNNING - the component is running.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// RUNNING_WITH_ERROR - one or more child component(s) of the parent component is not
+        /// running. Call <a href="https://docs.aws.amazon.com/ssmsap/latest/APIReference/API_GetComponent.html">
+        /// <c>GetComponent</c> </a> to review the status of each child component.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// UNDEFINED - AWS Systems Manager for SAP cannot provide the component status based
+        /// on the discovered information. Verify your SAP application.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public ComponentStatus Status
         {
@@ -341,6 +435,24 @@ namespace Amazon.SsmSap.Model
         internal bool IsSetStatus()
         {
             return this._status != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SystemNumber. 
+        /// <para>
+        /// The SAP system number of the application component.
+        /// </para>
+        /// </summary>
+        public string SystemNumber
+        {
+            get { return this._systemNumber; }
+            set { this._systemNumber = value; }
+        }
+
+        // Check to see if SystemNumber property is set
+        internal bool IsSetSystemNumber()
+        {
+            return this._systemNumber != null;
         }
 
     }

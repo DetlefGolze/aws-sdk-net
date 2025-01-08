@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTEvents.Model
 {
     /// <summary>
@@ -39,9 +40,8 @@ namespace Amazon.IoTEvents.Model
         /// <summary>
         /// Gets and sets the property DisabledOnInitialization. 
         /// <para>
-        /// The value must be <code>TRUE</code> or <code>FALSE</code>. If <code>FALSE</code>,
-        /// all alarm instances created based on the alarm model are activated. The default value
-        /// is <code>TRUE</code>.
+        /// The value must be <c>TRUE</c> or <c>FALSE</c>. If <c>FALSE</c>, all alarm instances
+        /// created based on the alarm model are activated. The default value is <c>TRUE</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

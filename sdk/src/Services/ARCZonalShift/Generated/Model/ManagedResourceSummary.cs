@@ -26,30 +26,58 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ARCZonalShift.Model
 {
     /// <summary>
-    /// A complex structure for a managed resource in an account.
+    /// A complex structure for a managed resource in an Amazon Web Services account with
+    /// information about zonal shifts and autoshifts.
     /// 
     ///  
     /// <para>
-    /// A managed resource is a Network Load Balancer or Application Load Balancer that has
-    /// been registered with Route 53 ARC by Elastic Load Balancing. You can start a zonal
-    /// shift in Route 53 ARC for a managed resource to temporarily move traffic for the resource
-    /// away from an Availability Zone in an AWS Region.
+    /// A managed resource is a load balancer that has been registered with Route 53 ARC by
+    /// Elastic Load Balancing. You can start a zonal shift in Route 53 ARC for a managed
+    /// resource to temporarily move traffic for the resource away from an Availability Zone
+    /// in an Amazon Web Services Region. You can also configure zonal autoshift for a managed
+    /// resource.
     /// </para>
     ///  <note> 
     /// <para>
-    /// At this time, you can only start a zonal shift for Network Load Balancers and Application
-    /// Load Balancers with cross-zone load balancing turned off.
+    /// At this time, managed resources are Network Load Balancers and Application Load Balancers
+    /// with cross-zone load balancing turned off.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class ManagedResourceSummary
     {
+        private Dictionary<string, float> _appliedWeights = AWSConfigs.InitializeCollections ? new Dictionary<string, float>() : null;
         private string _arn;
-        private List<string> _availabilityZones = new List<string>();
+        private List<AutoshiftInResource> _autoshifts = AWSConfigs.InitializeCollections ? new List<AutoshiftInResource>() : null;
+        private List<string> _availabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
+        private ZonalAutoshiftStatus _practiceRunStatus;
+        private ZonalAutoshiftStatus _zonalAutoshiftStatus;
+        private List<ZonalShiftInResource> _zonalShifts = AWSConfigs.InitializeCollections ? new List<ZonalShiftInResource>() : null;
+
+        /// <summary>
+        /// Gets and sets the property AppliedWeights. 
+        /// <para>
+        /// A collection of key-value pairs that indicate whether resources are active in Availability
+        /// Zones or not. The key name is the Availability Zone where the resource is deployed.
+        /// The value is 1 or 0.
+        /// </para>
+        /// </summary>
+        public Dictionary<string, float> AppliedWeights
+        {
+            get { return this._appliedWeights; }
+            set { this._appliedWeights = value; }
+        }
+
+        // Check to see if AppliedWeights property is set
+        internal bool IsSetAppliedWeights()
+        {
+            return this._appliedWeights != null && (this._appliedWeights.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -71,6 +99,24 @@ namespace Amazon.ARCZonalShift.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Autoshifts. 
+        /// <para>
+        /// An array of the autoshifts that have been completed for a resource.
+        /// </para>
+        /// </summary>
+        public List<AutoshiftInResource> Autoshifts
+        {
+            get { return this._autoshifts; }
+            set { this._autoshifts = value; }
+        }
+
+        // Check to see if Autoshifts property is set
+        internal bool IsSetAutoshifts()
+        {
+            return this._autoshifts != null && (this._autoshifts.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property AvailabilityZones. 
         /// <para>
         /// The Availability Zones that a resource is deployed in.
@@ -86,7 +132,7 @@ namespace Amazon.ARCZonalShift.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -106,6 +152,70 @@ namespace Amazon.ARCZonalShift.Model
         internal bool IsSetName()
         {
             return this._name != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PracticeRunStatus. 
+        /// <para>
+        /// This status tracks whether a practice run configuration exists for a resource. When
+        /// you configure a practice run for a resource so that a practice run configuration exists,
+        /// Route 53 ARC sets this value to <c>ENABLED</c>. If a you have not configured a practice
+        /// run for the resource, or delete a practice run configuration, Route 53 ARC sets the
+        /// value to <c>DISABLED</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Route 53 ARC updates this status; you can't set a practice run status to <c>ENABLED</c>
+        /// or <c>DISABLED</c>.
+        /// </para>
+        /// </summary>
+        public ZonalAutoshiftStatus PracticeRunStatus
+        {
+            get { return this._practiceRunStatus; }
+            set { this._practiceRunStatus = value; }
+        }
+
+        // Check to see if PracticeRunStatus property is set
+        internal bool IsSetPracticeRunStatus()
+        {
+            return this._practiceRunStatus != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ZonalAutoshiftStatus. 
+        /// <para>
+        /// The status of autoshift for a resource. When you configure zonal autoshift for a resource,
+        /// you can set the value of the status to <c>ENABLED</c> or <c>DISABLED</c>.
+        /// </para>
+        /// </summary>
+        public ZonalAutoshiftStatus ZonalAutoshiftStatus
+        {
+            get { return this._zonalAutoshiftStatus; }
+            set { this._zonalAutoshiftStatus = value; }
+        }
+
+        // Check to see if ZonalAutoshiftStatus property is set
+        internal bool IsSetZonalAutoshiftStatus()
+        {
+            return this._zonalAutoshiftStatus != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ZonalShifts. 
+        /// <para>
+        /// An array of the zonal shifts for a resource.
+        /// </para>
+        /// </summary>
+        public List<ZonalShiftInResource> ZonalShifts
+        {
+            get { return this._zonalShifts; }
+            set { this._zonalShifts = value; }
+        }
+
+        // Check to see if ZonalShifts property is set
+        internal bool IsSetZonalShifts()
+        {
+            return this._zonalShifts != null && (this._zonalShifts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

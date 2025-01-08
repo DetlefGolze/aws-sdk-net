@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property DateTimeFormatConfiguration. 
         /// <para>
-        /// Formatting configuration for <code>DateTime</code> fields.
+        /// Formatting configuration for <c>DateTime</c> fields.
         /// </para>
         /// </summary>
         public DateTimeFormatConfiguration DateTimeFormatConfiguration

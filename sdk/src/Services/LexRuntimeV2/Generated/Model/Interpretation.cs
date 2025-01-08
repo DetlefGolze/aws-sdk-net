@@ -26,15 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexRuntimeV2.Model
 {
     /// <summary>
-    /// An intent that Amazon Lex V2 determined might satisfy the user's utterance. The intents
-    /// are ordered by the confidence score.
+    /// An object containing information about an intent that Amazon Lex V2 determined might
+    /// satisfy the user's utterance. The intents are ordered by the confidence score.
     /// </summary>
     public partial class Interpretation
     {
         private Intent _intent;
+        private InterpretationSource _interpretationSource;
         private ConfidenceScore _nluConfidence;
         private SentimentResponse _sentimentResponse;
 
@@ -58,12 +60,30 @@ namespace Amazon.LexRuntimeV2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property InterpretationSource. 
+        /// <para>
+        /// Specifies the service that interpreted the input.
+        /// </para>
+        /// </summary>
+        public InterpretationSource InterpretationSource
+        {
+            get { return this._interpretationSource; }
+            set { this._interpretationSource = value; }
+        }
+
+        // Check to see if InterpretationSource property is set
+        internal bool IsSetInterpretationSource()
+        {
+            return this._interpretationSource != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property NluConfidence. 
         /// <para>
-        /// Determines the threshold where Amazon Lex V2 will insert the <code>AMAZON.FallbackIntent</code>,
-        /// <code>AMAZON.KendraSearchIntent</code>, or both when returning alternative intents
-        /// in a response. <code>AMAZON.FallbackIntent</code> and <code>AMAZON.KendraSearchIntent</code>
-        /// are only inserted if they are configured for the bot.
+        /// Determines the threshold where Amazon Lex V2 will insert the <c>AMAZON.FallbackIntent</c>,
+        /// <c>AMAZON.KendraSearchIntent</c>, or both when returning alternative intents in a
+        /// response. <c>AMAZON.FallbackIntent</c> and <c>AMAZON.KendraSearchIntent</c> are only
+        /// inserted if they are configured for the bot.
         /// </para>
         /// </summary>
         public ConfidenceScore NluConfidence

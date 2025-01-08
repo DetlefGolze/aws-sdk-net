@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.Neptune.Model
         /// Gets and sets the property FeatureName. 
         /// <para>
         /// The name of the feature associated with the Amazon Identity and Access Management
-        /// (IAM) role. For the list of supported feature names, see <a href="https://docs.aws.amazon.com/neptune/latest/userguide/api-other-apis.html#DescribeDBEngineVersions">DescribeDBEngineVersions</a>.
+        /// (IAM) role. For the list of supported feature names, see <a>DescribeDBEngineVersions</a>.
         /// 
         /// </para>
         /// </summary>
@@ -84,18 +85,18 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ACTIVE</code> - the IAM role ARN is associated with the DB cluster and can
-        /// be used to access other Amazon services on your behalf.
+        ///  <c>ACTIVE</c> - the IAM role ARN is associated with the DB cluster and can be used
+        /// to access other Amazon services on your behalf.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PENDING</code> - the IAM role ARN is being associated with the DB cluster.
+        ///  <c>PENDING</c> - the IAM role ARN is being associated with the DB cluster.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INVALID</code> - the IAM role ARN is associated with the DB cluster, but the
-        /// DB cluster is unable to assume the IAM role in order to access other Amazon services
-        /// on your behalf.
+        ///  <c>INVALID</c> - the IAM role ARN is associated with the DB cluster, but the DB cluster
+        /// is unable to assume the IAM role in order to access other Amazon services on your
+        /// behalf.
         /// </para>
         ///  </li> </ul>
         /// </summary>

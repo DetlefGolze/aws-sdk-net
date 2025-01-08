@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -41,9 +42,9 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the job command. For an Apache Spark ETL job, this must be <code>glueetl</code>.
-        /// For a Python shell job, it must be <code>pythonshell</code>. For an Apache Spark streaming
-        /// ETL job, this must be <code>gluestreaming</code>. For a Ray job, this must be <code>glueray</code>.
+        /// The name of the job command. For an Apache Spark ETL job, this must be <c>glueetl</c>.
+        /// For a Python shell job, it must be <c>pythonshell</c>. For an Apache Spark streaming
+        /// ETL job, this must be <c>gluestreaming</c>. For a Ray job, this must be <c>glueray</c>.
         /// </para>
         /// </summary>
         public string Name
@@ -81,8 +82,8 @@ namespace Amazon.Glue.Model
         /// <para>
         /// In Ray jobs, Runtime is used to specify the versions of Ray, Python and additional
         /// libraries available in your environment. This field is not used in other job types.
-        /// For supported runtime environment values, see <a href="https://docs.aws.amazon.com/glue/latest/dg/author-job-ray-runtimes.html">Working
-        /// with Ray jobs</a> in the Glue Developer Guide.
+        /// For supported runtime environment values, see <a href="https://docs.aws.amazon.com/glue/latest/dg/ray-jobs-section.html">Supported
+        /// Ray runtime environments</a> in the Glue Developer Guide.
         /// </para>
         /// </summary>
         [AWSProperty(Max=64)]

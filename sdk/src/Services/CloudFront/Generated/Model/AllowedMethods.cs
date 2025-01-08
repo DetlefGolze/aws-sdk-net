@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -34,16 +35,15 @@ namespace Amazon.CloudFront.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    /// CloudFront forwards only <code>GET</code> and <code>HEAD</code> requests.
+    /// CloudFront forwards only <c>GET</c> and <c>HEAD</c> requests.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// CloudFront forwards only <code>GET</code>, <code>HEAD</code>, and <code>OPTIONS</code>
-    /// requests.
+    /// CloudFront forwards only <c>GET</c>, <c>HEAD</c>, and <c>OPTIONS</c> requests.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// CloudFront forwards <code>GET, HEAD, OPTIONS, PUT, PATCH, POST</code>, and <code>DELETE</code>
+    /// CloudFront forwards <c>GET, HEAD, OPTIONS, PUT, PATCH, POST</c>, and <c>DELETE</c>
     /// requests.
     /// </para>
     ///  </li> </ul> 
@@ -57,7 +57,7 @@ namespace Amazon.CloudFront.Model
     public partial class AllowedMethods
     {
         private CachedMethods _cachedMethods;
-        private List<string> _items = new List<string>();
+        private List<string> _items = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _quantity;
 
         /// <summary>
@@ -92,16 +92,16 @@ namespace Amazon.CloudFront.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Quantity. 
         /// <para>
         /// The number of HTTP methods that you want CloudFront to forward to your origin. Valid
-        /// values are 2 (for <code>GET</code> and <code>HEAD</code> requests), 3 (for <code>GET</code>,
-        /// <code>HEAD</code>, and <code>OPTIONS</code> requests) and 7 (for <code>GET, HEAD,
-        /// OPTIONS, PUT, PATCH, POST</code>, and <code>DELETE</code> requests).
+        /// values are 2 (for <c>GET</c> and <c>HEAD</c> requests), 3 (for <c>GET</c>, <c>HEAD</c>,
+        /// and <c>OPTIONS</c> requests) and 7 (for <c>GET, HEAD, OPTIONS, PUT, PATCH, POST</c>,
+        /// and <c>DELETE</c> requests).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

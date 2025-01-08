@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -45,8 +46,18 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// By default, this is set to <code>true</code>, and new controls are enabled automatically.
-        /// To not automatically enable new controls, set this to <code>false</code>. 
+        /// By default, this is set to <c>true</c>, and new controls are enabled automatically.
+        /// To not automatically enable new controls, set this to <c>false</c>. 
+        /// </para>
+        ///  
+        /// <para>
+        /// When you automatically enable new controls, you can interact with the controls in
+        /// the console and programmatically immediately after release. However, automatically
+        /// enabled controls have a temporary default status of <c>DISABLED</c>. It can take up
+        /// to several days for Security Hub to process the control release and designate the
+        /// control as <c>ENABLED</c> in your account. During the processing period, you can manually
+        /// enable or disable a control, and Security Hub will maintain that designation regardless
+        /// of whether you have <c>AutoEnableControls</c> set to <c>true</c>.
         /// </para>
         /// </summary>
         public bool AutoEnableControls
@@ -65,15 +76,14 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property ControlFindingGenerator. 
         /// <para>
         /// Updates whether the calling account has consolidated control findings turned on. If
-        /// the value for this field is set to <code>SECURITY_CONTROL</code>, Security Hub generates
+        /// the value for this field is set to <c>SECURITY_CONTROL</c>, Security Hub generates
         /// a single finding for a control check even when the check applies to multiple enabled
         /// standards.
         /// </para>
         ///  
         /// <para>
-        /// If the value for this field is set to <code>STANDARD_CONTROL</code>, Security Hub
-        /// generates separate findings for a control check when the check applies to multiple
-        /// enabled standards.
+        /// If the value for this field is set to <c>STANDARD_CONTROL</c>, Security Hub generates
+        /// separate findings for a control check when the check applies to multiple enabled standards.
         /// </para>
         ///  
         /// <para>

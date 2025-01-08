@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.DirectoryService.Model
         private string _description;
         private int? _desiredNumberOfDomainControllers;
         private string _directoryId;
-        private List<string> _dnsIpAddrs = new List<string>();
+        private List<string> _dnsIpAddrs = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DirectoryEdition _edition;
         private DateTime? _launchTime;
         private string _name;
@@ -63,9 +64,9 @@ namespace Amazon.DirectoryService.Model
         /// <summary>
         /// Gets and sets the property AccessUrl. 
         /// <para>
-        /// The access URL for the directory, such as <code>http://&lt;alias&gt;.awsapps.com</code>.
-        /// If no alias has been created for the directory, <code>&lt;alias&gt;</code> is the
-        /// directory identifier, such as <code>d-XXXXXXXXXX</code>.
+        /// The access URL for the directory, such as <c>http://&lt;alias&gt;.awsapps.com</c>.
+        /// If no alias has been created for the directory, <c>&lt;alias&gt;</c> is the directory
+        /// identifier, such as <c>d-XXXXXXXXXX</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -85,7 +86,7 @@ namespace Amazon.DirectoryService.Model
         /// Gets and sets the property Alias. 
         /// <para>
         /// The alias for the directory. If no alias has been created for the directory, the alias
-        /// is the directory identifier, such as <code>d-XXXXXXXXXX</code>.
+        /// is the directory identifier, such as <c>d-XXXXXXXXXX</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=62)]
@@ -197,7 +198,7 @@ namespace Amazon.DirectoryService.Model
         // Check to see if DnsIpAddrs property is set
         internal bool IsSetDnsIpAddrs()
         {
-            return this._dnsIpAddrs != null && this._dnsIpAddrs.Count > 0; 
+            return this._dnsIpAddrs != null && (this._dnsIpAddrs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -349,8 +350,8 @@ namespace Amazon.DirectoryService.Model
         /// Gets and sets the property ShareMethod. 
         /// <para>
         /// The method used when sharing a directory to determine whether the directory should
-        /// be shared within your Amazon Web Services organization (<code>ORGANIZATIONS</code>)
-        /// or with any Amazon Web Services account by sending a shared directory request (<code>HANDSHAKE</code>).
+        /// be shared within your Amazon Web Services organization (<c>ORGANIZATIONS</c>) or with
+        /// any Amazon Web Services account by sending a shared directory request (<c>HANDSHAKE</c>).
         /// </para>
         /// </summary>
         public ShareMethod ShareMethod
@@ -516,7 +517,7 @@ namespace Amazon.DirectoryService.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The directory size.
+        /// The directory type.
         /// </para>
         /// </summary>
         public DirectoryType Type

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
-    /// The number of tags per trail, event data store, or channel has exceeded the permitted
-    /// amount. Currently, the limit is 50.
+    /// The number of tags per trail, event data store, dashboard, or channel has exceeded
+    /// the permitted amount. Currently, the limit is 50.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

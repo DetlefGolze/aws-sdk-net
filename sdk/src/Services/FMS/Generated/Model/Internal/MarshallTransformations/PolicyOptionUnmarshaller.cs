@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.FMS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.FMS.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public PolicyOption Unmarshall(JsonUnmarshallerContext context)
         {
+            PolicyOption unmarshalledObject = new PolicyOption();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            PolicyOption unmarshalledObject = new PolicyOption();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("NetworkAclCommonPolicy", targetDepth))
+                {
+                    var unmarshaller = NetworkAclCommonPolicyUnmarshaller.Instance;
+                    unmarshalledObject.NetworkAclCommonPolicy = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("NetworkFirewallPolicy", targetDepth))
                 {
                     var unmarshaller = NetworkFirewallPolicyUnmarshaller.Instance;
@@ -77,7 +85,6 @@ namespace Amazon.FMS.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

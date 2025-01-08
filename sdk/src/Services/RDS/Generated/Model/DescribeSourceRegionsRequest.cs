@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -42,14 +43,14 @@ namespace Amazon.RDS.Model
     ///  
     /// <para>
     /// To return information about the Regions that are enabled for your account, or all
-    /// Regions, use the EC2 operation <code>DescribeRegions</code>. For more information,
-    /// see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeRegions.html">
+    /// Regions, use the EC2 operation <c>DescribeRegions</c>. For more information, see <a
+    /// href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeRegions.html">
     /// DescribeRegions</a> in the <i>Amazon EC2 API Reference</i>.
     /// </para>
     /// </summary>
     public partial class DescribeSourceRegionsRequest : AmazonRDSRequest
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private string _marker;
         private int? _maxRecords;
         private string _regionName;
@@ -69,15 +70,15 @@ namespace Amazon.RDS.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// An optional pagination token provided by a previous <code>DescribeSourceRegions</code>
-        /// request. If this parameter is specified, the response includes only records beyond
-        /// the marker, up to the value specified by <code>MaxRecords</code>.
+        /// An optional pagination token provided by a previous <c>DescribeSourceRegions</c> request.
+        /// If this parameter is specified, the response includes only records beyond the marker,
+        /// up to the value specified by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -96,8 +97,8 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property MaxRecords. 
         /// <para>
         /// The maximum number of records to include in the response. If more records exist than
-        /// the specified <code>MaxRecords</code> value, a pagination token called a marker is
-        /// included in the response so you can retrieve the remaining results.
+        /// the specified <c>MaxRecords</c> value, a pagination token called a marker is included
+        /// in the response so you can retrieve the remaining results.
         /// </para>
         ///  
         /// <para>
@@ -123,7 +124,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property RegionName. 
         /// <para>
-        /// The source Amazon Web Services Region name. For example, <code>us-east-1</code>.
+        /// The source Amazon Web Services Region name. For example, <c>us-east-1</c>.
         /// </para>
         ///  
         /// <para>

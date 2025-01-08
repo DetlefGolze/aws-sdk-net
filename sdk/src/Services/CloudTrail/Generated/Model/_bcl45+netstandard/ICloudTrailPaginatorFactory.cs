@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the cloudtrail-2013-11-01.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
@@ -49,6 +50,11 @@ namespace Amazon.CloudTrail.Model
         /// Paginator for ListImports operation
         ///</summary>
         IListImportsPaginator ListImports(ListImportsRequest request);
+
+        /// <summary>
+        /// Paginator for ListInsightsMetricData operation
+        ///</summary>
+        IListInsightsMetricDataPaginator ListInsightsMetricData(ListInsightsMetricDataRequest request);
 
         /// <summary>
         /// Paginator for ListPublicKeys operation

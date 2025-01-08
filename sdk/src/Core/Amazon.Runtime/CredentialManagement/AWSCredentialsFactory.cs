@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 #if !BCL35
 using Amazon.Runtime.Credentials.Internal;
 #endif
@@ -277,9 +278,9 @@ namespace Amazon.Runtime.CredentialManagement
                             return ThrowOrReturnNull(sourceMessage, e, throwIfInvalid);
                         }
 
-#pragma warning disable CS0612 // Type or member is obsolete
+#pragma warning disable CS0612,CS0618 // Type or member is obsolete
                         var roleSessionName = options.RoleSessionName ?? RoleSessionNamePrefix + AWSSDKUtils.CorrectedUtcNow.Ticks;
-#pragma warning restore CS0612 // Type or member is obsolete
+#pragma warning restore CS0612,CS0618 // Type or member is obsolete
                         var assumeRoleOptions = new AssumeRoleAWSCredentialsOptions()
                         {
                             ExternalId = options.ExternalID,
@@ -309,9 +310,9 @@ namespace Amazon.Runtime.CredentialManagement
                             return ThrowOrReturnNull(sourceMessage, e, throwIfInvalid);
                         }
 
-#pragma warning disable CS0612 // Type or member is obsolete
+#pragma warning disable CS0612,CS0618 // Type or member is obsolete
                         roleSessionName = options.RoleSessionName ?? RoleSessionNamePrefix + AWSSDKUtils.CorrectedUtcNow.Ticks;
-#pragma warning restore CS0612 // Type or member is obsolete
+#pragma warning restore CS0612,CS0618 // Type or member is obsolete
                         assumeRoleOptions = new AssumeRoleAWSCredentialsOptions();
                         return new AssumeRoleAWSCredentials(sourceCredentials, options.RoleArn, roleSessionName, assumeRoleOptions);
                     case CredentialProfileType.AssumeRoleWithWebIdentity:
@@ -328,7 +329,8 @@ namespace Amazon.Runtime.CredentialManagement
                     {
                         var ssoCredentialsOptions = new SSOAWSCredentialsOptions 
                         { 
-                            SessionName = options.SsoSession 
+                            SessionName = options.SsoSession,
+                            Scopes = options.SsoRegistrationScopes?.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(p => p.Trim()).ToList()
                         };
 
                         return new SSOAWSCredentials(
@@ -405,16 +407,16 @@ namespace Amazon.Runtime.CredentialManagement
                     credentials = new EnvironmentVariablesAWSCredentials();
                     break;
                 case CredentialSourceType.EcsContainer:
-                    var relativeUri = Environment.GetEnvironmentVariable(ECSTaskCredentials.ContainerCredentialsURIEnvVariable);
-                    var fullUri = Environment.GetEnvironmentVariable(ECSTaskCredentials.ContainerCredentialsFullURIEnvVariable);
+                    var relativeUri = Environment.GetEnvironmentVariable(GenericContainerCredentials.RelativeURIEnvVariable);
+                    var fullUri = Environment.GetEnvironmentVariable(GenericContainerCredentials.FullURIEnvVariable);
 
                     if (string.IsNullOrEmpty(relativeUri) && string.IsNullOrEmpty(fullUri))
                     {
-                        return ThrowOrReturnNull($"Cannot fetch credentials from container - neither {ECSTaskCredentials.ContainerCredentialsURIEnvVariable} or {ECSTaskCredentials.ContainerCredentialsFullURIEnvVariable}" +
+                        return ThrowOrReturnNull($"Cannot fetch credentials from container - neither {GenericContainerCredentials.RelativeURIEnvVariable} or {GenericContainerCredentials.FullURIEnvVariable}" +
                                                  " environment variables are set.", null, throwIfInvalid);
                     }
 
-                    credentials = new ECSTaskCredentials(null);
+                    credentials = new GenericContainerCredentials();
                     break;
                 default:
                     return ThrowOrReturnNull(string.Format(CultureInfo.InvariantCulture,

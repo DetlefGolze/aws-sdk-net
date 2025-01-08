@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -36,15 +37,15 @@ namespace Amazon.ElasticMapReduce.Model
     {
         private AutoScalingPolicyDescription _autoScalingPolicy;
         private string _bidPrice;
-        private List<Configuration> _configurations = new List<Configuration>();
+        private List<Configuration> _configurations = AWSConfigs.InitializeCollections ? new List<Configuration>() : null;
         private long? _configurationsVersion;
         private string _customAmiId;
-        private List<EbsBlockDevice> _ebsBlockDevices = new List<EbsBlockDevice>();
+        private List<EbsBlockDevice> _ebsBlockDevices = AWSConfigs.InitializeCollections ? new List<EbsBlockDevice>() : null;
         private bool? _ebsOptimized;
         private string _id;
         private InstanceGroupType _instanceGroupType;
         private string _instanceType;
-        private List<Configuration> _lastSuccessfullyAppliedConfigurations = new List<Configuration>();
+        private List<Configuration> _lastSuccessfullyAppliedConfigurations = AWSConfigs.InitializeCollections ? new List<Configuration>() : null;
         private long? _lastSuccessfullyAppliedConfigurationsVersion;
         private MarketType _market;
         private string _name;
@@ -78,8 +79,8 @@ namespace Amazon.ElasticMapReduce.Model
         /// Gets and sets the property BidPrice. 
         /// <para>
         /// If specified, indicates that the instance group uses Spot Instances. This is the maximum
-        /// price you are willing to pay for Spot Instances. Specify <code>OnDemandPrice</code>
-        /// to set the amount equal to the On-Demand price, or specify an amount in USD.
+        /// price you are willing to pay for Spot Instances. Specify <c>OnDemandPrice</c> to set
+        /// the amount equal to the On-Demand price, or specify an amount in USD.
         /// </para>
         /// </summary>
         public string BidPrice
@@ -114,7 +115,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if Configurations property is set
         internal bool IsSetConfigurations()
         {
-            return this._configurations != null && this._configurations.Count > 0; 
+            return this._configurations != null && (this._configurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -170,7 +171,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if EbsBlockDevices property is set
         internal bool IsSetEbsBlockDevices()
         {
-            return this._ebsBlockDevices != null && this._ebsBlockDevices.Count > 0; 
+            return this._ebsBlockDevices != null && (this._ebsBlockDevices.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -263,7 +264,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if LastSuccessfullyAppliedConfigurations property is set
         internal bool IsSetLastSuccessfullyAppliedConfigurations()
         {
-            return this._lastSuccessfullyAppliedConfigurations != null && this._lastSuccessfullyAppliedConfigurations.Count > 0; 
+            return this._lastSuccessfullyAppliedConfigurations != null && (this._lastSuccessfullyAppliedConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

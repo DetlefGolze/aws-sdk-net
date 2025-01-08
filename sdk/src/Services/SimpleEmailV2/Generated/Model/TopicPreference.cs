@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -39,8 +40,7 @@ namespace Amazon.SimpleEmailV2.Model
         /// <summary>
         /// Gets and sets the property SubscriptionStatus. 
         /// <para>
-        /// The contact's subscription status to a topic which is either <code>OPT_IN</code> or
-        /// <code>OPT_OUT</code>.
+        /// The contact's subscription status to a topic which is either <c>OPT_IN</c> or <c>OPT_OUT</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

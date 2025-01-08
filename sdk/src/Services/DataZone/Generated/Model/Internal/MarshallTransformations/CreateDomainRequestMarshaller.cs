@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DataZone.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetClientToken())
@@ -88,6 +90,12 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
                     context.Writer.Write(publicRequest.DomainExecutionRole);
                 }
 
+                if(publicRequest.IsSetDomainVersion())
+                {
+                    context.Writer.WritePropertyName("domainVersion");
+                    context.Writer.Write(publicRequest.DomainVersion);
+                }
+
                 if(publicRequest.IsSetKmsKeyIdentifier())
                 {
                     context.Writer.WritePropertyName("kmsKeyIdentifier");
@@ -98,6 +106,12 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("name");
                     context.Writer.Write(publicRequest.Name);
+                }
+
+                if(publicRequest.IsSetServiceRole())
+                {
+                    context.Writer.WritePropertyName("serviceRole");
+                    context.Writer.Write(publicRequest.ServiceRole);
                 }
 
                 if(publicRequest.IsSetSingleSignOn())

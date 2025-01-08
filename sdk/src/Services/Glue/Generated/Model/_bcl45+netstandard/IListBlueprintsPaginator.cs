@@ -18,6 +18,7 @@
  */
 using Amazon.Runtime;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -29,5 +30,10 @@ namespace Amazon.Glue.Model
         /// Enumerable containing all full responses for the operation
         /// </summary>
         IPaginatedEnumerable<ListBlueprintsResponse> Responses { get; }
+
+        /// <summary>
+        /// Enumerable containing all of the Blueprints
+        /// </summary>
+        IPaginatedEnumerable<string> Blueprints { get; }
     }
 }

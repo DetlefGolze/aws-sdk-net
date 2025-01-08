@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Organizations.Model
 {
     /// <summary>
@@ -88,6 +89,13 @@ namespace Amazon.Organizations.Model
     /// Web Services Support</a>.
     /// </para>
     ///  </important> </li> <li> 
+    /// <para>
+    /// ALL_FEATURES_MIGRATION_ORGANIZATION_SIZE_LIMIT_EXCEEDED: Your organization has more
+    /// than 5000 accounts, and you can only use the standard migration process for organizations
+    /// with less than 5000 accounts. Use the assisted migration process to enable all features
+    /// mode, or create a support case for assistance if you are unable to use assisted migration.
+    /// </para>
+    ///  </li> <li> 
     /// <para>
     /// CANNOT_REGISTER_SUSPENDED_ACCOUNT_AS_DELEGATED_ADMINISTRATOR: You cannot register
     /// a suspended account as a delegated administrator.
@@ -157,15 +165,14 @@ namespace Amazon.Organizations.Model
     /// <para>
     /// MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account in this organization,
     /// you first must migrate the organization's management account to the marketplace that
-    /// corresponds to the management account's address. For example, accounts with India
-    /// addresses must be associated with the AISPL marketplace. All accounts in an organization
-    /// must be associated with the same marketplace.
+    /// corresponds to the management account's address. All accounts in an organization must
+    /// be associated with the same marketplace.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon Web Services /&gt;
-    /// Regions in China. To create an organization, the master must have a valid business
-    /// license. For more information, contact customer support.
+    /// MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon Web Services Regions
+    /// in China. To create an organization, the master must have a valid business license.
+    /// For more information, contact customer support.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -244,7 +251,7 @@ namespace Amazon.Organizations.Model
     ///  </li> <li> 
     /// <para>
     /// SERVICE_ACCESS_NOT_ENABLED: You attempted to register a delegated administrator before
-    /// you enabled service access. Call the <code>EnableAWSServiceAccess</code> API first.
+    /// you enabled service access. Call the <c>EnableAWSServiceAccess</c> API first.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -253,9 +260,9 @@ namespace Amazon.Organizations.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// WAIT_PERIOD_ACTIVE: After you create an Amazon Web Services account, there is a waiting
-    /// period before you can remove it from the organization. If you get an error that indicates
-    /// that a wait period is required, try again in a few days.
+    /// WAIT_PERIOD_ACTIVE: After you create an Amazon Web Services account, you must wait
+    /// until at least seven days after the account was created. Invited accounts aren't subject
+    /// to this waiting period.
     /// </para>
     ///  </li> </ul>
     /// </summary>

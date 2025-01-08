@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -33,8 +34,27 @@ namespace Amazon.NetworkManager.Model
     /// </summary>
     public partial class RouteTableIdentifier
     {
+        private CoreNetworkNetworkFunctionGroupIdentifier _coreNetworkNetworkFunctionGroup;
         private CoreNetworkSegmentEdgeIdentifier _coreNetworkSegmentEdge;
         private string _transitGatewayRouteTableArn;
+
+        /// <summary>
+        /// Gets and sets the property CoreNetworkNetworkFunctionGroup. 
+        /// <para>
+        /// The route table identifier associated with the network function group.
+        /// </para>
+        /// </summary>
+        public CoreNetworkNetworkFunctionGroupIdentifier CoreNetworkNetworkFunctionGroup
+        {
+            get { return this._coreNetworkNetworkFunctionGroup; }
+            set { this._coreNetworkNetworkFunctionGroup = value; }
+        }
+
+        // Check to see if CoreNetworkNetworkFunctionGroup property is set
+        internal bool IsSetCoreNetworkNetworkFunctionGroup()
+        {
+            return this._coreNetworkNetworkFunctionGroup != null;
+        }
 
         /// <summary>
         /// Gets and sets the property CoreNetworkSegmentEdge. 
@@ -57,7 +77,8 @@ namespace Amazon.NetworkManager.Model
         /// <summary>
         /// Gets and sets the property TransitGatewayRouteTableArn. 
         /// <para>
-        /// The ARN of the transit gateway route table.
+        /// The ARN of the transit gateway route table for the attachment request. For example,
+        /// <c>"TransitGatewayRouteTableArn": "arn:aws:ec2:us-west-2:123456789012:transit-gateway-route-table/tgw-rtb-9876543210123456"</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=500)]

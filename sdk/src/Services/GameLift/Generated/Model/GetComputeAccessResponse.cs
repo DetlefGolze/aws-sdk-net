@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -35,16 +36,18 @@ namespace Amazon.GameLift.Model
     {
         private string _computeArn;
         private string _computeName;
+        private List<ContainerIdentifier> _containerIdentifiers = AWSConfigs.InitializeCollections ? new List<ContainerIdentifier>() : null;
         private Credentials _credentials;
         private string _fleetArn;
         private string _fleetId;
+        private string _target;
 
         /// <summary>
         /// Gets and sets the property ComputeArn. 
         /// <para>
         /// The Amazon Resource Name (<a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
         /// that is assigned to an Amazon GameLift compute resource and uniquely identifies it.
-        /// ARNs are unique across all Regions. Format is <code>arn:aws:gamelift:&lt;region&gt;::compute/compute-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+        /// ARNs are unique across all Regions. Format is <c>arn:aws:gamelift:&lt;region&gt;::compute/compute-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=1024)]
@@ -81,6 +84,26 @@ namespace Amazon.GameLift.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ContainerIdentifiers. 
+        /// <para>
+        /// For a managed container fleet, a list of containers on the compute. Use the container
+        /// runtime ID with Docker commands to connect to a specific container. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=10)]
+        public List<ContainerIdentifier> ContainerIdentifiers
+        {
+            get { return this._containerIdentifiers; }
+            set { this._containerIdentifiers = value; }
+        }
+
+        // Check to see if ContainerIdentifiers property is set
+        internal bool IsSetContainerIdentifiers()
+        {
+            return this._containerIdentifiers != null && (this._containerIdentifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Credentials. 
         /// <para>
         /// A set of temporary Amazon Web Services credentials for use when connecting to the
@@ -105,9 +128,10 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// The Amazon Resource Name (<a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
         /// that is assigned to a Amazon GameLift fleet resource and uniquely identifies it. ARNs
-        /// are unique across all Regions. Format is <code>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+        /// are unique across all Regions. Format is <c>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</c>.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=512)]
         public string FleetArn
         {
             get { return this._fleetArn; }
@@ -123,9 +147,10 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property FleetId. 
         /// <para>
-        /// The ID of the fleet that contains the compute resource to be accessed.
+        /// The ID of the fleet that holds the compute resource to be accessed.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -136,6 +161,25 @@ namespace Amazon.GameLift.Model
         internal bool IsSetFleetId()
         {
             return this._fleetId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Target. 
+        /// <para>
+        /// The instance ID where the compute resource is running.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=400)]
+        public string Target
+        {
+            get { return this._target; }
+            set { this._target = value; }
+        }
+
+        // Check to see if Target property is set
+        internal bool IsSetTarget()
+        {
+            return this._target != null;
         }
 
     }

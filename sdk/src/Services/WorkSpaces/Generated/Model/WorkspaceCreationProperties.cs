@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -40,6 +41,7 @@ namespace Amazon.WorkSpaces.Model
         private bool? _enableInternetAccess;
         private bool? _enableMaintenanceMode;
         private bool? _enableWorkDocs;
+        private string _instanceIamRoleArn;
         private bool? _userEnabledAsLocalAdministrator;
 
         /// <summary>
@@ -66,9 +68,9 @@ namespace Amazon.WorkSpaces.Model
         /// <para>
         /// The default organizational unit (OU) for your WorkSpaces directories. This string
         /// must be the full Lightweight Directory Access Protocol (LDAP) distinguished name for
-        /// the target domain and OU. It must be in the form <code>"OU=<i>value</i>,DC=<i>value</i>,DC=<i>value</i>"</code>,
+        /// the target domain and OU. It must be in the form <c>"OU=<i>value</i>,DC=<i>value</i>,DC=<i>value</i>"</c>,
         /// where <i>value</i> is any string of characters, and the number of domain components
-        /// (DCs) is two or more. For example, <code>OU=WorkSpaces_machines,DC=machines,DC=example,DC=com</code>.
+        /// (DCs) is two or more. For example, <c>OU=WorkSpaces_machines,DC=machines,DC=example,DC=com</c>.
         /// 
         /// </para>
         ///  <important> <ul> <li> 
@@ -167,6 +169,24 @@ namespace Amazon.WorkSpaces.Model
         internal bool IsSetEnableWorkDocs()
         {
             return this._enableWorkDocs.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property InstanceIamRoleArn. 
+        /// <para>
+        /// Indicates the IAM role ARN of the instance.
+        /// </para>
+        /// </summary>
+        public string InstanceIamRoleArn
+        {
+            get { return this._instanceIamRoleArn; }
+            set { this._instanceIamRoleArn = value; }
+        }
+
+        // Check to see if InstanceIamRoleArn property is set
+        internal bool IsSetInstanceIamRoleArn()
+        {
+            return this._instanceIamRoleArn != null;
         }
 
         /// <summary>

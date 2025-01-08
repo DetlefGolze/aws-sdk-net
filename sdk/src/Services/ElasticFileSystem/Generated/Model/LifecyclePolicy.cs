@@ -26,36 +26,56 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
-    /// Describes a policy used by EFS lifecycle management and EFS Intelligent-Tiering that
-    /// specifies when to transition files into and out of the file system's Infrequent Access
-    /// (IA) storage class. For more information, see <a href="https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html">EFS
-    /// Intelligent‐Tiering and EFS Lifecycle Management</a>.
+    /// Describes a policy used by lifecycle management that specifies when to transition
+    /// files into and out of storage classes. For more information, see <a href="https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html">Managing
+    /// file system storage</a>.
     /// 
     ///  <note> 
     /// <para>
-    /// When using the <code>put-lifecycle-configuration</code> CLI command or the <code>PutLifecycleConfiguration</code>
-    /// API action, Amazon EFS requires that each <code>LifecyclePolicy</code> object have
-    /// only a single transition. This means that in a request body, <code>LifecyclePolicies</code>
-    /// must be structured as an array of <code>LifecyclePolicy</code> objects, one object
-    /// for each transition, <code>TransitionToIA</code>, <code>TransitionToPrimaryStorageClass</code>.
+    /// When using the <c>put-lifecycle-configuration</c> CLI command or the <c>PutLifecycleConfiguration</c>
+    /// API action, Amazon EFS requires that each <c>LifecyclePolicy</c> object have only
+    /// a single transition. This means that in a request body, <c>LifecyclePolicies</c> must
+    /// be structured as an array of <c>LifecyclePolicy</c> objects, one object for each transition.
     /// For more information, see the request examples in <a>PutLifecycleConfiguration</a>.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class LifecyclePolicy
     {
+        private TransitionToArchiveRules _transitionToArchive;
         private TransitionToIARules _transitionToIA;
         private TransitionToPrimaryStorageClassRules _transitionToPrimaryStorageClass;
 
         /// <summary>
+        /// Gets and sets the property TransitionToArchive. 
+        /// <para>
+        /// The number of days after files were last accessed in primary storage (the Standard
+        /// storage class) at which to move them to Archive storage. Metadata operations such
+        /// as listing the contents of a directory don't count as file access events.
+        /// </para>
+        /// </summary>
+        public TransitionToArchiveRules TransitionToArchive
+        {
+            get { return this._transitionToArchive; }
+            set { this._transitionToArchive = value; }
+        }
+
+        // Check to see if TransitionToArchive property is set
+        internal bool IsSetTransitionToArchive()
+        {
+            return this._transitionToArchive != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property TransitionToIA. 
         /// <para>
-        ///  Describes the period of time that a file is not accessed, after which it transitions
-        /// to IA storage. Metadata operations such as listing the contents of a directory don't
-        /// count as file access events.
+        /// The number of days after files were last accessed in primary storage (the Standard
+        /// storage class) at which to move them to Infrequent Access (IA) storage. Metadata operations
+        /// such as listing the contents of a directory don't count as file access events.
         /// </para>
         /// </summary>
         public TransitionToIARules TransitionToIA
@@ -73,8 +93,9 @@ namespace Amazon.ElasticFileSystem.Model
         /// <summary>
         /// Gets and sets the property TransitionToPrimaryStorageClass. 
         /// <para>
-        /// Describes when to transition a file from IA storage to primary storage. Metadata operations
-        /// such as listing the contents of a directory don't count as file access events.
+        /// Whether to move files back to primary (Standard) storage after they are accessed in
+        /// IA or Archive storage. Metadata operations such as listing the contents of a directory
+        /// don't count as file access events.
         /// </para>
         /// </summary>
         public TransitionToPrimaryStorageClassRules TransitionToPrimaryStorageClass

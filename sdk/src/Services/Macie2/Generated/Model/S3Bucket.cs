@@ -26,10 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
-    /// Provides information about the S3 bucket that a finding applies to.
+    /// Provides information about the S3 bucket that a finding applies to. If a quota prevented
+    /// Amazon Macie from retrieving and processing all the bucket's information prior to
+    /// generating the finding, the following values are UNKNOWN or null: allowsUnencryptedObjectUploads,
+    /// defaultServerSideEncryption, publicAccess, and tags.
     /// </summary>
     public partial class S3Bucket
     {
@@ -40,7 +44,7 @@ namespace Amazon.Macie2.Model
         private string _name;
         private S3BucketOwner _owner;
         private BucketPublicAccess _publicAccess;
-        private List<KeyValuePair> _tags = new List<KeyValuePair>();
+        private List<KeyValuePair> _tags = AWSConfigs.InitializeCollections ? new List<KeyValuePair>() : null;
 
         /// <summary>
         /// Gets and sets the property AllowsUnencryptedObjectUploads. 
@@ -210,7 +214,7 @@ namespace Amazon.Macie2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

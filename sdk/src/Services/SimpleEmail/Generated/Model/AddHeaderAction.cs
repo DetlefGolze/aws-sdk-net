@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmail.Model
 {
     /// <summary>
@@ -67,7 +68,7 @@ namespace Amazon.SimpleEmail.Model
         /// Gets and sets the property HeaderValue. 
         /// <para>
         /// The content to include in the header. This value can contain up to 2048 characters.
-        /// It can't contain newline (<code>\n</code>) or carriage return (<code>\r</code>) characters.
+        /// It can't contain newline (<c>\n</c>) or carriage return (<c>\r</c>) characters.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

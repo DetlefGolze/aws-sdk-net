@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.InternetMonitor.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.InternetMonitor
 {
     /// <summary>
-    /// Interface for accessing InternetMonitor
+    /// <para>Interface for accessing InternetMonitor</para>
     ///
     /// Amazon CloudWatch Internet Monitor provides visibility into how internet issues impact
     /// the performance and availability between your applications hosted on Amazon Web Services
@@ -211,7 +212,7 @@ namespace Amazon.InternetMonitor
 
 
         /// <summary>
-        /// Gets information the Amazon CloudWatch Internet Monitor has created and stored about
+        /// Gets information that Amazon CloudWatch Internet Monitor has created and stored about
         /// a health event for a specified monitor. This information includes the impacted locations,
         /// and all the information related to the event, by location.
         /// 
@@ -272,6 +273,68 @@ namespace Amazon.InternetMonitor
 
         #endregion
         
+        #region  GetInternetEvent
+
+
+        /// <summary>
+        /// Gets information that Amazon CloudWatch Internet Monitor has generated about an internet
+        /// event. Internet Monitor displays information about recent global health events, called
+        /// internet events, on a global outages map that is available to all Amazon Web Services
+        /// customers. 
+        /// 
+        ///  
+        /// <para>
+        /// The information returned here includes the impacted location, when the event started
+        /// and (if the event is over) ended, the type of event (<c>PERFORMANCE</c> or <c>AVAILABILITY</c>),
+        /// and the status (<c>ACTIVE</c> or <c>RESOLVED</c>).
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetInternetEvent service method.</param>
+        /// 
+        /// <returns>The response from the GetInternetEvent service method, as returned by InternetMonitor.</returns>
+        /// <exception cref="Amazon.InternetMonitor.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.InternalServerException">
+        /// An internal error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ValidationException">
+        /// Invalid request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/GetInternetEvent">REST API Reference for GetInternetEvent Operation</seealso>
+        GetInternetEventResponse GetInternetEvent(GetInternetEventRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetInternetEvent operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetInternetEvent operation on AmazonInternetMonitorClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetInternetEvent
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/GetInternetEvent">REST API Reference for GetInternetEvent Operation</seealso>
+        IAsyncResult BeginGetInternetEvent(GetInternetEventRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetInternetEvent operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetInternetEvent.</param>
+        /// 
+        /// <returns>Returns a  GetInternetEventResult from InternetMonitor.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/GetInternetEvent">REST API Reference for GetInternetEvent Operation</seealso>
+        GetInternetEventResponse EndGetInternetEvent(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  GetMonitor
 
 
@@ -326,12 +389,155 @@ namespace Amazon.InternetMonitor
 
         #endregion
         
+        #region  GetQueryResults
+
+
+        /// <summary>
+        /// Return the data for a query with the Amazon CloudWatch Internet Monitor query interface.
+        /// Specify the query that you want to return results for by providing a <c>QueryId</c>
+        /// and a monitor name.
+        /// 
+        ///  
+        /// <para>
+        /// For more information about using the query interface, including examples, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-view-cw-tools-cwim-query.html">Using
+        /// the Amazon CloudWatch Internet Monitor query interface</a> in the Amazon CloudWatch
+        /// Internet Monitor User Guide.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetQueryResults service method.</param>
+        /// 
+        /// <returns>The response from the GetQueryResults service method, as returned by InternetMonitor.</returns>
+        /// <exception cref="Amazon.InternetMonitor.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.InternalServerException">
+        /// An internal error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.LimitExceededException">
+        /// The request exceeded a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ValidationException">
+        /// Invalid request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/GetQueryResults">REST API Reference for GetQueryResults Operation</seealso>
+        GetQueryResultsResponse GetQueryResults(GetQueryResultsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetQueryResults operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetQueryResults operation on AmazonInternetMonitorClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetQueryResults
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/GetQueryResults">REST API Reference for GetQueryResults Operation</seealso>
+        IAsyncResult BeginGetQueryResults(GetQueryResultsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetQueryResults operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetQueryResults.</param>
+        /// 
+        /// <returns>Returns a  GetQueryResultsResult from InternetMonitor.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/GetQueryResults">REST API Reference for GetQueryResults Operation</seealso>
+        GetQueryResultsResponse EndGetQueryResults(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  GetQueryStatus
+
+
+        /// <summary>
+        /// Returns the current status of a query for the Amazon CloudWatch Internet Monitor query
+        /// interface, for a specified query ID and monitor. When you run a query, check the status
+        /// to make sure that the query has <c>SUCCEEDED</c> before you review the results.
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>QUEUED</c>: The query is scheduled to run.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>RUNNING</c>: The query is in progress but not complete.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>SUCCEEDED</c>: The query completed sucessfully.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>FAILED</c>: The query failed due to an error.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>CANCELED</c>: The query was canceled.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetQueryStatus service method.</param>
+        /// 
+        /// <returns>The response from the GetQueryStatus service method, as returned by InternetMonitor.</returns>
+        /// <exception cref="Amazon.InternetMonitor.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.InternalServerException">
+        /// An internal error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.LimitExceededException">
+        /// The request exceeded a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ValidationException">
+        /// Invalid request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/GetQueryStatus">REST API Reference for GetQueryStatus Operation</seealso>
+        GetQueryStatusResponse GetQueryStatus(GetQueryStatusRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetQueryStatus operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetQueryStatus operation on AmazonInternetMonitorClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetQueryStatus
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/GetQueryStatus">REST API Reference for GetQueryStatus Operation</seealso>
+        IAsyncResult BeginGetQueryStatus(GetQueryStatusRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetQueryStatus operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetQueryStatus.</param>
+        /// 
+        /// <returns>Returns a  GetQueryStatusResult from InternetMonitor.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/GetQueryStatus">REST API Reference for GetQueryStatus Operation</seealso>
+        GetQueryStatusResponse EndGetQueryStatus(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  ListHealthEvents
 
 
         /// <summary>
         /// Lists all health events for a monitor in Amazon CloudWatch Internet Monitor. Returns
-        /// information for health events including the event start and end time and the status.
+        /// information for health events including the event start and end times, and the status.
         /// 
         ///  <note> 
         /// <para>
@@ -383,6 +589,74 @@ namespace Amazon.InternetMonitor
         /// <returns>Returns a  ListHealthEventsResult from InternetMonitor.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/ListHealthEvents">REST API Reference for ListHealthEvents Operation</seealso>
         ListHealthEventsResponse EndListHealthEvents(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  ListInternetEvents
+
+
+        /// <summary>
+        /// Lists internet events that cause performance or availability issues for client locations.
+        /// Amazon CloudWatch Internet Monitor displays information about recent global health
+        /// events, called internet events, on a global outages map that is available to all Amazon
+        /// Web Services customers. 
+        /// 
+        ///  
+        /// <para>
+        /// You can constrain the list of internet events returned by providing a start time and
+        /// end time to define a total time frame for events you want to list. Both start time
+        /// and end time specify the time when an event started. End time is optional. If you
+        /// don't include it, the default end time is the current time.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can also limit the events returned to a specific status (<c>ACTIVE</c> or <c>RESOLVED</c>)
+        /// or type (<c>PERFORMANCE</c> or <c>AVAILABILITY</c>).
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListInternetEvents service method.</param>
+        /// 
+        /// <returns>The response from the ListInternetEvents service method, as returned by InternetMonitor.</returns>
+        /// <exception cref="Amazon.InternetMonitor.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.InternalServerException">
+        /// An internal error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ValidationException">
+        /// Invalid request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/ListInternetEvents">REST API Reference for ListInternetEvents Operation</seealso>
+        ListInternetEventsResponse ListInternetEvents(ListInternetEventsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListInternetEvents operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListInternetEvents operation on AmazonInternetMonitorClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListInternetEvents
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/ListInternetEvents">REST API Reference for ListInternetEvents Operation</seealso>
+        IAsyncResult BeginListInternetEvents(ListInternetEventsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListInternetEvents operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListInternetEvents.</param>
+        /// 
+        /// <returns>Returns a  ListInternetEventsResult from InternetMonitor.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/ListInternetEvents">REST API Reference for ListInternetEvents Operation</seealso>
+        ListInternetEventsResponse EndListInternetEvents(IAsyncResult asyncResult);
 
         #endregion
         
@@ -495,6 +769,126 @@ namespace Amazon.InternetMonitor
 
         #endregion
         
+        #region  StartQuery
+
+
+        /// <summary>
+        /// Start a query to return data for a specific query type for the Amazon CloudWatch Internet
+        /// Monitor query interface. Specify a time period for the data that you want returned
+        /// by using <c>StartTime</c> and <c>EndTime</c>. You filter the query results to return
+        /// by providing parameters that you specify with <c>FilterParameters</c>.
+        /// 
+        ///  
+        /// <para>
+        /// For more information about using the query interface, including examples, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-view-cw-tools-cwim-query.html">Using
+        /// the Amazon CloudWatch Internet Monitor query interface</a> in the Amazon CloudWatch
+        /// Internet Monitor User Guide.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartQuery service method.</param>
+        /// 
+        /// <returns>The response from the StartQuery service method, as returned by InternetMonitor.</returns>
+        /// <exception cref="Amazon.InternetMonitor.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.InternalServerException">
+        /// An internal error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.LimitExceededException">
+        /// The request exceeded a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ValidationException">
+        /// Invalid request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/StartQuery">REST API Reference for StartQuery Operation</seealso>
+        StartQueryResponse StartQuery(StartQueryRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the StartQuery operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the StartQuery operation on AmazonInternetMonitorClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndStartQuery
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/StartQuery">REST API Reference for StartQuery Operation</seealso>
+        IAsyncResult BeginStartQuery(StartQueryRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  StartQuery operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginStartQuery.</param>
+        /// 
+        /// <returns>Returns a  StartQueryResult from InternetMonitor.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/StartQuery">REST API Reference for StartQuery Operation</seealso>
+        StartQueryResponse EndStartQuery(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  StopQuery
+
+
+        /// <summary>
+        /// Stop a query that is progress for a specific monitor.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StopQuery service method.</param>
+        /// 
+        /// <returns>The response from the StopQuery service method, as returned by InternetMonitor.</returns>
+        /// <exception cref="Amazon.InternetMonitor.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.InternalServerException">
+        /// An internal error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.LimitExceededException">
+        /// The request exceeded a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.InternetMonitor.Model.ValidationException">
+        /// Invalid request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/StopQuery">REST API Reference for StopQuery Operation</seealso>
+        StopQueryResponse StopQuery(StopQueryRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the StopQuery operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the StopQuery operation on AmazonInternetMonitorClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndStopQuery
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/StopQuery">REST API Reference for StopQuery Operation</seealso>
+        IAsyncResult BeginStopQuery(StopQueryRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  StopQuery operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginStopQuery.</param>
+        /// 
+        /// <returns>Returns a  StopQueryResult from InternetMonitor.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/StopQuery">REST API Reference for StopQuery Operation</seealso>
+        StopQueryResponse EndStopQuery(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  TagResource
 
 
@@ -505,7 +899,7 @@ namespace Amazon.InternetMonitor
         ///  
         /// <para>
         /// A minimum of one tag is required for this call. It returns an error if you use the
-        /// <code>TagResource</code> request with 0 tags.
+        /// <c>TagResource</c> request with 0 tags.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the TagResource service method.</param>

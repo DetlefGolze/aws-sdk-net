@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// Container for response returned by <code> <a>DescribePackages</a> </code> operation.
+    /// Container for response returned by <c> <a>DescribePackages</a> </c> operation.
     /// </summary>
     public partial class DescribePackagesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<PackageDetails> _packageDetailsList = new List<PackageDetails>();
+        private List<PackageDetails> _packageDetailsList = AWSConfigs.InitializeCollections ? new List<PackageDetails>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken.
@@ -54,7 +55,7 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property PackageDetailsList. 
         /// <para>
-        /// List of <code>PackageDetails</code> objects.
+        /// List of <c>PackageDetails</c> objects.
         /// </para>
         /// </summary>
         public List<PackageDetails> PackageDetailsList
@@ -66,7 +67,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if PackageDetailsList property is set
         internal bool IsSetPackageDetailsList()
         {
-            return this._packageDetailsList != null && this._packageDetailsList.Count > 0; 
+            return this._packageDetailsList != null && (this._packageDetailsList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

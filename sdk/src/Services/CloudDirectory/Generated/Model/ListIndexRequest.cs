@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.CloudDirectory.Model
         private ObjectReference _indexReference;
         private int? _maxResults;
         private string _nextToken;
-        private List<ObjectAttributeRange> _rangesOnIndexedValues = new List<ObjectAttributeRange>();
+        private List<ObjectAttributeRange> _rangesOnIndexedValues = AWSConfigs.InitializeCollections ? new List<ObjectAttributeRange>() : null;
 
         /// <summary>
         /// Gets and sets the property ConsistencyLevel. 
@@ -56,7 +57,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if ConsistencyLevel property is set
         internal bool IsSetConsistencyLevel()
         {
-            return this._consistencyLevel != null;
+            return !string.IsNullOrEmpty(this._consistencyLevel);
         }
 
         /// <summary>
@@ -75,7 +76,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if DirectoryArn property is set
         internal bool IsSetDirectoryArn()
         {
-            return this._directoryArn != null;
+            return !string.IsNullOrEmpty(this._directoryArn);
         }
 
         /// <summary>
@@ -151,7 +152,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if RangesOnIndexedValues property is set
         internal bool IsSetRangesOnIndexedValues()
         {
-            return this._rangesOnIndexedValues != null && this._rangesOnIndexedValues.Count > 0; 
+            return this._rangesOnIndexedValues != null && (this._rangesOnIndexedValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

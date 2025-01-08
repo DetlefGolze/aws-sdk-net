@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Connect.Model
     /// </summary>
     public partial class MonitorContactRequest : AmazonConnectRequest
     {
-        private List<string> _allowedMonitorCapabilities = new List<string>();
+        private List<string> _allowedMonitorCapabilities = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _clientToken;
         private string _contactId;
         private string _instanceId;
@@ -45,7 +46,8 @@ namespace Amazon.Connect.Model
         /// Gets and sets the property AllowedMonitorCapabilities. 
         /// <para>
         /// Specify which monitoring actions the user is allowed to take. For example, whether
-        /// the user is allowed to escalate from silent monitoring to barge.
+        /// the user is allowed to escalate from silent monitoring to barge. AllowedMonitorCapabilities
+        /// is required if barge is enabled.
         /// </para>
         /// </summary>
         [AWSProperty(Max=2)]
@@ -58,7 +60,7 @@ namespace Amazon.Connect.Model
         // Check to see if AllowedMonitorCapabilities property is set
         internal bool IsSetAllowedMonitorCapabilities()
         {
-            return this._allowedMonitorCapabilities != null && this._allowedMonitorCapabilities.Count > 0; 
+            return this._allowedMonitorCapabilities != null && (this._allowedMonitorCapabilities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

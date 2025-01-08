@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeInstanceTypes operation.
-    /// Describes the details of the instance types that are offered in a location. The results
-    /// can be filtered by the attributes of the instance types.
+    /// Describes the specified instance types. By default, all instance types for the current
+    /// Region are described. Alternatively, you can filter the results.
     /// </summary>
     public partial class DescribeInstanceTypesRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
-        private List<string> _instanceTypes = new List<string>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
+        private List<string> _instanceTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -47,249 +48,247 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>auto-recovery-supported</code> - Indicates whether Amazon CloudWatch action
-        /// based recovery is supported (<code>true</code> | <code>false</code>).
+        ///  <c>auto-recovery-supported</c> - Indicates whether Amazon CloudWatch action based
+        /// recovery is supported (<c>true</c> | <c>false</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>bare-metal</code> - Indicates whether it is a bare metal instance type (<code>true</code>
-        /// | <code>false</code>).
+        ///  <c>bare-metal</c> - Indicates whether it is a bare metal instance type (<c>true</c>
+        /// | <c>false</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>burstable-performance-supported</code> - Indicates whether the instance type
-        /// is a burstable performance T instance type (<code>true</code> | <code>false</code>).
+        ///  <c>burstable-performance-supported</c> - Indicates whether the instance type is a
+        /// burstable performance T instance type (<c>true</c> | <c>false</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>current-generation</code> - Indicates whether this instance type is the latest
-        /// generation instance type of an instance family (<code>true</code> | <code>false</code>).
+        ///  <c>current-generation</c> - Indicates whether this instance type is the latest generation
+        /// instance type of an instance family (<c>true</c> | <c>false</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ebs-info.ebs-optimized-info.baseline-bandwidth-in-mbps</code> - The baseline
-        /// bandwidth performance for an EBS-optimized instance type, in Mbps.
+        ///  <c>ebs-info.ebs-optimized-info.baseline-bandwidth-in-mbps</c> - The baseline bandwidth
+        /// performance for an EBS-optimized instance type, in Mbps.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ebs-info.ebs-optimized-info.baseline-iops</code> - The baseline input/output
-        /// storage operations per second for an EBS-optimized instance type.
+        ///  <c>ebs-info.ebs-optimized-info.baseline-iops</c> - The baseline input/output storage
+        /// operations per second for an EBS-optimized instance type.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ebs-info.ebs-optimized-info.baseline-throughput-in-mbps</code> - The baseline
-        /// throughput performance for an EBS-optimized instance type, in MB/s.
+        ///  <c>ebs-info.ebs-optimized-info.baseline-throughput-in-mbps</c> - The baseline throughput
+        /// performance for an EBS-optimized instance type, in MB/s.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ebs-info.ebs-optimized-info.maximum-bandwidth-in-mbps</code> - The maximum
-        /// bandwidth performance for an EBS-optimized instance type, in Mbps.
+        ///  <c>ebs-info.ebs-optimized-info.maximum-bandwidth-in-mbps</c> - The maximum bandwidth
+        /// performance for an EBS-optimized instance type, in Mbps.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ebs-info.ebs-optimized-info.maximum-iops</code> - The maximum input/output
-        /// storage operations per second for an EBS-optimized instance type.
+        ///  <c>ebs-info.ebs-optimized-info.maximum-iops</c> - The maximum input/output storage
+        /// operations per second for an EBS-optimized instance type.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ebs-info.ebs-optimized-info.maximum-throughput-in-mbps</code> - The maximum
-        /// throughput performance for an EBS-optimized instance type, in MB/s.
+        ///  <c>ebs-info.ebs-optimized-info.maximum-throughput-in-mbps</c> - The maximum throughput
+        /// performance for an EBS-optimized instance type, in MB/s.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ebs-info.ebs-optimized-support</code> - Indicates whether the instance type
-        /// is EBS-optimized (<code>supported</code> | <code>unsupported</code> | <code>default</code>).
+        ///  <c>ebs-info.ebs-optimized-support</c> - Indicates whether the instance type is EBS-optimized
+        /// (<c>supported</c> | <c>unsupported</c> | <c>default</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ebs-info.encryption-support</code> - Indicates whether EBS encryption is supported
-        /// (<code>supported</code> | <code>unsupported</code>).
+        ///  <c>ebs-info.encryption-support</c> - Indicates whether EBS encryption is supported
+        /// (<c>supported</c> | <c>unsupported</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ebs-info.nvme-support</code> - Indicates whether non-volatile memory express
-        /// (NVMe) is supported for EBS volumes (<code>required</code> | <code>supported</code>
-        /// | <code>unsupported</code>).
+        ///  <c>ebs-info.nvme-support</c> - Indicates whether non-volatile memory express (NVMe)
+        /// is supported for EBS volumes (<c>required</c> | <c>supported</c> | <c>unsupported</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>free-tier-eligible</code> - Indicates whether the instance type is eligible
-        /// to use in the free tier (<code>true</code> | <code>false</code>).
+        ///  <c>free-tier-eligible</c> - Indicates whether the instance type is eligible to use
+        /// in the free tier (<c>true</c> | <c>false</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>hibernation-supported</code> - Indicates whether On-Demand hibernation is supported
-        /// (<code>true</code> | <code>false</code>).
+        ///  <c>hibernation-supported</c> - Indicates whether On-Demand hibernation is supported
+        /// (<c>true</c> | <c>false</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>hypervisor</code> - The hypervisor (<code>nitro</code> | <code>xen</code>).
+        ///  <c>hypervisor</c> - The hypervisor (<c>nitro</c> | <c>xen</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>instance-storage-info.disk.count</code> - The number of local disks.
+        ///  <c>instance-storage-info.disk.count</c> - The number of local disks.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>instance-storage-info.disk.size-in-gb</code> - The storage size of each instance
+        ///  <c>instance-storage-info.disk.size-in-gb</c> - The storage size of each instance
         /// storage disk, in GB.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>instance-storage-info.disk.type</code> - The storage technology for the local
-        /// instance storage disks (<code>hdd</code> | <code>ssd</code>).
+        ///  <c>instance-storage-info.disk.type</c> - The storage technology for the local instance
+        /// storage disks (<c>hdd</c> | <c>ssd</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>instance-storage-info.encryption-support</code> - Indicates whether data is
-        /// encrypted at rest (<code>required</code> | <code>supported</code> | <code>unsupported</code>).
+        ///  <c>instance-storage-info.encryption-support</c> - Indicates whether data is encrypted
+        /// at rest (<c>required</c> | <c>supported</c> | <c>unsupported</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>instance-storage-info.nvme-support</code> - Indicates whether non-volatile
-        /// memory express (NVMe) is supported for instance store (<code>required</code> | <code>supported</code>
-        /// | <code>unsupported</code>).
+        ///  <c>instance-storage-info.nvme-support</c> - Indicates whether non-volatile memory
+        /// express (NVMe) is supported for instance store (<c>required</c> | <c>supported</c>
+        /// | <c>unsupported</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>instance-storage-info.total-size-in-gb</code> - The total amount of storage
-        /// available from all local instance storage, in GB.
+        ///  <c>instance-storage-info.total-size-in-gb</c> - The total amount of storage available
+        /// from all local instance storage, in GB.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>instance-storage-supported</code> - Indicates whether the instance type has
-        /// local instance storage (<code>true</code> | <code>false</code>).
+        ///  <c>instance-storage-supported</c> - Indicates whether the instance type has local
+        /// instance storage (<c>true</c> | <c>false</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>instance-type</code> - The instance type (for example <code>c5.2xlarge</code>
-        /// or c5*).
+        ///  <c>instance-type</c> - The instance type (for example <c>c5.2xlarge</c> or c5*).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>memory-info.size-in-mib</code> - The memory size.
+        ///  <c>memory-info.size-in-mib</c> - The memory size.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>network-info.efa-info.maximum-efa-interfaces</code> - The maximum number of
-        /// Elastic Fabric Adapters (EFAs) per instance.
+        ///  <c>network-info.bandwidth-weightings</c> - For instances that support bandwidth weighting
+        /// to boost performance (<c>default</c>, <c>vpc-1</c>, <c>ebs-1</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>network-info.efa-supported</code> - Indicates whether the instance type supports
-        /// Elastic Fabric Adapter (EFA) (<code>true</code> | <code>false</code>).
+        ///  <c>network-info.efa-info.maximum-efa-interfaces</c> - The maximum number of Elastic
+        /// Fabric Adapters (EFAs) per instance.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>network-info.ena-support</code> - Indicates whether Elastic Network Adapter
-        /// (ENA) is supported or required (<code>required</code> | <code>supported</code> | <code>unsupported</code>).
+        ///  <c>network-info.efa-supported</c> - Indicates whether the instance type supports
+        /// Elastic Fabric Adapter (EFA) (<c>true</c> | <c>false</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>network-info.encryption-in-transit-supported</code> - Indicates whether the
-        /// instance type automatically encrypts in-transit traffic between instances (<code>true</code>
-        /// | <code>false</code>).
+        ///  <c>network-info.ena-support</c> - Indicates whether Elastic Network Adapter (ENA)
+        /// is supported or required (<c>required</c> | <c>supported</c> | <c>unsupported</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>network-info.ipv4-addresses-per-interface</code> - The maximum number of private
+        ///  <c>network-info.encryption-in-transit-supported</c> - Indicates whether the instance
+        /// type automatically encrypts in-transit traffic between instances (<c>true</c> | <c>false</c>).
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>network-info.ipv4-addresses-per-interface</c> - The maximum number of private
         /// IPv4 addresses per network interface.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>network-info.ipv6-addresses-per-interface</code> - The maximum number of private
+        ///  <c>network-info.ipv6-addresses-per-interface</c> - The maximum number of private
         /// IPv6 addresses per network interface.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>network-info.ipv6-supported</code> - Indicates whether the instance type supports
-        /// IPv6 (<code>true</code> | <code>false</code>).
+        ///  <c>network-info.ipv6-supported</c> - Indicates whether the instance type supports
+        /// IPv6 (<c>true</c> | <c>false</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>network-info.maximum-network-cards</code> - The maximum number of network cards
+        ///  <c>network-info.maximum-network-cards</c> - The maximum number of network cards per
+        /// instance.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>network-info.maximum-network-interfaces</c> - The maximum number of network interfaces
         /// per instance.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>network-info.maximum-network-interfaces</code> - The maximum number of network
-        /// interfaces per instance.
+        ///  <c>network-info.network-performance</c> - The network performance (for example, "25
+        /// Gigabit").
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>network-info.network-performance</code> - The network performance (for example,
-        /// "25 Gigabit").
+        ///  <c>nitro-enclaves-support</c> - Indicates whether Nitro Enclaves is supported (<c>supported</c>
+        /// | <c>unsupported</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>nitro-enclaves-support</code> - Indicates whether Nitro Enclaves is supported
-        /// (<code>supported</code> | <code>unsupported</code>).
+        ///  <c>nitro-tpm-support</c> - Indicates whether NitroTPM is supported (<c>supported</c>
+        /// | <c>unsupported</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>nitro-tpm-support</code> - Indicates whether NitroTPM is supported (<code>supported</code>
-        /// | <code>unsupported</code>).
+        ///  <c>nitro-tpm-info.supported-versions</c> - The supported NitroTPM version (<c>2.0</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>nitro-tpm-info.supported-versions</code> - The supported NitroTPM version (<code>2.0</code>).
+        ///  <c>processor-info.supported-architecture</c> - The CPU architecture (<c>arm64</c>
+        /// | <c>i386</c> | <c>x86_64</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>processor-info.supported-architecture</code> - The CPU architecture (<code>arm64</code>
-        /// | <code>i386</code> | <code>x86_64</code>).
+        ///  <c>processor-info.sustained-clock-speed-in-ghz</c> - The CPU clock speed, in GHz.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>processor-info.sustained-clock-speed-in-ghz</code> - The CPU clock speed, in
-        /// GHz.
+        ///  <c>processor-info.supported-features</c> - The supported CPU features (<c>amd-sev-snp</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>processor-info.supported-features</code> - The supported CPU features (<code>amd-sev-snp</code>).
+        ///  <c>supported-boot-mode</c> - The boot mode (<c>legacy-bios</c> | <c>uefi</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>supported-boot-mode</code> - The boot mode (<code>legacy-bios</code> | <code>uefi</code>).
+        ///  <c>supported-root-device-type</c> - The root device type (<c>ebs</c> | <c>instance-store</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>supported-root-device-type</code> - The root device type (<code>ebs</code>
-        /// | <code>instance-store</code>).
+        ///  <c>supported-usage-class</c> - The usage class (<c>on-demand</c> | <c>spot</c> |
+        /// <c>capacity-block</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>supported-usage-class</code> - The usage class (<code>on-demand</code> | <code>spot</code>).
+        ///  <c>supported-virtualization-type</c> - The virtualization type (<c>hvm</c> | <c>paravirtual</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>supported-virtualization-type</code> - The virtualization type (<code>hvm</code>
-        /// | <code>paravirtual</code>).
+        ///  <c>vcpu-info.default-cores</c> - The default number of cores for the instance type.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>vcpu-info.default-cores</code> - The default number of cores for the instance
-        /// type.
+        ///  <c>vcpu-info.default-threads-per-core</c> - The default number of threads per core
+        /// for the instance type.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>vcpu-info.default-threads-per-core</code> - The default number of threads per
-        /// core for the instance type.
+        ///  <c>vcpu-info.default-vcpus</c> - The default number of vCPUs for the instance type.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>vcpu-info.default-vcpus</code> - The default number of vCPUs for the instance
-        /// type.
+        ///  <c>vcpu-info.valid-cores</c> - The number of cores that can be configured for the
+        /// instance type.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>vcpu-info.valid-cores</code> - The number of cores that can be configured for
-        /// the instance type.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>vcpu-info.valid-threads-per-core</code> - The number of threads per core that
-        /// can be configured for the instance type. For example, "1" or "1,2".
+        ///  <c>vcpu-info.valid-threads-per-core</c> - The number of threads per core that can
+        /// be configured for the instance type. For example, "1" or "1,2".
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -302,14 +301,13 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property InstanceTypes. 
         /// <para>
-        /// The instance types. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-        /// types</a> in the <i>Amazon EC2 User Guide</i>.
+        /// The instance types.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]
@@ -322,7 +320,7 @@ namespace Amazon.EC2.Model
         // Check to see if InstanceTypes property is set
         internal bool IsSetInstanceTypes()
         {
-            return this._instanceTypes != null && this._instanceTypes.Count > 0; 
+            return this._instanceTypes != null && (this._instanceTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

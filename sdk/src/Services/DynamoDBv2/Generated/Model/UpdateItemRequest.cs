@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -38,19 +39,19 @@ namespace Amazon.DynamoDBv2.Model
     /// 
     ///  
     /// <para>
-    /// You can also return the item's attribute values in the same <code>UpdateItem</code>
-    /// operation using the <code>ReturnValues</code> parameter.
+    /// You can also return the item's attribute values in the same <c>UpdateItem</c> operation
+    /// using the <c>ReturnValues</c> parameter.
     /// </para>
     /// </summary>
     public partial class UpdateItemRequest : AmazonDynamoDBRequest
     {
-        private Dictionary<string, AttributeValueUpdate> _attributeUpdates = new Dictionary<string, AttributeValueUpdate>();
+        private Dictionary<string, AttributeValueUpdate> _attributeUpdates = AWSConfigs.InitializeCollections ? new Dictionary<string, AttributeValueUpdate>() : null;
         private ConditionalOperator _conditionalOperator;
         private string _conditionExpression;
-        private Dictionary<string, ExpectedAttributeValue> _expected = new Dictionary<string, ExpectedAttributeValue>();
-        private Dictionary<string, string> _expressionAttributeNames = new Dictionary<string, string>();
-        private Dictionary<string, AttributeValue> _expressionAttributeValues = new Dictionary<string, AttributeValue>();
-        private Dictionary<string, AttributeValue> _key = new Dictionary<string, AttributeValue>();
+        private Dictionary<string, ExpectedAttributeValue> _expected = AWSConfigs.InitializeCollections ? new Dictionary<string, ExpectedAttributeValue>() : null;
+        private Dictionary<string, string> _expressionAttributeNames = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private Dictionary<string, AttributeValue> _expressionAttributeValues = AWSConfigs.InitializeCollections ? new Dictionary<string, AttributeValue>() : null;
+        private Dictionary<string, AttributeValue> _key = AWSConfigs.InitializeCollections ? new Dictionary<string, AttributeValue>() : null;
         private ReturnConsumedCapacity _returnConsumedCapacity;
         private ReturnItemCollectionMetrics _returnItemCollectionMetrics;
         private ReturnValue _returnValues;
@@ -66,9 +67,9 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Instantiates UpdateItemRequest with the parameterized properties
         /// </summary>
-        /// <param name="tableName">The name of the table containing the item to update.</param>
+        /// <param name="tableName">The name of the table containing the item to update. You can also provide the Amazon Resource Name (ARN) of the table in this parameter.</param>
         /// <param name="key">The primary key of the item to be updated. Each element consists of an attribute name and a value for that attribute. For the primary key, you must provide all of the attributes. For example, with a simple primary key, you only need to provide a value for the partition key. For a composite primary key, you must provide values for both the partition key and the sort key.</param>
-        /// <param name="attributeUpdates">This is a legacy parameter. Use <code>UpdateExpression</code> instead. For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributeUpdates.html">AttributeUpdates</a> in the <i>Amazon DynamoDB Developer Guide</i>.</param>
+        /// <param name="attributeUpdates">This is a legacy parameter. Use <c>UpdateExpression</c> instead. For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributeUpdates.html">AttributeUpdates</a> in the <i>Amazon DynamoDB Developer Guide</i>.</param>
         public UpdateItemRequest(string tableName, Dictionary<string, AttributeValue> key, Dictionary<string, AttributeValueUpdate> attributeUpdates)
         {
             _tableName = tableName;
@@ -79,10 +80,10 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Instantiates UpdateItemRequest with the parameterized properties
         /// </summary>
-        /// <param name="tableName">The name of the table containing the item to update.</param>
+        /// <param name="tableName">The name of the table containing the item to update. You can also provide the Amazon Resource Name (ARN) of the table in this parameter.</param>
         /// <param name="key">The primary key of the item to be updated. Each element consists of an attribute name and a value for that attribute. For the primary key, you must provide all of the attributes. For example, with a simple primary key, you only need to provide a value for the partition key. For a composite primary key, you must provide values for both the partition key and the sort key.</param>
-        /// <param name="attributeUpdates">This is a legacy parameter. Use <code>UpdateExpression</code> instead. For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributeUpdates.html">AttributeUpdates</a> in the <i>Amazon DynamoDB Developer Guide</i>.</param>
-        /// <param name="returnValues">Use <code>ReturnValues</code> if you want to get the item attributes as they appear before or after they are successfully updated. For <code>UpdateItem</code>, the valid values are: <ul> <li>  <code>NONE</code> - If <code>ReturnValues</code> is not specified, or if its value is <code>NONE</code>, then nothing is returned. (This setting is the default for <code>ReturnValues</code>.) </li> <li>  <code>ALL_OLD</code> - Returns all of the attributes of the item, as they appeared before the UpdateItem operation. </li> <li>  <code>UPDATED_OLD</code> - Returns only the updated attributes, as they appeared before the UpdateItem operation. </li> <li>  <code>ALL_NEW</code> - Returns all of the attributes of the item, as they appear after the UpdateItem operation. </li> <li>  <code>UPDATED_NEW</code> - Returns only the updated attributes, as they appear after the UpdateItem operation. </li> </ul> There is no additional cost associated with requesting a return value aside from the small network and processing overhead of receiving a larger response. No read capacity units are consumed. The values returned are strongly consistent.</param>
+        /// <param name="attributeUpdates">This is a legacy parameter. Use <c>UpdateExpression</c> instead. For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributeUpdates.html">AttributeUpdates</a> in the <i>Amazon DynamoDB Developer Guide</i>.</param>
+        /// <param name="returnValues">Use <c>ReturnValues</c> if you want to get the item attributes as they appear before or after they are successfully updated. For <c>UpdateItem</c>, the valid values are: <ul> <li>  <c>NONE</c> - If <c>ReturnValues</c> is not specified, or if its value is <c>NONE</c>, then nothing is returned. (This setting is the default for <c>ReturnValues</c>.) </li> <li>  <c>ALL_OLD</c> - Returns all of the attributes of the item, as they appeared before the UpdateItem operation. </li> <li>  <c>UPDATED_OLD</c> - Returns only the updated attributes, as they appeared before the UpdateItem operation. </li> <li>  <c>ALL_NEW</c> - Returns all of the attributes of the item, as they appear after the UpdateItem operation. </li> <li>  <c>UPDATED_NEW</c> - Returns only the updated attributes, as they appear after the UpdateItem operation. </li> </ul> There is no additional cost associated with requesting a return value aside from the small network and processing overhead of receiving a larger response. No read capacity units are consumed. The values returned are strongly consistent.</param>
         public UpdateItemRequest(string tableName, Dictionary<string, AttributeValue> key, Dictionary<string, AttributeValueUpdate> attributeUpdates, ReturnValue returnValues)
         {
             _tableName = tableName;
@@ -94,7 +95,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property AttributeUpdates. 
         /// <para>
-        /// This is a legacy parameter. Use <code>UpdateExpression</code> instead. For more information,
+        /// This is a legacy parameter. Use <c>UpdateExpression</c> instead. For more information,
         /// see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributeUpdates.html">AttributeUpdates</a>
         /// in the <i>Amazon DynamoDB Developer Guide</i>.
         /// </para>
@@ -108,14 +109,14 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if AttributeUpdates property is set
         internal bool IsSetAttributeUpdates()
         {
-            return this._attributeUpdates != null && this._attributeUpdates.Count > 0; 
+            return this._attributeUpdates != null && (this._attributeUpdates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ConditionalOperator. 
         /// <para>
-        /// This is a legacy parameter. Use <code>ConditionExpression</code> instead. For more
-        /// information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ConditionalOperator.html">ConditionalOperator</a>
+        /// This is a legacy parameter. Use <c>ConditionExpression</c> instead. For more information,
+        /// see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ConditionalOperator.html">ConditionalOperator</a>
         /// in the <i>Amazon DynamoDB Developer Guide</i>.
         /// </para>
         /// </summary>
@@ -142,8 +143,8 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Functions: <code>attribute_exists | attribute_not_exists | attribute_type | contains
-        /// | begins_with | size</code> 
+        /// Functions: <c>attribute_exists | attribute_not_exists | attribute_type | contains
+        /// | begins_with | size</c> 
         /// </para>
         ///  
         /// <para>
@@ -151,12 +152,12 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Comparison operators: <code>= | &lt;&gt; | &lt; | &gt; | &lt;= | &gt;= | BETWEEN |
-        /// IN </code> 
+        /// Comparison operators: <c>= | &lt;&gt; | &lt; | &gt; | &lt;= | &gt;= | BETWEEN | IN
+        /// </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  Logical operators: <code>AND | OR | NOT</code> 
+        ///  Logical operators: <c>AND | OR | NOT</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -179,8 +180,8 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property Expected. 
         /// <para>
-        /// This is a legacy parameter. Use <code>ConditionExpression</code> instead. For more
-        /// information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.Expected.html">Expected</a>
+        /// This is a legacy parameter. Use <c>ConditionExpression</c> instead. For more information,
+        /// see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.Expected.html">Expected</a>
         /// in the <i>Amazon DynamoDB Developer Guide</i>.
         /// </para>
         /// </summary>
@@ -193,14 +194,14 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if Expected property is set
         internal bool IsSetExpected()
         {
-            return this._expected != null && this._expected.Count > 0; 
+            return this._expected != null && (this._expected.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ExpressionAttributeNames. 
         /// <para>
         /// One or more substitution tokens for attribute names in an expression. The following
-        /// are some use cases for using <code>ExpressionAttributeNames</code>:
+        /// are some use cases for using <c>ExpressionAttributeNames</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -222,18 +223,18 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Percentile</code> 
+        ///  <c>Percentile</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
         /// The name of this attribute conflicts with a reserved word, so it cannot be used directly
         /// in an expression. (For the complete list of reserved words, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html">Reserved
         /// Words</a> in the <i>Amazon DynamoDB Developer Guide</i>.) To work around this, you
-        /// could specify the following for <code>ExpressionAttributeNames</code>:
+        /// could specify the following for <c>ExpressionAttributeNames</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>{"#P":"Percentile"}</code> 
+        ///  <c>{"#P":"Percentile"}</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -241,7 +242,7 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>#P = :val</code> 
+        ///  <c>#P = :val</c> 
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
@@ -263,7 +264,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if ExpressionAttributeNames property is set
         internal bool IsSetExpressionAttributeNames()
         {
-            return this._expressionAttributeNames != null && this._expressionAttributeNames.Count > 0; 
+            return this._expressionAttributeNames != null && (this._expressionAttributeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -274,21 +275,21 @@ namespace Amazon.DynamoDBv2.Model
         ///  
         /// <para>
         /// Use the <b>:</b> (colon) character in an expression to dereference an attribute value.
-        /// For example, suppose that you wanted to check whether the value of the <code>ProductStatus</code>
+        /// For example, suppose that you wanted to check whether the value of the <c>ProductStatus</c>
         /// attribute was one of the following: 
         /// </para>
         ///  
         /// <para>
-        ///  <code>Available | Backordered | Discontinued</code> 
+        ///  <c>Available | Backordered | Discontinued</c> 
         /// </para>
         ///  
         /// <para>
-        /// You would first need to specify <code>ExpressionAttributeValues</code> as follows:
+        /// You would first need to specify <c>ExpressionAttributeValues</c> as follows:
         /// </para>
         ///  
         /// <para>
-        ///  <code>{ ":avail":{"S":"Available"}, ":back":{"S":"Backordered"}, ":disc":{"S":"Discontinued"}
-        /// }</code> 
+        ///  <c>{ ":avail":{"S":"Available"}, ":back":{"S":"Backordered"}, ":disc":{"S":"Discontinued"}
+        /// }</c> 
         /// </para>
         ///  
         /// <para>
@@ -296,7 +297,7 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>ProductStatus IN (:avail, :back, :disc)</code> 
+        ///  <c>ProductStatus IN (:avail, :back, :disc)</c> 
         /// </para>
         ///  
         /// <para>
@@ -313,7 +314,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if ExpressionAttributeValues property is set
         internal bool IsSetExpressionAttributeValues()
         {
-            return this._expressionAttributeValues != null && this._expressionAttributeValues.Count > 0; 
+            return this._expressionAttributeValues != null && (this._expressionAttributeValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -339,7 +340,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if Key property is set
         internal bool IsSetKey()
         {
-            return this._key != null && this._key.Count > 0; 
+            return this._key != null && (this._key.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -360,10 +361,10 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property ReturnItemCollectionMetrics. 
         /// <para>
-        /// Determines whether item collection metrics are returned. If set to <code>SIZE</code>,
-        /// the response includes statistics about item collections, if any, that were modified
-        /// during the operation are returned in the response. If set to <code>NONE</code> (the
-        /// default), no statistics are returned.
+        /// Determines whether item collection metrics are returned. If set to <c>SIZE</c>, the
+        /// response includes statistics about item collections, if any, that were modified during
+        /// the operation are returned in the response. If set to <c>NONE</c> (the default), no
+        /// statistics are returned.
         /// </para>
         /// </summary>
         public ReturnItemCollectionMetrics ReturnItemCollectionMetrics
@@ -381,34 +382,33 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property ReturnValues. 
         /// <para>
-        /// Use <code>ReturnValues</code> if you want to get the item attributes as they appear
-        /// before or after they are successfully updated. For <code>UpdateItem</code>, the valid
-        /// values are:
+        /// Use <c>ReturnValues</c> if you want to get the item attributes as they appear before
+        /// or after they are successfully updated. For <c>UpdateItem</c>, the valid values are:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NONE</code> - If <code>ReturnValues</code> is not specified, or if its value
-        /// is <code>NONE</code>, then nothing is returned. (This setting is the default for <code>ReturnValues</code>.)
+        ///  <c>NONE</c> - If <c>ReturnValues</c> is not specified, or if its value is <c>NONE</c>,
+        /// then nothing is returned. (This setting is the default for <c>ReturnValues</c>.)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ALL_OLD</code> - Returns all of the attributes of the item, as they appeared
-        /// before the UpdateItem operation.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>UPDATED_OLD</code> - Returns only the updated attributes, as they appeared
-        /// before the UpdateItem operation.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>ALL_NEW</code> - Returns all of the attributes of the item, as they appear
-        /// after the UpdateItem operation.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>UPDATED_NEW</code> - Returns only the updated attributes, as they appear after
+        ///  <c>ALL_OLD</c> - Returns all of the attributes of the item, as they appeared before
         /// the UpdateItem operation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>UPDATED_OLD</c> - Returns only the updated attributes, as they appeared before
+        /// the UpdateItem operation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>ALL_NEW</c> - Returns all of the attributes of the item, as they appear after
+        /// the UpdateItem operation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>UPDATED_NEW</c> - Returns only the updated attributes, as they appear after the
+        /// UpdateItem operation.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -436,8 +436,8 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property ReturnValuesOnConditionCheckFailure. 
         /// <para>
-        /// An optional parameter that returns the item attributes for an <code>UpdateItem</code>
-        /// operation that failed a condition check.
+        /// An optional parameter that returns the item attributes for an <c>UpdateItem</c> operation
+        /// that failed a condition check.
         /// </para>
         ///  
         /// <para>
@@ -461,10 +461,11 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property TableName. 
         /// <para>
-        /// The name of the table containing the item to update.
+        /// The name of the table containing the item to update. You can also provide the Amazon
+        /// Resource Name (ARN) of the table in this parameter.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=3, Max=255)]
+        [AWSProperty(Required=true, Min=1, Max=1024)]
         public string TableName
         {
             get { return this._tableName; }
@@ -485,31 +486,31 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  
         /// <para>
-        /// The following action values are available for <code>UpdateExpression</code>.
+        /// The following action values are available for <c>UpdateExpression</c>.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>SET</code> - Adds one or more attributes and values to an item. If any of these
-        /// attributes already exist, they are replaced by the new values. You can also use <code>SET</code>
-        /// to add or subtract from an attribute that is of type Number. For example: <code>SET
-        /// myNum = myNum + :val</code> 
+        ///  <c>SET</c> - Adds one or more attributes and values to an item. If any of these attributes
+        /// already exist, they are replaced by the new values. You can also use <c>SET</c> to
+        /// add or subtract from an attribute that is of type Number. For example: <c>SET myNum
+        /// = myNum + :val</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>SET</code> supports the following functions:
+        ///  <c>SET</c> supports the following functions:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>if_not_exists (path, operand)</code> - if the item does not contain an attribute
-        /// at the specified path, then <code>if_not_exists</code> evaluates to operand; otherwise,
+        ///  <c>if_not_exists (path, operand)</c> - if the item does not contain an attribute
+        /// at the specified path, then <c>if_not_exists</c> evaluates to operand; otherwise,
         /// it evaluates to path. You can use this function to avoid overwriting an attribute
         /// that may already be present in the item.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>list_append (operand, operand)</code> - evaluates to a list with a new element
-        /// added to it. You can append the new element to the start or the end of the list by
-        /// reversing the order of the operands.
+        ///  <c>list_append (operand, operand)</c> - evaluates to a list with a new element added
+        /// to it. You can append the new element to the start or the end of the list by reversing
+        /// the order of the operands.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -517,75 +518,73 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>REMOVE</code> - Removes one or more attributes from an item.
+        ///  <c>REMOVE</c> - Removes one or more attributes from an item.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ADD</code> - Adds the specified value to the item, if the attribute does not
-        /// already exist. If the attribute does exist, then the behavior of <code>ADD</code>
-        /// depends on the data type of the attribute:
+        ///  <c>ADD</c> - Adds the specified value to the item, if the attribute does not already
+        /// exist. If the attribute does exist, then the behavior of <c>ADD</c> depends on the
+        /// data type of the attribute:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If the existing attribute is a number, and if <code>Value</code> is also a number,
-        /// then <code>Value</code> is mathematically added to the existing attribute. If <code>Value</code>
-        /// is a negative number, then it is subtracted from the existing attribute.
+        /// If the existing attribute is a number, and if <c>Value</c> is also a number, then
+        /// <c>Value</c> is mathematically added to the existing attribute. If <c>Value</c> is
+        /// a negative number, then it is subtracted from the existing attribute.
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you use <code>ADD</code> to increment or decrement a number value for an item that
-        /// doesn't exist before the update, DynamoDB uses <code>0</code> as the initial value.
+        /// If you use <c>ADD</c> to increment or decrement a number value for an item that doesn't
+        /// exist before the update, DynamoDB uses <c>0</c> as the initial value.
         /// </para>
         ///  
         /// <para>
-        /// Similarly, if you use <code>ADD</code> for an existing item to increment or decrement
-        /// an attribute value that doesn't exist before the update, DynamoDB uses <code>0</code>
-        /// as the initial value. For example, suppose that the item you want to update doesn't
-        /// have an attribute named <code>itemcount</code>, but you decide to <code>ADD</code>
-        /// the number <code>3</code> to this attribute anyway. DynamoDB will create the <code>itemcount</code>
-        /// attribute, set its initial value to <code>0</code>, and finally add <code>3</code>
-        /// to it. The result will be a new <code>itemcount</code> attribute in the item, with
-        /// a value of <code>3</code>.
+        /// Similarly, if you use <c>ADD</c> for an existing item to increment or decrement an
+        /// attribute value that doesn't exist before the update, DynamoDB uses <c>0</c> as the
+        /// initial value. For example, suppose that the item you want to update doesn't have
+        /// an attribute named <c>itemcount</c>, but you decide to <c>ADD</c> the number <c>3</c>
+        /// to this attribute anyway. DynamoDB will create the <c>itemcount</c> attribute, set
+        /// its initial value to <c>0</c>, and finally add <c>3</c> to it. The result will be
+        /// a new <c>itemcount</c> attribute in the item, with a value of <c>3</c>.
         /// </para>
         ///  </note> </li> <li> 
         /// <para>
-        /// If the existing data type is a set and if <code>Value</code> is also a set, then <code>Value</code>
-        /// is added to the existing set. For example, if the attribute value is the set <code>[1,2]</code>,
-        /// and the <code>ADD</code> action specified <code>[3]</code>, then the final attribute
-        /// value is <code>[1,2,3]</code>. An error occurs if an <code>ADD</code> action is specified
-        /// for a set attribute and the attribute type specified does not match the existing set
-        /// type. 
+        /// If the existing data type is a set and if <c>Value</c> is also a set, then <c>Value</c>
+        /// is added to the existing set. For example, if the attribute value is the set <c>[1,2]</c>,
+        /// and the <c>ADD</c> action specified <c>[3]</c>, then the final attribute value is
+        /// <c>[1,2,3]</c>. An error occurs if an <c>ADD</c> action is specified for a set attribute
+        /// and the attribute type specified does not match the existing set type. 
         /// </para>
         ///  
         /// <para>
         /// Both sets must have the same primitive data type. For example, if the existing data
-        /// type is a set of strings, the <code>Value</code> must also be a set of strings.
+        /// type is a set of strings, the <c>Value</c> must also be a set of strings.
         /// </para>
         ///  </li> </ul> <important> 
         /// <para>
-        /// The <code>ADD</code> action only supports Number and set data types. In addition,
-        /// <code>ADD</code> can only be used on top-level attributes, not nested attributes.
+        /// The <c>ADD</c> action only supports Number and set data types. In addition, <c>ADD</c>
+        /// can only be used on top-level attributes, not nested attributes.
         /// </para>
         ///  </important> </li> <li> 
         /// <para>
-        ///  <code>DELETE</code> - Deletes an element from a set.
+        ///  <c>DELETE</c> - Deletes an element from a set.
         /// </para>
         ///  
         /// <para>
         /// If a set of values is specified, then those values are subtracted from the old set.
-        /// For example, if the attribute value was the set <code>[a,b,c]</code> and the <code>DELETE</code>
-        /// action specifies <code>[a,c]</code>, then the final attribute value is <code>[b]</code>.
-        /// Specifying an empty set is an error.
+        /// For example, if the attribute value was the set <c>[a,b,c]</c> and the <c>DELETE</c>
+        /// action specifies <c>[a,c]</c>, then the final attribute value is <c>[b]</c>. Specifying
+        /// an empty set is an error.
         /// </para>
         ///  <important> 
         /// <para>
-        /// The <code>DELETE</code> action only supports set data types. In addition, <code>DELETE</code>
+        /// The <c>DELETE</c> action only supports set data types. In addition, <c>DELETE</c>
         /// can only be used on top-level attributes, not nested attributes.
         /// </para>
         ///  </important> </li> </ul> 
         /// <para>
-        /// You can have many actions in a single expression, such as the following: <code>SET
-        /// a=:value1, b=:value2 DELETE :value3, :value4, :value5</code> 
+        /// You can have many actions in a single expression, such as the following: <c>SET a=:value1,
+        /// b=:value2 DELETE :value3, :value4, :value5</c> 
         /// </para>
         ///  
         /// <para>

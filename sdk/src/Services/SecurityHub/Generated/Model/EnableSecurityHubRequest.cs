@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -40,8 +41,8 @@ namespace Amazon.SecurityHub.Model
     /// </para>
     ///  
     /// <para>
-    /// When you use the <code>EnableSecurityHub</code> operation to enable Security Hub,
-    /// you also automatically enable the following standards:
+    /// When you use the <c>EnableSecurityHub</c> operation to enable Security Hub, you also
+    /// automatically enable the following standards:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -57,13 +58,13 @@ namespace Amazon.SecurityHub.Model
     /// </para>
     ///  
     /// <para>
-    /// To opt out of automatically enabled standards, set <code>EnableDefaultStandards</code>
-    /// to <code>false</code>.
+    /// To opt out of automatically enabled standards, set <c>EnableDefaultStandards</c> to
+    /// <c>false</c>.
     /// </para>
     ///  
     /// <para>
-    /// After you enable Security Hub, to enable a standard, use the <code>BatchEnableStandards</code>
-    /// operation. To disable a standard, use the <code>BatchDisableStandards</code> operation.
+    /// After you enable Security Hub, to enable a standard, use the <c>BatchEnableStandards</c>
+    /// operation. To disable a standard, use the <c>BatchDisableStandards</c> operation.
     /// </para>
     ///  
     /// <para>
@@ -75,27 +76,26 @@ namespace Amazon.SecurityHub.Model
     {
         private ControlFindingGenerator _controlFindingGenerator;
         private bool? _enableDefaultStandards;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ControlFindingGenerator. 
         /// <para>
         /// This field, used when enabling Security Hub, specifies whether the calling account
         /// has consolidated control findings turned on. If the value for this field is set to
-        /// <code>SECURITY_CONTROL</code>, Security Hub generates a single finding for a control
-        /// check even when the check applies to multiple enabled standards.
+        /// <c>SECURITY_CONTROL</c>, Security Hub generates a single finding for a control check
+        /// even when the check applies to multiple enabled standards.
         /// </para>
         ///  
         /// <para>
-        /// If the value for this field is set to <code>STANDARD_CONTROL</code>, Security Hub
-        /// generates separate findings for a control check when the check applies to multiple
-        /// enabled standards.
+        /// If the value for this field is set to <c>STANDARD_CONTROL</c>, Security Hub generates
+        /// separate findings for a control check when the check applies to multiple enabled standards.
         /// </para>
         ///  
         /// <para>
         /// The value for this field in a member account matches the value in the administrator
         /// account. For accounts that aren't part of an organization, the default value of this
-        /// field is <code>SECURITY_CONTROL</code> if you enabled Security Hub on or after February
+        /// field is <c>SECURITY_CONTROL</c> if you enabled Security Hub on or after February
         /// 23, 2023.
         /// </para>
         /// </summary>
@@ -115,9 +115,9 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property EnableDefaultStandards. 
         /// <para>
         /// Whether to enable the security standards that Security Hub has designated as automatically
-        /// enabled. If you do not provide a value for <code>EnableDefaultStandards</code>, it
-        /// is set to <code>true</code>. To not enable the automatically enabled standards, set
-        /// <code>EnableDefaultStandards</code> to <code>false</code>.
+        /// enabled. If you don't provide a value for <c>EnableDefaultStandards</c>, it is set
+        /// to <c>true</c>. To not enable the automatically enabled standards, set <c>EnableDefaultStandards</c>
+        /// to <c>false</c>.
         /// </para>
         /// </summary>
         public bool EnableDefaultStandards
@@ -148,7 +148,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

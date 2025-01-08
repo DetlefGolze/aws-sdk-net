@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.OSIS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,22 +53,41 @@ namespace Amazon.OSIS.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Pipeline Unmarshall(JsonUnmarshallerContext context)
         {
+            Pipeline unmarshalledObject = new Pipeline();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Pipeline unmarshalledObject = new Pipeline();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("BufferOptions", targetDepth))
+                {
+                    var unmarshaller = BufferOptionsUnmarshaller.Instance;
+                    unmarshalledObject.BufferOptions = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("CreatedAt", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
                     unmarshalledObject.CreatedAt = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("Destinations", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<PipelineDestination, PipelineDestinationUnmarshaller>(PipelineDestinationUnmarshaller.Instance);
+                    unmarshalledObject.Destinations = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("EncryptionAtRestOptions", targetDepth))
+                {
+                    var unmarshaller = EncryptionAtRestOptionsUnmarshaller.Instance;
+                    unmarshalledObject.EncryptionAtRestOptions = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("IngestEndpointUrls", targetDepth))
@@ -118,6 +138,12 @@ namespace Amazon.OSIS.Model.Internal.MarshallTransformations
                     unmarshalledObject.PipelineName = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ServiceVpcEndpoints", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<ServiceVpcEndpoint, ServiceVpcEndpointUnmarshaller>(ServiceVpcEndpointUnmarshaller.Instance);
+                    unmarshalledObject.ServiceVpcEndpoints = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("Status", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -130,14 +156,25 @@ namespace Amazon.OSIS.Model.Internal.MarshallTransformations
                     unmarshalledObject.StatusReason = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("Tags", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<Tag, TagUnmarshaller>(TagUnmarshaller.Instance);
+                    unmarshalledObject.Tags = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("VpcEndpoints", targetDepth))
                 {
                     var unmarshaller = new ListUnmarshaller<VpcEndpoint, VpcEndpointUnmarshaller>(VpcEndpointUnmarshaller.Instance);
                     unmarshalledObject.VpcEndpoints = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("VpcEndpointService", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.VpcEndpointService = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

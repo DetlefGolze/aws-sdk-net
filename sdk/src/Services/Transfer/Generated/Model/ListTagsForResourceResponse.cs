@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Transfer.Model
     {
         private string _arn;
         private string _nextToken;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -59,10 +60,9 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When you can get additional results from the <code>ListTagsForResource</code> call,
-        /// a <code>NextToken</code> parameter is returned in the output. You can then pass in
-        /// a subsequent command to the <code>NextToken</code> parameter to continue listing additional
-        /// tags.
+        /// When you can get additional results from the <c>ListTagsForResource</c> call, a <c>NextToken</c>
+        /// parameter is returned in the output. You can then pass in a subsequent command to
+        /// the <c>NextToken</c> parameter to continue listing additional tags.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=6144)]
@@ -95,7 +95,7 @@ namespace Amazon.Transfer.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

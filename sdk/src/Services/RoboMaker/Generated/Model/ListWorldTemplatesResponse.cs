@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.RoboMaker.Model
     public partial class ListWorldTemplatesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<TemplateSummary> _templateSummaries = new List<TemplateSummary>();
+        private List<TemplateSummary> _templateSummaries = AWSConfigs.InitializeCollections ? new List<TemplateSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If the previous paginated request did not return all of the remaining results, the
-        /// response object's <code>nextToken</code> parameter value is set to a token. To retrieve
-        /// the next set of results, call <code>ListWorldTemplates</code> again and assign that
-        /// token to the request object's <code>nextToken</code> parameter. If there are no remaining
-        /// results, the previous response object's NextToken parameter is set to null. 
+        /// response object's <c>nextToken</c> parameter value is set to a token. To retrieve
+        /// the next set of results, call <c>ListWorldTemplates</c> again and assign that token
+        /// to the request object's <c>nextToken</c> parameter. If there are no remaining results,
+        /// the previous response object's NextToken parameter is set to null. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]
@@ -74,7 +75,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if TemplateSummaries property is set
         internal bool IsSetTemplateSummaries()
         {
-            return this._templateSummaries != null && this._templateSummaries.Count > 0; 
+            return this._templateSummaries != null && (this._templateSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

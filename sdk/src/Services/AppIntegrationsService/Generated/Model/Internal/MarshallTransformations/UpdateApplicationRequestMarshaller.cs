@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AppIntegrationsService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -61,11 +62,12 @@ namespace Amazon.AppIntegrationsService.Model.Internal.MarshallTransformations
 
             if (!publicRequest.IsSetArn())
                 throw new AmazonAppIntegrationsServiceException("Request object does not have required field Arn set");
-            request.AddPathResource("{Arn}", StringUtils.FromString(publicRequest.Arn));
-            request.ResourcePath = "/applications/{Arn}";
+            request.AddPathResource("{ApplicationIdentifier}", StringUtils.FromString(publicRequest.Arn));
+            request.ResourcePath = "/applications/{ApplicationIdentifier}";
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetApplicationSourceConfig())
@@ -89,6 +91,17 @@ namespace Amazon.AppIntegrationsService.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("Name");
                     context.Writer.Write(publicRequest.Name);
+                }
+
+                if(publicRequest.IsSetPermissions())
+                {
+                    context.Writer.WritePropertyName("Permissions");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestPermissionsListValue in publicRequest.Permissions)
+                    {
+                            context.Writer.Write(publicRequestPermissionsListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
                 }
 
                 if(publicRequest.IsSetPublications())

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
@@ -125,6 +126,14 @@ namespace Amazon.CodePipeline.Model
         /// It is used to validate that the approval request corresponding to this token is still
         /// valid.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// For a pipeline where the execution mode is set to PARALLEL, the token required to
+        /// approve/reject approval request as detailed above is not available. Instead, use the
+        /// <c>externalExecutionId</c> from the <c>GetPipelineState</c> action as the token in
+        /// the approval request.
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Required=true)]
         public string Token

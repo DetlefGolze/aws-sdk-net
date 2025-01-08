@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedGrafana.Model
 {
     /// <summary>
     /// Container for the parameters to the ListVersions operation.
-    /// Lists available versions of Grafana. These are available when calling <code>CreateWorkspace</code>.
+    /// Lists available versions of Grafana. These are available when calling <c>CreateWorkspace</c>.
     /// Optionally, include a workspace to list the versions to which it can be upgraded.
     /// </summary>
     public partial class ListVersionsRequest : AmazonManagedGrafanaRequest
@@ -62,7 +63,7 @@ namespace Amazon.ManagedGrafana.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The token to use when requesting the next set of results. You receive this token from
-        /// a previous <code>ListVersions</code> operation.
+        /// a previous <c>ListVersions</c> operation.
         /// </para>
         /// </summary>
         public string NextToken
@@ -81,7 +82,7 @@ namespace Amazon.ManagedGrafana.Model
         /// Gets and sets the property WorkspaceId. 
         /// <para>
         /// The ID of the workspace to list the available upgrade versions. If not included, lists
-        /// all versions of Grafana that are supported for <code>CreateWorkspace</code>.
+        /// all versions of Grafana that are supported for <c>CreateWorkspace</c>.
         /// </para>
         /// </summary>
         public string WorkspaceId

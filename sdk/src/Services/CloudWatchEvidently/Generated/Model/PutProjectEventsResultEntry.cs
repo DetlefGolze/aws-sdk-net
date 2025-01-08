@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvidently.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.CloudWatchEvidently.Model
         /// <summary>
         /// Gets and sets the property ErrorCode. 
         /// <para>
-        /// If the <code>PutProjectEvents</code> operation has an error, the error code is returned
+        /// If the <c>PutProjectEvents</c> operation has an error, the error code is returned
         /// here.
         /// </para>
         /// </summary>
@@ -61,8 +62,8 @@ namespace Amazon.CloudWatchEvidently.Model
         /// <summary>
         /// Gets and sets the property ErrorMessage. 
         /// <para>
-        /// If the <code>PutProjectEvents</code> operation has an error, the error message is
-        /// returned here.
+        /// If the <c>PutProjectEvents</c> operation has an error, the error message is returned
+        /// here.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -81,7 +82,7 @@ namespace Amazon.CloudWatchEvidently.Model
         /// <summary>
         /// Gets and sets the property EventId. 
         /// <para>
-        /// A unique ID assigned to this <code>PutProjectEvents</code> operation. 
+        /// A unique ID assigned to this <c>PutProjectEvents</c> operation. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=36, Max=36)]

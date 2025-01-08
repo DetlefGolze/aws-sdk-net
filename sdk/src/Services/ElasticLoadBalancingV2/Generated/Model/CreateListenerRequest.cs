@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancingV2.Model
 {
     /// <summary>
@@ -60,14 +61,15 @@ namespace Amazon.ElasticLoadBalancingV2.Model
     /// </summary>
     public partial class CreateListenerRequest : AmazonElasticLoadBalancingV2Request
     {
-        private List<string> _alpnPolicy = new List<string>();
-        private List<Certificate> _certificates = new List<Certificate>();
-        private List<Action> _defaultActions = new List<Action>();
+        private List<string> _alpnPolicy = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Certificate> _certificates = AWSConfigs.InitializeCollections ? new List<Certificate>() : null;
+        private List<Action> _defaultActions = AWSConfigs.InitializeCollections ? new List<Action>() : null;
         private string _loadBalancerArn;
+        private MutualAuthenticationAttributes _mutualAuthentication;
         private int? _port;
         private ProtocolEnum _protocol;
         private string _sslPolicy;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AlpnPolicy. 
@@ -77,23 +79,23 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>HTTP1Only</code> 
+        ///  <c>HTTP1Only</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>HTTP2Only</code> 
+        ///  <c>HTTP2Only</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>HTTP2Optional</code> 
+        ///  <c>HTTP2Optional</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>HTTP2Preferred</code> 
+        ///  <c>HTTP2Preferred</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>None</code> 
+        ///  <c>None</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -110,15 +112,15 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if AlpnPolicy property is set
         internal bool IsSetAlpnPolicy()
         {
-            return this._alpnPolicy != null && this._alpnPolicy.Count > 0; 
+            return this._alpnPolicy != null && (this._alpnPolicy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Certificates. 
         /// <para>
         /// [HTTPS and TLS listeners] The default certificate for the listener. You must provide
-        /// exactly one certificate. Set <code>CertificateArn</code> to the certificate ARN but
-        /// do not set <code>IsDefault</code>.
+        /// exactly one certificate. Set <c>CertificateArn</c> to the certificate ARN but do not
+        /// set <c>IsDefault</c>.
         /// </para>
         /// </summary>
         public List<Certificate> Certificates
@@ -130,7 +132,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if Certificates property is set
         internal bool IsSetCertificates()
         {
-            return this._certificates != null && this._certificates.Count > 0; 
+            return this._certificates != null && (this._certificates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -149,7 +151,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if DefaultActions property is set
         internal bool IsSetDefaultActions()
         {
-            return this._defaultActions != null && this._defaultActions.Count > 0; 
+            return this._defaultActions != null && (this._defaultActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -172,10 +174,28 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MutualAuthentication. 
+        /// <para>
+        /// The mutual authentication configuration information.
+        /// </para>
+        /// </summary>
+        public MutualAuthenticationAttributes MutualAuthentication
+        {
+            get { return this._mutualAuthentication; }
+            set { this._mutualAuthentication = value; }
+        }
+
+        // Check to see if MutualAuthentication property is set
+        internal bool IsSetMutualAuthentication()
+        {
+            return this._mutualAuthentication != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Port. 
         /// <para>
-        /// The port on which the load balancer is listening. You cannot specify a port for a
-        /// Gateway Load Balancer.
+        /// The port on which the load balancer is listening. You can't specify a port for a Gateway
+        /// Load Balancer.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=65535)]
@@ -197,7 +217,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         /// The protocol for connections from clients to the load balancer. For Application Load
         /// Balancers, the supported protocols are HTTP and HTTPS. For Network Load Balancers,
         /// the supported protocols are TCP, TLS, UDP, and TCP_UDP. You can’t specify the UDP
-        /// or TCP_UDP protocol if dual-stack mode is enabled. You cannot specify a protocol for
+        /// or TCP_UDP protocol if dual-stack mode is enabled. You can't specify a protocol for
         /// a Gateway Load Balancer.
         /// </para>
         /// </summary>
@@ -254,7 +274,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

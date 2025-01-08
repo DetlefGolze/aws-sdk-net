@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
@@ -42,8 +43,9 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         private bool? _selfManagedOptOutsEnabled;
         private bool? _sharedRoutesEnabled;
         private PoolStatus _status;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _twoWayChannelArn;
+        private string _twoWayChannelRole;
         private bool? _twoWayEnabled;
 
         /// <summary>
@@ -161,10 +163,10 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// Gets and sets the property SelfManagedOptOutsEnabled. 
         /// <para>
         /// By default this is set to false. When an end recipient sends a message that begins
-        /// with HELP or STOP to one of your dedicated numbers, Amazon Pinpoint automatically
-        /// replies with a customizable message and adds the end recipient to the OptOutList.
-        /// When set to true you're responsible for responding to HELP and STOP requests. You're
-        /// also responsible for tracking and honoring opt-out requests.
+        /// with HELP or STOP to one of your dedicated numbers, AWS End User Messaging SMS and
+        /// Voice automatically replies with a customizable message and adds the end recipient
+        /// to the OptOutList. When set to true you're responsible for responding to HELP and
+        /// STOP requests. You're also responsible for tracking and honoring opt-out requests.
         /// </para>
         /// </summary>
         public bool SelfManagedOptOutsEnabled
@@ -182,7 +184,8 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// <summary>
         /// Gets and sets the property SharedRoutesEnabled. 
         /// <para>
-        /// Indicates whether shared routes are enabled for the pool.
+        /// Indicates whether shared routes are enabled for the pool. Set to false and only origination
+        /// identities in this pool are used to send messages. 
         /// </para>
         /// </summary>
         public bool SharedRoutesEnabled
@@ -244,7 +247,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -264,6 +267,25 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         internal bool IsSetTwoWayChannelArn()
         {
             return this._twoWayChannelArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property TwoWayChannelRole. 
+        /// <para>
+        /// An optional IAM Role Arn for a service to assume, to be able to post inbound SMS messages.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=2048)]
+        public string TwoWayChannelRole
+        {
+            get { return this._twoWayChannelRole; }
+            set { this._twoWayChannelRole = value; }
+        }
+
+        // Check to see if TwoWayChannelRole property is set
+        internal bool IsSetTwoWayChannelRole()
+        {
+            return this._twoWayChannelRole != null;
         }
 
         /// <summary>

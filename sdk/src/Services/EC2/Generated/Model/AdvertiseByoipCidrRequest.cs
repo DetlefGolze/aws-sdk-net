@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -58,7 +59,27 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class AdvertiseByoipCidrRequest : AmazonEC2Request
     {
+        private string _asn;
         private string _cidr;
+        private string _networkBorderGroup;
+
+        /// <summary>
+        /// Gets and sets the property Asn. 
+        /// <para>
+        /// The public 2-byte or 4-byte ASN that you want to advertise.
+        /// </para>
+        /// </summary>
+        public string Asn
+        {
+            get { return this._asn; }
+            set { this._asn = value; }
+        }
+
+        // Check to see if Asn property is set
+        internal bool IsSetAsn()
+        {
+            return this._asn != null;
+        }
 
         /// <summary>
         /// Gets and sets the property Cidr. 
@@ -78,6 +99,50 @@ namespace Amazon.EC2.Model
         internal bool IsSetCidr()
         {
             return this._cidr != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property NetworkBorderGroup. 
+        /// <para>
+        /// If you have <a href="https://docs.aws.amazon.com/local-zones/latest/ug/how-local-zones-work.html">Local
+        /// Zones</a> enabled, you can choose a network border group for Local Zones when you
+        /// provision and advertise a BYOIPv4 CIDR. Choose the network border group carefully
+        /// as the EIP and the Amazon Web Services resource it is associated with must reside
+        /// in the same network border group.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can provision BYOIP address ranges to and advertise them in the following Local
+        /// Zone network border groups:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// us-east-1-dfw-2
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// us-west-2-lax-1
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// us-west-2-phx-2
+        /// </para>
+        ///  </li> </ul> <note> 
+        /// <para>
+        /// You cannot provision or advertise BYOIPv6 address ranges in Local Zones at this time.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public string NetworkBorderGroup
+        {
+            get { return this._networkBorderGroup; }
+            set { this._networkBorderGroup = value; }
+        }
+
+        // Check to see if NetworkBorderGroup property is set
+        internal bool IsSetNetworkBorderGroup()
+        {
+            return this._networkBorderGroup != null;
         }
 
     }

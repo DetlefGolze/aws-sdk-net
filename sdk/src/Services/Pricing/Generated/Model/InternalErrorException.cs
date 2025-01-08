@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pricing.Model
 {
     /// <summary>
@@ -36,6 +37,8 @@ namespace Amazon.Pricing.Model
     #endif
     public partial class InternalErrorException : AmazonPricingException
     {
+
+        private RetryableDetails _retryableDetails = new RetryableDetails(false);
 
         /// <summary>
         /// Constructs a new InternalErrorException with the specified error
@@ -120,5 +123,16 @@ namespace Amazon.Pricing.Model
         }
 #endif
 
+        /// <summary>
+        /// Flag indicating if the exception is retryable and the associated retry
+        /// details. A null value indicates that the exception is not retryable.
+        /// </summary>
+        public override RetryableDetails Retryable
+        {
+            get
+            {
+                return _retryableDetails;
+            }
+        }
     }
 }

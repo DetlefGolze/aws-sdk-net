@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.MediaStoreData.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.MediaStoreData
 {
     /// <summary>
-    /// Interface for accessing MediaStoreData
+    /// <para>Interface for accessing MediaStoreData</para>
     ///
     /// An AWS Elemental MediaStore asset is an object, similar to an object in the Amazon
     /// S3 service. Objects are the fundamental entities that are stored in AWS Elemental
@@ -141,8 +142,8 @@ namespace Amazon.MediaStoreData
 
         /// <summary>
         /// Downloads the object at the specified path. If the object’s upload availability is
-        /// set to <code>streaming</code>, AWS Elemental MediaStore downloads the object even
-        /// if it’s still uploading the object.
+        /// set to <c>streaming</c>, AWS Elemental MediaStore downloads the object even if it’s
+        /// still uploading the object.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetObject service method.</param>
         /// 
@@ -166,8 +167,8 @@ namespace Amazon.MediaStoreData
 
         /// <summary>
         /// Downloads the object at the specified path. If the object’s upload availability is
-        /// set to <code>streaming</code>, AWS Elemental MediaStore downloads the object even
-        /// if it’s still uploading the object.
+        /// set to <c>streaming</c>, AWS Elemental MediaStore downloads the object even if it’s
+        /// still uploading the object.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetObject service method.</param>
         /// <param name="cancellationToken">

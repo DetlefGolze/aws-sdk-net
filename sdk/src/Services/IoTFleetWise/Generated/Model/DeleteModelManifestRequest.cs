@@ -26,18 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteModelManifest operation.
     /// Deletes a vehicle model (model manifest).
-    /// 
-    ///  <note> 
-    /// <para>
-    /// If the vehicle model is successfully deleted, Amazon Web Services IoT FleetWise sends
-    /// back an HTTP 200 response with an empty body.
-    /// </para>
-    ///  </note>
     /// </summary>
     public partial class DeleteModelManifestRequest : AmazonIoTFleetWiseRequest
     {

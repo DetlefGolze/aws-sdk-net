@@ -25,6 +25,56 @@ namespace Amazon.LakeFormation
 {
 
     /// <summary>
+    /// Constants used for properties of type ApplicationStatus.
+    /// </summary>
+    public class ApplicationStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DISABLED for ApplicationStatus
+        /// </summary>
+        public static readonly ApplicationStatus DISABLED = new ApplicationStatus("DISABLED");
+        /// <summary>
+        /// Constant ENABLED for ApplicationStatus
+        /// </summary>
+        public static readonly ApplicationStatus ENABLED = new ApplicationStatus("ENABLED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ApplicationStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ApplicationStatus FindValue(string value)
+        {
+            return FindValue<ApplicationStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ApplicationStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ComparisonOperator.
     /// </summary>
     public class ComparisonOperator : ConstantClass
@@ -129,6 +179,10 @@ namespace Amazon.LakeFormation
         /// </summary>
         public static readonly DataLakeResourceType DATABASE = new DataLakeResourceType("DATABASE");
         /// <summary>
+        /// Constant LF_NAMED_TAG_EXPRESSION for DataLakeResourceType
+        /// </summary>
+        public static readonly DataLakeResourceType LF_NAMED_TAG_EXPRESSION = new DataLakeResourceType("LF_NAMED_TAG_EXPRESSION");
+        /// <summary>
         /// Constant LF_TAG for DataLakeResourceType
         /// </summary>
         public static readonly DataLakeResourceType LF_TAG = new DataLakeResourceType("LF_TAG");
@@ -178,6 +232,56 @@ namespace Amazon.LakeFormation
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator DataLakeResourceType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type EnableStatus.
+    /// </summary>
+    public class EnableStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DISABLED for EnableStatus
+        /// </summary>
+        public static readonly EnableStatus DISABLED = new EnableStatus("DISABLED");
+        /// <summary>
+        /// Constant ENABLED for EnableStatus
+        /// </summary>
+        public static readonly EnableStatus ENABLED = new EnableStatus("ENABLED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public EnableStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static EnableStatus FindValue(string value)
+        {
+            return FindValue<EnableStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator EnableStatus(string value)
         {
             return FindValue(value);
         }
@@ -311,6 +415,10 @@ namespace Amazon.LakeFormation
         /// </summary>
         public static readonly Permission ASSOCIATE = new Permission("ASSOCIATE");
         /// <summary>
+        /// Constant CREATE_CATALOG for Permission
+        /// </summary>
+        public static readonly Permission CREATE_CATALOG = new Permission("CREATE_CATALOG");
+        /// <summary>
         /// Constant CREATE_DATABASE for Permission
         /// </summary>
         public static readonly Permission CREATE_DATABASE = new Permission("CREATE_DATABASE");
@@ -318,6 +426,10 @@ namespace Amazon.LakeFormation
         /// Constant CREATE_LF_TAG for Permission
         /// </summary>
         public static readonly Permission CREATE_LF_TAG = new Permission("CREATE_LF_TAG");
+        /// <summary>
+        /// Constant CREATE_LF_TAG_EXPRESSION for Permission
+        /// </summary>
+        public static readonly Permission CREATE_LF_TAG_EXPRESSION = new Permission("CREATE_LF_TAG_EXPRESSION");
         /// <summary>
         /// Constant CREATE_TABLE for Permission
         /// </summary>
@@ -350,6 +462,10 @@ namespace Amazon.LakeFormation
         /// Constant SELECT for Permission
         /// </summary>
         public static readonly Permission SELECT = new Permission("SELECT");
+        /// <summary>
+        /// Constant SUPER_USER for Permission
+        /// </summary>
+        public static readonly Permission SUPER_USER = new Permission("SUPER_USER");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant

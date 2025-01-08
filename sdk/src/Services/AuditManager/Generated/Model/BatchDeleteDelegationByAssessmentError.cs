@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AuditManager.Model
 {
     /// <summary>
-    /// An error entity for the <code>BatchDeleteDelegationByAssessment</code> API. This
-    /// is used to provide more meaningful errors than a simple string message.
+    /// An error entity for the <c>BatchDeleteDelegationByAssessment</c> API. This is used
+    /// to provide more meaningful errors than a simple string message.
     /// </summary>
     public partial class BatchDeleteDelegationByAssessmentError
     {
@@ -60,8 +61,7 @@ namespace Amazon.AuditManager.Model
         /// <summary>
         /// Gets and sets the property ErrorCode. 
         /// <para>
-        ///  The error code that the <code>BatchDeleteDelegationByAssessment</code> API returned.
-        /// 
+        ///  The error code that the <c>BatchDeleteDelegationByAssessment</c> API returned. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=3, Max=3)]
@@ -80,7 +80,7 @@ namespace Amazon.AuditManager.Model
         /// <summary>
         /// Gets and sets the property ErrorMessage. 
         /// <para>
-        ///  The error message that the <code>BatchDeleteDelegationByAssessment</code> API returned.
+        ///  The error message that the <c>BatchDeleteDelegationByAssessment</c> API returned.
         /// 
         /// </para>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -37,11 +38,11 @@ namespace Amazon.QuickSight.Model
     /// <para>
     /// Tags can help you organize and categorize your resources. You can also use them to
     /// scope user permissions, by granting a user permission to access or change only resources
-    /// with certain tag values. You can use the <code>TagResource</code> operation with a
-    /// resource that already has tags. If you specify a new tag key for the resource, this
-    /// tag is appended to the list of tags associated with the resource. If you specify a
-    /// tag key that is already associated with the resource, the new tag value that you specify
-    /// replaces the previous value for that tag.
+    /// with certain tag values. You can use the <c>TagResource</c> operation with a resource
+    /// that already has tags. If you specify a new tag key for the resource, this tag is
+    /// appended to the list of tags associated with the resource. If you specify a tag key
+    /// that is already associated with the resource, the new tag value that you specify replaces
+    /// the previous value for that tag.
     /// </para>
     ///  
     /// <para>
@@ -68,7 +69,7 @@ namespace Amazon.QuickSight.Model
     public partial class TagResourceRequest : AmazonQuickSightRequest
     {
         private string _resourceArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -106,7 +107,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

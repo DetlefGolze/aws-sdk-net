@@ -33,20 +33,34 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.CustomerProfiles
 {
     /// <summary>
-    /// Implementation for accessing CustomerProfiles
+    /// <para>Implementation for accessing CustomerProfiles</para>
     ///
-    /// Amazon Connect Customer Profiles 
+    /// Amazon Connect Customer Profiles <ul> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_Operations_Amazon_Connect_Customer_Profiles.html">Customer
+    /// Profiles actions</a> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_Types_Amazon_Connect_Customer_Profiles.html">Customer
+    /// Profiles data types</a> 
+    /// </para>
+    ///  </li> </ul> 
     /// <para>
     /// Amazon Connect Customer Profiles is a unified customer profile for your contact center
     /// that has pre-built connectors powered by AppFlow that make it easy to combine customer
     /// information from third party applications, such as Salesforce (CRM), ServiceNow (ITSM),
     /// and your enterprise resource planning (ERP), with contact history from your Amazon
-    /// Connect contact center. If you're new to Amazon Connect, you might find it helpful
-    /// to review the <a href="https://docs.aws.amazon.com/connect/latest/adminguide/">Amazon
-    /// Connect Administrator Guide</a>.
+    /// Connect contact center. 
+    /// </para>
+    ///  
+    /// <para>
+    /// For more information about the Amazon Connect Customer Profiles feature, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/customer-profiles.html">Use
+    /// Customer Profiles</a> in the <i>Amazon Connect Administrator's Guide</i>. 
     /// </para>
     /// </summary>
     public partial class AmazonCustomerProfilesClient : AmazonServiceClient, IAmazonCustomerProfiles
@@ -355,6 +369,148 @@ namespace Amazon.CustomerProfiles
 
         #endregion
         
+        #region  BatchGetCalculatedAttributeForProfile
+
+
+        /// <summary>
+        /// Fetch the possible attribute values given the attribute name.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the BatchGetCalculatedAttributeForProfile service method.</param>
+        /// 
+        /// <returns>The response from the BatchGetCalculatedAttributeForProfile service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/BatchGetCalculatedAttributeForProfile">REST API Reference for BatchGetCalculatedAttributeForProfile Operation</seealso>
+        public virtual BatchGetCalculatedAttributeForProfileResponse BatchGetCalculatedAttributeForProfile(BatchGetCalculatedAttributeForProfileRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = BatchGetCalculatedAttributeForProfileRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = BatchGetCalculatedAttributeForProfileResponseUnmarshaller.Instance;
+
+            return Invoke<BatchGetCalculatedAttributeForProfileResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Fetch the possible attribute values given the attribute name.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the BatchGetCalculatedAttributeForProfile service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the BatchGetCalculatedAttributeForProfile service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/BatchGetCalculatedAttributeForProfile">REST API Reference for BatchGetCalculatedAttributeForProfile Operation</seealso>
+        public virtual Task<BatchGetCalculatedAttributeForProfileResponse> BatchGetCalculatedAttributeForProfileAsync(BatchGetCalculatedAttributeForProfileRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = BatchGetCalculatedAttributeForProfileRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = BatchGetCalculatedAttributeForProfileResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<BatchGetCalculatedAttributeForProfileResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  BatchGetProfile
+
+
+        /// <summary>
+        /// Get a batch of profiles.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the BatchGetProfile service method.</param>
+        /// 
+        /// <returns>The response from the BatchGetProfile service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/BatchGetProfile">REST API Reference for BatchGetProfile Operation</seealso>
+        public virtual BatchGetProfileResponse BatchGetProfile(BatchGetProfileRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = BatchGetProfileRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = BatchGetProfileResponseUnmarshaller.Instance;
+
+            return Invoke<BatchGetProfileResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Get a batch of profiles.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the BatchGetProfile service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the BatchGetProfile service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/BatchGetProfile">REST API Reference for BatchGetProfile Operation</seealso>
+        public virtual Task<BatchGetProfileResponse> BatchGetProfileAsync(BatchGetProfileRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = BatchGetProfileRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = BatchGetProfileResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<BatchGetProfileResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  CreateCalculatedAttributeDefinition
 
 
@@ -363,8 +519,8 @@ namespace Amazon.CustomerProfiles
         /// into Customer Profiles will be included in the calculated attribute, which can be
         /// retrieved for a profile using the <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetCalculatedAttributeForProfile.html">GetCalculatedAttributeForProfile</a>
         /// API. Defining a calculated attribute makes it available for all profiles within a
-        /// domain. Each calculated attribute can only reference one <code>ObjectType</code> and
-        /// at most, two fields from that <code>ObjectType</code>.
+        /// domain. Each calculated attribute can only reference one <c>ObjectType</c> and at
+        /// most, two fields from that <c>ObjectType</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateCalculatedAttributeDefinition service method.</param>
         /// 
@@ -400,8 +556,8 @@ namespace Amazon.CustomerProfiles
         /// into Customer Profiles will be included in the calculated attribute, which can be
         /// retrieved for a profile using the <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetCalculatedAttributeForProfile.html">GetCalculatedAttributeForProfile</a>
         /// API. Defining a calculated attribute makes it available for all profiles within a
-        /// domain. Each calculated attribute can only reference one <code>ObjectType</code> and
-        /// at most, two fields from that <code>ObjectType</code>.
+        /// domain. Each calculated attribute can only reference one <c>ObjectType</c> and at
+        /// most, two fields from that <c>ObjectType</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateCalculatedAttributeDefinition service method.</param>
         /// <param name="cancellationToken">
@@ -453,13 +609,27 @@ namespace Amazon.CustomerProfiles
         /// <para>
         /// Use this API or <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html">UpdateDomain</a>
         /// to enable <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html">identity
-        /// resolution</a>: set <code>Matching</code> to true.
+        /// resolution</a>: set <c>Matching</c> to true.
         /// </para>
         ///  
         /// <para>
         /// To prevent cross-service impersonation when you call this API, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/cross-service-confused-deputy-prevention.html">Cross-service
         /// confused deputy prevention</a> for sample policies that you should apply. 
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// It is not possible to associate a Customer Profiles domain with an Amazon Connect
+        /// Instance directly from the API. If you would like to create a domain and associate
+        /// a Customer Profiles domain, use the Amazon Connect admin website. For more information,
+        /// see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/enable-customer-profiles.html#enable-customer-profiles-step1">Enable
+        /// Customer Profiles</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Each Amazon Connect instance can be associated with only one domain. Multiple Amazon
+        /// Connect instances can be associated with one domain.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateDomain service method.</param>
         /// 
@@ -504,13 +674,27 @@ namespace Amazon.CustomerProfiles
         /// <para>
         /// Use this API or <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html">UpdateDomain</a>
         /// to enable <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html">identity
-        /// resolution</a>: set <code>Matching</code> to true.
+        /// resolution</a>: set <c>Matching</c> to true.
         /// </para>
         ///  
         /// <para>
         /// To prevent cross-service impersonation when you call this API, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/cross-service-confused-deputy-prevention.html">Cross-service
         /// confused deputy prevention</a> for sample policies that you should apply. 
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// It is not possible to associate a Customer Profiles domain with an Amazon Connect
+        /// Instance directly from the API. If you would like to create a domain and associate
+        /// a Customer Profiles domain, use the Amazon Connect admin website. For more information,
+        /// see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/enable-customer-profiles.html#enable-customer-profiles-step1">Enable
+        /// Customer Profiles</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Each Amazon Connect instance can be associated with only one domain. Multiple Amazon
+        /// Connect instances can be associated with one domain.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateDomain service method.</param>
         /// <param name="cancellationToken">
@@ -626,6 +810,91 @@ namespace Amazon.CustomerProfiles
             options.ResponseUnmarshaller = CreateEventStreamResponseUnmarshaller.Instance;
             
             return InvokeAsync<CreateEventStreamResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateEventTrigger
+
+
+        /// <summary>
+        /// Creates an event trigger, which specifies the rules when to perform action based on
+        /// customer's ingested data.
+        /// 
+        ///  
+        /// <para>
+        /// Each event stream can be associated with only one integration in the same region and
+        /// AWS account as the event stream. 
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateEventTrigger service method.</param>
+        /// 
+        /// <returns>The response from the CreateEventTrigger service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/CreateEventTrigger">REST API Reference for CreateEventTrigger Operation</seealso>
+        public virtual CreateEventTriggerResponse CreateEventTrigger(CreateEventTriggerRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateEventTriggerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateEventTriggerResponseUnmarshaller.Instance;
+
+            return Invoke<CreateEventTriggerResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates an event trigger, which specifies the rules when to perform action based on
+        /// customer's ingested data.
+        /// 
+        ///  
+        /// <para>
+        /// Each event stream can be associated with only one integration in the same region and
+        /// AWS account as the event stream. 
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateEventTrigger service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateEventTrigger service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/CreateEventTrigger">REST API Reference for CreateEventTrigger Operation</seealso>
+        public virtual Task<CreateEventTriggerResponse> CreateEventTriggerAsync(CreateEventTriggerRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateEventTriggerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateEventTriggerResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateEventTriggerResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -784,6 +1053,219 @@ namespace Amazon.CustomerProfiles
             options.ResponseUnmarshaller = CreateProfileResponseUnmarshaller.Instance;
             
             return InvokeAsync<CreateProfileResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateSegmentDefinition
+
+
+        /// <summary>
+        /// Creates a segment definition associated to the given domain.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateSegmentDefinition service method.</param>
+        /// 
+        /// <returns>The response from the CreateSegmentDefinition service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/CreateSegmentDefinition">REST API Reference for CreateSegmentDefinition Operation</seealso>
+        public virtual CreateSegmentDefinitionResponse CreateSegmentDefinition(CreateSegmentDefinitionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateSegmentDefinitionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateSegmentDefinitionResponseUnmarshaller.Instance;
+
+            return Invoke<CreateSegmentDefinitionResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates a segment definition associated to the given domain.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateSegmentDefinition service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateSegmentDefinition service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/CreateSegmentDefinition">REST API Reference for CreateSegmentDefinition Operation</seealso>
+        public virtual Task<CreateSegmentDefinitionResponse> CreateSegmentDefinitionAsync(CreateSegmentDefinitionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateSegmentDefinitionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateSegmentDefinitionResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateSegmentDefinitionResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateSegmentEstimate
+
+
+        /// <summary>
+        /// Creates a segment estimate query.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateSegmentEstimate service method.</param>
+        /// 
+        /// <returns>The response from the CreateSegmentEstimate service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/CreateSegmentEstimate">REST API Reference for CreateSegmentEstimate Operation</seealso>
+        public virtual CreateSegmentEstimateResponse CreateSegmentEstimate(CreateSegmentEstimateRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateSegmentEstimateRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateSegmentEstimateResponseUnmarshaller.Instance;
+
+            return Invoke<CreateSegmentEstimateResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates a segment estimate query.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateSegmentEstimate service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateSegmentEstimate service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/CreateSegmentEstimate">REST API Reference for CreateSegmentEstimate Operation</seealso>
+        public virtual Task<CreateSegmentEstimateResponse> CreateSegmentEstimateAsync(CreateSegmentEstimateRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateSegmentEstimateRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateSegmentEstimateResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateSegmentEstimateResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateSegmentSnapshot
+
+
+        /// <summary>
+        /// Triggers a job to export a segment to a specified destination.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateSegmentSnapshot service method.</param>
+        /// 
+        /// <returns>The response from the CreateSegmentSnapshot service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/CreateSegmentSnapshot">REST API Reference for CreateSegmentSnapshot Operation</seealso>
+        public virtual CreateSegmentSnapshotResponse CreateSegmentSnapshot(CreateSegmentSnapshotRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateSegmentSnapshotRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateSegmentSnapshotResponseUnmarshaller.Instance;
+
+            return Invoke<CreateSegmentSnapshotResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Triggers a job to export a segment to a specified destination.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateSegmentSnapshot service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateSegmentSnapshot service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/CreateSegmentSnapshot">REST API Reference for CreateSegmentSnapshot Operation</seealso>
+        public virtual Task<CreateSegmentSnapshotResponse> CreateSegmentSnapshotAsync(CreateSegmentSnapshotRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateSegmentSnapshotRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateSegmentSnapshotResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateSegmentSnapshotResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -1005,6 +1487,89 @@ namespace Amazon.CustomerProfiles
             options.ResponseUnmarshaller = DeleteEventStreamResponseUnmarshaller.Instance;
             
             return InvokeAsync<DeleteEventStreamResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DeleteEventTrigger
+
+
+        /// <summary>
+        /// Disable and deletes the Event Trigger.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// You cannot delete an Event Trigger with an active Integration associated.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteEventTrigger service method.</param>
+        /// 
+        /// <returns>The response from the DeleteEventTrigger service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/DeleteEventTrigger">REST API Reference for DeleteEventTrigger Operation</seealso>
+        public virtual DeleteEventTriggerResponse DeleteEventTrigger(DeleteEventTriggerRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteEventTriggerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteEventTriggerResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteEventTriggerResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Disable and deletes the Event Trigger.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// You cannot delete an Event Trigger with an active Integration associated.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteEventTrigger service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteEventTrigger service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/DeleteEventTrigger">REST API Reference for DeleteEventTrigger Operation</seealso>
+        public virtual Task<DeleteEventTriggerResponse> DeleteEventTriggerAsync(DeleteEventTriggerRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteEventTriggerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteEventTriggerResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteEventTriggerResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -1370,6 +1935,77 @@ namespace Amazon.CustomerProfiles
 
         #endregion
         
+        #region  DeleteSegmentDefinition
+
+
+        /// <summary>
+        /// Deletes a segment definition from the domain.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteSegmentDefinition service method.</param>
+        /// 
+        /// <returns>The response from the DeleteSegmentDefinition service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/DeleteSegmentDefinition">REST API Reference for DeleteSegmentDefinition Operation</seealso>
+        public virtual DeleteSegmentDefinitionResponse DeleteSegmentDefinition(DeleteSegmentDefinitionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteSegmentDefinitionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteSegmentDefinitionResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteSegmentDefinitionResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Deletes a segment definition from the domain.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteSegmentDefinition service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteSegmentDefinition service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/DeleteSegmentDefinition">REST API Reference for DeleteSegmentDefinition Operation</seealso>
+        public virtual Task<DeleteSegmentDefinitionResponse> DeleteSegmentDefinitionAsync(DeleteSegmentDefinitionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteSegmentDefinitionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteSegmentDefinitionResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteSegmentDefinitionResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  DeleteWorkflow
 
 
@@ -1443,6 +2079,77 @@ namespace Amazon.CustomerProfiles
 
         #endregion
         
+        #region  DetectProfileObjectType
+
+
+        /// <summary>
+        /// The process of detecting profile object type mapping by using given objects.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DetectProfileObjectType service method.</param>
+        /// 
+        /// <returns>The response from the DetectProfileObjectType service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/DetectProfileObjectType">REST API Reference for DetectProfileObjectType Operation</seealso>
+        public virtual DetectProfileObjectTypeResponse DetectProfileObjectType(DetectProfileObjectTypeRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DetectProfileObjectTypeRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DetectProfileObjectTypeResponseUnmarshaller.Instance;
+
+            return Invoke<DetectProfileObjectTypeResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// The process of detecting profile object type mapping by using given objects.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DetectProfileObjectType service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DetectProfileObjectType service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/DetectProfileObjectType">REST API Reference for DetectProfileObjectType Operation</seealso>
+        public virtual Task<DetectProfileObjectTypeResponse> DetectProfileObjectTypeAsync(DetectProfileObjectTypeRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DetectProfileObjectTypeRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DetectProfileObjectTypeResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DetectProfileObjectTypeResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  GetAutoMergingPreview
 
 
@@ -1462,9 +2169,9 @@ namespace Amazon.CustomerProfiles
         /// <para>
         /// We strongly recommend you use this API to do a dry run of the automerging process
         /// before running the Identity Resolution Job. Include <b>at least</b> two matching attributes.
-        /// If your matching list includes too few attributes (such as only <code>FirstName</code>
-        /// or only <code>LastName</code>), there may be a large number of matches. This increases
-        /// the chances of erroneous merges.
+        /// If your matching list includes too few attributes (such as only <c>FirstName</c> or
+        /// only <c>LastName</c>), there may be a large number of matches. This increases the
+        /// chances of erroneous merges.
         /// </para>
         ///  </important>
         /// </summary>
@@ -1513,9 +2220,9 @@ namespace Amazon.CustomerProfiles
         /// <para>
         /// We strongly recommend you use this API to do a dry run of the automerging process
         /// before running the Identity Resolution Job. Include <b>at least</b> two matching attributes.
-        /// If your matching list includes too few attributes (such as only <code>FirstName</code>
-        /// or only <code>LastName</code>), there may be a large number of matches. This increases
-        /// the chances of erroneous merges.
+        /// If your matching list includes too few attributes (such as only <c>FirstName</c> or
+        /// only <c>LastName</c>), there may be a large number of matches. This increases the
+        /// chances of erroneous merges.
         /// </para>
         ///  </important>
         /// </summary>
@@ -1836,6 +2543,77 @@ namespace Amazon.CustomerProfiles
 
         #endregion
         
+        #region  GetEventTrigger
+
+
+        /// <summary>
+        /// Get a specific Event Trigger from the domain.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetEventTrigger service method.</param>
+        /// 
+        /// <returns>The response from the GetEventTrigger service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/GetEventTrigger">REST API Reference for GetEventTrigger Operation</seealso>
+        public virtual GetEventTriggerResponse GetEventTrigger(GetEventTriggerRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetEventTriggerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetEventTriggerResponseUnmarshaller.Instance;
+
+            return Invoke<GetEventTriggerResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Get a specific Event Trigger from the domain.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetEventTrigger service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetEventTrigger service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/GetEventTrigger">REST API Reference for GetEventTrigger Operation</seealso>
+        public virtual Task<GetEventTriggerResponse> GetEventTriggerAsync(GetEventTriggerRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetEventTriggerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetEventTriggerResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetEventTriggerResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  GetIdentityResolutionJob
 
 
@@ -1998,7 +2776,7 @@ namespace Amazon.CustomerProfiles
         /// <summary>
         /// Before calling this API, use <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_CreateDomain.html">CreateDomain</a>
         /// or <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html">UpdateDomain</a>
-        /// to enable identity resolution: set <code>Matching</code> to true.
+        /// to enable identity resolution: set <c>Matching</c> to true.
         /// 
         ///  
         /// <para>
@@ -2007,8 +2785,8 @@ namespace Amazon.CustomerProfiles
         /// </para>
         ///  <important> 
         /// <para>
-        /// The process of matching duplicate profiles. If <code>Matching</code> = <code>true</code>,
-        /// Amazon Connect Customer Profiles starts a weekly batch process called Identity Resolution
+        /// The process of matching duplicate profiles. If <c>Matching</c> = <c>true</c>, Amazon
+        /// Connect Customer Profiles starts a weekly batch process called Identity Resolution
         /// Job. If you do not specify a date and time for Identity Resolution Job to run, by
         /// default it runs every Saturday at 12AM UTC to detect duplicate profiles in your domains.
         /// 
@@ -2016,8 +2794,8 @@ namespace Amazon.CustomerProfiles
         ///  
         /// <para>
         /// After the Identity Resolution Job completes, use the <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html">GetMatches</a>
-        /// API to return and review the results. Or, if you have configured <code>ExportingConfig</code>
-        /// in the <code>MatchingRequest</code>, you can download the results from S3.
+        /// API to return and review the results. Or, if you have configured <c>ExportingConfig</c>
+        /// in the <c>MatchingRequest</c>, you can download the results from S3.
         /// </para>
         ///  </important> 
         /// <para>
@@ -2096,7 +2874,7 @@ namespace Amazon.CustomerProfiles
         /// <summary>
         /// Before calling this API, use <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_CreateDomain.html">CreateDomain</a>
         /// or <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html">UpdateDomain</a>
-        /// to enable identity resolution: set <code>Matching</code> to true.
+        /// to enable identity resolution: set <c>Matching</c> to true.
         /// 
         ///  
         /// <para>
@@ -2105,8 +2883,8 @@ namespace Amazon.CustomerProfiles
         /// </para>
         ///  <important> 
         /// <para>
-        /// The process of matching duplicate profiles. If <code>Matching</code> = <code>true</code>,
-        /// Amazon Connect Customer Profiles starts a weekly batch process called Identity Resolution
+        /// The process of matching duplicate profiles. If <c>Matching</c> = <c>true</c>, Amazon
+        /// Connect Customer Profiles starts a weekly batch process called Identity Resolution
         /// Job. If you do not specify a date and time for Identity Resolution Job to run, by
         /// default it runs every Saturday at 12AM UTC to detect duplicate profiles in your domains.
         /// 
@@ -2114,8 +2892,8 @@ namespace Amazon.CustomerProfiles
         ///  
         /// <para>
         /// After the Identity Resolution Job completes, use the <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html">GetMatches</a>
-        /// API to return and review the results. Or, if you have configured <code>ExportingConfig</code>
-        /// in the <code>MatchingRequest</code>, you can download the results from S3.
+        /// API to return and review the results. Or, if you have configured <c>ExportingConfig</c>
+        /// in the <c>MatchingRequest</c>, you can download the results from S3.
         /// </para>
         ///  </important> 
         /// <para>
@@ -2351,13 +3129,297 @@ namespace Amazon.CustomerProfiles
 
         #endregion
         
+        #region  GetSegmentDefinition
+
+
+        /// <summary>
+        /// Gets a segment definition from the domain.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetSegmentDefinition service method.</param>
+        /// 
+        /// <returns>The response from the GetSegmentDefinition service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/GetSegmentDefinition">REST API Reference for GetSegmentDefinition Operation</seealso>
+        public virtual GetSegmentDefinitionResponse GetSegmentDefinition(GetSegmentDefinitionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetSegmentDefinitionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetSegmentDefinitionResponseUnmarshaller.Instance;
+
+            return Invoke<GetSegmentDefinitionResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Gets a segment definition from the domain.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetSegmentDefinition service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetSegmentDefinition service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/GetSegmentDefinition">REST API Reference for GetSegmentDefinition Operation</seealso>
+        public virtual Task<GetSegmentDefinitionResponse> GetSegmentDefinitionAsync(GetSegmentDefinitionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetSegmentDefinitionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetSegmentDefinitionResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetSegmentDefinitionResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetSegmentEstimate
+
+
+        /// <summary>
+        /// Gets the result of a segment estimate query.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetSegmentEstimate service method.</param>
+        /// 
+        /// <returns>The response from the GetSegmentEstimate service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/GetSegmentEstimate">REST API Reference for GetSegmentEstimate Operation</seealso>
+        public virtual GetSegmentEstimateResponse GetSegmentEstimate(GetSegmentEstimateRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetSegmentEstimateRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetSegmentEstimateResponseUnmarshaller.Instance;
+
+            return Invoke<GetSegmentEstimateResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Gets the result of a segment estimate query.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetSegmentEstimate service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetSegmentEstimate service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/GetSegmentEstimate">REST API Reference for GetSegmentEstimate Operation</seealso>
+        public virtual Task<GetSegmentEstimateResponse> GetSegmentEstimateAsync(GetSegmentEstimateRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetSegmentEstimateRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetSegmentEstimateResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetSegmentEstimateResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetSegmentMembership
+
+
+        /// <summary>
+        /// Determines if the given profiles are within a segment.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetSegmentMembership service method.</param>
+        /// 
+        /// <returns>The response from the GetSegmentMembership service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/GetSegmentMembership">REST API Reference for GetSegmentMembership Operation</seealso>
+        public virtual GetSegmentMembershipResponse GetSegmentMembership(GetSegmentMembershipRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetSegmentMembershipRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetSegmentMembershipResponseUnmarshaller.Instance;
+
+            return Invoke<GetSegmentMembershipResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Determines if the given profiles are within a segment.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetSegmentMembership service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetSegmentMembership service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/GetSegmentMembership">REST API Reference for GetSegmentMembership Operation</seealso>
+        public virtual Task<GetSegmentMembershipResponse> GetSegmentMembershipAsync(GetSegmentMembershipRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetSegmentMembershipRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetSegmentMembershipResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetSegmentMembershipResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetSegmentSnapshot
+
+
+        /// <summary>
+        /// Retrieve the latest status of a segment snapshot.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetSegmentSnapshot service method.</param>
+        /// 
+        /// <returns>The response from the GetSegmentSnapshot service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/GetSegmentSnapshot">REST API Reference for GetSegmentSnapshot Operation</seealso>
+        public virtual GetSegmentSnapshotResponse GetSegmentSnapshot(GetSegmentSnapshotRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetSegmentSnapshotRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetSegmentSnapshotResponseUnmarshaller.Instance;
+
+            return Invoke<GetSegmentSnapshotResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Retrieve the latest status of a segment snapshot.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetSegmentSnapshot service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetSegmentSnapshot service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/GetSegmentSnapshot">REST API Reference for GetSegmentSnapshot Operation</seealso>
+        public virtual Task<GetSegmentSnapshotResponse> GetSegmentSnapshotAsync(GetSegmentSnapshotRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetSegmentSnapshotRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetSegmentSnapshotResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetSegmentSnapshotResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  GetSimilarProfiles
 
 
         /// <summary>
-        /// Returns a set of profiles that belong to the same matching group using the <code>matchId</code>
-        /// or <code>profileId</code>. You can also specify the type of matching that you want
-        /// for finding similar profiles using either <code>RULE_BASED_MATCHING</code> or <code>ML_BASED_MATCHING</code>.
+        /// Returns a set of profiles that belong to the same matching group using the <c>matchId</c>
+        /// or <c>profileId</c>. You can also specify the type of matching that you want for finding
+        /// similar profiles using either <c>RULE_BASED_MATCHING</c> or <c>ML_BASED_MATCHING</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetSimilarProfiles service method.</param>
         /// 
@@ -2389,9 +3451,9 @@ namespace Amazon.CustomerProfiles
 
 
         /// <summary>
-        /// Returns a set of profiles that belong to the same matching group using the <code>matchId</code>
-        /// or <code>profileId</code>. You can also specify the type of matching that you want
-        /// for finding similar profiles using either <code>RULE_BASED_MATCHING</code> or <code>ML_BASED_MATCHING</code>.
+        /// Returns a set of profiles that belong to the same matching group using the <c>matchId</c>
+        /// or <c>profileId</c>. You can also specify the type of matching that you want for finding
+        /// similar profiles using either <c>RULE_BASED_MATCHING</c> or <c>ML_BASED_MATCHING</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetSimilarProfiles service method.</param>
         /// <param name="cancellationToken">
@@ -2923,12 +3985,83 @@ namespace Amazon.CustomerProfiles
 
         #endregion
         
+        #region  ListEventTriggers
+
+
+        /// <summary>
+        /// List all Event Triggers under a domain.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListEventTriggers service method.</param>
+        /// 
+        /// <returns>The response from the ListEventTriggers service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/ListEventTriggers">REST API Reference for ListEventTriggers Operation</seealso>
+        public virtual ListEventTriggersResponse ListEventTriggers(ListEventTriggersRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListEventTriggersRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListEventTriggersResponseUnmarshaller.Instance;
+
+            return Invoke<ListEventTriggersResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// List all Event Triggers under a domain.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListEventTriggers service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListEventTriggers service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/ListEventTriggers">REST API Reference for ListEventTriggers Operation</seealso>
+        public virtual Task<ListEventTriggersResponse> ListEventTriggersAsync(ListEventTriggersRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListEventTriggersRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListEventTriggersResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListEventTriggersResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ListIdentityResolutionJobs
 
 
         /// <summary>
         /// Lists all of the Identity Resolution Jobs in your domain. The response sorts the list
-        /// by <code>JobStartTime</code>.
+        /// by <c>JobStartTime</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListIdentityResolutionJobs service method.</param>
         /// 
@@ -2961,7 +4094,7 @@ namespace Amazon.CustomerProfiles
 
         /// <summary>
         /// Lists all of the Identity Resolution Jobs in your domain. The response sorts the list
-        /// by <code>JobStartTime</code>.
+        /// by <c>JobStartTime</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListIdentityResolutionJobs service method.</param>
         /// <param name="cancellationToken">
@@ -3063,6 +4196,148 @@ namespace Amazon.CustomerProfiles
             options.ResponseUnmarshaller = ListIntegrationsResponseUnmarshaller.Instance;
             
             return InvokeAsync<ListIntegrationsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListObjectTypeAttributes
+
+
+        /// <summary>
+        /// Fetch the possible attribute values given the attribute name.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListObjectTypeAttributes service method.</param>
+        /// 
+        /// <returns>The response from the ListObjectTypeAttributes service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/ListObjectTypeAttributes">REST API Reference for ListObjectTypeAttributes Operation</seealso>
+        public virtual ListObjectTypeAttributesResponse ListObjectTypeAttributes(ListObjectTypeAttributesRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListObjectTypeAttributesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListObjectTypeAttributesResponseUnmarshaller.Instance;
+
+            return Invoke<ListObjectTypeAttributesResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Fetch the possible attribute values given the attribute name.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListObjectTypeAttributes service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListObjectTypeAttributes service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/ListObjectTypeAttributes">REST API Reference for ListObjectTypeAttributes Operation</seealso>
+        public virtual Task<ListObjectTypeAttributesResponse> ListObjectTypeAttributesAsync(ListObjectTypeAttributesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListObjectTypeAttributesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListObjectTypeAttributesResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListObjectTypeAttributesResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListProfileAttributeValues
+
+
+        /// <summary>
+        /// Fetch the possible attribute values given the attribute name.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListProfileAttributeValues service method.</param>
+        /// 
+        /// <returns>The response from the ListProfileAttributeValues service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/ListProfileAttributeValues">REST API Reference for ListProfileAttributeValues Operation</seealso>
+        public virtual ListProfileAttributeValuesResponse ListProfileAttributeValues(ListProfileAttributeValuesRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListProfileAttributeValuesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListProfileAttributeValuesResponseUnmarshaller.Instance;
+
+            return Invoke<ListProfileAttributeValuesResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Fetch the possible attribute values given the attribute name.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListProfileAttributeValues service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListProfileAttributeValues service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/ListProfileAttributeValues">REST API Reference for ListProfileAttributeValues Operation</seealso>
+        public virtual Task<ListProfileAttributeValuesResponse> ListProfileAttributeValuesAsync(ListProfileAttributeValuesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListProfileAttributeValuesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListProfileAttributeValuesResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListProfileAttributeValuesResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -3284,7 +4559,7 @@ namespace Amazon.CustomerProfiles
 
 
         /// <summary>
-        /// Returns a set of <code>MatchIds</code> that belong to the given domain.
+        /// Returns a set of <c>MatchIds</c> that belong to the given domain.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListRuleBasedMatches service method.</param>
         /// 
@@ -3316,7 +4591,7 @@ namespace Amazon.CustomerProfiles
 
 
         /// <summary>
-        /// Returns a set of <code>MatchIds</code> that belong to the given domain.
+        /// Returns a set of <c>MatchIds</c> that belong to the given domain.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListRuleBasedMatches service method.</param>
         /// <param name="cancellationToken">
@@ -3347,6 +4622,77 @@ namespace Amazon.CustomerProfiles
             options.ResponseUnmarshaller = ListRuleBasedMatchesResponseUnmarshaller.Instance;
             
             return InvokeAsync<ListRuleBasedMatchesResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListSegmentDefinitions
+
+
+        /// <summary>
+        /// Lists all segment definitions under a domain.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListSegmentDefinitions service method.</param>
+        /// 
+        /// <returns>The response from the ListSegmentDefinitions service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/ListSegmentDefinitions">REST API Reference for ListSegmentDefinitions Operation</seealso>
+        public virtual ListSegmentDefinitionsResponse ListSegmentDefinitions(ListSegmentDefinitionsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListSegmentDefinitionsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListSegmentDefinitionsResponseUnmarshaller.Instance;
+
+            return Invoke<ListSegmentDefinitionsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists all segment definitions under a domain.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListSegmentDefinitions service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListSegmentDefinitions service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/ListSegmentDefinitions">REST API Reference for ListSegmentDefinitions Operation</seealso>
+        public virtual Task<ListSegmentDefinitionsResponse> ListSegmentDefinitionsAsync(ListSegmentDefinitionsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListSegmentDefinitionsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListSegmentDefinitionsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListSegmentDefinitionsResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -3493,21 +4839,19 @@ namespace Amazon.CustomerProfiles
         /// 
         ///  <ol> <li> 
         /// <para>
-        /// All the profileKeys in the <code>ProfileToBeMerged</code> will be moved to the main
-        /// profile.
+        /// All the profileKeys in the <c>ProfileToBeMerged</c> will be moved to the main profile.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// All the objects in the <code>ProfileToBeMerged</code> will be moved to the main profile.
+        /// All the objects in the <c>ProfileToBeMerged</c> will be moved to the main profile.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// All the <code>ProfileToBeMerged</code> will be deleted at the end.
+        /// All the <c>ProfileToBeMerged</c> will be deleted at the end.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// All the profileKeys in the <code>ProfileIdsToBeMerged</code> will be moved to the
-        /// main profile.
+        /// All the profileKeys in the <c>ProfileIdsToBeMerged</c> will be moved to the main profile.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3523,13 +4867,13 @@ namespace Amazon.CustomerProfiles
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// If no <code>SourceProfileIds</code> entry is specified, the main Profile value is
-        /// always taken. 
+        /// If no <c>SourceProfileIds</c> entry is specified, the main Profile value is always
+        /// taken. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If a <code>SourceProfileIds</code> entry is specified, the specified profileId is
-        /// always taken, even if it is a NULL value.
+        /// If a <c>SourceProfileIds</c> entry is specified, the specified profileId is always
+        /// taken, even if it is a NULL value.
         /// </para>
         ///  </li> </ol> </li> </ol> </li> </ol> 
         /// <para>
@@ -3569,21 +4913,19 @@ namespace Amazon.CustomerProfiles
         /// 
         ///  <ol> <li> 
         /// <para>
-        /// All the profileKeys in the <code>ProfileToBeMerged</code> will be moved to the main
-        /// profile.
+        /// All the profileKeys in the <c>ProfileToBeMerged</c> will be moved to the main profile.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// All the objects in the <code>ProfileToBeMerged</code> will be moved to the main profile.
+        /// All the objects in the <c>ProfileToBeMerged</c> will be moved to the main profile.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// All the <code>ProfileToBeMerged</code> will be deleted at the end.
+        /// All the <c>ProfileToBeMerged</c> will be deleted at the end.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// All the profileKeys in the <code>ProfileIdsToBeMerged</code> will be moved to the
-        /// main profile.
+        /// All the profileKeys in the <c>ProfileIdsToBeMerged</c> will be moved to the main profile.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3599,13 +4941,13 @@ namespace Amazon.CustomerProfiles
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// If no <code>SourceProfileIds</code> entry is specified, the main Profile value is
-        /// always taken. 
+        /// If no <c>SourceProfileIds</c> entry is specified, the main Profile value is always
+        /// taken. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If a <code>SourceProfileIds</code> entry is specified, the specified profileId is
-        /// always taken, even if it is a NULL value.
+        /// If a <c>SourceProfileIds</c> entry is specified, the specified profileId is always
+        /// taken, even if it is a NULL value.
         /// </para>
         ///  </li> </ol> </li> </ol> </li> </ol> 
         /// <para>
@@ -3935,13 +5277,13 @@ namespace Amazon.CustomerProfiles
         /// <summary>
         /// Searches for profiles within a specific domain using one or more predefined search
         /// keys (e.g., _fullName, _phone, _email, _account, etc.) and/or custom-defined search
-        /// keys. A search key is a data type pair that consists of a <code>KeyName</code> and
-        /// <code>Values</code> list.
+        /// keys. A search key is a data type pair that consists of a <c>KeyName</c> and <c>Values</c>
+        /// list.
         /// 
         ///  
         /// <para>
         /// This operation supports searching for profiles with a minimum of 1 key-value(s) pair
-        /// and up to 5 key-value(s) pairs using either <code>AND</code> or <code>OR</code> logic.
+        /// and up to 5 key-value(s) pairs using either <c>AND</c> or <c>OR</c> logic.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the SearchProfiles service method.</param>
@@ -3976,13 +5318,13 @@ namespace Amazon.CustomerProfiles
         /// <summary>
         /// Searches for profiles within a specific domain using one or more predefined search
         /// keys (e.g., _fullName, _phone, _email, _account, etc.) and/or custom-defined search
-        /// keys. A search key is a data type pair that consists of a <code>KeyName</code> and
-        /// <code>Values</code> list.
+        /// keys. A search key is a data type pair that consists of a <c>KeyName</c> and <c>Values</c>
+        /// list.
         /// 
         ///  
         /// <para>
         /// This operation supports searching for profiles with a minimum of 1 key-value(s) pair
-        /// and up to 5 key-value(s) pairs using either <code>AND</code> or <code>OR</code> logic.
+        /// and up to 5 key-value(s) pairs using either <c>AND</c> or <c>OR</c> logic.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the SearchProfiles service method.</param>
@@ -4272,7 +5614,7 @@ namespace Amazon.CustomerProfiles
         /// <para>
         /// Use this API or <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_CreateDomain.html">CreateDomain</a>
         /// to enable <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html">identity
-        /// resolution</a>: set <code>Matching</code> to true.
+        /// resolution</a>: set <c>Matching</c> to true.
         /// </para>
         ///  
         /// <para>
@@ -4326,7 +5668,7 @@ namespace Amazon.CustomerProfiles
         /// <para>
         /// Use this API or <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_CreateDomain.html">CreateDomain</a>
         /// to enable <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html">identity
-        /// resolution</a>: set <code>Matching</code> to true.
+        /// resolution</a>: set <c>Matching</c> to true.
         /// </para>
         ///  
         /// <para>
@@ -4368,6 +5710,77 @@ namespace Amazon.CustomerProfiles
             options.ResponseUnmarshaller = UpdateDomainResponseUnmarshaller.Instance;
             
             return InvokeAsync<UpdateDomainResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  UpdateEventTrigger
+
+
+        /// <summary>
+        /// Update the properties of an Event Trigger.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateEventTrigger service method.</param>
+        /// 
+        /// <returns>The response from the UpdateEventTrigger service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/UpdateEventTrigger">REST API Reference for UpdateEventTrigger Operation</seealso>
+        public virtual UpdateEventTriggerResponse UpdateEventTrigger(UpdateEventTriggerRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateEventTriggerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateEventTriggerResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateEventTriggerResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Update the properties of an Event Trigger.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateEventTrigger service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateEventTrigger service method, as returned by CustomerProfiles.</returns>
+        /// <exception cref="Amazon.CustomerProfiles.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.BadRequestException">
+        /// The input you provided is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.InternalServerException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ResourceNotFoundException">
+        /// The requested resource does not exist, or access was denied.
+        /// </exception>
+        /// <exception cref="Amazon.CustomerProfiles.Model.ThrottlingException">
+        /// You exceeded the maximum number of requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/UpdateEventTrigger">REST API Reference for UpdateEventTrigger Operation</seealso>
+        public virtual Task<UpdateEventTriggerResponse> UpdateEventTriggerAsync(UpdateEventTriggerRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateEventTriggerRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateEventTriggerResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdateEventTriggerResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -4468,11 +5881,11 @@ namespace Amazon.CustomerProfiles
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

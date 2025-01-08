@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeArtifact.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeRepository operation.
-    /// Returns a <code>RepositoryDescription</code> object that contains detailed information
+    /// Returns a <c>RepositoryDescription</c> object that contains detailed information
     /// about the requested repository.
     /// </summary>
     public partial class DescribeRepositoryRequest : AmazonCodeArtifactRequest

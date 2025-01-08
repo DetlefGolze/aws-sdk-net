@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
@@ -45,7 +46,7 @@ namespace Amazon.CustomerProfiles.Model
         private string _accountNumber;
         private string _additionalInformation;
         private UpdateAddress _address;
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private UpdateAddress _billingAddress;
         private string _birthDate;
         private string _businessEmailAddress;
@@ -71,7 +72,7 @@ namespace Amazon.CustomerProfiles.Model
         /// <summary>
         /// Gets and sets the property AccountNumber. 
         /// <para>
-        /// A unique account number that you have given to the customer.
+        /// An account number that you have given to the customer.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=0, Max=255)]
@@ -141,7 +142,7 @@ namespace Amazon.CustomerProfiles.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -319,7 +320,7 @@ namespace Amazon.CustomerProfiles.Model
         /// <summary>
         /// Gets and sets the property GenderString. 
         /// <para>
-        /// An alternative to <code>Gender</code> which accepts any string as input.
+        /// An alternative to <c>Gender</c> which accepts any string as input.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=0, Max=255)]
@@ -452,7 +453,7 @@ namespace Amazon.CustomerProfiles.Model
         /// <summary>
         /// Gets and sets the property PartyTypeString. 
         /// <para>
-        /// An alternative to <code>PartyType</code> which accepts any string as input.
+        /// An alternative to <c>PartyType</c> which accepts any string as input.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=0, Max=255)]

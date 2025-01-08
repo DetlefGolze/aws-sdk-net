@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(TableInput requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetDescription())
             {
                 context.Writer.WritePropertyName("Description");
@@ -135,6 +138,17 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
 
                 var marshaller = TableIdentifierMarshaller.Instance;
                 marshaller.Marshall(requestObject.TargetTable, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetViewDefinition())
+            {
+                context.Writer.WritePropertyName("ViewDefinition");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = ViewDefinitionInputMarshaller.Instance;
+                marshaller.Marshall(requestObject.ViewDefinition, context);
 
                 context.Writer.WriteObjectEnd();
             }

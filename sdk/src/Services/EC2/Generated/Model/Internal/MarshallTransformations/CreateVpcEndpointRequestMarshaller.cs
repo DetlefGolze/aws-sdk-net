@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -85,6 +86,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                 {
                     request.Parameters.Add("PrivateDnsEnabled", StringUtils.FromBool(publicRequest.PrivateDnsEnabled));
                 }
+                if(publicRequest.IsSetResourceConfigurationArn())
+                {
+                    request.Parameters.Add("ResourceConfigurationArn", StringUtils.FromString(publicRequest.ResourceConfigurationArn));
+                }
                 if(publicRequest.IsSetRouteTableIds())
                 {
                     int publicRequestlistValueIndex = 1;
@@ -106,6 +111,14 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                 if(publicRequest.IsSetServiceName())
                 {
                     request.Parameters.Add("ServiceName", StringUtils.FromString(publicRequest.ServiceName));
+                }
+                if(publicRequest.IsSetServiceNetworkArn())
+                {
+                    request.Parameters.Add("ServiceNetworkArn", StringUtils.FromString(publicRequest.ServiceNetworkArn));
+                }
+                if(publicRequest.IsSetServiceRegion())
+                {
+                    request.Parameters.Add("ServiceRegion", StringUtils.FromString(publicRequest.ServiceRegion));
                 }
                 if(publicRequest.IsSetSubnetConfigurations())
                 {

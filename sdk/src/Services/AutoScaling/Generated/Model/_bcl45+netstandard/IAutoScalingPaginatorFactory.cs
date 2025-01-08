@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the autoscaling-2011-01-01.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -36,9 +37,24 @@ namespace Amazon.AutoScaling.Model
         IDescribeAutoScalingInstancesPaginator DescribeAutoScalingInstances(DescribeAutoScalingInstancesRequest request);
 
         /// <summary>
+        /// Paginator for DescribeInstanceRefreshes operation
+        ///</summary>
+        IDescribeInstanceRefreshesPaginator DescribeInstanceRefreshes(DescribeInstanceRefreshesRequest request);
+
+        /// <summary>
         /// Paginator for DescribeLaunchConfigurations operation
         ///</summary>
         IDescribeLaunchConfigurationsPaginator DescribeLaunchConfigurations(DescribeLaunchConfigurationsRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeLoadBalancers operation
+        ///</summary>
+        IDescribeLoadBalancersPaginator DescribeLoadBalancers(DescribeLoadBalancersRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeLoadBalancerTargetGroups operation
+        ///</summary>
+        IDescribeLoadBalancerTargetGroupsPaginator DescribeLoadBalancerTargetGroups(DescribeLoadBalancerTargetGroupsRequest request);
 
         /// <summary>
         /// Paginator for DescribeNotificationConfigurations operation

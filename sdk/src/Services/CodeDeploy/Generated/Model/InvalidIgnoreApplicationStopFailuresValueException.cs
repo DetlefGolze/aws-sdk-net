@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
-    /// The IgnoreApplicationStopFailures value is invalid. For Lambda deployments, <code>false</code>
-    /// is expected. For EC2/On-premises deployments, <code>true</code> or <code>false</code>
-    /// is expected.
+    /// The IgnoreApplicationStopFailures value is invalid. For Lambda deployments, <c>false</c>
+    /// is expected. For EC2/On-premises deployments, <c>true</c> or <c>false</c> is expected.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

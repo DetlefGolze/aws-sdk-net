@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
@@ -41,11 +42,11 @@ namespace Amazon.SimpleNotificationService.Model
         /// <summary>
         /// Gets and sets the property DataProtectionPolicy. 
         /// <para>
-        /// The JSON serialization of the topic's <code>DataProtectionPolicy</code>.
+        /// The JSON serialization of the topic's <c>DataProtectionPolicy</c>.
         /// </para>
         ///  
         /// <para>
-        /// The <code>DataProtectionPolicy</code> must be in JSON string format.
+        /// The <c>DataProtectionPolicy</c> must be in JSON string format.
         /// </para>
         ///  
         /// <para>
@@ -68,7 +69,7 @@ namespace Amazon.SimpleNotificationService.Model
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The ARN of the topic whose <code>DataProtectionPolicy</code> you want to add or update.
+        /// The ARN of the topic whose <c>DataProtectionPolicy</c> you want to add or update.
         /// </para>
         ///  
         /// <para>

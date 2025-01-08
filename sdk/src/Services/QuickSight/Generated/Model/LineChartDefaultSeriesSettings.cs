@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The options that determine the default presentation of all line series in <code>LineChartVisual</code>.
+    /// The options that determine the default presentation of all line series in <c>LineChartVisual</c>.
     /// </summary>
     public partial class LineChartDefaultSeriesSettings
     {

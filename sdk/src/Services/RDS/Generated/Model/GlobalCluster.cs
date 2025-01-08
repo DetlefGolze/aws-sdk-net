@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -35,15 +36,18 @@ namespace Amazon.RDS.Model
     {
         private string _databaseName;
         private bool? _deletionProtection;
+        private string _endpoint;
         private string _engine;
+        private string _engineLifecycleSupport;
         private string _engineVersion;
         private FailoverState _failoverState;
         private string _globalClusterArn;
         private string _globalClusterIdentifier;
-        private List<GlobalClusterMember> _globalClusterMembers = new List<GlobalClusterMember>();
+        private List<GlobalClusterMember> _globalClusterMembers = AWSConfigs.InitializeCollections ? new List<GlobalClusterMember>() : null;
         private string _globalClusterResourceId;
         private string _status;
         private bool? _storageEncrypted;
+        private List<Tag> _tagList = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property DatabaseName. 
@@ -82,6 +86,25 @@ namespace Amazon.RDS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Endpoint. 
+        /// <para>
+        ///  The writer endpoint for the new global database cluster. This endpoint always points
+        /// to the writer DB instance in the current primary cluster. 
+        /// </para>
+        /// </summary>
+        public string Endpoint
+        {
+            get { return this._endpoint; }
+            set { this._endpoint = value; }
+        }
+
+        // Check to see if Endpoint property is set
+        internal bool IsSetEndpoint()
+        {
+            return this._endpoint != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Engine. 
         /// <para>
         /// The Aurora database engine used by the global database cluster.
@@ -97,6 +120,28 @@ namespace Amazon.RDS.Model
         internal bool IsSetEngine()
         {
             return this._engine != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EngineLifecycleSupport. 
+        /// <para>
+        /// The life cycle type for the global cluster.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see CreateGlobalCluster.
+        /// </para>
+        /// </summary>
+        public string EngineLifecycleSupport
+        {
+            get { return this._engineLifecycleSupport; }
+            set { this._engineLifecycleSupport = value; }
+        }
+
+        // Check to see if EngineLifecycleSupport property is set
+        internal bool IsSetEngineLifecycleSupport()
+        {
+            return this._engineLifecycleSupport != null;
         }
 
         /// <summary>
@@ -122,7 +167,7 @@ namespace Amazon.RDS.Model
         /// <para>
         /// A data object containing all properties for the current state of an in-process or
         /// pending switchover or failover process for this global cluster (Aurora global database).
-        /// This object is empty unless the <code>SwitchoverGlobalCluster</code> or <code>FailoverGlobalCluster</code>
+        /// This object is empty unless the <c>SwitchoverGlobalCluster</c> or <c>FailoverGlobalCluster</c>
         /// operation was called on this global cluster.
         /// </para>
         /// </summary>
@@ -190,7 +235,7 @@ namespace Amazon.RDS.Model
         // Check to see if GlobalClusterMembers property is set
         internal bool IsSetGlobalClusterMembers()
         {
-            return this._globalClusterMembers != null && this._globalClusterMembers.Count > 0; 
+            return this._globalClusterMembers != null && (this._globalClusterMembers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -247,6 +292,21 @@ namespace Amazon.RDS.Model
         internal bool IsSetStorageEncrypted()
         {
             return this._storageEncrypted.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property TagList.
+        /// </summary>
+        public List<Tag> TagList
+        {
+            get { return this._tagList; }
+            set { this._tagList = value; }
+        }
+
+        // Check to see if TagList property is set
+        internal bool IsSetTagList()
+        {
+            return this._tagList != null && (this._tagList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeOrderableDBInstanceOptions operation.
-    /// Returns a list of orderable DB instance options for the specified DB engine, DB engine
-    /// version, and DB instance class.
+    /// Describes the orderable DB instance options for a specified DB engine.
     /// </summary>
     public partial class DescribeOrderableDBInstanceOptionsRequest : AmazonRDSRequest
     {
@@ -39,7 +39,7 @@ namespace Amazon.RDS.Model
         private string _dbInstanceClass;
         private string _engine;
         private string _engineVersion;
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private string _licenseModel;
         private string _marker;
         private int? _maxRecords;
@@ -49,16 +49,16 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property AvailabilityZoneGroup. 
         /// <para>
         /// The Availability Zone group associated with a Local Zone. Specify this parameter to
-        /// retrieve available offerings for the Local Zones in the group.
+        /// retrieve available options for the Local Zones in the group.
         /// </para>
         ///  
         /// <para>
-        /// Omit this parameter to show the available offerings in the specified Amazon Web Services
+        /// Omit this parameter to show the available options in the specified Amazon Web Services
         /// Region.
         /// </para>
         ///  
         /// <para>
-        /// This setting doesn't apply to RDS Custom.
+        /// This setting doesn't apply to RDS Custom DB instances.
         /// </para>
         /// </summary>
         public string AvailabilityZoneGroup
@@ -76,8 +76,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property DBInstanceClass. 
         /// <para>
-        /// The DB instance class filter value. Specify this parameter to show only the available
-        /// offerings matching the specified DB instance class.
+        /// A filter to include only the available options for the specified DB instance class.
         /// </para>
         /// </summary>
         public string DBInstanceClass
@@ -95,7 +94,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Engine. 
         /// <para>
-        /// The name of the engine to retrieve DB instance options for.
+        /// The name of the database engine to describe DB instance options for.
         /// </para>
         ///  
         /// <para>
@@ -103,59 +102,79 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>aurora-mysql</code> 
+        ///  <c>aurora-mysql</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>aurora-postgresql</code> 
+        ///  <c>aurora-postgresql</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>custom-oracle-ee</code> 
+        ///  <c>custom-oracle-ee</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mariadb</code> 
+        ///  <c>custom-oracle-ee-cdb</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mysql</code> 
+        ///  <c>custom-oracle-se2</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-ee</code> 
+        ///  <c>custom-oracle-se2-cdb</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-ee-cdb</code> 
+        ///  <c>db2-ae</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-se2</code> 
+        ///  <c>db2-se</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-se2-cdb</code> 
+        ///  <c>mariadb</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>postgres</code> 
+        ///  <c>mysql</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ee</code> 
+        ///  <c>oracle-ee</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-se</code> 
+        ///  <c>oracle-ee-cdb</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ex</code> 
+        ///  <c>oracle-se2</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-web</code> 
+        ///  <c>oracle-se2-cdb</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>postgres</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>sqlserver-ee</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>sqlserver-se</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>sqlserver-ex</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>sqlserver-web</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -175,8 +194,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property EngineVersion. 
         /// <para>
-        /// The engine version filter value. Specify this parameter to show only the available
-        /// offerings matching the specified engine version.
+        /// A filter to include only the available options for the specified engine version.
         /// </para>
         /// </summary>
         public string EngineVersion
@@ -206,14 +224,13 @@ namespace Amazon.RDS.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property LicenseModel. 
         /// <para>
-        /// The license model filter value. Specify this parameter to show only the available
-        /// offerings matching the specified license model.
+        /// A filter to include only the available options for the specified license model.
         /// </para>
         ///  
         /// <para>
@@ -237,7 +254,7 @@ namespace Amazon.RDS.Model
         /// <para>
         /// An optional pagination token provided by a previous DescribeOrderableDBInstanceOptions
         /// request. If this parameter is specified, the response includes only records beyond
-        /// the marker, up to the value specified by <code>MaxRecords</code>.
+        /// the marker, up to the value specified by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -256,8 +273,8 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property MaxRecords. 
         /// <para>
         /// The maximum number of records to include in the response. If more records exist than
-        /// the specified <code>MaxRecords</code> value, a pagination token called a marker is
-        /// included in the response so that you can retrieve the remaining results.
+        /// the specified <c>MaxRecords</c> value, a pagination token called a marker is included
+        /// in the response so that you can retrieve the remaining results.
         /// </para>
         ///  
         /// <para>
@@ -265,7 +282,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Constraints: Minimum 20, maximum 10000.
+        /// Constraints: Minimum 20, maximum 1000.
         /// </para>
         /// </summary>
         public int MaxRecords

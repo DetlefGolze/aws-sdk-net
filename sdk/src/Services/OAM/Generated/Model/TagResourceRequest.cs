@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OAM.Model
 {
     /// <summary>
@@ -46,8 +47,8 @@ namespace Amazon.OAM.Model
     /// </para>
     ///  
     /// <para>
-    /// You can use the <code>TagResource</code> action with a resource that already has tags.
-    /// If you specify a new tag key for the alarm, this tag is appended to the list of tags
+    /// You can use the <c>TagResource</c> action with a resource that already has tags. If
+    /// you specify a new tag key for the alarm, this tag is appended to the list of tags
     /// associated with the alarm. If you specify a tag key that is already associated with
     /// the alarm, the new tag value that you specify replaces the previous value for that
     /// tag.
@@ -59,7 +60,7 @@ namespace Amazon.OAM.Model
     ///  <important> 
     /// <para>
     /// Unlike tagging permissions in other Amazon Web Services services, to tag or untag
-    /// links and sinks you must have the <code>oam:ResourceTag</code> permission. The <code>iam:ResourceTag</code>
+    /// links and sinks you must have the <c>oam:ResourceTag</c> permission. The <c>iam:ResourceTag</c>
     /// permission does not allow you to tag and untag links and sinks.
     /// </para>
     ///  </important>
@@ -67,7 +68,7 @@ namespace Amazon.OAM.Model
     public partial class TagResourceRequest : AmazonOAMRequest
     {
         private string _resourceArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -76,13 +77,13 @@ namespace Amazon.OAM.Model
         /// </para>
         ///  
         /// <para>
-        /// The ARN format of a sink is <code>arn:aws:oam:<i>Region</i>:<i>account-id</i>:sink/<i>sink-id</i>
-        /// </code> 
+        /// The ARN format of a sink is <c>arn:aws:oam:<i>Region</i>:<i>account-id</i>:sink/<i>sink-id</i>
+        /// </c> 
         /// </para>
         ///  
         /// <para>
-        /// The ARN format of a link is <code>arn:aws:oam:<i>Region</i>:<i>account-id</i>:link/<i>link-id</i>
-        /// </code> 
+        /// The ARN format of a link is <c>arn:aws:oam:<i>Region</i>:<i>account-id</i>:link/<i>link-id</i>
+        /// </c> 
         /// </para>
         ///  
         /// <para>
@@ -119,7 +120,7 @@ namespace Amazon.OAM.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

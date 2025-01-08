@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -34,23 +35,23 @@ namespace Amazon.Neptune.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    ///  <code>CreateDBClusterEndpoint</code> 
+    ///  <c>CreateDBClusterEndpoint</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>DescribeDBClusterEndpoints</code> 
+    ///  <c>DescribeDBClusterEndpoints</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ModifyDBClusterEndpoint</code> 
+    ///  <c>ModifyDBClusterEndpoint</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>DeleteDBClusterEndpoint</code> 
+    ///  <c>DeleteDBClusterEndpoint</c> 
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// For the data structure that represents Amazon Neptune DB instance endpoints, see <code>Endpoint</code>.
+    /// For the data structure that represents Amazon Neptune DB instance endpoints, see <c>Endpoint</c>.
     /// </para>
     /// </summary>
     public partial class CreateDBClusterEndpointResponse : AmazonWebServiceResponse
@@ -62,15 +63,15 @@ namespace Amazon.Neptune.Model
         private string _dbClusterIdentifier;
         private string _endpoint;
         private string _endpointType;
-        private List<string> _excludedMembers = new List<string>();
-        private List<string> _staticMembers = new List<string>();
+        private List<string> _excludedMembers = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _staticMembers = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _status;
 
         /// <summary>
         /// Gets and sets the property CustomEndpointType. 
         /// <para>
-        /// The type associated with a custom endpoint. One of: <code>READER</code>, <code>WRITER</code>,
-        /// <code>ANY</code>.
+        /// The type associated with a custom endpoint. One of: <c>READER</c>, <c>WRITER</c>,
+        /// <c>ANY</c>.
         /// </para>
         /// </summary>
         public string CustomEndpointType
@@ -181,7 +182,7 @@ namespace Amazon.Neptune.Model
         /// <summary>
         /// Gets and sets the property EndpointType. 
         /// <para>
-        /// The type of the endpoint. One of: <code>READER</code>, <code>WRITER</code>, <code>CUSTOM</code>.
+        /// The type of the endpoint. One of: <c>READER</c>, <c>WRITER</c>, <c>CUSTOM</c>.
         /// </para>
         /// </summary>
         public string EndpointType
@@ -213,7 +214,7 @@ namespace Amazon.Neptune.Model
         // Check to see if ExcludedMembers property is set
         internal bool IsSetExcludedMembers()
         {
-            return this._excludedMembers != null && this._excludedMembers.Count > 0; 
+            return this._excludedMembers != null && (this._excludedMembers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -231,16 +232,16 @@ namespace Amazon.Neptune.Model
         // Check to see if StaticMembers property is set
         internal bool IsSetStaticMembers()
         {
-            return this._staticMembers != null && this._staticMembers.Count > 0; 
+            return this._staticMembers != null && (this._staticMembers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The current status of the endpoint. One of: <code>creating</code>, <code>available</code>,
-        /// <code>deleting</code>, <code>inactive</code>, <code>modifying</code>. The <code>inactive</code>
-        /// state applies to an endpoint that cannot be used for a certain kind of cluster, such
-        /// as a <code>writer</code> endpoint for a read-only secondary cluster in a global database.
+        /// The current status of the endpoint. One of: <c>creating</c>, <c>available</c>, <c>deleting</c>,
+        /// <c>inactive</c>, <c>modifying</c>. The <c>inactive</c> state applies to an endpoint
+        /// that cannot be used for a certain kind of cluster, such as a <c>writer</c> endpoint
+        /// for a read-only secondary cluster in a global database.
         /// </para>
         /// </summary>
         public string Status

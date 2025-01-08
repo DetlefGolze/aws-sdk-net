@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTAnalytics.Model
 {
     /// <summary>
@@ -76,7 +77,7 @@ namespace Amazon.IoTAnalytics.Model
         /// <summary>
         /// Gets and sets the property MessageId. 
         /// <para>
-        /// The ID of the message that caused the error. See the value corresponding to the <code>messageId</code>
+        /// The ID of the message that caused the error. See the value corresponding to the <c>messageId</c>
         /// key in the message object.
         /// </para>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.CustomerProfiles.Model
         /// <summary>
         /// Gets and sets the property IncludeHidden. 
         /// <para>
-        /// Boolean to indicate if hidden integration should be returned. Defaults to <code>False</code>.
+        /// Boolean to indicate if hidden integration should be returned. Defaults to <c>False</c>.
         /// </para>
         /// </summary>
         public bool IncludeHidden

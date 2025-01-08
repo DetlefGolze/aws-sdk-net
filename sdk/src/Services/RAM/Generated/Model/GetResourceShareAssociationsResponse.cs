@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RAM.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.RAM.Model
     public partial class GetResourceShareAssociationsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ResourceShareAssociation> _resourceShareAssociations = new List<ResourceShareAssociation>();
+        private List<ResourceShareAssociation> _resourceShareAssociations = AWSConfigs.InitializeCollections ? new List<ResourceShareAssociation>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If present, this value indicates that more output is available than is included in
-        /// the current response. Use this value in the <code>NextToken</code> request parameter
-        /// in a subsequent call to the operation to get the next part of the output. You should
-        /// repeat this until the <code>NextToken</code> response element comes back as <code>null</code>.
+        /// the current response. Use this value in the <c>NextToken</c> request parameter in
+        /// a subsequent call to the operation to get the next part of the output. You should
+        /// repeat this until the <c>NextToken</c> response element comes back as <c>null</c>.
         /// This indicates that this is the last page of results.
         /// </para>
         /// </summary>
@@ -73,7 +74,7 @@ namespace Amazon.RAM.Model
         // Check to see if ResourceShareAssociations property is set
         internal bool IsSetResourceShareAssociations()
         {
-            return this._resourceShareAssociations != null && this._resourceShareAssociations.Count > 0; 
+            return this._resourceShareAssociations != null && (this._resourceShareAssociations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

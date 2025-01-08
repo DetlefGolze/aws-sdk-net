@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.CloudWatchLogs.Model
     public partial class MetricTransformation
     {
         private double? _defaultValue;
-        private Dictionary<string, string> _dimensions = new Dictionary<string, string>();
+        private Dictionary<string, string> _dimensions = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _metricName;
         private string _metricNamespace;
         private string _metricValue;
@@ -68,9 +69,9 @@ namespace Amazon.CloudWatchLogs.Model
         ///  <important> 
         /// <para>
         /// Metrics extracted from log events are charged as custom metrics. To prevent unexpected
-        /// high charges, do not specify high-cardinality fields such as <code>IPAddress</code>
-        /// or <code>requestID</code> as dimensions. Each different value found for a dimension
-        /// is treated as a separate metric and accrues charges as a separate custom metric. 
+        /// high charges, do not specify high-cardinality fields such as <c>IPAddress</c> or <c>requestID</c>
+        /// as dimensions. Each different value found for a dimension is treated as a separate
+        /// metric and accrues charges as a separate custom metric. 
         /// </para>
         ///  
         /// <para>
@@ -96,7 +97,7 @@ namespace Amazon.CloudWatchLogs.Model
         // Check to see if Dimensions property is set
         internal bool IsSetDimensions()
         {
-            return this._dimensions != null && this._dimensions.Count > 0; 
+            return this._dimensions != null && (this._dimensions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -161,7 +162,7 @@ namespace Amazon.CloudWatchLogs.Model
         /// <summary>
         /// Gets and sets the property Unit. 
         /// <para>
-        /// The unit to assign to the metric. If you omit this, the unit is set as <code>None</code>.
+        /// The unit to assign to the metric. If you omit this, the unit is set as <c>None</c>.
         /// </para>
         /// </summary>
         public StandardUnit Unit

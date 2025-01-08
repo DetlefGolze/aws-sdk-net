@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Lambda.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -157,6 +158,12 @@ namespace Amazon.Lambda.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = new ListUnmarshaller<Layer, LayerUnmarshaller>(LayerUnmarshaller.Instance);
                     response.Layers = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("LoggingConfig", targetDepth))
+                {
+                    var unmarshaller = LoggingConfigUnmarshaller.Instance;
+                    response.LoggingConfig = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("MasterArn", targetDepth))

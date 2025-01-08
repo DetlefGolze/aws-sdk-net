@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTAnalytics.Model
 {
     /// <summary>
@@ -100,7 +101,7 @@ namespace Amazon.IoTAnalytics.Model
         /// Gets and sets the property ScheduledBefore. 
         /// <para>
         /// A filter to limit results to those dataset contents whose creation is scheduled before
-        /// the given time. See the field <code>triggers.schedule</code> in the <code>CreateDataset</code>
+        /// the given time. See the field <c>triggers.schedule</c> in the <c>CreateDataset</c>
         /// request. (timestamp)
         /// </para>
         /// </summary>
@@ -120,7 +121,7 @@ namespace Amazon.IoTAnalytics.Model
         /// Gets and sets the property ScheduledOnOrAfter. 
         /// <para>
         /// A filter to limit results to those dataset contents whose creation is scheduled on
-        /// or after the given time. See the field <code>triggers.schedule</code> in the <code>CreateDataset</code>
+        /// or after the given time. See the field <c>triggers.schedule</c> in the <c>CreateDataset</c>
         /// request. (timestamp)
         /// </para>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.ECS.Model
     /// </summary>
     public partial class ListTaskDefinitionFamiliesResponse : AmazonWebServiceResponse
     {
-        private List<string> _families = new List<string>();
+        private List<string> _families = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Families. 
         /// <para>
-        /// The list of task definition family names that match the <code>ListTaskDefinitionFamilies</code>
+        /// The list of task definition family names that match the <c>ListTaskDefinitionFamilies</c>
         /// request.
         /// </para>
         /// </summary>
@@ -52,16 +53,16 @@ namespace Amazon.ECS.Model
         // Check to see if Families property is set
         internal bool IsSetFamilies()
         {
-            return this._families != null && this._families.Count > 0; 
+            return this._families != null && (this._families.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value to include in a future <code>ListTaskDefinitionFamilies</code>
-        /// request. When the results of a <code>ListTaskDefinitionFamilies</code> request exceed
-        /// <code>maxResults</code>, this value can be used to retrieve the next page of results.
-        /// This value is <code>null</code> when there are no more results to return.
+        /// The <c>nextToken</c> value to include in a future <c>ListTaskDefinitionFamilies</c>
+        /// request. When the results of a <c>ListTaskDefinitionFamilies</c> request exceed <c>maxResults</c>,
+        /// this value can be used to retrieve the next page of results. This value is <c>null</c>
+        /// when there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken

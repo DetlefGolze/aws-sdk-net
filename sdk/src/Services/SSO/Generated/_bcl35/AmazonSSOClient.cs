@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.SSO
 {
     /// <summary>
-    /// Implementation for accessing SSO
+    /// <para>Implementation for accessing SSO</para>
     ///
     /// AWS IAM Identity Center (successor to AWS Single Sign-On) Portal is a web service
     /// that makes it easy for you to assign user access to IAM Identity Center resources
@@ -42,8 +43,8 @@ namespace Amazon.SSO
     /// 
     ///  <note> 
     /// <para>
-    /// Although AWS Single Sign-On was renamed, the <code>sso</code> and <code>identitystore</code>
-    /// API namespaces will continue to retain their original name for backward compatibility
+    /// Although AWS Single Sign-On was renamed, the <c>sso</c> and <c>identitystore</c> API
+    /// namespaces will continue to retain their original name for backward compatibility
     /// purposes. For more information, see <a href="https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html#renamed">IAM
     /// Identity Center rename</a>.
     /// </para>
@@ -593,11 +594,11 @@ namespace Amazon.SSO
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

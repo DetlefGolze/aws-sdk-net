@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDBElastic.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.DocDBElastic.Model
     #endif
     public partial class ValidationException : AmazonDocDBElasticException
     {
-        private List<ValidationExceptionField> _fieldList = new List<ValidationExceptionField>();
+        private List<ValidationExceptionField> _fieldList = AWSConfigs.InitializeCollections ? new List<ValidationExceptionField>() : null;
         private ValidationExceptionReason _reason;
 
         /// <summary>
@@ -141,14 +142,14 @@ namespace Amazon.DocDBElastic.Model
         // Check to see if FieldList property is set
         internal bool IsSetFieldList()
         {
-            return this._fieldList != null && this._fieldList.Count > 0; 
+            return this._fieldList != null && (this._fieldList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Reason. 
         /// <para>
-        /// The reason why the validation exception occurred (one of <code>unknownOperation</code>,
-        /// <code>cannotParse</code>, <code>fieldValidationFailed</code>, or <code>other</code>).
+        /// The reason why the validation exception occurred (one of <c>unknownOperation</c>,
+        /// <c>cannotParse</c>, <c>fieldValidationFailed</c>, or <c>other</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

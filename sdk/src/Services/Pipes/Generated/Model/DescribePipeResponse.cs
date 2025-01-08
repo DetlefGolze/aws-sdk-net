@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pipes.Model
 {
     /// <summary>
@@ -40,13 +41,15 @@ namespace Amazon.Pipes.Model
         private RequestedPipeStateDescribeResponse _desiredState;
         private string _enrichment;
         private PipeEnrichmentParameters _enrichmentParameters;
+        private string _kmsKeyIdentifier;
         private DateTime? _lastModifiedTime;
+        private PipeLogConfiguration _logConfiguration;
         private string _name;
         private string _roleArn;
         private string _source;
         private PipeSourceParameters _sourceParameters;
         private string _stateReason;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _target;
         private PipeTargetParameters _targetParameters;
 
@@ -180,6 +183,31 @@ namespace Amazon.Pipes.Model
         }
 
         /// <summary>
+        /// Gets and sets the property KmsKeyIdentifier. 
+        /// <para>
+        /// The identifier of the KMS customer managed key for EventBridge to use to encrypt pipe
+        /// data, if one has been specified.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-encryption.html">Data
+        /// encryption in EventBridge</a> in the <i>Amazon EventBridge User Guide</i>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=2048)]
+        public string KmsKeyIdentifier
+        {
+            get { return this._kmsKeyIdentifier; }
+            set { this._kmsKeyIdentifier = value; }
+        }
+
+        // Check to see if KmsKeyIdentifier property is set
+        internal bool IsSetKmsKeyIdentifier()
+        {
+            return this._kmsKeyIdentifier != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property LastModifiedTime. 
         /// <para>
         /// When the pipe was last updated, in <a href="https://www.w3.org/TR/NOTE-datetime">ISO-8601
@@ -196,6 +224,24 @@ namespace Amazon.Pipes.Model
         internal bool IsSetLastModifiedTime()
         {
             return this._lastModifiedTime.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property LogConfiguration. 
+        /// <para>
+        /// The logging configuration settings for the pipe.
+        /// </para>
+        /// </summary>
+        public PipeLogConfiguration LogConfiguration
+        {
+            get { return this._logConfiguration; }
+            set { this._logConfiguration = value; }
+        }
+
+        // Check to see if LogConfiguration property is set
+        internal bool IsSetLogConfiguration()
+        {
+            return this._logConfiguration != null;
         }
 
         /// <summary>
@@ -308,7 +354,7 @@ namespace Amazon.Pipes.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -334,6 +380,12 @@ namespace Amazon.Pipes.Model
         /// Gets and sets the property TargetParameters. 
         /// <para>
         /// The parameters required to set up a target for your pipe.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about pipe target parameters, including how to use dynamic path
+        /// parameters, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-target.html">Target
+        /// parameters</a> in the <i>Amazon EventBridge User Guide</i>.
         /// </para>
         /// </summary>
         public PipeTargetParameters TargetParameters

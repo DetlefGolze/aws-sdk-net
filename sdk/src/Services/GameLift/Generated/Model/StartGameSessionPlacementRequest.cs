@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -86,22 +87,22 @@ namespace Amazon.GameLift.Model
     ///  
     /// <para>
     /// To track the status of a placement request, call <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeGameSessionPlacement.html">DescribeGameSessionPlacement</a>
-    /// and check the request's status. If the status is <code>FULFILLED</code>, a new game
-    /// session has been created and a game session ARN and Region are referenced. If the
-    /// placement request times out, you can resubmit the request or retry it with a different
-    /// queue. 
+    /// and check the request's status. If the status is <c>FULFILLED</c>, a new game session
+    /// has been created and a game session ARN and Region are referenced. If the placement
+    /// request times out, you can resubmit the request or retry it with a different queue.
+    /// 
     /// </para>
     /// </summary>
     public partial class StartGameSessionPlacementRequest : AmazonGameLiftRequest
     {
-        private List<DesiredPlayerSession> _desiredPlayerSessions = new List<DesiredPlayerSession>();
-        private List<GameProperty> _gameProperties = new List<GameProperty>();
+        private List<DesiredPlayerSession> _desiredPlayerSessions = AWSConfigs.InitializeCollections ? new List<DesiredPlayerSession>() : null;
+        private List<GameProperty> _gameProperties = AWSConfigs.InitializeCollections ? new List<GameProperty>() : null;
         private string _gameSessionData;
         private string _gameSessionName;
         private string _gameSessionQueueName;
         private int? _maximumPlayerSessionCount;
         private string _placementId;
-        private List<PlayerLatency> _playerLatencies = new List<PlayerLatency>();
+        private List<PlayerLatency> _playerLatencies = AWSConfigs.InitializeCollections ? new List<PlayerLatency>() : null;
 
         /// <summary>
         /// Gets and sets the property DesiredPlayerSessions. 
@@ -118,16 +119,14 @@ namespace Amazon.GameLift.Model
         // Check to see if DesiredPlayerSessions property is set
         internal bool IsSetDesiredPlayerSessions()
         {
-            return this._desiredPlayerSessions != null && this._desiredPlayerSessions.Count > 0; 
+            return this._desiredPlayerSessions != null && (this._desiredPlayerSessions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property GameProperties. 
         /// <para>
-        /// A set of custom properties for a game session, formatted as key:value pairs. These
-        /// properties are passed to a game server process with a request to start a new game
-        /// session (see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
-        /// a Game Session</a>).
+        /// A set of key-value pairs that can store custom data in a game session. For example:
+        /// <c>{"Key": "difficulty", "Value": "novice"}</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=16)]
@@ -140,16 +139,16 @@ namespace Amazon.GameLift.Model
         // Check to see if GameProperties property is set
         internal bool IsSetGameProperties()
         {
-            return this._gameProperties != null && this._gameProperties.Count > 0; 
+            return this._gameProperties != null && (this._gameProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property GameSessionData. 
         /// <para>
         /// A set of custom game session properties, formatted as a single string value. This
-        /// data is passed to a game server process in the <code>GameSession</code> object with
-        /// a request to start a new game session (see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
-        /// a Game Session</a>).
+        /// data is passed to a game server process with a request to start a new game session.
+        /// For more information, see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
+        /// a game session</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=262144)]
@@ -248,9 +247,9 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property PlayerLatencies. 
         /// <para>
         /// A set of values, expressed in milliseconds, that indicates the amount of latency that
-        /// a player experiences when connected to Amazon Web Services Regions. This information
-        /// is used to try to place the new game session where it can offer the best possible
-        /// gameplay experience for the players. 
+        /// a player experiences when connected to @aws; Regions. This information is used to
+        /// try to place the new game session where it can offer the best possible gameplay experience
+        /// for the players. 
         /// </para>
         /// </summary>
         public List<PlayerLatency> PlayerLatencies
@@ -262,7 +261,7 @@ namespace Amazon.GameLift.Model
         // Check to see if PlayerLatencies property is set
         internal bool IsSetPlayerLatencies()
         {
-            return this._playerLatencies != null && this._playerLatencies.Count > 0; 
+            return this._playerLatencies != null && (this._playerLatencies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

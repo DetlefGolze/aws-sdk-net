@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Pipes.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Pipes
 {
     /// <summary>
-    /// Interface for accessing Pipes
+    /// <para>Interface for accessing Pipes</para>
     ///
     /// Amazon EventBridge Pipes connects event sources to targets. Pipes reduces the need
     /// for specialized knowledge and integration code when developing event driven architectures.
@@ -457,10 +458,10 @@ namespace Amazon.Pipes
         /// </para>
         ///  
         /// <para>
-        /// You can use the <code>TagResource</code> action with a pipe that already has tags.
-        /// If you specify a new tag key, this tag is appended to the list of tags associated
-        /// with the pipe. If you specify a tag key that is already associated with the pipe,
-        /// the new tag value that you specify replaces the previous value for that tag.
+        /// You can use the <c>TagResource</c> action with a pipe that already has tags. If you
+        /// specify a new tag key, this tag is appended to the list of tags associated with the
+        /// pipe. If you specify a tag key that is already associated with the pipe, the new tag
+        /// value that you specify replaces the previous value for that tag.
         /// </para>
         ///  
         /// <para>
@@ -497,10 +498,10 @@ namespace Amazon.Pipes
         /// </para>
         ///  
         /// <para>
-        /// You can use the <code>TagResource</code> action with a pipe that already has tags.
-        /// If you specify a new tag key, this tag is appended to the list of tags associated
-        /// with the pipe. If you specify a tag key that is already associated with the pipe,
-        /// the new tag value that you specify replaces the previous value for that tag.
+        /// You can use the <c>TagResource</c> action with a pipe that already has tags. If you
+        /// specify a new tag key, this tag is appended to the list of tags associated with the
+        /// pipe. If you specify a tag key that is already associated with the pipe, the new tag
+        /// value that you specify replaces the previous value for that tag.
         /// </para>
         ///  
         /// <para>
@@ -577,13 +578,14 @@ namespace Amazon.Pipes
 
 
         /// <summary>
-        /// Update an existing pipe. When you call <code>UpdatePipe</code>, only the fields that
-        /// are included in the request are changed, the rest are unchanged. The exception to
-        /// this is if you modify any Amazon Web Services-service specific fields in the <code>SourceParameters</code>,
-        /// <code>EnrichmentParameters</code>, or <code>TargetParameters</code> objects. The fields
-        /// in these objects are updated atomically as one and override existing values. This
-        /// is by design and means that if you don't specify an optional field in one of these
-        /// Parameters objects, that field will be set to its system-default value after the update.
+        /// Update an existing pipe. When you call <c>UpdatePipe</c>, EventBridge only the updates
+        /// fields you have specified in the request; the rest remain unchanged. The exception
+        /// to this is if you modify any Amazon Web Services-service specific fields in the <c>SourceParameters</c>,
+        /// <c>EnrichmentParameters</c>, or <c>TargetParameters</c> objects. For example, <c>DynamoDBStreamParameters</c>
+        /// or <c>EventBridgeEventBusParameters</c>. EventBridge updates the fields in these objects
+        /// atomically as one and overrides existing values. This is by design, and means that
+        /// if you don't specify an optional field in one of these <c>Parameters</c> objects,
+        /// EventBridge sets that field to its system-default value during the update.
         /// 
         ///  
         /// <para>
@@ -615,13 +617,14 @@ namespace Amazon.Pipes
 
 
         /// <summary>
-        /// Update an existing pipe. When you call <code>UpdatePipe</code>, only the fields that
-        /// are included in the request are changed, the rest are unchanged. The exception to
-        /// this is if you modify any Amazon Web Services-service specific fields in the <code>SourceParameters</code>,
-        /// <code>EnrichmentParameters</code>, or <code>TargetParameters</code> objects. The fields
-        /// in these objects are updated atomically as one and override existing values. This
-        /// is by design and means that if you don't specify an optional field in one of these
-        /// Parameters objects, that field will be set to its system-default value after the update.
+        /// Update an existing pipe. When you call <c>UpdatePipe</c>, EventBridge only the updates
+        /// fields you have specified in the request; the rest remain unchanged. The exception
+        /// to this is if you modify any Amazon Web Services-service specific fields in the <c>SourceParameters</c>,
+        /// <c>EnrichmentParameters</c>, or <c>TargetParameters</c> objects. For example, <c>DynamoDBStreamParameters</c>
+        /// or <c>EventBridgeEventBusParameters</c>. EventBridge updates the fields in these objects
+        /// atomically as one and overrides existing values. This is by design, and means that
+        /// if you don't specify an optional field in one of these <c>Parameters</c> objects,
+        /// EventBridge sets that field to its system-default value during the update.
         /// 
         ///  
         /// <para>

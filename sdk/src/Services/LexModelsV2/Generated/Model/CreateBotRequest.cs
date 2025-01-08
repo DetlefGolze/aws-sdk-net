@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.LexModelsV2.Model
     /// </summary>
     public partial class CreateBotRequest : AmazonLexModelsV2Request
     {
-        private List<BotMember> _botMembers = new List<BotMember>();
+        private List<BotMember> _botMembers = AWSConfigs.InitializeCollections ? new List<BotMember>() : null;
         private string _botName;
-        private Dictionary<string, string> _botTags = new Dictionary<string, string>();
+        private Dictionary<string, string> _botTags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private BotType _botType;
         private DataPrivacy _dataPrivacy;
         private string _description;
         private int? _idleSessionTTLInSeconds;
         private string _roleArn;
-        private Dictionary<string, string> _testBotAliasTags = new Dictionary<string, string>();
+        private Dictionary<string, string> _testBotAliasTags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property BotMembers. 
@@ -60,7 +61,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if BotMembers property is set
         internal bool IsSetBotMembers()
         {
-            return this._botMembers != null && this._botMembers.Count > 0; 
+            return this._botMembers != null && (this._botMembers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -86,8 +87,8 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property BotTags. 
         /// <para>
         /// A list of tags to add to the bot. You can only add tags when you create a bot. You
-        /// can't use the <code>UpdateBot</code> operation to update tags. To update tags, use
-        /// the <code>TagResource</code> operation.
+        /// can't use the <c>UpdateBot</c> operation to update tags. To update tags, use the <c>TagResource</c>
+        /// operation.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=200)]
@@ -100,7 +101,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if BotTags property is set
         internal bool IsSetBotTags()
         {
-            return this._botTags != null && this._botTags.Count > 0; 
+            return this._botTags != null && (this._botTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -213,8 +214,8 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property TestBotAliasTags. 
         /// <para>
         /// A list of tags to add to the test alias for a bot. You can only add tags when you
-        /// create a bot. You can't use the <code>UpdateAlias</code> operation to update tags.
-        /// To update tags on the test alias, use the <code>TagResource</code> operation.
+        /// create a bot. You can't use the <c>UpdateAlias</c> operation to update tags. To update
+        /// tags on the test alias, use the <c>TagResource</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=200)]
@@ -227,7 +228,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if TestBotAliasTags property is set
         internal bool IsSetTestBotAliasTags()
         {
-            return this._testBotAliasTags != null && this._testBotAliasTags.Count > 0; 
+            return this._testBotAliasTags != null && (this._testBotAliasTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

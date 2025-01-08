@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Bedrock.Model
 {
     /// <summary>
@@ -33,13 +34,14 @@ namespace Amazon.Bedrock.Model
     /// </summary>
     public partial class FoundationModelDetails
     {
-        private List<string> _customizationsSupported = new List<string>();
-        private List<string> _inferenceTypesSupported = new List<string>();
-        private List<string> _inputModalities = new List<string>();
+        private List<string> _customizationsSupported = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _inferenceTypesSupported = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _inputModalities = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _modelArn;
         private string _modelId;
+        private FoundationModelLifecycle _modelLifecycle;
         private string _modelName;
-        private List<string> _outputModalities = new List<string>();
+        private List<string> _outputModalities = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _providerName;
         private bool? _responseStreamingSupported;
 
@@ -58,7 +60,7 @@ namespace Amazon.Bedrock.Model
         // Check to see if CustomizationsSupported property is set
         internal bool IsSetCustomizationsSupported()
         {
-            return this._customizationsSupported != null && this._customizationsSupported.Count > 0; 
+            return this._customizationsSupported != null && (this._customizationsSupported.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -76,7 +78,7 @@ namespace Amazon.Bedrock.Model
         // Check to see if InferenceTypesSupported property is set
         internal bool IsSetInferenceTypesSupported()
         {
-            return this._inferenceTypesSupported != null && this._inferenceTypesSupported.Count > 0; 
+            return this._inferenceTypesSupported != null && (this._inferenceTypesSupported.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -94,13 +96,13 @@ namespace Amazon.Bedrock.Model
         // Check to see if InputModalities property is set
         internal bool IsSetInputModalities()
         {
-            return this._inputModalities != null && this._inputModalities.Count > 0; 
+            return this._inputModalities != null && (this._inputModalities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ModelArn. 
         /// <para>
-        /// The model ARN.
+        /// The model Amazon Resource Name (ARN).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -133,6 +135,24 @@ namespace Amazon.Bedrock.Model
         internal bool IsSetModelId()
         {
             return this._modelId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ModelLifecycle. 
+        /// <para>
+        /// Contains details about whether a model version is available or deprecated
+        /// </para>
+        /// </summary>
+        public FoundationModelLifecycle ModelLifecycle
+        {
+            get { return this._modelLifecycle; }
+            set { this._modelLifecycle = value; }
+        }
+
+        // Check to see if ModelLifecycle property is set
+        internal bool IsSetModelLifecycle()
+        {
+            return this._modelLifecycle != null;
         }
 
         /// <summary>
@@ -169,13 +189,13 @@ namespace Amazon.Bedrock.Model
         // Check to see if OutputModalities property is set
         internal bool IsSetOutputModalities()
         {
-            return this._outputModalities != null && this._outputModalities.Count > 0; 
+            return this._outputModalities != null && (this._outputModalities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ProviderName. 
         /// <para>
-        /// he model's provider name.
+        /// The model's provider name.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=20)]

@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTEvents.Model
 {
     /// <summary>
-    /// Specifies the <code>actions</code> to be performed when the <code>condition</code>
-    /// evaluates to TRUE.
+    /// Specifies the <c>actions</c> to be performed when the <c>condition</c> evaluates to
+    /// TRUE.
     /// </summary>
     public partial class Event
     {
-        private List<Action> _actions = new List<Action>();
+        private List<Action> _actions = AWSConfigs.InitializeCollections ? new List<Action>() : null;
         private string _condition;
         private string _eventName;
 
@@ -53,15 +54,15 @@ namespace Amazon.IoTEvents.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Condition. 
         /// <para>
-        /// Optional. The Boolean expression that, when TRUE, causes the <code>actions</code>
-        /// to be performed. If not present, the actions are performed (=TRUE). If the expression
-        /// result is not a Boolean value, the actions are not performed (=FALSE).
+        /// Optional. The Boolean expression that, when TRUE, causes the <c>actions</c> to be
+        /// performed. If not present, the actions are performed (=TRUE). If the expression result
+        /// is not a Boolean value, the actions are not performed (=FALSE).
         /// </para>
         /// </summary>
         [AWSProperty(Max=512)]

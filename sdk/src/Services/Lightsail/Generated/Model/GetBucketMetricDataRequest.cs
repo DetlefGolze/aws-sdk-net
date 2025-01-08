@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.Lightsail.Model
         private BucketMetricName _metricName;
         private int? _period;
         private DateTime? _startTime;
-        private List<string> _statistics = new List<string>();
+        private List<string> _statistics = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private MetricUnit _unit;
 
         /// <summary>
@@ -103,32 +104,32 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  </note> <ul> <li> 
         /// <para>
-        ///  <b> <code>BucketSizeBytes</code> </b> - The amount of data in bytes stored in a bucket.
+        ///  <b> <c>BucketSizeBytes</c> </b> - The amount of data in bytes stored in a bucket.
         /// This value is calculated by summing the size of all objects in the bucket (including
         /// object versions), including the size of all parts for all incomplete multipart uploads
         /// to the bucket.
         /// </para>
         ///  
         /// <para>
-        /// Statistics: The most useful statistic is <code>Maximum</code>.
+        /// Statistics: The most useful statistic is <c>Maximum</c>.
         /// </para>
         ///  
         /// <para>
-        /// Unit: The published unit is <code>Bytes</code>.
+        /// Unit: The published unit is <c>Bytes</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>NumberOfObjects</code> </b> - The total number of objects stored in a bucket.
+        ///  <b> <c>NumberOfObjects</c> </b> - The total number of objects stored in a bucket.
         /// This value is calculated by counting all objects in the bucket (including object versions)
         /// and the total number of parts for all incomplete multipart uploads to the bucket.
         /// </para>
         ///  
         /// <para>
-        /// Statistics: The most useful statistic is <code>Average</code>.
+        /// Statistics: The most useful statistic is <c>Average</c>.
         /// </para>
         ///  
         /// <para>
-        /// Unit: The published unit is <code>Count</code>.
+        /// Unit: The published unit is <c>Count</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -200,30 +201,30 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Minimum</code> - The lowest value observed during the specified period. Use
-        /// this value to determine low volumes of activity for your application.
+        ///  <c>Minimum</c> - The lowest value observed during the specified period. Use this
+        /// value to determine low volumes of activity for your application.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Maximum</code> - The highest value observed during the specified period. Use
-        /// this value to determine high volumes of activity for your application.
+        ///  <c>Maximum</c> - The highest value observed during the specified period. Use this
+        /// value to determine high volumes of activity for your application.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Sum</code> - The sum of all values submitted for the matching metric. You can
-        /// use this statistic to determine the total volume of a metric.
+        ///  <c>Sum</c> - The sum of all values submitted for the matching metric. You can use
+        /// this statistic to determine the total volume of a metric.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Average</code> - The value of <code>Sum</code> / <code>SampleCount</code> during
-        /// the specified period. By comparing this statistic with the <code>Minimum</code> and
-        /// <code>Maximum</code> values, you can determine the full scope of a metric and how
-        /// close the average use is to the <code>Minimum</code> and <code>Maximum</code> values.
-        /// This comparison helps you to know when to increase or decrease your resources.
+        ///  <c>Average</c> - The value of <c>Sum</c> / <c>SampleCount</c> during the specified
+        /// period. By comparing this statistic with the <c>Minimum</c> and <c>Maximum</c> values,
+        /// you can determine the full scope of a metric and how close the average use is to the
+        /// <c>Minimum</c> and <c>Maximum</c> values. This comparison helps you to know when to
+        /// increase or decrease your resources.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SampleCount</code> - The count, or number, of data points used for the statistical
+        ///  <c>SampleCount</c> - The count, or number, of data points used for the statistical
         /// calculation.
         /// </para>
         ///  </li> </ul>
@@ -238,7 +239,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Statistics property is set
         internal bool IsSetStatistics()
         {
-            return this._statistics != null && this._statistics.Count > 0; 
+            return this._statistics != null && (this._statistics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -249,7 +250,7 @@ namespace Amazon.Lightsail.Model
         ///  
         /// <para>
         /// Valid units depend on the metric data being requested. For the valid units with each
-        /// available metric, see the <code>metricName</code> parameter.
+        /// available metric, see the <c>metricName</c> parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

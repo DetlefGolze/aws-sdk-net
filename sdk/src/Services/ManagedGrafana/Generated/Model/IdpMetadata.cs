@@ -26,14 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedGrafana.Model
 {
     /// <summary>
     /// A structure containing the identity provider (IdP) metadata used to integrate the
     /// identity provider with this workspace. You can specify the metadata either by providing
-    /// a URL to its location in the <code>url</code> parameter, or by specifying the full
-    /// metadata in XML format in the <code>xml</code> parameter. Specifying both will cause
-    /// an error.
+    /// a URL to its location in the <c>url</c> parameter, or by specifying the full metadata
+    /// in XML format in the <c>xml</c> parameter. Specifying both will cause an error.
     /// </summary>
     public partial class IdpMetadata
     {

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -36,13 +37,13 @@ namespace Amazon.ForecastService.Model
     /// </summary>
     public partial class PredictorExecutionDetails
     {
-        private List<PredictorExecution> _predictorExecutions = new List<PredictorExecution>();
+        private List<PredictorExecution> _predictorExecutions = AWSConfigs.InitializeCollections ? new List<PredictorExecution>() : null;
 
         /// <summary>
         /// Gets and sets the property PredictorExecutions. 
         /// <para>
         /// An array of the backtests performed to evaluate the accuracy of the predictor against
-        /// a particular algorithm. The <code>NumberOfBacktestWindows</code> from the object determines
+        /// a particular algorithm. The <c>NumberOfBacktestWindows</c> from the object determines
         /// the number of windows in the array.
         /// </para>
         /// </summary>
@@ -56,7 +57,7 @@ namespace Amazon.ForecastService.Model
         // Check to see if PredictorExecutions property is set
         internal bool IsSetPredictorExecutions()
         {
-            return this._predictorExecutions != null && this._predictorExecutions.Count > 0; 
+            return this._predictorExecutions != null && (this._predictorExecutions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

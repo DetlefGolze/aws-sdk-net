@@ -72,7 +72,11 @@ namespace Amazon.S3.Model
         /// from the raw value or set by user code.
         /// </summary>
         private bool isExpiresUnmarshalled;
-        internal string RawExpires { get; set; }
+
+        /// <summary>
+        /// The date and time at which the object is no longer cacheable.
+        /// </summary>
+        public string ExpiresString { get; set; }
 
         /// <summary>
         /// Gets and sets the BucketName property.
@@ -170,6 +174,11 @@ namespace Amazon.S3.Model
         /// Specifies the expiration date for the object and the
         /// rule governing the expiration.
         /// Is null if expiration is not applicable.
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public Expiration Expiration
         {
@@ -187,6 +196,11 @@ namespace Amazon.S3.Model
         /// Gets and sets the RestoreExpiration property.
         /// RestoreExpiration will be set for objects that have been restored from Amazon Glacier.  
         /// It indiciates for those objects how long the restored object will exist.
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public DateTime? RestoreExpiration
         {
@@ -197,6 +211,12 @@ namespace Amazon.S3.Model
         /// <summary>
         /// Gets and sets the RestoreInProgress
         /// Will be true when the object is in the process of being restored from Amazon Glacier.
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets. Only the S3 Express One
+        /// Zone storage class is supported by directory buckets to store objects.
+        /// </para>
+        ///  </note>
         /// </summary>
         public bool RestoreInProgress
         {
@@ -205,8 +225,10 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// Last modified date of the object
-        ///  
+        /// Gets and sets the property LastModified. 
+        /// <para>
+        /// Date and time when the object was last modified.
+        /// </para>
         /// </summary>
         public DateTime LastModified
         {
@@ -237,10 +259,18 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// This is set to the number of metadata entries not returned in x-amz-meta headers. This can happen if you create metadata using an API like
-        /// SOAP that supports more flexible metadata than the REST API. For example, using SOAP, you can create metadata whose values are not legal
-        /// HTTP headers.
-        ///  
+        /// Gets and sets the property MissingMeta. 
+        /// <para>
+        /// This is set to the number of metadata entries not returned in the headers that are
+        /// prefixed with <code>x-amz-meta-</code>. This can happen if you create metadata using
+        /// an API like SOAP that supports more flexible metadata than the REST API. For example,
+        /// using SOAP, you can create metadata whose values are not legal HTTP headers.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public int MissingMeta
         {
@@ -255,8 +285,15 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// Version of the object.
-        ///  
+        /// Gets and sets the property VersionId. 
+        /// <para>
+        /// Version ID of the object.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public string VersionId
         {
@@ -274,19 +311,20 @@ namespace Amazon.S3.Model
         /// The date and time at which the object is no longer cacheable.
         ///  
         /// </summary>
+        [Obsolete("This property is deprecated for handling cases where Expires cannot be parsed as a DateTime. Instead, use ExpiresString, which returns the unparsed value from S3.")]
         public DateTime Expires
         {
             get
             {
                 if (this.isExpiresUnmarshalled)
                 {
-                    return this.expires.Value;
+                    return this.expires.GetValueOrDefault();
                 }
                 else
                 {
-                    this.expires = AmazonS3Util.ParseExpiresHeader(this.RawExpires, this.ResponseMetadata.RequestId);
+                    this.expires = AmazonS3Util.ParseExpiresHeader(this.ExpiresString, this.ResponseMetadata.RequestId);
                     this.isExpiresUnmarshalled = true;
-                    return this.expires.Value;
+                    return this.expires.GetValueOrDefault();
                 }
             }
             set { this.expires = value; this.isExpiresUnmarshalled = true; }
@@ -297,9 +335,18 @@ namespace Amazon.S3.Model
         {
             return this.expires.HasValue;
         }
-		
-		/// <summary>
-        /// Gets and sets the property ObjectLockLegalHoldStatus.
+
+        /// <summary>
+        /// Gets and sets the property ObjectLockLegalHoldStatus. 
+        /// <para>
+        /// Indicates whether this object has an active legal hold. This field is only returned
+        /// if you have permission to view an object's legal hold status. 
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public ObjectLockLegalHoldStatus ObjectLockLegalHoldStatus
         {
@@ -316,8 +363,13 @@ namespace Amazon.S3.Model
         /// <summary>
         /// Gets and sets the property ObjectLockMode. 
         /// <para>
-        /// The Object Lock mode currently in place for this object.
+        /// The Object Lock mode that's currently in place for this object.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public ObjectLockMode ObjectLockMode
         {
@@ -336,6 +388,11 @@ namespace Amazon.S3.Model
         /// <para>
         /// The date and time when this object's Object Lock will expire.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public DateTime ObjectLockRetainUntilDate
         {
@@ -350,9 +407,17 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL.
-        /// Amazon S3 stores the value of this header in the object metadata.
-        ///  
+        /// Gets and sets the property WebsiteRedirectLocation. 
+        /// <para>
+        /// If the bucket is configured as a website, redirects requests for this object to another
+        /// object in the same bucket or to an external URL. Amazon S3 stores the value of this
+        /// header in the object metadata.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public string WebsiteRedirectLocation
         {
@@ -367,9 +432,9 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ServerSideEncryptionMethod. 
         /// <para>
-        /// The server-side encryption algorithm used when storing this object in Amazon S3 (for
-        /// example, AES256, <code>aws:kms</code>).
+        /// The server-side encryption algorithm used when you store this object in Amazon S3.
         /// </para>
         /// </summary>
         public ServerSideEncryptionMethod ServerSideEncryptionMethod
@@ -385,8 +450,17 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// The class of storage used to store the object.
-        ///  
+        /// Gets and sets the property StorageClass. 
+        /// <para>
+        /// Provides storage class information of the object. Amazon S3 returns this header for
+        /// all objects except for S3 Standard storage class objects.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <b>Directory buckets </b> - Only the S3 Express One Zone storage class is supported
+        /// by directory buckets to store objects.
+        /// </para>
+        ///  </note>
         /// </summary>
         public S3StorageClass StorageClass
         {
@@ -402,11 +476,8 @@ namespace Amazon.S3.Model
 
 
         /// <summary>
-        /// The id of the AWS Key Management Service key that Amazon S3 uses to encrypt and decrypt the object.
         /// <para>
-        /// If present, specifies the ID of the Amazon Web Services Key Management Service (Amazon
-        /// Web Services KMS) symmetric encryption customer managed key that was used for the
-        /// object.
+        /// If present, indicates the ID of the KMS key that was used for object encryption.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -418,6 +489,11 @@ namespace Amazon.S3.Model
 
         /// <summary>
         /// Checks if ServerSideEncryptionKeyManagementServiceKeyId property is set.
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <returns>true if ServerSideEncryptionKeyManagementServiceKeyId property is set.</returns>
         internal bool IsSetServerSideEncryptionKeyManagementServiceKeyId()
@@ -426,7 +502,16 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// The status of the replication job associated with this source object.
+        /// Gets and sets the property ReplicationStatus. 
+        /// <para>
+        /// Amazon S3 can return this if your request involves a bucket that is either a source
+        /// or destination in a replication rule.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public ReplicationStatus ReplicationStatus
         {
@@ -464,6 +549,11 @@ namespace Amazon.S3.Model
         /// <summary>
         /// The Server-side encryption algorithm to be used with the customer provided key.
         ///  
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public ServerSideEncryptionCustomerMethod ServerSideEncryptionCustomerMethod
         {
@@ -496,7 +586,21 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// The number of tags, if any, on the object.
+        /// Gets and sets the property TagCount. 
+        /// <para>
+        /// The number of tags, if any, on the object, when you have the relevant permission to
+        /// read object tags.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can use <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectTagging.html">GetObjectTagging</a>
+        /// to retrieve the tag set associated with an object.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public int TagCount
         {
@@ -525,7 +629,9 @@ namespace Amazon.S3.Model
         /// <summary>
         /// Gets and sets the property ChecksumCRC32. 
         /// <para>
-        /// The base64-encoded, 32-bit CRC32 checksum of the object.
+        /// The base64-encoded, 32-bit CRC-32 checksum of the object. This will only be present
+        /// if it was uploaded with the object. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">
+        /// Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         /// </summary>
         public string ChecksumCRC32
@@ -543,7 +649,9 @@ namespace Amazon.S3.Model
         /// <summary>
         /// Gets and sets the property ChecksumCRC32C. 
         /// <para>
-        /// The base64-encoded, 32-bit CRC32C checksum of the object.
+        /// The base64-encoded, 32-bit CRC-32C checksum of the object. This will only be present
+        /// if it was uploaded with the object. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">
+        /// Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         /// </summary>
         public string ChecksumCRC32C

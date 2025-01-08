@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.AWSMarketplaceCommerceAnalytics
 {
     /// <summary>
-    /// Implementation for accessing AWSMarketplaceCommerceAnalytics
+    /// <para>Implementation for accessing AWSMarketplaceCommerceAnalytics</para>
     ///
     /// Provides AWS Marketplace business intelligence data on-demand.
     /// </summary>
@@ -313,11 +314,11 @@ namespace Amazon.AWSMarketplaceCommerceAnalytics
         #region  StartSupportDataExport
 
         /// <summary>
-        /// Given a data set type and a from date, asynchronously publishes the requested customer
-        /// support data to the specified S3 bucket and notifies the specified SNS topic once
-        /// the data is available. Returns a unique request identifier that can be used to correlate
-        /// requests with notifications from the SNS topic. Data sets will be published in comma-separated
-        /// values (CSV) format with the file name {data_set_type}_YYYY-MM-DD'T'HH-mm-ss'Z'.csv.
+        /// <i>This target has been deprecated.</i> Given a data set type and a from date, asynchronously
+        /// publishes the requested customer support data to the specified S3 bucket and notifies
+        /// the specified SNS topic once the data is available. Returns a unique request identifier
+        /// that can be used to correlate requests with notifications from the SNS topic. Data
+        /// sets will be published in comma-separated values (CSV) format with the file name {data_set_type}_YYYY-MM-DD'T'HH-mm-ss'Z'.csv.
         /// If a file with the same name already exists (e.g. if the same data set is requested
         /// twice), the original file will be overwritten by the new file. Requires a Role with
         /// an attached permissions policy providing Allow permissions for the following actions:
@@ -330,6 +331,7 @@ namespace Amazon.AWSMarketplaceCommerceAnalytics
         /// This exception is thrown when an internal service error occurs.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/marketplacecommerceanalytics-2015-07-01/StartSupportDataExport">REST API Reference for StartSupportDataExport Operation</seealso>
+        [Obsolete("This target has been deprecated. As of December 2022 Product Support Connection is no longer supported.")]
         public virtual StartSupportDataExportResponse StartSupportDataExport(StartSupportDataExportRequest request)
         {
             var options = new InvokeOptions();
@@ -351,6 +353,7 @@ namespace Amazon.AWSMarketplaceCommerceAnalytics
         /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndStartSupportDataExport
         ///         operation.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/marketplacecommerceanalytics-2015-07-01/StartSupportDataExport">REST API Reference for StartSupportDataExport Operation</seealso>
+        [Obsolete("This target has been deprecated. As of December 2022 Product Support Connection is no longer supported.")]
         public virtual IAsyncResult BeginStartSupportDataExport(StartSupportDataExportRequest request, AsyncCallback callback, object state)
         {
             var options = new InvokeOptions();
@@ -368,6 +371,7 @@ namespace Amazon.AWSMarketplaceCommerceAnalytics
         /// 
         /// <returns>Returns a  StartSupportDataExportResult from AWSMarketplaceCommerceAnalytics.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/marketplacecommerceanalytics-2015-07-01/StartSupportDataExport">REST API Reference for StartSupportDataExport Operation</seealso>
+        [Obsolete("This target has been deprecated. As of December 2022 Product Support Connection is no longer supported.")]
         public virtual StartSupportDataExportResponse EndStartSupportDataExport(IAsyncResult asyncResult)
         {
             return EndInvoke<StartSupportDataExportResponse>(asyncResult);
@@ -384,11 +388,11 @@ namespace Amazon.AWSMarketplaceCommerceAnalytics
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

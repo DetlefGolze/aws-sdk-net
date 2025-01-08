@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -52,14 +53,14 @@ namespace Amazon.GameLift.Model
     /// <para>
     /// To request player sessions, specify either a player session ID, game session ID, or
     /// player ID. You can filter this request by player session status. If you provide a
-    /// specific <code>PlayerSessionId</code> or <code>PlayerId</code>, Amazon GameLift ignores
-    /// the filter criteria. Use the pagination parameters to retrieve results as a set of
-    /// sequential pages. 
+    /// specific <c>PlayerSessionId</c> or <c>PlayerId</c>, Amazon GameLift ignores the filter
+    /// criteria. Use the pagination parameters to retrieve results as a set of sequential
+    /// pages. 
     /// </para>
     ///  
     /// <para>
-    /// If successful, a <code>PlayerSession</code> object is returned for each session that
-    /// matches the request.
+    /// If successful, a <c>PlayerSession</c> object is returned for each session that matches
+    /// the request.
     /// </para>
     ///  
     /// <para>
@@ -86,7 +87,7 @@ namespace Amazon.GameLift.Model
         /// A unique identifier for the game session to retrieve player sessions for.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=256)]
+        [AWSProperty(Min=1, Max=512)]
         public string GameSessionId
         {
             get { return this._gameSessionId; }
@@ -102,7 +103,7 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property Limit. 
         /// <para>
-        /// The maximum number of results to return. Use this parameter with <code>NextToken</code>
+        /// The maximum number of results to return. Use this parameter with <c>NextToken</c>
         /// to get results as a set of sequential pages. If a player session ID is specified,
         /// this parameter is ignored.
         /// </para>
@@ -148,7 +149,7 @@ namespace Amazon.GameLift.Model
         /// A unique identifier for a player to retrieve player sessions for.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=1024)]
+        [AWSProperty(Sensitive=true, Min=1, Max=1024)]
         public string PlayerId
         {
             get { return this._playerId; }

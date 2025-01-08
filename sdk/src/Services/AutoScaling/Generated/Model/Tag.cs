@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -97,7 +98,7 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The type of resource. The only supported value is <code>auto-scaling-group</code>.
+        /// The type of resource. The only supported value is <c>auto-scaling-group</c>.
         /// </para>
         /// </summary>
         public string ResourceType

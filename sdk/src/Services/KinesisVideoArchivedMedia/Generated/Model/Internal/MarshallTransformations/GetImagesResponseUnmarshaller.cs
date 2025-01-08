@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.KinesisVideoArchivedMedia.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -93,6 +94,10 @@ namespace Amazon.KinesisVideoArchivedMedia.Model.Internal.MarshallTransformation
                 if (errorResponse.Code != null && errorResponse.Code.Equals("InvalidArgumentException"))
                 {
                     return InvalidArgumentExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("NoDataRetentionException"))
+                {
+                    return NoDataRetentionExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("NotAuthorizedException"))
                 {

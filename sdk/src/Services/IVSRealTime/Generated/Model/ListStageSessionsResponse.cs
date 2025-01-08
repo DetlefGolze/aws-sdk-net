@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IVSRealTime.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.IVSRealTime.Model
     public partial class ListStageSessionsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<StageSessionSummary> _stageSessions = new List<StageSessionSummary>();
+        private List<StageSessionSummary> _stageSessions = AWSConfigs.InitializeCollections ? new List<StageSessionSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If there are more rooms than <code>maxResults</code>, use <code>nextToken</code> in
-        /// the request to get the next set.
+        /// If there are more stage sessions than <c>maxResults</c>, use <c>nextToken</c> in the
+        /// request to get the next set.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1024)]
@@ -72,7 +73,7 @@ namespace Amazon.IVSRealTime.Model
         // Check to see if StageSessions property is set
         internal bool IsSetStageSessions()
         {
-            return this._stageSessions != null && this._stageSessions.Count > 0; 
+            return this._stageSessions != null && (this._stageSessions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

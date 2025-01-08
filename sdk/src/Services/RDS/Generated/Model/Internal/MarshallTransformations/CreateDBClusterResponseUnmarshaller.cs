@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RDS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -148,6 +149,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                 {
                     return GlobalClusterNotFoundExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("InsufficientDBInstanceCapacity"))
+                {
+                    return InsufficientDBInstanceCapacityExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("InsufficientStorageClusterCapacity"))
                 {
                     return InsufficientStorageClusterCapacityExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
@@ -159,6 +164,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                 if (errorResponse.Code != null && errorResponse.Code.Equals("InvalidDBInstanceState"))
                 {
                     return InvalidDBInstanceStateExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("InvalidDBSubnetGroupFault"))
+                {
+                    return InvalidDBSubnetGroupExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("InvalidDBSubnetGroupStateFault"))
                 {
@@ -179,6 +188,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                 if (errorResponse.Code != null && errorResponse.Code.Equals("KMSKeyNotAccessibleFault"))
                 {
                     return KMSKeyNotAccessibleExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("OptionGroupNotFoundFault"))
+                {
+                    return OptionGroupNotFoundExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("StorageQuotaExceeded"))
                 {

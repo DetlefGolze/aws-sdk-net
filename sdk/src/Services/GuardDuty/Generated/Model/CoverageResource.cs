@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -100,8 +101,7 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property Issue. 
         /// <para>
-        /// Represents the reason why a coverage status was <code>UNHEALTHY</code> for the EKS
-        /// cluster.
+        /// Represents the reason why a coverage status was <c>UNHEALTHY</c> for the EKS cluster.
         /// </para>
         /// </summary>
         public string Issue

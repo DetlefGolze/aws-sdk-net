@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.DataZone.Model
     /// </summary>
     public partial class ListProjectsResponse : AmazonWebServiceResponse
     {
-        private List<ProjectSummary> _items = new List<ProjectSummary>();
+        private List<ProjectSummary> _items = AWSConfigs.InitializeCollections ? new List<ProjectSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Items. 
         /// <para>
-        /// The results of the <code>ListProjects</code> action.
+        /// The results of the <c>ListProjects</c> action.
         /// </para>
         /// </summary>
         public List<ProjectSummary> Items
@@ -51,16 +52,16 @@ namespace Amazon.DataZone.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When the number of projects is greater than the default value for the <code>MaxResults</code>
-        /// parameter, or if you explicitly specify a value for <code>MaxResults</code> that is
-        /// less than the number of projects, the response includes a pagination token named <code>NextToken</code>.
-        /// You can specify this <code>NextToken</code> value in a subsequent call to <code>ListProjects</code>
+        /// When the number of projects is greater than the default value for the <c>MaxResults</c>
+        /// parameter, or if you explicitly specify a value for <c>MaxResults</c> that is less
+        /// than the number of projects, the response includes a pagination token named <c>NextToken</c>.
+        /// You can specify this <c>NextToken</c> value in a subsequent call to <c>ListProjects</c>
         /// to list the next set of projects.
         /// </para>
         /// </summary>

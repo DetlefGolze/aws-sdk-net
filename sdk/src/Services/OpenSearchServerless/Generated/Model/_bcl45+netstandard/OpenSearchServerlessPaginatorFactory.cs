@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.OpenSearchServerless.Model
 {
     /// <summary>
@@ -49,6 +50,14 @@ namespace Amazon.OpenSearchServerless.Model
         public IListCollectionsPaginator ListCollections(ListCollectionsRequest request) 
         {
             return new ListCollectionsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListLifecyclePolicies operation
+        ///</summary>
+        public IListLifecyclePoliciesPaginator ListLifecyclePolicies(ListLifecyclePoliciesRequest request) 
+        {
+            return new ListLifecyclePoliciesPaginator(this.client, request);
         }
 
         /// <summary>

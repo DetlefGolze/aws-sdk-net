@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeLocationSmb operation.
-    /// Returns metadata, such as the path and user information about an SMB location.
+    /// Provides details about how an DataSync transfer location for a Server Message Block
+    /// (SMB) file server is configured.
     /// </summary>
     public partial class DescribeLocationSmbRequest : AmazonDataSyncRequest
     {
@@ -39,7 +41,8 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property LocationArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the SMB location to describe.
+        /// Specifies the Amazon Resource Name (ARN) of the SMB location that you want information
+        /// about.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=128)]

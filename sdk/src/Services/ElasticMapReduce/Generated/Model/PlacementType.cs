@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ElasticMapReduce.Model
     public partial class PlacementType
     {
         private string _availabilityZone;
-        private List<string> _availabilityZones = new List<string>();
+        private List<string> _availabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -44,7 +45,7 @@ namespace Amazon.ElasticMapReduce.Model
         /// <summary>
         /// Instantiates PlacementType with the parameterized properties
         /// </summary>
-        /// <param name="availabilityZone">The Amazon EC2 Availability Zone for the cluster. <code>AvailabilityZone</code> is used for uniform instance groups, while <code>AvailabilityZones</code> (plural) is used for instance fleets.</param>
+        /// <param name="availabilityZone">The Amazon EC2 Availability Zone for the cluster. <c>AvailabilityZone</c> is used for uniform instance groups, while <c>AvailabilityZones</c> (plural) is used for instance fleets.</param>
         public PlacementType(string availabilityZone)
         {
             _availabilityZone = availabilityZone;
@@ -53,9 +54,9 @@ namespace Amazon.ElasticMapReduce.Model
         /// <summary>
         /// Gets and sets the property AvailabilityZone. 
         /// <para>
-        /// The Amazon EC2 Availability Zone for the cluster. <code>AvailabilityZone</code> is
-        /// used for uniform instance groups, while <code>AvailabilityZones</code> (plural) is
-        /// used for instance fleets.
+        /// The Amazon EC2 Availability Zone for the cluster. <c>AvailabilityZone</c> is used
+        /// for uniform instance groups, while <c>AvailabilityZones</c> (plural) is used for instance
+        /// fleets.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=10280)]
@@ -75,9 +76,8 @@ namespace Amazon.ElasticMapReduce.Model
         /// Gets and sets the property AvailabilityZones. 
         /// <para>
         /// When multiple Availability Zones are specified, Amazon EMR evaluates them and launches
-        /// instances in the optimal Availability Zone. <code>AvailabilityZones</code> is used
-        /// for instance fleets, while <code>AvailabilityZone</code> (singular) is used for uniform
-        /// instance groups.
+        /// instances in the optimal Availability Zone. <c>AvailabilityZones</c> is used for instance
+        /// fleets, while <c>AvailabilityZone</c> (singular) is used for uniform instance groups.
         /// </para>
         ///  <note> 
         /// <para>
@@ -95,7 +95,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

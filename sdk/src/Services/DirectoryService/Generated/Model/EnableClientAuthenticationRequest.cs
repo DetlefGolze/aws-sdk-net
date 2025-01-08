@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.DirectoryService.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of client authentication to enable. Currently only the value <code>SmartCard</code>
+        /// The type of client authentication to enable. Currently only the value <c>SmartCard</c>
         /// is supported. Smart card authentication in AD Connector requires that you enable Kerberos
         /// Constrained Delegation for the Service User to the LDAP service in your self-managed
         /// AD. 

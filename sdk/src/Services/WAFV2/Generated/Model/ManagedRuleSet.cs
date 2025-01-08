@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -40,8 +41,8 @@ namespace Amazon.WAFV2.Model
     ///  
     /// <para>
     /// Vendors, you can use the managed rule set APIs to provide controlled rollout of your
-    /// versioned managed rule group offerings for your customers. The APIs are <code>ListManagedRuleSets</code>,
-    /// <code>GetManagedRuleSet</code>, <code>PutManagedRuleSetVersions</code>, and <code>UpdateManagedRuleSetVersionExpiryDate</code>.
+    /// versioned managed rule group offerings for your customers. The APIs are <c>ListManagedRuleSets</c>,
+    /// <c>GetManagedRuleSet</c>, <c>PutManagedRuleSetVersions</c>, and <c>UpdateManagedRuleSetVersionExpiryDate</c>.
     /// </para>
     ///  </note>
     /// </summary>
@@ -52,7 +53,7 @@ namespace Amazon.WAFV2.Model
         private string _id;
         private string _labelNamespace;
         private string _name;
-        private Dictionary<string, ManagedRuleSetVersion> _publishedVersions = new Dictionary<string, ManagedRuleSetVersion>();
+        private Dictionary<string, ManagedRuleSetVersion> _publishedVersions = AWSConfigs.InitializeCollections ? new Dictionary<string, ManagedRuleSetVersion>() : null;
         private string _recommendedVersion;
 
         /// <summary>
@@ -97,8 +98,7 @@ namespace Amazon.WAFV2.Model
         /// Gets and sets the property Id. 
         /// <para>
         /// A unique identifier for the managed rule set. The ID is returned in the responses
-        /// to commands like <code>list</code>. You provide it to operations like <code>get</code>
-        /// and <code>update</code>.
+        /// to commands like <c>list</c>. You provide it to operations like <c>get</c> and <c>update</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=36)]
@@ -128,7 +128,7 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>awswaf:managed:&lt;vendor&gt;:&lt;rule group name&gt;</code>:
+        ///  <c>awswaf:managed:&lt;vendor&gt;:&lt;rule group name&gt;</c>:
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -139,7 +139,7 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>&lt;label namespace&gt;:&lt;label from rule&gt;</code> 
+        ///  <c>&lt;label namespace&gt;:&lt;label from rule&gt;</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -196,7 +196,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if PublishedVersions property is set
         internal bool IsSetPublishedVersions()
         {
-            return this._publishedVersions != null && this._publishedVersions.Count > 0; 
+            return this._publishedVersions != null && (this._publishedVersions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

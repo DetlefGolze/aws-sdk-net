@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ResilienceHub.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -61,6 +62,12 @@ namespace Amazon.ResilienceHub.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.AppVersion = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("errorDetails", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<ErrorDetail, ErrorDetailUnmarshaller>(ErrorDetailUnmarshaller.Instance);
+                    response.ErrorDetails = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("errorMessage", targetDepth))

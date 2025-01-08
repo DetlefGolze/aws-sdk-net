@@ -26,32 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateQueue operation.
-    /// This API is in preview release for Amazon Connect and is subject to change.
-    /// 
-    ///  
-    /// <para>
     /// Creates a new queue for the specified Amazon Connect instance.
-    /// </para>
+    /// 
     ///  <important> <ul> <li> 
     /// <para>
     /// If the phone number is claimed to a traffic distribution group that was created in
     /// the same Region as the Amazon Connect instance where you are calling this API, then
-    /// you can use a full phone number ARN or a UUID for <code>OutboundCallerIdNumberId</code>.
+    /// you can use a full phone number ARN or a UUID for <c>OutboundCallerIdNumberId</c>.
     /// However, if the phone number is claimed to a traffic distribution group that is in
     /// one Region, and you are calling this API from an instance in another Amazon Web Services
     /// Region that is associated with the traffic distribution group, you must provide a
     /// full phone number ARN. If a UUID is provided in this scenario, you will receive a
-    /// <code>ResourceNotFoundException</code>.
+    /// <c>ResourceNotFoundException</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Only use the phone number ARN format that doesn't contain <code>instance</code> in
-    /// the path, for example, <code>arn:aws:connect:us-east-1:1234567890:phone-number/uuid</code>.
-    /// This is the same ARN format that is returned when you call the <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html">ListPhoneNumbersV2</a>
+    /// Only use the phone number ARN format that doesn't contain <c>instance</c> in the path,
+    /// for example, <c>arn:aws:connect:us-east-1:1234567890:phone-number/uuid</c>. This is
+    /// the same ARN format that is returned when you call the <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html">ListPhoneNumbersV2</a>
     /// API.
     /// </para>
     ///  </li> <li> 
@@ -70,8 +67,9 @@ namespace Amazon.Connect.Model
         private int? _maxContacts;
         private string _name;
         private OutboundCallerConfig _outboundCallerConfig;
-        private List<string> _quickConnectIds = new List<string>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private OutboundEmailConfig _outboundEmailConfig;
+        private List<string> _quickConnectIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -188,6 +186,24 @@ namespace Amazon.Connect.Model
         }
 
         /// <summary>
+        /// Gets and sets the property OutboundEmailConfig. 
+        /// <para>
+        /// The outbound email address ID for a specified queue.
+        /// </para>
+        /// </summary>
+        public OutboundEmailConfig OutboundEmailConfig
+        {
+            get { return this._outboundEmailConfig; }
+            set { this._outboundEmailConfig = value; }
+        }
+
+        // Check to see if OutboundEmailConfig property is set
+        internal bool IsSetOutboundEmailConfig()
+        {
+            return this._outboundEmailConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property QuickConnectIds. 
         /// <para>
         /// The quick connects available to agents who are working the queue.
@@ -203,14 +219,14 @@ namespace Amazon.Connect.Model
         // Check to see if QuickConnectIds property is set
         internal bool IsSetQuickConnectIds()
         {
-            return this._quickConnectIds != null && this._quickConnectIds.Count > 0; 
+            return this._quickConnectIds != null && (this._quickConnectIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// The tags used to organize, track, or control access for this resource. For example,
-        /// { "tags": {"key1":"value1", "key2":"value2"} }.
+        /// { "Tags": {"key1":"value1", "key2":"value2"} }.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -223,7 +239,7 @@ namespace Amazon.Connect.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

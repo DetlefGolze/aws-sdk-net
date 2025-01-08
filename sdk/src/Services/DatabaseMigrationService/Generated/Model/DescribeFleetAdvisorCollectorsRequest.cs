@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.DatabaseMigrationService.Model
     /// </summary>
     public partial class DescribeFleetAdvisorCollectorsRequest : AmazonDatabaseMigrationServiceRequest
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxRecords;
         private string _nextToken;
 
@@ -46,16 +47,15 @@ namespace Amazon.DatabaseMigrationService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>collector-referenced-id</code> – The ID of the collector agent, for example
-        /// <code>d4610ac5-e323-4ad9-bc50-eaf7249dfe9d</code>.
+        ///  <c>collector-referenced-id</c> – The ID of the collector agent, for example <c>d4610ac5-e323-4ad9-bc50-eaf7249dfe9d</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>collector-name</code> – The name of the collector agent.
+        ///  <c>collector-name</c> – The name of the collector agent.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// An example is: <code>describe-fleet-advisor-collectors --filter Name="collector-referenced-id",Values="d4610ac5-e323-4ad9-bc50-eaf7249dfe9d"</code>
+        /// An example is: <c>describe-fleet-advisor-collectors --filter Name="collector-referenced-id",Values="d4610ac5-e323-4ad9-bc50-eaf7249dfe9d"</c>
         /// 
         /// </para>
         /// </summary>
@@ -68,7 +68,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -92,10 +92,10 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If <code>NextToken</code> is returned by a previous response, there are more results
-        /// available. The value of <code>NextToken</code> is a unique pagination token for each
-        /// page. Make the call again using the returned token to retrieve the next page. Keep
-        /// all other arguments unchanged. 
+        /// If <c>NextToken</c> is returned by a previous response, there are more results available.
+        /// The value of <c>NextToken</c> is a unique pagination token for each page. Make the
+        /// call again using the returned token to retrieve the next page. Keep all other arguments
+        /// unchanged. 
         /// </para>
         /// </summary>
         public string NextToken

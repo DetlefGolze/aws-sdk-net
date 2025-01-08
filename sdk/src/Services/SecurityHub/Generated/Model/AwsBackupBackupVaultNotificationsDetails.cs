@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class AwsBackupBackupVaultNotificationsDetails
     {
-        private List<string> _backupVaultEvents = new List<string>();
+        private List<string> _backupVaultEvents = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _snsTopicArn;
 
         /// <summary>
@@ -45,20 +46,19 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>BACKUP_JOB_STARTED | BACKUP_JOB_COMPLETED</code> 
+        ///  <c>BACKUP_JOB_STARTED | BACKUP_JOB_COMPLETED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>COPY_JOB_STARTED | COPY_JOB_SUCCESSFUL | COPY_JOB_FAILED</code> 
+        ///  <c>COPY_JOB_STARTED | COPY_JOB_SUCCESSFUL | COPY_JOB_FAILED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RESTORE_JOB_STARTED | RESTORE_JOB_COMPLETED | RECOVERY_POINT_MODIFIED</code>
-        /// 
+        ///  <c>RESTORE_JOB_STARTED | RESTORE_JOB_COMPLETED | RECOVERY_POINT_MODIFIED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>S3_BACKUP_OBJECT_FAILED | S3_RESTORE_OBJECT_FAILED</code> 
+        ///  <c>S3_BACKUP_OBJECT_FAILED | S3_RESTORE_OBJECT_FAILED</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -71,7 +71,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if BackupVaultEvents property is set
         internal bool IsSetBackupVaultEvents()
         {
-            return this._backupVaultEvents != null && this._backupVaultEvents.Count > 0; 
+            return this._backupVaultEvents != null && (this._backupVaultEvents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

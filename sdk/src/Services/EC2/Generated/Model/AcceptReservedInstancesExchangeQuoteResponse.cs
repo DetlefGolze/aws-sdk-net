@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
-    /// The result of the exchange and whether it was <code>successful</code>.
+    /// The result of the exchange and whether it was <c>successful</c>.
     /// </summary>
     public partial class AcceptReservedInstancesExchangeQuoteResponse : AmazonWebServiceResponse
     {

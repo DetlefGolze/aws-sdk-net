@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruSecurity.Model
 {
     /// <summary>
@@ -39,8 +40,8 @@ namespace Amazon.CodeGuruSecurity.Model
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The ARN of the <code>ScanName</code> object. You can retrieve this ARN by calling
-        /// <code>ListScans</code> or <code>GetScan</code>.
+        /// The ARN of the <c>ScanName</c> object. You can retrieve this ARN by calling <c>CreateScan</c>,
+        /// <c>ListScans</c>, or <c>GetScan</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=300)]

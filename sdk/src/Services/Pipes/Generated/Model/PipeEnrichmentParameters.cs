@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pipes.Model
 {
     /// <summary>
@@ -69,6 +70,10 @@ namespace Amazon.Pipes.Model
         /// Valid JSON text passed to the enrichment. In this case, nothing from the event itself
         /// is passed to the enrichment. For more information, see <a href="http://www.rfc-editor.org/rfc/rfc7159.txt">The
         /// JavaScript Object Notation (JSON) Data Interchange Format</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// To remove an input template, specify an empty string.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=0, Max=8192)]

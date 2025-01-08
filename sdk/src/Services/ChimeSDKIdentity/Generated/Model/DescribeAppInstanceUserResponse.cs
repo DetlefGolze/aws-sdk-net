@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKIdentity.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.ChimeSDKIdentity.Model
         /// <summary>
         /// Gets and sets the property AppInstanceUser. 
         /// <para>
-        /// The name of the <code>AppInstanceUser</code>.
+        /// The name of the <c>AppInstanceUser</c>.
         /// </para>
         /// </summary>
         public AppInstanceUser AppInstanceUser

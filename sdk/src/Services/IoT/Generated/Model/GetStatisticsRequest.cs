@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
     /// Container for the parameters to the GetStatistics operation.
     /// Returns the count, average, sum, minimum, maximum, sum of squares, variance, and standard
     /// deviation for the specified aggregated field. If the aggregation field is of type
-    /// <code>String</code>, only the count statistic is returned.
+    /// <c>String</c>, only the count statistic is returned.
     /// 
     ///  
     /// <para>
@@ -69,7 +70,7 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property IndexName. 
         /// <para>
-        /// The name of the index to search. The default value is <code>AWS_Things</code>.
+        /// The name of the index to search. The default value is <c>AWS_Things</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]

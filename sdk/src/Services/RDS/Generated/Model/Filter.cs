@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -44,30 +45,38 @@ namespace Amazon.RDS.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>DescribeDBClusterBacktracks</code> 
+    ///  <c>DescribeDBClusterBacktracks</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>DescribeDBClusterEndpoints</code> 
+    ///  <c>DescribeDBClusterEndpoints</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>DescribeDBClusters</code> 
+    ///  <c>DescribeDBClusters</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>DescribeDBInstances</code> 
+    ///  <c>DescribeDBInstances</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>DescribePendingMaintenanceActions</code> 
+    ///  <c>DescribeDBRecommendations</c> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <c>DescribeDBShardGroups</c> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <c>DescribePendingMaintenanceActions</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>
     public partial class Filter
     {
         private string _name;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Name. 
@@ -104,7 +113,7 @@ namespace Amazon.RDS.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

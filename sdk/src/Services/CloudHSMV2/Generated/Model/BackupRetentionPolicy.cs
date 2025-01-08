@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudHSMV2.Model
 {
     /// <summary>
@@ -39,8 +40,8 @@ namespace Amazon.CloudHSMV2.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of backup retention policy. For the <code>DAYS</code> type, the value is
-        /// the number of days to retain backups.
+        /// The type of backup retention policy. For the <c>DAYS</c> type, the value is the number
+        /// of days to retain backups.
         /// </para>
         /// </summary>
         public BackupRetentionType Type

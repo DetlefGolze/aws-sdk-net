@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTEventsData.Model
 {
     /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.IoTEventsData.Model
         /// <summary>
         /// Gets and sets the property MessageId. 
         /// <para>
-        /// The ID to assign to the detector update <code>"message"</code>. Each <code>"messageId"</code>
+        /// The ID to assign to the detector update <c>"message"</c>. Each <c>"messageId"</c>
         /// must be unique within each batch sent.
         /// </para>
         /// </summary>

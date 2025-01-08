@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pricing.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.Pricing.Model
     public partial class PriceList
     {
         private string _currencyCode;
-        private List<string> _fileFormats = new List<string>();
+        private List<string> _fileFormats = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _priceListArn;
         private string _regionCode;
 
@@ -68,9 +69,9 @@ namespace Amazon.Pricing.Model
         /// <summary>
         /// Gets and sets the property FileFormats. 
         /// <para>
-        /// The format you want to retrieve your Price List files. The <code>FileFormat</code>
-        /// can be obtained from the <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_ListPriceLists.html">
-        /// <code>ListPriceList</code> </a> response. 
+        /// The format you want to retrieve your Price List files. The <c>FileFormat</c> can be
+        /// obtained from the <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_ListPriceLists.html">
+        /// <c>ListPriceList</c> </a> response. 
         /// </para>
         /// </summary>
         public List<string> FileFormats
@@ -82,15 +83,15 @@ namespace Amazon.Pricing.Model
         // Check to see if FileFormats property is set
         internal bool IsSetFileFormats()
         {
-            return this._fileFormats != null && this._fileFormats.Count > 0; 
+            return this._fileFormats != null && (this._fileFormats.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PriceListArn. 
         /// <para>
-        /// The unique identifier that maps to where your Price List files are located. <code>PriceListArn</code>
+        /// The unique identifier that maps to where your Price List files are located. <c>PriceListArn</c>
         /// can be obtained from the <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_ListPriceLists.html">
-        /// <code>ListPriceList</code> </a> response. 
+        /// <c>ListPriceList</c> </a> response. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=18, Max=2048)]
@@ -110,11 +111,10 @@ namespace Amazon.Pricing.Model
         /// Gets and sets the property RegionCode. 
         /// <para>
         /// This is used to filter the Price List by Amazon Web Services Region. For example,
-        /// to get the price list only for the <code>US East (N. Virginia)</code> Region, use
-        /// <code>us-east-1</code>. If nothing is specified, you retrieve price lists for all
-        /// applicable Regions. The available <code>RegionCode</code> list can be retrieved from
-        /// <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_GetAttributeValues.html">
-        /// <code>GetAttributeValues</code> </a> API. 
+        /// to get the price list only for the <c>US East (N. Virginia)</c> Region, use <c>us-east-1</c>.
+        /// If nothing is specified, you retrieve price lists for all applicable Regions. The
+        /// available <c>RegionCode</c> list can be retrieved from <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_GetAttributeValues.html">
+        /// <c>GetAttributeValues</c> </a> API. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]

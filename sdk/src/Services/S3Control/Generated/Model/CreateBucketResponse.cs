@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -49,10 +50,10 @@ namespace Amazon.S3Control.Model
         ///  
         /// <para>
         /// For using this parameter with S3 on Outposts with the Amazon Web Services SDK and
-        /// CLI, you must specify the ARN of the bucket accessed in the format <code>arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/bucket/&lt;my-bucket-name&gt;</code>.
-        /// For example, to access the bucket <code>reports</code> through Outpost <code>my-outpost</code>
-        /// owned by account <code>123456789012</code> in Region <code>us-west-2</code>, use the
-        /// URL encoding of <code>arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports</code>.
+        /// CLI, you must specify the ARN of the bucket accessed in the format <c>arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/bucket/&lt;my-bucket-name&gt;</c>.
+        /// For example, to access the bucket <c>reports</c> through Outpost <c>my-outpost</c>
+        /// owned by account <c>123456789012</c> in Region <c>us-west-2</c>, use the URL encoding
+        /// of <c>arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports</c>.
         /// The value must be URL encoded. 
         /// </para>
         /// </summary>
@@ -84,7 +85,7 @@ namespace Amazon.S3Control.Model
         // Check to see if Location property is set
         internal bool IsSetLocation()
         {
-            return this._location != null;
+            return !string.IsNullOrEmpty(this._location);
         }
 
     }

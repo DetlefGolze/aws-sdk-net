@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FraudDetector.Model
 {
     /// <summary>
@@ -37,12 +38,12 @@ namespace Amazon.FraudDetector.Model
     /// provide to continuously calculate a set of variables (aggregated variables) based
     /// on historical events. For example, your ATI model might calculate the number of times
     /// an user has logged in using the same IP address. In this case, event variables used
-    /// to derive the aggregated variables are <code>IP address</code> and <code>user</code>.
+    /// to derive the aggregated variables are <c>IP address</c> and <c>user</c>.
     /// </para>
     /// </summary>
     public partial class AggregatedVariablesImportanceMetrics
     {
-        private List<AggregatedLogOddsMetric> _logOddsMetrics = new List<AggregatedLogOddsMetric>();
+        private List<AggregatedLogOddsMetric> _logOddsMetrics = AWSConfigs.InitializeCollections ? new List<AggregatedLogOddsMetric>() : null;
 
         /// <summary>
         /// Gets and sets the property LogOddsMetrics. 
@@ -59,7 +60,7 @@ namespace Amazon.FraudDetector.Model
         // Check to see if LogOddsMetrics property is set
         internal bool IsSetLogOddsMetrics()
         {
-            return this._logOddsMetrics != null && this._logOddsMetrics.Count > 0; 
+            return this._logOddsMetrics != null && (this._logOddsMetrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

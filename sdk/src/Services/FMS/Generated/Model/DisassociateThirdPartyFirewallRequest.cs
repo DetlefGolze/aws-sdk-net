@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FMS.Model
 {
     /// <summary>
     /// Container for the parameters to the DisassociateThirdPartyFirewall operation.
     /// Disassociates a Firewall Manager policy administrator from a third-party firewall
-    /// tenant. When you call <code>DisassociateThirdPartyFirewall</code>, the third-party
-    /// firewall vendor deletes all of the firewalls that are associated with the account.
+    /// tenant. When you call <c>DisassociateThirdPartyFirewall</c>, the third-party firewall
+    /// vendor deletes all of the firewalls that are associated with the account.
     /// </summary>
     public partial class DisassociateThirdPartyFirewallRequest : AmazonFMSRequest
     {

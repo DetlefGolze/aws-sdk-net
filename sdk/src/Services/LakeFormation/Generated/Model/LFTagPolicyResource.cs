@@ -26,16 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
-    /// A structure containing a list of LF-tag conditions that apply to a resource's LF-tag
-    /// policy.
+    /// A structure containing a list of LF-tag conditions or saved LF-Tag expressions that
+    /// apply to a resource's LF-tag policy.
     /// </summary>
     public partial class LFTagPolicyResource
     {
         private string _catalogId;
-        private List<LFTag> _expression = new List<LFTag>();
+        private List<LFTag> _expression = AWSConfigs.InitializeCollections ? new List<LFTag>() : null;
+        private string _expressionName;
         private ResourceType _resourceType;
 
         /// <summary>
@@ -62,10 +64,10 @@ namespace Amazon.LakeFormation.Model
         /// <summary>
         /// Gets and sets the property Expression. 
         /// <para>
-        /// A list of LF-tag conditions that apply to the resource's LF-tag policy.
+        /// A list of LF-tag conditions or a saved expression that apply to the resource's LF-tag
+        /// policy.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public List<LFTag> Expression
         {
             get { return this._expression; }
@@ -75,7 +77,27 @@ namespace Amazon.LakeFormation.Model
         // Check to see if Expression property is set
         internal bool IsSetExpression()
         {
-            return this._expression != null && this._expression.Count > 0; 
+            return this._expression != null && (this._expression.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExpressionName. 
+        /// <para>
+        /// If provided, permissions are granted to the Data Catalog resources whose assigned
+        /// LF-Tags match the expression body of the saved expression under the provided <c>ExpressionName</c>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=255)]
+        public string ExpressionName
+        {
+            get { return this._expressionName; }
+            set { this._expressionName = value; }
+        }
+
+        // Check to see if ExpressionName property is set
+        internal bool IsSetExpressionName()
+        {
+            return this._expressionName != null;
         }
 
         /// <summary>

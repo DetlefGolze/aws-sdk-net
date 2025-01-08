@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -38,15 +39,21 @@ namespace Amazon.EC2.Model
     /// <para>
     /// For more information about Availability Zones, Local Zones, and Wavelength Zones,
     /// see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html">Regions
-    /// and zones</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+    /// and zones</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
+    ///  <note> 
+    /// <para>
+    /// The order of the elements in the response, including those within nested structures,
+    /// might vary. Applications should not assume the elements appear in a particular order.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class DescribeAvailabilityZonesRequest : AmazonEC2Request
     {
         private bool? _allAvailabilityZones;
-        private List<Filter> _filters = new List<Filter>();
-        private List<string> _zoneIds = new List<string>();
-        private List<string> _zoneNames = new List<string>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
+        private List<string> _zoneIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _zoneNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AllAvailabilityZones. 
@@ -79,55 +86,55 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>group-name</code> - For Availability Zones, use the Region name. For Local
-        /// Zones, use the name of the group associated with the Local Zone (for example, <code>us-west-2-lax-1</code>)
+        ///  <c>group-name</c> - For Availability Zones, use the Region name. For Local Zones,
+        /// use the name of the group associated with the Local Zone (for example, <c>us-west-2-lax-1</c>)
         /// For Wavelength Zones, use the name of the group associated with the Wavelength Zone
-        /// (for example, <code>us-east-1-wl1-bos-wlz-1</code>).
+        /// (for example, <c>us-east-1-wl1</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>message</code> - The Zone message.
+        ///  <c>message</c> - The Zone message.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>opt-in-status</code> - The opt-in status (<code>opted-in</code> | <code>not-opted-in</code>
-        /// | <code>opt-in-not-required</code>).
+        ///  <c>opt-in-status</c> - The opt-in status (<c>opted-in</c> | <c>not-opted-in</c> |
+        /// <c>opt-in-not-required</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>parent-zoneID</code> - The ID of the zone that handles some of the Local Zone
+        ///  <c>parent-zone-id</c> - The ID of the zone that handles some of the Local Zone and
+        /// Wavelength Zone control plane operations, such as API calls.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>parent-zone-name</c> - The ID of the zone that handles some of the Local Zone
         /// and Wavelength Zone control plane operations, such as API calls.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>parent-zoneName</code> - The ID of the zone that handles some of the Local
-        /// Zone and Wavelength Zone control plane operations, such as API calls.
+        ///  <c>region-name</c> - The name of the Region for the Zone (for example, <c>us-east-1</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>region-name</code> - The name of the Region for the Zone (for example, <code>us-east-1</code>).
+        ///  <c>state</c> - The state of the Availability Zone, the Local Zone, or the Wavelength
+        /// Zone (<c>available</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>state</code> - The state of the Availability Zone, the Local Zone, or the Wavelength
-        /// Zone (<code>available</code>).
+        ///  <c>zone-id</c> - The ID of the Availability Zone (for example, <c>use1-az1</c>),
+        /// the Local Zone (for example, <c>usw2-lax1-az1</c>), or the Wavelength Zone (for example,
+        /// <c>us-east-1-wl1-bos-wlz-1</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>zone-id</code> - The ID of the Availability Zone (for example, <code>use1-az1</code>),
-        /// the Local Zone (for example, <code>usw2-lax1-az1</code>), or the Wavelength Zone (for
-        /// example, <code>us-east-1-wl1-bos-wlz-1</code>).
+        ///  <c>zone-name</c> - The name of the Availability Zone (for example, <c>us-east-1a</c>),
+        /// the Local Zone (for example, <c>us-west-2-lax-1a</c>), or the Wavelength Zone (for
+        /// example, <c>us-east-1-wl1-bos-wlz-1</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>zone-name</code> - The name of the Availability Zone (for example, <code>us-east-1a</code>),
-        /// the Local Zone (for example, <code>us-west-2-lax-1a</code>), or the Wavelength Zone
-        /// (for example, <code>us-east-1-wl1-bos-wlz-1</code>).
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>zone-type</code> - The type of zone (<code>availability-zone</code> | <code>local-zone</code>
-        /// | <code>wavelength-zone</code>).
+        ///  <c>zone-type</c> - The type of zone (<c>availability-zone</c> | <c>local-zone</c>
+        /// | <c>wavelength-zone</c>).
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -140,7 +147,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -158,7 +165,7 @@ namespace Amazon.EC2.Model
         // Check to see if ZoneIds property is set
         internal bool IsSetZoneIds()
         {
-            return this._zoneIds != null && this._zoneIds.Count > 0; 
+            return this._zoneIds != null && (this._zoneIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -176,7 +183,7 @@ namespace Amazon.EC2.Model
         // Check to see if ZoneNames property is set
         internal bool IsSetZoneNames()
         {
-            return this._zoneNames != null && this._zoneNames.Count > 0; 
+            return this._zoneNames != null && (this._zoneNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

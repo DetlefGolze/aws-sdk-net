@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Amplify.Model
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace Amazon.Amplify.Model
     public partial class ListWebhooksResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Webhook> _webhooks = new List<Webhook>();
+        private List<Webhook> _webhooks = AWSConfigs.InitializeCollections ? new List<Webhook>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  A pagination token. If non-null, the pagination token is returned in a result. Pass
+        /// A pagination token. If non-null, the pagination token is returned in a result. Pass
         /// its value in another request to retrieve more entries. 
         /// </para>
         /// </summary>
@@ -59,7 +60,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property Webhooks. 
         /// <para>
-        ///  A list of webhooks. 
+        /// A list of webhooks. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -72,7 +73,7 @@ namespace Amazon.Amplify.Model
         // Check to see if Webhooks property is set
         internal bool IsSetWebhooks()
         {
-            return this._webhooks != null && this._webhooks.Count > 0; 
+            return this._webhooks != null && (this._webhooks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

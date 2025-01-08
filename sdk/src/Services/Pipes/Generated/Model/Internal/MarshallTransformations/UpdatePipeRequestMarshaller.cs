@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Pipes.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,6 +67,7 @@ namespace Amazon.Pipes.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetDescription())
@@ -93,6 +95,23 @@ namespace Amazon.Pipes.Model.Internal.MarshallTransformations
 
                     var marshaller = PipeEnrichmentParametersMarshaller.Instance;
                     marshaller.Marshall(publicRequest.EnrichmentParameters, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetKmsKeyIdentifier())
+                {
+                    context.Writer.WritePropertyName("KmsKeyIdentifier");
+                    context.Writer.Write(publicRequest.KmsKeyIdentifier);
+                }
+
+                if(publicRequest.IsSetLogConfiguration())
+                {
+                    context.Writer.WritePropertyName("LogConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = PipeLogConfigurationParametersMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.LogConfiguration, context);
 
                     context.Writer.WriteObjectEnd();
                 }

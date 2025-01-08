@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property SchemaArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the schema. One of <code>SchemaArn</code> or <code>SchemaName</code>
+        /// The Amazon Resource Name (ARN) of the schema. One of <c>SchemaArn</c> or <c>SchemaName</c>
         /// has to be provided.
         /// </para>
         /// </summary>
@@ -79,8 +80,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property SchemaName. 
         /// <para>
-        /// The name of the schema. One of <code>SchemaArn</code> or <code>SchemaName</code> has
-        /// to be provided.
+        /// The name of the schema. One of <c>SchemaArn</c> or <c>SchemaName</c> has to be provided.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]

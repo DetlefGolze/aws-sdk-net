@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the finspace-2021-03-12.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Finspace.Model
 {
     /// <summary>
@@ -41,8 +42,18 @@ namespace Amazon.Finspace.Model
         IListKxDatabasesPaginator ListKxDatabases(ListKxDatabasesRequest request);
 
         /// <summary>
+        /// Paginator for ListKxDataviews operation
+        ///</summary>
+        IListKxDataviewsPaginator ListKxDataviews(ListKxDataviewsRequest request);
+
+        /// <summary>
         /// Paginator for ListKxEnvironments operation
         ///</summary>
         IListKxEnvironmentsPaginator ListKxEnvironments(ListKxEnvironmentsRequest request);
+
+        /// <summary>
+        /// Paginator for ListKxScalingGroups operation
+        ///</summary>
+        IListKxScalingGroupsPaginator ListKxScalingGroups(ListKxScalingGroupsRequest request);
     }
 }

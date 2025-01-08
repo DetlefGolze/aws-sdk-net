@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKIdentity.Model
 {
     /// <summary>
-    /// The attributes of an <code>Endpoint</code>.
+    /// The attributes of an <c>Endpoint</c>.
     /// </summary>
     public partial class EndpointAttributes
     {

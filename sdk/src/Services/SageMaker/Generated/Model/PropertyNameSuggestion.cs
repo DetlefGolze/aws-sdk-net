@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// A property name returned from a <code>GetSearchSuggestions</code> call that specifies
-    /// a value in the <code>PropertyNameQuery</code> field.
+    /// A property name returned from a <c>GetSearchSuggestions</c> call that specifies a
+    /// value in the <c>PropertyNameQuery</c> field.
     /// </summary>
     public partial class PropertyNameSuggestion
     {

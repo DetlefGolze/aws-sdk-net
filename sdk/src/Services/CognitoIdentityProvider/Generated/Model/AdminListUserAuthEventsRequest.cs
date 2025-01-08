@@ -26,12 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the AdminListUserAuthEvents operation.
-    /// A history of user activity and any risks detected as part of Amazon Cognito advanced
-    /// security.
+    /// Requests a history of user activity and any risks detected as part of Amazon Cognito
+    /// threat protection. For more information, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-adaptive-authentication.html#user-pool-settings-adaptive-authentication-event-user-history">Viewing
+    /// user event history</a>.
     /// 
     ///  <note> 
     /// <para>
@@ -66,7 +68,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of authentication events to return. Returns 60 events if you set
-        /// <code>MaxResults</code> to 0, or if you don't include a <code>MaxResults</code> parameter.
+        /// <c>MaxResults</c> to 0, or if you don't include a <c>MaxResults</c> parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=60)]
@@ -85,7 +87,11 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A pagination token.
+        /// This API operation returns a limited number of results. The pagination token is an
+        /// identifier that you can present in an additional API request with the same parameters.
+        /// When you include the pagination token, Amazon Cognito returns the next set of items
+        /// after the current list. Subsequent requests return a new pagination token. By use
+        /// of this token, you can paginate through the full list of items.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=131072)]
@@ -104,7 +110,10 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Username. 
         /// <para>
-        /// The user pool username or an alias.
+        /// The username of the user that you want to query or modify. The value of this parameter
+        /// is typically your user's username, but it can be any of their alias attributes. If
+        /// <c>username</c> isn't an alias attribute in your user pool, this value must be the
+        /// <c>sub</c> of a local user or the username of a user from a third-party IdP.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=128)]
@@ -123,7 +132,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID.
+        /// The Id of the user pool that contains the user profile with the logged events.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

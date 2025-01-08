@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruSecurity.Model
 {
     /// <summary>
@@ -43,12 +44,12 @@ namespace Amazon.CodeGuruSecurity.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to return in the response. Use this parameter when paginating
-        /// results. If additional results exist beyond the number you specify, the <code>nextToken</code>
-        /// element is returned in the response. Use <code>nextToken</code> in a subsequent request
-        /// to retrieve additional results.
+        /// results. If additional results exist beyond the number you specify, the <c>nextToken</c>
+        /// element is returned in the response. Use <c>nextToken</c> in a subsequent request
+        /// to retrieve additional results. If not specified, returns 1000 results.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=100)]
+        [AWSProperty(Min=1, Max=1000)]
         public int MaxResults
         {
             get { return this._maxResults.GetValueOrDefault(); }
@@ -65,7 +66,7 @@ namespace Amazon.CodeGuruSecurity.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token to use for paginating results that are returned in the response. Set the value
-        /// of this parameter to null for the first request. For subsequent calls, use the <code>nextToken</code>
+        /// of this parameter to null for the first request. For subsequent calls, use the <c>nextToken</c>
         /// value returned from the previous request to continue listing results after the first
         /// page.
         /// </para>
@@ -105,8 +106,8 @@ namespace Amazon.CodeGuruSecurity.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the findings you want to get. Pass either <code>Open</code>, <code>Closed</code>,
-        /// or <code>All</code>.
+        /// The status of the findings you want to get. Pass either <c>Open</c>, <c>Closed</c>,
+        /// or <c>All</c>.
         /// </para>
         /// </summary>
         public Status Status

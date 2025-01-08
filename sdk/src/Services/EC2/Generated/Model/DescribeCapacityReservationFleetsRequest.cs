@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeCapacityReservationFleetsRequest : AmazonEC2Request
     {
-        private List<string> _capacityReservationFleetIds = new List<string>();
-        private List<Filter> _filters = new List<Filter>();
+        private List<string> _capacityReservationFleetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -54,7 +55,7 @@ namespace Amazon.EC2.Model
         // Check to see if CapacityReservationFleetIds property is set
         internal bool IsSetCapacityReservationFleetIds()
         {
-            return this._capacityReservationFleetIds != null && this._capacityReservationFleetIds.Count > 0; 
+            return this._capacityReservationFleetIds != null && (this._capacityReservationFleetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -64,23 +65,23 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>state</code> - The state of the Fleet (<code>submitted</code> | <code>modifying</code>
-        /// | <code>active</code> | <code>partially_fulfilled</code> | <code>expiring</code> |
-        /// <code>expired</code> | <code>cancelling</code> | <code>cancelled</code> | <code>failed</code>).
+        ///  <c>state</c> - The state of the Fleet (<c>submitted</c> | <c>modifying</c> | <c>active</c>
+        /// | <c>partially_fulfilled</c> | <c>expiring</c> | <c>expired</c> | <c>cancelling</c>
+        /// | <c>cancelled</c> | <c>failed</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>instance-match-criteria</code> - The instance matching criteria for the Fleet.
-        /// Only <code>open</code> is supported.
+        ///  <c>instance-match-criteria</c> - The instance matching criteria for the Fleet. Only
+        /// <c>open</c> is supported.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tenancy</code> - The tenancy of the Fleet (<code>default</code> | <code>dedicated</code>).
+        ///  <c>tenancy</c> - The tenancy of the Fleet (<c>default</c> | <c>dedicated</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>allocation-strategy</code> - The allocation strategy used by the Fleet. Only
-        /// <code>prioritized</code> is supported.
+        ///  <c>allocation-strategy</c> - The allocation strategy used by the Fleet. Only <c>prioritized</c>
+        /// is supported.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -93,16 +94,15 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The maximum number of results to return for the request in a single page. The remaining
-        /// results can be seen by sending another request with the returned <code>nextToken</code>
-        /// value. This value can be between 5 and 500. If <code>maxResults</code> is given a
-        /// larger value than 500, you receive an error.
+        /// The maximum number of items to return for this request. To get the next page of items,
+        /// make another request with the token returned in the output. For more information,
+        /// see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination">Pagination</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]

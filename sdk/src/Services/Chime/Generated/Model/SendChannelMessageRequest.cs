@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.Chime.Model
     /// 
     ///  <note> 
     /// <para>
-    /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code>
+    /// The <c>x-amz-chime-bearer</c> request header is mandatory. Use the <c>AppInstanceUserArn</c>
     /// of the user that makes the API call as the value in the header.
     /// </para>
     ///  
     /// <para>
-    /// Also, <code>STANDARD</code> messages can contain 4KB of data and the 1KB of metadata.
-    /// <code>CONTROL</code> messages can contain 30 bytes of data and no metadata.
+    /// Also, <c>STANDARD</c> messages can contain 4KB of data and the 1KB of metadata. <c>CONTROL</c>
+    /// messages can contain 30 bytes of data and no metadata.
     /// </para>
     ///  </note> <important> 
     /// <para>
@@ -88,7 +89,7 @@ namespace Amazon.Chime.Model
         /// <summary>
         /// Gets and sets the property ChimeBearer. 
         /// <para>
-        /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
+        /// The <c>AppInstanceUserArn</c> of the user that makes the API call.
         /// </para>
         /// </summary>
         [AWSProperty(Min=5, Max=1600)]
@@ -101,13 +102,13 @@ namespace Amazon.Chime.Model
         // Check to see if ChimeBearer property is set
         internal bool IsSetChimeBearer()
         {
-            return this._chimeBearer != null;
+            return !string.IsNullOrEmpty(this._chimeBearer);
         }
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
-        /// The <code>Idempotency</code> token for each client request.
+        /// The <c>Idempotency</c> token for each client request.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=2, Max=64)]
@@ -183,7 +184,7 @@ namespace Amazon.Chime.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of message, <code>STANDARD</code> or <code>CONTROL</code>.
+        /// The type of message, <c>STANDARD</c> or <c>CONTROL</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,18 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteFindingAggregator operation.
-    /// Deletes a finding aggregator. When you delete the finding aggregator, you stop finding
-    /// aggregation.
-    /// 
+    /// <note> 
+    /// <para>
+    /// The <i>aggregation Region</i> is now called the <i>home Region</i>.
+    /// </para>
+    ///  </note> 
+    /// <para>
+    /// Deletes a finding aggregator. When you delete the finding aggregator, you stop cross-Region
+    /// aggregation. Finding replication stops occurring from the linked Regions to the home
+    /// Region.
+    /// </para>
     ///  
     /// <para>
-    /// When you stop finding aggregation, findings that were already aggregated to the aggregation
-    /// Region are still visible from the aggregation Region. New findings and finding updates
-    /// are not aggregated. 
+    /// When you stop cross-Region aggregation, findings that were already replicated and
+    /// sent to the home Region are still visible from the home Region. However, new findings
+    /// and finding updates are no longer replicated and sent to the home Region. 
     /// </para>
     /// </summary>
     public partial class DeleteFindingAggregatorRequest : AmazonSecurityHubRequest
@@ -47,7 +55,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property FindingAggregatorArn. 
         /// <para>
-        /// The ARN of the finding aggregator to delete. To obtain the ARN, use <code>ListFindingAggregators</code>.
+        /// The ARN of the finding aggregator to delete. To obtain the ARN, use <c>ListFindingAggregators</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

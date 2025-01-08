@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property GameServerGroup. 
         /// <para>
-        /// An object that describes the game server group resource, with the <code>SuspendedActions</code>
+        /// An object that describes the game server group resource, with the <c>SuspendedActions</c>
         /// property updated to reflect the resumed activity.
         /// </para>
         /// </summary>

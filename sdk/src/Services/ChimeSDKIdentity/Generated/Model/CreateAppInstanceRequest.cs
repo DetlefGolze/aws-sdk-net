@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKIdentity.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateAppInstance operation.
-    /// Creates an Amazon Chime SDK messaging <code>AppInstance</code> under an AWS account.
-    /// Only SDK messaging customers use this API. <code>CreateAppInstance</code> supports
-    /// idempotency behavior as described in the AWS API Standard.
+    /// Creates an Amazon Chime SDK messaging <c>AppInstance</c> under an AWS account. Only
+    /// SDK messaging customers use this API. <c>CreateAppInstance</c> supports idempotency
+    /// behavior as described in the AWS API Standard.
     /// 
     ///  
     /// <para>
@@ -44,12 +45,12 @@ namespace Amazon.ChimeSDKIdentity.Model
         private string _clientRequestToken;
         private string _metadata;
         private string _name;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
-        /// The unique ID of the request. Use different tokens to create different <code>AppInstances</code>.
+        /// The unique ID of the request. Use different tokens to create different <c>AppInstances</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=2, Max=64)]
@@ -68,7 +69,7 @@ namespace Amazon.ChimeSDKIdentity.Model
         /// <summary>
         /// Gets and sets the property Metadata. 
         /// <para>
-        /// The metadata of the <code>AppInstance</code>. Limited to a 1KB string in UTF-8.
+        /// The metadata of the <c>AppInstance</c>. Limited to a 1KB string in UTF-8.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=0, Max=1024)]
@@ -87,7 +88,7 @@ namespace Amazon.ChimeSDKIdentity.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the <code>AppInstance</code>.
+        /// The name of the <c>AppInstance</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=256)]
@@ -106,7 +107,7 @@ namespace Amazon.ChimeSDKIdentity.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// Tags assigned to the <code>AppInstance</code>.
+        /// Tags assigned to the <c>AppInstance</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -119,7 +120,7 @@ namespace Amazon.ChimeSDKIdentity.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

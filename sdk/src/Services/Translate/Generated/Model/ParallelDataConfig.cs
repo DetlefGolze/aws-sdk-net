@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Translate.Model
 {
     /// <summary>
@@ -42,7 +43,6 @@ namespace Amazon.Translate.Model
         /// The format of the parallel data input file.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public ParallelDataFormat Format
         {
             get { return this._format; }
@@ -62,7 +62,7 @@ namespace Amazon.Translate.Model
         /// must be in the same Region as the API endpoint you are calling.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=1024)]
+        [AWSProperty(Max=1024)]
         public string S3Uri
         {
             get { return this._s3Uri; }

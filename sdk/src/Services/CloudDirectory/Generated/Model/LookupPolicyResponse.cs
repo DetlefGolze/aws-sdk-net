@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.CloudDirectory.Model
     public partial class LookupPolicyResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<PolicyToPath> _policyToPathList = new List<PolicyToPath>();
+        private List<PolicyToPath> _policyToPathList = AWSConfigs.InitializeCollections ? new List<PolicyToPath>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -57,8 +58,8 @@ namespace Amazon.CloudDirectory.Model
         /// <summary>
         /// Gets and sets the property PolicyToPathList. 
         /// <para>
-        /// Provides list of path to policies. Policies contain <code>PolicyId</code>, <code>ObjectIdentifier</code>,
-        /// and <code>PolicyType</code>. For more information, see <a href="https://docs.aws.amazon.com/clouddirectory/latest/developerguide/key_concepts_directory.html#key_concepts_policies">Policies</a>.
+        /// Provides list of path to policies. Policies contain <c>PolicyId</c>, <c>ObjectIdentifier</c>,
+        /// and <c>PolicyType</c>. For more information, see <a href="https://docs.aws.amazon.com/clouddirectory/latest/developerguide/key_concepts_directory.html#key_concepts_policies">Policies</a>.
         /// </para>
         /// </summary>
         public List<PolicyToPath> PolicyToPathList
@@ -70,7 +71,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if PolicyToPathList property is set
         internal bool IsSetPolicyToPathList()
         {
-            return this._policyToPathList != null && this._policyToPathList.Count > 0; 
+            return this._policyToPathList != null && (this._policyToPathList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

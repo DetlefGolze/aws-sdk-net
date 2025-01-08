@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
@@ -49,7 +50,7 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property ColdStorageOptions. 
         /// <para>
-        /// Specifies the <code>ColdStorageOptions</code> config for Elasticsearch Domain
+        /// Specifies the <c>ColdStorageOptions</c> config for Elasticsearch Domain
         /// </para>
         /// </summary>
         public ColdStorageOptions ColdStorageOptions

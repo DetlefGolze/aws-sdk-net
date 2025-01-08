@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.StepFunctions.Model
     {
         private string _activityArn;
         private DateTime? _creationDate;
+        private EncryptionConfiguration _encryptionConfiguration;
         private string _name;
 
         /// <summary>
@@ -76,6 +78,24 @@ namespace Amazon.StepFunctions.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EncryptionConfiguration. 
+        /// <para>
+        /// Settings for configured server-side encryption.
+        /// </para>
+        /// </summary>
+        public EncryptionConfiguration EncryptionConfiguration
+        {
+            get { return this._encryptionConfiguration; }
+            set { this._encryptionConfiguration = value; }
+        }
+
+        // Check to see if EncryptionConfiguration property is set
+        internal bool IsSetEncryptionConfiguration()
+        {
+            return this._encryptionConfiguration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
         /// The name of the activity.
@@ -90,19 +110,19 @@ namespace Amazon.StepFunctions.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// brackets <code>&lt; &gt; { } [ ]</code> 
+        /// brackets <c>&lt; &gt; { } [ ]</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// wildcard characters <code>? *</code> 
+        /// wildcard characters <c>? *</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> 
+        /// special characters <c>" # % \ ^ | ~ ` $ &amp; , ; : /</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// control characters (<code>U+0000-001F</code>, <code>U+007F-009F</code>)
+        /// control characters (<c>U+0000-001F</c>, <c>U+007F-009F</c>)
         /// </para>
         ///  </li> </ul> 
         /// <para>

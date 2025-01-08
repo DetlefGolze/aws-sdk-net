@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Schema Unmarshall(JsonUnmarshallerContext context)
         {
+            Schema unmarshalledObject = new Schema();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Schema unmarshalledObject = new Schema();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -124,6 +126,18 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
                     unmarshalledObject.PartitionKeys = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("schemaStatusDetails", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<SchemaStatusDetail, SchemaStatusDetailUnmarshaller>(SchemaStatusDetailUnmarshaller.Instance);
+                    unmarshalledObject.SchemaStatusDetails = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("schemaTypeProperties", targetDepth))
+                {
+                    var unmarshaller = SchemaTypePropertiesUnmarshaller.Instance;
+                    unmarshalledObject.SchemaTypeProperties = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("type", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -137,7 +151,6 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

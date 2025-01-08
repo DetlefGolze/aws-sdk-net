@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property ConfigurationItem. 
         /// <para>
-        /// Returns a <code>ConfigurationItem</code> object.
+        /// Returns a <c>ConfigurationItem</c> object.
         /// </para>
         /// </summary>
         public ConfigurationItem ConfigurationItem

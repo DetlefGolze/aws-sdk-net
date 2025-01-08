@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
@@ -35,12 +36,12 @@ namespace Amazon.AppSync.Model
     public partial class UntagResourceRequest : AmazonAppSyncRequest
     {
         private string _resourceArn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The <code>GraphqlApi</code> Amazon Resource Name (ARN).
+        /// The <c>GraphqlApi</c> Amazon Resource Name (ARN).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=70, Max=75)]
@@ -59,7 +60,7 @@ namespace Amazon.AppSync.Model
         /// <summary>
         /// Gets and sets the property TagKeys. 
         /// <para>
-        /// A list of <code>TagKey</code> objects.
+        /// A list of <c>TagKey</c> objects.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=50)]
@@ -72,7 +73,7 @@ namespace Amazon.AppSync.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

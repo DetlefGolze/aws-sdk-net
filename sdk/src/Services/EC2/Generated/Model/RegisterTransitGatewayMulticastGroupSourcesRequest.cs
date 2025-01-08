@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -36,8 +37,8 @@ namespace Amazon.EC2.Model
     ///  
     /// <para>
     /// A multicast source is a network interface attached to a supported instance that sends
-    /// multicast traffic. For information about supported instances, see <a href="https://docs.aws.amazon.com/vpc/latest/tgw/transit-gateway-limits.html#multicast-limits">Multicast
-    /// Considerations</a> in <i>Amazon VPC Transit Gateways</i>.
+    /// multicast traffic. For more information about supported instances, see <a href="https://docs.aws.amazon.com/vpc/latest/tgw/tgw-multicast-overview.html">Multicast
+    /// on transit gateways</a> in the <i>Amazon Web Services Transit Gateways Guide</i>.
     /// </para>
     ///  
     /// <para>
@@ -48,7 +49,7 @@ namespace Amazon.EC2.Model
     public partial class RegisterTransitGatewayMulticastGroupSourcesRequest : AmazonEC2Request
     {
         private string _groupIpAddress;
-        private List<string> _networkInterfaceIds = new List<string>();
+        private List<string> _networkInterfaceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _transitGatewayMulticastDomainId;
 
         /// <summary>
@@ -86,7 +87,7 @@ namespace Amazon.EC2.Model
         // Check to see if NetworkInterfaceIds property is set
         internal bool IsSetNetworkInterfaceIds()
         {
-            return this._networkInterfaceIds != null && this._networkInterfaceIds.Count > 0; 
+            return this._networkInterfaceIds != null && (this._networkInterfaceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

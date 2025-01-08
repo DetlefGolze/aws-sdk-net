@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -33,26 +34,26 @@ namespace Amazon.Kendra.Model
     /// </summary>
     public partial class BoxConfiguration
     {
-        private List<DataSourceToIndexFieldMapping> _commentFieldMappings = new List<DataSourceToIndexFieldMapping>();
+        private List<DataSourceToIndexFieldMapping> _commentFieldMappings = AWSConfigs.InitializeCollections ? new List<DataSourceToIndexFieldMapping>() : null;
         private bool? _crawlComments;
         private bool? _crawlTasks;
         private bool? _crawlWebLinks;
         private string _enterpriseId;
-        private List<string> _exclusionPatterns = new List<string>();
-        private List<DataSourceToIndexFieldMapping> _fileFieldMappings = new List<DataSourceToIndexFieldMapping>();
-        private List<string> _inclusionPatterns = new List<string>();
+        private List<string> _exclusionPatterns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<DataSourceToIndexFieldMapping> _fileFieldMappings = AWSConfigs.InitializeCollections ? new List<DataSourceToIndexFieldMapping>() : null;
+        private List<string> _inclusionPatterns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _secretArn;
-        private List<DataSourceToIndexFieldMapping> _taskFieldMappings = new List<DataSourceToIndexFieldMapping>();
+        private List<DataSourceToIndexFieldMapping> _taskFieldMappings = AWSConfigs.InitializeCollections ? new List<DataSourceToIndexFieldMapping>() : null;
         private bool? _useChangeLog;
         private DataSourceVpcConfiguration _vpcConfiguration;
-        private List<DataSourceToIndexFieldMapping> _webLinkFieldMappings = new List<DataSourceToIndexFieldMapping>();
+        private List<DataSourceToIndexFieldMapping> _webLinkFieldMappings = AWSConfigs.InitializeCollections ? new List<DataSourceToIndexFieldMapping>() : null;
 
         /// <summary>
         /// Gets and sets the property CommentFieldMappings. 
         /// <para>
-        /// A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or
-        /// field names of Box comments to Amazon Kendra index field names. To create custom fields,
-        /// use the <code>UpdateIndex</code> API before you map to Box fields. For more information,
+        /// A list of <c>DataSourceToIndexFieldMapping</c> objects that map attributes or field
+        /// names of Box comments to Amazon Kendra index field names. To create custom fields,
+        /// use the <c>UpdateIndex</c> API before you map to Box fields. For more information,
         /// see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
         /// data source fields</a>. The Box field names must exist in your Box custom metadata.
         /// </para>
@@ -67,13 +68,13 @@ namespace Amazon.Kendra.Model
         // Check to see if CommentFieldMappings property is set
         internal bool IsSetCommentFieldMappings()
         {
-            return this._commentFieldMappings != null && this._commentFieldMappings.Count > 0; 
+            return this._commentFieldMappings != null && (this._commentFieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property CrawlComments. 
         /// <para>
-        ///  <code>TRUE</code> to index comments.
+        ///  <c>TRUE</c> to index comments.
         /// </para>
         /// </summary>
         public bool CrawlComments
@@ -91,7 +92,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property CrawlTasks. 
         /// <para>
-        ///  <code>TRUE</code> to index the contents of tasks.
+        ///  <c>TRUE</c> to index the contents of tasks.
         /// </para>
         /// </summary>
         public bool CrawlTasks
@@ -109,7 +110,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property CrawlWebLinks. 
         /// <para>
-        ///  <code>TRUE</code> to index web links.
+        ///  <c>TRUE</c> to index web links.
         /// </para>
         /// </summary>
         public bool CrawlWebLinks
@@ -165,16 +166,16 @@ namespace Amazon.Kendra.Model
         // Check to see if ExclusionPatterns property is set
         internal bool IsSetExclusionPatterns()
         {
-            return this._exclusionPatterns != null && this._exclusionPatterns.Count > 0; 
+            return this._exclusionPatterns != null && (this._exclusionPatterns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property FileFieldMappings. 
         /// <para>
-        /// A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or
-        /// field names of Box files to Amazon Kendra index field names. To create custom fields,
-        /// use the <code>UpdateIndex</code> API before you map to Box fields. For more information,
-        /// see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
+        /// A list of <c>DataSourceToIndexFieldMapping</c> objects that map attributes or field
+        /// names of Box files to Amazon Kendra index field names. To create custom fields, use
+        /// the <c>UpdateIndex</c> API before you map to Box fields. For more information, see
+        /// <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
         /// data source fields</a>. The Box field names must exist in your Box custom metadata.
         /// </para>
         /// </summary>
@@ -188,7 +189,7 @@ namespace Amazon.Kendra.Model
         // Check to see if FileFieldMappings property is set
         internal bool IsSetFileFieldMappings()
         {
-            return this._fileFieldMappings != null && this._fileFieldMappings.Count > 0; 
+            return this._fileFieldMappings != null && (this._fileFieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -211,7 +212,7 @@ namespace Amazon.Kendra.Model
         // Check to see if InclusionPatterns property is set
         internal bool IsSetInclusionPatterns()
         {
-            return this._inclusionPatterns != null && this._inclusionPatterns.Count > 0; 
+            return this._inclusionPatterns != null && (this._inclusionPatterns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -266,10 +267,10 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property TaskFieldMappings. 
         /// <para>
-        /// A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or
-        /// field names of Box tasks to Amazon Kendra index field names. To create custom fields,
-        /// use the <code>UpdateIndex</code> API before you map to Box fields. For more information,
-        /// see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
+        /// A list of <c>DataSourceToIndexFieldMapping</c> objects that map attributes or field
+        /// names of Box tasks to Amazon Kendra index field names. To create custom fields, use
+        /// the <c>UpdateIndex</c> API before you map to Box fields. For more information, see
+        /// <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
         /// data source fields</a>. The Box field names must exist in your Box custom metadata.
         /// </para>
         /// </summary>
@@ -283,15 +284,15 @@ namespace Amazon.Kendra.Model
         // Check to see if TaskFieldMappings property is set
         internal bool IsSetTaskFieldMappings()
         {
-            return this._taskFieldMappings != null && this._taskFieldMappings.Count > 0; 
+            return this._taskFieldMappings != null && (this._taskFieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UseChangeLog. 
         /// <para>
-        ///  <code>TRUE</code> to use the Slack change log to determine which documents require
-        /// updating in the index. Depending on the data source change log's size, it may take
-        /// longer for Amazon Kendra to use the change log than to scan all of your documents.
+        ///  <c>TRUE</c> to use the Slack change log to determine which documents require updating
+        /// in the index. Depending on the data source change log's size, it may take longer for
+        /// Amazon Kendra to use the change log than to scan all of your documents.
         /// </para>
         /// </summary>
         public bool UseChangeLog
@@ -329,10 +330,10 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property WebLinkFieldMappings. 
         /// <para>
-        /// A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or
-        /// field names of Box web links to Amazon Kendra index field names. To create custom
-        /// fields, use the <code>UpdateIndex</code> API before you map to Box fields. For more
-        /// information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
+        /// A list of <c>DataSourceToIndexFieldMapping</c> objects that map attributes or field
+        /// names of Box web links to Amazon Kendra index field names. To create custom fields,
+        /// use the <c>UpdateIndex</c> API before you map to Box fields. For more information,
+        /// see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
         /// data source fields</a>. The Box field names must exist in your Box custom metadata.
         /// </para>
         /// </summary>
@@ -346,7 +347,7 @@ namespace Amazon.Kendra.Model
         // Check to see if WebLinkFieldMappings property is set
         internal bool IsSetWebLinkFieldMappings()
         {
-            return this._webLinkFieldMappings != null && this._webLinkFieldMappings.Count > 0; 
+            return this._webLinkFieldMappings != null && (this._webLinkFieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

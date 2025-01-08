@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.RoboMaker.Model
         /// <summary>
         /// Gets and sets the property S3Prefix. 
         /// <para>
-        /// The S3 folder in the <code>s3Bucket</code> where output files will be placed.
+        /// The S3 folder in the <c>s3Bucket</c> where output files will be placed.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

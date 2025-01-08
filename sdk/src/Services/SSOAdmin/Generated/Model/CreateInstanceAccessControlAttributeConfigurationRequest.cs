@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSOAdmin.Model
 {
     /// <summary>
@@ -37,8 +38,8 @@ namespace Amazon.SSOAdmin.Model
     /// 
     ///  <note> 
     /// <para>
-    /// After a successful response, call <code>DescribeInstanceAccessControlAttributeConfiguration</code>
-    /// to validate that <code>InstanceAccessControlAttributeConfiguration</code> was created.
+    /// After a successful response, call <c>DescribeInstanceAccessControlAttributeConfiguration</c>
+    /// to validate that <c>InstanceAccessControlAttributeConfiguration</c> was created.
     /// </para>
     ///  </note>
     /// </summary>

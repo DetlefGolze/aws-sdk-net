@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ManagedBlockchainQuery.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.ManagedBlockchainQuery.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public TransactionOutputItem Unmarshall(JsonUnmarshallerContext context)
         {
+            TransactionOutputItem unmarshalledObject = new TransactionOutputItem();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            TransactionOutputItem unmarshalledObject = new TransactionOutputItem();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("confirmationStatus", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ConfirmationStatus = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("network", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -76,6 +84,12 @@ namespace Amazon.ManagedBlockchainQuery.Model.Internal.MarshallTransformations
                     unmarshalledObject.TransactionHash = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("transactionId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.TransactionId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("transactionTimestamp", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
@@ -83,7 +97,6 @@ namespace Amazon.ManagedBlockchainQuery.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

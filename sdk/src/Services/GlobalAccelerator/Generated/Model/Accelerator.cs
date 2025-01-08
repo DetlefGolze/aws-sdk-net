@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GlobalAccelerator.Model
 {
     /// <summary>
@@ -40,9 +41,9 @@ namespace Amazon.GlobalAccelerator.Model
         private string _dnsName;
         private string _dualStackDnsName;
         private bool? _enabled;
-        private List<AcceleratorEvent> _events = new List<AcceleratorEvent>();
+        private List<AcceleratorEvent> _events = AWSConfigs.InitializeCollections ? new List<AcceleratorEvent>() : null;
         private IpAddressType _ipAddressType;
-        private List<IpSet> _ipSets = new List<IpSet>();
+        private List<IpSet> _ipSets = AWSConfigs.InitializeCollections ? new List<IpSet>() : null;
         private DateTime? _lastModifiedTime;
         private string _name;
         private AcceleratorStatus _status;
@@ -98,7 +99,7 @@ namespace Amazon.GlobalAccelerator.Model
         /// </para>
         ///  
         /// <para>
-        /// If you have a dual-stack accelerator, you also have a second DNS name, <code>DualStackDnsName</code>,
+        /// If you have a dual-stack accelerator, you also have a second DNS name, <c>DualStackDnsName</c>,
         /// that points to both the A record and the AAAA record for all four static addresses
         /// for the accelerator: two IPv4 addresses and two IPv6 addresses.
         /// </para>
@@ -137,8 +138,8 @@ namespace Amazon.GlobalAccelerator.Model
         /// </para>
         ///  
         /// <para>
-        /// Note: Global Accelerator also assigns a default DNS name, <code>DnsName</code>, to
-        /// your accelerator that points just to the static IPv4 addresses. 
+        /// Note: Global Accelerator also assigns a default DNS name, <c>DnsName</c>, to your
+        /// accelerator that points just to the static IPv4 addresses. 
         /// </para>
         ///  
         /// <para>
@@ -199,7 +200,7 @@ namespace Amazon.GlobalAccelerator.Model
         // Check to see if Events property is set
         internal bool IsSetEvents()
         {
-            return this._events != null && this._events.Count > 0; 
+            return this._events != null && (this._events.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -236,7 +237,7 @@ namespace Amazon.GlobalAccelerator.Model
         // Check to see if IpSets property is set
         internal bool IsSetIpSets()
         {
-            return this._ipSets != null && this._ipSets.Count > 0; 
+            return this._ipSets != null && (this._ipSets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

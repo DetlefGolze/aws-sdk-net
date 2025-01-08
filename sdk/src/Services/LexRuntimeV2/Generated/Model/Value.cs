@@ -26,24 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexRuntimeV2.Model
 {
     /// <summary>
-    /// The value of a slot.
+    /// Information about the value provided for a slot and Amazon Lex V2's interpretation.
     /// </summary>
     public partial class Value
     {
         private string _interpretedValue;
         private string _originalValue;
-        private List<string> _resolvedValues = new List<string>();
+        private List<string> _resolvedValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property InterpretedValue. 
         /// <para>
-        /// The value that Amazon Lex V2 determines for the slot. The actual value depends on
-        /// the setting of the value selection strategy for the bot. You can choose to use the
-        /// value entered by the user, or you can have Amazon Lex V2 choose the first value in
-        /// the <code>resolvedValues</code> list.
+        /// The value that Amazon Lex V2 determines for the slot, given the user input. The actual
+        /// value depends on the setting of the value selection strategy for the bot. You can
+        /// choose to use the value entered by the user, or you can have Amazon Lex V2 choose
+        /// the first value in the <c>resolvedValues</c> list.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1)]
@@ -62,7 +63,8 @@ namespace Amazon.LexRuntimeV2.Model
         /// <summary>
         /// Gets and sets the property OriginalValue. 
         /// <para>
-        /// The text of the utterance from the user that was entered for the slot.
+        /// The part of the user's response to the slot elicitation that Amazon Lex V2 determines
+        /// is relevant to the slot value.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -81,7 +83,8 @@ namespace Amazon.LexRuntimeV2.Model
         /// <summary>
         /// Gets and sets the property ResolvedValues. 
         /// <para>
-        /// A list of additional values that have been recognized for the slot.
+        /// A list of values that Amazon Lex V2 determines are possible resolutions for the user
+        /// input. The first value matches the <c>interpretedValue</c>.
         /// </para>
         /// </summary>
         public List<string> ResolvedValues
@@ -93,7 +96,7 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if ResolvedValues property is set
         internal bool IsSetResolvedValues()
         {
-            return this._resolvedValues != null && this._resolvedValues.Count > 0; 
+            return this._resolvedValues != null && (this._resolvedValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

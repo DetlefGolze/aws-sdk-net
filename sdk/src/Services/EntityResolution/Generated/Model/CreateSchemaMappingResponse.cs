@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.EntityResolution.Model
     public partial class CreateSchemaMappingResponse : AmazonWebServiceResponse
     {
         private string _description;
-        private List<SchemaInputAttribute> _mappedInputFields = new List<SchemaInputAttribute>();
+        private List<SchemaInputAttribute> _mappedInputFields = AWSConfigs.InitializeCollections ? new List<SchemaInputAttribute>() : null;
         private string _schemaArn;
         private string _schemaName;
 
@@ -60,12 +61,12 @@ namespace Amazon.EntityResolution.Model
         /// <summary>
         /// Gets and sets the property MappedInputFields. 
         /// <para>
-        /// A list of <code>MappedInputFields</code>. Each <code>MappedInputField</code> corresponds
-        /// to a column the source data table, and contains column name plus additional information
+        /// A list of <c>MappedInputFields</c>. Each <c>MappedInputField</c> corresponds to a
+        /// column the source data table, and contains column name plus additional information
         /// that Entity Resolution uses for matching.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=2, Max=25)]
+        [AWSProperty(Required=true, Min=2, Max=35)]
         public List<SchemaInputAttribute> MappedInputFields
         {
             get { return this._mappedInputFields; }
@@ -75,13 +76,13 @@ namespace Amazon.EntityResolution.Model
         // Check to see if MappedInputFields property is set
         internal bool IsSetMappedInputFields()
         {
-            return this._mappedInputFields != null && this._mappedInputFields.Count > 0; 
+            return this._mappedInputFields != null && (this._mappedInputFields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SchemaArn. 
         /// <para>
-        /// The ARN (Amazon Resource Name) that Entity Resolution generated for the <code>SchemaMapping</code>.
+        /// The ARN (Amazon Resource Name) that Entity Resolution generated for the <c>SchemaMapping</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -103,7 +104,7 @@ namespace Amazon.EntityResolution.Model
         /// The name of the schema.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=0, Max=255)]
+        [AWSProperty(Required=true, Min=1, Max=255)]
         public string SchemaName
         {
             get { return this._schemaName; }

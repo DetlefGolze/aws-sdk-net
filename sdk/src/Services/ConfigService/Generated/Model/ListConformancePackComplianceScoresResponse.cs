@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.ConfigService.Model
     /// </summary>
     public partial class ListConformancePackComplianceScoresResponse : AmazonWebServiceResponse
     {
-        private List<ConformancePackComplianceScore> _conformancePackComplianceScores = new List<ConformancePackComplianceScore>();
+        private List<ConformancePackComplianceScore> _conformancePackComplianceScores = AWSConfigs.InitializeCollections ? new List<ConformancePackComplianceScore>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property ConformancePackComplianceScores. 
         /// <para>
-        /// A list of <code>ConformancePackComplianceScore</code> objects.
+        /// A list of <c>ConformancePackComplianceScore</c> objects.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -52,14 +53,14 @@ namespace Amazon.ConfigService.Model
         // Check to see if ConformancePackComplianceScores property is set
         internal bool IsSetConformancePackComplianceScores()
         {
-            return this._conformancePackComplianceScores != null && this._conformancePackComplianceScores.Count > 0; 
+            return this._conformancePackComplianceScores != null && (this._conformancePackComplianceScores.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> string that you can use to get the next page of results
-        /// in a paginated response.
+        /// The <c>nextToken</c> string that you can use to get the next page of results in a
+        /// paginated response.
         /// </para>
         /// </summary>
         public string NextToken

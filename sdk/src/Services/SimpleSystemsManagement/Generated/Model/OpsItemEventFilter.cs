@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -36,12 +37,12 @@ namespace Amazon.SimpleSystemsManagement.Model
     {
         private OpsItemEventFilterKey _key;
         private OpsItemEventFilterOperator _operator;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Key. 
         /// <para>
-        /// The name of the filter key. Currently, the only supported value is <code>OpsItemId</code>.
+        /// The name of the filter key. Currently, the only supported value is <c>OpsItemId</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -60,7 +61,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property Operator. 
         /// <para>
-        /// The operator used by the filter call. Currently, the only supported value is <code>Equal</code>.
+        /// The operator used by the filter call. Currently, the only supported value is <c>Equal</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -92,7 +93,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

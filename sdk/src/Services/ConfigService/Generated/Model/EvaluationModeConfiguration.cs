@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
-    /// The configuration object for Config rule evaluation mode. The Supported valid values
+    /// The configuration object for Config rule evaluation mode. The supported valid values
     /// are Detective or Proactive.
     /// </summary>
     public partial class EvaluationModeConfiguration

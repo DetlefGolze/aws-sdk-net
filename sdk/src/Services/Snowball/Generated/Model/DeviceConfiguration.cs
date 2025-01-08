@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
-    /// The container for <code>SnowconeDeviceConfiguration</code>.
+    /// The container for <c>SnowconeDeviceConfiguration</c>.
     /// </summary>
     public partial class DeviceConfiguration
     {

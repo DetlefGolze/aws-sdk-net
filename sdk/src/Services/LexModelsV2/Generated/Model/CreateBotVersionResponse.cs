@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.LexModelsV2.Model
         private string _botId;
         private BotStatus _botStatus;
         private string _botVersion;
-        private Dictionary<string, BotVersionLocaleDetails> _botVersionLocaleSpecification = new Dictionary<string, BotVersionLocaleDetails>();
+        private Dictionary<string, BotVersionLocaleDetails> _botVersionLocaleSpecification = AWSConfigs.InitializeCollections ? new Dictionary<string, BotVersionLocaleDetails>() : null;
         private DateTime? _creationDateTime;
         private string _description;
 
@@ -63,8 +64,8 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property BotStatus. 
         /// <para>
         /// When you send a request to create or update a bot, Amazon Lex sets the status response
-        /// element to <code>Creating</code>. After Amazon Lex builds the bot, it sets status
-        /// to <code>Available</code>. If Amazon Lex can't build the bot, it sets status to <code>Failed</code>.
+        /// element to <c>Creating</c>. After Amazon Lex builds the bot, it sets status to <c>Available</c>.
+        /// If Amazon Lex can't build the bot, it sets status to <c>Failed</c>.
         /// </para>
         /// </summary>
         public BotStatus BotStatus
@@ -114,7 +115,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if BotVersionLocaleSpecification property is set
         internal bool IsSetBotVersionLocaleSpecification()
         {
-            return this._botVersionLocaleSpecification != null && this._botVersionLocaleSpecification.Count > 0; 
+            return this._botVersionLocaleSpecification != null && (this._botVersionLocaleSpecification.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.LexModelsV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.LexModelsV2.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(SlotValueElicitationSetting requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetDefaultValueSpecification())
             {
                 context.Writer.WritePropertyName("defaultValueSpecification");
@@ -98,6 +101,17 @@ namespace Amazon.LexModelsV2.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("slotConstraint");
                 context.Writer.Write(requestObject.SlotConstraint);
+            }
+
+            if(requestObject.IsSetSlotResolutionSetting())
+            {
+                context.Writer.WritePropertyName("slotResolutionSetting");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = SlotResolutionSettingMarshaller.Instance;
+                marshaller.Marshall(requestObject.SlotResolutionSetting, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetWaitAndContinueSpecification())

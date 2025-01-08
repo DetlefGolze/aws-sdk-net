@@ -26,10 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// The minimum and maximum values of an attribute that is of the number data type.
+    /// The minimum and maximum values of an attribute that is of the number type, for example
+    /// <c>custom:age</c>.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is part of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SchemaAttributeType.html">SchemaAttributeType</a>.
+    /// It defines the length constraints on number-type attributes that you configure in
+    /// <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserPool.html">CreateUserPool</a>
+    /// and <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserPool.html">UpdateUserPool</a>,
+    /// and displays the length constraints of all number-type attributes in the response
+    /// to <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeUserPool.html">DescribeUserPool</a>
+    /// 
+    /// </para>
     /// </summary>
     public partial class NumberAttributeConstraintsType
     {
@@ -39,7 +52,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property MaxValue. 
         /// <para>
-        /// The maximum value of an attribute that is of the number data type.
+        /// The maximum length of a number attribute value. Must be a number less than or equal
+        /// to <c>2^1023</c>, represented as a string with a length of 131072 characters or fewer.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=131072)]

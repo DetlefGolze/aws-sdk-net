@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -38,12 +39,12 @@ namespace Amazon.EC2.Model
         private DateTime? _deleteTime;
         private string _failureCode;
         private string _failureMessage;
-        private List<NatGatewayAddress> _natGatewayAddresses = new List<NatGatewayAddress>();
+        private List<NatGatewayAddress> _natGatewayAddresses = AWSConfigs.InitializeCollections ? new List<NatGatewayAddress>() : null;
         private string _natGatewayId;
         private ProvisionedBandwidth _provisionedBandwidth;
         private NatGatewayState _state;
         private string _subnetId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _vpcId;
 
         /// <summary>
@@ -104,9 +105,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property FailureCode. 
         /// <para>
         /// If the NAT gateway could not be created, specifies the error code for the failure.
-        /// (<code>InsufficientFreeAddressesInSubnet</code> | <code>Gateway.NotAttached</code>
-        /// | <code>InvalidAllocationID.NotFound</code> | <code>Resource.AlreadyAssociated</code>
-        /// | <code>InternalError</code> | <code>InvalidSubnetID.NotFound</code>)
+        /// (<c>InsufficientFreeAddressesInSubnet</c> | <c>Gateway.NotAttached</c> | <c>InvalidAllocationID.NotFound</c>
+        /// | <c>Resource.AlreadyAssociated</c> | <c>InternalError</c> | <c>InvalidSubnetID.NotFound</c>)
         /// </para>
         /// </summary>
         public string FailureCode
@@ -184,7 +184,7 @@ namespace Amazon.EC2.Model
         // Check to see if NatGatewayAddresses property is set
         internal bool IsSetNatGatewayAddresses()
         {
-            return this._natGatewayAddresses != null && this._natGatewayAddresses.Count > 0; 
+            return this._natGatewayAddresses != null && (this._natGatewayAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -208,9 +208,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property ProvisionedBandwidth. 
         /// <para>
-        /// Reserved. If you need to sustain traffic greater than the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">documented
-        /// limits</a>, contact us through the <a href="https://console.aws.amazon.com/support/home?">Support
-        /// Center</a>.
+        /// Reserved. If you need to sustain traffic greater than the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html#vpc-limits-gateways">documented
+        /// limits</a>, contact Amazon Web Services Support.
         /// </para>
         /// </summary>
         public ProvisionedBandwidth ProvisionedBandwidth
@@ -232,28 +231,26 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>pending</code>: The NAT gateway is being created and is not ready to process
-        /// traffic.
+        ///  <c>pending</c>: The NAT gateway is being created and is not ready to process traffic.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>failed</code>: The NAT gateway could not be created. Check the <code>failureCode</code>
-        /// and <code>failureMessage</code> fields for the reason.
+        ///  <c>failed</c>: The NAT gateway could not be created. Check the <c>failureCode</c>
+        /// and <c>failureMessage</c> fields for the reason.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>available</code>: The NAT gateway is able to process traffic. This status remains
+        ///  <c>available</c>: The NAT gateway is able to process traffic. This status remains
         /// until you delete the NAT gateway, and does not indicate the health of the NAT gateway.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deleting</code>: The NAT gateway is in the process of being terminated and
-        /// may still be processing traffic.
+        ///  <c>deleting</c>: The NAT gateway is in the process of being terminated and may still
+        /// be processing traffic.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deleted</code>: The NAT gateway has been terminated and is no longer processing
-        /// traffic.
+        ///  <c>deleted</c>: The NAT gateway has been terminated and is no longer processing traffic.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -302,7 +299,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

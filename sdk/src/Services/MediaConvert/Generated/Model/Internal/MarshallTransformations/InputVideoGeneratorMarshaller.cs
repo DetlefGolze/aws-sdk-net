@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,10 +46,36 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(InputVideoGenerator requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetChannels())
+            {
+                context.Writer.WritePropertyName("channels");
+                context.Writer.Write(requestObject.Channels);
+            }
+
             if(requestObject.IsSetDuration())
             {
                 context.Writer.WritePropertyName("duration");
                 context.Writer.Write(requestObject.Duration);
+            }
+
+            if(requestObject.IsSetFramerateDenominator())
+            {
+                context.Writer.WritePropertyName("framerateDenominator");
+                context.Writer.Write(requestObject.FramerateDenominator);
+            }
+
+            if(requestObject.IsSetFramerateNumerator())
+            {
+                context.Writer.WritePropertyName("framerateNumerator");
+                context.Writer.Write(requestObject.FramerateNumerator);
+            }
+
+            if(requestObject.IsSetSampleRate())
+            {
+                context.Writer.WritePropertyName("sampleRate");
+                context.Writer.Write(requestObject.SampleRate);
             }
 
         }

@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.MarketplaceCatalog.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.MarketplaceCatalog
 {
     /// <summary>
-    /// Interface for accessing MarketplaceCatalog
+    /// <para>Interface for accessing MarketplaceCatalog</para>
     ///
     /// Catalog API actions allow you to manage your entities through list, describe, and
     /// update capabilities. An entity can be a product or an offer on AWS Marketplace. 
@@ -51,14 +52,109 @@ namespace Amazon.MarketplaceCatalog
         IMarketplaceCatalogPaginatorFactory Paginators { get; }
 
         
+        #region  BatchDescribeEntities
+
+
+        /// <summary>
+        /// Returns metadata and content for multiple entities. This is the Batch version of the
+        /// <c>DescribeEntity</c> API and uses the same IAM permission action as <c>DescribeEntity</c>
+        /// API.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the BatchDescribeEntities service method.</param>
+        /// 
+        /// <returns>The response from the BatchDescribeEntities service method, as returned by MarketplaceCatalog.</returns>
+        /// <exception cref="Amazon.MarketplaceCatalog.Model.AccessDeniedException">
+        /// Access is denied.
+        /// 
+        ///  
+        /// <para>
+        /// HTTP status code: 403
+        /// </para>
+        /// </exception>
+        /// <exception cref="Amazon.MarketplaceCatalog.Model.InternalServiceException">
+        /// There was an internal service exception.
+        /// 
+        ///  
+        /// <para>
+        /// HTTP status code: 500
+        /// </para>
+        /// </exception>
+        /// <exception cref="Amazon.MarketplaceCatalog.Model.ThrottlingException">
+        /// Too many requests.
+        /// 
+        ///  
+        /// <para>
+        /// HTTP status code: 429
+        /// </para>
+        /// </exception>
+        /// <exception cref="Amazon.MarketplaceCatalog.Model.ValidationException">
+        /// An error occurred during validation.
+        /// 
+        ///  
+        /// <para>
+        /// HTTP status code: 422
+        /// </para>
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/BatchDescribeEntities">REST API Reference for BatchDescribeEntities Operation</seealso>
+        BatchDescribeEntitiesResponse BatchDescribeEntities(BatchDescribeEntitiesRequest request);
+
+
+
+        /// <summary>
+        /// Returns metadata and content for multiple entities. This is the Batch version of the
+        /// <c>DescribeEntity</c> API and uses the same IAM permission action as <c>DescribeEntity</c>
+        /// API.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the BatchDescribeEntities service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the BatchDescribeEntities service method, as returned by MarketplaceCatalog.</returns>
+        /// <exception cref="Amazon.MarketplaceCatalog.Model.AccessDeniedException">
+        /// Access is denied.
+        /// 
+        ///  
+        /// <para>
+        /// HTTP status code: 403
+        /// </para>
+        /// </exception>
+        /// <exception cref="Amazon.MarketplaceCatalog.Model.InternalServiceException">
+        /// There was an internal service exception.
+        /// 
+        ///  
+        /// <para>
+        /// HTTP status code: 500
+        /// </para>
+        /// </exception>
+        /// <exception cref="Amazon.MarketplaceCatalog.Model.ThrottlingException">
+        /// Too many requests.
+        /// 
+        ///  
+        /// <para>
+        /// HTTP status code: 429
+        /// </para>
+        /// </exception>
+        /// <exception cref="Amazon.MarketplaceCatalog.Model.ValidationException">
+        /// An error occurred during validation.
+        /// 
+        ///  
+        /// <para>
+        /// HTTP status code: 422
+        /// </para>
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/BatchDescribeEntities">REST API Reference for BatchDescribeEntities Operation</seealso>
+        Task<BatchDescribeEntitiesResponse> BatchDescribeEntitiesAsync(BatchDescribeEntitiesRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  CancelChangeSet
 
 
         /// <summary>
         /// Used to cancel an open change request. Must be sent before the status of the request
-        /// changes to <code>APPLYING</code>, the final stage of completing your change request.
-        /// You can describe a change during the 60-day request history retention period for API
-        /// calls.
+        /// changes to <c>APPLYING</c>, the final stage of completing your change request. You
+        /// can describe a change during the 60-day request history retention period for API calls.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CancelChangeSet service method.</param>
         /// 
@@ -113,9 +209,8 @@ namespace Amazon.MarketplaceCatalog
 
         /// <summary>
         /// Used to cancel an open change request. Must be sent before the status of the request
-        /// changes to <code>APPLYING</code>, the final stage of completing your change request.
-        /// You can describe a change during the 60-day request history retention period for API
-        /// calls.
+        /// changes to <c>APPLYING</c>, the final stage of completing your change request. You
+        /// can describe a change during the 60-day request history retention period for API calls.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CancelChangeSet service method.</param>
         /// <param name="cancellationToken">
@@ -614,7 +709,7 @@ namespace Amazon.MarketplaceCatalog
 
         /// <summary>
         /// Returns the list of change sets owned by the account being used to make the call.
-        /// You can filter this list by providing any combination of <code>entityId</code>, <code>ChangeSetName</code>,
+        /// You can filter this list by providing any combination of <c>entityId</c>, <c>ChangeSetName</c>,
         /// and status. If you provide more than one filter, the API operation applies a logical
         /// AND between the filters.
         /// 
@@ -666,7 +761,7 @@ namespace Amazon.MarketplaceCatalog
 
         /// <summary>
         /// Returns the list of change sets owned by the account being used to make the call.
-        /// You can filter this list by providing any combination of <code>entityId</code>, <code>ChangeSetName</code>,
+        /// You can filter this list by providing any combination of <c>entityId</c>, <c>ChangeSetName</c>,
         /// and status. If you provide more than one filter, the API operation applies a logical
         /// AND between the filters.
         /// 
@@ -943,8 +1038,8 @@ namespace Amazon.MarketplaceCatalog
 
 
         /// <summary>
-        /// Attaches a resource-based policy to an entity. Examples of an entity include: <code>AmiProduct</code>
-        /// and <code>ContainerProduct</code>.
+        /// Attaches a resource-based policy to an entity. Examples of an entity include: <c>AmiProduct</c>
+        /// and <c>ContainerProduct</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutResourcePolicy service method.</param>
         /// 
@@ -995,8 +1090,8 @@ namespace Amazon.MarketplaceCatalog
 
 
         /// <summary>
-        /// Attaches a resource-based policy to an entity. Examples of an entity include: <code>AmiProduct</code>
-        /// and <code>ContainerProduct</code>.
+        /// Attaches a resource-based policy to an entity. Examples of an entity include: <c>AmiProduct</c>
+        /// and <c>ContainerProduct</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutResourcePolicy service method.</param>
         /// <param name="cancellationToken">
@@ -1053,18 +1148,18 @@ namespace Amazon.MarketplaceCatalog
 
 
         /// <summary>
-        /// Allows you to request changes for your entities. Within a single <code>ChangeSet</code>,
+        /// Allows you to request changes for your entities. Within a single <c>ChangeSet</c>,
         /// you can't start the same change type against the same entity multiple times. Additionally,
-        /// when a <code>ChangeSet</code> is running, all the entities targeted by the different
-        /// changes are locked until the change set has completed (either succeeded, cancelled,
-        /// or failed). If you try to start a change set containing a change against an entity
-        /// that is already locked, you will receive a <code>ResourceInUseException</code> error.
+        /// when a <c>ChangeSet</c> is running, all the entities targeted by the different changes
+        /// are locked until the change set has completed (either succeeded, cancelled, or failed).
+        /// If you try to start a change set containing a change against an entity that is already
+        /// locked, you will receive a <c>ResourceInUseException</c> error.
         /// 
         ///  
         /// <para>
-        /// For example, you can't start the <code>ChangeSet</code> described in the <a href="https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_StartChangeSet.html#API_StartChangeSet_Examples">example</a>
-        /// later in this topic because it contains two changes to run the same change type (<code>AddRevisions</code>)
-        /// against the same entity (<code>entity-id@1</code>).
+        /// For example, you can't start the <c>ChangeSet</c> described in the <a href="https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_StartChangeSet.html#API_StartChangeSet_Examples">example</a>
+        /// later in this topic because it contains two changes to run the same change type (<c>AddRevisions</c>)
+        /// against the same entity (<c>entity-id@1</c>).
         /// </para>
         ///  
         /// <para>
@@ -1131,18 +1226,18 @@ namespace Amazon.MarketplaceCatalog
 
 
         /// <summary>
-        /// Allows you to request changes for your entities. Within a single <code>ChangeSet</code>,
+        /// Allows you to request changes for your entities. Within a single <c>ChangeSet</c>,
         /// you can't start the same change type against the same entity multiple times. Additionally,
-        /// when a <code>ChangeSet</code> is running, all the entities targeted by the different
-        /// changes are locked until the change set has completed (either succeeded, cancelled,
-        /// or failed). If you try to start a change set containing a change against an entity
-        /// that is already locked, you will receive a <code>ResourceInUseException</code> error.
+        /// when a <c>ChangeSet</c> is running, all the entities targeted by the different changes
+        /// are locked until the change set has completed (either succeeded, cancelled, or failed).
+        /// If you try to start a change set containing a change against an entity that is already
+        /// locked, you will receive a <c>ResourceInUseException</c> error.
         /// 
         ///  
         /// <para>
-        /// For example, you can't start the <code>ChangeSet</code> described in the <a href="https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_StartChangeSet.html#API_StartChangeSet_Examples">example</a>
-        /// later in this topic because it contains two changes to run the same change type (<code>AddRevisions</code>)
-        /// against the same entity (<code>entity-id@1</code>).
+        /// For example, you can't start the <c>ChangeSet</c> described in the <a href="https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_StartChangeSet.html#API_StartChangeSet_Examples">example</a>
+        /// later in this topic because it contains two changes to run the same change type (<c>AddRevisions</c>)
+        /// against the same entity (<c>entity-id@1</c>).
         /// </para>
         ///  
         /// <para>

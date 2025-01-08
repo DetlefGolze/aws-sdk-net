@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// The value of an <code>IndexField</code> and its current status.
+    /// The value of an <c>IndexField</c> and its current status.
     /// </summary>
     public partial class IndexFieldStatus
     {

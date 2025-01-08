@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElastiCache.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -91,13 +92,17 @@ namespace Amazon.ElastiCache.Model.Internal.MarshallTransformations
                     int publicRequestlistValueIndex = 1;
                     foreach(var publicRequestlistValue in publicRequest.CacheSecurityGroupNames)
                     {
-                        request.Parameters.Add("CacheSecurityGroupNames" + "." + "member" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
+                        request.Parameters.Add("CacheSecurityGroupNames" + "." + "CacheSecurityGroupName" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
                         publicRequestlistValueIndex++;
                     }
                 }
                 if(publicRequest.IsSetClusterMode())
                 {
                     request.Parameters.Add("ClusterMode", StringUtils.FromString(publicRequest.ClusterMode));
+                }
+                if(publicRequest.IsSetEngine())
+                {
+                    request.Parameters.Add("Engine", StringUtils.FromString(publicRequest.Engine));
                 }
                 if(publicRequest.IsSetEngineVersion())
                 {
@@ -118,32 +123,32 @@ namespace Amazon.ElastiCache.Model.Internal.MarshallTransformations
                             {
                                 if(publicRequestlistValue.DestinationDetails.CloudWatchLogsDetails.IsSetLogGroup())
                                 {
-                                    request.Parameters.Add("LogDeliveryConfigurations" + "." + "member" + "." + publicRequestlistValueIndex + "." + "DestinationDetails" + "." + "CloudWatchLogsDetails" + "." + "LogGroup", StringUtils.FromString(publicRequestlistValue.DestinationDetails.CloudWatchLogsDetails.LogGroup));
+                                    request.Parameters.Add("LogDeliveryConfigurations" + "." + "LogDeliveryConfigurationRequest" + "." + publicRequestlistValueIndex + "." + "DestinationDetails" + "." + "CloudWatchLogsDetails" + "." + "LogGroup", StringUtils.FromString(publicRequestlistValue.DestinationDetails.CloudWatchLogsDetails.LogGroup));
                                 }
                             }
                             if(publicRequestlistValue.DestinationDetails.IsSetKinesisFirehoseDetails())
                             {
                                 if(publicRequestlistValue.DestinationDetails.KinesisFirehoseDetails.IsSetDeliveryStream())
                                 {
-                                    request.Parameters.Add("LogDeliveryConfigurations" + "." + "member" + "." + publicRequestlistValueIndex + "." + "DestinationDetails" + "." + "KinesisFirehoseDetails" + "." + "DeliveryStream", StringUtils.FromString(publicRequestlistValue.DestinationDetails.KinesisFirehoseDetails.DeliveryStream));
+                                    request.Parameters.Add("LogDeliveryConfigurations" + "." + "LogDeliveryConfigurationRequest" + "." + publicRequestlistValueIndex + "." + "DestinationDetails" + "." + "KinesisFirehoseDetails" + "." + "DeliveryStream", StringUtils.FromString(publicRequestlistValue.DestinationDetails.KinesisFirehoseDetails.DeliveryStream));
                                 }
                             }
                         }
                         if(publicRequestlistValue.IsSetDestinationType())
                         {
-                            request.Parameters.Add("LogDeliveryConfigurations" + "." + "member" + "." + publicRequestlistValueIndex + "." + "DestinationType", StringUtils.FromString(publicRequestlistValue.DestinationType));
+                            request.Parameters.Add("LogDeliveryConfigurations" + "." + "LogDeliveryConfigurationRequest" + "." + publicRequestlistValueIndex + "." + "DestinationType", StringUtils.FromString(publicRequestlistValue.DestinationType));
                         }
                         if(publicRequestlistValue.IsSetEnabled())
                         {
-                            request.Parameters.Add("LogDeliveryConfigurations" + "." + "member" + "." + publicRequestlistValueIndex + "." + "Enabled", StringUtils.FromBool(publicRequestlistValue.Enabled));
+                            request.Parameters.Add("LogDeliveryConfigurations" + "." + "LogDeliveryConfigurationRequest" + "." + publicRequestlistValueIndex + "." + "Enabled", StringUtils.FromBool(publicRequestlistValue.Enabled));
                         }
                         if(publicRequestlistValue.IsSetLogFormat())
                         {
-                            request.Parameters.Add("LogDeliveryConfigurations" + "." + "member" + "." + publicRequestlistValueIndex + "." + "LogFormat", StringUtils.FromString(publicRequestlistValue.LogFormat));
+                            request.Parameters.Add("LogDeliveryConfigurations" + "." + "LogDeliveryConfigurationRequest" + "." + publicRequestlistValueIndex + "." + "LogFormat", StringUtils.FromString(publicRequestlistValue.LogFormat));
                         }
                         if(publicRequestlistValue.IsSetLogType())
                         {
-                            request.Parameters.Add("LogDeliveryConfigurations" + "." + "member" + "." + publicRequestlistValueIndex + "." + "LogType", StringUtils.FromString(publicRequestlistValue.LogType));
+                            request.Parameters.Add("LogDeliveryConfigurations" + "." + "LogDeliveryConfigurationRequest" + "." + publicRequestlistValueIndex + "." + "LogType", StringUtils.FromString(publicRequestlistValue.LogType));
                         }
                         publicRequestlistValueIndex++;
                     }
@@ -189,7 +194,7 @@ namespace Amazon.ElastiCache.Model.Internal.MarshallTransformations
                     int publicRequestlistValueIndex = 1;
                     foreach(var publicRequestlistValue in publicRequest.SecurityGroupIds)
                     {
-                        request.Parameters.Add("SecurityGroupIds" + "." + "member" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
+                        request.Parameters.Add("SecurityGroupIds" + "." + "SecurityGroupId" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
                         publicRequestlistValueIndex++;
                     }
                 }

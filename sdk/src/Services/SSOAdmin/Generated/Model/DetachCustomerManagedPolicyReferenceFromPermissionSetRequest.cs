@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSOAdmin.Model
 {
     /// <summary>
@@ -82,7 +83,7 @@ namespace Amazon.SSOAdmin.Model
         /// <summary>
         /// Gets and sets the property PermissionSetArn. 
         /// <para>
-        /// The ARN of the <code>PermissionSet</code>.
+        /// The ARN of the <c>PermissionSet</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=10, Max=1224)]

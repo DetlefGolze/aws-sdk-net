@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -70,8 +71,8 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property Duration. 
         /// <para>
-        /// The duration of the maintenance schedule. For example, <code>"Duration": {"Value":
-        /// 2, "Unit": "HOURS"}</code>.
+        /// The duration of the maintenance schedule. For example, <c>"Duration": {"Value": 2,
+        /// "Unit": "HOURS"}</c>.
         /// </para>
         /// </summary>
         public Duration Duration

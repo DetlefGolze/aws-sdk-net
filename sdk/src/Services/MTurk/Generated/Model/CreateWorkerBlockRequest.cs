@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MTurk.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateWorkerBlock operation.
-    /// The <code>CreateWorkerBlock</code> operation allows you to prevent a Worker from working
+    /// The <c>CreateWorkerBlock</c> operation allows you to prevent a Worker from working
     /// on your HITs. For example, you can block a Worker who is producing poor quality work.
     /// You can block up to 100,000 Workers.
     /// </summary>

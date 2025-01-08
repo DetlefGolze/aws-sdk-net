@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.CodeDeploy.Model
     {
         private string _deploymentId;
         private string _nextToken;
-        private Dictionary<string, List<string>> _targetFilters = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<string>> _targetFilters = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
 
         /// <summary>
         /// Gets and sets the property DeploymentId. 
@@ -44,6 +45,7 @@ namespace Amazon.CodeDeploy.Model
         ///  The unique ID of a deployment. 
         /// </para>
         /// </summary>
+        [AWSProperty(Required=true)]
         public string DeploymentId
         {
             get { return this._deploymentId; }
@@ -59,8 +61,8 @@ namespace Amazon.CodeDeploy.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  A token identifier returned from the previous <code>ListDeploymentTargets</code>
-        /// call. It can be used to return the next set of deployment targets in the list. 
+        ///  A token identifier returned from the previous <c>ListDeploymentTargets</c> call.
+        /// It can be used to return the next set of deployment targets in the list. 
         /// </para>
         /// </summary>
         public string NextToken
@@ -82,14 +84,14 @@ namespace Amazon.CodeDeploy.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>TargetStatus</code> - A <code>TargetStatus</code> filter string can be <code>Failed</code>,
-        /// <code>InProgress</code>, <code>Pending</code>, <code>Ready</code>, <code>Skipped</code>,
-        /// <code>Succeeded</code>, or <code>Unknown</code>. 
+        ///  <c>TargetStatus</c> - A <c>TargetStatus</c> filter string can be <c>Failed</c>, <c>InProgress</c>,
+        /// <c>Pending</c>, <c>Ready</c>, <c>Skipped</c>, <c>Succeeded</c>, or <c>Unknown</c>.
+        /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ServerInstanceLabel</code> - A <code>ServerInstanceLabel</code> filter string
-        /// can be <code>Blue</code> or <code>Green</code>. 
+        ///  <c>ServerInstanceLabel</c> - A <c>ServerInstanceLabel</c> filter string can be <c>Blue</c>
+        /// or <c>Green</c>. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -102,7 +104,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if TargetFilters property is set
         internal bool IsSetTargetFilters()
         {
-            return this._targetFilters != null && this._targetFilters.Count > 0; 
+            return this._targetFilters != null && (this._targetFilters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

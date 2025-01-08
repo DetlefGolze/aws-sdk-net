@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// With a <code>Filter</code>, you can remove portions of data from a particular visual
-    /// or view.
+    /// With a <c>Filter</c>, you can remove portions of data from a particular visual or
+    /// view.
     /// 
     ///  
     /// <para>
@@ -41,6 +42,7 @@ namespace Amazon.QuickSight.Model
     public partial class Filter
     {
         private CategoryFilter _categoryFilter;
+        private NestedFilter _nestedFilter;
         private NumericEqualityFilter _numericEqualityFilter;
         private NumericRangeFilter _numericRangeFilter;
         private RelativeDatesFilter _relativeDatesFilter;
@@ -51,7 +53,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property CategoryFilter. 
         /// <para>
-        /// A <code>CategoryFilter</code> filters text values.
+        /// A <c>CategoryFilter</c> filters text values.
         /// </para>
         ///  
         /// <para>
@@ -72,10 +74,29 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property NestedFilter. 
+        /// <para>
+        /// A <c>NestedFilter</c> filters data with a subset of data that is defined by the nested
+        /// inner filter.
+        /// </para>
+        /// </summary>
+        public NestedFilter NestedFilter
+        {
+            get { return this._nestedFilter; }
+            set { this._nestedFilter = value; }
+        }
+
+        // Check to see if NestedFilter property is set
+        internal bool IsSetNestedFilter()
+        {
+            return this._nestedFilter != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property NumericEqualityFilter. 
         /// <para>
-        /// A <code>NumericEqualityFilter</code> filters numeric values that equal or do not equal
-        /// a given numeric value.
+        /// A <c>NumericEqualityFilter</c> filters numeric values that equal or do not equal a
+        /// given numeric value.
         /// </para>
         /// </summary>
         public NumericEqualityFilter NumericEqualityFilter
@@ -93,8 +114,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property NumericRangeFilter. 
         /// <para>
-        /// A <code>NumericRangeFilter</code> filters numeric values that are either inside or
-        /// outside a given numeric range.
+        /// A <c>NumericRangeFilter</c> filters numeric values that are either inside or outside
+        /// a given numeric range.
         /// </para>
         /// </summary>
         public NumericRangeFilter NumericRangeFilter
@@ -112,8 +133,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property RelativeDatesFilter. 
         /// <para>
-        /// A <code>RelativeDatesFilter</code> filters date values that are relative to a given
-        /// date.
+        /// A <c>RelativeDatesFilter</c> filters date values that are relative to a given date.
         /// </para>
         /// </summary>
         public RelativeDatesFilter RelativeDatesFilter
@@ -131,8 +151,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property TimeEqualityFilter. 
         /// <para>
-        /// A <code>TimeEqualityFilter</code> filters date-time values that equal or do not equal
-        /// a given date/time value.
+        /// A <c>TimeEqualityFilter</c> filters date-time values that equal or do not equal a
+        /// given date/time value.
         /// </para>
         /// </summary>
         public TimeEqualityFilter TimeEqualityFilter
@@ -150,8 +170,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property TimeRangeFilter. 
         /// <para>
-        /// A <code>TimeRangeFilter</code> filters date-time values that are either inside or
-        /// outside a given date/time range.
+        /// A <c>TimeRangeFilter</c> filters date-time values that are either inside or outside
+        /// a given date/time range.
         /// </para>
         /// </summary>
         public TimeRangeFilter TimeRangeFilter
@@ -169,8 +189,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property TopBottomFilter. 
         /// <para>
-        /// A <code>TopBottomFilter</code> filters data to the top or bottom values for a given
-        /// column.
+        /// A <c>TopBottomFilter</c> filters data to the top or bottom values for a given column.
         /// </para>
         /// </summary>
         public TopBottomFilter TopBottomFilter

@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the AdminDeleteUserAttributes operation.
-    /// Deletes the user attributes in a user pool as an administrator. Works on any user.
+    /// Deletes attribute values from a user. This operation doesn't affect tokens for existing
+    /// user sessions. The next ID token that the user receives will no longer have this attribute.
     /// 
     ///  <note> 
     /// <para>
@@ -56,7 +58,7 @@ namespace Amazon.CognitoIdentityProvider.Model
     /// </summary>
     public partial class AdminDeleteUserAttributesRequest : AmazonCognitoIdentityProviderRequest
     {
-        private List<string> _userAttributeNames = new List<string>();
+        private List<string> _userAttributeNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _username;
         private string _userPoolId;
 
@@ -67,7 +69,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// </para>
         ///  
         /// <para>
-        /// For custom attributes, you must prepend the <code>custom:</code> prefix to the attribute
+        /// For custom attributes, you must prepend the <c>custom:</c> prefix to the attribute
         /// name.
         /// </para>
         /// </summary>
@@ -81,13 +83,16 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if UserAttributeNames property is set
         internal bool IsSetUserAttributeNames()
         {
-            return this._userAttributeNames != null && this._userAttributeNames.Count > 0; 
+            return this._userAttributeNames != null && (this._userAttributeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Username. 
         /// <para>
-        /// The user name of the user from which you would like to delete attributes.
+        /// The username of the user that you want to query or modify. The value of this parameter
+        /// is typically your user's username, but it can be any of their alias attributes. If
+        /// <c>username</c> isn't an alias attribute in your user pool, this value must be the
+        /// <c>sub</c> of a local user or the username of a user from a third-party IdP.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=128)]
@@ -106,7 +111,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID for the user pool where you want to delete user attributes.
+        /// The ID of the user pool where you want to delete user attributes.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

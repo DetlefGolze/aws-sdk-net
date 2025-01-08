@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.DirectoryService.Model
     public partial class DescribeSharedDirectoriesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<SharedDirectory> _sharedDirectories = new List<SharedDirectory>();
+        private List<SharedDirectory> _sharedDirectories = AWSConfigs.InitializeCollections ? new List<SharedDirectory>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If not null, token that indicates that more results are available. Pass this value
-        /// for the <code>NextToken</code> parameter in a subsequent call to <a>DescribeSharedDirectories</a>
+        /// for the <c>NextToken</c> parameter in a subsequent call to <a>DescribeSharedDirectories</a>
         /// to retrieve the next set of items.
         /// </para>
         /// </summary>
@@ -71,7 +72,7 @@ namespace Amazon.DirectoryService.Model
         // Check to see if SharedDirectories property is set
         internal bool IsSetSharedDirectories()
         {
-            return this._sharedDirectories != null && this._sharedDirectories.Count > 0; 
+            return this._sharedDirectories != null && (this._sharedDirectories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

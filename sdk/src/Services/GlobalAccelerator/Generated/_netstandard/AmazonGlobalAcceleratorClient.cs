@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.GlobalAccelerator
 {
     /// <summary>
-    /// Implementation for accessing GlobalAccelerator
+    /// <para>Implementation for accessing GlobalAccelerator</para>
     ///
     /// Global Accelerator 
     /// <para>
@@ -68,8 +69,8 @@ namespace Amazon.GlobalAccelerator
     /// <para>
     /// Global Accelerator is a global service that supports endpoints in multiple Amazon
     /// Web Services Regions but you must specify the US West (Oregon) Region to create, update,
-    /// or otherwise work with accelerators. That is, for example, specify <code>--region
-    /// us-west-2</code> on Amazon Web Services CLI commands.
+    /// or otherwise work with accelerators. That is, for example, specify <c>--region us-west-2</c>
+    /// on Amazon Web Services CLI commands.
     /// </para>
     ///  </important> 
     /// <para>
@@ -79,7 +80,7 @@ namespace Amazon.GlobalAccelerator
     /// dual-stack, Global Accelerator provides a total of four addresses: two static IPv4
     /// addresses and two static IPv6 addresses. With a standard accelerator for IPv4, instead
     /// of using the addresses that Global Accelerator provides, you can configure these entry
-    /// points to be IPv4 addresses from your own IP address ranges that you bring toGlobal
+    /// points to be IPv4 addresses from your own IP address ranges that you bring to Global
     /// Accelerator (BYOIP). 
     /// </para>
     ///  
@@ -433,16 +434,15 @@ namespace Amazon.GlobalAccelerator
 
 
         /// <summary>
-        /// Add endpoints to an endpoint group. The <code>AddEndpoints</code> API operation is
-        /// the recommended option for adding endpoints. The alternative options are to add endpoints
-        /// when you create an endpoint group (with the <a href="https://docs.aws.amazon.com/global-accelerator/latest/api/API_CreateEndpointGroup.html">CreateEndpointGroup</a>
+        /// Add endpoints to an endpoint group. The <c>AddEndpoints</c> API operation is the recommended
+        /// option for adding endpoints. The alternative options are to add endpoints when you
+        /// create an endpoint group (with the <a href="https://docs.aws.amazon.com/global-accelerator/latest/api/API_CreateEndpointGroup.html">CreateEndpointGroup</a>
         /// API) or when you update an endpoint group (with the <a href="https://docs.aws.amazon.com/global-accelerator/latest/api/API_UpdateEndpointGroup.html">UpdateEndpointGroup</a>
         /// API). 
         /// 
         ///  
         /// <para>
-        /// There are two advantages to using <code>AddEndpoints</code> to add endpoints in Global
-        /// Accelerator:
+        /// There are two advantages to using <c>AddEndpoints</c> to add endpoints in Global Accelerator:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -637,8 +637,8 @@ namespace Amazon.GlobalAccelerator
         /// <para>
         /// Global Accelerator is a global service that supports endpoints in multiple Amazon
         /// Web Services Regions but you must specify the US West (Oregon) Region to create, update,
-        /// or otherwise work with accelerators. That is, for example, specify <code>--region
-        /// us-west-2</code> on Amazon Web Services CLI commands.
+        /// or otherwise work with accelerators. That is, for example, specify <c>--region us-west-2</c>
+        /// on Amazon Web Services CLI commands.
         /// </para>
         ///  </important>
         /// </summary>
@@ -648,6 +648,9 @@ namespace Amazon.GlobalAccelerator
         /// </param>
         /// 
         /// <returns>The response from the CreateAccelerator service method, as returned by GlobalAccelerator.</returns>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.AccessDeniedException">
+        /// You don't have access permission.
+        /// </exception>
         /// <exception cref="Amazon.GlobalAccelerator.Model.InternalServiceErrorException">
         /// There was an internal error for Global Accelerator.
         /// </exception>
@@ -657,6 +660,9 @@ namespace Amazon.GlobalAccelerator
         /// <exception cref="Amazon.GlobalAccelerator.Model.LimitExceededException">
         /// Processing your request would cause you to exceed an Global Accelerator limit.
         /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.TransactionInProgressException">
+        /// There's already a transaction in progress. Another transaction can't be processed.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/CreateAccelerator">REST API Reference for CreateAccelerator Operation</seealso>
         public virtual Task<CreateAcceleratorResponse> CreateAcceleratorAsync(CreateAcceleratorRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -665,6 +671,85 @@ namespace Amazon.GlobalAccelerator
             options.ResponseUnmarshaller = CreateAcceleratorResponseUnmarshaller.Instance;
 
             return InvokeAsync<CreateAcceleratorResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateCrossAccountAttachment
+
+        internal virtual CreateCrossAccountAttachmentResponse CreateCrossAccountAttachment(CreateCrossAccountAttachmentRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateCrossAccountAttachmentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateCrossAccountAttachmentResponseUnmarshaller.Instance;
+
+            return Invoke<CreateCrossAccountAttachmentResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Create a cross-account attachment in Global Accelerator. You create a cross-account
+        /// attachment to specify the <i>principals</i> who have permission to work with <i>resources</i>
+        /// in accelerators in their own account. You specify, in the same attachment, the resources
+        /// that are shared.
+        /// 
+        ///  
+        /// <para>
+        /// A principal can be an Amazon Web Services account number or the Amazon Resource Name
+        /// (ARN) for an accelerator. For account numbers that are listed as principals, to work
+        /// with a resource listed in the attachment, you must sign in to an account specified
+        /// as a principal. Then, you can work with resources that are listed, with any of your
+        /// accelerators. If an accelerator ARN is listed in the cross-account attachment as a
+        /// principal, anyone with permission to make updates to the accelerator can work with
+        /// resources that are listed in the attachment. 
+        /// </para>
+        ///  
+        /// <para>
+        /// Specify each principal and resource separately. To specify two CIDR address pools,
+        /// list them individually under <c>Resources</c>, and so on. For a command line operation,
+        /// for example, you might use a statement like the following:
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c> "Resources": [{"Cidr": "169.254.60.0/24"},{"Cidr": "169.254.59.0/24"}]</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/global-accelerator/latest/dg/cross-account-resources.html">
+        /// Working with cross-account attachments and resources in Global Accelerator</a> in
+        /// the <i> Global Accelerator Developer Guide</i>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateCrossAccountAttachment service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateCrossAccountAttachment service method, as returned by GlobalAccelerator.</returns>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.AccessDeniedException">
+        /// You don't have access permission.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.InternalServiceErrorException">
+        /// There was an internal error for Global Accelerator.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.InvalidArgumentException">
+        /// An argument that you specified is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.LimitExceededException">
+        /// Processing your request would cause you to exceed an Global Accelerator limit.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.TransactionInProgressException">
+        /// There's already a transaction in progress. Another transaction can't be processed.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/CreateCrossAccountAttachment">REST API Reference for CreateCrossAccountAttachment Operation</seealso>
+        public virtual Task<CreateCrossAccountAttachmentResponse> CreateCrossAccountAttachmentAsync(CreateCrossAccountAttachmentRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateCrossAccountAttachmentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateCrossAccountAttachmentResponseUnmarshaller.Instance;
+
+            return InvokeAsync<CreateCrossAccountAttachmentResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -698,8 +783,8 @@ namespace Amazon.GlobalAccelerator
         /// <para>
         /// Global Accelerator is a global service that supports endpoints in multiple Amazon
         /// Web Services Regions but you must specify the US West (Oregon) Region to create, update,
-        /// or otherwise work with accelerators. That is, for example, specify <code>--region
-        /// us-west-2</code> on Amazon Web Services CLI commands.
+        /// or otherwise work with accelerators. That is, for example, specify <c>--region us-west-2</c>
+        /// on Amazon Web Services CLI commands.
         /// </para>
         ///  </important>
         /// </summary>
@@ -720,6 +805,9 @@ namespace Amazon.GlobalAccelerator
         /// </exception>
         /// <exception cref="Amazon.GlobalAccelerator.Model.LimitExceededException">
         /// Processing your request would cause you to exceed an Global Accelerator limit.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.TransactionInProgressException">
+        /// There's already a transaction in progress. Another transaction can't be processed.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/CreateCustomRoutingAccelerator">REST API Reference for CreateCustomRoutingAccelerator Operation</seealso>
         public virtual Task<CreateCustomRoutingAcceleratorResponse> CreateCustomRoutingAcceleratorAsync(CreateCustomRoutingAcceleratorRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -977,7 +1065,7 @@ namespace Amazon.GlobalAccelerator
         /// <summary>
         /// Delete an accelerator. Before you can delete an accelerator, you must disable it and
         /// remove all dependent resources (listeners and endpoint groups). To disable the accelerator,
-        /// update the accelerator to set <code>Enabled</code> to false.
+        /// update the accelerator to set <c>Enabled</c> to false.
         /// 
         ///  <important> 
         /// <para>
@@ -1020,6 +1108,9 @@ namespace Amazon.GlobalAccelerator
         /// <exception cref="Amazon.GlobalAccelerator.Model.InvalidArgumentException">
         /// An argument that you specified is invalid.
         /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.TransactionInProgressException">
+        /// There's already a transaction in progress. Another transaction can't be processed.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DeleteAccelerator">REST API Reference for DeleteAccelerator Operation</seealso>
         public virtual Task<DeleteAcceleratorResponse> DeleteAcceleratorAsync(DeleteAcceleratorRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -1028,6 +1119,65 @@ namespace Amazon.GlobalAccelerator
             options.ResponseUnmarshaller = DeleteAcceleratorResponseUnmarshaller.Instance;
 
             return InvokeAsync<DeleteAcceleratorResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DeleteCrossAccountAttachment
+
+        internal virtual DeleteCrossAccountAttachmentResponse DeleteCrossAccountAttachment(DeleteCrossAccountAttachmentRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteCrossAccountAttachmentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteCrossAccountAttachmentResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteCrossAccountAttachmentResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Delete a cross-account attachment. When you delete an attachment, Global Accelerator
+        /// revokes the permission to use the resources in the attachment from all principals
+        /// in the list of principals. Global Accelerator revokes the permission for specific
+        /// resources.
+        /// 
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/global-accelerator/latest/dg/cross-account-resources.html">
+        /// Working with cross-account attachments and resources in Global Accelerator</a> in
+        /// the <i> Global Accelerator Developer Guide</i>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteCrossAccountAttachment service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteCrossAccountAttachment service method, as returned by GlobalAccelerator.</returns>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.AccessDeniedException">
+        /// You don't have access permission.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.AttachmentNotFoundException">
+        /// No cross-account attachment was found.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.InternalServiceErrorException">
+        /// There was an internal error for Global Accelerator.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.InvalidArgumentException">
+        /// An argument that you specified is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.TransactionInProgressException">
+        /// There's already a transaction in progress. Another transaction can't be processed.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DeleteCrossAccountAttachment">REST API Reference for DeleteCrossAccountAttachment Operation</seealso>
+        public virtual Task<DeleteCrossAccountAttachmentResponse> DeleteCrossAccountAttachmentAsync(DeleteCrossAccountAttachmentRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteCrossAccountAttachmentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteCrossAccountAttachmentResponseUnmarshaller.Instance;
+
+            return InvokeAsync<DeleteCrossAccountAttachmentResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -1048,7 +1198,7 @@ namespace Amazon.GlobalAccelerator
         /// <summary>
         /// Delete a custom routing accelerator. Before you can delete an accelerator, you must
         /// disable it and remove all dependent resources (listeners and endpoint groups). To
-        /// disable the accelerator, update the accelerator to set <code>Enabled</code> to false.
+        /// disable the accelerator, update the accelerator to set <c>Enabled</c> to false.
         /// 
         ///  <important> 
         /// <para>
@@ -1089,6 +1239,9 @@ namespace Amazon.GlobalAccelerator
         /// </exception>
         /// <exception cref="Amazon.GlobalAccelerator.Model.InvalidArgumentException">
         /// An argument that you specified is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.TransactionInProgressException">
+        /// There's already a transaction in progress. Another transaction can't be processed.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DeleteCustomRoutingAccelerator">REST API Reference for DeleteCustomRoutingAccelerator Operation</seealso>
         public virtual Task<DeleteCustomRoutingAcceleratorResponse> DeleteCustomRoutingAcceleratorAsync(DeleteCustomRoutingAcceleratorRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -1486,6 +1639,52 @@ namespace Amazon.GlobalAccelerator
 
         #endregion
         
+        #region  DescribeCrossAccountAttachment
+
+        internal virtual DescribeCrossAccountAttachmentResponse DescribeCrossAccountAttachment(DescribeCrossAccountAttachmentRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeCrossAccountAttachmentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeCrossAccountAttachmentResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeCrossAccountAttachmentResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Gets configuration information about a cross-account attachment.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeCrossAccountAttachment service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeCrossAccountAttachment service method, as returned by GlobalAccelerator.</returns>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.AccessDeniedException">
+        /// You don't have access permission.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.AttachmentNotFoundException">
+        /// No cross-account attachment was found.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.InternalServiceErrorException">
+        /// There was an internal error for Global Accelerator.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.InvalidArgumentException">
+        /// An argument that you specified is invalid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DescribeCrossAccountAttachment">REST API Reference for DescribeCrossAccountAttachment Operation</seealso>
+        public virtual Task<DescribeCrossAccountAttachmentResponse> DescribeCrossAccountAttachmentAsync(DescribeCrossAccountAttachmentRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeCrossAccountAttachmentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeCrossAccountAttachmentResponseUnmarshaller.Instance;
+
+            return InvokeAsync<DescribeCrossAccountAttachmentResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  DescribeCustomRoutingAccelerator
 
         internal virtual DescribeCustomRoutingAcceleratorResponse DescribeCustomRoutingAccelerator(DescribeCustomRoutingAcceleratorRequest request)
@@ -1830,6 +2029,148 @@ namespace Amazon.GlobalAccelerator
             options.ResponseUnmarshaller = ListByoipCidrsResponseUnmarshaller.Instance;
 
             return InvokeAsync<ListByoipCidrsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListCrossAccountAttachments
+
+        internal virtual ListCrossAccountAttachmentsResponse ListCrossAccountAttachments(ListCrossAccountAttachmentsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListCrossAccountAttachmentsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListCrossAccountAttachmentsResponseUnmarshaller.Instance;
+
+            return Invoke<ListCrossAccountAttachmentsResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// List the cross-account attachments that have been created in Global Accelerator.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListCrossAccountAttachments service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListCrossAccountAttachments service method, as returned by GlobalAccelerator.</returns>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.AccessDeniedException">
+        /// You don't have access permission.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.InternalServiceErrorException">
+        /// There was an internal error for Global Accelerator.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.InvalidArgumentException">
+        /// An argument that you specified is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.InvalidNextTokenException">
+        /// There isn't another item to return.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/ListCrossAccountAttachments">REST API Reference for ListCrossAccountAttachments Operation</seealso>
+        public virtual Task<ListCrossAccountAttachmentsResponse> ListCrossAccountAttachmentsAsync(ListCrossAccountAttachmentsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListCrossAccountAttachmentsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListCrossAccountAttachmentsResponseUnmarshaller.Instance;
+
+            return InvokeAsync<ListCrossAccountAttachmentsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListCrossAccountResourceAccounts
+
+        internal virtual ListCrossAccountResourceAccountsResponse ListCrossAccountResourceAccounts(ListCrossAccountResourceAccountsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListCrossAccountResourceAccountsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListCrossAccountResourceAccountsResponseUnmarshaller.Instance;
+
+            return Invoke<ListCrossAccountResourceAccountsResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// List the accounts that have cross-account resources.
+        /// 
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/global-accelerator/latest/dg/cross-account-resources.html">
+        /// Working with cross-account attachments and resources in Global Accelerator</a> in
+        /// the <i> Global Accelerator Developer Guide</i>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListCrossAccountResourceAccounts service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListCrossAccountResourceAccounts service method, as returned by GlobalAccelerator.</returns>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.AccessDeniedException">
+        /// You don't have access permission.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.InternalServiceErrorException">
+        /// There was an internal error for Global Accelerator.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/ListCrossAccountResourceAccounts">REST API Reference for ListCrossAccountResourceAccounts Operation</seealso>
+        public virtual Task<ListCrossAccountResourceAccountsResponse> ListCrossAccountResourceAccountsAsync(ListCrossAccountResourceAccountsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListCrossAccountResourceAccountsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListCrossAccountResourceAccountsResponseUnmarshaller.Instance;
+
+            return InvokeAsync<ListCrossAccountResourceAccountsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListCrossAccountResources
+
+        internal virtual ListCrossAccountResourcesResponse ListCrossAccountResources(ListCrossAccountResourcesRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListCrossAccountResourcesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListCrossAccountResourcesResponseUnmarshaller.Instance;
+
+            return Invoke<ListCrossAccountResourcesResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// List the cross-account resources available to work with.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListCrossAccountResources service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListCrossAccountResources service method, as returned by GlobalAccelerator.</returns>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.AcceleratorNotFoundException">
+        /// The accelerator that you specified doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.AccessDeniedException">
+        /// You don't have access permission.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.InternalServiceErrorException">
+        /// There was an internal error for Global Accelerator.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.InvalidArgumentException">
+        /// An argument that you specified is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.InvalidNextTokenException">
+        /// There isn't another item to return.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/ListCrossAccountResources">REST API Reference for ListCrossAccountResources Operation</seealso>
+        public virtual Task<ListCrossAccountResourcesResponse> ListCrossAccountResourcesAsync(ListCrossAccountResourcesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListCrossAccountResourcesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListCrossAccountResourcesResponseUnmarshaller.Instance;
+
+            return InvokeAsync<ListCrossAccountResourcesResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -2211,11 +2552,20 @@ namespace Amazon.GlobalAccelerator
         /// <exception cref="Amazon.GlobalAccelerator.Model.AcceleratorNotFoundException">
         /// The accelerator that you specified doesn't exist.
         /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.AttachmentNotFoundException">
+        /// No cross-account attachment was found.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.EndpointGroupNotFoundException">
+        /// The endpoint group that you specified doesn't exist.
+        /// </exception>
         /// <exception cref="Amazon.GlobalAccelerator.Model.InternalServiceErrorException">
         /// There was an internal error for Global Accelerator.
         /// </exception>
         /// <exception cref="Amazon.GlobalAccelerator.Model.InvalidArgumentException">
         /// An argument that you specified is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.ListenerNotFoundException">
+        /// The listener that you specified doesn't exist.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/ListTagsForResource">REST API Reference for ListTagsForResource Operation</seealso>
         public virtual Task<ListTagsForResourceResponse> ListTagsForResourceAsync(ListTagsForResourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -2358,24 +2708,24 @@ namespace Amazon.GlobalAccelerator
         /// 
         ///  
         /// <para>
-        /// The <code>RemoveEndpoints</code> API operation is the recommended option for removing
-        /// endpoints. The alternative is to remove endpoints by updating an endpoint group by
-        /// using the <a href="https://docs.aws.amazon.com/global-accelerator/latest/api/API_UpdateEndpointGroup.html">UpdateEndpointGroup</a>
-        /// API operation. There are two advantages to using <code>AddEndpoints</code> to remove
-        /// endpoints instead:
+        /// The <c>RemoveEndpoints</c> API operation is the recommended option for removing endpoints.
+        /// The alternative is to remove endpoints by updating an endpoint group by using the
+        /// <a href="https://docs.aws.amazon.com/global-accelerator/latest/api/API_UpdateEndpointGroup.html">UpdateEndpointGroup</a>
+        /// API operation. There are two advantages to using <c>AddEndpoints</c> to remove endpoints
+        /// instead:
         /// </para>
         ///  <ul> <li> 
         /// <para>
         /// It's more convenient, because you only need to specify the endpoints that you want
-        /// to remove. With the <code>UpdateEndpointGroup</code> API operation, you must specify
-        /// all of the endpoints in the endpoint group except the ones that you want to remove
-        /// from the group.
+        /// to remove. With the <c>UpdateEndpointGroup</c> API operation, you must specify all
+        /// of the endpoints in the endpoint group except the ones that you want to remove from
+        /// the group.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// It's faster, because Global Accelerator doesn't need to resolve any endpoints. With
-        /// the <code>UpdateEndpointGroup</code> API operation, Global Accelerator must resolve
-        /// all of the endpoints that remain in the group.
+        /// the <c>UpdateEndpointGroup</c> API operation, Global Accelerator must resolve all
+        /// of the endpoints that remain in the group.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -2557,8 +2907,8 @@ namespace Amazon.GlobalAccelerator
         /// <para>
         /// Global Accelerator is a global service that supports endpoints in multiple Amazon
         /// Web Services Regions but you must specify the US West (Oregon) Region to create, update,
-        /// or otherwise work with accelerators. That is, for example, specify <code>--region
-        /// us-west-2</code> on Amazon Web Services CLI commands.
+        /// or otherwise work with accelerators. That is, for example, specify <c>--region us-west-2</c>
+        /// on Amazon Web Services CLI commands.
         /// </para>
         ///  </important>
         /// </summary>
@@ -2574,11 +2924,17 @@ namespace Amazon.GlobalAccelerator
         /// <exception cref="Amazon.GlobalAccelerator.Model.AccessDeniedException">
         /// You don't have access permission.
         /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.ConflictException">
+        /// You can't use both of those options.
+        /// </exception>
         /// <exception cref="Amazon.GlobalAccelerator.Model.InternalServiceErrorException">
         /// There was an internal error for Global Accelerator.
         /// </exception>
         /// <exception cref="Amazon.GlobalAccelerator.Model.InvalidArgumentException">
         /// An argument that you specified is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.TransactionInProgressException">
+        /// There's already a transaction in progress. Another transaction can't be processed.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/UpdateAccelerator">REST API Reference for UpdateAccelerator Operation</seealso>
         public virtual Task<UpdateAcceleratorResponse> UpdateAcceleratorAsync(UpdateAcceleratorRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -2626,6 +2982,9 @@ namespace Amazon.GlobalAccelerator
         /// <exception cref="Amazon.GlobalAccelerator.Model.InvalidArgumentException">
         /// An argument that you specified is invalid.
         /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.TransactionInProgressException">
+        /// There's already a transaction in progress. Another transaction can't be processed.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/UpdateAcceleratorAttributes">REST API Reference for UpdateAcceleratorAttributes Operation</seealso>
         public virtual Task<UpdateAcceleratorAttributesResponse> UpdateAcceleratorAttributesAsync(UpdateAcceleratorAttributesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -2634,6 +2993,67 @@ namespace Amazon.GlobalAccelerator
             options.ResponseUnmarshaller = UpdateAcceleratorAttributesResponseUnmarshaller.Instance;
 
             return InvokeAsync<UpdateAcceleratorAttributesResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  UpdateCrossAccountAttachment
+
+        internal virtual UpdateCrossAccountAttachmentResponse UpdateCrossAccountAttachment(UpdateCrossAccountAttachmentRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateCrossAccountAttachmentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateCrossAccountAttachmentResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateCrossAccountAttachmentResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Update a cross-account attachment to add or remove principals or resources. When you
+        /// update an attachment to remove a principal (account ID or accelerator) or a resource,
+        /// Global Accelerator revokes the permission for specific resources. 
+        /// 
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/global-accelerator/latest/dg/cross-account-resources.html">
+        /// Working with cross-account attachments and resources in Global Accelerator</a> in
+        /// the <i> Global Accelerator Developer Guide</i>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateCrossAccountAttachment service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateCrossAccountAttachment service method, as returned by GlobalAccelerator.</returns>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.AccessDeniedException">
+        /// You don't have access permission.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.AttachmentNotFoundException">
+        /// No cross-account attachment was found.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.InternalServiceErrorException">
+        /// There was an internal error for Global Accelerator.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.InvalidArgumentException">
+        /// An argument that you specified is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.LimitExceededException">
+        /// Processing your request would cause you to exceed an Global Accelerator limit.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.TransactionInProgressException">
+        /// There's already a transaction in progress. Another transaction can't be processed.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/UpdateCrossAccountAttachment">REST API Reference for UpdateCrossAccountAttachment Operation</seealso>
+        public virtual Task<UpdateCrossAccountAttachmentResponse> UpdateCrossAccountAttachmentAsync(UpdateCrossAccountAttachmentRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateCrossAccountAttachmentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateCrossAccountAttachmentResponseUnmarshaller.Instance;
+
+            return InvokeAsync<UpdateCrossAccountAttachmentResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -2663,11 +3083,17 @@ namespace Amazon.GlobalAccelerator
         /// <exception cref="Amazon.GlobalAccelerator.Model.AcceleratorNotFoundException">
         /// The accelerator that you specified doesn't exist.
         /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.ConflictException">
+        /// You can't use both of those options.
+        /// </exception>
         /// <exception cref="Amazon.GlobalAccelerator.Model.InternalServiceErrorException">
         /// There was an internal error for Global Accelerator.
         /// </exception>
         /// <exception cref="Amazon.GlobalAccelerator.Model.InvalidArgumentException">
         /// An argument that you specified is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.TransactionInProgressException">
+        /// There's already a transaction in progress. Another transaction can't be processed.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/UpdateCustomRoutingAccelerator">REST API Reference for UpdateCustomRoutingAccelerator Operation</seealso>
         public virtual Task<UpdateCustomRoutingAcceleratorResponse> UpdateCustomRoutingAcceleratorAsync(UpdateCustomRoutingAcceleratorRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -2714,6 +3140,9 @@ namespace Amazon.GlobalAccelerator
         /// </exception>
         /// <exception cref="Amazon.GlobalAccelerator.Model.InvalidArgumentException">
         /// An argument that you specified is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.GlobalAccelerator.Model.TransactionInProgressException">
+        /// There's already a transaction in progress. Another transaction can't be processed.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/UpdateCustomRoutingAcceleratorAttributes">REST API Reference for UpdateCustomRoutingAcceleratorAttributes Operation</seealso>
         public virtual Task<UpdateCustomRoutingAcceleratorAttributesResponse> UpdateCustomRoutingAcceleratorAttributesAsync(UpdateCustomRoutingAcceleratorAttributesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -2949,11 +3378,11 @@ namespace Amazon.GlobalAccelerator
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

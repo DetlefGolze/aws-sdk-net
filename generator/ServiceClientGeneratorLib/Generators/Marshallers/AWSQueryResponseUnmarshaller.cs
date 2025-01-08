@@ -18,7 +18,7 @@ namespace ServiceClientGenerator.Generators.Marshallers
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+    #line 1 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class AWSQueryResponseUnmarshaller : BaseResponseUnmarshaller
     {
@@ -29,7 +29,7 @@ namespace ServiceClientGenerator.Generators.Marshallers
         public override string TransformText()
         {
             
-            #line 6 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 6 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
 
     AddLicenseHeader();
 
@@ -38,9 +38,9 @@ namespace ServiceClientGenerator.Generators.Marshallers
             
             #line default
             #line hidden
-            this.Write("namespace ");
+            this.Write("#pragma warning disable CS0612,CS0618\r\nnamespace ");
             
-            #line 11 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 12 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Config.Namespace));
             
             #line default
@@ -48,14 +48,14 @@ namespace ServiceClientGenerator.Generators.Marshallers
             this.Write(".Model.Internal.MarshallTransformations\r\n{\r\n    /// <summary>\r\n    /// Response U" +
                     "nmarshaller for ");
             
-            #line 14 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 15 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.UnmarshallerBaseName));
             
             #line default
             #line hidden
             this.Write(" operation\r\n    /// </summary>  \r\n    public class ");
             
-            #line 16 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 17 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.UnmarshallerBaseName));
             
             #line default
@@ -71,14 +71,14 @@ namespace ServiceClientGenerator.Generators.Marshallers
         {
             ");
             
-            #line 25 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 26 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.UnmarshallerBaseName));
             
             #line default
             #line hidden
             this.Write("Response response = new ");
             
-            #line 25 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 26 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Operation.Name));
             
             #line default
@@ -93,7 +93,7 @@ namespace ServiceClientGenerator.Generators.Marshallers
                 {                    
                     if(context.TestExpression(""");
             
-            #line 33 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 34 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.UnmarshallerBaseName));
             
             #line default
@@ -116,7 +116,7 @@ namespace ServiceClientGenerator.Generators.Marshallers
 
 ");
             
-            #line 49 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 50 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
 
 	if (this.Structure == null || this.Structure.Members.Count == 0)
 	{
@@ -127,7 +127,7 @@ namespace ServiceClientGenerator.Generators.Marshallers
             this.Write("\t\t[System.Diagnostics.CodeAnalysis.SuppressMessage(\"Microsoft.Usage\", \"CA1801:Rev" +
                     "iewUnusedParameters\", MessageId=\"response\")]\r\n");
             
-            #line 54 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 55 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
 
 	}
 
@@ -136,7 +136,7 @@ namespace ServiceClientGenerator.Generators.Marshallers
             #line hidden
             this.Write("        private static void UnmarshallResult(XmlUnmarshallerContext context, ");
             
-            #line 57 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 58 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.UnmarshallerBaseName));
             
             #line default
@@ -157,7 +157,7 @@ namespace ServiceClientGenerator.Generators.Marshallers
 
 ");
             
-            #line 71 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 72 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
 
     if(this.Structure != null)
     {
@@ -169,21 +169,21 @@ namespace ServiceClientGenerator.Generators.Marshallers
             #line hidden
             this.Write("                    if ( context.TestExpression(\"");
             
-            #line 77 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 78 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Structure.MarshallName));
             
             #line default
             #line hidden
             this.Write("\", targetDepth))\r\n                    {\r\n                        response.");
             
-            #line 79 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 80 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(MemberAccessorFor(this.Structure.Name)));
             
             #line default
             #line hidden
             this.Write(" = ");
             
-            #line 79 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 80 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Structure.Name));
             
             #line default
@@ -191,21 +191,26 @@ namespace ServiceClientGenerator.Generators.Marshallers
             this.Write("Unmarshaller.Instance.Unmarshall(context);\r\n                        continue;\r\n  " +
                     "                  }\r\n");
             
-            #line 82 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 83 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
  
         }
         else
         {
             foreach (var member in this.Structure.Members)
             {
-                var testExpression = GeneratorHelpers.DetermineAWSQueryTestExpression(member);
+                string testExpression;
+                if(member.IsFlattened || member.Shape.IsFlattened)                
+                    testExpression = DetermineXmlMarshallName(member);
+                else
+                    testExpression = GeneratorHelpers.DetermineAWSQueryTestExpression(member);
+                
 
             
             #line default
             #line hidden
             this.Write("                    if (context.TestExpression(\"");
             
-            #line 90 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 96 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(testExpression));
             
             #line default
@@ -213,14 +218,14 @@ namespace ServiceClientGenerator.Generators.Marshallers
             this.Write("\", targetDepth))\r\n                    {\r\n                        var unmarshaller" +
                     " = ");
             
-            #line 92 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 98 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.DetermineTypeUnmarshallerInstantiate()));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 93 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 99 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
 
                 if (member.IsMap || member.IsList)
                 {
@@ -228,17 +233,38 @@ namespace ServiceClientGenerator.Generators.Marshallers
             
             #line default
             #line hidden
-            this.Write("                        var item = unmarshaller.Unmarshall(context);\r\n           " +
-                    "             response.");
+            this.Write("                        if (response.");
             
-            #line 98 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 103 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(MemberAccessorFor(member.PropertyName)));
+            
+            #line default
+            #line hidden
+            this.Write(" == null)\r\n                        {\r\n                            response.");
+            
+            #line 105 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(MemberAccessorFor(member.PropertyName)));
+            
+            #line default
+            #line hidden
+            this.Write(" = new ");
+            
+            #line 105 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(member.DetermineType()));
+            
+            #line default
+            #line hidden
+            this.Write("();\r\n                        }\r\n                        var item = unmarshaller.U" +
+                    "nmarshall(context);\r\n                        response.");
+            
+            #line 108 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(MemberAccessorFor(member.PropertyName)));
             
             #line default
             #line hidden
             this.Write(".Add(item);\r\n");
             
-            #line 99 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 109 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
 
                 }
                 else
@@ -249,14 +275,14 @@ namespace ServiceClientGenerator.Generators.Marshallers
             #line hidden
             this.Write("                        response.");
             
-            #line 104 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 114 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(MemberAccessorFor(member.PropertyName)));
             
             #line default
             #line hidden
             this.Write(" = unmarshaller.Unmarshall(context);\r\n");
             
-            #line 105 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 115 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
 
                 }
 
@@ -265,7 +291,7 @@ namespace ServiceClientGenerator.Generators.Marshallers
             #line hidden
             this.Write("                        continue;\r\n                    }\r\n");
             
-            #line 110 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 120 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
 
             }
         }
@@ -301,7 +327,7 @@ namespace ServiceClientGenerator.Generators.Marshallers
             {
 ");
             
-            #line 140 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 150 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
 
     foreach (var exception in this.Operation.Exceptions)
     {
@@ -311,14 +337,14 @@ namespace ServiceClientGenerator.Generators.Marshallers
             #line hidden
             this.Write("                if (errorResponse.Code != null && errorResponse.Code.Equals(\"");
             
-            #line 144 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 154 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(exception.Code));
             
             #line default
             #line hidden
             this.Write("\"))\r\n                {\r\n                    return ");
             
-            #line 146 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 156 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(exception.Name));
             
             #line default
@@ -326,7 +352,7 @@ namespace ServiceClientGenerator.Generators.Marshallers
             this.Write("Unmarshaller.Instance.Unmarshall(contextCopy, errorResponse);\r\n                }\r" +
                     "\n");
             
-            #line 148 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 158 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
 
     }
 
@@ -335,7 +361,7 @@ namespace ServiceClientGenerator.Generators.Marshallers
             #line hidden
             this.Write("            }\r\n            return new ");
             
-            #line 152 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 162 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.BaseException));
             
             #line default
@@ -343,18 +369,18 @@ namespace ServiceClientGenerator.Generators.Marshallers
             this.Write("(errorResponse.Message, innerException, errorResponse.Type, errorResponse.Code, e" +
                     "rrorResponse.RequestId, statusCode);\r\n        }\r\n");
             
-            #line 154 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+            #line 164 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
 
 	    this.AddResponseSingletonMethod();
 
             
             #line default
             #line hidden
-            this.Write("    }\r\n}\r\n");
+            this.Write("    }\r\n}\r\n\r\n");
             return this.GenerationEnvironment.ToString();
         }
         
-        #line 159 "C:\projects\aws\AWSDotNetPublic\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
+        #line 170 "C:\Dev\Repos\aws-sdk-net-staging\generator\ServiceClientGeneratorLib\Generators\Marshallers\AWSQueryResponseUnmarshaller.tt"
 
 // if the result fields have been wrapped in a subordinate structure, wire the accessor
 // to use it when addressing a member

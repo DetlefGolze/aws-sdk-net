@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudControlApi.Model
 {
     /// <summary>
@@ -34,19 +35,19 @@ namespace Amazon.CloudControlApi.Model
     public partial class ListResourcesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ResourceDescription> _resourceDescriptions = new List<ResourceDescription>();
+        private List<ResourceDescription> _resourceDescriptions = AWSConfigs.InitializeCollections ? new List<ResourceDescription>() : null;
         private string _typeName;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the request doesn't return all of the remaining results, <code>NextToken</code>
-        /// is set to a token. To retrieve the next set of results, call <code>ListResources</code>
-        /// again and assign that token to the request object's <code>NextToken</code> parameter.
-        /// If the request returns all results, <code>NextToken</code> is set to null.
+        /// If the request doesn't return all of the remaining results, <c>NextToken</c> is set
+        /// to a token. To retrieve the next set of results, call <c>ListResources</c> again and
+        /// assign that token to the request object's <c>NextToken</c> parameter. If the request
+        /// returns all results, <c>NextToken</c> is set to null.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=2048)]
+        [AWSProperty(Min=1, Max=4096)]
         public string NextToken
         {
             get { return this._nextToken; }
@@ -75,7 +76,7 @@ namespace Amazon.CloudControlApi.Model
         // Check to see if ResourceDescriptions property is set
         internal bool IsSetResourceDescriptions()
         {
-            return this._resourceDescriptions != null && this._resourceDescriptions.Count > 0; 
+            return this._resourceDescriptions != null && (this._resourceDescriptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

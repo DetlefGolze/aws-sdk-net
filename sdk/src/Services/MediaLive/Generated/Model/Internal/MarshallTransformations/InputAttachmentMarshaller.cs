@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(InputAttachment requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAutomaticInputFailoverSettings())
             {
                 context.Writer.WritePropertyName("automaticInputFailoverSettings");
@@ -77,6 +80,17 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                 marshaller.Marshall(requestObject.InputSettings, context);
 
                 context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetLogicalInterfaceNames())
+            {
+                context.Writer.WritePropertyName("logicalInterfaceNames");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectLogicalInterfaceNamesListValue in requestObject.LogicalInterfaceNames)
+                {
+                        context.Writer.Write(requestObjectLogicalInterfaceNamesListValue);
+                }
+                context.Writer.WriteArrayEnd();
             }
 
         }

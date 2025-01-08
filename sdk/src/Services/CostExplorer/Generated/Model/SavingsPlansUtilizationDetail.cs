@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostExplorer.Model
 {
     /// <summary>
     /// A single daily or monthly Savings Plans utilization rate and details for your account.
     /// A management account in an organization have access to member accounts. You can use
-    /// <code>GetDimensionValues</code> to determine the possible dimension values.
+    /// <c>GetDimensionValues</c> to determine the possible dimension values.
     /// </summary>
     public partial class SavingsPlansUtilizationDetail
     {
         private SavingsPlansAmortizedCommitment _amortizedCommitment;
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private SavingsPlansSavings _savings;
         private string _savingsPlanArn;
         private SavingsPlansUtilization _utilization;
@@ -63,7 +64,7 @@ namespace Amazon.CostExplorer.Model
         /// <summary>
         /// Gets and sets the property Attributes. 
         /// <para>
-        /// The attribute that applies to a specific <code>Dimension</code>.
+        /// The attribute that applies to a specific <c>Dimension</c>.
         /// </para>
         /// </summary>
         public Dictionary<string, string> Attributes
@@ -75,15 +76,15 @@ namespace Amazon.CostExplorer.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Savings. 
         /// <para>
         /// The amount saved by using existing Savings Plans. Savings returns both net savings
-        /// from savings plans and also the <code>onDemandCostEquivalent</code> of the Savings
-        /// Plans when considering the utilization rate.
+        /// from savings plans and also the <c>onDemandCostEquivalent</c> of the Savings Plans
+        /// when considering the utilization rate.
         /// </para>
         /// </summary>
         public SavingsPlansSavings Savings

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VerifiedPermissions.Model
 {
     /// <summary>
     /// A structure that describes a <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_PolicyDefinintion.html">PolicyDefinintion</a>.
-    /// It will always have either an <code>StaticPolicy</code> or a <code>TemplateLinkedPolicy</code>
+    /// It will always have either an <c>StaticPolicy</c> or a <c>TemplateLinkedPolicy</c>
     /// element.
     /// 
     ///  

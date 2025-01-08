@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.IoTSecureTunneling
 {
     /// <summary>
-    /// Implementation for accessing IoTSecureTunneling
+    /// <para>Implementation for accessing IoTSecureTunneling</para>
     ///
     /// IoT Secure Tunneling 
     /// <para>
@@ -275,9 +276,9 @@ namespace Amazon.IoTSecureTunneling
 
 
         /// <summary>
-        /// Closes a tunnel identified by the unique tunnel id. When a <code>CloseTunnel</code>
-        /// request is received, we close the WebSocket connections between the client and proxy
-        /// server so no data can be transmitted.
+        /// Closes a tunnel identified by the unique tunnel id. When a <c>CloseTunnel</c> request
+        /// is received, we close the WebSocket connections between the client and proxy server
+        /// so no data can be transmitted.
         /// 
         ///  
         /// <para>
@@ -303,9 +304,9 @@ namespace Amazon.IoTSecureTunneling
 
 
         /// <summary>
-        /// Closes a tunnel identified by the unique tunnel id. When a <code>CloseTunnel</code>
-        /// request is received, we close the WebSocket connections between the client and proxy
-        /// server so no data can be transmitted.
+        /// Closes a tunnel identified by the unique tunnel id. When a <c>CloseTunnel</c> request
+        /// is received, we close the WebSocket connections between the client and proxy server
+        /// so no data can be transmitted.
         /// 
         ///  
         /// <para>
@@ -736,11 +737,11 @@ namespace Amazon.IoTSecureTunneling
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

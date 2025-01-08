@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRunner.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.AppRunner.Model
     public partial class ListVpcConnectorsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<VpcConnector> _vpcConnectors = new List<VpcConnector>();
+        private List<VpcConnector> _vpcConnectors = AWSConfigs.InitializeCollections ? new List<VpcConnector>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -60,7 +61,7 @@ namespace Amazon.AppRunner.Model
         /// Gets and sets the property VpcConnectors. 
         /// <para>
         /// A list of information records for VPC connectors. In a paginated request, the request
-        /// returns up to <code>MaxResults</code> records for each call.
+        /// returns up to <c>MaxResults</c> records for each call.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -73,7 +74,7 @@ namespace Amazon.AppRunner.Model
         // Check to see if VpcConnectors property is set
         internal bool IsSetVpcConnectors()
         {
-            return this._vpcConnectors != null && this._vpcConnectors.Count > 0; 
+            return this._vpcConnectors != null && (this._vpcConnectors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,24 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// Controls how a specific <code>Dashboard</code> resource is parameterized in the returned
+    /// Controls how a specific <c>Dashboard</c> resource is parameterized in the returned
     /// CloudFormation template.
     /// </summary>
     public partial class AssetBundleExportJobDashboardOverrideProperties
     {
         private string _arn;
-        private List<string> _properties = new List<string>();
+        private List<string> _properties = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
         /// <para>
-        /// The ARN of the specific <code>Dashboard</code> resource whose override properties
-        /// are configured in this structure.
+        /// The ARN of the specific <c>Dashboard</c> resource whose override properties are configured
+        /// in this structure.
         /// </para>
         /// </summary>
+        [AWSProperty(Required=true)]
         public string Arn
         {
             get { return this._arn; }
@@ -59,8 +61,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Properties. 
         /// <para>
-        /// A list of <code>Dashboard</code> resource properties to generate variables for in
-        /// the returned CloudFormation template.
+        /// A list of <c>Dashboard</c> resource properties to generate variables for in the returned
+        /// CloudFormation template.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=10)]
@@ -73,7 +75,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Properties property is set
         internal bool IsSetProperties()
         {
-            return this._properties != null && this._properties.Count > 0; 
+            return this._properties != null && (this._properties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

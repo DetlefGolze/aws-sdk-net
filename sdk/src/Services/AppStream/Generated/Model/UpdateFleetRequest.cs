@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppStream.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.AppStream.Model
     /// 
     ///  
     /// <para>
-    /// If the fleet is in the <code>STOPPED</code> state, you can update any attribute except
-    /// the fleet name.
+    /// If the fleet is in the <c>STOPPED</c> state, you can update any attribute except the
+    /// fleet name.
     /// </para>
     ///  
     /// <para>
-    /// If the fleet is in the <code>RUNNING</code> state, you can update the following based
-    /// on the fleet type:
+    /// If the fleet is in the <c>RUNNING</c> state, you can update the following based on
+    /// the fleet type:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -48,9 +49,8 @@ namespace Amazon.AppStream.Model
     /// </para>
     ///  
     /// <para>
-    /// You can update the <code>DisplayName</code>, <code>ComputeCapacity</code>, <code>ImageARN</code>,
-    /// <code>ImageName</code>, <code>IdleDisconnectTimeoutInSeconds</code>, and <code>DisconnectTimeoutInSeconds</code>
-    /// attributes.
+    /// You can update the <c>DisplayName</c>, <c>ComputeCapacity</c>, <c>ImageARN</c>, <c>ImageName</c>,
+    /// <c>IdleDisconnectTimeoutInSeconds</c>, and <c>DisconnectTimeoutInSeconds</c> attributes.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -58,19 +58,18 @@ namespace Amazon.AppStream.Model
     /// </para>
     ///  
     /// <para>
-    /// You can update the <code>DisplayName</code>, <code>IdleDisconnectTimeoutInSeconds</code>,
-    /// <code>DisconnectTimeoutInSeconds</code>, <code>MaxConcurrentSessions</code>, <code>SessionScriptS3Location</code>
-    /// and <code>UsbDeviceFilterStrings</code> attributes.
+    /// You can update the <c>DisplayName</c>, <c>IdleDisconnectTimeoutInSeconds</c>, <c>DisconnectTimeoutInSeconds</c>,
+    /// <c>MaxConcurrentSessions</c>, <c>SessionScriptS3Location</c> and <c>UsbDeviceFilterStrings</c>
+    /// attributes.
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// If the fleet is in the <code>STARTING</code> or <code>STOPPED</code> state, you can't
-    /// update it.
+    /// If the fleet is in the <c>STARTING</c> or <c>STOPPED</c> state, you can't update it.
     /// </para>
     /// </summary>
     public partial class UpdateFleetRequest : AmazonAppStreamRequest
     {
-        private List<string> _attributesToDelete = new List<string>();
+        private List<string> _attributesToDelete = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ComputeCapacity _computeCapacity;
         private bool? _deleteVpcConfig;
         private string _description;
@@ -84,12 +83,13 @@ namespace Amazon.AppStream.Model
         private string _imageName;
         private string _instanceType;
         private int? _maxConcurrentSessions;
+        private int? _maxSessionsPerInstance;
         private int? _maxUserDurationInSeconds;
         private string _name;
         private PlatformType _platform;
         private S3Location _sessionScriptS3Location;
         private StreamView _streamView;
-        private List<string> _usbDeviceFilterStrings = new List<string>();
+        private List<string> _usbDeviceFilterStrings = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private VpcConfig _vpcConfig;
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace Amazon.AppStream.Model
         // Check to see if AttributesToDelete property is set
         internal bool IsSetAttributesToDelete()
         {
-            return this._attributesToDelete != null && this._attributesToDelete.Count > 0; 
+            return this._attributesToDelete != null && (this._attributesToDelete.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace Amazon.AppStream.Model
         /// </para>
         ///  
         /// <para>
-        /// Specify a value between 60 and 360000.
+        /// Specify a value between 60 and 36000.
         /// </para>
         /// </summary>
         public int DisconnectTimeoutInSeconds
@@ -251,7 +251,7 @@ namespace Amazon.AppStream.Model
         /// Gets and sets the property IamRoleArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the IAM role to apply to the fleet. To assume a
-        /// role, a fleet instance calls the AWS Security Token Service (STS) <code>AssumeRole</code>
+        /// role, a fleet instance calls the AWS Security Token Service (STS) <c>AssumeRole</c>
         /// API operation and passes the ARN of the role to use. The operation creates a new session
         /// with temporary credentials. AppStream 2.0 retrieves the temporary credentials and
         /// creates the <b>appstream_machine_role</b> credential profile on the instance.
@@ -279,20 +279,19 @@ namespace Amazon.AppStream.Model
         /// Gets and sets the property IdleDisconnectTimeoutInSeconds. 
         /// <para>
         /// The amount of time that users can be idle (inactive) before they are disconnected
-        /// from their streaming session and the <code>DisconnectTimeoutInSeconds</code> time
-        /// interval begins. Users are notified before they are disconnected due to inactivity.
-        /// If users try to reconnect to the streaming session before the time interval specified
-        /// in <code>DisconnectTimeoutInSeconds</code> elapses, they are connected to their previous
-        /// session. Users are considered idle when they stop providing keyboard or mouse input
-        /// during their streaming session. File uploads and downloads, audio in, audio out, and
-        /// pixels changing do not qualify as user activity. If users continue to be idle after
-        /// the time interval in <code>IdleDisconnectTimeoutInSeconds</code> elapses, they are
-        /// disconnected. 
+        /// from their streaming session and the <c>DisconnectTimeoutInSeconds</c> time interval
+        /// begins. Users are notified before they are disconnected due to inactivity. If users
+        /// try to reconnect to the streaming session before the time interval specified in <c>DisconnectTimeoutInSeconds</c>
+        /// elapses, they are connected to their previous session. Users are considered idle when
+        /// they stop providing keyboard or mouse input during their streaming session. File uploads
+        /// and downloads, audio in, audio out, and pixels changing do not qualify as user activity.
+        /// If users continue to be idle after the time interval in <c>IdleDisconnectTimeoutInSeconds</c>
+        /// elapses, they are disconnected. 
         /// </para>
         ///  
         /// <para>
         /// To prevent users from being disconnected due to inactivity, specify a value of 0.
-        /// Otherwise, specify a value between 60 and 3600. The default value is 0.
+        /// Otherwise, specify a value between 60 and 36000. The default value is 0.
         /// </para>
         ///  <note> 
         /// <para>
@@ -559,6 +558,25 @@ namespace Amazon.AppStream.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MaxSessionsPerInstance. 
+        /// <para>
+        /// The maximum number of user sessions on an instance. This only applies to multi-session
+        /// fleets.
+        /// </para>
+        /// </summary>
+        public int MaxSessionsPerInstance
+        {
+            get { return this._maxSessionsPerInstance.GetValueOrDefault(); }
+            set { this._maxSessionsPerInstance = value; }
+        }
+
+        // Check to see if MaxSessionsPerInstance property is set
+        internal bool IsSetMaxSessionsPerInstance()
+        {
+            return this._maxSessionsPerInstance.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property MaxUserDurationInSeconds. 
         /// <para>
         /// The maximum amount of time that a streaming session can remain active, in seconds.
@@ -589,7 +607,6 @@ namespace Amazon.AppStream.Model
         /// A unique name for the fleet.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1)]
         public string Name
         {
             get { return this._name; }
@@ -644,13 +661,13 @@ namespace Amazon.AppStream.Model
         /// Gets and sets the property StreamView. 
         /// <para>
         /// The AppStream 2.0 view that is displayed to your users when they stream from the fleet.
-        /// When <code>APP</code> is specified, only the windows of applications opened by users
-        /// display. When <code>DESKTOP</code> is specified, the standard desktop that is provided
-        /// by the operating system displays.
+        /// When <c>APP</c> is specified, only the windows of applications opened by users display.
+        /// When <c>DESKTOP</c> is specified, the standard desktop that is provided by the operating
+        /// system displays.
         /// </para>
         ///  
         /// <para>
-        /// The default value is <code>APP</code>.
+        /// The default value is <c>APP</c>.
         /// </para>
         /// </summary>
         public StreamView StreamView
@@ -682,7 +699,7 @@ namespace Amazon.AppStream.Model
         // Check to see if UsbDeviceFilterStrings property is set
         internal bool IsSetUsbDeviceFilterStrings()
         {
-            return this._usbDeviceFilterStrings != null && this._usbDeviceFilterStrings.Count > 0; 
+            return this._usbDeviceFilterStrings != null && (this._usbDeviceFilterStrings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

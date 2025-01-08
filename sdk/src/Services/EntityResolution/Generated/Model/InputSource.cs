@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
-    /// An object containing <code>InputSourceARN</code>, <code>SchemaName</code>, and <code>ApplyNormalization</code>.
+    /// An object containing <c>InputSourceARN</c>, <c>SchemaName</c>, and <c>ApplyNormalization</c>.
     /// </summary>
     public partial class InputSource
     {
@@ -41,9 +42,9 @@ namespace Amazon.EntityResolution.Model
         /// Gets and sets the property ApplyNormalization. 
         /// <para>
         /// Normalizes the attributes defined in the schema in the input data. For example, if
-        /// an attribute has an <code>AttributeType</code> of <code>PHONE_NUMBER</code>, and the
-        /// data in the input table is in a format of 1234567890, Entity Resolution will normalize
-        /// this field in the output to (123)-456-7890.
+        /// an attribute has an <c>AttributeType</c> of <c>PHONE_NUMBER</c>, and the data in the
+        /// input table is in a format of 1234567890, Entity Resolution will normalize this field
+        /// in the output to (123)-456-7890.
         /// </para>
         /// </summary>
         public bool ApplyNormalization
@@ -61,7 +62,7 @@ namespace Amazon.EntityResolution.Model
         /// <summary>
         /// Gets and sets the property InputSourceARN. 
         /// <para>
-        /// An Glue table ARN for the input source table.
+        /// An Glue table Amazon Resource Name (ARN) for the input source table.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -83,7 +84,7 @@ namespace Amazon.EntityResolution.Model
         /// The name of the schema to be retrieved.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=0, Max=255)]
+        [AWSProperty(Required=true, Min=1, Max=255)]
         public string SchemaName
         {
             get { return this._schemaName; }

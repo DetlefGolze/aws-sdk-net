@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
     /// Container for the parameters to the ExportConfigurations operation.
-    /// Deprecated. Use <code>StartExportTask</code> instead.
+    /// Deprecated. Use <c>StartExportTask</c> instead.
     /// 
     ///  
     /// <para>

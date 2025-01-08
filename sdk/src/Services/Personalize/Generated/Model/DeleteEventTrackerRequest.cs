@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Personalize.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteEventTracker operation.
-    /// Deletes the event tracker. Does not delete the event-interactions dataset from the
-    /// associated dataset group. For more information on event trackers, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html">CreateEventTracker</a>.
+    /// Deletes the event tracker. Does not delete the dataset from the dataset group. For
+    /// more information on event trackers, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html">CreateEventTracker</a>.
     /// </summary>
     public partial class DeleteEventTrackerRequest : AmazonPersonalizeRequest
     {

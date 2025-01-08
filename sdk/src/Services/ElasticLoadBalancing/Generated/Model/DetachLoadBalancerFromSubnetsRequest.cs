@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancing.Model
 {
     /// <summary>
@@ -35,14 +36,14 @@ namespace Amazon.ElasticLoadBalancing.Model
     ///  
     /// <para>
     /// After a subnet is removed, all EC2 instances registered with the load balancer in
-    /// the removed subnet go into the <code>OutOfService</code> state. Then, the load balancer
+    /// the removed subnet go into the <c>OutOfService</c> state. Then, the load balancer
     /// balances the traffic among the remaining routable subnets.
     /// </para>
     /// </summary>
     public partial class DetachLoadBalancerFromSubnetsRequest : AmazonElasticLoadBalancingRequest
     {
         private string _loadBalancerName;
-        private List<string> _subnets = new List<string>();
+        private List<string> _subnets = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property LoadBalancerName. 
@@ -79,7 +80,7 @@ namespace Amazon.ElasticLoadBalancing.Model
         // Check to see if Subnets property is set
         internal bool IsSetSubnets()
         {
-            return this._subnets != null && this._subnets.Count > 0; 
+            return this._subnets != null && (this._subnets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

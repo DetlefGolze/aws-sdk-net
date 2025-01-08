@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
-    /// <code>CodeGenConfigurationNode</code> enumerates all valid Node types. One and only
-    /// one of its member variables can be populated.
+    /// <c>CodeGenConfigurationNode</c> enumerates all valid Node types. One and only one
+    /// of its member variables can be populated.
     /// </summary>
     public partial class CodeGenConfigurationNode
     {
@@ -45,6 +46,8 @@ namespace Amazon.Glue.Model
         private CatalogKinesisSource _catalogKinesisSource;
         private CatalogSource _catalogSource;
         private BasicCatalogTarget _catalogTarget;
+        private ConnectorDataSource _connectorDataSource;
+        private ConnectorDataTarget _connectorDataTarget;
         private CustomCode _customCode;
         private DirectJDBCSource _directJDBCSource;
         private DirectKafkaSource _directKafkaSource;
@@ -303,6 +306,42 @@ namespace Amazon.Glue.Model
         internal bool IsSetCatalogTarget()
         {
             return this._catalogTarget != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ConnectorDataSource. 
+        /// <para>
+        /// Specifies a source generated with standard connection options.
+        /// </para>
+        /// </summary>
+        public ConnectorDataSource ConnectorDataSource
+        {
+            get { return this._connectorDataSource; }
+            set { this._connectorDataSource = value; }
+        }
+
+        // Check to see if ConnectorDataSource property is set
+        internal bool IsSetConnectorDataSource()
+        {
+            return this._connectorDataSource != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ConnectorDataTarget. 
+        /// <para>
+        /// Specifies a target generated with standard connection options.
+        /// </para>
+        /// </summary>
+        public ConnectorDataTarget ConnectorDataTarget
+        {
+            get { return this._connectorDataTarget; }
+            set { this._connectorDataTarget = value; }
+        }
+
+        // Check to see if ConnectorDataTarget property is set
+        internal bool IsSetConnectorDataTarget()
+        {
+            return this._connectorDataTarget != null;
         }
 
         /// <summary>
@@ -639,7 +678,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property Merge. 
         /// <para>
-        /// Specifies a transform that merges a <code>DynamicFrame</code> with a staging <code>DynamicFrame</code>
+        /// Specifies a transform that merges a <c>DynamicFrame</c> with a staging <c>DynamicFrame</c>
         /// based on the specified primary keys to identify records. Duplicate records (records
         /// with the same primary keys) are not de-duplicated. 
         /// </para>
@@ -1201,9 +1240,8 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property SelectFromCollection. 
         /// <para>
-        /// Specifies a transform that chooses one <code>DynamicFrame</code> from a collection
-        /// of <code>DynamicFrames</code>. The output is the selected <code>DynamicFrame</code>
-        /// 
+        /// Specifies a transform that chooses one <c>DynamicFrame</c> from a collection of <c>DynamicFrames</c>.
+        /// The output is the selected <c>DynamicFrame</c> 
         /// </para>
         /// </summary>
         public SelectFromCollection SelectFromCollection
@@ -1294,7 +1332,7 @@ namespace Amazon.Glue.Model
         /// Gets and sets the property SparkSQL. 
         /// <para>
         /// Specifies a transform where you enter a SQL query using Spark SQL syntax to transform
-        /// the data. The output is a single <code>DynamicFrame</code>.
+        /// the data. The output is a single <c>DynamicFrame</c>.
         /// </para>
         /// </summary>
         public SparkSQL SparkSQL
@@ -1330,8 +1368,8 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property SplitFields. 
         /// <para>
-        /// Specifies a transform that splits data property keys into two <code>DynamicFrames</code>.
-        /// The output is a collection of <code>DynamicFrames</code>: one with selected data property
+        /// Specifies a transform that splits data property keys into two <c>DynamicFrames</c>.
+        /// The output is a collection of <c>DynamicFrames</c>: one with selected data property
         /// keys, and one with the remaining data property keys.
         /// </para>
         /// </summary>

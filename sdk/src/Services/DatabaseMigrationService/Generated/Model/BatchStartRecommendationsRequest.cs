@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -38,12 +39,12 @@ namespace Amazon.DatabaseMigrationService.Model
     /// The result of analysis of each source database is reported individually in the response.
     /// Because the batch request can result in a combination of successful and unsuccessful
     /// actions, you should check for batch errors even when the call returns an HTTP status
-    /// code of <code>200</code>.
+    /// code of <c>200</c>.
     /// </para>
     /// </summary>
     public partial class BatchStartRecommendationsRequest : AmazonDatabaseMigrationServiceRequest
     {
-        private List<StartRecommendationsRequestEntry> _data = new List<StartRecommendationsRequestEntry>();
+        private List<StartRecommendationsRequestEntry> _data = AWSConfigs.InitializeCollections ? new List<StartRecommendationsRequestEntry>() : null;
 
         /// <summary>
         /// Gets and sets the property Data. 
@@ -61,7 +62,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if Data property is set
         internal bool IsSetData()
         {
-            return this._data != null && this._data.Count > 0; 
+            return this._data != null && (this._data.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

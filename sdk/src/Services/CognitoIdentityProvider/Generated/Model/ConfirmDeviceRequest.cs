@@ -27,19 +27,29 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the ConfirmDevice operation.
-    /// Confirms tracking of the device. This API call is the call that begins device tracking.
+    /// Confirms a device that a user wants to remember. A remembered device is a "Remember
+    /// me on this device" option for user pools that perform authentication with the device
+    /// key of a trusted device in the back end, instead of a user-provided MFA code. For
+    /// more information about device authentication, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html">Working
+    /// with user devices in your user pool</a>.
     /// 
+    ///  
+    /// <para>
+    /// Authorize this action with a signed-in user's access token. It must include the scope
+    /// <c>aws.cognito.signin.user.admin</c>.
+    /// </para>
     ///  <note> 
     /// <para>
     /// Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests
     /// for this API operation. For this operation, you can't use IAM credentials to authorize
     /// requests, and you can't grant IAM permissions in policies. For more information about
     /// authorization models in Amazon Cognito, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using
-    /// the Amazon Cognito native and OIDC APIs</a>.
+    /// the Amazon Cognito user pools API and user pool endpoints</a>.
     /// </para>
     ///  </note>
     /// </summary>
@@ -73,7 +83,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property DeviceKey. 
         /// <para>
-        /// The device key.
+        /// The unique identifier, or device key, of the device that you want to update the status
+        /// for.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]
@@ -92,7 +103,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property DeviceName. 
         /// <para>
-        /// The device name.
+        /// A friendly name for the device, for example <c>MyMobilePhone</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

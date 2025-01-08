@@ -26,25 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateUserGroup operation.
-    /// For Redis engine version 6.0 onwards: Creates a Redis user group. For more information,
-    /// see <a href="http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.RBAC.html">Using
+    /// For Valkey engine version 7.2 onwards and Redis OSS 6.0 onwards: Creates a user group.
+    /// For more information, see <a href="http://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Clusters.RBAC.html">Using
     /// Role Based Access Control (RBAC)</a>
     /// </summary>
     public partial class CreateUserGroupRequest : AmazonElastiCacheRequest
     {
         private string _engine;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _userGroupId;
-        private List<string> _userIds = new List<string>();
+        private List<string> _userIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Engine. 
         /// <para>
-        /// The current supported value is Redis. 
+        /// The current supported value is Redis user. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -64,7 +65,8 @@ namespace Amazon.ElastiCache.Model
         /// Gets and sets the property Tags. 
         /// <para>
         /// A list of tags to be added to this resource. A tag is a key-value pair. A tag key
-        /// must be accompanied by a tag value, although null is accepted.
+        /// must be accompanied by a tag value, although null is accepted. Available for Valkey
+        /// and Redis OSS only.
         /// </para>
         /// </summary>
         public List<Tag> Tags
@@ -76,7 +78,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -114,7 +116,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if UserIds property is set
         internal bool IsSetUserIds()
         {
-            return this._userIds != null && this._userIds.Count > 0; 
+            return this._userIds != null && (this._userIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

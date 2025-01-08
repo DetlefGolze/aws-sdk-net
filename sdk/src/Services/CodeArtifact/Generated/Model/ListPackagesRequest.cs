@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeArtifact.Model
 {
     /// <summary>
@@ -129,8 +130,8 @@ namespace Amazon.CodeArtifact.Model
         /// <para>
         /// The namespace prefix used to filter requested packages. Only packages with a namespace
         /// that starts with the provided string value are returned. Note that although this option
-        /// is called <code>--namespace</code> and not <code>--namespace-prefix</code>, it has
-        /// prefix-matching behavior.
+        /// is called <c>--namespace</c> and not <c>--namespace-prefix</c>, it has prefix-matching
+        /// behavior.
         /// </para>
         ///  
         /// <para>
@@ -138,20 +139,20 @@ namespace Amazon.CodeArtifact.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  The namespace of a Maven package is its <code>groupId</code>. 
+        ///  The namespace of a Maven package version is its <c>groupId</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  The namespace of an npm package is its <code>scope</code>. 
+        ///  The namespace of an npm or Swift package version is its <c>scope</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  Python and NuGet packages do not contain a corresponding component, packages of those
-        /// formats do not have a namespace. 
+        /// The namespace of a generic package is its <c>namespace</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  The namespace of a generic package is its <code>namespace</code>. 
+        ///  Python, NuGet, Ruby, and Cargo package versions do not contain a corresponding component,
+        /// package versions of those formats do not have a namespace. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -192,7 +193,7 @@ namespace Amazon.CodeArtifact.Model
         /// Gets and sets the property PackagePrefix. 
         /// <para>
         ///  A prefix used to filter requested packages. Only packages with names that start with
-        /// <code>packagePrefix</code> are returned. 
+        /// <c>packagePrefix</c> are returned. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -211,7 +212,7 @@ namespace Amazon.CodeArtifact.Model
         /// <summary>
         /// Gets and sets the property Publish. 
         /// <para>
-        /// The value of the <code>Publish</code> package origin control restriction used to filter
+        /// The value of the <c>Publish</c> package origin control restriction used to filter
         /// requested packages. Only packages with the provided restriction are returned. For
         /// more information, see <a href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageOriginRestrictions.html">PackageOriginRestrictions</a>.
         /// </para>
@@ -250,9 +251,9 @@ namespace Amazon.CodeArtifact.Model
         /// <summary>
         /// Gets and sets the property Upstream. 
         /// <para>
-        /// The value of the <code>Upstream</code> package origin control restriction used to
-        /// filter requested packages. Only packages with the provided restriction are returned.
-        /// For more information, see <a href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageOriginRestrictions.html">PackageOriginRestrictions</a>.
+        /// The value of the <c>Upstream</c> package origin control restriction used to filter
+        /// requested packages. Only packages with the provided restriction are returned. For
+        /// more information, see <a href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageOriginRestrictions.html">PackageOriginRestrictions</a>.
         /// </para>
         /// </summary>
         public AllowUpstream Upstream

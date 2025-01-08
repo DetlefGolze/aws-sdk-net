@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.LocationService.Model
     {
         private PositionalAccuracy _accuracy;
         private string _deviceId;
-        private List<double> _position = new List<double>();
-        private Dictionary<string, string> _positionProperties = new Dictionary<string, string>();
+        private List<double> _position = AWSConfigs.InitializeCollections ? new List<double>() : null;
+        private Dictionary<string, string> _positionProperties = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private DateTime? _sampleTime;
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.LocationService.Model
         /// Gets and sets the property Position. 
         /// <para>
         /// The latest device position defined in <a href="https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84">WGS
-        /// 84</a> format: <code>[X or longitude, Y or latitude]</code>.
+        /// 84</a> format: <c>[X or longitude, Y or latitude]</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=2, Max=2)]
@@ -93,7 +94,7 @@ namespace Amazon.LocationService.Model
         // Check to see if Position property is set
         internal bool IsSetPosition()
         {
-            return this._position != null && this._position.Count > 0; 
+            return this._position != null && (this._position.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -105,7 +106,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  
         /// <para>
-        /// Format: <code>"key" : "value"</code> 
+        /// Format: <c>"key" : "value"</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=0, Max=3)]
@@ -118,14 +119,14 @@ namespace Amazon.LocationService.Model
         // Check to see if PositionProperties property is set
         internal bool IsSetPositionProperties()
         {
-            return this._positionProperties != null && this._positionProperties.Count > 0; 
+            return this._positionProperties != null && (this._positionProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SampleTime. 
         /// <para>
         /// The timestamp at which the device's position was determined. Uses <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-        /// 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code> 
+        /// 8601</a> format: <c>YYYY-MM-DDThh:mm:ss.sssZ</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
@@ -38,6 +39,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         private int? _applicationImportSuccess;
         private string _clientRequestToken;
         private string _errorsAndFailedEntriesZip;
+        private FileClassification _fileClassification;
         private DateTime? _importCompletionTime;
         private DateTime? _importDeletedTime;
         private DateTime? _importRequestTime;
@@ -137,6 +139,24 @@ namespace Amazon.ApplicationDiscoveryService.Model
         internal bool IsSetErrorsAndFailedEntriesZip()
         {
             return this._errorsAndFailedEntriesZip != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property FileClassification. 
+        /// <para>
+        /// The type of file detected by the import task.
+        /// </para>
+        /// </summary>
+        public FileClassification FileClassification
+        {
+            get { return this._fileClassification; }
+            set { this._fileClassification = value; }
+        }
+
+        // Check to see if FileClassification property is set
+        internal bool IsSetFileClassification()
+        {
+            return this._fileClassification != null;
         }
 
         /// <summary>
@@ -294,9 +314,9 @@ namespace Amazon.ApplicationDiscoveryService.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the import task. An import can have the status of <code>IMPORT_COMPLETE</code>
+        /// The status of the import task. An import can have the status of <c>IMPORT_COMPLETE</c>
         /// and still have some records fail to import from the overall request. More information
-        /// can be found in the downloadable archive defined in the <code>errorsAndFailedEntriesZip</code>
+        /// can be found in the downloadable archive defined in the <c>errorsAndFailedEntriesZip</c>
         /// field, or in the Migration Hub management console.
         /// </para>
         /// </summary>

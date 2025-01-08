@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
@@ -35,16 +36,17 @@ namespace Amazon.EntityResolution.Model
     {
         private DateTime? _createdAt;
         private string _description;
-        private List<SchemaInputAttribute> _mappedInputFields = new List<SchemaInputAttribute>();
+        private bool? _hasWorkflows;
+        private List<SchemaInputAttribute> _mappedInputFields = AWSConfigs.InitializeCollections ? new List<SchemaInputAttribute>() : null;
         private string _schemaArn;
         private string _schemaName;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private DateTime? _updatedAt;
 
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// The timestamp of when the <code>SchemaMapping</code> was created.
+        /// The timestamp of when the <c>SchemaMapping</c> was created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -80,14 +82,33 @@ namespace Amazon.EntityResolution.Model
         }
 
         /// <summary>
+        /// Gets and sets the property HasWorkflows. 
+        /// <para>
+        /// Specifies whether the schema mapping has been applied to a workflow.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Required=true)]
+        public bool HasWorkflows
+        {
+            get { return this._hasWorkflows.GetValueOrDefault(); }
+            set { this._hasWorkflows = value; }
+        }
+
+        // Check to see if HasWorkflows property is set
+        internal bool IsSetHasWorkflows()
+        {
+            return this._hasWorkflows.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property MappedInputFields. 
         /// <para>
-        /// A list of <code>MappedInputFields</code>. Each <code>MappedInputField</code> corresponds
-        /// to a column the source data table, and contains column name plus additional information
+        /// A list of <c>MappedInputFields</c>. Each <c>MappedInputField</c> corresponds to a
+        /// column the source data table, and contains column name plus additional information
         /// Venice uses for matching.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=2, Max=25)]
+        [AWSProperty(Required=true, Min=2, Max=35)]
         public List<SchemaInputAttribute> MappedInputFields
         {
             get { return this._mappedInputFields; }
@@ -97,7 +118,7 @@ namespace Amazon.EntityResolution.Model
         // Check to see if MappedInputFields property is set
         internal bool IsSetMappedInputFields()
         {
-            return this._mappedInputFields != null && this._mappedInputFields.Count > 0; 
+            return this._mappedInputFields != null && (this._mappedInputFields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -125,7 +146,7 @@ namespace Amazon.EntityResolution.Model
         /// The name of the schema.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=0, Max=255)]
+        [AWSProperty(Required=true, Min=1, Max=255)]
         public string SchemaName
         {
             get { return this._schemaName; }
@@ -154,13 +175,13 @@ namespace Amazon.EntityResolution.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UpdatedAt. 
         /// <para>
-        /// The timestamp of when the <code>SchemaMapping</code> was last updated.
+        /// The timestamp of when the <c>SchemaMapping</c> was last updated.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

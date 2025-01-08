@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -121,6 +122,14 @@ namespace Amazon.IoTFleetWise.Model
         public IListSignalCatalogsPaginator ListSignalCatalogs(ListSignalCatalogsRequest request) 
         {
             return new ListSignalCatalogsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListStateTemplates operation
+        ///</summary>
+        public IListStateTemplatesPaginator ListStateTemplates(ListStateTemplatesRequest request) 
+        {
+            return new ListStateTemplatesPaginator(this.client, request);
         }
 
         /// <summary>

@@ -26,15 +26,34 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.RestJsonTest.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.RestJsonTest
 {
     /// <summary>
-    /// Interface for accessing RestJsonTest
+    /// <para>Interface for accessing RestJsonTest</para>
     ///
     /// 
     /// </summary>
     public partial interface IAmazonRestJsonTest : IAmazonService, IDisposable
     {
+                
+        #region  MemberRefOp
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the MemberRefOp service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the MemberRefOp service method, as returned by RestJsonTest.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/test-2021-05-13/MemberRefOp">REST API Reference for MemberRefOp Operation</seealso>
+        Task<MemberRefOpResponse> MemberRefOpAsync(MemberRefOpRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
                 
         #region  NoPayload
 
@@ -51,6 +70,169 @@ namespace Amazon.RestJsonTest
         /// <returns>The response from the NoPayload service method, as returned by RestJsonTest.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/test-2021-05-13/NoPayload">REST API Reference for NoPayload Operation</seealso>
         Task<NoPayloadResponse> NoPayloadAsync(NoPayloadRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  NoPayloadPost
+
+
+
+        /// <summary>
+        /// A POST request without a body, for verifying that we don't set a Content-Type even
+        /// though a POST could have a body
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the NoPayloadPost service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the NoPayloadPost service method, as returned by RestJsonTest.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/test-2021-05-13/NoPayloadPost">REST API Reference for NoPayloadPost Operation</seealso>
+        Task<NoPayloadPostResponse> NoPayloadPostAsync(NoPayloadPostRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  QueryBooleanList
+
+
+
+        /// <summary>
+        /// Handles query string lists of boolean
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the QueryBooleanList service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the QueryBooleanList service method, as returned by RestJsonTest.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/test-2021-05-13/QueryBooleanList">REST API Reference for QueryBooleanList Operation</seealso>
+        Task<QueryBooleanListResponse> QueryBooleanListAsync(QueryBooleanListRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  QueryIntegerList
+
+
+
+        /// <summary>
+        /// Handles query string lists of integer
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the QueryIntegerList service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the QueryIntegerList service method, as returned by RestJsonTest.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/test-2021-05-13/QueryIntegerList">REST API Reference for QueryIntegerList Operation</seealso>
+        Task<QueryIntegerListResponse> QueryIntegerListAsync(QueryIntegerListRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  QueryIntegerListMap
+
+
+
+        /// <summary>
+        /// Handles query string maps of lists of integers
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the QueryIntegerListMap service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the QueryIntegerListMap service method, as returned by RestJsonTest.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/test-2021-05-13/QueryIntegerListMap">REST API Reference for QueryIntegerListMap Operation</seealso>
+        Task<QueryIntegerListMapResponse> QueryIntegerListMapAsync(QueryIntegerListMapRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  QueryStringEscaping
+
+
+
+        /// <summary>
+        /// Handles query string escaping
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the QueryStringEscaping service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the QueryStringEscaping service method, as returned by RestJsonTest.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/test-2021-05-13/QueryStringEscaping">REST API Reference for QueryStringEscaping Operation</seealso>
+        Task<QueryStringEscapingResponse> QueryStringEscapingAsync(QueryStringEscapingRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  QueryStringList
+
+
+
+        /// <summary>
+        /// Handles query string lists of string
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the QueryStringList service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the QueryStringList service method, as returned by RestJsonTest.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/test-2021-05-13/QueryStringList">REST API Reference for QueryStringList Operation</seealso>
+        Task<QueryStringListResponse> QueryStringListAsync(QueryStringListRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  QueryStringListMap
+
+
+
+        /// <summary>
+        /// Handles query string maps of lists of string
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the QueryStringListMap service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the QueryStringListMap service method, as returned by RestJsonTest.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/test-2021-05-13/QueryStringListMap">REST API Reference for QueryStringListMap Operation</seealso>
+        Task<QueryStringListMapResponse> QueryStringListMapAsync(QueryStringListMapRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  QueryTimestampList
+
+
+
+        /// <summary>
+        /// Handles query string lists of timestamp
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the QueryTimestampList service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the QueryTimestampList service method, as returned by RestJsonTest.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/test-2021-05-13/QueryTimestampList">REST API Reference for QueryTimestampList Operation</seealso>
+        Task<QueryTimestampListResponse> QueryTimestampListAsync(QueryTimestampListRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  StaticOp
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StaticOp service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StaticOp service method, as returned by RestJsonTest.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/test-2021-05-13/StaticOp">REST API Reference for StaticOp Operation</seealso>
+        Task<StaticOpResponse> StaticOpAsync(StaticOpRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 

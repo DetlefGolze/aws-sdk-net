@@ -26,16 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruSecurity.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateUploadUrl operation.
-    /// Generates a pre-signed URL and request headers used to upload a code resource.
+    /// Generates a pre-signed URL, request headers used to upload a code resource, and code
+    /// artifact identifier for the uploaded resource.
     /// 
     ///  
     /// <para>
-    /// You can upload your code resource to the URL and add the request headers using any
-    /// HTTP client.
+    /// You can upload your code resource to the URL with the request headers using any HTTP
+    /// client.
     /// </para>
     /// </summary>
     public partial class CreateUploadUrlRequest : AmazonCodeGuruSecurityRequest
@@ -47,8 +49,8 @@ namespace Amazon.CodeGuruSecurity.Model
         /// <para>
         /// The name of the scan that will use the uploaded resource. CodeGuru Security uses the
         /// unique scan name to track revisions across multiple scans of the same resource. Use
-        /// this <code>scanName</code> when you call <code>CreateScan</code> on the code resource
-        /// you upload to this URL.
+        /// this <c>scanName</c> when you call <c>CreateScan</c> on the code resource you upload
+        /// to this URL.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=140)]

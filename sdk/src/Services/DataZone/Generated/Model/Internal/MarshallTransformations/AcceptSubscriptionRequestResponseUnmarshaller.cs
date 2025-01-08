@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DataZone.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -75,10 +76,22 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
                     response.DomainId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("existingSubscriptionId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.ExistingSubscriptionId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("id", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.Id = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("metadataForms", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<FormOutput, FormOutputUnmarshaller>(FormOutputUnmarshaller.Instance);
+                    response.MetadataForms = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("requestReason", targetDepth))

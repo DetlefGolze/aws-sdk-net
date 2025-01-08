@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -35,21 +36,25 @@ namespace Amazon.AutoScaling.Model
     {
         private string _autoScalingGroupARN;
         private string _autoScalingGroupName;
-        private List<string> _availabilityZones = new List<string>();
+        private AvailabilityZoneDistribution _availabilityZoneDistribution;
+        private AvailabilityZoneImpairmentPolicy _availabilityZoneImpairmentPolicy;
+        private List<string> _availabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _capacityRebalance;
+        private CapacityReservationSpecification _capacityReservationSpecification;
         private string _context;
         private DateTime? _createdTime;
         private int? _defaultCooldown;
         private int? _defaultInstanceWarmup;
         private int? _desiredCapacity;
         private string _desiredCapacityType;
-        private List<EnabledMetric> _enabledMetrics = new List<EnabledMetric>();
+        private List<EnabledMetric> _enabledMetrics = AWSConfigs.InitializeCollections ? new List<EnabledMetric>() : null;
         private int? _healthCheckGracePeriod;
         private string _healthCheckType;
-        private List<Instance> _instances = new List<Instance>();
+        private InstanceMaintenancePolicy _instanceMaintenancePolicy;
+        private List<Instance> _instances = AWSConfigs.InitializeCollections ? new List<Instance>() : null;
         private string _launchConfigurationName;
         private LaunchTemplateSpecification _launchTemplate;
-        private List<string> _loadBalancerNames = new List<string>();
+        private List<string> _loadBalancerNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxInstanceLifetime;
         private int? _maxSize;
         private int? _minSize;
@@ -59,11 +64,11 @@ namespace Amazon.AutoScaling.Model
         private int? _predictedCapacity;
         private string _serviceLinkedRoleARN;
         private string _status;
-        private List<SuspendedProcess> _suspendedProcesses = new List<SuspendedProcess>();
-        private List<TagDescription> _tags = new List<TagDescription>();
-        private List<string> _targetGroupARNs = new List<string>();
-        private List<string> _terminationPolicies = new List<string>();
-        private List<TrafficSourceIdentifier> _trafficSources = new List<TrafficSourceIdentifier>();
+        private List<SuspendedProcess> _suspendedProcesses = AWSConfigs.InitializeCollections ? new List<SuspendedProcess>() : null;
+        private List<TagDescription> _tags = AWSConfigs.InitializeCollections ? new List<TagDescription>() : null;
+        private List<string> _targetGroupARNs = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _terminationPolicies = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<TrafficSourceIdentifier> _trafficSources = AWSConfigs.InitializeCollections ? new List<TrafficSourceIdentifier>() : null;
         private string _vpcZoneIdentifier;
         private WarmPoolConfiguration _warmPoolConfiguration;
         private int? _warmPoolSize;
@@ -107,6 +112,42 @@ namespace Amazon.AutoScaling.Model
         }
 
         /// <summary>
+        /// Gets and sets the property AvailabilityZoneDistribution. 
+        /// <para>
+        ///  The instance capacity distribution across Availability Zones. 
+        /// </para>
+        /// </summary>
+        public AvailabilityZoneDistribution AvailabilityZoneDistribution
+        {
+            get { return this._availabilityZoneDistribution; }
+            set { this._availabilityZoneDistribution = value; }
+        }
+
+        // Check to see if AvailabilityZoneDistribution property is set
+        internal bool IsSetAvailabilityZoneDistribution()
+        {
+            return this._availabilityZoneDistribution != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property AvailabilityZoneImpairmentPolicy. 
+        /// <para>
+        ///  The Availability Zone impairment policy. 
+        /// </para>
+        /// </summary>
+        public AvailabilityZoneImpairmentPolicy AvailabilityZoneImpairmentPolicy
+        {
+            get { return this._availabilityZoneImpairmentPolicy; }
+            set { this._availabilityZoneImpairmentPolicy = value; }
+        }
+
+        // Check to see if AvailabilityZoneImpairmentPolicy property is set
+        internal bool IsSetAvailabilityZoneImpairmentPolicy()
+        {
+            return this._availabilityZoneImpairmentPolicy != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property AvailabilityZones. 
         /// <para>
         /// One or more Availability Zones for the group.
@@ -122,7 +163,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -141,6 +182,24 @@ namespace Amazon.AutoScaling.Model
         internal bool IsSetCapacityRebalance()
         {
             return this._capacityRebalance.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property CapacityReservationSpecification. 
+        /// <para>
+        ///  The capacity reservation specification. 
+        /// </para>
+        /// </summary>
+        public CapacityReservationSpecification CapacityReservationSpecification
+        {
+            get { return this._capacityReservationSpecification; }
+            set { this._capacityReservationSpecification = value; }
+        }
+
+        // Check to see if CapacityReservationSpecification property is set
+        internal bool IsSetCapacityReservationSpecification()
+        {
+            return this._capacityReservationSpecification != null;
         }
 
         /// <summary>
@@ -240,8 +299,8 @@ namespace Amazon.AutoScaling.Model
         /// Gets and sets the property DesiredCapacityType. 
         /// <para>
         /// The unit of measurement for the value specified for desired capacity. Amazon EC2 Auto
-        /// Scaling supports <code>DesiredCapacityType</code> for attribute-based instance type
-        /// selection only.
+        /// Scaling supports <c>DesiredCapacityType</c> for attribute-based instance type selection
+        /// only.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -272,7 +331,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if EnabledMetrics property is set
         internal bool IsSetEnabledMetrics()
         {
-            return this._enabledMetrics != null && this._enabledMetrics.Count > 0; 
+            return this._enabledMetrics != null && (this._enabledMetrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -313,6 +372,24 @@ namespace Amazon.AutoScaling.Model
         }
 
         /// <summary>
+        /// Gets and sets the property InstanceMaintenancePolicy. 
+        /// <para>
+        /// An instance maintenance policy.
+        /// </para>
+        /// </summary>
+        public InstanceMaintenancePolicy InstanceMaintenancePolicy
+        {
+            get { return this._instanceMaintenancePolicy; }
+            set { this._instanceMaintenancePolicy = value; }
+        }
+
+        // Check to see if InstanceMaintenancePolicy property is set
+        internal bool IsSetInstanceMaintenancePolicy()
+        {
+            return this._instanceMaintenancePolicy != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Instances. 
         /// <para>
         /// The EC2 instances associated with the group.
@@ -327,7 +404,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if Instances property is set
         internal bool IsSetInstances()
         {
-            return this._instances != null && this._instances.Count > 0; 
+            return this._instances != null && (this._instances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -382,7 +459,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if LoadBalancerNames property is set
         internal bool IsSetLoadBalancerNames()
         {
-            return this._loadBalancerNames != null && this._loadBalancerNames.Count > 0; 
+            return this._loadBalancerNames != null && (this._loadBalancerNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -542,8 +619,8 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The current state of the group when the <a>DeleteAutoScalingGroup</a> operation is
-        /// in progress.
+        /// The current state of the group when the <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DeleteAutoScalingGroup.html">DeleteAutoScalingGroup</a>
+        /// operation is in progress.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -574,7 +651,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if SuspendedProcesses property is set
         internal bool IsSetSuspendedProcesses()
         {
-            return this._suspendedProcesses != null && this._suspendedProcesses.Count > 0; 
+            return this._suspendedProcesses != null && (this._suspendedProcesses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -592,7 +669,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -610,7 +687,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if TargetGroupARNs property is set
         internal bool IsSetTargetGroupARNs()
         {
-            return this._targetGroupARNs != null && this._targetGroupARNs.Count > 0; 
+            return this._targetGroupARNs != null && (this._targetGroupARNs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -628,7 +705,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if TerminationPolicies property is set
         internal bool IsSetTerminationPolicies()
         {
-            return this._terminationPolicies != null && this._terminationPolicies.Count > 0; 
+            return this._terminationPolicies != null && (this._terminationPolicies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -646,7 +723,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if TrafficSources property is set
         internal bool IsSetTrafficSources()
         {
-            return this._trafficSources != null && this._trafficSources.Count > 0; 
+            return this._trafficSources != null && (this._trafficSources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -655,7 +732,7 @@ namespace Amazon.AutoScaling.Model
         /// One or more subnet IDs, if applicable, separated by commas.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=2047)]
+        [AWSProperty(Min=1, Max=5000)]
         public string VPCZoneIdentifier
         {
             get { return this._vpcZoneIdentifier; }

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTAnalytics.Model
 {
     /// <summary>
-    /// The <code>DatasetTrigger</code> that specifies when the dataset is automatically updated.
+    /// The <c>DatasetTrigger</c> that specifies when the dataset is automatically updated.
     /// </summary>
     public partial class DatasetTrigger
     {

@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.AuditManager.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.AuditManager
 {
     /// <summary>
-    /// Interface for accessing AuditManager
+    /// <para>Interface for accessing AuditManager</para>
     ///
     /// Welcome to the Audit Manager API reference. This guide is for developers who need
     /// detailed information about the Audit Manager API operations, data types, and errors.
@@ -379,8 +380,8 @@ namespace Amazon.AuditManager
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>manualEvidence</code> can be only one of the following: <code>evidenceFileName</code>,
-        /// <code>s3ResourcePath</code>, or <code>textResponse</code> 
+        ///  <c>manualEvidence</c> can be only one of the following: <c>evidenceFileName</c>,
+        /// <c>s3ResourcePath</c>, or <c>textResponse</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -478,6 +479,9 @@ namespace Amazon.AuditManager
         /// a quota increase</a> from the Service Quotas console. For a list of Audit Manager
         /// service quotas, see <a href="https://docs.aws.amazon.com/audit-manager/latest/userguide/service-quotas.html">Quotas
         /// and restrictions for Audit Manager</a>.
+        /// </exception>
+        /// <exception cref="Amazon.AuditManager.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.AuditManager.Model.ValidationException">
         /// The request has invalid or missing parameters.
@@ -859,8 +863,8 @@ namespace Amazon.AuditManager
         /// 
         ///  
         /// <para>
-        /// When you run the <code>DeleteAssessmentReport</code> operation, Audit Manager attempts
-        /// to delete the following data:
+        /// When you run the <c>DeleteAssessmentReport</c> operation, Audit Manager attempts to
+        /// delete the following data:
         /// </para>
         ///  <ol> <li> 
         /// <para>
@@ -873,20 +877,20 @@ namespace Amazon.AuditManager
         ///  </li> </ol> 
         /// <para>
         /// If Audit Manager can’t access the assessment report in your S3 bucket, the report
-        /// isn’t deleted. In this event, the <code>DeleteAssessmentReport</code> operation doesn’t
+        /// isn’t deleted. In this event, the <c>DeleteAssessmentReport</c> operation doesn’t
         /// fail. Instead, it proceeds to delete the associated metadata only. You must then delete
         /// the assessment report from the S3 bucket yourself. 
         /// </para>
         ///  
         /// <para>
-        /// This scenario happens when Audit Manager receives a <code>403 (Forbidden)</code> or
-        /// <code>404 (Not Found)</code> error from Amazon S3. To avoid this, make sure that your
-        /// S3 bucket is available, and that you configured the correct permissions for Audit
-        /// Manager to delete resources in your S3 bucket. For an example permissions policy that
-        /// you can use, see <a href="https://docs.aws.amazon.com/audit-manager/latest/userguide/security_iam_id-based-policy-examples.html#full-administrator-access-assessment-report-destination">Assessment
+        /// This scenario happens when Audit Manager receives a <c>403 (Forbidden)</c> or <c>404
+        /// (Not Found)</c> error from Amazon S3. To avoid this, make sure that your S3 bucket
+        /// is available, and that you configured the correct permissions for Audit Manager to
+        /// delete resources in your S3 bucket. For an example permissions policy that you can
+        /// use, see <a href="https://docs.aws.amazon.com/audit-manager/latest/userguide/security_iam_id-based-policy-examples.html#full-administrator-access-assessment-report-destination">Assessment
         /// report destination permissions</a> in the <i>Audit Manager User Guide</i>. For information
-        /// about the issues that could cause a <code>403 (Forbidden)</code> or <code>404 (Not
-        /// Found</code>) error from Amazon S3, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#ErrorCodeList">List
+        /// about the issues that could cause a <c>403 (Forbidden)</c> or <c>404 (Not Found</c>)
+        /// error from Amazon S3, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#ErrorCodeList">List
         /// of Error Codes</a> in the <i>Amazon Simple Storage Service API Reference</i>. 
         /// </para>
         /// </summary>
@@ -1011,7 +1015,7 @@ namespace Amazon.AuditManager
         /// <para>
         /// Before you deregister, you can use the <a href="https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_UpdateSettings.html">UpdateSettings</a>
         /// API operation to set your preferred data retention policy. By default, Audit Manager
-        /// retains your data. If you want to delete your data, you can use the <code>DeregistrationPolicy</code>
+        /// retains your data. If you want to delete your data, you can use the <c>DeregistrationPolicy</c>
         /// attribute to request the deletion of your data. 
         /// </para>
         ///  
@@ -2134,10 +2138,24 @@ namespace Amazon.AuditManager
 
 
         /// <summary>
-        /// Gets a list of all of the Amazon Web Services that you can choose to include in your
-        /// assessment. When you <a href="https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_CreateAssessment.html">create
-        /// an assessment</a>, specify which of these services you want to include to narrow the
-        /// assessment's <a href="https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Scope.html">scope</a>.
+        /// Gets a list of the Amazon Web Services from which Audit Manager can collect evidence.
+        /// 
+        /// 
+        ///  
+        /// <para>
+        /// Audit Manager defines which Amazon Web Services are in scope for an assessment. Audit
+        /// Manager infers this scope by examining the assessment’s controls and their data sources,
+        /// and then mapping this information to one or more of the corresponding Amazon Web Services
+        /// that are in this list.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// For information about why it's no longer possible to specify services in scope manually,
+        /// see <a href="https://docs.aws.amazon.com/audit-manager/latest/userguide/evidence-collection-issues.html#unable-to-edit-services">I
+        /// can't edit the services in scope for my assessment</a> in the <i>Troubleshooting</i>
+        /// section of the Audit Manager user guide.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetServicesInScope service method.</param>
         /// 
@@ -2243,8 +2261,8 @@ namespace Amazon.AuditManager
         /// <para>
         /// Control insights are listed only if the control belongs to the control domain and
         /// assessment that was specified. Moreover, the control must have collected evidence
-        /// on the <code>lastUpdated</code> date of <code>controlInsightsByAssessment</code>.
-        /// If neither of these conditions are met, no data is listed for that control. 
+        /// on the <c>lastUpdated</c> date of <c>controlInsightsByAssessment</c>. If neither of
+        /// these conditions are met, no data is listed for that control. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -2509,10 +2527,17 @@ namespace Amazon.AuditManager
         /// Lists the latest analytics data for control domains across all of your active assessments.
         /// 
         /// 
+        ///  
+        /// <para>
+        /// Audit Manager supports the control domains that are provided by Amazon Web Services
+        /// Control Catalog. For information about how to find a list of available control domains,
+        /// see <a href="https://docs.aws.amazon.com/controlcatalog/latest/APIReference/API_ListDomains.html">
+        /// <c>ListDomains</c> </a> in the Amazon Web Services Control Catalog API Reference.
+        /// </para>
         ///  <note> 
         /// <para>
         /// A control domain is listed only if at least one of the controls within that domain
-        /// collected evidence on the <code>lastUpdated</code> date of <code>controlDomainInsights</code>.
+        /// collected evidence on the <c>lastUpdated</c> date of <c>controlDomainInsights</c>.
         /// If this condition isn’t met, no data is listed for that control domain.
         /// </para>
         ///  </note>
@@ -2571,10 +2596,17 @@ namespace Amazon.AuditManager
         /// <summary>
         /// Lists analytics data for control domains within a specified active assessment.
         /// 
+        ///  
+        /// <para>
+        /// Audit Manager supports the control domains that are provided by Amazon Web Services
+        /// Control Catalog. For information about how to find a list of available control domains,
+        /// see <a href="https://docs.aws.amazon.com/controlcatalog/latest/APIReference/API_ListDomains.html">
+        /// <c>ListDomains</c> </a> in the Amazon Web Services Control Catalog API Reference.
+        /// </para>
         ///  <note> 
         /// <para>
         /// A control domain is listed only if at least one of the controls within that domain
-        /// collected evidence on the <code>lastUpdated</code> date of <code>controlDomainInsights</code>.
+        /// collected evidence on the <c>lastUpdated</c> date of <c>controlDomainInsights</c>.
         /// If this condition isn’t met, no data is listed for that domain.
         /// </para>
         ///  </note>
@@ -2637,9 +2669,9 @@ namespace Amazon.AuditManager
         ///  <note> 
         /// <para>
         /// Control insights are listed only if the control belongs to the control domain that
-        /// was specified and the control collected evidence on the <code>lastUpdated</code> date
-        /// of <code>controlInsightsMetadata</code>. If neither of these conditions are met, no
-        /// data is listed for that control. 
+        /// was specified and the control collected evidence on the <c>lastUpdated</c> date of
+        /// <c>controlInsightsMetadata</c>. If neither of these conditions are met, no data is
+        /// listed for that control. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -3059,12 +3091,12 @@ namespace Amazon.AuditManager
         /// </para>
         ///  <important> 
         /// <para>
-        /// When you invoke the <code>StartAssessmentFrameworkShare</code> API, you are about
-        /// to share a custom framework with another Amazon Web Services account. You may not
-        /// share a custom framework that is derived from a standard framework if the standard
-        /// framework is designated as not eligible for sharing by Amazon Web Services, unless
-        /// you have obtained permission to do so from the owner of the standard framework. To
-        /// learn more about which standard frameworks are eligible for sharing, see <a href="https://docs.aws.amazon.com/audit-manager/latest/userguide/share-custom-framework-concepts-and-terminology.html#eligibility">Framework
+        /// When you invoke the <c>StartAssessmentFrameworkShare</c> API, you are about to share
+        /// a custom framework with another Amazon Web Services account. You may not share a custom
+        /// framework that is derived from a standard framework if the standard framework is designated
+        /// as not eligible for sharing by Amazon Web Services, unless you have obtained permission
+        /// to do so from the owner of the standard framework. To learn more about which standard
+        /// frameworks are eligible for sharing, see <a href="https://docs.aws.amazon.com/audit-manager/latest/userguide/share-custom-framework-concepts-and-terminology.html#eligibility">Framework
         /// sharing eligibility</a> in the <i>Audit Manager User Guide</i>.
         /// </para>
         ///  </important>
@@ -3236,6 +3268,9 @@ namespace Amazon.AuditManager
         /// </exception>
         /// <exception cref="Amazon.AuditManager.Model.ResourceNotFoundException">
         /// The resource that's specified in the request can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.AuditManager.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.AuditManager.Model.ValidationException">
         /// The request has invalid or missing parameters.

@@ -26,17 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
     /// Container for the parameters to the PutAccessPointPolicyForObjectLambda operation.
+    /// <note> 
+    /// <para>
+    /// This operation is not supported by directory buckets.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Creates or replaces resource policy for an Object Lambda Access Point. For an example
     /// policy, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/olap-create.html#olap-create-cli">Creating
     /// Object Lambda Access Points</a> in the <i>Amazon S3 User Guide</i>.
-    /// 
+    /// </para>
     ///  
     /// <para>
-    /// The following actions are related to <code>PutAccessPointPolicyForObjectLambda</code>:
+    /// The following actions are related to <c>PutAccessPointPolicyForObjectLambda</c>:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -72,7 +79,7 @@ namespace Amazon.S3Control.Model
         // Check to see if AccountId property is set
         internal bool IsSetAccountId()
         {
-            return this._accountId != null;
+            return !string.IsNullOrEmpty(this._accountId);
         }
 
         /// <summary>

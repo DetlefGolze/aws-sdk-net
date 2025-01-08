@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -33,44 +34,41 @@ namespace Amazon.Backup.Model
     /// 
     ///  
     /// <para>
-    /// Specifying your desired <code>Conditions</code>, <code>ListOfTags</code>, <code>NotResources</code>,
-    /// and/or <code>Resources</code> is recommended. If none of these are specified, Backup
-    /// will attempt to select all supported and opted-in storage resources, which could have
-    /// unintended cost implications.
+    /// We recommend that you specify conditions, tags, or resources to include or exclude.
+    /// Otherwise, Backup attempts to select all supported and opted-in storage resources,
+    /// which could have unintended cost implications.
+    /// </para>
+    ///  
+    /// <para>
+    /// For more information, see <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/assigning-resources.html#assigning-resources-json">Assigning
+    /// resources programmatically</a>.
     /// </para>
     /// </summary>
     public partial class BackupSelection
     {
         private Conditions _conditions;
         private string _iamRoleArn;
-        private List<Condition> _listOfTags = new List<Condition>();
-        private List<string> _notResources = new List<string>();
-        private List<string> _resources = new List<string>();
+        private List<Condition> _listOfTags = AWSConfigs.InitializeCollections ? new List<Condition>() : null;
+        private List<string> _notResources = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _resources = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _selectionName;
 
         /// <summary>
         /// Gets and sets the property Conditions. 
         /// <para>
-        /// A list of conditions that you define to assign resources to your backup plans using
-        /// tags. For example, <code>"StringEquals": { "ConditionKey": "aws:ResourceTag/CreatedByCryo",
-        /// "ConditionValue": "true" },</code>. Condition operators are case sensitive.
+        /// The conditions that you define to assign resources to your backup plans using tags.
+        /// For example, <c>"StringEquals": { "ConditionKey": "aws:ResourceTag/backup", "ConditionValue":
+        /// "daily" }</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>Conditions</code> differs from <code>ListOfTags</code> as follows:
+        ///  <c>Conditions</c> supports <c>StringEquals</c>, <c>StringLike</c>, <c>StringNotEquals</c>,
+        /// and <c>StringNotLike</c>. Condition operators are case sensitive.
         /// </para>
-        ///  <ul> <li> 
+        ///  
         /// <para>
-        /// When you specify more than one condition, you only assign the resources that match
-        /// ALL conditions (using AND logic).
+        /// If you specify multiple conditions, the resources much match all conditions (AND logic).
         /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>Conditions</code> supports <code>StringEquals</code>, <code>StringLike</code>,
-        /// <code>StringNotEquals</code>, and <code>StringNotLike</code>. <code>ListOfTags</code>
-        /// only supports <code>StringEquals</code>.
-        /// </para>
-        ///  </li> </ul>
         /// </summary>
         public Conditions Conditions
         {
@@ -88,7 +86,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property IamRoleArn. 
         /// <para>
         /// The ARN of the IAM role that Backup uses to authenticate when backing up the target
-        /// resource; for example, <code>arn:aws:iam::123456789012:role/S3Access</code>.
+        /// resource; for example, <c>arn:aws:iam::123456789012:role/S3Access</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -107,26 +105,19 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property ListOfTags. 
         /// <para>
-        /// A list of conditions that you define to assign resources to your backup plans using
-        /// tags. For example, <code>"StringEquals": { "ConditionKey": "aws:ResourceTag/CreatedByCryo",
-        /// "ConditionValue": "true" },</code>. Condition operators are case sensitive.
+        /// The conditions that you define to assign resources to your backup plans using tags.
+        /// For example, <c>"StringEquals": { "ConditionKey": "backup", "ConditionValue": "daily"}</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>ListOfTags</code> differs from <code>Conditions</code> as follows:
+        ///  <c>ListOfTags</c> supports only <c>StringEquals</c>. Condition operators are case
+        /// sensitive.
         /// </para>
-        ///  <ul> <li> 
+        ///  
         /// <para>
-        /// When you specify more than one condition, you assign all resources that match AT LEAST
-        /// ONE condition (using OR logic).
+        /// If you specify multiple conditions, the resources much match any of the conditions
+        /// (OR logic).
         /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>ListOfTags</code> only supports <code>StringEquals</code>. <code>Conditions</code>
-        /// supports <code>StringEquals</code>, <code>StringLike</code>, <code>StringNotEquals</code>,
-        /// and <code>StringNotLike</code>. 
-        /// </para>
-        ///  </li> </ul>
         /// </summary>
         public List<Condition> ListOfTags
         {
@@ -137,14 +128,14 @@ namespace Amazon.Backup.Model
         // Check to see if ListOfTags property is set
         internal bool IsSetListOfTags()
         {
-            return this._listOfTags != null && this._listOfTags.Count > 0; 
+            return this._listOfTags != null && (this._listOfTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NotResources. 
         /// <para>
-        /// A list of Amazon Resource Names (ARNs) to exclude from a backup plan. The maximum
-        /// number of ARNs is 500 without wildcards, or 30 ARNs with wildcards.
+        /// The Amazon Resource Names (ARNs) of the resources to exclude from a backup plan. The
+        /// maximum number of ARNs is 500 without wildcards, or 30 ARNs with wildcards.
         /// </para>
         ///  
         /// <para>
@@ -162,20 +153,24 @@ namespace Amazon.Backup.Model
         // Check to see if NotResources property is set
         internal bool IsSetNotResources()
         {
-            return this._notResources != null && this._notResources.Count > 0; 
+            return this._notResources != null && (this._notResources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Resources. 
         /// <para>
-        /// A list of Amazon Resource Names (ARNs) to assign to a backup plan. The maximum number
-        /// of ARNs is 500 without wildcards, or 30 ARNs with wildcards.
+        /// The Amazon Resource Names (ARNs) of the resources to assign to a backup plan. The
+        /// maximum number of ARNs is 500 without wildcards, or 30 ARNs with wildcards.
         /// </para>
         ///  
         /// <para>
         /// If you need to assign many resources to a backup plan, consider a different resource
         /// selection strategy, such as assigning all resources of a resource type or refining
         /// your resource selection using tags.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you specify multiple ARNs, the resources much match any of the ARNs (OR logic).
         /// </para>
         /// </summary>
         public List<string> Resources
@@ -187,7 +182,7 @@ namespace Amazon.Backup.Model
         // Check to see if Resources property is set
         internal bool IsSetResources()
         {
-            return this._resources != null && this._resources.Count > 0; 
+            return this._resources != null && (this._resources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

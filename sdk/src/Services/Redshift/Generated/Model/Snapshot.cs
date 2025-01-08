@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Redshift.Model
     /// </summary>
     public partial class Snapshot
     {
-        private List<AccountWithRestoreAccess> _accountsWithRestoreAccess = new List<AccountWithRestoreAccess>();
+        private List<AccountWithRestoreAccess> _accountsWithRestoreAccess = AWSConfigs.InitializeCollections ? new List<AccountWithRestoreAccess>() : null;
         private double? _actualIncrementalBackupSizeInMegaBytes;
         private string _availabilityZone;
         private double? _backupProgressInMegaBytes;
@@ -52,19 +53,22 @@ namespace Amazon.Redshift.Model
         private string _maintenanceTrackName;
         private int? _manualSnapshotRemainingDays;
         private int? _manualSnapshotRetentionPeriod;
+        private string _masterPasswordSecretArn;
+        private string _masterPasswordSecretKmsKeyId;
         private string _masterUsername;
         private string _nodeType;
         private int? _numberOfNodes;
         private string _ownerAccount;
         private int? _port;
-        private List<string> _restorableNodeTypes = new List<string>();
+        private List<string> _restorableNodeTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private string _snapshotArn;
         private DateTime? _snapshotCreateTime;
         private string _snapshotIdentifier;
         private DateTime? _snapshotRetentionStartTime;
         private string _snapshotType;
         private string _sourceRegion;
         private string _status;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private double? _totalBackupSizeInMegaBytes;
         private string _vpcId;
 
@@ -72,8 +76,7 @@ namespace Amazon.Redshift.Model
         /// Gets and sets the property AccountsWithRestoreAccess. 
         /// <para>
         /// A list of the Amazon Web Services accounts authorized to restore the snapshot. Returns
-        /// <code>null</code> if no accounts are authorized. Visible only to the snapshot owner.
-        /// 
+        /// <c>null</c> if no accounts are authorized. Visible only to the snapshot owner. 
         /// </para>
         /// </summary>
         public List<AccountWithRestoreAccess> AccountsWithRestoreAccess
@@ -85,7 +88,7 @@ namespace Amazon.Redshift.Model
         // Check to see if AccountsWithRestoreAccess property is set
         internal bool IsSetAccountsWithRestoreAccess()
         {
-            return this._accountsWithRestoreAccess != null && this._accountsWithRestoreAccess.Count > 0; 
+            return this._accountsWithRestoreAccess != null && (this._accountsWithRestoreAccess.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -203,7 +206,7 @@ namespace Amazon.Redshift.Model
         /// Gets and sets the property CurrentBackupRateInMegaBytesPerSecond. 
         /// <para>
         /// The number of megabytes per second being transferred to the snapshot backup. Returns
-        /// <code>0</code> for a completed backup. 
+        /// <c>0</c> for a completed backup. 
         /// </para>
         /// </summary>
         public double CurrentBackupRateInMegaBytesPerSecond
@@ -259,7 +262,7 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property Encrypted. 
         /// <para>
-        /// If <code>true</code>, the data in the snapshot is encrypted at rest.
+        /// If <c>true</c>, the data in the snapshot is encrypted at rest.
         /// </para>
         /// </summary>
         public bool Encrypted
@@ -278,8 +281,8 @@ namespace Amazon.Redshift.Model
         /// Gets and sets the property EncryptedWithHSM. 
         /// <para>
         /// A boolean that indicates whether the snapshot data is encrypted using the HSM keys
-        /// of the source cluster. <code>true</code> indicates that the data is encrypted using
-        /// HSM keys.
+        /// of the source cluster. <c>true</c> indicates that the data is encrypted using HSM
+        /// keys.
         /// </para>
         /// </summary>
         public bool EncryptedWithHSM
@@ -324,7 +327,7 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  
         /// <para>
-        /// If this option is <code>true</code>, enhanced VPC routing is enabled. 
+        /// If this option is <c>true</c>, enhanced VPC routing is enabled. 
         /// </para>
         ///  
         /// <para>
@@ -347,7 +350,7 @@ namespace Amazon.Redshift.Model
         /// Gets and sets the property EstimatedSecondsToCompletion. 
         /// <para>
         /// The estimate of the time remaining before the snapshot backup will complete. Returns
-        /// <code>0</code> for a completed backup. 
+        /// <c>0</c> for a completed backup. 
         /// </para>
         /// </summary>
         public long EstimatedSecondsToCompletion
@@ -440,6 +443,45 @@ namespace Amazon.Redshift.Model
         internal bool IsSetManualSnapshotRetentionPeriod()
         {
             return this._manualSnapshotRetentionPeriod.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property MasterPasswordSecretArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) for the cluster's admin user credentials secret.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=2147483647)]
+        public string MasterPasswordSecretArn
+        {
+            get { return this._masterPasswordSecretArn; }
+            set { this._masterPasswordSecretArn = value; }
+        }
+
+        // Check to see if MasterPasswordSecretArn property is set
+        internal bool IsSetMasterPasswordSecretArn()
+        {
+            return this._masterPasswordSecretArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property MasterPasswordSecretKmsKeyId. 
+        /// <para>
+        /// The ID of the Key Management Service (KMS) key used to encrypt and store the cluster's
+        /// admin credentials secret.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=2147483647)]
+        public string MasterPasswordSecretKmsKeyId
+        {
+            get { return this._masterPasswordSecretKmsKeyId; }
+            set { this._masterPasswordSecretKmsKeyId = value; }
+        }
+
+        // Check to see if MasterPasswordSecretKmsKeyId property is set
+        internal bool IsSetMasterPasswordSecretKmsKeyId()
+        {
+            return this._masterPasswordSecretKmsKeyId != null;
         }
 
         /// <summary>
@@ -552,7 +594,26 @@ namespace Amazon.Redshift.Model
         // Check to see if RestorableNodeTypes property is set
         internal bool IsSetRestorableNodeTypes()
         {
-            return this._restorableNodeTypes != null && this._restorableNodeTypes.Count > 0; 
+            return this._restorableNodeTypes != null && (this._restorableNodeTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SnapshotArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the snapshot.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=2147483647)]
+        public string SnapshotArn
+        {
+            get { return this._snapshotArn; }
+            set { this._snapshotArn = value; }
+        }
+
+        // Check to see if SnapshotArn property is set
+        internal bool IsSetSnapshotArn()
+        {
+            return this._snapshotArn != null;
         }
 
         /// <summary>
@@ -699,7 +760,7 @@ namespace Amazon.Redshift.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -178,7 +179,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SortBy. 
         /// <para>
-        /// The parameter by which to sort the results. The default is <code>Name</code>.
+        /// The parameter by which to sort the results. The default is <c>Name</c>.
         /// </para>
         /// </summary>
         public AutoMLSortBy SortBy
@@ -196,7 +197,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SortOrder. 
         /// <para>
-        /// The sort order for the results. The default is <code>Descending</code>.
+        /// The sort order for the results. The default is <c>Descending</c>.
         /// </para>
         /// </summary>
         public AutoMLSortOrder SortOrder

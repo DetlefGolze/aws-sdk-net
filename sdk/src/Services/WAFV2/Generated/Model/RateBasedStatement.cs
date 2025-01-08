@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -34,7 +35,13 @@ namespace Amazon.WAFV2.Model
     /// criteria, collects them into aggregation instances, and counts and rate limits the
     /// requests for each instance. 
     /// 
-    ///  
+    ///  <note> 
+    /// <para>
+    /// If you change any of these settings in a rule that's currently in use, the change
+    /// resets the rule's rate limiting counts. This can pause the rule's rate limiting activities
+    /// for up to a minute. 
+    /// </para>
+    ///  </note> 
     /// <para>
     /// You can specify individual aggregation keys, like IP address or HTTP method. You can
     /// also specify aggregation key combinations, like IP address and HTTP method, or HTTP
@@ -136,8 +143,8 @@ namespace Amazon.WAFV2.Model
     /// </para>
     ///  
     /// <para>
-    /// You cannot nest a <code>RateBasedStatement</code> inside another statement, for example
-    /// inside a <code>NotStatement</code> or <code>OrStatement</code>. You can define a <code>RateBasedStatement</code>
+    /// You cannot nest a <c>RateBasedStatement</c> inside another statement, for example
+    /// inside a <c>NotStatement</c> or <c>OrStatement</c>. You can define a <c>RateBasedStatement</c>
     /// inside a web ACL and inside a rule group. 
     /// </para>
     ///  
@@ -150,7 +157,7 @@ namespace Amazon.WAFV2.Model
     /// <para>
     /// If you only aggregate on the individual IP address or forwarded IP address, you can
     /// retrieve the list of IP addresses that WAF is currently rate limiting for a rule through
-    /// the API call <code>GetRateBasedStatementManagedKeys</code>. This option is not available
+    /// the API call <c>GetRateBasedStatementManagedKeys</c>. This option is not available
     /// for other aggregation configurations.
     /// </para>
     ///  
@@ -167,7 +174,8 @@ namespace Amazon.WAFV2.Model
     public partial class RateBasedStatement
     {
         private RateBasedStatementAggregateKeyType _aggregateKeyType;
-        private List<RateBasedStatementCustomKey> _customKeys = new List<RateBasedStatementCustomKey>();
+        private List<RateBasedStatementCustomKey> _customKeys = AWSConfigs.InitializeCollections ? new List<RateBasedStatementCustomKey>() : null;
+        private long? _evaluationWindowSec;
         private ForwardedIPConfig _forwardedIPConfig;
         private long? _limit;
         private Statement _scopeDownStatement;
@@ -184,55 +192,53 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  </note> <ul> <li> 
         /// <para>
-        ///  <code>CONSTANT</code> - Count and limit the requests that match the rate-based rule's
-        /// scope-down statement. With this option, the counted requests aren't further aggregated.
-        /// The scope-down statement is the only specification used. When the count of all requests
-        /// that satisfy the scope-down statement goes over the limit, WAF applies the rule action
-        /// to all requests that satisfy the scope-down statement. 
+        ///  <c>CONSTANT</c> - Count and limit the requests that match the rate-based rule's scope-down
+        /// statement. With this option, the counted requests aren't further aggregated. The scope-down
+        /// statement is the only specification used. When the count of all requests that satisfy
+        /// the scope-down statement goes over the limit, WAF applies the rule action to all requests
+        /// that satisfy the scope-down statement. 
         /// </para>
         ///  
         /// <para>
-        /// With this option, you must configure the <code>ScopeDownStatement</code> property.
-        /// 
+        /// With this option, you must configure the <c>ScopeDownStatement</c> property. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CUSTOM_KEYS</code> - Aggregate the request counts using one or more web request
-        /// components as the aggregate keys.
+        ///  <c>CUSTOM_KEYS</c> - Aggregate the request counts using one or more web request components
+        /// as the aggregate keys.
         /// </para>
         ///  
         /// <para>
-        /// With this option, you must specify the aggregate keys in the <code>CustomKeys</code>
-        /// property. 
+        /// With this option, you must specify the aggregate keys in the <c>CustomKeys</c> property.
+        /// 
         /// </para>
         ///  
         /// <para>
         /// To aggregate on only the IP address or only the forwarded IP address, don't use custom
-        /// keys. Instead, set the aggregate key type to <code>IP</code> or <code>FORWARDED_IP</code>.
+        /// keys. Instead, set the aggregate key type to <c>IP</c> or <c>FORWARDED_IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FORWARDED_IP</code> - Aggregate the request counts on the first IP address
-        /// in an HTTP header. 
+        ///  <c>FORWARDED_IP</c> - Aggregate the request counts on the first IP address in an
+        /// HTTP header. 
         /// </para>
         ///  
         /// <para>
-        /// With this option, you must specify the header to use in the <code>ForwardedIPConfig</code>
+        /// With this option, you must specify the header to use in the <c>ForwardedIPConfig</c>
         /// property. 
         /// </para>
         ///  
         /// <para>
         /// To aggregate on a combination of the forwarded IP address with other aggregate keys,
-        /// use <code>CUSTOM_KEYS</code>. 
+        /// use <c>CUSTOM_KEYS</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IP</code> - Aggregate the request counts on the IP address from the web request
-        /// origin.
+        ///  <c>IP</c> - Aggregate the request counts on the IP address from the web request origin.
         /// </para>
         ///  
         /// <para>
-        /// To aggregate on a combination of the IP address with other aggregate keys, use <code>CUSTOM_KEYS</code>.
+        /// To aggregate on a combination of the IP address with other aggregate keys, use <c>CUSTOM_KEYS</c>.
         /// 
         /// </para>
         ///  </li> </ul>
@@ -256,7 +262,7 @@ namespace Amazon.WAFV2.Model
         /// Specifies the aggregate keys to use in a rate-base rule. 
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=5)]
+        [AWSProperty(Max=5)]
         public List<RateBasedStatementCustomKey> CustomKeys
         {
             get { return this._customKeys; }
@@ -266,7 +272,37 @@ namespace Amazon.WAFV2.Model
         // Check to see if CustomKeys property is set
         internal bool IsSetCustomKeys()
         {
-            return this._customKeys != null && this._customKeys.Count > 0; 
+            return this._customKeys != null && (this._customKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property EvaluationWindowSec. 
+        /// <para>
+        /// The amount of time, in seconds, that WAF should include in its request counts, looking
+        /// back from the current time. For example, for a setting of 120, when WAF checks the
+        /// rate, it counts the requests for the 2 minutes immediately preceding the current time.
+        /// Valid settings are 60, 120, 300, and 600. 
+        /// </para>
+        ///  
+        /// <para>
+        /// This setting doesn't determine how often WAF checks the rate, but how far back it
+        /// looks each time it checks. WAF checks the rate about every 10 seconds.
+        /// </para>
+        ///  
+        /// <para>
+        /// Default: <c>300</c> (5 minutes)
+        /// </para>
+        /// </summary>
+        public long EvaluationWindowSec
+        {
+            get { return this._evaluationWindowSec.GetValueOrDefault(); }
+            set { this._evaluationWindowSec = value; }
+        }
+
+        // Check to see if EvaluationWindowSec property is set
+        internal bool IsSetEvaluationWindowSec()
+        {
+            return this._evaluationWindowSec.HasValue; 
         }
 
         /// <summary>
@@ -303,7 +339,7 @@ namespace Amazon.WAFV2.Model
         /// Gets and sets the property Limit. 
         /// <para>
         /// The limit on requests per 5-minute period for a single aggregation instance for the
-        /// rate-based rule. If the rate-based statement includes a <code>ScopeDownStatement</code>,
+        /// rate-based rule. If the rate-based statement includes a <c>ScopeDownStatement</c>,
         /// this limit is applied only to the requests that match the statement.
         /// </para>
         ///  
@@ -322,7 +358,7 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  </li> </ul>
         /// </summary>
-        [AWSProperty(Required=true, Min=100, Max=2000000000)]
+        [AWSProperty(Required=true, Min=10, Max=2000000000)]
         public long Limit
         {
             get { return this._limit.GetValueOrDefault(); }

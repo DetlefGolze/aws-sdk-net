@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
-    /// Your request is valid, but Network Firewall couldn’t perform the operation because
+    /// Your request is valid, but Network Firewall couldn't perform the operation because
     /// of a system problem. Retry your request.
     /// </summary>
     #if !NETSTANDARD

@@ -26,25 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SQS.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteMessageBatch operation.
-    /// Deletes up to ten messages from the specified queue. This is a batch version of <code>
-    /// <a>DeleteMessage</a>.</code> The result of the action on each message is reported
-    /// individually in the response.
+    /// Deletes up to ten messages from the specified queue. This is a batch version of <c>
+    /// <a>DeleteMessage</a>.</c> The result of the action on each message is reported individually
+    /// in the response.
     /// 
     ///  <important> 
     /// <para>
     /// Because the batch request can result in a combination of successful and unsuccessful
     /// actions, you should check for batch errors even when the call returns an HTTP status
-    /// code of <code>200</code>.
+    /// code of <c>200</c>.
     /// </para>
     ///  </important>
     /// </summary>
     public partial class DeleteMessageBatchRequest : AmazonSQSRequest
     {
-        private List<DeleteMessageBatchRequestEntry> _entries = new List<DeleteMessageBatchRequestEntry>();
+        private List<DeleteMessageBatchRequestEntry> _entries = AWSConfigs.InitializeCollections ? new List<DeleteMessageBatchRequestEntry>() : null;
         private string _queueUrl;
 
         /// <summary>
@@ -79,7 +80,7 @@ namespace Amazon.SQS.Model
         // Check to see if Entries property is set
         internal bool IsSetEntries()
         {
-            return this._entries != null && this._entries.Count > 0; 
+            return this._entries != null && (this._entries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

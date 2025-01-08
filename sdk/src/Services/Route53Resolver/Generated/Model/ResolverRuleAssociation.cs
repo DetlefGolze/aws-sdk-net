@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -89,7 +90,7 @@ namespace Amazon.Route53Resolver.Model
         /// Gets and sets the property ResolverRuleId. 
         /// <para>
         /// The ID of the Resolver rule that you associated with the VPC that is specified by
-        /// <code>VPCId</code>.
+        /// <c>VPCId</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]

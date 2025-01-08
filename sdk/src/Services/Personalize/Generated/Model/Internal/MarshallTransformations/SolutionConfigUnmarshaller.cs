@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Personalize.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Personalize.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public SolutionConfig Unmarshall(JsonUnmarshallerContext context)
         {
+            SolutionConfig unmarshalledObject = new SolutionConfig();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            SolutionConfig unmarshalledObject = new SolutionConfig();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -74,6 +76,12 @@ namespace Amazon.Personalize.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = AutoMLConfigUnmarshaller.Instance;
                     unmarshalledObject.AutoMLConfig = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("autoTrainingConfig", targetDepth))
+                {
+                    var unmarshaller = AutoTrainingConfigUnmarshaller.Instance;
+                    unmarshalledObject.AutoTrainingConfig = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("eventValueThreshold", targetDepth))
@@ -107,7 +115,6 @@ namespace Amazon.Personalize.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

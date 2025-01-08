@@ -26,10 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
     /// Provides the configuration information for a token.
+    /// 
+    ///  <important> 
+    /// <para>
+    /// If you're using an Amazon Kendra Gen AI Enterprise Edition index and you try to use
+    /// <c>UserTokenConfigurations</c> to configure user context policy, Amazon Kendra returns
+    /// a <c>ValidationException</c> error.
+    /// </para>
+    ///  </important>
     /// </summary>
     public partial class UserTokenConfiguration
     {

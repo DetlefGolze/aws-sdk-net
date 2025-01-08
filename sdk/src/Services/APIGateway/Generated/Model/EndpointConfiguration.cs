@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.APIGateway.Model
     /// </summary>
     public partial class EndpointConfiguration
     {
-        private List<string> _types = new List<string>();
-        private List<string> _vpcEndpointIds = new List<string>();
+        private List<string> _types = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _vpcEndpointIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Types. 
         /// <para>
         /// A list of endpoint types of an API (RestApi) or its custom domain name (DomainName).
-        /// For an edge-optimized API and its custom domain name, the endpoint type is <code>"EDGE"</code>.
-        /// For a regional API and its custom domain name, the endpoint type is <code>REGIONAL</code>.
-        /// For a private API, the endpoint type is <code>PRIVATE</code>.
+        /// For an edge-optimized API and its custom domain name, the endpoint type is <c>"EDGE"</c>.
+        /// For a regional API and its custom domain name, the endpoint type is <c>REGIONAL</c>.
+        /// For a private API, the endpoint type is <c>PRIVATE</c>.
         /// </para>
         /// </summary>
         public List<string> Types
@@ -55,14 +56,14 @@ namespace Amazon.APIGateway.Model
         // Check to see if Types property is set
         internal bool IsSetTypes()
         {
-            return this._types != null && this._types.Count > 0; 
+            return this._types != null && (this._types.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property VpcEndpointIds. 
         /// <para>
         /// A list of VpcEndpointIds of an API (RestApi) against which to create Route53 ALIASes.
-        /// It is only supported for <code>PRIVATE</code> endpoint type.
+        /// It is only supported for <c>PRIVATE</c> endpoint type.
         /// </para>
         /// </summary>
         public List<string> VpcEndpointIds
@@ -74,7 +75,7 @@ namespace Amazon.APIGateway.Model
         // Check to see if VpcEndpointIds property is set
         internal bool IsSetVpcEndpointIds()
         {
-            return this._vpcEndpointIds != null && this._vpcEndpointIds.Count > 0; 
+            return this._vpcEndpointIds != null && (this._vpcEndpointIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

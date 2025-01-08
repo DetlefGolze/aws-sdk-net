@@ -26,10 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// The HTTP header.
+    /// The HTTP header in the <c>ContextData</c> parameter.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a request parameter of server-side authentication operations like
+    /// <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminInitiateAuth.html">AdminInitiateAuth</a>
+    /// and <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminRespondToAuthChallenge.html">AdminRespondToAuthChallenge</a>.
+    /// </para>
     /// </summary>
     public partial class HttpHeader
     {

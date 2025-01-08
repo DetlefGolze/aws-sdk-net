@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -38,9 +39,9 @@ namespace Amazon.EC2.Model
     /// <para>
     /// Links an EC2-Classic instance to a ClassicLink-enabled VPC through one or more of
     /// the VPC security groups. You cannot link an EC2-Classic instance to more than one
-    /// VPC at a time. You can only link an instance that's in the <code>running</code> state.
-    /// An instance is automatically unlinked from a VPC when it's stopped - you can link
-    /// it to the VPC again when you restart it.
+    /// VPC at a time. You can only link an instance that's in the <c>running</c> state. An
+    /// instance is automatically unlinked from a VPC when it's stopped - you can link it
+    /// to the VPC again when you restart it.
     /// </para>
     ///  
     /// <para>
@@ -55,7 +56,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class AttachClassicLinkVpcRequest : AmazonEC2Request
     {
-        private List<string> _groups = new List<string>();
+        private List<string> _groups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _instanceId;
         private string _vpcId;
 
@@ -76,7 +77,7 @@ namespace Amazon.EC2.Model
         // Check to see if Groups property is set
         internal bool IsSetGroups()
         {
-            return this._groups != null && this._groups.Count > 0; 
+            return this._groups != null && (this._groups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

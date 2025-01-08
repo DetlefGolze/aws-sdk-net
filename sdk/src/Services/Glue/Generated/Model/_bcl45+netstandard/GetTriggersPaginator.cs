@@ -24,7 +24,8 @@ using System.Collections;
 using System.Threading;
 using System.Threading.Tasks;
 using Amazon.Runtime;
- 
+
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -40,6 +41,12 @@ namespace Amazon.Glue.Model
         /// Enumerable containing all full responses for the operation
         /// </summary>
         public IPaginatedEnumerable<GetTriggersResponse> Responses => new PaginatedResponse<GetTriggersResponse>(this);
+
+        /// <summary>
+        /// Enumerable containing all of the Triggers
+        /// </summary>
+        public IPaginatedEnumerable<Trigger> Triggers => 
+            new PaginatedResultKeyResponse<GetTriggersResponse, Trigger>(this, (i) => i.Triggers ?? new List<Trigger>());
 
         internal GetTriggersPaginator(IAmazonGlue client, GetTriggersRequest request)
         {
@@ -67,7 +74,7 @@ namespace Amazon.Glue.Model
         }
 #endif
 #if AWS_ASYNC_ENUMERABLES_API
-        async IAsyncEnumerable<GetTriggersResponse> IPaginator<GetTriggersResponse>.PaginateAsync(CancellationToken cancellationToken = default)
+        async IAsyncEnumerable<GetTriggersResponse> IPaginator<GetTriggersResponse>.PaginateAsync([System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken cancellationToken)
         {
             if (Interlocked.Exchange(ref _isPaginatorInUse, 1) != 0)
             {

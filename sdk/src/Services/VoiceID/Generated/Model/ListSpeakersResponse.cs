@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VoiceID.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.VoiceID.Model
     public partial class ListSpeakersResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<SpeakerSummary> _speakerSummaries = new List<SpeakerSummary>();
+        private List<SpeakerSummary> _speakerSummaries = AWSConfigs.InitializeCollections ? new List<SpeakerSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If <code>NextToken</code> is returned, there are more results available. The value
-        /// of <code>NextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. Each pagination token expires after 24 hours. 
+        /// If <c>NextToken</c> is returned, there are more results available. The value of <c>NextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. Each pagination
+        /// token expires after 24 hours. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -73,7 +74,7 @@ namespace Amazon.VoiceID.Model
         // Check to see if SpeakerSummaries property is set
         internal bool IsSetSpeakerSummaries()
         {
-            return this._speakerSummaries != null && this._speakerSummaries.Count > 0; 
+            return this._speakerSummaries != null && (this._speakerSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

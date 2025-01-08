@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public AwsSecurityFinding Unmarshall(JsonUnmarshallerContext context)
         {
+            AwsSecurityFinding unmarshalledObject = new AwsSecurityFinding();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            AwsSecurityFinding unmarshalledObject = new AwsSecurityFinding();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -74,6 +76,12 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.AwsAccountId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("AwsAccountName", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.AwsAccountName = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("CompanyName", targetDepth))
@@ -110,6 +118,12 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.Description = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("Detection", targetDepth))
+                {
+                    var unmarshaller = DetectionUnmarshaller.Instance;
+                    unmarshalledObject.Detection = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("FindingProviderFields", targetDepth))
@@ -182,6 +196,12 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = ProcessDetailsUnmarshaller.Instance;
                     unmarshalledObject.Process = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ProcessedAt", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ProcessedAt = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("ProductArn", targetDepth))
@@ -317,7 +337,6 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

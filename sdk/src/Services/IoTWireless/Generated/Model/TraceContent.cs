@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTWireless.Model
 {
     /// <summary>
-    /// Trace content for your wireless gateway and wireless device resources.
+    /// Trace content for your wireless devices, gateways, and multicast groups.
     /// </summary>
     public partial class TraceContent
     {

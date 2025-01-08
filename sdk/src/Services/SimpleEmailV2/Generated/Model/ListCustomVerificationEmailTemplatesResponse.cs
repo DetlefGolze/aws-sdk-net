@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.SimpleEmailV2.Model
     /// </summary>
     public partial class ListCustomVerificationEmailTemplatesResponse : AmazonWebServiceResponse
     {
-        private List<CustomVerificationEmailTemplateMetadata> _customVerificationEmailTemplates = new List<CustomVerificationEmailTemplateMetadata>();
+        private List<CustomVerificationEmailTemplateMetadata> _customVerificationEmailTemplates = AWSConfigs.InitializeCollections ? new List<CustomVerificationEmailTemplateMetadata>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if CustomVerificationEmailTemplates property is set
         internal bool IsSetCustomVerificationEmailTemplates()
         {
-            return this._customVerificationEmailTemplates != null && this._customVerificationEmailTemplates.Count > 0; 
+            return this._customVerificationEmailTemplates != null && (this._customVerificationEmailTemplates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token indicating that there are additional custom verification email templates available
-        /// to be listed. Pass this token to a subsequent call to <code>ListCustomVerificationEmailTemplates</code>
+        /// to be listed. Pass this token to a subsequent call to <c>ListCustomVerificationEmailTemplates</c>
         /// to retrieve the next 50 custom verification email templates.
         /// </para>
         /// </summary>

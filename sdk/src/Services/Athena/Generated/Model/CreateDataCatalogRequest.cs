@@ -26,19 +26,41 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Athena.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateDataCatalog operation.
     /// Creates (registers) a data catalog with the specified name and properties. Catalogs
     /// created are visible to all users of the same Amazon Web Services account.
+    /// 
+    ///  
+    /// <para>
+    /// This API operation creates the following resources.
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    /// CFN Stack Name with a maximum length of 128 characters and prefix <c>athenafederatedcatalog-CATALOG_NAME_SANITIZED</c>
+    /// with length 23 characters.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Lambda Function Name with a maximum length of 64 characters and prefix <c>athenafederatedcatalog_CATALOG_NAME_SANITIZED</c>
+    /// with length 23 characters.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Glue Connection Name with a maximum length of 255 characters and a prefix <c>athenafederatedcatalog_CATALOG_NAME_SANITIZED</c>
+    /// with length 23 characters. 
+    /// </para>
+    ///  </li> </ul>
     /// </summary>
     public partial class CreateDataCatalogRequest : AmazonAthenaRequest
     {
         private string _description;
         private string _name;
-        private Dictionary<string, string> _parameters = new Dictionary<string, string>();
-        private List<Tag> _tags = new List<Tag>();
+        private Dictionary<string, string> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private DataCatalogType _type;
 
         /// <summary>
@@ -68,6 +90,23 @@ namespace Amazon.Athena.Model
         /// or hyphen characters. The remainder of the length constraint of 256 is reserved for
         /// use by Athena.
         /// </para>
+        ///  
+        /// <para>
+        /// For <c>FEDERATED</c> type the catalog name has following considerations and limits:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// The catalog name allows special characters such as <c>_ , @ , \ , - </c>. These characters
+        /// are replaced with a hyphen (-) when creating the CFN Stack Name and with an underscore
+        /// (_) when creating the Lambda Function and Glue Connection Name.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The catalog name has a theoretical limit of 128 characters. However, since we use
+        /// it to create other resources that allow less characters and we prepend a prefix to
+        /// it, the actual catalog name limit for <c>FEDERATED</c> catalog is 64 - 23 = 41 characters.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]
         public string Name
@@ -90,18 +129,17 @@ namespace Amazon.Athena.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For the <code>HIVE</code> data catalog type, use the following syntax. The <code>metadata-function</code>
-        /// parameter is required. <code>The sdk-version</code> parameter is optional and defaults
-        /// to the currently supported version.
+        /// For the <c>HIVE</c> data catalog type, use the following syntax. The <c>metadata-function</c>
+        /// parameter is required. <c>The sdk-version</c> parameter is optional and defaults to
+        /// the currently supported version.
         /// </para>
         ///  
         /// <para>
-        ///  <code>metadata-function=<i>lambda_arn</i>, sdk-version=<i>version_number</i> </code>
-        /// 
+        ///  <c>metadata-function=<i>lambda_arn</i>, sdk-version=<i>version_number</i> </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For the <code>LAMBDA</code> data catalog type, use one of the following sets of required
+        /// For the <c>LAMBDA</c> data catalog type, use one of the following sets of required
         /// parameters, but not both.
         /// </para>
         ///  <ul> <li> 
@@ -111,8 +149,7 @@ namespace Amazon.Athena.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>metadata-function=<i>lambda_arn</i>, record-function=<i>lambda_arn</i> </code>
-        /// 
+        ///  <c>metadata-function=<i>lambda_arn</i>, record-function=<i>lambda_arn</i> </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -121,32 +158,52 @@ namespace Amazon.Athena.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>function=<i>lambda_arn</i> </code> 
+        ///  <c>function=<i>lambda_arn</i> </c> 
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
-        /// The <code>GLUE</code> type takes a catalog ID parameter and is required. The <code>
-        /// <i>catalog_id</i> </code> is the account ID of the Amazon Web Services account to
-        /// which the Glue Data Catalog belongs.
+        /// The <c>GLUE</c> type takes a catalog ID parameter and is required. The <c> <i>catalog_id</i>
+        /// </c> is the account ID of the Amazon Web Services account to which the Glue Data Catalog
+        /// belongs.
         /// </para>
         ///  
         /// <para>
-        ///  <code>catalog-id=<i>catalog_id</i> </code> 
+        ///  <c>catalog-id=<i>catalog_id</i> </c> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// The <code>GLUE</code> data catalog type also applies to the default <code>AwsDataCatalog</code>
+        /// The <c>GLUE</c> data catalog type also applies to the default <c>AwsDataCatalog</c>
         /// that already exists in your account, of which you can have only one and cannot modify.
         /// </para>
-        ///  </li> <li> 
+        ///  </li> </ul> </li> <li> 
         /// <para>
-        /// Queries that specify a Glue Data Catalog other than the default <code>AwsDataCatalog</code>
-        /// must be run on Athena engine version 2.
+        /// The <c>FEDERATED</c> data catalog type uses one of the following parameters, but not
+        /// both. Use <c>connection-arn</c> for an existing Glue connection. Use <c>connection-type</c>
+        /// and <c>connection-properties</c> to specify the configuration setting for a new connection.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>connection-arn:<i>&lt;glue_connection_arn_to_reuse&gt;</i> </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// In Regions where Athena engine version 2 is not available, creating new Glue data
-        /// catalogs results in an <code>INVALID_INPUT</code> error.
+        ///  <c>lambda-role-arn</c> (optional): The execution role to use for the Lambda function.
+        /// If not provided, one is created.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>connection-type:MYSQL|REDSHIFT|...., connection-properties:"<i>&lt;json_string&gt;</i>"</c>
+        /// 
+        /// </para>
+        ///  
+        /// <para>
+        /// For <i> <c>&lt;json_string&gt;</c> </i>, use escaped JSON text, as in the following
+        /// example.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>"{\"spill_bucket\":\"my_spill\",\"spill_prefix\":\"athena-spill\",\"host\":\"abc12345.snowflakecomputing.com\",\"port\":\"1234\",\"warehouse\":\"DEV_WH\",\"database\":\"TEST\",\"schema\":\"PUBLIC\",\"SecretArn\":\"arn:aws:secretsmanager:ap-south-1:111122223333:secret:snowflake-XHb67j\"}"</c>
+        /// 
         /// </para>
         ///  </li> </ul> </li> </ul>
         /// </summary>
@@ -159,13 +216,17 @@ namespace Amazon.Athena.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// A list of comma separated tags to add to the data catalog that is created.
+        /// A list of comma separated tags to add to the data catalog that is created. All the
+        /// resources that are created by the <c>CreateDataCatalog</c> API operation with <c>FEDERATED</c>
+        /// type will have the tag <c>federated_athena_datacatalog="true"</c>. This includes the
+        /// CFN Stack, Glue Connection, Athena DataCatalog, and all the resources created as part
+        /// of the CFN Stack (Lambda Function, IAM policies/roles).
         /// </para>
         /// </summary>
         public List<Tag> Tags
@@ -177,14 +238,16 @@ namespace Amazon.Athena.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of data catalog to create: <code>LAMBDA</code> for a federated catalog, <code>HIVE</code>
-        /// for an external hive metastore, or <code>GLUE</code> for an Glue Data Catalog.
+        /// The type of data catalog to create: <c>LAMBDA</c> for a federated catalog, <c>GLUE</c>
+        /// for an Glue Data Catalog, and <c>HIVE</c> for an external Apache Hive metastore. <c>FEDERATED</c>
+        /// is a federated catalog for which Athena creates the connection and the Lambda function
+        /// for you based on the parameters that you pass.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

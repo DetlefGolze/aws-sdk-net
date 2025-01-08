@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.Glue.Model
         private string _description;
         private EvaluationMetrics _evaluationMetrics;
         private string _glueVersion;
-        private List<GlueTable> _inputRecordTables = new List<GlueTable>();
+        private List<GlueTable> _inputRecordTables = AWSConfigs.InitializeCollections ? new List<GlueTable>() : null;
         private int? _labelCount;
         private DateTime? _lastModifiedOn;
         private double? _maxCapacity;
@@ -46,7 +47,7 @@ namespace Amazon.Glue.Model
         private int? _numberOfWorkers;
         private TransformParameters _parameters;
         private string _role;
-        private List<SchemaColumn> _schema = new List<SchemaColumn>();
+        private List<SchemaColumn> _schema = AWSConfigs.InitializeCollections ? new List<SchemaColumn>() : null;
         private TransformStatusType _status;
         private int? _timeout;
         private TransformEncryption _transformEncryption;
@@ -146,7 +147,7 @@ namespace Amazon.Glue.Model
         // Check to see if InputRecordTables property is set
         internal bool IsSetInputRecordTables()
         {
-            return this._inputRecordTables != null && this._inputRecordTables.Count > 0; 
+            return this._inputRecordTables != null && (this._inputRecordTables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -196,8 +197,8 @@ namespace Amazon.Glue.Model
         /// </para>
         ///  
         /// <para>
-        /// When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>,
-        /// the <code>MaxCapacity</code> field is set automatically and becomes read-only.
+        /// When the <c>WorkerType</c> field is set to a value other than <c>Standard</c>, the
+        /// <c>MaxCapacity</c> field is set automatically and becomes read-only.
         /// </para>
         /// </summary>
         public double MaxCapacity
@@ -252,8 +253,8 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property NumberOfWorkers. 
         /// <para>
-        /// The number of workers of a defined <code>workerType</code> that are allocated when
-        /// this task runs.
+        /// The number of workers of a defined <c>workerType</c> that are allocated when this
+        /// task runs.
         /// </para>
         /// </summary>
         public int NumberOfWorkers
@@ -307,8 +308,8 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property Schema. 
         /// <para>
-        /// The <code>Map&lt;Column, Type&gt;</code> object that represents the schema that this
-        /// transform accepts. Has an upper bound of 100 columns.
+        /// The <c>Map&lt;Column, Type&gt;</c> object that represents the schema that this transform
+        /// accepts. Has an upper bound of 100 columns.
         /// </para>
         /// </summary>
         [AWSProperty(Max=100)]
@@ -321,7 +322,7 @@ namespace Amazon.Glue.Model
         // Check to see if Schema property is set
         internal bool IsSetSchema()
         {
-            return this._schema != null && this._schema.Count > 0; 
+            return this._schema != null && (this._schema.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -348,7 +349,7 @@ namespace Amazon.Glue.Model
         /// <para>
         /// The timeout for a task run for this transform in minutes. This is the maximum time
         /// that a task run for this transform can consume resources before it is terminated and
-        /// enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).
+        /// enters <c>TIMEOUT</c> status. The default is 2,880 minutes (48 hours).
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -411,18 +412,18 @@ namespace Amazon.Glue.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory
+        /// For the <c>Standard</c> worker type, each worker provides 4 vCPU, 16 GB of memory
         /// and a 50GB disk, and 2 executors per worker.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For the <code>G.1X</code> worker type, each worker provides 4 vCPU, 16 GB of memory
-        /// and a 64GB disk, and 1 executor per worker.
+        /// For the <c>G.1X</c> worker type, each worker provides 4 vCPU, 16 GB of memory and
+        /// a 64GB disk, and 1 executor per worker.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For the <code>G.2X</code> worker type, each worker provides 8 vCPU, 32 GB of memory
-        /// and a 128GB disk, and 1 executor per worker.
+        /// For the <c>G.2X</c> worker type, each worker provides 8 vCPU, 32 GB of memory and
+        /// a 128GB disk, and 1 executor per worker.
         /// </para>
         ///  </li> </ul>
         /// </summary>

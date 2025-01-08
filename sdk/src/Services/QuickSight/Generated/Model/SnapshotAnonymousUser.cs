@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.QuickSight.Model
     /// </summary>
     public partial class SnapshotAnonymousUser
     {
-        private List<SessionTag> _rowLevelPermissionTags = new List<SessionTag>();
+        private List<SessionTag> _rowLevelPermissionTags = AWSConfigs.InitializeCollections ? new List<SessionTag>() : null;
 
         /// <summary>
         /// Gets and sets the property RowLevelPermissionTags. 
         /// <para>
         /// The tags to be used for row-level security (RLS). Make sure that the relevant datasets
         /// have RLS tags configured before you start a snapshot export job. You can configure
-        /// the RLS tags of a dataset with a <code>DataSet$RowLevelPermissionTagConfiguration</code>
+        /// the RLS tags of a dataset with a <c>DataSet$RowLevelPermissionTagConfiguration</c>
         /// API call.
         /// </para>
         ///  
@@ -60,7 +61,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if RowLevelPermissionTags property is set
         internal bool IsSetRowLevelPermissionTags()
         {
-            return this._rowLevelPermissionTags != null && this._rowLevelPermissionTags.Count > 0; 
+            return this._rowLevelPermissionTags != null && (this._rowLevelPermissionTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

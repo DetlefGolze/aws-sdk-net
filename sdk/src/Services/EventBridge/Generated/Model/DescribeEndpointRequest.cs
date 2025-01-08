@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.EventBridge.Model
     /// Get the information about an existing global endpoint. For more information about
     /// global endpoints, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-global-endpoints.html">Making
     /// applications Regional-fault tolerant with global endpoints and event replication</a>
-    /// in the Amazon EventBridge User Guide..
+    /// in the <i> <i>Amazon EventBridge User Guide</i> </i>.
     /// </summary>
     public partial class DescribeEndpointRequest : AmazonEventBridgeRequest
     {
@@ -44,7 +45,7 @@ namespace Amazon.EventBridge.Model
         /// Gets and sets the property HomeRegion. 
         /// <para>
         /// The primary Region of the endpoint you want to get information about. For example
-        /// <code>"HomeRegion": "us-east-1"</code>.
+        /// <c>"HomeRegion": "us-east-1"</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=9, Max=20)]
@@ -63,7 +64,7 @@ namespace Amazon.EventBridge.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the endpoint you want to get information about. For example, <code>"Name":"us-east-2-custom_bus_A-endpoint"</code>.
+        /// The name of the endpoint you want to get information about. For example, <c>"Name":"us-east-2-custom_bus_A-endpoint"</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

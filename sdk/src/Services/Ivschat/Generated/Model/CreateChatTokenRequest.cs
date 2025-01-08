@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Ivschat.Model
 {
     /// <summary>
@@ -37,12 +38,12 @@ namespace Amazon.Ivschat.Model
     /// 
     ///  
     /// <para>
-    /// Use the <code>capabilities</code> field to permit an end user to send messages or
-    /// moderate a room.
+    /// Use the <c>capabilities</c> field to permit an end user to send messages or moderate
+    /// a room.
     /// </para>
     ///  
     /// <para>
-    /// The <code>attributes</code> field securely attaches structured data to the chat session;
+    /// The <c>attributes</c> field securely attaches structured data to the chat session;
     /// the data is included within each message sent by the end user and received by other
     /// participants in the room. Common use cases for attributes include passing end-user
     /// profile data like an icon, display name, colors, badges, and other display features.
@@ -54,8 +55,8 @@ namespace Amazon.Ivschat.Model
     /// </summary>
     public partial class CreateChatTokenRequest : AmazonIvschatRequest
     {
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
-        private List<string> _capabilities = new List<string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<string> _capabilities = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _roomIdentifier;
         private int? _sessionDurationInMinutes;
         private string _userId;
@@ -68,6 +69,7 @@ namespace Amazon.Ivschat.Model
         /// is 1 KB total.
         /// </para>
         /// </summary>
+        [AWSProperty(Sensitive=true)]
         public Dictionary<string, string> Attributes
         {
             get { return this._attributes; }
@@ -77,7 +79,7 @@ namespace Amazon.Ivschat.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -96,7 +98,7 @@ namespace Amazon.Ivschat.Model
         // Check to see if Capabilities property is set
         internal bool IsSetCapabilities()
         {
-            return this._capabilities != null && this._capabilities.Count > 0; 
+            return this._capabilities != null && (this._capabilities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -145,7 +147,7 @@ namespace Amazon.Ivschat.Model
         /// This can be any UTF-8 encoded text.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=128)]
+        [AWSProperty(Required=true, Sensitive=true, Min=1, Max=128)]
         public string UserId
         {
             get { return this._userId; }

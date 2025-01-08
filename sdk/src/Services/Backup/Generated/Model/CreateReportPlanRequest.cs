@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.Backup.Model
     /// 
     ///  
     /// <para>
-    /// If you call <code>CreateReportPlan</code> with a plan that already exists, you receive
-    /// an <code>AlreadyExistsException</code> exception.
+    /// If you call <c>CreateReportPlan</c> with a plan that already exists, you receive an
+    /// <c>AlreadyExistsException</c> exception.
     /// </para>
     /// </summary>
     public partial class CreateReportPlanRequest : AmazonBackupRequest
@@ -45,15 +46,15 @@ namespace Amazon.Backup.Model
         private ReportDeliveryChannel _reportDeliveryChannel;
         private string _reportPlanDescription;
         private string _reportPlanName;
-        private Dictionary<string, string> _reportPlanTags = new Dictionary<string, string>();
+        private Dictionary<string, string> _reportPlanTags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private ReportSetting _reportSetting;
 
         /// <summary>
         /// Gets and sets the property IdempotencyToken. 
         /// <para>
         /// A customer-chosen string that you can use to distinguish between otherwise identical
-        /// calls to <code>CreateReportPlanInput</code>. Retrying a successful request with the
-        /// same idempotency token results in a success message with no action taken.
+        /// calls to <c>CreateReportPlanInput</c>. Retrying a successful request with the same
+        /// idempotency token results in a success message with no action taken.
         /// </para>
         /// </summary>
         public string IdempotencyToken
@@ -131,8 +132,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property ReportPlanTags. 
         /// <para>
-        /// Metadata that you can assign to help organize the report plans that you create. Each
-        /// tag is a key-value pair.
+        /// The tags to assign to the report plan.
         /// </para>
         /// </summary>
         public Dictionary<string, string> ReportPlanTags
@@ -144,7 +144,7 @@ namespace Amazon.Backup.Model
         // Check to see if ReportPlanTags property is set
         internal bool IsSetReportPlanTags()
         {
-            return this._reportPlanTags != null && this._reportPlanTags.Count > 0; 
+            return this._reportPlanTags != null && (this._reportPlanTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -155,12 +155,12 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>RESOURCE_COMPLIANCE_REPORT | CONTROL_COMPLIANCE_REPORT | BACKUP_JOB_REPORT
-        /// | COPY_JOB_REPORT | RESTORE_JOB_REPORT</code> 
+        ///  <c>RESOURCE_COMPLIANCE_REPORT | CONTROL_COMPLIANCE_REPORT | BACKUP_JOB_REPORT | COPY_JOB_REPORT
+        /// | RESTORE_JOB_REPORT</c> 
         /// </para>
         ///  
         /// <para>
-        /// If the report template is <code>RESOURCE_COMPLIANCE_REPORT</code> or <code>CONTROL_COMPLIANCE_REPORT</code>,
+        /// If the report template is <c>RESOURCE_COMPLIANCE_REPORT</c> or <c>CONTROL_COMPLIANCE_REPORT</c>,
         /// this API resource also describes the report coverage by Amazon Web Services Regions
         /// and frameworks.
         /// </para>

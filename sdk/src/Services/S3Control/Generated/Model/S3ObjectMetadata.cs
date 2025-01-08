@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.S3Control.Model
         private DateTime? _httpExpiresDate;
         private bool? _requesterCharged;
         private S3SSEAlgorithm _sseAlgorithm;
-        private Dictionary<string, string> _userMetadata = new Dictionary<string, string>();
+        private Dictionary<string, string> _userMetadata = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property CacheControl.
@@ -110,7 +111,10 @@ namespace Amazon.S3Control.Model
         }
 
         /// <summary>
-        /// Gets and sets the property ContentLength.
+        /// Gets and sets the property ContentLength. 
+        /// <para>
+        ///  <i>This member has been deprecated.</i> 
+        /// </para>
         /// </summary>
         [AWSProperty(Min=0)]
         public long ContentLength
@@ -126,7 +130,10 @@ namespace Amazon.S3Control.Model
         }
 
         /// <summary>
-        /// Gets and sets the property ContentMD5.
+        /// Gets and sets the property ContentMD5. 
+        /// <para>
+        ///  <i>This member has been deprecated.</i> 
+        /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
         public string ContentMD5
@@ -173,7 +180,10 @@ namespace Amazon.S3Control.Model
         }
 
         /// <summary>
-        /// Gets and sets the property RequesterCharged.
+        /// Gets and sets the property RequesterCharged. 
+        /// <para>
+        ///  <i>This member has been deprecated.</i> 
+        /// </para>
         /// </summary>
         public bool RequesterCharged
         {
@@ -188,7 +198,19 @@ namespace Amazon.S3Control.Model
         }
 
         /// <summary>
-        /// Gets and sets the property SSEAlgorithm.
+        /// Gets and sets the property SSEAlgorithm. 
+        /// <para>
+        /// The server-side encryption algorithm used when storing objects in Amazon S3.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Directory buckets </b> - For directory buckets, there are only two supported options
+        /// for server-side encryption: server-side encryption with Amazon S3 managed keys (SSE-S3)
+        /// (<c>AES256</c>) and server-side encryption with KMS keys (SSE-KMS) (<c>KMS</c>). For
+        /// more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-serv-side-encryption.html">Protecting
+        /// data with server-side encryption</a> in the <i>Amazon S3 User Guide</i>. For <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-objects-Batch-Ops">the
+        /// Copy operation in Batch Operations</a>, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_S3CopyObjectOperation.html">S3CopyObjectOperation</a>.
+        /// </para>
         /// </summary>
         public S3SSEAlgorithm SSEAlgorithm
         {
@@ -215,7 +237,7 @@ namespace Amazon.S3Control.Model
         // Check to see if UserMetadata property is set
         internal bool IsSetUserMetadata()
         {
-            return this._userMetadata != null && this._userMetadata.Count > 0; 
+            return this._userMetadata != null && (this._userMetadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

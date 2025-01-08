@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class DeploymentRecommendation
     {
-        private List<RealTimeInferenceRecommendation> _realTimeInferenceRecommendations = new List<RealTimeInferenceRecommendation>();
+        private List<RealTimeInferenceRecommendation> _realTimeInferenceRecommendations = AWSConfigs.InitializeCollections ? new List<RealTimeInferenceRecommendation>() : null;
         private RecommendationStatus _recommendationStatus;
 
         /// <summary>
@@ -55,16 +56,16 @@ namespace Amazon.SageMaker.Model
         // Check to see if RealTimeInferenceRecommendations property is set
         internal bool IsSetRealTimeInferenceRecommendations()
         {
-            return this._realTimeInferenceRecommendations != null && this._realTimeInferenceRecommendations.Count > 0; 
+            return this._realTimeInferenceRecommendations != null && (this._realTimeInferenceRecommendations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property RecommendationStatus. 
         /// <para>
-        /// Status of the deployment recommendation. The status <code>NOT_APPLICABLE</code> means
-        /// that SageMaker is unable to provide a default recommendation for the model using the
-        /// information provided. If the deployment status is <code>IN_PROGRESS</code>, retry
-        /// your API call after a few seconds to get a <code>COMPLETED</code> deployment recommendation.
+        /// Status of the deployment recommendation. The status <c>NOT_APPLICABLE</c> means that
+        /// SageMaker is unable to provide a default recommendation for the model using the information
+        /// provided. If the deployment status is <c>IN_PROGRESS</c>, retry your API call after
+        /// a few seconds to get a <c>COMPLETED</c> deployment recommendation.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

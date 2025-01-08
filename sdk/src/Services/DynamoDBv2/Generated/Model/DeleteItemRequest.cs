@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -36,13 +37,13 @@ namespace Amazon.DynamoDBv2.Model
     ///  
     /// <para>
     /// In addition to deleting an item, you can also return the item's attribute values in
-    /// the same operation, using the <code>ReturnValues</code> parameter.
+    /// the same operation, using the <c>ReturnValues</c> parameter.
     /// </para>
     ///  
     /// <para>
-    /// Unless you specify conditions, the <code>DeleteItem</code> is an idempotent operation;
-    /// running it multiple times on the same item or attribute does <i>not</i> result in
-    /// an error response.
+    /// Unless you specify conditions, the <c>DeleteItem</c> is an idempotent operation; running
+    /// it multiple times on the same item or attribute does <i>not</i> result in an error
+    /// response.
     /// </para>
     ///  
     /// <para>
@@ -55,10 +56,10 @@ namespace Amazon.DynamoDBv2.Model
     {
         private ConditionalOperator _conditionalOperator;
         private string _conditionExpression;
-        private Dictionary<string, ExpectedAttributeValue> _expected = new Dictionary<string, ExpectedAttributeValue>();
-        private Dictionary<string, string> _expressionAttributeNames = new Dictionary<string, string>();
-        private Dictionary<string, AttributeValue> _expressionAttributeValues = new Dictionary<string, AttributeValue>();
-        private Dictionary<string, AttributeValue> _key = new Dictionary<string, AttributeValue>();
+        private Dictionary<string, ExpectedAttributeValue> _expected = AWSConfigs.InitializeCollections ? new Dictionary<string, ExpectedAttributeValue>() : null;
+        private Dictionary<string, string> _expressionAttributeNames = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private Dictionary<string, AttributeValue> _expressionAttributeValues = AWSConfigs.InitializeCollections ? new Dictionary<string, AttributeValue>() : null;
+        private Dictionary<string, AttributeValue> _key = AWSConfigs.InitializeCollections ? new Dictionary<string, AttributeValue>() : null;
         private ReturnConsumedCapacity _returnConsumedCapacity;
         private ReturnItemCollectionMetrics _returnItemCollectionMetrics;
         private ReturnValue _returnValues;
@@ -73,8 +74,8 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Instantiates DeleteItemRequest with the parameterized properties
         /// </summary>
-        /// <param name="tableName">The name of the table from which to delete the item.</param>
-        /// <param name="key">A map of attribute names to <code>AttributeValue</code> objects, representing the primary key of the item to delete. For the primary key, you must provide all of the key attributes. For example, with a simple primary key, you only need to provide a value for the partition key. For a composite primary key, you must provide values for both the partition key and the sort key.</param>
+        /// <param name="tableName">The name of the table from which to delete the item. You can also provide the Amazon Resource Name (ARN) of the table in this parameter.</param>
+        /// <param name="key">A map of attribute names to <c>AttributeValue</c> objects, representing the primary key of the item to delete. For the primary key, you must provide all of the key attributes. For example, with a simple primary key, you only need to provide a value for the partition key. For a composite primary key, you must provide values for both the partition key and the sort key.</param>
         public DeleteItemRequest(string tableName, Dictionary<string, AttributeValue> key)
         {
             _tableName = tableName;
@@ -84,9 +85,9 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Instantiates DeleteItemRequest with the parameterized properties
         /// </summary>
-        /// <param name="tableName">The name of the table from which to delete the item.</param>
-        /// <param name="key">A map of attribute names to <code>AttributeValue</code> objects, representing the primary key of the item to delete. For the primary key, you must provide all of the key attributes. For example, with a simple primary key, you only need to provide a value for the partition key. For a composite primary key, you must provide values for both the partition key and the sort key.</param>
-        /// <param name="returnValues">Use <code>ReturnValues</code> if you want to get the item attributes as they appeared before they were deleted. For <code>DeleteItem</code>, the valid values are: <ul> <li>  <code>NONE</code> - If <code>ReturnValues</code> is not specified, or if its value is <code>NONE</code>, then nothing is returned. (This setting is the default for <code>ReturnValues</code>.) </li> <li>  <code>ALL_OLD</code> - The content of the old item is returned. </li> </ul> There is no additional cost associated with requesting a return value aside from the small network and processing overhead of receiving a larger response. No read capacity units are consumed. <note> The <code>ReturnValues</code> parameter is used by several DynamoDB operations; however, <code>DeleteItem</code> does not recognize any values other than <code>NONE</code> or <code>ALL_OLD</code>. </note></param>
+        /// <param name="tableName">The name of the table from which to delete the item. You can also provide the Amazon Resource Name (ARN) of the table in this parameter.</param>
+        /// <param name="key">A map of attribute names to <c>AttributeValue</c> objects, representing the primary key of the item to delete. For the primary key, you must provide all of the key attributes. For example, with a simple primary key, you only need to provide a value for the partition key. For a composite primary key, you must provide values for both the partition key and the sort key.</param>
+        /// <param name="returnValues">Use <c>ReturnValues</c> if you want to get the item attributes as they appeared before they were deleted. For <c>DeleteItem</c>, the valid values are: <ul> <li>  <c>NONE</c> - If <c>ReturnValues</c> is not specified, or if its value is <c>NONE</c>, then nothing is returned. (This setting is the default for <c>ReturnValues</c>.) </li> <li>  <c>ALL_OLD</c> - The content of the old item is returned. </li> </ul> There is no additional cost associated with requesting a return value aside from the small network and processing overhead of receiving a larger response. No read capacity units are consumed. <note> The <c>ReturnValues</c> parameter is used by several DynamoDB operations; however, <c>DeleteItem</c> does not recognize any values other than <c>NONE</c> or <c>ALL_OLD</c>. </note></param>
         public DeleteItemRequest(string tableName, Dictionary<string, AttributeValue> key, ReturnValue returnValues)
         {
             _tableName = tableName;
@@ -97,8 +98,8 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property ConditionalOperator. 
         /// <para>
-        /// This is a legacy parameter. Use <code>ConditionExpression</code> instead. For more
-        /// information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ConditionalOperator.html">ConditionalOperator</a>
+        /// This is a legacy parameter. Use <c>ConditionExpression</c> instead. For more information,
+        /// see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ConditionalOperator.html">ConditionalOperator</a>
         /// in the <i>Amazon DynamoDB Developer Guide</i>.
         /// </para>
         /// </summary>
@@ -117,8 +118,8 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property ConditionExpression. 
         /// <para>
-        /// A condition that must be satisfied in order for a conditional <code>DeleteItem</code>
-        /// to succeed.
+        /// A condition that must be satisfied in order for a conditional <c>DeleteItem</c> to
+        /// succeed.
         /// </para>
         ///  
         /// <para>
@@ -126,8 +127,8 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Functions: <code>attribute_exists | attribute_not_exists | attribute_type | contains
-        /// | begins_with | size</code> 
+        /// Functions: <c>attribute_exists | attribute_not_exists | attribute_type | contains
+        /// | begins_with | size</c> 
         /// </para>
         ///  
         /// <para>
@@ -135,12 +136,12 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Comparison operators: <code>= | &lt;&gt; | &lt; | &gt; | &lt;= | &gt;= | BETWEEN |
-        /// IN </code> 
+        /// Comparison operators: <c>= | &lt;&gt; | &lt; | &gt; | &lt;= | &gt;= | BETWEEN | IN
+        /// </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  Logical operators: <code>AND | OR | NOT</code> 
+        ///  Logical operators: <c>AND | OR | NOT</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -163,8 +164,8 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property Expected. 
         /// <para>
-        /// This is a legacy parameter. Use <code>ConditionExpression</code> instead. For more
-        /// information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.Expected.html">Expected</a>
+        /// This is a legacy parameter. Use <c>ConditionExpression</c> instead. For more information,
+        /// see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.Expected.html">Expected</a>
         /// in the <i>Amazon DynamoDB Developer Guide</i>.
         /// </para>
         /// </summary>
@@ -177,14 +178,14 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if Expected property is set
         internal bool IsSetExpected()
         {
-            return this._expected != null && this._expected.Count > 0; 
+            return this._expected != null && (this._expected.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ExpressionAttributeNames. 
         /// <para>
         /// One or more substitution tokens for attribute names in an expression. The following
-        /// are some use cases for using <code>ExpressionAttributeNames</code>:
+        /// are some use cases for using <c>ExpressionAttributeNames</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -206,18 +207,18 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Percentile</code> 
+        ///  <c>Percentile</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
         /// The name of this attribute conflicts with a reserved word, so it cannot be used directly
         /// in an expression. (For the complete list of reserved words, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html">Reserved
         /// Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To work around this, you
-        /// could specify the following for <code>ExpressionAttributeNames</code>:
+        /// could specify the following for <c>ExpressionAttributeNames</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>{"#P":"Percentile"}</code> 
+        ///  <c>{"#P":"Percentile"}</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -225,7 +226,7 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>#P = :val</code> 
+        ///  <c>#P = :val</c> 
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
@@ -247,7 +248,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if ExpressionAttributeNames property is set
         internal bool IsSetExpressionAttributeNames()
         {
-            return this._expressionAttributeNames != null && this._expressionAttributeNames.Count > 0; 
+            return this._expressionAttributeNames != null && (this._expressionAttributeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -263,16 +264,16 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>Available | Backordered | Discontinued</code> 
+        ///  <c>Available | Backordered | Discontinued</c> 
         /// </para>
         ///  
         /// <para>
-        /// You would first need to specify <code>ExpressionAttributeValues</code> as follows:
+        /// You would first need to specify <c>ExpressionAttributeValues</c> as follows:
         /// </para>
         ///  
         /// <para>
-        ///  <code>{ ":avail":{"S":"Available"}, ":back":{"S":"Backordered"}, ":disc":{"S":"Discontinued"}
-        /// }</code> 
+        ///  <c>{ ":avail":{"S":"Available"}, ":back":{"S":"Backordered"}, ":disc":{"S":"Discontinued"}
+        /// }</c> 
         /// </para>
         ///  
         /// <para>
@@ -280,7 +281,7 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>ProductStatus IN (:avail, :back, :disc)</code> 
+        ///  <c>ProductStatus IN (:avail, :back, :disc)</c> 
         /// </para>
         ///  
         /// <para>
@@ -297,14 +298,14 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if ExpressionAttributeValues property is set
         internal bool IsSetExpressionAttributeValues()
         {
-            return this._expressionAttributeValues != null && this._expressionAttributeValues.Count > 0; 
+            return this._expressionAttributeValues != null && (this._expressionAttributeValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Key. 
         /// <para>
-        /// A map of attribute names to <code>AttributeValue</code> objects, representing the
-        /// primary key of the item to delete.
+        /// A map of attribute names to <c>AttributeValue</c> objects, representing the primary
+        /// key of the item to delete.
         /// </para>
         ///  
         /// <para>
@@ -324,7 +325,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if Key property is set
         internal bool IsSetKey()
         {
-            return this._key != null && this._key.Count > 0; 
+            return this._key != null && (this._key.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -345,10 +346,10 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property ReturnItemCollectionMetrics. 
         /// <para>
-        /// Determines whether item collection metrics are returned. If set to <code>SIZE</code>,
-        /// the response includes statistics about item collections, if any, that were modified
-        /// during the operation are returned in the response. If set to <code>NONE</code> (the
-        /// default), no statistics are returned.
+        /// Determines whether item collection metrics are returned. If set to <c>SIZE</c>, the
+        /// response includes statistics about item collections, if any, that were modified during
+        /// the operation are returned in the response. If set to <c>NONE</c> (the default), no
+        /// statistics are returned.
         /// </para>
         /// </summary>
         public ReturnItemCollectionMetrics ReturnItemCollectionMetrics
@@ -366,17 +367,17 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property ReturnValues. 
         /// <para>
-        /// Use <code>ReturnValues</code> if you want to get the item attributes as they appeared
-        /// before they were deleted. For <code>DeleteItem</code>, the valid values are:
+        /// Use <c>ReturnValues</c> if you want to get the item attributes as they appeared before
+        /// they were deleted. For <c>DeleteItem</c>, the valid values are:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NONE</code> - If <code>ReturnValues</code> is not specified, or if its value
-        /// is <code>NONE</code>, then nothing is returned. (This setting is the default for <code>ReturnValues</code>.)
+        ///  <c>NONE</c> - If <c>ReturnValues</c> is not specified, or if its value is <c>NONE</c>,
+        /// then nothing is returned. (This setting is the default for <c>ReturnValues</c>.)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ALL_OLD</code> - The content of the old item is returned.
+        ///  <c>ALL_OLD</c> - The content of the old item is returned.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -386,9 +387,8 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>ReturnValues</code> parameter is used by several DynamoDB operations; however,
-        /// <code>DeleteItem</code> does not recognize any values other than <code>NONE</code>
-        /// or <code>ALL_OLD</code>.
+        /// The <c>ReturnValues</c> parameter is used by several DynamoDB operations; however,
+        /// <c>DeleteItem</c> does not recognize any values other than <c>NONE</c> or <c>ALL_OLD</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -407,8 +407,8 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property ReturnValuesOnConditionCheckFailure. 
         /// <para>
-        /// An optional parameter that returns the item attributes for a <code>DeleteItem</code>
-        /// operation that failed a condition check.
+        /// An optional parameter that returns the item attributes for a <c>DeleteItem</c> operation
+        /// that failed a condition check.
         /// </para>
         ///  
         /// <para>
@@ -432,10 +432,11 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property TableName. 
         /// <para>
-        /// The name of the table from which to delete the item.
+        /// The name of the table from which to delete the item. You can also provide the Amazon
+        /// Resource Name (ARN) of the table in this parameter.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=3, Max=255)]
+        [AWSProperty(Required=true, Min=1, Max=1024)]
         public string TableName
         {
             get { return this._tableName; }

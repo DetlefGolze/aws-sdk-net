@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -34,11 +35,11 @@ namespace Amazon.Glue.Model
     /// </summary>
     public partial class UpdateDevEndpointRequest : AmazonGlueRequest
     {
-        private Dictionary<string, string> _addArguments = new Dictionary<string, string>();
-        private List<string> _addPublicKeys = new List<string>();
+        private Dictionary<string, string> _addArguments = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<string> _addPublicKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DevEndpointCustomLibraries _customLibraries;
-        private List<string> _deleteArguments = new List<string>();
-        private List<string> _deletePublicKeys = new List<string>();
+        private List<string> _deleteArguments = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _deletePublicKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _endpointName;
         private string _publicKey;
         private bool? _updateEtlLibraries;
@@ -46,7 +47,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property AddArguments. 
         /// <para>
-        /// The map of arguments to add the map of arguments used to configure the <code>DevEndpoint</code>.
+        /// The map of arguments to add the map of arguments used to configure the <c>DevEndpoint</c>.
         /// </para>
         ///  
         /// <para>
@@ -54,12 +55,12 @@ namespace Amazon.Glue.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>"--enable-glue-datacatalog": ""</code> 
+        ///  <c>"--enable-glue-datacatalog": ""</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
         /// You can specify a version of Python support for development endpoints by using the
-        /// <code>Arguments</code> parameter in the <code>CreateDevEndpoint</code> or <code>UpdateDevEndpoint</code>
+        /// <c>Arguments</c> parameter in the <c>CreateDevEndpoint</c> or <c>UpdateDevEndpoint</c>
         /// APIs. If no arguments are provided, the version defaults to Python 2.
         /// </para>
         /// </summary>
@@ -73,13 +74,13 @@ namespace Amazon.Glue.Model
         // Check to see if AddArguments property is set
         internal bool IsSetAddArguments()
         {
-            return this._addArguments != null && this._addArguments.Count > 0; 
+            return this._addArguments != null && (this._addArguments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AddPublicKeys. 
         /// <para>
-        /// The list of public keys for the <code>DevEndpoint</code> to use.
+        /// The list of public keys for the <c>DevEndpoint</c> to use.
         /// </para>
         /// </summary>
         [AWSProperty(Max=5)]
@@ -92,13 +93,13 @@ namespace Amazon.Glue.Model
         // Check to see if AddPublicKeys property is set
         internal bool IsSetAddPublicKeys()
         {
-            return this._addPublicKeys != null && this._addPublicKeys.Count > 0; 
+            return this._addPublicKeys != null && (this._addPublicKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property CustomLibraries. 
         /// <para>
-        /// Custom Python or Java libraries to be loaded in the <code>DevEndpoint</code>.
+        /// Custom Python or Java libraries to be loaded in the <c>DevEndpoint</c>.
         /// </para>
         /// </summary>
         public DevEndpointCustomLibraries CustomLibraries
@@ -117,7 +118,7 @@ namespace Amazon.Glue.Model
         /// Gets and sets the property DeleteArguments. 
         /// <para>
         /// The list of argument keys to be deleted from the map of arguments used to configure
-        /// the <code>DevEndpoint</code>.
+        /// the <c>DevEndpoint</c>.
         /// </para>
         /// </summary>
         public List<string> DeleteArguments
@@ -129,13 +130,13 @@ namespace Amazon.Glue.Model
         // Check to see if DeleteArguments property is set
         internal bool IsSetDeleteArguments()
         {
-            return this._deleteArguments != null && this._deleteArguments.Count > 0; 
+            return this._deleteArguments != null && (this._deleteArguments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DeletePublicKeys. 
         /// <para>
-        /// The list of public keys to be deleted from the <code>DevEndpoint</code>.
+        /// The list of public keys to be deleted from the <c>DevEndpoint</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=5)]
@@ -148,13 +149,13 @@ namespace Amazon.Glue.Model
         // Check to see if DeletePublicKeys property is set
         internal bool IsSetDeletePublicKeys()
         {
-            return this._deletePublicKeys != null && this._deletePublicKeys.Count > 0; 
+            return this._deletePublicKeys != null && (this._deletePublicKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property EndpointName. 
         /// <para>
-        /// The name of the <code>DevEndpoint</code> to be updated.
+        /// The name of the <c>DevEndpoint</c> to be updated.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -173,7 +174,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property PublicKey. 
         /// <para>
-        /// The public key for the <code>DevEndpoint</code> to use.
+        /// The public key for the <c>DevEndpoint</c> to use.
         /// </para>
         /// </summary>
         public string PublicKey
@@ -191,8 +192,8 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property UpdateEtlLibraries. 
         /// <para>
-        ///  <code>True</code> if the list of custom libraries to be loaded in the development
-        /// endpoint needs to be updated, or <code>False</code> if otherwise.
+        ///  <c>True</c> if the list of custom libraries to be loaded in the development endpoint
+        /// needs to be updated, or <c>False</c> if otherwise.
         /// </para>
         /// </summary>
         public bool UpdateEtlLibraries

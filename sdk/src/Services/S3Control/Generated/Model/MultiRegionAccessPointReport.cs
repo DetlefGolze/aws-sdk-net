@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -38,15 +39,15 @@ namespace Amazon.S3Control.Model
         private DateTime? _createdAt;
         private string _name;
         private PublicAccessBlockConfiguration _publicAccessBlock;
-        private List<RegionReport> _regions = new List<RegionReport>();
+        private List<RegionReport> _regions = AWSConfigs.InitializeCollections ? new List<RegionReport>() : null;
         private MultiRegionAccessPointStatus _status;
 
         /// <summary>
         /// Gets and sets the property Alias. 
         /// <para>
         /// The alias for the Multi-Region Access Point. For more information about the distinction
-        /// between the name and the alias of an Multi-Region Access Point, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html#multi-region-access-point-naming">Managing
-        /// Multi-Region Access Points</a>.
+        /// between the name and the alias of an Multi-Region Access Point, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html#multi-region-access-point-naming">Rules
+        /// for naming Amazon S3 Multi-Region Access Points</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=63)]
@@ -129,7 +130,7 @@ namespace Amazon.S3Control.Model
         // Check to see if Regions property is set
         internal bool IsSetRegions()
         {
-            return this._regions != null && this._regions.Count > 0; 
+            return this._regions != null && (this._regions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -139,12 +140,11 @@ namespace Amazon.S3Control.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>CREATING</code> and <code>DELETING</code> are temporary states that exist while
-        /// the request is propagating and being completed. If a Multi-Region Access Point has
-        /// a status of <code>PARTIALLY_CREATED</code>, you can retry creation or send a request
-        /// to delete the Multi-Region Access Point. If a Multi-Region Access Point has a status
-        /// of <code>PARTIALLY_DELETED</code>, you can retry a delete request to finish the deletion
-        /// of the Multi-Region Access Point.
+        ///  <c>CREATING</c> and <c>DELETING</c> are temporary states that exist while the request
+        /// is propagating and being completed. If a Multi-Region Access Point has a status of
+        /// <c>PARTIALLY_CREATED</c>, you can retry creation or send a request to delete the Multi-Region
+        /// Access Point. If a Multi-Region Access Point has a status of <c>PARTIALLY_DELETED</c>,
+        /// you can retry a delete request to finish the deletion of the Multi-Region Access Point.
         /// </para>
         /// </summary>
         public MultiRegionAccessPointStatus Status

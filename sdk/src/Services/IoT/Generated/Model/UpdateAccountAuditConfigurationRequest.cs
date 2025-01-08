@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -41,14 +42,14 @@ namespace Amazon.IoT.Model
     /// </summary>
     public partial class UpdateAccountAuditConfigurationRequest : AmazonIoTRequest
     {
-        private Dictionary<string, AuditCheckConfiguration> _auditCheckConfigurations = new Dictionary<string, AuditCheckConfiguration>();
-        private Dictionary<string, AuditNotificationTarget> _auditNotificationTargetConfigurations = new Dictionary<string, AuditNotificationTarget>();
+        private Dictionary<string, AuditCheckConfiguration> _auditCheckConfigurations = AWSConfigs.InitializeCollections ? new Dictionary<string, AuditCheckConfiguration>() : null;
+        private Dictionary<string, AuditNotificationTarget> _auditNotificationTargetConfigurations = AWSConfigs.InitializeCollections ? new Dictionary<string, AuditNotificationTarget>() : null;
         private string _roleArn;
 
         /// <summary>
         /// Gets and sets the property AuditCheckConfigurations. 
         /// <para>
-        /// Specifies which audit checks are enabled and disabled for this account. Use <code>DescribeAccountAuditConfiguration</code>
+        /// Specifies which audit checks are enabled and disabled for this account. Use <c>DescribeAccountAuditConfiguration</c>
         /// to see the list of all checks, including those that are currently enabled.
         /// </para>
         ///  
@@ -63,8 +64,8 @@ namespace Amazon.IoT.Model
         /// </para>
         ///  
         /// <para>
-        /// On the first call to <code>UpdateAccountAuditConfiguration</code>, this parameter
-        /// is required and must specify at least one enabled check.
+        /// On the first call to <c>UpdateAccountAuditConfiguration</c>, this parameter is required
+        /// and must specify at least one enabled check.
         /// </para>
         /// </summary>
         public Dictionary<string, AuditCheckConfiguration> AuditCheckConfigurations
@@ -76,7 +77,7 @@ namespace Amazon.IoT.Model
         // Check to see if AuditCheckConfigurations property is set
         internal bool IsSetAuditCheckConfigurations()
         {
-            return this._auditCheckConfigurations != null && this._auditCheckConfigurations.Count > 0; 
+            return this._auditCheckConfigurations != null && (this._auditCheckConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -94,7 +95,7 @@ namespace Amazon.IoT.Model
         // Check to see if AuditNotificationTargetConfigurations property is set
         internal bool IsSetAuditNotificationTargetConfigurations()
         {
-            return this._auditNotificationTargetConfigurations != null && this._auditNotificationTargetConfigurations.Count > 0; 
+            return this._auditNotificationTargetConfigurations != null && (this._auditNotificationTargetConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

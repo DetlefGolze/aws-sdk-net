@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTEvents.Model
 {
     /// <summary>
@@ -38,11 +39,11 @@ namespace Amazon.IoTEvents.Model
         /// <summary>
         /// Gets and sets the property Enabled. 
         /// <para>
-        /// The value must be <code>TRUE</code> or <code>FALSE</code>. If <code>TRUE</code>, you
-        /// receive a notification when the alarm state changes. You must choose to acknowledge
-        /// the notification before the alarm state can return to <code>NORMAL</code>. If <code>FALSE</code>,
-        /// you won't receive notifications. The alarm automatically changes to the <code>NORMAL</code>
-        /// state when the input property value returns to the specified range.
+        /// The value must be <c>TRUE</c> or <c>FALSE</c>. If <c>TRUE</c>, you receive a notification
+        /// when the alarm state changes. You must choose to acknowledge the notification before
+        /// the alarm state can return to <c>NORMAL</c>. If <c>FALSE</c>, you won't receive notifications.
+        /// The alarm automatically changes to the <c>NORMAL</c> state when the input property
+        /// value returns to the specified range.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

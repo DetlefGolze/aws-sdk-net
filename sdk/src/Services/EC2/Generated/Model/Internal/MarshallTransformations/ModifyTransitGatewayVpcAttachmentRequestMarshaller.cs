@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -80,6 +81,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                     if(publicRequest.Options.IsSetIpv6Support())
                     {
                         request.Parameters.Add("Options" + "." + "Ipv6Support", StringUtils.FromString(publicRequest.Options.Ipv6Support));
+                    }
+                    if(publicRequest.Options.IsSetSecurityGroupReferencingSupport())
+                    {
+                        request.Parameters.Add("Options" + "." + "SecurityGroupReferencingSupport", StringUtils.FromString(publicRequest.Options.SecurityGroupReferencingSupport));
                     }
                 }
                 if(publicRequest.IsSetRemoveSubnetIds())

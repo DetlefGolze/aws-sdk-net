@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property BuildBatch. 
         /// <para>
-        /// A <code>BuildBatch</code> object that contains information about the batch build.
+        /// A <c>BuildBatch</c> object that contains information about the batch build.
         /// </para>
         /// </summary>
         public BuildBatch BuildBatch

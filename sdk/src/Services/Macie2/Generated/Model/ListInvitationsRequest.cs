@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
     /// Container for the parameters to the ListInvitations operation.
-    /// Retrieves information about the Amazon Macie membership invitations that were received
+    /// Retrieves information about Amazon Macie membership invitations that were received
     /// by an account.
     /// </summary>
     public partial class ListInvitationsRequest : AmazonMacie2Request

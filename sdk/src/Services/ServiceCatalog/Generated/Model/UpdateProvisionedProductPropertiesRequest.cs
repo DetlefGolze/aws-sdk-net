@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.ServiceCatalog.Model
         private string _acceptLanguage;
         private string _idempotencyToken;
         private string _provisionedProductId;
-        private Dictionary<string, string> _provisionedProductProperties = new Dictionary<string, string>();
+        private Dictionary<string, string> _provisionedProductProperties = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AcceptLanguage. 
@@ -46,11 +47,11 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>jp</code> - Japanese
+        ///  <c>jp</c> - Japanese
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>zh</code> - Chinese
+        ///  <c>zh</c> - Chinese
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -112,27 +113,27 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  
         /// <para>
-        /// The <code>LAUNCH_ROLE</code> key accepts role ARNs. This key allows an administrator
-        /// to call <code>UpdateProvisionedProductProperties</code> to update the launch role
-        /// that is associated with a provisioned product. This role is used when an end user
-        /// calls a provisioning operation such as <code>UpdateProvisionedProduct</code>, <code>TerminateProvisionedProduct</code>,
-        /// or <code>ExecuteProvisionedProductServiceAction</code>. Only a role ARN is valid.
-        /// A user ARN is invalid. 
+        /// The <c>LAUNCH_ROLE</c> key accepts role ARNs. This key allows an administrator to
+        /// call <c>UpdateProvisionedProductProperties</c> to update the launch role that is associated
+        /// with a provisioned product. This role is used when an end user calls a provisioning
+        /// operation such as <c>UpdateProvisionedProduct</c>, <c>TerminateProvisionedProduct</c>,
+        /// or <c>ExecuteProvisionedProductServiceAction</c>. Only a role ARN is valid. A user
+        /// ARN is invalid. 
         /// </para>
         ///  
         /// <para>
-        /// The <code>OWNER</code> key accepts user ARNs, IAM role ARNs, and STS assumed-role
-        /// ARNs. The owner is the user that has permission to see, update, terminate, and execute
-        /// service actions in the provisioned product.
+        /// The <c>OWNER</c> key accepts user ARNs, IAM role ARNs, and STS assumed-role ARNs.
+        /// The owner is the user that has permission to see, update, terminate, and execute service
+        /// actions in the provisioned product.
         /// </para>
         ///  
         /// <para>
         /// The administrator can change the owner of a provisioned product to another IAM or
         /// STS entity within the same account. Both end user owners and administrators can see
-        /// ownership history of the provisioned product using the <code>ListRecordHistory</code>
-        /// API. The new owner can describe all past records for the provisioned product using
-        /// the <code>DescribeRecord</code> API. The previous owner can no longer use <code>DescribeRecord</code>,
-        /// but can still see the product's history from when he was an owner using <code>ListRecordHistory</code>.
+        /// ownership history of the provisioned product using the <c>ListRecordHistory</c> API.
+        /// The new owner can describe all past records for the provisioned product using the
+        /// <c>DescribeRecord</c> API. The previous owner can no longer use <c>DescribeRecord</c>,
+        /// but can still see the product's history from when he was an owner using <c>ListRecordHistory</c>.
         /// </para>
         ///  
         /// <para>
@@ -153,7 +154,7 @@ namespace Amazon.ServiceCatalog.Model
         // Check to see if ProvisionedProductProperties property is set
         internal bool IsSetProvisionedProductProperties()
         {
-            return this._provisionedProductProperties != null && this._provisionedProductProperties.Count > 0; 
+            return this._provisionedProductProperties != null && (this._provisionedProductProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

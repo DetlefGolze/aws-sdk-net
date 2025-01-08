@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.CodeStarNotifications
 {
     /// <summary>
-    /// Implementation for accessing CodeStarNotifications
+    /// <para>Implementation for accessing CodeStarNotifications</para>
     ///
     /// This AWS CodeStar Notifications API Reference provides descriptions and usage examples
     /// of the operations and data types for the AWS CodeStar Notifications API. You can use
@@ -1196,11 +1197,11 @@ namespace Amazon.CodeStarNotifications
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

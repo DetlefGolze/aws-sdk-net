@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ARCZonalShift.Model
 {
     /// <summary>
@@ -44,9 +45,10 @@ namespace Amazon.ARCZonalShift.Model
         /// <summary>
         /// Gets and sets the property AwayFrom. 
         /// <para>
-        /// The Availability Zone that traffic is moved away from for a resource when you start
-        /// a zonal shift. Until the zonal shift expires or you cancel it, traffic for the resource
-        /// is instead moved to other Availability Zones in the AWS Region.
+        /// The Availability Zone (for example, <c>use1-az1</c>) that traffic is moved away from
+        /// for a resource when you start a zonal shift. Until the zonal shift expires or you
+        /// cancel it, traffic for the resource is instead moved to other Availability Zones in
+        /// the Amazon Web Services Region.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=20)]
@@ -85,17 +87,18 @@ namespace Amazon.ARCZonalShift.Model
         /// <summary>
         /// Gets and sets the property ExpiryTime. 
         /// <para>
-        /// The expiry time (expiration time) for the zonal shift. A zonal shift is temporary
-        /// and must be set to expire when you start the zonal shift. You can initially set a
-        /// zonal shift to expire in a maximum of three days (72 hours). However, you can update
-        /// a zonal shift to set a new expiration at any time. 
+        /// The expiry time (expiration time) for a customer-initiated zonal shift. A zonal shift
+        /// is temporary and must be set to expire when you start the zonal shift. You can initially
+        /// set a zonal shift to expire in a maximum of three days (72 hours). However, you can
+        /// update a zonal shift to set a new expiration at any time. 
         /// </para>
         ///  
         /// <para>
         /// When you start a zonal shift, you specify how long you want it to be active, which
         /// Route 53 ARC converts to an expiry time (expiration time). You can cancel a zonal
-        /// shift, for example, if you're ready to restore traffic to the Availability Zone. Or
-        /// you can update the zonal shift to specify another length of time to expire in.
+        /// shift when you're ready to restore traffic to the Availability Zone, or just wait
+        /// for it to expire. Or you can update the zonal shift to specify another length of time
+        /// to expire in.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -114,13 +117,13 @@ namespace Amazon.ARCZonalShift.Model
         /// <summary>
         /// Gets and sets the property ResourceIdentifier. 
         /// <para>
-        /// The identifier for the resource to include in a zonal shift. The identifier is the
-        /// Amazon Resource Name (ARN) for the resource.
+        /// The identifier for the resource that Amazon Web Services shifts traffic for. The identifier
+        /// is the Amazon Resource Name (ARN) for the resource.
         /// </para>
         ///  
         /// <para>
-        /// At this time, you can only start a zonal shift for Network Load Balancers and Application
-        /// Load Balancers with cross-zone load balancing turned off.
+        /// At this time, supported resources are Network Load Balancers and Application Load
+        /// Balancers with cross-zone load balancing turned off.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=8, Max=1024)]
@@ -139,7 +142,7 @@ namespace Amazon.ARCZonalShift.Model
         /// <summary>
         /// Gets and sets the property StartTime. 
         /// <para>
-        /// The time (UTC) when the zonal shift is started.
+        /// The time (UTC) when the zonal shift starts.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -162,11 +165,11 @@ namespace Amazon.ARCZonalShift.Model
         /// </para>
         ///  
         /// <para>
-        /// The <code>Status</code> for a zonal shift can have one of the following values:
+        /// The <c>Status</c> for a zonal shift can have one of the following values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>ACTIVE:</b> The zonal shift is started and active.
+        ///  <b>ACTIVE:</b> The zonal shift has been started and active.
         /// </para>
         ///  </li> <li> 
         /// <para>

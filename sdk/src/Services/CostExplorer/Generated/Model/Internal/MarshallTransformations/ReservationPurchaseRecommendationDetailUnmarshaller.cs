@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CostExplorer.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.CostExplorer.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ReservationPurchaseRecommendationDetail Unmarshall(JsonUnmarshallerContext context)
         {
+            ReservationPurchaseRecommendationDetail unmarshalledObject = new ReservationPurchaseRecommendationDetail();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ReservationPurchaseRecommendationDetail unmarshalledObject = new ReservationPurchaseRecommendationDetail();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -74,6 +76,12 @@ namespace Amazon.CostExplorer.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.AverageNormalizedUnitsUsedPerHour = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("AverageNumberOfCapacityUnitsUsedPerHour", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.AverageNumberOfCapacityUnitsUsedPerHour = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("AverageNumberOfInstancesUsedPerHour", targetDepth))
@@ -136,6 +144,12 @@ namespace Amazon.CostExplorer.Model.Internal.MarshallTransformations
                     unmarshalledObject.MaximumNormalizedUnitsUsedPerHour = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("MaximumNumberOfCapacityUnitsUsedPerHour", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.MaximumNumberOfCapacityUnitsUsedPerHour = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("MaximumNumberOfInstancesUsedPerHour", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -146,6 +160,12 @@ namespace Amazon.CostExplorer.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.MinimumNormalizedUnitsUsedPerHour = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("MinimumNumberOfCapacityUnitsUsedPerHour", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.MinimumNumberOfCapacityUnitsUsedPerHour = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("MinimumNumberOfInstancesUsedPerHour", targetDepth))
@@ -160,6 +180,12 @@ namespace Amazon.CostExplorer.Model.Internal.MarshallTransformations
                     unmarshalledObject.RecommendedNormalizedUnitsToPurchase = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("RecommendedNumberOfCapacityUnitsToPurchase", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.RecommendedNumberOfCapacityUnitsToPurchase = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("RecommendedNumberOfInstancesToPurchase", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -172,6 +198,12 @@ namespace Amazon.CostExplorer.Model.Internal.MarshallTransformations
                     unmarshalledObject.RecurringStandardMonthlyCost = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ReservedCapacityDetails", targetDepth))
+                {
+                    var unmarshaller = ReservedCapacityDetailsUnmarshaller.Instance;
+                    unmarshalledObject.ReservedCapacityDetails = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("UpfrontCost", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -179,7 +211,6 @@ namespace Amazon.CostExplorer.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

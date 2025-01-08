@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationInsights.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteLogPattern operation.
-    /// Removes the specified log pattern from a <code>LogPatternSet</code>.
+    /// Removes the specified log pattern from a <c>LogPatternSet</c>.
     /// </summary>
     public partial class DeleteLogPatternRequest : AmazonApplicationInsightsRequest
     {

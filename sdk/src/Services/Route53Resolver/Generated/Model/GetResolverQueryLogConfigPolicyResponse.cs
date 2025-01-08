@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.Route53Resolver.Model
         /// Gets and sets the property ResolverQueryLogConfigPolicy. 
         /// <para>
         /// Information about the query logging policy for the query logging configuration that
-        /// you specified in a <code>GetResolverQueryLogConfigPolicy</code> request.
+        /// you specified in a <c>GetResolverQueryLogConfigPolicy</c> request.
         /// </para>
         /// </summary>
         [AWSProperty(Max=30000)]

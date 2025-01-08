@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GlobalAccelerator.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.GlobalAccelerator.Model
     {
         private string _acceleratorArn;
         private bool? _enabled;
+        private List<string> _ipAddresses = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private IpAddressType _ipAddressType;
         private string _name;
 
@@ -80,6 +82,25 @@ namespace Amazon.GlobalAccelerator.Model
         internal bool IsSetEnabled()
         {
             return this._enabled.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property IpAddresses. 
+        /// <para>
+        /// The IP addresses for an accelerator.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=2)]
+        public List<string> IpAddresses
+        {
+            get { return this._ipAddresses; }
+            set { this._ipAddresses = value; }
+        }
+
+        // Check to see if IpAddresses property is set
+        internal bool IsSetIpAddresses()
+        {
+            return this._ipAddresses != null && (this._ipAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
     /// An object representing a container health check. Health check parameters that are
     /// specified in a container definition override any Docker health checks that exist in
     /// the container image (such as those specified in a parent image or from the image's
-    /// Dockerfile). This configuration maps to the <code>HEALTHCHECK</code> parameter of
-    /// <a href="https://docs.docker.com/engine/reference/run/">docker run</a>.
+    /// Dockerfile). This configuration maps to the <c>HEALTHCHECK</c> parameter of docker
+    /// run.
     /// 
     ///  <note> 
     /// <para>
@@ -55,42 +56,103 @@ namespace Amazon.ECS.Model
     /// </para>
     ///  
     /// <para>
-    /// The following describes the possible <code>healthStatus</code> values for a container:
+    /// Amazon ECS performs health checks on containers with the default that launched the
+    /// container instance or the task.
+    /// </para>
+    ///  
+    /// <para>
+    /// The following describes the possible <c>healthStatus</c> values for a container:
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>HEALTHY</code>-The container health check has passed successfully.
+    ///  <c>HEALTHY</c>-The container health check has passed successfully.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>UNHEALTHY</code>-The container health check has failed.
+    ///  <c>UNHEALTHY</c>-The container health check has failed.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>UNKNOWN</code>-The container health check is being evaluated or there's no
-    /// container health check defined.
+    ///  <c>UNKNOWN</c>-The container health check is being evaluated, there's no container
+    /// health check defined, or Amazon ECS doesn't have the health status of the container.
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// The following describes the possible <code>healthStatus</code> values for a task.
-    /// The container health check status of non-essential containers don't have an effect
-    /// on the health status of a task.
+    /// The following describes the possible <c>healthStatus</c> values based on the container
+    /// health checker status of essential containers in the task with the following priority
+    /// order (high to low):
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>HEALTHY</code>-All essential containers within the task have passed their health
+    ///  <c>UNHEALTHY</c>-One or more essential containers have failed their health check.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <c>UNKNOWN</c>-Any essential container running within the task is in an <c>UNKNOWN</c>
+    /// state and no other essential containers have an <c>UNHEALTHY</c> state.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <c>HEALTHY</c>-All essential containers within the task have passed their health
     /// checks.
     /// </para>
-    ///  </li> <li> 
+    ///  </li> </ul> 
     /// <para>
-    ///  <code>UNHEALTHY</code>-One or more essential containers have failed their health
-    /// check.
+    /// Consider the following task health example with 2 containers.
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    /// If Container1 is <c>UNHEALTHY</c> and Container2 is <c>UNKNOWN</c>, the task health
+    /// is <c>UNHEALTHY</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>UNKNOWN</code>-The essential containers within the task are still having their
-    /// health checks evaluated, there are only nonessential containers with health checks
-    /// defined, or there are no container health checks defined.
+    /// If Container1 is <c>UNHEALTHY</c> and Container2 is <c>HEALTHY</c>, the task health
+    /// is <c>UNHEALTHY</c>.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// If Container1 is <c>HEALTHY</c> and Container2 is <c>UNKNOWN</c>, the task health
+    /// is <c>UNKNOWN</c>.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// If Container1 is <c>HEALTHY</c> and Container2 is <c>HEALTHY</c>, the task health
+    /// is <c>HEALTHY</c>.
+    /// </para>
+    ///  </li> </ul> 
+    /// <para>
+    /// Consider the following task health example with 3 containers.
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    /// If Container1 is <c>UNHEALTHY</c> and Container2 is <c>UNKNOWN</c>, and Container3
+    /// is <c>UNKNOWN</c>, the task health is <c>UNHEALTHY</c>.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// If Container1 is <c>UNHEALTHY</c> and Container2 is <c>UNKNOWN</c>, and Container3
+    /// is <c>HEALTHY</c>, the task health is <c>UNHEALTHY</c>.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// If Container1 is <c>UNHEALTHY</c> and Container2 is <c>HEALTHY</c>, and Container3
+    /// is <c>HEALTHY</c>, the task health is <c>UNHEALTHY</c>.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// If Container1 is <c>HEALTHY</c> and Container2 is <c>UNKNOWN</c>, and Container3 is
+    /// <c>HEALTHY</c>, the task health is <c>UNKNOWN</c>.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// If Container1 is <c>HEALTHY</c> and Container2 is <c>UNKNOWN</c>, and Container3 is
+    /// <c>UNKNOWN</c>, the task health is <c>UNKNOWN</c>.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// If Container1 is <c>HEALTHY</c> and Container2 is <c>HEALTHY</c>, and Container3 is
+    /// <c>HEALTHY</c>, the task health is <c>HEALTHY</c>.
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -105,24 +167,24 @@ namespace Amazon.ECS.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// When the Amazon ECS agent cannot connect to the Amazon ECS service, the service reports
-    /// the container as <code>UNHEALTHY</code>. 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// The health check statuses are the "last heard from" response from the Amazon ECS agent.
+    /// If the Amazon ECS container agent becomes disconnected from the Amazon ECS service,
+    /// this won't cause a container to transition to an <c>UNHEALTHY</c> status. This is
+    /// by design, to ensure that containers remain running during agent restarts or temporary
+    /// unavailability. The health check status is the "last heard from" response from the
+    /// Amazon ECS agent, so if the container was considered <c>HEALTHY</c> prior to the disconnect,
+    /// that status will remain until the agent reconnects and another health check occurs.
     /// There are no assumptions made about the status of the container health checks.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Container health checks require version 1.17.0 or greater of the Amazon ECS container
-    /// agent. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html">Updating
+    /// Container health checks require version <c>1.17.0</c> or greater of the Amazon ECS
+    /// container agent. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html">Updating
     /// the Amazon ECS container agent</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>
     /// Container health checks are supported for Fargate tasks if you're using platform version
-    /// <code>1.1.0</code> or greater. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html">Fargate
+    /// <c>1.1.0</c> or greater. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html">Fargate
     /// platform versions</a>.
     /// </para>
     ///  </li> <li> 
@@ -134,7 +196,7 @@ namespace Amazon.ECS.Model
     /// </summary>
     public partial class HealthCheck
     {
-        private List<string> _command = new List<string>();
+        private List<string> _command = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _interval;
         private int? _retries;
         private int? _startPeriod;
@@ -144,9 +206,9 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property Command. 
         /// <para>
         /// A string array representing the command that the container runs to determine if it
-        /// is healthy. The string array must start with <code>CMD</code> to run the command arguments
-        /// directly, or <code>CMD-SHELL</code> to run the command with the container's default
-        /// shell. 
+        /// is healthy. The string array must start with <c>CMD</c> to run the command arguments
+        /// directly, or <c>CMD-SHELL</c> to run the command with the container's default shell.
+        /// 
         /// </para>
         ///  
         /// <para>
@@ -155,7 +217,7 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>[ "CMD-SHELL", "curl -f http://localhost/ || exit 1" ]</code> 
+        ///  <c>[ "CMD-SHELL", "curl -f http://localhost/ || exit 1" ]</c> 
         /// </para>
         ///  
         /// <para>
@@ -164,14 +226,12 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code> CMD-SHELL, curl -f http://localhost/ || exit 1</code> 
+        ///  <c> CMD-SHELL, curl -f http://localhost/ || exit 1</c> 
         /// </para>
         ///  
         /// <para>
         /// An exit code of 0 indicates success, and non-zero exit code indicates failure. For
-        /// more information, see <code>HealthCheck</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a>.
+        /// more information, see <c>HealthCheck</c> in the docker container create command.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -184,7 +244,7 @@ namespace Amazon.ECS.Model
         // Check to see if Command property is set
         internal bool IsSetCommand()
         {
-            return this._command != null && this._command.Count > 0; 
+            return this._command != null && (this._command.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -230,13 +290,12 @@ namespace Amazon.ECS.Model
         /// <para>
         /// The optional grace period to provide containers time to bootstrap before failed health
         /// checks count towards the maximum number of retries. You can specify between 0 and
-        /// 300 seconds. By default, the <code>startPeriod</code> is off.
+        /// 300 seconds. By default, the <c>startPeriod</c> is off.
         /// </para>
         ///  <note> 
         /// <para>
-        /// If a health check succeeds within the <code>startPeriod</code>, then the container
-        /// is considered healthy and any subsequent failures count toward the maximum number
-        /// of retries.
+        /// If a health check succeeds within the <c>startPeriod</c>, then the container is considered
+        /// healthy and any subsequent failures count toward the maximum number of retries.
         /// </para>
         ///  </note>
         /// </summary>

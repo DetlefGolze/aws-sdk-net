@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
@@ -46,13 +47,13 @@ namespace Amazon.OpsWorks.Model
     /// </summary>
     public partial class DescribeAppsRequest : AmazonOpsWorksRequest
     {
-        private List<string> _appIds = new List<string>();
+        private List<string> _appIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _stackId;
 
         /// <summary>
         /// Gets and sets the property AppIds. 
         /// <para>
-        /// An array of app IDs for the apps to be described. If you use this parameter, <code>DescribeApps</code>
+        /// An array of app IDs for the apps to be described. If you use this parameter, <c>DescribeApps</c>
         /// returns a description of the specified apps. Otherwise, it returns a description of
         /// every app.
         /// </para>
@@ -66,13 +67,13 @@ namespace Amazon.OpsWorks.Model
         // Check to see if AppIds property is set
         internal bool IsSetAppIds()
         {
-            return this._appIds != null && this._appIds.Count > 0; 
+            return this._appIds != null && (this._appIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property StackId. 
         /// <para>
-        /// The app stack ID. If you use this parameter, <code>DescribeApps</code> returns a description
+        /// The app stack ID. If you use this parameter, <c>DescribeApps</c> returns a description
         /// of the apps in the specified stack.
         /// </para>
         /// </summary>

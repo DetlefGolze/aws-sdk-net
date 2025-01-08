@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
     /// Container for the parameters to the ListMLTransforms operation.
     /// Retrieves a sortable, filterable list of existing Glue machine learning transforms
     /// in this Amazon Web Services account, or the resources with the specified tag. This
-    /// operation takes the optional <code>Tags</code> field, which you can use as a filter
-    /// of the responses so that tagged resources can be retrieved as a group. If you choose
-    /// to use tag filtering, only resources with the tags are retrieved.
+    /// operation takes the optional <c>Tags</c> field, which you can use as a filter of the
+    /// responses so that tagged resources can be retrieved as a group. If you choose to use
+    /// tag filtering, only resources with the tags are retrieved.
     /// </summary>
     public partial class ListMLTransformsRequest : AmazonGlueRequest
     {
@@ -42,12 +43,12 @@ namespace Amazon.Glue.Model
         private int? _maxResults;
         private string _nextToken;
         private TransformSortCriteria _sort;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Filter. 
         /// <para>
-        /// A <code>TransformFilterCriteria</code> used to filter the machine learning transforms.
+        /// A <c>TransformFilterCriteria</c> used to filter the machine learning transforms.
         /// </para>
         /// </summary>
         public TransformFilterCriteria Filter
@@ -102,7 +103,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property Sort. 
         /// <para>
-        /// A <code>TransformSortCriteria</code> used to sort the machine learning transforms.
+        /// A <c>TransformSortCriteria</c> used to sort the machine learning transforms.
         /// </para>
         /// </summary>
         public TransformSortCriteria Sort
@@ -133,7 +134,7 @@ namespace Amazon.Glue.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

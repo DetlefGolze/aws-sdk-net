@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// Configuration to control how SageMaker captures inference data.
+    /// Configuration to control how SageMaker AI captures inference data.
     /// </summary>
     public partial class DataCaptureConfig
     {
         private CaptureContentTypeHeader _captureContentTypeHeader;
-        private List<CaptureOption> _captureOptions = new List<CaptureOption>();
+        private List<CaptureOption> _captureOptions = AWSConfigs.InitializeCollections ? new List<CaptureOption>() : null;
         private string _destinationS3Uri;
         private bool? _enableCapture;
         private int? _initialSamplingPercentage;
@@ -44,7 +45,7 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property CaptureContentTypeHeader. 
         /// <para>
         /// Configuration specifying how to treat different headers. If no headers are specified
-        /// SageMaker will by default base64 encode when capturing the data.
+        /// SageMaker AI will by default base64 encode when capturing the data.
         /// </para>
         /// </summary>
         public CaptureContentTypeHeader CaptureContentTypeHeader
@@ -66,7 +67,7 @@ namespace Amazon.SageMaker.Model
         /// input, only output, or both
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=2)]
+        [AWSProperty(Required=true, Min=1, Max=32)]
         public List<CaptureOption> CaptureOptions
         {
             get { return this._captureOptions; }
@@ -76,7 +77,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if CaptureOptions property is set
         internal bool IsSetCaptureOptions()
         {
-            return this._captureOptions != null && this._captureOptions.Count > 0; 
+            return this._captureOptions != null && (this._captureOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -119,8 +120,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property InitialSamplingPercentage. 
         /// <para>
-        /// The percentage of requests SageMaker will capture. A lower value is recommended for
-        /// Endpoints with high traffic.
+        /// The percentage of requests SageMaker AI will capture. A lower value is recommended
+        /// for Endpoints with high traffic.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=100)]
@@ -139,8 +140,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of an Key Management Service key that SageMaker uses
-        /// to encrypt the captured data at rest using Amazon S3 server-side encryption.
+        /// The Amazon Resource Name (ARN) of an Key Management Service key that SageMaker AI
+        /// uses to encrypt the captured data at rest using Amazon S3 server-side encryption.
         /// </para>
         ///  
         /// <para>
@@ -148,21 +149,20 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> 
+        /// Key ID: <c>1234abcd-12ab-34cd-56ef-1234567890ab</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Key ARN: <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
+        /// Key ARN: <c>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</c>
         /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Alias name: <code>alias/ExampleAlias</code> 
+        /// Alias name: <c>alias/ExampleAlias</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Alias name ARN: <code>arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias</code>
-        /// 
+        /// Alias name ARN: <c>arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

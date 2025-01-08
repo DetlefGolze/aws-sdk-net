@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -35,14 +36,14 @@ namespace Amazon.LexModelsV2.Model
     {
         private SlotShape _shape;
         private SlotValue _value;
-        private List<SlotValueOverride> _values = new List<SlotValueOverride>();
+        private List<SlotValueOverride> _values = AWSConfigs.InitializeCollections ? new List<SlotValueOverride>() : null;
 
         /// <summary>
         /// Gets and sets the property Shape. 
         /// <para>
-        /// When the shape value is <code>List</code>, it indicates that the <code>values</code>
-        /// field contains a list of slot values. When the value is <code>Scalar</code>, it indicates
-        /// that the <code>value</code> field contains a single value.
+        /// When the shape value is <c>List</c>, it indicates that the <c>values</c> field contains
+        /// a list of slot values. When the value is <c>Scalar</c>, it indicates that the <c>value</c>
+        /// field contains a single value.
         /// </para>
         /// </summary>
         public SlotShape Shape
@@ -91,7 +92,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

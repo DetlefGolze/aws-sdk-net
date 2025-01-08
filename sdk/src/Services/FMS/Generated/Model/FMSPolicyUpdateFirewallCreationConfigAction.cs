@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FMS.Model
 {
     /// <summary>
     /// Contains information about the actions that you can take to remediate scope violations
-    /// caused by your policy's <code>FirewallCreationConfig</code>. <code>FirewallCreationConfig</code>
+    /// caused by your policy's <c>FirewallCreationConfig</c>. <c>FirewallCreationConfig</c>
     /// is an optional configuration that you can use to choose which Availability Zones Firewall
     /// Manager creates Network Firewall endpoints in.
     /// </summary>
@@ -61,12 +62,11 @@ namespace Amazon.FMS.Model
         /// <summary>
         /// Gets and sets the property FirewallCreationConfig. 
         /// <para>
-        /// A <code>FirewallCreationConfig</code> that you can copy into your current policy's
-        /// <a href="https://docs.aws.amazon.com/fms/2018-01-01/APIReference/API_SecurityServicePolicyData.html">SecurityServiceData</a>
+        /// A <c>FirewallCreationConfig</c> that you can copy into your current policy's <a href="https://docs.aws.amazon.com/fms/2018-01-01/APIReference/API_SecurityServicePolicyData.html">SecurityServiceData</a>
         /// in order to remedy scope violations.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=10000)]
+        [AWSProperty(Min=1, Max=30000)]
         public string FirewallCreationConfig
         {
             get { return this._firewallCreationConfig; }

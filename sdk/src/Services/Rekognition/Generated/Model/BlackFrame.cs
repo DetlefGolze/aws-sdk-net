@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -84,8 +85,8 @@ namespace Amazon.Rekognition.Model
         ///  
         /// <para>
         /// The default value is 99, which means at least 99% of all pixels in the frame are black
-        /// pixels as per the <code>MaxPixelThreshold</code> set. You can reduce this value to
-        /// allow more noise on the black frame.
+        /// pixels as per the <c>MaxPixelThreshold</c> set. You can reduce this value to allow
+        /// more noise on the black frame.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]

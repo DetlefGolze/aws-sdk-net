@@ -14,6 +14,7 @@
  */
 
 using Amazon.Util;
+using Amazon.Util.Internal;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -25,11 +26,12 @@ namespace Amazon.Runtime
     /// When running in an ECS container and AWS_CONTAINER_CREDENTIALS_RELATIVE_URI is set,
     /// use the given end point to retrieve the credentials.
     /// </summary>
+    [Obsolete("ECSTaskCredentials only supports Amazon ECS, newer versions of the SDK use the GenericContainerCredentials provider (which also supports EKS Pod Identities)")]
     public class ECSTaskCredentials : URIBasedRefreshingCredentialHelper
     {
         /// <summary>
         /// These constants should not be consumed by client code.  They are only relevant
-        /// in the context of ECS container and, especially, AWS_CONTAINER_CREDENTIALS_RELATIVE_URI, AWS_CONTAINER_CREDENTIALS_FULL_URI & AWS_CONTAINER_AUTHORIZATION_TOKEN
+        /// in the context of ECS container and, especially, AWS_CONTAINER_CREDENTIALS_RELATIVE_URI, AWS_CONTAINER_CREDENTIALS_FULL_URI &amp; AWS_CONTAINER_AUTHORIZATION_TOKEN
         /// environment variable should not be overriden by the client code.
         /// </summary>
         public const string ContainerCredentialsURIEnvVariable = "AWS_CONTAINER_CREDENTIALS_RELATIVE_URI";
@@ -90,7 +92,7 @@ namespace Amazon.Runtime
                     // If this variable is set the SDK will set the Authorization header on the HTTP request with the environment variable's value.
                     var headers = CreateAuthorizationHeader();
 
-                    credentials = GetObjectFromResponse<SecurityCredentials>(ecsEndpointUri, Proxy, headers);
+                    credentials = GetObjectFromResponse<SecurityCredentials, SecurityCredentialsJsonSerializerContexts>(ecsEndpointUri, Proxy, headers);
                     if (credentials != null)
                     {
                         break;

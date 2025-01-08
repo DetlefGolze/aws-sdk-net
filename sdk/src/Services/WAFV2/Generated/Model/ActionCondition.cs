@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.WAFV2.Model
         ///  
         /// <para>
         /// For rule groups, this is either the configured rule action setting, or if you've applied
-        /// a rule action override to the rule, it's the override action. The value <code>EXCLUDED_AS_COUNT</code>
+        /// a rule action override to the rule, it's the override action. The value <c>EXCLUDED_AS_COUNT</c>
         /// matches on excluded rules and also on rules that have a rule action override of Count.
         /// 
         /// </para>

@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the iottwinmaker-2021-11-29.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTTwinMaker.Model
 {
     /// <summary>
@@ -41,6 +42,11 @@ namespace Amazon.IoTTwinMaker.Model
         IGetPropertyValueHistoryPaginator GetPropertyValueHistory(GetPropertyValueHistoryRequest request);
 
         /// <summary>
+        /// Paginator for ListComponents operation
+        ///</summary>
+        IListComponentsPaginator ListComponents(ListComponentsRequest request);
+
+        /// <summary>
         /// Paginator for ListComponentTypes operation
         ///</summary>
         IListComponentTypesPaginator ListComponentTypes(ListComponentTypesRequest request);
@@ -49,6 +55,16 @@ namespace Amazon.IoTTwinMaker.Model
         /// Paginator for ListEntities operation
         ///</summary>
         IListEntitiesPaginator ListEntities(ListEntitiesRequest request);
+
+        /// <summary>
+        /// Paginator for ListMetadataTransferJobs operation
+        ///</summary>
+        IListMetadataTransferJobsPaginator ListMetadataTransferJobs(ListMetadataTransferJobsRequest request);
+
+        /// <summary>
+        /// Paginator for ListProperties operation
+        ///</summary>
+        IListPropertiesPaginator ListProperties(ListPropertiesRequest request);
 
         /// <summary>
         /// Paginator for ListScenes operation

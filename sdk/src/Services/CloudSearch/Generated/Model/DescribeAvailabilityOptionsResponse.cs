@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// The result of a <code>DescribeAvailabilityOptions</code> request. Indicates whether
-    /// or not the Multi-AZ option is enabled for the domain specified in the request.
+    /// The result of a <c>DescribeAvailabilityOptions</c> request. Indicates whether or not
+    /// the Multi-AZ option is enabled for the domain specified in the request.
     /// </summary>
     public partial class DescribeAvailabilityOptionsResponse : AmazonWebServiceResponse
     {

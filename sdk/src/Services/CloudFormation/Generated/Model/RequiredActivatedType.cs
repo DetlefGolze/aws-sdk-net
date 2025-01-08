@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.CloudFormation.Model
     /// 
     ///  
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/modules.html#module-enabling">Activating
-    /// public modules for use in your account</a> in the <i>CloudFormation User Guide</i>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/module-versioning.html#requirements-for-modules">Requirements
+    /// for activating third-party public modules</a> in the <i>CloudFormation User Guide</i>.
     /// </para>
     /// </summary>
     public partial class RequiredActivatedType
     {
         private string _originalTypeName;
         private string _publisherId;
-        private List<int> _supportedMajorVersions = new List<int>();
+        private List<int> _supportedMajorVersions = AWSConfigs.InitializeCollections ? new List<int>() : null;
         private string _typeNameAlias;
 
         /// <summary>
@@ -52,10 +53,10 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// If you specified a <code>TypeNameAlias</code> when enabling the extension in this
-        /// account and Region, CloudFormation treats that alias as the extension's type name
-        /// within the account and Region, not the type name of the public extension. For more
-        /// information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-public.html#registry-public-enable-alias">Specifying
+        /// If you specified a <c>TypeNameAlias</c> when enabling the extension in this account
+        /// and Region, CloudFormation treats that alias as the extension's type name within the
+        /// account and Region, not the type name of the public extension. For more information,
+        /// see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-public.html#registry-public-enable-alias">Use
         /// aliases to refer to extensions</a> in the <i>CloudFormation User Guide</i>.
         /// </para>
         /// </summary>
@@ -106,7 +107,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if SupportedMajorVersions property is set
         internal bool IsSetSupportedMajorVersions()
         {
-            return this._supportedMajorVersions != null && this._supportedMajorVersions.Count > 0; 
+            return this._supportedMajorVersions != null && (this._supportedMajorVersions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

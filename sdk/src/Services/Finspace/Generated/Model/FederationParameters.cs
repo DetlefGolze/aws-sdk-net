@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Finspace.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Finspace.Model
     public partial class FederationParameters
     {
         private string _applicationCallBackURL;
-        private Dictionary<string, string> _attributeMap = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributeMap = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _federationProviderName;
         private string _federationurn;
         private string _samlMetadataDocument;
@@ -63,9 +64,9 @@ namespace Amazon.Finspace.Model
         /// <summary>
         /// Gets and sets the property AttributeMap. 
         /// <para>
-        /// SAML attribute name and value. The name must always be <code>Email</code> and the
-        /// value should be set to the attribute definition in which user email is set. For example,
-        /// name would be <code>Email</code> and value <code>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress</code>.
+        /// SAML attribute name and value. The name must always be <c>Email</c> and the value
+        /// should be set to the attribute definition in which user email is set. For example,
+        /// name would be <c>Email</c> and value <c>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress</c>.
         /// Please check your SAML 2.0 compliant identity provider (IdP) documentation for details.
         /// </para>
         /// </summary>
@@ -78,7 +79,7 @@ namespace Amazon.Finspace.Model
         // Check to see if AttributeMap property is set
         internal bool IsSetAttributeMap()
         {
-            return this._attributeMap != null && this._attributeMap.Count > 0; 
+            return this._attributeMap != null && (this._attributeMap.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

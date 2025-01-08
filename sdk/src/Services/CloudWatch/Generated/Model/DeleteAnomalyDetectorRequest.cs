@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatch.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.CloudWatch.Model
     /// </summary>
     public partial class DeleteAnomalyDetectorRequest : AmazonCloudWatchRequest
     {
-        private List<Dimension> _dimensions = new List<Dimension>();
+        private List<Dimension> _dimensions = AWSConfigs.InitializeCollections ? new List<Dimension>() : null;
         private MetricMathAnomalyDetector _metricMathAnomalyDetector;
         private string _metricName;
         private string _awsNamespace;
@@ -60,7 +61,7 @@ namespace Amazon.CloudWatch.Model
         // Check to see if Dimensions property is set
         internal bool IsSetDimensions()
         {
-            return this._dimensions != null && this._dimensions.Count > 0; 
+            return this._dimensions != null && (this._dimensions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -70,33 +71,33 @@ namespace Amazon.CloudWatch.Model
         /// </para>
         ///  
         /// <para>
-        /// When using <code>MetricMathAnomalyDetector</code>, you cannot include following parameters
+        /// When using <c>MetricMathAnomalyDetector</c>, you cannot include following parameters
         /// in the same operation:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Dimensions</code>,
+        ///  <c>Dimensions</c>,
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MetricName</code> 
+        ///  <c>MetricName</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Namespace</code> 
+        ///  <c>Namespace</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Stat</code> 
+        ///  <c>Stat</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// the <code>SingleMetricAnomalyDetector</code> parameters of <code>DeleteAnomalyDetectorInput</code>
+        /// the <c>SingleMetricAnomalyDetector</c> parameters of <c>DeleteAnomalyDetectorInput</c>
         /// 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Instead, specify the metric math anomaly detector attributes as part of the <code>MetricMathAnomalyDetector</code>
+        /// Instead, specify the metric math anomaly detector attributes as part of the <c>MetricMathAnomalyDetector</c>
         /// property.
         /// </para>
         /// </summary>
@@ -159,33 +160,33 @@ namespace Amazon.CloudWatch.Model
         /// </para>
         ///  
         /// <para>
-        /// When using <code>SingleMetricAnomalyDetector</code>, you cannot include the following
-        /// parameters in the same operation:
+        /// When using <c>SingleMetricAnomalyDetector</c>, you cannot include the following parameters
+        /// in the same operation:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Dimensions</code>,
+        ///  <c>Dimensions</c>,
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MetricName</code> 
+        ///  <c>MetricName</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Namespace</code> 
+        ///  <c>Namespace</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Stat</code> 
+        ///  <c>Stat</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// the <code>MetricMathAnomalyDetector</code> parameters of <code>DeleteAnomalyDetectorInput</code>
+        /// the <c>MetricMathAnomalyDetector</c> parameters of <c>DeleteAnomalyDetectorInput</c>
         /// 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Instead, specify the single metric anomaly detector attributes as part of the <code>SingleMetricAnomalyDetector</code>
+        /// Instead, specify the single metric anomaly detector attributes as part of the <c>SingleMetricAnomalyDetector</c>
         /// property.
         /// </para>
         /// </summary>

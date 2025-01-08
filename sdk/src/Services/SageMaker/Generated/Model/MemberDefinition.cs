@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -59,9 +60,9 @@ namespace Amazon.SageMaker.Model
         /// <para>
         /// A list user groups that exist in your OIDC Identity Provider (IdP). One to ten groups
         /// can be used to create a single private work team. When you add a user group to the
-        /// list of <code>Groups</code>, you can add that user group to one or more private work
-        /// teams. If you add a user group to a private work team, all workers in that user group
-        /// are added to the work team.
+        /// list of <c>Groups</c>, you can add that user group to one or more private work teams.
+        /// If you add a user group to a private work team, all workers in that user group are
+        /// added to the work team.
         /// </para>
         /// </summary>
         public OidcMemberDefinition OidcMemberDefinition

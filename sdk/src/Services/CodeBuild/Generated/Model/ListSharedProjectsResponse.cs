@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -34,17 +35,17 @@ namespace Amazon.CodeBuild.Model
     public partial class ListSharedProjectsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<string> _projects = new List<string>();
+        private List<string> _projects = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         ///  During a previous call, the maximum number of items that can be returned is the value
-        /// specified in <code>maxResults</code>. If there more items in the list, then a unique
-        /// string called a <i>nextToken</i> is returned. To get the next batch of items in the
-        /// list, call this operation again, adding the next token to the call. To get all of
-        /// the items in the list, keep calling this operation with each subsequent next token
-        /// that is returned, until no more next tokens are returned. 
+        /// specified in <c>maxResults</c>. If there more items in the list, then a unique string
+        /// called a <i>nextToken</i> is returned. To get the next batch of items in the list,
+        /// call this operation again, adding the next token to the call. To get all of the items
+        /// in the list, keep calling this operation with each subsequent next token that is returned,
+        /// until no more next tokens are returned. 
         /// </para>
         /// </summary>
         public string NextToken
@@ -76,7 +77,7 @@ namespace Amazon.CodeBuild.Model
         // Check to see if Projects property is set
         internal bool IsSetProjects()
         {
-            return this._projects != null && this._projects.Count > 0; 
+            return this._projects != null && (this._projects.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

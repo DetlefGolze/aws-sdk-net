@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -38,25 +39,57 @@ namespace Amazon.WAFV2.Model
     ///  
     /// <para>
     /// For Amazon CloudFront, don't use this call. Instead, use your CloudFront distribution
-    /// configuration. To associate a web ACL, in the CloudFront call <code>UpdateDistribution</code>,
+    /// configuration. To associate a web ACL, in the CloudFront call <c>UpdateDistribution</c>,
     /// set the web ACL ID to the Amazon Resource Name (ARN) of the web ACL. For information,
     /// see <a href="https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html">UpdateDistribution</a>
     /// in the <i>Amazon CloudFront Developer Guide</i>. 
     /// </para>
     ///  
     /// <para>
-    /// When you make changes to web ACLs or web ACL components, like rules and rule groups,
-    /// WAF propagates the changes everywhere that the web ACL and its components are stored
-    /// and used. Your changes are applied within seconds, but there might be a brief period
-    /// of inconsistency when the changes have arrived in some places and not in others. So,
-    /// for example, if you change a rule action setting, the action might be the old action
-    /// in one area and the new action in another area. Or if you add an IP address to an
-    /// IP set used in a blocking rule, the new address might briefly be blocked in one area
-    /// while still allowed in another. This temporary inconsistency can occur when you first
-    /// associate a web ACL with an Amazon Web Services resource and when you change a web
-    /// ACL that is already associated with a resource. Generally, any inconsistencies of
-    /// this type last only a few seconds.
+    ///  <b>Required permissions for customer-managed IAM policies</b> 
     /// </para>
+    ///  
+    /// <para>
+    /// This call requires permissions that are specific to the protected resource type. For
+    /// details, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/security_iam_service-with-iam.html#security_iam_action-AssociateWebACL">Permissions
+    /// for AssociateWebACL</a> in the <i>WAF Developer Guide</i>. 
+    /// </para>
+    ///  
+    /// <para>
+    ///  <b>Temporary inconsistencies during updates</b> 
+    /// </para>
+    ///  
+    /// <para>
+    /// When you create or change a web ACL or other WAF resources, the changes take a small
+    /// amount of time to propagate to all areas where the resources are stored. The propagation
+    /// time can be from a few seconds to a number of minutes. 
+    /// </para>
+    ///  
+    /// <para>
+    /// The following are examples of the temporary inconsistencies that you might notice
+    /// during change propagation: 
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    /// After you create a web ACL, if you try to associate it with a resource, you might
+    /// get an exception indicating that the web ACL is unavailable. 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// After you add a rule group to a web ACL, the new rule group rules might be in effect
+    /// in one area where the web ACL is used and not in another.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// After you change a rule action setting, you might see the old action in some places
+    /// and the new action in others. 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// After you add an IP address to an IP set that is in use in a blocking rule, the new
+    /// address might be blocked in one area while still allowed in another.
+    /// </para>
+    ///  </li> </ul>
     /// </summary>
     public partial class AssociateWebACLRequest : AmazonWAFV2Request
     {
@@ -74,33 +107,33 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For an Application Load Balancer: <code>arn:<i>partition</i>:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/app/<i>load-balancer-name</i>/<i>load-balancer-id</i>
-        /// </code> 
+        /// For an Application Load Balancer: <c>arn:<i>partition</i>:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/app/<i>load-balancer-name</i>/<i>load-balancer-id</i>
+        /// </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For an Amazon API Gateway REST API: <code>arn:<i>partition</i>:apigateway:<i>region</i>::/restapis/<i>api-id</i>/stages/<i>stage-name</i>
-        /// </code> 
+        /// For an Amazon API Gateway REST API: <c>arn:<i>partition</i>:apigateway:<i>region</i>::/restapis/<i>api-id</i>/stages/<i>stage-name</i>
+        /// </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For an AppSync GraphQL API: <code>arn:<i>partition</i>:appsync:<i>region</i>:<i>account-id</i>:apis/<i>GraphQLApiId</i>
-        /// </code> 
+        /// For an AppSync GraphQL API: <c>arn:<i>partition</i>:appsync:<i>region</i>:<i>account-id</i>:apis/<i>GraphQLApiId</i>
+        /// </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For an Amazon Cognito user pool: <code>arn:<i>partition</i>:cognito-idp:<i>region</i>:<i>account-id</i>:userpool/<i>user-pool-id</i>
-        /// </code> 
+        /// For an Amazon Cognito user pool: <c>arn:<i>partition</i>:cognito-idp:<i>region</i>:<i>account-id</i>:userpool/<i>user-pool-id</i>
+        /// </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For an App Runner service: <code>arn:<i>partition</i>:apprunner:<i>region</i>:<i>account-id</i>:service/<i>apprunner-service-name</i>/<i>apprunner-service-id</i>
-        /// </code> 
+        /// For an App Runner service: <c>arn:<i>partition</i>:apprunner:<i>region</i>:<i>account-id</i>:service/<i>apprunner-service-name</i>/<i>apprunner-service-id</i>
+        /// </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For an Amazon Web Services Verified Access instance: <code>arn:<i>partition</i>:ec2:<i>region</i>:<i>account-id</i>:verified-access-instance/<i>instance-id</i>
-        /// </code> 
+        /// For an Amazon Web Services Verified Access instance: <c>arn:<i>partition</i>:ec2:<i>region</i>:<i>account-id</i>:verified-access-instance/<i>instance-id</i>
+        /// </c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

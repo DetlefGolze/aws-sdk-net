@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentity.Model
 {
     /// <summary>
@@ -80,6 +81,7 @@ namespace Amazon.CognitoIdentity.Model
         /// The Secret Access Key portion of the credentials
         /// </para>
         /// </summary>
+        [AWSProperty(Sensitive=true)]
         public string SecretKey
         {
             get { return this._secretKey; }

@@ -26,14 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityToken.Model
 {
     /// <summary>
     /// STS is not activated in the requested region for the account that is being asked to
     /// generate credentials. The account administrator must use the IAM console to activate
     /// STS in that region. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html">Activating
-    /// and Deactivating Amazon Web Services STS in an Amazon Web Services Region</a> in the
-    /// <i>IAM User Guide</i>.
+    /// and Deactivating STS in an Amazon Web Services Region</a> in the <i>IAM User Guide</i>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -35,7 +36,9 @@ namespace Amazon.QuickSight.Model
     {
         private DataLabelOptions _dataLabels;
         private ScatterPlotFieldWells _fieldWells;
+        private VisualInteractionOptions _interactions;
         private LegendOptions _legend;
+        private ScatterPlotSortConfiguration _sortConfiguration;
         private TooltipOptions _tooltip;
         private VisualPalette _visualPalette;
         private AxisDisplayOptions _xAxisDisplayOptions;
@@ -80,6 +83,24 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Interactions. 
+        /// <para>
+        /// The general visual interactions setup for a visual.
+        /// </para>
+        /// </summary>
+        public VisualInteractionOptions Interactions
+        {
+            get { return this._interactions; }
+            set { this._interactions = value; }
+        }
+
+        // Check to see if Interactions property is set
+        internal bool IsSetInteractions()
+        {
+            return this._interactions != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Legend. 
         /// <para>
         /// The legend display setup of the visual.
@@ -95,6 +116,24 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetLegend()
         {
             return this._legend != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SortConfiguration. 
+        /// <para>
+        /// The sort configuration of a scatter plot.
+        /// </para>
+        /// </summary>
+        public ScatterPlotSortConfiguration SortConfiguration
+        {
+            get { return this._sortConfiguration; }
+            set { this._sortConfiguration = value; }
+        }
+
+        // Check to see if SortConfiguration property is set
+        internal bool IsSetSortConfiguration()
+        {
+            return this._sortConfiguration != null;
         }
 
         /// <summary>

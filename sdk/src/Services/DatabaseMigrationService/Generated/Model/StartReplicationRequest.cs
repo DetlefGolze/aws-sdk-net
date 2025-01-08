@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -48,8 +49,8 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property CdcStartPosition. 
         /// <para>
         /// Indicates when you want a change data capture (CDC) operation to start. Use either
-        /// <code>CdcStartPosition</code> or <code>CdcStartTime</code> to specify when you want
-        /// a CDC operation to start. Specifying both values results in an error.
+        /// <c>CdcStartPosition</c> or <c>CdcStartTime</c> to specify when you want a CDC operation
+        /// to start. Specifying both values results in an error.
         /// </para>
         ///  
         /// <para>
@@ -71,9 +72,9 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property CdcStartTime. 
         /// <para>
-        /// Indicates the start time for a change data capture (CDC) operation. Use either <code>CdcStartTime</code>
-        /// or <code>CdcStartPosition</code> to specify when you want a CDC operation to start.
-        /// Specifying both values results in an error.
+        /// Indicates the start time for a change data capture (CDC) operation. Use either <c>CdcStartTime</c>
+        /// or <c>CdcStartPosition</c> to specify when you want a CDC operation to start. Specifying
+        /// both values results in an error.
         /// </para>
         /// </summary>
         public DateTime CdcStartTime
@@ -130,6 +131,29 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property StartReplicationType. 
         /// <para>
         /// The replication type.
+        /// </para>
+        ///  
+        /// <para>
+        /// When the replication type is <c>full-load</c> or <c>full-load-and-cdc</c>, the only
+        /// valid value for the first run of the replication is <c>start-replication</c>. This
+        /// option will start the replication.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can also use <a>ReloadTables</a> to reload specific tables that failed during
+        /// replication instead of restarting the replication.
+        /// </para>
+        ///  
+        /// <para>
+        /// The <c>resume-processing</c> option isn't applicable for a full-load replication,
+        /// because you can't resume partially loaded tables during the full load phase.
+        /// </para>
+        ///  
+        /// <para>
+        /// For a <c>full-load-and-cdc</c> replication, DMS migrates table data, and then applies
+        /// data changes that occur on the source. To load all the tables again, and start capturing
+        /// source changes, use <c>reload-target</c>. Otherwise use <c>resume-processing</c>,
+        /// to replicate the changes from the last stop position.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

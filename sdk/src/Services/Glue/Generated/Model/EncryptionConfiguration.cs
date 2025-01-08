@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -34,8 +35,9 @@ namespace Amazon.Glue.Model
     public partial class EncryptionConfiguration
     {
         private CloudWatchEncryption _cloudWatchEncryption;
+        private DataQualityEncryption _dataQualityEncryption;
         private JobBookmarksEncryption _jobBookmarksEncryption;
-        private List<S3Encryption> _s3Encryption = new List<S3Encryption>();
+        private List<S3Encryption> _s3Encryption = AWSConfigs.InitializeCollections ? new List<S3Encryption>() : null;
 
         /// <summary>
         /// Gets and sets the property CloudWatchEncryption. 
@@ -53,6 +55,24 @@ namespace Amazon.Glue.Model
         internal bool IsSetCloudWatchEncryption()
         {
             return this._cloudWatchEncryption != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DataQualityEncryption. 
+        /// <para>
+        /// The encryption configuration for Glue Data Quality assets.
+        /// </para>
+        /// </summary>
+        public DataQualityEncryption DataQualityEncryption
+        {
+            get { return this._dataQualityEncryption; }
+            set { this._dataQualityEncryption = value; }
+        }
+
+        // Check to see if DataQualityEncryption property is set
+        internal bool IsSetDataQualityEncryption()
+        {
+            return this._dataQualityEncryption != null;
         }
 
         /// <summary>
@@ -88,7 +108,7 @@ namespace Amazon.Glue.Model
         // Check to see if S3Encryption property is set
         internal bool IsSetS3Encryption()
         {
-            return this._s3Encryption != null && this._s3Encryption.Count > 0; 
+            return this._s3Encryption != null && (this._s3Encryption.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Backup.Model
     public partial class GetBackupVaultNotificationsResponse : AmazonWebServiceResponse
     {
         private string _backupVaultArn;
-        private List<string> _backupVaultEvents = new List<string>();
+        private List<string> _backupVaultEvents = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _backupVaultName;
         private string _snsTopicArn;
 
@@ -42,7 +43,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property BackupVaultArn. 
         /// <para>
         /// An Amazon Resource Name (ARN) that uniquely identifies a backup vault; for example,
-        /// <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>.
+        /// <c>arn:aws:backup:us-east-1:123456789012:backup-vault:aBackupVault</c>.
         /// </para>
         /// </summary>
         public string BackupVaultArn
@@ -73,7 +74,7 @@ namespace Amazon.Backup.Model
         // Check to see if BackupVaultEvents property is set
         internal bool IsSetBackupVaultEvents()
         {
-            return this._backupVaultEvents != null && this._backupVaultEvents.Count > 0; 
+            return this._backupVaultEvents != null && (this._backupVaultEvents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace Amazon.Backup.Model
         /// <para>
         /// The name of a logical container where backups are stored. Backup vaults are identified
         /// by names that are unique to the account used to create them and the Region where they
-        /// are created. They consist of lowercase letters, numbers, and hyphens.
+        /// are created.
         /// </para>
         /// </summary>
         public string BackupVaultName
@@ -100,7 +101,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property SNSTopicArn. 
         /// <para>
         /// An ARN that uniquely identifies an Amazon Simple Notification Service (Amazon SNS)
-        /// topic; for example, <code>arn:aws:sns:us-west-2:111122223333:MyTopic</code>.
+        /// topic; for example, <c>arn:aws:sns:us-west-2:111122223333:MyTopic</c>.
         /// </para>
         /// </summary>
         public string SNSTopicArn

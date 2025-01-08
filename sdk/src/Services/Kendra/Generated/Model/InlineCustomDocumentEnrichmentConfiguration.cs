@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -67,8 +68,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property DocumentContentDeletion. 
         /// <para>
-        ///  <code>TRUE</code> to delete content if the condition used for the target attribute
-        /// is met.
+        ///  <c>TRUE</c> to delete content if the condition used for the target attribute is met.
         /// </para>
         /// </summary>
         public bool DocumentContentDeletion

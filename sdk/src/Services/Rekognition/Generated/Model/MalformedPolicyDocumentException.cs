@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
-    /// The format of the project policy document that you supplied to <code>PutProjectPolicy</code>
+    /// The format of the project policy document that you supplied to <c>PutProjectPolicy</c>
     /// is incorrect.
     /// </summary>
     #if !NETSTANDARD

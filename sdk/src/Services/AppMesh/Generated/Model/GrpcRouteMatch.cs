@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppMesh.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.AppMesh.Model
     /// </summary>
     public partial class GrpcRouteMatch
     {
-        private List<GrpcRouteMetadata> _metadata = new List<GrpcRouteMetadata>();
+        private List<GrpcRouteMetadata> _metadata = AWSConfigs.InitializeCollections ? new List<GrpcRouteMetadata>() : null;
         private string _methodName;
         private int? _port;
         private string _serviceName;
@@ -54,14 +55,14 @@ namespace Amazon.AppMesh.Model
         // Check to see if Metadata property is set
         internal bool IsSetMetadata()
         {
-            return this._metadata != null && this._metadata.Count > 0; 
+            return this._metadata != null && (this._metadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MethodName. 
         /// <para>
         /// The method name to match from the request. If you specify a name, you must also specify
-        /// a <code>serviceName</code>.
+        /// a <c>serviceName</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]

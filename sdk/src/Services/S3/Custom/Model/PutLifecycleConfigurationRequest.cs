@@ -25,19 +25,27 @@ namespace Amazon.S3.Model
 {
     /// <summary>
     /// Container for the parameters to the PutLifecycleConfiguration operation.
+    /// <note> 
+    /// <para>
+    /// This operation is not supported by directory buckets.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Creates a new lifecycle configuration for the bucket or replaces an existing lifecycle
-    /// configuration. For information about lifecycle configuration, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html">Managing
+    /// configuration. Keep in mind that this will overwrite an existing lifecycle configuration,
+    /// so if you want to retain any configuration details, they must be included in the new
+    /// lifecycle configuration. For information about lifecycle configuration, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html">Managing
     /// your storage lifecycle</a>.
-    /// 
+    /// </para>
     ///  <note> 
     /// <para>
     /// Bucket lifecycle configuration now supports specifying a lifecycle rule using an object
-    /// key name prefix, one or more object tags, or a combination of both. Accordingly, this
-    /// section describes the latest API. The previous version of the API supported filtering
-    /// based only on an object key name prefix, which is supported for backward compatibility.
-    /// For the related API description, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycle.html">PutBucketLifecycle</a>.
+    /// key name prefix, one or more object tags, object size, or any combination of these.
+    /// Accordingly, this section describes the latest API. The previous version of the API
+    /// supported filtering based only on an object key name prefix, which is supported for
+    /// backward compatibility. For the related API description, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycle.html">PutBucketLifecycle</a>.
     /// </para>
-    ///  </note> <dl> <dt>Rules</dt> <dd>  
+    ///  </note> <dl> <dt>Rules</dt> <dd> 
     /// <para>
     /// You specify the lifecycle configuration in your request body. The lifecycle configuration
     /// is specified as XML consisting of one or more rules. An Amazon S3 Lifecycle configuration
@@ -46,12 +54,12 @@ namespace Amazon.S3.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// Filter identifying a subset of objects to which the rule applies. The filter can be
-    /// based on a key name prefix, object tags, or a combination of both.
+    /// A filter identifying a subset of objects to which the rule applies. The filter can
+    /// be based on a key name prefix, object tags, object size, or any combination of these.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Status whether the rule is in effect.
+    /// A status indicating whether the rule is in effect.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -73,26 +81,26 @@ namespace Amazon.S3.Model
     /// subresources (for example, lifecycle configuration and website configuration). Only
     /// the resource owner (that is, the Amazon Web Services account that created it) can
     /// access the resource. The resource owner can optionally grant access permissions to
-    /// others by writing an access policy. For this operation, a user must get the s3:PutLifecycleConfiguration
+    /// others by writing an access policy. For this operation, a user must get the <c>s3:PutLifecycleConfiguration</c>
     /// permission.
     /// </para>
     ///  
     /// <para>
-    /// You can also explicitly deny permissions. Explicit deny also supersedes any other
+    /// You can also explicitly deny permissions. An explicit deny also supersedes any other
     /// permissions. If you want to block users or accounts from removing or deleting objects
     /// from your bucket, you must deny them permissions for the following actions:
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// s3:DeleteObject
+    ///  <c>s3:DeleteObject</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// s3:DeleteObjectVersion
+    ///  <c>s3:DeleteObjectVersion</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// s3:PutLifecycleConfiguration
+    ///  <c>s3:PutLifecycleConfiguration</c> 
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -101,7 +109,7 @@ namespace Amazon.S3.Model
     /// </para>
     ///  </dd> </dl> 
     /// <para>
-    /// The following operations are related to <code>PutBucketLifecycleConfiguration</code>:
+    /// The following operations are related to <c>PutBucketLifecycleConfiguration</c>:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -126,7 +134,7 @@ namespace Amazon.S3.Model
         private ChecksumAlgorithm _checksumAlgorithm;
         private LifecycleConfiguration lifecycleConfiguration;
         private string expectedBucketOwner;
-
+        private TransitionDefaultMinimumObjectSize _transitionDefaultMinimumObjectSize;
         /// <summary>
         /// Gets and sets the property BucketName. 
         /// <para>
@@ -178,8 +186,9 @@ namespace Amazon.S3.Model
         /// <summary>
         /// Gets and sets the property ExpectedBucketOwner. 
         /// <para>
-        /// The account ID of the expected bucket owner. If the bucket is owned by a different
-        /// account, the request will fail with an HTTP <code>403 (Access Denied)</code> error.
+        /// The account ID of the expected bucket owner. If the account ID that you provide does
+        /// not match the actual owner of the bucket, the request fails with the HTTP status code
+        /// <c>403 Forbidden</c> (access denied).
         /// </para>
         /// </summary>
         public string ExpectedBucketOwner
@@ -193,6 +202,42 @@ namespace Amazon.S3.Model
         {
             return !String.IsNullOrEmpty(this.expectedBucketOwner);
         }
+        /// <summary>
+        /// Gets and sets the property TransitionDefaultMinimumObjectSize. 
+        /// <para>
+        /// Indicates which default minimum object size behavior is applied to the lifecycle configuration.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>all_storage_classes_128K</c> - Objects smaller than 128 KB will not transition
+        /// to any storage class by default. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>varies_by_storage_class</c> - Objects smaller than 128 KB will transition to Glacier
+        /// Flexible Retrieval or Glacier Deep Archive storage classes. By default, all other
+        /// storage classes will prevent transitions smaller than 128 KB. 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// To customize the minimum object size for any transition you can add a filter that
+        /// specifies a custom <c>ObjectSizeGreaterThan</c> or <c>ObjectSizeLessThan</c> in the
+        /// body of your transition rule. Custom filters always take precedence over the default
+        /// transition behavior.
+        /// </para>
+        /// </summary>
+        public TransitionDefaultMinimumObjectSize TransitionDefaultMinimumObjectSize
+        {
+            get { return this._transitionDefaultMinimumObjectSize; }
+            set { this._transitionDefaultMinimumObjectSize = value; }
+        }
+
+        // Check to see if TransitionDefaultMinimumObjectSize property is set
+        internal bool IsSetTransitionDefaultMinimumObjectSize()
+        {
+            return !string.IsNullOrEmpty(this._transitionDefaultMinimumObjectSize);
+        }
+
 
     }
 }

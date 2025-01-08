@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -78,7 +79,7 @@ namespace Amazon.DynamoDBv2.Model
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// The client token that was provided for the export task. A client token makes calls
-        /// to <code>ExportTableToPointInTimeInput</code> idempotent, meaning that multiple identical
+        /// to <c>ExportTableToPointInTimeInput</c> idempotent, meaning that multiple identical
         /// calls have the same effect as one single call.
         /// </para>
         /// </summary>
@@ -134,8 +135,8 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property ExportFormat. 
         /// <para>
-        /// The format of the exported data. Valid values for <code>ExportFormat</code> are <code>DYNAMODB_JSON</code>
-        /// or <code>ION</code>.
+        /// The format of the exported data. Valid values for <c>ExportFormat</c> are <c>DYNAMODB_JSON</c>
+        /// or <c>ION</c>.
         /// </para>
         /// </summary>
         public ExportFormat ExportFormat
@@ -207,9 +208,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property ExportType. 
         /// <para>
-        /// Choice of whether to execute as a full export or incremental export. Valid values
-        /// are <code>FULL_EXPORT</code> or <code>INCREMENTAL_EXPORT</code>. If <code>INCREMENTAL_EXPORT</code>
-        /// is provided, the <code>IncrementalExportSpecification</code> must also be used.
+        /// The type of export that was performed. Valid values are <c>FULL_EXPORT</c> or <c>INCREMENTAL_EXPORT</c>.
         /// </para>
         /// </summary>
         public ExportType ExportType
@@ -357,15 +356,15 @@ namespace Amazon.DynamoDBv2.Model
         /// Gets and sets the property S3SseAlgorithm. 
         /// <para>
         /// Type of encryption used on the bucket where export data is stored. Valid values for
-        /// <code>S3SseAlgorithm</code> are:
+        /// <c>S3SseAlgorithm</c> are:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AES256</code> - server-side encryption with Amazon S3 managed keys
+        ///  <c>AES256</c> - server-side encryption with Amazon S3 managed keys
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>KMS</code> - server-side encryption with KMS managed keys
+        ///  <c>KMS</c> - server-side encryption with KMS managed keys
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -425,6 +424,7 @@ namespace Amazon.DynamoDBv2.Model
         /// The Amazon Resource Name (ARN) of the table that was exported.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=1024)]
         public string TableArn
         {
             get { return this._tableArn; }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class ListFeatureGroupsResponse : AmazonWebServiceResponse
     {
-        private List<FeatureGroupSummary> _featureGroupSummaries = new List<FeatureGroupSummary>();
+        private List<FeatureGroupSummary> _featureGroupSummaries = AWSConfigs.InitializeCollections ? new List<FeatureGroupSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,16 +53,16 @@ namespace Amazon.SageMaker.Model
         // Check to see if FeatureGroupSummaries property is set
         internal bool IsSetFeatureGroupSummaries()
         {
-            return this._featureGroupSummaries != null && this._featureGroupSummaries.Count > 0; 
+            return this._featureGroupSummaries != null && (this._featureGroupSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token to resume pagination of <code>ListFeatureGroups</code> results.
+        /// A token to resume pagination of <c>ListFeatureGroups</c> results.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=8192)]
+        [AWSProperty(Max=8192)]
         public string NextToken
         {
             get { return this._nextToken; }

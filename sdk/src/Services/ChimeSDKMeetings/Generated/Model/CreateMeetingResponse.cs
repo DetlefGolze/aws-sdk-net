@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMeetings.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.ChimeSDKMeetings.Model
         /// <summary>
         /// Gets and sets the property Meeting. 
         /// <para>
-        /// The meeting information, including the meeting ID and <code>MediaPlacement</code>.
+        /// The meeting information, including the meeting ID and <c>MediaPlacement</c>.
         /// </para>
         /// </summary>
         public Meeting Meeting

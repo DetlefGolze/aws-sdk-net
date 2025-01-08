@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
-    /// The <code>ChangeSetSummary</code> structure describes a change set, its status, and
-    /// the stack with which it's associated.
+    /// The <c>ChangeSetSummary</c> structure describes a change set, its status, and the
+    /// stack with which it's associated.
     /// </summary>
     public partial class ChangeSetSummary
     {
@@ -39,6 +40,7 @@ namespace Amazon.CloudFormation.Model
         private DateTime? _creationTime;
         private string _description;
         private ExecutionStatus _executionStatus;
+        private bool? _importExistingResources;
         private bool? _includeNestedStacks;
         private string _parentChangeSetId;
         private string _rootChangeSetId;
@@ -125,11 +127,10 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property ExecutionStatus. 
         /// <para>
-        /// If the change set execution status is <code>AVAILABLE</code>, you can execute the
-        /// change set. If you can't execute the change set, the status indicates why. For example,
-        /// a change set might be in an <code>UNAVAILABLE</code> state because CloudFormation
-        /// is still creating it or in an <code>OBSOLETE</code> state because the stack was already
-        /// updated.
+        /// If the change set execution status is <c>AVAILABLE</c>, you can execute the change
+        /// set. If you can't execute the change set, the status indicates why. For example, a
+        /// change set might be in an <c>UNAVAILABLE</c> state because CloudFormation is still
+        /// creating it or in an <c>OBSOLETE</c> state because the stack was already updated.
         /// </para>
         /// </summary>
         public ExecutionStatus ExecutionStatus
@@ -145,9 +146,27 @@ namespace Amazon.CloudFormation.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ImportExistingResources. 
+        /// <para>
+        /// Indicates if the change set imports resources that already exist.
+        /// </para>
+        /// </summary>
+        public bool ImportExistingResources
+        {
+            get { return this._importExistingResources.GetValueOrDefault(); }
+            set { this._importExistingResources = value; }
+        }
+
+        // Check to see if ImportExistingResources property is set
+        internal bool IsSetImportExistingResources()
+        {
+            return this._importExistingResources.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property IncludeNestedStacks. 
         /// <para>
-        /// Specifies the current setting of <code>IncludeNestedStacks</code> for the change set.
+        /// Specifies the current setting of <c>IncludeNestedStacks</c> for the change set.
         /// </para>
         /// </summary>
         public bool IncludeNestedStacks
@@ -239,8 +258,8 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The state of the change set, such as <code>CREATE_IN_PROGRESS</code>, <code>CREATE_COMPLETE</code>,
-        /// or <code>FAILED</code>.
+        /// The state of the change set, such as <c>CREATE_IN_PROGRESS</c>, <c>CREATE_COMPLETE</c>,
+        /// or <c>FAILED</c>.
         /// </para>
         /// </summary>
         public ChangeSetStatus Status
@@ -259,7 +278,7 @@ namespace Amazon.CloudFormation.Model
         /// Gets and sets the property StatusReason. 
         /// <para>
         /// A description of the change set's status. For example, if your change set is in the
-        /// <code>FAILED</code> state, CloudFormation shows the error message.
+        /// <c>FAILED</c> state, CloudFormation shows the error message.
         /// </para>
         /// </summary>
         public string StatusReason

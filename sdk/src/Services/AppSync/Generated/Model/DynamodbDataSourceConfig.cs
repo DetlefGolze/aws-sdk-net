@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.AppSync.Model
         /// <summary>
         /// Gets and sets the property DeltaSyncConfig. 
         /// <para>
-        /// The <code>DeltaSyncConfig</code> for a versioned data source.
+        /// The <c>DeltaSyncConfig</c> for a versioned data source.
         /// </para>
         /// </summary>
         public DeltaSyncConfig DeltaSyncConfig

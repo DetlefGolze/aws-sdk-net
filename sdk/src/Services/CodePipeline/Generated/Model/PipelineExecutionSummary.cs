@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
@@ -33,13 +34,54 @@ namespace Amazon.CodePipeline.Model
     /// </summary>
     public partial class PipelineExecutionSummary
     {
+        private ExecutionMode _executionMode;
+        private ExecutionType _executionType;
         private DateTime? _lastUpdateTime;
         private string _pipelineExecutionId;
-        private List<SourceRevision> _sourceRevisions = new List<SourceRevision>();
+        private PipelineRollbackMetadata _rollbackMetadata;
+        private List<SourceRevision> _sourceRevisions = AWSConfigs.InitializeCollections ? new List<SourceRevision>() : null;
         private DateTime? _startTime;
         private PipelineExecutionStatus _status;
+        private string _statusSummary;
         private StopExecutionTrigger _stopTrigger;
         private ExecutionTrigger _trigger;
+
+        /// <summary>
+        /// Gets and sets the property ExecutionMode. 
+        /// <para>
+        /// The method that the pipeline will use to handle multiple executions. The default mode
+        /// is SUPERSEDED.
+        /// </para>
+        /// </summary>
+        public ExecutionMode ExecutionMode
+        {
+            get { return this._executionMode; }
+            set { this._executionMode = value; }
+        }
+
+        // Check to see if ExecutionMode property is set
+        internal bool IsSetExecutionMode()
+        {
+            return this._executionMode != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExecutionType. 
+        /// <para>
+        /// Type of the pipeline execution.
+        /// </para>
+        /// </summary>
+        public ExecutionType ExecutionType
+        {
+            get { return this._executionType; }
+            set { this._executionType = value; }
+        }
+
+        // Check to see if ExecutionType property is set
+        internal bool IsSetExecutionType()
+        {
+            return this._executionType != null;
+        }
 
         /// <summary>
         /// Gets and sets the property LastUpdateTime. 
@@ -78,6 +120,24 @@ namespace Amazon.CodePipeline.Model
         }
 
         /// <summary>
+        /// Gets and sets the property RollbackMetadata. 
+        /// <para>
+        /// The metadata for the stage execution to be rolled back.
+        /// </para>
+        /// </summary>
+        public PipelineRollbackMetadata RollbackMetadata
+        {
+            get { return this._rollbackMetadata; }
+            set { this._rollbackMetadata = value; }
+        }
+
+        // Check to see if RollbackMetadata property is set
+        internal bool IsSetRollbackMetadata()
+        {
+            return this._rollbackMetadata != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property SourceRevisions. 
         /// <para>
         /// A list of the source artifact revisions that initiated a pipeline execution.
@@ -92,7 +152,7 @@ namespace Amazon.CodePipeline.Model
         // Check to see if SourceRevisions property is set
         internal bool IsSetSourceRevisions()
         {
-            return this._sourceRevisions != null && this._sourceRevisions.Count > 0; 
+            return this._sourceRevisions != null && (this._sourceRevisions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -165,6 +225,24 @@ namespace Amazon.CodePipeline.Model
         }
 
         /// <summary>
+        /// Gets and sets the property StatusSummary. 
+        /// <para>
+        /// Status summary for the pipeline.
+        /// </para>
+        /// </summary>
+        public string StatusSummary
+        {
+            get { return this._statusSummary; }
+            set { this._statusSummary = value; }
+        }
+
+        // Check to see if StatusSummary property is set
+        internal bool IsSetStatusSummary()
+        {
+            return this._statusSummary != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property StopTrigger. 
         /// <para>
         /// The interaction that stopped a pipeline execution.
@@ -186,7 +264,7 @@ namespace Amazon.CodePipeline.Model
         /// Gets and sets the property Trigger. 
         /// <para>
         /// The interaction or event that started a pipeline execution, such as automated change
-        /// detection or a <code>StartPipelineExecution</code> API call.
+        /// detection or a <c>StartPipelineExecution</c> API call.
         /// </para>
         /// </summary>
         public ExecutionTrigger Trigger

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.IoTFleetWise.Model
     public partial class ListSignalCatalogNodesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Node> _nodes = new List<Node>();
+        private List<Node> _nodes = AWSConfigs.InitializeCollections ? new List<Node>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  The token to retrieve the next set of results, or <code>null</code> if there are
-        /// no more results. 
+        ///  The token to retrieve the next set of results, or <c>null</c> if there are no more
+        /// results. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4096)]
@@ -72,7 +73,7 @@ namespace Amazon.IoTFleetWise.Model
         // Check to see if Nodes property is set
         internal bool IsSetNodes()
         {
-            return this._nodes != null && this._nodes.Count > 0; 
+            return this._nodes != null && (this._nodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

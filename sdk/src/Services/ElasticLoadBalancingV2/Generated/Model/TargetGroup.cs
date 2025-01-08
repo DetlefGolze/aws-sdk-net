@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancingV2.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         private int? _healthCheckTimeoutSeconds;
         private int? _healthyThresholdCount;
         private TargetGroupIpAddressTypeEnum _ipAddressType;
-        private List<string> _loadBalancerArns = new List<string>();
+        private List<string> _loadBalancerArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private Matcher _matcher;
         private int? _port;
         private ProtocolEnum _protocol;
@@ -188,9 +189,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         /// <summary>
         /// Gets and sets the property IpAddressType. 
         /// <para>
-        /// The type of IP address used for this target group. The possible values are <code>ipv4</code>
-        /// and <code>ipv6</code>. This is an optional parameter. If not specified, the IP address
-        /// type defaults to <code>ipv4</code>.
+        /// The IP address type. The default value is <c>ipv4</c>.
         /// </para>
         /// </summary>
         public TargetGroupIpAddressTypeEnum IpAddressType
@@ -221,7 +220,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if LoadBalancerArns property is set
         internal bool IsSetLoadBalancerArns()
         {
-            return this._loadBalancerArns != null && this._loadBalancerArns.Count > 0; 
+            return this._loadBalancerArns != null && (this._loadBalancerArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -283,8 +282,8 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         /// <summary>
         /// Gets and sets the property ProtocolVersion. 
         /// <para>
-        /// [HTTP/HTTPS protocol] The protocol version. The possible values are <code>GRPC</code>,
-        /// <code>HTTP1</code>, and <code>HTTP2</code>.
+        /// [HTTP/HTTPS protocol] The protocol version. The possible values are <c>GRPC</c>, <c>HTTP1</c>,
+        /// and <c>HTTP2</c>.
         /// </para>
         /// </summary>
         public string ProtocolVersion
@@ -339,10 +338,10 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         /// Gets and sets the property TargetType. 
         /// <para>
         /// The type of target that you must specify when registering targets with this target
-        /// group. The possible values are <code>instance</code> (register targets by instance
-        /// ID), <code>ip</code> (register targets by IP address), <code>lambda</code> (register
-        /// a single Lambda function as a target), or <code>alb</code> (register a single Application
-        /// Load Balancer as a target).
+        /// group. The possible values are <c>instance</c> (register targets by instance ID),
+        /// <c>ip</c> (register targets by IP address), <c>lambda</c> (register a single Lambda
+        /// function as a target), or <c>alb</c> (register a single Application Load Balancer
+        /// as a target).
         /// </para>
         /// </summary>
         public TargetTypeEnum TargetType

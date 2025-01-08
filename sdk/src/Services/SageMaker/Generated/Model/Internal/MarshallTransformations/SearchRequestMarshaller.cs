@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetCrossAccountFilterOption())
@@ -112,6 +114,22 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("SortOrder");
                     context.Writer.Write(publicRequest.SortOrder);
+                }
+
+                if(publicRequest.IsSetVisibilityConditions())
+                {
+                    context.Writer.WritePropertyName("VisibilityConditions");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestVisibilityConditionsListValue in publicRequest.VisibilityConditions)
+                    {
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = VisibilityConditionsMarshaller.Instance;
+                        marshaller.Marshall(publicRequestVisibilityConditionsListValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteArrayEnd();
                 }
 
                 writer.WriteObjectEnd();

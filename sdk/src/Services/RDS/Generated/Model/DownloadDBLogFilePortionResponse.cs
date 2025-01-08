@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// This data type is used as a response element to <code>DownloadDBLogFilePortion</code>.
+    /// This data type is used as a response element to <c>DownloadDBLogFilePortion</c>.
     /// </summary>
     public partial class DownloadDBLogFilePortionResponse : AmazonWebServiceResponse
     {
@@ -76,8 +77,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// A pagination token that can be used in a later <code>DownloadDBLogFilePortion</code>
-        /// request.
+        /// A pagination token that can be used in a later <c>DownloadDBLogFilePortion</c> request.
         /// </para>
         /// </summary>
         public string Marker

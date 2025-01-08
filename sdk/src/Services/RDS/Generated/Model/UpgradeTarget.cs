@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -38,9 +39,11 @@ namespace Amazon.RDS.Model
         private string _engine;
         private string _engineVersion;
         private bool? _isMajorVersionUpgrade;
-        private List<string> _supportedEngineModes = new List<string>();
+        private List<string> _supportedEngineModes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _supportsBabelfish;
         private bool? _supportsGlobalDatabases;
+        private bool? _supportsIntegrations;
+        private bool? _supportsLimitlessDatabase;
         private bool? _supportsLocalWriteForwarding;
         private bool? _supportsParallelQuery;
 
@@ -48,7 +51,11 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property AutoUpgrade. 
         /// <para>
         /// Indicates whether the target version is applied to any source DB instances that have
-        /// <code>AutoMinorVersionUpgrade</code> set to true.
+        /// <c>AutoMinorVersionUpgrade</c> set to true.
+        /// </para>
+        ///  
+        /// <para>
+        /// This parameter is dynamic, and is set by RDS.
         /// </para>
         /// </summary>
         public bool AutoUpgrade
@@ -151,7 +158,7 @@ namespace Amazon.RDS.Model
         // Check to see if SupportedEngineModes property is set
         internal bool IsSetSupportedEngineModes()
         {
-            return this._supportedEngineModes != null && this._supportedEngineModes.Count > 0; 
+            return this._supportedEngineModes != null && (this._supportedEngineModes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -189,6 +196,43 @@ namespace Amazon.RDS.Model
         internal bool IsSetSupportsGlobalDatabases()
         {
             return this._supportsGlobalDatabases.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SupportsIntegrations. 
+        /// <para>
+        /// Indicates whether the DB engine version supports zero-ETL integrations with Amazon
+        /// Redshift.
+        /// </para>
+        /// </summary>
+        public bool SupportsIntegrations
+        {
+            get { return this._supportsIntegrations.GetValueOrDefault(); }
+            set { this._supportsIntegrations = value; }
+        }
+
+        // Check to see if SupportsIntegrations property is set
+        internal bool IsSetSupportsIntegrations()
+        {
+            return this._supportsIntegrations.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SupportsLimitlessDatabase. 
+        /// <para>
+        /// Indicates whether the DB engine version supports Aurora Limitless Database.
+        /// </para>
+        /// </summary>
+        public bool SupportsLimitlessDatabase
+        {
+            get { return this._supportsLimitlessDatabase.GetValueOrDefault(); }
+            set { this._supportsLimitlessDatabase = value; }
+        }
+
+        // Check to see if SupportsLimitlessDatabase property is set
+        internal bool IsSetSupportsLimitlessDatabase()
+        {
+            return this._supportsLimitlessDatabase.HasValue; 
         }
 
         /// <summary>

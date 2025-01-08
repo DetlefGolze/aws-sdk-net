@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
-    /// The <code>GlobalClusterIdentifier</code> already exists. Choose a new global cluster
-    /// identifier (unique name) to create a new global cluster.
+    /// The <c>GlobalClusterIdentifier</c> already exists. Choose a new global cluster identifier
+    /// (unique name) to create a new global cluster.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

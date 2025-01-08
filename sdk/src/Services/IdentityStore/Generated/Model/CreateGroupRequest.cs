@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityStore.Model
 {
     /// <summary>
@@ -61,8 +62,8 @@ namespace Amazon.IdentityStore.Model
         /// Gets and sets the property DisplayName. 
         /// <para>
         /// A string containing the name of the group. This value is commonly displayed when the
-        /// group is referenced. <code>Administrator</code> and <code>AWSAdministrators</code>
-        /// are reserved names and can't be used for users or groups.
+        /// group is referenced. <c>Administrator</c> and <c>AWSAdministrators</c> are reserved
+        /// names and can't be used for users or groups.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=1024)]

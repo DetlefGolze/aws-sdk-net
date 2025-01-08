@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -92,12 +93,11 @@ namespace Amazon.CodeBuild.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ASCENDING</code>: List the build identifiers in ascending order, by build number.
+        ///  <c>ASCENDING</c>: List the build identifiers in ascending order, by build number.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DESCENDING</code>: List the build identifiers in descending order, by build
-        /// number.
+        ///  <c>DESCENDING</c>: List the build identifiers in descending order, by build number.
         /// </para>
         ///  </li> </ul> 
         /// <para>

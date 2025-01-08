@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -34,10 +35,11 @@ namespace Amazon.Backup.Model
     public partial class BackupRule
     {
         private long? _completionWindowMinutes;
-        private List<CopyAction> _copyActions = new List<CopyAction>();
+        private List<CopyAction> _copyActions = AWSConfigs.InitializeCollections ? new List<CopyAction>() : null;
         private bool? _enableContinuousBackup;
+        private List<IndexAction> _indexActions = AWSConfigs.InitializeCollections ? new List<IndexAction>() : null;
         private Lifecycle _lifecycle;
-        private Dictionary<string, string> _recoveryPointTags = new Dictionary<string, string>();
+        private Dictionary<string, string> _recoveryPointTags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _ruleId;
         private string _ruleName;
         private string _scheduleExpression;
@@ -67,8 +69,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property CopyActions. 
         /// <para>
-        /// An array of <code>CopyAction</code> objects, which contains the details of the copy
-        /// operation.
+        /// An array of <c>CopyAction</c> objects, which contains the details of the copy operation.
         /// </para>
         /// </summary>
         public List<CopyAction> CopyActions
@@ -80,7 +81,7 @@ namespace Amazon.Backup.Model
         // Check to see if CopyActions property is set
         internal bool IsSetCopyActions()
         {
-            return this._copyActions != null && this._copyActions.Count > 0; 
+            return this._copyActions != null && (this._copyActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -104,6 +105,33 @@ namespace Amazon.Backup.Model
         }
 
         /// <summary>
+        /// Gets and sets the property IndexActions. 
+        /// <para>
+        /// IndexActions is an array you use to specify how backup data should be indexed.
+        /// </para>
+        ///  
+        /// <para>
+        /// eEach BackupRule can have 0 or 1 IndexAction, as each backup can have up to one index
+        /// associated with it.
+        /// </para>
+        ///  
+        /// <para>
+        /// Within the array is ResourceType. Only one will be accepted for each BackupRule.
+        /// </para>
+        /// </summary>
+        public List<IndexAction> IndexActions
+        {
+            get { return this._indexActions; }
+            set { this._indexActions = value; }
+        }
+
+        // Check to see if IndexActions property is set
+        internal bool IsSetIndexActions()
+        {
+            return this._indexActions != null && (this._indexActions.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Lifecycle. 
         /// <para>
         /// The lifecycle defines when a protected resource is transitioned to cold storage and
@@ -119,10 +147,9 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  
         /// <para>
-        /// Resource types that are able to be transitioned to cold storage are listed in the
-        /// "Lifecycle to cold storage" section of the <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource">
-        /// Feature availability by resource</a> table. Backup ignores this expression for other
-        /// resource types.
+        /// Resource types that can transition to cold storage are listed in the <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/backup-feature-availability.html#features-by-resource">Feature
+        /// availability by resource</a> table. Backup ignores this expression for other resource
+        /// types.
         /// </para>
         /// </summary>
         public Lifecycle Lifecycle
@@ -140,8 +167,8 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property RecoveryPointTags. 
         /// <para>
-        /// An array of key-value pair strings that are assigned to resources that are associated
-        /// with this rule when restored from backup.
+        /// The tags that are assigned to resources that are associated with this rule when restored
+        /// from backup.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -154,7 +181,7 @@ namespace Amazon.Backup.Model
         // Check to see if RecoveryPointTags property is set
         internal bool IsSetRecoveryPointTags()
         {
-            return this._recoveryPointTags != null && this._recoveryPointTags.Count > 0; 
+            return this._recoveryPointTags != null && (this._recoveryPointTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -200,10 +227,10 @@ namespace Amazon.Backup.Model
         /// A cron expression in UTC specifying when Backup initiates a backup job. For more information
         /// about Amazon Web Services cron expressions, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html">Schedule
         /// Expressions for Rules</a> in the <i>Amazon CloudWatch Events User Guide.</i>. Two
-        /// examples of Amazon Web Services cron expressions are <code> 15 * ? * * *</code> (take
-        /// a backup every hour at 15 minutes past the hour) and <code>0 12 * * ? *</code> (take
-        /// a backup every day at 12 noon UTC). For a table of examples, click the preceding link
-        /// and scroll down the page.
+        /// examples of Amazon Web Services cron expressions are <c> 15 * ? * * *</c> (take a
+        /// backup every hour at 15 minutes past the hour) and <c>0 12 * * ? *</c> (take a backup
+        /// every day at 12 noon UTC). For a table of examples, click the preceding link and scroll
+        /// down the page.
         /// </para>
         /// </summary>
         public string ScheduleExpression
@@ -221,7 +248,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property ScheduleExpressionTimezone. 
         /// <para>
-        /// This is the timezone in which the schedule expression is set. By default, ScheduleExpressions
+        /// The timezone in which the schedule expression is set. By default, ScheduleExpressions
         /// are in UTC. You can modify this to a specified timezone.
         /// </para>
         /// </summary>
@@ -246,13 +273,13 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  
         /// <para>
-        /// During the start window, the backup job status remains in <code>CREATED</code> status
-        /// until it has successfully begun or until the start window time has run out. If within
-        /// the start window time Backup receives an error that allows the job to be retried,
-        /// Backup will automatically retry to begin the job at least every 10 minutes until the
-        /// backup successfully begins (the job status changes to <code>RUNNING</code>) or until
-        /// the job status changes to <code>EXPIRED</code> (which is expected to occur when the
-        /// start window time is over).
+        /// During the start window, the backup job status remains in <c>CREATED</c> status until
+        /// it has successfully begun or until the start window time has run out. If within the
+        /// start window time Backup receives an error that allows the job to be retried, Backup
+        /// will automatically retry to begin the job at least every 10 minutes until the backup
+        /// successfully begins (the job status changes to <c>RUNNING</c>) or until the job status
+        /// changes to <c>EXPIRED</c> (which is expected to occur when the start window time is
+        /// over).
         /// </para>
         /// </summary>
         public long StartWindowMinutes
@@ -272,7 +299,7 @@ namespace Amazon.Backup.Model
         /// <para>
         /// The name of a logical container where backups are stored. Backup vaults are identified
         /// by names that are unique to the account used to create them and the Amazon Web Services
-        /// Region where they are created. They consist of lowercase letters, numbers, and hyphens.
+        /// Region where they are created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

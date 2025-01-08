@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.Comprehend.Model
         /// <summary>
         /// Gets and sets the property LanguageCode. 
         /// <para>
-        /// The language of the input documents. Currently, English is the only valid language.
+        /// The language of the input documents.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

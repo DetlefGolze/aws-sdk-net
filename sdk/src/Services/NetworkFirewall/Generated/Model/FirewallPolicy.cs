@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
@@ -42,13 +43,13 @@ namespace Amazon.NetworkFirewall.Model
     public partial class FirewallPolicy
     {
         private PolicyVariables _policyVariables;
-        private List<string> _statefulDefaultActions = new List<string>();
+        private List<string> _statefulDefaultActions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private StatefulEngineOptions _statefulEngineOptions;
-        private List<StatefulRuleGroupReference> _statefulRuleGroupReferences = new List<StatefulRuleGroupReference>();
-        private List<CustomAction> _statelessCustomActions = new List<CustomAction>();
-        private List<string> _statelessDefaultActions = new List<string>();
-        private List<string> _statelessFragmentDefaultActions = new List<string>();
-        private List<StatelessRuleGroupReference> _statelessRuleGroupReferences = new List<StatelessRuleGroupReference>();
+        private List<StatefulRuleGroupReference> _statefulRuleGroupReferences = AWSConfigs.InitializeCollections ? new List<StatefulRuleGroupReference>() : null;
+        private List<CustomAction> _statelessCustomActions = AWSConfigs.InitializeCollections ? new List<CustomAction>() : null;
+        private List<string> _statelessDefaultActions = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _statelessFragmentDefaultActions = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<StatelessRuleGroupReference> _statelessRuleGroupReferences = AWSConfigs.InitializeCollections ? new List<StatelessRuleGroupReference>() : null;
         private string _tlsInspectionConfigurationArn;
 
         /// <summary>
@@ -112,7 +113,7 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if StatefulDefaultActions property is set
         internal bool IsSetStatefulDefaultActions()
         {
-            return this._statefulDefaultActions != null && this._statefulDefaultActions.Count > 0; 
+            return this._statefulDefaultActions != null && (this._statefulDefaultActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -151,15 +152,15 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if StatefulRuleGroupReferences property is set
         internal bool IsSetStatefulRuleGroupReferences()
         {
-            return this._statefulRuleGroupReferences != null && this._statefulRuleGroupReferences.Count > 0; 
+            return this._statefulRuleGroupReferences != null && (this._statefulRuleGroupReferences.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property StatelessCustomActions. 
         /// <para>
         /// The custom action definitions that are available for use in the firewall policy's
-        /// <code>StatelessDefaultActions</code> setting. You name each custom action that you
-        /// define, and then you can use it by name in your default actions specifications.
+        /// <c>StatelessDefaultActions</c> setting. You name each custom action that you define,
+        /// and then you can use it by name in your default actions specifications.
         /// </para>
         /// </summary>
         public List<CustomAction> StatelessCustomActions
@@ -171,7 +172,7 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if StatelessCustomActions property is set
         internal bool IsSetStatelessCustomActions()
         {
-            return this._statelessCustomActions != null && this._statelessCustomActions.Count > 0; 
+            return this._statelessCustomActions != null && (this._statelessCustomActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -179,18 +180,18 @@ namespace Amazon.NetworkFirewall.Model
         /// <para>
         /// The actions to take on a packet if it doesn't match any of the stateless rules in
         /// the policy. If you want non-matching packets to be forwarded for stateful inspection,
-        /// specify <code>aws:forward_to_sfe</code>. 
+        /// specify <c>aws:forward_to_sfe</c>. 
         /// </para>
         ///  
         /// <para>
-        /// You must specify one of the standard actions: <code>aws:pass</code>, <code>aws:drop</code>,
-        /// or <code>aws:forward_to_sfe</code>. In addition, you can specify custom actions that
-        /// are compatible with your standard section choice.
+        /// You must specify one of the standard actions: <c>aws:pass</c>, <c>aws:drop</c>, or
+        /// <c>aws:forward_to_sfe</c>. In addition, you can specify custom actions that are compatible
+        /// with your standard section choice.
         /// </para>
         ///  
         /// <para>
-        /// For example, you could specify <code>["aws:pass"]</code> or you could specify <code>["aws:pass",
-        /// “customActionName”]</code>. For information about compatibility, see the custom action
+        /// For example, you could specify <c>["aws:pass"]</c> or you could specify <c>["aws:pass",
+        /// “customActionName”]</c>. For information about compatibility, see the custom action
         /// descriptions under <a>CustomAction</a>.
         /// </para>
         /// </summary>
@@ -204,7 +205,7 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if StatelessDefaultActions property is set
         internal bool IsSetStatelessDefaultActions()
         {
-            return this._statelessDefaultActions != null && this._statelessDefaultActions.Count > 0; 
+            return this._statelessDefaultActions != null && (this._statelessDefaultActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -213,19 +214,19 @@ namespace Amazon.NetworkFirewall.Model
         /// The actions to take on a fragmented UDP packet if it doesn't match any of the stateless
         /// rules in the policy. Network Firewall only manages UDP packet fragments and silently
         /// drops packet fragments for other protocols. If you want non-matching fragmented UDP
-        /// packets to be forwarded for stateful inspection, specify <code>aws:forward_to_sfe</code>.
+        /// packets to be forwarded for stateful inspection, specify <c>aws:forward_to_sfe</c>.
         /// 
         /// </para>
         ///  
         /// <para>
-        /// You must specify one of the standard actions: <code>aws:pass</code>, <code>aws:drop</code>,
-        /// or <code>aws:forward_to_sfe</code>. In addition, you can specify custom actions that
-        /// are compatible with your standard section choice.
+        /// You must specify one of the standard actions: <c>aws:pass</c>, <c>aws:drop</c>, or
+        /// <c>aws:forward_to_sfe</c>. In addition, you can specify custom actions that are compatible
+        /// with your standard section choice.
         /// </para>
         ///  
         /// <para>
-        /// For example, you could specify <code>["aws:pass"]</code> or you could specify <code>["aws:pass",
-        /// “customActionName”]</code>. For information about compatibility, see the custom action
+        /// For example, you could specify <c>["aws:pass"]</c> or you could specify <c>["aws:pass",
+        /// “customActionName”]</c>. For information about compatibility, see the custom action
         /// descriptions under <a>CustomAction</a>.
         /// </para>
         /// </summary>
@@ -239,7 +240,7 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if StatelessFragmentDefaultActions property is set
         internal bool IsSetStatelessFragmentDefaultActions()
         {
-            return this._statelessFragmentDefaultActions != null && this._statelessFragmentDefaultActions.Count > 0; 
+            return this._statelessFragmentDefaultActions != null && (this._statelessFragmentDefaultActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -258,7 +259,7 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if StatelessRuleGroupReferences property is set
         internal bool IsSetStatelessRuleGroupReferences()
         {
-            return this._statelessRuleGroupReferences != null && this._statelessRuleGroupReferences.Count > 0; 
+            return this._statelessRuleGroupReferences != null && (this._statelessRuleGroupReferences.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

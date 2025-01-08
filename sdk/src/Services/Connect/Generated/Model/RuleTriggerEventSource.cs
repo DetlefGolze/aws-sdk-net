@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
-    /// The name of the event source. This field is required if <code>TriggerEventSource</code>
-    /// is one of the following values: <code>OnZendeskTicketCreate</code> | <code>OnZendeskTicketStatusUpdate</code>
-    /// | <code>OnSalesforceCaseCreate</code> | <code>OnContactEvaluationSubmit</code> | <code>OnMetricDataUpdate</code>.
+    /// The name of the event source. This field is required if <c>TriggerEventSource</c>
+    /// is one of the following values: <c>OnZendeskTicketCreate</c> | <c>OnZendeskTicketStatusUpdate</c>
+    /// | <c>OnSalesforceCaseCreate</c> | <c>OnContactEvaluationSubmit</c> | <c>OnMetricDataUpdate</c>.
     /// </summary>
     public partial class RuleTriggerEventSource
     {

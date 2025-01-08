@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AppIntegrationsService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -60,8 +61,8 @@ namespace Amazon.AppIntegrationsService.Model.Internal.MarshallTransformations
 
             if (!publicRequest.IsSetArn())
                 throw new AmazonAppIntegrationsServiceException("Request object does not have required field Arn set");
-            request.AddPathResource("{Arn}", StringUtils.FromString(publicRequest.Arn));
-            request.ResourcePath = "/applications/{Arn}";
+            request.AddPathResource("{ApplicationIdentifier}", StringUtils.FromString(publicRequest.Arn));
+            request.ResourcePath = "/applications/{ApplicationIdentifier}";
 
             return request;
         }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -58,8 +59,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property OptInStatus. 
         /// <para>
-        /// The Region opt-in status. The possible values are <code>opt-in-not-required</code>,
-        /// <code>opted-in</code>, and <code>not-opted-in</code>.
+        /// The Region opt-in status. The possible values are <c>opt-in-not-required</c>, <c>opted-in</c>,
+        /// and <c>not-opted-in</c>.
         /// </para>
         /// </summary>
         public string OptInStatus

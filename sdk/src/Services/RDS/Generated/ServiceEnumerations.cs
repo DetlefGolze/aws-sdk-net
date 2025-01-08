@@ -393,6 +393,10 @@ namespace Amazon.RDS
     {
 
         /// <summary>
+        /// Constant MYSQL_CACHING_SHA2_PASSWORD for ClientPasswordAuthType
+        /// </summary>
+        public static readonly ClientPasswordAuthType MYSQL_CACHING_SHA2_PASSWORD = new ClientPasswordAuthType("MYSQL_CACHING_SHA2_PASSWORD");
+        /// <summary>
         /// Constant MYSQL_NATIVE_PASSWORD for ClientPasswordAuthType
         /// </summary>
         public static readonly ClientPasswordAuthType MYSQL_NATIVE_PASSWORD = new ClientPasswordAuthType("MYSQL_NATIVE_PASSWORD");
@@ -438,6 +442,56 @@ namespace Amazon.RDS
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator ClientPasswordAuthType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ClusterScalabilityType.
+    /// </summary>
+    public class ClusterScalabilityType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Limitless for ClusterScalabilityType
+        /// </summary>
+        public static readonly ClusterScalabilityType Limitless = new ClusterScalabilityType("limitless");
+        /// <summary>
+        /// Constant Standard for ClusterScalabilityType
+        /// </summary>
+        public static readonly ClusterScalabilityType Standard = new ClusterScalabilityType("standard");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ClusterScalabilityType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ClusterScalabilityType FindValue(string value)
+        {
+            return FindValue<ClusterScalabilityType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ClusterScalabilityType(string value)
         {
             return FindValue(value);
         }
@@ -492,6 +546,56 @@ namespace Amazon.RDS
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator CustomEngineVersionStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type DatabaseInsightsMode.
+    /// </summary>
+    public class DatabaseInsightsMode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Advanced for DatabaseInsightsMode
+        /// </summary>
+        public static readonly DatabaseInsightsMode Advanced = new DatabaseInsightsMode("advanced");
+        /// <summary>
+        /// Constant Standard for DatabaseInsightsMode
+        /// </summary>
+        public static readonly DatabaseInsightsMode Standard = new DatabaseInsightsMode("standard");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public DatabaseInsightsMode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static DatabaseInsightsMode FindValue(string value)
+        {
+            return FindValue<DatabaseInsightsMode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator DatabaseInsightsMode(string value)
         {
             return FindValue(value);
         }
@@ -948,6 +1052,150 @@ namespace Amazon.RDS
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator IAMAuthMode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type IntegrationStatus.
+    /// </summary>
+    public class IntegrationStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Active for IntegrationStatus
+        /// </summary>
+        public static readonly IntegrationStatus Active = new IntegrationStatus("active");
+        /// <summary>
+        /// Constant Creating for IntegrationStatus
+        /// </summary>
+        public static readonly IntegrationStatus Creating = new IntegrationStatus("creating");
+        /// <summary>
+        /// Constant Deleting for IntegrationStatus
+        /// </summary>
+        public static readonly IntegrationStatus Deleting = new IntegrationStatus("deleting");
+        /// <summary>
+        /// Constant Failed for IntegrationStatus
+        /// </summary>
+        public static readonly IntegrationStatus Failed = new IntegrationStatus("failed");
+        /// <summary>
+        /// Constant Modifying for IntegrationStatus
+        /// </summary>
+        public static readonly IntegrationStatus Modifying = new IntegrationStatus("modifying");
+        /// <summary>
+        /// Constant Needs_attention for IntegrationStatus
+        /// </summary>
+        public static readonly IntegrationStatus Needs_attention = new IntegrationStatus("needs_attention");
+        /// <summary>
+        /// Constant Syncing for IntegrationStatus
+        /// </summary>
+        public static readonly IntegrationStatus Syncing = new IntegrationStatus("syncing");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public IntegrationStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static IntegrationStatus FindValue(string value)
+        {
+            return FindValue<IntegrationStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator IntegrationStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type LimitlessDatabaseStatus.
+    /// </summary>
+    public class LimitlessDatabaseStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Active for LimitlessDatabaseStatus
+        /// </summary>
+        public static readonly LimitlessDatabaseStatus Active = new LimitlessDatabaseStatus("active");
+        /// <summary>
+        /// Constant Disabled for LimitlessDatabaseStatus
+        /// </summary>
+        public static readonly LimitlessDatabaseStatus Disabled = new LimitlessDatabaseStatus("disabled");
+        /// <summary>
+        /// Constant Disabling for LimitlessDatabaseStatus
+        /// </summary>
+        public static readonly LimitlessDatabaseStatus Disabling = new LimitlessDatabaseStatus("disabling");
+        /// <summary>
+        /// Constant Enabled for LimitlessDatabaseStatus
+        /// </summary>
+        public static readonly LimitlessDatabaseStatus Enabled = new LimitlessDatabaseStatus("enabled");
+        /// <summary>
+        /// Constant Enabling for LimitlessDatabaseStatus
+        /// </summary>
+        public static readonly LimitlessDatabaseStatus Enabling = new LimitlessDatabaseStatus("enabling");
+        /// <summary>
+        /// Constant Error for LimitlessDatabaseStatus
+        /// </summary>
+        public static readonly LimitlessDatabaseStatus Error = new LimitlessDatabaseStatus("error");
+        /// <summary>
+        /// Constant ModifyingMaxCapacity for LimitlessDatabaseStatus
+        /// </summary>
+        public static readonly LimitlessDatabaseStatus ModifyingMaxCapacity = new LimitlessDatabaseStatus("modifying-max-capacity");
+        /// <summary>
+        /// Constant NotInUse for LimitlessDatabaseStatus
+        /// </summary>
+        public static readonly LimitlessDatabaseStatus NotInUse = new LimitlessDatabaseStatus("not-in-use");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public LimitlessDatabaseStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static LimitlessDatabaseStatus FindValue(string value)
+        {
+            return FindValue<LimitlessDatabaseStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator LimitlessDatabaseStatus(string value)
         {
             return FindValue(value);
         }

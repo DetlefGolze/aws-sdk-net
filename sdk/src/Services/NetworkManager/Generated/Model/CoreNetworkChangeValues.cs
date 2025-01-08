@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -36,10 +37,12 @@ namespace Amazon.NetworkManager.Model
         private long? _asn;
         private string _cidr;
         private string _destinationIdentifier;
-        private List<string> _edgeLocations = new List<string>();
-        private List<string> _insideCidrBlocks = new List<string>();
+        private List<string> _edgeLocations = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _insideCidrBlocks = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private string _networkFunctionGroupName;
         private string _segmentName;
-        private List<string> _sharedSegments = new List<string>();
+        private List<ServiceInsertionAction> _serviceInsertionActions = AWSConfigs.InitializeCollections ? new List<ServiceInsertionAction>() : null;
+        private List<string> _sharedSegments = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Asn. 
@@ -112,7 +115,7 @@ namespace Amazon.NetworkManager.Model
         // Check to see if EdgeLocations property is set
         internal bool IsSetEdgeLocations()
         {
-            return this._edgeLocations != null && this._edgeLocations.Count > 0; 
+            return this._edgeLocations != null && (this._edgeLocations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -130,7 +133,27 @@ namespace Amazon.NetworkManager.Model
         // Check to see if InsideCidrBlocks property is set
         internal bool IsSetInsideCidrBlocks()
         {
-            return this._insideCidrBlocks != null && this._insideCidrBlocks.Count > 0; 
+            return this._insideCidrBlocks != null && (this._insideCidrBlocks.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property NetworkFunctionGroupName. 
+        /// <para>
+        /// The network function group name if the change event is associated with a network function
+        /// group.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=256)]
+        public string NetworkFunctionGroupName
+        {
+            get { return this._networkFunctionGroupName; }
+            set { this._networkFunctionGroupName = value; }
+        }
+
+        // Check to see if NetworkFunctionGroupName property is set
+        internal bool IsSetNetworkFunctionGroupName()
+        {
+            return this._networkFunctionGroupName != null;
         }
 
         /// <summary>
@@ -153,6 +176,24 @@ namespace Amazon.NetworkManager.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ServiceInsertionActions. 
+        /// <para>
+        /// Describes the service insertion action. 
+        /// </para>
+        /// </summary>
+        public List<ServiceInsertionAction> ServiceInsertionActions
+        {
+            get { return this._serviceInsertionActions; }
+            set { this._serviceInsertionActions = value; }
+        }
+
+        // Check to see if ServiceInsertionActions property is set
+        internal bool IsSetServiceInsertionActions()
+        {
+            return this._serviceInsertionActions != null && (this._serviceInsertionActions.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property SharedSegments. 
         /// <para>
         /// The shared segments for a core network change value. 
@@ -167,7 +208,7 @@ namespace Amazon.NetworkManager.Model
         // Check to see if SharedSegments property is set
         internal bool IsSetSharedSegments()
         {
-            return this._sharedSegments != null && this._sharedSegments.Count > 0; 
+            return this._sharedSegments != null && (this._sharedSegments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

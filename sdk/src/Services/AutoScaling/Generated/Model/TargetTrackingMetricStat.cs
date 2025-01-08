@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -41,6 +42,7 @@ namespace Amazon.AutoScaling.Model
     public partial class TargetTrackingMetricStat
     {
         private Metric _metric;
+        private int? _period;
         private string _stat;
         private string _unit;
 
@@ -64,6 +66,28 @@ namespace Amazon.AutoScaling.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Period. 
+        /// <para>
+        ///  The period of the metric in seconds. The default value is 60. Accepted values are
+        /// 10, 30, and 60. For high resolution metric, set the value to less than 60. For more
+        /// information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/policy-creating-high-resolution-metrics.html">Create
+        /// a target tracking policy using high-resolution metrics for faster response</a>. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1)]
+        public int Period
+        {
+            get { return this._period.GetValueOrDefault(); }
+            set { this._period = value; }
+        }
+
+        // Check to see if Period property is set
+        internal bool IsSetPeriod()
+        {
+            return this._period.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property Stat. 
         /// <para>
         /// The statistic to return. It can include any CloudWatch statistic or extended statistic.
@@ -72,7 +96,7 @@ namespace Amazon.AutoScaling.Model
         /// </para>
         ///  
         /// <para>
-        /// The most commonly used metric for scaling is <code>Average</code>.
+        /// The most commonly used metric for scaling is <c>Average</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]

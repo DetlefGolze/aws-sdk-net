@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFRegional.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.WAFRegional.Model
     /// </summary>
     public partial class ListIPSetsResponse : AmazonWebServiceResponse
     {
-        private List<IPSetSummary> _ipSets = new List<IPSetSummary>();
+        private List<IPSetSummary> _ipSets = AWSConfigs.InitializeCollections ? new List<IPSetSummary>() : null;
         private string _nextMarker;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.WAFRegional.Model
         // Check to see if IPSets property is set
         internal bool IsSetIPSets()
         {
-            return this._ipSets != null && this._ipSets.Count > 0; 
+            return this._ipSets != null && (this._ipSets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextMarker. 
         /// <para>
-        /// To list more <code>IPSet</code> objects, submit another <code>ListIPSets</code> request,
-        /// and in the next request use the <code>NextMarker</code> response value as the <code>NextMarker</code>
+        /// To list more <c>IPSet</c> objects, submit another <c>ListIPSets</c> request, and in
+        /// the next request use the <c>NextMarker</c> response value as the <c>NextMarker</c>
         /// value.
         /// </para>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaStore.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.MediaStore.Model
     /// 
     ///  
     /// <para>
-    /// To use this operation, you must have permission to perform the <code>MediaStore:DeleteCorsPolicy</code>
+    /// To use this operation, you must have permission to perform the <c>MediaStore:DeleteCorsPolicy</c>
     /// action. The container owner has this permission by default and can grant this permission
     /// to others.
     /// </para>

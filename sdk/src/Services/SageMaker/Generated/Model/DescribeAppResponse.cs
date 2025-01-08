@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.SageMaker.Model
         private string _appArn;
         private string _appName;
         private AppType _appType;
+        private string _builtInLifecycleConfigArn;
         private DateTime? _creationTime;
         private string _domainId;
         private string _failureReason;
@@ -103,10 +105,38 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property BuiltInLifecycleConfigArn. 
+        /// <para>
+        /// The lifecycle configuration that runs before the default lifecycle configuration
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=256)]
+        public string BuiltInLifecycleConfigArn
+        {
+            get { return this._builtInLifecycleConfigArn; }
+            set { this._builtInLifecycleConfigArn = value; }
+        }
+
+        // Check to see if BuiltInLifecycleConfigArn property is set
+        internal bool IsSetBuiltInLifecycleConfigArn()
+        {
+            return this._builtInLifecycleConfigArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property CreationTime. 
         /// <para>
-        /// The creation time.
+        /// The creation time of the application.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// After an application has been shut down for 24 hours, SageMaker AI deletes all metadata
+        /// for the application. To be considered an update and retain application metadata, applications
+        /// must be restarted within 24 hours after the previous application has been shut down.
+        /// After this time window, creation of an application is considered a new application
+        /// rather than an update of the previous application.
+        /// </para>
+        ///  </note>
         /// </summary>
         public DateTime CreationTime
         {
@@ -179,9 +209,9 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property LastUserActivityTimestamp. 
         /// <para>
-        /// The timestamp of the last user's activity. <code>LastUserActivityTimestamp</code>
-        /// is also updated when SageMaker performs health checks without user activity. As a
-        /// result, this value is set to the same value as <code>LastHealthCheckTimestamp</code>.
+        /// The timestamp of the last user's activity. <c>LastUserActivityTimestamp</c> is also
+        /// updated when SageMaker AI performs health checks without user activity. As a result,
+        /// this value is set to the same value as <c>LastHealthCheckTimestamp</c>.
         /// </para>
         /// </summary>
         public DateTime LastUserActivityTimestamp
@@ -199,7 +229,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property ResourceSpec. 
         /// <para>
-        /// The instance type and the Amazon Resource Name (ARN) of the SageMaker image created
+        /// The instance type and the Amazon Resource Name (ARN) of the SageMaker AI image created
         /// on the instance.
         /// </para>
         /// </summary>
@@ -218,8 +248,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SpaceName. 
         /// <para>
-        /// The name of the space. If this value is not set, then <code>UserProfileName</code>
-        /// must be set.
+        /// The name of the space. If this value is not set, then <c>UserProfileName</c> must
+        /// be set.
         /// </para>
         /// </summary>
         [AWSProperty(Max=63)]

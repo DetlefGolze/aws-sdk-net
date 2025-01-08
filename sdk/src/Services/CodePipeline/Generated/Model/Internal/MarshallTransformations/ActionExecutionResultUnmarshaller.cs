@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ActionExecutionResult Unmarshall(JsonUnmarshallerContext context)
         {
+            ActionExecutionResult unmarshalledObject = new ActionExecutionResult();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ActionExecutionResult unmarshalledObject = new ActionExecutionResult();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("errorDetails", targetDepth))
+                {
+                    var unmarshaller = ErrorDetailsUnmarshaller.Instance;
+                    unmarshalledObject.ErrorDetails = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("externalExecutionId", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -82,8 +90,13 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
                     unmarshalledObject.ExternalExecutionUrl = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("logStreamARN", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.LogStreamARN = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.ResilienceHub.Model
     ///  <note> <ul> <li> 
     /// <para>
     /// You can only delete a manually added resource. To exclude non-manually added resources,
-    /// use the <code>UpdateAppVersionResource</code> API.
+    /// use the <c>UpdateAppVersionResource</c> API.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -45,7 +46,7 @@ namespace Amazon.ResilienceHub.Model
     /// <para>
     /// This API updates the Resilience Hub application draft version. To use this resource
     /// for running resiliency assessments, you must publish the Resilience Hub application
-    /// using the <code>PublishAppVersion</code> API.
+    /// using the <c>PublishAppVersion</c> API.
     /// </para>
     ///  </li> </ul> </note>
     /// </summary>
@@ -63,9 +64,10 @@ namespace Amazon.ResilienceHub.Model
         /// Gets and sets the property AppArn. 
         /// <para>
         /// Amazon Resource Name (ARN) of the Resilience Hub application. The format for this
-        /// ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app/<code>app-id</code>.
+        /// ARN is: arn:<c>partition</c>:resiliencehub:<c>region</c>:<c>account</c>:app/<c>app-id</c>.
         /// For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
-        /// Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i> guide.
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

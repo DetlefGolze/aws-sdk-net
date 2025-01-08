@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
-    /// Specifies that WAF should do nothing. This is used for the <code>OverrideAction</code>
-    /// setting on a <a>Rule</a> when the rule uses a rule group reference statement. 
+    /// Specifies that WAF should do nothing. This is used for the <c>OverrideAction</c> setting
+    /// on a <a>Rule</a> when the rule uses a rule group reference statement. 
     /// 
     ///  
     /// <para>
@@ -39,7 +40,7 @@ namespace Amazon.WAFV2.Model
     /// </para>
     ///  
     /// <para>
-    /// JSON specification: <code>"None": {}</code> 
+    /// JSON specification: <c>"None": {}</c> 
     /// </para>
     /// </summary>
     public partial class NoneAction

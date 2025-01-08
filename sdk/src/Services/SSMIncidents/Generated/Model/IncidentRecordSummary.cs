@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSMIncidents.Model
 {
     /// <summary>
@@ -63,7 +64,7 @@ namespace Amazon.SSMIncidents.Model
         /// <summary>
         /// Gets and sets the property CreationTime. 
         /// <para>
-        /// The time the incident was created.
+        /// The timestamp for when the incident was created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -120,7 +121,7 @@ namespace Amazon.SSMIncidents.Model
         /// <summary>
         /// Gets and sets the property ResolvedTime. 
         /// <para>
-        /// The time the incident was resolved.
+        /// The timestamp for when the incident was resolved.
         /// </para>
         /// </summary>
         public DateTime ResolvedTime

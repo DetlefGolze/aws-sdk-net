@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LookoutEquipment.Model
 {
     /// <summary>
@@ -56,11 +57,12 @@ namespace Amazon.LookoutEquipment.Model
         private DateTime? _evaluationDataEndTime;
         private DateTime? _evaluationDataStartTime;
         private LabelsInputConfiguration _labelsInputConfiguration;
+        private ModelDiagnosticsOutputConfiguration _modelDiagnosticsOutputConfiguration;
         private string _modelName;
         private string _offCondition;
         private string _roleArn;
         private string _serverSideKmsKeyId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private DateTime? _trainingDataEndTime;
         private DateTime? _trainingDataStartTime;
 
@@ -87,16 +89,16 @@ namespace Amazon.LookoutEquipment.Model
         /// <summary>
         /// Gets and sets the property DataPreProcessingConfiguration. 
         /// <para>
-        /// The configuration is the <code>TargetSamplingRate</code>, which is the sampling rate
-        /// of the data after post processing by Amazon Lookout for Equipment. For example, if
-        /// you provide data that has been collected at a 1 second level and you want the system
-        /// to resample the data at a 1 minute rate before training, the <code>TargetSamplingRate</code>
+        /// The configuration is the <c>TargetSamplingRate</c>, which is the sampling rate of
+        /// the data after post processing by Amazon Lookout for Equipment. For example, if you
+        /// provide data that has been collected at a 1 second level and you want the system to
+        /// resample the data at a 1 minute rate before training, the <c>TargetSamplingRate</c>
         /// is 1 minute.
         /// </para>
         ///  
         /// <para>
-        /// When providing a value for the <code>TargetSamplingRate</code>, you must attach the
-        /// prefix "PT" to the rate you want. The value for a 1 second rate is therefore <i>PT1S</i>,
+        /// When providing a value for the <c>TargetSamplingRate</c>, you must attach the prefix
+        /// "PT" to the rate you want. The value for a 1 second rate is therefore <i>PT1S</i>,
         /// the value for a 15 minute rate is <i>PT15M</i>, and the value for a 1 hour rate is
         /// <i>PT1H</i> 
         /// </para>
@@ -208,6 +210,25 @@ namespace Amazon.LookoutEquipment.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ModelDiagnosticsOutputConfiguration. 
+        /// <para>
+        /// The Amazon S3 location where you want Amazon Lookout for Equipment to save the pointwise
+        /// model diagnostics. You must also specify the <c>RoleArn</c> request parameter.
+        /// </para>
+        /// </summary>
+        public ModelDiagnosticsOutputConfiguration ModelDiagnosticsOutputConfiguration
+        {
+            get { return this._modelDiagnosticsOutputConfiguration; }
+            set { this._modelDiagnosticsOutputConfiguration = value; }
+        }
+
+        // Check to see if ModelDiagnosticsOutputConfiguration property is set
+        internal bool IsSetModelDiagnosticsOutputConfiguration()
+        {
+            return this._modelDiagnosticsOutputConfiguration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ModelName. 
         /// <para>
         /// The name for the machine learning model to be created.
@@ -303,7 +324,7 @@ namespace Amazon.LookoutEquipment.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

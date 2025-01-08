@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTTwinMaker.Model
 {
     /// <summary>
@@ -141,7 +142,8 @@ namespace Amazon.IoTTwinMaker.Model
         /// <summary>
         /// Gets and sets the property HasChildEntities. 
         /// <para>
-        /// A Boolean value that specifies whether the entity has child entities or not.
+        /// An <b>eventual</b> Boolean value that specifies whether the entity has child entities
+        /// or not.
         /// </para>
         /// </summary>
         public bool HasChildEntities

@@ -26,16 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppIntegrationsService.Model
 {
     /// <summary>
     /// Container for the parameters to the ListApplications operation.
-    /// This API is in preview release and subject to change.
-    /// 
-    ///  
-    /// <para>
     /// Lists applications in the account.
-    /// </para>
     /// </summary>
     public partial class ListApplicationsRequest : AmazonAppIntegrationsServiceRequest
     {

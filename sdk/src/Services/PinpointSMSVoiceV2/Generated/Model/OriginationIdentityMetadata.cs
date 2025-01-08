@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
@@ -34,9 +35,10 @@ namespace Amazon.PinpointSMSVoiceV2.Model
     public partial class OriginationIdentityMetadata
     {
         private string _isoCountryCode;
-        private List<string> _numberCapabilities = new List<string>();
+        private List<string> _numberCapabilities = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _originationIdentity;
         private string _originationIdentityArn;
+        private string _phoneNumber;
 
         /// <summary>
         /// Gets and sets the property IsoCountryCode. 
@@ -64,7 +66,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// both.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=2)]
+        [AWSProperty(Required=true, Min=1, Max=3)]
         public List<string> NumberCapabilities
         {
             get { return this._numberCapabilities; }
@@ -74,7 +76,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         // Check to see if NumberCapabilities property is set
         internal bool IsSetNumberCapabilities()
         {
-            return this._numberCapabilities != null && this._numberCapabilities.Count > 0; 
+            return this._numberCapabilities != null && (this._numberCapabilities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -113,6 +115,25 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         internal bool IsSetOriginationIdentityArn()
         {
             return this._originationIdentityArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PhoneNumber. 
+        /// <para>
+        /// The phone number in E.164 format.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=20)]
+        public string PhoneNumber
+        {
+            get { return this._phoneNumber; }
+            set { this._phoneNumber = value; }
+        }
+
+        // Check to see if PhoneNumber property is set
+        internal bool IsSetPhoneNumber()
+        {
+            return this._phoneNumber != null;
         }
 
     }

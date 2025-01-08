@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -33,11 +34,11 @@ namespace Amazon.Comprehend.Model
     /// </summary>
     public partial class DetectEntitiesResponse : AmazonWebServiceResponse
     {
-        private List<Block> _blocks = new List<Block>();
+        private List<Block> _blocks = AWSConfigs.InitializeCollections ? new List<Block>() : null;
         private DocumentMetadata _documentMetadata;
-        private List<DocumentTypeListItem> _documentType = new List<DocumentTypeListItem>();
-        private List<Entity> _entities = new List<Entity>();
-        private List<ErrorsListItem> _errors = new List<ErrorsListItem>();
+        private List<DocumentTypeListItem> _documentType = AWSConfigs.InitializeCollections ? new List<DocumentTypeListItem>() : null;
+        private List<Entity> _entities = AWSConfigs.InitializeCollections ? new List<Entity>() : null;
+        private List<ErrorsListItem> _errors = AWSConfigs.InitializeCollections ? new List<ErrorsListItem>() : null;
 
         /// <summary>
         /// Gets and sets the property Blocks. 
@@ -48,12 +49,12 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  
         /// <para>
-        /// The <code>Block</code> content for a Word input document does not include a <code>Geometry</code>
+        /// The <c>Block</c> content for a Word input document does not include a <c>Geometry</c>
         /// field.
         /// </para>
         ///  
         /// <para>
-        /// The <code>Block</code> field is not present in the response for plain-text inputs.
+        /// The <c>Block</c> field is not present in the response for plain-text inputs.
         /// </para>
         /// </summary>
         public List<Block> Blocks
@@ -65,14 +66,14 @@ namespace Amazon.Comprehend.Model
         // Check to see if Blocks property is set
         internal bool IsSetBlocks()
         {
-            return this._blocks != null && this._blocks.Count > 0; 
+            return this._blocks != null && (this._blocks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DocumentMetadata. 
         /// <para>
         /// Information about the document, discovered during text extraction. This field is present
-        /// in the response only if your request used the <code>Byte</code> parameter. 
+        /// in the response only if your request used the <c>Byte</c> parameter. 
         /// </para>
         /// </summary>
         public DocumentMetadata DocumentMetadata
@@ -91,7 +92,7 @@ namespace Amazon.Comprehend.Model
         /// Gets and sets the property DocumentType. 
         /// <para>
         /// The document type for each page in the input document. This field is present in the
-        /// response only if your request used the <code>Byte</code> parameter. 
+        /// response only if your request used the <c>Byte</c> parameter. 
         /// </para>
         /// </summary>
         public List<DocumentTypeListItem> DocumentType
@@ -103,7 +104,7 @@ namespace Amazon.Comprehend.Model
         // Check to see if DocumentType property is set
         internal bool IsSetDocumentType()
         {
-            return this._documentType != null && this._documentType.Count > 0; 
+            return this._documentType != null && (this._documentType.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -130,7 +131,7 @@ namespace Amazon.Comprehend.Model
         // Check to see if Entities property is set
         internal bool IsSetEntities()
         {
-            return this._entities != null && this._entities.Count > 0; 
+            return this._entities != null && (this._entities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -149,7 +150,7 @@ namespace Amazon.Comprehend.Model
         // Check to see if Errors property is set
         internal bool IsSetErrors()
         {
-            return this._errors != null && this._errors.Count > 0; 
+            return this._errors != null && (this._errors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BillingConductor.Model
 {
     /// <summary>
@@ -61,8 +62,8 @@ namespace Amazon.BillingConductor.Model
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// A <code>ListCustomLineItemsFilter</code> that specifies the custom line item names
-        /// and/or billing group Amazon Resource Names (ARNs) to retrieve FFLI information.
+        /// A <c>ListCustomLineItemsFilter</c> that specifies the custom line item names and/or
+        /// billing group Amazon Resource Names (ARNs) to retrieve FFLI information.
         /// </para>
         /// </summary>
         public ListCustomLineItemsFilter Filters

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
@@ -69,6 +70,10 @@ namespace Amazon.CodePipeline.Model
         /// <para>
         /// Approval
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Compute
+        /// </para>
         ///  </li> </ul>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -87,9 +92,9 @@ namespace Amazon.CodePipeline.Model
         /// <summary>
         /// Gets and sets the property Owner. 
         /// <para>
-        /// The creator of the action being called. There are three valid values for the <code>Owner</code>
-        /// field in the action category section within your pipeline structure: <code>AWS</code>,
-        /// <code>ThirdParty</code>, and <code>Custom</code>. For more information, see <a href="https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#actions-valid-providers">Valid
+        /// The creator of the action being called. There are three valid values for the <c>Owner</c>
+        /// field in the action category section within your pipeline structure: <c>AWS</c>, <c>ThirdParty</c>,
+        /// and <c>Custom</c>. For more information, see <a href="https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#actions-valid-providers">Valid
         /// Action Types and Providers in CodePipeline</a>.
         /// </para>
         /// </summary>
@@ -111,8 +116,8 @@ namespace Amazon.CodePipeline.Model
         /// <para>
         /// The provider of the service being called by the action. Valid providers are determined
         /// by the action category. For example, an action in the Deploy category type might have
-        /// a provider of CodeDeploy, which would be specified as <code>CodeDeploy</code>. For
-        /// more information, see <a href="https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#actions-valid-providers">Valid
+        /// a provider of CodeDeploy, which would be specified as <c>CodeDeploy</c>. For more
+        /// information, see <a href="https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#actions-valid-providers">Valid
         /// Action Types and Providers in CodePipeline</a>.
         /// </para>
         /// </summary>

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Appflow.Model
 {
     /// <summary>
     /// Container for the parameters to the StopFlow operation.
-    /// Deactivates the existing flow. For on-demand flows, this operation returns an <code>unsupportedOperationException</code>
+    /// Deactivates the existing flow. For on-demand flows, this operation returns an <c>unsupportedOperationException</c>
     /// error message. For schedule and event-triggered flows, this operation deactivates
     /// the flow.
     /// </summary>

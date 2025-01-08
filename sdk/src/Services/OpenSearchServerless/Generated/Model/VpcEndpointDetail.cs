@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchServerless.Model
 {
     /// <summary>
@@ -34,11 +35,13 @@ namespace Amazon.OpenSearchServerless.Model
     public partial class VpcEndpointDetail
     {
         private long? _createdDate;
+        private string _failureCode;
+        private string _failureMessage;
         private string _id;
         private string _name;
-        private List<string> _securityGroupIds = new List<string>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private VpcEndpointStatus _status;
-        private List<string> _subnetIds = new List<string>();
+        private List<string> _subnetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _vpcId;
 
         /// <summary>
@@ -57,6 +60,42 @@ namespace Amazon.OpenSearchServerless.Model
         internal bool IsSetCreatedDate()
         {
             return this._createdDate.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property FailureCode. 
+        /// <para>
+        /// A failure code associated with the request.
+        /// </para>
+        /// </summary>
+        public string FailureCode
+        {
+            get { return this._failureCode; }
+            set { this._failureCode = value; }
+        }
+
+        // Check to see if FailureCode property is set
+        internal bool IsSetFailureCode()
+        {
+            return this._failureCode != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property FailureMessage. 
+        /// <para>
+        /// A message associated with the failure code.
+        /// </para>
+        /// </summary>
+        public string FailureMessage
+        {
+            get { return this._failureMessage; }
+            set { this._failureMessage = value; }
+        }
+
+        // Check to see if FailureMessage property is set
+        internal bool IsSetFailureMessage()
+        {
+            return this._failureMessage != null;
         }
 
         /// <summary>
@@ -114,7 +153,7 @@ namespace Amazon.OpenSearchServerless.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -151,7 +190,7 @@ namespace Amazon.OpenSearchServerless.Model
         // Check to see if SubnetIds property is set
         internal bool IsSetSubnetIds()
         {
-            return this._subnetIds != null && this._subnetIds.Count > 0; 
+            return this._subnetIds != null && (this._subnetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

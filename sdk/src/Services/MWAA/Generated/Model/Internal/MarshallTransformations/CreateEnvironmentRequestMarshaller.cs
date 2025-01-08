@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MWAA.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,6 +67,7 @@ namespace Amazon.MWAA.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAirflowConfigurationOptions())
@@ -92,6 +94,12 @@ namespace Amazon.MWAA.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("DagS3Path");
                     context.Writer.Write(publicRequest.DagS3Path);
+                }
+
+                if(publicRequest.IsSetEndpointManagement())
+                {
+                    context.Writer.WritePropertyName("EndpointManagement");
+                    context.Writer.Write(publicRequest.EndpointManagement);
                 }
 
                 if(publicRequest.IsSetEnvironmentClass())
@@ -123,10 +131,22 @@ namespace Amazon.MWAA.Model.Internal.MarshallTransformations
                     context.Writer.WriteObjectEnd();
                 }
 
+                if(publicRequest.IsSetMaxWebservers())
+                {
+                    context.Writer.WritePropertyName("MaxWebservers");
+                    context.Writer.Write(publicRequest.MaxWebservers);
+                }
+
                 if(publicRequest.IsSetMaxWorkers())
                 {
                     context.Writer.WritePropertyName("MaxWorkers");
                     context.Writer.Write(publicRequest.MaxWorkers);
+                }
+
+                if(publicRequest.IsSetMinWebservers())
+                {
+                    context.Writer.WritePropertyName("MinWebservers");
+                    context.Writer.Write(publicRequest.MinWebservers);
                 }
 
                 if(publicRequest.IsSetMinWorkers())

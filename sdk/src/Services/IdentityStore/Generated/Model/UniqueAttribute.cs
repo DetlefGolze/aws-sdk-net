@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityStore.Model
 {
     /// <summary>
@@ -59,8 +60,8 @@ namespace Amazon.IdentityStore.Model
         /// <summary>
         /// Gets and sets the property AttributeValue. 
         /// <para>
-        /// The value of the attribute. This is a <code>Document</code> type. This type is not
-        /// supported by Java V1, Go V1, and older versions of the CLI.
+        /// The value of the attribute. This is a <c>Document</c> type. This type is not supported
+        /// by Java V1, Go V1, and older versions of the CLI.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.SimpleEmailV2.Model
     public partial class ListSuppressedDestinationsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<SuppressedDestinationSummary> _suppressedDestinationSummaries = new List<SuppressedDestinationSummary>();
+        private List<SuppressedDestinationSummary> _suppressedDestinationSummaries = AWSConfigs.InitializeCollections ? new List<SuppressedDestinationSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token that indicates that there are additional email addresses on the suppression
         /// list for your account. To view additional suppressed addresses, issue another request
-        /// to <code>ListSuppressedDestinations</code>, and pass this token in the <code>NextToken</code>
+        /// to <c>ListSuppressedDestinations</c>, and pass this token in the <c>NextToken</c>
         /// parameter.
         /// </para>
         /// </summary>
@@ -72,7 +73,7 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if SuppressedDestinationSummaries property is set
         internal bool IsSetSuppressedDestinationSummaries()
         {
-            return this._suppressedDestinationSummaries != null && this._suppressedDestinationSummaries.Count > 0; 
+            return this._suppressedDestinationSummaries != null && (this._suppressedDestinationSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

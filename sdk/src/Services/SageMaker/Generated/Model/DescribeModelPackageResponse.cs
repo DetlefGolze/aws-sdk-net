@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -33,12 +34,12 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class DescribeModelPackageResponse : AmazonWebServiceResponse
     {
-        private List<AdditionalInferenceSpecificationDefinition> _additionalInferenceSpecifications = new List<AdditionalInferenceSpecificationDefinition>();
+        private List<AdditionalInferenceSpecificationDefinition> _additionalInferenceSpecifications = AWSConfigs.InitializeCollections ? new List<AdditionalInferenceSpecificationDefinition>() : null;
         private string _approvalDescription;
         private bool? _certifyForMarketplace;
         private UserContext _createdBy;
         private DateTime? _creationTime;
-        private Dictionary<string, string> _customerMetadataProperties = new Dictionary<string, string>();
+        private Dictionary<string, string> _customerMetadataProperties = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _domain;
         private DriftCheckBaselines _driftCheckBaselines;
         private InferenceSpecification _inferenceSpecification;
@@ -46,6 +47,8 @@ namespace Amazon.SageMaker.Model
         private DateTime? _lastModifiedTime;
         private MetadataProperties _metadataProperties;
         private ModelApprovalStatus _modelApprovalStatus;
+        private ModelPackageModelCard _modelCard;
+        private ModelLifeCycle _modelLifeCycle;
         private ModelMetrics _modelMetrics;
         private string _modelPackageArn;
         private string _modelPackageDescription;
@@ -55,8 +58,10 @@ namespace Amazon.SageMaker.Model
         private ModelPackageStatusDetails _modelPackageStatusDetails;
         private int? _modelPackageVersion;
         private string _samplePayloadUrl;
+        private ModelPackageSecurityConfig _securityConfig;
         private SkipModelValidation _skipModelValidation;
         private SourceAlgorithmSpecification _sourceAlgorithmSpecification;
+        private string _sourceUri;
         private string _task;
         private ModelPackageValidationSpecification _validationSpecification;
 
@@ -78,7 +83,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if AdditionalInferenceSpecifications property is set
         internal bool IsSetAdditionalInferenceSpecifications()
         {
-            return this._additionalInferenceSpecifications != null && this._additionalInferenceSpecifications.Count > 0; 
+            return this._additionalInferenceSpecifications != null && (this._additionalInferenceSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -168,7 +173,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if CustomerMetadataProperties property is set
         internal bool IsSetCustomerMetadataProperties()
         {
-            return this._customerMetadataProperties != null && this._customerMetadataProperties.Count > 0; 
+            return this._customerMetadataProperties != null && (this._customerMetadataProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -214,7 +219,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property InferenceSpecification. 
         /// <para>
-        /// Details about inference jobs that can be run with models based on this model package.
+        /// Details about inference jobs that you can run with models based on this model package.
         /// </para>
         /// </summary>
         public InferenceSpecification InferenceSpecification
@@ -293,6 +298,50 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetModelApprovalStatus()
         {
             return this._modelApprovalStatus != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ModelCard. 
+        /// <para>
+        /// The model card associated with the model package. Since <c>ModelPackageModelCard</c>
+        /// is tied to a model package, it is a specific usage of a model card and its schema
+        /// is simplified compared to the schema of <c>ModelCard</c>. The <c>ModelPackageModelCard</c>
+        /// schema does not include <c>model_package_details</c>, and <c>model_overview</c> is
+        /// composed of the <c>model_creator</c> and <c>model_artifact</c> properties. For more
+        /// information about the model package model card schema, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry-details.html#model-card-schema">Model
+        /// package model card schema</a>. For more information about the model card associated
+        /// with the model package, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry-details.html">View
+        /// the Details of a Model Version</a>.
+        /// </para>
+        /// </summary>
+        public ModelPackageModelCard ModelCard
+        {
+            get { return this._modelCard; }
+            set { this._modelCard = value; }
+        }
+
+        // Check to see if ModelCard property is set
+        internal bool IsSetModelCard()
+        {
+            return this._modelCard != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ModelLifeCycle. 
+        /// <para>
+        ///  A structure describing the current state of the model in its life cycle. 
+        /// </para>
+        /// </summary>
+        public ModelLifeCycle ModelLifeCycle
+        {
+            get { return this._modelLifeCycle; }
+            set { this._modelLifeCycle = value; }
+        }
+
+        // Check to see if ModelLifeCycle property is set
+        internal bool IsSetModelLifeCycle()
+        {
+            return this._modelLifeCycle != null;
         }
 
         /// <summary>
@@ -467,6 +516,24 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SecurityConfig. 
+        /// <para>
+        /// The KMS Key ID (<c>KMSKeyId</c>) used for encryption of model package information.
+        /// </para>
+        /// </summary>
+        public ModelPackageSecurityConfig SecurityConfig
+        {
+            get { return this._securityConfig; }
+            set { this._securityConfig = value; }
+        }
+
+        // Check to see if SecurityConfig property is set
+        internal bool IsSetSecurityConfig()
+        {
+            return this._securityConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property SkipModelValidation. 
         /// <para>
         /// Indicates if you want to skip model validation.
@@ -500,6 +567,25 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetSourceAlgorithmSpecification()
         {
             return this._sourceAlgorithmSpecification != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SourceUri. 
+        /// <para>
+        /// The URI of the source for the model package.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=1024)]
+        public string SourceUri
+        {
+            get { return this._sourceUri; }
+            set { this._sourceUri = value; }
+        }
+
+        // Check to see if SourceUri property is set
+        internal bool IsSetSourceUri()
+        {
+            return this._sourceUri != null;
         }
 
         /// <summary>

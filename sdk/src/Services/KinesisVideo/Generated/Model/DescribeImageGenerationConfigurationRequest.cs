@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideo.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeImageGenerationConfiguration operation.
-    /// Gets the <code>ImageGenerationConfiguration</code> for a given Kinesis video stream.
+    /// Gets the <c>ImageGenerationConfiguration</c> for a given Kinesis video stream.
     /// </summary>
     public partial class DescribeImageGenerationConfigurationRequest : AmazonKinesisVideoRequest
     {
@@ -41,8 +42,8 @@ namespace Amazon.KinesisVideo.Model
         /// Gets and sets the property StreamARN. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the Kinesis video stream from which to retrieve
-        /// the image generation configuration. You must specify either the <code>StreamName</code>
-        /// or the <code>StreamARN</code>.
+        /// the image generation configuration. You must specify either the <c>StreamName</c>
+        /// or the <c>StreamARN</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -62,8 +63,7 @@ namespace Amazon.KinesisVideo.Model
         /// Gets and sets the property StreamName. 
         /// <para>
         /// The name of the stream from which to retrieve the image generation configuration.
-        /// You must specify either the <code>StreamName</code> or the <code>StreamARN</code>.
-        /// 
+        /// You must specify either the <c>StreamName</c> or the <c>StreamARN</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]

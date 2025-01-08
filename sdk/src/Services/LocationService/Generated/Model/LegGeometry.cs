@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.LocationService.Model
     /// </summary>
     public partial class LegGeometry
     {
-        private List<List<double>> _lineString = new List<List<double>>();
+        private List<List<double>> _lineString = AWSConfigs.InitializeCollections ? new List<List<double>>() : null;
 
         /// <summary>
         /// Gets and sets the property LineString. 
@@ -48,8 +49,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For example, <code>[[-123.117, 49.284],[-123.115, 49.285],[-123.115, 49.285]]</code>
-        /// 
+        /// For example, <c>[[-123.117, 49.284],[-123.115, 49.285],[-123.115, 49.285]]</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -63,7 +63,7 @@ namespace Amazon.LocationService.Model
         // Check to see if LineString property is set
         internal bool IsSetLineString()
         {
-            return this._lineString != null && this._lineString.Count > 0; 
+            return this._lineString != null && (this._lineString.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SimpleSystemsManagement.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.SimpleSystemsManagement.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public TargetLocation Unmarshall(JsonUnmarshallerContext context)
         {
+            TargetLocation unmarshalledObject = new TargetLocation();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            TargetLocation unmarshalledObject = new TargetLocation();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -70,10 +72,22 @@ namespace Amazon.SimpleSystemsManagement.Model.Internal.MarshallTransformations
                     unmarshalledObject.Accounts = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ExcludeAccounts", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
+                    unmarshalledObject.ExcludeAccounts = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ExecutionRoleName", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.ExecutionRoleName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("IncludeChildOrganizationUnits", targetDepth))
+                {
+                    var unmarshaller = BoolUnmarshaller.Instance;
+                    unmarshalledObject.IncludeChildOrganizationUnits = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Regions", targetDepth))
@@ -100,8 +114,25 @@ namespace Amazon.SimpleSystemsManagement.Model.Internal.MarshallTransformations
                     unmarshalledObject.TargetLocationMaxErrors = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("Targets", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<Target, TargetUnmarshaller>(TargetUnmarshaller.Instance);
+                    unmarshalledObject.Targets = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("TargetsMaxConcurrency", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.TargetsMaxConcurrency = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("TargetsMaxErrors", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.TargetsMaxErrors = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

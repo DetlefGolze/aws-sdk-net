@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Connect.Model
     /// <para>
     /// It returns the highest version if there is no change in content compared to that version.
     /// An error is displayed if the supplied ViewContentSha256 is different from the ViewContentSha256
-    /// of the <code>$LATEST</code> alias.
+    /// of the <c>$LATEST</c> alias.
     /// </para>
     /// </summary>
     public partial class CreateViewVersionRequest : AmazonConnectRequest
@@ -111,8 +112,7 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property ViewId. 
         /// <para>
-        /// The identifier of the view. Both <code>ViewArn</code> and <code>ViewId</code> can
-        /// be used.
+        /// The identifier of the view. Both <c>ViewArn</c> and <c>ViewId</c> can be used.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=500)]

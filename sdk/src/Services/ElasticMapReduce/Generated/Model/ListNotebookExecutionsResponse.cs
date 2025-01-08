@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.ElasticMapReduce.Model
     public partial class ListNotebookExecutionsResponse : AmazonWebServiceResponse
     {
         private string _marker;
-        private List<NotebookExecutionSummary> _notebookExecutions = new List<NotebookExecutionSummary>();
+        private List<NotebookExecutionSummary> _notebookExecutions = AWSConfigs.InitializeCollections ? new List<NotebookExecutionSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// A pagination token that a subsequent <code>ListNotebookExecutions</code> can use to
-        /// determine the next set of results to retrieve.
+        /// A pagination token that a subsequent <c>ListNotebookExecutions</c> can use to determine
+        /// the next set of results to retrieve.
         /// </para>
         /// </summary>
         public string Marker
@@ -70,7 +71,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if NotebookExecutions property is set
         internal bool IsSetNotebookExecutions()
         {
-            return this._notebookExecutions != null && this._notebookExecutions.Count > 0; 
+            return this._notebookExecutions != null && (this._notebookExecutions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

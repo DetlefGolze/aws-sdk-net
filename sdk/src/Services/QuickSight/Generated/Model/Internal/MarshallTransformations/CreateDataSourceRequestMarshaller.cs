@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,6 +67,7 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetCredentials())
@@ -94,6 +96,17 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
                     marshaller.Marshall(publicRequest.DataSourceParameters, context);
 
                     context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetFolderArns())
+                {
+                    context.Writer.WritePropertyName("FolderArns");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestFolderArnsListValue in publicRequest.FolderArns)
+                    {
+                            context.Writer.Write(publicRequestFolderArnsListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
                 }
 
                 if(publicRequest.IsSetName())

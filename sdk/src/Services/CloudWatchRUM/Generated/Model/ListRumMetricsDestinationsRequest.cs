@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchRUM.Model
 {
     /// <summary>
@@ -71,7 +72,7 @@ namespace Amazon.CloudWatchRUM.Model
         /// </para>
         ///  
         /// <para>
-        /// To retrieve the remaining results, make another call with the returned <code>NextToken</code>
+        /// To retrieve the remaining results, make another call with the returned <c>NextToken</c>
         /// value. 
         /// </para>
         /// </summary>

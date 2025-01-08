@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
-    /// A summary of information about the AWS Lambda function.
+    /// A summary of information about the Amazon Web Services Lambda function.
     /// </summary>
     public partial class AwsLambdaFunctionDetails
     {
-        private List<string> _architectures = new List<string>();
+        private List<string> _architectures = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _codeSha256;
         private string _executionRoleArn;
         private string _functionName;
         private DateTime? _lastModifiedAt;
-        private List<string> _layers = new List<string>();
+        private List<string> _layers = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private PackageType _packageType;
         private Runtime _runtime;
         private string _version;
@@ -47,9 +48,9 @@ namespace Amazon.Inspector2.Model
         /// <summary>
         /// Gets and sets the property Architectures. 
         /// <para>
-        /// The instruction set architecture that the AWS Lambda function supports. Architecture
-        /// is a string array with one of the valid values. The default architecture value is
-        /// <code>x86_64</code>.
+        /// The instruction set architecture that the Amazon Web Services Lambda function supports.
+        /// Architecture is a string array with one of the valid values. The default architecture
+        /// value is <c>x86_64</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1)]
@@ -62,13 +63,13 @@ namespace Amazon.Inspector2.Model
         // Check to see if Architectures property is set
         internal bool IsSetArchitectures()
         {
-            return this._architectures != null && this._architectures.Count > 0; 
+            return this._architectures != null && (this._architectures.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property CodeSha256. 
         /// <para>
-        /// The SHA256 hash of the AWS Lambda function's deployment package.
+        /// The SHA256 hash of the Amazon Web Services Lambda function's deployment package.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1)]
@@ -87,7 +88,7 @@ namespace Amazon.Inspector2.Model
         /// <summary>
         /// Gets and sets the property ExecutionRoleArn. 
         /// <para>
-        /// The AWS Lambda function's execution role.
+        /// The Amazon Web Services Lambda function's execution role.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -106,7 +107,7 @@ namespace Amazon.Inspector2.Model
         /// <summary>
         /// Gets and sets the property FunctionName. 
         /// <para>
-        /// The name of the AWS Lambda function.
+        /// The name of the Amazon Web Services Lambda function.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -144,7 +145,7 @@ namespace Amazon.Inspector2.Model
         /// <summary>
         /// Gets and sets the property Layers. 
         /// <para>
-        /// The AWS Lambda function's <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">
+        /// The Amazon Web Services Lambda function's <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">
         /// layers</a>. A Lambda function can have up to five layers.
         /// </para>
         /// </summary>
@@ -158,14 +159,14 @@ namespace Amazon.Inspector2.Model
         // Check to see if Layers property is set
         internal bool IsSetLayers()
         {
-            return this._layers != null && this._layers.Count > 0; 
+            return this._layers != null && (this._layers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PackageType. 
         /// <para>
-        /// The type of deployment package. Set to <code>Image</code> for container image and
-        /// set <code>Zip</code> for .zip file archive.
+        /// The type of deployment package. Set to <c>Image</c> for container image and set <c>Zip</c>
+        /// for .zip file archive.
         /// </para>
         /// </summary>
         public PackageType PackageType
@@ -183,7 +184,7 @@ namespace Amazon.Inspector2.Model
         /// <summary>
         /// Gets and sets the property Runtime. 
         /// <para>
-        /// The runtime environment for the AWS Lambda function.
+        /// The runtime environment for the Amazon Web Services Lambda function.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -202,7 +203,7 @@ namespace Amazon.Inspector2.Model
         /// <summary>
         /// Gets and sets the property Version. 
         /// <para>
-        /// The version of the AWS Lambda function.
+        /// The version of the Amazon Web Services Lambda function.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -221,7 +222,7 @@ namespace Amazon.Inspector2.Model
         /// <summary>
         /// Gets and sets the property VpcConfig. 
         /// <para>
-        /// The AWS Lambda function's networking configuration.
+        /// The Amazon Web Services Lambda function's networking configuration.
         /// </para>
         /// </summary>
         public LambdaVpcConfig VpcConfig

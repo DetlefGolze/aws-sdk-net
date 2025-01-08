@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Kendra.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.Kendra.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAttributeFilter())
@@ -74,6 +76,17 @@ namespace Amazon.Kendra.Model.Internal.MarshallTransformations
 
                     var marshaller = AttributeFilterMarshaller.Instance;
                     marshaller.Marshall(publicRequest.AttributeFilter, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetCollapseConfiguration())
+                {
+                    context.Writer.WritePropertyName("CollapseConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = CollapseConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.CollapseConfiguration, context);
 
                     context.Writer.WriteObjectEnd();
                 }
@@ -160,6 +173,22 @@ namespace Amazon.Kendra.Model.Internal.MarshallTransformations
                     marshaller.Marshall(publicRequest.SortingConfiguration, context);
 
                     context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetSortingConfigurations())
+                {
+                    context.Writer.WritePropertyName("SortingConfigurations");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestSortingConfigurationsListValue in publicRequest.SortingConfigurations)
+                    {
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = SortingConfigurationMarshaller.Instance;
+                        marshaller.Marshall(publicRequestSortingConfigurationsListValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteArrayEnd();
                 }
 
                 if(publicRequest.IsSetSpellCorrectionConfiguration())

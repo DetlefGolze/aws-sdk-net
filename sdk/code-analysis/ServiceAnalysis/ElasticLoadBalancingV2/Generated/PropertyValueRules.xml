@@ -46,6 +46,12 @@
     <max>10</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.ElasticLoadBalancingV2.Model.CreateTrustStoreRequest.Name</property>
+    <min>1</min>
+    <max>32</max>
+    <pattern>^([a-zA-Z0-9]+-)*[a-zA-Z0-9]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.ElasticLoadBalancingV2.Model.DescribeAccountLimitsRequest.PageSize</property>
     <min>1</min>
     <max>400</max>
@@ -79,6 +85,25 @@
     <property>Amazon.ElasticLoadBalancingV2.Model.DescribeTargetGroupsRequest.PageSize</property>
     <min>1</min>
     <max>400</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ElasticLoadBalancingV2.Model.DescribeTrustStoreAssociationsRequest.PageSize</property>
+    <min>1</min>
+    <max>400</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ElasticLoadBalancingV2.Model.DescribeTrustStoreRevocationsRequest.PageSize</property>
+    <min>1</min>
+    <max>400</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ElasticLoadBalancingV2.Model.DescribeTrustStoresRequest.PageSize</property>
+    <min>1</min>
+    <max>400</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ElasticLoadBalancingV2.Model.GetResourcePolicyResponse.Policy</property>
+    <min>1</min>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ElasticLoadBalancingV2.Model.ModifyListenerRequest.Port</property>
@@ -133,6 +158,11 @@
     <property>Amazon.ElasticLoadBalancingV2.Model.Listener.Port</property>
     <min>1</min>
     <max>65535</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ElasticLoadBalancingV2.Model.ListenerAttribute.Key</property>
+    <max>256</max>
+    <pattern>^[a-zA-Z0-9._]+$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ElasticLoadBalancingV2.Model.LoadBalancer.CustomerOwnedIpv4Pool</property>
@@ -227,5 +257,11 @@
     <property>Amazon.ElasticLoadBalancingV2.Model.TargetGroupAttribute.Key</property>
     <max>256</max>
     <pattern>^[a-zA-Z0-9._]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ElasticLoadBalancingV2.Model.TrustStore.Name</property>
+    <min>1</min>
+    <max>32</max>
+    <pattern>^([a-zA-Z0-9]+-)*[a-zA-Z0-9]+$</pattern>
   </property-value-rule>
 </property-value-rules>

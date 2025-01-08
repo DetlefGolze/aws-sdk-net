@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RedshiftServerless.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.RedshiftServerless.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetBaseCapacity())
@@ -95,6 +97,18 @@ namespace Amazon.RedshiftServerless.Model.Internal.MarshallTransformations
                     context.Writer.Write(publicRequest.EnhancedVpcRouting);
                 }
 
+                if(publicRequest.IsSetIpAddressType())
+                {
+                    context.Writer.WritePropertyName("ipAddressType");
+                    context.Writer.Write(publicRequest.IpAddressType);
+                }
+
+                if(publicRequest.IsSetMaxCapacity())
+                {
+                    context.Writer.WritePropertyName("maxCapacity");
+                    context.Writer.Write(publicRequest.MaxCapacity);
+                }
+
                 if(publicRequest.IsSetNamespaceName())
                 {
                     context.Writer.WritePropertyName("namespaceName");
@@ -105,6 +119,17 @@ namespace Amazon.RedshiftServerless.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("port");
                     context.Writer.Write(publicRequest.Port);
+                }
+
+                if(publicRequest.IsSetPricePerformanceTarget())
+                {
+                    context.Writer.WritePropertyName("pricePerformanceTarget");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = PerformanceTargetMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.PricePerformanceTarget, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetPubliclyAccessible())

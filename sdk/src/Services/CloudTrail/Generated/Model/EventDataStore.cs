@@ -26,18 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
     /// A storage lake of event data against which you can run complex SQL-based queries.
-    /// An event data store can include events that you have logged on your account from the
-    /// last 90 to 2557 days (about three months to up to seven years). To select events for
-    /// an event data store, use <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#creating-data-event-selectors-advanced">advanced
+    /// An event data store can include events that you have logged on your account. To select
+    /// events for an event data store, use <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-lake-concepts.html#adv-event-selectors">advanced
     /// event selectors</a>.
     /// </summary>
     public partial class EventDataStore
     {
-        private List<AdvancedEventSelector> _advancedEventSelectors = new List<AdvancedEventSelector>();
+        private List<AdvancedEventSelector> _advancedEventSelectors = AWSConfigs.InitializeCollections ? new List<AdvancedEventSelector>() : null;
         private DateTime? _createdTimestamp;
         private string _eventDataStoreArn;
         private bool? _multiRegionEnabled;
@@ -64,7 +64,7 @@ namespace Amazon.CloudTrail.Model
         // Check to see if AdvancedEventSelectors property is set
         internal bool IsSetAdvancedEventSelectors()
         {
-            return this._advancedEventSelectors != null && this._advancedEventSelectors.Count > 0; 
+            return this._advancedEventSelectors != null && (this._advancedEventSelectors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace Amazon.CloudTrail.Model
         /// </para>
         /// </summary>
         [Obsolete("RetentionPeriod is no longer returned by ListEventDataStores")]
-        [AWSProperty(Min=7, Max=2557)]
+        [AWSProperty(Min=7, Max=3653)]
         public int RetentionPeriod
         {
             get { return this._retentionPeriod.GetValueOrDefault(); }
@@ -224,8 +224,8 @@ namespace Amazon.CloudTrail.Model
         /// <summary>
         /// Gets and sets the property UpdatedTimestamp. 
         /// <para>
-        /// The timestamp showing when an event data store was updated, if applicable. <code>UpdatedTimestamp</code>
-        /// is always either the same or newer than the time shown in <code>CreatedTimestamp</code>.
+        /// The timestamp showing when an event data store was updated, if applicable. <c>UpdatedTimestamp</c>
+        /// is always either the same or newer than the time shown in <c>CreatedTimestamp</c>.
         /// </para>
         /// </summary>
         [Obsolete("UpdatedTimestamp is no longer returned by ListEventDataStores")]

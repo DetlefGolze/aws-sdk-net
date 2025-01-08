@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.AutoScaling.Model
     /// </summary>
     public partial class DescribeWarmPoolResponse : AmazonWebServiceResponse
     {
-        private List<Instance> _instances = new List<Instance>();
+        private List<Instance> _instances = AWSConfigs.InitializeCollections ? new List<Instance>() : null;
         private string _nextToken;
         private WarmPoolConfiguration _warmPoolConfiguration;
 
@@ -52,14 +53,14 @@ namespace Amazon.AutoScaling.Model
         // Check to see if Instances property is set
         internal bool IsSetInstances()
         {
-            return this._instances != null && this._instances.Count > 0; 
+            return this._instances != null && (this._instances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// This string indicates that the response contains more items than can be returned in
-        /// a single response. To receive additional items, specify this string for the <code>NextToken</code>
+        /// a single response. To receive additional items, specify this string for the <c>NextToken</c>
         /// value when requesting the next set of items. This value is null when there are no
         /// more items to return.
         /// </para>

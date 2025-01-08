@@ -26,11 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateResourceServer operation.
-    /// Creates a new OAuth2.0 resource server and defines custom scopes within it.
+    /// Creates a new OAuth2.0 resource server and defines custom scopes within it. Resource
+    /// servers are associated with custom scopes and machine-to-machine (M2M) authorization.
+    /// For more information, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-define-resource-servers.html">Access
+    /// control with resource servers</a>.
     /// 
     ///  <note> 
     /// <para>
@@ -58,14 +62,20 @@ namespace Amazon.CognitoIdentityProvider.Model
     {
         private string _identifier;
         private string _name;
-        private List<ResourceServerScopeType> _scopes = new List<ResourceServerScopeType>();
+        private List<ResourceServerScopeType> _scopes = AWSConfigs.InitializeCollections ? new List<ResourceServerScopeType>() : null;
         private string _userPoolId;
 
         /// <summary>
         /// Gets and sets the property Identifier. 
         /// <para>
-        /// A unique resource server identifier for the resource server. This could be an HTTPS
-        /// endpoint where the resource server is located, such as <code>https://my-weather-api.example.com</code>.
+        /// A unique resource server identifier for the resource server. The identifier can be
+        /// an API friendly name like <c>solar-system-data</c>. You can also set an API URL like
+        /// <c>https://solar-system-data-api.example.com</c> as your identifier.
+        /// </para>
+        ///  
+        /// <para>
+        /// Amazon Cognito represents scopes in the access token in the format <c>$resource-server-identifier/$scope</c>.
+        /// Longer scope-identifier strings increase the size of your access tokens.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]
@@ -103,8 +113,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Scopes. 
         /// <para>
-        /// A list of scopes. Each scope is a key-value map with the keys <code>name</code> and
-        /// <code>description</code>.
+        /// A list of custom scopes. Each scope is a key-value map with the keys <c>ScopeName</c>
+        /// and <c>ScopeDescription</c>. The name of a custom scope is a combination of <c>ScopeName</c>
+        /// and the resource server <c>Name</c> in this request, for example <c>MyResourceServerName/MyScopeName</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=100)]
@@ -117,13 +128,13 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if Scopes property is set
         internal bool IsSetScopes()
         {
-            return this._scopes != null && this._scopes.Count > 0; 
+            return this._scopes != null && (this._scopes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID for the user pool.
+        /// The ID of the user pool where you want to create a resource server.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

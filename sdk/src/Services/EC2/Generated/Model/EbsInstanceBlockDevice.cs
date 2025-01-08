@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,10 +34,31 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class EbsInstanceBlockDevice
     {
+        private string _associatedResource;
         private DateTime? _attachTime;
         private bool? _deleteOnTermination;
+        private OperatorResponse _operator;
         private AttachmentStatus _status;
         private string _volumeId;
+        private string _volumeOwnerId;
+
+        /// <summary>
+        /// Gets and sets the property AssociatedResource. 
+        /// <para>
+        /// The ARN of the Amazon ECS or Fargate task to which the volume is attached.
+        /// </para>
+        /// </summary>
+        public string AssociatedResource
+        {
+            get { return this._associatedResource; }
+            set { this._associatedResource = value; }
+        }
+
+        // Check to see if AssociatedResource property is set
+        internal bool IsSetAssociatedResource()
+        {
+            return this._associatedResource != null;
+        }
 
         /// <summary>
         /// Gets and sets the property AttachTime. 
@@ -75,6 +97,24 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Operator. 
+        /// <para>
+        /// The service provider that manages the EBS volume.
+        /// </para>
+        /// </summary>
+        public OperatorResponse Operator
+        {
+            get { return this._operator; }
+            set { this._operator = value; }
+        }
+
+        // Check to see if Operator property is set
+        internal bool IsSetOperator()
+        {
+            return this._operator != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
         /// The attachment state.
@@ -108,6 +148,28 @@ namespace Amazon.EC2.Model
         internal bool IsSetVolumeId()
         {
             return this._volumeId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property VolumeOwnerId. 
+        /// <para>
+        /// The ID of the Amazon Web Services account that owns the volume.
+        /// </para>
+        ///  
+        /// <para>
+        /// This parameter is returned only for volumes that are attached to Fargate tasks.
+        /// </para>
+        /// </summary>
+        public string VolumeOwnerId
+        {
+            get { return this._volumeOwnerId; }
+            set { this._volumeOwnerId = value; }
+        }
+
+        // Check to see if VolumeOwnerId property is set
+        internal bool IsSetVolumeOwnerId()
+        {
+            return this._volumeOwnerId != null;
         }
 
     }

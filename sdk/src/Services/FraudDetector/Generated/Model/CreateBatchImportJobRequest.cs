@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FraudDetector.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.FraudDetector.Model
         private string _inputPath;
         private string _jobId;
         private string _outputPath;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property EventTypeName. 
@@ -108,7 +109,7 @@ namespace Amazon.FraudDetector.Model
         /// Gets and sets the property JobId. 
         /// <para>
         /// The ID of the batch import job. The ID cannot be of a past job, unless the job exists
-        /// in <code>CREATE_FAILED</code> state.
+        /// in <c>CREATE_FAILED</c> state.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]
@@ -159,7 +160,7 @@ namespace Amazon.FraudDetector.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

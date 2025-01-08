@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
@@ -62,7 +63,7 @@ namespace Amazon.Batch.Model
         /// Gets and sets the property TerminateJobsOnUpdate. 
         /// <para>
         /// Specifies whether jobs are automatically terminated when the computer environment
-        /// infrastructure is updated. The default value is <code>false</code>.
+        /// infrastructure is updated. The default value is <c>false</c>.
         /// </para>
         /// </summary>
         public bool TerminateJobsOnUpdate

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -168,7 +169,8 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property Provider. 
         /// <para>
-        /// The provider for the remote repository.
+        ///  The provider for the remote repository. Possible values: GITHUB, AWS_CODE_COMMIT,
+        /// GITLAB, BITBUCKET. 
         /// </para>
         /// </summary>
         public SourceControlProvider Provider
@@ -186,7 +188,9 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property RepositoryName. 
         /// <para>
-        /// The name of the remote repository that contains the job artifacts.
+        /// The name of the remote repository that contains the job artifacts. For BitBucket providers,
+        /// <c>RepositoryName</c> should include <c>WorkspaceName</c>. Use the format <c>&lt;WorkspaceName&gt;/&lt;RepositoryName&gt;</c>.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]

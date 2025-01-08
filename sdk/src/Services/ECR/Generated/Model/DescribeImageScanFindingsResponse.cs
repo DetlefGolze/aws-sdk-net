@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECR.Model
 {
     /// <summary>
@@ -94,10 +95,10 @@ namespace Amazon.ECR.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value to include in a future <code>DescribeImageScanFindings</code>
-        /// request. When the results of a <code>DescribeImageScanFindings</code> request exceed
-        /// <code>maxResults</code>, this value can be used to retrieve the next page of results.
-        /// This value is null when there are no more results to return.
+        /// The <c>nextToken</c> value to include in a future <c>DescribeImageScanFindings</c>
+        /// request. When the results of a <c>DescribeImageScanFindings</c> request exceed <c>maxResults</c>,
+        /// this value can be used to retrieve the next page of results. This value is null when
+        /// there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken

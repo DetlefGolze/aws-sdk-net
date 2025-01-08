@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Lightsail.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Lightsail.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Bundle Unmarshall(JsonUnmarshallerContext context)
         {
+            Bundle unmarshalledObject = new Bundle();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Bundle unmarshalledObject = new Bundle();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -112,6 +114,12 @@ namespace Amazon.Lightsail.Model.Internal.MarshallTransformations
                     unmarshalledObject.Price = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("publicIpv4AddressCount", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.PublicIpv4AddressCount = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ramSizeInGb", targetDepth))
                 {
                     var unmarshaller = FloatUnmarshaller.Instance;
@@ -137,7 +145,6 @@ namespace Amazon.Lightsail.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

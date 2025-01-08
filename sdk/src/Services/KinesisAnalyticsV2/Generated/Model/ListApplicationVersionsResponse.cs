@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalyticsV2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.KinesisAnalyticsV2.Model
     /// </summary>
     public partial class ListApplicationVersionsResponse : AmazonWebServiceResponse
     {
-        private List<ApplicationVersionSummary> _applicationVersionSummaries = new List<ApplicationVersionSummary>();
+        private List<ApplicationVersionSummary> _applicationVersionSummaries = AWSConfigs.InitializeCollections ? new List<ApplicationVersionSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -57,15 +58,15 @@ namespace Amazon.KinesisAnalyticsV2.Model
         // Check to see if ApplicationVersionSummaries property is set
         internal bool IsSetApplicationVersionSummaries()
         {
-            return this._applicationVersionSummaries != null && this._applicationVersionSummaries.Count > 0; 
+            return this._applicationVersionSummaries != null && (this._applicationVersionSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The pagination token for the next set of results, or <code>null</code> if there are
-        /// no additional results. To retrieve the next set of items, pass this token into a subsequent
-        /// invocation of this operation. For more information about pagination, see <a href="https://docs.aws.amazon.com/cli/latest/userguide/pagination.html">Using
+        /// The pagination token for the next set of results, or <c>null</c> if there are no additional
+        /// results. To retrieve the next set of items, pass this token into a subsequent invocation
+        /// of this operation. For more information about pagination, see <a href="https://docs.aws.amazon.com/cli/latest/userguide/pagination.html">Using
         /// the Amazon Command Line Interface's Pagination Options</a>.
         /// </para>
         /// </summary>

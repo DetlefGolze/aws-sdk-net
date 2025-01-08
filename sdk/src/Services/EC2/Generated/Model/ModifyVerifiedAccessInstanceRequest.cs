@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,16 +35,35 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class ModifyVerifiedAccessInstanceRequest : AmazonEC2Request
     {
+        private string _cidrEndpointsCustomSubDomain;
         private string _clientToken;
         private string _description;
         private string _verifiedAccessInstanceId;
 
         /// <summary>
+        /// Gets and sets the property CidrEndpointsCustomSubDomain. 
+        /// <para>
+        /// The custom subdomain.
+        /// </para>
+        /// </summary>
+        public string CidrEndpointsCustomSubDomain
+        {
+            get { return this._cidrEndpointsCustomSubDomain; }
+            set { this._cidrEndpointsCustomSubDomain = value; }
+        }
+
+        // Check to see if CidrEndpointsCustomSubDomain property is set
+        internal bool IsSetCidrEndpointsCustomSubDomain()
+        {
+            return this._cidrEndpointsCustomSubDomain != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// A unique, case-sensitive token that you provide to ensure idempotency of your modification
-        /// request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
-        /// Idempotency</a>.
+        /// request. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html">Ensuring
+        /// idempotency</a>.
         /// </para>
         /// </summary>
         public string ClientToken

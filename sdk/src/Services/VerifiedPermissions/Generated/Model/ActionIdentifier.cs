@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VerifiedPermissions.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.VerifiedPermissions.Model
     /// 
     ///  
     /// <para>
-    /// This data type is used as an request parameter to the <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html">IsAuthorized</a>
+    /// This data type is used as a request parameter to the <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html">IsAuthorized</a>,
+    /// <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_BatchIsAuthorized.html">BatchIsAuthorized</a>,
     /// and <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html">IsAuthorizedWithToken</a>
     /// operations.
     /// </para>
     ///  
     /// <para>
-    /// Example: <code>{ "actionId": "&lt;action name&gt;", "actionType": "Action" }</code>
-    /// 
+    /// Example: <c>{ "actionId": "&lt;action name&gt;", "actionType": "Action" }</c> 
     /// </para>
     /// </summary>
     public partial class ActionIdentifier

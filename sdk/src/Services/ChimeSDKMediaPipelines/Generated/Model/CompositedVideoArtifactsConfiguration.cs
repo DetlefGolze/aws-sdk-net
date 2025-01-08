@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMediaPipelines.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         /// <summary>
         /// Gets and sets the property GridViewConfiguration. 
         /// <para>
-        /// The <code>GridView</code> configuration setting.
+        /// The <c>GridView</c> configuration setting.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -59,7 +60,7 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         /// <summary>
         /// Gets and sets the property Layout. 
         /// <para>
-        /// The layout setting, such as <code>GridView</code> in the configuration object.
+        /// The layout setting, such as <c>GridView</c> in the configuration object.
         /// </para>
         /// </summary>
         public LayoutOption Layout

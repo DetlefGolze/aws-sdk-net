@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatch.Model
 {
     /// <summary>
@@ -56,8 +57,8 @@ namespace Amazon.CloudWatch.Model
         /// </para>
         ///  
         /// <para>
-        /// This statistic is returned only if you included it in the <code>Metrics</code> array
-        /// in your request.
+        /// This statistic is returned only if you included it in the <c>Metrics</c> array in
+        /// your request.
         /// </para>
         /// </summary>
         public double Average
@@ -81,8 +82,8 @@ namespace Amazon.CloudWatch.Model
         /// </para>
         ///  
         /// <para>
-        /// This statistic is returned only if you included it in the <code>Metrics</code> array
-        /// in your request.
+        /// This statistic is returned only if you included it in the <c>Metrics</c> array in
+        /// your request.
         /// </para>
         /// </summary>
         public double MaxContributorValue
@@ -105,8 +106,8 @@ namespace Amazon.CloudWatch.Model
         /// </para>
         ///  
         /// <para>
-        /// This statistic is returned only if you included it in the <code>Metrics</code> array
-        /// in your request.
+        /// This statistic is returned only if you included it in the <c>Metrics</c> array in
+        /// your request.
         /// </para>
         /// </summary>
         public double Maximum
@@ -129,8 +130,8 @@ namespace Amazon.CloudWatch.Model
         /// </para>
         ///  
         /// <para>
-        /// This statistic is returned only if you included it in the <code>Metrics</code> array
-        /// in your request.
+        /// This statistic is returned only if you included it in the <c>Metrics</c> array in
+        /// your request.
         /// </para>
         /// </summary>
         public double Minimum
@@ -152,8 +153,8 @@ namespace Amazon.CloudWatch.Model
         /// </para>
         ///  
         /// <para>
-        /// This statistic is returned only if you included it in the <code>Metrics</code> array
-        /// in your request.
+        /// This statistic is returned only if you included it in the <c>Metrics</c> array in
+        /// your request.
         /// </para>
         /// </summary>
         public double SampleCount
@@ -176,8 +177,8 @@ namespace Amazon.CloudWatch.Model
         /// </para>
         ///  
         /// <para>
-        /// This statistic is returned only if you included it in the <code>Metrics</code> array
-        /// in your request.
+        /// This statistic is returned only if you included it in the <c>Metrics</c> array in
+        /// your request.
         /// </para>
         /// </summary>
         public double Sum
@@ -218,8 +219,8 @@ namespace Amazon.CloudWatch.Model
         /// </para>
         ///  
         /// <para>
-        /// This statistic is returned only if you included it in the <code>Metrics</code> array
-        /// in your request.
+        /// This statistic is returned only if you included it in the <c>Metrics</c> array in
+        /// your request.
         /// </para>
         /// </summary>
         public double UniqueContributors

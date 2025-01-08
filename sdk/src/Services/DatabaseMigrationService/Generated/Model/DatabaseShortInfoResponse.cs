@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property DatabaseEngine. 
         /// <para>
         /// The database engine of a database in a Fleet Advisor collector inventory, for example
-        /// <code>PostgreSQL</code>.
+        /// <c>PostgreSQL</c>.
         /// </para>
         /// </summary>
         public string DatabaseEngine

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalytics.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.KinesisAnalytics.Model
     /// </para>
     ///  
     /// <para>
-    /// This operation requires permissions to perform the <code>kinesisanalytics:StopApplication</code>
+    /// This operation requires permissions to perform the <c>kinesisanalytics:StopApplication</c>
     /// action.
     /// </para>
     /// </summary>

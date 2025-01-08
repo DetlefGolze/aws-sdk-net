@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.DirectoryService.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of client authentication to disable. Currently, only the parameter, <code>SmartCard</code>
+        /// The type of client authentication to disable. Currently the only parameter <c>"SmartCard"</c>
         /// is supported.
         /// </para>
         /// </summary>

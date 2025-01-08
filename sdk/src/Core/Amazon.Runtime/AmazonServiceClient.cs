@@ -27,6 +27,8 @@ using System.Text;
 using System.Linq;
 using System.Threading;
 using Amazon.Util.Internal;
+using Amazon.Runtime.Telemetry;
+using Amazon.Runtime.Telemetry.Metrics;
 using ExecutionContext = Amazon.Runtime.Internal.ExecutionContext;
 
 namespace Amazon.Runtime
@@ -34,7 +36,9 @@ namespace Amazon.Runtime
     public abstract class AmazonServiceClient : IDisposable
     {
         private static volatile bool _isProtocolUpdated;
-        
+        private readonly object _lock = new object();
+
+        private IDisposable _uptimeMetricMeasurer;
         private bool _disposed;
         private Logger _logger;
         protected EndpointDiscoveryResolverBase EndpointDiscoveryResolver { get; private set; }
@@ -60,14 +64,14 @@ namespace Amazon.Runtime
         {
             add
             {
-                lock (this)
+                lock (_lock)
                 {
                     mBeforeMarshallingEvent += value;
                 }
             }
             remove
             {
-                lock (this)
+                lock (_lock)
                 {
                     mBeforeMarshallingEvent -= value;
                 }
@@ -84,14 +88,14 @@ namespace Amazon.Runtime
         {
             add
             {
-                lock (this)
+                lock (_lock)
                 {
                     mBeforeRequestEvent += value;
                 }
             }
             remove
             {
-                lock (this)
+                lock (_lock)
                 {
                     mBeforeRequestEvent -= value;
                 }
@@ -107,14 +111,14 @@ namespace Amazon.Runtime
         {
             add
             {
-                lock (this)
+                lock (_lock)
                 {
                     mAfterResponseEvent += value;
                 }
             }
             remove
             {
-                lock (this)
+                lock (_lock)
                 {
                     mAfterResponseEvent -= value;
                 }
@@ -130,14 +134,14 @@ namespace Amazon.Runtime
         {
             add
             {
-                lock (this)
+                lock (_lock)
                 {
                     mExceptionEvent += value;
                 }
             }
             remove
             {
-                lock (this)
+                lock (_lock)
                 {
                     mExceptionEvent -= value;
                 }
@@ -163,6 +167,8 @@ namespace Amazon.Runtime
             Initialize();
             UpdateSecurityProtocol();
             BuildRuntimePipeline();
+
+            _uptimeMetricMeasurer = MetricsUtilities.MeasureDuration(config, TelemetryConstants.ClientUptimeMetricName);
         }
 
         protected AbstractAWSSigner Signer
@@ -407,8 +413,11 @@ namespace Amazon.Runtime
 
             if (disposing)
             {
-                if (RuntimePipeline != null)
-                    RuntimePipeline.Dispose();
+                RuntimePipeline?.Dispose();
+                RuntimePipeline = null;
+
+                _uptimeMetricMeasurer?.Dispose();
+                _uptimeMetricMeasurer = null;
 
                 _disposed = true;
             }
@@ -576,9 +585,20 @@ namespace Amazon.Runtime
                         "Target resource path [{0}] has bidirectional characters, which are not supported" +
                         "by System.Uri and thus cannot be handled by the .NET SDK.", resourcePath));
                 }
-#endif
+#endif          // Since S3 is the only service that is single encoded, we send the URL unencoded for special characters
+                // to match the previous behavior compatible with the SigV2 backend.
+                if (internalRequest.SignatureVersion == SignatureVersion.SigV2 && String.Equals(internalRequest.ServiceName, "AmazonS3"))
+                {
+#pragma warning disable CS0618 // Type or member is obsolete
+                    resourcePath = AWSSDKUtils.ResolveResourcePath(resourcePath, internalRequest.PathResources,skipEncodingValidPathChars);
+#pragma warning restore CS0618 // Type or member is obsolete
+                }
+                //for all other requests, we need to encode according to RFC3986 in accordance to smithy protocol tests
+                else
+                {
+                    resourcePath = AWSSDKUtils.ResolveResourcePathV2(resourcePath, internalRequest.PathResources);
+                }
 
-                resourcePath = AWSSDKUtils.ResolveResourcePath(resourcePath, internalRequest.PathResources, skipEncodingValidPathChars);
             }
 
             // Construct any sub resource/query parameter additions to append to the
@@ -618,13 +638,33 @@ namespace Amazon.Runtime
                             "Target resource path [{0}] has bidirectional characters, which are not supported" +
                             "by System.Uri and thus cannot be handled by the .NET SDK.", resourcePath));
 
+#pragma warning disable CS0612,CS0618 // Type or member is obsolete
                 parameterizedPath = string.Concat(AWSSDKUtils.ProtectEncodedSlashUrlEncode(resourcePath, skipEncodingValidPathChars), sb);
+#pragma warning restore CS0612,CS0618 // Type or member is obsolete
             }
-            
+
             var hasSlash = url.AbsoluteUri.EndsWith("/", StringComparison.Ordinal) || parameterizedPath.StartsWith("/", StringComparison.Ordinal);
-            var uri = hasSlash
-                ? new Uri(url.AbsoluteUri + parameterizedPath)
-                : new Uri(url.AbsoluteUri + "/" + parameterizedPath);
+
+            var strUri = hasSlash
+                ? url.AbsoluteUri + parameterizedPath
+                : url.AbsoluteUri + "/" + parameterizedPath;
+
+#if NET8_0_OR_GREATER
+            // The UriCreationOptions and DangerousDisablePathAndQueryCanonicalization were added in .NET 6 and allows
+            // us to turn off the Uri behavior of canonicalizing Uri. For example if the resource path was "foo/../bar.txt"
+            // the URI class will change the canonicalize path to bar.txt. This behavior of changing the Uri after the 
+            // request has been signed will trigger a signature mismatch error. It is valid especially for S3 for the resource
+            // path to contain ".." segments.
+            var uriCreationOptions = new UriCreationOptions();
+            if (!AWSConfigs.DisableDangerousDisablePathAndQueryCanonicalization)
+            {
+                uriCreationOptions.DangerousDisablePathAndQueryCanonicalization = true;
+            }
+            var uri = new Uri(strUri, uriCreationOptions);
+
+#else
+            var uri = new Uri(strUri);
+#endif
             DontUnescapePathDotsAndSlashes(uri);
             return uri;
         }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property SpectrumConfig. 
         /// <para>
-        /// Object that describes a spectral <code>Config</code>.
+        /// Object that describes a spectral <c>Config</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

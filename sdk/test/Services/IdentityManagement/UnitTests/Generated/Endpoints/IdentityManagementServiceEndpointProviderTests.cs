@@ -18,6 +18,7 @@
  */
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.IdentityManagement.Endpoints;
 using Amazon.IdentityManagement.Internal;
@@ -430,6 +431,36 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
             parameters["UseDualStack"] = false;
             var endpoint = new AmazonIdentityManagementServiceEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://iam.us-isob-east-1.sc2s.sgov.gov", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("IdentityManagement")]
+        [Description("For region eu-isoe-west-1 with FIPS disabled and DualStack disabled")]
+        public void For_region_euisoewest1_with_FIPS_disabled_and_DualStack_disabled_Test()
+        {
+            var parameters = new IdentityManagementServiceEndpointParameters();
+            parameters["Region"] = "eu-isoe-west-1";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            var endpoint = new AmazonIdentityManagementServiceEndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://iam.eu-isoe-west-1.cloud.adc-e.uk", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("IdentityManagement")]
+        [Description("For region us-isof-south-1 with FIPS disabled and DualStack disabled")]
+        public void For_region_usisofsouth1_with_FIPS_disabled_and_DualStack_disabled_Test()
+        {
+            var parameters = new IdentityManagementServiceEndpointParameters();
+            parameters["Region"] = "us-isof-south-1";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            var endpoint = new AmazonIdentityManagementServiceEndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://iam.us-isof-south-1.csp.hci.ic.gov", endpoint.URL);
         }
 
         [TestMethod]

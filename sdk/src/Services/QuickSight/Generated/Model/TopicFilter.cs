@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.QuickSight.Model
         private FilterClass _filterClass;
         private string _filterDescription;
         private string _filterName;
-        private List<string> _filterSynonyms = new List<string>();
+        private List<string> _filterSynonyms = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private NamedFilterType _filterType;
         private TopicNumericEqualityFilter _numericEqualityFilter;
         private TopicNumericRangeFilter _numericRangeFilter;
@@ -84,8 +85,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property FilterClass. 
         /// <para>
-        /// The class of the filter. Valid values for this structure are <code>ENFORCED_VALUE_FILTER</code>,
-        /// <code>CONDITIONAL_VALUE_FILTER</code>, and <code>NAMED_VALUE_FILTER</code>.
+        /// The class of the filter. Valid values for this structure are <c>ENFORCED_VALUE_FILTER</c>,
+        /// <c>CONDITIONAL_VALUE_FILTER</c>, and <c>NAMED_VALUE_FILTER</c>.
         /// </para>
         /// </summary>
         public FilterClass FilterClass
@@ -153,15 +154,15 @@ namespace Amazon.QuickSight.Model
         // Check to see if FilterSynonyms property is set
         internal bool IsSetFilterSynonyms()
         {
-            return this._filterSynonyms != null && this._filterSynonyms.Count > 0; 
+            return this._filterSynonyms != null && (this._filterSynonyms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property FilterType. 
         /// <para>
-        /// The type of the filter. Valid values for this structure are <code>CATEGORY_FILTER</code>,
-        /// <code>NUMERIC_EQUALITY_FILTER</code>, <code>NUMERIC_RANGE_FILTER</code>, <code>DATE_RANGE_FILTER</code>,
-        /// and <code>RELATIVE_DATE_FILTER</code>.
+        /// The type of the filter. Valid values for this structure are <c>CATEGORY_FILTER</c>,
+        /// <c>NUMERIC_EQUALITY_FILTER</c>, <c>NUMERIC_RANGE_FILTER</c>, <c>DATE_RANGE_FILTER</c>,
+        /// and <c>RELATIVE_DATE_FILTER</c>.
         /// </para>
         /// </summary>
         public NamedFilterType FilterType

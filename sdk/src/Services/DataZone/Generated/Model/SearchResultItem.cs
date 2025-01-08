@@ -26,19 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
-    /// The details of the results of the <code>SearchListings</code> action.
+    /// The details of the results of the <c>SearchListings</c> action.
     /// </summary>
     public partial class SearchResultItem
     {
         private AssetListingItem _assetListing;
+        private DataProductListingItem _dataProductListing;
 
         /// <summary>
         /// Gets and sets the property AssetListing. 
         /// <para>
-        /// The asset listing included in the results of the <code>SearchListings</code> action.
+        /// The asset listing included in the results of the <c>SearchListings</c> action.
         /// </para>
         /// </summary>
         public AssetListingItem AssetListing
@@ -51,6 +53,24 @@ namespace Amazon.DataZone.Model
         internal bool IsSetAssetListing()
         {
             return this._assetListing != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DataProductListing. 
+        /// <para>
+        /// The data product listing.
+        /// </para>
+        /// </summary>
+        public DataProductListingItem DataProductListing
+        {
+            get { return this._dataProductListing; }
+            set { this._dataProductListing = value; }
+        }
+
+        // Check to see if DataProductListing property is set
+        internal bool IsSetDataProductListing()
+        {
+            return this._dataProductListing != null;
         }
 
     }

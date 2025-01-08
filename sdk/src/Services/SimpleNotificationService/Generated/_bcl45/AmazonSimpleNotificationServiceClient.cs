@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.SimpleNotificationService
 {
     /// <summary>
-    /// Implementation for accessing SimpleNotificationService
+    /// <para>Implementation for accessing SimpleNotificationService</para>
     ///
     /// Amazon Simple Notification Service 
     /// <para>
@@ -296,15 +297,15 @@ namespace Amazon.SimpleNotificationService
         ///  <note> 
         /// <para>
         /// To remove the ability to change topic permissions, you must deny permissions to the
-        /// <code>AddPermission</code>, <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
-        /// actions in your IAM policy.
+        /// <c>AddPermission</c>, <c>RemovePermission</c>, and <c>SetTopicAttributes</c> actions
+        /// in your IAM policy.
         /// </para>
         ///  </note>
         /// </summary>
         /// <param name="topicArn">The ARN of the topic whose access control policy you wish to modify.</param>
         /// <param name="label">A unique identifier for the new policy statement.</param>
         /// <param name="awsAccountId">The Amazon Web Services account IDs of the users (principals) who will be given access to the specified actions. The users must have Amazon Web Services account, but do not need to be signed up for this service.</param>
-        /// <param name="actionName">The action you want to allow for the specified principal(s). Valid values: Any Amazon SNS action name, for example <code>Publish</code>.</param>
+        /// <param name="actionName">The action you want to allow for the specified principal(s). Valid values: Any Amazon SNS action name, for example <c>Publish</c>.</param>
         /// 
         /// <returns>The response from the AddPermission service method, as returned by SimpleNotificationService.</returns>
         /// <exception cref="Amazon.SimpleNotificationService.Model.AuthorizationErrorException">
@@ -338,8 +339,8 @@ namespace Amazon.SimpleNotificationService
         ///  <note> 
         /// <para>
         /// To remove the ability to change topic permissions, you must deny permissions to the
-        /// <code>AddPermission</code>, <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
-        /// actions in your IAM policy.
+        /// <c>AddPermission</c>, <c>RemovePermission</c>, and <c>SetTopicAttributes</c> actions
+        /// in your IAM policy.
         /// </para>
         ///  </note>
         /// </summary>
@@ -376,15 +377,15 @@ namespace Amazon.SimpleNotificationService
         ///  <note> 
         /// <para>
         /// To remove the ability to change topic permissions, you must deny permissions to the
-        /// <code>AddPermission</code>, <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
-        /// actions in your IAM policy.
+        /// <c>AddPermission</c>, <c>RemovePermission</c>, and <c>SetTopicAttributes</c> actions
+        /// in your IAM policy.
         /// </para>
         ///  </note>
         /// </summary>
         /// <param name="topicArn">The ARN of the topic whose access control policy you wish to modify.</param>
         /// <param name="label">A unique identifier for the new policy statement.</param>
         /// <param name="awsAccountId">The Amazon Web Services account IDs of the users (principals) who will be given access to the specified actions. The users must have Amazon Web Services account, but do not need to be signed up for this service.</param>
-        /// <param name="actionName">The action you want to allow for the specified principal(s). Valid values: Any Amazon SNS action name, for example <code>Publish</code>.</param>
+        /// <param name="actionName">The action you want to allow for the specified principal(s). Valid values: Any Amazon SNS action name, for example <c>Publish</c>.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -421,8 +422,8 @@ namespace Amazon.SimpleNotificationService
         ///  <note> 
         /// <para>
         /// To remove the ability to change topic permissions, you must deny permissions to the
-        /// <code>AddPermission</code>, <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
-        /// actions in your IAM policy.
+        /// <c>AddPermission</c>, <c>RemovePermission</c>, and <c>SetTopicAttributes</c> actions
+        /// in your IAM policy.
         /// </para>
         ///  </note>
         /// </summary>
@@ -466,7 +467,7 @@ namespace Amazon.SimpleNotificationService
         /// 
         ///  
         /// <para>
-        /// To resume sending messages, you can opt in the number by using the <code>OptInPhoneNumber</code>
+        /// To resume sending messages, you can opt in the number by using the <c>OptInPhoneNumber</c>
         /// action.
         /// </para>
         /// </summary>
@@ -504,7 +505,7 @@ namespace Amazon.SimpleNotificationService
         /// 
         ///  
         /// <para>
-        /// To resume sending messages, you can opt in the number by using the <code>OptInPhoneNumber</code>
+        /// To resume sending messages, you can opt in the number by using the <c>OptInPhoneNumber</c>
         /// action.
         /// </para>
         /// </summary>
@@ -544,14 +545,14 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Verifies an endpoint owner's intent to receive messages by validating the token sent
-        /// to the endpoint by an earlier <code>Subscribe</code> action. If the token is valid,
-        /// the action creates a new subscription and returns its Amazon Resource Name (ARN).
-        /// This call requires an AWS signature only when the <code>AuthenticateOnUnsubscribe</code>
-        /// flag is set to "true".
+        /// to the endpoint by an earlier <c>Subscribe</c> action. If the token is valid, the
+        /// action creates a new subscription and returns its Amazon Resource Name (ARN). This
+        /// call requires an AWS signature only when the <c>AuthenticateOnUnsubscribe</c> flag
+        /// is set to "true".
         /// </summary>
         /// <param name="topicArn">The ARN of the topic for which you wish to confirm a subscription.</param>
-        /// <param name="token">Short-lived token sent to an endpoint during the <code>Subscribe</code> action.</param>
-        /// <param name="authenticateOnUnsubscribe">Disallows unauthenticated unsubscribes of the subscription. If the value of this parameter is <code>true</code> and the request has an Amazon Web Services signature, then only the topic owner and the subscription owner can unsubscribe the endpoint. The unsubscribe action requires Amazon Web Services authentication. </param>
+        /// <param name="token">Short-lived token sent to an endpoint during the <c>Subscribe</c> action.</param>
+        /// <param name="authenticateOnUnsubscribe">Disallows unauthenticated unsubscribes of the subscription. If the value of this parameter is <c>true</c> and the request has an Amazon Web Services signature, then only the topic owner and the subscription owner can unsubscribe the endpoint. The unsubscribe action requires Amazon Web Services authentication. </param>
         /// 
         /// <returns>The response from the ConfirmSubscription service method, as returned by SimpleNotificationService.</returns>
         /// <exception cref="Amazon.SimpleNotificationService.Model.AuthorizationErrorException">
@@ -570,6 +571,10 @@ namespace Amazon.SimpleNotificationService
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.NotFoundException">
         /// Indicates that the requested resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleNotificationService.Model.ReplayLimitExceededException">
+        /// Indicates that the request parameter has exceeded the maximum number of concurrent
+        /// message replays.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.SubscriptionLimitExceededException">
         /// Indicates that the customer already owns the maximum allowed number of subscriptions.
@@ -587,13 +592,13 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Verifies an endpoint owner's intent to receive messages by validating the token sent
-        /// to the endpoint by an earlier <code>Subscribe</code> action. If the token is valid,
-        /// the action creates a new subscription and returns its Amazon Resource Name (ARN).
-        /// This call requires an AWS signature only when the <code>AuthenticateOnUnsubscribe</code>
-        /// flag is set to "true".
+        /// to the endpoint by an earlier <c>Subscribe</c> action. If the token is valid, the
+        /// action creates a new subscription and returns its Amazon Resource Name (ARN). This
+        /// call requires an AWS signature only when the <c>AuthenticateOnUnsubscribe</c> flag
+        /// is set to "true".
         /// </summary>
         /// <param name="topicArn">The ARN of the topic for which you wish to confirm a subscription.</param>
-        /// <param name="token">Short-lived token sent to an endpoint during the <code>Subscribe</code> action.</param>
+        /// <param name="token">Short-lived token sent to an endpoint during the <c>Subscribe</c> action.</param>
         /// 
         /// <returns>The response from the ConfirmSubscription service method, as returned by SimpleNotificationService.</returns>
         /// <exception cref="Amazon.SimpleNotificationService.Model.AuthorizationErrorException">
@@ -613,6 +618,10 @@ namespace Amazon.SimpleNotificationService
         /// <exception cref="Amazon.SimpleNotificationService.Model.NotFoundException">
         /// Indicates that the requested resource does not exist.
         /// </exception>
+        /// <exception cref="Amazon.SimpleNotificationService.Model.ReplayLimitExceededException">
+        /// Indicates that the request parameter has exceeded the maximum number of concurrent
+        /// message replays.
+        /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.SubscriptionLimitExceededException">
         /// Indicates that the customer already owns the maximum allowed number of subscriptions.
         /// </exception>
@@ -628,10 +637,10 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Verifies an endpoint owner's intent to receive messages by validating the token sent
-        /// to the endpoint by an earlier <code>Subscribe</code> action. If the token is valid,
-        /// the action creates a new subscription and returns its Amazon Resource Name (ARN).
-        /// This call requires an AWS signature only when the <code>AuthenticateOnUnsubscribe</code>
-        /// flag is set to "true".
+        /// to the endpoint by an earlier <c>Subscribe</c> action. If the token is valid, the
+        /// action creates a new subscription and returns its Amazon Resource Name (ARN). This
+        /// call requires an AWS signature only when the <c>AuthenticateOnUnsubscribe</c> flag
+        /// is set to "true".
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ConfirmSubscription service method.</param>
         /// 
@@ -652,6 +661,10 @@ namespace Amazon.SimpleNotificationService
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.NotFoundException">
         /// Indicates that the requested resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleNotificationService.Model.ReplayLimitExceededException">
+        /// Indicates that the request parameter has exceeded the maximum number of concurrent
+        /// message replays.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.SubscriptionLimitExceededException">
         /// Indicates that the customer already owns the maximum allowed number of subscriptions.
@@ -669,14 +682,14 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Verifies an endpoint owner's intent to receive messages by validating the token sent
-        /// to the endpoint by an earlier <code>Subscribe</code> action. If the token is valid,
-        /// the action creates a new subscription and returns its Amazon Resource Name (ARN).
-        /// This call requires an AWS signature only when the <code>AuthenticateOnUnsubscribe</code>
-        /// flag is set to "true".
+        /// to the endpoint by an earlier <c>Subscribe</c> action. If the token is valid, the
+        /// action creates a new subscription and returns its Amazon Resource Name (ARN). This
+        /// call requires an AWS signature only when the <c>AuthenticateOnUnsubscribe</c> flag
+        /// is set to "true".
         /// </summary>
         /// <param name="topicArn">The ARN of the topic for which you wish to confirm a subscription.</param>
-        /// <param name="token">Short-lived token sent to an endpoint during the <code>Subscribe</code> action.</param>
-        /// <param name="authenticateOnUnsubscribe">Disallows unauthenticated unsubscribes of the subscription. If the value of this parameter is <code>true</code> and the request has an Amazon Web Services signature, then only the topic owner and the subscription owner can unsubscribe the endpoint. The unsubscribe action requires Amazon Web Services authentication. </param>
+        /// <param name="token">Short-lived token sent to an endpoint during the <c>Subscribe</c> action.</param>
+        /// <param name="authenticateOnUnsubscribe">Disallows unauthenticated unsubscribes of the subscription. If the value of this parameter is <c>true</c> and the request has an Amazon Web Services signature, then only the topic owner and the subscription owner can unsubscribe the endpoint. The unsubscribe action requires Amazon Web Services authentication. </param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -698,6 +711,10 @@ namespace Amazon.SimpleNotificationService
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.NotFoundException">
         /// Indicates that the requested resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleNotificationService.Model.ReplayLimitExceededException">
+        /// Indicates that the request parameter has exceeded the maximum number of concurrent
+        /// message replays.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.SubscriptionLimitExceededException">
         /// Indicates that the customer already owns the maximum allowed number of subscriptions.
@@ -715,13 +732,13 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Verifies an endpoint owner's intent to receive messages by validating the token sent
-        /// to the endpoint by an earlier <code>Subscribe</code> action. If the token is valid,
-        /// the action creates a new subscription and returns its Amazon Resource Name (ARN).
-        /// This call requires an AWS signature only when the <code>AuthenticateOnUnsubscribe</code>
-        /// flag is set to "true".
+        /// to the endpoint by an earlier <c>Subscribe</c> action. If the token is valid, the
+        /// action creates a new subscription and returns its Amazon Resource Name (ARN). This
+        /// call requires an AWS signature only when the <c>AuthenticateOnUnsubscribe</c> flag
+        /// is set to "true".
         /// </summary>
         /// <param name="topicArn">The ARN of the topic for which you wish to confirm a subscription.</param>
-        /// <param name="token">Short-lived token sent to an endpoint during the <code>Subscribe</code> action.</param>
+        /// <param name="token">Short-lived token sent to an endpoint during the <c>Subscribe</c> action.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -744,6 +761,10 @@ namespace Amazon.SimpleNotificationService
         /// <exception cref="Amazon.SimpleNotificationService.Model.NotFoundException">
         /// Indicates that the requested resource does not exist.
         /// </exception>
+        /// <exception cref="Amazon.SimpleNotificationService.Model.ReplayLimitExceededException">
+        /// Indicates that the request parameter has exceeded the maximum number of concurrent
+        /// message replays.
+        /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.SubscriptionLimitExceededException">
         /// Indicates that the customer already owns the maximum allowed number of subscriptions.
         /// </exception>
@@ -759,10 +780,10 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Verifies an endpoint owner's intent to receive messages by validating the token sent
-        /// to the endpoint by an earlier <code>Subscribe</code> action. If the token is valid,
-        /// the action creates a new subscription and returns its Amazon Resource Name (ARN).
-        /// This call requires an AWS signature only when the <code>AuthenticateOnUnsubscribe</code>
-        /// flag is set to "true".
+        /// to the endpoint by an earlier <c>Subscribe</c> action. If the token is valid, the
+        /// action creates a new subscription and returns its Amazon Resource Name (ARN). This
+        /// call requires an AWS signature only when the <c>AuthenticateOnUnsubscribe</c> flag
+        /// is set to "true".
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ConfirmSubscription service method.</param>
         /// <param name="cancellationToken">
@@ -786,6 +807,10 @@ namespace Amazon.SimpleNotificationService
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.NotFoundException">
         /// Indicates that the requested resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleNotificationService.Model.ReplayLimitExceededException">
+        /// Indicates that the request parameter has exceeded the maximum number of concurrent
+        /// message replays.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.SubscriptionLimitExceededException">
         /// Indicates that the customer already owns the maximum allowed number of subscriptions.
@@ -808,55 +833,61 @@ namespace Amazon.SimpleNotificationService
         /// <summary>
         /// Creates a platform application object for one of the supported push notification services,
         /// such as APNS and GCM (Firebase Cloud Messaging), to which devices and mobile apps
-        /// may register. You must specify <code>PlatformPrincipal</code> and <code>PlatformCredential</code>
-        /// attributes when using the <code>CreatePlatformApplication</code> action.
+        /// may register. You must specify <c>PlatformPrincipal</c> and <c>PlatformCredential</c>
+        /// attributes when using the <c>CreatePlatformApplication</c> action.
         /// 
         ///  
         /// <para>
-        ///  <code>PlatformPrincipal</code> and <code>PlatformCredential</code> are received from
-        /// the notification service.
+        ///  <c>PlatformPrincipal</c> and <c>PlatformCredential</c> are received from the notification
+        /// service.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For <code>ADM</code>, <code>PlatformPrincipal</code> is <code>client id</code> and
-        /// <code>PlatformCredential</code> is <code>client secret</code>.
+        /// For ADM, <c>PlatformPrincipal</c> is <c>client id</c> and <c>PlatformCredential</c>
+        /// is <c>client secret</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For <code>Baidu</code>, <code>PlatformPrincipal</code> is <code>API key</code> and
-        /// <code>PlatformCredential</code> is <code>secret key</code>.
+        /// For APNS and <c>APNS_SANDBOX</c> using certificate credentials, <c>PlatformPrincipal</c>
+        /// is <c>SSL certificate</c> and <c>PlatformCredential</c> is <c>private key</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For <code>APNS</code> and <code>APNS_SANDBOX</code> using certificate credentials,
-        /// <code>PlatformPrincipal</code> is <code>SSL certificate</code> and <code>PlatformCredential</code>
-        /// is <code>private key</code>.
+        /// For APNS and <c>APNS_SANDBOX</c> using token credentials, <c>PlatformPrincipal</c>
+        /// is <c>signing key ID</c> and <c>PlatformCredential</c> is <c>signing key</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For <code>APNS</code> and <code>APNS_SANDBOX</code> using token credentials, <code>PlatformPrincipal</code>
-        /// is <code>signing key ID</code> and <code>PlatformCredential</code> is <code>signing
-        /// key</code>.
+        /// For Baidu, <c>PlatformPrincipal</c> is <c>API key</c> and <c>PlatformCredential</c>
+        /// is <c>secret key</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For <code>GCM</code> (Firebase Cloud Messaging), there is no <code>PlatformPrincipal</code>
-        /// and the <code>PlatformCredential</code> is <code>API key</code>.
+        /// For GCM (Firebase Cloud Messaging) using key credentials, there is no <c>PlatformPrincipal</c>.
+        /// The <c>PlatformCredential</c> is <c>API key</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For <code>MPNS</code>, <code>PlatformPrincipal</code> is <code>TLS certificate</code>
-        /// and <code>PlatformCredential</code> is <code>private key</code>.
+        /// For GCM (Firebase Cloud Messaging) using token credentials, there is no <c>PlatformPrincipal</c>.
+        /// The <c>PlatformCredential</c> is a JSON formatted private key file. When using the
+        /// Amazon Web Services CLI, the file must be in string format and special characters
+        /// must be ignored. To format the file correctly, Amazon SNS recommends using the following
+        /// command: <c>SERVICE_JSON=`jq @json &lt;&lt;&lt; cat service.json`</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For <code>WNS</code>, <code>PlatformPrincipal</code> is <code>Package Security Identifier</code>
-        /// and <code>PlatformCredential</code> is <code>secret key</code>.
+        /// For MPNS, <c>PlatformPrincipal</c> is <c>TLS certificate</c> and <c>PlatformCredential</c>
+        /// is <c>private key</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For WNS, <c>PlatformPrincipal</c> is <c>Package Security Identifier</c> and <c>PlatformCredential</c>
+        /// is <c>secret key</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You can use the returned <code>PlatformApplicationArn</code> as an attribute for the
-        /// <code>CreatePlatformEndpoint</code> action.
+        /// You can use the returned <c>PlatformApplicationArn</c> as an attribute for the <c>CreatePlatformEndpoint</c>
+        /// action.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreatePlatformApplication service method.</param>
@@ -885,55 +916,61 @@ namespace Amazon.SimpleNotificationService
         /// <summary>
         /// Creates a platform application object for one of the supported push notification services,
         /// such as APNS and GCM (Firebase Cloud Messaging), to which devices and mobile apps
-        /// may register. You must specify <code>PlatformPrincipal</code> and <code>PlatformCredential</code>
-        /// attributes when using the <code>CreatePlatformApplication</code> action.
+        /// may register. You must specify <c>PlatformPrincipal</c> and <c>PlatformCredential</c>
+        /// attributes when using the <c>CreatePlatformApplication</c> action.
         /// 
         ///  
         /// <para>
-        ///  <code>PlatformPrincipal</code> and <code>PlatformCredential</code> are received from
-        /// the notification service.
+        ///  <c>PlatformPrincipal</c> and <c>PlatformCredential</c> are received from the notification
+        /// service.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For <code>ADM</code>, <code>PlatformPrincipal</code> is <code>client id</code> and
-        /// <code>PlatformCredential</code> is <code>client secret</code>.
+        /// For ADM, <c>PlatformPrincipal</c> is <c>client id</c> and <c>PlatformCredential</c>
+        /// is <c>client secret</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For <code>Baidu</code>, <code>PlatformPrincipal</code> is <code>API key</code> and
-        /// <code>PlatformCredential</code> is <code>secret key</code>.
+        /// For APNS and <c>APNS_SANDBOX</c> using certificate credentials, <c>PlatformPrincipal</c>
+        /// is <c>SSL certificate</c> and <c>PlatformCredential</c> is <c>private key</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For <code>APNS</code> and <code>APNS_SANDBOX</code> using certificate credentials,
-        /// <code>PlatformPrincipal</code> is <code>SSL certificate</code> and <code>PlatformCredential</code>
-        /// is <code>private key</code>.
+        /// For APNS and <c>APNS_SANDBOX</c> using token credentials, <c>PlatformPrincipal</c>
+        /// is <c>signing key ID</c> and <c>PlatformCredential</c> is <c>signing key</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For <code>APNS</code> and <code>APNS_SANDBOX</code> using token credentials, <code>PlatformPrincipal</code>
-        /// is <code>signing key ID</code> and <code>PlatformCredential</code> is <code>signing
-        /// key</code>.
+        /// For Baidu, <c>PlatformPrincipal</c> is <c>API key</c> and <c>PlatformCredential</c>
+        /// is <c>secret key</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For <code>GCM</code> (Firebase Cloud Messaging), there is no <code>PlatformPrincipal</code>
-        /// and the <code>PlatformCredential</code> is <code>API key</code>.
+        /// For GCM (Firebase Cloud Messaging) using key credentials, there is no <c>PlatformPrincipal</c>.
+        /// The <c>PlatformCredential</c> is <c>API key</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For <code>MPNS</code>, <code>PlatformPrincipal</code> is <code>TLS certificate</code>
-        /// and <code>PlatformCredential</code> is <code>private key</code>.
+        /// For GCM (Firebase Cloud Messaging) using token credentials, there is no <c>PlatformPrincipal</c>.
+        /// The <c>PlatformCredential</c> is a JSON formatted private key file. When using the
+        /// Amazon Web Services CLI, the file must be in string format and special characters
+        /// must be ignored. To format the file correctly, Amazon SNS recommends using the following
+        /// command: <c>SERVICE_JSON=`jq @json &lt;&lt;&lt; cat service.json`</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For <code>WNS</code>, <code>PlatformPrincipal</code> is <code>Package Security Identifier</code>
-        /// and <code>PlatformCredential</code> is <code>secret key</code>.
+        /// For MPNS, <c>PlatformPrincipal</c> is <c>TLS certificate</c> and <c>PlatformCredential</c>
+        /// is <c>private key</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For WNS, <c>PlatformPrincipal</c> is <c>Package Security Identifier</c> and <c>PlatformCredential</c>
+        /// is <c>secret key</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You can use the returned <code>PlatformApplicationArn</code> as an attribute for the
-        /// <code>CreatePlatformEndpoint</code> action.
+        /// You can use the returned <c>PlatformApplicationArn</c> as an attribute for the <c>CreatePlatformEndpoint</c>
+        /// action.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreatePlatformApplication service method.</param>
@@ -968,10 +1005,10 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Creates an endpoint for a device and mobile app on one of the supported push notification
-        /// services, such as GCM (Firebase Cloud Messaging) and APNS. <code>CreatePlatformEndpoint</code>
-        /// requires the <code>PlatformApplicationArn</code> that is returned from <code>CreatePlatformApplication</code>.
-        /// You can use the returned <code>EndpointArn</code> to send a message to a mobile app
-        /// or by the <code>Subscribe</code> action for subscription to a topic. The <code>CreatePlatformEndpoint</code>
+        /// services, such as GCM (Firebase Cloud Messaging) and APNS. <c>CreatePlatformEndpoint</c>
+        /// requires the <c>PlatformApplicationArn</c> that is returned from <c>CreatePlatformApplication</c>.
+        /// You can use the returned <c>EndpointArn</c> to send a message to a mobile app or by
+        /// the <c>Subscribe</c> action for subscription to a topic. The <c>CreatePlatformEndpoint</c>
         /// action is idempotent, so if the requester already owns an endpoint with the same device
         /// token and attributes, that endpoint's ARN is returned without creating a new endpoint.
         /// For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
@@ -979,9 +1016,9 @@ namespace Amazon.SimpleNotificationService
         /// 
         ///  
         /// <para>
-        /// When using <code>CreatePlatformEndpoint</code> with Baidu, two attributes must be
-        /// provided: ChannelId and UserId. The token field must also contain the ChannelId. For
-        /// more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePushBaiduEndpoint.html">Creating
+        /// When using <c>CreatePlatformEndpoint</c> with Baidu, two attributes must be provided:
+        /// ChannelId and UserId. The token field must also contain the ChannelId. For more information,
+        /// see <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePushBaiduEndpoint.html">Creating
         /// an Amazon SNS Endpoint for Baidu</a>. 
         /// </para>
         /// </summary>
@@ -1013,10 +1050,10 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Creates an endpoint for a device and mobile app on one of the supported push notification
-        /// services, such as GCM (Firebase Cloud Messaging) and APNS. <code>CreatePlatformEndpoint</code>
-        /// requires the <code>PlatformApplicationArn</code> that is returned from <code>CreatePlatformApplication</code>.
-        /// You can use the returned <code>EndpointArn</code> to send a message to a mobile app
-        /// or by the <code>Subscribe</code> action for subscription to a topic. The <code>CreatePlatformEndpoint</code>
+        /// services, such as GCM (Firebase Cloud Messaging) and APNS. <c>CreatePlatformEndpoint</c>
+        /// requires the <c>PlatformApplicationArn</c> that is returned from <c>CreatePlatformApplication</c>.
+        /// You can use the returned <c>EndpointArn</c> to send a message to a mobile app or by
+        /// the <c>Subscribe</c> action for subscription to a topic. The <c>CreatePlatformEndpoint</c>
         /// action is idempotent, so if the requester already owns an endpoint with the same device
         /// token and attributes, that endpoint's ARN is returned without creating a new endpoint.
         /// For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
@@ -1024,9 +1061,9 @@ namespace Amazon.SimpleNotificationService
         /// 
         ///  
         /// <para>
-        /// When using <code>CreatePlatformEndpoint</code> with Baidu, two attributes must be
-        /// provided: ChannelId and UserId. The token field must also contain the ChannelId. For
-        /// more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePushBaiduEndpoint.html">Creating
+        /// When using <c>CreatePlatformEndpoint</c> with Baidu, two attributes must be provided:
+        /// ChannelId and UserId. The token field must also contain the ChannelId. For more information,
+        /// see <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePushBaiduEndpoint.html">Creating
         /// an Amazon SNS Endpoint for Baidu</a>. 
         /// </para>
         /// </summary>
@@ -1180,7 +1217,7 @@ namespace Amazon.SimpleNotificationService
         /// so if the requester already owns a topic with the specified name, that topic's ARN
         /// is returned without creating a new topic.
         /// </summary>
-        /// <param name="name">The name of the topic you want to create. Constraints: Topic names must be made up of only uppercase and lowercase ASCII letters, numbers, underscores, and hyphens, and must be between 1 and 256 characters long. For a FIFO (first-in-first-out) topic, the name must end with the <code>.fifo</code> suffix. </param>
+        /// <param name="name">The name of the topic you want to create. Constraints: Topic names must be made up of only uppercase and lowercase ASCII letters, numbers, underscores, and hyphens, and must be between 1 and 256 characters long. For a FIFO (first-in-first-out) topic, the name must end with the <c>.fifo</c> suffix. </param>
         /// 
         /// <returns>The response from the CreateTopic service method, as returned by SimpleNotificationService.</returns>
         /// <exception cref="Amazon.SimpleNotificationService.Model.AuthorizationErrorException">
@@ -1284,7 +1321,7 @@ namespace Amazon.SimpleNotificationService
         /// so if the requester already owns a topic with the specified name, that topic's ARN
         /// is returned without creating a new topic.
         /// </summary>
-        /// <param name="name">The name of the topic you want to create. Constraints: Topic names must be made up of only uppercase and lowercase ASCII letters, numbers, underscores, and hyphens, and must be between 1 and 256 characters long. For a FIFO (first-in-first-out) topic, the name must end with the <code>.fifo</code> suffix. </param>
+        /// <param name="name">The name of the topic you want to create. Constraints: Topic names must be made up of only uppercase and lowercase ASCII letters, numbers, underscores, and hyphens, and must be between 1 and 256 characters long. For a FIFO (first-in-first-out) topic, the name must end with the <c>.fifo</c> suffix. </param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -1654,6 +1691,9 @@ namespace Amazon.SimpleNotificationService
         /// <exception cref="Amazon.SimpleNotificationService.Model.InvalidParameterException">
         /// Indicates that a request parameter does not comply with the associated constraints.
         /// </exception>
+        /// <exception cref="Amazon.SimpleNotificationService.Model.InvalidStateException">
+        /// Indicates that the specified state is not a valid state for an event source.
+        /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.NotFoundException">
         /// Indicates that the requested resource does not exist.
         /// </exception>
@@ -1694,6 +1734,9 @@ namespace Amazon.SimpleNotificationService
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.InvalidParameterException">
         /// Indicates that a request parameter does not comply with the associated constraints.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleNotificationService.Model.InvalidStateException">
+        /// Indicates that the specified state is not a valid state for an event source.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.NotFoundException">
         /// Indicates that the requested resource does not exist.
@@ -1741,6 +1784,9 @@ namespace Amazon.SimpleNotificationService
         /// <exception cref="Amazon.SimpleNotificationService.Model.InvalidParameterException">
         /// Indicates that a request parameter does not comply with the associated constraints.
         /// </exception>
+        /// <exception cref="Amazon.SimpleNotificationService.Model.InvalidStateException">
+        /// Indicates that the specified state is not a valid state for an event source.
+        /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.NotFoundException">
         /// Indicates that the requested resource does not exist.
         /// </exception>
@@ -1785,6 +1831,9 @@ namespace Amazon.SimpleNotificationService
         /// <exception cref="Amazon.SimpleNotificationService.Model.InvalidParameterException">
         /// Indicates that a request parameter does not comply with the associated constraints.
         /// </exception>
+        /// <exception cref="Amazon.SimpleNotificationService.Model.InvalidStateException">
+        /// Indicates that the specified state is not a valid state for an event source.
+        /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.NotFoundException">
         /// Indicates that the requested resource does not exist.
         /// </exception>
@@ -1812,8 +1861,8 @@ namespace Amazon.SimpleNotificationService
 
 
         /// <summary>
-        /// Retrieves the specified inline <code>DataProtectionPolicy</code> document that is
-        /// stored in the specified Amazon SNS topic.
+        /// Retrieves the specified inline <c>DataProtectionPolicy</c> document that is stored
+        /// in the specified Amazon SNS topic.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetDataProtectionPolicy service method.</param>
         /// 
@@ -1846,8 +1895,8 @@ namespace Amazon.SimpleNotificationService
 
 
         /// <summary>
-        /// Retrieves the specified inline <code>DataProtectionPolicy</code> document that is
-        /// stored in the specified Amazon SNS topic.
+        /// Retrieves the specified inline <c>DataProtectionPolicy</c> document that is stored
+        /// in the specified Amazon SNS topic.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetDataProtectionPolicy service method.</param>
         /// <param name="cancellationToken">
@@ -2033,7 +2082,7 @@ namespace Amazon.SimpleNotificationService
         /// 
         ///  
         /// <para>
-        /// These settings are set with the <code>SetSMSAttributes</code> action.
+        /// These settings are set with the <c>SetSMSAttributes</c> action.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetSMSAttributes service method.</param>
@@ -2068,7 +2117,7 @@ namespace Amazon.SimpleNotificationService
         /// 
         ///  
         /// <para>
-        /// These settings are set with the <code>SetSMSAttributes</code> action.
+        /// These settings are set with the <c>SetSMSAttributes</c> action.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetSMSAttributes service method.</param>
@@ -2458,12 +2507,12 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Lists the endpoints and endpoint attributes for devices in a supported push notification
-        /// service, such as GCM (Firebase Cloud Messaging) and APNS. The results for <code>ListEndpointsByPlatformApplication</code>
+        /// service, such as GCM (Firebase Cloud Messaging) and APNS. The results for <c>ListEndpointsByPlatformApplication</c>
         /// are paginated and return a limited list of endpoints, up to 100. If additional records
         /// are available after the first page results, then a NextToken string will be returned.
-        /// To receive the next page, you call <code>ListEndpointsByPlatformApplication</code>
-        /// again using the NextToken string received from the previous call. When there are no
-        /// more records to return, NextToken will be null. For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
+        /// To receive the next page, you call <c>ListEndpointsByPlatformApplication</c> again
+        /// using the NextToken string received from the previous call. When there are no more
+        /// records to return, NextToken will be null. For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
         /// Amazon SNS Mobile Push Notifications</a>. 
         /// 
         ///  
@@ -2499,12 +2548,12 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Lists the endpoints and endpoint attributes for devices in a supported push notification
-        /// service, such as GCM (Firebase Cloud Messaging) and APNS. The results for <code>ListEndpointsByPlatformApplication</code>
+        /// service, such as GCM (Firebase Cloud Messaging) and APNS. The results for <c>ListEndpointsByPlatformApplication</c>
         /// are paginated and return a limited list of endpoints, up to 100. If additional records
         /// are available after the first page results, then a NextToken string will be returned.
-        /// To receive the next page, you call <code>ListEndpointsByPlatformApplication</code>
-        /// again using the NextToken string received from the previous call. When there are no
-        /// more records to return, NextToken will be null. For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
+        /// To receive the next page, you call <c>ListEndpointsByPlatformApplication</c> again
+        /// using the NextToken string received from the previous call. When there are no more
+        /// records to return, NextToken will be null. For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
         /// Amazon SNS Mobile Push Notifications</a>. 
         /// 
         ///  
@@ -2628,12 +2677,12 @@ namespace Amazon.SimpleNotificationService
         /// 
         ///  
         /// <para>
-        /// The results for <code>ListPhoneNumbersOptedOut</code> are paginated, and each page
-        /// returns up to 100 phone numbers. If additional phone numbers are available after the
-        /// first page of results, then a <code>NextToken</code> string will be returned. To receive
-        /// the next page, you call <code>ListPhoneNumbersOptedOut</code> again using the <code>NextToken</code>
-        /// string received from the previous call. When there are no more records to return,
-        /// <code>NextToken</code> will be null.
+        /// The results for <c>ListPhoneNumbersOptedOut</c> are paginated, and each page returns
+        /// up to 100 phone numbers. If additional phone numbers are available after the first
+        /// page of results, then a <c>NextToken</c> string will be returned. To receive the next
+        /// page, you call <c>ListPhoneNumbersOptedOut</c> again using the <c>NextToken</c> string
+        /// received from the previous call. When there are no more records to return, <c>NextToken</c>
+        /// will be null.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListPhoneNumbersOptedOut service method.</param>
@@ -2669,12 +2718,12 @@ namespace Amazon.SimpleNotificationService
         /// 
         ///  
         /// <para>
-        /// The results for <code>ListPhoneNumbersOptedOut</code> are paginated, and each page
-        /// returns up to 100 phone numbers. If additional phone numbers are available after the
-        /// first page of results, then a <code>NextToken</code> string will be returned. To receive
-        /// the next page, you call <code>ListPhoneNumbersOptedOut</code> again using the <code>NextToken</code>
-        /// string received from the previous call. When there are no more records to return,
-        /// <code>NextToken</code> will be null.
+        /// The results for <c>ListPhoneNumbersOptedOut</c> are paginated, and each page returns
+        /// up to 100 phone numbers. If additional phone numbers are available after the first
+        /// page of results, then a <c>NextToken</c> string will be returned. To receive the next
+        /// page, you call <c>ListPhoneNumbersOptedOut</c> again using the <c>NextToken</c> string
+        /// received from the previous call. When there are no more records to return, <c>NextToken</c>
+        /// will be null.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListPhoneNumbersOptedOut service method.</param>
@@ -2713,14 +2762,13 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Lists the platform application objects for the supported push notification services,
-        /// such as APNS and GCM (Firebase Cloud Messaging). The results for <code>ListPlatformApplications</code>
+        /// such as APNS and GCM (Firebase Cloud Messaging). The results for <c>ListPlatformApplications</c>
         /// are paginated and return a limited list of applications, up to 100. If additional
         /// records are available after the first page results, then a NextToken string will be
-        /// returned. To receive the next page, you call <code>ListPlatformApplications</code>
-        /// using the NextToken string received from the previous call. When there are no more
-        /// records to return, <code>NextToken</code> will be null. For more information, see
-        /// <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using Amazon
-        /// SNS Mobile Push Notifications</a>. 
+        /// returned. To receive the next page, you call <c>ListPlatformApplications</c> using
+        /// the NextToken string received from the previous call. When there are no more records
+        /// to return, <c>NextToken</c> will be null. For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
+        /// Amazon SNS Mobile Push Notifications</a>. 
         /// 
         ///  
         /// <para>
@@ -2747,14 +2795,13 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Lists the platform application objects for the supported push notification services,
-        /// such as APNS and GCM (Firebase Cloud Messaging). The results for <code>ListPlatformApplications</code>
+        /// such as APNS and GCM (Firebase Cloud Messaging). The results for <c>ListPlatformApplications</c>
         /// are paginated and return a limited list of applications, up to 100. If additional
         /// records are available after the first page results, then a NextToken string will be
-        /// returned. To receive the next page, you call <code>ListPlatformApplications</code>
-        /// using the NextToken string received from the previous call. When there are no more
-        /// records to return, <code>NextToken</code> will be null. For more information, see
-        /// <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using Amazon
-        /// SNS Mobile Push Notifications</a>. 
+        /// returned. To receive the next page, you call <c>ListPlatformApplications</c> using
+        /// the NextToken string received from the previous call. When there are no more records
+        /// to return, <c>NextToken</c> will be null. For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
+        /// Amazon SNS Mobile Push Notifications</a>. 
         /// 
         ///  
         /// <para>
@@ -2786,14 +2833,13 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Lists the platform application objects for the supported push notification services,
-        /// such as APNS and GCM (Firebase Cloud Messaging). The results for <code>ListPlatformApplications</code>
+        /// such as APNS and GCM (Firebase Cloud Messaging). The results for <c>ListPlatformApplications</c>
         /// are paginated and return a limited list of applications, up to 100. If additional
         /// records are available after the first page results, then a NextToken string will be
-        /// returned. To receive the next page, you call <code>ListPlatformApplications</code>
-        /// using the NextToken string received from the previous call. When there are no more
-        /// records to return, <code>NextToken</code> will be null. For more information, see
-        /// <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using Amazon
-        /// SNS Mobile Push Notifications</a>. 
+        /// returned. To receive the next page, you call <c>ListPlatformApplications</c> using
+        /// the NextToken string received from the previous call. When there are no more records
+        /// to return, <c>NextToken</c> will be null. For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
+        /// Amazon SNS Mobile Push Notifications</a>. 
         /// 
         ///  
         /// <para>
@@ -2822,14 +2868,13 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Lists the platform application objects for the supported push notification services,
-        /// such as APNS and GCM (Firebase Cloud Messaging). The results for <code>ListPlatformApplications</code>
+        /// such as APNS and GCM (Firebase Cloud Messaging). The results for <c>ListPlatformApplications</c>
         /// are paginated and return a limited list of applications, up to 100. If additional
         /// records are available after the first page results, then a NextToken string will be
-        /// returned. To receive the next page, you call <code>ListPlatformApplications</code>
-        /// using the NextToken string received from the previous call. When there are no more
-        /// records to return, <code>NextToken</code> will be null. For more information, see
-        /// <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using Amazon
-        /// SNS Mobile Push Notifications</a>. 
+        /// returned. To receive the next page, you call <c>ListPlatformApplications</c> using
+        /// the NextToken string received from the previous call. When there are no more records
+        /// to return, <c>NextToken</c> will be null. For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
+        /// Amazon SNS Mobile Push Notifications</a>. 
         /// 
         ///  
         /// <para>
@@ -2967,8 +3012,8 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Returns a list of the requester's subscriptions. Each call returns a limited list
-        /// of subscriptions, up to 100. If there are more subscriptions, a <code>NextToken</code>
-        /// is also returned. Use the <code>NextToken</code> parameter in a new <code>ListSubscriptions</code>
+        /// of subscriptions, up to 100. If there are more subscriptions, a <c>NextToken</c> is
+        /// also returned. Use the <c>NextToken</c> parameter in a new <c>ListSubscriptions</c>
         /// call to get further results.
         /// 
         ///  
@@ -2996,8 +3041,8 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Returns a list of the requester's subscriptions. Each call returns a limited list
-        /// of subscriptions, up to 100. If there are more subscriptions, a <code>NextToken</code>
-        /// is also returned. Use the <code>NextToken</code> parameter in a new <code>ListSubscriptions</code>
+        /// of subscriptions, up to 100. If there are more subscriptions, a <c>NextToken</c> is
+        /// also returned. Use the <c>NextToken</c> parameter in a new <c>ListSubscriptions</c>
         /// call to get further results.
         /// 
         ///  
@@ -3005,7 +3050,7 @@ namespace Amazon.SimpleNotificationService
         /// This action is throttled at 30 transactions per second (TPS).
         /// </para>
         /// </summary>
-        /// <param name="nextToken">Token returned by the previous <code>ListSubscriptions</code> request.</param>
+        /// <param name="nextToken">Token returned by the previous <c>ListSubscriptions</c> request.</param>
         /// 
         /// <returns>The response from the ListSubscriptions service method, as returned by SimpleNotificationService.</returns>
         /// <exception cref="Amazon.SimpleNotificationService.Model.AuthorizationErrorException">
@@ -3028,8 +3073,8 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Returns a list of the requester's subscriptions. Each call returns a limited list
-        /// of subscriptions, up to 100. If there are more subscriptions, a <code>NextToken</code>
-        /// is also returned. Use the <code>NextToken</code> parameter in a new <code>ListSubscriptions</code>
+        /// of subscriptions, up to 100. If there are more subscriptions, a <c>NextToken</c> is
+        /// also returned. Use the <c>NextToken</c> parameter in a new <c>ListSubscriptions</c>
         /// call to get further results.
         /// 
         ///  
@@ -3062,8 +3107,8 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Returns a list of the requester's subscriptions. Each call returns a limited list
-        /// of subscriptions, up to 100. If there are more subscriptions, a <code>NextToken</code>
-        /// is also returned. Use the <code>NextToken</code> parameter in a new <code>ListSubscriptions</code>
+        /// of subscriptions, up to 100. If there are more subscriptions, a <c>NextToken</c> is
+        /// also returned. Use the <c>NextToken</c> parameter in a new <c>ListSubscriptions</c>
         /// call to get further results.
         /// 
         ///  
@@ -3093,8 +3138,8 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Returns a list of the requester's subscriptions. Each call returns a limited list
-        /// of subscriptions, up to 100. If there are more subscriptions, a <code>NextToken</code>
-        /// is also returned. Use the <code>NextToken</code> parameter in a new <code>ListSubscriptions</code>
+        /// of subscriptions, up to 100. If there are more subscriptions, a <c>NextToken</c> is
+        /// also returned. Use the <c>NextToken</c> parameter in a new <c>ListSubscriptions</c>
         /// call to get further results.
         /// 
         ///  
@@ -3102,7 +3147,7 @@ namespace Amazon.SimpleNotificationService
         /// This action is throttled at 30 transactions per second (TPS).
         /// </para>
         /// </summary>
-        /// <param name="nextToken">Token returned by the previous <code>ListSubscriptions</code> request.</param>
+        /// <param name="nextToken">Token returned by the previous <c>ListSubscriptions</c> request.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -3128,8 +3173,8 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Returns a list of the requester's subscriptions. Each call returns a limited list
-        /// of subscriptions, up to 100. If there are more subscriptions, a <code>NextToken</code>
-        /// is also returned. Use the <code>NextToken</code> parameter in a new <code>ListSubscriptions</code>
+        /// of subscriptions, up to 100. If there are more subscriptions, a <c>NextToken</c> is
+        /// also returned. Use the <c>NextToken</c> parameter in a new <c>ListSubscriptions</c>
         /// call to get further results.
         /// 
         ///  
@@ -3169,8 +3214,8 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Returns a list of the subscriptions to a specific topic. Each call returns a limited
-        /// list of subscriptions, up to 100. If there are more subscriptions, a <code>NextToken</code>
-        /// is also returned. Use the <code>NextToken</code> parameter in a new <code>ListSubscriptionsByTopic</code>
+        /// list of subscriptions, up to 100. If there are more subscriptions, a <c>NextToken</c>
+        /// is also returned. Use the <c>NextToken</c> parameter in a new <c>ListSubscriptionsByTopic</c>
         /// call to get further results.
         /// 
         ///  
@@ -3179,7 +3224,7 @@ namespace Amazon.SimpleNotificationService
         /// </para>
         /// </summary>
         /// <param name="topicArn">The ARN of the topic for which you wish to find subscriptions.</param>
-        /// <param name="nextToken">Token returned by the previous <code>ListSubscriptionsByTopic</code> request.</param>
+        /// <param name="nextToken">Token returned by the previous <c>ListSubscriptionsByTopic</c> request.</param>
         /// 
         /// <returns>The response from the ListSubscriptionsByTopic service method, as returned by SimpleNotificationService.</returns>
         /// <exception cref="Amazon.SimpleNotificationService.Model.AuthorizationErrorException">
@@ -3206,8 +3251,8 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Returns a list of the subscriptions to a specific topic. Each call returns a limited
-        /// list of subscriptions, up to 100. If there are more subscriptions, a <code>NextToken</code>
-        /// is also returned. Use the <code>NextToken</code> parameter in a new <code>ListSubscriptionsByTopic</code>
+        /// list of subscriptions, up to 100. If there are more subscriptions, a <c>NextToken</c>
+        /// is also returned. Use the <c>NextToken</c> parameter in a new <c>ListSubscriptionsByTopic</c>
         /// call to get further results.
         /// 
         ///  
@@ -3241,8 +3286,8 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Returns a list of the subscriptions to a specific topic. Each call returns a limited
-        /// list of subscriptions, up to 100. If there are more subscriptions, a <code>NextToken</code>
-        /// is also returned. Use the <code>NextToken</code> parameter in a new <code>ListSubscriptionsByTopic</code>
+        /// list of subscriptions, up to 100. If there are more subscriptions, a <c>NextToken</c>
+        /// is also returned. Use the <c>NextToken</c> parameter in a new <c>ListSubscriptionsByTopic</c>
         /// call to get further results.
         /// 
         ///  
@@ -3278,8 +3323,8 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Returns a list of the subscriptions to a specific topic. Each call returns a limited
-        /// list of subscriptions, up to 100. If there are more subscriptions, a <code>NextToken</code>
-        /// is also returned. Use the <code>NextToken</code> parameter in a new <code>ListSubscriptionsByTopic</code>
+        /// list of subscriptions, up to 100. If there are more subscriptions, a <c>NextToken</c>
+        /// is also returned. Use the <c>NextToken</c> parameter in a new <c>ListSubscriptionsByTopic</c>
         /// call to get further results.
         /// 
         ///  
@@ -3288,7 +3333,7 @@ namespace Amazon.SimpleNotificationService
         /// </para>
         /// </summary>
         /// <param name="topicArn">The ARN of the topic for which you wish to find subscriptions.</param>
-        /// <param name="nextToken">Token returned by the previous <code>ListSubscriptionsByTopic</code> request.</param>
+        /// <param name="nextToken">Token returned by the previous <c>ListSubscriptionsByTopic</c> request.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -3318,8 +3363,8 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Returns a list of the subscriptions to a specific topic. Each call returns a limited
-        /// list of subscriptions, up to 100. If there are more subscriptions, a <code>NextToken</code>
-        /// is also returned. Use the <code>NextToken</code> parameter in a new <code>ListSubscriptionsByTopic</code>
+        /// list of subscriptions, up to 100. If there are more subscriptions, a <c>NextToken</c>
+        /// is also returned. Use the <c>NextToken</c> parameter in a new <c>ListSubscriptionsByTopic</c>
         /// call to get further results.
         /// 
         ///  
@@ -3356,8 +3401,8 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Returns a list of the subscriptions to a specific topic. Each call returns a limited
-        /// list of subscriptions, up to 100. If there are more subscriptions, a <code>NextToken</code>
-        /// is also returned. Use the <code>NextToken</code> parameter in a new <code>ListSubscriptionsByTopic</code>
+        /// list of subscriptions, up to 100. If there are more subscriptions, a <c>NextToken</c>
+        /// is also returned. Use the <c>NextToken</c> parameter in a new <c>ListSubscriptionsByTopic</c>
         /// call to get further results.
         /// 
         ///  
@@ -3477,9 +3522,8 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Returns a list of the requester's topics. Each call returns a limited list of topics,
-        /// up to 100. If there are more topics, a <code>NextToken</code> is also returned. Use
-        /// the <code>NextToken</code> parameter in a new <code>ListTopics</code> call to get
-        /// further results.
+        /// up to 100. If there are more topics, a <c>NextToken</c> is also returned. Use the
+        /// <c>NextToken</c> parameter in a new <c>ListTopics</c> call to get further results.
         /// 
         ///  
         /// <para>
@@ -3506,16 +3550,15 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Returns a list of the requester's topics. Each call returns a limited list of topics,
-        /// up to 100. If there are more topics, a <code>NextToken</code> is also returned. Use
-        /// the <code>NextToken</code> parameter in a new <code>ListTopics</code> call to get
-        /// further results.
+        /// up to 100. If there are more topics, a <c>NextToken</c> is also returned. Use the
+        /// <c>NextToken</c> parameter in a new <c>ListTopics</c> call to get further results.
         /// 
         ///  
         /// <para>
         /// This action is throttled at 30 transactions per second (TPS).
         /// </para>
         /// </summary>
-        /// <param name="nextToken">Token returned by the previous <code>ListTopics</code> request.</param>
+        /// <param name="nextToken">Token returned by the previous <c>ListTopics</c> request.</param>
         /// 
         /// <returns>The response from the ListTopics service method, as returned by SimpleNotificationService.</returns>
         /// <exception cref="Amazon.SimpleNotificationService.Model.AuthorizationErrorException">
@@ -3538,9 +3581,8 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Returns a list of the requester's topics. Each call returns a limited list of topics,
-        /// up to 100. If there are more topics, a <code>NextToken</code> is also returned. Use
-        /// the <code>NextToken</code> parameter in a new <code>ListTopics</code> call to get
-        /// further results.
+        /// up to 100. If there are more topics, a <c>NextToken</c> is also returned. Use the
+        /// <c>NextToken</c> parameter in a new <c>ListTopics</c> call to get further results.
         /// 
         ///  
         /// <para>
@@ -3572,9 +3614,8 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Returns a list of the requester's topics. Each call returns a limited list of topics,
-        /// up to 100. If there are more topics, a <code>NextToken</code> is also returned. Use
-        /// the <code>NextToken</code> parameter in a new <code>ListTopics</code> call to get
-        /// further results.
+        /// up to 100. If there are more topics, a <c>NextToken</c> is also returned. Use the
+        /// <c>NextToken</c> parameter in a new <c>ListTopics</c> call to get further results.
         /// 
         ///  
         /// <para>
@@ -3603,16 +3644,15 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Returns a list of the requester's topics. Each call returns a limited list of topics,
-        /// up to 100. If there are more topics, a <code>NextToken</code> is also returned. Use
-        /// the <code>NextToken</code> parameter in a new <code>ListTopics</code> call to get
-        /// further results.
+        /// up to 100. If there are more topics, a <c>NextToken</c> is also returned. Use the
+        /// <c>NextToken</c> parameter in a new <c>ListTopics</c> call to get further results.
         /// 
         ///  
         /// <para>
         /// This action is throttled at 30 transactions per second (TPS).
         /// </para>
         /// </summary>
-        /// <param name="nextToken">Token returned by the previous <code>ListTopics</code> request.</param>
+        /// <param name="nextToken">Token returned by the previous <c>ListTopics</c> request.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -3638,9 +3678,8 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Returns a list of the requester's topics. Each call returns a limited list of topics,
-        /// up to 100. If there are more topics, a <code>NextToken</code> is also returned. Use
-        /// the <code>NextToken</code> parameter in a new <code>ListTopics</code> call to get
-        /// further results.
+        /// up to 100. If there are more topics, a <c>NextToken</c> is also returned. Use the
+        /// <c>NextToken</c> parameter in a new <c>ListTopics</c> call to get further results.
         /// 
         ///  
         /// <para>
@@ -3758,7 +3797,7 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Sends a message to an Amazon SNS topic, a text message (SMS message) directly to a
-        /// phone number, or a message to a mobile platform endpoint (when you specify the <code>TargetArn</code>).
+        /// phone number, or a message to a mobile platform endpoint (when you specify the <c>TargetArn</c>).
         /// 
         ///  
         /// <para>
@@ -3768,15 +3807,15 @@ namespace Amazon.SimpleNotificationService
         /// </para>
         ///  
         /// <para>
-        /// When a <code>messageId</code> is returned, the message is saved and Amazon SNS immediately
+        /// When a <c>messageId</c> is returned, the message is saved and Amazon SNS immediately
         /// delivers it to subscribers.
         /// </para>
         ///  
         /// <para>
-        /// To use the <code>Publish</code> action for publishing a message to a mobile endpoint,
-        /// such as an app on a Kindle device or mobile phone, you must specify the EndpointArn
-        /// for the TargetArn parameter. The EndpointArn is returned when making a call with the
-        /// <code>CreatePlatformEndpoint</code> action. 
+        /// To use the <c>Publish</c> action for publishing a message to a mobile endpoint, such
+        /// as an app on a Kindle device or mobile phone, you must specify the EndpointArn for
+        /// the TargetArn parameter. The EndpointArn is returned when making a call with the <c>CreatePlatformEndpoint</c>
+        /// action. 
         /// </para>
         ///  
         /// <para>
@@ -3790,8 +3829,8 @@ namespace Amazon.SimpleNotificationService
         /// </para>
         ///  </important>
         /// </summary>
-        /// <param name="topicArn">The topic you want to publish to. If you don't specify a value for the <code>TopicArn</code> parameter, you must specify a value for the <code>PhoneNumber</code> or <code>TargetArn</code> parameters.</param>
-        /// <param name="message">The message you want to send. If you are publishing to a topic and you want to send the same message to all transport protocols, include the text of the message as a String value. If you want to send different messages for each transport protocol, set the value of the <code>MessageStructure</code> parameter to <code>json</code> and use a JSON object for the <code>Message</code> parameter.  <p/> Constraints: <ul> <li> With the exception of SMS, messages must be UTF-8 encoded strings and at most 256 KB in size (262,144 bytes, not 262,144 characters). </li> <li> For SMS, each message can contain up to 140 characters. This character limit depends on the encoding schema. For example, an SMS message can contain 160 GSM characters, 140 ASCII characters, or 70 UCS-2 characters. If you publish a message that exceeds this size limit, Amazon SNS sends the message as multiple messages, each fitting within the size limit. Messages aren't truncated mid-word but are cut off at whole-word boundaries. The total size limit for a single SMS <code>Publish</code> action is 1,600 characters. </li> </ul> JSON-specific constraints: <ul> <li> Keys in the JSON object that correspond to supported transport protocols must have simple JSON string values. </li> <li> The values will be parsed (unescaped) before they are used in outgoing messages. </li> <li> Outbound notifications are JSON encoded (meaning that the characters will be reescaped for sending). </li> <li> Values have a minimum length of 0 (the empty string, "", is allowed). </li> <li> Values have a maximum length bounded by the overall message size (so, including multiple protocols may limit message sizes). </li> <li> Non-string values will cause the key to be ignored. </li> <li> Keys that do not correspond to supported transport protocols are ignored. </li> <li> Duplicate keys are not allowed. </li> <li> Failure to parse or validate any key or value in the message will cause the <code>Publish</code> call to return an error (no partial delivery). </li> </ul></param>
+        /// <param name="topicArn">The topic you want to publish to. If you don't specify a value for the <c>TopicArn</c> parameter, you must specify a value for the <c>PhoneNumber</c> or <c>TargetArn</c> parameters.</param>
+        /// <param name="message">The message you want to send. If you are publishing to a topic and you want to send the same message to all transport protocols, include the text of the message as a String value. If you want to send different messages for each transport protocol, set the value of the <c>MessageStructure</c> parameter to <c>json</c> and use a JSON object for the <c>Message</c> parameter.  <p/> Constraints: <ul> <li> With the exception of SMS, messages must be UTF-8 encoded strings and at most 256 KB in size (262,144 bytes, not 262,144 characters). </li> <li> For SMS, each message can contain up to 140 characters. This character limit depends on the encoding schema. For example, an SMS message can contain 160 GSM characters, 140 ASCII characters, or 70 UCS-2 characters. If you publish a message that exceeds this size limit, Amazon SNS sends the message as multiple messages, each fitting within the size limit. Messages aren't truncated mid-word but are cut off at whole-word boundaries. The total size limit for a single SMS <c>Publish</c> action is 1,600 characters. </li> </ul> JSON-specific constraints: <ul> <li> Keys in the JSON object that correspond to supported transport protocols must have simple JSON string values. </li> <li> The values will be parsed (unescaped) before they are used in outgoing messages. </li> <li> Outbound notifications are JSON encoded (meaning that the characters will be reescaped for sending). </li> <li> Values have a minimum length of 0 (the empty string, "", is allowed). </li> <li> Values have a maximum length bounded by the overall message size (so, including multiple protocols may limit message sizes). </li> <li> Non-string values will cause the key to be ignored. </li> <li> Keys that do not correspond to supported transport protocols are ignored. </li> <li> Duplicate keys are not allowed. </li> <li> Failure to parse or validate any key or value in the message will cause the <c>Publish</c> call to return an error (no partial delivery). </li> </ul></param>
         /// 
         /// <returns>The response from the Publish service method, as returned by SimpleNotificationService.</returns>
         /// <exception cref="Amazon.SimpleNotificationService.Model.AuthorizationErrorException">
@@ -3817,13 +3856,13 @@ namespace Amazon.SimpleNotificationService
         /// The ciphertext references a key that doesn't exist or that you don't have access to.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSDisabledException">
-        /// The request was rejected because the specified customer master key (CMK) isn't enabled.
+        /// The request was rejected because the specified Amazon Web Services KMS key isn't enabled.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSInvalidStateException">
         /// The request was rejected because the state of the specified resource isn't valid for
-        /// this request. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">How
-        /// Key State Affects Use of a Customer Master Key</a> in the <i>Key Management Service
-        /// Developer Guide</i>.
+        /// this request. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">Key
+        /// states of Amazon Web Services KMS keys</a> in the <i>Key Management Service Developer
+        /// Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSNotFoundException">
         /// The request was rejected because the specified entity or resource can't be found.
@@ -3857,7 +3896,7 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Sends a message to an Amazon SNS topic, a text message (SMS message) directly to a
-        /// phone number, or a message to a mobile platform endpoint (when you specify the <code>TargetArn</code>).
+        /// phone number, or a message to a mobile platform endpoint (when you specify the <c>TargetArn</c>).
         /// 
         ///  
         /// <para>
@@ -3867,15 +3906,15 @@ namespace Amazon.SimpleNotificationService
         /// </para>
         ///  
         /// <para>
-        /// When a <code>messageId</code> is returned, the message is saved and Amazon SNS immediately
+        /// When a <c>messageId</c> is returned, the message is saved and Amazon SNS immediately
         /// delivers it to subscribers.
         /// </para>
         ///  
         /// <para>
-        /// To use the <code>Publish</code> action for publishing a message to a mobile endpoint,
-        /// such as an app on a Kindle device or mobile phone, you must specify the EndpointArn
-        /// for the TargetArn parameter. The EndpointArn is returned when making a call with the
-        /// <code>CreatePlatformEndpoint</code> action. 
+        /// To use the <c>Publish</c> action for publishing a message to a mobile endpoint, such
+        /// as an app on a Kindle device or mobile phone, you must specify the EndpointArn for
+        /// the TargetArn parameter. The EndpointArn is returned when making a call with the <c>CreatePlatformEndpoint</c>
+        /// action. 
         /// </para>
         ///  
         /// <para>
@@ -3889,9 +3928,9 @@ namespace Amazon.SimpleNotificationService
         /// </para>
         ///  </important>
         /// </summary>
-        /// <param name="topicArn">The topic you want to publish to. If you don't specify a value for the <code>TopicArn</code> parameter, you must specify a value for the <code>PhoneNumber</code> or <code>TargetArn</code> parameters.</param>
-        /// <param name="message">The message you want to send. If you are publishing to a topic and you want to send the same message to all transport protocols, include the text of the message as a String value. If you want to send different messages for each transport protocol, set the value of the <code>MessageStructure</code> parameter to <code>json</code> and use a JSON object for the <code>Message</code> parameter.  <p/> Constraints: <ul> <li> With the exception of SMS, messages must be UTF-8 encoded strings and at most 256 KB in size (262,144 bytes, not 262,144 characters). </li> <li> For SMS, each message can contain up to 140 characters. This character limit depends on the encoding schema. For example, an SMS message can contain 160 GSM characters, 140 ASCII characters, or 70 UCS-2 characters. If you publish a message that exceeds this size limit, Amazon SNS sends the message as multiple messages, each fitting within the size limit. Messages aren't truncated mid-word but are cut off at whole-word boundaries. The total size limit for a single SMS <code>Publish</code> action is 1,600 characters. </li> </ul> JSON-specific constraints: <ul> <li> Keys in the JSON object that correspond to supported transport protocols must have simple JSON string values. </li> <li> The values will be parsed (unescaped) before they are used in outgoing messages. </li> <li> Outbound notifications are JSON encoded (meaning that the characters will be reescaped for sending). </li> <li> Values have a minimum length of 0 (the empty string, "", is allowed). </li> <li> Values have a maximum length bounded by the overall message size (so, including multiple protocols may limit message sizes). </li> <li> Non-string values will cause the key to be ignored. </li> <li> Keys that do not correspond to supported transport protocols are ignored. </li> <li> Duplicate keys are not allowed. </li> <li> Failure to parse or validate any key or value in the message will cause the <code>Publish</code> call to return an error (no partial delivery). </li> </ul></param>
-        /// <param name="subject">Optional parameter to be used as the "Subject" line when the message is delivered to email endpoints. This field will also be included, if present, in the standard JSON messages delivered to other endpoints. Constraints: Subjects must be ASCII text that begins with a letter, number, or punctuation mark; must not include line breaks or control characters; and must be less than 100 characters long.</param>
+        /// <param name="topicArn">The topic you want to publish to. If you don't specify a value for the <c>TopicArn</c> parameter, you must specify a value for the <c>PhoneNumber</c> or <c>TargetArn</c> parameters.</param>
+        /// <param name="message">The message you want to send. If you are publishing to a topic and you want to send the same message to all transport protocols, include the text of the message as a String value. If you want to send different messages for each transport protocol, set the value of the <c>MessageStructure</c> parameter to <c>json</c> and use a JSON object for the <c>Message</c> parameter.  <p/> Constraints: <ul> <li> With the exception of SMS, messages must be UTF-8 encoded strings and at most 256 KB in size (262,144 bytes, not 262,144 characters). </li> <li> For SMS, each message can contain up to 140 characters. This character limit depends on the encoding schema. For example, an SMS message can contain 160 GSM characters, 140 ASCII characters, or 70 UCS-2 characters. If you publish a message that exceeds this size limit, Amazon SNS sends the message as multiple messages, each fitting within the size limit. Messages aren't truncated mid-word but are cut off at whole-word boundaries. The total size limit for a single SMS <c>Publish</c> action is 1,600 characters. </li> </ul> JSON-specific constraints: <ul> <li> Keys in the JSON object that correspond to supported transport protocols must have simple JSON string values. </li> <li> The values will be parsed (unescaped) before they are used in outgoing messages. </li> <li> Outbound notifications are JSON encoded (meaning that the characters will be reescaped for sending). </li> <li> Values have a minimum length of 0 (the empty string, "", is allowed). </li> <li> Values have a maximum length bounded by the overall message size (so, including multiple protocols may limit message sizes). </li> <li> Non-string values will cause the key to be ignored. </li> <li> Keys that do not correspond to supported transport protocols are ignored. </li> <li> Duplicate keys are not allowed. </li> <li> Failure to parse or validate any key or value in the message will cause the <c>Publish</c> call to return an error (no partial delivery). </li> </ul></param>
+        /// <param name="subject">Optional parameter to be used as the "Subject" line when the message is delivered to email endpoints. This field will also be included, if present, in the standard JSON messages delivered to other endpoints. Constraints: Subjects must be UTF-8 text with no line breaks or control characters, and less than 100 characters long.</param>
         /// 
         /// <returns>The response from the Publish service method, as returned by SimpleNotificationService.</returns>
         /// <exception cref="Amazon.SimpleNotificationService.Model.AuthorizationErrorException">
@@ -3917,13 +3956,13 @@ namespace Amazon.SimpleNotificationService
         /// The ciphertext references a key that doesn't exist or that you don't have access to.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSDisabledException">
-        /// The request was rejected because the specified customer master key (CMK) isn't enabled.
+        /// The request was rejected because the specified Amazon Web Services KMS key isn't enabled.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSInvalidStateException">
         /// The request was rejected because the state of the specified resource isn't valid for
-        /// this request. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">How
-        /// Key State Affects Use of a Customer Master Key</a> in the <i>Key Management Service
-        /// Developer Guide</i>.
+        /// this request. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">Key
+        /// states of Amazon Web Services KMS keys</a> in the <i>Key Management Service Developer
+        /// Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSNotFoundException">
         /// The request was rejected because the specified entity or resource can't be found.
@@ -3958,7 +3997,7 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Sends a message to an Amazon SNS topic, a text message (SMS message) directly to a
-        /// phone number, or a message to a mobile platform endpoint (when you specify the <code>TargetArn</code>).
+        /// phone number, or a message to a mobile platform endpoint (when you specify the <c>TargetArn</c>).
         /// 
         ///  
         /// <para>
@@ -3968,15 +4007,15 @@ namespace Amazon.SimpleNotificationService
         /// </para>
         ///  
         /// <para>
-        /// When a <code>messageId</code> is returned, the message is saved and Amazon SNS immediately
+        /// When a <c>messageId</c> is returned, the message is saved and Amazon SNS immediately
         /// delivers it to subscribers.
         /// </para>
         ///  
         /// <para>
-        /// To use the <code>Publish</code> action for publishing a message to a mobile endpoint,
-        /// such as an app on a Kindle device or mobile phone, you must specify the EndpointArn
-        /// for the TargetArn parameter. The EndpointArn is returned when making a call with the
-        /// <code>CreatePlatformEndpoint</code> action. 
+        /// To use the <c>Publish</c> action for publishing a message to a mobile endpoint, such
+        /// as an app on a Kindle device or mobile phone, you must specify the EndpointArn for
+        /// the TargetArn parameter. The EndpointArn is returned when making a call with the <c>CreatePlatformEndpoint</c>
+        /// action. 
         /// </para>
         ///  
         /// <para>
@@ -4016,13 +4055,13 @@ namespace Amazon.SimpleNotificationService
         /// The ciphertext references a key that doesn't exist or that you don't have access to.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSDisabledException">
-        /// The request was rejected because the specified customer master key (CMK) isn't enabled.
+        /// The request was rejected because the specified Amazon Web Services KMS key isn't enabled.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSInvalidStateException">
         /// The request was rejected because the state of the specified resource isn't valid for
-        /// this request. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">How
-        /// Key State Affects Use of a Customer Master Key</a> in the <i>Key Management Service
-        /// Developer Guide</i>.
+        /// this request. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">Key
+        /// states of Amazon Web Services KMS keys</a> in the <i>Key Management Service Developer
+        /// Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSNotFoundException">
         /// The request was rejected because the specified entity or resource can't be found.
@@ -4057,7 +4096,7 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Sends a message to an Amazon SNS topic, a text message (SMS message) directly to a
-        /// phone number, or a message to a mobile platform endpoint (when you specify the <code>TargetArn</code>).
+        /// phone number, or a message to a mobile platform endpoint (when you specify the <c>TargetArn</c>).
         /// 
         ///  
         /// <para>
@@ -4067,15 +4106,15 @@ namespace Amazon.SimpleNotificationService
         /// </para>
         ///  
         /// <para>
-        /// When a <code>messageId</code> is returned, the message is saved and Amazon SNS immediately
+        /// When a <c>messageId</c> is returned, the message is saved and Amazon SNS immediately
         /// delivers it to subscribers.
         /// </para>
         ///  
         /// <para>
-        /// To use the <code>Publish</code> action for publishing a message to a mobile endpoint,
-        /// such as an app on a Kindle device or mobile phone, you must specify the EndpointArn
-        /// for the TargetArn parameter. The EndpointArn is returned when making a call with the
-        /// <code>CreatePlatformEndpoint</code> action. 
+        /// To use the <c>Publish</c> action for publishing a message to a mobile endpoint, such
+        /// as an app on a Kindle device or mobile phone, you must specify the EndpointArn for
+        /// the TargetArn parameter. The EndpointArn is returned when making a call with the <c>CreatePlatformEndpoint</c>
+        /// action. 
         /// </para>
         ///  
         /// <para>
@@ -4089,8 +4128,8 @@ namespace Amazon.SimpleNotificationService
         /// </para>
         ///  </important>
         /// </summary>
-        /// <param name="topicArn">The topic you want to publish to. If you don't specify a value for the <code>TopicArn</code> parameter, you must specify a value for the <code>PhoneNumber</code> or <code>TargetArn</code> parameters.</param>
-        /// <param name="message">The message you want to send. If you are publishing to a topic and you want to send the same message to all transport protocols, include the text of the message as a String value. If you want to send different messages for each transport protocol, set the value of the <code>MessageStructure</code> parameter to <code>json</code> and use a JSON object for the <code>Message</code> parameter.  <p/> Constraints: <ul> <li> With the exception of SMS, messages must be UTF-8 encoded strings and at most 256 KB in size (262,144 bytes, not 262,144 characters). </li> <li> For SMS, each message can contain up to 140 characters. This character limit depends on the encoding schema. For example, an SMS message can contain 160 GSM characters, 140 ASCII characters, or 70 UCS-2 characters. If you publish a message that exceeds this size limit, Amazon SNS sends the message as multiple messages, each fitting within the size limit. Messages aren't truncated mid-word but are cut off at whole-word boundaries. The total size limit for a single SMS <code>Publish</code> action is 1,600 characters. </li> </ul> JSON-specific constraints: <ul> <li> Keys in the JSON object that correspond to supported transport protocols must have simple JSON string values. </li> <li> The values will be parsed (unescaped) before they are used in outgoing messages. </li> <li> Outbound notifications are JSON encoded (meaning that the characters will be reescaped for sending). </li> <li> Values have a minimum length of 0 (the empty string, "", is allowed). </li> <li> Values have a maximum length bounded by the overall message size (so, including multiple protocols may limit message sizes). </li> <li> Non-string values will cause the key to be ignored. </li> <li> Keys that do not correspond to supported transport protocols are ignored. </li> <li> Duplicate keys are not allowed. </li> <li> Failure to parse or validate any key or value in the message will cause the <code>Publish</code> call to return an error (no partial delivery). </li> </ul></param>
+        /// <param name="topicArn">The topic you want to publish to. If you don't specify a value for the <c>TopicArn</c> parameter, you must specify a value for the <c>PhoneNumber</c> or <c>TargetArn</c> parameters.</param>
+        /// <param name="message">The message you want to send. If you are publishing to a topic and you want to send the same message to all transport protocols, include the text of the message as a String value. If you want to send different messages for each transport protocol, set the value of the <c>MessageStructure</c> parameter to <c>json</c> and use a JSON object for the <c>Message</c> parameter.  <p/> Constraints: <ul> <li> With the exception of SMS, messages must be UTF-8 encoded strings and at most 256 KB in size (262,144 bytes, not 262,144 characters). </li> <li> For SMS, each message can contain up to 140 characters. This character limit depends on the encoding schema. For example, an SMS message can contain 160 GSM characters, 140 ASCII characters, or 70 UCS-2 characters. If you publish a message that exceeds this size limit, Amazon SNS sends the message as multiple messages, each fitting within the size limit. Messages aren't truncated mid-word but are cut off at whole-word boundaries. The total size limit for a single SMS <c>Publish</c> action is 1,600 characters. </li> </ul> JSON-specific constraints: <ul> <li> Keys in the JSON object that correspond to supported transport protocols must have simple JSON string values. </li> <li> The values will be parsed (unescaped) before they are used in outgoing messages. </li> <li> Outbound notifications are JSON encoded (meaning that the characters will be reescaped for sending). </li> <li> Values have a minimum length of 0 (the empty string, "", is allowed). </li> <li> Values have a maximum length bounded by the overall message size (so, including multiple protocols may limit message sizes). </li> <li> Non-string values will cause the key to be ignored. </li> <li> Keys that do not correspond to supported transport protocols are ignored. </li> <li> Duplicate keys are not allowed. </li> <li> Failure to parse or validate any key or value in the message will cause the <c>Publish</c> call to return an error (no partial delivery). </li> </ul></param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -4119,13 +4158,13 @@ namespace Amazon.SimpleNotificationService
         /// The ciphertext references a key that doesn't exist or that you don't have access to.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSDisabledException">
-        /// The request was rejected because the specified customer master key (CMK) isn't enabled.
+        /// The request was rejected because the specified Amazon Web Services KMS key isn't enabled.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSInvalidStateException">
         /// The request was rejected because the state of the specified resource isn't valid for
-        /// this request. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">How
-        /// Key State Affects Use of a Customer Master Key</a> in the <i>Key Management Service
-        /// Developer Guide</i>.
+        /// this request. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">Key
+        /// states of Amazon Web Services KMS keys</a> in the <i>Key Management Service Developer
+        /// Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSNotFoundException">
         /// The request was rejected because the specified entity or resource can't be found.
@@ -4159,7 +4198,7 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Sends a message to an Amazon SNS topic, a text message (SMS message) directly to a
-        /// phone number, or a message to a mobile platform endpoint (when you specify the <code>TargetArn</code>).
+        /// phone number, or a message to a mobile platform endpoint (when you specify the <c>TargetArn</c>).
         /// 
         ///  
         /// <para>
@@ -4169,15 +4208,15 @@ namespace Amazon.SimpleNotificationService
         /// </para>
         ///  
         /// <para>
-        /// When a <code>messageId</code> is returned, the message is saved and Amazon SNS immediately
+        /// When a <c>messageId</c> is returned, the message is saved and Amazon SNS immediately
         /// delivers it to subscribers.
         /// </para>
         ///  
         /// <para>
-        /// To use the <code>Publish</code> action for publishing a message to a mobile endpoint,
-        /// such as an app on a Kindle device or mobile phone, you must specify the EndpointArn
-        /// for the TargetArn parameter. The EndpointArn is returned when making a call with the
-        /// <code>CreatePlatformEndpoint</code> action. 
+        /// To use the <c>Publish</c> action for publishing a message to a mobile endpoint, such
+        /// as an app on a Kindle device or mobile phone, you must specify the EndpointArn for
+        /// the TargetArn parameter. The EndpointArn is returned when making a call with the <c>CreatePlatformEndpoint</c>
+        /// action. 
         /// </para>
         ///  
         /// <para>
@@ -4191,9 +4230,9 @@ namespace Amazon.SimpleNotificationService
         /// </para>
         ///  </important>
         /// </summary>
-        /// <param name="topicArn">The topic you want to publish to. If you don't specify a value for the <code>TopicArn</code> parameter, you must specify a value for the <code>PhoneNumber</code> or <code>TargetArn</code> parameters.</param>
-        /// <param name="message">The message you want to send. If you are publishing to a topic and you want to send the same message to all transport protocols, include the text of the message as a String value. If you want to send different messages for each transport protocol, set the value of the <code>MessageStructure</code> parameter to <code>json</code> and use a JSON object for the <code>Message</code> parameter.  <p/> Constraints: <ul> <li> With the exception of SMS, messages must be UTF-8 encoded strings and at most 256 KB in size (262,144 bytes, not 262,144 characters). </li> <li> For SMS, each message can contain up to 140 characters. This character limit depends on the encoding schema. For example, an SMS message can contain 160 GSM characters, 140 ASCII characters, or 70 UCS-2 characters. If you publish a message that exceeds this size limit, Amazon SNS sends the message as multiple messages, each fitting within the size limit. Messages aren't truncated mid-word but are cut off at whole-word boundaries. The total size limit for a single SMS <code>Publish</code> action is 1,600 characters. </li> </ul> JSON-specific constraints: <ul> <li> Keys in the JSON object that correspond to supported transport protocols must have simple JSON string values. </li> <li> The values will be parsed (unescaped) before they are used in outgoing messages. </li> <li> Outbound notifications are JSON encoded (meaning that the characters will be reescaped for sending). </li> <li> Values have a minimum length of 0 (the empty string, "", is allowed). </li> <li> Values have a maximum length bounded by the overall message size (so, including multiple protocols may limit message sizes). </li> <li> Non-string values will cause the key to be ignored. </li> <li> Keys that do not correspond to supported transport protocols are ignored. </li> <li> Duplicate keys are not allowed. </li> <li> Failure to parse or validate any key or value in the message will cause the <code>Publish</code> call to return an error (no partial delivery). </li> </ul></param>
-        /// <param name="subject">Optional parameter to be used as the "Subject" line when the message is delivered to email endpoints. This field will also be included, if present, in the standard JSON messages delivered to other endpoints. Constraints: Subjects must be ASCII text that begins with a letter, number, or punctuation mark; must not include line breaks or control characters; and must be less than 100 characters long.</param>
+        /// <param name="topicArn">The topic you want to publish to. If you don't specify a value for the <c>TopicArn</c> parameter, you must specify a value for the <c>PhoneNumber</c> or <c>TargetArn</c> parameters.</param>
+        /// <param name="message">The message you want to send. If you are publishing to a topic and you want to send the same message to all transport protocols, include the text of the message as a String value. If you want to send different messages for each transport protocol, set the value of the <c>MessageStructure</c> parameter to <c>json</c> and use a JSON object for the <c>Message</c> parameter.  <p/> Constraints: <ul> <li> With the exception of SMS, messages must be UTF-8 encoded strings and at most 256 KB in size (262,144 bytes, not 262,144 characters). </li> <li> For SMS, each message can contain up to 140 characters. This character limit depends on the encoding schema. For example, an SMS message can contain 160 GSM characters, 140 ASCII characters, or 70 UCS-2 characters. If you publish a message that exceeds this size limit, Amazon SNS sends the message as multiple messages, each fitting within the size limit. Messages aren't truncated mid-word but are cut off at whole-word boundaries. The total size limit for a single SMS <c>Publish</c> action is 1,600 characters. </li> </ul> JSON-specific constraints: <ul> <li> Keys in the JSON object that correspond to supported transport protocols must have simple JSON string values. </li> <li> The values will be parsed (unescaped) before they are used in outgoing messages. </li> <li> Outbound notifications are JSON encoded (meaning that the characters will be reescaped for sending). </li> <li> Values have a minimum length of 0 (the empty string, "", is allowed). </li> <li> Values have a maximum length bounded by the overall message size (so, including multiple protocols may limit message sizes). </li> <li> Non-string values will cause the key to be ignored. </li> <li> Keys that do not correspond to supported transport protocols are ignored. </li> <li> Duplicate keys are not allowed. </li> <li> Failure to parse or validate any key or value in the message will cause the <c>Publish</c> call to return an error (no partial delivery). </li> </ul></param>
+        /// <param name="subject">Optional parameter to be used as the "Subject" line when the message is delivered to email endpoints. This field will also be included, if present, in the standard JSON messages delivered to other endpoints. Constraints: Subjects must be UTF-8 text with no line breaks or control characters, and less than 100 characters long.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -4222,13 +4261,13 @@ namespace Amazon.SimpleNotificationService
         /// The ciphertext references a key that doesn't exist or that you don't have access to.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSDisabledException">
-        /// The request was rejected because the specified customer master key (CMK) isn't enabled.
+        /// The request was rejected because the specified Amazon Web Services KMS key isn't enabled.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSInvalidStateException">
         /// The request was rejected because the state of the specified resource isn't valid for
-        /// this request. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">How
-        /// Key State Affects Use of a Customer Master Key</a> in the <i>Key Management Service
-        /// Developer Guide</i>.
+        /// this request. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">Key
+        /// states of Amazon Web Services KMS keys</a> in the <i>Key Management Service Developer
+        /// Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSNotFoundException">
         /// The request was rejected because the specified entity or resource can't be found.
@@ -4263,7 +4302,7 @@ namespace Amazon.SimpleNotificationService
 
         /// <summary>
         /// Sends a message to an Amazon SNS topic, a text message (SMS message) directly to a
-        /// phone number, or a message to a mobile platform endpoint (when you specify the <code>TargetArn</code>).
+        /// phone number, or a message to a mobile platform endpoint (when you specify the <c>TargetArn</c>).
         /// 
         ///  
         /// <para>
@@ -4273,15 +4312,15 @@ namespace Amazon.SimpleNotificationService
         /// </para>
         ///  
         /// <para>
-        /// When a <code>messageId</code> is returned, the message is saved and Amazon SNS immediately
+        /// When a <c>messageId</c> is returned, the message is saved and Amazon SNS immediately
         /// delivers it to subscribers.
         /// </para>
         ///  
         /// <para>
-        /// To use the <code>Publish</code> action for publishing a message to a mobile endpoint,
-        /// such as an app on a Kindle device or mobile phone, you must specify the EndpointArn
-        /// for the TargetArn parameter. The EndpointArn is returned when making a call with the
-        /// <code>CreatePlatformEndpoint</code> action. 
+        /// To use the <c>Publish</c> action for publishing a message to a mobile endpoint, such
+        /// as an app on a Kindle device or mobile phone, you must specify the EndpointArn for
+        /// the TargetArn parameter. The EndpointArn is returned when making a call with the <c>CreatePlatformEndpoint</c>
+        /// action. 
         /// </para>
         ///  
         /// <para>
@@ -4324,13 +4363,13 @@ namespace Amazon.SimpleNotificationService
         /// The ciphertext references a key that doesn't exist or that you don't have access to.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSDisabledException">
-        /// The request was rejected because the specified customer master key (CMK) isn't enabled.
+        /// The request was rejected because the specified Amazon Web Services KMS key isn't enabled.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSInvalidStateException">
         /// The request was rejected because the state of the specified resource isn't valid for
-        /// this request. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">How
-        /// Key State Affects Use of a Customer Master Key</a> in the <i>Key Management Service
-        /// Developer Guide</i>.
+        /// this request. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">Key
+        /// states of Amazon Web Services KMS keys</a> in the <i>Key Management Service Developer
+        /// Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSNotFoundException">
         /// The request was rejected because the specified entity or resource can't be found.
@@ -4368,7 +4407,7 @@ namespace Amazon.SimpleNotificationService
 
 
         /// <summary>
-        /// Publishes up to ten messages to the specified topic. This is a batch version of <code>Publish</code>.
+        /// Publishes up to ten messages to the specified topic. This is a batch version of <c>Publish</c>.
         /// For FIFO topics, multiple messages within a single batch are published in the order
         /// they are sent, and messages are deduplicated within the batch and across batches for
         /// 5 minutes.
@@ -4378,7 +4417,7 @@ namespace Amazon.SimpleNotificationService
         /// The result of publishing each message is reported individually in the response. Because
         /// the batch request can result in a combination of successful and unsuccessful actions,
         /// you should check for batch errors even when the call returns an HTTP status code of
-        /// <code>200</code>.
+        /// <c>200</c>.
         /// </para>
         ///  
         /// <para>
@@ -4388,8 +4427,8 @@ namespace Amazon.SimpleNotificationService
         /// </para>
         ///  
         /// <para>
-        /// Some actions take lists of parameters. These lists are specified using the <code>param.n</code>
-        /// notation. Values of <code>n</code> are integers starting from 1. For example, a parameter
+        /// Some actions take lists of parameters. These lists are specified using the <c>param.n</c>
+        /// notation. Values of <c>n</c> are integers starting from 1. For example, a parameter
         /// list with two elements looks like this: 
         /// </para>
         ///  
@@ -4408,8 +4447,8 @@ namespace Amazon.SimpleNotificationService
         /// </para>
         ///  
         /// <para>
-        /// When a <code>messageId</code> is returned, the batch message is saved and Amazon SNS
-        /// immediately delivers the message to subscribers.
+        /// When a <c>messageId</c> is returned, the batch message is saved and Amazon SNS immediately
+        /// delivers the message to subscribers.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PublishBatch service method.</param>
@@ -4419,7 +4458,7 @@ namespace Amazon.SimpleNotificationService
         /// Indicates that the user has been denied access to the requested resource.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.BatchEntryIdsNotDistinctException">
-        /// Two or more batch entries in the request have the same <code>Id</code>.
+        /// Two or more batch entries in the request have the same <c>Id</c>.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.BatchRequestTooLongException">
         /// The length of all the batch messages put together is more than the limit.
@@ -4434,7 +4473,7 @@ namespace Amazon.SimpleNotificationService
         /// Indicates an internal service error.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.InvalidBatchEntryIdException">
-        /// The <code>Id</code> of a batch entry in a batch request doesn't abide by the specification.
+        /// The <c>Id</c> of a batch entry in a batch request doesn't abide by the specification.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.InvalidParameterException">
         /// Indicates that a request parameter does not comply with the associated constraints.
@@ -4450,13 +4489,13 @@ namespace Amazon.SimpleNotificationService
         /// The ciphertext references a key that doesn't exist or that you don't have access to.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSDisabledException">
-        /// The request was rejected because the specified customer master key (CMK) isn't enabled.
+        /// The request was rejected because the specified Amazon Web Services KMS key isn't enabled.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSInvalidStateException">
         /// The request was rejected because the state of the specified resource isn't valid for
-        /// this request. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">How
-        /// Key State Affects Use of a Customer Master Key</a> in the <i>Key Management Service
-        /// Developer Guide</i>.
+        /// this request. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">Key
+        /// states of Amazon Web Services KMS keys</a> in the <i>Key Management Service Developer
+        /// Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSNotFoundException">
         /// The request was rejected because the specified entity or resource can't be found.
@@ -4493,7 +4532,7 @@ namespace Amazon.SimpleNotificationService
 
 
         /// <summary>
-        /// Publishes up to ten messages to the specified topic. This is a batch version of <code>Publish</code>.
+        /// Publishes up to ten messages to the specified topic. This is a batch version of <c>Publish</c>.
         /// For FIFO topics, multiple messages within a single batch are published in the order
         /// they are sent, and messages are deduplicated within the batch and across batches for
         /// 5 minutes.
@@ -4503,7 +4542,7 @@ namespace Amazon.SimpleNotificationService
         /// The result of publishing each message is reported individually in the response. Because
         /// the batch request can result in a combination of successful and unsuccessful actions,
         /// you should check for batch errors even when the call returns an HTTP status code of
-        /// <code>200</code>.
+        /// <c>200</c>.
         /// </para>
         ///  
         /// <para>
@@ -4513,8 +4552,8 @@ namespace Amazon.SimpleNotificationService
         /// </para>
         ///  
         /// <para>
-        /// Some actions take lists of parameters. These lists are specified using the <code>param.n</code>
-        /// notation. Values of <code>n</code> are integers starting from 1. For example, a parameter
+        /// Some actions take lists of parameters. These lists are specified using the <c>param.n</c>
+        /// notation. Values of <c>n</c> are integers starting from 1. For example, a parameter
         /// list with two elements looks like this: 
         /// </para>
         ///  
@@ -4533,8 +4572,8 @@ namespace Amazon.SimpleNotificationService
         /// </para>
         ///  
         /// <para>
-        /// When a <code>messageId</code> is returned, the batch message is saved and Amazon SNS
-        /// immediately delivers the message to subscribers.
+        /// When a <c>messageId</c> is returned, the batch message is saved and Amazon SNS immediately
+        /// delivers the message to subscribers.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PublishBatch service method.</param>
@@ -4547,7 +4586,7 @@ namespace Amazon.SimpleNotificationService
         /// Indicates that the user has been denied access to the requested resource.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.BatchEntryIdsNotDistinctException">
-        /// Two or more batch entries in the request have the same <code>Id</code>.
+        /// Two or more batch entries in the request have the same <c>Id</c>.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.BatchRequestTooLongException">
         /// The length of all the batch messages put together is more than the limit.
@@ -4562,7 +4601,7 @@ namespace Amazon.SimpleNotificationService
         /// Indicates an internal service error.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.InvalidBatchEntryIdException">
-        /// The <code>Id</code> of a batch entry in a batch request doesn't abide by the specification.
+        /// The <c>Id</c> of a batch entry in a batch request doesn't abide by the specification.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.InvalidParameterException">
         /// Indicates that a request parameter does not comply with the associated constraints.
@@ -4578,13 +4617,13 @@ namespace Amazon.SimpleNotificationService
         /// The ciphertext references a key that doesn't exist or that you don't have access to.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSDisabledException">
-        /// The request was rejected because the specified customer master key (CMK) isn't enabled.
+        /// The request was rejected because the specified Amazon Web Services KMS key isn't enabled.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSInvalidStateException">
         /// The request was rejected because the state of the specified resource isn't valid for
-        /// this request. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">How
-        /// Key State Affects Use of a Customer Master Key</a> in the <i>Key Management Service
-        /// Developer Guide</i>.
+        /// this request. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">Key
+        /// states of Amazon Web Services KMS keys</a> in the <i>Key Management Service Developer
+        /// Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.KMSNotFoundException">
         /// The request was rejected because the specified entity or resource can't be found.
@@ -4705,8 +4744,8 @@ namespace Amazon.SimpleNotificationService
         ///  <note> 
         /// <para>
         /// To remove the ability to change topic permissions, you must deny permissions to the
-        /// <code>AddPermission</code>, <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
-        /// actions in your IAM policy.
+        /// <c>AddPermission</c>, <c>RemovePermission</c>, and <c>SetTopicAttributes</c> actions
+        /// in your IAM policy.
         /// </para>
         ///  </note>
         /// </summary>
@@ -4742,8 +4781,8 @@ namespace Amazon.SimpleNotificationService
         ///  <note> 
         /// <para>
         /// To remove the ability to change topic permissions, you must deny permissions to the
-        /// <code>AddPermission</code>, <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
-        /// actions in your IAM policy.
+        /// <c>AddPermission</c>, <c>RemovePermission</c>, and <c>SetTopicAttributes</c> actions
+        /// in your IAM policy.
         /// </para>
         ///  </note>
         /// </summary>
@@ -4779,8 +4818,8 @@ namespace Amazon.SimpleNotificationService
         ///  <note> 
         /// <para>
         /// To remove the ability to change topic permissions, you must deny permissions to the
-        /// <code>AddPermission</code>, <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
-        /// actions in your IAM policy.
+        /// <c>AddPermission</c>, <c>RemovePermission</c>, and <c>SetTopicAttributes</c> actions
+        /// in your IAM policy.
         /// </para>
         ///  </note>
         /// </summary>
@@ -4819,8 +4858,8 @@ namespace Amazon.SimpleNotificationService
         ///  <note> 
         /// <para>
         /// To remove the ability to change topic permissions, you must deny permissions to the
-        /// <code>AddPermission</code>, <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
-        /// actions in your IAM policy.
+        /// <c>AddPermission</c>, <c>RemovePermission</c>, and <c>SetTopicAttributes</c> actions
+        /// in your IAM policy.
         /// </para>
         ///  </note>
         /// </summary>
@@ -5009,15 +5048,15 @@ namespace Amazon.SimpleNotificationService
         /// 
         ///  
         /// <para>
-        /// You can override some of these settings for a single message when you use the <code>Publish</code>
-        /// action with the <code>MessageAttributes.entry.N</code> parameter. For more information,
+        /// You can override some of these settings for a single message when you use the <c>Publish</c>
+        /// action with the <c>MessageAttributes.entry.N</c> parameter. For more information,
         /// see <a href="https://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html">Publishing
         /// to a mobile phone</a> in the <i>Amazon SNS Developer Guide</i>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// To use this operation, you must grant the Amazon SNS service principal (<code>sns.amazonaws.com</code>)
-        /// permission to perform the <code>s3:ListBucket</code> action. 
+        /// To use this operation, you must grant the Amazon SNS service principal (<c>sns.amazonaws.com</c>)
+        /// permission to perform the <c>s3:ListBucket</c> action. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -5054,15 +5093,15 @@ namespace Amazon.SimpleNotificationService
         /// 
         ///  
         /// <para>
-        /// You can override some of these settings for a single message when you use the <code>Publish</code>
-        /// action with the <code>MessageAttributes.entry.N</code> parameter. For more information,
+        /// You can override some of these settings for a single message when you use the <c>Publish</c>
+        /// action with the <c>MessageAttributes.entry.N</c> parameter. For more information,
         /// see <a href="https://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html">Publishing
         /// to a mobile phone</a> in the <i>Amazon SNS Developer Guide</i>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// To use this operation, you must grant the Amazon SNS service principal (<code>sns.amazonaws.com</code>)
-        /// permission to perform the <code>s3:ListBucket</code> action. 
+        /// To use this operation, you must grant the Amazon SNS service principal (<c>sns.amazonaws.com</c>)
+        /// permission to perform the <c>s3:ListBucket</c> action. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -5104,7 +5143,7 @@ namespace Amazon.SimpleNotificationService
         /// Allows a subscription owner to set an attribute of the subscription to a new value.
         /// </summary>
         /// <param name="subscriptionArn">The ARN of the subscription to modify.</param>
-        /// <param name="attributeName">A map of attributes with their corresponding values. The following lists the names, descriptions, and values of the special request parameters that this action uses: <ul> <li>  <code>DeliveryPolicy</code> – The policy that defines how Amazon SNS retries failed deliveries to HTTP/S endpoints. </li> <li>  <code>FilterPolicy</code> – The simple JSON object that lets your subscriber receive only a subset of messages, rather than receiving every message published to the topic. </li> <li>  <code>FilterPolicyScope</code> – This attribute lets you choose the filtering scope by using one of the following string value types: <ul> <li>  <code>MessageAttributes</code> (default) – The filter is applied on the message attributes. </li> <li>  <code>MessageBody</code> – The filter is applied on the message body. </li> </ul> </li> <li>  <code>RawMessageDelivery</code> – When set to <code>true</code>, enables raw message delivery to Amazon SQS or HTTP/S endpoints. This eliminates the need for the endpoints to process JSON formatting, which is otherwise created for Amazon SNS metadata. </li> <li>  <code>RedrivePolicy</code> – When specified, sends undeliverable messages to the specified Amazon SQS dead-letter queue. Messages that can't be delivered due to client errors (for example, when the subscribed endpoint is unreachable) or server errors (for example, when the service that powers the subscribed endpoint becomes unavailable) are held in the dead-letter queue for further analysis or reprocessing. </li> </ul> The following attribute applies only to Amazon Kinesis Data Firehose delivery stream subscriptions: <ul> <li>  <code>SubscriptionRoleArn</code> – The ARN of the IAM role that has the following: <ul> <li> Permission to write to the Kinesis Data Firehose delivery stream </li> <li> Amazon SNS listed as a trusted entity </li> </ul> Specifying a valid ARN for this attribute is required for Kinesis Data Firehose delivery stream subscriptions. For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html">Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon SNS Developer Guide</i>. </li> </ul></param>
+        /// <param name="attributeName">A map of attributes with their corresponding values. The following lists the names, descriptions, and values of the special request parameters that this action uses: <ul> <li>  <c>DeliveryPolicy</c> – The policy that defines how Amazon SNS retries failed deliveries to HTTP/S endpoints. </li> <li>  <c>FilterPolicy</c> – The simple JSON object that lets your subscriber receive only a subset of messages, rather than receiving every message published to the topic. </li> <li>  <c>FilterPolicyScope</c> – This attribute lets you choose the filtering scope by using one of the following string value types: <ul> <li>  <c>MessageAttributes</c> (default) – The filter is applied on the message attributes. </li> <li>  <c>MessageBody</c> – The filter is applied on the message body. </li> </ul> </li> <li>  <c>RawMessageDelivery</c> – When set to <c>true</c>, enables raw message delivery to Amazon SQS or HTTP/S endpoints. This eliminates the need for the endpoints to process JSON formatting, which is otherwise created for Amazon SNS metadata. </li> <li>  <c>RedrivePolicy</c> – When specified, sends undeliverable messages to the specified Amazon SQS dead-letter queue. Messages that can't be delivered due to client errors (for example, when the subscribed endpoint is unreachable) or server errors (for example, when the service that powers the subscribed endpoint becomes unavailable) are held in the dead-letter queue for further analysis or reprocessing. </li> </ul> The following attribute applies only to Amazon Data Firehose delivery stream subscriptions: <ul> <li>  <c>SubscriptionRoleArn</c> – The ARN of the IAM role that has the following: <ul> <li> Permission to write to the Firehose delivery stream </li> <li> Amazon SNS listed as a trusted entity </li> </ul> Specifying a valid ARN for this attribute is required for Firehose delivery stream subscriptions. For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html">Fanout to Firehose delivery streams</a> in the <i>Amazon SNS Developer Guide</i>. </li> </ul></param>
         /// <param name="attributeValue">The new value for the attribute in JSON format.</param>
         /// 
         /// <returns>The response from the SetSubscriptionAttributes service method, as returned by SimpleNotificationService.</returns>
@@ -5124,6 +5163,10 @@ namespace Amazon.SimpleNotificationService
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.NotFoundException">
         /// Indicates that the requested resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleNotificationService.Model.ReplayLimitExceededException">
+        /// Indicates that the request parameter has exceeded the maximum number of concurrent
+        /// message replays.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/SetSubscriptionAttributes">REST API Reference for SetSubscriptionAttributes Operation</seealso>
         public virtual SetSubscriptionAttributesResponse SetSubscriptionAttributes(string subscriptionArn, string attributeName, string attributeValue)
@@ -5159,6 +5202,10 @@ namespace Amazon.SimpleNotificationService
         /// <exception cref="Amazon.SimpleNotificationService.Model.NotFoundException">
         /// Indicates that the requested resource does not exist.
         /// </exception>
+        /// <exception cref="Amazon.SimpleNotificationService.Model.ReplayLimitExceededException">
+        /// Indicates that the request parameter has exceeded the maximum number of concurrent
+        /// message replays.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/SetSubscriptionAttributes">REST API Reference for SetSubscriptionAttributes Operation</seealso>
         public virtual SetSubscriptionAttributesResponse SetSubscriptionAttributes(SetSubscriptionAttributesRequest request)
         {
@@ -5174,7 +5221,7 @@ namespace Amazon.SimpleNotificationService
         /// Allows a subscription owner to set an attribute of the subscription to a new value.
         /// </summary>
         /// <param name="subscriptionArn">The ARN of the subscription to modify.</param>
-        /// <param name="attributeName">A map of attributes with their corresponding values. The following lists the names, descriptions, and values of the special request parameters that this action uses: <ul> <li>  <code>DeliveryPolicy</code> – The policy that defines how Amazon SNS retries failed deliveries to HTTP/S endpoints. </li> <li>  <code>FilterPolicy</code> – The simple JSON object that lets your subscriber receive only a subset of messages, rather than receiving every message published to the topic. </li> <li>  <code>FilterPolicyScope</code> – This attribute lets you choose the filtering scope by using one of the following string value types: <ul> <li>  <code>MessageAttributes</code> (default) – The filter is applied on the message attributes. </li> <li>  <code>MessageBody</code> – The filter is applied on the message body. </li> </ul> </li> <li>  <code>RawMessageDelivery</code> – When set to <code>true</code>, enables raw message delivery to Amazon SQS or HTTP/S endpoints. This eliminates the need for the endpoints to process JSON formatting, which is otherwise created for Amazon SNS metadata. </li> <li>  <code>RedrivePolicy</code> – When specified, sends undeliverable messages to the specified Amazon SQS dead-letter queue. Messages that can't be delivered due to client errors (for example, when the subscribed endpoint is unreachable) or server errors (for example, when the service that powers the subscribed endpoint becomes unavailable) are held in the dead-letter queue for further analysis or reprocessing. </li> </ul> The following attribute applies only to Amazon Kinesis Data Firehose delivery stream subscriptions: <ul> <li>  <code>SubscriptionRoleArn</code> – The ARN of the IAM role that has the following: <ul> <li> Permission to write to the Kinesis Data Firehose delivery stream </li> <li> Amazon SNS listed as a trusted entity </li> </ul> Specifying a valid ARN for this attribute is required for Kinesis Data Firehose delivery stream subscriptions. For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html">Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon SNS Developer Guide</i>. </li> </ul></param>
+        /// <param name="attributeName">A map of attributes with their corresponding values. The following lists the names, descriptions, and values of the special request parameters that this action uses: <ul> <li>  <c>DeliveryPolicy</c> – The policy that defines how Amazon SNS retries failed deliveries to HTTP/S endpoints. </li> <li>  <c>FilterPolicy</c> – The simple JSON object that lets your subscriber receive only a subset of messages, rather than receiving every message published to the topic. </li> <li>  <c>FilterPolicyScope</c> – This attribute lets you choose the filtering scope by using one of the following string value types: <ul> <li>  <c>MessageAttributes</c> (default) – The filter is applied on the message attributes. </li> <li>  <c>MessageBody</c> – The filter is applied on the message body. </li> </ul> </li> <li>  <c>RawMessageDelivery</c> – When set to <c>true</c>, enables raw message delivery to Amazon SQS or HTTP/S endpoints. This eliminates the need for the endpoints to process JSON formatting, which is otherwise created for Amazon SNS metadata. </li> <li>  <c>RedrivePolicy</c> – When specified, sends undeliverable messages to the specified Amazon SQS dead-letter queue. Messages that can't be delivered due to client errors (for example, when the subscribed endpoint is unreachable) or server errors (for example, when the service that powers the subscribed endpoint becomes unavailable) are held in the dead-letter queue for further analysis or reprocessing. </li> </ul> The following attribute applies only to Amazon Data Firehose delivery stream subscriptions: <ul> <li>  <c>SubscriptionRoleArn</c> – The ARN of the IAM role that has the following: <ul> <li> Permission to write to the Firehose delivery stream </li> <li> Amazon SNS listed as a trusted entity </li> </ul> Specifying a valid ARN for this attribute is required for Firehose delivery stream subscriptions. For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html">Fanout to Firehose delivery streams</a> in the <i>Amazon SNS Developer Guide</i>. </li> </ul></param>
         /// <param name="attributeValue">The new value for the attribute in JSON format.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
@@ -5197,6 +5244,10 @@ namespace Amazon.SimpleNotificationService
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.NotFoundException">
         /// Indicates that the requested resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleNotificationService.Model.ReplayLimitExceededException">
+        /// Indicates that the request parameter has exceeded the maximum number of concurrent
+        /// message replays.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/SetSubscriptionAttributes">REST API Reference for SetSubscriptionAttributes Operation</seealso>
         public virtual Task<SetSubscriptionAttributesResponse> SetSubscriptionAttributesAsync(string subscriptionArn, string attributeName, string attributeValue, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -5235,6 +5286,10 @@ namespace Amazon.SimpleNotificationService
         /// <exception cref="Amazon.SimpleNotificationService.Model.NotFoundException">
         /// Indicates that the requested resource does not exist.
         /// </exception>
+        /// <exception cref="Amazon.SimpleNotificationService.Model.ReplayLimitExceededException">
+        /// Indicates that the request parameter has exceeded the maximum number of concurrent
+        /// message replays.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/SetSubscriptionAttributes">REST API Reference for SetSubscriptionAttributes Operation</seealso>
         public virtual Task<SetSubscriptionAttributesResponse> SetSubscriptionAttributesAsync(SetSubscriptionAttributesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -5256,13 +5311,13 @@ namespace Amazon.SimpleNotificationService
         ///  <note> 
         /// <para>
         /// To remove the ability to change topic permissions, you must deny permissions to the
-        /// <code>AddPermission</code>, <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
-        /// actions in your IAM policy.
+        /// <c>AddPermission</c>, <c>RemovePermission</c>, and <c>SetTopicAttributes</c> actions
+        /// in your IAM policy.
         /// </para>
         ///  </note>
         /// </summary>
         /// <param name="topicArn">The ARN of the topic to modify.</param>
-        /// <param name="attributeName">A map of attributes with their corresponding values. The following lists the names, descriptions, and values of the special request parameters that the <code>SetTopicAttributes</code> action uses: <ul> <li>  <code>ApplicationSuccessFeedbackRoleArn</code> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to a platform application endpoint. </li> <li>  <code>DeliveryPolicy</code> – The policy that defines how Amazon SNS retries failed deliveries to HTTP/S endpoints. </li> <li>  <code>DisplayName</code> – The display name to use for a topic with SMS subscriptions. </li> <li>  <code>Policy</code> – The policy that defines who can access your topic. By default, only the topic owner can publish or subscribe to the topic. </li> <li>  <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic. By default <code>TracingConfig</code> is set to <code>PassThrough</code>, and the topic passes through the tracing header it receives from an Amazon SNS publisher to its subscriptions. If set to <code>Active</code>, Amazon SNS will vend X-Ray segment data to topic owner account if the sampled flag in the tracing header is true. This is only supported on standard topics. </li> <li> HTTP <ul> <li>  <code>HTTPSuccessFeedbackRoleArn</code> – Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an HTTP endpoint.  </li> <li>  <code>HTTPSuccessFeedbackSampleRate</code> – Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an HTTP endpoint. </li> <li>  <code>HTTPFailureFeedbackRoleArn</code> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an HTTP endpoint. </li> </ul> </li> <li> Amazon Kinesis Data Firehose <ul> <li>  <code>FirehoseSuccessFeedbackRoleArn</code> – Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Amazon Kinesis Data Firehose endpoint. </li> <li>  <code>FirehoseSuccessFeedbackSampleRate</code> – Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an Amazon Kinesis Data Firehose endpoint. </li> <li>  <code>FirehoseFailureFeedbackRoleArn</code> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Amazon Kinesis Data Firehose endpoint.  </li> </ul> </li> <li> Lambda <ul> <li>  <code>LambdaSuccessFeedbackRoleArn</code> – Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Lambda endpoint. </li> <li>  <code>LambdaSuccessFeedbackSampleRate</code> – Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an Lambda endpoint. </li> <li>  <code>LambdaFailureFeedbackRoleArn</code> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Lambda endpoint.  </li> </ul> </li> <li> Platform application endpoint <ul> <li>  <code>ApplicationSuccessFeedbackRoleArn</code> – Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Amazon Web Services application endpoint. </li> <li>  <code>ApplicationSuccessFeedbackSampleRate</code> – Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an Amazon Web Services application endpoint. </li> <li>  <code>ApplicationFailureFeedbackRoleArn</code> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Amazon Web Services application endpoint. </li> </ul> <note> In addition to being able to configure topic attributes for message delivery status of notification messages sent to Amazon SNS application endpoints, you can also configure application attributes for the delivery status of push notification messages sent to push notification services. For example, For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-msg-status.html">Using Amazon SNS Application Attributes for Message Delivery Status</a>.  </note> </li> <li> Amazon SQS <ul> <li>  <code>SQSSuccessFeedbackRoleArn</code> – Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Amazon SQS endpoint.  </li> <li>  <code>SQSSuccessFeedbackSampleRate</code> – Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an Amazon SQS endpoint.  </li> <li>  <code>SQSFailureFeedbackRoleArn</code> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Amazon SQS endpoint.  </li> </ul> </li> </ul> <note> The &lt;ENDPOINT&gt;SuccessFeedbackRoleArn and &lt;ENDPOINT&gt;FailureFeedbackRoleArn attributes are used to give Amazon SNS write access to use CloudWatch Logs on your behalf. The &lt;ENDPOINT&gt;SuccessFeedbackSampleRate attribute is for specifying the sample rate percentage (0-100) of successfully delivered messages. After you configure the &lt;ENDPOINT&gt;FailureFeedbackRoleArn attribute, then all failed message deliveries generate CloudWatch Logs.  </note> The following attribute applies only to <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html">server-side-encryption</a>: <ul> <li>  <code>KmsMasterKeyId</code> – The ID of an Amazon Web Services managed customer master key (CMK) for Amazon SNS or a custom CMK. For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms">Key Terms</a>. For more examples, see <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters">KeyId</a> in the <i>Key Management Service API Reference</i>.  </li> <li>  <code>SignatureVersion</code> – The signature version corresponds to the hashing algorithm used while creating the signature of the notifications, subscription confirmations, or unsubscribe confirmation messages sent by Amazon SNS. By default, <code>SignatureVersion</code> is set to <code>1</code>. </li> </ul> The following attribute applies only to <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html">FIFO topics</a>: <ul> <li>  <code>ContentBasedDeduplication</code> – Enables content-based deduplication for FIFO topics. <ul> <li> By default, <code>ContentBasedDeduplication</code> is set to <code>false</code>. If you create a FIFO topic and this attribute is <code>false</code>, you must specify a value for the <code>MessageDeduplicationId</code> parameter for the <a href="https://docs.aws.amazon.com/sns/latest/api/API_Publish.html">Publish</a> action.  </li> <li> When you set <code>ContentBasedDeduplication</code> to <code>true</code>, Amazon SNS uses a SHA-256 hash to generate the <code>MessageDeduplicationId</code> using the body of the message (but not the attributes of the message). (Optional) To override the generated value, you can specify a value for the <code>MessageDeduplicationId</code> parameter for the <code>Publish</code> action. </li> </ul> </li> </ul></param>
+        /// <param name="attributeName">A map of attributes with their corresponding values. The following lists the names, descriptions, and values of the special request parameters that the <c>SetTopicAttributes</c> action uses: <ul> <li>  <c>ApplicationSuccessFeedbackRoleArn</c> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to a platform application endpoint. </li> <li>  <c>DeliveryPolicy</c> – The policy that defines how Amazon SNS retries failed deliveries to HTTP/S endpoints. </li> <li>  <c>DisplayName</c> – The display name to use for a topic with SMS subscriptions. </li> <li>  <c>Policy</c> – The policy that defines who can access your topic. By default, only the topic owner can publish or subscribe to the topic. </li> <li>  <c>TracingConfig</c> – Tracing mode of an Amazon SNS topic. By default <c>TracingConfig</c> is set to <c>PassThrough</c>, and the topic passes through the tracing header it receives from an Amazon SNS publisher to its subscriptions. If set to <c>Active</c>, Amazon SNS will vend X-Ray segment data to topic owner account if the sampled flag in the tracing header is true. This is only supported on standard topics. </li> <li> HTTP <ul> <li>  <c>HTTPSuccessFeedbackRoleArn</c> – Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an HTTP endpoint.  </li> <li>  <c>HTTPSuccessFeedbackSampleRate</c> – Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an HTTP endpoint. </li> <li>  <c>HTTPFailureFeedbackRoleArn</c> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an HTTP endpoint. </li> </ul> </li> <li> Amazon Kinesis Data Firehose <ul> <li>  <c>FirehoseSuccessFeedbackRoleArn</c> – Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Amazon Kinesis Data Firehose endpoint. </li> <li>  <c>FirehoseSuccessFeedbackSampleRate</c> – Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an Amazon Kinesis Data Firehose endpoint. </li> <li>  <c>FirehoseFailureFeedbackRoleArn</c> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Amazon Kinesis Data Firehose endpoint.  </li> </ul> </li> <li> Lambda <ul> <li>  <c>LambdaSuccessFeedbackRoleArn</c> – Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Lambda endpoint. </li> <li>  <c>LambdaSuccessFeedbackSampleRate</c> – Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an Lambda endpoint. </li> <li>  <c>LambdaFailureFeedbackRoleArn</c> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Lambda endpoint.  </li> </ul> </li> <li> Platform application endpoint <ul> <li>  <c>ApplicationSuccessFeedbackRoleArn</c> – Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Amazon Web Services application endpoint. </li> <li>  <c>ApplicationSuccessFeedbackSampleRate</c> – Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an Amazon Web Services application endpoint. </li> <li>  <c>ApplicationFailureFeedbackRoleArn</c> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Amazon Web Services application endpoint. </li> </ul> <note> In addition to being able to configure topic attributes for message delivery status of notification messages sent to Amazon SNS application endpoints, you can also configure application attributes for the delivery status of push notification messages sent to push notification services. For example, For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-msg-status.html">Using Amazon SNS Application Attributes for Message Delivery Status</a>.  </note> </li> <li> Amazon SQS <ul> <li>  <c>SQSSuccessFeedbackRoleArn</c> – Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Amazon SQS endpoint.  </li> <li>  <c>SQSSuccessFeedbackSampleRate</c> – Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an Amazon SQS endpoint.  </li> <li>  <c>SQSFailureFeedbackRoleArn</c> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Amazon SQS endpoint.  </li> </ul> </li> </ul> <note> The &lt;ENDPOINT&gt;SuccessFeedbackRoleArn and &lt;ENDPOINT&gt;FailureFeedbackRoleArn attributes are used to give Amazon SNS write access to use CloudWatch Logs on your behalf. The &lt;ENDPOINT&gt;SuccessFeedbackSampleRate attribute is for specifying the sample rate percentage (0-100) of successfully delivered messages. After you configure the &lt;ENDPOINT&gt;FailureFeedbackRoleArn attribute, then all failed message deliveries generate CloudWatch Logs.  </note> The following attribute applies only to <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html">server-side-encryption</a>: <ul> <li>  <c>KmsMasterKeyId</c> – The ID of an Amazon Web Services managed customer master key (CMK) for Amazon SNS or a custom CMK. For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms">Key Terms</a>. For more examples, see <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters">KeyId</a> in the <i>Key Management Service API Reference</i>.  </li> <li>  <c>SignatureVersion</c> – The signature version corresponds to the hashing algorithm used while creating the signature of the notifications, subscription confirmations, or unsubscribe confirmation messages sent by Amazon SNS. By default, <c>SignatureVersion</c> is set to <c>1</c>. </li> </ul> The following attribute applies only to <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html">FIFO topics</a>: <ul> <li>  <c>ArchivePolicy</c> – The policy that sets the retention period for messages stored in the message archive of an Amazon SNS FIFO topic. </li> <li>  <c>ContentBasedDeduplication</c> – Enables content-based deduplication for FIFO topics. <ul> <li> By default, <c>ContentBasedDeduplication</c> is set to <c>false</c>. If you create a FIFO topic and this attribute is <c>false</c>, you must specify a value for the <c>MessageDeduplicationId</c> parameter for the <a href="https://docs.aws.amazon.com/sns/latest/api/API_Publish.html">Publish</a> action.  </li> <li> When you set <c>ContentBasedDeduplication</c> to <c>true</c>, Amazon SNS uses a SHA-256 hash to generate the <c>MessageDeduplicationId</c> using the body of the message (but not the attributes of the message). (Optional) To override the generated value, you can specify a value for the <c>MessageDeduplicationId</c> parameter for the <c>Publish</c> action. </li> </ul> </li> </ul></param>
         /// <param name="attributeValue">The new value for the attribute.</param>
         /// 
         /// <returns>The response from the SetTopicAttributes service method, as returned by SimpleNotificationService.</returns>
@@ -5299,8 +5354,8 @@ namespace Amazon.SimpleNotificationService
         ///  <note> 
         /// <para>
         /// To remove the ability to change topic permissions, you must deny permissions to the
-        /// <code>AddPermission</code>, <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
-        /// actions in your IAM policy.
+        /// <c>AddPermission</c>, <c>RemovePermission</c>, and <c>SetTopicAttributes</c> actions
+        /// in your IAM policy.
         /// </para>
         ///  </note>
         /// </summary>
@@ -5340,13 +5395,13 @@ namespace Amazon.SimpleNotificationService
         ///  <note> 
         /// <para>
         /// To remove the ability to change topic permissions, you must deny permissions to the
-        /// <code>AddPermission</code>, <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
-        /// actions in your IAM policy.
+        /// <c>AddPermission</c>, <c>RemovePermission</c>, and <c>SetTopicAttributes</c> actions
+        /// in your IAM policy.
         /// </para>
         ///  </note>
         /// </summary>
         /// <param name="topicArn">The ARN of the topic to modify.</param>
-        /// <param name="attributeName">A map of attributes with their corresponding values. The following lists the names, descriptions, and values of the special request parameters that the <code>SetTopicAttributes</code> action uses: <ul> <li>  <code>ApplicationSuccessFeedbackRoleArn</code> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to a platform application endpoint. </li> <li>  <code>DeliveryPolicy</code> – The policy that defines how Amazon SNS retries failed deliveries to HTTP/S endpoints. </li> <li>  <code>DisplayName</code> – The display name to use for a topic with SMS subscriptions. </li> <li>  <code>Policy</code> – The policy that defines who can access your topic. By default, only the topic owner can publish or subscribe to the topic. </li> <li>  <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic. By default <code>TracingConfig</code> is set to <code>PassThrough</code>, and the topic passes through the tracing header it receives from an Amazon SNS publisher to its subscriptions. If set to <code>Active</code>, Amazon SNS will vend X-Ray segment data to topic owner account if the sampled flag in the tracing header is true. This is only supported on standard topics. </li> <li> HTTP <ul> <li>  <code>HTTPSuccessFeedbackRoleArn</code> – Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an HTTP endpoint.  </li> <li>  <code>HTTPSuccessFeedbackSampleRate</code> – Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an HTTP endpoint. </li> <li>  <code>HTTPFailureFeedbackRoleArn</code> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an HTTP endpoint. </li> </ul> </li> <li> Amazon Kinesis Data Firehose <ul> <li>  <code>FirehoseSuccessFeedbackRoleArn</code> – Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Amazon Kinesis Data Firehose endpoint. </li> <li>  <code>FirehoseSuccessFeedbackSampleRate</code> – Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an Amazon Kinesis Data Firehose endpoint. </li> <li>  <code>FirehoseFailureFeedbackRoleArn</code> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Amazon Kinesis Data Firehose endpoint.  </li> </ul> </li> <li> Lambda <ul> <li>  <code>LambdaSuccessFeedbackRoleArn</code> – Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Lambda endpoint. </li> <li>  <code>LambdaSuccessFeedbackSampleRate</code> – Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an Lambda endpoint. </li> <li>  <code>LambdaFailureFeedbackRoleArn</code> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Lambda endpoint.  </li> </ul> </li> <li> Platform application endpoint <ul> <li>  <code>ApplicationSuccessFeedbackRoleArn</code> – Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Amazon Web Services application endpoint. </li> <li>  <code>ApplicationSuccessFeedbackSampleRate</code> – Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an Amazon Web Services application endpoint. </li> <li>  <code>ApplicationFailureFeedbackRoleArn</code> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Amazon Web Services application endpoint. </li> </ul> <note> In addition to being able to configure topic attributes for message delivery status of notification messages sent to Amazon SNS application endpoints, you can also configure application attributes for the delivery status of push notification messages sent to push notification services. For example, For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-msg-status.html">Using Amazon SNS Application Attributes for Message Delivery Status</a>.  </note> </li> <li> Amazon SQS <ul> <li>  <code>SQSSuccessFeedbackRoleArn</code> – Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Amazon SQS endpoint.  </li> <li>  <code>SQSSuccessFeedbackSampleRate</code> – Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an Amazon SQS endpoint.  </li> <li>  <code>SQSFailureFeedbackRoleArn</code> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Amazon SQS endpoint.  </li> </ul> </li> </ul> <note> The &lt;ENDPOINT&gt;SuccessFeedbackRoleArn and &lt;ENDPOINT&gt;FailureFeedbackRoleArn attributes are used to give Amazon SNS write access to use CloudWatch Logs on your behalf. The &lt;ENDPOINT&gt;SuccessFeedbackSampleRate attribute is for specifying the sample rate percentage (0-100) of successfully delivered messages. After you configure the &lt;ENDPOINT&gt;FailureFeedbackRoleArn attribute, then all failed message deliveries generate CloudWatch Logs.  </note> The following attribute applies only to <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html">server-side-encryption</a>: <ul> <li>  <code>KmsMasterKeyId</code> – The ID of an Amazon Web Services managed customer master key (CMK) for Amazon SNS or a custom CMK. For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms">Key Terms</a>. For more examples, see <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters">KeyId</a> in the <i>Key Management Service API Reference</i>.  </li> <li>  <code>SignatureVersion</code> – The signature version corresponds to the hashing algorithm used while creating the signature of the notifications, subscription confirmations, or unsubscribe confirmation messages sent by Amazon SNS. By default, <code>SignatureVersion</code> is set to <code>1</code>. </li> </ul> The following attribute applies only to <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html">FIFO topics</a>: <ul> <li>  <code>ContentBasedDeduplication</code> – Enables content-based deduplication for FIFO topics. <ul> <li> By default, <code>ContentBasedDeduplication</code> is set to <code>false</code>. If you create a FIFO topic and this attribute is <code>false</code>, you must specify a value for the <code>MessageDeduplicationId</code> parameter for the <a href="https://docs.aws.amazon.com/sns/latest/api/API_Publish.html">Publish</a> action.  </li> <li> When you set <code>ContentBasedDeduplication</code> to <code>true</code>, Amazon SNS uses a SHA-256 hash to generate the <code>MessageDeduplicationId</code> using the body of the message (but not the attributes of the message). (Optional) To override the generated value, you can specify a value for the <code>MessageDeduplicationId</code> parameter for the <code>Publish</code> action. </li> </ul> </li> </ul></param>
+        /// <param name="attributeName">A map of attributes with their corresponding values. The following lists the names, descriptions, and values of the special request parameters that the <c>SetTopicAttributes</c> action uses: <ul> <li>  <c>ApplicationSuccessFeedbackRoleArn</c> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to a platform application endpoint. </li> <li>  <c>DeliveryPolicy</c> – The policy that defines how Amazon SNS retries failed deliveries to HTTP/S endpoints. </li> <li>  <c>DisplayName</c> – The display name to use for a topic with SMS subscriptions. </li> <li>  <c>Policy</c> – The policy that defines who can access your topic. By default, only the topic owner can publish or subscribe to the topic. </li> <li>  <c>TracingConfig</c> – Tracing mode of an Amazon SNS topic. By default <c>TracingConfig</c> is set to <c>PassThrough</c>, and the topic passes through the tracing header it receives from an Amazon SNS publisher to its subscriptions. If set to <c>Active</c>, Amazon SNS will vend X-Ray segment data to topic owner account if the sampled flag in the tracing header is true. This is only supported on standard topics. </li> <li> HTTP <ul> <li>  <c>HTTPSuccessFeedbackRoleArn</c> – Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an HTTP endpoint.  </li> <li>  <c>HTTPSuccessFeedbackSampleRate</c> – Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an HTTP endpoint. </li> <li>  <c>HTTPFailureFeedbackRoleArn</c> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an HTTP endpoint. </li> </ul> </li> <li> Amazon Kinesis Data Firehose <ul> <li>  <c>FirehoseSuccessFeedbackRoleArn</c> – Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Amazon Kinesis Data Firehose endpoint. </li> <li>  <c>FirehoseSuccessFeedbackSampleRate</c> – Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an Amazon Kinesis Data Firehose endpoint. </li> <li>  <c>FirehoseFailureFeedbackRoleArn</c> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Amazon Kinesis Data Firehose endpoint.  </li> </ul> </li> <li> Lambda <ul> <li>  <c>LambdaSuccessFeedbackRoleArn</c> – Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Lambda endpoint. </li> <li>  <c>LambdaSuccessFeedbackSampleRate</c> – Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an Lambda endpoint. </li> <li>  <c>LambdaFailureFeedbackRoleArn</c> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Lambda endpoint.  </li> </ul> </li> <li> Platform application endpoint <ul> <li>  <c>ApplicationSuccessFeedbackRoleArn</c> – Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Amazon Web Services application endpoint. </li> <li>  <c>ApplicationSuccessFeedbackSampleRate</c> – Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an Amazon Web Services application endpoint. </li> <li>  <c>ApplicationFailureFeedbackRoleArn</c> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Amazon Web Services application endpoint. </li> </ul> <note> In addition to being able to configure topic attributes for message delivery status of notification messages sent to Amazon SNS application endpoints, you can also configure application attributes for the delivery status of push notification messages sent to push notification services. For example, For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-msg-status.html">Using Amazon SNS Application Attributes for Message Delivery Status</a>.  </note> </li> <li> Amazon SQS <ul> <li>  <c>SQSSuccessFeedbackRoleArn</c> – Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Amazon SQS endpoint.  </li> <li>  <c>SQSSuccessFeedbackSampleRate</c> – Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an Amazon SQS endpoint.  </li> <li>  <c>SQSFailureFeedbackRoleArn</c> – Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Amazon SQS endpoint.  </li> </ul> </li> </ul> <note> The &lt;ENDPOINT&gt;SuccessFeedbackRoleArn and &lt;ENDPOINT&gt;FailureFeedbackRoleArn attributes are used to give Amazon SNS write access to use CloudWatch Logs on your behalf. The &lt;ENDPOINT&gt;SuccessFeedbackSampleRate attribute is for specifying the sample rate percentage (0-100) of successfully delivered messages. After you configure the &lt;ENDPOINT&gt;FailureFeedbackRoleArn attribute, then all failed message deliveries generate CloudWatch Logs.  </note> The following attribute applies only to <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html">server-side-encryption</a>: <ul> <li>  <c>KmsMasterKeyId</c> – The ID of an Amazon Web Services managed customer master key (CMK) for Amazon SNS or a custom CMK. For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms">Key Terms</a>. For more examples, see <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters">KeyId</a> in the <i>Key Management Service API Reference</i>.  </li> <li>  <c>SignatureVersion</c> – The signature version corresponds to the hashing algorithm used while creating the signature of the notifications, subscription confirmations, or unsubscribe confirmation messages sent by Amazon SNS. By default, <c>SignatureVersion</c> is set to <c>1</c>. </li> </ul> The following attribute applies only to <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html">FIFO topics</a>: <ul> <li>  <c>ArchivePolicy</c> – The policy that sets the retention period for messages stored in the message archive of an Amazon SNS FIFO topic. </li> <li>  <c>ContentBasedDeduplication</c> – Enables content-based deduplication for FIFO topics. <ul> <li> By default, <c>ContentBasedDeduplication</c> is set to <c>false</c>. If you create a FIFO topic and this attribute is <c>false</c>, you must specify a value for the <c>MessageDeduplicationId</c> parameter for the <a href="https://docs.aws.amazon.com/sns/latest/api/API_Publish.html">Publish</a> action.  </li> <li> When you set <c>ContentBasedDeduplication</c> to <c>true</c>, Amazon SNS uses a SHA-256 hash to generate the <c>MessageDeduplicationId</c> using the body of the message (but not the attributes of the message). (Optional) To override the generated value, you can specify a value for the <c>MessageDeduplicationId</c> parameter for the <c>Publish</c> action. </li> </ul> </li> </ul></param>
         /// <param name="attributeValue">The new value for the attribute.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
@@ -5386,8 +5441,8 @@ namespace Amazon.SimpleNotificationService
         ///  <note> 
         /// <para>
         /// To remove the ability to change topic permissions, you must deny permissions to the
-        /// <code>AddPermission</code>, <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
-        /// actions in your IAM policy.
+        /// <c>AddPermission</c>, <c>RemovePermission</c>, and <c>SetTopicAttributes</c> actions
+        /// in your IAM policy.
         /// </para>
         ///  </note>
         /// </summary>
@@ -5431,13 +5486,12 @@ namespace Amazon.SimpleNotificationService
         /// <summary>
         /// Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is HTTP/S or email,
         /// or if the endpoint and the topic are not in the same Amazon Web Services account,
-        /// the endpoint owner must run the <code>ConfirmSubscription</code> action to confirm
-        /// the subscription.
+        /// the endpoint owner must run the <c>ConfirmSubscription</c> action to confirm the subscription.
         /// 
         ///  
         /// <para>
-        /// You call the <code>ConfirmSubscription</code> action with the token from the subscription
-        /// response. Confirmation tokens are valid for three days.
+        /// You call the <c>ConfirmSubscription</c> action with the token from the subscription
+        /// response. Confirmation tokens are valid for two days.
         /// </para>
         ///  
         /// <para>
@@ -5445,8 +5499,8 @@ namespace Amazon.SimpleNotificationService
         /// </para>
         /// </summary>
         /// <param name="topicArn">The ARN of the topic you want to subscribe to.</param>
-        /// <param name="protocol">The protocol that you want to use. Supported protocols include: <ul> <li>  <code>http</code> – delivery of JSON-encoded message via HTTP POST </li> <li>  <code>https</code> – delivery of JSON-encoded message via HTTPS POST </li> <li>  <code>email</code> – delivery of message via SMTP </li> <li>  <code>email-json</code> – delivery of JSON-encoded message via SMTP </li> <li>  <code>sms</code> – delivery of message via SMS </li> <li>  <code>sqs</code> – delivery of JSON-encoded message to an Amazon SQS queue </li> <li>  <code>application</code> – delivery of JSON-encoded message to an EndpointArn for a mobile app and device </li> <li>  <code>lambda</code> – delivery of JSON-encoded message to an Lambda function </li> <li>  <code>firehose</code> – delivery of JSON-encoded message to an Amazon Kinesis Data Firehose delivery stream. </li> </ul></param>
-        /// <param name="endpoint">The endpoint that you want to receive notifications. Endpoints vary by protocol: <ul> <li> For the <code>http</code> protocol, the (public) endpoint is a URL beginning with <code>http://</code>. </li> <li> For the <code>https</code> protocol, the (public) endpoint is a URL beginning with <code>https://</code>. </li> <li> For the <code>email</code> protocol, the endpoint is an email address. </li> <li> For the <code>email-json</code> protocol, the endpoint is an email address. </li> <li> For the <code>sms</code> protocol, the endpoint is a phone number of an SMS-enabled device. </li> <li> For the <code>sqs</code> protocol, the endpoint is the ARN of an Amazon SQS queue. </li> <li> For the <code>application</code> protocol, the endpoint is the EndpointArn of a mobile app and device. </li> <li> For the <code>lambda</code> protocol, the endpoint is the ARN of an Lambda function. </li> <li> For the <code>firehose</code> protocol, the endpoint is the ARN of an Amazon Kinesis Data Firehose delivery stream. </li> </ul></param>
+        /// <param name="protocol">The protocol that you want to use. Supported protocols include: <ul> <li>  <c>http</c> – delivery of JSON-encoded message via HTTP POST </li> <li>  <c>https</c> – delivery of JSON-encoded message via HTTPS POST </li> <li>  <c>email</c> – delivery of message via SMTP </li> <li>  <c>email-json</c> – delivery of JSON-encoded message via SMTP </li> <li>  <c>sms</c> – delivery of message via SMS </li> <li>  <c>sqs</c> – delivery of JSON-encoded message to an Amazon SQS queue </li> <li>  <c>application</c> – delivery of JSON-encoded message to an EndpointArn for a mobile app and device </li> <li>  <c>lambda</c> – delivery of JSON-encoded message to an Lambda function </li> <li>  <c>firehose</c> – delivery of JSON-encoded message to an Amazon Kinesis Data Firehose delivery stream. </li> </ul></param>
+        /// <param name="endpoint">The endpoint that you want to receive notifications. Endpoints vary by protocol: <ul> <li> For the <c>http</c> protocol, the (public) endpoint is a URL beginning with <c>http://</c>. </li> <li> For the <c>https</c> protocol, the (public) endpoint is a URL beginning with <c>https://</c>. </li> <li> For the <c>email</c> protocol, the endpoint is an email address. </li> <li> For the <c>email-json</c> protocol, the endpoint is an email address. </li> <li> For the <c>sms</c> protocol, the endpoint is a phone number of an SMS-enabled device. </li> <li> For the <c>sqs</c> protocol, the endpoint is the ARN of an Amazon SQS queue. </li> <li> For the <c>application</c> protocol, the endpoint is the EndpointArn of a mobile app and device. </li> <li> For the <c>lambda</c> protocol, the endpoint is the ARN of an Lambda function. </li> <li> For the <c>firehose</c> protocol, the endpoint is the ARN of an Amazon Kinesis Data Firehose delivery stream. </li> </ul></param>
         /// 
         /// <returns>The response from the Subscribe service method, as returned by SimpleNotificationService.</returns>
         /// <exception cref="Amazon.SimpleNotificationService.Model.AuthorizationErrorException">
@@ -5469,6 +5523,10 @@ namespace Amazon.SimpleNotificationService
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.NotFoundException">
         /// Indicates that the requested resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleNotificationService.Model.ReplayLimitExceededException">
+        /// Indicates that the request parameter has exceeded the maximum number of concurrent
+        /// message replays.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.SubscriptionLimitExceededException">
         /// Indicates that the customer already owns the maximum allowed number of subscriptions.
@@ -5487,13 +5545,12 @@ namespace Amazon.SimpleNotificationService
         /// <summary>
         /// Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is HTTP/S or email,
         /// or if the endpoint and the topic are not in the same Amazon Web Services account,
-        /// the endpoint owner must run the <code>ConfirmSubscription</code> action to confirm
-        /// the subscription.
+        /// the endpoint owner must run the <c>ConfirmSubscription</c> action to confirm the subscription.
         /// 
         ///  
         /// <para>
-        /// You call the <code>ConfirmSubscription</code> action with the token from the subscription
-        /// response. Confirmation tokens are valid for three days.
+        /// You call the <c>ConfirmSubscription</c> action with the token from the subscription
+        /// response. Confirmation tokens are valid for two days.
         /// </para>
         ///  
         /// <para>
@@ -5523,6 +5580,10 @@ namespace Amazon.SimpleNotificationService
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.NotFoundException">
         /// Indicates that the requested resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleNotificationService.Model.ReplayLimitExceededException">
+        /// Indicates that the request parameter has exceeded the maximum number of concurrent
+        /// message replays.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.SubscriptionLimitExceededException">
         /// Indicates that the customer already owns the maximum allowed number of subscriptions.
@@ -5541,13 +5602,12 @@ namespace Amazon.SimpleNotificationService
         /// <summary>
         /// Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is HTTP/S or email,
         /// or if the endpoint and the topic are not in the same Amazon Web Services account,
-        /// the endpoint owner must run the <code>ConfirmSubscription</code> action to confirm
-        /// the subscription.
+        /// the endpoint owner must run the <c>ConfirmSubscription</c> action to confirm the subscription.
         /// 
         ///  
         /// <para>
-        /// You call the <code>ConfirmSubscription</code> action with the token from the subscription
-        /// response. Confirmation tokens are valid for three days.
+        /// You call the <c>ConfirmSubscription</c> action with the token from the subscription
+        /// response. Confirmation tokens are valid for two days.
         /// </para>
         ///  
         /// <para>
@@ -5555,8 +5615,8 @@ namespace Amazon.SimpleNotificationService
         /// </para>
         /// </summary>
         /// <param name="topicArn">The ARN of the topic you want to subscribe to.</param>
-        /// <param name="protocol">The protocol that you want to use. Supported protocols include: <ul> <li>  <code>http</code> – delivery of JSON-encoded message via HTTP POST </li> <li>  <code>https</code> – delivery of JSON-encoded message via HTTPS POST </li> <li>  <code>email</code> – delivery of message via SMTP </li> <li>  <code>email-json</code> – delivery of JSON-encoded message via SMTP </li> <li>  <code>sms</code> – delivery of message via SMS </li> <li>  <code>sqs</code> – delivery of JSON-encoded message to an Amazon SQS queue </li> <li>  <code>application</code> – delivery of JSON-encoded message to an EndpointArn for a mobile app and device </li> <li>  <code>lambda</code> – delivery of JSON-encoded message to an Lambda function </li> <li>  <code>firehose</code> – delivery of JSON-encoded message to an Amazon Kinesis Data Firehose delivery stream. </li> </ul></param>
-        /// <param name="endpoint">The endpoint that you want to receive notifications. Endpoints vary by protocol: <ul> <li> For the <code>http</code> protocol, the (public) endpoint is a URL beginning with <code>http://</code>. </li> <li> For the <code>https</code> protocol, the (public) endpoint is a URL beginning with <code>https://</code>. </li> <li> For the <code>email</code> protocol, the endpoint is an email address. </li> <li> For the <code>email-json</code> protocol, the endpoint is an email address. </li> <li> For the <code>sms</code> protocol, the endpoint is a phone number of an SMS-enabled device. </li> <li> For the <code>sqs</code> protocol, the endpoint is the ARN of an Amazon SQS queue. </li> <li> For the <code>application</code> protocol, the endpoint is the EndpointArn of a mobile app and device. </li> <li> For the <code>lambda</code> protocol, the endpoint is the ARN of an Lambda function. </li> <li> For the <code>firehose</code> protocol, the endpoint is the ARN of an Amazon Kinesis Data Firehose delivery stream. </li> </ul></param>
+        /// <param name="protocol">The protocol that you want to use. Supported protocols include: <ul> <li>  <c>http</c> – delivery of JSON-encoded message via HTTP POST </li> <li>  <c>https</c> – delivery of JSON-encoded message via HTTPS POST </li> <li>  <c>email</c> – delivery of message via SMTP </li> <li>  <c>email-json</c> – delivery of JSON-encoded message via SMTP </li> <li>  <c>sms</c> – delivery of message via SMS </li> <li>  <c>sqs</c> – delivery of JSON-encoded message to an Amazon SQS queue </li> <li>  <c>application</c> – delivery of JSON-encoded message to an EndpointArn for a mobile app and device </li> <li>  <c>lambda</c> – delivery of JSON-encoded message to an Lambda function </li> <li>  <c>firehose</c> – delivery of JSON-encoded message to an Amazon Kinesis Data Firehose delivery stream. </li> </ul></param>
+        /// <param name="endpoint">The endpoint that you want to receive notifications. Endpoints vary by protocol: <ul> <li> For the <c>http</c> protocol, the (public) endpoint is a URL beginning with <c>http://</c>. </li> <li> For the <c>https</c> protocol, the (public) endpoint is a URL beginning with <c>https://</c>. </li> <li> For the <c>email</c> protocol, the endpoint is an email address. </li> <li> For the <c>email-json</c> protocol, the endpoint is an email address. </li> <li> For the <c>sms</c> protocol, the endpoint is a phone number of an SMS-enabled device. </li> <li> For the <c>sqs</c> protocol, the endpoint is the ARN of an Amazon SQS queue. </li> <li> For the <c>application</c> protocol, the endpoint is the EndpointArn of a mobile app and device. </li> <li> For the <c>lambda</c> protocol, the endpoint is the ARN of an Lambda function. </li> <li> For the <c>firehose</c> protocol, the endpoint is the ARN of an Amazon Kinesis Data Firehose delivery stream. </li> </ul></param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -5583,6 +5643,10 @@ namespace Amazon.SimpleNotificationService
         /// <exception cref="Amazon.SimpleNotificationService.Model.NotFoundException">
         /// Indicates that the requested resource does not exist.
         /// </exception>
+        /// <exception cref="Amazon.SimpleNotificationService.Model.ReplayLimitExceededException">
+        /// Indicates that the request parameter has exceeded the maximum number of concurrent
+        /// message replays.
+        /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.SubscriptionLimitExceededException">
         /// Indicates that the customer already owns the maximum allowed number of subscriptions.
         /// </exception>
@@ -5600,13 +5664,12 @@ namespace Amazon.SimpleNotificationService
         /// <summary>
         /// Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is HTTP/S or email,
         /// or if the endpoint and the topic are not in the same Amazon Web Services account,
-        /// the endpoint owner must run the <code>ConfirmSubscription</code> action to confirm
-        /// the subscription.
+        /// the endpoint owner must run the <c>ConfirmSubscription</c> action to confirm the subscription.
         /// 
         ///  
         /// <para>
-        /// You call the <code>ConfirmSubscription</code> action with the token from the subscription
-        /// response. Confirmation tokens are valid for three days.
+        /// You call the <c>ConfirmSubscription</c> action with the token from the subscription
+        /// response. Confirmation tokens are valid for two days.
         /// </para>
         ///  
         /// <para>
@@ -5639,6 +5702,10 @@ namespace Amazon.SimpleNotificationService
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.NotFoundException">
         /// Indicates that the requested resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.SimpleNotificationService.Model.ReplayLimitExceededException">
+        /// Indicates that the request parameter has exceeded the maximum number of concurrent
+        /// message replays.
         /// </exception>
         /// <exception cref="Amazon.SimpleNotificationService.Model.SubscriptionLimitExceededException">
         /// Indicates that the customer already owns the maximum allowed number of subscriptions.
@@ -5810,10 +5877,10 @@ namespace Amazon.SimpleNotificationService
         /// <summary>
         /// Deletes a subscription. If the subscription requires authentication for deletion,
         /// only the owner of the subscription or the topic's owner can unsubscribe, and an Amazon
-        /// Web Services signature is required. If the <code>Unsubscribe</code> call does not
-        /// require authentication and the requester is not the subscription owner, a final cancellation
+        /// Web Services signature is required. If the <c>Unsubscribe</c> call does not require
+        /// authentication and the requester is not the subscription owner, a final cancellation
         /// message is delivered to the endpoint, so that the endpoint owner can easily resubscribe
-        /// to the topic if the <code>Unsubscribe</code> request was unintended.
+        /// to the topic if the <c>Unsubscribe</c> request was unintended.
         /// 
         ///  <note> 
         /// <para>
@@ -5857,10 +5924,10 @@ namespace Amazon.SimpleNotificationService
         /// <summary>
         /// Deletes a subscription. If the subscription requires authentication for deletion,
         /// only the owner of the subscription or the topic's owner can unsubscribe, and an Amazon
-        /// Web Services signature is required. If the <code>Unsubscribe</code> call does not
-        /// require authentication and the requester is not the subscription owner, a final cancellation
+        /// Web Services signature is required. If the <c>Unsubscribe</c> call does not require
+        /// authentication and the requester is not the subscription owner, a final cancellation
         /// message is delivered to the endpoint, so that the endpoint owner can easily resubscribe
-        /// to the topic if the <code>Unsubscribe</code> request was unintended.
+        /// to the topic if the <c>Unsubscribe</c> request was unintended.
         /// 
         ///  <note> 
         /// <para>
@@ -5906,10 +5973,10 @@ namespace Amazon.SimpleNotificationService
         /// <summary>
         /// Deletes a subscription. If the subscription requires authentication for deletion,
         /// only the owner of the subscription or the topic's owner can unsubscribe, and an Amazon
-        /// Web Services signature is required. If the <code>Unsubscribe</code> call does not
-        /// require authentication and the requester is not the subscription owner, a final cancellation
+        /// Web Services signature is required. If the <c>Unsubscribe</c> call does not require
+        /// authentication and the requester is not the subscription owner, a final cancellation
         /// message is delivered to the endpoint, so that the endpoint owner can easily resubscribe
-        /// to the topic if the <code>Unsubscribe</code> request was unintended.
+        /// to the topic if the <c>Unsubscribe</c> request was unintended.
         /// 
         ///  <note> 
         /// <para>
@@ -5956,10 +6023,10 @@ namespace Amazon.SimpleNotificationService
         /// <summary>
         /// Deletes a subscription. If the subscription requires authentication for deletion,
         /// only the owner of the subscription or the topic's owner can unsubscribe, and an Amazon
-        /// Web Services signature is required. If the <code>Unsubscribe</code> call does not
-        /// require authentication and the requester is not the subscription owner, a final cancellation
+        /// Web Services signature is required. If the <c>Unsubscribe</c> call does not require
+        /// authentication and the requester is not the subscription owner, a final cancellation
         /// message is delivered to the endpoint, so that the endpoint owner can easily resubscribe
-        /// to the topic if the <code>Unsubscribe</code> request was unintended.
+        /// to the topic if the <c>Unsubscribe</c> request was unintended.
         /// 
         ///  <note> 
         /// <para>
@@ -6211,11 +6278,11 @@ namespace Amazon.SimpleNotificationService
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

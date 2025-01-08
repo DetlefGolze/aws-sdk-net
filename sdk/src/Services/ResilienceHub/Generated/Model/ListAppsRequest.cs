@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -40,25 +41,30 @@ namespace Amazon.ResilienceHub.Model
     /// </para>
     ///  
     /// <para>
-    ///  <code>An error occurred (ValidationException) when calling the ListApps operation:
-    /// Only one filter is supported for this operation.</code> 
+    ///  <c>An error occurred (ValidationException) when calling the ListApps operation: Only
+    /// one filter is supported for this operation.</c> 
     /// </para>
     ///  </note>
     /// </summary>
     public partial class ListAppsRequest : AmazonResilienceHubRequest
     {
         private string _appArn;
+        private string _awsApplicationArn;
+        private DateTime? _fromLastAssessmentTime;
         private int? _maxResults;
         private string _name;
         private string _nextToken;
+        private bool? _reverseOrder;
+        private DateTime? _toLastAssessmentTime;
 
         /// <summary>
         /// Gets and sets the property AppArn. 
         /// <para>
         /// Amazon Resource Name (ARN) of the Resilience Hub application. The format for this
-        /// ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app/<code>app-id</code>.
+        /// ARN is: arn:<c>partition</c>:resiliencehub:<c>region</c>:<c>account</c>:app/<c>app-id</c>.
         /// For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
-        /// Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i> guide.
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
         /// </para>
         /// </summary>
         public string AppArn
@@ -74,11 +80,51 @@ namespace Amazon.ResilienceHub.Model
         }
 
         /// <summary>
+        /// Gets and sets the property AwsApplicationArn. 
+        /// <para>
+        /// Amazon Resource Name (ARN) of Resource Groups group that is integrated with an AppRegistry
+        /// application. For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
+        /// </para>
+        /// </summary>
+        public string AwsApplicationArn
+        {
+            get { return this._awsApplicationArn; }
+            set { this._awsApplicationArn = value; }
+        }
+
+        // Check to see if AwsApplicationArn property is set
+        internal bool IsSetAwsApplicationArn()
+        {
+            return this._awsApplicationArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property FromLastAssessmentTime. 
+        /// <para>
+        /// Lower limit of the range that is used to filter applications based on their last assessment
+        /// times.
+        /// </para>
+        /// </summary>
+        public DateTime FromLastAssessmentTime
+        {
+            get { return this._fromLastAssessmentTime.GetValueOrDefault(); }
+            set { this._fromLastAssessmentTime = value; }
+        }
+
+        // Check to see if FromLastAssessmentTime property is set
+        internal bool IsSetFromLastAssessmentTime()
+        {
+            return this._fromLastAssessmentTime.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// Maximum number of results to include in the response. If more results exist than the
-        /// specified <code>MaxResults</code> value, a token is included in the response so that
-        /// the remaining results can be retrieved.
+        /// specified <c>MaxResults</c> value, a token is included in the response so that the
+        /// remaining results can be retrieved.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -128,6 +174,45 @@ namespace Amazon.ResilienceHub.Model
         internal bool IsSetNextToken()
         {
             return this._nextToken != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ReverseOrder. 
+        /// <para>
+        /// The application list is sorted based on the values of <c>lastAppComplianceEvaluationTime</c>
+        /// field. By default, application list is sorted in ascending order. To sort the application
+        /// list in descending order, set this field to <c>True</c>.
+        /// </para>
+        /// </summary>
+        public bool ReverseOrder
+        {
+            get { return this._reverseOrder.GetValueOrDefault(); }
+            set { this._reverseOrder = value; }
+        }
+
+        // Check to see if ReverseOrder property is set
+        internal bool IsSetReverseOrder()
+        {
+            return this._reverseOrder.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ToLastAssessmentTime. 
+        /// <para>
+        /// Upper limit of the range that is used to filter the applications based on their last
+        /// assessment times.
+        /// </para>
+        /// </summary>
+        public DateTime ToLastAssessmentTime
+        {
+            get { return this._toLastAssessmentTime.GetValueOrDefault(); }
+            set { this._toLastAssessmentTime = value; }
+        }
+
+        // Check to see if ToLastAssessmentTime property is set
+        internal bool IsSetToLastAssessmentTime()
+        {
+            return this._toLastAssessmentTime.HasValue; 
         }
 
     }

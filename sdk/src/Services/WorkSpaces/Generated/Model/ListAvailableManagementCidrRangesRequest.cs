@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.WorkSpaces.Model
     ///  
     /// <para>
     /// This operation can be run only by Amazon Web Services accounts that are enabled for
-    /// BYOL. If your account isn't enabled for BYOL, you'll receive an <code>AccessDeniedException</code>
+    /// BYOL. If your account isn't enabled for BYOL, you'll receive an <c>AccessDeniedException</c>
     /// error.
     /// </para>
     ///  
@@ -95,8 +96,8 @@ namespace Amazon.WorkSpaces.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If you received a <code>NextToken</code> from a previous call that was paginated,
-        /// provide this token to receive the next set of results.
+        /// If you received a <c>NextToken</c> from a previous call that was paginated, provide
+        /// this token to receive the next set of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

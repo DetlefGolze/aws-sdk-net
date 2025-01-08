@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetDisassociatedDataStorage())
@@ -97,6 +99,23 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("storageType");
                     context.Writer.Write(publicRequest.StorageType);
+                }
+
+                if(publicRequest.IsSetWarmTier())
+                {
+                    context.Writer.WritePropertyName("warmTier");
+                    context.Writer.Write(publicRequest.WarmTier);
+                }
+
+                if(publicRequest.IsSetWarmTierRetentionPeriod())
+                {
+                    context.Writer.WritePropertyName("warmTierRetentionPeriod");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = WarmTierRetentionPeriodMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.WarmTierRetentionPeriod, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 writer.WriteObjectEnd();

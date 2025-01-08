@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruProfiler.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.CodeGuruProfiler.Model
     public partial class ListProfileTimesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ProfileTime> _profileTimes = new List<ProfileTime>();
+        private List<ProfileTime> _profileTimes = AWSConfigs.InitializeCollections ? new List<ProfileTime>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value to include in a future <code>ListProfileTimes</code>
-        /// request. When the results of a <code>ListProfileTimes</code> request exceed <code>maxResults</code>,
-        /// this value can be used to retrieve the next page of results. This value is <code>null</code>
+        /// The <c>nextToken</c> value to include in a future <c>ListProfileTimes</c> request.
+        /// When the results of a <c>ListProfileTimes</c> request exceed <c>maxResults</c>, this
+        /// value can be used to retrieve the next page of results. This value is <c>null</c>
         /// when there are no more results to return. 
         /// </para>
         /// </summary>
@@ -75,7 +76,7 @@ namespace Amazon.CodeGuruProfiler.Model
         // Check to see if ProfileTimes property is set
         internal bool IsSetProfileTimes()
         {
-            return this._profileTimes != null && this._profileTimes.Count > 0; 
+            return this._profileTimes != null && (this._profileTimes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,16 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSSupport.Model
 {
     /// <summary>
     /// Returns an array of <a href="https://docs.aws.amazon.com/awssupport/latest/APIReference/API_CaseDetails.html">CaseDetails</a>
-    /// objects and a <code>nextToken</code> that defines a point for pagination in the result
-    /// set.
+    /// objects and a <c>nextToken</c> that defines a point for pagination in the result set.
     /// </summary>
     public partial class DescribeCasesResponse : AmazonWebServiceResponse
     {
-        private List<CaseDetails> _cases = new List<CaseDetails>();
+        private List<CaseDetails> _cases = AWSConfigs.InitializeCollections ? new List<CaseDetails>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Amazon.AWSSupport.Model
         // Check to see if Cases property is set
         internal bool IsSetCases()
         {
-            return this._cases != null && this._cases.Count > 0; 
+            return this._cases != null && (this._cases.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

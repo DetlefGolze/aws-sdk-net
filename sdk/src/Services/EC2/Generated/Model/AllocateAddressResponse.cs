@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -118,7 +119,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Domain. 
         /// <para>
-        /// The network (<code>vpc</code>).
+        /// The network (<c>vpc</c>).
         /// </para>
         /// </summary>
         public DomainType Domain

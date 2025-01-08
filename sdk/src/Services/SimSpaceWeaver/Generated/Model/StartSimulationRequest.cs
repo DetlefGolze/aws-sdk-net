@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimSpaceWeaver.Model
 {
     /// <summary>
@@ -46,14 +47,14 @@ namespace Amazon.SimSpaceWeaver.Model
         private string _roleArn;
         private S3Location _schemaS3Location;
         private S3Location _snapshotS3Location;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// A value that you provide to ensure that repeated calls to this API operation using
-        /// the same parameters complete only once. A <code>ClientToken</code> is also known as
-        /// an <i>idempotency token</i>. A <code>ClientToken</code> expires after 24 hours.
+        /// the same parameters complete only once. A <c>ClientToken</c> is also known as an <i>idempotency
+        /// token</i>. A <c>ClientToken</c> expires after 24 hours.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=32, Max=128)]
@@ -93,9 +94,9 @@ namespace Amazon.SimSpaceWeaver.Model
         /// <para>
         /// The maximum running time of the simulation, specified as a number of minutes (m or
         /// M), hours (h or H), or days (d or D). The simulation stops when it reaches this limit.
-        /// The maximum value is <code>14D</code>, or its equivalent in the other units. The default
-        /// value is <code>14D</code>. A value equivalent to <code>0</code> makes the simulation
-        /// immediately transition to <code>Stopping</code> as soon as it reaches <code>Started</code>.
+        /// The maximum value is <c>14D</c>, or its equivalent in the other units. The default
+        /// value is <c>14D</c>. A value equivalent to <c>0</c> makes the simulation immediately
+        /// transition to <c>Stopping</c> as soon as it reaches <c>Started</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=2, Max=6)]
@@ -163,11 +164,11 @@ namespace Amazon.SimSpaceWeaver.Model
         /// </para>
         ///  
         /// <para>
-        /// Provide a <code>SchemaS3Location</code> to start your simulation from a schema.
+        /// Provide a <c>SchemaS3Location</c> to start your simulation from a schema.
         /// </para>
         ///  
         /// <para>
-        /// If you provide a <code>SchemaS3Location</code> then you can't provide a <code>SnapshotS3Location</code>.
+        /// If you provide a <c>SchemaS3Location</c> then you can't provide a <c>SnapshotS3Location</c>.
         /// </para>
         /// </summary>
         public S3Location SchemaS3Location
@@ -191,7 +192,7 @@ namespace Amazon.SimSpaceWeaver.Model
         /// </para>
         ///  
         /// <para>
-        /// Provide a <code>SnapshotS3Location</code> to start your simulation from a snapshot.
+        /// Provide a <c>SnapshotS3Location</c> to start your simulation from a snapshot.
         /// </para>
         ///  
         /// <para>
@@ -199,7 +200,7 @@ namespace Amazon.SimSpaceWeaver.Model
         /// </para>
         ///  
         /// <para>
-        /// If you provide a <code>SnapshotS3Location</code> then you can't provide a <code>SchemaS3Location</code>.
+        /// If you provide a <c>SnapshotS3Location</c> then you can't provide a <c>SchemaS3Location</c>.
         /// </para>
         /// </summary>
         public S3Location SnapshotS3Location
@@ -231,7 +232,7 @@ namespace Amazon.SimSpaceWeaver.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

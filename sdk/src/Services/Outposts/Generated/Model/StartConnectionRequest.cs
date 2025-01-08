@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Outposts.Model
 {
     /// <summary>
@@ -98,7 +99,7 @@ namespace Amazon.Outposts.Model
         ///  The serial number of the dongle. 
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=100)]
+        [AWSProperty(Min=1, Max=100)]
         public string DeviceSerialNumber
         {
             get { return this._deviceSerialNumber; }

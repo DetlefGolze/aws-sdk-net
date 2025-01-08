@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.MQ.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.MQ
 {
     /// <summary>
-    /// Interface for accessing MQ
+    /// <para>Interface for accessing MQ</para>
     ///
     /// Amazon MQ is a managed message broker service for Apache ActiveMQ and RabbitMQ that
     /// makes it easy to set up and operate message brokers in the cloud. A message broker

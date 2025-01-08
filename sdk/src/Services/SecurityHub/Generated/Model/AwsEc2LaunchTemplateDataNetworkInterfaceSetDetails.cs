@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -40,18 +41,18 @@ namespace Amazon.SecurityHub.Model
         private bool? _deleteOnTermination;
         private string _description;
         private int? _deviceIndex;
-        private List<string> _groups = new List<string>();
+        private List<string> _groups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _interfaceType;
         private int? _ipv4PrefixCount;
-        private List<AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesDetails> _ipv4Prefixes = new List<AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesDetails>();
+        private List<AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesDetails> _ipv4Prefixes = AWSConfigs.InitializeCollections ? new List<AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesDetails>() : null;
         private int? _ipv6AddressCount;
-        private List<AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6AddressesDetails> _ipv6Addresses = new List<AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6AddressesDetails>();
+        private List<AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6AddressesDetails> _ipv6Addresses = AWSConfigs.InitializeCollections ? new List<AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6AddressesDetails>() : null;
         private int? _ipv6PrefixCount;
-        private List<AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6PrefixesDetails> _ipv6Prefixes = new List<AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6PrefixesDetails>();
+        private List<AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6PrefixesDetails> _ipv6Prefixes = AWSConfigs.InitializeCollections ? new List<AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6PrefixesDetails>() : null;
         private int? _networkCardIndex;
         private string _networkInterfaceId;
         private string _privateIpAddress;
-        private List<AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesDetails> _privateIpAddresses = new List<AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesDetails>();
+        private List<AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesDetails> _privateIpAddresses = AWSConfigs.InitializeCollections ? new List<AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesDetails>() : null;
         private int? _secondaryPrivateIpAddressCount;
         private string _subnetId;
 
@@ -164,7 +165,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Groups property is set
         internal bool IsSetGroups()
         {
-            return this._groups != null && this._groups.Count > 0; 
+            return this._groups != null && (this._groups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -189,7 +190,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Ipv4PrefixCount. 
         /// <para>
         ///  The number of IPv4 prefixes to be automatically assigned to the network interface.
-        /// You cannot use this option if you use the <code>Ipv4Prefixes</code> option. 
+        /// You cannot use this option if you use the <c>Ipv4Prefixes</c> option. 
         /// </para>
         /// </summary>
         public int Ipv4PrefixCount
@@ -208,7 +209,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Ipv4Prefixes. 
         /// <para>
         ///  One or more IPv4 prefixes to be assigned to the network interface. You cannot use
-        /// this option if you use the <code>Ipv4PrefixCount</code> option. 
+        /// this option if you use the <c>Ipv4PrefixCount</c> option. 
         /// </para>
         /// </summary>
         public List<AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesDetails> Ipv4Prefixes
@@ -220,7 +221,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Ipv4Prefixes property is set
         internal bool IsSetIpv4Prefixes()
         {
-            return this._ipv4Prefixes != null && this._ipv4Prefixes.Count > 0; 
+            return this._ipv4Prefixes != null && (this._ipv4Prefixes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -228,7 +229,7 @@ namespace Amazon.SecurityHub.Model
         /// <para>
         ///  The number of IPv6 addresses to assign to a network interface. Amazon EC2 automatically
         /// selects the IPv6 addresses from the subnet range. You can't use this option if you
-        /// use <code>Ipv6Addresses</code>. 
+        /// use <c>Ipv6Addresses</c>. 
         /// </para>
         /// </summary>
         public int Ipv6AddressCount
@@ -247,7 +248,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Ipv6Addresses. 
         /// <para>
         ///  One or more specific IPv6 addresses from the IPv6 CIDR block range of your subnet.
-        /// You can't use this option if you use <code>Ipv6AddressCount</code>. 
+        /// You can't use this option if you use <c>Ipv6AddressCount</c>. 
         /// </para>
         /// </summary>
         public List<AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6AddressesDetails> Ipv6Addresses
@@ -259,14 +260,14 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Ipv6Addresses property is set
         internal bool IsSetIpv6Addresses()
         {
-            return this._ipv6Addresses != null && this._ipv6Addresses.Count > 0; 
+            return this._ipv6Addresses != null && (this._ipv6Addresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Ipv6PrefixCount. 
         /// <para>
         ///  The number of IPv6 prefixes to be automatically assigned to the network interface.
-        /// You cannot use this option if you use the <code>Ipv6Prefix</code> option. 
+        /// You cannot use this option if you use the <c>Ipv6Prefix</c> option. 
         /// </para>
         /// </summary>
         public int Ipv6PrefixCount
@@ -285,7 +286,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Ipv6Prefixes. 
         /// <para>
         ///  One or more IPv6 prefixes to be assigned to the network interface. You cannot use
-        /// this option if you use the <code>Ipv6PrefixCount</code> option. 
+        /// this option if you use the <c>Ipv6PrefixCount</c> option. 
         /// </para>
         /// </summary>
         public List<AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6PrefixesDetails> Ipv6Prefixes
@@ -297,15 +298,15 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Ipv6Prefixes property is set
         internal bool IsSetIpv6Prefixes()
         {
-            return this._ipv6Prefixes != null && this._ipv6Prefixes.Count > 0; 
+            return this._ipv6Prefixes != null && (this._ipv6Prefixes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NetworkCardIndex. 
         /// <para>
         ///  The index of the network card. Some instance types support multiple network cards.
-        /// The primary network interface must be assigned to network card index <code>0</code>.
-        /// The default is network card index <code>0</code>. 
+        /// The primary network interface must be assigned to network card index <c>0</c>. The
+        /// default is network card index <c>0</c>. 
         /// </para>
         /// </summary>
         public int NetworkCardIndex
@@ -371,7 +372,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if PrivateIpAddresses property is set
         internal bool IsSetPrivateIpAddresses()
         {
-            return this._privateIpAddresses != null && this._privateIpAddresses.Count > 0; 
+            return this._privateIpAddresses != null && (this._privateIpAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

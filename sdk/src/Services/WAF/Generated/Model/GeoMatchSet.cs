@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAF.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.WAF.Model
     /// </summary>
     public partial class GeoMatchSet
     {
-        private List<GeoMatchConstraint> _geoMatchConstraints = new List<GeoMatchConstraint>();
+        private List<GeoMatchConstraint> _geoMatchConstraints = AWSConfigs.InitializeCollections ? new List<GeoMatchConstraint>() : null;
         private string _geoMatchSetId;
         private string _name;
 
@@ -68,21 +69,21 @@ namespace Amazon.WAF.Model
         // Check to see if GeoMatchConstraints property is set
         internal bool IsSetGeoMatchConstraints()
         {
-            return this._geoMatchConstraints != null && this._geoMatchConstraints.Count > 0; 
+            return this._geoMatchConstraints != null && (this._geoMatchConstraints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property GeoMatchSetId. 
         /// <para>
-        /// The <code>GeoMatchSetId</code> for an <code>GeoMatchSet</code>. You use <code>GeoMatchSetId</code>
-        /// to get information about a <code>GeoMatchSet</code> (see <a>GeoMatchSet</a>), update
-        /// a <code>GeoMatchSet</code> (see <a>UpdateGeoMatchSet</a>), insert a <code>GeoMatchSet</code>
-        /// into a <code>Rule</code> or delete one from a <code>Rule</code> (see <a>UpdateRule</a>),
-        /// and delete a <code>GeoMatchSet</code> from AWS WAF (see <a>DeleteGeoMatchSet</a>).
+        /// The <c>GeoMatchSetId</c> for an <c>GeoMatchSet</c>. You use <c>GeoMatchSetId</c> to
+        /// get information about a <c>GeoMatchSet</c> (see <a>GeoMatchSet</a>), update a <c>GeoMatchSet</c>
+        /// (see <a>UpdateGeoMatchSet</a>), insert a <c>GeoMatchSet</c> into a <c>Rule</c> or
+        /// delete one from a <c>Rule</c> (see <a>UpdateRule</a>), and delete a <c>GeoMatchSet</c>
+        /// from AWS WAF (see <a>DeleteGeoMatchSet</a>).
         /// </para>
         ///  
         /// <para>
-        ///  <code>GeoMatchSetId</code> is returned by <a>CreateGeoMatchSet</a> and by <a>ListGeoMatchSets</a>.
+        ///  <c>GeoMatchSetId</c> is returned by <a>CreateGeoMatchSet</a> and by <a>ListGeoMatchSets</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=128)]
@@ -102,7 +103,7 @@ namespace Amazon.WAF.Model
         /// Gets and sets the property Name. 
         /// <para>
         /// A friendly name or description of the <a>GeoMatchSet</a>. You can't change the name
-        /// of an <code>GeoMatchSet</code> after you create it.
+        /// of an <c>GeoMatchSet</c> after you create it.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]

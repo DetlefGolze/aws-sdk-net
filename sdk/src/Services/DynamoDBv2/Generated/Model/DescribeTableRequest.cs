@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -35,16 +36,16 @@ namespace Amazon.DynamoDBv2.Model
     /// 
     ///  <important> 
     /// <para>
-    /// This operation only applies to <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V2.html">Version
-    /// 2019.11.21 (Current)</a> of global tables. 
+    /// For global tables, this operation only applies to global tables using Version 2019.11.21
+    /// (Current version). 
     /// </para>
     ///  </important> <note> 
     /// <para>
-    /// If you issue a <code>DescribeTable</code> request immediately after a <code>CreateTable</code>
-    /// request, DynamoDB might return a <code>ResourceNotFoundException</code>. This is because
-    /// <code>DescribeTable</code> uses an eventually consistent query, and the metadata for
-    /// your table might not be available at that moment. Wait for a few seconds, and then
-    /// try the <code>DescribeTable</code> request again.
+    /// If you issue a <c>DescribeTable</c> request immediately after a <c>CreateTable</c>
+    /// request, DynamoDB might return a <c>ResourceNotFoundException</c>. This is because
+    /// <c>DescribeTable</c> uses an eventually consistent query, and the metadata for your
+    /// table might not be available at that moment. Wait for a few seconds, and then try
+    /// the <c>DescribeTable</c> request again.
     /// </para>
     ///  </note>
     /// </summary>
@@ -60,7 +61,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Instantiates DescribeTableRequest with the parameterized properties
         /// </summary>
-        /// <param name="tableName">The name of the table to describe.</param>
+        /// <param name="tableName">The name of the table to describe. You can also provide the Amazon Resource Name (ARN) of the table in this parameter.</param>
         public DescribeTableRequest(string tableName)
         {
             _tableName = tableName;
@@ -69,10 +70,11 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property TableName. 
         /// <para>
-        /// The name of the table to describe.
+        /// The name of the table to describe. You can also provide the Amazon Resource Name (ARN)
+        /// of the table in this parameter.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=3, Max=255)]
+        [AWSProperty(Required=true, Min=1, Max=1024)]
         public string TableName
         {
             get { return this._tableName; }

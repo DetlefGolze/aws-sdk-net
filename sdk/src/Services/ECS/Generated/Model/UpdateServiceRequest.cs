@@ -26,28 +26,47 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateService operation.
     /// Modifies the parameters of a service.
     /// 
-    ///  
+    ///  <note> 
     /// <para>
-    /// For services using the rolling update (<code>ECS</code>) you can update the desired
-    /// count, deployment configuration, network configuration, load balancers, service registries,
+    /// On March 21, 2024, a change was made to resolve the task definition revision before
+    /// authorization. When a task definition revision is not specified, authorization will
+    /// occur using the latest revision of a task definition.
+    /// </para>
+    ///  </note> 
+    /// <para>
+    /// For services using the rolling update (<c>ECS</c>) you can update the desired count,
+    /// deployment configuration, network configuration, load balancers, service registries,
     /// enable ECS managed tags option, propagate tags option, task placement constraints
     /// and strategies, and task definition. When you update any of these parameters, Amazon
     /// ECS starts new tasks with the new configuration. 
     /// </para>
     ///  
     /// <para>
-    /// For services using the blue/green (<code>CODE_DEPLOY</code>) deployment controller,
-    /// only the desired count, deployment configuration, health check grace period, task
-    /// placement constraints and strategies, enable ECS managed tags option, and propagate
-    /// tags can be updated using this API. If the network configuration, platform version,
-    /// task definition, or load balancer need to be updated, create a new CodeDeploy deployment.
-    /// For more information, see <a href="https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_CreateDeployment.html">CreateDeployment</a>
+    /// You can attach Amazon EBS volumes to Amazon ECS tasks by configuring the volume when
+    /// starting or running a task, or when creating or updating a service. For more infomation,
+    /// see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ebs-volumes.html#ebs-volume-types">Amazon
+    /// EBS volumes</a> in the <i>Amazon Elastic Container Service Developer Guide</i>. You
+    /// can update your volume configurations and trigger a new deployment. <c>volumeConfigurations</c>
+    /// is only supported for REPLICA service and not DAEMON service. If you leave <c>volumeConfigurations</c>
+    /// <c>null</c>, it doesn't trigger a new deployment. For more infomation on volumes,
+    /// see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ebs-volumes.html#ebs-volume-types">Amazon
+    /// EBS volumes</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+    /// </para>
+    ///  
+    /// <para>
+    /// For services using the blue/green (<c>CODE_DEPLOY</c>) deployment controller, only
+    /// the desired count, deployment configuration, health check grace period, task placement
+    /// constraints and strategies, enable ECS managed tags option, and propagate tags can
+    /// be updated using this API. If the network configuration, platform version, task definition,
+    /// or load balancer need to be updated, create a new CodeDeploy deployment. For more
+    /// information, see <a href="https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_CreateDeployment.html">CreateDeployment</a>
     /// in the <i>CodeDeploy API Reference</i>.
     /// </para>
     ///  
@@ -56,26 +75,33 @@ namespace Amazon.ECS.Model
     /// count, task placement constraints and strategies, health check grace period, enable
     /// ECS managed tags option, and propagate tags option, using this API. If the launch
     /// type, load balancer, network configuration, platform version, or task definition need
-    /// to be updated, create a new task set For more information, see <a>CreateTaskSet</a>.
+    /// to be updated, create a new task set For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateTaskSet.html">CreateTaskSet</a>.
     /// </para>
     ///  
     /// <para>
     /// You can add to or subtract from the number of instantiations of a task definition
-    /// in a service by specifying the cluster that the service is running in and a new <code>desiredCount</code>
+    /// in a service by specifying the cluster that the service is running in and a new <c>desiredCount</c>
     /// parameter.
     /// </para>
     ///  
     /// <para>
-    /// If you have updated the Docker image of your application, you can create a new task
-    /// definition with that image and deploy it to your service. The service scheduler uses
-    /// the minimum healthy percent and maximum percent parameters (in the service's deployment
-    /// configuration) to determine the deployment strategy.
+    /// You can attach Amazon EBS volumes to Amazon ECS tasks by configuring the volume when
+    /// starting or running a task, or when creating or updating a service. For more infomation,
+    /// see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ebs-volumes.html#ebs-volume-types">Amazon
+    /// EBS volumes</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+    /// </para>
+    ///  
+    /// <para>
+    /// If you have updated the container image of your application, you can create a new
+    /// task definition with that image and deploy it to your service. The service scheduler
+    /// uses the minimum healthy percent and maximum percent parameters (in the service's
+    /// deployment configuration) to determine the deployment strategy.
     /// </para>
     ///  <note> 
     /// <para>
     /// If your updated Docker image uses the same tag as what is in the existing task definition
-    /// for your service (for example, <code>my_image:latest</code>), you don't need to create
-    /// a new revision of your task definition. You can update the service using the <code>forceNewDeployment</code>
+    /// for your service (for example, <c>my_image:latest</c>), you don't need to create a
+    /// new revision of your task definition. You can update the service using the <c>forceNewDeployment</c>
     /// option. The new tasks launched by the deployment pull the current image/tag combination
     /// from your repository when they start.
     /// </para>
@@ -83,34 +109,35 @@ namespace Amazon.ECS.Model
     /// <para>
     /// You can also update the deployment configuration of a service. When a deployment is
     /// triggered by updating the task definition of a service, the service scheduler uses
-    /// the deployment configuration parameters, <code>minimumHealthyPercent</code> and <code>maximumPercent</code>,
+    /// the deployment configuration parameters, <c>minimumHealthyPercent</c> and <c>maximumPercent</c>,
     /// to determine the deployment strategy.
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// If <code>minimumHealthyPercent</code> is below 100%, the scheduler can ignore <code>desiredCount</code>
-    /// temporarily during a deployment. For example, if <code>desiredCount</code> is four
-    /// tasks, a minimum of 50% allows the scheduler to stop two existing tasks before starting
-    /// two new tasks. Tasks for services that don't use a load balancer are considered healthy
-    /// if they're in the <code>RUNNING</code> state. Tasks for services that use a load balancer
-    /// are considered healthy if they're in the <code>RUNNING</code> state and are reported
-    /// as healthy by the load balancer.
+    /// If <c>minimumHealthyPercent</c> is below 100%, the scheduler can ignore <c>desiredCount</c>
+    /// temporarily during a deployment. For example, if <c>desiredCount</c> is four tasks,
+    /// a minimum of 50% allows the scheduler to stop two existing tasks before starting two
+    /// new tasks. Tasks for services that don't use a load balancer are considered healthy
+    /// if they're in the <c>RUNNING</c> state. Tasks for services that use a load balancer
+    /// are considered healthy if they're in the <c>RUNNING</c> state and are reported as
+    /// healthy by the load balancer.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// The <code>maximumPercent</code> parameter represents an upper limit on the number
-    /// of running tasks during a deployment. You can use it to define the deployment batch
-    /// size. For example, if <code>desiredCount</code> is four tasks, a maximum of 200% starts
-    /// four new tasks before stopping the four older tasks (provided that the cluster resources
-    /// required to do this are available).
+    /// The <c>maximumPercent</c> parameter represents an upper limit on the number of running
+    /// tasks during a deployment. You can use it to define the deployment batch size. For
+    /// example, if <c>desiredCount</c> is four tasks, a maximum of 200% starts four new tasks
+    /// before stopping the four older tasks (provided that the cluster resources required
+    /// to do this are available).
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// When <a>UpdateService</a> stops a task during a deployment, the equivalent of <code>docker
-    /// stop</code> is issued to the containers running in the task. This results in a <code>SIGTERM</code>
-    /// and a 30-second timeout. After this, <code>SIGKILL</code> is sent and the containers
-    /// are forcibly stopped. If the container handles the <code>SIGTERM</code> gracefully
-    /// and exits within 30 seconds from receiving it, no <code>SIGKILL</code> is sent.
+    /// When <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateService.html">UpdateService</a>
+    /// stops a task during a deployment, the equivalent of <c>docker stop</c> is issued to
+    /// the containers running in the task. This results in a <c>SIGTERM</c> and a 30-second
+    /// timeout. After this, <c>SIGKILL</c> is sent and the containers are forcibly stopped.
+    /// If the container handles the <c>SIGTERM</c> gracefully and exits within 30 seconds
+    /// from receiving it, no <c>SIGKILL</c> is sent.
     /// </para>
     ///  
     /// <para>
@@ -165,23 +192,24 @@ namespace Amazon.ECS.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>loadBalancers</code>,
+    ///  <c>loadBalancers</c>,
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>serviceRegistries</code> 
+    ///  <c>serviceRegistries</c> 
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// For more information about the role see the <code>CreateService</code> request parameter
+    /// For more information about the role see the <c>CreateService</c> request parameter
     /// <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html#ECS-CreateService-request-role">
-    /// <code>role</code> </a>. 
+    /// <c>role</c> </a>. 
     /// </para>
     ///  </note>
     /// </summary>
     public partial class UpdateServiceRequest : AmazonECSRequest
     {
-        private List<CapacityProviderStrategyItem> _capacityProviderStrategy = new List<CapacityProviderStrategyItem>();
+        private AvailabilityZoneRebalancing _availabilityZoneRebalancing;
+        private List<CapacityProviderStrategyItem> _capacityProviderStrategy = AWSConfigs.InitializeCollections ? new List<CapacityProviderStrategyItem>() : null;
         private string _cluster;
         private DeploymentConfiguration _deploymentConfiguration;
         private int? _desiredCount;
@@ -189,16 +217,42 @@ namespace Amazon.ECS.Model
         private bool? _enableExecuteCommand;
         private bool? _forceNewDeployment;
         private int? _healthCheckGracePeriodSeconds;
-        private List<LoadBalancer> _loadBalancers = new List<LoadBalancer>();
+        private List<LoadBalancer> _loadBalancers = AWSConfigs.InitializeCollections ? new List<LoadBalancer>() : null;
         private NetworkConfiguration _networkConfiguration;
-        private List<PlacementConstraint> _placementConstraints = new List<PlacementConstraint>();
-        private List<PlacementStrategy> _placementStrategy = new List<PlacementStrategy>();
+        private List<PlacementConstraint> _placementConstraints = AWSConfigs.InitializeCollections ? new List<PlacementConstraint>() : null;
+        private List<PlacementStrategy> _placementStrategy = AWSConfigs.InitializeCollections ? new List<PlacementStrategy>() : null;
         private string _platformVersion;
         private PropagateTags _propagateTags;
         private string _service;
         private ServiceConnectConfiguration _serviceConnectConfiguration;
-        private List<ServiceRegistry> _serviceRegistries = new List<ServiceRegistry>();
+        private List<ServiceRegistry> _serviceRegistries = AWSConfigs.InitializeCollections ? new List<ServiceRegistry>() : null;
         private string _taskDefinition;
+        private List<ServiceVolumeConfiguration> _volumeConfigurations = AWSConfigs.InitializeCollections ? new List<ServiceVolumeConfiguration>() : null;
+        private List<VpcLatticeConfiguration> _vpcLatticeConfigurations = AWSConfigs.InitializeCollections ? new List<VpcLatticeConfiguration>() : null;
+
+        /// <summary>
+        /// Gets and sets the property AvailabilityZoneRebalancing. 
+        /// <para>
+        /// Indicates whether to use Availability Zone rebalancing for the service.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-rebalancing.html">Balancing
+        /// an Amazon ECS service across Availability Zones</a> in the <i>Amazon Elastic Container
+        /// Service Developer Guide</i>.
+        /// </para>
+        /// </summary>
+        public AvailabilityZoneRebalancing AvailabilityZoneRebalancing
+        {
+            get { return this._availabilityZoneRebalancing; }
+            set { this._availabilityZoneRebalancing = value; }
+        }
+
+        // Check to see if AvailabilityZoneRebalancing property is set
+        internal bool IsSetAvailabilityZoneRebalancing()
+        {
+            return this._availabilityZoneRebalancing != null;
+        }
 
         /// <summary>
         /// Gets and sets the property CapacityProviderStrategy. 
@@ -216,28 +270,28 @@ namespace Amazon.ECS.Model
         ///  
         /// <para>
         /// A capacity provider strategy consists of one or more capacity providers along with
-        /// the <code>base</code> and <code>weight</code> to assign to them. A capacity provider
-        /// must be associated with the cluster to be used in a capacity provider strategy. The
-        /// <a>PutClusterCapacityProviders</a> API is used to associate a capacity provider with
-        /// a cluster. Only capacity providers with an <code>ACTIVE</code> or <code>UPDATING</code>
-        /// status can be used.
+        /// the <c>base</c> and <c>weight</c> to assign to them. A capacity provider must be associated
+        /// with the cluster to be used in a capacity provider strategy. The <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_PutClusterCapacityProviders.html">PutClusterCapacityProviders</a>
+        /// API is used to associate a capacity provider with a cluster. Only capacity providers
+        /// with an <c>ACTIVE</c> or <c>UPDATING</c> status can be used.
         /// </para>
         ///  
         /// <para>
         /// If specifying a capacity provider that uses an Auto Scaling group, the capacity provider
-        /// must already be created. New capacity providers can be created with the <a>CreateCapacityProvider</a>
+        /// must already be created. New capacity providers can be created with the <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateClusterCapacityProvider.html">CreateClusterCapacityProvider</a>
         /// API operation.
         /// </para>
         ///  
         /// <para>
-        /// To use a Fargate capacity provider, specify either the <code>FARGATE</code> or <code>FARGATE_SPOT</code>
+        /// To use a Fargate capacity provider, specify either the <c>FARGATE</c> or <c>FARGATE_SPOT</c>
         /// capacity providers. The Fargate capacity providers are available to all accounts and
         /// only need to be associated with a cluster to be used.
         /// </para>
         ///  
         /// <para>
-        /// The <a>PutClusterCapacityProviders</a> API operation is used to update the list of
-        /// available capacity providers for a cluster after the cluster is created.
+        /// The <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_PutClusterCapacityProviders.html">PutClusterCapacityProviders</a>API
+        /// operation is used to update the list of available capacity providers for a cluster
+        /// after the cluster is created.
         /// </para>
         /// </summary>
         public List<CapacityProviderStrategyItem> CapacityProviderStrategy
@@ -249,7 +303,7 @@ namespace Amazon.ECS.Model
         // Check to see if CapacityProviderStrategy property is set
         internal bool IsSetCapacityProviderStrategy()
         {
-            return this._capacityProviderStrategy != null && this._capacityProviderStrategy.Count > 0; 
+            return this._capacityProviderStrategy != null && (this._capacityProviderStrategy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -319,8 +373,8 @@ namespace Amazon.ECS.Model
         ///  
         /// <para>
         /// Only tasks launched after the update will reflect the update. To update the tags on
-        /// all tasks, set <code>forceNewDeployment</code> to <code>true</code>, so that Amazon
-        /// ECS starts new tasks with the updated tags.
+        /// all tasks, set <c>forceNewDeployment</c> to <c>true</c>, so that Amazon ECS starts
+        /// new tasks with the updated tags.
         /// </para>
         /// </summary>
         public bool EnableECSManagedTags
@@ -338,12 +392,12 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property EnableExecuteCommand. 
         /// <para>
-        /// If <code>true</code>, this enables execute command functionality on all task containers.
+        /// If <c>true</c>, this enables execute command functionality on all task containers.
         /// </para>
         ///  
         /// <para>
         /// If you do not want to override the value that was set when the service was created,
-        /// you can set this to <code>null</code> when performing this action.
+        /// you can set this to <c>null</c> when performing this action.
         /// </para>
         /// </summary>
         public bool EnableExecuteCommand
@@ -364,8 +418,8 @@ namespace Amazon.ECS.Model
         /// Determines whether to force a new deployment of the service. By default, deployments
         /// aren't forced. You can use this option to start a new deployment with no service definition
         /// changes. For example, you can update a service's tasks to use a newer Docker image
-        /// with the same image/tag combination (<code>my_image:latest</code>) or to roll Fargate
-        /// tasks onto a newer platform version.
+        /// with the same image/tag combination (<c>my_image:latest</c>) or to roll Fargate tasks
+        /// onto a newer platform version.
         /// </para>
         /// </summary>
         public bool ForceNewDeployment
@@ -384,13 +438,18 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property HealthCheckGracePeriodSeconds. 
         /// <para>
         /// The period of time, in seconds, that the Amazon ECS service scheduler ignores unhealthy
-        /// Elastic Load Balancing target health checks after a task has first started. This is
-        /// only valid if your service is configured to use a load balancer. If your service's
-        /// tasks take a while to start and respond to Elastic Load Balancing health checks, you
-        /// can specify a health check grace period of up to 2,147,483,647 seconds. During that
-        /// time, the Amazon ECS service scheduler ignores the Elastic Load Balancing health check
-        /// status. This grace period can prevent the ECS service scheduler from marking tasks
-        /// as unhealthy and stopping them before they have time to come up.
+        /// Elastic Load Balancing, VPC Lattice, and container health checks after a task has
+        /// first started. If you don't specify a health check grace period value, the default
+        /// value of <c>0</c> is used. If you don't use any of the health checks, then <c>healthCheckGracePeriodSeconds</c>
+        /// is unused.
+        /// </para>
+        ///  
+        /// <para>
+        /// If your service's tasks take a while to start and respond to health checks, you can
+        /// specify a health check grace period of up to 2,147,483,647 seconds (about 69 years).
+        /// During that time, the Amazon ECS service scheduler ignores health check status. This
+        /// grace period can prevent the service scheduler from marking tasks as unhealthy and
+        /// stopping them before they have time to come up.
         /// </para>
         /// </summary>
         public int HealthCheckGracePeriodSeconds
@@ -427,9 +486,9 @@ namespace Amazon.ECS.Model
         ///  
         /// <para>
         /// For services that use blue/green deployments, you can update Elastic Load Balancing
-        /// target groups by using <code> <a href="https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_CreateDeployment.html">CreateDeployment</a>
-        /// </code> through CodeDeploy. Note that multiple target groups are not supported for
-        /// blue/green deployments. For more information see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html">Register
+        /// target groups by using <c> <a href="https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_CreateDeployment.html">CreateDeployment</a>
+        /// </c> through CodeDeploy. Note that multiple target groups are not supported for blue/green
+        /// deployments. For more information see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html">Register
         /// multiple target groups with a service</a> in the <i>Amazon Elastic Container Service
         /// Developer Guide</i>. 
         /// </para>
@@ -444,7 +503,7 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  
         /// <para>
-        /// You can remove existing <code>loadBalancers</code> by passing an empty list.
+        /// You can remove existing <c>loadBalancers</c> by passing an empty list.
         /// </para>
         /// </summary>
         public List<LoadBalancer> LoadBalancers
@@ -456,7 +515,7 @@ namespace Amazon.ECS.Model
         // Check to see if LoadBalancers property is set
         internal bool IsSetLoadBalancers()
         {
-            return this._loadBalancers != null && this._loadBalancers.Count > 0; 
+            return this._loadBalancers != null && (this._loadBalancers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -501,7 +560,7 @@ namespace Amazon.ECS.Model
         // Check to see if PlacementConstraints property is set
         internal bool IsSetPlacementConstraints()
         {
-            return this._placementConstraints != null && this._placementConstraints.Count > 0; 
+            return this._placementConstraints != null && (this._placementConstraints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -526,7 +585,7 @@ namespace Amazon.ECS.Model
         // Check to see if PlacementStrategy property is set
         internal bool IsSetPlacementStrategy()
         {
-            return this._placementStrategy != null && this._placementStrategy.Count > 0; 
+            return this._placementStrategy != null && (this._placementStrategy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -534,8 +593,8 @@ namespace Amazon.ECS.Model
         /// <para>
         /// The platform version that your tasks in the service run on. A platform version is
         /// only specified for tasks using the Fargate launch type. If a platform version is not
-        /// specified, the <code>LATEST</code> platform version is used. For more information,
-        /// see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html">Fargate
+        /// specified, the <c>LATEST</c> platform version is used. For more information, see <a
+        /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html">Fargate
         /// Platform Versions</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
         /// </para>
         /// </summary>
@@ -560,8 +619,8 @@ namespace Amazon.ECS.Model
         ///  
         /// <para>
         /// Only tasks launched after the update will reflect the update. To update the tags on
-        /// all tasks, set <code>forceNewDeployment</code> to <code>true</code>, so that Amazon
-        /// ECS starts new tasks with the updated tags.
+        /// all tasks, set <c>forceNewDeployment</c> to <c>true</c>, so that Amazon ECS starts
+        /// new tasks with the updated tags.
         /// </para>
         /// </summary>
         public PropagateTags PropagateTags
@@ -638,7 +697,7 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  
         /// <para>
-        /// You can remove existing <code>serviceRegistries</code> by passing an empty list.
+        /// You can remove existing <c>serviceRegistries</c> by passing an empty list.
         /// </para>
         /// </summary>
         public List<ServiceRegistry> ServiceRegistries
@@ -650,18 +709,17 @@ namespace Amazon.ECS.Model
         // Check to see if ServiceRegistries property is set
         internal bool IsSetServiceRegistries()
         {
-            return this._serviceRegistries != null && this._serviceRegistries.Count > 0; 
+            return this._serviceRegistries != null && (this._serviceRegistries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TaskDefinition. 
         /// <para>
-        /// The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or
-        /// full ARN of the task definition to run in your service. If a <code>revision</code>
-        /// is not specified, the latest <code>ACTIVE</code> revision is used. If you modify the
-        /// task definition with <code>UpdateService</code>, Amazon ECS spawns a task with the
-        /// new version of the task definition and then stops an old task after the new version
-        /// is running.
+        /// The <c>family</c> and <c>revision</c> (<c>family:revision</c>) or full ARN of the
+        /// task definition to run in your service. If a <c>revision</c> is not specified, the
+        /// latest <c>ACTIVE</c> revision is used. If you modify the task definition with <c>UpdateService</c>,
+        /// Amazon ECS spawns a task with the new version of the task definition and then stops
+        /// an old task after the new version is running.
         /// </para>
         /// </summary>
         public string TaskDefinition
@@ -674,6 +732,46 @@ namespace Amazon.ECS.Model
         internal bool IsSetTaskDefinition()
         {
             return this._taskDefinition != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property VolumeConfigurations. 
+        /// <para>
+        /// The details of the volume that was <c>configuredAtLaunch</c>. You can configure the
+        /// size, volumeType, IOPS, throughput, snapshot and encryption in <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ServiceManagedEBSVolumeConfiguration.html">ServiceManagedEBSVolumeConfiguration</a>.
+        /// The <c>name</c> of the volume must match the <c>name</c> from the task definition.
+        /// If set to null, no new deployment is triggered. Otherwise, if this configuration differs
+        /// from the existing one, it triggers a new deployment.
+        /// </para>
+        /// </summary>
+        public List<ServiceVolumeConfiguration> VolumeConfigurations
+        {
+            get { return this._volumeConfigurations; }
+            set { this._volumeConfigurations = value; }
+        }
+
+        // Check to see if VolumeConfigurations property is set
+        internal bool IsSetVolumeConfigurations()
+        {
+            return this._volumeConfigurations != null && (this._volumeConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property VpcLatticeConfigurations. 
+        /// <para>
+        /// An object representing the VPC Lattice configuration for the service being updated.
+        /// </para>
+        /// </summary>
+        public List<VpcLatticeConfiguration> VpcLatticeConfigurations
+        {
+            get { return this._vpcLatticeConfigurations; }
+            set { this._vpcLatticeConfigurations = value; }
+        }
+
+        // Check to see if VpcLatticeConfigurations property is set
+        internal bool IsSetVpcLatticeConfigurations()
+        {
+            return this._vpcLatticeConfigurations != null && (this._vpcLatticeConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

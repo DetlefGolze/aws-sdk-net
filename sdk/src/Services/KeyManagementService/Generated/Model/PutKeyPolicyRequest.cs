@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
@@ -56,6 +57,12 @@ namespace Amazon.KeyManagementService.Model
     /// <para>
     ///  <b>Related operations</b>: <a>GetKeyPolicy</a> 
     /// </para>
+    ///  
+    /// <para>
+    ///  <b>Eventual consistency</b>: The KMS API follows an eventual consistency model. For
+    /// more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html">KMS
+    /// eventual consistency</a>.
+    /// </para>
     /// </summary>
     public partial class PutKeyPolicyRequest : AmazonKeyManagementServiceRequest
     {
@@ -82,7 +89,8 @@ namespace Amazon.KeyManagementService.Model
         ///  </important> 
         /// <para>
         /// Use this parameter only when you intend to prevent the principal that is making the
-        /// request from making a subsequent <a>PutKeyPolicy</a> request on the KMS key.
+        /// request from making a subsequent <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_PutKeyPolicy.html">PutKeyPolicy</a>
+        /// request on the KMS key.
         /// </para>
         /// </summary>
         public bool BypassPolicyLockoutSafetyCheck
@@ -112,11 +120,11 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> 
+        /// Key ID: <c>1234abcd-12ab-34cd-56ef-1234567890ab</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Key ARN: <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
+        /// Key ARN: <c>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</c>
         /// 
         /// </para>
         ///  </li> </ul> 
@@ -148,11 +156,11 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// The key policy must allow the calling principal to make a subsequent <code>PutKeyPolicy</code>
+        /// The key policy must allow the calling principal to make a subsequent <c>PutKeyPolicy</c>
         /// request on the KMS key. This reduces the risk that the KMS key becomes unmanageable.
         /// For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-default.html#prevent-unmanageable-key">Default
         /// key policy</a> in the <i>Key Management Service Developer Guide</i>. (To omit this
-        /// condition, set <code>BypassPolicyLockoutSafetyCheck</code> to true.)
+        /// condition, set <c>BypassPolicyLockoutSafetyCheck</c> to true.)
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -170,18 +178,18 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Printable ASCII characters from the space character (<code>\u0020</code>) through
-        /// the end of the ASCII character range.
+        /// Printable ASCII characters from the space character (<c>\u0020</c>) through the end
+        /// of the ASCII character range.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// Printable characters in the Basic Latin and Latin-1 Supplement character set (through
-        /// <code>\u00FF</code>).
+        /// <c>\u00FF</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The tab (<code>\u0009</code>), line feed (<code>\u000A</code>), and carriage return
-        /// (<code>\u000D</code>) special characters
+        /// The tab (<c>\u0009</c>), line feed (<c>\u000A</c>), and carriage return (<c>\u000D</c>)
+        /// special characters
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -208,10 +216,11 @@ namespace Amazon.KeyManagementService.Model
         /// <summary>
         /// Gets and sets the property PolicyName. 
         /// <para>
-        /// The name of the key policy. The only valid value is <code>default</code>.
+        /// The name of the key policy. If no policy name is specified, the default value is <c>default</c>.
+        /// The only valid value is <c>default</c>.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=128)]
+        [AWSProperty(Min=1, Max=128)]
         public string PolicyName
         {
             get { return this._policyName; }

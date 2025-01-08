@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetArtifacts())
@@ -76,6 +78,12 @@ namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
                     marshaller.Marshall(publicRequest.Artifacts, context);
 
                     context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetAutoRetryLimit())
+                {
+                    context.Writer.WritePropertyName("autoRetryLimit");
+                    context.Writer.Write(publicRequest.AutoRetryLimit);
                 }
 
                 if(publicRequest.IsSetBadgeEnabled())

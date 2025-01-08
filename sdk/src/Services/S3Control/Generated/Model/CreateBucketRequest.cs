@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -70,13 +71,13 @@ namespace Amazon.S3Control.Model
     ///  
     /// <para>
     /// For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on
-    /// Outposts endpoint hostname prefix and <code>x-amz-outpost-id</code> in your API request,
+    /// Outposts endpoint hostname prefix and <c>x-amz-outpost-id</c> in your API request,
     /// see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateBucket.html#API_control_CreateBucket_Examples">Examples</a>
     /// section.
     /// </para>
     ///  
     /// <para>
-    /// The following actions are related to <code>CreateBucket</code> for Amazon S3 on Outposts:
+    /// The following actions are related to <c>CreateBucket</c> for Amazon S3 on Outposts:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -138,7 +139,7 @@ namespace Amazon.S3Control.Model
         // Check to see if ACL property is set
         internal bool IsSetACL()
         {
-            return this._acl != null;
+            return !string.IsNullOrEmpty(this._acl);
         }
 
         /// <summary>
@@ -203,7 +204,7 @@ namespace Amazon.S3Control.Model
         // Check to see if GrantFullControl property is set
         internal bool IsSetGrantFullControl()
         {
-            return this._grantFullControl != null;
+            return !string.IsNullOrEmpty(this._grantFullControl);
         }
 
         /// <summary>
@@ -226,7 +227,7 @@ namespace Amazon.S3Control.Model
         // Check to see if GrantRead property is set
         internal bool IsSetGrantRead()
         {
-            return this._grantRead != null;
+            return !string.IsNullOrEmpty(this._grantRead);
         }
 
         /// <summary>
@@ -249,7 +250,7 @@ namespace Amazon.S3Control.Model
         // Check to see if GrantReadACP property is set
         internal bool IsSetGrantReadACP()
         {
-            return this._grantReadACP != null;
+            return !string.IsNullOrEmpty(this._grantReadACP);
         }
 
         /// <summary>
@@ -272,7 +273,7 @@ namespace Amazon.S3Control.Model
         // Check to see if GrantWrite property is set
         internal bool IsSetGrantWrite()
         {
-            return this._grantWrite != null;
+            return !string.IsNullOrEmpty(this._grantWrite);
         }
 
         /// <summary>
@@ -295,7 +296,7 @@ namespace Amazon.S3Control.Model
         // Check to see if GrantWriteACP property is set
         internal bool IsSetGrantWriteACP()
         {
-            return this._grantWriteACP != null;
+            return !string.IsNullOrEmpty(this._grantWriteACP);
         }
 
         /// <summary>
@@ -342,7 +343,7 @@ namespace Amazon.S3Control.Model
         // Check to see if OutpostId property is set
         internal bool IsSetOutpostId()
         {
-            return this._outpostId != null;
+            return !string.IsNullOrEmpty(this._outpostId);
         }
 
     }

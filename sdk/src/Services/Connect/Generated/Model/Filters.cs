@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -33,9 +34,10 @@ namespace Amazon.Connect.Model
     /// </summary>
     public partial class Filters
     {
-        private List<string> _channels = new List<string>();
-        private List<string> _queues = new List<string>();
-        private List<string> _routingProfiles = new List<string>();
+        private List<string> _channels = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _queues = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _routingProfiles = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _routingStepExpressions = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Channels. 
@@ -43,7 +45,7 @@ namespace Amazon.Connect.Model
         /// The channel to use to filter the metrics.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=3)]
+        [AWSProperty(Max=4)]
         public List<string> Channels
         {
             get { return this._channels; }
@@ -53,16 +55,15 @@ namespace Amazon.Connect.Model
         // Check to see if Channels property is set
         internal bool IsSetChannels()
         {
-            return this._channels != null && this._channels.Count > 0; 
+            return this._channels != null && (this._channels.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Queues. 
         /// <para>
         /// The queues to use to filter the metrics. You should specify at least one queue, and
-        /// can specify up to 100 queues per request. The <code>GetCurrentMetricsData</code> API
-        /// in particular requires a queue when you include a <code>Filter</code> in your request.
-        /// 
+        /// can specify up to 100 queues per request. The <c>GetCurrentMetricsData</c> API in
+        /// particular requires a queue when you include a <c>Filter</c> in your request. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -75,7 +76,7 @@ namespace Amazon.Connect.Model
         // Check to see if Queues property is set
         internal bool IsSetQueues()
         {
-            return this._queues != null && this._queues.Count > 0; 
+            return this._queues != null && (this._queues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -94,7 +95,27 @@ namespace Amazon.Connect.Model
         // Check to see if RoutingProfiles property is set
         internal bool IsSetRoutingProfiles()
         {
-            return this._routingProfiles != null && this._routingProfiles.Count > 0; 
+            return this._routingProfiles != null && (this._routingProfiles.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property RoutingStepExpressions. 
+        /// <para>
+        /// A list of expressions as a filter, in which an expression is an object of a step in
+        /// a routing criteria.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=50)]
+        public List<string> RoutingStepExpressions
+        {
+            get { return this._routingStepExpressions; }
+            set { this._routingStepExpressions = value; }
+        }
+
+        // Check to see if RoutingStepExpressions property is set
+        internal bool IsSetRoutingStepExpressions()
+        {
+            return this._routingStepExpressions != null && (this._routingStepExpressions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

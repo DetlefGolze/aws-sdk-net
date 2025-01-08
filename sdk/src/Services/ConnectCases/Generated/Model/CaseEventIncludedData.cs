@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectCases.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ConnectCases.Model
     /// </summary>
     public partial class CaseEventIncludedData
     {
-        private List<FieldIdentifier> _fields = new List<FieldIdentifier>();
+        private List<FieldIdentifier> _fields = AWSConfigs.InitializeCollections ? new List<FieldIdentifier>() : null;
 
         /// <summary>
         /// Gets and sets the property Fields. 
@@ -41,7 +42,7 @@ namespace Amazon.ConnectCases.Model
         /// List of field identifiers.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=0, Max=50)]
+        [AWSProperty(Required=true, Min=0, Max=200)]
         public List<FieldIdentifier> Fields
         {
             get { return this._fields; }
@@ -51,7 +52,7 @@ namespace Amazon.ConnectCases.Model
         // Check to see if Fields property is set
         internal bool IsSetFields()
         {
-            return this._fields != null && this._fields.Count > 0; 
+            return this._fields != null && (this._fields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

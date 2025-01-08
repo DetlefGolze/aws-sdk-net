@@ -27,6 +27,7 @@ using Amazon.Util;
 using Amazon.Util.Internal;
 using System.Collections.Generic;
 using Amazon.Runtime;
+using Amazon.Runtime.Telemetry;
 
 namespace Amazon
 {
@@ -45,7 +46,7 @@ namespace Amazon
     ///   &lt;proxy host="localhost" port="8888" username="1" password="1" /&gt;
     ///   
     ///   &lt;dynamoDB&gt;
-    ///     &lt;dynamoDBContext tableNamePrefix="Prod-" metadataCachingMode="Default" disableFetchingTableMetadata="false"&gt;
+    ///     &lt;dynamoDBContext tableNamePrefix="Prod-" metadataCachingMode="Default" disableFetchingTableMetadata="false" retrieveDateTimeInUtc="false"&gt;
     /// 
     ///       &lt;tableAliases&gt;
     ///         &lt;alias fromTable="FakeTable" toTable="People" /&gt;
@@ -86,13 +87,19 @@ namespace Amazon
         internal static string _awsProfileName = GetConfig(AWSProfileNameKey);
         internal static string _awsAccountsLocation = GetConfig(AWSProfilesLocationKey);
         internal static bool _useSdkCache = GetConfigBool(UseSdkCacheKey, defaultValue: true);
+        internal static bool _initializeCollections = GetConfigBool(InitializeCollectionsKey, defaultValue: true);
         // for reading from awsconfigs.xml
         private static object _lock = new object();
         private static List<string> standardConfigs = new List<string>() { "region", "logging", "correctForClockSkew" };
+        private static TelemetryProvider _telemetryProvider = new DefaultTelemetryProvider();
 
 #pragma warning disable 414
         private static bool configPresent = true;
 #pragma warning restore 414
+
+#if NET8_0_OR_GREATER
+        internal static bool _disableDangerousDisablePathAndQueryCanonicalization = GetConfigBool(DisableDangerousDisablePathAndQueryCanonicalizationKey, defaultValue: false);
+#endif
 
         // New config section
         private static RootConfig _rootConfig = new RootConfig();
@@ -397,6 +404,60 @@ namespace Amazon
 
         #endregion
 
+        #region Initialize Collections
+        /// <summary>
+        /// Key for the InitializeCollections property.
+        /// <seealso cref="Amazon.AWSConfigs.InitializeCollections"/>
+        /// </summary>
+        public const string InitializeCollectionsKey = "AWSInitializeCollections";
+
+        /// <summary>
+        /// When true the collections used on the service API request and response objects are initialized
+        /// to an empty collection. The collections are sent as part of requests when a collection is non-empty.
+        /// 
+        /// Setting InitializeCollections to false means all collections used on the service API request and 
+        /// response objects are initialized to null. The collections are sent as part of requests when
+        /// the collection non-null including an empty collection.
+        /// 
+        /// The default value is true. In the next major version of the SDK the default will change to false.
+        /// This will improve performance not creating unnecessary collection instances and provide more
+        /// control when the collection is sent to the service.
+        /// 
+        /// Setting this property is not thread safe and should only be set at application startup.
+        /// </summary>
+        public static bool InitializeCollections
+        {
+            get { return _rootConfig.InitializeCollections; }
+            set { _rootConfig.InitializeCollections = value; }
+        }
+        #endregion
+
+        #region Disable DangerousDisablePathAndQueryCanonicalization
+#if NET8_0_OR_GREATER
+        /// <summary>
+        /// Key for the DisableDangerousDisablePathAndQueryCanonicalization property.
+        /// <seealso cref="Amazon.AWSConfigs.InitializeCollections"/>
+        /// </summary>
+        public const string DisableDangerousDisablePathAndQueryCanonicalizationKey = "AWSDisableDangerousDisablePathAndQueryCanonicalization";
+
+        /// <summary>
+        /// Starting with .NET 8 the AWS SDK for .NET uses the DangerousDisablePathAndQueryCanonicalization setting when creating Uri instances.
+        /// This prevents the .NET Uri class from altering the resource path of the URI for paths like S3 object keys. For 
+        /// example if an S3 object key was "foo/../bar.txt" without enabling DangerousDisablePathAndQueryCanonicalization the
+        /// .NET Uri class would change the resource path to "bar.txt".
+        /// 
+        /// Using Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory for mock testing throws an exception when the 
+        /// DangerousDisablePathAndQueryCanonicalization is enabled. To continue using WebApplicationFactory with the SDK
+        /// this property can be set to true to prevent the SDK from using the DangerousDisablePathAndQueryCanonicalization flag.
+        /// </summary>
+        public static bool DisableDangerousDisablePathAndQueryCanonicalization
+        {
+            get { return _rootConfig.DisableDangerousDisablePathAndQueryCanonicalization; }
+            set { _rootConfig.DisableDangerousDisablePathAndQueryCanonicalization = value; }
+        }
+#endif
+#endregion
+
         #region AWS Config Sections
 
         /// <summary>
@@ -443,6 +504,19 @@ namespace Amazon
         {
             get { return _rootConfig.UseAlternateUserAgentHeader; }
             set { _rootConfig.UseAlternateUserAgentHeader = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the global <see cref="TelemetryProvider"/> instance.
+        /// <para>
+        /// This global telemetry provider is used to collect and report telemetry data 
+        /// (such as traces and metrics) for all AWS SDK operations.
+        /// </para>
+        /// </summary>
+        public static TelemetryProvider TelemetryProvider
+        {
+            get { return _telemetryProvider; }
+            set { _telemetryProvider = value; }
         }
 
         /// <summary>
@@ -522,7 +596,7 @@ namespace Amazon
 
         private static T GetConfigEnum<T>(string name)
         {
-            var type = TypeFactory.GetTypeInfo(typeof(T));
+            var type = typeof(T);
             if (!type.IsEnum) throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "Type {0} must be enum", type.FullName));
 
             string value = GetConfig(name);

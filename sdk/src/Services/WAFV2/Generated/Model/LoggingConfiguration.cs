@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -51,9 +52,9 @@ namespace Amazon.WAFV2.Model
     /// </para>
     ///  
     /// <para>
-    /// The name that you give the destination must start with <code>aws-waf-logs-</code>.
-    /// Depending on the type of destination, you might need to configure additional settings
-    /// or permissions. 
+    /// The name that you give the destination must start with <c>aws-waf-logs-</c>. Depending
+    /// on the type of destination, you might need to configure additional settings or permissions.
+    /// 
     /// </para>
     ///  
     /// <para>
@@ -63,16 +64,16 @@ namespace Amazon.WAFV2.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Associate your logging destination to your web ACL using a <code>PutLoggingConfiguration</code>
+    /// Associate your logging destination to your web ACL using a <c>PutLoggingConfiguration</c>
     /// request.
     /// </para>
     ///  </li> </ol> 
     /// <para>
-    /// When you successfully enable logging using a <code>PutLoggingConfiguration</code>
-    /// request, WAF creates an additional role or policy that is required to write logs to
-    /// the logging destination. For an Amazon CloudWatch Logs log group, WAF creates a resource
-    /// policy on the log group. For an Amazon S3 bucket, WAF creates a bucket policy. For
-    /// an Amazon Kinesis Data Firehose, WAF creates a service-linked role.
+    /// When you successfully enable logging using a <c>PutLoggingConfiguration</c> request,
+    /// WAF creates an additional role or policy that is required to write logs to the logging
+    /// destination. For an Amazon CloudWatch Logs log group, WAF creates a resource policy
+    /// on the log group. For an Amazon S3 bucket, WAF creates a bucket policy. For an Amazon
+    /// Kinesis Data Firehose, WAF creates a service-linked role.
     /// </para>
     ///  
     /// <para>
@@ -82,10 +83,12 @@ namespace Amazon.WAFV2.Model
     /// </summary>
     public partial class LoggingConfiguration
     {
-        private List<string> _logDestinationConfigs = new List<string>();
+        private List<string> _logDestinationConfigs = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private LoggingFilter _loggingFilter;
+        private LogScope _logScope;
+        private LogType _logType;
         private bool? _managedByFirewallManager;
-        private List<FieldToMatch> _redactedFields = new List<FieldToMatch>();
+        private List<FieldToMatch> _redactedFields = AWSConfigs.InitializeCollections ? new List<FieldToMatch>() : null;
         private string _resourceArn;
 
         /// <summary>
@@ -109,7 +112,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if LogDestinationConfigs property is set
         internal bool IsSetLogDestinationConfigs()
         {
-            return this._logDestinationConfigs != null && this._logDestinationConfigs.Count > 0; 
+            return this._logDestinationConfigs != null && (this._logDestinationConfigs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -133,11 +136,75 @@ namespace Amazon.WAFV2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property LogScope. 
+        /// <para>
+        /// The owner of the logging configuration, which must be set to <c>CUSTOMER</c> for the
+        /// configurations that you manage. 
+        /// </para>
+        ///  
+        /// <para>
+        /// The log scope <c>SECURITY_LAKE</c> indicates a configuration that is managed through
+        /// Amazon Security Lake. You can use Security Lake to collect log and event data from
+        /// various sources for normalization, analysis, and management. For information, see
+        /// <a href="https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html">Collecting
+        /// data from Amazon Web Services services</a> in the <i>Amazon Security Lake user guide</i>.
+        /// 
+        /// </para>
+        ///  
+        /// <para>
+        /// Default: <c>CUSTOMER</c> 
+        /// </para>
+        /// </summary>
+        public LogScope LogScope
+        {
+            get { return this._logScope; }
+            set { this._logScope = value; }
+        }
+
+        // Check to see if LogScope property is set
+        internal bool IsSetLogScope()
+        {
+            return this._logScope != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property LogType. 
+        /// <para>
+        /// Used to distinguish between various logging options. Currently, there is one option.
+        /// </para>
+        ///  
+        /// <para>
+        /// Default: <c>WAF_LOGS</c> 
+        /// </para>
+        /// </summary>
+        public LogType LogType
+        {
+            get { return this._logType; }
+            set { this._logType = value; }
+        }
+
+        // Check to see if LogType property is set
+        internal bool IsSetLogType()
+        {
+            return this._logType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ManagedByFirewallManager. 
         /// <para>
         /// Indicates whether the logging configuration was created by Firewall Manager, as part
         /// of an WAF policy configuration. If true, only Firewall Manager can modify or delete
         /// the configuration. 
+        /// </para>
+        ///  
+        /// <para>
+        /// The logging configuration can be created by Firewall Manager for use with any web
+        /// ACL that Firewall Manager is using for an WAF policy. Web ACLs that Firewall Manager
+        /// creates and uses have their <c>ManagedByFirewallManager</c> property set to true.
+        /// Web ACLs that were created by a customer account and then retrofitted by Firewall
+        /// Manager for use by a policy have their <c>RetrofittedByFirewallManager</c> property
+        /// set to true. For either case, any corresponding logging configuration will indicate
+        /// <c>ManagedByFirewallManager</c>.
         /// </para>
         /// </summary>
         public bool ManagedByFirewallManager
@@ -159,20 +226,26 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// For example, if you redact the <code>SingleHeader</code> field, the <code>HEADER</code>
-        /// field in the logs will be <code>REDACTED</code> for all rules that use the <code>SingleHeader</code>
-        /// <code>FieldToMatch</code> setting. 
+        /// For example, if you redact the <c>SingleHeader</c> field, the <c>HEADER</c> field
+        /// in the logs will be <c>REDACTED</c> for all rules that use the <c>SingleHeader</c>
+        /// <c>FieldToMatch</c> setting. 
         /// </para>
         ///  
         /// <para>
-        /// Redaction applies only to the component that's specified in the rule's <code>FieldToMatch</code>
-        /// setting, so the <code>SingleHeader</code> redaction doesn't apply to rules that use
-        /// the <code>Headers</code> <code>FieldToMatch</code>.
+        /// Redaction applies only to the component that's specified in the rule's <c>FieldToMatch</c>
+        /// setting, so the <c>SingleHeader</c> redaction doesn't apply to rules that use the
+        /// <c>Headers</c> <c>FieldToMatch</c>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// You can specify only the following fields for redaction: <code>UriPath</code>, <code>QueryString</code>,
-        /// <code>SingleHeader</code>, and <code>Method</code>.
+        /// You can specify only the following fields for redaction: <c>UriPath</c>, <c>QueryString</c>,
+        /// <c>SingleHeader</c>, and <c>Method</c>.
+        /// </para>
+        ///  </note> <note> 
+        /// <para>
+        /// This setting has no impact on request sampling. With request sampling, the only way
+        /// to exclude fields is by disabling sampling in the web ACL visibility configuration.
+        /// 
         /// </para>
         ///  </note>
         /// </summary>
@@ -186,13 +259,13 @@ namespace Amazon.WAFV2.Model
         // Check to see if RedactedFields property is set
         internal bool IsSetRedactedFields()
         {
-            return this._redactedFields != null && this._redactedFields.Count > 0; 
+            return this._redactedFields != null && (this._redactedFields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the web ACL that you want to associate with <code>LogDestinationConfigs</code>.
+        /// The Amazon Resource Name (ARN) of the web ACL that you want to associate with <c>LogDestinationConfigs</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]

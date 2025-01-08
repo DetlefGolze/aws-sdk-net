@@ -291,9 +291,17 @@ namespace Amazon.Route53
         /// </summary>
         public static readonly CloudWatchRegion ApSoutheast4 = new CloudWatchRegion("ap-southeast-4");
         /// <summary>
+        /// Constant ApSoutheast5 for CloudWatchRegion
+        /// </summary>
+        public static readonly CloudWatchRegion ApSoutheast5 = new CloudWatchRegion("ap-southeast-5");
+        /// <summary>
         /// Constant CaCentral1 for CloudWatchRegion
         /// </summary>
         public static readonly CloudWatchRegion CaCentral1 = new CloudWatchRegion("ca-central-1");
+        /// <summary>
+        /// Constant CaWest1 for CloudWatchRegion
+        /// </summary>
+        public static readonly CloudWatchRegion CaWest1 = new CloudWatchRegion("ca-west-1");
         /// <summary>
         /// Constant CnNorth1 for CloudWatchRegion
         /// </summary>
@@ -937,9 +945,17 @@ namespace Amazon.Route53
         /// </summary>
         public static readonly ResourceRecordSetRegion ApSoutheast4 = new ResourceRecordSetRegion("ap-southeast-4");
         /// <summary>
+        /// Constant ApSoutheast5 for ResourceRecordSetRegion
+        /// </summary>
+        public static readonly ResourceRecordSetRegion ApSoutheast5 = new ResourceRecordSetRegion("ap-southeast-5");
+        /// <summary>
         /// Constant CaCentral1 for ResourceRecordSetRegion
         /// </summary>
         public static readonly ResourceRecordSetRegion CaCentral1 = new ResourceRecordSetRegion("ca-central-1");
+        /// <summary>
+        /// Constant CaWest1 for ResourceRecordSetRegion
+        /// </summary>
+        public static readonly ResourceRecordSetRegion CaWest1 = new ResourceRecordSetRegion("ca-west-1");
         /// <summary>
         /// Constant CnNorth1 for ResourceRecordSetRegion
         /// </summary>
@@ -1121,6 +1137,10 @@ namespace Amazon.Route53
         /// </summary>
         public static readonly RRType DS = new RRType("DS");
         /// <summary>
+        /// Constant HTTPS for RRType
+        /// </summary>
+        public static readonly RRType HTTPS = new RRType("HTTPS");
+        /// <summary>
         /// Constant MX for RRType
         /// </summary>
         public static readonly RRType MX = new RRType("MX");
@@ -1148,6 +1168,18 @@ namespace Amazon.Route53
         /// Constant SRV for RRType
         /// </summary>
         public static readonly RRType SRV = new RRType("SRV");
+        /// <summary>
+        /// Constant SSHFP for RRType
+        /// </summary>
+        public static readonly RRType SSHFP = new RRType("SSHFP");
+        /// <summary>
+        /// Constant SVCB for RRType
+        /// </summary>
+        public static readonly RRType SVCB = new RRType("SVCB");
+        /// <summary>
+        /// Constant TLSA for RRType
+        /// </summary>
+        public static readonly RRType TLSA = new RRType("TLSA");
         /// <summary>
         /// Constant TXT for RRType
         /// </summary>
@@ -1351,13 +1383,25 @@ namespace Amazon.Route53
         /// </summary>
         public static readonly VPCRegion ApSoutheast4 = new VPCRegion("ap-southeast-4");
         /// <summary>
+        /// Constant ApSoutheast5 for VPCRegion
+        /// </summary>
+        public static readonly VPCRegion ApSoutheast5 = new VPCRegion("ap-southeast-5");
+        /// <summary>
         /// Constant CaCentral1 for VPCRegion
         /// </summary>
         public static readonly VPCRegion CaCentral1 = new VPCRegion("ca-central-1");
         /// <summary>
+        /// Constant CaWest1 for VPCRegion
+        /// </summary>
+        public static readonly VPCRegion CaWest1 = new VPCRegion("ca-west-1");
+        /// <summary>
         /// Constant CnNorth1 for VPCRegion
         /// </summary>
         public static readonly VPCRegion CnNorth1 = new VPCRegion("cn-north-1");
+        /// <summary>
+        /// Constant CnNorthwest1 for VPCRegion
+        /// </summary>
+        public static readonly VPCRegion CnNorthwest1 = new VPCRegion("cn-northwest-1");
         /// <summary>
         /// Constant EuCentral1 for VPCRegion
         /// </summary>

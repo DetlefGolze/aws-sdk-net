@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
@@ -37,8 +38,8 @@ namespace Amazon.APIGateway.Model
         private ContentHandlingStrategy _contentHandling;
         private string _httpMethod;
         private string _resourceId;
-        private Dictionary<string, string> _responseParameters = new Dictionary<string, string>();
-        private Dictionary<string, string> _responseTemplates = new Dictionary<string, string>();
+        private Dictionary<string, string> _responseParameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private Dictionary<string, string> _responseTemplates = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _restApiId;
         private string _selectionPattern;
         private string _statusCode;
@@ -47,8 +48,7 @@ namespace Amazon.APIGateway.Model
         /// Gets and sets the property ContentHandling. 
         /// <para>
         /// Specifies how to handle response payload content type conversions. Supported values
-        /// are <code>CONVERT_TO_BINARY</code> and <code>CONVERT_TO_TEXT</code>, with the following
-        /// behaviors:
+        /// are <c>CONVERT_TO_BINARY</c> and <c>CONVERT_TO_TEXT</c>, with the following behaviors:
         /// </para>
         ///  
         /// <para>
@@ -113,11 +113,11 @@ namespace Amazon.APIGateway.Model
         /// from the back end. The key is a method response header parameter name and the mapped
         /// value is an integration response header value, a static value enclosed within a pair
         /// of single quotes, or a JSON expression from the integration response body. The mapping
-        /// key must match the pattern of <code>method.response.header.{name}</code>, where <code>name</code>
+        /// key must match the pattern of <c>method.response.header.{name}</c>, where <c>name</c>
         /// is a valid and unique header name. The mapped non-static value must match the pattern
-        /// of <code>integration.response.header.{name}</code> or <code>integration.response.body.{JSON-expression}</code>,
-        /// where <code>name</code> must be a valid and unique response header name and <code>JSON-expression</code>
-        /// a valid JSON expression without the <code>$</code> prefix.
+        /// of <c>integration.response.header.{name}</c> or <c>integration.response.body.{JSON-expression}</c>,
+        /// where <c>name</c> must be a valid and unique response header name and <c>JSON-expression</c>
+        /// a valid JSON expression without the <c>$</c> prefix.
         /// </para>
         /// </summary>
         public Dictionary<string, string> ResponseParameters
@@ -129,7 +129,7 @@ namespace Amazon.APIGateway.Model
         // Check to see if ResponseParameters property is set
         internal bool IsSetResponseParameters()
         {
-            return this._responseParameters != null && this._responseParameters.Count > 0; 
+            return this._responseParameters != null && (this._responseParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace Amazon.APIGateway.Model
         // Check to see if ResponseTemplates property is set
         internal bool IsSetResponseTemplates()
         {
-            return this._responseTemplates != null && this._responseTemplates.Count > 0; 
+            return this._responseTemplates != null && (this._responseTemplates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruProfiler.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.CodeGuruProfiler.Model
         /// Gets and sets the property ProfilingGroup. 
         /// <para>
         ///  A <a href="https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html">
-        /// <code>ProfilingGroupDescription</code> </a> that contains information about the returned
+        /// <c>ProfilingGroupDescription</c> </a> that contains information about the returned
         /// updated profiling group. 
         /// </para>
         /// </summary>

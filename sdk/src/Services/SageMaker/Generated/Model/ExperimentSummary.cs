@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// A summary of the properties of an experiment. To get the complete set of properties,
     /// call the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeExperiment.html">DescribeExperiment</a>
-    /// API and provide the <code>ExperimentName</code>.
+    /// API and provide the <c>ExperimentName</c>.
     /// </summary>
     public partial class ExperimentSummary
     {
@@ -63,8 +64,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property DisplayName. 
         /// <para>
-        /// The name of the experiment as displayed. If <code>DisplayName</code> isn't specified,
-        /// <code>ExperimentName</code> is displayed.
+        /// The name of the experiment as displayed. If <c>DisplayName</c> isn't specified, <c>ExperimentName</c>
+        /// is displayed.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=120)]

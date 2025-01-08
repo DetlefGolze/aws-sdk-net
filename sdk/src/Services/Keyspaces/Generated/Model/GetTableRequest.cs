@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Keyspaces.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.Keyspaces.Model
     /// 
     ///  
     /// <para>
-    /// To read table metadata using <code>GetTable</code>, <code>Select</code> action permissions
-    /// for the table and system tables are required to complete the operation.
+    /// To read table metadata using <c>GetTable</c>, the IAM principal needs <c>Select</c>
+    /// action permissions for the table and the system keyspace.
     /// </para>
     /// </summary>
     public partial class GetTableRequest : AmazonKeyspacesRequest

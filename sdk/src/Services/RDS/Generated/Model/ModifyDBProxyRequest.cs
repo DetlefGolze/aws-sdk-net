@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -34,19 +35,19 @@ namespace Amazon.RDS.Model
     /// </summary>
     public partial class ModifyDBProxyRequest : AmazonRDSRequest
     {
-        private List<UserAuthConfig> _auth = new List<UserAuthConfig>();
+        private List<UserAuthConfig> _auth = AWSConfigs.InitializeCollections ? new List<UserAuthConfig>() : null;
         private string _dbProxyName;
         private bool? _debugLogging;
         private int? _idleClientTimeout;
         private string _newDBProxyName;
         private bool? _requireTLS;
         private string _roleArn;
-        private List<string> _securityGroups = new List<string>();
+        private List<string> _securityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Auth. 
         /// <para>
-        /// The new authentication settings for the <code>DBProxy</code>.
+        /// The new authentication settings for the <c>DBProxy</c>.
         /// </para>
         /// </summary>
         public List<UserAuthConfig> Auth
@@ -58,13 +59,13 @@ namespace Amazon.RDS.Model
         // Check to see if Auth property is set
         internal bool IsSetAuth()
         {
-            return this._auth != null && this._auth.Count > 0; 
+            return this._auth != null && (this._auth.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DBProxyName. 
         /// <para>
-        /// The identifier for the <code>DBProxy</code> to modify.
+        /// The identifier for the <c>DBProxy</c> to modify.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -126,7 +127,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property NewDBProxyName. 
         /// <para>
-        /// The new identifier for the <code>DBProxy</code>. An identifier must begin with a letter
+        /// The new identifier for the <c>DBProxy</c>. An identifier must begin with a letter
         /// and must contain only ASCII letters, digits, and hyphens; it can't end with a hyphen
         /// or contain two consecutive hyphens.
         /// </para>
@@ -185,7 +186,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property SecurityGroups. 
         /// <para>
-        /// The new list of security groups for the <code>DBProxy</code>.
+        /// The new list of security groups for the <c>DBProxy</c>.
         /// </para>
         /// </summary>
         public List<string> SecurityGroups
@@ -197,7 +198,7 @@ namespace Amazon.RDS.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

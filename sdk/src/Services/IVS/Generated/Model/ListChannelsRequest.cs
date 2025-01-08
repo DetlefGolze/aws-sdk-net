@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IVS.Model
 {
     /// <summary>
@@ -38,6 +39,7 @@ namespace Amazon.IVS.Model
     public partial class ListChannelsRequest : AmazonIVSRequest
     {
         private string _filterByName;
+        private string _filterByPlaybackRestrictionPolicyArn;
         private string _filterByRecordingConfigurationArn;
         private int? _maxResults;
         private string _nextToken;
@@ -59,6 +61,25 @@ namespace Amazon.IVS.Model
         internal bool IsSetFilterByName()
         {
             return this._filterByName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property FilterByPlaybackRestrictionPolicyArn. 
+        /// <para>
+        /// Filters the channel list to match the specified policy.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=128)]
+        public string FilterByPlaybackRestrictionPolicyArn
+        {
+            get { return this._filterByPlaybackRestrictionPolicyArn; }
+            set { this._filterByPlaybackRestrictionPolicyArn = value; }
+        }
+
+        // Check to see if FilterByPlaybackRestrictionPolicyArn property is set
+        internal bool IsSetFilterByPlaybackRestrictionPolicyArn()
+        {
+            return this._filterByPlaybackRestrictionPolicyArn != null;
         }
 
         /// <summary>
@@ -102,7 +123,7 @@ namespace Amazon.IVS.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The first channel to retrieve. This is used for pagination; see the <code>nextToken</code>
+        /// The first channel to retrieve. This is used for pagination; see the <c>nextToken</c>
         /// response field.
         /// </para>
         /// </summary>

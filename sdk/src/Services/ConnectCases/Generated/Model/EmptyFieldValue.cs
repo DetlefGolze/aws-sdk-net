@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectCases.Model
 {
     /// <summary>
-    /// An empty value. You cannot set <code>EmptyFieldValue</code> on a field that is required
+    /// An empty value. You cannot set <c>EmptyFieldValue</c> on a field that is required
     /// on a case template.
     /// 
     ///  

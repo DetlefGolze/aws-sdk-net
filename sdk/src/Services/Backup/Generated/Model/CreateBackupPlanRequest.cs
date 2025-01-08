@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -36,21 +37,21 @@ namespace Amazon.Backup.Model
     /// 
     ///  
     /// <para>
-    /// If you call <code>CreateBackupPlan</code> with a plan that already exists, you receive
-    /// an <code>AlreadyExistsException</code> exception.
+    /// If you call <c>CreateBackupPlan</c> with a plan that already exists, you receive an
+    /// <c>AlreadyExistsException</c> exception.
     /// </para>
     /// </summary>
     public partial class CreateBackupPlanRequest : AmazonBackupRequest
     {
         private BackupPlanInput _backupPlan;
-        private Dictionary<string, string> _backupPlanTags = new Dictionary<string, string>();
+        private Dictionary<string, string> _backupPlanTags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _creatorRequestId;
 
         /// <summary>
         /// Gets and sets the property BackupPlan. 
         /// <para>
-        /// Specifies the body of a backup plan. Includes a <code>BackupPlanName</code> and one
-        /// or more sets of <code>Rules</code>.
+        /// The body of a backup plan. Includes a <c>BackupPlanName</c> and one or more sets of
+        /// <c>Rules</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -69,9 +70,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property BackupPlanTags. 
         /// <para>
-        /// To help organize your resources, you can assign your own metadata to the resources
-        /// that you create. Each tag is a key-value pair. The specified tags are assigned to
-        /// all backups created with this plan.
+        /// The tags to assign to the backup plan.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -84,15 +83,15 @@ namespace Amazon.Backup.Model
         // Check to see if BackupPlanTags property is set
         internal bool IsSetBackupPlanTags()
         {
-            return this._backupPlanTags != null && this._backupPlanTags.Count > 0; 
+            return this._backupPlanTags != null && (this._backupPlanTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property CreatorRequestId. 
         /// <para>
         /// Identifies the request and allows failed requests to be retried without the risk of
-        /// running the operation twice. If the request includes a <code>CreatorRequestId</code>
-        /// that matches an existing backup plan, that plan is returned. This parameter is optional.
+        /// running the operation twice. If the request includes a <c>CreatorRequestId</c> that
+        /// matches an existing backup plan, that plan is returned. This parameter is optional.
         /// </para>
         ///  
         /// <para>

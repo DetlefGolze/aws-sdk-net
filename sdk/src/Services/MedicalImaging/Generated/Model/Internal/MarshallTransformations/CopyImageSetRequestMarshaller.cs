@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MedicalImaging.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,10 +66,14 @@ namespace Amazon.MedicalImaging.Model.Internal.MarshallTransformations
             if (!publicRequest.IsSetSourceImageSetId())
                 throw new AmazonMedicalImagingException("Request object does not have required field SourceImageSetId set");
             request.AddPathResource("{sourceImageSetId}", StringUtils.FromString(publicRequest.SourceImageSetId));
+            
+            if (publicRequest.IsSetForce())
+                request.Parameters.Add("force", StringUtils.FromBool(publicRequest.Force));
             request.ResourcePath = "/datastore/{datastoreId}/imageSet/{sourceImageSetId}/copyImageSet";
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 var context = new JsonMarshallerContext(request, writer);
                 context.Writer.WriteObjectStart();
 
@@ -80,6 +85,7 @@ namespace Amazon.MedicalImaging.Model.Internal.MarshallTransformations
                 request.Content = System.Text.Encoding.UTF8.GetBytes(snippet);
             }
 
+            request.UseQueryString = true;
             
             request.HostPrefix = $"runtime-";
 

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Braket.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,12 +64,29 @@ namespace Amazon.Braket.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAction())
                 {
                     context.Writer.WritePropertyName("action");
                     context.Writer.Write(publicRequest.Action);
+                }
+
+                if(publicRequest.IsSetAssociations())
+                {
+                    context.Writer.WritePropertyName("associations");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestAssociationsListValue in publicRequest.Associations)
+                    {
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = AssociationMarshaller.Instance;
+                        marshaller.Marshall(publicRequestAssociationsListValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteArrayEnd();
                 }
 
                 if(publicRequest.IsSetClientToken())

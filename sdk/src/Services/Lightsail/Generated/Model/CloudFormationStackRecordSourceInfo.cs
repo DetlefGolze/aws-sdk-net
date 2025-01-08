@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -76,7 +77,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The Lightsail resource type (e.g., <code>ExportSnapshotRecord</code>).
+        /// The Lightsail resource type (<c>ExportSnapshotRecord</c>).
         /// </para>
         /// </summary>
         public CloudFormationStackRecordSourceType ResourceType

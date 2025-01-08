@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -35,14 +36,14 @@ namespace Amazon.Kendra.Model
     {
         private bool? _crawlArchivedSpaces;
         private bool? _crawlPersonalSpaces;
-        private List<string> _excludeSpaces = new List<string>();
-        private List<string> _includeSpaces = new List<string>();
-        private List<ConfluenceSpaceToIndexFieldMapping> _spaceFieldMappings = new List<ConfluenceSpaceToIndexFieldMapping>();
+        private List<string> _excludeSpaces = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _includeSpaces = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<ConfluenceSpaceToIndexFieldMapping> _spaceFieldMappings = AWSConfigs.InitializeCollections ? new List<ConfluenceSpaceToIndexFieldMapping>() : null;
 
         /// <summary>
         /// Gets and sets the property CrawlArchivedSpaces. 
         /// <para>
-        ///  <code>TRUE</code> to index archived spaces.
+        ///  <c>TRUE</c> to index archived spaces.
         /// </para>
         /// </summary>
         public bool CrawlArchivedSpaces
@@ -60,9 +61,9 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property CrawlPersonalSpaces. 
         /// <para>
-        ///  <code>TRUE</code> to index personal spaces. You can add restrictions to items in
-        /// personal spaces. If personal spaces are indexed, queries without user context information
-        /// may return restricted items from a personal space in their results. For more information,
+        ///  <c>TRUE</c> to index personal spaces. You can add restrictions to items in personal
+        /// spaces. If personal spaces are indexed, queries without user context information may
+        /// return restricted items from a personal space in their results. For more information,
         /// see <a href="https://docs.aws.amazon.com/kendra/latest/dg/user-context-filter.html">Filtering
         /// on user context</a>.
         /// </para>
@@ -83,8 +84,8 @@ namespace Amazon.Kendra.Model
         /// Gets and sets the property ExcludeSpaces. 
         /// <para>
         /// A list of space keys of Confluence spaces. If you include a key, the blogs, documents,
-        /// and attachments in the space are not indexed. If a space is in both the <code>ExcludeSpaces</code>
-        /// and the <code>IncludeSpaces</code> list, the space is excluded.
+        /// and attachments in the space are not indexed. If a space is in both the <c>ExcludeSpaces</c>
+        /// and the <c>IncludeSpaces</c> list, the space is excluded.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -97,7 +98,7 @@ namespace Amazon.Kendra.Model
         // Check to see if ExcludeSpaces property is set
         internal bool IsSetExcludeSpaces()
         {
-            return this._excludeSpaces != null && this._excludeSpaces.Count > 0; 
+            return this._excludeSpaces != null && (this._excludeSpaces.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -106,8 +107,8 @@ namespace Amazon.Kendra.Model
         /// A list of space keys for Confluence spaces. If you include a key, the blogs, documents,
         /// and attachments in the space are indexed. Spaces that aren't in the list aren't indexed.
         /// A space in the list must exist. Otherwise, Amazon Kendra logs an error when the data
-        /// source is synchronized. If a space is in both the <code>IncludeSpaces</code> and the
-        /// <code>ExcludeSpaces</code> list, the space is excluded.
+        /// source is synchronized. If a space is in both the <c>IncludeSpaces</c> and the <c>ExcludeSpaces</c>
+        /// list, the space is excluded.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -120,22 +121,22 @@ namespace Amazon.Kendra.Model
         // Check to see if IncludeSpaces property is set
         internal bool IsSetIncludeSpaces()
         {
-            return this._includeSpaces != null && this._includeSpaces.Count > 0; 
+            return this._includeSpaces != null && (this._includeSpaces.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SpaceFieldMappings. 
         /// <para>
         /// Maps attributes or field names of Confluence spaces to Amazon Kendra index field names.
-        /// To create custom fields, use the <code>UpdateIndex</code> API before you map to Confluence
+        /// To create custom fields, use the <c>UpdateIndex</c> API before you map to Confluence
         /// fields. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
         /// data source fields</a>. The Confluence data source field names must exist in your
         /// Confluence custom metadata.
         /// </para>
         ///  
         /// <para>
-        /// If you specify the <code>SpaceFieldMappings</code> parameter, you must specify at
-        /// least one field mapping.
+        /// If you specify the <c>SpaceFieldMappings</c> parameter, you must specify at least
+        /// one field mapping.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4)]
@@ -148,7 +149,7 @@ namespace Amazon.Kendra.Model
         // Check to see if SpaceFieldMappings property is set
         internal bool IsSetSpaceFieldMappings()
         {
-            return this._spaceFieldMappings != null && this._spaceFieldMappings.Count > 0; 
+            return this._spaceFieldMappings != null && (this._spaceFieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

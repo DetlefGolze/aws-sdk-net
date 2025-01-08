@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Amplify.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Amplify.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public App Unmarshall(JsonUnmarshallerContext context)
         {
+            App unmarshalledObject = new App();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            App unmarshalledObject = new App();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -98,6 +100,12 @@ namespace Amazon.Amplify.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.BuildSpec = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("cacheConfig", targetDepth))
+                {
+                    var unmarshaller = CacheConfigUnmarshaller.Instance;
+                    unmarshalledObject.CacheConfig = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("createTime", targetDepth))
@@ -208,8 +216,19 @@ namespace Amazon.Amplify.Model.Internal.MarshallTransformations
                     unmarshalledObject.UpdateTime = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("wafConfiguration", targetDepth))
+                {
+                    var unmarshaller = WafConfigurationUnmarshaller.Instance;
+                    unmarshalledObject.WafConfiguration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("webhookCreateTime", targetDepth))
+                {
+                    var unmarshaller = DateTimeUnmarshaller.Instance;
+                    unmarshalledObject.WebhookCreateTime = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
@@ -35,12 +36,13 @@ namespace Amazon.NetworkFirewall.Model
     /// 
     ///  
     /// <para>
-    /// You provide your rule group specification in your request using either <code>RuleGroup</code>
-    /// or <code>Rules</code>.
+    /// You provide your rule group specification in your request using either <c>RuleGroup</c>
+    /// or <c>Rules</c>.
     /// </para>
     /// </summary>
     public partial class CreateRuleGroupRequest : AmazonNetworkFirewallRequest
     {
+        private bool? _analyzeRuleGroup;
         private int? _capacity;
         private string _description;
         private bool? _dryRun;
@@ -49,8 +51,29 @@ namespace Amazon.NetworkFirewall.Model
         private string _ruleGroupName;
         private string _rules;
         private SourceMetadata _sourceMetadata;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private RuleGroupType _type;
+
+        /// <summary>
+        /// Gets and sets the property AnalyzeRuleGroup. 
+        /// <para>
+        /// Indicates whether you want Network Firewall to analyze the stateless rules in the
+        /// rule group for rule behavior such as asymmetric routing. If set to <c>TRUE</c>, Network
+        /// Firewall runs the analysis and then creates the rule group for you. To run the stateless
+        /// rule group analyzer without creating the rule group, set <c>DryRun</c> to <c>TRUE</c>.
+        /// </para>
+        /// </summary>
+        public bool AnalyzeRuleGroup
+        {
+            get { return this._analyzeRuleGroup.GetValueOrDefault(); }
+            set { this._analyzeRuleGroup = value; }
+        }
+
+        // Check to see if AnalyzeRuleGroup property is set
+        internal bool IsSetAnalyzeRuleGroup()
+        {
+            return this._analyzeRuleGroup.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property Capacity. 
@@ -63,7 +86,7 @@ namespace Amazon.NetworkFirewall.Model
         ///  
         /// <para>
         /// You can retrieve the capacity that would be required for a rule group before you create
-        /// the rule group by calling <a>CreateRuleGroup</a> with <code>DryRun</code> set to <code>TRUE</code>.
+        /// the rule group by calling <a>CreateRuleGroup</a> with <c>DryRun</c> set to <c>TRUE</c>.
         /// 
         /// </para>
         ///  <note> 
@@ -91,7 +114,7 @@ namespace Amazon.NetworkFirewall.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A match setting with <code>Any</code> specified has a value of 1. 
+        /// A match setting with <c>Any</c> specified has a value of 1. 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -157,17 +180,17 @@ namespace Amazon.NetworkFirewall.Model
         /// </para>
         ///  
         /// <para>
-        /// If set to <code>TRUE</code>, Network Firewall checks whether the request can run successfully,
+        /// If set to <c>TRUE</c>, Network Firewall checks whether the request can run successfully,
         /// but doesn't actually make the requested changes. The call returns the value that the
-        /// request would return if you ran it with dry run set to <code>FALSE</code>, but doesn't
-        /// make additions or changes to your resources. This option allows you to make sure that
-        /// you have the required permissions to run the request and that your request parameters
+        /// request would return if you ran it with dry run set to <c>FALSE</c>, but doesn't make
+        /// additions or changes to your resources. This option allows you to make sure that you
+        /// have the required permissions to run the request and that your request parameters
         /// are valid. 
         /// </para>
         ///  
         /// <para>
-        /// If set to <code>FALSE</code>, Network Firewall makes the requested changes to your
-        /// resources. 
+        /// If set to <c>FALSE</c>, Network Firewall makes the requested changes to your resources.
+        /// 
         /// </para>
         /// </summary>
         public bool DryRun
@@ -207,8 +230,8 @@ namespace Amazon.NetworkFirewall.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// You must provide either this rule group setting or a <code>Rules</code> setting, but
-        /// not both. 
+        /// You must provide either this rule group setting or a <c>Rules</c> setting, but not
+        /// both. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -253,7 +276,7 @@ namespace Amazon.NetworkFirewall.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// You must provide either this rules setting or a populated <code>RuleGroup</code> setting,
+        /// You must provide either this rules setting or a populated <c>RuleGroup</c> setting,
         /// but not both. 
         /// </para>
         ///  </note> 
@@ -312,7 +335,7 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

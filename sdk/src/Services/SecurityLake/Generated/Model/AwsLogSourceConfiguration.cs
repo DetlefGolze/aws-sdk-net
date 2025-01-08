@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityLake.Model
 {
     /// <summary>
-    /// The Security Lake logs source configuration file describes the information needed
-    /// to generate Security Lake logs.
+    /// To add a natively-supported Amazon Web Services service as a log source, use these
+    /// parameters to specify the configuration settings for the log source.
     /// </summary>
     public partial class AwsLogSourceConfiguration
     {
-        private List<string> _accounts = new List<string>();
-        private List<string> _regions = new List<string>();
+        private List<string> _accounts = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _regions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private AwsLogSourceName _sourceName;
         private string _sourceVersion;
 
@@ -55,7 +56,7 @@ namespace Amazon.SecurityLake.Model
         // Check to see if Accounts property is set
         internal bool IsSetAccounts()
         {
-            return this._accounts != null && this._accounts.Count > 0; 
+            return this._accounts != null && (this._accounts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -74,13 +75,13 @@ namespace Amazon.SecurityLake.Model
         // Check to see if Regions property is set
         internal bool IsSetRegions()
         {
-            return this._regions != null && this._regions.Count > 0; 
+            return this._regions != null && (this._regions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SourceName. 
         /// <para>
-        /// The name for a Amazon Web Services source. This must be a Regionally unique value.
+        /// The name for a Amazon Web Services source. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -99,7 +100,7 @@ namespace Amazon.SecurityLake.Model
         /// <summary>
         /// Gets and sets the property SourceVersion. 
         /// <para>
-        /// The version for a Amazon Web Services source. This must be a Regionally unique value.
+        /// The version for a Amazon Web Services source. 
         /// </para>
         /// </summary>
         public string SourceVersion

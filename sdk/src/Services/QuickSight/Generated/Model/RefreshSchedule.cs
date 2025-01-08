@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -64,12 +65,12 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>FULL_REFRESH</code>: A complete refresh of a dataset.
+        ///  <c>FULL_REFRESH</c>: A complete refresh of a dataset.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INCREMENTAL_REFRESH</code>: A partial refresh of some rows of a dataset, based
-        /// on the time window specified.
+        ///  <c>INCREMENTAL_REFRESH</c>: A partial refresh of some rows of a dataset, based on
+        /// the time window specified.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -131,7 +132,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property StartAfterDateTime. 
         /// <para>
-        /// Time after which the refresh schedule can be started, expressed in <code>YYYY-MM-DDTHH:MM:SS</code>
+        /// Time after which the refresh schedule can be started, expressed in <c>YYYY-MM-DDTHH:MM:SS</c>
         /// format.
         /// </para>
         /// </summary>

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudWatchLogs.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.CloudWatchLogs.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAccountIdentifiers())
@@ -88,6 +90,12 @@ namespace Amazon.CloudWatchLogs.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("limit");
                     context.Writer.Write(publicRequest.Limit);
+                }
+
+                if(publicRequest.IsSetLogGroupClass())
+                {
+                    context.Writer.WritePropertyName("logGroupClass");
+                    context.Writer.Write(publicRequest.LogGroupClass);
                 }
 
                 if(publicRequest.IsSetLogGroupNamePattern())

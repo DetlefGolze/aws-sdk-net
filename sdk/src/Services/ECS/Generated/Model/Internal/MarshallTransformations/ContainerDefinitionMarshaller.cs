@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ECS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.ECS.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ContainerDefinition requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCommand())
             {
                 context.Writer.WritePropertyName("command");
@@ -375,6 +378,17 @@ namespace Amazon.ECS.Model.Internal.MarshallTransformations
                 context.Writer.WriteArrayEnd();
             }
 
+            if(requestObject.IsSetRestartPolicy())
+            {
+                context.Writer.WritePropertyName("restartPolicy");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = ContainerRestartPolicyMarshaller.Instance;
+                marshaller.Marshall(requestObject.RestartPolicy, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetSecrets())
             {
                 context.Writer.WritePropertyName("secrets");
@@ -439,6 +453,12 @@ namespace Amazon.ECS.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("user");
                 context.Writer.Write(requestObject.User);
+            }
+
+            if(requestObject.IsSetVersionConsistency())
+            {
+                context.Writer.WritePropertyName("versionConsistency");
+                context.Writer.Write(requestObject.VersionConsistency);
             }
 
             if(requestObject.IsSetVolumesFrom())

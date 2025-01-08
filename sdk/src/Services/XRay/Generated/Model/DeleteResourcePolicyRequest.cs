@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.XRay.Model
 {
     /// <summary>
@@ -59,10 +60,10 @@ namespace Amazon.XRay.Model
         /// <summary>
         /// Gets and sets the property PolicyRevisionId. 
         /// <para>
-        /// Specifies a specific policy revision to delete. Provide a <code>PolicyRevisionId</code>
+        /// Specifies a specific policy revision to delete. Provide a <c>PolicyRevisionId</c>
         /// to ensure an atomic delete operation. If the provided revision id does not match the
-        /// latest policy revision id, an <code>InvalidPolicyRevisionIdException</code> exception
-        /// is returned. 
+        /// latest policy revision id, an <c>InvalidPolicyRevisionIdException</c> exception is
+        /// returned. 
         /// </para>
         /// </summary>
         public string PolicyRevisionId

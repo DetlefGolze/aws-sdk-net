@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeArtifact.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.CodeArtifact.Model
         private string _displayName;
         private PackageFormat _format;
         private string _homePage;
-        private List<LicenseInfo> _licenses = new List<LicenseInfo>();
+        private List<LicenseInfo> _licenses = AWSConfigs.InitializeCollections ? new List<LicenseInfo>() : null;
         private string _awsNamespace;
         private PackageVersionOrigin _origin;
         private string _packageName;
@@ -50,10 +51,10 @@ namespace Amazon.CodeArtifact.Model
         /// <summary>
         /// Gets and sets the property DisplayName. 
         /// <para>
-        ///  The name of the package that is displayed. The <code>displayName</code> varies depending
-        /// on the package version's format. For example, if an npm package is named <code>ui</code>,
-        /// is in the namespace <code>vue</code>, and has the format <code>npm</code>, then the
-        /// <code>displayName</code> is <code>@vue/ui</code>. 
+        ///  The name of the package that is displayed. The <c>displayName</c> varies depending
+        /// on the package version's format. For example, if an npm package is named <c>ui</c>,
+        /// is in the namespace <c>vue</c>, and has the format <c>npm</c>, then the <c>displayName</c>
+        /// is <c>@vue/ui</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -120,31 +121,31 @@ namespace Amazon.CodeArtifact.Model
         // Check to see if Licenses property is set
         internal bool IsSetLicenses()
         {
-            return this._licenses != null && this._licenses.Count > 0; 
+            return this._licenses != null && (this._licenses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Namespace. 
         /// <para>
-        /// The namespace of the package version. The package version component that specifies
-        /// its namespace depends on its type. For example:
+        /// The namespace of the package version. The package component that specifies its namespace
+        /// depends on its type. For example:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  The namespace of a Maven package version is its <code>groupId</code>. 
+        ///  The namespace of a Maven package version is its <c>groupId</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  The namespace of an npm package version is its <code>scope</code>. 
+        ///  The namespace of an npm or Swift package version is its <c>scope</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  Python and NuGet package versions do not contain a corresponding component, package
-        /// versions of those formats do not have a namespace. 
+        /// The namespace of a generic package is its <c>namespace</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  The namespace of a generic package is its <code>namespace</code>. 
+        ///  Python, NuGet, Ruby, and Cargo package versions do not contain a corresponding component,
+        /// package versions of those formats do not have a namespace. 
         /// </para>
         ///  </li> </ul>
         /// </summary>

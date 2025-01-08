@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.CodeCommit.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.CodeCommit
 {
     /// <summary>
-    /// Interface for accessing CodeCommit
+    /// <para>Interface for accessing CodeCommit</para>
     ///
     /// CodeCommit 
     /// <para>
@@ -68,6 +69,11 @@ namespace Amazon.CodeCommit
     /// <para>
     ///  <a>UpdateRepositoryDescription</a>, which sets or updates the description of the
     /// repository.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <a>UpdateRepositoryEncryptionKey</a>, which updates the Key Management Service encryption
+    /// key used to encrypt and decrypt a repository.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -734,7 +740,7 @@ namespace Amazon.CodeCommit
         /// <exception cref="Amazon.CodeCommit.Model.TipsDivergenceExceededException">
         /// The divergence between the tips of the provided commit specifiers is too great to
         /// determine whether there might be any merge conflicts. Locally compare the specifiers
-        /// using <code>git diff</code> or a diff tool.
+        /// using <c>git diff</c> or a diff tool.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/BatchDescribeMergeConflicts">REST API Reference for BatchDescribeMergeConflicts Operation</seealso>
         BatchDescribeMergeConflictsResponse BatchDescribeMergeConflicts(BatchDescribeMergeConflictsRequest request);
@@ -1625,6 +1631,13 @@ namespace Amazon.CodeCommit
         /// <exception cref="Amazon.CodeCommit.Model.EncryptionKeyDisabledException">
         /// The encryption key is disabled.
         /// </exception>
+        /// <exception cref="Amazon.CodeCommit.Model.EncryptionKeyInvalidIdException">
+        /// The Key Management Service encryption key is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.CodeCommit.Model.EncryptionKeyInvalidUsageException">
+        /// A KMS encryption key was used to try and encrypt or decrypt a repository, but either
+        /// the repository or the key was not in a valid state to support the operation.
+        /// </exception>
         /// <exception cref="Amazon.CodeCommit.Model.EncryptionKeyNotFoundException">
         /// No encryption key was found.
         /// </exception>
@@ -1650,6 +1663,9 @@ namespace Amazon.CodeCommit
         /// </exception>
         /// <exception cref="Amazon.CodeCommit.Model.InvalidTagsMapException">
         /// The map of tags is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.CodeCommit.Model.OperationNotAllowedException">
+        /// The requested action is not allowed.
         /// </exception>
         /// <exception cref="Amazon.CodeCommit.Model.RepositoryLimitExceededException">
         /// A repository resource limit was exceeded.
@@ -1850,7 +1866,7 @@ namespace Amazon.CodeCommit
         /// <exception cref="Amazon.CodeCommit.Model.TipsDivergenceExceededException">
         /// The divergence between the tips of the provided commit specifiers is too great to
         /// determine whether there might be any merge conflicts. Locally compare the specifiers
-        /// using <code>git diff</code> or a diff tool.
+        /// using <c>git diff</c> or a diff tool.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/CreateUnreferencedMergeCommit">REST API Reference for CreateUnreferencedMergeCommit Operation</seealso>
         CreateUnreferencedMergeCommitResponse CreateUnreferencedMergeCommit(CreateUnreferencedMergeCommitRequest request);
@@ -2453,7 +2469,7 @@ namespace Amazon.CodeCommit
         /// <exception cref="Amazon.CodeCommit.Model.TipsDivergenceExceededException">
         /// The divergence between the tips of the provided commit specifiers is too great to
         /// determine whether there might be any merge conflicts. Locally compare the specifiers
-        /// using <code>git diff</code> or a diff tool.
+        /// using <c>git diff</c> or a diff tool.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/DescribeMergeConflicts">REST API Reference for DescribeMergeConflicts Operation</seealso>
         DescribeMergeConflictsResponse DescribeMergeConflicts(DescribeMergeConflictsRequest request);
@@ -3844,7 +3860,7 @@ namespace Amazon.CodeCommit
         /// <exception cref="Amazon.CodeCommit.Model.TipsDivergenceExceededException">
         /// The divergence between the tips of the provided commit specifiers is too great to
         /// determine whether there might be any merge conflicts. Locally compare the specifiers
-        /// using <code>git diff</code> or a diff tool.
+        /// using <c>git diff</c> or a diff tool.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetMergeConflicts">REST API Reference for GetMergeConflicts Operation</seealso>
         GetMergeConflictsResponse GetMergeConflicts(GetMergeConflictsRequest request);
@@ -3945,7 +3961,7 @@ namespace Amazon.CodeCommit
         /// <exception cref="Amazon.CodeCommit.Model.TipsDivergenceExceededException">
         /// The divergence between the tips of the provided commit specifiers is too great to
         /// determine whether there might be any merge conflicts. Locally compare the specifiers
-        /// using <code>git diff</code> or a diff tool.
+        /// using <c>git diff</c> or a diff tool.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/GetMergeOptions">REST API Reference for GetMergeOptions Operation</seealso>
         GetMergeOptionsResponse GetMergeOptions(GetMergeOptionsRequest request);
@@ -4607,7 +4623,7 @@ namespace Amazon.CodeCommit
         /// <exception cref="Amazon.CodeCommit.Model.TipsDivergenceExceededException">
         /// The divergence between the tips of the provided commit specifiers is too great to
         /// determine whether there might be any merge conflicts. Locally compare the specifiers
-        /// using <code>git diff</code> or a diff tool.
+        /// using <c>git diff</c> or a diff tool.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/ListFileCommitHistory">REST API Reference for ListFileCommitHistory Operation</seealso>
         ListFileCommitHistoryResponse ListFileCommitHistory(ListFileCommitHistoryRequest request);
@@ -4680,8 +4696,7 @@ namespace Amazon.CodeCommit
         /// The specified number of maximum results is not valid.
         /// </exception>
         /// <exception cref="Amazon.CodeCommit.Model.InvalidPullRequestStatusException">
-        /// The pull request status is not valid. The only valid values are <code>OPEN</code>
-        /// and <code>CLOSED</code>.
+        /// The pull request status is not valid. The only valid values are <c>OPEN</c> and <c>CLOSED</c>.
         /// </exception>
         /// <exception cref="Amazon.CodeCommit.Model.InvalidRepositoryNameException">
         /// A specified repository name is not valid.
@@ -5000,7 +5015,7 @@ namespace Amazon.CodeCommit
         /// <exception cref="Amazon.CodeCommit.Model.TipsDivergenceExceededException">
         /// The divergence between the tips of the provided commit specifiers is too great to
         /// determine whether there might be any merge conflicts. Locally compare the specifiers
-        /// using <code>git diff</code> or a diff tool.
+        /// using <c>git diff</c> or a diff tool.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/MergeBranchesByFastForward">REST API Reference for MergeBranchesByFastForward Operation</seealso>
         MergeBranchesByFastForwardResponse MergeBranchesByFastForward(MergeBranchesByFastForwardRequest request);
@@ -5184,7 +5199,7 @@ namespace Amazon.CodeCommit
         /// <exception cref="Amazon.CodeCommit.Model.TipsDivergenceExceededException">
         /// The divergence between the tips of the provided commit specifiers is too great to
         /// determine whether there might be any merge conflicts. Locally compare the specifiers
-        /// using <code>git diff</code> or a diff tool.
+        /// using <c>git diff</c> or a diff tool.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/MergeBranchesBySquash">REST API Reference for MergeBranchesBySquash Operation</seealso>
         MergeBranchesBySquashResponse MergeBranchesBySquash(MergeBranchesBySquashRequest request);
@@ -5368,7 +5383,7 @@ namespace Amazon.CodeCommit
         /// <exception cref="Amazon.CodeCommit.Model.TipsDivergenceExceededException">
         /// The divergence between the tips of the provided commit specifiers is too great to
         /// determine whether there might be any merge conflicts. Locally compare the specifiers
-        /// using <code>git diff</code> or a diff tool.
+        /// using <c>git diff</c> or a diff tool.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/MergeBranchesByThreeWay">REST API Reference for MergeBranchesByThreeWay Operation</seealso>
         MergeBranchesByThreeWayResponse MergeBranchesByThreeWay(MergeBranchesByThreeWayRequest request);
@@ -5670,7 +5685,7 @@ namespace Amazon.CodeCommit
         /// <exception cref="Amazon.CodeCommit.Model.TipsDivergenceExceededException">
         /// The divergence between the tips of the provided commit specifiers is too great to
         /// determine whether there might be any merge conflicts. Locally compare the specifiers
-        /// using <code>git diff</code> or a diff tool.
+        /// using <c>git diff</c> or a diff tool.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/MergePullRequestBySquash">REST API Reference for MergePullRequestBySquash Operation</seealso>
         MergePullRequestBySquashResponse MergePullRequestBySquash(MergePullRequestBySquashRequest request);
@@ -5856,7 +5871,7 @@ namespace Amazon.CodeCommit
         /// <exception cref="Amazon.CodeCommit.Model.TipsDivergenceExceededException">
         /// The divergence between the tips of the provided commit specifiers is too great to
         /// determine whether there might be any merge conflicts. Locally compare the specifiers
-        /// using <code>git diff</code> or a diff tool.
+        /// using <c>git diff</c> or a diff tool.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/MergePullRequestByThreeWay">REST API Reference for MergePullRequestByThreeWay Operation</seealso>
         MergePullRequestByThreeWayResponse MergePullRequestByThreeWay(MergePullRequestByThreeWayRequest request);
@@ -7561,12 +7576,11 @@ namespace Amazon.CodeCommit
         /// that the pull request is in the specified repository, and then try again.
         /// </exception>
         /// <exception cref="Amazon.CodeCommit.Model.InvalidPullRequestStatusException">
-        /// The pull request status is not valid. The only valid values are <code>OPEN</code>
-        /// and <code>CLOSED</code>.
+        /// The pull request status is not valid. The only valid values are <c>OPEN</c> and <c>CLOSED</c>.
         /// </exception>
         /// <exception cref="Amazon.CodeCommit.Model.InvalidPullRequestStatusUpdateException">
-        /// The pull request status update is not valid. The only valid update is from <code>OPEN</code>
-        /// to <code>CLOSED</code>.
+        /// The pull request status update is not valid. The only valid update is from <c>OPEN</c>
+        /// to <c>CLOSED</c>.
         /// </exception>
         /// <exception cref="Amazon.CodeCommit.Model.PullRequestDoesNotExistException">
         /// The pull request ID could not be found. Make sure that you have specified the correct
@@ -7752,6 +7766,89 @@ namespace Amazon.CodeCommit
         /// <returns>Returns a  UpdateRepositoryDescriptionResult from CodeCommit.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdateRepositoryDescription">REST API Reference for UpdateRepositoryDescription Operation</seealso>
         UpdateRepositoryDescriptionResponse EndUpdateRepositoryDescription(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  UpdateRepositoryEncryptionKey
+
+
+        /// <summary>
+        /// Updates the Key Management Service encryption key used to encrypt and decrypt a CodeCommit
+        /// repository.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateRepositoryEncryptionKey service method.</param>
+        /// 
+        /// <returns>The response from the UpdateRepositoryEncryptionKey service method, as returned by CodeCommit.</returns>
+        /// <exception cref="Amazon.CodeCommit.Model.EncryptionIntegrityChecksFailedException">
+        /// An encryption integrity check failed.
+        /// </exception>
+        /// <exception cref="Amazon.CodeCommit.Model.EncryptionKeyAccessDeniedException">
+        /// An encryption key could not be accessed.
+        /// </exception>
+        /// <exception cref="Amazon.CodeCommit.Model.EncryptionKeyDisabledException">
+        /// The encryption key is disabled.
+        /// </exception>
+        /// <exception cref="Amazon.CodeCommit.Model.EncryptionKeyInvalidIdException">
+        /// The Key Management Service encryption key is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.CodeCommit.Model.EncryptionKeyInvalidUsageException">
+        /// A KMS encryption key was used to try and encrypt or decrypt a repository, but either
+        /// the repository or the key was not in a valid state to support the operation.
+        /// </exception>
+        /// <exception cref="Amazon.CodeCommit.Model.EncryptionKeyNotFoundException">
+        /// No encryption key was found.
+        /// </exception>
+        /// <exception cref="Amazon.CodeCommit.Model.EncryptionKeyRequiredException">
+        /// A KMS encryption key ID is required but was not specified.
+        /// </exception>
+        /// <exception cref="Amazon.CodeCommit.Model.EncryptionKeyUnavailableException">
+        /// The encryption key is not available.
+        /// </exception>
+        /// <exception cref="Amazon.CodeCommit.Model.InvalidRepositoryNameException">
+        /// A specified repository name is not valid.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// This exception occurs only when a specified repository name is not valid. Other exceptions
+        /// occur when a required repository parameter is missing, or when a specified repository
+        /// does not exist.
+        /// </para>
+        ///  </note>
+        /// </exception>
+        /// <exception cref="Amazon.CodeCommit.Model.RepositoryDoesNotExistException">
+        /// The specified repository does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.CodeCommit.Model.RepositoryNameRequiredException">
+        /// A repository name is required, but was not specified.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdateRepositoryEncryptionKey">REST API Reference for UpdateRepositoryEncryptionKey Operation</seealso>
+        UpdateRepositoryEncryptionKeyResponse UpdateRepositoryEncryptionKey(UpdateRepositoryEncryptionKeyRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateRepositoryEncryptionKey operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateRepositoryEncryptionKey operation on AmazonCodeCommitClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateRepositoryEncryptionKey
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdateRepositoryEncryptionKey">REST API Reference for UpdateRepositoryEncryptionKey Operation</seealso>
+        IAsyncResult BeginUpdateRepositoryEncryptionKey(UpdateRepositoryEncryptionKeyRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateRepositoryEncryptionKey operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateRepositoryEncryptionKey.</param>
+        /// 
+        /// <returns>Returns a  UpdateRepositoryEncryptionKeyResult from CodeCommit.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdateRepositoryEncryptionKey">REST API Reference for UpdateRepositoryEncryptionKey Operation</seealso>
+        UpdateRepositoryEncryptionKeyResponse EndUpdateRepositoryEncryptionKey(IAsyncResult asyncResult);
 
         #endregion
         

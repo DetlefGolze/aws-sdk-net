@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
     /// Container for the parameters to the ResetDBClusterParameterGroup operation.
     /// Modifies the parameters of a DB cluster parameter group to the default value. To reset
-    /// specific parameters submit a list of the following: <code>ParameterName</code> and
-    /// <code>ApplyMethod</code>. To reset the entire DB cluster parameter group, specify
-    /// the <code>DBClusterParameterGroupName</code> and <code>ResetAllParameters</code> parameters.
+    /// specific parameters submit a list of the following: <c>ParameterName</c> and <c>ApplyMethod</c>.
+    /// To reset the entire DB cluster parameter group, specify the <c>DBClusterParameterGroupName</c>
+    /// and <c>ResetAllParameters</c> parameters.
     /// 
     ///  
     /// <para>
     /// When resetting the entire group, dynamic parameters are updated immediately and static
-    /// parameters are set to <code>pending-reboot</code> to take effect on the next DB instance
-    /// restart or <code>RebootDBInstance</code> request. You must call <code>RebootDBInstance</code>
+    /// parameters are set to <c>pending-reboot</c> to take effect on the next DB instance
+    /// restart or <c>RebootDBInstance</c> request. You must call <c>RebootDBInstance</c>
     /// for every DB instance in your DB cluster that you want the updated static parameter
     /// to apply to.
     /// </para>
@@ -57,7 +58,7 @@ namespace Amazon.RDS.Model
     public partial class ResetDBClusterParameterGroupRequest : AmazonRDSRequest
     {
         private string _dbClusterParameterGroupName;
-        private List<Parameter> _parameters = new List<Parameter>();
+        private List<Parameter> _parameters = AWSConfigs.InitializeCollections ? new List<Parameter>() : null;
         private bool? _resetAllParameters;
 
         /// <summary>
@@ -83,8 +84,8 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property Parameters. 
         /// <para>
         /// A list of parameter names in the DB cluster parameter group to reset to the default
-        /// values. You can't use this parameter if the <code>ResetAllParameters</code> parameter
-        /// is enabled.
+        /// values. You can't use this parameter if the <c>ResetAllParameters</c> parameter is
+        /// enabled.
         /// </para>
         /// </summary>
         public List<Parameter> Parameters
@@ -96,7 +97,7 @@ namespace Amazon.RDS.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -104,7 +105,7 @@ namespace Amazon.RDS.Model
         /// <para>
         /// Specifies whether to reset all parameters in the DB cluster parameter group to their
         /// default values. You can't use this parameter if there is a list of parameter names
-        /// specified for the <code>Parameters</code> parameter.
+        /// specified for the <c>Parameters</c> parameter.
         /// </para>
         /// </summary>
         public bool ResetAllParameters

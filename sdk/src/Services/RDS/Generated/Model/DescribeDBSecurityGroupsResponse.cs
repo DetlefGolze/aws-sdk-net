@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// Contains the result of a successful invocation of the <code>DescribeDBSecurityGroups</code>
+    /// Contains the result of a successful invocation of the <c>DescribeDBSecurityGroups</c>
     /// action.
     /// </summary>
     public partial class DescribeDBSecurityGroupsResponse : AmazonWebServiceResponse
     {
-        private List<DBSecurityGroup> _dbSecurityGroups = new List<DBSecurityGroup>();
+        private List<DBSecurityGroup> _dbSecurityGroups = AWSConfigs.InitializeCollections ? new List<DBSecurityGroup>() : null;
         private string _marker;
 
         /// <summary>
         /// Gets and sets the property DBSecurityGroups. 
         /// <para>
-        /// A list of <code>DBSecurityGroup</code> instances.
+        /// A list of <c>DBSecurityGroup</c> instances.
         /// </para>
         /// </summary>
         public List<DBSecurityGroup> DBSecurityGroups
@@ -52,7 +53,7 @@ namespace Amazon.RDS.Model
         // Check to see if DBSecurityGroups property is set
         internal bool IsSetDBSecurityGroups()
         {
-            return this._dbSecurityGroups != null && this._dbSecurityGroups.Count > 0; 
+            return this._dbSecurityGroups != null && (this._dbSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.RDS.Model
         /// <para>
         /// An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>.
+        /// by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker

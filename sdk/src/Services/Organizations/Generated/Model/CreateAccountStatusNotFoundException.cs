@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Organizations.Model
 {
     /// <summary>
-    /// We can't find an create account request with the <code>CreateAccountRequestId</code>
-    /// that you specified.
+    /// We can't find an create account request with the <c>CreateAccountRequestId</c> that
+    /// you specified.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Lightsail.Model
     /// </summary>
     public partial class RenewalSummary
     {
-        private List<DomainValidationRecord> _domainValidationRecords = new List<DomainValidationRecord>();
+        private List<DomainValidationRecord> _domainValidationRecords = AWSConfigs.InitializeCollections ? new List<DomainValidationRecord>() : null;
         private RenewalStatus _renewalStatus;
         private string _renewalStatusReason;
         private DateTime? _updatedAt;
@@ -53,7 +54,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if DomainValidationRecords property is set
         internal bool IsSetDomainValidationRecords()
         {
-            return this._domainValidationRecords != null && this._domainValidationRecords.Count > 0; 
+            return this._domainValidationRecords != null && (this._domainValidationRecords.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -67,27 +68,27 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b> <code>PendingAutoRenewal</code> </b> - Lightsail is attempting to automatically
-        /// validate the domain names of the certificate. No further action is required. 
+        ///  <b> <c>PendingAutoRenewal</c> </b> - Lightsail is attempting to automatically validate
+        /// the domain names of the certificate. No further action is required. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>PendingValidation</code> </b> - Lightsail couldn't automatically validate
-        /// one or more domain names of the certificate. You must take action to validate these
-        /// domain names or the certificate won't be renewed. Check to make sure your certificate's
-        /// domain validation records exist in your domain's DNS, and that your certificate remains
-        /// in use.
+        ///  <b> <c>PendingValidation</c> </b> - Lightsail couldn't automatically validate one
+        /// or more domain names of the certificate. You must take action to validate these domain
+        /// names or the certificate won't be renewed. Check to make sure your certificate's domain
+        /// validation records exist in your domain's DNS, and that your certificate remains in
+        /// use.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>Success</code> </b> - All domain names in the certificate are validated,
-        /// and Lightsail renewed the certificate. No further action is required. 
+        ///  <b> <c>Success</c> </b> - All domain names in the certificate are validated, and
+        /// Lightsail renewed the certificate. No further action is required. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>Failed</code> </b> - One or more domain names were not validated before
-        /// the certificate expired, and Lightsail did not renew the certificate. You can request
-        /// a new certificate using the <code>CreateCertificate</code> action.
+        ///  <b> <c>Failed</c> </b> - One or more domain names were not validated before the certificate
+        /// expired, and Lightsail did not renew the certificate. You can request a new certificate
+        /// using the <c>CreateCertificate</c> action.
         /// </para>
         ///  </li> </ul>
         /// </summary>

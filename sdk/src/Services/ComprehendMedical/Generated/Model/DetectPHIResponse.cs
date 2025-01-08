@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComprehendMedical.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ComprehendMedical.Model
     /// </summary>
     public partial class DetectPHIResponse : AmazonWebServiceResponse
     {
-        private List<Entity> _entities = new List<Entity>();
+        private List<Entity> _entities = AWSConfigs.InitializeCollections ? new List<Entity>() : null;
         private string _modelVersion;
         private string _paginationToken;
 
@@ -56,7 +57,7 @@ namespace Amazon.ComprehendMedical.Model
         // Check to see if Entities property is set
         internal bool IsSetEntities()
         {
-            return this._entities != null && this._entities.Count > 0; 
+            return this._entities != null && (this._entities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -83,8 +84,8 @@ namespace Amazon.ComprehendMedical.Model
         /// <summary>
         /// Gets and sets the property PaginationToken. 
         /// <para>
-        /// If the result of the previous request to <code>DetectPHI</code> was truncated, include
-        /// the <code>PaginationToken</code> to fetch the next page of PHI entities. 
+        /// If the result of the previous request to <c>DetectPHI</c> was truncated, include the
+        /// <c>PaginationToken</c> to fetch the next page of PHI entities. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]

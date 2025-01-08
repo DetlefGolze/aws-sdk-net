@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AccessAnalyzer.Model
 {
     /// <summary>
@@ -35,14 +36,13 @@ namespace Amazon.AccessAnalyzer.Model
     {
         private bool? _allRegions;
         private string _cloudTrailArn;
-        private List<string> _regions = new List<string>();
+        private List<string> _regions = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AllRegions. 
         /// <para>
-        /// Possible values are <code>true</code> or <code>false</code>. If set to <code>true</code>,
-        /// IAM Access Analyzer retrieves CloudTrail data from all regions to analyze and generate
-        /// a policy.
+        /// Possible values are <c>true</c> or <c>false</c>. If set to <c>true</c>, IAM Access
+        /// Analyzer retrieves CloudTrail data from all regions to analyze and generate a policy.
         /// </para>
         /// </summary>
         public bool AllRegions
@@ -60,7 +60,7 @@ namespace Amazon.AccessAnalyzer.Model
         /// <summary>
         /// Gets and sets the property CloudTrailArn. 
         /// <para>
-        /// Specifies the ARN of the trail. The format of a trail ARN is <code>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</code>.
+        /// Specifies the ARN of the trail. The format of a trail ARN is <c>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -91,7 +91,7 @@ namespace Amazon.AccessAnalyzer.Model
         // Check to see if Regions property is set
         internal bool IsSetRegions()
         {
-            return this._regions != null && this._regions.Count > 0; 
+            return this._regions != null && (this._regions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

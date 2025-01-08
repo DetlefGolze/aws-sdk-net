@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -45,15 +46,17 @@ namespace Amazon.EC2.Model
     {
         private string _clientToken;
         private string _description;
-        private List<AddIpamOperatingRegion> _operatingRegions = new List<AddIpamOperatingRegion>();
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private bool? _enablePrivateGua;
+        private List<AddIpamOperatingRegion> _operatingRegions = AWSConfigs.InitializeCollections ? new List<AddIpamOperatingRegion>() : null;
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
+        private IpamTier _tier;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// A unique, case-sensitive identifier that you provide to ensure the idempotency of
-        /// the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
-        /// Idempotency</a>.
+        /// the request. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html">Ensuring
+        /// idempotency</a>.
         /// </para>
         /// </summary>
         public string ClientToken
@@ -87,6 +90,25 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EnablePrivateGua. 
+        /// <para>
+        /// Enable this option to use your own GUA ranges as private IPv6 addresses. This option
+        /// is disabled by default.
+        /// </para>
+        /// </summary>
+        public bool EnablePrivateGua
+        {
+            get { return this._enablePrivateGua.GetValueOrDefault(); }
+            set { this._enablePrivateGua = value; }
+        }
+
+        // Check to see if EnablePrivateGua property is set
+        internal bool IsSetEnablePrivateGua()
+        {
+            return this._enablePrivateGua.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property OperatingRegions. 
         /// <para>
         /// The operating Regions for the IPAM. Operating Regions are Amazon Web Services Regions
@@ -109,7 +131,7 @@ namespace Amazon.EC2.Model
         // Check to see if OperatingRegions property is set
         internal bool IsSetOperatingRegions()
         {
-            return this._operatingRegions != null && this._operatingRegions.Count > 0; 
+            return this._operatingRegions != null && (this._operatingRegions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -117,9 +139,8 @@ namespace Amazon.EC2.Model
         /// <para>
         /// The key/value combination of a tag assigned to the resource. Use the tag key in the
         /// filter name and the tag value as the filter value. For example, to find all resources
-        /// that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>,
-        /// specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the
-        /// filter value.
+        /// that have a tag with the key <c>Owner</c> and the value <c>TeamA</c>, specify <c>tag:Owner</c>
+        /// for the filter name and <c>TeamA</c> for the filter value.
         /// </para>
         /// </summary>
         public List<TagSpecification> TagSpecifications
@@ -131,7 +152,27 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Tier. 
+        /// <para>
+        /// IPAM is offered in a Free Tier and an Advanced Tier. For more information about the
+        /// features available in each tier and the costs associated with the tiers, see <a href="http://aws.amazon.com/vpc/pricing/">Amazon
+        /// VPC pricing &gt; IPAM tab</a>.
+        /// </para>
+        /// </summary>
+        public IpamTier Tier
+        {
+            get { return this._tier; }
+            set { this._tier = value; }
+        }
+
+        // Check to see if Tier property is set
+        internal bool IsSetTier()
+        {
+            return this._tier != null;
         }
 
     }

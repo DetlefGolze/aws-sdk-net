@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptography.Model
 {
     /// <summary>
@@ -83,7 +84,7 @@ namespace Amazon.PaymentCryptography.Model
         /// Gets and sets the property SigningKeyAlgorithm. 
         /// <para>
         /// The algorithm of the signing key certificate for use in TR-34 key block generation.
-        /// <code>RSA_2048</code> is the only signing key algorithm allowed.
+        /// <c>RSA_2048</c> is the only signing key algorithm allowed.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -102,8 +103,8 @@ namespace Amazon.PaymentCryptography.Model
         /// <summary>
         /// Gets and sets the property SigningKeyCertificate. 
         /// <para>
-        /// The signing key certificate of the public key for signature within the TR-34 key block
-        /// cryptogram. The certificate expires after 7 days.
+        /// The signing key certificate in PEM format (base64 encoded) of the public key for signature
+        /// within the TR-34 key block. The certificate expires after 7 days.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=32768)]
@@ -122,8 +123,8 @@ namespace Amazon.PaymentCryptography.Model
         /// <summary>
         /// Gets and sets the property SigningKeyCertificateChain. 
         /// <para>
-        /// The certificate chain that signed the signing key certificate. This is the root certificate
-        /// authority (CA) within your service account.
+        /// The root certificate authority (CA) that signed the signing key certificate in PEM
+        /// format (base64 encoded).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=32768)]

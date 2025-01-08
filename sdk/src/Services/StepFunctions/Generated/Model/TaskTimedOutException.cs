@@ -26,10 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
-    /// 
+    /// The task token has either expired or the task associated with the token has already
+    /// been closed.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

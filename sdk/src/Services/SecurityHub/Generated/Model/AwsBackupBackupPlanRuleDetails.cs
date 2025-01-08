@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// Provides details about an array of <code>BackupRule</code> objects, each of which
-    /// specifies a scheduled task that is used to back up a selection of resources.
+    /// Provides details about an array of <c>BackupRule</c> objects, each of which specifies
+    /// a scheduled task that is used to back up a selection of resources.
     /// </summary>
     public partial class AwsBackupBackupPlanRuleDetails
     {
         private long? _completionWindowMinutes;
-        private List<AwsBackupBackupPlanRuleCopyActionsDetails> _copyActions = new List<AwsBackupBackupPlanRuleCopyActionsDetails>();
+        private List<AwsBackupBackupPlanRuleCopyActionsDetails> _copyActions = AWSConfigs.InitializeCollections ? new List<AwsBackupBackupPlanRuleCopyActionsDetails>() : null;
         private bool? _enableContinuousBackup;
         private AwsBackupBackupPlanLifecycleDetails _lifecycle;
         private string _ruleId;
@@ -66,8 +67,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property CopyActions. 
         /// <para>
-        /// An array of <code>CopyAction</code> objects, each of which contains details of the
-        /// copy operation. 
+        /// An array of <c>CopyAction</c> objects, each of which contains details of the copy
+        /// operation. 
         /// </para>
         /// </summary>
         public List<AwsBackupBackupPlanRuleCopyActionsDetails> CopyActions
@@ -79,7 +80,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if CopyActions property is set
         internal bool IsSetCopyActions()
         {
-            return this._copyActions != null && this._copyActions.Count > 0; 
+            return this._copyActions != null && (this._copyActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -106,7 +107,7 @@ namespace Amazon.SecurityHub.Model
         /// <para>
         /// Defines when a protected resource is transitioned to cold storage and when it expires.
         /// Backup transitions and expires backups automatically according to the lifecycle that
-        /// you define. If you do not specify a lifecycle, Backup applies the lifecycle policy
+        /// you define. If you don't specify a lifecycle, Backup applies the lifecycle policy
         /// of the source backup to the destination backup.
         /// </para>
         ///  

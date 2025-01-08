@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
     /// Inspect the path component of the URI of the web request. This is the part of the
-    /// web request that identifies a resource. For example, <code>/images/daily-ad.jpg</code>.
+    /// web request that identifies a resource. For example, <c>/images/daily-ad.jpg</c>.
     /// 
     ///  
     /// <para>
@@ -39,7 +40,7 @@ namespace Amazon.WAFV2.Model
     /// </para>
     ///  
     /// <para>
-    /// JSON specification: <code>"UriPath": {}</code> 
+    /// JSON specification: <c>"UriPath": {}</c> 
     /// </para>
     /// </summary>
     public partial class UriPath

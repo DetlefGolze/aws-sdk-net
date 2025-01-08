@@ -26,16 +26,37 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
-    /// Filters the connection definitions that are returned by the <code>GetConnections</code>
+    /// Filters the connection definitions that are returned by the <c>GetConnections</c>
     /// API operation.
     /// </summary>
     public partial class GetConnectionsFilter
     {
+        private int? _connectionSchemaVersion;
         private ConnectionType _connectionType;
-        private List<string> _matchCriteria = new List<string>();
+        private List<string> _matchCriteria = AWSConfigs.InitializeCollections ? new List<string>() : null;
+
+        /// <summary>
+        /// Gets and sets the property ConnectionSchemaVersion. 
+        /// <para>
+        /// Denotes if the connection was created with schema version 1 or 2.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=2)]
+        public int ConnectionSchemaVersion
+        {
+            get { return this._connectionSchemaVersion.GetValueOrDefault(); }
+            set { this._connectionSchemaVersion = value; }
+        }
+
+        // Check to see if ConnectionSchemaVersion property is set
+        internal bool IsSetConnectionSchemaVersion()
+        {
+            return this._connectionSchemaVersion.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property ConnectionType. 
@@ -72,7 +93,7 @@ namespace Amazon.Glue.Model
         // Check to see if MatchCriteria property is set
         internal bool IsSetMatchCriteria()
         {
-            return this._matchCriteria != null && this._matchCriteria.Count > 0; 
+            return this._matchCriteria != null && (this._matchCriteria.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

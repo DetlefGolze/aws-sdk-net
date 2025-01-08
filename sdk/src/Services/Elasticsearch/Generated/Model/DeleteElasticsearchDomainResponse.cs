@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// The result of a <code>DeleteElasticsearchDomain</code> request. Contains the status
-    /// of the pending deletion, or no status if the domain and all of its resources have
-    /// been deleted.
+    /// The result of a <c>DeleteElasticsearchDomain</c> request. Contains the status of the
+    /// pending deletion, or no status if the domain and all of its resources have been deleted.
     /// </summary>
     public partial class DeleteElasticsearchDomainResponse : AmazonWebServiceResponse
     {

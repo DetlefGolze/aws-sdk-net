@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideo.Model
 {
     /// <summary>
@@ -157,7 +158,7 @@ namespace Amazon.KinesisVideo.Model
         /// Gets and sets the property SyncStatus. 
         /// <para>
         ///  The current sync status of the stream's edge configuration. When you invoke this
-        /// API, the sync status will be set to the <code>SYNCING</code> state. Use the <code>DescribeEdgeConfiguration</code>
+        /// API, the sync status will be set to the <c>SYNCING</c> state. Use the <c>DescribeEdgeConfiguration</c>
         /// API to get the latest status of the edge configuration.
         /// </para>
         /// </summary>

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DataZone.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,32 +53,44 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public DataProductItem Unmarshall(JsonUnmarshallerContext context)
         {
+            DataProductItem unmarshalledObject = new DataProductItem();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            DataProductItem unmarshalledObject = new DataProductItem();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
-                if (context.TestExpression("domainId", targetDepth))
+                if (context.TestExpression("glossaryTerms", targetDepth))
                 {
-                    var unmarshaller = StringUnmarshaller.Instance;
-                    unmarshalledObject.DomainId = unmarshaller.Unmarshall(context);
+                    var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
+                    unmarshalledObject.GlossaryTerms = unmarshaller.Unmarshall(context);
                     continue;
                 }
-                if (context.TestExpression("itemId", targetDepth))
+                if (context.TestExpression("identifier", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
-                    unmarshalledObject.ItemId = unmarshaller.Unmarshall(context);
+                    unmarshalledObject.Identifier = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("itemType", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ItemType = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("revision", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Revision = unmarshaller.Unmarshall(context);
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

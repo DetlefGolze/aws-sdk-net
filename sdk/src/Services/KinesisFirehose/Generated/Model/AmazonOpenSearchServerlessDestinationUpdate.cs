@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
@@ -134,9 +135,8 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property RetryOptions. 
         /// <para>
-        /// The retry behavior in case Kinesis Data Firehose is unable to deliver documents to
-        /// the Serverless offering for Amazon OpenSearch Service. The default value is 300 (5
-        /// minutes).
+        /// The retry behavior in case Firehose is unable to deliver documents to the Serverless
+        /// offering for Amazon OpenSearch Service. The default value is 300 (5 minutes).
         /// </para>
         /// </summary>
         public AmazonOpenSearchServerlessRetryOptions RetryOptions
@@ -154,9 +154,9 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property RoleARN. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the IAM role to be assumed by Kinesis Data Firehose
-        /// for calling the Serverless offering for Amazon OpenSearch Service Configuration API
-        /// and for indexing documents.
+        /// The Amazon Resource Name (ARN) of the IAM role to be assumed by Firehose for calling
+        /// the Serverless offering for Amazon OpenSearch Service Configuration API and for indexing
+        /// documents.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=512)]

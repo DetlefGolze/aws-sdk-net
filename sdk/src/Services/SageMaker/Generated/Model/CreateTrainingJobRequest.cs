@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -46,14 +47,14 @@ namespace Amazon.SageMaker.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>AlgorithmSpecification</code> - Identifies the training algorithm to use. 
+    ///  <c>AlgorithmSpecification</c> - Identifies the training algorithm to use. 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>HyperParameters</code> - Specify these algorithm-specific parameters to enable
-    /// the estimation of model parameters during training. Hyperparameters can be tuned to
-    /// optimize this learning process. For a list of hyperparameters for each training algorithm
-    /// provided by SageMaker, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html">Algorithms</a>.
+    ///  <c>HyperParameters</c> - Specify these algorithm-specific parameters to enable the
+    /// estimation of model parameters during training. Hyperparameters can be tuned to optimize
+    /// this learning process. For a list of hyperparameters for each training algorithm provided
+    /// by SageMaker, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html">Algorithms</a>.
     /// 
     /// </para>
     ///  <important> 
@@ -65,47 +66,47 @@ namespace Amazon.SageMaker.Model
     /// </para>
     ///  </important> </li> <li> 
     /// <para>
-    ///  <code>InputDataConfig</code> - Describes the input required by the training job and
-    /// the Amazon S3, EFS, or FSx location where it is stored.
+    ///  <c>InputDataConfig</c> - Describes the input required by the training job and the
+    /// Amazon S3, EFS, or FSx location where it is stored.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>OutputDataConfig</code> - Identifies the Amazon S3 bucket where you want SageMaker
+    ///  <c>OutputDataConfig</c> - Identifies the Amazon S3 bucket where you want SageMaker
     /// to save the results of model training. 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ResourceConfig</code> - Identifies the resources, ML compute instances, and
-    /// ML storage volumes to deploy for model training. In distributed training, you specify
-    /// more than one instance. 
+    ///  <c>ResourceConfig</c> - Identifies the resources, ML compute instances, and ML storage
+    /// volumes to deploy for model training. In distributed training, you specify more than
+    /// one instance. 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>EnableManagedSpotTraining</code> - Optimize the cost of training machine learning
+    ///  <c>EnableManagedSpotTraining</c> - Optimize the cost of training machine learning
     /// models by up to 80% by using Amazon EC2 Spot instances. For more information, see
     /// <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-managed-spot-training.html">Managed
     /// Spot Training</a>. 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>RoleArn</code> - The Amazon Resource Name (ARN) that SageMaker assumes to perform
+    ///  <c>RoleArn</c> - The Amazon Resource Name (ARN) that SageMaker assumes to perform
     /// tasks on your behalf during model training. You must grant this role the necessary
     /// permissions so that SageMaker can successfully complete model training. 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>StoppingCondition</code> - To help cap training costs, use <code>MaxRuntimeInSeconds</code>
-    /// to set a time limit for training. Use <code>MaxWaitTimeInSeconds</code> to specify
-    /// how long a managed spot training job has to complete. 
+    ///  <c>StoppingCondition</c> - To help cap training costs, use <c>MaxRuntimeInSeconds</c>
+    /// to set a time limit for training. Use <c>MaxWaitTimeInSeconds</c> to specify how long
+    /// a managed spot training job has to complete. 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>Environment</code> - The environment variables to set in the Docker container.
+    ///  <c>Environment</c> - The environment variables to set in the Docker container.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>RetryStrategy</code> - The number of times to retry the job when the job fails
-    /// due to an <code>InternalServerError</code>.
+    ///  <c>RetryStrategy</c> - The number of times to retry the job when the job fails due
+    /// to an <c>InternalServerError</c>.
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -118,22 +119,25 @@ namespace Amazon.SageMaker.Model
         private AlgorithmSpecification _algorithmSpecification;
         private CheckpointConfig _checkpointConfig;
         private DebugHookConfig _debugHookConfig;
-        private List<DebugRuleConfiguration> _debugRuleConfigurations = new List<DebugRuleConfiguration>();
+        private List<DebugRuleConfiguration> _debugRuleConfigurations = AWSConfigs.InitializeCollections ? new List<DebugRuleConfiguration>() : null;
         private bool? _enableInterContainerTrafficEncryption;
         private bool? _enableManagedSpotTraining;
         private bool? _enableNetworkIsolation;
-        private Dictionary<string, string> _environment = new Dictionary<string, string>();
+        private Dictionary<string, string> _environment = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private ExperimentConfig _experimentConfig;
-        private Dictionary<string, string> _hyperParameters = new Dictionary<string, string>();
-        private List<Channel> _inputDataConfig = new List<Channel>();
+        private Dictionary<string, string> _hyperParameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private InfraCheckConfig _infraCheckConfig;
+        private List<Channel> _inputDataConfig = AWSConfigs.InitializeCollections ? new List<Channel>() : null;
         private OutputDataConfig _outputDataConfig;
         private ProfilerConfig _profilerConfig;
-        private List<ProfilerRuleConfiguration> _profilerRuleConfigurations = new List<ProfilerRuleConfiguration>();
+        private List<ProfilerRuleConfiguration> _profilerRuleConfigurations = AWSConfigs.InitializeCollections ? new List<ProfilerRuleConfiguration>() : null;
+        private RemoteDebugConfig _remoteDebugConfig;
         private ResourceConfig _resourceConfig;
         private RetryStrategy _retryStrategy;
         private string _roleArn;
+        private SessionChainingConfig _sessionChainingConfig;
         private StoppingCondition _stoppingCondition;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private TensorBoardOutputConfig _tensorBoardOutputConfig;
         private string _trainingJobName;
         private VpcConfig _vpcConfig;
@@ -212,14 +216,14 @@ namespace Amazon.SageMaker.Model
         // Check to see if DebugRuleConfigurations property is set
         internal bool IsSetDebugRuleConfigurations()
         {
-            return this._debugRuleConfigurations != null && this._debugRuleConfigurations.Count > 0; 
+            return this._debugRuleConfigurations != null && (this._debugRuleConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property EnableInterContainerTrafficEncryption. 
         /// <para>
         /// To encrypt all communications between ML compute instances in distributed training,
-        /// choose <code>True</code>. Encryption provides greater security for distributed training,
+        /// choose <c>True</c>. Encryption provides greater security for distributed training,
         /// but training might take longer. How long it takes depends on the amount of communication
         /// between compute instances, especially if you use a deep learning algorithm in distributed
         /// training. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/train-encrypt.html">Protect
@@ -241,10 +245,10 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property EnableManagedSpotTraining. 
         /// <para>
-        /// To train models using managed spot training, choose <code>True</code>. Managed spot
-        /// training provides a fully managed and scalable infrastructure for training machine
-        /// learning models. this option is useful when training jobs can be interrupted and when
-        /// there is flexibility when the training job is run. 
+        /// To train models using managed spot training, choose <c>True</c>. Managed spot training
+        /// provides a fully managed and scalable infrastructure for training machine learning
+        /// models. this option is useful when training jobs can be interrupted and when there
+        /// is flexibility when the training job is run. 
         /// </para>
         ///  
         /// <para>
@@ -294,7 +298,7 @@ namespace Amazon.SageMaker.Model
         /// The environment variables to set in the Docker container.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=48)]
+        [AWSProperty(Max=100)]
         public Dictionary<string, string> Environment
         {
             get { return this._environment; }
@@ -304,7 +308,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Environment property is set
         internal bool IsSetEnvironment()
         {
-            return this._environment != null && this._environment.Count > 0; 
+            return this._environment != null && (this._environment.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -333,8 +337,8 @@ namespace Amazon.SageMaker.Model
         ///  
         /// <para>
         /// You can specify a maximum of 100 hyperparameters. Each hyperparameter is a key-value
-        /// pair. Each key and value is limited to 256 characters, as specified by the <code>Length
-        /// Constraint</code>. 
+        /// pair. Each key and value is limited to 256 characters, as specified by the <c>Length
+        /// Constraint</c>. 
         /// </para>
         ///  <important> 
         /// <para>
@@ -355,19 +359,38 @@ namespace Amazon.SageMaker.Model
         // Check to see if HyperParameters property is set
         internal bool IsSetHyperParameters()
         {
-            return this._hyperParameters != null && this._hyperParameters.Count > 0; 
+            return this._hyperParameters != null && (this._hyperParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property InfraCheckConfig. 
+        /// <para>
+        /// Contains information about the infrastructure health check configuration for the training
+        /// job.
+        /// </para>
+        /// </summary>
+        public InfraCheckConfig InfraCheckConfig
+        {
+            get { return this._infraCheckConfig; }
+            set { this._infraCheckConfig = value; }
+        }
+
+        // Check to see if InfraCheckConfig property is set
+        internal bool IsSetInfraCheckConfig()
+        {
+            return this._infraCheckConfig != null;
         }
 
         /// <summary>
         /// Gets and sets the property InputDataConfig. 
         /// <para>
-        /// An array of <code>Channel</code> objects. Each channel is a named input source. <code>InputDataConfig</code>
+        /// An array of <c>Channel</c> objects. Each channel is a named input source. <c>InputDataConfig</c>
         /// describes the input data and its location. 
         /// </para>
         ///  
         /// <para>
         /// Algorithms can accept input data from one or more channels. For example, an algorithm
-        /// might have two channels of input data, <code>training_data</code> and <code>validation_data</code>.
+        /// might have two channels of input data, <c>training_data</c> and <c>validation_data</c>.
         /// The configuration for each channel provides the S3, EFS, or FSx location where the
         /// input data is stored. It also provides information about the stored data: the MIME
         /// type, compression method, and whether the data is wrapped in RecordIO format. 
@@ -394,7 +417,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if InputDataConfig property is set
         internal bool IsSetInputDataConfig()
         {
-            return this._inputDataConfig != null && this._inputDataConfig.Count > 0; 
+            return this._inputDataConfig != null && (this._inputDataConfig.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -449,7 +472,28 @@ namespace Amazon.SageMaker.Model
         // Check to see if ProfilerRuleConfigurations property is set
         internal bool IsSetProfilerRuleConfigurations()
         {
-            return this._profilerRuleConfigurations != null && this._profilerRuleConfigurations.Count > 0; 
+            return this._profilerRuleConfigurations != null && (this._profilerRuleConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property RemoteDebugConfig. 
+        /// <para>
+        /// Configuration for remote debugging. To learn more about the remote debugging functionality
+        /// of SageMaker, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/train-remote-debugging.html">Access
+        /// a training container through Amazon Web Services Systems Manager (SSM) for remote
+        /// debugging</a>.
+        /// </para>
+        /// </summary>
+        public RemoteDebugConfig RemoteDebugConfig
+        {
+            get { return this._remoteDebugConfig; }
+            set { this._remoteDebugConfig = value; }
+        }
+
+        // Check to see if RemoteDebugConfig property is set
+        internal bool IsSetRemoteDebugConfig()
+        {
+            return this._remoteDebugConfig != null;
         }
 
         /// <summary>
@@ -462,9 +506,9 @@ namespace Amazon.SageMaker.Model
         /// <para>
         /// ML storage volumes store model artifacts and incremental states. Training algorithms
         /// might also use ML storage volumes for scratch space. If you want SageMaker to use
-        /// the ML storage volume to store the training data, choose <code>File</code> as the
-        /// <code>TrainingInputMode</code> in the algorithm specification. For distributed training
-        /// algorithms, specify an instance count greater than 1.
+        /// the ML storage volume to store the training data, choose <c>File</c> as the <c>TrainingInputMode</c>
+        /// in the algorithm specification. For distributed training algorithms, specify an instance
+        /// count greater than 1.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -483,7 +527,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property RetryStrategy. 
         /// <para>
-        /// The number of times to retry the job when the job fails due to an <code>InternalServerError</code>.
+        /// The number of times to retry the job when the job fails due to an <c>InternalServerError</c>.
         /// </para>
         /// </summary>
         public RetryStrategy RetryStrategy
@@ -515,7 +559,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// To be able to pass this role to SageMaker, the caller of this API must have the <code>iam:PassRole</code>
+        /// To be able to pass this role to SageMaker, the caller of this API must have the <c>iam:PassRole</c>
         /// permission.
         /// </para>
         ///  </note>
@@ -534,6 +578,25 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SessionChainingConfig. 
+        /// <para>
+        /// Contains information about attribute-based access control (ABAC) for the training
+        /// job.
+        /// </para>
+        /// </summary>
+        public SessionChainingConfig SessionChainingConfig
+        {
+            get { return this._sessionChainingConfig; }
+            set { this._sessionChainingConfig = value; }
+        }
+
+        // Check to see if SessionChainingConfig property is set
+        internal bool IsSetSessionChainingConfig()
+        {
+            return this._sessionChainingConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property StoppingCondition. 
         /// <para>
         /// Specifies a limit to how long a model training job can run. It also specifies how
@@ -542,9 +605,9 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        /// To stop a job, SageMaker sends the algorithm the <code>SIGTERM</code> signal, which
-        /// delays job termination for 120 seconds. Algorithms can use this 120-second window
-        /// to save the model artifacts, so the results of training are not lost. 
+        /// To stop a job, SageMaker sends the algorithm the <c>SIGTERM</c> signal, which delays
+        /// job termination for 120 seconds. Algorithms can use this 120-second window to save
+        /// the model artifacts, so the results of training are not lost. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -579,7 +642,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

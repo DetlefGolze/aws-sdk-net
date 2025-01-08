@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -88,8 +89,8 @@ namespace Amazon.Route53Resolver.Model
         /// Gets and sets the property CreatorRequestId. 
         /// <para>
         /// A unique string that identifies the request that created the Resolver endpoint. The
-        /// <code>CreatorRequestId</code> allows failed requests to be retried without the risk
-        /// of running the operation twice.
+        /// <c>CreatorRequestId</c> allows failed requests to be retried without the risk of running
+        /// the operation twice.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]

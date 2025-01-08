@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -143,11 +144,11 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>LAUNCH</code> 
+        ///  <c>LAUNCH</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NOTIFICATION</code> 
+        ///  <c>NOTIFICATION</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -155,7 +156,7 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TEMPLATE</code> 
+        ///  <c>TEMPLATE</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

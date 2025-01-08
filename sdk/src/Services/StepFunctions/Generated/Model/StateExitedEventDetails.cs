@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
@@ -33,9 +34,47 @@ namespace Amazon.StepFunctions.Model
     /// </summary>
     public partial class StateExitedEventDetails
     {
+        private Dictionary<string, string> _assignedVariables = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private AssignedVariablesDetails _assignedVariablesDetails;
         private string _name;
         private string _output;
         private HistoryEventExecutionDataDetails _outputDetails;
+
+        /// <summary>
+        /// Gets and sets the property AssignedVariables. 
+        /// <para>
+        /// Map of variable name and value as a serialized JSON representation.
+        /// </para>
+        /// </summary>
+        public Dictionary<string, string> AssignedVariables
+        {
+            get { return this._assignedVariables; }
+            set { this._assignedVariables = value; }
+        }
+
+        // Check to see if AssignedVariables property is set
+        internal bool IsSetAssignedVariables()
+        {
+            return this._assignedVariables != null && (this._assignedVariables.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property AssignedVariablesDetails. 
+        /// <para>
+        /// Provides details about input or output in an execution history event.
+        /// </para>
+        /// </summary>
+        public AssignedVariablesDetails AssignedVariablesDetails
+        {
+            get { return this._assignedVariablesDetails; }
+            set { this._assignedVariablesDetails = value; }
+        }
+
+        // Check to see if AssignedVariablesDetails property is set
+        internal bool IsSetAssignedVariablesDetails()
+        {
+            return this._assignedVariablesDetails != null;
+        }
 
         /// <summary>
         /// Gets and sets the property Name. 
@@ -52,19 +91,19 @@ namespace Amazon.StepFunctions.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// brackets <code>&lt; &gt; { } [ ]</code> 
+        /// brackets <c>&lt; &gt; { } [ ]</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// wildcard characters <code>? *</code> 
+        /// wildcard characters <c>? *</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> 
+        /// special characters <c>" # % \ ^ | ~ ` $ &amp; , ; : /</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// control characters (<code>U+0000-001F</code>, <code>U+007F-009F</code>)
+        /// control characters (<c>U+0000-001F</c>, <c>U+007F-009F</c>)
         /// </para>
         ///  </li> </ul> 
         /// <para>

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MemoryDB.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.MemoryDB.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ClusterConfiguration Unmarshall(JsonUnmarshallerContext context)
         {
+            ClusterConfiguration unmarshalledObject = new ClusterConfiguration();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ClusterConfiguration unmarshalledObject = new ClusterConfiguration();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -68,6 +70,12 @@ namespace Amazon.MemoryDB.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.Description = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("Engine", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Engine = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("EngineVersion", targetDepth))
@@ -80,6 +88,18 @@ namespace Amazon.MemoryDB.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.MaintenanceWindow = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("MultiRegionClusterName", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.MultiRegionClusterName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("MultiRegionParameterGroupName", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.MultiRegionParameterGroupName = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Name", targetDepth))
@@ -149,7 +169,6 @@ namespace Amazon.MemoryDB.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

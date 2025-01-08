@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Appflow.Model
 {
     /// <summary>
@@ -33,13 +34,12 @@ namespace Amazon.Appflow.Model
     /// Describes the connectors vended by Amazon AppFlow for specified connector types.
     /// If you don't specify a connector type, this operation describes all connectors vended
     /// by Amazon AppFlow. If there are more connectors than can be returned in one page,
-    /// the response contains a <code>nextToken</code> object, which can be be passed in to
-    /// the next call to the <code>DescribeConnectors</code> API operation to retrieve the
-    /// next page.
+    /// the response contains a <c>nextToken</c> object, which can be be passed in to the
+    /// next call to the <c>DescribeConnectors</c> API operation to retrieve the next page.
     /// </summary>
     public partial class DescribeConnectorsRequest : AmazonAppflowRequest
     {
-        private List<string> _connectorTypes = new List<string>();
+        private List<string> _connectorTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -59,7 +59,7 @@ namespace Amazon.Appflow.Model
         // Check to see if ConnectorTypes property is set
         internal bool IsSetConnectorTypes()
         {
-            return this._connectorTypes != null && this._connectorTypes.Count > 0; 
+            return this._connectorTypes != null && (this._connectorTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

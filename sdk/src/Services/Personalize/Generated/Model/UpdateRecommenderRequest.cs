@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Personalize.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Personalize.Model
     /// starts a full retraining of the models backing your recommender. While the update
     /// completes, you can still get recommendations from the recommender. The recommender
     /// uses the previous configuration until the update completes. To track the status of
-    /// this update, use the <code>latestRecommenderUpdate</code> returned in the <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeRecommender.html">DescribeRecommender</a>
+    /// this update, use the <c>latestRecommenderUpdate</c> returned in the <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeRecommender.html">DescribeRecommender</a>
     /// operation.
     /// </summary>
     public partial class UpdateRecommenderRequest : AmazonPersonalizeRequest

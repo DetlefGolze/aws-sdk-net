@@ -27,6 +27,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentity.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.CognitoIdentity.Model
     {
         private string _accountId;
         private string _identityPoolId;
-        private Dictionary<string, string> _logins = new Dictionary<string, string>();
+        private Dictionary<string, string> _logins = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AccountId. 
@@ -87,33 +88,32 @@ namespace Amazon.CognitoIdentity.Model
         /// Gets and sets the property Logins. 
         /// <para>
         /// A set of optional name-value pairs that map provider names to provider tokens. The
-        /// available provider names for <code>Logins</code> are as follows:
+        /// available provider names for <c>Logins</c> are as follows:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Facebook: <code>graph.facebook.com</code> 
+        /// Facebook: <c>graph.facebook.com</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Amazon Cognito user pool: <code>cognito-idp.&lt;region&gt;.amazonaws.com/&lt;YOUR_USER_POOL_ID&gt;</code>,
-        /// for example, <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>.
-        /// 
+        /// Amazon Cognito user pool: <c>cognito-idp.&lt;region&gt;.amazonaws.com/&lt;YOUR_USER_POOL_ID&gt;</c>,
+        /// for example, <c>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Google: <code>accounts.google.com</code> 
+        /// Google: <c>accounts.google.com</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Amazon: <code>www.amazon.com</code> 
+        /// Amazon: <c>www.amazon.com</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Twitter: <code>api.twitter.com</code> 
+        /// Twitter: <c>api.twitter.com</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Digits: <code>www.digits.com</code> 
+        /// Digits: <c>www.digits.com</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -127,7 +127,7 @@ namespace Amazon.CognitoIdentity.Model
         // Check to see if Logins property is set
         internal bool IsSetLogins()
         {
-            return this._logins != null && this._logins.Count > 0; 
+            return this._logins != null && (this._logins.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

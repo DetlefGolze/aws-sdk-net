@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceDiscovery.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.ServiceDiscovery.Model
         /// <summary>
         /// Gets and sets the property InstanceId. 
         /// <para>
-        /// The value that you specified for <code>Id</code> in the <a href="https://docs.aws.amazon.com/cloud-map/latest/api/API_RegisterInstance.html">RegisterInstance</a>
+        /// The value that you specified for <c>Id</c> in the <a href="https://docs.aws.amazon.com/cloud-map/latest/api/API_RegisterInstance.html">RegisterInstance</a>
         /// request.
         /// </para>
         /// </summary>

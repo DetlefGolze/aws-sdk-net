@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMakerRuntime.Model
 {
     /// <summary>
@@ -49,7 +50,7 @@ namespace Amazon.SageMakerRuntime.Model
     /// </para>
     ///  
     /// <para>
-    /// Calls to <code>InvokeEndpointAsync</code> are authenticated by using Amazon Web Services
+    /// Calls to <c>InvokeEndpointAsync</c> are authenticated by using Amazon Web Services
     /// Signature Version 4. For information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html">Authenticating
     /// Requests (Amazon Web Services Signature Version 4)</a> in the <i>Amazon S3 API Reference</i>.
     /// </para>
@@ -81,7 +82,7 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if Accept property is set
         internal bool IsSetAccept()
         {
-            return this._accept != null;
+            return !string.IsNullOrEmpty(this._accept);
         }
 
         /// <summary>
@@ -100,7 +101,7 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if ContentType property is set
         internal bool IsSetContentType()
         {
-            return this._contentType != null;
+            return !string.IsNullOrEmpty(this._contentType);
         }
 
         /// <summary>
@@ -119,8 +120,8 @@ namespace Amazon.SageMakerRuntime.Model
         /// The code in your model is responsible for setting or updating any custom attributes
         /// in the response. If your code does not set this value in the response, an empty value
         /// is returned. For example, if a custom attribute represents the trace ID, your model
-        /// can prepend the custom attribute with <code>Trace ID:</code> in your post-processing
-        /// function. 
+        /// can prepend the custom attribute with <c>Trace ID:</c> in your post-processing function.
+        /// 
         /// </para>
         ///  
         /// <para>
@@ -138,7 +139,7 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if CustomAttributes property is set
         internal bool IsSetCustomAttributes()
         {
-            return this._customAttributes != null;
+            return !string.IsNullOrEmpty(this._customAttributes);
         }
 
         /// <summary>
@@ -179,7 +180,7 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if InferenceId property is set
         internal bool IsSetInferenceId()
         {
-            return this._inferenceId != null;
+            return !string.IsNullOrEmpty(this._inferenceId);
         }
 
         /// <summary>
@@ -198,7 +199,7 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if InputLocation property is set
         internal bool IsSetInputLocation()
         {
-            return this._inputLocation != null;
+            return !string.IsNullOrEmpty(this._inputLocation);
         }
 
         /// <summary>

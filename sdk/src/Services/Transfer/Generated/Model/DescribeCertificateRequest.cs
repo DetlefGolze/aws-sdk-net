@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeCertificate operation.
-    /// Describes the certificate that's identified by the <code>CertificateId</code>.
+    /// Describes the certificate that's identified by the <c>CertificateId</c>.
     /// </summary>
     public partial class DescribeCertificateRequest : AmazonTransferRequest
     {

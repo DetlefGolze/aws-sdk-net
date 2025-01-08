@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
@@ -43,13 +44,13 @@ namespace Amazon.StorageGateway.Model
     /// </para>
     ///  
     /// <para>
-    /// In the <code>CreateSnapshot</code> request, you identify the volume by providing its
-    /// Amazon Resource Name (ARN). You must also provide description for the snapshot. When
-    /// Storage Gateway takes the snapshot of specified volume, the snapshot and description
-    /// appears in the Storage Gateway console. In response, Storage Gateway returns you a
-    /// snapshot ID. You can use this snapshot ID to check the snapshot progress or later
-    /// use it when you want to create a volume from a snapshot. This operation is only supported
-    /// in stored and cached volume gateway type.
+    /// In the <c>CreateSnapshot</c> request, you identify the volume by providing its Amazon
+    /// Resource Name (ARN). You must also provide description for the snapshot. When Storage
+    /// Gateway takes the snapshot of specified volume, the snapshot and description appears
+    /// in the Storage Gateway console. In response, Storage Gateway returns you a snapshot
+    /// ID. You can use this snapshot ID to check the snapshot progress or later use it when
+    /// you want to create a volume from a snapshot. This operation is only supported in stored
+    /// and cached volume gateway type.
     /// </para>
     ///  <note> 
     /// <para>
@@ -69,7 +70,7 @@ namespace Amazon.StorageGateway.Model
     public partial class CreateSnapshotRequest : AmazonStorageGatewayRequest
     {
         private string _snapshotDescription;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _volumeARN;
 
         /// <summary>
@@ -117,7 +118,7 @@ namespace Amazon.StorageGateway.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(PipelineDeclaration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetArtifactStore())
             {
                 context.Writer.WritePropertyName("artifactStore");
@@ -75,10 +78,22 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
                 context.Writer.WriteObjectEnd();
             }
 
+            if(requestObject.IsSetExecutionMode())
+            {
+                context.Writer.WritePropertyName("executionMode");
+                context.Writer.Write(requestObject.ExecutionMode);
+            }
+
             if(requestObject.IsSetName())
             {
                 context.Writer.WritePropertyName("name");
                 context.Writer.Write(requestObject.Name);
+            }
+
+            if(requestObject.IsSetPipelineType())
+            {
+                context.Writer.WritePropertyName("pipelineType");
+                context.Writer.Write(requestObject.PipelineType);
             }
 
             if(requestObject.IsSetRoleArn())
@@ -97,6 +112,38 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
 
                     var marshaller = StageDeclarationMarshaller.Instance;
                     marshaller.Marshall(requestObjectStagesListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetTriggers())
+            {
+                context.Writer.WritePropertyName("triggers");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectTriggersListValue in requestObject.Triggers)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = PipelineTriggerDeclarationMarshaller.Instance;
+                    marshaller.Marshall(requestObjectTriggersListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetVariables())
+            {
+                context.Writer.WritePropertyName("variables");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectVariablesListValue in requestObject.Variables)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = PipelineVariableDeclarationMarshaller.Instance;
+                    marshaller.Marshall(requestObjectVariablesListValue, context);
 
                     context.Writer.WriteObjectEnd();
                 }

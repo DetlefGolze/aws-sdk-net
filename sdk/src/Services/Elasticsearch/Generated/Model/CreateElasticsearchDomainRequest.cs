@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.Elasticsearch.Model
     public partial class CreateElasticsearchDomainRequest : AmazonElasticsearchRequest
     {
         private string _accessPolicies;
-        private Dictionary<string, string> _advancedOptions = new Dictionary<string, string>();
+        private Dictionary<string, string> _advancedOptions = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private AdvancedSecurityOptionsInput _advancedSecurityOptions;
         private AutoTuneOptionsInput _autoTuneOptions;
         private CognitoOptions _cognitoOptions;
@@ -47,10 +48,10 @@ namespace Amazon.Elasticsearch.Model
         private ElasticsearchClusterConfig _elasticsearchClusterConfig;
         private string _elasticsearchVersion;
         private EncryptionAtRestOptions _encryptionAtRestOptions;
-        private Dictionary<string, LogPublishingOption> _logPublishingOptions = new Dictionary<string, LogPublishingOption>();
+        private Dictionary<string, LogPublishingOption> _logPublishingOptions = AWSConfigs.InitializeCollections ? new Dictionary<string, LogPublishingOption>() : null;
         private NodeToNodeEncryptionOptions _nodeToNodeEncryptionOptions;
         private SnapshotOptions _snapshotOptions;
-        private List<Tag> _tagList = new List<Tag>();
+        private List<Tag> _tagList = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private VPCOptions _vpcOptions;
 
         /// <summary>
@@ -74,8 +75,8 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property AdvancedOptions. 
         /// <para>
-        ///  Option to allow references to indices in an HTTP request body. Must be <code>false</code>
-        /// when configuring access to individual sub-resources. By default, the value is <code>true</code>.
+        ///  Option to allow references to indices in an HTTP request body. Must be <c>false</c>
+        /// when configuring access to individual sub-resources. By default, the value is <c>true</c>.
         /// See <a href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options"
         /// target="_blank">Configuration Advanced Options</a> for more information.
         /// </para>
@@ -89,7 +90,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if AdvancedOptions property is set
         internal bool IsSetAdvancedOptions()
         {
-            return this._advancedOptions != null && this._advancedOptions.Count > 0; 
+            return this._advancedOptions != null && (this._advancedOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -267,8 +268,8 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property LogPublishingOptions. 
         /// <para>
-        /// Map of <code>LogType</code> and <code>LogPublishingOption</code>, each containing
-        /// options to publish a given type of Elasticsearch log.
+        /// Map of <c>LogType</c> and <c>LogPublishingOption</c>, each containing options to publish
+        /// a given type of Elasticsearch log.
         /// </para>
         /// </summary>
         public Dictionary<string, LogPublishingOption> LogPublishingOptions
@@ -280,7 +281,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if LogPublishingOptions property is set
         internal bool IsSetLogPublishingOptions()
         {
-            return this._logPublishingOptions != null && this._logPublishingOptions.Count > 0; 
+            return this._logPublishingOptions != null && (this._logPublishingOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -323,7 +324,7 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property TagList. 
         /// <para>
-        /// A list of <code>Tag</code> added during domain creation.
+        /// A list of <c>Tag</c> added during domain creation.
         /// </para>
         /// </summary>
         public List<Tag> TagList
@@ -335,7 +336,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if TagList property is set
         internal bool IsSetTagList()
         {
-            return this._tagList != null && this._tagList.Count > 0; 
+            return this._tagList != null && (this._tagList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -137,6 +138,22 @@ namespace Amazon.IoT.Model
         public IListCertificatesByCAPaginator ListCertificatesByCA(ListCertificatesByCARequest request) 
         {
             return new ListCertificatesByCAPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListCommandExecutions operation
+        ///</summary>
+        public IListCommandExecutionsPaginator ListCommandExecutions(ListCommandExecutionsRequest request) 
+        {
+            return new ListCommandExecutionsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListCommands operation
+        ///</summary>
+        public IListCommandsPaginator ListCommands(ListCommandsRequest request) 
+        {
+            return new ListCommandsPaginator(this.client, request);
         }
 
         /// <summary>
@@ -308,6 +325,14 @@ namespace Amazon.IoT.Model
         }
 
         /// <summary>
+        /// Paginator for ListPrincipalThingsV2 operation
+        ///</summary>
+        public IListPrincipalThingsV2Paginator ListPrincipalThingsV2(ListPrincipalThingsV2Request request) 
+        {
+            return new ListPrincipalThingsV2Paginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListProvisioningTemplates operation
         ///</summary>
         public IListProvisioningTemplatesPaginator ListProvisioningTemplates(ListProvisioningTemplatesRequest request) 
@@ -337,6 +362,14 @@ namespace Amazon.IoT.Model
         public IListRoleAliasesPaginator ListRoleAliases(ListRoleAliasesRequest request) 
         {
             return new ListRoleAliasesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListSbomValidationResults operation
+        ///</summary>
+        public IListSbomValidationResultsPaginator ListSbomValidationResults(ListSbomValidationResultsRequest request) 
+        {
+            return new ListSbomValidationResultsPaginator(this.client, request);
         }
 
         /// <summary>
@@ -417,6 +450,14 @@ namespace Amazon.IoT.Model
         public IListThingPrincipalsPaginator ListThingPrincipals(ListThingPrincipalsRequest request) 
         {
             return new ListThingPrincipalsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListThingPrincipalsV2 operation
+        ///</summary>
+        public IListThingPrincipalsV2Paginator ListThingPrincipalsV2(ListThingPrincipalsV2Request request) 
+        {
+            return new ListThingPrincipalsV2Paginator(this.client, request);
         }
 
         /// <summary>

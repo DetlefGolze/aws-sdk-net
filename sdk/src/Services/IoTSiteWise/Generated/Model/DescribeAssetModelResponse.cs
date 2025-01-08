@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -34,15 +35,20 @@ namespace Amazon.IoTSiteWise.Model
     public partial class DescribeAssetModelResponse : AmazonWebServiceResponse
     {
         private string _assetModelArn;
-        private List<AssetModelCompositeModel> _assetModelCompositeModels = new List<AssetModelCompositeModel>();
+        private List<AssetModelCompositeModel> _assetModelCompositeModels = AWSConfigs.InitializeCollections ? new List<AssetModelCompositeModel>() : null;
+        private List<AssetModelCompositeModelSummary> _assetModelCompositeModelSummaries = AWSConfigs.InitializeCollections ? new List<AssetModelCompositeModelSummary>() : null;
         private DateTime? _assetModelCreationDate;
         private string _assetModelDescription;
-        private List<AssetModelHierarchy> _assetModelHierarchies = new List<AssetModelHierarchy>();
+        private string _assetModelExternalId;
+        private List<AssetModelHierarchy> _assetModelHierarchies = AWSConfigs.InitializeCollections ? new List<AssetModelHierarchy>() : null;
         private string _assetModelId;
         private DateTime? _assetModelLastUpdateDate;
         private string _assetModelName;
-        private List<AssetModelProperty> _assetModelProperties = new List<AssetModelProperty>();
+        private List<AssetModelProperty> _assetModelProperties = AWSConfigs.InitializeCollections ? new List<AssetModelProperty>() : null;
         private AssetModelStatus _assetModelStatus;
+        private AssetModelType _assetModelType;
+        private string _assetModelVersion;
+        private string _eTag;
 
         /// <summary>
         /// Gets and sets the property AssetModelArn. 
@@ -52,7 +58,7 @@ namespace Amazon.IoTSiteWise.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:${Partition}:iotsitewise:${Region}:${Account}:asset-model/${AssetModelId}</code>
+        ///  <c>arn:${Partition}:iotsitewise:${Region}:${Account}:asset-model/${AssetModelId}</c>
         /// 
         /// </para>
         /// </summary>
@@ -72,7 +78,8 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property AssetModelCompositeModels. 
         /// <para>
-        /// The list of composite asset models for the asset model.
+        /// The list of built-in composite models for the asset model, such as those with those
+        /// of type <c>AWS/ALARMS</c>.
         /// </para>
         /// </summary>
         public List<AssetModelCompositeModel> AssetModelCompositeModels
@@ -84,7 +91,25 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if AssetModelCompositeModels property is set
         internal bool IsSetAssetModelCompositeModels()
         {
-            return this._assetModelCompositeModels != null && this._assetModelCompositeModels.Count > 0; 
+            return this._assetModelCompositeModels != null && (this._assetModelCompositeModels.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property AssetModelCompositeModelSummaries. 
+        /// <para>
+        /// The list of the immediate child custom composite model summaries for the asset model.
+        /// </para>
+        /// </summary>
+        public List<AssetModelCompositeModelSummary> AssetModelCompositeModelSummaries
+        {
+            get { return this._assetModelCompositeModelSummaries; }
+            set { this._assetModelCompositeModelSummaries = value; }
+        }
+
+        // Check to see if AssetModelCompositeModelSummaries property is set
+        internal bool IsSetAssetModelCompositeModelSummaries()
+        {
+            return this._assetModelCompositeModelSummaries != null && (this._assetModelCompositeModelSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -126,11 +151,30 @@ namespace Amazon.IoTSiteWise.Model
         }
 
         /// <summary>
+        /// Gets and sets the property AssetModelExternalId. 
+        /// <para>
+        /// The external ID of the asset model, if any.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=2, Max=128)]
+        public string AssetModelExternalId
+        {
+            get { return this._assetModelExternalId; }
+            set { this._assetModelExternalId = value; }
+        }
+
+        // Check to see if AssetModelExternalId property is set
+        internal bool IsSetAssetModelExternalId()
+        {
+            return this._assetModelExternalId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property AssetModelHierarchies. 
         /// <para>
-        /// A list of asset model hierarchies that each contain a <code>childAssetModelId</code>
-        /// and a <code>hierarchyId</code> (named <code>id</code>). A hierarchy specifies allowed
-        /// parent/child asset relationships for an asset model.
+        /// A list of asset model hierarchies that each contain a <c>childAssetModelId</c> and
+        /// a <c>hierarchyId</c> (named <c>id</c>). A hierarchy specifies allowed parent/child
+        /// asset relationships for an asset model.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -143,13 +187,13 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if AssetModelHierarchies property is set
         internal bool IsSetAssetModelHierarchies()
         {
-            return this._assetModelHierarchies != null && this._assetModelHierarchies.Count > 0; 
+            return this._assetModelHierarchies != null && (this._assetModelHierarchies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AssetModelId. 
         /// <para>
-        /// The ID of the asset model.
+        /// The ID of the asset model, in UUID format.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=36, Max=36)]
@@ -211,7 +255,7 @@ namespace Amazon.IoTSiteWise.Model
         ///  
         /// <para>
         /// This object doesn't include properties that you define in composite models. You can
-        /// find composite model properties in the <code>assetModelCompositeModels</code> object.
+        /// find composite model properties in the <c>assetModelCompositeModels</c> object.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -224,7 +268,7 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if AssetModelProperties property is set
         internal bool IsSetAssetModelProperties()
         {
-            return this._assetModelProperties != null && this._assetModelProperties.Count > 0; 
+            return this._assetModelProperties != null && (this._assetModelProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -244,6 +288,81 @@ namespace Amazon.IoTSiteWise.Model
         internal bool IsSetAssetModelStatus()
         {
             return this._assetModelStatus != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property AssetModelType. 
+        /// <para>
+        /// The type of asset model.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>ASSET_MODEL</b> – (default) An asset model that you can use to create assets.
+        /// Can't be included as a component in another asset model.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>COMPONENT_MODEL</b> – A reusable component that you can include in the composite
+        /// models of other asset models. You can't create assets directly from this type of asset
+        /// model. 
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public AssetModelType AssetModelType
+        {
+            get { return this._assetModelType; }
+            set { this._assetModelType = value; }
+        }
+
+        // Check to see if AssetModelType property is set
+        internal bool IsSetAssetModelType()
+        {
+            return this._assetModelType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property AssetModelVersion. 
+        /// <para>
+        /// The version of the asset model. See <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/model-active-version.html">
+        /// Asset model versions</a> in the <i>IoT SiteWise User Guide</i>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=10)]
+        public string AssetModelVersion
+        {
+            get { return this._assetModelVersion; }
+            set { this._assetModelVersion = value; }
+        }
+
+        // Check to see if AssetModelVersion property is set
+        internal bool IsSetAssetModelVersion()
+        {
+            return this._assetModelVersion != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ETag. 
+        /// <para>
+        /// The entity tag (ETag) is a hash of the retrieved version of the asset model. It's
+        /// used to make concurrent updates safely to the resource. See <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/opt-locking-for-model.html">Optimistic
+        /// locking for asset model writes</a> in the <i>IoT SiteWise User Guide</i>. 
+        /// </para>
+        ///  
+        /// <para>
+        /// See <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/opt-locking-for-model.html">
+        /// Optimistic locking for asset model writes</a> in the <i>IoT SiteWise User Guide</i>.
+        /// </para>
+        /// </summary>
+        public string ETag
+        {
+            get { return this._eTag; }
+            set { this._eTag = value; }
+        }
+
+        // Check to see if ETag property is set
+        internal bool IsSetETag()
+        {
+            return !string.IsNullOrEmpty(this._eTag);
         }
 
     }

@@ -26,21 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
     /// Container for the parameters to the PurchaseReservedCacheNodesOffering operation.
     /// Allows you to purchase a reserved cache node offering. Reserved nodes are not eligible
-    /// for cancellation and are non-refundable. For more information, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/reserved-nodes.html">Managing
-    /// Costs with Reserved Nodes</a> for Redis or <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/reserved-nodes.html">Managing
-    /// Costs with Reserved Nodes</a> for Memcached.
+    /// for cancellation and are non-refundable. For more information, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/reserved-nodes.html">Managing
+    /// Costs with Reserved Nodes</a>.
     /// </summary>
     public partial class PurchaseReservedCacheNodesOfferingRequest : AmazonElastiCacheRequest
     {
         private int? _cacheNodeCount;
         private string _reservedCacheNodeId;
         private string _reservedCacheNodesOfferingId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property CacheNodeCount. 
@@ -49,7 +49,7 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>1</code> 
+        /// Default: <c>1</c> 
         /// </para>
         /// </summary>
         public int CacheNodeCount
@@ -99,7 +99,7 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>438012d3-4052-4cc7-b2e3-8d3372e0e706</code> 
+        /// Example: <c>438012d3-4052-4cc7-b2e3-8d3372e0e706</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -131,7 +131,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

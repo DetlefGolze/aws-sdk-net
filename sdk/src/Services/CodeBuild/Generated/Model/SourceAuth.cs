@@ -26,17 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
     /// Information about the authorization settings for CodeBuild to access the source code
     /// to be built.
-    /// 
-    ///  
-    /// <para>
-    /// This information is for the CodeBuild console's use only. Your code should not get
-    /// or set this information directly.
-    /// </para>
     /// </summary>
     public partial class SourceAuth
     {
@@ -62,14 +57,9 @@ namespace Amazon.CodeBuild.Model
         }
 
         /// <summary>
-        /// Gets and sets the property Type. <note> 
+        /// Gets and sets the property Type. 
         /// <para>
-        ///  This data type is deprecated and is no longer accurate or used. 
-        /// </para>
-        ///  </note> 
-        /// <para>
-        /// The authorization type to use. The only valid value is <code>OAUTH</code>, which represents
-        /// the OAuth authorization type.
+        /// The authorization type to use. Valid options are OAUTH, CODECONNECTIONS, or SECRETS_MANAGER.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

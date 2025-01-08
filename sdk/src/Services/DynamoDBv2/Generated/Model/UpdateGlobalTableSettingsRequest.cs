@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -34,45 +35,46 @@ namespace Amazon.DynamoDBv2.Model
     /// 
     ///  <important> 
     /// <para>
-    /// This operation only applies to <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V1.html">Version
-    /// 2017.11.29 (Legacy)</a> of global tables. We recommend using <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V2.html">Version
-    /// 2019.11.21 (Current)</a> when creating new global tables, as it provides greater flexibility,
-    /// higher efficiency and consumes less write capacity than 2017.11.29 (Legacy). To determine
-    /// which version you are using, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.DetermineVersion.html">Determining
-    /// the version</a>. To update existing global tables from version 2017.11.29 (Legacy)
-    /// to version 2019.11.21 (Current), see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_upgrade.html">
-    /// Updating global tables</a>. 
+    /// This documentation is for version 2017.11.29 (Legacy) of global tables, which should
+    /// be avoided for new global tables. Customers should use <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html">Global
+    /// Tables version 2019.11.21 (Current)</a> when possible, because it provides greater
+    /// flexibility, higher efficiency, and consumes less write capacity than 2017.11.29 (Legacy).
+    /// </para>
+    ///  
+    /// <para>
+    /// To determine which version you're using, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.DetermineVersion.html">Determining
+    /// the global table version you are using</a>. To update existing global tables from
+    /// version 2017.11.29 (Legacy) to version 2019.11.21 (Current), see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_upgrade.html">Upgrading
+    /// global tables</a>.
     /// </para>
     ///  </important>
     /// </summary>
     public partial class UpdateGlobalTableSettingsRequest : AmazonDynamoDBRequest
     {
         private BillingMode _globalTableBillingMode;
-        private List<GlobalTableGlobalSecondaryIndexSettingsUpdate> _globalTableGlobalSecondaryIndexSettingsUpdate = new List<GlobalTableGlobalSecondaryIndexSettingsUpdate>();
+        private List<GlobalTableGlobalSecondaryIndexSettingsUpdate> _globalTableGlobalSecondaryIndexSettingsUpdate = AWSConfigs.InitializeCollections ? new List<GlobalTableGlobalSecondaryIndexSettingsUpdate>() : null;
         private string _globalTableName;
         private AutoScalingSettingsUpdate _globalTableProvisionedWriteCapacityAutoScalingSettingsUpdate;
         private long? _globalTableProvisionedWriteCapacityUnits;
-        private List<ReplicaSettingsUpdate> _replicaSettingsUpdate = new List<ReplicaSettingsUpdate>();
+        private List<ReplicaSettingsUpdate> _replicaSettingsUpdate = AWSConfigs.InitializeCollections ? new List<ReplicaSettingsUpdate>() : null;
 
         /// <summary>
         /// Gets and sets the property GlobalTableBillingMode. 
         /// <para>
-        /// The billing mode of the global table. If <code>GlobalTableBillingMode</code> is not
-        /// specified, the global table defaults to <code>PROVISIONED</code> capacity billing
-        /// mode.
+        /// The billing mode of the global table. If <c>GlobalTableBillingMode</c> is not specified,
+        /// the global table defaults to <c>PROVISIONED</c> capacity billing mode.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PROVISIONED</code> - We recommend using <code>PROVISIONED</code> for predictable
-        /// workloads. <code>PROVISIONED</code> sets the billing mode to <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html#HowItWorks.ProvisionedThroughput.Manual">Provisioned
-        /// Mode</a>.
+        ///  <c>PROVISIONED</c> - We recommend using <c>PROVISIONED</c> for predictable workloads.
+        /// <c>PROVISIONED</c> sets the billing mode to <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/provisioned-capacity-mode.html">Provisioned
+        /// capacity mode</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PAY_PER_REQUEST</code> - We recommend using <code>PAY_PER_REQUEST</code> for
-        /// unpredictable workloads. <code>PAY_PER_REQUEST</code> sets the billing mode to <a
-        /// href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html#HowItWorks.OnDemand">On-Demand
-        /// Mode</a>. 
+        ///  <c>PAY_PER_REQUEST</c> - We recommend using <c>PAY_PER_REQUEST</c> for unpredictable
+        /// workloads. <c>PAY_PER_REQUEST</c> sets the billing mode to <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/on-demand-capacity-mode.html">On-demand
+        /// capacity mode</a>. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -105,7 +107,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if GlobalTableGlobalSecondaryIndexSettingsUpdate property is set
         internal bool IsSetGlobalTableGlobalSecondaryIndexSettingsUpdate()
         {
-            return this._globalTableGlobalSecondaryIndexSettingsUpdate != null && this._globalTableGlobalSecondaryIndexSettingsUpdate.Count > 0; 
+            return this._globalTableGlobalSecondaryIndexSettingsUpdate != null && (this._globalTableGlobalSecondaryIndexSettingsUpdate.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -149,7 +151,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property GlobalTableProvisionedWriteCapacityUnits. 
         /// <para>
-        /// The maximum number of writes consumed per second before DynamoDB returns a <code>ThrottlingException.</code>
+        /// The maximum number of writes consumed per second before DynamoDB returns a <c>ThrottlingException.</c>
         /// 
         /// </para>
         /// </summary>
@@ -182,7 +184,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if ReplicaSettingsUpdate property is set
         internal bool IsSetReplicaSettingsUpdate()
         {
-            return this._replicaSettingsUpdate != null && this._replicaSettingsUpdate.Count > 0; 
+            return this._replicaSettingsUpdate != null && (this._replicaSettingsUpdate.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

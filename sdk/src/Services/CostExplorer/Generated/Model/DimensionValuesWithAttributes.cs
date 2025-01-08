@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostExplorer.Model
 {
     /// <summary>
     /// The metadata of a specific type that you can use to filter and group your results.
-    /// You can use <code>GetDimensionValues</code> to find specific values.
+    /// You can use <c>GetDimensionValues</c> to find specific values.
     /// </summary>
     public partial class DimensionValuesWithAttributes
     {
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _value;
 
         /// <summary>
         /// Gets and sets the property Attributes. 
         /// <para>
-        /// The attribute that applies to a specific <code>Dimension</code>.
+        /// The attribute that applies to a specific <c>Dimension</c>.
         /// </para>
         /// </summary>
         public Dictionary<string, string> Attributes
@@ -52,7 +53,7 @@ namespace Amazon.CostExplorer.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

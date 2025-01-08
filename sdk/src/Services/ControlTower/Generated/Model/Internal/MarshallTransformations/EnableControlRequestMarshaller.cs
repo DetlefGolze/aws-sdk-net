@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ControlTower.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,12 +64,43 @@ namespace Amazon.ControlTower.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetControlIdentifier())
                 {
                     context.Writer.WritePropertyName("controlIdentifier");
                     context.Writer.Write(publicRequest.ControlIdentifier);
+                }
+
+                if(publicRequest.IsSetParameters())
+                {
+                    context.Writer.WritePropertyName("parameters");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestParametersListValue in publicRequest.Parameters)
+                    {
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = EnabledControlParameterMarshaller.Instance;
+                        marshaller.Marshall(publicRequestParametersListValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetTags())
+                {
+                    context.Writer.WritePropertyName("tags");
+                    context.Writer.WriteObjectStart();
+                    foreach (var publicRequestTagsKvp in publicRequest.Tags)
+                    {
+                        context.Writer.WritePropertyName(publicRequestTagsKvp.Key);
+                        var publicRequestTagsValue = publicRequestTagsKvp.Value;
+
+                            context.Writer.Write(publicRequestTagsValue);
+                    }
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetTargetIdentifier())

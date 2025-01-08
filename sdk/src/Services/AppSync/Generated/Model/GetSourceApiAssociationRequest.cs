@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
     /// Container for the parameters to the GetSourceApiAssociation operation.
-    /// Retrieves a <code>SourceApiAssociation</code> object.
+    /// Retrieves a <c>SourceApiAssociation</c> object.
     /// </summary>
     public partial class GetSourceApiAssociationRequest : AmazonAppSyncRequest
     {

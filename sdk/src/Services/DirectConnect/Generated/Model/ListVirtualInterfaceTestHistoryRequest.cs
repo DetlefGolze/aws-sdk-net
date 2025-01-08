@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectConnect.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.DirectConnect.Model
     /// </summary>
     public partial class ListVirtualInterfaceTestHistoryRequest : AmazonDirectConnectRequest
     {
-        private List<string> _bgpPeers = new List<string>();
+        private List<string> _bgpPeers = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _nextToken;
         private string _status;
@@ -57,19 +58,18 @@ namespace Amazon.DirectConnect.Model
         // Check to see if BgpPeers property is set
         internal bool IsSetBgpPeers()
         {
-            return this._bgpPeers != null && this._bgpPeers.Count > 0; 
+            return this._bgpPeers != null && (this._bgpPeers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to return with a single call. To retrieve the remaining
-        /// results, make another call with the returned <code>nextToken</code> value.
+        /// results, make another call with the returned <c>nextToken</c> value.
         /// </para>
         ///  
         /// <para>
-        /// If <code>MaxResults</code> is given a value larger than 100, only 100 results are
-        /// returned.
+        /// If <c>MaxResults</c> is given a value larger than 100, only 100 results are returned.
         /// </para>
         /// </summary>
         public int MaxResults

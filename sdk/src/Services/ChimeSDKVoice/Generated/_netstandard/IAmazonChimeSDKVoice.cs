@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.ChimeSDKVoice.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.ChimeSDKVoice
 {
     /// <summary>
-    /// Interface for accessing ChimeSDKVoice
+    /// <para>Interface for accessing ChimeSDKVoice</para>
     ///
     /// The Amazon Chime SDK telephony APIs in this section enable developers to create PSTN
     /// calling solutions that use Amazon Chime SDK Voice Connectors, and Amazon Chime SDK
@@ -180,7 +181,15 @@ namespace Amazon.ChimeSDKVoice
 
 
         /// <summary>
-        /// Updates one or more phone numbers.
+        /// Updates phone number product types, calling names, or phone number names. You can
+        /// update one attribute at a time for each <c>UpdatePhoneNumberRequestItem</c>. For example,
+        /// you can update the product type, the calling name, or phone name. 
+        /// 
+        ///  <note> 
+        /// <para>
+        /// You cannot have a duplicate <c>phoneNumberId</c> in a request.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the BatchUpdatePhoneNumber service method.</param>
         /// <param name="cancellationToken">
@@ -350,7 +359,7 @@ namespace Amazon.ChimeSDKVoice
 
         /// <summary>
         /// Creates an outbound call to a phone number from the phone number specified in the
-        /// request, and it invokes the endpoint of the specified <code>sipMediaApplicationId</code>.
+        /// request, and it invokes the endpoint of the specified <c>sipMediaApplicationId</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateSipMediaApplicationCall service method.</param>
         /// <param name="cancellationToken">
@@ -486,7 +495,7 @@ namespace Amazon.ChimeSDKVoice
         /// <summary>
         /// Creates an Amazon Chime SDK Voice Connector group under the administrator's AWS account.
         /// You can associate Amazon Chime SDK Voice Connectors with the Voice Connector group
-        /// by including <code>VoiceConnectorItems</code> in the request. 
+        /// by including <c>VoiceConnectorItems</c> in the request. 
         /// 
         ///  
         /// <para>
@@ -906,12 +915,51 @@ namespace Amazon.ChimeSDKVoice
 
         #endregion
                 
+        #region  DeleteVoiceConnectorExternalSystemsConfiguration
+
+
+
+        /// <summary>
+        /// Deletes the external systems configuration for a Voice Connector.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteVoiceConnectorExternalSystemsConfiguration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteVoiceConnectorExternalSystemsConfiguration service method, as returned by ChimeSDKVoice.</returns>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.BadRequestException">
+        /// The input parameters don't match the service's restrictions.
+        /// </exception>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.ForbiddenException">
+        /// The client is permanently forbidden from making the request.
+        /// </exception>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.NotFoundException">
+        /// The requested resource couldn't be found.
+        /// </exception>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.ServiceFailureException">
+        /// The service encountered an unexpected error.
+        /// </exception>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.ServiceUnavailableException">
+        /// The service is currently unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.ThrottledClientException">
+        /// The number of customer requests exceeds the request rate limit.
+        /// </exception>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.UnauthorizedClientException">
+        /// The client isn't authorized to request a resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DeleteVoiceConnectorExternalSystemsConfiguration">REST API Reference for DeleteVoiceConnectorExternalSystemsConfiguration Operation</seealso>
+        Task<DeleteVoiceConnectorExternalSystemsConfigurationResponse> DeleteVoiceConnectorExternalSystemsConfigurationAsync(DeleteVoiceConnectorExternalSystemsConfigurationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  DeleteVoiceConnectorGroup
 
 
 
         /// <summary>
-        /// Deletes an Amazon Chime SDK Voice Connector group. Any <code>VoiceConnectorItems</code>
+        /// Deletes an Amazon Chime SDK Voice Connector group. Any <c>VoiceConnectorItems</c>
         /// and phone numbers associated with the group must be removed before it can be deleted.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteVoiceConnectorGroup service method.</param>
@@ -1571,6 +1619,14 @@ namespace Amazon.ChimeSDKVoice
 
         /// <summary>
         /// Gets the Alexa Skill configuration for the SIP media application.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Due to changes made by the Amazon Alexa service, this API is no longer available for
+        /// use. For more information, refer to the <a href="https://developer.amazon.com/en-US/alexa/alexasmartproperties">Alexa
+        /// Smart Properties</a> page.
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetSipMediaApplicationAlexaSkillConfiguration service method.</param>
         /// <param name="cancellationToken">
@@ -1600,6 +1656,7 @@ namespace Amazon.ChimeSDKVoice
         /// The client isn't authorized to request a resource.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetSipMediaApplicationAlexaSkillConfiguration">REST API Reference for GetSipMediaApplicationAlexaSkillConfiguration Operation</seealso>
+        [Obsolete("Due to changes made by the Amazon Alexa service, this API is no longer available for use. For more information, refer to the Alexa Smart Properties page(https://developer.amazon.com/en-US/alexa/alexasmartproperties).")]
         Task<GetSipMediaApplicationAlexaSkillConfigurationResponse> GetSipMediaApplicationAlexaSkillConfigurationAsync(GetSipMediaApplicationAlexaSkillConfigurationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
@@ -1807,13 +1864,52 @@ namespace Amazon.ChimeSDKVoice
 
         #endregion
                 
+        #region  GetVoiceConnectorExternalSystemsConfiguration
+
+
+
+        /// <summary>
+        /// Gets information about an external systems configuration for a Voice Connector.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetVoiceConnectorExternalSystemsConfiguration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetVoiceConnectorExternalSystemsConfiguration service method, as returned by ChimeSDKVoice.</returns>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.BadRequestException">
+        /// The input parameters don't match the service's restrictions.
+        /// </exception>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.ForbiddenException">
+        /// The client is permanently forbidden from making the request.
+        /// </exception>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.NotFoundException">
+        /// The requested resource couldn't be found.
+        /// </exception>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.ServiceFailureException">
+        /// The service encountered an unexpected error.
+        /// </exception>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.ServiceUnavailableException">
+        /// The service is currently unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.ThrottledClientException">
+        /// The number of customer requests exceeds the request rate limit.
+        /// </exception>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.UnauthorizedClientException">
+        /// The client isn't authorized to request a resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetVoiceConnectorExternalSystemsConfiguration">REST API Reference for GetVoiceConnectorExternalSystemsConfiguration Operation</seealso>
+        Task<GetVoiceConnectorExternalSystemsConfigurationResponse> GetVoiceConnectorExternalSystemsConfigurationAsync(GetVoiceConnectorExternalSystemsConfigurationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  GetVoiceConnectorGroup
 
 
 
         /// <summary>
         /// Retrieves details for the specified Amazon Chime SDK Voice Connector group, such as
-        /// timestamps,name, and associated <code>VoiceConnectorItems</code>.
+        /// timestamps,name, and associated <c>VoiceConnectorItems</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetVoiceConnectorGroup service method.</param>
         /// <param name="cancellationToken">
@@ -2051,8 +2147,8 @@ namespace Amazon.ChimeSDKVoice
 
 
         /// <summary>
-        /// Retrieves information about the last time a <code>SIP OPTIONS</code> ping was received
-        /// from your SIP infrastructure for the specified Amazon Chime SDK Voice Connector.
+        /// Retrieves information about the last time a <c>SIP OPTIONS</c> ping was received from
+        /// your SIP infrastructure for the specified Amazon Chime SDK Voice Connector.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetVoiceConnectorTerminationHealth service method.</param>
         /// <param name="cancellationToken">
@@ -2709,6 +2805,14 @@ namespace Amazon.ChimeSDKVoice
 
         /// <summary>
         /// Updates the Alexa Skill configuration for the SIP media application.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Due to changes made by the Amazon Alexa service, this API is no longer available for
+        /// use. For more information, refer to the <a href="https://developer.amazon.com/en-US/alexa/alexasmartproperties">Alexa
+        /// Smart Properties</a> page.
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutSipMediaApplicationAlexaSkillConfiguration service method.</param>
         /// <param name="cancellationToken">
@@ -2738,6 +2842,7 @@ namespace Amazon.ChimeSDKVoice
         /// The client isn't authorized to request a resource.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/PutSipMediaApplicationAlexaSkillConfiguration">REST API Reference for PutSipMediaApplicationAlexaSkillConfiguration Operation</seealso>
+        [Obsolete("Due to changes made by the Amazon Alexa service, this API is no longer available for use. For more information, refer to the Alexa Smart Properties page(https://developer.amazon.com/en-US/alexa/alexasmartproperties).")]
         Task<PutSipMediaApplicationAlexaSkillConfigurationResponse> PutSipMediaApplicationAlexaSkillConfigurationAsync(PutSipMediaApplicationAlexaSkillConfigurationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
@@ -2817,6 +2922,48 @@ namespace Amazon.ChimeSDKVoice
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/PutVoiceConnectorEmergencyCallingConfiguration">REST API Reference for PutVoiceConnectorEmergencyCallingConfiguration Operation</seealso>
         Task<PutVoiceConnectorEmergencyCallingConfigurationResponse> PutVoiceConnectorEmergencyCallingConfigurationAsync(PutVoiceConnectorEmergencyCallingConfigurationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  PutVoiceConnectorExternalSystemsConfiguration
+
+
+
+        /// <summary>
+        /// Adds an external systems configuration to a Voice Connector.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutVoiceConnectorExternalSystemsConfiguration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the PutVoiceConnectorExternalSystemsConfiguration service method, as returned by ChimeSDKVoice.</returns>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.BadRequestException">
+        /// The input parameters don't match the service's restrictions.
+        /// </exception>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.ConflictException">
+        /// Multiple instances of the same request were made simultaneously.
+        /// </exception>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.ForbiddenException">
+        /// The client is permanently forbidden from making the request.
+        /// </exception>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.NotFoundException">
+        /// The requested resource couldn't be found.
+        /// </exception>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.ServiceFailureException">
+        /// The service encountered an unexpected error.
+        /// </exception>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.ServiceUnavailableException">
+        /// The service is currently unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.ThrottledClientException">
+        /// The number of customer requests exceeds the request rate limit.
+        /// </exception>
+        /// <exception cref="Amazon.ChimeSDKVoice.Model.UnauthorizedClientException">
+        /// The client isn't authorized to request a resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/PutVoiceConnectorExternalSystemsConfiguration">REST API Reference for PutVoiceConnectorExternalSystemsConfiguration Operation</seealso>
+        Task<PutVoiceConnectorExternalSystemsConfigurationResponse> PutVoiceConnectorExternalSystemsConfigurationAsync(PutVoiceConnectorExternalSystemsConfigurationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 
@@ -3483,9 +3630,10 @@ namespace Amazon.ChimeSDKVoice
 
 
         /// <summary>
-        /// Updates phone number details, such as product type or calling name, for the specified
-        /// phone number ID. You can update one phone number detail at a time. For example, you
-        /// can update either the product type or the calling name in one action.
+        /// Updates phone number details, such as product type, calling name, or phone number
+        /// name for the specified phone number ID. You can update one phone number detail at
+        /// a time. For example, you can update either the product type, calling name, or phone
+        /// number name in one action.
         /// 
         ///  
         /// <para>

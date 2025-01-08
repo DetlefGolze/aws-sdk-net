@@ -15,6 +15,7 @@
 
 using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2.DocumentModel;
+using Amazon.Runtime.Telemetry.Tracing;
 
 namespace Amazon.DynamoDBv2.DataModel
 {
@@ -39,6 +40,8 @@ namespace Amazon.DynamoDBv2.DataModel
             SourceContext = source;
             DocumentSearch = contextSearch.Search;
             Config = contextSearch.FlatConfig;
+            TracerProvider = source?.Client?.Config?.TelemetryProvider?.TracerProvider
+                ?? AWSConfigs.TelemetryProvider.TracerProvider;
         }
 
         #endregion
@@ -51,6 +54,8 @@ namespace Amazon.DynamoDBv2.DataModel
 
         #endregion
 
+        internal TracerProvider TracerProvider { get; private set; }
+
         #region Public properties
 
         /// <summary>
@@ -61,6 +66,19 @@ namespace Amazon.DynamoDBv2.DataModel
             get
             {
                 return DocumentSearch.IsDone;
+            }
+        }
+
+        /// <summary>
+        /// Pagination token corresponding to the item where the search operation stopped,
+        /// inclusive of the previous result set. Use this value to start a new
+        /// operation to resume search from the next item.
+        /// </summary>
+        public virtual string PaginationToken
+        {
+            get
+            {
+                return DocumentSearch.PaginationToken;
             }
         }
 

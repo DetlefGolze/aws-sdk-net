@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AccessAnalyzer.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.AccessAnalyzer.Model
         /// <summary>
         /// Gets and sets the property Analyzer. 
         /// <para>
-        /// An <code>AnalyzerSummary</code> object that contains information about the analyzer.
+        /// An <c>AnalyzerSummary</c> object that contains information about the analyzer.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

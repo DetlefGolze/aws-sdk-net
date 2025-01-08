@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.NetworkFirewall.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,8 +66,15 @@ namespace Amazon.NetworkFirewall.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetAnalyzeRuleGroup())
+                {
+                    context.Writer.WritePropertyName("AnalyzeRuleGroup");
+                    context.Writer.Write(publicRequest.AnalyzeRuleGroup);
+                }
+
                 if(publicRequest.IsSetRuleGroupArn())
                 {
                     context.Writer.WritePropertyName("RuleGroupArn");

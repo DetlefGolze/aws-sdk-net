@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchServerless.Model
 {
     /// <summary>
@@ -49,7 +50,7 @@ namespace Amazon.OpenSearchServerless.Model
         /// <summary>
         /// Gets and sets the property CollectionFilters. 
         /// <para>
-        /// List of filter names and values that you can use for requests.
+        ///  A list of filter names and values that you can use for requests.
         /// </para>
         /// </summary>
         public CollectionFilters CollectionFilters
@@ -67,7 +68,7 @@ namespace Amazon.OpenSearchServerless.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The maximum number of results to return. Default is 20. You can use <code>nextToken</code>
+        /// The maximum number of results to return. Default is 20. You can use <c>nextToken</c>
         /// to get the next page of results.
         /// </para>
         /// </summary>
@@ -87,9 +88,9 @@ namespace Amazon.OpenSearchServerless.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If your initial <code>ListCollections</code> operation returns a <code>nextToken</code>,
-        /// you can include the returned <code>nextToken</code> in subsequent <code>ListCollections</code>
-        /// operations, which returns results in the next page.
+        /// If your initial <c>ListCollections</c> operation returns a <c>nextToken</c>, you can
+        /// include the returned <c>nextToken</c> in subsequent <c>ListCollections</c> operations,
+        /// which returns results in the next page.
         /// </para>
         /// </summary>
         public string NextToken

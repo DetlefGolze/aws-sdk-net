@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.DataSync.Model
     public partial class DescribeLocationObjectStorageResponse : AmazonWebServiceResponse
     {
         private string _accessKey;
-        private List<string> _agentArns = new List<string>();
+        private List<string> _agentArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _creationTime;
         private string _locationArn;
         private string _locationUri;
@@ -49,7 +50,7 @@ namespace Amazon.DataSync.Model
         /// storage system.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=200)]
+        [AWSProperty(Min=0, Max=200)]
         public string AccessKey
         {
             get { return this._accessKey; }
@@ -65,7 +66,7 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property AgentArns. 
         /// <para>
-        /// The ARNs of the DataSync agents that can securely connect with your location.
+        /// The ARNs of the DataSync agents that can connect with your object storage system.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4)]
@@ -78,7 +79,7 @@ namespace Amazon.DataSync.Model
         // Check to see if AgentArns property is set
         internal bool IsSetAgentArns()
         {
-            return this._agentArns != null && this._agentArns.Count > 0; 
+            return this._agentArns != null && (this._agentArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -121,7 +122,7 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property LocationUri. 
         /// <para>
-        /// The URL of the object storage system location.
+        /// The URI of the object storage system location.
         /// </para>
         /// </summary>
         [AWSProperty(Max=4360)]
@@ -140,8 +141,8 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property ServerCertificate. 
         /// <para>
-        /// The self-signed certificate that DataSync uses to securely authenticate with your
-        /// object storage system.
+        /// The certificate chain for DataSync to authenticate with your object storage system
+        /// if the system uses a private or self-signed certificate authority (CA).
         /// </para>
         /// </summary>
         [AWSProperty(Max=32768)]

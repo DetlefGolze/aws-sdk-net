@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
-    /// Contains the response to a <code>CreateLayer</code> request.
+    /// Contains the response to a <c>CreateLayer</c> request.
     /// </summary>
     public partial class CreateLayerResponse : AmazonWebServiceResponse
     {

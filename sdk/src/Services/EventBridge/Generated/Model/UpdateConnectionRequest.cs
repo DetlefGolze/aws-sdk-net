@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -37,6 +38,7 @@ namespace Amazon.EventBridge.Model
         private ConnectionAuthorizationType _authorizationType;
         private UpdateConnectionAuthRequestParameters _authParameters;
         private string _description;
+        private ConnectivityResourceParameters _invocationConnectivityParameters;
         private string _name;
 
         /// <summary>
@@ -92,6 +94,30 @@ namespace Amazon.EventBridge.Model
         internal bool IsSetDescription()
         {
             return this._description != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property InvocationConnectivityParameters. 
+        /// <para>
+        /// For connections to private resource endpoints, the parameters to use for invoking
+        /// the resource endpoint.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-target-connection-private.html">Connecting
+        /// to private resources</a> in the <i> <i>Amazon EventBridge User Guide</i> </i>.
+        /// </para>
+        /// </summary>
+        public ConnectivityResourceParameters InvocationConnectivityParameters
+        {
+            get { return this._invocationConnectivityParameters; }
+            set { this._invocationConnectivityParameters = value; }
+        }
+
+        // Check to see if InvocationConnectivityParameters property is set
+        internal bool IsSetInvocationConnectivityParameters()
+        {
+            return this._invocationConnectivityParameters != null;
         }
 
         /// <summary>

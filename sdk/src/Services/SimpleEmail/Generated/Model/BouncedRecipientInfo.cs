@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmail.Model
 {
     /// <summary>
@@ -48,7 +49,7 @@ namespace Amazon.SimpleEmail.Model
         /// <summary>
         /// Gets and sets the property BounceType. 
         /// <para>
-        /// The reason for the bounce. You must provide either this parameter or <code>RecipientDsnFields</code>.
+        /// The reason for the bounce. You must provide either this parameter or <c>RecipientDsnFields</c>.
         /// </para>
         /// </summary>
         public BounceType BounceType
@@ -108,8 +109,8 @@ namespace Amazon.SimpleEmail.Model
         /// Gets and sets the property RecipientDsnFields. 
         /// <para>
         /// Recipient-related DSN fields, most of which would normally be filled in automatically
-        /// when provided with a <code>BounceType</code>. You must provide either this parameter
-        /// or <code>BounceType</code>.
+        /// when provided with a <c>BounceType</c>. You must provide either this parameter or
+        /// <c>BounceType</c>.
         /// </para>
         /// </summary>
         public RecipientDsnFields RecipientDsnFields

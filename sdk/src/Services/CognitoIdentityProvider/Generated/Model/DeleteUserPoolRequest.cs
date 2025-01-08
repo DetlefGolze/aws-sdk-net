@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteUserPool operation.
-    /// Deletes the specified Amazon Cognito user pool.
+    /// Deletes a user pool. After you delete a user pool, users can no longer sign in to
+    /// any associated applications.
     /// </summary>
     public partial class DeleteUserPoolRequest : AmazonCognitoIdentityProviderRequest
     {
@@ -39,7 +41,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID for the user pool you want to delete.
+        /// The ID of the user pool that you want to delete.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

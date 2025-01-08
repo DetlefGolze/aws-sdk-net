@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
     /// Container for the parameters to the ListAllowedNodeTypeModifications operation.
-    /// Lists all available node types that you can scale your Redis cluster's or replication
+    /// Lists all available node types that you can scale with your cluster's replication
     /// group's current node type.
     /// 
     ///  
     /// <para>
-    /// When you use the <code>ModifyCacheCluster</code> or <code>ModifyReplicationGroup</code>
-    /// operations to scale your cluster or replication group, the value of the <code>CacheNodeType</code>
+    /// When you use the <c>ModifyCacheCluster</c> or <c>ModifyReplicationGroup</c> operations
+    /// to scale your cluster or replication group, the value of the <c>CacheNodeType</c>
     /// parameter must be one of the node types returned by this operation.
     /// </para>
     /// </summary>
@@ -54,7 +55,7 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  <important> 
         /// <para>
-        /// You must provide a value for either the <code>CacheClusterId</code> or the <code>ReplicationGroupId</code>.
+        /// You must provide a value for either the <c>CacheClusterId</c> or the <c>ReplicationGroupId</c>.
         /// </para>
         ///  </important>
         /// </summary>
@@ -79,7 +80,7 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  <important> 
         /// <para>
-        /// You must provide a value for either the <code>CacheClusterId</code> or the <code>ReplicationGroupId</code>.
+        /// You must provide a value for either the <c>CacheClusterId</c> or the <c>ReplicationGroupId</c>.
         /// </para>
         ///  </important>
         /// </summary>

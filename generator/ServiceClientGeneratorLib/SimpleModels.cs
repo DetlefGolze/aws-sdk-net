@@ -34,6 +34,93 @@ namespace ServiceClientGenerator
                 return docNode.ToString();
             }
         }
+
+        /// <summary>
+        /// If defined, specifies the namespace uri for the xml constructed
+        /// </summary>
+        public string XmlNamespace
+        {
+            get
+            {
+                var namespaceData = data[ServiceModel.XmlNamespaceKey];
+                if (namespaceData == null)
+                {
+                    return string.Empty;
+                }
+
+                //"xmlNamespace": {
+                //    "prefix": "baz",
+                //    "uri": "http://foo.com"
+                //}                
+                if (namespaceData.IsObject)
+                {
+                    return namespaceData[ServiceModel.XmlNamespaceUriKey]?.ToString() ?? string.Empty;
+                }
+
+                //"xmlNamespace": "http://foo.com"
+                return (string)namespaceData;
+            }
+        }
+
+        /// <summary>
+        /// Determines if the given node has "streaming": true which can be applied to a shape
+        /// or a member.
+        /// </summary>
+        public bool IsStreaming
+        {
+            get
+            {
+                var streamingNode = this.data[Shape.StreamingKey];
+                if (streamingNode == null)
+                    return false;
+
+                return bool.Parse(streamingNode.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Determines if the given node has "eventstream": true which can be applied to a shape
+        /// or a member.
+        /// </summary>
+        public bool IsEventStream
+        {
+            get
+            {
+                var isEventStream = data[Shape.EventStreamKey];
+                if (isEventStream != null && isEventStream.IsBoolean)
+                {
+                    return (bool)isEventStream;
+                }
+
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// If defined, specifies the namespace prefix the xml constructed
+        /// </summary>
+        public string XmlNamespacePrefix
+        {
+            get
+            {
+                var namespaceData = data[ServiceModel.XmlNamespaceKey];
+                if (namespaceData == null)
+                {
+                    return string.Empty;
+                }
+
+                //"xmlNamespace": {
+                //    "prefix": "baz",
+                //    "uri": "http://foo.com"
+                //}                
+                if (namespaceData.IsObject)
+                {
+                    return namespaceData[ServiceModel.XmlNamespacePrefixKey]?.ToString() ?? string.Empty;
+                }
+
+                return string.Empty;
+            }
+        }
     }
 
     #endregion
@@ -68,24 +155,6 @@ namespace ServiceClientGenerator
                     return string.Empty;
 
                 return node.ToString();
-            }
-        }
-
-        /// <summary>
-        /// The namespace for the xml
-        /// </summary>
-        public string XmlNamespace
-        {
-            get
-            {
-                return data[ServiceModel.XmlNamespaceKey] == null ? string.Empty :
-                    (string)data[ServiceModel.XmlNamespaceKey][ServiceModel.XmlNamespaceUriKey];
-
-                //var node = this.data[ServiceModel.XmlNamespaceKey];
-                //if (node == null)
-                //    return string.Empty;
-
-                //return node.ToString();
             }
         }
     }
@@ -201,13 +270,13 @@ namespace ServiceClientGenerator
 
             private static readonly char[] CapitalizingSeparators =
             {
-                '-', '/', '.', ' ', ':', ',', '+'
+                 '–', '-','/', '.', ' ', ':', ',', '+', '&', '*'
             };
 
             public string CustomPropertyName { get; set; }
 
             /// <summary>
-            /// Then name of the entry to be used by the generator to represnet the entry in the code
+            /// Then name of the entry to be used by the generator to represent the entry in the code
             /// </summary>
             public string PropertyName
             {

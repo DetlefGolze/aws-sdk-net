@@ -26,11 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Keyspaces.Model
 {
     /// <summary>
     /// Container for the parameters to the ListTables operation.
-    /// Returns a list of tables for a specified keyspace.
+    /// The <c>ListTables</c> operation returns a list of tables for a specified keyspace.
+    /// 
+    ///  
+    /// <para>
+    /// To read keyspace metadata using <c>ListTables</c>, the IAM principal needs <c>Select</c>
+    /// action permissions for the system keyspace.
+    /// </para>
     /// </summary>
     public partial class ListTablesRequest : AmazonKeyspacesRequest
     {
@@ -61,9 +68,9 @@ namespace Amazon.Keyspaces.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The total number of tables to return in the output. If the total number of tables
-        /// available is more than the value specified, a <code>NextToken</code> is provided in
-        /// the output. To resume pagination, provide the <code>NextToken</code> value as an argument
-        /// of a subsequent API invocation.
+        /// available is more than the value specified, a <c>NextToken</c> is provided in the
+        /// output. To resume pagination, provide the <c>NextToken</c> value as an argument of
+        /// a subsequent API invocation.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]
@@ -82,8 +89,8 @@ namespace Amazon.Keyspaces.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The pagination token. To resume pagination, provide the <code>NextToken</code> value
-        /// as an argument of a subsequent API invocation.
+        /// The pagination token. To resume pagination, provide the <c>NextToken</c> value as
+        /// an argument of a subsequent API invocation.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdatePublishingDestination operation.
-    /// Updates information about the publishing destination specified by the <code>destinationId</code>.
+    /// Updates information about the publishing destination specified by the <c>destinationId</c>.
     /// </summary>
     public partial class UpdatePublishingDestinationRequest : AmazonGuardDutyRequest
     {
@@ -60,8 +61,8 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property DestinationProperties. 
         /// <para>
-        /// A <code>DestinationProperties</code> object that includes the <code>DestinationArn</code>
-        /// and <code>KmsKeyArn</code> of the publishing destination.
+        /// A <c>DestinationProperties</c> object that includes the <c>DestinationArn</c> and
+        /// <c>KmsKeyArn</c> of the publishing destination.
         /// </para>
         /// </summary>
         public DestinationProperties DestinationProperties
@@ -80,6 +81,12 @@ namespace Amazon.GuardDuty.Model
         /// Gets and sets the property DetectorId. 
         /// <para>
         /// The ID of the detector associated with the publishing destinations to update.
+        /// </para>
+        ///  
+        /// <para>
+        /// To find the <c>detectorId</c> in the current Region, see the Settings page in the
+        /// GuardDuty console, or run the <a href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html">ListDetectors</a>
+        /// API.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=300)]

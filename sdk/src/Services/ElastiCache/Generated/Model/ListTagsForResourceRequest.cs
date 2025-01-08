@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -38,13 +39,13 @@ namespace Amazon.ElastiCache.Model
     /// tags to categorize and track all your ElastiCache resources, with the exception of
     /// global replication group. When you add or remove tags on replication groups, those
     /// actions will be replicated to all nodes in the replication group. For more information,
-    /// see <a href="http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/IAM.ResourceLevelPermissions.html">Resource-level
+    /// see <a href="http://docs.aws.amazon.com/AmazonElastiCache/latest/dg/IAM.ResourceLevelPermissions.html">Resource-level
     /// permissions</a>.
     /// </para>
     ///  
     /// <para>
-    /// If the cluster is not in the <i>available</i> state, <code>ListTagsForResource</code>
-    /// returns an error.
+    /// If the cluster is not in the <i>available</i> state, <c>ListTagsForResource</c> returns
+    /// an error.
     /// </para>
     /// </summary>
     public partial class ListTagsForResourceRequest : AmazonElastiCacheRequest
@@ -55,8 +56,7 @@ namespace Amazon.ElastiCache.Model
         /// Gets and sets the property ResourceName. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the resource for which you want the list of tags,
-        /// for example <code>arn:aws:elasticache:us-west-2:0123456789:cluster:myCluster</code>
-        /// or <code>arn:aws:elasticache:us-west-2:0123456789:snapshot:mySnapshot</code>.
+        /// for example <c>arn:aws:elasticache:us-west-2:0123456789:cluster:myCluster</c> or <c>arn:aws:elasticache:us-west-2:0123456789:snapshot:mySnapshot</c>.
         /// </para>
         ///  
         /// <para>

@@ -75,6 +75,52 @@ namespace Amazon.TranscribeService
 
 
     /// <summary>
+    /// Constants used for properties of type CallAnalyticsFeature.
+    /// </summary>
+    public class CallAnalyticsFeature : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant GENERATIVE_SUMMARIZATION for CallAnalyticsFeature
+        /// </summary>
+        public static readonly CallAnalyticsFeature GENERATIVE_SUMMARIZATION = new CallAnalyticsFeature("GENERATIVE_SUMMARIZATION");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public CallAnalyticsFeature(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static CallAnalyticsFeature FindValue(string value)
+        {
+            return FindValue<CallAnalyticsFeature>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator CallAnalyticsFeature(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type CallAnalyticsJobStatus.
     /// </summary>
     public class CallAnalyticsJobStatus : ConstantClass
@@ -126,6 +172,56 @@ namespace Amazon.TranscribeService
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator CallAnalyticsJobStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type CallAnalyticsSkippedReasonCode.
+    /// </summary>
+    public class CallAnalyticsSkippedReasonCode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant FAILED_SAFETY_GUIDELINES for CallAnalyticsSkippedReasonCode
+        /// </summary>
+        public static readonly CallAnalyticsSkippedReasonCode FAILED_SAFETY_GUIDELINES = new CallAnalyticsSkippedReasonCode("FAILED_SAFETY_GUIDELINES");
+        /// <summary>
+        /// Constant INSUFFICIENT_CONVERSATION_CONTENT for CallAnalyticsSkippedReasonCode
+        /// </summary>
+        public static readonly CallAnalyticsSkippedReasonCode INSUFFICIENT_CONVERSATION_CONTENT = new CallAnalyticsSkippedReasonCode("INSUFFICIENT_CONVERSATION_CONTENT");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public CallAnalyticsSkippedReasonCode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static CallAnalyticsSkippedReasonCode FindValue(string value)
+        {
+            return FindValue<CallAnalyticsSkippedReasonCode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator CallAnalyticsSkippedReasonCode(string value)
         {
             return FindValue(value);
         }
@@ -259,6 +355,10 @@ namespace Amazon.TranscribeService
     {
 
         /// <summary>
+        /// Constant AbGE for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode AbGE = new LanguageCode("ab-GE");
+        /// <summary>
         /// Constant AfZA for LanguageCode
         /// </summary>
         public static readonly LanguageCode AfZA = new LanguageCode("af-ZA");
@@ -271,6 +371,54 @@ namespace Amazon.TranscribeService
         /// </summary>
         public static readonly LanguageCode ArSA = new LanguageCode("ar-SA");
         /// <summary>
+        /// Constant AstES for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode AstES = new LanguageCode("ast-ES");
+        /// <summary>
+        /// Constant AzAZ for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode AzAZ = new LanguageCode("az-AZ");
+        /// <summary>
+        /// Constant BaRU for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode BaRU = new LanguageCode("ba-RU");
+        /// <summary>
+        /// Constant BeBY for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode BeBY = new LanguageCode("be-BY");
+        /// <summary>
+        /// Constant BgBG for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode BgBG = new LanguageCode("bg-BG");
+        /// <summary>
+        /// Constant BnIN for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode BnIN = new LanguageCode("bn-IN");
+        /// <summary>
+        /// Constant BsBA for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode BsBA = new LanguageCode("bs-BA");
+        /// <summary>
+        /// Constant CaES for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode CaES = new LanguageCode("ca-ES");
+        /// <summary>
+        /// Constant CkbIQ for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode CkbIQ = new LanguageCode("ckb-IQ");
+        /// <summary>
+        /// Constant CkbIR for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode CkbIR = new LanguageCode("ckb-IR");
+        /// <summary>
+        /// Constant CsCZ for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode CsCZ = new LanguageCode("cs-CZ");
+        /// <summary>
+        /// Constant CyWL for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode CyWL = new LanguageCode("cy-WL");
+        /// <summary>
         /// Constant DaDK for LanguageCode
         /// </summary>
         public static readonly LanguageCode DaDK = new LanguageCode("da-DK");
@@ -282,6 +430,10 @@ namespace Amazon.TranscribeService
         /// Constant DeDE for LanguageCode
         /// </summary>
         public static readonly LanguageCode DeDE = new LanguageCode("de-DE");
+        /// <summary>
+        /// Constant ElGR for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode ElGR = new LanguageCode("el-GR");
         /// <summary>
         /// Constant EnAB for LanguageCode
         /// </summary>
@@ -327,9 +479,21 @@ namespace Amazon.TranscribeService
         /// </summary>
         public static readonly LanguageCode EsUS = new LanguageCode("es-US");
         /// <summary>
+        /// Constant EtET for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode EtET = new LanguageCode("et-ET");
+        /// <summary>
+        /// Constant EuES for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode EuES = new LanguageCode("eu-ES");
+        /// <summary>
         /// Constant FaIR for LanguageCode
         /// </summary>
         public static readonly LanguageCode FaIR = new LanguageCode("fa-IR");
+        /// <summary>
+        /// Constant FiFI for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode FiFI = new LanguageCode("fi-FI");
         /// <summary>
         /// Constant FrCA for LanguageCode
         /// </summary>
@@ -339,6 +503,18 @@ namespace Amazon.TranscribeService
         /// </summary>
         public static readonly LanguageCode FrFR = new LanguageCode("fr-FR");
         /// <summary>
+        /// Constant GlES for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode GlES = new LanguageCode("gl-ES");
+        /// <summary>
+        /// Constant GuIN for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode GuIN = new LanguageCode("gu-IN");
+        /// <summary>
+        /// Constant HaNG for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode HaNG = new LanguageCode("ha-NG");
+        /// <summary>
         /// Constant HeIL for LanguageCode
         /// </summary>
         public static readonly LanguageCode HeIL = new LanguageCode("he-IL");
@@ -347,9 +523,25 @@ namespace Amazon.TranscribeService
         /// </summary>
         public static readonly LanguageCode HiIN = new LanguageCode("hi-IN");
         /// <summary>
+        /// Constant HrHR for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode HrHR = new LanguageCode("hr-HR");
+        /// <summary>
+        /// Constant HuHU for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode HuHU = new LanguageCode("hu-HU");
+        /// <summary>
+        /// Constant HyAM for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode HyAM = new LanguageCode("hy-AM");
+        /// <summary>
         /// Constant IdID for LanguageCode
         /// </summary>
         public static readonly LanguageCode IdID = new LanguageCode("id-ID");
+        /// <summary>
+        /// Constant IsIS for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode IsIS = new LanguageCode("is-IS");
         /// <summary>
         /// Constant ItIT for LanguageCode
         /// </summary>
@@ -359,17 +551,97 @@ namespace Amazon.TranscribeService
         /// </summary>
         public static readonly LanguageCode JaJP = new LanguageCode("ja-JP");
         /// <summary>
+        /// Constant KabDZ for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode KabDZ = new LanguageCode("kab-DZ");
+        /// <summary>
+        /// Constant KaGE for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode KaGE = new LanguageCode("ka-GE");
+        /// <summary>
+        /// Constant KkKZ for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode KkKZ = new LanguageCode("kk-KZ");
+        /// <summary>
+        /// Constant KnIN for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode KnIN = new LanguageCode("kn-IN");
+        /// <summary>
         /// Constant KoKR for LanguageCode
         /// </summary>
         public static readonly LanguageCode KoKR = new LanguageCode("ko-KR");
+        /// <summary>
+        /// Constant KyKG for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode KyKG = new LanguageCode("ky-KG");
+        /// <summary>
+        /// Constant LgIN for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode LgIN = new LanguageCode("lg-IN");
+        /// <summary>
+        /// Constant LtLT for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode LtLT = new LanguageCode("lt-LT");
+        /// <summary>
+        /// Constant LvLV for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode LvLV = new LanguageCode("lv-LV");
+        /// <summary>
+        /// Constant MhrRU for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode MhrRU = new LanguageCode("mhr-RU");
+        /// <summary>
+        /// Constant MiNZ for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode MiNZ = new LanguageCode("mi-NZ");
+        /// <summary>
+        /// Constant MkMK for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode MkMK = new LanguageCode("mk-MK");
+        /// <summary>
+        /// Constant MlIN for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode MlIN = new LanguageCode("ml-IN");
+        /// <summary>
+        /// Constant MnMN for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode MnMN = new LanguageCode("mn-MN");
+        /// <summary>
+        /// Constant MrIN for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode MrIN = new LanguageCode("mr-IN");
         /// <summary>
         /// Constant MsMY for LanguageCode
         /// </summary>
         public static readonly LanguageCode MsMY = new LanguageCode("ms-MY");
         /// <summary>
+        /// Constant MtMT for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode MtMT = new LanguageCode("mt-MT");
+        /// <summary>
         /// Constant NlNL for LanguageCode
         /// </summary>
         public static readonly LanguageCode NlNL = new LanguageCode("nl-NL");
+        /// <summary>
+        /// Constant NoNO for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode NoNO = new LanguageCode("no-NO");
+        /// <summary>
+        /// Constant OrIN for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode OrIN = new LanguageCode("or-IN");
+        /// <summary>
+        /// Constant PaIN for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode PaIN = new LanguageCode("pa-IN");
+        /// <summary>
+        /// Constant PlPL for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode PlPL = new LanguageCode("pl-PL");
+        /// <summary>
+        /// Constant PsAF for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode PsAF = new LanguageCode("ps-AF");
         /// <summary>
         /// Constant PtBR for LanguageCode
         /// </summary>
@@ -379,13 +651,65 @@ namespace Amazon.TranscribeService
         /// </summary>
         public static readonly LanguageCode PtPT = new LanguageCode("pt-PT");
         /// <summary>
+        /// Constant RoRO for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode RoRO = new LanguageCode("ro-RO");
+        /// <summary>
         /// Constant RuRU for LanguageCode
         /// </summary>
         public static readonly LanguageCode RuRU = new LanguageCode("ru-RU");
         /// <summary>
+        /// Constant RwRW for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode RwRW = new LanguageCode("rw-RW");
+        /// <summary>
+        /// Constant SiLK for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode SiLK = new LanguageCode("si-LK");
+        /// <summary>
+        /// Constant SkSK for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode SkSK = new LanguageCode("sk-SK");
+        /// <summary>
+        /// Constant SlSI for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode SlSI = new LanguageCode("sl-SI");
+        /// <summary>
+        /// Constant SoSO for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode SoSO = new LanguageCode("so-SO");
+        /// <summary>
+        /// Constant SrRS for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode SrRS = new LanguageCode("sr-RS");
+        /// <summary>
+        /// Constant SuID for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode SuID = new LanguageCode("su-ID");
+        /// <summary>
         /// Constant SvSE for LanguageCode
         /// </summary>
         public static readonly LanguageCode SvSE = new LanguageCode("sv-SE");
+        /// <summary>
+        /// Constant SwBI for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode SwBI = new LanguageCode("sw-BI");
+        /// <summary>
+        /// Constant SwKE for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode SwKE = new LanguageCode("sw-KE");
+        /// <summary>
+        /// Constant SwRW for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode SwRW = new LanguageCode("sw-RW");
+        /// <summary>
+        /// Constant SwTZ for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode SwTZ = new LanguageCode("sw-TZ");
+        /// <summary>
+        /// Constant SwUG for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode SwUG = new LanguageCode("sw-UG");
         /// <summary>
         /// Constant TaIN for LanguageCode
         /// </summary>
@@ -399,13 +723,37 @@ namespace Amazon.TranscribeService
         /// </summary>
         public static readonly LanguageCode ThTH = new LanguageCode("th-TH");
         /// <summary>
+        /// Constant TlPH for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode TlPH = new LanguageCode("tl-PH");
+        /// <summary>
         /// Constant TrTR for LanguageCode
         /// </summary>
         public static readonly LanguageCode TrTR = new LanguageCode("tr-TR");
         /// <summary>
+        /// Constant TtRU for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode TtRU = new LanguageCode("tt-RU");
+        /// <summary>
+        /// Constant UgCN for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode UgCN = new LanguageCode("ug-CN");
+        /// <summary>
+        /// Constant UkUA for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode UkUA = new LanguageCode("uk-UA");
+        /// <summary>
+        /// Constant UzUZ for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode UzUZ = new LanguageCode("uz-UZ");
+        /// <summary>
         /// Constant ViVN for LanguageCode
         /// </summary>
         public static readonly LanguageCode ViVN = new LanguageCode("vi-VN");
+        /// <summary>
+        /// Constant WoSN for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode WoSN = new LanguageCode("wo-SN");
         /// <summary>
         /// Constant ZhCN for LanguageCode
         /// </summary>
@@ -414,6 +762,10 @@ namespace Amazon.TranscribeService
         /// Constant ZhTW for LanguageCode
         /// </summary>
         public static readonly LanguageCode ZhTW = new LanguageCode("zh-TW");
+        /// <summary>
+        /// Constant ZuZA for LanguageCode
+        /// </summary>
+        public static readonly LanguageCode ZuZA = new LanguageCode("zu-ZA");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -464,6 +816,10 @@ namespace Amazon.TranscribeService
         /// Constant Flac for MediaFormat
         /// </summary>
         public static readonly MediaFormat Flac = new MediaFormat("flac");
+        /// <summary>
+        /// Constant M4a for MediaFormat
+        /// </summary>
+        public static readonly MediaFormat M4a = new MediaFormat("m4a");
         /// <summary>
         /// Constant Mp3 for MediaFormat
         /// </summary>
@@ -560,6 +916,160 @@ namespace Amazon.TranscribeService
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator MedicalContentIdentificationType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type MedicalScribeJobStatus.
+    /// </summary>
+    public class MedicalScribeJobStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant COMPLETED for MedicalScribeJobStatus
+        /// </summary>
+        public static readonly MedicalScribeJobStatus COMPLETED = new MedicalScribeJobStatus("COMPLETED");
+        /// <summary>
+        /// Constant FAILED for MedicalScribeJobStatus
+        /// </summary>
+        public static readonly MedicalScribeJobStatus FAILED = new MedicalScribeJobStatus("FAILED");
+        /// <summary>
+        /// Constant IN_PROGRESS for MedicalScribeJobStatus
+        /// </summary>
+        public static readonly MedicalScribeJobStatus IN_PROGRESS = new MedicalScribeJobStatus("IN_PROGRESS");
+        /// <summary>
+        /// Constant QUEUED for MedicalScribeJobStatus
+        /// </summary>
+        public static readonly MedicalScribeJobStatus QUEUED = new MedicalScribeJobStatus("QUEUED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public MedicalScribeJobStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static MedicalScribeJobStatus FindValue(string value)
+        {
+            return FindValue<MedicalScribeJobStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator MedicalScribeJobStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type MedicalScribeLanguageCode.
+    /// </summary>
+    public class MedicalScribeLanguageCode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant EnUS for MedicalScribeLanguageCode
+        /// </summary>
+        public static readonly MedicalScribeLanguageCode EnUS = new MedicalScribeLanguageCode("en-US");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public MedicalScribeLanguageCode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static MedicalScribeLanguageCode FindValue(string value)
+        {
+            return FindValue<MedicalScribeLanguageCode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator MedicalScribeLanguageCode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type MedicalScribeParticipantRole.
+    /// </summary>
+    public class MedicalScribeParticipantRole : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CLINICIAN for MedicalScribeParticipantRole
+        /// </summary>
+        public static readonly MedicalScribeParticipantRole CLINICIAN = new MedicalScribeParticipantRole("CLINICIAN");
+        /// <summary>
+        /// Constant PATIENT for MedicalScribeParticipantRole
+        /// </summary>
+        public static readonly MedicalScribeParticipantRole PATIENT = new MedicalScribeParticipantRole("PATIENT");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public MedicalScribeParticipantRole(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static MedicalScribeParticipantRole FindValue(string value)
+        {
+            return FindValue<MedicalScribeParticipantRole>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator MedicalScribeParticipantRole(string value)
         {
             return FindValue(value);
         }

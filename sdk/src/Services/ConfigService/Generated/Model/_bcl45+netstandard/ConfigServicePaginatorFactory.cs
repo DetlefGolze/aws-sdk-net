@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -297,6 +298,14 @@ namespace Amazon.ConfigService.Model
         public IListAggregateDiscoveredResourcesPaginator ListAggregateDiscoveredResources(ListAggregateDiscoveredResourcesRequest request) 
         {
             return new ListAggregateDiscoveredResourcesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListConfigurationRecorders operation
+        ///</summary>
+        public IListConfigurationRecordersPaginator ListConfigurationRecorders(ListConfigurationRecordersRequest request) 
+        {
+            return new ListConfigurationRecordersPaginator(this.client, request);
         }
 
         /// <summary>

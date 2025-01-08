@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptography.Model
 {
     /// <summary>
@@ -37,9 +38,9 @@ namespace Amazon.PaymentCryptography.Model
     /// <para>
     /// This is a paginated operation, which means that each response might contain only a
     /// subset of all the keys. When the response contains only a subset of keys, it includes
-    /// a <code>NextToken</code> value. Use this value in a subsequent <code>ListKeys</code>
-    /// request to get more keys. When you receive a response with no NextToken (or an empty
-    /// or null value), that means there are no more keys to get.
+    /// a <c>NextToken</c> value. Use this value in a subsequent <c>ListKeys</c> request to
+    /// get more keys. When you receive a response with no NextToken (or an empty or null
+    /// value), that means there are no more keys to get.
     /// </para>
     ///  
     /// <para>
@@ -52,15 +53,18 @@ namespace Amazon.PaymentCryptography.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <a>CreateKey</a> 
+    ///  <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_CreateKey.html">CreateKey</a>
+    /// 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a>DeleteKey</a> 
+    ///  <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_DeleteKey.html">DeleteKey</a>
+    /// 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a>GetKey</a> 
+    ///  <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_GetKey.html">GetKey</a>
+    /// 
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -95,6 +99,11 @@ namespace Amazon.PaymentCryptography.Model
         /// is present, Amazon Web Services Payment Cryptography does not return more than the
         /// specified number of items, but it might return fewer.
         /// </para>
+        ///  
+        /// <para>
+        /// This value is optional. If you include a value, it must be between 1 and 100, inclusive.
+        /// If you do not include a value, it defaults to 50.
+        /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
         public int MaxResults
@@ -113,8 +122,8 @@ namespace Amazon.PaymentCryptography.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// Use this parameter in a subsequent request after you receive a response with truncated
-        /// results. Set it to the value of <code>NextToken</code> from the truncated response
-        /// you just received.
+        /// results. Set it to the value of <c>NextToken</c> from the truncated response you just
+        /// received.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=8192)]

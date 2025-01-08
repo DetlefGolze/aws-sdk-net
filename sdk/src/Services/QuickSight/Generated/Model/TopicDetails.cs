@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -34,9 +35,29 @@ namespace Amazon.QuickSight.Model
     /// </summary>
     public partial class TopicDetails
     {
-        private List<DatasetMetadata> _dataSets = new List<DatasetMetadata>();
+        private TopicConfigOptions _configOptions;
+        private List<DatasetMetadata> _dataSets = AWSConfigs.InitializeCollections ? new List<DatasetMetadata>() : null;
         private string _description;
         private string _name;
+        private TopicUserExperienceVersion _userExperienceVersion;
+
+        /// <summary>
+        /// Gets and sets the property ConfigOptions. 
+        /// <para>
+        /// Configuration options for a <c>Topic</c>.
+        /// </para>
+        /// </summary>
+        public TopicConfigOptions ConfigOptions
+        {
+            get { return this._configOptions; }
+            set { this._configOptions = value; }
+        }
+
+        // Check to see if ConfigOptions property is set
+        internal bool IsSetConfigOptions()
+        {
+            return this._configOptions != null;
+        }
 
         /// <summary>
         /// Gets and sets the property DataSets. 
@@ -53,7 +74,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if DataSets property is set
         internal bool IsSetDataSets()
         {
-            return this._dataSets != null && this._dataSets.Count > 0; 
+            return this._dataSets != null && (this._dataSets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -92,6 +113,24 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetName()
         {
             return this._name != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property UserExperienceVersion. 
+        /// <para>
+        /// The user experience version of a topic.
+        /// </para>
+        /// </summary>
+        public TopicUserExperienceVersion UserExperienceVersion
+        {
+            get { return this._userExperienceVersion; }
+            set { this._userExperienceVersion = value; }
+        }
+
+        // Check to see if UserExperienceVersion property is set
+        internal bool IsSetUserExperienceVersion()
+        {
+            return this._userExperienceVersion != null;
         }
 
     }

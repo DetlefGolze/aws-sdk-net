@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -35,7 +36,8 @@ namespace Amazon.QuickSight.Model
     public partial class CreateTopicRequest : AmazonQuickSightRequest
     {
         private string _awsAccountId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<string> _folderArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private TopicDetails _topic;
         private string _topicId;
 
@@ -59,6 +61,25 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property FolderArns. 
+        /// <para>
+        /// The Folder ARN of the folder that you want the topic to reside in.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=1)]
+        public List<string> FolderArns
+        {
+            get { return this._folderArns; }
+            set { this._folderArns = value; }
+        }
+
+        // Check to see if FolderArns property is set
+        internal bool IsSetFolderArns()
+        {
+            return this._folderArns != null && (this._folderArns.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// Contains a map of the key-value pairs for the resource tag or tags that are assigned
@@ -75,7 +96,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

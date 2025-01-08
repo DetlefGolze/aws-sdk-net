@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.SecurityHub.Model
     public partial class StandardsSubscription
     {
         private string _standardsArn;
-        private Dictionary<string, string> _standardsInput = new Dictionary<string, string>();
+        private Dictionary<string, string> _standardsInput = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private StandardsStatus _standardsStatus;
         private StandardsStatusReason _standardsStatusReason;
         private string _standardsSubscriptionArn;
@@ -74,7 +75,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if StandardsInput property is set
         internal bool IsSetStandardsInput()
         {
-            return this._standardsInput != null && this._standardsInput.Count > 0; 
+            return this._standardsInput != null && (this._standardsInput.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -88,24 +89,24 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PENDING</code> - Standard is in the process of being enabled.
+        ///  <c>PENDING</c> - Standard is in the process of being enabled.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>READY</code> - Standard is enabled.
+        ///  <c>READY</c> - Standard is enabled.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INCOMPLETE</code> - Standard could not be enabled completely. Some controls
-        /// may not be available.
+        ///  <c>INCOMPLETE</c> - Standard could not be enabled completely. Some controls may not
+        /// be available.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETING</code> - Standard is in the process of being disabled.
+        ///  <c>DELETING</c> - Standard is in the process of being disabled.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> - Standard could not be disabled.
+        ///  <c>FAILED</c> - Standard could not be disabled.
         /// </para>
         ///  </li> </ul>
         /// </summary>

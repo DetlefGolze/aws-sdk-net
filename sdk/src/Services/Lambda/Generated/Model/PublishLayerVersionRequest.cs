@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
     /// Container for the parameters to the PublishLayerVersion operation.
     /// Creates an <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
-    /// layer</a> from a ZIP archive. Each time you call <code>PublishLayerVersion</code>
-    /// with the same layer name, a new version is created.
+    /// layer</a> from a ZIP archive. Each time you call <c>PublishLayerVersion</c> with the
+    /// same layer name, a new version is created.
     /// 
     ///  
     /// <para>
@@ -41,8 +42,8 @@ namespace Amazon.Lambda.Model
     /// </summary>
     public partial class PublishLayerVersionRequest : AmazonLambdaRequest
     {
-        private List<string> _compatibleArchitectures = new List<string>();
-        private List<string> _compatibleRuntimes = new List<string>();
+        private List<string> _compatibleArchitectures = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _compatibleRuntimes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private LayerVersionContentInput _content;
         private string _description;
         private string _layerName;
@@ -65,7 +66,7 @@ namespace Amazon.Lambda.Model
         // Check to see if CompatibleArchitectures property is set
         internal bool IsSetCompatibleArchitectures()
         {
-            return this._compatibleArchitectures != null && this._compatibleArchitectures.Count > 0; 
+            return this._compatibleArchitectures != null && (this._compatibleArchitectures.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -90,7 +91,7 @@ namespace Amazon.Lambda.Model
         // Check to see if CompatibleRuntimes property is set
         internal bool IsSetCompatibleRuntimes()
         {
-            return this._compatibleRuntimes != null && this._compatibleRuntimes.Count > 0; 
+            return this._compatibleRuntimes != null && (this._compatibleRuntimes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -158,11 +159,11 @@ namespace Amazon.Lambda.Model
         ///  <ul> <li> 
         /// <para>
         /// An <a href="https://spdx.org/licenses/">SPDX license identifier</a>. For example,
-        /// <code>MIT</code>.
+        /// <c>MIT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The URL of a license hosted on the internet. For example, <code>https://opensource.org/licenses/MIT</code>.
+        /// The URL of a license hosted on the internet. For example, <c>https://opensource.org/licenses/MIT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTTwinMaker.Model
 {
     /// <summary>
@@ -36,12 +37,13 @@ namespace Amazon.IoTTwinMaker.Model
     {
         private string _componentTypeId;
         private string _componentTypeName;
+        private Dictionary<string, CompositeComponentTypeRequest> _compositeComponentTypes = AWSConfigs.InitializeCollections ? new Dictionary<string, CompositeComponentTypeRequest>() : null;
         private string _description;
-        private List<string> _extendsFrom = new List<string>();
-        private Dictionary<string, FunctionRequest> _functions = new Dictionary<string, FunctionRequest>();
+        private List<string> _extendsFrom = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, FunctionRequest> _functions = AWSConfigs.InitializeCollections ? new Dictionary<string, FunctionRequest>() : null;
         private bool? _isSingleton;
-        private Dictionary<string, PropertyDefinitionRequest> _propertyDefinitions = new Dictionary<string, PropertyDefinitionRequest>();
-        private Dictionary<string, PropertyGroupRequest> _propertyGroups = new Dictionary<string, PropertyGroupRequest>();
+        private Dictionary<string, PropertyDefinitionRequest> _propertyDefinitions = AWSConfigs.InitializeCollections ? new Dictionary<string, PropertyDefinitionRequest>() : null;
+        private Dictionary<string, PropertyGroupRequest> _propertyGroups = AWSConfigs.InitializeCollections ? new Dictionary<string, PropertyGroupRequest>() : null;
         private string _workspaceId;
 
         /// <summary>
@@ -83,6 +85,25 @@ namespace Amazon.IoTTwinMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property CompositeComponentTypes. 
+        /// <para>
+        /// This is an object that maps strings to <c>compositeComponentTypes</c> of the <c>componentType</c>.
+        /// <c>CompositeComponentType</c> is referenced by <c>componentTypeId</c>.
+        /// </para>
+        /// </summary>
+        public Dictionary<string, CompositeComponentTypeRequest> CompositeComponentTypes
+        {
+            get { return this._compositeComponentTypes; }
+            set { this._compositeComponentTypes = value; }
+        }
+
+        // Check to see if CompositeComponentTypes property is set
+        internal bool IsSetCompositeComponentTypes()
+        {
+            return this._compositeComponentTypes != null && (this._compositeComponentTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
         /// The description of the component type.
@@ -116,7 +137,7 @@ namespace Amazon.IoTTwinMaker.Model
         // Check to see if ExtendsFrom property is set
         internal bool IsSetExtendsFrom()
         {
-            return this._extendsFrom != null && this._extendsFrom.Count > 0; 
+            return this._extendsFrom != null && (this._extendsFrom.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -135,7 +156,7 @@ namespace Amazon.IoTTwinMaker.Model
         // Check to see if Functions property is set
         internal bool IsSetFunctions()
         {
-            return this._functions != null && this._functions.Count > 0; 
+            return this._functions != null && (this._functions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -173,7 +194,7 @@ namespace Amazon.IoTTwinMaker.Model
         // Check to see if PropertyDefinitions property is set
         internal bool IsSetPropertyDefinitions()
         {
-            return this._propertyDefinitions != null && this._propertyDefinitions.Count > 0; 
+            return this._propertyDefinitions != null && (this._propertyDefinitions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -191,7 +212,7 @@ namespace Amazon.IoTTwinMaker.Model
         // Check to see if PropertyGroups property is set
         internal bool IsSetPropertyGroups()
         {
-            return this._propertyGroups != null && this._propertyGroups.Count > 0; 
+            return this._propertyGroups != null && (this._propertyGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

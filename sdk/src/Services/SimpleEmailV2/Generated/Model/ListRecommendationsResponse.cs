@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -35,14 +36,14 @@ namespace Amazon.SimpleEmailV2.Model
     public partial class ListRecommendationsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Recommendation> _recommendations = new List<Recommendation>();
+        private List<Recommendation> _recommendations = AWSConfigs.InitializeCollections ? new List<Recommendation>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A string token indicating that there might be additional recommendations available
-        /// to be listed. Use the token provided in the <code>ListRecommendationsResponse</code>
-        /// to use in the subsequent call to <code>ListRecommendations</code> with the same parameters
+        /// to be listed. Use the token provided in the <c>ListRecommendationsResponse</c> to
+        /// use in the subsequent call to <c>ListRecommendations</c> with the same parameters
         /// to retrieve the next page of recommendations.
         /// </para>
         /// </summary>
@@ -73,7 +74,7 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if Recommendations property is set
         internal bool IsSetRecommendations()
         {
-            return this._recommendations != null && this._recommendations.Count > 0; 
+            return this._recommendations != null && (this._recommendations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

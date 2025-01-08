@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -35,24 +36,24 @@ namespace Amazon.FSx.Model
     {
         private bool? _copyTagsToSnapshots;
         private OpenZFSDataCompressionType _dataCompressionType;
-        private List<OpenZFSNfsExport> _nfsExports = new List<OpenZFSNfsExport>();
+        private List<OpenZFSNfsExport> _nfsExports = AWSConfigs.InitializeCollections ? new List<OpenZFSNfsExport>() : null;
         private CreateOpenZFSOriginSnapshotConfiguration _originSnapshot;
         private string _parentVolumeId;
         private bool? _readOnly;
         private int? _recordSizeKiB;
         private int? _storageCapacityQuotaGiB;
         private int? _storageCapacityReservationGiB;
-        private List<OpenZFSUserOrGroupQuota> _userAndGroupQuotas = new List<OpenZFSUserOrGroupQuota>();
+        private List<OpenZFSUserOrGroupQuota> _userAndGroupQuotas = AWSConfigs.InitializeCollections ? new List<OpenZFSUserOrGroupQuota>() : null;
 
         /// <summary>
         /// Gets and sets the property CopyTagsToSnapshots. 
         /// <para>
         /// A Boolean value indicating whether tags for the volume should be copied to snapshots.
-        /// This value defaults to <code>false</code>. If it's set to <code>true</code>, all tags
-        /// for the volume are copied to snapshots where the user doesn't specify tags. If this
-        /// value is <code>true</code>, and you specify one or more tags, only the specified tags
-        /// are copied to snapshots. If you specify one or more tags when creating the snapshot,
-        /// no tags are copied from the volume, regardless of this value.
+        /// This value defaults to <c>false</c>. If it's set to <c>true</c>, all tags for the
+        /// volume are copied to snapshots where the user doesn't specify tags. If this value
+        /// is <c>true</c>, and you specify one or more tags, only the specified tags are copied
+        /// to snapshots. If you specify one or more tags when creating the snapshot, no tags
+        /// are copied from the volume, regardless of this value.
         /// </para>
         /// </summary>
         public bool CopyTagsToSnapshots
@@ -71,22 +72,21 @@ namespace Amazon.FSx.Model
         /// Gets and sets the property DataCompressionType. 
         /// <para>
         /// Specifies the method used to compress the data on the volume. The compression type
-        /// is <code>NONE</code> by default.
+        /// is <c>NONE</c> by default.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NONE</code> - Doesn't compress the data on the volume. <code>NONE</code> is
-        /// the default.
+        ///  <c>NONE</c> - Doesn't compress the data on the volume. <c>NONE</c> is the default.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ZSTD</code> - Compresses the data in the volume using the Zstandard (ZSTD)
-        /// compression algorithm. ZSTD compression provides a higher level of data compression
-        /// and higher read throughput performance than LZ4 compression.
+        ///  <c>ZSTD</c> - Compresses the data in the volume using the Zstandard (ZSTD) compression
+        /// algorithm. ZSTD compression provides a higher level of data compression and higher
+        /// read throughput performance than LZ4 compression.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LZ4</code> - Compresses the data in the volume using the LZ4 compression algorithm.
+        ///  <c>LZ4</c> - Compresses the data in the volume using the LZ4 compression algorithm.
         /// LZ4 compression provides a lower level of compression and higher write throughput
         /// performance than ZSTD compression.
         /// </para>
@@ -126,7 +126,7 @@ namespace Amazon.FSx.Model
         // Check to see if NfsExports property is set
         internal bool IsSetNfsExports()
         {
-            return this._nfsExports != null && this._nfsExports.Count > 0; 
+            return this._nfsExports != null && (this._nfsExports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -189,16 +189,18 @@ namespace Amazon.FSx.Model
         /// Gets and sets the property RecordSizeKiB. 
         /// <para>
         /// Specifies the suggested block size for a volume in a ZFS dataset, in kibibytes (KiB).
-        /// Valid values are 4, 8, 16, 32, 64, 128, 256, 512, or 1024 KiB. The default is 128
-        /// KiB. We recommend using the default setting for the majority of use cases. Generally,
-        /// workloads that write in fixed small or large record sizes may benefit from setting
-        /// a custom record size, like database workloads (small record size) or media streaming
-        /// workloads (large record size). For additional guidance on when to set a custom record
-        /// size, see <a href="https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/performance.html#record-size-performance">
+        /// For file systems using the Intelligent-Tiering storage class, valid values are 128,
+        /// 256, 512, 1024, 2048, or 4096 KiB, with a default of 2048 KiB. For all other file
+        /// systems, valid values are 4, 8, 16, 32, 64, 128, 256, 512, or 1024 KiB, with a default
+        /// of 128 KiB. We recommend using the default setting for the majority of use cases.
+        /// Generally, workloads that write in fixed small or large record sizes may benefit from
+        /// setting a custom record size, like database workloads (small record size) or media
+        /// streaming workloads (large record size). For additional guidance on when to set a
+        /// custom record size, see <a href="https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/performance.html#record-size-performance">
         /// ZFS Record size</a> in the <i>Amazon FSx for OpenZFS User Guide</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=4, Max=1024)]
+        [AWSProperty(Min=4, Max=4096)]
         public int RecordSizeKiB
         {
             get { return this._recordSizeKiB.GetValueOrDefault(); }
@@ -218,8 +220,8 @@ namespace Amazon.FSx.Model
         /// quota that is larger than the storage on the parent volume. A volume quota limits
         /// the amount of storage that the volume can consume to the configured amount, but does
         /// not guarantee the space will be available on the parent volume. To guarantee quota
-        /// space, you must also set <code>StorageCapacityReservationGiB</code>. To <i>not</i>
-        /// specify a storage capacity quota, set this to <code>-1</code>. 
+        /// space, you must also set <c>StorageCapacityReservationGiB</c>. To <i>not</i> specify
+        /// a storage capacity quota, set this to <c>-1</c>. 
         /// </para>
         ///  
         /// <para>
@@ -244,11 +246,11 @@ namespace Amazon.FSx.Model
         /// Gets and sets the property StorageCapacityReservationGiB. 
         /// <para>
         /// Specifies the amount of storage in gibibytes (GiB) to reserve from the parent volume.
-        /// Setting <code>StorageCapacityReservationGiB</code> guarantees that the specified amount
+        /// Setting <c>StorageCapacityReservationGiB</c> guarantees that the specified amount
         /// of storage space on the parent volume will always be available for the volume. You
         /// can't reserve more storage than the parent volume has. To <i>not</i> specify a storage
-        /// capacity reservation, set this to <code>0</code> or <code>-1</code>. For more information,
-        /// see <a href="https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/managing-volumes.html#volume-properties">Volume
+        /// capacity reservation, set this to <c>0</c> or <c>-1</c>. For more information, see
+        /// <a href="https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/managing-volumes.html#volume-properties">Volume
         /// properties</a> in the <i>Amazon FSx for OpenZFS User Guide</i>.
         /// </para>
         /// </summary>
@@ -268,7 +270,7 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property UserAndGroupQuotas. 
         /// <para>
-        /// An object specifying how much storage users or groups can use on the volume.
+        /// Configures how much storage users and groups can use on the volume.
         /// </para>
         /// </summary>
         [AWSProperty(Max=500)]
@@ -281,7 +283,7 @@ namespace Amazon.FSx.Model
         // Check to see if UserAndGroupQuotas property is set
         internal bool IsSetUserAndGroupQuotas()
         {
-            return this._userAndGroupQuotas != null && this._userAndGroupQuotas.Count > 0; 
+            return this._userAndGroupQuotas != null && (this._userAndGroupQuotas.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

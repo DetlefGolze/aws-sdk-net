@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property RiskConfiguration. 
         /// <para>
-        /// The risk configuration.
+        /// The details of the requested risk configuration.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

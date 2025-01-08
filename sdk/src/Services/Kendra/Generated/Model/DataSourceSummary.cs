@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -122,8 +123,8 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the data source. When the status is <code>ACTIVE</code> the data source
-        /// is ready to use.
+        /// The status of the data source. When the status is <c>ACTIVE</c> the data source is
+        /// ready to use.
         /// </para>
         /// </summary>
         public DataSourceStatus Status

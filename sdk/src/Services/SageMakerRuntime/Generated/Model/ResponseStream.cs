@@ -27,32 +27,37 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.EventStreams;
 using Amazon.Runtime.EventStreams.Internal;
+using Amazon.SageMakerRuntime.Model.Internal.MarshallTransformations;
+using Amazon.Runtime.EventStreams.Utils;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMakerRuntime.Model
 {
     /// <summary>
     /// A stream of payload parts. Each part contains a portion of the response for a streaming
     /// inference request.
     /// </summary>
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1710:Identifiers should have correct suffix", Justification = "ResponseStreamCollection is not descriptive")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1710:Identifiers should have correct suffix", Justification = "ResponseStreamCollection is not descriptive")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1063", Justification = "IDisposable is a transient interface from IEventStream. Users need to be able to call Dispose.")]
     public sealed class ResponseStream : EnumerableEventStream<IEventStreamEvent, SageMakerRuntimeEventStreamException>
     {
-        ///summary>
+        /// <summary>
         ///The mapping of event message to a generator function to construct the matching EventStream event
-        ///</summary>
+        /// </summary>
         protected override IDictionary<string,Func<IEventStreamMessage, IEventStreamEvent>> EventMapping {get;} =
         new Dictionary<string,Func<IEventStreamMessage,IEventStreamEvent>>(StringComparer.OrdinalIgnoreCase)
         {
-            {"PayloadPart", payload => new PayloadPart(payload)},
+            {"Initial-Response", payload => new InitialResponseEvent(payload)},
+            {"PayloadPart", payload => new PayloadPartUnmarshaller().Unmarshall(EventStreamUtils.ConvertMessageToJsonContext(payload))},
         };
         /// <summary>
         /// The mapping of event message to a generator function to construct the matching EventStream Exception
         /// </summary>
         protected override IDictionary<string,Func<IEventStreamMessage,SageMakerRuntimeEventStreamException>> ExceptionMapping {get;} =
-        new Dictionary<string,Func<IEventStreamMessage,SageMakerRuntimeEventStreamException>>
+        new Dictionary<string,Func<IEventStreamMessage,SageMakerRuntimeEventStreamException>>(StringComparer.OrdinalIgnoreCase)
         {
+            { "InternalStreamFailure", payload => new SageMakerRuntimeEventStreamException(Encoding.UTF8.GetString(payload.Payload), new InternalStreamFailureExceptionUnmarshaller().Unmarshall(EventStreamUtils.ConvertMessageToJsonContext(payload))) },
+            { "ModelStreamError", payload => new SageMakerRuntimeEventStreamException(Encoding.UTF8.GetString(payload.Payload), new ModelStreamErrorExceptionUnmarshaller().Unmarshall(EventStreamUtils.ConvertMessageToJsonContext(payload))) },
         };
         // Backing by a volatile bool. The flag only changes one way, so no need for a lock.
         // This is located in the subclass to be CLS compliant.
@@ -66,15 +71,38 @@ namespace Amazon.SageMakerRuntime.Model
             get { return _isProcessing; }
             set { _isProcessing = value; }
         }
+
+        /// <summary>
+        /// Event that encompasses all events.
+        /// </summary>
         public override event EventHandler<EventStreamEventReceivedArgs<IEventStreamEvent>> EventReceived;
+
+        /// <summary>
+        /// Event that encompasses exceptions.
+        /// </summary>
         public override event EventHandler<EventStreamExceptionReceivedArgs<SageMakerRuntimeEventStreamException>> ExceptionReceived;
+        /// <summary>
+        /// Event for the initial response.
+        /// </summary>
+        public event EventHandler<EventStreamEventReceivedArgs<InitialResponseEvent>> InitialResponseReceived;
         ///<summary>
         ///Raised when an PayloadPart event is received
         ///</summary>
         public event EventHandler<EventStreamEventReceivedArgs<PayloadPart>> PayloadPartReceived;
+
+        /// <summary>
+        /// Construct an instance
+        /// </summary>
+        /// <param name="stream"></param>        
         public ResponseStream(Stream stream) : this (stream, null)
         {
         }
+
+        /// <summary>
+        /// Construct an instance
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="eventStreamDecoder"></param>
         public ResponseStream(Stream stream, IEventStreamDecoder eventStreamDecoder) : base(stream, eventStreamDecoder)
         {
             base.EventReceived += (sender,args) => EventReceived?.Invoke(this, args);
@@ -94,9 +122,10 @@ namespace Amazon.SageMakerRuntime.Model
                 }
                 EventReceived?.Invoke(this, new EventStreamEventReceivedArgs<IEventStreamEvent>(ev));
 
-                //Call RaiseEvent until it returns true or all calls complete. This way only a subset of casts is perfromed
+                //Call RaiseEvent until it returns true or all calls complete. This way only a subset of casts are perfromed
                 // and we can avoid a cascade of nested if else statements. The result is thrown away
                 var _ =
+                    RaiseEvent(InitialResponseReceived, ev) ||
                     RaiseEvent(PayloadPartReceived,ev);
             };       
         }
@@ -111,6 +140,7 @@ namespace Amazon.SageMakerRuntime.Model
 
             return false;
         }
+
 
     }
 }

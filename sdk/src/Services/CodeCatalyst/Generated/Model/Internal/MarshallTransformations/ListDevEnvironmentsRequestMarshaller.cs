@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodeCatalyst.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -59,16 +60,14 @@ namespace Amazon.CodeCatalyst.Model.Internal.MarshallTransformations
             request.Headers[Amazon.Util.HeaderKeys.XAmzApiVersion] = "2022-09-28";
             request.HttpMethod = "POST";
 
-            if (!publicRequest.IsSetProjectName())
-                throw new AmazonCodeCatalystException("Request object does not have required field ProjectName set");
-            request.AddPathResource("{projectName}", StringUtils.FromString(publicRequest.ProjectName));
             if (!publicRequest.IsSetSpaceName())
                 throw new AmazonCodeCatalystException("Request object does not have required field SpaceName set");
             request.AddPathResource("{spaceName}", StringUtils.FromString(publicRequest.SpaceName));
-            request.ResourcePath = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments";
+            request.ResourcePath = "/v1/spaces/{spaceName}/devEnvironments";
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetFilters())
@@ -97,6 +96,12 @@ namespace Amazon.CodeCatalyst.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("nextToken");
                     context.Writer.Write(publicRequest.NextToken);
+                }
+
+                if(publicRequest.IsSetProjectName())
+                {
+                    context.Writer.WritePropertyName("projectName");
+                    context.Writer.Write(publicRequest.ProjectName);
                 }
 
                 writer.WriteObjectEnd();

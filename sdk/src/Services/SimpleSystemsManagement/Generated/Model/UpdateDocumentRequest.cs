@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// </summary>
     public partial class UpdateDocumentRequest : AmazonSimpleSystemsManagementRequest
     {
-        private List<AttachmentsSource> _attachments = new List<AttachmentsSource>();
+        private List<AttachmentsSource> _attachments = AWSConfigs.InitializeCollections ? new List<AttachmentsSource>() : null;
         private string _content;
         private string _displayName;
         private DocumentFormat _documentFormat;
@@ -59,7 +60,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Attachments property is set
         internal bool IsSetAttachments()
         {
-            return this._attachments != null && this._attachments.Count > 0; 
+            return this._attachments != null && (this._attachments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -126,12 +127,12 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <para>
         /// The version of the document that you want to update. Currently, Systems Manager supports
         /// updating only the latest version of the document. You can specify the version number
-        /// of the latest version or use the <code>$LATEST</code> variable.
+        /// of the latest version or use the <c>$LATEST</c> variable.
         /// </para>
         ///  <note> 
         /// <para>
         /// If you change a document version for a State Manager association, Systems Manager
-        /// immediately runs the association unless you previously specifed the <code>apply-only-at-cron-interval</code>
+        /// immediately runs the association unless you previously specifed the <c>apply-only-at-cron-interval</c>
         /// parameter.
         /// </para>
         ///  </note>
@@ -190,8 +191,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property VersionName. 
         /// <para>
         /// An optional field specifying the version of the artifact you are updating with the
-        /// document. For example, "Release 12, Update 6". This value is unique across all versions
-        /// of a document, and can't be changed.
+        /// document. For example, 12.6. This value is unique across all versions of a document,
+        /// and can't be changed.
         /// </para>
         /// </summary>
         public string VersionName

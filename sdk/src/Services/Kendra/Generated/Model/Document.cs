@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -34,11 +35,11 @@ namespace Amazon.Kendra.Model
     public partial class Document
     {
         private string _accessControlConfigurationId;
-        private List<Principal> _accessControlList = new List<Principal>();
-        private List<DocumentAttribute> _attributes = new List<DocumentAttribute>();
+        private List<Principal> _accessControlList = AWSConfigs.InitializeCollections ? new List<Principal>() : null;
+        private List<DocumentAttribute> _attributes = AWSConfigs.InitializeCollections ? new List<DocumentAttribute>() : null;
         private MemoryStream _blob;
         private ContentType _contentType;
-        private List<HierarchicalPrincipal> _hierarchicalAccessControlList = new List<HierarchicalPrincipal>();
+        private List<HierarchicalPrincipal> _hierarchicalAccessControlList = AWSConfigs.InitializeCollections ? new List<HierarchicalPrincipal>() : null;
         private string _id;
         private S3Path _s3Path;
         private string _title;
@@ -79,7 +80,7 @@ namespace Amazon.Kendra.Model
         // Check to see if AccessControlList property is set
         internal bool IsSetAccessControlList()
         {
-            return this._accessControlList != null && this._accessControlList.Count > 0; 
+            return this._accessControlList != null && (this._accessControlList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -106,7 +107,7 @@ namespace Amazon.Kendra.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -116,8 +117,8 @@ namespace Amazon.Kendra.Model
         /// </para>
         ///  
         /// <para>
-        /// Documents passed to the <code>Blob</code> parameter must be base64 encoded. Your code
-        /// might not need to encode the document file bytes if you're using an Amazon Web Services
+        /// Documents passed to the <c>Blob</c> parameter must be base64 encoded. Your code might
+        /// not need to encode the document file bytes if you're using an Amazon Web Services
         /// SDK to call Amazon Kendra APIs. If you are calling the Amazon Kendra endpoint directly
         /// using REST, you must base64 encode the contents before sending.
         /// </para>
@@ -137,12 +138,12 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property ContentType. 
         /// <para>
-        /// The file type of the document in the <code>Blob</code> field.
+        /// The file type of the document in the <c>Blob</c> field.
         /// </para>
         ///  
         /// <para>
         /// If you want to index snippets or subsets of HTML documents instead of the entirety
-        /// of the HTML documents, you must add the <code>HTML</code> start and closing tags (<code>&lt;HTML&gt;content&lt;/HTML&gt;</code>)
+        /// of the HTML documents, you must add the <c>HTML</c> start and closing tags (<c>&lt;HTML&gt;content&lt;/HTML&gt;</c>)
         /// around the content.
         /// </para>
         /// </summary>
@@ -175,7 +176,7 @@ namespace Amazon.Kendra.Model
         // Check to see if HierarchicalAccessControlList property is set
         internal bool IsSetHierarchicalAccessControlList()
         {
-            return this._hierarchicalAccessControlList != null && this._hierarchicalAccessControlList.Count > 0; 
+            return this._hierarchicalAccessControlList != null && (this._hierarchicalAccessControlList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -186,9 +187,9 @@ namespace Amazon.Kendra.Model
         ///  
         /// <para>
         /// Note, each document ID must be unique per index. You cannot create a data source to
-        /// index your documents with their unique IDs and then use the <code>BatchPutDocument</code>
+        /// index your documents with their unique IDs and then use the <c>BatchPutDocument</c>
         /// API to index the same documents, or vice versa. You can delete a data source and then
-        /// use the <code>BatchPutDocument</code> API to index the same documents, or vice versa.
+        /// use the <c>BatchPutDocument</c> API to index the same documents, or vice versa.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]

@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.PinpointEmail
 {
     /// <summary>
-    /// Implementation for accessing PinpointEmail
+    /// <para>Implementation for accessing PinpointEmail</para>
     ///
     /// Amazon Pinpoint Email Service 
     /// <para>
@@ -497,8 +498,7 @@ namespace Amazon.PinpointEmail
         /// message that contains the content that you plan to send to your customers. Amazon
         /// Pinpoint then sends that message to special email addresses spread across several
         /// major email providers. After about 24 hours, the test is complete, and you can use
-        /// the <code>GetDeliverabilityTestReport</code> operation to view the results of the
-        /// test.
+        /// the <c>GetDeliverabilityTestReport</c> operation to view the results of the test.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateDeliverabilityTestReport service method.</param>
         /// <param name="cancellationToken">
@@ -1201,7 +1201,7 @@ namespace Amazon.PinpointEmail
         /// <summary>
         /// Retrieve all the deliverability data for a specific campaign. This data is available
         /// for a campaign only if the campaign sent email by using a domain that the Deliverability
-        /// dashboard is enabled for (<code>PutDeliverabilityDashboardOption</code> operation).
+        /// dashboard is enabled for (<c>PutDeliverabilityDashboardOption</c> operation).
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetDomainDeliverabilityCampaign service method.</param>
         /// <param name="cancellationToken">
@@ -1425,7 +1425,7 @@ namespace Amazon.PinpointEmail
         /// <summary>
         /// Show a list of the predictive inbox placement tests that you've performed, regardless
         /// of their statuses. For predictive inbox placement tests that are complete, you can
-        /// use the <code>GetDeliverabilityTestReport</code> operation to view the results.
+        /// use the <c>GetDeliverabilityTestReport</c> operation to view the results.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListDeliverabilityTestReports service method.</param>
         /// <param name="cancellationToken">
@@ -1470,7 +1470,7 @@ namespace Amazon.PinpointEmail
         /// <summary>
         /// Retrieve deliverability data for all the campaigns that used a specific domain to
         /// send email during a specified time range. This data is available for a domain only
-        /// if you enabled the Deliverability dashboard (<code>PutDeliverabilityDashboardOption</code>
+        /// if you enabled the Deliverability dashboard (<c>PutDeliverabilityDashboardOption</c>
         /// operation) for the domain.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListDomainDeliverabilityCampaigns service method.</param>
@@ -1870,7 +1870,7 @@ namespace Amazon.PinpointEmail
         ///  
         /// <para>
         /// The dedicated IP pool you specify must already exist. You can create a new pool by
-        /// using the <code>CreateDedicatedIpPool</code> operation.
+        /// using the <c>CreateDedicatedIpPool</c> operation.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2389,11 +2389,11 @@ namespace Amazon.PinpointEmail
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

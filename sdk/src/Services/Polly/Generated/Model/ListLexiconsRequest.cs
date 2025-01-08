@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Polly.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.Polly.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// An opaque pagination token returned from previous <code>ListLexicons</code> operation.
-        /// If present, indicates where to continue the list of lexicons.
+        /// An opaque pagination token returned from previous <c>ListLexicons</c> operation. If
+        /// present, indicates where to continue the list of lexicons.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=4096)]

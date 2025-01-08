@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Backup.Model
     /// </summary>
     public partial class ListBackupPlanTemplatesResponse : AmazonWebServiceResponse
     {
-        private List<BackupPlanTemplatesListMember> _backupPlanTemplatesList = new List<BackupPlanTemplatesListMember>();
+        private List<BackupPlanTemplatesListMember> _backupPlanTemplatesList = AWSConfigs.InitializeCollections ? new List<BackupPlanTemplatesListMember>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,16 +52,15 @@ namespace Amazon.Backup.Model
         // Check to see if BackupPlanTemplatesList property is set
         internal bool IsSetBackupPlanTemplatesList()
         {
-            return this._backupPlanTemplatesList != null && this._backupPlanTemplatesList.Count > 0; 
+            return this._backupPlanTemplatesList != null && (this._backupPlanTemplatesList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The next item following a partial list of returned items. For example, if a request
-        /// is made to return <code>maxResults</code> number of items, <code>NextToken</code>
-        /// allows you to return more items in your list starting at the location pointed to by
-        /// the next token.
+        /// is made to return <c>MaxResults</c> number of items, <c>NextToken</c> allows you to
+        /// return more items in your list starting at the location pointed to by the next token.
         /// </para>
         /// </summary>
         public string NextToken

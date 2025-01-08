@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -49,7 +50,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// The timestamp when the operation was initialized (e.g., <code>1479816991.349</code>).
+        /// The timestamp when the operation was initialized (<c>1479816991.349</c>).
         /// </para>
         /// </summary>
         public DateTime CreatedAt
@@ -157,7 +158,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property OperationDetails. 
         /// <para>
-        /// Details about the operation (e.g., <code>Debian-1GB-Ohio-1</code>).
+        /// Details about the operation (<c>Debian-1GB-Ohio-1</c>).
         /// </para>
         /// </summary>
         public string OperationDetails
@@ -247,7 +248,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property StatusChangedAt. 
         /// <para>
-        /// The timestamp when the status was changed (e.g., <code>1479816991.349</code>).
+        /// The timestamp when the status was changed (<c>1479816991.349</c>).
         /// </para>
         /// </summary>
         public DateTime StatusChangedAt

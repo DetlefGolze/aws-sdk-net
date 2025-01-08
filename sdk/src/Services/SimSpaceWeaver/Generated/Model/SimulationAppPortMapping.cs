@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimSpaceWeaver.Model
 {
     /// <summary>
@@ -40,9 +41,9 @@ namespace Amazon.SimSpaceWeaver.Model
         /// Gets and sets the property Actual. 
         /// <para>
         /// The TCP/UDP port number of the running app. SimSpace Weaver dynamically assigns this
-        /// port number when the app starts. SimSpace Weaver maps the <code>Declared</code> port
-        /// to the <code>Actual</code> port. Clients connect to the app using the app's IP address
-        /// and the <code>Actual</code> port number.
+        /// port number when the app starts. SimSpace Weaver maps the <c>Declared</c> port to
+        /// the <c>Actual</c> port. Clients connect to the app using the app's IP address and
+        /// the <c>Actual</c> port number.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=65535)]
@@ -62,8 +63,8 @@ namespace Amazon.SimSpaceWeaver.Model
         /// Gets and sets the property Declared. 
         /// <para>
         /// The TCP/UDP port number of the app, declared in the simulation schema. SimSpace Weaver
-        /// maps the <code>Declared</code> port to the <code>Actual</code> port. The source code
-        /// for the app should bind to the <code>Declared</code> port.
+        /// maps the <c>Declared</c> port to the <c>Actual</c> port. The source code for the app
+        /// should bind to the <c>Declared</c> port.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=65535)]

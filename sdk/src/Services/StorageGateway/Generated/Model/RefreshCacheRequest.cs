@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
@@ -39,10 +40,10 @@ namespace Amazon.StorageGateway.Model
     /// 
     ///  
     /// <para>
-    /// You can subscribe to be notified through an Amazon CloudWatch event when your <code>RefreshCache</code>
-    /// operation completes. For more information, see <a href="https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification">Getting
-    /// notified about file operations</a> in the <i>Storage Gateway User Guide</i>. This
-    /// operation is Only supported for S3 File Gateways.
+    /// You can subscribe to be notified through an Amazon CloudWatch event when your <c>RefreshCache</c>
+    /// operation completes. For more information, see <a href="https://docs.aws.amazon.com/filegateway/latest/files3/monitoring-file-gateway.html#get-notification">Getting
+    /// notified about file operations</a> in the <i>Amazon S3 File Gateway User Guide</i>.
+    /// This operation is Only supported for S3 File Gateways.
     /// </para>
     ///  
     /// <para>
@@ -50,15 +51,15 @@ namespace Amazon.StorageGateway.Model
     /// completes and returns a success code, it doesn't necessarily mean that the file refresh
     /// has completed. You should use the refresh-complete notification to determine that
     /// the operation has completed before you check for new files on the gateway file share.
-    /// You can subscribe to be notified through a CloudWatch event when your <code>RefreshCache</code>
+    /// You can subscribe to be notified through a CloudWatch event when your <c>RefreshCache</c>
     /// operation completes.
     /// </para>
     ///  
     /// <para>
     /// Throttle limit: This API is asynchronous, so the gateway will accept no more than
     /// two refreshes at any time. We recommend using the refresh-complete CloudWatch event
-    /// notification before issuing additional requests. For more information, see <a href="https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification">Getting
-    /// notified about file operations</a> in the <i>Storage Gateway User Guide</i>.
+    /// notification before issuing additional requests. For more information, see <a href="https://docs.aws.amazon.com/filegateway/latest/files3/monitoring-file-gateway.html#get-notification">Getting
+    /// notified about file operations</a> in the <i>Amazon S3 File Gateway User Guide</i>.
     /// </para>
     ///  <important> <ul> <li> 
     /// <para>
@@ -67,7 +68,7 @@ namespace Amazon.StorageGateway.Model
     ///  </li> <li> 
     /// <para>
     /// If you invoke the RefreshCache API when two requests are already being processed,
-    /// any new request will cause an <code>InvalidGatewayRequestException</code> error because
+    /// any new request will cause an <c>InvalidGatewayRequestException</c> error because
     /// too many requests were sent to the server.
     /// </para>
     ///  </li> </ul> </important> <note> 
@@ -77,14 +78,14 @@ namespace Amazon.StorageGateway.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification">Getting
-    /// notified about file operations</a> in the <i>Storage Gateway User Guide</i>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/filegateway/latest/files3/monitoring-file-gateway.html#get-notification">Getting
+    /// notified about file operations</a> in the <i>Amazon S3 File Gateway User Guide</i>.
     /// </para>
     /// </summary>
     public partial class RefreshCacheRequest : AmazonStorageGatewayRequest
     {
         private string _fileShareARN;
-        private List<string> _folderList = new List<string>();
+        private List<string> _folderList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _recursive;
 
         /// <summary>
@@ -110,9 +111,14 @@ namespace Amazon.StorageGateway.Model
         /// Gets and sets the property FolderList. 
         /// <para>
         /// A comma-separated list of the paths of folders to refresh in the cache. The default
-        /// is [<code>"/"</code>]. The default refreshes objects and folders at the root of the
-        /// Amazon S3 bucket. If <code>Recursive</code> is set to <code>true</code>, the entire
-        /// S3 bucket that the file share has access to is refreshed.
+        /// is [<c>"/"</c>]. The default refreshes objects and folders at the root of the Amazon
+        /// S3 bucket. If <c>Recursive</c> is set to <c>true</c>, the entire S3 bucket that the
+        /// file share has access to is refreshed.
+        /// </para>
+        ///  
+        /// <para>
+        /// Do not include <c>/</c> when specifying folder names. For example, you would specify
+        /// <c>samplefolder</c> rather than <c>samplefolder/</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -125,7 +131,7 @@ namespace Amazon.StorageGateway.Model
         // Check to see if FolderList property is set
         internal bool IsSetFolderList()
         {
-            return this._folderList != null && this._folderList.Count > 0; 
+            return this._folderList != null && (this._folderList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -133,14 +139,14 @@ namespace Amazon.StorageGateway.Model
         /// <para>
         /// A value that specifies whether to recursively refresh folders in the cache. The refresh
         /// includes folders that were in the cache the last time the gateway listed the folder's
-        /// contents. If this value set to <code>true</code>, each folder that is listed in <code>FolderList</code>
-        /// is recursively updated. Otherwise, subfolders listed in <code>FolderList</code> are
-        /// not refreshed. Only objects that are in folders listed directly under <code>FolderList</code>
-        /// are found and used for the update. The default is <code>true</code>.
+        /// contents. If this value set to <c>true</c>, each folder that is listed in <c>FolderList</c>
+        /// is recursively updated. Otherwise, subfolders listed in <c>FolderList</c> are not
+        /// refreshed. Only objects that are in folders listed directly under <c>FolderList</c>
+        /// are found and used for the update. The default is <c>true</c>.
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>true</code> | <code>false</code> 
+        /// Valid Values: <c>true</c> | <c>false</c> 
         /// </para>
         /// </summary>
         public bool Recursive

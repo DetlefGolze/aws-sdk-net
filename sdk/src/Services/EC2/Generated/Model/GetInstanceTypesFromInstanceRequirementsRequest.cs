@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -42,22 +43,21 @@ namespace Amazon.EC2.Model
     /// </para>
     ///  
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-attribute-based-instance-type-selection.html#spotfleet-get-instance-types-from-instance-requirements">Preview
-    /// instance types with specified attributes</a>, <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html">Attribute-based
-    /// instance type selection for EC2 Fleet</a>, <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-attribute-based-instance-type-selection.html">Attribute-based
-    /// instance type selection for Spot Fleet</a>, and <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html">Spot
+    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html#ec2fleet-get-instance-types-from-instance-requirements">Preview
+    /// instance types with specified attributes</a>, <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html">Specify
+    /// attributes for instance type selection for EC2 Fleet or Spot Fleet</a>, and <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html">Spot
     /// placement score</a> in the <i>Amazon EC2 User Guide</i>, and <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-instance-type-requirements.html">Creating
-    /// an Auto Scaling group using attribute-based instance type selection</a> in the <i>Amazon
+    /// mixed instance groups using attribute-based instance type selection</a> in the <i>Amazon
     /// EC2 Auto Scaling User Guide</i>.
     /// </para>
     /// </summary>
     public partial class GetInstanceTypesFromInstanceRequirementsRequest : AmazonEC2Request
     {
-        private List<string> _architectureTypes = new List<string>();
+        private List<string> _architectureTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private InstanceRequirementsRequest _instanceRequirements;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _virtualizationTypes = new List<string>();
+        private List<string> _virtualizationTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ArchitectureTypes. 
@@ -75,7 +75,7 @@ namespace Amazon.EC2.Model
         // Check to see if ArchitectureTypes property is set
         internal bool IsSetArchitectureTypes()
         {
-            return this._architectureTypes != null && this._architectureTypes.Count > 0; 
+            return this._architectureTypes != null && (this._architectureTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace Amazon.EC2.Model
         // Check to see if VirtualizationTypes property is set
         internal bool IsSetVirtualizationTypes()
         {
-            return this._virtualizationTypes != null && this._virtualizationTypes.Count > 0; 
+            return this._virtualizationTypes != null && (this._virtualizationTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

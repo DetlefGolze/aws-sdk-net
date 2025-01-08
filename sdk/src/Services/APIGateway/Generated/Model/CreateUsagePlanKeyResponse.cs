@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
@@ -77,7 +78,7 @@ namespace Amazon.APIGateway.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of a usage plan key. Currently, the valid key type is <code>API_KEY</code>.
+        /// The type of a usage plan key. Currently, the valid key type is <c>API_KEY</c>.
         /// </para>
         /// </summary>
         public string Type

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruReviewer.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.CodeGuruReviewer.Model
         /// Gets and sets the property BucketName. 
         /// <para>
         /// The name of the S3 bucket used for associating a new S3 repository. It must begin
-        /// with <code>codeguru-reviewer-</code>. 
+        /// with <c>codeguru-reviewer-</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=3, Max=63)]

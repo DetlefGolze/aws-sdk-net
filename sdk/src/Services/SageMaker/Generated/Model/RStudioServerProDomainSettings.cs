@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// A collection of settings that configure the <code>RStudioServerPro</code> Domain-level
-    /// app.
+    /// A collection of settings that configure the <c>RStudioServerPro</c> Domain-level app.
     /// </summary>
     public partial class RStudioServerProDomainSettings
     {
@@ -57,7 +57,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property DomainExecutionRoleArn. 
         /// <para>
-        /// The ARN of the execution role for the <code>RStudioServerPro</code> Domain-level app.
+        /// The ARN of the execution role for the <c>RStudioServerPro</c> Domain-level app.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.Batch.Model
         /// Gets and sets the property NodeIndex. 
         /// <para>
         /// The node index for the node. Node index numbering begins at zero. This index is also
-        /// available on the node with the <code>AWS_BATCH_JOB_NODE_INDEX</code> environment variable.
+        /// available on the node with the <c>AWS_BATCH_JOB_NODE_INDEX</c> environment variable.
         /// </para>
         /// </summary>
         public int NodeIndex

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostExplorer.Model
 {
     /// <summary>
@@ -35,13 +36,37 @@ namespace Amazon.CostExplorer.Model
     /// </summary>
     public partial class GetTagsRequest : AmazonCostExplorerRequest
     {
+        private string _billingViewArn;
         private Expression _filter;
         private int? _maxResults;
         private string _nextPageToken;
         private string _searchString;
-        private List<SortDefinition> _sortBy = new List<SortDefinition>();
+        private List<SortDefinition> _sortBy = AWSConfigs.InitializeCollections ? new List<SortDefinition>() : null;
         private string _tagKey;
         private DateInterval _timePeriod;
+
+        /// <summary>
+        /// Gets and sets the property BillingViewArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) that uniquely identifies a specific billing view. The
+        /// ARN is used to specify which particular billing view you want to interact with or
+        /// retrieve information from when making API calls related to Amazon Web Services Billing
+        /// and Cost Management features. The BillingViewArn can be retrieved by calling the ListBillingViews
+        /// API.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=2048)]
+        public string BillingViewArn
+        {
+            get { return this._billingViewArn; }
+            set { this._billingViewArn = value; }
+        }
+
+        // Check to see if BillingViewArn property is set
+        internal bool IsSetBillingViewArn()
+        {
+            return this._billingViewArn != null;
+        }
 
         /// <summary>
         /// Gets and sets the property Filter.
@@ -67,7 +92,7 @@ namespace Amazon.CostExplorer.Model
         /// </para>
         ///  
         /// <para>
-        /// For <code>GetTags</code>, MaxResults has an upper quota of 1000.
+        /// For <c>GetTags</c>, MaxResults has an upper quota of 1000.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -133,40 +158,39 @@ namespace Amazon.CostExplorer.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>BlendedCost</code> 
+        ///  <c>BlendedCost</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UnblendedCost</code> 
+        ///  <c>UnblendedCost</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AmortizedCost</code> 
+        ///  <c>AmortizedCost</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NetAmortizedCost</code> 
+        ///  <c>NetAmortizedCost</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NetUnblendedCost</code> 
+        ///  <c>NetUnblendedCost</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UsageQuantity</code> 
+        ///  <c>UsageQuantity</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NormalizedUsageAmount</code> 
+        ///  <c>NormalizedUsageAmount</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// The supported values for <code>SortOrder</code> are <code>ASCENDING</code> and <code>DESCENDING</code>.
+        /// The supported values for <c>SortOrder</c> are <c>ASCENDING</c> and <c>DESCENDING</c>.
         /// </para>
         ///  
         /// <para>
-        /// When you use <code>SortBy</code>, <code>NextPageToken</code> and <code>SearchString</code>
-        /// aren't supported.
+        /// When you use <c>SortBy</c>, <c>NextPageToken</c> and <c>SearchString</c> aren't supported.
         /// </para>
         /// </summary>
         public List<SortDefinition> SortBy
@@ -178,7 +202,7 @@ namespace Amazon.CostExplorer.Model
         // Check to see if SortBy property is set
         internal bool IsSetSortBy()
         {
-            return this._sortBy != null && this._sortBy.Count > 0; 
+            return this._sortBy != null && (this._sortBy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -204,10 +228,9 @@ namespace Amazon.CostExplorer.Model
         /// Gets and sets the property TimePeriod. 
         /// <para>
         /// The start and end dates for retrieving the dimension values. The start date is inclusive,
-        /// but the end date is exclusive. For example, if <code>start</code> is <code>2017-01-01</code>
-        /// and <code>end</code> is <code>2017-05-01</code>, then the cost and usage data is retrieved
-        /// from <code>2017-01-01</code> up to and including <code>2017-04-30</code> but not including
-        /// <code>2017-05-01</code>.
+        /// but the end date is exclusive. For example, if <c>start</c> is <c>2017-01-01</c> and
+        /// <c>end</c> is <c>2017-05-01</c>, then the cost and usage data is retrieved from <c>2017-01-01</c>
+        /// up to and including <c>2017-04-30</c> but not including <c>2017-05-01</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the ListStudioLifecycleConfigs operation.
-    /// Lists the Studio Lifecycle Configurations in your Amazon Web Services Account.
+    /// Lists the Amazon SageMaker AI Studio Lifecycle Configurations in your Amazon Web Services
+    /// Account.
     /// </summary>
     public partial class ListStudioLifecycleConfigsRequest : AmazonSageMakerRequest
     {
@@ -105,9 +107,9 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The total number of items to return in the response. If the total number of items
-        /// available is more than the value specified, a <code>NextToken</code> is provided in
-        /// the response. To resume pagination, provide the <code>NextToken</code> value in the
-        /// as part of a subsequent call. The default value is 10.
+        /// available is more than the value specified, a <c>NextToken</c> is provided in the
+        /// response. To resume pagination, provide the <c>NextToken</c> value in the as part
+        /// of a subsequent call. The default value is 10.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]

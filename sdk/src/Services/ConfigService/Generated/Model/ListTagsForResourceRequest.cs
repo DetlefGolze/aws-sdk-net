@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -61,8 +62,8 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> string returned on a previous page that you use to get
-        /// the next page of results in a paginated response. 
+        /// The <c>nextToken</c> string returned on a previous page that you use to get the next
+        /// page of results in a paginated response. 
         /// </para>
         /// </summary>
         public string NextToken
@@ -81,9 +82,41 @@ namespace Amazon.ConfigService.Model
         /// Gets and sets the property ResourceArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) that identifies the resource for which to list the
-        /// tags. Currently, the supported resources are <code>ConfigRule</code>, <code>ConfigurationAggregator</code>
-        /// and <code>AggregatorAuthorization</code>.
+        /// tags. The following resources are supported:
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>ConfigurationRecorder</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>ConfigRule</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>OrganizationConfigRule</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>ConformancePack</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>OrganizationConformancePack</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>ConfigurationAggregator</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AggregationAuthorization</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>StoredQuery</c> 
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1000)]
         public string ResourceArn

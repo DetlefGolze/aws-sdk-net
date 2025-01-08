@@ -26,37 +26,46 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the AdminSetUserPassword operation.
-    /// Sets the specified user's password in a user pool as an administrator. Works on any
-    /// user. 
+    /// Sets the specified user's password in a user pool. This operation administratively
+    /// sets a temporary or permanent password for a user. With this operation, you can bypass
+    /// self-service password changes and permit immediate sign-in with the password that
+    /// you set. To do this, set <c>Permanent</c> to <c>true</c>.
     /// 
     ///  
     /// <para>
-    /// The password can be temporary or permanent. If it is temporary, the user status enters
-    /// the <code>FORCE_CHANGE_PASSWORD</code> state. When the user next tries to sign in,
-    /// the InitiateAuth/AdminInitiateAuth response will contain the <code>NEW_PASSWORD_REQUIRED</code>
-    /// challenge. If the user doesn't sign in before it expires, the user won't be able to
-    /// sign in, and an administrator must reset their password. 
+    /// You can also set a new temporary password in this request, send it to a user, and
+    /// require them to choose a new password on their next sign-in. To do this, set <c>Permanent</c>
+    /// to <c>false</c>.
     /// </para>
     ///  
     /// <para>
-    /// Once the user has set a new password, or the password is permanent, the user status
-    /// is set to <code>Confirmed</code>.
+    /// If the password is temporary, the user's <c>Status</c> becomes <c>FORCE_CHANGE_PASSWORD</c>.
+    /// When the user next tries to sign in, the <c>InitiateAuth</c> or <c>AdminInitiateAuth</c>
+    /// response includes the <c>NEW_PASSWORD_REQUIRED</c> challenge. If the user doesn't
+    /// sign in before the temporary password expires, they can no longer sign in and you
+    /// must repeat this operation to set a temporary or permanent password for them.
     /// </para>
     ///  
     /// <para>
-    ///  <code>AdminSetUserPassword</code> can set a password for the user profile that Amazon
-    /// Cognito creates for third-party federated users. When you set a password, the federated
-    /// user's status changes from <code>EXTERNAL_PROVIDER</code> to <code>CONFIRMED</code>.
-    /// A user in this state can sign in as a federated user, and initiate authentication
-    /// flows in the API like a linked native user. They can also modify their password and
-    /// attributes in token-authenticated API requests like <code>ChangePassword</code> and
-    /// <code>UpdateUserAttributes</code>. As a best security practice and to keep users in
-    /// sync with your external IdP, don't set passwords on federated user profiles. To set
-    /// up a federated user for native sign-in with a linked native user, refer to <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-identity-federation-consolidate-users.html">Linking
+    /// After the user sets a new password, or if you set a permanent password, their status
+    /// becomes <c>Confirmed</c>.
+    /// </para>
+    ///  
+    /// <para>
+    ///  <c>AdminSetUserPassword</c> can set a password for the user profile that Amazon Cognito
+    /// creates for third-party federated users. When you set a password, the federated user's
+    /// status changes from <c>EXTERNAL_PROVIDER</c> to <c>CONFIRMED</c>. A user in this state
+    /// can sign in as a federated user, and initiate authentication flows in the API like
+    /// a linked native user. They can also modify their password and attributes in token-authenticated
+    /// API requests like <c>ChangePassword</c> and <c>UpdateUserAttributes</c>. As a best
+    /// security practice and to keep users in sync with your external IdP, don't set passwords
+    /// on federated user profiles. To set up a federated user for native sign-in with a linked
+    /// native user, refer to <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-identity-federation-consolidate-users.html">Linking
     /// federated users to an existing user profile</a>.
     /// </para>
     ///  <note> 
@@ -91,7 +100,10 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Password. 
         /// <para>
-        /// The password for the user.
+        /// The new temporary or permanent password that you want to set for the user. You can't
+        /// remove the password for a user who already has a password so that they can only sign
+        /// in with passwordless methods. In this scenario, you must create a new user without
+        /// a password.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Max=256)]
@@ -110,7 +122,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Permanent. 
         /// <para>
-        ///  <code>True</code> if the password is permanent, <code>False</code> if it is temporary.
+        /// Set to <c>true</c> to set a password that the user can immediately sign in with. Set
+        /// to <c>false</c> to set a temporary password that the user must change on their next
+        /// sign-in.
         /// </para>
         /// </summary>
         public bool Permanent
@@ -128,7 +142,10 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Username. 
         /// <para>
-        /// The user name of the user whose password you want to set.
+        /// The username of the user that you want to query or modify. The value of this parameter
+        /// is typically your user's username, but it can be any of their alias attributes. If
+        /// <c>username</c> isn't an alias attribute in your user pool, this value must be the
+        /// <c>sub</c> of a local user or the username of a user from a third-party IdP.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=128)]
@@ -147,7 +164,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID for the user pool where you want to set the user's password.
+        /// The ID of the user pool where you want to set the user's password.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

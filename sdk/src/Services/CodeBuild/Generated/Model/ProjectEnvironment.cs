@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -34,8 +35,10 @@ namespace Amazon.CodeBuild.Model
     public partial class ProjectEnvironment
     {
         private string _certificate;
+        private ComputeConfiguration _computeConfiguration;
         private ComputeType _computeType;
-        private List<EnvironmentVariable> _environmentVariables = new List<EnvironmentVariable>();
+        private List<EnvironmentVariable> _environmentVariables = AWSConfigs.InitializeCollections ? new List<EnvironmentVariable>() : null;
+        private ProjectFleet _fleet;
         private string _image;
         private ImagePullCredentialsType _imagePullCredentialsType;
         private bool? _privilegedMode;
@@ -63,51 +66,131 @@ namespace Amazon.CodeBuild.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ComputeConfiguration. 
+        /// <para>
+        /// The compute configuration of the build project. This is only required if <c>computeType</c>
+        /// is set to <c>ATTRIBUTE_BASED_COMPUTE</c>.
+        /// </para>
+        /// </summary>
+        public ComputeConfiguration ComputeConfiguration
+        {
+            get { return this._computeConfiguration; }
+            set { this._computeConfiguration = value; }
+        }
+
+        // Check to see if ComputeConfiguration property is set
+        internal bool IsSetComputeConfiguration()
+        {
+            return this._computeConfiguration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ComputeType. 
         /// <para>
         /// Information about the compute resources the build project uses. Available values include:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>BUILD_GENERAL1_SMALL</code>: Use up to 3 GB memory and 2 vCPUs for builds.
+        ///  <c>ATTRIBUTE_BASED_COMPUTE</c>: Specify the amount of vCPUs, memory, disk space,
+        /// and the type of machine.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        ///  If you use <c>ATTRIBUTE_BASED_COMPUTE</c>, you must define your attributes by using
+        /// <c>computeConfiguration</c>. CodeBuild will select the cheapest instance that satisfies
+        /// your specified attributes. For more information, see <a href="https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-compute-types.html#environment-reserved-capacity.types">Reserved
+        /// capacity environment types</a> in the <i>CodeBuild User Guide</i>.
+        /// </para>
+        ///  </note> </li> <li> 
+        /// <para>
+        ///  <c>BUILD_GENERAL1_SMALL</c>: Use up to 4 GiB memory and 2 vCPUs for builds.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>BUILD_GENERAL1_MEDIUM</code>: Use up to 7 GB memory and 4 vCPUs for builds.
+        ///  <c>BUILD_GENERAL1_MEDIUM</c>: Use up to 8 GiB memory and 4 vCPUs for builds.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>BUILD_GENERAL1_LARGE</code>: Use up to 16 GB memory and 8 vCPUs for builds,
-        /// depending on your environment type.
+        ///  <c>BUILD_GENERAL1_LARGE</c>: Use up to 16 GiB memory and 8 vCPUs for builds, depending
+        /// on your environment type.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>BUILD_GENERAL1_2XLARGE</code>: Use up to 145 GB memory, 72 vCPUs, and 824 GB
-        /// of SSD storage for builds. This compute type supports Docker images up to 100 GB uncompressed.
+        ///  <c>BUILD_GENERAL1_XLARGE</c>: Use up to 72 GiB memory and 36 vCPUs for builds, depending
+        /// on your environment type.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>BUILD_GENERAL1_2XLARGE</c>: Use up to 144 GiB memory, 72 vCPUs, and 824 GB of
+        /// SSD storage for builds. This compute type supports Docker images up to 100 GB uncompressed.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>BUILD_LAMBDA_1GB</c>: Use up to 1 GiB memory for builds. Only available for environment
+        /// type <c>LINUX_LAMBDA_CONTAINER</c> and <c>ARM_LAMBDA_CONTAINER</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>BUILD_LAMBDA_2GB</c>: Use up to 2 GiB memory for builds. Only available for environment
+        /// type <c>LINUX_LAMBDA_CONTAINER</c> and <c>ARM_LAMBDA_CONTAINER</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>BUILD_LAMBDA_4GB</c>: Use up to 4 GiB memory for builds. Only available for environment
+        /// type <c>LINUX_LAMBDA_CONTAINER</c> and <c>ARM_LAMBDA_CONTAINER</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>BUILD_LAMBDA_8GB</c>: Use up to 8 GiB memory for builds. Only available for environment
+        /// type <c>LINUX_LAMBDA_CONTAINER</c> and <c>ARM_LAMBDA_CONTAINER</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>BUILD_LAMBDA_10GB</c>: Use up to 10 GiB memory for builds. Only available for
+        /// environment type <c>LINUX_LAMBDA_CONTAINER</c> and <c>ARM_LAMBDA_CONTAINER</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        ///  If you use <code>BUILD_GENERAL1_LARGE</code>: 
+        ///  If you use <c>BUILD_GENERAL1_SMALL</c>: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  For environment type <code>LINUX_CONTAINER</code>, you can use up to 15 GB memory
-        /// and 8 vCPUs for builds. 
+        ///  For environment type <c>LINUX_CONTAINER</c>, you can use up to 4 GiB memory and 2
+        /// vCPUs for builds. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  For environment type <code>LINUX_GPU_CONTAINER</code>, you can use up to 255 GB memory,
+        ///  For environment type <c>LINUX_GPU_CONTAINER</c>, you can use up to 16 GiB memory,
+        /// 4 vCPUs, and 1 NVIDIA A10G Tensor Core GPU for builds.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  For environment type <c>ARM_CONTAINER</c>, you can use up to 4 GiB memory and 2 vCPUs
+        /// on ARM-based processors for builds.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        ///  If you use <c>BUILD_GENERAL1_LARGE</c>: 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  For environment type <c>LINUX_CONTAINER</c>, you can use up to 16 GiB memory and
+        /// 8 vCPUs for builds. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  For environment type <c>LINUX_GPU_CONTAINER</c>, you can use up to 255 GiB memory,
         /// 32 vCPUs, and 4 NVIDIA Tesla V100 GPUs for builds.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  For environment type <code>ARM_CONTAINER</code>, you can use up to 16 GB memory and
-        /// 8 vCPUs on ARM-based processors for builds.
+        ///  For environment type <c>ARM_CONTAINER</c>, you can use up to 16 GiB memory and 8
+        /// vCPUs on ARM-based processors for builds.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For more information, see <a href="https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-compute-types.html">Build
-        /// Environment Compute Types</a> in the <i>CodeBuild User Guide.</i> 
+        /// For more information, see <a href="https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-compute-types.html#environment.types">On-demand
+        /// environment types</a> in the <i>CodeBuild User Guide.</i> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -138,7 +221,25 @@ namespace Amazon.CodeBuild.Model
         // Check to see if EnvironmentVariables property is set
         internal bool IsSetEnvironmentVariables()
         {
-            return this._environmentVariables != null && this._environmentVariables.Count > 0; 
+            return this._environmentVariables != null && (this._environmentVariables.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Fleet. 
+        /// <para>
+        /// A ProjectFleet object to use for this build project.
+        /// </para>
+        /// </summary>
+        public ProjectFleet Fleet
+        {
+            get { return this._fleet; }
+            set { this._fleet = value; }
+        }
+
+        // Check to see if Fleet property is set
+        internal bool IsSetFleet()
+        {
+            return this._fleet != null;
         }
 
         /// <summary>
@@ -149,15 +250,15 @@ namespace Amazon.CodeBuild.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For an image tag: <code>&lt;registry&gt;/&lt;repository&gt;:&lt;tag&gt;</code>. For
-        /// example, in the Docker repository that CodeBuild uses to manage its Docker images,
-        /// this would be <code>aws/codebuild/standard:4.0</code>. 
+        /// For an image tag: <c>&lt;registry&gt;/&lt;repository&gt;:&lt;tag&gt;</c>. For example,
+        /// in the Docker repository that CodeBuild uses to manage its Docker images, this would
+        /// be <c>aws/codebuild/standard:4.0</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For an image digest: <code>&lt;registry&gt;/&lt;repository&gt;@&lt;digest&gt;</code>.
-        /// For example, to specify an image with the digest "sha256:cbbf2f9a99b47fc460d422812b6a5adff7dfee951d8fa2e4a98caa0382cfbdbf,"
-        /// use <code>&lt;registry&gt;/&lt;repository&gt;@sha256:cbbf2f9a99b47fc460d422812b6a5adff7dfee951d8fa2e4a98caa0382cfbdbf</code>.
+        /// For an image digest: <c>&lt;registry&gt;/&lt;repository&gt;@&lt;digest&gt;</c>. For
+        /// example, to specify an image with the digest "sha256:cbbf2f9a99b47fc460d422812b6a5adff7dfee951d8fa2e4a98caa0382cfbdbf,"
+        /// use <c>&lt;registry&gt;/&lt;repository&gt;@sha256:cbbf2f9a99b47fc460d422812b6a5adff7dfee951d8fa2e4a98caa0382cfbdbf</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -186,13 +287,13 @@ namespace Amazon.CodeBuild.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CODEBUILD</code> specifies that CodeBuild uses its own credentials. This requires
+        ///  <c>CODEBUILD</c> specifies that CodeBuild uses its own credentials. This requires
         /// that you modify your ECR repository policy to trust CodeBuild service principal. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SERVICE_ROLE</code> specifies that CodeBuild uses your build project's service
-        /// role. 
+        ///  <c>SERVICE_ROLE</c> specifies that CodeBuild uses your build project's service role.
+        /// 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -218,7 +319,7 @@ namespace Amazon.CodeBuild.Model
         /// <para>
         /// Enables running the Docker daemon inside a Docker container. Set to true only if the
         /// build project is used to build Docker images. Otherwise, a build that attempts to
-        /// interact with the Docker daemon fails. The default setting is <code>false</code>.
+        /// interact with the Docker daemon fails. The default setting is <c>false</c>.
         /// </para>
         ///  
         /// <para>
@@ -231,27 +332,26 @@ namespace Amazon.CodeBuild.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>- nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375
-        /// --storage-driver=overlay&amp;</code> 
+        ///  <c>- nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375
+        /// --storage-driver=overlay&amp;</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>- timeout 15 sh -c "until docker info; do echo .; sleep 1; done"</code> 
+        ///  <c>- timeout 15 sh -c "until docker info; do echo .; sleep 1; done"</c> 
         /// </para>
         ///  
         /// <para>
         /// If the operating system's base image is Alpine Linux and the previous command does
-        /// not work, add the <code>-t</code> argument to <code>timeout</code>:
+        /// not work, add the <c>-t</c> argument to <c>timeout</c>:
         /// </para>
         ///  
         /// <para>
-        ///  <code>- nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375
-        /// --storage-driver=overlay&amp;</code> 
+        ///  <c>- nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375
+        /// --storage-driver=overlay&amp;</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>- timeout -t 15 sh -c "until docker info; do echo .; sleep 1; done"</code>
-        /// 
+        ///  <c>- timeout -t 15 sh -c "until docker info; do echo .; sleep 1; done"</c> 
         /// </para>
         /// </summary>
         public bool PrivilegedMode
@@ -291,32 +391,42 @@ namespace Amazon.CodeBuild.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// The environment type <code>ARM_CONTAINER</code> is available only in regions US East
-        /// (N. Virginia), US East (Ohio), US West (Oregon), EU (Ireland), Asia Pacific (Mumbai),
+        /// The environment type <c>ARM_CONTAINER</c> is available only in regions US East (N.
+        /// Virginia), US East (Ohio), US West (Oregon), EU (Ireland), Asia Pacific (Mumbai),
         /// Asia Pacific (Tokyo), Asia Pacific (Sydney), and EU (Frankfurt).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The environment type <code>LINUX_CONTAINER</code> with compute type <code>build.general1.2xlarge</code>
-        /// is available only in regions US East (N. Virginia), US East (Ohio), US West (Oregon),
-        /// Canada (Central), EU (Ireland), EU (London), EU (Frankfurt), Asia Pacific (Tokyo),
-        /// Asia Pacific (Seoul), Asia Pacific (Singapore), Asia Pacific (Sydney), China (Beijing),
-        /// and China (Ningxia).
+        /// The environment type <c>LINUX_CONTAINER</c> is available only in regions US East (N.
+        /// Virginia), US East (Ohio), US West (Oregon), Canada (Central), EU (Ireland), EU (London),
+        /// EU (Frankfurt), Asia Pacific (Tokyo), Asia Pacific (Seoul), Asia Pacific (Singapore),
+        /// Asia Pacific (Sydney), China (Beijing), and China (Ningxia).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The environment type <code>LINUX_GPU_CONTAINER</code> is available only in regions
-        /// US East (N. Virginia), US East (Ohio), US West (Oregon), Canada (Central), EU (Ireland),
-        /// EU (London), EU (Frankfurt), Asia Pacific (Tokyo), Asia Pacific (Seoul), Asia Pacific
+        /// The environment type <c>LINUX_GPU_CONTAINER</c> is available only in regions US East
+        /// (N. Virginia), US East (Ohio), US West (Oregon), Canada (Central), EU (Ireland), EU
+        /// (London), EU (Frankfurt), Asia Pacific (Tokyo), Asia Pacific (Seoul), Asia Pacific
         /// (Singapore), Asia Pacific (Sydney) , China (Beijing), and China (Ningxia).
         /// </para>
         ///  </li> </ul> <ul> <li> 
         /// <para>
-        /// The environment types <code>WINDOWS_CONTAINER</code> and <code>WINDOWS_SERVER_2019_CONTAINER</code>
+        /// The environment types <c>ARM_LAMBDA_CONTAINER</c> and <c>LINUX_LAMBDA_CONTAINER</c>
+        /// are available only in regions US East (N. Virginia), US East (Ohio), US West (Oregon),
+        /// Asia Pacific (Mumbai), Asia Pacific (Singapore), Asia Pacific (Sydney), Asia Pacific
+        /// (Tokyo), EU (Frankfurt), EU (Ireland), and South America (São Paulo).
+        /// </para>
+        ///  </li> </ul> <ul> <li> 
+        /// <para>
+        /// The environment types <c>WINDOWS_CONTAINER</c> and <c>WINDOWS_SERVER_2019_CONTAINER</c>
         /// are available only in regions US East (N. Virginia), US East (Ohio), US West (Oregon),
         /// and EU (Ireland).
         /// </para>
-        ///  </li> </ul> 
+        ///  </li> </ul> <note> 
+        /// <para>
+        /// If you're using compute fleets during project creation, <c>type</c> will be ignored.
+        /// </para>
+        ///  </note> 
         /// <para>
         /// For more information, see <a href="https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-compute-types.html">Build
         /// environment compute types</a> in the <i>CodeBuild user guide</i>.

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AmplifyUIBuilder.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.AmplifyUIBuilder.Model
     public partial class CodegenJobGenericDataSchema
     {
         private CodegenJobGenericDataSourceType _dataSourceType;
-        private Dictionary<string, CodegenGenericDataEnum> _enums = new Dictionary<string, CodegenGenericDataEnum>();
-        private Dictionary<string, CodegenGenericDataModel> _models = new Dictionary<string, CodegenGenericDataModel>();
-        private Dictionary<string, CodegenGenericDataNonModel> _nonModels = new Dictionary<string, CodegenGenericDataNonModel>();
+        private Dictionary<string, CodegenGenericDataEnum> _enums = AWSConfigs.InitializeCollections ? new Dictionary<string, CodegenGenericDataEnum>() : null;
+        private Dictionary<string, CodegenGenericDataModel> _models = AWSConfigs.InitializeCollections ? new Dictionary<string, CodegenGenericDataModel>() : null;
+        private Dictionary<string, CodegenGenericDataNonModel> _nonModels = AWSConfigs.InitializeCollections ? new Dictionary<string, CodegenGenericDataNonModel>() : null;
 
         /// <summary>
         /// Gets and sets the property DataSourceType. 
         /// <para>
         /// The type of the data source for the schema. Currently, the only valid value is an
-        /// Amplify <code>DataStore</code>.
+        /// Amplify <c>DataStore</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -61,7 +62,7 @@ namespace Amazon.AmplifyUIBuilder.Model
         /// <summary>
         /// Gets and sets the property Enums. 
         /// <para>
-        /// The name of a <code>CodegenGenericDataEnum</code>.
+        /// The name of a <c>CodegenGenericDataEnum</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -74,13 +75,13 @@ namespace Amazon.AmplifyUIBuilder.Model
         // Check to see if Enums property is set
         internal bool IsSetEnums()
         {
-            return this._enums != null && this._enums.Count > 0; 
+            return this._enums != null && (this._enums.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Models. 
         /// <para>
-        /// The name of a <code>CodegenGenericDataModel</code>.
+        /// The name of a <c>CodegenGenericDataModel</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -93,13 +94,13 @@ namespace Amazon.AmplifyUIBuilder.Model
         // Check to see if Models property is set
         internal bool IsSetModels()
         {
-            return this._models != null && this._models.Count > 0; 
+            return this._models != null && (this._models.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NonModels. 
         /// <para>
-        /// The name of a <code>CodegenGenericDataNonModel</code>.
+        /// The name of a <c>CodegenGenericDataNonModel</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -112,7 +113,7 @@ namespace Amazon.AmplifyUIBuilder.Model
         // Check to see if NonModels property is set
         internal bool IsSetNonModels()
         {
-            return this._nonModels != null && this._nonModels.Count > 0; 
+            return this._nonModels != null && (this._nonModels.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

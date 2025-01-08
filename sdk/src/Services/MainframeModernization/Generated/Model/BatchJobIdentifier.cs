@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MainframeModernization.Model
 {
     /// <summary>
@@ -34,6 +35,8 @@ namespace Amazon.MainframeModernization.Model
     public partial class BatchJobIdentifier
     {
         private FileBatchJobIdentifier _fileBatchJobIdentifier;
+        private RestartBatchJobIdentifier _restartBatchJobIdentifier;
+        private S3BatchJobIdentifier _s3BatchJobIdentifier;
         private ScriptBatchJobIdentifier _scriptBatchJobIdentifier;
 
         /// <summary>
@@ -52,6 +55,43 @@ namespace Amazon.MainframeModernization.Model
         internal bool IsSetFileBatchJobIdentifier()
         {
             return this._fileBatchJobIdentifier != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RestartBatchJobIdentifier. 
+        /// <para>
+        /// Specifies the required information for restart, including <c>executionId</c> and <c>JobStepRestartMarker</c>.
+        /// </para>
+        /// </summary>
+        public RestartBatchJobIdentifier RestartBatchJobIdentifier
+        {
+            get { return this._restartBatchJobIdentifier; }
+            set { this._restartBatchJobIdentifier = value; }
+        }
+
+        // Check to see if RestartBatchJobIdentifier property is set
+        internal bool IsSetRestartBatchJobIdentifier()
+        {
+            return this._restartBatchJobIdentifier != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property S3BatchJobIdentifier. 
+        /// <para>
+        /// Specifies an Amazon S3 location that identifies the batch jobs that you want to run.
+        /// Use this identifier to run ad hoc batch jobs.
+        /// </para>
+        /// </summary>
+        public S3BatchJobIdentifier S3BatchJobIdentifier
+        {
+            get { return this._s3BatchJobIdentifier; }
+            set { this._s3BatchJobIdentifier = value; }
+        }
+
+        // Check to see if S3BatchJobIdentifier property is set
+        internal bool IsSetS3BatchJobIdentifier()
+        {
+            return this._s3BatchJobIdentifier != null;
         }
 
         /// <summary>

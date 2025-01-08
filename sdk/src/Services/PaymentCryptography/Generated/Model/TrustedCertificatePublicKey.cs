@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptography.Model
 {
     /// <summary>
@@ -40,8 +41,8 @@ namespace Amazon.PaymentCryptography.Model
         /// <summary>
         /// Gets and sets the property CertificateAuthorityPublicKeyIdentifier. 
         /// <para>
-        /// The <code>KeyARN</code> of the root public key certificate or certificate chain that
-        /// signs the trusted public key certificate import.
+        /// The <c>KeyARN</c> of the root public key certificate or certificate chain that signs
+        /// the trusted public key certificate import.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=7, Max=322)]

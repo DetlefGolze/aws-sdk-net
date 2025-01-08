@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateCluster operation.
-    /// While a cluster's <code>ClusterState</code> value is in the <code>AwaitingQuorum</code>
-    /// state, you can update some of the information associated with a cluster. Once the
-    /// cluster changes to a different job state, usually 60 minutes after the cluster being
-    /// created, this action is no longer available.
+    /// While a cluster's <c>ClusterState</c> value is in the <c>AwaitingQuorum</c> state,
+    /// you can update some of the information associated with a cluster. Once the cluster
+    /// changes to a different job state, usually 60 minutes after the cluster being created,
+    /// this action is no longer available.
     /// </summary>
     public partial class UpdateClusterRequest : AmazonSnowballRequest
     {
@@ -69,7 +70,7 @@ namespace Amazon.Snowball.Model
         /// <summary>
         /// Gets and sets the property ClusterId. 
         /// <para>
-        /// The cluster ID of the cluster that you want to update, for example <code>CID123e4567-e89b-12d3-a456-426655440000</code>.
+        /// The cluster ID of the cluster that you want to update, for example <c>CID123e4567-e89b-12d3-a456-426655440000</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=39, Max=39)]

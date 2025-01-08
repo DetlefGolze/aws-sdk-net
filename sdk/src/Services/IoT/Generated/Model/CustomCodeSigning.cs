@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -62,8 +63,8 @@ namespace Amazon.IoT.Model
         /// The hash algorithm used to code sign the file. You can use a string as the algorithm
         /// name if the target over-the-air (OTA) update devices are able to verify the signature
         /// that was generated using the same signature algorithm. For example, FreeRTOS uses
-        /// <code>SHA256</code> or <code>SHA1</code>, so you can pass either of them based on
-        /// which was used for generating the signature.
+        /// <c>SHA256</c> or <c>SHA1</c>, so you can pass either of them based on which was used
+        /// for generating the signature.
         /// </para>
         /// </summary>
         public string HashAlgorithm
@@ -102,8 +103,8 @@ namespace Amazon.IoT.Model
         /// The signature algorithm used to code sign the file. You can use a string as the algorithm
         /// name if the target over-the-air (OTA) update devices are able to verify the signature
         /// that was generated using the same signature algorithm. For example, FreeRTOS uses
-        /// <code>ECDSA</code> or <code>RSA</code>, so you can pass either of them based on which
-        /// was used for generating the signature.
+        /// <c>ECDSA</c> or <c>RSA</c>, so you can pass either of them based on which was used
+        /// for generating the signature.
         /// </para>
         /// </summary>
         public string SignatureAlgorithm

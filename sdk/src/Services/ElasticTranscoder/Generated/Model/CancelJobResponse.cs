@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticTranscoder.Model
 {
     /// <summary>
     /// The response body contains a JSON object. If the job is successfully canceled, the
-    /// value of <code>Success</code> is <code>true</code>.
+    /// value of <c>Success</c> is <c>true</c>.
     /// </summary>
     public partial class CancelJobResponse : AmazonWebServiceResponse
     {

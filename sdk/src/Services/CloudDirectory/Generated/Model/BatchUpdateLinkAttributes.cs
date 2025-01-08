@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
     /// Updates a given typed link’s attributes inside a <a>BatchRead</a> operation. Attributes
     /// to be updated must not contribute to the typed link’s identity, as defined by its
-    /// <code>IdentityAttributeOrder</code>. For more information, see <a>UpdateLinkAttributes</a>
+    /// <c>IdentityAttributeOrder</c>. For more information, see <a>UpdateLinkAttributes</a>
     /// and <a>BatchReadRequest$Operations</a>.
     /// </summary>
     public partial class BatchUpdateLinkAttributes
     {
-        private List<LinkAttributeUpdate> _attributeUpdates = new List<LinkAttributeUpdate>();
+        private List<LinkAttributeUpdate> _attributeUpdates = AWSConfigs.InitializeCollections ? new List<LinkAttributeUpdate>() : null;
         private TypedLinkSpecifier _typedLinkSpecifier;
 
         /// <summary>
@@ -55,7 +56,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if AttributeUpdates property is set
         internal bool IsSetAttributeUpdates()
         {
-            return this._attributeUpdates != null && this._attributeUpdates.Count > 0; 
+            return this._attributeUpdates != null && (this._attributeUpdates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

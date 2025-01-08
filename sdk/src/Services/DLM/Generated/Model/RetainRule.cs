@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DLM.Model
 {
     /// <summary>
-    /// <b>[Snapshot and AMI policies only]</b> Specifies a retention rule for snapshots
+    /// <b>[Custom snapshot and AMI policies only]</b> Specifies a retention rule for snapshots
     /// created by snapshot policies, or for AMIs created by AMI policies.
     /// 
     ///  <note> 
     /// <para>
-    /// For snapshot policies that have an <a>ArchiveRule</a>, this retention rule applies
-    /// to standard tier retention. When the retention threshold is met, snapshots are moved
-    /// from the standard to the archive tier.
+    /// For snapshot policies that have an <a href="https://docs.aws.amazon.com/dlm/latest/APIReference/API_ArchiveRule.html">ArchiveRule</a>,
+    /// this retention rule applies to standard tier retention. When the retention threshold
+    /// is met, snapshots are moved from the standard to the archive tier.
     /// </para>
     ///  
     /// <para>
@@ -53,10 +54,12 @@ namespace Amazon.DLM.Model
     /// </para>
     ///  
     /// <para>
-    /// You must specify <b>Count</b>. If you specify an <a>ArchiveRule</a> for the schedule,
-    /// then you can specify a retention count of <code>0</code> to archive snapshots immediately
-    /// after creation. If you specify a <a>FastRestoreRule</a>, <a>ShareRule</a>, or a <a>CrossRegionCopyRule</a>,
-    /// then you must specify a retention count of <code>1</code> or more.
+    /// You must specify <b>Count</b>. If you specify an <a href="https://docs.aws.amazon.com/dlm/latest/APIReference/API_ArchiveRule.html">ArchiveRule</a>
+    /// for the schedule, then you can specify a retention count of <c>0</c> to archive snapshots
+    /// immediately after creation. If you specify a <a href="https://docs.aws.amazon.com/dlm/latest/APIReference/API_FastRestoreRule.html">FastRestoreRule</a>,
+    /// <a href="https://docs.aws.amazon.com/dlm/latest/APIReference/API_ShareRule.html">ShareRule</a>,
+    /// or a <a href="https://docs.aws.amazon.com/dlm/latest/APIReference/API_CrossRegionCopyRule.html">CrossRegionCopyRule</a>,
+    /// then you must specify a retention count of <c>1</c> or more.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -64,11 +67,12 @@ namespace Amazon.DLM.Model
     /// </para>
     ///  
     /// <para>
-    /// You must specify <b>Interval</b> and <b>IntervalUnit</b>. If you specify an <a>ArchiveRule</a>
-    /// for the schedule, then you can specify a retention interval of <code>0</code> days
-    /// to archive snapshots immediately after creation. If you specify a <a>FastRestoreRule</a>,
-    /// <a>ShareRule</a>, or a <a>CrossRegionCopyRule</a>, then you must specify a retention
-    /// interval of <code>1</code> day or more.
+    /// You must specify <b>Interval</b> and <b>IntervalUnit</b>. If you specify an <a href="https://docs.aws.amazon.com/dlm/latest/APIReference/API_ArchiveRule.html">ArchiveRule</a>
+    /// for the schedule, then you can specify a retention interval of <c>0</c> days to archive
+    /// snapshots immediately after creation. If you specify a <a href="https://docs.aws.amazon.com/dlm/latest/APIReference/API_FastRestoreRule.html">FastRestoreRule</a>,
+    /// <a href="https://docs.aws.amazon.com/dlm/latest/APIReference/API_ShareRule.html">ShareRule</a>,
+    /// or a <a href="https://docs.aws.amazon.com/dlm/latest/APIReference/API_CrossRegionCopyRule.html">CrossRegionCopyRule</a>,
+    /// then you must specify a retention interval of <c>1</c> day or more.
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -82,9 +86,9 @@ namespace Amazon.DLM.Model
         /// Gets and sets the property Count. 
         /// <para>
         /// The number of snapshots to retain for each volume, up to a maximum of 1000. For example
-        /// if you want to retain a maximum of three snapshots, specify <code>3</code>. When the
-        /// fourth snapshot is created, the oldest retained snapshot is deleted, or it is moved
-        /// to the archive tier if you have specified an <a>ArchiveRule</a>.
+        /// if you want to retain a maximum of three snapshots, specify <c>3</c>. When the fourth
+        /// snapshot is created, the oldest retained snapshot is deleted, or it is moved to the
+        /// archive tier if you have specified an <a href="https://docs.aws.amazon.com/dlm/latest/APIReference/API_ArchiveRule.html">ArchiveRule</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1000)]
@@ -124,9 +128,9 @@ namespace Amazon.DLM.Model
         /// Gets and sets the property IntervalUnit. 
         /// <para>
         /// The unit of time for time-based retention. For example, to retain snapshots for 3
-        /// months, specify <code>Interval=3</code> and <code>IntervalUnit=MONTHS</code>. Once
-        /// the snapshot has been retained for 3 months, it is deleted, or it is moved to the
-        /// archive tier if you have specified an <a>ArchiveRule</a>.
+        /// months, specify <c>Interval=3</c> and <c>IntervalUnit=MONTHS</c>. Once the snapshot
+        /// has been retained for 3 months, it is deleted, or it is moved to the archive tier
+        /// if you have specified an <a href="https://docs.aws.amazon.com/dlm/latest/APIReference/API_ArchiveRule.html">ArchiveRule</a>.
         /// </para>
         /// </summary>
         public RetentionIntervalUnitValues IntervalUnit

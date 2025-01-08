@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
-    /// Contains the result of a successful invocation of the <code>DescribeEngineDefaultClusterParameters</code>
+    /// Contains the result of a successful invocation of the <c>DescribeEngineDefaultClusterParameters</c>
     /// operation.
     /// </summary>
     public partial class EngineDefaults
     {
         private string _dbParameterGroupFamily;
         private string _marker;
-        private List<Parameter> _parameters = new List<Parameter>();
+        private List<Parameter> _parameters = AWSConfigs.InitializeCollections ? new List<Parameter>() : null;
 
         /// <summary>
         /// Gets and sets the property DBParameterGroupFamily. 
@@ -62,7 +63,7 @@ namespace Amazon.DocDB.Model
         /// <para>
         /// An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>.
+        /// by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -92,7 +93,7 @@ namespace Amazon.DocDB.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

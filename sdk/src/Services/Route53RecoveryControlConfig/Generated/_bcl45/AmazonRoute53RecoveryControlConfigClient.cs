@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.Route53RecoveryControlConfig
 {
     /// <summary>
-    /// Implementation for accessing Route53RecoveryControlConfig
+    /// <para>Implementation for accessing Route53RecoveryControlConfig</para>
     ///
     /// Recovery Control Configuration API Reference for Amazon Route 53 Application Recovery
     /// Controller
@@ -1330,6 +1331,61 @@ namespace Amazon.Route53RecoveryControlConfig
 
         #endregion
         
+        #region  GetResourcePolicy
+
+
+        /// <summary>
+        /// Get information about the resource policy for a cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetResourcePolicy service method.</param>
+        /// 
+        /// <returns>The response from the GetResourcePolicy service method, as returned by Route53RecoveryControlConfig.</returns>
+        /// <exception cref="Amazon.Route53RecoveryControlConfig.Model.InternalServerException">
+        /// 500 response - InternalServiceError. Temporary service error. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.Route53RecoveryControlConfig.Model.ResourceNotFoundException">
+        /// 404 response - MalformedQueryString. The query string contains a syntax error or resource
+        /// not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/route53-recovery-control-config-2020-11-02/GetResourcePolicy">REST API Reference for GetResourcePolicy Operation</seealso>
+        public virtual GetResourcePolicyResponse GetResourcePolicy(GetResourcePolicyRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetResourcePolicyRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetResourcePolicyResponseUnmarshaller.Instance;
+
+            return Invoke<GetResourcePolicyResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Get information about the resource policy for a cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetResourcePolicy service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetResourcePolicy service method, as returned by Route53RecoveryControlConfig.</returns>
+        /// <exception cref="Amazon.Route53RecoveryControlConfig.Model.InternalServerException">
+        /// 500 response - InternalServiceError. Temporary service error. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.Route53RecoveryControlConfig.Model.ResourceNotFoundException">
+        /// 404 response - MalformedQueryString. The query string contains a syntax error or resource
+        /// not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/route53-recovery-control-config-2020-11-02/GetResourcePolicy">REST API Reference for GetResourcePolicy Operation</seealso>
+        public virtual Task<GetResourcePolicyResponse> GetResourcePolicyAsync(GetResourcePolicyRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetResourcePolicyRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetResourcePolicyResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetResourcePolicyResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ListAssociatedRoute53HealthChecks
 
 
@@ -2158,11 +2214,11 @@ namespace Amazon.Route53RecoveryControlConfig
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

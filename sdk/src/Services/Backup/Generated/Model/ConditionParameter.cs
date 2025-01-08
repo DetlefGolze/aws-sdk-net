@@ -26,11 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
     /// Includes information about tags you define to assign tagged resources to a backup
     /// plan.
+    /// 
+    ///  
+    /// <para>
+    /// Include the prefix <c>aws:ResourceTag</c> in your tags. For example, <c>"aws:ResourceTag/TagKey1":
+    /// "Value1"</c>.
+    /// </para>
     /// </summary>
     public partial class ConditionParameter
     {
@@ -40,8 +47,8 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property ConditionKey. 
         /// <para>
-        /// The key in a key-value pair. For example, in the tag <code>Department: Accounting</code>,
-        /// <code>Department</code> is the key.
+        /// The key in a key-value pair. For example, in the tag <c>Department: Accounting</c>,
+        /// <c>Department</c> is the key.
         /// </para>
         /// </summary>
         public string ConditionKey
@@ -59,8 +66,8 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property ConditionValue. 
         /// <para>
-        /// The value in a key-value pair. For example, in the tag <code>Department: Accounting</code>,
-        /// <code>Accounting</code> is the value.
+        /// The value in a key-value pair. For example, in the tag <c>Department: Accounting</c>,
+        /// <c>Accounting</c> is the value.
         /// </para>
         /// </summary>
         public string ConditionValue

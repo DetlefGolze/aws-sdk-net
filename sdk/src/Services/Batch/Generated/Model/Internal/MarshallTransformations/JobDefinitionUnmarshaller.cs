@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Batch.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public JobDefinition Unmarshall(JsonUnmarshallerContext context)
         {
+            JobDefinition unmarshalledObject = new JobDefinition();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            JobDefinition unmarshalledObject = new JobDefinition();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -74,6 +76,12 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = ContainerPropertiesUnmarshaller.Instance;
                     unmarshalledObject.ContainerProperties = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ecsProperties", targetDepth))
+                {
+                    var unmarshaller = EcsPropertiesUnmarshaller.Instance;
+                    unmarshalledObject.EcsProperties = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("eksProperties", targetDepth))
@@ -161,7 +169,6 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

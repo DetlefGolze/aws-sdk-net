@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchain.Model
 {
     /// <summary>
@@ -83,7 +84,7 @@ namespace Amazon.ManagedBlockchain.Model
         /// <summary>
         /// Gets and sets the property Vote. 
         /// <para>
-        ///  The vote value, either <code>YES</code> or <code>NO</code>. 
+        ///  The vote value, either <c>YES</c> or <c>NO</c>. 
         /// </para>
         /// </summary>
         public VoteValue Vote

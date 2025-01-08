@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Batch.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ContainerProperties requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCommand())
             {
                 context.Writer.WritePropertyName("command");
@@ -183,6 +186,17 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("readonlyRootFilesystem");
                 context.Writer.Write(requestObject.ReadonlyRootFilesystem);
+            }
+
+            if(requestObject.IsSetRepositoryCredentials())
+            {
+                context.Writer.WritePropertyName("repositoryCredentials");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = RepositoryCredentialsMarshaller.Instance;
+                marshaller.Marshall(requestObject.RepositoryCredentials, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetResourceRequirements())

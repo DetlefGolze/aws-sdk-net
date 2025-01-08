@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -39,20 +40,20 @@ namespace Amazon.S3Control.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// If you specify both a <code>Prefix</code> and a <code>Tag</code> filter, wrap these
-    /// filters in an <code>And</code> element. 
+    /// If you specify both a <c>Prefix</c> and a <c>Tag</c> filter, wrap these filters in
+    /// an <c>And</c> element. 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// If you specify a filter based on multiple tags, wrap the <code>Tag</code> elements
-    /// in an <code>And</code> element.
+    /// If you specify a filter based on multiple tags, wrap the <c>Tag</c> elements in an
+    /// <c>And</c> element.
     /// </para>
     ///  </li> </ul>
     /// </summary>
     public partial class ReplicationRuleAndOperator
     {
         private string _prefix;
-        private List<S3Tag> _tags = new List<S3Tag>();
+        private List<S3Tag> _tags = AWSConfigs.InitializeCollections ? new List<S3Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Prefix. 
@@ -88,7 +89,7 @@ namespace Amazon.S3Control.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

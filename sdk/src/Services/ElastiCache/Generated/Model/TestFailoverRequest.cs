@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
     /// Container for the parameters to the TestFailover operation.
-    /// Represents the input of a <code>TestFailover</code> operation which test automatic
-    /// failover on a specified node group (called shard in the console) in a replication
-    /// group (called cluster in the console).
+    /// Represents the input of a <c>TestFailover</c> operation which tests automatic failover
+    /// on a specified node group (called shard in the console) in a replication group (called
+    /// cluster in the console).
     /// 
     ///  
     /// <para>
@@ -47,7 +48,7 @@ namespace Amazon.ElastiCache.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// A customer can use this operation to test automatic failover on up to 5 shards (called
+    /// A customer can use this operation to test automatic failover on up to 15 shards (called
     /// node groups in the ElastiCache API and Amazon CLI) in any rolling 24-hour period.
     /// </para>
     ///  </li> <li> 
@@ -61,9 +62,9 @@ namespace Amazon.ElastiCache.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// If calling this operation multiple times on different shards in the same Redis (cluster
-    /// mode enabled) replication group, the first node replacement must complete before a
-    /// subsequent call can be made.
+    /// If calling this operation multiple times on different shards in the same Valkey or
+    /// Redis OSS (cluster mode enabled) replication group, the first node replacement must
+    /// complete before a subsequent call can be made.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -73,27 +74,26 @@ namespace Amazon.ElastiCache.Model
     /// </para>
     ///  <ol> <li> 
     /// <para>
-    /// Replication group message: <code>Test Failover API called for node group &lt;node-group-id&gt;</code>
+    /// Replication group message: <c>Test Failover API called for node group &lt;node-group-id&gt;</c>
     /// 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Cache cluster message: <code>Failover from primary node &lt;primary-node-id&gt; to
-    /// replica node &lt;node-id&gt; completed</code> 
+    /// Cache cluster message: <c>Failover from primary node &lt;primary-node-id&gt; to replica
+    /// node &lt;node-id&gt; completed</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Replication group message: <code>Failover from primary node &lt;primary-node-id&gt;
-    /// to replica node &lt;node-id&gt; completed</code> 
+    /// Replication group message: <c>Failover from primary node &lt;primary-node-id&gt; to
+    /// replica node &lt;node-id&gt; completed</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Cache cluster message: <code>Recovering cache nodes &lt;node-id&gt;</code> 
+    /// Cache cluster message: <c>Recovering cache nodes &lt;node-id&gt;</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Cache cluster message: <code>Finished recovery for cache nodes &lt;node-id&gt;</code>
-    /// 
+    /// Cache cluster message: <c>Finished recovery for cache nodes &lt;node-id&gt;</c> 
     /// </para>
     ///  </li> </ol> 
     /// <para>
@@ -101,7 +101,7 @@ namespace Amazon.ElastiCache.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/ECEvents.Viewing.html">Viewing
+    ///  <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/ECEvents.Viewing.html">Viewing
     /// ElastiCache Events</a> in the <i>ElastiCache User Guide</i> 
     /// </para>
     ///  </li> <li> 
@@ -111,7 +111,7 @@ namespace Amazon.ElastiCache.Model
     /// </para>
     ///  </li> </ul> </li> </ul> 
     /// <para>
-    /// Also see, <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoFailover.html#auto-failover-test">Testing
+    /// Also see, <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/AutoFailover.html#auto-failover-test">Testing
     /// Multi-AZ </a> in the <i>ElastiCache User Guide</i>.
     /// </para>
     /// </summary>
@@ -125,7 +125,7 @@ namespace Amazon.ElastiCache.Model
         /// <para>
         /// The name of the node group (called shard in the console) in this replication group
         /// on which automatic failover is to be tested. You may test automatic failover on up
-        /// to 5 node groups in any rolling 24-hour period.
+        /// to 15 node groups in any rolling 24-hour period.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=4)]

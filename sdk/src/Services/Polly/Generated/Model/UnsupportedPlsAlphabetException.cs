@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Polly.Model
 {
     /// <summary>
     /// The alphabet specified by the lexicon is not a supported alphabet. Valid values are
-    /// <code>x-sampa</code> and <code>ipa</code>.
+    /// <c>x-sampa</c> and <c>ipa</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

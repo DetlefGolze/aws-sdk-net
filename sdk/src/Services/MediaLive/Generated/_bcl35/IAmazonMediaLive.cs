@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.MediaLive.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.MediaLive
 {
     /// <summary>
-    /// Interface for accessing MediaLive
+    /// <para>Interface for accessing MediaLive</para>
     ///
     /// API for AWS Elemental MediaLive
     /// </summary>
@@ -564,6 +565,369 @@ namespace Amazon.MediaLive
 
         #endregion
         
+        #region  CreateChannelPlacementGroup
+
+
+        /// <summary>
+        /// Create a ChannelPlacementGroup in the specified Cluster. As part of the create operation,
+        /// you specify the Nodes to attach the group to.After you create a ChannelPlacementGroup,
+        /// you add Channels to the group (you do this by modifying the Channels to add them to
+        /// a specific group). You now have an association of Channels to ChannelPlacementGroup,
+        /// and ChannelPlacementGroup to Nodes. This association means that all the Channels in
+        /// the group are able to run on any of the Nodes associated with the group.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateChannelPlacementGroup service method.</param>
+        /// 
+        /// <returns>The response from the CreateChannelPlacementGroup service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.UnprocessableEntityException">
+        /// Placeholder documentation for UnprocessableEntityException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateChannelPlacementGroup">REST API Reference for CreateChannelPlacementGroup Operation</seealso>
+        CreateChannelPlacementGroupResponse CreateChannelPlacementGroup(CreateChannelPlacementGroupRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreateChannelPlacementGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreateChannelPlacementGroup operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateChannelPlacementGroup
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateChannelPlacementGroup">REST API Reference for CreateChannelPlacementGroup Operation</seealso>
+        IAsyncResult BeginCreateChannelPlacementGroup(CreateChannelPlacementGroupRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreateChannelPlacementGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreateChannelPlacementGroup.</param>
+        /// 
+        /// <returns>Returns a  CreateChannelPlacementGroupResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateChannelPlacementGroup">REST API Reference for CreateChannelPlacementGroup Operation</seealso>
+        CreateChannelPlacementGroupResponse EndCreateChannelPlacementGroup(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  CreateCloudWatchAlarmTemplate
+
+
+        /// <summary>
+        /// Creates a cloudwatch alarm template to dynamically generate cloudwatch metric alarms
+        /// on targeted resource types.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateCloudWatchAlarmTemplate service method.</param>
+        /// 
+        /// <returns>The response from the CreateCloudWatchAlarmTemplate service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateCloudWatchAlarmTemplate">REST API Reference for CreateCloudWatchAlarmTemplate Operation</seealso>
+        CreateCloudWatchAlarmTemplateResponse CreateCloudWatchAlarmTemplate(CreateCloudWatchAlarmTemplateRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreateCloudWatchAlarmTemplate operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreateCloudWatchAlarmTemplate operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateCloudWatchAlarmTemplate
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateCloudWatchAlarmTemplate">REST API Reference for CreateCloudWatchAlarmTemplate Operation</seealso>
+        IAsyncResult BeginCreateCloudWatchAlarmTemplate(CreateCloudWatchAlarmTemplateRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreateCloudWatchAlarmTemplate operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreateCloudWatchAlarmTemplate.</param>
+        /// 
+        /// <returns>Returns a  CreateCloudWatchAlarmTemplateResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateCloudWatchAlarmTemplate">REST API Reference for CreateCloudWatchAlarmTemplate Operation</seealso>
+        CreateCloudWatchAlarmTemplateResponse EndCreateCloudWatchAlarmTemplate(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  CreateCloudWatchAlarmTemplateGroup
+
+
+        /// <summary>
+        /// Creates a cloudwatch alarm template group to group your cloudwatch alarm templates
+        /// and to attach to signal maps for dynamically creating alarms.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateCloudWatchAlarmTemplateGroup service method.</param>
+        /// 
+        /// <returns>The response from the CreateCloudWatchAlarmTemplateGroup service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateCloudWatchAlarmTemplateGroup">REST API Reference for CreateCloudWatchAlarmTemplateGroup Operation</seealso>
+        CreateCloudWatchAlarmTemplateGroupResponse CreateCloudWatchAlarmTemplateGroup(CreateCloudWatchAlarmTemplateGroupRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreateCloudWatchAlarmTemplateGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreateCloudWatchAlarmTemplateGroup operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateCloudWatchAlarmTemplateGroup
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateCloudWatchAlarmTemplateGroup">REST API Reference for CreateCloudWatchAlarmTemplateGroup Operation</seealso>
+        IAsyncResult BeginCreateCloudWatchAlarmTemplateGroup(CreateCloudWatchAlarmTemplateGroupRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreateCloudWatchAlarmTemplateGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreateCloudWatchAlarmTemplateGroup.</param>
+        /// 
+        /// <returns>Returns a  CreateCloudWatchAlarmTemplateGroupResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateCloudWatchAlarmTemplateGroup">REST API Reference for CreateCloudWatchAlarmTemplateGroup Operation</seealso>
+        CreateCloudWatchAlarmTemplateGroupResponse EndCreateCloudWatchAlarmTemplateGroup(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  CreateCluster
+
+
+        /// <summary>
+        /// Create a new Cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateCluster service method.</param>
+        /// 
+        /// <returns>The response from the CreateCluster service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateCluster">REST API Reference for CreateCluster Operation</seealso>
+        CreateClusterResponse CreateCluster(CreateClusterRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreateCluster operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreateCluster operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateCluster
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateCluster">REST API Reference for CreateCluster Operation</seealso>
+        IAsyncResult BeginCreateCluster(CreateClusterRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreateCluster operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreateCluster.</param>
+        /// 
+        /// <returns>Returns a  CreateClusterResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateCluster">REST API Reference for CreateCluster Operation</seealso>
+        CreateClusterResponse EndCreateCluster(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  CreateEventBridgeRuleTemplate
+
+
+        /// <summary>
+        /// Creates an eventbridge rule template to monitor events and send notifications to your
+        /// targeted resources.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateEventBridgeRuleTemplate service method.</param>
+        /// 
+        /// <returns>The response from the CreateEventBridgeRuleTemplate service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateEventBridgeRuleTemplate">REST API Reference for CreateEventBridgeRuleTemplate Operation</seealso>
+        CreateEventBridgeRuleTemplateResponse CreateEventBridgeRuleTemplate(CreateEventBridgeRuleTemplateRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreateEventBridgeRuleTemplate operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreateEventBridgeRuleTemplate operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateEventBridgeRuleTemplate
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateEventBridgeRuleTemplate">REST API Reference for CreateEventBridgeRuleTemplate Operation</seealso>
+        IAsyncResult BeginCreateEventBridgeRuleTemplate(CreateEventBridgeRuleTemplateRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreateEventBridgeRuleTemplate operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreateEventBridgeRuleTemplate.</param>
+        /// 
+        /// <returns>Returns a  CreateEventBridgeRuleTemplateResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateEventBridgeRuleTemplate">REST API Reference for CreateEventBridgeRuleTemplate Operation</seealso>
+        CreateEventBridgeRuleTemplateResponse EndCreateEventBridgeRuleTemplate(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  CreateEventBridgeRuleTemplateGroup
+
+
+        /// <summary>
+        /// Creates an eventbridge rule template group to group your eventbridge rule templates
+        /// and to attach to signal maps for dynamically creating notification rules.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateEventBridgeRuleTemplateGroup service method.</param>
+        /// 
+        /// <returns>The response from the CreateEventBridgeRuleTemplateGroup service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateEventBridgeRuleTemplateGroup">REST API Reference for CreateEventBridgeRuleTemplateGroup Operation</seealso>
+        CreateEventBridgeRuleTemplateGroupResponse CreateEventBridgeRuleTemplateGroup(CreateEventBridgeRuleTemplateGroupRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreateEventBridgeRuleTemplateGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreateEventBridgeRuleTemplateGroup operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateEventBridgeRuleTemplateGroup
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateEventBridgeRuleTemplateGroup">REST API Reference for CreateEventBridgeRuleTemplateGroup Operation</seealso>
+        IAsyncResult BeginCreateEventBridgeRuleTemplateGroup(CreateEventBridgeRuleTemplateGroupRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreateEventBridgeRuleTemplateGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreateEventBridgeRuleTemplateGroup.</param>
+        /// 
+        /// <returns>Returns a  CreateEventBridgeRuleTemplateGroupResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateEventBridgeRuleTemplateGroup">REST API Reference for CreateEventBridgeRuleTemplateGroup Operation</seealso>
+        CreateEventBridgeRuleTemplateGroupResponse EndCreateEventBridgeRuleTemplateGroup(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  CreateInput
 
 
@@ -808,6 +1172,195 @@ namespace Amazon.MediaLive
 
         #endregion
         
+        #region  CreateNetwork
+
+
+        /// <summary>
+        /// Create as many Networks as you need. You will associate one or more Clusters with
+        /// each Network.Each Network provides MediaLive Anywhere with required information about
+        /// the network in your organization that you are using for video encoding using MediaLive.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateNetwork service method.</param>
+        /// 
+        /// <returns>The response from the CreateNetwork service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateNetwork">REST API Reference for CreateNetwork Operation</seealso>
+        CreateNetworkResponse CreateNetwork(CreateNetworkRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreateNetwork operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreateNetwork operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateNetwork
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateNetwork">REST API Reference for CreateNetwork Operation</seealso>
+        IAsyncResult BeginCreateNetwork(CreateNetworkRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreateNetwork operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreateNetwork.</param>
+        /// 
+        /// <returns>Returns a  CreateNetworkResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateNetwork">REST API Reference for CreateNetwork Operation</seealso>
+        CreateNetworkResponse EndCreateNetwork(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  CreateNode
+
+
+        /// <summary>
+        /// Create a Node in the specified Cluster. You can also create Nodes using the CreateNodeRegistrationScript.
+        /// Note that you can't move a Node to another Cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateNode service method.</param>
+        /// 
+        /// <returns>The response from the CreateNode service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.UnprocessableEntityException">
+        /// Placeholder documentation for UnprocessableEntityException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateNode">REST API Reference for CreateNode Operation</seealso>
+        CreateNodeResponse CreateNode(CreateNodeRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreateNode operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreateNode operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateNode
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateNode">REST API Reference for CreateNode Operation</seealso>
+        IAsyncResult BeginCreateNode(CreateNodeRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreateNode operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreateNode.</param>
+        /// 
+        /// <returns>Returns a  CreateNodeResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateNode">REST API Reference for CreateNode Operation</seealso>
+        CreateNodeResponse EndCreateNode(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  CreateNodeRegistrationScript
+
+
+        /// <summary>
+        /// Create the Register Node script for all the nodes intended for a specific Cluster.
+        /// You will then run the script on each hardware unit that is intended for that Cluster.
+        /// The script creates a Node in the specified Cluster. It then binds the Node to this
+        /// hardware unit, and activates the node hardware for use with MediaLive Anywhere.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateNodeRegistrationScript service method.</param>
+        /// 
+        /// <returns>The response from the CreateNodeRegistrationScript service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateNodeRegistrationScript">REST API Reference for CreateNodeRegistrationScript Operation</seealso>
+        CreateNodeRegistrationScriptResponse CreateNodeRegistrationScript(CreateNodeRegistrationScriptRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreateNodeRegistrationScript operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreateNodeRegistrationScript operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateNodeRegistrationScript
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateNodeRegistrationScript">REST API Reference for CreateNodeRegistrationScript Operation</seealso>
+        IAsyncResult BeginCreateNodeRegistrationScript(CreateNodeRegistrationScriptRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreateNodeRegistrationScript operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreateNodeRegistrationScript.</param>
+        /// 
+        /// <returns>Returns a  CreateNodeRegistrationScriptResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateNodeRegistrationScript">REST API Reference for CreateNodeRegistrationScript Operation</seealso>
+        CreateNodeRegistrationScriptResponse EndCreateNodeRegistrationScript(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  CreatePartnerInput
 
 
@@ -863,6 +1416,65 @@ namespace Amazon.MediaLive
         /// <returns>Returns a  CreatePartnerInputResult from MediaLive.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreatePartnerInput">REST API Reference for CreatePartnerInput Operation</seealso>
         CreatePartnerInputResponse EndCreatePartnerInput(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  CreateSignalMap
+
+
+        /// <summary>
+        /// Initiates the creation of a new signal map. Will discover a new mediaResourceMap based
+        /// on the provided discoveryEntryPointArn.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateSignalMap service method.</param>
+        /// 
+        /// <returns>The response from the CreateSignalMap service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateSignalMap">REST API Reference for CreateSignalMap Operation</seealso>
+        CreateSignalMapResponse CreateSignalMap(CreateSignalMapRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreateSignalMap operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreateSignalMap operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateSignalMap
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateSignalMap">REST API Reference for CreateSignalMap Operation</seealso>
+        IAsyncResult BeginCreateSignalMap(CreateSignalMapRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreateSignalMap operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreateSignalMap.</param>
+        /// 
+        /// <returns>Returns a  CreateSignalMapResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateSignalMap">REST API Reference for CreateSignalMap Operation</seealso>
+        CreateSignalMapResponse EndCreateSignalMap(IAsyncResult asyncResult);
 
         #endregion
         
@@ -979,6 +1591,368 @@ namespace Amazon.MediaLive
         /// <returns>Returns a  DeleteChannelResult from MediaLive.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteChannel">REST API Reference for DeleteChannel Operation</seealso>
         DeleteChannelResponse EndDeleteChannel(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  DeleteChannelPlacementGroup
+
+
+        /// <summary>
+        /// Delete the specified ChannelPlacementGroup that exists in the specified Cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteChannelPlacementGroup service method.</param>
+        /// 
+        /// <returns>The response from the DeleteChannelPlacementGroup service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteChannelPlacementGroup">REST API Reference for DeleteChannelPlacementGroup Operation</seealso>
+        DeleteChannelPlacementGroupResponse DeleteChannelPlacementGroup(DeleteChannelPlacementGroupRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteChannelPlacementGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteChannelPlacementGroup operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteChannelPlacementGroup
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteChannelPlacementGroup">REST API Reference for DeleteChannelPlacementGroup Operation</seealso>
+        IAsyncResult BeginDeleteChannelPlacementGroup(DeleteChannelPlacementGroupRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteChannelPlacementGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteChannelPlacementGroup.</param>
+        /// 
+        /// <returns>Returns a  DeleteChannelPlacementGroupResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteChannelPlacementGroup">REST API Reference for DeleteChannelPlacementGroup Operation</seealso>
+        DeleteChannelPlacementGroupResponse EndDeleteChannelPlacementGroup(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  DeleteCloudWatchAlarmTemplate
+
+
+        /// <summary>
+        /// Deletes a cloudwatch alarm template.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteCloudWatchAlarmTemplate service method.</param>
+        /// 
+        /// <returns>The response from the DeleteCloudWatchAlarmTemplate service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteCloudWatchAlarmTemplate">REST API Reference for DeleteCloudWatchAlarmTemplate Operation</seealso>
+        DeleteCloudWatchAlarmTemplateResponse DeleteCloudWatchAlarmTemplate(DeleteCloudWatchAlarmTemplateRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteCloudWatchAlarmTemplate operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteCloudWatchAlarmTemplate operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteCloudWatchAlarmTemplate
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteCloudWatchAlarmTemplate">REST API Reference for DeleteCloudWatchAlarmTemplate Operation</seealso>
+        IAsyncResult BeginDeleteCloudWatchAlarmTemplate(DeleteCloudWatchAlarmTemplateRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteCloudWatchAlarmTemplate operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteCloudWatchAlarmTemplate.</param>
+        /// 
+        /// <returns>Returns a  DeleteCloudWatchAlarmTemplateResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteCloudWatchAlarmTemplate">REST API Reference for DeleteCloudWatchAlarmTemplate Operation</seealso>
+        DeleteCloudWatchAlarmTemplateResponse EndDeleteCloudWatchAlarmTemplate(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  DeleteCloudWatchAlarmTemplateGroup
+
+
+        /// <summary>
+        /// Deletes a cloudwatch alarm template group. You must detach this group from all signal
+        /// maps and ensure its existing templates are moved to another group or deleted.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteCloudWatchAlarmTemplateGroup service method.</param>
+        /// 
+        /// <returns>The response from the DeleteCloudWatchAlarmTemplateGroup service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteCloudWatchAlarmTemplateGroup">REST API Reference for DeleteCloudWatchAlarmTemplateGroup Operation</seealso>
+        DeleteCloudWatchAlarmTemplateGroupResponse DeleteCloudWatchAlarmTemplateGroup(DeleteCloudWatchAlarmTemplateGroupRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteCloudWatchAlarmTemplateGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteCloudWatchAlarmTemplateGroup operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteCloudWatchAlarmTemplateGroup
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteCloudWatchAlarmTemplateGroup">REST API Reference for DeleteCloudWatchAlarmTemplateGroup Operation</seealso>
+        IAsyncResult BeginDeleteCloudWatchAlarmTemplateGroup(DeleteCloudWatchAlarmTemplateGroupRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteCloudWatchAlarmTemplateGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteCloudWatchAlarmTemplateGroup.</param>
+        /// 
+        /// <returns>Returns a  DeleteCloudWatchAlarmTemplateGroupResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteCloudWatchAlarmTemplateGroup">REST API Reference for DeleteCloudWatchAlarmTemplateGroup Operation</seealso>
+        DeleteCloudWatchAlarmTemplateGroupResponse EndDeleteCloudWatchAlarmTemplateGroup(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  DeleteCluster
+
+
+        /// <summary>
+        /// Delete a Cluster. The Cluster must be idle.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteCluster service method.</param>
+        /// 
+        /// <returns>The response from the DeleteCluster service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteCluster">REST API Reference for DeleteCluster Operation</seealso>
+        DeleteClusterResponse DeleteCluster(DeleteClusterRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteCluster operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteCluster operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteCluster
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteCluster">REST API Reference for DeleteCluster Operation</seealso>
+        IAsyncResult BeginDeleteCluster(DeleteClusterRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteCluster operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteCluster.</param>
+        /// 
+        /// <returns>Returns a  DeleteClusterResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteCluster">REST API Reference for DeleteCluster Operation</seealso>
+        DeleteClusterResponse EndDeleteCluster(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  DeleteEventBridgeRuleTemplate
+
+
+        /// <summary>
+        /// Deletes an eventbridge rule template.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteEventBridgeRuleTemplate service method.</param>
+        /// 
+        /// <returns>The response from the DeleteEventBridgeRuleTemplate service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteEventBridgeRuleTemplate">REST API Reference for DeleteEventBridgeRuleTemplate Operation</seealso>
+        DeleteEventBridgeRuleTemplateResponse DeleteEventBridgeRuleTemplate(DeleteEventBridgeRuleTemplateRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteEventBridgeRuleTemplate operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteEventBridgeRuleTemplate operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteEventBridgeRuleTemplate
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteEventBridgeRuleTemplate">REST API Reference for DeleteEventBridgeRuleTemplate Operation</seealso>
+        IAsyncResult BeginDeleteEventBridgeRuleTemplate(DeleteEventBridgeRuleTemplateRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteEventBridgeRuleTemplate operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteEventBridgeRuleTemplate.</param>
+        /// 
+        /// <returns>Returns a  DeleteEventBridgeRuleTemplateResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteEventBridgeRuleTemplate">REST API Reference for DeleteEventBridgeRuleTemplate Operation</seealso>
+        DeleteEventBridgeRuleTemplateResponse EndDeleteEventBridgeRuleTemplate(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  DeleteEventBridgeRuleTemplateGroup
+
+
+        /// <summary>
+        /// Deletes an eventbridge rule template group. You must detach this group from all signal
+        /// maps and ensure its existing templates are moved to another group or deleted.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteEventBridgeRuleTemplateGroup service method.</param>
+        /// 
+        /// <returns>The response from the DeleteEventBridgeRuleTemplateGroup service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteEventBridgeRuleTemplateGroup">REST API Reference for DeleteEventBridgeRuleTemplateGroup Operation</seealso>
+        DeleteEventBridgeRuleTemplateGroupResponse DeleteEventBridgeRuleTemplateGroup(DeleteEventBridgeRuleTemplateGroupRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteEventBridgeRuleTemplateGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteEventBridgeRuleTemplateGroup operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteEventBridgeRuleTemplateGroup
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteEventBridgeRuleTemplateGroup">REST API Reference for DeleteEventBridgeRuleTemplateGroup Operation</seealso>
+        IAsyncResult BeginDeleteEventBridgeRuleTemplateGroup(DeleteEventBridgeRuleTemplateGroupRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteEventBridgeRuleTemplateGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteEventBridgeRuleTemplateGroup.</param>
+        /// 
+        /// <returns>Returns a  DeleteEventBridgeRuleTemplateGroupResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteEventBridgeRuleTemplateGroup">REST API Reference for DeleteEventBridgeRuleTemplateGroup Operation</seealso>
+        DeleteEventBridgeRuleTemplateGroupResponse EndDeleteEventBridgeRuleTemplateGroup(IAsyncResult asyncResult);
 
         #endregion
         
@@ -1235,6 +2209,134 @@ namespace Amazon.MediaLive
 
         #endregion
         
+        #region  DeleteNetwork
+
+
+        /// <summary>
+        /// Delete a Network. The Network must have no resources associated with it.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteNetwork service method.</param>
+        /// 
+        /// <returns>The response from the DeleteNetwork service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteNetwork">REST API Reference for DeleteNetwork Operation</seealso>
+        DeleteNetworkResponse DeleteNetwork(DeleteNetworkRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteNetwork operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteNetwork operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteNetwork
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteNetwork">REST API Reference for DeleteNetwork Operation</seealso>
+        IAsyncResult BeginDeleteNetwork(DeleteNetworkRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteNetwork operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteNetwork.</param>
+        /// 
+        /// <returns>Returns a  DeleteNetworkResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteNetwork">REST API Reference for DeleteNetwork Operation</seealso>
+        DeleteNetworkResponse EndDeleteNetwork(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  DeleteNode
+
+
+        /// <summary>
+        /// Delete a Node. The Node must be IDLE.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteNode service method.</param>
+        /// 
+        /// <returns>The response from the DeleteNode service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteNode">REST API Reference for DeleteNode Operation</seealso>
+        DeleteNodeResponse DeleteNode(DeleteNodeRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteNode operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteNode operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteNode
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteNode">REST API Reference for DeleteNode Operation</seealso>
+        IAsyncResult BeginDeleteNode(DeleteNodeRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteNode operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteNode.</param>
+        /// 
+        /// <returns>Returns a  DeleteNodeResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteNode">REST API Reference for DeleteNode Operation</seealso>
+        DeleteNodeResponse EndDeleteNode(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  DeleteReservation
 
 
@@ -1360,6 +2462,64 @@ namespace Amazon.MediaLive
 
         #endregion
         
+        #region  DeleteSignalMap
+
+
+        /// <summary>
+        /// Deletes the specified signal map.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteSignalMap service method.</param>
+        /// 
+        /// <returns>The response from the DeleteSignalMap service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteSignalMap">REST API Reference for DeleteSignalMap Operation</seealso>
+        DeleteSignalMapResponse DeleteSignalMap(DeleteSignalMapRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteSignalMap operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteSignalMap operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteSignalMap
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteSignalMap">REST API Reference for DeleteSignalMap Operation</seealso>
+        IAsyncResult BeginDeleteSignalMap(DeleteSignalMapRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteSignalMap operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteSignalMap.</param>
+        /// 
+        /// <returns>Returns a  DeleteSignalMapResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteSignalMap">REST API Reference for DeleteSignalMap Operation</seealso>
+        DeleteSignalMapResponse EndDeleteSignalMap(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  DeleteTags
 
 
@@ -1416,7 +2576,7 @@ namespace Amazon.MediaLive
 
 
         /// <summary>
-        /// Get account configuration
+        /// Describe account configuration
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeAccountConfiguration service method.</param>
         /// 
@@ -1528,6 +2688,128 @@ namespace Amazon.MediaLive
         /// <returns>Returns a  DescribeChannelResult from MediaLive.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DescribeChannel">REST API Reference for DescribeChannel Operation</seealso>
         DescribeChannelResponse EndDescribeChannel(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  DescribeChannelPlacementGroup
+
+
+        /// <summary>
+        /// Get details about a ChannelPlacementGroup.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeChannelPlacementGroup service method.</param>
+        /// 
+        /// <returns>The response from the DescribeChannelPlacementGroup service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DescribeChannelPlacementGroup">REST API Reference for DescribeChannelPlacementGroup Operation</seealso>
+        DescribeChannelPlacementGroupResponse DescribeChannelPlacementGroup(DescribeChannelPlacementGroupRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DescribeChannelPlacementGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DescribeChannelPlacementGroup operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDescribeChannelPlacementGroup
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DescribeChannelPlacementGroup">REST API Reference for DescribeChannelPlacementGroup Operation</seealso>
+        IAsyncResult BeginDescribeChannelPlacementGroup(DescribeChannelPlacementGroupRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DescribeChannelPlacementGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDescribeChannelPlacementGroup.</param>
+        /// 
+        /// <returns>Returns a  DescribeChannelPlacementGroupResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DescribeChannelPlacementGroup">REST API Reference for DescribeChannelPlacementGroup Operation</seealso>
+        DescribeChannelPlacementGroupResponse EndDescribeChannelPlacementGroup(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  DescribeCluster
+
+
+        /// <summary>
+        /// Get details about a Cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeCluster service method.</param>
+        /// 
+        /// <returns>The response from the DescribeCluster service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DescribeCluster">REST API Reference for DescribeCluster Operation</seealso>
+        DescribeClusterResponse DescribeCluster(DescribeClusterRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DescribeCluster operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DescribeCluster operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDescribeCluster
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DescribeCluster">REST API Reference for DescribeCluster Operation</seealso>
+        IAsyncResult BeginDescribeCluster(DescribeClusterRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DescribeCluster operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDescribeCluster.</param>
+        /// 
+        /// <returns>Returns a  DescribeClusterResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DescribeCluster">REST API Reference for DescribeCluster Operation</seealso>
+        DescribeClusterResponse EndDescribeCluster(IAsyncResult asyncResult);
 
         #endregion
         
@@ -1897,6 +3179,128 @@ namespace Amazon.MediaLive
 
         #endregion
         
+        #region  DescribeNetwork
+
+
+        /// <summary>
+        /// Get details about a Network.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeNetwork service method.</param>
+        /// 
+        /// <returns>The response from the DescribeNetwork service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DescribeNetwork">REST API Reference for DescribeNetwork Operation</seealso>
+        DescribeNetworkResponse DescribeNetwork(DescribeNetworkRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DescribeNetwork operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DescribeNetwork operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDescribeNetwork
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DescribeNetwork">REST API Reference for DescribeNetwork Operation</seealso>
+        IAsyncResult BeginDescribeNetwork(DescribeNetworkRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DescribeNetwork operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDescribeNetwork.</param>
+        /// 
+        /// <returns>Returns a  DescribeNetworkResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DescribeNetwork">REST API Reference for DescribeNetwork Operation</seealso>
+        DescribeNetworkResponse EndDescribeNetwork(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  DescribeNode
+
+
+        /// <summary>
+        /// Get details about a Node in the specified Cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeNode service method.</param>
+        /// 
+        /// <returns>The response from the DescribeNode service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DescribeNode">REST API Reference for DescribeNode Operation</seealso>
+        DescribeNodeResponse DescribeNode(DescribeNodeRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DescribeNode operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DescribeNode operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDescribeNode
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DescribeNode">REST API Reference for DescribeNode Operation</seealso>
+        IAsyncResult BeginDescribeNode(DescribeNodeRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DescribeNode operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDescribeNode.</param>
+        /// 
+        /// <returns>Returns a  DescribeNodeResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DescribeNode">REST API Reference for DescribeNode Operation</seealso>
+        DescribeNodeResponse EndDescribeNode(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  DescribeOffering
 
 
@@ -2144,6 +3548,339 @@ namespace Amazon.MediaLive
 
         #endregion
         
+        #region  GetCloudWatchAlarmTemplate
+
+
+        /// <summary>
+        /// Retrieves the specified cloudwatch alarm template.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetCloudWatchAlarmTemplate service method.</param>
+        /// 
+        /// <returns>The response from the GetCloudWatchAlarmTemplate service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetCloudWatchAlarmTemplate">REST API Reference for GetCloudWatchAlarmTemplate Operation</seealso>
+        GetCloudWatchAlarmTemplateResponse GetCloudWatchAlarmTemplate(GetCloudWatchAlarmTemplateRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetCloudWatchAlarmTemplate operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetCloudWatchAlarmTemplate operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetCloudWatchAlarmTemplate
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetCloudWatchAlarmTemplate">REST API Reference for GetCloudWatchAlarmTemplate Operation</seealso>
+        IAsyncResult BeginGetCloudWatchAlarmTemplate(GetCloudWatchAlarmTemplateRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetCloudWatchAlarmTemplate operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetCloudWatchAlarmTemplate.</param>
+        /// 
+        /// <returns>Returns a  GetCloudWatchAlarmTemplateResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetCloudWatchAlarmTemplate">REST API Reference for GetCloudWatchAlarmTemplate Operation</seealso>
+        GetCloudWatchAlarmTemplateResponse EndGetCloudWatchAlarmTemplate(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  GetCloudWatchAlarmTemplateGroup
+
+
+        /// <summary>
+        /// Retrieves the specified cloudwatch alarm template group.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetCloudWatchAlarmTemplateGroup service method.</param>
+        /// 
+        /// <returns>The response from the GetCloudWatchAlarmTemplateGroup service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetCloudWatchAlarmTemplateGroup">REST API Reference for GetCloudWatchAlarmTemplateGroup Operation</seealso>
+        GetCloudWatchAlarmTemplateGroupResponse GetCloudWatchAlarmTemplateGroup(GetCloudWatchAlarmTemplateGroupRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetCloudWatchAlarmTemplateGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetCloudWatchAlarmTemplateGroup operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetCloudWatchAlarmTemplateGroup
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetCloudWatchAlarmTemplateGroup">REST API Reference for GetCloudWatchAlarmTemplateGroup Operation</seealso>
+        IAsyncResult BeginGetCloudWatchAlarmTemplateGroup(GetCloudWatchAlarmTemplateGroupRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetCloudWatchAlarmTemplateGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetCloudWatchAlarmTemplateGroup.</param>
+        /// 
+        /// <returns>Returns a  GetCloudWatchAlarmTemplateGroupResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetCloudWatchAlarmTemplateGroup">REST API Reference for GetCloudWatchAlarmTemplateGroup Operation</seealso>
+        GetCloudWatchAlarmTemplateGroupResponse EndGetCloudWatchAlarmTemplateGroup(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  GetEventBridgeRuleTemplate
+
+
+        /// <summary>
+        /// Retrieves the specified eventbridge rule template.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetEventBridgeRuleTemplate service method.</param>
+        /// 
+        /// <returns>The response from the GetEventBridgeRuleTemplate service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetEventBridgeRuleTemplate">REST API Reference for GetEventBridgeRuleTemplate Operation</seealso>
+        GetEventBridgeRuleTemplateResponse GetEventBridgeRuleTemplate(GetEventBridgeRuleTemplateRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetEventBridgeRuleTemplate operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetEventBridgeRuleTemplate operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetEventBridgeRuleTemplate
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetEventBridgeRuleTemplate">REST API Reference for GetEventBridgeRuleTemplate Operation</seealso>
+        IAsyncResult BeginGetEventBridgeRuleTemplate(GetEventBridgeRuleTemplateRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetEventBridgeRuleTemplate operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetEventBridgeRuleTemplate.</param>
+        /// 
+        /// <returns>Returns a  GetEventBridgeRuleTemplateResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetEventBridgeRuleTemplate">REST API Reference for GetEventBridgeRuleTemplate Operation</seealso>
+        GetEventBridgeRuleTemplateResponse EndGetEventBridgeRuleTemplate(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  GetEventBridgeRuleTemplateGroup
+
+
+        /// <summary>
+        /// Retrieves the specified eventbridge rule template group.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetEventBridgeRuleTemplateGroup service method.</param>
+        /// 
+        /// <returns>The response from the GetEventBridgeRuleTemplateGroup service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetEventBridgeRuleTemplateGroup">REST API Reference for GetEventBridgeRuleTemplateGroup Operation</seealso>
+        GetEventBridgeRuleTemplateGroupResponse GetEventBridgeRuleTemplateGroup(GetEventBridgeRuleTemplateGroupRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetEventBridgeRuleTemplateGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetEventBridgeRuleTemplateGroup operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetEventBridgeRuleTemplateGroup
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetEventBridgeRuleTemplateGroup">REST API Reference for GetEventBridgeRuleTemplateGroup Operation</seealso>
+        IAsyncResult BeginGetEventBridgeRuleTemplateGroup(GetEventBridgeRuleTemplateGroupRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetEventBridgeRuleTemplateGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetEventBridgeRuleTemplateGroup.</param>
+        /// 
+        /// <returns>Returns a  GetEventBridgeRuleTemplateGroupResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetEventBridgeRuleTemplateGroup">REST API Reference for GetEventBridgeRuleTemplateGroup Operation</seealso>
+        GetEventBridgeRuleTemplateGroupResponse EndGetEventBridgeRuleTemplateGroup(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  GetSignalMap
+
+
+        /// <summary>
+        /// Retrieves the specified signal map.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetSignalMap service method.</param>
+        /// 
+        /// <returns>The response from the GetSignalMap service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetSignalMap">REST API Reference for GetSignalMap Operation</seealso>
+        GetSignalMapResponse GetSignalMap(GetSignalMapRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetSignalMap operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetSignalMap operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetSignalMap
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetSignalMap">REST API Reference for GetSignalMap Operation</seealso>
+        IAsyncResult BeginGetSignalMap(GetSignalMapRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetSignalMap operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetSignalMap.</param>
+        /// 
+        /// <returns>Returns a  GetSignalMapResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetSignalMap">REST API Reference for GetSignalMap Operation</seealso>
+        GetSignalMapResponse EndGetSignalMap(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  ListChannelPlacementGroups
+
+
+        /// <summary>
+        /// Retrieve the list of ChannelPlacementGroups in the specified Cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListChannelPlacementGroups service method.</param>
+        /// 
+        /// <returns>The response from the ListChannelPlacementGroups service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListChannelPlacementGroups">REST API Reference for ListChannelPlacementGroups Operation</seealso>
+        ListChannelPlacementGroupsResponse ListChannelPlacementGroups(ListChannelPlacementGroupsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListChannelPlacementGroups operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListChannelPlacementGroups operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListChannelPlacementGroups
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListChannelPlacementGroups">REST API Reference for ListChannelPlacementGroups Operation</seealso>
+        IAsyncResult BeginListChannelPlacementGroups(ListChannelPlacementGroupsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListChannelPlacementGroups operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListChannelPlacementGroups.</param>
+        /// 
+        /// <returns>Returns a  ListChannelPlacementGroupsResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListChannelPlacementGroups">REST API Reference for ListChannelPlacementGroups Operation</seealso>
+        ListChannelPlacementGroupsResponse EndListChannelPlacementGroups(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  ListChannels
 
 
@@ -2199,6 +3936,284 @@ namespace Amazon.MediaLive
         /// <returns>Returns a  ListChannelsResult from MediaLive.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListChannels">REST API Reference for ListChannels Operation</seealso>
         ListChannelsResponse EndListChannels(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  ListCloudWatchAlarmTemplateGroups
+
+
+        /// <summary>
+        /// Lists cloudwatch alarm template groups.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListCloudWatchAlarmTemplateGroups service method.</param>
+        /// 
+        /// <returns>The response from the ListCloudWatchAlarmTemplateGroups service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListCloudWatchAlarmTemplateGroups">REST API Reference for ListCloudWatchAlarmTemplateGroups Operation</seealso>
+        ListCloudWatchAlarmTemplateGroupsResponse ListCloudWatchAlarmTemplateGroups(ListCloudWatchAlarmTemplateGroupsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListCloudWatchAlarmTemplateGroups operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListCloudWatchAlarmTemplateGroups operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListCloudWatchAlarmTemplateGroups
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListCloudWatchAlarmTemplateGroups">REST API Reference for ListCloudWatchAlarmTemplateGroups Operation</seealso>
+        IAsyncResult BeginListCloudWatchAlarmTemplateGroups(ListCloudWatchAlarmTemplateGroupsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListCloudWatchAlarmTemplateGroups operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListCloudWatchAlarmTemplateGroups.</param>
+        /// 
+        /// <returns>Returns a  ListCloudWatchAlarmTemplateGroupsResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListCloudWatchAlarmTemplateGroups">REST API Reference for ListCloudWatchAlarmTemplateGroups Operation</seealso>
+        ListCloudWatchAlarmTemplateGroupsResponse EndListCloudWatchAlarmTemplateGroups(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  ListCloudWatchAlarmTemplates
+
+
+        /// <summary>
+        /// Lists cloudwatch alarm templates.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListCloudWatchAlarmTemplates service method.</param>
+        /// 
+        /// <returns>The response from the ListCloudWatchAlarmTemplates service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListCloudWatchAlarmTemplates">REST API Reference for ListCloudWatchAlarmTemplates Operation</seealso>
+        ListCloudWatchAlarmTemplatesResponse ListCloudWatchAlarmTemplates(ListCloudWatchAlarmTemplatesRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListCloudWatchAlarmTemplates operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListCloudWatchAlarmTemplates operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListCloudWatchAlarmTemplates
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListCloudWatchAlarmTemplates">REST API Reference for ListCloudWatchAlarmTemplates Operation</seealso>
+        IAsyncResult BeginListCloudWatchAlarmTemplates(ListCloudWatchAlarmTemplatesRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListCloudWatchAlarmTemplates operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListCloudWatchAlarmTemplates.</param>
+        /// 
+        /// <returns>Returns a  ListCloudWatchAlarmTemplatesResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListCloudWatchAlarmTemplates">REST API Reference for ListCloudWatchAlarmTemplates Operation</seealso>
+        ListCloudWatchAlarmTemplatesResponse EndListCloudWatchAlarmTemplates(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  ListClusters
+
+
+        /// <summary>
+        /// Retrieve the list of Clusters.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListClusters service method.</param>
+        /// 
+        /// <returns>The response from the ListClusters service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListClusters">REST API Reference for ListClusters Operation</seealso>
+        ListClustersResponse ListClusters(ListClustersRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListClusters operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListClusters operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListClusters
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListClusters">REST API Reference for ListClusters Operation</seealso>
+        IAsyncResult BeginListClusters(ListClustersRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListClusters operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListClusters.</param>
+        /// 
+        /// <returns>Returns a  ListClustersResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListClusters">REST API Reference for ListClusters Operation</seealso>
+        ListClustersResponse EndListClusters(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  ListEventBridgeRuleTemplateGroups
+
+
+        /// <summary>
+        /// Lists eventbridge rule template groups.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListEventBridgeRuleTemplateGroups service method.</param>
+        /// 
+        /// <returns>The response from the ListEventBridgeRuleTemplateGroups service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListEventBridgeRuleTemplateGroups">REST API Reference for ListEventBridgeRuleTemplateGroups Operation</seealso>
+        ListEventBridgeRuleTemplateGroupsResponse ListEventBridgeRuleTemplateGroups(ListEventBridgeRuleTemplateGroupsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListEventBridgeRuleTemplateGroups operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListEventBridgeRuleTemplateGroups operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListEventBridgeRuleTemplateGroups
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListEventBridgeRuleTemplateGroups">REST API Reference for ListEventBridgeRuleTemplateGroups Operation</seealso>
+        IAsyncResult BeginListEventBridgeRuleTemplateGroups(ListEventBridgeRuleTemplateGroupsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListEventBridgeRuleTemplateGroups operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListEventBridgeRuleTemplateGroups.</param>
+        /// 
+        /// <returns>Returns a  ListEventBridgeRuleTemplateGroupsResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListEventBridgeRuleTemplateGroups">REST API Reference for ListEventBridgeRuleTemplateGroups Operation</seealso>
+        ListEventBridgeRuleTemplateGroupsResponse EndListEventBridgeRuleTemplateGroups(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  ListEventBridgeRuleTemplates
+
+
+        /// <summary>
+        /// Lists eventbridge rule templates.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListEventBridgeRuleTemplates service method.</param>
+        /// 
+        /// <returns>The response from the ListEventBridgeRuleTemplates service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListEventBridgeRuleTemplates">REST API Reference for ListEventBridgeRuleTemplates Operation</seealso>
+        ListEventBridgeRuleTemplatesResponse ListEventBridgeRuleTemplates(ListEventBridgeRuleTemplatesRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListEventBridgeRuleTemplates operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListEventBridgeRuleTemplates operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListEventBridgeRuleTemplates
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListEventBridgeRuleTemplates">REST API Reference for ListEventBridgeRuleTemplates Operation</seealso>
+        IAsyncResult BeginListEventBridgeRuleTemplates(ListEventBridgeRuleTemplatesRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListEventBridgeRuleTemplates operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListEventBridgeRuleTemplates.</param>
+        /// 
+        /// <returns>Returns a  ListEventBridgeRuleTemplatesResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListEventBridgeRuleTemplates">REST API Reference for ListEventBridgeRuleTemplates Operation</seealso>
+        ListEventBridgeRuleTemplatesResponse EndListEventBridgeRuleTemplates(IAsyncResult asyncResult);
 
         #endregion
         
@@ -2558,6 +4573,122 @@ namespace Amazon.MediaLive
 
         #endregion
         
+        #region  ListNetworks
+
+
+        /// <summary>
+        /// Retrieve the list of Networks.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListNetworks service method.</param>
+        /// 
+        /// <returns>The response from the ListNetworks service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListNetworks">REST API Reference for ListNetworks Operation</seealso>
+        ListNetworksResponse ListNetworks(ListNetworksRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListNetworks operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListNetworks operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListNetworks
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListNetworks">REST API Reference for ListNetworks Operation</seealso>
+        IAsyncResult BeginListNetworks(ListNetworksRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListNetworks operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListNetworks.</param>
+        /// 
+        /// <returns>Returns a  ListNetworksResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListNetworks">REST API Reference for ListNetworks Operation</seealso>
+        ListNetworksResponse EndListNetworks(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  ListNodes
+
+
+        /// <summary>
+        /// Retrieve the list of Nodes.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListNodes service method.</param>
+        /// 
+        /// <returns>The response from the ListNodes service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListNodes">REST API Reference for ListNodes Operation</seealso>
+        ListNodesResponse ListNodes(ListNodesRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListNodes operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListNodes operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListNodes
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListNodes">REST API Reference for ListNodes Operation</seealso>
+        IAsyncResult BeginListNodes(ListNodesRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListNodes operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListNodes.</param>
+        /// 
+        /// <returns>Returns a  ListNodesResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListNodes">REST API Reference for ListNodes Operation</seealso>
+        ListNodesResponse EndListNodes(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  ListOfferings
 
 
@@ -2674,6 +4805,61 @@ namespace Amazon.MediaLive
 
         #endregion
         
+        #region  ListSignalMaps
+
+
+        /// <summary>
+        /// Lists signal maps.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListSignalMaps service method.</param>
+        /// 
+        /// <returns>The response from the ListSignalMaps service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListSignalMaps">REST API Reference for ListSignalMaps Operation</seealso>
+        ListSignalMapsResponse ListSignalMaps(ListSignalMapsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListSignalMaps operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListSignalMaps operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListSignalMaps
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListSignalMaps">REST API Reference for ListSignalMaps Operation</seealso>
+        IAsyncResult BeginListSignalMaps(ListSignalMapsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListSignalMaps operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListSignalMaps.</param>
+        /// 
+        /// <returns>Returns a  ListSignalMapsResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListSignalMaps">REST API Reference for ListSignalMaps Operation</seealso>
+        ListSignalMapsResponse EndListSignalMaps(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  ListTagsForResource
 
 
@@ -2723,6 +4909,71 @@ namespace Amazon.MediaLive
         /// <returns>Returns a  ListTagsForResourceResult from MediaLive.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListTagsForResource">REST API Reference for ListTagsForResource Operation</seealso>
         ListTagsForResourceResponse EndListTagsForResource(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  ListVersions
+
+
+        /// <summary>
+        /// Retrieves an array of all the encoder engine versions that are available in this AWS
+        /// account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListVersions service method.</param>
+        /// 
+        /// <returns>The response from the ListVersions service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListVersions">REST API Reference for ListVersions Operation</seealso>
+        ListVersionsResponse ListVersions(ListVersionsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListVersions operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListVersions operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListVersions
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListVersions">REST API Reference for ListVersions Operation</seealso>
+        IAsyncResult BeginListVersions(ListVersionsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListVersions operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListVersions.</param>
+        /// 
+        /// <returns>Returns a  ListVersionsResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListVersions">REST API Reference for ListVersions Operation</seealso>
+        ListVersionsResponse EndListVersions(IAsyncResult asyncResult);
 
         #endregion
         
@@ -2923,6 +5174,70 @@ namespace Amazon.MediaLive
 
         #endregion
         
+        #region  RestartChannelPipelines
+
+
+        /// <summary>
+        /// Restart pipelines in one channel that is currently running.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the RestartChannelPipelines service method.</param>
+        /// 
+        /// <returns>The response from the RestartChannelPipelines service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/RestartChannelPipelines">REST API Reference for RestartChannelPipelines Operation</seealso>
+        RestartChannelPipelinesResponse RestartChannelPipelines(RestartChannelPipelinesRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the RestartChannelPipelines operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the RestartChannelPipelines operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndRestartChannelPipelines
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/RestartChannelPipelines">REST API Reference for RestartChannelPipelines Operation</seealso>
+        IAsyncResult BeginRestartChannelPipelines(RestartChannelPipelinesRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  RestartChannelPipelines operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginRestartChannelPipelines.</param>
+        /// 
+        /// <returns>Returns a  RestartChannelPipelinesResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/RestartChannelPipelines">REST API Reference for RestartChannelPipelines Operation</seealso>
+        RestartChannelPipelinesResponse EndRestartChannelPipelines(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  StartChannel
 
 
@@ -2984,6 +5299,64 @@ namespace Amazon.MediaLive
         /// <returns>Returns a  StartChannelResult from MediaLive.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartChannel">REST API Reference for StartChannel Operation</seealso>
         StartChannelResponse EndStartChannel(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  StartDeleteMonitorDeployment
+
+
+        /// <summary>
+        /// Initiates a deployment to delete the monitor of the specified signal map.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartDeleteMonitorDeployment service method.</param>
+        /// 
+        /// <returns>The response from the StartDeleteMonitorDeployment service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartDeleteMonitorDeployment">REST API Reference for StartDeleteMonitorDeployment Operation</seealso>
+        StartDeleteMonitorDeploymentResponse StartDeleteMonitorDeployment(StartDeleteMonitorDeploymentRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the StartDeleteMonitorDeployment operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the StartDeleteMonitorDeployment operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndStartDeleteMonitorDeployment
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartDeleteMonitorDeployment">REST API Reference for StartDeleteMonitorDeployment Operation</seealso>
+        IAsyncResult BeginStartDeleteMonitorDeployment(StartDeleteMonitorDeploymentRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  StartDeleteMonitorDeployment operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginStartDeleteMonitorDeployment.</param>
+        /// 
+        /// <returns>Returns a  StartDeleteMonitorDeploymentResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartDeleteMonitorDeployment">REST API Reference for StartDeleteMonitorDeployment Operation</seealso>
+        StartDeleteMonitorDeploymentResponse EndStartDeleteMonitorDeployment(IAsyncResult asyncResult);
 
         #endregion
         
@@ -3123,6 +5496,64 @@ namespace Amazon.MediaLive
 
         #endregion
         
+        #region  StartMonitorDeployment
+
+
+        /// <summary>
+        /// Initiates a deployment to deploy the latest monitor of the specified signal map.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartMonitorDeployment service method.</param>
+        /// 
+        /// <returns>The response from the StartMonitorDeployment service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartMonitorDeployment">REST API Reference for StartMonitorDeployment Operation</seealso>
+        StartMonitorDeploymentResponse StartMonitorDeployment(StartMonitorDeploymentRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the StartMonitorDeployment operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the StartMonitorDeployment operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndStartMonitorDeployment
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartMonitorDeployment">REST API Reference for StartMonitorDeployment Operation</seealso>
+        IAsyncResult BeginStartMonitorDeployment(StartMonitorDeploymentRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  StartMonitorDeployment operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginStartMonitorDeployment.</param>
+        /// 
+        /// <returns>Returns a  StartMonitorDeploymentResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartMonitorDeployment">REST API Reference for StartMonitorDeployment Operation</seealso>
+        StartMonitorDeploymentResponse EndStartMonitorDeployment(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  StartMultiplex
 
 
@@ -3185,6 +5616,65 @@ namespace Amazon.MediaLive
         /// <returns>Returns a  StartMultiplexResult from MediaLive.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartMultiplex">REST API Reference for StartMultiplex Operation</seealso>
         StartMultiplexResponse EndStartMultiplex(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  StartUpdateSignalMap
+
+
+        /// <summary>
+        /// Initiates an update for the specified signal map. Will discover a new signal map if
+        /// a changed discoveryEntryPointArn is provided.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartUpdateSignalMap service method.</param>
+        /// 
+        /// <returns>The response from the StartUpdateSignalMap service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartUpdateSignalMap">REST API Reference for StartUpdateSignalMap Operation</seealso>
+        StartUpdateSignalMapResponse StartUpdateSignalMap(StartUpdateSignalMapRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the StartUpdateSignalMap operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the StartUpdateSignalMap operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndStartUpdateSignalMap
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartUpdateSignalMap">REST API Reference for StartUpdateSignalMap Operation</seealso>
+        IAsyncResult BeginStartUpdateSignalMap(StartUpdateSignalMapRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  StartUpdateSignalMap operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginStartUpdateSignalMap.</param>
+        /// 
+        /// <returns>Returns a  StartUpdateSignalMapResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartUpdateSignalMap">REST API Reference for StartUpdateSignalMap Operation</seealso>
+        StartUpdateSignalMapResponse EndStartUpdateSignalMap(IAsyncResult asyncResult);
 
         #endregion
         
@@ -3639,6 +6129,363 @@ namespace Amazon.MediaLive
 
         #endregion
         
+        #region  UpdateChannelPlacementGroup
+
+
+        /// <summary>
+        /// Change the settings for a ChannelPlacementGroup.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateChannelPlacementGroup service method.</param>
+        /// 
+        /// <returns>The response from the UpdateChannelPlacementGroup service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.UnprocessableEntityException">
+        /// Placeholder documentation for UnprocessableEntityException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateChannelPlacementGroup">REST API Reference for UpdateChannelPlacementGroup Operation</seealso>
+        UpdateChannelPlacementGroupResponse UpdateChannelPlacementGroup(UpdateChannelPlacementGroupRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateChannelPlacementGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateChannelPlacementGroup operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateChannelPlacementGroup
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateChannelPlacementGroup">REST API Reference for UpdateChannelPlacementGroup Operation</seealso>
+        IAsyncResult BeginUpdateChannelPlacementGroup(UpdateChannelPlacementGroupRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateChannelPlacementGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateChannelPlacementGroup.</param>
+        /// 
+        /// <returns>Returns a  UpdateChannelPlacementGroupResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateChannelPlacementGroup">REST API Reference for UpdateChannelPlacementGroup Operation</seealso>
+        UpdateChannelPlacementGroupResponse EndUpdateChannelPlacementGroup(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  UpdateCloudWatchAlarmTemplate
+
+
+        /// <summary>
+        /// Updates the specified cloudwatch alarm template.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateCloudWatchAlarmTemplate service method.</param>
+        /// 
+        /// <returns>The response from the UpdateCloudWatchAlarmTemplate service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateCloudWatchAlarmTemplate">REST API Reference for UpdateCloudWatchAlarmTemplate Operation</seealso>
+        UpdateCloudWatchAlarmTemplateResponse UpdateCloudWatchAlarmTemplate(UpdateCloudWatchAlarmTemplateRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateCloudWatchAlarmTemplate operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateCloudWatchAlarmTemplate operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateCloudWatchAlarmTemplate
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateCloudWatchAlarmTemplate">REST API Reference for UpdateCloudWatchAlarmTemplate Operation</seealso>
+        IAsyncResult BeginUpdateCloudWatchAlarmTemplate(UpdateCloudWatchAlarmTemplateRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateCloudWatchAlarmTemplate operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateCloudWatchAlarmTemplate.</param>
+        /// 
+        /// <returns>Returns a  UpdateCloudWatchAlarmTemplateResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateCloudWatchAlarmTemplate">REST API Reference for UpdateCloudWatchAlarmTemplate Operation</seealso>
+        UpdateCloudWatchAlarmTemplateResponse EndUpdateCloudWatchAlarmTemplate(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  UpdateCloudWatchAlarmTemplateGroup
+
+
+        /// <summary>
+        /// Updates the specified cloudwatch alarm template group.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateCloudWatchAlarmTemplateGroup service method.</param>
+        /// 
+        /// <returns>The response from the UpdateCloudWatchAlarmTemplateGroup service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateCloudWatchAlarmTemplateGroup">REST API Reference for UpdateCloudWatchAlarmTemplateGroup Operation</seealso>
+        UpdateCloudWatchAlarmTemplateGroupResponse UpdateCloudWatchAlarmTemplateGroup(UpdateCloudWatchAlarmTemplateGroupRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateCloudWatchAlarmTemplateGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateCloudWatchAlarmTemplateGroup operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateCloudWatchAlarmTemplateGroup
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateCloudWatchAlarmTemplateGroup">REST API Reference for UpdateCloudWatchAlarmTemplateGroup Operation</seealso>
+        IAsyncResult BeginUpdateCloudWatchAlarmTemplateGroup(UpdateCloudWatchAlarmTemplateGroupRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateCloudWatchAlarmTemplateGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateCloudWatchAlarmTemplateGroup.</param>
+        /// 
+        /// <returns>Returns a  UpdateCloudWatchAlarmTemplateGroupResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateCloudWatchAlarmTemplateGroup">REST API Reference for UpdateCloudWatchAlarmTemplateGroup Operation</seealso>
+        UpdateCloudWatchAlarmTemplateGroupResponse EndUpdateCloudWatchAlarmTemplateGroup(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  UpdateCluster
+
+
+        /// <summary>
+        /// Change the settings for a Cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateCluster service method.</param>
+        /// 
+        /// <returns>The response from the UpdateCluster service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateCluster">REST API Reference for UpdateCluster Operation</seealso>
+        UpdateClusterResponse UpdateCluster(UpdateClusterRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateCluster operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateCluster operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateCluster
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateCluster">REST API Reference for UpdateCluster Operation</seealso>
+        IAsyncResult BeginUpdateCluster(UpdateClusterRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateCluster operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateCluster.</param>
+        /// 
+        /// <returns>Returns a  UpdateClusterResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateCluster">REST API Reference for UpdateCluster Operation</seealso>
+        UpdateClusterResponse EndUpdateCluster(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  UpdateEventBridgeRuleTemplate
+
+
+        /// <summary>
+        /// Updates the specified eventbridge rule template.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateEventBridgeRuleTemplate service method.</param>
+        /// 
+        /// <returns>The response from the UpdateEventBridgeRuleTemplate service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateEventBridgeRuleTemplate">REST API Reference for UpdateEventBridgeRuleTemplate Operation</seealso>
+        UpdateEventBridgeRuleTemplateResponse UpdateEventBridgeRuleTemplate(UpdateEventBridgeRuleTemplateRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateEventBridgeRuleTemplate operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateEventBridgeRuleTemplate operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateEventBridgeRuleTemplate
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateEventBridgeRuleTemplate">REST API Reference for UpdateEventBridgeRuleTemplate Operation</seealso>
+        IAsyncResult BeginUpdateEventBridgeRuleTemplate(UpdateEventBridgeRuleTemplateRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateEventBridgeRuleTemplate operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateEventBridgeRuleTemplate.</param>
+        /// 
+        /// <returns>Returns a  UpdateEventBridgeRuleTemplateResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateEventBridgeRuleTemplate">REST API Reference for UpdateEventBridgeRuleTemplate Operation</seealso>
+        UpdateEventBridgeRuleTemplateResponse EndUpdateEventBridgeRuleTemplate(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  UpdateEventBridgeRuleTemplateGroup
+
+
+        /// <summary>
+        /// Updates the specified eventbridge rule template group.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateEventBridgeRuleTemplateGroup service method.</param>
+        /// 
+        /// <returns>The response from the UpdateEventBridgeRuleTemplateGroup service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.NotFoundException">
+        /// Placeholder documentation for NotFoundException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateEventBridgeRuleTemplateGroup">REST API Reference for UpdateEventBridgeRuleTemplateGroup Operation</seealso>
+        UpdateEventBridgeRuleTemplateGroupResponse UpdateEventBridgeRuleTemplateGroup(UpdateEventBridgeRuleTemplateGroupRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateEventBridgeRuleTemplateGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateEventBridgeRuleTemplateGroup operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateEventBridgeRuleTemplateGroup
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateEventBridgeRuleTemplateGroup">REST API Reference for UpdateEventBridgeRuleTemplateGroup Operation</seealso>
+        IAsyncResult BeginUpdateEventBridgeRuleTemplateGroup(UpdateEventBridgeRuleTemplateGroupRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateEventBridgeRuleTemplateGroup operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateEventBridgeRuleTemplateGroup.</param>
+        /// 
+        /// <returns>Returns a  UpdateEventBridgeRuleTemplateGroupResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateEventBridgeRuleTemplateGroup">REST API Reference for UpdateEventBridgeRuleTemplateGroup Operation</seealso>
+        UpdateEventBridgeRuleTemplateGroupResponse EndUpdateEventBridgeRuleTemplateGroup(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  UpdateInput
 
 
@@ -3950,6 +6797,192 @@ namespace Amazon.MediaLive
         /// <returns>Returns a  UpdateMultiplexProgramResult from MediaLive.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateMultiplexProgram">REST API Reference for UpdateMultiplexProgram Operation</seealso>
         UpdateMultiplexProgramResponse EndUpdateMultiplexProgram(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  UpdateNetwork
+
+
+        /// <summary>
+        /// Change the settings for a Network.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateNetwork service method.</param>
+        /// 
+        /// <returns>The response from the UpdateNetwork service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateNetwork">REST API Reference for UpdateNetwork Operation</seealso>
+        UpdateNetworkResponse UpdateNetwork(UpdateNetworkRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateNetwork operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateNetwork operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateNetwork
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateNetwork">REST API Reference for UpdateNetwork Operation</seealso>
+        IAsyncResult BeginUpdateNetwork(UpdateNetworkRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateNetwork operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateNetwork.</param>
+        /// 
+        /// <returns>Returns a  UpdateNetworkResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateNetwork">REST API Reference for UpdateNetwork Operation</seealso>
+        UpdateNetworkResponse EndUpdateNetwork(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  UpdateNode
+
+
+        /// <summary>
+        /// Change the settings for a Node.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateNode service method.</param>
+        /// 
+        /// <returns>The response from the UpdateNode service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateNode">REST API Reference for UpdateNode Operation</seealso>
+        UpdateNodeResponse UpdateNode(UpdateNodeRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateNode operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateNode operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateNode
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateNode">REST API Reference for UpdateNode Operation</seealso>
+        IAsyncResult BeginUpdateNode(UpdateNodeRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateNode operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateNode.</param>
+        /// 
+        /// <returns>Returns a  UpdateNodeResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateNode">REST API Reference for UpdateNode Operation</seealso>
+        UpdateNodeResponse EndUpdateNode(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  UpdateNodeState
+
+
+        /// <summary>
+        /// Update the state of a node.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateNodeState service method.</param>
+        /// 
+        /// <returns>The response from the UpdateNodeState service method, as returned by MediaLive.</returns>
+        /// <exception cref="Amazon.MediaLive.Model.BadGatewayException">
+        /// Placeholder documentation for BadGatewayException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.BadRequestException">
+        /// Placeholder documentation for BadRequestException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ConflictException">
+        /// Placeholder documentation for ConflictException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.ForbiddenException">
+        /// Placeholder documentation for ForbiddenException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.GatewayTimeoutException">
+        /// Placeholder documentation for GatewayTimeoutException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.InternalServerErrorException">
+        /// Placeholder documentation for InternalServerErrorException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.TooManyRequestsException">
+        /// Placeholder documentation for TooManyRequestsException
+        /// </exception>
+        /// <exception cref="Amazon.MediaLive.Model.UnprocessableEntityException">
+        /// Placeholder documentation for UnprocessableEntityException
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateNodeState">REST API Reference for UpdateNodeState Operation</seealso>
+        UpdateNodeStateResponse UpdateNodeState(UpdateNodeStateRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateNodeState operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateNodeState operation on AmazonMediaLiveClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateNodeState
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateNodeState">REST API Reference for UpdateNodeState Operation</seealso>
+        IAsyncResult BeginUpdateNodeState(UpdateNodeStateRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateNodeState operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateNodeState.</param>
+        /// 
+        /// <returns>Returns a  UpdateNodeStateResult from MediaLive.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateNodeState">REST API Reference for UpdateNodeState Operation</seealso>
+        UpdateNodeStateResponse EndUpdateNodeState(IAsyncResult asyncResult);
 
         #endregion
         

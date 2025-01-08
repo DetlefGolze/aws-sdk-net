@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Textract.Model
 {
     /// <summary>
     /// A grouping of tables which contain LineItems, with each table identified by the table's
-    /// <code>LineItemGroupIndex</code>.
+    /// <c>LineItemGroupIndex</c>.
     /// </summary>
     public partial class LineItemGroup
     {
         private int? _lineItemGroupIndex;
-        private List<LineItemFields> _lineItems = new List<LineItemFields>();
+        private List<LineItemFields> _lineItems = AWSConfigs.InitializeCollections ? new List<LineItemFields>() : null;
 
         /// <summary>
         /// Gets and sets the property LineItemGroupIndex. 
@@ -72,7 +73,7 @@ namespace Amazon.Textract.Model
         // Check to see if LineItems property is set
         internal bool IsSetLineItems()
         {
-            return this._lineItems != null && this._lineItems.Count > 0; 
+            return this._lineItems != null && (this._lineItems.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

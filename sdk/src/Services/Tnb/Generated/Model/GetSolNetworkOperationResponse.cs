@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Tnb.Model
 {
     /// <summary>
@@ -40,8 +41,9 @@ namespace Amazon.Tnb.Model
         private GetSolNetworkOperationMetadata _metadata;
         private string _nsInstanceId;
         private NsLcmOperationState _operationState;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
-        private List<GetSolNetworkOperationTaskDetails> _tasks = new List<GetSolNetworkOperationTaskDetails>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<GetSolNetworkOperationTaskDetails> _tasks = AWSConfigs.InitializeCollections ? new List<GetSolNetworkOperationTaskDetails>() : null;
+        private UpdateSolNetworkType _updateType;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -188,7 +190,7 @@ namespace Amazon.Tnb.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -206,7 +208,25 @@ namespace Amazon.Tnb.Model
         // Check to see if Tasks property is set
         internal bool IsSetTasks()
         {
-            return this._tasks != null && this._tasks.Count > 0; 
+            return this._tasks != null && (this._tasks.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property UpdateType. 
+        /// <para>
+        /// Type of the update. Only present if the network operation lcmOperationType is <c>UPDATE</c>.
+        /// </para>
+        /// </summary>
+        public UpdateSolNetworkType UpdateType
+        {
+            get { return this._updateType; }
+            set { this._updateType = value; }
+        }
+
+        // Check to see if UpdateType property is set
+        internal bool IsSetUpdateType()
+        {
+            return this._updateType != null;
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
@@ -112,23 +113,23 @@ namespace Amazon.OpsWorks.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>deny</code> 
+        ///  <c>deny</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>show</code> 
+        ///  <c>show</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deploy</code> 
+        ///  <c>deploy</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>manage</code> 
+        ///  <c>manage</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>iam_only</code> 
+        ///  <c>iam_only</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>

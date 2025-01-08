@@ -26,15 +26,27 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
-    /// Set of key-value pairs that contain information about a game session. When included
-    /// in a game session request, these properties communicate details to be used when setting
-    /// up the new game session. For example, a game property might specify a game mode, level,
-    /// or map. Game properties are passed to the game server process when initiating a new
-    /// game session. For more information, see the <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-client-api.html#gamelift-sdk-client-api-create">
-    /// Amazon GameLift Developer Guide</a>.
+    /// This key-value pair can store custom data about a game session. For example, you might
+    /// use a <c>GameProperty</c> to track a game session's map, level of difficulty, or remaining
+    /// time. The difficulty level could be specified like this: <c>{"Key": "difficulty",
+    /// "Value":"Novice"}</c>. 
+    /// 
+    ///  
+    /// <para>
+    ///  You can set game properties when creating a game session. You can also modify game
+    /// properties of an active game session. When searching for game sessions, you can filter
+    /// on game property keys and values. You can't delete game properties from a game session.
+    /// 
+    /// </para>
+    ///  
+    /// <para>
+    /// For examples of working with game properties, see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-client-api.html#game-properties">Create
+    /// a game session with properties</a>. 
+    /// </para>
     /// </summary>
     public partial class GameProperty
     {

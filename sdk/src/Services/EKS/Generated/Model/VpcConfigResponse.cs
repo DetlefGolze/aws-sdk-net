@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -36,9 +37,9 @@ namespace Amazon.EKS.Model
         private string _clusterSecurityGroupId;
         private bool? _endpointPrivateAccess;
         private bool? _endpointPublicAccess;
-        private List<string> _publicAccessCidrs = new List<string>();
-        private List<string> _securityGroupIds = new List<string>();
-        private List<string> _subnetIds = new List<string>();
+        private List<string> _publicAccessCidrs = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _subnetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _vpcId;
 
         /// <summary>
@@ -67,8 +68,8 @@ namespace Amazon.EKS.Model
         /// If the Amazon EKS private API server endpoint is enabled, Kubernetes API requests
         /// that originate from within your cluster's VPC use the private VPC endpoint instead
         /// of traversing the internet. If this value is disabled and you have nodes or Fargate
-        /// pods in the cluster, then ensure that <code>publicAccessCidrs</code> includes the
-        /// necessary CIDR blocks for communication with the nodes or Fargate pods. For more information,
+        /// pods in the cluster, then ensure that <c>publicAccessCidrs</c> includes the necessary
+        /// CIDR blocks for communication with the nodes or Fargate pods. For more information,
         /// see <a href="https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html">Amazon
         /// EKS cluster endpoint access control</a> in the <i> <i>Amazon EKS User Guide</i> </i>.
         /// </para>
@@ -88,9 +89,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property EndpointPublicAccess. 
         /// <para>
-        /// This parameter indicates whether the Amazon EKS public API server endpoint is enabled.
-        /// If the Amazon EKS public API server endpoint is disabled, your cluster's Kubernetes
-        /// API server can only receive requests that originate from within the cluster VPC.
+        /// Whether the public API server endpoint is enabled.
         /// </para>
         /// </summary>
         public bool EndpointPublicAccess
@@ -109,11 +108,7 @@ namespace Amazon.EKS.Model
         /// Gets and sets the property PublicAccessCidrs. 
         /// <para>
         /// The CIDR blocks that are allowed access to your cluster's public Kubernetes API server
-        /// endpoint. Communication to the endpoint from addresses outside of the listed CIDR
-        /// blocks is denied. The default value is <code>0.0.0.0/0</code>. If you've disabled
-        /// private endpoint access and you have nodes or Fargate pods in the cluster, then ensure
-        /// that the necessary CIDR blocks are listed. For more information, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html">Amazon
-        /// EKS cluster endpoint access control</a> in the <i> <i>Amazon EKS User Guide</i> </i>.
+        /// endpoint.
         /// </para>
         /// </summary>
         public List<string> PublicAccessCidrs
@@ -125,7 +120,7 @@ namespace Amazon.EKS.Model
         // Check to see if PublicAccessCidrs property is set
         internal bool IsSetPublicAccessCidrs()
         {
-            return this._publicAccessCidrs != null && this._publicAccessCidrs.Count > 0; 
+            return this._publicAccessCidrs != null && (this._publicAccessCidrs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -144,7 +139,7 @@ namespace Amazon.EKS.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -162,7 +157,7 @@ namespace Amazon.EKS.Model
         // Check to see if SubnetIds property is set
         internal bool IsSetSubnetIds()
         {
-            return this._subnetIds != null && this._subnetIds.Count > 0; 
+            return this._subnetIds != null && (this._subnetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

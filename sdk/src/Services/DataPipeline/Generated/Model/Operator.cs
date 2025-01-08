@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataPipeline.Model
 {
     /// <summary>
@@ -34,17 +35,16 @@ namespace Amazon.DataPipeline.Model
     public partial class Operator
     {
         private OperatorType _type;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        ///  The logical operation to be performed: equal (<code>EQ</code>), equal reference (<code>REF_EQ</code>),
-        /// less than or equal (<code>LE</code>), greater than or equal (<code>GE</code>), or
-        /// between (<code>BETWEEN</code>). Equal reference (<code>REF_EQ</code>) can be used
-        /// only with reference fields. The other comparison types can be used only with String
-        /// fields. The comparison types you can use apply only to certain object fields, as detailed
-        /// below. 
+        ///  The logical operation to be performed: equal (<c>EQ</c>), equal reference (<c>REF_EQ</c>),
+        /// less than or equal (<c>LE</c>), greater than or equal (<c>GE</c>), or between (<c>BETWEEN</c>).
+        /// Equal reference (<c>REF_EQ</c>) can be used only with reference fields. The other
+        /// comparison types can be used only with String fields. The comparison types you can
+        /// use apply only to certain object fields, as detailed below. 
         /// </para>
         ///  
         /// <para>
@@ -54,8 +54,8 @@ namespace Amazon.DataPipeline.Model
         /// <li>@status</li> <li>@scheduledStartTime</li> <li>@scheduledEndTime</li> <li>@actualStartTime</li>
         /// <li>@actualEndTime</li> </ul> 
         /// <para>
-        ///  The comparison operators <code>GE</code>, <code>LE</code>, and <code>BETWEEN</code>
-        /// act on the following fields: 
+        ///  The comparison operators <c>GE</c>, <c>LE</c>, and <c>BETWEEN</c> act on the following
+        /// fields: 
         /// </para>
         ///  <ul> <li>@scheduledStartTime</li> <li>@scheduledEndTime</li> <li>@actualStartTime</li>
         /// <li>@actualEndTime</li> </ul> 
@@ -93,7 +93,7 @@ namespace Amazon.DataPipeline.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

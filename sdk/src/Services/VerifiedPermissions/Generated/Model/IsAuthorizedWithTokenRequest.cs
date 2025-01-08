@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VerifiedPermissions.Model
 {
     /// <summary>
@@ -36,24 +37,9 @@ namespace Amazon.VerifiedPermissions.Model
     /// web token (JWT)</a>. The information in the parameters can also define additional
     /// context that Verified Permissions can include in the evaluation. The request is evaluated
     /// against all matching policies in the specified policy store. The result of the decision
-    /// is either <code>Allow</code> or <code>Deny</code>, along with a list of the policies
-    /// that resulted in the decision.
+    /// is either <c>Allow</c> or <c>Deny</c>, along with a list of the policies that resulted
+    /// in the decision.
     /// 
-    ///  <important> 
-    /// <para>
-    /// If you specify the <code>identityToken</code> parameter, then this operation derives
-    /// the principal from that token. You must not also include that principal in the <code>entities</code>
-    /// parameter or the operation fails and reports a conflict between the two entity sources.
-    /// </para>
-    ///  
-    /// <para>
-    /// If you provide only an <code>accessToken</code>, then you can include the entity as
-    /// part of the <code>entities</code> parameter to provide additional attributes.
-    /// </para>
-    ///  </important> 
-    /// <para>
-    /// At this time, Verified Permissions accepts tokens from only Amazon Cognito.
-    /// </para>
     ///  
     /// <para>
     /// Verified Permissions validates each token that is specified in a request by checking
@@ -61,8 +47,9 @@ namespace Amazon.VerifiedPermissions.Model
     /// </para>
     ///  <important> 
     /// <para>
-    /// If you delete a Amazon Cognito user pool or user, tokens from that deleted pool or
-    /// that deleted user continue to be usable until they expire.
+    /// Tokens from an identity source user continue to be usable until they expire. Token
+    /// revocation and resource deletion have no effect on the validity of a token in your
+    /// policy store
     /// </para>
     ///  </important>
     /// </summary>
@@ -81,8 +68,12 @@ namespace Amazon.VerifiedPermissions.Model
         /// <para>
         /// Specifies an access token for the principal to be authorized. This token is provided
         /// to you by the identity provider (IdP) associated with the specified identity source.
-        /// You must specify either an <code>AccessToken</code>, or an <code>IdentityToken</code>,
-        /// or both.
+        /// You must specify either an <c>accessToken</c>, an <c>identityToken</c>, or both.
+        /// </para>
+        ///  
+        /// <para>
+        /// Must be an access token. Verified Permissions returns an error if the <c>token_use</c>
+        /// claim in the submitted token isn't <c>access</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=131072)]
@@ -142,23 +133,23 @@ namespace Amazon.VerifiedPermissions.Model
         /// Specifies the list of resources and their associated attributes that Verified Permissions
         /// can examine when evaluating the policies. 
         /// </para>
-        ///  <note> 
+        ///  <important> 
         /// <para>
-        /// You can include only resource and action entities in this parameter; you can't include
-        /// principals.
+        /// You can't include principals in this parameter, only resource and action entities.
+        /// This parameter can't include any entities of a type that matches the user or group
+        /// entity types that you defined in your identity source.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// The <code>IsAuthorizedWithToken</code> operation takes principal attributes from <b>
-        /// <i>only</i> </b> the <code>identityToken</code> or <code>accessToken</code> passed
-        /// to the operation.
+        /// The <c>IsAuthorizedWithToken</c> operation takes principal attributes from <b> <i>only</i>
+        /// </b> the <c>identityToken</c> or <c>accessToken</c> passed to the operation.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For action entities, you can include only their <code>Identifier</code> and <code>EntityType</code>.
+        /// For action entities, you can include only their <c>Identifier</c> and <c>EntityType</c>.
         /// 
         /// </para>
-        ///  </li> </ul> </note>
+        ///  </li> </ul> </important>
         /// </summary>
         public EntitiesDefinition Entities
         {
@@ -177,8 +168,12 @@ namespace Amazon.VerifiedPermissions.Model
         /// <para>
         /// Specifies an identity token for the principal to be authorized. This token is provided
         /// to you by the identity provider (IdP) associated with the specified identity source.
-        /// You must specify either an <code>AccessToken</code> or an <code>IdentityToken</code>,
-        /// or both.
+        /// You must specify either an <c>accessToken</c>, an <c>identityToken</c>, or both.
+        /// </para>
+        ///  
+        /// <para>
+        /// Must be an ID token. Verified Permissions returns an error if the <c>token_use</c>
+        /// claim in the submitted token isn't <c>id</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=131072)]

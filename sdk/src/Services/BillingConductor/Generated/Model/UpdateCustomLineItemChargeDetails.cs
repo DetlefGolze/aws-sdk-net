@@ -26,23 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BillingConductor.Model
 {
     /// <summary>
     /// A representation of the new charge details of a custom line item. This should contain
-    /// only one of <code>Flat</code> or <code>Percentage</code>.
+    /// only one of <c>Flat</c> or <c>Percentage</c>.
     /// </summary>
     public partial class UpdateCustomLineItemChargeDetails
     {
         private UpdateCustomLineItemFlatChargeDetails _flat;
-        private List<LineItemFilter> _lineItemFilters = new List<LineItemFilter>();
+        private List<LineItemFilter> _lineItemFilters = AWSConfigs.InitializeCollections ? new List<LineItemFilter>() : null;
         private UpdateCustomLineItemPercentageChargeDetails _percentage;
 
         /// <summary>
         /// Gets and sets the property Flat. 
         /// <para>
-        ///  An <code>UpdateCustomLineItemFlatChargeDetails</code> that describes the new charge
-        /// details of a flat custom line item. 
+        ///  An <c>UpdateCustomLineItemFlatChargeDetails</c> that describes the new charge details
+        /// of a flat custom line item. 
         /// </para>
         /// </summary>
         public UpdateCustomLineItemFlatChargeDetails Flat
@@ -73,14 +74,14 @@ namespace Amazon.BillingConductor.Model
         // Check to see if LineItemFilters property is set
         internal bool IsSetLineItemFilters()
         {
-            return this._lineItemFilters != null && this._lineItemFilters.Count > 0; 
+            return this._lineItemFilters != null && (this._lineItemFilters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Percentage. 
         /// <para>
-        ///  An <code>UpdateCustomLineItemPercentageChargeDetails</code> that describes the new
-        /// charge details of a percentage custom line item. 
+        ///  An <c>UpdateCustomLineItemPercentageChargeDetails</c> that describes the new charge
+        /// details of a percentage custom line item. 
         /// </para>
         /// </summary>
         public UpdateCustomLineItemPercentageChargeDetails Percentage

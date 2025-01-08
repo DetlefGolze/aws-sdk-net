@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ChimeSDKMeetings.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,26 +53,44 @@ namespace Amazon.ChimeSDKMeetings.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public MeetingFeaturesConfiguration Unmarshall(JsonUnmarshallerContext context)
         {
+            MeetingFeaturesConfiguration unmarshalledObject = new MeetingFeaturesConfiguration();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            MeetingFeaturesConfiguration unmarshalledObject = new MeetingFeaturesConfiguration();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("Attendee", targetDepth))
+                {
+                    var unmarshaller = AttendeeFeaturesUnmarshaller.Instance;
+                    unmarshalledObject.Attendee = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("Audio", targetDepth))
                 {
                     var unmarshaller = AudioFeaturesUnmarshaller.Instance;
                     unmarshalledObject.Audio = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("Content", targetDepth))
+                {
+                    var unmarshaller = ContentFeaturesUnmarshaller.Instance;
+                    unmarshalledObject.Content = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("Video", targetDepth))
+                {
+                    var unmarshaller = VideoFeaturesUnmarshaller.Instance;
+                    unmarshalledObject.Video = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

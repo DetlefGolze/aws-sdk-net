@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DeviceFarm.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.DeviceFarm.Model
         /// <summary>
         /// Gets and sets the property ContentType. 
         /// <para>
-        /// The upload's content type (for example, <code>application/octet-stream</code>).
+        /// The upload's content type (for example, <c>application/octet-stream</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=64)]
@@ -61,11 +62,10 @@ namespace Amazon.DeviceFarm.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The upload's file name. The name should not contain any forward slashes (<code>/</code>).
-        /// If you are uploading an iOS app, the file name must end with the <code>.ipa</code>
-        /// extension. If you are uploading an Android app, the file name must end with the <code>.apk</code>
-        /// extension. For all others, the file name must end with the <code>.zip</code> file
-        /// extension.
+        /// The upload's file name. The name should not contain any forward slashes (<c>/</c>).
+        /// If you are uploading an iOS app, the file name must end with the <c>.ipa</c> extension.
+        /// If you are uploading an Android app, the file name must end with the <c>.apk</c> extension.
+        /// For all others, the file name must end with the <c>.zip</c> file extension.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=256)]
@@ -167,19 +167,7 @@ namespace Amazon.DeviceFarm.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// CALABASH_TEST_PACKAGE
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
         /// INSTRUMENTATION_TEST_PACKAGE
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// UIAUTOMATION_TEST_PACKAGE
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// UIAUTOMATOR_TEST_PACKAGE
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -239,8 +227,8 @@ namespace Amazon.DeviceFarm.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        ///  If you call <code>CreateUpload</code> with <code>WEB_APP</code> specified, AWS Device
-        /// Farm throws an <code>ArgumentException</code> error.
+        ///  If you call <c>CreateUpload</c> with <c>WEB_APP</c> specified, AWS Device Farm throws
+        /// an <c>ArgumentException</c> error.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

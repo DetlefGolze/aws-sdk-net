@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
-    /// Represents the output of a DescribeRuleGroupsNamespace operation.
+    /// Represents the output of a <c>DescribeRuleGroupsNamespace</c> operation.
     /// </summary>
     public partial class DescribeRuleGroupsNamespaceResponse : AmazonWebServiceResponse
     {
@@ -38,7 +39,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property RuleGroupsNamespace. 
         /// <para>
-        /// The selected rule groups namespace.
+        /// The information about the rule groups namespace.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
     /// Makes it possible to specify which speaker is on which channel. For example, if your
-    /// agent is the first participant to speak, you would set <code>ChannelId</code> to <code>0</code>
-    /// (to indicate the first channel) and <code>ParticipantRole</code> to <code>AGENT</code>
-    /// (to indicate that it's the agent speaking).
+    /// agent is the first participant to speak, you would set <c>ChannelId</c> to <c>0</c>
+    /// (to indicate the first channel) and <c>ParticipantRole</c> to <c>AGENT</c> (to indicate
+    /// that it's the agent speaking).
     /// </summary>
     public partial class ChannelDefinition
     {

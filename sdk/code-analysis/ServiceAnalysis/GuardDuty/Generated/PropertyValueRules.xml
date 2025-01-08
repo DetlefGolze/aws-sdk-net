@@ -86,6 +86,11 @@
     <max>300</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.GuardDuty.Model.CreateMalwareProtectionPlanRequest.ClientToken</property>
+    <min>0</min>
+    <max>64</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.GuardDuty.Model.CreateMembersRequest.DetectorId</property>
     <min>1</min>
     <max>300</max>
@@ -269,6 +274,11 @@
     <property>Amazon.GuardDuty.Model.GetFindingsStatisticsRequest.DetectorId</property>
     <min>1</min>
     <max>300</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.GuardDuty.Model.GetFindingsStatisticsRequest.MaxResults</property>
+    <min>1</min>
+    <max>100</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.GuardDuty.Model.GetIPSetRequest.DetectorId</property>
@@ -637,6 +647,11 @@
     <max>300</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.GuardDuty.Model.Indicator.Title</property>
+    <min>1</min>
+    <max>256</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.GuardDuty.Model.Invitation.AccountId</property>
     <min>12</min>
     <max>12</max>
@@ -724,9 +739,17 @@
     <max>256</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.GuardDuty.Model.Sequence.Description</property>
+    <max>4096</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.GuardDuty.Model.Service.DetectorId</property>
     <min>1</min>
     <max>300</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.GuardDuty.Model.Signal.Description</property>
+    <max>2000</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.GuardDuty.Model.TriggerDetails.Description</property>
@@ -745,6 +768,11 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.GuardDuty.Model.UsageAccountResult.AccountId</property>
+    <min>12</min>
+    <max>12</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.GuardDuty.Model.UsageTopAccountResult.AccountId</property>
     <min>12</min>
     <max>12</max>
   </property-value-rule>

@@ -26,16 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
     /// Container for the parameters to the ListJobs operation.
-    /// Lists current S3 Batch Operations jobs and jobs that have ended within the last 30
-    /// days for the Amazon Web Services account making the request. For more information,
-    /// see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html">S3
+    /// Lists current S3 Batch Operations jobs as well as the jobs that have ended within
+    /// the last 90 days for the Amazon Web Services account making the request. For more
+    /// information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html">S3
     /// Batch Operations</a> in the <i>Amazon S3 User Guide</i>.
     /// 
-    ///  
+    ///  <dl> <dt>Permissions</dt> <dd> 
+    /// <para>
+    /// To use the <c>ListJobs</c> operation, you must have permission to perform the <c>s3:ListJobs</c>
+    /// action.
+    /// </para>
+    ///  </dd> </dl> 
     /// <para>
     /// Related actions include:
     /// </para>
@@ -64,7 +70,7 @@ namespace Amazon.S3Control.Model
     public partial class ListJobsRequest : AmazonS3ControlRequest
     {
         private string _accountId;
-        private List<string> _jobStatuses = new List<string>();
+        private List<string> _jobStatuses = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -84,14 +90,13 @@ namespace Amazon.S3Control.Model
         // Check to see if AccountId property is set
         internal bool IsSetAccountId()
         {
-            return this._accountId != null;
+            return !string.IsNullOrEmpty(this._accountId);
         }
 
         /// <summary>
         /// Gets and sets the property JobStatuses. 
         /// <para>
-        /// The <code>List Jobs</code> request returns jobs that match the statuses listed in
-        /// this element.
+        /// The <c>List Jobs</c> request returns jobs that match the statuses listed in this element.
         /// </para>
         /// </summary>
         public List<string> JobStatuses
@@ -103,16 +108,15 @@ namespace Amazon.S3Control.Model
         // Check to see if JobStatuses property is set
         internal bool IsSetJobStatuses()
         {
-            return this._jobStatuses != null && this._jobStatuses.Count > 0; 
+            return this._jobStatuses != null && (this._jobStatuses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The maximum number of jobs that Amazon S3 will include in the <code>List Jobs</code>
-        /// response. If there are more jobs than this number, the response will include a pagination
-        /// token in the <code>NextToken</code> field to enable you to retrieve the next page
-        /// of results.
+        /// The maximum number of jobs that Amazon S3 will include in the <c>List Jobs</c> response.
+        /// If there are more jobs than this number, the response will include a pagination token
+        /// in the <c>NextToken</c> field to enable you to retrieve the next page of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1000)]
@@ -132,8 +136,8 @@ namespace Amazon.S3Control.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A pagination token to request the next page of results. Use the token that Amazon
-        /// S3 returned in the <code>NextToken</code> element of the <code>ListJobsResult</code>
-        /// from the previous <code>List Jobs</code> request.
+        /// S3 returned in the <c>NextToken</c> element of the <c>ListJobsResult</c> from the
+        /// previous <c>List Jobs</c> request.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

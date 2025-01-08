@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.CognitoIdentityProvider.Model
     {
         private AuthenticationResultType _authenticationResult;
         private ChallengeNameType _challengeName;
-        private Dictionary<string, string> _challengeParameters = new Dictionary<string, string>();
+        private Dictionary<string, string> _challengeParameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _session;
 
         /// <summary>
@@ -90,7 +91,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if ChallengeParameters property is set
         internal bool IsSetChallengeParameters()
         {
-            return this._challengeParameters != null && this._challengeParameters.Count > 0; 
+            return this._challengeParameters != null && (this._challengeParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -98,7 +99,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <para>
         /// The session that should be passed both ways in challenge-response calls to the service.
         /// If the caller must pass another challenge, they return a session with other challenge
-        /// parameters. This session should be passed as it is to the next <code>RespondToAuthChallenge</code>
+        /// parameters. This session should be passed as it is to the next <c>RespondToAuthChallenge</c>
         /// API call.
         /// </para>
         /// </summary>

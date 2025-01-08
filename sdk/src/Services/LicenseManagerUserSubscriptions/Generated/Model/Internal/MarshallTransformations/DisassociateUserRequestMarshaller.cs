@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.LicenseManagerUserSubscriptions.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.LicenseManagerUserSubscriptions.Model.Internal.MarshallTransfor
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetDomain())
@@ -86,6 +88,12 @@ namespace Amazon.LicenseManagerUserSubscriptions.Model.Internal.MarshallTransfor
                 {
                     context.Writer.WritePropertyName("InstanceId");
                     context.Writer.Write(publicRequest.InstanceId);
+                }
+
+                if(publicRequest.IsSetInstanceUserArn())
+                {
+                    context.Writer.WritePropertyName("InstanceUserArn");
+                    context.Writer.Write(publicRequest.InstanceUserArn);
                 }
 
                 if(publicRequest.IsSetUsername())

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
-    /// Information about the uplink spectral <code>Config</code>.
+    /// Information about the uplink spectral <c>Config</c>.
     /// </summary>
     public partial class UplinkSpectrumConfig
     {
@@ -39,8 +40,8 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property CenterFrequency. 
         /// <para>
-        /// Center frequency of an uplink spectral <code>Config</code>. Valid values are between
-        /// 2025 to 2120 MHz.
+        /// Center frequency of an uplink spectral <c>Config</c>. Valid values are between 2025
+        /// to 2120 MHz.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -59,8 +60,8 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property Polarization. 
         /// <para>
-        /// Polarization of an uplink spectral <code>Config</code>. Capturing both <code>"RIGHT_HAND"</code>
-        /// and <code>"LEFT_HAND"</code> polarization requires two separate configs.
+        /// Polarization of an uplink spectral <c>Config</c>. Capturing both <c>"RIGHT_HAND"</c>
+        /// and <c>"LEFT_HAND"</c> polarization requires two separate configs.
         /// </para>
         /// </summary>
         public Polarization Polarization

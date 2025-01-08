@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.ResourceGroupsTaggingAPI
 {
     /// <summary>
-    /// Implementation for accessing ResourceGroupsTaggingAPI
+    /// <para>Implementation for accessing ResourceGroupsTaggingAPI</para>
     ///
     /// Resource Groups Tagging API
     /// </summary>
@@ -266,7 +267,7 @@ namespace Amazon.ResourceGroupsTaggingAPI
         #region  DescribeReportCreation
 
         /// <summary>
-        /// Describes the status of the <code>StartReportCreation</code> operation. 
+        /// Describes the status of the <c>StartReportCreation</c> operation. 
         /// 
         ///  
         /// <para>
@@ -292,7 +293,7 @@ namespace Amazon.ResourceGroupsTaggingAPI
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You must enable the tag policies service principal (<code>tagpolicies.tag.amazonaws.com</code>)
+        /// You must enable the tag policies service principal (<c>tagpolicies.tag.amazonaws.com</c>)
         /// to integrate with Organizations For information, see <a href="https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnableAWSServiceAccess.html">EnableAWSServiceAccess</a>.
         /// </para>
         ///  </li> <li> 
@@ -401,11 +402,11 @@ namespace Amazon.ResourceGroupsTaggingAPI
         ///  
         /// <para>
         /// This operation supports pagination, where the response can be sent in multiple pages.
-        /// You should check the <code>PaginationToken</code> response parameter to determine
-        /// if there are additional results available to return. Repeat the query, passing the
-        /// <code>PaginationToken</code> response parameter value as an input to the next request
-        /// until you recieve a <code>null</code> value. A null value for <code>PaginationToken</code>
-        /// indicates that there are no more results waiting to be returned.
+        /// You should check the <c>PaginationToken</c> response parameter to determine if there
+        /// are additional results available to return. Repeat the query, passing the <c>PaginationToken</c>
+        /// response parameter value as an input to the next request until you recieve a <c>null</c>
+        /// value. A null value for <c>PaginationToken</c> indicates that there are no more results
+        /// waiting to be returned.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetComplianceSummary service method.</param>
@@ -426,7 +427,7 @@ namespace Amazon.ResourceGroupsTaggingAPI
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You must enable the tag policies service principal (<code>tagpolicies.tag.amazonaws.com</code>)
+        /// You must enable the tag policies service principal (<c>tagpolicies.tag.amazonaws.com</c>)
         /// to integrate with Organizations For information, see <a href="https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnableAWSServiceAccess.html">EnableAWSServiceAccess</a>.
         /// </para>
         ///  </li> <li> 
@@ -540,11 +541,11 @@ namespace Amazon.ResourceGroupsTaggingAPI
         ///  </li> </ul> 
         /// <para>
         /// This operation supports pagination, where the response can be sent in multiple pages.
-        /// You should check the <code>PaginationToken</code> response parameter to determine
-        /// if there are additional results available to return. Repeat the query, passing the
-        /// <code>PaginationToken</code> response parameter value as an input to the next request
-        /// until you recieve a <code>null</code> value. A null value for <code>PaginationToken</code>
-        /// indicates that there are no more results waiting to be returned.
+        /// You should check the <c>PaginationToken</c> response parameter to determine if there
+        /// are additional results available to return. Repeat the query, passing the <c>PaginationToken</c>
+        /// response parameter value as an input to the next request until you recieve a <c>null</c>
+        /// value. A null value for <c>PaginationToken</c> indicates that there are no more results
+        /// waiting to be returned.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetResources service method.</param>
@@ -583,8 +584,8 @@ namespace Amazon.ResourceGroupsTaggingAPI
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.ResourceGroupsTaggingAPI.Model.PaginationTokenExpiredException">
-        /// A <code>PaginationToken</code> is valid for a maximum of 15 minutes. Your request
-        /// was denied because the specified <code>PaginationToken</code> has expired.
+        /// A <c>PaginationToken</c> is valid for a maximum of 15 minutes. Your request was denied
+        /// because the specified <c>PaginationToken</c> has expired.
         /// </exception>
         /// <exception cref="Amazon.ResourceGroupsTaggingAPI.Model.ThrottledException">
         /// The request was denied to limit the frequency of submitted requests.
@@ -644,11 +645,11 @@ namespace Amazon.ResourceGroupsTaggingAPI
         ///  
         /// <para>
         /// This operation supports pagination, where the response can be sent in multiple pages.
-        /// You should check the <code>PaginationToken</code> response parameter to determine
-        /// if there are additional results available to return. Repeat the query, passing the
-        /// <code>PaginationToken</code> response parameter value as an input to the next request
-        /// until you recieve a <code>null</code> value. A null value for <code>PaginationToken</code>
-        /// indicates that there are no more results waiting to be returned.
+        /// You should check the <c>PaginationToken</c> response parameter to determine if there
+        /// are additional results available to return. Repeat the query, passing the <c>PaginationToken</c>
+        /// response parameter value as an input to the next request until you recieve a <c>null</c>
+        /// value. A null value for <c>PaginationToken</c> indicates that there are no more results
+        /// waiting to be returned.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetTagKeys service method.</param>
@@ -687,8 +688,8 @@ namespace Amazon.ResourceGroupsTaggingAPI
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.ResourceGroupsTaggingAPI.Model.PaginationTokenExpiredException">
-        /// A <code>PaginationToken</code> is valid for a maximum of 15 minutes. Your request
-        /// was denied because the specified <code>PaginationToken</code> has expired.
+        /// A <c>PaginationToken</c> is valid for a maximum of 15 minutes. Your request was denied
+        /// because the specified <c>PaginationToken</c> has expired.
         /// </exception>
         /// <exception cref="Amazon.ResourceGroupsTaggingAPI.Model.ThrottledException">
         /// The request was denied to limit the frequency of submitted requests.
@@ -748,11 +749,11 @@ namespace Amazon.ResourceGroupsTaggingAPI
         ///  
         /// <para>
         /// This operation supports pagination, where the response can be sent in multiple pages.
-        /// You should check the <code>PaginationToken</code> response parameter to determine
-        /// if there are additional results available to return. Repeat the query, passing the
-        /// <code>PaginationToken</code> response parameter value as an input to the next request
-        /// until you recieve a <code>null</code> value. A null value for <code>PaginationToken</code>
-        /// indicates that there are no more results waiting to be returned.
+        /// You should check the <c>PaginationToken</c> response parameter to determine if there
+        /// are additional results available to return. Repeat the query, passing the <c>PaginationToken</c>
+        /// response parameter value as an input to the next request until you recieve a <c>null</c>
+        /// value. A null value for <c>PaginationToken</c> indicates that there are no more results
+        /// waiting to be returned.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetTagValues service method.</param>
@@ -791,8 +792,8 @@ namespace Amazon.ResourceGroupsTaggingAPI
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.ResourceGroupsTaggingAPI.Model.PaginationTokenExpiredException">
-        /// A <code>PaginationToken</code> is valid for a maximum of 15 minutes. Your request
-        /// was denied because the specified <code>PaginationToken</code> has expired.
+        /// A <c>PaginationToken</c> is valid for a maximum of 15 minutes. Your request was denied
+        /// because the specified <c>PaginationToken</c> has expired.
         /// </exception>
         /// <exception cref="Amazon.ResourceGroupsTaggingAPI.Model.ThrottledException">
         /// The request was denied to limit the frequency of submitted requests.
@@ -856,7 +857,7 @@ namespace Amazon.ResourceGroupsTaggingAPI
         /// </para>
         ///  
         /// <para>
-        ///  <code>s3://example-bucket/AwsTagPolicies/o-exampleorgid/YYYY-MM-ddTHH:mm:ssZ/report.csv</code>
+        ///  <c>s3://example-bucket/AwsTagPolicies/o-exampleorgid/YYYY-MM-ddTHH:mm:ssZ/report.csv</c>
         /// 
         /// </para>
         ///  
@@ -887,7 +888,7 @@ namespace Amazon.ResourceGroupsTaggingAPI
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You must enable the tag policies service principal (<code>tagpolicies.tag.amazonaws.com</code>)
+        /// You must enable the tag policies service principal (<c>tagpolicies.tag.amazonaws.com</c>)
         /// to integrate with Organizations For information, see <a href="https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnableAWSServiceAccess.html">EnableAWSServiceAccess</a>.
         /// </para>
         ///  </li> <li> 
@@ -1019,18 +1020,18 @@ namespace Amazon.ResourceGroupsTaggingAPI
         /// </para>
         ///  
         /// <para>
-        /// In addition to the <code>tag:TagResources</code> permission required by this operation,
+        /// In addition to the <c>tag:TagResources</c> permission required by this operation,
         /// you must also have the tagging permission defined by the service that created the
-        /// resource. For example, to tag an Amazon EC2 instance using the <code>TagResources</code>
+        /// resource. For example, to tag an Amazon EC2 instance using the <c>TagResources</c>
         /// operation, you must have both of the following permissions:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>tag:TagResource</code> 
+        ///  <c>tag:TagResource</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ec2:CreateTags</code> 
+        ///  <c>ec2:CreateTags</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1143,18 +1144,18 @@ namespace Amazon.ResourceGroupsTaggingAPI
         /// </para>
         ///  
         /// <para>
-        /// In addition to the <code>tag:UntagResources</code> permission required by this operation,
+        /// In addition to the <c>tag:UntagResources</c> permission required by this operation,
         /// you must also have the remove tags permission defined by the service that created
         /// the resource. For example, to remove the tags from an Amazon EC2 instance using the
-        /// <code>UntagResources</code> operation, you must have both of the following permissions:
+        /// <c>UntagResources</c> operation, you must have both of the following permissions:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>tag:UntagResource</code> 
+        ///  <c>tag:UntagResource</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ec2:DeleteTags</code> 
+        ///  <c>ec2:DeleteTags</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1251,11 +1252,11 @@ namespace Amazon.ResourceGroupsTaggingAPI
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

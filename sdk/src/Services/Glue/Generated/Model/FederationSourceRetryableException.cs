@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
-    /// 
+    /// A federation source failed, but the operation may be retried.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

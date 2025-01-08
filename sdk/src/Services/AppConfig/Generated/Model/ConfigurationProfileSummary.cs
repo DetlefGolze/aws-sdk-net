@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppConfig.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.AppConfig.Model
         private string _locationUri;
         private string _name;
         private string _type;
-        private List<string> _validatorTypes = new List<string>();
+        private List<string> _validatorTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ApplicationId. 
@@ -117,19 +118,19 @@ namespace Amazon.AppConfig.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of configurations contained in the profile. AppConfig supports <code>feature
-        /// flags</code> and <code>freeform</code> configurations. We recommend you create feature
-        /// flag configurations to enable or disable new features and freeform configurations
-        /// to distribute configurations to an application. When calling this API, enter one of
-        /// the following values for <code>Type</code>:
+        /// The type of configurations contained in the profile. AppConfig supports <c>feature
+        /// flags</c> and <c>freeform</c> configurations. We recommend you create feature flag
+        /// configurations to enable or disable new features and freeform configurations to distribute
+        /// configurations to an application. When calling this API, enter one of the following
+        /// values for <c>Type</c>:
         /// </para>
         ///  
         /// <para>
-        ///  <code>AWS.AppConfig.FeatureFlags</code> 
+        ///  <c>AWS.AppConfig.FeatureFlags</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>AWS.Freeform</code> 
+        ///  <c>AWS.Freeform</c> 
         /// </para>
         /// </summary>
         public string Type
@@ -160,7 +161,7 @@ namespace Amazon.AppConfig.Model
         // Check to see if ValidatorTypes property is set
         internal bool IsSetValidatorTypes()
         {
-            return this._validatorTypes != null && this._validatorTypes.Count > 0; 
+            return this._validatorTypes != null && (this._validatorTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

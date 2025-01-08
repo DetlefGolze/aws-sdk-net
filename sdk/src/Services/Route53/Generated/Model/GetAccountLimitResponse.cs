@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
@@ -39,9 +40,9 @@ namespace Amazon.Route53.Model
         /// <summary>
         /// Gets and sets the property Limit. 
         /// <para>
-        /// The current setting for the specified limit. For example, if you specified <code>MAX_HEALTH_CHECKS_BY_OWNER</code>
-        /// for the value of <code>Type</code> in the request, the value of <code>Limit</code>
-        /// is the maximum number of health checks that you can create using the current account.
+        /// The current setting for the specified limit. For example, if you specified <c>MAX_HEALTH_CHECKS_BY_OWNER</c>
+        /// for the value of <c>Type</c> in the request, the value of <c>Limit</c> is the maximum
+        /// number of health checks that you can create using the current account.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -61,9 +62,9 @@ namespace Amazon.Route53.Model
         /// Gets and sets the property Count. 
         /// <para>
         /// The current number of entities that you have created of the specified type. For example,
-        /// if you specified <code>MAX_HEALTH_CHECKS_BY_OWNER</code> for the value of <code>Type</code>
-        /// in the request, the value of <code>Count</code> is the current number of health checks
-        /// that you have created using the current account.
+        /// if you specified <c>MAX_HEALTH_CHECKS_BY_OWNER</c> for the value of <c>Type</c> in
+        /// the request, the value of <c>Count</c> is the current number of health checks that
+        /// you have created using the current account.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -39,14 +40,14 @@ namespace Amazon.EC2.Model
         private string _fipsDnsName;
         private string _instanceConnectEndpointArn;
         private string _instanceConnectEndpointId;
-        private List<string> _networkInterfaceIds = new List<string>();
+        private List<string> _networkInterfaceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _ownerId;
         private bool? _preserveClientIp;
-        private List<string> _securityGroupIds = new List<string>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private Ec2InstanceConnectEndpointState _state;
         private string _stateMessage;
         private string _subnetId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _vpcId;
 
         /// <summary>
@@ -171,7 +172,7 @@ namespace Amazon.EC2.Model
         // Check to see if NetworkInterfaceIds property is set
         internal bool IsSetNetworkInterfaceIds()
         {
-            return this._networkInterfaceIds != null && this._networkInterfaceIds.Count > 0; 
+            return this._networkInterfaceIds != null && (this._networkInterfaceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -196,20 +197,20 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property PreserveClientIp. 
         /// <para>
         /// Indicates whether your client's IP address is preserved as the source. The value is
-        /// <code>true</code> or <code>false</code>.
+        /// <c>true</c> or <c>false</c>.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If <code>true</code>, your client's IP address is used when you connect to a resource.
+        /// If <c>true</c>, your client's IP address is used when you connect to a resource.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If <code>false</code>, the elastic network interface IP address is used when you connect
+        /// If <c>false</c>, the elastic network interface IP address is used when you connect
         /// to a resource.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Default: <code>true</code> 
+        /// Default: <c>true</c> 
         /// </para>
         /// </summary>
         public bool PreserveClientIp
@@ -240,7 +241,7 @@ namespace Amazon.EC2.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -313,7 +314,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.DynamoDBv2.Model
     /// 
     ///  
     /// <para>
-    /// You can call <code>DescribeBackup</code> at a maximum rate of 10 times per second.
+    /// You can call <c>DescribeBackup</c> at a maximum rate of 10 times per second.
     /// </para>
     /// </summary>
     public partial class DescribeBackupRequest : AmazonDynamoDBRequest

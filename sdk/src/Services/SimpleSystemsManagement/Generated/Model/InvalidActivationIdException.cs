@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
-    /// The activation ID isn't valid. Verify the you entered the correct ActivationId or
+    /// The activation ID isn't valid. Verify that you entered the correct ActivationId or
     /// ActivationCode and try again.
     /// </summary>
     #if !NETSTANDARD

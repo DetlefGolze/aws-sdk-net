@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Personalize.Model
 {
     /// <summary>
@@ -35,11 +36,11 @@ namespace Amazon.Personalize.Model
     /// 
     ///  
     /// <para>
-    /// There are three types of datasets:
+    /// There are 5 types of datasets:
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// Interactions
+    /// Item interactions
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -49,10 +50,19 @@ namespace Amazon.Personalize.Model
     /// <para>
     /// Users
     /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Action interactions
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Actions
+    /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// Each dataset type has an associated schema with required field types. Only the <code>Interactions</code>
-    /// dataset is required in order to train a model (also referred to as creating a solution).
+    /// Each dataset type has an associated schema with required field types. Only the <c>Item
+    /// interactions</c> dataset is required in order to train a model (also referred to as
+    /// creating a solution).
     /// </para>
     ///  
     /// <para>
@@ -102,7 +112,7 @@ namespace Amazon.Personalize.Model
         private string _datasetType;
         private string _name;
         private string _schemaArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property DatasetGroupArn. 
@@ -143,6 +153,14 @@ namespace Amazon.Personalize.Model
         ///  </li> <li> 
         /// <para>
         /// Users
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Actions
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Action_Interactions
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -215,7 +233,7 @@ namespace Amazon.Personalize.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

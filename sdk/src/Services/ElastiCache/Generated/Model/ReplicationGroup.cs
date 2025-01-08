@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
-    /// Contains all of the attributes of a specific Redis replication group.
+    /// Contains all of the attributes of a specific Valkey or Redis OSS replication group.
     /// </summary>
     public partial class ReplicationGroup
     {
@@ -45,15 +46,16 @@ namespace Amazon.ElastiCache.Model
         private Endpoint _configurationEndpoint;
         private DataTieringStatus _dataTiering;
         private string _description;
+        private string _engine;
         private GlobalReplicationGroupInfo _globalReplicationGroupInfo;
         private IpDiscovery _ipDiscovery;
         private string _kmsKeyId;
-        private List<LogDeliveryConfiguration> _logDeliveryConfigurations = new List<LogDeliveryConfiguration>();
-        private List<string> _memberClusters = new List<string>();
-        private List<string> _memberClustersOutpostArns = new List<string>();
+        private List<LogDeliveryConfiguration> _logDeliveryConfigurations = AWSConfigs.InitializeCollections ? new List<LogDeliveryConfiguration>() : null;
+        private List<string> _memberClusters = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _memberClustersOutpostArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private MultiAZStatus _multiAZ;
         private NetworkType _networkType;
-        private List<NodeGroup> _nodeGroups = new List<NodeGroup>();
+        private List<NodeGroup> _nodeGroups = AWSConfigs.InitializeCollections ? new List<NodeGroup>() : null;
         private ReplicationGroupPendingModifiedValues _pendingModifiedValues;
         private DateTime? _replicationGroupCreateTime;
         private string _replicationGroupId;
@@ -63,7 +65,7 @@ namespace Amazon.ElastiCache.Model
         private string _status;
         private bool? _transitEncryptionEnabled;
         private TransitEncryptionMode _transitEncryptionMode;
-        private List<string> _userGroupIds = new List<string>();
+        private List<string> _userGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ARN. 
@@ -86,22 +88,22 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property AtRestEncryptionEnabled. 
         /// <para>
-        /// A flag that enables encryption at-rest when set to <code>true</code>.
+        /// A flag that enables encryption at-rest when set to <c>true</c>.
         /// </para>
         ///  
         /// <para>
-        /// You cannot modify the value of <code>AtRestEncryptionEnabled</code> after the cluster
-        /// is created. To enable encryption at-rest on a cluster you must set <code>AtRestEncryptionEnabled</code>
-        /// to <code>true</code> when you create a cluster.
+        /// You cannot modify the value of <c>AtRestEncryptionEnabled</c> after the cluster is
+        /// created. To enable encryption at-rest on a cluster you must set <c>AtRestEncryptionEnabled</c>
+        /// to <c>true</c> when you create a cluster.
         /// </para>
         ///  
         /// <para>
         ///  <b>Required:</b> Only available when creating a replication group in an Amazon VPC
-        /// using redis version <code>3.2.6</code>, <code>4.x</code> or later.
+        /// using Redis OSS version <c>3.2.6</c>, <c>4.x</c> or later.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool AtRestEncryptionEnabled
@@ -119,12 +121,12 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property AuthTokenEnabled. 
         /// <para>
-        /// A flag that enables using an <code>AuthToken</code> (password) when issuing Redis
-        /// commands.
+        /// A flag that enables using an <c>AuthToken</c> (password) when issuing Valkey or Redis
+        /// OSS commands.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool AuthTokenEnabled
@@ -160,7 +162,8 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property AutomaticFailover. 
         /// <para>
-        /// Indicates the status of automatic failover for this Redis replication group.
+        /// Indicates the status of automatic failover for this Valkey or Redis OSS replication
+        /// group.
         /// </para>
         /// </summary>
         public AutomaticFailoverStatus AutomaticFailover
@@ -178,9 +181,9 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property AutoMinorVersionUpgrade. 
         /// <para>
-        /// If you are running Redis engine version 6.0 or later, set this parameter to yes if
-        /// you want to opt-in to the next auto minor version upgrade campaign. This parameter
-        /// is disabled for previous versions. 
+        /// If you are running Valkey 7.2 and above, or Redis OSS engine version 6.0 and above,
+        /// set this parameter to yes if you want to opt-in to the next auto minor version upgrade
+        /// campaign. This parameter is disabled for previous versions. 
         /// </para>
         /// </summary>
         public bool AutoMinorVersionUpgrade
@@ -222,7 +225,7 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>true</code> | <code>false</code> 
+        /// Valid values: <c>true</c> | <c>false</c> 
         /// </para>
         /// </summary>
         public bool ClusterEnabled
@@ -241,10 +244,10 @@ namespace Amazon.ElastiCache.Model
         /// Gets and sets the property ClusterMode. 
         /// <para>
         /// Enabled or Disabled. To modify cluster mode from Disabled to Enabled, you must first
-        /// set the cluster mode to Compatible. Compatible mode allows your Redis clients to connect
-        /// using both cluster mode enabled and cluster mode disabled. After you migrate all Redis
-        /// clients to use cluster mode enabled, you can then complete cluster mode configuration
-        /// and set the cluster mode to Enabled.
+        /// set the cluster mode to Compatible. Compatible mode allows your Valkey or Redis OSS
+        /// clients to connect using both cluster mode enabled and cluster mode disabled. After
+        /// you migrate all Valkey or Redis OSS clients to use cluster mode enabled, you can then
+        /// complete cluster mode configuration and set the cluster mode to Enabled.
         /// </para>
         /// </summary>
         public ClusterMode ClusterMode
@@ -283,7 +286,7 @@ namespace Amazon.ElastiCache.Model
         /// <para>
         /// Enables data tiering. Data tiering is only supported for replication groups using
         /// the r6gd node type. This parameter must be set to true when using r6gd nodes. For
-        /// more information, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/data-tiering.html">Data
+        /// more information, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/data-tiering.html">Data
         /// tiering</a>.
         /// </para>
         /// </summary>
@@ -318,6 +321,24 @@ namespace Amazon.ElastiCache.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Engine. 
+        /// <para>
+        /// The engine used in a replication group. The options are redis, memcached or valkey.
+        /// </para>
+        /// </summary>
+        public string Engine
+        {
+            get { return this._engine; }
+            set { this._engine = value; }
+        }
+
+        // Check to see if Engine property is set
+        internal bool IsSetEngine()
+        {
+            return this._engine != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property GlobalReplicationGroupInfo. 
         /// <para>
         /// The name of the Global datastore and role of this replication group in the Global
@@ -339,10 +360,10 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property IpDiscovery. 
         /// <para>
-        /// The network type you choose when modifying a cluster, either <code>ipv4</code> | <code>ipv6</code>.
-        /// IPv6 is supported for workloads using Redis engine version 6.2 onward or Memcached
-        /// engine version 1.6.6 on all instances built on the <a href="http://aws.amazon.com/ec2/nitro/">Nitro
-        /// system</a>.
+        /// The network type you choose when modifying a cluster, either <c>ipv4</c> | <c>ipv6</c>.
+        /// IPv6 is supported for workloads using Valkey 7.2 and above, Redis OSS engine version
+        /// 6.2 and above or Memcached engine version 1.6.6 and above on all instances built on
+        /// the <a href="http://aws.amazon.com/ec2/nitro/">Nitro system</a>.
         /// </para>
         /// </summary>
         public IpDiscovery IpDiscovery
@@ -390,7 +411,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if LogDeliveryConfigurations property is set
         internal bool IsSetLogDeliveryConfigurations()
         {
-            return this._logDeliveryConfigurations != null && this._logDeliveryConfigurations.Count > 0; 
+            return this._logDeliveryConfigurations != null && (this._logDeliveryConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -408,7 +429,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if MemberClusters property is set
         internal bool IsSetMemberClusters()
         {
-            return this._memberClusters != null && this._memberClusters.Count > 0; 
+            return this._memberClusters != null && (this._memberClusters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -426,14 +447,14 @@ namespace Amazon.ElastiCache.Model
         // Check to see if MemberClustersOutpostArns property is set
         internal bool IsSetMemberClustersOutpostArns()
         {
-            return this._memberClustersOutpostArns != null && this._memberClustersOutpostArns.Count > 0; 
+            return this._memberClustersOutpostArns != null && (this._memberClustersOutpostArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MultiAZ. 
         /// <para>
         /// A flag indicating if you have Multi-AZ enabled to enhance fault tolerance. For more
-        /// information, see <a href="http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoFailover.html">Minimizing
+        /// information, see <a href="http://docs.aws.amazon.com/AmazonElastiCache/latest/dg/AutoFailover.html">Minimizing
         /// Downtime: Multi-AZ</a> 
         /// </para>
         /// </summary>
@@ -452,9 +473,9 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property NetworkType. 
         /// <para>
-        /// Must be either <code>ipv4</code> | <code>ipv6</code> | <code>dual_stack</code>. IPv6
-        /// is supported for workloads using Redis engine version 6.2 onward or Memcached engine
-        /// version 1.6.6 on all instances built on the <a href="http://aws.amazon.com/ec2/nitro/">Nitro
+        /// Must be either <c>ipv4</c> | <c>ipv6</c> | <c>dual_stack</c>. IPv6 is supported for
+        /// workloads using Valkey 7.2 and above, Redis OSS engine version 6.2 and above or Memcached
+        /// engine version 1.6.6 and above on all instances built on the <a href="http://aws.amazon.com/ec2/nitro/">Nitro
         /// system</a>.
         /// </para>
         /// </summary>
@@ -473,9 +494,10 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property NodeGroups. 
         /// <para>
-        /// A list of node groups in this replication group. For Redis (cluster mode disabled)
-        /// replication groups, this is a single-element list. For Redis (cluster mode enabled)
-        /// replication groups, the list contains an entry for each node group (shard).
+        /// A list of node groups in this replication group. For Valkey or Redis OSS (cluster
+        /// mode disabled) replication groups, this is a single-element list. For Valkey or Redis
+        /// OSS (cluster mode enabled) replication groups, the list contains an entry for each
+        /// node group (shard).
         /// </para>
         /// </summary>
         public List<NodeGroup> NodeGroups
@@ -487,7 +509,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if NodeGroups property is set
         internal bool IsSetNodeGroups()
         {
-            return this._nodeGroups != null && this._nodeGroups.Count > 0; 
+            return this._nodeGroups != null && (this._nodeGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -549,13 +571,13 @@ namespace Amazon.ElastiCache.Model
         /// Gets and sets the property SnapshotRetentionLimit. 
         /// <para>
         /// The number of days for which ElastiCache retains automatic cluster snapshots before
-        /// deleting them. For example, if you set <code>SnapshotRetentionLimit</code> to 5, a
-        /// snapshot that was taken today is retained for 5 days before being deleted.
+        /// deleting them. For example, if you set <c>SnapshotRetentionLimit</c> to 5, a snapshot
+        /// that was taken today is retained for 5 days before being deleted.
         /// </para>
         ///  <important> 
         /// <para>
-        ///  If the value of <code>SnapshotRetentionLimit</code> is set to zero (0), backups are
-        /// turned off.
+        ///  If the value of <c>SnapshotRetentionLimit</c> is set to zero (0), backups are turned
+        /// off.
         /// </para>
         ///  </important>
         /// </summary>
@@ -597,7 +619,7 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>05:00-09:00</code> 
+        /// Example: <c>05:00-09:00</c> 
         /// </para>
         ///  
         /// <para>
@@ -606,7 +628,7 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// This parameter is only valid if the <code>Engine</code> parameter is <code>redis</code>.
+        /// This parameter is only valid if the <c>Engine</c> parameter is <c>redis</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -625,8 +647,8 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The current state of this replication group - <code>creating</code>, <code>available</code>,
-        /// <code>modifying</code>, <code>deleting</code>, <code>create-failed</code>, <code>snapshotting</code>.
+        /// The current state of this replication group - <c>creating</c>, <c>available</c>, <c>modifying</c>,
+        /// <c>deleting</c>, <c>create-failed</c>, <c>snapshotting</c>.
         /// </para>
         /// </summary>
         public string Status
@@ -644,16 +666,16 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property TransitEncryptionEnabled. 
         /// <para>
-        /// A flag that enables in-transit encryption when set to <code>true</code>.
+        /// A flag that enables in-transit encryption when set to <c>true</c>.
         /// </para>
         ///  
         /// <para>
         ///  <b>Required:</b> Only available when creating a replication group in an Amazon VPC
-        /// using redis version <code>3.2.6</code>, <code>4.x</code> or later.
+        /// using Redis OSS version <c>3.2.6</c>, <c>4.x</c> or later.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool TransitEncryptionEnabled
@@ -702,7 +724,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if UserGroupIds property is set
         internal bool IsSetUserGroupIds()
         {
-            return this._userGroupIds != null && this._userGroupIds.Count > 0; 
+            return this._userGroupIds != null && (this._userGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

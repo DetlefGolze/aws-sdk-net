@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The default values of the <code>DateTimeParameterDeclaration</code>.
+    /// The default values of the <c>DateTimeParameterDeclaration</c>.
     /// </summary>
     public partial class DateTimeDefaultValues
     {
         private DynamicDefaultValue _dynamicValue;
         private RollingDateConfiguration _rollingDate;
-        private List<DateTime> _staticValues = new List<DateTime>();
+        private List<DateTime> _staticValues = AWSConfigs.InitializeCollections ? new List<DateTime>() : null;
 
         /// <summary>
         /// Gets and sets the property DynamicValue. 
         /// <para>
-        /// The dynamic value of the <code>DataTimeDefaultValues</code>. Different defaults are
-        /// displayed according to users, groups, and values mapping.
+        /// The dynamic value of the <c>DataTimeDefaultValues</c>. Different defaults are displayed
+        /// according to users, groups, and values mapping.
         /// </para>
         /// </summary>
         public DynamicDefaultValue DynamicValue
@@ -59,8 +60,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property RollingDate. 
         /// <para>
-        /// The rolling date of the <code>DataTimeDefaultValues</code>. The date is determined
-        /// from the dataset based on input expression.
+        /// The rolling date of the <c>DataTimeDefaultValues</c>. The date is determined from
+        /// the dataset based on input expression.
         /// </para>
         /// </summary>
         public RollingDateConfiguration RollingDate
@@ -78,7 +79,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property StaticValues. 
         /// <para>
-        /// The static values of the <code>DataTimeDefaultValues</code>.
+        /// The static values of the <c>DataTimeDefaultValues</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=50000)]
@@ -91,7 +92,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if StaticValues property is set
         internal bool IsSetStaticValues()
         {
-            return this._staticValues != null && this._staticValues.Count > 0; 
+            return this._staticValues != null && (this._staticValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Synthetics.Model
 {
     /// <summary>
@@ -45,9 +46,9 @@ namespace Amazon.Synthetics.Model
     /// </para>
     ///  
     /// <para>
-    /// You can use the <code>TagResource</code> action with a resource that already has tags.
-    /// If you specify a new tag key for the resource, this tag is appended to the list of
-    /// tags associated with the resource. If you specify a tag key that is already associated
+    /// You can use the <c>TagResource</c> action with a resource that already has tags. If
+    /// you specify a new tag key for the resource, this tag is appended to the list of tags
+    /// associated with the resource. If you specify a tag key that is already associated
     /// with the resource, the new tag value that you specify replaces the previous value
     /// for that tag.
     /// </para>
@@ -59,7 +60,7 @@ namespace Amazon.Synthetics.Model
     public partial class TagResourceRequest : AmazonSyntheticsRequest
     {
         private string _resourceArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -68,13 +69,13 @@ namespace Amazon.Synthetics.Model
         /// </para>
         ///  
         /// <para>
-        /// The ARN format of a canary is <code>arn:aws:synthetics:<i>Region</i>:<i>account-id</i>:canary:<i>canary-name</i>
-        /// </code>.
+        /// The ARN format of a canary is <c>arn:aws:synthetics:<i>Region</i>:<i>account-id</i>:canary:<i>canary-name</i>
+        /// </c>.
         /// </para>
         ///  
         /// <para>
-        /// The ARN format of a group is <code>arn:aws:synthetics:<i>Region</i>:<i>account-id</i>:group:<i>group-name</i>
-        /// </code> 
+        /// The ARN format of a group is <c>arn:aws:synthetics:<i>Region</i>:<i>account-id</i>:group:<i>group-name</i>
+        /// </c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]
@@ -106,7 +107,7 @@ namespace Amazon.Synthetics.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

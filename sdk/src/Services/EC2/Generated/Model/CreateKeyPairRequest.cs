@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateKeyPair operation.
     /// Creates an ED25519 or 2048-bit RSA key pair with the specified name and in the specified
-    /// PEM or PPK format. Amazon EC2 stores the public key and displays the private key for
-    /// you to save to a file. The private key is returned as an unencrypted PEM encoded PKCS#1
-    /// private key or an unencrypted PPK formatted private key for use with PuTTY. If a key
-    /// with the specified name already exists, Amazon EC2 returns an error.
+    /// format. Amazon EC2 stores the public key and displays the private key for you to save
+    /// to a file. The private key is returned as an unencrypted PEM encoded PKCS#1 private
+    /// key or an unencrypted PPK formatted private key for use with PuTTY. If a key with
+    /// the specified name already exists, Amazon EC2 returns an error.
     /// 
     ///  
     /// <para>
@@ -49,7 +50,7 @@ namespace Amazon.EC2.Model
     ///  
     /// <para>
     /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html">Amazon
-    /// EC2 key pairs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+    /// EC2 key pairs</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     /// </summary>
     public partial class CreateKeyPairRequest : AmazonEC2Request
@@ -57,7 +58,7 @@ namespace Amazon.EC2.Model
         private KeyFormat _keyFormat;
         private string _keyName;
         private KeyType _keyType;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -80,7 +81,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>pem</code> 
+        /// Default: <c>pem</c> 
         /// </para>
         /// </summary>
         public KeyFormat KeyFormat
@@ -125,7 +126,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>rsa</code> 
+        /// Default: <c>rsa</c> 
         /// </para>
         /// </summary>
         public KeyType KeyType
@@ -155,7 +156,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

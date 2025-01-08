@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
-    /// The specified <code>TableRestoreRequestId</code> value was not found.
+    /// The specified <c>TableRestoreRequestId</c> value was not found.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.FSx.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,19 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(CreateOntapVolumeConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetAggregateConfiguration())
+            {
+                context.Writer.WritePropertyName("AggregateConfiguration");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = CreateAggregateConfigurationMarshaller.Instance;
+                marshaller.Marshall(requestObject.AggregateConfiguration, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetCopyTagsToBackups())
             {
                 context.Writer.WritePropertyName("CopyTagsToBackups");
@@ -67,6 +81,12 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("SecurityStyle");
                 context.Writer.Write(requestObject.SecurityStyle);
+            }
+
+            if(requestObject.IsSetSizeInBytes())
+            {
+                context.Writer.WritePropertyName("SizeInBytes");
+                context.Writer.Write(requestObject.SizeInBytes);
             }
 
             if(requestObject.IsSetSizeInMegabytes())
@@ -113,6 +133,12 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
                 marshaller.Marshall(requestObject.TieringPolicy, context);
 
                 context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetVolumeStyle())
+            {
+                context.Writer.WritePropertyName("VolumeStyle");
+                context.Writer.Write(requestObject.VolumeStyle);
             }
 
         }

@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
-    /// The value specified for the <code>sourceDatabaseName</code>, <code>sourceSchemaName</code>,
-    /// or <code>sourceTableName</code> parameter, or a combination of these, doesn't exist
-    /// in the snapshot.
+    /// The value specified for the <c>sourceDatabaseName</c>, <c>sourceSchemaName</c>, or
+    /// <c>sourceTableName</c> parameter, or a combination of these, doesn't exist in the
+    /// snapshot.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

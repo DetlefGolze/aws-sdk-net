@@ -50,6 +50,10 @@ namespace Amazon.KeyManagementService
         /// Constant RSAES_PKCS1_V1_5 for AlgorithmSpec
         /// </summary>
         public static readonly AlgorithmSpec RSAES_PKCS1_V1_5 = new AlgorithmSpec("RSAES_PKCS1_V1_5");
+        /// <summary>
+        /// Constant SM2PKE for AlgorithmSpec
+        /// </summary>
+        public static readonly AlgorithmSpec SM2PKE = new AlgorithmSpec("SM2PKE");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -653,6 +657,10 @@ namespace Amazon.KeyManagementService
         /// </summary>
         public static readonly GrantOperation Decrypt = new GrantOperation("Decrypt");
         /// <summary>
+        /// Constant DeriveSharedSecret for GrantOperation
+        /// </summary>
+        public static readonly GrantOperation DeriveSharedSecret = new GrantOperation("DeriveSharedSecret");
+        /// <summary>
         /// Constant DescribeKey for GrantOperation
         /// </summary>
         public static readonly GrantOperation DescribeKey = new GrantOperation("DescribeKey");
@@ -738,6 +746,52 @@ namespace Amazon.KeyManagementService
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator GrantOperation(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type KeyAgreementAlgorithmSpec.
+    /// </summary>
+    public class KeyAgreementAlgorithmSpec : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ECDH for KeyAgreementAlgorithmSpec
+        /// </summary>
+        public static readonly KeyAgreementAlgorithmSpec ECDH = new KeyAgreementAlgorithmSpec("ECDH");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public KeyAgreementAlgorithmSpec(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static KeyAgreementAlgorithmSpec FindValue(string value)
+        {
+            return FindValue<KeyAgreementAlgorithmSpec>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator KeyAgreementAlgorithmSpec(string value)
         {
             return FindValue(value);
         }
@@ -1023,6 +1077,10 @@ namespace Amazon.KeyManagementService
         /// </summary>
         public static readonly KeyUsageType GENERATE_VERIFY_MAC = new KeyUsageType("GENERATE_VERIFY_MAC");
         /// <summary>
+        /// Constant KEY_AGREEMENT for KeyUsageType
+        /// </summary>
+        public static readonly KeyUsageType KEY_AGREEMENT = new KeyUsageType("KEY_AGREEMENT");
+        /// <summary>
         /// Constant SIGN_VERIFY for KeyUsageType
         /// </summary>
         public static readonly KeyUsageType SIGN_VERIFY = new KeyUsageType("SIGN_VERIFY");
@@ -1279,6 +1337,56 @@ namespace Amazon.KeyManagementService
 
 
     /// <summary>
+    /// Constants used for properties of type RotationType.
+    /// </summary>
+    public class RotationType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant AUTOMATIC for RotationType
+        /// </summary>
+        public static readonly RotationType AUTOMATIC = new RotationType("AUTOMATIC");
+        /// <summary>
+        /// Constant ON_DEMAND for RotationType
+        /// </summary>
+        public static readonly RotationType ON_DEMAND = new RotationType("ON_DEMAND");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public RotationType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static RotationType FindValue(string value)
+        {
+            return FindValue<RotationType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator RotationType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type SigningAlgorithmSpec.
     /// </summary>
     public class SigningAlgorithmSpec : ConstantClass
@@ -1378,6 +1486,10 @@ namespace Amazon.KeyManagementService
         /// Constant RSA_4096 for WrappingKeySpec
         /// </summary>
         public static readonly WrappingKeySpec RSA_4096 = new WrappingKeySpec("RSA_4096");
+        /// <summary>
+        /// Constant SM2 for WrappingKeySpec
+        /// </summary>
+        public static readonly WrappingKeySpec SM2 = new WrappingKeySpec("SM2");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant

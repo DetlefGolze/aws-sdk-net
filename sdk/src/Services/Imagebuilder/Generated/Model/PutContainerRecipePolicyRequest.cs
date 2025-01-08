@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
     /// Container for the parameters to the PutContainerRecipePolicy operation.
     /// Applies a policy to a container image. We recommend that you call the RAM API CreateResourceShare
     /// (https://docs.aws.amazon.com//ram/latest/APIReference/API_CreateResourceShare.html)
-    /// to share resources. If you call the Image Builder API <code>PutContainerImagePolicy</code>,
+    /// to share resources. If you call the Image Builder API <c>PutContainerImagePolicy</c>,
     /// you must also call the RAM API PromoteResourceShareCreatedFromPolicy (https://docs.aws.amazon.com//ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html)
     /// in order for the resource to be visible to all principals with whom the resource is
     /// shared.

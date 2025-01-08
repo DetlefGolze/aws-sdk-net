@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -76,9 +77,9 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property LambdaArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of a role with permission to run a Lambda function
-        /// during ingestion. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html">IAM
-        /// roles for Amazon Kendra</a>.
+        /// The Amazon Resource Name (ARN) of an IAM role with permission to run a Lambda function
+        /// during ingestion. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html">an
+        /// IAM roles for Amazon Kendra</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]

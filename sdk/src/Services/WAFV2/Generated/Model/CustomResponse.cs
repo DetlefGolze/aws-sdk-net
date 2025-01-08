@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.WAFV2.Model
     {
         private string _customResponseBodyKey;
         private int? _responseCode;
-        private List<CustomHTTPHeader> _responseHeaders = new List<CustomHTTPHeader>();
+        private List<CustomHTTPHeader> _responseHeaders = AWSConfigs.InitializeCollections ? new List<CustomHTTPHeader>() : null;
 
         /// <summary>
         /// Gets and sets the property CustomResponseBodyKey. 
@@ -50,8 +51,8 @@ namespace Amazon.WAFV2.Model
         /// References the response body that you want WAF to return to the web request client.
         /// You can define a custom response for a rule action or a default web ACL action that
         /// is set to block. To do this, you first define the response body key and value in the
-        /// <code>CustomResponseBodies</code> setting for the <a>WebACL</a> or <a>RuleGroup</a>
-        /// where you want to use it. Then, in the rule action or web ACL default action <code>BlockAction</code>
+        /// <c>CustomResponseBodies</c> setting for the <a>WebACL</a> or <a>RuleGroup</a> where
+        /// you want to use it. Then, in the rule action or web ACL default action <c>BlockAction</c>
         /// setting, you reference the response body using this key. 
         /// </para>
         /// </summary>
@@ -96,7 +97,7 @@ namespace Amazon.WAFV2.Model
         /// Gets and sets the property ResponseHeaders. 
         /// <para>
         /// The HTTP headers to use in the response. You can specify any header name except for
-        /// <code>content-type</code>. Duplicate header names are not allowed.
+        /// <c>content-type</c>. Duplicate header names are not allowed.
         /// </para>
         ///  
         /// <para>
@@ -115,7 +116,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if ResponseHeaders property is set
         internal bool IsSetResponseHeaders()
         {
-            return this._responseHeaders != null && this._responseHeaders.Count > 0; 
+            return this._responseHeaders != null && (this._responseHeaders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

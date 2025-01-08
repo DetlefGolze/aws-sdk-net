@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Appflow.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Appflow.Model
     {
         private SalesforceDataTransferApi _dataTransferApi;
         private ErrorHandlingConfig _errorHandlingConfig;
-        private List<string> _idFieldNames = new List<string>();
+        private List<string> _idFieldNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _object;
         private WriteOperationType _writeOperationType;
 
@@ -106,8 +107,8 @@ namespace Amazon.Appflow.Model
         ///  The settings that determine how Amazon AppFlow handles an error when placing data
         /// in the Salesforce destination. For example, this setting would determine if the flow
         /// should fail after one insertion error, or continue and attempt to insert every record
-        /// regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the
-        /// destination connector details. 
+        /// regardless of the initial failure. <c>ErrorHandlingConfig</c> is a part of the destination
+        /// connector details. 
         /// </para>
         /// </summary>
         public ErrorHandlingConfig ErrorHandlingConfig
@@ -139,7 +140,7 @@ namespace Amazon.Appflow.Model
         // Check to see if IdFieldNames property is set
         internal bool IsSetIdFieldNames()
         {
-            return this._idFieldNames != null && this._idFieldNames.Count > 0; 
+            return this._idFieldNames != null && (this._idFieldNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -165,7 +166,7 @@ namespace Amazon.Appflow.Model
         /// Gets and sets the property WriteOperationType. 
         /// <para>
         ///  This specifies the type of write operation to be performed in Salesforce. When the
-        /// value is <code>UPSERT</code>, then <code>idFieldNames</code> is required. 
+        /// value is <c>UPSERT</c>, then <c>idFieldNames</c> is required. 
         /// </para>
         /// </summary>
         public WriteOperationType WriteOperationType

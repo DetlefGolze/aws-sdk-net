@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalytics.Model
 {
     /// <summary>
@@ -44,12 +45,12 @@ namespace Amazon.KinesisAnalytics.Model
     /// </para>
     ///  
     /// <para>
-    /// Note that Amazon Kinesis Analytics updates the <code>CurrentApplicationVersionId</code>
+    /// Note that Amazon Kinesis Analytics updates the <c>CurrentApplicationVersionId</c>
     /// each time you update your application. 
     /// </para>
     ///  
     /// <para>
-    /// This operation requires permission for the <code>kinesisanalytics:UpdateApplication</code>
+    /// This operation requires permission for the <c>kinesisanalytics:UpdateApplication</c>
     /// action.
     /// </para>
     /// </summary>

@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
-    /// The settings to be applied to the Redis replication group, either immediately or during
-    /// the next maintenance window.
+    /// The settings to be applied to the Valkey or Redis OSS replication group, either immediately
+    /// or during the next maintenance window.
     /// </summary>
     public partial class ReplicationGroupPendingModifiedValues
     {
         private AuthTokenUpdateStatus _authTokenStatus;
         private PendingAutomaticFailoverStatus _automaticFailoverStatus;
         private ClusterMode _clusterMode;
-        private List<PendingLogDeliveryConfiguration> _logDeliveryConfigurations = new List<PendingLogDeliveryConfiguration>();
+        private List<PendingLogDeliveryConfiguration> _logDeliveryConfigurations = AWSConfigs.InitializeCollections ? new List<PendingLogDeliveryConfiguration>() : null;
         private string _primaryClusterId;
         private ReshardingStatus _resharding;
         private bool? _transitEncryptionEnabled;
@@ -65,7 +66,8 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property AutomaticFailoverStatus. 
         /// <para>
-        /// Indicates the status of automatic failover for this Redis replication group.
+        /// Indicates the status of automatic failover for this Valkey or Redis OSS replication
+        /// group.
         /// </para>
         /// </summary>
         public PendingAutomaticFailoverStatus AutomaticFailoverStatus
@@ -84,10 +86,10 @@ namespace Amazon.ElastiCache.Model
         /// Gets and sets the property ClusterMode. 
         /// <para>
         /// Enabled or Disabled. To modify cluster mode from Disabled to Enabled, you must first
-        /// set the cluster mode to Compatible. Compatible mode allows your Redis clients to connect
-        /// using both cluster mode enabled and cluster mode disabled. After you migrate all Redis
-        /// clients to use cluster mode enabled, you can then complete cluster mode configuration
-        /// and set the cluster mode to Enabled.
+        /// set the cluster mode to Compatible. Compatible mode allows your Valkey or Redis OSS
+        /// clients to connect using both cluster mode enabled and cluster mode disabled. After
+        /// you migrate all Valkey or Redis OSS clients to use cluster mode enabled, you can then
+        /// complete cluster mode configuration and set the cluster mode to Enabled.
         /// </para>
         /// </summary>
         public ClusterMode ClusterMode
@@ -117,13 +119,13 @@ namespace Amazon.ElastiCache.Model
         // Check to see if LogDeliveryConfigurations property is set
         internal bool IsSetLogDeliveryConfigurations()
         {
-            return this._logDeliveryConfigurations != null && this._logDeliveryConfigurations.Count > 0; 
+            return this._logDeliveryConfigurations != null && (this._logDeliveryConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PrimaryClusterId. 
         /// <para>
-        /// The primary cluster ID that is applied immediately (if <code>--apply-immediately</code>
+        /// The primary cluster ID that is applied immediately (if <c>--apply-immediately</c>
         /// was specified), or during the next maintenance window.
         /// </para>
         /// </summary>

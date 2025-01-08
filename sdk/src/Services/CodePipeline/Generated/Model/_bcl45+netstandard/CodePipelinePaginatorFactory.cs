@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
@@ -65,6 +66,14 @@ namespace Amazon.CodePipeline.Model
         public IListPipelinesPaginator ListPipelines(ListPipelinesRequest request) 
         {
             return new ListPipelinesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListRuleExecutions operation
+        ///</summary>
+        public IListRuleExecutionsPaginator ListRuleExecutions(ListRuleExecutionsRequest request) 
+        {
+            return new ListRuleExecutionsPaginator(this.client, request);
         }
 
         /// <summary>

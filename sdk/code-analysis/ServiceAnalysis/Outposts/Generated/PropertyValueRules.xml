@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-16"?>
 <property-value-rules>
   <property-value-rule>
+    <property>Amazon.Outposts.Model.CancelCapacityTaskRequest.CapacityTaskId</property>
+    <min>21</min>
+    <max>21</max>
+    <pattern>^cap-[a-f0-9]{17}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.CancelCapacityTaskRequest.OutpostIdentifier</property>
+    <min>1</min>
+    <max>180</max>
+    <pattern>^(arn:aws([a-z-]+)?:outposts:[a-z\d-]+:\d{12}:outpost/)?op-[a-f0-9]{17}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.Outposts.Model.CancelOrderRequest.OrderId</property>
     <min>1</min>
     <max>20</max>
@@ -73,6 +85,36 @@
     <pattern>^(arn:aws([a-z-]+)?:outposts:[a-z\d-]+:\d{12}:site/)?(os-[a-f0-9]{17})$</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.Outposts.Model.GetCapacityTaskRequest.CapacityTaskId</property>
+    <min>21</min>
+    <max>21</max>
+    <pattern>^cap-[a-f0-9]{17}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.GetCapacityTaskRequest.OutpostIdentifier</property>
+    <min>1</min>
+    <max>180</max>
+    <pattern>^(arn:aws([a-z-]+)?:outposts:[a-z\d-]+:\d{12}:outpost/)?op-[a-f0-9]{17}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.GetCapacityTaskResponse.CapacityTaskId</property>
+    <min>21</min>
+    <max>21</max>
+    <pattern>^cap-[a-f0-9]{17}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.GetCapacityTaskResponse.OrderId</property>
+    <min>1</min>
+    <max>20</max>
+    <pattern>oo-[a-f0-9]{17}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.GetCapacityTaskResponse.OutpostId</property>
+    <min>1</min>
+    <max>180</max>
+    <pattern>^(arn:aws([a-z-]+)?:outposts:[a-z\d-]+:\d{12}:outpost/)?op-[a-f0-9]{17}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.Outposts.Model.GetCatalogItemRequest.CatalogItemId</property>
     <min>1</min>
     <max>10</max>
@@ -138,6 +180,35 @@
     <pattern>^(arn:aws([a-z-]+)?:outposts:[a-z\d-]+:\d{12}:outpost/)?op-[a-f0-9]{17}$</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.Outposts.Model.GetOutpostSupportedInstanceTypesRequest.MaxResults</property>
+    <min>1</min>
+    <max>1000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.GetOutpostSupportedInstanceTypesRequest.NextToken</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>^(\d+)##(\S+)$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.GetOutpostSupportedInstanceTypesRequest.OrderId</property>
+    <min>1</min>
+    <max>20</max>
+    <pattern>oo-[a-f0-9]{17}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.GetOutpostSupportedInstanceTypesRequest.OutpostIdentifier</property>
+    <min>1</min>
+    <max>180</max>
+    <pattern>^(arn:aws([a-z-]+)?:outposts:[a-z\d-]+:\d{12}:outpost/)?op-[a-f0-9]{17}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.GetOutpostSupportedInstanceTypesResponse.NextToken</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>^(\d+)##(\S+)$</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.Outposts.Model.GetSiteRequest.SiteId</property>
     <min>1</min>
     <max>255</max>
@@ -154,6 +225,29 @@
     <min>1</min>
     <max>255</max>
     <pattern>^(arn:aws([a-z-]+)?:outposts:[a-z\d-]+:\d{12}:site/)?(os-[a-f0-9]{17})$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.ListAssetInstancesRequest.MaxResults</property>
+    <min>1</min>
+    <max>1000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.ListAssetInstancesRequest.NextToken</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>^(\d+)##(\S+)$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.ListAssetInstancesRequest.OutpostIdentifier</property>
+    <min>1</min>
+    <max>180</max>
+    <pattern>^(arn:aws([a-z-]+)?:outposts:[a-z\d-]+:\d{12}:outpost/)?op-[a-f0-9]{17}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.ListAssetInstancesResponse.NextToken</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>^(\d+)##(\S+)$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.Outposts.Model.ListAssetsRequest.MaxResults</property>
@@ -174,6 +268,58 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.Outposts.Model.ListAssetsResponse.NextToken</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>^(\d+)##(\S+)$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.ListBlockingInstancesForCapacityTaskRequest.CapacityTaskId</property>
+    <min>21</min>
+    <max>21</max>
+    <pattern>^cap-[a-f0-9]{17}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.ListBlockingInstancesForCapacityTaskRequest.MaxResults</property>
+    <min>1</min>
+    <max>1000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.ListBlockingInstancesForCapacityTaskRequest.NextToken</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>^(\d+)##(\S+)$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.ListBlockingInstancesForCapacityTaskRequest.OutpostIdentifier</property>
+    <min>1</min>
+    <max>180</max>
+    <pattern>^(arn:aws([a-z-]+)?:outposts:[a-z\d-]+:\d{12}:outpost/)?op-[a-f0-9]{17}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.ListBlockingInstancesForCapacityTaskResponse.NextToken</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>^(\d+)##(\S+)$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.ListCapacityTasksRequest.MaxResults</property>
+    <min>1</min>
+    <max>1000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.ListCapacityTasksRequest.NextToken</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>^(\d+)##(\S+)$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.ListCapacityTasksRequest.OutpostIdentifierFilter</property>
+    <min>1</min>
+    <max>180</max>
+    <pattern>^(arn:aws([a-z-]+)?:outposts:[a-z\d-]+:\d{12}:outpost/)?op-[a-f0-9]{17}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.ListCapacityTasksResponse.NextToken</property>
     <min>1</min>
     <max>2048</max>
     <pattern>^(\d+)##(\S+)$</pattern>
@@ -256,6 +402,36 @@
     <property>Amazon.Outposts.Model.ListTagsForResourceRequest.ResourceArn</property>
     <max>1011</max>
     <pattern>^(arn:aws([a-z-]+)?:outposts:[a-z\d-]+:\d{12}:([a-z\d-]+)/)[a-z]{2,8}-[a-f0-9]{17}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.StartCapacityTaskRequest.OrderId</property>
+    <min>1</min>
+    <max>20</max>
+    <pattern>oo-[a-f0-9]{17}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.StartCapacityTaskRequest.OutpostIdentifier</property>
+    <min>1</min>
+    <max>180</max>
+    <pattern>^(arn:aws([a-z-]+)?:outposts:[a-z\d-]+:\d{12}:outpost/)?op-[a-f0-9]{17}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.StartCapacityTaskResponse.CapacityTaskId</property>
+    <min>21</min>
+    <max>21</max>
+    <pattern>^cap-[a-f0-9]{17}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.StartCapacityTaskResponse.OrderId</property>
+    <min>1</min>
+    <max>20</max>
+    <pattern>oo-[a-f0-9]{17}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.StartCapacityTaskResponse.OutpostId</property>
+    <min>1</min>
+    <max>180</max>
+    <pattern>^(arn:aws([a-z-]+)?:outposts:[a-z\d-]+:\d{12}:outpost/)?op-[a-f0-9]{17}$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.Outposts.Model.StartConnectionRequest.AssetId</property>
@@ -435,9 +611,78 @@
     <pattern>^[\S \n]+$</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.Outposts.Model.AssetInstance.AccountId</property>
+    <min>12</min>
+    <max>12</max>
+    <pattern>\d{12}</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.AssetInstance.AssetId</property>
+    <min>1</min>
+    <max>100</max>
+    <pattern>^(\w+)$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.AssetInstance.InstanceId</property>
+    <min>11</min>
+    <max>32</max>
+    <pattern>^i-[0-9a-z]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.AssetInstance.InstanceType</property>
+    <min>3</min>
+    <max>30</max>
+    <pattern>[a-z0-9\-\.]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.AssetInstanceTypeCapacity.Count</property>
+    <min>0</min>
+    <max>9999</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.AssetInstanceTypeCapacity.InstanceType</property>
+    <min>1</min>
+    <max>64</max>
+    <pattern>^[a-z0-9\-]+\.[a-z0-9\-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.Outposts.Model.AssetLocation.RackElevation</property>
     <min>0</min>
     <max>99</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.BlockingInstance.AccountId</property>
+    <min>12</min>
+    <max>12</max>
+    <pattern>\d{12}</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.BlockingInstance.InstanceId</property>
+    <min>11</min>
+    <max>32</max>
+    <pattern>^i-[0-9a-z]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.CapacityTaskFailure.Reason</property>
+    <max>128</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.CapacityTaskSummary.CapacityTaskId</property>
+    <min>21</min>
+    <max>21</max>
+    <pattern>^cap-[a-f0-9]{17}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.CapacityTaskSummary.OrderId</property>
+    <min>1</min>
+    <max>20</max>
+    <pattern>oo-[a-f0-9]{17}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.CapacityTaskSummary.OutpostId</property>
+    <min>1</min>
+    <max>180</max>
+    <pattern>^(arn:aws([a-z-]+)?:outposts:[a-z\d-]+:\d{12}:outpost/)?op-[a-f0-9]{17}$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.Outposts.Model.CatalogItem.CatalogItemId</property>
@@ -494,6 +739,17 @@
     <pattern>[a-z0-9]+</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.Outposts.Model.InstanceTypeCapacity.Count</property>
+    <min>0</min>
+    <max>9999</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Outposts.Model.InstanceTypeCapacity.InstanceType</property>
+    <min>1</min>
+    <max>64</max>
+    <pattern>^[a-z0-9\-]+\.[a-z0-9\-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.Outposts.Model.LineItem.CatalogItemId</property>
     <min>1</min>
     <max>10</max>
@@ -516,7 +772,6 @@
   <property-value-rule>
     <property>Amazon.Outposts.Model.LineItem.Quantity</property>
     <min>1</min>
-    <max>20</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.Outposts.Model.LineItemAssetInformation.AssetId</property>
@@ -533,7 +788,6 @@
   <property-value-rule>
     <property>Amazon.Outposts.Model.LineItemRequest.Quantity</property>
     <min>1</min>
-    <max>20</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.Outposts.Model.Order.OrderId</property>

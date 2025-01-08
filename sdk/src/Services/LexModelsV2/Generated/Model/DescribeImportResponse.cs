@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.LexModelsV2.Model
     public partial class DescribeImportResponse : AmazonWebServiceResponse
     {
         private DateTime? _creationDateTime;
-        private List<string> _failureReasons = new List<string>();
+        private List<string> _failureReasons = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _importedResourceId;
         private string _importedResourceName;
         private string _importId;
@@ -64,8 +65,8 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property FailureReasons. 
         /// <para>
-        /// If the <code>importStatus</code> field is <code>Failed</code>, this provides one or
-        /// more reasons for the failure.
+        /// If the <c>importStatus</c> field is <c>Failed</c>, this provides one or more reasons
+        /// for the failure.
         /// </para>
         /// </summary>
         public List<string> FailureReasons
@@ -77,7 +78,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if FailureReasons property is set
         internal bool IsSetFailureReasons()
         {
-            return this._failureReasons != null && this._failureReasons.Count > 0; 
+            return this._failureReasons != null && (this._failureReasons.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -140,7 +141,7 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property ImportStatus. 
         /// <para>
-        /// The status of the import process. When the status is <code>Completed</code> the resource
+        /// The status of the import process. When the status is <c>Completed</c> the resource
         /// is imported and ready for use.
         /// </para>
         /// </summary>
@@ -178,8 +179,8 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property MergeStrategy. 
         /// <para>
         /// The strategy used when there was a name conflict between the imported resource and
-        /// an existing resource. When the merge strategy is <code>FailOnConflict</code> existing
-        /// resources are not overwritten and the import fails.
+        /// an existing resource. When the merge strategy is <c>FailOnConflict</c> existing resources
+        /// are not overwritten and the import fails.
         /// </para>
         /// </summary>
         public MergeStrategy MergeStrategy

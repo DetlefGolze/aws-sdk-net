@@ -26,13 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateLocationEfs operation.
-    /// Creates an endpoint for an Amazon EFS file system that DataSync can access for a transfer.
-    /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-efs-location.html">Creating
-    /// a location for Amazon EFS</a>.
+    /// Creates a transfer <i>location</i> for an Amazon EFS file system. DataSync can use
+    /// this location as a source or destination for transferring data.
+    /// 
+    ///  
+    /// <para>
+    /// Before you begin, make sure that you understand how DataSync <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-efs-location.html#create-efs-location-access">accesses
+    /// Amazon EFS file systems</a>.
+    /// </para>
     /// </summary>
     public partial class CreateLocationEfsRequest : AmazonDataSyncRequest
     {
@@ -42,13 +48,18 @@ namespace Amazon.DataSync.Model
         private string _fileSystemAccessRoleArn;
         private EfsInTransitEncryption _inTransitEncryption;
         private string _subdirectory;
-        private List<TagListEntry> _tags = new List<TagListEntry>();
+        private List<TagListEntry> _tags = AWSConfigs.InitializeCollections ? new List<TagListEntry>() : null;
 
         /// <summary>
         /// Gets and sets the property AccessPointArn. 
         /// <para>
         /// Specifies the Amazon Resource Name (ARN) of the access point that DataSync uses to
-        /// access the Amazon EFS file system.
+        /// mount your Amazon EFS file system.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-efs-location.html#create-efs-location-iam">Accessing
+        /// restricted file systems</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=128)]
@@ -67,8 +78,9 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property Ec2Config. 
         /// <para>
-        /// Specifies the subnet and security groups DataSync uses to access your Amazon EFS file
-        /// system.
+        /// Specifies the subnet and security groups DataSync uses to connect to one of your Amazon
+        /// EFS file system's <a href="https://docs.aws.amazon.com/efs/latest/ug/accessing-fs.html">mount
+        /// targets</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -87,7 +99,7 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property EfsFilesystemArn. 
         /// <para>
-        /// Specifies the ARN for the Amazon EFS file system.
+        /// Specifies the ARN for your Amazon EFS file system.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=128)]
@@ -106,8 +118,13 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property FileSystemAccessRoleArn. 
         /// <para>
-        /// Specifies an Identity and Access Management (IAM) role that DataSync assumes when
-        /// mounting the Amazon EFS file system.
+        /// Specifies an Identity and Access Management (IAM) role that allows DataSync to access
+        /// your Amazon EFS file system.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information on creating this role, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-efs-location.html#create-efs-location-iam-role">Creating
+        /// a DataSync IAM role for file system access</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=2048)]
@@ -127,12 +144,12 @@ namespace Amazon.DataSync.Model
         /// Gets and sets the property InTransitEncryption. 
         /// <para>
         /// Specifies whether you want DataSync to use Transport Layer Security (TLS) 1.2 encryption
-        /// when it copies data to or from the Amazon EFS file system.
+        /// when it transfers data to or from your Amazon EFS file system.
         /// </para>
         ///  
         /// <para>
-        /// If you specify an access point using <code>AccessPointArn</code> or an IAM role using
-        /// <code>FileSystemAccessRoleArn</code>, you must set this parameter to <code>TLS1_2</code>.
+        /// If you specify an access point using <c>AccessPointArn</c> or an IAM role using <c>FileSystemAccessRoleArn</c>,
+        /// you must set this parameter to <c>TLS1_2</c>.
         /// </para>
         /// </summary>
         public EfsInTransitEncryption InTransitEncryption
@@ -151,14 +168,15 @@ namespace Amazon.DataSync.Model
         /// Gets and sets the property Subdirectory. 
         /// <para>
         /// Specifies a mount path for your Amazon EFS file system. This is where DataSync reads
-        /// or writes data (depending on if this is a source or destination location). By default,
-        /// DataSync uses the root directory, but you can also include subdirectories.
+        /// or writes data on your file system (depending on if this is a source or destination
+        /// location).
         /// </para>
-        ///  <note> 
+        ///  
         /// <para>
-        /// You must specify a value with forward slashes (for example, <code>/path/to/folder</code>).
+        /// By default, DataSync uses the root directory (or <a href="https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html">access
+        /// point</a> if you provide one by using <c>AccessPointArn</c>). You can also include
+        /// subdirectories using forward slashes (for example, <c>/path/to/folder</c>).
         /// </para>
-        ///  </note>
         /// </summary>
         [AWSProperty(Max=4096)]
         public string Subdirectory
@@ -191,7 +209,7 @@ namespace Amazon.DataSync.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
-    /// An object representing the networking details for a task or service.
+    /// An object representing the networking details for a task or service. For example <c>awsVpcConfiguration={subnets=["subnet-12344321"],securityGroups=["sg-12344321"]}</c>.
     /// </summary>
     public partial class AwsVpcConfiguration
     {
         private AssignPublicIp _assignPublicIp;
-        private List<string> _securityGroups = new List<string>();
-        private List<string> _subnets = new List<string>();
+        private List<string> _securityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _subnets = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AssignPublicIp. 
         /// <para>
         /// Whether the task's elastic network interface receives a public IP address. The default
-        /// value is <code>DISABLED</code>.
+        /// value is <c>ENABLED</c>.
         /// </para>
         /// </summary>
         public AssignPublicIp AssignPublicIp
@@ -61,7 +62,7 @@ namespace Amazon.ECS.Model
         /// <para>
         /// The IDs of the security groups associated with the task or service. If you don't specify
         /// a security group, the default security group for the VPC is used. There's a limit
-        /// of 5 security groups that can be specified per <code>AwsVpcConfiguration</code>.
+        /// of 5 security groups that can be specified.
         /// </para>
         ///  <note> 
         /// <para>
@@ -78,14 +79,14 @@ namespace Amazon.ECS.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Subnets. 
         /// <para>
         /// The IDs of the subnets associated with the task or service. There's a limit of 16
-        /// subnets that can be specified per <code>AwsVpcConfiguration</code>.
+        /// subnets that can be specified.
         /// </para>
         ///  <note> 
         /// <para>
@@ -103,7 +104,7 @@ namespace Amazon.ECS.Model
         // Check to see if Subnets property is set
         internal bool IsSetSubnets()
         {
-            return this._subnets != null && this._subnets.Count > 0; 
+            return this._subnets != null && (this._subnets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

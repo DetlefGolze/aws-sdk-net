@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -33,21 +34,33 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class AwsLambdaLayerVersionDetails
     {
-        private List<string> _compatibleRuntimes = new List<string>();
+        private List<string> _compatibleRuntimes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _createdDate;
         private long? _version;
 
         /// <summary>
         /// Gets and sets the property CompatibleRuntimes. 
         /// <para>
-        /// The layer's compatible runtimes. Maximum number of five items.
+        /// The layer's compatible <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">function
+        /// runtimes</a>.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>nodejs10.x</code> | <code>nodejs12.x</code> | <code>java8</code>
-        /// | <code>java11</code> | <code>python2.7</code> | <code>python3.6</code> | <code>python3.7</code>
-        /// | <code>python3.8</code> | <code>dotnetcore1.0</code> | <code>dotnetcore2.1</code>
-        /// | <code>go1.x</code> | <code>ruby2.5</code> | <code>provided</code> 
+        /// The following list includes deprecated runtimes. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy">Runtime
+        /// deprecation policy</a> in the <i>Lambda Developer Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Array Members: Maximum number of 5 items.
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid Values: <c>nodejs | nodejs4.3 | nodejs6.10 | nodejs8.10 | nodejs10.x | nodejs12.x
+        /// | nodejs14.x | nodejs16.x | java8 | java8.al2 | java11 | python2.7 | python3.6 | python3.7
+        /// | python3.8 | python3.9 | dotnetcore1.0 | dotnetcore2.0 | dotnetcore2.1 | dotnetcore3.1
+        /// | dotnet6 | nodejs4.3-edge | go1.x | ruby2.5 | ruby2.7 | provided | provided.al2 |
+        /// nodejs18.x | python3.10 | java17 | ruby3.2 | python3.11 | nodejs20.x | provided.al2023
+        /// | python3.12 | java21</c> 
         /// </para>
         /// </summary>
         public List<string> CompatibleRuntimes
@@ -59,7 +72,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if CompatibleRuntimes property is set
         internal bool IsSetCompatibleRuntimes()
         {
-            return this._compatibleRuntimes != null && this._compatibleRuntimes.Count > 0; 
+            return this._compatibleRuntimes != null && (this._compatibleRuntimes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -69,9 +82,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string CreatedDate

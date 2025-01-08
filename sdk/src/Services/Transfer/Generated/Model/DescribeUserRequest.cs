@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeUser operation.
     /// Describes the user assigned to the specific file transfer protocol-enabled server,
-    /// as identified by its <code>ServerId</code> property.
+    /// as identified by its <c>ServerId</c> property.
     /// 
     ///  
     /// <para>
     /// The response from this call returns the properties of the user associated with the
-    /// <code>ServerId</code> value that was specified.
+    /// <c>ServerId</c> value that was specified.
     /// </para>
     /// </summary>
     public partial class DescribeUserRequest : AmazonTransferRequest

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
@@ -37,13 +38,13 @@ namespace Amazon.APIGateway.Model
     {
         private string _truststoreUri;
         private string _truststoreVersion;
-        private List<string> _truststoreWarnings = new List<string>();
+        private List<string> _truststoreWarnings = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property TruststoreUri. 
         /// <para>
         /// An Amazon S3 URL that specifies the truststore for mutual TLS authentication, for
-        /// example <code>s3://bucket-name/key-name</code>. The truststore can contain certificates
+        /// example <c>s3://bucket-name/key-name</c>. The truststore can contain certificates
         /// from public or private certificate authorities. To update the truststore, upload a
         /// new version to S3, and then update your custom domain name to use the new version.
         /// To update the truststore, you must have permissions to access the S3 object.
@@ -98,7 +99,7 @@ namespace Amazon.APIGateway.Model
         // Check to see if TruststoreWarnings property is set
         internal bool IsSetTruststoreWarnings()
         {
-            return this._truststoreWarnings != null && this._truststoreWarnings.Count > 0; 
+            return this._truststoreWarnings != null && (this._truststoreWarnings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

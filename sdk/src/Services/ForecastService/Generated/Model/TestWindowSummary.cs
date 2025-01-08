@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -64,15 +65,15 @@ namespace Amazon.ForecastService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ACTIVE</code> 
+        ///  <c>ACTIVE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATE_IN_PROGRESS</code> 
+        ///  <c>CREATE_IN_PROGRESS</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATE_FAILED</code> 
+        ///  <c>CREATE_FAILED</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

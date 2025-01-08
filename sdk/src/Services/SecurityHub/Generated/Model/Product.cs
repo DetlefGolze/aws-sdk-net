@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -34,10 +35,10 @@ namespace Amazon.SecurityHub.Model
     public partial class Product
     {
         private string _activationUrl;
-        private List<string> _categories = new List<string>();
+        private List<string> _categories = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _companyName;
         private string _description;
-        private List<string> _integrationTypes = new List<string>();
+        private List<string> _integrationTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _marketplaceUrl;
         private string _productArn;
         private string _productName;
@@ -77,7 +78,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Categories property is set
         internal bool IsSetCategories()
         {
-            return this._categories != null && this._categories.Count > 0; 
+            return this._categories != null && (this._categories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -123,19 +124,19 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>SEND_FINDINGS_TO_SECURITY_HUB</code> - The integration sends findings to Security
+        ///  <c>SEND_FINDINGS_TO_SECURITY_HUB</c> - The integration sends findings to Security
         /// Hub.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RECEIVE_FINDINGS_FROM_SECURITY_HUB</code> - The integration receives findings
-        /// from Security Hub.
+        ///  <c>RECEIVE_FINDINGS_FROM_SECURITY_HUB</c> - The integration receives findings from
+        /// Security Hub.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPDATE_FINDINGS_IN_SECURITY_HUB</code> - The integration does not send new
-        /// findings to Security Hub, but does make updates to the findings that it receives from
-        /// Security Hub.
+        ///  <c>UPDATE_FINDINGS_IN_SECURITY_HUB</c> - The integration does not send new findings
+        /// to Security Hub, but does make updates to the findings that it receives from Security
+        /// Hub.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -148,7 +149,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if IntegrationTypes property is set
         internal bool IsSetIntegrationTypes()
         {
-            return this._integrationTypes != null && this._integrationTypes.Count > 0; 
+            return this._integrationTypes != null && (this._integrationTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -65,6 +66,38 @@ namespace Amazon.EC2.Model
         public IDescribeByoipCidrsPaginator DescribeByoipCidrs(DescribeByoipCidrsRequest request) 
         {
             return new DescribeByoipCidrsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeCapacityBlockExtensionHistory operation
+        ///</summary>
+        public IDescribeCapacityBlockExtensionHistoryPaginator DescribeCapacityBlockExtensionHistory(DescribeCapacityBlockExtensionHistoryRequest request) 
+        {
+            return new DescribeCapacityBlockExtensionHistoryPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeCapacityBlockExtensionOfferings operation
+        ///</summary>
+        public IDescribeCapacityBlockExtensionOfferingsPaginator DescribeCapacityBlockExtensionOfferings(DescribeCapacityBlockExtensionOfferingsRequest request) 
+        {
+            return new DescribeCapacityBlockExtensionOfferingsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeCapacityBlockOfferings operation
+        ///</summary>
+        public IDescribeCapacityBlockOfferingsPaginator DescribeCapacityBlockOfferings(DescribeCapacityBlockOfferingsRequest request) 
+        {
+            return new DescribeCapacityBlockOfferingsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeCapacityReservationBillingRequests operation
+        ///</summary>
+        public IDescribeCapacityReservationBillingRequestsPaginator DescribeCapacityReservationBillingRequests(DescribeCapacityReservationBillingRequestsRequest request) 
+        {
+            return new DescribeCapacityReservationBillingRequestsPaginator(this.client, request);
         }
 
         /// <summary>
@@ -292,6 +325,14 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Paginator for DescribeInstanceImageMetadata operation
+        ///</summary>
+        public IDescribeInstanceImageMetadataPaginator DescribeInstanceImageMetadata(DescribeInstanceImageMetadataRequest request) 
+        {
+            return new DescribeInstanceImageMetadataPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for DescribeInstances operation
         ///</summary>
         public IDescribeInstancesPaginator DescribeInstances(DescribeInstancesRequest request) 
@@ -305,6 +346,14 @@ namespace Amazon.EC2.Model
         public IDescribeInstanceStatusPaginator DescribeInstanceStatus(DescribeInstanceStatusRequest request) 
         {
             return new DescribeInstanceStatusPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeInstanceTopology operation
+        ///</summary>
+        public IDescribeInstanceTopologyPaginator DescribeInstanceTopology(DescribeInstanceTopologyRequest request) 
+        {
+            return new DescribeInstanceTopologyPaginator(this.client, request);
         }
 
         /// <summary>
@@ -441,6 +490,14 @@ namespace Amazon.EC2.Model
         public IDescribeLocalGatewayVirtualInterfacesPaginator DescribeLocalGatewayVirtualInterfaces(DescribeLocalGatewayVirtualInterfacesRequest request) 
         {
             return new DescribeLocalGatewayVirtualInterfacesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeMacHosts operation
+        ///</summary>
+        public IDescribeMacHostsPaginator DescribeMacHosts(DescribeMacHostsRequest request) 
+        {
+            return new DescribeMacHostsPaginator(this.client, request);
         }
 
         /// <summary>
@@ -609,6 +666,14 @@ namespace Amazon.EC2.Model
         public IDescribeSecurityGroupsPaginator DescribeSecurityGroups(DescribeSecurityGroupsRequest request) 
         {
             return new DescribeSecurityGroupsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeSecurityGroupVpcAssociations operation
+        ///</summary>
+        public IDescribeSecurityGroupVpcAssociationsPaginator DescribeSecurityGroupVpcAssociations(DescribeSecurityGroupVpcAssociationsRequest request) 
+        {
+            return new DescribeSecurityGroupVpcAssociationsPaginator(this.client, request);
         }
 
         /// <summary>
@@ -1025,6 +1090,14 @@ namespace Amazon.EC2.Model
         public IGetNetworkInsightsAccessScopeAnalysisFindingsPaginator GetNetworkInsightsAccessScopeAnalysisFindings(GetNetworkInsightsAccessScopeAnalysisFindingsRequest request) 
         {
             return new GetNetworkInsightsAccessScopeAnalysisFindingsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for GetSecurityGroupsForVpc operation
+        ///</summary>
+        public IGetSecurityGroupsForVpcPaginator GetSecurityGroupsForVpc(GetSecurityGroupsForVpcRequest request) 
+        {
+            return new GetSecurityGroupsForVpcPaginator(this.client, request);
         }
 
         /// <summary>

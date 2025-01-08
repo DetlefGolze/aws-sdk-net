@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -46,8 +47,20 @@ namespace Amazon.FSx.Model
         /// <para>
         /// The total number of SSD IOPS provisioned for the file system.
         /// </para>
+        ///  
+        /// <para>
+        /// The minimum and maximum values for this property depend on the value of <c>HAPairs</c>
+        /// and <c>StorageCapacity</c>. The minimum value is calculated as <c>StorageCapacity</c>
+        /// * 3 * <c>HAPairs</c> (3 IOPS per GB of <c>StorageCapacity</c>). The maximum value
+        /// is calculated as 200,000 * <c>HAPairs</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Amazon FSx responds with an HTTP status code 400 (Bad Request) if the value of <c>Iops</c>
+        /// is outside of the minimum or maximum values.
+        /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=1000000)]
+        [AWSProperty(Min=0, Max=2400000)]
         public long Iops
         {
             get { return this._iops.GetValueOrDefault(); }
@@ -63,9 +76,8 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property Mode. 
         /// <para>
-        /// Specifies whether the file system is using the <code>AUTOMATIC</code> setting of SSD
-        /// IOPS of 3 IOPS per GB of storage capacity, , or if it using a <code>USER_PROVISIONED</code>
-        /// value.
+        /// Specifies whether the file system is using the <c>AUTOMATIC</c> setting of SSD IOPS
+        /// of 3 IOPS per GB of storage capacity, or if it using a <c>USER_PROVISIONED</c> value.
         /// </para>
         /// </summary>
         public DiskIopsConfigurationMode Mode

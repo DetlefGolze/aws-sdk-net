@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectCases.Model
 {
     /// <summary>
@@ -35,11 +36,12 @@ namespace Amazon.ConnectCases.Model
     {
         private CommentFilter _comment;
         private ContactFilter _contact;
+        private FileFilter _file;
 
         /// <summary>
         /// Gets and sets the property Comment. 
         /// <para>
-        /// A filter for related items of type <code>Comment</code>.
+        /// A filter for related items of type <c>Comment</c>.
         /// </para>
         /// </summary>
         public CommentFilter Comment
@@ -57,7 +59,7 @@ namespace Amazon.ConnectCases.Model
         /// <summary>
         /// Gets and sets the property Contact. 
         /// <para>
-        /// A filter for related items of type <code>Contact</code>.
+        /// A filter for related items of type <c>Contact</c>.
         /// </para>
         /// </summary>
         public ContactFilter Contact
@@ -70,6 +72,24 @@ namespace Amazon.ConnectCases.Model
         internal bool IsSetContact()
         {
             return this._contact != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property File. 
+        /// <para>
+        /// A filter for related items of this type of <c>File</c>.
+        /// </para>
+        /// </summary>
+        public FileFilter File
+        {
+            get { return this._file; }
+            set { this._file = value; }
+        }
+
+        // Check to see if File property is set
+        internal bool IsSetFile()
+        {
+            return this._file != null;
         }
 
     }

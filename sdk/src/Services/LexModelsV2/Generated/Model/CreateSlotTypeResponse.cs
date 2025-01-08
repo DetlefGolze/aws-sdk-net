@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.LexModelsV2.Model
         private string _parentSlotTypeSignature;
         private string _slotTypeId;
         private string _slotTypeName;
-        private List<SlotTypeValue> _slotTypeValues = new List<SlotTypeValue>();
+        private List<SlotTypeValue> _slotTypeValues = AWSConfigs.InitializeCollections ? new List<SlotTypeValue>() : null;
         private SlotValueSelectionSetting _valueSelectionSetting;
 
         /// <summary>
@@ -197,7 +198,7 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property SlotTypeId. 
         /// <para>
         /// The unique identifier assigned to the slot type. Use this to identify the slot type
-        /// in the <code>UpdateSlotType</code> and <code>DeleteSlotType</code> operations.
+        /// in the <c>UpdateSlotType</c> and <c>DeleteSlotType</c> operations.
         /// </para>
         /// </summary>
         [AWSProperty(Min=10, Max=10)]
@@ -248,7 +249,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if SlotTypeValues property is set
         internal bool IsSetSlotTypeValues()
         {
-            return this._slotTypeValues != null && this._slotTypeValues.Count > 0; 
+            return this._slotTypeValues != null && (this._slotTypeValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

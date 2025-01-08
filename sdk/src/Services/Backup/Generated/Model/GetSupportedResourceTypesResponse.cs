@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Backup.Model
     /// </summary>
     public partial class GetSupportedResourceTypesResponse : AmazonWebServiceResponse
     {
-        private List<string> _resourceTypes = new List<string>();
+        private List<string> _resourceTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceTypes. 
@@ -42,43 +43,68 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Aurora</code> for Amazon Aurora
+        ///  <c>Aurora</c> for Amazon Aurora
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DynamoDB</code> for Amazon DynamoDB
+        ///  <c>CloudFormation</c> for CloudFormation
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EBS</code> for Amazon Elastic Block Store
+        ///  <c>DocumentDB</c> for Amazon DocumentDB (with MongoDB compatibility)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EC2</code> for Amazon Elastic Compute Cloud
+        ///  <c>DynamoDB</c> for Amazon DynamoDB
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EFS</code> for Amazon Elastic File System
+        ///  <c>EBS</c> for Amazon Elastic Block Store
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FSX</code> for Amazon FSx
+        ///  <c>EC2</c> for Amazon Elastic Compute Cloud
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RDS</code> for Amazon Relational Database Service
+        ///  <c>EFS</c> for Amazon Elastic File System
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Storage Gateway</code> for Storage Gateway
+        ///  <c>FSx</c> for Amazon FSx
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DocDB</code> for Amazon DocumentDB (with MongoDB compatibility)
+        ///  <c>Neptune</c> for Amazon Neptune
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Neptune</code> for Amazon Neptune
+        ///  <c>RDS</c> for Amazon Relational Database Service
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Redshift</c> for Amazon Redshift
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>S3</c> for Amazon Simple Storage Service (Amazon S3)
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>SAP HANA on Amazon EC2</c> for SAP HANA databases on Amazon Elastic Compute Cloud
+        /// instances
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Storage Gateway</c> for Storage Gateway
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Timestream</c> for Amazon Timestream
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>VirtualMachine</c> for VMware virtual machines
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -91,7 +117,7 @@ namespace Amazon.Backup.Model
         // Check to see if ResourceTypes property is set
         internal bool IsSetResourceTypes()
         {
-            return this._resourceTypes != null && this._resourceTypes.Count > 0; 
+            return this._resourceTypes != null && (this._resourceTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

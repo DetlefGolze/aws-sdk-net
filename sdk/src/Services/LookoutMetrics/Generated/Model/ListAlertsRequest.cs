@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LookoutMetrics.Model
 {
     /// <summary>
@@ -86,7 +87,7 @@ namespace Amazon.LookoutMetrics.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the result of the previous request is truncated, the response includes a <code>NextToken</code>.
+        /// If the result of the previous request is truncated, the response includes a <c>NextToken</c>.
         /// To retrieve the next set of results, use the token in the next request. Tokens expire
         /// after 24 hours.
         /// </para>

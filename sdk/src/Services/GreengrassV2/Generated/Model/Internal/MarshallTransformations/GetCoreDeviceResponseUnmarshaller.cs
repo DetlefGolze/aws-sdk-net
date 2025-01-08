@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.GreengrassV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -79,6 +80,12 @@ namespace Amazon.GreengrassV2.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.Platform = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("runtime", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.Runtime = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("status", targetDepth))

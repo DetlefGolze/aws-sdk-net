@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -39,8 +40,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the connection to the managed node. For example, 'Connected' or 'Not
-        /// Connected'.
+        /// The status of the connection to the managed node.
         /// </para>
         /// </summary>
         public ConnectionStatus Status

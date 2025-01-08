@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
@@ -48,16 +49,16 @@ namespace Amazon.ElasticFileSystem.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// This operation requires permissions for the <code>elasticfilesystem:CreateAccessPoint</code>
+    /// This operation requires permissions for the <c>elasticfilesystem:CreateAccessPoint</c>
     /// action.
     /// </para>
     ///  
     /// <para>
     /// Access points can be tagged on creation. If tags are specified in the creation action,
-    /// IAM performs additional authorization on the <code>elasticfilesystem:TagResource</code>
+    /// IAM performs additional authorization on the <c>elasticfilesystem:TagResource</c>
     /// action to verify if users have permissions to create tags. Therefore, you must grant
-    /// explicit permissions to use the <code>elasticfilesystem:TagResource</code> action.
-    /// For more information, see <a href="https://docs.aws.amazon.com/efs/latest/ug/using-tags-efs.html#supported-iam-actions-tagging.html">Granting
+    /// explicit permissions to use the <c>elasticfilesystem:TagResource</c> action. For more
+    /// information, see <a href="https://docs.aws.amazon.com/efs/latest/ug/using-tags-efs.html#supported-iam-actions-tagging.html">Granting
     /// permissions to tag resources during creation</a>.
     /// </para>
     /// </summary>
@@ -67,7 +68,7 @@ namespace Amazon.ElasticFileSystem.Model
         private string _fileSystemId;
         private PosixUser _posixUser;
         private RootDirectory _rootDirectory;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
@@ -129,13 +130,12 @@ namespace Amazon.ElasticFileSystem.Model
         /// <summary>
         /// Gets and sets the property RootDirectory. 
         /// <para>
-        /// Specifies the directory on the Amazon EFS file system that the access point exposes
-        /// as the root directory of your file system to NFS clients using the access point. The
-        /// clients using the access point can only access the root directory and below. If the
-        /// <code>RootDirectory</code> &gt; <code>Path</code> specified does not exist, EFS creates
-        /// it and applies the <code>CreationInfo</code> settings when a client connects to an
-        /// access point. When specifying a <code>RootDirectory</code>, you must provide the <code>Path</code>,
-        /// and the <code>CreationInfo</code>.
+        /// Specifies the directory on the EFS file system that the access point exposes as the
+        /// root directory of your file system to NFS clients using the access point. The clients
+        /// using the access point can only access the root directory and below. If the <c>RootDirectory</c>
+        /// &gt; <c>Path</c> specified does not exist, Amazon EFS creates it and applies the <c>CreationInfo</c>
+        /// settings when a client connects to an access point. When specifying a <c>RootDirectory</c>,
+        /// you must provide the <c>Path</c>, and the <c>CreationInfo</c>.
         /// </para>
         ///  
         /// <para>
@@ -175,7 +175,7 @@ namespace Amazon.ElasticFileSystem.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

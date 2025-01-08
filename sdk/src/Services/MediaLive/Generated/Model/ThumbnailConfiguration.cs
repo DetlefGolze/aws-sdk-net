@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaLive.Model
 {
     /// <summary>
@@ -36,7 +37,9 @@ namespace Amazon.MediaLive.Model
         private ThumbnailState _state;
 
         /// <summary>
-        /// Gets and sets the property State. Whether Thumbnail is enabled.
+        /// Gets and sets the property State. Enables the thumbnail feature. The feature generates
+        /// thumbnails of the incoming video in each pipeline in the channel. AUTO turns the feature
+        /// on, DISABLE turns the feature off.
         /// </summary>
         [AWSProperty(Required=true)]
         public ThumbnailState State

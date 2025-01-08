@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ChimeSDKMediaPipelines.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.ChimeSDKMediaPipelines.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(AmazonTranscribeProcessorConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetContentIdentificationType())
             {
                 context.Writer.WritePropertyName("ContentIdentificationType");
@@ -73,6 +76,12 @@ namespace Amazon.ChimeSDKMediaPipelines.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("IdentifyLanguage");
                 context.Writer.Write(requestObject.IdentifyLanguage);
+            }
+
+            if(requestObject.IsSetIdentifyMultipleLanguages())
+            {
+                context.Writer.WritePropertyName("IdentifyMultipleLanguages");
+                context.Writer.Write(requestObject.IdentifyMultipleLanguages);
             }
 
             if(requestObject.IsSetLanguageCode())

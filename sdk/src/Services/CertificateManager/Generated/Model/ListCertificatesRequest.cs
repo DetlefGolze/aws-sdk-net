@@ -26,18 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CertificateManager.Model
 {
     /// <summary>
     /// Container for the parameters to the ListCertificates operation.
-    /// Retrieves a list of certificate ARNs and domain names. You can request that only certificates
-    /// that match a specific status be listed. You can also filter by specific attributes
-    /// of the certificate. Default filtering returns only <code>RSA_2048</code> certificates.
-    /// For more information, see <a>Filters</a>.
+    /// Retrieves a list of certificate ARNs and domain names. By default, the API returns
+    /// RSA_2048 certificates. To return all certificates in the account, include the <c>keyType</c>
+    /// filter with the values <c>[RSA_1024, RSA_2048, RSA_3072, RSA_4096, EC_prime256v1,
+    /// EC_secp384r1, EC_secp521r1]</c>.
+    /// 
+    ///  
+    /// <para>
+    /// In addition to <c>keyType</c>, you can also filter by the <c>CertificateStatuses</c>,
+    /// <c>keyUsage</c>, and <c>extendedKeyUsage</c> attributes on the certificate. For more
+    /// information, see <a>Filters</a>.
+    /// </para>
     /// </summary>
     public partial class ListCertificatesRequest : AmazonCertificateManagerRequest
     {
-        private List<string> _certificateStatuses = new List<string>();
+        private List<string> _certificateStatuses = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private Filters _includes;
         private int? _maxItems;
         private string _nextToken;
@@ -59,7 +67,7 @@ namespace Amazon.CertificateManager.Model
         // Check to see if CertificateStatuses property is set
         internal bool IsSetCertificateStatuses()
         {
-            return this._certificateStatuses != null && this._certificateStatuses.Count > 0; 
+            return this._certificateStatuses != null && (this._certificateStatuses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -85,8 +93,8 @@ namespace Amazon.CertificateManager.Model
         /// <para>
         /// Use this parameter when paginating results to specify the maximum number of items
         /// to return in the response. If additional items exist beyond the number you specify,
-        /// the <code>NextToken</code> element is sent in the response. Use this <code>NextToken</code>
-        /// value in a subsequent request to retrieve additional items.
+        /// the <c>NextToken</c> element is sent in the response. Use this <c>NextToken</c> value
+        /// in a subsequent request to retrieve additional items.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]
@@ -106,7 +114,7 @@ namespace Amazon.CertificateManager.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// Use this parameter only when paginating results and only in a subsequent request after
-        /// you receive a response with truncated results. Set it to the value of <code>NextToken</code>
+        /// you receive a response with truncated results. Set it to the value of <c>NextToken</c>
         /// from the response you just received.
         /// </para>
         /// </summary>
@@ -126,8 +134,8 @@ namespace Amazon.CertificateManager.Model
         /// <summary>
         /// Gets and sets the property SortBy. 
         /// <para>
-        /// Specifies the field to sort results by. If you specify <code>SortBy</code>, you must
-        /// also specify <code>SortOrder</code>.
+        /// Specifies the field to sort results by. If you specify <c>SortBy</c>, you must also
+        /// specify <c>SortOrder</c>.
         /// </para>
         /// </summary>
         public SortBy SortBy
@@ -145,8 +153,8 @@ namespace Amazon.CertificateManager.Model
         /// <summary>
         /// Gets and sets the property SortOrder. 
         /// <para>
-        /// Specifies the order of sorted results. If you specify <code>SortOrder</code>, you
-        /// must also specify <code>SortBy</code>.
+        /// Specifies the order of sorted results. If you specify <c>SortOrder</c>, you must also
+        /// specify <c>SortBy</c>.
         /// </para>
         /// </summary>
         public SortOrder SortOrder

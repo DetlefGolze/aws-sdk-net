@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
@@ -99,7 +100,7 @@ namespace Amazon.CloudDirectory.Model
         /// <summary>
         /// Gets and sets the property RequiredBehavior. 
         /// <para>
-        /// The required behavior of the <code>FacetAttribute</code>.
+        /// The required behavior of the <c>FacetAttribute</c>.
         /// </para>
         /// </summary>
         public RequiredAttributeBehavior RequiredBehavior

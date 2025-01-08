@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class UpdateAutomationRulesRequestItem
     {
-        private List<AutomationRulesAction> _actions = new List<AutomationRulesAction>();
+        private List<AutomationRulesAction> _actions = AWSConfigs.InitializeCollections ? new List<AutomationRulesAction>() : null;
         private AutomationRulesFindingFilters _criteria;
         private string _description;
         private bool? _isTerminal;
@@ -46,7 +47,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Actions. 
         /// <para>
         ///  One or more actions to update finding fields if a finding matches the conditions
-        /// specified in <code>Criteria</code>. 
+        /// specified in <c>Criteria</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1)]
@@ -59,7 +60,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -184,10 +185,10 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property RuleStatus. 
         /// <para>
-        ///  Whether the rule is active after it is created. If this parameter is equal to <code>ENABLED</code>,
+        ///  Whether the rule is active after it is created. If this parameter is equal to <c>ENABLED</c>,
         /// Security Hub starts applying the rule to findings and finding updates after the rule
         /// is created. To change the value of this parameter after creating a rule, use <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateAutomationRules.html">
-        /// <code>BatchUpdateAutomationRules</code> </a>. 
+        /// <c>BatchUpdateAutomationRules</c> </a>. 
         /// </para>
         /// </summary>
         public RuleStatus RuleStatus

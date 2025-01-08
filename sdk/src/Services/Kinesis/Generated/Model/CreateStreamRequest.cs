@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kinesis.Model
 {
     /// <summary>
@@ -57,20 +58,19 @@ namespace Amazon.Kinesis.Model
     /// </para>
     ///  
     /// <para>
-    ///  <code>CreateStream</code> is an asynchronous operation. Upon receiving a <code>CreateStream</code>
-    /// request, Kinesis Data Streams immediately returns and sets the stream status to <code>CREATING</code>.
-    /// After the stream is created, Kinesis Data Streams sets the stream status to <code>ACTIVE</code>.
-    /// You should perform read and write operations only on an <code>ACTIVE</code> stream.
-    /// 
+    ///  <c>CreateStream</c> is an asynchronous operation. Upon receiving a <c>CreateStream</c>
+    /// request, Kinesis Data Streams immediately returns and sets the stream status to <c>CREATING</c>.
+    /// After the stream is created, Kinesis Data Streams sets the stream status to <c>ACTIVE</c>.
+    /// You should perform read and write operations only on an <c>ACTIVE</c> stream. 
     /// </para>
     ///  
     /// <para>
-    /// You receive a <code>LimitExceededException</code> when making a <code>CreateStream</code>
-    /// request when you try to do one of the following:
+    /// You receive a <c>LimitExceededException</c> when making a <c>CreateStream</c> request
+    /// when you try to do one of the following:
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// Have more than five streams in the <code>CREATING</code> state at any point in time.
+    /// Have more than five streams in the <c>CREATING</c> state at any point in time.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -86,11 +86,19 @@ namespace Amazon.Kinesis.Model
     ///  
     /// <para>
     /// You can use <a>DescribeStreamSummary</a> to check the stream status, which is returned
-    /// in <code>StreamStatus</code>.
+    /// in <c>StreamStatus</c>.
     /// </para>
     ///  
     /// <para>
     ///  <a>CreateStream</a> has a limit of five transactions per second per account.
+    /// </para>
+    ///  
+    /// <para>
+    /// You can add tags to the stream when making a <c>CreateStream</c> request by setting
+    /// the <c>Tags</c> parameter. If you pass <c>Tags</c> parameter, in addition to having
+    /// <c>kinesis:createStream</c> permission, you must also have <c>kinesis:addTagsToStream</c>
+    /// permission for the stream that will be created. Tags will take effect from the <c>CREATING</c>
+    /// status of the stream. 
     /// </para>
     /// </summary>
     public partial class CreateStreamRequest : AmazonKinesisRequest
@@ -98,6 +106,7 @@ namespace Amazon.Kinesis.Model
         private int? _shardCount;
         private StreamModeDetails _streamModeDetails;
         private string _streamName;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ShardCount. 
@@ -160,6 +169,25 @@ namespace Amazon.Kinesis.Model
         internal bool IsSetStreamName()
         {
             return this._streamName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Tags. 
+        /// <para>
+        /// A set of up to 10 key-value pairs to use to create the tags.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=200)]
+        public Dictionary<string, string> Tags
+        {
+            get { return this._tags; }
+            set { this._tags = value; }
+        }
+
+        // Check to see if Tags property is set
+        internal bool IsSetTags()
+        {
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

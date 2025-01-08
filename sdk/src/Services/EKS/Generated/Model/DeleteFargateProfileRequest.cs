@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.EKS.Model
     /// 
     ///  
     /// <para>
-    /// When you delete a Fargate profile, any pods running on Fargate that were created with
-    /// the profile are deleted. If those pods match another Fargate profile, then they are
-    /// scheduled on Fargate with that profile. If they no longer match any Fargate profiles,
-    /// then they are not scheduled on Fargate and they may remain in a pending state.
+    /// When you delete a Fargate profile, any <c>Pod</c> running on Fargate that was created
+    /// with the profile is deleted. If the <c>Pod</c> matches another Fargate profile, then
+    /// it is scheduled on Fargate with that profile. If it no longer matches any Fargate
+    /// profiles, then it's not scheduled on Fargate and may remain in a pending state.
     /// </para>
     ///  
     /// <para>
-    /// Only one Fargate profile in a cluster can be in the <code>DELETING</code> status at
-    /// a time. You must wait for a Fargate profile to finish deleting before you can delete
-    /// any other profiles in that cluster.
+    /// Only one Fargate profile in a cluster can be in the <c>DELETING</c> status at a time.
+    /// You must wait for a Fargate profile to finish deleting before you can delete any other
+    /// profiles in that cluster.
     /// </para>
     /// </summary>
     public partial class DeleteFargateProfileRequest : AmazonEKSRequest
@@ -54,7 +55,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ClusterName. 
         /// <para>
-        /// The name of the Amazon EKS cluster associated with the Fargate profile to delete.
+        /// The name of your cluster.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

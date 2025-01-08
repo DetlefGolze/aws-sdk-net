@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.DatabaseMigrationService.Model
     /// </summary>
     public partial class DescribeDataProvidersResponse : AmazonWebServiceResponse
     {
-        private List<DataProvider> _dataProviders = new List<DataProvider>();
+        private List<DataProvider> _dataProviders = AWSConfigs.InitializeCollections ? new List<DataProvider>() : null;
         private string _marker;
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if DataProviders property is set
         internal bool IsSetDataProviders()
         {
-            return this._dataProviders != null && this._dataProviders.Count > 0; 
+            return this._dataProviders != null && (this._dataProviders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -59,14 +60,14 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <para>
         /// Specifies the unique pagination token that makes it possible to display the next page
         /// of results. If this parameter is specified, the response includes only records beyond
-        /// the marker, up to the value specified by <code>MaxRecords</code>.
+        /// the marker, up to the value specified by <c>MaxRecords</c>.
         /// </para>
         ///  
         /// <para>
-        /// If <code>Marker</code> is returned by a previous response, there are more results
-        /// available. The value of <code>Marker</code> is a unique pagination token for each
-        /// page. To retrieve the next page, make the call again using the returned token and
-        /// keeping all other arguments unchanged.
+        /// If <c>Marker</c> is returned by a previous response, there are more results available.
+        /// The value of <c>Marker</c> is a unique pagination token for each page. To retrieve
+        /// the next page, make the call again using the returned token and keeping all other
+        /// arguments unchanged.
         /// </para>
         /// </summary>
         public string Marker

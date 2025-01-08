@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
     /// The specified change set name or ID doesn't exit. To view valid change sets for a
-    /// stack, use the <code>ListChangeSets</code> operation.
+    /// stack, use the <c>ListChangeSets</c> operation.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

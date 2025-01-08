@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CleanRooms.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.CleanRooms.Model
         /// <summary>
         /// Gets and sets the property AllowCleartext. 
         /// <para>
-        /// Indicates whether encrypted tables can contain cleartext data (true) or are to cryptographically
-        /// process every column (false).
+        /// Indicates whether encrypted tables can contain cleartext data (<c>TRUE</c>) or are
+        /// to cryptographically process every column (<c>FALSE</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -61,8 +62,8 @@ namespace Amazon.CleanRooms.Model
         /// <summary>
         /// Gets and sets the property AllowDuplicates. 
         /// <para>
-        /// Indicates whether Fingerprint columns can contain duplicate entries (true) or are
-        /// to contain only non-repeated values (false).
+        /// Indicates whether Fingerprint columns can contain duplicate entries (<c>TRUE</c>)
+        /// or are to contain only non-repeated values (<c>FALSE</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -82,8 +83,8 @@ namespace Amazon.CleanRooms.Model
         /// Gets and sets the property AllowJoinsOnColumnsWithDifferentNames. 
         /// <para>
         /// Indicates whether Fingerprint columns can be joined on any other Fingerprint column
-        /// with a different name (true) or can only be joined on Fingerprint columns of the same
-        /// name (false).
+        /// with a different name (<c>TRUE</c>) or can only be joined on Fingerprint columns of
+        /// the same name (<c>FALSE</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -102,8 +103,8 @@ namespace Amazon.CleanRooms.Model
         /// <summary>
         /// Gets and sets the property PreserveNulls. 
         /// <para>
-        /// Indicates whether NULL values are to be copied as NULL to encrypted tables (true)
-        /// or cryptographically processed (false).
+        /// Indicates whether NULL values are to be copied as NULL to encrypted tables (<c>TRUE</c>)
+        /// or cryptographically processed (<c>FALSE</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

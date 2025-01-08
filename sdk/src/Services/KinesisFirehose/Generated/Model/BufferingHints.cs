@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
     /// Describes hints for the buffering to perform before delivering data to the destination.
-    /// These options are treated as hints, and therefore Kinesis Data Firehose might choose
-    /// to use different values when it is optimal. The <code>SizeInMBs</code> and <code>IntervalInSeconds</code>
-    /// parameters are optional. However, if specify a value for one of them, you must also
-    /// provide a value for the other.
+    /// These options are treated as hints, and therefore Firehose might choose to use different
+    /// values when it is optimal. The <c>SizeInMBs</c> and <c>IntervalInSeconds</c> parameters
+    /// are optional. However, if specify a value for one of them, you must also provide a
+    /// value for the other.
     /// </summary>
     public partial class BufferingHints
     {
@@ -45,11 +46,11 @@ namespace Amazon.KinesisFirehose.Model
         /// <para>
         /// Buffer incoming data for the specified period of time, in seconds, before delivering
         /// it to the destination. The default value is 300. This parameter is optional but if
-        /// you specify a value for it, you must also specify a value for <code>SizeInMBs</code>,
-        /// and vice versa.
+        /// you specify a value for it, you must also specify a value for <c>SizeInMBs</c>, and
+        /// vice versa.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=60, Max=900)]
+        [AWSProperty(Min=0, Max=900)]
         public int IntervalInSeconds
         {
             get { return this._intervalInSeconds.GetValueOrDefault(); }
@@ -67,12 +68,12 @@ namespace Amazon.KinesisFirehose.Model
         /// <para>
         /// Buffer incoming data to the specified size, in MiBs, before delivering it to the destination.
         /// The default value is 5. This parameter is optional but if you specify a value for
-        /// it, you must also specify a value for <code>IntervalInSeconds</code>, and vice versa.
+        /// it, you must also specify a value for <c>IntervalInSeconds</c>, and vice versa.
         /// </para>
         ///  
         /// <para>
         /// We recommend setting this parameter to a value greater than the amount of data you
-        /// typically ingest into the delivery stream in 10 seconds. For example, if you typically
+        /// typically ingest into the Firehose stream in 10 seconds. For example, if you typically
         /// ingest data at 1 MiB/sec, the value should be 10 MiB or higher.
         /// </para>
         /// </summary>

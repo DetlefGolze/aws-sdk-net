@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LookoutforVision.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.LookoutforVision.Model
         /// <summary>
         /// Gets and sets the property DetectAnomalyResult. 
         /// <para>
-        /// The results of the <code>DetectAnomalies</code> operation.
+        /// The results of the <c>DetectAnomalies</c> operation.
         /// </para>
         /// </summary>
         public DetectAnomalyResult DetectAnomalyResult

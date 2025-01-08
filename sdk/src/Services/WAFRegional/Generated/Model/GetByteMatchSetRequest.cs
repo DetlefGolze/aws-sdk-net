@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFRegional.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.WAFRegional.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// Returns the <a>ByteMatchSet</a> specified by <code>ByteMatchSetId</code>.
+    /// Returns the <a>ByteMatchSet</a> specified by <c>ByteMatchSetId</c>.
     /// </para>
     /// </summary>
     public partial class GetByteMatchSetRequest : AmazonWAFRegionalRequest
@@ -53,7 +54,7 @@ namespace Amazon.WAFRegional.Model
         /// <summary>
         /// Gets and sets the property ByteMatchSetId. 
         /// <para>
-        /// The <code>ByteMatchSetId</code> of the <a>ByteMatchSet</a> that you want to get. <code>ByteMatchSetId</code>
+        /// The <c>ByteMatchSetId</c> of the <a>ByteMatchSet</a> that you want to get. <c>ByteMatchSetId</c>
         /// is returned by <a>CreateByteMatchSet</a> and by <a>ListByteMatchSets</a>.
         /// </para>
         /// </summary>

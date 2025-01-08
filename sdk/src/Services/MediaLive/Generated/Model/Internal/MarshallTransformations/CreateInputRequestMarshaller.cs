@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetDestinations())
@@ -97,6 +99,12 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     context.Writer.WriteArrayEnd();
                 }
 
+                if(publicRequest.IsSetInputNetworkLocation())
+                {
+                    context.Writer.WritePropertyName("inputNetworkLocation");
+                    context.Writer.Write(publicRequest.InputNetworkLocation);
+                }
+
                 if(publicRequest.IsSetInputSecurityGroups())
                 {
                     context.Writer.WritePropertyName("inputSecurityGroups");
@@ -122,6 +130,17 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                         context.Writer.WriteObjectEnd();
                     }
                     context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetMulticastSettings())
+                {
+                    context.Writer.WritePropertyName("multicastSettings");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = MulticastSettingsCreateRequestMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.MulticastSettings, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetName())
@@ -161,6 +180,17 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                         context.Writer.WriteObjectEnd();
                     }
                     context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetSrtSettings())
+                {
+                    context.Writer.WritePropertyName("srtSettings");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = SrtSettingsRequestMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.SrtSettings, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetTags())

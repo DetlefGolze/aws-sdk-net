@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class AutomationRulesConfig
     {
-        private List<AutomationRulesAction> _actions = new List<AutomationRulesAction>();
+        private List<AutomationRulesAction> _actions = AWSConfigs.InitializeCollections ? new List<AutomationRulesAction>() : null;
         private DateTime? _createdAt;
         private string _createdBy;
         private AutomationRulesFindingFilters _criteria;
@@ -62,7 +63,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -72,9 +73,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces.
-        /// For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public DateTime CreatedAt
@@ -229,7 +229,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property RuleStatus. 
         /// <para>
-        ///  Whether the rule is active after it is created. If this parameter is equal to <code>ENABLED</code>,
+        ///  Whether the rule is active after it is created. If this parameter is equal to <c>ENABLED</c>,
         /// Security Hub starts applying the rule to findings and finding updates after the rule
         /// is created. 
         /// </para>
@@ -253,9 +253,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces.
-        /// For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public DateTime UpdatedAt

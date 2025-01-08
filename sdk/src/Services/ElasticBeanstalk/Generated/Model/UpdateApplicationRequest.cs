@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ElasticBeanstalk.Model
     /// 
     ///  <note> 
     /// <para>
-    /// If a property (for example, <code>description</code>) is not provided, the value remains
+    /// If a property (for example, <c>description</c>) is not provided, the value remains
     /// unchanged. To clear these properties, specify an empty string.
     /// </para>
     ///  </note>
@@ -52,7 +53,7 @@ namespace Amazon.ElasticBeanstalk.Model
         /// <summary>
         /// Instantiates UpdateApplicationRequest with the parameterized properties
         /// </summary>
-        /// <param name="applicationName">The name of the application to update. If no such application is found, <code>UpdateApplication</code> returns an <code>InvalidParameterValue</code> error. </param>
+        /// <param name="applicationName">The name of the application to update. If no such application is found, <c>UpdateApplication</c> returns an <c>InvalidParameterValue</c> error. </param>
         public UpdateApplicationRequest(string applicationName)
         {
             _applicationName = applicationName;
@@ -61,8 +62,8 @@ namespace Amazon.ElasticBeanstalk.Model
         /// <summary>
         /// Gets and sets the property ApplicationName. 
         /// <para>
-        /// The name of the application to update. If no such application is found, <code>UpdateApplication</code>
-        /// returns an <code>InvalidParameterValue</code> error. 
+        /// The name of the application to update. If no such application is found, <c>UpdateApplication</c>
+        /// returns an <c>InvalidParameterValue</c> error. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]

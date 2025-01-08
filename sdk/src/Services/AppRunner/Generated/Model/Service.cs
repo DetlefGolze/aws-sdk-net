@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRunner.Model
 {
     /// <summary>
@@ -318,16 +319,15 @@ namespace Amazon.AppRunner.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CREATE_FAILED</code> – The service failed to create. The failed service isn't
-        /// usable, and still counts towards your service quota. To troubleshoot this failure,
-        /// read the failure events and logs, change any parameters that need to be fixed, and
-        /// rebuild your service using <code>UpdateService</code>.
+        ///  <c>CREATE_FAILED</c> – The service failed to create. The failed service isn't usable,
+        /// and still counts towards your service quota. To troubleshoot this failure, read the
+        /// failure events and logs, change any parameters that need to be fixed, and rebuild
+        /// your service using <c>UpdateService</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETE_FAILED</code> – The service failed to delete and can't be successfully
-        /// recovered. Retry the service deletion call to ensure that all related resources are
-        /// removed.
+        ///  <c>DELETE_FAILED</c> – The service failed to delete and can't be successfully recovered.
+        /// Retry the service deletion call to ensure that all related resources are removed.
         /// </para>
         ///  </li> </ul>
         /// </summary>

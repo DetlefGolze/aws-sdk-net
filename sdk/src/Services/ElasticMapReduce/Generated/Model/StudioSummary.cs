@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
-    /// Details for an Amazon EMR Studio, including ID, Name, VPC, and Description. The details
-    /// do not include subnets, IAM roles, security groups, or tags associated with the Studio.
+    /// Details for an Amazon EMR Studio, including ID, Name, VPC, and Description. To fetch
+    /// additional details such as subnets, IAM roles, security groups, and tags for the Studio,
+    /// use the <a>DescribeStudio</a> API.
     /// </summary>
     public partial class StudioSummary
     {

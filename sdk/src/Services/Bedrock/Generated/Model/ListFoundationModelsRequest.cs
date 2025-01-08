@@ -26,12 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Bedrock.Model
 {
     /// <summary>
     /// Container for the parameters to the ListFoundationModels operation.
-    /// List of Bedrock foundation models that you can use. For more information, see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/foundation-models.html">Foundation
-    /// models</a> in the Bedrock User Guide.
+    /// Lists Amazon Bedrock foundation models that you can use. You can filter the results
+    /// with the request parameters. For more information, see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/foundation-models.html">Foundation
+    /// models</a> in the <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html">Amazon
+    /// Bedrock User Guide</a>.
     /// </summary>
     public partial class ListFoundationModelsRequest : AmazonBedrockRequest
     {
@@ -43,7 +46,10 @@ namespace Amazon.Bedrock.Model
         /// <summary>
         /// Gets and sets the property ByCustomizationType. 
         /// <para>
-        /// List by customization type.
+        /// Return models that support the customization type that you specify. For more information,
+        /// see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html">Custom
+        /// models</a> in the <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html">Amazon
+        /// Bedrock User Guide</a>.
         /// </para>
         /// </summary>
         public ModelCustomization ByCustomizationType
@@ -61,7 +67,10 @@ namespace Amazon.Bedrock.Model
         /// <summary>
         /// Gets and sets the property ByInferenceType. 
         /// <para>
-        /// List by inference type.
+        /// Return models that support the inference type that you specify. For more information,
+        /// see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html">Provisioned
+        /// Throughput</a> in the <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html">Amazon
+        /// Bedrock User Guide</a>.
         /// </para>
         /// </summary>
         public InferenceType ByInferenceType
@@ -79,7 +88,7 @@ namespace Amazon.Bedrock.Model
         /// <summary>
         /// Gets and sets the property ByOutputModality. 
         /// <para>
-        /// List by output modality type.
+        /// Return models that support the output modality that you specify.
         /// </para>
         /// </summary>
         public ModelModality ByOutputModality
@@ -97,7 +106,7 @@ namespace Amazon.Bedrock.Model
         /// <summary>
         /// Gets and sets the property ByProvider. 
         /// <para>
-        /// A Bedrock model provider.
+        /// Return models belonging to the model provider that you specify.
         /// </para>
         /// </summary>
         public string ByProvider

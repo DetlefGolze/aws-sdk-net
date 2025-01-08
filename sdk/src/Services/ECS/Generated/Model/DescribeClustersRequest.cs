@@ -26,16 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeClusters operation.
     /// Describes one or more of your clusters.
+    /// 
+    ///  
+    /// <para>
+    ///  For CLI examples, see <a href="https://github.com/aws/aws-cli/blob/develop/awscli/examples/ecs/describe-clusters.rst">describe-clusters.rst</a>
+    /// on GitHub.
+    /// </para>
     /// </summary>
     public partial class DescribeClustersRequest : AmazonECSRequest
     {
-        private List<string> _clusters = new List<string>();
-        private List<string> _include = new List<string>();
+        private List<string> _clusters = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _include = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Clusters. 
@@ -53,7 +60,7 @@ namespace Amazon.ECS.Model
         // Check to see if Clusters property is set
         internal bool IsSetClusters()
         {
-            return this._clusters != null && this._clusters.Count > 0; 
+            return this._clusters != null && (this._clusters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -64,27 +71,25 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  
         /// <para>
-        /// If <code>ATTACHMENTS</code> is specified, the attachments for the container instances
-        /// or tasks within the cluster are included, for example the capacity providers.
+        /// If <c>ATTACHMENTS</c> is specified, the attachments for the container instances or
+        /// tasks within the cluster are included, for example the capacity providers.
         /// </para>
         ///  
         /// <para>
-        /// If <code>SETTINGS</code> is specified, the settings for the cluster are included.
+        /// If <c>SETTINGS</c> is specified, the settings for the cluster are included.
         /// </para>
         ///  
         /// <para>
-        /// If <code>CONFIGURATIONS</code> is specified, the configuration for the cluster is
-        /// included.
+        /// If <c>CONFIGURATIONS</c> is specified, the configuration for the cluster is included.
         /// </para>
         ///  
         /// <para>
-        /// If <code>STATISTICS</code> is specified, the task and service count is included, separated
+        /// If <c>STATISTICS</c> is specified, the task and service count is included, separated
         /// by launch type.
         /// </para>
         ///  
         /// <para>
-        /// If <code>TAGS</code> is specified, the metadata tags associated with the cluster are
-        /// included.
+        /// If <c>TAGS</c> is specified, the metadata tags associated with the cluster are included.
         /// </para>
         /// </summary>
         public List<string> Include
@@ -96,7 +101,7 @@ namespace Amazon.ECS.Model
         // Check to see if Include property is set
         internal bool IsSetInclude()
         {
-            return this._include != null && this._include.Count > 0; 
+            return this._include != null && (this._include.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

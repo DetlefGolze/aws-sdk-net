@@ -26,14 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
     /// Container for the parameters to the DeletePublicAccessBlock operation.
-    /// Removes the <code>PublicAccessBlock</code> configuration for an Amazon Web Services
-    /// account. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html">
+    /// <note> 
+    /// <para>
+    /// This operation is not supported by directory buckets.
+    /// </para>
+    ///  </note> 
+    /// <para>
+    /// Removes the <c>PublicAccessBlock</c> configuration for an Amazon Web Services account.
+    /// For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html">
     /// Using Amazon S3 block public access</a>.
-    /// 
+    /// </para>
     ///  
     /// <para>
     /// Related actions include:
@@ -57,7 +64,7 @@ namespace Amazon.S3Control.Model
         /// <summary>
         /// Gets and sets the property AccountId. 
         /// <para>
-        /// The account ID for the Amazon Web Services account whose <code>PublicAccessBlock</code>
+        /// The account ID for the Amazon Web Services account whose <c>PublicAccessBlock</c>
         /// configuration you want to remove.
         /// </para>
         /// </summary>
@@ -71,7 +78,7 @@ namespace Amazon.S3Control.Model
         // Check to see if AccountId property is set
         internal bool IsSetAccountId()
         {
-            return this._accountId != null;
+            return !string.IsNullOrEmpty(this._accountId);
         }
 
     }

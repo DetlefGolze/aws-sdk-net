@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationAutoScaling.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.ApplicationAutoScaling.Model
     public partial class DescribeScalableTargetsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ScalableTarget> _scalableTargets = new List<ScalableTarget>();
+        private List<ScalableTarget> _scalableTargets = AWSConfigs.InitializeCollections ? new List<ScalableTarget>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token required to get the next set of results. This value is <code>null</code>
-        /// if there are no more results to return.
+        /// The token required to get the next set of results. This value is <c>null</c> if there
+        /// are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken
@@ -70,7 +71,7 @@ namespace Amazon.ApplicationAutoScaling.Model
         // Check to see if ScalableTargets property is set
         internal bool IsSetScalableTargets()
         {
-            return this._scalableTargets != null && this._scalableTargets.Count > 0; 
+            return this._scalableTargets != null && (this._scalableTargets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

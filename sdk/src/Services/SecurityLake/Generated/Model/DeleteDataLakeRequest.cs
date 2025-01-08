@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityLake.Model
 {
     /// <summary>
@@ -39,15 +40,15 @@ namespace Amazon.SecurityLake.Model
     /// 
     ///  
     /// <para>
-    /// The <code>DeleteDataLake</code> operation does not delete the data that is stored
-    /// in your Amazon S3 bucket, which is owned by your Amazon Web Services account. For
-    /// more information, see the <a href="https://docs.aws.amazon.com/security-lake/latest/userguide/disable-security-lake.html">Amazon
+    /// The <c>DeleteDataLake</c> operation does not delete the data that is stored in your
+    /// Amazon S3 bucket, which is owned by your Amazon Web Services account. For more information,
+    /// see the <a href="https://docs.aws.amazon.com/security-lake/latest/userguide/disable-security-lake.html">Amazon
     /// Security Lake User Guide</a>.
     /// </para>
     /// </summary>
     public partial class DeleteDataLakeRequest : AmazonSecurityLakeRequest
     {
-        private List<string> _regions = new List<string>();
+        private List<string> _regions = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Regions. 
@@ -65,7 +66,7 @@ namespace Amazon.SecurityLake.Model
         // Check to see if Regions property is set
         internal bool IsSetRegions()
         {
-            return this._regions != null && this._regions.Count > 0; 
+            return this._regions != null && (this._regions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

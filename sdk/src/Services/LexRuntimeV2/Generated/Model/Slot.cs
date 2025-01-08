@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexRuntimeV2.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.LexRuntimeV2.Model
     public partial class Slot
     {
         private Shape _shape;
-        private Dictionary<string, Slot> _subSlots = new Dictionary<string, Slot>();
+        private Dictionary<string, Slot> _subSlots = AWSConfigs.InitializeCollections ? new Dictionary<string, Slot>() : null;
         private Value _value;
-        private List<Slot> _values = new List<Slot>();
+        private List<Slot> _values = AWSConfigs.InitializeCollections ? new List<Slot>() : null;
 
         /// <summary>
         /// Gets and sets the property Shape. 
         /// <para>
-        /// When the <code>shape</code> value is <code>List</code>, it indicates that the <code>values</code>
-        /// field contains a list of slot values. When the value is <code>Scalar</code>, it indicates
-        /// that the <code>value</code> field contains a single value.
+        /// When the <c>shape</c> value is <c>List</c>, it indicates that the <c>values</c> field
+        /// contains a list of slot values. When the value is <c>Scalar</c>, it indicates that
+        /// the <c>value</c> field contains a single value.
         /// </para>
         /// </summary>
         public Shape Shape
@@ -73,7 +74,7 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if SubSlots property is set
         internal bool IsSetSubSlots()
         {
-            return this._subSlots != null && this._subSlots.Count > 0; 
+            return this._subSlots != null && (this._subSlots.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -111,7 +112,7 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

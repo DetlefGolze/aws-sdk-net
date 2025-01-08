@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -34,8 +35,9 @@ namespace Amazon.ConfigService.Model
     /// 
     ///  
     /// <para>
-    /// Before you can delete the delivery channel, you must stop the configuration recorder
-    /// by using the <a>StopConfigurationRecorder</a> action.
+    /// Before you can delete the delivery channel, you must stop the customer managed configuration
+    /// recorder. You can use the <a>StopConfigurationRecorder</a> operation to stop the customer
+    /// managed configuration recorder.
     /// </para>
     /// </summary>
     public partial class DeleteDeliveryChannelRequest : AmazonConfigServiceRequest
@@ -45,7 +47,7 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property DeliveryChannelName. 
         /// <para>
-        /// The name of the delivery channel to delete.
+        /// The name of the delivery channel that you want to delete.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]

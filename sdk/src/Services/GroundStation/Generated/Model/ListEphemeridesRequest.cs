@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
@@ -39,13 +40,13 @@ namespace Amazon.GroundStation.Model
         private string _nextToken;
         private string _satelliteId;
         private DateTime? _startTime;
-        private List<string> _statusList = new List<string>();
+        private List<string> _statusList = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property EndTime. 
         /// <para>
         /// The end time to list in UTC. The operation will return an ephemeris if its expiration
-        /// time is within the time range defined by the <code>startTime</code> and <code>endTime</code>.
+        /// time is within the time range defined by the <c>startTime</c> and <c>endTime</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -122,7 +123,7 @@ namespace Amazon.GroundStation.Model
         /// Gets and sets the property StartTime. 
         /// <para>
         /// The start time to list in UTC. The operation will return an ephemeris if its expiration
-        /// time is within the time range defined by the <code>startTime</code> and <code>endTime</code>.
+        /// time is within the time range defined by the <c>startTime</c> and <c>endTime</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -154,7 +155,7 @@ namespace Amazon.GroundStation.Model
         // Check to see if StatusList property is set
         internal bool IsSetStatusList()
         {
-            return this._statusList != null && this._statusList.Count > 0; 
+            return this._statusList != null && (this._statusList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,10 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
     /// Summary information about a target group.
+    /// 
+    ///  
+    /// <para>
+    /// For more information, see <a href="https://docs.aws.amazon.com/vpc-lattice/latest/ug/target-groups.html">Target
+    /// groups</a> in the <i>Amazon VPC Lattice User Guide</i>.
+    /// </para>
     /// </summary>
     public partial class TargetGroupSummary
     {
@@ -42,7 +49,7 @@ namespace Amazon.VPCLattice.Model
         private string _name;
         private int? _port;
         private TargetGroupProtocol _protocol;
-        private List<string> _serviceArns = new List<string>();
+        private List<string> _serviceArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private TargetGroupStatus _status;
         private TargetGroupType _type;
         private string _vpcIdentifier;
@@ -69,7 +76,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// The date and time that the target group was created, specified in ISO-8601 format.
+        /// The date and time that the target group was created, in ISO-8601 format.
         /// </para>
         /// </summary>
         public DateTime CreatedAt
@@ -106,9 +113,8 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property IpAddressType. 
         /// <para>
-        /// The type of IP address used for the target group. The possible values are <code>ipv4</code>
-        /// and <code>ipv6</code>. This is an optional parameter. If not specified, the IP address
-        /// type defaults to <code>ipv4</code>.
+        /// The type of IP address used for the target group. The possible values are <c>IPV4</c>
+        /// and <c>IPV6</c>. This is an optional parameter. If not specified, the default is <c>IPV4</c>.
         /// </para>
         /// </summary>
         public IpAddressType IpAddressType
@@ -126,7 +132,8 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property LambdaEventStructureVersion. 
         /// <para>
-        /// Lambda event structure version
+        /// The version of the event structure that your Lambda function receives. Supported only
+        /// if the target group type is <c>LAMBDA</c>.
         /// </para>
         /// </summary>
         public LambdaEventStructureVersion LambdaEventStructureVersion
@@ -144,7 +151,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property LastUpdatedAt. 
         /// <para>
-        /// The date and time that the target group was last updated, specified in ISO-8601 format.
+        /// The date and time that the target group was last updated, in ISO-8601 format.
         /// </para>
         /// </summary>
         public DateTime LastUpdatedAt
@@ -218,7 +225,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property ServiceArns. 
         /// <para>
-        /// The list of Amazon Resource Names (ARNs) of the service.
+        /// The Amazon Resource Names (ARNs) of the service.
         /// </para>
         /// </summary>
         public List<string> ServiceArns
@@ -230,7 +237,7 @@ namespace Amazon.VPCLattice.Model
         // Check to see if ServiceArns property is set
         internal bool IsSetServiceArns()
         {
-            return this._serviceArns != null && this._serviceArns.Count > 0; 
+            return this._serviceArns != null && (this._serviceArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

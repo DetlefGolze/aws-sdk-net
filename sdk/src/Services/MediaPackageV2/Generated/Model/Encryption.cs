@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaPackageV2.Model
 {
     /// <summary>
@@ -91,7 +92,7 @@ namespace Amazon.MediaPackageV2.Model
         ///  
         /// <para>
         /// The following example setting causes the service to rotate keys every thirty minutes:
-        /// <code>1800</code> 
+        /// <c>1800</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=300, Max=31536000)]

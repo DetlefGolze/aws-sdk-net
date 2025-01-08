@@ -63,6 +63,7 @@ namespace Amazon.S3.Transfer.Internal
             getRequest.ServerSideEncryptionCustomerProvidedKey = request.ServerSideEncryptionCustomerProvidedKey;
             getRequest.ServerSideEncryptionCustomerProvidedKeyMD5 = request.ServerSideEncryptionCustomerProvidedKeyMD5;
             getRequest.ChecksumMode = request.ChecksumMode;
+            getRequest.RequestPayer = request.RequestPayer;
 
             return getRequest;
         }
@@ -74,7 +75,7 @@ namespace Amazon.S3.Transfer.Internal
             {
                 string currentUserAgent = wsArgs.Headers[AWSSDKUtils.UserAgentHeader];
                 wsArgs.Headers[AWSSDKUtils.UserAgentHeader] =
-                    currentUserAgent + " TransferManager/" + this.GetType().Name;
+                    currentUserAgent + " ft/s3-transfer md/" + this.GetType().Name;
             }
         }
     }

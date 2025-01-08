@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// An array element of <code>SecondaryStatusTransitions</code> for <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeTrainingJob.html">DescribeTrainingJob</a>.
+    /// An array element of <c>SecondaryStatusTransitions</c> for <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeTrainingJob.html">DescribeTrainingJob</a>.
     /// It provides additional details about a status that the training job has transitioned
     /// through. A training job can be in one of several states, for example, starting, downloading,
     /// training, or uploading. Within each state, there are a number of intermediate states.
@@ -94,44 +95,43 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <dl> <dt>InProgress</dt> <dd> <ul> <li> 
         /// <para>
-        ///  <code>Starting</code> - Starting the training job.
+        ///  <c>Starting</c> - Starting the training job.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Downloading</code> - An optional stage for algorithms that support <code>File</code>
-        /// training input mode. It indicates that data is being downloaded to the ML storage
-        /// volumes.
+        ///  <c>Downloading</c> - An optional stage for algorithms that support <c>File</c> training
+        /// input mode. It indicates that data is being downloaded to the ML storage volumes.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Training</code> - Training is in progress.
+        ///  <c>Training</c> - Training is in progress.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Uploading</code> - Training is complete and the model artifacts are being uploaded
+        ///  <c>Uploading</c> - Training is complete and the model artifacts are being uploaded
         /// to the S3 location.
         /// </para>
         ///  </li> </ul> </dd> <dt>Completed</dt> <dd> <ul> <li> 
         /// <para>
-        ///  <code>Completed</code> - The training job has completed.
+        ///  <c>Completed</c> - The training job has completed.
         /// </para>
         ///  </li> </ul> </dd> <dt>Failed</dt> <dd> <ul> <li> 
         /// <para>
-        ///  <code>Failed</code> - The training job has failed. The reason for the failure is
-        /// returned in the <code>FailureReason</code> field of <code>DescribeTrainingJobResponse</code>.
+        ///  <c>Failed</c> - The training job has failed. The reason for the failure is returned
+        /// in the <c>FailureReason</c> field of <c>DescribeTrainingJobResponse</c>.
         /// </para>
         ///  </li> </ul> </dd> <dt>Stopped</dt> <dd> <ul> <li> 
         /// <para>
-        ///  <code>MaxRuntimeExceeded</code> - The job stopped because it exceeded the maximum
-        /// allowed runtime.
+        ///  <c>MaxRuntimeExceeded</c> - The job stopped because it exceeded the maximum allowed
+        /// runtime.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Stopped</code> - The training job has stopped.
+        ///  <c>Stopped</c> - The training job has stopped.
         /// </para>
         ///  </li> </ul> </dd> <dt>Stopping</dt> <dd> <ul> <li> 
         /// <para>
-        ///  <code>Stopping</code> - Stopping the training job.
+        ///  <c>Stopping</c> - Stopping the training job.
         /// </para>
         ///  </li> </ul> </dd> </dl> 
         /// <para>
@@ -139,15 +139,15 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>LaunchingMLInstances</code> 
+        ///  <c>LaunchingMLInstances</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PreparingTrainingStack</code> 
+        ///  <c>PreparingTrainingStack</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DownloadingTrainingImage</code> 
+        ///  <c>DownloadingTrainingImage</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -195,10 +195,6 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  </li> </ul> </dd> <dt>Training</dt> <dd> <ul> <li> 
         /// <para>
-        /// Downloading the training image.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
         /// Training image download completed. Training in progress.
         /// </para>
         ///  </li> </ul> </dd> </dl> <important> 
@@ -209,22 +205,22 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  </important> 
         /// <para>
-        /// To have an overview of your training job's progress, view <code>TrainingJobStatus</code>
-        /// and <code>SecondaryStatus</code> in <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeTrainingJob.html">DescribeTrainingJob</a>,
-        /// and <code>StatusMessage</code> together. For example, at the start of a training job,
-        /// you might see the following:
+        /// To have an overview of your training job's progress, view <c>TrainingJobStatus</c>
+        /// and <c>SecondaryStatus</c> in <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeTrainingJob.html">DescribeTrainingJob</a>,
+        /// and <c>StatusMessage</c> together. For example, at the start of a training job, you
+        /// might see the following:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>TrainingJobStatus</code> - InProgress
+        ///  <c>TrainingJobStatus</c> - InProgress
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SecondaryStatus</code> - Training
+        ///  <c>SecondaryStatus</c> - Training
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>StatusMessage</code> - Downloading the training image
+        ///  <c>StatusMessage</c> - Downloading the training image
         /// </para>
         ///  </li> </ul>
         /// </summary>

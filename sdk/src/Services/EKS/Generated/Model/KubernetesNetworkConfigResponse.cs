@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -34,17 +35,37 @@ namespace Amazon.EKS.Model
     /// </summary>
     public partial class KubernetesNetworkConfigResponse
     {
+        private ElasticLoadBalancing _elasticLoadBalancing;
         private IpFamily _ipFamily;
         private string _serviceIpv4Cidr;
         private string _serviceIpv6Cidr;
 
         /// <summary>
+        /// Gets and sets the property ElasticLoadBalancing. 
+        /// <para>
+        /// Indicates the current configuration of the load balancing capability on your EKS Auto
+        /// Mode cluster. For example, if the capability is enabled or disabled.
+        /// </para>
+        /// </summary>
+        public ElasticLoadBalancing ElasticLoadBalancing
+        {
+            get { return this._elasticLoadBalancing; }
+            set { this._elasticLoadBalancing = value; }
+        }
+
+        // Check to see if ElasticLoadBalancing property is set
+        internal bool IsSetElasticLoadBalancing()
+        {
+            return this._elasticLoadBalancing != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property IpFamily. 
         /// <para>
-        /// The IP family used to assign Kubernetes pod and service IP addresses. The IP family
-        /// is always <code>ipv4</code>, unless you have a <code>1.21</code> or later cluster
-        /// running version 1.10.1 or later of the Amazon VPC CNI add-on and specified <code>ipv6</code>
-        /// when you created the cluster. 
+        /// The IP family used to assign Kubernetes <c>Pod</c> and <c>Service</c> objects IP addresses.
+        /// The IP family is always <c>ipv4</c>, unless you have a <c>1.21</c> or later cluster
+        /// running version <c>1.10.1</c> or later of the Amazon VPC CNI plugin for Kubernetes
+        /// and specified <c>ipv6</c> when you created the cluster. 
         /// </para>
         /// </summary>
         public IpFamily IpFamily
@@ -62,12 +83,12 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ServiceIpv4Cidr. 
         /// <para>
-        /// The CIDR block that Kubernetes pod and service IP addresses are assigned from. Kubernetes
-        /// assigns addresses from an IPv4 CIDR block assigned to a subnet that the node is in.
-        /// If you didn't specify a CIDR block when you created the cluster, then Kubernetes assigns
-        /// addresses from either the <code>10.100.0.0/16</code> or <code>172.20.0.0/16</code>
-        /// CIDR blocks. If this was specified, then it was specified when the cluster was created
-        /// and it can't be changed.
+        /// The CIDR block that Kubernetes <c>Pod</c> and <c>Service</c> object IP addresses are
+        /// assigned from. Kubernetes assigns addresses from an <c>IPv4</c> CIDR block assigned
+        /// to a subnet that the node is in. If you didn't specify a CIDR block when you created
+        /// the cluster, then Kubernetes assigns addresses from either the <c>10.100.0.0/16</c>
+        /// or <c>172.20.0.0/16</c> CIDR blocks. If this was specified, then it was specified
+        /// when the cluster was created and it can't be changed.
         /// </para>
         /// </summary>
         public string ServiceIpv4Cidr
@@ -87,8 +108,8 @@ namespace Amazon.EKS.Model
         /// <para>
         /// The CIDR block that Kubernetes pod and service IP addresses are assigned from if you
         /// created a 1.21 or later cluster with version 1.10.1 or later of the Amazon VPC CNI
-        /// add-on and specified <code>ipv6</code> for <b>ipFamily</b> when you created the cluster.
-        /// Kubernetes assigns service addresses from the unique local address range (<code>fc00::/7</code>)
+        /// add-on and specified <c>ipv6</c> for <b>ipFamily</b> when you created the cluster.
+        /// Kubernetes assigns service addresses from the unique local address range (<c>fc00::/7</c>)
         /// because you can't specify a custom IPv6 CIDR block when you create the cluster.
         /// </para>
         /// </summary>

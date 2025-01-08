@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSSupport.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.AWSSupport.Model
     ///  
     /// <para>
     /// An attachment set is a temporary container for attachments that you add to a case
-    /// or case communication. The set is available for 1 hour after it's created. The <code>expiryTime</code>
+    /// or case communication. The set is available for 1 hour after it's created. The <c>expiryTime</c>
     /// returned in the response is when the set expires. 
     /// </para>
     ///  <note> <ul> <li> 
@@ -46,7 +47,7 @@ namespace Amazon.AWSSupport.Model
     ///  </li> <li> 
     /// <para>
     /// If you call the Amazon Web Services Support API from an account that doesn't have
-    /// a Business, Enterprise On-Ramp, or Enterprise Support plan, the <code>SubscriptionRequiredException</code>
+    /// a Business, Enterprise On-Ramp, or Enterprise Support plan, the <c>SubscriptionRequiredException</c>
     /// error message appears. For information about changing your support plan, see <a href="http://aws.amazon.com/premiumsupport/">Amazon
     /// Web Services Support</a>.
     /// </para>
@@ -54,7 +55,7 @@ namespace Amazon.AWSSupport.Model
     /// </summary>
     public partial class AddAttachmentsToSetRequest : AmazonAWSSupportRequest
     {
-        private List<Attachment> _attachments = new List<Attachment>();
+        private List<Attachment> _attachments = AWSConfigs.InitializeCollections ? new List<Attachment>() : null;
         private string _attachmentSetId;
 
         /// <summary>
@@ -65,11 +66,10 @@ namespace Amazon.AWSSupport.Model
         /// </para>
         ///  
         /// <para>
-        /// In the <code>Attachment</code> object, use the <code>data</code> parameter to specify
-        /// the contents of the attachment file. In the previous request syntax, the value for
-        /// <code>data</code> appear as <code>blob</code>, which is represented as a base64-encoded
-        /// string. The value for <code>fileName</code> is the name of the attachment, such as
-        /// <code>troubleshoot-screenshot.png</code>.
+        /// In the <c>Attachment</c> object, use the <c>data</c> parameter to specify the contents
+        /// of the attachment file. In the previous request syntax, the value for <c>data</c>
+        /// appear as <c>blob</c>, which is represented as a base64-encoded string. The value
+        /// for <c>fileName</c> is the name of the attachment, such as <c>troubleshoot-screenshot.png</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -82,16 +82,16 @@ namespace Amazon.AWSSupport.Model
         // Check to see if Attachments property is set
         internal bool IsSetAttachments()
         {
-            return this._attachments != null && this._attachments.Count > 0; 
+            return this._attachments != null && (this._attachments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AttachmentSetId. 
         /// <para>
-        /// The ID of the attachment set. If an <code>attachmentSetId</code> is not specified,
-        /// a new attachment set is created, and the ID of the set is returned in the response.
-        /// If an <code>attachmentSetId</code> is specified, the attachments are added to the
-        /// specified set, if it exists.
+        /// The ID of the attachment set. If an <c>attachmentSetId</c> is not specified, a new
+        /// attachment set is created, and the ID of the set is returned in the response. If an
+        /// <c>attachmentSetId</c> is specified, the attachments are added to the specified set,
+        /// if it exists.
         /// </para>
         /// </summary>
         public string AttachmentSetId

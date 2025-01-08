@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PI.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.PI.Model
     /// </summary>
     public partial class ResponseResourceMetricKey
     {
-        private Dictionary<string, string> _dimensions = new Dictionary<string, string>();
+        private Dictionary<string, string> _dimensions = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _metric;
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace Amazon.PI.Model
         // Check to see if Dimensions property is set
         internal bool IsSetDimensions()
         {
-            return this._dimensions != null && this._dimensions.Count > 0; 
+            return this._dimensions != null && (this._dimensions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -62,32 +63,35 @@ namespace Amazon.PI.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values for <code>Metric</code> are:
+        /// Valid values for <c>Metric</c> are:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>db.load.avg</code> - A scaled representation of the number of active sessions
-        /// for the database engine.
+        ///  <c>db.load.avg</c> - A scaled representation of the number of active sessions for
+        /// the database engine.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>db.sampledload.avg</code> - The raw number of active sessions for the database
-        /// engine.
+        ///  <c>db.sampledload.avg</c> - The raw number of active sessions for the database engine.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The counter metrics listed in <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights_Counters.html#USER_PerfInsights_Counters.OS">Performance
         /// Insights operating system counters</a> in the <i>Amazon Aurora User Guide</i>.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The counter metrics listed in <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights_Counters.html#USER_PerfInsights_Counters.OS">Performance
+        /// Insights operating system counters</a> in the <i>Amazon RDS User Guide</i>.
+        /// </para>
         ///  </li> </ul> 
         /// <para>
         /// If the number of active sessions is less than an internal Performance Insights threshold,
-        /// <code>db.load.avg</code> and <code>db.sampledload.avg</code> are the same value. If
-        /// the number of active sessions is greater than the internal threshold, Performance
-        /// Insights samples the active sessions, with <code>db.load.avg</code> showing the scaled
-        /// values, <code>db.sampledload.avg</code> showing the raw values, and <code>db.sampledload.avg</code>
-        /// less than <code>db.load.avg</code>. For most use cases, you can query <code>db.load.avg</code>
-        /// only. 
+        /// <c>db.load.avg</c> and <c>db.sampledload.avg</c> are the same value. If the number
+        /// of active sessions is greater than the internal threshold, Performance Insights samples
+        /// the active sessions, with <c>db.load.avg</c> showing the scaled values, <c>db.sampledload.avg</c>
+        /// showing the raw values, and <c>db.sampledload.avg</c> less than <c>db.load.avg</c>.
+        /// For most use cases, you can query <c>db.load.avg</c> only. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=256)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AuditManager.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.AuditManager.Model
         private string _actionPlanInstructions;
         private string _actionPlanTitle;
         private string _arn;
-        private List<ControlMappingSource> _controlMappingSources = new List<ControlMappingSource>();
+        private List<ControlMappingSource> _controlMappingSources = AWSConfigs.InitializeCollections ? new List<ControlMappingSource>() : null;
         private string _controlSources;
         private DateTime? _createdAt;
         private string _createdBy;
@@ -45,7 +46,8 @@ namespace Amazon.AuditManager.Model
         private DateTime? _lastUpdatedAt;
         private string _lastUpdatedBy;
         private string _name;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private ControlState _state;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _testingInformation;
         private ControlType _type;
 
@@ -122,7 +124,7 @@ namespace Amazon.AuditManager.Model
         // Check to see if ControlMappingSources property is set
         internal bool IsSetControlMappingSources()
         {
-            return this._controlMappingSources != null && this._controlMappingSources.Count > 0; 
+            return this._controlMappingSources != null && (this._controlMappingSources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -188,7 +190,7 @@ namespace Amazon.AuditManager.Model
         ///  The description of the control. 
         /// </para>
         /// </summary>
-        [AWSProperty(Max=1000)]
+        [AWSProperty(Sensitive=true, Max=1000)]
         public string Description
         {
             get { return this._description; }
@@ -277,6 +279,26 @@ namespace Amazon.AuditManager.Model
         }
 
         /// <summary>
+        /// Gets and sets the property State. 
+        /// <para>
+        /// The state of the control. The <c>END_OF_SUPPORT</c> state is applicable to standard
+        /// controls only. This state indicates that the standard control can still be used to
+        /// collect evidence, but Audit Manager is no longer updating or maintaining that control.
+        /// </para>
+        /// </summary>
+        public ControlState State
+        {
+            get { return this._state; }
+            set { this._state = value; }
+        }
+
+        // Check to see if State property is set
+        internal bool IsSetState()
+        {
+            return this._state != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         ///  The tags associated with the control. 
@@ -292,7 +314,7 @@ namespace Amazon.AuditManager.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Macie2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.Macie2.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetConfiguration())
@@ -72,6 +74,17 @@ namespace Amazon.Macie2.Model.Internal.MarshallTransformations
 
                     var marshaller = RevealConfigurationMarshaller.Instance;
                     marshaller.Marshall(publicRequest.Configuration, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetRetrievalConfiguration())
+                {
+                    context.Writer.WritePropertyName("retrievalConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = UpdateRetrievalConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.RetrievalConfiguration, context);
 
                     context.Writer.WriteObjectEnd();
                 }

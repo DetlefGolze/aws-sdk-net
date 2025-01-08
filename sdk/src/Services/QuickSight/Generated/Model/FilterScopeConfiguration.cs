@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The scope configuration for a <code>FilterGroup</code>.
+    /// The scope configuration for a <c>FilterGroup</c>.
     /// 
     ///  
     /// <para>
@@ -45,7 +46,10 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property AllSheets. 
         /// <para>
-        /// The configuration for applying a filter to all sheets.
+        /// The configuration that applies a filter to all sheets. When you choose <c>AllSheets</c>
+        /// as the value for a <c>FilterScopeConfiguration</c>, this filter is applied to all
+        /// visuals of all sheets in an Analysis, Dashboard, or Template. The <c>AllSheetsFilterScopeConfiguration</c>
+        /// is chosen.
         /// </para>
         /// </summary>
         public AllSheetsFilterScopeConfiguration AllSheets

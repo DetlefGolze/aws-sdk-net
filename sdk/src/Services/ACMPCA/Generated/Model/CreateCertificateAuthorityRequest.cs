@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ACMPCA.Model
 {
     /// <summary>
@@ -53,7 +54,7 @@ namespace Amazon.ACMPCA.Model
     ///  </note> 
     /// <para>
     /// Amazon Web Services Private CA assets that are stored in Amazon S3 can be protected
-    /// with encryption. For more information, see <a href="https://docs.aws.amazon.com/privateca/latest/userguide/PcaCreateCa.html#crl-encryption">Encrypting
+    /// with encryption. For more information, see <a href="https://docs.aws.amazon.com/privateca/latest/userguide/crl-planning.html#crl-encryption">Encrypting
     /// Your CRLs</a>.
     /// </para>
     /// </summary>
@@ -64,7 +65,7 @@ namespace Amazon.ACMPCA.Model
         private string _idempotencyToken;
         private KeyStorageSecurityStandard _keyStorageSecurityStandard;
         private RevocationConfiguration _revocationConfiguration;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private CertificateAuthorityUsageMode _usageMode;
 
         /// <summary>
@@ -144,8 +145,8 @@ namespace Amazon.ACMPCA.Model
         ///  <note> 
         /// <para>
         /// Some Amazon Web Services Regions do not support the default. When creating a CA in
-        /// these Regions, you must provide <code>FIPS_140_2_LEVEL_2_OR_HIGHER</code> as the argument
-        /// for <code>KeyStorageSecurityStandard</code>. Failure to do this results in an <code>InvalidArgsException</code>
+        /// these Regions, you must provide <c>FIPS_140_2_LEVEL_2_OR_HIGHER</c> as the argument
+        /// for <c>KeyStorageSecurityStandard</c>. Failure to do this results in an <c>InvalidArgsException</c>
         /// with the message, "A certificate authority cannot be created in this region with the
         /// specified security standard."
         /// </para>
@@ -171,24 +172,23 @@ namespace Amazon.ACMPCA.Model
         /// <summary>
         /// Gets and sets the property RevocationConfiguration. 
         /// <para>
-        /// Contains information to enable Online Certificate Status Protocol (OCSP) support,
-        /// to enable a certificate revocation list (CRL), to enable both, or to enable neither.
-        /// The default is for both certificate validation mechanisms to be disabled. 
+        /// Contains information to enable support for Online Certificate Status Protocol (OCSP),
+        /// certificate revocation list (CRL), both protocols, or neither. By default, both certificate
+        /// validation mechanisms are disabled.
         /// </para>
-        ///  <note> 
+        ///  
         /// <para>
         /// The following requirements apply to revocation configurations.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// A configuration disabling CRLs or OCSP must contain only the <code>Enabled=False</code>
-        /// parameter, and will fail if other parameters such as <code>CustomCname</code> or <code>ExpirationInDays</code>
+        /// A configuration disabling CRLs or OCSP must contain only the <c>Enabled=False</c>
+        /// parameter, and will fail if other parameters such as <c>CustomCname</c> or <c>ExpirationInDays</c>
         /// are included.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// In a CRL configuration, the <code>S3BucketName</code> parameter must conform to <a
-        /// href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html">Amazon
+        /// In a CRL configuration, the <c>S3BucketName</c> parameter must conform to <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html">Amazon
         /// S3 bucket naming rules</a>.
         /// </para>
         ///  </li> <li> 
@@ -202,7 +202,7 @@ namespace Amazon.ACMPCA.Model
         /// In a CRL or OCSP configuration, the value of a CNAME parameter must not include a
         /// protocol prefix such as "http://" or "https://".
         /// </para>
-        ///  </li> </ul> </note> 
+        ///  </li> </ul> 
         /// <para>
         ///  For more information, see the <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_OcspConfiguration.html">OcspConfiguration</a>
         /// and <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_CrlConfiguration.html">CrlConfiguration</a>
@@ -240,7 +240,7 @@ namespace Amazon.ACMPCA.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

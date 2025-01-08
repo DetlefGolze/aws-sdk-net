@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.LexModelBuildingService.Model
     /// </summary>
     public partial class GetMigrationResponse : AmazonWebServiceResponse
     {
-        private List<MigrationAlert> _alerts = new List<MigrationAlert>();
+        private List<MigrationAlert> _alerts = AWSConfigs.InitializeCollections ? new List<MigrationAlert>() : null;
         private string _migrationId;
         private MigrationStatus _migrationStatus;
         private MigrationStrategy _migrationStrategy;
@@ -66,14 +67,14 @@ namespace Amazon.LexModelBuildingService.Model
         // Check to see if Alerts property is set
         internal bool IsSetAlerts()
         {
-            return this._alerts != null && this._alerts.Count > 0; 
+            return this._alerts != null && (this._alerts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MigrationId. 
         /// <para>
         /// The unique identifier of the migration. This is the same as the identifier used when
-        /// calling the <code>GetMigration</code> operation.
+        /// calling the <c>GetMigration</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Min=10, Max=10)]
@@ -92,9 +93,9 @@ namespace Amazon.LexModelBuildingService.Model
         /// <summary>
         /// Gets and sets the property MigrationStatus. 
         /// <para>
-        /// Indicates the status of the migration. When the status is <code>COMPLETE</code> the
-        /// migration is finished and the bot is available in Amazon Lex V2. There may be alerts
-        /// and warnings that need to be resolved to complete the migration.
+        /// Indicates the status of the migration. When the status is <c>COMPLETE</c> the migration
+        /// is finished and the bot is available in Amazon Lex V2. There may be alerts and warnings
+        /// that need to be resolved to complete the migration.
         /// </para>
         /// </summary>
         public MigrationStatus MigrationStatus
@@ -116,15 +117,14 @@ namespace Amazon.LexModelBuildingService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CREATE_NEW</code> - Creates a new Amazon Lex V2 bot and migrates the Amazon
-        /// Lex V1 bot to the new bot.
+        ///  <c>CREATE_NEW</c> - Creates a new Amazon Lex V2 bot and migrates the Amazon Lex V1
+        /// bot to the new bot.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPDATE_EXISTING</code> - Overwrites the existing Amazon Lex V2 bot metadata
-        /// and the locale being migrated. It doesn't change any other locales in the Amazon Lex
-        /// V2 bot. If the locale doesn't exist, a new locale is created in the Amazon Lex V2
-        /// bot.
+        ///  <c>UPDATE_EXISTING</c> - Overwrites the existing Amazon Lex V2 bot metadata and the
+        /// locale being migrated. It doesn't change any other locales in the Amazon Lex V2 bot.
+        /// If the locale doesn't exist, a new locale is created in the Amazon Lex V2 bot.
         /// </para>
         ///  </li> </ul>
         /// </summary>

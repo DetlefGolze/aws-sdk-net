@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property S3Bucket. 
         /// <para>
         /// The Amazon S3 bucket where the audio log files are stored. The IAM role specified
-        /// in the <code>roleArn</code> parameter of the <a href="https://docs.aws.amazon.com/lexv2/latest/APIReference/API_CreateBot.html">CreateBot</a>
+        /// in the <c>roleArn</c> parameter of the <a href="https://docs.aws.amazon.com/lexv2/latest/APIReference/API_CreateBot.html">CreateBot</a>
         /// operation must have permission to write to this bucket.
         /// </para>
         /// </summary>

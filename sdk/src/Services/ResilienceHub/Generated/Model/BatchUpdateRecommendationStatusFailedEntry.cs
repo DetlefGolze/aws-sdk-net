@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.ResilienceHub.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>entryId</code>s of a batch request need to be unique within a request.
+        /// The <c>entryId</c>s of a batch request need to be unique within a request.
         /// </para>
         ///  </note>
         /// </summary>

@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTWireless.Model
 {
     /// <summary>
     /// Container for the parameters to the GetPartnerAccount operation.
-    /// Gets information about a partner account. If <code>PartnerAccountId</code> and <code>PartnerType</code>
-    /// are <code>null</code>, returns all partner accounts.
+    /// Gets information about a partner account. If <c>PartnerAccountId</c> and <c>PartnerType</c>
+    /// are <c>null</c>, returns all partner accounts.
     /// </summary>
     public partial class GetPartnerAccountRequest : AmazonIoTWirelessRequest
     {

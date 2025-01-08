@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -33,16 +34,16 @@ namespace Amazon.Kendra.Model
     /// </summary>
     public partial class OneDriveUsers
     {
-        private List<string> _oneDriveUserList = new List<string>();
+        private List<string> _oneDriveUserList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private S3Path _oneDriveUserS3Path;
 
         /// <summary>
         /// Gets and sets the property OneDriveUserList. 
         /// <para>
         /// A list of users whose documents should be indexed. Specify the user names in email
-        /// format, for example, <code>username@tenantdomain</code>. If you need to index the
-        /// documents of more than 100 users, use the <code>OneDriveUserS3Path</code> field to
-        /// specify the location of a file containing a list of users.
+        /// format, for example, <c>username@tenantdomain</c>. If you need to index the documents
+        /// of more than 10 users, use the <c>OneDriveUserS3Path</c> field to specify the location
+        /// of a file containing a list of users.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -55,7 +56,7 @@ namespace Amazon.Kendra.Model
         // Check to see if OneDriveUserList property is set
         internal bool IsSetOneDriveUserList()
         {
-            return this._oneDriveUserList != null && this._oneDriveUserList.Count > 0; 
+            return this._oneDriveUserList != null && (this._oneDriveUserList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

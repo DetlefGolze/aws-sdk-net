@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,9 +34,28 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class ProcessorInfo
     {
-        private List<string> _supportedArchitectures = new List<string>();
-        private List<string> _supportedFeatures = new List<string>();
+        private string _manufacturer;
+        private List<string> _supportedArchitectures = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _supportedFeatures = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private double? _sustainedClockSpeedInGhz;
+
+        /// <summary>
+        /// Gets and sets the property Manufacturer. 
+        /// <para>
+        /// The manufacturer of the processor.
+        /// </para>
+        /// </summary>
+        public string Manufacturer
+        {
+            get { return this._manufacturer; }
+            set { this._manufacturer = value; }
+        }
+
+        // Check to see if Manufacturer property is set
+        internal bool IsSetManufacturer()
+        {
+            return this._manufacturer != null;
+        }
 
         /// <summary>
         /// Gets and sets the property SupportedArchitectures. 
@@ -52,13 +72,13 @@ namespace Amazon.EC2.Model
         // Check to see if SupportedArchitectures property is set
         internal bool IsSetSupportedArchitectures()
         {
-            return this._supportedArchitectures != null && this._supportedArchitectures.Count > 0; 
+            return this._supportedArchitectures != null && (this._supportedArchitectures.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SupportedFeatures. 
         /// <para>
-        /// Indicates whether the instance type supports AMD SEV-SNP. If the request returns <code>amd-sev-snp</code>,
+        /// Indicates whether the instance type supports AMD SEV-SNP. If the request returns <c>amd-sev-snp</c>,
         /// AMD SEV-SNP is supported. Otherwise, it is not supported. For more information, see
         /// <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sev-snp.html"> AMD SEV-SNP</a>.
         /// </para>
@@ -72,7 +92,7 @@ namespace Amazon.EC2.Model
         // Check to see if SupportedFeatures property is set
         internal bool IsSetSupportedFeatures()
         {
-            return this._supportedFeatures != null && this._supportedFeatures.Count > 0; 
+            return this._supportedFeatures != null && (this._supportedFeatures.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

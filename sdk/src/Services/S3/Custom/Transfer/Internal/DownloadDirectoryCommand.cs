@@ -98,7 +98,11 @@ namespace Amazon.S3.Transfer.Internal
             downloadRequest.Key = s3Object.Key;
             var file = s3Object.Key.Substring(prefixLength).Replace('/', Path.DirectorySeparatorChar);
             downloadRequest.FilePath = Path.Combine(this._request.LocalDirectory, file);
-                        
+            downloadRequest.ServerSideEncryptionCustomerMethod = this._request.ServerSideEncryptionCustomerMethod;
+            downloadRequest.ServerSideEncryptionCustomerProvidedKey = this._request.ServerSideEncryptionCustomerProvidedKey;
+            downloadRequest.ServerSideEncryptionCustomerProvidedKeyMD5 = this._request.ServerSideEncryptionCustomerProvidedKeyMD5;
+            downloadRequest.RequestPayer = this._request.RequestPayer;
+
             //Ensure the target file is a rooted within LocalDirectory. Otherwise error.
             if(!InternalSDKUtils.IsFilePathRootedWithDirectoryPath(downloadRequest.FilePath, _request.LocalDirectory))
             {
@@ -108,6 +112,33 @@ namespace Amazon.S3.Transfer.Internal
             downloadRequest.WriteObjectProgressEvent += downloadedProgressEventCallback;
 
             return downloadRequest;
+        }
+
+        private ListObjectsV2Request ConstructListObjectRequestV2()
+        {
+            ListObjectsV2Request listRequestV2 = new ListObjectsV2Request();
+            listRequestV2.BucketName = this._request.BucketName;
+            listRequestV2.Prefix = this._request.S3Directory;
+
+            listRequestV2.Prefix = listRequestV2.Prefix.Replace('\\', '/');
+
+            if (!this._request.DisableSlashCorrection)
+            {
+                if (!listRequestV2.Prefix.EndsWith("/", StringComparison.Ordinal))
+                    listRequestV2.Prefix += "/";
+            }
+
+            if (listRequestV2.Prefix.StartsWith("/", StringComparison.Ordinal))
+            {
+                if (listRequestV2.Prefix.Length == 1)
+                    listRequestV2.Prefix = "";
+                else
+                    listRequestV2.Prefix = listRequestV2.Prefix.Substring(1);
+            }
+
+            listRequestV2.RequestPayer = this._request.RequestPayer;
+
+            return listRequestV2;
         }
 
         private ListObjectsRequest ConstructListObjectRequest()
@@ -131,6 +162,8 @@ namespace Amazon.S3.Transfer.Internal
                 else
                     listRequest.Prefix = listRequest.Prefix.Substring(1);
             }
+
+            listRequest.RequestPayer = this._request.RequestPayer;
 
             return listRequest;
         }

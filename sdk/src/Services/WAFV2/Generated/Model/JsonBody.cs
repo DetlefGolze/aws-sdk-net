@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -45,8 +46,13 @@ namespace Amazon.WAFV2.Model
     /// </para>
     ///  
     /// <para>
-    /// Example JSON: <code>"JsonBody": { "MatchPattern": { "All": {} }, "MatchScope": "ALL"
-    /// }</code> 
+    /// Example JSON: <c>"JsonBody": { "MatchPattern": { "All": {} }, "MatchScope": "ALL"
+    /// }</c> 
+    /// </para>
+    ///  
+    /// <para>
+    /// For additional information about this request component option, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-fields-list.html#waf-rule-statement-request-component-json-body">JSON
+    /// body</a> in the <i>WAF Developer Guide</i>.
     /// </para>
     /// </summary>
     public partial class JsonBody
@@ -64,47 +70,32 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>EVALUATE_AS_STRING</code> - Inspect the body as plain text. WAF applies the
-        /// text transformations and inspection criteria that you defined for the JSON inspection
-        /// to the body text string.
+        ///  <c>EVALUATE_AS_STRING</c> - Inspect the body as plain text. WAF applies the text
+        /// transformations and inspection criteria that you defined for the JSON inspection to
+        /// the body text string.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MATCH</code> - Treat the web request as matching the rule statement. WAF applies
+        ///  <c>MATCH</c> - Treat the web request as matching the rule statement. WAF applies
         /// the rule action to the request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NO_MATCH</code> - Treat the web request as not matching the rule statement.
+        ///  <c>NO_MATCH</c> - Treat the web request as not matching the rule statement.
         /// </para>
         ///  </li> </ul> 
         /// <para>
         /// If you don't provide this setting, WAF parses and evaluates the content only up to
         /// the first parsing failure that it encounters. 
         /// </para>
-        ///  
+        ///  <note> 
         /// <para>
-        /// WAF does its best to parse the entire JSON body, but might be forced to stop for reasons
-        /// such as invalid characters, duplicate keys, truncation, and any content whose root
-        /// node isn't an object or an array. 
+        /// WAF parsing doesn't fully validate the input JSON string, so parsing can succeed even
+        /// for invalid JSON. When parsing succeeds, WAF doesn't apply the fallback behavior.
+        /// For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-fields-list.html#waf-rule-statement-request-component-json-body">JSON
+        /// body</a> in the <i>WAF Developer Guide</i>.
         /// </para>
-        ///  
-        /// <para>
-        /// WAF parses the JSON in the following examples as two valid key, value pairs: 
-        /// </para>
-        ///  <ul> <li> 
-        /// <para>
-        /// Missing comma: <code>{"key1":"value1""key2":"value2"}</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Missing colon: <code>{"key1":"value1","key2""value2"}</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Extra colons: <code>{"key1"::"value1","key2""value2"}</code> 
-        /// </para>
-        ///  </li> </ul>
+        ///  </note>
         /// </summary>
         public BodyParsingFallbackBehavior InvalidFallbackBehavior
         {
@@ -141,8 +132,16 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property MatchScope. 
         /// <para>
-        /// The parts of the JSON to match against using the <code>MatchPattern</code>. If you
-        /// specify <code>All</code>, WAF matches against keys and values. 
+        /// The parts of the JSON to match against using the <c>MatchPattern</c>. If you specify
+        /// <c>ALL</c>, WAF matches against keys and values. 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>All</c> does not require a match to be found in the keys and a match to be found
+        /// in the values. It requires a match to be found in the keys or the values or both.
+        /// To require a match in the keys and in the values, use a logical <c>AND</c> statement
+        /// to combine two match rules, one that inspects the keys and another that inspects the
+        /// values. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -161,44 +160,52 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property OversizeHandling. 
         /// <para>
-        /// What WAF should do if the body is larger than WAF can inspect. WAF does not support
-        /// inspecting the entire contents of the web request body if the body exceeds the limit
-        /// for the resource type. If the body is larger than the limit, the underlying host service
-        /// only forwards the contents that are below the limit to WAF for inspection. 
+        /// What WAF should do if the body is larger than WAF can inspect. 
         /// </para>
         ///  
         /// <para>
-        /// The default limit is 8 KB (8,192 bytes) for regional resources and 16 KB (16,384 bytes)
-        /// for CloudFront distributions. For CloudFront distributions, you can increase the limit
-        /// in the web ACL <code>AssociationConfig</code>, for additional processing fees. 
+        /// WAF does not support inspecting the entire contents of the web request body if the
+        /// body exceeds the limit for the resource type. When a web request body is larger than
+        /// the limit, the underlying host service only forwards the contents that are within
+        /// the limit to WAF for inspection. 
         /// </para>
-        ///  
+        ///  <ul> <li> 
+        /// <para>
+        /// For Application Load Balancer and AppSync, the limit is fixed at 8 KB (8,192 bytes).
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For CloudFront, API Gateway, Amazon Cognito, App Runner, and Verified Access, the
+        /// default limit is 16 KB (16,384 bytes), and you can increase the limit for each resource
+        /// type in the web ACL <c>AssociationConfig</c>, for additional processing fees. 
+        /// </para>
+        ///  </li> </ul> 
         /// <para>
         /// The options for oversize handling are the following:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CONTINUE</code> - Inspect the available body contents normally, according to
-        /// the rule inspection criteria. 
+        ///  <c>CONTINUE</c> - Inspect the available body contents normally, according to the
+        /// rule inspection criteria. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MATCH</code> - Treat the web request as matching the rule statement. WAF applies
+        ///  <c>MATCH</c> - Treat the web request as matching the rule statement. WAF applies
         /// the rule action to the request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NO_MATCH</code> - Treat the web request as not matching the rule statement.
+        ///  <c>NO_MATCH</c> - Treat the web request as not matching the rule statement.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You can combine the <code>MATCH</code> or <code>NO_MATCH</code> settings for oversize
-        /// handling with your rule and web ACL action settings, so that you block any request
-        /// whose body is over the limit. 
+        /// You can combine the <c>MATCH</c> or <c>NO_MATCH</c> settings for oversize handling
+        /// with your rule and web ACL action settings, so that you block any request whose body
+        /// is over the limit. 
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>CONTINUE</code> 
+        /// Default: <c>CONTINUE</c> 
         /// </para>
         /// </summary>
         public OversizeHandling OversizeHandling

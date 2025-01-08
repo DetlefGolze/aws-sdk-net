@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the elasticfilesystem-2015-02-01.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
@@ -34,6 +35,16 @@ namespace Amazon.ElasticFileSystem.Model
         /// Paginator for DescribeFileSystems operation
         ///</summary>
         IDescribeFileSystemsPaginator DescribeFileSystems(DescribeFileSystemsRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeMountTargets operation
+        ///</summary>
+        IDescribeMountTargetsPaginator DescribeMountTargets(DescribeMountTargetsRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeReplicationConfigurations operation
+        ///</summary>
+        IDescribeReplicationConfigurationsPaginator DescribeReplicationConfigurations(DescribeReplicationConfigurationsRequest request);
 
         /// <summary>
         /// Paginator for DescribeTags operation

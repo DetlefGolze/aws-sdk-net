@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
-    /// A list of <code>OutputAttribute</code> objects, each of which have the fields <code>Name</code>
-    /// and <code>Hashed</code>. Each of these objects selects a column to be included in
-    /// the output table, and whether the values of the column should be hashed.
+    /// A list of <c>OutputAttribute</c> objects, each of which have the fields <c>Name</c>
+    /// and <c>Hashed</c>. Each of these objects selects a column to be included in the output
+    /// table, and whether the values of the column should be hashed.
     /// </summary>
     public partial class OutputAttribute
     {
@@ -59,7 +60,7 @@ namespace Amazon.EntityResolution.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// A name of a column to be written to the output. This must be an <code>InputField</code>
+        /// A name of a column to be written to the output. This must be an <c>InputField</c>
         /// name in the schema mapping.
         /// </para>
         /// </summary>

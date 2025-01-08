@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTWireless.Model
 {
     /// <summary>
@@ -60,9 +61,9 @@ namespace Amazon.IoTWireless.Model
         /// <summary>
         /// Gets and sets the property MessageId. 
         /// <para>
-        /// If message ID is <code>"*"</code>, it cleares the entire downlink queue for a given
-        /// device, specified by the wireless device ID. Otherwise, the downlink message with
-        /// the specified message ID will be deleted.
+        /// If message ID is <c>"*"</c>, it cleares the entire downlink queue for a given device,
+        /// specified by the wireless device ID. Otherwise, the downlink message with the specified
+        /// message ID will be deleted.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

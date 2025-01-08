@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppMesh.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.AppMesh.Model
     /// </para>
     ///  
     /// <para>
-    /// If not present the default value for <code>maxPendingRequests</code> is <code>2147483647</code>.
+    /// If not present the default value for <c>maxPendingRequests</c> is <c>2147483647</c>.
     /// </para>
     /// </summary>
     public partial class VirtualGatewayConnectionPool

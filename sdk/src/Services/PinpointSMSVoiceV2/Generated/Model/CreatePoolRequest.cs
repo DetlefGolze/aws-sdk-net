@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
     ///  
     /// <para>
     /// If the origination identity is a phone number and is already associated with another
-    /// pool, an Error is returned. A sender ID can be associated with multiple pools.
+    /// pool, an error is returned. A sender ID can be associated with multiple pools.
     /// </para>
     /// </summary>
     public partial class CreatePoolRequest : AmazonPinpointSMSVoiceV2Request
@@ -54,7 +55,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         private string _isoCountryCode;
         private MessageType _messageType;
         private string _originationIdentity;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
@@ -121,6 +122,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// <para>
         /// The type of message. Valid values are TRANSACTIONAL for messages that are critical
         /// or time-sensitive and PROMOTIONAL for messages that aren't critical or time-sensitive.
+        /// After the pool is created the MessageType can't be changed.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -144,6 +146,17 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// and PhoneNumberArn while <a>DescribeSenderIds</a> can be used to get the values for
         /// SenderId and SenderIdArn.
         /// </para>
+        ///  
+        /// <para>
+        /// After the pool is created you can add more origination identities to the pool by using
+        /// <a href="https://docs.aws.amazon.com/pinpoint/latest/apireference_smsvoicev2/API_AssociateOriginationIdentity.html">AssociateOriginationIdentity</a>.
+        /// </para>
+        ///  <important> 
+        /// <para>
+        /// If you are using a shared AWS End User Messaging SMS and Voice resource then you must
+        /// use the full Amazon Resource Name(ARN).
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]
         public string OriginationIdentity
@@ -174,7 +187,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

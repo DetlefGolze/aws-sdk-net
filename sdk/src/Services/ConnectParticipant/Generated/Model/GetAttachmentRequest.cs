@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectParticipant.Model
 {
     /// <summary>
@@ -33,9 +34,14 @@ namespace Amazon.ConnectParticipant.Model
     /// Provides a pre-signed URL for download of a completed attachment. This is an asynchronous
     /// API for use with active contacts.
     /// 
+    ///  
+    /// <para>
+    /// For security recommendations, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/security-best-practices.html#bp-security-chat">Amazon
+    /// Connect Chat security best practices</a>.
+    /// </para>
     ///  <note> 
     /// <para>
-    ///  <code>ConnectionToken</code> is used for invoking this API instead of <code>ParticipantToken</code>.
+    ///  <c>ConnectionToken</c> is used for invoking this API instead of <c>ParticipantToken</c>.
     /// </para>
     ///  </note> 
     /// <para>
@@ -47,6 +53,7 @@ namespace Amazon.ConnectParticipant.Model
     {
         private string _attachmentId;
         private string _connectionToken;
+        private int? _urlExpiryInSeconds;
 
         /// <summary>
         /// Gets and sets the property AttachmentId. 
@@ -83,7 +90,27 @@ namespace Amazon.ConnectParticipant.Model
         // Check to see if ConnectionToken property is set
         internal bool IsSetConnectionToken()
         {
-            return this._connectionToken != null;
+            return !string.IsNullOrEmpty(this._connectionToken);
+        }
+
+        /// <summary>
+        /// Gets and sets the property UrlExpiryInSeconds. 
+        /// <para>
+        /// The expiration time of the URL in ISO timestamp. It's specified in ISO 8601 format:
+        /// yyyy-MM-ddThh:mm:ss.SSSZ. For example, 2019-11-08T02:41:28.172Z.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=5, Max=300)]
+        public int UrlExpiryInSeconds
+        {
+            get { return this._urlExpiryInSeconds.GetValueOrDefault(); }
+            set { this._urlExpiryInSeconds = value; }
+        }
+
+        // Check to see if UrlExpiryInSeconds property is set
+        internal bool IsSetUrlExpiryInSeconds()
+        {
+            return this._urlExpiryInSeconds.HasValue; 
         }
 
     }

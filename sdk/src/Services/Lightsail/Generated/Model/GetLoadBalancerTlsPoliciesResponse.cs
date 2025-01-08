@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Lightsail.Model
     public partial class GetLoadBalancerTlsPoliciesResponse : AmazonWebServiceResponse
     {
         private string _nextPageToken;
-        private List<LoadBalancerTlsPolicy> _tlsPolicies = new List<LoadBalancerTlsPolicy>();
+        private List<LoadBalancerTlsPolicy> _tlsPolicies = AWSConfigs.InitializeCollections ? new List<LoadBalancerTlsPolicy>() : null;
 
         /// <summary>
         /// Gets and sets the property NextPageToken. 
@@ -47,8 +48,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// To get the next page of results, perform another <code>GetLoadBalancerTlsPolicies</code>
-        /// request and specify the next page token using the <code>pageToken</code> parameter.
+        /// To get the next page of results, perform another <c>GetLoadBalancerTlsPolicies</c>
+        /// request and specify the next page token using the <c>pageToken</c> parameter.
         /// </para>
         /// </summary>
         public string NextPageToken
@@ -78,7 +79,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if TlsPolicies property is set
         internal bool IsSetTlsPolicies()
         {
-            return this._tlsPolicies != null && this._tlsPolicies.Count > 0; 
+            return this._tlsPolicies != null && (this._tlsPolicies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

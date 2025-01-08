@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -38,8 +39,7 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property Agreement. 
         /// <para>
-        /// The details for the specified agreement, returned as a <code>DescribedAgreement</code>
-        /// object.
+        /// The details for the specified agreement, returned as a <c>DescribedAgreement</c> object.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

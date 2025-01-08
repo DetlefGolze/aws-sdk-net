@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.LakeFormation.Model
     /// 
     ///  
     /// <para>
-    /// This operation generates work units that can be retrieved with the <code>GetWorkUnits</code>
+    /// This operation generates work units that can be retrieved with the <c>GetWorkUnits</c>
     /// operation as soon as the query state is WORKUNITS_AVAILABLE or FINISHED.
     /// </para>
     /// </summary>

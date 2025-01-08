@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
-    /// A reference to a unique stage identified in the format <code>{restApiId}/{stage}</code>.
+    /// A reference to a unique stage identified in the format <c>{restApiId}/{stage}</c>.
     /// </summary>
     public partial class StageKey
     {

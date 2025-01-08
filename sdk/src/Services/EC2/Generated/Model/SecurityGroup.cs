@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -36,10 +37,11 @@ namespace Amazon.EC2.Model
         private string _description;
         private string _groupId;
         private string _groupName;
-        private List<IpPermission> _ipPermissions = new List<IpPermission>();
-        private List<IpPermission> _ipPermissionsEgress = new List<IpPermission>();
+        private List<IpPermission> _ipPermissions = AWSConfigs.InitializeCollections ? new List<IpPermission>() : null;
+        private List<IpPermission> _ipPermissionsEgress = AWSConfigs.InitializeCollections ? new List<IpPermission>() : null;
         private string _ownerId;
-        private List<Tag> _tags = new List<Tag>();
+        private string _securityGroupArn;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _vpcId;
 
         /// <summary>
@@ -111,7 +113,7 @@ namespace Amazon.EC2.Model
         // Check to see if IpPermissions property is set
         internal bool IsSetIpPermissions()
         {
-            return this._ipPermissions != null && this._ipPermissions.Count > 0; 
+            return this._ipPermissions != null && (this._ipPermissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -129,7 +131,7 @@ namespace Amazon.EC2.Model
         // Check to see if IpPermissionsEgress property is set
         internal bool IsSetIpPermissionsEgress()
         {
-            return this._ipPermissionsEgress != null && this._ipPermissionsEgress.Count > 0; 
+            return this._ipPermissionsEgress != null && (this._ipPermissionsEgress.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -151,6 +153,24 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SecurityGroupArn. 
+        /// <para>
+        /// The ARN of the security group.
+        /// </para>
+        /// </summary>
+        public string SecurityGroupArn
+        {
+            get { return this._securityGroupArn; }
+            set { this._securityGroupArn = value; }
+        }
+
+        // Check to see if SecurityGroupArn property is set
+        internal bool IsSetSecurityGroupArn()
+        {
+            return this._securityGroupArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// Any tags assigned to the security group.
@@ -165,7 +185,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

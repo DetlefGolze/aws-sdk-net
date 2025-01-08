@@ -26,22 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruSecurity.Model
 {
     /// <summary>
     /// Container for the parameters to the BatchGetFindings operation.
-    /// Returns a list of all requested findings.
+    /// Returns a list of requested findings from standard scans.
     /// </summary>
     public partial class BatchGetFindingsRequest : AmazonCodeGuruSecurityRequest
     {
-        private List<FindingIdentifier> _findingIdentifiers = new List<FindingIdentifier>();
+        private List<FindingIdentifier> _findingIdentifiers = AWSConfigs.InitializeCollections ? new List<FindingIdentifier>() : null;
 
         /// <summary>
         /// Gets and sets the property FindingIdentifiers. 
         /// <para>
-        /// A list of finding identifiers. Each identifier consists of a <code>scanName</code>
-        /// and a <code>findingId</code>. You retrieve the <code>findingId</code> when you call
-        /// <code>GetFindings</code>.
+        /// A list of finding identifiers. Each identifier consists of a <c>scanName</c> and a
+        /// <c>findingId</c>. You retrieve the <c>findingId</c> when you call <c>GetFindings</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=25)]
@@ -54,7 +54,7 @@ namespace Amazon.CodeGuruSecurity.Model
         // Check to see if FindingIdentifiers property is set
         internal bool IsSetFindingIdentifiers()
         {
-            return this._findingIdentifiers != null && this._findingIdentifiers.Count > 0; 
+            return this._findingIdentifiers != null && (this._findingIdentifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

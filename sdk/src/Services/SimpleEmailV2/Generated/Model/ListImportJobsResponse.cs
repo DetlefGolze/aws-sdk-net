@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.SimpleEmailV2.Model
     /// </summary>
     public partial class ListImportJobsResponse : AmazonWebServiceResponse
     {
-        private List<ImportJobSummary> _importJobs = new List<ImportJobSummary>();
+        private List<ImportJobSummary> _importJobs = AWSConfigs.InitializeCollections ? new List<ImportJobSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,15 +52,15 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if ImportJobs property is set
         internal bool IsSetImportJobs()
         {
-            return this._importJobs != null && this._importJobs.Count > 0; 
+            return this._importJobs != null && (this._importJobs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A string token indicating that there might be additional import jobs available to
-        /// be listed. Copy this token to a subsequent call to <code>ListImportJobs</code> with
-        /// the same parameters to retrieve the next page of import jobs.
+        /// be listed. Copy this token to a subsequent call to <c>ListImportJobs</c> with the
+        /// same parameters to retrieve the next page of import jobs.
         /// </para>
         /// </summary>
         public string NextToken

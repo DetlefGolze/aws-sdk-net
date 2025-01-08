@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
     /// Container for the parameters to the StartConfigRulesEvaluation operation.
     /// Runs an on-demand evaluation for the specified Config rules against the last known
-    /// configuration state of the resources. Use <code>StartConfigRulesEvaluation</code>
-    /// when you want to test that a rule you updated is working as expected. <code>StartConfigRulesEvaluation</code>
+    /// configuration state of the resources. Use <c>StartConfigRulesEvaluation</c> when you
+    /// want to test that a rule you updated is working as expected. <c>StartConfigRulesEvaluation</c>
     /// does not re-record the latest configuration state for your resources. It re-runs an
     /// evaluation against the last known state of your resources. 
     /// 
@@ -42,21 +43,21 @@ namespace Amazon.ConfigService.Model
     /// </para>
     ///  
     /// <para>
-    /// An existing <code>StartConfigRulesEvaluation</code> call for the specified rules must
-    /// complete before you can call the API again. If you chose to have Config stream to
-    /// an Amazon SNS topic, you will receive a <code>ConfigRuleEvaluationStarted</code> notification
-    /// when the evaluation starts.
+    /// An existing <c>StartConfigRulesEvaluation</c> call for the specified rules must complete
+    /// before you can call the API again. If you chose to have Config stream to an Amazon
+    /// SNS topic, you will receive a <c>ConfigRuleEvaluationStarted</c> notification when
+    /// the evaluation starts.
     /// </para>
     ///  <note> 
     /// <para>
-    /// You don't need to call the <code>StartConfigRulesEvaluation</code> API to run an evaluation
+    /// You don't need to call the <c>StartConfigRulesEvaluation</c> API to run an evaluation
     /// for a new rule. When you create a rule, Config evaluates your resources against the
     /// rule automatically. 
     /// </para>
     ///  </note> 
     /// <para>
-    /// The <code>StartConfigRulesEvaluation</code> API is useful if you want to run on-demand
-    /// evaluations, such as the following example:
+    /// The <c>StartConfigRulesEvaluation</c> API is useful if you want to run on-demand evaluations,
+    /// such as the following example:
     /// </para>
     ///  <ol> <li> 
     /// <para>
@@ -68,7 +69,7 @@ namespace Amazon.ConfigService.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Instead of waiting for the next periodic evaluation, you call the <code>StartConfigRulesEvaluation</code>
+    /// Instead of waiting for the next periodic evaluation, you call the <c>StartConfigRulesEvaluation</c>
     /// API.
     /// </para>
     ///  </li> <li> 
@@ -83,7 +84,7 @@ namespace Amazon.ConfigService.Model
     /// </summary>
     public partial class StartConfigRulesEvaluationRequest : AmazonConfigServiceRequest
     {
-        private List<string> _configRuleNames = new List<string>();
+        private List<string> _configRuleNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ConfigRuleNames. 
@@ -101,7 +102,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if ConfigRuleNames property is set
         internal bool IsSetConfigRuleNames()
         {
-            return this._configRuleNames != null && this._configRuleNames.Count > 0; 
+            return this._configRuleNames != null && (this._configRuleNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

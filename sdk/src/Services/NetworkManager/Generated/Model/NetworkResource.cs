@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -38,12 +39,12 @@ namespace Amazon.NetworkManager.Model
         private string _coreNetworkId;
         private string _definition;
         private DateTime? _definitionTimestamp;
-        private Dictionary<string, string> _metadata = new Dictionary<string, string>();
+        private Dictionary<string, string> _metadata = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _registeredGatewayArn;
         private string _resourceArn;
         private string _resourceId;
         private string _resourceType;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AccountId. 
@@ -155,7 +156,7 @@ namespace Amazon.NetworkManager.Model
         // Check to see if Metadata property is set
         internal bool IsSetMetadata()
         {
-            return this._metadata != null && this._metadata.Count > 0; 
+            return this._metadata != null && (this._metadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -226,15 +227,15 @@ namespace Amazon.NetworkManager.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>dxcon</code> 
+        ///  <c>dxcon</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>dx-gateway</code> 
+        ///  <c>dx-gateway</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>dx-vif</code> 
+        ///  <c>dx-vif</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -242,19 +243,35 @@ namespace Amazon.NetworkManager.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>connection</code> 
+        ///  <c>attachment</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>device</code> 
+        ///  <c>connect-peer</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>link</code> 
+        ///  <c>connection</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>site</code> 
+        ///  <c>core-network</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>device</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>link</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>peering</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>site</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -262,27 +279,27 @@ namespace Amazon.NetworkManager.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>customer-gateway</code> 
+        ///  <c>customer-gateway</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>transit-gateway</code> 
+        ///  <c>transit-gateway</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>transit-gateway-attachment</code> 
+        ///  <c>transit-gateway-attachment</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>transit-gateway-connect-peer</code> 
+        ///  <c>transit-gateway-connect-peer</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>transit-gateway-route-table</code> 
+        ///  <c>transit-gateway-route-table</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>vpn-connection</code> 
+        ///  <c>vpn-connection</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -314,7 +331,7 @@ namespace Amazon.NetworkManager.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

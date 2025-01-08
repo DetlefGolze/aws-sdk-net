@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteServiceNetworkServiceAssociation operation.
-    /// Deletes the association between a specified service and the specific service network.
-    /// This request will fail if an association is still in progress.
+    /// Deletes the association between a service and a service network. This operation fails
+    /// if an association is still in progress.
     /// </summary>
     public partial class DeleteServiceNetworkServiceAssociationRequest : AmazonVPCLatticeRequest
     {
@@ -40,7 +41,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property ServiceNetworkServiceAssociationIdentifier. 
         /// <para>
-        /// The ID or Amazon Resource Name (ARN) of the association.
+        /// The ID or ARN of the association.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=17, Max=2048)]

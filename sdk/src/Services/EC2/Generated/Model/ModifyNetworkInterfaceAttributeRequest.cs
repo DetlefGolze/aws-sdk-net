@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -36,18 +37,40 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class ModifyNetworkInterfaceAttributeRequest : AmazonEC2Request
     {
+        private bool? _associatePublicIpAddress;
         private NetworkInterfaceAttachmentChanges _attachment;
+        private ConnectionTrackingSpecificationRequest _connectionTrackingSpecification;
         private string _description;
         private bool? _enablePrimaryIpv6;
         private EnaSrdSpecification _enaSrdSpecification;
-        private List<string> _groups = new List<string>();
+        private List<string> _groups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _networkInterfaceId;
         private bool? _sourceDestCheck;
 
         /// <summary>
+        /// Gets and sets the property AssociatePublicIpAddress. 
+        /// <para>
+        /// Indicates whether to assign a public IPv4 address to a network interface. This option
+        /// can be enabled for any network interface but will only apply to the primary network
+        /// interface (eth0).
+        /// </para>
+        /// </summary>
+        public bool AssociatePublicIpAddress
+        {
+            get { return this._associatePublicIpAddress.GetValueOrDefault(); }
+            set { this._associatePublicIpAddress = value; }
+        }
+
+        // Check to see if AssociatePublicIpAddress property is set
+        internal bool IsSetAssociatePublicIpAddress()
+        {
+            return this._associatePublicIpAddress.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property Attachment. 
         /// <para>
-        /// Information about the interface attachment. If modifying the <code>delete on termination</code>
+        /// Information about the interface attachment. If modifying the <c>delete on termination</c>
         /// attribute, you must specify the ID of the interface attachment.
         /// </para>
         /// </summary>
@@ -61,6 +84,24 @@ namespace Amazon.EC2.Model
         internal bool IsSetAttachment()
         {
             return this._attachment != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ConnectionTrackingSpecification. 
+        /// <para>
+        /// A connection tracking specification.
+        /// </para>
+        /// </summary>
+        public ConnectionTrackingSpecificationRequest ConnectionTrackingSpecification
+        {
+            get { return this._connectionTrackingSpecification; }
+            set { this._connectionTrackingSpecification = value; }
+        }
+
+        // Check to see if ConnectionTrackingSpecification property is set
+        internal bool IsSetConnectionTrackingSpecification()
+        {
+            return this._connectionTrackingSpecification != null;
         }
 
         /// <summary>
@@ -147,7 +188,7 @@ namespace Amazon.EC2.Model
         // Check to see if Groups property is set
         internal bool IsSetGroups()
         {
-            return this._groups != null && this._groups.Count > 0; 
+            return this._groups != null && (this._groups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -173,10 +214,10 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property SourceDestCheck. 
         /// <para>
         /// Enable or disable source/destination checks, which ensure that the instance is either
-        /// the source or the destination of any traffic that it receives. If the value is <code>true</code>,
+        /// the source or the destination of any traffic that it receives. If the value is <c>true</c>,
         /// source/destination checks are enabled; otherwise, they are disabled. The default value
-        /// is <code>true</code>. You must disable source/destination checks if the instance runs
-        /// services such as network address translation, routing, or firewalls.
+        /// is <c>true</c>. You must disable source/destination checks if the instance runs services
+        /// such as network address translation, routing, or firewalls.
         /// </para>
         /// </summary>
         public bool SourceDestCheck

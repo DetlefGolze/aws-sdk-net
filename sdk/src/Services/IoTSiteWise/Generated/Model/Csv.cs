@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
-    /// A .csv file.
+    /// A .CSV file.
     /// </summary>
     public partial class Csv
     {
-        private List<string> _columnNames = new List<string>();
+        private List<string> _columnNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ColumnNames. 
@@ -41,6 +42,7 @@ namespace Amazon.IoTSiteWise.Model
         /// The column names specified in the .csv file.
         /// </para>
         /// </summary>
+        [AWSProperty(Required=true)]
         public List<string> ColumnNames
         {
             get { return this._columnNames; }
@@ -50,7 +52,7 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if ColumnNames property is set
         internal bool IsSetColumnNames()
         {
-            return this._columnNames != null && this._columnNames.Count > 0; 
+            return this._columnNames != null && (this._columnNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -62,7 +63,7 @@ namespace Amazon.SecurityHub.Model
         /// Specifies the path on the Amazon EFS file system to expose as the root directory to
         /// NFS clients using the access point to access the EFS file system. A path can have
         /// up to four subdirectories. If the specified path does not exist, you are required
-        /// to provide <code>CreationInfo</code>. 
+        /// to provide <c>CreationInfo</c>. 
         /// </para>
         /// </summary>
         public string Path

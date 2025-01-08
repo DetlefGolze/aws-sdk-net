@@ -5,13 +5,15 @@
     "endpointPrefix":"datasync",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"DataSync",
     "serviceFullName":"AWS DataSync",
     "serviceId":"DataSync",
     "signatureVersion":"v4",
     "signingName":"datasync",
     "targetPrefix":"FmrsService",
-    "uid":"datasync-2018-11-09"
+    "uid":"datasync-2018-11-09",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AddStorageSystem":{
@@ -715,6 +717,71 @@
         {"shape":"InternalException"}
       ]
     },
+    "UpdateLocationEfs":{
+      "name":"UpdateLocationEfs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateLocationEfsRequest"},
+      "output":{"shape":"UpdateLocationEfsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "UpdateLocationFsxLustre":{
+      "name":"UpdateLocationFsxLustre",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateLocationFsxLustreRequest"},
+      "output":{"shape":"UpdateLocationFsxLustreResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "UpdateLocationFsxOntap":{
+      "name":"UpdateLocationFsxOntap",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateLocationFsxOntapRequest"},
+      "output":{"shape":"UpdateLocationFsxOntapResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "UpdateLocationFsxOpenZfs":{
+      "name":"UpdateLocationFsxOpenZfs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateLocationFsxOpenZfsRequest"},
+      "output":{"shape":"UpdateLocationFsxOpenZfsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "UpdateLocationFsxWindows":{
+      "name":"UpdateLocationFsxWindows",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateLocationFsxWindowsRequest"},
+      "output":{"shape":"UpdateLocationFsxWindowsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "UpdateLocationHdfs":{
       "name":"UpdateLocationHdfs",
       "http":{
@@ -749,6 +816,19 @@
       },
       "input":{"shape":"UpdateLocationObjectStorageRequest"},
       "output":{"shape":"UpdateLocationObjectStorageResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "UpdateLocationS3":{
+      "name":"UpdateLocationS3",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateLocationS3Request"},
+      "output":{"shape":"UpdateLocationS3Response"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalException"}
@@ -864,7 +944,8 @@
       "members":{
         "AgentArn":{"shape":"AgentArn"},
         "Name":{"shape":"TagValue"},
-        "Status":{"shape":"AgentStatus"}
+        "Status":{"shape":"AgentStatus"},
+        "Platform":{"shape":"Platform"}
       }
     },
     "AgentStatus":{
@@ -873,6 +954,12 @@
         "ONLINE",
         "OFFLINE"
       ]
+    },
+    "AgentVersion":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9\\s+=._:@/-]+$"
     },
     "Atime":{
       "type":"string",
@@ -1239,7 +1326,9 @@
         "Schedule":{"shape":"TaskSchedule"},
         "Tags":{"shape":"InputTagList"},
         "Includes":{"shape":"FilterList"},
-        "TaskReportConfig":{"shape":"TaskReportConfig"}
+        "ManifestConfig":{"shape":"ManifestConfig"},
+        "TaskReportConfig":{"shape":"TaskReportConfig"},
+        "TaskMode":{"shape":"TaskMode"}
       }
     },
     "CreateTaskResponse":{
@@ -1311,7 +1400,8 @@
         "LastConnectionTime":{"shape":"Time"},
         "CreationTime":{"shape":"Time"},
         "EndpointType":{"shape":"EndpointType"},
-        "PrivateLinkConfig":{"shape":"PrivateLinkConfig"}
+        "PrivateLinkConfig":{"shape":"PrivateLinkConfig"},
+        "Platform":{"shape":"Platform"}
       }
     },
     "DescribeDiscoveryJobRequest":{
@@ -1621,20 +1711,25 @@
         "Options":{"shape":"Options"},
         "Excludes":{"shape":"FilterList"},
         "Includes":{"shape":"FilterList"},
+        "ManifestConfig":{"shape":"ManifestConfig"},
         "StartTime":{"shape":"Time"},
         "EstimatedFilesToTransfer":{"shape":"long"},
         "EstimatedBytesToTransfer":{"shape":"long"},
         "FilesTransferred":{"shape":"long"},
         "BytesWritten":{"shape":"long"},
         "BytesTransferred":{"shape":"long"},
-        "Result":{"shape":"TaskExecutionResultDetail"},
         "BytesCompressed":{"shape":"long"},
+        "Result":{"shape":"TaskExecutionResultDetail"},
         "TaskReportConfig":{"shape":"TaskReportConfig"},
         "FilesDeleted":{"shape":"long"},
         "FilesSkipped":{"shape":"long"},
         "FilesVerified":{"shape":"long"},
         "ReportResult":{"shape":"ReportResult"},
-        "EstimatedFilesToDelete":{"shape":"long"}
+        "EstimatedFilesToDelete":{"shape":"long"},
+        "TaskMode":{"shape":"TaskMode"},
+        "FilesPrepared":{"shape":"long"},
+        "FilesListed":{"shape":"TaskExecutionFilesListedDetail"},
+        "FilesFailed":{"shape":"TaskExecutionFilesFailedDetail"}
       }
     },
     "DescribeTaskRequest":{
@@ -1663,7 +1758,10 @@
         "ErrorDetail":{"shape":"string"},
         "CreationTime":{"shape":"Time"},
         "Includes":{"shape":"FilterList"},
-        "TaskReportConfig":{"shape":"TaskReportConfig"}
+        "ManifestConfig":{"shape":"ManifestConfig"},
+        "TaskReportConfig":{"shape":"TaskReportConfig"},
+        "ScheduleDetails":{"shape":"TaskScheduleDetails"},
+        "TaskMode":{"shape":"TaskMode"}
       }
     },
     "DestinationNetworkInterfaceArns":{
@@ -1909,6 +2007,27 @@
         "Password":{"shape":"SmbPassword"},
         "User":{"shape":"SmbUser"}
       }
+    },
+    "FsxUpdateProtocol":{
+      "type":"structure",
+      "members":{
+        "NFS":{"shape":"FsxProtocolNfs"},
+        "SMB":{"shape":"FsxUpdateProtocolSmb"}
+      }
+    },
+    "FsxUpdateProtocolSmb":{
+      "type":"structure",
+      "members":{
+        "Domain":{"shape":"FsxUpdateSmbDomain"},
+        "MountOptions":{"shape":"SmbMountOptions"},
+        "Password":{"shape":"SmbPassword"},
+        "User":{"shape":"SmbUser"}
+      }
+    },
+    "FsxUpdateSmbDomain":{
+      "type":"string",
+      "max":253,
+      "pattern":"^([A-Za-z0-9]((\\.|-+)?[A-Za-z0-9]){0,252})?$"
     },
     "FsxWindowsSubdirectory":{
       "type":"string",
@@ -2247,6 +2366,22 @@
         "TRANSFER"
       ]
     },
+    "ManifestAction":{
+      "type":"string",
+      "enum":["TRANSFER"]
+    },
+    "ManifestConfig":{
+      "type":"structure",
+      "members":{
+        "Action":{"shape":"ManifestAction"},
+        "Format":{"shape":"ManifestFormat"},
+        "Source":{"shape":"SourceManifestConfig"}
+      }
+    },
+    "ManifestFormat":{
+      "type":"string",
+      "enum":["CSV"]
+    },
     "MaxP95Performance":{
       "type":"structure",
       "members":{
@@ -2396,8 +2531,8 @@
     "ObjectStorageAccessKey":{
       "type":"string",
       "max":200,
-      "min":1,
-      "pattern":"^.+$"
+      "min":0,
+      "pattern":"^.*$"
     },
     "ObjectStorageBucketName":{
       "type":"string",
@@ -2412,8 +2547,8 @@
     "ObjectStorageSecretKey":{
       "type":"string",
       "max":200,
-      "min":1,
-      "pattern":"^.+$",
+      "min":0,
+      "pattern":"^.*$",
       "sensitive":true
     },
     "ObjectStorageServerPort":{
@@ -2525,6 +2660,12 @@
         "SUCCESS",
         "ERROR"
       ]
+    },
+    "Platform":{
+      "type":"structure",
+      "members":{
+        "Version":{"shape":"AgentVersion"}
+      }
     },
     "PosixPermissions":{
       "type":"string",
@@ -2713,8 +2854,8 @@
     },
     "S3BucketArn":{
       "type":"string",
-      "max":156,
-      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):(s3|s3-outposts):[a-z\\-0-9]*:[0-9]*:.*$"
+      "max":268,
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):s3:[a-z\\-0-9]*:[0-9]{12}:accesspoint[/:][a-zA-Z0-9\\-.]{1,63}$|^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):s3-outposts:[a-z\\-0-9]+:[0-9]{12}:outpost[/:][a-zA-Z0-9\\-]{1,63}[/:]accesspoint[/:][a-zA-Z0-9\\-]{1,63}$|^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):s3:::[a-zA-Z0-9.\\-_]{1,255}$"
     },
     "S3Config":{
       "type":"structure",
@@ -2722,6 +2863,26 @@
       "members":{
         "BucketAccessRoleArn":{"shape":"IamRoleArn"}
       }
+    },
+    "S3ManifestConfig":{
+      "type":"structure",
+      "required":[
+        "ManifestObjectPath",
+        "BucketAccessRoleArn",
+        "S3BucketArn"
+      ],
+      "members":{
+        "ManifestObjectPath":{"shape":"S3Subdirectory"},
+        "BucketAccessRoleArn":{"shape":"IamRoleArn"},
+        "S3BucketArn":{"shape":"S3BucketArn"},
+        "ManifestObjectVersionId":{"shape":"S3ObjectVersionId"}
+      }
+    },
+    "S3ObjectVersionId":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^.+$"
     },
     "S3StorageClass":{
       "type":"string",
@@ -2741,10 +2902,29 @@
       "max":4096,
       "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\p{Zs}]*$"
     },
+    "ScheduleDisabledBy":{
+      "type":"string",
+      "enum":[
+        "USER",
+        "SERVICE"
+      ]
+    },
+    "ScheduleDisabledReason":{
+      "type":"string",
+      "max":8192,
+      "pattern":"^[\\w\\s.,'?!:;\\/=|<>()-]*$"
+    },
     "ScheduleExpressionCron":{
       "type":"string",
       "max":256,
       "pattern":"^[a-zA-Z0-9\\ \\_\\*\\?\\,\\|\\^\\-\\/\\#\\s\\(\\)\\+]*$"
+    },
+    "ScheduleStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "SecretsManagerArn":{
       "type":"string",
@@ -2801,6 +2981,13 @@
         "SMB2_0"
       ]
     },
+    "SourceManifestConfig":{
+      "type":"structure",
+      "required":["S3"],
+      "members":{
+        "S3":{"shape":"S3ManifestConfig"}
+      }
+    },
     "SourceNetworkInterfaceArns":{
       "type":"list",
       "member":{"shape":"NetworkInterfaceArn"}
@@ -2836,8 +3023,9 @@
         "OverrideOptions":{"shape":"Options"},
         "Includes":{"shape":"FilterList"},
         "Excludes":{"shape":"FilterList"},
-        "Tags":{"shape":"InputTagList"},
-        "TaskReportConfig":{"shape":"TaskReportConfig"}
+        "ManifestConfig":{"shape":"ManifestConfig"},
+        "TaskReportConfig":{"shape":"TaskReportConfig"},
+        "Tags":{"shape":"InputTagList"}
       }
     },
     "StartTaskExecutionResponse":{
@@ -2926,7 +3114,7 @@
     "TagValue":{
       "type":"string",
       "max":256,
-      "min":1,
+      "min":0,
       "pattern":"^[a-zA-Z0-9\\s+=._:@/-]+$"
     },
     "TaggableResourceArn":{
@@ -2944,6 +3132,22 @@
       "max":128,
       "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):datasync:[a-z\\-0-9]*:[0-9]{12}:task/task-[0-9a-f]{17}/execution/exec-[0-9a-f]{17}$"
     },
+    "TaskExecutionFilesFailedDetail":{
+      "type":"structure",
+      "members":{
+        "Prepare":{"shape":"long"},
+        "Transfer":{"shape":"long"},
+        "Verify":{"shape":"long"},
+        "Delete":{"shape":"long"}
+      }
+    },
+    "TaskExecutionFilesListedDetail":{
+      "type":"structure",
+      "members":{
+        "AtSource":{"shape":"long"},
+        "AtDestinationForDelete":{"shape":"long"}
+      }
+    },
     "TaskExecutionList":{
       "type":"list",
       "member":{"shape":"TaskExecutionListEntry"}
@@ -2952,7 +3156,8 @@
       "type":"structure",
       "members":{
         "TaskExecutionArn":{"shape":"TaskExecutionArn"},
-        "Status":{"shape":"TaskExecutionStatus"}
+        "Status":{"shape":"TaskExecutionStatus"},
+        "TaskMode":{"shape":"TaskMode"}
       }
     },
     "TaskExecutionResultDetail":{
@@ -2973,6 +3178,7 @@
       "type":"string",
       "enum":[
         "QUEUED",
+        "CANCELLING",
         "LAUNCHING",
         "PREPARING",
         "TRANSFERRING",
@@ -3014,8 +3220,16 @@
       "members":{
         "TaskArn":{"shape":"TaskArn"},
         "Status":{"shape":"TaskStatus"},
-        "Name":{"shape":"TagValue"}
+        "Name":{"shape":"TagValue"},
+        "TaskMode":{"shape":"TaskMode"}
       }
+    },
+    "TaskMode":{
+      "type":"string",
+      "enum":[
+        "BASIC",
+        "ENHANCED"
+      ]
     },
     "TaskQueueing":{
       "type":"string",
@@ -3038,7 +3252,16 @@
       "type":"structure",
       "required":["ScheduleExpression"],
       "members":{
-        "ScheduleExpression":{"shape":"ScheduleExpressionCron"}
+        "ScheduleExpression":{"shape":"ScheduleExpressionCron"},
+        "Status":{"shape":"ScheduleStatus"}
+      }
+    },
+    "TaskScheduleDetails":{
+      "type":"structure",
+      "members":{
+        "StatusUpdateTime":{"shape":"Time"},
+        "DisabledReason":{"shape":"ScheduleDisabledReason"},
+        "DisabledBy":{"shape":"ScheduleDisabledBy"}
       }
     },
     "TaskStatus":{
@@ -3141,6 +3364,79 @@
       "members":{
       }
     },
+    "UpdateLocationEfsRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "Subdirectory":{"shape":"EfsSubdirectory"},
+        "AccessPointArn":{"shape":"UpdatedEfsAccessPointArn"},
+        "FileSystemAccessRoleArn":{"shape":"UpdatedEfsIamRoleArn"},
+        "InTransitEncryption":{"shape":"EfsInTransitEncryption"}
+      }
+    },
+    "UpdateLocationEfsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateLocationFsxLustreRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "Subdirectory":{"shape":"SmbSubdirectory"}
+      }
+    },
+    "UpdateLocationFsxLustreResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateLocationFsxOntapRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "Protocol":{"shape":"FsxUpdateProtocol"},
+        "Subdirectory":{"shape":"FsxOntapSubdirectory"}
+      }
+    },
+    "UpdateLocationFsxOntapResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateLocationFsxOpenZfsRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "Protocol":{"shape":"FsxProtocol"},
+        "Subdirectory":{"shape":"SmbSubdirectory"}
+      }
+    },
+    "UpdateLocationFsxOpenZfsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateLocationFsxWindowsRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "Subdirectory":{"shape":"FsxWindowsSubdirectory"},
+        "Domain":{"shape":"FsxUpdateSmbDomain"},
+        "User":{"shape":"SmbUser"},
+        "Password":{"shape":"SmbPassword"}
+      }
+    },
+    "UpdateLocationFsxWindowsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateLocationHdfsRequest":{
       "type":"structure",
       "required":["LocationArn"],
@@ -3195,6 +3491,21 @@
       }
     },
     "UpdateLocationObjectStorageResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateLocationS3Request":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "Subdirectory":{"shape":"S3Subdirectory"},
+        "S3StorageClass":{"shape":"S3StorageClass"},
+        "S3Config":{"shape":"S3Config"}
+      }
+    },
+    "UpdateLocationS3Response":{
       "type":"structure",
       "members":{
       }
@@ -3261,6 +3572,7 @@
         "Name":{"shape":"TagValue"},
         "CloudWatchLogGroupArn":{"shape":"LogGroupArn"},
         "Includes":{"shape":"FilterList"},
+        "ManifestConfig":{"shape":"ManifestConfig"},
         "TaskReportConfig":{"shape":"TaskReportConfig"}
       }
     },
@@ -3268,6 +3580,16 @@
       "type":"structure",
       "members":{
       }
+    },
+    "UpdatedEfsAccessPointArn":{
+      "type":"string",
+      "max":128,
+      "pattern":"(^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):elasticfilesystem:[a-z\\-0-9]+:[0-9]{12}:access-point/fsap-[0-9a-f]{8,40}$)|(^$)"
+    },
+    "UpdatedEfsIamRoleArn":{
+      "type":"string",
+      "max":2048,
+      "pattern":"(^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):iam::[0-9]{12}:role/.*$)|(^$)"
     },
     "VerifyMode":{
       "type":"string",

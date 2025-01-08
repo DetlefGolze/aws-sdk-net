@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Translate.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.Translate.Model
         /// Gets and sets the property DisplayLanguageCode. 
         /// <para>
         /// The language code for the language to use to display the language names in the response.
-        /// The language code is <code>en</code> by default. 
+        /// The language code is <c>en</c> by default. 
         /// </para>
         /// </summary>
         public DisplayLanguageCode DisplayLanguageCode

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecretsManager.Model
 {
     /// <summary>
@@ -39,13 +40,13 @@ namespace Amazon.SecretsManager.Model
     /// 
     ///  
     /// <para>
-    /// When rotation is successful, the <code>AWSPENDING</code> staging label might be attached
-    /// to the same version as the <code>AWSCURRENT</code> version, or it might not be attached
-    /// to any version. If the <code>AWSPENDING</code> staging label is present but not attached
-    /// to the same version as <code>AWSCURRENT</code>, then any later invocation of <code>RotateSecret</code>
+    /// When rotation is successful, the <c>AWSPENDING</c> staging label might be attached
+    /// to the same version as the <c>AWSCURRENT</c> version, or it might not be attached
+    /// to any version. If the <c>AWSPENDING</c> staging label is present but not attached
+    /// to the same version as <c>AWSCURRENT</c>, then any later invocation of <c>RotateSecret</c>
     /// assumes that a previous rotation request is still in progress and returns an error.
-    /// When rotation is unsuccessful, the <code>AWSPENDING</code> staging label might be
-    /// attached to an empty secret version. For more information, see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot_rotation.html">Troubleshoot
+    /// When rotation is unsuccessful, the <c>AWSPENDING</c> staging label might be attached
+    /// to an empty secret version. For more information, see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot_rotation.html">Troubleshoot
     /// rotation</a> in the <i>Secrets Manager User Guide</i>.
     /// </para>
     ///  
@@ -57,10 +58,10 @@ namespace Amazon.SecretsManager.Model
     /// </para>
     ///  
     /// <para>
-    ///  <b>Required permissions: </b> <code>secretsmanager:RotateSecret</code>. For more
-    /// information, see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">
+    ///  <b>Required permissions: </b> <c>secretsmanager:RotateSecret</c>. For more information,
+    /// see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">
     /// IAM policy actions for Secrets Manager</a> and <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
-    /// and access control in Secrets Manager</a>. You also need <code>lambda:InvokeFunction</code>
+    /// and access control in Secrets Manager</a>. You also need <c>lambda:InvokeFunction</c>
     /// permissions on the rotation function. For more information, see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets-required-permissions-function.html">
     /// Permissions for rotation</a>.
     /// </para>
@@ -76,26 +77,28 @@ namespace Amazon.SecretsManager.Model
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
-        /// A unique identifier for the new version of the secret that helps ensure idempotency.
-        /// Secrets Manager uses this value to prevent the accidental creation of duplicate versions
-        /// if there are failures and retries during rotation. This value becomes the <code>VersionId</code>
-        /// of the new version.
+        /// A unique identifier for the new version of the secret. You only need to specify this
+        /// value if you implement your own retry logic and you want to ensure that Secrets Manager
+        /// doesn't attempt to create a secret version twice.
         /// </para>
-        ///  
+        ///  <note> 
         /// <para>
-        /// If you use the Amazon Web Services CLI or one of the Amazon Web Services SDK to call
+        /// If you use the Amazon Web Services CLI or one of the Amazon Web Services SDKs to call
         /// this operation, then you can leave this parameter empty. The CLI or SDK generates
-        /// a random UUID for you and includes that in the request for this parameter. If you
-        /// don't use the SDK and instead generate a raw HTTP request to the Secrets Manager service
-        /// endpoint, then you must generate a <code>ClientRequestToken</code> yourself for new
-        /// versions and include that value in the request.
+        /// a random UUID for you and includes it as the value for this parameter in the request.
+        /// 
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// If you generate a raw HTTP request to the Secrets Manager service endpoint, then you
+        /// must generate a <c>ClientRequestToken</c> and include it in the request.
         /// </para>
         ///  
         /// <para>
-        /// You only need to specify this value if you implement your own retry logic and you
-        /// want to ensure that Secrets Manager doesn't attempt to create a secret version twice.
-        /// We recommend that you generate a <a href="https://wikipedia.org/wiki/Universally_unique_identifier">UUID-type</a>
-        /// value to ensure uniqueness within the specified secret. 
+        /// This value helps ensure idempotency. Secrets Manager uses this value to prevent the
+        /// accidental creation of duplicate versions if there are failures and retries during
+        /// a rotation. We recommend that you generate a <a href="https://wikipedia.org/wiki/Universally_unique_identifier">UUID-type</a>
+        /// value to ensure uniqueness of your versions within the specified secret. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=32, Max=64)]
@@ -121,9 +124,9 @@ namespace Amazon.SecretsManager.Model
         /// <para>
         /// For secrets that use a Lambda rotation function to rotate, if you don't immediately
         /// rotate the secret, Secrets Manager tests the rotation configuration by running the
-        /// <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_how.html">
-        /// <code>testSecret</code> step</a> of the Lambda rotation function. The test creates
-        /// an <code>AWSPENDING</code> version of the secret and then removes it.
+        /// <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_lambda-functions.html#rotate-secrets_lambda-functions-code">
+        /// <c>testSecret</c> step</a> of the Lambda rotation function. The test creates an <c>AWSPENDING</c>
+        /// version of the secret and then removes it.
         /// </para>
         ///  
         /// <para>

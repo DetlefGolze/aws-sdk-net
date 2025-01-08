@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -195,6 +196,21 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                             {
                                 request.Parameters.Add("LaunchSpecification" + "." + "NetworkInterface" + "." + publicRequestLaunchSpecificationlistValueIndex + "." + "AssociatePublicIpAddress", StringUtils.FromBool(publicRequestLaunchSpecificationlistValue.AssociatePublicIpAddress));
                             }
+                            if(publicRequestLaunchSpecificationlistValue.IsSetConnectionTrackingSpecification())
+                            {
+                                if(publicRequestLaunchSpecificationlistValue.ConnectionTrackingSpecification.IsSetTcpEstablishedTimeout())
+                                {
+                                    request.Parameters.Add("LaunchSpecification" + "." + "NetworkInterface" + "." + publicRequestLaunchSpecificationlistValueIndex + "." + "ConnectionTrackingSpecification" + "." + "TcpEstablishedTimeout", StringUtils.FromInt(publicRequestLaunchSpecificationlistValue.ConnectionTrackingSpecification.TcpEstablishedTimeout));
+                                }
+                                if(publicRequestLaunchSpecificationlistValue.ConnectionTrackingSpecification.IsSetUdpStreamTimeout())
+                                {
+                                    request.Parameters.Add("LaunchSpecification" + "." + "NetworkInterface" + "." + publicRequestLaunchSpecificationlistValueIndex + "." + "ConnectionTrackingSpecification" + "." + "UdpStreamTimeout", StringUtils.FromInt(publicRequestLaunchSpecificationlistValue.ConnectionTrackingSpecification.UdpStreamTimeout));
+                                }
+                                if(publicRequestLaunchSpecificationlistValue.ConnectionTrackingSpecification.IsSetUdpTimeout())
+                                {
+                                    request.Parameters.Add("LaunchSpecification" + "." + "NetworkInterface" + "." + publicRequestLaunchSpecificationlistValueIndex + "." + "ConnectionTrackingSpecification" + "." + "UdpTimeout", StringUtils.FromInt(publicRequestLaunchSpecificationlistValue.ConnectionTrackingSpecification.UdpTimeout));
+                                }
+                            }
                             if(publicRequestLaunchSpecificationlistValue.IsSetDeleteOnTermination())
                             {
                                 request.Parameters.Add("LaunchSpecification" + "." + "NetworkInterface" + "." + publicRequestLaunchSpecificationlistValueIndex + "." + "DeleteOnTermination", StringUtils.FromBool(publicRequestLaunchSpecificationlistValue.DeleteOnTermination));
@@ -206,6 +222,20 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                             if(publicRequestLaunchSpecificationlistValue.IsSetDeviceIndex())
                             {
                                 request.Parameters.Add("LaunchSpecification" + "." + "NetworkInterface" + "." + publicRequestLaunchSpecificationlistValueIndex + "." + "DeviceIndex", StringUtils.FromInt(publicRequestLaunchSpecificationlistValue.DeviceIndex));
+                            }
+                            if(publicRequestLaunchSpecificationlistValue.IsSetEnaSrdSpecification())
+                            {
+                                if(publicRequestLaunchSpecificationlistValue.EnaSrdSpecification.IsSetEnaSrdEnabled())
+                                {
+                                    request.Parameters.Add("LaunchSpecification" + "." + "NetworkInterface" + "." + publicRequestLaunchSpecificationlistValueIndex + "." + "EnaSrdSpecification" + "." + "EnaSrdEnabled", StringUtils.FromBool(publicRequestLaunchSpecificationlistValue.EnaSrdSpecification.EnaSrdEnabled));
+                                }
+                                if(publicRequestLaunchSpecificationlistValue.EnaSrdSpecification.IsSetEnaSrdUdpSpecification())
+                                {
+                                    if(publicRequestLaunchSpecificationlistValue.EnaSrdSpecification.EnaSrdUdpSpecification.IsSetEnaSrdUdpEnabled())
+                                    {
+                                        request.Parameters.Add("LaunchSpecification" + "." + "NetworkInterface" + "." + publicRequestLaunchSpecificationlistValueIndex + "." + "EnaSrdSpecification" + "." + "EnaSrdUdpSpecification" + "." + "EnaSrdUdpEnabled", StringUtils.FromBool(publicRequestLaunchSpecificationlistValue.EnaSrdSpecification.EnaSrdUdpSpecification.EnaSrdUdpEnabled));
+                                    }
+                                }
                             }
                             if(publicRequestLaunchSpecificationlistValue.IsSetGroups())
                             {
@@ -381,11 +411,11 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                 }
                 if(publicRequest.IsSetValidFromUtc())
                 {
-                    request.Parameters.Add("ValidFrom", StringUtils.FromDateTimeToISO8601(publicRequest.ValidFromUtc));
+                    request.Parameters.Add("ValidFrom", StringUtils.FromDateTimeToISO8601WithOptionalMs(publicRequest.ValidFromUtc));
                 }
                 if(publicRequest.IsSetValidUntilUtc())
                 {
-                    request.Parameters.Add("ValidUntil", StringUtils.FromDateTimeToISO8601(publicRequest.ValidUntilUtc));
+                    request.Parameters.Add("ValidUntil", StringUtils.FromDateTimeToISO8601WithOptionalMs(publicRequest.ValidUntilUtc));
                 }
             }
             return request;

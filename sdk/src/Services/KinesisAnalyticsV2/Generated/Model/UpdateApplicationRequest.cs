@@ -26,34 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalyticsV2.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateApplication operation.
-    /// Updates an existing Kinesis Data Analytics application. Using this operation, you
-    /// can update application code, input configuration, and output configuration. 
+    /// Updates an existing Managed Service for Apache Flink application. Using this operation,
+    /// you can update application code, input configuration, and output configuration. 
     /// 
     ///  
     /// <para>
-    /// Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you
-    /// update your application. 
+    /// Managed Service for Apache Flink updates the <c>ApplicationVersionId</c> each time
+    /// you update your application. 
     /// </para>
-    ///  <note> 
-    /// <para>
-    /// You cannot update the <code>RuntimeEnvironment</code> of an existing application.
-    /// If you need to update an application's <code>RuntimeEnvironment</code>, you must delete
-    /// the application and create it again.
-    /// </para>
-    ///  </note>
     /// </summary>
     public partial class UpdateApplicationRequest : AmazonKinesisAnalyticsV2Request
     {
         private ApplicationConfigurationUpdate _applicationConfigurationUpdate;
         private string _applicationName;
-        private List<CloudWatchLoggingOptionUpdate> _cloudWatchLoggingOptionUpdates = new List<CloudWatchLoggingOptionUpdate>();
+        private List<CloudWatchLoggingOptionUpdate> _cloudWatchLoggingOptionUpdates = AWSConfigs.InitializeCollections ? new List<CloudWatchLoggingOptionUpdate>() : null;
         private string _conditionalToken;
         private long? _currentApplicationVersionId;
         private RunConfigurationUpdate _runConfigurationUpdate;
+        private RuntimeEnvironment _runtimeEnvironmentUpdate;
         private string _serviceExecutionRoleUpdate;
 
         /// <summary>
@@ -110,17 +105,17 @@ namespace Amazon.KinesisAnalyticsV2.Model
         // Check to see if CloudWatchLoggingOptionUpdates property is set
         internal bool IsSetCloudWatchLoggingOptionUpdates()
         {
-            return this._cloudWatchLoggingOptionUpdates != null && this._cloudWatchLoggingOptionUpdates.Count > 0; 
+            return this._cloudWatchLoggingOptionUpdates != null && (this._cloudWatchLoggingOptionUpdates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ConditionalToken. 
         /// <para>
         /// A value you use to implement strong concurrency for application updates. You must
-        /// provide the <code>CurrentApplicationVersionId</code> or the <code>ConditionalToken</code>.
-        /// You get the application's current <code>ConditionalToken</code> using <a>DescribeApplication</a>.
-        /// For better concurrency support, use the <code>ConditionalToken</code> parameter instead
-        /// of <code>CurrentApplicationVersionId</code>.
+        /// provide the <c>CurrentApplicationVersionId</c> or the <c>ConditionalToken</c>. You
+        /// get the application's current <c>ConditionalToken</c> using <a>DescribeApplication</a>.
+        /// For better concurrency support, use the <c>ConditionalToken</c> parameter instead
+        /// of <c>CurrentApplicationVersionId</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=512)]
@@ -139,10 +134,10 @@ namespace Amazon.KinesisAnalyticsV2.Model
         /// <summary>
         /// Gets and sets the property CurrentApplicationVersionId. 
         /// <para>
-        /// The current application version ID. You must provide the <code>CurrentApplicationVersionId</code>
-        /// or the <code>ConditionalToken</code>.You can retrieve the application version ID using
-        /// <a>DescribeApplication</a>. For better concurrency support, use the <code>ConditionalToken</code>
-        /// parameter instead of <code>CurrentApplicationVersionId</code>.
+        /// The current application version ID. You must provide the <c>CurrentApplicationVersionId</c>
+        /// or the <c>ConditionalToken</c>.You can retrieve the application version ID using <a>DescribeApplication</a>.
+        /// For better concurrency support, use the <c>ConditionalToken</c> parameter instead
+        /// of <c>CurrentApplicationVersionId</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=999999999)]
@@ -174,6 +169,35 @@ namespace Amazon.KinesisAnalyticsV2.Model
         internal bool IsSetRunConfigurationUpdate()
         {
             return this._runConfigurationUpdate != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RuntimeEnvironmentUpdate. 
+        /// <para>
+        /// Updates the Managed Service for Apache Flink runtime environment used to run your
+        /// code. To avoid issues you must:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Ensure your new jar and dependencies are compatible with the new runtime selected.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Ensure your new code's state is compatible with the snapshot from which your application
+        /// will start
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public RuntimeEnvironment RuntimeEnvironmentUpdate
+        {
+            get { return this._runtimeEnvironmentUpdate; }
+            set { this._runtimeEnvironmentUpdate = value; }
+        }
+
+        // Check to see if RuntimeEnvironmentUpdate property is set
+        internal bool IsSetRuntimeEnvironmentUpdate()
+        {
+            return this._runtimeEnvironmentUpdate != null;
         }
 
         /// <summary>

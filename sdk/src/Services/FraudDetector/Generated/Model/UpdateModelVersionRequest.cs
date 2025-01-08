@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FraudDetector.Model
 {
     /// <summary>
@@ -43,13 +44,13 @@ namespace Amazon.FraudDetector.Model
         private string _majorVersionNumber;
         private string _modelId;
         private ModelTypeEnum _modelType;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ExternalEventsDetail. 
         /// <para>
         /// The details of the external events data used for training the model version. Required
-        /// if <code>trainingDataSource</code> is <code>EXTERNAL_EVENTS</code>.
+        /// if <c>trainingDataSource</c> is <c>EXTERNAL_EVENTS</c>.
         /// </para>
         /// </summary>
         public ExternalEventsDetail ExternalEventsDetail
@@ -68,7 +69,7 @@ namespace Amazon.FraudDetector.Model
         /// Gets and sets the property IngestedEventsDetail. 
         /// <para>
         /// The details of the ingested event used for training the model version. Required if
-        /// your <code>trainingDataSource</code> is <code>INGESTED_EVENTS</code>.
+        /// your <c>trainingDataSource</c> is <c>INGESTED_EVENTS</c>.
         /// </para>
         /// </summary>
         public IngestedEventsDetail IngestedEventsDetail
@@ -156,7 +157,7 @@ namespace Amazon.FraudDetector.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

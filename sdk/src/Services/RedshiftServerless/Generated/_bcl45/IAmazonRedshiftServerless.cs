@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.RedshiftServerless.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.RedshiftServerless
 {
     /// <summary>
-    /// Interface for accessing RedshiftServerless
+    /// <para>Interface for accessing RedshiftServerless</para>
     ///
     /// This is an interface reference for Amazon Redshift Serverless. It contains documentation
     /// for one of the programming or command line interfaces you can use to manage Amazon
@@ -47,7 +48,7 @@ namespace Amazon.RedshiftServerless
     ///  
     /// <para>
     ///  To learn more about Amazon Redshift Serverless, see <a href="https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-whatis.html">What
-    /// is Amazon Redshift Serverless</a>. 
+    /// is Amazon Redshift Serverless?</a>.
     /// </para>
     /// </summary>
     public partial interface IAmazonRedshiftServerless : IAmazonService, IDisposable
@@ -124,6 +125,70 @@ namespace Amazon.RedshiftServerless
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ConvertRecoveryPointToSnapshot">REST API Reference for ConvertRecoveryPointToSnapshot Operation</seealso>
         Task<ConvertRecoveryPointToSnapshotResponse> ConvertRecoveryPointToSnapshotAsync(ConvertRecoveryPointToSnapshotRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  CreateCustomDomainAssociation
+
+
+        /// <summary>
+        /// Creates a custom domain association for Amazon Redshift Serverless.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateCustomDomainAssociation service method.</param>
+        /// 
+        /// <returns>The response from the CreateCustomDomainAssociation service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/CreateCustomDomainAssociation">REST API Reference for CreateCustomDomainAssociation Operation</seealso>
+        CreateCustomDomainAssociationResponse CreateCustomDomainAssociation(CreateCustomDomainAssociationRequest request);
+
+
+
+        /// <summary>
+        /// Creates a custom domain association for Amazon Redshift Serverless.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateCustomDomainAssociation service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateCustomDomainAssociation service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/CreateCustomDomainAssociation">REST API Reference for CreateCustomDomainAssociation Operation</seealso>
+        Task<CreateCustomDomainAssociationResponse> CreateCustomDomainAssociationAsync(CreateCustomDomainAssociationRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -243,6 +308,62 @@ namespace Amazon.RedshiftServerless
 
         #endregion
         
+        #region  CreateScheduledAction
+
+
+        /// <summary>
+        /// Creates a scheduled action. A scheduled action contains a schedule and an Amazon Redshift
+        /// API action. For example, you can create a schedule of when to run the <c>CreateSnapshot</c>
+        /// API operation.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateScheduledAction service method.</param>
+        /// 
+        /// <returns>The response from the CreateScheduledAction service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/CreateScheduledAction">REST API Reference for CreateScheduledAction Operation</seealso>
+        CreateScheduledActionResponse CreateScheduledAction(CreateScheduledActionRequest request);
+
+
+
+        /// <summary>
+        /// Creates a scheduled action. A scheduled action contains a schedule and an Amazon Redshift
+        /// API action. For example, you can create a schedule of when to run the <c>CreateSnapshot</c>
+        /// API operation.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateScheduledAction service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateScheduledAction service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/CreateScheduledAction">REST API Reference for CreateScheduledAction Operation</seealso>
+        Task<CreateScheduledActionResponse> CreateScheduledActionAsync(CreateScheduledActionRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  CreateSnapshot
 
 
@@ -311,6 +432,72 @@ namespace Amazon.RedshiftServerless
 
         #endregion
         
+        #region  CreateSnapshotCopyConfiguration
+
+
+        /// <summary>
+        /// Creates a snapshot copy configuration that lets you copy snapshots to another Amazon
+        /// Web Services Region.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateSnapshotCopyConfiguration service method.</param>
+        /// 
+        /// <returns>The response from the CreateSnapshotCopyConfiguration service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ServiceQuotaExceededException">
+        /// The service limit was exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/CreateSnapshotCopyConfiguration">REST API Reference for CreateSnapshotCopyConfiguration Operation</seealso>
+        CreateSnapshotCopyConfigurationResponse CreateSnapshotCopyConfiguration(CreateSnapshotCopyConfigurationRequest request);
+
+
+
+        /// <summary>
+        /// Creates a snapshot copy configuration that lets you copy snapshots to another Amazon
+        /// Web Services Region.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateSnapshotCopyConfiguration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateSnapshotCopyConfiguration service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ServiceQuotaExceededException">
+        /// The service limit was exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/CreateSnapshotCopyConfiguration">REST API Reference for CreateSnapshotCopyConfiguration Operation</seealso>
+        Task<CreateSnapshotCopyConfigurationResponse> CreateSnapshotCopyConfigurationAsync(CreateSnapshotCopyConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  CreateUsageLimit
 
 
@@ -376,6 +563,31 @@ namespace Amazon.RedshiftServerless
 
         /// <summary>
         /// Creates an workgroup in Amazon Redshift Serverless.
+        /// 
+        ///  
+        /// <para>
+        /// VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that
+        /// you own in a Region from reaching or being reached from the internet through internet
+        /// gateways and egress-only internet gateways. If a workgroup is in an account with VPC
+        /// BPA turned on, the following capabilities are blocked: 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Creating a public access workgroup
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Modifying a private workgroup to public
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Adding a subnet with VPC BPA turned on to the workgroup when the workgroup is public
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information about VPC BPA, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/security-vpc-bpa.html">Block
+        /// public access to VPCs and subnets</a> in the <i>Amazon VPC User Guide</i>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateWorkgroup service method.</param>
         /// 
@@ -388,6 +600,10 @@ namespace Amazon.RedshiftServerless
         /// </exception>
         /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
         /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.Ipv6CidrBlockNotFoundException">
+        /// There are no subnets in your VPC with associated IPv6 CIDR blocks. To use dual-stack
+        /// mode, associate an IPv6 CIDR block with each subnet in your VPC.
         /// </exception>
         /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
         /// The resource could not be found.
@@ -405,6 +621,31 @@ namespace Amazon.RedshiftServerless
 
         /// <summary>
         /// Creates an workgroup in Amazon Redshift Serverless.
+        /// 
+        ///  
+        /// <para>
+        /// VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that
+        /// you own in a Region from reaching or being reached from the internet through internet
+        /// gateways and egress-only internet gateways. If a workgroup is in an account with VPC
+        /// BPA turned on, the following capabilities are blocked: 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Creating a public access workgroup
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Modifying a private workgroup to public
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Adding a subnet with VPC BPA turned on to the workgroup when the workgroup is public
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information about VPC BPA, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/security-vpc-bpa.html">Block
+        /// public access to VPCs and subnets</a> in the <i>Amazon VPC User Guide</i>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateWorkgroup service method.</param>
         /// <param name="cancellationToken">
@@ -421,6 +662,10 @@ namespace Amazon.RedshiftServerless
         /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
         /// The request processing has failed because of an unknown error, exception or failure.
         /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.Ipv6CidrBlockNotFoundException">
+        /// There are no subnets in your VPC with associated IPv6 CIDR blocks. To use dual-stack
+        /// mode, associate an IPv6 CIDR block with each subnet in your VPC.
+        /// </exception>
         /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
         /// The resource could not be found.
         /// </exception>
@@ -432,6 +677,70 @@ namespace Amazon.RedshiftServerless
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/CreateWorkgroup">REST API Reference for CreateWorkgroup Operation</seealso>
         Task<CreateWorkgroupResponse> CreateWorkgroupAsync(CreateWorkgroupRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DeleteCustomDomainAssociation
+
+
+        /// <summary>
+        /// Deletes a custom domain association for Amazon Redshift Serverless.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteCustomDomainAssociation service method.</param>
+        /// 
+        /// <returns>The response from the DeleteCustomDomainAssociation service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteCustomDomainAssociation">REST API Reference for DeleteCustomDomainAssociation Operation</seealso>
+        DeleteCustomDomainAssociationResponse DeleteCustomDomainAssociation(DeleteCustomDomainAssociationRequest request);
+
+
+
+        /// <summary>
+        /// Deletes a custom domain association for Amazon Redshift Serverless.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteCustomDomainAssociation service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteCustomDomainAssociation service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteCustomDomainAssociation">REST API Reference for DeleteCustomDomainAssociation Operation</seealso>
+        Task<DeleteCustomDomainAssociationResponse> DeleteCustomDomainAssociationAsync(DeleteCustomDomainAssociationRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -587,6 +896,52 @@ namespace Amazon.RedshiftServerless
 
         #endregion
         
+        #region  DeleteScheduledAction
+
+
+        /// <summary>
+        /// Deletes a scheduled action.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteScheduledAction service method.</param>
+        /// 
+        /// <returns>The response from the DeleteScheduledAction service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteScheduledAction">REST API Reference for DeleteScheduledAction Operation</seealso>
+        DeleteScheduledActionResponse DeleteScheduledAction(DeleteScheduledActionRequest request);
+
+
+
+        /// <summary>
+        /// Deletes a scheduled action.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteScheduledAction service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteScheduledAction service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteScheduledAction">REST API Reference for DeleteScheduledAction Operation</seealso>
+        Task<DeleteScheduledActionResponse> DeleteScheduledActionAsync(DeleteScheduledActionRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  DeleteSnapshot
 
 
@@ -636,6 +991,64 @@ namespace Amazon.RedshiftServerless
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteSnapshot">REST API Reference for DeleteSnapshot Operation</seealso>
         Task<DeleteSnapshotResponse> DeleteSnapshotAsync(DeleteSnapshotRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DeleteSnapshotCopyConfiguration
+
+
+        /// <summary>
+        /// Deletes a snapshot copy configuration
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteSnapshotCopyConfiguration service method.</param>
+        /// 
+        /// <returns>The response from the DeleteSnapshotCopyConfiguration service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteSnapshotCopyConfiguration">REST API Reference for DeleteSnapshotCopyConfiguration Operation</seealso>
+        DeleteSnapshotCopyConfigurationResponse DeleteSnapshotCopyConfiguration(DeleteSnapshotCopyConfigurationRequest request);
+
+
+
+        /// <summary>
+        /// Deletes a snapshot copy configuration
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteSnapshotCopyConfiguration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteSnapshotCopyConfiguration service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteSnapshotCopyConfiguration">REST API Reference for DeleteSnapshotCopyConfiguration Operation</seealso>
+        Task<DeleteSnapshotCopyConfigurationResponse> DeleteSnapshotCopyConfigurationAsync(DeleteSnapshotCopyConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -755,11 +1168,16 @@ namespace Amazon.RedshiftServerless
         /// By default, the temporary credentials expire in 900 seconds. You can optionally specify
         /// a duration between 900 seconds (15 minutes) and 3600 seconds (60 minutes).
         /// </para>
-        ///  <pre><code> &lt;p&gt;The Identity and Access Management (IAM) user or role that runs
-        /// GetCredentials must have an IAM policy attached that allows access to all necessary
-        /// actions and resources.&lt;/p&gt; &lt;p&gt;If the &lt;code&gt;DbName&lt;/code&gt; parameter
-        /// is specified, the IAM policy must allow access to the resource dbname for the specified
-        /// database name.&lt;/p&gt; </code></pre>
+        ///  
+        /// <para>
+        /// The Identity and Access Management (IAM) user or role that runs GetCredentials must
+        /// have an IAM policy attached that allows access to all necessary actions and resources.
+        /// </para>
+        ///  
+        /// <para>
+        /// If the <c>DbName</c> parameter is specified, the IAM policy must allow access to the
+        /// resource dbname for the specified database name.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetCredentials service method.</param>
         /// 
@@ -787,11 +1205,16 @@ namespace Amazon.RedshiftServerless
         /// By default, the temporary credentials expire in 900 seconds. You can optionally specify
         /// a duration between 900 seconds (15 minutes) and 3600 seconds (60 minutes).
         /// </para>
-        ///  <pre><code> &lt;p&gt;The Identity and Access Management (IAM) user or role that runs
-        /// GetCredentials must have an IAM policy attached that allows access to all necessary
-        /// actions and resources.&lt;/p&gt; &lt;p&gt;If the &lt;code&gt;DbName&lt;/code&gt; parameter
-        /// is specified, the IAM policy must allow access to the resource dbname for the specified
-        /// database name.&lt;/p&gt; </code></pre>
+        ///  
+        /// <para>
+        /// The Identity and Access Management (IAM) user or role that runs GetCredentials must
+        /// have an IAM policy attached that allows access to all necessary actions and resources.
+        /// </para>
+        ///  
+        /// <para>
+        /// If the <c>DbName</c> parameter is specified, the IAM policy must allow access to the
+        /// resource dbname for the specified database name.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetCredentials service method.</param>
         /// <param name="cancellationToken">
@@ -810,6 +1233,70 @@ namespace Amazon.RedshiftServerless
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetCredentials">REST API Reference for GetCredentials Operation</seealso>
         Task<GetCredentialsResponse> GetCredentialsAsync(GetCredentialsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  GetCustomDomainAssociation
+
+
+        /// <summary>
+        /// Gets information about a specific custom domain association.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetCustomDomainAssociation service method.</param>
+        /// 
+        /// <returns>The response from the GetCustomDomainAssociation service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetCustomDomainAssociation">REST API Reference for GetCustomDomainAssociation Operation</seealso>
+        GetCustomDomainAssociationResponse GetCustomDomainAssociation(GetCustomDomainAssociationRequest request);
+
+
+
+        /// <summary>
+        /// Gets information about a specific custom domain association.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetCustomDomainAssociation service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetCustomDomainAssociation service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetCustomDomainAssociation">REST API Reference for GetCustomDomainAssociation Operation</seealso>
+        Task<GetCustomDomainAssociationResponse> GetCustomDomainAssociationAsync(GetCustomDomainAssociationRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -1009,6 +1496,52 @@ namespace Amazon.RedshiftServerless
 
         #endregion
         
+        #region  GetScheduledAction
+
+
+        /// <summary>
+        /// Returns information about a scheduled action.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetScheduledAction service method.</param>
+        /// 
+        /// <returns>The response from the GetScheduledAction service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetScheduledAction">REST API Reference for GetScheduledAction Operation</seealso>
+        GetScheduledActionResponse GetScheduledAction(GetScheduledActionRequest request);
+
+
+
+        /// <summary>
+        /// Returns information about a scheduled action.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetScheduledAction service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetScheduledAction service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetScheduledAction">REST API Reference for GetScheduledAction Operation</seealso>
+        Task<GetScheduledActionResponse> GetScheduledActionAsync(GetScheduledActionRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  GetSnapshot
 
 
@@ -1059,7 +1592,7 @@ namespace Amazon.RedshiftServerless
 
 
         /// <summary>
-        /// Returns information about a <code>TableRestoreStatus</code> object.
+        /// Returns information about a <c>TableRestoreStatus</c> object.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetTableRestoreStatus service method.</param>
         /// 
@@ -1076,7 +1609,7 @@ namespace Amazon.RedshiftServerless
 
 
         /// <summary>
-        /// Returns information about a <code>TableRestoreStatus</code> object.
+        /// Returns information about a <c>TableRestoreStatus</c> object.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetTableRestoreStatus service method.</param>
         /// <param name="cancellationToken">
@@ -1193,11 +1726,69 @@ namespace Amazon.RedshiftServerless
 
         #endregion
         
+        #region  ListCustomDomainAssociations
+
+
+        /// <summary>
+        /// Lists custom domain associations for Amazon Redshift Serverless.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListCustomDomainAssociations service method.</param>
+        /// 
+        /// <returns>The response from the ListCustomDomainAssociations service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InvalidPaginationException">
+        /// The provided pagination token is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListCustomDomainAssociations">REST API Reference for ListCustomDomainAssociations Operation</seealso>
+        ListCustomDomainAssociationsResponse ListCustomDomainAssociations(ListCustomDomainAssociationsRequest request);
+
+
+
+        /// <summary>
+        /// Lists custom domain associations for Amazon Redshift Serverless.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListCustomDomainAssociations service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListCustomDomainAssociations service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InvalidPaginationException">
+        /// The provided pagination token is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListCustomDomainAssociations">REST API Reference for ListCustomDomainAssociations Operation</seealso>
+        Task<ListCustomDomainAssociationsResponse> ListCustomDomainAssociationsAsync(ListCustomDomainAssociationsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  ListEndpointAccess
 
 
         /// <summary>
-        /// Returns an array of <code>EndpointAccess</code> objects and relevant information.
+        /// Returns an array of <c>EndpointAccess</c> objects and relevant information.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListEndpointAccess service method.</param>
         /// 
@@ -1220,7 +1811,7 @@ namespace Amazon.RedshiftServerless
 
 
         /// <summary>
-        /// Returns an array of <code>EndpointAccess</code> objects and relevant information.
+        /// Returns an array of <c>EndpointAccess</c> objects and relevant information.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListEndpointAccess service method.</param>
         /// <param name="cancellationToken">
@@ -1242,6 +1833,46 @@ namespace Amazon.RedshiftServerless
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListEndpointAccess">REST API Reference for ListEndpointAccess Operation</seealso>
         Task<ListEndpointAccessResponse> ListEndpointAccessAsync(ListEndpointAccessRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListManagedWorkgroups
+
+
+        /// <summary>
+        /// Returns information about a list of specified managed workgroups in your account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListManagedWorkgroups service method.</param>
+        /// 
+        /// <returns>The response from the ListManagedWorkgroups service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListManagedWorkgroups">REST API Reference for ListManagedWorkgroups Operation</seealso>
+        ListManagedWorkgroupsResponse ListManagedWorkgroups(ListManagedWorkgroupsRequest request);
+
+
+
+        /// <summary>
+        /// Returns information about a list of specified managed workgroups in your account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListManagedWorkgroups service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListManagedWorkgroups service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListManagedWorkgroups">REST API Reference for ListManagedWorkgroups Operation</seealso>
+        Task<ListManagedWorkgroupsResponse> ListManagedWorkgroupsAsync(ListManagedWorkgroupsRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -1325,6 +1956,118 @@ namespace Amazon.RedshiftServerless
 
         #endregion
         
+        #region  ListScheduledActions
+
+
+        /// <summary>
+        /// Returns a list of scheduled actions. You can use the flags to filter the list of returned
+        /// scheduled actions.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListScheduledActions service method.</param>
+        /// 
+        /// <returns>The response from the ListScheduledActions service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InvalidPaginationException">
+        /// The provided pagination token is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListScheduledActions">REST API Reference for ListScheduledActions Operation</seealso>
+        ListScheduledActionsResponse ListScheduledActions(ListScheduledActionsRequest request);
+
+
+
+        /// <summary>
+        /// Returns a list of scheduled actions. You can use the flags to filter the list of returned
+        /// scheduled actions.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListScheduledActions service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListScheduledActions service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InvalidPaginationException">
+        /// The provided pagination token is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListScheduledActions">REST API Reference for ListScheduledActions Operation</seealso>
+        Task<ListScheduledActionsResponse> ListScheduledActionsAsync(ListScheduledActionsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListSnapshotCopyConfigurations
+
+
+        /// <summary>
+        /// Returns a list of snapshot copy configurations.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListSnapshotCopyConfigurations service method.</param>
+        /// 
+        /// <returns>The response from the ListSnapshotCopyConfigurations service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InvalidPaginationException">
+        /// The provided pagination token is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListSnapshotCopyConfigurations">REST API Reference for ListSnapshotCopyConfigurations Operation</seealso>
+        ListSnapshotCopyConfigurationsResponse ListSnapshotCopyConfigurations(ListSnapshotCopyConfigurationsRequest request);
+
+
+
+        /// <summary>
+        /// Returns a list of snapshot copy configurations.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListSnapshotCopyConfigurations service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListSnapshotCopyConfigurations service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InvalidPaginationException">
+        /// The provided pagination token is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListSnapshotCopyConfigurations">REST API Reference for ListSnapshotCopyConfigurations Operation</seealso>
+        Task<ListSnapshotCopyConfigurationsResponse> ListSnapshotCopyConfigurationsAsync(ListSnapshotCopyConfigurationsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  ListSnapshots
 
 
@@ -1375,7 +2118,7 @@ namespace Amazon.RedshiftServerless
 
 
         /// <summary>
-        /// Returns information about an array of <code>TableRestoreStatus</code> objects.
+        /// Returns information about an array of <c>TableRestoreStatus</c> objects.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTableRestoreStatus service method.</param>
         /// 
@@ -1395,7 +2138,7 @@ namespace Amazon.RedshiftServerless
 
 
         /// <summary>
-        /// Returns information about an array of <code>TableRestoreStatus</code> objects.
+        /// Returns information about an array of <c>TableRestoreStatus</c> objects.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTableRestoreStatus service method.</param>
         /// <param name="cancellationToken">
@@ -1737,6 +2480,60 @@ namespace Amazon.RedshiftServerless
 
         #endregion
         
+        #region  RestoreTableFromRecoveryPoint
+
+
+        /// <summary>
+        /// Restores a table from a recovery point to your Amazon Redshift Serverless instance.
+        /// You can't use this operation to restore tables with interleaved sort keys.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the RestoreTableFromRecoveryPoint service method.</param>
+        /// 
+        /// <returns>The response from the RestoreTableFromRecoveryPoint service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/RestoreTableFromRecoveryPoint">REST API Reference for RestoreTableFromRecoveryPoint Operation</seealso>
+        RestoreTableFromRecoveryPointResponse RestoreTableFromRecoveryPoint(RestoreTableFromRecoveryPointRequest request);
+
+
+
+        /// <summary>
+        /// Restores a table from a recovery point to your Amazon Redshift Serverless instance.
+        /// You can't use this operation to restore tables with interleaved sort keys.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the RestoreTableFromRecoveryPoint service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the RestoreTableFromRecoveryPoint service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/RestoreTableFromRecoveryPoint">REST API Reference for RestoreTableFromRecoveryPoint Operation</seealso>
+        Task<RestoreTableFromRecoveryPointResponse> RestoreTableFromRecoveryPointAsync(RestoreTableFromRecoveryPointRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  RestoreTableFromSnapshot
 
 
@@ -1903,6 +2700,70 @@ namespace Amazon.RedshiftServerless
 
         #endregion
         
+        #region  UpdateCustomDomainAssociation
+
+
+        /// <summary>
+        /// Updates an Amazon Redshift Serverless certificate associated with a custom domain.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateCustomDomainAssociation service method.</param>
+        /// 
+        /// <returns>The response from the UpdateCustomDomainAssociation service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UpdateCustomDomainAssociation">REST API Reference for UpdateCustomDomainAssociation Operation</seealso>
+        UpdateCustomDomainAssociationResponse UpdateCustomDomainAssociation(UpdateCustomDomainAssociationRequest request);
+
+
+
+        /// <summary>
+        /// Updates an Amazon Redshift Serverless certificate associated with a custom domain.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateCustomDomainAssociation service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateCustomDomainAssociation service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UpdateCustomDomainAssociation">REST API Reference for UpdateCustomDomainAssociation Operation</seealso>
+        Task<UpdateCustomDomainAssociationResponse> UpdateCustomDomainAssociationAsync(UpdateCustomDomainAssociationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  UpdateEndpointAccess
 
 
@@ -1966,9 +2827,9 @@ namespace Amazon.RedshiftServerless
 
         /// <summary>
         /// Updates a namespace with the specified settings. Unless required, you can't update
-        /// multiple parameters in one request. For example, you must specify both <code>adminUsername</code>
-        /// and <code>adminUserPassword</code> to update either field, but you can't update both
-        /// <code>kmsKeyId</code> and <code>logExports</code> in a single request.
+        /// multiple parameters in one request. For example, you must specify both <c>adminUsername</c>
+        /// and <c>adminUserPassword</c> to update either field, but you can't update both <c>kmsKeyId</c>
+        /// and <c>logExports</c> in a single request.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateNamespace service method.</param>
         /// 
@@ -1992,9 +2853,9 @@ namespace Amazon.RedshiftServerless
 
         /// <summary>
         /// Updates a namespace with the specified settings. Unless required, you can't update
-        /// multiple parameters in one request. For example, you must specify both <code>adminUsername</code>
-        /// and <code>adminUserPassword</code> to update either field, but you can't update both
-        /// <code>kmsKeyId</code> and <code>logExports</code> in a single request.
+        /// multiple parameters in one request. For example, you must specify both <c>adminUsername</c>
+        /// and <c>adminUserPassword</c> to update either field, but you can't update both <c>kmsKeyId</c>
+        /// and <c>logExports</c> in a single request.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateNamespace service method.</param>
         /// <param name="cancellationToken">
@@ -2016,6 +2877,58 @@ namespace Amazon.RedshiftServerless
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UpdateNamespace">REST API Reference for UpdateNamespace Operation</seealso>
         Task<UpdateNamespaceResponse> UpdateNamespaceAsync(UpdateNamespaceRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  UpdateScheduledAction
+
+
+        /// <summary>
+        /// Updates a scheduled action.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateScheduledAction service method.</param>
+        /// 
+        /// <returns>The response from the UpdateScheduledAction service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UpdateScheduledAction">REST API Reference for UpdateScheduledAction Operation</seealso>
+        UpdateScheduledActionResponse UpdateScheduledAction(UpdateScheduledActionRequest request);
+
+
+
+        /// <summary>
+        /// Updates a scheduled action.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateScheduledAction service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateScheduledAction service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UpdateScheduledAction">REST API Reference for UpdateScheduledAction Operation</seealso>
+        Task<UpdateScheduledActionResponse> UpdateScheduledActionAsync(UpdateScheduledActionRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -2068,6 +2981,64 @@ namespace Amazon.RedshiftServerless
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UpdateSnapshot">REST API Reference for UpdateSnapshot Operation</seealso>
         Task<UpdateSnapshotResponse> UpdateSnapshotAsync(UpdateSnapshotRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  UpdateSnapshotCopyConfiguration
+
+
+        /// <summary>
+        /// Updates a snapshot copy configuration.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateSnapshotCopyConfiguration service method.</param>
+        /// 
+        /// <returns>The response from the UpdateSnapshotCopyConfiguration service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UpdateSnapshotCopyConfiguration">REST API Reference for UpdateSnapshotCopyConfiguration Operation</seealso>
+        UpdateSnapshotCopyConfigurationResponse UpdateSnapshotCopyConfiguration(UpdateSnapshotCopyConfigurationRequest request);
+
+
+
+        /// <summary>
+        /// Updates a snapshot copy configuration.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateSnapshotCopyConfiguration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateSnapshotCopyConfiguration service method, as returned by RedshiftServerless.</returns>
+        /// <exception cref="Amazon.RedshiftServerless.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ConflictException">
+        /// The submitted action has conflicts.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
+        /// The resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.ValidationException">
+        /// The input failed to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UpdateSnapshotCopyConfiguration">REST API Reference for UpdateSnapshotCopyConfiguration Operation</seealso>
+        Task<UpdateSnapshotCopyConfigurationResponse> UpdateSnapshotCopyConfigurationAsync(UpdateSnapshotCopyConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -2130,8 +3101,33 @@ namespace Amazon.RedshiftServerless
 
         /// <summary>
         /// Updates a workgroup with the specified configuration settings. You can't update multiple
-        /// parameters in one request. For example, you can update <code>baseCapacity</code> or
-        /// <code>port</code> in a single request, but you can't update both in the same request.
+        /// parameters in one request. For example, you can update <c>baseCapacity</c> or <c>port</c>
+        /// in a single request, but you can't update both in the same request.
+        /// 
+        ///  
+        /// <para>
+        /// VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that
+        /// you own in a Region from reaching or being reached from the internet through internet
+        /// gateways and egress-only internet gateways. If a workgroup is in an account with VPC
+        /// BPA turned on, the following capabilities are blocked: 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Creating a public access workgroup
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Modifying a private workgroup to public
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Adding a subnet with VPC BPA turned on to the workgroup when the workgroup is public
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information about VPC BPA, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/security-vpc-bpa.html">Block
+        /// public access to VPCs and subnets</a> in the <i>Amazon VPC User Guide</i>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateWorkgroup service method.</param>
         /// 
@@ -2144,6 +3140,10 @@ namespace Amazon.RedshiftServerless
         /// </exception>
         /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
         /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.Ipv6CidrBlockNotFoundException">
+        /// There are no subnets in your VPC with associated IPv6 CIDR blocks. To use dual-stack
+        /// mode, associate an IPv6 CIDR block with each subnet in your VPC.
         /// </exception>
         /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
         /// The resource could not be found.
@@ -2158,8 +3158,33 @@ namespace Amazon.RedshiftServerless
 
         /// <summary>
         /// Updates a workgroup with the specified configuration settings. You can't update multiple
-        /// parameters in one request. For example, you can update <code>baseCapacity</code> or
-        /// <code>port</code> in a single request, but you can't update both in the same request.
+        /// parameters in one request. For example, you can update <c>baseCapacity</c> or <c>port</c>
+        /// in a single request, but you can't update both in the same request.
+        /// 
+        ///  
+        /// <para>
+        /// VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that
+        /// you own in a Region from reaching or being reached from the internet through internet
+        /// gateways and egress-only internet gateways. If a workgroup is in an account with VPC
+        /// BPA turned on, the following capabilities are blocked: 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Creating a public access workgroup
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Modifying a private workgroup to public
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Adding a subnet with VPC BPA turned on to the workgroup when the workgroup is public
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information about VPC BPA, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/security-vpc-bpa.html">Block
+        /// public access to VPCs and subnets</a> in the <i>Amazon VPC User Guide</i>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateWorkgroup service method.</param>
         /// <param name="cancellationToken">
@@ -2175,6 +3200,10 @@ namespace Amazon.RedshiftServerless
         /// </exception>
         /// <exception cref="Amazon.RedshiftServerless.Model.InternalServerException">
         /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.RedshiftServerless.Model.Ipv6CidrBlockNotFoundException">
+        /// There are no subnets in your VPC with associated IPv6 CIDR blocks. To use dual-stack
+        /// mode, associate an IPv6 CIDR block with each subnet in your VPC.
         /// </exception>
         /// <exception cref="Amazon.RedshiftServerless.Model.ResourceNotFoundException">
         /// The resource could not be found.

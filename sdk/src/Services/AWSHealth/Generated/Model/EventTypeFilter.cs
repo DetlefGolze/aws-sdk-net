@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSHealth.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.AWSHealth.Model
     /// </summary>
     public partial class EventTypeFilter
     {
-        private List<string> _eventTypeCategories = new List<string>();
-        private List<string> _eventTypeCodes = new List<string>();
-        private List<string> _services = new List<string>();
+        private List<string> _eventTypeCategories = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _eventTypeCodes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _services = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property EventTypeCategories. 
         /// <para>
-        /// A list of event type category codes. Possible values are <code>issue</code>, <code>accountNotification</code>,
-        /// or <code>scheduledChange</code>. Currently, the <code>investigation</code> value isn't
-        /// supported at this time.
+        /// A list of event type category codes. Possible values are <c>issue</c>, <c>accountNotification</c>,
+        /// or <c>scheduledChange</c>. Currently, the <c>investigation</c> value isn't supported
+        /// at this time.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
@@ -56,7 +57,7 @@ namespace Amazon.AWSHealth.Model
         // Check to see if EventTypeCategories property is set
         internal bool IsSetEventTypeCategories()
         {
-            return this._eventTypeCategories != null && this._eventTypeCategories.Count > 0; 
+            return this._eventTypeCategories != null && (this._eventTypeCategories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -75,14 +76,14 @@ namespace Amazon.AWSHealth.Model
         // Check to see if EventTypeCodes property is set
         internal bool IsSetEventTypeCodes()
         {
-            return this._eventTypeCodes != null && this._eventTypeCodes.Count > 0; 
+            return this._eventTypeCodes != null && (this._eventTypeCodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Services. 
         /// <para>
-        /// The Amazon Web Services associated with the event. For example, <code>EC2</code>,
-        /// <code>RDS</code>.
+        /// The Amazon Web Services services associated with the event. For example, <c>EC2</c>,
+        /// <c>RDS</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
@@ -95,7 +96,7 @@ namespace Amazon.AWSHealth.Model
         // Check to see if Services property is set
         internal bool IsSetServices()
         {
-            return this._services != null && this._services.Count > 0; 
+            return this._services != null && (this._services.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

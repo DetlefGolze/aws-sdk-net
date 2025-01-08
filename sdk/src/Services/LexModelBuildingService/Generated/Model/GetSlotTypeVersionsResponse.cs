@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.LexModelBuildingService.Model
     public partial class GetSlotTypeVersionsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<SlotTypeMetadata> _slotTypes = new List<SlotTypeMetadata>();
+        private List<SlotTypeMetadata> _slotTypes = AWSConfigs.InitializeCollections ? new List<SlotTypeMetadata>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -60,8 +61,8 @@ namespace Amazon.LexModelBuildingService.Model
         /// <summary>
         /// Gets and sets the property SlotTypes. 
         /// <para>
-        /// An array of <code>SlotTypeMetadata</code> objects, one for each numbered version of
-        /// the slot type plus one for the <code>$LATEST</code> version.
+        /// An array of <c>SlotTypeMetadata</c> objects, one for each numbered version of the
+        /// slot type plus one for the <c>$LATEST</c> version.
         /// </para>
         /// </summary>
         public List<SlotTypeMetadata> SlotTypes
@@ -73,7 +74,7 @@ namespace Amazon.LexModelBuildingService.Model
         // Check to see if SlotTypes property is set
         internal bool IsSetSlotTypes()
         {
-            return this._slotTypes != null && this._slotTypes.Count > 0; 
+            return this._slotTypes != null && (this._slotTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -147,6 +147,14 @@ namespace Amazon.ResilienceHub
         /// </summary>
         public static readonly AppComplianceStatusType ChangesDetected = new AppComplianceStatusType("ChangesDetected");
         /// <summary>
+        /// Constant MissingPolicy for AppComplianceStatusType
+        /// </summary>
+        public static readonly AppComplianceStatusType MissingPolicy = new AppComplianceStatusType("MissingPolicy");
+        /// <summary>
+        /// Constant NotApplicable for AppComplianceStatusType
+        /// </summary>
+        public static readonly AppComplianceStatusType NotApplicable = new AppComplianceStatusType("NotApplicable");
+        /// <summary>
         /// Constant NotAssessed for AppComplianceStatusType
         /// </summary>
         public static readonly AppComplianceStatusType NotAssessed = new AppComplianceStatusType("NotAssessed");
@@ -413,6 +421,14 @@ namespace Amazon.ResilienceHub
     {
 
         /// <summary>
+        /// Constant MissingPolicy for ComplianceStatus
+        /// </summary>
+        public static readonly ComplianceStatus MissingPolicy = new ComplianceStatus("MissingPolicy");
+        /// <summary>
+        /// Constant NotApplicable for ComplianceStatus
+        /// </summary>
+        public static readonly ComplianceStatus NotApplicable = new ComplianceStatus("NotApplicable");
+        /// <summary>
         /// Constant PolicyBreached for ComplianceStatus
         /// </summary>
         public static readonly ComplianceStatus PolicyBreached = new ComplianceStatus("PolicyBreached");
@@ -450,6 +466,72 @@ namespace Amazon.ResilienceHub
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator ComplianceStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ConditionOperatorType.
+    /// </summary>
+    public class ConditionOperatorType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Equals for ConditionOperatorType
+        /// </summary>
+        public new static readonly ConditionOperatorType Equals = new ConditionOperatorType("Equals");
+        /// <summary>
+        /// Constant GreaterOrEquals for ConditionOperatorType
+        /// </summary>
+        public static readonly ConditionOperatorType GreaterOrEquals = new ConditionOperatorType("GreaterOrEquals");
+        /// <summary>
+        /// Constant GreaterThen for ConditionOperatorType
+        /// </summary>
+        public static readonly ConditionOperatorType GreaterThen = new ConditionOperatorType("GreaterThen");
+        /// <summary>
+        /// Constant LessOrEquals for ConditionOperatorType
+        /// </summary>
+        public static readonly ConditionOperatorType LessOrEquals = new ConditionOperatorType("LessOrEquals");
+        /// <summary>
+        /// Constant LessThen for ConditionOperatorType
+        /// </summary>
+        public static readonly ConditionOperatorType LessThen = new ConditionOperatorType("LessThen");
+        /// <summary>
+        /// Constant NotEquals for ConditionOperatorType
+        /// </summary>
+        public static readonly ConditionOperatorType NotEquals = new ConditionOperatorType("NotEquals");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ConditionOperatorType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ConditionOperatorType FindValue(string value)
+        {
+            return FindValue<ConditionOperatorType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ConditionOperatorType(string value)
         {
             return FindValue(value);
         }
@@ -641,9 +723,17 @@ namespace Amazon.ResilienceHub
     {
 
         /// <summary>
+        /// Constant Added for DifferenceType
+        /// </summary>
+        public static readonly DifferenceType Added = new DifferenceType("Added");
+        /// <summary>
         /// Constant NotEqual for DifferenceType
         /// </summary>
         public static readonly DifferenceType NotEqual = new DifferenceType("NotEqual");
+        /// <summary>
+        /// Constant Removed for DifferenceType
+        /// </summary>
+        public static readonly DifferenceType Removed = new DifferenceType("Removed");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -798,6 +888,10 @@ namespace Amazon.ResilienceHub
     public class DriftType : ConstantClass
     {
 
+        /// <summary>
+        /// Constant AppComponentResiliencyComplianceStatus for DriftType
+        /// </summary>
+        public static readonly DriftType AppComponentResiliencyComplianceStatus = new DriftType("AppComponentResiliencyComplianceStatus");
         /// <summary>
         /// Constant ApplicationCompliance for DriftType
         /// </summary>
@@ -1001,6 +1095,230 @@ namespace Amazon.ResilienceHub
 
 
     /// <summary>
+    /// Constants used for properties of type FieldAggregationType.
+    /// </summary>
+    public class FieldAggregationType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Avg for FieldAggregationType
+        /// </summary>
+        public static readonly FieldAggregationType Avg = new FieldAggregationType("Avg");
+        /// <summary>
+        /// Constant Count for FieldAggregationType
+        /// </summary>
+        public static readonly FieldAggregationType Count = new FieldAggregationType("Count");
+        /// <summary>
+        /// Constant Max for FieldAggregationType
+        /// </summary>
+        public static readonly FieldAggregationType Max = new FieldAggregationType("Max");
+        /// <summary>
+        /// Constant Min for FieldAggregationType
+        /// </summary>
+        public static readonly FieldAggregationType Min = new FieldAggregationType("Min");
+        /// <summary>
+        /// Constant Sum for FieldAggregationType
+        /// </summary>
+        public static readonly FieldAggregationType Sum = new FieldAggregationType("Sum");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public FieldAggregationType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static FieldAggregationType FindValue(string value)
+        {
+            return FindValue<FieldAggregationType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator FieldAggregationType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type GroupingRecommendationConfidenceLevel.
+    /// </summary>
+    public class GroupingRecommendationConfidenceLevel : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant High for GroupingRecommendationConfidenceLevel
+        /// </summary>
+        public static readonly GroupingRecommendationConfidenceLevel High = new GroupingRecommendationConfidenceLevel("High");
+        /// <summary>
+        /// Constant Medium for GroupingRecommendationConfidenceLevel
+        /// </summary>
+        public static readonly GroupingRecommendationConfidenceLevel Medium = new GroupingRecommendationConfidenceLevel("Medium");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public GroupingRecommendationConfidenceLevel(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static GroupingRecommendationConfidenceLevel FindValue(string value)
+        {
+            return FindValue<GroupingRecommendationConfidenceLevel>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator GroupingRecommendationConfidenceLevel(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type GroupingRecommendationRejectionReason.
+    /// </summary>
+    public class GroupingRecommendationRejectionReason : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DistinctBusinessPurpose for GroupingRecommendationRejectionReason
+        /// </summary>
+        public static readonly GroupingRecommendationRejectionReason DistinctBusinessPurpose = new GroupingRecommendationRejectionReason("DistinctBusinessPurpose");
+        /// <summary>
+        /// Constant DistinctUserGroupHandling for GroupingRecommendationRejectionReason
+        /// </summary>
+        public static readonly GroupingRecommendationRejectionReason DistinctUserGroupHandling = new GroupingRecommendationRejectionReason("DistinctUserGroupHandling");
+        /// <summary>
+        /// Constant Other for GroupingRecommendationRejectionReason
+        /// </summary>
+        public static readonly GroupingRecommendationRejectionReason Other = new GroupingRecommendationRejectionReason("Other");
+        /// <summary>
+        /// Constant SeparateDataConcern for GroupingRecommendationRejectionReason
+        /// </summary>
+        public static readonly GroupingRecommendationRejectionReason SeparateDataConcern = new GroupingRecommendationRejectionReason("SeparateDataConcern");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public GroupingRecommendationRejectionReason(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static GroupingRecommendationRejectionReason FindValue(string value)
+        {
+            return FindValue<GroupingRecommendationRejectionReason>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator GroupingRecommendationRejectionReason(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type GroupingRecommendationStatusType.
+    /// </summary>
+    public class GroupingRecommendationStatusType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Accepted for GroupingRecommendationStatusType
+        /// </summary>
+        public static readonly GroupingRecommendationStatusType Accepted = new GroupingRecommendationStatusType("Accepted");
+        /// <summary>
+        /// Constant PendingDecision for GroupingRecommendationStatusType
+        /// </summary>
+        public static readonly GroupingRecommendationStatusType PendingDecision = new GroupingRecommendationStatusType("PendingDecision");
+        /// <summary>
+        /// Constant Rejected for GroupingRecommendationStatusType
+        /// </summary>
+        public static readonly GroupingRecommendationStatusType Rejected = new GroupingRecommendationStatusType("Rejected");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public GroupingRecommendationStatusType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static GroupingRecommendationStatusType FindValue(string value)
+        {
+            return FindValue<GroupingRecommendationStatusType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator GroupingRecommendationStatusType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type HaArchitecture.
     /// </summary>
     public class HaArchitecture : ConstantClass
@@ -1056,6 +1374,64 @@ namespace Amazon.ResilienceHub
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator HaArchitecture(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type MetricsExportStatusType.
+    /// </summary>
+    public class MetricsExportStatusType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Failed for MetricsExportStatusType
+        /// </summary>
+        public static readonly MetricsExportStatusType Failed = new MetricsExportStatusType("Failed");
+        /// <summary>
+        /// Constant InProgress for MetricsExportStatusType
+        /// </summary>
+        public static readonly MetricsExportStatusType InProgress = new MetricsExportStatusType("InProgress");
+        /// <summary>
+        /// Constant Pending for MetricsExportStatusType
+        /// </summary>
+        public static readonly MetricsExportStatusType Pending = new MetricsExportStatusType("Pending");
+        /// <summary>
+        /// Constant Success for MetricsExportStatusType
+        /// </summary>
+        public static readonly MetricsExportStatusType Success = new MetricsExportStatusType("Success");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public MetricsExportStatusType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static MetricsExportStatusType FindValue(string value)
+        {
+            return FindValue<MetricsExportStatusType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator MetricsExportStatusType(string value)
         {
             return FindValue(value);
         }
@@ -1180,6 +1556,10 @@ namespace Amazon.ResilienceHub
         /// Constant MetCanImprove for RecommendationComplianceStatus
         /// </summary>
         public static readonly RecommendationComplianceStatus MetCanImprove = new RecommendationComplianceStatus("MetCanImprove");
+        /// <summary>
+        /// Constant MissingPolicy for RecommendationComplianceStatus
+        /// </summary>
+        public static readonly RecommendationComplianceStatus MissingPolicy = new RecommendationComplianceStatus("MissingPolicy");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -1210,6 +1590,64 @@ namespace Amazon.ResilienceHub
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator RecommendationComplianceStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type RecommendationStatus.
+    /// </summary>
+    public class RecommendationStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Excluded for RecommendationStatus
+        /// </summary>
+        public static readonly RecommendationStatus Excluded = new RecommendationStatus("Excluded");
+        /// <summary>
+        /// Constant Implemented for RecommendationStatus
+        /// </summary>
+        public static readonly RecommendationStatus Implemented = new RecommendationStatus("Implemented");
+        /// <summary>
+        /// Constant Inactive for RecommendationStatus
+        /// </summary>
+        public static readonly RecommendationStatus Inactive = new RecommendationStatus("Inactive");
+        /// <summary>
+        /// Constant NotImplemented for RecommendationStatus
+        /// </summary>
+        public static readonly RecommendationStatus NotImplemented = new RecommendationStatus("NotImplemented");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public RecommendationStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static RecommendationStatus FindValue(string value)
+        {
+            return FindValue<RecommendationStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator RecommendationStatus(string value)
         {
             return FindValue(value);
         }
@@ -1388,6 +1826,64 @@ namespace Amazon.ResilienceHub
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator ResiliencyPolicyTier(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ResiliencyScoreType.
+    /// </summary>
+    public class ResiliencyScoreType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Alarm for ResiliencyScoreType
+        /// </summary>
+        public static readonly ResiliencyScoreType Alarm = new ResiliencyScoreType("Alarm");
+        /// <summary>
+        /// Constant Compliance for ResiliencyScoreType
+        /// </summary>
+        public static readonly ResiliencyScoreType Compliance = new ResiliencyScoreType("Compliance");
+        /// <summary>
+        /// Constant Sop for ResiliencyScoreType
+        /// </summary>
+        public static readonly ResiliencyScoreType Sop = new ResiliencyScoreType("Sop");
+        /// <summary>
+        /// Constant Test for ResiliencyScoreType
+        /// </summary>
+        public static readonly ResiliencyScoreType Test = new ResiliencyScoreType("Test");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ResiliencyScoreType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ResiliencyScoreType FindValue(string value)
+        {
+            return FindValue<ResiliencyScoreType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ResiliencyScoreType(string value)
         {
             return FindValue(value);
         }
@@ -1620,6 +2116,64 @@ namespace Amazon.ResilienceHub
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator ResourceResolutionStatusType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ResourcesGroupingRecGenStatusType.
+    /// </summary>
+    public class ResourcesGroupingRecGenStatusType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Failed for ResourcesGroupingRecGenStatusType
+        /// </summary>
+        public static readonly ResourcesGroupingRecGenStatusType Failed = new ResourcesGroupingRecGenStatusType("Failed");
+        /// <summary>
+        /// Constant InProgress for ResourcesGroupingRecGenStatusType
+        /// </summary>
+        public static readonly ResourcesGroupingRecGenStatusType InProgress = new ResourcesGroupingRecGenStatusType("InProgress");
+        /// <summary>
+        /// Constant Pending for ResourcesGroupingRecGenStatusType
+        /// </summary>
+        public static readonly ResourcesGroupingRecGenStatusType Pending = new ResourcesGroupingRecGenStatusType("Pending");
+        /// <summary>
+        /// Constant Success for ResourcesGroupingRecGenStatusType
+        /// </summary>
+        public static readonly ResourcesGroupingRecGenStatusType Success = new ResourcesGroupingRecGenStatusType("Success");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ResourcesGroupingRecGenStatusType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ResourcesGroupingRecGenStatusType FindValue(string value)
+        {
+            return FindValue<ResourcesGroupingRecGenStatusType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ResourcesGroupingRecGenStatusType(string value)
         {
             return FindValue(value);
         }

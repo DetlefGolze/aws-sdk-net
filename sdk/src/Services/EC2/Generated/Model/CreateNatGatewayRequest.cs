@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.EC2.Model
     /// fail to launch. You can see the network border group for the subnet's AZ by viewing
     /// the details of the subnet. Similarly, you can view the network border group of an
     /// EIP by viewing the details of the EIP address. For more information about network
-    /// border groups and EIPs, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#allocate-eip">Allocate
+    /// border groups and EIPs, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/WorkWithEIPs.html">Allocate
     /// an Elastic IP address</a> in the <i>Amazon VPC User Guide</i>. 
     /// </para>
     ///  </important>
@@ -70,11 +71,11 @@ namespace Amazon.EC2.Model
         private string _clientToken;
         private ConnectivityType _connectivityType;
         private string _privateIpAddress;
-        private List<string> _secondaryAllocationIds = new List<string>();
+        private List<string> _secondaryAllocationIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _secondaryPrivateIpAddressCount;
-        private List<string> _secondaryPrivateIpAddresses = new List<string>();
+        private List<string> _secondaryPrivateIpAddresses = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _subnetId;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
 
         /// <summary>
         /// Gets and sets the property AllocationId. 
@@ -101,8 +102,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// Unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        /// request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How
-        /// to ensure idempotency</a>.
+        /// request. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html">Ensuring
+        /// idempotency</a>.
         /// </para>
         ///  
         /// <para>
@@ -162,7 +163,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property SecondaryAllocationIds. 
         /// <para>
-        /// Secondary EIP allocation IDs. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating">Create
+        /// Secondary EIP allocation IDs. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-working-with.html">Create
         /// a NAT gateway</a> in the <i>Amazon VPC User Guide</i>.
         /// </para>
         /// </summary>
@@ -175,7 +176,7 @@ namespace Amazon.EC2.Model
         // Check to see if SecondaryAllocationIds property is set
         internal bool IsSetSecondaryAllocationIds()
         {
-            return this._secondaryAllocationIds != null && this._secondaryAllocationIds.Count > 0; 
+            return this._secondaryAllocationIds != null && (this._secondaryAllocationIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -183,7 +184,7 @@ namespace Amazon.EC2.Model
         /// <para>
         /// [Private NAT gateway only] The number of secondary private IPv4 addresses you want
         /// to assign to the NAT gateway. For more information about secondary addresses, see
-        /// <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating">Create
+        /// <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-working-with.html">Create
         /// a NAT gateway</a> in the <i>Amazon VPC User Guide</i>.
         /// </para>
         /// </summary>
@@ -204,7 +205,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property SecondaryPrivateIpAddresses. 
         /// <para>
         /// Secondary private IPv4 addresses. For more information about secondary addresses,
-        /// see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating">Create
+        /// see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-working-with.html">Create
         /// a NAT gateway</a> in the <i>Amazon VPC User Guide</i>.
         /// </para>
         /// </summary>
@@ -217,7 +218,7 @@ namespace Amazon.EC2.Model
         // Check to see if SecondaryPrivateIpAddresses property is set
         internal bool IsSetSecondaryPrivateIpAddresses()
         {
-            return this._secondaryPrivateIpAddresses != null && this._secondaryPrivateIpAddresses.Count > 0; 
+            return this._secondaryPrivateIpAddresses != null && (this._secondaryPrivateIpAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -254,7 +255,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

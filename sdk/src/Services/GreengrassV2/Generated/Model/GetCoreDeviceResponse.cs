@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GreengrassV2.Model
 {
     /// <summary>
@@ -38,8 +39,9 @@ namespace Amazon.GreengrassV2.Model
         private string _coreVersion;
         private DateTime? _lastStatusUpdateTimestamp;
         private string _platform;
+        private string _runtime;
         private CoreDeviceStatus _status;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Architecture. 
@@ -139,19 +141,47 @@ namespace Amazon.GreengrassV2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Runtime. 
+        /// <para>
+        /// The runtime for the core device. The runtime can be:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>aws_nucleus_classic</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>aws_nucleus_lite</c> 
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        [AWSProperty(Min=1, Max=255)]
+        public string Runtime
+        {
+            get { return this._runtime; }
+            set { this._runtime = value; }
+        }
+
+        // Check to see if Runtime property is set
+        internal bool IsSetRuntime()
+        {
+            return this._runtime != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
         /// The status of the core device. The core device status can be:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>HEALTHY</code> – The IoT Greengrass Core software and all components run on
-        /// the core device without issue.
+        ///  <c>HEALTHY</c> – The IoT Greengrass Core software and all components run on the core
+        /// device without issue.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UNHEALTHY</code> – The IoT Greengrass Core software or a component is in a
-        /// failed state on the core device.
+        ///  <c>UNHEALTHY</c> – The IoT Greengrass Core software or a component is in a failed
+        /// state on the core device.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -185,7 +215,7 @@ namespace Amazon.GreengrassV2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

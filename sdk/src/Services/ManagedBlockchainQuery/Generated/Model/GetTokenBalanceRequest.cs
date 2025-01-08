@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchainQuery.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.ManagedBlockchainQuery.Model
     /// 
     ///  <note> 
     /// <para>
-    /// Only the native tokens BTC,ETH, and the ERC-20, ERC-721, and ERC 1155 token standards
+    /// Only the native tokens BTC and ETH, and the ERC-20, ERC-721, and ERC 1155 token standards
     /// are supported.
     /// </para>
     ///  </note>

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
-    /// Structure that contains <code>payloadVersion</code> and <code>targetArn</code>.
+    /// Structure that contains <c>payloadVersion</c> and <c>targetArn</c>.
     /// </summary>
     public partial class ProvisioningHook
     {

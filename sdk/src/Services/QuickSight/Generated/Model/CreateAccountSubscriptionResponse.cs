@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -58,8 +59,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property SignupResponse. 
         /// <para>
-        /// A <code>SignupResponse</code> object that returns information about a newly created
-        /// Amazon QuickSight account.
+        /// A <c>SignupResponse</c> object that returns information about a newly created Amazon
+        /// QuickSight account.
         /// </para>
         /// </summary>
         public SignupResponse SignupResponse

@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.CostExplorer.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.CostExplorer
 {
     /// <summary>
-    /// Interface for accessing CostExplorer
+    /// <para>Interface for accessing CostExplorer</para>
     ///
     /// You can use the Cost Explorer API to programmatically query your cost and usage data.
     /// You can query for aggregated data such as total monthly costs or total daily usage.
@@ -44,7 +45,7 @@ namespace Amazon.CostExplorer
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>https://ce.us-east-1.amazonaws.com</code> 
+    ///  <c>https://ce.us-east-1.amazonaws.com</c> 
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -352,10 +353,10 @@ namespace Amazon.CostExplorer
         /// 
         ///  
         /// <para>
-        /// You have the option to use <code>EffectiveOn</code> to return a Cost Category that's
-        /// active on a specific date. If there's no <code>EffectiveOn</code> specified, you see
-        /// a Cost Category that's effective on the current date. If Cost Category is still effective,
-        /// <code>EffectiveEnd</code> is omitted in the response. 
+        /// You have the option to use <c>EffectiveOn</c> to return a Cost Category that's active
+        /// on a specific date. If there's no <c>EffectiveOn</c> specified, you see a Cost Category
+        /// that's effective on the current date. If Cost Category is still effective, <c>EffectiveEnd</c>
+        /// is omitted in the response. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeCostCategoryDefinition service method.</param>
@@ -403,8 +404,8 @@ namespace Amazon.CostExplorer
 
         /// <summary>
         /// Retrieves all of the cost anomalies detected on your account during the time period
-        /// that's specified by the <code>DateInterval</code> object. Anomalies are available
-        /// for up to 90 days.
+        /// that's specified by the <c>DateInterval</c> object. Anomalies are available for up
+        /// to 90 days.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetAnomalies service method.</param>
         /// 
@@ -546,15 +547,111 @@ namespace Amazon.CostExplorer
 
         #endregion
         
+        #region  GetApproximateUsageRecords
+
+
+        /// <summary>
+        /// Retrieves estimated usage records for hourly granularity or resource-level data at
+        /// daily granularity.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetApproximateUsageRecords service method.</param>
+        /// 
+        /// <returns>The response from the GetApproximateUsageRecords service method, as returned by CostExplorer.</returns>
+        /// <exception cref="Amazon.CostExplorer.Model.DataUnavailableException">
+        /// The requested data is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.CostExplorer.Model.LimitExceededException">
+        /// You made too many calls in a short period of time. Try again later.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetApproximateUsageRecords">REST API Reference for GetApproximateUsageRecords Operation</seealso>
+        GetApproximateUsageRecordsResponse GetApproximateUsageRecords(GetApproximateUsageRecordsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetApproximateUsageRecords operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetApproximateUsageRecords operation on AmazonCostExplorerClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetApproximateUsageRecords
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetApproximateUsageRecords">REST API Reference for GetApproximateUsageRecords Operation</seealso>
+        IAsyncResult BeginGetApproximateUsageRecords(GetApproximateUsageRecordsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetApproximateUsageRecords operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetApproximateUsageRecords.</param>
+        /// 
+        /// <returns>Returns a  GetApproximateUsageRecordsResult from CostExplorer.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetApproximateUsageRecords">REST API Reference for GetApproximateUsageRecords Operation</seealso>
+        GetApproximateUsageRecordsResponse EndGetApproximateUsageRecords(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  GetCommitmentPurchaseAnalysis
+
+
+        /// <summary>
+        /// Retrieves a commitment purchase analysis result based on the <c>AnalysisId</c>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetCommitmentPurchaseAnalysis service method.</param>
+        /// 
+        /// <returns>The response from the GetCommitmentPurchaseAnalysis service method, as returned by CostExplorer.</returns>
+        /// <exception cref="Amazon.CostExplorer.Model.AnalysisNotFoundException">
+        /// The requested analysis can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.CostExplorer.Model.DataUnavailableException">
+        /// The requested data is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.CostExplorer.Model.LimitExceededException">
+        /// You made too many calls in a short period of time. Try again later.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetCommitmentPurchaseAnalysis">REST API Reference for GetCommitmentPurchaseAnalysis Operation</seealso>
+        GetCommitmentPurchaseAnalysisResponse GetCommitmentPurchaseAnalysis(GetCommitmentPurchaseAnalysisRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetCommitmentPurchaseAnalysis operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetCommitmentPurchaseAnalysis operation on AmazonCostExplorerClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetCommitmentPurchaseAnalysis
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetCommitmentPurchaseAnalysis">REST API Reference for GetCommitmentPurchaseAnalysis Operation</seealso>
+        IAsyncResult BeginGetCommitmentPurchaseAnalysis(GetCommitmentPurchaseAnalysisRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetCommitmentPurchaseAnalysis operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetCommitmentPurchaseAnalysis.</param>
+        /// 
+        /// <returns>Returns a  GetCommitmentPurchaseAnalysisResult from CostExplorer.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetCommitmentPurchaseAnalysis">REST API Reference for GetCommitmentPurchaseAnalysis Operation</seealso>
+        GetCommitmentPurchaseAnalysisResponse EndGetCommitmentPurchaseAnalysis(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  GetCostAndUsage
 
 
         /// <summary>
         /// Retrieves cost and usage metrics for your account. You can specify which cost and
         /// usage-related metric that you want the request to return. For example, you can specify
-        /// <code>BlendedCosts</code> or <code>UsageQuantity</code>. You can also filter and group
-        /// your data by various dimensions, such as <code>SERVICE</code> or <code>AZ</code>,
-        /// in a specific time range. For a complete list of valid dimensions, see the <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html">GetDimensionValues</a>
+        /// <c>BlendedCosts</c> or <c>UsageQuantity</c>. You can also filter and group your data
+        /// by various dimensions, such as <c>SERVICE</c> or <c>AZ</c>, in a specific time range.
+        /// For a complete list of valid dimensions, see the <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html">GetDimensionValues</a>
         /// operation. Management account in an organization in Organizations have access to all
         /// member accounts.
         /// 
@@ -582,6 +679,9 @@ namespace Amazon.CostExplorer
         /// <exception cref="Amazon.CostExplorer.Model.RequestChangedException">
         /// Your request parameters changed between pages. Try again with the old parameters or
         /// without a pagination token.
+        /// </exception>
+        /// <exception cref="Amazon.CostExplorer.Model.ResourceNotFoundException">
+        /// The specified ARN in the request doesn't exist.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetCostAndUsage">REST API Reference for GetCostAndUsage Operation</seealso>
         GetCostAndUsageResponse GetCostAndUsage(GetCostAndUsageRequest request);
@@ -619,14 +719,18 @@ namespace Amazon.CostExplorer
 
         /// <summary>
         /// Retrieves cost and usage metrics with resources for your account. You can specify
-        /// which cost and usage-related metric, such as <code>BlendedCosts</code> or <code>UsageQuantity</code>,
+        /// which cost and usage-related metric, such as <c>BlendedCosts</c> or <c>UsageQuantity</c>,
         /// that you want the request to return. You can also filter and group your data by various
-        /// dimensions, such as <code>SERVICE</code> or <code>AZ</code>, in a specific time range.
-        /// For a complete list of valid dimensions, see the <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html">GetDimensionValues</a>
+        /// dimensions, such as <c>SERVICE</c> or <c>AZ</c>, in a specific time range. For a complete
+        /// list of valid dimensions, see the <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html">GetDimensionValues</a>
         /// operation. Management account in an organization in Organizations have access to all
-        /// member accounts. This API is currently available for the Amazon Elastic Compute Cloud
-        /// – Compute service only.
+        /// member accounts.
         /// 
+        ///  
+        /// <para>
+        /// Hourly granularity is only available for EC2-Instances (Elastic Compute Cloud) resource-level
+        /// data. All other resource-level data is available at daily granularity.
+        /// </para>
         ///  <note> 
         /// <para>
         /// This is an opt-in only feature. You can enable this feature from the Cost Explorer
@@ -653,6 +757,9 @@ namespace Amazon.CostExplorer
         /// <exception cref="Amazon.CostExplorer.Model.RequestChangedException">
         /// Your request parameters changed between pages. Try again with the old parameters or
         /// without a pagination token.
+        /// </exception>
+        /// <exception cref="Amazon.CostExplorer.Model.ResourceNotFoundException">
+        /// The specified ARN in the request doesn't exist.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetCostAndUsageWithResources">REST API Reference for GetCostAndUsageWithResources Operation</seealso>
         GetCostAndUsageWithResourcesResponse GetCostAndUsageWithResources(GetCostAndUsageWithResourcesRequest request);
@@ -717,6 +824,9 @@ namespace Amazon.CostExplorer
         /// Your request parameters changed between pages. Try again with the old parameters or
         /// without a pagination token.
         /// </exception>
+        /// <exception cref="Amazon.CostExplorer.Model.ResourceNotFoundException">
+        /// The specified ARN in the request doesn't exist.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetCostCategories">REST API Reference for GetCostCategories Operation</seealso>
         GetCostCategoriesResponse GetCostCategories(GetCostCategoriesRequest request);
 
@@ -763,6 +873,9 @@ namespace Amazon.CostExplorer
         /// </exception>
         /// <exception cref="Amazon.CostExplorer.Model.LimitExceededException">
         /// You made too many calls in a short period of time. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.CostExplorer.Model.ResourceNotFoundException">
+        /// The specified ARN in the request doesn't exist.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetCostForecast">REST API Reference for GetCostForecast Operation</seealso>
         GetCostForecastResponse GetCostForecast(GetCostForecastRequest request);
@@ -820,6 +933,9 @@ namespace Amazon.CostExplorer
         /// <exception cref="Amazon.CostExplorer.Model.RequestChangedException">
         /// Your request parameters changed between pages. Try again with the old parameters or
         /// without a pagination token.
+        /// </exception>
+        /// <exception cref="Amazon.CostExplorer.Model.ResourceNotFoundException">
+        /// The specified ARN in the request doesn't exist.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetDimensionValues">REST API Reference for GetDimensionValues Operation</seealso>
         GetDimensionValuesResponse GetDimensionValues(GetDimensionValuesRequest request);
@@ -913,8 +1029,8 @@ namespace Amazon.CostExplorer
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// To determine valid values for a dimension, use the <code>GetDimensionValues</code>
-        /// operation. 
+        /// To determine valid values for a dimension, use the <c>GetDimensionValues</c> operation.
+        /// 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetReservationCoverage service method.</param>
@@ -985,7 +1101,7 @@ namespace Amazon.CostExplorer
         /// Services recommends the smallest size instance in an instance family. This makes it
         /// easier to purchase a size-flexible Reserved Instance (RI). Amazon Web Services also
         /// shows the equal number of normalized units. This way, you can purchase any instance
-        /// size that you want. For this example, your RI recommendation is for <code>c4.large</code>
+        /// size that you want. For this example, your RI recommendation is for <c>c4.large</c>
         /// because that is the smallest size instance in the c4 instance family.
         /// </para>
         /// </summary>
@@ -1038,8 +1154,8 @@ namespace Amazon.CostExplorer
         /// <summary>
         /// Retrieves the reservation utilization for your account. Management account in an organization
         /// have access to member accounts. You can filter data by dimensions in a time period.
-        /// You can use <code>GetDimensionValues</code> to determine the possible dimension values.
-        /// Currently, you can group only by <code>SUBSCRIPTION_ID</code>.
+        /// You can use <c>GetDimensionValues</c> to determine the possible dimension values.
+        /// Currently, you can group only by <c>SUBSCRIPTION_ID</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetReservationUtilization service method.</param>
         /// 
@@ -1199,24 +1315,23 @@ namespace Amazon.CostExplorer
         /// 
         ///  <ul> <li> 
         /// <para>
-        ///  <code>LINKED_ACCOUNT</code> 
+        ///  <c>LINKED_ACCOUNT</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>REGION</code> 
+        ///  <c>REGION</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SERVICE</code> 
+        ///  <c>SERVICE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INSTANCE_FAMILY</code> 
+        ///  <c>INSTANCE_FAMILY</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// To determine valid values for a dimension, use the <code>GetDimensionValues</code>
-        /// operation.
+        /// To determine valid values for a dimension, use the <c>GetDimensionValues</c> operation.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetSavingsPlansCoverage service method.</param>
@@ -1266,8 +1381,8 @@ namespace Amazon.CostExplorer
 
 
         /// <summary>
-        /// Retrieves the Savings Plans recommendations for your account. First use <code>StartSavingsPlansPurchaseRecommendationGeneration</code>
-        /// to generate a new set of recommendations, and then use <code>GetSavingsPlansPurchaseRecommendation</code>
+        /// Retrieves the Savings Plans recommendations for your account. First use <c>StartSavingsPlansPurchaseRecommendationGeneration</c>
+        /// to generate a new set of recommendations, and then use <c>GetSavingsPlansPurchaseRecommendation</c>
         /// to retrieve them.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetSavingsPlansPurchaseRecommendation service method.</param>
@@ -1316,12 +1431,12 @@ namespace Amazon.CostExplorer
         /// <summary>
         /// Retrieves the Savings Plans utilization for your account across date ranges with daily
         /// or monthly granularity. Management account in an organization have access to member
-        /// accounts. You can use <code>GetDimensionValues</code> in <code>SAVINGS_PLANS</code>
-        /// to determine the possible dimension values.
+        /// accounts. You can use <c>GetDimensionValues</c> in <c>SAVINGS_PLANS</c> to determine
+        /// the possible dimension values.
         /// 
         ///  <note> 
         /// <para>
-        /// You can't group by any dimension values for <code>GetSavingsPlansUtilization</code>.
+        /// You can't group by any dimension values for <c>GetSavingsPlansUtilization</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -1371,14 +1486,14 @@ namespace Amazon.CostExplorer
         /// <summary>
         /// Retrieves attribute data along with aggregate utilization and savings data for a given
         /// time period. This doesn't support granular or grouped data (daily/monthly) in response.
-        /// You can't retrieve data by dates in a single response similar to <code>GetSavingsPlanUtilization</code>,
-        /// but you have the option to make multiple calls to <code>GetSavingsPlanUtilizationDetails</code>
-        /// by providing individual dates. You can use <code>GetDimensionValues</code> in <code>SAVINGS_PLANS</code>
+        /// You can't retrieve data by dates in a single response similar to <c>GetSavingsPlanUtilization</c>,
+        /// but you have the option to make multiple calls to <c>GetSavingsPlanUtilizationDetails</c>
+        /// by providing individual dates. You can use <c>GetDimensionValues</c> in <c>SAVINGS_PLANS</c>
         /// to determine the possible dimension values.
         /// 
         ///  <note> 
         /// <para>
-        ///  <code>GetSavingsPlanUtilizationDetails</code> internally groups data by <code>SavingsPlansArn</code>.
+        ///  <c>GetSavingsPlanUtilizationDetails</c> internally groups data by <c>SavingsPlansArn</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -1451,6 +1566,9 @@ namespace Amazon.CostExplorer
         /// Your request parameters changed between pages. Try again with the old parameters or
         /// without a pagination token.
         /// </exception>
+        /// <exception cref="Amazon.CostExplorer.Model.ResourceNotFoundException">
+        /// The specified ARN in the request doesn't exist.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetTags">REST API Reference for GetTags Operation</seealso>
         GetTagsResponse GetTags(GetTagsRequest request);
 
@@ -1498,9 +1616,12 @@ namespace Amazon.CostExplorer
         /// <exception cref="Amazon.CostExplorer.Model.LimitExceededException">
         /// You made too many calls in a short period of time. Try again later.
         /// </exception>
+        /// <exception cref="Amazon.CostExplorer.Model.ResourceNotFoundException">
+        /// The specified ARN in the request doesn't exist.
+        /// </exception>
         /// <exception cref="Amazon.CostExplorer.Model.UnresolvableUsageUnitException">
-        /// Cost Explorer was unable to identify the usage unit. Provide <code>UsageType/UsageTypeGroup</code>
-        /// filter selections that contain matching units, for example: <code>hours</code>.
+        /// Cost Explorer was unable to identify the usage unit. Provide <c>UsageType/UsageTypeGroup</c>
+        /// filter selections that contain matching units, for example: <c>hours</c>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetUsageForecast">REST API Reference for GetUsageForecast Operation</seealso>
         GetUsageForecastResponse GetUsageForecast(GetUsageForecastRequest request);
@@ -1530,6 +1651,101 @@ namespace Amazon.CostExplorer
         /// <returns>Returns a  GetUsageForecastResult from CostExplorer.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetUsageForecast">REST API Reference for GetUsageForecast Operation</seealso>
         GetUsageForecastResponse EndGetUsageForecast(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  ListCommitmentPurchaseAnalyses
+
+
+        /// <summary>
+        /// Lists the commitment purchase analyses for your account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListCommitmentPurchaseAnalyses service method.</param>
+        /// 
+        /// <returns>The response from the ListCommitmentPurchaseAnalyses service method, as returned by CostExplorer.</returns>
+        /// <exception cref="Amazon.CostExplorer.Model.DataUnavailableException">
+        /// The requested data is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.CostExplorer.Model.InvalidNextTokenException">
+        /// The pagination token is invalid. Try again without a pagination token.
+        /// </exception>
+        /// <exception cref="Amazon.CostExplorer.Model.LimitExceededException">
+        /// You made too many calls in a short period of time. Try again later.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/ListCommitmentPurchaseAnalyses">REST API Reference for ListCommitmentPurchaseAnalyses Operation</seealso>
+        ListCommitmentPurchaseAnalysesResponse ListCommitmentPurchaseAnalyses(ListCommitmentPurchaseAnalysesRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListCommitmentPurchaseAnalyses operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListCommitmentPurchaseAnalyses operation on AmazonCostExplorerClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListCommitmentPurchaseAnalyses
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/ListCommitmentPurchaseAnalyses">REST API Reference for ListCommitmentPurchaseAnalyses Operation</seealso>
+        IAsyncResult BeginListCommitmentPurchaseAnalyses(ListCommitmentPurchaseAnalysesRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListCommitmentPurchaseAnalyses operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListCommitmentPurchaseAnalyses.</param>
+        /// 
+        /// <returns>Returns a  ListCommitmentPurchaseAnalysesResult from CostExplorer.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/ListCommitmentPurchaseAnalyses">REST API Reference for ListCommitmentPurchaseAnalyses Operation</seealso>
+        ListCommitmentPurchaseAnalysesResponse EndListCommitmentPurchaseAnalyses(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  ListCostAllocationTagBackfillHistory
+
+
+        /// <summary>
+        /// Retrieves a list of your historical cost allocation tag backfill requests.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListCostAllocationTagBackfillHistory service method.</param>
+        /// 
+        /// <returns>The response from the ListCostAllocationTagBackfillHistory service method, as returned by CostExplorer.</returns>
+        /// <exception cref="Amazon.CostExplorer.Model.InvalidNextTokenException">
+        /// The pagination token is invalid. Try again without a pagination token.
+        /// </exception>
+        /// <exception cref="Amazon.CostExplorer.Model.LimitExceededException">
+        /// You made too many calls in a short period of time. Try again later.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/ListCostAllocationTagBackfillHistory">REST API Reference for ListCostAllocationTagBackfillHistory Operation</seealso>
+        ListCostAllocationTagBackfillHistoryResponse ListCostAllocationTagBackfillHistory(ListCostAllocationTagBackfillHistoryRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListCostAllocationTagBackfillHistory operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListCostAllocationTagBackfillHistory operation on AmazonCostExplorerClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListCostAllocationTagBackfillHistory
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/ListCostAllocationTagBackfillHistory">REST API Reference for ListCostAllocationTagBackfillHistory Operation</seealso>
+        IAsyncResult BeginListCostAllocationTagBackfillHistory(ListCostAllocationTagBackfillHistoryRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListCostAllocationTagBackfillHistory operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListCostAllocationTagBackfillHistory.</param>
+        /// 
+        /// <returns>Returns a  ListCostAllocationTagBackfillHistoryResult from CostExplorer.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/ListCostAllocationTagBackfillHistory">REST API Reference for ListCostAllocationTagBackfillHistory Operation</seealso>
+        ListCostAllocationTagBackfillHistoryResponse EndListCostAllocationTagBackfillHistory(IAsyncResult asyncResult);
 
         #endregion
         
@@ -1584,13 +1800,13 @@ namespace Amazon.CostExplorer
 
 
         /// <summary>
-        /// Returns the name, Amazon Resource Name (ARN), <code>NumberOfRules</code> and effective
-        /// dates of all Cost Categories defined in the account. You have the option to use <code>EffectiveOn</code>
+        /// Returns the name, Amazon Resource Name (ARN), <c>NumberOfRules</c> and effective dates
+        /// of all Cost Categories defined in the account. You have the option to use <c>EffectiveOn</c>
         /// to return a list of Cost Categories that were active on a specific date. If there
-        /// is no <code>EffectiveOn</code> specified, you’ll see Cost Categories that are effective
-        /// on the current date. If Cost Category is still effective, <code>EffectiveEnd</code>
-        /// is omitted in the response. <code>ListCostCategoryDefinitions</code> supports pagination.
-        /// The request can have a <code>MaxResults</code> range up to 100.
+        /// is no <c>EffectiveOn</c> specified, you’ll see Cost Categories that are effective
+        /// on the current date. If Cost Category is still effective, <c>EffectiveEnd</c> is omitted
+        /// in the response. <c>ListCostCategoryDefinitions</c> supports pagination. The request
+        /// can have a <c>MaxResults</c> range up to 100.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListCostCategoryDefinitions service method.</param>
         /// 
@@ -1769,6 +1985,115 @@ namespace Amazon.CostExplorer
 
         #endregion
         
+        #region  StartCommitmentPurchaseAnalysis
+
+
+        /// <summary>
+        /// Specifies the parameters of a planned commitment purchase and starts the generation
+        /// of the analysis. This enables you to estimate the cost, coverage, and utilization
+        /// impact of your planned commitment purchases.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartCommitmentPurchaseAnalysis service method.</param>
+        /// 
+        /// <returns>The response from the StartCommitmentPurchaseAnalysis service method, as returned by CostExplorer.</returns>
+        /// <exception cref="Amazon.CostExplorer.Model.DataUnavailableException">
+        /// The requested data is unavailable.
+        /// </exception>
+        /// <exception cref="Amazon.CostExplorer.Model.GenerationExistsException">
+        /// A request to generate a recommendation or analysis is already in progress.
+        /// </exception>
+        /// <exception cref="Amazon.CostExplorer.Model.LimitExceededException">
+        /// You made too many calls in a short period of time. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.CostExplorer.Model.ServiceQuotaExceededException">
+        /// You've reached the limit on the number of resources you can create, or exceeded the
+        /// size of an individual resource.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/StartCommitmentPurchaseAnalysis">REST API Reference for StartCommitmentPurchaseAnalysis Operation</seealso>
+        StartCommitmentPurchaseAnalysisResponse StartCommitmentPurchaseAnalysis(StartCommitmentPurchaseAnalysisRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the StartCommitmentPurchaseAnalysis operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the StartCommitmentPurchaseAnalysis operation on AmazonCostExplorerClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndStartCommitmentPurchaseAnalysis
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/StartCommitmentPurchaseAnalysis">REST API Reference for StartCommitmentPurchaseAnalysis Operation</seealso>
+        IAsyncResult BeginStartCommitmentPurchaseAnalysis(StartCommitmentPurchaseAnalysisRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  StartCommitmentPurchaseAnalysis operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginStartCommitmentPurchaseAnalysis.</param>
+        /// 
+        /// <returns>Returns a  StartCommitmentPurchaseAnalysisResult from CostExplorer.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/StartCommitmentPurchaseAnalysis">REST API Reference for StartCommitmentPurchaseAnalysis Operation</seealso>
+        StartCommitmentPurchaseAnalysisResponse EndStartCommitmentPurchaseAnalysis(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  StartCostAllocationTagBackfill
+
+
+        /// <summary>
+        /// Request a cost allocation tag backfill. This will backfill the activation status
+        /// (either <c>active</c> or <c>inactive</c>) for all tag keys from <c>para:BackfillFrom</c>
+        /// up to the when this request is made.
+        /// 
+        ///  
+        /// <para>
+        /// You can request a backfill once every 24 hours. 
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartCostAllocationTagBackfill service method.</param>
+        /// 
+        /// <returns>The response from the StartCostAllocationTagBackfill service method, as returned by CostExplorer.</returns>
+        /// <exception cref="Amazon.CostExplorer.Model.BackfillLimitExceededException">
+        /// A request to backfill is already in progress. Once the previous request is complete,
+        /// you can create another request.
+        /// </exception>
+        /// <exception cref="Amazon.CostExplorer.Model.LimitExceededException">
+        /// You made too many calls in a short period of time. Try again later.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/StartCostAllocationTagBackfill">REST API Reference for StartCostAllocationTagBackfill Operation</seealso>
+        StartCostAllocationTagBackfillResponse StartCostAllocationTagBackfill(StartCostAllocationTagBackfillRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the StartCostAllocationTagBackfill operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the StartCostAllocationTagBackfill operation on AmazonCostExplorerClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndStartCostAllocationTagBackfill
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/StartCostAllocationTagBackfill">REST API Reference for StartCostAllocationTagBackfill Operation</seealso>
+        IAsyncResult BeginStartCostAllocationTagBackfill(StartCostAllocationTagBackfillRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  StartCostAllocationTagBackfill operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginStartCostAllocationTagBackfill.</param>
+        /// 
+        /// <returns>Returns a  StartCostAllocationTagBackfillResult from CostExplorer.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/StartCostAllocationTagBackfill">REST API Reference for StartCostAllocationTagBackfill Operation</seealso>
+        StartCostAllocationTagBackfillResponse EndStartCostAllocationTagBackfill(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  StartSavingsPlansPurchaseRecommendationGeneration
 
 
@@ -1780,8 +2105,8 @@ namespace Amazon.CostExplorer
         /// 
         ///  <note> 
         /// <para>
-        ///  <code>StartSavingsPlansPurchaseRecommendationGeneration</code> has no request syntax
-        /// because no input parameters are needed to support this operation.
+        ///  <c>StartSavingsPlansPurchaseRecommendationGeneration</c> has no request syntax because
+        /// no input parameters are needed to support this operation.
         /// </para>
         ///  </note>
         /// </summary>
@@ -1792,7 +2117,7 @@ namespace Amazon.CostExplorer
         /// The requested data is unavailable.
         /// </exception>
         /// <exception cref="Amazon.CostExplorer.Model.GenerationExistsException">
-        /// A request to generate a recommendation is already in progress.
+        /// A request to generate a recommendation or analysis is already in progress.
         /// </exception>
         /// <exception cref="Amazon.CostExplorer.Model.LimitExceededException">
         /// You made too many calls in a short period of time. Try again later.
@@ -1840,9 +2165,9 @@ namespace Amazon.CostExplorer
         /// 
         ///  
         /// <para>
-        /// You can use the <code>TagResource</code> operation with a resource that already has
-        /// tags. If you specify a new tag key for the resource, this tag is appended to the list
-        /// of tags associated with the resource. If you specify a tag key that is already associated
+        /// You can use the <c>TagResource</c> operation with a resource that already has tags.
+        /// If you specify a new tag key for the resource, this tag is appended to the list of
+        /// tags associated with the resource. If you specify a tag key that is already associated
         /// with the resource, the new tag value you specify replaces the previous value for that
         /// tag.
         /// </para>
@@ -2000,7 +2325,7 @@ namespace Amazon.CostExplorer
         ///  <note> 
         /// <para>
         /// The JSON below describes the generic construct for each type. See <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_UpdateAnomalySubscription.html#API_UpdateAnomalySubscription_RequestParameters">Request
-        /// Parameters</a> for possible values as they apply to <code>AnomalySubscription</code>.
+        /// Parameters</a> for possible values as they apply to <c>AnomalySubscription</c>.
         /// </para>
         ///  </note>
         /// </summary>

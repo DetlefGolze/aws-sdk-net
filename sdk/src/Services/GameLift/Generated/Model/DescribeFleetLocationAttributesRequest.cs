@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -54,10 +55,10 @@ namespace Amazon.GameLift.Model
     /// </para>
     ///  
     /// <para>
-    /// If successful, a <code>LocationAttributes</code> object is returned for each requested
-    /// location. If the fleet does not have a requested location, no information is returned.
-    /// This operation does not return the home Region. To get information on a fleet's home
-    /// Region, call <code>DescribeFleetAttributes</code>.
+    /// If successful, a <c>LocationAttributes</c> object is returned for each requested location.
+    /// If the fleet does not have a requested location, no information is returned. This
+    /// operation does not return the home Region. To get information on a fleet's home Region,
+    /// call <c>DescribeFleetAttributes</c>.
     /// </para>
     ///  
     /// <para>
@@ -68,12 +69,17 @@ namespace Amazon.GameLift.Model
     ///  <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
     /// up Amazon GameLift fleets</a> 
     /// </para>
+    ///  
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-regions.html">
+    /// Amazon GameLift service locations</a> for managed hosting
+    /// </para>
     /// </summary>
     public partial class DescribeFleetLocationAttributesRequest : AmazonGameLiftRequest
     {
         private string _fleetId;
         private int? _limit;
-        private List<string> _locations = new List<string>();
+        private List<string> _locations = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -83,7 +89,7 @@ namespace Amazon.GameLift.Model
         /// the fleet ID or ARN value.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -99,7 +105,7 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property Limit. 
         /// <para>
-        /// The maximum number of results to return. Use this parameter with <code>NextToken</code>
+        /// The maximum number of results to return. Use this parameter with <c>NextToken</c>
         /// to get results as a set of sequential pages. This limit is not currently enforced.
         /// </para>
         /// </summary>
@@ -120,7 +126,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property Locations. 
         /// <para>
         /// A list of fleet locations to retrieve information for. Specify locations in the form
-        /// of an Amazon Web Services Region code, such as <code>us-west-2</code>.
+        /// of an Amazon Web Services Region code, such as <c>us-west-2</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -133,7 +139,7 @@ namespace Amazon.GameLift.Model
         // Check to see if Locations property is set
         internal bool IsSetLocations()
         {
-            return this._locations != null && this._locations.Count > 0; 
+            return this._locations != null && (this._locations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

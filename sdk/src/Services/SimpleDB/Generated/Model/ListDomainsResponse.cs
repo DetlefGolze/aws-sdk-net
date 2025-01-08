@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleDB.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.SimpleDB.Model
     /// </summary>
     public partial class ListDomainsResponse : AmazonWebServiceResponse
     {
-        private List<string> _domainNames = new List<string>();
+        private List<string> _domainNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -48,12 +49,12 @@ namespace Amazon.SimpleDB.Model
         // Check to see if DomainNames property is set
         internal bool IsSetDomainNames()
         {
-            return this._domainNames != null && this._domainNames.Count > 0; 
+            return this._domainNames != null && (this._domainNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. An opaque token indicating that there are more
-        /// domains than the specified <code>MaxNumberOfDomains</code> still available.
+        /// domains than the specified <c>MaxNumberOfDomains</c> still available.
         /// </summary>
         public string NextToken
         {

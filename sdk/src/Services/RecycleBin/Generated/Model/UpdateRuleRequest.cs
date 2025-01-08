@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RecycleBin.Model
 {
     /// <summary>
@@ -40,8 +41,9 @@ namespace Amazon.RecycleBin.Model
     public partial class UpdateRuleRequest : AmazonRecycleBinRequest
     {
         private string _description;
+        private List<ResourceTag> _excludeResourceTags = AWSConfigs.InitializeCollections ? new List<ResourceTag>() : null;
         private string _identifier;
-        private List<ResourceTag> _resourceTags = new List<ResourceTag>();
+        private List<ResourceTag> _resourceTags = AWSConfigs.InitializeCollections ? new List<ResourceTag>() : null;
         private ResourceType _resourceType;
         private RetentionPeriod _retentionPeriod;
 
@@ -61,6 +63,31 @@ namespace Amazon.RecycleBin.Model
         internal bool IsSetDescription()
         {
             return this._description != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExcludeResourceTags. 
+        /// <para>
+        /// [Region-level retention rules only] Specifies the exclusion tags to use to identify
+        /// resources that are to be excluded, or ignored, by a Region-level retention rule. Resources
+        /// that have any of these tags are not retained by the retention rule upon deletion.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can't specify exclusion tags for tag-level retention rules.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=5)]
+        public List<ResourceTag> ExcludeResourceTags
+        {
+            get { return this._excludeResourceTags; }
+            set { this._excludeResourceTags = value; }
+        }
+
+        // Check to see if ExcludeResourceTags property is set
+        internal bool IsSetExcludeResourceTags()
+        {
+            return this._excludeResourceTags != null && (this._excludeResourceTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -85,12 +112,12 @@ namespace Amazon.RecycleBin.Model
         /// <summary>
         /// Gets and sets the property ResourceTags. 
         /// <para>
-        /// Specifies the resource tags to use to identify resources that are to be retained by
-        /// a tag-level retention rule. For tag-level retention rules, only deleted resources,
-        /// of the specified resource type, that have one or more of the specified tag key and
-        /// value pairs are retained. If a resource is deleted, but it does not have any of the
-        /// specified tag key and value pairs, it is immediately deleted without being retained
-        /// by the retention rule.
+        /// [Tag-level retention rules only] Specifies the resource tags to use to identify resources
+        /// that are to be retained by a tag-level retention rule. For tag-level retention rules,
+        /// only deleted resources, of the specified resource type, that have one or more of the
+        /// specified tag key and value pairs are retained. If a resource is deleted, but it does
+        /// not have any of the specified tag key and value pairs, it is immediately deleted without
+        /// being retained by the retention rule.
         /// </para>
         ///  
         /// <para>
@@ -114,7 +141,7 @@ namespace Amazon.RecycleBin.Model
         // Check to see if ResourceTags property is set
         internal bool IsSetResourceTags()
         {
-            return this._resourceTags != null && this._resourceTags.Count > 0; 
+            return this._resourceTags != null && (this._resourceTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

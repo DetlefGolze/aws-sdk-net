@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Outposts.Model
 {
     /// <summary>
@@ -77,8 +78,8 @@ namespace Amazon.S3Outposts.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If a previous response from this operation included a <code>NextToken</code> value,
-        /// you can provide that value here to retrieve the next page of results.
+        /// If a previous response from this operation included a <c>NextToken</c> value, you
+        /// can provide that value here to retrieve the next page of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

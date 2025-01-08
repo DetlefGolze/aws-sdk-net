@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(JobUpdate requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAllocatedCapacity())
             {
                 context.Writer.WritePropertyName("AllocatedCapacity");
@@ -135,16 +138,41 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
                 context.Writer.Write(requestObject.GlueVersion);
             }
 
+            if(requestObject.IsSetJobMode())
+            {
+                context.Writer.WritePropertyName("JobMode");
+                context.Writer.Write(requestObject.JobMode);
+            }
+
+            if(requestObject.IsSetJobRunQueuingEnabled())
+            {
+                context.Writer.WritePropertyName("JobRunQueuingEnabled");
+                context.Writer.Write(requestObject.JobRunQueuingEnabled);
+            }
+
             if(requestObject.IsSetLogUri())
             {
                 context.Writer.WritePropertyName("LogUri");
                 context.Writer.Write(requestObject.LogUri);
             }
 
+            if(requestObject.IsSetMaintenanceWindow())
+            {
+                context.Writer.WritePropertyName("MaintenanceWindow");
+                context.Writer.Write(requestObject.MaintenanceWindow);
+            }
+
             if(requestObject.IsSetMaxCapacity())
             {
                 context.Writer.WritePropertyName("MaxCapacity");
-                context.Writer.Write(requestObject.MaxCapacity);
+                if(StringUtils.IsSpecialDoubleValue(requestObject.MaxCapacity))
+                {
+                    context.Writer.Write(StringUtils.FromSpecialDoubleValue(requestObject.MaxCapacity));
+                }
+                else
+                {
+                    context.Writer.Write(requestObject.MaxCapacity);
+                }
             }
 
             if(requestObject.IsSetMaxRetries())

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -72,7 +73,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <para>
         /// Optional pagination token provided by a previous request. If this parameter is specified,
         /// the response includes only records beyond the marker, up to the value specified by
-        /// <code>MaxRecords</code>.
+        /// <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -91,7 +92,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property MaxRecords. 
         /// <para>
         /// Maximum number of records to include in the response. If more records exist than the
-        /// specified <code>MaxRecords</code> value, a pagination token called a marker is included
+        /// specified <c>MaxRecords</c> value, a pagination token called a marker is included
         /// in the response so that the remaining results can be retrieved.
         /// </para>
         /// </summary>

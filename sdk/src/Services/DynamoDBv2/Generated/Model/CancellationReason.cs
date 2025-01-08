@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
     /// An ordered list of errors for each item in the request which caused the transaction
     /// to get cancelled. The values of the list are ordered according to the ordering of
-    /// the <code>TransactWriteItems</code> request parameter. If no error occurred for the
-    /// associated item an error with a Null code and Null message will be present.
+    /// the <c>TransactWriteItems</c> request parameter. If no error occurred for the associated
+    /// item an error with a Null code and Null message will be present.
     /// </summary>
     public partial class CancellationReason
     {
         private string _code;
-        private Dictionary<string, AttributeValue> _item = new Dictionary<string, AttributeValue>();
+        private Dictionary<string, AttributeValue> _item = AWSConfigs.InitializeCollections ? new Dictionary<string, AttributeValue>() : null;
         private string _message;
 
         /// <summary>
@@ -73,7 +74,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if Item property is set
         internal bool IsSetItem()
         {
-            return this._item != null && this._item.Count > 0; 
+            return this._item != null && (this._item.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

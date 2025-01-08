@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
@@ -39,7 +40,8 @@ namespace Amazon.RoboMaker.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the simulation software suite.
+        /// The name of the simulation software suite. <c>SimulationRuntime</c> is the only supported
+        /// value.
         /// </para>
         /// </summary>
         public SimulationSoftwareSuiteType Name
@@ -57,7 +59,7 @@ namespace Amazon.RoboMaker.Model
         /// <summary>
         /// Gets and sets the property Version. 
         /// <para>
-        /// The version of the simulation software suite.
+        /// The version of the simulation software suite. Not applicable for <c>SimulationRuntime</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1024)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancingV2.Model
 {
     /// <summary>
@@ -33,7 +34,8 @@ namespace Amazon.ElasticLoadBalancingV2.Model
     /// </summary>
     public partial class SetSubnetsResponse : AmazonWebServiceResponse
     {
-        private List<AvailabilityZone> _availabilityZones = new List<AvailabilityZone>();
+        private List<AvailabilityZone> _availabilityZones = AWSConfigs.InitializeCollections ? new List<AvailabilityZone>() : null;
+        private EnablePrefixForIpv6SourceNatEnum _enablePrefixForIpv6SourceNat;
         private IpAddressType _ipAddressType;
 
         /// <summary>
@@ -51,13 +53,32 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property EnablePrefixForIpv6SourceNat. 
+        /// <para>
+        /// [Network Load Balancers] Indicates whether to use an IPv6 prefix from each subnet
+        /// for source NAT.
+        /// </para>
+        /// </summary>
+        public EnablePrefixForIpv6SourceNatEnum EnablePrefixForIpv6SourceNat
+        {
+            get { return this._enablePrefixForIpv6SourceNat; }
+            set { this._enablePrefixForIpv6SourceNat = value; }
+        }
+
+        // Check to see if EnablePrefixForIpv6SourceNat property is set
+        internal bool IsSetEnablePrefixForIpv6SourceNat()
+        {
+            return this._enablePrefixForIpv6SourceNat != null;
         }
 
         /// <summary>
         /// Gets and sets the property IpAddressType. 
         /// <para>
-        /// [Network Load Balancers] The IP address type.
+        /// The IP address type.
         /// </para>
         /// </summary>
         public IpAddressType IpAddressType

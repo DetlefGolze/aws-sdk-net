@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.GreengrassV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.GreengrassV2.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public CoreDevice Unmarshall(JsonUnmarshallerContext context)
         {
+            CoreDevice unmarshalledObject = new CoreDevice();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            CoreDevice unmarshalledObject = new CoreDevice();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("architecture", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Architecture = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("coreDeviceThingName", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -76,6 +84,18 @@ namespace Amazon.GreengrassV2.Model.Internal.MarshallTransformations
                     unmarshalledObject.LastStatusUpdateTimestamp = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("platform", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Platform = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("runtime", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Runtime = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("status", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -83,7 +103,6 @@ namespace Amazon.GreengrassV2.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

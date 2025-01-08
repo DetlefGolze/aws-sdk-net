@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,15 +34,15 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class ResponseLaunchTemplateData
     {
-        private List<LaunchTemplateBlockDeviceMapping> _blockDeviceMappings = new List<LaunchTemplateBlockDeviceMapping>();
+        private List<LaunchTemplateBlockDeviceMapping> _blockDeviceMappings = AWSConfigs.InitializeCollections ? new List<LaunchTemplateBlockDeviceMapping>() : null;
         private LaunchTemplateCapacityReservationSpecificationResponse _capacityReservationSpecification;
         private LaunchTemplateCpuOptions _cpuOptions;
         private CreditSpecification _creditSpecification;
         private bool? _disableApiStop;
         private bool? _disableApiTermination;
         private bool? _ebsOptimized;
-        private List<ElasticGpuSpecificationResponse> _elasticGpuSpecifications = new List<ElasticGpuSpecificationResponse>();
-        private List<LaunchTemplateElasticInferenceAcceleratorResponse> _elasticInferenceAccelerators = new List<LaunchTemplateElasticInferenceAcceleratorResponse>();
+        private List<ElasticGpuSpecificationResponse> _elasticGpuSpecifications = AWSConfigs.InitializeCollections ? new List<ElasticGpuSpecificationResponse>() : null;
+        private List<LaunchTemplateElasticInferenceAcceleratorResponse> _elasticInferenceAccelerators = AWSConfigs.InitializeCollections ? new List<LaunchTemplateElasticInferenceAcceleratorResponse>() : null;
         private LaunchTemplateEnclaveOptions _enclaveOptions;
         private LaunchTemplateHibernationOptions _hibernationOptions;
         private LaunchTemplateIamInstanceProfileSpecification _iamInstanceProfile;
@@ -52,17 +53,19 @@ namespace Amazon.EC2.Model
         private InstanceType _instanceType;
         private string _kernelId;
         private string _keyName;
-        private List<LaunchTemplateLicenseConfiguration> _licenseSpecifications = new List<LaunchTemplateLicenseConfiguration>();
+        private List<LaunchTemplateLicenseConfiguration> _licenseSpecifications = AWSConfigs.InitializeCollections ? new List<LaunchTemplateLicenseConfiguration>() : null;
         private LaunchTemplateInstanceMaintenanceOptions _maintenanceOptions;
         private LaunchTemplateInstanceMetadataOptions _metadataOptions;
         private LaunchTemplatesMonitoring _monitoring;
-        private List<LaunchTemplateInstanceNetworkInterfaceSpecification> _networkInterfaces = new List<LaunchTemplateInstanceNetworkInterfaceSpecification>();
+        private List<LaunchTemplateInstanceNetworkInterfaceSpecification> _networkInterfaces = AWSConfigs.InitializeCollections ? new List<LaunchTemplateInstanceNetworkInterfaceSpecification>() : null;
+        private LaunchTemplateNetworkPerformanceOptions _networkPerformanceOptions;
+        private OperatorResponse _operator;
         private LaunchTemplatePlacement _placement;
         private LaunchTemplatePrivateDnsNameOptions _privateDnsNameOptions;
         private string _ramDiskId;
-        private List<string> _securityGroupIds = new List<string>();
-        private List<string> _securityGroups = new List<string>();
-        private List<LaunchTemplateTagSpecification> _tagSpecifications = new List<LaunchTemplateTagSpecification>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _securityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<LaunchTemplateTagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<LaunchTemplateTagSpecification>() : null;
         private string _userData;
 
         /// <summary>
@@ -80,7 +83,7 @@ namespace Amazon.EC2.Model
         // Check to see if BlockDeviceMappings property is set
         internal bool IsSetBlockDeviceMappings()
         {
-            return this._blockDeviceMappings != null && this._blockDeviceMappings.Count > 0; 
+            return this._blockDeviceMappings != null && (this._blockDeviceMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -104,8 +107,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property CpuOptions. 
         /// <para>
-        /// The CPU options for the instance. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html">Optimizing
-        /// CPU options</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+        /// The CPU options for the instance. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html">Optimize
+        /// CPU options</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         /// </summary>
         public LaunchTemplateCpuOptions CpuOptions
@@ -142,8 +145,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property DisableApiStop. 
         /// <para>
         /// Indicates whether the instance is enabled for stop protection. For more information,
-        /// see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html#Using_StopProtection">Stop
-        /// protection</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+        /// see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-stop-protection.html">Enable
+        /// stop protection for your instance</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         /// </summary>
         public bool DisableApiStop
@@ -161,8 +164,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property DisableApiTermination. 
         /// <para>
-        /// If set to <code>true</code>, indicates that the instance cannot be terminated using
-        /// the Amazon EC2 console, command line tool, or API.
+        /// If set to <c>true</c>, indicates that the instance cannot be terminated using the
+        /// Amazon EC2 console, command line tool, or API.
         /// </para>
         /// </summary>
         public bool DisableApiTermination
@@ -198,8 +201,15 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property ElasticGpuSpecifications. 
         /// <para>
-        /// The elastic GPU specification.
+        /// Deprecated.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// Amazon Elastic Graphics reached end of life on January 8, 2024. For workloads that
+        /// require graphics acceleration, we recommend that you use Amazon EC2 G4ad, G4dn, or
+        /// G5 instances.
+        /// </para>
+        ///  </note>
         /// </summary>
         public List<ElasticGpuSpecificationResponse> ElasticGpuSpecifications
         {
@@ -210,11 +220,15 @@ namespace Amazon.EC2.Model
         // Check to see if ElasticGpuSpecifications property is set
         internal bool IsSetElasticGpuSpecifications()
         {
-            return this._elasticGpuSpecifications != null && this._elasticGpuSpecifications.Count > 0; 
+            return this._elasticGpuSpecifications != null && (this._elasticGpuSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
-        /// Gets and sets the property ElasticInferenceAccelerators. 
+        /// Gets and sets the property ElasticInferenceAccelerators. <note> 
+        /// <para>
+        /// Amazon Elastic Inference is no longer available.
+        /// </para>
+        ///  </note> 
         /// <para>
         /// An elastic inference accelerator to associate with the instance. Elastic inference
         /// accelerators are a resource you can attach to your Amazon EC2 instances to accelerate
@@ -245,7 +259,7 @@ namespace Amazon.EC2.Model
         // Check to see if ElasticInferenceAccelerators property is set
         internal bool IsSetElasticInferenceAccelerators()
         {
-            return this._elasticInferenceAccelerators != null && this._elasticInferenceAccelerators.Count > 0; 
+            return this._elasticInferenceAccelerators != null && (this._elasticInferenceAccelerators.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -271,7 +285,7 @@ namespace Amazon.EC2.Model
         /// <para>
         /// Indicates whether an instance is configured for hibernation. For more information,
         /// see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html">Hibernate
-        /// your instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+        /// your Amazon EC2 instance</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         /// </summary>
         public LaunchTemplateHibernationOptions HibernationOptions
@@ -320,20 +334,19 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If a Systems Manager parameter was specified in the request, and <code>ResolveAlias</code>
-        /// was configured as <code>true</code>, then this is the AMI ID that the parameter is
-        /// mapped to in the Parameter Store.
+        /// If a Systems Manager parameter was specified in the request, and <c>ResolveAlias</c>
+        /// was configured as <c>true</c>, then this is the AMI ID that the parameter is mapped
+        /// to in the Parameter Store.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If a Systems Manager parameter was specified in the request, and <code>ResolveAlias</code>
-        /// was configured as <code>false</code>, then this is the parameter value.
+        /// If a Systems Manager parameter was specified in the request, and <c>ResolveAlias</c>
+        /// was configured as <c>false</c>, then this is the parameter value.
         /// </para>
         ///  </li> </ul> 
         /// <para>
         /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#use-an-ssm-parameter-instead-of-an-ami-id">Use
-        /// a Systems Manager parameter instead of an AMI ID</a> in the <i>Amazon Elastic Compute
-        /// Cloud User Guide</i>.
+        /// a Systems Manager parameter instead of an AMI ID</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         /// </summary>
         public string ImageId
@@ -393,7 +406,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// If you specify <code>InstanceRequirements</code>, you can't specify <code>InstanceTypes</code>.
+        /// If you specify <c>InstanceRequirements</c>, you can't specify <c>InstanceTypes</c>.
         /// </para>
         /// </summary>
         public InstanceRequirements InstanceRequirements
@@ -477,7 +490,7 @@ namespace Amazon.EC2.Model
         // Check to see if LicenseSpecifications property is set
         internal bool IsSetLicenseSpecifications()
         {
-            return this._licenseSpecifications != null && this._licenseSpecifications.Count > 0; 
+            return this._licenseSpecifications != null && (this._licenseSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -502,7 +515,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property MetadataOptions. 
         /// <para>
         /// The metadata options for the instance. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">Instance
-        /// metadata and user data</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+        /// metadata and user data</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         /// </summary>
         public LaunchTemplateInstanceMetadataOptions MetadataOptions
@@ -550,7 +563,43 @@ namespace Amazon.EC2.Model
         // Check to see if NetworkInterfaces property is set
         internal bool IsSetNetworkInterfaces()
         {
-            return this._networkInterfaces != null && this._networkInterfaces.Count > 0; 
+            return this._networkInterfaces != null && (this._networkInterfaces.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property NetworkPerformanceOptions. 
+        /// <para>
+        /// Contains the launch template settings for network performance options for your instance.
+        /// </para>
+        /// </summary>
+        public LaunchTemplateNetworkPerformanceOptions NetworkPerformanceOptions
+        {
+            get { return this._networkPerformanceOptions; }
+            set { this._networkPerformanceOptions = value; }
+        }
+
+        // Check to see if NetworkPerformanceOptions property is set
+        internal bool IsSetNetworkPerformanceOptions()
+        {
+            return this._networkPerformanceOptions != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Operator. 
+        /// <para>
+        /// The entity that manages the launch template.
+        /// </para>
+        /// </summary>
+        public OperatorResponse Operator
+        {
+            get { return this._operator; }
+            set { this._operator = value; }
+        }
+
+        // Check to see if Operator property is set
+        internal bool IsSetOperator()
+        {
+            return this._operator != null;
         }
 
         /// <summary>
@@ -622,7 +671,7 @@ namespace Amazon.EC2.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -640,7 +689,7 @@ namespace Amazon.EC2.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -658,7 +707,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

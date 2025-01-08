@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancingV2.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
     /// </summary>
     public partial class QueryStringConditionConfig
     {
-        private List<QueryStringKeyValuePair> _values = new List<QueryStringKeyValuePair>();
+        private List<QueryStringKeyValuePair> _values = AWSConfigs.InitializeCollections ? new List<QueryStringKeyValuePair>() : null;
 
         /// <summary>
         /// Gets and sets the property Values. 
@@ -50,7 +51,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         /// string is 128 characters. The comparison is case insensitive. The following wildcard
         /// characters are supported: * (matches 0 or more characters) and ? (matches exactly
         /// 1 character). To search for a literal '*' or '?' character in a query string, you
-        /// must escape these characters in <code>Values</code> using a '\' character.
+        /// must escape these characters in <c>Values</c> using a '\' character.
         /// </para>
         ///  
         /// <para>
@@ -67,7 +68,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

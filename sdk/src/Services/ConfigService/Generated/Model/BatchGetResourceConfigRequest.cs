@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
     /// Container for the parameters to the BatchGetResourceConfig operation.
-    /// Returns the <code>BaseConfigurationItem</code> for one or more requested resources.
-    /// The operation also returns a list of resources that are not processed in the current
-    /// request. If there are no unprocessed resources, the operation returns an empty unprocessedResourceKeys
+    /// Returns the <c>BaseConfigurationItem</c> for one or more requested resources. The
+    /// operation also returns a list of resources that are not processed in the current request.
+    /// If there are no unprocessed resources, the operation returns an empty unprocessedResourceKeys
     /// list. 
     /// 
     ///  <note> <ul> <li> 
@@ -48,7 +49,7 @@ namespace Amazon.ConfigService.Model
     /// </summary>
     public partial class BatchGetResourceConfigRequest : AmazonConfigServiceRequest
     {
-        private List<ResourceKey> _resourceKeys = new List<ResourceKey>();
+        private List<ResourceKey> _resourceKeys = AWSConfigs.InitializeCollections ? new List<ResourceKey>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceKeys. 
@@ -67,7 +68,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if ResourceKeys property is set
         internal bool IsSetResourceKeys()
         {
-            return this._resourceKeys != null && this._resourceKeys.Count > 0; 
+            return this._resourceKeys != null && (this._resourceKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

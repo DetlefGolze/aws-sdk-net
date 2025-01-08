@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
-    /// Represents a single entry in a list of tasks. <code>TaskListEntry</code> returns an
-    /// array that contains a list of tasks when the <a href="https://docs.aws.amazon.com/datasync/latest/userguide/API_ListTasks.html">ListTasks</a>
+    /// Represents a single entry in a list of tasks. <c>TaskListEntry</c> returns an array
+    /// that contains a list of tasks when the <a href="https://docs.aws.amazon.com/datasync/latest/userguide/API_ListTasks.html">ListTasks</a>
     /// operation is called. A task includes the source and destination file systems to sync
     /// and the options to use for the tasks.
     /// </summary>
@@ -39,6 +40,7 @@ namespace Amazon.DataSync.Model
         private string _name;
         private TaskStatus _status;
         private string _taskArn;
+        private TaskMode _taskMode;
 
         /// <summary>
         /// Gets and sets the property Name. 
@@ -46,7 +48,7 @@ namespace Amazon.DataSync.Model
         /// The name of the task.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=256)]
+        [AWSProperty(Min=0, Max=256)]
         public string Name
         {
             get { return this._name; }
@@ -94,6 +96,25 @@ namespace Amazon.DataSync.Model
         internal bool IsSetTaskArn()
         {
             return this._taskArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property TaskMode. 
+        /// <para>
+        /// The task mode that you're using. For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/choosing-task-mode.html">Choosing
+        /// a task mode for your data transfer</a>.
+        /// </para>
+        /// </summary>
+        public TaskMode TaskMode
+        {
+            get { return this._taskMode; }
+            set { this._taskMode = value; }
+        }
+
+        // Check to see if TaskMode property is set
+        internal bool IsSetTaskMode()
+        {
+            return this._taskMode != null;
         }
 
     }

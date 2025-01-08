@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ForecastService.Model
     public partial class ListWhatIfAnalysesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<WhatIfAnalysisSummary> _whatIfAnalyses = new List<WhatIfAnalysisSummary>();
+        private List<WhatIfAnalysisSummary> _whatIfAnalyses = AWSConfigs.InitializeCollections ? new List<WhatIfAnalysisSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -59,7 +60,7 @@ namespace Amazon.ForecastService.Model
         /// <summary>
         /// Gets and sets the property WhatIfAnalyses. 
         /// <para>
-        /// An array of <code>WhatIfAnalysisSummary</code> objects that describe the matched analyses.
+        /// An array of <c>WhatIfAnalysisSummary</c> objects that describe the matched analyses.
         /// </para>
         /// </summary>
         public List<WhatIfAnalysisSummary> WhatIfAnalyses
@@ -71,7 +72,7 @@ namespace Amazon.ForecastService.Model
         // Check to see if WhatIfAnalyses property is set
         internal bool IsSetWhatIfAnalyses()
         {
-            return this._whatIfAnalyses != null && this._whatIfAnalyses.Count > 0; 
+            return this._whatIfAnalyses != null && (this._whatIfAnalyses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

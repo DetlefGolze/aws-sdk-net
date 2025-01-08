@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Glue.Model
     {
         private string _catalogId;
         private string _databaseName;
-        private List<PartitionValueList> _partitionsToDelete = new List<PartitionValueList>();
+        private List<PartitionValueList> _partitionsToDelete = AWSConfigs.InitializeCollections ? new List<PartitionValueList>() : null;
         private string _tableName;
 
         /// <summary>
@@ -81,8 +82,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property PartitionsToDelete. 
         /// <para>
-        /// A list of <code>PartitionInput</code> structures that define the partitions to be
-        /// deleted.
+        /// A list of <c>PartitionInput</c> structures that define the partitions to be deleted.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=25)]
@@ -95,7 +95,7 @@ namespace Amazon.Glue.Model
         // Check to see if PartitionsToDelete property is set
         internal bool IsSetPartitionsToDelete()
         {
-            return this._partitionsToDelete != null && this._partitionsToDelete.Count > 0; 
+            return this._partitionsToDelete != null && (this._partitionsToDelete.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

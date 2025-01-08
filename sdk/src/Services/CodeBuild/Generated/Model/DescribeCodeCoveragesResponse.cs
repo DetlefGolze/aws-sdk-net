@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.CodeBuild.Model
     /// </summary>
     public partial class DescribeCodeCoveragesResponse : AmazonWebServiceResponse
     {
-        private List<CodeCoverage> _codeCoverages = new List<CodeCoverage>();
+        private List<CodeCoverage> _codeCoverages = AWSConfigs.InitializeCollections ? new List<CodeCoverage>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property CodeCoverages. 
         /// <para>
-        /// An array of <code>CodeCoverage</code> objects that contain the results.
+        /// An array of <c>CodeCoverage</c> objects that contain the results.
         /// </para>
         /// </summary>
         public List<CodeCoverage> CodeCoverages
@@ -51,14 +52,14 @@ namespace Amazon.CodeBuild.Model
         // Check to see if CodeCoverages property is set
         internal bool IsSetCodeCoverages()
         {
-            return this._codeCoverages != null && this._codeCoverages.Count > 0; 
+            return this._codeCoverages != null && (this._codeCoverages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If there are more items to return, this contains a token that is passed to a subsequent
-        /// call to <code>DescribeCodeCoverages</code> to retrieve the next set of items.
+        /// call to <c>DescribeCodeCoverages</c> to retrieve the next set of items.
         /// </para>
         /// </summary>
         public string NextToken

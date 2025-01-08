@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -76,12 +77,11 @@ namespace Amazon.Neptune.Model
         /// <summary>
         /// Gets and sets the property ForceFailover. 
         /// <para>
-        ///  When <code>true</code>, the reboot is conducted through a MultiAZ failover.
+        ///  When <c>true</c>, the reboot is conducted through a MultiAZ failover.
         /// </para>
         ///  
         /// <para>
-        /// Constraint: You can't specify <code>true</code> if the instance is not configured
-        /// for MultiAZ.
+        /// Constraint: You can't specify <c>true</c> if the instance is not configured for MultiAZ.
         /// </para>
         /// </summary>
         public bool ForceFailover

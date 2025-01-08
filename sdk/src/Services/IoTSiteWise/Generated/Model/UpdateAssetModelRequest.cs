@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -37,37 +38,56 @@ namespace Amazon.IoTSiteWise.Model
     /// 
     ///  <important> 
     /// <para>
-    /// This operation overwrites the existing model with the provided model. To avoid deleting
-    /// your asset model's properties or hierarchies, you must include their IDs and definitions
-    /// in the updated asset model payload. For more information, see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetModel.html">DescribeAssetModel</a>.
+    /// If you remove a property from an asset model, IoT SiteWise deletes all previous data
+    /// for that property. You can’t change the type or data type of an existing property.
     /// </para>
     ///  
     /// <para>
-    /// If you remove a property from an asset model, IoT SiteWise deletes all previous data
-    /// for that property. If you remove a hierarchy definition from an asset model, IoT SiteWise
-    /// disassociates every asset associated with that hierarchy. You can't change the type
-    /// or data type of an existing property.
+    /// To replace an existing asset model property with a new one with the same <c>name</c>,
+    /// do the following:
     /// </para>
-    ///  </important>
+    ///  <ol> <li> 
+    /// <para>
+    /// Submit an <c>UpdateAssetModel</c> request with the entire existing property removed.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Submit a second <c>UpdateAssetModel</c> request that includes the new property. The
+    /// new asset property will have the same <c>name</c> as the previous one and IoT SiteWise
+    /// will generate a new unique <c>id</c>.
+    /// </para>
+    ///  </li> </ol> </important>
     /// </summary>
     public partial class UpdateAssetModelRequest : AmazonIoTSiteWiseRequest
     {
-        private List<AssetModelCompositeModel> _assetModelCompositeModels = new List<AssetModelCompositeModel>();
+        private List<AssetModelCompositeModel> _assetModelCompositeModels = AWSConfigs.InitializeCollections ? new List<AssetModelCompositeModel>() : null;
         private string _assetModelDescription;
-        private List<AssetModelHierarchy> _assetModelHierarchies = new List<AssetModelHierarchy>();
+        private string _assetModelExternalId;
+        private List<AssetModelHierarchy> _assetModelHierarchies = AWSConfigs.InitializeCollections ? new List<AssetModelHierarchy>() : null;
         private string _assetModelId;
         private string _assetModelName;
-        private List<AssetModelProperty> _assetModelProperties = new List<AssetModelProperty>();
+        private List<AssetModelProperty> _assetModelProperties = AWSConfigs.InitializeCollections ? new List<AssetModelProperty>() : null;
         private string _clientToken;
+        private string _ifMatch;
+        private string _ifNoneMatch;
+        private AssetModelVersionType _matchForVersionType;
 
         /// <summary>
         /// Gets and sets the property AssetModelCompositeModels. 
         /// <para>
-        /// The composite asset models that are part of this asset model. Composite asset models
-        /// are asset models that contain specific properties. Each composite model has a type
-        /// that defines the properties that the composite model supports. Use composite asset
-        /// models to define alarms on this asset model.
+        /// The composite models that are part of this asset model. It groups properties (such
+        /// as attributes, measurements, transforms, and metrics) and child composite models that
+        /// model parts of your industrial equipment. Each composite model has a type that defines
+        /// the properties that the composite model supports. Use composite models to define alarms
+        /// on this asset model.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// When creating custom composite models, you need to use <a href="https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_CreateAssetModelCompositeModel.html">CreateAssetModelCompositeModel</a>.
+        /// For more information, see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-custom-composite-models.html">Creating
+        /// custom composite models (Components)</a> in the <i>IoT SiteWise User Guide</i>.
+        /// </para>
+        ///  </note>
         /// </summary>
         public List<AssetModelCompositeModel> AssetModelCompositeModels
         {
@@ -78,7 +98,7 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if AssetModelCompositeModels property is set
         internal bool IsSetAssetModelCompositeModels()
         {
-            return this._assetModelCompositeModels != null && this._assetModelCompositeModels.Count > 0; 
+            return this._assetModelCompositeModels != null && (this._assetModelCompositeModels.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -98,6 +118,28 @@ namespace Amazon.IoTSiteWise.Model
         internal bool IsSetAssetModelDescription()
         {
             return this._assetModelDescription != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property AssetModelExternalId. 
+        /// <para>
+        /// An external ID to assign to the asset model. The asset model must not already have
+        /// an external ID. The external ID must be unique within your Amazon Web Services account.
+        /// For more information, see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-ids">Using
+        /// external IDs</a> in the <i>IoT SiteWise User Guide</i>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=2, Max=128)]
+        public string AssetModelExternalId
+        {
+            get { return this._assetModelExternalId; }
+            set { this._assetModelExternalId = value; }
+        }
+
+        // Check to see if AssetModelExternalId property is set
+        internal bool IsSetAssetModelExternalId()
+        {
+            return this._assetModelExternalId != null;
         }
 
         /// <summary>
@@ -124,16 +166,19 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if AssetModelHierarchies property is set
         internal bool IsSetAssetModelHierarchies()
         {
-            return this._assetModelHierarchies != null && this._assetModelHierarchies.Count > 0; 
+            return this._assetModelHierarchies != null && (this._assetModelHierarchies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AssetModelId. 
         /// <para>
-        /// The ID of the asset model to update.
+        /// The ID of the asset model to update. This can be either the actual ID in UUID format,
+        /// or else <c>externalId:</c> followed by the external ID, if it has one. For more information,
+        /// see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-id-references">Referencing
+        /// objects with external IDs</a> in the <i>IoT SiteWise User Guide</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=36, Max=36)]
+        [AWSProperty(Required=true, Min=13, Max=139)]
         public string AssetModelId
         {
             get { return this._assetModelId; }
@@ -149,7 +194,7 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property AssetModelName. 
         /// <para>
-        /// A unique, friendly name for the asset model.
+        /// A unique name for the asset model.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]
@@ -188,7 +233,7 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if AssetModelProperties property is set
         internal bool IsSetAssetModelProperties()
         {
-            return this._assetModelProperties != null && this._assetModelProperties.Count > 0; 
+            return this._assetModelProperties != null && (this._assetModelProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -209,6 +254,66 @@ namespace Amazon.IoTSiteWise.Model
         internal bool IsSetClientToken()
         {
             return this._clientToken != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IfMatch. 
+        /// <para>
+        /// The expected current entity tag (ETag) for the asset model’s latest or active version
+        /// (specified using <c>matchForVersionType</c>). The update request is rejected if the
+        /// tag does not match the latest or active version's current entity tag. See <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/opt-locking-for-model.html">Optimistic
+        /// locking for asset model writes</a> in the <i>IoT SiteWise User Guide</i>.
+        /// </para>
+        /// </summary>
+        public string IfMatch
+        {
+            get { return this._ifMatch; }
+            set { this._ifMatch = value; }
+        }
+
+        // Check to see if IfMatch property is set
+        internal bool IsSetIfMatch()
+        {
+            return !string.IsNullOrEmpty(this._ifMatch);
+        }
+
+        /// <summary>
+        /// Gets and sets the property IfNoneMatch. 
+        /// <para>
+        /// Accepts <b>*</b> to reject the update request if an active version (specified using
+        /// <c>matchForVersionType</c> as <c>ACTIVE</c>) already exists for the asset model.
+        /// </para>
+        /// </summary>
+        public string IfNoneMatch
+        {
+            get { return this._ifNoneMatch; }
+            set { this._ifNoneMatch = value; }
+        }
+
+        // Check to see if IfNoneMatch property is set
+        internal bool IsSetIfNoneMatch()
+        {
+            return !string.IsNullOrEmpty(this._ifNoneMatch);
+        }
+
+        /// <summary>
+        /// Gets and sets the property MatchForVersionType. 
+        /// <para>
+        /// Specifies the asset model version type (<c>LATEST</c> or <c>ACTIVE</c>) used in conjunction
+        /// with <c>If-Match</c> or <c>If-None-Match</c> headers to determine the target ETag
+        /// for the update operation.
+        /// </para>
+        /// </summary>
+        public AssetModelVersionType MatchForVersionType
+        {
+            get { return this._matchForVersionType; }
+            set { this._matchForVersionType = value; }
+        }
+
+        // Check to see if MatchForVersionType property is set
+        internal bool IsSetMatchForVersionType()
+        {
+            return !string.IsNullOrEmpty(this._matchForVersionType);
         }
 
     }

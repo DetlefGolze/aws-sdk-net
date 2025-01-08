@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Imagebuilder.Model
     /// </summary>
     public partial class ListImageScanFindingAggregationsResponse : AmazonWebServiceResponse
     {
-        private List<ImageScanFindingAggregation> _aggregations = new List<ImageScanFindingAggregation>();
+        private List<ImageScanFindingAggregation> _aggregations = AWSConfigs.InitializeCollections ? new List<ImageScanFindingAggregation>() : null;
         private string _aggregationType;
         private string _nextToken;
         private string _requestId;
@@ -53,7 +54,7 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if Aggregations property is set
         internal bool IsSetAggregations()
         {
-            return this._aggregations != null && this._aggregations.Count > 0; 
+            return this._aggregations != null && (this._aggregations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.Imagebuilder.Model
         /// <para>
         /// The aggregation type specifies what type of key is used to group the image scan findings.
         /// Image Builder returns results based on the request filter. If you didn't specify a
-        /// filter in the request, the type defaults to <code>accountId</code>.
+        /// filter in the request, the type defaults to <c>accountId</c>.
         /// </para>
         ///  
         /// <para>
@@ -106,7 +107,7 @@ namespace Amazon.Imagebuilder.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The next token used for paginated responses. When this field isn't empty, there are
-        /// additional elements that the service has'ot included in this request. Use this token
+        /// additional elements that the service hasn't included in this request. Use this token
         /// with the next request to retrieve additional objects.
         /// </para>
         /// </summary>

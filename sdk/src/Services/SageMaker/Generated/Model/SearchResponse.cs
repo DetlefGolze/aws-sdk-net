@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -34,14 +35,13 @@ namespace Amazon.SageMaker.Model
     public partial class SearchResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<SearchRecord> _results = new List<SearchRecord>();
+        private List<SearchRecord> _results = AWSConfigs.InitializeCollections ? new List<SearchRecord>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the result of the previous <code>Search</code> request was truncated, the response
-        /// includes a NextToken. To retrieve the next set of results, use the token in the next
-        /// request.
+        /// If the result of the previous <c>Search</c> request was truncated, the response includes
+        /// a NextToken. To retrieve the next set of results, use the token in the next request.
         /// </para>
         /// </summary>
         [AWSProperty(Max=8192)]
@@ -60,7 +60,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property Results. 
         /// <para>
-        /// A list of <code>SearchRecord</code> objects.
+        /// A list of <c>SearchRecord</c> objects.
         /// </para>
         /// </summary>
         public List<SearchRecord> Results
@@ -72,7 +72,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Results property is set
         internal bool IsSetResults()
         {
-            return this._results != null && this._results.Count > 0; 
+            return this._results != null && (this._results.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

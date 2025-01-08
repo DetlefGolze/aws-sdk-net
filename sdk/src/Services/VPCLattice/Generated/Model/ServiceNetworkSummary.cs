@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
@@ -38,6 +39,7 @@ namespace Amazon.VPCLattice.Model
         private string _id;
         private DateTime? _lastUpdatedAt;
         private string _name;
+        private long? _numberOfAssociatedResourceConfigurations;
         private long? _numberOfAssociatedServices;
         private long? _numberOfAssociatedVPCs;
 
@@ -63,7 +65,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// The date and time that the service network was created, specified in ISO-8601 format.
+        /// The date and time that the service network was created, in ISO-8601 format.
         /// </para>
         /// </summary>
         public DateTime CreatedAt
@@ -84,7 +86,7 @@ namespace Amazon.VPCLattice.Model
         /// The ID of the service network.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=32, Max=32)]
+        [AWSProperty(Min=20, Max=20)]
         public string Id
         {
             get { return this._id; }
@@ -100,8 +102,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property LastUpdatedAt. 
         /// <para>
-        /// The date and time that the service network was last updated, specified in ISO-8601
-        /// format.
+        /// The date and time that the service network was last updated, in ISO-8601 format.
         /// </para>
         /// </summary>
         public DateTime LastUpdatedAt
@@ -133,6 +134,24 @@ namespace Amazon.VPCLattice.Model
         internal bool IsSetName()
         {
             return this._name != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property NumberOfAssociatedResourceConfigurations. 
+        /// <para>
+        /// The number of resource configurations associated with a service network.
+        /// </para>
+        /// </summary>
+        public long NumberOfAssociatedResourceConfigurations
+        {
+            get { return this._numberOfAssociatedResourceConfigurations.GetValueOrDefault(); }
+            set { this._numberOfAssociatedResourceConfigurations = value; }
+        }
+
+        // Check to see if NumberOfAssociatedResourceConfigurations property is set
+        internal bool IsSetNumberOfAssociatedResourceConfigurations()
+        {
+            return this._numberOfAssociatedResourceConfigurations.HasValue; 
         }
 
         /// <summary>

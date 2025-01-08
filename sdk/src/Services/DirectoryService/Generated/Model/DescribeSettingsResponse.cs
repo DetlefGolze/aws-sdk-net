@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.DirectoryService.Model
     {
         private string _directoryId;
         private string _nextToken;
-        private List<SettingEntry> _settingEntries = new List<SettingEntry>();
+        private List<SettingEntry> _settingEntries = AWSConfigs.InitializeCollections ? new List<SettingEntry>() : null;
 
         /// <summary>
         /// Gets and sets the property DirectoryId. 
@@ -59,7 +60,7 @@ namespace Amazon.DirectoryService.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If not null, token that indicates that more results are available. Pass this value
-        /// for the <code>NextToken</code> parameter in a subsequent call to <code>DescribeSettings</code>
+        /// for the <c>NextToken</c> parameter in a subsequent call to <c>DescribeSettings</c>
         /// to retrieve the next set of items. 
         /// </para>
         /// </summary>
@@ -83,9 +84,9 @@ namespace Amazon.DirectoryService.Model
         ///  
         /// <para>
         /// It is possible that this list contains less than the number of items specified in
-        /// the <code>Limit</code> member of the request. This occurs if there are less than the
-        /// requested number of items left to retrieve, or if the limitations of the operation
-        /// have been exceeded.
+        /// the <c>Limit</c> member of the request. This occurs if there are less than the requested
+        /// number of items left to retrieve, or if the limitations of the operation have been
+        /// exceeded.
         /// </para>
         /// </summary>
         public List<SettingEntry> SettingEntries
@@ -97,7 +98,7 @@ namespace Amazon.DirectoryService.Model
         // Check to see if SettingEntries property is set
         internal bool IsSetSettingEntries()
         {
-            return this._settingEntries != null && this._settingEntries.Count > 0; 
+            return this._settingEntries != null && (this._settingEntries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

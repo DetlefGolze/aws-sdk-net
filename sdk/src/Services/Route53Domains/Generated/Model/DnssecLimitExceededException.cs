@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Domains.Model
 {
     /// <summary>
-    /// This error is returned if you call <code>AssociateDelegationSignerToDomain</code>
-    /// when the specified domain has reached the maximum number of DS records. You can't
-    /// add any additional DS records unless you delete an existing one first.
+    /// This error is returned if you call <c>AssociateDelegationSignerToDomain</c> when
+    /// the specified domain has reached the maximum number of DS records. You can't add any
+    /// additional DS records unless you delete an existing one first.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

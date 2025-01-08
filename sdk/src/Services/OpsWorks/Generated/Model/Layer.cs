@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.OpsWorks.Model
     public partial class Layer
     {
         private string _arn;
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private bool? _autoAssignElasticIps;
         private bool? _autoAssignPublicIps;
         private CloudWatchLogsConfiguration _cloudWatchLogsConfiguration;
@@ -42,20 +43,20 @@ namespace Amazon.OpsWorks.Model
         private string _customInstanceProfileArn;
         private string _customJson;
         private Recipes _customRecipes;
-        private List<string> _customSecurityGroupIds = new List<string>();
+        private List<string> _customSecurityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private Recipes _defaultRecipes;
-        private List<string> _defaultSecurityGroupNames = new List<string>();
+        private List<string> _defaultSecurityGroupNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _enableAutoHealing;
         private bool? _installUpdatesOnBoot;
         private string _layerId;
         private LifecycleEventConfiguration _lifecycleEventConfiguration;
         private string _name;
-        private List<string> _packages = new List<string>();
+        private List<string> _packages = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _shortname;
         private string _stackId;
         private LayerType _type;
         private bool? _useEbsOptimizedInstances;
-        private List<VolumeConfiguration> _volumeConfigurations = new List<VolumeConfiguration>();
+        private List<VolumeConfiguration> _volumeConfigurations = AWSConfigs.InitializeCollections ? new List<VolumeConfiguration>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -82,14 +83,14 @@ namespace Amazon.OpsWorks.Model
         /// </para>
         ///  
         /// <para>
-        /// For the <code>HaproxyStatsPassword</code>, <code>MysqlRootPassword</code>, and <code>GangliaPassword</code>
-        /// attributes, AWS OpsWorks Stacks returns <code>*****FILTERED*****</code> instead of
-        /// the actual value
+        /// For the <c>HaproxyStatsPassword</c>, <c>MysqlRootPassword</c>, and <c>GangliaPassword</c>
+        /// attributes, OpsWorks Stacks returns <c>*****FILTERED*****</c> instead of the actual
+        /// value
         /// </para>
         ///  
         /// <para>
-        /// For an ECS Cluster layer, AWS OpsWorks Stacks the <code>EcsClusterArn</code> attribute
-        /// is set to the cluster's ARN.
+        /// For an ECS Cluster layer, OpsWorks Stacks the <c>EcsClusterArn</c> attribute is set
+        /// to the cluster's ARN.
         /// </para>
         /// </summary>
         public Dictionary<string, string> Attributes
@@ -101,7 +102,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -222,7 +223,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property CustomRecipes. 
         /// <para>
-        /// A <code>LayerCustomRecipes</code> object that specifies the layer's custom recipes.
+        /// A <c>LayerCustomRecipes</c> object that specifies the layer's custom recipes.
         /// </para>
         /// </summary>
         public Recipes CustomRecipes
@@ -252,25 +253,25 @@ namespace Amazon.OpsWorks.Model
         // Check to see if CustomSecurityGroupIds property is set
         internal bool IsSetCustomSecurityGroupIds()
         {
-            return this._customSecurityGroupIds != null && this._customSecurityGroupIds.Count > 0; 
+            return this._customSecurityGroupIds != null && (this._customSecurityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DefaultRecipes. 
         /// <para>
-        /// AWS OpsWorks Stacks supports five lifecycle events: <b>setup</b>, <b>configuration</b>,
-        /// <b>deploy</b>, <b>undeploy</b>, and <b>shutdown</b>. For each layer, AWS OpsWorks
-        /// Stacks runs a set of standard recipes for each event. You can also provide custom
-        /// recipes for any or all layers and events. AWS OpsWorks Stacks runs custom event recipes
-        /// after the standard recipes. <code>LayerCustomRecipes</code> specifies the custom recipes
-        /// for a particular layer to be run in response to each of the five events.
+        /// OpsWorks Stacks supports five lifecycle events: <b>setup</b>, <b>configuration</b>,
+        /// <b>deploy</b>, <b>undeploy</b>, and <b>shutdown</b>. For each layer, OpsWorks Stacks
+        /// runs a set of standard recipes for each event. You can also provide custom recipes
+        /// for any or all layers and events. OpsWorks Stacks runs custom event recipes after
+        /// the standard recipes. <c>LayerCustomRecipes</c> specifies the custom recipes for a
+        /// particular layer to be run in response to each of the five events.
         /// </para>
         ///  
         /// <para>
         /// To specify a recipe, use the cookbook's directory name in the repository followed
-        /// by two colons and the recipe name, which is the recipe's file name without the <code>.rb</code>
-        /// extension. For example: <code>phpapp2::dbsetup</code> specifies the <code>dbsetup.rb</code>
-        /// recipe in the repository's <code>phpapp2</code> folder.
+        /// by two colons and the recipe name, which is the recipe's file name without the <c>.rb</c>
+        /// extension. For example: <c>phpapp2::dbsetup</c> specifies the <c>dbsetup.rb</c> recipe
+        /// in the repository's <c>phpapp2</c> folder.
         /// </para>
         /// </summary>
         public Recipes DefaultRecipes
@@ -300,7 +301,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if DefaultSecurityGroupNames property is set
         internal bool IsSetDefaultSecurityGroupNames()
         {
-            return this._defaultSecurityGroupNames != null && this._defaultSecurityGroupNames.Count > 0; 
+            return this._defaultSecurityGroupNames != null && (this._defaultSecurityGroupNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -325,15 +326,15 @@ namespace Amazon.OpsWorks.Model
         /// Gets and sets the property InstallUpdatesOnBoot. 
         /// <para>
         /// Whether to install operating system and package updates when the instance boots. The
-        /// default value is <code>true</code>. If this value is set to <code>false</code>, you
-        /// must then update your instances manually by using <a>CreateDeployment</a> to run the
-        /// <code>update_dependencies</code> stack command or manually running <code>yum</code>
-        /// (Amazon Linux) or <code>apt-get</code> (Ubuntu) on the instances. 
+        /// default value is <c>true</c>. If this value is set to <c>false</c>, you must then
+        /// update your instances manually by using <a>CreateDeployment</a> to run the <c>update_dependencies</c>
+        /// stack command or manually running <c>yum</c> (Amazon Linux) or <c>apt-get</c> (Ubuntu)
+        /// on the instances. 
         /// </para>
         ///  <note> 
         /// <para>
-        /// We strongly recommend using the default value of <code>true</code>, to ensure that
-        /// your instances have the latest security updates.
+        /// We strongly recommend using the default value of <c>true</c>, to ensure that your
+        /// instances have the latest security updates.
         /// </para>
         ///  </note>
         /// </summary>
@@ -370,8 +371,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property LifecycleEventConfiguration. 
         /// <para>
-        /// A <code>LifeCycleEventConfiguration</code> object that specifies the Shutdown event
-        /// configuration.
+        /// A <c>LifeCycleEventConfiguration</c> object that specifies the Shutdown event configuration.
         /// </para>
         /// </summary>
         public LifecycleEventConfiguration LifecycleEventConfiguration
@@ -389,7 +389,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The layer name.
+        /// The layer name. Layer names can be a maximum of 32 characters.
         /// </para>
         /// </summary>
         public string Name
@@ -407,7 +407,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Packages. 
         /// <para>
-        /// An array of <code>Package</code> objects that describe the layer's packages.
+        /// An array of <c>Package</c> objects that describe the layer's packages.
         /// </para>
         /// </summary>
         public List<string> Packages
@@ -419,7 +419,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if Packages property is set
         internal bool IsSetPackages()
         {
-            return this._packages != null && this._packages.Count > 0; 
+            return this._packages != null && (this._packages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -497,7 +497,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property VolumeConfigurations. 
         /// <para>
-        /// A <code>VolumeConfigurations</code> object that describes the layer's Amazon EBS volumes.
+        /// A <c>VolumeConfigurations</c> object that describes the layer's Amazon EBS volumes.
         /// </para>
         /// </summary>
         public List<VolumeConfiguration> VolumeConfigurations
@@ -509,7 +509,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if VolumeConfigurations property is set
         internal bool IsSetVolumeConfigurations()
         {
-            return this._volumeConfigurations != null && this._volumeConfigurations.Count > 0; 
+            return this._volumeConfigurations != null && (this._volumeConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

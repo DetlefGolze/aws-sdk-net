@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -34,9 +35,9 @@ namespace Amazon.CloudFormation.Model
     /// 
     ///  
     /// <para>
-    /// If you specify a <code>VersionId</code>, <code>DescribeType</code> returns information
-    /// about that specific extension version. Otherwise, it returns information about the
-    /// default extension version.
+    /// If you specify a <c>VersionId</c>, <c>DescribeType</c> returns information about that
+    /// specific extension version. Otherwise, it returns information about the default extension
+    /// version.
     /// </para>
     /// </summary>
     public partial class DescribeTypeRequest : AmazonCloudFormationRequest
@@ -55,8 +56,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify either <code>TypeName</code> and <code>Type</code>,
-        /// or <code>Arn</code>.
+        /// Conditional: You must specify either <c>TypeName</c> and <c>Type</c>, or <c>Arn</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=1024)]
@@ -121,8 +121,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify either <code>TypeName</code> and <code>Type</code>,
-        /// or <code>Arn</code>.
+        /// Conditional: You must specify either <c>TypeName</c> and <c>Type</c>, or <c>Arn</c>.
         /// </para>
         /// </summary>
         public RegistryType Type
@@ -144,8 +143,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify either <code>TypeName</code> and <code>Type</code>,
-        /// or <code>Arn</code>.
+        /// Conditional: You must specify either <c>TypeName</c> and <c>Type</c>, or <c>Arn</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=10, Max=204)]
@@ -170,9 +168,9 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// If you specify a <code>VersionId</code>, <code>DescribeType</code> returns information
-        /// about that specific extension version. Otherwise, it returns information about the
-        /// default extension version.
+        /// If you specify a <c>VersionId</c>, <c>DescribeType</c> returns information about that
+        /// specific extension version. Otherwise, it returns information about the default extension
+        /// version.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]

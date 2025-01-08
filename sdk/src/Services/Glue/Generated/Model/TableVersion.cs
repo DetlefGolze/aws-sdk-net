@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -57,8 +58,8 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property VersionId. 
         /// <para>
-        /// The ID value that identifies this table version. A <code>VersionId</code> is a string
-        /// representation of an integer. Each version is incremented by 1.
+        /// The ID value that identifies this table version. A <c>VersionId</c> is a string representation
+        /// of an integer. Each version is incremented by 1.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GreengrassV2.Model
 {
     /// <summary>
@@ -47,15 +48,15 @@ namespace Amazon.GreengrassV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ALL</code> – The list includes all deployments.
+        ///  <c>ALL</c> – The list includes all deployments.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LATEST_ONLY</code> – The list includes only the latest revision of each deployment.
+        ///  <c>LATEST_ONLY</c> – The list includes only the latest revision of each deployment.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Default: <code>LATEST_ONLY</code> 
+        /// Default: <c>LATEST_ONLY</c> 
         /// </para>
         /// </summary>
         public DeploymentHistoryFilter HistoryFilter
@@ -74,6 +75,10 @@ namespace Amazon.GreengrassV2.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to be returned per paginated request.
+        /// </para>
+        ///  
+        /// <para>
+        /// Default: <c>50</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]

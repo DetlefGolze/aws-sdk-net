@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -40,14 +41,15 @@ namespace Amazon.NetworkManager.Model
         private string _clientToken;
         private string _connectAttachmentId;
         private string _coreNetworkAddress;
-        private List<string> _insideCidrBlocks = new List<string>();
+        private List<string> _insideCidrBlocks = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _peerAddress;
-        private List<Tag> _tags = new List<Tag>();
+        private string _subnetArn;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property BgpOptions. 
         /// <para>
-        /// The Connect peer BGP options.
+        /// The Connect peer BGP options. This only applies only when the protocol is <c>GRE</c>.
         /// </para>
         /// </summary>
         public BgpOptions BgpOptions
@@ -103,7 +105,7 @@ namespace Amazon.NetworkManager.Model
         /// <summary>
         /// Gets and sets the property CoreNetworkAddress. 
         /// <para>
-        /// A Connect peer core network address.
+        /// A Connect peer core network address. This only applies only when the protocol is <c>GRE</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -125,7 +127,6 @@ namespace Amazon.NetworkManager.Model
         /// The inside IP addresses used for BGP peering.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public List<string> InsideCidrBlocks
         {
             get { return this._insideCidrBlocks; }
@@ -135,7 +136,7 @@ namespace Amazon.NetworkManager.Model
         // Check to see if InsideCidrBlocks property is set
         internal bool IsSetInsideCidrBlocks()
         {
-            return this._insideCidrBlocks != null && this._insideCidrBlocks.Count > 0; 
+            return this._insideCidrBlocks != null && (this._insideCidrBlocks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -158,6 +159,25 @@ namespace Amazon.NetworkManager.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SubnetArn. 
+        /// <para>
+        /// The subnet ARN for the Connect peer. This only applies only when the protocol is NO_ENCAP.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=500)]
+        public string SubnetArn
+        {
+            get { return this._subnetArn; }
+            set { this._subnetArn = value; }
+        }
+
+        // Check to see if SubnetArn property is set
+        internal bool IsSetSubnetArn()
+        {
+            return this._subnetArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// The tags associated with the peer request.
@@ -172,7 +192,7 @@ namespace Amazon.NetworkManager.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

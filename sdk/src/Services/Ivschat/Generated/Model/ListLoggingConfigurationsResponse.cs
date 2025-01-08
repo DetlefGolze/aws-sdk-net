@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Ivschat.Model
 {
     /// <summary>
@@ -33,15 +34,15 @@ namespace Amazon.Ivschat.Model
     /// </summary>
     public partial class ListLoggingConfigurationsResponse : AmazonWebServiceResponse
     {
-        private List<LoggingConfigurationSummary> _loggingConfigurations = new List<LoggingConfigurationSummary>();
+        private List<LoggingConfigurationSummary> _loggingConfigurations = AWSConfigs.InitializeCollections ? new List<LoggingConfigurationSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property LoggingConfigurations. 
         /// <para>
         /// List of the matching logging configurations (summary information only). There is only
-        /// one type of destination (<code>cloudWatchLogs</code>, <code>firehose</code>, or <code>s3</code>)
-        /// in a <code>destinationConfiguration</code>.
+        /// one type of destination (<c>cloudWatchLogs</c>, <c>firehose</c>, or <c>s3</c>) in
+        /// a <c>destinationConfiguration</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -54,13 +55,13 @@ namespace Amazon.Ivschat.Model
         // Check to see if LoggingConfigurations property is set
         internal bool IsSetLoggingConfigurations()
         {
-            return this._loggingConfigurations != null && this._loggingConfigurations.Count > 0; 
+            return this._loggingConfigurations != null && (this._loggingConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If there are more logging configurations than <code>maxResults</code>, use <code>nextToken</code>
+        /// If there are more logging configurations than <c>maxResults</c>, use <c>nextToken</c>
         /// in the request to get the next set.
         /// </para>
         /// </summary>

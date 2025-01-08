@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeConfigurationAggregators operation.
     /// Returns the details of one or more configuration aggregators. If the configuration
-    /// aggregator is not specified, this action returns the details for all the configuration
+    /// aggregator is not specified, this operation returns the details for all the configuration
     /// aggregators associated with the account.
     /// </summary>
     public partial class DescribeConfigurationAggregatorsRequest : AmazonConfigServiceRequest
     {
-        private List<string> _configurationAggregatorNames = new List<string>();
+        private List<string> _configurationAggregatorNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _limit;
         private string _nextToken;
 
@@ -56,7 +57,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if ConfigurationAggregatorNames property is set
         internal bool IsSetConfigurationAggregatorNames()
         {
-            return this._configurationAggregatorNames != null && this._configurationAggregatorNames.Count > 0; 
+            return this._configurationAggregatorNames != null && (this._configurationAggregatorNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -82,8 +83,8 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> string returned on a previous page that you use to get
-        /// the next page of results in a paginated response.
+        /// The <c>nextToken</c> string returned on a previous page that you use to get the next
+        /// page of results in a paginated response.
         /// </para>
         /// </summary>
         public string NextToken

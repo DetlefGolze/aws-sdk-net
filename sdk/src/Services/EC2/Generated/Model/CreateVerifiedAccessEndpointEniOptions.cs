@@ -26,16 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Describes the network interface options when creating an Amazon Web Services Verified
-    /// Access endpoint using the <code>network-interface</code> type.
+    /// Access endpoint using the <c>network-interface</c> type.
     /// </summary>
     public partial class CreateVerifiedAccessEndpointEniOptions
     {
         private string _networkInterfaceId;
         private int? _port;
+        private List<CreateVerifiedAccessEndpointPortRange> _portRanges = AWSConfigs.InitializeCollections ? new List<CreateVerifiedAccessEndpointPortRange>() : null;
         private VerifiedAccessEndpointProtocol _protocol;
 
         /// <summary>
@@ -73,6 +75,24 @@ namespace Amazon.EC2.Model
         internal bool IsSetPort()
         {
             return this._port.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property PortRanges. 
+        /// <para>
+        /// The port ranges.
+        /// </para>
+        /// </summary>
+        public List<CreateVerifiedAccessEndpointPortRange> PortRanges
+        {
+            get { return this._portRanges; }
+            set { this._portRanges = value; }
+        }
+
+        // Check to see if PortRanges property is set
+        internal bool IsSetPortRanges()
+        {
+            return this._portRanges != null && (this._portRanges.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

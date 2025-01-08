@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
     /// Container for the parameters to the ModifyCustomDBEngineVersion operation.
     /// Modifies the status of a custom engine version (CEV). You can find CEVs to modify
-    /// by calling <code>DescribeDBEngineVersions</code>.
+    /// by calling <c>DescribeDBEngineVersions</c>.
     /// 
     ///  <note> 
     /// <para>
     /// The MediaImport service that imports files from Amazon S3 to create CEVs isn't integrated
     /// with Amazon Web Services CloudTrail. If you turn on data logging for Amazon RDS in
-    /// CloudTrail, calls to the <code>ModifyCustomDbEngineVersion</code> event aren't logged.
-    /// However, you might see calls from the API gateway that accesses your Amazon S3 bucket.
-    /// These calls originate from the MediaImport service for the <code>ModifyCustomDbEngineVersion</code>
+    /// CloudTrail, calls to the <c>ModifyCustomDbEngineVersion</c> event aren't logged. However,
+    /// you might see calls from the API gateway that accesses your Amazon S3 bucket. These
+    /// calls originate from the MediaImport service for the <c>ModifyCustomDbEngineVersion</c>
     /// event.
     /// </para>
     ///  </note> 
@@ -77,8 +78,25 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Engine. 
         /// <para>
-        /// The DB engine. The only supported values are <code>custom-oracle-ee</code> and <code>custom-oracle-ee-cdb</code>.
+        /// The database engine. RDS Custom for Oracle supports the following values:
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>custom-oracle-ee</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>custom-oracle-ee-cdb</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>custom-oracle-se2</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>custom-oracle-se2-cdb</c> 
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=35)]
         public string Engine
@@ -97,8 +115,8 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property EngineVersion. 
         /// <para>
         /// The custom engine version (CEV) that you want to modify. This option is required for
-        /// RDS Custom for Oracle, but optional for Amazon RDS. The combination of <code>Engine</code>
-        /// and <code>EngineVersion</code> is unique per customer per Amazon Web Services Region.
+        /// RDS Custom for Oracle, but optional for Amazon RDS. The combination of <c>Engine</c>
+        /// and <c>EngineVersion</c> is unique per customer per Amazon Web Services Region.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=60)]
@@ -132,10 +150,10 @@ namespace Amazon.RDS.Model
         /// <para>
         /// You can change any status to any status. A typical reason to change status is to prevent
         /// the accidental use of a CEV, or to make a deprecated CEV eligible for use again. For
-        /// example, you might change the status of your CEV from <code>available</code> to <code>inactive</code>,
-        /// and from <code>inactive</code> back to <code>available</code>. To change the availability
-        /// status of the CEV, it must not currently be in use by an RDS Custom instance, snapshot,
-        /// or automated backup.
+        /// example, you might change the status of your CEV from <c>available</c> to <c>inactive</c>,
+        /// and from <c>inactive</c> back to <c>available</c>. To change the availability status
+        /// of the CEV, it must not currently be in use by an RDS Custom instance, snapshot, or
+        /// automated backup.
         /// </para>
         /// </summary>
         public CustomEngineVersionStatus Status

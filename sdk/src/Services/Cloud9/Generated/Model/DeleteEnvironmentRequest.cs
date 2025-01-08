@@ -26,12 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Cloud9.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteEnvironment operation.
     /// Deletes an Cloud9 development environment. If an Amazon EC2 instance is connected
     /// to the environment, also terminates the instance.
+    /// 
+    ///  <important> 
+    /// <para>
+    /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+    /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+    /// more"</a> 
+    /// </para>
+    ///  </important>
     /// </summary>
     public partial class DeleteEnvironmentRequest : AmazonCloud9Request
     {

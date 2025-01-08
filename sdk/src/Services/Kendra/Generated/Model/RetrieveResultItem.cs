@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Kendra.Model
     public partial class RetrieveResultItem
     {
         private string _content;
-        private List<DocumentAttribute> _documentAttributes = new List<DocumentAttribute>();
+        private List<DocumentAttribute> _documentAttributes = AWSConfigs.InitializeCollections ? new List<DocumentAttribute>() : null;
         private string _documentId;
         private string _documentTitle;
         private string _documentURI;
@@ -63,7 +64,7 @@ namespace Amazon.Kendra.Model
         /// Gets and sets the property DocumentAttributes. 
         /// <para>
         /// An array of document fields/attributes assigned to a document in the search results.
-        /// For example, the document author (<code>_author</code>) or the source URI (<code>_source_uri</code>)
+        /// For example, the document author (<c>_author</c>) or the source URI (<c>_source_uri</c>)
         /// of the document.
         /// </para>
         /// </summary>
@@ -76,7 +77,7 @@ namespace Amazon.Kendra.Model
         // Check to see if DocumentAttributes property is set
         internal bool IsSetDocumentAttributes()
         {
-            return this._documentAttributes != null && this._documentAttributes.Count > 0; 
+            return this._documentAttributes != null && (this._documentAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

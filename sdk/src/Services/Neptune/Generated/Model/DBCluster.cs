@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -33,15 +34,15 @@ namespace Amazon.Neptune.Model
     /// 
     ///  
     /// <para>
-    /// This data type is used as a response element in the <a>DescribeDBClusters</a> action.
+    /// This data type is used as a response element in the <a>DescribeDBClusters</a>.
     /// </para>
     /// </summary>
     public partial class DBCluster
     {
         private int? _allocatedStorage;
-        private List<DBClusterRole> _associatedRoles = new List<DBClusterRole>();
+        private List<DBClusterRole> _associatedRoles = AWSConfigs.InitializeCollections ? new List<DBClusterRole>() : null;
         private DateTime? _automaticRestartTime;
-        private List<string> _availabilityZones = new List<string>();
+        private List<string> _availabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _backupRetentionPeriod;
         private string _characterSetName;
         private string _cloneGroupId;
@@ -51,20 +52,21 @@ namespace Amazon.Neptune.Model
         private string _databaseName;
         private string _dbClusterArn;
         private string _dbClusterIdentifier;
-        private List<DBClusterMember> _dbClusterMembers = new List<DBClusterMember>();
-        private List<DBClusterOptionGroupStatus> _dbClusterOptionGroupMemberships = new List<DBClusterOptionGroupStatus>();
+        private List<DBClusterMember> _dbClusterMembers = AWSConfigs.InitializeCollections ? new List<DBClusterMember>() : null;
+        private List<DBClusterOptionGroupStatus> _dbClusterOptionGroupMemberships = AWSConfigs.InitializeCollections ? new List<DBClusterOptionGroupStatus>() : null;
         private string _dbClusterParameterGroup;
         private string _dbClusterResourceId;
         private string _dbSubnetGroup;
         private bool? _deletionProtection;
         private DateTime? _earliestRestorableTime;
-        private List<string> _enabledCloudwatchLogsExports = new List<string>();
+        private List<string> _enabledCloudwatchLogsExports = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _endpoint;
         private string _engine;
         private string _engineVersion;
         private string _globalClusterIdentifier;
         private string _hostedZoneId;
         private bool? _iamDatabaseAuthenticationEnabled;
+        private DateTime? _ioOptimizedNextAllowedModificationTime;
         private string _kmsKeyId;
         private DateTime? _latestRestorableTime;
         private string _masterUsername;
@@ -75,18 +77,19 @@ namespace Amazon.Neptune.Model
         private string _preferredBackupWindow;
         private string _preferredMaintenanceWindow;
         private string _readerEndpoint;
-        private List<string> _readReplicaIdentifiers = new List<string>();
+        private List<string> _readReplicaIdentifiers = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _replicationSourceIdentifier;
         private ServerlessV2ScalingConfigurationInfo _serverlessV2ScalingConfiguration;
         private string _status;
         private bool? _storageEncrypted;
-        private List<VpcSecurityGroupMembership> _vpcSecurityGroups = new List<VpcSecurityGroupMembership>();
+        private string _storageType;
+        private List<VpcSecurityGroupMembership> _vpcSecurityGroups = AWSConfigs.InitializeCollections ? new List<VpcSecurityGroupMembership>() : null;
 
         /// <summary>
         /// Gets and sets the property AllocatedStorage. 
         /// <para>
-        ///  <code>AllocatedStorage</code> always returns 1, because Neptune DB cluster storage
-        /// size is not fixed, but instead automatically adjusts as needed.
+        ///  <c>AllocatedStorage</c> always returns 1, because Neptune DB cluster storage size
+        /// is not fixed, but instead automatically adjusts as needed.
         /// </para>
         /// </summary>
         public int AllocatedStorage
@@ -118,7 +121,7 @@ namespace Amazon.Neptune.Model
         // Check to see if AssociatedRoles property is set
         internal bool IsSetAssociatedRoles()
         {
-            return this._associatedRoles != null && this._associatedRoles.Count > 0; 
+            return this._associatedRoles != null && (this._associatedRoles.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -155,7 +158,7 @@ namespace Amazon.Neptune.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -234,8 +237,8 @@ namespace Amazon.Neptune.Model
         /// <summary>
         /// Gets and sets the property CopyTagsToSnapshot. 
         /// <para>
-        ///  <i>If set to <code>true</code>, tags are copied to any snapshot of the DB cluster
-        /// that is created.</i> 
+        ///  <i>If set to <c>true</c>, tags are copied to any snapshot of the DB cluster that
+        /// is created.</i> 
         /// </para>
         /// </summary>
         public bool CopyTagsToSnapshot
@@ -253,7 +256,7 @@ namespace Amazon.Neptune.Model
         /// <summary>
         /// Gets and sets the property CrossAccountClone. 
         /// <para>
-        /// If set to <code>true</code>, the DB cluster can be cloned across accounts.
+        /// If set to <c>true</c>, the DB cluster can be cloned across accounts.
         /// </para>
         /// </summary>
         public bool CrossAccountClone
@@ -340,7 +343,7 @@ namespace Amazon.Neptune.Model
         // Check to see if DBClusterMembers property is set
         internal bool IsSetDBClusterMembers()
         {
-            return this._dbClusterMembers != null && this._dbClusterMembers.Count > 0; 
+            return this._dbClusterMembers != null && (this._dbClusterMembers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -358,7 +361,7 @@ namespace Amazon.Neptune.Model
         // Check to see if DBClusterOptionGroupMemberships property is set
         internal bool IsSetDBClusterOptionGroupMemberships()
         {
-            return this._dbClusterOptionGroupMemberships != null && this._dbClusterOptionGroupMemberships.Count > 0; 
+            return this._dbClusterOptionGroupMemberships != null && (this._dbClusterOptionGroupMemberships.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -459,7 +462,10 @@ namespace Amazon.Neptune.Model
         /// <summary>
         /// Gets and sets the property EnabledCloudwatchLogsExports. 
         /// <para>
-        /// A list of log types that this DB cluster is configured to export to CloudWatch Logs.
+        /// A list of the log types that this DB cluster is configured to export to CloudWatch
+        /// Logs. Valid log types are: <c>audit</c> (to publish audit logs to CloudWatch) and
+        /// slowquery (to publish slow-query logs to CloudWatch). See <a href="https://docs.aws.amazon.com/neptune/latest/userguide/cloudwatch-logs.html">Publishing
+        /// Neptune logs to Amazon CloudWatch logs</a>.
         /// </para>
         /// </summary>
         public List<string> EnabledCloudwatchLogsExports
@@ -471,7 +477,7 @@ namespace Amazon.Neptune.Model
         // Check to see if EnabledCloudwatchLogsExports property is set
         internal bool IsSetEnabledCloudwatchLogsExports()
         {
-            return this._enabledCloudwatchLogsExports != null && this._enabledCloudwatchLogsExports.Count > 0; 
+            return this._enabledCloudwatchLogsExports != null && (this._enabledCloudwatchLogsExports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -586,9 +592,27 @@ namespace Amazon.Neptune.Model
         }
 
         /// <summary>
+        /// Gets and sets the property IOOptimizedNextAllowedModificationTime. 
+        /// <para>
+        /// The next time you can modify the DB cluster to use the <c>iopt1</c> storage type.
+        /// </para>
+        /// </summary>
+        public DateTime IOOptimizedNextAllowedModificationTime
+        {
+            get { return this._ioOptimizedNextAllowedModificationTime.GetValueOrDefault(); }
+            set { this._ioOptimizedNextAllowedModificationTime = value; }
+        }
+
+        // Check to see if IOOptimizedNextAllowedModificationTime property is set
+        internal bool IsSetIOOptimizedNextAllowedModificationTime()
+        {
+            return this._ioOptimizedNextAllowedModificationTime.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// If <code>StorageEncrypted</code> is true, the Amazon KMS key identifier for the encrypted
+        /// If <c>StorageEncrypted</c> is true, the Amazon KMS key identifier for the encrypted
         /// DB cluster.
         /// </para>
         /// </summary>
@@ -661,7 +685,7 @@ namespace Amazon.Neptune.Model
         /// <summary>
         /// Gets and sets the property PendingModifiedValues. 
         /// <para>
-        /// This data type is used as a response element in the <code>ModifyDBCluster</code> operation
+        /// This data type is used as a response element in the <c>ModifyDBCluster</c> operation
         /// and contains changes that will be applied during the next maintenance window.
         /// </para>
         /// </summary>
@@ -717,7 +741,7 @@ namespace Amazon.Neptune.Model
         /// Gets and sets the property PreferredBackupWindow. 
         /// <para>
         /// Specifies the daily time range during which automated backups are created if automated
-        /// backups are enabled, as determined by the <code>BackupRetentionPeriod</code>.
+        /// backups are enabled, as determined by the <c>BackupRetentionPeriod</c>.
         /// </para>
         /// </summary>
         public string PreferredBackupWindow
@@ -795,7 +819,7 @@ namespace Amazon.Neptune.Model
         // Check to see if ReadReplicaIdentifiers property is set
         internal bool IsSetReadReplicaIdentifiers()
         {
-            return this._readReplicaIdentifiers != null && this._readReplicaIdentifiers.Count > 0; 
+            return this._readReplicaIdentifiers != null && (this._readReplicaIdentifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -817,7 +841,15 @@ namespace Amazon.Neptune.Model
         }
 
         /// <summary>
-        /// Gets and sets the property ServerlessV2ScalingConfiguration.
+        /// Gets and sets the property ServerlessV2ScalingConfiguration. 
+        /// <para>
+        /// Shows the scaling configuration for a Neptune Serverless DB cluster.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/neptune/latest/userguide/neptune-serverless-using.html">Using
+        /// Amazon Neptune Serverless</a> in the <i>Amazon Neptune User Guide</i>.
+        /// </para>
         /// </summary>
         public ServerlessV2ScalingConfigurationInfo ServerlessV2ScalingConfiguration
         {
@@ -868,6 +900,24 @@ namespace Amazon.Neptune.Model
         }
 
         /// <summary>
+        /// Gets and sets the property StorageType. 
+        /// <para>
+        /// The storage type associated with the DB cluster.
+        /// </para>
+        /// </summary>
+        public string StorageType
+        {
+            get { return this._storageType; }
+            set { this._storageType = value; }
+        }
+
+        // Check to see if StorageType property is set
+        internal bool IsSetStorageType()
+        {
+            return this._storageType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property VpcSecurityGroups. 
         /// <para>
         /// Provides a list of VPC security groups that the DB cluster belongs to.
@@ -882,7 +932,7 @@ namespace Amazon.Neptune.Model
         // Check to see if VpcSecurityGroups property is set
         internal bool IsSetVpcSecurityGroups()
         {
-            return this._vpcSecurityGroups != null && this._vpcSecurityGroups.Count > 0; 
+            return this._vpcSecurityGroups != null && (this._vpcSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

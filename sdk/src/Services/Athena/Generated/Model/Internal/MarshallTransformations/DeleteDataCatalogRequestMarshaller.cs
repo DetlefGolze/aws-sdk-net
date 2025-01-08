@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Athena.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,8 +66,15 @@ namespace Amazon.Athena.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetDeleteCatalogOnly())
+                {
+                    context.Writer.WritePropertyName("DeleteCatalogOnly");
+                    context.Writer.Write(publicRequest.DeleteCatalogOnly);
+                }
+
                 if(publicRequest.IsSetName())
                 {
                     context.Writer.WritePropertyName("Name");

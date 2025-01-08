@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -59,8 +60,8 @@ namespace Amazon.SageMaker.Model
     /// </para>
     ///  
     /// <para>
-    /// To add a description to an experiment, specify the optional <code>Description</code>
-    /// parameter. To add a description later, or to change the description, call the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateExperiment.html">UpdateExperiment</a>
+    /// To add a description to an experiment, specify the optional <c>Description</c> parameter.
+    /// To add a description later, or to change the description, call the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateExperiment.html">UpdateExperiment</a>
     /// API.
     /// </para>
     ///  
@@ -77,7 +78,7 @@ namespace Amazon.SageMaker.Model
         private string _description;
         private string _displayName;
         private string _experimentName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -102,8 +103,7 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property DisplayName. 
         /// <para>
         /// The name of the experiment as displayed. The name doesn't need to be unique. If you
-        /// don't specify <code>DisplayName</code>, the value in <code>ExperimentName</code> is
-        /// displayed.
+        /// don't specify <c>DisplayName</c>, the value in <c>ExperimentName</c> is displayed.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=120)]
@@ -156,7 +156,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

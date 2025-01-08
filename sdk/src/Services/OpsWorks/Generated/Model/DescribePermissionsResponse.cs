@@ -26,33 +26,34 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
-    /// Contains the response to a <code>DescribePermissions</code> request.
+    /// Contains the response to a <c>DescribePermissions</c> request.
     /// </summary>
     public partial class DescribePermissionsResponse : AmazonWebServiceResponse
     {
-        private List<Permission> _permissions = new List<Permission>();
+        private List<Permission> _permissions = AWSConfigs.InitializeCollections ? new List<Permission>() : null;
 
         /// <summary>
         /// Gets and sets the property Permissions. 
         /// <para>
-        /// An array of <code>Permission</code> objects that describe the stack permissions.
+        /// An array of <c>Permission</c> objects that describe the stack permissions.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If the request object contains only a stack ID, the array contains a <code>Permission</code>
+        /// If the request object contains only a stack ID, the array contains a <c>Permission</c>
         /// object with permissions for each of the stack IAM ARNs.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the request object contains only an IAM ARN, the array contains a <code>Permission</code>
+        /// If the request object contains only an IAM ARN, the array contains a <c>Permission</c>
         /// object with permissions for each of the user's stack IDs.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the request contains a stack ID and an IAM ARN, the array contains a single <code>Permission</code>
+        /// If the request contains a stack ID and an IAM ARN, the array contains a single <c>Permission</c>
         /// object with permissions for the specified stack and IAM ARN.
         /// </para>
         ///  </li> </ul>
@@ -66,7 +67,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if Permissions property is set
         internal bool IsSetPermissions()
         {
-            return this._permissions != null && this._permissions.Count > 0; 
+            return this._permissions != null && (this._permissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

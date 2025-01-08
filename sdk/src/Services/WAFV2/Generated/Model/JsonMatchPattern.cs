@@ -26,27 +26,28 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
     /// The patterns to look for in the JSON body. WAF inspects the results of these pattern
     /// matches against the rule inspection criteria. This is used with the <a>FieldToMatch</a>
-    /// option <code>JsonBody</code>.
+    /// option <c>JsonBody</c>.
     /// </summary>
     public partial class JsonMatchPattern
     {
         private All _all;
-        private List<string> _includedPaths = new List<string>();
+        private List<string> _includedPaths = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property All. 
         /// <para>
-        /// Match all of the elements. See also <code>MatchScope</code> in <a>JsonBody</a>. 
+        /// Match all of the elements. See also <c>MatchScope</c> in <a>JsonBody</a>. 
         /// </para>
         ///  
         /// <para>
-        /// You must specify either this setting or the <code>IncludedPaths</code> setting, but
-        /// not both.
+        /// You must specify either this setting or the <c>IncludedPaths</c> setting, but not
+        /// both.
         /// </para>
         /// </summary>
         public All All
@@ -64,24 +65,23 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property IncludedPaths. 
         /// <para>
-        /// Match only the specified include paths. See also <code>MatchScope</code> in <a>JsonBody</a>.
+        /// Match only the specified include paths. See also <c>MatchScope</c> in <a>JsonBody</a>.
         /// 
         /// </para>
         ///  
         /// <para>
-        /// Provide the include paths using JSON Pointer syntax. For example, <code>"IncludedPaths":
-        /// ["/dogs/0/name", "/dogs/1/name"]</code>. For information about this syntax, see the
-        /// Internet Engineering Task Force (IETF) documentation <a href="https://tools.ietf.org/html/rfc6901">JavaScript
+        /// Provide the include paths using JSON Pointer syntax. For example, <c>"IncludedPaths":
+        /// ["/dogs/0/name", "/dogs/1/name"]</c>. For information about this syntax, see the Internet
+        /// Engineering Task Force (IETF) documentation <a href="https://tools.ietf.org/html/rfc6901">JavaScript
         /// Object Notation (JSON) Pointer</a>. 
         /// </para>
         ///  
         /// <para>
-        /// You must specify either this setting or the <code>All</code> setting, but not both.
+        /// You must specify either this setting or the <c>All</c> setting, but not both.
         /// </para>
         ///  <note> 
         /// <para>
-        /// Don't use this option to include all paths. Instead, use the <code>All</code> setting.
-        /// 
+        /// Don't use this option to include all paths. Instead, use the <c>All</c> setting. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -95,7 +95,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if IncludedPaths property is set
         internal bool IsSetIncludedPaths()
         {
-            return this._includedPaths != null && this._includedPaths.Count > 0; 
+            return this._includedPaths != null && (this._includedPaths.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

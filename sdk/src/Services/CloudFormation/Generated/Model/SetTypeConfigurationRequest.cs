@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -35,17 +36,19 @@ namespace Amazon.CloudFormation.Model
     /// 
     ///  
     /// <para>
-    /// To view the current configuration data for an extension, refer to the <code>ConfigurationSchema</code>
+    /// To view the current configuration data for an extension, refer to the <c>ConfigurationSchema</c>
     /// element of <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_DescribeType.html">DescribeType</a>.
-    /// For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-register.html#registry-set-configuration">Configuring
-    /// extensions at the account level</a> in the <i>CloudFormation User Guide</i>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-set-configuration.html">Edit
+    /// configuration data for extensions in your account</a> in the <i>CloudFormation User
+    /// Guide</i>.
     /// </para>
     ///  <important> 
     /// <para>
     /// It's strongly recommended that you use dynamic references to restrict sensitive configuration
     /// definitions, such as third-party credentials. For more details on dynamic references,
-    /// see <a href="https://docs.aws.amazon.com/">Using dynamic references to specify template
-    /// values</a> in the <i>CloudFormation User Guide</i>.
+    /// see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/dynamic-references.html">Specify
+    /// values stored in other services using dynamic references</a> in the <i>CloudFormation
+    /// User Guide</i>.
     /// </para>
     ///  </important>
     /// </summary>
@@ -65,10 +68,10 @@ namespace Amazon.CloudFormation.Model
         ///  
         /// <para>
         /// The configuration data must be formatted as JSON, and validate against the schema
-        /// returned in the <code>ConfigurationSchema</code> response element of <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_DescribeType.html">DescribeType</a>.
+        /// returned in the <c>ConfigurationSchema</c> response element of <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_DescribeType.html">DescribeType</a>.
         /// For more information, see <a href="https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-model.html#resource-type-howto-configuration">Defining
-        /// account-level configuration data for an extension</a> in the <i>CloudFormation CLI
-        /// User Guide</i>.
+        /// the account-level configuration of an extension</a> in the <i>CloudFormation Command
+        /// Line Interface (CLI) User Guide</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=204800)]
@@ -115,8 +118,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify <code>ConfigurationArn</code>, or <code>Type</code>
-        /// and <code>TypeName</code>.
+        /// Conditional: You must specify <c>ConfigurationArn</c>, or <c>Type</c> and <c>TypeName</c>.
         /// </para>
         /// </summary>
         public ThirdPartyType Type
@@ -138,10 +140,10 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// For public extensions, this will be the ARN assigned when you <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ActivateType.html">activate
-        /// the type</a> in this account and Region. For private extensions, this will be the
-        /// ARN assigned when you <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterType.html">register
-        /// the type</a> in this account and Region.
+        /// For public extensions, this will be the ARN assigned when you call the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ActivateType.html">ActivateType</a>
+        /// API operation in this account and Region. For private extensions, this will be the
+        /// ARN assigned when you call the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterType.html">RegisterType</a>
+        /// API operation in this account and Region.
         /// </para>
         ///  
         /// <para>
@@ -169,8 +171,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify <code>ConfigurationArn</code>, or <code>Type</code>
-        /// and <code>TypeName</code>.
+        /// Conditional: You must specify <c>ConfigurationArn</c>, or <c>Type</c> and <c>TypeName</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=10, Max=204)]

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
-    /// A scheduling object using a <code>cron</code> statement to schedule an event.
+    /// A scheduling object using a <c>cron</c> statement to schedule an event.
     /// </summary>
     public partial class Schedule
     {
@@ -39,9 +40,9 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property ScheduleExpression. 
         /// <para>
-        /// A <code>cron</code> expression used to specify the schedule (see <a href="https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html">Time-Based
+        /// A <c>cron</c> expression used to specify the schedule (see <a href="https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html">Time-Based
         /// Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15
-        /// UTC, you would specify: <code>cron(15 12 * * ? *)</code>.
+        /// UTC, you would specify: <c>cron(15 12 * * ? *)</c>.
         /// </para>
         /// </summary>
         public string ScheduleExpression

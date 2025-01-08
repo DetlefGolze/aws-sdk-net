@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -36,8 +37,8 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// </summary>
     public partial class ListDocumentsRequest : AmazonSimpleSystemsManagementRequest
     {
-        private List<DocumentFilter> _documentFilterList = new List<DocumentFilter>();
-        private List<DocumentKeyValuesFilter> _filters = new List<DocumentKeyValuesFilter>();
+        private List<DocumentFilter> _documentFilterList = AWSConfigs.InitializeCollections ? new List<DocumentFilter>() : null;
+        private List<DocumentKeyValuesFilter> _filters = AWSConfigs.InitializeCollections ? new List<DocumentKeyValuesFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -49,7 +50,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Instantiates ListDocumentsRequest with the parameterized properties
         /// </summary>
-        /// <param name="documentFilterList">This data type is deprecated. Instead, use <code>Filters</code>.</param>
+        /// <param name="documentFilterList">This data type is deprecated. Instead, use <c>Filters</c>.</param>
         public ListDocumentsRequest(List<DocumentFilter> documentFilterList)
         {
             _documentFilterList = documentFilterList;
@@ -58,7 +59,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property DocumentFilterList. 
         /// <para>
-        /// This data type is deprecated. Instead, use <code>Filters</code>.
+        /// This data type is deprecated. Instead, use <c>Filters</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -71,23 +72,23 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if DocumentFilterList property is set
         internal bool IsSetDocumentFilterList()
         {
-            return this._documentFilterList != null && this._documentFilterList.Count > 0; 
+            return this._documentFilterList != null && (this._documentFilterList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// One or more <code>DocumentKeyValuesFilter</code> objects. Use a filter to return a
-        /// more specific list of results. For keys, you can specify one or more key-value pair
-        /// tags that have been applied to a document. Other valid keys include <code>Owner</code>,
-        /// <code>Name</code>, <code>PlatformTypes</code>, <code>DocumentType</code>, and <code>TargetType</code>.
-        /// For example, to return documents you own use <code>Key=Owner,Values=Self</code>. To
-        /// specify a custom key-value pair, use the format <code>Key=tag:tagName,Values=valueName</code>.
+        /// One or more <c>DocumentKeyValuesFilter</c> objects. Use a filter to return a more
+        /// specific list of results. For keys, you can specify one or more key-value pair tags
+        /// that have been applied to a document. Other valid keys include <c>Owner</c>, <c>Name</c>,
+        /// <c>PlatformTypes</c>, <c>DocumentType</c>, and <c>TargetType</c>. For example, to
+        /// return documents you own use <c>Key=Owner,Values=Self</c>. To specify a custom key-value
+        /// pair, use the format <c>Key=tag:tagName,Values=valueName</c>.
         /// </para>
         ///  <note> 
         /// <para>
         /// This API operation only supports filtering documents by using a single tag key and
-        /// one or more tag values. For example: <code>Key=tag:tagName,Values=valueName1,valueName2</code>
+        /// one or more tag values. For example: <c>Key=tag:tagName,Values=valueName1,valueName2</c>
         /// 
         /// </para>
         ///  </note>
@@ -102,7 +103,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

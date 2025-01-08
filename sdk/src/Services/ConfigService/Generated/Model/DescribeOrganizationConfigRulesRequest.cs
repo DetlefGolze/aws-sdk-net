@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.ConfigService.Model
     /// </para>
     ///  
     /// <para>
-    ///  <i>For accounts within an organzation</i> 
+    ///  <i>For accounts within an organization</i> 
     /// </para>
     ///  
     /// <para>
@@ -53,7 +54,7 @@ namespace Amazon.ConfigService.Model
     /// to see the organizational rule or conformance pack in the organization administrator
     /// account from the delegated administrator account or see the organizational rule or
     /// conformance pack in the delegated administrator account from organization administrator
-    /// account. The <code>DescribeOrganizationConfigRules</code> and <code>DescribeOrganizationConformancePacks</code>
+    /// account. The <c>DescribeOrganizationConfigRules</c> and <c>DescribeOrganizationConformancePacks</c>
     /// APIs can only see and interact with the organization-related resource that were deployed
     /// from within the account calling those APIs.
     /// </para>
@@ -63,7 +64,7 @@ namespace Amazon.ConfigService.Model
     {
         private int? _limit;
         private string _nextToken;
-        private List<string> _organizationConfigRuleNames = new List<string>();
+        private List<string> _organizationConfigRuleNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Limit. 
@@ -88,8 +89,8 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> string returned on a previous page that you use to get
-        /// the next page of results in a paginated response. 
+        /// The <c>nextToken</c> string returned on a previous page that you use to get the next
+        /// page of results in a paginated response. 
         /// </para>
         /// </summary>
         public string NextToken
@@ -121,7 +122,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if OrganizationConfigRuleNames property is set
         internal bool IsSetOrganizationConfigRuleNames()
         {
-            return this._organizationConfigRuleNames != null && this._organizationConfigRuleNames.Count > 0; 
+            return this._organizationConfigRuleNames != null && (this._organizationConfigRuleNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

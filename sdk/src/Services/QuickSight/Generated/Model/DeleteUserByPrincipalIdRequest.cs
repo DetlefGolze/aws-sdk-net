@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Namespace. 
         /// <para>
-        /// The namespace. Currently, you should set this to <code>default</code>.
+        /// The namespace. Currently, you should set this to <c>default</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=64)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
@@ -41,8 +42,7 @@ namespace Amazon.AppSync.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The <code>name</code> of the runtime to use. Currently, the only allowed value is
-        /// <code>APPSYNC_JS</code>.
+        /// The <c>name</c> of the runtime to use. Currently, the only allowed value is <c>APPSYNC_JS</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -61,8 +61,7 @@ namespace Amazon.AppSync.Model
         /// <summary>
         /// Gets and sets the property RuntimeVersion. 
         /// <para>
-        /// The <code>version</code> of the runtime to use. Currently, the only allowed version
-        /// is <code>1.0.0</code>.
+        /// The <c>version</c> of the runtime to use. Currently, the only allowed version is <c>1.0.0</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Format example: <code>arn:aws:geo:region:account-id:resourcetype/ExampleResource</code>
+        /// Format example: <c>arn:aws:geo:region:account-id:resourcetype/ExampleResource</c>
         /// 
         /// </para>
         ///  </li> </ul>

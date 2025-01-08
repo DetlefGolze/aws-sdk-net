@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
-    /// Response for ListEndpointsByPlatformApplication action.
+    /// Response for <c>ListEndpointsByPlatformApplication</c> action.
     /// </summary>
     public partial class ListEndpointsByPlatformApplicationResponse : AmazonWebServiceResponse
     {
-        private List<Endpoint> _endpoints = new List<Endpoint>();
+        private List<Endpoint> _endpoints = AWSConfigs.InitializeCollections ? new List<Endpoint>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Endpoints. 
         /// <para>
-        /// Endpoints returned for ListEndpointsByPlatformApplication action.
+        /// Endpoints returned for <c>ListEndpointsByPlatformApplication</c> action.
         /// </para>
         /// </summary>
         public List<Endpoint> Endpoints
@@ -51,14 +52,14 @@ namespace Amazon.SimpleNotificationService.Model
         // Check to see if Endpoints property is set
         internal bool IsSetEndpoints()
         {
-            return this._endpoints != null && this._endpoints.Count > 0; 
+            return this._endpoints != null && (this._endpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// NextToken string is returned when calling ListEndpointsByPlatformApplication action
-        /// if additional records are available after the first page results.
+        ///  <c>NextToken</c> string is returned when calling <c>ListEndpointsByPlatformApplication</c>
+        /// action if additional records are available after the first page results.
         /// </para>
         /// </summary>
         public string NextToken

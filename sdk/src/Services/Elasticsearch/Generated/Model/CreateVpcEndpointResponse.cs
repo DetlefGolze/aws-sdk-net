@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// Container for response parameters to the <code><a>CreateVpcEndpoint</a></code> operation.
+    /// Container for response parameters to the <c><a>CreateVpcEndpoint</a></c> operation.
     /// Contains the configuration and status of the VPC Endpoint being created.
     /// </summary>
     public partial class CreateVpcEndpointResponse : AmazonWebServiceResponse

@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
-    /// The request was rejected because the (<code>XksKeyId</code>) is already associated
-    /// with a KMS key in this external key store. Each KMS key in an external key store must
-    /// be associated with a different external key.
+    /// The request was rejected because the (<c>XksKeyId</c>) is already associated with
+    /// another KMS key in this external key store. Each KMS key in an external key store
+    /// must be associated with a different external key.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

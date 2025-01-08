@@ -26,23 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeCluster operation.
-    /// Returns descriptive information about an Amazon EKS cluster.
+    /// Describes an Amazon EKS cluster.
     /// 
     ///  
     /// <para>
     /// The API server endpoint and certificate authority data returned by this operation
-    /// are required for <code>kubelet</code> and <code>kubectl</code> to communicate with
-    /// your Kubernetes API server. For more information, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html">Create
-    /// a kubeconfig for Amazon EKS</a>.
+    /// are required for <c>kubelet</c> and <c>kubectl</c> to communicate with your Kubernetes
+    /// API server. For more information, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html">Creating
+    /// or updating a <c>kubeconfig</c> file for an Amazon EKS cluster</a>.
     /// </para>
     ///  <note> 
     /// <para>
     /// The API server endpoint and certificate authority data aren't available until the
-    /// cluster reaches the <code>ACTIVE</code> state.
+    /// cluster reaches the <c>ACTIVE</c> state.
     /// </para>
     ///  </note>
     /// </summary>
@@ -53,7 +54,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the cluster to describe.
+        /// The name of your cluster.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

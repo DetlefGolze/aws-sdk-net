@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.CloudHSM
 {
     /// <summary>
-    /// Implementation for accessing CloudHSM
+    /// <para>Implementation for accessing CloudHSM</para>
     ///
     /// AWS CloudHSM Service 
     /// <para>
@@ -567,7 +568,7 @@ namespace Amazon.CloudHSM
         /// </para>
         ///  
         /// <para>
-        /// There is an upfront fee charged for each HSM instance that you create with the <code>CreateHsm</code>
+        /// There is an upfront fee charged for each HSM instance that you create with the <c>CreateHsm</c>
         /// operation. If you accidentally provision an HSM and want to request a refund, delete
         /// the instance using the <a>DeleteHsm</a> operation, go to the <a href="https://console.aws.amazon.com/support/home">AWS
         /// Support Center</a>, create a new case, and select <b>Account and Billing Support</b>.
@@ -576,7 +577,7 @@ namespace Amazon.CloudHSM
         /// <para>
         /// It can take up to 20 minutes to create and provision an HSM. You can monitor the status
         /// of the HSM with the <a>DescribeHsm</a> operation. The HSM is ready to be initialized
-        /// when the status changes to <code>RUNNING</code>.
+        /// when the status changes to <c>RUNNING</c>.
         /// </para>
         ///  </important>
         /// </summary>
@@ -624,7 +625,7 @@ namespace Amazon.CloudHSM
         /// </para>
         ///  
         /// <para>
-        /// There is an upfront fee charged for each HSM instance that you create with the <code>CreateHsm</code>
+        /// There is an upfront fee charged for each HSM instance that you create with the <c>CreateHsm</c>
         /// operation. If you accidentally provision an HSM and want to request a refund, delete
         /// the instance using the <a>DeleteHsm</a> operation, go to the <a href="https://console.aws.amazon.com/support/home">AWS
         /// Support Center</a>, create a new case, and select <b>Account and Billing Support</b>.
@@ -633,7 +634,7 @@ namespace Amazon.CloudHSM
         /// <para>
         /// It can take up to 20 minutes to create and provision an HSM. You can monitor the status
         /// of the HSM with the <a>DescribeHsm</a> operation. The HSM is ready to be initialized
-        /// when the status changes to <code>RUNNING</code>.
+        /// when the status changes to <c>RUNNING</c>.
         /// </para>
         ///  </important>
         /// </summary>
@@ -1497,7 +1498,7 @@ namespace Amazon.CloudHSM
         /// number.
         /// </para>
         /// </summary>
-        /// <param name="hsmArn">The ARN of the HSM. Either the <code>HsmArn</code> or the <code>SerialNumber</code> parameter must be specified.</param>
+        /// <param name="hsmArn">The ARN of the HSM. Either the <c>HsmArn</c> or the <c>SerialNumber</c> parameter must be specified.</param>
         /// 
         /// <returns>The response from the DescribeHsm service method, as returned by CloudHSM.</returns>
         /// <exception cref="Amazon.CloudHSM.Model.CloudHsmInternalException">
@@ -1583,7 +1584,7 @@ namespace Amazon.CloudHSM
         /// number.
         /// </para>
         /// </summary>
-        /// <param name="hsmArn">The ARN of the HSM. Either the <code>HsmArn</code> or the <code>SerialNumber</code> parameter must be specified.</param>
+        /// <param name="hsmArn">The ARN of the HSM. Either the <c>HsmArn</c> or the <c>SerialNumber</c> parameter must be specified.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -2041,10 +2042,10 @@ namespace Amazon.CloudHSM
         /// </para>
         ///  
         /// <para>
-        /// This operation supports pagination with the use of the <code>NextToken</code> member.
-        /// If more results are available, the <code>NextToken</code> member of the response contains
-        /// a token that you pass in the next call to <code>ListHapgs</code> to retrieve the next
-        /// set of items.
+        /// This operation supports pagination with the use of the <c>NextToken</c> member. If
+        /// more results are available, the <c>NextToken</c> member of the response contains a
+        /// token that you pass in the next call to <c>ListHapgs</c> to retrieve the next set
+        /// of items.
         /// </para>
         /// </summary>
         /// 
@@ -2087,10 +2088,10 @@ namespace Amazon.CloudHSM
         /// </para>
         ///  
         /// <para>
-        /// This operation supports pagination with the use of the <code>NextToken</code> member.
-        /// If more results are available, the <code>NextToken</code> member of the response contains
-        /// a token that you pass in the next call to <code>ListHapgs</code> to retrieve the next
-        /// set of items.
+        /// This operation supports pagination with the use of the <c>NextToken</c> member. If
+        /// more results are available, the <c>NextToken</c> member of the response contains a
+        /// token that you pass in the next call to <c>ListHapgs</c> to retrieve the next set
+        /// of items.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListHapgs service method.</param>
@@ -2137,10 +2138,10 @@ namespace Amazon.CloudHSM
         /// </para>
         ///  
         /// <para>
-        /// This operation supports pagination with the use of the <code>NextToken</code> member.
-        /// If more results are available, the <code>NextToken</code> member of the response contains
-        /// a token that you pass in the next call to <code>ListHapgs</code> to retrieve the next
-        /// set of items.
+        /// This operation supports pagination with the use of the <c>NextToken</c> member. If
+        /// more results are available, the <c>NextToken</c> member of the response contains a
+        /// token that you pass in the next call to <c>ListHapgs</c> to retrieve the next set
+        /// of items.
         /// </para>
         /// </summary>
         /// <param name="cancellationToken">
@@ -2186,10 +2187,10 @@ namespace Amazon.CloudHSM
         /// </para>
         ///  
         /// <para>
-        /// This operation supports pagination with the use of the <code>NextToken</code> member.
-        /// If more results are available, the <code>NextToken</code> member of the response contains
-        /// a token that you pass in the next call to <code>ListHapgs</code> to retrieve the next
-        /// set of items.
+        /// This operation supports pagination with the use of the <c>NextToken</c> member. If
+        /// more results are available, the <c>NextToken</c> member of the response contains a
+        /// token that you pass in the next call to <c>ListHapgs</c> to retrieve the next set
+        /// of items.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListHapgs service method.</param>
@@ -2243,10 +2244,10 @@ namespace Amazon.CloudHSM
         /// </para>
         ///  
         /// <para>
-        /// This operation supports pagination with the use of the <code>NextToken</code> member.
-        /// If more results are available, the <code>NextToken</code> member of the response contains
-        /// a token that you pass in the next call to <code>ListHsms</code> to retrieve the next
-        /// set of items.
+        /// This operation supports pagination with the use of the <c>NextToken</c> member. If
+        /// more results are available, the <c>NextToken</c> member of the response contains a
+        /// token that you pass in the next call to <c>ListHsms</c> to retrieve the next set of
+        /// items.
         /// </para>
         /// </summary>
         /// 
@@ -2289,10 +2290,10 @@ namespace Amazon.CloudHSM
         /// </para>
         ///  
         /// <para>
-        /// This operation supports pagination with the use of the <code>NextToken</code> member.
-        /// If more results are available, the <code>NextToken</code> member of the response contains
-        /// a token that you pass in the next call to <code>ListHsms</code> to retrieve the next
-        /// set of items.
+        /// This operation supports pagination with the use of the <c>NextToken</c> member. If
+        /// more results are available, the <c>NextToken</c> member of the response contains a
+        /// token that you pass in the next call to <c>ListHsms</c> to retrieve the next set of
+        /// items.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListHsms service method.</param>
@@ -2339,10 +2340,10 @@ namespace Amazon.CloudHSM
         /// </para>
         ///  
         /// <para>
-        /// This operation supports pagination with the use of the <code>NextToken</code> member.
-        /// If more results are available, the <code>NextToken</code> member of the response contains
-        /// a token that you pass in the next call to <code>ListHsms</code> to retrieve the next
-        /// set of items.
+        /// This operation supports pagination with the use of the <c>NextToken</c> member. If
+        /// more results are available, the <c>NextToken</c> member of the response contains a
+        /// token that you pass in the next call to <c>ListHsms</c> to retrieve the next set of
+        /// items.
         /// </para>
         /// </summary>
         /// <param name="cancellationToken">
@@ -2388,10 +2389,10 @@ namespace Amazon.CloudHSM
         /// </para>
         ///  
         /// <para>
-        /// This operation supports pagination with the use of the <code>NextToken</code> member.
-        /// If more results are available, the <code>NextToken</code> member of the response contains
-        /// a token that you pass in the next call to <code>ListHsms</code> to retrieve the next
-        /// set of items.
+        /// This operation supports pagination with the use of the <c>NextToken</c> member. If
+        /// more results are available, the <c>NextToken</c> member of the response contains a
+        /// token that you pass in the next call to <c>ListHsms</c> to retrieve the next set of
+        /// items.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListHsms service method.</param>
@@ -2445,10 +2446,10 @@ namespace Amazon.CloudHSM
         /// </para>
         ///  
         /// <para>
-        /// This operation supports pagination with the use of the <code>NextToken</code> member.
-        /// If more results are available, the <code>NextToken</code> member of the response contains
-        /// a token that you pass in the next call to <code>ListLunaClients</code> to retrieve
-        /// the next set of items.
+        /// This operation supports pagination with the use of the <c>NextToken</c> member. If
+        /// more results are available, the <c>NextToken</c> member of the response contains a
+        /// token that you pass in the next call to <c>ListLunaClients</c> to retrieve the next
+        /// set of items.
         /// </para>
         /// </summary>
         /// 
@@ -2491,10 +2492,10 @@ namespace Amazon.CloudHSM
         /// </para>
         ///  
         /// <para>
-        /// This operation supports pagination with the use of the <code>NextToken</code> member.
-        /// If more results are available, the <code>NextToken</code> member of the response contains
-        /// a token that you pass in the next call to <code>ListLunaClients</code> to retrieve
-        /// the next set of items.
+        /// This operation supports pagination with the use of the <c>NextToken</c> member. If
+        /// more results are available, the <c>NextToken</c> member of the response contains a
+        /// token that you pass in the next call to <c>ListLunaClients</c> to retrieve the next
+        /// set of items.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListLunaClients service method.</param>
@@ -2541,10 +2542,10 @@ namespace Amazon.CloudHSM
         /// </para>
         ///  
         /// <para>
-        /// This operation supports pagination with the use of the <code>NextToken</code> member.
-        /// If more results are available, the <code>NextToken</code> member of the response contains
-        /// a token that you pass in the next call to <code>ListLunaClients</code> to retrieve
-        /// the next set of items.
+        /// This operation supports pagination with the use of the <c>NextToken</c> member. If
+        /// more results are available, the <c>NextToken</c> member of the response contains a
+        /// token that you pass in the next call to <c>ListLunaClients</c> to retrieve the next
+        /// set of items.
         /// </para>
         /// </summary>
         /// <param name="cancellationToken">
@@ -2590,10 +2591,10 @@ namespace Amazon.CloudHSM
         /// </para>
         ///  
         /// <para>
-        /// This operation supports pagination with the use of the <code>NextToken</code> member.
-        /// If more results are available, the <code>NextToken</code> member of the response contains
-        /// a token that you pass in the next call to <code>ListLunaClients</code> to retrieve
-        /// the next set of items.
+        /// This operation supports pagination with the use of the <c>NextToken</c> member. If
+        /// more results are available, the <c>NextToken</c> member of the response contains a
+        /// token that you pass in the next call to <c>ListLunaClients</c> to retrieve the next
+        /// set of items.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListLunaClients service method.</param>
@@ -3122,11 +3123,11 @@ namespace Amazon.CloudHSM
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

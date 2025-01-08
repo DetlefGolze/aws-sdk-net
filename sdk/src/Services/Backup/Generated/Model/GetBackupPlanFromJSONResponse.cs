@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property BackupPlan. 
         /// <para>
-        /// Specifies the body of a backup plan. Includes a <code>BackupPlanName</code> and one
-        /// or more sets of <code>Rules</code>.
+        /// Specifies the body of a backup plan. Includes a <c>BackupPlanName</c> and one or more
+        /// sets of <c>Rules</c>.
         /// </para>
         /// </summary>
         public BackupPlan BackupPlan

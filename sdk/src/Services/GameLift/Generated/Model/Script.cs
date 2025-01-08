@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -55,7 +56,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property CreationTime. 
         /// <para>
         /// A time stamp indicating when this data object was created. Format is a number expressed
-        /// in Unix time as milliseconds (for example <code>"1469498468.057"</code>).
+        /// in Unix time as milliseconds (for example <c>"1469498468.057"</c>).
         /// </para>
         /// </summary>
         public DateTime CreationTime
@@ -73,8 +74,8 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// A descriptive label that is associated with a script. Script names don't need to be
-        /// unique.
+        /// A descriptive label that is associated with a script. Script names do not need to
+        /// be unique.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -157,7 +158,7 @@ namespace Amazon.GameLift.Model
         /// zip file name (the "key"), and a role ARN that allows Amazon GameLift to access the
         /// Amazon S3 storage location. The S3 bucket must be in the same Region where you want
         /// to create a new script. By default, Amazon GameLift uploads the latest version of
-        /// the zip file; if you have S3 object versioning turned on, you can use the <code>ObjectVersion</code>
+        /// the zip file; if you have S3 object versioning turned on, you can use the <c>ObjectVersion</c>
         /// parameter to specify an earlier version. 
         /// </para>
         /// </summary>
@@ -176,8 +177,8 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property Version. 
         /// <para>
-        /// Version information associated with a build or script. Version strings don't need
-        /// to be unique.
+        /// Version information that is associated with a build or script. Version strings do
+        /// not need to be unique.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

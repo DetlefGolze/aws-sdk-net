@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,19 @@ namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(SplunkDestinationConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetBufferingHints())
+            {
+                context.Writer.WritePropertyName("BufferingHints");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = SplunkBufferingHintsMarshaller.Instance;
+                marshaller.Marshall(requestObject.BufferingHints, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetCloudWatchLoggingOptions())
             {
                 context.Writer.WritePropertyName("CloudWatchLoggingOptions");
@@ -115,6 +129,17 @@ namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
 
                 var marshaller = S3DestinationConfigurationMarshaller.Instance;
                 marshaller.Marshall(requestObject.S3Configuration, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetSecretsManagerConfiguration())
+            {
+                context.Writer.WritePropertyName("SecretsManagerConfiguration");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = SecretsManagerConfigurationMarshaller.Instance;
+                marshaller.Marshall(requestObject.SecretsManagerConfiguration, context);
 
                 context.Writer.WriteObjectEnd();
             }

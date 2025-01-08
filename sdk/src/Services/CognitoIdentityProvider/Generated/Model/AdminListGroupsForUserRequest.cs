@@ -26,11 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the AdminListGroupsForUser operation.
-    /// Lists the groups that the user belongs to.
+    /// Lists the groups that a user belongs to. User pool groups are identifiers that you
+    /// can reference from the contents of ID and access tokens, and set preferred IAM roles
+    /// for identity-pool authentication. For more information, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-user-groups.html">Adding
+    /// groups to a user pool</a>.
     /// 
     ///  <note> 
     /// <para>
@@ -64,7 +68,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Limit. 
         /// <para>
-        /// The limit of the request to list groups.
+        /// The maximum number of groups that you want Amazon Cognito to return in the response.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=60)]
@@ -83,8 +87,11 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// An identifier that was returned from the previous call to this operation, which can
-        /// be used to return the next set of items in the list.
+        /// This API operation returns a limited number of results. The pagination token is an
+        /// identifier that you can present in an additional API request with the same parameters.
+        /// When you include the pagination token, Amazon Cognito returns the next set of items
+        /// after the current list. Subsequent requests return a new pagination token. By use
+        /// of this token, you can paginate through the full list of items.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=131072)]
@@ -103,7 +110,10 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Username. 
         /// <para>
-        /// The username for the user.
+        /// The username of the user that you want to query or modify. The value of this parameter
+        /// is typically your user's username, but it can be any of their alias attributes. If
+        /// <c>username</c> isn't an alias attribute in your user pool, this value must be the
+        /// <c>sub</c> of a local user or the username of a user from a third-party IdP.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=128)]
@@ -122,7 +132,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID for the user pool.
+        /// The ID of the user pool where you want to view a user's groups.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

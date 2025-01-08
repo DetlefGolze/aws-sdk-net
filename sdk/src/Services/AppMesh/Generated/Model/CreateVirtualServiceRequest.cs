@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppMesh.Model
 {
     /// <summary>
@@ -36,9 +37,9 @@ namespace Amazon.AppMesh.Model
     /// <para>
     /// A virtual service is an abstraction of a real service that is provided by a virtual
     /// node directly or indirectly by means of a virtual router. Dependent services call
-    /// your virtual service by its <code>virtualServiceName</code>, and those requests are
-    /// routed to the virtual node or virtual router that is specified as the provider for
-    /// the virtual service.
+    /// your virtual service by its <c>virtualServiceName</c>, and those requests are routed
+    /// to the virtual node or virtual router that is specified as the provider for the virtual
+    /// service.
     /// </para>
     ///  
     /// <para>
@@ -52,7 +53,7 @@ namespace Amazon.AppMesh.Model
         private string _meshName;
         private string _meshOwner;
         private VirtualServiceSpec _spec;
-        private List<TagRef> _tags = new List<TagRef>();
+        private List<TagRef> _tags = AWSConfigs.InitializeCollections ? new List<TagRef>() : null;
         private string _virtualServiceName;
 
         /// <summary>
@@ -154,7 +155,7 @@ namespace Amazon.AppMesh.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

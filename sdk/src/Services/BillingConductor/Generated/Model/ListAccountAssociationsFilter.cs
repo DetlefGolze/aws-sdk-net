@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BillingConductor.Model
 {
     /// <summary>
@@ -33,22 +34,22 @@ namespace Amazon.BillingConductor.Model
     /// 
     ///  
     /// <para>
-    ///  <code>MONITORED</code>: linked accounts that are associated to billing groups.
+    ///  <c>MONITORED</c>: linked accounts that are associated to billing groups.
     /// </para>
     ///  
     /// <para>
-    ///  <code>UNMONITORED</code>: linked accounts that are not associated to billing groups.
+    ///  <c>UNMONITORED</c>: linked accounts that are not associated to billing groups.
     /// </para>
     ///  
     /// <para>
-    ///  <code>Billing Group Arn</code>: linked accounts that are associated to the provided
-    /// Billing Group Arn.
+    ///  <c>Billing Group Arn</c>: linked accounts that are associated to the provided Billing
+    /// Group Arn.
     /// </para>
     /// </summary>
     public partial class ListAccountAssociationsFilter
     {
         private string _accountId;
-        private List<string> _accountIds = new List<string>();
+        private List<string> _accountIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _association;
 
         /// <summary>
@@ -86,22 +87,22 @@ namespace Amazon.BillingConductor.Model
         // Check to see if AccountIds property is set
         internal bool IsSetAccountIds()
         {
-            return this._accountIds != null && this._accountIds.Count > 0; 
+            return this._accountIds != null && (this._accountIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Association. 
         /// <para>
-        ///  <code>MONITORED</code>: linked accounts that are associated to billing groups.
+        ///  <c>MONITORED</c>: linked accounts that are associated to billing groups.
         /// </para>
         ///  
         /// <para>
-        ///  <code>UNMONITORED</code>: linked accounts that are not associated to billing groups.
+        ///  <c>UNMONITORED</c>: linked accounts that are not associated to billing groups.
         /// </para>
         ///  
         /// <para>
-        ///  <code>Billing Group Arn</code>: linked accounts that are associated to the provided
-        /// Billing Group Arn.
+        ///  <c>Billing Group Arn</c>: linked accounts that are associated to the provided Billing
+        /// Group Arn.
         /// </para>
         /// </summary>
         public string Association

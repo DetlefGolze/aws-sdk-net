@@ -26,10 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// Specifies the configuration for Lambda triggers.
+    /// A collection of user pool Lambda triggers. Amazon Cognito invokes triggers at several
+    /// possible stages of user pool operations. Triggers can modify the outcome of the operations
+    /// that invoked them.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a request and response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserPool.html">CreateUserPool</a>
+    /// and <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserPool.html">UpdateUserPool</a>,
+    /// and a response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeUserPool.html">DescribeUserPool</a>.
+    /// </para>
     /// </summary>
     public partial class LambdaConfigType
     {
@@ -44,13 +54,16 @@ namespace Amazon.CognitoIdentityProvider.Model
         private string _preAuthentication;
         private string _preSignUp;
         private string _preTokenGeneration;
+        private PreTokenGenerationVersionConfigType _preTokenGenerationConfig;
         private string _userMigration;
         private string _verifyAuthChallengeResponse;
 
         /// <summary>
         /// Gets and sets the property CreateAuthChallenge. 
         /// <para>
-        /// Creates an authentication challenge.
+        /// The configuration of a create auth challenge Lambda trigger, one of three triggers
+        /// in the sequence of the <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-challenge.html">custom
+        /// authentication challenge triggers</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]
@@ -69,7 +82,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property CustomEmailSender. 
         /// <para>
-        /// A custom email sender Lambda trigger.
+        /// The configuration of a custom email sender Lambda trigger. This trigger routes all
+        /// email notifications from a user pool to a Lambda function that delivers the message
+        /// using custom logic.
         /// </para>
         /// </summary>
         public CustomEmailLambdaVersionConfigType CustomEmailSender
@@ -87,7 +102,10 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property CustomMessage. 
         /// <para>
-        /// A custom Message Lambda trigger.
+        /// A custom message Lambda trigger. This trigger is an opportunity to customize all SMS
+        /// and email messages from your user pool. When a custom message trigger is active, your
+        /// user pool routes all messages to a Lambda function that returns a runtime-customized
+        /// message subject and body for your user pool to deliver to a user.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]
@@ -106,7 +124,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property CustomSMSSender. 
         /// <para>
-        /// A custom SMS sender Lambda trigger.
+        /// The configuration of a custom SMS sender Lambda trigger. This trigger routes all SMS
+        /// notifications from a user pool to a Lambda function that delivers the message using
+        /// custom logic.
         /// </para>
         /// </summary>
         public CustomSMSLambdaVersionConfigType CustomSMSSender
@@ -124,7 +144,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property DefineAuthChallenge. 
         /// <para>
-        /// Defines the authentication challenge.
+        /// The configuration of a define auth challenge Lambda trigger, one of three triggers
+        /// in the sequence of the <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-challenge.html">custom
+        /// authentication challenge triggers</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]
@@ -143,9 +165,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property KMSKeyID. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of an <a href="/kms/latest/developerguide/concepts.html#master_keys">KMS
+        /// The ARN of an <a href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys">KMS
         /// key</a>. Amazon Cognito uses the key to encrypt codes and temporary passwords sent
-        /// to <code>CustomEmailSender</code> and <code>CustomSMSSender</code>.
+        /// to custom sender Lambda triggers.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]
@@ -164,7 +186,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property PostAuthentication. 
         /// <para>
-        /// A post-authentication Lambda trigger.
+        /// The configuration of a <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-post-authentication.html">post
+        /// authentication Lambda trigger</a> in a user pool. This trigger can take custom actions
+        /// after a user signs in.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]
@@ -183,7 +207,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property PostConfirmation. 
         /// <para>
-        /// A post-confirmation Lambda trigger.
+        /// The configuration of a <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-post-confirmation.html">post
+        /// confirmation Lambda trigger</a> in a user pool. This trigger can take custom actions
+        /// after a user confirms their user account and their email address or phone number.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]
@@ -202,7 +228,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property PreAuthentication. 
         /// <para>
-        /// A pre-authentication Lambda trigger.
+        /// The configuration of a <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-authentication.html">pre
+        /// authentication trigger</a> in a user pool. This trigger can evaluate and modify user
+        /// sign-in events.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]
@@ -221,7 +249,10 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property PreSignUp. 
         /// <para>
-        /// A pre-registration Lambda trigger.
+        /// The configuration of a <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html">pre
+        /// sign-up Lambda trigger</a> in a user pool. This trigger evaluates new users and can
+        /// bypass confirmation, <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-identity-federation-consolidate-users.html">link
+        /// a federated user profile</a>, or block sign-up requests.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]
@@ -240,7 +271,14 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property PreTokenGeneration. 
         /// <para>
-        /// A Lambda trigger that is invoked before token generation.
+        /// The legacy configuration of a <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-token-generation.html">pre
+        /// token generation Lambda trigger</a> in a user pool.
+        /// </para>
+        ///  
+        /// <para>
+        /// Set this parameter for legacy purposes. If you also set an ARN in <c>PreTokenGenerationConfig</c>,
+        /// its value must be identical to <c>PreTokenGeneration</c>. For new instances of pre
+        /// token generation triggers, set the <c>LambdaArn</c> of <c>PreTokenGenerationConfig</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]
@@ -257,9 +295,32 @@ namespace Amazon.CognitoIdentityProvider.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PreTokenGenerationConfig. 
+        /// <para>
+        /// The detailed configuration of a <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-token-generation.html">pre
+        /// token generation Lambda trigger</a> in a user pool. If you also set an ARN in <c>PreTokenGeneration</c>,
+        /// its value must be identical to <c>PreTokenGenerationConfig</c>.
+        /// </para>
+        /// </summary>
+        public PreTokenGenerationVersionConfigType PreTokenGenerationConfig
+        {
+            get { return this._preTokenGenerationConfig; }
+            set { this._preTokenGenerationConfig = value; }
+        }
+
+        // Check to see if PreTokenGenerationConfig property is set
+        internal bool IsSetPreTokenGenerationConfig()
+        {
+            return this._preTokenGenerationConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property UserMigration. 
         /// <para>
-        /// The user migration Lambda config type.
+        /// The configuration of a <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-migrate-user.html">migrate
+        /// user Lambda trigger</a> in a user pool. This trigger can create user profiles when
+        /// users sign in or attempt to reset their password with credentials that don't exist
+        /// yet.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]
@@ -278,7 +339,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property VerifyAuthChallengeResponse. 
         /// <para>
-        /// Verifies the authentication challenge response.
+        /// The configuration of a verify auth challenge Lambda trigger, one of three triggers
+        /// in the sequence of the <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-challenge.html">custom
+        /// authentication challenge triggers</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]

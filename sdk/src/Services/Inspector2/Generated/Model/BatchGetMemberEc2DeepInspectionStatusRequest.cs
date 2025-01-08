@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
@@ -36,13 +37,13 @@ namespace Amazon.Inspector2.Model
     /// </summary>
     public partial class BatchGetMemberEc2DeepInspectionStatusRequest : AmazonInspector2Request
     {
-        private List<string> _accountIds = new List<string>();
+        private List<string> _accountIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AccountIds. 
         /// <para>
         /// The unique identifiers for the Amazon Web Services accounts to retrieve Amazon Inspector
-        /// deep inspection activation status for. <pre><code> &lt;/p&gt; </code></pre>
+        /// deep inspection activation status for. <pre><c> &lt;/p&gt; </c></pre>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]
         public List<string> AccountIds
@@ -54,7 +55,7 @@ namespace Amazon.Inspector2.Model
         // Check to see if AccountIds property is set
         internal bool IsSetAccountIds()
         {
-            return this._accountIds != null && this._accountIds.Count > 0; 
+            return this._accountIds != null && (this._accountIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

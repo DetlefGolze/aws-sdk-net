@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.SecurityHub.Model
         private long? _indexSizeBytes;
         private string _indexStatus;
         private int? _itemCount;
-        private List<AwsDynamoDbTableKeySchema> _keySchema = new List<AwsDynamoDbTableKeySchema>();
+        private List<AwsDynamoDbTableKeySchema> _keySchema = AWSConfigs.InitializeCollections ? new List<AwsDynamoDbTableKeySchema>() : null;
         private AwsDynamoDbTableProjection _projection;
         private AwsDynamoDbTableProvisionedThroughput _provisionedThroughput;
 
@@ -122,19 +123,19 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ACTIVE</code> 
+        ///  <c>ACTIVE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATING</code> 
+        ///  <c>CREATING</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETING</code> 
+        ///  <c>DELETING</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPDATING</code> 
+        ///  <c>UPDATING</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -183,7 +184,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if KeySchema property is set
         internal bool IsSetKeySchema()
         {
-            return this._keySchema != null && this._keySchema.Count > 0; 
+            return this._keySchema != null && (this._keySchema.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
-    /// Returns all of the <code>ObjectIdentifiers</code> to which a given policy is attached
-    /// inside a <a>BatchRead</a> operation. For more information, see <a>ListPolicyAttachments</a>
+    /// Returns all of the <c>ObjectIdentifiers</c> to which a given policy is attached inside
+    /// a <a>BatchRead</a> operation. For more information, see <a>ListPolicyAttachments</a>
     /// and <a>BatchReadRequest$Operations</a>.
     /// </summary>
     public partial class BatchListPolicyAttachments

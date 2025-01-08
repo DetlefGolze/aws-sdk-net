@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Transfer.Model
     {
         private string _externalId;
         private string _homeDirectory;
-        private List<HomeDirectoryMapEntry> _homeDirectoryMappings = new List<HomeDirectoryMapEntry>();
+        private List<HomeDirectoryMapEntry> _homeDirectoryMappings = AWSConfigs.InitializeCollections ? new List<HomeDirectoryMapEntry>() : null;
         private HomeDirectoryType _homeDirectoryType;
         private string _policy;
         private PosixProfile _posixProfile;
@@ -51,8 +52,8 @@ namespace Amazon.Transfer.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>Get-ADGroup -Filter {samAccountName -like "<i>YourGroupName</i>*"} -Properties
-        /// * | Select SamAccountName,ObjectSid</code> 
+        ///  <c>Get-ADGroup -Filter {samAccountName -like "<i>YourGroupName</i>*"} -Properties
+        /// * | Select SamAccountName,ObjectSid</c> 
         /// </para>
         ///  
         /// <para>
@@ -87,16 +88,16 @@ namespace Amazon.Transfer.Model
         /// </para>
         ///  
         /// <para>
-        /// A <code>HomeDirectory</code> example is <code>/bucket_name/home/mydirectory</code>.
+        /// A <c>HomeDirectory</c> example is <c>/bucket_name/home/mydirectory</c>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>HomeDirectory</code> parameter is only used if <code>HomeDirectoryType</code>
-        /// is set to <code>LOGICAL</code>.
+        /// The <c>HomeDirectory</c> parameter is only used if <c>HomeDirectoryType</c> is set
+        /// to <c>PATH</c>.
         /// </para>
         ///  </note>
         /// </summary>
-        [AWSProperty(Max=1024)]
+        [AWSProperty(Min=0, Max=1024)]
         public string HomeDirectory
         {
             get { return this._homeDirectory; }
@@ -114,21 +115,21 @@ namespace Amazon.Transfer.Model
         /// <para>
         /// Logical directory mappings that specify what Amazon S3 or Amazon EFS paths and keys
         /// should be visible to your user and how you want to make them visible. You must specify
-        /// the <code>Entry</code> and <code>Target</code> pair, where <code>Entry</code> shows
-        /// how the path is made visible and <code>Target</code> is the actual Amazon S3 or Amazon
-        /// EFS path. If you only specify a target, it is displayed as is. You also must ensure
-        /// that your Identity and Access Management (IAM) role provides access to paths in <code>Target</code>.
-        /// This value can be set only when <code>HomeDirectoryType</code> is set to <i>LOGICAL</i>.
+        /// the <c>Entry</c> and <c>Target</c> pair, where <c>Entry</c> shows how the path is
+        /// made visible and <c>Target</c> is the actual Amazon S3 or Amazon EFS path. If you
+        /// only specify a target, it is displayed as is. You also must ensure that your Identity
+        /// and Access Management (IAM) role provides access to paths in <c>Target</c>. This value
+        /// can be set only when <c>HomeDirectoryType</c> is set to <i>LOGICAL</i>.
         /// </para>
         ///  
         /// <para>
         /// In most cases, you can use this value instead of the session policy to lock down the
-        /// associated access to the designated home directory ("<code>chroot</code>"). To do
-        /// this, you can set <code>Entry</code> to '/' and set <code>Target</code> to the <code>HomeDirectory</code>
+        /// associated access to the designated home directory ("<c>chroot</c>"). To do this,
+        /// you can set <c>Entry</c> to '/' and set <c>Target</c> to the <c>HomeDirectory</c>
         /// parameter value.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=50)]
+        [AWSProperty(Min=1, Max=50000)]
         public List<HomeDirectoryMapEntry> HomeDirectoryMappings
         {
             get { return this._homeDirectoryMappings; }
@@ -138,26 +139,25 @@ namespace Amazon.Transfer.Model
         // Check to see if HomeDirectoryMappings property is set
         internal bool IsSetHomeDirectoryMappings()
         {
-            return this._homeDirectoryMappings != null && this._homeDirectoryMappings.Count > 0; 
+            return this._homeDirectoryMappings != null && (this._homeDirectoryMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property HomeDirectoryType. 
         /// <para>
         /// The type of landing directory (folder) that you want your users' home directory to
-        /// be when they log in to the server. If you set it to <code>PATH</code>, the user will
-        /// see the absolute Amazon S3 bucket or Amazon EFS path as is in their file transfer
-        /// protocol clients. If you set it to <code>LOGICAL</code>, you need to provide mappings
-        /// in the <code>HomeDirectoryMappings</code> for how you want to make Amazon S3 or Amazon
-        /// EFS paths visible to your users.
+        /// be when they log in to the server. If you set it to <c>PATH</c>, the user will see
+        /// the absolute Amazon S3 bucket or Amazon EFS path as is in their file transfer protocol
+        /// clients. If you set it to <c>LOGICAL</c>, you need to provide mappings in the <c>HomeDirectoryMappings</c>
+        /// for how you want to make Amazon S3 or Amazon EFS paths visible to your users.
         /// </para>
         ///  <note> 
         /// <para>
-        /// If <code>HomeDirectoryType</code> is <code>LOGICAL</code>, you must provide mappings,
-        /// using the <code>HomeDirectoryMappings</code> parameter. If, on the other hand, <code>HomeDirectoryType</code>
-        /// is <code>PATH</code>, you provide an absolute path using the <code>HomeDirectory</code>
-        /// parameter. You cannot have both <code>HomeDirectory</code> and <code>HomeDirectoryMappings</code>
-        /// in your template.
+        /// If <c>HomeDirectoryType</c> is <c>LOGICAL</c>, you must provide mappings, using the
+        /// <c>HomeDirectoryMappings</c> parameter. If, on the other hand, <c>HomeDirectoryType</c>
+        /// is <c>PATH</c>, you provide an absolute path using the <c>HomeDirectory</c> parameter.
+        /// You cannot have both <c>HomeDirectory</c> and <c>HomeDirectoryMappings</c> in your
+        /// template.
         /// </para>
         ///  </note>
         /// </summary>
@@ -178,11 +178,11 @@ namespace Amazon.Transfer.Model
         /// <para>
         /// A session policy for your user so that you can use the same Identity and Access Management
         /// (IAM) role across multiple users. This policy scopes down a user's access to portions
-        /// of their Amazon S3 bucket. Variables that you can use inside this policy include <code>${Transfer:UserName}</code>,
-        /// <code>${Transfer:HomeDirectory}</code>, and <code>${Transfer:HomeBucket}</code>.
+        /// of their Amazon S3 bucket. Variables that you can use inside this policy include <c>${Transfer:UserName}</c>,
+        /// <c>${Transfer:HomeDirectory}</c>, and <c>${Transfer:HomeBucket}</c>.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=2048)]
+        [AWSProperty(Min=0, Max=2048)]
         public string Policy
         {
             get { return this._policy; }

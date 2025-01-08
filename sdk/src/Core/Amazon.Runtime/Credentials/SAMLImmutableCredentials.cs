@@ -14,6 +14,7 @@
  */
 using Amazon.Runtime.Internal.Util;
 using Amazon.Util;
+using Amazon.Util.Internal;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -137,7 +138,7 @@ namespace Amazon.Runtime
 
             props.Add(SubjectProperty, Subject);
 
-            return JsonMapper.ToJson(props);
+            return JsonSerializerHelper.Serialize<Dictionary<string, string>>(props, DictionaryStringStringJsonSerializerContexts.Default);
         }
 
         /// <summary>
@@ -154,9 +155,9 @@ namespace Amazon.Runtime
                 // get the expiry first - if the credentials have expired we can then
                 // ignore the data
                 var expires = DateTime.Parse((string)o[ExpiresProperty], CultureInfo.InvariantCulture).ToUniversalTime();
-#pragma warning disable CS0612 // Type or member is obsolete
+#pragma warning disable CS0612,CS0618 // Type or member is obsolete
                 if (expires <= AWSSDKUtils.CorrectedUtcNow)
-#pragma warning restore CS0612 // Type or member is obsolete
+#pragma warning restore CS0612,CS0618 // Type or member is obsolete
                 {
                     Logger.GetLogger(typeof(SAMLImmutableCredentials)).InfoFormat("Skipping serialized credentials due to expiry.");
                     return null;

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ExtendedS3DestinationUpdate requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetBucketARN())
             {
                 context.Writer.WritePropertyName("BucketARN");
@@ -77,6 +80,12 @@ namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("CompressionFormat");
                 context.Writer.Write(requestObject.CompressionFormat);
+            }
+
+            if(requestObject.IsSetCustomTimeZone())
+            {
+                context.Writer.WritePropertyName("CustomTimeZone");
+                context.Writer.Write(requestObject.CustomTimeZone);
             }
 
             if(requestObject.IsSetDataFormatConversionConfiguration())
@@ -116,6 +125,12 @@ namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("ErrorOutputPrefix");
                 context.Writer.Write(requestObject.ErrorOutputPrefix);
+            }
+
+            if(requestObject.IsSetFileExtension())
+            {
+                context.Writer.WritePropertyName("FileExtension");
+                context.Writer.Write(requestObject.FileExtension);
             }
 
             if(requestObject.IsSetPrefix())

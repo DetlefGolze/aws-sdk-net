@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.HealthLake.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.HealthLake.Model
         /// <summary>
         /// Gets and sets the property ImportJobProperties. 
         /// <para>
-        /// The properties of the Import job request, including the ID, ARN, name, and the status
-        /// of the job.
+        /// The properties of the Import job request, including the ID, ARN, name, status of the
+        /// job, and the progress report of the job.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

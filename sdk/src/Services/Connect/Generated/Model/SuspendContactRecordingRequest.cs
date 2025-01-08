@@ -26,14 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
     /// Container for the parameters to the SuspendContactRecording operation.
-    /// When a contact is being recorded, this API suspends recording the call or screen.
-    /// For example, you might suspend the call or screen recording while collecting sensitive
-    /// information, such as a credit card number. Then use ResumeContactRecording to restart
-    /// recording.
+    /// When a contact is being recorded, this API suspends recording whatever is selected
+    /// in the flow configuration: call, screen, or both. If only call recording or only screen
+    /// recording is enabled, then it would be suspended. For example, you might suspend the
+    /// screen recording while collecting sensitive information, such as a credit card number.
+    /// Then use ResumeContactRecording to restart recording the screen.
     /// 
     ///  
     /// <para>
@@ -48,6 +50,7 @@ namespace Amazon.Connect.Model
     public partial class SuspendContactRecordingRequest : AmazonConnectRequest
     {
         private string _contactId;
+        private ContactRecordingType _contactRecordingType;
         private string _initialContactId;
         private string _instanceId;
 
@@ -68,6 +71,24 @@ namespace Amazon.Connect.Model
         internal bool IsSetContactId()
         {
             return this._contactId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ContactRecordingType. 
+        /// <para>
+        /// The type of recording being operated on.
+        /// </para>
+        /// </summary>
+        public ContactRecordingType ContactRecordingType
+        {
+            get { return this._contactRecordingType; }
+            set { this._contactRecordingType = value; }
+        }
+
+        // Check to see if ContactRecordingType property is set
+        internal bool IsSetContactRecordingType()
+        {
+            return this._contactRecordingType != null;
         }
 
         /// <summary>

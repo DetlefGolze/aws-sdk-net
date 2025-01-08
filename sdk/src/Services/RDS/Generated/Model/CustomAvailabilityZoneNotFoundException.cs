@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// <code>CustomAvailabilityZoneId</code> doesn't refer to an existing custom Availability
+    /// <c>CustomAvailabilityZoneId</c> doesn't refer to an existing custom Availability
     /// Zone identifier.
     /// </summary>
     #if !NETSTANDARD

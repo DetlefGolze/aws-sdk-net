@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexRuntimeV2.Model
 {
     /// <summary>
@@ -35,13 +36,14 @@ namespace Amazon.LexRuntimeV2.Model
     {
         private ConfirmationState _confirmationState;
         private string _name;
-        private Dictionary<string, Slot> _slots = new Dictionary<string, Slot>();
+        private Dictionary<string, Slot> _slots = AWSConfigs.InitializeCollections ? new Dictionary<string, Slot>() : null;
         private IntentState _state;
 
         /// <summary>
         /// Gets and sets the property ConfirmationState. 
         /// <para>
-        /// Contains information about whether fulfillment of the intent has been confirmed.
+        /// Indicates whether the intent has been <c>Confirmed</c>, <c>Denied</c>, or <c>None</c>
+        /// if the confirmation stage has not yet been reached.
         /// </para>
         /// </summary>
         public ConfirmationState ConfirmationState
@@ -91,14 +93,43 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if Slots property is set
         internal bool IsSetSlots()
         {
-            return this._slots != null && this._slots.Count > 0; 
+            return this._slots != null && (this._slots.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property State. 
         /// <para>
-        /// Contains fulfillment information for the intent. 
+        /// Indicates the fulfillment state for the intent. The meanings of each value are as
+        /// follows:
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>Failed</c> – The bot failed to fulfill the intent.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Fulfilled</c> – The bot has completed fulfillment of the intent.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>FulfillmentInProgress</c> – The bot is in the middle of fulfilling the intent.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>InProgress</c> – The bot is in the middle of eliciting the slot values that are
+        /// necessary to fulfill the intent.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>ReadyForFulfillment</c> – The bot has elicited all the slot values for the intent
+        /// and is ready to fulfill the intent.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Waiting</c> – The bot is waiting for a response from the user (limited to streaming
+        /// conversations).
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public IntentState State
         {

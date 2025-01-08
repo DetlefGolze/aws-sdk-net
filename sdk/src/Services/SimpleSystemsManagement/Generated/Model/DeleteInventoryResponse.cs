@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -40,10 +41,10 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property DeletionId. 
         /// <para>
-        /// Every <code>DeleteInventory</code> operation is assigned a unique ID. This option
-        /// returns a unique ID. You can use this ID to query the status of a delete operation.
-        /// This option is useful for ensuring that a delete operation has completed before you
-        /// begin other operations. 
+        /// Every <c>DeleteInventory</c> operation is assigned a unique ID. This option returns
+        /// a unique ID. You can use this ID to query the status of a delete operation. This option
+        /// is useful for ensuring that a delete operation has completed before you begin other
+        /// operations. 
         /// </para>
         /// </summary>
         public string DeletionId
@@ -62,7 +63,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property DeletionSummary. 
         /// <para>
         /// A summary of the delete operation. For more information about this summary, see <a
-        /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-inventory-custom.html#sysman-inventory-delete-summary">Deleting
+        /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/inventory-custom.html#delete-custom-inventory-summary">Deleting
         /// custom inventory</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.
         /// </para>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -105,7 +106,7 @@ namespace Amazon.IoTFleetWise.Model
         /// Gets and sets the property Offset. 
         /// <para>
         /// The offset used to calculate the signal value. Combined with scaling, the calculation
-        /// is <code>value = raw_value * scaling + offset</code>.
+        /// is <c>value = raw_value * scaling + offset</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Comprehend.Model
     /// 
     ///  
     /// <para>
-    /// The <code>ErrorCode</code> contains one of the following values:
+    /// The <c>ErrorCode</c> contains one of the following values:
     /// </para>
     ///  <ul> <li> 
     /// <para>

@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// A list of user groups that exist in your OIDC Identity Provider (IdP). One to ten
     /// groups can be used to create a single private work team. When you add a user group
-    /// to the list of <code>Groups</code>, you can add that user group to one or more private
-    /// work teams. If you add a user group to a private work team, all workers in that user
-    /// group are added to the work team.
+    /// to the list of <c>Groups</c>, you can add that user group to one or more private work
+    /// teams. If you add a user group to a private work team, all workers in that user group
+    /// are added to the work team.
     /// </summary>
     public partial class OidcMemberDefinition
     {
-        private List<string> _groups = new List<string>();
+        private List<string> _groups = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Groups. 
@@ -46,7 +47,7 @@ namespace Amazon.SageMaker.Model
         /// user group is made up of a group of private workers.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=10)]
+        [AWSProperty(Min=1, Max=10)]
         public List<string> Groups
         {
             get { return this._groups; }
@@ -56,7 +57,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Groups property is set
         internal bool IsSetGroups()
         {
-            return this._groups != null && this._groups.Count > 0; 
+            return this._groups != null && (this._groups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

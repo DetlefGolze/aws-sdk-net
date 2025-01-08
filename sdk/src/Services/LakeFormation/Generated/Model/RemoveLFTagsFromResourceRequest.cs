@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
     /// Container for the parameters to the RemoveLFTagsFromResource operation.
     /// Removes an LF-tag from the resource. Only database, table, or tableWithColumns resource
-    /// are allowed. To tag columns, use the column inclusion list in <code>tableWithColumns</code>
+    /// are allowed. To tag columns, use the column inclusion list in <c>tableWithColumns</c>
     /// to specify column input.
     /// </summary>
     public partial class RemoveLFTagsFromResourceRequest : AmazonLakeFormationRequest
     {
         private string _catalogId;
-        private List<LFTagPair> _lfTags = new List<LFTagPair>();
+        private List<LFTagPair> _lfTags = AWSConfigs.InitializeCollections ? new List<LFTagPair>() : null;
         private Resource _resource;
 
         /// <summary>
@@ -77,7 +78,7 @@ namespace Amazon.LakeFormation.Model
         // Check to see if LFTags property is set
         internal bool IsSetLFTags()
         {
-            return this._lfTags != null && this._lfTags.Count > 0; 
+            return this._lfTags != null && (this._lfTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

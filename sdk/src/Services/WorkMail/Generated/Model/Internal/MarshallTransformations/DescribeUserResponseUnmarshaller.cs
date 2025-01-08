@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.WorkMail.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -109,6 +110,18 @@ namespace Amazon.WorkMail.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = BoolUnmarshaller.Instance;
                     response.HiddenFromGlobalAddressList = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("IdentityProviderIdentityStoreId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.IdentityProviderIdentityStoreId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("IdentityProviderUserId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.IdentityProviderUserId = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Initials", targetDepth))
@@ -212,6 +225,14 @@ namespace Amazon.WorkMail.Model.Internal.MarshallTransformations
             using (var streamCopy = new MemoryStream(responseBodyBytes))
             using (var contextCopy = new JsonUnmarshallerContext(streamCopy, false, null))
             {
+                if (errorResponse.Code != null && errorResponse.Code.Equals("DirectoryServiceAuthenticationFailedException"))
+                {
+                    return DirectoryServiceAuthenticationFailedExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("DirectoryUnavailableException"))
+                {
+                    return DirectoryUnavailableExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("EntityNotFoundException"))
                 {
                     return EntityNotFoundExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);

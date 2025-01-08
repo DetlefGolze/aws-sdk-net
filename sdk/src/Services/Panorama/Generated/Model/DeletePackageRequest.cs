@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Panorama.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Panorama.Model
     /// 
     ///  <note> 
     /// <para>
-    /// To delete a package, you need permission to call <code>s3:DeleteObject</code> in addition
+    /// To delete a package, you need permission to call <c>s3:DeleteObject</c> in addition
     /// to permissions for the AWS Panorama API.
     /// </para>
     ///  </note>

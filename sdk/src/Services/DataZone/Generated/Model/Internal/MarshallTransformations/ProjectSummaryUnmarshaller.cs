@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DataZone.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ProjectSummary Unmarshall(JsonUnmarshallerContext context)
         {
+            ProjectSummary unmarshalledObject = new ProjectSummary();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ProjectSummary unmarshalledObject = new ProjectSummary();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -88,6 +90,18 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
                     unmarshalledObject.DomainId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("domainUnitId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DomainUnitId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("failureReasons", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<ProjectDeletionError, ProjectDeletionErrorUnmarshaller>(ProjectDeletionErrorUnmarshaller.Instance);
+                    unmarshalledObject.FailureReasons = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("id", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -100,6 +114,12 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
                     unmarshalledObject.Name = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("projectStatus", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ProjectStatus = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("updatedAt", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
@@ -107,7 +127,6 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

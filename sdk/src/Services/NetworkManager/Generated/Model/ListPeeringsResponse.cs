@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.NetworkManager.Model
     public partial class ListPeeringsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Peering> _peerings = new List<Peering>();
+        private List<Peering> _peerings = AWSConfigs.InitializeCollections ? new List<Peering>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -58,7 +59,7 @@ namespace Amazon.NetworkManager.Model
         /// <summary>
         /// Gets and sets the property Peerings. 
         /// <para>
-        /// Lists the transit gateway peerings for the <code>ListPeerings</code> request.
+        /// Lists the transit gateway peerings for the <c>ListPeerings</c> request.
         /// </para>
         /// </summary>
         public List<Peering> Peerings
@@ -70,7 +71,7 @@ namespace Amazon.NetworkManager.Model
         // Check to see if Peerings property is set
         internal bool IsSetPeerings()
         {
-            return this._peerings != null && this._peerings.Count > 0; 
+            return this._peerings != null && (this._peerings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

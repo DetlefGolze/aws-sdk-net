@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SsmSap.Model
 {
     /// <summary>
@@ -36,7 +37,8 @@ namespace Amazon.SsmSap.Model
         private string _applicationId;
         private string _arn;
         private string _componentId;
-        private List<ApplicationCredential> _credentials = new List<ApplicationCredential>();
+        private List<string> _connectedComponentArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<ApplicationCredential> _credentials = AWSConfigs.InitializeCollections ? new List<ApplicationCredential>() : null;
         private string _databaseId;
         private string _databaseName;
         private DatabaseType _databaseType;
@@ -51,6 +53,7 @@ namespace Amazon.SsmSap.Model
         /// The ID of the application.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=60)]
         public string ApplicationId
         {
             get { return this._applicationId; }
@@ -87,6 +90,7 @@ namespace Amazon.SsmSap.Model
         /// The ID of the component.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=100)]
         public string ComponentId
         {
             get { return this._componentId; }
@@ -100,12 +104,30 @@ namespace Amazon.SsmSap.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ConnectedComponentArns. 
+        /// <para>
+        /// The Amazon Resource Names of the connected AWS Systems Manager for SAP components.
+        /// </para>
+        /// </summary>
+        public List<string> ConnectedComponentArns
+        {
+            get { return this._connectedComponentArns; }
+            set { this._connectedComponentArns = value; }
+        }
+
+        // Check to see if ConnectedComponentArns property is set
+        internal bool IsSetConnectedComponentArns()
+        {
+            return this._connectedComponentArns != null && (this._connectedComponentArns.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Credentials. 
         /// <para>
         /// The credentials of the database.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=20)]
+        [AWSProperty(Min=0, Max=20)]
         public List<ApplicationCredential> Credentials
         {
             get { return this._credentials; }
@@ -115,7 +137,7 @@ namespace Amazon.SsmSap.Model
         // Check to see if Credentials property is set
         internal bool IsSetCredentials()
         {
-            return this._credentials != null && this._credentials.Count > 0; 
+            return this._credentials != null && (this._credentials.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -124,6 +146,7 @@ namespace Amazon.SsmSap.Model
         /// The ID of the SAP HANA database.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=300)]
         public string DatabaseId
         {
             get { return this._databaseId; }

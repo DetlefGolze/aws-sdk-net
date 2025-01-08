@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostAndUsageReport.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteReportDefinition operation.
-    /// Deletes the specified report.
+    /// Deletes the specified report. Any tags associated with the report are also deleted.
     /// </summary>
     public partial class DeleteReportDefinitionRequest : AmazonCostAndUsageReportRequest
     {
@@ -43,7 +44,7 @@ namespace Amazon.CostAndUsageReport.Model
         /// and can't include spaces.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=256)]
+        [AWSProperty(Required=true, Max=256)]
         public string ReportName
         {
             get { return this._reportName; }

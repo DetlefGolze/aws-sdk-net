@@ -26,10 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
+    /// <note> 
+    /// <para>
+    /// Amazon Elastic Graphics reached end of life on January 8, 2024.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// A specification for an Elastic Graphics accelerator.
+    /// </para>
     /// </summary>
     public partial class ElasticGpuSpecification
     {
@@ -38,10 +46,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of Elastic Graphics accelerator. For more information about the values to
-        /// specify for <code>Type</code>, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/elastic-graphics.html#elastic-graphics-basics">Elastic
-        /// Graphics Basics</a>, specifically the Elastic Graphics accelerator column, in the
-        /// <i>Amazon Elastic Compute Cloud User Guide for Windows Instances</i>.
+        /// The type of Elastic Graphics accelerator.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

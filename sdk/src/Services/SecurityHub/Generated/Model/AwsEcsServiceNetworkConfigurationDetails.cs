@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// For tasks that use the <code>awsvpc</code> networking mode, the VPC subnet and security
+    /// For tasks that use the <c>awsvpc</c> networking mode, the VPC subnet and security
     /// group configuration.
     /// </summary>
     public partial class AwsEcsServiceNetworkConfigurationDetails

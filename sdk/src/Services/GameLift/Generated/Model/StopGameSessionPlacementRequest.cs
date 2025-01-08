@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
     /// Container for the parameters to the StopGameSessionPlacement operation.
-    /// Cancels a game session placement that is in <code>PENDING</code> status. To stop a
-    /// placement, provide the placement ID values. If successful, the placement is moved
-    /// to <code>CANCELLED</code> status.
+    /// Cancels a game session placement that is in <c>PENDING</c> status. To stop a placement,
+    /// provide the placement ID values. If successful, the placement is moved to <c>CANCELLED</c>
+    /// status.
     /// </summary>
     public partial class StopGameSessionPlacementRequest : AmazonGameLiftRequest
     {

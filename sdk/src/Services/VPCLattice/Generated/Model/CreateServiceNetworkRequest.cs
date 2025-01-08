@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
@@ -44,7 +45,8 @@ namespace Amazon.VPCLattice.Model
         private AuthType _authType;
         private string _clientToken;
         private string _name;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private SharingConfig _sharingConfig;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AuthType. 
@@ -53,12 +55,12 @@ namespace Amazon.VPCLattice.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NONE</code>: The resource does not use an IAM policy. This is the default.
+        ///  <c>NONE</c>: The resource does not use an IAM policy. This is the default.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AWS_IAM</code>: The resource uses an IAM policy. When this type is used, auth
-        /// is enabled and an auth policy is required.
+        ///  <c>AWS_IAM</c>: The resource uses an IAM policy. When this type is used, auth is
+        /// enabled and an auth policy is required.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -118,6 +120,24 @@ namespace Amazon.VPCLattice.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SharingConfig. 
+        /// <para>
+        /// Specify if the service network should be enabled for sharing.
+        /// </para>
+        /// </summary>
+        public SharingConfig SharingConfig
+        {
+            get { return this._sharingConfig; }
+            set { this._sharingConfig = value; }
+        }
+
+        // Check to see if SharingConfig property is set
+        internal bool IsSetSharingConfig()
+        {
+            return this._sharingConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// The tags for the service network.
@@ -133,7 +153,7 @@ namespace Amazon.VPCLattice.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

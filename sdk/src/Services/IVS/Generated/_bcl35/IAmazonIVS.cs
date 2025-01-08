@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.IVS.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.IVS
 {
     /// <summary>
-    /// Interface for accessing IVS
+    /// <para>Interface for accessing IVS</para>
     ///
     /// <b>Introduction</b> 
     /// 
@@ -58,52 +59,54 @@ namespace Amazon.IVS
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code> <b>Accept:</b> </code> application/json
+    ///  <c> <b>Accept:</b> </c> application/json
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code> <b>Accept-Encoding:</b> </code> gzip, deflate
+    ///  <c> <b>Accept-Encoding:</b> </c> gzip, deflate
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code> <b>Content-Type:</b> </code>application/json
+    ///  <c> <b>Content-Type:</b> </c>application/json
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    ///  <b>Resources</b> 
-    /// </para>
-    ///  
-    /// <para>
-    /// The following resources contain information about your IVS live stream (see <a href="https://docs.aws.amazon.com/ivs/latest/userguide/getting-started.html">
-    /// Getting Started with Amazon IVS</a>):
+    ///  <b>Key Concepts</b> 
     /// </para>
     ///  <ul> <li> 
     /// <para>
     ///  <b>Channel</b> — Stores configuration data related to your live stream. You first
     /// create a channel and then use the channel’s stream key to start your live stream.
-    /// See the Channel endpoints for more information. 
     /// </para>
     ///  </li> <li> 
     /// <para>
     ///  <b>Stream key</b> — An identifier assigned by Amazon IVS when you create a channel,
-    /// which is then used to authorize streaming. See the StreamKey endpoints for more information.
-    /// <i> <b>Treat the stream key like a secret, since it allows anyone to stream to the
-    /// channel.</b> </i> 
+    /// which is then used to authorize streaming. <i> <b>Treat the stream key like a secret,
+    /// since it allows anyone to stream to the channel.</b> </i> 
     /// </para>
     ///  </li> <li> 
     /// <para>
     ///  <b>Playback key pair</b> — Video playback may be restricted using playback-authorization
     /// tokens, which use public-key encryption. A playback key pair is the public-private
-    /// pair of keys used to sign and validate the playback-authorization token. See the PlaybackKeyPair
-    /// endpoints for more information.
+    /// pair of keys used to sign and validate the playback-authorization token.
     /// </para>
     ///  </li> <li> 
     /// <para>
     ///  <b>Recording configuration</b> — Stores configuration related to recording a live
     /// stream and where to store the recorded content. Multiple channels can reference the
-    /// same recording configuration. See the Recording Configuration endpoints for more information.
+    /// same recording configuration.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <b>Playback restriction policy</b> — Restricts playback by countries and/or origin
+    /// sites.
     /// </para>
     ///  </li> </ul> 
+    /// <para>
+    /// For more information about your IVS live stream, also see <a href="https://docs.aws.amazon.com/ivs/latest/LowLatencyUserGuide/getting-started.html">Getting
+    /// Started with IVS Low-Latency Streaming</a>.
+    /// </para>
+    ///  
     /// <para>
     ///  <b>Tagging</b> 
     /// </para>
@@ -111,11 +114,12 @@ namespace Amazon.IVS
     /// <para>
     /// A <i>tag</i> is a metadata label that you assign to an Amazon Web Services resource.
     /// A tag comprises a <i>key</i> and a <i>value</i>, both set by you. For example, you
-    /// might set a tag as <code>topic:nature</code> to label a particular video category.
-    /// See <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-    /// Amazon Web Services Resources</a> for more information, including restrictions that
-    /// apply to tags and "Tag naming limits and requirements"; Amazon IVS has no service-specific
-    /// constraints beyond what is documented there.
+    /// might set a tag as <c>topic:nature</c> to label a particular video category. See <a
+    /// href="https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html">Best
+    /// practices and strategies</a> in <i>Tagging Amazon Web Services Resources and Tag Editor</i>
+    /// for details, including restrictions that apply to tags and "Tag naming limits and
+    /// requirements"; Amazon IVS has no service-specific constraints beyond what is documented
+    /// there.
     /// </para>
     ///  
     /// <para>
@@ -126,7 +130,7 @@ namespace Amazon.IVS
     /// </para>
     ///  
     /// <para>
-    /// The Amazon IVS API has these tag-related endpoints: <a>TagResource</a>, <a>UntagResource</a>,
+    /// The Amazon IVS API has these tag-related operations: <a>TagResource</a>, <a>UntagResource</a>,
     /// and <a>ListTagsForResource</a>. The following resources support tagging: Channels,
     /// Stream Keys, Playback Key Pairs, and Recording Configurations.
     /// </para>
@@ -169,8 +173,7 @@ namespace Amazon.IVS
     /// <para>
     /// You generate a signature using valid Amazon Web Services credentials that have permission
     /// to perform the requested action. For example, you must sign PutMetadata requests with
-    /// a signature generated from a user account that has the <code>ivs:PutMetadata</code>
-    /// permission.
+    /// a signature generated from a user account that has the <c>ivs:PutMetadata</c> permission.
     /// </para>
     ///  
     /// <para>
@@ -198,191 +201,6 @@ namespace Amazon.IVS
     /// For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
     /// Resource Names</a> in the <i>AWS General Reference</i>.
     /// </para>
-    ///  
-    /// <para>
-    ///  <b>Channel Endpoints</b> 
-    /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    ///  <a>CreateChannel</a> — Creates a new channel and an associated stream key to start
-    /// streaming.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>GetChannel</a> — Gets the channel configuration for the specified channel ARN.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>BatchGetChannel</a> — Performs <a>GetChannel</a> on multiple ARNs simultaneously.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>ListChannels</a> — Gets summary information about all channels in your account,
-    /// in the Amazon Web Services region where the API request is processed. This list can
-    /// be filtered to match a specified name or recording-configuration ARN. Filters are
-    /// mutually exclusive and cannot be used together. If you try to use both filters, you
-    /// will get an error (409 Conflict Exception).
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>UpdateChannel</a> — Updates a channel's configuration. This does not affect an
-    /// ongoing stream of this channel. You must stop and restart the stream for the changes
-    /// to take effect.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>DeleteChannel</a> — Deletes the specified channel.
-    /// </para>
-    ///  </li> </ul> 
-    /// <para>
-    ///  <b>StreamKey Endpoints</b> 
-    /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    ///  <a>CreateStreamKey</a> — Creates a stream key, used to initiate a stream, for the
-    /// specified channel ARN.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>GetStreamKey</a> — Gets stream key information for the specified ARN.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>BatchGetStreamKey</a> — Performs <a>GetStreamKey</a> on multiple ARNs simultaneously.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>ListStreamKeys</a> — Gets summary information about stream keys for the specified
-    /// channel.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>DeleteStreamKey</a> — Deletes the stream key for the specified ARN, so it can
-    /// no longer be used to stream.
-    /// </para>
-    ///  </li> </ul> 
-    /// <para>
-    ///  <b>Stream Endpoints</b> 
-    /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    ///  <a>GetStream</a> — Gets information about the active (live) stream on a specified
-    /// channel.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>GetStreamSession</a> — Gets metadata on a specified stream.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>ListStreams</a> — Gets summary information about live streams in your account,
-    /// in the Amazon Web Services region where the API request is processed.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>ListStreamSessions</a> — Gets a summary of current and previous streams for a
-    /// specified channel in your account, in the AWS region where the API request is processed.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>StopStream</a> — Disconnects the incoming RTMPS stream for the specified channel.
-    /// Can be used in conjunction with <a>DeleteStreamKey</a> to prevent further streaming
-    /// to a channel.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>PutMetadata</a> — Inserts metadata into the active stream of the specified channel.
-    /// At most 5 requests per second per channel are allowed, each with a maximum 1 KB payload.
-    /// (If 5 TPS is not sufficient for your needs, we recommend batching your data into a
-    /// single PutMetadata call.) At most 155 requests per second per account are allowed.
-    /// </para>
-    ///  </li> </ul> 
-    /// <para>
-    ///  <b>Private Channel Endpoints</b> 
-    /// </para>
-    ///  
-    /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html">Setting
-    /// Up Private Channels</a> in the <i>Amazon IVS User Guide</i>.
-    /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    ///  <a>ImportPlaybackKeyPair</a> — Imports the public portion of a new key pair and returns
-    /// its <code>arn</code> and <code>fingerprint</code>. The <code>privateKey</code> can
-    /// then be used to generate viewer authorization tokens, to grant viewers access to private
-    /// channels (channels enabled for playback authorization).
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>GetPlaybackKeyPair</a> — Gets a specified playback authorization key pair and
-    /// returns the <code>arn</code> and <code>fingerprint</code>. The <code>privateKey</code>
-    /// held by the caller can be used to generate viewer authorization tokens, to grant viewers
-    /// access to private channels.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>ListPlaybackKeyPairs</a> — Gets summary information about playback key pairs.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>DeletePlaybackKeyPair</a> — Deletes a specified authorization key pair. This invalidates
-    /// future viewer tokens generated using the key pair’s <code>privateKey</code>.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>StartViewerSessionRevocation</a> — Starts the process of revoking the viewer session
-    /// associated with a specified channel ARN and viewer ID. Optionally, you can provide
-    /// a version to revoke viewer sessions less than and including that version.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>BatchStartViewerSessionRevocation</a> — Performs <a>StartViewerSessionRevocation</a>
-    /// on multiple channel ARN and viewer ID pairs simultaneously.
-    /// </para>
-    ///  </li> </ul> 
-    /// <para>
-    ///  <b>RecordingConfiguration Endpoints</b> 
-    /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    ///  <a>CreateRecordingConfiguration</a> — Creates a new recording configuration, used
-    /// to enable recording to Amazon S3.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>GetRecordingConfiguration</a> — Gets the recording-configuration metadata for
-    /// the specified ARN.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>ListRecordingConfigurations</a> — Gets summary information about all recording
-    /// configurations in your account, in the Amazon Web Services region where the API request
-    /// is processed.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>DeleteRecordingConfiguration</a> — Deletes the recording configuration for the
-    /// specified ARN.
-    /// </para>
-    ///  </li> </ul> 
-    /// <para>
-    ///  <b>Amazon Web Services Tags Endpoints</b> 
-    /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    ///  <a>TagResource</a> — Adds or updates tags for the Amazon Web Services resource with
-    /// the specified ARN.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>UntagResource</a> — Removes tags from the resource with the specified ARN.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>ListTagsForResource</a> — Gets information about Amazon Web Services tags for
-    /// the specified ARN.
-    /// </para>
-    ///  </li> </ul>
     /// </summary>
     public partial interface IAmazonIVS : IAmazonService, IDisposable
     {
@@ -585,6 +403,62 @@ namespace Amazon.IVS
 
         #endregion
         
+        #region  CreatePlaybackRestrictionPolicy
+
+
+        /// <summary>
+        /// Creates a new playback restriction policy, for constraining playback by countries
+        /// and/or origins.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreatePlaybackRestrictionPolicy service method.</param>
+        /// 
+        /// <returns>The response from the CreatePlaybackRestrictionPolicy service method, as returned by IVS.</returns>
+        /// <exception cref="Amazon.IVS.Model.AccessDeniedException">
+        /// 
+        /// </exception>
+        /// <exception cref="Amazon.IVS.Model.PendingVerificationException">
+        /// 
+        /// </exception>
+        /// <exception cref="Amazon.IVS.Model.ServiceQuotaExceededException">
+        /// 
+        /// </exception>
+        /// <exception cref="Amazon.IVS.Model.ThrottlingException">
+        /// 
+        /// </exception>
+        /// <exception cref="Amazon.IVS.Model.ValidationException">
+        /// 
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/CreatePlaybackRestrictionPolicy">REST API Reference for CreatePlaybackRestrictionPolicy Operation</seealso>
+        CreatePlaybackRestrictionPolicyResponse CreatePlaybackRestrictionPolicy(CreatePlaybackRestrictionPolicyRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreatePlaybackRestrictionPolicy operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreatePlaybackRestrictionPolicy operation on AmazonIVSClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreatePlaybackRestrictionPolicy
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/CreatePlaybackRestrictionPolicy">REST API Reference for CreatePlaybackRestrictionPolicy Operation</seealso>
+        IAsyncResult BeginCreatePlaybackRestrictionPolicy(CreatePlaybackRestrictionPolicyRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreatePlaybackRestrictionPolicy operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreatePlaybackRestrictionPolicy.</param>
+        /// 
+        /// <returns>Returns a  CreatePlaybackRestrictionPolicyResult from IVS.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/CreatePlaybackRestrictionPolicy">REST API Reference for CreatePlaybackRestrictionPolicy Operation</seealso>
+        CreatePlaybackRestrictionPolicyResponse EndCreatePlaybackRestrictionPolicy(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  CreateRecordingConfiguration
 
 
@@ -595,9 +469,9 @@ namespace Amazon.IVS
         /// <para>
         ///  <b>Known issue:</b> In the us-east-1 region, if you use the Amazon Web Services CLI
         /// to create a recording configuration, it returns success even if the S3 bucket is in
-        /// a different region. In this case, the <code>state</code> of the recording configuration
-        /// is <code>CREATE_FAILED</code> (instead of <code>ACTIVE</code>). (In other regions,
-        /// the CLI correctly returns failure if the bucket is in a different region.)
+        /// a different region. In this case, the <c>state</c> of the recording configuration
+        /// is <c>CREATE_FAILED</c> (instead of <c>ACTIVE</c>). (In other regions, the CLI correctly
+        /// returns failure if the bucket is in a different region.)
         /// </para>
         ///  
         /// <para>
@@ -791,8 +665,7 @@ namespace Amazon.IVS
 
         /// <summary>
         /// Deletes a specified authorization key pair. This invalidates future viewer tokens
-        /// generated using the key pair’s <code>privateKey</code>. For more information, see
-        /// <a href="https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html">Setting
+        /// generated using the key pair’s <c>privateKey</c>. For more information, see <a href="https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html">Setting
         /// Up Private Channels</a> in the <i>Amazon IVS User Guide</i>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeletePlaybackKeyPair service method.</param>
@@ -841,6 +714,61 @@ namespace Amazon.IVS
 
         #endregion
         
+        #region  DeletePlaybackRestrictionPolicy
+
+
+        /// <summary>
+        /// Deletes the specified playback restriction policy.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeletePlaybackRestrictionPolicy service method.</param>
+        /// 
+        /// <returns>The response from the DeletePlaybackRestrictionPolicy service method, as returned by IVS.</returns>
+        /// <exception cref="Amazon.IVS.Model.AccessDeniedException">
+        /// 
+        /// </exception>
+        /// <exception cref="Amazon.IVS.Model.ConflictException">
+        /// 
+        /// </exception>
+        /// <exception cref="Amazon.IVS.Model.PendingVerificationException">
+        /// 
+        /// </exception>
+        /// <exception cref="Amazon.IVS.Model.ResourceNotFoundException">
+        /// 
+        /// </exception>
+        /// <exception cref="Amazon.IVS.Model.ValidationException">
+        /// 
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/DeletePlaybackRestrictionPolicy">REST API Reference for DeletePlaybackRestrictionPolicy Operation</seealso>
+        DeletePlaybackRestrictionPolicyResponse DeletePlaybackRestrictionPolicy(DeletePlaybackRestrictionPolicyRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeletePlaybackRestrictionPolicy operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeletePlaybackRestrictionPolicy operation on AmazonIVSClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeletePlaybackRestrictionPolicy
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/DeletePlaybackRestrictionPolicy">REST API Reference for DeletePlaybackRestrictionPolicy Operation</seealso>
+        IAsyncResult BeginDeletePlaybackRestrictionPolicy(DeletePlaybackRestrictionPolicyRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeletePlaybackRestrictionPolicy operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeletePlaybackRestrictionPolicy.</param>
+        /// 
+        /// <returns>Returns a  DeletePlaybackRestrictionPolicyResult from IVS.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/DeletePlaybackRestrictionPolicy">REST API Reference for DeletePlaybackRestrictionPolicy Operation</seealso>
+        DeletePlaybackRestrictionPolicyResponse EndDeletePlaybackRestrictionPolicy(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  DeleteRecordingConfiguration
 
 
@@ -851,7 +779,7 @@ namespace Amazon.IVS
         /// <para>
         /// If you try to delete a recording configuration that is associated with a channel,
         /// you will get an error (409 ConflictException). To avoid this, for all channels that
-        /// reference the recording configuration, first use <a>UpdateChannel</a> to set the <code>recordingConfigurationArn</code>
+        /// reference the recording configuration, first use <a>UpdateChannel</a> to set the <c>recordingConfigurationArn</c>
         /// field to an empty string, then use DeleteRecordingConfiguration.
         /// </para>
         /// </summary>
@@ -1009,10 +937,10 @@ namespace Amazon.IVS
 
 
         /// <summary>
-        /// Gets a specified playback authorization key pair and returns the <code>arn</code>
-        /// and <code>fingerprint</code>. The <code>privateKey</code> held by the caller can be
-        /// used to generate viewer authorization tokens, to grant viewers access to private channels.
-        /// For more information, see <a href="https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html">Setting
+        /// Gets a specified playback authorization key pair and returns the <c>arn</c> and <c>fingerprint</c>.
+        /// The <c>privateKey</c> held by the caller can be used to generate viewer authorization
+        /// tokens, to grant viewers access to private channels. For more information, see <a
+        /// href="https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html">Setting
         /// Up Private Channels</a> in the <i>Amazon IVS User Guide</i>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetPlaybackKeyPair service method.</param>
@@ -1055,6 +983,58 @@ namespace Amazon.IVS
         /// <returns>Returns a  GetPlaybackKeyPairResult from IVS.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/GetPlaybackKeyPair">REST API Reference for GetPlaybackKeyPair Operation</seealso>
         GetPlaybackKeyPairResponse EndGetPlaybackKeyPair(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  GetPlaybackRestrictionPolicy
+
+
+        /// <summary>
+        /// Gets the specified playback restriction policy.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetPlaybackRestrictionPolicy service method.</param>
+        /// 
+        /// <returns>The response from the GetPlaybackRestrictionPolicy service method, as returned by IVS.</returns>
+        /// <exception cref="Amazon.IVS.Model.AccessDeniedException">
+        /// 
+        /// </exception>
+        /// <exception cref="Amazon.IVS.Model.PendingVerificationException">
+        /// 
+        /// </exception>
+        /// <exception cref="Amazon.IVS.Model.ResourceNotFoundException">
+        /// 
+        /// </exception>
+        /// <exception cref="Amazon.IVS.Model.ValidationException">
+        /// 
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/GetPlaybackRestrictionPolicy">REST API Reference for GetPlaybackRestrictionPolicy Operation</seealso>
+        GetPlaybackRestrictionPolicyResponse GetPlaybackRestrictionPolicy(GetPlaybackRestrictionPolicyRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetPlaybackRestrictionPolicy operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetPlaybackRestrictionPolicy operation on AmazonIVSClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetPlaybackRestrictionPolicy
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/GetPlaybackRestrictionPolicy">REST API Reference for GetPlaybackRestrictionPolicy Operation</seealso>
+        IAsyncResult BeginGetPlaybackRestrictionPolicy(GetPlaybackRestrictionPolicyRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetPlaybackRestrictionPolicy operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetPlaybackRestrictionPolicy.</param>
+        /// 
+        /// <returns>Returns a  GetPlaybackRestrictionPolicyResult from IVS.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/GetPlaybackRestrictionPolicy">REST API Reference for GetPlaybackRestrictionPolicy Operation</seealso>
+        GetPlaybackRestrictionPolicyResponse EndGetPlaybackRestrictionPolicy(IAsyncResult asyncResult);
 
         #endregion
         
@@ -1264,10 +1244,9 @@ namespace Amazon.IVS
 
 
         /// <summary>
-        /// Imports the public portion of a new key pair and returns its <code>arn</code> and
-        /// <code>fingerprint</code>. The <code>privateKey</code> can then be used to generate
-        /// viewer authorization tokens, to grant viewers access to private channels. For more
-        /// information, see <a href="https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html">Setting
+        /// Imports the public portion of a new key pair and returns its <c>arn</c> and <c>fingerprint</c>.
+        /// The <c>privateKey</c> can then be used to generate viewer authorization tokens, to
+        /// grant viewers access to private channels. For more information, see <a href="https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html">Setting
         /// Up Private Channels</a> in the <i>Amazon IVS User Guide</i>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ImportPlaybackKeyPair service method.</param>
@@ -1415,6 +1394,58 @@ namespace Amazon.IVS
         /// <returns>Returns a  ListPlaybackKeyPairsResult from IVS.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/ListPlaybackKeyPairs">REST API Reference for ListPlaybackKeyPairs Operation</seealso>
         ListPlaybackKeyPairsResponse EndListPlaybackKeyPairs(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  ListPlaybackRestrictionPolicies
+
+
+        /// <summary>
+        /// Gets summary information about playback restriction policies.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListPlaybackRestrictionPolicies service method.</param>
+        /// 
+        /// <returns>The response from the ListPlaybackRestrictionPolicies service method, as returned by IVS.</returns>
+        /// <exception cref="Amazon.IVS.Model.AccessDeniedException">
+        /// 
+        /// </exception>
+        /// <exception cref="Amazon.IVS.Model.ConflictException">
+        /// 
+        /// </exception>
+        /// <exception cref="Amazon.IVS.Model.PendingVerificationException">
+        /// 
+        /// </exception>
+        /// <exception cref="Amazon.IVS.Model.ValidationException">
+        /// 
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/ListPlaybackRestrictionPolicies">REST API Reference for ListPlaybackRestrictionPolicies Operation</seealso>
+        ListPlaybackRestrictionPoliciesResponse ListPlaybackRestrictionPolicies(ListPlaybackRestrictionPoliciesRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListPlaybackRestrictionPolicies operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListPlaybackRestrictionPolicies operation on AmazonIVSClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListPlaybackRestrictionPolicies
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/ListPlaybackRestrictionPolicies">REST API Reference for ListPlaybackRestrictionPolicies Operation</seealso>
+        IAsyncResult BeginListPlaybackRestrictionPolicies(ListPlaybackRestrictionPoliciesRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListPlaybackRestrictionPolicies operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListPlaybackRestrictionPolicies.</param>
+        /// 
+        /// <returns>Returns a  ListPlaybackRestrictionPoliciesResult from IVS.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/ListPlaybackRestrictionPolicies">REST API Reference for ListPlaybackRestrictionPolicies Operation</seealso>
+        ListPlaybackRestrictionPoliciesResponse EndListPlaybackRestrictionPolicies(IAsyncResult asyncResult);
 
         #endregion
         
@@ -1794,7 +1825,7 @@ namespace Amazon.IVS
         ///  <note> 
         /// <para>
         /// Many streaming client-software libraries automatically reconnect a dropped RTMPS session,
-        /// so to stop the stream permanently, you may want to first revoke the <code>streamKey</code>
+        /// so to stop the stream permanently, you may want to first revoke the <c>streamKey</c>
         /// attached to the channel.
         /// </para>
         ///  </note>
@@ -2000,6 +2031,61 @@ namespace Amazon.IVS
         /// <returns>Returns a  UpdateChannelResult from IVS.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/UpdateChannel">REST API Reference for UpdateChannel Operation</seealso>
         UpdateChannelResponse EndUpdateChannel(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  UpdatePlaybackRestrictionPolicy
+
+
+        /// <summary>
+        /// Updates a specified playback restriction policy.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdatePlaybackRestrictionPolicy service method.</param>
+        /// 
+        /// <returns>The response from the UpdatePlaybackRestrictionPolicy service method, as returned by IVS.</returns>
+        /// <exception cref="Amazon.IVS.Model.AccessDeniedException">
+        /// 
+        /// </exception>
+        /// <exception cref="Amazon.IVS.Model.ConflictException">
+        /// 
+        /// </exception>
+        /// <exception cref="Amazon.IVS.Model.PendingVerificationException">
+        /// 
+        /// </exception>
+        /// <exception cref="Amazon.IVS.Model.ResourceNotFoundException">
+        /// 
+        /// </exception>
+        /// <exception cref="Amazon.IVS.Model.ValidationException">
+        /// 
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/UpdatePlaybackRestrictionPolicy">REST API Reference for UpdatePlaybackRestrictionPolicy Operation</seealso>
+        UpdatePlaybackRestrictionPolicyResponse UpdatePlaybackRestrictionPolicy(UpdatePlaybackRestrictionPolicyRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdatePlaybackRestrictionPolicy operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdatePlaybackRestrictionPolicy operation on AmazonIVSClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdatePlaybackRestrictionPolicy
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/UpdatePlaybackRestrictionPolicy">REST API Reference for UpdatePlaybackRestrictionPolicy Operation</seealso>
+        IAsyncResult BeginUpdatePlaybackRestrictionPolicy(UpdatePlaybackRestrictionPolicyRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdatePlaybackRestrictionPolicy operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdatePlaybackRestrictionPolicy.</param>
+        /// 
+        /// <returns>Returns a  UpdatePlaybackRestrictionPolicyResult from IVS.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/UpdatePlaybackRestrictionPolicy">REST API Reference for UpdatePlaybackRestrictionPolicy Operation</seealso>
+        UpdatePlaybackRestrictionPolicyResponse EndUpdatePlaybackRestrictionPolicy(IAsyncResult asyncResult);
 
         #endregion
                 

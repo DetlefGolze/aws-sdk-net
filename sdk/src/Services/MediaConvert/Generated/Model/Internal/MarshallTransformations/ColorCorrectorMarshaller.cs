@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ColorCorrector requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetBrightness())
             {
                 context.Writer.WritePropertyName("brightness");
@@ -95,6 +98,12 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("hue");
                 context.Writer.Write(requestObject.Hue);
+            }
+
+            if(requestObject.IsSetMaxLuminance())
+            {
+                context.Writer.WritePropertyName("maxLuminance");
+                context.Writer.Write(requestObject.MaxLuminance);
             }
 
             if(requestObject.IsSetSampleRangeConversion())

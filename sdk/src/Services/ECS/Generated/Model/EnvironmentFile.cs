@@ -26,24 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
     /// A list of files containing the environment variables to pass to a container. You can
-    /// specify up to ten environment files. The file must have a <code>.env</code> file extension.
-    /// Each line in an environment file should contain an environment variable in <code>VARIABLE=VALUE</code>
-    /// format. Lines beginning with <code>#</code> are treated as comments and are ignored.
-    /// For more information about the environment variable file syntax, see <a href="https://docs.docker.com/compose/env-file/">Declare
-    /// default environment variables in file</a>.
+    /// specify up to ten environment files. The file must have a <c>.env</c> file extension.
+    /// Each line in an environment file should contain an environment variable in <c>VARIABLE=VALUE</c>
+    /// format. Lines beginning with <c>#</c> are treated as comments and are ignored.
     /// 
     ///  
     /// <para>
-    /// If there are environment variables specified using the <code>environment</code> parameter
+    /// If there are environment variables specified using the <c>environment</c> parameter
     /// in a container definition, they take precedence over the variables contained within
     /// an environment file. If multiple environment files are specified that contain the
     /// same variable, they're processed from the top down. We recommend that you use unique
-    /// variable names. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/taskdef-envfiles.html">Specifying
-    /// environment variables</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+    /// variable names. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/use-environment-file.html">Use
+    /// a file to pass environment variables to a container</a> in the <i>Amazon Elastic Container
+    /// Service Developer Guide</i>.
+    /// </para>
+    ///  
+    /// <para>
+    /// Environment variable files are objects in Amazon S3 and all Amazon S3 security considerations
+    /// apply. 
     /// </para>
     ///  
     /// <para>
@@ -51,11 +56,27 @@ namespace Amazon.ECS.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// Linux platform version <code>1.4.0</code> or later.
+    /// Linux platform version <c>1.4.0</c> or later.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Windows platform version <code>1.0.0</code> or later.
+    /// Windows platform version <c>1.0.0</c> or later.
+    /// </para>
+    ///  </li> </ul> 
+    /// <para>
+    /// Consider the following when using the Fargate launch type:
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    /// The file is handled like a native Docker env-file.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// There is no support for shell escape handling.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// The container entry point interperts the <c>VARIABLE</c> values.
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -67,7 +88,8 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The file type to use. The only supported value is <code>s3</code>.
+        /// The file type to use. Environment files are objects in Amazon S3. The only supported
+        /// value is <c>s3</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

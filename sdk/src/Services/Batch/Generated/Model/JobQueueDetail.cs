@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
@@ -33,15 +34,16 @@ namespace Amazon.Batch.Model
     /// </summary>
     public partial class JobQueueDetail
     {
-        private List<ComputeEnvironmentOrder> _computeEnvironmentOrder = new List<ComputeEnvironmentOrder>();
+        private List<ComputeEnvironmentOrder> _computeEnvironmentOrder = AWSConfigs.InitializeCollections ? new List<ComputeEnvironmentOrder>() : null;
         private string _jobQueueArn;
         private string _jobQueueName;
+        private List<JobStateTimeLimitAction> _jobStateTimeLimitActions = AWSConfigs.InitializeCollections ? new List<JobStateTimeLimitAction>() : null;
         private int? _priority;
         private string _schedulingPolicyArn;
         private JQState _state;
         private JQStatus _status;
         private string _statusReason;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ComputeEnvironmentOrder. 
@@ -61,7 +63,7 @@ namespace Amazon.Batch.Model
         // Check to see if ComputeEnvironmentOrder property is set
         internal bool IsSetComputeEnvironmentOrder()
         {
-            return this._computeEnvironmentOrder != null && this._computeEnvironmentOrder.Count > 0; 
+            return this._computeEnvironmentOrder != null && (this._computeEnvironmentOrder.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -103,16 +105,35 @@ namespace Amazon.Batch.Model
         }
 
         /// <summary>
+        /// Gets and sets the property JobStateTimeLimitActions. 
+        /// <para>
+        /// The set of actions that Batch perform on jobs that remain at the head of the job queue
+        /// in the specified state longer than specified times. Batch will perform each action
+        /// after <c>maxTimeSeconds</c> has passed.
+        /// </para>
+        /// </summary>
+        public List<JobStateTimeLimitAction> JobStateTimeLimitActions
+        {
+            get { return this._jobStateTimeLimitActions; }
+            set { this._jobStateTimeLimitActions = value; }
+        }
+
+        // Check to see if JobStateTimeLimitActions property is set
+        internal bool IsSetJobStateTimeLimitActions()
+        {
+            return this._jobStateTimeLimitActions != null && (this._jobStateTimeLimitActions.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Priority. 
         /// <para>
         /// The priority of the job queue. Job queues with a higher priority (or a higher integer
-        /// value for the <code>priority</code> parameter) are evaluated first when associated
-        /// with the same compute environment. Priority is determined in descending order. For
-        /// example, a job queue with a priority value of <code>10</code> is given scheduling
-        /// preference over a job queue with a priority value of <code>1</code>. All of the compute
-        /// environments must be either EC2 (<code>EC2</code> or <code>SPOT</code>) or Fargate
-        /// (<code>FARGATE</code> or <code>FARGATE_SPOT</code>). EC2 and Fargate compute environments
-        /// can't be mixed.
+        /// value for the <c>priority</c> parameter) are evaluated first when associated with
+        /// the same compute environment. Priority is determined in descending order. For example,
+        /// a job queue with a priority value of <c>10</c> is given scheduling preference over
+        /// a job queue with a priority value of <c>1</c>. All of the compute environments must
+        /// be either Amazon EC2 (<c>EC2</c> or <c>SPOT</c>) or Fargate (<c>FARGATE</c> or <c>FARGATE_SPOT</c>).
+        /// Amazon EC2 and Fargate compute environments can't be mixed.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -131,8 +152,8 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property SchedulingPolicyArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the scheduling policy. The format is <code>aws:<i>Partition</i>:batch:<i>Region</i>:<i>Account</i>:scheduling-policy/<i>Name</i>
-        /// </code>. For example, <code>aws:aws:batch:us-west-2:123456789012:scheduling-policy/MySchedulingPolicy</code>.
+        /// The Amazon Resource Name (ARN) of the scheduling policy. The format is <c>aws:<i>Partition</i>:batch:<i>Region</i>:<i>Account</i>:scheduling-policy/<i>Name</i>
+        /// </c>. For example, <c>aws:aws:batch:us-west-2:123456789012:scheduling-policy/MySchedulingPolicy</c>.
         /// </para>
         /// </summary>
         public string SchedulingPolicyArn
@@ -150,9 +171,9 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property State. 
         /// <para>
-        /// Describes the ability of the queue to accept new jobs. If the job queue state is <code>ENABLED</code>,
-        /// it can accept jobs. If the job queue state is <code>DISABLED</code>, new jobs can't
-        /// be added to the queue, but jobs already in the queue can finish.
+        /// Describes the ability of the queue to accept new jobs. If the job queue state is <c>ENABLED</c>,
+        /// it can accept jobs. If the job queue state is <c>DISABLED</c>, new jobs can't be added
+        /// to the queue, but jobs already in the queue can finish.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -171,7 +192,7 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the job queue (for example, <code>CREATING</code> or <code>VALID</code>).
+        /// The status of the job queue (for example, <c>CREATING</c> or <c>VALID</c>).
         /// </para>
         /// </summary>
         public JQStatus Status
@@ -222,7 +243,7 @@ namespace Amazon.Batch.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

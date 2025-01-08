@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostExplorer.Model
 {
     /// <summary>
@@ -34,9 +35,9 @@ namespace Amazon.CostExplorer.Model
     /// 
     ///  
     /// <para>
-    /// You can use the <code>TagResource</code> operation with a resource that already has
-    /// tags. If you specify a new tag key for the resource, this tag is appended to the list
-    /// of tags associated with the resource. If you specify a tag key that is already associated
+    /// You can use the <c>TagResource</c> operation with a resource that already has tags.
+    /// If you specify a new tag key for the resource, this tag is appended to the list of
+    /// tags associated with the resource. If you specify a tag key that is already associated
     /// with the resource, the new tag value you specify replaces the previous value for that
     /// tag.
     /// </para>
@@ -49,7 +50,7 @@ namespace Amazon.CostExplorer.Model
     public partial class TagResourceRequest : AmazonCostExplorerRequest
     {
         private string _resourceArn;
-        private List<ResourceTag> _resourceTags = new List<ResourceTag>();
+        private List<ResourceTag> _resourceTags = AWSConfigs.InitializeCollections ? new List<ResourceTag>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -98,7 +99,7 @@ namespace Amazon.CostExplorer.Model
         ///  </li> <li> 
         /// <para>
         /// Keys and values can only contain alphanumeric characters, spaces, and any of the following:
-        /// <code>_.:/=+@-</code> 
+        /// <c>_.:/=+@-</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -110,8 +111,8 @@ namespace Amazon.CostExplorer.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Don’t use <code>aws:</code> as a prefix for your keys. This prefix is reserved for
-        /// Amazon Web Services use
+        /// Don’t use <c>aws:</c> as a prefix for your keys. This prefix is reserved for Amazon
+        /// Web Services use
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -125,7 +126,7 @@ namespace Amazon.CostExplorer.Model
         // Check to see if ResourceTags property is set
         internal bool IsSetResourceTags()
         {
-            return this._resourceTags != null && this._resourceTags.Count > 0; 
+            return this._resourceTags != null && (this._resourceTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

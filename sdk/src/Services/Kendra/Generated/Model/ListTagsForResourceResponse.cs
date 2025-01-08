@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -33,12 +34,12 @@ namespace Amazon.Kendra.Model
     /// </summary>
     public partial class ListTagsForResourceResponse : AmazonWebServiceResponse
     {
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// A list of tags associated with the index, FAQ, or data source.
+        /// A list of tags associated with the index, FAQ, data source, or other resource.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=200)]
@@ -51,7 +52,7 @@ namespace Amazon.Kendra.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

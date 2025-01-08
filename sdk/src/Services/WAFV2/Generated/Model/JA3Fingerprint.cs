@@ -26,9 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
+    /// Available for use with Amazon CloudFront distributions and Application Load Balancers.
     /// Match against the request's JA3 fingerprint. The JA3 fingerprint is a 32-character
     /// hash derived from the TLS Client Hello of an incoming request. This fingerprint serves
     /// as a unique identifier for the client's TLS configuration. WAF calculates and logs
@@ -37,8 +39,8 @@ namespace Amazon.WAFV2.Model
     /// 
     ///  <note> 
     /// <para>
-    /// You can use this choice only with a string match <code>ByteMatchStatement</code> with
-    /// the <code>PositionalConstraint</code> set to <code>EXACTLY</code>. 
+    /// You can use this choice only with a string match <c>ByteMatchStatement</c> with the
+    /// <c>PositionalConstraint</c> set to <c>EXACTLY</c>. 
     /// </para>
     ///  </note> 
     /// <para>
@@ -69,12 +71,12 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>MATCH</code> - Treat the web request as matching the rule statement. WAF applies
+        ///  <c>MATCH</c> - Treat the web request as matching the rule statement. WAF applies
         /// the rule action to the request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NO_MATCH</code> - Treat the web request as not matching the rule statement.
+        ///  <c>NO_MATCH</c> - Treat the web request as not matching the rule statement.
         /// </para>
         ///  </li> </ul>
         /// </summary>

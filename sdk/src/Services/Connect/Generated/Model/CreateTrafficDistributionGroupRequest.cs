@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateTrafficDistributionGroup operation.
     /// Creates a traffic distribution group given an Amazon Connect instance that has been
-    /// replicated. 
+    /// replicated.
     /// 
     ///  <note> 
     /// <para>
-    /// You can change the <code>SignInConfig</code> distribution only for a default <code>TrafficDistributionGroup</code>
-    /// (see the <code>IsDefault</code> parameter in the <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html">TrafficDistributionGroup</a>
-    /// data type). If you call <code>UpdateTrafficDistribution</code> with a modified <code>SignInConfig</code>
-    /// and a non-default <code>TrafficDistributionGroup</code>, an <code>InvalidRequestException</code>
+    /// The <c>SignInConfig</c> distribution is available only on a default <c>TrafficDistributionGroup</c>
+    /// (see the <c>IsDefault</c> parameter in the <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html">TrafficDistributionGroup</a>
+    /// data type). If you call <c>UpdateTrafficDistribution</c> with a modified <c>SignInConfig</c>
+    /// and a non-default <c>TrafficDistributionGroup</c>, an <c>InvalidRequestException</c>
     /// is returned.
     /// </para>
     ///  </note> 
@@ -54,7 +55,7 @@ namespace Amazon.Connect.Model
         private string _description;
         private string _instanceId;
         private string _name;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
@@ -101,7 +102,7 @@ namespace Amazon.Connect.Model
         /// Gets and sets the property InstanceId. 
         /// <para>
         /// The identifier of the Amazon Connect instance that has been replicated. You can find
-        /// the <code>instanceId</code> in the ARN of the instance.
+        /// the <c>instanceId</c> in the ARN of the instance.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=250)]
@@ -140,7 +141,7 @@ namespace Amazon.Connect.Model
         /// Gets and sets the property Tags. 
         /// <para>
         /// The tags used to organize, track, or control access for this resource. For example,
-        /// { "tags": {"key1":"value1", "key2":"value2"} }.
+        /// { "Tags": {"key1":"value1", "key2":"value2"} }.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -153,7 +154,7 @@ namespace Amazon.Connect.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

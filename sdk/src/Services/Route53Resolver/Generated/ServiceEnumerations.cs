@@ -233,6 +233,110 @@ namespace Amazon.Route53Resolver
 
 
     /// <summary>
+    /// Constants used for properties of type ConfidenceThreshold.
+    /// </summary>
+    public class ConfidenceThreshold : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant HIGH for ConfidenceThreshold
+        /// </summary>
+        public static readonly ConfidenceThreshold HIGH = new ConfidenceThreshold("HIGH");
+        /// <summary>
+        /// Constant LOW for ConfidenceThreshold
+        /// </summary>
+        public static readonly ConfidenceThreshold LOW = new ConfidenceThreshold("LOW");
+        /// <summary>
+        /// Constant MEDIUM for ConfidenceThreshold
+        /// </summary>
+        public static readonly ConfidenceThreshold MEDIUM = new ConfidenceThreshold("MEDIUM");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ConfidenceThreshold(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ConfidenceThreshold FindValue(string value)
+        {
+            return FindValue<ConfidenceThreshold>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ConfidenceThreshold(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type DnsThreatProtection.
+    /// </summary>
+    public class DnsThreatProtection : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DGA for DnsThreatProtection
+        /// </summary>
+        public static readonly DnsThreatProtection DGA = new DnsThreatProtection("DGA");
+        /// <summary>
+        /// Constant DNS_TUNNELING for DnsThreatProtection
+        /// </summary>
+        public static readonly DnsThreatProtection DNS_TUNNELING = new DnsThreatProtection("DNS_TUNNELING");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public DnsThreatProtection(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static DnsThreatProtection FindValue(string value)
+        {
+            return FindValue<DnsThreatProtection>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator DnsThreatProtection(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type FirewallDomainImportOperation.
     /// </summary>
     public class FirewallDomainImportOperation : ConstantClass
@@ -334,6 +438,56 @@ namespace Amazon.Route53Resolver
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator FirewallDomainListStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type FirewallDomainRedirectionAction.
+    /// </summary>
+    public class FirewallDomainRedirectionAction : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant INSPECT_REDIRECTION_DOMAIN for FirewallDomainRedirectionAction
+        /// </summary>
+        public static readonly FirewallDomainRedirectionAction INSPECT_REDIRECTION_DOMAIN = new FirewallDomainRedirectionAction("INSPECT_REDIRECTION_DOMAIN");
+        /// <summary>
+        /// Constant TRUST_REDIRECTION_DOMAIN for FirewallDomainRedirectionAction
+        /// </summary>
+        public static readonly FirewallDomainRedirectionAction TRUST_REDIRECTION_DOMAIN = new FirewallDomainRedirectionAction("TRUST_REDIRECTION_DOMAIN");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public FirewallDomainRedirectionAction(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static FirewallDomainRedirectionAction FindValue(string value)
+        {
+            return FindValue<FirewallDomainRedirectionAction>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator FirewallDomainRedirectionAction(string value)
         {
             return FindValue(value);
         }
@@ -760,6 +914,60 @@ namespace Amazon.Route53Resolver
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator OutpostResolverStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type Protocol.
+    /// </summary>
+    public class Protocol : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Do53 for Protocol
+        /// </summary>
+        public static readonly Protocol Do53 = new Protocol("Do53");
+        /// <summary>
+        /// Constant DoH for Protocol
+        /// </summary>
+        public static readonly Protocol DoH = new Protocol("DoH");
+        /// <summary>
+        /// Constant DoHFIPS for Protocol
+        /// </summary>
+        public static readonly Protocol DoHFIPS = new Protocol("DoH-FIPS");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public Protocol(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static Protocol FindValue(string value)
+        {
+            return FindValue<Protocol>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator Protocol(string value)
         {
             return FindValue(value);
         }

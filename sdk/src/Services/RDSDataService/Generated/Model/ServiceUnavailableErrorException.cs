@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDSDataService.Model
 {
     /// <summary>
-    /// The service specified by the <code>resourceArn</code> parameter is not available.
+    /// The service specified by the <c>resourceArn</c> parameter isn't available.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
     /// Container for the parameters to the ListTypesByAssociation operation.
-    /// Lists <code>Type</code> objects by the source API association ID.
+    /// Lists <c>Type</c> objects by the source API association ID.
     /// </summary>
     public partial class ListTypesByAssociationRequest : AmazonAppSyncRequest
     {

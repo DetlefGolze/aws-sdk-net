@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Bedrock.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.Bedrock.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetBaseModelIdentifier())
@@ -82,6 +84,23 @@ namespace Amazon.Bedrock.Model.Internal.MarshallTransformations
                     context.Writer.WritePropertyName("clientRequestToken");
                     context.Writer.Write(Guid.NewGuid().ToString());
                 }
+                if(publicRequest.IsSetCustomizationConfig())
+                {
+                    context.Writer.WritePropertyName("customizationConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = CustomizationConfigMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.CustomizationConfig, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetCustomizationType())
+                {
+                    context.Writer.WritePropertyName("customizationType");
+                    context.Writer.Write(publicRequest.CustomizationType);
+                }
+
                 if(publicRequest.IsSetCustomModelKmsKeyId())
                 {
                     context.Writer.WritePropertyName("customModelKmsKeyId");

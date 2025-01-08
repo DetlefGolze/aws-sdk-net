@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
@@ -39,9 +40,10 @@ namespace Amazon.CustomerProfiles.Model
         private DateTime? _createdAt;
         private string _description;
         private string _displayName;
+        private Filter _filter;
         private DateTime? _lastUpdatedAt;
         private Statistic _statistic;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AttributeDetails. 
@@ -124,7 +126,7 @@ namespace Amazon.CustomerProfiles.Model
         /// The description of the calculated attribute.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=1000)]
+        [AWSProperty(Sensitive=true, Min=1, Max=1000)]
         public string Description
         {
             get { return this._description; }
@@ -154,6 +156,24 @@ namespace Amazon.CustomerProfiles.Model
         internal bool IsSetDisplayName()
         {
             return this._displayName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Filter. 
+        /// <para>
+        /// The filter that was used as part of the request.
+        /// </para>
+        /// </summary>
+        public Filter Filter
+        {
+            get { return this._filter; }
+            set { this._filter = value; }
+        }
+
+        // Check to see if Filter property is set
+        internal bool IsSetFilter()
+        {
+            return this._filter != null;
         }
 
         /// <summary>
@@ -209,7 +229,7 @@ namespace Amazon.CustomerProfiles.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

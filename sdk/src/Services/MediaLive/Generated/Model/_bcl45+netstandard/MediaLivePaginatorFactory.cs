@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model
 {
     /// <summary>
@@ -44,11 +45,59 @@ namespace Amazon.MediaLive.Model
         }
 
         /// <summary>
+        /// Paginator for ListChannelPlacementGroups operation
+        ///</summary>
+        public IListChannelPlacementGroupsPaginator ListChannelPlacementGroups(ListChannelPlacementGroupsRequest request) 
+        {
+            return new ListChannelPlacementGroupsPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListChannels operation
         ///</summary>
         public IListChannelsPaginator ListChannels(ListChannelsRequest request) 
         {
             return new ListChannelsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListCloudWatchAlarmTemplateGroups operation
+        ///</summary>
+        public IListCloudWatchAlarmTemplateGroupsPaginator ListCloudWatchAlarmTemplateGroups(ListCloudWatchAlarmTemplateGroupsRequest request) 
+        {
+            return new ListCloudWatchAlarmTemplateGroupsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListCloudWatchAlarmTemplates operation
+        ///</summary>
+        public IListCloudWatchAlarmTemplatesPaginator ListCloudWatchAlarmTemplates(ListCloudWatchAlarmTemplatesRequest request) 
+        {
+            return new ListCloudWatchAlarmTemplatesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListClusters operation
+        ///</summary>
+        public IListClustersPaginator ListClusters(ListClustersRequest request) 
+        {
+            return new ListClustersPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListEventBridgeRuleTemplateGroups operation
+        ///</summary>
+        public IListEventBridgeRuleTemplateGroupsPaginator ListEventBridgeRuleTemplateGroups(ListEventBridgeRuleTemplateGroupsRequest request) 
+        {
+            return new ListEventBridgeRuleTemplateGroupsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListEventBridgeRuleTemplates operation
+        ///</summary>
+        public IListEventBridgeRuleTemplatesPaginator ListEventBridgeRuleTemplates(ListEventBridgeRuleTemplatesRequest request) 
+        {
+            return new ListEventBridgeRuleTemplatesPaginator(this.client, request);
         }
 
         /// <summary>
@@ -100,6 +149,22 @@ namespace Amazon.MediaLive.Model
         }
 
         /// <summary>
+        /// Paginator for ListNetworks operation
+        ///</summary>
+        public IListNetworksPaginator ListNetworks(ListNetworksRequest request) 
+        {
+            return new ListNetworksPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListNodes operation
+        ///</summary>
+        public IListNodesPaginator ListNodes(ListNodesRequest request) 
+        {
+            return new ListNodesPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListOfferings operation
         ///</summary>
         public IListOfferingsPaginator ListOfferings(ListOfferingsRequest request) 
@@ -113,6 +178,14 @@ namespace Amazon.MediaLive.Model
         public IListReservationsPaginator ListReservations(ListReservationsRequest request) 
         {
             return new ListReservationsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListSignalMaps operation
+        ///</summary>
+        public IListSignalMapsPaginator ListSignalMaps(ListSignalMapsRequest request) 
+        {
+            return new ListSignalMapsPaginator(this.client, request);
         }
     }
 }

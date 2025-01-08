@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -67,7 +68,8 @@ namespace Amazon.AutoScaling.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <b>If you finish before the timeout period ends, send a callback by using the <a>CompleteLifecycleAction</a>
+    ///  <b>If you finish before the timeout period ends, send a callback by using the <a
+    /// href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_CompleteLifecycleAction.html">CompleteLifecycleAction</a>
     /// API call.</b> 
     /// </para>
     ///  </li> </ol> 
@@ -125,8 +127,7 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property LifecycleActionResult. 
         /// <para>
-        /// The action for the group to take. You can specify either <code>CONTINUE</code> or
-        /// <code>ABANDON</code>.
+        /// The action for the group to take. You can specify either <c>CONTINUE</c> or <c>ABANDON</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

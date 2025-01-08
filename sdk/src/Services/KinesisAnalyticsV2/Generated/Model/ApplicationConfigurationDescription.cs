@@ -26,27 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalyticsV2.Model
 {
     /// <summary>
-    /// Describes details about the application code and starting parameters for a Kinesis
-    /// Data Analytics application.
+    /// Describes details about the application code and starting parameters for a Managed
+    /// Service for Apache Flink application.
     /// </summary>
     public partial class ApplicationConfigurationDescription
     {
         private ApplicationCodeConfigurationDescription _applicationCodeConfigurationDescription;
         private ApplicationSnapshotConfigurationDescription _applicationSnapshotConfigurationDescription;
+        private ApplicationSystemRollbackConfigurationDescription _applicationSystemRollbackConfigurationDescription;
         private EnvironmentPropertyDescriptions _environmentPropertyDescriptions;
         private FlinkApplicationConfigurationDescription _flinkApplicationConfigurationDescription;
         private RunConfigurationDescription _runConfigurationDescription;
         private SqlApplicationConfigurationDescription _sqlApplicationConfigurationDescription;
-        private List<VpcConfigurationDescription> _vpcConfigurationDescriptions = new List<VpcConfigurationDescription>();
+        private List<VpcConfigurationDescription> _vpcConfigurationDescriptions = AWSConfigs.InitializeCollections ? new List<VpcConfigurationDescription>() : null;
         private ZeppelinApplicationConfigurationDescription _zeppelinApplicationConfigurationDescription;
 
         /// <summary>
         /// Gets and sets the property ApplicationCodeConfigurationDescription. 
         /// <para>
-        /// The details about the application code for a Flink-based Kinesis Data Analytics application.
+        /// The details about the application code for a Managed Service for Apache Flink application.
         /// </para>
         /// </summary>
         public ApplicationCodeConfigurationDescription ApplicationCodeConfigurationDescription
@@ -64,7 +66,7 @@ namespace Amazon.KinesisAnalyticsV2.Model
         /// <summary>
         /// Gets and sets the property ApplicationSnapshotConfigurationDescription. 
         /// <para>
-        /// Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics application.
+        /// Describes whether snapshots are enabled for a Managed Service for Apache Flink application.
         /// </para>
         /// </summary>
         public ApplicationSnapshotConfigurationDescription ApplicationSnapshotConfigurationDescription
@@ -80,9 +82,24 @@ namespace Amazon.KinesisAnalyticsV2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ApplicationSystemRollbackConfigurationDescription.
+        /// </summary>
+        public ApplicationSystemRollbackConfigurationDescription ApplicationSystemRollbackConfigurationDescription
+        {
+            get { return this._applicationSystemRollbackConfigurationDescription; }
+            set { this._applicationSystemRollbackConfigurationDescription = value; }
+        }
+
+        // Check to see if ApplicationSystemRollbackConfigurationDescription property is set
+        internal bool IsSetApplicationSystemRollbackConfigurationDescription()
+        {
+            return this._applicationSystemRollbackConfigurationDescription != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property EnvironmentPropertyDescriptions. 
         /// <para>
-        /// Describes execution properties for a Flink-based Kinesis Data Analytics application.
+        /// Describes execution properties for a Managed Service for Apache Flink application.
         /// </para>
         /// </summary>
         public EnvironmentPropertyDescriptions EnvironmentPropertyDescriptions
@@ -100,7 +117,7 @@ namespace Amazon.KinesisAnalyticsV2.Model
         /// <summary>
         /// Gets and sets the property FlinkApplicationConfigurationDescription. 
         /// <para>
-        /// The details about a Flink-based Kinesis Data Analytics application.
+        /// The details about a Managed Service for Apache Flink application.
         /// </para>
         /// </summary>
         public FlinkApplicationConfigurationDescription FlinkApplicationConfigurationDescription
@@ -118,7 +135,7 @@ namespace Amazon.KinesisAnalyticsV2.Model
         /// <summary>
         /// Gets and sets the property RunConfigurationDescription. 
         /// <para>
-        /// The details about the starting properties for a Kinesis Data Analytics application.
+        /// The details about the starting properties for a Managed Service for Apache Flink application.
         /// </para>
         /// </summary>
         public RunConfigurationDescription RunConfigurationDescription
@@ -167,13 +184,13 @@ namespace Amazon.KinesisAnalyticsV2.Model
         // Check to see if VpcConfigurationDescriptions property is set
         internal bool IsSetVpcConfigurationDescriptions()
         {
-            return this._vpcConfigurationDescriptions != null && this._vpcConfigurationDescriptions.Count > 0; 
+            return this._vpcConfigurationDescriptions != null && (this._vpcConfigurationDescriptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ZeppelinApplicationConfigurationDescription. 
         /// <para>
-        /// The configuration parameters for a Kinesis Data Analytics Studio notebook.
+        /// The configuration parameters for a Managed Service for Apache Flink Studio notebook.
         /// </para>
         /// </summary>
         public ZeppelinApplicationConfigurationDescription ZeppelinApplicationConfigurationDescription

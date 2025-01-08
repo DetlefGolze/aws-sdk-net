@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
-    /// Information about an S3 recording <code>Config</code>.
+    /// Information about an S3 recording <c>Config</c>.
     /// </summary>
     public partial class S3RecordingConfig
     {

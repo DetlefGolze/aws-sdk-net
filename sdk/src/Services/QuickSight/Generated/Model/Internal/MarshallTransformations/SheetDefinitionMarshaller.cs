@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(SheetDefinition requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetContentType())
             {
                 context.Writer.WritePropertyName("ContentType");
@@ -67,6 +70,22 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 
                     var marshaller = FilterControlMarshaller.Instance;
                     marshaller.Marshall(requestObjectFilterControlsListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetImages())
+            {
+                context.Writer.WritePropertyName("Images");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectImagesListValue in requestObject.Images)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = SheetImageMarshaller.Instance;
+                    marshaller.Marshall(requestObjectImagesListValue, context);
 
                     context.Writer.WriteObjectEnd();
                 }

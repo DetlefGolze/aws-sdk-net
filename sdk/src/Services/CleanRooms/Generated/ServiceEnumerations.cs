@@ -71,6 +71,60 @@ namespace Amazon.CleanRooms
 
 
     /// <summary>
+    /// Constants used for properties of type AdditionalAnalyses.
+    /// </summary>
+    public class AdditionalAnalyses : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ALLOWED for AdditionalAnalyses
+        /// </summary>
+        public static readonly AdditionalAnalyses ALLOWED = new AdditionalAnalyses("ALLOWED");
+        /// <summary>
+        /// Constant NOT_ALLOWED for AdditionalAnalyses
+        /// </summary>
+        public static readonly AdditionalAnalyses NOT_ALLOWED = new AdditionalAnalyses("NOT_ALLOWED");
+        /// <summary>
+        /// Constant REQUIRED for AdditionalAnalyses
+        /// </summary>
+        public static readonly AdditionalAnalyses REQUIRED = new AdditionalAnalyses("REQUIRED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public AdditionalAnalyses(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static AdditionalAnalyses FindValue(string value)
+        {
+            return FindValue<AdditionalAnalyses>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator AdditionalAnalyses(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type AggregateFunctionName.
     /// </summary>
     public class AggregateFunctionName : ConstantClass
@@ -285,6 +339,10 @@ namespace Amazon.CleanRooms
         /// </summary>
         public static readonly AnalysisRuleType CUSTOM = new AnalysisRuleType("CUSTOM");
         /// <summary>
+        /// Constant ID_MAPPING_TABLE for AnalysisRuleType
+        /// </summary>
+        public static readonly AnalysisRuleType ID_MAPPING_TABLE = new AnalysisRuleType("ID_MAPPING_TABLE");
+        /// <summary>
         /// Constant LIST for AnalysisRuleType
         /// </summary>
         public static readonly AnalysisRuleType LIST = new AnalysisRuleType("LIST");
@@ -318,6 +376,206 @@ namespace Amazon.CleanRooms
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator AnalysisRuleType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type AnalysisTemplateValidationStatus.
+    /// </summary>
+    public class AnalysisTemplateValidationStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant INVALID for AnalysisTemplateValidationStatus
+        /// </summary>
+        public static readonly AnalysisTemplateValidationStatus INVALID = new AnalysisTemplateValidationStatus("INVALID");
+        /// <summary>
+        /// Constant UNABLE_TO_VALIDATE for AnalysisTemplateValidationStatus
+        /// </summary>
+        public static readonly AnalysisTemplateValidationStatus UNABLE_TO_VALIDATE = new AnalysisTemplateValidationStatus("UNABLE_TO_VALIDATE");
+        /// <summary>
+        /// Constant VALID for AnalysisTemplateValidationStatus
+        /// </summary>
+        public static readonly AnalysisTemplateValidationStatus VALID = new AnalysisTemplateValidationStatus("VALID");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public AnalysisTemplateValidationStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static AnalysisTemplateValidationStatus FindValue(string value)
+        {
+            return FindValue<AnalysisTemplateValidationStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator AnalysisTemplateValidationStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type AnalysisTemplateValidationType.
+    /// </summary>
+    public class AnalysisTemplateValidationType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DIFFERENTIAL_PRIVACY for AnalysisTemplateValidationType
+        /// </summary>
+        public static readonly AnalysisTemplateValidationType DIFFERENTIAL_PRIVACY = new AnalysisTemplateValidationType("DIFFERENTIAL_PRIVACY");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public AnalysisTemplateValidationType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static AnalysisTemplateValidationType FindValue(string value)
+        {
+            return FindValue<AnalysisTemplateValidationType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator AnalysisTemplateValidationType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type AnalysisType.
+    /// </summary>
+    public class AnalysisType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ADDITIONAL_ANALYSIS for AnalysisType
+        /// </summary>
+        public static readonly AnalysisType ADDITIONAL_ANALYSIS = new AnalysisType("ADDITIONAL_ANALYSIS");
+        /// <summary>
+        /// Constant DIRECT_ANALYSIS for AnalysisType
+        /// </summary>
+        public static readonly AnalysisType DIRECT_ANALYSIS = new AnalysisType("DIRECT_ANALYSIS");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public AnalysisType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static AnalysisType FindValue(string value)
+        {
+            return FindValue<AnalysisType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator AnalysisType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type AnalyticsEngine.
+    /// </summary>
+    public class AnalyticsEngine : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CLEAN_ROOMS_SQL for AnalyticsEngine
+        /// </summary>
+        public static readonly AnalyticsEngine CLEAN_ROOMS_SQL = new AnalyticsEngine("CLEAN_ROOMS_SQL");
+        /// <summary>
+        /// Constant SPARK for AnalyticsEngine
+        /// </summary>
+        public static readonly AnalyticsEngine SPARK = new AnalyticsEngine("SPARK");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public AnalyticsEngine(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static AnalyticsEngine FindValue(string value)
+        {
+            return FindValue<AnalyticsEngine>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator AnalyticsEngine(string value)
         {
             return FindValue(value);
         }
@@ -429,6 +687,60 @@ namespace Amazon.CleanRooms
 
 
     /// <summary>
+    /// Constants used for properties of type ConfiguredTableAssociationAnalysisRuleType.
+    /// </summary>
+    public class ConfiguredTableAssociationAnalysisRuleType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant AGGREGATION for ConfiguredTableAssociationAnalysisRuleType
+        /// </summary>
+        public static readonly ConfiguredTableAssociationAnalysisRuleType AGGREGATION = new ConfiguredTableAssociationAnalysisRuleType("AGGREGATION");
+        /// <summary>
+        /// Constant CUSTOM for ConfiguredTableAssociationAnalysisRuleType
+        /// </summary>
+        public static readonly ConfiguredTableAssociationAnalysisRuleType CUSTOM = new ConfiguredTableAssociationAnalysisRuleType("CUSTOM");
+        /// <summary>
+        /// Constant LIST for ConfiguredTableAssociationAnalysisRuleType
+        /// </summary>
+        public static readonly ConfiguredTableAssociationAnalysisRuleType LIST = new ConfiguredTableAssociationAnalysisRuleType("LIST");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ConfiguredTableAssociationAnalysisRuleType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ConfiguredTableAssociationAnalysisRuleType FindValue(string value)
+        {
+            return FindValue<ConfiguredTableAssociationAnalysisRuleType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ConfiguredTableAssociationAnalysisRuleType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ConflictExceptionReason.
     /// </summary>
     public class ConflictExceptionReason : ConstantClass
@@ -483,6 +795,118 @@ namespace Amazon.CleanRooms
 
 
     /// <summary>
+    /// Constants used for properties of type CustomMLMemberAbility.
+    /// </summary>
+    public class CustomMLMemberAbility : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CAN_RECEIVE_INFERENCE_OUTPUT for CustomMLMemberAbility
+        /// </summary>
+        public static readonly CustomMLMemberAbility CAN_RECEIVE_INFERENCE_OUTPUT = new CustomMLMemberAbility("CAN_RECEIVE_INFERENCE_OUTPUT");
+        /// <summary>
+        /// Constant CAN_RECEIVE_MODEL_OUTPUT for CustomMLMemberAbility
+        /// </summary>
+        public static readonly CustomMLMemberAbility CAN_RECEIVE_MODEL_OUTPUT = new CustomMLMemberAbility("CAN_RECEIVE_MODEL_OUTPUT");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public CustomMLMemberAbility(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static CustomMLMemberAbility FindValue(string value)
+        {
+            return FindValue<CustomMLMemberAbility>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator CustomMLMemberAbility(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type DifferentialPrivacyAggregationType.
+    /// </summary>
+    public class DifferentialPrivacyAggregationType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant AVG for DifferentialPrivacyAggregationType
+        /// </summary>
+        public static readonly DifferentialPrivacyAggregationType AVG = new DifferentialPrivacyAggregationType("AVG");
+        /// <summary>
+        /// Constant COUNT for DifferentialPrivacyAggregationType
+        /// </summary>
+        public static readonly DifferentialPrivacyAggregationType COUNT = new DifferentialPrivacyAggregationType("COUNT");
+        /// <summary>
+        /// Constant COUNT_DISTINCT for DifferentialPrivacyAggregationType
+        /// </summary>
+        public static readonly DifferentialPrivacyAggregationType COUNT_DISTINCT = new DifferentialPrivacyAggregationType("COUNT_DISTINCT");
+        /// <summary>
+        /// Constant STDDEV for DifferentialPrivacyAggregationType
+        /// </summary>
+        public static readonly DifferentialPrivacyAggregationType STDDEV = new DifferentialPrivacyAggregationType("STDDEV");
+        /// <summary>
+        /// Constant SUM for DifferentialPrivacyAggregationType
+        /// </summary>
+        public static readonly DifferentialPrivacyAggregationType SUM = new DifferentialPrivacyAggregationType("SUM");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public DifferentialPrivacyAggregationType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static DifferentialPrivacyAggregationType FindValue(string value)
+        {
+            return FindValue<DifferentialPrivacyAggregationType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator DifferentialPrivacyAggregationType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type FilterableMemberStatus.
     /// </summary>
     public class FilterableMemberStatus : ConstantClass
@@ -526,6 +950,56 @@ namespace Amazon.CleanRooms
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator FilterableMemberStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type IdNamespaceType.
+    /// </summary>
+    public class IdNamespaceType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant SOURCE for IdNamespaceType
+        /// </summary>
+        public static readonly IdNamespaceType SOURCE = new IdNamespaceType("SOURCE");
+        /// <summary>
+        /// Constant TARGET for IdNamespaceType
+        /// </summary>
+        public static readonly IdNamespaceType TARGET = new IdNamespaceType("TARGET");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public IdNamespaceType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static IdNamespaceType FindValue(string value)
+        {
+            return FindValue<IdNamespaceType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator IdNamespaceType(string value)
         {
             return FindValue(value);
         }
@@ -851,13 +1325,25 @@ namespace Amazon.CleanRooms
         /// </summary>
         public static readonly ParameterType BIGINT = new ParameterType("BIGINT");
         /// <summary>
+        /// Constant BINARY for ParameterType
+        /// </summary>
+        public static readonly ParameterType BINARY = new ParameterType("BINARY");
+        /// <summary>
         /// Constant BOOLEAN for ParameterType
         /// </summary>
         public static readonly ParameterType BOOLEAN = new ParameterType("BOOLEAN");
         /// <summary>
+        /// Constant BYTE for ParameterType
+        /// </summary>
+        public static readonly ParameterType BYTE = new ParameterType("BYTE");
+        /// <summary>
         /// Constant CHAR for ParameterType
         /// </summary>
         public static readonly ParameterType CHAR = new ParameterType("CHAR");
+        /// <summary>
+        /// Constant CHARACTER for ParameterType
+        /// </summary>
+        public static readonly ParameterType CHARACTER = new ParameterType("CHARACTER");
         /// <summary>
         /// Constant DATE for ParameterType
         /// </summary>
@@ -867,21 +1353,49 @@ namespace Amazon.CleanRooms
         /// </summary>
         public static readonly ParameterType DECIMAL = new ParameterType("DECIMAL");
         /// <summary>
+        /// Constant DOUBLE for ParameterType
+        /// </summary>
+        public static readonly ParameterType DOUBLE = new ParameterType("DOUBLE");
+        /// <summary>
         /// Constant DOUBLE_PRECISION for ParameterType
         /// </summary>
         public static readonly ParameterType DOUBLE_PRECISION = new ParameterType("DOUBLE_PRECISION");
+        /// <summary>
+        /// Constant FLOAT for ParameterType
+        /// </summary>
+        public static readonly ParameterType FLOAT = new ParameterType("FLOAT");
+        /// <summary>
+        /// Constant INT for ParameterType
+        /// </summary>
+        public static readonly ParameterType INT = new ParameterType("INT");
         /// <summary>
         /// Constant INTEGER for ParameterType
         /// </summary>
         public static readonly ParameterType INTEGER = new ParameterType("INTEGER");
         /// <summary>
+        /// Constant LONG for ParameterType
+        /// </summary>
+        public static readonly ParameterType LONG = new ParameterType("LONG");
+        /// <summary>
+        /// Constant NUMERIC for ParameterType
+        /// </summary>
+        public static readonly ParameterType NUMERIC = new ParameterType("NUMERIC");
+        /// <summary>
         /// Constant REAL for ParameterType
         /// </summary>
         public static readonly ParameterType REAL = new ParameterType("REAL");
         /// <summary>
+        /// Constant SHORT for ParameterType
+        /// </summary>
+        public static readonly ParameterType SHORT = new ParameterType("SHORT");
+        /// <summary>
         /// Constant SMALLINT for ParameterType
         /// </summary>
         public static readonly ParameterType SMALLINT = new ParameterType("SMALLINT");
+        /// <summary>
+        /// Constant STRING for ParameterType
+        /// </summary>
+        public static readonly ParameterType STRING = new ParameterType("STRING");
         /// <summary>
         /// Constant TIME for ParameterType
         /// </summary>
@@ -891,6 +1405,14 @@ namespace Amazon.CleanRooms
         /// </summary>
         public static readonly ParameterType TIMESTAMP = new ParameterType("TIMESTAMP");
         /// <summary>
+        /// Constant TIMESTAMP_LTZ for ParameterType
+        /// </summary>
+        public static readonly ParameterType TIMESTAMP_LTZ = new ParameterType("TIMESTAMP_LTZ");
+        /// <summary>
+        /// Constant TIMESTAMP_NTZ for ParameterType
+        /// </summary>
+        public static readonly ParameterType TIMESTAMP_NTZ = new ParameterType("TIMESTAMP_NTZ");
+        /// <summary>
         /// Constant TIMESTAMPTZ for ParameterType
         /// </summary>
         public static readonly ParameterType TIMESTAMPTZ = new ParameterType("TIMESTAMPTZ");
@@ -898,6 +1420,10 @@ namespace Amazon.CleanRooms
         /// Constant TIMETZ for ParameterType
         /// </summary>
         public static readonly ParameterType TIMETZ = new ParameterType("TIMETZ");
+        /// <summary>
+        /// Constant TINYINT for ParameterType
+        /// </summary>
+        public static readonly ParameterType TINYINT = new ParameterType("TINYINT");
         /// <summary>
         /// Constant VARBYTE for ParameterType
         /// </summary>
@@ -936,6 +1462,102 @@ namespace Amazon.CleanRooms
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator ParameterType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type PrivacyBudgetTemplateAutoRefresh.
+    /// </summary>
+    public class PrivacyBudgetTemplateAutoRefresh : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CALENDAR_MONTH for PrivacyBudgetTemplateAutoRefresh
+        /// </summary>
+        public static readonly PrivacyBudgetTemplateAutoRefresh CALENDAR_MONTH = new PrivacyBudgetTemplateAutoRefresh("CALENDAR_MONTH");
+        /// <summary>
+        /// Constant NONE for PrivacyBudgetTemplateAutoRefresh
+        /// </summary>
+        public static readonly PrivacyBudgetTemplateAutoRefresh NONE = new PrivacyBudgetTemplateAutoRefresh("NONE");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public PrivacyBudgetTemplateAutoRefresh(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static PrivacyBudgetTemplateAutoRefresh FindValue(string value)
+        {
+            return FindValue<PrivacyBudgetTemplateAutoRefresh>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator PrivacyBudgetTemplateAutoRefresh(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type PrivacyBudgetType.
+    /// </summary>
+    public class PrivacyBudgetType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DIFFERENTIAL_PRIVACY for PrivacyBudgetType
+        /// </summary>
+        public static readonly PrivacyBudgetType DIFFERENTIAL_PRIVACY = new PrivacyBudgetType("DIFFERENTIAL_PRIVACY");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public PrivacyBudgetType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static PrivacyBudgetType FindValue(string value)
+        {
+            return FindValue<PrivacyBudgetType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator PrivacyBudgetType(string value)
         {
             return FindValue(value);
         }
@@ -1189,9 +1811,29 @@ namespace Amazon.CleanRooms
         /// </summary>
         public static readonly ScalarFunctions COALESCE = new ScalarFunctions("COALESCE");
         /// <summary>
+        /// Constant CONVERT for ScalarFunctions
+        /// </summary>
+        public static readonly ScalarFunctions CONVERT = new ScalarFunctions("CONVERT");
+        /// <summary>
+        /// Constant CURRENT_DATE for ScalarFunctions
+        /// </summary>
+        public static readonly ScalarFunctions CURRENT_DATE = new ScalarFunctions("CURRENT_DATE");
+        /// <summary>
+        /// Constant DATEADD for ScalarFunctions
+        /// </summary>
+        public static readonly ScalarFunctions DATEADD = new ScalarFunctions("DATEADD");
+        /// <summary>
+        /// Constant EXTRACT for ScalarFunctions
+        /// </summary>
+        public static readonly ScalarFunctions EXTRACT = new ScalarFunctions("EXTRACT");
+        /// <summary>
         /// Constant FLOOR for ScalarFunctions
         /// </summary>
         public static readonly ScalarFunctions FLOOR = new ScalarFunctions("FLOOR");
+        /// <summary>
+        /// Constant GETDATE for ScalarFunctions
+        /// </summary>
+        public static readonly ScalarFunctions GETDATE = new ScalarFunctions("GETDATE");
         /// <summary>
         /// Constant LN for ScalarFunctions
         /// </summary>
@@ -1216,6 +1858,30 @@ namespace Amazon.CleanRooms
         /// Constant SQRT for ScalarFunctions
         /// </summary>
         public static readonly ScalarFunctions SQRT = new ScalarFunctions("SQRT");
+        /// <summary>
+        /// Constant SUBSTRING for ScalarFunctions
+        /// </summary>
+        public static readonly ScalarFunctions SUBSTRING = new ScalarFunctions("SUBSTRING");
+        /// <summary>
+        /// Constant TO_CHAR for ScalarFunctions
+        /// </summary>
+        public static readonly ScalarFunctions TO_CHAR = new ScalarFunctions("TO_CHAR");
+        /// <summary>
+        /// Constant TO_DATE for ScalarFunctions
+        /// </summary>
+        public static readonly ScalarFunctions TO_DATE = new ScalarFunctions("TO_DATE");
+        /// <summary>
+        /// Constant TO_NUMBER for ScalarFunctions
+        /// </summary>
+        public static readonly ScalarFunctions TO_NUMBER = new ScalarFunctions("TO_NUMBER");
+        /// <summary>
+        /// Constant TO_TIMESTAMP for ScalarFunctions
+        /// </summary>
+        public static readonly ScalarFunctions TO_TIMESTAMP = new ScalarFunctions("TO_TIMESTAMP");
+        /// <summary>
+        /// Constant TRIM for ScalarFunctions
+        /// </summary>
+        public static readonly ScalarFunctions TRIM = new ScalarFunctions("TRIM");
         /// <summary>
         /// Constant TRUNC for ScalarFunctions
         /// </summary>
@@ -1261,11 +1927,197 @@ namespace Amazon.CleanRooms
 
 
     /// <summary>
+    /// Constants used for properties of type SchemaConfiguration.
+    /// </summary>
+    public class SchemaConfiguration : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DIFFERENTIAL_PRIVACY for SchemaConfiguration
+        /// </summary>
+        public static readonly SchemaConfiguration DIFFERENTIAL_PRIVACY = new SchemaConfiguration("DIFFERENTIAL_PRIVACY");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public SchemaConfiguration(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static SchemaConfiguration FindValue(string value)
+        {
+            return FindValue<SchemaConfiguration>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator SchemaConfiguration(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type SchemaStatus.
+    /// </summary>
+    public class SchemaStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant NOT_READY for SchemaStatus
+        /// </summary>
+        public static readonly SchemaStatus NOT_READY = new SchemaStatus("NOT_READY");
+        /// <summary>
+        /// Constant READY for SchemaStatus
+        /// </summary>
+        public static readonly SchemaStatus READY = new SchemaStatus("READY");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public SchemaStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static SchemaStatus FindValue(string value)
+        {
+            return FindValue<SchemaStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator SchemaStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type SchemaStatusReasonCode.
+    /// </summary>
+    public class SchemaStatusReasonCode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ADDITIONAL_ANALYSES_NOT_ALLOWED for SchemaStatusReasonCode
+        /// </summary>
+        public static readonly SchemaStatusReasonCode ADDITIONAL_ANALYSES_NOT_ALLOWED = new SchemaStatusReasonCode("ADDITIONAL_ANALYSES_NOT_ALLOWED");
+        /// <summary>
+        /// Constant ADDITIONAL_ANALYSES_NOT_CONFIGURED for SchemaStatusReasonCode
+        /// </summary>
+        public static readonly SchemaStatusReasonCode ADDITIONAL_ANALYSES_NOT_CONFIGURED = new SchemaStatusReasonCode("ADDITIONAL_ANALYSES_NOT_CONFIGURED");
+        /// <summary>
+        /// Constant ANALYSIS_PROVIDERS_NOT_CONFIGURED for SchemaStatusReasonCode
+        /// </summary>
+        public static readonly SchemaStatusReasonCode ANALYSIS_PROVIDERS_NOT_CONFIGURED = new SchemaStatusReasonCode("ANALYSIS_PROVIDERS_NOT_CONFIGURED");
+        /// <summary>
+        /// Constant ANALYSIS_RULE_MISSING for SchemaStatusReasonCode
+        /// </summary>
+        public static readonly SchemaStatusReasonCode ANALYSIS_RULE_MISSING = new SchemaStatusReasonCode("ANALYSIS_RULE_MISSING");
+        /// <summary>
+        /// Constant ANALYSIS_RULE_TYPES_NOT_COMPATIBLE for SchemaStatusReasonCode
+        /// </summary>
+        public static readonly SchemaStatusReasonCode ANALYSIS_RULE_TYPES_NOT_COMPATIBLE = new SchemaStatusReasonCode("ANALYSIS_RULE_TYPES_NOT_COMPATIBLE");
+        /// <summary>
+        /// Constant ANALYSIS_TEMPLATES_NOT_CONFIGURED for SchemaStatusReasonCode
+        /// </summary>
+        public static readonly SchemaStatusReasonCode ANALYSIS_TEMPLATES_NOT_CONFIGURED = new SchemaStatusReasonCode("ANALYSIS_TEMPLATES_NOT_CONFIGURED");
+        /// <summary>
+        /// Constant COLLABORATION_ANALYSIS_RULE_NOT_CONFIGURED for SchemaStatusReasonCode
+        /// </summary>
+        public static readonly SchemaStatusReasonCode COLLABORATION_ANALYSIS_RULE_NOT_CONFIGURED = new SchemaStatusReasonCode("COLLABORATION_ANALYSIS_RULE_NOT_CONFIGURED");
+        /// <summary>
+        /// Constant DIFFERENTIAL_PRIVACY_POLICY_NOT_CONFIGURED for SchemaStatusReasonCode
+        /// </summary>
+        public static readonly SchemaStatusReasonCode DIFFERENTIAL_PRIVACY_POLICY_NOT_CONFIGURED = new SchemaStatusReasonCode("DIFFERENTIAL_PRIVACY_POLICY_NOT_CONFIGURED");
+        /// <summary>
+        /// Constant ID_MAPPING_TABLE_NOT_POPULATED for SchemaStatusReasonCode
+        /// </summary>
+        public static readonly SchemaStatusReasonCode ID_MAPPING_TABLE_NOT_POPULATED = new SchemaStatusReasonCode("ID_MAPPING_TABLE_NOT_POPULATED");
+        /// <summary>
+        /// Constant RESULT_RECEIVERS_NOT_ALLOWED for SchemaStatusReasonCode
+        /// </summary>
+        public static readonly SchemaStatusReasonCode RESULT_RECEIVERS_NOT_ALLOWED = new SchemaStatusReasonCode("RESULT_RECEIVERS_NOT_ALLOWED");
+        /// <summary>
+        /// Constant RESULT_RECEIVERS_NOT_CONFIGURED for SchemaStatusReasonCode
+        /// </summary>
+        public static readonly SchemaStatusReasonCode RESULT_RECEIVERS_NOT_CONFIGURED = new SchemaStatusReasonCode("RESULT_RECEIVERS_NOT_CONFIGURED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public SchemaStatusReasonCode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static SchemaStatusReasonCode FindValue(string value)
+        {
+            return FindValue<SchemaStatusReasonCode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator SchemaStatusReasonCode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type SchemaType.
     /// </summary>
     public class SchemaType : ConstantClass
     {
 
+        /// <summary>
+        /// Constant ID_MAPPING_TABLE for SchemaType
+        /// </summary>
+        public static readonly SchemaType ID_MAPPING_TABLE = new SchemaType("ID_MAPPING_TABLE");
         /// <summary>
         /// Constant TABLE for SchemaType
         /// </summary>
@@ -1404,6 +2256,56 @@ namespace Amazon.CleanRooms
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator ValidationExceptionReason(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type WorkerComputeType.
+    /// </summary>
+    public class WorkerComputeType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CR1X for WorkerComputeType
+        /// </summary>
+        public static readonly WorkerComputeType CR1X = new WorkerComputeType("CR.1X");
+        /// <summary>
+        /// Constant CR4X for WorkerComputeType
+        /// </summary>
+        public static readonly WorkerComputeType CR4X = new WorkerComputeType("CR.4X");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public WorkerComputeType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static WorkerComputeType FindValue(string value)
+        {
+            return FindValue<WorkerComputeType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator WorkerComputeType(string value)
         {
             return FindValue(value);
         }

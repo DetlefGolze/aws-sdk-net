@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FIS.Model
 {
     /// <summary>
@@ -33,16 +34,20 @@ namespace Amazon.FIS.Model
     /// </summary>
     public partial class ExperimentTemplate
     {
-        private Dictionary<string, ExperimentTemplateAction> _actions = new Dictionary<string, ExperimentTemplateAction>();
+        private Dictionary<string, ExperimentTemplateAction> _actions = AWSConfigs.InitializeCollections ? new Dictionary<string, ExperimentTemplateAction>() : null;
+        private string _arn;
         private DateTime? _creationTime;
         private string _description;
+        private ExperimentTemplateExperimentOptions _experimentOptions;
+        private ExperimentTemplateReportConfiguration _experimentReportConfiguration;
         private string _id;
         private DateTime? _lastUpdateTime;
         private ExperimentTemplateLogConfiguration _logConfiguration;
         private string _roleArn;
-        private List<ExperimentTemplateStopCondition> _stopConditions = new List<ExperimentTemplateStopCondition>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
-        private Dictionary<string, ExperimentTemplateTarget> _targets = new Dictionary<string, ExperimentTemplateTarget>();
+        private List<ExperimentTemplateStopCondition> _stopConditions = AWSConfigs.InitializeCollections ? new List<ExperimentTemplateStopCondition>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private long? _targetAccountConfigurationsCount;
+        private Dictionary<string, ExperimentTemplateTarget> _targets = AWSConfigs.InitializeCollections ? new Dictionary<string, ExperimentTemplateTarget>() : null;
 
         /// <summary>
         /// Gets and sets the property Actions. 
@@ -59,7 +64,26 @@ namespace Amazon.FIS.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Arn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the experiment template.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=2048)]
+        public string Arn
+        {
+            get { return this._arn; }
+            set { this._arn = value; }
+        }
+
+        // Check to see if Arn property is set
+        internal bool IsSetArn()
+        {
+            return this._arn != null;
         }
 
         /// <summary>
@@ -97,6 +121,42 @@ namespace Amazon.FIS.Model
         internal bool IsSetDescription()
         {
             return this._description != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExperimentOptions. 
+        /// <para>
+        /// The experiment options for an experiment template.
+        /// </para>
+        /// </summary>
+        public ExperimentTemplateExperimentOptions ExperimentOptions
+        {
+            get { return this._experimentOptions; }
+            set { this._experimentOptions = value; }
+        }
+
+        // Check to see if ExperimentOptions property is set
+        internal bool IsSetExperimentOptions()
+        {
+            return this._experimentOptions != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExperimentReportConfiguration. 
+        /// <para>
+        /// Describes the report configuration for the experiment template.
+        /// </para>
+        /// </summary>
+        public ExperimentTemplateReportConfiguration ExperimentReportConfiguration
+        {
+            get { return this._experimentReportConfiguration; }
+            set { this._experimentReportConfiguration = value; }
+        }
+
+        // Check to see if ExperimentReportConfiguration property is set
+        internal bool IsSetExperimentReportConfiguration()
+        {
+            return this._experimentReportConfiguration != null;
         }
 
         /// <summary>
@@ -188,7 +248,7 @@ namespace Amazon.FIS.Model
         // Check to see if StopConditions property is set
         internal bool IsSetStopConditions()
         {
-            return this._stopConditions != null && this._stopConditions.Count > 0; 
+            return this._stopConditions != null && (this._stopConditions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -207,7 +267,26 @@ namespace Amazon.FIS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property TargetAccountConfigurationsCount. 
+        /// <para>
+        /// The count of target account configurations for the experiment template.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0)]
+        public long TargetAccountConfigurationsCount
+        {
+            get { return this._targetAccountConfigurationsCount.GetValueOrDefault(); }
+            set { this._targetAccountConfigurationsCount = value; }
+        }
+
+        // Check to see if TargetAccountConfigurationsCount property is set
+        internal bool IsSetTargetAccountConfigurationsCount()
+        {
+            return this._targetAccountConfigurationsCount.HasValue; 
         }
 
         /// <summary>
@@ -225,7 +304,7 @@ namespace Amazon.FIS.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

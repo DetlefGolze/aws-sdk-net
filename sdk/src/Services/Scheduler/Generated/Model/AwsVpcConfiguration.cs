@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Scheduler.Model
 {
     /// <summary>
@@ -36,15 +37,15 @@ namespace Amazon.Scheduler.Model
     public partial class AwsVpcConfiguration
     {
         private AssignPublicIp _assignPublicIp;
-        private List<string> _securityGroups = new List<string>();
-        private List<string> _subnets = new List<string>();
+        private List<string> _securityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _subnets = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AssignPublicIp. 
         /// <para>
         /// Specifies whether the task's elastic network interface receives a public IP address.
-        /// You can specify <code>ENABLED</code> only when <code>LaunchType</code> in <code>EcsParameters</code>
-        /// is set to <code>FARGATE</code>.
+        /// You can specify <c>ENABLED</c> only when <c>LaunchType</c> in <c>EcsParameters</c>
+        /// is set to <c>FARGATE</c>.
         /// </para>
         /// </summary>
         public AssignPublicIp AssignPublicIp
@@ -77,7 +78,7 @@ namespace Amazon.Scheduler.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -97,7 +98,7 @@ namespace Amazon.Scheduler.Model
         // Check to see if Subnets property is set
         internal bool IsSetSubnets()
         {
-            return this._subnets != null && this._subnets.Count > 0; 
+            return this._subnets != null && (this._subnets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -88,9 +88,19 @@ namespace Amazon
         public static readonly RegionEndpoint APSoutheast4 = GetEndpoint("ap-southeast-4", "Asia Pacific (Melbourne)");
 
         /// <summary>
+        /// The Asia Pacific (Malaysia) endpoint.
+        /// </summary>
+        public static readonly RegionEndpoint APSoutheast5 = GetEndpoint("ap-southeast-5", "Asia Pacific (Malaysia)");
+
+        /// <summary>
         /// The Canada (Central) endpoint.
         /// </summary>
         public static readonly RegionEndpoint CACentral1 = GetEndpoint("ca-central-1", "Canada (Central)");
+
+        /// <summary>
+        /// The Canada West (Calgary) endpoint.
+        /// </summary>
+        public static readonly RegionEndpoint CAWest1 = GetEndpoint("ca-west-1", "Canada West (Calgary)");
 
         /// <summary>
         /// The Europe (Frankfurt) endpoint.
@@ -206,6 +216,11 @@ namespace Amazon
         /// The US ISOB East (Ohio) endpoint.
         /// </summary>
         public static readonly RegionEndpoint USIsobEast1 = GetEndpoint("us-isob-east-1", "US ISOB East (Ohio)");
+
+        /// <summary>
+        /// The EU ISOE West endpoint.
+        /// </summary>
+        public static readonly RegionEndpoint EUIsoeWest1 = GetEndpoint("eu-isoe-west-1", "EU ISOE West");
 
     }
 }

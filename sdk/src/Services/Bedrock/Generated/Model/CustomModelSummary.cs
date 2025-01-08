@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Bedrock.Model
 {
     /// <summary>
@@ -36,13 +37,15 @@ namespace Amazon.Bedrock.Model
         private string _baseModelArn;
         private string _baseModelName;
         private DateTime? _creationTime;
+        private CustomizationType _customizationType;
         private string _modelArn;
         private string _modelName;
+        private string _ownerAccountId;
 
         /// <summary>
         /// Gets and sets the property BaseModelArn. 
         /// <para>
-        /// The base model ARN.
+        /// The base model Amazon Resource Name (ARN).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=1011)]
@@ -97,9 +100,29 @@ namespace Amazon.Bedrock.Model
         }
 
         /// <summary>
+        /// Gets and sets the property CustomizationType. 
+        /// <para>
+        /// Specifies whether to carry out continued pre-training of a model or whether to fine-tune
+        /// it. For more information, see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html">Custom
+        /// models</a>.
+        /// </para>
+        /// </summary>
+        public CustomizationType CustomizationType
+        {
+            get { return this._customizationType; }
+            set { this._customizationType = value; }
+        }
+
+        // Check to see if CustomizationType property is set
+        internal bool IsSetCustomizationType()
+        {
+            return this._customizationType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ModelArn. 
         /// <para>
-        /// The ARN of the custom model.
+        /// The Amazon Resource Name (ARN) of the custom model.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=1011)]
@@ -132,6 +155,24 @@ namespace Amazon.Bedrock.Model
         internal bool IsSetModelName()
         {
             return this._modelName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OwnerAccountId. 
+        /// <para>
+        /// The unique identifier of the account that owns the model.
+        /// </para>
+        /// </summary>
+        public string OwnerAccountId
+        {
+            get { return this._ownerAccountId; }
+            set { this._ownerAccountId = value; }
+        }
+
+        // Check to see if OwnerAccountId property is set
+        internal bool IsSetOwnerAccountId()
+        {
+            return this._ownerAccountId != null;
         }
 
     }

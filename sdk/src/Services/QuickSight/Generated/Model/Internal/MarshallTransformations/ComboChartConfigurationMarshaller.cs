@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ComboChartConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetBarDataLabels())
             {
                 context.Writer.WritePropertyName("BarDataLabels");
@@ -102,6 +105,17 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 
                 var marshaller = ComboChartFieldWellsMarshaller.Instance;
                 marshaller.Marshall(requestObject.FieldWells, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetInteractions())
+            {
+                context.Writer.WritePropertyName("Interactions");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = VisualInteractionOptionsMarshaller.Instance;
+                marshaller.Marshall(requestObject.Interactions, context);
 
                 context.Writer.WriteObjectEnd();
             }
@@ -184,6 +198,17 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 
                 var marshaller = ChartAxisLabelOptionsMarshaller.Instance;
                 marshaller.Marshall(requestObject.SecondaryYAxisLabelOptions, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetSingleAxisOptions())
+            {
+                context.Writer.WritePropertyName("SingleAxisOptions");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = SingleAxisOptionsMarshaller.Instance;
+                marshaller.Marshall(requestObject.SingleAxisOptions, context);
 
                 context.Writer.WriteObjectEnd();
             }

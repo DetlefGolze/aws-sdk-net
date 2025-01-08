@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ForecastService.Model
     public partial class PredictorExecution
     {
         private string _algorithmArn;
-        private List<TestWindowSummary> _testWindows = new List<TestWindowSummary>();
+        private List<TestWindowSummary> _testWindows = AWSConfigs.InitializeCollections ? new List<TestWindowSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property AlgorithmArn. 
@@ -58,7 +59,7 @@ namespace Amazon.ForecastService.Model
         /// <summary>
         /// Gets and sets the property TestWindows. 
         /// <para>
-        /// An array of test windows used to evaluate the algorithm. The <code>NumberOfBacktestWindows</code>
+        /// An array of test windows used to evaluate the algorithm. The <c>NumberOfBacktestWindows</c>
         /// from the object determines the number of windows in the array.
         /// </para>
         /// </summary>
@@ -71,7 +72,7 @@ namespace Amazon.ForecastService.Model
         // Check to see if TestWindows property is set
         internal bool IsSetTestWindows()
         {
-            return this._testWindows != null && this._testWindows.Count > 0; 
+            return this._testWindows != null && (this._testWindows.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

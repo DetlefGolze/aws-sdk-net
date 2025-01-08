@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRegistry.Model
 {
     /// <summary>
     /// Container for the parameters to the GetConfiguration operation.
-    /// Retrieves a <code>TagKey</code> configuration from an account.
+    /// Retrieves a <c>TagKey</c> configuration from an account.
     /// </summary>
     public partial class GetConfigurationRequest : AmazonAppRegistryRequest
     {

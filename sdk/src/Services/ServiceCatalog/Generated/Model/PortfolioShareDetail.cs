@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -98,8 +99,8 @@ namespace Amazon.ServiceCatalog.Model
         /// <summary>
         /// Gets and sets the property SharePrincipals. 
         /// <para>
-        /// Indicates if <code>Principal</code> sharing is enabled or disabled for the portfolio
-        /// share. 
+        /// Indicates if <c>Principal</c> sharing is enabled or disabled for the portfolio share.
+        /// 
         /// </para>
         /// </summary>
         public bool SharePrincipals

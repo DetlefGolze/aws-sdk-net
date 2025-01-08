@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -96,7 +97,7 @@ namespace Amazon.Redshift.Model
         /// Gets and sets the property DbName. 
         /// <para>
         /// The name of the database for which you are requesting credentials. If the database
-        /// name is specified, the IAM policy must allow access to the resource <code>dbname</code>
+        /// name is specified, the IAM policy must allow access to the resource <c>dbname</c>
         /// for the specified database name. If the database name is not specified, access to
         /// all databases is allowed.
         /// </para>

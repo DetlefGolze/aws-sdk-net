@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -33,11 +34,11 @@ namespace Amazon.CloudFormation.Model
     /// </summary>
     public partial class ValidateTemplateResponse : AmazonWebServiceResponse
     {
-        private List<string> _capabilities = new List<string>();
+        private List<string> _capabilities = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _capabilitiesReason;
-        private List<string> _declaredTransforms = new List<string>();
+        private List<string> _declaredTransforms = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _description;
-        private List<TemplateParameter> _parameters = new List<TemplateParameter>();
+        private List<TemplateParameter> _parameters = AWSConfigs.InitializeCollections ? new List<TemplateParameter>() : null;
 
         /// <summary>
         /// Gets and sets the property Capabilities. 
@@ -49,8 +50,8 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html#capabilities">Acknowledging
-        /// IAM Resources in CloudFormation Templates</a>.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html#using-iam-capabilities">Acknowledging
+        /// IAM resources in CloudFormation templates</a>.
         /// </para>
         /// </summary>
         public List<string> Capabilities
@@ -62,13 +63,13 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Capabilities property is set
         internal bool IsSetCapabilities()
         {
-            return this._capabilities != null && this._capabilities.Count > 0; 
+            return this._capabilities != null && (this._capabilities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property CapabilitiesReason. 
         /// <para>
-        /// The list of resources that generated the values in the <code>Capabilities</code> response
+        /// The list of resources that generated the values in the <c>Capabilities</c> response
         /// element.
         /// </para>
         /// </summary>
@@ -99,7 +100,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if DeclaredTransforms property is set
         internal bool IsSetDeclaredTransforms()
         {
-            return this._declaredTransforms != null && this._declaredTransforms.Count > 0; 
+            return this._declaredTransforms != null && (this._declaredTransforms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -124,7 +125,7 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property Parameters. 
         /// <para>
-        /// A list of <code>TemplateParameter</code> structures.
+        /// A list of <c>TemplateParameter</c> structures.
         /// </para>
         /// </summary>
         public List<TemplateParameter> Parameters
@@ -136,7 +137,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

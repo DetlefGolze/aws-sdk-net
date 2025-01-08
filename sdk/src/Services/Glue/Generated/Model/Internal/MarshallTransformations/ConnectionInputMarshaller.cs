@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,33 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ConnectionInput requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetAthenaProperties())
+            {
+                context.Writer.WritePropertyName("AthenaProperties");
+                context.Writer.WriteObjectStart();
+                foreach (var requestObjectAthenaPropertiesKvp in requestObject.AthenaProperties)
+                {
+                    context.Writer.WritePropertyName(requestObjectAthenaPropertiesKvp.Key);
+                    var requestObjectAthenaPropertiesValue = requestObjectAthenaPropertiesKvp.Value;
+
+                        context.Writer.Write(requestObjectAthenaPropertiesValue);
+                }
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetAuthenticationConfiguration())
+            {
+                context.Writer.WritePropertyName("AuthenticationConfiguration");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = AuthenticationConfigurationInputMarshaller.Instance;
+                marshaller.Marshall(requestObject.AuthenticationConfiguration, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetConnectionProperties())
             {
                 context.Writer.WritePropertyName("ConnectionProperties");
@@ -97,6 +125,51 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
                 marshaller.Marshall(requestObject.PhysicalConnectionRequirements, context);
 
                 context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetPythonProperties())
+            {
+                context.Writer.WritePropertyName("PythonProperties");
+                context.Writer.WriteObjectStart();
+                foreach (var requestObjectPythonPropertiesKvp in requestObject.PythonProperties)
+                {
+                    context.Writer.WritePropertyName(requestObjectPythonPropertiesKvp.Key);
+                    var requestObjectPythonPropertiesValue = requestObjectPythonPropertiesKvp.Value;
+
+                        context.Writer.Write(requestObjectPythonPropertiesValue);
+                }
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetSparkProperties())
+            {
+                context.Writer.WritePropertyName("SparkProperties");
+                context.Writer.WriteObjectStart();
+                foreach (var requestObjectSparkPropertiesKvp in requestObject.SparkProperties)
+                {
+                    context.Writer.WritePropertyName(requestObjectSparkPropertiesKvp.Key);
+                    var requestObjectSparkPropertiesValue = requestObjectSparkPropertiesKvp.Value;
+
+                        context.Writer.Write(requestObjectSparkPropertiesValue);
+                }
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetValidateCredentials())
+            {
+                context.Writer.WritePropertyName("ValidateCredentials");
+                context.Writer.Write(requestObject.ValidateCredentials);
+            }
+
+            if(requestObject.IsSetValidateForComputeEnvironments())
+            {
+                context.Writer.WritePropertyName("ValidateForComputeEnvironments");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectValidateForComputeEnvironmentsListValue in requestObject.ValidateForComputeEnvironments)
+                {
+                        context.Writer.Write(requestObjectValidateForComputeEnvironmentsListValue);
+                }
+                context.Writer.WriteArrayEnd();
             }
 
         }

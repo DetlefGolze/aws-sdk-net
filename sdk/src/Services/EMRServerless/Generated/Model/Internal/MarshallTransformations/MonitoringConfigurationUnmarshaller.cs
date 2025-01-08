@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public MonitoringConfiguration Unmarshall(JsonUnmarshallerContext context)
         {
+            MonitoringConfiguration unmarshalledObject = new MonitoringConfiguration();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            MonitoringConfiguration unmarshalledObject = new MonitoringConfiguration();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -76,6 +78,12 @@ namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
                     unmarshalledObject.ManagedPersistenceMonitoringConfiguration = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("prometheusMonitoringConfiguration", targetDepth))
+                {
+                    var unmarshaller = PrometheusMonitoringConfigurationUnmarshaller.Instance;
+                    unmarshalledObject.PrometheusMonitoringConfiguration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("s3MonitoringConfiguration", targetDepth))
                 {
                     var unmarshaller = S3MonitoringConfigurationUnmarshaller.Instance;
@@ -83,7 +91,6 @@ namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

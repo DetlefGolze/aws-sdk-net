@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property ResourceTargetDetails. 
         /// <para>
-        /// Required if <code>TargetType</code> is <code>RESOURCE</code>.
+        /// Required if <c>TargetType</c> is <c>RESOURCE</c>.
         /// </para>
         /// </summary>
         public ChangeSetHookResourceTargetDetails ResourceTargetDetails

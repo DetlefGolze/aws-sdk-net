@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -50,7 +51,14 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property DetectorId. 
         /// <para>
-        /// The ID of the detector to retrieve information about the delegated administrator from.
+        /// The detector ID of the delegated administrator for which you need to retrieve the
+        /// information.
+        /// </para>
+        ///  
+        /// <para>
+        /// To find the <c>detectorId</c> in the current Region, see the Settings page in the
+        /// GuardDuty console, or run the <a href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html">ListDetectors</a>
+        /// API.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=300)]
@@ -91,8 +99,8 @@ namespace Amazon.GuardDuty.Model
         /// <para>
         /// You can use this parameter when paginating results. Set the value of this parameter
         /// to null on your first call to the list action. For subsequent calls to the action,
-        /// fill <code>nextToken</code> in the request with the value of <code>NextToken</code>
-        /// from the previous response to continue listing data.
+        /// fill <c>nextToken</c> in the request with the value of <c>NextToken</c> from the previous
+        /// response to continue listing data.
         /// </para>
         /// </summary>
         public string NextToken

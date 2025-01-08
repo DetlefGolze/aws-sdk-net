@@ -5,11 +5,13 @@
     "endpointPrefix":"lakeformation",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"AWS Lake Formation",
     "serviceId":"LakeFormation",
     "signatureVersion":"v4",
     "signingName":"lakeformation",
-    "uid":"lakeformation-2017-03-31"
+    "uid":"lakeformation-2017-03-31",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AddLFTagsToResource":{
@@ -141,6 +143,40 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "CreateLFTagExpression":{
+      "name":"CreateLFTagExpression",
+      "http":{
+        "method":"POST",
+        "requestUri":"/CreateLFTagExpression"
+      },
+      "input":{"shape":"CreateLFTagExpressionRequest"},
+      "output":{"shape":"CreateLFTagExpressionResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNumberLimitExceededException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"EntityNotFoundException"}
+      ]
+    },
+    "CreateLakeFormationIdentityCenterConfiguration":{
+      "name":"CreateLakeFormationIdentityCenterConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/CreateLakeFormationIdentityCenterConfiguration"
+      },
+      "input":{"shape":"CreateLakeFormationIdentityCenterConfigurationRequest"},
+      "output":{"shape":"CreateLakeFormationIdentityCenterConfigurationResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"AlreadyExistsException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
     "CreateLakeFormationOptIn":{
       "name":"CreateLakeFormationOptIn",
       "http":{
@@ -188,6 +224,39 @@
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DeleteLFTagExpression":{
+      "name":"DeleteLFTagExpression",
+      "http":{
+        "method":"POST",
+        "requestUri":"/DeleteLFTagExpression"
+      },
+      "input":{"shape":"DeleteLFTagExpressionRequest"},
+      "output":{"shape":"DeleteLFTagExpressionResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DeleteLakeFormationIdentityCenterConfiguration":{
+      "name":"DeleteLakeFormationIdentityCenterConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/DeleteLakeFormationIdentityCenterConfiguration"
+      },
+      "input":{"shape":"DeleteLakeFormationIdentityCenterConfigurationRequest"},
+      "output":{"shape":"DeleteLakeFormationIdentityCenterConfigurationResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "DeleteLakeFormationOptIn":{
@@ -239,6 +308,22 @@
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"EntityNotFoundException"}
+      ]
+    },
+    "DescribeLakeFormationIdentityCenterConfiguration":{
+      "name":"DescribeLakeFormationIdentityCenterConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/DescribeLakeFormationIdentityCenterConfiguration"
+      },
+      "input":{"shape":"DescribeLakeFormationIdentityCenterConfigurationRequest"},
+      "output":{"shape":"DescribeLakeFormationIdentityCenterConfigurationResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "DescribeResource":{
@@ -305,6 +390,20 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "GetDataLakePrincipal":{
+      "name":"GetDataLakePrincipal",
+      "http":{
+        "method":"POST",
+        "requestUri":"/GetDataLakePrincipal"
+      },
+      "input":{"shape":"GetDataLakePrincipalRequest"},
+      "output":{"shape":"GetDataLakePrincipalResponse"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "GetDataLakeSettings":{
       "name":"GetDataLakeSettings",
       "http":{
@@ -342,6 +441,22 @@
       },
       "input":{"shape":"GetLFTagRequest"},
       "output":{"shape":"GetLFTagResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetLFTagExpression":{
+      "name":"GetLFTagExpression",
+      "http":{
+        "method":"POST",
+        "requestUri":"/GetLFTagExpression"
+      },
+      "input":{"shape":"GetLFTagExpressionRequest"},
+      "output":{"shape":"GetLFTagExpressionResponse"},
       "errors":[
         {"shape":"EntityNotFoundException"},
         {"shape":"InvalidInputException"},
@@ -516,6 +631,22 @@
         {"shape":"InvalidInputException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"InternalServiceException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListLFTagExpressions":{
+      "name":"ListLFTagExpressions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListLFTagExpressions"
+      },
+      "input":{"shape":"ListLFTagExpressionsRequest"},
+      "output":{"shape":"ListLFTagExpressionsResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
         {"shape":"AccessDeniedException"}
       ]
     },
@@ -768,6 +899,40 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "UpdateLFTagExpression":{
+      "name":"UpdateLFTagExpression",
+      "http":{
+        "method":"POST",
+        "requestUri":"/UpdateLFTagExpression"
+      },
+      "input":{"shape":"UpdateLFTagExpressionRequest"},
+      "output":{"shape":"UpdateLFTagExpressionResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNumberLimitExceededException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "UpdateLakeFormationIdentityCenterConfiguration":{
+      "name":"UpdateLakeFormationIdentityCenterConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/UpdateLakeFormationIdentityCenterConfiguration"
+      },
+      "input":{"shape":"UpdateLakeFormationIdentityCenterConfigurationRequest"},
+      "output":{"shape":"UpdateLakeFormationIdentityCenterConfigurationResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
     "UpdateResource":{
       "name":"UpdateResource",
       "http":{
@@ -864,6 +1029,11 @@
         "PartitionValues":{"shape":"PartitionValuesList"}
       }
     },
+    "AdditionalContextMap":{
+      "type":"map",
+      "key":{"shape":"ContextKey"},
+      "value":{"shape":"ContextValue"}
+    },
     "AllRowsWildcard":{
       "type":"structure",
       "members":{
@@ -875,6 +1045,14 @@
         "Message":{"shape":"MessageString"}
       },
       "exception":true
+    },
+    "ApplicationArn":{"type":"string"},
+    "ApplicationStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "AssumeDecoratedRoleWithSAMLRequest":{
       "type":"structure",
@@ -991,6 +1169,7 @@
     "CatalogResource":{
       "type":"structure",
       "members":{
+        "Id":{"shape":"CatalogIdString"}
       }
     },
     "ColumnLFTag":{
@@ -1050,6 +1229,22 @@
       },
       "exception":true
     },
+    "Condition":{
+      "type":"structure",
+      "members":{
+        "Expression":{"shape":"ExpressionString"}
+      }
+    },
+    "ContextKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "ContextValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "CreateDataCellsFilterRequest":{
       "type":"structure",
       "required":["TableData"],
@@ -1058,6 +1253,24 @@
       }
     },
     "CreateDataCellsFilterResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "CreateLFTagExpressionRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Expression"
+      ],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "Description":{"shape":"DescriptionString"},
+        "CatalogId":{"shape":"CatalogIdString"},
+        "Expression":{"shape":"Expression"}
+      }
+    },
+    "CreateLFTagExpressionResponse":{
       "type":"structure",
       "members":{
       }
@@ -1077,6 +1290,21 @@
     "CreateLFTagResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "CreateLakeFormationIdentityCenterConfigurationRequest":{
+      "type":"structure",
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "InstanceArn":{"shape":"IdentityCenterInstanceArn"},
+        "ExternalFiltering":{"shape":"ExternalFilteringConfiguration"},
+        "ShareRecipients":{"shape":"DataLakePrincipalList"}
+      }
+    },
+    "CreateLakeFormationIdentityCenterConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "ApplicationArn":{"shape":"ApplicationArn"}
       }
     },
     "CreateLakeFormationOptInRequest":{
@@ -1160,7 +1388,8 @@
         "LF_TAG",
         "LF_TAG_POLICY",
         "LF_TAG_POLICY_DATABASE",
-        "LF_TAG_POLICY_TABLE"
+        "LF_TAG_POLICY_TABLE",
+        "LF_NAMED_TAG_EXPRESSION"
       ]
     },
     "DataLakeSettings":{
@@ -1216,6 +1445,19 @@
       "members":{
       }
     },
+    "DeleteLFTagExpressionRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "CatalogId":{"shape":"CatalogIdString"}
+      }
+    },
+    "DeleteLFTagExpressionResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteLFTagRequest":{
       "type":"structure",
       "required":["TagKey"],
@@ -1225,6 +1467,17 @@
       }
     },
     "DeleteLFTagResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteLakeFormationIdentityCenterConfigurationRequest":{
+      "type":"structure",
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"}
+      }
+    },
+    "DeleteLakeFormationIdentityCenterConfigurationResponse":{
       "type":"structure",
       "members":{
       }
@@ -1287,6 +1540,23 @@
       "members":{
       }
     },
+    "DescribeLakeFormationIdentityCenterConfigurationRequest":{
+      "type":"structure",
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"}
+      }
+    },
+    "DescribeLakeFormationIdentityCenterConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "InstanceArn":{"shape":"IdentityCenterInstanceArn"},
+        "ApplicationArn":{"shape":"ApplicationArn"},
+        "ExternalFiltering":{"shape":"ExternalFilteringConfiguration"},
+        "ShareRecipients":{"shape":"DataLakePrincipalList"},
+        "ResourceShare":{"shape":"RAMResourceShareArn"}
+      }
+    },
     "DescribeResourceRequest":{
       "type":"structure",
       "required":["ResourceArn"],
@@ -1331,6 +1601,13 @@
       "min":1,
       "pattern":"[\\p{L}\\p{N}\\p{P}]*"
     },
+    "EnableStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "EntityNotFoundException":{
       "type":"structure",
       "members":{
@@ -1370,6 +1647,10 @@
       "type":"list",
       "member":{"shape":"LFTag"}
     },
+    "ExpressionString":{
+      "type":"string",
+      "max":3000
+    },
     "ExtendTransactionRequest":{
       "type":"structure",
       "members":{
@@ -1379,6 +1660,17 @@
     "ExtendTransactionResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "ExternalFilteringConfiguration":{
+      "type":"structure",
+      "required":[
+        "Status",
+        "AuthorizedTargets"
+      ],
+      "members":{
+        "Status":{"shape":"EnableStatus"},
+        "AuthorizedTargets":{"shape":"ScopeTargets"}
       }
     },
     "FieldNameString":{
@@ -1424,6 +1716,17 @@
         "DataCellsFilter":{"shape":"DataCellsFilter"}
       }
     },
+    "GetDataLakePrincipalRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetDataLakePrincipalResponse":{
+      "type":"structure",
+      "members":{
+        "Identity":{"shape":"IdentityString"}
+      }
+    },
     "GetDataLakeSettingsRequest":{
       "type":"structure",
       "members":{
@@ -1451,6 +1754,23 @@
       "members":{
         "Permissions":{"shape":"PrincipalResourcePermissionsList"},
         "NextToken":{"shape":"Token"}
+      }
+    },
+    "GetLFTagExpressionRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "CatalogId":{"shape":"CatalogIdString"}
+      }
+    },
+    "GetLFTagExpressionResponse":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NameString"},
+        "Description":{"shape":"DescriptionString"},
+        "CatalogId":{"shape":"CatalogIdString"},
+        "Expression":{"shape":"Expression"}
       }
     },
     "GetLFTagRequest":{
@@ -1582,7 +1902,9 @@
         "Permissions":{"shape":"PermissionList"},
         "DurationSeconds":{"shape":"CredentialTimeoutDurationSecondInteger"},
         "AuditContext":{"shape":"AuditContext"},
-        "SupportedPermissionTypes":{"shape":"PermissionTypeList"}
+        "SupportedPermissionTypes":{"shape":"PermissionTypeList"},
+        "S3Path":{"shape":"PathString"},
+        "QuerySessionContext":{"shape":"QuerySessionContext"}
       }
     },
     "GetTemporaryGlueTableCredentialsResponse":{
@@ -1591,7 +1913,8 @@
         "AccessKeyId":{"shape":"AccessKeyIdString"},
         "SecretAccessKey":{"shape":"SecretAccessKeyString"},
         "SessionToken":{"shape":"SessionTokenString"},
-        "Expiration":{"shape":"ExpirationTimestamp"}
+        "Expiration":{"shape":"ExpirationTimestamp"},
+        "VendedS3Path":{"shape":"PathStringList"}
       }
     },
     "GetWorkUnitResultsRequest":{
@@ -1676,6 +1999,12 @@
       "members":{
       }
     },
+    "HashString":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
+    },
     "IAMRoleArn":{
       "type":"string",
       "pattern":"arn:aws:iam::[0-9]*:role/.*"
@@ -1689,6 +2018,8 @@
       "max":255,
       "min":1
     },
+    "IdentityCenterInstanceArn":{"type":"string"},
+    "IdentityString":{"type":"string"},
     "Integer":{
       "type":"integer",
       "box":true
@@ -1741,6 +2072,27 @@
       "type":"list",
       "member":{"shape":"LFTagError"}
     },
+    "LFTagExpression":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NameString"},
+        "Description":{"shape":"DescriptionString"},
+        "CatalogId":{"shape":"CatalogIdString"},
+        "Expression":{"shape":"Expression"}
+      }
+    },
+    "LFTagExpressionResource":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "Name":{"shape":"NameString"}
+      }
+    },
+    "LFTagExpressionsList":{
+      "type":"list",
+      "member":{"shape":"LFTagExpression"}
+    },
     "LFTagKey":{
       "type":"string",
       "max":128,
@@ -1773,14 +2125,12 @@
     },
     "LFTagPolicyResource":{
       "type":"structure",
-      "required":[
-        "ResourceType",
-        "Expression"
-      ],
+      "required":["ResourceType"],
       "members":{
         "CatalogId":{"shape":"CatalogIdString"},
         "ResourceType":{"shape":"ResourceType"},
-        "Expression":{"shape":"Expression"}
+        "Expression":{"shape":"Expression"},
+        "ExpressionName":{"shape":"NameString"}
       }
     },
     "LFTagValue":{
@@ -1800,6 +2150,7 @@
       "members":{
         "Resource":{"shape":"Resource"},
         "Principal":{"shape":"DataLakePrincipal"},
+        "Condition":{"shape":"Condition"},
         "LastModified":{"shape":"LastModifiedTimestamp"},
         "LastUpdatedBy":{"shape":"NameString"}
       }
@@ -1821,6 +2172,21 @@
       "type":"structure",
       "members":{
         "DataCellsFilters":{"shape":"DataCellsFilterList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListLFTagExpressionsRequest":{
+      "type":"structure",
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "MaxResults":{"shape":"PageSize"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListLFTagExpressionsResponse":{
+      "type":"structure",
+      "members":{
+        "LFTagExpressions":{"shape":"LFTagExpressionsList"},
         "NextToken":{"shape":"Token"}
       }
     },
@@ -1939,6 +2305,10 @@
       "type":"boolean",
       "box":true
     },
+    "NullableString":{
+      "type":"string",
+      "box":true
+    },
     "NumberOfBytes":{"type":"long"},
     "NumberOfItems":{"type":"long"},
     "NumberOfMilliseconds":{"type":"long"},
@@ -2001,6 +2371,11 @@
       "type":"list",
       "member":{"shape":"PartitionObjects"}
     },
+    "PathString":{"type":"string"},
+    "PathStringList":{
+      "type":"list",
+      "member":{"shape":"PathString"}
+    },
     "Permission":{
       "type":"string",
       "enum":[
@@ -2016,7 +2391,10 @@
         "DATA_LOCATION_ACCESS",
         "CREATE_LF_TAG",
         "ASSOCIATE",
-        "GRANT_WITH_LF_TAG_EXPRESSION"
+        "GRANT_WITH_LF_TAG_EXPRESSION",
+        "CREATE_LF_TAG_EXPRESSION",
+        "CREATE_CATALOG",
+        "SUPER_USER"
       ]
     },
     "PermissionList":{
@@ -2076,6 +2454,7 @@
       "members":{
         "Principal":{"shape":"DataLakePrincipal"},
         "Resource":{"shape":"Resource"},
+        "Condition":{"shape":"Condition"},
         "Permissions":{"shape":"PermissionList"},
         "PermissionsWithGrantOption":{"shape":"PermissionList"},
         "AdditionalDetails":{"shape":"DetailsMap"},
@@ -2121,6 +2500,16 @@
       "type":"string",
       "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
+    },
+    "QuerySessionContext":{
+      "type":"structure",
+      "members":{
+        "QueryId":{"shape":"HashString"},
+        "QueryStartTime":{"shape":"Timestamp"},
+        "ClusterId":{"shape":"NullableString"},
+        "QueryAuthorizationId":{"shape":"HashString"},
+        "AdditionalContext":{"shape":"AdditionalContextMap"}
+      }
     },
     "QueryStateString":{
       "type":"string",
@@ -2177,7 +2566,8 @@
         "DataLocation":{"shape":"DataLocationResource"},
         "DataCellsFilter":{"shape":"DataCellsFilterResource"},
         "LFTag":{"shape":"LFTagKeyResource"},
-        "LFTagPolicy":{"shape":"LFTagPolicyResource"}
+        "LFTagPolicy":{"shape":"LFTagPolicyResource"},
+        "LFTagExpression":{"shape":"LFTagExpressionResource"}
       }
     },
     "ResourceArnString":{"type":"string"},
@@ -2264,6 +2654,11 @@
       "type":"string",
       "max":100000,
       "min":4
+    },
+    "ScopeTarget":{"type":"string"},
+    "ScopeTargets":{
+      "type":"list",
+      "member":{"shape":"ScopeTarget"}
     },
     "SearchDatabasesByLFTagsRequest":{
       "type":"structure",
@@ -2572,6 +2967,24 @@
       "members":{
       }
     },
+    "UpdateLFTagExpressionRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Expression"
+      ],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "Description":{"shape":"DescriptionString"},
+        "CatalogId":{"shape":"CatalogIdString"},
+        "Expression":{"shape":"Expression"}
+      }
+    },
+    "UpdateLFTagExpressionResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateLFTagRequest":{
       "type":"structure",
       "required":["TagKey"],
@@ -2583,6 +2996,20 @@
       }
     },
     "UpdateLFTagResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateLakeFormationIdentityCenterConfigurationRequest":{
+      "type":"structure",
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "ShareRecipients":{"shape":"DataLakePrincipalList"},
+        "ApplicationStatus":{"shape":"ApplicationStatus"},
+        "ExternalFiltering":{"shape":"ExternalFilteringConfiguration"}
+      }
+    },
+    "UpdateLakeFormationIdentityCenterConfigurationResponse":{
       "type":"structure",
       "members":{
       }

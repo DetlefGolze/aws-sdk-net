@@ -29,16 +29,17 @@ namespace Amazon.S3.Model
     /// 
     ///  <note> 
     /// <para>
-    /// In this operation, you provide part data in your request. However, you have an option
-    /// to specify your existing Amazon S3 object as a data source for the part you are uploading.
-    /// To upload a part from an existing object, you use the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html">UploadPartCopy</a>
+    /// In this operation, you provide new data as a part of an object in your request. However,
+    /// you have an option to specify your existing Amazon S3 object as a data source for
+    /// the part you are uploading. To upload a part from an existing object, you use the
+    /// <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html">UploadPartCopy</a>
     /// operation. 
     /// </para>
     ///  </note> 
     /// <para>
     /// You must initiate a multipart upload (see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html">CreateMultipartUpload</a>)
     /// before you can upload any part. In response to your initiate request, Amazon S3 returns
-    /// an upload ID, a unique identifier, that you must include in your upload part request.
+    /// an upload ID, a unique identifier that you must include in your upload part request.
     /// </para>
     ///  
     /// <para>
@@ -53,62 +54,89 @@ namespace Amazon.S3.Model
     /// see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/qfacts.html">Multipart
     /// upload limits</a> in the <i>Amazon S3 User Guide</i>.
     /// </para>
-    ///  
+    ///  <note> 
     /// <para>
-    /// To ensure that data is not corrupted when traversing the network, specify the <code>Content-MD5</code>
-    /// header in the upload part request. Amazon S3 checks the part data against the provided
-    /// MD5 value. If they do not match, Amazon S3 returns an error. 
+    /// After you initiate multipart upload and upload one or more parts, you must either
+    /// complete or abort multipart upload in order to stop getting charged for storage of
+    /// the uploaded parts. Only after you either complete or abort multipart upload, Amazon
+    /// S3 frees up the parts storage and stops charging you for the parts storage.
     /// </para>
-    ///  
-    /// <para>
-    /// If the upload request is signed with Signature Version 4, then Amazon Web Services
-    /// S3 uses the <code>x-amz-content-sha256</code> header as a checksum instead of <code>Content-MD5</code>.
-    /// For more information see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-auth-using-authorization-header.html">Authenticating
-    /// Requests: Using the Authorization Header (Amazon Web Services Signature Version 4)</a>.
-    /// 
-    /// </para>
-    ///  
-    /// <para>
-    ///  <b>Note:</b> After you initiate multipart upload and upload one or more parts, you
-    /// must either complete or abort multipart upload in order to stop getting charged for
-    /// storage of the uploaded parts. Only after you either complete or abort multipart upload,
-    /// Amazon S3 frees up the parts storage and stops charging you for the parts storage.
-    /// </para>
-    ///  
+    ///  </note> 
     /// <para>
     /// For more information on multipart uploads, go to <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html">Multipart
     /// Upload Overview</a> in the <i>Amazon S3 User Guide </i>.
     /// </para>
-    ///  
+    ///  <note> 
     /// <para>
-    /// For information on the permissions required to use the multipart upload API, go to
-    /// <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuAndPermissions.html">Multipart
+    ///  <b>Directory buckets</b> - For directory buckets, you must make requests for this
+    /// API operation to the Zonal endpoint. These endpoints support virtual-hosted-style
+    /// requests in the format <c>https://<i>bucket_name</i>.s3express-<i>az_id</i>.<i>region</i>.amazonaws.com/<i>key-name</i>
+    /// </c>. Path-style requests are not supported. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-Regions-and-Zones.html">Regional
+    /// and Zonal endpoints</a> in the <i>Amazon S3 User Guide</i>.
+    /// </para>
+    ///  </note> <dl> <dt>Permissions</dt> <dd> <ul> <li> 
+    /// <para>
+    ///  <b>General purpose bucket permissions</b> - For information on the permissions required
+    /// to use the multipart upload API, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuAndPermissions.html">Multipart
     /// Upload and Permissions</a> in the <i>Amazon S3 User Guide</i>.
     /// </para>
-    ///  
+    ///  </li> <li> 
     /// <para>
-    /// You can optionally request server-side encryption where Amazon S3 encrypts your data
-    /// as it writes it to disks in its data centers and decrypts it for you when you access
-    /// it. You have the option of providing your own encryption key, or you can use the Amazon
-    /// Web Services managed encryption keys. If you choose to provide your own encryption
-    /// key, the request headers you provide in the request must match the headers you used
-    /// in the request to initiate the upload by using <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html">CreateMultipartUpload</a>.
-    /// For more information, go to <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html">Using
-    /// Server-Side Encryption</a> in the <i>Amazon S3 User Guide</i>.
+    ///  <b>Directory bucket permissions</b> - To grant access to this API operation on a
+    /// directory bucket, we recommend that you use the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateSession.html">
+    /// <c>CreateSession</c> </a> API operation for session-based authorization. Specifically,
+    /// you grant the <c>s3express:CreateSession</c> permission to the directory bucket in
+    /// a bucket policy or an IAM identity-based policy. Then, you make the <c>CreateSession</c>
+    /// API call on the bucket to obtain a session token. With the session token in your request
+    /// header, you can make API requests to this operation. After the session token expires,
+    /// you make another <c>CreateSession</c> API call to generate a new session token for
+    /// use. Amazon Web Services CLI or SDKs create session and refresh the session token
+    /// automatically to avoid service interruptions when a session expires. For more information
+    /// about authorization, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateSession.html">
+    /// <c>CreateSession</c> </a>.
+    /// </para>
+    ///  </li> </ul> </dd> <dt>Data integrity</dt> <dd> 
+    /// <para>
+    ///  <b>General purpose bucket</b> - To ensure that data is not corrupted traversing the
+    /// network, specify the <c>Content-MD5</c> header in the upload part request. Amazon
+    /// S3 checks the part data against the provided MD5 value. If they do not match, Amazon
+    /// S3 returns an error. If the upload request is signed with Signature Version 4, then
+    /// Amazon Web Services S3 uses the <c>x-amz-content-sha256</c> header as a checksum instead
+    /// of <c>Content-MD5</c>. For more information see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-auth-using-authorization-header.html">Authenticating
+    /// Requests: Using the Authorization Header (Amazon Web Services Signature Version 4)</a>.
+    /// 
+    /// </para>
+    ///  <note> 
+    /// <para>
+    ///  <b>Directory buckets</b> - MD5 is not supported by directory buckets. You can use
+    /// checksum algorithms to check object integrity.
+    /// </para>
+    ///  </note> </dd> <dt>Encryption</dt> <dd> <ul> <li> 
+    /// <para>
+    ///  <b>General purpose bucket</b> - Server-side encryption is for data encryption at
+    /// rest. Amazon S3 encrypts your data as it writes it to disks in its data centers and
+    /// decrypts it when you access it. You have mutually exclusive options to protect data
+    /// using server-side encryption in Amazon S3, depending on how you choose to manage the
+    /// encryption keys. Specifically, the encryption key options are Amazon S3 managed keys
+    /// (SSE-S3), Amazon Web Services KMS keys (SSE-KMS), and Customer-Provided Keys (SSE-C).
+    /// Amazon S3 encrypts data with server-side encryption using Amazon S3 managed keys (SSE-S3)
+    /// by default. You can optionally tell Amazon S3 to encrypt data at rest using server-side
+    /// encryption with other key options. The option you use depends on whether you want
+    /// to use KMS keys (SSE-KMS) or provide your own encryption key (SSE-C).
     /// </para>
     ///  
     /// <para>
-    /// Server-side encryption is supported by the S3 Multipart Upload actions. Unless you
-    /// are using a customer-provided encryption key, you don't need to specify the encryption
-    /// parameters in each UploadPart request. Instead, you only need to specify the server-side
-    /// encryption parameters in the initial Initiate Multipart request. For more information,
-    /// see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html">CreateMultipartUpload</a>.
+    /// Server-side encryption is supported by the S3 Multipart Upload operations. Unless
+    /// you are using a customer-provided encryption key (SSE-C), you don't need to specify
+    /// the encryption parameters in each UploadPart request. Instead, you only need to specify
+    /// the server-side encryption parameters in the initial Initiate Multipart request. For
+    /// more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html">CreateMultipartUpload</a>.
     /// </para>
     ///  
     /// <para>
-    /// If you requested server-side encryption using a customer-provided encryption key in
-    /// your initiate multipart upload request, you must provide identical encryption information
-    /// in each part upload using the following headers.
+    /// If you request server-side encryption using a customer-provided encryption key (SSE-C)
+    /// in your initiate multipart upload request, you must provide identical encryption information
+    /// in each part upload using the following request headers.
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -122,30 +150,40 @@ namespace Amazon.S3.Model
     /// <para>
     /// x-amz-server-side-encryption-customer-key-MD5
     /// </para>
+    ///  </li> </ul> </li> <li> 
+    /// <para>
+    ///  <b>Directory bucket</b> - For directory buckets, only server-side encryption with
+    /// Amazon S3 managed keys (SSE-S3) (<c>AES256</c>) is supported. 
+    /// </para>
     ///  </li> </ul> 
     /// <para>
-    ///  <code>UploadPart</code> has the following special errors:
+    ///  For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html">Using
+    /// Server-Side Encryption</a> in the <i>Amazon S3 User Guide</i>.
     /// </para>
-    ///  <ul> <li> <ul> <li> 
+    ///  </dd> <dt>Special errors</dt> <dd> <ul> <li> 
     /// <para>
-    ///  <i>Code: NoSuchUpload</i> 
+    /// Error Code: <c>NoSuchUpload</c> 
     /// </para>
-    ///  </li> <li> 
+    ///  <ul> <li> 
     /// <para>
-    ///  <i>Cause: The specified multipart upload does not exist. The upload ID might be invalid,
-    /// or the multipart upload might have been aborted or completed.</i> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <i> HTTP Status Code: 404 Not Found </i> 
+    /// Description: The specified multipart upload does not exist. The upload ID might be
+    /// invalid, or the multipart upload might have been aborted or completed.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <i>SOAP Fault Code Prefix: Client</i> 
+    /// HTTP Status Code: 404 Not Found 
     /// </para>
-    ///  </li> </ul> </li> </ul> 
+    ///  </li> <li> 
     /// <para>
-    /// The following operations are related to <code>UploadPart</code>:
+    /// SOAP Fault Code Prefix: Client
+    /// </para>
+    ///  </li> </ul> </li> </ul> </dd> <dt>HTTP Host header syntax</dt> <dd> 
+    /// <para>
+    ///  <b>Directory buckets </b> - The HTTP Host header syntax is <c> <i>Bucket_name</i>.s3express-<i>az_id</i>.<i>region</i>.amazonaws.com</c>.
+    /// </para>
+    ///  </dd> </dl> 
+    /// <para>
+    /// The following operations are related to <c>UploadPart</c>:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -221,17 +259,34 @@ namespace Amazon.S3.Model
         /// </para>
         ///  
         /// <para>
-        /// When using this action with an access point, you must direct requests to the access
-        /// point hostname. The access point hostname takes the form <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com.
+        ///  <b>Directory buckets</b> - When you use this operation with a directory bucket, you
+        /// must use virtual-hosted-style requests in the format <c> <i>Bucket_name</i>.s3express-<i>az_id</i>.<i>region</i>.amazonaws.com</c>.
+        /// Path-style requests are not supported. Directory bucket names must be unique in the
+        /// chosen Availability Zone. Bucket names must follow the format <c> <i>bucket_base_name</i>--<i>az-id</i>--x-s3</c>
+        /// (for example, <c> <i>DOC-EXAMPLE-BUCKET</i>--<i>usw2-az1</i>--x-s3</c>). For information
+        /// about bucket naming restrictions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html">Directory
+        /// bucket naming rules</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Access points</b> - When you use this action with an access point, you must provide
+        /// the alias of the access point in place of the bucket name or specify the access point
+        /// ARN. When using the access point ARN, you must direct requests to the access point
+        /// hostname. The access point hostname takes the form <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com.
         /// When using this action with an access point through the Amazon Web Services SDKs,
         /// you provide the access point ARN in place of the bucket name. For more information
         /// about access point ARNs, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html">Using
         /// access points</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
-        ///  
+        ///  <note> 
         /// <para>
-        /// When you use this action with Amazon S3 on Outposts, you must direct requests to the
-        /// S3 on Outposts hostname. The S3 on Outposts hostname takes the form <code> <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</code>.
+        /// Access points and Object Lambda access points are not supported by directory buckets.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        ///  <b>S3 on Outposts</b> - When you use this action with Amazon S3 on Outposts, you
+        /// must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes
+        /// the form <c> <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</c>.
         /// When you use this action with S3 on Outposts through the Amazon Web Services SDKs,
         /// you provide the Outposts access point ARN in place of the bucket name. For more information
         /// about S3 on Outposts ARNs, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html">What
@@ -253,14 +308,23 @@ namespace Amazon.S3.Model
         /// <summary>
         /// Gets and sets the property ChecksumAlgorithm. 
         /// <para>
-        /// Indicates the algorithm used to create the checksum for the object. Amazon S3 will
-        /// fail the request with a 400 error if there is no checksum associated with the object.
-        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">
-        /// Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.
+        /// Indicates the algorithm used to create the checksum for the object when you use the
+        /// SDK. This header will not provide any additional functionality if you don't use the
+        /// SDK. When you send this header, there must be a corresponding <c>x-amz-checksum</c>
+        /// or <c>x-amz-trailer</c> header sent. Otherwise, Amazon S3 fails the request
+        /// with the HTTP status code <c>400 Bad Request</c>. For more information, see
+        /// <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+        /// object integrity</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// If you provide an individual checksum, Amazon S3 will ignore any provided <code>ChecksumAlgorithm</code>.
+        /// If you provide an individual checksum, Amazon S3 ignores any provided <c>ChecksumAlgorithm</c>
+        /// parameter.
+        /// </para>
+        ///  
+        /// <para>
+        /// This checksum algorithm must be the same for all parts and it match the checksum value
+        /// supplied in the <c>CreateMultipartUpload</c> request.
         /// </para>
         /// </summary>
         public ChecksumAlgorithm ChecksumAlgorithm
@@ -280,7 +344,7 @@ namespace Amazon.S3.Model
         /// <para>
         /// This header can be used as a data integrity check to verify that the data received
         /// is the same data that was originally sent. This specifies the base64-encoded, 32-bit
-        /// CRC32 checksum of the object. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">
+        /// CRC-32 checksum of the object. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">
         /// Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         /// </summary>
@@ -301,7 +365,7 @@ namespace Amazon.S3.Model
         /// <para>
         /// This header can be used as a data integrity check to verify that the data received
         /// is the same data that was originally sent. This specifies the base64-encoded, 32-bit
-        /// CRC32C checksum of the object. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">
+        /// CRC-32C checksum of the object. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">
         /// Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         /// </summary>
@@ -362,8 +426,9 @@ namespace Amazon.S3.Model
         /// <summary>
         /// Gets and sets the property ExpectedBucketOwner. 
         /// <para>
-        /// The account ID of the expected bucket owner. If the bucket is owned by a different
-        /// account, the request will fail with an HTTP <code>403 (Access Denied)</code> error.
+        /// The account ID of the expected bucket owner. If the account ID that you provide does
+        /// not match the actual owner of the bucket, the request fails with the HTTP status code
+        /// <c>403 Forbidden</c> (access denied).
         /// </para>
         /// </summary>
         public string ExpectedBucketOwner
@@ -385,10 +450,19 @@ namespace Amazon.S3.Model
         /// The key of the object.
         /// </summary>
         /// <remarks>
+        /// <para>
         /// This property will be used as part of the resource path of the HTTP request. In .NET the System.Uri class
-        /// is used to construct the uri for the request. The System.Uri class will canonicalize the uri string by compacting characters like "..". /// For example an object key of "foo/../bar/file.txt" will be transformed into "bar/file.txt" because the ".." 
-        /// is interpreted as use parent directory. For further information view the documentation for 
-        /// the Uri class: https://docs.microsoft.com/en-us/dotnet/api/system.uri
+        /// is used to construct the uri for the request. The System.Uri class will canonicalize the uri string by compacting characters like "..". 
+        /// For example an object key of "foo/../bar/file.txt" will be transformed into "bar/file.txt" because the ".." 
+        /// is interpreted as use parent directory.
+        /// </para>
+        /// <para>
+        /// Starting with .NET 8, the AWS .NET SDK disables System.Uri's feature of canonicalizing the resource path. This allows S3 keys like
+        /// "foo/../bar/file.txt" to work correctly with the AWS .NET SDK.
+        /// </para>
+        /// <para>
+        /// For further information view the documentation for the Uri class: https://docs.microsoft.com/en-us/dotnet/api/system.uri
+        /// </para>
         /// </remarks>
         public string Key
         {
@@ -441,6 +515,11 @@ namespace Amazon.S3.Model
         /// <para>
         /// Specifies the algorithm to use to when encrypting the object (for example, AES256).
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public ServerSideEncryptionCustomerMethod ServerSideEncryptionCustomerMethod
         {
@@ -468,6 +547,11 @@ namespace Amazon.S3.Model
         /// <para>
         /// Important: Amazon S3 does not store the encryption key you provide.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         [AWSProperty(Sensitive=true)]
         public string ServerSideEncryptionCustomerProvidedKey
@@ -488,6 +572,11 @@ namespace Amazon.S3.Model
         /// <summary>
         /// The MD5 of the customer encryption key specified in the ServerSideEncryptionCustomerProvidedKey property. The MD5 is
         /// base 64 encoded. This field is optional, the SDK will calculate the MD5 if this is not set.
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public string ServerSideEncryptionCustomerProvidedKeyMD5
         {
@@ -531,16 +620,43 @@ namespace Amazon.S3.Model
 
         /// <summary>
         /// <para><b>WARNING: Setting DisableMD5Stream to true disables the MD5 data integrity check 
-        /// on this request.</b></para>
-        /// <para>When true, MD5Stream will not be used in the upload request. This may increase 
-        /// upload performance under high CPU loads. The default value is null. When null, the 
-        /// AWSConfigsS3.DisableMD5Stream property value will be used.</para>
+        /// on upload requests.This property has been deprecated in favor of <see cref="DisableDefaultChecksumValidation"/>
+        /// Setting the value of DisableMD5Stream will set DisableDefaultChecksumValidation to the same value 
+        /// and vice versa. This property was left here for backwards compatibility.</b></para>
+        /// <para> 
+        /// When true, MD5Stream will not be used in upload requests. This may increase upload 
+        /// performance under high CPU loads. The default value is false. Set this value to true to 
+        /// disable MD5Stream use in all S3 upload requests or override this value per request by 
+        /// setting the DisableMD5Stream property on PutObjectRequest, UploadPartRequest, or 
+        /// TransferUtilityUploadRequest.</para>
         /// <para>MD5Stream, SigV4 payload signing, and HTTPS each provide some data integrity 
         /// verification. If DisableMD5Stream is true and DisablePayloadSigning is true, then the 
         /// possibility of data corruption is completely dependant on HTTPS being the only remaining 
         /// source of data integrity verification.</para>
         /// </summary>
-        public bool? DisableMD5Stream { get; set; }
+        [Obsolete("This property is deprecated in favor of DisableDefaultChecksumValidation.")]
+        public bool? DisableMD5Stream 
+        {
+            get { return DisableDefaultChecksumValidation; }
+            set { DisableDefaultChecksumValidation = value; }
+        }
+
+        /// <summary>
+        /// <para><b>WARNING: Setting DisableDefaultChecksumValidation to true disables the default data 
+        /// integrity check on upload requests.</b></para>
+        /// <para>When true, checksum verification will not be used in upload requests. This may increase upload 
+        /// performance under high CPU loads. Setting DisableDefaultChecksumValidation sets the deprecated property
+        /// DisableMD5Stream to the same value. The default value is false. Set this value to true to 
+        /// disable the default checksum validation used in all S3 upload requests or override this value per
+        /// request by setting the DisableDefaultChecksumValidation property on <see cref="S3.Model.PutObjectRequest"/>,
+        /// <see cref="S3.Model.UploadPartRequest"/>, or <see cref="S3.Transfer.TransferUtilityUploadRequest"/>.</para>
+        /// <para>Checksums, SigV4 payload signing, and HTTPS each provide some data integrity 
+        /// verification. If DisableDefaultChecksumValidation is true and DisablePayloadSigning is true, then the 
+        /// possibility of data corruption is completely dependent on HTTPS being the only remaining 
+        /// source of data integrity verification.</para>
+        /// <para>This flag is a rename of the <see cref="DisableMD5Stream"/> property</para>
+        /// </summary>
+        public bool? DisableDefaultChecksumValidation { get; set; }
 
         /// <summary>
         /// An MD5 digest for the part.

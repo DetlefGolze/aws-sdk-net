@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.ConfigService.Model
     /// <para>
     /// Only a management account and a delegated administrator account can delete an organization
     /// Config rule. When calling this API with a delegated administrator, you must ensure
-    /// Organizations <code>ListDelegatedAdministrator</code> permissions are added.
+    /// Organizations <c>ListDelegatedAdministrator</c> permissions are added.
     /// </para>
     ///  
     /// <para>

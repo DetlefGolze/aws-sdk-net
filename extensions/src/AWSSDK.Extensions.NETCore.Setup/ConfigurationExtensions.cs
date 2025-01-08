@@ -28,6 +28,9 @@ namespace Microsoft.Extensions.Configuration
     /// This class adds extension methods to IConfiguration making it easier to pull out
     /// AWS configuration options.
     /// </summary>
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode(Amazon.Extensions.NETCore.Setup.InternalConstants.RequiresUnreferencedCodeMessage)]
+#endif
     public static class ConfigurationExtensions
     {
         /// <summary>
@@ -178,6 +181,11 @@ namespace Microsoft.Extensions.Configuration
             if (!string.IsNullOrEmpty(section["SessionName"]))
             {
                 options.SessionName = section["SessionName"];
+            }
+
+            if (!string.IsNullOrEmpty(section["ExternalId"]))
+            {
+                options.ExternalId = section["ExternalId"];
             }
 
             var loggingSection = section.GetSection("Logging");

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// The rules to redirect the request if the condition in <code>Condition</code> is met.
+    /// The rules to redirect the request if the condition in <c>Condition</c> is met.
     /// </summary>
     public partial class AwsS3BucketWebsiteConfigurationRoutingRuleRedirect
     {
@@ -101,7 +102,7 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Cannot be provided if <code>ReplaceKeyWith</code> is present.
+        /// Cannot be provided if <c>ReplaceKeyWith</c> is present.
         /// </para>
         /// </summary>
         public string ReplaceKeyPrefixWith
@@ -123,7 +124,7 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Cannot be provided if <code>ReplaceKeyPrefixWith</code> is present.
+        /// Cannot be provided if <c>ReplaceKeyPrefixWith</c> is present.
         /// </para>
         /// </summary>
         public string ReplaceKeyWith

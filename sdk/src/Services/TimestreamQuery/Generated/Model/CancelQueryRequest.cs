@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TimestreamQuery.Model
 {
     /// <summary>
     /// Container for the parameters to the CancelQuery operation.
     /// Cancels a query that has been issued. Cancellation is provided only if the query
     /// has not completed running before the cancellation request was issued. Because cancellation
-    /// is an idempotent operation, subsequent cancellation requests will return a <code>CancellationMessage</code>,
+    /// is an idempotent operation, subsequent cancellation requests will return a <c>CancellationMessage</c>,
     /// indicating that the query has already been canceled. See <a href="https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.cancel-query.html">code
     /// sample</a> for details.
     /// </summary>
@@ -43,8 +44,8 @@ namespace Amazon.TimestreamQuery.Model
         /// <summary>
         /// Gets and sets the property QueryId. 
         /// <para>
-        ///  The ID of the query that needs to be cancelled. <code>QueryID</code> is returned
-        /// as part of the query result. 
+        ///  The ID of the query that needs to be cancelled. <c>QueryID</c> is returned as part
+        /// of the query result. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

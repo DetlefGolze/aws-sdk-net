@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class AwsBackupBackupPlanAdvancedBackupSettingsDetails
     {
-        private Dictionary<string, string> _backupOptions = new Dictionary<string, string>();
+        private Dictionary<string, string> _backupOptions = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _resourceType;
 
         /// <summary>
@@ -44,12 +45,12 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Set to <code>WindowsVSS: enabled</code> to enable the WindowsVSS backup option and
-        /// create a Windows VSS backup.
+        /// Set to <c>WindowsVSS: enabled</c> to enable the WindowsVSS backup option and create
+        /// a Windows VSS backup.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Set to <code>WindowsVSS: disabled</code> to create a regular backup. The <code>WindowsVSS</code>
+        /// Set to <c>WindowsVSS: disabled</c> to create a regular backup. The <c>WindowsVSS</c>
         /// option is not enabled by default.
         /// </para>
         ///  </li> </ul>
@@ -63,7 +64,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if BackupOptions property is set
         internal bool IsSetBackupOptions()
         {
-            return this._backupOptions != null && this._backupOptions.Count > 0; 
+            return this._backupOptions != null && (this._backupOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// The only valid value is <code>EC2</code>.
+        /// The only valid value is <c>EC2</c>.
         /// </para>
         /// </summary>
         public string ResourceType

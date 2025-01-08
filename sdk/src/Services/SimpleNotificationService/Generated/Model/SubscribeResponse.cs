@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.SimpleNotificationService.Model
         /// Gets and sets the property SubscriptionArn. 
         /// <para>
         /// The ARN of the subscription if it is confirmed, or the string "pending confirmation"
-        /// if the subscription requires confirmation. However, if the API request parameter <code>ReturnSubscriptionArn</code>
+        /// if the subscription requires confirmation. However, if the API request parameter <c>ReturnSubscriptionArn</c>
         /// is true, then the value is always the subscription ARN, even if the subscription requires
         /// confirmation.
         /// </para>

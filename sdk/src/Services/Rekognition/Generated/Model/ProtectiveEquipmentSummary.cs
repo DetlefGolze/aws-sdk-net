@@ -26,33 +26,33 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// Summary information for required items of personal protective equipment (PPE) detected
     /// on persons by a call to <a>DetectProtectiveEquipment</a>. You specify the required
-    /// type of PPE in the <code>SummarizationAttributes</code> (<a>ProtectiveEquipmentSummarizationAttributes</a>)
+    /// type of PPE in the <c>SummarizationAttributes</c> (<a>ProtectiveEquipmentSummarizationAttributes</a>)
     /// input parameter. The summary includes which persons were detected wearing the required
-    /// personal protective equipment (<code>PersonsWithRequiredEquipment</code>), which persons
-    /// were detected as not wearing the required PPE (<code>PersonsWithoutRequiredEquipment</code>),
-    /// and the persons in which a determination could not be made (<code>PersonsIndeterminate</code>).
+    /// personal protective equipment (<c>PersonsWithRequiredEquipment</c>), which persons
+    /// were detected as not wearing the required PPE (<c>PersonsWithoutRequiredEquipment</c>),
+    /// and the persons in which a determination could not be made (<c>PersonsIndeterminate</c>).
     /// 
     ///  
     /// <para>
     /// To get a total for each category, use the size of the field array. For example, to
     /// find out how many people were detected as wearing the specified PPE, use the size
-    /// of the <code>PersonsWithRequiredEquipment</code> array. If you want to find out more
-    /// about a person, such as the location (<a>BoundingBox</a>) of the person on the image,
-    /// use the person ID in each array element. Each person ID matches the ID field of a
-    /// <a>ProtectiveEquipmentPerson</a> object returned in the <code>Persons</code> array
-    /// by <code>DetectProtectiveEquipment</code>.
+    /// of the <c>PersonsWithRequiredEquipment</c> array. If you want to find out more about
+    /// a person, such as the location (<a>BoundingBox</a>) of the person on the image, use
+    /// the person ID in each array element. Each person ID matches the ID field of a <a>ProtectiveEquipmentPerson</a>
+    /// object returned in the <c>Persons</c> array by <c>DetectProtectiveEquipment</c>.
     /// </para>
     /// </summary>
     public partial class ProtectiveEquipmentSummary
     {
-        private List<int> _personsIndeterminate = new List<int>();
-        private List<int> _personsWithoutRequiredEquipment = new List<int>();
-        private List<int> _personsWithRequiredEquipment = new List<int>();
+        private List<int> _personsIndeterminate = AWSConfigs.InitializeCollections ? new List<int>() : null;
+        private List<int> _personsWithoutRequiredEquipment = AWSConfigs.InitializeCollections ? new List<int>() : null;
+        private List<int> _personsWithRequiredEquipment = AWSConfigs.InitializeCollections ? new List<int>() : null;
 
         /// <summary>
         /// Gets and sets the property PersonsIndeterminate. 
@@ -70,15 +70,15 @@ namespace Amazon.Rekognition.Model
         // Check to see if PersonsIndeterminate property is set
         internal bool IsSetPersonsIndeterminate()
         {
-            return this._personsIndeterminate != null && this._personsIndeterminate.Count > 0; 
+            return this._personsIndeterminate != null && (this._personsIndeterminate.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PersonsWithoutRequiredEquipment. 
         /// <para>
         /// An array of IDs for persons who are not wearing all of the types of PPE specified
-        /// in the <code>RequiredEquipmentTypes</code> field of the detected personal protective
-        /// equipment. 
+        /// in the <c>RequiredEquipmentTypes</c> field of the detected personal protective equipment.
+        /// 
         /// </para>
         /// </summary>
         public List<int> PersonsWithoutRequiredEquipment
@@ -90,7 +90,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if PersonsWithoutRequiredEquipment property is set
         internal bool IsSetPersonsWithoutRequiredEquipment()
         {
-            return this._personsWithoutRequiredEquipment != null && this._personsWithoutRequiredEquipment.Count > 0; 
+            return this._personsWithoutRequiredEquipment != null && (this._personsWithoutRequiredEquipment.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if PersonsWithRequiredEquipment property is set
         internal bool IsSetPersonsWithRequiredEquipment()
         {
-            return this._personsWithRequiredEquipment != null && this._personsWithRequiredEquipment.Count > 0; 
+            return this._personsWithRequiredEquipment != null && (this._personsWithRequiredEquipment.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

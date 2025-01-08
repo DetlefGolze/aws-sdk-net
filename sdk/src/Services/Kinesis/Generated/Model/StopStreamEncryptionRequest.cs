@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kinesis.Model
 {
     /// <summary>
@@ -34,18 +35,19 @@ namespace Amazon.Kinesis.Model
     /// 
     ///  <note> 
     /// <para>
-    /// When invoking this API, it is recommended you use the <code>StreamARN</code> input
-    /// parameter rather than the <code>StreamName</code> input parameter.
+    /// When invoking this API, you must use either the <c>StreamARN</c> or the <c>StreamName</c>
+    /// parameter, or both. It is recommended that you use the <c>StreamARN</c> input parameter
+    /// when you invoke this API.
     /// </para>
     ///  </note> 
     /// <para>
     /// Stopping encryption is an asynchronous operation. Upon receiving the request, Kinesis
-    /// Data Streams returns immediately and sets the status of the stream to <code>UPDATING</code>.
+    /// Data Streams returns immediately and sets the status of the stream to <c>UPDATING</c>.
     /// After the update is complete, Kinesis Data Streams sets the status of the stream back
-    /// to <code>ACTIVE</code>. Stopping encryption normally takes a few seconds to complete,
-    /// but it can take minutes. You can continue to read and write data to your stream while
-    /// its status is <code>UPDATING</code>. Once the status of the stream is <code>ACTIVE</code>,
-    /// records written to the stream are no longer encrypted by Kinesis Data Streams. 
+    /// to <c>ACTIVE</c>. Stopping encryption normally takes a few seconds to complete, but
+    /// it can take minutes. You can continue to read and write data to your stream while
+    /// its status is <c>UPDATING</c>. Once the status of the stream is <c>ACTIVE</c>, records
+    /// written to the stream are no longer encrypted by Kinesis Data Streams. 
     /// </para>
     ///  
     /// <para>
@@ -54,10 +56,10 @@ namespace Amazon.Kinesis.Model
     /// </para>
     ///  
     /// <para>
-    /// Note: It can take up to 5 seconds after the stream is in an <code>ACTIVE</code> status
-    /// before all records written to the stream are no longer subject to encryption. After
-    /// you disabled encryption, you can verify that encryption is not applied by inspecting
-    /// the API response from <code>PutRecord</code> or <code>PutRecords</code>.
+    /// Note: It can take up to 5 seconds after the stream is in an <c>ACTIVE</c> status before
+    /// all records written to the stream are no longer subject to encryption. After you disabled
+    /// encryption, you can verify that encryption is not applied by inspecting the API response
+    /// from <c>PutRecord</c> or <c>PutRecords</c>.
     /// </para>
     /// </summary>
     public partial class StopStreamEncryptionRequest : AmazonKinesisRequest
@@ -70,7 +72,7 @@ namespace Amazon.Kinesis.Model
         /// <summary>
         /// Gets and sets the property EncryptionType. 
         /// <para>
-        /// The encryption type. The only valid value is <code>KMS</code>.
+        /// The encryption type. The only valid value is <c>KMS</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -92,30 +94,28 @@ namespace Amazon.Kinesis.Model
         /// The GUID for the customer-managed Amazon Web Services KMS key to use for encryption.
         /// This value can be a globally unique identifier, a fully specified Amazon Resource
         /// Name (ARN) to either an alias or a key, or an alias name prefixed by "alias/".You
-        /// can also use a master key owned by Kinesis Data Streams by specifying the alias <code>aws/kinesis</code>.
+        /// can also use a master key owned by Kinesis Data Streams by specifying the alias <c>aws/kinesis</c>.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Key ARN example: <code>arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012</code>
+        /// Key ARN example: <c>arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012</c>
         /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Alias ARN example: <code>arn:aws:kms:us-east-1:123456789012:alias/MyAliasName</code>
-        /// 
+        /// Alias ARN example: <c>arn:aws:kms:us-east-1:123456789012:alias/MyAliasName</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Globally unique key ID example: <code>12345678-1234-1234-1234-123456789012</code>
-        /// 
+        /// Globally unique key ID example: <c>12345678-1234-1234-1234-123456789012</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Alias name example: <code>alias/MyAliasName</code> 
+        /// Alias name example: <c>alias/MyAliasName</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Master key owned by Kinesis Data Streams: <code>alias/aws/kinesis</code> 
+        /// Master key owned by Kinesis Data Streams: <c>alias/aws/kinesis</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointEmail.Model
 {
     /// <summary>
@@ -35,14 +36,14 @@ namespace Amazon.PinpointEmail.Model
     {
         private bool? _signingEnabled;
         private DkimStatus _status;
-        private List<string> _tokens = new List<string>();
+        private List<string> _tokens = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property SigningEnabled. 
         /// <para>
-        /// If the value is <code>true</code>, then the messages that Amazon Pinpoint sends from
-        /// the identity are DKIM-signed. If the value is <code>false</code>, then the messages
-        /// that Amazon Pinpoint sends from the identity aren't DKIM-signed.
+        /// If the value is <c>true</c>, then the messages that Amazon Pinpoint sends from the
+        /// identity are DKIM-signed. If the value is <c>false</c>, then the messages that Amazon
+        /// Pinpoint sends from the identity aren't DKIM-signed.
         /// </para>
         /// </summary>
         public bool SigningEnabled
@@ -65,29 +66,29 @@ namespace Amazon.PinpointEmail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PENDING</code> – Amazon Pinpoint hasn't yet located the DKIM records in the
-        /// DNS configuration for the domain, but will continue to attempt to locate them.
+        ///  <c>PENDING</c> – Amazon Pinpoint hasn't yet located the DKIM records in the DNS configuration
+        /// for the domain, but will continue to attempt to locate them.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SUCCESS</code> – Amazon Pinpoint located the DKIM records in the DNS configuration
+        ///  <c>SUCCESS</c> – Amazon Pinpoint located the DKIM records in the DNS configuration
         /// for the domain and determined that they're correct. Amazon Pinpoint can now send DKIM-signed
         /// email from the identity.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> – Amazon Pinpoint was unable to locate the DKIM records in the
-        /// DNS settings for the domain, and won't continue to search for them.
+        ///  <c>FAILED</c> – Amazon Pinpoint was unable to locate the DKIM records in the DNS
+        /// settings for the domain, and won't continue to search for them.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TEMPORARY_FAILURE</code> – A temporary issue occurred, which prevented Amazon
-        /// Pinpoint from determining the DKIM status for the domain.
+        ///  <c>TEMPORARY_FAILURE</c> – A temporary issue occurred, which prevented Amazon Pinpoint
+        /// from determining the DKIM status for the domain.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NOT_STARTED</code> – Amazon Pinpoint hasn't yet started searching for the DKIM
-        /// records in the DKIM records for the domain.
+        ///  <c>NOT_STARTED</c> – Amazon Pinpoint hasn't yet started searching for the DKIM records
+        /// in the DKIM records for the domain.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -122,7 +123,7 @@ namespace Amazon.PinpointEmail.Model
         // Check to see if Tokens property is set
         internal bool IsSetTokens()
         {
-            return this._tokens != null && this._tokens.Count > 0; 
+            return this._tokens != null && (this._tokens.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,23 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
-    /// Contains <code>ToxicityCategories</code>, which is a required parameter if you want
-    /// to enable toxicity detection (<code>ToxicityDetection</code>) in your transcription
-    /// request.
+    /// Contains <c>ToxicityCategories</c>, which is a required parameter if you want to enable
+    /// toxicity detection (<c>ToxicityDetection</c>) in your transcription request.
     /// </summary>
     public partial class ToxicityDetectionSettings
     {
-        private List<string> _toxicityCategories = new List<string>();
+        private List<string> _toxicityCategories = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ToxicityCategories. 
         /// <para>
-        ///  If you include <code>ToxicityDetection</code> in your transcription request, you
-        /// must also include <code>ToxicityCategories</code>. The only accepted value for this
-        /// parameter is <code>ALL</code>.
+        ///  If you include <c>ToxicityDetection</c> in your transcription request, you must also
+        /// include <c>ToxicityCategories</c>. The only accepted value for this parameter is <c>ALL</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1)]
@@ -55,7 +54,7 @@ namespace Amazon.TranscribeService.Model
         // Check to see if ToxicityCategories property is set
         internal bool IsSetToxicityCategories()
         {
-            return this._toxicityCategories != null && this._toxicityCategories.Count > 0; 
+            return this._toxicityCategories != null && (this._toxicityCategories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -54,16 +55,34 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
             {
                 if (context.IsStartElement || context.IsAttribute)
                 {
+                    if (context.TestExpression("availabilityZoneId", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.AvailabilityZoneId = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("ipamResourceDiscoveryId", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
                         unmarshalledObject.IpamResourceDiscoveryId = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("ipSource", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.IpSource = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("ipUsage", targetDepth))
                     {
                         var unmarshaller = DoubleUnmarshaller.Instance;
                         unmarshalledObject.IpUsage = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("networkInterfaceAttachmentStatus", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.NetworkInterfaceAttachmentStatus = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("resourceCidr", targetDepth))
@@ -93,6 +112,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                     if (context.TestExpression("resourceTagSet/item", targetDepth))
                     {
                         var unmarshaller = IpamResourceTagUnmarshaller.Instance;
+                        if (unmarshalledObject.ResourceTags == null)
+                        {
+                            unmarshalledObject.ResourceTags = new List<IpamResourceTag>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.ResourceTags.Add(item);
                         continue;
@@ -107,6 +130,12 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = DateTimeUnmarshaller.Instance;
                         unmarshalledObject.SampleTime = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("subnetId", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.SubnetId = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("vpcId", targetDepth))

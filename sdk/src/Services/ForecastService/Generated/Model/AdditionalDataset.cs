@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.ForecastService.Model
     /// </summary>
     public partial class AdditionalDataset
     {
-        private Dictionary<string, List<string>> _configuration = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<string>> _configuration = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
         private string _name;
 
         /// <summary>
@@ -69,7 +70,7 @@ namespace Amazon.ForecastService.Model
         /// </para>
         ///  
         /// <para>
-        /// To enable the Weather Index, do not specify a value for <code>Configuration</code>.
+        /// To enable the Weather Index, do not specify a value for <c>Configuration</c>.
         /// </para>
         ///  
         /// <para>
@@ -81,8 +82,8 @@ namespace Amazon.ForecastService.Model
         /// </para>
         ///  
         /// <para>
-        /// To enable Holidays, set <code>CountryCode</code> to one of the following two-letter
-        /// country codes:
+        /// To enable Holidays, set <c>CountryCode</c> to one of the following two-letter country
+        /// codes:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -359,13 +360,13 @@ namespace Amazon.ForecastService.Model
         // Check to see if Configuration property is set
         internal bool IsSetConfiguration()
         {
-            return this._configuration != null && this._configuration.Count > 0; 
+            return this._configuration != null && (this._configuration.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the additional dataset. Valid names: <code>"holiday"</code> and <code>"weather"</code>.
+        /// The name of the additional dataset. Valid names: <c>"holiday"</c> and <c>"weather"</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=63)]

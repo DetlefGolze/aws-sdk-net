@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
@@ -38,10 +39,9 @@ namespace Amazon.KeyManagementService.Model
     /// 
     ///  
     /// <para>
-    /// The <code>ReEncrypt</code> operation can decrypt ciphertext that was encrypted by
-    /// using a KMS key in an KMS operation, such as <a>Encrypt</a> or <a>GenerateDataKey</a>.
-    /// It can also decrypt ciphertext that was encrypted by using the public key of an <a
-    /// href="https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-concepts.html#asymmetric-cmks">asymmetric
+    /// The <c>ReEncrypt</c> operation can decrypt ciphertext that was encrypted by using
+    /// a KMS key in an KMS operation, such as <a>Encrypt</a> or <a>GenerateDataKey</a>. It
+    /// can also decrypt ciphertext that was encrypted by using the public key of an <a href="https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-concepts.html#asymmetric-cmks">asymmetric
     /// KMS key</a> outside of KMS. However, it cannot decrypt ciphertext produced by other
     /// libraries, such as the <a href="https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/">Amazon
     /// Web Services Encryption SDK</a> or <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html">Amazon
@@ -50,34 +50,34 @@ namespace Amazon.KeyManagementService.Model
     /// </para>
     ///  
     /// <para>
-    /// When you use the <code>ReEncrypt</code> operation, you need to provide information
-    /// for the decrypt operation and the subsequent encrypt operation.
+    /// When you use the <c>ReEncrypt</c> operation, you need to provide information for the
+    /// decrypt operation and the subsequent encrypt operation.
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// If your ciphertext was encrypted under an asymmetric KMS key, you must use the <code>SourceKeyId</code>
+    /// If your ciphertext was encrypted under an asymmetric KMS key, you must use the <c>SourceKeyId</c>
     /// parameter to identify the KMS key that encrypted the ciphertext. You must also supply
     /// the encryption algorithm that was used. This information is required to decrypt the
     /// data.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// If your ciphertext was encrypted under a symmetric encryption KMS key, the <code>SourceKeyId</code>
+    /// If your ciphertext was encrypted under a symmetric encryption KMS key, the <c>SourceKeyId</c>
     /// parameter is optional. KMS can get this information from metadata that it adds to
     /// the symmetric ciphertext blob. This feature adds durability to your implementation
     /// by ensuring that authorized users can decrypt ciphertext decades after it was encrypted,
     /// even if they've lost track of the key ID. However, specifying the source KMS key is
-    /// always recommended as a best practice. When you use the <code>SourceKeyId</code> parameter
+    /// always recommended as a best practice. When you use the <c>SourceKeyId</c> parameter
     /// to specify a KMS key, KMS uses only the KMS key you specify. If the ciphertext was
-    /// encrypted under a different KMS key, the <code>ReEncrypt</code> operation fails. This
-    /// practice ensures that you use the KMS key that you intend.
+    /// encrypted under a different KMS key, the <c>ReEncrypt</c> operation fails. This practice
+    /// ensures that you use the KMS key that you intend.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// To reencrypt the data, you must use the <code>DestinationKeyId</code> parameter to
-    /// specify the KMS key that re-encrypts the data after it is decrypted. If the destination
-    /// KMS key is an asymmetric KMS key, you must also provide the encryption algorithm.
-    /// The algorithm that you choose must be compatible with the KMS key.
+    /// To reencrypt the data, you must use the <c>DestinationKeyId</c> parameter to specify
+    /// the KMS key that re-encrypts the data after it is decrypted. If the destination KMS
+    /// key is an asymmetric KMS key, you must also provide the encryption algorithm. The
+    /// algorithm that you choose must be compatible with the KMS key.
     /// </para>
     ///  <important> 
     /// <para>
@@ -123,8 +123,8 @@ namespace Amazon.KeyManagementService.Model
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// To permit reencryption from or to a KMS key, include the <code>"kms:ReEncrypt*"</code>
-    /// permission in your <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html">key
+    /// To permit reencryption from or to a KMS key, include the <c>"kms:ReEncrypt*"</c> permission
+    /// in your <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html">key
     /// policy</a>. This permission is automatically included in the key policy when you use
     /// the console to create a KMS key. But you must include it manually when you create
     /// a KMS key programmatically or when you use the <a>PutKeyPolicy</a> operation to set
@@ -150,18 +150,23 @@ namespace Amazon.KeyManagementService.Model
     /// <para>
     ///  <a>GenerateDataKeyPair</a> 
     /// </para>
-    ///  </li> </ul>
+    ///  </li> </ul> 
+    /// <para>
+    ///  <b>Eventual consistency</b>: The KMS API follows an eventual consistency model. For
+    /// more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html">KMS
+    /// eventual consistency</a>.
+    /// </para>
     /// </summary>
     public partial class ReEncryptRequest : AmazonKeyManagementServiceRequest
     {
         private MemoryStream _ciphertextBlob;
         private EncryptionAlgorithmSpec _destinationEncryptionAlgorithm;
-        private Dictionary<string, string> _destinationEncryptionContext = new Dictionary<string, string>();
+        private Dictionary<string, string> _destinationEncryptionContext = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _destinationKeyId;
         private bool? _dryRun;
-        private List<string> _grantTokens = new List<string>();
+        private List<string> _grantTokens = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private EncryptionAlgorithmSpec _sourceEncryptionAlgorithm;
-        private Dictionary<string, string> _sourceEncryptionContext = new Dictionary<string, string>();
+        private Dictionary<string, string> _sourceEncryptionContext = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _sourceKeyId;
 
         /// <summary>
@@ -187,8 +192,8 @@ namespace Amazon.KeyManagementService.Model
         /// Gets and sets the property DestinationEncryptionAlgorithm. 
         /// <para>
         /// Specifies the encryption algorithm that KMS will use to reecrypt the data after it
-        /// has decrypted it. The default value, <code>SYMMETRIC_DEFAULT</code>, represents the
-        /// encryption algorithm used for symmetric encryption KMS keys.
+        /// has decrypted it. The default value, <c>SYMMETRIC_DEFAULT</c>, represents the encryption
+        /// algorithm used for symmetric encryption KMS keys.
         /// </para>
         ///  
         /// <para>
@@ -248,21 +253,21 @@ namespace Amazon.KeyManagementService.Model
         // Check to see if DestinationEncryptionContext property is set
         internal bool IsSetDestinationEncryptionContext()
         {
-            return this._destinationEncryptionContext != null && this._destinationEncryptionContext.Count > 0; 
+            return this._destinationEncryptionContext != null && (this._destinationEncryptionContext.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DestinationKeyId. 
         /// <para>
         /// A unique identifier for the KMS key that is used to reencrypt the data. Specify a
-        /// symmetric encryption KMS key or an asymmetric KMS key with a <code>KeyUsage</code>
-        /// value of <code>ENCRYPT_DECRYPT</code>. To find the <code>KeyUsage</code> value of
-        /// a KMS key, use the <a>DescribeKey</a> operation.
+        /// symmetric encryption KMS key or an asymmetric KMS key with a <c>KeyUsage</c> value
+        /// of <c>ENCRYPT_DECRYPT</c>. To find the <c>KeyUsage</c> value of a KMS key, use the
+        /// <a>DescribeKey</a> operation.
         /// </para>
         ///  
         /// <para>
         /// To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN. When using
-        /// an alias name, prefix it with <code>"alias/"</code>. To specify a KMS key in a different
+        /// an alias name, prefix it with <c>"alias/"</c>. To specify a KMS key in a different
         /// Amazon Web Services account, you must use the key ARN or alias ARN.
         /// </para>
         ///  
@@ -271,20 +276,20 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> 
+        /// Key ID: <c>1234abcd-12ab-34cd-56ef-1234567890ab</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Key ARN: <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
+        /// Key ARN: <c>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</c>
         /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Alias name: <code>alias/ExampleAlias</code> 
+        /// Alias name: <c>alias/ExampleAlias</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Alias ARN: <code>arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias</code> 
+        /// Alias ARN: <c>arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -308,8 +313,7 @@ namespace Amazon.KeyManagementService.Model
         /// <summary>
         /// Gets and sets the property DryRun. 
         /// <para>
-        /// Checks if your request will succeed. <code>DryRun</code> is an optional parameter.
-        /// 
+        /// Checks if your request will succeed. <c>DryRun</c> is an optional parameter. 
         /// </para>
         ///  
         /// <para>
@@ -353,15 +357,15 @@ namespace Amazon.KeyManagementService.Model
         // Check to see if GrantTokens property is set
         internal bool IsSetGrantTokens()
         {
-            return this._grantTokens != null && this._grantTokens.Count > 0; 
+            return this._grantTokens != null && (this._grantTokens.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SourceEncryptionAlgorithm. 
         /// <para>
         /// Specifies the encryption algorithm that KMS will use to decrypt the ciphertext before
-        /// it is reencrypted. The default value, <code>SYMMETRIC_DEFAULT</code>, represents the
-        /// algorithm used for symmetric encryption KMS keys.
+        /// it is reencrypted. The default value, <c>SYMMETRIC_DEFAULT</c>, represents the algorithm
+        /// used for symmetric encryption KMS keys.
         /// </para>
         ///  
         /// <para>
@@ -416,7 +420,7 @@ namespace Amazon.KeyManagementService.Model
         // Check to see if SourceEncryptionContext property is set
         internal bool IsSetSourceEncryptionContext()
         {
-            return this._sourceEncryptionContext != null && this._sourceEncryptionContext.Count > 0; 
+            return this._sourceEncryptionContext != null && (this._sourceEncryptionContext.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -427,7 +431,7 @@ namespace Amazon.KeyManagementService.Model
         ///  
         /// <para>
         /// Enter a key ID of the KMS key that was used to encrypt the ciphertext. If you identify
-        /// a different KMS key, the <code>ReEncrypt</code> operation throws an <code>IncorrectKeyException</code>.
+        /// a different KMS key, the <c>ReEncrypt</c> operation throws an <c>IncorrectKeyException</c>.
         /// </para>
         ///  
         /// <para>
@@ -439,7 +443,7 @@ namespace Amazon.KeyManagementService.Model
         ///  
         /// <para>
         /// To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN. When using
-        /// an alias name, prefix it with <code>"alias/"</code>. To specify a KMS key in a different
+        /// an alias name, prefix it with <c>"alias/"</c>. To specify a KMS key in a different
         /// Amazon Web Services account, you must use the key ARN or alias ARN.
         /// </para>
         ///  
@@ -448,20 +452,20 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> 
+        /// Key ID: <c>1234abcd-12ab-34cd-56ef-1234567890ab</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Key ARN: <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
+        /// Key ARN: <c>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</c>
         /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Alias name: <code>alias/ExampleAlias</code> 
+        /// Alias name: <c>alias/ExampleAlias</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Alias ARN: <code>arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias</code> 
+        /// Alias ARN: <c>arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>

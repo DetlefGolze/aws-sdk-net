@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.FIS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.FIS.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ExperimentTemplate Unmarshall(JsonUnmarshallerContext context)
         {
+            ExperimentTemplate unmarshalledObject = new ExperimentTemplate();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ExperimentTemplate unmarshalledObject = new ExperimentTemplate();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -68,6 +70,12 @@ namespace Amazon.FIS.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = new DictionaryUnmarshaller<string, ExperimentTemplateAction, StringUnmarshaller, ExperimentTemplateActionUnmarshaller>(StringUnmarshaller.Instance, ExperimentTemplateActionUnmarshaller.Instance);
                     unmarshalledObject.Actions = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("arn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Arn = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("creationTime", targetDepth))
@@ -80,6 +88,18 @@ namespace Amazon.FIS.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.Description = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("experimentOptions", targetDepth))
+                {
+                    var unmarshaller = ExperimentTemplateExperimentOptionsUnmarshaller.Instance;
+                    unmarshalledObject.ExperimentOptions = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("experimentReportConfiguration", targetDepth))
+                {
+                    var unmarshaller = ExperimentTemplateReportConfigurationUnmarshaller.Instance;
+                    unmarshalledObject.ExperimentReportConfiguration = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("id", targetDepth))
@@ -118,6 +138,12 @@ namespace Amazon.FIS.Model.Internal.MarshallTransformations
                     unmarshalledObject.Tags = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("targetAccountConfigurationsCount", targetDepth))
+                {
+                    var unmarshaller = LongUnmarshaller.Instance;
+                    unmarshalledObject.TargetAccountConfigurationsCount = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("targets", targetDepth))
                 {
                     var unmarshaller = new DictionaryUnmarshaller<string, ExperimentTemplateTarget, StringUnmarshaller, ExperimentTemplateTargetUnmarshaller>(StringUnmarshaller.Instance, ExperimentTemplateTargetUnmarshaller.Instance);
@@ -125,7 +151,6 @@ namespace Amazon.FIS.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

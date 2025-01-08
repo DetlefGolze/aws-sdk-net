@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.VerifiedPermissions.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.VerifiedPermissions.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public PolicyStoreItem Unmarshall(JsonUnmarshallerContext context)
         {
+            PolicyStoreItem unmarshalledObject = new PolicyStoreItem();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            PolicyStoreItem unmarshalledObject = new PolicyStoreItem();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -76,6 +78,18 @@ namespace Amazon.VerifiedPermissions.Model.Internal.MarshallTransformations
                     unmarshalledObject.CreatedDate = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("description", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Description = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("lastUpdatedDate", targetDepth))
+                {
+                    var unmarshaller = DateTimeUnmarshaller.Instance;
+                    unmarshalledObject.LastUpdatedDate = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("policyStoreId", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -83,7 +97,6 @@ namespace Amazon.VerifiedPermissions.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

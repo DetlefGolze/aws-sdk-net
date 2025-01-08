@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTThingsGraph.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.IoTThingsGraph.Model
     /// </summary>
     public partial class SearchEntitiesRequest : AmazonIoTThingsGraphRequest
     {
-        private List<string> _entityTypes = new List<string>();
-        private List<EntityFilter> _filters = new List<EntityFilter>();
+        private List<string> _entityTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<EntityFilter> _filters = AWSConfigs.InitializeCollections ? new List<EntityFilter>() : null;
         private int? _maxResults;
         private long? _namespaceVersion;
         private string _nextToken;
@@ -57,14 +58,14 @@ namespace Amazon.IoTThingsGraph.Model
         // Check to see if EntityTypes property is set
         internal bool IsSetEntityTypes()
         {
-            return this._entityTypes != null && this._entityTypes.Count > 0; 
+            return this._entityTypes != null && (this._entityTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// Optional filter to apply to the search. Valid filters are <code>NAME</code> <code>NAMESPACE</code>,
-        /// <code>SEMANTIC_TYPE_PATH</code> and <code>REFERENCED_ENTITY_ID</code>. <code>REFERENCED_ENTITY_ID</code>
+        /// Optional filter to apply to the search. Valid filters are <c>NAME</c> <c>NAMESPACE</c>,
+        /// <c>SEMANTIC_TYPE_PATH</c> and <c>REFERENCED_ENTITY_ID</c>. <c>REFERENCED_ENTITY_ID</c>
         /// filters on entities that are used by the entity in the result set. For example, you
         /// can filter on the ID of a property that is used in a state.
         /// </para>
@@ -83,7 +84,7 @@ namespace Amazon.IoTThingsGraph.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

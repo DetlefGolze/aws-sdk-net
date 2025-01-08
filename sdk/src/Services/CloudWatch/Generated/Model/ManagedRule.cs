@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatch.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.CloudWatch.Model
     public partial class ManagedRule
     {
         private string _resourceARN;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _templateName;
 
         /// <summary>
@@ -65,11 +66,11 @@ namespace Amazon.CloudWatch.Model
         /// rule. You can associate as many as 50 tags with a rule. Tags can help you organize
         /// and categorize your resources. You also can use them to scope user permissions by
         /// granting a user permission to access or change only the resources that have certain
-        /// tag values. To associate tags with a rule, you must have the <code>cloudwatch:TagResource</code>
-        /// permission in addition to the <code>cloudwatch:PutInsightRule</code> permission. If
-        /// you are using this operation to update an existing Contributor Insights rule, any
-        /// tags that you specify in this parameter are ignored. To change the tags of an existing
-        /// rule, use <code>TagResource</code>. 
+        /// tag values. To associate tags with a rule, you must have the <c>cloudwatch:TagResource</c>
+        /// permission in addition to the <c>cloudwatch:PutInsightRule</c> permission. If you
+        /// are using this operation to update an existing Contributor Insights rule, any tags
+        /// that you specify in this parameter are ignored. To change the tags of an existing
+        /// rule, use <c>TagResource</c>. 
         /// </para>
         /// </summary>
         public List<Tag> Tags
@@ -81,13 +82,13 @@ namespace Amazon.CloudWatch.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TemplateName. 
         /// <para>
-        ///  The template name for the managed Contributor Insights rule, as returned by <code>ListManagedInsightRules</code>.
+        ///  The template name for the managed Contributor Insights rule, as returned by <c>ListManagedInsightRules</c>.
         /// 
         /// </para>
         /// </summary>

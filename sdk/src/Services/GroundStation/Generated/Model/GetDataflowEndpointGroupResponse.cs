@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
@@ -37,16 +38,16 @@ namespace Amazon.GroundStation.Model
         private int? _contactPrePassDurationSeconds;
         private string _dataflowEndpointGroupArn;
         private string _dataflowEndpointGroupId;
-        private List<EndpointDetails> _endpointsDetails = new List<EndpointDetails>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private List<EndpointDetails> _endpointsDetails = AWSConfigs.InitializeCollections ? new List<EndpointDetails>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ContactPostPassDurationSeconds. 
         /// <para>
         /// Amount of time, in seconds, after a contact ends that the Ground Station Dataflow
-        /// Endpoint Group will be in a <code>POSTPASS</code> state. A Ground Station Dataflow
-        /// Endpoint Group State Change event will be emitted when the Dataflow Endpoint Group
-        /// enters and exits the <code>POSTPASS</code> state.
+        /// Endpoint Group will be in a <c>POSTPASS</c> state. A Ground Station Dataflow Endpoint
+        /// Group State Change event will be emitted when the Dataflow Endpoint Group enters and
+        /// exits the <c>POSTPASS</c> state.
         /// </para>
         /// </summary>
         [AWSProperty(Min=120, Max=480)]
@@ -66,9 +67,9 @@ namespace Amazon.GroundStation.Model
         /// Gets and sets the property ContactPrePassDurationSeconds. 
         /// <para>
         /// Amount of time, in seconds, before a contact starts that the Ground Station Dataflow
-        /// Endpoint Group will be in a <code>PREPASS</code> state. A Ground Station Dataflow
-        /// Endpoint Group State Change event will be emitted when the Dataflow Endpoint Group
-        /// enters and exits the <code>PREPASS</code> state.
+        /// Endpoint Group will be in a <c>PREPASS</c> state. A Ground Station Dataflow Endpoint
+        /// Group State Change event will be emitted when the Dataflow Endpoint Group enters and
+        /// exits the <c>PREPASS</c> state.
         /// </para>
         /// </summary>
         [AWSProperty(Min=120, Max=480)]
@@ -137,7 +138,7 @@ namespace Amazon.GroundStation.Model
         // Check to see if EndpointsDetails property is set
         internal bool IsSetEndpointsDetails()
         {
-            return this._endpointsDetails != null && this._endpointsDetails.Count > 0; 
+            return this._endpointsDetails != null && (this._endpointsDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -155,7 +156,7 @@ namespace Amazon.GroundStation.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,6 +67,7 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAccessPolicies())
@@ -95,6 +97,17 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
 
                     var marshaller = AdvancedSecurityOptionsInputMarshaller.Instance;
                     marshaller.Marshall(publicRequest.AdvancedSecurityOptions, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetAIMLOptions())
+                {
+                    context.Writer.WritePropertyName("AIMLOptions");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = AIMLOptionsInputMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.AIMLOptions, context);
 
                     context.Writer.WriteObjectEnd();
                 }
@@ -175,6 +188,23 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
                     marshaller.Marshall(publicRequest.EncryptionAtRestOptions, context);
 
                     context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetIdentityCenterOptions())
+                {
+                    context.Writer.WritePropertyName("IdentityCenterOptions");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = IdentityCenterOptionsInputMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.IdentityCenterOptions, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetIPAddressType())
+                {
+                    context.Writer.WritePropertyName("IPAddressType");
+                    context.Writer.Write(publicRequest.IPAddressType);
                 }
 
                 if(publicRequest.IsSetLogPublishingOptions())

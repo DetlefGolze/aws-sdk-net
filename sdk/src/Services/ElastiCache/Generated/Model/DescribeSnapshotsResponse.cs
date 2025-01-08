@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
-    /// Represents the output of a <code>DescribeSnapshots</code> operation.
+    /// Represents the output of a <c>DescribeSnapshots</c> operation.
     /// </summary>
     public partial class DescribeSnapshotsResponse : AmazonWebServiceResponse
     {
         private string _marker;
-        private List<Snapshot> _snapshots = new List<Snapshot>();
+        private List<Snapshot> _snapshots = AWSConfigs.InitializeCollections ? new List<Snapshot>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         /// An optional marker returned from a prior request. Use this marker for pagination of
         /// results from this operation. If this parameter is specified, the response includes
-        /// only records beyond the marker, up to the value specified by <code>MaxRecords</code>.
+        /// only records beyond the marker, up to the value specified by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -72,7 +73,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if Snapshots property is set
         internal bool IsSetSnapshots()
         {
-            return this._snapshots != null && this._snapshots.Count > 0; 
+            return this._snapshots != null && (this._snapshots.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

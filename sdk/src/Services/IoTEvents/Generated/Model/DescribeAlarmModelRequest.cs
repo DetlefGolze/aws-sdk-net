@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTEvents.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeAlarmModel operation.
-    /// Retrieves information about an alarm model. If you don't specify a value for the <code>alarmModelVersion</code>
+    /// Retrieves information about an alarm model. If you don't specify a value for the <c>alarmModelVersion</c>
     /// parameter, the latest version is returned.
     /// </summary>
     public partial class DescribeAlarmModelRequest : AmazonIoTEventsRequest

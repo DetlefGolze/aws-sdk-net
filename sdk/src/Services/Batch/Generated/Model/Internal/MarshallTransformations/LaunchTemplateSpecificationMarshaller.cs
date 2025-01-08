@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Batch.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(LaunchTemplateSpecification requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetLaunchTemplateId())
             {
                 context.Writer.WritePropertyName("launchTemplateId");
@@ -55,6 +58,22 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("launchTemplateName");
                 context.Writer.Write(requestObject.LaunchTemplateName);
+            }
+
+            if(requestObject.IsSetOverrides())
+            {
+                context.Writer.WritePropertyName("overrides");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectOverridesListValue in requestObject.Overrides)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = LaunchTemplateSpecificationOverrideMarshaller.Instance;
+                    marshaller.Marshall(requestObjectOverridesListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
             }
 
             if(requestObject.IsSetVersion())

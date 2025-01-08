@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeInstanceRefreshes operation.
-    /// Gets information about the instance refreshes for the specified Auto Scaling group.
+    /// Gets information about the instance refreshes for the specified Auto Scaling group
+    /// from the previous six weeks.
     /// 
     ///  
     /// <para>
@@ -51,7 +53,7 @@ namespace Amazon.AutoScaling.Model
     public partial class DescribeInstanceRefreshesRequest : AmazonAutoScalingRequest
     {
         private string _autoScalingGroupName;
-        private List<string> _instanceRefreshIds = new List<string>();
+        private List<string> _instanceRefreshIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxRecords;
         private string _nextToken;
 
@@ -89,14 +91,14 @@ namespace Amazon.AutoScaling.Model
         // Check to see if InstanceRefreshIds property is set
         internal bool IsSetInstanceRefreshIds()
         {
-            return this._instanceRefreshIds != null && this._instanceRefreshIds.Count > 0; 
+            return this._instanceRefreshIds != null && (this._instanceRefreshIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxRecords. 
         /// <para>
-        /// The maximum number of items to return with this call. The default value is <code>50</code>
-        /// and the maximum value is <code>100</code>.
+        /// The maximum number of items to return with this call. The default value is <c>50</c>
+        /// and the maximum value is <c>100</c>.
         /// </para>
         /// </summary>
         public int MaxRecords

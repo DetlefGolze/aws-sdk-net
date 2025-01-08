@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -50,7 +51,7 @@ namespace Amazon.SecurityHub.Model
         private string _optionGroupName;
         private int? _percentProgress;
         private int? _port;
-        private List<AwsRdsDbProcessorFeature> _processorFeatures = new List<AwsRdsDbProcessorFeature>();
+        private List<AwsRdsDbProcessorFeature> _processorFeatures = AWSConfigs.InitializeCollections ? new List<AwsRdsDbProcessorFeature>() : null;
         private string _snapshotCreateTime;
         private string _snapshotType;
         private string _sourceDbSnapshotIdentifier;
@@ -177,59 +178,59 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>aurora</code> 
+        ///  <c>aurora</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>aurora-mysql</code> 
+        ///  <c>aurora-mysql</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>aurora-postgresql</code> 
+        ///  <c>aurora-postgresql</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>c</code> 
+        ///  <c>c</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mariadb</code> 
+        ///  <c>mariadb</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mysql</code> 
+        ///  <c>mysql</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-ee</code> 
+        ///  <c>oracle-ee</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-se</code> 
+        ///  <c>oracle-se</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-se1</code> 
+        ///  <c>oracle-se1</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-se2</code> 
+        ///  <c>oracle-se2</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ee</code> 
+        ///  <c>sqlserver-ee</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ex</code> 
+        ///  <c>sqlserver-ex</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-se</code> 
+        ///  <c>sqlserver-se</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-web</code> 
+        ///  <c>sqlserver-web</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -322,8 +323,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// If <code>Encrypted</code> is <code>true</code>, the KMS key identifier for the encrypted
-        /// DB snapshot.
+        /// If <c>Encrypted</c> is <c>true</c>, the KMS key identifier for the encrypted DB snapshot.
         /// </para>
         /// </summary>
         public string KmsKeyId
@@ -444,7 +444,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ProcessorFeatures property is set
         internal bool IsSetProcessorFeatures()
         {
-            return this._processorFeatures != null && this._processorFeatures.Count > 0; 
+            return this._processorFeatures != null && (this._processorFeatures.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -544,15 +544,15 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>gp2</code> 
+        ///  <c>gp2</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>io1</code> 
+        ///  <c>io1</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>standard</code> 
+        ///  <c>standard</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

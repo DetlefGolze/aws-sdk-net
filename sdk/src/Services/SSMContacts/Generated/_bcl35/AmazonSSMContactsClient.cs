@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.SSMContacts
 {
     /// <summary>
-    /// Implementation for accessing SSMContacts
+    /// <para>Implementation for accessing SSMContacts</para>
     ///
     /// Systems Manager Incident Manager is an incident management console designed to help
     /// users mitigate and recover from incidents affecting their Amazon Web Services-hosted
@@ -2476,8 +2477,8 @@ namespace Amazon.SSMContacts
 
         /// <summary>
         /// Sends an activation code to a contact channel. The contact can use this code to activate
-        /// the contact channel in the console or with the <code>ActivateChannel</code> operation.
-        /// Incident Manager can't engage a contact channel until it has been activated.
+        /// the contact channel in the console or with the <c>ActivateChannel</c> operation. Incident
+        /// Manager can't engage a contact channel until it has been activated.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the SendActivationCode service method.</param>
         /// 
@@ -3065,11 +3066,11 @@ namespace Amazon.SSMContacts
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

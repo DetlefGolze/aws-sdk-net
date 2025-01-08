@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.EC2.Model
     {
         private CurrencyCodeValues _currencyCode;
         private int? _duration;
-        private List<string> _hostIdSet = new List<string>();
+        private List<string> _hostIdSet = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _hostReservationId;
         private string _hourlyPrice;
         private string _instanceFamily;
@@ -45,8 +46,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property CurrencyCode. 
         /// <para>
-        /// The currency in which the <code>UpfrontPrice</code> and <code>HourlyPrice</code> amounts
-        /// are specified. At this time, the only supported currency is <code>USD</code>.
+        /// The currency in which the <c>UpfrontPrice</c> and <c>HourlyPrice</c> amounts are specified.
+        /// At this time, the only supported currency is <c>USD</c>.
         /// </para>
         /// </summary>
         public CurrencyCodeValues CurrencyCode
@@ -94,7 +95,7 @@ namespace Amazon.EC2.Model
         // Check to see if HostIdSet property is set
         internal bool IsSetHostIdSet()
         {
-            return this._hostIdSet != null && this._hostIdSet.Count > 0; 
+            return this._hostIdSet != null && (this._hostIdSet.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

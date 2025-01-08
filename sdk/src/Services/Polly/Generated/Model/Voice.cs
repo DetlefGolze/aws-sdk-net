@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Polly.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.Polly.Model
     /// </summary>
     public partial class Voice
     {
-        private List<string> _additionalLanguageCodes = new List<string>();
+        private List<string> _additionalLanguageCodes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private Gender _gender;
         private VoiceId _id;
         private LanguageCode _languageCode;
         private string _languageName;
         private string _name;
-        private List<string> _supportedEngines = new List<string>();
+        private List<string> _supportedEngines = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AdditionalLanguageCodes. 
@@ -51,7 +52,7 @@ namespace Amazon.Polly.Model
         /// <para>
         /// For example, the default language for Aditi is Indian English (en-IN) because it was
         /// first used for that language. Since Aditi is bilingual and fluent in both Indian English
-        /// and Hindi, this parameter would show the code <code>hi-IN</code>.
+        /// and Hindi, this parameter would show the code <c>hi-IN</c>.
         /// </para>
         /// </summary>
         public List<string> AdditionalLanguageCodes
@@ -63,7 +64,7 @@ namespace Amazon.Polly.Model
         // Check to see if AdditionalLanguageCodes property is set
         internal bool IsSetAdditionalLanguageCodes()
         {
-            return this._additionalLanguageCodes != null && this._additionalLanguageCodes.Count > 0; 
+            return this._additionalLanguageCodes != null && (this._additionalLanguageCodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -87,7 +88,7 @@ namespace Amazon.Polly.Model
         /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        /// Amazon Polly assigned voice ID. This is the ID that you specify when calling the <code>SynthesizeSpeech</code>
+        /// Amazon Polly assigned voice ID. This is the ID that you specify when calling the <c>SynthesizeSpeech</c>
         /// operation.
         /// </para>
         /// </summary>
@@ -161,8 +162,8 @@ namespace Amazon.Polly.Model
         /// <summary>
         /// Gets and sets the property SupportedEngines. 
         /// <para>
-        /// Specifies which engines (<code>standard</code> or <code>neural</code>) that are supported
-        /// by a given voice.
+        /// Specifies which engines (<c>standard</c>, <c>neural</c>, <c>long-form</c> or <c>generative</c>)
+        /// are supported by a given voice.
         /// </para>
         /// </summary>
         public List<string> SupportedEngines
@@ -174,7 +175,7 @@ namespace Amazon.Polly.Model
         // Check to see if SupportedEngines property is set
         internal bool IsSetSupportedEngines()
         {
-            return this._supportedEngines != null && this._supportedEngines.Count > 0; 
+            return this._supportedEngines != null && (this._supportedEngines.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

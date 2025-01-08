@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSMContacts.Model
 {
     /// <summary>
@@ -81,8 +82,8 @@ namespace Amazon.SSMContacts.Model
         /// Gets and sets the property RotationNamePrefix. 
         /// <para>
         /// A filter to include rotations in list results based on their common prefix. For example,
-        /// entering prod returns a list of all rotation names that begin with <code>prod</code>,
-        /// such as <code>production</code> and <code>prod-1</code>.
+        /// entering prod returns a list of all rotation names that begin with <c>prod</c>, such
+        /// as <c>production</c> and <c>prod-1</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]

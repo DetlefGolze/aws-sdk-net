@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationAutoScaling.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.ApplicationAutoScaling.Model
     public partial class DescribeScalingActivitiesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ScalingActivity> _scalingActivities = new List<ScalingActivity>();
+        private List<ScalingActivity> _scalingActivities = AWSConfigs.InitializeCollections ? new List<ScalingActivity>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token required to get the next set of results. This value is <code>null</code>
-        /// if there are no more results to return.
+        /// The token required to get the next set of results. This value is <c>null</c> if there
+        /// are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken
@@ -70,7 +71,7 @@ namespace Amazon.ApplicationAutoScaling.Model
         // Check to see if ScalingActivities property is set
         internal bool IsSetScalingActivities()
         {
-            return this._scalingActivities != null && this._scalingActivities.Count > 0; 
+            return this._scalingActivities != null && (this._scalingActivities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

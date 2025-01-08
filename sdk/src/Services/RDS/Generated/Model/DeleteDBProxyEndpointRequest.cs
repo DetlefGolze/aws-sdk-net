@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteDBProxyEndpoint operation.
-    /// Deletes a <code>DBProxyEndpoint</code>. Doing so removes the ability to access the
-    /// DB proxy using the endpoint that you defined. The endpoint that you delete might have
-    /// provided capabilities such as read/write or read-only operations, or using a different
-    /// VPC than the DB proxy's default VPC.
+    /// Deletes a <c>DBProxyEndpoint</c>. Doing so removes the ability to access the DB proxy
+    /// using the endpoint that you defined. The endpoint that you delete might have provided
+    /// capabilities such as read/write or read-only operations, or using a different VPC
+    /// than the DB proxy's default VPC.
     /// </summary>
     public partial class DeleteDBProxyEndpointRequest : AmazonRDSRequest
     {

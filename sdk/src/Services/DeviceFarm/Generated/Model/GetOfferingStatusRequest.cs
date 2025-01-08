@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DeviceFarm.Model
 {
     /// <summary>
     /// Container for the parameters to the GetOfferingStatus operation.
     /// Gets the current status and future status of all offerings purchased by an AWS account.
     /// The response indicates how many offerings are currently available and the offerings
-    /// that will be available in the next period. The API returns a <code>NotEligible</code>
-    /// error if the user is not permitted to invoke the operation. If you must be able to
-    /// invoke this operation, contact <a href="mailto:aws-devicefarm-support@amazon.com">aws-devicefarm-support@amazon.com</a>.
+    /// that will be available in the next period. The API returns a <c>NotEligible</c> error
+    /// if the user is not permitted to invoke the operation. If you must be able to invoke
+    /// this operation, contact <a href="mailto:aws-devicefarm-support@amazon.com">aws-devicefarm-support@amazon.com</a>.
     /// </summary>
     public partial class GetOfferingStatusRequest : AmazonDeviceFarmRequest
     {

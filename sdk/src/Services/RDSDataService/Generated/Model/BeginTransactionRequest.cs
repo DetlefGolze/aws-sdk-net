@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDSDataService.Model
 {
     /// <summary>
@@ -44,9 +45,9 @@ namespace Amazon.RDSDataService.Model
     /// </para>
     ///  
     /// <para>
-    /// DDL statements inside a transaction cause an implicit commit. We recommend that you
-    /// run each DDL statement in a separate <code>ExecuteStatement</code> call with <code>continueAfterTimeout</code>
-    /// enabled.
+    /// For Aurora MySQL, DDL statements inside a transaction cause an implicit commit. We
+    /// recommend that you run each MySQL DDL statement in a separate <c>ExecuteStatement</c>
+    /// call with <c>continueAfterTimeout</c> enabled.
     /// </para>
     ///  </note>
     /// </summary>

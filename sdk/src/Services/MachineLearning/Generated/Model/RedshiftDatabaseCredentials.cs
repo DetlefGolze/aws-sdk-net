@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MachineLearning.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.MachineLearning.Model
         /// <summary>
         /// Gets and sets the property Password.
         /// </summary>
-        [AWSProperty(Required=true, Min=8, Max=64)]
+        [AWSProperty(Required=true, Sensitive=true, Min=8, Max=64)]
         public string Password
         {
             get { return this._password; }

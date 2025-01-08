@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glacier.Model
 {
     /// <summary>
@@ -43,8 +44,8 @@ namespace Amazon.Glacier.Model
         /// </para>
         ///  
         /// <para>
-        /// This field is required only if the value of the Strategy field is <code>BytesPerHour</code>.
-        /// Your PUT operation will be rejected if the Strategy field is not set to <code>BytesPerHour</code>
+        /// This field is required only if the value of the Strategy field is <c>BytesPerHour</c>.
+        /// Your PUT operation will be rejected if the Strategy field is not set to <c>BytesPerHour</c>
         /// and you set this field.
         /// </para>
         /// </summary>

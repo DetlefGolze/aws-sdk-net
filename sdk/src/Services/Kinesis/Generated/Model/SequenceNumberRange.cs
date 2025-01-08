@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kinesis.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Kinesis.Model
         /// Gets and sets the property EndingSequenceNumber. 
         /// <para>
         /// The ending sequence number for the range. Shards that are in the OPEN state have an
-        /// ending sequence number of <code>null</code>.
+        /// ending sequence number of <c>null</c>.
         /// </para>
         /// </summary>
         public string EndingSequenceNumber

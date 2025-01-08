@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.DatabaseMigrationService.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    ///  <code>AddTagsToResource</code> 
+    ///  <c>AddTagsToResource</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ListTagsForResource</code> 
+    ///  <c>ListTagsForResource</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>RemoveTagsFromResource</code> 
+    ///  <c>RemoveTagsFromResource</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>

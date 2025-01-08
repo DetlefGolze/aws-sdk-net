@@ -26,22 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideo.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateDataRetention operation.
     /// Increases or decreases the stream's data retention period by the value that you specify.
     /// To indicate whether you want to increase or decrease the data retention period, specify
-    /// the <code>Operation</code> parameter in the request body. In the request, you must
-    /// specify either the <code>StreamName</code> or the <code>StreamARN</code>. 
+    /// the <c>Operation</c> parameter in the request body. In the request, you must specify
+    /// either the <c>StreamName</c> or the <c>StreamARN</c>. 
     /// 
-    ///  <note> 
+    ///  
     /// <para>
-    /// The retention period that you specify replaces the current value.
-    /// </para>
-    ///  </note> 
-    /// <para>
-    /// This operation requires permission for the <code>KinesisVideo:UpdateDataRetention</code>
+    /// This operation requires permission for the <c>KinesisVideo:UpdateDataRetention</c>
     /// action.
     /// </para>
     ///  
@@ -75,7 +72,7 @@ namespace Amazon.KinesisVideo.Model
         /// Gets and sets the property CurrentVersion. 
         /// <para>
         /// The version of the stream whose retention period you want to change. To get the version,
-        /// call either the <code>DescribeStream</code> or the <code>ListStreams</code> API.
+        /// call either the <c>DescribeStream</c> or the <c>ListStreams</c> API.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]
@@ -94,8 +91,12 @@ namespace Amazon.KinesisVideo.Model
         /// <summary>
         /// Gets and sets the property DataRetentionChangeInHours. 
         /// <para>
-        /// The retention period, in hours. The value you specify replaces the current value.
-        /// The maximum value for this parameter is 87600 (ten years).
+        /// The number of hours to adjust the current retention by. The value you specify is added
+        /// to or subtracted from the current value, depending on the <c>operation</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// The minimum value for data retention is 0 and the maximum value is 87600 (ten years).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1)]

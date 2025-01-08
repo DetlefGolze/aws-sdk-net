@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -33,15 +34,15 @@ namespace Amazon.CloudFront.Model
     /// </summary>
     public partial class CustomHeaders
     {
-        private List<OriginCustomHeader> _items = new List<OriginCustomHeader>();
+        private List<OriginCustomHeader> _items = AWSConfigs.InitializeCollections ? new List<OriginCustomHeader>() : null;
         private int? _quantity;
 
         /// <summary>
         /// Gets and sets the property Items. 
         /// <para>
-        ///  <b>Optional</b>: A list that contains one <code>OriginCustomHeader</code> element
-        /// for each custom header that you want CloudFront to forward to the origin. If Quantity
-        /// is <code>0</code>, omit <code>Items</code>.
+        ///  <b>Optional</b>: A list that contains one <c>OriginCustomHeader</c> element for each
+        /// custom header that you want CloudFront to forward to the origin. If Quantity is <c>0</c>,
+        /// omit <c>Items</c>.
         /// </para>
         /// </summary>
         public List<OriginCustomHeader> Items
@@ -53,7 +54,7 @@ namespace Amazon.CloudFront.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

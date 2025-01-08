@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// Contains the result of a successful invocation of the <code>DescribeDBClusterBacktracks</code>
+    /// Contains the result of a successful invocation of the <c>DescribeDBClusterBacktracks</c>
     /// action.
     /// </summary>
     public partial class DescribeDBClusterBacktracksResponse : AmazonWebServiceResponse
     {
-        private List<DBClusterBacktrack> _dbClusterBacktracks = new List<DBClusterBacktrack>();
+        private List<DBClusterBacktrack> _dbClusterBacktracks = AWSConfigs.InitializeCollections ? new List<DBClusterBacktrack>() : null;
         private string _marker;
 
         /// <summary>
@@ -52,13 +53,13 @@ namespace Amazon.RDS.Model
         // Check to see if DBClusterBacktracks property is set
         internal bool IsSetDBClusterBacktracks()
         {
-            return this._dbClusterBacktracks != null && this._dbClusterBacktracks.Count > 0; 
+            return this._dbClusterBacktracks != null && (this._dbClusterBacktracks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// A pagination token that can be used in a later <code>DescribeDBClusterBacktracks</code>
+        /// A pagination token that can be used in a later <c>DescribeDBClusterBacktracks</c>
         /// request.
         /// </para>
         /// </summary>

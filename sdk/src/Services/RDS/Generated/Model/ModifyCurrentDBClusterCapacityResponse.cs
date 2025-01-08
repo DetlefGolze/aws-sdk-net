@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -97,8 +98,8 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property SecondsBeforeTimeout. 
         /// <para>
-        /// The number of seconds before a call to <code>ModifyCurrentDBClusterCapacity</code>
-        /// times out.
+        /// The number of seconds before a call to <c>ModifyCurrentDBClusterCapacity</c> times
+        /// out.
         /// </para>
         /// </summary>
         public int SecondsBeforeTimeout
@@ -116,8 +117,8 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property TimeoutAction. 
         /// <para>
-        /// The timeout action of a call to <code>ModifyCurrentDBClusterCapacity</code>, either
-        /// <code>ForceApplyCapacityChange</code> or <code>RollbackCapacityChange</code>.
+        /// The timeout action of a call to <c>ModifyCurrentDBClusterCapacity</c>, either <c>ForceApplyCapacityChange</c>
+        /// or <c>RollbackCapacityChange</c>.
         /// </para>
         /// </summary>
         public string TimeoutAction

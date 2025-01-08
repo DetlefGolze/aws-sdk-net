@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DAX.Model
 {
     /// <summary>
@@ -118,7 +119,7 @@ namespace Amazon.DAX.Model
         /// <summary>
         /// Gets and sets the property NodeStatus. 
         /// <para>
-        /// The current status of the node. For example: <code>available</code>.
+        /// The current status of the node. For example: <c>available</c>.
         /// </para>
         /// </summary>
         public string NodeStatus
@@ -136,7 +137,7 @@ namespace Amazon.DAX.Model
         /// <summary>
         /// Gets and sets the property ParameterGroupStatus. 
         /// <para>
-        /// The status of the parameter group associated with this node. For example, <code>in-sync</code>.
+        /// The status of the parameter group associated with this node. For example, <c>in-sync</c>.
         /// </para>
         /// </summary>
         public string ParameterGroupStatus

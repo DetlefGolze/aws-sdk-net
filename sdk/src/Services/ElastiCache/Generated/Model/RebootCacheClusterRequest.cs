@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -46,20 +47,21 @@ namespace Amazon.ElastiCache.Model
     /// </para>
     ///  
     /// <para>
-    /// Rebooting a cluster is currently supported on Memcached and Redis (cluster mode disabled)
-    /// clusters. Rebooting is not supported on Redis (cluster mode enabled) clusters.
+    /// Rebooting a cluster is currently supported on Memcached, Valkey and Redis OSS (cluster
+    /// mode disabled) clusters. Rebooting is not supported on Valkey or Redis OSS (cluster
+    /// mode enabled) clusters.
     /// </para>
     ///  
     /// <para>
-    /// If you make changes to parameters that require a Redis (cluster mode enabled) cluster
-    /// reboot for the changes to be applied, see <a href="http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes.rebooting.html">Rebooting
+    /// If you make changes to parameters that require a Valkey or Redis OSS (cluster mode
+    /// enabled) cluster reboot for the changes to be applied, see <a href="http://docs.aws.amazon.com/AmazonElastiCache/latest/dg/nodes.rebooting.html">Rebooting
     /// a Cluster</a> for an alternate process.
     /// </para>
     /// </summary>
     public partial class RebootCacheClusterRequest : AmazonElastiCacheRequest
     {
         private string _cacheClusterId;
-        private List<string> _cacheNodeIdsToReboot = new List<string>();
+        private List<string> _cacheNodeIdsToReboot = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -113,7 +115,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if CacheNodeIdsToReboot property is set
         internal bool IsSetCacheNodeIdsToReboot()
         {
-            return this._cacheNodeIdsToReboot != null && this._cacheNodeIdsToReboot.Count > 0; 
+            return this._cacheNodeIdsToReboot != null && (this._cacheNodeIdsToReboot.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

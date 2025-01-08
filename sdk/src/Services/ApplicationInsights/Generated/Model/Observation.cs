@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationInsights.Model
 {
     /// <summary>
@@ -82,8 +83,8 @@ namespace Amazon.ApplicationInsights.Model
         /// <summary>
         /// Gets and sets the property CloudWatchEventDetailType. 
         /// <para>
-        ///  The detail type of the CloudWatch Event-based observation, for example, <code>EC2
-        /// Instance State-change Notification</code>. 
+        ///  The detail type of the CloudWatch Event-based observation, for example, <c>EC2 Instance
+        /// State-change Notification</c>. 
         /// </para>
         /// </summary>
         public string CloudWatchEventDetailType
@@ -211,8 +212,8 @@ namespace Amazon.ApplicationInsights.Model
         /// <summary>
         /// Gets and sets the property CodeDeployState. 
         /// <para>
-        ///  The status of the CodeDeploy deployment, for example <code>SUCCESS</code> or <code>
-        /// FAILURE</code>. 
+        ///  The status of the CodeDeploy deployment, for example <c>SUCCESS</c> or <c> FAILURE</c>.
+        /// 
         /// </para>
         /// </summary>
         public string CodeDeployState
@@ -248,8 +249,8 @@ namespace Amazon.ApplicationInsights.Model
         /// <summary>
         /// Gets and sets the property EbsEvent. 
         /// <para>
-        ///  The type of EBS CloudWatch event, such as <code>createVolume</code>, <code>deleteVolume</code>
-        /// or <code>attachVolume</code>. 
+        ///  The type of EBS CloudWatch event, such as <c>createVolume</c>, <c>deleteVolume</c>
+        /// or <c>attachVolume</c>. 
         /// </para>
         /// </summary>
         public string EbsEvent
@@ -285,7 +286,7 @@ namespace Amazon.ApplicationInsights.Model
         /// <summary>
         /// Gets and sets the property EbsResult. 
         /// <para>
-        ///  The result of an EBS CloudWatch event, such as <code>failed</code> or <code>succeeded</code>.
+        ///  The result of an EBS CloudWatch event, such as <c>failed</c> or <c>succeeded</c>.
         /// 
         /// </para>
         /// </summary>
@@ -304,8 +305,7 @@ namespace Amazon.ApplicationInsights.Model
         /// <summary>
         /// Gets and sets the property Ec2State. 
         /// <para>
-        ///  The state of the instance, such as <code>STOPPING</code> or <code>TERMINATING</code>.
-        /// 
+        ///  The state of the instance, such as <c>STOPPING</c> or <c>TERMINATING</c>. 
         /// </para>
         /// </summary>
         public string Ec2State
@@ -341,7 +341,7 @@ namespace Amazon.ApplicationInsights.Model
         /// <summary>
         /// Gets and sets the property HealthEventArn. 
         /// <para>
-        ///  The Amazon Resource Name (ARN) of the AWS Health Event-based observation.
+        ///  The Amazon Resource Name (ARN) of the Health Event-based observation.
         /// </para>
         /// </summary>
         public string HealthEventArn
@@ -359,7 +359,7 @@ namespace Amazon.ApplicationInsights.Model
         /// <summary>
         /// Gets and sets the property HealthEventDescription. 
         /// <para>
-        ///  The description of the AWS Health event provided by the service, such as Amazon EC2.
+        ///  The description of the Health event provided by the service, such as Amazon EC2.
         /// 
         /// </para>
         /// </summary>
@@ -378,7 +378,7 @@ namespace Amazon.ApplicationInsights.Model
         /// <summary>
         /// Gets and sets the property HealthEventTypeCategory. 
         /// <para>
-        ///  The category of the AWS Health event, such as <code>issue</code>. 
+        ///  The category of the Health event, such as <c>issue</c>. 
         /// </para>
         /// </summary>
         public string HealthEventTypeCategory
@@ -396,7 +396,7 @@ namespace Amazon.ApplicationInsights.Model
         /// <summary>
         /// Gets and sets the property HealthEventTypeCode. 
         /// <para>
-        ///  The type of the AWS Health event, for example, <code>AWS_EC2_POWER_CONNECTIVITY_ISSUE</code>.
+        ///  The type of the Health event, for example, <c>AWS_EC2_POWER_CONNECTIVITY_ISSUE</c>.
         /// 
         /// </para>
         /// </summary>
@@ -415,7 +415,7 @@ namespace Amazon.ApplicationInsights.Model
         /// <summary>
         /// Gets and sets the property HealthService. 
         /// <para>
-        ///  The service to which the AWS Health Event belongs, such as EC2. 
+        ///  The service to which the Health Event belongs, such as EC2. 
         /// </para>
         /// </summary>
         public string HealthService

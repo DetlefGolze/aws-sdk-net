@@ -26,10 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// The group type.
+    /// A user pool group. Contains details about the group and the way that it contributes
+    /// to IAM role decisions with identity pools. Identity pools can make decisions about
+    /// the IAM role to assign based on groups: users get credentials for the role associated
+    /// with their highest-priority group.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminListGroupsForUser.html">AdminListGroupsForUser</a>,
+    /// <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateGroup.html">CreateGroup</a>,
+    /// <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_GetGroup.html">GetGroup</a>,
+    /// <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ListGroups.html">ListGroups</a>,
+    /// and <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateGroup.html">UpdateGroup</a>.
+    /// </para>
     /// </summary>
     public partial class GroupType
     {
@@ -44,8 +57,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property CreationDate. 
         /// <para>
-        /// The date and time, in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-        /// 8601</a> format, when the item was created.
+        /// The date and time when the item was created. Amazon Cognito returns this timestamp
+        /// in UNIX epoch time format. Your SDK might render the output in a human-readable format
+        /// like ISO 8601 or a Java <c>Date</c> object.
         /// </para>
         /// </summary>
         public DateTime CreationDate
@@ -63,7 +77,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
-        /// A string containing the description of the group.
+        /// A friendly description of the group.
         /// </para>
         /// </summary>
         [AWSProperty(Max=2048)]
@@ -101,8 +115,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property LastModifiedDate. 
         /// <para>
-        /// The date and time, in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-        /// 8601</a> format, when the item was modified.
+        /// The date and time when the item was modified. Amazon Cognito returns this timestamp
+        /// in UNIX epoch time format. Your SDK might render the output in a human-readable format
+        /// like ISO 8601 or a Java <c>Date</c> object.
         /// </para>
         /// </summary>
         public DateTime LastModifiedDate
@@ -122,23 +137,22 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <para>
         /// A non-negative integer value that specifies the precedence of this group relative
         /// to the other groups that a user can belong to in the user pool. Zero is the highest
-        /// precedence value. Groups with lower <code>Precedence</code> values take precedence
-        /// over groups with higher ornull <code>Precedence</code> values. If a user belongs to
-        /// two or more groups, it is the group with the lowest precedence value whose role ARN
-        /// is given in the user's tokens for the <code>cognito:roles</code> and <code>cognito:preferred_role</code>
-        /// claims.
+        /// precedence value. Groups with lower <c>Precedence</c> values take precedence over
+        /// groups with higher ornull <c>Precedence</c> values. If a user belongs to two or more
+        /// groups, it is the group with the lowest precedence value whose role ARN is given in
+        /// the user's tokens for the <c>cognito:roles</c> and <c>cognito:preferred_role</c> claims.
         /// </para>
         ///  
         /// <para>
-        /// Two groups can have the same <code>Precedence</code> value. If this happens, neither
-        /// group takes precedence over the other. If two groups with the same <code>Precedence</code>
-        /// have the same role ARN, that role is used in the <code>cognito:preferred_role</code>
-        /// claim in tokens for users in each group. If the two groups have different role ARNs,
-        /// the <code>cognito:preferred_role</code> claim isn't set in users' tokens.
+        /// Two groups can have the same <c>Precedence</c> value. If this happens, neither group
+        /// takes precedence over the other. If two groups with the same <c>Precedence</c> have
+        /// the same role ARN, that role is used in the <c>cognito:preferred_role</c> claim in
+        /// tokens for users in each group. If the two groups have different role ARNs, the <c>cognito:preferred_role</c>
+        /// claim isn't set in users' tokens.
         /// </para>
         ///  
         /// <para>
-        /// The default <code>Precedence</code> value is null.
+        /// The default <c>Precedence</c> value is <c>null</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]
@@ -157,7 +171,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property RoleArn. 
         /// <para>
-        /// The role Amazon Resource Name (ARN) for the group.
+        /// The ARN of the IAM role associated with the group. If a group has the highest priority
+        /// of a user's groups, users who authenticate with an identity pool get credentials for
+        /// the <c>RoleArn</c> that's associated with the group.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]
@@ -176,7 +192,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID for the user pool.
+        /// The ID of the user pool that contains the group.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=55)]

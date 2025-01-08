@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class ListHyperParameterTuningJobsResponse : AmazonWebServiceResponse
     {
-        private List<HyperParameterTuningJobSummary> _hyperParameterTuningJobSummaries = new List<HyperParameterTuningJobSummary>();
+        private List<HyperParameterTuningJobSummary> _hyperParameterTuningJobSummaries = AWSConfigs.InitializeCollections ? new List<HyperParameterTuningJobSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property HyperParameterTuningJobSummaries. 
         /// <para>
         /// A list of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HyperParameterTuningJobSummary.html">HyperParameterTuningJobSummary</a>
-        /// objects that describe the tuning jobs that the <code>ListHyperParameterTuningJobs</code>
+        /// objects that describe the tuning jobs that the <c>ListHyperParameterTuningJobs</c>
         /// request returned.
         /// </para>
         /// </summary>
@@ -54,15 +55,15 @@ namespace Amazon.SageMaker.Model
         // Check to see if HyperParameterTuningJobSummaries property is set
         internal bool IsSetHyperParameterTuningJobSummaries()
         {
-            return this._hyperParameterTuningJobSummaries != null && this._hyperParameterTuningJobSummaries.Count > 0; 
+            return this._hyperParameterTuningJobSummaries != null && (this._hyperParameterTuningJobSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the result of this <code>ListHyperParameterTuningJobs</code> request was truncated,
-        /// the response includes a <code>NextToken</code>. To retrieve the next set of tuning
-        /// jobs, use the token in the next request.
+        /// If the result of this <c>ListHyperParameterTuningJobs</c> request was truncated, the
+        /// response includes a <c>NextToken</c>. To retrieve the next set of tuning jobs, use
+        /// the token in the next request.
         /// </para>
         /// </summary>
         [AWSProperty(Max=8192)]

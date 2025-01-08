@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideoArchivedMedia.Model
 {
     /// <summary>
@@ -35,10 +36,9 @@ namespace Amazon.KinesisVideoArchivedMedia.Model
     /// 
     ///  <note> 
     /// <para>
-    /// You must first call the <code>GetDataEndpoint</code> API to get an endpoint. Then
-    /// send the <code>GetMediaForFragmentList</code> requests to this endpoint using the
-    /// <a href="https://docs.aws.amazon.com/cli/latest/reference/">--endpoint-url parameter</a>.
-    /// 
+    /// You must first call the <c>GetDataEndpoint</c> API to get an endpoint. Then send the
+    /// <c>GetMediaForFragmentList</c> requests to this endpoint using the <a href="https://docs.aws.amazon.com/cli/latest/reference/">--endpoint-url
+    /// parameter</a>. 
     /// </para>
     ///  </note> 
     /// <para>
@@ -53,14 +53,13 @@ namespace Amazon.KinesisVideoArchivedMedia.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>x-amz-ErrorType</code> HTTP header – contains a more specific error type in
-    /// addition to what the HTTP status code provides. 
+    ///  <c>x-amz-ErrorType</c> HTTP header – contains a more specific error type in addition
+    /// to what the HTTP status code provides. 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>x-amz-RequestId</code> HTTP header – if you want to report an issue to Amazon
-    /// Web Services, the support team can better diagnose the problem if given the Request
-    /// Id.
+    ///  <c>x-amz-RequestId</c> HTTP header – if you want to report an issue to Amazon Web
+    /// Services, the support team can better diagnose the problem if given the Request Id.
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -79,7 +78,7 @@ namespace Amazon.KinesisVideoArchivedMedia.Model
     /// </summary>
     public partial class GetMediaForFragmentListRequest : AmazonKinesisVideoArchivedMediaRequest
     {
-        private List<string> _fragments = new List<string>();
+        private List<string> _fragments = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _streamARN;
         private string _streamName;
 
@@ -100,14 +99,14 @@ namespace Amazon.KinesisVideoArchivedMedia.Model
         // Check to see if Fragments property is set
         internal bool IsSetFragments()
         {
-            return this._fragments != null && this._fragments.Count > 0; 
+            return this._fragments != null && (this._fragments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property StreamARN. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the stream from which to retrieve fragment media.
-        /// Specify either this parameter or the <code>StreamName</code> parameter.
+        /// Specify either this parameter or the <c>StreamName</c> parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -127,7 +126,7 @@ namespace Amazon.KinesisVideoArchivedMedia.Model
         /// Gets and sets the property StreamName. 
         /// <para>
         /// The name of the stream from which to retrieve fragment media. Specify either this
-        /// parameter or the <code>StreamARN</code> parameter.
+        /// parameter or the <c>StreamARN</c> parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]

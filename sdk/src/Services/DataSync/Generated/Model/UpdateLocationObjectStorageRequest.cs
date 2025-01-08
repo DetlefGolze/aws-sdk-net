@@ -26,19 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateLocationObjectStorage operation.
-    /// Updates some parameters of an existing object storage location that DataSync accesses
-    /// for a transfer. For information about creating a self-managed object storage location,
-    /// see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html">Creating
-    /// a location for object storage</a>.
+    /// Modifies the following configuration parameters of the object storage transfer location
+    /// that you're using with DataSync.
+    /// 
+    ///  
+    /// <para>
+    /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html">Configuring
+    /// DataSync transfers with an object storage system</a>.
+    /// </para>
     /// </summary>
     public partial class UpdateLocationObjectStorageRequest : AmazonDataSyncRequest
     {
         private string _accessKey;
-        private List<string> _agentArns = new List<string>();
+        private List<string> _agentArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _locationArn;
         private string _secretKey;
         private MemoryStream _serverCertificate;
@@ -53,7 +58,7 @@ namespace Amazon.DataSync.Model
         /// authenticate with the object storage server.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=200)]
+        [AWSProperty(Min=0, Max=200)]
         public string AccessKey
         {
             get { return this._accessKey; }
@@ -69,8 +74,8 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property AgentArns. 
         /// <para>
-        /// Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can securely
-        /// connect with your location.
+        /// Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can connect
+        /// with your object storage system.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4)]
@@ -83,7 +88,7 @@ namespace Amazon.DataSync.Model
         // Check to see if AgentArns property is set
         internal bool IsSetAgentArns()
         {
-            return this._agentArns != null && this._agentArns.Count > 0; 
+            return this._agentArns != null && (this._agentArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -112,7 +117,7 @@ namespace Amazon.DataSync.Model
         /// authenticate with the object storage server.
         /// </para>
         /// </summary>
-        [AWSProperty(Sensitive=true, Min=1, Max=200)]
+        [AWSProperty(Sensitive=true, Min=0, Max=200)]
         public string SecretKey
         {
             get { return this._secretKey; }
@@ -128,18 +133,45 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property ServerCertificate. 
         /// <para>
-        /// Specifies a certificate to authenticate with an object storage system that uses a
-        /// private or self-signed certificate authority (CA). You must specify a Base64-encoded
-        /// <code>.pem</code> file (for example, <code>file:///home/user/.ssh/storage_sys_certificate.pem</code>).
-        /// The certificate can be up to 32768 bytes (before Base64 encoding).
+        /// Specifies a certificate chain for DataSync to authenticate with your object storage
+        /// system if the system uses a private or self-signed certificate authority (CA). You
+        /// must specify a single <c>.pem</c> file with a full certificate chain (for example,
+        /// <c>file:///home/user/.ssh/object_storage_certificates.pem</c>).
         /// </para>
         ///  
         /// <para>
-        /// To use this parameter, configure <code>ServerProtocol</code> to <code>HTTPS</code>.
+        /// The certificate chain might include:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// The object storage system's certificate
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// All intermediate certificates (if there are any)
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The root certificate of the signing CA
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// You can concatenate your certificates into a <c>.pem</c> file (which can be up to
+        /// 32768 bytes before base64 encoding). The following example <c>cat</c> command creates
+        /// an <c>object_storage_certificates.pem</c> file that includes three certificates:
         /// </para>
         ///  
         /// <para>
-        /// Updating the certificate doesn't interfere with tasks that you have in progress.
+        ///  <c>cat object_server_certificate.pem intermediate_certificate.pem ca_root_certificate.pem
+        /// &gt; object_storage_certificates.pem</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// To use this parameter, configure <c>ServerProtocol</c> to <c>HTTPS</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Updating this parameter doesn't interfere with tasks that you have in progress.
         /// </para>
         /// </summary>
         [AWSProperty(Max=32768)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace Amazon.SecurityHub.Model
     public partial class AwsEcsClusterDetails
     {
         private int? _activeServicesCount;
-        private List<string> _capacityProviders = new List<string>();
+        private List<string> _capacityProviders = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _clusterArn;
         private string _clusterName;
-        private List<AwsEcsClusterClusterSettingsDetails> _clusterSettings = new List<AwsEcsClusterClusterSettingsDetails>();
+        private List<AwsEcsClusterClusterSettingsDetails> _clusterSettings = AWSConfigs.InitializeCollections ? new List<AwsEcsClusterClusterSettingsDetails>() : null;
         private AwsEcsClusterConfigurationDetails _configuration;
-        private List<AwsEcsClusterDefaultCapacityProviderStrategyDetails> _defaultCapacityProviderStrategy = new List<AwsEcsClusterDefaultCapacityProviderStrategyDetails>();
+        private List<AwsEcsClusterDefaultCapacityProviderStrategyDetails> _defaultCapacityProviderStrategy = AWSConfigs.InitializeCollections ? new List<AwsEcsClusterDefaultCapacityProviderStrategyDetails>() : null;
         private int? _registeredContainerInstancesCount;
         private int? _runningTasksCount;
         private string _status;
@@ -47,9 +48,9 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property ActiveServicesCount. 
         /// <para>
-        /// The number of services that are running on the cluster in an <code>ACTIVE</code> state.
+        /// The number of services that are running on the cluster in an <c>ACTIVE</c> state.
         /// You can view these services with the Amazon ECS <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ListServices.html">
-        /// <code>ListServices</code> </a> API operation. 
+        /// <c>ListServices</c> </a> API operation. 
         /// </para>
         /// </summary>
         public int ActiveServicesCount
@@ -79,7 +80,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if CapacityProviders property is set
         internal bool IsSetCapacityProviders()
         {
-            return this._capacityProviders != null && this._capacityProviders.Count > 0; 
+            return this._capacityProviders != null && (this._capacityProviders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -134,7 +135,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ClusterSettings property is set
         internal bool IsSetClusterSettings()
         {
-            return this._clusterSettings != null && this._clusterSettings.Count > 0; 
+            return this._clusterSettings != null && (this._clusterSettings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -172,14 +173,14 @@ namespace Amazon.SecurityHub.Model
         // Check to see if DefaultCapacityProviderStrategy property is set
         internal bool IsSetDefaultCapacityProviderStrategy()
         {
-            return this._defaultCapacityProviderStrategy != null && this._defaultCapacityProviderStrategy.Count > 0; 
+            return this._defaultCapacityProviderStrategy != null && (this._defaultCapacityProviderStrategy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property RegisteredContainerInstancesCount. 
         /// <para>
         /// The number of container instances registered into the cluster. This includes container
-        /// instances in both <code>ACTIVE</code> and <code>DRAINING</code> status. 
+        /// instances in both <c>ACTIVE</c> and <c>DRAINING</c> status. 
         /// </para>
         /// </summary>
         public int RegisteredContainerInstancesCount
@@ -197,7 +198,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property RunningTasksCount. 
         /// <para>
-        /// The number of tasks in the cluster that are in the <code>RUNNING</code> state. 
+        /// The number of tasks in the cluster that are in the <c>RUNNING</c> state. 
         /// </para>
         /// </summary>
         public int RunningTasksCount

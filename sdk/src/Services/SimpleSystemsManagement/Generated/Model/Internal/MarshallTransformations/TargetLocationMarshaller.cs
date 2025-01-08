@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SimpleSystemsManagement.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.SimpleSystemsManagement.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(TargetLocation requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAccounts())
             {
                 context.Writer.WritePropertyName("Accounts");
@@ -56,10 +59,27 @@ namespace Amazon.SimpleSystemsManagement.Model.Internal.MarshallTransformations
                 context.Writer.WriteArrayEnd();
             }
 
+            if(requestObject.IsSetExcludeAccounts())
+            {
+                context.Writer.WritePropertyName("ExcludeAccounts");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectExcludeAccountsListValue in requestObject.ExcludeAccounts)
+                {
+                        context.Writer.Write(requestObjectExcludeAccountsListValue);
+                }
+                context.Writer.WriteArrayEnd();
+            }
+
             if(requestObject.IsSetExecutionRoleName())
             {
                 context.Writer.WritePropertyName("ExecutionRoleName");
                 context.Writer.Write(requestObject.ExecutionRoleName);
+            }
+
+            if(requestObject.IsSetIncludeChildOrganizationUnits())
+            {
+                context.Writer.WritePropertyName("IncludeChildOrganizationUnits");
+                context.Writer.Write(requestObject.IncludeChildOrganizationUnits);
             }
 
             if(requestObject.IsSetRegions())
@@ -94,6 +114,34 @@ namespace Amazon.SimpleSystemsManagement.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("TargetLocationMaxErrors");
                 context.Writer.Write(requestObject.TargetLocationMaxErrors);
+            }
+
+            if(requestObject.IsSetTargets())
+            {
+                context.Writer.WritePropertyName("Targets");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectTargetsListValue in requestObject.Targets)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = TargetMarshaller.Instance;
+                    marshaller.Marshall(requestObjectTargetsListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetTargetsMaxConcurrency())
+            {
+                context.Writer.WritePropertyName("TargetsMaxConcurrency");
+                context.Writer.Write(requestObject.TargetsMaxConcurrency);
+            }
+
+            if(requestObject.IsSetTargetsMaxErrors())
+            {
+                context.Writer.WritePropertyName("TargetsMaxErrors");
+                context.Writer.Write(requestObject.TargetsMaxErrors);
             }
 
         }

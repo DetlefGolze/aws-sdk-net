@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
-    /// Structure holding all <code>APPFLOW_INTEGRATION</code> specific workflow attributes.
+    /// Structure holding all <c>APPFLOW_INTEGRATION</c> specific workflow attributes.
     /// </summary>
     public partial class AppflowIntegrationWorkflowAttributes
     {

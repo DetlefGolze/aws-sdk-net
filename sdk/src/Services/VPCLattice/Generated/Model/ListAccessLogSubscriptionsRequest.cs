@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
     /// Container for the parameters to the ListAccessLogSubscriptions operation.
-    /// Lists all access log subscriptions for the specified service network or service.
+    /// Lists the access log subscriptions for the specified service network or service.
     /// </summary>
     public partial class ListAccessLogSubscriptionsRequest : AmazonVPCLatticeRequest
     {
@@ -79,7 +80,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property ResourceIdentifier. 
         /// <para>
-        /// The ID or Amazon Resource Name (ARN) of the service network or service.
+        /// The ID or ARN of the service network or service.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=17, Max=200)]

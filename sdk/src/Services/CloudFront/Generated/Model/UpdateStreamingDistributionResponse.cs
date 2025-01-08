@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property ETag. 
         /// <para>
-        /// The current version of the configuration. For example: <code>E2QWRUHAPOMQZL</code>.
+        /// The current version of the configuration. For example: <c>E2QWRUHAPOMQZL</c>.
         /// </para>
         /// </summary>
         public string ETag
@@ -51,7 +52,7 @@ namespace Amazon.CloudFront.Model
         // Check to see if ETag property is set
         internal bool IsSetETag()
         {
-            return this._eTag != null;
+            return !string.IsNullOrEmpty(this._eTag);
         }
 
         /// <summary>

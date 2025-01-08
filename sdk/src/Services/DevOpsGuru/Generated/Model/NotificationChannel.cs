@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
@@ -57,7 +58,7 @@ namespace Amazon.DevOpsGuru.Model
         /// <summary>
         /// Gets and sets the property Config. 
         /// <para>
-        ///  A <code>NotificationChannelConfig</code> object that contains information about configured
+        ///  A <c>NotificationChannelConfig</c> object that contains information about configured
         /// notification channels. 
         /// </para>
         /// </summary>

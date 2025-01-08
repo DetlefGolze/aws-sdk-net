@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RedshiftServerless.Model
 {
     /// <summary>
@@ -33,17 +34,56 @@ namespace Amazon.RedshiftServerless.Model
     /// </summary>
     public partial class Namespace
     {
+        private string _adminPasswordSecretArn;
+        private string _adminPasswordSecretKmsKeyId;
         private string _adminUsername;
         private DateTime? _creationDate;
         private string _dbName;
         private string _defaultIamRoleArn;
-        private List<string> _iamRoles = new List<string>();
+        private List<string> _iamRoles = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _kmsKeyId;
-        private List<string> _logExports = new List<string>();
+        private List<string> _logExports = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _namespaceArn;
         private string _namespaceId;
         private string _namespaceName;
         private NamespaceStatus _status;
+
+        /// <summary>
+        /// Gets and sets the property AdminPasswordSecretArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) for the namespace's admin user credentials secret.
+        /// </para>
+        /// </summary>
+        public string AdminPasswordSecretArn
+        {
+            get { return this._adminPasswordSecretArn; }
+            set { this._adminPasswordSecretArn = value; }
+        }
+
+        // Check to see if AdminPasswordSecretArn property is set
+        internal bool IsSetAdminPasswordSecretArn()
+        {
+            return this._adminPasswordSecretArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property AdminPasswordSecretKmsKeyId. 
+        /// <para>
+        /// The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's
+        /// admin credentials secret.
+        /// </para>
+        /// </summary>
+        public string AdminPasswordSecretKmsKeyId
+        {
+            get { return this._adminPasswordSecretKmsKeyId; }
+            set { this._adminPasswordSecretKmsKeyId = value; }
+        }
+
+        // Check to see if AdminPasswordSecretKmsKeyId property is set
+        internal bool IsSetAdminPasswordSecretKmsKeyId()
+        {
+            return this._adminPasswordSecretKmsKeyId != null;
+        }
 
         /// <summary>
         /// Gets and sets the property AdminUsername. 
@@ -133,7 +173,7 @@ namespace Amazon.RedshiftServerless.Model
         // Check to see if IamRoles property is set
         internal bool IsSetIamRoles()
         {
-            return this._iamRoles != null && this._iamRoles.Count > 0; 
+            return this._iamRoles != null && (this._iamRoles.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -172,7 +212,7 @@ namespace Amazon.RedshiftServerless.Model
         // Check to see if LogExports property is set
         internal bool IsSetLogExports()
         {
-            return this._logExports != null && this._logExports.Count > 0; 
+            return this._logExports != null && (this._logExports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

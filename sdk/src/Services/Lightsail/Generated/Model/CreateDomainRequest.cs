@@ -26,28 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateDomain operation.
-    /// Creates a domain resource for the specified domain (e.g., example.com).
+    /// Creates a domain resource for the specified domain (example.com).
     /// 
     ///  
     /// <para>
-    /// The <code>create domain</code> operation supports tag-based access control via request
-    /// tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+    /// The <c>create domain</c> operation supports tag-based access control via request tags.
+    /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
     /// Lightsail Developer Guide</a>.
     /// </para>
     /// </summary>
     public partial class CreateDomainRequest : AmazonLightsailRequest
     {
         private string _domainName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property DomainName. 
         /// <para>
-        /// The domain name to manage (e.g., <code>example.com</code>).
+        /// The domain name to manage (<c>example.com</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -70,7 +71,7 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>TagResource</code> action to tag a resource after it's created.
+        /// Use the <c>TagResource</c> action to tag a resource after it's created.
         /// </para>
         /// </summary>
         public List<Tag> Tags
@@ -82,7 +83,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKIdentity.Model
 {
     /// <summary>
-    /// Determines the interval after which an <code>AppInstanceUser</code> is automatically
-    /// deleted.
+    /// Determines the interval after which an <c>AppInstanceUser</c> is automatically deleted.
     /// </summary>
     public partial class ExpirationSettings
     {
@@ -40,7 +40,7 @@ namespace Amazon.ChimeSDKIdentity.Model
         /// <summary>
         /// Gets and sets the property ExpirationCriterion. 
         /// <para>
-        /// Specifies the conditions under which an <code>AppInstanceUser</code> will expire.
+        /// Specifies the conditions under which an <c>AppInstanceUser</c> will expire.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -59,8 +59,7 @@ namespace Amazon.ChimeSDKIdentity.Model
         /// <summary>
         /// Gets and sets the property ExpirationDays. 
         /// <para>
-        /// The period in days after which an <code>AppInstanceUser</code> will be automatically
-        /// deleted.
+        /// The period in days after which an <c>AppInstanceUser</c> will be automatically deleted.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=5475)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvidently.Model
 {
     /// <summary>
@@ -48,7 +49,7 @@ namespace Amazon.CloudWatchEvidently.Model
     /// </para>
     ///  
     /// <para>
-    /// The pattern that you define for a segment is matched against the value of <code>evaluationContext</code>,
+    /// The pattern that you define for a segment is matched against the value of <c>evaluationContext</c>,
     /// which is passed into Evidently in the <a href="https://docs.aws.amazon.com/cloudwatchevidently/latest/APIReference/API_EvaluateFeature.html">EvaluateFeature</a>
     /// operation, when Evidently assigns a feature variation to a user.
     /// </para>
@@ -58,7 +59,7 @@ namespace Amazon.CloudWatchEvidently.Model
         private string _description;
         private string _name;
         private string _pattern;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -154,7 +155,7 @@ namespace Amazon.CloudWatchEvidently.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

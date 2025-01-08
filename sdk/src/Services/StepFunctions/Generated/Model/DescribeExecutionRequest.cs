@@ -26,19 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeExecution operation.
     /// Provides information about a state machine execution, such as the state machine associated
     /// with the execution, the execution input and output, and relevant execution metadata.
-    /// Use this API action to return the Map Run Amazon Resource Name (ARN) if the execution
-    /// was dispatched by a Map Run.
+    /// If you've <a href="https://docs.aws.amazon.com/step-functions/latest/dg/redrive-executions.html">redriven</a>
+    /// an execution, you can use this API action to return information about the redrives
+    /// of that execution. In addition, you can use this API action to return the Map Run
+    /// Amazon Resource Name (ARN) if the execution was dispatched by a Map Run.
     /// 
     ///  
     /// <para>
     /// If you specify a version or alias ARN when you call the <a>StartExecution</a> API
-    /// action, <code>DescribeExecution</code> returns that ARN.
+    /// action, <c>DescribeExecution</c> returns that ARN.
     /// </para>
     ///  <note> 
     /// <para>
@@ -47,13 +50,14 @@ namespace Amazon.StepFunctions.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// Executions of an <code>EXPRESS</code> state machinearen't supported by <code>DescribeExecution</code>
+    /// Executions of an <c>EXPRESS</c> state machine aren't supported by <c>DescribeExecution</c>
     /// unless a Map Run dispatched them.
     /// </para>
     /// </summary>
     public partial class DescribeExecutionRequest : AmazonStepFunctionsRequest
     {
         private string _executionArn;
+        private IncludedData _includedData;
 
         /// <summary>
         /// Gets and sets the property ExecutionArn. 
@@ -72,6 +76,27 @@ namespace Amazon.StepFunctions.Model
         internal bool IsSetExecutionArn()
         {
             return this._executionArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IncludedData. 
+        /// <para>
+        /// If your state machine definition is encrypted with a KMS key, callers must have <c>kms:Decrypt</c>
+        /// permission to decrypt the definition. Alternatively, you can call DescribeStateMachine
+        /// API with <c>includedData = METADATA_ONLY</c> to get a successful response without
+        /// the encrypted definition.
+        /// </para>
+        /// </summary>
+        public IncludedData IncludedData
+        {
+            get { return this._includedData; }
+            set { this._includedData = value; }
+        }
+
+        // Check to see if IncludedData property is set
+        internal bool IsSetIncludedData()
+        {
+            return this._includedData != null;
         }
 
     }

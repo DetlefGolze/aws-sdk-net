@@ -26,10 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BedrockRuntime.Model
 {
     /// <summary>
-    /// The number of requests exceeds the limit. Resubmit your request later.
+    /// Your request was denied due to exceeding the account quotas for <i>Amazon Bedrock</i>.
+    /// For troubleshooting this error, see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/troubleshooting-api-error-codes.html#ts-throttling-exception">ThrottlingException</a>
+    /// in the Amazon Bedrock User Guide
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

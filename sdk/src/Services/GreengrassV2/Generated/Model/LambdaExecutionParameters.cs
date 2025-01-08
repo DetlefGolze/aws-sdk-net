@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GreengrassV2.Model
 {
     /// <summary>
@@ -33,9 +34,9 @@ namespace Amazon.GreengrassV2.Model
     /// </summary>
     public partial class LambdaExecutionParameters
     {
-        private Dictionary<string, string> _environmentVariables = new Dictionary<string, string>();
-        private List<LambdaEventSource> _eventSources = new List<LambdaEventSource>();
-        private List<string> _execArgs = new List<string>();
+        private Dictionary<string, string> _environmentVariables = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<LambdaEventSource> _eventSources = AWSConfigs.InitializeCollections ? new List<LambdaEventSource>() : null;
+        private List<string> _execArgs = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private LambdaInputPayloadEncodingType _inputPayloadEncodingType;
         private LambdaLinuxProcessParams _linuxProcessParams;
         private int? _maxIdleTimeInSeconds;
@@ -61,7 +62,7 @@ namespace Amazon.GreengrassV2.Model
         // Check to see if EnvironmentVariables property is set
         internal bool IsSetEnvironmentVariables()
         {
-            return this._environmentVariables != null && this._environmentVariables.Count > 0; 
+            return this._environmentVariables != null && (this._environmentVariables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -82,7 +83,7 @@ namespace Amazon.GreengrassV2.Model
         // Check to see if EventSources property is set
         internal bool IsSetEventSources()
         {
-            return this._eventSources != null && this._eventSources.Count > 0; 
+            return this._eventSources != null && (this._eventSources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -100,7 +101,7 @@ namespace Amazon.GreengrassV2.Model
         // Check to see if ExecArgs property is set
         internal bool IsSetExecArgs()
         {
-            return this._execArgs != null && this._execArgs.Count > 0; 
+            return this._execArgs != null && (this._execArgs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -110,7 +111,7 @@ namespace Amazon.GreengrassV2.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>json</code> 
+        /// Default: <c>json</c> 
         /// </para>
         /// </summary>
         public LambdaInputPayloadEncodingType InputPayloadEncodingType
@@ -214,12 +215,12 @@ namespace Amazon.GreengrassV2.Model
         ///  </li> <li> 
         /// <para>
         /// A non-pinned Lambda function starts only when it receives a work item and exists after
-        /// it idles for <code>maxIdleTimeInSeconds</code>. If the function has multiple work
-        /// items, the IoT Greengrass Core software creates multiple instances of the function.
+        /// it idles for <c>maxIdleTimeInSeconds</c>. If the function has multiple work items,
+        /// the IoT Greengrass Core software creates multiple instances of the function.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Default: <code>true</code> 
+        /// Default: <c>true</c> 
         /// </para>
         /// </summary>
         public bool Pinned

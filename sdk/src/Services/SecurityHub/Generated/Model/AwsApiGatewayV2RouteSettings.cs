@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -84,17 +85,16 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// If the logging level is <code>ERROR</code>, then the logs only include error-level
-        /// entries.
+        /// If the logging level is <c>ERROR</c>, then the logs only include error-level entries.
         /// </para>
         ///  
         /// <para>
-        /// If the logging level is <code>INFO</code>, then the logs include both <code>ERROR</code>
-        /// events and extra informational events.
+        /// If the logging level is <c>INFO</c>, then the logs include both <c>ERROR</c> events
+        /// and extra informational events.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>OFF</code> | <code>ERROR</code> | <code>INFO</code> 
+        /// Valid values: <c>OFF</c> | <c>ERROR</c> | <c>INFO</c> 
         /// </para>
         /// </summary>
         public string LoggingLevel

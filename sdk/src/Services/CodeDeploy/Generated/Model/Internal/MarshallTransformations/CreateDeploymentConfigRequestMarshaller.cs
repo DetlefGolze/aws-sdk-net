@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodeDeploy.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.CodeDeploy.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetComputePlatform())
@@ -97,6 +99,17 @@ namespace Amazon.CodeDeploy.Model.Internal.MarshallTransformations
 
                     var marshaller = TrafficRoutingConfigMarshaller.Instance;
                     marshaller.Marshall(publicRequest.TrafficRoutingConfig, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetZonalConfig())
+                {
+                    context.Writer.WritePropertyName("zonalConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ZonalConfigMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.ZonalConfig, context);
 
                     context.Writer.WriteObjectEnd();
                 }

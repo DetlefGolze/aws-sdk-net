@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -51,8 +52,7 @@ namespace Amazon.EC2.Model
     /// <para>
     /// For more information about configuring your operating system to generate a crash dump
     /// when a kernel panic or stop error occurs, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/diagnostic-interrupt.html">Send
-    /// a diagnostic interrupt (for advanced users)</a> (Linux instances) or <a href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/diagnostic-interrupt.html">Send
-    /// a diagnostic interrupt (for advanced users)</a> (Windows instances).
+    /// a diagnostic interrupt (for advanced users)</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     /// </summary>
     public partial class SendDiagnosticInterruptRequest : AmazonEC2Request

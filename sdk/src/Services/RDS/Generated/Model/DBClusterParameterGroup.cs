@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.RDS.Model
     /// 
     ///  
     /// <para>
-    /// This data type is used as a response element in the <code>DescribeDBClusterParameterGroups</code>
+    /// This data type is used as a response element in the <c>DescribeDBClusterParameterGroups</c>
     /// action.
     /// </para>
     /// </summary>

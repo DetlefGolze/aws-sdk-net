@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.NetworkFirewall.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,31 @@ namespace Amazon.NetworkFirewall.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ServerCertificateConfiguration Unmarshall(JsonUnmarshallerContext context)
         {
+            ServerCertificateConfiguration unmarshalledObject = new ServerCertificateConfiguration();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ServerCertificateConfiguration unmarshalledObject = new ServerCertificateConfiguration();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("CertificateAuthorityArn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.CertificateAuthorityArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("CheckCertificateRevocationStatus", targetDepth))
+                {
+                    var unmarshaller = CheckCertificateRevocationStatusActionsUnmarshaller.Instance;
+                    unmarshalledObject.CheckCertificateRevocationStatus = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("Scopes", targetDepth))
                 {
                     var unmarshaller = new ListUnmarshaller<ServerCertificateScope, ServerCertificateScopeUnmarshaller>(ServerCertificateScopeUnmarshaller.Instance);
@@ -77,7 +91,6 @@ namespace Amazon.NetworkFirewall.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

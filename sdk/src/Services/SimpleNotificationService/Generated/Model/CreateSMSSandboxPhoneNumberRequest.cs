@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
@@ -53,7 +54,7 @@ namespace Amazon.SimpleNotificationService.Model
         /// <summary>
         /// Gets and sets the property LanguageCode. 
         /// <para>
-        /// The language to use for sending the OTP. The default value is <code>en-US</code>.
+        /// The language to use for sending the OTP. The default value is <c>en-US</c>.
         /// </para>
         /// </summary>
         public LanguageCodeString LanguageCode
@@ -75,7 +76,7 @@ namespace Amazon.SimpleNotificationService.Model
         /// number to the list of verified phone numbers that you can send SMS messages to.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=20)]
+        [AWSProperty(Required=true, Sensitive=true, Max=20)]
         public string PhoneNumber
         {
             get { return this._phoneNumber; }

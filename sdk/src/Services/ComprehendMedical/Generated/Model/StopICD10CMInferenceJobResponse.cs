@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComprehendMedical.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.ComprehendMedical.Model
         /// Gets and sets the property JobId. 
         /// <para>
         /// The identifier generated for the job. To get the status of job, use this identifier
-        /// with the <code>DescribeICD10CMInferenceJob</code> operation.
+        /// with the <c>DescribeICD10CMInferenceJob</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=32)]

@@ -26,19 +26,32 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the StartSimulationJobBatch operation.
-    /// Starts a new simulation job batch. The batch is defined using one or more <code>SimulationJobRequest</code>
-    /// objects.
+    /// <important> 
+    /// <para>
+    /// End of support notice: On September 10, 2025, Amazon Web Services will discontinue
+    /// support for Amazon Web Services RoboMaker. After September 10, 2025, you will no longer
+    /// be able to access the Amazon Web Services RoboMaker console or Amazon Web Services
+    /// RoboMaker resources. For more information on transitioning to Batch to help run containerized
+    /// simulations, visit <a href="https://aws.amazon.com/blogs/hpc/run-simulations-using-multiple-containers-in-a-single-aws-batch-job/">https://aws.amazon.com/blogs/hpc/run-simulations-using-multiple-containers-in-a-single-aws-batch-job/</a>.
+    /// 
+    /// </para>
+    ///  </important> 
+    /// <para>
+    /// Starts a new simulation job batch. The batch is defined using one or more <c>SimulationJobRequest</c>
+    /// objects. 
+    /// </para>
     /// </summary>
     public partial class StartSimulationJobBatchRequest : AmazonRoboMakerRequest
     {
         private BatchPolicy _batchPolicy;
         private string _clientRequestToken;
-        private List<SimulationJobRequest> _createSimulationJobRequests = new List<SimulationJobRequest>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private List<SimulationJobRequest> _createSimulationJobRequests = AWSConfigs.InitializeCollections ? new List<SimulationJobRequest>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property BatchPolicy. 
@@ -94,7 +107,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if CreateSimulationJobRequests property is set
         internal bool IsSetCreateSimulationJobRequests()
         {
-            return this._createSimulationJobRequests != null && this._createSimulationJobRequests.Count > 0; 
+            return this._createSimulationJobRequests != null && (this._createSimulationJobRequests.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -114,7 +127,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FraudDetector.Model
 {
     /// <summary>
@@ -66,8 +67,7 @@ namespace Amazon.FraudDetector.Model
         /// Gets and sets the property ExternalEventsDetail. 
         /// <para>
         /// The details of the external events data used for training the model version. This
-        /// will be populated if the <code>trainingDataSource</code> is <code>EXTERNAL_EVENTS</code>
-        /// 
+        /// will be populated if the <c>trainingDataSource</c> is <c>EXTERNAL_EVENTS</c> 
         /// </para>
         /// </summary>
         public ExternalEventsDetail ExternalEventsDetail
@@ -86,7 +86,7 @@ namespace Amazon.FraudDetector.Model
         /// Gets and sets the property IngestedEventsDetail. 
         /// <para>
         /// The details of the ingested events data used for training the model version. This
-        /// will be populated if the <code>trainingDataSource</code> is <code>INGESTED_EVENTS</code>.
+        /// will be populated if the <c>trainingDataSource</c> is <c>INGESTED_EVENTS</c>.
         /// </para>
         /// </summary>
         public IngestedEventsDetail IngestedEventsDetail
@@ -168,39 +168,39 @@ namespace Amazon.FraudDetector.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>TRAINING_IN_PROGRESS</code> 
+        ///  <c>TRAINING_IN_PROGRESS</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TRAINING_COMPLETE</code> 
+        ///  <c>TRAINING_COMPLETE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ACTIVATE_REQUESTED</code> 
+        ///  <c>ACTIVATE_REQUESTED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ACTIVATE_IN_PROGRESS</code> 
+        ///  <c>ACTIVATE_IN_PROGRESS</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ACTIVE</code> 
+        ///  <c>ACTIVE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INACTIVATE_REQUESTED</code> 
+        ///  <c>INACTIVATE_REQUESTED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INACTIVATE_IN_PROGRESS</code> 
+        ///  <c>INACTIVATE_IN_PROGRESS</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INACTIVE</code> 
+        ///  <c>INACTIVE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ERROR</code> 
+        ///  <c>ERROR</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

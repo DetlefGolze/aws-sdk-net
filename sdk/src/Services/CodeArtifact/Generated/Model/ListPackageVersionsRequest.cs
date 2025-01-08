@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeArtifact.Model
 {
     /// <summary>
     /// Container for the parameters to the ListPackageVersions operation.
     /// Returns a list of <a href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionSummary.html">PackageVersionSummary</a>
     /// objects for package versions in a repository that match the request parameters. Package
-    /// versions of all statuses will be returned by default when calling <code>list-package-versions</code>
-    /// with no <code>--status</code> parameter.
+    /// versions of all statuses will be returned by default when calling <c>list-package-versions</c>
+    /// with no <c>--status</c> parameter.
     /// </summary>
     public partial class ListPackageVersionsRequest : AmazonCodeArtifactRequest
     {
@@ -133,22 +134,38 @@ namespace Amazon.CodeArtifact.Model
         /// The namespace of the package that contains the requested package versions. The package
         /// component that specifies its namespace depends on its type. For example:
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// The namespace is required when deleting package versions of the following formats:
+        /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  The namespace of a Maven package is its <code>groupId</code>. 
+        /// Maven
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  The namespace of an npm package is its <code>scope</code>. 
+        /// Swift
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  Python and NuGet packages do not contain a corresponding component, packages of those
-        /// formats do not have a namespace. 
+        /// generic
+        /// </para>
+        ///  </li> </ul> </note> <ul> <li> 
+        /// <para>
+        ///  The namespace of a Maven package version is its <c>groupId</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  The namespace of a generic package is its <code>namespace</code>. 
+        ///  The namespace of an npm or Swift package version is its <c>scope</c>. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The namespace of a generic package is its <c>namespace</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  Python, NuGet, Ruby, and Cargo package versions do not contain a corresponding component,
+        /// package versions of those formats do not have a namespace. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -188,8 +205,8 @@ namespace Amazon.CodeArtifact.Model
         /// <summary>
         /// Gets and sets the property OriginType. 
         /// <para>
-        /// The <code>originType</code> used to filter package versions. Only package versions
-        /// with the provided <code>originType</code> will be returned.
+        /// The <c>originType</c> used to filter package versions. Only package versions with
+        /// the provided <c>originType</c> will be returned.
         /// </para>
         /// </summary>
         public PackageVersionOriginType OriginType

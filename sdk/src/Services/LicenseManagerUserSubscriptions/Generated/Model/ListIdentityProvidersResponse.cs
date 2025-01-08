@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LicenseManagerUserSubscriptions.Model
 {
     /// <summary>
@@ -33,13 +34,14 @@ namespace Amazon.LicenseManagerUserSubscriptions.Model
     /// </summary>
     public partial class ListIdentityProvidersResponse : AmazonWebServiceResponse
     {
-        private List<IdentityProviderSummary> _identityProviderSummaries = new List<IdentityProviderSummary>();
+        private List<IdentityProviderSummary> _identityProviderSummaries = AWSConfigs.InitializeCollections ? new List<IdentityProviderSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property IdentityProviderSummaries. 
         /// <para>
-        /// Metadata that describes the list identity providers operation.
+        /// An array of <c>IdentityProviderSummary</c> resources that contain details about the
+        /// Active Directory identity providers that meet the request criteria.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -52,13 +54,15 @@ namespace Amazon.LicenseManagerUserSubscriptions.Model
         // Check to see if IdentityProviderSummaries property is set
         internal bool IsSetIdentityProviderSummaries()
         {
-            return this._identityProviderSummaries != null && this._identityProviderSummaries.Count > 0; 
+            return this._identityProviderSummaries != null && (this._identityProviderSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Token for the next set of results.
+        /// The next token used for paginated responses. When this field isn't empty, there are
+        /// additional elements that the service hasn't included in this request. Use this token
+        /// with the next request to retrieve additional objects.
         /// </para>
         /// </summary>
         public string NextToken

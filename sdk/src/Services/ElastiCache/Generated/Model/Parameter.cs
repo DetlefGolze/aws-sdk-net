@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -71,7 +72,7 @@ namespace Amazon.ElastiCache.Model
         /// <para>
         /// Indicates whether a change to the parameter is applied immediately or requires a reboot
         /// for the change to be applied. You can force a reboot or wait until the next maintenance
-        /// window's reboot. For more information, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.Rebooting.html">Rebooting
+        /// window's reboot. For more information, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Clusters.Rebooting.html">Rebooting
         /// a Cluster</a>.
         /// </para>
         /// </summary>
@@ -126,9 +127,9 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property IsModifiable. 
         /// <para>
-        /// Indicates whether (<code>true</code>) or not (<code>false</code>) the parameter can
-        /// be modified. Some parameters have security or operational implications that prevent
-        /// them from being changed.
+        /// Indicates whether (<c>true</c>) or not (<c>false</c>) the parameter can be modified.
+        /// Some parameters have security or operational implications that prevent them from being
+        /// changed.
         /// </para>
         /// </summary>
         public bool IsModifiable

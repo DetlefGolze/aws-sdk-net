@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -74,19 +75,19 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PENDING</code> - The resource is being prepared for deployment.
+        ///  <c>PENDING</c> - The resource is being prepared for deployment.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IN_PROGRESS</code> - The resource is being deployed.
+        ///  <c>IN_PROGRESS</c> - The resource is being deployed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>COMPLETED</code> - The resource has been deployed.
+        ///  <c>COMPLETED</c> - The resource has been deployed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> - Deployment of the resource failed.
+        ///  <c>FAILED</c> - Deployment of the resource failed.
         /// </para>
         ///  </li> </ul>
         /// </summary>

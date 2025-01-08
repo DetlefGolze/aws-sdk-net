@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Athena.Model
 {
     /// <summary>
@@ -37,6 +38,7 @@ namespace Amazon.Athena.Model
         private DateTime? _creationTime;
         private string _description;
         private EngineVersion _engineVersion;
+        private string _identityCenterApplicationArn;
         private string _name;
         private WorkGroupState _state;
 
@@ -80,7 +82,7 @@ namespace Amazon.Athena.Model
         /// <summary>
         /// Gets and sets the property EngineVersion. 
         /// <para>
-        /// The engine version setting for all queries on the workgroup. Queries on the <code>AmazonAthenaPreviewFunctionality</code>
+        /// The engine version setting for all queries on the workgroup. Queries on the <c>AmazonAthenaPreviewFunctionality</c>
         /// workgroup run on the preview engine regardless of this setting.
         /// </para>
         /// </summary>
@@ -94,6 +96,25 @@ namespace Amazon.Athena.Model
         internal bool IsSetEngineVersion()
         {
             return this._engineVersion != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IdentityCenterApplicationArn. 
+        /// <para>
+        /// The ARN of the IAM Identity Center enabled application associated with the workgroup.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=255)]
+        public string IdentityCenterApplicationArn
+        {
+            get { return this._identityCenterApplicationArn; }
+            set { this._identityCenterApplicationArn = value; }
+        }
+
+        // Check to see if IdentityCenterApplicationArn property is set
+        internal bool IsSetIdentityCenterApplicationArn()
+        {
+            return this._identityCenterApplicationArn != null;
         }
 
         /// <summary>

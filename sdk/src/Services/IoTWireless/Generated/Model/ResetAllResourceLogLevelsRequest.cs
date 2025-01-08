@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTWireless.Model
 {
     /// <summary>
     /// Container for the parameters to the ResetAllResourceLogLevels operation.
-    /// Removes the log-level overrides for all resources; both wireless devices and wireless
-    /// gateways.
+    /// Removes the log-level overrides for all resources; wireless devices, wireless gateways,
+    /// and fuota tasks.
     /// </summary>
     public partial class ResetAllResourceLogLevelsRequest : AmazonIoTWirelessRequest
     {

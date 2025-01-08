@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTThingsGraph.Model
 {
     /// <summary>
@@ -66,7 +67,7 @@ namespace Amazon.IoTThingsGraph.Model
         /// <summary>
         /// Gets and sets the property Definition. 
         /// <para>
-        /// The <code>DefinitionDocument</code> that contains the updated system definition.
+        /// The <c>DefinitionDocument</c> that contains the updated system definition.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -93,7 +94,7 @@ namespace Amazon.IoTThingsGraph.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>urn:tdm:REGION/ACCOUNT ID/default:system:SYSTEMNAME</code> 
+        ///  <c>urn:tdm:REGION/ACCOUNT ID/default:system:SYSTEMNAME</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=160)]

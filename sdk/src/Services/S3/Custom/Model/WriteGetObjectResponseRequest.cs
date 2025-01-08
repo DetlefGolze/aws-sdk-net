@@ -25,10 +25,16 @@ namespace Amazon.S3.Model
 {
     /// <summary>
     /// Container for the parameters to the WriteGetObjectResponse operation.
+    /// <note> 
+    /// <para>
+    /// This operation is not supported by directory buckets.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Passes transformed objects to a <code>GetObject</code> operation when using Object
-    /// Lambda Access Points. For information about Object Lambda Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/transforming-objects.html">Transforming
-    /// objects with Object Lambda Access Points</a> in the <i>Amazon S3 User Guide</i>.
-    /// 
+    /// Lambda access points. For information about Object Lambda access points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/transforming-objects.html">Transforming
+    /// objects with Object Lambda access points</a> in the <i>Amazon S3 User Guide</i>.
+    /// </para>
     ///  
     /// <para>
     /// This operation supports metadata that can be returned by <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html">GetObject</a>,
@@ -53,7 +59,7 @@ namespace Amazon.S3.Model
     /// S3 Object Lambda to detect and redact personally identifiable information (PII) and
     /// decompress S3 objects. These Lambda functions are available in the Amazon Web Services
     /// Serverless Application Repository, and can be selected through the Amazon Web Services
-    /// Management Console when you create your Object Lambda Access Point.
+    /// Management Console when you create your Object Lambda access point.
     /// </para>
     ///  
     /// <para>
@@ -492,7 +498,7 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// <para>Indicates whether an object stored in Amazon S3 has Object Lock enabled. For more information about S3 Object Lock, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html\">Object Lock</a>.</para>
+        /// <para>Indicates whether an object stored in Amazon S3 has Object Lock enabled. For more information about S3 Object Lock, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html">Object Lock</a>.</para>
         /// </summary>
         public ObjectLockMode ObjectLockMode
         {
@@ -548,7 +554,7 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// <para>Indicates if request involves bucket that is either a source or destination in a Replication rule. For more information about S3 Replication, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html\">Replication</a>.</para>
+        /// <para>Indicates if request involves bucket that is either a source or destination in a Replication rule. For more information about S3 Replication, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html">Replication</a>.</para>
         /// </summary>
         public ReplicationStatus ReplicationStatus
         {
@@ -640,7 +646,7 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// <para>128-bit MD5 digest of customer-provided encryption key used in Amazon S3 to encrypt data stored in S3. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html\">Server-Side Encryption (Using Customer-Provided Encryption Keys</a>.</para>
+        /// <para>128-bit MD5 digest of customer-provided encryption key used in Amazon S3 to encrypt data stored in S3. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html">Server-Side Encryption (Using Customer-Provided Encryption Keys</a>.</para>
         /// </summary>
         public string SSECustomerKeyMD5
         {

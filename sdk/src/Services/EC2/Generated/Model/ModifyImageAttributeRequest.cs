@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,9 +36,8 @@ namespace Amazon.EC2.Model
     /// 
     ///  
     /// <para>
-    /// To specify the attribute, you can use the <code>Attribute</code> parameter, or one
-    /// of the following parameters: <code>Description</code>, <code>ImdsSupport</code>, or
-    /// <code>LaunchPermission</code>.
+    /// To specify the attribute, you can use the <c>Attribute</c> parameter, or one of the
+    /// following parameters: <c>Description</c>, <c>ImdsSupport</c>, or <c>LaunchPermission</c>.
     /// </para>
     ///  
     /// <para>
@@ -57,11 +57,11 @@ namespace Amazon.EC2.Model
         private string _imdsSupport;
         private LaunchPermissionModifications _launchPermission;
         private OperationType _operationType;
-        private List<string> _organizationalUnitArns = new List<string>();
-        private List<string> _organizationArns = new List<string>();
-        private List<string> _productCodes = new List<string>();
-        private List<string> _userGroups = new List<string>();
-        private List<string> _userIds = new List<string>();
+        private List<string> _organizationalUnitArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _organizationArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _productCodes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _userGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _userIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _value;
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Amazon.EC2.Model
         /// Instantiates ModifyImageAttributeRequest with the parameterized properties
         /// </summary>
         /// <param name="imageId">The ID of the AMI.</param>
-        /// <param name="attribute">The name of the attribute to modify. Valid values: <code>description</code> | <code>imdsSupport</code> | <code>launchPermission</code> </param>
+        /// <param name="attribute">The name of the attribute to modify. Valid values: <c>description</c> | <c>imdsSupport</c> | <c>launchPermission</c> </param>
         public ModifyImageAttributeRequest(string imageId, string attribute)
         {
             _imageId = imageId;
@@ -87,8 +87,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>description</code> | <code>imdsSupport</code> | <code>launchPermission</code>
-        /// 
+        /// Valid values: <c>description</c> | <c>imdsSupport</c> | <c>launchPermission</c> 
         /// </para>
         /// </summary>
         public string Attribute
@@ -143,18 +142,18 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property ImdsSupport. 
         /// <para>
-        /// Set to <code>v2.0</code> to indicate that IMDSv2 is specified in the AMI. Instances
-        /// launched from this AMI will have <code>HttpTokens</code> automatically set to <code>required</code>
-        /// so that, by default, the instance requires that IMDSv2 is used when requesting instance
-        /// metadata. In addition, <code>HttpPutResponseHopLimit</code> is set to <code>2</code>.
-        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html#configure-IMDS-new-instances-ami-configuration">Configure
+        /// Set to <c>v2.0</c> to indicate that IMDSv2 is specified in the AMI. Instances launched
+        /// from this AMI will have <c>HttpTokens</c> automatically set to <c>required</c> so
+        /// that, by default, the instance requires that IMDSv2 is used when requesting instance
+        /// metadata. In addition, <c>HttpPutResponseHopLimit</c> is set to <c>2</c>. For more
+        /// information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html#configure-IMDS-new-instances-ami-configuration">Configure
         /// the AMI</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         ///  <important> 
         /// <para>
         /// Do not use this parameter unless your AMI software supports IMDSv2. After you set
-        /// the value to <code>v2.0</code>, you can't undo it. The only way to “reset” your AMI
-        /// is to create a new AMI from the underlying snapshot.
+        /// the value to <c>v2.0</c>, you can't undo it. The only way to “reset” your AMI is to
+        /// create a new AMI from the underlying snapshot.
         /// </para>
         ///  </important>
         /// </summary>
@@ -191,8 +190,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property OperationType. 
         /// <para>
-        /// The operation type. This parameter can be used only when the <code>Attribute</code>
-        /// parameter is <code>launchPermission</code>.
+        /// The operation type. This parameter can be used only when the <c>Attribute</c> parameter
+        /// is <c>launchPermission</c>.
         /// </para>
         /// </summary>
         public OperationType OperationType
@@ -211,7 +210,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property OrganizationalUnitArns. 
         /// <para>
         /// The Amazon Resource Name (ARN) of an organizational unit (OU). This parameter can
-        /// be used only when the <code>Attribute</code> parameter is <code>launchPermission</code>.
+        /// be used only when the <c>Attribute</c> parameter is <c>launchPermission</c>.
         /// </para>
         /// </summary>
         public List<string> OrganizationalUnitArns
@@ -223,14 +222,14 @@ namespace Amazon.EC2.Model
         // Check to see if OrganizationalUnitArns property is set
         internal bool IsSetOrganizationalUnitArns()
         {
-            return this._organizationalUnitArns != null && this._organizationalUnitArns.Count > 0; 
+            return this._organizationalUnitArns != null && (this._organizationalUnitArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property OrganizationArns. 
         /// <para>
         /// The Amazon Resource Name (ARN) of an organization. This parameter can be used only
-        /// when the <code>Attribute</code> parameter is <code>launchPermission</code>.
+        /// when the <c>Attribute</c> parameter is <c>launchPermission</c>.
         /// </para>
         /// </summary>
         public List<string> OrganizationArns
@@ -242,7 +241,7 @@ namespace Amazon.EC2.Model
         // Check to see if OrganizationArns property is set
         internal bool IsSetOrganizationArns()
         {
-            return this._organizationArns != null && this._organizationArns.Count > 0; 
+            return this._organizationArns != null && (this._organizationArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -260,14 +259,14 @@ namespace Amazon.EC2.Model
         // Check to see if ProductCodes property is set
         internal bool IsSetProductCodes()
         {
-            return this._productCodes != null && this._productCodes.Count > 0; 
+            return this._productCodes != null && (this._productCodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UserGroups. 
         /// <para>
-        /// The user groups. This parameter can be used only when the <code>Attribute</code> parameter
-        /// is <code>launchPermission</code>.
+        /// The user groups. This parameter can be used only when the <c>Attribute</c> parameter
+        /// is <c>launchPermission</c>.
         /// </para>
         /// </summary>
         public List<string> UserGroups
@@ -279,14 +278,14 @@ namespace Amazon.EC2.Model
         // Check to see if UserGroups property is set
         internal bool IsSetUserGroups()
         {
-            return this._userGroups != null && this._userGroups.Count > 0; 
+            return this._userGroups != null && (this._userGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UserIds. 
         /// <para>
-        /// The Amazon Web Services account IDs. This parameter can be used only when the <code>Attribute</code>
-        /// parameter is <code>launchPermission</code>.
+        /// The Amazon Web Services account IDs. This parameter can be used only when the <c>Attribute</c>
+        /// parameter is <c>launchPermission</c>.
         /// </para>
         /// </summary>
         public List<string> UserIds
@@ -298,14 +297,14 @@ namespace Amazon.EC2.Model
         // Check to see if UserIds property is set
         internal bool IsSetUserIds()
         {
-            return this._userIds != null && this._userIds.Count > 0; 
+            return this._userIds != null && (this._userIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Value. 
         /// <para>
         /// The value of the attribute being modified. This parameter can be used only when the
-        /// <code>Attribute</code> parameter is <code>description</code> or <code>imdsSupport</code>.
+        /// <c>Attribute</c> parameter is <c>description</c> or <c>imdsSupport</c>.
         /// </para>
         /// </summary>
         public string Value

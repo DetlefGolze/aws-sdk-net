@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -36,13 +37,13 @@ namespace Amazon.GameLift.Model
     /// </summary>
     public partial class FilterConfiguration
     {
-        private List<string> _allowedLocations = new List<string>();
+        private List<string> _allowedLocations = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AllowedLocations. 
         /// <para>
         ///  A list of locations to allow game session placement in, in the form of Amazon Web
-        /// Services Region codes such as <code>us-west-2</code>. 
+        /// Services Region codes such as <c>us-west-2</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -55,7 +56,7 @@ namespace Amazon.GameLift.Model
         // Check to see if AllowedLocations property is set
         internal bool IsSetAllowedLocations()
         {
-            return this._allowedLocations != null && this._allowedLocations.Count > 0; 
+            return this._allowedLocations != null && (this._allowedLocations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

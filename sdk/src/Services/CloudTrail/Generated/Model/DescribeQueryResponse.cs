@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
@@ -36,6 +37,8 @@ namespace Amazon.CloudTrail.Model
         private string _deliveryS3Uri;
         private DeliveryStatus _deliveryStatus;
         private string _errorMessage;
+        private string _eventDataStoreOwnerAccountId;
+        private string _prompt;
         private string _queryId;
         private QueryStatisticsForDescribeQuery _queryStatistics;
         private QueryStatus _queryStatus;
@@ -98,6 +101,47 @@ namespace Amazon.CloudTrail.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EventDataStoreOwnerAccountId. 
+        /// <para>
+        ///  The account ID of the event data store owner. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=12, Max=16)]
+        public string EventDataStoreOwnerAccountId
+        {
+            get { return this._eventDataStoreOwnerAccountId; }
+            set { this._eventDataStoreOwnerAccountId = value; }
+        }
+
+        // Check to see if EventDataStoreOwnerAccountId property is set
+        internal bool IsSetEventDataStoreOwnerAccountId()
+        {
+            return this._eventDataStoreOwnerAccountId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Prompt. 
+        /// <para>
+        ///  The prompt used for a generated query. For information about generated queries, see
+        /// <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/lake-query-generator.html">Create
+        /// CloudTrail Lake queries from natural language prompts</a> in the <i>CloudTrail </i>
+        /// user guide. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=3, Max=500)]
+        public string Prompt
+        {
+            get { return this._prompt; }
+            set { this._prompt = value; }
+        }
+
+        // Check to see if Prompt property is set
+        internal bool IsSetPrompt()
+        {
+            return this._prompt != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property QueryId. 
         /// <para>
         /// The ID of the query.
@@ -139,9 +183,8 @@ namespace Amazon.CloudTrail.Model
         /// <summary>
         /// Gets and sets the property QueryStatus. 
         /// <para>
-        /// The status of a query. Values for <code>QueryStatus</code> include <code>QUEUED</code>,
-        /// <code>RUNNING</code>, <code>FINISHED</code>, <code>FAILED</code>, <code>TIMED_OUT</code>,
-        /// or <code>CANCELLED</code> 
+        /// The status of a query. Values for <c>QueryStatus</c> include <c>QUEUED</c>, <c>RUNNING</c>,
+        /// <c>FINISHED</c>, <c>FAILED</c>, <c>TIMED_OUT</c>, or <c>CANCELLED</c> 
         /// </para>
         /// </summary>
         public QueryStatus QueryStatus

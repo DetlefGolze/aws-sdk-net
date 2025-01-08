@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Connect.Model
     ///  
     /// <para>
     /// For the specified version of Amazon Lex, returns a paginated list of all the Amazon
-    /// Lex bots currently associated with the instance. Use this API to returns both Amazon
+    /// Lex bots currently associated with the instance. Use this API to return both Amazon
     /// Lex V1 and V2 bots.
     /// </para>
     /// </summary>

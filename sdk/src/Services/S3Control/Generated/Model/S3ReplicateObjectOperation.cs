@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
-    /// Directs the specified job to invoke <code>ReplicateObject</code> on every object in
-    /// the job's manifest.
+    /// Directs the specified job to invoke <c>ReplicateObject</c> on every object in the
+    /// job's manifest.
     /// </summary>
     public partial class S3ReplicateObjectOperation
     {

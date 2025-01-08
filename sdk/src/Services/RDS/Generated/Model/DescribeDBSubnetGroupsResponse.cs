@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// Contains the result of a successful invocation of the <code>DescribeDBSubnetGroups</code>
+    /// Contains the result of a successful invocation of the <c>DescribeDBSubnetGroups</c>
     /// action.
     /// </summary>
     public partial class DescribeDBSubnetGroupsResponse : AmazonWebServiceResponse
     {
-        private List<DBSubnetGroup> _dbSubnetGroups = new List<DBSubnetGroup>();
+        private List<DBSubnetGroup> _dbSubnetGroups = AWSConfigs.InitializeCollections ? new List<DBSubnetGroup>() : null;
         private string _marker;
 
         /// <summary>
         /// Gets and sets the property DBSubnetGroups. 
         /// <para>
-        /// A list of <code>DBSubnetGroup</code> instances.
+        /// A list of <c>DBSubnetGroup</c> instances.
         /// </para>
         /// </summary>
         public List<DBSubnetGroup> DBSubnetGroups
@@ -52,7 +53,7 @@ namespace Amazon.RDS.Model
         // Check to see if DBSubnetGroups property is set
         internal bool IsSetDBSubnetGroups()
         {
-            return this._dbSubnetGroups != null && this._dbSubnetGroups.Count > 0; 
+            return this._dbSubnetGroups != null && (this._dbSubnetGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.RDS.Model
         /// <para>
         /// An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>.
+        /// by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker

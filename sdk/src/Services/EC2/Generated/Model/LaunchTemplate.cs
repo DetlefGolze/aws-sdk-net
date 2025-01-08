@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -39,7 +40,8 @@ namespace Amazon.EC2.Model
         private long? _latestVersionNumber;
         private string _launchTemplateId;
         private string _launchTemplateName;
-        private List<Tag> _tags = new List<Tag>();
+        private OperatorResponse _operator;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property CreatedBy. 
@@ -151,6 +153,24 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Operator. 
+        /// <para>
+        /// The entity that manages the launch template.
+        /// </para>
+        /// </summary>
+        public OperatorResponse Operator
+        {
+            get { return this._operator; }
+            set { this._operator = value; }
+        }
+
+        // Check to see if Operator property is set
+        internal bool IsSetOperator()
+        {
+            return this._operator != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// The tags for the launch template.
@@ -165,7 +185,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

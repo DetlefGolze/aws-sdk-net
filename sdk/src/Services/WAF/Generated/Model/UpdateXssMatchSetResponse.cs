@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAF.Model
 {
     /// <summary>
@@ -38,9 +39,9 @@ namespace Amazon.WAF.Model
         /// <summary>
         /// Gets and sets the property ChangeToken. 
         /// <para>
-        /// The <code>ChangeToken</code> that you used to submit the <code>UpdateXssMatchSet</code>
-        /// request. You can also use this value to query the status of the request. For more
-        /// information, see <a>GetChangeTokenStatus</a>.
+        /// The <c>ChangeToken</c> that you used to submit the <c>UpdateXssMatchSet</c> request.
+        /// You can also use this value to query the status of the request. For more information,
+        /// see <a>GetChangeTokenStatus</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]

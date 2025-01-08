@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.SimSpaceWeaver
 {
     /// <summary>
-    /// Implementation for accessing SimSpaceWeaver
+    /// <para>Implementation for accessing SimSpaceWeaver</para>
     ///
     /// SimSpace Weaver (SimSpace Weaver) is a service that you can use to build and run large-scale
     /// spatial simulations in the Amazon Web Services Cloud. For example, you can create
@@ -292,41 +293,40 @@ namespace Amazon.SimSpaceWeaver
         /// 
         ///  
         /// <para>
-        /// You specify a <code>Destination</code> when you create a snapshot. The <code>Destination</code>
-        /// is the name of an Amazon S3 bucket and an optional <code>ObjectKeyPrefix</code>. The
-        /// <code>ObjectKeyPrefix</code> is usually the name of a folder in the bucket. SimSpace
-        /// Weaver creates a <code>snapshot</code> folder inside the <code>Destination</code>
-        /// and places the snapshot file there.
+        /// You specify a <c>Destination</c> when you create a snapshot. The <c>Destination</c>
+        /// is the name of an Amazon S3 bucket and an optional <c>ObjectKeyPrefix</c>. The <c>ObjectKeyPrefix</c>
+        /// is usually the name of a folder in the bucket. SimSpace Weaver creates a <c>snapshot</c>
+        /// folder inside the <c>Destination</c> and places the snapshot file there.
         /// </para>
         ///  
         /// <para>
-        /// The snapshot file is an Amazon S3 object. It has an object key with the form: <code>
-        /// <i>object-key-prefix</i>/snapshot/<i>simulation-name</i>-<i>YYMMdd</i>-<i>HHmm</i>-<i>ss</i>.zip</code>,
+        /// The snapshot file is an Amazon S3 object. It has an object key with the form: <c>
+        /// <i>object-key-prefix</i>/snapshot/<i>simulation-name</i>-<i>YYMMdd</i>-<i>HHmm</i>-<i>ss</i>.zip</c>,
         /// where: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code> <i>YY</i> </code> is the 2-digit year
+        ///  <c> <i>YY</i> </c> is the 2-digit year
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code> <i>MM</i> </code> is the 2-digit month
+        ///  <c> <i>MM</i> </c> is the 2-digit month
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code> <i>dd</i> </code> is the 2-digit day of the month
+        ///  <c> <i>dd</i> </c> is the 2-digit day of the month
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code> <i>HH</i> </code> is the 2-digit hour (24-hour clock)
+        ///  <c> <i>HH</i> </c> is the 2-digit hour (24-hour clock)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code> <i>mm</i> </code> is the 2-digit minutes
+        ///  <c> <i>mm</i> </c> is the 2-digit minutes
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code> <i>ss</i> </code> is the 2-digit seconds
+        ///  <c> <i>ss</i> </c> is the 2-digit seconds
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -1422,11 +1422,11 @@ namespace Amazon.SimSpaceWeaver
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

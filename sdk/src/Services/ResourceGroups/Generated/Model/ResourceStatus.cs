@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroups.Model
 {
     /// <summary>
     /// A structure that identifies the current group membership status for a resource. Adding
     /// a resource to a resource group is performed asynchronously as a background task. A
-    /// <code>PENDING</code> status indicates, for this resource, that the process isn't completed
+    /// <c>PENDING</c> status indicates, for this resource, that the process isn't completed
     /// yet.
     /// </summary>
     public partial class ResourceStatus

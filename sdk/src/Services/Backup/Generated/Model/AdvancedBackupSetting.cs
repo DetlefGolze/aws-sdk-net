@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
-    /// A list of backup options for each resource type.
+    /// The backup options for each resource type.
     /// </summary>
     public partial class AdvancedBackupSetting
     {
-        private Dictionary<string, string> _backupOptions = new Dictionary<string, string>();
+        private Dictionary<string, string> _backupOptions = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _resourceType;
 
         /// <summary>
@@ -48,17 +49,17 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  
         /// <para>
-        /// Set to <code>"WindowsVSS":"enabled"</code> to enable the <code>WindowsVSS</code> backup
-        /// option and create a Windows VSS backup. 
+        /// Set to <c>"WindowsVSS":"enabled"</c> to enable the <c>WindowsVSS</c> backup option
+        /// and create a Windows VSS backup. 
         /// </para>
         ///  
         /// <para>
-        /// Set to <code>"WindowsVSS":"disabled"</code> to create a regular backup. The <code>WindowsVSS</code>
+        /// Set to <c>"WindowsVSS":"disabled"</c> to create a regular backup. The <c>WindowsVSS</c>
         /// option is not enabled by default.
         /// </para>
         ///  
         /// <para>
-        /// If you specify an invalid option, you get an <code>InvalidParameterValueException</code>
+        /// If you specify an invalid option, you get an <c>InvalidParameterValueException</c>
         /// exception.
         /// </para>
         ///  
@@ -76,7 +77,7 @@ namespace Amazon.Backup.Model
         // Check to see if BackupOptions property is set
         internal bool IsSetBackupOptions()
         {
-            return this._backupOptions != null && this._backupOptions.Count > 0; 
+            return this._backupOptions != null && (this._backupOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -89,7 +90,7 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>EC2</code>.
+        /// Valid values: <c>EC2</c>.
         /// </para>
         /// </summary>
         public string ResourceType

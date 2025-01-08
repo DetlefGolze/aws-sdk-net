@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Lightsail.Model
     /// </summary>
     public partial class GetActiveNamesResponse : AmazonWebServiceResponse
     {
-        private List<string> _activeNames = new List<string>();
+        private List<string> _activeNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextPageToken;
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if ActiveNames property is set
         internal bool IsSetActiveNames()
         {
-            return this._activeNames != null && this._activeNames.Count > 0; 
+            return this._activeNames != null && (this._activeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -65,8 +66,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// To get the next page of results, perform another <code>GetActiveNames</code> request
-        /// and specify the next page token using the <code>pageToken</code> parameter.
+        /// To get the next page of results, perform another <c>GetActiveNames</c> request and
+        /// specify the next page token using the <c>pageToken</c> parameter.
         /// </para>
         /// </summary>
         public string NextPageToken

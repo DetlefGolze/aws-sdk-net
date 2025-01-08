@@ -26,24 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTThingsGraph.Model
 {
     /// <summary>
     /// An object that filters an entity search. Multiple filters function as OR criteria
-    /// in the search. For example a search that includes a <code>NAMESPACE</code> and a <code>REFERENCED_ENTITY_ID</code>
+    /// in the search. For example a search that includes a <c>NAMESPACE</c> and a <c>REFERENCED_ENTITY_ID</c>
     /// filter searches for entities in the specified namespace that use the entity specified
-    /// by the value of <code>REFERENCED_ENTITY_ID</code>.
+    /// by the value of <c>REFERENCED_ENTITY_ID</c>.
     /// </summary>
     public partial class EntityFilter
     {
         private EntityFilterName _name;
-        private List<string> _value = new List<string>();
+        private List<string> _value = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the entity search filter field. <code>REFERENCED_ENTITY_ID</code> filters
-        /// on entities that are used by the entity in the result set. For example, you can filter
+        /// The name of the entity search filter field. <c>REFERENCED_ENTITY_ID</c> filters on
+        /// entities that are used by the entity in the result set. For example, you can filter
         /// on the ID of a property that is used in a state.
         /// </para>
         /// </summary>
@@ -75,7 +76,7 @@ namespace Amazon.IoTThingsGraph.Model
         // Check to see if Value property is set
         internal bool IsSetValue()
         {
-            return this._value != null && this._value.Count > 0; 
+            return this._value != null && (this._value.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

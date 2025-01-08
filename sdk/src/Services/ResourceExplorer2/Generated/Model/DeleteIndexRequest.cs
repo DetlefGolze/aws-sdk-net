@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceExplorer2.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.ResourceExplorer2.Model
     /// stops discovering and indexing resources in that Region. Resource Explorer also deletes
     /// all views in that Region. These actions occur as asynchronous background tasks. You
     /// can check to see when the actions are complete by using the <a>GetIndex</a> operation
-    /// and checking the <code>Status</code> response value.
+    /// and checking the <c>Status</c> response value.
     /// 
     ///  <note> 
     /// <para>

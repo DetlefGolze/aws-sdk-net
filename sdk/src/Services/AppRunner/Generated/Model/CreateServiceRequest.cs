@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRunner.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.AppRunner.Model
     ///  
     /// <para>
     /// This is an asynchronous operation. On a successful call, you can use the returned
-    /// <code>OperationId</code> and the <a href="https://docs.aws.amazon.com/apprunner/latest/api/API_ListOperations.html">ListOperations</a>
+    /// <c>OperationId</c> and the <a href="https://docs.aws.amazon.com/apprunner/latest/api/API_ListOperations.html">ListOperations</a>
     /// call to track the operation's progress.
     /// </para>
     /// </summary>
@@ -50,7 +51,7 @@ namespace Amazon.AppRunner.Model
         private ServiceObservabilityConfiguration _observabilityConfiguration;
         private string _serviceName;
         private SourceConfiguration _sourceConfiguration;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AutoScalingConfigurationArn. 
@@ -62,12 +63,12 @@ namespace Amazon.AppRunner.Model
         ///  
         /// <para>
         /// Specify an ARN with a name and a revision number to associate that revision. For example:
-        /// <code>arn:aws:apprunner:us-east-1:123456789012:autoscalingconfiguration/high-availability/3</code>
+        /// <c>arn:aws:apprunner:us-east-1:123456789012:autoscalingconfiguration/high-availability/3</c>
         /// 
         /// </para>
         ///  
         /// <para>
-        /// Specify just the name to associate the latest revision. For example: <code>arn:aws:apprunner:us-east-1:123456789012:autoscalingconfiguration/high-availability</code>
+        /// Specify just the name to associate the latest revision. For example: <c>arn:aws:apprunner:us-east-1:123456789012:autoscalingconfiguration/high-availability</c>
         /// 
         /// </para>
         /// </summary>
@@ -233,7 +234,7 @@ namespace Amazon.AppRunner.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

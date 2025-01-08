@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -34,21 +35,78 @@ namespace Amazon.IoTFleetWise.Model
     /// 
     ///  <note> 
     /// <para>
-    /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-    /// the request to return more results.
+    /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+    /// request to return more results.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class ListVehiclesRequest : AmazonIoTFleetWiseRequest
     {
+        private List<string> _attributeNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _attributeValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _modelManifestArn;
         private string _nextToken;
 
         /// <summary>
+        /// Gets and sets the property AttributeNames. 
+        /// <para>
+        /// The fully qualified names of the attributes. You can use this optional parameter to
+        /// list the vehicles containing all the attributes in the request. For example, <c>attributeNames</c>
+        /// could be "<c>Vehicle.Body.Engine.Type, Vehicle.Color</c>" and the corresponding <c>attributeValues</c>
+        /// could be "<c>1.3 L R2, Blue</c>" . In this case, the API will filter vehicles with
+        /// an attribute name <c>Vehicle.Body.Engine.Type</c> that contains a value of <c>1.3
+        /// L R2</c> AND an attribute name <c>Vehicle.Color</c> that contains a value of "<c>Blue</c>".
+        /// A request must contain unique values for the <c>attributeNames</c> filter and the
+        /// matching number of <c>attributeValues</c> filters to return the subset of vehicles
+        /// that match the attributes filter condition.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=5)]
+        public List<string> AttributeNames
+        {
+            get { return this._attributeNames; }
+            set { this._attributeNames = value; }
+        }
+
+        // Check to see if AttributeNames property is set
+        internal bool IsSetAttributeNames()
+        {
+            return this._attributeNames != null && (this._attributeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property AttributeValues. 
+        /// <para>
+        /// Static information about a vehicle attribute value in string format. You can use this
+        /// optional parameter in conjunction with <c>attributeNames</c> to list the vehicles
+        /// containing all the <c>attributeValues</c> corresponding to the <c>attributeNames</c>
+        /// filter. For example, <c>attributeValues</c> could be "<c>1.3 L R2, Blue</c>" and the
+        /// corresponding <c>attributeNames</c> filter could be "<c>Vehicle.Body.Engine.Type,
+        /// Vehicle.Color</c>". In this case, the API will filter vehicles with attribute name
+        /// <c>Vehicle.Body.Engine.Type</c> that contains a value of <c>1.3 L R2</c> AND an attribute
+        /// name <c>Vehicle.Color</c> that contains a value of "<c>Blue</c>". A request must contain
+        /// unique values for the <c>attributeNames</c> filter and the matching number of <c>attributeValues</c>
+        /// filter to return the subset of vehicles that match the attributes filter condition.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=5)]
+        public List<string> AttributeValues
+        {
+            get { return this._attributeValues; }
+            set { this._attributeValues = value; }
+        }
+
+        // Check to see if AttributeValues property is set
+        internal bool IsSetAttributeValues()
+        {
+            return this._attributeValues != null && (this._attributeValues.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        ///  The maximum number of items to return, between 1 and 100, inclusive. 
+        /// The maximum number of items to return, between 1 and 100, inclusive.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -92,10 +150,10 @@ namespace Amazon.IoTFleetWise.Model
         ///  
         /// <para>
         /// If the results of a search are large, only a portion of the results are returned,
-        /// and a <code>nextToken</code> pagination token is returned in the response. To retrieve
-        /// the next set of results, reissue the search request and include the returned token.
-        /// When all results have been returned, the response does not contain a pagination token
-        /// value. 
+        /// and a <c>nextToken</c> pagination token is returned in the response. To retrieve the
+        /// next set of results, reissue the search request and include the returned token. When
+        /// all results have been returned, the response does not contain a pagination token value.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4096)]

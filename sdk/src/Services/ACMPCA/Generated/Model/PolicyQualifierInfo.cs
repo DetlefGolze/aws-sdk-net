@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ACMPCA.Model
 {
     /// <summary>
-    /// Modifies the <code>CertPolicyId</code> of a <code>PolicyInformation</code> object
-    /// with a qualifier. Amazon Web Services Private CA supports the certification practice
-    /// statement (CPS) qualifier.
+    /// Modifies the <c>CertPolicyId</c> of a <c>PolicyInformation</c> object with a qualifier.
+    /// Amazon Web Services Private CA supports the certification practice statement (CPS)
+    /// qualifier.
     /// </summary>
     public partial class PolicyQualifierInfo
     {
@@ -41,7 +42,7 @@ namespace Amazon.ACMPCA.Model
         /// <summary>
         /// Gets and sets the property PolicyQualifierId. 
         /// <para>
-        /// Identifies the qualifier modifying a <code>CertPolicyId</code>.
+        /// Identifies the qualifier modifying a <c>CertPolicyId</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

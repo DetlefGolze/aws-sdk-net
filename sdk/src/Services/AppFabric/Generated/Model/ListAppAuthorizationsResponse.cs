@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppFabric.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.AppFabric.Model
     /// </summary>
     public partial class ListAppAuthorizationsResponse : AmazonWebServiceResponse
     {
-        private List<AppAuthorizationSummary> _appAuthorizationSummaryList = new List<AppAuthorizationSummary>();
+        private List<AppAuthorizationSummary> _appAuthorizationSummaryList = AWSConfigs.InitializeCollections ? new List<AppAuthorizationSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,17 +53,17 @@ namespace Amazon.AppFabric.Model
         // Check to see if AppAuthorizationSummaryList property is set
         internal bool IsSetAppAuthorizationSummaryList()
         {
-            return this._appAuthorizationSummaryList != null && this._appAuthorizationSummaryList.Count > 0; 
+            return this._appAuthorizationSummaryList != null && (this._appAuthorizationSummaryList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. Each pagination token expires after 24 hours. Using an expired pagination
-        /// token will return an <i>HTTP 400 InvalidToken error</i>.
+        /// If <c>nextToken</c> is returned, there are more results available. The value of <c>nextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. Each pagination
+        /// token expires after 24 hours. Using an expired pagination token will return an <i>HTTP
+        /// 400 InvalidToken error</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

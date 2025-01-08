@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.IoTWireless
 {
     /// <summary>
-    /// Implementation for accessing IoTWireless
+    /// <para>Implementation for accessing IoTWireless</para>
     ///
     /// AWS IoT Wireless provides bi-directional communication between internet-connected
     /// wireless devices and the AWS Cloud. To onboard both LoRaWAN and Sidewalk devices to
@@ -56,6 +57,12 @@ namespace Amazon.IoTWireless
     /// Updates Over-The-Air (FUOTA) API operations, you can create a FUOTA task and schedule
     /// a session to update the firmware of individual devices or an entire group of devices
     /// in a multicast group.
+    /// </para>
+    ///  
+    /// <para>
+    /// To connect to the AWS IoT Wireless Service, use the Service endpoints as described
+    /// in <a href="https://docs.aws.amazon.com/general/latest/gr/iot-lorawan.html#iot-wireless_region">IoT
+    /// Wireless Service endpoints</a> in the <i>AWS General Reference</i>.
     /// </para>
     /// </summary>
     public partial class AmazonIoTWirelessClient : AmazonServiceClient, IAmazonIoTWireless
@@ -1429,6 +1436,27 @@ namespace Amazon.IoTWireless
 
         /// <summary>
         /// Provisions a wireless gateway.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// When provisioning a wireless gateway, you might run into duplication errors for the
+        /// following reasons.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// If you specify a <c>GatewayEui</c> value that already exists.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If you used a <c>ClientRequestToken</c> with the same parameters within the last 10
+        /// minutes.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// To avoid this error, make sure that you use unique identifiers and parameters for
+        /// each request within the specified time period.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateWirelessGateway service method.</param>
         /// 
@@ -1461,6 +1489,27 @@ namespace Amazon.IoTWireless
 
         /// <summary>
         /// Provisions a wireless gateway.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// When provisioning a wireless gateway, you might run into duplication errors for the
+        /// following reasons.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// If you specify a <c>GatewayEui</c> value that already exists.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If you used a <c>ClientRequestToken</c> with the same parameters within the last 10
+        /// minutes.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// To avoid this error, make sure that you use unique identifiers and parameters for
+        /// each request within the specified time period.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateWirelessGateway service method.</param>
         /// <param name="cancellationToken">
@@ -2329,6 +2378,27 @@ namespace Amazon.IoTWireless
 
         /// <summary>
         /// Deletes a wireless gateway.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// When deleting a wireless gateway, you might run into duplication errors for the following
+        /// reasons.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// If you specify a <c>GatewayEui</c> value that already exists.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If you used a <c>ClientRequestToken</c> with the same parameters within the last 10
+        /// minutes.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// To avoid this error, make sure that you use unique identifiers and parameters for
+        /// each request within the specified time period.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteWirelessGateway service method.</param>
         /// 
@@ -2361,6 +2431,27 @@ namespace Amazon.IoTWireless
 
         /// <summary>
         /// Deletes a wireless gateway.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// When deleting a wireless gateway, you might run into duplication errors for the following
+        /// reasons.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// If you specify a <c>GatewayEui</c> value that already exists.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If you used a <c>ClientRequestToken</c> with the same parameters within the last 10
+        /// minutes.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// To avoid this error, make sure that you use unique identifiers and parameters for
+        /// each request within the specified time period.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteWirelessGateway service method.</param>
         /// <param name="cancellationToken">
@@ -2608,9 +2699,9 @@ namespace Amazon.IoTWireless
 
 
         /// <summary>
-        /// Disassociates your AWS account from a partner account. If <code>PartnerAccountId</code>
-        /// and <code>PartnerType</code> are <code>null</code>, disassociates your AWS account
-        /// from all partner accounts.
+        /// Disassociates your AWS account from a partner account. If <c>PartnerAccountId</c>
+        /// and <c>PartnerType</c> are <c>null</c>, disassociates your AWS account from all partner
+        /// accounts.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DisassociateAwsAccountFromPartnerAccount service method.</param>
         /// 
@@ -2639,9 +2730,9 @@ namespace Amazon.IoTWireless
 
 
         /// <summary>
-        /// Disassociates your AWS account from a partner account. If <code>PartnerAccountId</code>
-        /// and <code>PartnerType</code> are <code>null</code>, disassociates your AWS account
-        /// from all partner accounts.
+        /// Disassociates your AWS account from a partner account. If <c>PartnerAccountId</c>
+        /// and <c>PartnerType</c> are <c>null</c>, disassociates your AWS account from all partner
+        /// accounts.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DisassociateAwsAccountFromPartnerAccount service method.</param>
         /// <param name="cancellationToken">
@@ -3462,6 +3553,160 @@ namespace Amazon.IoTWireless
 
         #endregion
         
+        #region  GetMetricConfiguration
+
+
+        /// <summary>
+        /// Get the metric configuration status for this AWS account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetMetricConfiguration service method.</param>
+        /// 
+        /// <returns>The response from the GetMetricConfiguration service method, as returned by IoTWireless.</returns>
+        /// <exception cref="Amazon.IoTWireless.Model.AccessDeniedException">
+        /// User does not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ConflictException">
+        /// Adding, updating, or deleting the resource can cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.InternalServerException">
+        /// An unexpected error occurred while processing a request.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ResourceNotFoundException">
+        /// Resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ThrottlingException">
+        /// The request was denied because it exceeded the allowed API request rate.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ValidationException">
+        /// The input did not meet the specified constraints.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetMetricConfiguration">REST API Reference for GetMetricConfiguration Operation</seealso>
+        public virtual GetMetricConfigurationResponse GetMetricConfiguration(GetMetricConfigurationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetMetricConfigurationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetMetricConfigurationResponseUnmarshaller.Instance;
+
+            return Invoke<GetMetricConfigurationResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Get the metric configuration status for this AWS account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetMetricConfiguration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetMetricConfiguration service method, as returned by IoTWireless.</returns>
+        /// <exception cref="Amazon.IoTWireless.Model.AccessDeniedException">
+        /// User does not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ConflictException">
+        /// Adding, updating, or deleting the resource can cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.InternalServerException">
+        /// An unexpected error occurred while processing a request.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ResourceNotFoundException">
+        /// Resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ThrottlingException">
+        /// The request was denied because it exceeded the allowed API request rate.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ValidationException">
+        /// The input did not meet the specified constraints.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetMetricConfiguration">REST API Reference for GetMetricConfiguration Operation</seealso>
+        public virtual Task<GetMetricConfigurationResponse> GetMetricConfigurationAsync(GetMetricConfigurationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetMetricConfigurationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetMetricConfigurationResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetMetricConfigurationResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetMetrics
+
+
+        /// <summary>
+        /// Get the summary metrics for this AWS account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetMetrics service method.</param>
+        /// 
+        /// <returns>The response from the GetMetrics service method, as returned by IoTWireless.</returns>
+        /// <exception cref="Amazon.IoTWireless.Model.AccessDeniedException">
+        /// User does not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ConflictException">
+        /// Adding, updating, or deleting the resource can cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.InternalServerException">
+        /// An unexpected error occurred while processing a request.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ResourceNotFoundException">
+        /// Resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ThrottlingException">
+        /// The request was denied because it exceeded the allowed API request rate.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ValidationException">
+        /// The input did not meet the specified constraints.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetMetrics">REST API Reference for GetMetrics Operation</seealso>
+        public virtual GetMetricsResponse GetMetrics(GetMetricsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetMetricsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetMetricsResponseUnmarshaller.Instance;
+
+            return Invoke<GetMetricsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Get the summary metrics for this AWS account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetMetrics service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetMetrics service method, as returned by IoTWireless.</returns>
+        /// <exception cref="Amazon.IoTWireless.Model.AccessDeniedException">
+        /// User does not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ConflictException">
+        /// Adding, updating, or deleting the resource can cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.InternalServerException">
+        /// An unexpected error occurred while processing a request.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ResourceNotFoundException">
+        /// Resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ThrottlingException">
+        /// The request was denied because it exceeded the allowed API request rate.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ValidationException">
+        /// The input did not meet the specified constraints.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetMetrics">REST API Reference for GetMetrics Operation</seealso>
+        public virtual Task<GetMetricsResponse> GetMetricsAsync(GetMetricsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetMetricsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetMetricsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetMetricsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  GetMulticastGroup
 
 
@@ -3679,8 +3924,8 @@ namespace Amazon.IoTWireless
 
 
         /// <summary>
-        /// Gets information about a partner account. If <code>PartnerAccountId</code> and <code>PartnerType</code>
-        /// are <code>null</code>, returns all partner accounts.
+        /// Gets information about a partner account. If <c>PartnerAccountId</c> and <c>PartnerType</c>
+        /// are <c>null</c>, returns all partner accounts.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetPartnerAccount service method.</param>
         /// 
@@ -3709,8 +3954,8 @@ namespace Amazon.IoTWireless
 
 
         /// <summary>
-        /// Gets information about a partner account. If <code>PartnerAccountId</code> and <code>PartnerType</code>
-        /// are <code>null</code>, returns all partner accounts.
+        /// Gets information about a partner account. If <c>PartnerAccountId</c> and <c>PartnerType</c>
+        /// are <c>null</c>, returns all partner accounts.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetPartnerAccount service method.</param>
         /// <param name="cancellationToken">
@@ -4069,7 +4314,7 @@ namespace Amazon.IoTWireless
 
         /// <summary>
         /// Fetches the log-level override, if any, for a given resource-ID and resource-type.
-        /// It can be used for a wireless device or a wireless gateway.
+        /// It can be used for a wireless device, wireless gateway or fuota task.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetResourceLogLevel service method.</param>
         /// 
@@ -4102,7 +4347,7 @@ namespace Amazon.IoTWireless
 
         /// <summary>
         /// Fetches the log-level override, if any, for a given resource-ID and resource-type.
-        /// It can be used for a wireless device or a wireless gateway.
+        /// It can be used for a wireless device, wireless gateway or fuota task.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetResourceLogLevel service method.</param>
         /// <param name="cancellationToken">
@@ -6330,8 +6575,8 @@ namespace Amazon.IoTWireless
 
 
         /// <summary>
-        /// Removes the log-level overrides for all resources; both wireless devices and wireless
-        /// gateways.
+        /// Removes the log-level overrides for all resources; wireless devices, wireless gateways,
+        /// and fuota tasks.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ResetAllResourceLogLevels service method.</param>
         /// 
@@ -6363,8 +6608,8 @@ namespace Amazon.IoTWireless
 
 
         /// <summary>
-        /// Removes the log-level overrides for all resources; both wireless devices and wireless
-        /// gateways.
+        /// Removes the log-level overrides for all resources; wireless devices, wireless gateways,
+        /// and fuota tasks.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ResetAllResourceLogLevels service method.</param>
         /// <param name="cancellationToken">
@@ -6404,7 +6649,7 @@ namespace Amazon.IoTWireless
 
         /// <summary>
         /// Removes the log-level override, if any, for a specific resource-ID and resource-type.
-        /// It can be used for a wireless device or a wireless gateway.
+        /// It can be used for a wireless device, a wireless gateway, or a fuota task.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ResetResourceLogLevel service method.</param>
         /// 
@@ -6437,7 +6682,7 @@ namespace Amazon.IoTWireless
 
         /// <summary>
         /// Removes the log-level override, if any, for a specific resource-ID and resource-type.
-        /// It can be used for a wireless device or a wireless gateway.
+        /// It can be used for a wireless device, a wireless gateway, or a fuota task.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ResetResourceLogLevel service method.</param>
         /// <param name="cancellationToken">
@@ -7145,7 +7390,7 @@ namespace Amazon.IoTWireless
 
 
         /// <summary>
-        /// Simulates a provisioned device by sending an uplink data payload of <code>Hello</code>.
+        /// Simulates a provisioned device by sending an uplink data payload of <c>Hello</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the TestWirelessDevice service method.</param>
         /// 
@@ -7174,7 +7419,7 @@ namespace Amazon.IoTWireless
 
 
         /// <summary>
-        /// Simulates a provisioned device by sending an uplink data payload of <code>Hello</code>.
+        /// Simulates a provisioned device by sending an uplink data payload of <c>Hello</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the TestWirelessDevice service method.</param>
         /// <param name="cancellationToken">
@@ -7567,6 +7812,83 @@ namespace Amazon.IoTWireless
             options.ResponseUnmarshaller = UpdateLogLevelsByResourceTypesResponseUnmarshaller.Instance;
             
             return InvokeAsync<UpdateLogLevelsByResourceTypesResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  UpdateMetricConfiguration
+
+
+        /// <summary>
+        /// Update the summary metric configuration.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateMetricConfiguration service method.</param>
+        /// 
+        /// <returns>The response from the UpdateMetricConfiguration service method, as returned by IoTWireless.</returns>
+        /// <exception cref="Amazon.IoTWireless.Model.AccessDeniedException">
+        /// User does not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ConflictException">
+        /// Adding, updating, or deleting the resource can cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.InternalServerException">
+        /// An unexpected error occurred while processing a request.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ResourceNotFoundException">
+        /// Resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ThrottlingException">
+        /// The request was denied because it exceeded the allowed API request rate.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ValidationException">
+        /// The input did not meet the specified constraints.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdateMetricConfiguration">REST API Reference for UpdateMetricConfiguration Operation</seealso>
+        public virtual UpdateMetricConfigurationResponse UpdateMetricConfiguration(UpdateMetricConfigurationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateMetricConfigurationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateMetricConfigurationResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateMetricConfigurationResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Update the summary metric configuration.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateMetricConfiguration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateMetricConfiguration service method, as returned by IoTWireless.</returns>
+        /// <exception cref="Amazon.IoTWireless.Model.AccessDeniedException">
+        /// User does not have permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ConflictException">
+        /// Adding, updating, or deleting the resource can cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.InternalServerException">
+        /// An unexpected error occurred while processing a request.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ResourceNotFoundException">
+        /// Resource does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ThrottlingException">
+        /// The request was denied because it exceeded the allowed API request rate.
+        /// </exception>
+        /// <exception cref="Amazon.IoTWireless.Model.ValidationException">
+        /// The input did not meet the specified constraints.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdateMetricConfiguration">REST API Reference for UpdateMetricConfiguration Operation</seealso>
+        public virtual Task<UpdateMetricConfigurationResponse> UpdateMetricConfigurationAsync(UpdateMetricConfigurationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateMetricConfigurationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateMetricConfigurationResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdateMetricConfigurationResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -8253,11 +8575,11 @@ namespace Amazon.IoTWireless
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

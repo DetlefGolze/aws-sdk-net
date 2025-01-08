@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -40,19 +41,24 @@ namespace Amazon.Backup.Model
     /// </para>
     ///  
     /// <para>
+    /// Resource types that can transition to cold storage are listed in the <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/backup-feature-availability.html#features-by-resource">Feature
+    /// availability by resource</a> table. Backup ignores this expression for other resource
+    /// types.
+    /// </para>
+    ///  
+    /// <para>
     /// Backups transitioned to cold storage must be stored in cold storage for a minimum
     /// of 90 days. Therefore, the “retention” setting must be 90 days greater than the “transition
     /// to cold after days” setting. The “transition to cold after days” setting cannot be
     /// changed after a backup has been transitioned to cold.
     /// </para>
-    ///  
+    ///  <important> 
     /// <para>
-    /// Resource types that are able to be transitioned to cold storage are listed in the
-    /// "Lifecycle to cold storage" section of the <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource">
-    /// Feature availability by resource</a> table. Backup ignores this expression for other
-    /// resource types.
+    /// If your lifecycle currently uses the parameters <c>DeleteAfterDays</c> and <c>MoveToColdStorageAfterDays</c>,
+    /// include these parameters and their values when you call this operation. Not including
+    /// them may result in your plan updating with null values.
     /// </para>
-    ///  
+    ///  </important> 
     /// <para>
     /// This operation does not support continuous backups.
     /// </para>
@@ -68,7 +74,7 @@ namespace Amazon.Backup.Model
         /// <para>
         /// The name of a logical container where backups are stored. Backup vaults are identified
         /// by names that are unique to the account used to create them and the Amazon Web Services
-        /// Region where they are created. They consist of lowercase letters, numbers, and hyphens.
+        /// Region where they are created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -115,7 +121,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property RecoveryPointArn. 
         /// <para>
         /// An Amazon Resource Name (ARN) that uniquely identifies a recovery point; for example,
-        /// <code>arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45</code>.
+        /// <c>arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

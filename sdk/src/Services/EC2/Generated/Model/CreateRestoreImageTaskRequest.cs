@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -50,7 +51,7 @@ namespace Amazon.EC2.Model
         private string _bucket;
         private string _name;
         private string _objectKey;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
 
         /// <summary>
         /// Gets and sets the property Bucket. 
@@ -118,12 +119,12 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// To tag the AMI, the value for <code>ResourceType</code> must be <code>image</code>.
+        /// To tag the AMI, the value for <c>ResourceType</c> must be <c>image</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// To tag the snapshots, the value for <code>ResourceType</code> must be <code>snapshot</code>.
-        /// The same tag is applied to all of the snapshots that are created.
+        /// To tag the snapshots, the value for <c>ResourceType</c> must be <c>snapshot</c>. The
+        /// same tag is applied to all of the snapshots that are created.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -136,7 +137,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

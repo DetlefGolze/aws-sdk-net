@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -40,17 +41,20 @@ namespace Amazon.EC2.Model
         private string _defaultResourceDiscoveryAssociationId;
         private string _defaultResourceDiscoveryId;
         private string _description;
+        private bool? _enablePrivateGua;
         private string _ipamArn;
         private string _ipamId;
         private string _ipamRegion;
-        private List<IpamOperatingRegion> _operatingRegions = new List<IpamOperatingRegion>();
+        private List<IpamOperatingRegion> _operatingRegions = AWSConfigs.InitializeCollections ? new List<IpamOperatingRegion>() : null;
         private string _ownerId;
         private string _privateDefaultScopeId;
         private string _publicDefaultScopeId;
         private int? _resourceDiscoveryAssociationCount;
         private int? _scopeCount;
         private IpamState _state;
-        private List<Tag> _tags = new List<Tag>();
+        private string _stateMessage;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private IpamTier _tier;
 
         /// <summary>
         /// Gets and sets the property DefaultResourceDiscoveryAssociationId. 
@@ -104,6 +108,25 @@ namespace Amazon.EC2.Model
         internal bool IsSetDescription()
         {
             return this._description != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EnablePrivateGua. 
+        /// <para>
+        /// Enable this option to use your own GUA ranges as private IPv6 addresses. This option
+        /// is disabled by default.
+        /// </para>
+        /// </summary>
+        public bool EnablePrivateGua
+        {
+            get { return this._enablePrivateGua.GetValueOrDefault(); }
+            set { this._enablePrivateGua = value; }
+        }
+
+        // Check to see if EnablePrivateGua property is set
+        internal bool IsSetEnablePrivateGua()
+        {
+            return this._enablePrivateGua.HasValue; 
         }
 
         /// <summary>
@@ -183,7 +206,7 @@ namespace Amazon.EC2.Model
         // Check to see if OperatingRegions property is set
         internal bool IsSetOperatingRegions()
         {
-            return this._operatingRegions != null && this._operatingRegions.Count > 0; 
+            return this._operatingRegions != null && (this._operatingRegions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -297,13 +320,30 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property StateMessage. 
+        /// <para>
+        /// The state message.
+        /// </para>
+        /// </summary>
+        public string StateMessage
+        {
+            get { return this._stateMessage; }
+            set { this._stateMessage = value; }
+        }
+
+        // Check to see if StateMessage property is set
+        internal bool IsSetStateMessage()
+        {
+            return this._stateMessage != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// The key/value combination of a tag assigned to the resource. Use the tag key in the
         /// filter name and the tag value as the filter value. For example, to find all resources
-        /// that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>,
-        /// specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the
-        /// filter value.
+        /// that have a tag with the key <c>Owner</c> and the value <c>TeamA</c>, specify <c>tag:Owner</c>
+        /// for the filter name and <c>TeamA</c> for the filter value.
         /// </para>
         /// </summary>
         public List<Tag> Tags
@@ -315,7 +355,27 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Tier. 
+        /// <para>
+        /// IPAM is offered in a Free Tier and an Advanced Tier. For more information about the
+        /// features available in each tier and the costs associated with the tiers, see <a href="http://aws.amazon.com/vpc/pricing/">Amazon
+        /// VPC pricing &gt; IPAM tab</a>.
+        /// </para>
+        /// </summary>
+        public IpamTier Tier
+        {
+            get { return this._tier; }
+            set { this._tier = value; }
+        }
+
+        // Check to see if Tier property is set
+        internal bool IsSetTier()
+        {
+            return this._tier != null;
         }
 
     }

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteImage operation.
-    /// Deletes a SageMaker image and all versions of the image. The container images aren't
+    /// Deletes a SageMaker AI image and all versions of the image. The container images aren't
     /// deleted.
     /// </summary>
     public partial class DeleteImageRequest : AmazonSageMakerRequest

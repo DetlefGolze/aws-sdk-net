@@ -26,24 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
     /// Defines where Network Firewall sends logs for the firewall for one log type. This
     /// is used in <a>LoggingConfiguration</a>. You can send each type of log to an Amazon
-    /// S3 bucket, a CloudWatch log group, or a Kinesis Data Firehose delivery stream.
+    /// S3 bucket, a CloudWatch log group, or a Firehose delivery stream.
     /// 
     ///  
     /// <para>
-    /// Network Firewall generates logs for stateful rule groups. You can save alert and flow
-    /// log types. The stateful rules engine records flow logs for all network traffic that
-    /// it receives. It records alert logs for traffic that matches stateful rules that have
-    /// the rule action set to <code>DROP</code> or <code>ALERT</code>. 
+    /// Network Firewall generates logs for stateful rule groups. You can save alert, flow,
+    /// and TLS log types. 
     /// </para>
     /// </summary>
     public partial class LogDestinationConfig
     {
-        private Dictionary<string, string> _logDestination = new Dictionary<string, string>();
+        private Dictionary<string, string> _logDestination = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private LogDestinationType _logDestinationType;
         private LogType _logType;
 
@@ -55,35 +54,38 @@ namespace Amazon.NetworkFirewall.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For an Amazon S3 bucket, provide the name of the bucket, with key <code>bucketName</code>,
-        /// and optionally provide a prefix, with key <code>prefix</code>. The following example
-        /// specifies an Amazon S3 bucket named <code>DOC-EXAMPLE-BUCKET</code> and the prefix
-        /// <code>alerts</code>: 
+        /// For an Amazon S3 bucket, provide the name of the bucket, with key <c>bucketName</c>,
+        /// and optionally provide a prefix, with key <c>prefix</c>. 
         /// </para>
         ///  
         /// <para>
-        ///  <code>"LogDestination": { "bucketName": "DOC-EXAMPLE-BUCKET", "prefix": "alerts"
-        /// }</code> 
+        /// The following example specifies an Amazon S3 bucket named <c>DOC-EXAMPLE-BUCKET</c>
+        /// and the prefix <c>alerts</c>: 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>"LogDestination": { "bucketName": "DOC-EXAMPLE-BUCKET", "prefix": "alerts" }</c>
+        /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// For a CloudWatch log group, provide the name of the CloudWatch log group, with key
-        /// <code>logGroup</code>. The following example specifies a log group named <code>alert-log-group</code>:
+        /// <c>logGroup</c>. The following example specifies a log group named <c>alert-log-group</c>:
         /// 
         /// </para>
         ///  
         /// <para>
-        ///  <code>"LogDestination": { "logGroup": "alert-log-group" }</code> 
+        ///  <c>"LogDestination": { "logGroup": "alert-log-group" }</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For a Kinesis Data Firehose delivery stream, provide the name of the delivery stream,
-        /// with key <code>deliveryStream</code>. The following example specifies a delivery stream
-        /// named <code>alert-delivery-stream</code>: 
+        /// For a Firehose delivery stream, provide the name of the delivery stream, with key
+        /// <c>deliveryStream</c>. The following example specifies a delivery stream named <c>alert-delivery-stream</c>:
+        /// 
         /// </para>
         ///  
         /// <para>
-        ///  <code>"LogDestination": { "deliveryStream": "alert-delivery-stream" }</code> 
+        ///  <c>"LogDestination": { "deliveryStream": "alert-delivery-stream" }</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -97,14 +99,14 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if LogDestination property is set
         internal bool IsSetLogDestination()
         {
-            return this._logDestination != null && this._logDestination.Count > 0; 
+            return this._logDestination != null && (this._logDestination.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property LogDestinationType. 
         /// <para>
         /// The type of storage destination to send these logs to. You can send logs to an Amazon
-        /// S3 bucket, a CloudWatch log group, or a Kinesis Data Firehose delivery stream.
+        /// S3 bucket, a CloudWatch log group, or a Firehose delivery stream.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=2, Max=30)]
@@ -123,10 +125,29 @@ namespace Amazon.NetworkFirewall.Model
         /// <summary>
         /// Gets and sets the property LogType. 
         /// <para>
-        /// The type of log to send. Alert logs report traffic that matches a <a>StatefulRule</a>
-        /// with an action setting that sends an alert log message. Flow logs are standard network
-        /// traffic flow logs. 
+        /// The type of log to record. You can record the following types of logs from your Network
+        /// Firewall stateful engine.
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>ALERT</c> - Logs for traffic that matches your stateful rules and that have an
+        /// action that sends an alert. A stateful rule sends alerts for the rule actions DROP,
+        /// ALERT, and REJECT. For more information, see <a>StatefulRule</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>FLOW</c> - Standard network traffic flow logs. The stateful rules engine records
+        /// flow logs for all network traffic that it receives. Each flow log record captures
+        /// the network flow for a specific standard stateless rule group.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>TLS</c> - Logs for events that are related to TLS inspection. For more information,
+        /// see <a href="https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection-configurations.html">Inspecting
+        /// SSL/TLS traffic with TLS inspection configurations</a> in the <i>Network Firewall
+        /// Developer Guide</i>.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         [AWSProperty(Required=true)]
         public LogType LogType

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Amplify.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,6 +67,7 @@ namespace Amazon.Amplify.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAutoSubDomainCreationPatterns())
@@ -83,6 +85,17 @@ namespace Amazon.Amplify.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("autoSubDomainIAMRole");
                     context.Writer.Write(publicRequest.AutoSubDomainIAMRole);
+                }
+
+                if(publicRequest.IsSetCertificateSettings())
+                {
+                    context.Writer.WritePropertyName("certificateSettings");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = CertificateSettingsMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.CertificateSettings, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetDomainName())

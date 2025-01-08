@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -49,13 +50,33 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class AllocateIpamPoolCidrRequest : AmazonEC2Request
     {
+        private List<string> _allowedCidrs = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _cidr;
         private string _clientToken;
         private string _description;
-        private List<string> _disallowedCidrs = new List<string>();
+        private List<string> _disallowedCidrs = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _ipamPoolId;
         private int? _netmaskLength;
         private bool? _previewNextCidr;
+
+        /// <summary>
+        /// Gets and sets the property AllowedCidrs. 
+        /// <para>
+        /// Include a particular CIDR range that can be returned by the pool. Allowed CIDRs are
+        /// only allowed if using netmask length for allocation.
+        /// </para>
+        /// </summary>
+        public List<string> AllowedCidrs
+        {
+            get { return this._allowedCidrs; }
+            set { this._allowedCidrs = value; }
+        }
+
+        // Check to see if AllowedCidrs property is set
+        internal bool IsSetAllowedCidrs()
+        {
+            return this._allowedCidrs != null && (this._allowedCidrs.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
 
         /// <summary>
         /// Gets and sets the property Cidr. 
@@ -94,8 +115,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// A unique, case-sensitive identifier that you provide to ensure the idempotency of
-        /// the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
-        /// Idempotency</a>.
+        /// the request. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html">Ensuring
+        /// idempotency</a>.
         /// </para>
         /// </summary>
         public string ClientToken
@@ -144,7 +165,7 @@ namespace Amazon.EC2.Model
         // Check to see if DisallowedCidrs property is set
         internal bool IsSetDisallowedCidrs()
         {
-            return this._disallowedCidrs != null && this._disallowedCidrs.Count > 0; 
+            return this._disallowedCidrs != null && (this._disallowedCidrs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

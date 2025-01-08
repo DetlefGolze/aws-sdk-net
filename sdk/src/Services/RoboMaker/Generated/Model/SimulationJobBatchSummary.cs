@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
@@ -118,7 +119,7 @@ namespace Amazon.RoboMaker.Model
         /// Gets and sets the property LastUpdatedAt. 
         /// <para>
         /// The time, in milliseconds since the epoch, when the simulation job batch was last
-        /// updated.
+        /// updated. 
         /// </para>
         /// </summary>
         public DateTime LastUpdatedAt
@@ -167,16 +168,15 @@ namespace Amazon.RoboMaker.Model
         ///  </dd> <dt>Failed</dt> <dd> 
         /// <para>
         /// The simulation job batch failed. One or more simulation job requests could not be
-        /// completed due to an internal failure (like <code>InternalServiceError</code>). See
-        /// <code>failureCode</code> and <code>failureReason</code> for more information.
+        /// completed due to an internal failure (like <c>InternalServiceError</c>). See <c>failureCode</c>
+        /// and <c>failureReason</c> for more information.
         /// </para>
         ///  </dd> <dt>Completed</dt> <dd> 
         /// <para>
         /// The simulation batch job completed. A batch is complete when (1) there are no pending
         /// simulation job requests in the batch and none of the failed simulation job requests
-        /// are due to <code>InternalServiceError</code> and (2) when all created simulation jobs
-        /// have reached a terminal state (for example, <code>Completed</code> or <code>Failed</code>).
-        /// 
+        /// are due to <c>InternalServiceError</c> and (2) when all created simulation jobs have
+        /// reached a terminal state (for example, <c>Completed</c> or <c>Failed</c>). 
         /// </para>
         ///  </dd> <dt>Canceled</dt> <dd> 
         /// <para>
@@ -197,9 +197,8 @@ namespace Amazon.RoboMaker.Model
         ///  
         /// <para>
         /// If a batch timing out, and there are pending requests that were failing due to an
-        /// internal failure (like <code>InternalServiceError</code>), the batch status will be
-        /// <code>Failed</code>. If there are no such failing request, the batch status will be
-        /// <code>TimedOut</code>. 
+        /// internal failure (like <c>InternalServiceError</c>), the batch status will be <c>Failed</c>.
+        /// If there are no such failing request, the batch status will be <c>TimedOut</c>. 
         /// </para>
         ///  </dd> <dt>TimedOut</dt> <dd> 
         /// <para>

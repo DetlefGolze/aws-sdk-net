@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaStoreData.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.MediaStoreData.Model
     /// </summary>
     public partial class ListItemsResponse : AmazonWebServiceResponse
     {
-        private List<Item> _items = new List<Item>();
+        private List<Item> _items = AWSConfigs.InitializeCollections ? new List<Item>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,15 +52,15 @@ namespace Amazon.MediaStoreData.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The token that can be used in a request to view the next set of results. For example,
-        /// you submit a <code>ListItems</code> request that matches 2,000 items with <code>MaxResults</code>
-        /// set at 500. The service returns the first batch of results (up to 500) and a <code>NextToken</code>
+        /// you submit a <c>ListItems</c> request that matches 2,000 items with <c>MaxResults</c>
+        /// set at 500. The service returns the first batch of results (up to 500) and a <c>NextToken</c>
         /// value that can be used to fetch the next batch of results.
         /// </para>
         /// </summary>

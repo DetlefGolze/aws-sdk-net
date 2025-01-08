@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
@@ -37,10 +38,10 @@ namespace Amazon.StorageGateway.Model
     /// <para>
     /// The request returns a list of all disks, specifying which are configured as working
     /// storage, cache storage, or stored volume or not configured at all. The response includes
-    /// a <code>DiskStatus</code> field. This field can have a value of present (the disk
-    /// is available to use), missing (the disk is no longer connected to the gateway), or
-    /// mismatch (the disk node is occupied by a disk that has incorrect metadata or the disk
-    /// content is corrupted).
+    /// a <c>DiskStatus</c> field. This field can have a value of present (the disk is available
+    /// to use), missing (the disk is no longer connected to the gateway), or mismatch (the
+    /// disk node is occupied by a disk that has incorrect metadata or the disk content is
+    /// corrupted).
     /// </para>
     /// </summary>
     public partial class ListLocalDisksRequest : AmazonStorageGatewayRequest

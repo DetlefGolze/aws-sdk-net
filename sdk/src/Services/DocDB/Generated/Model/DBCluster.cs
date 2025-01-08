@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
@@ -33,20 +34,20 @@ namespace Amazon.DocDB.Model
     /// </summary>
     public partial class DBCluster
     {
-        private List<DBClusterRole> _associatedRoles = new List<DBClusterRole>();
-        private List<string> _availabilityZones = new List<string>();
+        private List<DBClusterRole> _associatedRoles = AWSConfigs.InitializeCollections ? new List<DBClusterRole>() : null;
+        private List<string> _availabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _backupRetentionPeriod;
         private string _cloneGroupId;
         private DateTime? _clusterCreateTime;
         private string _dbClusterArn;
         private string _dbClusterIdentifier;
-        private List<DBClusterMember> _dbClusterMembers = new List<DBClusterMember>();
+        private List<DBClusterMember> _dbClusterMembers = AWSConfigs.InitializeCollections ? new List<DBClusterMember>() : null;
         private string _dbClusterParameterGroup;
         private string _dbClusterResourceId;
         private string _dbSubnetGroup;
         private bool? _deletionProtection;
         private DateTime? _earliestRestorableTime;
-        private List<string> _enabledCloudwatchLogsExports = new List<string>();
+        private List<string> _enabledCloudwatchLogsExports = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _endpoint;
         private string _engine;
         private string _engineVersion;
@@ -54,17 +55,19 @@ namespace Amazon.DocDB.Model
         private string _kmsKeyId;
         private DateTime? _latestRestorableTime;
         private string _masterUsername;
+        private ClusterMasterUserSecret _masterUserSecret;
         private bool? _multiAZ;
         private string _percentProgress;
         private int? _port;
         private string _preferredBackupWindow;
         private string _preferredMaintenanceWindow;
         private string _readerEndpoint;
-        private List<string> _readReplicaIdentifiers = new List<string>();
+        private List<string> _readReplicaIdentifiers = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _replicationSourceIdentifier;
         private string _status;
         private bool? _storageEncrypted;
-        private List<VpcSecurityGroupMembership> _vpcSecurityGroups = new List<VpcSecurityGroupMembership>();
+        private string _storageType;
+        private List<VpcSecurityGroupMembership> _vpcSecurityGroups = AWSConfigs.InitializeCollections ? new List<VpcSecurityGroupMembership>() : null;
 
         /// <summary>
         /// Gets and sets the property AssociatedRoles. 
@@ -83,7 +86,7 @@ namespace Amazon.DocDB.Model
         // Check to see if AssociatedRoles property is set
         internal bool IsSetAssociatedRoles()
         {
-            return this._associatedRoles != null && this._associatedRoles.Count > 0; 
+            return this._associatedRoles != null && (this._associatedRoles.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -102,7 +105,7 @@ namespace Amazon.DocDB.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -211,7 +214,7 @@ namespace Amazon.DocDB.Model
         // Check to see if DBClusterMembers property is set
         internal bool IsSetDBClusterMembers()
         {
-            return this._dbClusterMembers != null && this._dbClusterMembers.Count > 0; 
+            return this._dbClusterMembers != null && (this._dbClusterMembers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -274,10 +277,9 @@ namespace Amazon.DocDB.Model
         /// <summary>
         /// Gets and sets the property DeletionProtection. 
         /// <para>
-        /// Specifies whether this cluster can be deleted. If <code>DeletionProtection</code>
-        /// is enabled, the cluster cannot be deleted unless it is modified and <code>DeletionProtection</code>
-        /// is disabled. <code>DeletionProtection</code> protects clusters from being accidentally
-        /// deleted.
+        /// Specifies whether this cluster can be deleted. If <c>DeletionProtection</c> is enabled,
+        /// the cluster cannot be deleted unless it is modified and <c>DeletionProtection</c>
+        /// is disabled. <c>DeletionProtection</c> protects clusters from being accidentally deleted.
         /// </para>
         /// </summary>
         public bool DeletionProtection
@@ -326,7 +328,7 @@ namespace Amazon.DocDB.Model
         // Check to see if EnabledCloudwatchLogsExports property is set
         internal bool IsSetEnabledCloudwatchLogsExports()
         {
-            return this._enabledCloudwatchLogsExports != null && this._enabledCloudwatchLogsExports.Count > 0; 
+            return this._enabledCloudwatchLogsExports != null && (this._enabledCloudwatchLogsExports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -404,8 +406,8 @@ namespace Amazon.DocDB.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// If <code>StorageEncrypted</code> is <code>true</code>, the KMS key identifier for
-        /// the encrypted cluster.
+        /// If <c>StorageEncrypted</c> is <c>true</c>, the KMS key identifier for the encrypted
+        /// cluster.
         /// </para>
         /// </summary>
         public string KmsKeyId
@@ -454,6 +456,25 @@ namespace Amazon.DocDB.Model
         internal bool IsSetMasterUsername()
         {
             return this._masterUsername != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property MasterUserSecret. 
+        /// <para>
+        /// The secret managed by Amazon DocumentDB in Amazon Web Services Secrets Manager for
+        /// the master user password.
+        /// </para>
+        /// </summary>
+        public ClusterMasterUserSecret MasterUserSecret
+        {
+            get { return this._masterUserSecret; }
+            set { this._masterUserSecret = value; }
+        }
+
+        // Check to see if MasterUserSecret property is set
+        internal bool IsSetMasterUserSecret()
+        {
+            return this._masterUserSecret != null;
         }
 
         /// <summary>
@@ -514,7 +535,7 @@ namespace Amazon.DocDB.Model
         /// Gets and sets the property PreferredBackupWindow. 
         /// <para>
         /// Specifies the daily time range during which automated backups are created if automated
-        /// backups are enabled, as determined by the <code>BackupRetentionPeriod</code>. 
+        /// backups are enabled, as determined by the <c>BackupRetentionPeriod</c>. 
         /// </para>
         /// </summary>
         public string PreferredBackupWindow
@@ -594,7 +615,7 @@ namespace Amazon.DocDB.Model
         // Check to see if ReadReplicaIdentifiers property is set
         internal bool IsSetReadReplicaIdentifiers()
         {
-            return this._readReplicaIdentifiers != null && this._readReplicaIdentifiers.Count > 0; 
+            return this._readReplicaIdentifiers != null && (this._readReplicaIdentifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -652,6 +673,41 @@ namespace Amazon.DocDB.Model
         }
 
         /// <summary>
+        /// Gets and sets the property StorageType. 
+        /// <para>
+        /// Storage type associated with your cluster
+        /// </para>
+        ///  
+        /// <para>
+        /// Storage type associated with your cluster
+        /// </para>
+        ///  
+        /// <para>
+        /// For information on storage types for Amazon DocumentDB clusters, see Cluster storage
+        /// configurations in the <i>Amazon DocumentDB Developer Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid values for storage type - <c>standard | iopt1</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Default value is <c>standard </c> 
+        /// </para>
+        /// </summary>
+        public string StorageType
+        {
+            get { return this._storageType; }
+            set { this._storageType = value; }
+        }
+
+        // Check to see if StorageType property is set
+        internal bool IsSetStorageType()
+        {
+            return this._storageType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property VpcSecurityGroups. 
         /// <para>
         /// Provides a list of virtual private cloud (VPC) security groups that the cluster belongs
@@ -667,7 +723,7 @@ namespace Amazon.DocDB.Model
         // Check to see if VpcSecurityGroups property is set
         internal bool IsSetVpcSecurityGroups()
         {
-            return this._vpcSecurityGroups != null && this._vpcSecurityGroups.Count > 0; 
+            return this._vpcSecurityGroups != null && (this._vpcSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

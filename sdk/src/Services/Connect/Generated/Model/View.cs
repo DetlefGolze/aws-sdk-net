@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.Connect.Model
         private DateTime? _lastModifiedTime;
         private string _name;
         private ViewStatus _status;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private ViewType _type;
         private int? _version;
         private string _versionDescription;
@@ -143,8 +144,7 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property LastModifiedTime. 
         /// <para>
-        /// Latest timestamp of the <code>UpdateViewContent</code> or <code>CreateViewVersion</code>
-        /// operations.
+        /// Latest timestamp of the <c>UpdateViewContent</c> or <c>CreateViewVersion</c> operations.
         /// </para>
         /// </summary>
         public DateTime LastModifiedTime
@@ -181,8 +181,8 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// Indicates the view status as either <code>SAVED</code> or <code>PUBLISHED</code>.
-        /// The <code>PUBLISHED</code> status will initiate validation on the content.
+        /// Indicates the view status as either <c>SAVED</c> or <c>PUBLISHED</c>. The <c>PUBLISHED</c>
+        /// status will initiate validation on the content.
         /// </para>
         /// </summary>
         public ViewStatus Status
@@ -213,13 +213,13 @@ namespace Amazon.Connect.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of the view - <code>CUSTOMER_MANAGED</code>.
+        /// The type of the view - <c>CUSTOMER_MANAGED</c>.
         /// </para>
         /// </summary>
         public ViewType Type

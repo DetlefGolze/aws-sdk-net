@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceExplorer2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ResourceExplorer2.Model
     /// </summary>
     public partial class ListIndexesResponse : AmazonWebServiceResponse
     {
-        private List<Index> _indexes = new List<Index>();
+        private List<Index> _indexes = AWSConfigs.InitializeCollections ? new List<Index>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,16 +52,17 @@ namespace Amazon.ResourceExplorer2.Model
         // Check to see if Indexes property is set
         internal bool IsSetIndexes()
         {
-            return this._indexes != null && this._indexes.Count > 0; 
+            return this._indexes != null && (this._indexes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If present, indicates that more output is available than is included in the current
-        /// response. Use this value in the <code>NextToken</code> request parameter in a subsequent
+        /// response. Use this value in the <c>NextToken</c> request parameter in a subsequent
         /// call to the operation to get the next part of the output. You should repeat this until
-        /// the <code>NextToken</code> response element comes back as <code>null</code>.
+        /// the <c>NextToken</c> response element comes back as <c>null</c>. The pagination tokens
+        /// expire after 24 hours.
         /// </para>
         /// </summary>
         public string NextToken

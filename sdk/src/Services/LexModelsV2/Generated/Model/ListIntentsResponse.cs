@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.LexModelsV2.Model
     {
         private string _botId;
         private string _botVersion;
-        private List<IntentSummary> _intentSummaries = new List<IntentSummary>();
+        private List<IntentSummary> _intentSummaries = AWSConfigs.InitializeCollections ? new List<IntentSummary>() : null;
         private string _localeId;
         private string _nextToken;
 
@@ -81,9 +82,9 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property IntentSummaries. 
         /// <para>
         /// Summary information for the intents that meet the filter criteria specified in the
-        /// request. The length of the list is specified in the <code>maxResults</code> parameter
-        /// of the request. If there are more intents available, the <code>nextToken</code> field
-        /// contains a token to get the next page of results.
+        /// request. The length of the list is specified in the <c>maxResults</c> parameter of
+        /// the request. If there are more intents available, the <c>nextToken</c> field contains
+        /// a token to get the next page of results.
         /// </para>
         /// </summary>
         public List<IntentSummary> IntentSummaries
@@ -95,7 +96,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if IntentSummaries property is set
         internal bool IsSetIntentSummaries()
         {
-            return this._intentSummaries != null && this._intentSummaries.Count > 0; 
+            return this._intentSummaries != null && (this._intentSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -120,9 +121,9 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token that indicates whether there are more results to return in a response to the
-        /// <code>ListIntents</code> operation. If the <code>nextToken</code> field is present,
-        /// you send the contents as the <code>nextToken</code> parameter of a <code>ListIntents</code>
-        /// operation request to get the next page of results.
+        /// <c>ListIntents</c> operation. If the <c>nextToken</c> field is present, you send the
+        /// contents as the <c>nextToken</c> parameter of a <c>ListIntents</c> operation request
+        /// to get the next page of results.
         /// </para>
         /// </summary>
         public string NextToken

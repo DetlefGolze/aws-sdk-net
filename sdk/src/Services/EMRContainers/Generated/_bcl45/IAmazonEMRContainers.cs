@@ -26,37 +26,38 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.EMRContainers.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.EMRContainers
 {
     /// <summary>
-    /// Interface for accessing EMRContainers
+    /// <para>Interface for accessing EMRContainers</para>
     ///
     /// Amazon EMR on EKS provides a deployment option for Amazon EMR that allows you to run
     /// open-source big data frameworks on Amazon Elastic Kubernetes Service (Amazon EKS).
     /// With this deployment option, you can focus on running analytics workloads while Amazon
     /// EMR on EKS builds, configures, and manages containers for open-source applications.
     /// For more information about Amazon EMR on EKS concepts and tasks, see <a href="https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/emr-eks.html">What
-    /// is shared id="EMR-EKS"/&gt;</a>.
+    /// is Amazon EMR on EKS</a>.
     /// 
     ///  
     /// <para>
-    ///  <i>Amazon EMR containers</i> is the API name for Amazon EMR on EKS. The <code>emr-containers</code>
+    ///  <i>Amazon EMR containers</i> is the API name for Amazon EMR on EKS. The <c>emr-containers</c>
     /// prefix is used in the following scenarios: 
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// It is the prefix in the CLI commands for Amazon EMR on EKS. For example, <code>aws
-    /// emr-containers start-job-run</code>.
+    /// It is the prefix in the CLI commands for Amazon EMR on EKS. For example, <c>aws emr-containers
+    /// start-job-run</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// It is the prefix before IAM policy actions for Amazon EMR on EKS. For example, <code>"Action":
-    /// [ "emr-containers:StartJobRun"]</code>. For more information, see <a href="https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/security_iam_service-with-iam.html#security_iam_service-with-iam-id-based-policies-actions">Policy
+    /// It is the prefix before IAM policy actions for Amazon EMR on EKS. For example, <c>"Action":
+    /// [ "emr-containers:StartJobRun"]</c>. For more information, see <a href="https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/security_iam_service-with-iam.html#security_iam_service-with-iam-id-based-policies-actions">Policy
     /// actions for Amazon EMR on EKS</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// It is the prefix used in Amazon EMR on EKS service endpoints. For example, <code>emr-containers.us-east-2.amazonaws.com</code>.
+    /// It is the prefix used in Amazon EMR on EKS service endpoints. For example, <c>emr-containers.us-east-2.amazonaws.com</c>.
     /// For more information, see <a href="https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/service-quotas.html#service-endpoints">Amazon
     /// EMR on EKSService Endpoints</a>.
     /// </para>
@@ -215,6 +216,52 @@ namespace Amazon.EMRContainers
 
         #endregion
         
+        #region  CreateSecurityConfiguration
+
+
+        /// <summary>
+        /// Creates a security configuration. Security configurations in Amazon EMR on EKS are
+        /// templates for different security setups. You can use security configurations to configure
+        /// the Lake Formation integration setup. You can also create a security configuration
+        /// to re-use a security setup each time you create a virtual cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateSecurityConfiguration service method.</param>
+        /// 
+        /// <returns>The response from the CreateSecurityConfiguration service method, as returned by EMRContainers.</returns>
+        /// <exception cref="Amazon.EMRContainers.Model.InternalServerException">
+        /// This is an internal server exception.
+        /// </exception>
+        /// <exception cref="Amazon.EMRContainers.Model.ValidationException">
+        /// There are invalid parameters in the client request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/CreateSecurityConfiguration">REST API Reference for CreateSecurityConfiguration Operation</seealso>
+        CreateSecurityConfigurationResponse CreateSecurityConfiguration(CreateSecurityConfigurationRequest request);
+
+
+
+        /// <summary>
+        /// Creates a security configuration. Security configurations in Amazon EMR on EKS are
+        /// templates for different security setups. You can use security configurations to configure
+        /// the Lake Formation integration setup. You can also create a security configuration
+        /// to re-use a security setup each time you create a virtual cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateSecurityConfiguration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateSecurityConfiguration service method, as returned by EMRContainers.</returns>
+        /// <exception cref="Amazon.EMRContainers.Model.InternalServerException">
+        /// This is an internal server exception.
+        /// </exception>
+        /// <exception cref="Amazon.EMRContainers.Model.ValidationException">
+        /// There are invalid parameters in the client request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/CreateSecurityConfiguration">REST API Reference for CreateSecurityConfiguration Operation</seealso>
+        Task<CreateSecurityConfigurationResponse> CreateSecurityConfigurationAsync(CreateSecurityConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  CreateVirtualCluster
 
 
@@ -228,6 +275,9 @@ namespace Amazon.EMRContainers
         /// <param name="request">Container for the necessary parameters to execute the CreateVirtualCluster service method.</param>
         /// 
         /// <returns>The response from the CreateVirtualCluster service method, as returned by EMRContainers.</returns>
+        /// <exception cref="Amazon.EMRContainers.Model.EKSRequestThrottledException">
+        /// The request exceeded the Amazon EKS API operation limits.
+        /// </exception>
         /// <exception cref="Amazon.EMRContainers.Model.InternalServerException">
         /// This is an internal server exception.
         /// </exception>
@@ -255,6 +305,9 @@ namespace Amazon.EMRContainers
         /// </param>
         /// 
         /// <returns>The response from the CreateVirtualCluster service method, as returned by EMRContainers.</returns>
+        /// <exception cref="Amazon.EMRContainers.Model.EKSRequestThrottledException">
+        /// The request exceeded the Amazon EKS API operation limits.
+        /// </exception>
         /// <exception cref="Amazon.EMRContainers.Model.InternalServerException">
         /// This is an internal server exception.
         /// </exception>
@@ -557,6 +610,60 @@ namespace Amazon.EMRContainers
 
         #endregion
         
+        #region  DescribeSecurityConfiguration
+
+
+        /// <summary>
+        /// Displays detailed information about a specified security configuration. Security configurations
+        /// in Amazon EMR on EKS are templates for different security setups. You can use security
+        /// configurations to configure the Lake Formation integration setup. You can also create
+        /// a security configuration to re-use a security setup each time you create a virtual
+        /// cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeSecurityConfiguration service method.</param>
+        /// 
+        /// <returns>The response from the DescribeSecurityConfiguration service method, as returned by EMRContainers.</returns>
+        /// <exception cref="Amazon.EMRContainers.Model.InternalServerException">
+        /// This is an internal server exception.
+        /// </exception>
+        /// <exception cref="Amazon.EMRContainers.Model.ResourceNotFoundException">
+        /// The specified resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.EMRContainers.Model.ValidationException">
+        /// There are invalid parameters in the client request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/DescribeSecurityConfiguration">REST API Reference for DescribeSecurityConfiguration Operation</seealso>
+        DescribeSecurityConfigurationResponse DescribeSecurityConfiguration(DescribeSecurityConfigurationRequest request);
+
+
+
+        /// <summary>
+        /// Displays detailed information about a specified security configuration. Security configurations
+        /// in Amazon EMR on EKS are templates for different security setups. You can use security
+        /// configurations to configure the Lake Formation integration setup. You can also create
+        /// a security configuration to re-use a security setup each time you create a virtual
+        /// cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeSecurityConfiguration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeSecurityConfiguration service method, as returned by EMRContainers.</returns>
+        /// <exception cref="Amazon.EMRContainers.Model.InternalServerException">
+        /// This is an internal server exception.
+        /// </exception>
+        /// <exception cref="Amazon.EMRContainers.Model.ResourceNotFoundException">
+        /// The specified resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.EMRContainers.Model.ValidationException">
+        /// There are invalid parameters in the client request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/DescribeSecurityConfiguration">REST API Reference for DescribeSecurityConfiguration Operation</seealso>
+        Task<DescribeSecurityConfigurationResponse> DescribeSecurityConfigurationAsync(DescribeSecurityConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  DescribeVirtualCluster
 
 
@@ -792,6 +899,54 @@ namespace Amazon.EMRContainers
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/ListManagedEndpoints">REST API Reference for ListManagedEndpoints Operation</seealso>
         Task<ListManagedEndpointsResponse> ListManagedEndpointsAsync(ListManagedEndpointsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListSecurityConfigurations
+
+
+        /// <summary>
+        /// Lists security configurations based on a set of parameters. Security configurations
+        /// in Amazon EMR on EKS are templates for different security setups. You can use security
+        /// configurations to configure the Lake Formation integration setup. You can also create
+        /// a security configuration to re-use a security setup each time you create a virtual
+        /// cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListSecurityConfigurations service method.</param>
+        /// 
+        /// <returns>The response from the ListSecurityConfigurations service method, as returned by EMRContainers.</returns>
+        /// <exception cref="Amazon.EMRContainers.Model.InternalServerException">
+        /// This is an internal server exception.
+        /// </exception>
+        /// <exception cref="Amazon.EMRContainers.Model.ValidationException">
+        /// There are invalid parameters in the client request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/ListSecurityConfigurations">REST API Reference for ListSecurityConfigurations Operation</seealso>
+        ListSecurityConfigurationsResponse ListSecurityConfigurations(ListSecurityConfigurationsRequest request);
+
+
+
+        /// <summary>
+        /// Lists security configurations based on a set of parameters. Security configurations
+        /// in Amazon EMR on EKS are templates for different security setups. You can use security
+        /// configurations to configure the Lake Formation integration setup. You can also create
+        /// a security configuration to re-use a security setup each time you create a virtual
+        /// cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListSecurityConfigurations service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListSecurityConfigurations service method, as returned by EMRContainers.</returns>
+        /// <exception cref="Amazon.EMRContainers.Model.InternalServerException">
+        /// This is an internal server exception.
+        /// </exception>
+        /// <exception cref="Amazon.EMRContainers.Model.ValidationException">
+        /// There are invalid parameters in the client request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/ListSecurityConfigurations">REST API Reference for ListSecurityConfigurations Operation</seealso>
+        Task<ListSecurityConfigurationsResponse> ListSecurityConfigurationsAsync(ListSecurityConfigurationsRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LookoutEquipment.Model
 {
     /// <summary>
@@ -120,7 +121,7 @@ namespace Amazon.LookoutEquipment.Model
         /// <summary>
         /// Gets and sets the property LabelGroupName. 
         /// <para>
-        ///  Retruns the name of the label group. 
+        ///  Returns the name of the label group. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=200)]

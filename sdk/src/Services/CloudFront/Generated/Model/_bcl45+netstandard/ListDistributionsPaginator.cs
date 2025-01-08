@@ -24,7 +24,8 @@ using System.Collections;
 using System.Threading;
 using System.Threading.Tasks;
 using Amazon.Runtime;
- 
+
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -45,7 +46,7 @@ namespace Amazon.CloudFront.Model
         /// Enumerable containing all of the Items
         /// </summary>
         public IPaginatedEnumerable<DistributionSummary> Items => 
-            new PaginatedResultKeyResponse<ListDistributionsResponse, DistributionSummary>(this, (i) => i.DistributionList.Items);
+            new PaginatedResultKeyResponse<ListDistributionsResponse, DistributionSummary>(this, (i) => i.DistributionList.Items ?? new List<DistributionSummary>());
 
         internal ListDistributionsPaginator(IAmazonCloudFront client, ListDistributionsRequest request)
         {
@@ -69,11 +70,11 @@ namespace Amazon.CloudFront.Model
                 marker = response.DistributionList.NextMarker;
                 yield return response;
             }
-            while (response.DistributionList.IsTruncated);
+            while (!string.IsNullOrEmpty(marker));
         }
 #endif
 #if AWS_ASYNC_ENUMERABLES_API
-        async IAsyncEnumerable<ListDistributionsResponse> IPaginator<ListDistributionsResponse>.PaginateAsync(CancellationToken cancellationToken = default)
+        async IAsyncEnumerable<ListDistributionsResponse> IPaginator<ListDistributionsResponse>.PaginateAsync([System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken cancellationToken)
         {
             if (Interlocked.Exchange(ref _isPaginatorInUse, 1) != 0)
             {
@@ -90,7 +91,7 @@ namespace Amazon.CloudFront.Model
                 cancellationToken.ThrowIfCancellationRequested();
                 yield return response;
             }
-            while (response.DistributionList.IsTruncated);
+            while (!string.IsNullOrEmpty(marker));
         }
 #endif
     }

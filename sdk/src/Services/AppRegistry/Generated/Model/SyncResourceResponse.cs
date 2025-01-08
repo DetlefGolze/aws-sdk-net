@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRegistry.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.AppRegistry.Model
         /// Gets and sets the property ActionTaken. 
         /// <para>
         /// The results of the output if an application is associated with an ARN value, which
-        /// could be <code>syncStarted</code> or None.
+        /// could be <c>syncStarted</c> or None.
         /// </para>
         /// </summary>
         public SyncAction ActionTaken

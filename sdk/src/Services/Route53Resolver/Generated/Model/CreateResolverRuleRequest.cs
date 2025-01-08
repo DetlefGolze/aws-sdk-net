@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -41,15 +42,15 @@ namespace Amazon.Route53Resolver.Model
         private string _name;
         private string _resolverEndpointId;
         private RuleTypeOption _ruleType;
-        private List<Tag> _tags = new List<Tag>();
-        private List<TargetAddress> _targetIps = new List<TargetAddress>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private List<TargetAddress> _targetIps = AWSConfigs.InitializeCollections ? new List<TargetAddress>() : null;
 
         /// <summary>
         /// Gets and sets the property CreatorRequestId. 
         /// <para>
         /// A unique string that identifies the request and that allows failed requests to be
-        /// retried without the risk of running the operation twice. <code>CreatorRequestId</code>
-        /// can be any unique string, for example, a date/time stamp. 
+        /// retried without the risk of running the operation twice. <c>CreatorRequestId</c> can
+        /// be any unique string, for example, a date/time stamp. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]
@@ -69,12 +70,12 @@ namespace Amazon.Route53Resolver.Model
         /// Gets and sets the property DomainName. 
         /// <para>
         /// DNS queries for this domain name are forwarded to the IP addresses that you specify
-        /// in <code>TargetIps</code>. If a query matches multiple Resolver rules (example.com
-        /// and www.example.com), outbound DNS queries are routed using the Resolver rule that
-        /// contains the most specific domain name (www.example.com).
+        /// in <c>TargetIps</c>. If a query matches multiple Resolver rules (example.com and www.example.com),
+        /// outbound DNS queries are routed using the Resolver rule that contains the most specific
+        /// domain name (www.example.com).
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=256)]
+        [AWSProperty(Min=1, Max=256)]
         public string DomainName
         {
             get { return this._domainName; }
@@ -111,7 +112,7 @@ namespace Amazon.Route53Resolver.Model
         /// Gets and sets the property ResolverEndpointId. 
         /// <para>
         /// The ID of the outbound Resolver endpoint that you want to use to route DNS queries
-        /// to the IP addresses that you specify in <code>TargetIps</code>.
+        /// to the IP addresses that you specify in <c>TargetIps</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -131,24 +132,24 @@ namespace Amazon.Route53Resolver.Model
         /// Gets and sets the property RuleType. 
         /// <para>
         /// When you want to forward DNS queries for specified domain name to resolvers on your
-        /// network, specify <code>FORWARD</code>.
+        /// network, specify <c>FORWARD</c>.
         /// </para>
         ///  
         /// <para>
         /// When you have a forwarding rule to forward DNS queries for a domain to your network
-        /// and you want Resolver to process queries for a subdomain of that domain, specify <code>SYSTEM</code>.
+        /// and you want Resolver to process queries for a subdomain of that domain, specify <c>SYSTEM</c>.
         /// </para>
         ///  
         /// <para>
         /// For example, to forward DNS queries for example.com to resolvers on your network,
-        /// you create a rule and specify <code>FORWARD</code> for <code>RuleType</code>. To then
-        /// have Resolver process queries for apex.example.com, you create a rule and specify
-        /// <code>SYSTEM</code> for <code>RuleType</code>.
+        /// you create a rule and specify <c>FORWARD</c> for <c>RuleType</c>. To then have Resolver
+        /// process queries for apex.example.com, you create a rule and specify <c>SYSTEM</c>
+        /// for <c>RuleType</c>.
         /// </para>
         ///  
         /// <para>
-        /// Currently, only Resolver can create rules that have a value of <code>RECURSIVE</code>
-        /// for <code>RuleType</code>.
+        /// Currently, only Resolver can create rules that have a value of <c>RECURSIVE</c> for
+        /// <c>RuleType</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -180,7 +181,7 @@ namespace Amazon.Route53Resolver.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -191,8 +192,7 @@ namespace Amazon.Route53Resolver.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>TargetIps</code> is available only when the value of <code>Rule type</code>
-        /// is <code>FORWARD</code>.
+        ///  <c>TargetIps</c> is available only when the value of <c>Rule type</c> is <c>FORWARD</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -205,7 +205,7 @@ namespace Amazon.Route53Resolver.Model
         // Check to see if TargetIps property is set
         internal bool IsSetTargetIps()
         {
-            return this._targetIps != null && this._targetIps.Count > 0; 
+            return this._targetIps != null && (this._targetIps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

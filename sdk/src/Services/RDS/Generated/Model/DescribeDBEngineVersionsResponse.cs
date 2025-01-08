@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// Contains the result of a successful invocation of the <code>DescribeDBEngineVersions</code>
+    /// Contains the result of a successful invocation of the <c>DescribeDBEngineVersions</c>
     /// action.
     /// </summary>
     public partial class DescribeDBEngineVersionsResponse : AmazonWebServiceResponse
     {
-        private List<DBEngineVersion> _dbEngineVersions = new List<DBEngineVersion>();
+        private List<DBEngineVersion> _dbEngineVersions = AWSConfigs.InitializeCollections ? new List<DBEngineVersion>() : null;
         private string _marker;
 
         /// <summary>
         /// Gets and sets the property DBEngineVersions. 
         /// <para>
-        /// A list of <code>DBEngineVersion</code> elements.
+        /// A list of <c>DBEngineVersion</c> elements.
         /// </para>
         /// </summary>
         public List<DBEngineVersion> DBEngineVersions
@@ -52,7 +53,7 @@ namespace Amazon.RDS.Model
         // Check to see if DBEngineVersions property is set
         internal bool IsSetDBEngineVersions()
         {
-            return this._dbEngineVersions != null && this._dbEngineVersions.Count > 0; 
+            return this._dbEngineVersions != null && (this._dbEngineVersions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.RDS.Model
         /// <para>
         /// An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>.
+        /// by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker

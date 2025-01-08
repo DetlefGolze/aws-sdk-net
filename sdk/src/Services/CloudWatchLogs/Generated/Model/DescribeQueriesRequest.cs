@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -39,6 +40,7 @@ namespace Amazon.CloudWatchLogs.Model
         private string _logGroupName;
         private int? _maxResults;
         private string _nextToken;
+        private QueryLanguage _queryLanguage;
         private QueryStatus _status;
 
         /// <summary>
@@ -96,11 +98,28 @@ namespace Amazon.CloudWatchLogs.Model
         }
 
         /// <summary>
+        /// Gets and sets the property QueryLanguage. 
+        /// <para>
+        /// Limits the returned queries to only the queries that use the specified query language.
+        /// </para>
+        /// </summary>
+        public QueryLanguage QueryLanguage
+        {
+            get { return this._queryLanguage; }
+            set { this._queryLanguage = value; }
+        }
+
+        // Check to see if QueryLanguage property is set
+        internal bool IsSetQueryLanguage()
+        {
+            return this._queryLanguage != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
         /// Limits the returned queries to only those that have the specified status. Valid values
-        /// are <code>Cancelled</code>, <code>Complete</code>, <code>Failed</code>, <code>Running</code>,
-        /// and <code>Scheduled</code>.
+        /// are <c>Cancelled</c>, <c>Complete</c>, <c>Failed</c>, <c>Running</c>, and <c>Scheduled</c>.
         /// </para>
         /// </summary>
         public QueryStatus Status

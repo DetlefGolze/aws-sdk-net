@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -34,14 +35,13 @@ namespace Amazon.WorkSpaces.Model
     /// 
     ///  
     /// <para>
-    /// You cannot stop a WorkSpace unless it has a running mode of <code>AutoStop</code>
-    /// and a state of <code>AVAILABLE</code>, <code>IMPAIRED</code>, <code>UNHEALTHY</code>,
-    /// or <code>ERROR</code>.
+    /// You cannot stop a WorkSpace unless it has a running mode of <c>AutoStop</c> or <c>Manual</c>
+    /// and a state of <c>AVAILABLE</c>, <c>IMPAIRED</c>, <c>UNHEALTHY</c>, or <c>ERROR</c>.
     /// </para>
     /// </summary>
     public partial class StopWorkspacesRequest : AmazonWorkSpacesRequest
     {
-        private List<StopRequest> _stopWorkspaceRequests = new List<StopRequest>();
+        private List<StopRequest> _stopWorkspaceRequests = AWSConfigs.InitializeCollections ? new List<StopRequest>() : null;
 
         /// <summary>
         /// Gets and sets the property StopWorkspaceRequests. 
@@ -59,7 +59,7 @@ namespace Amazon.WorkSpaces.Model
         // Check to see if StopWorkspaceRequests property is set
         internal bool IsSetStopWorkspaceRequests()
         {
-            return this._stopWorkspaceRequests != null && this._stopWorkspaceRequests.Count > 0; 
+            return this._stopWorkspaceRequests != null && (this._stopWorkspaceRequests.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

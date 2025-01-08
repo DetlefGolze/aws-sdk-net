@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
@@ -38,18 +39,18 @@ namespace Amazon.Batch.Model
         private CRUpdateAllocationStrategy _allocationStrategy;
         private int? _bidPercentage;
         private int? _desiredvCpus;
-        private List<Ec2Configuration> _ec2Configuration = new List<Ec2Configuration>();
+        private List<Ec2Configuration> _ec2Configuration = AWSConfigs.InitializeCollections ? new List<Ec2Configuration>() : null;
         private string _ec2KeyPair;
         private string _imageId;
         private string _instanceRole;
-        private List<string> _instanceTypes = new List<string>();
+        private List<string> _instanceTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private LaunchTemplateSpecification _launchTemplate;
         private int? _maxvCpus;
         private int? _minvCpus;
         private string _placementGroup;
-        private List<string> _securityGroupIds = new List<string>();
-        private List<string> _subnets = new List<string>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _subnets = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private CRType _type;
         private bool? _updateToLatestImageVersion;
 
@@ -66,8 +67,8 @@ namespace Amazon.Batch.Model
         /// <para>
         /// When updating a compute environment, changing the allocation strategy requires an
         /// infrastructure update of the compute environment. For more information, see <a href="https://docs.aws.amazon.com/batch/latest/userguide/updating-compute-environments.html">Updating
-        /// compute environments</a> in the <i>Batch User Guide</i>. <code>BEST_FIT</code> isn't
-        /// supported when updating a compute environment.
+        /// compute environments</a> in the <i>Batch User Guide</i>. <c>BEST_FIT</c> isn't supported
+        /// when updating a compute environment.
         /// </para>
         ///  <note> 
         /// <para>
@@ -97,11 +98,11 @@ namespace Amazon.Batch.Model
         /// </para>
         ///  </dd> </dl> 
         /// <para>
-        /// With both <code>BEST_FIT_PROGRESSIVE</code>, <code>SPOT_CAPACITY_OPTIMIZED</code>,
-        /// and <code>SPOT_PRICE_CAPACITY_OPTIMIZED</code> strategies using On-Demand or Spot
-        /// Instances, and the <code>BEST_FIT</code> strategy using Spot Instances, Batch might
-        /// need to exceed <code>maxvCpus</code> to meet your capacity requirements. In this event,
-        /// Batch never exceeds <code>maxvCpus</code> by more than a single instance.
+        /// With <c>BEST_FIT_PROGRESSIVE</c>,<c>SPOT_CAPACITY_OPTIMIZED</c> and <c>SPOT_PRICE_CAPACITY_OPTIMIZED</c>
+        /// (recommended) strategies using On-Demand or Spot Instances, and the <c>BEST_FIT</c>
+        /// strategy using Spot Instances, Batch might need to exceed <c>maxvCpus</c> to meet
+        /// your capacity requirements. In this event, Batch never exceeds <c>maxvCpus</c> by
+        /// more than a single instance.
         /// </para>
         /// </summary>
         public CRUpdateAllocationStrategy AllocationStrategy
@@ -170,14 +171,13 @@ namespace Amazon.Batch.Model
         /// </para>
         ///  </note> <note> 
         /// <para>
-        /// When you update the <code>desiredvCpus</code> setting, the value must be between the
-        /// <code>minvCpus</code> and <code>maxvCpus</code> values. 
+        /// When you update the <c>desiredvCpus</c> setting, the value must be between the <c>minvCpus</c>
+        /// and <c>maxvCpus</c> values. 
         /// </para>
         ///  
         /// <para>
-        /// Additionally, the updated <code>desiredvCpus</code> value must be greater than or
-        /// equal to the current <code>desiredvCpus</code> value. For more information, see <a
-        /// href="https://docs.aws.amazon.com/batch/latest/userguide/troubleshooting.html#error-desired-vcpus-update">Troubleshooting
+        /// Additionally, the updated <c>desiredvCpus</c> value must be greater than or equal
+        /// to the current <c>desiredvCpus</c> value. For more information, see <a href="https://docs.aws.amazon.com/batch/latest/userguide/troubleshooting.html#error-desired-vcpus-update">Troubleshooting
         /// Batch</a> in the <i>Batch User Guide</i>.
         /// </para>
         ///  </note>
@@ -197,17 +197,17 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property Ec2Configuration. 
         /// <para>
-        /// Provides information used to select Amazon Machine Images (AMIs) for EC2 instances
-        /// in the compute environment. If <code>Ec2Configuration</code> isn't specified, the
-        /// default is <code>ECS_AL2</code>.
+        /// Provides information used to select Amazon Machine Images (AMIs) for Amazon EC2 instances
+        /// in the compute environment. If <c>Ec2Configuration</c> isn't specified, the default
+        /// is <c>ECS_AL2</c>.
         /// </para>
         ///  
         /// <para>
         /// When updating a compute environment, changing this setting requires an infrastructure
         /// update of the compute environment. For more information, see <a href="https://docs.aws.amazon.com/batch/latest/userguide/updating-compute-environments.html">Updating
-        /// compute environments</a> in the <i>Batch User Guide</i>. To remove the EC2 configuration
-        /// and any custom AMI ID specified in <code>imageIdOverride</code>, set this value to
-        /// an empty string.
+        /// compute environments</a> in the <i>Batch User Guide</i>. To remove the Amazon EC2
+        /// configuration and any custom AMI ID specified in <c>imageIdOverride</c>, set this
+        /// value to an empty string.
         /// </para>
         ///  
         /// <para>
@@ -229,7 +229,7 @@ namespace Amazon.Batch.Model
         // Check to see if Ec2Configuration property is set
         internal bool IsSetEc2Configuration()
         {
-            return this._ec2Configuration != null && this._ec2Configuration.Count > 0; 
+            return this._ec2Configuration != null && (this._ec2Configuration.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -241,8 +241,8 @@ namespace Amazon.Batch.Model
         /// </para>
         ///  
         /// <para>
-        /// When updating a compute environment, changing the EC2 key pair requires an infrastructure
-        /// update of the compute environment. For more information, see <a href="https://docs.aws.amazon.com/batch/latest/userguide/updating-compute-environments.html">Updating
+        /// When updating a compute environment, changing the Amazon EC2 key pair requires an
+        /// infrastructure update of the compute environment. For more information, see <a href="https://docs.aws.amazon.com/batch/latest/userguide/updating-compute-environments.html">Updating
         /// compute environments</a> in the <i>Batch User Guide</i>.
         /// </para>
         ///  <note> 
@@ -268,7 +268,7 @@ namespace Amazon.Batch.Model
         /// Gets and sets the property ImageId. 
         /// <para>
         /// The Amazon Machine Image (AMI) ID used for instances launched in the compute environment.
-        /// This parameter is overridden by the <code>imageIdOverride</code> member of the <code>Ec2Configuration</code>
+        /// This parameter is overridden by the <c>imageIdOverride</c> member of the <c>Ec2Configuration</c>
         /// structure. To remove the custom AMI ID and use the default AMI ID, set this value
         /// to an empty string.
         /// </para>
@@ -311,9 +311,10 @@ namespace Amazon.Batch.Model
         /// Gets and sets the property InstanceRole. 
         /// <para>
         /// The Amazon ECS instance profile applied to Amazon EC2 instances in a compute environment.
-        /// You can specify the short name or full Amazon Resource Name (ARN) of an instance profile.
-        /// For example, <code> <i>ecsInstanceRole</i> </code> or <code>arn:aws:iam::<i>&lt;aws_account_id&gt;</i>:instance-profile/<i>ecsInstanceRole</i>
-        /// </code>. For more information, see <a href="https://docs.aws.amazon.com/batch/latest/userguide/instance_IAM_role.html">Amazon
+        /// Required for Amazon EC2 instances. You can specify the short name or full Amazon Resource
+        /// Name (ARN) of an instance profile. For example, <c> <i>ecsInstanceRole</i> </c> or
+        /// <c>arn:aws:iam::<i>&lt;aws_account_id&gt;</i>:instance-profile/<i>ecsInstanceRole</i>
+        /// </c>. For more information, see <a href="https://docs.aws.amazon.com/batch/latest/userguide/instance_IAM_role.html">Amazon
         /// ECS instance role</a> in the <i>Batch User Guide</i>.
         /// </para>
         ///  
@@ -345,10 +346,10 @@ namespace Amazon.Batch.Model
         /// Gets and sets the property InstanceTypes. 
         /// <para>
         /// The instances types that can be launched. You can specify instance families to launch
-        /// any instance type within those families (for example, <code>c5</code> or <code>p3</code>),
-        /// or you can specify specific sizes within a family (such as <code>c5.8xlarge</code>).
-        /// You can also choose <code>optimal</code> to select instance types (from the C4, M4,
-        /// and R4 instance families) that match the demand of your job queues.
+        /// any instance type within those families (for example, <c>c5</c> or <c>p3</c>), or
+        /// you can specify specific sizes within a family (such as <c>c5.8xlarge</c>). You can
+        /// also choose <c>optimal</c> to select instance types (from the C4, M4, and R4 instance
+        /// families) that match the demand of your job queues.
         /// </para>
         ///  
         /// <para>
@@ -369,9 +370,9 @@ namespace Amazon.Batch.Model
         /// </para>
         ///  </note> <note> 
         /// <para>
-        /// Currently, <code>optimal</code> uses instance types from the C4, M4, and R4 instance
-        /// families. In Regions that don't have instance types from those instance families,
-        /// instance types from the C5, M5, and R5 instance families are used.
+        /// Currently, <c>optimal</c> uses instance types from the C4, M4, and R4 instance families.
+        /// In Regions that don't have instance types from those instance families, instance types
+        /// from the C5, M5, and R5 instance families are used.
         /// </para>
         ///  </note>
         /// </summary>
@@ -384,7 +385,7 @@ namespace Amazon.Batch.Model
         // Check to see if InstanceTypes property is set
         internal bool IsSetInstanceTypes()
         {
-            return this._instanceTypes != null && this._instanceTypes.Count > 0; 
+            return this._instanceTypes != null && (this._instanceTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -394,11 +395,11 @@ namespace Amazon.Batch.Model
         /// the launch template ID or launch template name in the request, but not both. For more
         /// information, see <a href="https://docs.aws.amazon.com/batch/latest/userguide/launch-templates.html">Launch
         /// template support</a> in the <i>Batch User Guide</i>. To remove the custom launch template
-        /// and use the default launch template, set <code>launchTemplateId</code> or <code>launchTemplateName</code>
+        /// and use the default launch template, set <c>launchTemplateId</c> or <c>launchTemplateName</c>
         /// member of the launch template specification to an empty string. Removing the launch
         /// template from a compute environment will not remove the AMI specified in the launch
-        /// template. In order to update the AMI specified in a launch template, the <code>updateToLatestImageVersion</code>
-        /// parameter must be set to <code>true</code>.
+        /// template. In order to update the AMI specified in a launch template, the <c>updateToLatestImageVersion</c>
+        /// parameter must be set to <c>true</c>.
         /// </para>
         ///  
         /// <para>
@@ -432,13 +433,11 @@ namespace Amazon.Batch.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// With <code>BEST_FIT_PROGRESSIVE</code>, <code>SPOT_CAPACITY_OPTIMIZED</code>, and
-        /// <code>SPOT_PRICE_CAPACITY_OPTIMIZED</code> allocation strategies using On-Demand or
-        /// Spot Instances, and the <code>BEST_FIT</code> strategy using Spot Instances, Batch
-        /// might need to exceed <code>maxvCpus</code> to meet your capacity requirements. In
-        /// this event, Batch never exceeds <code>maxvCpus</code> by more than a single instance.
-        /// That is, no more than a single instance from among those specified in your compute
-        /// environment.
+        /// With <c>BEST_FIT_PROGRESSIVE</c>,<c>SPOT_CAPACITY_OPTIMIZED</c> and <c>SPOT_PRICE_CAPACITY_OPTIMIZED</c>
+        /// (recommended) strategies using On-Demand or Spot Instances, and the <c>BEST_FIT</c>
+        /// strategy using Spot Instances, Batch might need to exceed <c>maxvCpus</c> to meet
+        /// your capacity requirements. In this event, Batch never exceeds <c>maxvCpus</c> by
+        /// more than a single instance.
         /// </para>
         ///  </note>
         /// </summary>
@@ -458,7 +457,7 @@ namespace Amazon.Batch.Model
         /// Gets and sets the property MinvCpus. 
         /// <para>
         /// The minimum number of vCPUs that an environment should maintain (even if the compute
-        /// environment is <code>DISABLED</code>).
+        /// environment is <c>DISABLED</c>).
         /// </para>
         ///  <note> 
         /// <para>
@@ -521,13 +520,14 @@ namespace Amazon.Batch.Model
         /// compute environment. This parameter is required for Fargate compute resources, where
         /// it can contain up to 5 security groups. For Fargate compute resources, providing an
         /// empty list is handled as if this parameter wasn't specified and no change is made.
-        /// For EC2 compute resources, providing an empty list removes the security groups from
-        /// the compute resource.
+        /// For Amazon EC2 compute resources, providing an empty list removes the security groups
+        /// from the compute resource.
         /// </para>
         ///  
         /// <para>
-        /// When updating a compute environment, changing the EC2 security groups requires an
-        /// infrastructure update of the compute environment. For more information, see <a href="https://docs.aws.amazon.com/batch/latest/userguide/updating-compute-environments.html">Updating
+        /// When updating a compute environment, changing the Amazon EC2 security groups requires
+        /// an infrastructure update of the compute environment. For more information, see <a
+        /// href="https://docs.aws.amazon.com/batch/latest/userguide/updating-compute-environments.html">Updating
         /// compute environments</a> in the <i>Batch User Guide</i>.
         /// </para>
         /// </summary>
@@ -540,7 +540,7 @@ namespace Amazon.Batch.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -548,8 +548,8 @@ namespace Amazon.Batch.Model
         /// <para>
         /// The VPC subnets where the compute resources are launched. Fargate compute resources
         /// can contain up to 16 subnets. For Fargate compute resources, providing an empty list
-        /// will be handled as if this parameter wasn't specified and no change is made. For EC2
-        /// compute resources, providing an empty list removes the VPC subnets from the compute
+        /// will be handled as if this parameter wasn't specified and no change is made. For Amazon
+        /// EC2 compute resources, providing an empty list removes the VPC subnets from the compute
         /// resource. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html">VPCs
         /// and subnets</a> in the <i>Amazon VPC User Guide</i>.
         /// </para>
@@ -584,18 +584,18 @@ namespace Amazon.Batch.Model
         // Check to see if Subnets property is set
         internal bool IsSetSubnets()
         {
-            return this._subnets != null && this._subnets.Count > 0; 
+            return this._subnets != null && (this._subnets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// Key-value pair tags to be applied to EC2 resources that are launched in the compute
-        /// environment. For Batch, these take the form of <code>"String1": "String2"</code>,
-        /// where <code>String1</code> is the tag key and <code>String2</code> is the tag value-for
-        /// example, <code>{ "Name": "Batch Instance - C4OnDemand" }</code>. This is helpful for
-        /// recognizing your Batch instances in the Amazon EC2 console. These tags aren't seen
-        /// when using the Batch <code>ListTagsForResource</code> API operation.
+        /// Key-value pair tags to be applied to Amazon EC2 resources that are launched in the
+        /// compute environment. For Batch, these take the form of <c>"String1": "String2"</c>,
+        /// where <c>String1</c> is the tag key and <c>String2</c> is the tag value-for example,
+        /// <c>{ "Name": "Batch Instance - C4OnDemand" }</c>. This is helpful for recognizing
+        /// your Batch instances in the Amazon EC2 console. These tags aren't seen when using
+        /// the Batch <c>ListTagsForResource</c> API operation.
         /// </para>
         ///  
         /// <para>
@@ -619,20 +619,20 @@ namespace Amazon.Batch.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of compute environment: <code>EC2</code>, <code>SPOT</code>, <code>FARGATE</code>,
-        /// or <code>FARGATE_SPOT</code>. For more information, see <a href="https://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html">Compute
+        /// The type of compute environment: <c>EC2</c>, <c>SPOT</c>, <c>FARGATE</c>, or <c>FARGATE_SPOT</c>.
+        /// For more information, see <a href="https://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html">Compute
         /// environments</a> in the <i>Batch User Guide</i>.
         /// </para>
         ///  
         /// <para>
-        ///  If you choose <code>SPOT</code>, you must also specify an Amazon EC2 Spot Fleet role
-        /// with the <code>spotIamFleetRole</code> parameter. For more information, see <a href="https://docs.aws.amazon.com/batch/latest/userguide/spot_fleet_IAM_role.html">Amazon
+        ///  If you choose <c>SPOT</c>, you must also specify an Amazon EC2 Spot Fleet role with
+        /// the <c>spotIamFleetRole</c> parameter. For more information, see <a href="https://docs.aws.amazon.com/batch/latest/userguide/spot_fleet_IAM_role.html">Amazon
         /// EC2 spot fleet role</a> in the <i>Batch User Guide</i>.
         /// </para>
         ///  
@@ -659,12 +659,12 @@ namespace Amazon.Batch.Model
         /// Gets and sets the property UpdateToLatestImageVersion. 
         /// <para>
         /// Specifies whether the AMI ID is updated to the latest one that's supported by Batch
-        /// when the compute environment has an infrastructure update. The default value is <code>false</code>.
+        /// when the compute environment has an infrastructure update. The default value is <c>false</c>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// An AMI ID can either be specified in the <code>imageId</code> or <code>imageIdOverride</code>
-        /// parameters or be determined by the launch template that's specified in the <code>launchTemplate</code>
+        /// An AMI ID can either be specified in the <c>imageId</c> or <c>imageIdOverride</c>
+        /// parameters or be determined by the launch template that's specified in the <c>launchTemplate</c>
         /// parameter. If an AMI ID is specified any of these ways, this parameter is ignored.
         /// For more information about to update AMI IDs during an infrastructure update, see
         /// <a href="https://docs.aws.amazon.com/batch/latest/userguide/updating-compute-environments.html#updating-compute-environments-ami">Updating

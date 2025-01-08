@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHubRefactorSpaces.Model
 {
     /// <summary>
@@ -140,7 +141,7 @@ namespace Amazon.MigrationHubRefactorSpaces.Model
         /// <summary>
         /// Gets and sets the property StageName. 
         /// <para>
-        /// The name of the API Gateway stage. The name defaults to <code>prod</code>. 
+        /// The name of the API Gateway stage. The name defaults to <c>prod</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -159,7 +160,7 @@ namespace Amazon.MigrationHubRefactorSpaces.Model
         /// <summary>
         /// Gets and sets the property VpcLinkId. 
         /// <para>
-        /// The <code>VpcLink</code> ID of the API Gateway proxy. 
+        /// The <c>VpcLink</c> ID of the API Gateway proxy. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=10, Max=10)]

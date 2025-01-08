@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>in-sync</code> | <code>adding</code> | <code>removing</code> 
+        /// Valid values: <c>in-sync</c> | <c>adding</c> | <c>removing</c> 
         /// </para>
         /// </summary>
         public string ApplyStatus

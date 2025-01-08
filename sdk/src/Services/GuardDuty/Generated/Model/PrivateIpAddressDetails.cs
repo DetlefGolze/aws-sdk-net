@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -60,6 +61,7 @@ namespace Amazon.GuardDuty.Model
         /// The private IP address of the EC2 instance.
         /// </para>
         /// </summary>
+        [AWSProperty(Sensitive=true)]
         public string PrivateIpAddress
         {
             get { return this._privateIpAddress; }

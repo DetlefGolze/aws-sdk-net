@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
     /// Container for the parameters to the StopContact operation.
-    /// Ends the specified contact. This call does not work for voice contacts that use the
-    /// following initiation methods:
+    /// Ends the specified contact. Use this API to stop queued callbacks. It does not work
+    /// for voice contacts that use the following initiation methods:
     /// 
     ///  <ul> <li> 
     /// <para>
@@ -45,15 +46,23 @@ namespace Amazon.Connect.Model
     /// <para>
     /// QUEUE_TRANSFER
     /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// EXTERNAL_OUTBOUND
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// MONITOR
+    /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// Chat and task contacts, however, can be terminated in any state, regardless of initiation
-    /// method.
+    /// Chat and task contacts can be terminated in any state, regardless of initiation method.
     /// </para>
     /// </summary>
     public partial class StopContactRequest : AmazonConnectRequest
     {
         private string _contactId;
+        private DisconnectReason _disconnectReason;
         private string _instanceId;
 
         /// <summary>
@@ -73,6 +82,25 @@ namespace Amazon.Connect.Model
         internal bool IsSetContactId()
         {
             return this._contactId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DisconnectReason. 
+        /// <para>
+        /// The reason a contact can be disconnected. Only Amazon Connect outbound campaigns can
+        /// provide this field.
+        /// </para>
+        /// </summary>
+        public DisconnectReason DisconnectReason
+        {
+            get { return this._disconnectReason; }
+            set { this._disconnectReason = value; }
+        }
+
+        // Check to see if DisconnectReason property is set
+        internal bool IsSetDisconnectReason()
+        {
+            return this._disconnectReason != null;
         }
 
         /// <summary>

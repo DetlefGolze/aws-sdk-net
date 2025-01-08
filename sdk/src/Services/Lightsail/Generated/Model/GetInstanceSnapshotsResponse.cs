@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Lightsail.Model
     /// </summary>
     public partial class GetInstanceSnapshotsResponse : AmazonWebServiceResponse
     {
-        private List<InstanceSnapshot> _instanceSnapshots = new List<InstanceSnapshot>();
+        private List<InstanceSnapshot> _instanceSnapshots = AWSConfigs.InitializeCollections ? new List<InstanceSnapshot>() : null;
         private string _nextPageToken;
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if InstanceSnapshots property is set
         internal bool IsSetInstanceSnapshots()
         {
-            return this._instanceSnapshots != null && this._instanceSnapshots.Count > 0; 
+            return this._instanceSnapshots != null && (this._instanceSnapshots.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -66,8 +67,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// To get the next page of results, perform another <code>GetInstanceSnapshots</code>
-        /// request and specify the next page token using the <code>pageToken</code> parameter.
+        /// To get the next page of results, perform another <c>GetInstanceSnapshots</c> request
+        /// and specify the next page token using the <c>pageToken</c> parameter.
         /// </para>
         /// </summary>
         public string NextPageToken

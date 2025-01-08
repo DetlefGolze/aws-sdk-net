@@ -26,23 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
     /// Identifies the name and value of a filter object. This filter is used to limit the
-    /// number and type of DMS objects that are returned for a particular <code>Describe*</code>
+    /// number and type of DMS objects that are returned for a particular <c>Describe*</c>
     /// call or similar operation. Filters are used as an optional parameter for certain API
     /// operations.
     /// </summary>
     public partial class Filter
     {
         private string _name;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the filter as specified for a <code>Describe*</code> or similar operation.
+        /// The name of the filter as specified for a <c>Describe*</c> or similar operation.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -75,7 +76,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

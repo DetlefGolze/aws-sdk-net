@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -60,9 +61,9 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property ContainerPort. 
         /// <para>
         /// The port on the container to associate with the load balancer. This port must correspond
-        /// to a <code>containerPort</code> in the task definition the tasks in the service are
-        /// using. For tasks that use the EC2 launch type, the container instance they are launched
-        /// on must allow ingress traffic on the <code>hostPort</code> of the port mapping.
+        /// to a <c>containerPort</c> in the task definition the tasks in the service are using.
+        /// For tasks that use the EC2 launch type, the container instance they are launched on
+        /// must allow ingress traffic on the <c>hostPort</c> of the port mapping.
         /// </para>
         /// </summary>
         public int ContainerPort

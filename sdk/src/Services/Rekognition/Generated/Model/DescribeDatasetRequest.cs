@@ -26,17 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeDataset operation.
-    /// Describes an Amazon Rekognition Custom Labels dataset. You can get information such
+    /// <note> 
+    /// <para>
+    /// This operation applies only to Amazon Rekognition Custom Labels.
+    /// </para>
+    ///  </note> 
+    /// <para>
+    ///  Describes an Amazon Rekognition Custom Labels dataset. You can get information such
     /// as the current status of a dataset and statistics about the images and labels in a
     /// dataset. 
-    /// 
+    /// </para>
     ///  
     /// <para>
-    /// This operation requires permissions to perform the <code>rekognition:DescribeDataset</code>
+    /// This operation requires permissions to perform the <c>rekognition:DescribeDataset</c>
     /// action.
     /// </para>
     /// </summary>

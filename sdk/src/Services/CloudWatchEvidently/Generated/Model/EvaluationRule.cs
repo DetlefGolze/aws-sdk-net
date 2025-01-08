@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvidently.Model
 {
     /// <summary>
@@ -59,9 +60,8 @@ namespace Amazon.CloudWatchEvidently.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// This value is <code>aws.evidently.splits</code> if this is an evaluation rule for
-        /// a launch, and it is <code>aws.evidently.onlineab</code> if this is an evaluation rule
-        /// for an experiment.
+        /// This value is <c>aws.evidently.splits</c> if this is an evaluation rule for a launch,
+        /// and it is <c>aws.evidently.onlineab</c> if this is an evaluation rule for an experiment.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=1024)]

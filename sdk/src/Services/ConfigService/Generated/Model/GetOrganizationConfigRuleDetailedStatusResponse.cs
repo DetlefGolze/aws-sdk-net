@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.ConfigService.Model
     public partial class GetOrganizationConfigRuleDetailedStatusResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<MemberAccountStatus> _organizationConfigRuleDetailedStatus = new List<MemberAccountStatus>();
+        private List<MemberAccountStatus> _organizationConfigRuleDetailedStatus = AWSConfigs.InitializeCollections ? new List<MemberAccountStatus>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> string returned on a previous page that you use to get
-        /// the next page of results in a paginated response. 
+        /// The <c>nextToken</c> string returned on a previous page that you use to get the next
+        /// page of results in a paginated response. 
         /// </para>
         /// </summary>
         public string NextToken
@@ -58,7 +59,7 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property OrganizationConfigRuleDetailedStatus. 
         /// <para>
-        /// A list of <code>MemberAccountStatus</code> objects.
+        /// A list of <c>MemberAccountStatus</c> objects.
         /// </para>
         /// </summary>
         public List<MemberAccountStatus> OrganizationConfigRuleDetailedStatus
@@ -70,7 +71,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if OrganizationConfigRuleDetailedStatus property is set
         internal bool IsSetOrganizationConfigRuleDetailedStatus()
         {
-            return this._organizationConfigRuleDetailedStatus != null && this._organizationConfigRuleDetailedStatus.Count > 0; 
+            return this._organizationConfigRuleDetailedStatus != null && (this._organizationConfigRuleDetailedStatus.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

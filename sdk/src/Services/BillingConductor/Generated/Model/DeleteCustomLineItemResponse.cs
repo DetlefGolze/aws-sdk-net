@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BillingConductor.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.BillingConductor.Model
         /// <summary>
         /// Gets and sets the property Arn. 
         /// <para>
-        ///  Then ARN of the deleted custom line item. 
+        /// The ARN of the deleted custom line item. 
         /// </para>
         /// </summary>
         public string Arn

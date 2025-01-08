@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
     /// Specifies whether any one-time or recurring classification jobs are configured to
-    /// analyze data in an S3 bucket, and, if so, the details of the job that ran most recently.
+    /// analyze objects in an S3 bucket, and, if so, the details of the job that ran most
+    /// recently.
     /// </summary>
     public partial class JobDetails
     {
@@ -42,8 +44,8 @@ namespace Amazon.Macie2.Model
         /// <summary>
         /// Gets and sets the property IsDefinedInJob. 
         /// <para>
-        /// Specifies whether any one-time or recurring jobs are configured to analyze data in
-        /// the bucket. Possible values are:
+        /// Specifies whether any one-time or recurring jobs are configured to analyze objects
+        /// in the bucket. Possible values are:
         /// </para>
         ///  <ul><li>
         /// <para>
@@ -81,7 +83,7 @@ namespace Amazon.Macie2.Model
         /// <summary>
         /// Gets and sets the property IsMonitoredByJob. 
         /// <para>
-        /// Specifies whether any recurring jobs are configured to analyze data in the bucket.
+        /// Specifies whether any recurring jobs are configured to analyze objects in the bucket.
         /// Possible values are:
         /// </para>
         ///  <ul><li>
@@ -121,8 +123,8 @@ namespace Amazon.Macie2.Model
         /// Gets and sets the property LastJobId. 
         /// <para>
         /// The unique identifier for the job that ran most recently and is configured to analyze
-        /// data in the bucket, either the latest run of a recurring job or the only run of a
-        /// one-time job.
+        /// objects in the bucket, either the latest run of a recurring job or the only run of
+        /// a one-time job.
         /// </para>
         ///  
         /// <para>

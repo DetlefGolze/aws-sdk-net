@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -34,10 +35,10 @@ namespace Amazon.CognitoIdentityProvider.Model
     /// </summary>
     public partial class GetUserResponse : AmazonWebServiceResponse
     {
-        private List<MFAOptionType> _mfaOptions = new List<MFAOptionType>();
+        private List<MFAOptionType> _mfaOptions = AWSConfigs.InitializeCollections ? new List<MFAOptionType>() : null;
         private string _preferredMfaSetting;
-        private List<AttributeType> _userAttributes = new List<AttributeType>();
-        private List<string> _userMFASettingList = new List<string>();
+        private List<AttributeType> _userAttributes = AWSConfigs.InitializeCollections ? new List<AttributeType>() : null;
+        private List<string> _userMFASettingList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _username;
 
         /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if MFAOptions property is set
         internal bool IsSetMFAOptions()
         {
-            return this._mfaOptions != null && this._mfaOptions.Count > 0; 
+            return this._mfaOptions != null && (this._mfaOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -87,7 +88,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// </para>
         ///  
         /// <para>
-        /// For custom attributes, you must prepend the <code>custom:</code> prefix to the attribute
+        /// For custom attributes, you must prepend the <c>custom:</c> prefix to the attribute
         /// name.
         /// </para>
         /// </summary>
@@ -101,14 +102,14 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if UserAttributes property is set
         internal bool IsSetUserAttributes()
         {
-            return this._userAttributes != null && this._userAttributes.Count > 0; 
+            return this._userAttributes != null && (this._userAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UserMFASettingList. 
         /// <para>
         /// The MFA options that are activated for the user. The possible values in this list
-        /// are <code>SMS_MFA</code> and <code>SOFTWARE_TOKEN_MFA</code>.
+        /// are <c>SMS_MFA</c>, <c>EMAIL_OTP</c>, and <c>SOFTWARE_TOKEN_MFA</c>.
         /// </para>
         /// </summary>
         public List<string> UserMFASettingList
@@ -120,7 +121,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if UserMFASettingList property is set
         internal bool IsSetUserMFASettingList()
         {
-            return this._userMFASettingList != null && this._userMFASettingList.Count > 0; 
+            return this._userMFASettingList != null && (this._userMFASettingList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

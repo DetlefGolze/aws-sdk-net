@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -40,8 +41,8 @@ namespace Amazon.ServiceCatalog.Model
         /// Gets and sets the property PrincipalARN. 
         /// <para>
         /// The ARN of the principal (user, role, or group). This field allows for an ARN with
-        /// no <code>accountID</code>, with or without wildcard characters if the <code>PrincipalType</code>
-        /// is an <code>IAM_PATTERN</code>. 
+        /// no <c>accountID</c>, with or without wildcard characters if the <c>PrincipalType</c>
+        /// is an <c>IAM_PATTERN</c>. 
         /// </para>
         ///  
         /// <para>
@@ -65,9 +66,9 @@ namespace Amazon.ServiceCatalog.Model
         /// <summary>
         /// Gets and sets the property PrincipalType. 
         /// <para>
-        /// The principal type. The supported value is <code>IAM</code> if you use a fully defined
-        /// ARN, or <code>IAM_PATTERN</code> if you use an ARN with no <code>accountID</code>,
-        /// with or without wildcard characters. 
+        /// The principal type. The supported value is <c>IAM</c> if you use a fully defined ARN,
+        /// or <c>IAM_PATTERN</c> if you use an ARN with no <c>accountID</c>, with or without
+        /// wildcard characters. 
         /// </para>
         /// </summary>
         public PrincipalType PrincipalType

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -103,8 +104,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property LongDescription. 
         /// <para>
-        /// The long description to be updated as part of the <code>UpdateGlossaryTerm</code>
-        /// action.
+        /// The long description to be updated as part of the <c>UpdateGlossaryTerm</c> action.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=0, Max=4096)]
@@ -123,7 +123,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name to be updated as part of the <code>UpdateGlossaryTerm</code> action.
+        /// The name to be updated as part of the <c>UpdateGlossaryTerm</c> action.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=256)]
@@ -142,8 +142,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property ShortDescription. 
         /// <para>
-        /// The short description to be updated as part of the <code>UpdateGlossaryTerm</code>
-        /// action.
+        /// The short description to be updated as part of the <c>UpdateGlossaryTerm</c> action.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=0, Max=1024)]
@@ -162,7 +161,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status to be updated as part of the <code>UpdateGlossaryTerm</code> action.
+        /// The status to be updated as part of the <c>UpdateGlossaryTerm</c> action.
         /// </para>
         /// </summary>
         public GlossaryTermStatus Status
@@ -180,7 +179,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property TermRelations. 
         /// <para>
-        /// The term relations to be updated as part of the <code>UpdateGlossaryTerm</code> action.
+        /// The term relations to be updated as part of the <c>UpdateGlossaryTerm</c> action.
         /// </para>
         /// </summary>
         public TermRelations TermRelations

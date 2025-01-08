@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.MigrationHubStrategyRecommendations
 {
     /// <summary>
-    /// Implementation for accessing MigrationHubStrategyRecommendations
+    /// <para>Implementation for accessing MigrationHubStrategyRecommendations</para>
     ///
     /// Migration Hub Strategy Recommendations 
     /// <para>
@@ -750,6 +751,54 @@ namespace Amazon.MigrationHubStrategyRecommendations
 
         #endregion
         
+        #region  ListAnalyzableServers
+
+        internal virtual ListAnalyzableServersResponse ListAnalyzableServers(ListAnalyzableServersRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListAnalyzableServersRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListAnalyzableServersResponseUnmarshaller.Instance;
+
+            return Invoke<ListAnalyzableServersResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Retrieves a list of all the servers fetched from customer vCenter using Strategy Recommendation
+        /// Collector.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAnalyzableServers service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListAnalyzableServers service method, as returned by MigrationHubStrategyRecommendations.</returns>
+        /// <exception cref="Amazon.MigrationHubStrategyRecommendations.Model.AccessDeniedException">
+        /// The user does not have permission to perform the action. Check the AWS Identity and
+        /// Access Management (IAM) policy associated with this user.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHubStrategyRecommendations.Model.InternalServerException">
+        /// The server experienced an internal error. Try again.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHubStrategyRecommendations.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHubStrategyRecommendations.Model.ValidationException">
+        /// The request body isn't valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/migrationhubstrategy-2020-02-19/ListAnalyzableServers">REST API Reference for ListAnalyzableServers Operation</seealso>
+        public virtual Task<ListAnalyzableServersResponse> ListAnalyzableServersAsync(ListAnalyzableServersRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListAnalyzableServersRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListAnalyzableServersResponseUnmarshaller.Instance;
+
+            return InvokeAsync<ListAnalyzableServersResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ListApplicationComponents
 
         internal virtual ListApplicationComponentsResponse ListApplicationComponents(ListApplicationComponentsRequest request)
@@ -1287,11 +1336,11 @@ namespace Amazon.MigrationHubStrategyRecommendations
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.QuickSight.Model
     public partial class FieldBasedTooltip
     {
         private Visibility _aggregationVisibility;
-        private List<TooltipItem> _tooltipFields = new List<TooltipItem>();
+        private List<TooltipItem> _tooltipFields = AWSConfigs.InitializeCollections ? new List<TooltipItem>() : null;
         private TooltipTitleType _tooltipTitleType;
 
         /// <summary>
         /// Gets and sets the property AggregationVisibility. 
         /// <para>
-        /// The visibility of <code>Show aggregations</code>.
+        /// The visibility of <c>Show aggregations</c>.
         /// </para>
         /// </summary>
         public Visibility AggregationVisibility
@@ -71,7 +72,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if TooltipFields property is set
         internal bool IsSetTooltipFields()
         {
-            return this._tooltipFields != null && this._tooltipFields.Count > 0; 
+            return this._tooltipFields != null && (this._tooltipFields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -81,11 +82,11 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NONE</code>: Doesn't use the primary value as the title.
+        ///  <c>NONE</c>: Doesn't use the primary value as the title.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PRIMARY_VALUE</code>: Uses primary value as the title.
+        ///  <c>PRIMARY_VALUE</c>: Uses primary value as the title.
         /// </para>
         ///  </li> </ul>
         /// </summary>

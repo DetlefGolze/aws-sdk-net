@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Tnb.Model
 {
     /// <summary>
@@ -43,6 +44,7 @@ namespace Amazon.Tnb.Model
     {
         private int? _maxResults;
         private string _nextToken;
+        private string _nsInstanceId;
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
@@ -79,6 +81,25 @@ namespace Amazon.Tnb.Model
         internal bool IsSetNextToken()
         {
             return this._nextToken != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property NsInstanceId. 
+        /// <para>
+        /// Network instance id filter, to retrieve network operations associated to a network
+        /// instance.
+        /// </para>
+        /// </summary>
+        public string NsInstanceId
+        {
+            get { return this._nsInstanceId; }
+            set { this._nsInstanceId = value; }
+        }
+
+        // Check to see if NsInstanceId property is set
+        internal bool IsSetNsInstanceId()
+        {
+            return this._nsInstanceId != null;
         }
 
     }

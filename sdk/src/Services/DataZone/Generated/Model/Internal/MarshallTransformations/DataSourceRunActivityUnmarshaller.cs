@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DataZone.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public DataSourceRunActivity Unmarshall(JsonUnmarshallerContext context)
         {
+            DataSourceRunActivity unmarshalledObject = new DataSourceRunActivity();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            DataSourceRunActivity unmarshalledObject = new DataSourceRunActivity();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -100,6 +102,12 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
                     unmarshalledObject.ErrorMessage = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("lineageSummary", targetDepth))
+                {
+                    var unmarshaller = LineageInfoUnmarshaller.Instance;
+                    unmarshalledObject.LineageSummary = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("projectId", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -125,7 +133,6 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

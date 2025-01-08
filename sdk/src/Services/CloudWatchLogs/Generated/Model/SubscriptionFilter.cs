@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -33,6 +34,7 @@ namespace Amazon.CloudWatchLogs.Model
     /// </summary>
     public partial class SubscriptionFilter
     {
+        private bool? _applyOnTransformedLogs;
         private long? _creationTime;
         private string _destinationArn;
         private Distribution _distribution;
@@ -42,10 +44,34 @@ namespace Amazon.CloudWatchLogs.Model
         private string _roleArn;
 
         /// <summary>
+        /// Gets and sets the property ApplyOnTransformedLogs. 
+        /// <para>
+        /// This parameter is valid only for log groups that have an active log transformer. For
+        /// more information about log transformers, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutTransformer.html">PutTransformer</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// If this value is <c>true</c>, the subscription filter is applied on the transformed
+        /// version of the log events instead of the original ingested log events.
+        /// </para>
+        /// </summary>
+        public bool ApplyOnTransformedLogs
+        {
+            get { return this._applyOnTransformedLogs.GetValueOrDefault(); }
+            set { this._applyOnTransformedLogs = value; }
+        }
+
+        // Check to see if ApplyOnTransformedLogs property is set
+        internal bool IsSetApplyOnTransformedLogs()
+        {
+            return this._applyOnTransformedLogs.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property CreationTime. 
         /// <para>
         /// The creation time of the subscription filter, expressed as the number of milliseconds
-        /// after <code>Jan 1, 1970 00:00:00 UTC</code>.
+        /// after <c>Jan 1, 1970 00:00:00 UTC</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]

@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.ServerlessApplicationRepository.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.ServerlessApplicationRepository
 {
     /// <summary>
-    /// Interface for accessing ServerlessApplicationRepository
+    /// <para>Interface for accessing ServerlessApplicationRepository</para>
     ///
     /// The AWS Serverless Application Repository makes it easy for developers and enterprises
     /// to quickly find and deploy serverless applications in the AWS Cloud. For more information

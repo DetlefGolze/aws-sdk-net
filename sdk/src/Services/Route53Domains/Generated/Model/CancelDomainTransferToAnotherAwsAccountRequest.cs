@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Domains.Model
 {
     /// <summary>
@@ -45,8 +46,8 @@ namespace Amazon.Route53Domains.Model
     /// Use either <a href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_domains_ListOperations.html">ListOperations</a>
     /// or <a href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_domains_GetOperationDetail.html">GetOperationDetail</a>
     /// to determine whether the operation succeeded. <a href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_domains_GetOperationDetail.html">GetOperationDetail</a>
-    /// provides additional information, for example, <code>Domain Transfer from Aws Account
-    /// 111122223333 has been cancelled</code>. 
+    /// provides additional information, for example, <c>Domain Transfer from Aws Account
+    /// 111122223333 has been cancelled</c>. 
     /// </para>
     /// </summary>
     public partial class CancelDomainTransferToAnotherAwsAccountRequest : AmazonRoute53DomainsRequest

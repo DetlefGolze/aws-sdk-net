@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -60,9 +61,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  If the response to the previous <code>ListTags</code> request is truncated, SageMaker
-        /// returns this token. To retrieve the next set of tags, use it in the subsequent request.
-        /// 
+        ///  If the response to the previous <c>ListTags</c> request is truncated, SageMaker returns
+        /// this token. To retrieve the next set of tags, use it in the subsequent request. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=8192)]

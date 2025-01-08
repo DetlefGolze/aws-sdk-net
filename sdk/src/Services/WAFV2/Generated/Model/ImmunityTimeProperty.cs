@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
-    /// Used for CAPTCHA and challenge token settings. Determines how long a <code>CAPTCHA</code>
-    /// or challenge timestamp remains valid after WAF updates it for a successful <code>CAPTCHA</code>
+    /// Used for CAPTCHA and challenge token settings. Determines how long a <c>CAPTCHA</c>
+    /// or challenge timestamp remains valid after WAF updates it for a successful <c>CAPTCHA</c>
     /// or challenge response.
     /// </summary>
     public partial class ImmunityTimeProperty
@@ -40,8 +41,8 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property ImmunityTime. 
         /// <para>
-        /// The amount of time, in seconds, that a <code>CAPTCHA</code> or challenge timestamp
-        /// is considered valid by WAF. The default setting is 300. 
+        /// The amount of time, in seconds, that a <c>CAPTCHA</c> or challenge timestamp is considered
+        /// valid by WAF. The default setting is 300. 
         /// </para>
         ///  
         /// <para>

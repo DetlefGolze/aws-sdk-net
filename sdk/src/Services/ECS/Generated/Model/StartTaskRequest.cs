@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -35,25 +36,31 @@ namespace Amazon.ECS.Model
     /// 
     ///  <note> 
     /// <para>
-    /// Starting April 15, 2023, Amazon Web Services will not onboard new customers to Amazon
-    /// Elastic Inference (EI), and will help current customers migrate their workloads to
-    /// options that offer better price and performance. After April 15, 2023, new customers
-    /// will not be able to launch instances with Amazon EI accelerators in Amazon SageMaker,
-    /// Amazon ECS, or Amazon EC2. However, customers who have used Amazon EI at least once
-    /// during the past 30-day period are considered current customers and will be able to
-    /// continue using the service. 
+    /// On March 21, 2024, a change was made to resolve the task definition revision before
+    /// authorization. When a task definition revision is not specified, authorization will
+    /// occur using the latest revision of a task definition.
+    /// </para>
+    ///  </note> <note> 
+    /// <para>
+    /// Amazon Elastic Inference (EI) is no longer available to customers.
     /// </para>
     ///  </note> 
     /// <para>
-    /// Alternatively, you can use <a>RunTask</a> to place tasks for you. For more information,
+    /// Alternatively, you can use<c>RunTask</c> to place tasks for you. For more information,
     /// see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/scheduling_tasks.html">Scheduling
     /// Tasks</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+    /// </para>
+    ///  
+    /// <para>
+    /// You can attach Amazon EBS volumes to Amazon ECS tasks by configuring the volume when
+    /// creating or updating a service. For more infomation, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ebs-volumes.html#ebs-volume-types">Amazon
+    /// EBS volumes</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
     /// </para>
     /// </summary>
     public partial class StartTaskRequest : AmazonECSRequest
     {
         private string _cluster;
-        private List<string> _containerInstances = new List<string>();
+        private List<string> _containerInstances = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _enableecsManagedTags;
         private bool? _enableExecuteCommand;
         private string _group;
@@ -62,8 +69,9 @@ namespace Amazon.ECS.Model
         private PropagateTags _propagateTags;
         private string _referenceId;
         private string _startedBy;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _taskDefinition;
+        private List<TaskVolumeConfiguration> _volumeConfigurations = AWSConfigs.InitializeCollections ? new List<TaskVolumeConfiguration>() : null;
 
         /// <summary>
         /// Gets and sets the property Cluster. 
@@ -101,7 +109,7 @@ namespace Amazon.ECS.Model
         // Check to see if ContainerInstances property is set
         internal bool IsSetContainerInstances()
         {
-            return this._containerInstances != null && this._containerInstances.Count > 0; 
+            return this._containerInstances != null && (this._containerInstances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -128,7 +136,7 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property EnableExecuteCommand. 
         /// <para>
-        /// Whether or not the execute command functionality is turned on for the task. If <code>true</code>,
+        /// Whether or not the execute command functionality is turned on for the task. If <c>true</c>,
         /// this turns on the execute command functionality on all containers in the task.
         /// </para>
         /// </summary>
@@ -167,7 +175,7 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property NetworkConfiguration. 
         /// <para>
         /// The VPC subnet and security group configuration for tasks that receive their own elastic
-        /// network interface by using the <code>awsvpc</code> networking mode.
+        /// network interface by using the <c>awsvpc</c> networking mode.
         /// </para>
         /// </summary>
         public NetworkConfiguration NetworkConfiguration
@@ -188,9 +196,9 @@ namespace Amazon.ECS.Model
         /// A list of container overrides in JSON format that specify the name of a container
         /// in the specified task definition and the overrides it receives. You can override the
         /// default command for a container (that's specified in the task definition or Docker
-        /// image) with a <code>command</code> override. You can also override existing environment
+        /// image) with a <c>command</c> override. You can also override existing environment
         /// variables (that are specified in the task definition or Docker image) on a container
-        /// or add new environment variables to it with an <code>environment</code> override.
+        /// or add new environment variables to it with an <c>environment</c> override.
         /// </para>
         ///  <note> 
         /// <para>
@@ -233,7 +241,7 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property ReferenceId. 
         /// <para>
-        /// The reference ID to use for the task.
+        /// This parameter is only used by Amazon ECS. It is not intended for use by customers.
         /// </para>
         /// </summary>
         public string ReferenceId
@@ -253,15 +261,15 @@ namespace Amazon.ECS.Model
         /// <para>
         /// An optional tag specified when a task is started. For example, if you automatically
         /// trigger a task to run a batch process job, you could apply a unique identifier for
-        /// that job to your task with the <code>startedBy</code> parameter. You can then identify
-        /// which tasks belong to that job by filtering the results of a <a>ListTasks</a> call
-        /// with the <code>startedBy</code> value. Up to 36 letters (uppercase and lowercase),
-        /// numbers, hyphens (-), and underscores (_) are allowed.
+        /// that job to your task with the <c>startedBy</c> parameter. You can then identify which
+        /// tasks belong to that job by filtering the results of a <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ListTasks.html">ListTasks</a>
+        /// call with the <c>startedBy</c> value. Up to 36 letters (uppercase and lowercase),
+        /// numbers, hyphens (-), forward slash (/), and underscores (_) are allowed.
         /// </para>
         ///  
         /// <para>
-        /// If a task is started by an Amazon ECS service, the <code>startedBy</code> parameter
-        /// contains the deployment ID of the service that starts it.
+        /// If a task is started by an Amazon ECS service, the <c>startedBy</c> parameter contains
+        /// the deployment ID of the service that starts it.
         /// </para>
         /// </summary>
         public string StartedBy
@@ -316,10 +324,10 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Do not use <code>aws:</code>, <code>AWS:</code>, or any upper or lowercase combination
-        /// of such as a prefix for either keys or values as it is reserved for Amazon Web Services
-        /// use. You cannot edit or delete tag keys or values with this prefix. Tags with this
-        /// prefix do not count against your tags per resource limit.
+        /// Do not use <c>aws:</c>, <c>AWS:</c>, or any upper or lowercase combination of such
+        /// as a prefix for either keys or values as it is reserved for Amazon Web Services use.
+        /// You cannot edit or delete tag keys or values with this prefix. Tags with this prefix
+        /// do not count against your tags per resource limit.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -333,15 +341,15 @@ namespace Amazon.ECS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TaskDefinition. 
         /// <para>
-        /// The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or
-        /// full ARN of the task definition to start. If a <code>revision</code> isn't specified,
-        /// the latest <code>ACTIVE</code> revision is used.
+        /// The <c>family</c> and <c>revision</c> (<c>family:revision</c>) or full ARN of the
+        /// task definition to start. If a <c>revision</c> isn't specified, the latest <c>ACTIVE</c>
+        /// revision is used.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -355,6 +363,26 @@ namespace Amazon.ECS.Model
         internal bool IsSetTaskDefinition()
         {
             return this._taskDefinition != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property VolumeConfigurations. 
+        /// <para>
+        /// The details of the volume that was <c>configuredAtLaunch</c>. You can configure the
+        /// size, volumeType, IOPS, throughput, snapshot and encryption in <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_TaskManagedEBSVolumeConfiguration.html">TaskManagedEBSVolumeConfiguration</a>.
+        /// The <c>name</c> of the volume must match the <c>name</c> from the task definition.
+        /// </para>
+        /// </summary>
+        public List<TaskVolumeConfiguration> VolumeConfigurations
+        {
+            get { return this._volumeConfigurations; }
+            set { this._volumeConfigurations = value; }
+        }
+
+        // Check to see if VolumeConfigurations property is set
+        internal bool IsSetVolumeConfigurations()
+        {
+            return this._volumeConfigurations != null && (this._volumeConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

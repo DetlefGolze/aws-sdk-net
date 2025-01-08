@@ -57,6 +57,7 @@ namespace Amazon.S3.Util
                     // A redirect error or a forbidden error means the bucket exists.
                     case "AccessDenied":
                     case "PermanentRedirect":
+                    case "UnknownOperationException":
                         return true;
                     case "NoSuchBucket":
                         return false;
@@ -306,7 +307,7 @@ namespace Amazon.S3.Util
                 MaxKeys = 1
             });
 
-            if (listObjectResponse.S3Objects.Count != 1)
+            if (listObjectResponse.S3Objects?.Count != 1)
             {
                 throw new InvalidOperationException("No object exists with this bucket name and key.");
             }

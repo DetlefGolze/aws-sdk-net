@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.ResilienceHub
 {
     /// <summary>
-    /// Implementation for accessing ResilienceHub
+    /// <para>Implementation for accessing ResilienceHub</para>
     ///
     /// Resilience Hub helps you proactively prepare and protect your Amazon Web Services
     /// applications from disruptions. It offers continual resiliency assessment and validation
@@ -268,12 +269,95 @@ namespace Amazon.ResilienceHub
         #endregion
 
 
+        #region  AcceptResourceGroupingRecommendations
+
+
+        /// <summary>
+        /// Accepts the resource grouping recommendations suggested by Resilience Hub for your
+        /// application.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AcceptResourceGroupingRecommendations service method.</param>
+        /// 
+        /// <returns>The response from the AcceptResourceGroupingRecommendations service method, as returned by ResilienceHub.</returns>
+        /// <exception cref="Amazon.ResilienceHub.Model.AccessDeniedException">
+        /// You don't have permissions to perform the requested operation. The user or role that
+        /// is making the request must have at least one IAM permissions policy attached that
+        /// grants the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.InternalServerException">
+        /// This exception occurs when there is an internal failure in the Resilience Hub service.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ResourceNotFoundException">
+        /// This exception occurs when the specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ThrottlingException">
+        /// This exception occurs when you have exceeded the limit on the number of requests per
+        /// second.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ValidationException">
+        /// This exception occurs when a request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/AcceptResourceGroupingRecommendations">REST API Reference for AcceptResourceGroupingRecommendations Operation</seealso>
+        public virtual AcceptResourceGroupingRecommendationsResponse AcceptResourceGroupingRecommendations(AcceptResourceGroupingRecommendationsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = AcceptResourceGroupingRecommendationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = AcceptResourceGroupingRecommendationsResponseUnmarshaller.Instance;
+
+            return Invoke<AcceptResourceGroupingRecommendationsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Accepts the resource grouping recommendations suggested by Resilience Hub for your
+        /// application.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AcceptResourceGroupingRecommendations service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the AcceptResourceGroupingRecommendations service method, as returned by ResilienceHub.</returns>
+        /// <exception cref="Amazon.ResilienceHub.Model.AccessDeniedException">
+        /// You don't have permissions to perform the requested operation. The user or role that
+        /// is making the request must have at least one IAM permissions policy attached that
+        /// grants the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.InternalServerException">
+        /// This exception occurs when there is an internal failure in the Resilience Hub service.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ResourceNotFoundException">
+        /// This exception occurs when the specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ThrottlingException">
+        /// This exception occurs when you have exceeded the limit on the number of requests per
+        /// second.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ValidationException">
+        /// This exception occurs when a request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/AcceptResourceGroupingRecommendations">REST API Reference for AcceptResourceGroupingRecommendations Operation</seealso>
+        public virtual Task<AcceptResourceGroupingRecommendationsResponse> AcceptResourceGroupingRecommendationsAsync(AcceptResourceGroupingRecommendationsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = AcceptResourceGroupingRecommendationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = AcceptResourceGroupingRecommendationsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<AcceptResourceGroupingRecommendationsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  AddDraftAppVersionResourceMappings
 
 
         /// <summary>
-        /// Adds the resource mapping for the draft application version. You can also update an
-        /// existing resource mapping to a new physical resource.
+        /// Adds the source of resource-maps to the draft version of an application. During assessment,
+        /// Resilience Hub will use these resource-maps to resolve the latest physical ID for
+        /// each resource in the application template. For more information about different types
+        /// of resources supported by Resilience Hub and how to add them in your application,
+        /// see <a href="https://docs.aws.amazon.com/resilience-hub/latest/userguide/how-app-manage.html">Step
+        /// 2: How is your application managed?</a> in the Resilience Hub User Guide.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the AddDraftAppVersionResourceMappings service method.</param>
         /// 
@@ -295,6 +379,11 @@ namespace Amazon.ResilienceHub
         /// <exception cref="Amazon.ResilienceHub.Model.ResourceNotFoundException">
         /// This exception occurs when the specified resource could not be found.
         /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ServiceQuotaExceededException">
+        /// This exception occurs when you have exceeded your service quota. To perform the requested
+        /// action, remove some of the relevant resources, or use Service Quotas to request a
+        /// service quota increase.
+        /// </exception>
         /// <exception cref="Amazon.ResilienceHub.Model.ThrottlingException">
         /// This exception occurs when you have exceeded the limit on the number of requests per
         /// second.
@@ -314,8 +403,12 @@ namespace Amazon.ResilienceHub
 
 
         /// <summary>
-        /// Adds the resource mapping for the draft application version. You can also update an
-        /// existing resource mapping to a new physical resource.
+        /// Adds the source of resource-maps to the draft version of an application. During assessment,
+        /// Resilience Hub will use these resource-maps to resolve the latest physical ID for
+        /// each resource in the application template. For more information about different types
+        /// of resources supported by Resilience Hub and how to add them in your application,
+        /// see <a href="https://docs.aws.amazon.com/resilience-hub/latest/userguide/how-app-manage.html">Step
+        /// 2: How is your application managed?</a> in the Resilience Hub User Guide.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the AddDraftAppVersionResourceMappings service method.</param>
         /// <param name="cancellationToken">
@@ -339,6 +432,11 @@ namespace Amazon.ResilienceHub
         /// </exception>
         /// <exception cref="Amazon.ResilienceHub.Model.ResourceNotFoundException">
         /// This exception occurs when the specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ServiceQuotaExceededException">
+        /// This exception occurs when you have exceeded your service quota. To perform the requested
+        /// action, remove some of the relevant resources, or use Service Quotas to request a
+        /// service quota increase.
         /// </exception>
         /// <exception cref="Amazon.ResilienceHub.Model.ThrottlingException">
         /// This exception occurs when you have exceeded the limit on the number of requests per
@@ -579,7 +677,7 @@ namespace Amazon.ResilienceHub
         /// <para>
         /// This API updates the Resilience Hub application draft version. To use this Application
         /// Component for running assessments, you must publish the Resilience Hub application
-        /// using the <code>PublishAppVersion</code> API.
+        /// using the <c>PublishAppVersion</c> API.
         /// </para>
         ///  </note>
         /// </summary>
@@ -633,7 +731,7 @@ namespace Amazon.ResilienceHub
         /// <para>
         /// This API updates the Resilience Hub application draft version. To use this Application
         /// Component for running assessments, you must publish the Resilience Hub application
-        /// using the <code>PublishAppVersion</code> API.
+        /// using the <c>PublishAppVersion</c> API.
         /// </para>
         ///  </note>
         /// </summary>
@@ -700,12 +798,12 @@ namespace Amazon.ResilienceHub
         /// <para>
         /// This API updates the Resilience Hub application draft version. To use this resource
         /// for running resiliency assessments, you must publish the Resilience Hub application
-        /// using the <code>PublishAppVersion</code> API.
+        /// using the <c>PublishAppVersion</c> API.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// To update application version with new <code>physicalResourceID</code>, you must call
-        /// <code>ResolveAppVersionResources</code> API.
+        /// To update application version with new <c>physicalResourceID</c>, you must call <c>ResolveAppVersionResources</c>
+        /// API.
         /// </para>
         ///  </li> </ul> </note>
         /// </summary>
@@ -765,12 +863,12 @@ namespace Amazon.ResilienceHub
         /// <para>
         /// This API updates the Resilience Hub application draft version. To use this resource
         /// for running resiliency assessments, you must publish the Resilience Hub application
-        /// using the <code>PublishAppVersion</code> API.
+        /// using the <c>PublishAppVersion</c> API.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// To update application version with new <code>physicalResourceID</code>, you must call
-        /// <code>ResolveAppVersionResources</code> API.
+        /// To update application version with new <c>physicalResourceID</c>, you must call <c>ResolveAppVersionResources</c>
+        /// API.
         /// </para>
         ///  </li> </ul> </note>
         /// </summary>
@@ -925,6 +1023,17 @@ namespace Amazon.ResilienceHub
 
         /// <summary>
         /// Creates a resiliency policy for an application.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// Resilience Hub allows you to provide a value of zero for <c>rtoInSecs</c> and <c>rpoInSecs</c>
+        /// of your resiliency policy. But, while assessing your application, the lowest possible
+        /// assessment result is near zero. Hence, if you provide value zero for <c>rtoInSecs</c>
+        /// and <c>rpoInSecs</c>, the estimated workload RTO and estimated workload RPO result
+        /// will be near zero and the <b>Compliance status</b> for your application will be set
+        /// to <b>Policy breached</b>.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateResiliencyPolicy service method.</param>
         /// 
@@ -968,6 +1077,17 @@ namespace Amazon.ResilienceHub
 
         /// <summary>
         /// Creates a resiliency policy for an application.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// Resilience Hub allows you to provide a value of zero for <c>rtoInSecs</c> and <c>rpoInSecs</c>
+        /// of your resiliency policy. But, while assessing your application, the lowest possible
+        /// assessment result is near zero. Hence, if you provide value zero for <c>rtoInSecs</c>
+        /// and <c>rpoInSecs</c>, the estimated workload RTO and estimated workload RPO result
+        /// will be near zero and the <b>Compliance status</b> for your application will be set
+        /// to <b>Policy breached</b>.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateResiliencyPolicy service method.</param>
         /// <param name="cancellationToken">
@@ -1286,7 +1406,7 @@ namespace Amazon.ResilienceHub
         /// <para>
         /// This API updates the Resilience Hub application draft version. To use this Application
         /// Component for running assessments, you must publish the Resilience Hub application
-        /// using the <code>PublishAppVersion</code> API.
+        /// using the <c>PublishAppVersion</c> API.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1340,7 +1460,7 @@ namespace Amazon.ResilienceHub
         /// <para>
         /// This API updates the Resilience Hub application draft version. To use this Application
         /// Component for running assessments, you must publish the Resilience Hub application
-        /// using the <code>PublishAppVersion</code> API.
+        /// using the <c>PublishAppVersion</c> API.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1400,7 +1520,7 @@ namespace Amazon.ResilienceHub
         ///  <note> <ul> <li> 
         /// <para>
         /// You can only delete a manually added resource. To exclude non-manually added resources,
-        /// use the <code>UpdateAppVersionResource</code> API.
+        /// use the <c>UpdateAppVersionResource</c> API.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1410,7 +1530,7 @@ namespace Amazon.ResilienceHub
         /// <para>
         /// This API updates the Resilience Hub application draft version. To use this resource
         /// for running resiliency assessments, you must publish the Resilience Hub application
-        /// using the <code>PublishAppVersion</code> API.
+        /// using the <c>PublishAppVersion</c> API.
         /// </para>
         ///  </li> </ul> </note>
         /// </summary>
@@ -1458,7 +1578,7 @@ namespace Amazon.ResilienceHub
         ///  <note> <ul> <li> 
         /// <para>
         /// You can only delete a manually added resource. To exclude non-manually added resources,
-        /// use the <code>UpdateAppVersionResource</code> API.
+        /// use the <c>UpdateAppVersionResource</c> API.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1468,7 +1588,7 @@ namespace Amazon.ResilienceHub
         /// <para>
         /// This API updates the Resilience Hub application draft version. To use this resource
         /// for running resiliency assessments, you must publish the Resilience Hub application
-        /// using the <code>PublishAppVersion</code> API.
+        /// using the <c>PublishAppVersion</c> API.
         /// </para>
         ///  </li> </ul> </note>
         /// </summary>
@@ -2008,20 +2128,20 @@ namespace Amazon.ResilienceHub
         /// 
         ///  <note> 
         /// <para>
-        /// This API accepts only one of the following parameters to descibe the resource:
+        /// This API accepts only one of the following parameters to describe the resource:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resourceName</code> 
+        ///  <c>resourceName</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>logicalResourceId</code> 
+        ///  <c>logicalResourceId</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>physicalResourceId</code> (Along with <code>physicalResourceId</code>, you
-        /// can also provide <code>awsAccountId</code>, and <code>awsRegion</code>)
+        ///  <c>physicalResourceId</c> (Along with <c>physicalResourceId</c>, you can also provide
+        /// <c>awsAccountId</c>, and <c>awsRegion</c>)
         /// </para>
         ///  </li> </ul> </note>
         /// </summary>
@@ -2068,20 +2188,20 @@ namespace Amazon.ResilienceHub
         /// 
         ///  <note> 
         /// <para>
-        /// This API accepts only one of the following parameters to descibe the resource:
+        /// This API accepts only one of the following parameters to describe the resource:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resourceName</code> 
+        ///  <c>resourceName</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>logicalResourceId</code> 
+        ///  <c>logicalResourceId</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>physicalResourceId</code> (Along with <code>physicalResourceId</code>, you
-        /// can also provide <code>awsAccountId</code>, and <code>awsRegion</code>)
+        ///  <c>physicalResourceId</c> (Along with <c>physicalResourceId</c>, you can also provide
+        /// <c>awsAccountId</c>, and <c>awsRegion</c>)
         /// </para>
         ///  </li> </ul> </note>
         /// </summary>
@@ -2132,8 +2252,8 @@ namespace Amazon.ResilienceHub
 
         /// <summary>
         /// Returns the resolution status for the specified resolution identifier for an application
-        /// version. If <code>resolutionId</code> is not specified, the current resolution status
-        /// is returned.
+        /// version. If <c>resolutionId</c> is not specified, the current resolution status is
+        /// returned.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeAppVersionResourcesResolutionStatus service method.</param>
         /// 
@@ -2169,8 +2289,8 @@ namespace Amazon.ResilienceHub
 
         /// <summary>
         /// Returns the resolution status for the specified resolution identifier for an application
-        /// version. If <code>resolutionId</code> is not specified, the current resolution status
-        /// is returned.
+        /// version. If <c>resolutionId</c> is not specified, the current resolution status is
+        /// returned.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeAppVersionResourcesResolutionStatus service method.</param>
         /// <param name="cancellationToken">
@@ -2293,10 +2413,10 @@ namespace Amazon.ResilienceHub
         /// 
         ///  <note> 
         /// <para>
-        /// If you get a 404 error with <code>ResourceImportStatusNotFoundAppMetadataException</code>,
-        /// you must call <code>importResourcesToDraftAppVersion</code> after creating the application
-        /// and before calling <code>describeDraftAppVersionResourcesImportStatus</code> to obtain
-        /// the status.
+        /// If you get a 404 error with <c>ResourceImportStatusNotFoundAppMetadataException</c>,
+        /// you must call <c>importResourcesToDraftAppVersion</c> after creating the application
+        /// and before calling <c>describeDraftAppVersionResourcesImportStatus</c> to obtain the
+        /// status.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2337,10 +2457,10 @@ namespace Amazon.ResilienceHub
         /// 
         ///  <note> 
         /// <para>
-        /// If you get a 404 error with <code>ResourceImportStatusNotFoundAppMetadataException</code>,
-        /// you must call <code>importResourcesToDraftAppVersion</code> after creating the application
-        /// and before calling <code>describeDraftAppVersionResourcesImportStatus</code> to obtain
-        /// the status.
+        /// If you get a 404 error with <c>ResourceImportStatusNotFoundAppMetadataException</c>,
+        /// you must call <c>importResourcesToDraftAppVersion</c> after creating the application
+        /// and before calling <c>describeDraftAppVersionResourcesImportStatus</c> to obtain the
+        /// status.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2376,6 +2496,83 @@ namespace Amazon.ResilienceHub
             options.ResponseUnmarshaller = DescribeDraftAppVersionResourcesImportStatusResponseUnmarshaller.Instance;
             
             return InvokeAsync<DescribeDraftAppVersionResourcesImportStatusResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DescribeMetricsExport
+
+
+        /// <summary>
+        /// Describes the metrics of the application configuration being exported.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeMetricsExport service method.</param>
+        /// 
+        /// <returns>The response from the DescribeMetricsExport service method, as returned by ResilienceHub.</returns>
+        /// <exception cref="Amazon.ResilienceHub.Model.AccessDeniedException">
+        /// You don't have permissions to perform the requested operation. The user or role that
+        /// is making the request must have at least one IAM permissions policy attached that
+        /// grants the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.InternalServerException">
+        /// This exception occurs when there is an internal failure in the Resilience Hub service.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ResourceNotFoundException">
+        /// This exception occurs when the specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ThrottlingException">
+        /// This exception occurs when you have exceeded the limit on the number of requests per
+        /// second.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ValidationException">
+        /// This exception occurs when a request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/DescribeMetricsExport">REST API Reference for DescribeMetricsExport Operation</seealso>
+        public virtual DescribeMetricsExportResponse DescribeMetricsExport(DescribeMetricsExportRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeMetricsExportRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeMetricsExportResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeMetricsExportResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Describes the metrics of the application configuration being exported.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeMetricsExport service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeMetricsExport service method, as returned by ResilienceHub.</returns>
+        /// <exception cref="Amazon.ResilienceHub.Model.AccessDeniedException">
+        /// You don't have permissions to perform the requested operation. The user or role that
+        /// is making the request must have at least one IAM permissions policy attached that
+        /// grants the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.InternalServerException">
+        /// This exception occurs when there is an internal failure in the Resilience Hub service.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ResourceNotFoundException">
+        /// This exception occurs when the specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ThrottlingException">
+        /// This exception occurs when you have exceeded the limit on the number of requests per
+        /// second.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ValidationException">
+        /// This exception occurs when a request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/DescribeMetricsExport">REST API Reference for DescribeMetricsExport Operation</seealso>
+        public virtual Task<DescribeMetricsExportResponse> DescribeMetricsExportAsync(DescribeMetricsExportRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeMetricsExportRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeMetricsExportResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DescribeMetricsExportResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -2457,6 +2654,85 @@ namespace Amazon.ResilienceHub
             options.ResponseUnmarshaller = DescribeResiliencyPolicyResponseUnmarshaller.Instance;
             
             return InvokeAsync<DescribeResiliencyPolicyResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DescribeResourceGroupingRecommendationTask
+
+
+        /// <summary>
+        /// Describes the resource grouping recommendation tasks run by Resilience Hub for your
+        /// application.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeResourceGroupingRecommendationTask service method.</param>
+        /// 
+        /// <returns>The response from the DescribeResourceGroupingRecommendationTask service method, as returned by ResilienceHub.</returns>
+        /// <exception cref="Amazon.ResilienceHub.Model.AccessDeniedException">
+        /// You don't have permissions to perform the requested operation. The user or role that
+        /// is making the request must have at least one IAM permissions policy attached that
+        /// grants the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.InternalServerException">
+        /// This exception occurs when there is an internal failure in the Resilience Hub service.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ResourceNotFoundException">
+        /// This exception occurs when the specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ThrottlingException">
+        /// This exception occurs when you have exceeded the limit on the number of requests per
+        /// second.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ValidationException">
+        /// This exception occurs when a request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/DescribeResourceGroupingRecommendationTask">REST API Reference for DescribeResourceGroupingRecommendationTask Operation</seealso>
+        public virtual DescribeResourceGroupingRecommendationTaskResponse DescribeResourceGroupingRecommendationTask(DescribeResourceGroupingRecommendationTaskRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeResourceGroupingRecommendationTaskRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeResourceGroupingRecommendationTaskResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeResourceGroupingRecommendationTaskResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Describes the resource grouping recommendation tasks run by Resilience Hub for your
+        /// application.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeResourceGroupingRecommendationTask service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeResourceGroupingRecommendationTask service method, as returned by ResilienceHub.</returns>
+        /// <exception cref="Amazon.ResilienceHub.Model.AccessDeniedException">
+        /// You don't have permissions to perform the requested operation. The user or role that
+        /// is making the request must have at least one IAM permissions policy attached that
+        /// grants the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.InternalServerException">
+        /// This exception occurs when there is an internal failure in the Resilience Hub service.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ResourceNotFoundException">
+        /// This exception occurs when the specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ThrottlingException">
+        /// This exception occurs when you have exceeded the limit on the number of requests per
+        /// second.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ValidationException">
+        /// This exception occurs when a request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/DescribeResourceGroupingRecommendationTask">REST API Reference for DescribeResourceGroupingRecommendationTask Operation</seealso>
+        public virtual Task<DescribeResourceGroupingRecommendationTaskResponse> DescribeResourceGroupingRecommendationTaskAsync(DescribeResourceGroupingRecommendationTaskRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeResourceGroupingRecommendationTaskRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeResourceGroupingRecommendationTaskResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DescribeResourceGroupingRecommendationTaskResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -2710,6 +2986,77 @@ namespace Amazon.ResilienceHub
             options.ResponseUnmarshaller = ListAppAssessmentComplianceDriftsResponseUnmarshaller.Instance;
             
             return InvokeAsync<ListAppAssessmentComplianceDriftsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListAppAssessmentResourceDrifts
+
+
+        /// <summary>
+        /// List of resource drifts that were detected while running an assessment.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAppAssessmentResourceDrifts service method.</param>
+        /// 
+        /// <returns>The response from the ListAppAssessmentResourceDrifts service method, as returned by ResilienceHub.</returns>
+        /// <exception cref="Amazon.ResilienceHub.Model.AccessDeniedException">
+        /// You don't have permissions to perform the requested operation. The user or role that
+        /// is making the request must have at least one IAM permissions policy attached that
+        /// grants the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.InternalServerException">
+        /// This exception occurs when there is an internal failure in the Resilience Hub service.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ThrottlingException">
+        /// This exception occurs when you have exceeded the limit on the number of requests per
+        /// second.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ValidationException">
+        /// This exception occurs when a request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/ListAppAssessmentResourceDrifts">REST API Reference for ListAppAssessmentResourceDrifts Operation</seealso>
+        public virtual ListAppAssessmentResourceDriftsResponse ListAppAssessmentResourceDrifts(ListAppAssessmentResourceDriftsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListAppAssessmentResourceDriftsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListAppAssessmentResourceDriftsResponseUnmarshaller.Instance;
+
+            return Invoke<ListAppAssessmentResourceDriftsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// List of resource drifts that were detected while running an assessment.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAppAssessmentResourceDrifts service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListAppAssessmentResourceDrifts service method, as returned by ResilienceHub.</returns>
+        /// <exception cref="Amazon.ResilienceHub.Model.AccessDeniedException">
+        /// You don't have permissions to perform the requested operation. The user or role that
+        /// is making the request must have at least one IAM permissions policy attached that
+        /// grants the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.InternalServerException">
+        /// This exception occurs when there is an internal failure in the Resilience Hub service.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ThrottlingException">
+        /// This exception occurs when you have exceeded the limit on the number of requests per
+        /// second.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ValidationException">
+        /// This exception occurs when a request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/ListAppAssessmentResourceDrifts">REST API Reference for ListAppAssessmentResourceDrifts Operation</seealso>
+        public virtual Task<ListAppAssessmentResourceDriftsResponse> ListAppAssessmentResourceDriftsAsync(ListAppAssessmentResourceDriftsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListAppAssessmentResourceDriftsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListAppAssessmentResourceDriftsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListAppAssessmentResourceDriftsResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -3042,8 +3389,8 @@ namespace Amazon.ResilienceHub
         /// </para>
         ///  
         /// <para>
-        ///  <code>An error occurred (ValidationException) when calling the ListApps operation:
-        /// Only one filter is supported for this operation.</code> 
+        ///  <c>An error occurred (ValidationException) when calling the ListApps operation: Only
+        /// one filter is supported for this operation.</c> 
         /// </para>
         ///  </note>
         /// </summary>
@@ -3087,8 +3434,8 @@ namespace Amazon.ResilienceHub
         /// </para>
         ///  
         /// <para>
-        ///  <code>An error occurred (ValidationException) when calling the ListApps operation:
-        /// Only one filter is supported for this operation.</code> 
+        ///  <c>An error occurred (ValidationException) when calling the ListApps operation: Only
+        /// one filter is supported for this operation.</c> 
         /// </para>
         ///  </note>
         /// </summary>
@@ -3453,6 +3800,77 @@ namespace Amazon.ResilienceHub
 
         #endregion
         
+        #region  ListMetrics
+
+
+        /// <summary>
+        /// Lists the metrics that can be exported.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListMetrics service method.</param>
+        /// 
+        /// <returns>The response from the ListMetrics service method, as returned by ResilienceHub.</returns>
+        /// <exception cref="Amazon.ResilienceHub.Model.AccessDeniedException">
+        /// You don't have permissions to perform the requested operation. The user or role that
+        /// is making the request must have at least one IAM permissions policy attached that
+        /// grants the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.InternalServerException">
+        /// This exception occurs when there is an internal failure in the Resilience Hub service.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ThrottlingException">
+        /// This exception occurs when you have exceeded the limit on the number of requests per
+        /// second.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ValidationException">
+        /// This exception occurs when a request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/ListMetrics">REST API Reference for ListMetrics Operation</seealso>
+        public virtual ListMetricsResponse ListMetrics(ListMetricsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListMetricsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListMetricsResponseUnmarshaller.Instance;
+
+            return Invoke<ListMetricsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists the metrics that can be exported.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListMetrics service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListMetrics service method, as returned by ResilienceHub.</returns>
+        /// <exception cref="Amazon.ResilienceHub.Model.AccessDeniedException">
+        /// You don't have permissions to perform the requested operation. The user or role that
+        /// is making the request must have at least one IAM permissions policy attached that
+        /// grants the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.InternalServerException">
+        /// This exception occurs when there is an internal failure in the Resilience Hub service.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ThrottlingException">
+        /// This exception occurs when you have exceeded the limit on the number of requests per
+        /// second.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ValidationException">
+        /// This exception occurs when a request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/ListMetrics">REST API Reference for ListMetrics Operation</seealso>
+        public virtual Task<ListMetricsResponse> ListMetricsAsync(ListMetricsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListMetricsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListMetricsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListMetricsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ListRecommendationTemplates
 
 
@@ -3597,6 +4015,83 @@ namespace Amazon.ResilienceHub
             options.ResponseUnmarshaller = ListResiliencyPoliciesResponseUnmarshaller.Instance;
             
             return InvokeAsync<ListResiliencyPoliciesResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListResourceGroupingRecommendations
+
+
+        /// <summary>
+        /// Lists the resource grouping recommendations suggested by Resilience Hub for your application.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListResourceGroupingRecommendations service method.</param>
+        /// 
+        /// <returns>The response from the ListResourceGroupingRecommendations service method, as returned by ResilienceHub.</returns>
+        /// <exception cref="Amazon.ResilienceHub.Model.AccessDeniedException">
+        /// You don't have permissions to perform the requested operation. The user or role that
+        /// is making the request must have at least one IAM permissions policy attached that
+        /// grants the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.InternalServerException">
+        /// This exception occurs when there is an internal failure in the Resilience Hub service.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ResourceNotFoundException">
+        /// This exception occurs when the specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ThrottlingException">
+        /// This exception occurs when you have exceeded the limit on the number of requests per
+        /// second.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ValidationException">
+        /// This exception occurs when a request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/ListResourceGroupingRecommendations">REST API Reference for ListResourceGroupingRecommendations Operation</seealso>
+        public virtual ListResourceGroupingRecommendationsResponse ListResourceGroupingRecommendations(ListResourceGroupingRecommendationsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListResourceGroupingRecommendationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListResourceGroupingRecommendationsResponseUnmarshaller.Instance;
+
+            return Invoke<ListResourceGroupingRecommendationsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists the resource grouping recommendations suggested by Resilience Hub for your application.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListResourceGroupingRecommendations service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListResourceGroupingRecommendations service method, as returned by ResilienceHub.</returns>
+        /// <exception cref="Amazon.ResilienceHub.Model.AccessDeniedException">
+        /// You don't have permissions to perform the requested operation. The user or role that
+        /// is making the request must have at least one IAM permissions policy attached that
+        /// grants the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.InternalServerException">
+        /// This exception occurs when there is an internal failure in the Resilience Hub service.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ResourceNotFoundException">
+        /// This exception occurs when the specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ThrottlingException">
+        /// This exception occurs when you have exceeded the limit on the number of requests per
+        /// second.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ValidationException">
+        /// This exception occurs when a request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/ListResourceGroupingRecommendations">REST API Reference for ListResourceGroupingRecommendations Operation</seealso>
+        public virtual Task<ListResourceGroupingRecommendationsResponse> ListResourceGroupingRecommendationsAsync(ListResourceGroupingRecommendationsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListResourceGroupingRecommendationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListResourceGroupingRecommendationsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListResourceGroupingRecommendationsResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -4206,6 +4701,83 @@ namespace Amazon.ResilienceHub
 
         #endregion
         
+        #region  RejectResourceGroupingRecommendations
+
+
+        /// <summary>
+        /// Rejects resource grouping recommendations.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the RejectResourceGroupingRecommendations service method.</param>
+        /// 
+        /// <returns>The response from the RejectResourceGroupingRecommendations service method, as returned by ResilienceHub.</returns>
+        /// <exception cref="Amazon.ResilienceHub.Model.AccessDeniedException">
+        /// You don't have permissions to perform the requested operation. The user or role that
+        /// is making the request must have at least one IAM permissions policy attached that
+        /// grants the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.InternalServerException">
+        /// This exception occurs when there is an internal failure in the Resilience Hub service.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ResourceNotFoundException">
+        /// This exception occurs when the specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ThrottlingException">
+        /// This exception occurs when you have exceeded the limit on the number of requests per
+        /// second.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ValidationException">
+        /// This exception occurs when a request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/RejectResourceGroupingRecommendations">REST API Reference for RejectResourceGroupingRecommendations Operation</seealso>
+        public virtual RejectResourceGroupingRecommendationsResponse RejectResourceGroupingRecommendations(RejectResourceGroupingRecommendationsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = RejectResourceGroupingRecommendationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = RejectResourceGroupingRecommendationsResponseUnmarshaller.Instance;
+
+            return Invoke<RejectResourceGroupingRecommendationsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Rejects resource grouping recommendations.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the RejectResourceGroupingRecommendations service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the RejectResourceGroupingRecommendations service method, as returned by ResilienceHub.</returns>
+        /// <exception cref="Amazon.ResilienceHub.Model.AccessDeniedException">
+        /// You don't have permissions to perform the requested operation. The user or role that
+        /// is making the request must have at least one IAM permissions policy attached that
+        /// grants the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.InternalServerException">
+        /// This exception occurs when there is an internal failure in the Resilience Hub service.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ResourceNotFoundException">
+        /// This exception occurs when the specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ThrottlingException">
+        /// This exception occurs when you have exceeded the limit on the number of requests per
+        /// second.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ValidationException">
+        /// This exception occurs when a request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/RejectResourceGroupingRecommendations">REST API Reference for RejectResourceGroupingRecommendations Operation</seealso>
+        public virtual Task<RejectResourceGroupingRecommendationsResponse> RejectResourceGroupingRecommendationsAsync(RejectResourceGroupingRecommendationsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = RejectResourceGroupingRecommendationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = RejectResourceGroupingRecommendationsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<RejectResourceGroupingRecommendationsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  RemoveDraftAppVersionResourceMappings
 
 
@@ -4483,6 +5055,188 @@ namespace Amazon.ResilienceHub
 
         #endregion
         
+        #region  StartMetricsExport
+
+
+        /// <summary>
+        /// Initiates the export task of metrics.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartMetricsExport service method.</param>
+        /// 
+        /// <returns>The response from the StartMetricsExport service method, as returned by ResilienceHub.</returns>
+        /// <exception cref="Amazon.ResilienceHub.Model.AccessDeniedException">
+        /// You don't have permissions to perform the requested operation. The user or role that
+        /// is making the request must have at least one IAM permissions policy attached that
+        /// grants the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ConflictException">
+        /// This exception occurs when a conflict with a previous successful write is detected.
+        /// This generally occurs when the previous write did not have time to propagate to the
+        /// host serving the current request. A retry (with appropriate backoff logic) is the
+        /// recommended response to this exception.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.InternalServerException">
+        /// This exception occurs when there is an internal failure in the Resilience Hub service.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ServiceQuotaExceededException">
+        /// This exception occurs when you have exceeded your service quota. To perform the requested
+        /// action, remove some of the relevant resources, or use Service Quotas to request a
+        /// service quota increase.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ThrottlingException">
+        /// This exception occurs when you have exceeded the limit on the number of requests per
+        /// second.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ValidationException">
+        /// This exception occurs when a request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/StartMetricsExport">REST API Reference for StartMetricsExport Operation</seealso>
+        public virtual StartMetricsExportResponse StartMetricsExport(StartMetricsExportRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartMetricsExportRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartMetricsExportResponseUnmarshaller.Instance;
+
+            return Invoke<StartMetricsExportResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Initiates the export task of metrics.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartMetricsExport service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StartMetricsExport service method, as returned by ResilienceHub.</returns>
+        /// <exception cref="Amazon.ResilienceHub.Model.AccessDeniedException">
+        /// You don't have permissions to perform the requested operation. The user or role that
+        /// is making the request must have at least one IAM permissions policy attached that
+        /// grants the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ConflictException">
+        /// This exception occurs when a conflict with a previous successful write is detected.
+        /// This generally occurs when the previous write did not have time to propagate to the
+        /// host serving the current request. A retry (with appropriate backoff logic) is the
+        /// recommended response to this exception.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.InternalServerException">
+        /// This exception occurs when there is an internal failure in the Resilience Hub service.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ServiceQuotaExceededException">
+        /// This exception occurs when you have exceeded your service quota. To perform the requested
+        /// action, remove some of the relevant resources, or use Service Quotas to request a
+        /// service quota increase.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ThrottlingException">
+        /// This exception occurs when you have exceeded the limit on the number of requests per
+        /// second.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ValidationException">
+        /// This exception occurs when a request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/StartMetricsExport">REST API Reference for StartMetricsExport Operation</seealso>
+        public virtual Task<StartMetricsExportResponse> StartMetricsExportAsync(StartMetricsExportRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartMetricsExportRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartMetricsExportResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<StartMetricsExportResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  StartResourceGroupingRecommendationTask
+
+
+        /// <summary>
+        /// Starts grouping recommendation task.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartResourceGroupingRecommendationTask service method.</param>
+        /// 
+        /// <returns>The response from the StartResourceGroupingRecommendationTask service method, as returned by ResilienceHub.</returns>
+        /// <exception cref="Amazon.ResilienceHub.Model.AccessDeniedException">
+        /// You don't have permissions to perform the requested operation. The user or role that
+        /// is making the request must have at least one IAM permissions policy attached that
+        /// grants the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ConflictException">
+        /// This exception occurs when a conflict with a previous successful write is detected.
+        /// This generally occurs when the previous write did not have time to propagate to the
+        /// host serving the current request. A retry (with appropriate backoff logic) is the
+        /// recommended response to this exception.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.InternalServerException">
+        /// This exception occurs when there is an internal failure in the Resilience Hub service.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ResourceNotFoundException">
+        /// This exception occurs when the specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ThrottlingException">
+        /// This exception occurs when you have exceeded the limit on the number of requests per
+        /// second.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ValidationException">
+        /// This exception occurs when a request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/StartResourceGroupingRecommendationTask">REST API Reference for StartResourceGroupingRecommendationTask Operation</seealso>
+        public virtual StartResourceGroupingRecommendationTaskResponse StartResourceGroupingRecommendationTask(StartResourceGroupingRecommendationTaskRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartResourceGroupingRecommendationTaskRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartResourceGroupingRecommendationTaskResponseUnmarshaller.Instance;
+
+            return Invoke<StartResourceGroupingRecommendationTaskResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Starts grouping recommendation task.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartResourceGroupingRecommendationTask service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StartResourceGroupingRecommendationTask service method, as returned by ResilienceHub.</returns>
+        /// <exception cref="Amazon.ResilienceHub.Model.AccessDeniedException">
+        /// You don't have permissions to perform the requested operation. The user or role that
+        /// is making the request must have at least one IAM permissions policy attached that
+        /// grants the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ConflictException">
+        /// This exception occurs when a conflict with a previous successful write is detected.
+        /// This generally occurs when the previous write did not have time to propagate to the
+        /// host serving the current request. A retry (with appropriate backoff logic) is the
+        /// recommended response to this exception.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.InternalServerException">
+        /// This exception occurs when there is an internal failure in the Resilience Hub service.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ResourceNotFoundException">
+        /// This exception occurs when the specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ThrottlingException">
+        /// This exception occurs when you have exceeded the limit on the number of requests per
+        /// second.
+        /// </exception>
+        /// <exception cref="Amazon.ResilienceHub.Model.ValidationException">
+        /// This exception occurs when a request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/StartResourceGroupingRecommendationTask">REST API Reference for StartResourceGroupingRecommendationTask Operation</seealso>
+        public virtual Task<StartResourceGroupingRecommendationTaskResponse> StartResourceGroupingRecommendationTaskAsync(StartResourceGroupingRecommendationTaskRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartResourceGroupingRecommendationTaskRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartResourceGroupingRecommendationTaskResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<StartResourceGroupingRecommendationTaskResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  TagResource
 
 
@@ -4736,7 +5490,7 @@ namespace Amazon.ResilienceHub
         /// <para>
         /// This API updates the Resilience Hub application draft version. To use this information
         /// for running resiliency assessments, you must publish the Resilience Hub application
-        /// using the <code>PublishAppVersion</code> API.
+        /// using the <c>PublishAppVersion</c> API.
         /// </para>
         ///  </note>
         /// </summary>
@@ -4785,7 +5539,7 @@ namespace Amazon.ResilienceHub
         /// <para>
         /// This API updates the Resilience Hub application draft version. To use this information
         /// for running resiliency assessments, you must publish the Resilience Hub application
-        /// using the <code>PublishAppVersion</code> API.
+        /// using the <c>PublishAppVersion</c> API.
         /// </para>
         ///  </note>
         /// </summary>
@@ -4841,7 +5595,7 @@ namespace Amazon.ResilienceHub
         /// <para>
         /// This API updates the Resilience Hub application draft version. To use this Application
         /// Component for running assessments, you must publish the Resilience Hub application
-        /// using the <code>PublishAppVersion</code> API.
+        /// using the <c>PublishAppVersion</c> API.
         /// </para>
         ///  </note>
         /// </summary>
@@ -4890,7 +5644,7 @@ namespace Amazon.ResilienceHub
         /// <para>
         /// This API updates the Resilience Hub application draft version. To use this Application
         /// Component for running assessments, you must publish the Resilience Hub application
-        /// using the <code>PublishAppVersion</code> API.
+        /// using the <c>PublishAppVersion</c> API.
         /// </para>
         ///  </note>
         /// </summary>
@@ -4950,12 +5704,12 @@ namespace Amazon.ResilienceHub
         /// <para>
         /// This API updates the Resilience Hub application draft version. To use this resource
         /// for running resiliency assessments, you must publish the Resilience Hub application
-        /// using the <code>PublishAppVersion</code> API.
+        /// using the <c>PublishAppVersion</c> API.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// To update application version with new <code>physicalResourceID</code>, you must call
-        /// <code>ResolveAppVersionResources</code> API.
+        /// To update application version with new <c>physicalResourceID</c>, you must call <c>ResolveAppVersionResources</c>
+        /// API.
         /// </para>
         ///  </li> </ul> </note>
         /// </summary>
@@ -5013,12 +5767,12 @@ namespace Amazon.ResilienceHub
         /// <para>
         /// This API updates the Resilience Hub application draft version. To use this resource
         /// for running resiliency assessments, you must publish the Resilience Hub application
-        /// using the <code>PublishAppVersion</code> API.
+        /// using the <c>PublishAppVersion</c> API.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// To update application version with new <code>physicalResourceID</code>, you must call
-        /// <code>ResolveAppVersionResources</code> API.
+        /// To update application version with new <c>physicalResourceID</c>, you must call <c>ResolveAppVersionResources</c>
+        /// API.
         /// </para>
         ///  </li> </ul> </note>
         /// </summary>
@@ -5074,6 +5828,17 @@ namespace Amazon.ResilienceHub
 
         /// <summary>
         /// Updates a resiliency policy.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// Resilience Hub allows you to provide a value of zero for <c>rtoInSecs</c> and <c>rpoInSecs</c>
+        /// of your resiliency policy. But, while assessing your application, the lowest possible
+        /// assessment result is near zero. Hence, if you provide value zero for <c>rtoInSecs</c>
+        /// and <c>rpoInSecs</c>, the estimated workload RTO and estimated workload RPO result
+        /// will be near zero and the <b>Compliance status</b> for your application will be set
+        /// to <b>Policy breached</b>.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateResiliencyPolicy service method.</param>
         /// 
@@ -5115,6 +5880,17 @@ namespace Amazon.ResilienceHub
 
         /// <summary>
         /// Updates a resiliency policy.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// Resilience Hub allows you to provide a value of zero for <c>rtoInSecs</c> and <c>rpoInSecs</c>
+        /// of your resiliency policy. But, while assessing your application, the lowest possible
+        /// assessment result is near zero. Hence, if you provide value zero for <c>rtoInSecs</c>
+        /// and <c>rpoInSecs</c>, the estimated workload RTO and estimated workload RPO result
+        /// will be near zero and the <b>Compliance status</b> for your application will be set
+        /// to <b>Policy breached</b>.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateResiliencyPolicy service method.</param>
         /// <param name="cancellationToken">
@@ -5167,11 +5943,11 @@ namespace Amazon.ResilienceHub
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

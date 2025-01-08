@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
@@ -57,7 +58,7 @@ namespace Amazon.CloudDirectory.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// A type of exception, such as <code>InvalidArnException</code>.
+        /// A type of exception, such as <c>InvalidArnException</c>.
         /// </para>
         /// </summary>
         public BatchReadExceptionType Type

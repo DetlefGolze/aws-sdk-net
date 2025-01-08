@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruReviewer.Model
 {
     /// <summary>
@@ -34,8 +35,7 @@ namespace Amazon.CodeGuruReviewer.Model
     ///  <ul> <li> 
     /// <para>
     /// The encryption option for a repository association. It is either owned by Amazon Web
-    /// Services Key Management Service (KMS) (<code>AWS_OWNED_CMK</code>) or customer managed
-    /// (<code>CUSTOMER_MANAGED_CMK</code>).
+    /// Services Key Management Service (KMS) (<c>AWS_OWNED_CMK</c>) or customer managed (<c>CUSTOMER_MANAGED_CMK</c>).
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -52,8 +52,7 @@ namespace Amazon.CodeGuruReviewer.Model
         /// Gets and sets the property EncryptionOption. 
         /// <para>
         /// The encryption option for a repository association. It is either owned by Amazon Web
-        /// Services Key Management Service (KMS) (<code>AWS_OWNED_CMK</code>) or customer managed
-        /// (<code>CUSTOMER_MANAGED_CMK</code>).
+        /// Services Key Management Service (KMS) (<c>AWS_OWNED_CMK</c>) or customer managed (<c>CUSTOMER_MANAGED_CMK</c>).
         /// </para>
         /// </summary>
         public EncryptionOption EncryptionOption

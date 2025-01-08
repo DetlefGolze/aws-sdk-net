@@ -26,11 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kafka.Model
 {
     /// <summary>
     /// Container for the parameters to the GetBootstrapBrokers operation.
-    /// A list of brokers that a client application can use to bootstrap.
+    /// A list of brokers that a client application can use to bootstrap. This list doesn't
+    /// necessarily include all of the brokers in the cluster. The following Python 3.6 example
+    /// shows how you can use the Amazon Resource Name (ARN) of a cluster to get its bootstrap
+    /// brokers. If you don't know the ARN of your cluster, you can use the <c>ListClusters</c>
+    /// operation to get the ARNs of all the clusters in this account and Region.
     /// </summary>
     public partial class GetBootstrapBrokersRequest : AmazonKafkaRequest
     {

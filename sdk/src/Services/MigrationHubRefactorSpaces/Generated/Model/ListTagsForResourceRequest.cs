@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHubRefactorSpaces.Model
 {
     /// <summary>
     /// Container for the parameters to the ListTagsForResource operation.
     /// Lists the tags of a resource. The caller account must be the same as the resource’s
-    /// <code>OwnerAccountId</code>. Listing tags in other accounts is not supported.
+    /// <c>OwnerAccountId</c>. Listing tags in other accounts is not supported.
     /// </summary>
     public partial class ListTagsForResourceRequest : AmazonMigrationHubRefactorSpacesRequest
     {

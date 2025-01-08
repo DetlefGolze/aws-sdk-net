@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RedshiftServerless.Model
 {
     /// <summary>
@@ -38,17 +39,43 @@ namespace Amazon.RedshiftServerless.Model
     /// By default, the temporary credentials expire in 900 seconds. You can optionally specify
     /// a duration between 900 seconds (15 minutes) and 3600 seconds (60 minutes).
     /// </para>
-    ///  <pre><code> &lt;p&gt;The Identity and Access Management (IAM) user or role that runs
-    /// GetCredentials must have an IAM policy attached that allows access to all necessary
-    /// actions and resources.&lt;/p&gt; &lt;p&gt;If the &lt;code&gt;DbName&lt;/code&gt; parameter
-    /// is specified, the IAM policy must allow access to the resource dbname for the specified
-    /// database name.&lt;/p&gt; </code></pre>
+    ///  
+    /// <para>
+    /// The Identity and Access Management (IAM) user or role that runs GetCredentials must
+    /// have an IAM policy attached that allows access to all necessary actions and resources.
+    /// </para>
+    ///  
+    /// <para>
+    /// If the <c>DbName</c> parameter is specified, the IAM policy must allow access to the
+    /// resource dbname for the specified database name.
+    /// </para>
     /// </summary>
     public partial class GetCredentialsRequest : AmazonRedshiftServerlessRequest
     {
+        private string _customDomainName;
         private string _dbName;
         private int? _durationSeconds;
         private string _workgroupName;
+
+        /// <summary>
+        /// Gets and sets the property CustomDomainName. 
+        /// <para>
+        /// The custom domain name associated with the workgroup. The custom domain name or the
+        /// workgroup name must be included in the request.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=253)]
+        public string CustomDomainName
+        {
+            get { return this._customDomainName; }
+            set { this._customDomainName = value; }
+        }
+
+        // Check to see if CustomDomainName property is set
+        internal bool IsSetCustomDomainName()
+        {
+            return this._customDomainName != null;
+        }
 
         /// <summary>
         /// Gets and sets the property DbName. 
@@ -120,7 +147,7 @@ namespace Amazon.RedshiftServerless.Model
         /// The name of the workgroup associated with the database.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=3, Max=64)]
+        [AWSProperty(Min=3, Max=64)]
         public string WorkgroupName
         {
             get { return this._workgroupName; }

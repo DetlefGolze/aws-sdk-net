@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -33,30 +34,76 @@ namespace Amazon.FSx.Model
     /// </summary>
     public partial class OpenZFSVolumeConfiguration
     {
+        private OpenZFSCopyStrategy _copyStrategy;
         private bool? _copyTagsToSnapshots;
         private OpenZFSDataCompressionType _dataCompressionType;
         private bool? _deleteClonedVolumes;
+        private bool? _deleteIntermediateData;
         private bool? _deleteIntermediateSnaphots;
-        private List<OpenZFSNfsExport> _nfsExports = new List<OpenZFSNfsExport>();
+        private string _destinationSnapshot;
+        private List<OpenZFSNfsExport> _nfsExports = AWSConfigs.InitializeCollections ? new List<OpenZFSNfsExport>() : null;
         private OpenZFSOriginSnapshotConfiguration _originSnapshot;
         private string _parentVolumeId;
         private bool? _readOnly;
         private int? _recordSizeKiB;
         private string _restoreToSnapshot;
+        private string _sourceSnapshotARN;
         private int? _storageCapacityQuotaGiB;
         private int? _storageCapacityReservationGiB;
-        private List<OpenZFSUserOrGroupQuota> _userAndGroupQuotas = new List<OpenZFSUserOrGroupQuota>();
+        private List<OpenZFSUserOrGroupQuota> _userAndGroupQuotas = AWSConfigs.InitializeCollections ? new List<OpenZFSUserOrGroupQuota>() : null;
         private string _volumePath;
+
+        /// <summary>
+        /// Gets and sets the property CopyStrategy. 
+        /// <para>
+        /// Specifies the strategy used when copying data from the snapshot to the new volume.
+        /// 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>CLONE</c> - The new volume references the data in the origin snapshot. Cloning
+        /// a snapshot is faster than copying data from the snapshot to a new volume and doesn't
+        /// consume disk throughput. However, the origin snapshot can't be deleted if there is
+        /// a volume using its copied data.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>FULL_COPY</c> - Copies all data from the snapshot to the new volume.
+        /// </para>
+        ///  
+        /// <para>
+        /// Specify this option to create the volume from a snapshot on another FSx for OpenZFS
+        /// file system.
+        /// </para>
+        ///  </li> </ul> <note> 
+        /// <para>
+        /// The <c>INCREMENTAL_COPY</c> option is only for updating an existing volume by using
+        /// a snapshot from another FSx for OpenZFS file system. For more information, see <a
+        /// href="https://docs.aws.amazon.com/fsx/latest/APIReference/API_CopySnapshotAndUpdateVolume.html">CopySnapshotAndUpdateVolume</a>.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public OpenZFSCopyStrategy CopyStrategy
+        {
+            get { return this._copyStrategy; }
+            set { this._copyStrategy = value; }
+        }
+
+        // Check to see if CopyStrategy property is set
+        internal bool IsSetCopyStrategy()
+        {
+            return this._copyStrategy != null;
+        }
 
         /// <summary>
         /// Gets and sets the property CopyTagsToSnapshots. 
         /// <para>
         /// A Boolean value indicating whether tags for the volume should be copied to snapshots.
-        /// This value defaults to <code>false</code>. If it's set to <code>true</code>, all tags
-        /// for the volume are copied to snapshots where the user doesn't specify tags. If this
-        /// value is <code>true</code> and you specify one or more tags, only the specified tags
-        /// are copied to snapshots. If you specify one or more tags when creating the snapshot,
-        /// no tags are copied from the volume, regardless of this value.
+        /// This value defaults to <c>false</c>. If it's set to <c>true</c>, all tags for the
+        /// volume are copied to snapshots where the user doesn't specify tags. If this value
+        /// is <c>true</c> and you specify one or more tags, only the specified tags are copied
+        /// to snapshots. If you specify one or more tags when creating the snapshot, no tags
+        /// are copied from the volume, regardless of this value.
         /// </para>
         /// </summary>
         public bool CopyTagsToSnapshots
@@ -75,22 +122,21 @@ namespace Amazon.FSx.Model
         /// Gets and sets the property DataCompressionType. 
         /// <para>
         /// Specifies the method used to compress the data on the volume. The compression type
-        /// is <code>NONE</code> by default.
+        /// is <c>NONE</c> by default.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NONE</code> - Doesn't compress the data on the volume. <code>NONE</code> is
-        /// the default.
+        ///  <c>NONE</c> - Doesn't compress the data on the volume. <c>NONE</c> is the default.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ZSTD</code> - Compresses the data in the volume using the Zstandard (ZSTD)
-        /// compression algorithm. Compared to LZ4, Z-Standard provides a better compression ratio
-        /// to minimize on-disk storage utilization.
+        ///  <c>ZSTD</c> - Compresses the data in the volume using the Zstandard (ZSTD) compression
+        /// algorithm. Compared to LZ4, Z-Standard provides a better compression ratio to minimize
+        /// on-disk storage utilization.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LZ4</code> - Compresses the data in the volume using the LZ4 compression algorithm.
+        ///  <c>LZ4</c> - Compresses the data in the volume using the LZ4 compression algorithm.
         /// Compared to Z-Standard, LZ4 is less compute-intensive and delivers higher write throughput
         /// speeds.
         /// </para>
@@ -128,6 +174,26 @@ namespace Amazon.FSx.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DeleteIntermediateData. 
+        /// <para>
+        /// A Boolean value indicating whether snapshot data that differs between the current
+        /// state and the specified snapshot should be overwritten when a volume is restored from
+        /// a snapshot.
+        /// </para>
+        /// </summary>
+        public bool DeleteIntermediateData
+        {
+            get { return this._deleteIntermediateData.GetValueOrDefault(); }
+            set { this._deleteIntermediateData = value; }
+        }
+
+        // Check to see if DeleteIntermediateData property is set
+        internal bool IsSetDeleteIntermediateData()
+        {
+            return this._deleteIntermediateData.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property DeleteIntermediateSnaphots. 
         /// <para>
         /// A Boolean value indicating whether snapshots between the current state and the specified
@@ -147,6 +213,26 @@ namespace Amazon.FSx.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DestinationSnapshot. 
+        /// <para>
+        /// The ID of the snapshot that's being copied or was most recently copied to the destination
+        /// volume.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=11, Max=28)]
+        public string DestinationSnapshot
+        {
+            get { return this._destinationSnapshot; }
+            set { this._destinationSnapshot = value; }
+        }
+
+        // Check to see if DestinationSnapshot property is set
+        internal bool IsSetDestinationSnapshot()
+        {
+            return this._destinationSnapshot != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property NfsExports. 
         /// <para>
         /// The configuration object for mounting a Network File System (NFS) file system.
@@ -162,7 +248,7 @@ namespace Amazon.FSx.Model
         // Check to see if NfsExports property is set
         internal bool IsSetNfsExports()
         {
-            return this._nfsExports != null && this._nfsExports.Count > 0; 
+            return this._nfsExports != null && (this._nfsExports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -230,7 +316,7 @@ namespace Amazon.FSx.Model
         /// the <i>Amazon FSx for OpenZFS User Guide</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=4, Max=1024)]
+        [AWSProperty(Min=4, Max=4096)]
         public int RecordSizeKiB
         {
             get { return this._recordSizeKiB.GetValueOrDefault(); }
@@ -260,6 +346,22 @@ namespace Amazon.FSx.Model
         internal bool IsSetRestoreToSnapshot()
         {
             return this._restoreToSnapshot != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SourceSnapshotARN.
+        /// </summary>
+        [AWSProperty(Min=8, Max=512)]
+        public string SourceSnapshotARN
+        {
+            get { return this._sourceSnapshotARN; }
+            set { this._sourceSnapshotARN = value; }
+        }
+
+        // Check to see if SourceSnapshotARN property is set
+        internal bool IsSetSourceSnapshotARN()
+        {
+            return this._sourceSnapshotARN != null;
         }
 
         /// <summary>
@@ -318,13 +420,13 @@ namespace Amazon.FSx.Model
         // Check to see if UserAndGroupQuotas property is set
         internal bool IsSetUserAndGroupQuotas()
         {
-            return this._userAndGroupQuotas != null && this._userAndGroupQuotas.Count > 0; 
+            return this._userAndGroupQuotas != null && (this._userAndGroupQuotas.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property VolumePath. 
         /// <para>
-        /// The path to the volume from the root volume. For example, <code>fsx/parentVolume/volume1</code>.
+        /// The path to the volume from the root volume. For example, <c>fsx/parentVolume/volume1</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

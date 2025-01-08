@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property ExternalEvaluation. 
         /// <para>
-        /// An <code>ExternalEvaluation</code> object that provides details about compliance.
+        /// An <c>ExternalEvaluation</c> object that provides details about compliance.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

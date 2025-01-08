@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -42,9 +43,9 @@ namespace Amazon.EC2.Model
         private bool? _marketplace;
         private OfferingClassType _offeringClass;
         private OfferingTypeValues _offeringType;
-        private List<PricingDetail> _pricingDetails = new List<PricingDetail>();
+        private List<PricingDetail> _pricingDetails = AWSConfigs.InitializeCollections ? new List<PricingDetail>() : null;
         private RIProductDescription _productDescription;
-        private List<RecurringCharge> _recurringCharges = new List<RecurringCharge>();
+        private List<RecurringCharge> _recurringCharges = AWSConfigs.InitializeCollections ? new List<RecurringCharge>() : null;
         private string _reservedInstancesOfferingId;
         private Scope _scope;
         private float? _usagePrice;
@@ -72,7 +73,7 @@ namespace Amazon.EC2.Model
         /// <para>
         /// The currency of the Reserved Instance offering you are purchasing. It's specified
         /// using ISO 4217 standard currency codes. At this time, the only supported currency
-        /// is <code>USD</code>.
+        /// is <c>USD</c>.
         /// </para>
         /// </summary>
         public CurrencyCodeValues CurrencyCode
@@ -164,7 +165,7 @@ namespace Amazon.EC2.Model
         /// <para>
         /// Indicates whether the offering is available through the Reserved Instance Marketplace
         /// (resale) or Amazon Web Services. If it's a Reserved Instance Marketplace offering,
-        /// this is <code>true</code>.
+        /// this is <c>true</c>.
         /// </para>
         /// </summary>
         public bool Marketplace
@@ -182,9 +183,9 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property OfferingClass. 
         /// <para>
-        /// If <code>convertible</code> it can be exchanged for Reserved Instances of the same
-        /// or higher monetary value, with different configurations. If <code>standard</code>,
-        /// it is not possible to perform an exchange.
+        /// If <c>convertible</c> it can be exchanged for Reserved Instances of the same or higher
+        /// monetary value, with different configurations. If <c>standard</c>, it is not possible
+        /// to perform an exchange.
         /// </para>
         /// </summary>
         public OfferingClassType OfferingClass
@@ -232,7 +233,7 @@ namespace Amazon.EC2.Model
         // Check to see if PricingDetails property is set
         internal bool IsSetPricingDetails()
         {
-            return this._pricingDetails != null && this._pricingDetails.Count > 0; 
+            return this._pricingDetails != null && (this._pricingDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -268,7 +269,7 @@ namespace Amazon.EC2.Model
         // Check to see if RecurringCharges property is set
         internal bool IsSetRecurringCharges()
         {
-            return this._recurringCharges != null && this._recurringCharges.Count > 0; 
+            return this._recurringCharges != null && (this._recurringCharges.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

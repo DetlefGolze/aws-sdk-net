@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property ConfigArn. 
         /// <para>
-        /// ARN of a <code>Config</code>.
+        /// ARN of a <c>Config</c>.
         /// </para>
         /// </summary>
         public string ConfigArn
@@ -58,7 +59,7 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property ConfigId. 
         /// <para>
-        /// UUID of a <code>Config</code>.
+        /// UUID of a <c>Config</c>.
         /// </para>
         /// </summary>
         public string ConfigId
@@ -76,7 +77,7 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property ConfigType. 
         /// <para>
-        /// Type of a <code>Config</code>.
+        /// Type of a <c>Config</c>.
         /// </para>
         /// </summary>
         public ConfigCapabilityType ConfigType

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
@@ -65,8 +66,8 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property BufferingHints. 
         /// <para>
-        /// The buffering option. If no value is specified, <code>BufferingHints</code> object
-        /// default values are used.
+        /// The buffering option. If no value is specified, <c>BufferingHints</c> object default
+        /// values are used.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -85,7 +86,7 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property CloudWatchLoggingOptions. 
         /// <para>
-        /// The Amazon CloudWatch logging options for your delivery stream.
+        /// The Amazon CloudWatch logging options for your Firehose stream.
         /// </para>
         /// </summary>
         public CloudWatchLoggingOptions CloudWatchLoggingOptions
@@ -103,7 +104,7 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property CompressionFormat. 
         /// <para>
-        /// The compression format. If no value is specified, the default is <code>UNCOMPRESSED</code>.
+        /// The compression format. If no value is specified, the default is <c>UNCOMPRESSED</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -141,9 +142,9 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property ErrorOutputPrefix. 
         /// <para>
-        /// A prefix that Kinesis Data Firehose evaluates and adds to failed records before writing
-        /// them to S3. This prefix appears immediately following the bucket name. For information
-        /// about how to specify this prefix, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom
+        /// A prefix that Firehose evaluates and adds to failed records before writing them to
+        /// S3. This prefix appears immediately following the bucket name. For information about
+        /// how to specify this prefix, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom
         /// Prefixes for Amazon S3 Objects</a>.
         /// </para>
         /// </summary>

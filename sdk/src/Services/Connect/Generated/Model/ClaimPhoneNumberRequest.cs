@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -50,23 +51,22 @@ namespace Amazon.Connect.Model
     /// </para>
     ///  </important> 
     /// <para>
-    /// If you plan to claim and release numbers frequently during a 30 day period, contact
-    /// us for a service quota exception. Otherwise, it is possible you will be blocked from
-    /// claiming and releasing any more numbers until 30 days past the oldest number released
-    /// has expired.
+    /// If you plan to claim and release numbers frequently, contact us for a service quota
+    /// exception. Otherwise, it is possible you will be blocked from claiming and releasing
+    /// any more numbers until up to 180 days past the oldest number released has expired.
     /// </para>
     ///  
     /// <para>
     /// By default you can claim and release up to 200% of your maximum number of active phone
-    /// numbers during any 30 day period. If you claim and release phone numbers using the
-    /// UI or API during a rolling 30 day cycle that exceeds 200% of your phone number service
-    /// level quota, you will be blocked from claiming any more numbers until 30 days past
-    /// the oldest number released has expired. 
+    /// numbers. If you claim and release phone numbers using the UI or API during a rolling
+    /// 180 day cycle that exceeds 200% of your phone number service level quota, you will
+    /// be blocked from claiming any more numbers until 180 days past the oldest number released
+    /// has expired. 
     /// </para>
     ///  
     /// <para>
     /// For example, if you already have 99 claimed numbers and a service level quota of 99
-    /// phone numbers, and in any 30 day period you release 99, claim 99, and then release
+    /// phone numbers, and in any 180 day period you release 99, claim 99, and then release
     /// 99, you will have exceeded the 200% limit. At that point you are blocked from claiming
     /// any more numbers until you open an Amazon Web Services support ticket.
     /// </para>
@@ -74,9 +74,10 @@ namespace Amazon.Connect.Model
     public partial class ClaimPhoneNumberRequest : AmazonConnectRequest
     {
         private string _clientToken;
+        private string _instanceId;
         private string _phoneNumber;
         private string _phoneNumberDescription;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _targetArn;
 
         /// <summary>
@@ -89,8 +90,7 @@ namespace Amazon.Connect.Model
         /// </para>
         ///  
         /// <para>
-        /// Pattern: <code>^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$</code>
-        /// 
+        /// Pattern: <c>^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Max=500)]
@@ -107,10 +107,32 @@ namespace Amazon.Connect.Model
         }
 
         /// <summary>
+        /// Gets and sets the property InstanceId. 
+        /// <para>
+        /// The identifier of the Amazon Connect instance that phone numbers are claimed to. You
+        /// can <a href="https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html">find
+        /// the instance ID</a> in the Amazon Resource Name (ARN) of the instance. You must enter
+        /// <c>InstanceId</c> or <c>TargetArn</c>. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=100)]
+        public string InstanceId
+        {
+            get { return this._instanceId; }
+            set { this._instanceId = value; }
+        }
+
+        // Check to see if InstanceId property is set
+        internal bool IsSetInstanceId()
+        {
+            return this._instanceId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property PhoneNumber. 
         /// <para>
-        /// The phone number you want to claim. Phone numbers are formatted <code>[+] [country
-        /// code] [subscriber number including area code]</code>.
+        /// The phone number you want to claim. Phone numbers are formatted <c>[+] [country code]
+        /// [subscriber number including area code]</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -149,7 +171,7 @@ namespace Amazon.Connect.Model
         /// Gets and sets the property Tags. 
         /// <para>
         /// The tags used to organize, track, or control access for this resource. For example,
-        /// { "tags": {"key1":"value1", "key2":"value2"} }.
+        /// { "Tags": {"key1":"value1", "key2":"value2"} }.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -162,17 +184,17 @@ namespace Amazon.Connect.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TargetArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution
-        /// groups that phone numbers are claimed to.
+        /// groups that phone number inbound traffic is routed through. You must enter <c>InstanceId</c>
+        /// or <c>TargetArn</c>. 
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public string TargetArn
         {
             get { return this._targetArn; }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatch.Model
 {
     /// <summary>
@@ -137,7 +138,8 @@ namespace Amazon.CloudWatch.Model
         /// <summary>
         /// Gets and sets the property OutputFormat. 
         /// <para>
-        /// The output format of this metric stream. Valid values are <code>json</code> and <code>opentelemetry0.7</code>.
+        /// The output format of this metric stream. Valid values are <c>json</c>, <c>opentelemetry1.0</c>,
+        /// and <c>opentelemetry0.7</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -156,7 +158,7 @@ namespace Amazon.CloudWatch.Model
         /// <summary>
         /// Gets and sets the property State. 
         /// <para>
-        /// The current state of this stream. Valid values are <code>running</code> and <code>stopped</code>.
+        /// The current state of this stream. Valid values are <c>running</c> and <c>stopped</c>.
         /// </para>
         /// </summary>
         public string State

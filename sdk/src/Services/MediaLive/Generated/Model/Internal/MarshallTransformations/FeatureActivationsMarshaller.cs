@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,10 +46,18 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(FeatureActivations requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetInputPrepareScheduleActions())
             {
                 context.Writer.WritePropertyName("inputPrepareScheduleActions");
                 context.Writer.Write(requestObject.InputPrepareScheduleActions);
+            }
+
+            if(requestObject.IsSetOutputStaticImageOverlayScheduleActions())
+            {
+                context.Writer.WritePropertyName("outputStaticImageOverlayScheduleActions");
+                context.Writer.Write(requestObject.OutputStaticImageOverlayScheduleActions);
             }
 
         }

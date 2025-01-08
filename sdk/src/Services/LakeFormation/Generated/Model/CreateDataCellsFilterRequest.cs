@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
@@ -40,8 +41,7 @@ namespace Amazon.LakeFormation.Model
         /// <summary>
         /// Gets and sets the property TableData. 
         /// <para>
-        /// A <code>DataCellsFilter</code> structure containing information about the data cells
-        /// filter.
+        /// A <c>DataCellsFilter</c> structure containing information about the data cells filter.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

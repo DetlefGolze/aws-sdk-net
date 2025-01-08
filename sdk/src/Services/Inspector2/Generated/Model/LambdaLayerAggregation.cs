@@ -26,23 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
-    /// The details that define a findings aggregation based on an AWS Lambda function's layers.
+    /// The details that define a findings aggregation based on an Amazon Web Services Lambda
+    /// function's layers.
     /// </summary>
     public partial class LambdaLayerAggregation
     {
-        private List<StringFilter> _functionNames = new List<StringFilter>();
-        private List<StringFilter> _layerArns = new List<StringFilter>();
-        private List<StringFilter> _resourceIds = new List<StringFilter>();
+        private List<StringFilter> _functionNames = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _layerArns = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _resourceIds = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
         private LambdaLayerSortBy _sortBy;
         private SortOrder _sortOrder;
 
         /// <summary>
         /// Gets and sets the property FunctionNames. 
         /// <para>
-        /// The names of the AWS Lambda functions associated with the layers.
+        /// The names of the Amazon Web Services Lambda functions associated with the layers.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
@@ -55,13 +57,13 @@ namespace Amazon.Inspector2.Model
         // Check to see if FunctionNames property is set
         internal bool IsSetFunctionNames()
         {
-            return this._functionNames != null && this._functionNames.Count > 0; 
+            return this._functionNames != null && (this._functionNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property LayerArns. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the AWS Lambda function layer. 
+        /// The Amazon Resource Name (ARN) of the Amazon Web Services Lambda function layer. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
@@ -74,13 +76,13 @@ namespace Amazon.Inspector2.Model
         // Check to see if LayerArns property is set
         internal bool IsSetLayerArns()
         {
-            return this._layerArns != null && this._layerArns.Count > 0; 
+            return this._layerArns != null && (this._layerArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ResourceIds. 
         /// <para>
-        /// The resource IDs for the AWS Lambda function layers.
+        /// The resource IDs for the Amazon Web Services Lambda function layers.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
@@ -93,7 +95,7 @@ namespace Amazon.Inspector2.Model
         // Check to see if ResourceIds property is set
         internal bool IsSetResourceIds()
         {
-            return this._resourceIds != null && this._resourceIds.Count > 0; 
+            return this._resourceIds != null && (this._resourceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

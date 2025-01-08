@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
     /// Container for the parameters to the ListCommandInvocations operation.
     /// An invocation is copy of a command sent to a specific managed node. A command can
     /// apply to one or more managed nodes. A command invocation applies to one managed node.
-    /// For example, if a user runs <code>SendCommand</code> against three managed nodes,
-    /// then a command invocation is created for each requested managed node ID. <code>ListCommandInvocations</code>
+    /// For example, if a user runs <c>SendCommand</c> against three managed nodes, then a
+    /// command invocation is created for each requested managed node ID. <c>ListCommandInvocations</c>
     /// provide status about command execution.
     /// </summary>
     public partial class ListCommandInvocationsRequest : AmazonSimpleSystemsManagementRequest
     {
         private string _commandId;
         private bool? _details;
-        private List<CommandFilter> _filters = new List<CommandFilter>();
+        private List<CommandFilter> _filters = AWSConfigs.InitializeCollections ? new List<CommandFilter>() : null;
         private string _instanceId;
         private int? _maxResults;
         private string _nextToken;
@@ -82,7 +83,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property Details. 
         /// <para>
         /// (Optional) If set this returns the response of the command executions and any command
-        /// output. The default value is <code>false</code>. 
+        /// output. The default value is <c>false</c>. 
         /// </para>
         /// </summary>
         public bool Details
@@ -113,7 +114,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

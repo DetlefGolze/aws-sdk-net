@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.CloudFront.Model
     /// </para>
     ///  <ol> <li> 
     /// <para>
-    /// Call <code>GetRealtimeLogConfig</code> to get the current real-time log configuration.
+    /// Call <c>GetRealtimeLogConfig</c> to get the current real-time log configuration.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -49,19 +50,19 @@ namespace Amazon.CloudFront.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Call this API (<code>UpdateRealtimeLogConfig</code>) by providing the entire real-time
-    /// log configuration, including the parameters that you modified and those that you didn't.
+    /// Call this API (<c>UpdateRealtimeLogConfig</c>) by providing the entire real-time log
+    /// configuration, including the parameters that you modified and those that you didn't.
     /// </para>
     ///  </li> </ol> 
     /// <para>
-    /// You cannot update a real-time log configuration's <code>Name</code> or <code>ARN</code>.
+    /// You cannot update a real-time log configuration's <c>Name</c> or <c>ARN</c>.
     /// </para>
     /// </summary>
     public partial class UpdateRealtimeLogConfigRequest : AmazonCloudFrontRequest
     {
         private string _arn;
-        private List<EndPoint> _endPoints = new List<EndPoint>();
-        private List<string> _fields = new List<string>();
+        private List<EndPoint> _endPoints = AWSConfigs.InitializeCollections ? new List<EndPoint>() : null;
+        private List<string> _fields = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
         private long? _samplingRate;
 
@@ -99,7 +100,7 @@ namespace Amazon.CloudFront.Model
         // Check to see if EndPoints property is set
         internal bool IsSetEndPoints()
         {
-            return this._endPoints != null && this._endPoints.Count > 0; 
+            return this._endPoints != null && (this._endPoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -122,7 +123,7 @@ namespace Amazon.CloudFront.Model
         // Check to see if Fields property is set
         internal bool IsSetFields()
         {
-            return this._fields != null && this._fields.Count > 0; 
+            return this._fields != null && (this._fields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

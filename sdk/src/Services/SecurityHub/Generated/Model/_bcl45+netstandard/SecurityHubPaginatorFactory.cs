@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -97,6 +98,22 @@ namespace Amazon.SecurityHub.Model
         public IGetInsightsPaginator GetInsights(GetInsightsRequest request) 
         {
             return new GetInsightsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListConfigurationPolicies operation
+        ///</summary>
+        public IListConfigurationPoliciesPaginator ListConfigurationPolicies(ListConfigurationPoliciesRequest request) 
+        {
+            return new ListConfigurationPoliciesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListConfigurationPolicyAssociations operation
+        ///</summary>
+        public IListConfigurationPolicyAssociationsPaginator ListConfigurationPolicyAssociations(ListConfigurationPolicyAssociationsRequest request) 
+        {
+            return new ListConfigurationPolicyAssociationsPaginator(this.client, request);
         }
 
         /// <summary>

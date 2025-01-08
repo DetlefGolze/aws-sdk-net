@@ -32,7 +32,8 @@ namespace Amazon.S3.Model
         private string versionId;
         private bool isDeleteMarker;
         private RestoreStatus _restoreStatus;
-		private PntPvaInfo _pntPvaInfo;
+        private PntPvaInfo _pntPvaInfo;
+
         /// <summary>
         /// Specifies whether the object is (true) or is not (false) the latest version of an object.
         /// </summary>
@@ -87,10 +88,10 @@ namespace Amazon.S3.Model
         /// Specifies the PVA information for the object version.
         /// </para>
         /// </summary>
-		public PntPvaInfo PntPvaInfo
-		{
+        public PntPvaInfo PntPvaInfo
+	{
             get { return this._pntPvaInfo; }
             set { this._pntPvaInfo = value; }
-		}
+	}
     }
 }

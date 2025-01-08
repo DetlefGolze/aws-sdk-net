@@ -26,18 +26,43 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECR.Model
 {
     /// <summary>
     /// Container for the parameters to the CreatePullThroughCacheRule operation.
     /// Creates a pull through cache rule. A pull through cache rule provides a way to cache
-    /// images from an external public registry in your Amazon ECR private registry.
+    /// images from an upstream registry source in your Amazon ECR private registry. For more
+    /// information, see <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/pull-through-cache.html">Using
+    /// pull through cache rules</a> in the <i>Amazon Elastic Container Registry User Guide</i>.
     /// </summary>
     public partial class CreatePullThroughCacheRuleRequest : AmazonECRRequest
     {
+        private string _credentialArn;
         private string _ecrRepositoryPrefix;
         private string _registryId;
+        private UpstreamRegistry _upstreamRegistry;
         private string _upstreamRegistryUrl;
+
+        /// <summary>
+        /// Gets and sets the property CredentialArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that
+        /// identifies the credentials to authenticate to the upstream registry.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=50, Max=612)]
+        public string CredentialArn
+        {
+            get { return this._credentialArn; }
+            set { this._credentialArn = value; }
+        }
+
+        // Check to see if CredentialArn property is set
+        internal bool IsSetCredentialArn()
+        {
+            return this._credentialArn != null;
+        }
 
         /// <summary>
         /// Gets and sets the property EcrRepositoryPrefix. 
@@ -45,7 +70,7 @@ namespace Amazon.ECR.Model
         /// The repository name prefix to use when caching images from the source registry.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=2, Max=20)]
+        [AWSProperty(Required=true, Min=2, Max=30)]
         public string EcrRepositoryPrefix
         {
             get { return this._ecrRepositoryPrefix; }
@@ -79,11 +104,56 @@ namespace Amazon.ECR.Model
         }
 
         /// <summary>
+        /// Gets and sets the property UpstreamRegistry. 
+        /// <para>
+        /// The name of the upstream registry.
+        /// </para>
+        /// </summary>
+        public UpstreamRegistry UpstreamRegistry
+        {
+            get { return this._upstreamRegistry; }
+            set { this._upstreamRegistry = value; }
+        }
+
+        // Check to see if UpstreamRegistry property is set
+        internal bool IsSetUpstreamRegistry()
+        {
+            return this._upstreamRegistry != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property UpstreamRegistryUrl. 
         /// <para>
         /// The registry URL of the upstream public registry to use as the source for the pull
-        /// through cache rule.
+        /// through cache rule. The following is the syntax to use for each supported upstream
+        /// registry.
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Amazon ECR Public (<c>ecr-public</c>) - <c>public.ecr.aws</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Docker Hub (<c>docker-hub</c>) - <c>registry-1.docker.io</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Quay (<c>quay</c>) - <c>quay.io</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Kubernetes (<c>k8s</c>) - <c>registry.k8s.io</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// GitHub Container Registry (<c>github-container-registry</c>) - <c>ghcr.io</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Microsoft Azure Container Registry (<c>azure-container-registry</c>) - <c>&lt;custom&gt;.azurecr.io</c>
+        /// 
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         [AWSProperty(Required=true)]
         public string UpstreamRegistryUrl

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaLive.Model
 {
     /// <summary>
@@ -34,12 +35,14 @@ namespace Amazon.MediaLive.Model
     public partial class OutputGroupSettings
     {
         private ArchiveGroupSettings _archiveGroupSettings;
+        private CmafIngestGroupSettings _cmafIngestGroupSettings;
         private FrameCaptureGroupSettings _frameCaptureGroupSettings;
         private HlsGroupSettings _hlsGroupSettings;
         private MediaPackageGroupSettings _mediaPackageGroupSettings;
         private MsSmoothGroupSettings _msSmoothGroupSettings;
         private MultiplexGroupSettings _multiplexGroupSettings;
         private RtmpGroupSettings _rtmpGroupSettings;
+        private SrtGroupSettings _srtGroupSettings;
         private UdpGroupSettings _udpGroupSettings;
 
         /// <summary>
@@ -55,6 +58,21 @@ namespace Amazon.MediaLive.Model
         internal bool IsSetArchiveGroupSettings()
         {
             return this._archiveGroupSettings != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CmafIngestGroupSettings.
+        /// </summary>
+        public CmafIngestGroupSettings CmafIngestGroupSettings
+        {
+            get { return this._cmafIngestGroupSettings; }
+            set { this._cmafIngestGroupSettings = value; }
+        }
+
+        // Check to see if CmafIngestGroupSettings property is set
+        internal bool IsSetCmafIngestGroupSettings()
+        {
+            return this._cmafIngestGroupSettings != null;
         }
 
         /// <summary>
@@ -145,6 +163,21 @@ namespace Amazon.MediaLive.Model
         internal bool IsSetRtmpGroupSettings()
         {
             return this._rtmpGroupSettings != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SrtGroupSettings.
+        /// </summary>
+        public SrtGroupSettings SrtGroupSettings
+        {
+            get { return this._srtGroupSettings; }
+            set { this._srtGroupSettings = value; }
+        }
+
+        // Check to see if SrtGroupSettings property is set
+        internal bool IsSetSrtGroupSettings()
+        {
+            return this._srtGroupSettings != null;
         }
 
         /// <summary>

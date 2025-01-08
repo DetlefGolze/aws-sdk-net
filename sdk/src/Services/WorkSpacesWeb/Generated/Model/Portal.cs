@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpacesWeb.Model
 {
     /// <summary>
@@ -33,12 +34,17 @@ namespace Amazon.WorkSpacesWeb.Model
     /// </summary>
     public partial class Portal
     {
+        private Dictionary<string, string> _additionalEncryptionContext = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private AuthenticationType _authenticationType;
         private string _browserSettingsArn;
         private BrowserType _browserType;
         private DateTime? _creationDate;
+        private string _customerManagedKey;
+        private string _dataProtectionSettingsArn;
         private string _displayName;
+        private InstanceType _instanceType;
         private string _ipAccessSettingsArn;
+        private int? _maxConcurrentSessions;
         private string _networkSettingsArn;
         private string _portalArn;
         private string _portalEndpoint;
@@ -50,25 +56,41 @@ namespace Amazon.WorkSpacesWeb.Model
         private string _userSettingsArn;
 
         /// <summary>
+        /// Gets and sets the property AdditionalEncryptionContext. 
+        /// <para>
+        /// The additional encryption context of the portal.
+        /// </para>
+        /// </summary>
+        public Dictionary<string, string> AdditionalEncryptionContext
+        {
+            get { return this._additionalEncryptionContext; }
+            set { this._additionalEncryptionContext = value; }
+        }
+
+        // Check to see if AdditionalEncryptionContext property is set
+        internal bool IsSetAdditionalEncryptionContext()
+        {
+            return this._additionalEncryptionContext != null && (this._additionalEncryptionContext.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property AuthenticationType. 
         /// <para>
         /// The type of authentication integration points used when signing into the web portal.
-        /// Defaults to <code>Standard</code>.
+        /// Defaults to <c>Standard</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>Standard</code> web portals are authenticated directly through your identity
-        /// provider. You need to call <code>CreateIdentityProvider</code> to integrate your identity
-        /// provider with your web portal. User and group access to your web portal is controlled
-        /// through your identity provider.
+        ///  <c>Standard</c> web portals are authenticated directly through your identity provider.
+        /// You need to call <c>CreateIdentityProvider</c> to integrate your identity provider
+        /// with your web portal. User and group access to your web portal is controlled through
+        /// your identity provider.
         /// </para>
         ///  
         /// <para>
-        ///  <code>IAM_Identity_Center</code> web portals are authenticated through AWS IAM Identity
-        /// Center (successor to AWS Single Sign-On). They provide additional features, such as
-        /// IdP-initiated authentication. Identity sources (including external identity provider
-        /// integration), plus user and group access to your web portal, can be configured in
-        /// the IAM Identity Center.
+        ///  <c>IAM Identity Center</c> web portals are authenticated through IAM Identity Center.
+        /// Identity sources (including external identity provider integration), plus user and
+        /// group access to your web portal, can be configured in the IAM Identity Center.
         /// </para>
         /// </summary>
         public AuthenticationType AuthenticationType
@@ -139,6 +161,44 @@ namespace Amazon.WorkSpacesWeb.Model
         }
 
         /// <summary>
+        /// Gets and sets the property CustomerManagedKey. 
+        /// <para>
+        /// The customer managed key used to encrypt sensitive information in the portal.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=2048)]
+        public string CustomerManagedKey
+        {
+            get { return this._customerManagedKey; }
+            set { this._customerManagedKey = value; }
+        }
+
+        // Check to see if CustomerManagedKey property is set
+        internal bool IsSetCustomerManagedKey()
+        {
+            return this._customerManagedKey != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DataProtectionSettingsArn. 
+        /// <para>
+        /// The ARN of the data protection settings.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=2048)]
+        public string DataProtectionSettingsArn
+        {
+            get { return this._dataProtectionSettingsArn; }
+            set { this._dataProtectionSettingsArn = value; }
+        }
+
+        // Check to see if DataProtectionSettingsArn property is set
+        internal bool IsSetDataProtectionSettingsArn()
+        {
+            return this._dataProtectionSettingsArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property DisplayName. 
         /// <para>
         /// The name of the web portal.
@@ -158,6 +218,24 @@ namespace Amazon.WorkSpacesWeb.Model
         }
 
         /// <summary>
+        /// Gets and sets the property InstanceType. 
+        /// <para>
+        /// The type and resources of the underlying instance.
+        /// </para>
+        /// </summary>
+        public InstanceType InstanceType
+        {
+            get { return this._instanceType; }
+            set { this._instanceType = value; }
+        }
+
+        // Check to see if InstanceType property is set
+        internal bool IsSetInstanceType()
+        {
+            return this._instanceType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property IpAccessSettingsArn. 
         /// <para>
         /// The ARN of the IP access settings.
@@ -174,6 +252,25 @@ namespace Amazon.WorkSpacesWeb.Model
         internal bool IsSetIpAccessSettingsArn()
         {
             return this._ipAccessSettingsArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property MaxConcurrentSessions. 
+        /// <para>
+        /// The maximum number of concurrent sessions for the portal.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=5000)]
+        public int MaxConcurrentSessions
+        {
+            get { return this._maxConcurrentSessions.GetValueOrDefault(); }
+            set { this._maxConcurrentSessions = value; }
+        }
+
+        // Check to see if MaxConcurrentSessions property is set
+        internal bool IsSetMaxConcurrentSessions()
+        {
+            return this._maxConcurrentSessions.HasValue; 
         }
 
         /// <summary>

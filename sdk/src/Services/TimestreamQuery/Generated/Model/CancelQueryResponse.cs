@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TimestreamQuery.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.TimestreamQuery.Model
         /// <summary>
         /// Gets and sets the property CancellationMessage. 
         /// <para>
-        ///  A <code>CancellationMessage</code> is returned when a <code>CancelQuery</code> request
-        /// for the query specified by <code>QueryId</code> has already been issued. 
+        ///  A <c>CancellationMessage</c> is returned when a <c>CancelQuery</c> request for the
+        /// query specified by <c>QueryId</c> has already been issued. 
         /// </para>
         /// </summary>
         public string CancellationMessage

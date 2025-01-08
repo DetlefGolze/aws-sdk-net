@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(AssetModelProperty requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetDataType())
             {
                 context.Writer.WritePropertyName("dataType");
@@ -57,6 +60,12 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
                 context.Writer.Write(requestObject.DataTypeSpec);
             }
 
+            if(requestObject.IsSetExternalId())
+            {
+                context.Writer.WritePropertyName("externalId");
+                context.Writer.Write(requestObject.ExternalId);
+            }
+
             if(requestObject.IsSetId())
             {
                 context.Writer.WritePropertyName("id");
@@ -67,6 +76,22 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("name");
                 context.Writer.Write(requestObject.Name);
+            }
+
+            if(requestObject.IsSetPath())
+            {
+                context.Writer.WritePropertyName("path");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectPathListValue in requestObject.Path)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = AssetModelPropertyPathSegmentMarshaller.Instance;
+                    marshaller.Marshall(requestObjectPathListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
             }
 
             if(requestObject.IsSetType())

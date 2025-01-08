@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRunner.Model
 {
     /// <summary>
@@ -36,19 +37,19 @@ namespace Amazon.AppRunner.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    ///  <code>AVAILABLE</code> 
+    ///  <c>AVAILABLE</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>FAILED_CREATION</code> 
+    ///  <c>FAILED_CREATION</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>FAILED_UPDATE</code> 
+    ///  <c>FAILED_UPDATE</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>FAILED_DELETION</code> 
+    ///  <c>FAILED_DELETION</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -46,8 +47,8 @@ namespace Amazon.S3Control.Model
         /// Gets and sets the property IsEnabled. 
         /// <para>
         /// A container that indicates whether CloudWatch publishing for S3 Storage Lens metrics
-        /// is enabled. A value of <code>true</code> indicates that CloudWatch publishing for
-        /// S3 Storage Lens metrics is enabled.
+        /// is enabled. A value of <c>true</c> indicates that CloudWatch publishing for S3 Storage
+        /// Lens metrics is enabled.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

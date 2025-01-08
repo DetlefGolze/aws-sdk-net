@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Backup.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -135,10 +136,22 @@ namespace Amazon.Backup.Model.Internal.MarshallTransformations
                     response.IamRoleArn = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("InitiationDate", targetDepth))
+                {
+                    var unmarshaller = DateTimeUnmarshaller.Instance;
+                    response.InitiationDate = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("IsParent", targetDepth))
                 {
                     var unmarshaller = BoolUnmarshaller.Instance;
                     response.IsParent = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("MessageCategory", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.MessageCategory = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("NumberOfChildJobs", targetDepth))

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Route53.Model
     /// </summary>
     public partial class ListQueryLoggingConfigsResponse : AmazonWebServiceResponse
     {
-        private List<QueryLoggingConfig> _queryLoggingConfigs = new List<QueryLoggingConfig>();
+        private List<QueryLoggingConfig> _queryLoggingConfigs = AWSConfigs.InitializeCollections ? new List<QueryLoggingConfig>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -54,22 +55,22 @@ namespace Amazon.Route53.Model
         // Check to see if QueryLoggingConfigs property is set
         internal bool IsSetQueryLoggingConfigs()
         {
-            return this._queryLoggingConfigs != null && this._queryLoggingConfigs.Count > 0; 
+            return this._queryLoggingConfigs != null && (this._queryLoggingConfigs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If a response includes the last of the query logging configurations that are associated
-        /// with the current Amazon Web Services account, <code>NextToken</code> doesn't appear
-        /// in the response.
+        /// with the current Amazon Web Services account, <c>NextToken</c> doesn't appear in the
+        /// response.
         /// </para>
         ///  
         /// <para>
         /// If a response doesn't include the last of the configurations, you can get more configurations
         /// by submitting another <a href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_ListQueryLoggingConfigs.html">ListQueryLoggingConfigs</a>
-        /// request. Get the value of <code>NextToken</code> that Amazon Route 53 returned in
-        /// the previous response and include it in <code>NextToken</code> in the next request.
+        /// request. Get the value of <c>NextToken</c> that Amazon Route 53 returned in the previous
+        /// response and include it in <c>NextToken</c> in the next request.
         /// </para>
         /// </summary>
         [AWSProperty(Max=1024)]

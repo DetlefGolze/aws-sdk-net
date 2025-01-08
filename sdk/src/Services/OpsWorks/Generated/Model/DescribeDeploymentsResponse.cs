@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
-    /// Contains the response to a <code>DescribeDeployments</code> request.
+    /// Contains the response to a <c>DescribeDeployments</c> request.
     /// </summary>
     public partial class DescribeDeploymentsResponse : AmazonWebServiceResponse
     {
-        private List<Deployment> _deployments = new List<Deployment>();
+        private List<Deployment> _deployments = AWSConfigs.InitializeCollections ? new List<Deployment>() : null;
 
         /// <summary>
         /// Gets and sets the property Deployments. 
         /// <para>
-        /// An array of <code>Deployment</code> objects that describe the deployments.
+        /// An array of <c>Deployment</c> objects that describe the deployments.
         /// </para>
         /// </summary>
         public List<Deployment> Deployments
@@ -50,7 +51,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if Deployments property is set
         internal bool IsSetDeployments()
         {
-            return this._deployments != null && this._deployments.Count > 0; 
+            return this._deployments != null && (this._deployments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHub.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.MigrationHub.Model
     /// </para>
     ///  <dl> <dt>IPV4</dt> <dd> 
     /// <para>
-    ///  <code>x.x.x.x</code> 
+    ///  <c>x.x.x.x</c> 
     /// </para>
     ///  
     /// <para>
@@ -45,7 +46,7 @@ namespace Amazon.MigrationHub.Model
     /// </para>
     ///  </dd> <dt>IPV6</dt> <dd> 
     /// <para>
-    ///  <code>y : y : y : y : y : y : y : y</code> 
+    ///  <c>y : y : y : y : y : y : y : y</c> 
     /// </para>
     ///  
     /// <para>
@@ -53,11 +54,11 @@ namespace Amazon.MigrationHub.Model
     /// </para>
     ///  </dd> <dt>MAC_ADDRESS</dt> <dd> 
     /// <para>
-    ///  <code>^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$</code> 
+    ///  <c>^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$</c> 
     /// </para>
     ///  </dd> <dt>FQDN</dt> <dd> 
     /// <para>
-    ///  <code>^[^&lt;&gt;{}\\\\/?,=\\p{Cntrl}]{1,256}$</code> 
+    ///  <c>^[^&lt;&gt;{}\\\\/?,=\\p{Cntrl}]{1,256}$</c> 
     /// </para>
     ///  </dd> </dl>
     /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruProfiler.Model
 {
     /// <summary>
@@ -39,15 +40,15 @@ namespace Amazon.CodeGuruProfiler.Model
         private DateTime? _createdAt;
         private string _name;
         private ProfilingStatus _profilingStatus;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private DateTime? _updatedAt;
 
         /// <summary>
         /// Gets and sets the property AgentOrchestrationConfig. 
         /// <para>
         ///  An <a href="https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_AgentOrchestrationConfig.html">
-        /// <code>AgentOrchestrationConfig</code> </a> object that indicates if the profiling
-        /// group is enabled for profiled or not. 
+        /// <c>AgentOrchestrationConfig</c> </a> object that indicates if the profiling group
+        /// is enabled for profiled or not. 
         /// </para>
         /// </summary>
         public AgentOrchestrationConfig AgentOrchestrationConfig
@@ -83,11 +84,11 @@ namespace Amazon.CodeGuruProfiler.Model
         /// <summary>
         /// Gets and sets the property ComputePlatform. 
         /// <para>
-        ///  The compute platform of the profiling group. If it is set to <code>AWSLambda</code>,
-        /// then the profiled application runs on AWS Lambda. If it is set to <code>Default</code>,
-        /// then the profiled application runs on a compute platform that is not AWS Lambda, such
-        /// an Amazon EC2 instance, an on-premises server, or a different platform. The default
-        /// is <code>Default</code>. 
+        ///  The compute platform of the profiling group. If it is set to <c>AWSLambda</c>, then
+        /// the profiled application runs on AWS Lambda. If it is set to <c>Default</c>, then
+        /// the profiled application runs on a compute platform that is not AWS Lambda, such an
+        /// Amazon EC2 instance, an on-premises server, or a different platform. The default is
+        /// <c>Default</c>. 
         /// </para>
         /// </summary>
         public ComputePlatform ComputePlatform
@@ -145,8 +146,8 @@ namespace Amazon.CodeGuruProfiler.Model
         /// Gets and sets the property ProfilingStatus. 
         /// <para>
         ///  A <a href="https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingStatus.html">
-        /// <code>ProfilingStatus</code> </a> object that includes information about the last
-        /// time a profile agent pinged back, the last time a profile was received, and the aggregation
+        /// <c>ProfilingStatus</c> </a> object that includes information about the last time a
+        /// profile agent pinged back, the last time a profile was received, and the aggregation
         /// period and start time for the most recent aggregated profile. 
         /// </para>
         /// </summary>
@@ -177,7 +178,7 @@ namespace Amazon.CodeGuruProfiler.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

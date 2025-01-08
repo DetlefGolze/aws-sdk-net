@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.GreengrassV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -64,6 +65,9 @@ namespace Amazon.GreengrassV2.Model.Internal.MarshallTransformations
             
             if (publicRequest.IsSetNextToken())
                 request.Parameters.Add("nextToken", StringUtils.FromString(publicRequest.NextToken));
+            
+            if (publicRequest.IsSetRuntime())
+                request.Parameters.Add("runtime", StringUtils.FromString(publicRequest.Runtime));
             
             if (publicRequest.IsSetStatus())
                 request.Parameters.Add("status", StringUtils.FromString(publicRequest.Status));

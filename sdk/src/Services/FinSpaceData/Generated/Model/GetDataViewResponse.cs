@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FinSpaceData.Model
 {
     /// <summary>
@@ -43,8 +44,8 @@ namespace Amazon.FinSpaceData.Model
         private DataViewDestinationTypeParams _destinationTypeParams;
         private DataViewErrorInfo _errorInfo;
         private long? _lastModifiedTime;
-        private List<string> _partitionColumns = new List<string>();
-        private List<string> _sortColumns = new List<string>();
+        private List<string> _partitionColumns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _sortColumns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DataViewStatus _status;
 
         /// <summary>
@@ -232,7 +233,7 @@ namespace Amazon.FinSpaceData.Model
         // Check to see if PartitionColumns property is set
         internal bool IsSetPartitionColumns()
         {
-            return this._partitionColumns != null && this._partitionColumns.Count > 0; 
+            return this._partitionColumns != null && (this._partitionColumns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -250,7 +251,7 @@ namespace Amazon.FinSpaceData.Model
         // Check to see if SortColumns property is set
         internal bool IsSetSortColumns()
         {
-            return this._sortColumns != null && this._sortColumns.Count > 0; 
+            return this._sortColumns != null && (this._sortColumns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -260,36 +261,35 @@ namespace Amazon.FinSpaceData.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>RUNNING</code> – Dataview creation is running.
+        ///  <c>RUNNING</c> – Dataview creation is running.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>STARTING</code> – Dataview creation is starting.
+        ///  <c>STARTING</c> – Dataview creation is starting.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> – Dataview creation has failed.
+        ///  <c>FAILED</c> – Dataview creation has failed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CANCELLED</code> – Dataview creation has been cancelled.
+        ///  <c>CANCELLED</c> – Dataview creation has been cancelled.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TIMEOUT</code> – Dataview creation has timed out.
+        ///  <c>TIMEOUT</c> – Dataview creation has timed out.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SUCCESS</code> – Dataview creation has succeeded.
+        ///  <c>SUCCESS</c> – Dataview creation has succeeded.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PENDING</code> – Dataview creation is pending.
+        ///  <c>PENDING</c> – Dataview creation is pending.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED_CLEANUP_FAILED</code> – Dataview creation failed and resource cleanup
-        /// failed.
+        ///  <c>FAILED_CLEANUP_FAILED</c> – Dataview creation failed and resource cleanup failed.
         /// </para>
         ///  </li> </ul>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LookoutEquipment.Model
 {
     /// <summary>
@@ -48,8 +49,11 @@ namespace Amazon.LookoutEquipment.Model
         private LabelsInputConfiguration _labelsInputConfiguration;
         private DateTime? _lastUpdatedTime;
         private string _modelArn;
+        private ModelDiagnosticsOutputConfiguration _modelDiagnosticsOutputConfiguration;
+        private S3Object _modelDiagnosticsResultsObject;
         private string _modelMetrics;
         private string _modelName;
+        private ModelQuality _modelQuality;
         private long? _modelVersion;
         private string _modelVersionArn;
         private string _offCondition;
@@ -88,11 +92,11 @@ namespace Amazon.LookoutEquipment.Model
         /// <summary>
         /// Gets and sets the property AutoPromotionResultReason. 
         /// <para>
-        /// Indicates the reason for the <code>AutoPromotionResult</code>. For example, a model
-        /// might not be promoted if its performance was worse than the active version, if there
-        /// was an error during training, or if the retraining scheduler was using <code>MANUAL</code>
-        /// promote mode. The model will be promoted in <code>MANAGED</code> promote mode if the
-        /// performance is better than the previous model. 
+        /// Indicates the reason for the <c>AutoPromotionResult</c>. For example, a model might
+        /// not be promoted if its performance was worse than the active version, if there was
+        /// an error during training, or if the retraining scheduler was using <c>MANUAL</c> promote
+        /// mode. The model will be promoted in <c>MANAGED</c> promote mode if the performance
+        /// is better than the previous model. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]
@@ -350,6 +354,44 @@ namespace Amazon.LookoutEquipment.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ModelDiagnosticsOutputConfiguration. 
+        /// <para>
+        /// The Amazon S3 location where Amazon Lookout for Equipment saves the pointwise model
+        /// diagnostics for the model version.
+        /// </para>
+        /// </summary>
+        public ModelDiagnosticsOutputConfiguration ModelDiagnosticsOutputConfiguration
+        {
+            get { return this._modelDiagnosticsOutputConfiguration; }
+            set { this._modelDiagnosticsOutputConfiguration = value; }
+        }
+
+        // Check to see if ModelDiagnosticsOutputConfiguration property is set
+        internal bool IsSetModelDiagnosticsOutputConfiguration()
+        {
+            return this._modelDiagnosticsOutputConfiguration != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ModelDiagnosticsResultsObject. 
+        /// <para>
+        /// The Amazon S3 output prefix for where Lookout for Equipment saves the pointwise model
+        /// diagnostics for the model version.
+        /// </para>
+        /// </summary>
+        public S3Object ModelDiagnosticsResultsObject
+        {
+            get { return this._modelDiagnosticsResultsObject; }
+            set { this._modelDiagnosticsResultsObject = value; }
+        }
+
+        // Check to see if ModelDiagnosticsResultsObject property is set
+        internal bool IsSetModelDiagnosticsResultsObject()
+        {
+            return this._modelDiagnosticsResultsObject != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ModelMetrics. 
         /// <para>
         /// Shows an aggregated summary, in JSON format, of the model's performance within the
@@ -386,6 +428,42 @@ namespace Amazon.LookoutEquipment.Model
         internal bool IsSetModelName()
         {
             return this._modelName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ModelQuality. 
+        /// <para>
+        /// Provides a quality assessment for a model that uses labels. If Lookout for Equipment
+        /// determines that the model quality is poor based on training metrics, the value is
+        /// <c>POOR_QUALITY_DETECTED</c>. Otherwise, the value is <c>QUALITY_THRESHOLD_MET</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// If the model is unlabeled, the model quality can't be assessed and the value of <c>ModelQuality</c>
+        /// is <c>CANNOT_DETERMINE_QUALITY</c>. In this situation, you can get a model quality
+        /// assessment by adding labels to the input dataset and retraining the model.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information about using labels with your models, see <a href="https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/understanding-labeling.html">Understanding
+        /// labeling</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information about improving the quality of a model, see <a href="https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/best-practices.html">Best
+        /// practices with Amazon Lookout for Equipment</a>.
+        /// </para>
+        /// </summary>
+        public ModelQuality ModelQuality
+        {
+            get { return this._modelQuality; }
+            set { this._modelQuality = value; }
+        }
+
+        // Check to see if ModelQuality property is set
+        internal bool IsSetModelQuality()
+        {
+            return this._modelQuality != null;
         }
 
         /// <summary>

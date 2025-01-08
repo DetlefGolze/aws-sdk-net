@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the AttachVpnGateway operation.
-    /// Attaches a virtual private gateway to a VPC. You can attach one virtual private gateway
-    /// to one VPC at a time.
+    /// Attaches an available virtual private gateway to a VPC. You can attach one virtual
+    /// private gateway to one VPC at a time.
     /// 
     ///  
     /// <para>

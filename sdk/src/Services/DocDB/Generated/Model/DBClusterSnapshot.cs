@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.DocDB.Model
     /// </summary>
     public partial class DBClusterSnapshot
     {
-        private List<string> _availabilityZones = new List<string>();
+        private List<string> _availabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _clusterCreateTime;
         private string _dbClusterIdentifier;
         private string _dbClusterSnapshotArn;
@@ -49,6 +50,7 @@ namespace Amazon.DocDB.Model
         private string _sourceDBClusterSnapshotArn;
         private string _status;
         private bool? _storageEncrypted;
+        private string _storageType;
         private string _vpcId;
 
         /// <summary>
@@ -67,7 +69,7 @@ namespace Amazon.DocDB.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -182,8 +184,8 @@ namespace Amazon.DocDB.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// If <code>StorageEncrypted</code> is <code>true</code>, the KMS key identifier for
-        /// the encrypted cluster snapshot.
+        /// If <c>StorageEncrypted</c> is <c>true</c>, the KMS key identifier for the encrypted
+        /// cluster snapshot.
         /// </para>
         /// </summary>
         public string KmsKeyId
@@ -341,6 +343,37 @@ namespace Amazon.DocDB.Model
         internal bool IsSetStorageEncrypted()
         {
             return this._storageEncrypted.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property StorageType. 
+        /// <para>
+        /// Storage type associated with your cluster snapshot 
+        /// </para>
+        ///  
+        /// <para>
+        /// For information on storage types for Amazon DocumentDB clusters, see Cluster storage
+        /// configurations in the <i>Amazon DocumentDB Developer Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid values for storage type - <c>standard | iopt1</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Default value is <c>standard </c> 
+        /// </para>
+        /// </summary>
+        public string StorageType
+        {
+            get { return this._storageType; }
+            set { this._storageType = value; }
+        }
+
+        // Check to see if StorageType property is set
+        internal bool IsSetStorageType()
+        {
+            return this._storageType != null;
         }
 
         /// <summary>

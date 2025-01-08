@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
-    /// Request is missing a required parameter. This error occurs if both <code>definition</code>
-    /// and <code>roleArn</code> are not specified.
+    /// Request is missing a required parameter. This error occurs if both <c>definition</c>
+    /// and <c>roleArn</c> are not specified.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

@@ -26,27 +26,28 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateCluster operation.
-    /// Creates an Amazon EKS control plane. 
+    /// Creates an Amazon EKS control plane.
     /// 
     ///  
     /// <para>
     /// The Amazon EKS control plane consists of control plane instances that run the Kubernetes
-    /// software, such as <code>etcd</code> and the API server. The control plane runs in
-    /// an account managed by Amazon Web Services, and the Kubernetes API is exposed by the
-    /// Amazon EKS API server endpoint. Each Amazon EKS cluster control plane is single tenant
-    /// and unique. It runs on its own set of Amazon EC2 instances.
+    /// software, such as <c>etcd</c> and the API server. The control plane runs in an account
+    /// managed by Amazon Web Services, and the Kubernetes API is exposed by the Amazon EKS
+    /// API server endpoint. Each Amazon EKS cluster control plane is single tenant and unique.
+    /// It runs on its own set of Amazon EC2 instances.
     /// </para>
     ///  
     /// <para>
     /// The cluster control plane is provisioned across multiple Availability Zones and fronted
     /// by an Elastic Load Balancing Network Load Balancer. Amazon EKS also provisions elastic
     /// network interfaces in your VPC subnets to provide connectivity from the control plane
-    /// instances to the nodes (for example, to support <code>kubectl exec</code>, <code>logs</code>,
-    /// and <code>proxy</code> data flows).
+    /// instances to the nodes (for example, to support <c>kubectl exec</c>, <c>logs</c>,
+    /// and <c>proxy</c> data flows).
     /// </para>
     ///  
     /// <para>
@@ -56,31 +57,106 @@ namespace Amazon.EKS.Model
     /// </para>
     ///  
     /// <para>
+    /// You can use the <c>endpointPublicAccess</c> and <c>endpointPrivateAccess</c> parameters
+    /// to enable or disable public and private access to your cluster's Kubernetes API server
+    /// endpoint. By default, public access is enabled, and private access is disabled. For
+    /// more information, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html">Amazon
+    /// EKS Cluster Endpoint Access Control</a> in the <i> <i>Amazon EKS User Guide</i> </i>.
+    /// 
+    /// </para>
+    ///  
+    /// <para>
+    /// You can use the <c>logging</c> parameter to enable or disable exporting the Kubernetes
+    /// control plane logs for your cluster to CloudWatch Logs. By default, cluster control
+    /// plane logs aren't exported to CloudWatch Logs. For more information, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html">Amazon
+    /// EKS Cluster Control Plane Logs</a> in the <i> <i>Amazon EKS User Guide</i> </i>.
+    /// </para>
+    ///  <note> 
+    /// <para>
+    /// CloudWatch Logs ingestion, archive storage, and data scanning rates apply to exported
+    /// control plane logs. For more information, see <a href="http://aws.amazon.com/cloudwatch/pricing/">CloudWatch
+    /// Pricing</a>.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// In most cases, it takes several minutes to create a cluster. After you create an Amazon
     /// EKS cluster, you must configure your Kubernetes tooling to communicate with the API
-    /// server and launch nodes into your cluster. For more information, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/managing-auth.html">Managing
-    /// Cluster Authentication</a> and <a href="https://docs.aws.amazon.com/eks/latest/userguide/launch-workers.html">Launching
+    /// server and launch nodes into your cluster. For more information, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/cluster-auth.html">Allowing
+    /// users to access your cluster</a> and <a href="https://docs.aws.amazon.com/eks/latest/userguide/launch-workers.html">Launching
     /// Amazon EKS nodes</a> in the <i>Amazon EKS User Guide</i>.
     /// </para>
     /// </summary>
     public partial class CreateClusterRequest : AmazonEKSRequest
     {
+        private CreateAccessConfigRequest _accessConfig;
+        private bool? _bootstrapSelfManagedAddons;
         private string _clientRequestToken;
-        private List<EncryptionConfig> _encryptionConfig = new List<EncryptionConfig>();
+        private ComputeConfigRequest _computeConfig;
+        private List<EncryptionConfig> _encryptionConfig = AWSConfigs.InitializeCollections ? new List<EncryptionConfig>() : null;
         private KubernetesNetworkConfigRequest _kubernetesNetworkConfig;
         private Logging _logging;
         private string _name;
         private OutpostConfigRequest _outpostConfig;
+        private RemoteNetworkConfigRequest _remoteNetworkConfig;
         private VpcConfigRequest _resourcesVpcConfig;
         private string _roleArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private StorageConfigRequest _storageConfig;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private UpgradePolicyRequest _upgradePolicy;
         private string _version;
+        private ZonalShiftConfigRequest _zonalShiftConfig;
+
+        /// <summary>
+        /// Gets and sets the property AccessConfig. 
+        /// <para>
+        /// The access configuration for the cluster.
+        /// </para>
+        /// </summary>
+        public CreateAccessConfigRequest AccessConfig
+        {
+            get { return this._accessConfig; }
+            set { this._accessConfig = value; }
+        }
+
+        // Check to see if AccessConfig property is set
+        internal bool IsSetAccessConfig()
+        {
+            return this._accessConfig != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property BootstrapSelfManagedAddons. 
+        /// <para>
+        /// If you set this value to <c>False</c> when creating a cluster, the default networking
+        /// add-ons will not be installed.
+        /// </para>
+        ///  
+        /// <para>
+        /// The default networking addons include vpc-cni, coredns, and kube-proxy.
+        /// </para>
+        ///  
+        /// <para>
+        /// Use this option when you plan to install third-party alternative add-ons or self-manage
+        /// the default networking add-ons.
+        /// </para>
+        /// </summary>
+        public bool BootstrapSelfManagedAddons
+        {
+            get { return this._bootstrapSelfManagedAddons.GetValueOrDefault(); }
+            set { this._bootstrapSelfManagedAddons = value; }
+        }
+
+        // Check to see if BootstrapSelfManagedAddons property is set
+        internal bool IsSetBootstrapSelfManagedAddons()
+        {
+            return this._bootstrapSelfManagedAddons.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
-        /// Unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        /// request.
+        /// A unique, case-sensitive identifier that you provide to ensure the idempotency of
+        /// the request.
         /// </para>
         /// </summary>
         public string ClientRequestToken
@@ -93,6 +169,26 @@ namespace Amazon.EKS.Model
         internal bool IsSetClientRequestToken()
         {
             return this._clientRequestToken != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ComputeConfig. 
+        /// <para>
+        /// Enable or disable the compute capability of EKS Auto Mode when creating your EKS Auto
+        /// Mode cluster. If the compute capability is enabled, EKS Auto Mode will create and
+        /// delete EC2 Managed Instances in your Amazon Web Services account
+        /// </para>
+        /// </summary>
+        public ComputeConfigRequest ComputeConfig
+        {
+            get { return this._computeConfig; }
+            set { this._computeConfig = value; }
+        }
+
+        // Check to see if ComputeConfig property is set
+        internal bool IsSetComputeConfig()
+        {
+            return this._computeConfig != null;
         }
 
         /// <summary>
@@ -111,7 +207,7 @@ namespace Amazon.EKS.Model
         // Check to see if EncryptionConfig property is set
         internal bool IsSetEncryptionConfig()
         {
-            return this._encryptionConfig != null && this._encryptionConfig.Count > 0; 
+            return this._encryptionConfig != null && (this._encryptionConfig.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -163,7 +259,11 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The unique name to give to your cluster.
+        /// The unique name to give to your cluster. The name can contain only alphanumeric characters
+        /// (case-sensitive), hyphens, and underscores. It must start with an alphanumeric character
+        /// and can't be longer than 100 characters. The name must be unique within the Amazon
+        /// Web Services Region and Amazon Web Services account that you're creating the cluster
+        /// in.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]
@@ -199,6 +299,25 @@ namespace Amazon.EKS.Model
         internal bool IsSetOutpostConfig()
         {
             return this._outpostConfig != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RemoteNetworkConfig. 
+        /// <para>
+        /// The configuration in the cluster for EKS Hybrid Nodes. You can't change or update
+        /// this configuration after the cluster is created.
+        /// </para>
+        /// </summary>
+        public RemoteNetworkConfigRequest RemoteNetworkConfig
+        {
+            get { return this._remoteNetworkConfig; }
+            set { this._remoteNetworkConfig = value; }
+        }
+
+        // Check to see if RemoteNetworkConfig property is set
+        internal bool IsSetRemoteNetworkConfig()
+        {
+            return this._remoteNetworkConfig != null;
         }
 
         /// <summary>
@@ -249,10 +368,31 @@ namespace Amazon.EKS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property StorageConfig. 
+        /// <para>
+        /// Enable or disable the block storage capability of EKS Auto Mode when creating your
+        /// EKS Auto Mode cluster. If the block storage capability is enabled, EKS Auto Mode will
+        /// create and delete EBS volumes in your Amazon Web Services account.
+        /// </para>
+        /// </summary>
+        public StorageConfigRequest StorageConfig
+        {
+            get { return this._storageConfig; }
+            set { this._storageConfig = value; }
+        }
+
+        // Check to see if StorageConfig property is set
+        internal bool IsSetStorageConfig()
+        {
+            return this._storageConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// The metadata to apply to the cluster to assist with categorization and organization.
-        /// Each tag consists of a key and an optional value. You define both.
+        /// Metadata that assists with categorization and organization. Each tag consists of a
+        /// key and an optional value. You define both. Tags don't propagate to any other cluster
+        /// or Amazon Web Services resources.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -265,7 +405,26 @@ namespace Amazon.EKS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property UpgradePolicy. 
+        /// <para>
+        /// New clusters, by default, have extended support enabled. You can disable extended
+        /// support when creating a cluster by setting this value to <c>STANDARD</c>.
+        /// </para>
+        /// </summary>
+        public UpgradePolicyRequest UpgradePolicy
+        {
+            get { return this._upgradePolicy; }
+            set { this._upgradePolicy = value; }
+        }
+
+        // Check to see if UpgradePolicy property is set
+        internal bool IsSetUpgradePolicy()
+        {
+            return this._upgradePolicy != null;
         }
 
         /// <summary>
@@ -290,6 +449,44 @@ namespace Amazon.EKS.Model
         internal bool IsSetVersion()
         {
             return this._version != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ZonalShiftConfig. 
+        /// <para>
+        /// Enable or disable ARC zonal shift for the cluster. If zonal shift is enabled, Amazon
+        /// Web Services configures zonal autoshift for the cluster.
+        /// </para>
+        ///  
+        /// <para>
+        /// Zonal shift is a feature of Amazon Application Recovery Controller (ARC). ARC zonal
+        /// shift is designed to be a temporary measure that allows you to move traffic for a
+        /// resource away from an impaired AZ until the zonal shift expires or you cancel it.
+        /// You can extend the zonal shift if necessary.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can start a zonal shift for an EKS cluster, or you can allow Amazon Web Services
+        /// to do it for you by enabling <i>zonal autoshift</i>. This shift updates the flow of
+        /// east-to-west network traffic in your cluster to only consider network endpoints for
+        /// Pods running on worker nodes in healthy AZs. Additionally, any ALB or NLB handling
+        /// ingress traffic for applications in your EKS cluster will automatically route traffic
+        /// to targets in the healthy AZs. For more information about zonal shift in EKS, see
+        /// <a href="https://docs.aws.amazon.com/eks/latest/userguide/zone-shift.html">Learn about
+        /// Amazon Application Recovery Controller (ARC) Zonal Shift in Amazon EKS</a> in the
+        /// <i> <i>Amazon EKS User Guide</i> </i>.
+        /// </para>
+        /// </summary>
+        public ZonalShiftConfigRequest ZonalShiftConfig
+        {
+            get { return this._zonalShiftConfig; }
+            set { this._zonalShiftConfig = value; }
+        }
+
+        // Check to see if ZonalShiftConfig property is set
+        internal bool IsSetZonalShiftConfig()
+        {
+            return this._zonalShiftConfig != null;
         }
 
     }

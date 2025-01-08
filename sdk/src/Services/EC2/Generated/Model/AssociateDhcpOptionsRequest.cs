@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.EC2.Model
     ///  
     /// <para>
     /// For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html">DHCP
-    /// options sets</a> in the <i>Amazon VPC User Guide</i>.
+    /// option sets</a> in the <i>Amazon VPC User Guide</i>.
     /// </para>
     /// </summary>
     public partial class AssociateDhcpOptionsRequest : AmazonEC2Request
@@ -69,8 +70,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property DhcpOptionsId. 
         /// <para>
-        /// The ID of the DHCP options set, or <code>default</code> to associate no DHCP options
-        /// with the VPC.
+        /// The ID of the DHCP options set, or <c>default</c> to associate no DHCP options with
+        /// the VPC.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

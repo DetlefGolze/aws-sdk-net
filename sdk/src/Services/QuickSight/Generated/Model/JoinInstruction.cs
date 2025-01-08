@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property OnClause. 
         /// <para>
-        /// The join instructions provided in the <code>ON</code> clause of a join.
+        /// The join instructions provided in the <c>ON</c> clause of a join.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]

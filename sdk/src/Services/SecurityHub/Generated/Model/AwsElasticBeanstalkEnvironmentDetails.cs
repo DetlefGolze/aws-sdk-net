@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -41,9 +42,9 @@ namespace Amazon.SecurityHub.Model
         private string _endpointUrl;
         private string _environmentArn;
         private string _environmentId;
-        private List<AwsElasticBeanstalkEnvironmentEnvironmentLink> _environmentLinks = new List<AwsElasticBeanstalkEnvironmentEnvironmentLink>();
+        private List<AwsElasticBeanstalkEnvironmentEnvironmentLink> _environmentLinks = AWSConfigs.InitializeCollections ? new List<AwsElasticBeanstalkEnvironmentEnvironmentLink>() : null;
         private string _environmentName;
-        private List<AwsElasticBeanstalkEnvironmentOptionSetting> _optionSettings = new List<AwsElasticBeanstalkEnvironmentOptionSetting>();
+        private List<AwsElasticBeanstalkEnvironmentOptionSetting> _optionSettings = AWSConfigs.InitializeCollections ? new List<AwsElasticBeanstalkEnvironmentOptionSetting>() : null;
         private string _platformArn;
         private string _solutionStackName;
         private string _status;
@@ -210,7 +211,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if EnvironmentLinks property is set
         internal bool IsSetEnvironmentLinks()
         {
-            return this._environmentLinks != null && this._environmentLinks.Count > 0; 
+            return this._environmentLinks != null && (this._environmentLinks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -246,7 +247,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if OptionSettings property is set
         internal bool IsSetOptionSettings()
         {
-            return this._optionSettings != null && this._optionSettings.Count > 0; 
+            return this._optionSettings != null && (this._optionSettings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -292,35 +293,35 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Aborting</code> 
+        ///  <c>Aborting</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Launching</code> 
+        ///  <c>Launching</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LinkingFrom</code> 
+        ///  <c>LinkingFrom</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LinkingTo</code> 
+        ///  <c>LinkingTo</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Ready</code> 
+        ///  <c>Ready</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Terminated</code> 
+        ///  <c>Terminated</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Terminating</code> 
+        ///  <c>Terminating</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Updating</code> 
+        ///  <c>Updating</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

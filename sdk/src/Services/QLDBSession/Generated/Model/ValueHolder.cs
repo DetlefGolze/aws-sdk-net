@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QLDBSession.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.QLDBSession.Model
         /// <summary>
         /// Gets and sets the property IonBinary. 
         /// <para>
-        /// An Amazon Ion binary value contained in a <code>ValueHolder</code> structure.
+        /// An Amazon Ion binary value contained in a <c>ValueHolder</c> structure.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=131072)]
@@ -58,7 +59,7 @@ namespace Amazon.QLDBSession.Model
         /// <summary>
         /// Gets and sets the property IonText. 
         /// <para>
-        /// An Amazon Ion plaintext value contained in a <code>ValueHolder</code> structure.
+        /// An Amazon Ion plaintext value contained in a <c>ValueHolder</c> structure.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1048576)]

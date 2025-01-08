@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
@@ -34,13 +35,33 @@ namespace Amazon.Batch.Model
     /// </summary>
     public partial class EksAttemptContainerDetail
     {
+        private string _containerid;
         private int? _exitCode;
+        private string _name;
         private string _reason;
+
+        /// <summary>
+        /// Gets and sets the property ContainerID. 
+        /// <para>
+        /// The ID for the container.
+        /// </para>
+        /// </summary>
+        public string ContainerID
+        {
+            get { return this._containerid; }
+            set { this._containerid = value; }
+        }
+
+        // Check to see if ContainerID property is set
+        internal bool IsSetContainerID()
+        {
+            return this._containerid != null;
+        }
 
         /// <summary>
         /// Gets and sets the property ExitCode. 
         /// <para>
-        /// The exit code for the job attempt. A non-zero exit code is considered failed.
+        /// The exit code returned for the job attempt. A non-zero exit code is considered failed.
         /// </para>
         /// </summary>
         public int ExitCode
@@ -53,6 +74,24 @@ namespace Amazon.Batch.Model
         internal bool IsSetExitCode()
         {
             return this._exitCode.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Name. 
+        /// <para>
+        /// The name of a container.
+        /// </para>
+        /// </summary>
+        public string Name
+        {
+            get { return this._name; }
+            set { this._name = value; }
+        }
+
+        // Check to see if Name property is set
+        internal bool IsSetName()
+        {
+            return this._name != null;
         }
 
         /// <summary>

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ARCZonalShift.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,10 +64,28 @@ namespace Amazon.ARCZonalShift.Model.Internal.MarshallTransformations
                     response.Arn = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("autoshifts", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<AutoshiftInResource, AutoshiftInResourceUnmarshaller>(AutoshiftInResourceUnmarshaller.Instance);
+                    response.Autoshifts = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("name", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.Name = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("practiceRunConfiguration", targetDepth))
+                {
+                    var unmarshaller = PracticeRunConfigurationUnmarshaller.Instance;
+                    response.PracticeRunConfiguration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("zonalAutoshiftStatus", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.ZonalAutoshiftStatus = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("zonalShifts", targetDepth))

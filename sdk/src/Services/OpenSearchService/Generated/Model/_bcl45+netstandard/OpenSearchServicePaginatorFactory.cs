@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -97,6 +98,22 @@ namespace Amazon.OpenSearchService.Model
         public IGetUpgradeHistoryPaginator GetUpgradeHistory(GetUpgradeHistoryRequest request) 
         {
             return new GetUpgradeHistoryPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListApplications operation
+        ///</summary>
+        public IListApplicationsPaginator ListApplications(ListApplicationsRequest request) 
+        {
+            return new ListApplicationsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListDomainMaintenances operation
+        ///</summary>
+        public IListDomainMaintenancesPaginator ListDomainMaintenances(ListDomainMaintenancesRequest request) 
+        {
+            return new ListDomainMaintenancesPaginator(this.client, request);
         }
 
         /// <summary>

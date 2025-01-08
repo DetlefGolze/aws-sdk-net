@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.Route53.Model
         /// <summary>
         /// Gets and sets the property ChangeInfo. 
         /// <para>
-        /// A complex type that contains information about the <code>CreateHostedZone</code> request.
+        /// A complex type that contains information about the <c>CreateHostedZone</c> request.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -131,7 +132,7 @@ namespace Amazon.Route53.Model
         // Check to see if Location property is set
         internal bool IsSetLocation()
         {
-            return this._location != null;
+            return !string.IsNullOrEmpty(this._location);
         }
 
     }

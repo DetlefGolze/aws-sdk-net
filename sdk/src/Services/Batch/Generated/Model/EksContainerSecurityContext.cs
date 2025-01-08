@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace Amazon.Batch.Model
     /// </summary>
     public partial class EksContainerSecurityContext
     {
+        private bool? _allowPrivilegeEscalation;
         private bool? _privileged;
         private bool? _readOnlyRootFilesystem;
         private long? _runAsGroup;
@@ -41,12 +43,31 @@ namespace Amazon.Batch.Model
         private long? _runAsUser;
 
         /// <summary>
+        /// Gets and sets the property AllowPrivilegeEscalation. 
+        /// <para>
+        /// Whether or not a container or a Kubernetes pod is allowed to gain more privileges
+        /// than its parent process. The default value is <c>false</c>.
+        /// </para>
+        /// </summary>
+        public bool AllowPrivilegeEscalation
+        {
+            get { return this._allowPrivilegeEscalation.GetValueOrDefault(); }
+            set { this._allowPrivilegeEscalation = value; }
+        }
+
+        // Check to see if AllowPrivilegeEscalation property is set
+        internal bool IsSetAllowPrivilegeEscalation()
+        {
+            return this._allowPrivilegeEscalation.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property Privileged. 
         /// <para>
-        /// When this parameter is <code>true</code>, the container is given elevated permissions
-        /// on the host container instance. The level of permissions are similar to the <code>root</code>
-        /// user permissions. The default value is <code>false</code>. This parameter maps to
-        /// <code>privileged</code> policy in the <a href="https://kubernetes.io/docs/concepts/security/pod-security-policy/#privileged">Privileged
+        /// When this parameter is <c>true</c>, the container is given elevated permissions on
+        /// the host container instance. The level of permissions are similar to the <c>root</c>
+        /// user permissions. The default value is <c>false</c>. This parameter maps to <c>privileged</c>
+        /// policy in the <a href="https://kubernetes.io/docs/concepts/security/pod-security-policy/#privileged">Privileged
         /// pod security policies</a> in the <i>Kubernetes documentation</i>.
         /// </para>
         /// </summary>
@@ -65,9 +86,9 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property ReadOnlyRootFilesystem. 
         /// <para>
-        /// When this parameter is <code>true</code>, the container is given read-only access
-        /// to its root file system. The default value is <code>false</code>. This parameter maps
-        /// to <code>ReadOnlyRootFilesystem</code> policy in the <a href="https://kubernetes.io/docs/concepts/security/pod-security-policy/#volumes-and-file-systems">Volumes
+        /// When this parameter is <c>true</c>, the container is given read-only access to its
+        /// root file system. The default value is <c>false</c>. This parameter maps to <c>ReadOnlyRootFilesystem</c>
+        /// policy in the <a href="https://kubernetes.io/docs/concepts/security/pod-security-policy/#volumes-and-file-systems">Volumes
         /// and file systems pod security policies</a> in the <i>Kubernetes documentation</i>.
         /// </para>
         /// </summary>
@@ -86,10 +107,10 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property RunAsGroup. 
         /// <para>
-        /// When this parameter is specified, the container is run as the specified group ID (<code>gid</code>).
+        /// When this parameter is specified, the container is run as the specified group ID (<c>gid</c>).
         /// If this parameter isn't specified, the default is the group that's specified in the
-        /// image metadata. This parameter maps to <code>RunAsGroup</code> and <code>MustRunAs</code>
-        /// policy in the <a href="https://kubernetes.io/docs/concepts/security/pod-security-policy/#users-and-groups">Users
+        /// image metadata. This parameter maps to <c>RunAsGroup</c> and <c>MustRunAs</c> policy
+        /// in the <a href="https://kubernetes.io/docs/concepts/security/pod-security-policy/#users-and-groups">Users
         /// and groups pod security policies</a> in the <i>Kubernetes documentation</i>.
         /// </para>
         /// </summary>
@@ -108,10 +129,9 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property RunAsNonRoot. 
         /// <para>
-        /// When this parameter is specified, the container is run as a user with a <code>uid</code>
+        /// When this parameter is specified, the container is run as a user with a <c>uid</c>
         /// other than 0. If this parameter isn't specified, so such rule is enforced. This parameter
-        /// maps to <code>RunAsUser</code> and <code>MustRunAsNonRoot</code> policy in the <a
-        /// href="https://kubernetes.io/docs/concepts/security/pod-security-policy/#users-and-groups">Users
+        /// maps to <c>RunAsUser</c> and <c>MustRunAsNonRoot</c> policy in the <a href="https://kubernetes.io/docs/concepts/security/pod-security-policy/#users-and-groups">Users
         /// and groups pod security policies</a> in the <i>Kubernetes documentation</i>.
         /// </para>
         /// </summary>
@@ -130,10 +150,10 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property RunAsUser. 
         /// <para>
-        /// When this parameter is specified, the container is run as the specified user ID (<code>uid</code>).
+        /// When this parameter is specified, the container is run as the specified user ID (<c>uid</c>).
         /// If this parameter isn't specified, the default is the user that's specified in the
-        /// image metadata. This parameter maps to <code>RunAsUser</code> and <code>MustRanAs</code>
-        /// policy in the <a href="https://kubernetes.io/docs/concepts/security/pod-security-policy/#users-and-groups">Users
+        /// image metadata. This parameter maps to <c>RunAsUser</c> and <c>MustRanAs</c> policy
+        /// in the <a href="https://kubernetes.io/docs/concepts/security/pod-security-policy/#users-and-groups">Users
         /// and groups pod security policies</a> in the <i>Kubernetes documentation</i>.
         /// </para>
         /// </summary>

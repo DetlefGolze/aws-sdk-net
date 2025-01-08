@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property BlueprintRun. 
         /// <para>
-        /// Returns a <code>BlueprintRun</code> object.
+        /// Returns a <c>BlueprintRun</c> object.
         /// </para>
         /// </summary>
         public BlueprintRun BlueprintRun

@@ -29,6 +29,7 @@ using Amazon.Runtime.Internal.Util;
 using System.ComponentModel.Design;
 using Amazon.Runtime.CredentialManagement;
 using Amazon.Runtime.Internal.Settings;
+using Amazon.Runtime.Telemetry;
 
 #if NETSTANDARD
 using System.Runtime.InteropServices;
@@ -65,6 +66,7 @@ namespace Amazon.Runtime
         private string authRegion = null;
         private string authServiceName = null;
         private string signatureVersion = "4";
+        private string clientAppId = null;
         private SigningAlgorithm signatureMethod = SigningAlgorithm.HmacSHA256;
         private bool readEntireResponse = false;
         private bool logResponse = false;
@@ -92,11 +94,34 @@ namespace Amazon.Runtime
         private const long DefaultMinCompressionSizeBytes = 10240;
         private bool didProcessServiceURL = false;
         private IAWSTokenProvider _awsTokenProvider = new DefaultAWSTokenProviderChain();
+        private TelemetryProvider telemetryProvider = AWSConfigs.TelemetryProvider;
+        private AccountIdEndpointMode? accountIdEndpointMode = null;
 
         private CredentialProfileStoreChain credentialProfileStoreChain;
 #if BCL
         private readonly TcpKeepAlive tcpKeepAlive = new TcpKeepAlive();
 #endif
+
+        /// <summary>
+        /// Controls whether the resolved endpoint will include the account id. This allows for direct routing of traffic
+        /// to the cell responsible for a given account, which avoids the additional latency of extra backend hops and reduces
+        /// complexity in the routing layer.
+        /// </summary>
+        public AccountIdEndpointMode AccountIdEndpointMode
+        {
+            get
+            {
+                if (!accountIdEndpointMode.HasValue)
+                {
+                    return FallbackInternalConfigurationFactory.AccountIdEndpointMode ?? AccountIdEndpointMode.PREFERRED;
+                }
+                return accountIdEndpointMode.Value;
+            }
+            set
+            {
+                this.accountIdEndpointMode = value;
+            }
+        }
         /// <summary>
         /// Specifies the profile to be used. When this is set on the ClientConfig and that config is passed to 
         /// the service client constructor the sdk will try to find the credentials associated with the Profile.Name property
@@ -125,6 +150,39 @@ namespace Amazon.Runtime
             {
                 credentialProfileStoreChain = value;
             }
+        }
+
+#if BCL
+        private static WebProxy GetWebProxyWithCredentials(string value)
+#else
+        private static Amazon.Runtime.Internal.Util.WebProxy GetWebProxyWithCredentials(string value)
+#endif
+        {
+            if (!string.IsNullOrEmpty(value))
+            {
+#if BCL
+                if (!value.Contains("://"))
+                {
+                    value = "http://" + value;
+                }
+                var asUri = new Uri(value);
+
+                var parsedProxy = new WebProxy(asUri);
+#else
+                var asUri = new Uri(value);
+                var parsedProxy = new Amazon.Runtime.Internal.Util.WebProxy(asUri);
+#endif
+                if (!string.IsNullOrEmpty(asUri.UserInfo)) {
+                    var userAndPass = asUri.UserInfo.Split(':');
+                    parsedProxy.Credentials = new NetworkCredential(
+                        userAndPass[0],
+                        userAndPass.Length > 1 ? userAndPass[1] : string.Empty
+                    );
+                }
+                return parsedProxy;
+            }
+
+            return null;
         }
 
         /// <inheritdoc />
@@ -226,7 +284,9 @@ namespace Amazon.Runtime
                     this.regionEndpoint =
                         RegionEndpoint.GetBySystemName(
                             value.SystemName.Replace("fips-", "").Replace("-fips", ""));
+#pragma warning disable CS0612,CS0618
                     this.RegionEndpoint.OriginalSystemName = value.SystemName;
+#pragma warning restore CS0612,CS0618
                 }
             }
         }
@@ -264,13 +324,11 @@ namespace Amazon.Runtime
 
                     if (Environment.GetEnvironmentVariable(serviceSpecificTransformedEnvironmentVariable) != null)
                     {
-                        didProcessServiceURL = true;
                         Logger.GetLogger(GetType()).InfoFormat($"ServiceURL configured from service specific environment variable: {serviceSpecificTransformedEnvironmentVariable}.");
                         this.ServiceURL = Environment.GetEnvironmentVariable(serviceSpecificTransformedEnvironmentVariable);                    
                     }
                     else if (Environment.GetEnvironmentVariable(EnvironmentVariables.GLOBAL_ENDPOINT_ENVIRONMENT_VARIABLE) != null)
                     {
-                        didProcessServiceURL = true;
                         this.ServiceURL = Environment.GetEnvironmentVariable(EnvironmentVariables.GLOBAL_ENDPOINT_ENVIRONMENT_VARIABLE);
                         Logger.GetLogger(GetType()).InfoFormat($"ServiceURL configured from global environment variable: {EnvironmentVariables.GLOBAL_ENDPOINT_ENVIRONMENT_VARIABLE}.");
                     }
@@ -295,7 +353,6 @@ namespace Amazon.Runtime
                                 {
                                     Logger.GetLogger(GetType()).InfoFormat($"ServiceURL configured from service specific endpoint url in " +
                                     $"profile {profile.Name} from key {transformedConfigServiceId}.");
-                                    didProcessServiceURL = true;
                                     this.ServiceURL = endpointUrlValue;
                                 }
 
@@ -304,12 +361,12 @@ namespace Amazon.Runtime
                             {
                                 Logger.GetLogger(GetType()).InfoFormat($"ServiceURL configured from global endpoint url" +
                                     $"in profile {profile.Name} from key {SettingsConstants.EndpointUrl}.");
-                                didProcessServiceURL = true;
                                 this.ServiceURL = profile.EndpointUrl;
                             }
                         }
 
                     }
+                    didProcessServiceURL = true;
                 }
                 return this.serviceURL;
 
@@ -390,11 +447,12 @@ namespace Amazon.Runtime
 
         internal static string GetUrl(IClientConfig config, RegionEndpoint regionEndpoint)
         {
+#pragma warning disable CS0612,CS0618
             var endpoint = 
                 regionEndpoint.GetEndpointForService(
                     config.RegionEndpointServiceName, 
                     config.ToGetEndpointForServiceOptions());
-
+#pragma warning restore CS0612,CS0618
             string url = new Uri(string.Format(CultureInfo.InvariantCulture, "{0}{1}", config.UseHttp ? "http://" : "https://", endpoint.Hostname)).AbsoluteUri;
             return url;
         }
@@ -650,6 +708,34 @@ namespace Amazon.Runtime
         }
 
 #if BCL
+        public WebProxy GetHttpProxy()
+#else
+        public IWebProxy GetHttpProxy()
+#endif
+        {
+            var explicitProxy = GetWebProxy();
+            if (explicitProxy != null)
+            {
+                return explicitProxy;
+            }
+            return GetWebProxyWithCredentials(Environment.GetEnvironmentVariable("http_proxy"));
+        }
+
+#if BCL
+        public WebProxy GetHttpsProxy()
+#else
+        public IWebProxy GetHttpsProxy()
+#endif
+        {
+            var explicitProxy = GetWebProxy();
+            if (explicitProxy != null)
+            {
+                return explicitProxy;
+            }
+            return GetWebProxyWithCredentials(Environment.GetEnvironmentVariable("https_proxy"));
+        }
+
+#if BCL
         /// <summary>
         /// Specifies the TCP keep-alive values to use for service requests.
         /// </summary>
@@ -699,18 +785,18 @@ namespace Amazon.Runtime
         protected virtual void Initialize()
         {
         }
-        
-#if BCL35
+
         /// <summary>
+        /// .NET Framework 3.5
+        /// ------------------
         /// Overrides the default request timeout value.
         /// This field does not impact Begin*/End* calls. A manual timeout must be implemented.
-        /// </summary>
-#elif BCL45
-        /// <summary>
+        /// 
+        /// .NET Framework 4.5
+        /// ------------------
         /// Overrides the default request timeout value.
         /// This field does not impact *Async calls. A manual timeout (for instance, using CancellationToken) must be implemented.
         /// </summary>
-#endif
         /// <remarks>
         /// <para>
         /// If the value is set, the value is assigned to the Timeout property of the HttpWebRequest/HttpClient object used
@@ -748,8 +834,6 @@ namespace Amazon.Runtime
         /// <summary>
         /// Generates a <see cref="CancellationToken"/> based on the value
         /// for <see cref="DefaultConfiguration.TimeToFirstByteTimeout"/>.
-        /// <para />
-        /// NOTE: <see cref="Amazon.Runtime.HttpWebRequestMessage.GetResponseAsync"/> uses 
         /// </summary>
         internal CancellationToken BuildDefaultCancellationToken()
         {
@@ -864,6 +948,43 @@ namespace Amazon.Runtime
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// ClientAppId is an optional application specific identifier that can be set. When set it will be appended to the User-Agent header of every request in the form of <c>app/{ClientAppId}</c>. 
+        /// </para>
+        /// <para>
+        /// If the ClientAppId is not set on the object the SDK will search the environment variable <c>AWS_SDK_UA_APP_ID</c> and the shared config profile attribute <c>sdk_ua_app_id</c> for a potential value for the ClientAppId.
+        /// </para>
+        /// </summary>
+        /// <remarks>
+        /// See <see href="https://docs.aws.amazon.com/sdkref/latest/guide/settings-reference.html"/> for more information on environment variables and shared config settings.
+        /// </remarks>
+        public string ClientAppId
+        {
+            get
+            {
+                if (this.clientAppId == null)
+                {
+                    return FallbackInternalConfigurationFactory.ClientAppId;
+                }
+
+                return this.clientAppId;
+            }
+            set 
+            {
+                ValidateClientAppId(value);
+                this.clientAppId = value;
+            }
+        }
+
+        private static void ValidateClientAppId(string clientAppId)
+        {
+            if (clientAppId != null && clientAppId.Length > EnvironmentVariableInternalConfiguration.AWS_SDK_UA_APP_ID_MAX_LENGTH)
+            {
+                Logger.GetLogger(typeof(InternalConfiguration)).InfoFormat("Warning: Client app id exceeds recommended maximum length of {0} characters: \"{1}\"", EnvironmentVariableInternalConfiguration.AWS_SDK_UA_APP_ID_MAX_LENGTH, clientAppId);
+            }
+        }
+
         private static void ValidateMinCompression(long minCompressionSize)
         {
             if (minCompressionSize < 0 || minCompressionSize > UpperLimitCompressionSizeBytes)
@@ -939,7 +1060,7 @@ namespace Amazon.Runtime
         /// and the SDK has determined that there is a difference between local
         /// and server times.
         /// 
-        /// If <seealso cref="CorrectForClockSkew"/> is set to true, this
+        /// If <seealso cref="AWSConfigs.CorrectForClockSkew"/> is set to true, this
         /// value will still be set to the correction, but it will not be used by the
         /// SDK and clock skew errors will not be retried.
         /// </summary>
@@ -953,7 +1074,9 @@ namespace Amazon.Runtime
                 }
                 else
                 {
+#pragma warning disable CS0612,CS0618
                     string endpoint = DetermineServiceURL();
+#pragma warning restore CS0612,CS0618
                     return CorrectClockSkew.GetClockCorrectionForEndpoint(endpoint);
                 }
             }
@@ -1090,7 +1213,7 @@ namespace Amazon.Runtime
         /// If CacheHttpClient is set to true then HttpClientCacheSize controls the number of HttpClients cached.
         /// <para>
         /// The default value is 1 which is suitable for Windows and for all other platforms that have HttpClient
-        /// implementations using <see cref="System.Net.Http.SocketsHttpHandler"/> (.NET Core 2.1 and higher).
+        /// implementations using System.Net.Http.SocketsHttpHandler (.NET Core 2.1 and higher).
         /// </para>
         /// </summary>
         public int HttpClientCacheSize
@@ -1146,5 +1269,20 @@ namespace Amazon.Runtime
         /// but can be changed to use custom user supplied EndpointProvider.
         /// </summary>
         public IEndpointProvider EndpointProvider { get; set; }
+
+        /// <summary>
+        /// Gets or sets the <see cref="TelemetryProvider"/> instance for this client configuration.
+        /// <para>
+        /// This telemetry provider is used to collect and report telemetry data 
+        /// (such as traces and metrics) for operations performed by this specific client.
+        /// If this property is not explicitly set, it will default to the global 
+        /// <see cref="AWSConfigs.TelemetryProvider"/>.
+        /// </para>
+        /// </summary>
+        public TelemetryProvider TelemetryProvider
+        {
+            get { return this.telemetryProvider; }
+            set { this.telemetryProvider = value; }
+        }
     }
 }

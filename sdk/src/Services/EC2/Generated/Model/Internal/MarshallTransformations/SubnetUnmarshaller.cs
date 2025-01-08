@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -78,6 +79,12 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                         unmarshalledObject.AvailableIpAddressCount = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("blockPublicAccessStates", targetDepth))
+                    {
+                        var unmarshaller = BlockPublicAccessStatesUnmarshaller.Instance;
+                        unmarshalledObject.BlockPublicAccessStates = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("cidrBlock", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
@@ -111,6 +118,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                     if (context.TestExpression("ipv6CidrBlockAssociationSet/item", targetDepth))
                     {
                         var unmarshaller = SubnetIpv6CidrBlockAssociationUnmarshaller.Instance;
+                        if (unmarshalledObject.Ipv6CidrBlockAssociationSet == null)
+                        {
+                            unmarshalledObject.Ipv6CidrBlockAssociationSet = new List<SubnetIpv6CidrBlockAssociation>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.Ipv6CidrBlockAssociationSet.Add(item);
                         continue;
@@ -172,6 +183,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                     if (context.TestExpression("tagSet/item", targetDepth))
                     {
                         var unmarshaller = TagUnmarshaller.Instance;
+                        if (unmarshalledObject.Tags == null)
+                        {
+                            unmarshalledObject.Tags = new List<Tag>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.Tags.Add(item);
                         continue;

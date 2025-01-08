@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ApplicationInsights.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -55,6 +56,12 @@ namespace Amazon.ApplicationInsights.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = ProblemUnmarshaller.Instance;
                     response.Problem = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("SNSNotificationArn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.SNSNotificationArn = unmarshaller.Unmarshall(context);
                     continue;
                 }
             }

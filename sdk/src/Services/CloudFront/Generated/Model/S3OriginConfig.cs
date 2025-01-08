@@ -26,19 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
     /// A complex type that contains information about the Amazon S3 origin. If the origin
     /// is a custom origin or an S3 bucket that is configured as a website endpoint, use the
-    /// <code>CustomOriginConfig</code> element instead.
+    /// <c>CustomOriginConfig</c> element instead.
     /// </summary>
     public partial class S3OriginConfig
     {
         private string _originAccessIdentity;
 
         /// <summary>
-        /// Gets and sets the property OriginAccessIdentity. 
+        /// Gets and sets the property OriginAccessIdentity. <note> 
+        /// <para>
+        /// If you're using origin access control (OAC) instead of origin access identity, specify
+        /// an empty <c>OriginAccessIdentity</c> element. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-origin.html">Restricting
+        /// access to an Amazon Web Services</a> in the <i>Amazon CloudFront Developer Guide</i>.
+        /// </para>
+        ///  </note> 
         /// <para>
         /// The CloudFront origin access identity to associate with the origin. Use an origin
         /// access identity to configure the origin so that viewers can <i>only</i> access objects
@@ -46,22 +53,22 @@ namespace Amazon.CloudFront.Model
         /// </para>
         ///  
         /// <para>
-        /// origin-access-identity/cloudfront/<i>ID-of-origin-access-identity</i> 
+        ///  <c>origin-access-identity/cloudfront/ID-of-origin-access-identity</c> 
         /// </para>
         ///  
         /// <para>
-        /// where <code> <i>ID-of-origin-access-identity</i> </code> is the value that CloudFront
-        /// returned in the <code>ID</code> element when you created the origin access identity.
+        /// The <c> <i>ID-of-origin-access-identity</i> </c> is the value that CloudFront returned
+        /// in the <c>ID</c> element when you created the origin access identity.
         /// </para>
         ///  
         /// <para>
         /// If you want viewers to be able to access objects using either the CloudFront URL or
-        /// the Amazon S3 URL, specify an empty <code>OriginAccessIdentity</code> element.
+        /// the Amazon S3 URL, specify an empty <c>OriginAccessIdentity</c> element.
         /// </para>
         ///  
         /// <para>
         /// To delete the origin access identity from an existing distribution, update the distribution
-        /// configuration and include an empty <code>OriginAccessIdentity</code> element.
+        /// configuration and include an empty <c>OriginAccessIdentity</c> element.
         /// </para>
         ///  
         /// <para>

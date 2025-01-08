@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property FailureReason. 
         /// <para>
-        /// if the overall status is <code>Failed</code>, the reason for the failure.
+        /// if the overall status is <c>Failed</c>, the reason for the failure.
         /// </para>
         /// </summary>
         public string FailureReason

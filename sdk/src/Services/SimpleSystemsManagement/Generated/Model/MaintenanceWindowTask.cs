@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -42,9 +43,9 @@ namespace Amazon.SimpleSystemsManagement.Model
         private string _name;
         private int? _priority;
         private string _serviceRoleArn;
-        private List<Target> _targets = new List<Target>();
+        private List<Target> _targets = AWSConfigs.InitializeCollections ? new List<Target>() : null;
         private string _taskArn;
-        private Dictionary<string, MaintenanceWindowTaskParameterValueExpression> _taskParameters = new Dictionary<string, MaintenanceWindowTaskParameterValueExpression>();
+        private Dictionary<string, MaintenanceWindowTaskParameterValueExpression> _taskParameters = AWSConfigs.InitializeCollections ? new Dictionary<string, MaintenanceWindowTaskParameterValueExpression>() : null;
         private MaintenanceWindowTaskType _type;
         private string _windowId;
         private string _windowTaskId;
@@ -112,11 +113,11 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>LoggingInfo</code> has been deprecated. To specify an Amazon Simple Storage
-        /// Service (Amazon S3) bucket to contain logs, instead use the <code>OutputS3BucketName</code>
-        /// and <code>OutputS3KeyPrefix</code> options in the <code>TaskInvocationParameters</code>
-        /// structure. For information about how Amazon Web Services Systems Manager handles these
-        /// options for the supported maintenance window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.
+        ///  <c>LoggingInfo</c> has been deprecated. To specify an Amazon Simple Storage Service
+        /// (Amazon S3) bucket to contain logs, instead use the <c>OutputS3BucketName</c> and
+        /// <c>OutputS3KeyPrefix</c> options in the <c>TaskInvocationParameters</c> structure.
+        /// For information about how Amazon Web Services Systems Manager handles these options
+        /// for the supported maintenance window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -146,8 +147,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         ///  
         /// <para>
         /// For maintenance window tasks without a target specified, you can't supply a value
-        /// for this option. Instead, the system inserts a placeholder value of <code>1</code>.
-        /// This value doesn't affect the running of your task.
+        /// for this option. Instead, the system inserts a placeholder value of <c>1</c>. This
+        /// value doesn't affect the running of your task.
         /// </para>
         ///  </note>
         /// </summary>
@@ -178,8 +179,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         ///  
         /// <para>
         /// For maintenance window tasks without a target specified, you can't supply a value
-        /// for this option. Instead, the system inserts a placeholder value of <code>1</code>.
-        /// This value doesn't affect the running of your task.
+        /// for this option. Instead, the system inserts a placeholder value of <c>1</c>. This
+        /// value doesn't affect the running of your task.
         /// </para>
         ///  </note>
         /// </summary>
@@ -238,9 +239,20 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property ServiceRoleArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) service
-        /// role to use to publish Amazon Simple Notification Service (Amazon SNS) notifications
-        /// for maintenance window Run Command tasks.
+        /// The Amazon Resource Name (ARN) of the IAM service role for Amazon Web Services Systems
+        /// Manager to assume when running a maintenance window task. If you do not specify a
+        /// service role ARN, Systems Manager uses a service-linked role in your account. If no
+        /// appropriate service-linked role for Systems Manager exists in your account, it is
+        /// created when you run <c>RegisterTaskWithMaintenanceWindow</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// However, for an improved security posture, we strongly recommend creating a custom
+        /// policy and custom service role for running your maintenance window tasks. The policy
+        /// can be crafted to provide only the permissions needed for your particular maintenance
+        /// window tasks. For more information, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-maintenance-permissions.html">Setting
+        /// up Maintenance Windows</a> in the in the <i>Amazon Web Services Systems Manager User
+        /// Guide</i>.
         /// </para>
         /// </summary>
         public string ServiceRoleArn
@@ -258,8 +270,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property Targets. 
         /// <para>
-        /// The targets (either managed nodes or tags). Managed nodes are specified using <code>Key=instanceids,Values=&lt;instanceid1&gt;,&lt;instanceid2&gt;</code>.
-        /// Tags are specified using <code>Key=&lt;tag name&gt;,Values=&lt;tag value&gt;</code>.
+        /// The targets (either managed nodes or tags). Managed nodes are specified using <c>Key=instanceids,Values=&lt;instanceid1&gt;,&lt;instanceid2&gt;</c>.
+        /// Tags are specified using <c>Key=&lt;tag name&gt;,Values=&lt;tag value&gt;</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=5)]
@@ -272,17 +284,16 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TaskArn. 
         /// <para>
-        /// The resource that the task uses during execution. For <code>RUN_COMMAND</code> and
-        /// <code>AUTOMATION</code> task types, <code>TaskArn</code> is the Amazon Web Services
-        /// Systems Manager (SSM document) name or ARN. For <code>LAMBDA</code> tasks, it's the
-        /// function name or ARN. For <code>STEP_FUNCTIONS</code> tasks, it's the state machine
-        /// ARN.
+        /// The resource that the task uses during execution. For <c>RUN_COMMAND</c> and <c>AUTOMATION</c>
+        /// task types, <c>TaskArn</c> is the Amazon Web Services Systems Manager (SSM document)
+        /// name or ARN. For <c>LAMBDA</c> tasks, it's the function name or ARN. For <c>STEP_FUNCTIONS</c>
+        /// tasks, it's the state machine ARN.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1600)]
@@ -305,8 +316,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>TaskParameters</code> has been deprecated. To specify parameters to pass to
-        /// a task when it runs, instead use the <code>Parameters</code> option in the <code>TaskInvocationParameters</code>
+        ///  <c>TaskParameters</c> has been deprecated. To specify parameters to pass to a task
+        /// when it runs, instead use the <c>Parameters</c> option in the <c>TaskInvocationParameters</c>
         /// structure. For information about how Systems Manager handles these options for the
         /// supported maintenance window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.
         /// </para>
@@ -322,7 +333,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if TaskParameters property is set
         internal bool IsSetTaskParameters()
         {
-            return this._taskParameters != null && this._taskParameters.Count > 0; 
+            return this._taskParameters != null && (this._taskParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

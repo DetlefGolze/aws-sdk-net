@@ -26,14 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the RegisterImage operation.
-    /// Registers an AMI. When you're creating an AMI, this is the final step you must complete
-    /// before you can launch an instance from the AMI. For more information about creating
-    /// AMIs, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami.html">Create
-    /// your own AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+    /// Registers an AMI. When you're creating an instance-store backed AMI, registering the
+    /// AMI is the final step in the creation process. For more information about creating
+    /// AMIs, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html#creating-launching-ami-from-snapshot">Create
+    /// an AMI from a snapshot</a> and <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-instance-store.html">Create
+    /// an instance-store backed AMI</a> in the <i>Amazon EC2 User Guide</i>.
     /// 
     ///  <note> 
     /// <para>
@@ -53,18 +55,17 @@ namespace Amazon.EC2.Model
     /// </para>
     ///  
     /// <para>
-    /// You can use <code>RegisterImage</code> to create an Amazon EBS-backed Linux AMI from
-    /// a snapshot of a root device volume. You specify the snapshot using a block device
-    /// mapping. You can't set the encryption state of the volume using the block device mapping.
-    /// If the snapshot is encrypted, or encryption by default is enabled, the root volume
-    /// of an instance launched from the AMI is encrypted.
+    /// You can use <c>RegisterImage</c> to create an Amazon EBS-backed Linux AMI from a snapshot
+    /// of a root device volume. You specify the snapshot using a block device mapping. You
+    /// can't set the encryption state of the volume using the block device mapping. If the
+    /// snapshot is encrypted, or encryption by default is enabled, the root volume of an
+    /// instance launched from the AMI is encrypted.
     /// </para>
     ///  
     /// <para>
     /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html#creating-launching-ami-from-snapshot">Create
-    /// a Linux AMI from a snapshot</a> and <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html">Use
-    /// encryption with Amazon EBS-backed AMIs</a> in the <i>Amazon Elastic Compute Cloud
-    /// User Guide</i>.
+    /// an AMI from a snapshot</a> and <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html">Use
+    /// encryption with Amazon EBS-backed AMIs</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     ///  
     /// <para>
@@ -77,25 +78,19 @@ namespace Amazon.EC2.Model
     /// </para>
     ///  
     /// <para>
-    /// Windows and some Linux distributions, such as Red Hat Enterprise Linux (RHEL) and
-    /// SUSE Linux Enterprise Server (SLES), use the Amazon EC2 billing product code associated
-    /// with an AMI to verify the subscription status for package updates. To create a new
-    /// AMI for operating systems that require a billing product code, instead of registering
-    /// the AMI, do the following to preserve the billing product code association:
+    /// In most cases, AMIs for Windows, RedHat, SUSE, and SQL Server require correct licensing
+    /// information to be present on the AMI. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-billing-info.html">Understand
+    /// AMI billing information</a> in the <i>Amazon EC2 User Guide</i>. When creating an
+    /// AMI from a snapshot, the <c>RegisterImage</c> operation derives the correct billing
+    /// information from the snapshot's metadata, but this requires the appropriate metadata
+    /// to be present. To verify if the correct billing information was applied, check the
+    /// <c>PlatformDetails</c> field on the new AMI. If the field is empty or doesn't match
+    /// the expected operating system code (for example, Windows, RedHat, SUSE, or SQL), the
+    /// AMI creation was unsuccessful, and you should discard the AMI and instead create the
+    /// AMI from an instance using <a>CreateImage</a>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html#how-to-create-ebs-ami">Create
+    /// an AMI from an instance </a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
-    ///  <ol> <li> 
-    /// <para>
-    /// Launch an instance from an existing AMI with that billing product code.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Customize the instance.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Create an AMI from the instance using <a>CreateImage</a>.
-    /// </para>
-    ///  </li> </ol> 
+    ///  
     /// <para>
     /// If you purchase a Reserved Instance to apply to an On-Demand Instance that was launched
     /// from an AMI with a billing product code, make sure that the Reserved Instance has
@@ -109,8 +104,8 @@ namespace Amazon.EC2.Model
     public partial class RegisterImageRequest : AmazonEC2Request
     {
         private ArchitectureValues _architecture;
-        private List<string> _billingProducts = new List<string>();
-        private List<BlockDeviceMapping> _blockDeviceMappings = new List<BlockDeviceMapping>();
+        private List<string> _billingProducts = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<BlockDeviceMapping> _blockDeviceMappings = AWSConfigs.InitializeCollections ? new List<BlockDeviceMapping>() : null;
         private BootModeValues _bootMode;
         private string _description;
         private bool? _enaSupport;
@@ -121,6 +116,7 @@ namespace Amazon.EC2.Model
         private string _ramdiskId;
         private string _rootDeviceName;
         private string _sriovNetSupport;
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
         private TpmSupportValues _tpmSupport;
         private string _uefiData;
         private string _virtualizationType;
@@ -133,7 +129,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Instantiates RegisterImageRequest with the parameterized properties
         /// </summary>
-        /// <param name="imageLocation">The full path to your AMI manifest in Amazon S3 storage. The specified bucket must have the <code>aws-exec-read</code> canned access control list (ACL) to ensure that it can be accessed by Amazon EC2. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl">Canned ACLs</a> in the <i>Amazon S3 Service Developer Guide</i>.</param>
+        /// <param name="imageLocation">The full path to your AMI manifest in Amazon S3 storage. The specified bucket must have the <c>aws-exec-read</c> canned access control list (ACL) to ensure that it can be accessed by Amazon EC2. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl">Canned ACLs</a> in the <i>Amazon S3 Service Developer Guide</i>.</param>
         public RegisterImageRequest(string imageLocation)
         {
             _imageLocation = imageLocation;
@@ -146,8 +142,8 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: For Amazon EBS-backed AMIs, <code>i386</code>. For instance store-backed
-        /// AMIs, the architecture specified in the manifest file.
+        /// Default: For Amazon EBS-backed AMIs, <c>i386</c>. For instance store-backed AMIs,
+        /// the architecture specified in the manifest file.
         /// </para>
         /// </summary>
         public ArchitectureValues Architecture
@@ -187,7 +183,7 @@ namespace Amazon.EC2.Model
         // Check to see if BillingProducts property is set
         internal bool IsSetBillingProducts()
         {
-            return this._billingProducts != null && this._billingProducts.Count > 0; 
+            return this._billingProducts != null && (this._billingProducts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -205,8 +201,8 @@ namespace Amazon.EC2.Model
         /// If you create an AMI on an Outpost, then all backing snapshots must be on the same
         /// Outpost or in the Region of that Outpost. AMIs on an Outpost that include local snapshots
         /// can be used to launch instances on the same Outpost only. For more information, <a
-        /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html#ami">Amazon
-        /// EBS local snapshots on Outposts</a> in the <i>Amazon EC2 User Guide</i>.
+        /// href="https://docs.aws.amazon.com/ebs/latest/userguide/snapshots-outposts.html#ami">Amazon
+        /// EBS local snapshots on Outposts</a> in the <i>Amazon EBS User Guide</i>.
         /// </para>
         /// </summary>
         public List<BlockDeviceMapping> BlockDeviceMappings
@@ -218,14 +214,14 @@ namespace Amazon.EC2.Model
         // Check to see if BlockDeviceMappings property is set
         internal bool IsSetBlockDeviceMappings()
         {
-            return this._blockDeviceMappings != null && this._blockDeviceMappings.Count > 0; 
+            return this._blockDeviceMappings != null && (this._blockDeviceMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property BootMode. 
         /// <para>
-        /// The boot mode of the AMI. A value of <code>uefi-preferred</code> indicates that the
-        /// AMI supports both UEFI and Legacy BIOS.
+        /// The boot mode of the AMI. A value of <c>uefi-preferred</c> indicates that the AMI
+        /// supports both UEFI and Legacy BIOS.
         /// </para>
         ///  <note> 
         /// <para>
@@ -271,8 +267,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property EnaSupport. 
         /// <para>
-        /// Set to <code>true</code> to enable enhanced networking with ENA for the AMI and any
-        /// instances that you launch from the AMI.
+        /// Set to <c>true</c> to enable enhanced networking with ENA for the AMI and any instances
+        /// that you launch from the AMI.
         /// </para>
         ///  
         /// <para>
@@ -296,8 +292,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property ImageLocation. 
         /// <para>
         /// The full path to your AMI manifest in Amazon S3 storage. The specified bucket must
-        /// have the <code>aws-exec-read</code> canned access control list (ACL) to ensure that
-        /// it can be accessed by Amazon EC2. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl">Canned
+        /// have the <c>aws-exec-read</c> canned access control list (ACL) to ensure that it can
+        /// be accessed by Amazon EC2. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl">Canned
         /// ACLs</a> in the <i>Amazon S3 Service Developer Guide</i>.
         /// </para>
         /// </summary>
@@ -316,16 +312,16 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property ImdsSupport. 
         /// <para>
-        /// Set to <code>v2.0</code> to indicate that IMDSv2 is specified in the AMI. Instances
-        /// launched from this AMI will have <code>HttpTokens</code> automatically set to <code>required</code>
-        /// so that, by default, the instance requires that IMDSv2 is used when requesting instance
-        /// metadata. In addition, <code>HttpPutResponseHopLimit</code> is set to <code>2</code>.
-        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html#configure-IMDS-new-instances-ami-configuration">Configure
+        /// Set to <c>v2.0</c> to indicate that IMDSv2 is specified in the AMI. Instances launched
+        /// from this AMI will have <c>HttpTokens</c> automatically set to <c>required</c> so
+        /// that, by default, the instance requires that IMDSv2 is used when requesting instance
+        /// metadata. In addition, <c>HttpPutResponseHopLimit</c> is set to <c>2</c>. For more
+        /// information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html#configure-IMDS-new-instances-ami-configuration">Configure
         /// the AMI</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you set the value to <code>v2.0</code>, make sure that your AMI software can support
+        /// If you set the value to <c>v2.0</c>, make sure that your AMI software can support
         /// IMDSv2.
         /// </para>
         ///  </note>
@@ -406,7 +402,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property RootDeviceName. 
         /// <para>
-        /// The device name of the root device volume (for example, <code>/dev/sda1</code>).
+        /// The device name of the root device volume (for example, <c>/dev/sda1</c>).
         /// </para>
         /// </summary>
         public string RootDeviceName
@@ -424,12 +420,12 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property SriovNetSupport. 
         /// <para>
-        /// Set to <code>simple</code> to enable enhanced networking with the Intel 82599 Virtual
-        /// Function interface for the AMI and any instances that you launch from the AMI.
+        /// Set to <c>simple</c> to enable enhanced networking with the Intel 82599 Virtual Function
+        /// interface for the AMI and any instances that you launch from the AMI.
         /// </para>
         ///  
         /// <para>
-        /// There is no way to disable <code>sriovNetSupport</code> at this time.
+        /// There is no way to disable <c>sriovNetSupport</c> at this time.
         /// </para>
         ///  
         /// <para>
@@ -450,10 +446,37 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property TagSpecifications. 
+        /// <para>
+        /// The tags to apply to the AMI.
+        /// </para>
+        ///  
+        /// <para>
+        /// To tag the AMI, the value for <c>ResourceType</c> must be <c>image</c>. If you specify
+        /// another value for <c>ResourceType</c>, the request fails.
+        /// </para>
+        ///  
+        /// <para>
+        /// To tag an AMI after it has been registered, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html">CreateTags</a>.
+        /// </para>
+        /// </summary>
+        public List<TagSpecification> TagSpecifications
+        {
+            get { return this._tagSpecifications; }
+            set { this._tagSpecifications = value; }
+        }
+
+        // Check to see if TagSpecifications property is set
+        internal bool IsSetTagSpecifications()
+        {
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property TpmSupport. 
         /// <para>
-        /// Set to <code>v2.0</code> to enable Trusted Platform Module (TPM) support. For more
-        /// information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitrotpm.html">NitroTPM</a>
+        /// Set to <c>v2.0</c> to enable Trusted Platform Module (TPM) support. For more information,
+        /// see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitrotpm.html">NitroTPM</a>
         /// in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         /// </summary>
@@ -495,11 +518,11 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property VirtualizationType. 
         /// <para>
-        /// The type of virtualization (<code>hvm</code> | <code>paravirtual</code>).
+        /// The type of virtualization (<c>hvm</c> | <c>paravirtual</c>).
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>paravirtual</code> 
+        /// Default: <c>paravirtual</c> 
         /// </para>
         /// </summary>
         public string VirtualizationType

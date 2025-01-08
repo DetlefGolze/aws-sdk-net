@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LookoutEquipment.Model
 {
     /// <summary>
@@ -33,16 +34,23 @@ namespace Amazon.LookoutEquipment.Model
     /// </summary>
     public partial class ListInferenceExecutionsResponse : AmazonWebServiceResponse
     {
-        private List<InferenceExecutionSummary> _inferenceExecutionSummaries = new List<InferenceExecutionSummary>();
+        private List<InferenceExecutionSummary> _inferenceExecutionSummaries = AWSConfigs.InitializeCollections ? new List<InferenceExecutionSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property InferenceExecutionSummaries. 
         /// <para>
         /// Provides an array of information about the individual inference executions returned
-        /// from the <code>ListInferenceExecutions</code> operation, including model used, inference
+        /// from the <c>ListInferenceExecutions</c> operation, including model used, inference
         /// scheduler, data configuration, and so on. 
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// If you don't supply the <c>InferenceSchedulerName</c> request parameter, or if you
+        /// supply the name of an inference scheduler that doesn't exist, <c>ListInferenceExecutions</c>
+        /// returns an empty array in <c>InferenceExecutionSummaries</c>.
+        /// </para>
+        ///  </note>
         /// </summary>
         public List<InferenceExecutionSummary> InferenceExecutionSummaries
         {
@@ -53,7 +61,7 @@ namespace Amazon.LookoutEquipment.Model
         // Check to see if InferenceExecutionSummaries property is set
         internal bool IsSetInferenceExecutionSummaries()
         {
-            return this._inferenceExecutionSummaries != null && this._inferenceExecutionSummaries.Count > 0; 
+            return this._inferenceExecutionSummaries != null && (this._inferenceExecutionSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

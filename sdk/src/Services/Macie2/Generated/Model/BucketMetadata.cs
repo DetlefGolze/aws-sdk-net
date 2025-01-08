@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
@@ -37,17 +38,18 @@ namespace Amazon.Macie2.Model
     /// 
     ///  
     /// <para>
-    /// If an error occurs when Macie attempts to retrieve and process metadata from Amazon
+    /// If an error or issue prevents Macie from retrieving and processing metadata from Amazon
     /// S3 for the bucket or the bucket's objects, the value for the versioning property is
-    /// false and the value for most other properties is null. Key exceptions are accountId,
-    /// bucketArn, bucketCreatedAt, bucketName, lastUpdated, and region. To identify the cause
-    /// of the error, refer to the errorCode and errorMessage values.
+    /// false and the value for most other properties is null or UNKNOWN. Key exceptions are
+    /// accountId, bucketArn, bucketCreatedAt, bucketName, lastUpdated, and region. To identify
+    /// the cause, refer to the errorCode and errorMessage values.
     /// </para>
     /// </summary>
     public partial class BucketMetadata
     {
         private string _accountId;
         private AllowsUnencryptedObjectUploads _allowsUnencryptedObjectUploads;
+        private AutomatedDiscoveryMonitoringStatus _automatedDiscoveryMonitoringStatus;
         private string _bucketArn;
         private DateTime? _bucketCreatedAt;
         private string _bucketName;
@@ -68,7 +70,7 @@ namespace Amazon.Macie2.Model
         private SharedAccess _sharedAccess;
         private long? _sizeInBytes;
         private long? _sizeInBytesCompressed;
-        private List<KeyValuePair> _tags = new List<KeyValuePair>();
+        private List<KeyValuePair> _tags = AWSConfigs.InitializeCollections ? new List<KeyValuePair>() : null;
         private ObjectLevelStatistics _unclassifiableObjectCount;
         private ObjectLevelStatistics _unclassifiableObjectSizeInBytes;
         private bool? _versioning;
@@ -130,6 +132,27 @@ namespace Amazon.Macie2.Model
         internal bool IsSetAllowsUnencryptedObjectUploads()
         {
             return this._allowsUnencryptedObjectUploads != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property AutomatedDiscoveryMonitoringStatus. 
+        /// <para>
+        /// Specifies whether automated sensitive data discovery is currently configured to analyze
+        /// objects in the bucket. Possible values are: MONITORED, the bucket is included in analyses;
+        /// and, NOT_MONITORED, the bucket is excluded from analyses. If automated sensitive data
+        /// discovery is disabled for your account, this value is NOT_MONITORED.
+        /// </para>
+        /// </summary>
+        public AutomatedDiscoveryMonitoringStatus AutomatedDiscoveryMonitoringStatus
+        {
+            get { return this._automatedDiscoveryMonitoringStatus; }
+            set { this._automatedDiscoveryMonitoringStatus = value; }
+        }
+
+        // Check to see if AutomatedDiscoveryMonitoringStatus property is set
+        internal bool IsSetAutomatedDiscoveryMonitoringStatus()
+        {
+            return this._automatedDiscoveryMonitoringStatus != null;
         }
 
         /// <summary>
@@ -237,11 +260,22 @@ namespace Amazon.Macie2.Model
         /// <summary>
         /// Gets and sets the property ErrorCode. 
         /// <para>
-        /// The error code for an error that prevented Amazon Macie from retrieving and processing
-        /// information about the bucket and the bucket's objects. If this value is ACCESS_DENIED,
-        /// Macie doesn't have permission to retrieve the information. For example, the bucket
-        /// has a restrictive bucket policy and Amazon S3 denied the request. If this value is
-        /// null, Macie was able to retrieve and process the information.
+        /// The code for an error or issue that prevented Amazon Macie from retrieving and processing
+        /// information about the bucket and the bucket's objects. Possible values are:
+        /// </para>
+        ///  <ul><li>
+        /// <para>
+        /// ACCESS_DENIED - Macie doesn't have permission to retrieve the information. For example,
+        /// the bucket has a restrictive bucket policy and Amazon S3 denied the request.
+        /// </para>
+        /// </li> <li>
+        /// <para>
+        /// BUCKET_COUNT_EXCEEDS_QUOTA - Retrieving and processing the information would exceed
+        /// the quota for the number of buckets that Macie monitors for an account (10,000).
+        /// </para>
+        /// </li></ul> 
+        /// <para>
+        /// If this value is null, Macie was able to retrieve and process the information.
         /// </para>
         /// </summary>
         public BucketMetadataErrorCode ErrorCode
@@ -259,9 +293,9 @@ namespace Amazon.Macie2.Model
         /// <summary>
         /// Gets and sets the property ErrorMessage. 
         /// <para>
-        /// A brief description of the error (errorCode) that prevented Amazon Macie from retrieving
-        /// and processing information about the bucket and the bucket's objects. This value is
-        /// null if Macie was able to retrieve and process the information.
+        /// A brief description of the error or issue (errorCode) that prevented Amazon Macie
+        /// from retrieving and processing information about the bucket and the bucket's objects.
+        /// This value is null if Macie was able to retrieve and process the information.
         /// </para>
         /// </summary>
         public string ErrorMessage
@@ -280,7 +314,7 @@ namespace Amazon.Macie2.Model
         /// Gets and sets the property JobDetails. 
         /// <para>
         /// Specifies whether any one-time or recurring classification jobs are configured to
-        /// analyze data in the bucket, and, if so, the details of the job that ran most recently.
+        /// analyze objects in the bucket, and, if so, the details of the job that ran most recently.
         /// </para>
         /// </summary>
         public JobDetails JobDetails
@@ -299,9 +333,8 @@ namespace Amazon.Macie2.Model
         /// Gets and sets the property LastAutomatedDiscoveryTime. 
         /// <para>
         /// The date and time, in UTC and extended ISO 8601 format, when Amazon Macie most recently
-        /// analyzed data in the bucket while performing automated sensitive data discovery for
-        /// your account. This value is null if automated sensitive data discovery is currently
-        /// disabled for your account.
+        /// analyzed objects in the bucket while performing automated sensitive data discovery.
+        /// This value is null if this analysis hasn't occurred.
         /// </para>
         /// </summary>
         public DateTime LastAutomatedDiscoveryTime
@@ -433,8 +466,14 @@ namespace Amazon.Macie2.Model
         /// Gets and sets the property SensitivityScore. 
         /// <para>
         /// The sensitivity score for the bucket, ranging from -1 (classification error) to 100
-        /// (sensitive). This value is null if automated sensitive data discovery is currently
-        /// disabled for your account.
+        /// (sensitive).
+        /// </para>
+        /// 
+        /// <para>
+        /// If automated sensitive data discovery has never been enabled for your account or it's
+        /// been disabled for your organization or standalone account for more than 30 days, possible
+        /// values are: 1, the bucket is empty; or, 50, the bucket stores objects but it's been
+        /// excluded from recent analyses.
         /// </para>
         /// </summary>
         public int SensitivityScore
@@ -579,7 +618,7 @@ namespace Amazon.Macie2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaConvert.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.MediaConvert.Model
     /// </summary>
     public partial class Output
     {
-        private List<AudioDescription> _audioDescriptions = new List<AudioDescription>();
-        private List<CaptionDescription> _captionDescriptions = new List<CaptionDescription>();
+        private List<AudioDescription> _audioDescriptions = AWSConfigs.InitializeCollections ? new List<AudioDescription>() : null;
+        private List<CaptionDescription> _captionDescriptions = AWSConfigs.InitializeCollections ? new List<CaptionDescription>() : null;
         private ContainerSettings _containerSettings;
         private string _extension;
         private string _nameModifier;
@@ -57,7 +58,7 @@ namespace Amazon.MediaConvert.Model
         // Check to see if AudioDescriptions property is set
         internal bool IsSetAudioDescriptions()
         {
-            return this._audioDescriptions != null && this._audioDescriptions.Count > 0; 
+            return this._audioDescriptions != null && (this._audioDescriptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace Amazon.MediaConvert.Model
         // Check to see if CaptionDescriptions property is set
         internal bool IsSetCaptionDescriptions()
         {
-            return this._captionDescriptions != null && this._captionDescriptions.Count > 0; 
+            return this._captionDescriptions != null && (this._captionDescriptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -99,6 +100,7 @@ namespace Amazon.MediaConvert.Model
         /// * Quicktime, mov * MXF container, mxf * MPEG-4 container, mp4 * WebM container, webm
         /// * No Container, the service will use codec extensions (e.g. AAC, H265, H265, AC3)
         /// </summary>
+        [AWSProperty(Max=256)]
         public string Extension
         {
             get { return this._extension; }
@@ -119,7 +121,7 @@ namespace Amazon.MediaConvert.Model
         /// ISO outputs, if you use the format identifiers $Number$ or $Time$ in one output, you
         /// must use them in the same way in all outputs of the output group.
         /// </summary>
-        [AWSProperty(Min=1)]
+        [AWSProperty(Min=1, Max=256)]
         public string NameModifier
         {
             get { return this._nameModifier; }

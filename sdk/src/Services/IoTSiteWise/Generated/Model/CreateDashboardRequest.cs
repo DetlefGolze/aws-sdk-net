@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.IoTSiteWise.Model
         private string _dashboardDescription;
         private string _dashboardName;
         private string _projectId;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
@@ -64,9 +65,21 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property DashboardDefinition. 
         /// <para>
-        /// The dashboard definition specified in a JSON literal. For detailed information, see
-        /// <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-dashboards-using-aws-cli.html">Creating
-        /// dashboards (CLI)</a> in the <i>IoT SiteWise User Guide</i>.
+        /// The dashboard definition specified in a JSON literal.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// IoT SiteWise Monitor (Classic) see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-dashboards-using-aws-cli.html">Create
+        /// dashboards (CLI)</a> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// IoT SiteWise Monitor (AI-aware) see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-dashboards-ai-dashboard-cli.html">Create
+        /// dashboards (CLI)</a> 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// in the <i>IoT SiteWise User Guide</i> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=204800)]
@@ -157,7 +170,7 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

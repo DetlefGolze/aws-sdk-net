@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -38,14 +39,15 @@ namespace Amazon.SimpleSystemsManagement.Model
         private string _associationName;
         private string _associationVersion;
         private string _documentVersion;
+        private int? _duration;
         private string _instanceId;
         private DateTime? _lastExecutionDate;
         private string _name;
         private AssociationOverview _overview;
         private string _scheduleExpression;
         private int? _scheduleOffset;
-        private List<Dictionary<string, List<string>>> _targetMaps = new List<Dictionary<string, List<string>>>();
-        private List<Target> _targets = new List<Target>();
+        private List<Dictionary<string, List<string>>> _targetMaps = AWSConfigs.InitializeCollections ? new List<Dictionary<string, List<string>>>() : null;
+        private List<Target> _targets = AWSConfigs.InitializeCollections ? new List<Target>() : null;
 
         /// <summary>
         /// Gets and sets the property AssociationId. 
@@ -107,16 +109,16 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <para>
         /// The version of the document used in the association. If you change a document version
         /// for a State Manager association, Systems Manager immediately runs the association
-        /// unless you previously specifed the <code>apply-only-at-cron-interval</code> parameter.
+        /// unless you previously specifed the <c>apply-only-at-cron-interval</c> parameter.
         /// </para>
         ///  <important> 
         /// <para>
         /// State Manager doesn't support running associations that use a new version of a document
-        /// if that document is shared from another account. State Manager always runs the <code>default</code>
+        /// if that document is shared from another account. State Manager always runs the <c>default</c>
         /// version of a document if shared from another account, even though the Systems Manager
         /// console shows that a new version was processed. If you want to run an association
         /// using a new version of a document shared form another account, you must set the document
-        /// version to <code>default</code>.
+        /// version to <c>default</c>.
         /// </para>
         ///  </important>
         /// </summary>
@@ -130,6 +132,27 @@ namespace Amazon.SimpleSystemsManagement.Model
         internal bool IsSetDocumentVersion()
         {
             return this._documentVersion != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Duration. 
+        /// <para>
+        /// The number of hours that an association can run on specified targets. After the resulting
+        /// cutoff time passes, associations that are currently running are cancelled, and no
+        /// pending executions are started on remaining targets.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=24)]
+        public int Duration
+        {
+            get { return this._duration.GetValueOrDefault(); }
+            set { this._duration = value; }
+        }
+
+        // Check to see if Duration property is set
+        internal bool IsSetDuration()
+        {
+            return this._duration.HasValue; 
         }
 
         /// <summary>
@@ -260,15 +283,15 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if TargetMaps property is set
         internal bool IsSetTargetMaps()
         {
-            return this._targetMaps != null && this._targetMaps.Count > 0; 
+            return this._targetMaps != null && (this._targetMaps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Targets. 
         /// <para>
         /// The managed nodes targeted by the request to create an association. You can target
-        /// all managed nodes in an Amazon Web Services account by specifying the <code>InstanceIds</code>
-        /// key with a value of <code>*</code>.
+        /// all managed nodes in an Amazon Web Services account by specifying the <c>InstanceIds</c>
+        /// key with a value of <c>*</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=5)]
@@ -281,7 +304,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

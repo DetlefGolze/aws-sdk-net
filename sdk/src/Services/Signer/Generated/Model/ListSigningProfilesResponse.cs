@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Signer.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Signer.Model
     public partial class ListSigningProfilesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<SigningProfile> _profiles = new List<SigningProfile>();
+        private List<SigningProfile> _profiles = AWSConfigs.InitializeCollections ? new List<SigningProfile>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -58,8 +59,7 @@ namespace Amazon.Signer.Model
         /// Gets and sets the property Profiles. 
         /// <para>
         /// A list of profiles that are available in the AWS account. This includes profiles with
-        /// the status of <code>CANCELED</code> if the <code>includeCanceled</code> parameter
-        /// is set to <code>true</code>.
+        /// the status of <c>CANCELED</c> if the <c>includeCanceled</c> parameter is set to <c>true</c>.
         /// </para>
         /// </summary>
         public List<SigningProfile> Profiles
@@ -71,7 +71,7 @@ namespace Amazon.Signer.Model
         // Check to see if Profiles property is set
         internal bool IsSetProfiles()
         {
-            return this._profiles != null && this._profiles.Count > 0; 
+            return this._profiles != null && (this._profiles.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,14 +36,14 @@ namespace Amazon.EC2.Model
     {
         private string _frequency;
         private int? _interval;
-        private List<int> _occurrenceDaySet = new List<int>();
+        private List<int> _occurrenceDaySet = AWSConfigs.InitializeCollections ? new List<int>() : null;
         private bool? _occurrenceRelativeToEnd;
         private string _occurrenceUnit;
 
         /// <summary>
         /// Gets and sets the property Frequency. 
         /// <para>
-        /// The frequency (<code>Daily</code>, <code>Weekly</code>, or <code>Monthly</code>).
+        /// The frequency (<c>Daily</c>, <c>Weekly</c>, or <c>Monthly</c>).
         /// </para>
         /// </summary>
         public string Frequency
@@ -60,7 +61,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Interval. 
         /// <para>
-        /// The interval quantity. The interval unit depends on the value of <code>frequency</code>.
+        /// The interval quantity. The interval unit depends on the value of <c>frequency</c>.
         /// For example, every 2 weeks or every 2 months.
         /// </para>
         /// </summary>
@@ -92,7 +93,7 @@ namespace Amazon.EC2.Model
         // Check to see if OccurrenceDaySet property is set
         internal bool IsSetOccurrenceDaySet()
         {
-            return this._occurrenceDaySet != null && this._occurrenceDaySet.Count > 0; 
+            return this._occurrenceDaySet != null && (this._occurrenceDaySet.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -116,7 +117,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property OccurrenceUnit. 
         /// <para>
-        /// The unit for <code>occurrenceDaySet</code> (<code>DayOfWeek</code> or <code>DayOfMonth</code>).
+        /// The unit for <c>occurrenceDaySet</c> (<c>DayOfWeek</c> or <c>DayOfMonth</c>).
         /// </para>
         /// </summary>
         public string OccurrenceUnit

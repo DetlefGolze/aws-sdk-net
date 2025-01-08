@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
-    /// The input fails to satisfy the constraints specified by Entity Resolution. <code>HTTP
-    /// Status Code: 400</code>
+    /// The input fails to satisfy the constraints specified by Entity Resolution.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

@@ -26,18 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Athena.Model
 {
     /// <summary>
     /// Container for the parameters to the StopQueryExecution operation.
     /// Stops a query execution. Requires you to have access to the workgroup in which the
     /// query ran.
-    /// 
-    ///  
-    /// <para>
-    /// For code samples using the Amazon Web Services SDK for Java, see <a href="http://docs.aws.amazon.com/athena/latest/ug/code-samples.html">Examples
-    /// and Code Samples</a> in the <i>Amazon Athena User Guide</i>.
-    /// </para>
     /// </summary>
     public partial class StopQueryExecutionRequest : AmazonAthenaRequest
     {

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -43,9 +44,10 @@ namespace Amazon.ElasticMapReduce.Model
     /// </summary>
     public partial class InstanceFleet
     {
+        private string _context;
         private string _id;
         private InstanceFleetType _instanceFleetType;
-        private List<InstanceTypeSpecification> _instanceTypeSpecifications = new List<InstanceTypeSpecification>();
+        private List<InstanceTypeSpecification> _instanceTypeSpecifications = AWSConfigs.InitializeCollections ? new List<InstanceTypeSpecification>() : null;
         private InstanceFleetProvisioningSpecifications _launchSpecifications;
         private string _name;
         private int? _provisionedOnDemandCapacity;
@@ -54,6 +56,25 @@ namespace Amazon.ElasticMapReduce.Model
         private InstanceFleetStatus _status;
         private int? _targetOnDemandCapacity;
         private int? _targetSpotCapacity;
+
+        /// <summary>
+        /// Gets and sets the property Context. 
+        /// <para>
+        /// Reserved.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=256)]
+        public string Context
+        {
+            get { return this._context; }
+            set { this._context = value; }
+        }
+
+        // Check to see if Context property is set
+        internal bool IsSetContext()
+        {
+            return this._context != null;
+        }
 
         /// <summary>
         /// Gets and sets the property Id. 
@@ -107,7 +128,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if InstanceTypeSpecifications property is set
         internal bool IsSetInstanceTypeSpecifications()
         {
-            return this._instanceTypeSpecifications != null && this._instanceTypeSpecifications.Count > 0; 
+            return this._instanceTypeSpecifications != null && (this._instanceTypeSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -151,8 +172,8 @@ namespace Amazon.ElasticMapReduce.Model
         /// Gets and sets the property ProvisionedOnDemandCapacity. 
         /// <para>
         /// The number of On-Demand units that have been provisioned for the instance fleet to
-        /// fulfill <code>TargetOnDemandCapacity</code>. This provisioned capacity might be less
-        /// than or greater than <code>TargetOnDemandCapacity</code>.
+        /// fulfill <c>TargetOnDemandCapacity</c>. This provisioned capacity might be less than
+        /// or greater than <c>TargetOnDemandCapacity</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]
@@ -172,8 +193,8 @@ namespace Amazon.ElasticMapReduce.Model
         /// Gets and sets the property ProvisionedSpotCapacity. 
         /// <para>
         /// The number of Spot units that have been provisioned for this instance fleet to fulfill
-        /// <code>TargetSpotCapacity</code>. This provisioned capacity might be less than or greater
-        /// than <code>TargetSpotCapacity</code>.
+        /// <c>TargetSpotCapacity</c>. This provisioned capacity might be less than or greater
+        /// than <c>TargetSpotCapacity</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]
@@ -231,22 +252,22 @@ namespace Amazon.ElasticMapReduce.Model
         /// The target capacity of On-Demand units for the instance fleet, which determines how
         /// many On-Demand Instances to provision. When the instance fleet launches, Amazon EMR
         /// tries to provision On-Demand Instances as specified by <a>InstanceTypeConfig</a>.
-        /// Each instance configuration has a specified <code>WeightedCapacity</code>. When an
-        /// On-Demand Instance is provisioned, the <code>WeightedCapacity</code> units count toward
-        /// the target capacity. Amazon EMR provisions instances until the target capacity is
-        /// totally fulfilled, even if this results in an overage. For example, if there are 2
-        /// units remaining to fulfill capacity, and Amazon EMR can only provision an instance
-        /// with a <code>WeightedCapacity</code> of 5 units, the instance is provisioned, and
-        /// the target capacity is exceeded by 3 units. You can use <a>InstanceFleet$ProvisionedOnDemandCapacity</a>
-        /// to determine the Spot capacity units that have been provisioned for the instance fleet.
+        /// Each instance configuration has a specified <c>WeightedCapacity</c>. When an On-Demand
+        /// Instance is provisioned, the <c>WeightedCapacity</c> units count toward the target
+        /// capacity. Amazon EMR provisions instances until the target capacity is totally fulfilled,
+        /// even if this results in an overage. For example, if there are 2 units remaining to
+        /// fulfill capacity, and Amazon EMR can only provision an instance with a <c>WeightedCapacity</c>
+        /// of 5 units, the instance is provisioned, and the target capacity is exceeded by 3
+        /// units. You can use <a>InstanceFleet$ProvisionedOnDemandCapacity</a> to determine the
+        /// Spot capacity units that have been provisioned for the instance fleet.
         /// </para>
         ///  <note> 
         /// <para>
         /// If not specified or set to 0, only Spot Instances are provisioned for the instance
-        /// fleet using <code>TargetSpotCapacity</code>. At least one of <code>TargetSpotCapacity</code>
-        /// and <code>TargetOnDemandCapacity</code> should be greater than 0. For a master instance
-        /// fleet, only one of <code>TargetSpotCapacity</code> and <code>TargetOnDemandCapacity</code>
-        /// can be specified, and its value must be 1.
+        /// fleet using <c>TargetSpotCapacity</c>. At least one of <c>TargetSpotCapacity</c> and
+        /// <c>TargetOnDemandCapacity</c> should be greater than 0. For a master instance fleet,
+        /// only one of <c>TargetSpotCapacity</c> and <c>TargetOnDemandCapacity</c> can be specified,
+        /// and its value must be 1.
         /// </para>
         ///  </note>
         /// </summary>
@@ -269,21 +290,21 @@ namespace Amazon.ElasticMapReduce.Model
         /// The target capacity of Spot units for the instance fleet, which determines how many
         /// Spot Instances to provision. When the instance fleet launches, Amazon EMR tries to
         /// provision Spot Instances as specified by <a>InstanceTypeConfig</a>. Each instance
-        /// configuration has a specified <code>WeightedCapacity</code>. When a Spot instance
-        /// is provisioned, the <code>WeightedCapacity</code> units count toward the target capacity.
-        /// Amazon EMR provisions instances until the target capacity is totally fulfilled, even
-        /// if this results in an overage. For example, if there are 2 units remaining to fulfill
-        /// capacity, and Amazon EMR can only provision an instance with a <code>WeightedCapacity</code>
-        /// of 5 units, the instance is provisioned, and the target capacity is exceeded by 3
-        /// units. You can use <a>InstanceFleet$ProvisionedSpotCapacity</a> to determine the Spot
-        /// capacity units that have been provisioned for the instance fleet.
+        /// configuration has a specified <c>WeightedCapacity</c>. When a Spot instance is provisioned,
+        /// the <c>WeightedCapacity</c> units count toward the target capacity. Amazon EMR provisions
+        /// instances until the target capacity is totally fulfilled, even if this results in
+        /// an overage. For example, if there are 2 units remaining to fulfill capacity, and Amazon
+        /// EMR can only provision an instance with a <c>WeightedCapacity</c> of 5 units, the
+        /// instance is provisioned, and the target capacity is exceeded by 3 units. You can use
+        /// <a>InstanceFleet$ProvisionedSpotCapacity</a> to determine the Spot capacity units
+        /// that have been provisioned for the instance fleet.
         /// </para>
         ///  <note> 
         /// <para>
         /// If not specified or set to 0, only On-Demand Instances are provisioned for the instance
-        /// fleet. At least one of <code>TargetSpotCapacity</code> and <code>TargetOnDemandCapacity</code>
-        /// should be greater than 0. For a master instance fleet, only one of <code>TargetSpotCapacity</code>
-        /// and <code>TargetOnDemandCapacity</code> can be specified, and its value must be 1.
+        /// fleet. At least one of <c>TargetSpotCapacity</c> and <c>TargetOnDemandCapacity</c>
+        /// should be greater than 0. For a master instance fleet, only one of <c>TargetSpotCapacity</c>
+        /// and <c>TargetOnDemandCapacity</c> can be specified, and its value must be 1.
         /// </para>
         ///  </note>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalyticsV2.Model
 {
     /// <summary>
@@ -35,7 +36,8 @@ namespace Amazon.KinesisAnalyticsV2.Model
     {
         private string _applicationARN;
         private long? _applicationVersionId;
-        private List<CloudWatchLoggingOptionDescription> _cloudWatchLoggingOptionDescriptions = new List<CloudWatchLoggingOptionDescription>();
+        private List<CloudWatchLoggingOptionDescription> _cloudWatchLoggingOptionDescriptions = AWSConfigs.InitializeCollections ? new List<CloudWatchLoggingOptionDescription>() : null;
+        private string _operationId;
 
         /// <summary>
         /// Gets and sets the property ApplicationARN. 
@@ -59,7 +61,7 @@ namespace Amazon.KinesisAnalyticsV2.Model
         /// <summary>
         /// Gets and sets the property ApplicationVersionId. 
         /// <para>
-        /// The version ID of the application. Kinesis Data Analytics updates the <code>ApplicationVersionId</code>
+        /// The version ID of the application. Kinesis Data Analytics updates the <c>ApplicationVersionId</c>
         /// each time you change the CloudWatch logging options.
         /// </para>
         /// </summary>
@@ -91,7 +93,24 @@ namespace Amazon.KinesisAnalyticsV2.Model
         // Check to see if CloudWatchLoggingOptionDescriptions property is set
         internal bool IsSetCloudWatchLoggingOptionDescriptions()
         {
-            return this._cloudWatchLoggingOptionDescriptions != null && this._cloudWatchLoggingOptionDescriptions.Count > 0; 
+            return this._cloudWatchLoggingOptionDescriptions != null && (this._cloudWatchLoggingOptionDescriptions.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property OperationId. Operation ID for tracking DeleteApplicationCloudWatchLoggingOption
+        /// request
+        /// </summary>
+        [AWSProperty(Min=1, Max=64)]
+        public string OperationId
+        {
+            get { return this._operationId; }
+            set { this._operationId = value; }
+        }
+
+        // Check to see if OperationId property is set
+        internal bool IsSetOperationId()
+        {
+            return this._operationId != null;
         }
 
     }

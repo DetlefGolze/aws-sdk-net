@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Proton.Model
 {
     /// <summary>
@@ -37,12 +38,12 @@ namespace Amazon.Proton.Model
     public partial class CreateServiceTemplateVersionRequest : AmazonProtonRequest
     {
         private string _clientToken;
-        private List<CompatibleEnvironmentTemplateInput> _compatibleEnvironmentTemplates = new List<CompatibleEnvironmentTemplateInput>();
+        private List<CompatibleEnvironmentTemplateInput> _compatibleEnvironmentTemplates = AWSConfigs.InitializeCollections ? new List<CompatibleEnvironmentTemplateInput>() : null;
         private string _description;
         private string _majorVersion;
         private TemplateVersionSourceInput _source;
-        private List<string> _supportedComponentSources = new List<string>();
-        private List<Tag> _tags = new List<Tag>();
+        private List<string> _supportedComponentSources = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _templateName;
 
         /// <summary>
@@ -83,7 +84,7 @@ namespace Amazon.Proton.Model
         // Check to see if CompatibleEnvironmentTemplates property is set
         internal bool IsSetCompatibleEnvironmentTemplates()
         {
-            return this._compatibleEnvironmentTemplates != null && this._compatibleEnvironmentTemplates.Count > 0; 
+            return this._compatibleEnvironmentTemplates != null && (this._compatibleEnvironmentTemplates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -108,12 +109,12 @@ namespace Amazon.Proton.Model
         /// <summary>
         /// Gets and sets the property MajorVersion. 
         /// <para>
-        /// To create a new minor version of the service template, include a <code>major Version</code>.
+        /// To create a new minor version of the service template, include a <c>major Version</c>.
         /// </para>
         ///  
         /// <para>
-        /// To create a new major and minor version of the service template, <i>exclude</i> <code>major
-        /// Version</code>.
+        /// To create a new major and minor version of the service template, <i>exclude</i> <c>major
+        /// Version</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=20)]
@@ -170,7 +171,7 @@ namespace Amazon.Proton.Model
         // Check to see if SupportedComponentSources property is set
         internal bool IsSetSupportedComponentSources()
         {
-            return this._supportedComponentSources != null && this._supportedComponentSources.Count > 0; 
+            return this._supportedComponentSources != null && (this._supportedComponentSources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -195,7 +196,7 @@ namespace Amazon.Proton.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

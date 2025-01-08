@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.DataSync.Model
     /// </summary>
     public partial class DescribeLocationSmbResponse : AmazonWebServiceResponse
     {
-        private List<string> _agentArns = new List<string>();
+        private List<string> _agentArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _creationTime;
         private string _domain;
         private string _locationArn;
@@ -44,7 +45,7 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property AgentArns. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the source SMB file system location that is created.
+        /// The ARNs of the DataSync agents that can connect with your SMB file server.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4)]
@@ -57,7 +58,7 @@ namespace Amazon.DataSync.Model
         // Check to see if AgentArns property is set
         internal bool IsSetAgentArns()
         {
-            return this._agentArns != null && this._agentArns.Count > 0; 
+            return this._agentArns != null && (this._agentArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -81,7 +82,8 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property Domain. 
         /// <para>
-        /// The name of the Windows domain that the SMB server belongs to.
+        /// The name of the Microsoft Active Directory domain that the SMB file server belongs
+        /// to.
         /// </para>
         /// </summary>
         [AWSProperty(Max=253)]
@@ -100,7 +102,7 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property LocationArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the SMB location that was described.
+        /// The ARN of the SMB location.
         /// </para>
         /// </summary>
         [AWSProperty(Max=128)]
@@ -119,7 +121,7 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property LocationUri. 
         /// <para>
-        /// The URL of the source SMB location that was described.
+        /// The URI of the SMB location.
         /// </para>
         /// </summary>
         [AWSProperty(Max=4360)]
@@ -138,7 +140,7 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property MountOptions. 
         /// <para>
-        /// The mount options that are available for DataSync to use to access an SMB location.
+        /// The protocol that DataSync use to access your SMB file.
         /// </para>
         /// </summary>
         public SmbMountOptions MountOptions
@@ -156,8 +158,8 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property User. 
         /// <para>
-        /// The user who can mount the share, has the permissions to access files and folders
-        /// in the SMB share.
+        /// The user that can mount and access the files, folders, and file metadata in your SMB
+        /// file server.
         /// </para>
         /// </summary>
         [AWSProperty(Max=104)]

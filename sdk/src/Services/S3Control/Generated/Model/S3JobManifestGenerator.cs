@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -82,9 +83,8 @@ namespace Amazon.S3Control.Model
         /// <summary>
         /// Gets and sets the property Filter. 
         /// <para>
-        /// Specifies rules the S3JobManifestGenerator should use to use to decide whether an
-        /// object in the source bucket should or should not be included in the generated job
-        /// manifest.
+        /// Specifies rules the S3JobManifestGenerator should use to decide whether an object
+        /// in the source bucket should or should not be included in the generated job manifest.
         /// </para>
         /// </summary>
         public JobManifestGeneratorFilter Filter
@@ -102,7 +102,9 @@ namespace Amazon.S3Control.Model
         /// <summary>
         /// Gets and sets the property ManifestOutputLocation. 
         /// <para>
-        /// Specifies the location the generated manifest will be written to.
+        /// Specifies the location the generated manifest will be written to. Manifests can't
+        /// be written to directory buckets. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-overview.html">Directory
+        /// buckets</a>.
         /// </para>
         /// </summary>
         public S3ManifestOutputLocation ManifestOutputLocation
@@ -120,8 +122,14 @@ namespace Amazon.S3Control.Model
         /// <summary>
         /// Gets and sets the property SourceBucket. 
         /// <para>
-        /// The source bucket used by the ManifestGenerator.
+        /// The ARN of the source bucket used by the ManifestGenerator.
         /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <b>Directory buckets</b> - Directory buckets aren't supported as the source buckets
+        /// used by <c>S3JobManifestGenerator</c> to generate the job manifest.
+        /// </para>
+        ///  </note>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=128)]
         public string SourceBucket

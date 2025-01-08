@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QLDB.Model
 {
     /// <summary>
@@ -45,7 +46,7 @@ namespace Amazon.QLDB.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>True</code> 
+        /// Default: <c>True</c> 
         /// </para>
         ///  <important> 
         /// <para>

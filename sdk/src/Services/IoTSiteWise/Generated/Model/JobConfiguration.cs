@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property FileFormat. 
         /// <para>
-        /// The file format of the data in Amazon S3.
+        /// The file format of the data in S3.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

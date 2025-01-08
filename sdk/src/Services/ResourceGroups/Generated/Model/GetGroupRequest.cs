@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroups.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.ResourceGroups.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>resource-groups:GetGroup</code> 
+    ///  <c>resource-groups:GetGroup</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -54,7 +55,7 @@ namespace Amazon.ResourceGroups.Model
         /// <summary>
         /// Gets and sets the property Group. 
         /// <para>
-        /// The name or the ARN of the resource group to retrieve.
+        /// The name or the Amazon resource name (ARN) of the resource group to retrieve.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1600)]
@@ -73,7 +74,7 @@ namespace Amazon.ResourceGroups.Model
         /// <summary>
         /// Gets and sets the property GroupName. 
         /// <para>
-        /// Deprecated - don't use this parameter. Use <code>Group</code> instead.
+        /// Deprecated - don't use this parameter. Use <c>Group</c> instead.
         /// </para>
         /// </summary>
         [Obsolete("This field is deprecated, use Group instead.")]

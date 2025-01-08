@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Glue.Model
     public partial class SerDeInfo
     {
         private string _name;
-        private Dictionary<string, string> _parameters = new Dictionary<string, string>();
+        private Dictionary<string, string> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _serializationLibrary;
 
         /// <summary>
@@ -72,13 +73,13 @@ namespace Amazon.Glue.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SerializationLibrary. 
         /// <para>
-        /// Usually the class that implements the SerDe. An example is <code>org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe</code>.
+        /// Usually the class that implements the SerDe. An example is <c>org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]

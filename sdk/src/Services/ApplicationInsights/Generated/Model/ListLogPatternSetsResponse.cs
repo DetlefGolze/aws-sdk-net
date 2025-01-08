@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationInsights.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.ApplicationInsights.Model
     public partial class ListLogPatternSetsResponse : AmazonWebServiceResponse
     {
         private string _accountId;
-        private List<string> _logPatternSets = new List<string>();
+        private List<string> _logPatternSets = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
         private string _resourceGroupName;
 
         /// <summary>
         /// Gets and sets the property AccountId. 
         /// <para>
-        /// The AWS account ID for the resource group owner.
+        /// The Amazon Web Services account ID for the resource group owner.
         /// </para>
         /// </summary>
         [AWSProperty(Min=12, Max=12)]
@@ -72,14 +73,14 @@ namespace Amazon.ApplicationInsights.Model
         // Check to see if LogPatternSets property is set
         internal bool IsSetLogPatternSets()
         {
-            return this._logPatternSets != null && this._logPatternSets.Count > 0; 
+            return this._logPatternSets != null && (this._logPatternSets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token used to retrieve the next page of results. This value is <code>null</code>
-        /// when there are no more results to return. 
+        /// The token used to retrieve the next page of results. This value is <c>null</c> when
+        /// there are no more results to return. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

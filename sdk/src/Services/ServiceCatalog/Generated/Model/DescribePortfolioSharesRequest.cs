@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.ServiceCatalog.Model
     /// </para>
     ///  
     /// <para>
-    /// The <code>PortfolioId</code> and <code>Type</code> parameters are both required.
+    /// The <c>PortfolioId</c> and <c>Type</c> parameters are both required.
     /// </para>
     /// </summary>
     public partial class DescribePortfolioSharesRequest : AmazonServiceCatalogRequest
@@ -117,21 +118,20 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  
         /// <para>
-        /// 1. <code>ACCOUNT</code> - Represents an external account to account share.
+        /// 1. <c>ACCOUNT</c> - Represents an external account to account share.
         /// </para>
         ///  
         /// <para>
-        /// 2. <code>ORGANIZATION</code> - Represents a share to an organization. This share is
-        /// available to every account in the organization.
+        /// 2. <c>ORGANIZATION</c> - Represents a share to an organization. This share is available
+        /// to every account in the organization.
         /// </para>
         ///  
         /// <para>
-        /// 3. <code>ORGANIZATIONAL_UNIT</code> - Represents a share to an organizational unit.
+        /// 3. <c>ORGANIZATIONAL_UNIT</c> - Represents a share to an organizational unit.
         /// </para>
         ///  
         /// <para>
-        /// 4. <code>ORGANIZATION_MEMBER_ACCOUNT</code> - Represents a share to an account in
-        /// the organization.
+        /// 4. <c>ORGANIZATION_MEMBER_ACCOUNT</c> - Represents a share to an account in the organization.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

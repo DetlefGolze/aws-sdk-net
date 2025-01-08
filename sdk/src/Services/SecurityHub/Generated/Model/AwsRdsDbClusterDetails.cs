@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -35,24 +36,24 @@ namespace Amazon.SecurityHub.Model
     {
         private string _activityStreamStatus;
         private int? _allocatedStorage;
-        private List<AwsRdsDbClusterAssociatedRole> _associatedRoles = new List<AwsRdsDbClusterAssociatedRole>();
+        private List<AwsRdsDbClusterAssociatedRole> _associatedRoles = AWSConfigs.InitializeCollections ? new List<AwsRdsDbClusterAssociatedRole>() : null;
         private bool? _autoMinorVersionUpgrade;
-        private List<string> _availabilityZones = new List<string>();
+        private List<string> _availabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _backupRetentionPeriod;
         private string _clusterCreateTime;
         private bool? _copyTagsToSnapshot;
         private bool? _crossAccountClone;
-        private List<string> _customEndpoints = new List<string>();
+        private List<string> _customEndpoints = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _databaseName;
         private string _dbClusterIdentifier;
-        private List<AwsRdsDbClusterMember> _dbClusterMembers = new List<AwsRdsDbClusterMember>();
-        private List<AwsRdsDbClusterOptionGroupMembership> _dbClusterOptionGroupMemberships = new List<AwsRdsDbClusterOptionGroupMembership>();
+        private List<AwsRdsDbClusterMember> _dbClusterMembers = AWSConfigs.InitializeCollections ? new List<AwsRdsDbClusterMember>() : null;
+        private List<AwsRdsDbClusterOptionGroupMembership> _dbClusterOptionGroupMemberships = AWSConfigs.InitializeCollections ? new List<AwsRdsDbClusterOptionGroupMembership>() : null;
         private string _dbClusterParameterGroup;
         private string _dbClusterResourceId;
         private string _dbSubnetGroup;
         private bool? _deletionProtection;
-        private List<AwsRdsDbDomainMembership> _domainMemberships = new List<AwsRdsDbDomainMembership>();
-        private List<string> _enabledCloudWatchLogsExports = new List<string>();
+        private List<AwsRdsDbDomainMembership> _domainMemberships = AWSConfigs.InitializeCollections ? new List<AwsRdsDbDomainMembership>() : null;
+        private List<string> _enabledCloudWatchLogsExports = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _endpoint;
         private string _engine;
         private string _engineMode;
@@ -67,10 +68,10 @@ namespace Amazon.SecurityHub.Model
         private string _preferredBackupWindow;
         private string _preferredMaintenanceWindow;
         private string _readerEndpoint;
-        private List<string> _readReplicaIdentifiers = new List<string>();
+        private List<string> _readReplicaIdentifiers = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _status;
         private bool? _storageEncrypted;
-        private List<AwsRdsDbInstanceVpcSecurityGroup> _vpcSecurityGroups = new List<AwsRdsDbInstanceVpcSecurityGroup>();
+        private List<AwsRdsDbInstanceVpcSecurityGroup> _vpcSecurityGroups = AWSConfigs.InitializeCollections ? new List<AwsRdsDbInstanceVpcSecurityGroup>() : null;
 
         /// <summary>
         /// Gets and sets the property ActivityStreamStatus. 
@@ -79,19 +80,19 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>started</code> 
+        ///  <c>started</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>starting</code> 
+        ///  <c>starting</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>stopped</code> 
+        ///  <c>stopped</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>stopping</code> 
+        ///  <c>stopping</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -141,7 +142,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if AssociatedRoles property is set
         internal bool IsSetAssociatedRoles()
         {
-            return this._associatedRoles != null && this._associatedRoles.Count > 0; 
+            return this._associatedRoles != null && (this._associatedRoles.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -177,7 +178,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -205,9 +206,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string ClusterCreateTime
@@ -274,7 +274,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if CustomEndpoints property is set
         internal bool IsSetCustomEndpoints()
         {
-            return this._customEndpoints != null && this._customEndpoints.Count > 0; 
+            return this._customEndpoints != null && (this._customEndpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -329,7 +329,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if DbClusterMembers property is set
         internal bool IsSetDbClusterMembers()
         {
-            return this._dbClusterMembers != null && this._dbClusterMembers.Count > 0; 
+            return this._dbClusterMembers != null && (this._dbClusterMembers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -347,7 +347,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if DbClusterOptionGroupMemberships property is set
         internal bool IsSetDbClusterOptionGroupMemberships()
         {
-            return this._dbClusterOptionGroupMemberships != null && this._dbClusterOptionGroupMemberships.Count > 0; 
+            return this._dbClusterOptionGroupMemberships != null && (this._dbClusterOptionGroupMemberships.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -439,7 +439,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if DomainMemberships property is set
         internal bool IsSetDomainMemberships()
         {
-            return this._domainMemberships != null && this._domainMemberships.Count > 0; 
+            return this._domainMemberships != null && (this._domainMemberships.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -457,7 +457,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if EnabledCloudWatchLogsExports property is set
         internal bool IsSetEnabledCloudWatchLogsExports()
         {
-            return this._enabledCloudWatchLogsExports != null && this._enabledCloudWatchLogsExports.Count > 0; 
+            return this._enabledCloudWatchLogsExports != null && (this._enabledCloudWatchLogsExports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -485,15 +485,15 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>aurora</code> 
+        ///  <c>aurora</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>aurora-mysql</code> 
+        ///  <c>aurora-mysql</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>aurora-postgresql</code> 
+        ///  <c>aurora-postgresql</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -516,23 +516,23 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>global</code> 
+        ///  <c>global</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>multimaster</code> 
+        ///  <c>multimaster</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>parallelquery</code> 
+        ///  <c>parallelquery</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>provisioned</code> 
+        ///  <c>provisioned</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>serverless</code> 
+        ///  <c>serverless</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -701,7 +701,7 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the format <code>HH:MM-HH:MM</code>. For example, <code>04:52-05:22</code>.
+        /// Uses the format <c>HH:MM-HH:MM</c>. For example, <c>04:52-05:22</c>.
         /// </para>
         /// </summary>
         public string PreferredBackupWindow
@@ -724,15 +724,15 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the format <code>&lt;day&gt;:HH:MM-&lt;day&gt;:HH:MM</code>.
+        /// Uses the format <c>&lt;day&gt;:HH:MM-&lt;day&gt;:HH:MM</c>.
         /// </para>
         ///  
         /// <para>
-        /// For the day values, use <code>mon</code>|<code>tue</code>|<code>wed</code>|<code>thu</code>|<code>fri</code>|<code>sat</code>|<code>sun</code>.
+        /// For the day values, use <c>mon</c>|<c>tue</c>|<c>wed</c>|<c>thu</c>|<c>fri</c>|<c>sat</c>|<c>sun</c>.
         /// </para>
         ///  
         /// <para>
-        /// For example, <code>sun:09:32-sun:10:02</code>.
+        /// For example, <c>sun:09:32-sun:10:02</c>.
         /// </para>
         /// </summary>
         public string PreferredMaintenanceWindow
@@ -780,7 +780,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ReadReplicaIdentifiers property is set
         internal bool IsSetReadReplicaIdentifiers()
         {
-            return this._readReplicaIdentifiers != null && this._readReplicaIdentifiers.Count > 0; 
+            return this._readReplicaIdentifiers != null && (this._readReplicaIdentifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -834,7 +834,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if VpcSecurityGroups property is set
         internal bool IsSetVpcSecurityGroups()
         {
-            return this._vpcSecurityGroups != null && this._vpcSecurityGroups.Count > 0; 
+            return this._vpcSecurityGroups != null && (this._vpcSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSMIncidents.Model
 {
     /// <summary>
@@ -36,17 +37,32 @@ namespace Amazon.SSMIncidents.Model
     {
         private string _dedupeString;
         private int? _impact;
-        private Dictionary<string, string> _incidentTags = new Dictionary<string, string>();
-        private List<NotificationTargetItem> _notificationTargets = new List<NotificationTargetItem>();
+        private Dictionary<string, string> _incidentTags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<NotificationTargetItem> _notificationTargets = AWSConfigs.InitializeCollections ? new List<NotificationTargetItem>() : null;
         private string _summary;
         private string _title;
 
         /// <summary>
         /// Gets and sets the property DedupeString. 
         /// <para>
-        /// Used to stop Incident Manager from creating multiple incident records for the same
-        /// incident. 
+        /// The string Incident Manager uses to prevent the same root cause from creating multiple
+        /// incidents in the same account.
         /// </para>
+        ///  
+        /// <para>
+        /// A deduplication string is a term or phrase the system uses to check for duplicate
+        /// incidents. If you specify a deduplication string, Incident Manager searches for open
+        /// incidents that contain the same string in the <c>dedupeString</c> field when it creates
+        /// the incident. If a duplicate is detected, Incident Manager deduplicates the newer
+        /// incident into the existing incident.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// By default, Incident Manager automatically deduplicates multiple incidents created
+        /// by the same Amazon CloudWatch alarm or Amazon EventBridge event. You don't have to
+        /// enter your own deduplication string to prevent duplication for these resource types.
+        /// </para>
+        ///  </note>
         /// </summary>
         [AWSProperty(Min=0, Max=1000)]
         public string DedupeString
@@ -64,8 +80,33 @@ namespace Amazon.SSMIncidents.Model
         /// <summary>
         /// Gets and sets the property Impact. 
         /// <para>
-        /// The impact of the incident on your customers and applications. 
+        /// The impact of the incident on your customers and applications.
         /// </para>
+        ///  
+        /// <para>
+        ///  <b>Supported impact codes</b> 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>1</c> - Critical
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>2</c> - High
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>3</c> - Medium
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>4</c> - Low
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>5</c> - No Impact
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=5)]
         public int Impact
@@ -83,8 +124,8 @@ namespace Amazon.SSMIncidents.Model
         /// <summary>
         /// Gets and sets the property IncidentTags. 
         /// <para>
-        /// Tags to assign to the template. When the <code>StartIncident</code> API action is
-        /// called, Incident Manager assigns the tags specified in the template to the incident.
+        /// Tags to assign to the template. When the <c>StartIncident</c> API action is called,
+        /// Incident Manager assigns the tags specified in the template to the incident.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -97,7 +138,7 @@ namespace Amazon.SSMIncidents.Model
         // Check to see if IncidentTags property is set
         internal bool IsSetIncidentTags()
         {
-            return this._incidentTags != null && this._incidentTags.Count > 0; 
+            return this._incidentTags != null && (this._incidentTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -116,7 +157,7 @@ namespace Amazon.SSMIncidents.Model
         // Check to see if NotificationTargets property is set
         internal bool IsSetNotificationTargets()
         {
-            return this._notificationTargets != null && this._notificationTargets.Count > 0; 
+            return this._notificationTargets != null && (this._notificationTargets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

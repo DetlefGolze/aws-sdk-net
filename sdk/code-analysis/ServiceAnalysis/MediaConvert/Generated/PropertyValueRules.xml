@@ -31,6 +31,16 @@
     <max>20</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.MediaConvert.Model.ListVersionsRequest.MaxResults</property>
+    <min>1</min>
+    <max>20</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.SearchJobsRequest.MaxResults</property>
+    <min>1</min>
+    <max>20</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.MediaConvert.Model.UpdateJobTemplateRequest.Priority</property>
     <min>-50</min>
     <max>50</max>
@@ -91,13 +101,17 @@
     <max>4</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.MediaConvert.Model.AudioDescription.AudioSourceName</property>
+    <max>2048</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.MediaConvert.Model.AudioDescription.AudioType</property>
     <min>0</min>
     <max>255</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaConvert.Model.AudioDescription.CustomLanguageCode</property>
-    <pattern>^[A-Za-z]{2,3}(-[A-Za-z-]+)?$</pattern>
+    <pattern>^[A-Za-z]{2,3}(-[A-Za-z0-9-]+)?$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaConvert.Model.AudioDescription.StreamName</property>
@@ -192,6 +206,18 @@
     <property>Amazon.MediaConvert.Model.BurninDestinationSettings.BackgroundOpacity</property>
     <min>0</min>
     <max>255</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.BurninDestinationSettings.FontFileBold</property>
+    <pattern>^((s3://(.*?)\.(ttf))|(https?://(.*?)\.(ttf)(\?([^&amp;=]+=[^&amp;]+&amp;)*[^&amp;=]+=[^&amp;]+)?))$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.BurninDestinationSettings.FontFileItalic</property>
+    <pattern>^((s3://(.*?)\.(ttf))|(https?://(.*?)\.(ttf)(\?([^&amp;=]+=[^&amp;]+&amp;)*[^&amp;=]+=[^&amp;]+)?))$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.BurninDestinationSettings.FontFileRegular</property>
+    <pattern>^((s3://(.*?)\.(ttf))|(https?://(.*?)\.(ttf)(\?([^&amp;=]+=[^&amp;]+&amp;)*[^&amp;=]+=[^&amp;]+)?))$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaConvert.Model.BurninDestinationSettings.FontOpacity</property>
@@ -303,6 +329,11 @@
     <pattern>^[0-9a-fA-F]{32}$</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.MediaConvert.Model.CmafGroupSettings.DashIFrameTrickPlayNameModifier</property>
+    <min>1</min>
+    <max>256</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.MediaConvert.Model.CmafGroupSettings.Destination</property>
     <pattern>^s3:\/\/</pattern>
   </property-value-rule>
@@ -350,6 +381,21 @@
     <max>1000</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.MediaConvert.Model.ColorConversion3DLUTSetting.FileInput</property>
+    <min>14</min>
+    <pattern>^((s3://(.*?)\.(cube|CUBE))|(https?://(.*?)\.(cube|CUBE)(\?([^&amp;=]+=[^&amp;]+&amp;)*[^&amp;=]+=[^&amp;]+)?))$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.ColorConversion3DLUTSetting.InputMasteringLuminance</property>
+    <min>0</min>
+    <max>2147483647</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.ColorConversion3DLUTSetting.OutputMasteringLuminance</property>
+    <min>0</min>
+    <max>2147483647</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.MediaConvert.Model.ColorCorrector.Brightness</property>
     <min>1</min>
     <max>100</max>
@@ -365,6 +411,11 @@
     <max>180</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.MediaConvert.Model.ColorCorrector.MaxLuminance</property>
+    <min>0</min>
+    <max>2147483647</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.MediaConvert.Model.ColorCorrector.Saturation</property>
     <min>1</min>
     <max>100</max>
@@ -377,6 +428,11 @@
   <property-value-rule>
     <property>Amazon.MediaConvert.Model.DashAdditionalManifest.ManifestNameModifier</property>
     <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.DashIsoGroupSettings.DashIFrameTrickPlayNameModifier</property>
+    <min>1</min>
+    <max>256</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaConvert.Model.DashIsoGroupSettings.Destination</property>
@@ -471,6 +527,22 @@
     <property>Amazon.MediaConvert.Model.DvbSubDestinationSettings.DdsYCoordinate</property>
     <min>0</min>
     <max>2147483647</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.DvbSubDestinationSettings.FontFileBold</property>
+    <pattern>^((s3://(.*?)\.(ttf))|(https?://(.*?)\.(ttf)(\?([^&amp;=]+=[^&amp;]+&amp;)*[^&amp;=]+=[^&amp;]+)?))$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.DvbSubDestinationSettings.FontFileBoldItalic</property>
+    <pattern>^((s3://(.*?)\.(ttf))|(https?://(.*?)\.(ttf)(\?([^&amp;=]+=[^&amp;]+&amp;)*[^&amp;=]+=[^&amp;]+)?))$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.DvbSubDestinationSettings.FontFileItalic</property>
+    <pattern>^((s3://(.*?)\.(ttf))|(https?://(.*?)\.(ttf)(\?([^&amp;=]+=[^&amp;]+&amp;)*[^&amp;=]+=[^&amp;]+)?))$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.DvbSubDestinationSettings.FontFileRegular</property>
+    <pattern>^((s3://(.*?)\.(ttf))|(https?://(.*?)\.(ttf)(\?([^&amp;=]+=[^&amp;]+&amp;)*[^&amp;=]+=[^&amp;]+)?))$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaConvert.Model.DvbSubDestinationSettings.FontOpacity</property>
@@ -1000,6 +1072,7 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaConvert.Model.Input.FileInput</property>
+    <max>2048</max>
     <pattern>^s3://([^\/]+\/+)+((([^\/]*)))|^https?://[^\/].*[^&amp;]$</pattern>
   </property-value-rule>
   <property-value-rule>
@@ -1020,11 +1093,11 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaConvert.Model.InputClipping.EndTimecode</property>
-    <pattern>^([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9][:;][0-9]{2}$</pattern>
+    <pattern>^([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9][:;][0-9]{2}(@[0-9]+(\.[0-9]+)?(:[0-9]+)?)?$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaConvert.Model.InputClipping.StartTimecode</property>
-    <pattern>^([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9][:;][0-9]{2}$</pattern>
+    <pattern>^([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9][:;][0-9]{2}(@[0-9]+(\.[0-9]+)?(:[0-9]+)?)?$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaConvert.Model.InputDecryptionSettings.EncryptedDecryptionKey</property>
@@ -1066,9 +1139,29 @@
     <pattern>^((([0-1]\d)|(2[0-3]))(:[0-5]\d){2}([:;][0-5]\d))$</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.MediaConvert.Model.InputVideoGenerator.Channels</property>
+    <min>1</min>
+    <max>32</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.MediaConvert.Model.InputVideoGenerator.Duration</property>
     <min>50</min>
     <max>86400000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.InputVideoGenerator.FramerateDenominator</property>
+    <min>1</min>
+    <max>1001</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.InputVideoGenerator.FramerateNumerator</property>
+    <min>1</min>
+    <max>60000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.InputVideoGenerator.SampleRate</property>
+    <min>32000</min>
+    <max>48000</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaConvert.Model.InsertableImage.Duration</property>
@@ -1135,6 +1228,11 @@
     <max>1000</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.MediaConvert.Model.JobSettings.FollowSource</property>
+    <min>1</min>
+    <max>150</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.MediaConvert.Model.JobTemplate.Priority</property>
     <min>-50</min>
     <max>50</max>
@@ -1143,6 +1241,11 @@
     <property>Amazon.MediaConvert.Model.JobTemplateSettings.AdAvailOffset</property>
     <min>-1000</min>
     <max>1000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.JobTemplateSettings.FollowSource</property>
+    <min>1</min>
+    <max>150</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaConvert.Model.KantarWatermarkSettings.ChannelName</property>
@@ -1158,8 +1261,8 @@
   <property-value-rule>
     <property>Amazon.MediaConvert.Model.KantarWatermarkSettings.CredentialsSecretName</property>
     <min>1</min>
-    <max>512</max>
-    <pattern>^[a-zA-Z0-9_\/_+=.@-]*$</pattern>
+    <max>2048</max>
+    <pattern>^(arn:[a-z-]+:secretsmanager:[\w-]+:\d{12}:secret:)?[a-zA-Z0-9_\/_+=.@-]*$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaConvert.Model.KantarWatermarkSettings.KantarLicenseId</property>
@@ -1643,12 +1746,21 @@
     <max>48000</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.MediaConvert.Model.Output.Extension</property>
+    <max>256</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.MediaConvert.Model.Output.NameModifier</property>
     <min>1</min>
+    <max>256</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaConvert.Model.Output.Preset</property>
     <min>0</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.OutputGroup.Name</property>
+    <max>2048</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaConvert.Model.ProresSettings.FramerateDenominator</property>
@@ -1689,6 +1801,16 @@
     <property>Amazon.MediaConvert.Model.Rectangle.Y</property>
     <min>0</min>
     <max>2147483647</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.RemixSettings.AudioDescriptionAudioChannel</property>
+    <min>1</min>
+    <max>64</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.RemixSettings.AudioDescriptionDataChannel</property>
+    <min>1</min>
+    <max>64</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaConvert.Model.RemixSettings.ChannelsIn</property>
@@ -1779,6 +1901,16 @@
     <max>2147483647</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.MediaConvert.Model.UncompressedSettings.FramerateDenominator</property>
+    <min>1</min>
+    <max>2147483647</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.UncompressedSettings.FramerateNumerator</property>
+    <min>1</min>
+    <max>2147483647</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.MediaConvert.Model.Vc3Settings.FramerateDenominator</property>
     <min>1</min>
     <max>1001</max>
@@ -1828,11 +1960,44 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaConvert.Model.VideoOverlayInputClipping.EndTimecode</property>
-    <pattern>^([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9][:;][0-9]{2}$</pattern>
+    <pattern>^([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9][:;][0-9]{2}(@[0-9]+(\.[0-9]+)?(:[0-9]+)?)?$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaConvert.Model.VideoOverlayInputClipping.StartTimecode</property>
+    <pattern>^([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9][:;][0-9]{2}(@[0-9]+(\.[0-9]+)?(:[0-9]+)?)?$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.VideoOverlayPosition.Height</property>
+    <min>-1</min>
+    <max>2147483647</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.VideoOverlayPosition.Width</property>
+    <min>-1</min>
+    <max>2147483647</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.VideoOverlayPosition.XPosition</property>
+    <min>-2147483648</min>
+    <max>2147483647</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.VideoOverlayPosition.YPosition</property>
+    <min>-2147483648</min>
+    <max>2147483647</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.VideoOverlayTransition.EndTimecode</property>
     <pattern>^([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9][:;][0-9]{2}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.VideoOverlayTransition.StartTimecode</property>
+    <pattern>^([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9][:;][0-9]{2}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.MediaConvert.Model.VideoSelector.MaxLuminance</property>
+    <min>0</min>
+    <max>2147483647</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.MediaConvert.Model.VideoSelector.Pid</property>

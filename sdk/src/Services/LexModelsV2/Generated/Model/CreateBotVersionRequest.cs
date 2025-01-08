@@ -26,24 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateBotVersion operation.
-    /// Creates a new version of the bot based on the <code>DRAFT</code> version. If the <code>DRAFT</code>
-    /// version of this resource hasn't changed since you created the last version, Amazon
-    /// Lex doesn't create a new version, it returns the last created version.
-    /// 
-    ///  
-    /// <para>
-    /// When you create the first version of a bot, Amazon Lex sets the version to 1. Subsequent
-    /// versions increment by 1.
-    /// </para>
+    /// Creates an immutable version of the bot. When you create the first version of a bot,
+    /// Amazon Lex sets the version number to 1. Subsequent bot versions increase in an increment
+    /// of 1. The version number will always represent the total number of versions created
+    /// of the bot, not the current number of versions. If a bot version is deleted, that
+    /// bot version number will not be reused.
     /// </summary>
     public partial class CreateBotVersionRequest : AmazonLexModelsV2Request
     {
         private string _botId;
-        private Dictionary<string, BotVersionLocaleDetails> _botVersionLocaleSpecification = new Dictionary<string, BotVersionLocaleDetails>();
+        private Dictionary<string, BotVersionLocaleDetails> _botVersionLocaleSpecification = AWSConfigs.InitializeCollections ? new Dictionary<string, BotVersionLocaleDetails>() : null;
         private string _description;
 
         /// <summary>
@@ -68,7 +65,7 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property BotVersionLocaleSpecification. 
         /// <para>
-        /// Specifies the locales that Amazon Lex adds to this version. You can choose the <code>Draft</code>
+        /// Specifies the locales that Amazon Lex adds to this version. You can choose the <c>Draft</c>
         /// version or any other previously published version for each locale. When you specify
         /// a source version, the locale data is copied from the source version to the new version.
         /// </para>
@@ -83,7 +80,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if BotVersionLocaleSpecification property is set
         internal bool IsSetBotVersionLocaleSpecification()
         {
-            return this._botVersionLocaleSpecification != null && this._botVersionLocaleSpecification.Count > 0; 
+            return this._botVersionLocaleSpecification != null && (this._botVersionLocaleSpecification.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

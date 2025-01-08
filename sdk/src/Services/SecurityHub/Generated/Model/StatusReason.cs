@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// Provides additional context for the value of <code>Compliance.Status</code>.
+    /// Provides additional context for the value of <c>Compliance.Status</c>.
     /// </summary>
     public partial class StatusReason
     {
@@ -58,8 +59,8 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property ReasonCode. 
         /// <para>
         /// A code that represents a reason for the control status. For the list of status reason
-        /// codes and their meanings, see <a href="https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-results.html#securityhub-standards-results-asff">Standards-related
-        /// information in the ASFF</a> in the <i>Security Hub User Guide</i>. 
+        /// codes and their meanings, see <a href="https://docs.aws.amazon.com/securityhub/latest/userguide/controls-findings-create-update.html#control-findings-asff-compliance">Compliance
+        /// details for control findings</a> in the <i>Security Hub User Guide</i>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

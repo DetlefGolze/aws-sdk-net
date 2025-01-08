@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PcaConnectorAd.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.PcaConnectorAd.Model
     public partial class ListTemplatesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<TemplateSummary> _templates = new List<TemplateSummary>();
+        private List<TemplateSummary> _templates = AWSConfigs.InitializeCollections ? new List<TemplateSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// Use this parameter when paginating results in a subsequent request after you receive
-        /// a response with truncated results. Set it to the value of the <code>NextToken</code>
-        /// parameter from the response you just received.
+        /// a response with truncated results. Set it to the value of the <c>NextToken</c> parameter
+        /// from the response you just received.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]
@@ -72,7 +73,7 @@ namespace Amazon.PcaConnectorAd.Model
         // Check to see if Templates property is set
         internal bool IsSetTemplates()
         {
-            return this._templates != null && this._templates.Count > 0; 
+            return this._templates != null && (this._templates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

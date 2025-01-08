@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectCases.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.ConnectCases.Model
         private string _fieldId;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DomainId. 
@@ -120,7 +121,7 @@ namespace Amazon.ConnectCases.Model
         /// <summary>
         /// Gets and sets the property Values. 
         /// <para>
-        /// A list of <code>FieldOption</code> values to filter on for <code>ListFieldOptions</code>.
+        /// A list of <c>FieldOption</c> values to filter on for <c>ListFieldOptions</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1)]
@@ -133,7 +134,7 @@ namespace Amazon.ConnectCases.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

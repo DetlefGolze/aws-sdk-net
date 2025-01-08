@@ -26,16 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
     /// Container for the parameters to the GetQueryResults operation.
-    /// Gets event data results of a query. You must specify the <code>QueryID</code> value
-    /// returned by the <code>StartQuery</code> operation.
+    /// Gets event data results of a query. You must specify the <c>QueryID</c> value returned
+    /// by the <c>StartQuery</c> operation.
     /// </summary>
     public partial class GetQueryResultsRequest : AmazonCloudTrailRequest
     {
         private string _eventDataStore;
+        private string _eventDataStoreOwnerAccountId;
         private int? _maxQueryResults;
         private string _nextToken;
         private string _queryId;
@@ -59,6 +61,25 @@ namespace Amazon.CloudTrail.Model
         internal bool IsSetEventDataStore()
         {
             return this._eventDataStore != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EventDataStoreOwnerAccountId. 
+        /// <para>
+        ///  The account ID of the event data store owner. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=12, Max=16)]
+        public string EventDataStoreOwnerAccountId
+        {
+            get { return this._eventDataStoreOwnerAccountId; }
+            set { this._eventDataStoreOwnerAccountId = value; }
+        }
+
+        // Check to see if EventDataStoreOwnerAccountId property is set
+        internal bool IsSetEventDataStoreOwnerAccountId()
+        {
+            return this._eventDataStoreOwnerAccountId != null;
         }
 
         /// <summary>

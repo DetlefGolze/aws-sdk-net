@@ -1,29 +1,32 @@
-﻿// /*******************************************************************************
-//  *  Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
-//  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not use
-//  *  this file except in compliance with the License. A copy of the License is located at
-//  *
-//  *  http://aws.amazon.com/apache2.0
-//  *
-//  *  or in the "license" file accompanying this file.
-//  *  This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-//  *  CONDITIONS OF ANY KIND, either express or implied. See the License for the
-//  *  specific language governing permissions and limitations under the License.
-//  * *****************************************************************************
-//  *    __  _    _  ___
-//  *   (  )( \/\/ )/ __)
-//  *   /__\ \    / \__ \
-//  *  (_)(_) \/\/  (___/
-//  *
-//  *  AWS SDK for .NET
-//  *
-//  */
+﻿/*******************************************************************************
+ *  Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *  Licensed under the Apache License, Version 2.0 (the "License"). You may not use
+ *  this file except in compliance with the License. A copy of the License is located at
+ *
+ *  http://aws.amazon.com/apache2.0
+ *
+ *  or in the "license" file accompanying this file.
+ *  This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ *  CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ *  specific language governing permissions and limitations under the License.
+ * *****************************************************************************
+ *    __  _    _  ___
+ *   (  )( \/\/ )/ __)
+ *   /__\ \    / \__ \
+ *  (_)(_) \/\/  (___/
+ *
+ *  AWS SDK for .NET
+ *
+ */
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+#if AWS_ASYNC_API
+using System.Threading.Tasks;
+#endif
 
 namespace Amazon.Runtime.EventStreams.Internal
 {
@@ -44,7 +47,11 @@ namespace Amazon.Runtime.EventStreams.Internal
     /// <typeparam name="TE">An implementation of EventStreamException (e.g. S3EventStreamException).</typeparam>
     [SuppressMessage("Microsoft.Naming", "CA1710", Justification = "EventStreamCollection is not descriptive.")]
     [SuppressMessage("Microsoft.Design", "CA1063", Justification = "IDisposable is a transient interface from IEventStream. Users need to be able to call Dispose.")]
+#if NET8_0_OR_GREATER
+    public abstract class EnumerableEventStream<T, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TE> : EventStream<T, TE>, IEnumerableEventStream<T, TE> where T : IEventStreamEvent where TE : EventStreamException, new()
+#else
     public abstract class EnumerableEventStream<T, TE> : EventStream<T, TE>, IEnumerableEventStream<T, TE> where T : IEventStreamEvent where TE : EventStreamException, new()
+#endif
     {
         private const string MutuallyExclusiveExceptionMessage = "Stream has already begun processing. Event-driven and Enumerable traversals of the stream are mutually exclusive. " +
                                                                  "You can either use the event driven or enumerable interface, but not both.";
@@ -157,5 +164,20 @@ namespace Amazon.Runtime.EventStreams.Internal
 
             base.StartProcessing();
         }
+
+#if AWS_ASYNC_API
+        /// <summary>
+        /// Starts the background thread to start reading events from the network stream.
+        /// 
+        /// The Task will be completed when all of the events from the stream have been processed.
+        /// </summary>
+        public override async Task StartProcessingAsync()
+        {
+            // If they are/have enumerated, the event-driven mode should be disabled
+            if (IsEnumerated) throw new InvalidOperationException(MutuallyExclusiveExceptionMessage);
+
+            await base.StartProcessingAsync().ConfigureAwait(false);
+        }
+#endif
     }
 }

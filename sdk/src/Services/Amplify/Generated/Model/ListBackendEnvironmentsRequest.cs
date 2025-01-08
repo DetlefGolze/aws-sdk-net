@@ -26,11 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Amplify.Model
 {
     /// <summary>
     /// Container for the parameters to the ListBackendEnvironments operation.
-    /// Lists the backend environments for an Amplify app.
+    /// Lists the backend environments for an Amplify app. 
+    /// 
+    ///  
+    /// <para>
+    /// This API is available only to Amplify Gen 1 applications where the backend is created
+    /// using Amplify Studio or the Amplify command line interface (CLI). This API isn’t available
+    /// to Amplify Gen 2 applications. When you deploy an application with Amplify Gen 2,
+    /// you provision the app's backend infrastructure using Typescript code.
+    /// </para>
     /// </summary>
     public partial class ListBackendEnvironmentsRequest : AmazonAmplifyRequest
     {
@@ -42,7 +51,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property AppId. 
         /// <para>
-        ///  The unique ID for an Amplify app. 
+        /// The unique ID for an Amplify app. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=20)]
@@ -61,7 +70,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property EnvironmentName. 
         /// <para>
-        ///  The name of the backend environment 
+        /// The name of the backend environment 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -80,10 +89,10 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        ///  The maximum number of records to list in a single response. 
+        /// The maximum number of records to list in a single response. 
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=100)]
+        [AWSProperty(Min=0, Max=50)]
         public int MaxResults
         {
             get { return this._maxResults.GetValueOrDefault(); }
@@ -99,7 +108,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  A pagination token. Set to null to start listing backend environments from the start.
+        /// A pagination token. Set to null to start listing backend environments from the start.
         /// If a non-null pagination token is returned in a result, pass its value in here to
         /// list more backend environments. 
         /// </para>

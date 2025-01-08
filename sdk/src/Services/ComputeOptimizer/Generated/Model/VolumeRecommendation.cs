@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComputeOptimizer.Model
 {
     /// <summary>
@@ -36,13 +37,14 @@ namespace Amazon.ComputeOptimizer.Model
         private string _accountId;
         private VolumeConfiguration _currentConfiguration;
         private CurrentPerformanceRisk _currentPerformanceRisk;
+        private EBSEffectiveRecommendationPreferences _effectiveRecommendationPreferences;
         private EBSFinding _finding;
         private DateTime? _lastRefreshTimestamp;
         private double? _lookBackPeriodInDays;
-        private List<Tag> _tags = new List<Tag>();
-        private List<EBSUtilizationMetric> _utilizationMetrics = new List<EBSUtilizationMetric>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private List<EBSUtilizationMetric> _utilizationMetrics = AWSConfigs.InitializeCollections ? new List<EBSUtilizationMetric>() : null;
         private string _volumeArn;
-        private List<VolumeRecommendationOption> _volumeRecommendationOptions = new List<VolumeRecommendationOption>();
+        private List<VolumeRecommendationOption> _volumeRecommendationOptions = AWSConfigs.InitializeCollections ? new List<VolumeRecommendationOption>() : null;
 
         /// <summary>
         /// Gets and sets the property AccountId. 
@@ -101,6 +103,24 @@ namespace Amazon.ComputeOptimizer.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EffectiveRecommendationPreferences. 
+        /// <para>
+        ///  Describes the effective recommendation preferences for Amazon EBS volume. 
+        /// </para>
+        /// </summary>
+        public EBSEffectiveRecommendationPreferences EffectiveRecommendationPreferences
+        {
+            get { return this._effectiveRecommendationPreferences; }
+            set { this._effectiveRecommendationPreferences = value; }
+        }
+
+        // Check to see if EffectiveRecommendationPreferences property is set
+        internal bool IsSetEffectiveRecommendationPreferences()
+        {
+            return this._effectiveRecommendationPreferences != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Finding. 
         /// <para>
         /// The finding classification of the volume.
@@ -111,13 +131,12 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b> <code>NotOptimized</code> </b>—A volume is considered not optimized when Compute
-        /// Optimizer identifies a recommendation that can provide better performance for your
-        /// workload.
+        ///  <b> <c>NotOptimized</c> </b>—A volume is considered not optimized when Compute Optimizer
+        /// identifies a recommendation that can provide better performance for your workload.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>Optimized</code> </b>—An volume is considered optimized when Compute Optimizer
+        ///  <b> <c>Optimized</c> </b>—An volume is considered optimized when Compute Optimizer
         /// determines that the volume is correctly provisioned to run your workload based on
         /// the chosen volume type. For optimized resources, Compute Optimizer might recommend
         /// a new generation volume type.
@@ -187,7 +206,7 @@ namespace Amazon.ComputeOptimizer.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -205,7 +224,7 @@ namespace Amazon.ComputeOptimizer.Model
         // Check to see if UtilizationMetrics property is set
         internal bool IsSetUtilizationMetrics()
         {
-            return this._utilizationMetrics != null && this._utilizationMetrics.Count > 0; 
+            return this._utilizationMetrics != null && (this._utilizationMetrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -241,7 +260,7 @@ namespace Amazon.ComputeOptimizer.Model
         // Check to see if VolumeRecommendationOptions property is set
         internal bool IsSetVolumeRecommendationOptions()
         {
-            return this._volumeRecommendationOptions != null && this._volumeRecommendationOptions.Count > 0; 
+            return this._volumeRecommendationOptions != null && (this._volumeRecommendationOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

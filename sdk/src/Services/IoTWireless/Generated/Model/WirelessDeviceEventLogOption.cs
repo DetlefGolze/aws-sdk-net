@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTWireless.Model
 {
     /// <summary>
@@ -34,10 +35,9 @@ namespace Amazon.IoTWireless.Model
     /// 
     ///  
     /// <para>
-    /// For a LoRaWAN device, possible events for a log messsage are: <code>Join</code>, <code>Rejoin</code>,
-    /// <code>Downlink_Data</code>, and <code>Uplink_Data</code>. For a Sidewalk device, possible
-    /// events for a log message are <code>Registration</code>, <code>Downlink_Data</code>,
-    /// and <code>Uplink_Data</code>.
+    /// For a LoRaWAN device, possible events for a log messsage are: <c>Join</c>, <c>Rejoin</c>,
+    /// <c>Downlink_Data</c>, and <c>Uplink_Data</c>. For a Sidewalk device, possible events
+    /// for a log message are <c>Registration</c>, <c>Downlink_Data</c>, and <c>Uplink_Data</c>.
     /// </para>
     /// </summary>
     public partial class WirelessDeviceEventLogOption

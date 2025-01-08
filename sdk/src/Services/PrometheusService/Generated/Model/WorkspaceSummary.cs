@@ -26,24 +26,28 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
-    /// Represents a summary of the properties of a workspace.
+    /// The information about one Amazon Managed Service for Prometheus workspace in your
+    /// account.
     /// </summary>
     public partial class WorkspaceSummary
     {
         private string _alias;
         private string _arn;
         private DateTime? _createdAt;
+        private string _kmsKeyArn;
         private WorkspaceStatus _status;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _workspaceId;
 
         /// <summary>
         /// Gets and sets the property Alias. 
         /// <para>
-        /// Alias of this workspace.
+        /// The alias that is assigned to this workspace to help identify it. It does not need
+        /// to be unique.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -62,7 +66,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property Arn. 
         /// <para>
-        /// The AmazonResourceName of this workspace.
+        /// The ARN of the workspace.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -81,7 +85,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// The time when the workspace was created.
+        /// The date and time that the workspace was created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -98,9 +102,29 @@ namespace Amazon.PrometheusService.Model
         }
 
         /// <summary>
+        /// Gets and sets the property KmsKeyArn. 
+        /// <para>
+        /// (optional) If the workspace was created with a customer managed KMS key, the ARN for
+        /// the key used.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=2048)]
+        public string KmsKeyArn
+        {
+            get { return this._kmsKeyArn; }
+            set { this._kmsKeyArn = value; }
+        }
+
+        // Check to see if KmsKeyArn property is set
+        internal bool IsSetKmsKeyArn()
+        {
+            return this._kmsKeyArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of this workspace.
+        /// The current status of the workspace.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -119,7 +143,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// The tags of this workspace.
+        /// The list of tag keys and values that are associated with the workspace.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -132,13 +156,13 @@ namespace Amazon.PrometheusService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property WorkspaceId. 
         /// <para>
-        /// Unique string identifying this workspace.
+        /// The unique ID for the workspace.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

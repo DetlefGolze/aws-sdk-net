@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SimpleEmailV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,10 +46,18 @@ namespace Amazon.SimpleEmailV2.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(TrackingOptions requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCustomRedirectDomain())
             {
                 context.Writer.WritePropertyName("CustomRedirectDomain");
                 context.Writer.Write(requestObject.CustomRedirectDomain);
+            }
+
+            if(requestObject.IsSetHttpsPolicy())
+            {
+                context.Writer.WritePropertyName("HttpsPolicy");
+                context.Writer.Write(requestObject.HttpsPolicy);
             }
 
         }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.GuardDuty.Model
         /// Gets and sets the property KmsMasterKeyArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the KMS encryption key. Only available if the bucket
-        /// <code>EncryptionType</code> is <code>aws:kms</code>.
+        /// <c>EncryptionType</c> is <c>aws:kms</c>.
         /// </para>
         /// </summary>
         public string KmsMasterKeyArn

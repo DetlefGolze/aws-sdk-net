@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
     /// Container for the parameters to the ListAppliedSchemaArns operation.
-    /// Lists schema major versions applied to a directory. If <code>SchemaArn</code> is provided,
+    /// Lists schema major versions applied to a directory. If <c>SchemaArn</c> is provided,
     /// lists the minor version.
     /// </summary>
     public partial class ListAppliedSchemaArnsRequest : AmazonCloudDirectoryRequest
@@ -99,8 +100,8 @@ namespace Amazon.CloudDirectory.Model
         /// <summary>
         /// Gets and sets the property SchemaArn. 
         /// <para>
-        /// The response for <code>ListAppliedSchemaArns</code> when this parameter is used will
-        /// list all minor version ARNs for a major version.
+        /// The response for <c>ListAppliedSchemaArns</c> when this parameter is used will list
+        /// all minor version ARNs for a major version.
         /// </para>
         /// </summary>
         public string SchemaArn

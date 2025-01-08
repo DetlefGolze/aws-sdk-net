@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Personalize.Model
 {
     /// <summary>
@@ -46,8 +47,8 @@ namespace Amazon.Personalize.Model
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// When the <code>status</code> is <code>CREATE FAILED</code>, the response includes
-    /// the <code>failureReason</code> key, which describes why.
+    /// When the <c>status</c> is <c>CREATE FAILED</c>, the response includes the <c>failureReason</c>
+    /// key, which describes why.
     /// </para>
     ///  
     /// <para>

@@ -26,11 +26,30 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Personalize.Model
 {
     /// <summary>
-    /// An object that provides information about a solution. A solution is a trained model
-    /// that can be deployed as a campaign.
+    /// <important> 
+    /// <para>
+    /// By default, all new solutions use automatic training. With automatic training, you
+    /// incur training costs while your solution is active. To avoid unnecessary costs, when
+    /// you are finished you can <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_UpdateSolution.html">update
+    /// the solution</a> to turn off automatic training. For information about training costs,
+    /// see <a href="https://aws.amazon.com/personalize/pricing/">Amazon Personalize pricing</a>.
+    /// </para>
+    ///  </important> 
+    /// <para>
+    /// An object that provides information about a solution. A solution includes the custom
+    /// recipe, customized parameters, and trained models (Solution Versions) that Amazon
+    /// Personalize uses to generate recommendations. 
+    /// </para>
+    ///  
+    /// <para>
+    /// After you create a solution, you can’t change its configuration. If you need to make
+    /// changes, you can <a href="https://docs.aws.amazon.com/personalize/latest/dg/cloning-solution.html">clone
+    /// the solution</a> with the Amazon Personalize console or create a new one.
+    /// </para>
     /// </summary>
     public partial class Solution
     {
@@ -39,9 +58,11 @@ namespace Amazon.Personalize.Model
         private string _datasetGroupArn;
         private string _eventType;
         private DateTime? _lastUpdatedDateTime;
+        private SolutionUpdateSummary _latestSolutionUpdate;
         private SolutionVersionSummary _latestSolutionVersion;
         private string _name;
         private bool? _performAutoML;
+        private bool? _performAutoTraining;
         private bool? _performhpo;
         private string _recipeArn;
         private string _solutionArn;
@@ -51,7 +72,7 @@ namespace Amazon.Personalize.Model
         /// <summary>
         /// Gets and sets the property AutoMLResult. 
         /// <para>
-        /// When <code>performAutoML</code> is true, specifies the best recipe found.
+        /// When <c>performAutoML</c> is true, specifies the best recipe found.
         /// </para>
         /// </summary>
         public AutoMLResult AutoMLResult
@@ -107,8 +128,8 @@ namespace Amazon.Personalize.Model
         /// Gets and sets the property EventType. 
         /// <para>
         /// The event type (for example, 'click' or 'like') that is used for training the model.
-        /// If no <code>eventType</code> is provided, Amazon Personalize uses all interactions
-        /// for training with equal weight regardless of type.
+        /// If no <c>eventType</c> is provided, Amazon Personalize uses all interactions for training
+        /// with equal weight regardless of type.
         /// </para>
         /// </summary>
         [AWSProperty(Max=256)]
@@ -140,6 +161,24 @@ namespace Amazon.Personalize.Model
         internal bool IsSetLastUpdatedDateTime()
         {
             return this._lastUpdatedDateTime.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property LatestSolutionUpdate. 
+        /// <para>
+        /// Provides a summary of the latest updates to the solution.
+        /// </para>
+        /// </summary>
+        public SolutionUpdateSummary LatestSolutionUpdate
+        {
+            get { return this._latestSolutionUpdate; }
+            set { this._latestSolutionUpdate = value; }
+        }
+
+        // Check to see if LatestSolutionUpdate property is set
+        internal bool IsSetLatestSolutionUpdate()
+        {
+            return this._latestSolutionUpdate != null;
         }
 
         /// <summary>
@@ -189,8 +228,8 @@ namespace Amazon.Personalize.Model
         ///  </important> 
         /// <para>
         /// When true, Amazon Personalize performs a search for the best USER_PERSONALIZATION
-        /// recipe from the list specified in the solution configuration (<code>recipeArn</code>
-        /// must not be specified). When false (the default), Amazon Personalize uses <code>recipeArn</code>
+        /// recipe from the list specified in the solution configuration (<c>recipeArn</c> must
+        /// not be specified). When false (the default), Amazon Personalize uses <c>recipeArn</c>
         /// for training.
         /// </para>
         /// </summary>
@@ -207,10 +246,35 @@ namespace Amazon.Personalize.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PerformAutoTraining. 
+        /// <para>
+        /// Specifies whether the solution automatically creates solution versions. The default
+        /// is <c>True</c> and the solution automatically creates new solution versions every
+        /// 7 days.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about auto training, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/customizing-solution-config.html">Creating
+        /// and configuring a solution</a>.
+        /// </para>
+        /// </summary>
+        public bool PerformAutoTraining
+        {
+            get { return this._performAutoTraining.GetValueOrDefault(); }
+            set { this._performAutoTraining = value; }
+        }
+
+        // Check to see if PerformAutoTraining property is set
+        internal bool IsSetPerformAutoTraining()
+        {
+            return this._performAutoTraining.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property PerformHPO. 
         /// <para>
         /// Whether to perform hyperparameter optimization (HPO) on the chosen recipe. The default
-        /// is <code>false</code>.
+        /// is <c>false</c>.
         /// </para>
         /// </summary>
         public bool PerformHPO
@@ -228,7 +292,7 @@ namespace Amazon.Personalize.Model
         /// <summary>
         /// Gets and sets the property RecipeArn. 
         /// <para>
-        /// The ARN of the recipe used to create the solution. This is required when <code>performAutoML</code>
+        /// The ARN of the recipe used to create the solution. This is required when <c>performAutoML</c>
         /// is false.
         /// </para>
         /// </summary>

@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMessaging.Model
 {
     /// <summary>
     /// Container for the parameters to the PutMessagingStreamingConfigurations operation.
-    /// Sets the data streaming configuration for an <code>AppInstance</code>. For more information,
+    /// Sets the data streaming configuration for an <c>AppInstance</c>. For more information,
     /// see <a href="https://docs.aws.amazon.com/chime-sdk/latest/dg/streaming-export.html">Streaming
     /// messaging data</a> in the <i>Amazon Chime SDK Developer Guide</i>.
     /// </summary>
     public partial class PutMessagingStreamingConfigurationsRequest : AmazonChimeSDKMessagingRequest
     {
         private string _appInstanceArn;
-        private List<StreamingConfiguration> _streamingConfigurations = new List<StreamingConfiguration>();
+        private List<StreamingConfiguration> _streamingConfigurations = AWSConfigs.InitializeCollections ? new List<StreamingConfiguration>() : null;
 
         /// <summary>
         /// Gets and sets the property AppInstanceArn. 
@@ -74,7 +75,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         // Check to see if StreamingConfigurations property is set
         internal bool IsSetStreamingConfigurations()
         {
-            return this._streamingConfigurations != null && this._streamingConfigurations.Count > 0; 
+            return this._streamingConfigurations != null && (this._streamingConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

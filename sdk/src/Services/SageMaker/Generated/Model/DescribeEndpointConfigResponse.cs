@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -36,18 +37,21 @@ namespace Amazon.SageMaker.Model
         private AsyncInferenceConfig _asyncInferenceConfig;
         private DateTime? _creationTime;
         private DataCaptureConfig _dataCaptureConfig;
+        private bool? _enableNetworkIsolation;
         private string _endpointConfigArn;
         private string _endpointConfigName;
+        private string _executionRoleArn;
         private ExplainerConfig _explainerConfig;
         private string _kmsKeyId;
-        private List<ProductionVariant> _productionVariants = new List<ProductionVariant>();
-        private List<ProductionVariant> _shadowProductionVariants = new List<ProductionVariant>();
+        private List<ProductionVariant> _productionVariants = AWSConfigs.InitializeCollections ? new List<ProductionVariant>() : null;
+        private List<ProductionVariant> _shadowProductionVariants = AWSConfigs.InitializeCollections ? new List<ProductionVariant>() : null;
+        private VpcConfig _vpcConfig;
 
         /// <summary>
         /// Gets and sets the property AsyncInferenceConfig. 
         /// <para>
         /// Returns the description of an endpoint configuration created using the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpointConfig.html">
-        /// <code>CreateEndpointConfig</code> </a> API.
+        /// <c>CreateEndpointConfig</c> </a> API.
         /// </para>
         /// </summary>
         public AsyncInferenceConfig AsyncInferenceConfig
@@ -97,6 +101,25 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EnableNetworkIsolation. 
+        /// <para>
+        /// Indicates whether all model containers deployed to the endpoint are isolated. If they
+        /// are, no inbound or outbound network calls can be made to or from the model containers.
+        /// </para>
+        /// </summary>
+        public bool EnableNetworkIsolation
+        {
+            get { return this._enableNetworkIsolation.GetValueOrDefault(); }
+            set { this._enableNetworkIsolation = value; }
+        }
+
+        // Check to see if EnableNetworkIsolation property is set
+        internal bool IsSetEnableNetworkIsolation()
+        {
+            return this._enableNetworkIsolation.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property EndpointConfigArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the endpoint configuration.
@@ -132,6 +155,25 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetEndpointConfigName()
         {
             return this._endpointConfigName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExecutionRoleArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the IAM role that you assigned to the endpoint configuration.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=2048)]
+        public string ExecutionRoleArn
+        {
+            get { return this._executionRoleArn; }
+            set { this._executionRoleArn = value; }
+        }
+
+        // Check to see if ExecutionRoleArn property is set
+        internal bool IsSetExecutionRoleArn()
+        {
+            return this._executionRoleArn != null;
         }
 
         /// <summary>
@@ -175,8 +217,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property ProductionVariants. 
         /// <para>
-        /// An array of <code>ProductionVariant</code> objects, one for each model that you want
-        /// to host at this endpoint.
+        /// An array of <c>ProductionVariant</c> objects, one for each model that you want to
+        /// host at this endpoint.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=10)]
@@ -189,15 +231,15 @@ namespace Amazon.SageMaker.Model
         // Check to see if ProductionVariants property is set
         internal bool IsSetProductionVariants()
         {
-            return this._productionVariants != null && this._productionVariants.Count > 0; 
+            return this._productionVariants != null && (this._productionVariants.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ShadowProductionVariants. 
         /// <para>
-        /// An array of <code>ProductionVariant</code> objects, one for each model that you want
-        /// to host at this endpoint in shadow mode with production traffic replicated from the
-        /// model specified on <code>ProductionVariants</code>.
+        /// An array of <c>ProductionVariant</c> objects, one for each model that you want to
+        /// host at this endpoint in shadow mode with production traffic replicated from the model
+        /// specified on <c>ProductionVariants</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
@@ -210,7 +252,22 @@ namespace Amazon.SageMaker.Model
         // Check to see if ShadowProductionVariants property is set
         internal bool IsSetShadowProductionVariants()
         {
-            return this._shadowProductionVariants != null && this._shadowProductionVariants.Count > 0; 
+            return this._shadowProductionVariants != null && (this._shadowProductionVariants.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property VpcConfig.
+        /// </summary>
+        public VpcConfig VpcConfig
+        {
+            get { return this._vpcConfig; }
+            set { this._vpcConfig = value; }
+        }
+
+        // Check to see if VpcConfig property is set
+        internal bool IsSetVpcConfig()
+        {
+            return this._vpcConfig != null;
         }
 
     }

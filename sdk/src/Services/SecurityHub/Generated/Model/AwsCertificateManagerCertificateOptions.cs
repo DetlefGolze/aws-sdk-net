@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>DISABLED</code> | <code>ENABLED</code> 
+        /// Valid values: <c>DISABLED</c> | <c>ENABLED</c> 
         /// </para>
         /// </summary>
         public string CertificateTransparencyLoggingPreference

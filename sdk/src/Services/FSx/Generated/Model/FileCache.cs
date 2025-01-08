@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
     /// A description of a specific Amazon File Cache resource, which is a response object
-    /// from the <code>DescribeFileCaches</code> operation.
+    /// from the <c>DescribeFileCaches</c> operation.
     /// </summary>
     public partial class FileCache
     {
         private DateTime? _creationTime;
-        private List<string> _dataRepositoryAssociationIds = new List<string>();
+        private List<string> _dataRepositoryAssociationIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _dnsName;
         private FileCacheFailureDetails _failureDetails;
         private string _fileCacheId;
@@ -44,11 +45,11 @@ namespace Amazon.FSx.Model
         private string _kmsKeyId;
         private FileCacheLifecycle _lifecycle;
         private FileCacheLustreConfiguration _lustreConfiguration;
-        private List<string> _networkInterfaceIds = new List<string>();
+        private List<string> _networkInterfaceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _ownerId;
         private string _resourceARN;
         private int? _storageCapacity;
-        private List<string> _subnetIds = new List<string>();
+        private List<string> _subnetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _vpcId;
 
         /// <summary>
@@ -82,7 +83,7 @@ namespace Amazon.FSx.Model
         // Check to see if DataRepositoryAssociationIds property is set
         internal bool IsSetDataRepositoryAssociationIds()
         {
-            return this._dataRepositoryAssociationIds != null && this._dataRepositoryAssociationIds.Count > 0; 
+            return this._dataRepositoryAssociationIds != null && (this._dataRepositoryAssociationIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -144,7 +145,7 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property FileCacheType. 
         /// <para>
-        /// The type of cache, which must be <code>LUSTRE</code>.
+        /// The type of cache, which must be <c>LUSTRE</c>.
         /// </para>
         /// </summary>
         public FileCacheType FileCacheType
@@ -162,7 +163,7 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property FileCacheTypeVersion. 
         /// <para>
-        /// The Lustre version of the cache, which must be <code>2.12</code>.
+        /// The Lustre version of the cache, which must be <c>2.12</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=20)]
@@ -182,7 +183,7 @@ namespace Amazon.FSx.Model
         /// Gets and sets the property KmsKeyId. 
         /// <para>
         /// Specifies the ID of the Key Management Service (KMS) key to use for encrypting data
-        /// on an Amazon File Cache. If a <code>KmsKeyId</code> isn't specified, the Amazon FSx-managed
+        /// on an Amazon File Cache. If a <c>KmsKeyId</c> isn't specified, the Amazon FSx-managed
         /// KMS key for your account is used. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html">Encrypt</a>
         /// in the <i>Key Management Service API Reference</i>.
         /// </para>
@@ -208,25 +209,25 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AVAILABLE</code> - The cache is in a healthy state, and is reachable and available
+        ///  <c>AVAILABLE</c> - The cache is in a healthy state, and is reachable and available
         /// for use.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATING</code> - The new cache is being created.
+        ///  <c>CREATING</c> - The new cache is being created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETING</code> - An existing cache is being deleted.
+        ///  <c>DELETING</c> - An existing cache is being deleted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPDATING</code> - The cache is undergoing a customer-initiated update.
+        ///  <c>UPDATING</c> - The cache is undergoing a customer-initiated update.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> - An existing cache has experienced an unrecoverable failure.
-        /// When creating a new cache, the cache was unable to be created.
+        ///  <c>FAILED</c> - An existing cache has experienced an unrecoverable failure. When
+        /// creating a new cache, the cache was unable to be created.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -273,7 +274,7 @@ namespace Amazon.FSx.Model
         // Check to see if NetworkInterfaceIds property is set
         internal bool IsSetNetworkInterfaceIds()
         {
-            return this._networkInterfaceIds != null && this._networkInterfaceIds.Count > 0; 
+            return this._networkInterfaceIds != null && (this._networkInterfaceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -340,7 +341,7 @@ namespace Amazon.FSx.Model
         // Check to see if SubnetIds property is set
         internal bool IsSetSubnetIds()
         {
-            return this._subnetIds != null && this._subnetIds.Count > 0; 
+            return this._subnetIds != null && (this._subnetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

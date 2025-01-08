@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Ivschat.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.Ivschat.Model
     public partial class ListRoomsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<RoomSummary> _rooms = new List<RoomSummary>();
+        private List<RoomSummary> _rooms = AWSConfigs.InitializeCollections ? new List<RoomSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If there are more rooms than <code>maxResults</code>, use <code>nextToken</code> in
-        /// the request to get the next set.
+        /// If there are more rooms than <c>maxResults</c>, use <c>nextToken</c> in the request
+        /// to get the next set.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1024)]
@@ -72,7 +73,7 @@ namespace Amazon.Ivschat.Model
         // Check to see if Rooms property is set
         internal bool IsSetRooms()
         {
-            return this._rooms != null && this._rooms.Count > 0; 
+            return this._rooms != null && (this._rooms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

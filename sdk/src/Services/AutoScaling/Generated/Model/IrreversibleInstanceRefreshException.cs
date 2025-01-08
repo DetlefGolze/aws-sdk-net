@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
     /// The request failed because a desired configuration was not found or an incompatible
     /// launch template (uses a Systems Manager parameter instead of an AMI ID) or launch
-    /// template version (<code>$Latest</code> or <code>$Default</code>) is present on the
-    /// Auto Scaling group.
+    /// template version (<c>$Latest</c> or <c>$Default</c>) is present on the Auto Scaling
+    /// group.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

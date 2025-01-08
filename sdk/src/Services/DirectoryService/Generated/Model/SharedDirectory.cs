@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
@@ -121,7 +122,7 @@ namespace Amazon.DirectoryService.Model
         /// Gets and sets the property SharedAccountId. 
         /// <para>
         /// Identifier of the directory consumer account that has access to the shared directory
-        /// (<code>OwnerDirectoryId</code>) in the directory owner account.
+        /// (<c>OwnerDirectoryId</c>) in the directory owner account.
         /// </para>
         /// </summary>
         public string SharedAccountId
@@ -159,8 +160,8 @@ namespace Amazon.DirectoryService.Model
         /// Gets and sets the property ShareMethod. 
         /// <para>
         /// The method used when sharing a directory to determine whether the directory should
-        /// be shared within your Amazon Web Services organization (<code>ORGANIZATIONS</code>)
-        /// or with any Amazon Web Services account by sending a shared directory request (<code>HANDSHAKE</code>).
+        /// be shared within your Amazon Web Services organization (<c>ORGANIZATIONS</c>) or with
+        /// any Amazon Web Services account by sending a shared directory request (<c>HANDSHAKE</c>).
         /// </para>
         /// </summary>
         public ShareMethod ShareMethod

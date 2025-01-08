@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CustomerProfiles.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -97,6 +98,18 @@ namespace Amazon.CustomerProfiles.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
                     response.LastUpdatedAt = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("MaxAvailableProfileObjectCount", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    response.MaxAvailableProfileObjectCount = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("MaxProfileObjectCount", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    response.MaxProfileObjectCount = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("ObjectTypeName", targetDepth))

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -37,6 +38,7 @@ namespace Amazon.IoTFleetWise.Model
         private DateTime? _creationTime;
         private string _description;
         private DateTime? _lastModificationTime;
+        private string _message;
         private string _modelManifestArn;
         private string _name;
         private ManifestStatus _status;
@@ -120,6 +122,26 @@ namespace Amazon.IoTFleetWise.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Message. 
+        /// <para>
+        /// The detailed message for the decoder manifest. When a decoder manifest is in an <c>INVALID</c>
+        /// status, the message contains detailed reason and help information.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=2048)]
+        public string Message
+        {
+            get { return this._message; }
+            set { this._message = value; }
+        }
+
+        // Check to see if Message property is set
+        internal bool IsSetMessage()
+        {
+            return this._message != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ModelManifestArn. 
         /// <para>
         ///  The ARN of a vehicle model (model manifest) associated with the decoder manifest.
@@ -159,9 +181,8 @@ namespace Amazon.IoTFleetWise.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        ///  The state of the decoder manifest. If the status is <code>ACTIVE</code>, the decoder
-        /// manifest can't be edited. If the status is marked <code>DRAFT</code>, you can edit
-        /// the decoder manifest.
+        ///  The state of the decoder manifest. If the status is <c>ACTIVE</c>, the decoder manifest
+        /// can't be edited. If the status is marked <c>DRAFT</c>, you can edit the decoder manifest.
         /// </para>
         /// </summary>
         public ManifestStatus Status

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -33,20 +34,20 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// Creates a Amazon Web Services Systems Manager (SSM document). An SSM document defines
     /// the actions that Systems Manager performs on your managed nodes. For more information
     /// about SSM documents, including information about supported schemas, features, and
-    /// syntax, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-ssm-docs.html">Amazon
+    /// syntax, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/documents.html">Amazon
     /// Web Services Systems Manager Documents</a> in the <i>Amazon Web Services Systems Manager
     /// User Guide</i>.
     /// </summary>
     public partial class CreateDocumentRequest : AmazonSimpleSystemsManagementRequest
     {
-        private List<AttachmentsSource> _attachments = new List<AttachmentsSource>();
+        private List<AttachmentsSource> _attachments = AWSConfigs.InitializeCollections ? new List<AttachmentsSource>() : null;
         private string _content;
         private string _displayName;
         private DocumentFormat _documentFormat;
         private DocumentType _documentType;
         private string _name;
-        private List<DocumentRequires> _requires = new List<DocumentRequires>();
-        private List<Tag> _tags = new List<Tag>();
+        private List<DocumentRequires> _requires = AWSConfigs.InitializeCollections ? new List<DocumentRequires>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _targetType;
         private string _versionName;
 
@@ -58,8 +59,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Instantiates CreateDocumentRequest with the parameterized properties
         /// </summary>
-        /// <param name="name">A name for the SSM document. <important> You can't use the following strings as document name prefixes. These are reserved by Amazon Web Services for use as document name prefixes: <ul> <li>  <code>aws</code>  </li> <li>  <code>amazon</code>  </li> <li>  <code>amzn</code>  </li> </ul> </important></param>
-        /// <param name="content">The content for the new SSM document in JSON or YAML format. The content of the document must not exceed 64KB. This quota also includes the content specified for input parameters at runtime. We recommend storing the contents for your new document in an external JSON or YAML file and referencing the file in a command. For examples, see the following topics in the <i>Amazon Web Services Systems Manager User Guide</i>. <ul> <li>  <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/create-ssm-document-api.html">Create an SSM document (Amazon Web Services API)</a>  </li> <li>  <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/create-ssm-document-cli.html">Create an SSM document (Amazon Web Services CLI)</a>  </li> <li>  <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/create-ssm-document-api.html">Create an SSM document (API)</a>  </li> </ul></param>
+        /// <param name="name">A name for the SSM document. <important> You can't use the following strings as document name prefixes. These are reserved by Amazon Web Services for use as document name prefixes: <ul> <li>  <c>aws</c>  </li> <li>  <c>amazon</c>  </li> <li>  <c>amzn</c>  </li> <li>  <c>AWSEC2</c>  </li> <li>  <c>AWSConfigRemediation</c>  </li> <li>  <c>AWSSupport</c>  </li> </ul> </important></param>
+        /// <param name="content">The content for the new SSM document in JSON or YAML format. The content of the document must not exceed 64KB. This quota also includes the content specified for input parameters at runtime. We recommend storing the contents for your new document in an external JSON or YAML file and referencing the file in a command. For examples, see the following topics in the <i>Amazon Web Services Systems Manager User Guide</i>. <ul> <li>  <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/documents-using.html#create-ssm-console">Create an SSM document (console)</a>  </li> <li>  <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/documents-using.html#create-ssm-document-cli">Create an SSM document (command line)</a>  </li> <li>  <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/documents-using.html#create-ssm-document-api">Create an SSM document (API)</a>  </li> </ul></param>
         public CreateDocumentRequest(string name, string content)
         {
             _name = name;
@@ -82,7 +83,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Attachments property is set
         internal bool IsSetAttachments()
         {
-            return this._attachments != null && this._attachments.Count > 0; 
+            return this._attachments != null && (this._attachments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -100,17 +101,17 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/create-ssm-document-api.html">Create
-        /// an SSM document (Amazon Web Services API)</a> 
+        ///  <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/documents-using.html#create-ssm-console">Create
+        /// an SSM document (console)</a> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/create-ssm-document-cli.html">Create
-        /// an SSM document (Amazon Web Services CLI)</a> 
+        ///  <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/documents-using.html#create-ssm-document-cli">Create
+        /// an SSM document (command line)</a> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/create-ssm-document-api.html">Create
+        ///  <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/documents-using.html#create-ssm-document-api">Create
         /// an SSM document (API)</a> 
         /// </para>
         ///  </li> </ul>
@@ -175,8 +176,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>DeploymentStrategy</code> document type is an internal-use-only document
-        /// type reserved for AppConfig.
+        /// The <c>DeploymentStrategy</c> document type is an internal-use-only document type
+        /// reserved for AppConfig.
         /// </para>
         ///  </note>
         /// </summary>
@@ -204,15 +205,27 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>aws</code> 
+        ///  <c>aws</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>amazon</code> 
+        ///  <c>amazon</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>amzn</code> 
+        ///  <c>amzn</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWSEC2</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWSConfigRemediation</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWSSupport</c> 
         /// </para>
         ///  </li> </ul> </important>
         /// </summary>
@@ -235,7 +248,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// A list of SSM documents required by a document. This parameter is used exclusively
         /// by AppConfig. When a user creates an AppConfig configuration in an SSM document, the
         /// user must also specify a required document for validation purposes. In this case,
-        /// an <code>ApplicationConfiguration</code> document requires an <code>ApplicationConfigurationSchema</code>
+        /// an <c>ApplicationConfiguration</c> document requires an <c>ApplicationConfigurationSchema</c>
         /// document for validation purposes. For more information, see <a href="https://docs.aws.amazon.com/appconfig/latest/userguide/what-is-appconfig.html">What
         /// is AppConfig?</a> in the <i>AppConfig User Guide</i>.
         /// </para>
@@ -250,7 +263,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Requires property is set
         internal bool IsSetRequires()
         {
-            return this._requires != null && this._requires.Count > 0; 
+            return this._requires != null && (this._requires.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -263,11 +276,11 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Key=OS,Value=Windows</code> 
+        ///  <c>Key=OS,Value=Windows</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Key=Environment,Value=Production</code> 
+        ///  <c>Key=Environment,Value=Production</c> 
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
@@ -285,14 +298,14 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TargetType. 
         /// <para>
         /// Specify a target type to define the kinds of resources the document can run on. For
-        /// example, to run a document on EC2 instances, specify the following value: <code>/AWS::EC2::Instance</code>.
+        /// example, to run a document on EC2 instances, specify the following value: <c>/AWS::EC2::Instance</c>.
         /// If you specify a value of '/' the document can run on all types of resources. If you
         /// don't specify a value, the document can't run on any resources. For a list of valid
         /// resource types, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">Amazon
@@ -317,7 +330,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property VersionName. 
         /// <para>
         /// An optional field specifying the version of the artifact you are creating with the
-        /// document. For example, <code>Release12.1</code>. This value is unique across all versions
+        /// document. For example, <c>Release12.1</c>. This value is unique across all versions
         /// of a document, and can't be changed.
         /// </para>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
@@ -99,7 +100,7 @@ namespace Amazon.RoboMaker.Model
         /// Gets and sets the property SampleFailureReason. 
         /// <para>
         /// The sample reason why the world failed. World errors are aggregated. A sample is used
-        /// as the <code>sampleFailureReason</code>. 
+        /// as the <c>sampleFailureReason</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1024)]

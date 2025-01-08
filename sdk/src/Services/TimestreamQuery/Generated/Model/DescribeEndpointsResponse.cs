@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TimestreamQuery.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.TimestreamQuery.Model
     /// </summary>
     public partial class DescribeEndpointsResponse : AmazonWebServiceResponse
     {
-        private List<Endpoint> _endpoints = new List<Endpoint>();
+        private List<Endpoint> _endpoints = AWSConfigs.InitializeCollections ? new List<Endpoint>() : null;
 
         /// <summary>
         /// Gets and sets the property Endpoints. 
         /// <para>
-        /// An <code>Endpoints</code> object is returned when a <code>DescribeEndpoints</code>
-        /// request is made.
+        /// An <c>Endpoints</c> object is returned when a <c>DescribeEndpoints</c> request is
+        /// made.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -52,7 +53,7 @@ namespace Amazon.TimestreamQuery.Model
         // Check to see if Endpoints property is set
         internal bool IsSetEndpoints()
         {
-            return this._endpoints != null && this._endpoints.Count > 0; 
+            return this._endpoints != null && (this._endpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RedshiftServerless.Model
 {
     /// <summary>
@@ -37,6 +38,7 @@ namespace Amazon.RedshiftServerless.Model
         private string _namespaceName;
         private string _newTableName;
         private long? _progressInMegaBytes;
+        private string _recoveryPointId;
         private DateTime? _requestTime;
         private string _snapshotName;
         private string _sourceDatabaseName;
@@ -52,8 +54,8 @@ namespace Amazon.RedshiftServerless.Model
         /// <summary>
         /// Gets and sets the property Message. 
         /// <para>
-        /// A description of the status of the table restore request. Status values include <code>SUCCEEDED</code>,
-        /// <code>FAILED</code>, <code>CANCELED</code>, <code>PENDING</code>, <code>IN_PROGRESS</code>.
+        /// A message that explains the returned status. For example, if the status of the operation
+        /// is <c>FAILED</c>, the message explains why the operation failed.
         /// </para>
         /// </summary>
         public string Message
@@ -120,6 +122,24 @@ namespace Amazon.RedshiftServerless.Model
         internal bool IsSetProgressInMegaBytes()
         {
             return this._progressInMegaBytes.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property RecoveryPointId. 
+        /// <para>
+        /// The ID of the recovery point being restored from.
+        /// </para>
+        /// </summary>
+        public string RecoveryPointId
+        {
+            get { return this._recoveryPointId; }
+            set { this._recoveryPointId = value; }
+        }
+
+        // Check to see if RecoveryPointId property is set
+        internal bool IsSetRecoveryPointId()
+        {
+            return this._recoveryPointId != null;
         }
 
         /// <summary>
@@ -216,8 +236,7 @@ namespace Amazon.RedshiftServerless.Model
         /// Gets and sets the property Status. 
         /// <para>
         /// A value that describes the current state of the table restore request. Possible values
-        /// include <code>SUCCEEDED</code>, <code>FAILED</code>, <code>CANCELED</code>, <code>PENDING</code>,
-        /// <code>IN_PROGRESS</code>.
+        /// are <c>SUCCEEDED</c>, <c>FAILED</c>, <c>CANCELED</c>, <c>PENDING</c>, and <c>IN_PROGRESS</c>.
         /// </para>
         /// </summary>
         public string Status

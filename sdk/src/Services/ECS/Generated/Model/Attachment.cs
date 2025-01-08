@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ECS.Model
     /// </summary>
     public partial class Attachment
     {
-        private List<KeyValuePair> _details = new List<KeyValuePair>();
+        private List<KeyValuePair> _details = AWSConfigs.InitializeCollections ? new List<KeyValuePair>() : null;
         private string _id;
         private string _status;
         private string _type;
@@ -41,8 +42,23 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Details. 
         /// <para>
-        /// Details of the attachment. For elastic network interfaces, this includes the network
-        /// interface ID, the MAC address, the subnet ID, and the private IPv4 address.
+        /// Details of the attachment.
+        /// </para>
+        ///  
+        /// <para>
+        /// For elastic network interfaces, this includes the network interface ID, the MAC address,
+        /// the subnet ID, and the private IPv4 address.
+        /// </para>
+        ///  
+        /// <para>
+        /// For Service Connect services, this includes <c>portName</c>, <c>clientAliases</c>,
+        /// <c>discoveryName</c>, and <c>ingressPortOverride</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For Elastic Block Storage, this includes <c>roleArn</c>, <c>deleteOnTermination</c>,
+        /// <c>volumeName</c>, <c>volumeId</c>, and <c>statusReason</c> (only when the attachment
+        /// fails to create or attach).
         /// </para>
         /// </summary>
         public List<KeyValuePair> Details
@@ -54,7 +70,7 @@ namespace Amazon.ECS.Model
         // Check to see if Details property is set
         internal bool IsSetDetails()
         {
-            return this._details != null && this._details.Count > 0; 
+            return this._details != null && (this._details.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -78,9 +94,9 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        ///  The status of the attachment. Valid values are <code>PRECREATED</code>, <code>CREATED</code>,
-        /// <code>ATTACHING</code>, <code>ATTACHED</code>, <code>DETACHING</code>, <code>DETACHED</code>,
-        /// <code>DELETED</code>, and <code>FAILED</code>.
+        ///  The status of the attachment. Valid values are <c>PRECREATED</c>, <c>CREATED</c>,
+        /// <c>ATTACHING</c>, <c>ATTACHED</c>, <c>DETACHING</c>, <c>DETACHED</c>, <c>DELETED</c>,
+        /// and <c>FAILED</c>.
         /// </para>
         /// </summary>
         public string Status
@@ -98,7 +114,8 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of the attachment, such as <code>ElasticNetworkInterface</code>.
+        /// The type of the attachment, such as <c>ElasticNetworkInterface</c>, <c>Service Connect</c>,
+        /// and <c>AmazonElasticBlockStorage</c>.
         /// </para>
         /// </summary>
         public string Type

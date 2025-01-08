@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DAX.Model
 {
     /// <summary>
@@ -42,19 +43,19 @@ namespace Amazon.DAX.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ENABLING</code> - Server-side encryption is being enabled.
+        ///  <c>ENABLING</c> - Server-side encryption is being enabled.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ENABLED</code> - Server-side encryption is enabled.
+        ///  <c>ENABLED</c> - Server-side encryption is enabled.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DISABLING</code> - Server-side encryption is being disabled.
+        ///  <c>DISABLING</c> - Server-side encryption is being disabled.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DISABLED</code> - Server-side encryption is disabled.
+        ///  <c>DISABLED</c> - Server-side encryption is disabled.
         /// </para>
         ///  </li> </ul>
         /// </summary>

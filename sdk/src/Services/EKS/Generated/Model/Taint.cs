@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
-    /// A property that allows a node to repel a set of pods. For more information, see <a
+    /// A property that allows a node to repel a <c>Pod</c>. For more information, see <a
     /// href="https://docs.aws.amazon.com/eks/latest/userguide/node-taints-managed-node-groups.html">Node
-    /// taints on managed node groups</a>.
+    /// taints on managed node groups</a> in the <i>Amazon EKS User Guide</i>.
     /// </summary>
     public partial class Taint
     {

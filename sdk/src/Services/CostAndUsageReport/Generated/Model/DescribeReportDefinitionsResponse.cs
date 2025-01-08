@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostAndUsageReport.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.CostAndUsageReport.Model
     public partial class DescribeReportDefinitionsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ReportDefinition> _reportDefinitions = new List<ReportDefinition>();
+        private List<ReportDefinition> _reportDefinitions = AWSConfigs.InitializeCollections ? new List<ReportDefinition>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken.
@@ -55,7 +56,7 @@ namespace Amazon.CostAndUsageReport.Model
         /// <summary>
         /// Gets and sets the property ReportDefinitions. 
         /// <para>
-        /// A list of AWS Cost and Usage reports owned by the account.
+        /// An Amazon Web Services Cost and Usage Report list owned by the account.
         /// </para>
         /// </summary>
         public List<ReportDefinition> ReportDefinitions
@@ -67,7 +68,7 @@ namespace Amazon.CostAndUsageReport.Model
         // Check to see if ReportDefinitions property is set
         internal bool IsSetReportDefinitions()
         {
-            return this._reportDefinitions != null && this._reportDefinitions.Count > 0; 
+            return this._reportDefinitions != null && (this._reportDefinitions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

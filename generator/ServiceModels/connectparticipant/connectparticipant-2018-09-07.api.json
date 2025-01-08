@@ -5,14 +5,31 @@
     "endpointPrefix":"participant.connect",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceAbbreviation":"Amazon Connect Participant",
     "serviceFullName":"Amazon Connect Participant Service",
     "serviceId":"ConnectParticipant",
     "signatureVersion":"v4",
     "signingName":"execute-api",
-    "uid":"connectparticipant-2018-09-07"
+    "uid":"connectparticipant-2018-09-07",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
+    "CancelParticipantAuthentication":{
+      "name":"CancelParticipantAuthentication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/participant/cancel-authentication"
+      },
+      "input":{"shape":"CancelParticipantAuthenticationRequest"},
+      "output":{"shape":"CancelParticipantAuthenticationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "CompleteAttachmentUpload":{
       "name":"CompleteAttachmentUpload",
       "http":{
@@ -91,6 +108,21 @@
         {"shape":"ValidationException"}
       ]
     },
+    "GetAuthenticationUrl":{
+      "name":"GetAuthenticationUrl",
+      "http":{
+        "method":"POST",
+        "requestUri":"/participant/authentication-url"
+      },
+      "input":{"shape":"GetAuthenticationUrlRequest"},
+      "output":{"shape":"GetAuthenticationUrlResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "GetTranscript":{
       "name":"GetTranscript",
       "http":{
@@ -118,7 +150,8 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
       ]
     },
     "SendMessage":{
@@ -205,7 +238,32 @@
       "type":"list",
       "member":{"shape":"AttachmentItem"}
     },
+    "AuthenticationUrl":{
+      "type":"string",
+      "max":2083,
+      "min":1
+    },
     "Bool":{"type":"boolean"},
+    "CancelParticipantAuthenticationRequest":{
+      "type":"structure",
+      "required":[
+        "SessionId",
+        "ConnectionToken"
+      ],
+      "members":{
+        "SessionId":{"shape":"SessionId"},
+        "ConnectionToken":{
+          "shape":"ParticipantToken",
+          "location":"header",
+          "locationName":"X-Amz-Bearer"
+        }
+      }
+    },
+    "CancelParticipantAuthenticationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "ChatContent":{
       "type":"string",
       "max":16384,
@@ -387,14 +445,43 @@
           "shape":"ParticipantToken",
           "location":"header",
           "locationName":"X-Amz-Bearer"
-        }
+        },
+        "UrlExpiryInSeconds":{"shape":"URLExpiryInSeconds"}
       }
     },
     "GetAttachmentResponse":{
       "type":"structure",
+      "required":["AttachmentSizeInBytes"],
       "members":{
         "Url":{"shape":"PreSignedAttachmentUrl"},
-        "UrlExpiry":{"shape":"ISO8601Datetime"}
+        "UrlExpiry":{"shape":"ISO8601Datetime"},
+        "AttachmentSizeInBytes":{
+          "shape":"AttachmentSizeInBytes",
+          "box":true
+        }
+      }
+    },
+    "GetAuthenticationUrlRequest":{
+      "type":"structure",
+      "required":[
+        "SessionId",
+        "RedirectUri",
+        "ConnectionToken"
+      ],
+      "members":{
+        "SessionId":{"shape":"SessionId"},
+        "RedirectUri":{"shape":"RedirectURI"},
+        "ConnectionToken":{
+          "shape":"ParticipantToken",
+          "location":"header",
+          "locationName":"X-Amz-Bearer"
+        }
+      }
+    },
+    "GetAuthenticationUrlResponse":{
+      "type":"structure",
+      "members":{
+        "AuthenticationUrl":{"shape":"AuthenticationUrl"}
       }
     },
     "GetTranscriptRequest":{
@@ -497,7 +584,8 @@
         "AGENT",
         "CUSTOMER",
         "SYSTEM",
-        "CUSTOM_BOT"
+        "CUSTOM_BOT",
+        "SUPERVISOR"
       ]
     },
     "ParticipantToken":{
@@ -532,6 +620,11 @@
       "type":"list",
       "member":{"shape":"Receipt"}
     },
+    "RedirectURI":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
     "ResourceId":{"type":"string"},
     "ResourceNotFoundException":{
       "type":"structure",
@@ -552,7 +645,8 @@
         "PARTICIPANT",
         "HIERARCHY_LEVEL",
         "HIERARCHY_GROUP",
-        "USER"
+        "USER",
+        "PHONE_NUMBER"
       ]
     },
     "ScanDirection":{
@@ -626,6 +720,11 @@
       "error":{"httpStatusCode":402},
       "exception":true
     },
+    "SessionId":{
+      "type":"string",
+      "max":36,
+      "min":36
+    },
     "SortKey":{
       "type":"string",
       "enum":[
@@ -684,6 +783,11 @@
     "Transcript":{
       "type":"list",
       "member":{"shape":"Item"}
+    },
+    "URLExpiryInSeconds":{
+      "type":"integer",
+      "max":300,
+      "min":5
     },
     "UploadMetadata":{
       "type":"structure",

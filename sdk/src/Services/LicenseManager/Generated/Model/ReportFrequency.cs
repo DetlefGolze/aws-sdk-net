@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LicenseManager.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.LicenseManager.Model
         /// Gets and sets the property Value. 
         /// <para>
         /// Number of times within the frequency period that a report is generated. The only supported
-        /// value is <code>1</code>.
+        /// value is <c>1</c>.
         /// </para>
         /// </summary>
         public int Value

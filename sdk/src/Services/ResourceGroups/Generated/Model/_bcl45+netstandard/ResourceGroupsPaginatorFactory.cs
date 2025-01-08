@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ResourceGroups.Model
 {
     /// <summary>
@@ -33,6 +34,14 @@ namespace Amazon.ResourceGroups.Model
         internal ResourceGroupsPaginatorFactory(IAmazonResourceGroups client) 
         {
             this.client = client;
+        }
+
+        /// <summary>
+        /// Paginator for ListGroupingStatuses operation
+        ///</summary>
+        public IListGroupingStatusesPaginator ListGroupingStatuses(ListGroupingStatusesRequest request) 
+        {
+            return new ListGroupingStatusesPaginator(this.client, request);
         }
 
         /// <summary>
@@ -49,6 +58,14 @@ namespace Amazon.ResourceGroups.Model
         public IListGroupsPaginator ListGroups(ListGroupsRequest request) 
         {
             return new ListGroupsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListTagSyncTasks operation
+        ///</summary>
+        public IListTagSyncTasksPaginator ListTagSyncTasks(ListTagSyncTasksRequest request) 
+        {
+            return new ListTagSyncTasksPaginator(this.client, request);
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideoArchivedMedia.Model
 {
     /// <summary>
@@ -37,13 +38,13 @@ namespace Amazon.KinesisVideoArchivedMedia.Model
     /// <para>
     /// Listing fragments is eventually consistent. This means that even if the producer receives
     /// an acknowledgment that a fragment is persisted, the result might not be returned immediately
-    /// from a request to <code>ListFragments</code>. However, results are typically available
-    /// in less than one second.
+    /// from a request to <c>ListFragments</c>. However, results are typically available in
+    /// less than one second.
     /// </para>
     ///  <note> 
     /// <para>
-    /// You must first call the <code>GetDataEndpoint</code> API to get an endpoint. Then
-    /// send the <code>ListFragments</code> requests to this endpoint using the <a href="https://docs.aws.amazon.com/cli/latest/reference/">--endpoint-url
+    /// You must first call the <c>GetDataEndpoint</c> API to get an endpoint. Then send the
+    /// <c>ListFragments</c> requests to this endpoint using the <a href="https://docs.aws.amazon.com/cli/latest/reference/">--endpoint-url
     /// parameter</a>. 
     /// </para>
     ///  </note> <important> 
@@ -54,14 +55,13 @@ namespace Amazon.KinesisVideoArchivedMedia.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>x-amz-ErrorType</code> HTTP header – contains a more specific error type in
-    /// addition to what the HTTP status code provides. 
+    ///  <c>x-amz-ErrorType</c> HTTP header – contains a more specific error type in addition
+    /// to what the HTTP status code provides. 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>x-amz-RequestId</code> HTTP header – if you want to report an issue to Amazon
-    /// Web Services, the support team can better diagnose the problem if given the Request
-    /// Id.
+    ///  <c>x-amz-RequestId</c> HTTP header – if you want to report an issue to Amazon Web
+    /// Services, the support team can better diagnose the problem if given the Request Id.
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -91,6 +91,11 @@ namespace Amazon.KinesisVideoArchivedMedia.Model
         /// <para>
         /// Describes the timestamp range and timestamp origin for the range of fragments to return.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// This is only required when the <c>NextToken</c> isn't passed in the API.
+        /// </para>
+        ///  </note>
         /// </summary>
         public FragmentSelector FragmentSelector
         {
@@ -108,7 +113,7 @@ namespace Amazon.KinesisVideoArchivedMedia.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The total number of fragments to return. If the total number of fragments available
-        /// is more than the value specified in <code>max-results</code>, then a <a>ListFragmentsOutput$NextToken</a>
+        /// is more than the value specified in <c>max-results</c>, then a <a>ListFragmentsOutput$NextToken</a>
         /// is provided in the output that you can use to resume pagination.
         /// </para>
         /// </summary>
@@ -149,7 +154,7 @@ namespace Amazon.KinesisVideoArchivedMedia.Model
         /// Gets and sets the property StreamARN. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the stream from which to retrieve a fragment list.
-        /// Specify either this parameter or the <code>StreamName</code> parameter.
+        /// Specify either this parameter or the <c>StreamName</c> parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -169,7 +174,7 @@ namespace Amazon.KinesisVideoArchivedMedia.Model
         /// Gets and sets the property StreamName. 
         /// <para>
         /// The name of the stream from which to retrieve a fragment list. Specify either this
-        /// parameter or the <code>StreamARN</code> parameter.
+        /// parameter or the <c>StreamARN</c> parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]

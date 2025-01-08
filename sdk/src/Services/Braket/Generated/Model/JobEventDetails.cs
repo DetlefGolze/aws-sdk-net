@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Braket.Model
 {
     /// <summary>
@@ -77,7 +78,7 @@ namespace Amazon.Braket.Model
         /// <summary>
         /// Gets and sets the property TimeOfEvent. 
         /// <para>
-        /// TThe type of event that occurred related to the Amazon Braket job.
+        /// The type of event that occurred related to the Amazon Braket job.
         /// </para>
         /// </summary>
         public DateTime TimeOfEvent

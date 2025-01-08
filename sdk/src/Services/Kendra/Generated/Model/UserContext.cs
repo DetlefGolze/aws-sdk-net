@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -55,11 +56,25 @@ namespace Amazon.Kendra.Model
     /// <para>
     /// If you provide both, an exception is thrown.
     /// </para>
+    ///  <important> 
+    /// <para>
+    /// If you're using an Amazon Kendra Gen AI Enterprise Edition index, you can use <c>UserId</c>,
+    /// <c>Groups</c>, and <c>DataSourceGroups</c> to filter content. If you set the <c>UserId</c>
+    /// to a particular user ID, it also includes all public documents.
+    /// </para>
+    ///  
+    /// <para>
+    /// Amazon Kendra Gen AI Enterprise Edition indices don't support token based document
+    /// filtering. If you're using an Amazon Kendra Gen AI Enterprise Edition index, Amazon
+    /// Kendra returns a <c>ValidationException</c> error if the <c>Token</c> field has a
+    /// non-null value.
+    /// </para>
+    ///  </important>
     /// </summary>
     public partial class UserContext
     {
-        private List<DataSourceGroup> _dataSourceGroups = new List<DataSourceGroup>();
-        private List<string> _groups = new List<string>();
+        private List<DataSourceGroup> _dataSourceGroups = AWSConfigs.InitializeCollections ? new List<DataSourceGroup>() : null;
+        private List<string> _groups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _token;
         private string _userId;
 
@@ -80,7 +95,7 @@ namespace Amazon.Kendra.Model
         // Check to see if DataSourceGroups property is set
         internal bool IsSetDataSourceGroups()
         {
-            return this._dataSourceGroups != null && this._dataSourceGroups.Count > 0; 
+            return this._dataSourceGroups != null && (this._dataSourceGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -100,7 +115,7 @@ namespace Amazon.Kendra.Model
         // Check to see if Groups property is set
         internal bool IsSetGroups()
         {
-            return this._groups != null && this._groups.Count > 0; 
+            return this._groups != null && (this._groups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

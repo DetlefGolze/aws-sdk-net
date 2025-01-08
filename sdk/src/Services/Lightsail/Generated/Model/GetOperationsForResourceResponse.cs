@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -35,18 +36,17 @@ namespace Amazon.Lightsail.Model
     {
         private string _nextPageCount;
         private string _nextPageToken;
-        private List<Operation> _operations = new List<Operation>();
+        private List<Operation> _operations = AWSConfigs.InitializeCollections ? new List<Operation>() : null;
 
         /// <summary>
         /// Gets and sets the property NextPageCount. 
         /// <para>
-        /// (Deprecated) Returns the number of pages of results that remain.
+        /// (Discontinued) Returns the number of pages of results that remain.
         /// </para>
         ///  <note> 
         /// <para>
-        /// In releases prior to June 12, 2017, this parameter returned <code>null</code> by the
-        /// API. It is now deprecated, and the API returns the <code>next page token</code> parameter
-        /// instead.
+        /// In releases prior to June 12, 2017, this parameter returned <c>null</c> by the API.
+        /// It is now discontinued, and the API returns the <c>next page token</c> parameter instead.
         /// </para>
         ///  </note>
         /// </summary>
@@ -74,8 +74,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// To get the next page of results, perform another <code>GetOperationsForResource</code>
-        /// request and specify the next page token using the <code>pageToken</code> parameter.
+        /// To get the next page of results, perform another <c>GetOperationsForResource</c> request
+        /// and specify the next page token using the <c>pageToken</c> parameter.
         /// </para>
         /// </summary>
         public string NextPageToken
@@ -106,7 +106,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Operations property is set
         internal bool IsSetOperations()
         {
-            return this._operations != null && this._operations.Count > 0; 
+            return this._operations != null && (this._operations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

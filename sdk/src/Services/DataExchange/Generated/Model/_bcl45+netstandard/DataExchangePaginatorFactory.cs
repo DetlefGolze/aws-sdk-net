@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DataExchange.Model
 {
     /// <summary>
@@ -33,6 +34,14 @@ namespace Amazon.DataExchange.Model
         internal DataExchangePaginatorFactory(IAmazonDataExchange client) 
         {
             this.client = client;
+        }
+
+        /// <summary>
+        /// Paginator for ListDataGrants operation
+        ///</summary>
+        public IListDataGrantsPaginator ListDataGrants(ListDataGrantsRequest request) 
+        {
+            return new ListDataGrantsPaginator(this.client, request);
         }
 
         /// <summary>
@@ -65,6 +74,14 @@ namespace Amazon.DataExchange.Model
         public IListJobsPaginator ListJobs(ListJobsRequest request) 
         {
             return new ListJobsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListReceivedDataGrants operation
+        ///</summary>
+        public IListReceivedDataGrantsPaginator ListReceivedDataGrants(ListReceivedDataGrantsRequest request) 
+        {
+            return new ListReceivedDataGrantsPaginator(this.client, request);
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideo.Model
 {
     /// <summary>
@@ -136,8 +137,7 @@ namespace Amazon.KinesisVideo.Model
         /// <summary>
         /// Gets and sets the property SingleMasterConfiguration. 
         /// <para>
-        /// A structure that contains the configuration for the <code>SINGLE_MASTER</code> channel
-        /// type.
+        /// A structure that contains the configuration for the <c>SINGLE_MASTER</c> channel type.
         /// </para>
         /// </summary>
         public SingleMasterConfiguration SingleMasterConfiguration

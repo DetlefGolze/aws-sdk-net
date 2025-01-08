@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleWorkflow.Model
 {
     /// <summary>
@@ -101,7 +102,7 @@ namespace Amazon.SimpleWorkflow.Model
         /// <summary>
         /// Gets and sets the property StartedEventId. 
         /// <para>
-        /// The ID of the <code>ActivityTaskStarted</code> event recorded in the history.
+        /// The ID of the <c>ActivityTaskStarted</c> event recorded in the history.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

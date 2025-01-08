@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,19 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(TopicDetails requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetConfigOptions())
+            {
+                context.Writer.WritePropertyName("ConfigOptions");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = TopicConfigOptionsMarshaller.Instance;
+                marshaller.Marshall(requestObject.ConfigOptions, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetDataSets())
             {
                 context.Writer.WritePropertyName("DataSets");
@@ -71,6 +85,12 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("Name");
                 context.Writer.Write(requestObject.Name);
+            }
+
+            if(requestObject.IsSetUserExperienceVersion())
+            {
+                context.Writer.WritePropertyName("UserExperienceVersion");
+                context.Writer.Write(requestObject.UserExperienceVersion);
             }
 
         }

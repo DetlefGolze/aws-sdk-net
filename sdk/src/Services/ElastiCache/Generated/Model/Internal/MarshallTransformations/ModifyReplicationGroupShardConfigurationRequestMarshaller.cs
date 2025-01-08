@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElastiCache.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -71,7 +72,7 @@ namespace Amazon.ElastiCache.Model.Internal.MarshallTransformations
                     int publicRequestlistValueIndex = 1;
                     foreach(var publicRequestlistValue in publicRequest.NodeGroupsToRemove)
                     {
-                        request.Parameters.Add("NodeGroupsToRemove" + "." + "member" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
+                        request.Parameters.Add("NodeGroupsToRemove" + "." + "NodeGroupToRemove" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
                         publicRequestlistValueIndex++;
                     }
                 }
@@ -80,7 +81,7 @@ namespace Amazon.ElastiCache.Model.Internal.MarshallTransformations
                     int publicRequestlistValueIndex = 1;
                     foreach(var publicRequestlistValue in publicRequest.NodeGroupsToRetain)
                     {
-                        request.Parameters.Add("NodeGroupsToRetain" + "." + "member" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
+                        request.Parameters.Add("NodeGroupsToRetain" + "." + "NodeGroupToRetain" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
                         publicRequestlistValueIndex++;
                     }
                 }
@@ -95,14 +96,14 @@ namespace Amazon.ElastiCache.Model.Internal.MarshallTransformations
                     {
                         if(publicRequestlistValue.IsSetNodeGroupId())
                         {
-                            request.Parameters.Add("ReshardingConfiguration" + "." + "member" + "." + publicRequestlistValueIndex + "." + "NodeGroupId", StringUtils.FromString(publicRequestlistValue.NodeGroupId));
+                            request.Parameters.Add("ReshardingConfiguration" + "." + "ReshardingConfiguration" + "." + publicRequestlistValueIndex + "." + "NodeGroupId", StringUtils.FromString(publicRequestlistValue.NodeGroupId));
                         }
                         if(publicRequestlistValue.IsSetPreferredAvailabilityZones())
                         {
                             int publicRequestlistValuelistValueIndex = 1;
                             foreach(var publicRequestlistValuelistValue in publicRequestlistValue.PreferredAvailabilityZones)
                             {
-                                request.Parameters.Add("ReshardingConfiguration" + "." + "member" + "." + publicRequestlistValueIndex + "." + "PreferredAvailabilityZones" + "." + "member" + "." + publicRequestlistValuelistValueIndex, StringUtils.FromString(publicRequestlistValuelistValue));
+                                request.Parameters.Add("ReshardingConfiguration" + "." + "ReshardingConfiguration" + "." + publicRequestlistValueIndex + "." + "PreferredAvailabilityZones" + "." + "AvailabilityZone" + "." + publicRequestlistValuelistValueIndex, StringUtils.FromString(publicRequestlistValuelistValue));
                                 publicRequestlistValuelistValueIndex++;
                             }
                         }

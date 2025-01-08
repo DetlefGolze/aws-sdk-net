@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
     /// Container for the parameters to the IndexDocuments operation.
     /// Tells the search domain to start indexing its documents using the latest indexing
     /// options. This operation must be invoked to activate options whose <a>OptionStatus</a>
-    /// is <code>RequiresIndexDocuments</code>.
+    /// is <c>RequiresIndexDocuments</c>.
     /// </summary>
     public partial class IndexDocumentsRequest : AmazonCloudSearchRequest
     {

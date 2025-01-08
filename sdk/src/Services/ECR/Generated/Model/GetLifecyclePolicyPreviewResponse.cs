@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECR.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.ECR.Model
     {
         private string _lifecyclePolicyText;
         private string _nextToken;
-        private List<LifecyclePolicyPreviewResult> _previewResults = new List<LifecyclePolicyPreviewResult>();
+        private List<LifecyclePolicyPreviewResult> _previewResults = AWSConfigs.InitializeCollections ? new List<LifecyclePolicyPreviewResult>() : null;
         private string _registryId;
         private string _repositoryName;
         private LifecyclePolicyPreviewStatus _status;
@@ -63,10 +64,10 @@ namespace Amazon.ECR.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value to include in a future <code>GetLifecyclePolicyPreview</code>
-        /// request. When the results of a <code>GetLifecyclePolicyPreview</code> request exceed
-        /// <code>maxResults</code>, this value can be used to retrieve the next page of results.
-        /// This value is <code>null</code> when there are no more results to return.
+        /// The <c>nextToken</c> value to include in a future <c>GetLifecyclePolicyPreview</c>
+        /// request. When the results of a <c>GetLifecyclePolicyPreview</c> request exceed <c>maxResults</c>,
+        /// this value can be used to retrieve the next page of results. This value is <c>null</c>
+        /// when there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken
@@ -96,7 +97,7 @@ namespace Amazon.ECR.Model
         // Check to see if PreviewResults property is set
         internal bool IsSetPreviewResults()
         {
-            return this._previewResults != null && this._previewResults.Count > 0; 
+            return this._previewResults != null && (this._previewResults.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

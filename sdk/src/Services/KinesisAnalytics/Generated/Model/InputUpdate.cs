@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalytics.Model
 {
     /// <summary>
-    /// Describes updates to a specific input configuration (identified by the <code>InputId</code>
+    /// Describes updates to a specific input configuration (identified by the <c>InputId</c>
     /// of an application).
     /// </summary>
     public partial class InputUpdate

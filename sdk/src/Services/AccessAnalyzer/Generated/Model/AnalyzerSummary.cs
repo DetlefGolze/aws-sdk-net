@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AccessAnalyzer.Model
 {
     /// <summary>
@@ -34,13 +35,14 @@ namespace Amazon.AccessAnalyzer.Model
     public partial class AnalyzerSummary
     {
         private string _arn;
+        private AnalyzerConfiguration _configuration;
         private DateTime? _createdAt;
         private string _lastResourceAnalyzed;
         private DateTime? _lastResourceAnalyzedAt;
         private string _name;
         private AnalyzerStatus _status;
         private StatusReason _statusReason;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private Type _type;
 
         /// <summary>
@@ -60,6 +62,24 @@ namespace Amazon.AccessAnalyzer.Model
         internal bool IsSetArn()
         {
             return this._arn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Configuration. 
+        /// <para>
+        /// Specifies whether the analyzer is an external access or unused access analyzer.
+        /// </para>
+        /// </summary>
+        public AnalyzerConfiguration Configuration
+        {
+            get { return this._configuration; }
+            set { this._configuration = value; }
+        }
+
+        // Check to see if Configuration property is set
+        internal bool IsSetConfiguration()
+        {
+            return this._configuration != null;
         }
 
         /// <summary>
@@ -139,12 +159,12 @@ namespace Amazon.AccessAnalyzer.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the analyzer. An <code>Active</code> analyzer successfully monitors
-        /// supported resources and generates new findings. The analyzer is <code>Disabled</code>
-        /// when a user action, such as removing trusted access for Identity and Access Management
-        /// Access Analyzer from Organizations, causes the analyzer to stop generating new findings.
-        /// The status is <code>Creating</code> when the analyzer creation is in progress and
-        /// <code>Failed</code> when the analyzer creation has failed. 
+        /// The status of the analyzer. An <c>Active</c> analyzer successfully monitors supported
+        /// resources and generates new findings. The analyzer is <c>Disabled</c> when a user
+        /// action, such as removing trusted access for Identity and Access Management Access
+        /// Analyzer from Organizations, causes the analyzer to stop generating new findings.
+        /// The status is <c>Creating</c> when the analyzer creation is in progress and <c>Failed</c>
+        /// when the analyzer creation has failed. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -163,11 +183,11 @@ namespace Amazon.AccessAnalyzer.Model
         /// <summary>
         /// Gets and sets the property StatusReason. 
         /// <para>
-        /// The <code>statusReason</code> provides more details about the current status of the
-        /// analyzer. For example, if the creation for the analyzer fails, a <code>Failed</code>
-        /// status is returned. For an analyzer with organization as the type, this failure can
-        /// be due to an issue with creating the service-linked roles required in the member accounts
-        /// of the Amazon Web Services organization.
+        /// The <c>statusReason</c> provides more details about the current status of the analyzer.
+        /// For example, if the creation for the analyzer fails, a <c>Failed</c> status is returned.
+        /// For an analyzer with organization as the type, this failure can be due to an issue
+        /// with creating the service-linked roles required in the member accounts of the Amazon
+        /// Web Services organization.
         /// </para>
         /// </summary>
         public StatusReason StatusReason
@@ -197,7 +217,7 @@ namespace Amazon.AccessAnalyzer.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.ConfigService.Model
     public partial class DescribeRetentionConfigurationsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<RetentionConfiguration> _retentionConfigurations = new List<RetentionConfiguration>();
+        private List<RetentionConfiguration> _retentionConfigurations = AWSConfigs.InitializeCollections ? new List<RetentionConfiguration>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> string returned on a previous page that you use to get
-        /// the next page of results in a paginated response. 
+        /// The <c>nextToken</c> string returned on a previous page that you use to get the next
+        /// page of results in a paginated response. 
         /// </para>
         /// </summary>
         public string NextToken
@@ -70,7 +71,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if RetentionConfigurations property is set
         internal bool IsSetRetentionConfigurations()
         {
-            return this._retentionConfigurations != null && this._retentionConfigurations.Count > 0; 
+            return this._retentionConfigurations != null && (this._retentionConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

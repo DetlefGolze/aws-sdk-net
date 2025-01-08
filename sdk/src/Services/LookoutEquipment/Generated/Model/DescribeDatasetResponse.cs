@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LookoutEquipment.Model
 {
     /// <summary>
@@ -166,8 +167,8 @@ namespace Amazon.LookoutEquipment.Model
         /// <summary>
         /// Gets and sets the property IngestedFilesSummary. 
         /// <para>
-        ///  IngestedFilesSummary associated with the given dataset for the latest successful
-        /// associated ingestion job id. 
+        /// IngestedFilesSummary associated with the given dataset for the latest successful associated
+        /// ingestion job id. 
         /// </para>
         /// </summary>
         public IngestedFilesSummary IngestedFilesSummary

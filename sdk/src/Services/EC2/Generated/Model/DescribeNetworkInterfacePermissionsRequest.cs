@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,9 +35,9 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeNetworkInterfacePermissionsRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
-        private List<string> _networkInterfacePermissionIds = new List<string>();
+        private List<string> _networkInterfacePermissionIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -46,27 +47,27 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>network-interface-permission.network-interface-permission-id</code> - The ID
-        /// of the permission.
+        ///  <c>network-interface-permission.network-interface-permission-id</c> - The ID of the
+        /// permission.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>network-interface-permission.network-interface-id</code> - The ID of the network
+        ///  <c>network-interface-permission.network-interface-id</c> - The ID of the network
         /// interface.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>network-interface-permission.aws-account-id</code> - The Amazon Web Services
-        /// account ID.
+        ///  <c>network-interface-permission.aws-account-id</c> - The Amazon Web Services account
+        /// ID.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>network-interface-permission.aws-service</code> - The Amazon Web Service.
+        ///  <c>network-interface-permission.aws-service</c> - The Amazon Web Services service.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>network-interface-permission.permission</code> - The type of permission (<code>INSTANCE-ATTACH</code>
-        /// | <code>EIP-ASSOCIATE</code>).
+        ///  <c>network-interface-permission.permission</c> - The type of permission (<c>INSTANCE-ATTACH</c>
+        /// | <c>EIP-ASSOCIATE</c>).
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -79,7 +80,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -119,7 +120,7 @@ namespace Amazon.EC2.Model
         // Check to see if NetworkInterfacePermissionIds property is set
         internal bool IsSetNetworkInterfacePermissionIds()
         {
-            return this._networkInterfacePermissionIds != null && this._networkInterfacePermissionIds.Count > 0; 
+            return this._networkInterfacePermissionIds != null && (this._networkInterfacePermissionIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

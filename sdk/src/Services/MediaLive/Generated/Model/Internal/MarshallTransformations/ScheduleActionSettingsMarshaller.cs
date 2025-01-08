@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ScheduleActionSettings requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetHlsId3SegmentTaggingSettings())
             {
                 context.Writer.WritePropertyName("hlsId3SegmentTaggingSettings");
@@ -184,6 +187,28 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 
                 var marshaller = StaticImageDeactivateScheduleActionSettingsMarshaller.Instance;
                 marshaller.Marshall(requestObject.StaticImageDeactivateSettings, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetStaticImageOutputActivateSettings())
+            {
+                context.Writer.WritePropertyName("staticImageOutputActivateSettings");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = StaticImageOutputActivateScheduleActionSettingsMarshaller.Instance;
+                marshaller.Marshall(requestObject.StaticImageOutputActivateSettings, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetStaticImageOutputDeactivateSettings())
+            {
+                context.Writer.WritePropertyName("staticImageOutputDeactivateSettings");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = StaticImageOutputDeactivateScheduleActionSettingsMarshaller.Instance;
+                marshaller.Marshall(requestObject.StaticImageOutputDeactivateSettings, context);
 
                 context.Writer.WriteObjectEnd();
             }

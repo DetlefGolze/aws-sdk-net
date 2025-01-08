@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -95,7 +96,7 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property UpdateActionStatus. 
         /// <para>
-        /// The status of the update action on the Redis cluster
+        /// The status of the update action on the Valkey or Redis OSS cluster
         /// </para>
         /// </summary>
         public UpdateActionStatus UpdateActionStatus

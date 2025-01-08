@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTTwinMaker.Model
 {
     /// <summary>
@@ -34,8 +35,9 @@ namespace Amazon.IoTTwinMaker.Model
     public partial class EntityPropertyReference
     {
         private string _componentName;
+        private string _componentPath;
         private string _entityId;
-        private Dictionary<string, string> _externalIdProperty = new Dictionary<string, string>();
+        private Dictionary<string, string> _externalIdProperty = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _propertyName;
 
         /// <summary>
@@ -55,6 +57,26 @@ namespace Amazon.IoTTwinMaker.Model
         internal bool IsSetComponentName()
         {
             return this._componentName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ComponentPath. 
+        /// <para>
+        /// This string specifies the path to the composite component, starting from the top-level
+        /// component.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=2048)]
+        public string ComponentPath
+        {
+            get { return this._componentPath; }
+            set { this._componentPath = value; }
+        }
+
+        // Check to see if ComponentPath property is set
+        internal bool IsSetComponentPath()
+        {
+            return this._componentPath != null;
         }
 
         /// <summary>
@@ -92,7 +114,7 @@ namespace Amazon.IoTTwinMaker.Model
         // Check to see if ExternalIdProperty property is set
         internal bool IsSetExternalIdProperty()
         {
-            return this._externalIdProperty != null && this._externalIdProperty.Count > 0; 
+            return this._externalIdProperty != null && (this._externalIdProperty.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

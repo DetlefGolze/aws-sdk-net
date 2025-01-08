@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.StepFunctions.Model
         private DateTime? _creationDate;
         private string _definition;
         private string _description;
+        private EncryptionConfiguration _encryptionConfiguration;
         private string _label;
         private LoggingConfiguration _loggingConfiguration;
         private string _name;
@@ -45,6 +47,7 @@ namespace Amazon.StepFunctions.Model
         private StateMachineStatus _status;
         private TracingConfiguration _tracingConfiguration;
         private StateMachineType _type;
+        private Dictionary<string, List<string>> _variableReferences = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
 
         /// <summary>
         /// Gets and sets the property CreationDate. 
@@ -53,8 +56,7 @@ namespace Amazon.StepFunctions.Model
         /// </para>
         ///  
         /// <para>
-        /// For a state machine version, <code>creationDate</code> is the date the version was
-        /// created.
+        /// For a state machine version, <c>creationDate</c> is the date the version was created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -75,6 +77,11 @@ namespace Amazon.StepFunctions.Model
         /// <para>
         /// The Amazon States Language definition of the state machine. See <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html">Amazon
         /// States Language</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// If called with <c>includedData = METADATA_ONLY</c>, the returned definition will be
+        /// <c>{}</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=1048576)]
@@ -110,11 +117,29 @@ namespace Amazon.StepFunctions.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EncryptionConfiguration. 
+        /// <para>
+        /// Settings to configure server-side encryption. 
+        /// </para>
+        /// </summary>
+        public EncryptionConfiguration EncryptionConfiguration
+        {
+            get { return this._encryptionConfiguration; }
+            set { this._encryptionConfiguration = value; }
+        }
+
+        // Check to see if EncryptionConfiguration property is set
+        internal bool IsSetEncryptionConfiguration()
+        {
+            return this._encryptionConfiguration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Label. 
         /// <para>
-        /// A user-defined or an auto-generated string that identifies a <code>Map</code> state.
-        /// This parameter is present only if the <code>stateMachineArn</code> specified in input
-        /// is a qualified state machine ARN.
+        /// A user-defined or an auto-generated string that identifies a <c>Map</c> state. This
+        /// parameter is present only if the <c>stateMachineArn</c> specified in input is a qualified
+        /// state machine ARN.
         /// </para>
         /// </summary>
         public string Label
@@ -159,19 +184,19 @@ namespace Amazon.StepFunctions.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// brackets <code>&lt; &gt; { } [ ]</code> 
+        /// brackets <c>&lt; &gt; { } [ ]</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// wildcard characters <code>? *</code> 
+        /// wildcard characters <c>? *</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> 
+        /// special characters <c>" # % \ ^ | ~ ` $ &amp; , ; : /</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// control characters (<code>U+0000-001F</code>, <code>U+007F-009F</code>)
+        /// control characters (<c>U+0000-001F</c>, <c>U+007F-009F</c>)
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -199,9 +224,9 @@ namespace Amazon.StepFunctions.Model
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>revisionId</code> parameter to compare between versions of a state machine
+        /// Use the <c>revisionId</c> parameter to compare between versions of a state machine
         /// configuration used for executions without performing a diff of the properties, such
-        /// as <code>definition</code> and <code>roleArn</code>.
+        /// as <c>definition</c> and <c>roleArn</c>.
         /// </para>
         /// </summary>
         public string RevisionId
@@ -246,7 +271,7 @@ namespace Amazon.StepFunctions.Model
         /// <para>
         /// If you specified a state machine version ARN in your request, the API returns the
         /// version ARN. The version ARN is a combination of state machine ARN and the version
-        /// number separated by a colon (:). For example, <code>stateMachineARN:1</code>.
+        /// number separated by a colon (:). For example, <c>stateMachineARN:1</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]
@@ -301,7 +326,7 @@ namespace Amazon.StepFunctions.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The <code>type</code> of the state machine (<code>STANDARD</code> or <code>EXPRESS</code>).
+        /// The <c>type</c> of the state machine (<c>STANDARD</c> or <c>EXPRESS</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -315,6 +340,26 @@ namespace Amazon.StepFunctions.Model
         internal bool IsSetType()
         {
             return this._type != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property VariableReferences. 
+        /// <para>
+        /// A map of <b>state name</b> to a list of variables referenced by that state. States
+        /// that do not use variable references will not be shown in the response.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Sensitive=true)]
+        public Dictionary<string, List<string>> VariableReferences
+        {
+            get { return this._variableReferences; }
+            set { this._variableReferences = value; }
+        }
+
+        // Check to see if VariableReferences property is set
+        internal bool IsSetVariableReferences()
+        {
+            return this._variableReferences != null && (this._variableReferences.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

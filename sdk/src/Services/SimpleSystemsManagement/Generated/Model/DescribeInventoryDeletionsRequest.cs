@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property DeletionId. 
         /// <para>
         /// Specify the delete inventory ID for which you want information. This ID was returned
-        /// by the <code>DeleteInventory</code> operation.
+        /// by the <c>DeleteInventory</c> operation.
         /// </para>
         /// </summary>
         public string DeletionId

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.ECS.Model
         private string _cluster;
         private ClusterConfiguration _configuration;
         private ClusterServiceConnectDefaultsRequest _serviceConnectDefaults;
-        private List<ClusterSetting> _settings = new List<ClusterSetting>();
+        private List<ClusterSetting> _settings = AWSConfigs.InitializeCollections ? new List<ClusterSetting>() : null;
 
         /// <summary>
         /// Gets and sets the property Cluster. 
@@ -82,10 +83,9 @@ namespace Amazon.ECS.Model
         /// Use this parameter to set a default Service Connect namespace. After you set a default
         /// Service Connect namespace, any new services with Service Connect turned on that are
         /// created in the cluster are added as client services in the namespace. This setting
-        /// only applies to new services that set the <code>enabled</code> parameter to <code>true</code>
-        /// in the <code>ServiceConnectConfiguration</code>. You can set the namespace of each
-        /// service individually in the <code>ServiceConnectConfiguration</code> to override this
-        /// default parameter.
+        /// only applies to new services that set the <c>enabled</c> parameter to <c>true</c>
+        /// in the <c>ServiceConnectConfiguration</c>. You can set the namespace of each service
+        /// individually in the <c>ServiceConnectConfiguration</c> to override this default parameter.
         /// </para>
         ///  
         /// <para>
@@ -124,7 +124,7 @@ namespace Amazon.ECS.Model
         // Check to see if Settings property is set
         internal bool IsSetSettings()
         {
-            return this._settings != null && this._settings.Count > 0; 
+            return this._settings != null && (this._settings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

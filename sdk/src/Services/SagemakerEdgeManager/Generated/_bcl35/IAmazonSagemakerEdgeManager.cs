@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.SagemakerEdgeManager.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.SagemakerEdgeManager
 {
     /// <summary>
-    /// Interface for accessing SagemakerEdgeManager
+    /// <para>Interface for accessing SagemakerEdgeManager</para>
     ///
     /// SageMaker Edge Manager dataplane service for communicating with active agents.
     /// </summary>

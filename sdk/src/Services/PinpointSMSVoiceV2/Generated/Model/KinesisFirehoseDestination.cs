@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
     /// Contains the delivery stream Amazon Resource Name (ARN), and the ARN of the Identity
-    /// and Access Management (IAM) role associated with an Kinesis Data Firehose event destination.
+    /// and Access Management (IAM) role associated with a Firehose event destination.
     /// 
     ///  
     /// <para>
-    /// Event destinations, such as Kinesis Data Firehose, are associated with configuration
-    /// sets, which enable you to publish message sending events.
+    /// Event destinations, such as Firehose, are associated with configuration sets, which
+    /// enable you to publish message sending events.
     /// </para>
     /// </summary>
     public partial class KinesisFirehoseDestination
@@ -65,8 +66,8 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// <summary>
         /// Gets and sets the property IamRoleArn. 
         /// <para>
-        /// The ARN of an Amazon Identity and Access Management (IAM) role that is able to write
-        /// event data to an Amazon Firehose destination.
+        /// The ARN of an Identity and Access Management role that is able to write event data
+        /// to an Amazon Data Firehose destination.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]

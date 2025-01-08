@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -33,14 +34,13 @@ namespace Amazon.EventBridge.Model
     /// </summary>
     public partial class ListApiDestinationsResponse : AmazonWebServiceResponse
     {
-        private List<ApiDestination> _apiDestinations = new List<ApiDestination>();
+        private List<ApiDestination> _apiDestinations = AWSConfigs.InitializeCollections ? new List<ApiDestination>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property ApiDestinations. 
         /// <para>
-        /// An array of <code>ApiDestination</code> objects that include information about an
-        /// API destination.
+        /// An array that includes information about each API destination.
         /// </para>
         /// </summary>
         public List<ApiDestination> ApiDestinations
@@ -52,13 +52,24 @@ namespace Amazon.EventBridge.Model
         // Check to see if ApiDestinations property is set
         internal bool IsSetApiDestinations()
         {
-            return this._apiDestinations != null && this._apiDestinations.Count > 0; 
+            return this._apiDestinations != null && (this._apiDestinations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token you can use in a subsequent request to retrieve the next set of results.
+        /// A token indicating there are more results available. If there are no more results,
+        /// no token is included in the response.
+        /// </para>
+        ///  
+        /// <para>
+        /// The value of <c>nextToken</c> is a unique pagination token for each page. To retrieve
+        /// the next page of results, make the call again using the returned token. Keep all other
+        /// arguments unchanged.
+        /// </para>
+        ///  
+        /// <para>
+        ///  Using an expired pagination token results in an <c>HTTP 400 InvalidToken</c> error.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

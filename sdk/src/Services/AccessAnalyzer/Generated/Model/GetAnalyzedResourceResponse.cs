@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AccessAnalyzer.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.AccessAnalyzer.Model
         /// <summary>
         /// Gets and sets the property Resource. 
         /// <para>
-        /// An <code>AnalyzedResource</code> object that contains information that IAM Access
-        /// Analyzer found when it analyzed the resource.
+        /// An <c>AnalyzedResource</c> object that contains information that IAM Access Analyzer
+        /// found when it analyzed the resource.
         /// </para>
         /// </summary>
         public AnalyzedResource Resource

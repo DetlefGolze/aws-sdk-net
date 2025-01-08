@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -34,15 +35,14 @@ namespace Amazon.Transfer.Model
     public partial class ListServersResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ListedServer> _servers = new List<ListedServer>();
+        private List<ListedServer> _servers = AWSConfigs.InitializeCollections ? new List<ListedServer>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When you can get additional results from the <code>ListServers</code> operation, a
-        /// <code>NextToken</code> parameter is returned in the output. In a following command,
-        /// you can pass in the <code>NextToken</code> parameter to continue listing additional
-        /// servers.
+        /// When you can get additional results from the <c>ListServers</c> operation, a <c>NextToken</c>
+        /// parameter is returned in the output. In a following command, you can pass in the <c>NextToken</c>
+        /// parameter to continue listing additional servers.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=6144)]
@@ -74,7 +74,7 @@ namespace Amazon.Transfer.Model
         // Check to see if Servers property is set
         internal bool IsSetServers()
         {
-            return this._servers != null && this._servers.Count > 0; 
+            return this._servers != null && (this._servers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.SimpleEmailV2.Model
     /// </summary>
     public partial class PutAccountDetailsRequest : AmazonSimpleEmailServiceV2Request
     {
-        private List<string> _additionalContactEmailAddresses = new List<string>();
+        private List<string> _additionalContactEmailAddresses = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ContactLanguage _contactLanguage;
         private MailType _mailType;
         private bool? _productionAccessEnabled;
@@ -58,7 +59,7 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if AdditionalContactEmailAddresses property is set
         internal bool IsSetAdditionalContactEmailAddresses()
         {
-            return this._additionalContactEmailAddresses != null && this._additionalContactEmailAddresses.Count > 0; 
+            return this._additionalContactEmailAddresses != null && (this._additionalContactEmailAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -106,17 +107,14 @@ namespace Amazon.SimpleEmailV2.Model
         /// </para>
         ///  
         /// <para>
-        /// If the value is <code>false</code>, then your account is in the <i>sandbox</i>. When
-        /// your account is in the sandbox, you can only send email to verified identities. Additionally,
-        /// the maximum number of emails you can send in a 24-hour period (your sending quota)
-        /// is 200, and the maximum number of emails you can send per second (your maximum sending
-        /// rate) is 1.
+        /// If the value is <c>false</c>, then your account is in the <i>sandbox</i>. When your
+        /// account is in the sandbox, you can only send email to verified identities. 
         /// </para>
         ///  
         /// <para>
-        /// If the value is <code>true</code>, then your account has production access. When your
-        /// account has production access, you can send email to any address. The sending quota
-        /// and maximum sending rate for your account vary based on your specific use case.
+        /// If the value is <c>true</c>, then your account has production access. When your account
+        /// has production access, you can send email to any address. The sending quota and maximum
+        /// sending rate for your account vary based on your specific use case.
         /// </para>
         /// </summary>
         public bool ProductionAccessEnabled
@@ -137,7 +135,7 @@ namespace Amazon.SimpleEmailV2.Model
         /// A description of the types of email that you plan to send.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Sensitive=true, Min=1, Max=5000)]
+        [AWSProperty(Sensitive=true, Max=5000)]
         public string UseCaseDescription
         {
             get { return this._useCaseDescription; }

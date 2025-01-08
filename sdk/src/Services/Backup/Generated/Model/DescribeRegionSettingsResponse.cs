@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -33,8 +34,8 @@ namespace Amazon.Backup.Model
     /// </summary>
     public partial class DescribeRegionSettingsResponse : AmazonWebServiceResponse
     {
-        private Dictionary<string, bool> _resourceTypeManagementPreference = new Dictionary<string, bool>();
-        private Dictionary<string, bool> _resourceTypeOptInPreference = new Dictionary<string, bool>();
+        private Dictionary<string, bool> _resourceTypeManagementPreference = AWSConfigs.InitializeCollections ? new Dictionary<string, bool>() : null;
+        private Dictionary<string, bool> _resourceTypeOptInPreference = AWSConfigs.InitializeCollections ? new Dictionary<string, bool>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceTypeManagementPreference. 
@@ -43,19 +44,19 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  
         /// <para>
-        /// For the benefits of full Backup management, see <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#full-management">
-        /// Full Backup management</a>.
+        /// For the benefits of full Backup management, see <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#full-management">Full
+        /// Backup management</a>.
         /// </para>
         ///  
         /// <para>
         /// For a list of resource types and whether each supports full Backup management, see
-        /// the <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource">
-        /// Feature availability by resource</a> table.
+        /// the <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/backup-feature-availability.html#features-by-resource">Feature
+        /// availability by resource</a> table.
         /// </para>
         ///  
         /// <para>
-        /// If <code>"DynamoDB":false</code>, you can enable full Backup management for DynamoDB
-        /// backup by enabling <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/advanced-ddb-backup.html#advanced-ddb-backup-enable-cli">
+        /// If <c>"DynamoDB":false</c>, you can enable full Backup management for DynamoDB backup
+        /// by enabling <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/advanced-ddb-backup.html#advanced-ddb-backup-enable-cli">
         /// Backup's advanced DynamoDB backup features</a>.
         /// </para>
         /// </summary>
@@ -68,13 +69,13 @@ namespace Amazon.Backup.Model
         // Check to see if ResourceTypeManagementPreference property is set
         internal bool IsSetResourceTypeManagementPreference()
         {
-            return this._resourceTypeManagementPreference != null && this._resourceTypeManagementPreference.Count > 0; 
+            return this._resourceTypeManagementPreference != null && (this._resourceTypeManagementPreference.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ResourceTypeOptInPreference. 
         /// <para>
-        /// Returns a list of all services along with the opt-in preferences in the Region.
+        /// The services along with the opt-in preferences in the Region.
         /// </para>
         /// </summary>
         public Dictionary<string, bool> ResourceTypeOptInPreference
@@ -86,7 +87,7 @@ namespace Amazon.Backup.Model
         // Check to see if ResourceTypeOptInPreference property is set
         internal bool IsSetResourceTypeOptInPreference()
         {
-            return this._resourceTypeOptInPreference != null && this._resourceTypeOptInPreference.Count > 0; 
+            return this._resourceTypeOptInPreference != null && (this._resourceTypeOptInPreference.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

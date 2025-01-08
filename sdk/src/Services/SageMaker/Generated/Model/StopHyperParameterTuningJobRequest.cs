@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.SageMaker.Model
     /// <para>
     /// All model artifacts output from the training jobs are stored in Amazon Simple Storage
     /// Service (Amazon S3). All data that the training jobs write to Amazon CloudWatch Logs
-    /// are still available in CloudWatch. After the tuning job moves to the <code>Stopped</code>
+    /// are still available in CloudWatch. After the tuning job moves to the <c>Stopped</c>
     /// state, it releases all reserved resources for the tuning job.
     /// </para>
     /// </summary>

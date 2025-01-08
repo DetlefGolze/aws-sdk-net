@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -40,7 +41,8 @@ namespace Amazon.ElasticMapReduce.Model
         /// Gets and sets the property OnDemandResizeSpecification. 
         /// <para>
         /// The resize specification for On-Demand Instances in the instance fleet, which contains
-        /// the resize timeout period. 
+        /// the allocation strategy, capacity reservation options, and the resize timeout period.
+        /// 
         /// </para>
         /// </summary>
         public OnDemandResizingSpecification OnDemandResizeSpecification
@@ -59,7 +61,7 @@ namespace Amazon.ElasticMapReduce.Model
         /// Gets and sets the property SpotResizeSpecification. 
         /// <para>
         /// The resize specification for Spot Instances in the instance fleet, which contains
-        /// the resize timeout period. 
+        /// the allocation strategy and the resize timeout period. 
         /// </para>
         /// </summary>
         public SpotResizingSpecification SpotResizeSpecification

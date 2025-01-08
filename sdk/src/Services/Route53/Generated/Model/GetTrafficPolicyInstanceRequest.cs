@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
@@ -34,10 +35,10 @@ namespace Amazon.Route53.Model
     /// 
     ///  <note> 
     /// <para>
-    ///  Use <code>GetTrafficPolicyInstance</code> with the <code>id</code> of new traffic
-    /// policy instance to confirm that the <code>CreateTrafficPolicyInstance</code> or an
-    /// <code>UpdateTrafficPolicyInstance</code> request completed successfully. For more
-    /// information, see the <code>State</code> response element.
+    ///  Use <c>GetTrafficPolicyInstance</c> with the <c>id</c> of new traffic policy instance
+    /// to confirm that the <c>CreateTrafficPolicyInstance</c> or an <c>UpdateTrafficPolicyInstance</c>
+    /// request completed successfully. For more information, see the <c>State</c> response
+    /// element.
     /// </para>
     ///  </note> <note> 
     /// <para>

@@ -26,122 +26,130 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// A collection of attributes that are applied to all active Security Hub-aggregated
-    /// findings and that result in a subset of findings that are included in this insight.
+    /// A collection of filters that are applied to all active findings aggregated by Security
+    /// Hub.
     /// 
     ///  
     /// <para>
-    /// You can filter by up to 10 finding attributes. For each attribute, you can provide
+    /// You can filter by up to ten finding attributes. For each attribute, you can provide
     /// up to 20 filter values.
     /// </para>
     /// </summary>
     public partial class AwsSecurityFindingFilters
     {
-        private List<StringFilter> _awsAccountId = new List<StringFilter>();
-        private List<StringFilter> _companyName = new List<StringFilter>();
-        private List<StringFilter> _complianceAssociatedStandardsId = new List<StringFilter>();
-        private List<StringFilter> _complianceSecurityControlId = new List<StringFilter>();
-        private List<StringFilter> _complianceStatus = new List<StringFilter>();
-        private List<NumberFilter> _confidence = new List<NumberFilter>();
-        private List<DateFilter> _createdAt = new List<DateFilter>();
-        private List<NumberFilter> _criticality = new List<NumberFilter>();
-        private List<StringFilter> _description = new List<StringFilter>();
-        private List<NumberFilter> _findingProviderFieldsConfidence = new List<NumberFilter>();
-        private List<NumberFilter> _findingProviderFieldsCriticality = new List<NumberFilter>();
-        private List<StringFilter> _findingProviderFieldsRelatedFindingsId = new List<StringFilter>();
-        private List<StringFilter> _findingProviderFieldsRelatedFindingsProductArn = new List<StringFilter>();
-        private List<StringFilter> _findingProviderFieldsSeverityLabel = new List<StringFilter>();
-        private List<StringFilter> _findingProviderFieldsSeverityOriginal = new List<StringFilter>();
-        private List<StringFilter> _findingProviderFieldsTypes = new List<StringFilter>();
-        private List<DateFilter> _firstObservedAt = new List<DateFilter>();
-        private List<StringFilter> _generatorId = new List<StringFilter>();
-        private List<StringFilter> _id = new List<StringFilter>();
-        private List<KeywordFilter> _keyword = new List<KeywordFilter>();
-        private List<DateFilter> _lastObservedAt = new List<DateFilter>();
-        private List<StringFilter> _malwareName = new List<StringFilter>();
-        private List<StringFilter> _malwarePath = new List<StringFilter>();
-        private List<StringFilter> _malwareState = new List<StringFilter>();
-        private List<StringFilter> _malwareType = new List<StringFilter>();
-        private List<StringFilter> _networkDestinationDomain = new List<StringFilter>();
-        private List<IpFilter> _networkDestinationIpV4 = new List<IpFilter>();
-        private List<IpFilter> _networkDestinationIpV6 = new List<IpFilter>();
-        private List<NumberFilter> _networkDestinationPort = new List<NumberFilter>();
-        private List<StringFilter> _networkDirection = new List<StringFilter>();
-        private List<StringFilter> _networkProtocol = new List<StringFilter>();
-        private List<StringFilter> _networkSourceDomain = new List<StringFilter>();
-        private List<IpFilter> _networkSourceIpV4 = new List<IpFilter>();
-        private List<IpFilter> _networkSourceIpV6 = new List<IpFilter>();
-        private List<StringFilter> _networkSourceMac = new List<StringFilter>();
-        private List<NumberFilter> _networkSourcePort = new List<NumberFilter>();
-        private List<StringFilter> _noteText = new List<StringFilter>();
-        private List<DateFilter> _noteUpdatedAt = new List<DateFilter>();
-        private List<StringFilter> _noteUpdatedBy = new List<StringFilter>();
-        private List<DateFilter> _processLaunchedAt = new List<DateFilter>();
-        private List<StringFilter> _processName = new List<StringFilter>();
-        private List<NumberFilter> _processParentPid = new List<NumberFilter>();
-        private List<StringFilter> _processPath = new List<StringFilter>();
-        private List<NumberFilter> _processPid = new List<NumberFilter>();
-        private List<DateFilter> _processTerminatedAt = new List<DateFilter>();
-        private List<StringFilter> _productArn = new List<StringFilter>();
-        private List<MapFilter> _productFields = new List<MapFilter>();
-        private List<StringFilter> _productName = new List<StringFilter>();
-        private List<StringFilter> _recommendationText = new List<StringFilter>();
-        private List<StringFilter> _recordState = new List<StringFilter>();
-        private List<StringFilter> _region = new List<StringFilter>();
-        private List<StringFilter> _relatedFindingsId = new List<StringFilter>();
-        private List<StringFilter> _relatedFindingsProductArn = new List<StringFilter>();
-        private List<StringFilter> _resourceAwsEc2InstanceIamInstanceProfileArn = new List<StringFilter>();
-        private List<StringFilter> _resourceAwsEc2InstanceImageId = new List<StringFilter>();
-        private List<IpFilter> _resourceAwsEc2InstanceIpV4Addresses = new List<IpFilter>();
-        private List<IpFilter> _resourceAwsEc2InstanceIpV6Addresses = new List<IpFilter>();
-        private List<StringFilter> _resourceAwsEc2InstanceKeyName = new List<StringFilter>();
-        private List<DateFilter> _resourceAwsEc2InstanceLaunchedAt = new List<DateFilter>();
-        private List<StringFilter> _resourceAwsEc2InstanceSubnetId = new List<StringFilter>();
-        private List<StringFilter> _resourceAwsEc2InstanceType = new List<StringFilter>();
-        private List<StringFilter> _resourceAwsEc2InstanceVpcId = new List<StringFilter>();
-        private List<DateFilter> _resourceAwsIamAccessKeyCreatedAt = new List<DateFilter>();
-        private List<StringFilter> _resourceAwsIamAccessKeyPrincipalName = new List<StringFilter>();
-        private List<StringFilter> _resourceAwsIamAccessKeyStatus = new List<StringFilter>();
-        private List<StringFilter> _resourceAwsIamAccessKeyUserName = new List<StringFilter>();
-        private List<StringFilter> _resourceAwsIamUserUserName = new List<StringFilter>();
-        private List<StringFilter> _resourceAwsS3BucketOwnerId = new List<StringFilter>();
-        private List<StringFilter> _resourceAwsS3BucketOwnerName = new List<StringFilter>();
-        private List<StringFilter> _resourceContainerImageId = new List<StringFilter>();
-        private List<StringFilter> _resourceContainerImageName = new List<StringFilter>();
-        private List<DateFilter> _resourceContainerLaunchedAt = new List<DateFilter>();
-        private List<StringFilter> _resourceContainerName = new List<StringFilter>();
-        private List<MapFilter> _resourceDetailsOther = new List<MapFilter>();
-        private List<StringFilter> _resourceId = new List<StringFilter>();
-        private List<StringFilter> _resourcePartition = new List<StringFilter>();
-        private List<StringFilter> _resourceRegion = new List<StringFilter>();
-        private List<MapFilter> _resourceTags = new List<MapFilter>();
-        private List<StringFilter> _resourceType = new List<StringFilter>();
-        private List<BooleanFilter> _sample = new List<BooleanFilter>();
-        private List<StringFilter> _severityLabel = new List<StringFilter>();
-        private List<NumberFilter> _severityNormalized = new List<NumberFilter>();
-        private List<NumberFilter> _severityProduct = new List<NumberFilter>();
-        private List<StringFilter> _sourceUrl = new List<StringFilter>();
-        private List<StringFilter> _threatIntelIndicatorCategory = new List<StringFilter>();
-        private List<DateFilter> _threatIntelIndicatorLastObservedAt = new List<DateFilter>();
-        private List<StringFilter> _threatIntelIndicatorSource = new List<StringFilter>();
-        private List<StringFilter> _threatIntelIndicatorSourceUrl = new List<StringFilter>();
-        private List<StringFilter> _threatIntelIndicatorType = new List<StringFilter>();
-        private List<StringFilter> _threatIntelIndicatorValue = new List<StringFilter>();
-        private List<StringFilter> _title = new List<StringFilter>();
-        private List<StringFilter> _type = new List<StringFilter>();
-        private List<DateFilter> _updatedAt = new List<DateFilter>();
-        private List<MapFilter> _userDefinedFields = new List<MapFilter>();
-        private List<StringFilter> _verificationState = new List<StringFilter>();
-        private List<StringFilter> _workflowState = new List<StringFilter>();
-        private List<StringFilter> _workflowStatus = new List<StringFilter>();
+        private List<StringFilter> _awsAccountId = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _awsAccountName = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _companyName = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _complianceAssociatedStandardsId = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _complianceSecurityControlId = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _complianceSecurityControlParametersName = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _complianceSecurityControlParametersValue = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _complianceStatus = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<NumberFilter> _confidence = AWSConfigs.InitializeCollections ? new List<NumberFilter>() : null;
+        private List<DateFilter> _createdAt = AWSConfigs.InitializeCollections ? new List<DateFilter>() : null;
+        private List<NumberFilter> _criticality = AWSConfigs.InitializeCollections ? new List<NumberFilter>() : null;
+        private List<StringFilter> _description = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<NumberFilter> _findingProviderFieldsConfidence = AWSConfigs.InitializeCollections ? new List<NumberFilter>() : null;
+        private List<NumberFilter> _findingProviderFieldsCriticality = AWSConfigs.InitializeCollections ? new List<NumberFilter>() : null;
+        private List<StringFilter> _findingProviderFieldsRelatedFindingsId = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _findingProviderFieldsRelatedFindingsProductArn = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _findingProviderFieldsSeverityLabel = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _findingProviderFieldsSeverityOriginal = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _findingProviderFieldsTypes = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<DateFilter> _firstObservedAt = AWSConfigs.InitializeCollections ? new List<DateFilter>() : null;
+        private List<StringFilter> _generatorId = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _id = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<KeywordFilter> _keyword = AWSConfigs.InitializeCollections ? new List<KeywordFilter>() : null;
+        private List<DateFilter> _lastObservedAt = AWSConfigs.InitializeCollections ? new List<DateFilter>() : null;
+        private List<StringFilter> _malwareName = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _malwarePath = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _malwareState = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _malwareType = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _networkDestinationDomain = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<IpFilter> _networkDestinationIpV4 = AWSConfigs.InitializeCollections ? new List<IpFilter>() : null;
+        private List<IpFilter> _networkDestinationIpV6 = AWSConfigs.InitializeCollections ? new List<IpFilter>() : null;
+        private List<NumberFilter> _networkDestinationPort = AWSConfigs.InitializeCollections ? new List<NumberFilter>() : null;
+        private List<StringFilter> _networkDirection = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _networkProtocol = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _networkSourceDomain = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<IpFilter> _networkSourceIpV4 = AWSConfigs.InitializeCollections ? new List<IpFilter>() : null;
+        private List<IpFilter> _networkSourceIpV6 = AWSConfigs.InitializeCollections ? new List<IpFilter>() : null;
+        private List<StringFilter> _networkSourceMac = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<NumberFilter> _networkSourcePort = AWSConfigs.InitializeCollections ? new List<NumberFilter>() : null;
+        private List<StringFilter> _noteText = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<DateFilter> _noteUpdatedAt = AWSConfigs.InitializeCollections ? new List<DateFilter>() : null;
+        private List<StringFilter> _noteUpdatedBy = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<DateFilter> _processLaunchedAt = AWSConfigs.InitializeCollections ? new List<DateFilter>() : null;
+        private List<StringFilter> _processName = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<NumberFilter> _processParentPid = AWSConfigs.InitializeCollections ? new List<NumberFilter>() : null;
+        private List<StringFilter> _processPath = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<NumberFilter> _processPid = AWSConfigs.InitializeCollections ? new List<NumberFilter>() : null;
+        private List<DateFilter> _processTerminatedAt = AWSConfigs.InitializeCollections ? new List<DateFilter>() : null;
+        private List<StringFilter> _productArn = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<MapFilter> _productFields = AWSConfigs.InitializeCollections ? new List<MapFilter>() : null;
+        private List<StringFilter> _productName = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _recommendationText = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _recordState = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _region = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _relatedFindingsId = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _relatedFindingsProductArn = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _resourceApplicationArn = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _resourceApplicationName = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _resourceAwsEc2InstanceIamInstanceProfileArn = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _resourceAwsEc2InstanceImageId = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<IpFilter> _resourceAwsEc2InstanceIpV4Addresses = AWSConfigs.InitializeCollections ? new List<IpFilter>() : null;
+        private List<IpFilter> _resourceAwsEc2InstanceIpV6Addresses = AWSConfigs.InitializeCollections ? new List<IpFilter>() : null;
+        private List<StringFilter> _resourceAwsEc2InstanceKeyName = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<DateFilter> _resourceAwsEc2InstanceLaunchedAt = AWSConfigs.InitializeCollections ? new List<DateFilter>() : null;
+        private List<StringFilter> _resourceAwsEc2InstanceSubnetId = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _resourceAwsEc2InstanceType = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _resourceAwsEc2InstanceVpcId = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<DateFilter> _resourceAwsIamAccessKeyCreatedAt = AWSConfigs.InitializeCollections ? new List<DateFilter>() : null;
+        private List<StringFilter> _resourceAwsIamAccessKeyPrincipalName = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _resourceAwsIamAccessKeyStatus = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _resourceAwsIamAccessKeyUserName = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _resourceAwsIamUserUserName = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _resourceAwsS3BucketOwnerId = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _resourceAwsS3BucketOwnerName = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _resourceContainerImageId = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _resourceContainerImageName = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<DateFilter> _resourceContainerLaunchedAt = AWSConfigs.InitializeCollections ? new List<DateFilter>() : null;
+        private List<StringFilter> _resourceContainerName = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<MapFilter> _resourceDetailsOther = AWSConfigs.InitializeCollections ? new List<MapFilter>() : null;
+        private List<StringFilter> _resourceId = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _resourcePartition = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _resourceRegion = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<MapFilter> _resourceTags = AWSConfigs.InitializeCollections ? new List<MapFilter>() : null;
+        private List<StringFilter> _resourceType = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<BooleanFilter> _sample = AWSConfigs.InitializeCollections ? new List<BooleanFilter>() : null;
+        private List<StringFilter> _severityLabel = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<NumberFilter> _severityNormalized = AWSConfigs.InitializeCollections ? new List<NumberFilter>() : null;
+        private List<NumberFilter> _severityProduct = AWSConfigs.InitializeCollections ? new List<NumberFilter>() : null;
+        private List<StringFilter> _sourceUrl = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _threatIntelIndicatorCategory = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<DateFilter> _threatIntelIndicatorLastObservedAt = AWSConfigs.InitializeCollections ? new List<DateFilter>() : null;
+        private List<StringFilter> _threatIntelIndicatorSource = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _threatIntelIndicatorSourceUrl = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _threatIntelIndicatorType = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _threatIntelIndicatorValue = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _title = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _type = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<DateFilter> _updatedAt = AWSConfigs.InitializeCollections ? new List<DateFilter>() : null;
+        private List<MapFilter> _userDefinedFields = AWSConfigs.InitializeCollections ? new List<MapFilter>() : null;
+        private List<StringFilter> _verificationState = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _vulnerabilitiesExploitAvailable = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _vulnerabilitiesFixAvailable = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _workflowState = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _workflowStatus = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
 
         /// <summary>
         /// Gets and sets the property AwsAccountId. 
         /// <para>
-        /// The Amazon Web Services account ID that a finding is generated in.
+        /// The Amazon Web Services account ID in which a finding is generated.
         /// </para>
         /// </summary>
         public List<StringFilter> AwsAccountId
@@ -153,7 +161,25 @@ namespace Amazon.SecurityHub.Model
         // Check to see if AwsAccountId property is set
         internal bool IsSetAwsAccountId()
         {
-            return this._awsAccountId != null && this._awsAccountId.Count > 0; 
+            return this._awsAccountId != null && (this._awsAccountId.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property AwsAccountName. 
+        /// <para>
+        /// The name of the Amazon Web Services account in which a finding is generated.
+        /// </para>
+        /// </summary>
+        public List<StringFilter> AwsAccountName
+        {
+            get { return this._awsAccountName; }
+            set { this._awsAccountName = value; }
+        }
+
+        // Check to see if AwsAccountName property is set
+        internal bool IsSetAwsAccountName()
+        {
+            return this._awsAccountName != null && (this._awsAccountName.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -172,7 +198,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if CompanyName property is set
         internal bool IsSetCompanyName()
         {
-            return this._companyName != null && this._companyName.Count > 0; 
+            return this._companyName != null && (this._companyName.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -193,14 +219,14 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ComplianceAssociatedStandardsId property is set
         internal bool IsSetComplianceAssociatedStandardsId()
         {
-            return this._complianceAssociatedStandardsId != null && this._complianceAssociatedStandardsId.Count > 0; 
+            return this._complianceAssociatedStandardsId != null && (this._complianceAssociatedStandardsId.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ComplianceSecurityControlId. 
         /// <para>
         ///  The unique identifier of a control across standards. Values for this field typically
-        /// consist of an Amazon Web Service and a number, such as APIGateway.5. 
+        /// consist of an Amazon Web Services service and a number, such as APIGateway.5. 
         /// </para>
         /// </summary>
         public List<StringFilter> ComplianceSecurityControlId
@@ -212,7 +238,43 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ComplianceSecurityControlId property is set
         internal bool IsSetComplianceSecurityControlId()
         {
-            return this._complianceSecurityControlId != null && this._complianceSecurityControlId.Count > 0; 
+            return this._complianceSecurityControlId != null && (this._complianceSecurityControlId.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ComplianceSecurityControlParametersName. 
+        /// <para>
+        ///  The name of a security control parameter. 
+        /// </para>
+        /// </summary>
+        public List<StringFilter> ComplianceSecurityControlParametersName
+        {
+            get { return this._complianceSecurityControlParametersName; }
+            set { this._complianceSecurityControlParametersName = value; }
+        }
+
+        // Check to see if ComplianceSecurityControlParametersName property is set
+        internal bool IsSetComplianceSecurityControlParametersName()
+        {
+            return this._complianceSecurityControlParametersName != null && (this._complianceSecurityControlParametersName.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ComplianceSecurityControlParametersValue. 
+        /// <para>
+        ///  The current value of a security control parameter. 
+        /// </para>
+        /// </summary>
+        public List<StringFilter> ComplianceSecurityControlParametersValue
+        {
+            get { return this._complianceSecurityControlParametersValue; }
+            set { this._complianceSecurityControlParametersValue = value; }
+        }
+
+        // Check to see if ComplianceSecurityControlParametersValue property is set
+        internal bool IsSetComplianceSecurityControlParametersValue()
+        {
+            return this._complianceSecurityControlParametersValue != null && (this._complianceSecurityControlParametersValue.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -232,7 +294,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ComplianceStatus property is set
         internal bool IsSetComplianceStatus()
         {
-            return this._complianceStatus != null && this._complianceStatus.Count > 0; 
+            return this._complianceStatus != null && (this._complianceStatus.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -256,21 +318,19 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Confidence property is set
         internal bool IsSetConfidence()
         {
-            return this._confidence != null && this._confidence.Count > 0; 
+            return this._confidence != null && (this._confidence.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// An ISO8601-formatted timestamp that indicates when the security findings provider
-        /// captured the potential security issue that a finding captured.
+        /// A timestamp that indicates when the security findings provider created the potential
+        /// security issue that a finding reflects.
         /// </para>
         ///  
         /// <para>
-        /// A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value
-        /// cannot contain spaces, and date and time should be separated by <code>T</code>. For
-        /// more information, see <a href="https://www.rfc-editor.org/rfc/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public List<DateFilter> CreatedAt
@@ -282,7 +342,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if CreatedAt property is set
         internal bool IsSetCreatedAt()
         {
-            return this._createdAt != null && this._createdAt.Count > 0; 
+            return this._createdAt != null && (this._createdAt.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -305,7 +365,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Criticality property is set
         internal bool IsSetCriticality()
         {
-            return this._criticality != null && this._criticality.Count > 0; 
+            return this._criticality != null && (this._criticality.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -323,7 +383,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Description property is set
         internal bool IsSetDescription()
         {
-            return this._description != null && this._description.Count > 0; 
+            return this._description != null && (this._description.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -348,7 +408,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if FindingProviderFieldsConfidence property is set
         internal bool IsSetFindingProviderFieldsConfidence()
         {
-            return this._findingProviderFieldsConfidence != null && this._findingProviderFieldsConfidence.Count > 0; 
+            return this._findingProviderFieldsConfidence != null && (this._findingProviderFieldsConfidence.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -372,7 +432,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if FindingProviderFieldsCriticality property is set
         internal bool IsSetFindingProviderFieldsCriticality()
         {
-            return this._findingProviderFieldsCriticality != null && this._findingProviderFieldsCriticality.Count > 0; 
+            return this._findingProviderFieldsCriticality != null && (this._findingProviderFieldsCriticality.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -390,7 +450,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if FindingProviderFieldsRelatedFindingsId property is set
         internal bool IsSetFindingProviderFieldsRelatedFindingsId()
         {
-            return this._findingProviderFieldsRelatedFindingsId != null && this._findingProviderFieldsRelatedFindingsId.Count > 0; 
+            return this._findingProviderFieldsRelatedFindingsId != null && (this._findingProviderFieldsRelatedFindingsId.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -409,7 +469,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if FindingProviderFieldsRelatedFindingsProductArn property is set
         internal bool IsSetFindingProviderFieldsRelatedFindingsProductArn()
         {
-            return this._findingProviderFieldsRelatedFindingsProductArn != null && this._findingProviderFieldsRelatedFindingsProductArn.Count > 0; 
+            return this._findingProviderFieldsRelatedFindingsProductArn != null && (this._findingProviderFieldsRelatedFindingsProductArn.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -427,7 +487,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if FindingProviderFieldsSeverityLabel property is set
         internal bool IsSetFindingProviderFieldsSeverityLabel()
         {
-            return this._findingProviderFieldsSeverityLabel != null && this._findingProviderFieldsSeverityLabel.Count > 0; 
+            return this._findingProviderFieldsSeverityLabel != null && (this._findingProviderFieldsSeverityLabel.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -445,14 +505,14 @@ namespace Amazon.SecurityHub.Model
         // Check to see if FindingProviderFieldsSeverityOriginal property is set
         internal bool IsSetFindingProviderFieldsSeverityOriginal()
         {
-            return this._findingProviderFieldsSeverityOriginal != null && this._findingProviderFieldsSeverityOriginal.Count > 0; 
+            return this._findingProviderFieldsSeverityOriginal != null && (this._findingProviderFieldsSeverityOriginal.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property FindingProviderFieldsTypes. 
         /// <para>
         /// One or more finding types that the finding provider assigned to the finding. Uses
-        /// the format of <code>namespace/category/classifier</code> that classify a finding.
+        /// the format of <c>namespace/category/classifier</c> that classify a finding.
         /// </para>
         ///  
         /// <para>
@@ -469,21 +529,19 @@ namespace Amazon.SecurityHub.Model
         // Check to see if FindingProviderFieldsTypes property is set
         internal bool IsSetFindingProviderFieldsTypes()
         {
-            return this._findingProviderFieldsTypes != null && this._findingProviderFieldsTypes.Count > 0; 
+            return this._findingProviderFieldsTypes != null && (this._findingProviderFieldsTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property FirstObservedAt. 
         /// <para>
-        /// An ISO8601-formatted timestamp that indicates when the security findings provider
-        /// first observed the potential security issue that a finding captured.
+        /// A timestamp that indicates when the security findings provider first observed the
+        /// potential security issue that a finding captured.
         /// </para>
         ///  
         /// <para>
-        /// A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value
-        /// cannot contain spaces, and date and time should be separated by <code>T</code>. For
-        /// more information, see <a href="https://www.rfc-editor.org/rfc/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public List<DateFilter> FirstObservedAt
@@ -495,7 +553,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if FirstObservedAt property is set
         internal bool IsSetFirstObservedAt()
         {
-            return this._firstObservedAt != null && this._firstObservedAt.Count > 0; 
+            return this._firstObservedAt != null && (this._firstObservedAt.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -515,7 +573,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if GeneratorId property is set
         internal bool IsSetGeneratorId()
         {
-            return this._generatorId != null && this._generatorId.Count > 0; 
+            return this._generatorId != null && (this._generatorId.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -533,7 +591,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Id property is set
         internal bool IsSetId()
         {
-            return this._id != null && this._id.Count > 0; 
+            return this._id != null && (this._id.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -552,21 +610,19 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Keyword property is set
         internal bool IsSetKeyword()
         {
-            return this._keyword != null && this._keyword.Count > 0; 
+            return this._keyword != null && (this._keyword.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property LastObservedAt. 
         /// <para>
-        /// An ISO8601-formatted timestamp that indicates when the security findings provider
-        /// most recently observed the potential security issue that a finding captured.
+        /// A timestamp that indicates when the security findings provider most recently observed
+        /// a change in the resource that is involved in the finding.
         /// </para>
         ///  
         /// <para>
-        /// A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value
-        /// cannot contain spaces, and date and time should be separated by <code>T</code>. For
-        /// more information, see <a href="https://www.rfc-editor.org/rfc/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public List<DateFilter> LastObservedAt
@@ -578,7 +634,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if LastObservedAt property is set
         internal bool IsSetLastObservedAt()
         {
-            return this._lastObservedAt != null && this._lastObservedAt.Count > 0; 
+            return this._lastObservedAt != null && (this._lastObservedAt.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -596,7 +652,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if MalwareName property is set
         internal bool IsSetMalwareName()
         {
-            return this._malwareName != null && this._malwareName.Count > 0; 
+            return this._malwareName != null && (this._malwareName.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -614,7 +670,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if MalwarePath property is set
         internal bool IsSetMalwarePath()
         {
-            return this._malwarePath != null && this._malwarePath.Count > 0; 
+            return this._malwarePath != null && (this._malwarePath.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -632,7 +688,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if MalwareState property is set
         internal bool IsSetMalwareState()
         {
-            return this._malwareState != null && this._malwareState.Count > 0; 
+            return this._malwareState != null && (this._malwareState.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -650,7 +706,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if MalwareType property is set
         internal bool IsSetMalwareType()
         {
-            return this._malwareType != null && this._malwareType.Count > 0; 
+            return this._malwareType != null && (this._malwareType.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -668,7 +724,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if NetworkDestinationDomain property is set
         internal bool IsSetNetworkDestinationDomain()
         {
-            return this._networkDestinationDomain != null && this._networkDestinationDomain.Count > 0; 
+            return this._networkDestinationDomain != null && (this._networkDestinationDomain.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -686,7 +742,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if NetworkDestinationIpV4 property is set
         internal bool IsSetNetworkDestinationIpV4()
         {
-            return this._networkDestinationIpV4 != null && this._networkDestinationIpV4.Count > 0; 
+            return this._networkDestinationIpV4 != null && (this._networkDestinationIpV4.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -704,7 +760,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if NetworkDestinationIpV6 property is set
         internal bool IsSetNetworkDestinationIpV6()
         {
-            return this._networkDestinationIpV6 != null && this._networkDestinationIpV6.Count > 0; 
+            return this._networkDestinationIpV6 != null && (this._networkDestinationIpV6.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -722,7 +778,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if NetworkDestinationPort property is set
         internal bool IsSetNetworkDestinationPort()
         {
-            return this._networkDestinationPort != null && this._networkDestinationPort.Count > 0; 
+            return this._networkDestinationPort != null && (this._networkDestinationPort.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -740,7 +796,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if NetworkDirection property is set
         internal bool IsSetNetworkDirection()
         {
-            return this._networkDirection != null && this._networkDirection.Count > 0; 
+            return this._networkDirection != null && (this._networkDirection.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -758,7 +814,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if NetworkProtocol property is set
         internal bool IsSetNetworkProtocol()
         {
-            return this._networkProtocol != null && this._networkProtocol.Count > 0; 
+            return this._networkProtocol != null && (this._networkProtocol.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -776,7 +832,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if NetworkSourceDomain property is set
         internal bool IsSetNetworkSourceDomain()
         {
-            return this._networkSourceDomain != null && this._networkSourceDomain.Count > 0; 
+            return this._networkSourceDomain != null && (this._networkSourceDomain.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -794,7 +850,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if NetworkSourceIpV4 property is set
         internal bool IsSetNetworkSourceIpV4()
         {
-            return this._networkSourceIpV4 != null && this._networkSourceIpV4.Count > 0; 
+            return this._networkSourceIpV4 != null && (this._networkSourceIpV4.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -812,7 +868,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if NetworkSourceIpV6 property is set
         internal bool IsSetNetworkSourceIpV6()
         {
-            return this._networkSourceIpV6 != null && this._networkSourceIpV6.Count > 0; 
+            return this._networkSourceIpV6 != null && (this._networkSourceIpV6.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -831,7 +887,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if NetworkSourceMac property is set
         internal bool IsSetNetworkSourceMac()
         {
-            return this._networkSourceMac != null && this._networkSourceMac.Count > 0; 
+            return this._networkSourceMac != null && (this._networkSourceMac.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -849,7 +905,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if NetworkSourcePort property is set
         internal bool IsSetNetworkSourcePort()
         {
-            return this._networkSourcePort != null && this._networkSourcePort.Count > 0; 
+            return this._networkSourcePort != null && (this._networkSourcePort.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -867,7 +923,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if NoteText property is set
         internal bool IsSetNoteText()
         {
-            return this._noteText != null && this._noteText.Count > 0; 
+            return this._noteText != null && (this._noteText.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -885,7 +941,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if NoteUpdatedAt property is set
         internal bool IsSetNoteUpdatedAt()
         {
-            return this._noteUpdatedAt != null && this._noteUpdatedAt.Count > 0; 
+            return this._noteUpdatedAt != null && (this._noteUpdatedAt.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -903,7 +959,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if NoteUpdatedBy property is set
         internal bool IsSetNoteUpdatedBy()
         {
-            return this._noteUpdatedBy != null && this._noteUpdatedBy.Count > 0; 
+            return this._noteUpdatedBy != null && (this._noteUpdatedBy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -913,10 +969,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value
-        /// cannot contain spaces, and date and time should be separated by <code>T</code>. For
-        /// more information, see <a href="https://www.rfc-editor.org/rfc/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public List<DateFilter> ProcessLaunchedAt
@@ -928,7 +982,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ProcessLaunchedAt property is set
         internal bool IsSetProcessLaunchedAt()
         {
-            return this._processLaunchedAt != null && this._processLaunchedAt.Count > 0; 
+            return this._processLaunchedAt != null && (this._processLaunchedAt.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -946,14 +1000,13 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ProcessName property is set
         internal bool IsSetProcessName()
         {
-            return this._processName != null && this._processName.Count > 0; 
+            return this._processName != null && (this._processName.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ProcessParentPid. 
         /// <para>
-        /// The parent process ID. This field accepts positive integers between <code>O</code>
-        /// and <code>2147483647</code>.
+        /// The parent process ID. This field accepts positive integers between <c>O</c> and <c>2147483647</c>.
         /// </para>
         /// </summary>
         public List<NumberFilter> ProcessParentPid
@@ -965,7 +1018,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ProcessParentPid property is set
         internal bool IsSetProcessParentPid()
         {
-            return this._processParentPid != null && this._processParentPid.Count > 0; 
+            return this._processParentPid != null && (this._processParentPid.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -983,7 +1036,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ProcessPath property is set
         internal bool IsSetProcessPath()
         {
-            return this._processPath != null && this._processPath.Count > 0; 
+            return this._processPath != null && (this._processPath.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1001,7 +1054,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ProcessPid property is set
         internal bool IsSetProcessPid()
         {
-            return this._processPid != null && this._processPid.Count > 0; 
+            return this._processPid != null && (this._processPid.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1011,10 +1064,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value
-        /// cannot contain spaces, and date and time should be separated by <code>T</code>. For
-        /// more information, see <a href="https://www.rfc-editor.org/rfc/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public List<DateFilter> ProcessTerminatedAt
@@ -1026,7 +1077,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ProcessTerminatedAt property is set
         internal bool IsSetProcessTerminatedAt()
         {
-            return this._processTerminatedAt != null && this._processTerminatedAt.Count > 0; 
+            return this._processTerminatedAt != null && (this._processTerminatedAt.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1046,14 +1097,14 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ProductArn property is set
         internal bool IsSetProductArn()
         {
-            return this._productArn != null && this._productArn.Count > 0; 
+            return this._productArn != null && (this._productArn.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ProductFields. 
         /// <para>
         /// A data type where security findings providers can include additional solution-specific
-        /// details that aren't part of the defined <code>AwsSecurityFinding</code> format.
+        /// details that aren't part of the defined <c>AwsSecurityFinding</c> format.
         /// </para>
         /// </summary>
         public List<MapFilter> ProductFields
@@ -1065,7 +1116,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ProductFields property is set
         internal bool IsSetProductFields()
         {
-            return this._productFields != null && this._productFields.Count > 0; 
+            return this._productFields != null && (this._productFields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1083,7 +1134,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ProductName property is set
         internal bool IsSetProductName()
         {
-            return this._productName != null && this._productName.Count > 0; 
+            return this._productName != null && (this._productName.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1101,7 +1152,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if RecommendationText property is set
         internal bool IsSetRecommendationText()
         {
-            return this._recommendationText != null && this._recommendationText.Count > 0; 
+            return this._recommendationText != null && (this._recommendationText.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1119,7 +1170,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if RecordState property is set
         internal bool IsSetRecordState()
         {
-            return this._recordState != null && this._recordState.Count > 0; 
+            return this._recordState != null && (this._recordState.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1137,7 +1188,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Region property is set
         internal bool IsSetRegion()
         {
-            return this._region != null && this._region.Count > 0; 
+            return this._region != null && (this._region.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1155,7 +1206,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if RelatedFindingsId property is set
         internal bool IsSetRelatedFindingsId()
         {
-            return this._relatedFindingsId != null && this._relatedFindingsId.Count > 0; 
+            return this._relatedFindingsId != null && (this._relatedFindingsId.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1173,7 +1224,43 @@ namespace Amazon.SecurityHub.Model
         // Check to see if RelatedFindingsProductArn property is set
         internal bool IsSetRelatedFindingsProductArn()
         {
-            return this._relatedFindingsProductArn != null && this._relatedFindingsProductArn.Count > 0; 
+            return this._relatedFindingsProductArn != null && (this._relatedFindingsProductArn.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ResourceApplicationArn. 
+        /// <para>
+        ///  The ARN of the application that is related to a finding. 
+        /// </para>
+        /// </summary>
+        public List<StringFilter> ResourceApplicationArn
+        {
+            get { return this._resourceApplicationArn; }
+            set { this._resourceApplicationArn = value; }
+        }
+
+        // Check to see if ResourceApplicationArn property is set
+        internal bool IsSetResourceApplicationArn()
+        {
+            return this._resourceApplicationArn != null && (this._resourceApplicationArn.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ResourceApplicationName. 
+        /// <para>
+        ///  The name of the application that is related to a finding. 
+        /// </para>
+        /// </summary>
+        public List<StringFilter> ResourceApplicationName
+        {
+            get { return this._resourceApplicationName; }
+            set { this._resourceApplicationName = value; }
+        }
+
+        // Check to see if ResourceApplicationName property is set
+        internal bool IsSetResourceApplicationName()
+        {
+            return this._resourceApplicationName != null && (this._resourceApplicationName.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1191,7 +1278,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceAwsEc2InstanceIamInstanceProfileArn property is set
         internal bool IsSetResourceAwsEc2InstanceIamInstanceProfileArn()
         {
-            return this._resourceAwsEc2InstanceIamInstanceProfileArn != null && this._resourceAwsEc2InstanceIamInstanceProfileArn.Count > 0; 
+            return this._resourceAwsEc2InstanceIamInstanceProfileArn != null && (this._resourceAwsEc2InstanceIamInstanceProfileArn.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1209,7 +1296,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceAwsEc2InstanceImageId property is set
         internal bool IsSetResourceAwsEc2InstanceImageId()
         {
-            return this._resourceAwsEc2InstanceImageId != null && this._resourceAwsEc2InstanceImageId.Count > 0; 
+            return this._resourceAwsEc2InstanceImageId != null && (this._resourceAwsEc2InstanceImageId.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1227,7 +1314,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceAwsEc2InstanceIpV4Addresses property is set
         internal bool IsSetResourceAwsEc2InstanceIpV4Addresses()
         {
-            return this._resourceAwsEc2InstanceIpV4Addresses != null && this._resourceAwsEc2InstanceIpV4Addresses.Count > 0; 
+            return this._resourceAwsEc2InstanceIpV4Addresses != null && (this._resourceAwsEc2InstanceIpV4Addresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1245,7 +1332,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceAwsEc2InstanceIpV6Addresses property is set
         internal bool IsSetResourceAwsEc2InstanceIpV6Addresses()
         {
-            return this._resourceAwsEc2InstanceIpV6Addresses != null && this._resourceAwsEc2InstanceIpV6Addresses.Count > 0; 
+            return this._resourceAwsEc2InstanceIpV6Addresses != null && (this._resourceAwsEc2InstanceIpV6Addresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1263,7 +1350,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceAwsEc2InstanceKeyName property is set
         internal bool IsSetResourceAwsEc2InstanceKeyName()
         {
-            return this._resourceAwsEc2InstanceKeyName != null && this._resourceAwsEc2InstanceKeyName.Count > 0; 
+            return this._resourceAwsEc2InstanceKeyName != null && (this._resourceAwsEc2InstanceKeyName.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1281,7 +1368,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceAwsEc2InstanceLaunchedAt property is set
         internal bool IsSetResourceAwsEc2InstanceLaunchedAt()
         {
-            return this._resourceAwsEc2InstanceLaunchedAt != null && this._resourceAwsEc2InstanceLaunchedAt.Count > 0; 
+            return this._resourceAwsEc2InstanceLaunchedAt != null && (this._resourceAwsEc2InstanceLaunchedAt.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1299,7 +1386,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceAwsEc2InstanceSubnetId property is set
         internal bool IsSetResourceAwsEc2InstanceSubnetId()
         {
-            return this._resourceAwsEc2InstanceSubnetId != null && this._resourceAwsEc2InstanceSubnetId.Count > 0; 
+            return this._resourceAwsEc2InstanceSubnetId != null && (this._resourceAwsEc2InstanceSubnetId.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1317,7 +1404,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceAwsEc2InstanceType property is set
         internal bool IsSetResourceAwsEc2InstanceType()
         {
-            return this._resourceAwsEc2InstanceType != null && this._resourceAwsEc2InstanceType.Count > 0; 
+            return this._resourceAwsEc2InstanceType != null && (this._resourceAwsEc2InstanceType.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1335,7 +1422,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceAwsEc2InstanceVpcId property is set
         internal bool IsSetResourceAwsEc2InstanceVpcId()
         {
-            return this._resourceAwsEc2InstanceVpcId != null && this._resourceAwsEc2InstanceVpcId.Count > 0; 
+            return this._resourceAwsEc2InstanceVpcId != null && (this._resourceAwsEc2InstanceVpcId.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1353,7 +1440,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceAwsIamAccessKeyCreatedAt property is set
         internal bool IsSetResourceAwsIamAccessKeyCreatedAt()
         {
-            return this._resourceAwsIamAccessKeyCreatedAt != null && this._resourceAwsIamAccessKeyCreatedAt.Count > 0; 
+            return this._resourceAwsIamAccessKeyCreatedAt != null && (this._resourceAwsIamAccessKeyCreatedAt.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1371,7 +1458,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceAwsIamAccessKeyPrincipalName property is set
         internal bool IsSetResourceAwsIamAccessKeyPrincipalName()
         {
-            return this._resourceAwsIamAccessKeyPrincipalName != null && this._resourceAwsIamAccessKeyPrincipalName.Count > 0; 
+            return this._resourceAwsIamAccessKeyPrincipalName != null && (this._resourceAwsIamAccessKeyPrincipalName.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1389,7 +1476,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceAwsIamAccessKeyStatus property is set
         internal bool IsSetResourceAwsIamAccessKeyStatus()
         {
-            return this._resourceAwsIamAccessKeyStatus != null && this._resourceAwsIamAccessKeyStatus.Count > 0; 
+            return this._resourceAwsIamAccessKeyStatus != null && (this._resourceAwsIamAccessKeyStatus.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1408,7 +1495,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceAwsIamAccessKeyUserName property is set
         internal bool IsSetResourceAwsIamAccessKeyUserName()
         {
-            return this._resourceAwsIamAccessKeyUserName != null && this._resourceAwsIamAccessKeyUserName.Count > 0; 
+            return this._resourceAwsIamAccessKeyUserName != null && (this._resourceAwsIamAccessKeyUserName.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1426,7 +1513,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceAwsIamUserUserName property is set
         internal bool IsSetResourceAwsIamUserUserName()
         {
-            return this._resourceAwsIamUserUserName != null && this._resourceAwsIamUserUserName.Count > 0; 
+            return this._resourceAwsIamUserUserName != null && (this._resourceAwsIamUserUserName.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1444,7 +1531,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceAwsS3BucketOwnerId property is set
         internal bool IsSetResourceAwsS3BucketOwnerId()
         {
-            return this._resourceAwsS3BucketOwnerId != null && this._resourceAwsS3BucketOwnerId.Count > 0; 
+            return this._resourceAwsS3BucketOwnerId != null && (this._resourceAwsS3BucketOwnerId.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1462,7 +1549,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceAwsS3BucketOwnerName property is set
         internal bool IsSetResourceAwsS3BucketOwnerName()
         {
-            return this._resourceAwsS3BucketOwnerName != null && this._resourceAwsS3BucketOwnerName.Count > 0; 
+            return this._resourceAwsS3BucketOwnerName != null && (this._resourceAwsS3BucketOwnerName.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1480,7 +1567,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceContainerImageId property is set
         internal bool IsSetResourceContainerImageId()
         {
-            return this._resourceContainerImageId != null && this._resourceContainerImageId.Count > 0; 
+            return this._resourceContainerImageId != null && (this._resourceContainerImageId.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1498,7 +1585,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceContainerImageName property is set
         internal bool IsSetResourceContainerImageName()
         {
-            return this._resourceContainerImageName != null && this._resourceContainerImageName.Count > 0; 
+            return this._resourceContainerImageName != null && (this._resourceContainerImageName.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1508,10 +1595,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value
-        /// cannot contain spaces, and date and time should be separated by <code>T</code>. For
-        /// more information, see <a href="https://www.rfc-editor.org/rfc/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public List<DateFilter> ResourceContainerLaunchedAt
@@ -1523,7 +1608,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceContainerLaunchedAt property is set
         internal bool IsSetResourceContainerLaunchedAt()
         {
-            return this._resourceContainerLaunchedAt != null && this._resourceContainerLaunchedAt.Count > 0; 
+            return this._resourceContainerLaunchedAt != null && (this._resourceContainerLaunchedAt.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1541,7 +1626,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceContainerName property is set
         internal bool IsSetResourceContainerName()
         {
-            return this._resourceContainerName != null && this._resourceContainerName.Count > 0; 
+            return this._resourceContainerName != null && (this._resourceContainerName.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1560,7 +1645,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceDetailsOther property is set
         internal bool IsSetResourceDetailsOther()
         {
-            return this._resourceDetailsOther != null && this._resourceDetailsOther.Count > 0; 
+            return this._resourceDetailsOther != null && (this._resourceDetailsOther.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1578,7 +1663,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceId property is set
         internal bool IsSetResourceId()
         {
-            return this._resourceId != null && this._resourceId.Count > 0; 
+            return this._resourceId != null && (this._resourceId.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1596,7 +1681,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourcePartition property is set
         internal bool IsSetResourcePartition()
         {
-            return this._resourcePartition != null && this._resourcePartition.Count > 0; 
+            return this._resourcePartition != null && (this._resourcePartition.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1614,7 +1699,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceRegion property is set
         internal bool IsSetResourceRegion()
         {
-            return this._resourceRegion != null && this._resourceRegion.Count > 0; 
+            return this._resourceRegion != null && (this._resourceRegion.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1633,7 +1718,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceTags property is set
         internal bool IsSetResourceTags()
         {
-            return this._resourceTags != null && this._resourceTags.Count > 0; 
+            return this._resourceTags != null && (this._resourceTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1651,7 +1736,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResourceType property is set
         internal bool IsSetResourceType()
         {
-            return this._resourceType != null && this._resourceType.Count > 0; 
+            return this._resourceType != null && (this._resourceType.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1669,7 +1754,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Sample property is set
         internal bool IsSetSample()
         {
-            return this._sample != null && this._sample.Count > 0; 
+            return this._sample != null && (this._sample.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1687,7 +1772,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if SeverityLabel property is set
         internal bool IsSetSeverityLabel()
         {
-            return this._severityLabel != null && this._severityLabel.Count > 0; 
+            return this._severityLabel != null && (this._severityLabel.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1706,7 +1791,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if SeverityNormalized property is set
         internal bool IsSetSeverityNormalized()
         {
-            return this._severityNormalized != null && this._severityNormalized.Count > 0; 
+            return this._severityNormalized != null && (this._severityNormalized.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1726,7 +1811,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if SeverityProduct property is set
         internal bool IsSetSeverityProduct()
         {
-            return this._severityProduct != null && this._severityProduct.Count > 0; 
+            return this._severityProduct != null && (this._severityProduct.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1745,7 +1830,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if SourceUrl property is set
         internal bool IsSetSourceUrl()
         {
-            return this._sourceUrl != null && this._sourceUrl.Count > 0; 
+            return this._sourceUrl != null && (this._sourceUrl.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1763,13 +1848,18 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ThreatIntelIndicatorCategory property is set
         internal bool IsSetThreatIntelIndicatorCategory()
         {
-            return this._threatIntelIndicatorCategory != null && this._threatIntelIndicatorCategory.Count > 0; 
+            return this._threatIntelIndicatorCategory != null && (this._threatIntelIndicatorCategory.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ThreatIntelIndicatorLastObservedAt. 
         /// <para>
         /// A timestamp that identifies the last observation of a threat intelligence indicator.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public List<DateFilter> ThreatIntelIndicatorLastObservedAt
@@ -1781,7 +1871,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ThreatIntelIndicatorLastObservedAt property is set
         internal bool IsSetThreatIntelIndicatorLastObservedAt()
         {
-            return this._threatIntelIndicatorLastObservedAt != null && this._threatIntelIndicatorLastObservedAt.Count > 0; 
+            return this._threatIntelIndicatorLastObservedAt != null && (this._threatIntelIndicatorLastObservedAt.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1799,7 +1889,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ThreatIntelIndicatorSource property is set
         internal bool IsSetThreatIntelIndicatorSource()
         {
-            return this._threatIntelIndicatorSource != null && this._threatIntelIndicatorSource.Count > 0; 
+            return this._threatIntelIndicatorSource != null && (this._threatIntelIndicatorSource.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1817,7 +1907,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ThreatIntelIndicatorSourceUrl property is set
         internal bool IsSetThreatIntelIndicatorSourceUrl()
         {
-            return this._threatIntelIndicatorSourceUrl != null && this._threatIntelIndicatorSourceUrl.Count > 0; 
+            return this._threatIntelIndicatorSourceUrl != null && (this._threatIntelIndicatorSourceUrl.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1835,7 +1925,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ThreatIntelIndicatorType property is set
         internal bool IsSetThreatIntelIndicatorType()
         {
-            return this._threatIntelIndicatorType != null && this._threatIntelIndicatorType.Count > 0; 
+            return this._threatIntelIndicatorType != null && (this._threatIntelIndicatorType.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1853,7 +1943,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ThreatIntelIndicatorValue property is set
         internal bool IsSetThreatIntelIndicatorValue()
         {
-            return this._threatIntelIndicatorValue != null && this._threatIntelIndicatorValue.Count > 0; 
+            return this._threatIntelIndicatorValue != null && (this._threatIntelIndicatorValue.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1871,13 +1961,13 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Title property is set
         internal bool IsSetTitle()
         {
-            return this._title != null && this._title.Count > 0; 
+            return this._title != null && (this._title.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// A finding type in the format of <code>namespace/category/classifier</code> that classifies
+        /// A finding type in the format of <c>namespace/category/classifier</c> that classifies
         /// a finding.
         /// </para>
         /// </summary>
@@ -1890,21 +1980,19 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Type property is set
         internal bool IsSetType()
         {
-            return this._type != null && this._type.Count > 0; 
+            return this._type != null && (this._type.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UpdatedAt. 
         /// <para>
-        /// An ISO8601-formatted timestamp that indicates when the security findings provider
-        /// last updated the finding record. 
+        /// A timestamp that indicates when the security findings provider last updated the finding
+        /// record.
         /// </para>
         ///  
         /// <para>
-        /// A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value
-        /// cannot contain spaces, and date and time should be separated by <code>T</code>. For
-        /// more information, see <a href="https://www.rfc-editor.org/rfc/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public List<DateFilter> UpdatedAt
@@ -1916,7 +2004,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if UpdatedAt property is set
         internal bool IsSetUpdatedAt()
         {
-            return this._updatedAt != null && this._updatedAt.Count > 0; 
+            return this._updatedAt != null && (this._updatedAt.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1935,7 +2023,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if UserDefinedFields property is set
         internal bool IsSetUserDefinedFields()
         {
-            return this._userDefinedFields != null && this._userDefinedFields.Count > 0; 
+            return this._userDefinedFields != null && (this._userDefinedFields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1953,7 +2041,47 @@ namespace Amazon.SecurityHub.Model
         // Check to see if VerificationState property is set
         internal bool IsSetVerificationState()
         {
-            return this._verificationState != null && this._verificationState.Count > 0; 
+            return this._verificationState != null && (this._verificationState.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property VulnerabilitiesExploitAvailable. 
+        /// <para>
+        ///  Indicates whether a software vulnerability in your environment has a known exploit.
+        /// You can filter findings by this field only if you use Security Hub and Amazon Inspector.
+        /// 
+        /// </para>
+        /// </summary>
+        public List<StringFilter> VulnerabilitiesExploitAvailable
+        {
+            get { return this._vulnerabilitiesExploitAvailable; }
+            set { this._vulnerabilitiesExploitAvailable = value; }
+        }
+
+        // Check to see if VulnerabilitiesExploitAvailable property is set
+        internal bool IsSetVulnerabilitiesExploitAvailable()
+        {
+            return this._vulnerabilitiesExploitAvailable != null && (this._vulnerabilitiesExploitAvailable.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property VulnerabilitiesFixAvailable. 
+        /// <para>
+        ///  Indicates whether a vulnerability is fixed in a newer version of the affected software
+        /// packages. You can filter findings by this field only if you use Security Hub and Amazon
+        /// Inspector. 
+        /// </para>
+        /// </summary>
+        public List<StringFilter> VulnerabilitiesFixAvailable
+        {
+            get { return this._vulnerabilitiesFixAvailable; }
+            set { this._vulnerabilitiesFixAvailable = value; }
+        }
+
+        // Check to see if VulnerabilitiesFixAvailable property is set
+        internal bool IsSetVulnerabilitiesFixAvailable()
+        {
+            return this._vulnerabilitiesFixAvailable != null && (this._vulnerabilitiesFixAvailable.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1964,7 +2092,7 @@ namespace Amazon.SecurityHub.Model
         ///  
         /// <para>
         /// Note that this field is deprecated. To search for a finding based on its workflow
-        /// status, use <code>WorkflowStatus</code>.
+        /// status, use <c>WorkflowStatus</c>.
         /// </para>
         /// </summary>
         public List<StringFilter> WorkflowState
@@ -1976,7 +2104,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if WorkflowState property is set
         internal bool IsSetWorkflowState()
         {
-            return this._workflowState != null && this._workflowState.Count > 0; 
+            return this._workflowState != null && (this._workflowState.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1986,78 +2114,78 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NEW</code> - The initial state of a finding, before it is reviewed.
+        ///  <c>NEW</c> - The initial state of a finding, before it is reviewed.
         /// </para>
         ///  
         /// <para>
-        /// Security Hub also resets the workflow status from <code>NOTIFIED</code> or <code>RESOLVED</code>
-        /// to <code>NEW</code> in the following cases:
+        /// Security Hub also resets the workflow status from <c>NOTIFIED</c> or <c>RESOLVED</c>
+        /// to <c>NEW</c> in the following cases:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>RecordState</code> changes from <code>ARCHIVED</code> to <code>ACTIVE</code>.
+        ///  <c>RecordState</c> changes from <c>ARCHIVED</c> to <c>ACTIVE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Compliance.Status</code> changes from <code>PASSED</code> to either <code>WARNING</code>,
-        /// <code>FAILED</code>, or <code>NOT_AVAILABLE</code>.
+        ///  <c>Compliance.Status</c> changes from <c>PASSED</c> to either <c>WARNING</c>, <c>FAILED</c>,
+        /// or <c>NOT_AVAILABLE</c>.
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
-        ///  <code>NOTIFIED</code> - Indicates that the resource owner has been notified about
-        /// the security issue. Used when the initial reviewer is not the resource owner, and
-        /// needs intervention from the resource owner.
+        ///  <c>NOTIFIED</c> - Indicates that the resource owner has been notified about the security
+        /// issue. Used when the initial reviewer is not the resource owner, and needs intervention
+        /// from the resource owner.
         /// </para>
         ///  
         /// <para>
         /// If one of the following occurs, the workflow status is changed automatically from
-        /// <code>NOTIFIED</code> to <code>NEW</code>:
+        /// <c>NOTIFIED</c> to <c>NEW</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>RecordState</code> changes from <code>ARCHIVED</code> to <code>ACTIVE</code>.
+        ///  <c>RecordState</c> changes from <c>ARCHIVED</c> to <c>ACTIVE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Compliance.Status</code> changes from <code>PASSED</code> to <code>FAILED</code>,
-        /// <code>WARNING</code>, or <code>NOT_AVAILABLE</code>.
+        ///  <c>Compliance.Status</c> changes from <c>PASSED</c> to <c>FAILED</c>, <c>WARNING</c>,
+        /// or <c>NOT_AVAILABLE</c>.
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
-        ///  <code>SUPPRESSED</code> - Indicates that you reviewed the finding and do not believe
-        /// that any action is needed.
+        ///  <c>SUPPRESSED</c> - Indicates that you reviewed the finding and don't believe that
+        /// any action is needed.
         /// </para>
         ///  
         /// <para>
-        /// The workflow status of a <code>SUPPRESSED</code> finding does not change if <code>RecordState</code>
-        /// changes from <code>ARCHIVED</code> to <code>ACTIVE</code>.
+        /// The workflow status of a <c>SUPPRESSED</c> finding does not change if <c>RecordState</c>
+        /// changes from <c>ARCHIVED</c> to <c>ACTIVE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RESOLVED</code> - The finding was reviewed and remediated and is now considered
-        /// resolved. 
+        ///  <c>RESOLVED</c> - The finding was reviewed and remediated and is now considered resolved.
+        /// 
         /// </para>
         ///  
         /// <para>
-        /// The finding remains <code>RESOLVED</code> unless one of the following occurs:
+        /// The finding remains <c>RESOLVED</c> unless one of the following occurs:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>RecordState</code> changes from <code>ARCHIVED</code> to <code>ACTIVE</code>.
+        ///  <c>RecordState</c> changes from <c>ARCHIVED</c> to <c>ACTIVE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Compliance.Status</code> changes from <code>PASSED</code> to <code>FAILED</code>,
-        /// <code>WARNING</code>, or <code>NOT_AVAILABLE</code>.
+        ///  <c>Compliance.Status</c> changes from <c>PASSED</c> to <c>FAILED</c>, <c>WARNING</c>,
+        /// or <c>NOT_AVAILABLE</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// In those cases, the workflow status is automatically reset to <code>NEW</code>.
+        /// In those cases, the workflow status is automatically reset to <c>NEW</c>.
         /// </para>
         ///  
         /// <para>
-        /// For findings from controls, if <code>Compliance.Status</code> is <code>PASSED</code>,
-        /// then Security Hub automatically sets the workflow status to <code>RESOLVED</code>.
+        /// For findings from controls, if <c>Compliance.Status</c> is <c>PASSED</c>, then Security
+        /// Hub automatically sets the workflow status to <c>RESOLVED</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -2070,7 +2198,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if WorkflowStatus property is set
         internal bool IsSetWorkflowStatus()
         {
-            return this._workflowStatus != null && this._workflowStatus.Count > 0; 
+            return this._workflowStatus != null && (this._workflowStatus.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

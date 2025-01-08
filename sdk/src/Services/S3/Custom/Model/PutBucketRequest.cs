@@ -25,180 +25,132 @@ namespace Amazon.S3.Model
 {
     /// <summary>
     /// Container for the parameters to the PutBucket operation.
-    /// Creates a new S3 bucket. To create a bucket, you must register with Amazon S3 and
-    /// have a valid Amazon Web Services Access Key ID to authenticate requests. Anonymous
-    /// requests are never allowed to create buckets. By creating the bucket, you become the
-    /// bucket owner.
-    /// 
-    ///  
+    /// <note> 
     /// <para>
-    /// Not every string is an acceptable bucket name. For information about bucket naming
-    /// restrictions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html">Bucket
-    /// naming rules</a>.
+    /// This action creates an Amazon S3 bucket. To create an Amazon S3 on Outposts bucket,
+    /// see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateBucket.html">
+    /// <c>CreateBucket</c> </a>.
+    /// </para>
+    ///  </note> 
+    /// <para>
+    /// Creates a new S3 bucket. To create a bucket, you must set up Amazon S3 and have a
+    /// valid Amazon Web Services Access Key ID to authenticate requests. Anonymous requests
+    /// are never allowed to create buckets. By creating the bucket, you become the bucket
+    /// owner.
     /// </para>
     ///  
     /// <para>
-    /// If you want to create an Amazon S3 on Outposts bucket, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateBucket.html">Create
-    /// Bucket</a>. 
+    /// There are two types of buckets: general purpose buckets and directory buckets. For
+    /// more information about these bucket types, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html">Creating,
+    /// configuring, and working with Amazon S3 buckets</a> in the <i>Amazon S3 User Guide</i>.
     /// </para>
-    ///  
+    ///  <note> <ul> <li> 
     /// <para>
-    /// By default, the bucket is created in the US East (N. Virginia) Region. You can optionally
-    /// specify a Region in the request body. You might choose a Region to optimize latency,
-    /// minimize costs, or address regulatory requirements. For example, if you reside in
-    /// Europe, you will probably find it advantageous to create buckets in the Europe (Ireland)
-    /// Region. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#access-bucket-intro">Accessing
-    /// a bucket</a>.
+    ///  <b>General purpose buckets</b> - If you send your <c>CreateBucket</c> request to
+    /// the <c>s3.amazonaws.com</c> global endpoint, the request goes to the <c>us-east-1</c>
+    /// Region. So the signature calculations in Signature Version 4 must use <c>us-east-1</c>
+    /// as the Region, even if the location constraint in the request specifies another Region
+    /// where the bucket is to be created. If you create a bucket in a Region other than US
+    /// East (N. Virginia), your application must be able to handle 307 redirect. For more
+    /// information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html">Virtual
+    /// hosting of buckets</a> in the <i>Amazon S3 User Guide</i>.
     /// </para>
-    ///  <note> 
+    ///  </li> <li> 
     /// <para>
-    /// If you send your create bucket request to the <code>s3.amazonaws.com</code> endpoint,
-    /// the request goes to the us-east-1 Region. Accordingly, the signature calculations
-    /// in Signature Version 4 must use us-east-1 as the Region, even if the location constraint
-    /// in the request specifies another Region where the bucket is to be created. If you
-    /// create a bucket in a Region other than US East (N. Virginia), your application must
-    /// be able to handle 307 redirect. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html">Virtual
-    /// hosting of buckets</a>.
+    ///  <b>Directory buckets </b> - For directory buckets, you must make requests for this
+    /// API operation to the Regional endpoint. These endpoints support path-style requests
+    /// in the format <c>https://s3express-control.<i>region_code</i>.amazonaws.com/<i>bucket-name</i>
+    /// </c>. Virtual-hosted-style requests aren't supported. For more information, see <a
+    /// href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-Regions-and-Zones.html">Regional
+    /// and Zonal endpoints</a> in the <i>Amazon S3 User Guide</i>.
     /// </para>
-    ///  </note> <dl> <dt>Access control lists (ACLs)</dt> <dd> 
-    ///  
+    ///  </li> </ul> </note> <dl> <dt>Permissions</dt> <dd> <ul> <li> 
     /// <para>
-    /// When creating a bucket using this operation, you can optionally configure the bucket
-    /// ACL to specify the accounts or groups that should be granted specific permissions
-    /// on the bucket.
+    ///  <b>General purpose bucket permissions</b> - In addition to the <c>s3:CreateBucket</c>
+    /// permission, the following permissions are required in a policy when your <c>CreateBucket</c>
+    /// request includes specific headers: 
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    ///  <b>Access control lists (ACLs)</b> - In your <c>CreateBucket</c> request, if you
+    /// specify an access control list (ACL) and set it to <c>public-read</c>, <c>public-read-write</c>,
+    /// <c>authenticated-read</c>, or if you explicitly specify any other custom ACLs, both
+    /// <c>s3:CreateBucket</c> and <c>s3:PutBucketAcl</c> permissions are required. In your
+    /// <c>CreateBucket</c> request, if you set the ACL to <c>private</c>, or if you don't
+    /// specify any ACLs, only the <c>s3:CreateBucket</c> permission is required. 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <b>Object Lock</b> - In your <c>CreateBucket</c> request, if you set <c>x-amz-bucket-object-lock-enabled</c>
+    /// to true, the <c>s3:PutBucketObjectLockConfiguration</c> and <c>s3:PutBucketVersioning</c>
+    /// permissions are required.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <b>S3 Object Ownership</b> - If your <c>CreateBucket</c> request includes the <c>x-amz-object-ownership</c>
+    /// header, then the <c>s3:PutBucketOwnershipControls</c> permission is required.
     /// </para>
     ///  <important> 
     /// <para>
-    /// If your CreateBucket request includes the <code>BucketOwnerEnforced</code> value for
-    /// the <code>x-amz-object-ownership</code> header, your request can either not specify
-    /// an ACL or specify bucket owner full control ACLs, such as the <code>bucket-owner-full-control</code>
-    /// canned ACL or an equivalent ACL expressed in the XML format. For more information,
-    /// see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html">Controlling
-    /// object ownership</a> in the <i>Amazon S3 User Guide</i>.
-    /// </para>
-    ///  </important> 
-    /// <para>
-    /// There are two ways to grant the appropriate permissions using the request headers.
-    /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    /// Specify a canned ACL using the <code>x-amz-acl</code> request header. Amazon S3 supports
-    /// a set of predefined ACLs, known as <i>canned ACLs</i>. Each canned ACL has a predefined
-    /// set of grantees and permissions. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#CannedACL">Canned
-    /// ACL</a>.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Specify access permissions explicitly using the <code>x-amz-grant-read</code>, <code>x-amz-grant-write</code>,
-    /// <code>x-amz-grant-read-acp</code>, <code>x-amz-grant-write-acp</code>, and <code>x-amz-grant-full-control</code>
-    /// headers. These headers map to the set of permissions Amazon S3 supports in an ACL.
-    /// For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html">Access
-    /// control list (ACL) overview</a>.
+    ///  To set an ACL on a bucket as part of a <c>CreateBucket</c> request, you must explicitly
+    /// set S3 Object Ownership for the bucket to a different value than the default, <c>BucketOwnerEnforced</c>.
+    /// Additionally, if your desired bucket ACL grants public access, you must first create
+    /// the bucket (without the bucket ACL) and then explicitly disable Block Public Access
+    /// on the bucket before using <c>PutBucketAcl</c> to set the ACL. If you try to create
+    /// a bucket with a public ACL, the request will fail. 
     /// </para>
     ///  
     /// <para>
-    /// You specify each grantee as a type=value pair, where the type is one of the following:
+    ///  For the majority of modern use cases in S3, we recommend that you keep all Block
+    /// Public Access settings enabled and keep ACLs disabled. If you would like to share
+    /// data with users outside of your account, you can use bucket policies as needed. For
+    /// more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html">Controlling
+    /// ownership of objects and disabling ACLs for your bucket </a> and <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html">Blocking
+    /// public access to your Amazon S3 storage </a> in the <i>Amazon S3 User Guide</i>. 
     /// </para>
-    ///  <ul> <li> 
+    ///  </important> </li> <li> 
     /// <para>
-    ///  <code>id</code> – if the value specified is the canonical user ID of an Amazon Web
-    /// Services account
+    ///  <b>S3 Block Public Access</b> - If your specific use case requires granting public
+    /// access to your S3 resources, you can disable Block Public Access. Specifically, you
+    /// can create a new bucket with Block Public Access enabled, then separately call the
+    /// <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeletePublicAccessBlock.html">
+    /// <c>DeletePublicAccessBlock</c> </a> API. To use this operation, you must have the
+    /// <c>s3:PutBucketPublicAccessBlock</c> permission. For more information about S3 Block
+    /// Public Access, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html">Blocking
+    /// public access to your Amazon S3 storage </a> in the <i>Amazon S3 User Guide</i>. 
     /// </para>
-    ///  </li> <li> 
+    ///  </li> </ul> </li> <li> 
     /// <para>
-    ///  <code>uri</code> – if you are granting permissions to a predefined group
+    ///  <b>Directory bucket permissions</b> - You must have the <c>s3express:CreateBucket</c>
+    /// permission in an IAM identity-based policy instead of a bucket policy. Cross-account
+    /// access to this API operation isn't supported. This operation can only be performed
+    /// by the Amazon Web Services account that owns the resource. For more information about
+    /// directory bucket policies and permissions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-security-iam.html">Amazon
+    /// Web Services Identity and Access Management (IAM) for S3 Express One Zone</a> in the
+    /// <i>Amazon S3 User Guide</i>.
     /// </para>
-    ///  </li> <li> 
+    ///  <important> 
     /// <para>
-    ///  <code>emailAddress</code> – if the value specified is the email address of an Amazon
-    /// Web Services account
-    /// </para>
-    ///  <note> 
-    /// <para>
-    /// Using email addresses to specify a grantee is only supported in the following Amazon
-    /// Web Services Regions: 
-    /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    /// US East (N. Virginia)
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// US West (N. California)
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  US West (Oregon)
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  Asia Pacific (Singapore)
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Asia Pacific (Sydney)
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Asia Pacific (Tokyo)
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Europe (Ireland)
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// South America (São Paulo)
-    /// </para>
-    ///  </li> </ul> 
-    /// <para>
-    /// For a list of all the Amazon S3 supported Regions and endpoints, see <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region">Regions
-    /// and Endpoints</a> in the Amazon Web Services General Reference.
-    /// </para>
-    ///  </note> </li> </ul> 
-    /// <para>
-    /// For example, the following <code>x-amz-grant-read</code> header grants the Amazon
-    /// Web Services accounts identified by account IDs permissions to read object data and
-    /// its metadata:
+    /// The permissions for ACLs, Object Lock, S3 Object Ownership, and S3 Block Public Access
+    /// are not supported for directory buckets. For directory buckets, all Block Public Access
+    /// settings are enabled at the bucket level and S3 Object Ownership is set to Bucket
+    /// owner enforced (ACLs disabled). These settings can't be modified. 
     /// </para>
     ///  
     /// <para>
-    ///  <code>x-amz-grant-read: id="11112222333", id="444455556666" </code> 
+    /// For more information about permissions for creating and working with directory buckets,
+    /// see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-overview.html">Directory
+    /// buckets</a> in the <i>Amazon S3 User Guide</i>. For more information about supported
+    /// S3 features for directory buckets, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-one-zone.html#s3-express-features">Features
+    /// of S3 Express One Zone</a> in the <i>Amazon S3 User Guide</i>.
     /// </para>
-    ///  </li> </ul> <note> 
+    ///  </important> </li> </ul> </dd> <dt>HTTP Host header syntax</dt> <dd> 
     /// <para>
-    /// You can use either a canned ACL or specify access permissions explicitly. You cannot
-    /// do both.
+    ///  <b>Directory buckets </b> - The HTTP Host header syntax is <c>s3express-control.<i>region</i>.amazonaws.com</c>.
     /// </para>
-    ///  </note> </dd> <dt>Permissions</dt> <dd> 
-    ///  
+    ///  </dd> </dl> 
     /// <para>
-    /// In addition to <code>s3:CreateBucket</code>, the following permissions are required
-    /// when your CreateBucket includes specific headers:
-    /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    ///  <b>ACLs</b> - If your <code>CreateBucket</code> request specifies ACL permissions
-    /// and the ACL is public-read, public-read-write, authenticated-read, or if you specify
-    /// access permissions explicitly through any other ACL, both <code>s3:CreateBucket</code>
-    /// and <code>s3:PutBucketAcl</code> permissions are needed. If the ACL the <code>CreateBucket</code>
-    /// request is private or doesn't specify any ACLs, only <code>s3:CreateBucket</code>
-    /// permission is needed. 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <b>Object Lock</b> - If <code>ObjectLockEnabledForBucket</code> is set to true in
-    /// your <code>CreateBucket</code> request, <code>s3:PutBucketObjectLockConfiguration</code>
-    /// and <code>s3:PutBucketVersioning</code> permissions are required.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <b>S3 Object Ownership</b> - If your CreateBucket request includes the the <code>x-amz-object-ownership</code>
-    /// header, <code>s3:PutBucketOwnershipControls</code> permission is required.
-    /// </para>
-    ///  </li> </ul> </dd> </dl> 
-    /// <para>
-    /// The following operations are related to <code>CreateBucket</code>:
+    /// The following operations are related to <c>CreateBucket</c>:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -221,11 +173,17 @@ namespace Amazon.S3.Model
         private S3CannedACL cannedAcl;
         private bool? _objectLockEnabledForBucket;
         private ObjectOwnership _objectOwnership;
+        private PutBucketConfiguration _putBucketConfiguration;
 
 
         /// <summary>
         /// The canned ACL to apply to the bucket.
         ///  
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public S3CannedACL CannedACL
         {
@@ -256,8 +214,27 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// The name of the bucket to be created.
-        /// </summary>
+        /// Gets and sets the property BucketName. 
+        /// <para>
+        /// The name of the bucket to create.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>General purpose buckets</b> - For information about bucket naming restrictions,
+        /// see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html">Bucket
+        /// naming rules</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Directory buckets </b> - When you use this operation with a directory bucket,
+        /// you must use path-style requests in the format <c>https://s3express-control.<i>region_code</i>.amazonaws.com/<i>bucket-name</i>
+        /// </c>. Virtual-hosted-style requests aren't supported. Directory bucket names must
+        /// be unique in the chosen Availability Zone. Bucket names must also follow the format
+        /// <c> <i>bucket_base_name</i>--<i>az_id</i>--x-s3</c> (for example, <c> <i>DOC-EXAMPLE-BUCKET</i>--<i>usw2-az1</i>--x-s3</c>).
+        /// For information about bucket naming restrictions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html">Directory
+        /// bucket naming rules</a> in the <i>Amazon S3 User Guide</i> 
+        /// </para>
+        /// </summary>        
         public string BucketName
         {
             get { return this.bucketName; }
@@ -303,7 +280,19 @@ namespace Amazon.S3.Model
                 this.bucketRegionName = value;
             }
         }
-
+        /// <summary>
+        /// The additional configuration properties for a PutBucket operations
+        /// </summary>
+        public PutBucketConfiguration PutBucketConfiguration
+        {
+            get { return this._putBucketConfiguration; }
+            set { this._putBucketConfiguration = value;}
+        }
+        // Check to see if PutBucketConfiguration property is set
+        internal bool IsSetPutBucketConfiguration()
+        {
+            return this._putBucketConfiguration != null;
+        }
         // Check to see if BucketRegionName property is set
         internal bool IsSetBucketRegionName()
         {
@@ -315,6 +304,11 @@ namespace Amazon.S3.Model
         /// <para>
         /// Specifies whether you want S3 Object Lock to be enabled for the new bucket.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public bool ObjectLockEnabledForBucket
         {

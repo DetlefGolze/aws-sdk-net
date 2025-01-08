@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKIdentity.Model
 {
     /// <summary>
-    /// The name and ARN of the admin for the <code>AppInstance</code>.
+    /// The name and ARN of the admin for the <c>AppInstance</c>.
     /// </summary>
     public partial class AppInstanceAdmin
     {
@@ -40,7 +41,7 @@ namespace Amazon.ChimeSDKIdentity.Model
         /// <summary>
         /// Gets and sets the property Admin. 
         /// <para>
-        /// The <code>AppInstanceAdmin</code> data.
+        /// The <c>AppInstanceAdmin</c> data.
         /// </para>
         /// </summary>
         public Identity Admin
@@ -58,7 +59,7 @@ namespace Amazon.ChimeSDKIdentity.Model
         /// <summary>
         /// Gets and sets the property AppInstanceArn. 
         /// <para>
-        /// The ARN of the <code>AppInstance</code> for which the user is an administrator.
+        /// The ARN of the <c>AppInstance</c> for which the user is an administrator.
         /// </para>
         /// </summary>
         [AWSProperty(Min=5, Max=1600)]

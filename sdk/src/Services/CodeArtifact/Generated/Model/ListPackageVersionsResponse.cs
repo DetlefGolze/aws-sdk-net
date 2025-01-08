@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeArtifact.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.CodeArtifact.Model
         private string _awsNamespace;
         private string _nextToken;
         private string _package;
-        private List<PackageVersionSummary> _versions = new List<PackageVersionSummary>();
+        private List<PackageVersionSummary> _versions = AWSConfigs.InitializeCollections ? new List<PackageVersionSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property DefaultDisplayVersion. 
@@ -51,9 +52,8 @@ namespace Amazon.CodeArtifact.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  For npm packages, it's the version referenced by the <code>latest</code> tag. If
-        /// the <code>latest</code> tag is not set, it's the most recently published package version.
-        /// 
+        ///  For npm packages, it's the version referenced by the <c>latest</c> tag. If the <c>latest</c>
+        /// tag is not set, it's the most recently published package version. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -96,16 +96,20 @@ namespace Amazon.CodeArtifact.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  The namespace of a Maven package is its <code>groupId</code>. 
+        ///  The namespace of a Maven package version is its <c>groupId</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  The namespace of an npm package is its <code>scope</code>. 
+        ///  The namespace of an npm or Swift package version is its <c>scope</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  Python and NuGet packages do not contain a corresponding component, packages of those
-        /// formats do not have a namespace. 
+        /// The namespace of a generic package is its <c>namespace</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  Python, NuGet, Ruby, and Cargo package versions do not contain a corresponding component,
+        /// package versions of those formats do not have a namespace. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -176,7 +180,7 @@ namespace Amazon.CodeArtifact.Model
         // Check to see if Versions property is set
         internal bool IsSetVersions()
         {
-            return this._versions != null && this._versions.Count > 0; 
+            return this._versions != null && (this._versions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

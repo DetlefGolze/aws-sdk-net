@@ -33,22 +33,43 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.AppIntegrationsService
 {
     /// <summary>
-    /// Implementation for accessing AppIntegrationsService
+    /// <para>Implementation for accessing AppIntegrationsService</para>
     ///
+    /// <ul> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_Operations_Amazon_AppIntegrations_Service.html">Amazon
+    /// AppIntegrations actions</a> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_Types_Amazon_AppIntegrations_Service.html">Amazon
+    /// AppIntegrations data types</a> 
+    /// </para>
+    ///  </li> </ul> 
+    /// <para>
     /// The Amazon AppIntegrations service enables you to configure and reuse connections
     /// to external applications.
-    /// 
+    /// </para>
     ///  
     /// <para>
     /// For information about how you can use external applications with Amazon Connect, see
-    /// <a href="https://docs.aws.amazon.com/connect/latest/adminguide/crm.html">Set up pre-built
-    /// integrations</a> and <a href="https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-wisdom.html">Deliver
-    /// information to agents using Amazon Connect Wisdom</a> in the <i>Amazon Connect Administrator
-    /// Guide</i>.
+    /// the following topics in the <i>Amazon Connect Administrator Guide</i>:
     /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/connect/latest/adminguide/3p-apps.html">Third-party
+    /// applications (3p apps) in the agent workspace</a> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/connect/latest/adminguide/amazon-q-connect.html">Use
+    /// Amazon Q in Connect for generative AI–powered agent assistance in real-time</a> 
+    /// </para>
+    ///  </li> </ul>
     /// </summary>
     public partial class AmazonAppIntegrationsServiceClient : AmazonServiceClient, IAmazonAppIntegrationsService
     {
@@ -291,12 +312,7 @@ namespace Amazon.AppIntegrationsService
 
 
         /// <summary>
-        /// This API is in preview release and subject to change.
-        /// 
-        ///  
-        /// <para>
         /// Creates and persists an Application resource.
-        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateApplication service method.</param>
         /// <param name="cancellationToken">
@@ -321,6 +337,9 @@ namespace Amazon.AppIntegrationsService
         /// </exception>
         /// <exception cref="Amazon.AppIntegrationsService.Model.ThrottlingException">
         /// The throttling limit has been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.UnsupportedOperationException">
+        /// The operation is not supported.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/CreateApplication">REST API Reference for CreateApplication Operation</seealso>
         public virtual Task<CreateApplicationResponse> CreateApplicationAsync(CreateApplicationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -354,7 +373,7 @@ namespace Amazon.AppIntegrationsService
         /// <para>
         /// You cannot create a DataIntegration association for a DataIntegration that has been
         /// previously associated. Use a different DataIntegration, or recreate the DataIntegration
-        /// using the <code>CreateDataIntegration</code> API.
+        /// using the <c>CreateDataIntegration</c> API.
         /// </para>
         ///  </note>
         /// </summary>
@@ -390,6 +409,58 @@ namespace Amazon.AppIntegrationsService
             options.ResponseUnmarshaller = CreateDataIntegrationResponseUnmarshaller.Instance;
 
             return InvokeAsync<CreateDataIntegrationResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateDataIntegrationAssociation
+
+        internal virtual CreateDataIntegrationAssociationResponse CreateDataIntegrationAssociation(CreateDataIntegrationAssociationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateDataIntegrationAssociationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateDataIntegrationAssociationResponseUnmarshaller.Instance;
+
+            return Invoke<CreateDataIntegrationAssociationResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Creates and persists a DataIntegrationAssociation resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateDataIntegrationAssociation service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateDataIntegrationAssociation service method, as returned by AppIntegrationsService.</returns>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.InternalServiceErrorException">
+        /// Request processing failed due to an error or failure with the service.
+        /// </exception>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.ResourceNotFoundException">
+        /// The specified resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.ResourceQuotaExceededException">
+        /// The allowed quota for the resource has been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.ThrottlingException">
+        /// The throttling limit has been exceeded.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/CreateDataIntegrationAssociation">REST API Reference for CreateDataIntegrationAssociation Operation</seealso>
+        public virtual Task<CreateDataIntegrationAssociationResponse> CreateDataIntegrationAssociationAsync(CreateDataIntegrationAssociationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateDataIntegrationAssociationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateDataIntegrationAssociationResponseUnmarshaller.Instance;
+
+            return InvokeAsync<CreateDataIntegrationAssociationResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -445,6 +516,56 @@ namespace Amazon.AppIntegrationsService
             options.ResponseUnmarshaller = CreateEventIntegrationResponseUnmarshaller.Instance;
 
             return InvokeAsync<CreateEventIntegrationResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DeleteApplication
+
+        internal virtual DeleteApplicationResponse DeleteApplication(DeleteApplicationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteApplicationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteApplicationResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteApplicationResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Deletes the Application. Only Applications that don't have any Application Associations
+        /// can be deleted.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteApplication service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteApplication service method, as returned by AppIntegrationsService.</returns>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.InternalServiceErrorException">
+        /// Request processing failed due to an error or failure with the service.
+        /// </exception>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.ResourceNotFoundException">
+        /// The specified resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.ThrottlingException">
+        /// The throttling limit has been exceeded.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/DeleteApplication">REST API Reference for DeleteApplication Operation</seealso>
+        public virtual Task<DeleteApplicationResponse> DeleteApplicationAsync(DeleteApplicationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteApplicationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteApplicationResponseUnmarshaller.Instance;
+
+            return InvokeAsync<DeleteApplicationResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -573,12 +694,7 @@ namespace Amazon.AppIntegrationsService
 
 
         /// <summary>
-        /// This API is in preview release and subject to change.
-        /// 
-        ///  
-        /// <para>
         /// Get an Application resource.
-        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetApplication service method.</param>
         /// <param name="cancellationToken">
@@ -720,6 +836,55 @@ namespace Amazon.AppIntegrationsService
 
         #endregion
         
+        #region  ListApplicationAssociations
+
+        internal virtual ListApplicationAssociationsResponse ListApplicationAssociations(ListApplicationAssociationsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListApplicationAssociationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListApplicationAssociationsResponseUnmarshaller.Instance;
+
+            return Invoke<ListApplicationAssociationsResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Returns a paginated list of application associations for an application.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListApplicationAssociations service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListApplicationAssociations service method, as returned by AppIntegrationsService.</returns>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.InternalServiceErrorException">
+        /// Request processing failed due to an error or failure with the service.
+        /// </exception>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.ResourceNotFoundException">
+        /// The specified resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.ThrottlingException">
+        /// The throttling limit has been exceeded.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/ListApplicationAssociations">REST API Reference for ListApplicationAssociations Operation</seealso>
+        public virtual Task<ListApplicationAssociationsResponse> ListApplicationAssociationsAsync(ListApplicationAssociationsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListApplicationAssociationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListApplicationAssociationsResponseUnmarshaller.Instance;
+
+            return InvokeAsync<ListApplicationAssociationsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ListApplications
 
         internal virtual ListApplicationsResponse ListApplications(ListApplicationsRequest request)
@@ -734,12 +899,7 @@ namespace Amazon.AppIntegrationsService
 
 
         /// <summary>
-        /// This API is in preview release and subject to change.
-        /// 
-        ///  
-        /// <para>
         /// Lists applications in the account.
-        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListApplications service method.</param>
         /// <param name="cancellationToken">
@@ -1131,12 +1291,7 @@ namespace Amazon.AppIntegrationsService
 
 
         /// <summary>
-        /// This API is in preview release and subject to change.
-        /// 
-        ///  
-        /// <para>
         /// Updates and persists an Application resource.
-        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateApplication service method.</param>
         /// <param name="cancellationToken">
@@ -1158,6 +1313,9 @@ namespace Amazon.AppIntegrationsService
         /// </exception>
         /// <exception cref="Amazon.AppIntegrationsService.Model.ThrottlingException">
         /// The throttling limit has been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.UnsupportedOperationException">
+        /// The operation is not supported.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/UpdateApplication">REST API Reference for UpdateApplication Operation</seealso>
         public virtual Task<UpdateApplicationResponse> UpdateApplicationAsync(UpdateApplicationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -1229,6 +1387,62 @@ namespace Amazon.AppIntegrationsService
 
         #endregion
         
+        #region  UpdateDataIntegrationAssociation
+
+        internal virtual UpdateDataIntegrationAssociationResponse UpdateDataIntegrationAssociation(UpdateDataIntegrationAssociationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateDataIntegrationAssociationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateDataIntegrationAssociationResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateDataIntegrationAssociationResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Updates and persists a DataIntegrationAssociation resource.
+        /// 
+        ///  <note> 
+        /// <para>
+        ///  Updating a DataIntegrationAssociation with ExecutionConfiguration will rerun the
+        /// on-demand job. 
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateDataIntegrationAssociation service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateDataIntegrationAssociation service method, as returned by AppIntegrationsService.</returns>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.InternalServiceErrorException">
+        /// Request processing failed due to an error or failure with the service.
+        /// </exception>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.InvalidRequestException">
+        /// The request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.ResourceNotFoundException">
+        /// The specified resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.AppIntegrationsService.Model.ThrottlingException">
+        /// The throttling limit has been exceeded.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/UpdateDataIntegrationAssociation">REST API Reference for UpdateDataIntegrationAssociation Operation</seealso>
+        public virtual Task<UpdateDataIntegrationAssociationResponse> UpdateDataIntegrationAssociationAsync(UpdateDataIntegrationAssociationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateDataIntegrationAssociationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateDataIntegrationAssociationResponseUnmarshaller.Instance;
+
+            return InvokeAsync<UpdateDataIntegrationAssociationResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  UpdateEventIntegration
 
         internal virtual UpdateEventIntegrationResponse UpdateEventIntegration(UpdateEventIntegrationRequest request)
@@ -1287,11 +1501,11 @@ namespace Amazon.AppIntegrationsService
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

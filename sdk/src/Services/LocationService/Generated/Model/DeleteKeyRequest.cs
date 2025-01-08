@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -35,7 +36,42 @@ namespace Amazon.LocationService.Model
     /// </summary>
     public partial class DeleteKeyRequest : AmazonLocationServiceRequest
     {
+        private bool? _forceDelete;
         private string _keyName;
+
+        /// <summary>
+        /// Gets and sets the property ForceDelete. 
+        /// <para>
+        /// ForceDelete bypasses an API key's expiry conditions and deletes the key. Set the parameter
+        /// <c>true</c> to delete the key or to <c>false</c> to not preemptively delete the API
+        /// key.
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid values: <c>true</c>, or <c>false</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Required: No
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// This action is irreversible. Only use ForceDelete if you are certain the key is no
+        /// longer in use.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public bool ForceDelete
+        {
+            get { return this._forceDelete.GetValueOrDefault(); }
+            set { this._forceDelete = value; }
+        }
+
+        // Check to see if ForceDelete property is set
+        internal bool IsSetForceDelete()
+        {
+            return this._forceDelete.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property KeyName. 

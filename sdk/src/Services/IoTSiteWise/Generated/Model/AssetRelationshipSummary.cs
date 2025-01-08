@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.IoTSiteWise.Model
         /// </para>
         ///  
         /// <para>
-        /// This object is present if the <code>relationshipType</code> is <code>HIERARCHY</code>.
+        /// This object is present if the <c>relationshipType</c> is <c>HIERARCHY</c>.
         /// </para>
         /// </summary>
         public AssetHierarchyInfo HierarchyInfo
@@ -66,8 +67,8 @@ namespace Amazon.IoTSiteWise.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>HIERARCHY</code> – The assets are related through an asset hierarchy. If you
-        /// specify this relationship type, this asset relationship includes the <code>hierarchyInfo</code>
+        ///  <c>HIERARCHY</c> – The assets are related through an asset hierarchy. If you specify
+        /// this relationship type, this asset relationship includes the <c>hierarchyInfo</c>
         /// object.
         /// </para>
         ///  </li> </ul>

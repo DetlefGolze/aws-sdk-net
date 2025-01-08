@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvidently.Model
 {
     /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.CloudWatchEvidently.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The token to use when requesting the next set of results. You received this token
-        /// from a previous <code>ListFeatures</code> operation.
+        /// from a previous <c>ListFeatures</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=8192)]

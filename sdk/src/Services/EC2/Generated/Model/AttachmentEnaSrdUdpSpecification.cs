@@ -26,11 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
-    /// Describes the ENA Express configuration for UDP traffic on the network interface that's
-    /// attached to the instance.
+    /// ENA Express is compatible with both TCP and UDP transport protocols. When it's enabled,
+    /// TCP traffic automatically uses it. However, some UDP-based applications are designed
+    /// to handle network packets that are out of order, without a need for retransmission,
+    /// such as live video broadcasting or other near-real-time applications. For UDP traffic,
+    /// you can specify whether to use ENA Express, based on your application environment
+    /// needs.
     /// </summary>
     public partial class AttachmentEnaSrdUdpSpecification
     {

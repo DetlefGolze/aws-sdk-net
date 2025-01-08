@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Proton.Model
 {
     /// <summary>
@@ -179,9 +180,9 @@ namespace Amazon.Proton.Model
         /// <summary>
         /// Gets and sets the property PipelineProvisioning. 
         /// <para>
-        /// If <code>pipelineProvisioning</code> is <code>true</code>, a service pipeline is included
-        /// in the service template. Otherwise, a service pipeline <i>isn't</i> included in the
-        /// service template.
+        /// If <c>pipelineProvisioning</c> is <c>true</c>, a service pipeline is included in the
+        /// service template. Otherwise, a service pipeline <i>isn't</i> included in the service
+        /// template.
         /// </para>
         /// </summary>
         public Provisioning PipelineProvisioning

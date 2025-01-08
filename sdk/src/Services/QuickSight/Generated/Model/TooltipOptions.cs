@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -63,11 +64,11 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>BASIC</code>: A basic tooltip.
+        ///  <c>BASIC</c>: A basic tooltip.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DETAILED</code>: A detailed tooltip.
+        ///  <c>DETAILED</c>: A detailed tooltip.
         /// </para>
         ///  </li> </ul>
         /// </summary>

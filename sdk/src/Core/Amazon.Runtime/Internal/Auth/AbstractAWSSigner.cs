@@ -30,6 +30,7 @@ namespace Amazon.Runtime.Internal.Auth
 
     public abstract class AbstractAWSSigner
     {
+        private readonly object _lock = new object();
         private AWS4Signer _aws4Signer;
         private AWS4Signer AWS4SignerInstance
         {
@@ -37,7 +38,7 @@ namespace Amazon.Runtime.Internal.Auth
             {
                 if (_aws4Signer == null)
                 {
-                    lock (this)
+                    lock (_lock)
                     {
                         if (_aws4Signer == null)
                             _aws4Signer = new AWS4Signer();
@@ -55,7 +56,7 @@ namespace Amazon.Runtime.Internal.Auth
             {
                 if (_aws4aSignerCRTWrapper == null)
                 {
-                    lock (this)
+                    lock (_lock)
                     {
                         if (_aws4aSignerCRTWrapper == null)
                             _aws4aSignerCRTWrapper = new AWS4aSignerCRTWrapper();
@@ -167,7 +168,9 @@ namespace Amazon.Runtime.Internal.Auth
 
                 if (r != null)
                 {
+#pragma warning disable CS0612,CS0618
                     var endpoint = r.GetEndpointForService(config.RegionEndpointServiceName, config.ToGetEndpointForServiceOptions());
+#pragma warning restore CS0612,CS0618
                     if (endpoint != null && (endpoint.SignatureVersionOverride == "4" || string.IsNullOrEmpty(endpoint.SignatureVersionOverride)))
                         return true;
                 }

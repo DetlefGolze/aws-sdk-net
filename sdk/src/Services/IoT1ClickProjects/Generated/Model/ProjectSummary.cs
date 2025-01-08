@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT1ClickProjects.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.IoT1ClickProjects.Model
         private string _arn;
         private DateTime? _createdDate;
         private string _projectName;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private DateTime? _updatedDate;
 
         /// <summary>
@@ -112,15 +113,14 @@ namespace Amazon.IoT1ClickProjects.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UpdatedDate. 
         /// <para>
         /// The date when the project was last updated, in UNIX epoch time format. If the project
-        /// was not updated, then <code>createdDate</code> and <code>updatedDate</code> are the
-        /// same.
+        /// was not updated, then <c>createdDate</c> and <c>updatedDate</c> are the same.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

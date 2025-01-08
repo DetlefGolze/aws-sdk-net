@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -50,8 +51,7 @@ namespace Amazon.EC2.Model
     ///  
     /// <para>
     /// If you've associated an IPv6 CIDR block with your VPC, you can associate an IPv6 CIDR
-    /// block with a subnet when you create it. The allowed block size for an IPv6 subnet
-    /// is a /64 netmask.
+    /// block with a subnet when you create it. 
     /// </para>
     ///  
     /// <para>
@@ -75,10 +75,14 @@ namespace Amazon.EC2.Model
         private string _availabilityZone;
         private string _availabilityZoneId;
         private string _cidrBlock;
+        private string _ipv4IpamPoolId;
+        private int? _ipv4NetmaskLength;
         private string _ipv6CidrBlock;
+        private string _ipv6IpamPoolId;
         private bool? _ipv6Native;
+        private int? _ipv6NetmaskLength;
         private string _outpostArn;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
         private string _vpcId;
 
         /// <summary>
@@ -90,7 +94,7 @@ namespace Amazon.EC2.Model
         /// Instantiates CreateSubnetRequest with the parameterized properties
         /// </summary>
         /// <param name="vpcId">The ID of the VPC.</param>
-        /// <param name="cidrBlock">The IPv4 network range for the subnet, in CIDR notation. For example, <code>10.0.0.0/24</code>. We modify the specified CIDR block to its canonical form; for example, if you specify <code>100.68.0.18/18</code>, we modify it to <code>100.68.0.0/18</code>. This parameter is not supported for an IPv6 only subnet.</param>
+        /// <param name="cidrBlock">The IPv4 network range for the subnet, in CIDR notation. For example, <c>10.0.0.0/24</c>. We modify the specified CIDR block to its canonical form; for example, if you specify <c>100.68.0.18/18</c>, we modify it to <c>100.68.0.0/18</c>. This parameter is not supported for an IPv6 only subnet.</param>
         public CreateSubnetRequest(string vpcId, string cidrBlock)
         {
             _vpcId = vpcId;
@@ -110,9 +114,9 @@ namespace Amazon.EC2.Model
         ///  
         /// <para>
         /// To create a subnet in a Local Zone, set this value to the Local Zone ID, for example
-        /// <code>us-west-2-lax-1a</code>. For information about the Regions that support Local
-        /// Zones, see <a href="http://aws.amazon.com/about-aws/global-infrastructure/localzones/locations/">Local
-        /// Zones locations</a>.
+        /// <c>us-west-2-lax-1a</c>. For information about the Regions that support Local Zones,
+        /// see <a href="https://docs.aws.amazon.com/local-zones/latest/ug/available-local-zones.html">Available
+        /// Local Zones</a>.
         /// </para>
         ///  
         /// <para>
@@ -153,9 +157,9 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property CidrBlock. 
         /// <para>
-        /// The IPv4 network range for the subnet, in CIDR notation. For example, <code>10.0.0.0/24</code>.
+        /// The IPv4 network range for the subnet, in CIDR notation. For example, <c>10.0.0.0/24</c>.
         /// We modify the specified CIDR block to its canonical form; for example, if you specify
-        /// <code>100.68.0.18/18</code>, we modify it to <code>100.68.0.0/18</code>.
+        /// <c>100.68.0.18/18</c>, we modify it to <c>100.68.0.0/18</c>.
         /// </para>
         ///  
         /// <para>
@@ -175,14 +179,46 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Ipv4IpamPoolId. 
+        /// <para>
+        /// An IPv4 IPAM pool ID for the subnet.
+        /// </para>
+        /// </summary>
+        public string Ipv4IpamPoolId
+        {
+            get { return this._ipv4IpamPoolId; }
+            set { this._ipv4IpamPoolId = value; }
+        }
+
+        // Check to see if Ipv4IpamPoolId property is set
+        internal bool IsSetIpv4IpamPoolId()
+        {
+            return this._ipv4IpamPoolId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Ipv4NetmaskLength. 
+        /// <para>
+        /// An IPv4 netmask length for the subnet.
+        /// </para>
+        /// </summary>
+        public int Ipv4NetmaskLength
+        {
+            get { return this._ipv4NetmaskLength.GetValueOrDefault(); }
+            set { this._ipv4NetmaskLength = value; }
+        }
+
+        // Check to see if Ipv4NetmaskLength property is set
+        internal bool IsSetIpv4NetmaskLength()
+        {
+            return this._ipv4NetmaskLength.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property Ipv6CidrBlock. 
         /// <para>
-        /// The IPv6 network range for the subnet, in CIDR notation. The subnet size must use
-        /// a /64 prefix length.
-        /// </para>
-        ///  
-        /// <para>
-        /// This parameter is required for an IPv6 only subnet.
+        /// The IPv6 network range for the subnet, in CIDR notation. This parameter is required
+        /// for an IPv6 only subnet.
         /// </para>
         /// </summary>
         public string Ipv6CidrBlock
@@ -195,6 +231,24 @@ namespace Amazon.EC2.Model
         internal bool IsSetIpv6CidrBlock()
         {
             return this._ipv6CidrBlock != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Ipv6IpamPoolId. 
+        /// <para>
+        /// An IPv6 IPAM pool ID for the subnet.
+        /// </para>
+        /// </summary>
+        public string Ipv6IpamPoolId
+        {
+            get { return this._ipv6IpamPoolId; }
+            set { this._ipv6IpamPoolId = value; }
+        }
+
+        // Check to see if Ipv6IpamPoolId property is set
+        internal bool IsSetIpv6IpamPoolId()
+        {
+            return this._ipv6IpamPoolId != null;
         }
 
         /// <summary>
@@ -213,6 +267,24 @@ namespace Amazon.EC2.Model
         internal bool IsSetIpv6Native()
         {
             return this._ipv6Native.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Ipv6NetmaskLength. 
+        /// <para>
+        /// An IPv6 netmask length for the subnet.
+        /// </para>
+        /// </summary>
+        public int Ipv6NetmaskLength
+        {
+            get { return this._ipv6NetmaskLength.GetValueOrDefault(); }
+            set { this._ipv6NetmaskLength = value; }
+        }
+
+        // Check to see if Ipv6NetmaskLength property is set
+        internal bool IsSetIpv6NetmaskLength()
+        {
+            return this._ipv6NetmaskLength.HasValue; 
         }
 
         /// <summary>
@@ -249,7 +321,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

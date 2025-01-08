@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Outposts.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Outposts
 {
     /// <summary>
-    /// Interface for accessing Outposts
+    /// <para>Interface for accessing Outposts</para>
     ///
     /// Amazon Web Services Outposts is a fully managed service that extends Amazon Web Services
     /// infrastructure, APIs, and tools to customer premises. By providing local access to
@@ -46,6 +47,64 @@ namespace Amazon.Outposts
         /// </summary>
         IOutpostsPaginatorFactory Paginators { get; }
 
+        
+        #region  CancelCapacityTask
+
+
+        /// <summary>
+        /// Cancels the capacity task.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CancelCapacityTask service method.</param>
+        /// 
+        /// <returns>The response from the CancelCapacityTask service method, as returned by Outposts.</returns>
+        /// <exception cref="Amazon.Outposts.Model.AccessDeniedException">
+        /// You do not have permission to perform this operation.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.ConflictException">
+        /// Updating or deleting this resource can cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.NotFoundException">
+        /// The specified request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.ValidationException">
+        /// A parameter is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/CancelCapacityTask">REST API Reference for CancelCapacityTask Operation</seealso>
+        CancelCapacityTaskResponse CancelCapacityTask(CancelCapacityTaskRequest request);
+
+
+
+        /// <summary>
+        /// Cancels the capacity task.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CancelCapacityTask service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CancelCapacityTask service method, as returned by Outposts.</returns>
+        /// <exception cref="Amazon.Outposts.Model.AccessDeniedException">
+        /// You do not have permission to perform this operation.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.ConflictException">
+        /// Updating or deleting this resource can cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.NotFoundException">
+        /// The specified request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.ValidationException">
+        /// A parameter is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/CancelCapacityTask">REST API Reference for CancelCapacityTask Operation</seealso>
+        Task<CancelCapacityTaskResponse> CancelCapacityTaskAsync(CancelCapacityTaskRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
         
         #region  CancelOrder
 
@@ -417,6 +476,58 @@ namespace Amazon.Outposts
 
         #endregion
         
+        #region  GetCapacityTask
+
+
+        /// <summary>
+        /// Gets details of the specified capacity task.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetCapacityTask service method.</param>
+        /// 
+        /// <returns>The response from the GetCapacityTask service method, as returned by Outposts.</returns>
+        /// <exception cref="Amazon.Outposts.Model.AccessDeniedException">
+        /// You do not have permission to perform this operation.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.NotFoundException">
+        /// The specified request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.ValidationException">
+        /// A parameter is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/GetCapacityTask">REST API Reference for GetCapacityTask Operation</seealso>
+        GetCapacityTaskResponse GetCapacityTask(GetCapacityTaskRequest request);
+
+
+
+        /// <summary>
+        /// Gets details of the specified capacity task.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetCapacityTask service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetCapacityTask service method, as returned by Outposts.</returns>
+        /// <exception cref="Amazon.Outposts.Model.AccessDeniedException">
+        /// You do not have permission to perform this operation.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.NotFoundException">
+        /// The specified request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.ValidationException">
+        /// A parameter is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/GetCapacityTask">REST API Reference for GetCapacityTask Operation</seealso>
+        Task<GetCapacityTaskResponse> GetCapacityTaskAsync(GetCapacityTaskRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  GetCatalogItem
 
 
@@ -695,6 +806,62 @@ namespace Amazon.Outposts
 
         #endregion
         
+        #region  GetOutpostSupportedInstanceTypes
+
+
+        /// <summary>
+        /// Gets the instance types that an Outpost can support in <c>InstanceTypeCapacity</c>.
+        /// This will generally include instance types that are not currently configured and therefore
+        /// cannot be launched with the current Outpost capacity configuration.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetOutpostSupportedInstanceTypes service method.</param>
+        /// 
+        /// <returns>The response from the GetOutpostSupportedInstanceTypes service method, as returned by Outposts.</returns>
+        /// <exception cref="Amazon.Outposts.Model.AccessDeniedException">
+        /// You do not have permission to perform this operation.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.NotFoundException">
+        /// The specified request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.ValidationException">
+        /// A parameter is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/GetOutpostSupportedInstanceTypes">REST API Reference for GetOutpostSupportedInstanceTypes Operation</seealso>
+        GetOutpostSupportedInstanceTypesResponse GetOutpostSupportedInstanceTypes(GetOutpostSupportedInstanceTypesRequest request);
+
+
+
+        /// <summary>
+        /// Gets the instance types that an Outpost can support in <c>InstanceTypeCapacity</c>.
+        /// This will generally include instance types that are not currently configured and therefore
+        /// cannot be launched with the current Outpost capacity configuration.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetOutpostSupportedInstanceTypes service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetOutpostSupportedInstanceTypes service method, as returned by Outposts.</returns>
+        /// <exception cref="Amazon.Outposts.Model.AccessDeniedException">
+        /// You do not have permission to perform this operation.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.NotFoundException">
+        /// The specified request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.ValidationException">
+        /// A parameter is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/GetOutpostSupportedInstanceTypes">REST API Reference for GetOutpostSupportedInstanceTypes Operation</seealso>
+        Task<GetOutpostSupportedInstanceTypesResponse> GetOutpostSupportedInstanceTypesAsync(GetOutpostSupportedInstanceTypesRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  GetSite
 
 
@@ -799,6 +966,60 @@ namespace Amazon.Outposts
 
         #endregion
         
+        #region  ListAssetInstances
+
+
+        /// <summary>
+        /// A list of Amazon EC2 instances, belonging to all accounts, running on the specified
+        /// Outpost. Does not include Amazon EBS or Amazon S3 instances.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAssetInstances service method.</param>
+        /// 
+        /// <returns>The response from the ListAssetInstances service method, as returned by Outposts.</returns>
+        /// <exception cref="Amazon.Outposts.Model.AccessDeniedException">
+        /// You do not have permission to perform this operation.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.NotFoundException">
+        /// The specified request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.ValidationException">
+        /// A parameter is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/ListAssetInstances">REST API Reference for ListAssetInstances Operation</seealso>
+        ListAssetInstancesResponse ListAssetInstances(ListAssetInstancesRequest request);
+
+
+
+        /// <summary>
+        /// A list of Amazon EC2 instances, belonging to all accounts, running on the specified
+        /// Outpost. Does not include Amazon EBS or Amazon S3 instances.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAssetInstances service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListAssetInstances service method, as returned by Outposts.</returns>
+        /// <exception cref="Amazon.Outposts.Model.AccessDeniedException">
+        /// You do not have permission to perform this operation.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.NotFoundException">
+        /// The specified request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.ValidationException">
+        /// A parameter is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/ListAssetInstances">REST API Reference for ListAssetInstances Operation</seealso>
+        Task<ListAssetInstancesResponse> ListAssetInstancesAsync(ListAssetInstancesRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  ListAssets
 
 
@@ -864,6 +1085,130 @@ namespace Amazon.Outposts
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/ListAssets">REST API Reference for ListAssets Operation</seealso>
         Task<ListAssetsResponse> ListAssetsAsync(ListAssetsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListBlockingInstancesForCapacityTask
+
+
+        /// <summary>
+        /// A list of Amazon EC2 instances running on the Outpost and belonging to the account
+        /// that initiated the capacity task. Use this list to specify the instances you cannot
+        /// stop to free up capacity to run the capacity task.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListBlockingInstancesForCapacityTask service method.</param>
+        /// 
+        /// <returns>The response from the ListBlockingInstancesForCapacityTask service method, as returned by Outposts.</returns>
+        /// <exception cref="Amazon.Outposts.Model.AccessDeniedException">
+        /// You do not have permission to perform this operation.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.NotFoundException">
+        /// The specified request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.ValidationException">
+        /// A parameter is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/ListBlockingInstancesForCapacityTask">REST API Reference for ListBlockingInstancesForCapacityTask Operation</seealso>
+        ListBlockingInstancesForCapacityTaskResponse ListBlockingInstancesForCapacityTask(ListBlockingInstancesForCapacityTaskRequest request);
+
+
+
+        /// <summary>
+        /// A list of Amazon EC2 instances running on the Outpost and belonging to the account
+        /// that initiated the capacity task. Use this list to specify the instances you cannot
+        /// stop to free up capacity to run the capacity task.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListBlockingInstancesForCapacityTask service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListBlockingInstancesForCapacityTask service method, as returned by Outposts.</returns>
+        /// <exception cref="Amazon.Outposts.Model.AccessDeniedException">
+        /// You do not have permission to perform this operation.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.NotFoundException">
+        /// The specified request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.ValidationException">
+        /// A parameter is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/ListBlockingInstancesForCapacityTask">REST API Reference for ListBlockingInstancesForCapacityTask Operation</seealso>
+        Task<ListBlockingInstancesForCapacityTaskResponse> ListBlockingInstancesForCapacityTaskAsync(ListBlockingInstancesForCapacityTaskRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListCapacityTasks
+
+
+        /// <summary>
+        /// Lists the capacity tasks for your Amazon Web Services account.
+        /// 
+        ///  
+        /// <para>
+        /// Use filters to return specific results. If you specify multiple filters, the results
+        /// include only the resources that match all of the specified filters. For a filter where
+        /// you can specify multiple values, the results include items that match any of the values
+        /// that you specify for the filter.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListCapacityTasks service method.</param>
+        /// 
+        /// <returns>The response from the ListCapacityTasks service method, as returned by Outposts.</returns>
+        /// <exception cref="Amazon.Outposts.Model.AccessDeniedException">
+        /// You do not have permission to perform this operation.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.NotFoundException">
+        /// The specified request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.ValidationException">
+        /// A parameter is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/ListCapacityTasks">REST API Reference for ListCapacityTasks Operation</seealso>
+        ListCapacityTasksResponse ListCapacityTasks(ListCapacityTasksRequest request);
+
+
+
+        /// <summary>
+        /// Lists the capacity tasks for your Amazon Web Services account.
+        /// 
+        ///  
+        /// <para>
+        /// Use filters to return specific results. If you specify multiple filters, the results
+        /// include only the resources that match all of the specified filters. For a filter where
+        /// you can specify multiple values, the results include items that match any of the values
+        /// that you specify for the filter.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListCapacityTasks service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListCapacityTasks service method, as returned by Outposts.</returns>
+        /// <exception cref="Amazon.Outposts.Model.AccessDeniedException">
+        /// You do not have permission to perform this operation.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.NotFoundException">
+        /// The specified request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.ValidationException">
+        /// A parameter is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/ListCapacityTasks">REST API Reference for ListCapacityTasks Operation</seealso>
+        Task<ListCapacityTasksResponse> ListCapacityTasksAsync(ListCapacityTasksRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -1150,6 +1495,66 @@ namespace Amazon.Outposts
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/ListTagsForResource">REST API Reference for ListTagsForResource Operation</seealso>
         Task<ListTagsForResourceResponse> ListTagsForResourceAsync(ListTagsForResourceRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  StartCapacityTask
+
+
+        /// <summary>
+        /// Starts the specified capacity task. You can have one active capacity task for each
+        /// order and each Outpost.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartCapacityTask service method.</param>
+        /// 
+        /// <returns>The response from the StartCapacityTask service method, as returned by Outposts.</returns>
+        /// <exception cref="Amazon.Outposts.Model.AccessDeniedException">
+        /// You do not have permission to perform this operation.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.ConflictException">
+        /// Updating or deleting this resource can cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.NotFoundException">
+        /// The specified request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.ValidationException">
+        /// A parameter is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/StartCapacityTask">REST API Reference for StartCapacityTask Operation</seealso>
+        StartCapacityTaskResponse StartCapacityTask(StartCapacityTaskRequest request);
+
+
+
+        /// <summary>
+        /// Starts the specified capacity task. You can have one active capacity task for each
+        /// order and each Outpost.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartCapacityTask service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StartCapacityTask service method, as returned by Outposts.</returns>
+        /// <exception cref="Amazon.Outposts.Model.AccessDeniedException">
+        /// You do not have permission to perform this operation.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.ConflictException">
+        /// Updating or deleting this resource can cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.NotFoundException">
+        /// The specified request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.Outposts.Model.ValidationException">
+        /// A parameter is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/StartCapacityTask">REST API Reference for StartCapacityTask Operation</seealso>
+        Task<StartCapacityTaskResponse> StartCapacityTaskAsync(StartCapacityTaskRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -1533,8 +1938,8 @@ namespace Amazon.Outposts
         /// 
         ///  
         /// <para>
-        /// To update a rack at a site with an order of <code>IN_PROGRESS</code>, you must wait
-        /// for the order to complete or cancel the order.
+        /// To update a rack at a site with an order of <c>IN_PROGRESS</c>, you must wait for
+        /// the order to complete or cancel the order.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateSiteRackPhysicalProperties service method.</param>
@@ -1567,8 +1972,8 @@ namespace Amazon.Outposts
         /// 
         ///  
         /// <para>
-        /// To update a rack at a site with an order of <code>IN_PROGRESS</code>, you must wait
-        /// for the order to complete or cancel the order.
+        /// To update a rack at a site with an order of <c>IN_PROGRESS</c>, you must wait for
+        /// the order to complete or cancel the order.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateSiteRackPhysicalProperties service method.</param>

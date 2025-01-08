@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
     /// Provides additional information about an error that was returned by the service. See
-    /// the <code>errorCode</code> and <code>errorDetails</code> members for more information
-    /// about the error.
+    /// the <c>errorCode</c> and <c>errorDetails</c> members for more information about the
+    /// error.
     /// </summary>
     public partial class StorageGatewayError
     {
         private ErrorCode _errorCode;
-        private Dictionary<string, string> _errorDetails = new Dictionary<string, string>();
+        private Dictionary<string, string> _errorDetails = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ErrorCode. 
@@ -71,7 +72,7 @@ namespace Amazon.StorageGateway.Model
         // Check to see if ErrorDetails property is set
         internal bool IsSetErrorDetails()
         {
-            return this._errorDetails != null && this._errorDetails.Count > 0; 
+            return this._errorDetails != null && (this._errorDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

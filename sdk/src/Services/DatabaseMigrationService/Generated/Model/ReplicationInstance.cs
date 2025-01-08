@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -40,6 +41,7 @@ namespace Amazon.DatabaseMigrationService.Model
         private string _engineVersion;
         private DateTime? _freeUntil;
         private DateTime? _instanceCreateTime;
+        private KerberosAuthenticationSettings _kerberosAuthenticationSettings;
         private string _kmsKeyId;
         private bool? _multiAZ;
         private string _networkType;
@@ -49,15 +51,15 @@ namespace Amazon.DatabaseMigrationService.Model
         private string _replicationInstanceArn;
         private string _replicationInstanceClass;
         private string _replicationInstanceIdentifier;
-        private List<string> _replicationInstanceIpv6Addresses = new List<string>();
+        private List<string> _replicationInstanceIpv6Addresses = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _replicationInstancePrivateIpAddress;
-        private List<string> _replicationInstancePrivateIpAddresses = new List<string>();
+        private List<string> _replicationInstancePrivateIpAddresses = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _replicationInstancePublicIpAddress;
-        private List<string> _replicationInstancePublicIpAddresses = new List<string>();
+        private List<string> _replicationInstancePublicIpAddresses = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _replicationInstanceStatus;
         private ReplicationSubnetGroup _replicationSubnetGroup;
         private string _secondaryAvailabilityZone;
-        private List<VpcSecurityGroupMembership> _vpcSecurityGroups = new List<VpcSecurityGroupMembership>();
+        private List<VpcSecurityGroupMembership> _vpcSecurityGroups = AWSConfigs.InitializeCollections ? new List<VpcSecurityGroupMembership>() : null;
 
         /// <summary>
         /// Gets and sets the property AllocatedStorage. 
@@ -145,8 +147,8 @@ namespace Amazon.DatabaseMigrationService.Model
         /// </para>
         ///  
         /// <para>
-        /// When modifying a major engine version of an instance, also set <code>AllowMajorVersionUpgrade</code>
-        /// to <code>true</code>.
+        /// When modifying a major engine version of an instance, also set <c>AllowMajorVersionUpgrade</c>
+        /// to <c>true</c>.
         /// </para>
         /// </summary>
         public string EngineVersion
@@ -199,14 +201,33 @@ namespace Amazon.DatabaseMigrationService.Model
         }
 
         /// <summary>
+        /// Gets and sets the property KerberosAuthenticationSettings. 
+        /// <para>
+        /// Specifies the ID of the secret that stores the key cache file required for kerberos
+        /// authentication, when replicating an instance.
+        /// </para>
+        /// </summary>
+        public KerberosAuthenticationSettings KerberosAuthenticationSettings
+        {
+            get { return this._kerberosAuthenticationSettings; }
+            set { this._kerberosAuthenticationSettings = value; }
+        }
+
+        // Check to see if KerberosAuthenticationSettings property is set
+        internal bool IsSetKerberosAuthenticationSettings()
+        {
+            return this._kerberosAuthenticationSettings != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
         /// An KMS key identifier that is used to encrypt the data on the replication instance.
         /// </para>
         ///  
         /// <para>
-        /// If you don't specify a value for the <code>KmsKeyId</code> parameter, then DMS uses
-        /// your default encryption key.
+        /// If you don't specify a value for the <c>KmsKeyId</c> parameter, then DMS uses your
+        /// default encryption key.
         /// </para>
         ///  
         /// <para>
@@ -231,7 +252,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property MultiAZ. 
         /// <para>
         ///  Specifies whether the replication instance is a Multi-AZ deployment. You can't set
-        /// the <code>AvailabilityZone</code> parameter if the Multi-AZ parameter is set to <code>true</code>.
+        /// the <c>AvailabilityZone</c> parameter if the Multi-AZ parameter is set to <c>true</c>.
         /// 
         /// </para>
         /// </summary>
@@ -306,9 +327,9 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property PubliclyAccessible. 
         /// <para>
-        ///  Specifies the accessibility options for the replication instance. A value of <code>true</code>
-        /// represents an instance with a public IP address. A value of <code>false</code> represents
-        /// an instance with a private IP address. The default value is <code>true</code>. 
+        ///  Specifies the accessibility options for the replication instance. A value of <c>true</c>
+        /// represents an instance with a public IP address. A value of <c>false</c> represents
+        /// an instance with a private IP address. The default value is <c>true</c>. 
         /// </para>
         /// </summary>
         public bool PubliclyAccessible
@@ -355,6 +376,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Selecting the right DMS replication instance for your migration</a>. 
         /// </para>
         /// </summary>
+        [AWSProperty(Max=30)]
         public string ReplicationInstanceClass
         {
             get { return this._replicationInstanceClass; }
@@ -391,7 +413,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>myrepinstance</code> 
+        /// Example: <c>myrepinstance</c> 
         /// </para>
         /// </summary>
         public string ReplicationInstanceIdentifier
@@ -421,7 +443,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if ReplicationInstanceIpv6Addresses property is set
         internal bool IsSetReplicationInstanceIpv6Addresses()
         {
-            return this._replicationInstanceIpv6Addresses != null && this._replicationInstanceIpv6Addresses.Count > 0; 
+            return this._replicationInstanceIpv6Addresses != null && (this._replicationInstanceIpv6Addresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -458,7 +480,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if ReplicationInstancePrivateIpAddresses property is set
         internal bool IsSetReplicationInstancePrivateIpAddresses()
         {
-            return this._replicationInstancePrivateIpAddresses != null && this._replicationInstancePrivateIpAddresses.Count > 0; 
+            return this._replicationInstancePrivateIpAddresses != null && (this._replicationInstancePrivateIpAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -495,7 +517,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if ReplicationInstancePublicIpAddresses property is set
         internal bool IsSetReplicationInstancePublicIpAddresses()
         {
-            return this._replicationInstancePublicIpAddresses != null && this._replicationInstancePublicIpAddresses.Count > 0; 
+            return this._replicationInstancePublicIpAddresses != null && (this._replicationInstancePublicIpAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -505,55 +527,55 @@ namespace Amazon.DatabaseMigrationService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>"available"</code> 
+        ///  <c>"available"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"creating"</code> 
+        ///  <c>"creating"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"deleted"</code> 
+        ///  <c>"deleted"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"deleting"</code> 
+        ///  <c>"deleting"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"failed"</code> 
+        ///  <c>"failed"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"modifying"</code> 
+        ///  <c>"modifying"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"upgrading"</code> 
+        ///  <c>"upgrading"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"rebooting"</code> 
+        ///  <c>"rebooting"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"resetting-master-credentials"</code> 
+        ///  <c>"resetting-master-credentials"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"storage-full"</code> 
+        ///  <c>"storage-full"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"incompatible-credentials"</code> 
+        ///  <c>"incompatible-credentials"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"incompatible-network"</code> 
+        ///  <c>"incompatible-network"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"maintenance"</code> 
+        ///  <c>"maintenance"</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -620,7 +642,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if VpcSecurityGroups property is set
         internal bool IsSetVpcSecurityGroups()
         {
-            return this._vpcSecurityGroups != null && this._vpcSecurityGroups.Count > 0; 
+            return this._vpcSecurityGroups != null && (this._vpcSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

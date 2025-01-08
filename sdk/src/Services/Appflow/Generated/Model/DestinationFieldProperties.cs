@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Appflow.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.Appflow.Model
         private bool? _isNullable;
         private bool? _isUpdatable;
         private bool? _isUpsertable;
-        private List<string> _supportedWriteOperations = new List<string>();
+        private List<string> _supportedWriteOperations = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property IsCreatable. 
@@ -97,7 +98,7 @@ namespace Amazon.Appflow.Model
         /// <summary>
         /// Gets and sets the property IsUpdatable. 
         /// <para>
-        ///  Specifies whether the field can be updated during an <code>UPDATE</code> or <code>UPSERT</code>
+        ///  Specifies whether the field can be updated during an <c>UPDATE</c> or <c>UPSERT</c>
         /// write operation. 
         /// </para>
         /// </summary>
@@ -136,8 +137,8 @@ namespace Amazon.Appflow.Model
         /// Gets and sets the property SupportedWriteOperations. 
         /// <para>
         ///  A list of supported write operations. For each write operation listed, this field
-        /// can be used in <code>idFieldNames</code> when that write operation is present as a
-        /// destination option. 
+        /// can be used in <c>idFieldNames</c> when that write operation is present as a destination
+        /// option. 
         /// </para>
         /// </summary>
         public List<string> SupportedWriteOperations
@@ -149,7 +150,7 @@ namespace Amazon.Appflow.Model
         // Check to see if SupportedWriteOperations property is set
         internal bool IsSetSupportedWriteOperations()
         {
-            return this._supportedWriteOperations != null && this._supportedWriteOperations.Count > 0; 
+            return this._supportedWriteOperations != null && (this._supportedWriteOperations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

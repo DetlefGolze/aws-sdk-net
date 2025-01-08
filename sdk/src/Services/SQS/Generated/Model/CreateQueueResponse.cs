@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SQS.Model
 {
     /// <summary>
-    /// Returns the <code>QueueUrl</code> attribute of the created queue.
+    /// Returns the <c>QueueUrl</c> attribute of the created queue.
     /// </summary>
     public partial class CreateQueueResponse : AmazonWebServiceResponse
     {

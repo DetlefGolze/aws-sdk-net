@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.GuardDuty.Model
     /// </summary>
     public partial class ListPublishingDestinationsResponse : AmazonWebServiceResponse
     {
-        private List<Destination> _destinations = new List<Destination>();
+        private List<Destination> _destinations = AWSConfigs.InitializeCollections ? new List<Destination>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Destinations. 
         /// <para>
-        /// A <code>Destinations</code> object that includes information about each publishing
-        /// destination returned.
+        /// A <c>Destinations</c> object that includes information about each publishing destination
+        /// returned.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -53,7 +54,7 @@ namespace Amazon.GuardDuty.Model
         // Check to see if Destinations property is set
         internal bool IsSetDestinations()
         {
-            return this._destinations != null && this._destinations.Count > 0; 
+            return this._destinations != null && (this._destinations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -61,8 +62,8 @@ namespace Amazon.GuardDuty.Model
         /// <para>
         /// A token to use for paginating results that are returned in the response. Set the value
         /// of this parameter to null for the first request to a list action. For subsequent calls,
-        /// use the <code>NextToken</code> value returned from the previous request to continue
-        /// listing results after the first page.
+        /// use the <c>NextToken</c> value returned from the previous request to continue listing
+        /// results after the first page.
         /// </para>
         /// </summary>
         public string NextToken

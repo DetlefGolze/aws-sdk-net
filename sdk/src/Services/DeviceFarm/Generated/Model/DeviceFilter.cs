@@ -26,25 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DeviceFarm.Model
 {
     /// <summary>
     /// Represents a device filter used to select a set of devices to be included in a test
-    /// run. This data structure is passed in as the <code>deviceSelectionConfiguration</code>
-    /// parameter to <code>ScheduleRun</code>. For an example of the JSON request syntax,
-    /// see <a>ScheduleRun</a>.
+    /// run. This data structure is passed in as the <c>deviceSelectionConfiguration</c> parameter
+    /// to <c>ScheduleRun</c>. For an example of the JSON request syntax, see <a>ScheduleRun</a>.
     /// 
     ///  
     /// <para>
-    /// It is also passed in as the <code>filters</code> parameter to <code>ListDevices</code>.
-    /// For an example of the JSON request syntax, see <a>ListDevices</a>.
+    /// It is also passed in as the <c>filters</c> parameter to <c>ListDevices</c>. For an
+    /// example of the JSON request syntax, see <a>ListDevices</a>.
     /// </para>
     /// </summary>
     public partial class DeviceFilter
     {
         private DeviceFilterAttribute _attribute;
         private RuleOperator _operator;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Attribute. 
@@ -58,11 +58,11 @@ namespace Amazon.DeviceFarm.Model
         /// </para>
         ///  <dl> <dt>ARN</dt> <dd> 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the device (for example, <code>arn:aws:devicefarm:us-west-2::device:12345Example</code>).
+        /// The Amazon Resource Name (ARN) of the device (for example, <c>arn:aws:devicefarm:us-west-2::device:12345Example</c>).
         /// </para>
         ///  
         /// <para>
-        /// Supported operators: <code>EQUALS</code>, <code>IN</code>, <code>NOT_IN</code> 
+        /// Supported operators: <c>EQUALS</c>, <c>IN</c>, <c>NOT_IN</c> 
         /// </para>
         ///  </dd> <dt>PLATFORM</dt> <dd> 
         /// <para>
@@ -70,7 +70,7 @@ namespace Amazon.DeviceFarm.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported operators: <code>EQUALS</code> 
+        /// Supported operators: <c>EQUALS</c> 
         /// </para>
         ///  </dd> <dt>OS_VERSION</dt> <dd> 
         /// <para>
@@ -78,9 +78,8 @@ namespace Amazon.DeviceFarm.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported operators: <code>EQUALS</code>, <code>GREATER_THAN</code>, <code>GREATER_THAN_OR_EQUALS</code>,
-        /// <code>IN</code>, <code>LESS_THAN</code>, <code>LESS_THAN_OR_EQUALS</code>, <code>NOT_IN</code>
-        /// 
+        /// Supported operators: <c>EQUALS</c>, <c>GREATER_THAN</c>, <c>GREATER_THAN_OR_EQUALS</c>,
+        /// <c>IN</c>, <c>LESS_THAN</c>, <c>LESS_THAN_OR_EQUALS</c>, <c>NOT_IN</c> 
         /// </para>
         ///  </dd> <dt>MODEL</dt> <dd> 
         /// <para>
@@ -88,8 +87,7 @@ namespace Amazon.DeviceFarm.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported operators: <code>CONTAINS</code>, <code>EQUALS</code>, <code>IN</code>,
-        /// <code>NOT_IN</code> 
+        /// Supported operators: <c>CONTAINS</c>, <c>EQUALS</c>, <c>IN</c>, <c>NOT_IN</c> 
         /// </para>
         ///  </dd> <dt>AVAILABILITY</dt> <dd> 
         /// <para>
@@ -98,7 +96,7 @@ namespace Amazon.DeviceFarm.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported operators: <code>EQUALS</code> 
+        /// Supported operators: <c>EQUALS</c> 
         /// </para>
         ///  </dd> <dt>FORM_FACTOR</dt> <dd> 
         /// <para>
@@ -106,7 +104,7 @@ namespace Amazon.DeviceFarm.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported operators: <code>EQUALS</code> 
+        /// Supported operators: <c>EQUALS</c> 
         /// </para>
         ///  </dd> <dt>MANUFACTURER</dt> <dd> 
         /// <para>
@@ -114,7 +112,7 @@ namespace Amazon.DeviceFarm.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported operators: <code>EQUALS</code>, <code>IN</code>, <code>NOT_IN</code> 
+        /// Supported operators: <c>EQUALS</c>, <c>IN</c>, <c>NOT_IN</c> 
         /// </para>
         ///  </dd> <dt>REMOTE_ACCESS_ENABLED</dt> <dd> 
         /// <para>
@@ -122,7 +120,7 @@ namespace Amazon.DeviceFarm.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported operators: <code>EQUALS</code> 
+        /// Supported operators: <c>EQUALS</c> 
         /// </para>
         ///  </dd> <dt>REMOTE_DEBUG_ENABLED</dt> <dd> 
         /// <para>
@@ -130,7 +128,7 @@ namespace Amazon.DeviceFarm.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported operators: <code>EQUALS</code> 
+        /// Supported operators: <c>EQUALS</c> 
         /// </para>
         ///  
         /// <para>
@@ -143,7 +141,7 @@ namespace Amazon.DeviceFarm.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported operators: <code>EQUALS</code>, <code>IN</code>, <code>NOT_IN</code> 
+        /// Supported operators: <c>EQUALS</c>, <c>IN</c>, <c>NOT_IN</c> 
         /// </para>
         ///  </dd> <dt>INSTANCE_LABELS</dt> <dd> 
         /// <para>
@@ -151,7 +149,7 @@ namespace Amazon.DeviceFarm.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported operators: <code>CONTAINS</code> 
+        /// Supported operators: <c>CONTAINS</c> 
         /// </para>
         ///  </dd> <dt>FLEET_TYPE</dt> <dd> 
         /// <para>
@@ -159,7 +157,7 @@ namespace Amazon.DeviceFarm.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported operators: <code>EQUALS</code> 
+        /// Supported operators: <c>EQUALS</c> 
         /// </para>
         ///  </dd> </dl>
         /// </summary>
@@ -245,7 +243,7 @@ namespace Amazon.DeviceFarm.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

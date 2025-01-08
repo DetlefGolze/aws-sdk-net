@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CleanRooms.Model
 {
     /// <summary>
@@ -35,7 +36,9 @@ namespace Amazon.CleanRooms.Model
     {
         private string _accountId;
         private string _displayName;
-        private List<string> _memberAbilities = new List<string>();
+        private List<string> _memberAbilities = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private MLMemberAbilities _mlMemberAbilities;
+        private PaymentConfiguration _paymentConfiguration;
 
         /// <summary>
         /// Gets and sets the property AccountId. 
@@ -92,7 +95,55 @@ namespace Amazon.CleanRooms.Model
         // Check to see if MemberAbilities property is set
         internal bool IsSetMemberAbilities()
         {
-            return this._memberAbilities != null && this._memberAbilities.Count > 0; 
+            return this._memberAbilities != null && (this._memberAbilities.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property MlMemberAbilities. 
+        /// <para>
+        /// The ML abilities granted to the collaboration member.
+        /// </para>
+        ///  
+        /// <para>
+        /// Custom ML modeling is in beta release and is subject to change. For beta terms and
+        /// conditions, see <i>Betas and Previews</i> in the <a href="https://aws.amazon.com/service-terms/">Amazon
+        /// Web Services Service Terms</a>.
+        /// </para>
+        /// </summary>
+        public MLMemberAbilities MlMemberAbilities
+        {
+            get { return this._mlMemberAbilities; }
+            set { this._mlMemberAbilities = value; }
+        }
+
+        // Check to see if MlMemberAbilities property is set
+        internal bool IsSetMlMemberAbilities()
+        {
+            return this._mlMemberAbilities != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PaymentConfiguration. 
+        /// <para>
+        /// The collaboration member's payment responsibilities set by the collaboration creator.
+        /// 
+        /// </para>
+        ///  
+        /// <para>
+        /// If the collaboration creator hasn't speciﬁed anyone as the member paying for query
+        /// compute costs, then the member who can query is the default payer.
+        /// </para>
+        /// </summary>
+        public PaymentConfiguration PaymentConfiguration
+        {
+            get { return this._paymentConfiguration; }
+            set { this._paymentConfiguration = value; }
+        }
+
+        // Check to see if PaymentConfiguration property is set
+        internal bool IsSetPaymentConfiguration()
+        {
+            return this._paymentConfiguration != null;
         }
 
     }

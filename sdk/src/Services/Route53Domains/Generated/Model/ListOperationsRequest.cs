@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Domains.Model
 {
     /// <summary>
@@ -44,19 +45,18 @@ namespace Amazon.Route53Domains.Model
         private int? _maxItems;
         private ListOperationsSortAttributeName _sortBy;
         private SortOrder _sortOrder;
-        private List<string> _status = new List<string>();
+        private List<string> _status = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _submittedSince;
-        private List<string> _type = new List<string>();
+        private List<string> _type = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         /// For an initial request for a list of operations, omit this element. If the number
         /// of operations that are not yet complete is greater than the value that you specified
-        /// for <code>MaxItems</code>, you can use <code>Marker</code> to return additional operations.
-        /// Get the value of <code>NextPageMarker</code> from the previous response, and submit
-        /// another request that includes the value of <code>NextPageMarker</code> in the <code>Marker</code>
-        /// element.
+        /// for <c>MaxItems</c>, you can use <c>Marker</c> to return additional operations. Get
+        /// the value of <c>NextPageMarker</c> from the previous response, and submit another
+        /// request that includes the value of <c>NextPageMarker</c> in the <c>Marker</c> element.
         /// </para>
         /// </summary>
         [AWSProperty(Max=4096)]
@@ -147,7 +147,7 @@ namespace Amazon.Route53Domains.Model
         // Check to see if Status property is set
         internal bool IsSetStatus()
         {
-            return this._status != null && this._status.Count > 0; 
+            return this._status != null && (this._status.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace Amazon.Route53Domains.Model
         ///  An arrays of the domains operation types. 
         /// </para>
         /// </summary>
-        [AWSProperty(Max=18)]
+        [AWSProperty(Max=21)]
         public List<string> Type
         {
             get { return this._type; }
@@ -186,7 +186,7 @@ namespace Amazon.Route53Domains.Model
         // Check to see if Type property is set
         internal bool IsSetType()
         {
-            return this._type != null && this._type.Count > 0; 
+            return this._type != null && (this._type.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

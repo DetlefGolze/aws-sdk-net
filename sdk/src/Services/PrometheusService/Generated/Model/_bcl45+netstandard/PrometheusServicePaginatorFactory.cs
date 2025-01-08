@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
@@ -41,6 +42,14 @@ namespace Amazon.PrometheusService.Model
         public IListRuleGroupsNamespacesPaginator ListRuleGroupsNamespaces(ListRuleGroupsNamespacesRequest request) 
         {
             return new ListRuleGroupsNamespacesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListScrapers operation
+        ///</summary>
+        public IListScrapersPaginator ListScrapers(ListScrapersRequest request) 
+        {
+            return new ListScrapersPaginator(this.client, request);
         }
 
         /// <summary>

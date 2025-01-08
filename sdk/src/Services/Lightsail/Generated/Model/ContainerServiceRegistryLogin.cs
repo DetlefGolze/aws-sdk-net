@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.Lightsail.Model
         ///  
         /// <para>
         /// The log in credentials expire 12 hours after they are created, at which point you
-        /// will need to create a new set of log in credentials using the <code>CreateContainerServiceRegistryLogin</code>
+        /// will need to create a new set of log in credentials using the <c>CreateContainerServiceRegistryLogin</c>
         /// action.
         /// </para>
         /// </summary>

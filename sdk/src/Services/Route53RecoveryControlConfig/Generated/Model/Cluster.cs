@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53RecoveryControlConfig.Model
 {
     /// <summary>
@@ -36,8 +37,9 @@ namespace Amazon.Route53RecoveryControlConfig.Model
     public partial class Cluster
     {
         private string _clusterArn;
-        private List<ClusterEndpoint> _clusterEndpoints = new List<ClusterEndpoint>();
+        private List<ClusterEndpoint> _clusterEndpoints = AWSConfigs.InitializeCollections ? new List<ClusterEndpoint>() : null;
         private string _name;
+        private string _owner;
         private Status _status;
 
         /// <summary>
@@ -80,7 +82,7 @@ namespace Amazon.Route53RecoveryControlConfig.Model
         // Check to see if ClusterEndpoints property is set
         internal bool IsSetClusterEndpoints()
         {
-            return this._clusterEndpoints != null && this._clusterEndpoints.Count > 0; 
+            return this._clusterEndpoints != null && (this._clusterEndpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -100,6 +102,25 @@ namespace Amazon.Route53RecoveryControlConfig.Model
         internal bool IsSetName()
         {
             return this._name != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Owner. 
+        /// <para>
+        /// The Amazon Web Services account ID of the cluster owner.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=12, Max=12)]
+        public string Owner
+        {
+            get { return this._owner; }
+            set { this._owner = value; }
+        }
+
+        // Check to see if Owner property is set
+        internal bool IsSetOwner()
+        {
+            return this._owner != null;
         }
 
         /// <summary>

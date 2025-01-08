@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public DomainPackageDetails Unmarshall(JsonUnmarshallerContext context)
         {
+            DomainPackageDetails unmarshalledObject = new DomainPackageDetails();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            DomainPackageDetails unmarshalledObject = new DomainPackageDetails();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("AssociationConfiguration", targetDepth))
+                {
+                    var unmarshaller = PackageAssociationConfigurationUnmarshaller.Instance;
+                    unmarshalledObject.AssociationConfiguration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("DomainName", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -112,6 +120,12 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
                     unmarshalledObject.PackageVersion = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("PrerequisitePackageIDList", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
+                    unmarshalledObject.PrerequisitePackageIDList = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ReferencePath", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -119,7 +133,6 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

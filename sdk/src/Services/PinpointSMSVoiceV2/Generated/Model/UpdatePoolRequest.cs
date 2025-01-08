@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdatePool operation.
     /// Updates the configuration of an existing pool. You can update the opt-out list, enable
-    /// or disable two-way messaging, change the <code>TwoWayChannelArn</code>, enable or
-    /// disable self-managed opt-outs, enable or disable deletion protection, and enable or
-    /// disable shared routes.
+    /// or disable two-way messaging, change the <c>TwoWayChannelArn</c>, enable or disable
+    /// self-managed opt-outs, enable or disable deletion protection, and enable or disable
+    /// shared routes.
     /// </summary>
     public partial class UpdatePoolRequest : AmazonPinpointSMSVoiceV2Request
     {
@@ -43,6 +44,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         private bool? _selfManagedOptOutsEnabled;
         private bool? _sharedRoutesEnabled;
         private string _twoWayChannelArn;
+        private string _twoWayChannelRole;
         private bool? _twoWayEnabled;
 
         /// <summary>
@@ -69,6 +71,12 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// The OptOutList to associate with the pool. Valid values are either OptOutListName
         /// or OptOutListArn.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// If you are using a shared AWS End User Messaging SMS and Voice resource then you must
+        /// use the full Amazon Resource Name(ARN).
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]
         public string OptOutListName
@@ -89,6 +97,12 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// The unique identifier of the pool to update. Valid values are either the PoolId or
         /// PoolArn.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// If you are using a shared AWS End User Messaging SMS and Voice resource then you must
+        /// use the full Amazon Resource Name(ARN).
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]
         public string PoolId
@@ -107,10 +121,10 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// Gets and sets the property SelfManagedOptOutsEnabled. 
         /// <para>
         /// By default this is set to false. When an end recipient sends a message that begins
-        /// with HELP or STOP to one of your dedicated numbers, Amazon Pinpoint automatically
-        /// replies with a customizable message and adds the end recipient to the OptOutList.
-        /// When set to true you're responsible for responding to HELP and STOP requests. You're
-        /// also responsible for tracking and honoring opt-out requests.
+        /// with HELP or STOP to one of your dedicated numbers, AWS End User Messaging SMS and
+        /// Voice automatically replies with a customizable message and adds the end recipient
+        /// to the OptOutList. When set to true you're responsible for responding to HELP and
+        /// STOP requests. You're also responsible for tracking and honoring opt-out requests.
         /// </para>
         /// </summary>
         public bool SelfManagedOptOutsEnabled
@@ -160,6 +174,25 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         internal bool IsSetTwoWayChannelArn()
         {
             return this._twoWayChannelArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property TwoWayChannelRole. 
+        /// <para>
+        /// An optional IAM Role Arn for a service to assume, to be able to post inbound SMS messages.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=2048)]
+        public string TwoWayChannelRole
+        {
+            get { return this._twoWayChannelRole; }
+            set { this._twoWayChannelRole = value; }
+        }
+
+        // Check to see if TwoWayChannelRole property is set
+        internal bool IsSetTwoWayChannelRole()
+        {
+            return this._twoWayChannelRole != null;
         }
 
         /// <summary>

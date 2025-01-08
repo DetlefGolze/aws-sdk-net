@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MedicalImaging.Model
 {
     /// <summary>
@@ -36,9 +37,11 @@ namespace Amazon.MedicalImaging.Model
         private DateTime? _createdAt;
         private string _dicomAccessionNumber;
         private string _dicomPatientId;
+        private string _dicomSeriesInstanceUID;
         private DICOMStudyDateAndTime _dicomStudyDateAndTime;
         private string _dicomStudyId;
         private string _dicomStudyInstanceUID;
+        private DateTime? _updatedAt;
 
         /// <summary>
         /// Gets and sets the property CreatedAt. 
@@ -64,7 +67,7 @@ namespace Amazon.MedicalImaging.Model
         /// The DICOM accession number for search.
         /// </para>
         /// </summary>
-        [AWSProperty(Sensitive=true, Min=0, Max=16)]
+        [AWSProperty(Sensitive=true, Min=0, Max=256)]
         public string DICOMAccessionNumber
         {
             get { return this._dicomAccessionNumber; }
@@ -83,7 +86,7 @@ namespace Amazon.MedicalImaging.Model
         /// The patient ID input for search.
         /// </para>
         /// </summary>
-        [AWSProperty(Sensitive=true, Min=0, Max=64)]
+        [AWSProperty(Sensitive=true, Min=0, Max=256)]
         public string DICOMPatientId
         {
             get { return this._dicomPatientId; }
@@ -94,6 +97,25 @@ namespace Amazon.MedicalImaging.Model
         internal bool IsSetDICOMPatientId()
         {
             return this._dicomPatientId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DICOMSeriesInstanceUID. 
+        /// <para>
+        /// The Series Instance UID input for search.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Sensitive=true, Min=0, Max=256)]
+        public string DICOMSeriesInstanceUID
+        {
+            get { return this._dicomSeriesInstanceUID; }
+            set { this._dicomSeriesInstanceUID = value; }
+        }
+
+        // Check to see if DICOMSeriesInstanceUID property is set
+        internal bool IsSetDICOMSeriesInstanceUID()
+        {
+            return this._dicomSeriesInstanceUID != null;
         }
 
         /// <summary>
@@ -139,7 +161,7 @@ namespace Amazon.MedicalImaging.Model
         /// The DICOM study instance UID for search.
         /// </para>
         /// </summary>
-        [AWSProperty(Sensitive=true, Min=0, Max=64)]
+        [AWSProperty(Sensitive=true, Min=0, Max=256)]
         public string DICOMStudyInstanceUID
         {
             get { return this._dicomStudyInstanceUID; }
@@ -150,6 +172,24 @@ namespace Amazon.MedicalImaging.Model
         internal bool IsSetDICOMStudyInstanceUID()
         {
             return this._dicomStudyInstanceUID != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property UpdatedAt. 
+        /// <para>
+        /// The timestamp input for search.
+        /// </para>
+        /// </summary>
+        public DateTime UpdatedAt
+        {
+            get { return this._updatedAt.GetValueOrDefault(); }
+            set { this._updatedAt = value; }
+        }
+
+        // Check to see if UpdatedAt property is set
+        internal bool IsSetUpdatedAt()
+        {
+            return this._updatedAt.HasValue; 
         }
 
     }

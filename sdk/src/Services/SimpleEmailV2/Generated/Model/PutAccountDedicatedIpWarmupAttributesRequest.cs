@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.SimpleEmailV2.Model
         /// <para>
         /// Enables or disables the automatic warm-up feature for dedicated IP addresses that
         /// are associated with your Amazon SES account in the current Amazon Web Services Region.
-        /// Set to <code>true</code> to enable the automatic warm-up feature, or set to <code>false</code>
+        /// Set to <c>true</c> to enable the automatic warm-up feature, or set to <c>false</c>
         /// to disable it.
         /// </para>
         /// </summary>

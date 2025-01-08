@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
@@ -43,13 +44,27 @@ namespace Amazon.CustomerProfiles.Model
     /// <para>
     /// Use this API or <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html">UpdateDomain</a>
     /// to enable <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html">identity
-    /// resolution</a>: set <code>Matching</code> to true.
+    /// resolution</a>: set <c>Matching</c> to true.
     /// </para>
     ///  
     /// <para>
     /// To prevent cross-service impersonation when you call this API, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/cross-service-confused-deputy-prevention.html">Cross-service
     /// confused deputy prevention</a> for sample policies that you should apply. 
     /// </para>
+    ///  <note> 
+    /// <para>
+    /// It is not possible to associate a Customer Profiles domain with an Amazon Connect
+    /// Instance directly from the API. If you would like to create a domain and associate
+    /// a Customer Profiles domain, use the Amazon Connect admin website. For more information,
+    /// see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/enable-customer-profiles.html#enable-customer-profiles-step1">Enable
+    /// Customer Profiles</a>.
+    /// </para>
+    ///  
+    /// <para>
+    /// Each Amazon Connect instance can be associated with only one domain. Multiple Amazon
+    /// Connect instances can be associated with one domain.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class CreateDomainRequest : AmazonCustomerProfilesRequest
     {
@@ -59,7 +74,7 @@ namespace Amazon.CustomerProfiles.Model
         private string _domainName;
         private MatchingRequest _matching;
         private RuleBasedMatchingRequest _ruleBasedMatching;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property DeadLetterQueueUrl. 
@@ -145,8 +160,8 @@ namespace Amazon.CustomerProfiles.Model
         /// <summary>
         /// Gets and sets the property Matching. 
         /// <para>
-        /// The process of matching duplicate profiles. If <code>Matching</code> = <code>true</code>,
-        /// Amazon Connect Customer Profiles starts a weekly batch process called Identity Resolution
+        /// The process of matching duplicate profiles. If <c>Matching</c> = <c>true</c>, Amazon
+        /// Connect Customer Profiles starts a weekly batch process called Identity Resolution
         /// Job. If you do not specify a date and time for Identity Resolution Job to run, by
         /// default it runs every Saturday at 12AM UTC to detect duplicate profiles in your domains.
         /// 
@@ -154,8 +169,8 @@ namespace Amazon.CustomerProfiles.Model
         ///  
         /// <para>
         /// After the Identity Resolution Job completes, use the <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html">GetMatches</a>
-        /// API to return and review the results. Or, if you have configured <code>ExportingConfig</code>
-        /// in the <code>MatchingRequest</code>, you can download the results from S3.
+        /// API to return and review the results. Or, if you have configured <c>ExportingConfig</c>
+        /// in the <c>MatchingRequest</c>, you can download the results from S3.
         /// </para>
         /// </summary>
         public MatchingRequest Matching
@@ -173,12 +188,12 @@ namespace Amazon.CustomerProfiles.Model
         /// <summary>
         /// Gets and sets the property RuleBasedMatching. 
         /// <para>
-        /// The process of matching duplicate profiles using the Rule-Based matching. If <code>RuleBasedMatching</code>
+        /// The process of matching duplicate profiles using the Rule-Based matching. If <c>RuleBasedMatching</c>
         /// = true, Amazon Connect Customer Profiles will start to match and merge your profiles
-        /// according to your configuration in the <code>RuleBasedMatchingRequest</code>. You
-        /// can use the <code>ListRuleBasedMatches</code> and <code>GetSimilarProfiles</code>
-        /// API to return and review the results. Also, if you have configured <code>ExportingConfig</code>
-        /// in the <code>RuleBasedMatchingRequest</code>, you can download the results from S3.
+        /// according to your configuration in the <c>RuleBasedMatchingRequest</c>. You can use
+        /// the <c>ListRuleBasedMatches</c> and <c>GetSimilarProfiles</c> API to return and review
+        /// the results. Also, if you have configured <c>ExportingConfig</c> in the <c>RuleBasedMatchingRequest</c>,
+        /// you can download the results from S3.
         /// </para>
         /// </summary>
         public RuleBasedMatchingRequest RuleBasedMatching
@@ -209,7 +224,7 @@ namespace Amazon.CustomerProfiles.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

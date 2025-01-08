@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SimpleEmailV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,12 +67,19 @@ namespace Amazon.SimpleEmailV2.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetCustomRedirectDomain())
                 {
                     context.Writer.WritePropertyName("CustomRedirectDomain");
                     context.Writer.Write(publicRequest.CustomRedirectDomain);
+                }
+
+                if(publicRequest.IsSetHttpsPolicy())
+                {
+                    context.Writer.WritePropertyName("HttpsPolicy");
+                    context.Writer.Write(publicRequest.HttpsPolicy);
                 }
 
                 writer.WriteObjectEnd();

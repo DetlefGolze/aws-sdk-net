@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.SageMaker.Model
     public partial class ListProjectsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ProjectSummary> _projectSummaryList = new List<ProjectSummary>();
+        private List<ProjectSummary> _projectSummaryList = AWSConfigs.InitializeCollections ? new List<ProjectSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the result of the previous <code>ListCompilationJobs</code> request was truncated,
-        /// the response includes a <code>NextToken</code>. To retrieve the next set of model
-        /// compilation jobs, use the token in the next request.
+        /// If the result of the previous <c>ListCompilationJobs</c> request was truncated, the
+        /// response includes a <c>NextToken</c>. To retrieve the next set of model compilation
+        /// jobs, use the token in the next request.
         /// </para>
         /// </summary>
         [AWSProperty(Max=8192)]
@@ -73,7 +74,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if ProjectSummaryList property is set
         internal bool IsSetProjectSummaryList()
         {
-            return this._projectSummaryList != null && this._projectSummaryList.Count > 0; 
+            return this._projectSummaryList != null && (this._projectSummaryList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

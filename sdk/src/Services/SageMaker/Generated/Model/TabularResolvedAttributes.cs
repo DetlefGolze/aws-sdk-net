@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// The resolved attributes specific to the <code>TABULAR</code> problem type.
+    /// The resolved attributes specific to the tabular problem type.
     /// </summary>
     public partial class TabularResolvedAttributes
     {
@@ -41,7 +42,7 @@ namespace Amazon.SageMaker.Model
         /// The type of supervised learning problem available for the model candidates of the
         /// AutoML job V2 (Binary Classification, Multiclass Classification, Regression). For
         /// more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-datasets-problem-types.html#autopilot-problem-types">
-        /// Amazon SageMaker Autopilot problem types</a>.
+        /// SageMaker Autopilot problem types</a>.
         /// </para>
         /// </summary>
         public ProblemType ProblemType

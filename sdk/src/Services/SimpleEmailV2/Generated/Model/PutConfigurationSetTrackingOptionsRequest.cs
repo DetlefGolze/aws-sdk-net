@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -37,6 +38,7 @@ namespace Amazon.SimpleEmailV2.Model
     {
         private string _configurationSetName;
         private string _customRedirectDomain;
+        private HttpsPolicy _httpsPolicy;
 
         /// <summary>
         /// Gets and sets the property ConfigurationSetName. 
@@ -73,6 +75,21 @@ namespace Amazon.SimpleEmailV2.Model
         internal bool IsSetCustomRedirectDomain()
         {
             return this._customRedirectDomain != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property HttpsPolicy.
+        /// </summary>
+        public HttpsPolicy HttpsPolicy
+        {
+            get { return this._httpsPolicy; }
+            set { this._httpsPolicy = value; }
+        }
+
+        // Check to see if HttpsPolicy property is set
+        internal bool IsSetHttpsPolicy()
+        {
+            return this._httpsPolicy != null;
         }
 
     }

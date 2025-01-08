@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppConfig.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.AppConfig.Model
         private string _applicationId;
         private string _description;
         private string _id;
-        private List<Monitor> _monitors = new List<Monitor>();
+        private List<Monitor> _monitors = AWSConfigs.InitializeCollections ? new List<Monitor>() : null;
         private string _name;
         private EnvironmentState _state;
 
@@ -111,7 +112,7 @@ namespace Amazon.AppConfig.Model
         // Check to see if Monitors property is set
         internal bool IsSetMonitors()
         {
-            return this._monitors != null && this._monitors.Count > 0; 
+            return this._monitors != null && (this._monitors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -137,8 +138,8 @@ namespace Amazon.AppConfig.Model
         /// Gets and sets the property State. 
         /// <para>
         /// The state of the environment. An environment can be in one of the following states:
-        /// <code>READY_FOR_DEPLOYMENT</code>, <code>DEPLOYING</code>, <code>ROLLING_BACK</code>,
-        /// or <code>ROLLED_BACK</code> 
+        /// <c>READY_FOR_DEPLOYMENT</c>, <c>DEPLOYING</c>, <c>ROLLING_BACK</c>, or <c>ROLLED_BACK</c>
+        /// 
         /// </para>
         /// </summary>
         public EnvironmentState State

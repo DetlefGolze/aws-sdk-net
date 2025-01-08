@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property GameSessionPlacement. 
         /// <para>
-        /// Object that describes the canceled game session placement, with <code>CANCELLED</code>
-        /// status and an end time stamp. 
+        /// Object that describes the canceled game session placement, with <c>CANCELLED</c> status
+        /// and an end time stamp. 
         /// </para>
         /// </summary>
         public GameSessionPlacement GameSessionPlacement

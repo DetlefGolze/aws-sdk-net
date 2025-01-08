@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,19 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ProtectedQueryOutputConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetMember())
+            {
+                context.Writer.WritePropertyName("member");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = ProtectedQueryMemberOutputConfigurationMarshaller.Instance;
+                marshaller.Marshall(requestObject.Member, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetS3())
             {
                 context.Writer.WritePropertyName("s3");

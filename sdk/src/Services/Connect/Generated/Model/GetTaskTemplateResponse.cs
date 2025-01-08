@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -39,13 +40,14 @@ namespace Amazon.Connect.Model
         private DateTime? _createdTime;
         private TaskTemplateDefaults _defaults;
         private string _description;
-        private List<TaskTemplateField> _fields = new List<TaskTemplateField>();
+        private List<TaskTemplateField> _fields = AWSConfigs.InitializeCollections ? new List<TaskTemplateField>() : null;
         private string _id;
         private string _instanceId;
         private DateTime? _lastModifiedTime;
         private string _name;
+        private string _selfAssignFlowId;
         private TaskTemplateStatus _status;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -174,7 +176,7 @@ namespace Amazon.Connect.Model
         // Check to see if Fields property is set
         internal bool IsSetFields()
         {
-            return this._fields != null && this._fields.Count > 0; 
+            return this._fields != null && (this._fields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -254,12 +256,31 @@ namespace Amazon.Connect.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SelfAssignFlowId. 
+        /// <para>
+        /// ContactFlowId for the flow that will be run if this template is used to create a self-assigned
+        /// task
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=500)]
+        public string SelfAssignFlowId
+        {
+            get { return this._selfAssignFlowId; }
+            set { this._selfAssignFlowId = value; }
+        }
+
+        // Check to see if SelfAssignFlowId property is set
+        internal bool IsSetSelfAssignFlowId()
+        {
+            return this._selfAssignFlowId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// Marks a template as <code>ACTIVE</code> or <code>INACTIVE</code> for a task to refer
-        /// to it. Tasks can only be created from <code>ACTIVE</code> templates. If a template
-        /// is marked as <code>INACTIVE</code>, then a task that refers to this template cannot
-        /// be created.
+        /// Marks a template as <c>ACTIVE</c> or <c>INACTIVE</c> for a task to refer to it. Tasks
+        /// can only be created from <c>ACTIVE</c> templates. If a template is marked as <c>INACTIVE</c>,
+        /// then a task that refers to this template cannot be created.
         /// </para>
         /// </summary>
         public TaskTemplateStatus Status
@@ -278,7 +299,7 @@ namespace Amazon.Connect.Model
         /// Gets and sets the property Tags. 
         /// <para>
         /// The tags used to organize, track, or control access for this resource. For example,
-        /// { "tags": {"key1":"value1", "key2":"value2"} }.
+        /// { "Tags": {"key1":"value1", "key2":"value2"} }.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -291,7 +312,7 @@ namespace Amazon.Connect.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

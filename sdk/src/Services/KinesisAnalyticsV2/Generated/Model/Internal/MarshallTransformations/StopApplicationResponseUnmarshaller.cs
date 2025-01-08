@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.KinesisAnalyticsV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -47,6 +48,17 @@ namespace Amazon.KinesisAnalyticsV2.Model.Internal.MarshallTransformations
         {
             StopApplicationResponse response = new StopApplicationResponse();
 
+            context.Read();
+            int targetDepth = context.CurrentDepth;
+            while (context.ReadAtDepth(targetDepth))
+            {
+                if (context.TestExpression("OperationId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.OperationId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+            }
 
             return response;
         }

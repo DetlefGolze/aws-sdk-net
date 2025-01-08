@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -33,11 +34,11 @@ namespace Amazon.ElastiCache.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    ///  <code>CreateCacheSubnetGroup</code> 
+    ///  <c>CreateCacheSubnetGroup</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ModifyCacheSubnetGroup</code> 
+    ///  <c>ModifyCacheSubnetGroup</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -46,8 +47,8 @@ namespace Amazon.ElastiCache.Model
         private string _arn;
         private string _cacheSubnetGroupDescription;
         private string _cacheSubnetGroupName;
-        private List<Subnet> _subnets = new List<Subnet>();
-        private List<string> _supportedNetworkTypes = new List<string>();
+        private List<Subnet> _subnets = AWSConfigs.InitializeCollections ? new List<Subnet>() : null;
+        private List<string> _supportedNetworkTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _vpcId;
 
         /// <summary>
@@ -119,15 +120,16 @@ namespace Amazon.ElastiCache.Model
         // Check to see if Subnets property is set
         internal bool IsSetSubnets()
         {
-            return this._subnets != null && this._subnets.Count > 0; 
+            return this._subnets != null && (this._subnets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SupportedNetworkTypes. 
         /// <para>
-        /// Either <code>ipv4</code> | <code>ipv6</code> | <code>dual_stack</code>. IPv6 is supported
-        /// for workloads using Redis engine version 6.2 onward or Memcached engine version 1.6.6
-        /// on all instances built on the <a href="http://aws.amazon.com/ec2/nitro/">Nitro system</a>.
+        /// Either <c>ipv4</c> | <c>ipv6</c> | <c>dual_stack</c>. IPv6 is supported for workloads
+        /// using Valkey 7.2 and above, Redis OSS engine version 6.2 and above or Memcached engine
+        /// version 1.6.6 and above on all instances built on the <a href="http://aws.amazon.com/ec2/nitro/">Nitro
+        /// system</a>.
         /// </para>
         /// </summary>
         public List<string> SupportedNetworkTypes
@@ -139,7 +141,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if SupportedNetworkTypes property is set
         internal bool IsSetSupportedNetworkTypes()
         {
-            return this._supportedNetworkTypes != null && this._supportedNetworkTypes.Count > 0; 
+            return this._supportedNetworkTypes != null && (this._supportedNetworkTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

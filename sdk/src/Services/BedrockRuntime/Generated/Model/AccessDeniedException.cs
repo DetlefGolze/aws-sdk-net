@@ -26,10 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BedrockRuntime.Model
 {
     /// <summary>
-    /// The request is denied because of missing access permissions.
+    /// The request is denied because you do not have sufficient permissions to perform the
+    /// requested action. For troubleshooting this error, see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/troubleshooting-api-error-codes.html#ts-access-denied">AccessDeniedException</a>
+    /// in the Amazon Bedrock User Guide
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

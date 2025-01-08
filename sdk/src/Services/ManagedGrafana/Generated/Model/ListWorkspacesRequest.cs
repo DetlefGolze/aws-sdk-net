@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedGrafana.Model
 {
     /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.ManagedGrafana.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The token for the next set of workspaces to return. (You receive this token from a
-        /// previous <code>ListWorkspaces</code> operation.)
+        /// previous <c>ListWorkspaces</c> operation.)
         /// </para>
         /// </summary>
         public string NextToken

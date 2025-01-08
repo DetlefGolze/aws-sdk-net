@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -39,8 +40,8 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property ApplyServerSideEncryptionByDefault. 
         /// <para>
         /// Specifies the default server-side encryption to apply to new objects in the bucket.
-        /// If a <code>PUT</code> object request doesn't specify any server-side encryption, this
-        /// default encryption is applied.
+        /// If a <c>PUT</c> object request doesn't specify any server-side encryption, this default
+        /// encryption is applied.
         /// </para>
         /// </summary>
         public AwsS3BucketServerSideEncryptionByDefault ApplyServerSideEncryptionByDefault

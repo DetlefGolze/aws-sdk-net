@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// A parameter declaration for the <code>DateTime</code> data type.
+    /// A parameter declaration for the <c>DateTime</c> data type.
     /// </summary>
     public partial class DateTimeParameterDeclaration
     {
         private DateTimeDefaultValues _defaultValues;
-        private List<MappedDataSetParameter> _mappedDataSetParameters = new List<MappedDataSetParameter>();
+        private List<MappedDataSetParameter> _mappedDataSetParameters = AWSConfigs.InitializeCollections ? new List<MappedDataSetParameter>() : null;
         private string _name;
         private TimeGranularity _timeGranularity;
         private DateTimeValueWhenUnsetConfiguration _valueWhenUnset;
@@ -71,7 +72,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if MappedDataSetParameters property is set
         internal bool IsSetMappedDataSetParameters()
         {
-            return this._mappedDataSetParameters != null && this._mappedDataSetParameters.Count > 0; 
+            return this._mappedDataSetParameters != null && (this._mappedDataSetParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -96,7 +97,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property TimeGranularity. 
         /// <para>
-        /// The level of time precision that is used to aggregate <code>DateTime</code> values.
+        /// The level of time precision that is used to aggregate <c>DateTime</c> values.
         /// </para>
         /// </summary>
         public TimeGranularity TimeGranularity
@@ -114,8 +115,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property ValueWhenUnset. 
         /// <para>
-        /// The configuration that defines the default value of a <code>DateTime</code> parameter
-        /// when a value has not been set.
+        /// The configuration that defines the default value of a <c>DateTime</c> parameter when
+        /// a value has not been set.
         /// </para>
         /// </summary>
         public DateTimeValueWhenUnsetConfiguration ValueWhenUnset

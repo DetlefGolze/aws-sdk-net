@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComputeOptimizer.Model
 {
     /// <summary>
@@ -37,9 +38,10 @@ namespace Amazon.ComputeOptimizer.Model
         private GpuInfo _instanceGpuInfo;
         private MigrationEffort _migrationEffort;
         private double? _performanceRisk;
-        private List<UtilizationMetric> _projectedUtilizationMetrics = new List<UtilizationMetric>();
+        private List<UtilizationMetric> _projectedUtilizationMetrics = AWSConfigs.InitializeCollections ? new List<UtilizationMetric>() : null;
         private int? _rank;
         private SavingsOpportunity _savingsOpportunity;
+        private AutoScalingGroupSavingsOpportunityAfterDiscounts _savingsOpportunityAfterDiscounts;
 
         /// <summary>
         /// Gets and sets the property Configuration. 
@@ -86,12 +88,11 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        /// For example, the migration effort is <code>Low</code> if Amazon EMR is the inferred
-        /// workload type and an Amazon Web Services Graviton instance type is recommended. The
-        /// migration effort is <code>Medium</code> if a workload type couldn't be inferred but
-        /// an Amazon Web Services Graviton instance type is recommended. The migration effort
-        /// is <code>VeryLow</code> if both the current and recommended instance types are of
-        /// the same CPU architecture.
+        /// For example, the migration effort is <c>Low</c> if Amazon EMR is the inferred workload
+        /// type and an Amazon Web Services Graviton instance type is recommended. The migration
+        /// effort is <c>Medium</c> if a workload type couldn't be inferred but an Amazon Web
+        /// Services Graviton instance type is recommended. The migration effort is <c>VeryLow</c>
+        /// if both the current and recommended instance types are of the same CPU architecture.
         /// </para>
         /// </summary>
         public MigrationEffort MigrationEffort
@@ -122,11 +123,10 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        /// The value ranges from <code>0</code> - <code>4</code>, with <code>0</code> meaning
-        /// that the recommended resource is predicted to always provide enough hardware capability.
-        /// The higher the performance risk is, the more likely you should validate whether the
-        /// recommendation will meet the performance requirements of your workload before migrating
-        /// your resource.
+        /// The value ranges from <c>0</c> - <c>4</c>, with <c>0</c> meaning that the recommended
+        /// resource is predicted to always provide enough hardware capability. The higher the
+        /// performance risk is, the more likely you should validate whether the recommendation
+        /// will meet the performance requirements of your workload before migrating your resource.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=4)]
@@ -150,10 +150,10 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>Cpu</code> and <code>Memory</code> metrics are the only projected utilization
-        /// metrics returned. Additionally, the <code>Memory</code> metric is returned only for
-        /// resources that have the unified CloudWatch agent installed on them. For more information,
-        /// see <a href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent">Enabling
+        /// The <c>Cpu</c> and <c>Memory</c> metrics are the only projected utilization metrics
+        /// returned. Additionally, the <c>Memory</c> metric is returned only for resources that
+        /// have the unified CloudWatch agent installed on them. For more information, see <a
+        /// href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent">Enabling
         /// Memory Utilization with the CloudWatch Agent</a>.
         /// </para>
         ///  </note>
@@ -167,7 +167,7 @@ namespace Amazon.ComputeOptimizer.Model
         // Check to see if ProjectedUtilizationMetrics property is set
         internal bool IsSetProjectedUtilizationMetrics()
         {
-            return this._projectedUtilizationMetrics != null && this._projectedUtilizationMetrics.Count > 0; 
+            return this._projectedUtilizationMetrics != null && (this._projectedUtilizationMetrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        /// The top recommendation option is ranked as <code>1</code>.
+        /// The top recommendation option is ranked as <c>1</c>.
         /// </para>
         /// </summary>
         public int Rank
@@ -209,6 +209,26 @@ namespace Amazon.ComputeOptimizer.Model
         internal bool IsSetSavingsOpportunity()
         {
             return this._savingsOpportunity != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SavingsOpportunityAfterDiscounts. 
+        /// <para>
+        ///  An object that describes the savings opportunity for the Auto Scaling group recommendation
+        /// option that includes Savings Plans and Reserved Instances discounts. Savings opportunity
+        /// includes the estimated monthly savings and percentage. 
+        /// </para>
+        /// </summary>
+        public AutoScalingGroupSavingsOpportunityAfterDiscounts SavingsOpportunityAfterDiscounts
+        {
+            get { return this._savingsOpportunityAfterDiscounts; }
+            set { this._savingsOpportunityAfterDiscounts = value; }
+        }
+
+        // Check to see if SavingsOpportunityAfterDiscounts property is set
+        internal bool IsSetSavingsOpportunityAfterDiscounts()
+        {
+            return this._savingsOpportunityAfterDiscounts != null;
         }
 
     }

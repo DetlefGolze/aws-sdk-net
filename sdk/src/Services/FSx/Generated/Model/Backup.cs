@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -45,9 +46,10 @@ namespace Amazon.FSx.Model
         private int? _progressPercent;
         private string _resourceARN;
         private ResourceType _resourceType;
+        private long? _sizeInBytes;
         private string _sourceBackupId;
         private string _sourceBackupRegion;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private BackupType _type;
         private Volume _volume;
 
@@ -173,33 +175,33 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AVAILABLE</code> - The backup is fully available.
+        ///  <c>AVAILABLE</c> - The backup is fully available.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PENDING</code> - For user-initiated backups on Lustre file systems only; Amazon
-        /// FSx hasn't started creating the backup.
+        ///  <c>PENDING</c> - For user-initiated backups on Lustre file systems only; Amazon FSx
+        /// hasn't started creating the backup.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATING</code> - Amazon FSx is creating the backup.
+        ///  <c>CREATING</c> - Amazon FSx is creating the backup.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TRANSFERRING</code> - For user-initiated backups on Lustre file systems only;
-        /// Amazon FSx is transferring the backup to Amazon S3.
+        ///  <c>TRANSFERRING</c> - For user-initiated backups on Lustre file systems only; Amazon
+        /// FSx is transferring the backup to Amazon S3.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>COPYING</code> - Amazon FSx is copying the backup.
+        ///  <c>COPYING</c> - Amazon FSx is copying the backup.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETED</code> - Amazon FSx deleted the backup and it's no longer available.
+        ///  <c>DELETED</c> - Amazon FSx deleted the backup and it's no longer available.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> - Amazon FSx couldn't finish the backup.
+        ///  <c>FAILED</c> - Amazon FSx couldn't finish the backup.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -286,6 +288,26 @@ namespace Amazon.FSx.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SizeInBytes. 
+        /// <para>
+        ///  The size of the backup in bytes. This represents the amount of data that the file
+        /// system would contain if you restore this backup. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0)]
+        public long SizeInBytes
+        {
+            get { return this._sizeInBytes.GetValueOrDefault(); }
+            set { this._sizeInBytes = value; }
+        }
+
+        // Check to see if SizeInBytes property is set
+        internal bool IsSetSizeInBytes()
+        {
+            return this._sizeInBytes.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property SourceBackupId.
         /// </summary>
         [AWSProperty(Min=12, Max=128)]
@@ -336,7 +358,7 @@ namespace Amazon.FSx.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

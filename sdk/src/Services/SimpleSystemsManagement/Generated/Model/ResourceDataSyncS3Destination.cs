@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -82,7 +83,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property DestinationDataSharing. 
         /// <para>
-        /// Enables destination data sharing. By default, this field is <code>null</code>.
+        /// Enables destination data sharing. By default, this field is <c>null</c>.
         /// </para>
         /// </summary>
         public ResourceDataSyncDestinationDataSharing DestinationDataSharing

@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptography.Model
 {
     /// <summary>
     /// Container for the parameters to the ListAliases operation.
     /// Lists the aliases for all keys in the caller's Amazon Web Services account and Amazon
-    /// Web Services Region. You can filter the list of aliases. For more information, see
-    /// <a href="https://docs.aws.amazon.com/payment-cryptography/latest/userguide/keys-managealias.html">Using
+    /// Web Services Region. You can filter the aliases by <c>keyARN</c>. For more information,
+    /// see <a href="https://docs.aws.amazon.com/payment-cryptography/latest/userguide/keys-managealias.html">Using
     /// aliases</a> in the <i>Amazon Web Services Payment Cryptography User Guide</i>.
     /// 
     ///  
     /// <para>
     /// This is a paginated operation, which means that each response might contain only a
     /// subset of all the aliases. When the response contains only a subset of aliases, it
-    /// includes a <code>NextToken</code> value. Use this value in a subsequent <code>ListAliases</code>
+    /// includes a <c>NextToken</c> value. Use this value in a subsequent <c>ListAliases</c>
     /// request to get more aliases. When you receive a response with no NextToken (or an
     /// empty or null value), that means there are no more aliases to get.
     /// </para>
@@ -54,26 +55,50 @@ namespace Amazon.PaymentCryptography.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <a>CreateAlias</a> 
+    ///  <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_CreateAlias.html">CreateAlias</a>
+    /// 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a>DeleteAlias</a> 
+    ///  <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_DeleteAlias.html">DeleteAlias</a>
+    /// 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a>GetAlias</a> 
+    ///  <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_GetAlias.html">GetAlias</a>
+    /// 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a>UpdateAlias</a> 
+    ///  <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_UpdateAlias.html">UpdateAlias</a>
+    /// 
     /// </para>
     ///  </li> </ul>
     /// </summary>
     public partial class ListAliasesRequest : AmazonPaymentCryptographyRequest
     {
+        private string _keyArn;
         private int? _maxResults;
         private string _nextToken;
+
+        /// <summary>
+        /// Gets and sets the property KeyArn. 
+        /// <para>
+        /// The <c>keyARN</c> for which you want to list all aliases.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=70, Max=150)]
+        public string KeyArn
+        {
+            get { return this._keyArn; }
+            set { this._keyArn = value; }
+        }
+
+        // Check to see if KeyArn property is set
+        internal bool IsSetKeyArn()
+        {
+            return this._keyArn != null;
+        }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
@@ -105,8 +130,8 @@ namespace Amazon.PaymentCryptography.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// Use this parameter in a subsequent request after you receive a response with truncated
-        /// results. Set it to the value of <code>NextToken</code> from the truncated response
-        /// you just received.
+        /// results. Set it to the value of <c>NextToken</c> from the truncated response you just
+        /// received.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=8192)]

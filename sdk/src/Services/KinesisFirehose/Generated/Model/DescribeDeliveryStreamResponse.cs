@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property DeliveryStreamDescription. 
         /// <para>
-        /// Information about the delivery stream.
+        /// Information about the Firehose stream.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

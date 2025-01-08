@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -35,20 +36,20 @@ namespace Amazon.ForecastService.Model
     /// 
     ///  
     /// <para>
-    /// In addition to listing the parameters specified in the <code>CreateDataset</code>
-    /// request, this operation includes the following dataset properties:
+    /// In addition to listing the parameters specified in the <c>CreateDataset</c> request,
+    /// this operation includes the following dataset properties:
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>CreationTime</code> 
+    ///  <c>CreationTime</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>LastModificationTime</code> 
+    ///  <c>LastModificationTime</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>Status</code> 
+    ///  <c>Status</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>

@@ -26,18 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchain.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateAccessor operation.
-    /// Creates a new accessor for use with Managed Blockchain Ethereum nodes. An accessor
-    /// contains information required for token based access to your Ethereum nodes.
+    /// Creates a new accessor for use with Amazon Managed Blockchain service that supports
+    /// token based access. The accessor contains information required for token based access.
     /// </summary>
     public partial class CreateAccessorRequest : AmazonManagedBlockchainRequest
     {
         private AccessorType _accessorType;
         private string _clientRequestToken;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private AccessorNetworkType _networkType;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AccessorType. 
@@ -46,7 +48,7 @@ namespace Amazon.ManagedBlockchain.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// Currently, accessor type is restricted to <code>BILLING_TOKEN</code>.
+        /// Currently, accessor type is restricted to <c>BILLING_TOKEN</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -87,6 +89,53 @@ namespace Amazon.ManagedBlockchain.Model
         }
 
         /// <summary>
+        /// Gets and sets the property NetworkType. 
+        /// <para>
+        /// The blockchain network that the <c>Accessor</c> token is created for.
+        /// </para>
+        ///  <note> <ul> <li> 
+        /// <para>
+        /// Use the actual <c>networkType</c> value for the blockchain network that you are creating
+        /// the <c>Accessor</c> token for.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// With the shut down of the <i>Ethereum Goerli</i> and <i>Polygon Mumbai Testnet</i>
+        /// networks the following <c>networkType</c> values are no longer available for selection
+        /// and use.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>ETHEREUM_MAINNET_AND_GOERLI</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>ETHEREUM_GOERLI</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>POLYGON_MUMBAI</c> 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// However, your existing <c>Accessor</c> tokens with these <c>networkType</c> values
+        /// will remain unchanged.
+        /// </para>
+        ///  </li> </ul> </note>
+        /// </summary>
+        public AccessorNetworkType NetworkType
+        {
+            get { return this._networkType; }
+            set { this._networkType = value; }
+        }
+
+        // Check to see if NetworkType property is set
+        internal bool IsSetNetworkType()
+        {
+            return this._networkType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// Tags to assign to the Accessor.
@@ -114,7 +163,7 @@ namespace Amazon.ManagedBlockchain.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

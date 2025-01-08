@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BillingConductor.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.BillingConductor.Model
     public partial class ListResourcesAssociatedToCustomLineItemResponse : AmazonWebServiceResponse
     {
         private string _arn;
-        private List<ListResourcesAssociatedToCustomLineItemResponseElement> _associatedResources = new List<ListResourcesAssociatedToCustomLineItemResponseElement>();
+        private List<ListResourcesAssociatedToCustomLineItemResponseElement> _associatedResources = AWSConfigs.InitializeCollections ? new List<ListResourcesAssociatedToCustomLineItemResponseElement>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -58,8 +59,8 @@ namespace Amazon.BillingConductor.Model
         /// <summary>
         /// Gets and sets the property AssociatedResources. 
         /// <para>
-        ///  A list of <code>ListResourcesAssociatedToCustomLineItemResponseElement</code> for
-        /// each resource association retrieved. 
+        ///  A list of <c>ListResourcesAssociatedToCustomLineItemResponseElement</c> for each
+        /// resource association retrieved. 
         /// </para>
         /// </summary>
         public List<ListResourcesAssociatedToCustomLineItemResponseElement> AssociatedResources
@@ -71,7 +72,7 @@ namespace Amazon.BillingConductor.Model
         // Check to see if AssociatedResources property is set
         internal bool IsSetAssociatedResources()
         {
-            return this._associatedResources != null && this._associatedResources.Count > 0; 
+            return this._associatedResources != null && (this._associatedResources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

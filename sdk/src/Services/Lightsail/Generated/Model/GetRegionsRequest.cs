@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
     /// Container for the parameters to the GetRegions operation.
-    /// Returns a list of all valid regions for Amazon Lightsail. Use the <code>include availability
-    /// zones</code> parameter to also return the Availability Zones in a region.
+    /// Returns a list of all valid regions for Amazon Lightsail. Use the <c>include availability
+    /// zones</c> parameter to also return the Availability Zones in a region.
     /// </summary>
     public partial class GetRegionsRequest : AmazonLightsailRequest
     {
@@ -42,7 +43,7 @@ namespace Amazon.Lightsail.Model
         /// Gets and sets the property IncludeAvailabilityZones. 
         /// <para>
         /// A Boolean value indicating whether to also include Availability Zones in your get
-        /// regions request. Availability Zones are indicated with a letter: e.g., <code>us-east-2a</code>.
+        /// regions request. Availability Zones are indicated with a letter: <c>us-east-2a</c>.
         /// </para>
         /// </summary>
         public bool IncludeAvailabilityZones
@@ -61,8 +62,7 @@ namespace Amazon.Lightsail.Model
         /// Gets and sets the property IncludeRelationalDatabaseAvailabilityZones. 
         /// <para>
         /// A Boolean value indicating whether to also include Availability Zones for databases
-        /// in your get regions request. Availability Zones are indicated with a letter (e.g.,
-        /// <code>us-east-2a</code>).
+        /// in your get regions request. Availability Zones are indicated with a letter (<c>us-east-2a</c>).
         /// </para>
         /// </summary>
         public bool IncludeRelationalDatabaseAvailabilityZones

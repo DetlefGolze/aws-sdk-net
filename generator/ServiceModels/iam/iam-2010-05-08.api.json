@@ -5,12 +5,14 @@
     "endpointPrefix":"iam",
     "globalEndpoint":"iam.amazonaws.com",
     "protocol":"query",
+    "protocols":["query"],
     "serviceAbbreviation":"IAM",
     "serviceFullName":"AWS Identity and Access Management",
     "serviceId":"IAM",
     "signatureVersion":"v4",
     "uid":"iam-2010-05-08",
-    "xmlNamespace":"https://iam.amazonaws.com/doc/2010-05-08/"
+    "xmlNamespace":"https://iam.amazonaws.com/doc/2010-05-08/",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AddClientIDToOpenIDConnectProvider":{
@@ -220,7 +222,8 @@
         {"shape":"EntityAlreadyExistsException"},
         {"shape":"LimitExceededException"},
         {"shape":"ConcurrentModificationException"},
-        {"shape":"ServiceFailureException"}
+        {"shape":"ServiceFailureException"},
+        {"shape":"OpenIdIdpCommunicationErrorException"}
       ]
     },
     "CreatePolicy":{
@@ -749,6 +752,42 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "DisableOrganizationsRootCredentialsManagement":{
+      "name":"DisableOrganizationsRootCredentialsManagement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableOrganizationsRootCredentialsManagementRequest"},
+      "output":{
+        "shape":"DisableOrganizationsRootCredentialsManagementResponse",
+        "resultWrapper":"DisableOrganizationsRootCredentialsManagementResult"
+      },
+      "errors":[
+        {"shape":"ServiceAccessNotEnabledException"},
+        {"shape":"AccountNotManagementOrDelegatedAdministratorException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationNotInAllFeaturesModeException"}
+      ]
+    },
+    "DisableOrganizationsRootSessions":{
+      "name":"DisableOrganizationsRootSessions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableOrganizationsRootSessionsRequest"},
+      "output":{
+        "shape":"DisableOrganizationsRootSessionsResponse",
+        "resultWrapper":"DisableOrganizationsRootSessionsResult"
+      },
+      "errors":[
+        {"shape":"ServiceAccessNotEnabledException"},
+        {"shape":"AccountNotManagementOrDelegatedAdministratorException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationNotInAllFeaturesModeException"}
+      ]
+    },
     "EnableMFADevice":{
       "name":"EnableMFADevice",
       "http":{
@@ -764,6 +803,44 @@
         {"shape":"NoSuchEntityException"},
         {"shape":"ServiceFailureException"},
         {"shape":"ConcurrentModificationException"}
+      ]
+    },
+    "EnableOrganizationsRootCredentialsManagement":{
+      "name":"EnableOrganizationsRootCredentialsManagement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableOrganizationsRootCredentialsManagementRequest"},
+      "output":{
+        "shape":"EnableOrganizationsRootCredentialsManagementResponse",
+        "resultWrapper":"EnableOrganizationsRootCredentialsManagementResult"
+      },
+      "errors":[
+        {"shape":"ServiceAccessNotEnabledException"},
+        {"shape":"AccountNotManagementOrDelegatedAdministratorException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationNotInAllFeaturesModeException"},
+        {"shape":"CallerIsNotManagementAccountException"}
+      ]
+    },
+    "EnableOrganizationsRootSessions":{
+      "name":"EnableOrganizationsRootSessions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableOrganizationsRootSessionsRequest"},
+      "output":{
+        "shape":"EnableOrganizationsRootSessionsResponse",
+        "resultWrapper":"EnableOrganizationsRootSessionsResult"
+      },
+      "errors":[
+        {"shape":"ServiceAccessNotEnabledException"},
+        {"shape":"AccountNotManagementOrDelegatedAdministratorException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationNotInAllFeaturesModeException"},
+        {"shape":"CallerIsNotManagementAccountException"}
       ]
     },
     "GenerateCredentialReport":{
@@ -822,10 +899,7 @@
       "output":{
         "shape":"GetAccessKeyLastUsedResponse",
         "resultWrapper":"GetAccessKeyLastUsedResult"
-      },
-      "errors":[
-        {"shape":"NoSuchEntityException"}
-      ]
+      }
     },
     "GetAccountAuthorizationDetails":{
       "name":"GetAccountAuthorizationDetails",
@@ -1483,6 +1557,24 @@
       },
       "errors":[
         {"shape":"ServiceFailureException"}
+      ]
+    },
+    "ListOrganizationsFeatures":{
+      "name":"ListOrganizationsFeatures",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListOrganizationsFeaturesRequest"},
+      "output":{
+        "shape":"ListOrganizationsFeaturesResponse",
+        "resultWrapper":"ListOrganizationsFeaturesResult"
+      },
+      "errors":[
+        {"shape":"ServiceAccessNotEnabledException"},
+        {"shape":"AccountNotManagementOrDelegatedAdministratorException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationNotInAllFeaturesModeException"}
       ]
     },
     "ListPolicies":{
@@ -2506,7 +2598,6 @@
     "AccessKeyLastUsed":{
       "type":"structure",
       "required":[
-        "LastUsedDate",
         "ServiceName",
         "Region"
       ],
@@ -2524,6 +2615,12 @@
         "Status":{"shape":"statusType"},
         "CreateDate":{"shape":"dateType"}
       }
+    },
+    "AccountNotManagementOrDelegatedAdministratorException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
     },
     "ActionNameListType":{
       "type":"list",
@@ -2621,6 +2718,12 @@
     "BootstrapDatum":{
       "type":"blob",
       "sensitive":true
+    },
+    "CallerIsNotManagementAccountException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
     },
     "CertificationKeyType":{
       "type":"string",
@@ -2760,10 +2863,6 @@
     },
     "CreateLoginProfileRequest":{
       "type":"structure",
-      "required":[
-        "UserName",
-        "Password"
-      ],
       "members":{
         "UserName":{"shape":"userNameType"},
         "Password":{"shape":"passwordType"},
@@ -2779,10 +2878,7 @@
     },
     "CreateOpenIDConnectProviderRequest":{
       "type":"structure",
-      "required":[
-        "Url",
-        "ThumbprintList"
-      ],
+      "required":["Url"],
       "members":{
         "Url":{"shape":"OpenIDConnectProviderUrlType"},
         "ClientIDList":{"shape":"clientIDListType"},
@@ -2979,10 +3075,7 @@
     },
     "DeactivateMFADeviceRequest":{
       "type":"structure",
-      "required":[
-        "UserName",
-        "SerialNumber"
-      ],
+      "required":["SerialNumber"],
       "members":{
         "UserName":{"shape":"existingUserNameType"},
         "SerialNumber":{"shape":"serialNumberType"}
@@ -3042,7 +3135,6 @@
     },
     "DeleteLoginProfileRequest":{
       "type":"structure",
-      "required":["UserName"],
       "members":{
         "UserName":{"shape":"userNameType"}
       }
@@ -3238,6 +3330,30 @@
         "PolicyArn":{"shape":"arnType"}
       }
     },
+    "DisableOrganizationsRootCredentialsManagementRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DisableOrganizationsRootCredentialsManagementResponse":{
+      "type":"structure",
+      "members":{
+        "OrganizationId":{"shape":"OrganizationIdType"},
+        "EnabledFeatures":{"shape":"FeaturesListType"}
+      }
+    },
+    "DisableOrganizationsRootSessionsRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DisableOrganizationsRootSessionsResponse":{
+      "type":"structure",
+      "members":{
+        "OrganizationId":{"shape":"OrganizationIdType"},
+        "EnabledFeatures":{"shape":"FeaturesListType"}
+      }
+    },
     "DuplicateCertificateException":{
       "type":"structure",
       "members":{
@@ -3275,6 +3391,30 @@
         "SerialNumber":{"shape":"serialNumberType"},
         "AuthenticationCode1":{"shape":"authenticationCodeType"},
         "AuthenticationCode2":{"shape":"authenticationCodeType"}
+      }
+    },
+    "EnableOrganizationsRootCredentialsManagementRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "EnableOrganizationsRootCredentialsManagementResponse":{
+      "type":"structure",
+      "members":{
+        "OrganizationId":{"shape":"OrganizationIdType"},
+        "EnabledFeatures":{"shape":"FeaturesListType"}
+      }
+    },
+    "EnableOrganizationsRootSessionsRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "EnableOrganizationsRootSessionsResponse":{
+      "type":"structure",
+      "members":{
+        "OrganizationId":{"shape":"OrganizationIdType"},
+        "EnabledFeatures":{"shape":"FeaturesListType"}
       }
     },
     "EntityAlreadyExistsException":{
@@ -3377,6 +3517,17 @@
     "EvaluationResultsListType":{
       "type":"list",
       "member":{"shape":"EvaluationResult"}
+    },
+    "FeatureType":{
+      "type":"string",
+      "enum":[
+        "RootCredentialsManagement",
+        "RootSessions"
+      ]
+    },
+    "FeaturesListType":{
+      "type":"list",
+      "member":{"shape":"FeatureType"}
     },
     "GenerateCredentialReportResponse":{
       "type":"structure",
@@ -3550,7 +3701,6 @@
     },
     "GetLoginProfileRequest":{
       "type":"structure",
-      "required":["UserName"],
       "members":{
         "UserName":{"shape":"userNameType"}
       }
@@ -4266,6 +4416,18 @@
         "OpenIDConnectProviderList":{"shape":"OpenIDConnectProviderListType"}
       }
     },
+    "ListOrganizationsFeaturesRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "ListOrganizationsFeaturesResponse":{
+      "type":"structure",
+      "members":{
+        "OrganizationId":{"shape":"OrganizationIdType"},
+        "EnabledFeatures":{"shape":"FeaturesListType"}
+      }
+    },
     "ListPoliciesGrantingServiceAccessEntry":{
       "type":"structure",
       "members":{
@@ -4677,6 +4839,35 @@
       "type":"string",
       "max":255,
       "min":1
+    },
+    "OpenIdIdpCommunicationErrorException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"openIdIdpCommunicationErrorExceptionMessage"}
+      },
+      "error":{
+        "code":"OpenIdIdpCommunicationError",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "OrganizationIdType":{
+      "type":"string",
+      "max":34,
+      "pattern":"^o-[a-z0-9]{10,32}$"
+    },
+    "OrganizationNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "OrganizationNotInAllFeaturesModeException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
     },
     "OrganizationsDecisionDetail":{
       "type":"structure",
@@ -5197,6 +5388,12 @@
         "UploadDate":{"shape":"dateType"},
         "Expiration":{"shape":"dateType"}
       }
+    },
+    "ServiceAccessNotEnabledException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
     },
     "ServiceFailureException":{
       "type":"structure",
@@ -6101,6 +6298,7 @@
       "min":6
     },
     "noSuchEntityMessage":{"type":"string"},
+    "openIdIdpCommunicationErrorExceptionMessage":{"type":"string"},
     "organizationsEntityPathType":{
       "type":"string",
       "max":427,
@@ -6342,6 +6540,7 @@
         "MFADevicesInUse",
         "AccountMFAEnabled",
         "AccountAccessKeysPresent",
+        "AccountPasswordPresent",
         "AccountSigningCertificatesPresent",
         "AttachedPoliciesPerGroupQuota",
         "AttachedPoliciesPerRoleQuota",

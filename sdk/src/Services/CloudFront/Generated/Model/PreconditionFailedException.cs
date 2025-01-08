@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
-    /// The precondition in one or more of the request fields evaluated to <code>false</code>.
+    /// The precondition in one or more of the request fields evaluated to <c>false</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

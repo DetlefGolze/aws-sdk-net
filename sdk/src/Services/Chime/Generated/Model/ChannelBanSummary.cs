@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
-    /// Summary of the details of a <code>ChannelBan</code>.
+    /// Summary of the details of a <c>ChannelBan</c>.
     /// </summary>
     public partial class ChannelBanSummary
     {

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -82,7 +83,7 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property ConnectionProperties. 
         /// <para>
-        /// The <code>ConnectionProperties</code> for the outbound connection.
+        /// The <c>ConnectionProperties</c> for the outbound connection.
         /// </para>
         /// </summary>
         public ConnectionProperties ConnectionProperties

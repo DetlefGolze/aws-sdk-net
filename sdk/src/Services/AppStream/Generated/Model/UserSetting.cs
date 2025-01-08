@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppStream.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.AppStream.Model
     public partial class UserSetting
     {
         private Action _action;
+        private int? _maximumLength;
         private Permission _permission;
 
         /// <summary>
@@ -54,6 +56,39 @@ namespace Amazon.AppStream.Model
         internal bool IsSetAction()
         {
             return this._action != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property MaximumLength. 
+        /// <para>
+        /// Specifies the number of characters that can be copied by end users from the local
+        /// device to the remote session, and to the local device from the remote session.
+        /// </para>
+        ///  
+        /// <para>
+        /// This can be specified only for the <c>CLIPBOARD_COPY_FROM_LOCAL_DEVICE</c> and <c>CLIPBOARD_COPY_TO_LOCAL_DEVICE</c>
+        /// actions.
+        /// </para>
+        ///  
+        /// <para>
+        /// This defaults to 20,971,520 (20 MB) when unspecified and the permission is <c>ENABLED</c>.
+        /// This can't be specified when the permission is <c>DISABLED</c>. 
+        /// </para>
+        ///  
+        /// <para>
+        /// The value can be between 1 and 20,971,520 (20 MB).
+        /// </para>
+        /// </summary>
+        public int MaximumLength
+        {
+            get { return this._maximumLength.GetValueOrDefault(); }
+            set { this._maximumLength = value; }
+        }
+
+        // Check to see if MaximumLength property is set
+        internal bool IsSetMaximumLength()
+        {
+            return this._maximumLength.HasValue; 
         }
 
         /// <summary>

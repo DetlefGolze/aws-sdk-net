@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Neptune.Model
     /// </summary>
     public partial class DescribeDBClusterEndpointsResponse : AmazonWebServiceResponse
     {
-        private List<DBClusterEndpoint> _dbClusterEndpoints = new List<DBClusterEndpoint>();
+        private List<DBClusterEndpoint> _dbClusterEndpoints = AWSConfigs.InitializeCollections ? new List<DBClusterEndpoint>() : null;
         private string _marker;
 
         /// <summary>
@@ -52,15 +53,15 @@ namespace Amazon.Neptune.Model
         // Check to see if DBClusterEndpoints property is set
         internal bool IsSetDBClusterEndpoints()
         {
-            return this._dbClusterEndpoints != null && this._dbClusterEndpoints.Count > 0; 
+            return this._dbClusterEndpoints != null && (this._dbClusterEndpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        ///  An optional pagination token provided by a previous <code>DescribeDBClusterEndpoints</code>
+        ///  An optional pagination token provided by a previous <c>DescribeDBClusterEndpoints</c>
         /// request. If this parameter is specified, the response includes only records beyond
-        /// the marker, up to the value specified by <code>MaxRecords</code>. 
+        /// the marker, up to the value specified by <c>MaxRecords</c>. 
         /// </para>
         /// </summary>
         public string Marker

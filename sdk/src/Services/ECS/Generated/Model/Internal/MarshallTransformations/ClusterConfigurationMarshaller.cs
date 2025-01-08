@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ECS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.ECS.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ClusterConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetExecuteCommandConfiguration())
             {
                 context.Writer.WritePropertyName("executeCommandConfiguration");
@@ -52,6 +55,17 @@ namespace Amazon.ECS.Model.Internal.MarshallTransformations
 
                 var marshaller = ExecuteCommandConfigurationMarshaller.Instance;
                 marshaller.Marshall(requestObject.ExecuteCommandConfiguration, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetManagedStorageConfiguration())
+            {
+                context.Writer.WritePropertyName("managedStorageConfiguration");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = ManagedStorageConfigurationMarshaller.Instance;
+                marshaller.Marshall(requestObject.ManagedStorageConfiguration, context);
 
                 context.Writer.WriteObjectEnd();
             }

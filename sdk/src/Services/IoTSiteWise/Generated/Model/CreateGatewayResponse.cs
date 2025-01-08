@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -44,8 +45,7 @@ namespace Amazon.IoTSiteWise.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:${Partition}:iotsitewise:${Region}:${Account}:gateway/${GatewayId}</code>
-        /// 
+        ///  <c>arn:${Partition}:iotsitewise:${Region}:${Account}:gateway/${GatewayId}</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1600)]
@@ -65,7 +65,7 @@ namespace Amazon.IoTSiteWise.Model
         /// Gets and sets the property GatewayId. 
         /// <para>
         /// The ID of the gateway device. You can use this ID when you call other IoT SiteWise
-        /// APIs.
+        /// API operations.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=36, Max=36)]

@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MemoryDB.Model
 {
     /// <summary>
     /// Container for the parameters to the UntagResource operation.
-    /// Use this operation to remove tags on a resource
+    /// Use this operation to remove tags on a resource.
     /// </summary>
     public partial class UntagResourceRequest : AmazonMemoryDBRequest
     {
         private string _resourceArn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the resource to which the tags are to be removed
+        /// The Amazon Resource Name (ARN) of the resource to which the tags are to be removed.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -59,7 +60,7 @@ namespace Amazon.MemoryDB.Model
         /// <summary>
         /// Gets and sets the property TagKeys. 
         /// <para>
-        /// The list of keys of the tags that are to be removed
+        /// The list of keys of the tags that are to be removed.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -72,7 +73,7 @@ namespace Amazon.MemoryDB.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

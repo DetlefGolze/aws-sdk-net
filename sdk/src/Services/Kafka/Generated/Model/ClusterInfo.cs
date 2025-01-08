@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kafka.Model
 {
     /// <summary>
@@ -41,6 +42,7 @@ namespace Amazon.Kafka.Model
         private DateTime? _creationTime;
         private BrokerSoftwareInfo _currentBrokerSoftwareInfo;
         private string _currentVersion;
+        private CustomerActionStatus _customerActionStatus;
         private EncryptionInfo _encryptionInfo;
         private EnhancedMonitoring _enhancedMonitoring;
         private LoggingInfo _loggingInfo;
@@ -49,7 +51,7 @@ namespace Amazon.Kafka.Model
         private ClusterState _state;
         private StateInfo _stateInfo;
         private StorageMode _storageMode;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _zookeeperConnectString;
         private string _zookeeperConnectStringTls;
 
@@ -196,6 +198,24 @@ namespace Amazon.Kafka.Model
         internal bool IsSetCurrentVersion()
         {
             return this._currentVersion != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CustomerActionStatus.             
+        /// <para>
+        /// Determines if there is an action required from the customer.
+        /// </para>
+        /// </summary>
+        public CustomerActionStatus CustomerActionStatus
+        {
+            get { return this._customerActionStatus; }
+            set { this._customerActionStatus = value; }
+        }
+
+        // Check to see if CustomerActionStatus property is set
+        internal bool IsSetCustomerActionStatus()
+        {
+            return this._customerActionStatus != null;
         }
 
         /// <summary>
@@ -355,7 +375,7 @@ namespace Amazon.Kafka.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

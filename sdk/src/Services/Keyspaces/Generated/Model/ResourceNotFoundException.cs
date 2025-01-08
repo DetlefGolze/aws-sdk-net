@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Keyspaces.Model
 {
     /// <summary>
-    /// The operation tried to access a keyspace or table that doesn't exist. The resource
-    /// might not be specified correctly, or its status might not be <code>ACTIVE</code>.
+    /// The operation tried to access a keyspace, table, or type that doesn't exist. The resource
+    /// might not be specified correctly, or its status might not be <c>ACTIVE</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]
@@ -127,8 +128,8 @@ namespace Amazon.Keyspaces.Model
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The unique identifier in the format of Amazon Resource Name (ARN), for the resource
-        /// not found.
+        /// The unique identifier in the format of Amazon Resource Name (ARN) for the resource
+        /// couldn’t be found.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=1000)]

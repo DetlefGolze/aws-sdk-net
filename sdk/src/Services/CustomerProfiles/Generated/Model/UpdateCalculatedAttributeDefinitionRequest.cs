@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
@@ -86,7 +87,7 @@ namespace Amazon.CustomerProfiles.Model
         /// The description of the calculated attribute.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=1000)]
+        [AWSProperty(Sensitive=true, Min=1, Max=1000)]
         public string Description
         {
             get { return this._description; }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -43,22 +44,22 @@ namespace Amazon.SimpleSystemsManagement.Model
         private string _documentVersion;
         private int? _errorCount;
         private DateTime? _expiresAfter;
-        private List<string> _instanceIds = new List<string>();
+        private List<string> _instanceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _maxConcurrency;
         private string _maxErrors;
         private NotificationConfig _notificationConfig;
         private string _outputS3BucketName;
         private string _outputS3KeyPrefix;
         private string _outputS3Region;
-        private Dictionary<string, List<string>> _parameters = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<string>> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
         private DateTime? _requestedDateTime;
         private string _serviceRole;
         private CommandStatus _status;
         private string _statusDetails;
         private int? _targetCount;
-        private List<Target> _targets = new List<Target>();
+        private List<Target> _targets = AWSConfigs.InitializeCollections ? new List<Target>() : null;
         private int? _timeoutSeconds;
-        private List<AlarmStateInformation> _triggeredAlarms = new List<AlarmStateInformation>();
+        private List<AlarmStateInformation> _triggeredAlarms = AWSConfigs.InitializeCollections ? new List<AlarmStateInformation>() : null;
 
         /// <summary>
         /// Gets and sets the property AlarmConfiguration. 
@@ -231,10 +232,10 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property ExpiresAfter. 
         /// <para>
-        /// If a command expires, it changes status to <code>DeliveryTimedOut</code> for all invocations
-        /// that have the status <code>InProgress</code>, <code>Pending</code>, or <code>Delayed</code>.
-        /// <code>ExpiresAfter</code> is calculated based on the total timeout for the overall
-        /// command. For more information, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/monitor-commands.html?icmpid=docs_ec2_console#monitor-about-status-timeouts">Understanding
+        /// If a command expires, it changes status to <c>DeliveryTimedOut</c> for all invocations
+        /// that have the status <c>InProgress</c>, <c>Pending</c>, or <c>Delayed</c>. <c>ExpiresAfter</c>
+        /// is calculated based on the total timeout for the overall command. For more information,
+        /// see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/monitor-commands.html?icmpid=docs_ec2_console#monitor-about-status-timeouts">Understanding
         /// command timeout values</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.
         /// </para>
         /// </summary>
@@ -266,7 +267,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if InstanceIds property is set
         internal bool IsSetInstanceIds()
         {
-            return this._instanceIds != null && this._instanceIds.Count > 0; 
+            return this._instanceIds != null && (this._instanceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -274,9 +275,9 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <para>
         /// The maximum number of managed nodes that are allowed to run the command at the same
         /// time. You can specify a number of managed nodes, such as 10, or a percentage of nodes,
-        /// such as 10%. The default value is 50. For more information about how to use <code>MaxConcurrency</code>,
-        /// see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html">Running
-        /// commands using Systems Manager Run Command</a> in the <i>Amazon Web Services Systems
+        /// such as 10%. The default value is 50. For more information about how to use <c>MaxConcurrency</c>,
+        /// see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html">Amazon
+        /// Web Services Systems Manager Run Command</a> in the <i>Amazon Web Services Systems
         /// Manager User Guide</i>.
         /// </para>
         /// </summary>
@@ -298,9 +299,9 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <para>
         /// The maximum number of errors allowed before the system stops sending the command to
         /// additional targets. You can specify a number of errors, such as 10, or a percentage
-        /// or errors, such as 10%. The default value is <code>0</code>. For more information
-        /// about how to use <code>MaxErrors</code>, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html">Running
-        /// commands using Systems Manager Run Command</a> in the <i>Amazon Web Services Systems
+        /// or errors, such as 10%. The default value is <c>0</c>. For more information about
+        /// how to use <c>MaxErrors</c>, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html">Amazon
+        /// Web Services Systems Manager Run Command</a> in the <i>Amazon Web Services Systems
         /// Manager User Guide</i>.
         /// </para>
         /// </summary>
@@ -412,7 +413,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -474,10 +475,10 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property StatusDetails. 
         /// <para>
-        /// A detailed status of the command execution. <code>StatusDetails</code> includes more
-        /// information than <code>Status</code> because it includes states resulting from error
-        /// and concurrency control parameters. <code>StatusDetails</code> can show different
-        /// results than Status. For more information about these statuses, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/monitor-commands.html">Understanding
+        /// A detailed status of the command execution. <c>StatusDetails</c> includes more information
+        /// than <c>Status</c> because it includes states resulting from error and concurrency
+        /// control parameters. <c>StatusDetails</c> can show different results than Status. For
+        /// more information about these statuses, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/monitor-commands.html">Understanding
         /// command statuses</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.
         /// StatusDetails can be one of the following values:
         /// </para>
@@ -582,13 +583,13 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TimeoutSeconds. 
         /// <para>
-        /// The <code>TimeoutSeconds</code> value specified for a command.
+        /// The <c>TimeoutSeconds</c> value specified for a command.
         /// </para>
         /// </summary>
         [AWSProperty(Min=30, Max=2592000)]
@@ -620,7 +621,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if TriggeredAlarms property is set
         internal bool IsSetTriggeredAlarms()
         {
-            return this._triggeredAlarms != null && this._triggeredAlarms.Count > 0; 
+            return this._triggeredAlarms != null && (this._triggeredAlarms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SupportApp.Model
 {
     /// <summary>
@@ -179,7 +180,7 @@ namespace Amazon.SupportApp.Model
         /// <summary>
         /// Gets and sets the property TeamId. 
         /// <para>
-        /// The team ID in Slack. This ID uniquely identifies a Slack workspace, such as <code>T012ABCDEFG</code>.
+        /// The team ID in Slack. This ID uniquely identifies a Slack workspace, such as <c>T012ABCDEFG</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]

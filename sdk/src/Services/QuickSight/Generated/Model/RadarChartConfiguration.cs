@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The configuration of a <code>RadarChartVisual</code>.
+    /// The configuration of a <c>RadarChartVisual</c>.
     /// </summary>
     public partial class RadarChartConfiguration
     {
@@ -43,6 +44,7 @@ namespace Amazon.QuickSight.Model
         private AxisDisplayOptions _colorAxis;
         private ChartAxisLabelOptions _colorLabelOptions;
         private RadarChartFieldWells _fieldWells;
+        private VisualInteractionOptions _interactions;
         private LegendOptions _legend;
         private RadarChartShape _shape;
         private RadarChartSortConfiguration _sortConfiguration;
@@ -214,7 +216,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property FieldWells. 
         /// <para>
-        /// The field well configuration of a <code>RadarChartVisual</code>.
+        /// The field well configuration of a <c>RadarChartVisual</c>.
         /// </para>
         /// </summary>
         public RadarChartFieldWells FieldWells
@@ -227,6 +229,24 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetFieldWells()
         {
             return this._fieldWells != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Interactions. 
+        /// <para>
+        /// The general visual interactions setup for a visual.
+        /// </para>
+        /// </summary>
+        public VisualInteractionOptions Interactions
+        {
+            get { return this._interactions; }
+            set { this._interactions = value; }
+        }
+
+        // Check to see if Interactions property is set
+        internal bool IsSetInteractions()
+        {
+            return this._interactions != null;
         }
 
         /// <summary>
@@ -268,7 +288,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property SortConfiguration. 
         /// <para>
-        /// The sort configuration of a <code>RadarChartVisual</code>.
+        /// The sort configuration of a <c>RadarChartVisual</c>.
         /// </para>
         /// </summary>
         public RadarChartSortConfiguration SortConfiguration

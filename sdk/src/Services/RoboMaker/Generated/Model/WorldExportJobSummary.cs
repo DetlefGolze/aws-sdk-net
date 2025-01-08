@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.RoboMaker.Model
         private DateTime? _createdAt;
         private OutputLocation _outputLocation;
         private WorldExportJobStatus _status;
-        private List<string> _worlds = new List<string>();
+        private List<string> _worlds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -110,7 +111,7 @@ namespace Amazon.RoboMaker.Model
         /// </para>
         ///  </dd> <dt>Failed</dt> <dd> 
         /// <para>
-        /// The world export job failed. See <code>failureCode</code> for more information. 
+        /// The world export job failed. See <c>failureCode</c> for more information. 
         /// </para>
         ///  </dd> <dt>Canceled</dt> <dd> 
         /// <para>
@@ -150,7 +151,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if Worlds property is set
         internal bool IsSetWorlds()
         {
-            return this._worlds != null && this._worlds.Count > 0; 
+            return this._worlds != null && (this._worlds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

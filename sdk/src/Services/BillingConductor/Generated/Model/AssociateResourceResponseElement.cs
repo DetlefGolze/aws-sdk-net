@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BillingConductor.Model
 {
     /// <summary>
@@ -57,8 +58,7 @@ namespace Amazon.BillingConductor.Model
         /// <summary>
         /// Gets and sets the property Error. 
         /// <para>
-        /// An <code>AssociateResourceError</code> that will populate if the resource association
-        /// fails.
+        /// An <c>AssociateResourceError</c> that will populate if the resource association fails.
         /// </para>
         /// </summary>
         public AssociateResourceError Error

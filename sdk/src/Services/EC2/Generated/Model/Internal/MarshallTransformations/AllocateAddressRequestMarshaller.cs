@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -69,6 +70,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                 if(publicRequest.IsSetDomain())
                 {
                     request.Parameters.Add("Domain", StringUtils.FromString(publicRequest.Domain));
+                }
+                if(publicRequest.IsSetIpamPoolId())
+                {
+                    request.Parameters.Add("IpamPoolId", StringUtils.FromString(publicRequest.IpamPoolId));
                 }
                 if(publicRequest.IsSetNetworkBorderGroup())
                 {

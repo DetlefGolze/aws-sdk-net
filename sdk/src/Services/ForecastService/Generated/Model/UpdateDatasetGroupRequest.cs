@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.ForecastService.Model
     /// 
     ///  <note> 
     /// <para>
-    /// The <code>Status</code> of the dataset group must be <code>ACTIVE</code> before you
-    /// can use the dataset group to create a predictor. Use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetGroup.html">DescribeDatasetGroup</a>
+    /// The <c>Status</c> of the dataset group must be <c>ACTIVE</c> before you can use the
+    /// dataset group to create a predictor. Use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetGroup.html">DescribeDatasetGroup</a>
     /// operation to get the status.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class UpdateDatasetGroupRequest : AmazonForecastServiceRequest
     {
-        private List<string> _datasetArns = new List<string>();
+        private List<string> _datasetArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _datasetGroupArn;
 
         /// <summary>
@@ -62,7 +63,7 @@ namespace Amazon.ForecastService.Model
         // Check to see if DatasetArns property is set
         internal bool IsSetDatasetArns()
         {
-            return this._datasetArns != null && this._datasetArns.Count > 0; 
+            return this._datasetArns != null && (this._datasetArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

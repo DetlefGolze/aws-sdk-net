@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         private DateTime? _createdTime;
         private string _lastModifiedBy;
         private DateTime? _lastModifiedTime;
-        private Dictionary<string, OpsItemDataValue> _operationalData = new Dictionary<string, OpsItemDataValue>();
+        private Dictionary<string, OpsItemDataValue> _operationalData = AWSConfigs.InitializeCollections ? new Dictionary<string, OpsItemDataValue>() : null;
         private string _opsItemId;
         private string _opsItemType;
         private DateTime? _plannedEndTime;
@@ -54,7 +55,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property ActualEndTime. 
         /// <para>
-        /// The time a runbook workflow ended. Currently reported only for the OpsItem type <code>/aws/changerequest</code>.
+        /// The time a runbook workflow ended. Currently reported only for the OpsItem type <c>/aws/changerequest</c>.
         /// </para>
         /// </summary>
         public DateTime ActualEndTime
@@ -73,7 +74,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property ActualStartTime. 
         /// <para>
         /// The time a runbook workflow started. Currently reported only for the OpsItem type
-        /// <code>/aws/changerequest</code>.
+        /// <c>/aws/changerequest</c>.
         /// </para>
         /// </summary>
         public DateTime ActualStartTime
@@ -195,7 +196,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if OperationalData property is set
         internal bool IsSetOperationalData()
         {
-            return this._operationalData != null && this._operationalData.Count > 0; 
+            return this._operationalData != null && (this._operationalData.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -223,7 +224,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>/aws/issue</code> 
+        ///  <c>/aws/issue</c> 
         /// </para>
         ///  
         /// <para>
@@ -231,7 +232,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>/aws/changerequest</code> 
+        ///  <c>/aws/changerequest</c> 
         /// </para>
         ///  
         /// <para>
@@ -240,7 +241,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>/aws/insight</code> 
+        ///  <c>/aws/insight</c> 
         /// </para>
         ///  
         /// <para>
@@ -265,7 +266,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property PlannedEndTime. 
         /// <para>
         /// The time specified in a change request for a runbook workflow to end. Currently supported
-        /// only for the OpsItem type <code>/aws/changerequest</code>.
+        /// only for the OpsItem type <c>/aws/changerequest</c>.
         /// </para>
         /// </summary>
         public DateTime PlannedEndTime
@@ -284,7 +285,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property PlannedStartTime. 
         /// <para>
         /// The time specified in a change request for a runbook workflow to start. Currently
-        /// supported only for the OpsItem type <code>/aws/changerequest</code>.
+        /// supported only for the OpsItem type <c>/aws/changerequest</c>.
         /// </para>
         /// </summary>
         public DateTime PlannedStartTime
@@ -359,8 +360,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The OpsItem status. Status can be <code>Open</code>, <code>In Progress</code>, or
-        /// <code>Resolved</code>.
+        /// The OpsItem status.
         /// </para>
         /// </summary>
         public OpsItemStatus Status

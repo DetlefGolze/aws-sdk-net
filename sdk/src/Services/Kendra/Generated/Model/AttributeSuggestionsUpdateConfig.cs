@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -34,29 +35,27 @@ namespace Amazon.Kendra.Model
     /// 
     ///  
     /// <para>
-    /// To deactivate using documents fields for query suggestions, set the mode to <code>INACTIVE</code>.
-    /// You must also set <code>SuggestionTypes</code> as either <code>QUERY</code> or <code>DOCUMENT_ATTRIBUTES</code>
+    /// To deactivate using documents fields for query suggestions, set the mode to <c>INACTIVE</c>.
+    /// You must also set <c>SuggestionTypes</c> as either <c>QUERY</c> or <c>DOCUMENT_ATTRIBUTES</c>
     /// and then call <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_GetQuerySuggestions.html">GetQuerySuggestions</a>.
-    /// If you set to <code>QUERY</code>, then Amazon Kendra uses the query history to base
-    /// suggestions on. If you set to <code>DOCUMENT_ATTRIBUTES</code>, then Amazon Kendra
-    /// uses the contents of document fields to base suggestions on.
+    /// If you set to <c>QUERY</c>, then Amazon Kendra uses the query history to base suggestions
+    /// on. If you set to <c>DOCUMENT_ATTRIBUTES</c>, then Amazon Kendra uses the contents
+    /// of document fields to base suggestions on.
     /// </para>
     /// </summary>
     public partial class AttributeSuggestionsUpdateConfig
     {
         private AttributeSuggestionsMode _attributeSuggestionsMode;
-        private List<SuggestableConfig> _suggestableConfigList = new List<SuggestableConfig>();
+        private List<SuggestableConfig> _suggestableConfigList = AWSConfigs.InitializeCollections ? new List<SuggestableConfig>() : null;
 
         /// <summary>
         /// Gets and sets the property AttributeSuggestionsMode. 
         /// <para>
-        /// You can set the mode to <code>ACTIVE</code> or <code>INACTIVE</code>. You must also
-        /// set <code>SuggestionTypes</code> as either <code>QUERY</code> or <code>DOCUMENT_ATTRIBUTES</code>
-        /// and then call <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_GetQuerySuggestions.html">GetQuerySuggestions</a>.
-        /// If <code>Mode</code> to use query history is set to <code>ENABLED</code> when calling
-        /// <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateQuerySuggestionsConfig.html">UpdateQuerySuggestionsConfig</a>
-        /// and <code>AttributeSuggestionsMode</code> to use fields/attributes is set to <code>ACTIVE</code>,
-        /// and you haven't set your <code>SuggestionTypes</code> preference to <code>DOCUMENT_ATTRIBUTES</code>,
+        /// You can set the mode to <c>ACTIVE</c> or <c>INACTIVE</c>. You must also set <c>SuggestionTypes</c>
+        /// as either <c>QUERY</c> or <c>DOCUMENT_ATTRIBUTES</c> and then call <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_GetQuerySuggestions.html">GetQuerySuggestions</a>.
+        /// If <c>Mode</c> to use query history is set to <c>ENABLED</c> when calling <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateQuerySuggestionsConfig.html">UpdateQuerySuggestionsConfig</a>
+        /// and <c>AttributeSuggestionsMode</c> to use fields/attributes is set to <c>ACTIVE</c>,
+        /// and you haven't set your <c>SuggestionTypes</c> preference to <c>DOCUMENT_ATTRIBUTES</c>,
         /// then Amazon Kendra uses the query history.
         /// </para>
         /// </summary>
@@ -87,7 +86,7 @@ namespace Amazon.Kendra.Model
         // Check to see if SuggestableConfigList property is set
         internal bool IsSetSuggestableConfigList()
         {
-            return this._suggestableConfigList != null && this._suggestableConfigList.Count > 0; 
+            return this._suggestableConfigList != null && (this._suggestableConfigList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

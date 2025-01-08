@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -35,13 +36,13 @@ namespace Amazon.Glue.Model
     ///  
     /// <para>
     /// The Identity and Access Management (IAM) permission required for this operation is
-    /// <code>GetTable</code>.
+    /// <c>GetTable</c>.
     /// </para>
     /// </summary>
     public partial class GetColumnStatisticsForTableRequest : AmazonGlueRequest
     {
         private string _catalogId;
-        private List<string> _columnNames = new List<string>();
+        private List<string> _columnNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _databaseName;
         private string _tableName;
 
@@ -81,7 +82,7 @@ namespace Amazon.Glue.Model
         // Check to see if ColumnNames property is set
         internal bool IsSetColumnNames()
         {
-            return this._columnNames != null && this._columnNames.Count > 0; 
+            return this._columnNames != null && (this._columnNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// The production variant summary for a deployment when an endpoint is creating or updating
     /// with the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html">CreateEndpoint</a>
     /// or <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpoint.html">UpdateEndpoint</a>
-    /// operations. Describes the <code>VariantStatus </code>, weight and capacity for a production
+    /// operations. Describes the <c>VariantStatus </c>, weight and capacity for a production
     /// variant associated with an endpoint.
     /// </summary>
     public partial class PendingProductionVariantSummary
@@ -41,21 +42,25 @@ namespace Amazon.SageMaker.Model
         private int? _currentInstanceCount;
         private ProductionVariantServerlessConfig _currentServerlessConfig;
         private float? _currentWeight;
-        private List<DeployedImage> _deployedImages = new List<DeployedImage>();
+        private List<DeployedImage> _deployedImages = AWSConfigs.InitializeCollections ? new List<DeployedImage>() : null;
         private int? _desiredInstanceCount;
         private ProductionVariantServerlessConfig _desiredServerlessConfig;
         private float? _desiredWeight;
         private ProductionVariantInstanceType _instanceType;
+        private ProductionVariantManagedInstanceScaling _managedInstanceScaling;
+        private ProductionVariantRoutingConfig _routingConfig;
         private string _variantName;
-        private List<ProductionVariantStatus> _variantStatus = new List<ProductionVariantStatus>();
+        private List<ProductionVariantStatus> _variantStatus = AWSConfigs.InitializeCollections ? new List<ProductionVariantStatus>() : null;
 
         /// <summary>
         /// Gets and sets the property AcceleratorType. 
         /// <para>
-        /// The size of the Elastic Inference (EI) instance to use for the production variant.
-        /// EI instances provide on-demand GPU computing for inference. For more information,
-        /// see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/ei.html">Using Elastic
-        /// Inference in Amazon SageMaker</a>.
+        /// This parameter is no longer supported. Elastic Inference (EI) is no longer available.
+        /// </para>
+        ///  
+        /// <para>
+        /// This parameter was used to specify the size of the EI instance to use for the production
+        /// variant.
         /// </para>
         /// </summary>
         public ProductionVariantAcceleratorType AcceleratorType
@@ -129,8 +134,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property DeployedImages. 
         /// <para>
-        /// An array of <code>DeployedImage</code> objects that specify the Amazon EC2 Container
-        /// Registry paths of the inference images deployed on instances of this <code>ProductionVariant</code>.
+        /// An array of <c>DeployedImage</c> objects that specify the Amazon EC2 Container Registry
+        /// paths of the inference images deployed on instances of this <c>ProductionVariant</c>.
         /// </para>
         /// </summary>
         public List<DeployedImage> DeployedImages
@@ -142,7 +147,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if DeployedImages property is set
         internal bool IsSetDeployedImages()
         {
-            return this._deployedImages != null && this._deployedImages.Count > 0; 
+            return this._deployedImages != null && (this._deployedImages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -225,6 +230,44 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ManagedInstanceScaling. 
+        /// <para>
+        /// Settings that control the range in the number of instances that the endpoint provisions
+        /// as it scales up or down to accommodate traffic. 
+        /// </para>
+        /// </summary>
+        public ProductionVariantManagedInstanceScaling ManagedInstanceScaling
+        {
+            get { return this._managedInstanceScaling; }
+            set { this._managedInstanceScaling = value; }
+        }
+
+        // Check to see if ManagedInstanceScaling property is set
+        internal bool IsSetManagedInstanceScaling()
+        {
+            return this._managedInstanceScaling != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RoutingConfig. 
+        /// <para>
+        /// Settings that control how the endpoint routes incoming traffic to the instances that
+        /// the endpoint hosts.
+        /// </para>
+        /// </summary>
+        public ProductionVariantRoutingConfig RoutingConfig
+        {
+            get { return this._routingConfig; }
+            set { this._routingConfig = value; }
+        }
+
+        // Check to see if RoutingConfig property is set
+        internal bool IsSetRoutingConfig()
+        {
+            return this._routingConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property VariantName. 
         /// <para>
         /// The name of the variant.
@@ -260,7 +303,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if VariantStatus property is set
         internal bool IsSetVariantStatus()
         {
-            return this._variantStatus != null && this._variantStatus.Count > 0; 
+            return this._variantStatus != null && (this._variantStatus.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Bedrock.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,19 @@ namespace Amazon.Bedrock.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(TrainingDataConfig requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetInvocationLogsConfig())
+            {
+                context.Writer.WritePropertyName("invocationLogsConfig");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = InvocationLogsConfigMarshaller.Instance;
+                marshaller.Marshall(requestObject.InvocationLogsConfig, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetS3Uri())
             {
                 context.Writer.WritePropertyName("s3Uri");

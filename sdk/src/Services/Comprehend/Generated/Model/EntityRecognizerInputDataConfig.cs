@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -34,11 +35,11 @@ namespace Amazon.Comprehend.Model
     public partial class EntityRecognizerInputDataConfig
     {
         private EntityRecognizerAnnotations _annotations;
-        private List<AugmentedManifestsListItem> _augmentedManifests = new List<AugmentedManifestsListItem>();
+        private List<AugmentedManifestsListItem> _augmentedManifests = AWSConfigs.InitializeCollections ? new List<AugmentedManifestsListItem>() : null;
         private EntityRecognizerDataFormat _dataFormat;
         private EntityRecognizerDocuments _documents;
         private EntityRecognizerEntityList _entityList;
-        private List<EntityTypesListItem> _entityTypes = new List<EntityTypesListItem>();
+        private List<EntityTypesListItem> _entityTypes = AWSConfigs.InitializeCollections ? new List<EntityTypesListItem>() : null;
 
         /// <summary>
         /// Gets and sets the property Annotations. 
@@ -67,7 +68,7 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  
         /// <para>
-        /// This parameter is required if you set <code>DataFormat</code> to <code>AUGMENTED_MANIFEST</code>.
+        /// This parameter is required if you set <c>DataFormat</c> to <c>AUGMENTED_MANIFEST</c>.
         /// </para>
         /// </summary>
         public List<AugmentedManifestsListItem> AugmentedManifests
@@ -79,7 +80,7 @@ namespace Amazon.Comprehend.Model
         // Check to see if AugmentedManifests property is set
         internal bool IsSetAugmentedManifests()
         {
-            return this._augmentedManifests != null && this._augmentedManifests.Count > 0; 
+            return this._augmentedManifests != null && (this._augmentedManifests.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -89,33 +90,33 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>COMPREHEND_CSV</code>: A CSV file that supplements your training documents.
-        /// The CSV file contains information about the custom entities that your trained model
-        /// will detect. The required format of the file depends on whether you are providing
-        /// annotations or an entity list.
+        ///  <c>COMPREHEND_CSV</c>: A CSV file that supplements your training documents. The CSV
+        /// file contains information about the custom entities that your trained model will detect.
+        /// The required format of the file depends on whether you are providing annotations or
+        /// an entity list.
         /// </para>
         ///  
         /// <para>
-        /// If you use this value, you must provide your CSV file by using either the <code>Annotations</code>
-        /// or <code>EntityList</code> parameters. You must provide your training documents by
-        /// using the <code>Documents</code> parameter.
+        /// If you use this value, you must provide your CSV file by using either the <c>Annotations</c>
+        /// or <c>EntityList</c> parameters. You must provide your training documents by using
+        /// the <c>Documents</c> parameter.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AUGMENTED_MANIFEST</code>: A labeled dataset that is produced by Amazon SageMaker
+        ///  <c>AUGMENTED_MANIFEST</c>: A labeled dataset that is produced by Amazon SageMaker
         /// Ground Truth. This file is in JSON lines format. Each line is a complete JSON object
         /// that contains a training document and its labels. Each label annotates a named entity
         /// in the training document. 
         /// </para>
         ///  
         /// <para>
-        /// If you use this value, you must provide the <code>AugmentedManifests</code> parameter
-        /// in your request.
+        /// If you use this value, you must provide the <c>AugmentedManifests</c> parameter in
+        /// your request.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If you don't specify a value, Amazon Comprehend uses <code>COMPREHEND_CSV</code> as
-        /// the default.
+        /// If you don't specify a value, Amazon Comprehend uses <c>COMPREHEND_CSV</c> as the
+        /// default.
         /// </para>
         /// </summary>
         public EntityRecognizerDataFormat DataFormat
@@ -138,7 +139,7 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  
         /// <para>
-        /// This parameter is required if you set <code>DataFormat</code> to <code>COMPREHEND_CSV</code>.
+        /// This parameter is required if you set <c>DataFormat</c> to <c>COMPREHEND_CSV</c>.
         /// </para>
         /// </summary>
         public EntityRecognizerDocuments Documents
@@ -195,7 +196,7 @@ namespace Amazon.Comprehend.Model
         // Check to see if EntityTypes property is set
         internal bool IsSetEntityTypes()
         {
-            return this._entityTypes != null && this._entityTypes.Count > 0; 
+            return this._entityTypes != null && (this._entityTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

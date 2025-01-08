@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SSOOIDC.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.SSOOIDC.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetClientName())
@@ -75,6 +77,40 @@ namespace Amazon.SSOOIDC.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("clientType");
                     context.Writer.Write(publicRequest.ClientType);
+                }
+
+                if(publicRequest.IsSetEntitledApplicationArn())
+                {
+                    context.Writer.WritePropertyName("entitledApplicationArn");
+                    context.Writer.Write(publicRequest.EntitledApplicationArn);
+                }
+
+                if(publicRequest.IsSetGrantTypes())
+                {
+                    context.Writer.WritePropertyName("grantTypes");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestGrantTypesListValue in publicRequest.GrantTypes)
+                    {
+                            context.Writer.Write(publicRequestGrantTypesListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetIssuerUrl())
+                {
+                    context.Writer.WritePropertyName("issuerUrl");
+                    context.Writer.Write(publicRequest.IssuerUrl);
+                }
+
+                if(publicRequest.IsSetRedirectUris())
+                {
+                    context.Writer.WritePropertyName("redirectUris");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestRedirectUrisListValue in publicRequest.RedirectUris)
+                    {
+                            context.Writer.Write(publicRequestRedirectUrisListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
                 }
 
                 if(publicRequest.IsSetScopes())

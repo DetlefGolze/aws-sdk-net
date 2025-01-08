@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.SageMaker.Model
     public partial class PendingDeploymentSummary
     {
         private string _endpointConfigName;
-        private List<PendingProductionVariantSummary> _productionVariants = new List<PendingProductionVariantSummary>();
-        private List<PendingProductionVariantSummary> _shadowProductionVariants = new List<PendingProductionVariantSummary>();
+        private List<PendingProductionVariantSummary> _productionVariants = AWSConfigs.InitializeCollections ? new List<PendingProductionVariantSummary>() : null;
+        private List<PendingProductionVariantSummary> _shadowProductionVariants = AWSConfigs.InitializeCollections ? new List<PendingProductionVariantSummary>() : null;
         private DateTime? _startTime;
 
         /// <summary>
@@ -75,7 +76,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if ProductionVariants property is set
         internal bool IsSetProductionVariants()
         {
-            return this._productionVariants != null && this._productionVariants.Count > 0; 
+            return this._productionVariants != null && (this._productionVariants.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -83,8 +84,8 @@ namespace Amazon.SageMaker.Model
         /// <para>
         /// An array of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_PendingProductionVariantSummary.html">PendingProductionVariantSummary</a>
         /// objects, one for each model hosted behind this endpoint in shadow mode with production
-        /// traffic replicated from the model specified on <code>ProductionVariants</code> for
-        /// the in-progress deployment.
+        /// traffic replicated from the model specified on <c>ProductionVariants</c> for the in-progress
+        /// deployment.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -97,7 +98,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if ShadowProductionVariants property is set
         internal bool IsSetShadowProductionVariants()
         {
-            return this._shadowProductionVariants != null && this._shadowProductionVariants.Count > 0; 
+            return this._shadowProductionVariants != null && (this._shadowProductionVariants.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

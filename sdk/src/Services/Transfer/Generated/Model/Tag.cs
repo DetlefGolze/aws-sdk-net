@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Creates a key-value pair for a specific resource. Tags are metadata that you can use
     /// to search for and group a resource for various purposes. You can apply tags to servers,
     /// users, and roles. A tag key can take more than one value. For example, to group servers
-    /// for accounting purposes, you might create a tag called <code>Group</code> and assign
-    /// the values <code>Research</code> and <code>Accounting</code> to that group.
+    /// for accounting purposes, you might create a tag called <c>Group</c> and assign the
+    /// values <c>Research</c> and <c>Accounting</c> to that group.
     /// </summary>
     public partial class Tag
     {
@@ -46,7 +47,7 @@ namespace Amazon.Transfer.Model
         /// The name assigned to the tag that you create.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=128)]
+        [AWSProperty(Required=true, Min=0, Max=128)]
         public string Key
         {
             get { return this._key; }
@@ -65,7 +66,7 @@ namespace Amazon.Transfer.Model
         /// Contains one or more values that you assigned to the key name you create.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=256)]
+        [AWSProperty(Required=true, Min=0, Max=256)]
         public string Value
         {
             get { return this._value; }

@@ -26,20 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateJob operation.
+    /// This operation creates an S3 Batch Operations job.
+    /// 
+    ///  
+    /// <para>
     /// You can use S3 Batch Operations to perform large-scale batch actions on Amazon S3
     /// objects. Batch Operations can run a single action on lists of Amazon S3 objects that
     /// you specify. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html">S3
     /// Batch Operations</a> in the <i>Amazon S3 User Guide</i>.
-    /// 
-    ///  
-    /// <para>
-    /// This action creates a S3 Batch Operations job.
     /// </para>
-    ///   
+    ///  <dl> <dt>Permissions</dt> <dd> 
+    /// <para>
+    /// For information about permissions required to use the Batch Operations, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops-iam-role-policies.html">Granting
+    /// permissions for S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.
+    /// </para>
+    ///  </dd> </dl>  
     /// <para>
     /// Related actions include:
     /// </para>
@@ -82,7 +88,7 @@ namespace Amazon.S3Control.Model
         private int? _priority;
         private JobReport _report;
         private string _roleArn;
-        private List<S3Tag> _tags = new List<S3Tag>();
+        private List<S3Tag> _tags = AWSConfigs.InitializeCollections ? new List<S3Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AccountId. 
@@ -100,7 +106,7 @@ namespace Amazon.S3Control.Model
         // Check to see if AccountId property is set
         internal bool IsSetAccountId()
         {
-            return this._accountId != null;
+            return !string.IsNullOrEmpty(this._accountId);
         }
 
         /// <summary>
@@ -203,7 +209,7 @@ namespace Amazon.S3Control.Model
         /// Gets and sets the property Operation. 
         /// <para>
         /// The action that you want this job to perform on every object listed in the manifest.
-        /// For more information about the available actions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-actions.html">Operations</a>
+        /// For more information about the available actions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-operations.html">Operations</a>
         /// in the <i>Amazon S3 User Guide</i>.
         /// </para>
         /// </summary>
@@ -294,7 +300,7 @@ namespace Amazon.S3Control.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

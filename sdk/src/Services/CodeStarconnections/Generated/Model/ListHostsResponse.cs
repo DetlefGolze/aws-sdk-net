@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeStarconnections.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.CodeStarconnections.Model
     /// </summary>
     public partial class ListHostsResponse : AmazonWebServiceResponse
     {
-        private List<Host> _hosts = new List<Host>();
+        private List<Host> _hosts = AWSConfigs.InitializeCollections ? new List<Host>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,15 +53,15 @@ namespace Amazon.CodeStarconnections.Model
         // Check to see if Hosts property is set
         internal bool IsSetHosts()
         {
-            return this._hosts != null && this._hosts.Count > 0; 
+            return this._hosts != null && (this._hosts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token that can be used in the next <code>ListHosts</code> call. To view all items
-        /// in the list, continue to call this operation with each subsequent token until no more
-        /// <code>nextToken</code> values are returned.
+        /// A token that can be used in the next <c>ListHosts</c> call. To view all items in the
+        /// list, continue to call this operation with each subsequent token until no more <c>nextToken</c>
+        /// values are returned.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

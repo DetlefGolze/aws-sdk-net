@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -36,14 +37,15 @@ namespace Amazon.DataZone.Model
     {
         private string _description;
         private string _domainIdentifier;
-        private List<string> _glossaryTerms = new List<string>();
+        private EnvironmentDeploymentDetails _environmentDeploymentDetails;
+        private List<string> _glossaryTerms = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _identifier;
         private string _name;
 
         /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
-        /// The description to be updated as part of the <code>UpdateProject</code> action.
+        /// The description to be updated as part of the <c>UpdateProject</c> action.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=0, Max=2048)]
@@ -62,7 +64,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property DomainIdentifier. 
         /// <para>
-        /// The identifier of the Amazon DataZone domain in which a project is to be updated.
+        /// The ID of the Amazon DataZone domain where a project is being updated.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -79,9 +81,27 @@ namespace Amazon.DataZone.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EnvironmentDeploymentDetails. 
+        /// <para>
+        /// The environment deployment details of the project.
+        /// </para>
+        /// </summary>
+        public EnvironmentDeploymentDetails EnvironmentDeploymentDetails
+        {
+            get { return this._environmentDeploymentDetails; }
+            set { this._environmentDeploymentDetails = value; }
+        }
+
+        // Check to see if EnvironmentDeploymentDetails property is set
+        internal bool IsSetEnvironmentDeploymentDetails()
+        {
+            return this._environmentDeploymentDetails != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property GlossaryTerms. 
         /// <para>
-        /// The glossary terms to be updated as part of the <code>UpdateProject</code> action.
+        /// The glossary terms to be updated as part of the <c>UpdateProject</c> action.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=20)]
@@ -94,7 +114,7 @@ namespace Amazon.DataZone.Model
         // Check to see if GlossaryTerms property is set
         internal bool IsSetGlossaryTerms()
         {
-            return this._glossaryTerms != null && this._glossaryTerms.Count > 0; 
+            return this._glossaryTerms != null && (this._glossaryTerms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -119,7 +139,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name to be updated as part of the <code>UpdateProject</code> action.
+        /// The name to be updated as part of the <c>UpdateProject</c> action.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=64)]

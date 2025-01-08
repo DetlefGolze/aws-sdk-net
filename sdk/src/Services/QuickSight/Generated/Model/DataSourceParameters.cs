@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -41,6 +42,7 @@ namespace Amazon.QuickSight.Model
         private AuroraParameters _auroraParameters;
         private AuroraPostgreSqlParameters _auroraPostgreSqlParameters;
         private AwsIotAnalyticsParameters _awsIotAnalyticsParameters;
+        private BigQueryParameters _bigQueryParameters;
         private DatabricksParameters _databricksParameters;
         private ExasolParameters _exasolParameters;
         private JiraParameters _jiraParameters;
@@ -56,7 +58,9 @@ namespace Amazon.QuickSight.Model
         private SnowflakeParameters _snowflakeParameters;
         private SparkParameters _sparkParameters;
         private SqlServerParameters _sqlServerParameters;
+        private StarburstParameters _starburstParameters;
         private TeradataParameters _teradataParameters;
+        private TrinoParameters _trinoParameters;
         private TwitterParameters _twitterParameters;
 
         /// <summary>
@@ -168,9 +172,27 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property BigQueryParameters. 
+        /// <para>
+        /// The parameters that are required to connect to a Google BigQuery data source.
+        /// </para>
+        /// </summary>
+        public BigQueryParameters BigQueryParameters
+        {
+            get { return this._bigQueryParameters; }
+            set { this._bigQueryParameters = value; }
+        }
+
+        // Check to see if BigQueryParameters property is set
+        internal bool IsSetBigQueryParameters()
+        {
+            return this._bigQueryParameters != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property DatabricksParameters. 
         /// <para>
-        /// The required parameters that are needed to connect to a Databricks data source.
+        /// The parameters that are required to connect to a Databricks data source.
         /// </para>
         /// </summary>
         public DatabricksParameters DatabricksParameters
@@ -438,6 +460,24 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property StarburstParameters. 
+        /// <para>
+        /// The parameters that are required to connect to a Starburst data source.
+        /// </para>
+        /// </summary>
+        public StarburstParameters StarburstParameters
+        {
+            get { return this._starburstParameters; }
+            set { this._starburstParameters = value; }
+        }
+
+        // Check to see if StarburstParameters property is set
+        internal bool IsSetStarburstParameters()
+        {
+            return this._starburstParameters != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property TeradataParameters. 
         /// <para>
         /// The parameters for Teradata.
@@ -453,6 +493,24 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetTeradataParameters()
         {
             return this._teradataParameters != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property TrinoParameters. 
+        /// <para>
+        /// The parameters that are required to connect to a Trino data source.
+        /// </para>
+        /// </summary>
+        public TrinoParameters TrinoParameters
+        {
+            get { return this._trinoParameters; }
+            set { this._trinoParameters = value; }
+        }
+
+        // Check to see if TrinoParameters property is set
+        internal bool IsSetTrinoParameters()
+        {
+            return this._trinoParameters != null;
         }
 
         /// <summary>

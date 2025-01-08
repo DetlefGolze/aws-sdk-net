@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -54,8 +55,8 @@ namespace Amazon.EC2.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// If you don't specify a security group ID, we use the default security group. For more
-    /// information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">Security
+    /// If you don't specify a security group ID, we use the default security group for the
+    /// VPC. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">Security
     /// groups</a>.
     /// </para>
     ///  </li> <li> 
@@ -78,8 +79,14 @@ namespace Amazon.EC2.Model
     /// </para>
     ///  
     /// <para>
-    /// An instance is ready for you to use when it's in the <code>running</code> state. You
-    /// can check the state of your instance using <a>DescribeInstances</a>. You can tag instances
+    ///  <c>RunInstances</c> is subject to both request rate limiting and resource rate limiting.
+    /// For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-throttling.html">Request
+    /// throttling</a>.
+    /// </para>
+    ///  
+    /// <para>
+    /// An instance is ready for you to use when it's in the <c>running</c> state. You can
+    /// check the state of your instance using <a>DescribeInstances</a>. You can tag instances
     /// and EBS volumes during launch, after launch, or both. For more information, see <a>CreateTags</a>
     /// and <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html">Tagging
     /// your Amazon EC2 resources</a>.
@@ -101,7 +108,7 @@ namespace Amazon.EC2.Model
     public partial class RunInstancesRequest : AmazonEC2Request
     {
         private string _additionalInfo;
-        private List<BlockDeviceMapping> _blockDeviceMappings = new List<BlockDeviceMapping>();
+        private List<BlockDeviceMapping> _blockDeviceMappings = AWSConfigs.InitializeCollections ? new List<BlockDeviceMapping>() : null;
         private CapacityReservationSpecification _capacityReservationSpecification;
         private string _clientToken;
         private CpuOptionsRequest _cpuOptions;
@@ -109,8 +116,8 @@ namespace Amazon.EC2.Model
         private bool? _disableApiStop;
         private bool? _disableApiTermination;
         private bool? _ebsOptimized;
-        private List<ElasticGpuSpecification> _elasticGpuSpecification = new List<ElasticGpuSpecification>();
-        private List<ElasticInferenceAccelerator> _elasticInferenceAccelerators = new List<ElasticInferenceAccelerator>();
+        private List<ElasticGpuSpecification> _elasticGpuSpecification = AWSConfigs.InitializeCollections ? new List<ElasticGpuSpecification>() : null;
+        private List<ElasticInferenceAccelerator> _elasticInferenceAccelerators = AWSConfigs.InitializeCollections ? new List<ElasticInferenceAccelerator>() : null;
         private bool? _enablePrimaryIpv6;
         private EnclaveOptionsRequest _enclaveOptions;
         private HibernationOptionsRequest _hibernationOptions;
@@ -120,25 +127,27 @@ namespace Amazon.EC2.Model
         private InstanceMarketOptionsRequest _instanceMarketOptions;
         private InstanceType _instanceType;
         private int? _ipv6AddressCount;
-        private List<InstanceIpv6Address> _ipv6Addresses = new List<InstanceIpv6Address>();
+        private List<InstanceIpv6Address> _ipv6Addresses = AWSConfigs.InitializeCollections ? new List<InstanceIpv6Address>() : null;
         private string _kernelId;
         private string _keyName;
         private LaunchTemplateSpecification _launchTemplate;
-        private List<LicenseConfigurationRequest> _licenseSpecifications = new List<LicenseConfigurationRequest>();
+        private List<LicenseConfigurationRequest> _licenseSpecifications = AWSConfigs.InitializeCollections ? new List<LicenseConfigurationRequest>() : null;
         private InstanceMaintenanceOptionsRequest _maintenanceOptions;
         private int? _maxCount;
         private InstanceMetadataOptionsRequest _metadataOptions;
         private int? _minCount;
         private bool? _monitoring;
-        private List<InstanceNetworkInterfaceSpecification> _networkInterfaces = new List<InstanceNetworkInterfaceSpecification>();
+        private List<InstanceNetworkInterfaceSpecification> _networkInterfaces = AWSConfigs.InitializeCollections ? new List<InstanceNetworkInterfaceSpecification>() : null;
+        private InstanceNetworkPerformanceOptionsRequest _networkPerformanceOptions;
+        private OperatorRequest _operator;
         private Placement _placement;
         private PrivateDnsNameOptionsRequest _privateDnsNameOptions;
         private string _privateIpAddress;
         private string _ramdiskId;
-        private List<string> _securityGroupIds = new List<string>();
-        private List<string> _securityGroups = new List<string>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _securityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _subnetId;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
         private string _userData;
 
         /// <summary>
@@ -150,8 +159,8 @@ namespace Amazon.EC2.Model
         /// Instantiates RunInstancesRequest with the parameterized properties
         /// </summary>
         /// <param name="imageId">The ID of the AMI. An AMI ID is required to launch an instance and must be specified here or in a launch template.</param>
-        /// <param name="minCount">The minimum number of instances to launch. If you specify a minimum that is more instances than Amazon EC2 can launch in the target Availability Zone, Amazon EC2 launches no instances. Constraints: Between 1 and the maximum number you're allowed for the specified instance type. For more information about the default limits, and how to request an increase, see <a href="http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2">How many instances can I run in Amazon EC2</a> in the Amazon EC2 General FAQ.</param>
-        /// <param name="maxCount">The maximum number of instances to launch. If you specify more instances than Amazon EC2 can launch in the target Availability Zone, Amazon EC2 launches the largest possible number of instances above <code>MinCount</code>. Constraints: Between 1 and the maximum number you're allowed for the specified instance type. For more information about the default limits, and how to request an increase, see <a href="http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2">How many instances can I run in Amazon EC2</a> in the Amazon EC2 FAQ.</param>
+        /// <param name="minCount">The minimum number of instances to launch. If you specify a value that is more capacity than Amazon EC2 can provide in the target Availability Zone, Amazon EC2 does not launch any instances. Constraints: Between 1 and the quota for the specified instance type for your account for this Region. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-instance-quotas.html">Amazon EC2 instance type quotas</a>.</param>
+        /// <param name="maxCount">The maximum number of instances to launch. If you specify a value that is more capacity than Amazon EC2 can launch in the target Availability Zone, Amazon EC2 launches the largest possible number of instances above the specified minimum count. Constraints: Between 1 and the quota for the specified instance type for your account for this Region. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-instance-quotas.html">Amazon EC2 instance type quotas</a>.</param>
         public RunInstancesRequest(string imageId, int minCount, int maxCount)
         {
             _imageId = imageId;
@@ -194,16 +203,16 @@ namespace Amazon.EC2.Model
         // Check to see if BlockDeviceMappings property is set
         internal bool IsSetBlockDeviceMappings()
         {
-            return this._blockDeviceMappings != null && this._blockDeviceMappings.Count > 0; 
+            return this._blockDeviceMappings != null && (this._blockDeviceMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property CapacityReservationSpecification. 
         /// <para>
         /// Information about the Capacity Reservation targeting option. If you do not specify
-        /// this parameter, the instance's Capacity Reservation preference defaults to <code>open</code>,
+        /// this parameter, the instance's Capacity Reservation preference defaults to <c>open</c>,
         /// which enables it to run in any open Capacity Reservation that has matching attributes
-        /// (instance type, platform, Availability Zone).
+        /// (instance type, platform, Availability Zone, and tenancy).
         /// </para>
         /// </summary>
         public CapacityReservationSpecification CapacityReservationSpecification
@@ -270,19 +279,18 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property CreditSpecification. 
         /// <para>
         /// The credit option for CPU usage of the burstable performance instance. Valid values
-        /// are <code>standard</code> and <code>unlimited</code>. To change this attribute after
-        /// launch, use <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceCreditSpecification.html">
+        /// are <c>standard</c> and <c>unlimited</c>. To change this attribute after launch, use
+        /// <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceCreditSpecification.html">
         /// ModifyInstanceCreditSpecification</a>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html">Burstable
         /// performance instances</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>standard</code> (T2 instances) or <code>unlimited</code> (T3/T3a/T4g
-        /// instances)
+        /// Default: <c>standard</c> (T2 instances) or <c>unlimited</c> (T3/T3a/T4g instances)
         /// </para>
         ///  
         /// <para>
-        /// For T3 instances with <code>host</code> tenancy, only <code>standard</code> is supported.
+        /// For T3 instances with <c>host</c> tenancy, only <c>standard</c> is supported.
         /// </para>
         /// </summary>
         public CreditSpecificationRequest CreditSpecification
@@ -320,15 +328,15 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property DisableApiTermination. 
         /// <para>
-        /// If you set this parameter to <code>true</code>, you can't terminate the instance using
-        /// the Amazon EC2 console, CLI, or API; otherwise, you can. To change this attribute
-        /// after launch, use <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceAttribute.html">ModifyInstanceAttribute</a>.
-        /// Alternatively, if you set <code>InstanceInitiatedShutdownBehavior</code> to <code>terminate</code>,
+        /// If you set this parameter to <c>true</c>, you can't terminate the instance using the
+        /// Amazon EC2 console, CLI, or API; otherwise, you can. To change this attribute after
+        /// launch, use <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceAttribute.html">ModifyInstanceAttribute</a>.
+        /// Alternatively, if you set <c>InstanceInitiatedShutdownBehavior</c> to <c>terminate</c>,
         /// you can terminate the instance by running the shutdown command from the instance.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool DisableApiTermination
@@ -353,7 +361,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool EbsOptimized
@@ -371,11 +379,13 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property ElasticGpuSpecification. 
         /// <para>
-        /// An elastic GPU to associate with the instance. An Elastic GPU is a GPU resource that
-        /// you can attach to your Windows instance to accelerate the graphics performance of
-        /// your applications. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/elastic-graphics.html">Amazon
-        /// EC2 Elastic GPUs</a> in the <i>Amazon EC2 User Guide</i>.
+        /// An elastic GPU to associate with the instance.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// Amazon Elastic Graphics reached end of life on January 8, 2024.
+        /// </para>
+        ///  </note>
         /// </summary>
         public List<ElasticGpuSpecification> ElasticGpuSpecification
         {
@@ -386,29 +396,17 @@ namespace Amazon.EC2.Model
         // Check to see if ElasticGpuSpecification property is set
         internal bool IsSetElasticGpuSpecification()
         {
-            return this._elasticGpuSpecification != null && this._elasticGpuSpecification.Count > 0; 
+            return this._elasticGpuSpecification != null && (this._elasticGpuSpecification.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ElasticInferenceAccelerators. 
         /// <para>
-        /// An elastic inference accelerator to associate with the instance. Elastic inference
-        /// accelerators are a resource you can attach to your Amazon EC2 instances to accelerate
-        /// your Deep Learning (DL) inference workloads.
-        /// </para>
-        ///  
-        /// <para>
-        /// You cannot specify accelerators from different generations in the same request.
+        /// An elastic inference accelerator to associate with the instance.
         /// </para>
         ///  <note> 
         /// <para>
-        /// Starting April 15, 2023, Amazon Web Services will not onboard new customers to Amazon
-        /// Elastic Inference (EI), and will help current customers migrate their workloads to
-        /// options that offer better price and performance. After April 15, 2023, new customers
-        /// will not be able to launch instances with Amazon EI accelerators in Amazon SageMaker,
-        /// Amazon ECS, or Amazon EC2. However, customers who have used Amazon EI at least once
-        /// during the past 30-day period are considered current customers and will be able to
-        /// continue using the service.
+        /// Amazon Elastic Inference is no longer available.
         /// </para>
         ///  </note>
         /// </summary>
@@ -421,7 +419,7 @@ namespace Amazon.EC2.Model
         // Check to see if ElasticInferenceAccelerators property is set
         internal bool IsSetElasticInferenceAccelerators()
         {
-            return this._elasticInferenceAccelerators != null && this._elasticInferenceAccelerators.Count > 0; 
+            return this._elasticInferenceAccelerators != null && (this._elasticInferenceAccelerators.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -484,7 +482,7 @@ namespace Amazon.EC2.Model
         /// Indicates whether an instance is enabled for hibernation. This parameter is valid
         /// only if the instance meets the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hibernating-prerequisites.html">hibernation
         /// prerequisites</a>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html">Hibernate
-        /// your instance</a> in the <i>Amazon EC2 User Guide</i>.
+        /// your Amazon EC2 instance</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         ///  
         /// <para>
@@ -548,7 +546,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>stop</code> 
+        /// Default: <c>stop</c> 
         /// </para>
         /// </summary>
         public ShutdownBehavior InstanceInitiatedShutdownBehavior
@@ -571,7 +569,7 @@ namespace Amazon.EC2.Model
         ///  
         /// <para>
         /// For <a>RunInstances</a>, persistent Spot Instance requests are only supported when
-        /// <b>InstanceInterruptionBehavior</b> is set to either <code>hibernate</code> or <code>stop</code>.
+        /// <b>InstanceInterruptionBehavior</b> is set to either <c>hibernate</c> or <c>stop</c>.
         /// </para>
         /// </summary>
         public InstanceMarketOptionsRequest InstanceMarketOptions
@@ -589,8 +587,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property InstanceType. 
         /// <para>
-        /// The instance type. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-        /// types</a> in the <i>Amazon EC2 User Guide</i>.
+        /// The instance type. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Amazon
+        /// EC2 instance types</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         /// </summary>
         public InstanceType InstanceType
@@ -652,7 +650,7 @@ namespace Amazon.EC2.Model
         // Check to see if Ipv6Addresses property is set
         internal bool IsSetIpv6Addresses()
         {
-            return this._ipv6Addresses != null && this._ipv6Addresses.Count > 0; 
+            return this._ipv6Addresses != null && (this._ipv6Addresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -708,9 +706,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property LaunchTemplate. 
         /// <para>
-        /// The launch template to use to launch the instances. Any parameters that you specify
-        /// in <a>RunInstances</a> override the same parameters in the launch template. You can
-        /// specify either the name or ID of a launch template, but not both.
+        /// The launch template. Any additional parameters that you specify for the new instance
+        /// overwrite the corresponding parameters included in the launch template.
         /// </para>
         /// </summary>
         public LaunchTemplateSpecification LaunchTemplate
@@ -740,7 +737,7 @@ namespace Amazon.EC2.Model
         // Check to see if LicenseSpecifications property is set
         internal bool IsSetLicenseSpecifications()
         {
-            return this._licenseSpecifications != null && this._licenseSpecifications.Count > 0; 
+            return this._licenseSpecifications != null && (this._licenseSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -764,16 +761,15 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property MaxCount. 
         /// <para>
-        /// The maximum number of instances to launch. If you specify more instances than Amazon
-        /// EC2 can launch in the target Availability Zone, Amazon EC2 launches the largest possible
-        /// number of instances above <code>MinCount</code>.
+        /// The maximum number of instances to launch. If you specify a value that is more capacity
+        /// than Amazon EC2 can launch in the target Availability Zone, Amazon EC2 launches the
+        /// largest possible number of instances above the specified minimum count.
         /// </para>
         ///  
         /// <para>
-        /// Constraints: Between 1 and the maximum number you're allowed for the specified instance
-        /// type. For more information about the default limits, and how to request an increase,
-        /// see <a href="http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2">How
-        /// many instances can I run in Amazon EC2</a> in the Amazon EC2 FAQ.
+        /// Constraints: Between 1 and the quota for the specified instance type for your account
+        /// for this Region. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-instance-quotas.html">Amazon
+        /// EC2 instance type quotas</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -811,16 +807,15 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property MinCount. 
         /// <para>
-        /// The minimum number of instances to launch. If you specify a minimum that is more instances
-        /// than Amazon EC2 can launch in the target Availability Zone, Amazon EC2 launches no
-        /// instances.
+        /// The minimum number of instances to launch. If you specify a value that is more capacity
+        /// than Amazon EC2 can provide in the target Availability Zone, Amazon EC2 does not launch
+        /// any instances.
         /// </para>
         ///  
         /// <para>
-        /// Constraints: Between 1 and the maximum number you're allowed for the specified instance
-        /// type. For more information about the default limits, and how to request an increase,
-        /// see <a href="http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2">How
-        /// many instances can I run in Amazon EC2</a> in the Amazon EC2 General FAQ.
+        /// Constraints: Between 1 and the quota for the specified instance type for your account
+        /// for this Region. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-instance-quotas.html">Amazon
+        /// EC2 instance type quotas</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -857,8 +852,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property NetworkInterfaces. 
         /// <para>
-        /// The network interfaces to associate with the instance. If you specify a network interface,
-        /// you must specify any security groups and subnets as part of the network interface.
+        /// The network interfaces to associate with the instance.
         /// </para>
         /// </summary>
         public List<InstanceNetworkInterfaceSpecification> NetworkInterfaces
@@ -870,7 +864,43 @@ namespace Amazon.EC2.Model
         // Check to see if NetworkInterfaces property is set
         internal bool IsSetNetworkInterfaces()
         {
-            return this._networkInterfaces != null && this._networkInterfaces.Count > 0; 
+            return this._networkInterfaces != null && (this._networkInterfaces.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property NetworkPerformanceOptions. 
+        /// <para>
+        /// Contains settings for the network performance options for the instance.
+        /// </para>
+        /// </summary>
+        public InstanceNetworkPerformanceOptionsRequest NetworkPerformanceOptions
+        {
+            get { return this._networkPerformanceOptions; }
+            set { this._networkPerformanceOptions = value; }
+        }
+
+        // Check to see if NetworkPerformanceOptions property is set
+        internal bool IsSetNetworkPerformanceOptions()
+        {
+            return this._networkPerformanceOptions != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Operator. 
+        /// <para>
+        /// Reserved for internal use.
+        /// </para>
+        /// </summary>
+        public OperatorRequest Operator
+        {
+            get { return this._operator; }
+            set { this._operator = value; }
+        }
+
+        // Check to see if Operator property is set
+        internal bool IsSetOperator()
+        {
+            return this._operator != null;
         }
 
         /// <summary>
@@ -976,7 +1006,7 @@ namespace Amazon.EC2.Model
         ///  
         /// <para>
         /// If you specify a network interface, you must specify any security groups as part of
-        /// the network interface.
+        /// the network interface instead of using this parameter.
         /// </para>
         /// </summary>
         public List<string> SecurityGroupIds
@@ -988,7 +1018,7 @@ namespace Amazon.EC2.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -999,7 +1029,7 @@ namespace Amazon.EC2.Model
         ///  
         /// <para>
         /// If you specify a network interface, you must specify any security groups as part of
-        /// the network interface.
+        /// the network interface instead of using this parameter.
         /// </para>
         ///  
         /// <para>
@@ -1015,7 +1045,7 @@ namespace Amazon.EC2.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1026,7 +1056,7 @@ namespace Amazon.EC2.Model
         ///  
         /// <para>
         /// If you specify a network interface, you must specify any subnets as part of the network
-        /// interface.
+        /// interface instead of using this parameter.
         /// </para>
         /// </summary>
         public string SubnetId
@@ -1060,10 +1090,6 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Elastic graphics
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
         /// Spot Instance requests
         /// </para>
         ///  </li> <li> 
@@ -1084,18 +1110,16 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UserData. 
         /// <para>
-        /// The user data script to make available to the instance. For more information, see
-        /// <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html">Run commands
-        /// on your Linux instance at launch</a> and <a href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html">Run
-        /// commands on your Windows instance at launch</a>. If you are using a command line tool,
-        /// base64-encoding is performed for you, and you can load the text from a file. Otherwise,
-        /// you must provide base64-encoded text. User data is limited to 16 KB.
+        /// The user data to make available to the instance. User data must be base64-encoded.
+        /// Depending on the tool or SDK that you're using, the base64-encoding might be performed
+        /// for you. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-add-user-data.html">Work
+        /// with instance user data</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]

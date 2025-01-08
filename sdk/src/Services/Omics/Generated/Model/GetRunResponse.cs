@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Omics.Model
 {
     /// <summary>
@@ -35,34 +36,43 @@ namespace Amazon.Omics.Model
     {
         private Accelerators _accelerators;
         private string _arn;
+        private CacheBehavior _cacheBehavior;
+        private string _cacheId;
         private DateTime? _creationTime;
         private string _definition;
         private string _digest;
+        private string _engineVersion;
+        private string _failureReason;
         private string _id;
         private RunLogLevel _logLevel;
+        private RunLogLocation _logLocation;
         private string _name;
         private string _outputUri;
         private Amazon.Runtime.Documents.Document _parameters;
         private int? _priority;
-        private Dictionary<string, string> _resourceDigests = new Dictionary<string, string>();
+        private Dictionary<string, string> _resourceDigests = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private RunRetentionMode _retentionMode;
         private string _roleArn;
         private string _runGroupId;
         private string _runId;
+        private string _runOutputUri;
         private string _startedBy;
         private DateTime? _startTime;
         private RunStatus _status;
         private string _statusMessage;
         private DateTime? _stopTime;
         private int? _storageCapacity;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private StorageType _storageType;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private string _uuid;
         private string _workflowId;
+        private string _workflowOwnerId;
         private WorkflowType _workflowType;
 
         /// <summary>
         /// Gets and sets the property Accelerators. 
         /// <para>
-        ///  The computational accelerator used to run the workflow. 
+        /// The computational accelerator used to run the workflow.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -95,6 +105,44 @@ namespace Amazon.Omics.Model
         internal bool IsSetArn()
         {
             return this._arn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CacheBehavior. 
+        /// <para>
+        /// The run cache behavior for the run.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=64)]
+        public CacheBehavior CacheBehavior
+        {
+            get { return this._cacheBehavior; }
+            set { this._cacheBehavior = value; }
+        }
+
+        // Check to see if CacheBehavior property is set
+        internal bool IsSetCacheBehavior()
+        {
+            return this._cacheBehavior != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CacheId. 
+        /// <para>
+        /// The run cache associated with the run.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=18)]
+        public string CacheId
+        {
+            get { return this._cacheId; }
+            set { this._cacheId = value; }
+        }
+
+        // Check to see if CacheId property is set
+        internal bool IsSetCacheId()
+        {
+            return this._cacheId != null;
         }
 
         /// <summary>
@@ -154,6 +202,43 @@ namespace Amazon.Omics.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EngineVersion. 
+        /// <para>
+        /// The workflow engine version.
+        /// </para>
+        /// </summary>
+        public string EngineVersion
+        {
+            get { return this._engineVersion; }
+            set { this._engineVersion = value; }
+        }
+
+        // Check to see if EngineVersion property is set
+        internal bool IsSetEngineVersion()
+        {
+            return this._engineVersion != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property FailureReason. 
+        /// <para>
+        /// The reason a run has failed.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=64)]
+        public string FailureReason
+        {
+            get { return this._failureReason; }
+            set { this._failureReason = value; }
+        }
+
+        // Check to see if FailureReason property is set
+        internal bool IsSetFailureReason()
+        {
+            return this._failureReason != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
         /// The run's ID.
@@ -192,6 +277,24 @@ namespace Amazon.Omics.Model
         }
 
         /// <summary>
+        /// Gets and sets the property LogLocation. 
+        /// <para>
+        /// The location of the run log.
+        /// </para>
+        /// </summary>
+        public RunLogLocation LogLocation
+        {
+            get { return this._logLocation; }
+            set { this._logLocation = value; }
+        }
+
+        // Check to see if LogLocation property is set
+        internal bool IsSetLogLocation()
+        {
+            return this._logLocation != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
         /// The run's name.
@@ -216,7 +319,7 @@ namespace Amazon.Omics.Model
         /// The run's output URI.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=128)]
+        [AWSProperty(Min=1, Max=750)]
         public string OutputUri
         {
             get { return this._outputUri; }
@@ -281,7 +384,7 @@ namespace Amazon.Omics.Model
         // Check to see if ResourceDigests property is set
         internal bool IsSetResourceDigests()
         {
-            return this._resourceDigests != null && this._resourceDigests.Count > 0; 
+            return this._resourceDigests != null && (this._resourceDigests.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -358,6 +461,25 @@ namespace Amazon.Omics.Model
         internal bool IsSetRunId()
         {
             return this._runId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RunOutputUri. 
+        /// <para>
+        /// The destination for workflow outputs.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=750)]
+        public string RunOutputUri
+        {
+            get { return this._runOutputUri; }
+            set { this._runOutputUri = value; }
+        }
+
+        // Check to see if RunOutputUri property is set
+        internal bool IsSetRunOutputUri()
+        {
+            return this._runOutputUri != null;
         }
 
         /// <summary>
@@ -455,7 +577,8 @@ namespace Amazon.Omics.Model
         /// <summary>
         /// Gets and sets the property StorageCapacity. 
         /// <para>
-        /// The run's storage capacity in gigabytes.
+        /// The run's storage capacity in gibibytes. For dynamic storage, after the run has completed,
+        /// this value is the maximum amount of storage used during the run.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100000)]
@@ -469,6 +592,25 @@ namespace Amazon.Omics.Model
         internal bool IsSetStorageCapacity()
         {
             return this._storageCapacity.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property StorageType. 
+        /// <para>
+        /// The run's storage type.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=64)]
+        public StorageType StorageType
+        {
+            get { return this._storageType; }
+            set { this._storageType = value; }
+        }
+
+        // Check to see if StorageType property is set
+        internal bool IsSetStorageType()
+        {
+            return this._storageType != null;
         }
 
         /// <summary>
@@ -486,7 +628,26 @@ namespace Amazon.Omics.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Uuid. 
+        /// <para>
+        /// The universally unique identifier for a run.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=128)]
+        public string Uuid
+        {
+            get { return this._uuid; }
+            set { this._uuid = value; }
+        }
+
+        // Check to see if Uuid property is set
+        internal bool IsSetUuid()
+        {
+            return this._uuid != null;
         }
 
         /// <summary>
@@ -506,6 +667,24 @@ namespace Amazon.Omics.Model
         internal bool IsSetWorkflowId()
         {
             return this._workflowId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WorkflowOwnerId. 
+        /// <para>
+        /// The ID of the workflow owner.
+        /// </para>
+        /// </summary>
+        public string WorkflowOwnerId
+        {
+            get { return this._workflowOwnerId; }
+            set { this._workflowOwnerId = value; }
+        }
+
+        // Check to see if WorkflowOwnerId property is set
+        internal bool IsSetWorkflowOwnerId()
+        {
+            return this._workflowOwnerId != null;
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.LexModelsV2.Model
     public partial class ListBotLocalesResponse : AmazonWebServiceResponse
     {
         private string _botId;
-        private List<BotLocaleSummary> _botLocaleSummaries = new List<BotLocaleSummary>();
+        private List<BotLocaleSummary> _botLocaleSummaries = AWSConfigs.InitializeCollections ? new List<BotLocaleSummary>() : null;
         private string _botVersion;
         private string _nextToken;
 
@@ -61,9 +62,9 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property BotLocaleSummaries. 
         /// <para>
         /// Summary information for the locales that meet the filter criteria specified in the
-        /// request. The length of the list is specified in the <code>maxResults</code> parameter
-        /// of the request. If there are more locales available, the <code>nextToken</code> field
-        /// contains a token to get the next page of results.
+        /// request. The length of the list is specified in the <c>maxResults</c> parameter of
+        /// the request. If there are more locales available, the <c>nextToken</c> field contains
+        /// a token to get the next page of results.
         /// </para>
         /// </summary>
         public List<BotLocaleSummary> BotLocaleSummaries
@@ -75,7 +76,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if BotLocaleSummaries property is set
         internal bool IsSetBotLocaleSummaries()
         {
-            return this._botLocaleSummaries != null && this._botLocaleSummaries.Count > 0; 
+            return this._botLocaleSummaries != null && (this._botLocaleSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -101,9 +102,9 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token that indicates whether there are more results to return in a response to the
-        /// <code>ListBotLocales</code> operation. If the <code>nextToken</code> field is present,
-        /// you send the contents as the <code>nextToken</code> parameter of a <code>ListBotLocales</code>
-        /// operation request to get the next page of results.
+        /// <c>ListBotLocales</c> operation. If the <c>nextToken</c> field is present, you send
+        /// the contents as the <c>nextToken</c> parameter of a <c>ListBotLocales</c> operation
+        /// request to get the next page of results.
         /// </para>
         /// </summary>
         public string NextToken

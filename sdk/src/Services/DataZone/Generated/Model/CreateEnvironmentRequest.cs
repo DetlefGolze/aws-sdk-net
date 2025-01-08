@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -34,13 +35,36 @@ namespace Amazon.DataZone.Model
     /// </summary>
     public partial class CreateEnvironmentRequest : AmazonDataZoneRequest
     {
+        private int? _deploymentOrder;
         private string _description;
         private string _domainIdentifier;
+        private string _environmentAccountIdentifier;
+        private string _environmentAccountRegion;
+        private string _environmentBlueprintIdentifier;
+        private string _environmentConfigurationId;
         private string _environmentProfileIdentifier;
-        private List<string> _glossaryTerms = new List<string>();
+        private List<string> _glossaryTerms = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
         private string _projectIdentifier;
-        private List<EnvironmentParameter> _userParameters = new List<EnvironmentParameter>();
+        private List<EnvironmentParameter> _userParameters = AWSConfigs.InitializeCollections ? new List<EnvironmentParameter>() : null;
+
+        /// <summary>
+        /// Gets and sets the property DeploymentOrder. 
+        /// <para>
+        /// The deployment order of the environment.
+        /// </para>
+        /// </summary>
+        public int DeploymentOrder
+        {
+            get { return this._deploymentOrder.GetValueOrDefault(); }
+            set { this._deploymentOrder = value; }
+        }
+
+        // Check to see if DeploymentOrder property is set
+        internal bool IsSetDeploymentOrder()
+        {
+            return this._deploymentOrder.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -80,6 +104,78 @@ namespace Amazon.DataZone.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EnvironmentAccountIdentifier. 
+        /// <para>
+        /// The ID of the account in which the environment is being created.
+        /// </para>
+        /// </summary>
+        public string EnvironmentAccountIdentifier
+        {
+            get { return this._environmentAccountIdentifier; }
+            set { this._environmentAccountIdentifier = value; }
+        }
+
+        // Check to see if EnvironmentAccountIdentifier property is set
+        internal bool IsSetEnvironmentAccountIdentifier()
+        {
+            return this._environmentAccountIdentifier != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EnvironmentAccountRegion. 
+        /// <para>
+        /// The region of the account in which the environment is being created.
+        /// </para>
+        /// </summary>
+        public string EnvironmentAccountRegion
+        {
+            get { return this._environmentAccountRegion; }
+            set { this._environmentAccountRegion = value; }
+        }
+
+        // Check to see if EnvironmentAccountRegion property is set
+        internal bool IsSetEnvironmentAccountRegion()
+        {
+            return this._environmentAccountRegion != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EnvironmentBlueprintIdentifier. 
+        /// <para>
+        /// The ID of the blueprint with which the environment is being created.
+        /// </para>
+        /// </summary>
+        public string EnvironmentBlueprintIdentifier
+        {
+            get { return this._environmentBlueprintIdentifier; }
+            set { this._environmentBlueprintIdentifier = value; }
+        }
+
+        // Check to see if EnvironmentBlueprintIdentifier property is set
+        internal bool IsSetEnvironmentBlueprintIdentifier()
+        {
+            return this._environmentBlueprintIdentifier != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EnvironmentConfigurationId. 
+        /// <para>
+        /// The configuration ID of the environment.
+        /// </para>
+        /// </summary>
+        public string EnvironmentConfigurationId
+        {
+            get { return this._environmentConfigurationId; }
+            set { this._environmentConfigurationId = value; }
+        }
+
+        // Check to see if EnvironmentConfigurationId property is set
+        internal bool IsSetEnvironmentConfigurationId()
+        {
+            return this._environmentConfigurationId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property EnvironmentProfileIdentifier. 
         /// <para>
         /// The identifier of the environment profile that is used to create this Amazon DataZone
@@ -115,7 +211,7 @@ namespace Amazon.DataZone.Model
         // Check to see if GlossaryTerms property is set
         internal bool IsSetGlossaryTerms()
         {
-            return this._glossaryTerms != null && this._glossaryTerms.Count > 0; 
+            return this._glossaryTerms != null && (this._glossaryTerms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -171,7 +267,7 @@ namespace Amazon.DataZone.Model
         // Check to see if UserParameters property is set
         internal bool IsSetUserParameters()
         {
-            return this._userParameters != null && this._userParameters.Count > 0; 
+            return this._userParameters != null && (this._userParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

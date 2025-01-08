@@ -34,6 +34,10 @@
     <min>0</min>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.CreateCampaignResponse.Arn</property>
+    <pattern>arn:aws:iotfleetwise:[a-z0-9-]+:[0-9]{12}:campaign/[a-zA-Z\d\-_:]{1,100}</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.CreateCampaignResponse.Name</property>
     <min>1</min>
     <max>100</max>
@@ -112,6 +116,30 @@
     <pattern>[a-zA-Z\d\-_:]+</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.CreateStateTemplateRequest.Description</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>[^\u0000-\u001F\u007F]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.CreateStateTemplateRequest.Name</property>
+    <min>1</min>
+    <max>100</max>
+    <pattern>[a-zA-Z\d\-_:]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.CreateStateTemplateResponse.Id</property>
+    <min>26</min>
+    <max>26</max>
+    <pattern>[A-Z0-9]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.CreateStateTemplateResponse.Name</property>
+    <min>1</min>
+    <max>100</max>
+    <pattern>[a-zA-Z\d\-_:]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.CreateVehicleRequest.VehicleName</property>
     <min>1</min>
     <max>100</max>
@@ -128,6 +156,10 @@
     <min>1</min>
     <max>100</max>
     <pattern>[a-zA-Z\d\-_:]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.DeleteCampaignResponse.Arn</property>
+    <pattern>arn:aws:iotfleetwise:[a-z0-9-]+:[0-9]{12}:campaign/[a-zA-Z\d\-_:]{1,100}</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.DeleteCampaignResponse.Name</property>
@@ -184,6 +216,24 @@
     <pattern>[a-zA-Z\d\-_:]+</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.DeleteStateTemplateRequest.Identifier</property>
+    <min>1</min>
+    <max>100</max>
+    <pattern>[a-zA-Z\d\-_:]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.DeleteStateTemplateResponse.Id</property>
+    <min>26</min>
+    <max>26</max>
+    <pattern>[A-Z0-9]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.DeleteStateTemplateResponse.Name</property>
+    <min>1</min>
+    <max>100</max>
+    <pattern>[a-zA-Z\d\-_:]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.DeleteVehicleRequest.VehicleName</property>
     <min>1</min>
     <max>100</max>
@@ -214,6 +264,10 @@
     <pattern>[a-zA-Z\d\-_:]+</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.GetCampaignResponse.Arn</property>
+    <pattern>arn:aws:iotfleetwise:[a-z0-9-]+:[0-9]{12}:campaign/[a-zA-Z\d\-_:]{1,100}</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.GetCampaignResponse.Description</property>
     <min>1</min>
     <max>2048</max>
@@ -242,6 +296,12 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.GetDecoderManifestResponse.Description</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>[^\u0000-\u001F\u007F]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.GetDecoderManifestResponse.Message</property>
     <min>1</min>
     <max>2048</max>
     <pattern>[^\u0000-\u001F\u007F]+</pattern>
@@ -296,6 +356,30 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.GetSignalCatalogResponse.Name</property>
+    <min>1</min>
+    <max>100</max>
+    <pattern>[a-zA-Z\d\-_:]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.GetStateTemplateRequest.Identifier</property>
+    <min>1</min>
+    <max>100</max>
+    <pattern>[a-zA-Z\d\-_:]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.GetStateTemplateResponse.Description</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>[^\u0000-\u001F\u007F]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.GetStateTemplateResponse.Id</property>
+    <min>26</min>
+    <max>26</max>
+    <pattern>[A-Z0-9]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.GetStateTemplateResponse.Name</property>
     <min>1</min>
     <max>100</max>
     <pattern>[a-zA-Z\d\-_:]+</pattern>
@@ -372,6 +456,12 @@
     <property>Amazon.IoTFleetWise.Model.ListCampaignsRequest.NextToken</property>
     <min>1</min>
     <max>4096</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.ListCampaignsRequest.Status</property>
+    <min>7</min>
+    <max>20</max>
+    <pattern>[A-Z_]*</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.ListCampaignsResponse.NextToken</property>
@@ -544,9 +634,25 @@
     <max>4096</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.ListStateTemplatesRequest.MaxResults</property>
+    <min>1</min>
+    <max>100</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.ListStateTemplatesRequest.NextToken</property>
+    <min>1</min>
+    <max>4096</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.ListStateTemplatesResponse.NextToken</property>
+    <min>1</min>
+    <max>4096</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.ListTagsForResourceRequest.ResourceARN</property>
     <min>1</min>
     <max>1011</max>
+    <pattern>arn:.*</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.ListVehiclesRequest.MaxResults</property>
@@ -585,14 +691,21 @@
     <max>4096</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.PutEncryptionConfigurationRequest.KmsKeyId</property>
+    <min>0</min>
+    <max>2048</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.TagResourceRequest.ResourceARN</property>
     <min>1</min>
     <max>1011</max>
+    <pattern>arn:.*</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.UntagResourceRequest.ResourceARN</property>
     <min>1</min>
     <max>1011</max>
+    <pattern>arn:.*</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.UpdateCampaignRequest.Description</property>
@@ -605,6 +718,10 @@
     <min>1</min>
     <max>100</max>
     <pattern>[a-zA-Z\d\-_:]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.UpdateCampaignResponse.Arn</property>
+    <pattern>arn:aws:iotfleetwise:[a-z0-9-]+:[0-9]{12}:campaign/[a-zA-Z\d\-_:]{1,100}</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.UpdateCampaignResponse.Name</property>
@@ -685,6 +802,30 @@
     <pattern>[a-zA-Z\d\-_:]+</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.UpdateStateTemplateRequest.Description</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>[^\u0000-\u001F\u007F]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.UpdateStateTemplateRequest.Identifier</property>
+    <min>1</min>
+    <max>100</max>
+    <pattern>[a-zA-Z\d\-_:]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.UpdateStateTemplateResponse.Id</property>
+    <min>26</min>
+    <max>26</max>
+    <pattern>[A-Z0-9]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.UpdateStateTemplateResponse.Name</property>
+    <min>1</min>
+    <max>100</max>
+    <pattern>[a-zA-Z\d\-_:]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.UpdateVehicleRequest.VehicleName</property>
     <min>1</min>
     <max>100</max>
@@ -713,6 +854,12 @@
     <min>1</min>
     <max>2048</max>
     <pattern>[^\u0000-\u001F\u007F]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.Actuator.StructFullyQualifiedName</property>
+    <min>1</min>
+    <max>150</max>
+    <pattern>[a-zA-Z0-9_.]+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.Attribute.Comment</property>
@@ -749,6 +896,10 @@
     <min>1</min>
     <max>2048</max>
     <pattern>[^\u0000-\u001F\u007F]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.CampaignSummary.Arn</property>
+    <pattern>arn:aws:iotfleetwise:[a-z0-9-]+:[0-9]{12}:campaign/[a-zA-Z\d\-_:]{1,100}</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.CampaignSummary.Description</property>
@@ -808,6 +959,7 @@
   <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.ConditionBasedCollectionScheme.ConditionLanguageVersion</property>
     <min>1</min>
+    <max>1</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.ConditionBasedCollectionScheme.Expression</property>
@@ -818,6 +970,11 @@
     <property>Amazon.IoTFleetWise.Model.ConditionBasedCollectionScheme.MinimumTriggerIntervalMs</property>
     <min>0</min>
     <max>4294967295</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.ConditionBasedSignalFetchConfig.ConditionExpression</property>
+    <min>1</min>
+    <max>400</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.CreateVehicleError.VehicleName</property>
@@ -838,7 +995,88 @@
     <pattern>[a-zA-Z\d\-_:]+</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.CustomDecodingInterface.Name</property>
+    <min>1</min>
+    <max>100</max>
+    <pattern>[a-zA-Z\d\-_:]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.CustomDecodingSignal.Id</property>
+    <min>1</min>
+    <max>150</max>
+    <pattern>(?!.*\.\.)[a-zA-Z0-9_\-#:.]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.CustomProperty.Comment</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>[^\u0000-\u001F\u007F]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.CustomProperty.DeprecationMessage</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>[^\u0000-\u001F\u007F]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.CustomProperty.Description</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>[^\u0000-\u001F\u007F]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.CustomProperty.StructFullyQualifiedName</property>
+    <min>1</min>
+    <max>150</max>
+    <pattern>[a-zA-Z0-9_.]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.CustomStruct.Comment</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>[^\u0000-\u001F\u007F]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.CustomStruct.DeprecationMessage</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>[^\u0000-\u001F\u007F]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.CustomStruct.Description</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>[^\u0000-\u001F\u007F]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.DataPartition.Id</property>
+    <min>1</min>
+    <max>128</max>
+    <pattern>[a-zA-Z0-9]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.DataPartitionStorageOptions.StorageLocation</property>
+    <min>1</min>
+    <max>4096</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.DataPartitionUploadOptions.ConditionLanguageVersion</property>
+    <min>1</min>
+    <max>1</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.DataPartitionUploadOptions.Expression</property>
+    <min>1</min>
+    <max>2048</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.DecoderManifestSummary.Description</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>[^\u0000-\u001F\u007F]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.DecoderManifestSummary.Message</property>
     <min>1</min>
     <max>2048</max>
     <pattern>[^\u0000-\u001F\u007F]+</pattern>
@@ -872,15 +1110,39 @@
     <max>150</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.InvalidSignalDecoder.Hint</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>[^\u0000-\u001F\u007F]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.InvalidSignalDecoder.Name</property>
     <min>1</min>
     <max>150</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.MessageSignal.TopicName</property>
+    <min>1</min>
+    <max>150</max>
+    <pattern>[a-zA-Z0-9_\-#:./]+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.ModelManifestSummary.Description</property>
     <min>1</min>
     <max>2048</max>
     <pattern>[^\u0000-\u001F\u007F]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.MqttTopicConfig.ExecutionRoleArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:(aws[a-zA-Z0-9-]*):iam::(\d{12})?:(role((\u002F)|(\u002F[\u0021-\u007F]+\u002F))[\w+=,.@-]+)</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.MqttTopicConfig.MqttTopicArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:.*</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.NetworkInterface.InterfaceId</property>
@@ -940,6 +1202,11 @@
     <min>0</min>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.ROS2PrimitiveMessageDefinition.UpperBound</property>
+    <min>0</min>
+    <max>2048</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.S3Config.BucketArn</property>
     <min>16</min>
     <max>100</max>
@@ -970,6 +1237,12 @@
     <pattern>[^\u0000-\u001F\u007F]+</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.Sensor.StructFullyQualifiedName</property>
+    <min>1</min>
+    <max>150</max>
+    <pattern>[a-zA-Z0-9_.]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.SignalDecoder.FullyQualifiedName</property>
     <min>1</min>
     <max>150</max>
@@ -978,6 +1251,23 @@
     <property>Amazon.IoTFleetWise.Model.SignalDecoder.InterfaceId</property>
     <min>1</min>
     <max>50</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.SignalFetchInformation.ConditionLanguageVersion</property>
+    <min>1</min>
+    <max>1</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.SignalFetchInformation.FullyQualifiedName</property>
+    <min>1</min>
+    <max>150</max>
+    <pattern>[a-zA-Z0-9_.]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.SignalInformation.DataPartitionId</property>
+    <min>1</min>
+    <max>128</max>
+    <pattern>[a-zA-Z0-9]+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.SignalInformation.MaxSampleCount</property>
@@ -996,6 +1286,54 @@
     <pattern>[\w|*|-]+(\.[\w|*|-]+)*</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.StateTemplateAssociation.Identifier</property>
+    <min>1</min>
+    <max>100</max>
+    <pattern>[a-zA-Z\d\-_:]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.StateTemplateSummary.Description</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>[^\u0000-\u001F\u007F]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.StateTemplateSummary.Id</property>
+    <min>26</min>
+    <max>26</max>
+    <pattern>[A-Z0-9]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.StateTemplateSummary.Name</property>
+    <min>1</min>
+    <max>100</max>
+    <pattern>[a-zA-Z\d\-_:]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.StorageMaximumSize.Value</property>
+    <min>1</min>
+    <max>1073741824</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.StorageMinimumTimeToLive.Value</property>
+    <min>1</min>
+    <max>876600</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.StructuredMessageFieldNameAndDataTypePair.FieldName</property>
+    <min>1</min>
+    <max>150</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.StructuredMessageListDefinition.Capacity</property>
+    <min>0</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.StructuredMessageListDefinition.Name</property>
+    <min>1</min>
+    <max>150</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.Tag.Key</property>
     <min>1</min>
     <max>128</max>
@@ -1008,7 +1346,15 @@
   <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.TimeBasedCollectionScheme.PeriodMs</property>
     <min>10000</min>
-    <max>60000</max>
+    <max>86400000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.TimeBasedSignalFetchConfig.ExecutionFrequencyMs</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.TimePeriod.Value</property>
+    <min>1</min>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.TimestreamConfig.ExecutionRoleArn</property>
@@ -1060,6 +1406,17 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.IoTFleetWise.Model.UpdateVehicleResponseItem.VehicleName</property>
+    <min>1</min>
+    <max>100</max>
+    <pattern>[a-zA-Z\d\-_:]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.VehicleMiddleware.Name</property>
+    <min>1</min>
+    <max>100</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.IoTFleetWise.Model.VehicleStatus.CampaignName</property>
     <min>1</min>
     <max>100</max>
     <pattern>[a-zA-Z\d\-_:]+</pattern>

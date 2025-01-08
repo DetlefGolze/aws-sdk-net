@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScalingPlans.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.AutoScalingPlans.Model
     public partial class DescribeScalingPlanResourcesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ScalingPlanResource> _scalingPlanResources = new List<ScalingPlanResource>();
+        private List<ScalingPlanResource> _scalingPlanResources = AWSConfigs.InitializeCollections ? new List<ScalingPlanResource>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token required to get the next set of results. This value is <code>null</code>
-        /// if there are no more results to return.
+        /// The token required to get the next set of results. This value is <c>null</c> if there
+        /// are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken
@@ -70,7 +71,7 @@ namespace Amazon.AutoScalingPlans.Model
         // Check to see if ScalingPlanResources property is set
         internal bool IsSetScalingPlanResources()
         {
-            return this._scalingPlanResources != null && this._scalingPlanResources.Count > 0; 
+            return this._scalingPlanResources != null && (this._scalingPlanResources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

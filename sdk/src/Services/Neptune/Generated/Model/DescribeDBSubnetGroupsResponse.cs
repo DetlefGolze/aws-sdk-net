@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Neptune.Model
     /// </summary>
     public partial class DescribeDBSubnetGroupsResponse : AmazonWebServiceResponse
     {
-        private List<DBSubnetGroup> _dbSubnetGroups = new List<DBSubnetGroup>();
+        private List<DBSubnetGroup> _dbSubnetGroups = AWSConfigs.InitializeCollections ? new List<DBSubnetGroup>() : null;
         private string _marker;
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace Amazon.Neptune.Model
         // Check to see if DBSubnetGroups property is set
         internal bool IsSetDBSubnetGroups()
         {
-            return this._dbSubnetGroups != null && this._dbSubnetGroups.Count > 0; 
+            return this._dbSubnetGroups != null && (this._dbSubnetGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.Neptune.Model
         /// <para>
         ///  An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>.
+        /// by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker

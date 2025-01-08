@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
-    /// The response object for the <code>CreateFileSystemFromBackup</code> operation.
+    /// The response object for the <c>CreateFileSystemFromBackup</c> operation.
     /// </summary>
     public partial class CreateFileSystemFromBackupResponse : AmazonWebServiceResponse
     {

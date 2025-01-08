@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CertificateManager.Model
 {
     /// <summary>
@@ -38,15 +39,15 @@ namespace Amazon.CertificateManager.Model
         private string _certificateAuthorityArn;
         private DateTime? _createdAt;
         private string _domainName;
-        private List<DomainValidation> _domainValidationOptions = new List<DomainValidation>();
-        private List<ExtendedKeyUsage> _extendedKeyUsages = new List<ExtendedKeyUsage>();
+        private List<DomainValidation> _domainValidationOptions = AWSConfigs.InitializeCollections ? new List<DomainValidation>() : null;
+        private List<ExtendedKeyUsage> _extendedKeyUsages = AWSConfigs.InitializeCollections ? new List<ExtendedKeyUsage>() : null;
         private FailureReason _failureReason;
         private DateTime? _importedAt;
-        private List<string> _inUseBy = new List<string>();
+        private List<string> _inUseBy = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _issuedAt;
         private string _issuer;
         private KeyAlgorithm _keyAlgorithm;
-        private List<KeyUsage> _keyUsages = new List<KeyUsage>();
+        private List<KeyUsage> _keyUsages = AWSConfigs.InitializeCollections ? new List<KeyUsage>() : null;
         private DateTime? _notAfter;
         private DateTime? _notBefore;
         private CertificateOptions _options;
@@ -58,7 +59,7 @@ namespace Amazon.CertificateManager.Model
         private string _signatureAlgorithm;
         private CertificateStatus _status;
         private string _subject;
-        private List<string> _subjectAlternativeNames = new List<string>();
+        private List<string> _subjectAlternativeNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private CertificateType _type;
 
         /// <summary>
@@ -90,7 +91,7 @@ namespace Amazon.CertificateManager.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012</code>
+        ///  <c>arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012</c>
         /// 
         /// </para>
         /// </summary>
@@ -149,7 +150,7 @@ namespace Amazon.CertificateManager.Model
         /// <para>
         /// Contains information about the initial validation of each domain name that occurs
         /// as a result of the <a>RequestCertificate</a> request. This field exists only when
-        /// the certificate type is <code>AMAZON_ISSUED</code>. 
+        /// the certificate type is <c>AMAZON_ISSUED</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]
@@ -162,7 +163,7 @@ namespace Amazon.CertificateManager.Model
         // Check to see if DomainValidationOptions property is set
         internal bool IsSetDomainValidationOptions()
         {
-            return this._domainValidationOptions != null && this._domainValidationOptions.Count > 0; 
+            return this._domainValidationOptions != null && (this._domainValidationOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -182,14 +183,14 @@ namespace Amazon.CertificateManager.Model
         // Check to see if ExtendedKeyUsages property is set
         internal bool IsSetExtendedKeyUsages()
         {
-            return this._extendedKeyUsages != null && this._extendedKeyUsages.Count > 0; 
+            return this._extendedKeyUsages != null && (this._extendedKeyUsages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property FailureReason. 
         /// <para>
         /// The reason the certificate request failed. This value exists only when the certificate
-        /// status is <code>FAILED</code>. For more information, see <a href="https://docs.aws.amazon.com/acm/latest/userguide/troubleshooting.html#troubleshooting-failed">Certificate
+        /// status is <c>FAILED</c>. For more information, see <a href="https://docs.aws.amazon.com/acm/latest/userguide/troubleshooting.html#troubleshooting-failed">Certificate
         /// Request Failed</a> in the <i>Certificate Manager User Guide</i>. 
         /// </para>
         /// </summary>
@@ -209,7 +210,7 @@ namespace Amazon.CertificateManager.Model
         /// Gets and sets the property ImportedAt. 
         /// <para>
         /// The date and time when the certificate was imported. This value exists only when the
-        /// certificate type is <code>IMPORTED</code>. 
+        /// certificate type is <c>IMPORTED</c>. 
         /// </para>
         /// </summary>
         public DateTime ImportedAt
@@ -240,14 +241,14 @@ namespace Amazon.CertificateManager.Model
         // Check to see if InUseBy property is set
         internal bool IsSetInUseBy()
         {
-            return this._inUseBy != null && this._inUseBy.Count > 0; 
+            return this._inUseBy != null && (this._inUseBy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property IssuedAt. 
         /// <para>
         /// The time at which the certificate was issued. This value exists only when the certificate
-        /// type is <code>AMAZON_ISSUED</code>. 
+        /// type is <c>AMAZON_ISSUED</c>. 
         /// </para>
         /// </summary>
         public DateTime IssuedAt
@@ -315,7 +316,7 @@ namespace Amazon.CertificateManager.Model
         // Check to see if KeyUsages property is set
         internal bool IsSetKeyUsages()
         {
-            return this._keyUsages != null && this._keyUsages.Count > 0; 
+            return this._keyUsages != null && (this._keyUsages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -399,7 +400,7 @@ namespace Amazon.CertificateManager.Model
         /// <para>
         /// Contains information about the status of ACM's <a href="https://docs.aws.amazon.com/acm/latest/userguide/acm-renewal.html">managed
         /// renewal</a> for the certificate. This field exists only when the certificate type
-        /// is <code>AMAZON_ISSUED</code>.
+        /// is <c>AMAZON_ISSUED</c>.
         /// </para>
         /// </summary>
         public RenewalSummary RenewalSummary
@@ -418,7 +419,7 @@ namespace Amazon.CertificateManager.Model
         /// Gets and sets the property RevocationReason. 
         /// <para>
         /// The reason the certificate was revoked. This value exists only when the certificate
-        /// status is <code>REVOKED</code>. 
+        /// status is <c>REVOKED</c>. 
         /// </para>
         /// </summary>
         public RevocationReason RevocationReason
@@ -437,7 +438,7 @@ namespace Amazon.CertificateManager.Model
         /// Gets and sets the property RevokedAt. 
         /// <para>
         /// The time at which the certificate was revoked. This value exists only when the certificate
-        /// status is <code>REVOKED</code>. 
+        /// status is <c>REVOKED</c>. 
         /// </para>
         /// </summary>
         public DateTime RevokedAt
@@ -555,14 +556,14 @@ namespace Amazon.CertificateManager.Model
         // Check to see if SubjectAlternativeNames property is set
         internal bool IsSetSubjectAlternativeNames()
         {
-            return this._subjectAlternativeNames != null && this._subjectAlternativeNames.Count > 0; 
+            return this._subjectAlternativeNames != null && (this._subjectAlternativeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The source of the certificate. For certificates provided by ACM, this value is <code>AMAZON_ISSUED</code>.
-        /// For certificates that you imported with <a>ImportCertificate</a>, this value is <code>IMPORTED</code>.
+        /// The source of the certificate. For certificates provided by ACM, this value is <c>AMAZON_ISSUED</c>.
+        /// For certificates that you imported with <a>ImportCertificate</a>, this value is <c>IMPORTED</c>.
         /// ACM does not provide <a href="https://docs.aws.amazon.com/acm/latest/userguide/acm-renewal.html">managed
         /// renewal</a> for imported certificates. For more information about the differences
         /// between certificates that you import and those that ACM provides, see <a href="https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html">Importing

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kafka.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.Kafka.Model
         private BrokerNodeGroupInfo _brokerNodeGroupInfo;
         private ClientAuthentication _clientAuthentication;
         private BrokerSoftwareInfo _currentBrokerSoftwareInfo;
+        private CustomerActionStatus _customerActionStatus;
         private EncryptionInfo _encryptionInfo;
         private EnhancedMonitoring _enhancedMonitoring;
         private LoggingInfo _loggingInfo;
@@ -98,6 +100,24 @@ namespace Amazon.Kafka.Model
         internal bool IsSetCurrentBrokerSoftwareInfo()
         {
             return this._currentBrokerSoftwareInfo != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CustomerActionStatus.             
+        /// <para>
+        /// Determines if there is an action required from the customer.
+        /// </para>
+        /// </summary>
+        public CustomerActionStatus CustomerActionStatus
+        {
+            get { return this._customerActionStatus; }
+            set { this._customerActionStatus = value; }
+        }
+
+        // Check to see if CustomerActionStatus property is set
+        internal bool IsSetCustomerActionStatus()
+        {
+            return this._customerActionStatus != null;
         }
 
         /// <summary>

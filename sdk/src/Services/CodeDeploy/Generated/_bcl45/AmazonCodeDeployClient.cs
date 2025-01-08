@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.CodeDeploy
 {
     /// <summary>
-    /// Implementation for accessing CodeDeploy
+    /// <para>Implementation for accessing CodeDeploy</para>
     ///
     /// CodeDeploy is a deployment service that automates application deployments to Amazon
     /// EC2 instances, on-premises instances running in your own facility, serverless Lambda
@@ -681,13 +682,13 @@ namespace Amazon.CodeDeploy
         /// <summary>
         /// <note> 
         /// <para>
-        ///  This method works, but is deprecated. Use <code>BatchGetDeploymentTargets</code>
-        /// instead. 
+        ///  This method works, but is deprecated. Use <c>BatchGetDeploymentTargets</c> instead.
+        /// 
         /// </para>
         ///  </note> 
         /// <para>
         ///  Returns an array of one or more instances associated with a deployment. This method
-        /// works with EC2/On-premises and Lambda compute platforms. The newer <code>BatchGetDeploymentTargets</code>
+        /// works with EC2/On-premises and Lambda compute platforms. The newer <c>BatchGetDeploymentTargets</c>
         /// works with all compute platforms. The maximum number of instances that can be returned
         /// is 25.
         /// </para>
@@ -708,8 +709,8 @@ namespace Amazon.CodeDeploy
         /// The instance ID was not specified.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidComputePlatformException">
-        /// The computePlatform is invalid. The computePlatform should be <code>Lambda</code>,
-        /// <code>Server</code>, or <code>ECS</code>.
+        /// The computePlatform is invalid. The computePlatform should be <c>Lambda</c>, <c>Server</c>,
+        /// or <c>ECS</c>.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidDeploymentIdException">
         /// At least one of the deployment IDs was specified in an invalid format.
@@ -732,13 +733,13 @@ namespace Amazon.CodeDeploy
         /// <summary>
         /// <note> 
         /// <para>
-        ///  This method works, but is deprecated. Use <code>BatchGetDeploymentTargets</code>
-        /// instead. 
+        ///  This method works, but is deprecated. Use <c>BatchGetDeploymentTargets</c> instead.
+        /// 
         /// </para>
         ///  </note> 
         /// <para>
         ///  Returns an array of one or more instances associated with a deployment. This method
-        /// works with EC2/On-premises and Lambda compute platforms. The newer <code>BatchGetDeploymentTargets</code>
+        /// works with EC2/On-premises and Lambda compute platforms. The newer <c>BatchGetDeploymentTargets</c>
         /// works with all compute platforms. The maximum number of instances that can be returned
         /// is 25.
         /// </para>
@@ -762,8 +763,8 @@ namespace Amazon.CodeDeploy
         /// The instance ID was not specified.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidComputePlatformException">
-        /// The computePlatform is invalid. The computePlatform should be <code>Lambda</code>,
-        /// <code>Server</code>, or <code>ECS</code>.
+        /// The computePlatform is invalid. The computePlatform should be <c>Lambda</c>, <c>Server</c>,
+        /// or <c>ECS</c>.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidDeploymentIdException">
         /// At least one of the deployment IDs was specified in an invalid format.
@@ -850,7 +851,7 @@ namespace Amazon.CodeDeploy
 
         /// <summary>
         /// Returns an array of one or more targets associated with a deployment. This method
-        /// works with all compute types and should be used instead of the deprecated <code>BatchGetDeploymentInstances</code>.
+        /// works with all compute types and should be used instead of the deprecated <c>BatchGetDeploymentInstances</c>.
         /// The maximum number of targets that can be returned is 25.
         /// 
         ///  
@@ -922,7 +923,7 @@ namespace Amazon.CodeDeploy
 
         /// <summary>
         /// Returns an array of one or more targets associated with a deployment. This method
-        /// works with all compute types and should be used instead of the deprecated <code>BatchGetDeploymentInstances</code>.
+        /// works with all compute types and should be used instead of the deprecated <c>BatchGetDeploymentInstances</c>.
         /// The maximum number of targets that can be returned is 25.
         /// 
         ///  
@@ -1177,8 +1178,8 @@ namespace Amazon.CodeDeploy
         /// The application name was specified in an invalid format.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidComputePlatformException">
-        /// The computePlatform is invalid. The computePlatform should be <code>Lambda</code>,
-        /// <code>Server</code>, or <code>ECS</code>.
+        /// The computePlatform is invalid. The computePlatform should be <c>Lambda</c>, <c>Server</c>,
+        /// or <c>ECS</c>.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidTagsToAddException">
         /// The specified tags are not valid.
@@ -1217,8 +1218,8 @@ namespace Amazon.CodeDeploy
         /// The application name was specified in an invalid format.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidComputePlatformException">
-        /// The computePlatform is invalid. The computePlatform should be <code>Lambda</code>,
-        /// <code>Server</code>, or <code>ECS</code>.
+        /// The computePlatform is invalid. The computePlatform should be <c>Lambda</c>, <c>Server</c>,
+        /// or <c>ECS</c>.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidTagsToAddException">
         /// The specified tags are not valid.
@@ -1320,9 +1321,8 @@ namespace Amazon.CodeDeploy
         /// The GitHub token is not valid.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidIgnoreApplicationStopFailuresValueException">
-        /// The IgnoreApplicationStopFailures value is invalid. For Lambda deployments, <code>false</code>
-        /// is expected. For EC2/On-premises deployments, <code>true</code> or <code>false</code>
-        /// is expected.
+        /// The IgnoreApplicationStopFailures value is invalid. For Lambda deployments, <c>false</c>
+        /// is expected. For EC2/On-premises deployments, <c>true</c> or <c>false</c> is expected.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidLoadBalancerInfoException">
         /// An invalid load balancer name, or no load balancer name, was specified.
@@ -1360,9 +1360,8 @@ namespace Amazon.CodeDeploy
         /// The configuration that specifies how traffic is routed during a deployment is invalid.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidUpdateOutdatedInstancesOnlyValueException">
-        /// The UpdateOutdatedInstancesOnly value is invalid. For Lambda deployments, <code>false</code>
-        /// is expected. For EC2/On-premises deployments, <code>true</code> or <code>false</code>
-        /// is expected.
+        /// The UpdateOutdatedInstancesOnly value is invalid. For Lambda deployments, <c>false</c>
+        /// is expected. For EC2/On-premises deployments, <c>true</c> or <c>false</c> is expected.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.RevisionDoesNotExistException">
         /// The named revision does not exist with the user or Amazon Web Services account.
@@ -1469,9 +1468,8 @@ namespace Amazon.CodeDeploy
         /// The GitHub token is not valid.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidIgnoreApplicationStopFailuresValueException">
-        /// The IgnoreApplicationStopFailures value is invalid. For Lambda deployments, <code>false</code>
-        /// is expected. For EC2/On-premises deployments, <code>true</code> or <code>false</code>
-        /// is expected.
+        /// The IgnoreApplicationStopFailures value is invalid. For Lambda deployments, <c>false</c>
+        /// is expected. For EC2/On-premises deployments, <c>true</c> or <c>false</c> is expected.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidLoadBalancerInfoException">
         /// An invalid load balancer name, or no load balancer name, was specified.
@@ -1509,9 +1507,8 @@ namespace Amazon.CodeDeploy
         /// The configuration that specifies how traffic is routed during a deployment is invalid.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidUpdateOutdatedInstancesOnlyValueException">
-        /// The UpdateOutdatedInstancesOnly value is invalid. For Lambda deployments, <code>false</code>
-        /// is expected. For EC2/On-premises deployments, <code>true</code> or <code>false</code>
-        /// is expected.
+        /// The UpdateOutdatedInstancesOnly value is invalid. For Lambda deployments, <c>false</c>
+        /// is expected. For EC2/On-premises deployments, <c>true</c> or <c>false</c> is expected.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.RevisionDoesNotExistException">
         /// The named revision does not exist with the user or Amazon Web Services account.
@@ -1554,8 +1551,8 @@ namespace Amazon.CodeDeploy
         /// The deployment configuration name was not specified.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidComputePlatformException">
-        /// The computePlatform is invalid. The computePlatform should be <code>Lambda</code>,
-        /// <code>Server</code>, or <code>ECS</code>.
+        /// The computePlatform is invalid. The computePlatform should be <c>Lambda</c>, <c>Server</c>,
+        /// or <c>ECS</c>.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidDeploymentConfigNameException">
         /// The deployment configuration name was specified in an invalid format.
@@ -1565,6 +1562,9 @@ namespace Amazon.CodeDeploy
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidTrafficRoutingConfigurationException">
         /// The configuration that specifies how traffic is routed during a deployment is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CodeDeploy.Model.InvalidZonalDeploymentConfigurationException">
+        /// The <c>ZonalConfig</c> object is not valid.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/CreateDeploymentConfig">REST API Reference for CreateDeploymentConfig Operation</seealso>
         public virtual CreateDeploymentConfigResponse CreateDeploymentConfig(CreateDeploymentConfigRequest request)
@@ -1597,8 +1597,8 @@ namespace Amazon.CodeDeploy
         /// The deployment configuration name was not specified.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidComputePlatformException">
-        /// The computePlatform is invalid. The computePlatform should be <code>Lambda</code>,
-        /// <code>Server</code>, or <code>ECS</code>.
+        /// The computePlatform is invalid. The computePlatform should be <c>Lambda</c>, <c>Server</c>,
+        /// or <c>ECS</c>.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidDeploymentConfigNameException">
         /// The deployment configuration name was specified in an invalid format.
@@ -1608,6 +1608,9 @@ namespace Amazon.CodeDeploy
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidTrafficRoutingConfigurationException">
         /// The configuration that specifies how traffic is routed during a deployment is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.CodeDeploy.Model.InvalidZonalDeploymentConfigurationException">
+        /// The <c>ZonalConfig</c> object is not valid.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/CreateDeploymentConfig">REST API Reference for CreateDeploymentConfig Operation</seealso>
         public virtual Task<CreateDeploymentConfigResponse> CreateDeploymentConfigAsync(CreateDeploymentConfigRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -2472,10 +2475,10 @@ namespace Amazon.CodeDeploy
         /// 
         ///  <note> 
         /// <para>
-        ///  The <code>content</code> property of the <code>appSpecContent</code> object in the
-        /// returned revision is always null. Use <code>GetApplicationRevision</code> and the
-        /// <code>sha256</code> property of the returned <code>appSpecContent</code> object to
-        /// get the content of the deployment’s AppSpec file. 
+        ///  The <c>content</c> property of the <c>appSpecContent</c> object in the returned revision
+        /// is always null. Use <c>GetApplicationRevision</c> and the <c>sha256</c> property of
+        /// the returned <c>appSpecContent</c> object to get the content of the deployment’s AppSpec
+        /// file. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -2507,10 +2510,10 @@ namespace Amazon.CodeDeploy
         /// 
         ///  <note> 
         /// <para>
-        ///  The <code>content</code> property of the <code>appSpecContent</code> object in the
-        /// returned revision is always null. Use <code>GetApplicationRevision</code> and the
-        /// <code>sha256</code> property of the returned <code>appSpecContent</code> object to
-        /// get the content of the deployment’s AppSpec file. 
+        ///  The <c>content</c> property of the <c>appSpecContent</c> object in the returned revision
+        /// is always null. Use <c>GetApplicationRevision</c> and the <c>sha256</c> property of
+        /// the returned <c>appSpecContent</c> object to get the content of the deployment’s AppSpec
+        /// file. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -2557,8 +2560,8 @@ namespace Amazon.CodeDeploy
         /// The deployment configuration name was not specified.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidComputePlatformException">
-        /// The computePlatform is invalid. The computePlatform should be <code>Lambda</code>,
-        /// <code>Server</code>, or <code>ECS</code>.
+        /// The computePlatform is invalid. The computePlatform should be <c>Lambda</c>, <c>Server</c>,
+        /// or <c>ECS</c>.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidDeploymentConfigNameException">
         /// The deployment configuration name was specified in an invalid format.
@@ -2590,8 +2593,8 @@ namespace Amazon.CodeDeploy
         /// The deployment configuration name was not specified.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidComputePlatformException">
-        /// The computePlatform is invalid. The computePlatform should be <code>Lambda</code>,
-        /// <code>Server</code>, or <code>ECS</code>.
+        /// The computePlatform is invalid. The computePlatform should be <c>Lambda</c>, <c>Server</c>,
+        /// or <c>ECS</c>.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidDeploymentConfigNameException">
         /// The deployment configuration name was specified in an invalid format.
@@ -2713,8 +2716,8 @@ namespace Amazon.CodeDeploy
         /// The instance ID was not specified.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidComputePlatformException">
-        /// The computePlatform is invalid. The computePlatform should be <code>Lambda</code>,
-        /// <code>Server</code>, or <code>ECS</code>.
+        /// The computePlatform is invalid. The computePlatform should be <c>Lambda</c>, <c>Server</c>,
+        /// or <c>ECS</c>.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidDeploymentIdException">
         /// At least one of the deployment IDs was specified in an invalid format.
@@ -2756,8 +2759,8 @@ namespace Amazon.CodeDeploy
         /// The instance ID was not specified.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidComputePlatformException">
-        /// The computePlatform is invalid. The computePlatform should be <code>Lambda</code>,
-        /// <code>Server</code>, or <code>ECS</code>.
+        /// The computePlatform is invalid. The computePlatform should be <c>Lambda</c>, <c>Server</c>,
+        /// or <c>ECS</c>.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidDeploymentIdException">
         /// At least one of the deployment IDs was specified in an invalid format.
@@ -3258,9 +3261,9 @@ namespace Amazon.CodeDeploy
         /// <summary>
         /// <note> 
         /// <para>
-        ///  The newer <code>BatchGetDeploymentTargets</code> should be used instead because it
-        /// works with all compute types. <code>ListDeploymentInstances</code> throws an exception
-        /// if it is used with a compute platform other than EC2/On-premises or Lambda. 
+        ///  The newer <c>BatchGetDeploymentTargets</c> should be used instead because it works
+        /// with all compute types. <c>ListDeploymentInstances</c> throws an exception if it is
+        /// used with a compute platform other than EC2/On-premises or Lambda. 
         /// </para>
         ///  </note> 
         /// <para>
@@ -3281,8 +3284,8 @@ namespace Amazon.CodeDeploy
         /// The specified deployment has not started.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidComputePlatformException">
-        /// The computePlatform is invalid. The computePlatform should be <code>Lambda</code>,
-        /// <code>Server</code>, or <code>ECS</code>.
+        /// The computePlatform is invalid. The computePlatform should be <c>Lambda</c>, <c>Server</c>,
+        /// or <c>ECS</c>.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidDeploymentIdException">
         /// At least one of the deployment IDs was specified in an invalid format.
@@ -3319,9 +3322,9 @@ namespace Amazon.CodeDeploy
         /// <summary>
         /// <note> 
         /// <para>
-        ///  The newer <code>BatchGetDeploymentTargets</code> should be used instead because it
-        /// works with all compute types. <code>ListDeploymentInstances</code> throws an exception
-        /// if it is used with a compute platform other than EC2/On-premises or Lambda. 
+        ///  The newer <c>BatchGetDeploymentTargets</c> should be used instead because it works
+        /// with all compute types. <c>ListDeploymentInstances</c> throws an exception if it is
+        /// used with a compute platform other than EC2/On-premises or Lambda. 
         /// </para>
         ///  </note> 
         /// <para>
@@ -3345,8 +3348,8 @@ namespace Amazon.CodeDeploy
         /// The specified deployment has not started.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidComputePlatformException">
-        /// The computePlatform is invalid. The computePlatform should be <code>Lambda</code>,
-        /// <code>Server</code>, or <code>ECS</code>.
+        /// The computePlatform is invalid. The computePlatform should be <c>Lambda</c>, <c>Server</c>,
+        /// or <c>ECS</c>.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidDeploymentIdException">
         /// At least one of the deployment IDs was specified in an invalid format.
@@ -3525,6 +3528,9 @@ namespace Amazon.CodeDeploy
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidNextTokenException">
         /// The next token was specified in an invalid format.
         /// </exception>
+        /// <exception cref="Amazon.CodeDeploy.Model.InvalidTargetFilterNameException">
+        /// The target filter name is invalid.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/ListDeploymentTargets">REST API Reference for ListDeploymentTargets Operation</seealso>
         public virtual ListDeploymentTargetsResponse ListDeploymentTargets(ListDeploymentTargetsRequest request)
         {
@@ -3570,6 +3576,9 @@ namespace Amazon.CodeDeploy
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidNextTokenException">
         /// The next token was specified in an invalid format.
+        /// </exception>
+        /// <exception cref="Amazon.CodeDeploy.Model.InvalidTargetFilterNameException">
+        /// The target filter name is invalid.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/ListDeploymentTargets">REST API Reference for ListDeploymentTargets Operation</seealso>
         public virtual Task<ListDeploymentTargetsResponse> ListDeploymentTargetsAsync(ListDeploymentTargetsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -3784,12 +3793,11 @@ namespace Amazon.CodeDeploy
         /// <summary>
         /// Sets the result of a Lambda validation function. The function validates lifecycle
         /// hooks during a deployment that uses the Lambda or Amazon ECS compute platform. For
-        /// Lambda deployments, the available lifecycle hooks are <code>BeforeAllowTraffic</code>
-        /// and <code>AfterAllowTraffic</code>. For Amazon ECS deployments, the available lifecycle
-        /// hooks are <code>BeforeInstall</code>, <code>AfterInstall</code>, <code>AfterAllowTestTraffic</code>,
-        /// <code>BeforeAllowTraffic</code>, and <code>AfterAllowTraffic</code>. Lambda validation
-        /// functions return <code>Succeeded</code> or <code>Failed</code>. For more information,
-        /// see <a href="https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-hooks.html#appspec-hooks-lambda">AppSpec
+        /// Lambda deployments, the available lifecycle hooks are <c>BeforeAllowTraffic</c> and
+        /// <c>AfterAllowTraffic</c>. For Amazon ECS deployments, the available lifecycle hooks
+        /// are <c>BeforeInstall</c>, <c>AfterInstall</c>, <c>AfterAllowTestTraffic</c>, <c>BeforeAllowTraffic</c>,
+        /// and <c>AfterAllowTraffic</c>. Lambda validation functions return <c>Succeeded</c>
+        /// or <c>Failed</c>. For more information, see <a href="https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-hooks.html#appspec-hooks-lambda">AppSpec
         /// 'hooks' Section for an Lambda Deployment </a> and <a href="https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-hooks.html#appspec-hooks-ecs">AppSpec
         /// 'hooks' Section for an Amazon ECS Deployment</a>.
         /// </summary>
@@ -3806,12 +3814,12 @@ namespace Amazon.CodeDeploy
         /// At least one of the deployment IDs was specified in an invalid format.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidLifecycleEventHookExecutionIdException">
-        /// A lifecycle event hook is invalid. Review the <code>hooks</code> section in your AppSpec
-        /// file to ensure the lifecycle events and <code>hooks</code> functions are valid.
+        /// A lifecycle event hook is invalid. Review the <c>hooks</c> section in your AppSpec
+        /// file to ensure the lifecycle events and <c>hooks</c> functions are valid.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidLifecycleEventHookExecutionStatusException">
         /// The result of a Lambda validation function that verifies a lifecycle event is invalid.
-        /// It should return <code>Succeeded</code> or <code>Failed</code>.
+        /// It should return <c>Succeeded</c> or <c>Failed</c>.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.LifecycleEventAlreadyCompletedException">
         /// An attempt to return the status of an already completed lifecycle event occurred.
@@ -3833,12 +3841,11 @@ namespace Amazon.CodeDeploy
         /// <summary>
         /// Sets the result of a Lambda validation function. The function validates lifecycle
         /// hooks during a deployment that uses the Lambda or Amazon ECS compute platform. For
-        /// Lambda deployments, the available lifecycle hooks are <code>BeforeAllowTraffic</code>
-        /// and <code>AfterAllowTraffic</code>. For Amazon ECS deployments, the available lifecycle
-        /// hooks are <code>BeforeInstall</code>, <code>AfterInstall</code>, <code>AfterAllowTestTraffic</code>,
-        /// <code>BeforeAllowTraffic</code>, and <code>AfterAllowTraffic</code>. Lambda validation
-        /// functions return <code>Succeeded</code> or <code>Failed</code>. For more information,
-        /// see <a href="https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-hooks.html#appspec-hooks-lambda">AppSpec
+        /// Lambda deployments, the available lifecycle hooks are <c>BeforeAllowTraffic</c> and
+        /// <c>AfterAllowTraffic</c>. For Amazon ECS deployments, the available lifecycle hooks
+        /// are <c>BeforeInstall</c>, <c>AfterInstall</c>, <c>AfterAllowTestTraffic</c>, <c>BeforeAllowTraffic</c>,
+        /// and <c>AfterAllowTraffic</c>. Lambda validation functions return <c>Succeeded</c>
+        /// or <c>Failed</c>. For more information, see <a href="https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-hooks.html#appspec-hooks-lambda">AppSpec
         /// 'hooks' Section for an Lambda Deployment </a> and <a href="https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-hooks.html#appspec-hooks-ecs">AppSpec
         /// 'hooks' Section for an Amazon ECS Deployment</a>.
         /// </summary>
@@ -3858,12 +3865,12 @@ namespace Amazon.CodeDeploy
         /// At least one of the deployment IDs was specified in an invalid format.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidLifecycleEventHookExecutionIdException">
-        /// A lifecycle event hook is invalid. Review the <code>hooks</code> section in your AppSpec
-        /// file to ensure the lifecycle events and <code>hooks</code> functions are valid.
+        /// A lifecycle event hook is invalid. Review the <c>hooks</c> section in your AppSpec
+        /// file to ensure the lifecycle events and <c>hooks</c> functions are valid.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.InvalidLifecycleEventHookExecutionStatusException">
         /// The result of a Lambda validation function that verifies a lifecycle event is invalid.
-        /// It should return <code>Succeeded</code> or <code>Failed</code>.
+        /// It should return <c>Succeeded</c> or <c>Failed</c>.
         /// </exception>
         /// <exception cref="Amazon.CodeDeploy.Model.LifecycleEventAlreadyCompletedException">
         /// An attempt to return the status of an already completed lifecycle event occurred.
@@ -4326,8 +4333,8 @@ namespace Amazon.CodeDeploy
 
 
         /// <summary>
-        /// Associates the list of tags in the input <code>Tags</code> parameter with the resource
-        /// identified by the <code>ResourceArn</code> input parameter.
+        /// Associates the list of tags in the input <c>Tags</c> parameter with the resource
+        /// identified by the <c>ResourceArn</c> input parameter.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the TagResource service method.</param>
         /// 
@@ -4369,8 +4376,8 @@ namespace Amazon.CodeDeploy
 
 
         /// <summary>
-        /// Associates the list of tags in the input <code>Tags</code> parameter with the resource
-        /// identified by the <code>ResourceArn</code> input parameter.
+        /// Associates the list of tags in the input <c>Tags</c> parameter with the resource
+        /// identified by the <c>ResourceArn</c> input parameter.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the TagResource service method.</param>
         /// <param name="cancellationToken">
@@ -4419,8 +4426,8 @@ namespace Amazon.CodeDeploy
 
 
         /// <summary>
-        /// Disassociates a resource from a list of tags. The resource is identified by the <code>ResourceArn</code>
-        /// input parameter. The tags are identified by the list of keys in the <code>TagKeys</code>
+        /// Disassociates a resource from a list of tags. The resource is identified by the <c>ResourceArn</c>
+        /// input parameter. The tags are identified by the list of keys in the <c>TagKeys</c>
         /// input parameter.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
@@ -4463,8 +4470,8 @@ namespace Amazon.CodeDeploy
 
 
         /// <summary>
-        /// Disassociates a resource from a list of tags. The resource is identified by the <code>ResourceArn</code>
-        /// input parameter. The tags are identified by the list of keys in the <code>TagKeys</code>
+        /// Disassociates a resource from a list of tags. The resource is identified by the <c>ResourceArn</c>
+        /// input parameter. The tags are identified by the list of keys in the <c>TagKeys</c>
         /// input parameter.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
@@ -4879,11 +4886,11 @@ namespace Amazon.CodeDeploy
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ResourceDetails Unmarshall(JsonUnmarshallerContext context)
         {
+            ResourceDetails unmarshalledObject = new ResourceDetails();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ResourceDetails unmarshalledObject = new ResourceDetails();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -194,6 +196,12 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = AwsDynamoDbTableDetailsUnmarshaller.Instance;
                     unmarshalledObject.AwsDynamoDbTable = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("AwsEc2ClientVpnEndpoint", targetDepth))
+                {
+                    var unmarshaller = AwsEc2ClientVpnEndpointDetailsUnmarshaller.Instance;
+                    unmarshalledObject.AwsEc2ClientVpnEndpoint = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("AwsEc2Eip", targetDepth))
@@ -514,6 +522,12 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
                     unmarshalledObject.AwsRoute53HostedZone = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("AwsS3AccessPoint", targetDepth))
+                {
+                    var unmarshaller = AwsS3AccessPointDetailsUnmarshaller.Instance;
+                    unmarshalledObject.AwsS3AccessPoint = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("AwsS3AccountPublicAccessBlock", targetDepth))
                 {
                     var unmarshaller = AwsS3AccountPublicAccessBlockDetailsUnmarshaller.Instance;
@@ -647,7 +661,6 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

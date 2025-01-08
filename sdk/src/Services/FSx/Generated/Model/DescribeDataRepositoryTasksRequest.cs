@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeDataRepositoryTasks operation.
     /// Returns the description of specific Amazon FSx for Lustre or Amazon File Cache data
-    /// repository tasks, if one or more <code>TaskIds</code> values are provided in the request,
+    /// repository tasks, if one or more <c>TaskIds</c> values are provided in the request,
     /// or if filters are used in the request. You can use filters to narrow the response
     /// to include just tasks for specific file systems or caches, or tasks in a specific
     /// lifecycle state. Otherwise, it returns all data repository tasks owned by your Amazon
@@ -40,25 +41,25 @@ namespace Amazon.FSx.Model
     /// 
     ///  
     /// <para>
-    /// When retrieving all tasks, you can paginate the response by using the optional <code>MaxResults</code>
+    /// When retrieving all tasks, you can paginate the response by using the optional <c>MaxResults</c>
     /// parameter to limit the number of tasks returned in a response. If more tasks remain,
-    /// a <code>NextToken</code> value is returned in the response. In this case, send a later
-    /// request with the <code>NextToken</code> request parameter set to the value of <code>NextToken</code>
-    /// from the last response.
+    /// a <c>NextToken</c> value is returned in the response. In this case, send a later request
+    /// with the <c>NextToken</c> request parameter set to the value of <c>NextToken</c> from
+    /// the last response.
     /// </para>
     /// </summary>
     public partial class DescribeDataRepositoryTasksRequest : AmazonFSxRequest
     {
-        private List<DataRepositoryTaskFilter> _filters = new List<DataRepositoryTaskFilter>();
+        private List<DataRepositoryTaskFilter> _filters = AWSConfigs.InitializeCollections ? new List<DataRepositoryTaskFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _taskIds = new List<string>();
+        private List<string> _taskIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// (Optional) You can use filters to narrow the <code>DescribeDataRepositoryTasks</code>
-        /// response to include just tasks for specific file systems, or tasks in a specific lifecycle
+        /// (Optional) You can use filters to narrow the <c>DescribeDataRepositoryTasks</c> response
+        /// to include just tasks for specific file systems, or tasks in a specific lifecycle
         /// state.
         /// </para>
         /// </summary>
@@ -72,7 +73,7 @@ namespace Amazon.FSx.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -123,7 +124,7 @@ namespace Amazon.FSx.Model
         // Check to see if TaskIds property is set
         internal bool IsSetTaskIds()
         {
-            return this._taskIds != null && this._taskIds.Count > 0; 
+            return this._taskIds != null && (this._taskIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

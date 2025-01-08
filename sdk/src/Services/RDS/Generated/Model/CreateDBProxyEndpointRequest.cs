@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateDBProxyEndpoint operation.
-    /// Creates a <code>DBProxyEndpoint</code>. Only applies to proxies that are associated
-    /// with Aurora DB clusters. You can use DB proxy endpoints to specify read/write or read-only
+    /// Creates a <c>DBProxyEndpoint</c>. Only applies to proxies that are associated with
+    /// Aurora DB clusters. You can use DB proxy endpoints to specify read/write or read-only
     /// access to the DB cluster. You can also use DB proxy endpoints to access a DB proxy
     /// through a different VPC than the proxy's default VPC.
     /// </summary>
@@ -39,10 +40,10 @@ namespace Amazon.RDS.Model
     {
         private string _dbProxyEndpointName;
         private string _dbProxyName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private DBProxyEndpointTargetRole _targetRole;
-        private List<string> _vpcSecurityGroupIds = new List<string>();
-        private List<string> _vpcSubnetIds = new List<string>();
+        private List<string> _vpcSecurityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _vpcSubnetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DBProxyEndpointName. 
@@ -94,15 +95,15 @@ namespace Amazon.RDS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TargetRole. 
         /// <para>
         /// The role of the DB proxy endpoint. The role determines whether the endpoint can be
-        /// used for read/write or only read operations. The default is <code>READ_WRITE</code>.
-        /// The only role that proxies for RDS for Microsoft SQL Server support is <code>READ_WRITE</code>.
+        /// used for read/write or only read operations. The default is <c>READ_WRITE</c>. The
+        /// only role that proxies for RDS for Microsoft SQL Server support is <c>READ_WRITE</c>.
         /// </para>
         /// </summary>
         public DBProxyEndpointTargetRole TargetRole
@@ -134,7 +135,7 @@ namespace Amazon.RDS.Model
         // Check to see if VpcSecurityGroupIds property is set
         internal bool IsSetVpcSecurityGroupIds()
         {
-            return this._vpcSecurityGroupIds != null && this._vpcSecurityGroupIds.Count > 0; 
+            return this._vpcSecurityGroupIds != null && (this._vpcSecurityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -154,7 +155,7 @@ namespace Amazon.RDS.Model
         // Check to see if VpcSubnetIds property is set
         internal bool IsSetVpcSubnetIds()
         {
-            return this._vpcSubnetIds != null && this._vpcSubnetIds.Count > 0; 
+            return this._vpcSubnetIds != null && (this._vpcSubnetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

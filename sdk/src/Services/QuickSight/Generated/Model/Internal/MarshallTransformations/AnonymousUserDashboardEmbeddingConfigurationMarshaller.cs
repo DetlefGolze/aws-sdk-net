@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,41 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(AnonymousUserDashboardEmbeddingConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetDisabledFeatures())
+            {
+                context.Writer.WritePropertyName("DisabledFeatures");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectDisabledFeaturesListValue in requestObject.DisabledFeatures)
+                {
+                        context.Writer.Write(requestObjectDisabledFeaturesListValue);
+                }
+                context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetEnabledFeatures())
+            {
+                context.Writer.WritePropertyName("EnabledFeatures");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectEnabledFeaturesListValue in requestObject.EnabledFeatures)
+                {
+                        context.Writer.Write(requestObjectEnabledFeaturesListValue);
+                }
+                context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetFeatureConfigurations())
+            {
+                context.Writer.WritePropertyName("FeatureConfigurations");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = AnonymousUserDashboardFeatureConfigurationsMarshaller.Instance;
+                marshaller.Marshall(requestObject.FeatureConfigurations, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetInitialDashboardId())
             {
                 context.Writer.WritePropertyName("InitialDashboardId");

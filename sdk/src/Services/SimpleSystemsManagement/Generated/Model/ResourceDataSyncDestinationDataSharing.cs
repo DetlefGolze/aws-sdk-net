@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property DestinationDataSharingType. 
         /// <para>
-        /// The sharing data type. Only <code>Organization</code> is supported.
+        /// The sharing data type. Only <c>Organization</c> is supported.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.SecurityHub.Model
     public partial class GetEnabledStandardsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<StandardsSubscription> _standardsSubscriptions = new List<StandardsSubscription>();
+        private List<StandardsSubscription> _standardsSubscriptions = AWSConfigs.InitializeCollections ? new List<StandardsSubscription>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -57,8 +58,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property StandardsSubscriptions. 
         /// <para>
-        /// The list of <code>StandardsSubscriptions</code> objects that include information about
-        /// the enabled standards.
+        /// The list of <c>StandardsSubscriptions</c> objects that include information about the
+        /// enabled standards.
         /// </para>
         /// </summary>
         public List<StandardsSubscription> StandardsSubscriptions
@@ -70,7 +71,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if StandardsSubscriptions property is set
         internal bool IsSetStandardsSubscriptions()
         {
-            return this._standardsSubscriptions != null && this._standardsSubscriptions.Count > 0; 
+            return this._standardsSubscriptions != null && (this._standardsSubscriptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

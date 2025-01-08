@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Textract.Model
 {
     /// <summary>
@@ -38,9 +39,8 @@ namespace Amazon.Textract.Model
         /// <summary>
         /// Gets and sets the property JobId. 
         /// <para>
-        /// A unique identifier for the text detection job. The <code>JobId</code> is returned
-        /// from <code>StartExpenseAnalysis</code>. A <code>JobId</code> value is only valid for
-        /// 7 days.
+        /// A unique identifier for the text detection job. The <c>JobId</c> is returned from
+        /// <c>StartExpenseAnalysis</c>. A <c>JobId</c> value is only valid for 7 days.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]

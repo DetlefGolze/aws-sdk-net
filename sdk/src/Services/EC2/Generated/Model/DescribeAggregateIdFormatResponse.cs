@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeAggregateIdFormatResponse : AmazonWebServiceResponse
     {
-        private List<IdFormat> _statuses = new List<IdFormat>();
+        private List<IdFormat> _statuses = AWSConfigs.InitializeCollections ? new List<IdFormat>() : null;
         private bool? _useLongIdsAggregated;
 
         /// <summary>
@@ -51,15 +52,15 @@ namespace Amazon.EC2.Model
         // Check to see if Statuses property is set
         internal bool IsSetStatuses()
         {
-            return this._statuses != null && this._statuses.Count > 0; 
+            return this._statuses != null && (this._statuses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UseLongIdsAggregated. 
         /// <para>
         /// Indicates whether all resource types in the Region are configured to use longer IDs.
-        /// This value is only <code>true</code> if all users are configured to use longer IDs
-        /// for all resources types in the Region.
+        /// This value is only <c>true</c> if all users are configured to use longer IDs for all
+        /// resources types in the Region.
         /// </para>
         /// </summary>
         public bool UseLongIdsAggregated

@@ -26,23 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FraudDetector.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateDetectorVersion operation.
     /// Updates a detector version. The detector version attributes that you can update include
     /// models, external model endpoints, rules, rule execution mode, and description. You
-    /// can only update a <code>DRAFT</code> detector version.
+    /// can only update a <c>DRAFT</c> detector version.
     /// </summary>
     public partial class UpdateDetectorVersionRequest : AmazonFraudDetectorRequest
     {
         private string _description;
         private string _detectorId;
         private string _detectorVersionId;
-        private List<string> _externalModelEndpoints = new List<string>();
-        private List<ModelVersion> _modelVersions = new List<ModelVersion>();
+        private List<string> _externalModelEndpoints = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<ModelVersion> _modelVersions = AWSConfigs.InitializeCollections ? new List<ModelVersion>() : null;
         private RuleExecutionMode _ruleExecutionMode;
-        private List<Rule> _rules = new List<Rule>();
+        private List<Rule> _rules = AWSConfigs.InitializeCollections ? new List<Rule>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -117,7 +118,7 @@ namespace Amazon.FraudDetector.Model
         // Check to see if ExternalModelEndpoints property is set
         internal bool IsSetExternalModelEndpoints()
         {
-            return this._externalModelEndpoints != null && this._externalModelEndpoints.Count > 0; 
+            return this._externalModelEndpoints != null && (this._externalModelEndpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -135,7 +136,7 @@ namespace Amazon.FraudDetector.Model
         // Check to see if ModelVersions property is set
         internal bool IsSetModelVersions()
         {
-            return this._modelVersions != null && this._modelVersions.Count > 0; 
+            return this._modelVersions != null && (this._modelVersions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -145,19 +146,19 @@ namespace Amazon.FraudDetector.Model
         /// </para>
         ///  
         /// <para>
-        /// If you specify <code>FIRST_MATCHED</code>, Amazon Fraud Detector evaluates rules sequentially,
+        /// If you specify <c>FIRST_MATCHED</c>, Amazon Fraud Detector evaluates rules sequentially,
         /// first to last, stopping at the first matched rule. Amazon Fraud dectector then provides
         /// the outcomes for that single rule.
         /// </para>
         ///  
         /// <para>
-        /// If you specifiy <code>ALL_MATCHED</code>, Amazon Fraud Detector evaluates all rules
-        /// and returns the outcomes for all matched rules. You can define and edit the rule mode
+        /// If you specifiy <c>ALL_MATCHED</c>, Amazon Fraud Detector evaluates all rules and
+        /// returns the outcomes for all matched rules. You can define and edit the rule mode
         /// at the detector version level, when it is in draft status.
         /// </para>
         ///  
         /// <para>
-        /// The default behavior is <code>FIRST_MATCHED</code>.
+        /// The default behavior is <c>FIRST_MATCHED</c>.
         /// </para>
         /// </summary>
         public RuleExecutionMode RuleExecutionMode
@@ -188,7 +189,7 @@ namespace Amazon.FraudDetector.Model
         // Check to see if Rules property is set
         internal bool IsSetRules()
         {
-            return this._rules != null && this._rules.Count > 0; 
+            return this._rules != null && (this._rules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

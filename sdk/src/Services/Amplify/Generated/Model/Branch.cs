@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Amplify.Model
 {
     /// <summary>
@@ -34,14 +35,15 @@ namespace Amazon.Amplify.Model
     public partial class Branch
     {
         private string _activeJobId;
-        private List<string> _associatedResources = new List<string>();
+        private List<string> _associatedResources = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Backend _backend;
         private string _backendEnvironmentArn;
         private string _basicAuthCredentials;
         private string _branchArn;
         private string _branchName;
         private string _buildSpec;
         private DateTime? _createTime;
-        private List<string> _customDomains = new List<string>();
+        private List<string> _customDomains = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _description;
         private string _destinationBranch;
         private string _displayName;
@@ -50,12 +52,12 @@ namespace Amazon.Amplify.Model
         private bool? _enableNotification;
         private bool? _enablePerformanceMode;
         private bool? _enablePullRequestPreview;
-        private Dictionary<string, string> _environmentVariables = new Dictionary<string, string>();
+        private Dictionary<string, string> _environmentVariables = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _framework;
         private string _pullRequestEnvironmentName;
         private string _sourceBranch;
         private Stage _stage;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _thumbnailUrl;
         private string _totalNumberOfJobs;
         private string _ttl;
@@ -95,7 +97,22 @@ namespace Amazon.Amplify.Model
         // Check to see if AssociatedResources property is set
         internal bool IsSetAssociatedResources()
         {
-            return this._associatedResources != null && this._associatedResources.Count > 0; 
+            return this._associatedResources != null && (this._associatedResources.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Backend.
+        /// </summary>
+        public Backend Backend
+        {
+            get { return this._backend; }
+            set { this._backend = value; }
+        }
+
+        // Check to see if Backend property is set
+        internal bool IsSetBackend()
+        {
+            return this._backend != null;
         }
 
         /// <summary>
@@ -103,6 +120,12 @@ namespace Amazon.Amplify.Model
         /// <para>
         ///  The Amazon Resource Name (ARN) for a backend environment that is part of an Amplify
         /// app. 
+        /// </para>
+        ///  
+        /// <para>
+        /// This property is available to Amplify Gen 1 apps only. When you deploy an application
+        /// with Amplify Gen 2, you provision the app's backend infrastructure using Typescript
+        /// code.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1000)]
@@ -122,7 +145,7 @@ namespace Amazon.Amplify.Model
         /// Gets and sets the property BasicAuthCredentials. 
         /// <para>
         ///  The basic authorization credentials for a branch of an Amplify app. You must base64-encode
-        /// the authorization credentials and provide them in the format <code>user:password</code>.
+        /// the authorization credentials and provide them in the format <c>user:password</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Max=2000)]
@@ -198,7 +221,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property CreateTime. 
         /// <para>
-        ///  The creation date and time for a branch that is part of an Amplify app. 
+        /// A timestamp of when Amplify created the branch.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -230,7 +253,7 @@ namespace Amazon.Amplify.Model
         // Check to see if CustomDomains property is set
         internal bool IsSetCustomDomains()
         {
-            return this._customDomains != null && this._customDomains.Count > 0; 
+            return this._customDomains != null && (this._customDomains.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -406,7 +429,7 @@ namespace Amazon.Amplify.Model
         // Check to see if EnvironmentVariables property is set
         internal bool IsSetEnvironmentVariables()
         {
-            return this._environmentVariables != null && this._environmentVariables.Count > 0; 
+            return this._environmentVariables != null && (this._environmentVariables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -501,7 +524,7 @@ namespace Amazon.Amplify.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -564,7 +587,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property UpdateTime. 
         /// <para>
-        ///  The last updated date and time for a branch that is part of an Amplify app. 
+        /// A timestamp for the last updated time for a branch.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

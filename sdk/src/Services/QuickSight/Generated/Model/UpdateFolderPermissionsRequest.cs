@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -36,8 +37,8 @@ namespace Amazon.QuickSight.Model
     {
         private string _awsAccountId;
         private string _folderId;
-        private List<ResourcePermission> _grantPermissions = new List<ResourcePermission>();
-        private List<ResourcePermission> _revokePermissions = new List<ResourcePermission>();
+        private List<ResourcePermission> _grantPermissions = AWSConfigs.InitializeCollections ? new List<ResourcePermission>() : null;
+        private List<ResourcePermission> _revokePermissions = AWSConfigs.InitializeCollections ? new List<ResourcePermission>() : null;
 
         /// <summary>
         /// Gets and sets the property AwsAccountId. 
@@ -80,7 +81,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property GrantPermissions. 
         /// <para>
-        /// The permissions that you want to grant on a resource.
+        /// The permissions that you want to grant on a resource. Namespace ARNs are not supported
+        /// <c>Principal</c> values for folder permissions.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -93,13 +95,14 @@ namespace Amazon.QuickSight.Model
         // Check to see if GrantPermissions property is set
         internal bool IsSetGrantPermissions()
         {
-            return this._grantPermissions != null && this._grantPermissions.Count > 0; 
+            return this._grantPermissions != null && (this._grantPermissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property RevokePermissions. 
         /// <para>
-        /// The permissions that you want to revoke from a resource.
+        /// The permissions that you want to revoke from a resource. Namespace ARNs are not supported
+        /// <c>Principal</c> values for folder permissions.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -112,7 +115,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if RevokePermissions property is set
         internal bool IsSetRevokePermissions()
         {
-            return this._revokePermissions != null && this._revokePermissions.Count > 0; 
+            return this._revokePermissions != null && (this._revokePermissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

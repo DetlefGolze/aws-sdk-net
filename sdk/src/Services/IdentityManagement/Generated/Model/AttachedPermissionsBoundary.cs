@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -71,7 +72,7 @@ namespace Amazon.IdentityManagement.Model
         /// <para>
         ///  The permissions boundary usage type that indicates what type of IAM resource is used
         /// as the permissions boundary for an entity. This data type can only have a value of
-        /// <code>Policy</code>.
+        /// <c>Policy</c>.
         /// </para>
         /// </summary>
         public PermissionsBoundaryAttachmentType PermissionsBoundaryType

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ResourceSpec requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetInstanceType())
             {
                 context.Writer.WritePropertyName("InstanceType");
@@ -61,6 +64,12 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("SageMakerImageArn");
                 context.Writer.Write(requestObject.SageMakerImageArn);
+            }
+
+            if(requestObject.IsSetSageMakerImageVersionAlias())
+            {
+                context.Writer.WritePropertyName("SageMakerImageVersionAlias");
+                context.Writer.Write(requestObject.SageMakerImageVersionAlias);
             }
 
             if(requestObject.IsSetSageMakerImageVersionArn())

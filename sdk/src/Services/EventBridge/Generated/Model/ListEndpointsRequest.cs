@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.EventBridge.Model
     /// List the global endpoints associated with this account. For more information about
     /// global endpoints, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-global-endpoints.html">Making
     /// applications Regional-fault tolerant with global endpoints and event replication</a>
-    /// in the Amazon EventBridge User Guide..
+    /// in the <i> <i>Amazon EventBridge User Guide</i> </i>.
     /// </summary>
     public partial class ListEndpointsRequest : AmazonEventBridgeRequest
     {
@@ -45,8 +46,8 @@ namespace Amazon.EventBridge.Model
         /// <summary>
         /// Gets and sets the property HomeRegion. 
         /// <para>
-        /// The primary Region of the endpoints associated with this account. For example <code>"HomeRegion":
-        /// "us-east-1"</code>.
+        /// The primary Region of the endpoints associated with this account. For example <c>"HomeRegion":
+        /// "us-east-1"</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=9, Max=20)]
@@ -85,8 +86,7 @@ namespace Amazon.EventBridge.Model
         /// Gets and sets the property NamePrefix. 
         /// <para>
         /// A value that will return a subset of the endpoints associated with this account. For
-        /// example, <code>"NamePrefix": "ABC"</code> will return all endpoints with "ABC" in
-        /// the name.
+        /// example, <c>"NamePrefix": "ABC"</c> will return all endpoints with "ABC" in the name.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -105,11 +105,18 @@ namespace Amazon.EventBridge.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. Each pagination token expires after 24 hours. Using an expired pagination
-        /// token will return an HTTP 400 InvalidToken error.
+        /// The token returned by a previous call, which you can use to retrieve the next set
+        /// of results.
+        /// </para>
+        ///  
+        /// <para>
+        /// The value of <c>nextToken</c> is a unique pagination token for each page. To retrieve
+        /// the next page of results, make the call again using the returned token. Keep all other
+        /// arguments unchanged.
+        /// </para>
+        ///  
+        /// <para>
+        ///  Using an expired pagination token results in an <c>HTTP 400 InvalidToken</c> error.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

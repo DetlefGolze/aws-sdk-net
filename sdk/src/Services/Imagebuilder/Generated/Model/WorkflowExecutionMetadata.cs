@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.Imagebuilder.Model
     {
         private string _endTime;
         private string _message;
+        private string _parallelGroup;
         private string _startTime;
         private WorkflowExecutionStatus _status;
         private int? _totalStepCount;
@@ -80,6 +82,25 @@ namespace Amazon.Imagebuilder.Model
         internal bool IsSetMessage()
         {
             return this._message != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ParallelGroup. 
+        /// <para>
+        /// The name of the test group that included the test workflow resource at runtime.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=100)]
+        public string ParallelGroup
+        {
+            get { return this._parallelGroup; }
+            set { this._parallelGroup = value; }
+        }
+
+        // Check to see if ParallelGroup property is set
+        internal bool IsSetParallelGroup()
+        {
+            return this._parallelGroup != null;
         }
 
         /// <summary>

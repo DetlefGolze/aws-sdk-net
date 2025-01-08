@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.Route53Resolver.Model
         /// Gets and sets the property ResolverQueryLogConfigAssociation. 
         /// <para>
         /// Information about the Resolver query logging configuration association that you specified
-        /// in a <code>GetQueryLogConfigAssociation</code> request.
+        /// in a <c>GetQueryLogConfigAssociation</c> request.
         /// </para>
         /// </summary>
         public ResolverQueryLogConfigAssociation ResolverQueryLogConfigAssociation

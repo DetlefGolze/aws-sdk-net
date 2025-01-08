@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -36,20 +37,20 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class CreateClientVpnEndpointRequest : AmazonEC2Request
     {
-        private List<ClientVpnAuthenticationRequest> _authenticationOptions = new List<ClientVpnAuthenticationRequest>();
+        private List<ClientVpnAuthenticationRequest> _authenticationOptions = AWSConfigs.InitializeCollections ? new List<ClientVpnAuthenticationRequest>() : null;
         private string _clientCidrBlock;
         private ClientConnectOptions _clientConnectOptions;
         private ClientLoginBannerOptions _clientLoginBannerOptions;
         private string _clientToken;
         private ConnectionLogOptions _connectionLogOptions;
         private string _description;
-        private List<string> _dnsServers = new List<string>();
-        private List<string> _securityGroupIds = new List<string>();
+        private List<string> _dnsServers = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private SelfServicePortal _selfServicePortal;
         private string _serverCertificateArn;
         private int? _sessionTimeoutHours;
         private bool? _splitTunnel;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
         private TransportProtocol _transportProtocol;
         private string _vpcId;
         private int? _vpnPort;
@@ -70,7 +71,7 @@ namespace Amazon.EC2.Model
         // Check to see if AuthenticationOptions property is set
         internal bool IsSetAuthenticationOptions()
         {
-            return this._authenticationOptions != null && this._authenticationOptions.Count > 0; 
+            return this._authenticationOptions != null && (this._authenticationOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -137,8 +138,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// Unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        /// request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How
-        /// to ensure idempotency</a>.
+        /// request. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html">Ensuring
+        /// idempotency</a>.
         /// </para>
         /// </summary>
         public string ClientToken
@@ -229,7 +230,7 @@ namespace Amazon.EC2.Model
         // Check to see if DnsServers property is set
         internal bool IsSetDnsServers()
         {
-            return this._dnsServers != null && this._dnsServers.Count > 0; 
+            return this._dnsServers != null && (this._dnsServers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -248,7 +249,7 @@ namespace Amazon.EC2.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -258,7 +259,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Default Value: <code>enabled</code> 
+        /// Default Value: <c>enabled</c> 
         /// </para>
         /// </summary>
         public SelfServicePortal SelfServicePortal
@@ -300,11 +301,11 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>8 | 10 | 12 | 24</code> 
+        /// Valid values: <c>8 | 10 | 12 | 24</c> 
         /// </para>
         ///  
         /// <para>
-        /// Default value: <code>24</code> 
+        /// Default value: <c>24</c> 
         /// </para>
         /// </summary>
         public int SessionTimeoutHours
@@ -361,7 +362,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -371,7 +372,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Default value: <code>udp</code> 
+        /// Default value: <c>udp</c> 
         /// </para>
         /// </summary>
         public TransportProtocol TransportProtocol
@@ -412,11 +413,11 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>443</code> | <code>1194</code> 
+        /// Valid Values: <c>443</c> | <c>1194</c> 
         /// </para>
         ///  
         /// <para>
-        /// Default Value: <code>443</code> 
+        /// Default Value: <c>443</c> 
         /// </para>
         /// </summary>
         public int VpnPort

@@ -88,6 +88,18 @@ namespace Amazon.Organizations.Internal
                     {
                         return new Endpoint("https://organizations.us-gov-west-1.amazonaws.com", InterpolateJson(@"{""authSchemes"":[{""name"":""sigv4"",""signingName"":""organizations"",""signingRegion"":""us-gov-west-1""}]}", refs), InterpolateJson(@"", refs));
                     }
+                    if (Equals(GetAttr(refs["PartitionResult"], "name"), "aws-iso") && Equals(refs["UseFIPS"], false) && Equals(refs["UseDualStack"], false))
+                    {
+                        return new Endpoint("https://organizations.us-iso-east-1.c2s.ic.gov", InterpolateJson(@"{""authSchemes"":[{""name"":""sigv4"",""signingName"":""organizations"",""signingRegion"":""us-iso-east-1""}]}", refs), InterpolateJson(@"", refs));
+                    }
+                    if (Equals(GetAttr(refs["PartitionResult"], "name"), "aws-iso-b") && Equals(refs["UseFIPS"], false) && Equals(refs["UseDualStack"], false))
+                    {
+                        return new Endpoint("https://organizations.us-isob-east-1.sc2s.sgov.gov", InterpolateJson(@"{""authSchemes"":[{""name"":""sigv4"",""signingName"":""organizations"",""signingRegion"":""us-isob-east-1""}]}", refs), InterpolateJson(@"", refs));
+                    }
+                    if (Equals(GetAttr(refs["PartitionResult"], "name"), "aws-iso-f") && Equals(refs["UseFIPS"], false) && Equals(refs["UseDualStack"], false))
+                    {
+                        return new Endpoint("https://organizations.us-isof-south-1.csp.hci.ic.gov", InterpolateJson(@"{""authSchemes"":[{""name"":""sigv4"",""signingName"":""organizations"",""signingRegion"":""us-isof-south-1""}]}", refs), InterpolateJson(@"", refs));
+                    }
                     if (Equals(refs["UseFIPS"], true) && Equals(refs["UseDualStack"], true))
                     {
                         if (Equals(true, GetAttr(refs["PartitionResult"], "supportsFIPS")) && Equals(true, GetAttr(refs["PartitionResult"], "supportsDualStack")))
@@ -98,7 +110,7 @@ namespace Amazon.Organizations.Internal
                     }
                     if (Equals(refs["UseFIPS"], true))
                     {
-                        if (Equals(true, GetAttr(refs["PartitionResult"], "supportsFIPS")))
+                        if (Equals(GetAttr(refs["PartitionResult"], "supportsFIPS"), true))
                         {
                             return new Endpoint(Interpolate(@"https://organizations-fips.{Region}.{PartitionResult#dnsSuffix}", refs), InterpolateJson(@"", refs), InterpolateJson(@"", refs));
                         }

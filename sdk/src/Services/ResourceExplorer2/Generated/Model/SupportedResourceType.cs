@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceExplorer2.Model
 {
     /// <summary>
@@ -58,8 +59,8 @@ namespace Amazon.ResourceExplorer2.Model
         /// <summary>
         /// Gets and sets the property Service. 
         /// <para>
-        /// The Amazon Web Service that is associated with the resource type. This is the primary
-        /// service that lets you create and interact with resources of this type.
+        /// The Amazon Web Services service that is associated with the resource type. This is
+        /// the primary service that lets you create and interact with resources of this type.
         /// </para>
         /// </summary>
         public string Service

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public MemberSummary Unmarshall(JsonUnmarshallerContext context)
         {
+            MemberSummary unmarshalledObject = new MemberSummary();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            MemberSummary unmarshalledObject = new MemberSummary();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -100,6 +102,18 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
                     unmarshalledObject.MembershipId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("mlAbilities", targetDepth))
+                {
+                    var unmarshaller = MLMemberAbilitiesUnmarshaller.Instance;
+                    unmarshalledObject.MlAbilities = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("paymentConfiguration", targetDepth))
+                {
+                    var unmarshaller = PaymentConfigurationUnmarshaller.Instance;
+                    unmarshalledObject.PaymentConfiguration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("status", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -113,7 +127,6 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

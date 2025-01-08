@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -41,9 +42,9 @@ namespace Amazon.ServiceCatalog.Model
         private string _provisionedProductName;
         private string _provisionedProductType;
         private string _provisioningArtifactId;
-        private List<RecordError> _recordErrors = new List<RecordError>();
+        private List<RecordError> _recordErrors = AWSConfigs.InitializeCollections ? new List<RecordError>() : null;
         private string _recordId;
-        private List<RecordTag> _recordTags = new List<RecordTag>();
+        private List<RecordTag> _recordTags = AWSConfigs.InitializeCollections ? new List<RecordTag>() : null;
         private string _recordType;
         private RecordStatus _status;
         private DateTime? _updatedTime;
@@ -164,8 +165,8 @@ namespace Amazon.ServiceCatalog.Model
         /// <summary>
         /// Gets and sets the property ProvisionedProductType. 
         /// <para>
-        /// The type of provisioned product. The supported values are <code>CFN_STACK</code>,
-        /// <code>CFN_STACKSET</code>, <code>TERRAFORM_OPEN_SOURCE</code>, and <code>TERRAFORM_CLOUD</code>.
+        /// The type of provisioned product. The supported values are <c>CFN_STACK</c>, <c>CFN_STACKSET</c>,
+        /// <c>TERRAFORM_OPEN_SOURCE</c>, <c>TERRAFORM_CLOUD</c>, and <c>EXTERNAL</c>.
         /// </para>
         /// </summary>
         public string ProvisionedProductType
@@ -214,7 +215,7 @@ namespace Amazon.ServiceCatalog.Model
         // Check to see if RecordErrors property is set
         internal bool IsSetRecordErrors()
         {
-            return this._recordErrors != null && this._recordErrors.Count > 0; 
+            return this._recordErrors != null && (this._recordErrors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -252,7 +253,7 @@ namespace Amazon.ServiceCatalog.Model
         // Check to see if RecordTags property is set
         internal bool IsSetRecordTags()
         {
-            return this._recordTags != null && this._recordTags.Count > 0; 
+            return this._recordTags != null && (this._recordTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -262,15 +263,15 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PROVISION_PRODUCT</code> 
+        ///  <c>PROVISION_PRODUCT</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPDATE_PROVISIONED_PRODUCT</code> 
+        ///  <c>UPDATE_PROVISIONED_PRODUCT</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TERMINATE_PROVISIONED_PRODUCT</code> 
+        ///  <c>TERMINATE_PROVISIONED_PRODUCT</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -293,24 +294,24 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CREATED</code> - The request was created but the operation has not started.
+        ///  <c>CREATED</c> - The request was created but the operation has not started.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IN_PROGRESS</code> - The requested operation is in progress.
+        ///  <c>IN_PROGRESS</c> - The requested operation is in progress.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IN_PROGRESS_IN_ERROR</code> - The provisioned product is under change but the
-        /// requested operation failed and some remediation is occurring. For example, a rollback.
+        ///  <c>IN_PROGRESS_IN_ERROR</c> - The provisioned product is under change but the requested
+        /// operation failed and some remediation is occurring. For example, a rollback.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SUCCEEDED</code> - The requested operation has successfully completed.
+        ///  <c>SUCCEEDED</c> - The requested operation has successfully completed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> - The requested operation has unsuccessfully completed. Investigate
+        ///  <c>FAILED</c> - The requested operation has unsuccessfully completed. Investigate
         /// using the error messages returned.
         /// </para>
         ///  </li> </ul>

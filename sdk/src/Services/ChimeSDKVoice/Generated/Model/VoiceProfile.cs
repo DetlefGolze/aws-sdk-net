@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKVoice.Model
 {
     /// <summary>
@@ -62,7 +63,7 @@ namespace Amazon.ChimeSDKVoice.Model
         /// Gets and sets the property ExpirationTimestamp. 
         /// <para>
         /// The time at which a voice profile expires unless you re-enroll the caller via the
-        /// <code>UpdateVoiceProfile</code> API.
+        /// <c>UpdateVoiceProfile</c> API.
         /// </para>
         /// </summary>
         public DateTime ExpirationTimestamp

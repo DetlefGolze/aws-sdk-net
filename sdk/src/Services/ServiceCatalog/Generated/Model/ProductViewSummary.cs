@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -242,7 +243,7 @@ namespace Amazon.ServiceCatalog.Model
         /// Gets and sets the property Type. 
         /// <para>
         /// The product type. Contact the product administrator for the significance of this value.
-        /// If this value is <code>MARKETPLACE</code>, the product was created by Amazon Web Services
+        /// If this value is <c>MARKETPLACE</c>, the product was created by Amazon Web Services
         /// Marketplace.
         /// </para>
         /// </summary>

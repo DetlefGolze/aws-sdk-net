@@ -26,10 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
-    /// Represents the properties of an alert manager definition.
+    /// The details of an alert manager definition. It is the configuration for the alert
+    /// manager, including information about receivers for routing alerts.
     /// </summary>
     public partial class AlertManagerDefinitionDescription
     {
@@ -41,7 +43,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// The time when the alert manager definition was created.
+        /// The date and time that the alert manager definition was created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -60,7 +62,11 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property Data. 
         /// <para>
-        /// The alert manager definition.
+        /// The actual alert manager definition.
+        /// </para>
+        ///  
+        /// <para>
+        /// For details about the alert manager definition, see <a href="https://docs.aws.amazon.com/prometheus/latest/APIReference/yaml-AlertManagerDefinitionData.html">AlertManagedDefinitionData</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -79,7 +85,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property ModifiedAt. 
         /// <para>
-        /// The time when the alert manager definition was modified.
+        /// The date and time that the alert manager definition was most recently changed.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -98,7 +104,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of alert manager definition.
+        /// A structure that displays the current status of the alert manager definition..
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

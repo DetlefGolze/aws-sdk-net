@@ -26,13 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the AdminUpdateAuthEventFeedback operation.
     /// Provides feedback for an authentication event indicating if it was from a valid user.
     /// This feedback is used for improving the risk evaluation decision for the user pool
-    /// as part of Amazon Cognito advanced security.
+    /// as part of Amazon Cognito threat protection. To train the threat-protection model
+    /// to recognize trusted and untrusted sign-in characteristics, configure threat protection
+    /// in audit-only mode and provide a mechanism for users or administrators to submit feedback.
+    /// Your feedback can tell Amazon Cognito that a risk rating was assigned at a level you
+    /// don't agree with.
     /// 
     ///  <note> 
     /// <para>
@@ -66,7 +71,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property EventId. 
         /// <para>
-        /// The authentication event ID.
+        /// The authentication event ID. To query authentication events for a user, see <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminListUserAuthEvents.html">AdminListUserAuthEvents</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=50)]
@@ -85,11 +90,11 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property FeedbackValue. 
         /// <para>
-        /// The authentication event feedback value. When you provide a <code>FeedbackValue</code>
-        /// value of <code>valid</code>, you tell Amazon Cognito that you trust a user session
-        /// where Amazon Cognito has evaluated some level of risk. When you provide a <code>FeedbackValue</code>
-        /// value of <code>invalid</code>, you tell Amazon Cognito that you don't trust a user
-        /// session, or you don't believe that Amazon Cognito evaluated a high-enough risk level.
+        /// The authentication event feedback value. When you provide a <c>FeedbackValue</c> value
+        /// of <c>valid</c>, you tell Amazon Cognito that you trust a user session where Amazon
+        /// Cognito has evaluated some level of risk. When you provide a <c>FeedbackValue</c>
+        /// value of <c>invalid</c>, you tell Amazon Cognito that you don't trust a user session,
+        /// or you don't believe that Amazon Cognito evaluated a high-enough risk level.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -108,7 +113,10 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Username. 
         /// <para>
-        /// The user pool username.
+        /// The username of the user that you want to query or modify. The value of this parameter
+        /// is typically your user's username, but it can be any of their alias attributes. If
+        /// <c>username</c> isn't an alias attribute in your user pool, this value must be the
+        /// <c>sub</c> of a local user or the username of a user from a third-party IdP.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=128)]
@@ -127,7 +135,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID.
+        /// The ID of the user pool where you want to submit authentication-event feedback.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

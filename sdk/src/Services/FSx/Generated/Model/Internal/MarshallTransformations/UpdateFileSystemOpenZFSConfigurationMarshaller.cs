@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.FSx.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(UpdateFileSystemOpenZFSConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAddRouteTableIds())
             {
                 context.Writer.WritePropertyName("AddRouteTableIds");
@@ -87,6 +90,17 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
 
                 var marshaller = DiskIopsConfigurationMarshaller.Instance;
                 marshaller.Marshall(requestObject.DiskIopsConfiguration, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetReadCacheConfiguration())
+            {
+                context.Writer.WritePropertyName("ReadCacheConfiguration");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = OpenZFSReadCacheConfigurationMarshaller.Instance;
+                marshaller.Marshall(requestObject.ReadCacheConfiguration, context);
 
                 context.Writer.WriteObjectEnd();
             }

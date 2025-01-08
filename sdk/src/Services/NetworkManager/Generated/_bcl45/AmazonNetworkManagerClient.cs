@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.NetworkManager
 {
     /// <summary>
-    /// Implementation for accessing NetworkManager
+    /// <para>Implementation for accessing NetworkManager</para>
     ///
     /// Amazon Web Services enables you to centrally manage your Amazon Web Services Cloud
     /// WAN core network and your Transit Gateway network across Amazon Web Services accounts,
@@ -471,7 +472,7 @@ namespace Amazon.NetworkManager
         /// a transit gateway or core network, customer gateways that are connected to the transit
         /// gateway are automatically included in the global network. To list customer gateways
         /// that are connected to a transit gateway, use the <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpnConnections.html">DescribeVpnConnections</a>
-        /// EC2 API and filter by <code>transit-gateway-id</code>.
+        /// EC2 API and filter by <c>transit-gateway-id</c>.
         /// </para>
         ///  
         /// <para>
@@ -525,7 +526,7 @@ namespace Amazon.NetworkManager
         /// a transit gateway or core network, customer gateways that are connected to the transit
         /// gateway are automatically included in the global network. To list customer gateways
         /// that are connected to a transit gateway, use the <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpnConnections.html">DescribeVpnConnections</a>
-        /// EC2 API and filter by <code>transit-gateway-id</code>.
+        /// EC2 API and filter by <c>transit-gateway-id</c>.
         /// </para>
         ///  
         /// <para>
@@ -1201,6 +1202,85 @@ namespace Amazon.NetworkManager
             options.ResponseUnmarshaller = CreateDeviceResponseUnmarshaller.Instance;
             
             return InvokeAsync<CreateDeviceResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  CreateDirectConnectGatewayAttachment
+
+
+        /// <summary>
+        /// Creates an Amazon Web Services Direct Connect gateway attachment
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateDirectConnectGatewayAttachment service method.</param>
+        /// 
+        /// <returns>The response from the CreateDirectConnectGatewayAttachment service method, as returned by NetworkManager.</returns>
+        /// <exception cref="Amazon.NetworkManager.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ConflictException">
+        /// There was a conflict processing the request. Updating or deleting the resource can
+        /// cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.InternalServerException">
+        /// The request has failed due to an internal error.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ResourceNotFoundException">
+        /// The specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ValidationException">
+        /// The input fails to satisfy the constraints.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/CreateDirectConnectGatewayAttachment">REST API Reference for CreateDirectConnectGatewayAttachment Operation</seealso>
+        public virtual CreateDirectConnectGatewayAttachmentResponse CreateDirectConnectGatewayAttachment(CreateDirectConnectGatewayAttachmentRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateDirectConnectGatewayAttachmentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateDirectConnectGatewayAttachmentResponseUnmarshaller.Instance;
+
+            return Invoke<CreateDirectConnectGatewayAttachmentResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates an Amazon Web Services Direct Connect gateway attachment
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateDirectConnectGatewayAttachment service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateDirectConnectGatewayAttachment service method, as returned by NetworkManager.</returns>
+        /// <exception cref="Amazon.NetworkManager.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ConflictException">
+        /// There was a conflict processing the request. Updating or deleting the resource can
+        /// cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.InternalServerException">
+        /// The request has failed due to an internal error.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ResourceNotFoundException">
+        /// The specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ValidationException">
+        /// The input fails to satisfy the constraints.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/CreateDirectConnectGatewayAttachment">REST API Reference for CreateDirectConnectGatewayAttachment Operation</seealso>
+        public virtual Task<CreateDirectConnectGatewayAttachmentResponse> CreateDirectConnectGatewayAttachmentAsync(CreateDirectConnectGatewayAttachmentRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateDirectConnectGatewayAttachmentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateDirectConnectGatewayAttachmentResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateDirectConnectGatewayAttachmentResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -2735,7 +2815,7 @@ namespace Amazon.NetworkManager
 
         /// <summary>
         /// Describes one or more global networks. By default, all global networks are described.
-        /// To describe the objects in your global network, you must use the appropriate <code>Get*</code>
+        /// To describe the objects in your global network, you must use the appropriate <c>Get*</c>
         /// action. For example, to list the transit gateways in your global network, use <a>GetTransitGatewayRegistrations</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeGlobalNetworks service method.</param>
@@ -2769,7 +2849,7 @@ namespace Amazon.NetworkManager
 
         /// <summary>
         /// Describes one or more global networks. By default, all global networks are described.
-        /// To describe the objects in your global network, you must use the appropriate <code>Get*</code>
+        /// To describe the objects in your global network, you must use the appropriate <c>Get*</c>
         /// action. For example, to list the transit gateways in your global network, use <a>GetTransitGatewayRegistrations</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeGlobalNetworks service method.</param>
@@ -3930,6 +4010,77 @@ namespace Amazon.NetworkManager
             options.ResponseUnmarshaller = GetDevicesResponseUnmarshaller.Instance;
             
             return InvokeAsync<GetDevicesResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetDirectConnectGatewayAttachment
+
+
+        /// <summary>
+        /// Returns information about a specific Amazon Web Services Direct Connect gateway attachment.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDirectConnectGatewayAttachment service method.</param>
+        /// 
+        /// <returns>The response from the GetDirectConnectGatewayAttachment service method, as returned by NetworkManager.</returns>
+        /// <exception cref="Amazon.NetworkManager.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.InternalServerException">
+        /// The request has failed due to an internal error.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ResourceNotFoundException">
+        /// The specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ValidationException">
+        /// The input fails to satisfy the constraints.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/GetDirectConnectGatewayAttachment">REST API Reference for GetDirectConnectGatewayAttachment Operation</seealso>
+        public virtual GetDirectConnectGatewayAttachmentResponse GetDirectConnectGatewayAttachment(GetDirectConnectGatewayAttachmentRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetDirectConnectGatewayAttachmentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetDirectConnectGatewayAttachmentResponseUnmarshaller.Instance;
+
+            return Invoke<GetDirectConnectGatewayAttachmentResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Returns information about a specific Amazon Web Services Direct Connect gateway attachment.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDirectConnectGatewayAttachment service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetDirectConnectGatewayAttachment service method, as returned by NetworkManager.</returns>
+        /// <exception cref="Amazon.NetworkManager.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.InternalServerException">
+        /// The request has failed due to an internal error.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ResourceNotFoundException">
+        /// The specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ValidationException">
+        /// The input fails to satisfy the constraints.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/GetDirectConnectGatewayAttachment">REST API Reference for GetDirectConnectGatewayAttachment Operation</seealso>
+        public virtual Task<GetDirectConnectGatewayAttachmentResponse> GetDirectConnectGatewayAttachmentAsync(GetDirectConnectGatewayAttachmentRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetDirectConnectGatewayAttachmentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetDirectConnectGatewayAttachmentResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetDirectConnectGatewayAttachmentResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -6525,6 +6676,87 @@ namespace Amazon.NetworkManager
 
         #endregion
         
+        #region  UpdateDirectConnectGatewayAttachment
+
+
+        /// <summary>
+        /// Updates the edge locations associated with an Amazon Web Services Direct Connect gateway
+        /// attachment.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateDirectConnectGatewayAttachment service method.</param>
+        /// 
+        /// <returns>The response from the UpdateDirectConnectGatewayAttachment service method, as returned by NetworkManager.</returns>
+        /// <exception cref="Amazon.NetworkManager.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ConflictException">
+        /// There was a conflict processing the request. Updating or deleting the resource can
+        /// cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.InternalServerException">
+        /// The request has failed due to an internal error.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ResourceNotFoundException">
+        /// The specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ValidationException">
+        /// The input fails to satisfy the constraints.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/UpdateDirectConnectGatewayAttachment">REST API Reference for UpdateDirectConnectGatewayAttachment Operation</seealso>
+        public virtual UpdateDirectConnectGatewayAttachmentResponse UpdateDirectConnectGatewayAttachment(UpdateDirectConnectGatewayAttachmentRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateDirectConnectGatewayAttachmentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateDirectConnectGatewayAttachmentResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateDirectConnectGatewayAttachmentResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Updates the edge locations associated with an Amazon Web Services Direct Connect gateway
+        /// attachment.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateDirectConnectGatewayAttachment service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateDirectConnectGatewayAttachment service method, as returned by NetworkManager.</returns>
+        /// <exception cref="Amazon.NetworkManager.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ConflictException">
+        /// There was a conflict processing the request. Updating or deleting the resource can
+        /// cause an inconsistent state.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.InternalServerException">
+        /// The request has failed due to an internal error.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ResourceNotFoundException">
+        /// The specified resource could not be found.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.NetworkManager.Model.ValidationException">
+        /// The input fails to satisfy the constraints.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/UpdateDirectConnectGatewayAttachment">REST API Reference for UpdateDirectConnectGatewayAttachment Operation</seealso>
+        public virtual Task<UpdateDirectConnectGatewayAttachmentResponse> UpdateDirectConnectGatewayAttachmentAsync(UpdateDirectConnectGatewayAttachmentRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateDirectConnectGatewayAttachmentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateDirectConnectGatewayAttachmentResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<UpdateDirectConnectGatewayAttachmentResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  UpdateGlobalNetwork
 
 
@@ -6941,11 +7173,11 @@ namespace Amazon.NetworkManager
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

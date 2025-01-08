@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LicenseManager.Model
 {
     /// <summary>
@@ -35,10 +36,10 @@ namespace Amazon.LicenseManager.Model
     {
         private string _expirationTime;
         private string _licenseArn;
-        private List<string> _roleArns = new List<string>();
+        private List<string> _roleArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _status;
         private string _tokenId;
-        private List<string> _tokenProperties = new List<string>();
+        private List<string> _tokenProperties = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _tokenType;
 
         /// <summary>
@@ -93,13 +94,13 @@ namespace Amazon.LicenseManager.Model
         // Check to see if RoleArns property is set
         internal bool IsSetRoleArns()
         {
-            return this._roleArns != null && this._roleArns.Count > 0; 
+            return this._roleArns != null && (this._roleArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// Token status. The possible values are <code>AVAILABLE</code> and <code>DELETED</code>.
+        /// Token status. The possible values are <c>AVAILABLE</c> and <c>DELETED</c>.
         /// </para>
         /// </summary>
         public string Status
@@ -148,13 +149,13 @@ namespace Amazon.LicenseManager.Model
         // Check to see if TokenProperties property is set
         internal bool IsSetTokenProperties()
         {
-            return this._tokenProperties != null && this._tokenProperties.Count > 0; 
+            return this._tokenProperties != null && (this._tokenProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TokenType. 
         /// <para>
-        /// Type of token generated. The supported value is <code>REFRESH_TOKEN</code>.
+        /// Type of token generated. The supported value is <c>REFRESH_TOKEN</c>.
         /// </para>
         /// </summary>
         public string TokenType

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostExplorer.Model
 {
     /// <summary>
@@ -39,9 +40,9 @@ namespace Amazon.CostExplorer.Model
         private string _costCategoryArn;
         private string _defaultValue;
         private string _effectiveStart;
-        private List<CostCategoryRule> _rules = new List<CostCategoryRule>();
+        private List<CostCategoryRule> _rules = AWSConfigs.InitializeCollections ? new List<CostCategoryRule>() : null;
         private CostCategoryRuleVersion _ruleVersion;
-        private List<CostCategorySplitChargeRule> _splitChargeRules = new List<CostCategorySplitChargeRule>();
+        private List<CostCategorySplitChargeRule> _splitChargeRules = AWSConfigs.InitializeCollections ? new List<CostCategorySplitChargeRule>() : null;
 
         /// <summary>
         /// Gets and sets the property CostCategoryArn. 
@@ -102,8 +103,8 @@ namespace Amazon.CostExplorer.Model
         /// <summary>
         /// Gets and sets the property Rules. 
         /// <para>
-        /// The <code>Expression</code> object used to categorize costs. For more information,
-        /// see <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CostCategoryRule.html">CostCategoryRule
+        /// The <c>Expression</c> object used to categorize costs. For more information, see <a
+        /// href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CostCategoryRule.html">CostCategoryRule
         /// </a>. 
         /// </para>
         /// </summary>
@@ -117,7 +118,7 @@ namespace Amazon.CostExplorer.Model
         // Check to see if Rules property is set
         internal bool IsSetRules()
         {
-            return this._rules != null && this._rules.Count > 0; 
+            return this._rules != null && (this._rules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -153,7 +154,7 @@ namespace Amazon.CostExplorer.Model
         // Check to see if SplitChargeRules property is set
         internal bool IsSetSplitChargeRules()
         {
-            return this._splitChargeRules != null && this._splitChargeRules.Count > 0; 
+            return this._splitChargeRules != null && (this._splitChargeRules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

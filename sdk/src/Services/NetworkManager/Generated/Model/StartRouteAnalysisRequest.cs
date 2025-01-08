@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -83,7 +84,7 @@ namespace Amazon.NetworkManager.Model
         /// <summary>
         /// Gets and sets the property IncludeReturnPath. 
         /// <para>
-        /// Indicates whether to analyze the return path. The default is <code>false</code>.
+        /// Indicates whether to analyze the return path. The default is <c>false</c>.
         /// </para>
         /// </summary>
         public bool IncludeReturnPath
@@ -121,7 +122,7 @@ namespace Amazon.NetworkManager.Model
         /// Gets and sets the property UseMiddleboxes. 
         /// <para>
         /// Indicates whether to include the location of middlebox appliances in the route analysis.
-        /// The default is <code>false</code>.
+        /// The default is <c>false</c>.
         /// </para>
         /// </summary>
         public bool UseMiddleboxes

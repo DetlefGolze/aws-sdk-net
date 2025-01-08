@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property AssetModelStatus. 
         /// <para>
-        /// The status of the asset model, which contains a state (<code>UPDATING</code> after
-        /// successfully calling this operation) and any error message.
+        /// The status of the asset model, which contains a state (<c>UPDATING</c> after successfully
+        /// calling this operation) and any error message.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace Amazon.GroundStation.Model
     public partial class KmsKey
     {
         private string _kmsAliasArn;
+        private string _kmsAliasName;
         private string _kmsKeyArn;
 
         /// <summary>
@@ -53,6 +55,25 @@ namespace Amazon.GroundStation.Model
         internal bool IsSetKmsAliasArn()
         {
             return this._kmsAliasArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property KmsAliasName. 
+        /// <para>
+        /// KMS Alias Name.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=256)]
+        public string KmsAliasName
+        {
+            get { return this._kmsAliasName; }
+            set { this._kmsAliasName = value; }
+        }
+
+        // Check to see if KmsAliasName property is set
+        internal bool IsSetKmsAliasName()
+        {
+            return this._kmsAliasName != null;
         }
 
         /// <summary>

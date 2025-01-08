@@ -969,6 +969,98 @@ namespace Amazon.DataSync
 
 
     /// <summary>
+    /// Constants used for properties of type ManifestAction.
+    /// </summary>
+    public class ManifestAction : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant TRANSFER for ManifestAction
+        /// </summary>
+        public static readonly ManifestAction TRANSFER = new ManifestAction("TRANSFER");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ManifestAction(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ManifestAction FindValue(string value)
+        {
+            return FindValue<ManifestAction>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ManifestAction(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ManifestFormat.
+    /// </summary>
+    public class ManifestFormat : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CSV for ManifestFormat
+        /// </summary>
+        public static readonly ManifestFormat CSV = new ManifestFormat("CSV");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ManifestFormat(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ManifestFormat FindValue(string value)
+        {
+            return FindValue<ManifestFormat>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ManifestFormat(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type Mtime.
     /// </summary>
     public class Mtime : ConstantClass
@@ -1243,7 +1335,7 @@ namespace Amazon.DataSync
         /// <summary>
         /// Constant Equals for Operator
         /// </summary>
-        public static readonly Operator Equals = new Operator("Equals");
+        public new static readonly Operator Equals = new Operator("Equals");
         /// <summary>
         /// Constant GreaterThan for Operator
         /// </summary>
@@ -1795,6 +1887,106 @@ namespace Amazon.DataSync
 
 
     /// <summary>
+    /// Constants used for properties of type ScheduleDisabledBy.
+    /// </summary>
+    public class ScheduleDisabledBy : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant SERVICE for ScheduleDisabledBy
+        /// </summary>
+        public static readonly ScheduleDisabledBy SERVICE = new ScheduleDisabledBy("SERVICE");
+        /// <summary>
+        /// Constant USER for ScheduleDisabledBy
+        /// </summary>
+        public static readonly ScheduleDisabledBy USER = new ScheduleDisabledBy("USER");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ScheduleDisabledBy(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ScheduleDisabledBy FindValue(string value)
+        {
+            return FindValue<ScheduleDisabledBy>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ScheduleDisabledBy(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ScheduleStatus.
+    /// </summary>
+    public class ScheduleStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DISABLED for ScheduleStatus
+        /// </summary>
+        public static readonly ScheduleStatus DISABLED = new ScheduleStatus("DISABLED");
+        /// <summary>
+        /// Constant ENABLED for ScheduleStatus
+        /// </summary>
+        public static readonly ScheduleStatus ENABLED = new ScheduleStatus("ENABLED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ScheduleStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ScheduleStatus FindValue(string value)
+        {
+            return FindValue<ScheduleStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ScheduleStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type SmbSecurityDescriptorCopyFlags.
     /// </summary>
     public class SmbSecurityDescriptorCopyFlags : ConstantClass
@@ -1971,6 +2163,10 @@ namespace Amazon.DataSync
     {
 
         /// <summary>
+        /// Constant CANCELLING for TaskExecutionStatus
+        /// </summary>
+        public static readonly TaskExecutionStatus CANCELLING = new TaskExecutionStatus("CANCELLING");
+        /// <summary>
         /// Constant ERROR for TaskExecutionStatus
         /// </summary>
         public static readonly TaskExecutionStatus ERROR = new TaskExecutionStatus("ERROR");
@@ -2078,6 +2274,56 @@ namespace Amazon.DataSync
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator TaskFilterName(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type TaskMode.
+    /// </summary>
+    public class TaskMode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant BASIC for TaskMode
+        /// </summary>
+        public static readonly TaskMode BASIC = new TaskMode("BASIC");
+        /// <summary>
+        /// Constant ENHANCED for TaskMode
+        /// </summary>
+        public static readonly TaskMode ENHANCED = new TaskMode("ENHANCED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public TaskMode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static TaskMode FindValue(string value)
+        {
+            return FindValue<TaskMode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator TaskMode(string value)
         {
             return FindValue(value);
         }

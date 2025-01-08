@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.CloudFront.Model
     /// 
     ///  
     /// <para>
-    /// If you want to include query strings in the cache key, use <code>QueryStringsConfig</code>
-    /// in a cache policy. See <code>CachePolicy</code>.
+    /// If you want to include query strings in the cache key, use <c>QueryStringsConfig</c>
+    /// in a cache policy. See <c>CachePolicy</c>.
     /// </para>
     ///  
     /// <para>
     /// If you want to send query strings to the origin but not include them in the cache
-    /// key, use <code>QueryStringsConfig</code> in an origin request policy. See <code>OriginRequestPolicy</code>.
+    /// key, use <c>QueryStringsConfig</c> in an origin request policy. See <c>OriginRequestPolicy</c>.
     /// </para>
     ///  
     /// <para>
@@ -50,15 +51,14 @@ namespace Amazon.CloudFront.Model
     /// </summary>
     public partial class QueryStringCacheKeys
     {
-        private List<string> _items = new List<string>();
+        private List<string> _items = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _quantity;
 
         /// <summary>
         /// Gets and sets the property Items. 
         /// <para>
         /// A list that contains the query string parameters that you want CloudFront to use as
-        /// a basis for caching for a cache behavior. If <code>Quantity</code> is 0, you can omit
-        /// <code>Items</code>.
+        /// a basis for caching for a cache behavior. If <c>Quantity</c> is 0, you can omit <c>Items</c>.
         /// </para>
         /// </summary>
         public List<string> Items
@@ -70,13 +70,13 @@ namespace Amazon.CloudFront.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Quantity. 
         /// <para>
-        /// The number of <code>whitelisted</code> query string parameters for a cache behavior.
+        /// The number of <c>whitelisted</c> query string parameters for a cache behavior.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

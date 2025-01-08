@@ -26,18 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeElasticGpus operation.
-    /// Describes the Elastic Graphics accelerator associated with your instances. For more
-    /// information about Elastic Graphics, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/elastic-graphics.html">Amazon
-    /// Elastic Graphics</a>.
+    /// <note> 
+    /// <para>
+    /// Amazon Elastic Graphics reached end of life on January 8, 2024.
+    /// </para>
+    ///  </note> 
+    /// <para>
+    /// Describes the Elastic Graphics accelerator associated with your instances.
+    /// </para>
     /// </summary>
     public partial class DescribeElasticGpusRequest : AmazonEC2Request
     {
-        private List<string> _elasticGpuIds = new List<string>();
-        private List<Filter> _filters = new List<Filter>();
+        private List<string> _elasticGpuIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -56,7 +62,7 @@ namespace Amazon.EC2.Model
         // Check to see if ElasticGpuIds property is set
         internal bool IsSetElasticGpuIds()
         {
-            return this._elasticGpuIds != null && this._elasticGpuIds.Count > 0; 
+            return this._elasticGpuIds != null && (this._elasticGpuIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -66,26 +72,26 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>availability-zone</code> - The Availability Zone in which the Elastic Graphics
-        /// accelerator resides.
+        ///  <c>availability-zone</c> - The Availability Zone in which the Elastic Graphics accelerator
+        /// resides.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>elastic-gpu-health</code> - The status of the Elastic Graphics accelerator
-        /// (<code>OK</code> | <code>IMPAIRED</code>).
+        ///  <c>elastic-gpu-health</c> - The status of the Elastic Graphics accelerator (<c>OK</c>
+        /// | <c>IMPAIRED</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>elastic-gpu-state</code> - The state of the Elastic Graphics accelerator (<code>ATTACHED</code>).
+        ///  <c>elastic-gpu-state</c> - The state of the Elastic Graphics accelerator (<c>ATTACHED</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>elastic-gpu-type</code> - The type of Elastic Graphics accelerator; for example,
-        /// <code>eg1.medium</code>.
+        ///  <c>elastic-gpu-type</c> - The type of Elastic Graphics accelerator; for example,
+        /// <c>eg1.medium</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>instance-id</code> - The ID of the instance to which the Elastic Graphics accelerator
+        ///  <c>instance-id</c> - The ID of the instance to which the Elastic Graphics accelerator
         /// is associated.
         /// </para>
         ///  </li> </ul>
@@ -99,15 +105,15 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to return in a single call. To retrieve the remaining
-        /// results, make another call with the returned <code>NextToken</code> value. This value
-        /// can be between 5 and 1000.
+        /// results, make another call with the returned <c>NextToken</c> value. This value can
+        /// be between 5 and 1000.
         /// </para>
         /// </summary>
         [AWSProperty(Min=10, Max=1000)]

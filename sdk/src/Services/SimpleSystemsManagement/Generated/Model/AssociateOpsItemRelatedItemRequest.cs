@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -45,8 +46,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property AssociationType. 
         /// <para>
         /// The type of association that you want to create between an OpsItem and a resource.
-        /// OpsCenter supports <code>IsParentOf</code> and <code>RelatesTo</code> association
-        /// types.
+        /// OpsCenter supports <c>IsParentOf</c> and <c>RelatesTo</c> association types.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -89,11 +89,11 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>AWS::SSMIncidents::IncidentRecord</code>: an Incident Manager incident. 
+        ///  <c>AWS::SSMIncidents::IncidentRecord</c>: an Incident Manager incident. 
         /// </para>
         ///  
         /// <para>
-        ///  <code>AWS::SSM::Document</code>: a Systems Manager (SSM) document.
+        ///  <c>AWS::SSM::Document</c>: a Systems Manager (SSM) document.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,16 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
-    /// Contains information about a malware scan.
+    /// Contains information about malware scans associated with GuardDuty Malware Protection
+    /// for EC2.
     /// </summary>
     public partial class Scan
     {
         private string _accountId;
         private string _adminDetectorId;
-        private List<VolumeDetail> _attachedVolumes = new List<VolumeDetail>();
+        private List<VolumeDetail> _attachedVolumes = AWSConfigs.InitializeCollections ? new List<VolumeDetail>() : null;
         private string _detectorId;
         private string _failureReason;
         private long? _fileCount;
@@ -72,8 +74,14 @@ namespace Amazon.GuardDuty.Model
         /// Gets and sets the property AdminDetectorId. 
         /// <para>
         /// The unique detector ID of the administrator account that the request is associated
-        /// with. Note that this value will be the same as the one used for <code>DetectorId</code>
-        /// if the account is an administrator.
+        /// with. If the account is an administrator, the <c>AdminDetectorId</c> will be the same
+        /// as the one used for <c>DetectorId</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// To find the <c>detectorId</c> in the current Region, see the Settings page in the
+        /// GuardDuty console, or run the <a href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html">ListDetectors</a>
+        /// API.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=300)]
@@ -104,13 +112,19 @@ namespace Amazon.GuardDuty.Model
         // Check to see if AttachedVolumes property is set
         internal bool IsSetAttachedVolumes()
         {
-            return this._attachedVolumes != null && this._attachedVolumes.Count > 0; 
+            return this._attachedVolumes != null && (this._attachedVolumes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DetectorId. 
         /// <para>
-        /// The unique ID of the detector that the request is associated with.
+        /// The unique ID of the detector that is associated with the request.
+        /// </para>
+        ///  
+        /// <para>
+        /// To find the <c>detectorId</c> in the current Region, see the Settings page in the
+        /// GuardDuty console, or run the <a href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html">ListDetectors</a>
+        /// API.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=300)]
@@ -129,7 +143,7 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property FailureReason. 
         /// <para>
-        /// Represents the reason for FAILED scan status.
+        /// Represents the reason for <c>FAILED</c> scan status.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=200)]

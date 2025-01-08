@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.GlobalAccelerator.Model
 {
     /// <summary>
@@ -49,6 +50,22 @@ namespace Amazon.GlobalAccelerator.Model
         public IListByoipCidrsPaginator ListByoipCidrs(ListByoipCidrsRequest request) 
         {
             return new ListByoipCidrsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListCrossAccountAttachments operation
+        ///</summary>
+        public IListCrossAccountAttachmentsPaginator ListCrossAccountAttachments(ListCrossAccountAttachmentsRequest request) 
+        {
+            return new ListCrossAccountAttachmentsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListCrossAccountResources operation
+        ///</summary>
+        public IListCrossAccountResourcesPaginator ListCrossAccountResources(ListCrossAccountResourcesRequest request) 
+        {
+            return new ListCrossAccountResourcesPaginator(this.client, request);
         }
 
         /// <summary>

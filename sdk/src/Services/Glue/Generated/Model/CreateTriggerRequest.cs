@@ -26,22 +26,30 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateTrigger operation.
     /// Creates a new trigger.
+    /// 
+    ///  
+    /// <para>
+    /// Job arguments may be logged. Do not pass plaintext secrets as arguments. Retrieve
+    /// secrets from a Glue Connection, Amazon Web Services Secrets Manager or other secret
+    /// management mechanism if you intend to keep them within the Job.
+    /// </para>
     /// </summary>
     public partial class CreateTriggerRequest : AmazonGlueRequest
     {
-        private List<Action> _actions = new List<Action>();
+        private List<Action> _actions = AWSConfigs.InitializeCollections ? new List<Action>() : null;
         private string _description;
         private EventBatchingCondition _eventBatchingCondition;
         private string _name;
         private Predicate _predicate;
         private string _schedule;
         private bool? _startOnCreation;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private TriggerType _type;
         private string _workflowName;
 
@@ -61,7 +69,7 @@ namespace Amazon.Glue.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -128,7 +136,7 @@ namespace Amazon.Glue.Model
         /// </para>
         ///  
         /// <para>
-        /// This field is required when the trigger type is <code>CONDITIONAL</code>.
+        /// This field is required when the trigger type is <c>CONDITIONAL</c>.
         /// </para>
         /// </summary>
         public Predicate Predicate
@@ -146,9 +154,9 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property Schedule. 
         /// <para>
-        /// A <code>cron</code> expression used to specify the schedule (see <a href="https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html">Time-Based
+        /// A <c>cron</c> expression used to specify the schedule (see <a href="https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html">Time-Based
         /// Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15
-        /// UTC, you would specify: <code>cron(15 12 * * ? *)</code>.
+        /// UTC, you would specify: <c>cron(15 12 * * ? *)</c>.
         /// </para>
         ///  
         /// <para>
@@ -170,8 +178,8 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property StartOnCreation. 
         /// <para>
-        /// Set to <code>true</code> to start <code>SCHEDULED</code> and <code>CONDITIONAL</code>
-        /// triggers when created. True is not supported for <code>ON_DEMAND</code> triggers.
+        /// Set to <c>true</c> to start <c>SCHEDULED</c> and <c>CONDITIONAL</c> triggers when
+        /// created. True is not supported for <c>ON_DEMAND</c> triggers.
         /// </para>
         /// </summary>
         public bool StartOnCreation
@@ -204,7 +212,7 @@ namespace Amazon.Glue.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

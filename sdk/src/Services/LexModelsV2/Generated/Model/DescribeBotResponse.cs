@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.LexModelsV2.Model
     public partial class DescribeBotResponse : AmazonWebServiceResponse
     {
         private string _botId;
-        private List<BotMember> _botMembers = new List<BotMember>();
+        private List<BotMember> _botMembers = AWSConfigs.InitializeCollections ? new List<BotMember>() : null;
         private string _botName;
         private BotStatus _botStatus;
         private BotType _botType;
         private DateTime? _creationDateTime;
         private DataPrivacy _dataPrivacy;
         private string _description;
-        private List<string> _failureReasons = new List<string>();
+        private List<string> _failureReasons = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _idleSessionTTLInSeconds;
         private DateTime? _lastUpdatedDateTime;
         private string _roleArn;
@@ -81,7 +82,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if BotMembers property is set
         internal bool IsSetBotMembers()
         {
-            return this._botMembers != null && this._botMembers.Count > 0; 
+            return this._botMembers != null && (this._botMembers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -106,8 +107,8 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property BotStatus. 
         /// <para>
-        /// The current status of the bot. When the status is <code>Available</code> the bot is
-        /// ready to be used in conversations with users.
+        /// The current status of the bot. When the status is <c>Available</c> the bot is ready
+        /// to be used in conversations with users.
         /// </para>
         /// </summary>
         public BotStatus BotStatus
@@ -198,8 +199,8 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property FailureReasons. 
         /// <para>
-        /// If the <code>botStatus</code> is <code>Failed</code>, this contains a list of reasons
-        /// that the bot couldn't be built.
+        /// If the <c>botStatus</c> is <c>Failed</c>, this contains a list of reasons that the
+        /// bot couldn't be built.
         /// </para>
         /// </summary>
         public List<string> FailureReasons
@@ -211,7 +212,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if FailureReasons property is set
         internal bool IsSetFailureReasons()
         {
-            return this._failureReasons != null && this._failureReasons.Count > 0; 
+            return this._failureReasons != null && (this._failureReasons.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

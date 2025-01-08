@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -53,7 +54,8 @@ namespace Amazon.Neptune.Model
         private string _preferredBackupWindow;
         private string _preferredMaintenanceWindow;
         private ServerlessV2ScalingConfiguration _serverlessV2ScalingConfiguration;
-        private List<string> _vpcSecurityGroupIds = new List<string>();
+        private string _storageType;
+        private List<string> _vpcSecurityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AllowMajorVersionUpgrade. 
@@ -62,7 +64,7 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        /// Constraints: You must set the allow-major-version-upgrade flag when providing an <code>EngineVersion</code>
+        /// Constraints: You must set the allow-major-version-upgrade flag when providing an <c>EngineVersion</c>
         /// parameter that uses a different major version than the DB cluster's current version.
         /// </para>
         /// </summary>
@@ -82,21 +84,20 @@ namespace Amazon.Neptune.Model
         /// Gets and sets the property ApplyImmediately. 
         /// <para>
         /// A value that specifies whether the modifications in this request and any pending modifications
-        /// are asynchronously applied as soon as possible, regardless of the <code>PreferredMaintenanceWindow</code>
-        /// setting for the DB cluster. If this parameter is set to <code>false</code>, changes
-        /// to the DB cluster are applied during the next maintenance window.
+        /// are asynchronously applied as soon as possible, regardless of the <c>PreferredMaintenanceWindow</c>
+        /// setting for the DB cluster. If this parameter is set to <c>false</c>, changes to the
+        /// DB cluster are applied during the next maintenance window.
         /// </para>
         ///  
         /// <para>
-        /// The <code>ApplyImmediately</code> parameter only affects <code>NewDBClusterIdentifier</code>
-        /// values. If you set the <code>ApplyImmediately</code> parameter value to false, then
-        /// changes to <code>NewDBClusterIdentifier</code> values are applied during the next
-        /// maintenance window. All other changes are applied immediately, regardless of the value
-        /// of the <code>ApplyImmediately</code> parameter.
+        /// The <c>ApplyImmediately</c> parameter only affects <c>NewDBClusterIdentifier</c> values.
+        /// If you set the <c>ApplyImmediately</c> parameter value to false, then changes to <c>NewDBClusterIdentifier</c>
+        /// values are applied during the next maintenance window. All other changes are applied
+        /// immediately, regardless of the value of the <c>ApplyImmediately</c> parameter.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool ApplyImmediately
@@ -147,7 +148,8 @@ namespace Amazon.Neptune.Model
         /// Gets and sets the property CloudwatchLogsExportConfiguration. 
         /// <para>
         /// The configuration setting for the log types to be enabled for export to CloudWatch
-        /// Logs for a specific DB cluster.
+        /// Logs for a specific DB cluster. See <a href="https://docs.aws.amazon.com/neptune/latest/userguide/cloudwatch-logs.html#cloudwatch-logs-cli">Using
+        /// the CLI to publish Neptune audit logs to CloudWatch Logs</a>.
         /// </para>
         /// </summary>
         public CloudwatchLogsExportConfiguration CloudwatchLogsExportConfiguration
@@ -165,8 +167,8 @@ namespace Amazon.Neptune.Model
         /// <summary>
         /// Gets and sets the property CopyTagsToSnapshot. 
         /// <para>
-        ///  <i>If set to <code>true</code>, tags are copied to any snapshot of the DB cluster
-        /// that is created.</i> 
+        ///  <i>If set to <c>true</c>, tags are copied to any snapshot of the DB cluster that
+        /// is created.</i> 
         /// </para>
         /// </summary>
         public bool CopyTagsToSnapshot
@@ -234,9 +236,9 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// When you apply a parameter group using <code>DBInstanceParameterGroupName</code>,
-        /// parameter changes aren't applied during the next maintenance window but instead are
-        /// applied immediately.
+        /// When you apply a parameter group using <c>DBInstanceParameterGroupName</c>, parameter
+        /// changes aren't applied during the next maintenance window but instead are applied
+        /// immediately.
         /// </para>
         ///  </note> 
         /// <para>
@@ -253,8 +255,8 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DBInstanceParameterGroupName</code> parameter is only valid in combination
-        /// with the <code>AllowMajorVersionUpgrade</code> parameter.
+        /// The <c>DBInstanceParameterGroupName</c> parameter is only valid in combination with
+        /// the <c>AllowMajorVersionUpgrade</c> parameter.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -298,7 +300,7 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool EnableIAMDatabaseAuthentication
@@ -318,12 +320,12 @@ namespace Amazon.Neptune.Model
         /// <para>
         /// The version number of the database engine to which you want to upgrade. Changing this
         /// parameter results in an outage. The change is applied during the next maintenance
-        /// window unless the <code>ApplyImmediately</code> parameter is set to true.
+        /// window unless the <c>ApplyImmediately</c> parameter is set to true.
         /// </para>
         ///  
         /// <para>
         /// For a list of valid engine versions, see <a href="https://docs.aws.amazon.com/neptune/latest/userguide/engine-releases.html">Engine
-        /// Releases for Amazon Neptune</a>, or call <a href="https://docs.aws.amazon.com/neptune/latest/userguide/api-other-apis.html#DescribeDBEngineVersions">DescribeDBEngineVersions</a>.
+        /// Releases for Amazon Neptune</a>, or call <a>DescribeDBEngineVersions</a>.
         /// </para>
         /// </summary>
         public string EngineVersion
@@ -380,7 +382,7 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>my-cluster2</code> 
+        /// Example: <c>my-cluster2</c> 
         /// </para>
         /// </summary>
         public string NewDBClusterIdentifier
@@ -420,7 +422,7 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        /// Constraints: Value must be <code>1150-65535</code> 
+        /// Constraints: Value must be <c>1150-65535</c> 
         /// </para>
         ///  
         /// <para>
@@ -443,7 +445,7 @@ namespace Amazon.Neptune.Model
         /// Gets and sets the property PreferredBackupWindow. 
         /// <para>
         /// The daily time range during which automated backups are created if automated backups
-        /// are enabled, using the <code>BackupRetentionPeriod</code> parameter.
+        /// are enabled, using the <c>BackupRetentionPeriod</c> parameter.
         /// </para>
         ///  
         /// <para>
@@ -456,7 +458,7 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Must be in the format <code>hh24:mi-hh24:mi</code>.
+        /// Must be in the format <c>hh24:mi-hh24:mi</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -492,7 +494,7 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        /// Format: <code>ddd:hh24:mi-ddd:hh24:mi</code> 
+        /// Format: <c>ddd:hh24:mi-ddd:hh24:mi</c> 
         /// </para>
         ///  
         /// <para>
@@ -521,7 +523,15 @@ namespace Amazon.Neptune.Model
         }
 
         /// <summary>
-        /// Gets and sets the property ServerlessV2ScalingConfiguration.
+        /// Gets and sets the property ServerlessV2ScalingConfiguration. 
+        /// <para>
+        /// Contains the scaling configuration of a Neptune Serverless DB cluster.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/neptune/latest/userguide/neptune-serverless-using.html">Using
+        /// Amazon Neptune Serverless</a> in the <i>Amazon Neptune User Guide</i>.
+        /// </para>
         /// </summary>
         public ServerlessV2ScalingConfiguration ServerlessV2ScalingConfiguration
         {
@@ -533,6 +543,41 @@ namespace Amazon.Neptune.Model
         internal bool IsSetServerlessV2ScalingConfiguration()
         {
             return this._serverlessV2ScalingConfiguration != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property StorageType. 
+        /// <para>
+        /// The storage type to associate with the DB cluster.
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid Values:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>standard | iopt1</c> 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Default:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>standard</c> 
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public string StorageType
+        {
+            get { return this._storageType; }
+            set { this._storageType = value; }
+        }
+
+        // Check to see if StorageType property is set
+        internal bool IsSetStorageType()
+        {
+            return this._storageType != null;
         }
 
         /// <summary>
@@ -550,7 +595,7 @@ namespace Amazon.Neptune.Model
         // Check to see if VpcSecurityGroupIds property is set
         internal bool IsSetVpcSecurityGroupIds()
         {
-            return this._vpcSecurityGroupIds != null && this._vpcSecurityGroupIds.Count > 0; 
+            return this._vpcSecurityGroupIds != null && (this._vpcSecurityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

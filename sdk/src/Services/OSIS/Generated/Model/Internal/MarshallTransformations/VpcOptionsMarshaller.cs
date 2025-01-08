@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.OSIS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.OSIS.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(VpcOptions requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetSecurityGroupIds())
             {
                 context.Writer.WritePropertyName("SecurityGroupIds");
@@ -65,6 +68,23 @@ namespace Amazon.OSIS.Model.Internal.MarshallTransformations
                         context.Writer.Write(requestObjectSubnetIdsListValue);
                 }
                 context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetVpcAttachmentOptions())
+            {
+                context.Writer.WritePropertyName("VpcAttachmentOptions");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = VpcAttachmentOptionsMarshaller.Instance;
+                marshaller.Marshall(requestObject.VpcAttachmentOptions, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetVpcEndpointManagement())
+            {
+                context.Writer.WritePropertyName("VpcEndpointManagement");
+                context.Writer.Write(requestObject.VpcEndpointManagement);
             }
 
         }

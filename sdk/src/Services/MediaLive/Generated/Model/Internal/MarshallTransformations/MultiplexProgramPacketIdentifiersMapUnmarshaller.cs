@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public MultiplexProgramPacketIdentifiersMap Unmarshall(JsonUnmarshallerContext context)
         {
+            MultiplexProgramPacketIdentifiersMap unmarshalledObject = new MultiplexProgramPacketIdentifiersMap();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            MultiplexProgramPacketIdentifiersMap unmarshalledObject = new MultiplexProgramPacketIdentifiersMap();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("aribCaptionsPid", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.AribCaptionsPid = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("audioPids", targetDepth))
                 {
                     var unmarshaller = new ListUnmarshaller<int, IntUnmarshaller>(IntUnmarshaller.Instance);
@@ -80,6 +88,18 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = IntUnmarshaller.Instance;
                     unmarshalledObject.DvbTeletextPid = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("dvbTeletextPids", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<int, IntUnmarshaller>(IntUnmarshaller.Instance);
+                    unmarshalledObject.DvbTeletextPids = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ecmPid", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.EcmPid = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("etvPlatformPid", targetDepth))
@@ -130,6 +150,12 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     unmarshalledObject.Scte35Pid = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("smpte2038Pid", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.Smpte2038Pid = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("timedMetadataPid", targetDepth))
                 {
                     var unmarshaller = IntUnmarshaller.Instance;
@@ -143,7 +169,6 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

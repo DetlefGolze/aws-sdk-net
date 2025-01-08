@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
     /// Container for the parameters to the UpgradePublishedSchema operation.
     /// Upgrades a published schema under a new minor version revision using the current contents
-    /// of <code>DevelopmentSchemaArn</code>.
+    /// of <c>DevelopmentSchemaArn</c>.
     /// </summary>
     public partial class UpgradePublishedSchemaRequest : AmazonCloudDirectoryRequest
     {

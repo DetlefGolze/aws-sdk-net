@@ -26,23 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
-    /// Contains an optional backup plan display name and an array of <code>BackupRule</code>
-    /// objects, each of which specifies a backup rule. Each rule in a backup plan is a separate
-    /// scheduled task and can back up a different selection of Amazon Web Services resources.
+    /// Contains an optional backup plan display name and an array of <c>BackupRule</c> objects,
+    /// each of which specifies a backup rule. Each rule in a backup plan is a separate scheduled
+    /// task and can back up a different selection of Amazon Web Services resources.
     /// </summary>
     public partial class BackupPlan
     {
-        private List<AdvancedBackupSetting> _advancedBackupSettings = new List<AdvancedBackupSetting>();
+        private List<AdvancedBackupSetting> _advancedBackupSettings = AWSConfigs.InitializeCollections ? new List<AdvancedBackupSetting>() : null;
         private string _backupPlanName;
-        private List<BackupRule> _rules = new List<BackupRule>();
+        private List<BackupRule> _rules = AWSConfigs.InitializeCollections ? new List<BackupRule>() : null;
 
         /// <summary>
         /// Gets and sets the property AdvancedBackupSettings. 
         /// <para>
-        /// Contains a list of <code>BackupOptions</code> for each resource type.
+        /// Contains a list of <c>BackupOptions</c> for each resource type.
         /// </para>
         /// </summary>
         public List<AdvancedBackupSetting> AdvancedBackupSettings
@@ -54,13 +55,19 @@ namespace Amazon.Backup.Model
         // Check to see if AdvancedBackupSettings property is set
         internal bool IsSetAdvancedBackupSettings()
         {
-            return this._advancedBackupSettings != null && this._advancedBackupSettings.Count > 0; 
+            return this._advancedBackupSettings != null && (this._advancedBackupSettings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property BackupPlanName. 
         /// <para>
-        /// The display name of a backup plan. Must contain 1 to 50 alphanumeric or '-_.' characters.
+        /// The display name of a backup plan. Must contain only alphanumeric or '-_.' special
+        /// characters.
+        /// </para>
+        ///  
+        /// <para>
+        /// If this is set in the console, it can contain 1 to 50 characters; if this is set through
+        /// CLI or API, it can contain 1 to 200 characters.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -79,8 +86,8 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property Rules. 
         /// <para>
-        /// An array of <code>BackupRule</code> objects, each of which specifies a scheduled task
-        /// that is used to back up a selection of resources. 
+        /// An array of <c>BackupRule</c> objects, each of which specifies a scheduled task that
+        /// is used to back up a selection of resources. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -93,7 +100,7 @@ namespace Amazon.Backup.Model
         // Check to see if Rules property is set
         internal bool IsSetRules()
         {
-            return this._rules != null && this._rules.Count > 0; 
+            return this._rules != null && (this._rules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

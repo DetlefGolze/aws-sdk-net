@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.SsmSap.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.SsmSap
 {
     /// <summary>
-    /// Interface for accessing SsmSap
+    /// <para>Interface for accessing SsmSap</para>
     ///
     /// This API reference provides descriptions, syntax, and other details about each of
     /// the actions and data types for AWS Systems Manager for SAP. The topic for each action
@@ -103,6 +104,9 @@ namespace Amazon.SsmSap
         /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
         /// An internal error has occurred.
         /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.UnauthorizedException">
+        /// The request is not authorized.
+        /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
@@ -123,6 +127,9 @@ namespace Amazon.SsmSap
         /// <returns>The response from the DeregisterApplication service method, as returned by SsmSap.</returns>
         /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
         /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.UnauthorizedException">
+        /// The request is not authorized.
         /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
@@ -186,6 +193,9 @@ namespace Amazon.SsmSap
         /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
         /// An internal error has occurred.
         /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.UnauthorizedException">
+        /// The request is not authorized.
+        /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
@@ -205,6 +215,9 @@ namespace Amazon.SsmSap
         /// <returns>The response from the GetComponent service method, as returned by SsmSap.</returns>
         /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
         /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.UnauthorizedException">
+        /// The request is not authorized.
         /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
@@ -403,6 +416,9 @@ namespace Amazon.SsmSap
         /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
         /// The resource is not available.
         /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.UnauthorizedException">
+        /// The request is not authorized.
+        /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
@@ -425,6 +441,9 @@ namespace Amazon.SsmSap
         /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
         /// The resource is not available.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.UnauthorizedException">
+        /// The request is not authorized.
         /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
@@ -479,6 +498,58 @@ namespace Amazon.SsmSap
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListDatabases">REST API Reference for ListDatabases Operation</seealso>
         Task<ListDatabasesResponse> ListDatabasesAsync(ListDatabasesRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListOperationEvents
+
+
+        /// <summary>
+        /// Returns a list of operations events.
+        /// 
+        ///  
+        /// <para>
+        /// Available parameters include <c>OperationID</c>, as well as optional parameters <c>MaxResults</c>,
+        /// <c>NextToken</c>, and <c>Filters</c>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListOperationEvents service method.</param>
+        /// 
+        /// <returns>The response from the ListOperationEvents service method, as returned by SsmSap.</returns>
+        /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListOperationEvents">REST API Reference for ListOperationEvents Operation</seealso>
+        ListOperationEventsResponse ListOperationEvents(ListOperationEventsRequest request);
+
+
+
+        /// <summary>
+        /// Returns a list of operations events.
+        /// 
+        ///  
+        /// <para>
+        /// Available parameters include <c>OperationID</c>, as well as optional parameters <c>MaxResults</c>,
+        /// <c>NextToken</c>, and <c>Filters</c>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListOperationEvents service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListOperationEvents service method, as returned by SsmSap.</returns>
+        /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListOperationEvents">REST API Reference for ListOperationEvents Operation</seealso>
+        Task<ListOperationEventsResponse> ListOperationEventsAsync(ListOperationEventsRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -648,6 +719,9 @@ namespace Amazon.SsmSap
         /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
         /// An internal error has occurred.
         /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
+        /// The resource is not available.
+        /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
@@ -688,11 +762,76 @@ namespace Amazon.SsmSap
         /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
         /// An internal error has occurred.
         /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
+        /// The resource is not available.
+        /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/RegisterApplication">REST API Reference for RegisterApplication Operation</seealso>
         Task<RegisterApplicationResponse> RegisterApplicationAsync(RegisterApplicationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  StartApplication
+
+
+        /// <summary>
+        /// Request is an operation which starts an application.
+        /// 
+        ///  
+        /// <para>
+        /// Parameter <c>ApplicationId</c> is required.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartApplication service method.</param>
+        /// 
+        /// <returns>The response from the StartApplication service method, as returned by SsmSap.</returns>
+        /// <exception cref="Amazon.SsmSap.Model.ConflictException">
+        /// A conflict has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
+        /// The resource is not available.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/StartApplication">REST API Reference for StartApplication Operation</seealso>
+        StartApplicationResponse StartApplication(StartApplicationRequest request);
+
+
+
+        /// <summary>
+        /// Request is an operation which starts an application.
+        /// 
+        ///  
+        /// <para>
+        /// Parameter <c>ApplicationId</c> is required.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartApplication service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StartApplication service method, as returned by SsmSap.</returns>
+        /// <exception cref="Amazon.SsmSap.Model.ConflictException">
+        /// A conflict has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
+        /// The resource is not available.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/StartApplication">REST API Reference for StartApplication Operation</seealso>
+        Task<StartApplicationResponse> StartApplicationAsync(StartApplicationRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -713,6 +852,9 @@ namespace Amazon.SsmSap
         /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
         /// The resource is not available.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.UnauthorizedException">
+        /// The request is not authorized.
         /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
@@ -740,11 +882,78 @@ namespace Amazon.SsmSap
         /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
         /// The resource is not available.
         /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.UnauthorizedException">
+        /// The request is not authorized.
+        /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/StartApplicationRefresh">REST API Reference for StartApplicationRefresh Operation</seealso>
         Task<StartApplicationRefreshResponse> StartApplicationRefreshAsync(StartApplicationRefreshRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  StopApplication
+
+
+        /// <summary>
+        /// Request is an operation to stop an application.
+        /// 
+        ///  
+        /// <para>
+        /// Parameter <c>ApplicationId</c> is required. Parameters <c>StopConnectedEntity</c>
+        /// and <c>IncludeEc2InstanceShutdown</c> are optional.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StopApplication service method.</param>
+        /// 
+        /// <returns>The response from the StopApplication service method, as returned by SsmSap.</returns>
+        /// <exception cref="Amazon.SsmSap.Model.ConflictException">
+        /// A conflict has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
+        /// The resource is not available.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/StopApplication">REST API Reference for StopApplication Operation</seealso>
+        StopApplicationResponse StopApplication(StopApplicationRequest request);
+
+
+
+        /// <summary>
+        /// Request is an operation to stop an application.
+        /// 
+        ///  
+        /// <para>
+        /// Parameter <c>ApplicationId</c> is required. Parameters <c>StopConnectedEntity</c>
+        /// and <c>IncludeEc2InstanceShutdown</c> are optional.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StopApplication service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StopApplication service method, as returned by SsmSap.</returns>
+        /// <exception cref="Amazon.SsmSap.Model.ConflictException">
+        /// A conflict has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.InternalServerException">
+        /// An internal error has occurred.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
+        /// The resource is not available.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/StopApplication">REST API Reference for StopApplication Operation</seealso>
+        Task<StopApplicationResponse> StopApplicationAsync(StopApplicationRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -858,6 +1067,9 @@ namespace Amazon.SsmSap
         /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
         /// The resource is not available.
         /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.UnauthorizedException">
+        /// The request is not authorized.
+        /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.
         /// </exception>
@@ -883,6 +1095,9 @@ namespace Amazon.SsmSap
         /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ResourceNotFoundException">
         /// The resource is not available.
+        /// </exception>
+        /// <exception cref="Amazon.SsmSap.Model.UnauthorizedException">
+        /// The request is not authorized.
         /// </exception>
         /// <exception cref="Amazon.SsmSap.Model.ValidationException">
         /// The input fails to satisfy the constraints specified by an AWS service.

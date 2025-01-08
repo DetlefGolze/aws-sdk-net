@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Neptune.Model
     public partial class CopyDBClusterParameterGroupRequest : AmazonNeptuneRequest
     {
         private string _sourceDBClusterParameterGroupIdentifier;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _targetDBClusterParameterGroupDescription;
         private string _targetDBClusterParameterGroupIdentifier;
 
@@ -57,13 +58,13 @@ namespace Amazon.Neptune.Model
         ///  </li> <li> 
         /// <para>
         /// If the source DB cluster parameter group is in the same Amazon Region as the copy,
-        /// specify a valid DB parameter group identifier, for example <code>my-db-cluster-param-group</code>,
+        /// specify a valid DB parameter group identifier, for example <c>my-db-cluster-param-group</c>,
         /// or a valid ARN.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// If the source DB parameter group is in a different Amazon Region than the copy, specify
-        /// a valid DB cluster parameter group ARN, for example <code>arn:aws:rds:us-east-1:123456789012:cluster-pg:custom-cluster-group1</code>.
+        /// a valid DB cluster parameter group ARN, for example <c>arn:aws:rds:us-east-1:123456789012:cluster-pg:custom-cluster-group1</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -95,7 +96,7 @@ namespace Amazon.Neptune.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -144,7 +145,7 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>my-cluster-param-group1</code> 
+        /// Example: <c>my-cluster-param-group1</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

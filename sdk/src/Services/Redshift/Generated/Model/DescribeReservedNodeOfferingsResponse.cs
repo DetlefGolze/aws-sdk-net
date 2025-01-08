@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.Redshift.Model
     public partial class DescribeReservedNodeOfferingsResponse : AmazonWebServiceResponse
     {
         private string _marker;
-        private List<ReservedNodeOffering> _reservedNodeOfferings = new List<ReservedNodeOffering>();
+        private List<ReservedNodeOffering> _reservedNodeOfferings = AWSConfigs.InitializeCollections ? new List<ReservedNodeOffering>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         /// A value that indicates the starting point for the next set of response records in
         /// a subsequent request. If a value is returned in a response, you can retrieve the next
-        /// set of records by providing this returned marker value in the <code>Marker</code>
-        /// parameter and retrying the command. If the <code>Marker</code> field is empty, all
-        /// response records have been retrieved for the request. 
+        /// set of records by providing this returned marker value in the <c>Marker</c> parameter
+        /// and retrying the command. If the <c>Marker</c> field is empty, all response records
+        /// have been retrieved for the request. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]
@@ -62,7 +63,7 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property ReservedNodeOfferings. 
         /// <para>
-        /// A list of <code>ReservedNodeOffering</code> objects.
+        /// A list of <c>ReservedNodeOffering</c> objects.
         /// </para>
         /// </summary>
         public List<ReservedNodeOffering> ReservedNodeOfferings
@@ -74,7 +75,7 @@ namespace Amazon.Redshift.Model
         // Check to see if ReservedNodeOfferings property is set
         internal bool IsSetReservedNodeOfferings()
         {
-            return this._reservedNodeOfferings != null && this._reservedNodeOfferings.Count > 0; 
+            return this._reservedNodeOfferings != null && (this._reservedNodeOfferings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalytics.Model
 {
     /// <summary>
@@ -124,8 +125,7 @@ namespace Amazon.KinesisAnalytics.Model
         /// </para>
         ///  
         /// <para>
-        /// Note: Either <code>KinesisStreamsInput</code> or <code>KinesisFirehoseInput</code>
-        /// is required.
+        /// Note: Either <c>KinesisStreamsInput</c> or <c>KinesisFirehoseInput</c> is required.
         /// </para>
         /// </summary>
         public KinesisFirehoseInput KinesisFirehoseInput
@@ -149,8 +149,7 @@ namespace Amazon.KinesisAnalytics.Model
         /// </para>
         ///  
         /// <para>
-        /// Note: Either <code>KinesisStreamsInput</code> or <code>KinesisFirehoseInput</code>
-        /// is required.
+        /// Note: Either <c>KinesisStreamsInput</c> or <c>KinesisFirehoseInput</c> is required.
         /// </para>
         /// </summary>
         public KinesisStreamsInput KinesisStreamsInput
@@ -170,8 +169,8 @@ namespace Amazon.KinesisAnalytics.Model
         /// <para>
         /// Name prefix to use when creating an in-application stream. Suppose that you specify
         /// a prefix "MyInApplicationStream." Amazon Kinesis Analytics then creates one or more
-        /// (as per the <code>InputParallelism</code> count you specified) in-application streams
-        /// with names "MyInApplicationStream_001," "MyInApplicationStream_002," and so on. 
+        /// (as per the <c>InputParallelism</c> count you specified) in-application streams with
+        /// names "MyInApplicationStream_001," "MyInApplicationStream_002," and so on. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=32)]

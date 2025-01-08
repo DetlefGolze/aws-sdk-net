@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.ForecastService.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.ForecastService
 {
     /// <summary>
-    /// Interface for accessing ForecastService
+    /// <para>Interface for accessing ForecastService</para>
     ///
     /// Provides APIs for creating and managing Amazon Forecast resources.
     /// </summary>
@@ -64,25 +65,25 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PredictorName</code> - A unique name for the predictor.
+        ///  <c>PredictorName</c> - A unique name for the predictor.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DatasetGroupArn</code> - The ARN of the dataset group used to train the predictor.
+        ///  <c>DatasetGroupArn</c> - The ARN of the dataset group used to train the predictor.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ForecastFrequency</code> - The granularity of your forecasts (hourly, daily,
-        /// weekly, etc).
+        ///  <c>ForecastFrequency</c> - The granularity of your forecasts (hourly, daily, weekly,
+        /// etc).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ForecastHorizon</code> - The number of time-steps that the model predicts.
-        /// The forecast horizon is also called the prediction length.
+        ///  <c>ForecastHorizon</c> - The number of time-steps that the model predicts. The forecast
+        /// horizon is also called the prediction length.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// When creating a new predictor, do not specify a value for <code>ReferencePredictorArn</code>.
+        /// When creating a new predictor, do not specify a value for <c>ReferencePredictorArn</c>.
         /// </para>
         ///  
         /// <para>
@@ -94,16 +95,16 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PredictorName</code> - A unique name for the predictor.
+        ///  <c>PredictorName</c> - A unique name for the predictor.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ReferencePredictorArn</code> - The ARN of the predictor to retrain or upgrade.
+        ///  <c>ReferencePredictorArn</c> - The ARN of the predictor to retrain or upgrade.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// When upgrading or retraining a predictor, only specify values for the <code>ReferencePredictorArn</code>
-        /// and <code>PredictorName</code>. 
+        /// When upgrading or retraining a predictor, only specify values for the <c>ReferencePredictorArn</c>
+        /// and <c>PredictorName</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateAutoPredictor service method.</param>
@@ -150,25 +151,25 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PredictorName</code> - A unique name for the predictor.
+        ///  <c>PredictorName</c> - A unique name for the predictor.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DatasetGroupArn</code> - The ARN of the dataset group used to train the predictor.
+        ///  <c>DatasetGroupArn</c> - The ARN of the dataset group used to train the predictor.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ForecastFrequency</code> - The granularity of your forecasts (hourly, daily,
-        /// weekly, etc).
+        ///  <c>ForecastFrequency</c> - The granularity of your forecasts (hourly, daily, weekly,
+        /// etc).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ForecastHorizon</code> - The number of time-steps that the model predicts.
-        /// The forecast horizon is also called the prediction length.
+        ///  <c>ForecastHorizon</c> - The number of time-steps that the model predicts. The forecast
+        /// horizon is also called the prediction length.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// When creating a new predictor, do not specify a value for <code>ReferencePredictorArn</code>.
+        /// When creating a new predictor, do not specify a value for <c>ReferencePredictorArn</c>.
         /// </para>
         ///  
         /// <para>
@@ -180,16 +181,16 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PredictorName</code> - A unique name for the predictor.
+        ///  <c>PredictorName</c> - A unique name for the predictor.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ReferencePredictorArn</code> - The ARN of the predictor to retrain or upgrade.
+        ///  <c>ReferencePredictorArn</c> - The ARN of the predictor to retrain or upgrade.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// When upgrading or retraining a predictor, only specify values for the <code>ReferencePredictorArn</code>
-        /// and <code>PredictorName</code>. 
+        /// When upgrading or retraining a predictor, only specify values for the <c>ReferencePredictorArn</c>
+        /// and <c>PredictorName</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateAutoPredictor service method.</param>
@@ -230,20 +231,20 @@ namespace Amazon.ForecastService
         /// 
         ///  <ul> <li> 
         /// <para>
-        ///  <i> <code>DataFrequency</code> </i> - How frequently your historical time-series
-        /// data is collected.
+        ///  <i> <c>DataFrequency</c> </i> - How frequently your historical time-series data is
+        /// collected.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <i> <code>Domain</code> </i> and <i> <code>DatasetType</code> </i> - Each dataset
-        /// has an associated dataset domain and a type within the domain. Amazon Forecast provides
-        /// a list of predefined domains and types within each domain. For each unique dataset
-        /// domain and type within the domain, Amazon Forecast requires your data to include a
-        /// minimum set of predefined fields.
+        ///  <i> <c>Domain</c> </i> and <i> <c>DatasetType</c> </i> - Each dataset has an associated
+        /// dataset domain and a type within the domain. Amazon Forecast provides a list of predefined
+        /// domains and types within each domain. For each unique dataset domain and type within
+        /// the domain, Amazon Forecast requires your data to include a minimum set of predefined
+        /// fields.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <i> <code>Schema</code> </i> - A schema specifies the fields in the dataset, including
+        ///  <i> <c>Schema</c> </i> - A schema specifies the fields in the dataset, including
         /// the field name and data type.
         /// </para>
         ///  </li> </ul> 
@@ -265,8 +266,8 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>Status</code> of a dataset must be <code>ACTIVE</code> before you can import
-        /// training data. Use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDataset.html">DescribeDataset</a>
+        /// The <c>Status</c> of a dataset must be <c>ACTIVE</c> before you can import training
+        /// data. Use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDataset.html">DescribeDataset</a>
         /// operation to get the status.
         /// </para>
         ///  </note>
@@ -296,20 +297,20 @@ namespace Amazon.ForecastService
         /// 
         ///  <ul> <li> 
         /// <para>
-        ///  <i> <code>DataFrequency</code> </i> - How frequently your historical time-series
-        /// data is collected.
+        ///  <i> <c>DataFrequency</c> </i> - How frequently your historical time-series data is
+        /// collected.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <i> <code>Domain</code> </i> and <i> <code>DatasetType</code> </i> - Each dataset
-        /// has an associated dataset domain and a type within the domain. Amazon Forecast provides
-        /// a list of predefined domains and types within each domain. For each unique dataset
-        /// domain and type within the domain, Amazon Forecast requires your data to include a
-        /// minimum set of predefined fields.
+        ///  <i> <c>Domain</c> </i> and <i> <c>DatasetType</c> </i> - Each dataset has an associated
+        /// dataset domain and a type within the domain. Amazon Forecast provides a list of predefined
+        /// domains and types within each domain. For each unique dataset domain and type within
+        /// the domain, Amazon Forecast requires your data to include a minimum set of predefined
+        /// fields.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <i> <code>Schema</code> </i> - A schema specifies the fields in the dataset, including
+        ///  <i> <c>Schema</c> </i> - A schema specifies the fields in the dataset, including
         /// the field name and data type.
         /// </para>
         ///  </li> </ul> 
@@ -331,8 +332,8 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>Status</code> of a dataset must be <code>ACTIVE</code> before you can import
-        /// training data. Use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDataset.html">DescribeDataset</a>
+        /// The <c>Status</c> of a dataset must be <c>ACTIVE</c> before you can import training
+        /// data. Use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDataset.html">DescribeDataset</a>
         /// operation to get the status.
         /// </para>
         ///  </note>
@@ -380,8 +381,8 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>Status</code> of a dataset group must be <code>ACTIVE</code> before you
-        /// can use the dataset group to create a predictor. To get the status, use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetGroup.html">DescribeDatasetGroup</a>
+        /// The <c>Status</c> of a dataset group must be <c>ACTIVE</c> before you can use the
+        /// dataset group to create a predictor. To get the status, use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetGroup.html">DescribeDatasetGroup</a>
         /// operation.
         /// </para>
         ///  </note>
@@ -430,8 +431,8 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>Status</code> of a dataset group must be <code>ACTIVE</code> before you
-        /// can use the dataset group to create a predictor. To get the status, use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetGroup.html">DescribeDatasetGroup</a>
+        /// The <c>Status</c> of a dataset group must be <c>ACTIVE</c> before you can use the
+        /// dataset group to create a predictor. To get the status, use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetGroup.html">DescribeDatasetGroup</a>
         /// operation.
         /// </para>
         ///  </note>
@@ -636,8 +637,8 @@ namespace Amazon.ForecastService
         ///  <note> 
         /// <para>
         /// You can only have one Explainability resource per predictor. If you already enabled
-        /// <code>ExplainPredictor</code> in <a>CreateAutoPredictor</a>, that predictor already
-        /// has an Explainability resource.
+        /// <c>ExplainPredictor</c> in <a>CreateAutoPredictor</a>, that predictor already has
+        /// an Explainability resource.
         /// </para>
         ///  </note> 
         /// <para>
@@ -645,19 +646,19 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ExplainabilityName</code> - A unique name for the Explainability.
+        ///  <c>ExplainabilityName</c> - A unique name for the Explainability.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ResourceArn</code> - The Arn of the predictor.
+        ///  <c>ResourceArn</c> - The Arn of the predictor.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TimePointGranularity</code> - Must be set to “ALL”.
+        ///  <c>TimePointGranularity</c> - Must be set to “ALL”.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TimeSeriesGranularity</code> - Must be set to “ALL”.
+        ///  <c>TimeSeriesGranularity</c> - Must be set to “ALL”.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -665,19 +666,19 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>DataSource</code> - Only valid when TimeSeriesGranularity is “SPECIFIC”.
+        ///  <c>DataSource</c> - Only valid when TimeSeriesGranularity is “SPECIFIC”.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Schema</code> - Only valid when TimeSeriesGranularity is “SPECIFIC”.
+        ///  <c>Schema</c> - Only valid when TimeSeriesGranularity is “SPECIFIC”.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>StartDateTime</code> - Only valid when TimePointGranularity is “SPECIFIC”.
+        ///  <c>StartDateTime</c> - Only valid when TimePointGranularity is “SPECIFIC”.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EndDateTime</code> - Only valid when TimePointGranularity is “SPECIFIC”.
+        ///  <c>EndDateTime</c> - Only valid when TimePointGranularity is “SPECIFIC”.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -693,19 +694,19 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ExplainabilityName</code> - A unique name for the Explainability.
+        ///  <c>ExplainabilityName</c> - A unique name for the Explainability.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ResourceArn</code> - The Arn of the forecast.
+        ///  <c>ResourceArn</c> - The Arn of the forecast.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TimePointGranularity</code> - Either “ALL” or “SPECIFIC”.
+        ///  <c>TimePointGranularity</c> - Either “ALL” or “SPECIFIC”.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TimeSeriesGranularity</code> - Either “ALL” or “SPECIFIC”.
+        ///  <c>TimeSeriesGranularity</c> - Either “ALL” or “SPECIFIC”.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -713,12 +714,12 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>DataSource</code> - The S3 location of the CSV file specifying your time series.
+        ///  <c>DataSource</c> - The S3 location of the CSV file specifying your time series.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Schema</code> - The Schema defines the attributes and attribute types listed
-        /// in the Data Source.
+        ///  <c>Schema</c> - The Schema defines the attributes and attribute types listed in the
+        /// Data Source.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -726,11 +727,11 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>StartDateTime</code> - The first timestamp in the range of time points.
+        ///  <c>StartDateTime</c> - The first timestamp in the range of time points.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EndDateTime</code> - The last timestamp in the range of time points.
+        ///  <c>EndDateTime</c> - The last timestamp in the range of time points.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -796,8 +797,8 @@ namespace Amazon.ForecastService
         ///  <note> 
         /// <para>
         /// You can only have one Explainability resource per predictor. If you already enabled
-        /// <code>ExplainPredictor</code> in <a>CreateAutoPredictor</a>, that predictor already
-        /// has an Explainability resource.
+        /// <c>ExplainPredictor</c> in <a>CreateAutoPredictor</a>, that predictor already has
+        /// an Explainability resource.
         /// </para>
         ///  </note> 
         /// <para>
@@ -805,19 +806,19 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ExplainabilityName</code> - A unique name for the Explainability.
+        ///  <c>ExplainabilityName</c> - A unique name for the Explainability.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ResourceArn</code> - The Arn of the predictor.
+        ///  <c>ResourceArn</c> - The Arn of the predictor.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TimePointGranularity</code> - Must be set to “ALL”.
+        ///  <c>TimePointGranularity</c> - Must be set to “ALL”.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TimeSeriesGranularity</code> - Must be set to “ALL”.
+        ///  <c>TimeSeriesGranularity</c> - Must be set to “ALL”.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -825,19 +826,19 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>DataSource</code> - Only valid when TimeSeriesGranularity is “SPECIFIC”.
+        ///  <c>DataSource</c> - Only valid when TimeSeriesGranularity is “SPECIFIC”.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Schema</code> - Only valid when TimeSeriesGranularity is “SPECIFIC”.
+        ///  <c>Schema</c> - Only valid when TimeSeriesGranularity is “SPECIFIC”.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>StartDateTime</code> - Only valid when TimePointGranularity is “SPECIFIC”.
+        ///  <c>StartDateTime</c> - Only valid when TimePointGranularity is “SPECIFIC”.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EndDateTime</code> - Only valid when TimePointGranularity is “SPECIFIC”.
+        ///  <c>EndDateTime</c> - Only valid when TimePointGranularity is “SPECIFIC”.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -853,19 +854,19 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ExplainabilityName</code> - A unique name for the Explainability.
+        ///  <c>ExplainabilityName</c> - A unique name for the Explainability.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ResourceArn</code> - The Arn of the forecast.
+        ///  <c>ResourceArn</c> - The Arn of the forecast.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TimePointGranularity</code> - Either “ALL” or “SPECIFIC”.
+        ///  <c>TimePointGranularity</c> - Either “ALL” or “SPECIFIC”.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TimeSeriesGranularity</code> - Either “ALL” or “SPECIFIC”.
+        ///  <c>TimeSeriesGranularity</c> - Either “ALL” or “SPECIFIC”.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -873,12 +874,12 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>DataSource</code> - The S3 location of the CSV file specifying your time series.
+        ///  <c>DataSource</c> - The S3 location of the CSV file specifying your time series.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Schema</code> - The Schema defines the attributes and attribute types listed
-        /// in the Data Source.
+        ///  <c>Schema</c> - The Schema defines the attributes and attribute types listed in the
+        /// Data Source.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -886,11 +887,11 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>StartDateTime</code> - The first timestamp in the range of time points.
+        ///  <c>StartDateTime</c> - The first timestamp in the range of time points.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EndDateTime</code> - The last timestamp in the range of time points.
+        ///  <c>EndDateTime</c> - The last timestamp in the range of time points.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -937,8 +938,8 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>Status</code> of the export job must be <code>ACTIVE</code> before you can
-        /// access the export in your Amazon S3 bucket. To get the status, use the <a>DescribeExplainabilityExport</a>
+        /// The <c>Status</c> of the export job must be <c>ACTIVE</c> before you can access the
+        /// export in your Amazon S3 bucket. To get the status, use the <a>DescribeExplainabilityExport</a>
         /// operation.
         /// </para>
         ///  </note>
@@ -980,8 +981,8 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>Status</code> of the export job must be <code>ACTIVE</code> before you can
-        /// access the export in your Amazon S3 bucket. To get the status, use the <a>DescribeExplainabilityExport</a>
+        /// The <c>Status</c> of the export job must be <c>ACTIVE</c> before you can access the
+        /// export in your Amazon S3 bucket. To get the status, use the <a>DescribeExplainabilityExport</a>
         /// operation.
         /// </para>
         ///  </note>
@@ -1018,17 +1019,17 @@ namespace Amazon.ForecastService
 
 
         /// <summary>
-        /// Creates a forecast for each item in the <code>TARGET_TIME_SERIES</code> dataset that
-        /// was used to train the predictor. This is known as inference. To retrieve the forecast
+        /// Creates a forecast for each item in the <c>TARGET_TIME_SERIES</c> dataset that was
+        /// used to train the predictor. This is known as inference. To retrieve the forecast
         /// for a single item at low latency, use the operation. To export the complete forecast
         /// into your Amazon Simple Storage Service (Amazon S3) bucket, use the <a>CreateForecastExportJob</a>
         /// operation.
         /// 
         ///  
         /// <para>
-        /// The range of the forecast is determined by the <code>ForecastHorizon</code> value,
-        /// which you specify in the <a>CreatePredictor</a> request. When you query a forecast,
-        /// you can request a specific date range within the forecast.
+        /// The range of the forecast is determined by the <c>ForecastHorizon</c> value, which
+        /// you specify in the <a>CreatePredictor</a> request. When you query a forecast, you
+        /// can request a specific date range within the forecast.
         /// </para>
         ///  
         /// <para>
@@ -1045,18 +1046,16 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>Status</code> of the forecast must be <code>ACTIVE</code> before you can
-        /// query or export the forecast. Use the <a>DescribeForecast</a> operation to get the
-        /// status.
+        /// The <c>Status</c> of the forecast must be <c>ACTIVE</c> before you can query or export
+        /// the forecast. Use the <a>DescribeForecast</a> operation to get the status.
         /// </para>
         ///  </note> 
         /// <para>
-        /// By default, a forecast includes predictions for every item (<code>item_id</code>)
-        /// in the dataset group that was used to train the predictor. However, you can use the
-        /// <code>TimeSeriesSelector</code> object to generate a forecast on a subset of time
-        /// series. Forecast creation is skipped for any time series that you specify that are
-        /// not in the input dataset. The forecast export file will not contain these time series
-        /// or their forecasted values.
+        /// By default, a forecast includes predictions for every item (<c>item_id</c>) in the
+        /// dataset group that was used to train the predictor. However, you can use the <c>TimeSeriesSelector</c>
+        /// object to generate a forecast on a subset of time series. Forecast creation is skipped
+        /// for any time series that you specify that are not in the input dataset. The forecast
+        /// export file will not contain these time series or their forecasted values.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateForecast service method.</param>
@@ -1085,17 +1084,17 @@ namespace Amazon.ForecastService
 
 
         /// <summary>
-        /// Creates a forecast for each item in the <code>TARGET_TIME_SERIES</code> dataset that
-        /// was used to train the predictor. This is known as inference. To retrieve the forecast
+        /// Creates a forecast for each item in the <c>TARGET_TIME_SERIES</c> dataset that was
+        /// used to train the predictor. This is known as inference. To retrieve the forecast
         /// for a single item at low latency, use the operation. To export the complete forecast
         /// into your Amazon Simple Storage Service (Amazon S3) bucket, use the <a>CreateForecastExportJob</a>
         /// operation.
         /// 
         ///  
         /// <para>
-        /// The range of the forecast is determined by the <code>ForecastHorizon</code> value,
-        /// which you specify in the <a>CreatePredictor</a> request. When you query a forecast,
-        /// you can request a specific date range within the forecast.
+        /// The range of the forecast is determined by the <c>ForecastHorizon</c> value, which
+        /// you specify in the <a>CreatePredictor</a> request. When you query a forecast, you
+        /// can request a specific date range within the forecast.
         /// </para>
         ///  
         /// <para>
@@ -1112,18 +1111,16 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>Status</code> of the forecast must be <code>ACTIVE</code> before you can
-        /// query or export the forecast. Use the <a>DescribeForecast</a> operation to get the
-        /// status.
+        /// The <c>Status</c> of the forecast must be <c>ACTIVE</c> before you can query or export
+        /// the forecast. Use the <a>DescribeForecast</a> operation to get the status.
         /// </para>
         ///  </note> 
         /// <para>
-        /// By default, a forecast includes predictions for every item (<code>item_id</code>)
-        /// in the dataset group that was used to train the predictor. However, you can use the
-        /// <code>TimeSeriesSelector</code> object to generate a forecast on a subset of time
-        /// series. Forecast creation is skipped for any time series that you specify that are
-        /// not in the input dataset. The forecast export file will not contain these time series
-        /// or their forecasted values.
+        /// By default, a forecast includes predictions for every item (<c>item_id</c>) in the
+        /// dataset group that was used to train the predictor. However, you can use the <c>TimeSeriesSelector</c>
+        /// object to generate a forecast on a subset of time series. Forecast creation is skipped
+        /// for any time series that you specify that are not in the input dataset. The forecast
+        /// export file will not contain these time series or their forecasted values.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateForecast service method.</param>
@@ -1187,8 +1184,8 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>Status</code> of the forecast export job must be <code>ACTIVE</code> before
-        /// you can access the forecast in your Amazon S3 bucket. To get the status, use the <a>DescribeForecastExportJob</a>
+        /// The <c>Status</c> of the forecast export job must be <c>ACTIVE</c> before you can
+        /// access the forecast in your Amazon S3 bucket. To get the status, use the <a>DescribeForecastExportJob</a>
         /// operation.
         /// </para>
         ///  </note>
@@ -1248,8 +1245,8 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>Status</code> of the forecast export job must be <code>ACTIVE</code> before
-        /// you can access the forecast in your Amazon S3 bucket. To get the status, use the <a>DescribeForecastExportJob</a>
+        /// The <c>Status</c> of the forecast export job must be <c>ACTIVE</c> before you can
+        /// access the forecast in your Amazon S3 bucket. To get the status, use the <a>DescribeForecastExportJob</a>
         /// operation.
         /// </para>
         ///  </note>
@@ -1383,21 +1380,21 @@ namespace Amazon.ForecastService
         ///  
         /// <para>
         /// You can specify a featurization configuration to fill and aggregate the data fields
-        /// in the <code>TARGET_TIME_SERIES</code> dataset to improve model training. For more
-        /// information, see <a>FeaturizationConfig</a>.
+        /// in the <c>TARGET_TIME_SERIES</c> dataset to improve model training. For more information,
+        /// see <a>FeaturizationConfig</a>.
         /// </para>
         ///  
         /// <para>
-        /// For RELATED_TIME_SERIES datasets, <code>CreatePredictor</code> verifies that the <code>DataFrequency</code>
-        /// specified when the dataset was created matches the <code>ForecastFrequency</code>.
-        /// TARGET_TIME_SERIES datasets don't have this restriction. Amazon Forecast also verifies
-        /// the delimiter and timestamp format. For more information, see <a>howitworks-datasets-groups</a>.
+        /// For RELATED_TIME_SERIES datasets, <c>CreatePredictor</c> verifies that the <c>DataFrequency</c>
+        /// specified when the dataset was created matches the <c>ForecastFrequency</c>. TARGET_TIME_SERIES
+        /// datasets don't have this restriction. Amazon Forecast also verifies the delimiter
+        /// and timestamp format. For more information, see <a>howitworks-datasets-groups</a>.
         /// </para>
         ///  
         /// <para>
         /// By default, predictors are trained and evaluated at the 0.1 (P10), 0.5 (P50), and
         /// 0.9 (P90) quantiles. You can choose custom forecast types to train and evaluate your
-        /// predictor by setting the <code>ForecastTypes</code>. 
+        /// predictor by setting the <c>ForecastTypes</c>. 
         /// </para>
         ///  
         /// <para>
@@ -1406,10 +1403,10 @@ namespace Amazon.ForecastService
         ///  
         /// <para>
         /// If you want Amazon Forecast to evaluate each algorithm and choose the one that minimizes
-        /// the <code>objective function</code>, set <code>PerformAutoML</code> to <code>true</code>.
-        /// The <code>objective function</code> is defined as the mean of the weighted losses
-        /// over the forecast types. By default, these are the p10, p50, and p90 quantile losses.
-        /// For more information, see <a>EvaluationResult</a>.
+        /// the <c>objective function</c>, set <c>PerformAutoML</c> to <c>true</c>. The <c>objective
+        /// function</c> is defined as the mean of the weighted losses over the forecast types.
+        /// By default, these are the p10, p50, and p90 quantile losses. For more information,
+        /// see <a>EvaluationResult</a>.
         /// </para>
         ///  
         /// <para>
@@ -1417,19 +1414,19 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AlgorithmArn</code> 
+        ///  <c>AlgorithmArn</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>HPOConfig</code> 
+        ///  <c>HPOConfig</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PerformHPO</code> 
+        ///  <c>PerformHPO</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TrainingParameters</code> 
+        ///  <c>TrainingParameters</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -1437,9 +1434,9 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <note> 
         /// <para>
-        /// Before you can use the predictor to create a forecast, the <code>Status</code> of
-        /// the predictor must be <code>ACTIVE</code>, signifying that training has completed.
-        /// To get the status, use the <a>DescribePredictor</a> operation.
+        /// Before you can use the predictor to create a forecast, the <c>Status</c> of the predictor
+        /// must be <c>ACTIVE</c>, signifying that training has completed. To get the status,
+        /// use the <a>DescribePredictor</a> operation.
         /// </para>
         ///  </note>
         /// </summary>
@@ -1498,21 +1495,21 @@ namespace Amazon.ForecastService
         ///  
         /// <para>
         /// You can specify a featurization configuration to fill and aggregate the data fields
-        /// in the <code>TARGET_TIME_SERIES</code> dataset to improve model training. For more
-        /// information, see <a>FeaturizationConfig</a>.
+        /// in the <c>TARGET_TIME_SERIES</c> dataset to improve model training. For more information,
+        /// see <a>FeaturizationConfig</a>.
         /// </para>
         ///  
         /// <para>
-        /// For RELATED_TIME_SERIES datasets, <code>CreatePredictor</code> verifies that the <code>DataFrequency</code>
-        /// specified when the dataset was created matches the <code>ForecastFrequency</code>.
-        /// TARGET_TIME_SERIES datasets don't have this restriction. Amazon Forecast also verifies
-        /// the delimiter and timestamp format. For more information, see <a>howitworks-datasets-groups</a>.
+        /// For RELATED_TIME_SERIES datasets, <c>CreatePredictor</c> verifies that the <c>DataFrequency</c>
+        /// specified when the dataset was created matches the <c>ForecastFrequency</c>. TARGET_TIME_SERIES
+        /// datasets don't have this restriction. Amazon Forecast also verifies the delimiter
+        /// and timestamp format. For more information, see <a>howitworks-datasets-groups</a>.
         /// </para>
         ///  
         /// <para>
         /// By default, predictors are trained and evaluated at the 0.1 (P10), 0.5 (P50), and
         /// 0.9 (P90) quantiles. You can choose custom forecast types to train and evaluate your
-        /// predictor by setting the <code>ForecastTypes</code>. 
+        /// predictor by setting the <c>ForecastTypes</c>. 
         /// </para>
         ///  
         /// <para>
@@ -1521,10 +1518,10 @@ namespace Amazon.ForecastService
         ///  
         /// <para>
         /// If you want Amazon Forecast to evaluate each algorithm and choose the one that minimizes
-        /// the <code>objective function</code>, set <code>PerformAutoML</code> to <code>true</code>.
-        /// The <code>objective function</code> is defined as the mean of the weighted losses
-        /// over the forecast types. By default, these are the p10, p50, and p90 quantile losses.
-        /// For more information, see <a>EvaluationResult</a>.
+        /// the <c>objective function</c>, set <c>PerformAutoML</c> to <c>true</c>. The <c>objective
+        /// function</c> is defined as the mean of the weighted losses over the forecast types.
+        /// By default, these are the p10, p50, and p90 quantile losses. For more information,
+        /// see <a>EvaluationResult</a>.
         /// </para>
         ///  
         /// <para>
@@ -1532,19 +1529,19 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AlgorithmArn</code> 
+        ///  <c>AlgorithmArn</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>HPOConfig</code> 
+        ///  <c>HPOConfig</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PerformHPO</code> 
+        ///  <c>PerformHPO</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TrainingParameters</code> 
+        ///  <c>TrainingParameters</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -1552,9 +1549,9 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <note> 
         /// <para>
-        /// Before you can use the predictor to create a forecast, the <code>Status</code> of
-        /// the predictor must be <code>ACTIVE</code>, signifying that training has completed.
-        /// To get the status, use the <a>DescribePredictor</a> operation.
+        /// Before you can use the predictor to create a forecast, the <c>Status</c> of the predictor
+        /// must be <c>ACTIVE</c>, signifying that training has completed. To get the status,
+        /// use the <a>DescribePredictor</a> operation.
         /// </para>
         ///  </note>
         /// </summary>
@@ -1600,8 +1597,7 @@ namespace Amazon.ForecastService
         /// </para>
         ///  
         /// <para>
-        ///  <code>&lt;ExportJobName&gt;_&lt;ExportTimestamp&gt;_&lt;PartNumber&gt;.csv</code>
-        /// 
+        ///  <c>&lt;ExportJobName&gt;_&lt;ExportTimestamp&gt;_&lt;PartNumber&gt;.csv</c> 
         /// </para>
         ///  
         /// <para>
@@ -1615,8 +1611,8 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>Status</code> of the export job must be <code>ACTIVE</code> before you can
-        /// access the export in your Amazon S3 bucket. To get the status, use the <a>DescribePredictorBacktestExportJob</a>
+        /// The <c>Status</c> of the export job must be <c>ACTIVE</c> before you can access the
+        /// export in your Amazon S3 bucket. To get the status, use the <a>DescribePredictorBacktestExportJob</a>
         /// operation.
         /// </para>
         ///  </note>
@@ -1657,8 +1653,7 @@ namespace Amazon.ForecastService
         /// </para>
         ///  
         /// <para>
-        ///  <code>&lt;ExportJobName&gt;_&lt;ExportTimestamp&gt;_&lt;PartNumber&gt;.csv</code>
-        /// 
+        ///  <c>&lt;ExportJobName&gt;_&lt;ExportTimestamp&gt;_&lt;PartNumber&gt;.csv</c> 
         /// </para>
         ///  
         /// <para>
@@ -1672,8 +1667,8 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>Status</code> of the export job must be <code>ACTIVE</code> before you can
-        /// access the export in your Amazon S3 bucket. To get the status, use the <a>DescribePredictorBacktestExportJob</a>
+        /// The <c>Status</c> of the export job must be <c>ACTIVE</c> before you can access the
+        /// export in your Amazon S3 bucket. To get the status, use the <a>DescribePredictorBacktestExportJob</a>
         /// operation.
         /// </para>
         ///  </note>
@@ -1906,7 +1901,7 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        ///  <code>≈&lt;ForecastExportJobName&gt;_&lt;ExportTimestamp&gt;_&lt;PartNumber&gt;</code>
+        ///  <c>≈&lt;ForecastExportJobName&gt;_&lt;ExportTimestamp&gt;_&lt;PartNumber&gt;</c>
         /// 
         /// </para>
         ///  
@@ -1930,8 +1925,8 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>Status</code> of the forecast export job must be <code>ACTIVE</code> before
-        /// you can access the forecast in your Amazon S3 bucket. To get the status, use the <a>DescribeWhatIfForecastExport</a>
+        /// The <c>Status</c> of the forecast export job must be <c>ACTIVE</c> before you can
+        /// access the forecast in your Amazon S3 bucket. To get the status, use the <a>DescribeWhatIfForecastExport</a>
         /// operation.
         /// </para>
         ///  </note>
@@ -1968,7 +1963,7 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        ///  <code>≈&lt;ForecastExportJobName&gt;_&lt;ExportTimestamp&gt;_&lt;PartNumber&gt;</code>
+        ///  <c>≈&lt;ForecastExportJobName&gt;_&lt;ExportTimestamp&gt;_&lt;PartNumber&gt;</c>
         /// 
         /// </para>
         ///  
@@ -1992,8 +1987,8 @@ namespace Amazon.ForecastService
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>Status</code> of the forecast export job must be <code>ACTIVE</code> before
-        /// you can access the forecast in your Amazon S3 bucket. To get the status, use the <a>DescribeWhatIfForecastExport</a>
+        /// The <c>Status</c> of the forecast export job must be <c>ACTIVE</c> before you can
+        /// access the forecast in your Amazon S3 bucket. To get the status, use the <a>DescribeWhatIfForecastExport</a>
         /// operation.
         /// </para>
         ///  </note>
@@ -2031,8 +2026,8 @@ namespace Amazon.ForecastService
 
         /// <summary>
         /// Deletes an Amazon Forecast dataset that was created using the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDataset.html">CreateDataset</a>
-        /// operation. You can only delete datasets that have a status of <code>ACTIVE</code>
-        /// or <code>CREATE_FAILED</code>. To get the status use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDataset.html">DescribeDataset</a>
+        /// operation. You can only delete datasets that have a status of <c>ACTIVE</c> or <c>CREATE_FAILED</c>.
+        /// To get the status use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDataset.html">DescribeDataset</a>
         /// operation.
         /// 
         ///  <note> 
@@ -2064,8 +2059,8 @@ namespace Amazon.ForecastService
 
         /// <summary>
         /// Deletes an Amazon Forecast dataset that was created using the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDataset.html">CreateDataset</a>
-        /// operation. You can only delete datasets that have a status of <code>ACTIVE</code>
-        /// or <code>CREATE_FAILED</code>. To get the status use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDataset.html">DescribeDataset</a>
+        /// operation. You can only delete datasets that have a status of <c>ACTIVE</c> or <c>CREATE_FAILED</c>.
+        /// To get the status use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDataset.html">DescribeDataset</a>
         /// operation.
         /// 
         ///  <note> 
@@ -2103,9 +2098,8 @@ namespace Amazon.ForecastService
 
         /// <summary>
         /// Deletes a dataset group created using the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDatasetGroup.html">CreateDatasetGroup</a>
-        /// operation. You can only delete dataset groups that have a status of <code>ACTIVE</code>,
-        /// <code>CREATE_FAILED</code>, or <code>UPDATE_FAILED</code>. To get the status, use
-        /// the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetGroup.html">DescribeDatasetGroup</a>
+        /// operation. You can only delete dataset groups that have a status of <c>ACTIVE</c>,
+        /// <c>CREATE_FAILED</c>, or <c>UPDATE_FAILED</c>. To get the status, use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetGroup.html">DescribeDatasetGroup</a>
         /// operation.
         /// 
         ///  
@@ -2134,9 +2128,8 @@ namespace Amazon.ForecastService
 
         /// <summary>
         /// Deletes a dataset group created using the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDatasetGroup.html">CreateDatasetGroup</a>
-        /// operation. You can only delete dataset groups that have a status of <code>ACTIVE</code>,
-        /// <code>CREATE_FAILED</code>, or <code>UPDATE_FAILED</code>. To get the status, use
-        /// the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetGroup.html">DescribeDatasetGroup</a>
+        /// operation. You can only delete dataset groups that have a status of <c>ACTIVE</c>,
+        /// <c>CREATE_FAILED</c>, or <c>UPDATE_FAILED</c>. To get the status, use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetGroup.html">DescribeDatasetGroup</a>
         /// operation.
         /// 
         ///  
@@ -2171,8 +2164,8 @@ namespace Amazon.ForecastService
 
         /// <summary>
         /// Deletes a dataset import job created using the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDatasetImportJob.html">CreateDatasetImportJob</a>
-        /// operation. You can delete only dataset import jobs that have a status of <code>ACTIVE</code>
-        /// or <code>CREATE_FAILED</code>. To get the status, use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetImportJob.html">DescribeDatasetImportJob</a>
+        /// operation. You can delete only dataset import jobs that have a status of <c>ACTIVE</c>
+        /// or <c>CREATE_FAILED</c>. To get the status, use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetImportJob.html">DescribeDatasetImportJob</a>
         /// operation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteDatasetImportJob service method.</param>
@@ -2196,8 +2189,8 @@ namespace Amazon.ForecastService
 
         /// <summary>
         /// Deletes a dataset import job created using the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDatasetImportJob.html">CreateDatasetImportJob</a>
-        /// operation. You can delete only dataset import jobs that have a status of <code>ACTIVE</code>
-        /// or <code>CREATE_FAILED</code>. To get the status, use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetImportJob.html">DescribeDatasetImportJob</a>
+        /// operation. You can delete only dataset import jobs that have a status of <c>ACTIVE</c>
+        /// or <c>CREATE_FAILED</c>. To get the status, use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetImportJob.html">DescribeDatasetImportJob</a>
         /// operation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteDatasetImportJob service method.</param>
@@ -2230,7 +2223,7 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// You can delete only predictor that have a status of <code>ACTIVE</code> or <code>CREATE_FAILED</code>.
+        /// You can delete only predictor that have a status of <c>ACTIVE</c> or <c>CREATE_FAILED</c>.
         /// To get the status, use the <a>DescribeExplainability</a> operation.
         /// </para>
         /// </summary>
@@ -2258,7 +2251,7 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// You can delete only predictor that have a status of <code>ACTIVE</code> or <code>CREATE_FAILED</code>.
+        /// You can delete only predictor that have a status of <c>ACTIVE</c> or <c>CREATE_FAILED</c>.
         /// To get the status, use the <a>DescribeExplainability</a> operation.
         /// </para>
         /// </summary>
@@ -2339,8 +2332,8 @@ namespace Amazon.ForecastService
 
         /// <summary>
         /// Deletes a forecast created using the <a>CreateForecast</a> operation. You can delete
-        /// only forecasts that have a status of <code>ACTIVE</code> or <code>CREATE_FAILED</code>.
-        /// To get the status, use the <a>DescribeForecast</a> operation.
+        /// only forecasts that have a status of <c>ACTIVE</c> or <c>CREATE_FAILED</c>. To get
+        /// the status, use the <a>DescribeForecast</a> operation.
         /// 
         ///  
         /// <para>
@@ -2369,8 +2362,8 @@ namespace Amazon.ForecastService
 
         /// <summary>
         /// Deletes a forecast created using the <a>CreateForecast</a> operation. You can delete
-        /// only forecasts that have a status of <code>ACTIVE</code> or <code>CREATE_FAILED</code>.
-        /// To get the status, use the <a>DescribeForecast</a> operation.
+        /// only forecasts that have a status of <c>ACTIVE</c> or <c>CREATE_FAILED</c>. To get
+        /// the status, use the <a>DescribeForecast</a> operation.
         /// 
         ///  
         /// <para>
@@ -2405,7 +2398,7 @@ namespace Amazon.ForecastService
 
         /// <summary>
         /// Deletes a forecast export job created using the <a>CreateForecastExportJob</a> operation.
-        /// You can delete only export jobs that have a status of <code>ACTIVE</code> or <code>CREATE_FAILED</code>.
+        /// You can delete only export jobs that have a status of <c>ACTIVE</c> or <c>CREATE_FAILED</c>.
         /// To get the status, use the <a>DescribeForecastExportJob</a> operation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteForecastExportJob service method.</param>
@@ -2429,7 +2422,7 @@ namespace Amazon.ForecastService
 
         /// <summary>
         /// Deletes a forecast export job created using the <a>CreateForecastExportJob</a> operation.
-        /// You can delete only export jobs that have a status of <code>ACTIVE</code> or <code>CREATE_FAILED</code>.
+        /// You can delete only export jobs that have a status of <c>ACTIVE</c> or <c>CREATE_FAILED</c>.
         /// To get the status, use the <a>DescribeForecastExportJob</a> operation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteForecastExportJob service method.</param>
@@ -2459,7 +2452,7 @@ namespace Amazon.ForecastService
 
         /// <summary>
         /// Deletes a monitor resource. You can only delete a monitor resource with a status of
-        /// <code>ACTIVE</code>, <code>ACTIVE_STOPPED</code>, <code>CREATE_FAILED</code>, or <code>CREATE_STOPPED</code>.
+        /// <c>ACTIVE</c>, <c>ACTIVE_STOPPED</c>, <c>CREATE_FAILED</c>, or <c>CREATE_STOPPED</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteMonitor service method.</param>
         /// 
@@ -2482,7 +2475,7 @@ namespace Amazon.ForecastService
 
         /// <summary>
         /// Deletes a monitor resource. You can only delete a monitor resource with a status of
-        /// <code>ACTIVE</code>, <code>ACTIVE_STOPPED</code>, <code>CREATE_FAILED</code>, or <code>CREATE_STOPPED</code>.
+        /// <c>ACTIVE</c>, <c>ACTIVE_STOPPED</c>, <c>CREATE_FAILED</c>, or <c>CREATE_STOPPED</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteMonitor service method.</param>
         /// <param name="cancellationToken">
@@ -2511,9 +2504,8 @@ namespace Amazon.ForecastService
 
         /// <summary>
         /// Deletes a predictor created using the <a>DescribePredictor</a> or <a>CreatePredictor</a>
-        /// operations. You can delete only predictor that have a status of <code>ACTIVE</code>
-        /// or <code>CREATE_FAILED</code>. To get the status, use the <a>DescribePredictor</a>
-        /// operation.
+        /// operations. You can delete only predictor that have a status of <c>ACTIVE</c> or <c>CREATE_FAILED</c>.
+        /// To get the status, use the <a>DescribePredictor</a> operation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeletePredictor service method.</param>
         /// 
@@ -2536,9 +2528,8 @@ namespace Amazon.ForecastService
 
         /// <summary>
         /// Deletes a predictor created using the <a>DescribePredictor</a> or <a>CreatePredictor</a>
-        /// operations. You can delete only predictor that have a status of <code>ACTIVE</code>
-        /// or <code>CREATE_FAILED</code>. To get the status, use the <a>DescribePredictor</a>
-        /// operation.
+        /// operations. You can delete only predictor that have a status of <c>ACTIVE</c> or <c>CREATE_FAILED</c>.
+        /// To get the status, use the <a>DescribePredictor</a> operation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeletePredictor service method.</param>
         /// <param name="cancellationToken">
@@ -2648,8 +2639,8 @@ namespace Amazon.ForecastService
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
-        ///  <code>DeleteResourceTree</code> will only delete Amazon Forecast resources, and will
-        /// not delete datasets or exported files stored in Amazon S3. 
+        ///  <c>DeleteResourceTree</c> will only delete Amazon Forecast resources, and will not
+        /// delete datasets or exported files stored in Amazon S3. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -2705,8 +2696,8 @@ namespace Amazon.ForecastService
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
-        ///  <code>DeleteResourceTree</code> will only delete Amazon Forecast resources, and will
-        /// not delete datasets or exported files stored in Amazon S3. 
+        ///  <c>DeleteResourceTree</c> will only delete Amazon Forecast resources, and will not
+        /// delete datasets or exported files stored in Amazon S3. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -2737,9 +2728,8 @@ namespace Amazon.ForecastService
 
         /// <summary>
         /// Deletes a what-if analysis created using the <a>CreateWhatIfAnalysis</a> operation.
-        /// You can delete only what-if analyses that have a status of <code>ACTIVE</code> or
-        /// <code>CREATE_FAILED</code>. To get the status, use the <a>DescribeWhatIfAnalysis</a>
-        /// operation. 
+        /// You can delete only what-if analyses that have a status of <c>ACTIVE</c> or <c>CREATE_FAILED</c>.
+        /// To get the status, use the <a>DescribeWhatIfAnalysis</a> operation. 
         /// 
         ///  
         /// <para>
@@ -2767,9 +2757,8 @@ namespace Amazon.ForecastService
 
         /// <summary>
         /// Deletes a what-if analysis created using the <a>CreateWhatIfAnalysis</a> operation.
-        /// You can delete only what-if analyses that have a status of <code>ACTIVE</code> or
-        /// <code>CREATE_FAILED</code>. To get the status, use the <a>DescribeWhatIfAnalysis</a>
-        /// operation. 
+        /// You can delete only what-if analyses that have a status of <c>ACTIVE</c> or <c>CREATE_FAILED</c>.
+        /// To get the status, use the <a>DescribeWhatIfAnalysis</a> operation. 
         /// 
         ///  
         /// <para>
@@ -2803,9 +2792,8 @@ namespace Amazon.ForecastService
 
         /// <summary>
         /// Deletes a what-if forecast created using the <a>CreateWhatIfForecast</a> operation.
-        /// You can delete only what-if forecasts that have a status of <code>ACTIVE</code> or
-        /// <code>CREATE_FAILED</code>. To get the status, use the <a>DescribeWhatIfForecast</a>
-        /// operation. 
+        /// You can delete only what-if forecasts that have a status of <c>ACTIVE</c> or <c>CREATE_FAILED</c>.
+        /// To get the status, use the <a>DescribeWhatIfForecast</a> operation. 
         /// 
         ///  
         /// <para>
@@ -2834,9 +2822,8 @@ namespace Amazon.ForecastService
 
         /// <summary>
         /// Deletes a what-if forecast created using the <a>CreateWhatIfForecast</a> operation.
-        /// You can delete only what-if forecasts that have a status of <code>ACTIVE</code> or
-        /// <code>CREATE_FAILED</code>. To get the status, use the <a>DescribeWhatIfForecast</a>
-        /// operation. 
+        /// You can delete only what-if forecasts that have a status of <c>ACTIVE</c> or <c>CREATE_FAILED</c>.
+        /// To get the status, use the <a>DescribeWhatIfForecast</a> operation. 
         /// 
         ///  
         /// <para>
@@ -2871,8 +2858,8 @@ namespace Amazon.ForecastService
 
         /// <summary>
         /// Deletes a what-if forecast export created using the <a>CreateWhatIfForecastExport</a>
-        /// operation. You can delete only what-if forecast exports that have a status of <code>ACTIVE</code>
-        /// or <code>CREATE_FAILED</code>. To get the status, use the <a>DescribeWhatIfForecastExport</a>
+        /// operation. You can delete only what-if forecast exports that have a status of <c>ACTIVE</c>
+        /// or <c>CREATE_FAILED</c>. To get the status, use the <a>DescribeWhatIfForecastExport</a>
         /// operation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteWhatIfForecastExport service method.</param>
@@ -2896,8 +2883,8 @@ namespace Amazon.ForecastService
 
         /// <summary>
         /// Deletes a what-if forecast export created using the <a>CreateWhatIfForecastExport</a>
-        /// operation. You can delete only what-if forecast exports that have a status of <code>ACTIVE</code>
-        /// or <code>CREATE_FAILED</code>. To get the status, use the <a>DescribeWhatIfForecastExport</a>
+        /// operation. You can delete only what-if forecast exports that have a status of <c>ACTIVE</c>
+        /// or <c>CREATE_FAILED</c>. To get the status, use the <a>DescribeWhatIfForecastExport</a>
         /// operation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteWhatIfForecastExport service method.</param>
@@ -2975,20 +2962,20 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// In addition to listing the parameters specified in the <code>CreateDataset</code>
-        /// request, this operation includes the following dataset properties:
+        /// In addition to listing the parameters specified in the <c>CreateDataset</c> request,
+        /// this operation includes the following dataset properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3014,20 +3001,20 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// In addition to listing the parameters specified in the <code>CreateDataset</code>
-        /// request, this operation includes the following dataset properties:
+        /// In addition to listing the parameters specified in the <c>CreateDataset</c> request,
+        /// this operation includes the following dataset properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3059,24 +3046,24 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// In addition to listing the parameters provided in the <code>CreateDatasetGroup</code>
-        /// request, this operation includes the following properties:
+        /// In addition to listing the parameters provided in the <c>CreateDatasetGroup</c> request,
+        /// this operation includes the following properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>DatasetArns</code> - The datasets belonging to the group.
+        ///  <c>DatasetArns</c> - The datasets belonging to the group.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3102,24 +3089,24 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// In addition to listing the parameters provided in the <code>CreateDatasetGroup</code>
-        /// request, this operation includes the following properties:
+        /// In addition to listing the parameters provided in the <c>CreateDatasetGroup</c> request,
+        /// this operation includes the following properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>DatasetArns</code> - The datasets belonging to the group.
+        ///  <c>DatasetArns</c> - The datasets belonging to the group.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3151,32 +3138,32 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// In addition to listing the parameters provided in the <code>CreateDatasetImportJob</code>
+        /// In addition to listing the parameters provided in the <c>CreateDatasetImportJob</c>
         /// request, this operation includes the following properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DataSize</code> 
+        ///  <c>DataSize</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FieldStatistics</code> 
+        ///  <c>FieldStatistics</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Message</code> - If an error occurred, information about the error.
+        ///  <c>Message</c> - If an error occurred, information about the error.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3202,32 +3189,32 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// In addition to listing the parameters provided in the <code>CreateDatasetImportJob</code>
+        /// In addition to listing the parameters provided in the <c>CreateDatasetImportJob</c>
         /// request, this operation includes the following properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DataSize</code> 
+        ///  <c>DataSize</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FieldStatistics</code> 
+        ///  <c>FieldStatistics</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Message</code> - If an error occurred, information about the error.
+        ///  <c>Message</c> - If an error occurred, information about the error.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3350,28 +3337,28 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// In addition to listing the properties provided in the <code>CreateForecast</code>
-        /// request, this operation lists the following properties:
+        /// In addition to listing the properties provided in the <c>CreateForecast</c> request,
+        /// this operation lists the following properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>DatasetGroupArn</code> - The dataset group that provided the training data.
+        ///  <c>DatasetGroupArn</c> - The dataset group that provided the training data.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Message</code> - If an error occurred, information about the error.
+        ///  <c>Message</c> - If an error occurred, information about the error.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3396,28 +3383,28 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// In addition to listing the properties provided in the <code>CreateForecast</code>
-        /// request, this operation lists the following properties:
+        /// In addition to listing the properties provided in the <c>CreateForecast</c> request,
+        /// this operation lists the following properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>DatasetGroupArn</code> - The dataset group that provided the training data.
+        ///  <c>DatasetGroupArn</c> - The dataset group that provided the training data.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Message</code> - If an error occurred, information about the error.
+        ///  <c>Message</c> - If an error occurred, information about the error.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3448,24 +3435,24 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// In addition to listing the properties provided by the user in the <code>CreateForecastExportJob</code>
+        /// In addition to listing the properties provided by the user in the <c>CreateForecastExportJob</c>
         /// request, this operation lists the following properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Message</code> - If an error occurred, information about the error.
+        ///  <c>Message</c> - If an error occurred, information about the error.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3490,24 +3477,24 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// In addition to listing the properties provided by the user in the <code>CreateForecastExportJob</code>
+        /// In addition to listing the properties provided by the user in the <c>CreateForecastExportJob</c>
         /// request, this operation lists the following properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Message</code> - If an error occurred, information about the error.
+        ///  <c>Message</c> - If an error occurred, information about the error.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3539,31 +3526,31 @@ namespace Amazon.ForecastService
         /// 
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Baseline</code> 
+        ///  <c>Baseline</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastEvaluationTime</code> 
+        ///  <c>LastEvaluationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastEvaluationState</code> 
+        ///  <c>LastEvaluationState</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Message</code> 
+        ///  <c>Message</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3589,31 +3576,31 @@ namespace Amazon.ForecastService
         /// 
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Baseline</code> 
+        ///  <c>Baseline</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastEvaluationTime</code> 
+        ///  <c>LastEvaluationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastEvaluationState</code> 
+        ///  <c>LastEvaluationState</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Message</code> 
+        ///  <c>Message</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3651,34 +3638,32 @@ namespace Amazon.ForecastService
         /// </para>
         ///  
         /// <para>
-        /// In addition to listing the properties provided in the <code>CreatePredictor</code>
-        /// request, this operation lists the following properties:
+        /// In addition to listing the properties provided in the <c>CreatePredictor</c> request,
+        /// this operation lists the following properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>DatasetImportJobArns</code> - The dataset import jobs used to import training
-        /// data.
+        ///  <c>DatasetImportJobArns</c> - The dataset import jobs used to import training data.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AutoMLAlgorithmArns</code> - If AutoML is performed, the algorithms that were
-        /// evaluated.
+        ///  <c>AutoMLAlgorithmArns</c> - If AutoML is performed, the algorithms that were evaluated.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Message</code> - If an error occurred, information about the error.
+        ///  <c>Message</c> - If an error occurred, information about the error.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3710,34 +3695,32 @@ namespace Amazon.ForecastService
         /// </para>
         ///  
         /// <para>
-        /// In addition to listing the properties provided in the <code>CreatePredictor</code>
-        /// request, this operation lists the following properties:
+        /// In addition to listing the properties provided in the <c>CreatePredictor</c> request,
+        /// this operation lists the following properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>DatasetImportJobArns</code> - The dataset import jobs used to import training
-        /// data.
+        ///  <c>DatasetImportJobArns</c> - The dataset import jobs used to import training data.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AutoMLAlgorithmArns</code> - If AutoML is performed, the algorithms that were
-        /// evaluated.
+        ///  <c>AutoMLAlgorithmArns</c> - If AutoML is performed, the algorithms that were evaluated.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Message</code> - If an error occurred, information about the error.
+        ///  <c>Message</c> - If an error occurred, information about the error.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3769,24 +3752,24 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// In addition to listing the properties provided by the user in the <code>CreatePredictorBacktestExportJob</code>
+        /// In addition to listing the properties provided by the user in the <c>CreatePredictorBacktestExportJob</c>
         /// request, this operation lists the following properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Message</code> (if an error occurred)
+        ///  <c>Message</c> (if an error occurred)
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3812,24 +3795,24 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// In addition to listing the properties provided by the user in the <code>CreatePredictorBacktestExportJob</code>
+        /// In addition to listing the properties provided by the user in the <c>CreatePredictorBacktestExportJob</c>
         /// request, this operation lists the following properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Message</code> (if an error occurred)
+        ///  <c>Message</c> (if an error occurred)
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3860,24 +3843,24 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// In addition to listing the properties provided in the <code>CreateWhatIfAnalysis</code>
+        /// In addition to listing the properties provided in the <c>CreateWhatIfAnalysis</c>
         /// request, this operation lists the following properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Message</code> - If an error occurred, information about the error.
+        ///  <c>Message</c> - If an error occurred, information about the error.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3902,24 +3885,24 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// In addition to listing the properties provided in the <code>CreateWhatIfAnalysis</code>
+        /// In addition to listing the properties provided in the <c>CreateWhatIfAnalysis</c>
         /// request, this operation lists the following properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Message</code> - If an error occurred, information about the error.
+        ///  <c>Message</c> - If an error occurred, information about the error.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3950,24 +3933,24 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// In addition to listing the properties provided in the <code>CreateWhatIfForecast</code>
+        /// In addition to listing the properties provided in the <c>CreateWhatIfForecast</c>
         /// request, this operation lists the following properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Message</code> - If an error occurred, information about the error.
+        ///  <c>Message</c> - If an error occurred, information about the error.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -3992,24 +3975,24 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// In addition to listing the properties provided in the <code>CreateWhatIfForecast</code>
+        /// In addition to listing the properties provided in the <c>CreateWhatIfForecast</c>
         /// request, this operation lists the following properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Message</code> - If an error occurred, information about the error.
+        ///  <c>Message</c> - If an error occurred, information about the error.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -4041,24 +4024,24 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// In addition to listing the properties provided in the <code>CreateWhatIfForecastExport</code>
+        /// In addition to listing the properties provided in the <c>CreateWhatIfForecastExport</c>
         /// request, this operation lists the following properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Message</code> - If an error occurred, information about the error.
+        ///  <c>Message</c> - If an error occurred, information about the error.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -4084,24 +4067,24 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// In addition to listing the properties provided in the <code>CreateWhatIfForecastExport</code>
+        /// In addition to listing the properties provided in the <c>CreateWhatIfForecastExport</c>
         /// request, this operation lists the following properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CreationTime</code> 
+        ///  <c>CreationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LastModificationTime</code> 
+        ///  <c>LastModificationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Message</code> - If an error occurred, information about the error.
+        ///  <c>Message</c> - If an error occurred, information about the error.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>Status</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -4136,23 +4119,23 @@ namespace Amazon.ForecastService
         ///  
         /// <para>
         /// This operation generates metrics for each backtest window that was evaluated. The
-        /// number of backtest windows (<code>NumberOfBacktestWindows</code>) is specified using
-        /// the <a>EvaluationParameters</a> object, which is optionally included in the <code>CreatePredictor</code>
-        /// request. If <code>NumberOfBacktestWindows</code> isn't specified, the number defaults
-        /// to one.
+        /// number of backtest windows (<c>NumberOfBacktestWindows</c>) is specified using the
+        /// <a>EvaluationParameters</a> object, which is optionally included in the <c>CreatePredictor</c>
+        /// request. If <c>NumberOfBacktestWindows</c> isn't specified, the number defaults to
+        /// one.
         /// </para>
         ///  
         /// <para>
-        /// The parameters of the <code>filling</code> method determine which items contribute
-        /// to the metrics. If you want all items to contribute, specify <code>zero</code>. If
-        /// you want only those items that have complete data in the range being evaluated to
-        /// contribute, specify <code>nan</code>. For more information, see <a>FeaturizationMethod</a>.
+        /// The parameters of the <c>filling</c> method determine which items contribute to the
+        /// metrics. If you want all items to contribute, specify <c>zero</c>. If you want only
+        /// those items that have complete data in the range being evaluated to contribute, specify
+        /// <c>nan</c>. For more information, see <a>FeaturizationMethod</a>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// Before you can get accuracy metrics, the <code>Status</code> of the predictor must
-        /// be <code>ACTIVE</code>, signifying that training has completed. To get the status,
-        /// use the <a>DescribePredictor</a> operation.
+        /// Before you can get accuracy metrics, the <c>Status</c> of the predictor must be <c>ACTIVE</c>,
+        /// signifying that training has completed. To get the status, use the <a>DescribePredictor</a>
+        /// operation.
         /// </para>
         ///  </note>
         /// </summary>
@@ -4184,23 +4167,23 @@ namespace Amazon.ForecastService
         ///  
         /// <para>
         /// This operation generates metrics for each backtest window that was evaluated. The
-        /// number of backtest windows (<code>NumberOfBacktestWindows</code>) is specified using
-        /// the <a>EvaluationParameters</a> object, which is optionally included in the <code>CreatePredictor</code>
-        /// request. If <code>NumberOfBacktestWindows</code> isn't specified, the number defaults
-        /// to one.
+        /// number of backtest windows (<c>NumberOfBacktestWindows</c>) is specified using the
+        /// <a>EvaluationParameters</a> object, which is optionally included in the <c>CreatePredictor</c>
+        /// request. If <c>NumberOfBacktestWindows</c> isn't specified, the number defaults to
+        /// one.
         /// </para>
         ///  
         /// <para>
-        /// The parameters of the <code>filling</code> method determine which items contribute
-        /// to the metrics. If you want all items to contribute, specify <code>zero</code>. If
-        /// you want only those items that have complete data in the range being evaluated to
-        /// contribute, specify <code>nan</code>. For more information, see <a>FeaturizationMethod</a>.
+        /// The parameters of the <c>filling</c> method determine which items contribute to the
+        /// metrics. If you want all items to contribute, specify <c>zero</c>. If you want only
+        /// those items that have complete data in the range being evaluated to contribute, specify
+        /// <c>nan</c>. For more information, see <a>FeaturizationMethod</a>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// Before you can get accuracy metrics, the <code>Status</code> of the predictor must
-        /// be <code>ACTIVE</code>, signifying that training has completed. To get the status,
-        /// use the <a>DescribePredictor</a> operation.
+        /// Before you can get accuracy metrics, the <c>Status</c> of the predictor must be <c>ACTIVE</c>,
+        /// signifying that training has completed. To get the status, use the <a>DescribePredictor</a>
+        /// operation.
         /// </para>
         ///  </note>
         /// </summary>
@@ -5064,7 +5047,7 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// The resource undergoes the following states: <code>CREATE_STOPPING</code> and <code>CREATE_STOPPED</code>.
+        /// The resource undergoes the following states: <c>CREATE_STOPPING</c> and <c>CREATE_STOPPED</c>.
         /// You cannot resume a resource once it has been stopped.
         /// </para>
         ///  
@@ -5126,7 +5109,7 @@ namespace Amazon.ForecastService
         /// 
         ///  
         /// <para>
-        /// The resource undergoes the following states: <code>CREATE_STOPPING</code> and <code>CREATE_STOPPED</code>.
+        /// The resource undergoes the following states: <c>CREATE_STOPPING</c> and <c>CREATE_STOPPED</c>.
         /// You cannot resume a resource once it has been stopped.
         /// </para>
         ///  
@@ -5190,7 +5173,7 @@ namespace Amazon.ForecastService
 
 
         /// <summary>
-        /// Associates the specified tags to a resource with the specified <code>resourceArn</code>.
+        /// Associates the specified tags to a resource with the specified <c>resourceArn</c>.
         /// If existing tags on a resource are not specified in the request parameters, they are
         /// not changed. When a resource is deleted, the tags associated with that resource are
         /// also deleted.
@@ -5215,7 +5198,7 @@ namespace Amazon.ForecastService
 
 
         /// <summary>
-        /// Associates the specified tags to a resource with the specified <code>resourceArn</code>.
+        /// Associates the specified tags to a resource with the specified <c>resourceArn</c>.
         /// If existing tags on a resource are not specified in the request parameters, they are
         /// not changed. When a resource is deleted, the tags associated with that resource are
         /// also deleted.
@@ -5294,8 +5277,8 @@ namespace Amazon.ForecastService
         /// 
         ///  <note> 
         /// <para>
-        /// The <code>Status</code> of the dataset group must be <code>ACTIVE</code> before you
-        /// can use the dataset group to create a predictor. Use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetGroup.html">DescribeDatasetGroup</a>
+        /// The <c>Status</c> of the dataset group must be <c>ACTIVE</c> before you can use the
+        /// dataset group to create a predictor. Use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetGroup.html">DescribeDatasetGroup</a>
         /// operation to get the status.
         /// </para>
         ///  </note>
@@ -5324,8 +5307,8 @@ namespace Amazon.ForecastService
         /// 
         ///  <note> 
         /// <para>
-        /// The <code>Status</code> of the dataset group must be <code>ACTIVE</code> before you
-        /// can use the dataset group to create a predictor. Use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetGroup.html">DescribeDatasetGroup</a>
+        /// The <c>Status</c> of the dataset group must be <c>ACTIVE</c> before you can use the
+        /// dataset group to create a predictor. Use the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetGroup.html">DescribeDatasetGroup</a>
         /// operation to get the status.
         /// </para>
         ///  </note>

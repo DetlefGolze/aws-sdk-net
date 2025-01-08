@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.OpenSearchServerless.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -55,6 +56,12 @@ namespace Amazon.OpenSearchServerless.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = AccessPolicyStatsUnmarshaller.Instance;
                     response.AccessPolicyStats = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("LifecyclePolicyStats", targetDepth))
+                {
+                    var unmarshaller = LifecyclePolicyStatsUnmarshaller.Instance;
+                    response.LifecyclePolicyStats = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("SecurityConfigStats", targetDepth))

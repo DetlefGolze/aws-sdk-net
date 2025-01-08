@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Proton.Model
 {
     /// <summary>
@@ -81,8 +82,8 @@ namespace Amazon.Proton.Model
         /// </para>
         ///  
         /// <para>
-        /// The environment must have a <code>componentRoleArn</code> to allow directly defined
-        /// components to be associated with the environment.
+        /// The environment must have a <c>componentRoleArn</c> to allow directly defined components
+        /// to be associated with the environment.
         /// </para>
         ///  
         /// <para>

@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateIndex operation.
     /// Creates an Amazon Kendra index. Index creation is an asynchronous API. To determine
-    /// if index creation has completed, check the <code>Status</code> field returned from
-    /// a call to <code>DescribeIndex</code>. The <code>Status</code> field is set to <code>ACTIVE</code>
-    /// when the index is ready to use.
+    /// if index creation has completed, check the <c>Status</c> field returned from a call
+    /// to <c>DescribeIndex</c>. The <c>Status</c> field is set to <c>ACTIVE</c> when the
+    /// index is ready to use.
     /// 
     ///  
     /// <para>
-    /// Once the index is active, you can index your documents using the <code>BatchPutDocument</code>
+    /// Once the index is active, you can index your documents using the <c>BatchPutDocument</c>
     /// API or using one of the supported <a href="https://docs.aws.amazon.com/kendra/latest/dg/data-sources.html">data
     /// sources</a>.
     /// </para>
@@ -57,17 +58,16 @@ namespace Amazon.Kendra.Model
         private string _name;
         private string _roleArn;
         private ServerSideEncryptionConfiguration _serverSideEncryptionConfiguration;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private UserContextPolicy _userContextPolicy;
         private UserGroupResolutionConfiguration _userGroupResolutionConfiguration;
-        private List<UserTokenConfiguration> _userTokenConfigurations = new List<UserTokenConfiguration>();
+        private List<UserTokenConfiguration> _userTokenConfigurations = AWSConfigs.InitializeCollections ? new List<UserTokenConfiguration>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// A token that you provide to identify the request to create an index. Multiple calls
-        /// to the <code>CreateIndex</code> API with the same client token will create only one
-        /// index.
+        /// to the <c>CreateIndex</c> API with the same client token will create only one index.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -105,19 +105,20 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property Edition. 
         /// <para>
-        /// The Amazon Kendra edition to use for the index. Choose <code>DEVELOPER_EDITION</code>
-        /// for indexes intended for development, testing, or proof of concept. Use <code>ENTERPRISE_EDITION</code>
-        /// for production. Once you set the edition for an index, it can't be changed.
+        /// The Amazon Kendra edition to use for the index. Choose <c>DEVELOPER_EDITION</c> for
+        /// indexes intended for development, testing, or proof of concept. Use <c>ENTERPRISE_EDITION</c>
+        /// for production. Use <c>GEN_AI_ENTERPRISE_EDITION</c> for creating generative AI applications.
+        /// Once you set the edition for an index, it can't be changed. 
         /// </para>
         ///  
         /// <para>
-        /// The <code>Edition</code> parameter is optional. If you don't supply a value, the default
-        /// is <code>ENTERPRISE_EDITION</code>.
+        /// The <c>Edition</c> parameter is optional. If you don't supply a value, the default
+        /// is <c>ENTERPRISE_EDITION</c>.
         /// </para>
         ///  
         /// <para>
-        /// For more information on quota limits for Enterprise and Developer editions, see <a
-        /// href="https://docs.aws.amazon.com/kendra/latest/dg/quotas.html">Quotas</a>.
+        /// For more information on quota limits for Gen AI Enterprise Edition, Enterprise Edition,
+        /// and Developer Edition indices, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/quotas.html">Quotas</a>.
         /// </para>
         /// </summary>
         public IndexEdition Edition
@@ -209,7 +210,7 @@ namespace Amazon.Kendra.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -217,11 +218,19 @@ namespace Amazon.Kendra.Model
         /// <para>
         /// The user context policy.
         /// </para>
-        ///  <dl> <dt>ATTRIBUTE_FILTER</dt> <dd> 
+        ///  <important> 
+        /// <para>
+        /// If you're using an Amazon Kendra Gen AI Enterprise Edition index, you can only use
+        /// <c>ATTRIBUTE_FILTER</c> to filter search results by user context. If you're using
+        /// an Amazon Kendra Gen AI Enterprise Edition index and you try to use <c>USER_TOKEN</c>
+        /// to configure user context policy, Amazon Kendra returns a <c>ValidationException</c>
+        /// error.
+        /// </para>
+        ///  </important> <dl> <dt>ATTRIBUTE_FILTER</dt> <dd> 
         /// <para>
         /// All indexed content is searchable and displayable for all users. If you want to filter
-        /// search results on user context, you can use the attribute filters of <code>_user_id</code>
-        /// and <code>_group_ids</code> or you can provide user and group information in <code>UserContext</code>.
+        /// search results on user context, you can use the attribute filters of <c>_user_id</c>
+        /// and <c>_group_ids</c> or you can provide user and group information in <c>UserContext</c>.
         /// 
         /// </para>
         ///  </dd> <dt>USER_TOKEN</dt> <dd> 
@@ -247,9 +256,17 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property UserGroupResolutionConfiguration. 
         /// <para>
-        /// Gets users and groups from IAM Identity Center (successor to Single Sign-On) identity
-        /// source. To configure this, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html">UserGroupResolutionConfiguration</a>.
+        /// Gets users and groups from IAM Identity Center identity source. To configure this,
+        /// see <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html">UserGroupResolutionConfiguration</a>.
+        /// This is useful for user context filtering, where search results are filtered based
+        /// on the user or their group access to documents.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// If you're using an Amazon Kendra Gen AI Enterprise Edition index, <c>UserGroupResolutionConfiguration</c>
+        /// isn't supported.
+        /// </para>
+        ///  </important>
         /// </summary>
         public UserGroupResolutionConfiguration UserGroupResolutionConfiguration
         {
@@ -268,6 +285,13 @@ namespace Amazon.Kendra.Model
         /// <para>
         /// The user token configuration.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// If you're using an Amazon Kendra Gen AI Enterprise Edition index and you try to use
+        /// <c>UserTokenConfigurations</c> to configure user context policy, Amazon Kendra returns
+        /// a <c>ValidationException</c> error.
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Max=1)]
         public List<UserTokenConfiguration> UserTokenConfigurations
@@ -279,7 +303,7 @@ namespace Amazon.Kendra.Model
         // Check to see if UserTokenConfigurations property is set
         internal bool IsSetUserTokenConfigurations()
         {
-            return this._userTokenConfigurations != null && this._userTokenConfigurations.Count > 0; 
+            return this._userTokenConfigurations != null && (this._userTokenConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -60,8 +61,8 @@ namespace Amazon.Rekognition.Model
         /// Gets and sets the property Timestamp. 
         /// <para>
         /// The time, in milliseconds from the start of the video, that the text was detected.
-        /// Note that <code>Timestamp</code> is not guaranteed to be accurate to the individual
-        /// frame where the text first appears.
+        /// Note that <c>Timestamp</c> is not guaranteed to be accurate to the individual frame
+        /// where the text first appears.
         /// </para>
         /// </summary>
         public long Timestamp

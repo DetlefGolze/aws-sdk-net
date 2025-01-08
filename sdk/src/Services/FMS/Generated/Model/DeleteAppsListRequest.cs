@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FMS.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.FMS.Model
         /// Gets and sets the property ListId. 
         /// <para>
         /// The ID of the applications list that you want to delete. You can retrieve this ID
-        /// from <code>PutAppsList</code>, <code>ListAppsLists</code>, and <code>GetAppsList</code>.
+        /// from <c>PutAppsList</c>, <c>ListAppsLists</c>, and <c>GetAppsList</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=36, Max=36)]

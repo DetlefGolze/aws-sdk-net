@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property DeviceName. 
         /// <para>
-        /// The Elastic Inference accelerator device name. The <code>deviceName</code> must also
-        /// be referenced in a container definition as a <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ResourceRequirement.html">ResourceRequirement</a>.
+        /// The Elastic Inference accelerator device name. The <c>deviceName</c> must also be
+        /// referenced in a container definition as a <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ResourceRequirement.html">ResourceRequirement</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

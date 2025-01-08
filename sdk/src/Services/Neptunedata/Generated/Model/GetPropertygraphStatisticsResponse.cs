@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptunedata.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.Neptunedata.Model
         /// Gets and sets the property Status. 
         /// <para>
         /// The HTTP return code of the request. If the request succeeded, the code is 200. See
-        /// <a href="docs.aws.amazon.comneptune/latest/userguide/neptune-dfe-statistics.html#neptune-dfe-statistics-errors">Common
+        /// <a href="https://docs.aws.amazon.com/neptune/latest/userguide/neptune-dfe-statistics.html#neptune-dfe-statistics-errors">Common
         /// error codes for DFE statistics request</a> for a list of common errors.
         /// </para>
         /// </summary>

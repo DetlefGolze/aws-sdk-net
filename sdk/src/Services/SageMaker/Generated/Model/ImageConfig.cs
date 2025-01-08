@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -44,12 +45,11 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Platform</code> - The model image is hosted in Amazon ECR.
+        ///  <c>Platform</c> - The model image is hosted in Amazon ECR.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Vpc</code> - The model image is hosted in a private Docker registry in your
-        /// VPC.
+        ///  <c>Vpc</c> - The model image is hosted in a private Docker registry in your VPC.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -71,8 +71,8 @@ namespace Amazon.SageMaker.Model
         /// <para>
         /// (Optional) Specifies an authentication configuration for the private docker registry
         /// where your model image is hosted. Specify a value for this property only if you specified
-        /// <code>Vpc</code> as the value for the <code>RepositoryAccessMode</code> field, and
-        /// the private Docker registry where the model image is hosted requires authentication.
+        /// <c>Vpc</c> as the value for the <c>RepositoryAccessMode</c> field, and the private
+        /// Docker registry where the model image is hosted requires authentication.
         /// </para>
         /// </summary>
         public RepositoryAuthConfig RepositoryAuthConfig

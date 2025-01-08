@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FMS.Model
 {
     /// <summary>
@@ -62,8 +63,8 @@ namespace Amazon.FMS.Model
         /// <para>
         /// An integer setting that indicates the order in which to run the stateful rule groups
         /// in a single Network Firewall firewall policy. This setting only applies to firewall
-        /// policies that specify the <code>STRICT_ORDER</code> rule order in the stateful engine
-        /// options settings.
+        /// policies that specify the <c>STRICT_ORDER</c> rule order in the stateful engine options
+        /// settings.
         /// </para>
         ///  
         /// <para>

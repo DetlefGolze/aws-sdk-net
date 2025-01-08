@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -36,7 +37,8 @@ namespace Amazon.AutoScaling.Model
     ///  
     /// <para>
     /// To describe the scaling activities for scheduled actions that have already run, call
-    /// the <a>DescribeScalingActivities</a> API.
+    /// the <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeScalingActivities.html">DescribeScalingActivities</a>
+    /// API.
     /// </para>
     /// </summary>
     public partial class DescribeScheduledActionsRequest : AmazonAutoScalingRequest
@@ -45,7 +47,7 @@ namespace Amazon.AutoScaling.Model
         private DateTime? _endTimeUtc;
         private int? _maxRecords;
         private string _nextToken;
-        private List<string> _scheduledActionNames = new List<string>();
+        private List<string> _scheduledActionNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _startTimeUtc;
 
         /// <summary>
@@ -89,8 +91,8 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property MaxRecords. 
         /// <para>
-        /// The maximum number of items to return with this call. The default value is <code>50</code>
-        /// and the maximum value is <code>100</code>.
+        /// The maximum number of items to return with this call. The default value is <c>50</c>
+        /// and the maximum value is <c>100</c>.
         /// </para>
         /// </summary>
         public int MaxRecords
@@ -145,7 +147,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if ScheduledActionNames property is set
         internal bool IsSetScheduledActionNames()
         {
-            return this._scheduledActionNames != null && this._scheduledActionNames.Count > 0; 
+            return this._scheduledActionNames != null && (this._scheduledActionNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

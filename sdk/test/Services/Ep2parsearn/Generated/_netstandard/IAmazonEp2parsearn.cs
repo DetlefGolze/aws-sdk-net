@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Ep2parsearn.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Ep2parsearn
 {
     /// <summary>
-    /// Interface for accessing Ep2parsearn
+    /// <para>Interface for accessing Ep2parsearn</para>
     ///
     /// Endpoints 2.0 parse-arn tests
     /// </summary>

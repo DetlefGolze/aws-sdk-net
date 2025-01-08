@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeExportConfigurations operation.
-    /// <code>DescribeExportConfigurations</code> is deprecated. Use <a href="https://docs.aws.amazon.com/application-discovery/latest/APIReference/API_DescribeExportTasks.html">DescribeExportTasks</a>,
+    /// <c>DescribeExportConfigurations</c> is deprecated. Use <a href="https://docs.aws.amazon.com/application-discovery/latest/APIReference/API_DescribeExportTasks.html">DescribeExportTasks</a>,
     /// instead.
     /// </summary>
     public partial class DescribeExportConfigurationsRequest : AmazonApplicationDiscoveryServiceRequest
     {
-        private List<string> _exportIds = new List<string>();
+        private List<string> _exportIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -54,7 +55,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         // Check to see if ExportIds property is set
         internal bool IsSetExportIds()
         {
-            return this._exportIds != null && this._exportIds.Count > 0; 
+            return this._exportIds != null && (this._exportIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

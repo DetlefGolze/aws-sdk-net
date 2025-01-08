@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -34,33 +35,32 @@ namespace Amazon.FSx.Model
     public partial class UpdateOpenZFSVolumeConfiguration
     {
         private OpenZFSDataCompressionType _dataCompressionType;
-        private List<OpenZFSNfsExport> _nfsExports = new List<OpenZFSNfsExport>();
+        private List<OpenZFSNfsExport> _nfsExports = AWSConfigs.InitializeCollections ? new List<OpenZFSNfsExport>() : null;
         private bool? _readOnly;
         private int? _recordSizeKiB;
         private int? _storageCapacityQuotaGiB;
         private int? _storageCapacityReservationGiB;
-        private List<OpenZFSUserOrGroupQuota> _userAndGroupQuotas = new List<OpenZFSUserOrGroupQuota>();
+        private List<OpenZFSUserOrGroupQuota> _userAndGroupQuotas = AWSConfigs.InitializeCollections ? new List<OpenZFSUserOrGroupQuota>() : null;
 
         /// <summary>
         /// Gets and sets the property DataCompressionType. 
         /// <para>
         /// Specifies the method used to compress the data on the volume. The compression type
-        /// is <code>NONE</code> by default.
+        /// is <c>NONE</c> by default.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NONE</code> - Doesn't compress the data on the volume. <code>NONE</code> is
-        /// the default.
+        ///  <c>NONE</c> - Doesn't compress the data on the volume. <c>NONE</c> is the default.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ZSTD</code> - Compresses the data in the volume using the Zstandard (ZSTD)
-        /// compression algorithm. Compared to LZ4, Z-Standard provides a better compression ratio
-        /// to minimize on-disk storage utilization.
+        ///  <c>ZSTD</c> - Compresses the data in the volume using the Zstandard (ZSTD) compression
+        /// algorithm. Compared to LZ4, Z-Standard provides a better compression ratio to minimize
+        /// on-disk storage utilization.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LZ4</code> - Compresses the data in the volume using the LZ4 compression algorithm.
+        ///  <c>LZ4</c> - Compresses the data in the volume using the LZ4 compression algorithm.
         /// Compared to Z-Standard, LZ4 is less compute-intensive and delivers higher write throughput
         /// speeds.
         /// </para>
@@ -94,7 +94,7 @@ namespace Amazon.FSx.Model
         // Check to see if NfsExports property is set
         internal bool IsSetNfsExports()
         {
-            return this._nfsExports != null && this._nfsExports.Count > 0; 
+            return this._nfsExports != null && (this._nfsExports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace Amazon.FSx.Model
         /// Tips for maximizing performance</a> in the <i>Amazon FSx for OpenZFS User Guide</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=4, Max=1024)]
+        [AWSProperty(Min=4, Max=4096)]
         public int RecordSizeKiB
         {
             get { return this._recordSizeKiB.GetValueOrDefault(); }
@@ -144,7 +144,7 @@ namespace Amazon.FSx.Model
         /// <para>
         /// The maximum amount of storage in gibibytes (GiB) that the volume can use from its
         /// parent. You can specify a quota larger than the storage on the parent volume. You
-        /// can specify a value of <code>-1</code> to unset a volume's storage capacity quota.
+        /// can specify a value of <c>-1</c> to unset a volume's storage capacity quota.
         /// </para>
         /// </summary>
         [AWSProperty(Min=-1, Max=2147483647)]
@@ -165,7 +165,7 @@ namespace Amazon.FSx.Model
         /// <para>
         /// The amount of storage in gibibytes (GiB) to reserve from the parent volume. You can't
         /// reserve more storage than the parent volume has reserved. You can specify a value
-        /// of <code>-1</code> to unset a volume's storage capacity reservation.
+        /// of <c>-1</c> to unset a volume's storage capacity reservation.
         /// </para>
         /// </summary>
         [AWSProperty(Min=-1, Max=2147483647)]
@@ -197,7 +197,7 @@ namespace Amazon.FSx.Model
         // Check to see if UserAndGroupQuotas property is set
         internal bool IsSetUserAndGroupQuotas()
         {
-            return this._userAndGroupQuotas != null && this._userAndGroupQuotas.Count > 0; 
+            return this._userAndGroupQuotas != null && (this._userAndGroupQuotas.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

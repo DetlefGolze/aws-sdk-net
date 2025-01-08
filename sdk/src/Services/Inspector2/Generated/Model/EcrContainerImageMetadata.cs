@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
@@ -33,7 +34,26 @@ namespace Amazon.Inspector2.Model
     /// </summary>
     public partial class EcrContainerImageMetadata
     {
-        private List<string> _tags = new List<string>();
+        private DateTime? _imagePulledAt;
+        private List<string> _tags = AWSConfigs.InitializeCollections ? new List<string>() : null;
+
+        /// <summary>
+        /// Gets and sets the property ImagePulledAt. 
+        /// <para>
+        /// The date an image was last pulled at.
+        /// </para>
+        /// </summary>
+        public DateTime ImagePulledAt
+        {
+            get { return this._imagePulledAt.GetValueOrDefault(); }
+            set { this._imagePulledAt = value; }
+        }
+
+        // Check to see if ImagePulledAt property is set
+        internal bool IsSetImagePulledAt()
+        {
+            return this._imagePulledAt.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property Tags. 
@@ -50,7 +70,7 @@ namespace Amazon.Inspector2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.SageMaker.Model
     /// <para>
     /// If a private workforce contains one or more work teams, you must use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeleteWorkteam.html">DeleteWorkteam</a>
     /// operation to delete all work teams before you delete the workforce. If you try to
-    /// delete a workforce that contains one or more work teams, you will recieve a <code>ResourceInUse</code>
+    /// delete a workforce that contains one or more work teams, you will receive a <c>ResourceInUse</c>
     /// error.
     /// </para>
     ///  </important>

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Finspace.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -64,7 +65,14 @@ namespace Amazon.Finspace.Model.Internal.MarshallTransformations
             if (!publicRequest.IsSetUserName())
                 throw new AmazonFinspaceException("Request object does not have required field UserName set");
             request.AddPathResource("{userName}", StringUtils.FromString(publicRequest.UserName));
+            
+            if (publicRequest.IsSetClientToken())
+                request.Parameters.Add("clientToken", StringUtils.FromString(publicRequest.ClientToken));
+            else            
+                request.Parameters.Add("clientToken", System.Guid.NewGuid().ToString());
+                
             request.ResourcePath = "/kx/environments/{environmentId}/users/{userName}";
+            request.UseQueryString = true;
 
             return request;
         }

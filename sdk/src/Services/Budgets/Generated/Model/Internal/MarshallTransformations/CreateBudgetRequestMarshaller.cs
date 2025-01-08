@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Budgets.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.Budgets.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAccountId())
@@ -94,6 +96,22 @@ namespace Amazon.Budgets.Model.Internal.MarshallTransformations
 
                         var marshaller = NotificationWithSubscribersMarshaller.Instance;
                         marshaller.Marshall(publicRequestNotificationsWithSubscribersListValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetResourceTags())
+                {
+                    context.Writer.WritePropertyName("ResourceTags");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestResourceTagsListValue in publicRequest.ResourceTags)
+                    {
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = ResourceTagMarshaller.Instance;
+                        marshaller.Marshall(publicRequestResourceTagsListValue, context);
 
                         context.Writer.WriteObjectEnd();
                     }

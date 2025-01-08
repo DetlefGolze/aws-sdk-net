@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.AppRegistry
 {
     /// <summary>
-    /// Implementation for accessing AppRegistry
+    /// <para>Implementation for accessing AppRegistry</para>
     ///
     /// Amazon Web Services Service Catalog AppRegistry enables organizations to understand
     /// the application context of their Amazon Web Services resources. AppRegistry provides
@@ -342,7 +343,50 @@ namespace Amazon.AppRegistry
 
         /// <summary>
         /// Associates a resource with an application. The resource can be specified by its ARN
-        /// or name. The application can be specified by ARN, ID, or name.
+        /// or name. The application can be specified by ARN, ID, or name. 
+        /// 
+        ///  
+        /// <para>
+        ///  <b>Minimum permissions</b> 
+        /// </para>
+        ///  
+        /// <para>
+        ///  You must have the following permissions to associate a resource using the <c>OPTIONS</c>
+        /// parameter set to <c>APPLY_APPLICATION_TAG</c>. 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>tag:GetResources</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>tag:TagResources</c> 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        ///  You must also have these additional permissions if you don't use the <c>AWSServiceCatalogAppRegistryFullAccess</c>
+        /// policy. For more information, see <a href="https://docs.aws.amazon.com/servicecatalog/latest/arguide/full.html">AWSServiceCatalogAppRegistryFullAccess</a>
+        /// in the AppRegistry Administrator Guide. 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>resource-groups:AssociateResource</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>cloudformation:UpdateStack</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>cloudformation:DescribeStacks</c> 
+        /// </para>
+        ///  </li> </ul> <note> 
+        /// <para>
+        ///  In addition, you must have the tagging permission defined by the Amazon Web Services
+        /// service that creates the resource. For more information, see <a href="https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_TagResources.html">TagResources</a>
+        /// in the <i>Resource Groups Tagging API Reference</i>. 
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the AssociateResource service method.</param>
         /// 
@@ -686,7 +730,7 @@ namespace Amazon.AppRegistry
         /// <summary>
         /// Disassociates an attribute group from an application to remove the extra attributes
         /// contained in the attribute group from the application's metadata. This operation reverts
-        /// <code>AssociateAttributeGroup</code>.
+        /// <c>AssociateAttributeGroup</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DisassociateAttributeGroup service method.</param>
         /// 
@@ -749,8 +793,52 @@ namespace Amazon.AppRegistry
         #region  DisassociateResource
 
         /// <summary>
-        /// Disassociates a resource from application. Both the resource and the application can
-        /// be specified either by ID or name.
+        /// Disassociates a resource from application. Both the resource and the application
+        /// can be specified either by ID or name. 
+        /// 
+        ///  
+        /// <para>
+        ///  <b>Minimum permissions</b> 
+        /// </para>
+        ///  
+        /// <para>
+        ///  You must have the following permissions to remove a resource that's been associated
+        /// with an application using the <c>APPLY_APPLICATION_TAG</c> option for <a href="https://docs.aws.amazon.com/servicecatalog/latest/dg/API_app-registry_AssociateResource.html">AssociateResource</a>.
+        /// 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>tag:GetResources</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>tag:UntagResources</c> 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        ///  You must also have the following permissions if you don't use the <c>AWSServiceCatalogAppRegistryFullAccess</c>
+        /// policy. For more information, see <a href="https://docs.aws.amazon.com/servicecatalog/latest/arguide/full.html">AWSServiceCatalogAppRegistryFullAccess</a>
+        /// in the AppRegistry Administrator Guide. 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>resource-groups:DisassociateResource</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>cloudformation:UpdateStack</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>cloudformation:DescribeStacks</c> 
+        /// </para>
+        ///  </li> </ul> <note> 
+        /// <para>
+        ///  In addition, you must have the tagging permission defined by the Amazon Web Services
+        /// service that creates the resource. For more information, see <a href="https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_UntTagResources.html">UntagResources</a>
+        /// in the <i>Resource Groups Tagging API Reference</i>. 
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DisassociateResource service method.</param>
         /// 
@@ -819,7 +907,7 @@ namespace Amazon.AppRegistry
         /// Retrieves metadata information about one of your applications. The application can
         /// be specified by its ARN, ID, or name (which is unique within one account in one region
         /// at a given point in time). Specify by ARN or ID in automated workflows if you want
-        /// to make sure that the exact same application is returned or a <code>ResourceNotFoundException</code>
+        /// to make sure that the exact same application is returned or a <c>ResourceNotFoundException</c>
         /// is thrown, avoiding the ABA addressing problem.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetApplication service method.</param>
@@ -1018,7 +1106,7 @@ namespace Amazon.AppRegistry
         #region  GetConfiguration
 
         /// <summary>
-        /// Retrieves a <code>TagKey</code> configuration from an account.
+        /// Retrieves a <c>TagKey</c> configuration from an account.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetConfiguration service method.</param>
         /// 
@@ -1458,7 +1546,7 @@ namespace Amazon.AppRegistry
         #region  PutConfiguration
 
         /// <summary>
-        /// Associates a <code>TagKey</code> configuration to an account.
+        /// Associates a <c>TagKey</c> configuration to an account.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutConfiguration service method.</param>
         /// 
@@ -1883,11 +1971,11 @@ namespace Amazon.AppRegistry
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

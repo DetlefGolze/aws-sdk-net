@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.FIS.Model
 {
     /// <summary>
@@ -44,6 +45,14 @@ namespace Amazon.FIS.Model
         }
 
         /// <summary>
+        /// Paginator for ListExperimentResolvedTargets operation
+        ///</summary>
+        public IListExperimentResolvedTargetsPaginator ListExperimentResolvedTargets(ListExperimentResolvedTargetsRequest request) 
+        {
+            return new ListExperimentResolvedTargetsPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListExperiments operation
         ///</summary>
         public IListExperimentsPaginator ListExperiments(ListExperimentsRequest request) 
@@ -57,6 +66,14 @@ namespace Amazon.FIS.Model
         public IListExperimentTemplatesPaginator ListExperimentTemplates(ListExperimentTemplatesRequest request) 
         {
             return new ListExperimentTemplatesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListTargetAccountConfigurations operation
+        ///</summary>
+        public IListTargetAccountConfigurationsPaginator ListTargetAccountConfigurations(ListTargetAccountConfigurationsRequest request) 
+        {
+            return new ListTargetAccountConfigurationsPaginator(this.client, request);
         }
 
         /// <summary>

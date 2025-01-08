@@ -26,23 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// Contains the result of a successful invocation of the <code>DescribeReservedDBInstancesOfferings</code>
+    /// Contains the result of a successful invocation of the <c>DescribeReservedDBInstancesOfferings</c>
     /// action.
     /// </summary>
     public partial class DescribeReservedDBInstancesOfferingsResponse : AmazonWebServiceResponse
     {
         private string _marker;
-        private List<ReservedDBInstancesOffering> _reservedDBInstancesOfferings = new List<ReservedDBInstancesOffering>();
+        private List<ReservedDBInstancesOffering> _reservedDBInstancesOfferings = AWSConfigs.InitializeCollections ? new List<ReservedDBInstancesOffering>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         /// An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>.
+        /// by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -72,7 +73,7 @@ namespace Amazon.RDS.Model
         // Check to see if ReservedDBInstancesOfferings property is set
         internal bool IsSetReservedDBInstancesOfferings()
         {
-            return this._reservedDBInstancesOfferings != null && this._reservedDBInstancesOfferings.Count > 0; 
+            return this._reservedDBInstancesOfferings != null && (this._reservedDBInstancesOfferings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

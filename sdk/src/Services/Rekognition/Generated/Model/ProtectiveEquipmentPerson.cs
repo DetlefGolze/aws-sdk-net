@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// A person detected by a call to <a>DetectProtectiveEquipment</a>. The API returns all
-    /// persons detected in the input image in an array of <code>ProtectiveEquipmentPerson</code>
+    /// persons detected in the input image in an array of <c>ProtectiveEquipmentPerson</c>
     /// objects.
     /// </summary>
     public partial class ProtectiveEquipmentPerson
     {
-        private List<ProtectiveEquipmentBodyPart> _bodyParts = new List<ProtectiveEquipmentBodyPart>();
+        private List<ProtectiveEquipmentBodyPart> _bodyParts = AWSConfigs.InitializeCollections ? new List<ProtectiveEquipmentBodyPart>() : null;
         private BoundingBox _boundingBox;
         private float? _confidence;
         private int? _id;
@@ -56,7 +57,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if BodyParts property is set
         internal bool IsSetBodyParts()
         {
-            return this._bodyParts != null && this._bodyParts.Count > 0; 
+            return this._bodyParts != null && (this._bodyParts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -100,7 +101,7 @@ namespace Amazon.Rekognition.Model
         /// Gets and sets the property Id. 
         /// <para>
         /// The identifier for the detected person. The identifier is only unique for a single
-        /// call to <code>DetectProtectiveEquipment</code>.
+        /// call to <c>DetectProtectiveEquipment</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]

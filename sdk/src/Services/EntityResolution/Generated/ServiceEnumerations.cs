@@ -75,6 +75,256 @@ namespace Amazon.EntityResolution
 
 
     /// <summary>
+    /// Constants used for properties of type DeleteUniqueIdErrorType.
+    /// </summary>
+    public class DeleteUniqueIdErrorType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant SERVICE_ERROR for DeleteUniqueIdErrorType
+        /// </summary>
+        public static readonly DeleteUniqueIdErrorType SERVICE_ERROR = new DeleteUniqueIdErrorType("SERVICE_ERROR");
+        /// <summary>
+        /// Constant VALIDATION_ERROR for DeleteUniqueIdErrorType
+        /// </summary>
+        public static readonly DeleteUniqueIdErrorType VALIDATION_ERROR = new DeleteUniqueIdErrorType("VALIDATION_ERROR");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public DeleteUniqueIdErrorType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static DeleteUniqueIdErrorType FindValue(string value)
+        {
+            return FindValue<DeleteUniqueIdErrorType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator DeleteUniqueIdErrorType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type DeleteUniqueIdStatus.
+    /// </summary>
+    public class DeleteUniqueIdStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ACCEPTED for DeleteUniqueIdStatus
+        /// </summary>
+        public static readonly DeleteUniqueIdStatus ACCEPTED = new DeleteUniqueIdStatus("ACCEPTED");
+        /// <summary>
+        /// Constant COMPLETED for DeleteUniqueIdStatus
+        /// </summary>
+        public static readonly DeleteUniqueIdStatus COMPLETED = new DeleteUniqueIdStatus("COMPLETED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public DeleteUniqueIdStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static DeleteUniqueIdStatus FindValue(string value)
+        {
+            return FindValue<DeleteUniqueIdStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator DeleteUniqueIdStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type IdMappingType.
+    /// </summary>
+    public class IdMappingType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant PROVIDER for IdMappingType
+        /// </summary>
+        public static readonly IdMappingType PROVIDER = new IdMappingType("PROVIDER");
+        /// <summary>
+        /// Constant RULE_BASED for IdMappingType
+        /// </summary>
+        public static readonly IdMappingType RULE_BASED = new IdMappingType("RULE_BASED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public IdMappingType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static IdMappingType FindValue(string value)
+        {
+            return FindValue<IdMappingType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator IdMappingType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type IdMappingWorkflowRuleDefinitionType.
+    /// </summary>
+    public class IdMappingWorkflowRuleDefinitionType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant SOURCE for IdMappingWorkflowRuleDefinitionType
+        /// </summary>
+        public static readonly IdMappingWorkflowRuleDefinitionType SOURCE = new IdMappingWorkflowRuleDefinitionType("SOURCE");
+        /// <summary>
+        /// Constant TARGET for IdMappingWorkflowRuleDefinitionType
+        /// </summary>
+        public static readonly IdMappingWorkflowRuleDefinitionType TARGET = new IdMappingWorkflowRuleDefinitionType("TARGET");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public IdMappingWorkflowRuleDefinitionType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static IdMappingWorkflowRuleDefinitionType FindValue(string value)
+        {
+            return FindValue<IdMappingWorkflowRuleDefinitionType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator IdMappingWorkflowRuleDefinitionType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type IdNamespaceType.
+    /// </summary>
+    public class IdNamespaceType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant SOURCE for IdNamespaceType
+        /// </summary>
+        public static readonly IdNamespaceType SOURCE = new IdNamespaceType("SOURCE");
+        /// <summary>
+        /// Constant TARGET for IdNamespaceType
+        /// </summary>
+        public static readonly IdNamespaceType TARGET = new IdNamespaceType("TARGET");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public IdNamespaceType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static IdNamespaceType FindValue(string value)
+        {
+            return FindValue<IdNamespaceType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator IdNamespaceType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type IncrementalRunType.
     /// </summary>
     public class IncrementalRunType : ConstantClass
@@ -179,6 +429,106 @@ namespace Amazon.EntityResolution
 
 
     /// <summary>
+    /// Constants used for properties of type MatchPurpose.
+    /// </summary>
+    public class MatchPurpose : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant IDENTIFIER_GENERATION for MatchPurpose
+        /// </summary>
+        public static readonly MatchPurpose IDENTIFIER_GENERATION = new MatchPurpose("IDENTIFIER_GENERATION");
+        /// <summary>
+        /// Constant INDEXING for MatchPurpose
+        /// </summary>
+        public static readonly MatchPurpose INDEXING = new MatchPurpose("INDEXING");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public MatchPurpose(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static MatchPurpose FindValue(string value)
+        {
+            return FindValue<MatchPurpose>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator MatchPurpose(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type RecordMatchingModel.
+    /// </summary>
+    public class RecordMatchingModel : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant MANY_SOURCE_TO_ONE_TARGET for RecordMatchingModel
+        /// </summary>
+        public static readonly RecordMatchingModel MANY_SOURCE_TO_ONE_TARGET = new RecordMatchingModel("MANY_SOURCE_TO_ONE_TARGET");
+        /// <summary>
+        /// Constant ONE_SOURCE_TO_ONE_TARGET for RecordMatchingModel
+        /// </summary>
+        public static readonly RecordMatchingModel ONE_SOURCE_TO_ONE_TARGET = new RecordMatchingModel("ONE_SOURCE_TO_ONE_TARGET");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public RecordMatchingModel(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static RecordMatchingModel FindValue(string value)
+        {
+            return FindValue<RecordMatchingModel>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator RecordMatchingModel(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ResolutionType.
     /// </summary>
     public class ResolutionType : ConstantClass
@@ -188,6 +538,10 @@ namespace Amazon.EntityResolution
         /// Constant ML_MATCHING for ResolutionType
         /// </summary>
         public static readonly ResolutionType ML_MATCHING = new ResolutionType("ML_MATCHING");
+        /// <summary>
+        /// Constant PROVIDER for ResolutionType
+        /// </summary>
+        public static readonly ResolutionType PROVIDER = new ResolutionType("PROVIDER");
         /// <summary>
         /// Constant RULE_MATCHING for ResolutionType
         /// </summary>
@@ -303,6 +657,10 @@ namespace Amazon.EntityResolution
         /// </summary>
         public static readonly SchemaAttributeType PHONE_NUMBER = new SchemaAttributeType("PHONE_NUMBER");
         /// <summary>
+        /// Constant PROVIDER_ID for SchemaAttributeType
+        /// </summary>
+        public static readonly SchemaAttributeType PROVIDER_ID = new SchemaAttributeType("PROVIDER_ID");
+        /// <summary>
         /// Constant STRING for SchemaAttributeType
         /// </summary>
         public static readonly SchemaAttributeType STRING = new SchemaAttributeType("STRING");
@@ -340,6 +698,106 @@ namespace Amazon.EntityResolution
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator SchemaAttributeType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ServiceType.
+    /// </summary>
+    public class ServiceType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ASSIGNMENT for ServiceType
+        /// </summary>
+        public static readonly ServiceType ASSIGNMENT = new ServiceType("ASSIGNMENT");
+        /// <summary>
+        /// Constant ID_MAPPING for ServiceType
+        /// </summary>
+        public static readonly ServiceType ID_MAPPING = new ServiceType("ID_MAPPING");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ServiceType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ServiceType FindValue(string value)
+        {
+            return FindValue<ServiceType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ServiceType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type StatementEffect.
+    /// </summary>
+    public class StatementEffect : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Allow for StatementEffect
+        /// </summary>
+        public static readonly StatementEffect Allow = new StatementEffect("Allow");
+        /// <summary>
+        /// Constant Deny for StatementEffect
+        /// </summary>
+        public static readonly StatementEffect Deny = new StatementEffect("Deny");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public StatementEffect(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static StatementEffect FindValue(string value)
+        {
+            return FindValue<StatementEffect>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator StatementEffect(string value)
         {
             return FindValue(value);
         }

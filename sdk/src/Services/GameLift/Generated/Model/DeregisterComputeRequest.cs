@@ -26,12 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
     /// Container for the parameters to the DeregisterCompute operation.
     /// Removes a compute resource from an Amazon GameLift Anywhere fleet. Deregistered computes
     /// can no longer host game sessions through Amazon GameLift.
+    /// 
+    ///  
+    /// <para>
+    /// For an Anywhere fleet that's running the Amazon GameLift Agent, the Agent handles
+    /// all compute registry tasks for you. For an Anywhere fleet that doesn't use the Agent,
+    /// call this operation to deregister fleet computes. 
+    /// </para>
+    ///  
+    /// <para>
+    /// To deregister a compute, call this operation from the compute that's being deregistered
+    /// and specify the compute name and the fleet ID. 
+    /// </para>
     /// </summary>
     public partial class DeregisterComputeRequest : AmazonGameLiftRequest
     {
@@ -41,7 +54,8 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property ComputeName. 
         /// <para>
-        /// The name of the compute resource to remove from the specified Anywhere fleet.
+        /// The unique identifier of the compute resource to deregister. For an Anywhere fleet
+        /// compute, use the registered compute name.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=1024)]
@@ -63,7 +77,7 @@ namespace Amazon.GameLift.Model
         /// A unique identifier for the fleet the compute resource is currently registered to.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }

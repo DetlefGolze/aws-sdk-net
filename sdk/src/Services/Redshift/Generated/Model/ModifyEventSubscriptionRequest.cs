@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -35,18 +36,18 @@ namespace Amazon.Redshift.Model
     public partial class ModifyEventSubscriptionRequest : AmazonRedshiftRequest
     {
         private bool? _enabled;
-        private List<string> _eventCategories = new List<string>();
+        private List<string> _eventCategories = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _severity;
         private string _snsTopicArn;
-        private List<string> _sourceIds = new List<string>();
+        private List<string> _sourceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _sourceType;
         private string _subscriptionName;
 
         /// <summary>
         /// Gets and sets the property Enabled. 
         /// <para>
-        /// A Boolean value indicating if the subscription is enabled. <code>true</code> indicates
-        /// the subscription is enabled 
+        /// A Boolean value indicating if the subscription is enabled. <c>true</c> indicates the
+        /// subscription is enabled 
         /// </para>
         /// </summary>
         public bool Enabled
@@ -81,7 +82,7 @@ namespace Amazon.Redshift.Model
         // Check to see if EventCategories property is set
         internal bool IsSetEventCategories()
         {
-            return this._eventCategories != null && this._eventCategories.Count > 0; 
+            return this._eventCategories != null && (this._eventCategories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -154,7 +155,7 @@ namespace Amazon.Redshift.Model
         // Check to see if SourceIds property is set
         internal bool IsSetSourceIds()
         {
-            return this._sourceIds != null && this._sourceIds.Count > 0; 
+            return this._sourceIds != null && (this._sourceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

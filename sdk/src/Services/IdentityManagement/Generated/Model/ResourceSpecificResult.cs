@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -38,11 +39,11 @@ namespace Amazon.IdentityManagement.Model
     /// </summary>
     public partial class ResourceSpecificResult
     {
-        private Dictionary<string, string> _evalDecisionDetails = new Dictionary<string, string>();
+        private Dictionary<string, string> _evalDecisionDetails = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private PolicyEvaluationDecisionType _evalResourceDecision;
         private string _evalResourceName;
-        private List<Statement> _matchedStatements = new List<Statement>();
-        private List<string> _missingContextValues = new List<string>();
+        private List<Statement> _matchedStatements = AWSConfigs.InitializeCollections ? new List<Statement>() : null;
+        private List<string> _missingContextValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private PermissionsBoundaryDecisionDetail _permissionsBoundaryDecisionDetail;
 
         /// <summary>
@@ -62,14 +63,14 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if EvalDecisionDetails property is set
         internal bool IsSetEvalDecisionDetails()
         {
-            return this._evalDecisionDetails != null && this._evalDecisionDetails.Count > 0; 
+            return this._evalDecisionDetails != null && (this._evalDecisionDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property EvalResourceDecision. 
         /// <para>
         /// The result of the simulation of the simulated API operation on the resource specified
-        /// in <code>EvalResourceName</code>.
+        /// in <c>EvalResourceName</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -123,7 +124,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if MatchedStatements property is set
         internal bool IsSetMatchedStatements()
         {
-            return this._matchedStatements != null && this._matchedStatements.Count > 0; 
+            return this._matchedStatements != null && (this._matchedStatements.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -131,12 +132,11 @@ namespace Amazon.IdentityManagement.Model
         /// <para>
         /// A list of context keys that are required by the included input policies but that were
         /// not provided by one of the input parameters. This list is used when a list of ARNs
-        /// is included in the <code>ResourceArns</code> parameter instead of "*". If you do not
-        /// specify individual resources, by setting <code>ResourceArns</code> to "*" or by not
-        /// including the <code>ResourceArns</code> parameter, then any missing context values
-        /// are instead included under the <code>EvaluationResults</code> section. To discover
-        /// the context keys used by a set of policies, you can call <a>GetContextKeysForCustomPolicy</a>
-        /// or <a>GetContextKeysForPrincipalPolicy</a>.
+        /// is included in the <c>ResourceArns</c> parameter instead of "*". If you do not specify
+        /// individual resources, by setting <c>ResourceArns</c> to "*" or by not including the
+        /// <c>ResourceArns</c> parameter, then any missing context values are instead included
+        /// under the <c>EvaluationResults</c> section. To discover the context keys used by a
+        /// set of policies, you can call <a>GetContextKeysForCustomPolicy</a> or <a>GetContextKeysForPrincipalPolicy</a>.
         /// </para>
         /// </summary>
         public List<string> MissingContextValues
@@ -148,7 +148,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if MissingContextValues property is set
         internal bool IsSetMissingContextValues()
         {
-            return this._missingContextValues != null && this._missingContextValues.Count > 0; 
+            return this._missingContextValues != null && (this._missingContextValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

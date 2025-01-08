@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceQuotas.Model
 {
     /// <summary>
@@ -79,8 +80,8 @@ namespace Amazon.ServiceQuotas.Model
         /// <summary>
         /// Gets and sets the property ContextScopeType. 
         /// <para>
-        /// When the <code>ContextScope</code> is <code>RESOURCE</code>, then this specifies the
-        /// resource type of the specified resource.
+        /// When the <c>ContextScope</c> is <c>RESOURCE</c>, then this specifies the resource
+        /// type of the specified resource.
         /// </para>
         /// </summary>
         public string ContextScopeType

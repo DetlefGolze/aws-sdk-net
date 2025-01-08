@@ -26,37 +26,43 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
-    /// Contains an array of <code>Transition</code> objects specifying how long in days before
-    /// a recovery point transitions to cold storage or is deleted.
+    /// Specifies the time period, in days, before a recovery point transitions to cold storage
+    /// or is deleted.
     /// 
     ///  
     /// <para>
     /// Backups transitioned to cold storage must be stored in cold storage for a minimum
-    /// of 90 days. Therefore, on the console, the “retention” setting must be 90 days greater
-    /// than the “transition to cold after days” setting. The “transition to cold after days”
-    /// setting cannot be changed after a backup has been transitioned to cold.
+    /// of 90 days. Therefore, on the console, the retention setting must be 90 days greater
+    /// than the transition to cold after days setting. The transition to cold after days
+    /// setting can't be changed after a backup has been transitioned to cold.
     /// </para>
     ///  
     /// <para>
-    /// Resource types that are able to be transitioned to cold storage are listed in the
-    /// "Lifecycle to cold storage" section of the <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource">
-    /// Feature availability by resource</a> table. Backup ignores this expression for other
-    /// resource types.
+    /// Resource types that can transition to cold storage are listed in the <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/backup-feature-availability.html#features-by-resource">Feature
+    /// availability by resource</a> table. Backup ignores this expression for other resource
+    /// types.
+    /// </para>
+    ///  
+    /// <para>
+    /// To remove the existing lifecycle and retention periods and keep your recovery points
+    /// indefinitely, specify -1 for <c>MoveToColdStorageAfterDays</c> and <c>DeleteAfterDays</c>.
     /// </para>
     /// </summary>
     public partial class Lifecycle
     {
         private long? _deleteAfterDays;
         private long? _moveToColdStorageAfterDays;
+        private bool? _optInToArchiveForSupportedResources;
 
         /// <summary>
         /// Gets and sets the property DeleteAfterDays. 
         /// <para>
-        /// Specifies the number of days after creation that a recovery point is deleted. Must
-        /// be greater than 90 days plus <code>MoveToColdStorageAfterDays</code>.
+        /// The number of days after creation that a recovery point is deleted. This value must
+        /// be at least 90 days after the number of days specified in <c>MoveToColdStorageAfterDays</c>.
         /// </para>
         /// </summary>
         public long DeleteAfterDays
@@ -74,8 +80,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property MoveToColdStorageAfterDays. 
         /// <para>
-        /// Specifies the number of days after creation that a recovery point is moved to cold
-        /// storage.
+        /// The number of days after creation that a recovery point is moved to cold storage.
         /// </para>
         /// </summary>
         public long MoveToColdStorageAfterDays
@@ -88,6 +93,25 @@ namespace Amazon.Backup.Model
         internal bool IsSetMoveToColdStorageAfterDays()
         {
             return this._moveToColdStorageAfterDays.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property OptInToArchiveForSupportedResources. 
+        /// <para>
+        /// If the value is true, your backup plan transitions supported resources to archive
+        /// (cold) storage tier in accordance with your lifecycle settings.
+        /// </para>
+        /// </summary>
+        public bool OptInToArchiveForSupportedResources
+        {
+            get { return this._optInToArchiveForSupportedResources.GetValueOrDefault(); }
+            set { this._optInToArchiveForSupportedResources = value; }
+        }
+
+        // Check to see if OptInToArchiveForSupportedResources property is set
+        internal bool IsSetOptInToArchiveForSupportedResources()
+        {
+            return this._optInToArchiveForSupportedResources.HasValue; 
         }
 
     }

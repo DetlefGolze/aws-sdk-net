@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.EC2.Model
     public partial class GetTransitGatewayAttachmentPropagationsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<TransitGatewayAttachmentPropagation> _transitGatewayAttachmentPropagations = new List<TransitGatewayAttachmentPropagation>();
+        private List<TransitGatewayAttachmentPropagation> _transitGatewayAttachmentPropagations = AWSConfigs.InitializeCollections ? new List<TransitGatewayAttachmentPropagation>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to use to retrieve the next page of results. This value is <code>null</code>
-        /// when there are no more results to return.
+        /// The token to use to retrieve the next page of results. This value is <c>null</c> when
+        /// there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken
@@ -70,7 +71,7 @@ namespace Amazon.EC2.Model
         // Check to see if TransitGatewayAttachmentPropagations property is set
         internal bool IsSetTransitGatewayAttachmentPropagations()
         {
-            return this._transitGatewayAttachmentPropagations != null && this._transitGatewayAttachmentPropagations.Count > 0; 
+            return this._transitGatewayAttachmentPropagations != null && (this._transitGatewayAttachmentPropagations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

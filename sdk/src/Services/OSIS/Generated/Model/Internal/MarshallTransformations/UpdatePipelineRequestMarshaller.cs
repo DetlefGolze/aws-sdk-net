@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.OSIS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,8 +67,31 @@ namespace Amazon.OSIS.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetBufferOptions())
+                {
+                    context.Writer.WritePropertyName("BufferOptions");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = BufferOptionsMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.BufferOptions, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetEncryptionAtRestOptions())
+                {
+                    context.Writer.WritePropertyName("EncryptionAtRestOptions");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = EncryptionAtRestOptionsMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.EncryptionAtRestOptions, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetLogPublishingOptions())
                 {
                     context.Writer.WritePropertyName("LogPublishingOptions");

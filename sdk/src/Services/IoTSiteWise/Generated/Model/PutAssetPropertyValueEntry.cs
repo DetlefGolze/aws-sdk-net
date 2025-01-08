@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.IoTSiteWise.Model
         private string _entryId;
         private string _propertyAlias;
         private string _propertyId;
-        private List<AssetPropertyValue> _propertyValues = new List<AssetPropertyValue>();
+        private List<AssetPropertyValue> _propertyValues = AWSConfigs.InitializeCollections ? new List<AssetPropertyValue>() : null;
 
         /// <summary>
         /// Gets and sets the property AssetId. 
@@ -84,7 +85,7 @@ namespace Amazon.IoTSiteWise.Model
         /// Gets and sets the property PropertyAlias. 
         /// <para>
         /// The alias that identifies the property, such as an OPC-UA server data stream path
-        /// (for example, <code>/company/windfarm/3/turbine/7/temperature</code>). For more information,
+        /// (for example, <c>/company/windfarm/3/turbine/7/temperature</c>). For more information,
         /// see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html">Mapping
         /// industrial data streams to asset properties</a> in the <i>IoT SiteWise User Guide</i>.
         /// </para>
@@ -124,7 +125,7 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property PropertyValues. 
         /// <para>
-        /// The list of property values to upload. You can specify up to 10 <code>propertyValues</code>
+        /// The list of property values to upload. You can specify up to 10 <c>propertyValues</c>
         /// array elements. 
         /// </para>
         /// </summary>
@@ -138,7 +139,7 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if PropertyValues property is set
         internal bool IsSetPropertyValues()
         {
-            return this._propertyValues != null && this._propertyValues.Count > 0; 
+            return this._propertyValues != null && (this._propertyValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

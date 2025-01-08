@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSMContacts.Model
 {
     /// <summary>
@@ -158,15 +159,15 @@ namespace Amazon.SSMContacts.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>SMS</code> 
+        ///  <c>SMS</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>VOICE</code> 
+        ///  <c>VOICE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EMAIL</code> 
+        ///  <c>EMAIL</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

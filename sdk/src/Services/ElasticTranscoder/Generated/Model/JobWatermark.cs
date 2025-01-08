@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticTranscoder.Model
 {
     /// <summary>
@@ -62,8 +63,8 @@ namespace Amazon.ElasticTranscoder.Model
         /// <para>
         ///  The name of the .png or .jpg file that you want to use for the watermark. To determine
         /// which Amazon S3 bucket contains the specified file, Elastic Transcoder checks the
-        /// pipeline specified by <code>Pipeline</code>; the <code>Input Bucket</code> object
-        /// in that pipeline identifies the bucket.
+        /// pipeline specified by <c>Pipeline</c>; the <c>Input Bucket</c> object in that pipeline
+        /// identifies the bucket.
         /// </para>
         ///  
         /// <para>

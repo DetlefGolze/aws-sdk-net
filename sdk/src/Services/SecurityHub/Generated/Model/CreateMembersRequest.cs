@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -37,13 +38,12 @@ namespace Amazon.SecurityHub.Model
     /// 
     ///  
     /// <para>
-    ///  <code>CreateMembers</code> is always used to add accounts that are not organization
-    /// members.
+    ///  <c>CreateMembers</c> is always used to add accounts that are not organization members.
     /// </para>
     ///  
     /// <para>
-    /// For accounts that are managed using Organizations, <code>CreateMembers</code> is only
-    /// used in the following cases:
+    /// For accounts that are managed using Organizations, <c>CreateMembers</c> is only used
+    /// in the following cases:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -56,18 +56,18 @@ namespace Amazon.SecurityHub.Model
     ///  </li> </ul> 
     /// <para>
     /// This action can only be used by an account that has Security Hub enabled. To enable
-    /// Security Hub, you can use the <code>EnableSecurityHub</code> operation.
+    /// Security Hub, you can use the <c>EnableSecurityHub</c> operation.
     /// </para>
     ///  
     /// <para>
     /// For accounts that are not organization members, you create the account association
     /// and then send an invitation to the member account. To send the invitation, you use
-    /// the <code>InviteMembers</code> operation. If the account owner accepts the invitation,
-    /// the account becomes a member account in Security Hub.
+    /// the <c>InviteMembers</c> operation. If the account owner accepts the invitation, the
+    /// account becomes a member account in Security Hub.
     /// </para>
     ///  
     /// <para>
-    /// Accounts that are managed using Organizations do not receive an invitation. They automatically
+    /// Accounts that are managed using Organizations don't receive an invitation. They automatically
     /// become a member account in Security Hub.
     /// </para>
     ///  <ul> <li> 
@@ -91,13 +91,13 @@ namespace Amazon.SecurityHub.Model
     /// </para>
     ///  
     /// <para>
-    /// To remove the association between the administrator and member accounts, use the <code>DisassociateFromMasterAccount</code>
-    /// or <code>DisassociateMembers</code> operation.
+    /// To remove the association between the administrator and member accounts, use the <c>DisassociateFromMasterAccount</c>
+    /// or <c>DisassociateMembers</c> operation.
     /// </para>
     /// </summary>
     public partial class CreateMembersRequest : AmazonSecurityHubRequest
     {
-        private List<AccountDetails> _accountDetails = new List<AccountDetails>();
+        private List<AccountDetails> _accountDetails = AWSConfigs.InitializeCollections ? new List<AccountDetails>() : null;
 
         /// <summary>
         /// Gets and sets the property AccountDetails. 
@@ -106,7 +106,7 @@ namespace Amazon.SecurityHub.Model
         /// each account, the list includes the account ID and optionally the email address.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=50)]
         public List<AccountDetails> AccountDetails
         {
             get { return this._accountDetails; }
@@ -116,7 +116,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if AccountDetails property is set
         internal bool IsSetAccountDetails()
         {
-            return this._accountDetails != null && this._accountDetails.Count > 0; 
+            return this._accountDetails != null && (this._accountDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

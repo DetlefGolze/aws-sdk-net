@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKVoice.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateVoiceConnectorGroup operation.
     /// Creates an Amazon Chime SDK Voice Connector group under the administrator's AWS account.
     /// You can associate Amazon Chime SDK Voice Connectors with the Voice Connector group
-    /// by including <code>VoiceConnectorItems</code> in the request. 
+    /// by including <c>VoiceConnectorItems</c> in the request. 
     /// 
     ///  
     /// <para>
@@ -43,7 +44,7 @@ namespace Amazon.ChimeSDKVoice.Model
     public partial class CreateVoiceConnectorGroupRequest : AmazonChimeSDKVoiceRequest
     {
         private string _name;
-        private List<VoiceConnectorItem> _voiceConnectorItems = new List<VoiceConnectorItem>();
+        private List<VoiceConnectorItem> _voiceConnectorItems = AWSConfigs.InitializeCollections ? new List<VoiceConnectorItem>() : null;
 
         /// <summary>
         /// Gets and sets the property Name. 
@@ -79,7 +80,7 @@ namespace Amazon.ChimeSDKVoice.Model
         // Check to see if VoiceConnectorItems property is set
         internal bool IsSetVoiceConnectorItems()
         {
-            return this._voiceConnectorItems != null && this._voiceConnectorItems.Count > 0; 
+            return this._voiceConnectorItems != null && (this._voiceConnectorItems.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

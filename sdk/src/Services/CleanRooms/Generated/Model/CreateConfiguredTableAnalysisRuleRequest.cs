@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CleanRooms.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.CleanRooms.Model
         /// <summary>
         /// Gets and sets the property AnalysisRulePolicy. 
         /// <para>
-        /// The entire created configured table analysis rule object.
+        /// The analysis rule policy that was created for the configured table.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

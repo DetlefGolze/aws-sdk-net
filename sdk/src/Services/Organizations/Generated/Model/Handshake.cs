@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Organizations.Model
 {
     /// <summary>
@@ -36,9 +37,9 @@ namespace Amazon.Organizations.Model
     /// 
     ///  
     /// <para>
-    ///  <b>Note:</b> Handshakes that are <code>CANCELED</code>, <code>ACCEPTED</code>, <code>DECLINED</code>,
-    /// or <code>EXPIRED</code> show up in lists for only 30 days after entering that state
-    /// After that they are deleted.
+    ///  <b>Note:</b> Handshakes that are <c>CANCELED</c>, <c>ACCEPTED</c>, <c>DECLINED</c>,
+    /// or <c>EXPIRED</c> show up in lists for only 30 days after entering that state After
+    /// that they are deleted.
     /// </para>
     /// </summary>
     public partial class Handshake
@@ -47,9 +48,9 @@ namespace Amazon.Organizations.Model
         private string _arn;
         private DateTime? _expirationTimestamp;
         private string _id;
-        private List<HandshakeParty> _parties = new List<HandshakeParty>();
+        private List<HandshakeParty> _parties = AWSConfigs.InitializeCollections ? new List<HandshakeParty>() : null;
         private DateTime? _requestedTimestamp;
-        private List<HandshakeResource> _resources = new List<HandshakeResource>();
+        private List<HandshakeResource> _resources = AWSConfigs.InitializeCollections ? new List<HandshakeResource>() : null;
         private HandshakeState _state;
 
         /// <summary>
@@ -74,9 +75,9 @@ namespace Amazon.Organizations.Model
         ///  </li> <li> 
         /// <para>
         ///  <b>APPROVE_ALL_FEATURES</b>: This type of handshake is sent from the Organizations
-        /// service when all member accounts have approved the <code>ENABLE_ALL_FEATURES</code>
-        /// invitation. It is sent only to the management account and signals the master that
-        /// it can finalize the process to enable all features.
+        /// service when all member accounts have approved the <c>ENABLE_ALL_FEATURES</c> invitation.
+        /// It is sent only to the management account and signals the master that it can finalize
+        /// the process to enable all features.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -176,7 +177,7 @@ namespace Amazon.Organizations.Model
         // Check to see if Parties property is set
         internal bool IsSetParties()
         {
-            return this._parties != null && this._parties.Count > 0; 
+            return this._parties != null && (this._parties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -212,7 +213,7 @@ namespace Amazon.Organizations.Model
         // Check to see if Resources property is set
         internal bool IsSetResources()
         {
-            return this._resources != null && this._resources.Count > 0; 
+            return this._resources != null && (this._resources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

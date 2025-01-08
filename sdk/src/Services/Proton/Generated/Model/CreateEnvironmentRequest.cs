@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Proton.Model
 {
     /// <summary>
@@ -65,7 +66,7 @@ namespace Amazon.Proton.Model
         private string _protonServiceRoleArn;
         private RepositoryBranchInput _provisioningRepository;
         private string _spec;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _templateMajorVersion;
         private string _templateMinorVersion;
         private string _templateName;
@@ -79,8 +80,8 @@ namespace Amazon.Proton.Model
         ///  
         /// <para>
         /// To use CodeBuild-based provisioning for the environment or for any service instance
-        /// running in the environment, specify either the <code>environmentAccountConnectionId</code>
-        /// or <code>codebuildRoleArn</code> parameter.
+        /// running in the environment, specify either the <c>environmentAccountConnectionId</c>
+        /// or <c>codebuildRoleArn</c> parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]
@@ -105,8 +106,8 @@ namespace Amazon.Proton.Model
         /// </para>
         ///  
         /// <para>
-        /// You must specify <code>componentRoleArn</code> to allow directly defined components
-        /// to be associated with this environment.
+        /// You must specify <c>componentRoleArn</c> to allow directly defined components to be
+        /// associated with this environment.
         /// </para>
         ///  
         /// <para>
@@ -157,8 +158,8 @@ namespace Amazon.Proton.Model
         ///  
         /// <para>
         /// To use Amazon Web Services-managed provisioning for the environment, specify either
-        /// the <code>environmentAccountConnectionId</code> or <code>protonServiceRoleArn</code>
-        /// parameter and omit the <code>provisioningRepository</code> parameter.
+        /// the <c>environmentAccountConnectionId</c> or <c>protonServiceRoleArn</c> parameter
+        /// and omit the <c>provisioningRepository</c> parameter.
         /// </para>
         /// </summary>
         public string EnvironmentAccountConnectionId
@@ -201,8 +202,8 @@ namespace Amazon.Proton.Model
         ///  
         /// <para>
         /// To use Amazon Web Services-managed provisioning for the environment, specify either
-        /// the <code>environmentAccountConnectionId</code> or <code>protonServiceRoleArn</code>
-        /// parameter and omit the <code>provisioningRepository</code> parameter.
+        /// the <c>environmentAccountConnectionId</c> or <c>protonServiceRoleArn</c> parameter
+        /// and omit the <c>provisioningRepository</c> parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=200)]
@@ -228,8 +229,7 @@ namespace Amazon.Proton.Model
         ///  
         /// <para>
         /// To use self-managed provisioning for the environment, specify this parameter and omit
-        /// the <code>environmentAccountConnectionId</code> and <code>protonServiceRoleArn</code>
-        /// parameters.
+        /// the <c>environmentAccountConnectionId</c> and <c>protonServiceRoleArn</c> parameters.
         /// </para>
         /// </summary>
         public RepositoryBranchInput ProvisioningRepository
@@ -287,7 +287,7 @@ namespace Amazon.Proton.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

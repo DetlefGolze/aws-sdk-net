@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -47,14 +48,14 @@ namespace Amazon.EC2.Model
     ///  
     /// <para>
     /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/manage-launch-template-versions.html#delete-launch-template-version">Delete
-    /// a launch template version</a> in the <i>EC2 User Guide</i>.
+    /// a launch template version</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     /// </summary>
     public partial class DeleteLaunchTemplateVersionsRequest : AmazonEC2Request
     {
         private string _launchTemplateId;
         private string _launchTemplateName;
-        private List<string> _versions = new List<string>();
+        private List<string> _versions = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property LaunchTemplateId. 
@@ -63,8 +64,8 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// You must specify either the <code>LaunchTemplateId</code> or the <code>LaunchTemplateName</code>,
-        /// but not both.
+        /// You must specify either the launch template ID or the launch template name, but not
+        /// both.
         /// </para>
         /// </summary>
         public string LaunchTemplateId
@@ -86,8 +87,8 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// You must specify either the <code>LaunchTemplateName</code> or the <code>LaunchTemplateId</code>,
-        /// but not both.
+        /// You must specify either the launch template ID or the launch template name, but not
+        /// both.
         /// </para>
         /// </summary>
         [AWSProperty(Min=3, Max=128)]
@@ -120,7 +121,7 @@ namespace Amazon.EC2.Model
         // Check to see if Versions property is set
         internal bool IsSetVersions()
         {
-            return this._versions != null && this._versions.Count > 0; 
+            return this._versions != null && (this._versions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

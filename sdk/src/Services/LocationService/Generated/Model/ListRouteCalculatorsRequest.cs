@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  
         /// <para>
-        /// Default Value: <code>100</code> 
+        /// Default Value: <c>100</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -68,7 +69,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  
         /// <para>
-        /// Default Value: <code>null</code> 
+        /// Default Value: <c>null</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2000)]

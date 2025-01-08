@@ -26,35 +26,35 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaTailor.Model
 {
     /// <summary>
-    /// The SCTE-35 <code>time_signal</code> message can be sent with one or more <code>segmentation_descriptor</code>
-    /// messages. A <code>time_signal</code> message can be sent only if a single <code>segmentation_descriptor</code>
+    /// The SCTE-35 <c>time_signal</c> message can be sent with one or more <c>segmentation_descriptor</c>
+    /// messages. A <c>time_signal</c> message can be sent only if a single <c>segmentation_descriptor</c>
     /// message is sent.
     /// 
     ///  
     /// <para>
-    /// The <code>time_signal</code> message contains only the <code>splice_time</code> field
-    /// which is constructed using a given presentation timestamp. When sending a <code>time_signal</code>
-    /// message, the <code>splice_command_type</code> field in the <code>splice_info_section</code>
-    /// message is set to 6 (0x06).
+    /// The <c>time_signal</c> message contains only the <c>splice_time</c> field which is
+    /// constructed using a given presentation timestamp. When sending a <c>time_signal</c>
+    /// message, the <c>splice_command_type</c> field in the <c>splice_info_section</c> message
+    /// is set to 6 (0x06).
     /// </para>
     ///  
     /// <para>
-    /// See the <code>time_signal()</code> table of the 2022 SCTE-35 specification for more
-    /// information.
+    /// See the <c>time_signal()</c> table of the 2022 SCTE-35 specification for more information.
     /// </para>
     /// </summary>
     public partial class TimeSignalMessage
     {
-        private List<SegmentationDescriptor> _segmentationDescriptors = new List<SegmentationDescriptor>();
+        private List<SegmentationDescriptor> _segmentationDescriptors = AWSConfigs.InitializeCollections ? new List<SegmentationDescriptor>() : null;
 
         /// <summary>
         /// Gets and sets the property SegmentationDescriptors. 
         /// <para>
-        /// The configurations for the SCTE-35 <code>segmentation_descriptor</code> message(s)
-        /// sent with the <code>time_signal</code> message.
+        /// The configurations for the SCTE-35 <c>segmentation_descriptor</c> message(s) sent
+        /// with the <c>time_signal</c> message.
         /// </para>
         /// </summary>
         public List<SegmentationDescriptor> SegmentationDescriptors
@@ -66,7 +66,7 @@ namespace Amazon.MediaTailor.Model
         // Check to see if SegmentationDescriptors property is set
         internal bool IsSetSegmentationDescriptors()
         {
-            return this._segmentationDescriptors != null && this._segmentationDescriptors.Count > 0; 
+            return this._segmentationDescriptors != null && (this._segmentationDescriptors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

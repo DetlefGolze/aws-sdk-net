@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHubRefactorSpaces.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.MigrationHubRefactorSpaces.Model
     public partial class ListServicesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ServiceSummary> _serviceSummaryList = new List<ServiceSummary>();
+        private List<ServiceSummary> _serviceSummaryList = AWSConfigs.InitializeCollections ? new List<ServiceSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -58,7 +59,7 @@ namespace Amazon.MigrationHubRefactorSpaces.Model
         /// <summary>
         /// Gets and sets the property ServiceSummaryList. 
         /// <para>
-        ///  The list of <code>ServiceSummary</code> objects. 
+        ///  The list of <c>ServiceSummary</c> objects. 
         /// </para>
         /// </summary>
         public List<ServiceSummary> ServiceSummaryList
@@ -70,7 +71,7 @@ namespace Amazon.MigrationHubRefactorSpaces.Model
         // Check to see if ServiceSummaryList property is set
         internal bool IsSetServiceSummaryList()
         {
-            return this._serviceSummaryList != null && this._serviceSummaryList.Count > 0; 
+            return this._serviceSummaryList != null && (this._serviceSummaryList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

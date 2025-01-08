@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Athena.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.Athena.Model
         private WorkGroupConfiguration _configuration;
         private string _description;
         private string _name;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Configuration. 
@@ -48,8 +49,8 @@ namespace Amazon.Athena.Model
         /// S3 where query and calculation results are stored, the encryption configuration, if
         /// any, used for encrypting query results, whether the Amazon CloudWatch Metrics are
         /// enabled for the workgroup, the limit for the amount of bytes scanned (cutoff) per
-        /// query, if it is specified, and whether workgroup's settings (specified with <code>EnforceWorkGroupConfiguration</code>)
-        /// in the <code>WorkGroupConfiguration</code> override client-side settings. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.
+        /// query, if it is specified, and whether workgroup's settings (specified with <c>EnforceWorkGroupConfiguration</c>)
+        /// in the <c>WorkGroupConfiguration</c> override client-side settings. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.
         /// </para>
         /// </summary>
         public WorkGroupConfiguration Configuration
@@ -117,7 +118,7 @@ namespace Amazon.Athena.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

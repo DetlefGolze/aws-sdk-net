@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace Amazon.SimpleNotificationService.Model
     public partial class ListTopicsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Topic> _topics = new List<Topic>();
+        private List<Topic> _topics = AWSConfigs.InitializeCollections ? new List<Topic>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Token to pass along to the next <code>ListTopics</code> request. This element is returned
+        /// Token to pass along to the next <c>ListTopics</c> request. This element is returned
         /// if there are additional topics to retrieve.
         /// </para>
         /// </summary>
@@ -70,7 +71,7 @@ namespace Amazon.SimpleNotificationService.Model
         // Check to see if Topics property is set
         internal bool IsSetTopics()
         {
-            return this._topics != null && this._topics.Count > 0; 
+            return this._topics != null && (this._topics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

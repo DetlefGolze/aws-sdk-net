@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.LexModelBuildingService.Model
         /// The Amazon Resource Name (ARN) of the Amazon Kendra index that you want the AMAZON.KendraSearchIntent
         /// intent to search. The index must be in the same account and Region as the Amazon Lex
         /// bot. If the Amazon Kendra index does not exist, you get an exception when you call
-        /// the <code>PutIntent</code> operation.
+        /// the <c>PutIntent</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]
@@ -94,7 +95,7 @@ namespace Amazon.LexModelBuildingService.Model
         /// <para>
         /// The Amazon Resource Name (ARN) of an IAM role that has permission to search the Amazon
         /// Kendra index. The role must be in the same account and Region as the Amazon Lex bot.
-        /// If the role does not exist, you get an exception when you call the <code>PutIntent</code>
+        /// If the role does not exist, you get an exception when you call the <c>PutIntent</c>
         /// operation.
         /// </para>
         /// </summary>

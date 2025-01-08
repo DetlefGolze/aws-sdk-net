@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMessaging.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         /// <summary>
         /// Gets and sets the property ChannelSummary. 
         /// <para>
-        /// Summary of the details of a <code>Channel</code>.
+        /// Summary of the details of a <c>Channel</c>.
         /// </para>
         /// </summary>
         public ChannelSummary ChannelSummary

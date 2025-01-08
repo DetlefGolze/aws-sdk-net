@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -40,20 +41,20 @@ namespace Amazon.DataZone.Model
         private DeploymentProperties _deploymentProperties;
         private string _description;
         private string _domainId;
-        private List<ConfigurableEnvironmentAction> _environmentActions = new List<ConfigurableEnvironmentAction>();
+        private List<ConfigurableEnvironmentAction> _environmentActions = AWSConfigs.InitializeCollections ? new List<ConfigurableEnvironmentAction>() : null;
         private string _environmentBlueprintId;
         private string _environmentProfileId;
-        private List<string> _glossaryTerms = new List<string>();
+        private List<string> _glossaryTerms = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _id;
         private Deployment _lastDeployment;
         private string _name;
         private string _projectId;
         private string _provider;
-        private List<Resource> _provisionedResources = new List<Resource>();
+        private List<Resource> _provisionedResources = AWSConfigs.InitializeCollections ? new List<Resource>() : null;
         private ProvisioningProperties _provisioningProperties;
         private EnvironmentStatus _status;
         private DateTime? _updatedAt;
-        private List<CustomParameter> _userParameters = new List<CustomParameter>();
+        private List<CustomParameter> _userParameters = AWSConfigs.InitializeCollections ? new List<CustomParameter>() : null;
 
         /// <summary>
         /// Gets and sets the property AwsAccountId. 
@@ -132,8 +133,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property DeploymentProperties. 
         /// <para>
-        /// The deployment properties to be updated as part of the <code>UpdateEnvironment</code>
-        /// action.
+        /// The deployment properties to be updated as part of the <c>UpdateEnvironment</c> action.
         /// </para>
         /// </summary>
         public DeploymentProperties DeploymentProperties
@@ -151,7 +151,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
-        /// The description to be updated as part of the <code>UpdateEnvironment</code> action.
+        /// The description to be updated as part of the <c>UpdateEnvironment</c> action.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=0, Max=2048)]
@@ -189,8 +189,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property EnvironmentActions. 
         /// <para>
-        /// The environment actions to be updated as part of the <code>UpdateEnvironment</code>
-        /// action.
+        /// The environment actions to be updated as part of the <c>UpdateEnvironment</c> action.
         /// </para>
         /// </summary>
         public List<ConfigurableEnvironmentAction> EnvironmentActions
@@ -202,7 +201,7 @@ namespace Amazon.DataZone.Model
         // Check to see if EnvironmentActions property is set
         internal bool IsSetEnvironmentActions()
         {
-            return this._environmentActions != null && this._environmentActions.Count > 0; 
+            return this._environmentActions != null && (this._environmentActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -229,7 +228,6 @@ namespace Amazon.DataZone.Model
         /// The profile identifier of the environment.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public string EnvironmentProfileId
         {
             get { return this._environmentProfileId; }
@@ -245,7 +243,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property GlossaryTerms. 
         /// <para>
-        /// The glossary terms to be updated as part of the <code>UpdateEnvironment</code> action.
+        /// The glossary terms to be updated as part of the <c>UpdateEnvironment</c> action.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=20)]
@@ -258,7 +256,7 @@ namespace Amazon.DataZone.Model
         // Check to see if GlossaryTerms property is set
         internal bool IsSetGlossaryTerms()
         {
-            return this._glossaryTerms != null && this._glossaryTerms.Count > 0; 
+            return this._glossaryTerms != null && (this._glossaryTerms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -300,7 +298,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name to be updated as part of the <code>UpdateEnvironment</code> action.
+        /// The name to be updated as part of the <c>UpdateEnvironment</c> action.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=64)]
@@ -357,8 +355,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property ProvisionedResources. 
         /// <para>
-        /// The provisioned resources to be updated as part of the <code>UpdateEnvironment</code>
-        /// action.
+        /// The provisioned resources to be updated as part of the <c>UpdateEnvironment</c> action.
         /// </para>
         /// </summary>
         public List<Resource> ProvisionedResources
@@ -370,13 +367,13 @@ namespace Amazon.DataZone.Model
         // Check to see if ProvisionedResources property is set
         internal bool IsSetProvisionedResources()
         {
-            return this._provisionedResources != null && this._provisionedResources.Count > 0; 
+            return this._provisionedResources != null && (this._provisionedResources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ProvisioningProperties. 
         /// <para>
-        /// The provisioning properties to be updated as part of the <code>UpdateEnvironment</code>
+        /// The provisioning properties to be updated as part of the <c>UpdateEnvironment</c>
         /// action.
         /// </para>
         /// </summary>
@@ -395,7 +392,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status to be updated as part of the <code>UpdateEnvironment</code> action.
+        /// The status to be updated as part of the <c>UpdateEnvironment</c> action.
         /// </para>
         /// </summary>
         public EnvironmentStatus Status
@@ -431,7 +428,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property UserParameters. 
         /// <para>
-        /// The user parameters to be updated as part of the <code>UpdateEnvironment</code> action.
+        /// The user parameters to be updated as part of the <c>UpdateEnvironment</c> action.
         /// </para>
         /// </summary>
         public List<CustomParameter> UserParameters
@@ -443,7 +440,7 @@ namespace Amazon.DataZone.Model
         // Check to see if UserParameters property is set
         internal bool IsSetUserParameters()
         {
-            return this._userParameters != null && this._userParameters.Count > 0; 
+            return this._userParameters != null && (this._userParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

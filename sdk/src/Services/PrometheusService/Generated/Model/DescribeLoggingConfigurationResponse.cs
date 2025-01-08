@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
-    /// Represents the output of a DescribeLoggingConfiguration operation.
+    /// Represents the output of a <c>DescribeLoggingConfiguration</c> operation.
     /// </summary>
     public partial class DescribeLoggingConfigurationResponse : AmazonWebServiceResponse
     {
@@ -38,7 +39,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property LoggingConfiguration. 
         /// <para>
-        /// Metadata object containing information about the logging configuration of a workspace.
+        /// A structure that displays the information about the logging configuration.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

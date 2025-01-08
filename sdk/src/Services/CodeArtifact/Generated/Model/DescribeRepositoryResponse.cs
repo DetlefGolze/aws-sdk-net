@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeArtifact.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.CodeArtifact.Model
         /// <summary>
         /// Gets and sets the property Repository. 
         /// <para>
-        ///  A <code>RepositoryDescription</code> object that contains the requested repository
-        /// information. 
+        ///  A <c>RepositoryDescription</c> object that contains the requested repository information.
+        /// 
         /// </para>
         /// </summary>
         public RepositoryDescription Repository

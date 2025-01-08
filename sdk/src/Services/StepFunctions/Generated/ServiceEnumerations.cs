@@ -25,6 +25,160 @@ namespace Amazon.StepFunctions
 {
 
     /// <summary>
+    /// Constants used for properties of type EncryptionType.
+    /// </summary>
+    public class EncryptionType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant AWS_OWNED_KEY for EncryptionType
+        /// </summary>
+        public static readonly EncryptionType AWS_OWNED_KEY = new EncryptionType("AWS_OWNED_KEY");
+        /// <summary>
+        /// Constant CUSTOMER_MANAGED_KMS_KEY for EncryptionType
+        /// </summary>
+        public static readonly EncryptionType CUSTOMER_MANAGED_KMS_KEY = new EncryptionType("CUSTOMER_MANAGED_KMS_KEY");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public EncryptionType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static EncryptionType FindValue(string value)
+        {
+            return FindValue<EncryptionType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator EncryptionType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ExecutionRedriveFilter.
+    /// </summary>
+    public class ExecutionRedriveFilter : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant NOT_REDRIVEN for ExecutionRedriveFilter
+        /// </summary>
+        public static readonly ExecutionRedriveFilter NOT_REDRIVEN = new ExecutionRedriveFilter("NOT_REDRIVEN");
+        /// <summary>
+        /// Constant REDRIVEN for ExecutionRedriveFilter
+        /// </summary>
+        public static readonly ExecutionRedriveFilter REDRIVEN = new ExecutionRedriveFilter("REDRIVEN");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ExecutionRedriveFilter(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ExecutionRedriveFilter FindValue(string value)
+        {
+            return FindValue<ExecutionRedriveFilter>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ExecutionRedriveFilter(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ExecutionRedriveStatus.
+    /// </summary>
+    public class ExecutionRedriveStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant NOT_REDRIVABLE for ExecutionRedriveStatus
+        /// </summary>
+        public static readonly ExecutionRedriveStatus NOT_REDRIVABLE = new ExecutionRedriveStatus("NOT_REDRIVABLE");
+        /// <summary>
+        /// Constant REDRIVABLE for ExecutionRedriveStatus
+        /// </summary>
+        public static readonly ExecutionRedriveStatus REDRIVABLE = new ExecutionRedriveStatus("REDRIVABLE");
+        /// <summary>
+        /// Constant REDRIVABLE_BY_MAP_RUN for ExecutionRedriveStatus
+        /// </summary>
+        public static readonly ExecutionRedriveStatus REDRIVABLE_BY_MAP_RUN = new ExecutionRedriveStatus("REDRIVABLE_BY_MAP_RUN");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ExecutionRedriveStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ExecutionRedriveStatus FindValue(string value)
+        {
+            return FindValue<ExecutionRedriveStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ExecutionRedriveStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ExecutionStatus.
     /// </summary>
     public class ExecutionStatus : ConstantClass
@@ -38,6 +192,10 @@ namespace Amazon.StepFunctions
         /// Constant FAILED for ExecutionStatus
         /// </summary>
         public static readonly ExecutionStatus FAILED = new ExecutionStatus("FAILED");
+        /// <summary>
+        /// Constant PENDING_REDRIVE for ExecutionStatus
+        /// </summary>
+        public static readonly ExecutionStatus PENDING_REDRIVE = new ExecutionStatus("PENDING_REDRIVE");
         /// <summary>
         /// Constant RUNNING for ExecutionStatus
         /// </summary>
@@ -125,6 +283,10 @@ namespace Amazon.StepFunctions
         /// </summary>
         public static readonly HistoryEventType ChoiceStateExited = new HistoryEventType("ChoiceStateExited");
         /// <summary>
+        /// Constant EvaluationFailed for HistoryEventType
+        /// </summary>
+        public static readonly HistoryEventType EvaluationFailed = new HistoryEventType("EvaluationFailed");
+        /// <summary>
         /// Constant ExecutionAborted for HistoryEventType
         /// </summary>
         public static readonly HistoryEventType ExecutionAborted = new HistoryEventType("ExecutionAborted");
@@ -132,6 +294,10 @@ namespace Amazon.StepFunctions
         /// Constant ExecutionFailed for HistoryEventType
         /// </summary>
         public static readonly HistoryEventType ExecutionFailed = new HistoryEventType("ExecutionFailed");
+        /// <summary>
+        /// Constant ExecutionRedriven for HistoryEventType
+        /// </summary>
+        public static readonly HistoryEventType ExecutionRedriven = new HistoryEventType("ExecutionRedriven");
         /// <summary>
         /// Constant ExecutionStarted for HistoryEventType
         /// </summary>
@@ -200,6 +366,10 @@ namespace Amazon.StepFunctions
         /// Constant MapRunFailed for HistoryEventType
         /// </summary>
         public static readonly HistoryEventType MapRunFailed = new HistoryEventType("MapRunFailed");
+        /// <summary>
+        /// Constant MapRunRedriven for HistoryEventType
+        /// </summary>
+        public static readonly HistoryEventType MapRunRedriven = new HistoryEventType("MapRunRedriven");
         /// <summary>
         /// Constant MapRunStarted for HistoryEventType
         /// </summary>
@@ -358,6 +528,172 @@ namespace Amazon.StepFunctions
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator HistoryEventType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type IncludedData.
+    /// </summary>
+    public class IncludedData : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ALL_DATA for IncludedData
+        /// </summary>
+        public static readonly IncludedData ALL_DATA = new IncludedData("ALL_DATA");
+        /// <summary>
+        /// Constant METADATA_ONLY for IncludedData
+        /// </summary>
+        public static readonly IncludedData METADATA_ONLY = new IncludedData("METADATA_ONLY");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public IncludedData(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static IncludedData FindValue(string value)
+        {
+            return FindValue<IncludedData>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator IncludedData(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type InspectionLevel.
+    /// </summary>
+    public class InspectionLevel : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DEBUG for InspectionLevel
+        /// </summary>
+        public static readonly InspectionLevel DEBUG = new InspectionLevel("DEBUG");
+        /// <summary>
+        /// Constant INFO for InspectionLevel
+        /// </summary>
+        public static readonly InspectionLevel INFO = new InspectionLevel("INFO");
+        /// <summary>
+        /// Constant TRACE for InspectionLevel
+        /// </summary>
+        public static readonly InspectionLevel TRACE = new InspectionLevel("TRACE");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public InspectionLevel(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static InspectionLevel FindValue(string value)
+        {
+            return FindValue<InspectionLevel>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator InspectionLevel(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type KmsKeyState.
+    /// </summary>
+    public class KmsKeyState : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CREATING for KmsKeyState
+        /// </summary>
+        public static readonly KmsKeyState CREATING = new KmsKeyState("CREATING");
+        /// <summary>
+        /// Constant DISABLED for KmsKeyState
+        /// </summary>
+        public static readonly KmsKeyState DISABLED = new KmsKeyState("DISABLED");
+        /// <summary>
+        /// Constant PENDING_DELETION for KmsKeyState
+        /// </summary>
+        public static readonly KmsKeyState PENDING_DELETION = new KmsKeyState("PENDING_DELETION");
+        /// <summary>
+        /// Constant PENDING_IMPORT for KmsKeyState
+        /// </summary>
+        public static readonly KmsKeyState PENDING_IMPORT = new KmsKeyState("PENDING_IMPORT");
+        /// <summary>
+        /// Constant UNAVAILABLE for KmsKeyState
+        /// </summary>
+        public static readonly KmsKeyState UNAVAILABLE = new KmsKeyState("UNAVAILABLE");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public KmsKeyState(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static KmsKeyState FindValue(string value)
+        {
+            return FindValue<KmsKeyState>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator KmsKeyState(string value)
         {
             return FindValue(value);
         }
@@ -628,6 +964,164 @@ namespace Amazon.StepFunctions
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator SyncExecutionStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type TestExecutionStatus.
+    /// </summary>
+    public class TestExecutionStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CAUGHT_ERROR for TestExecutionStatus
+        /// </summary>
+        public static readonly TestExecutionStatus CAUGHT_ERROR = new TestExecutionStatus("CAUGHT_ERROR");
+        /// <summary>
+        /// Constant FAILED for TestExecutionStatus
+        /// </summary>
+        public static readonly TestExecutionStatus FAILED = new TestExecutionStatus("FAILED");
+        /// <summary>
+        /// Constant RETRIABLE for TestExecutionStatus
+        /// </summary>
+        public static readonly TestExecutionStatus RETRIABLE = new TestExecutionStatus("RETRIABLE");
+        /// <summary>
+        /// Constant SUCCEEDED for TestExecutionStatus
+        /// </summary>
+        public static readonly TestExecutionStatus SUCCEEDED = new TestExecutionStatus("SUCCEEDED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public TestExecutionStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static TestExecutionStatus FindValue(string value)
+        {
+            return FindValue<TestExecutionStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator TestExecutionStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ValidateStateMachineDefinitionResultCode.
+    /// </summary>
+    public class ValidateStateMachineDefinitionResultCode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant FAIL for ValidateStateMachineDefinitionResultCode
+        /// </summary>
+        public static readonly ValidateStateMachineDefinitionResultCode FAIL = new ValidateStateMachineDefinitionResultCode("FAIL");
+        /// <summary>
+        /// Constant OK for ValidateStateMachineDefinitionResultCode
+        /// </summary>
+        public static readonly ValidateStateMachineDefinitionResultCode OK = new ValidateStateMachineDefinitionResultCode("OK");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ValidateStateMachineDefinitionResultCode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ValidateStateMachineDefinitionResultCode FindValue(string value)
+        {
+            return FindValue<ValidateStateMachineDefinitionResultCode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ValidateStateMachineDefinitionResultCode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ValidateStateMachineDefinitionSeverity.
+    /// </summary>
+    public class ValidateStateMachineDefinitionSeverity : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ERROR for ValidateStateMachineDefinitionSeverity
+        /// </summary>
+        public static readonly ValidateStateMachineDefinitionSeverity ERROR = new ValidateStateMachineDefinitionSeverity("ERROR");
+        /// <summary>
+        /// Constant WARNING for ValidateStateMachineDefinitionSeverity
+        /// </summary>
+        public static readonly ValidateStateMachineDefinitionSeverity WARNING = new ValidateStateMachineDefinitionSeverity("WARNING");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ValidateStateMachineDefinitionSeverity(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ValidateStateMachineDefinitionSeverity FindValue(string value)
+        {
+            return FindValue<ValidateStateMachineDefinitionSeverity>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ValidateStateMachineDefinitionSeverity(string value)
         {
             return FindValue(value);
         }

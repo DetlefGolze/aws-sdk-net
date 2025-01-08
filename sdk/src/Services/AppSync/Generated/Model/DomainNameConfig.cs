@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.AppSync.Model
         /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
-        /// A description of the <code>DomainName</code> configuration.
+        /// A description of the <c>DomainName</c> configuration.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=255)]

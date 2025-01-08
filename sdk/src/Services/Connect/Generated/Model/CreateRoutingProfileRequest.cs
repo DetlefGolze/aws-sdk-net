@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -38,10 +39,10 @@ namespace Amazon.Connect.Model
         private string _defaultOutboundQueueId;
         private string _description;
         private string _instanceId;
-        private List<MediaConcurrency> _mediaConcurrencies = new List<MediaConcurrency>();
+        private List<MediaConcurrency> _mediaConcurrencies = AWSConfigs.InitializeCollections ? new List<MediaConcurrency>() : null;
         private string _name;
-        private List<RoutingProfileQueueConfig> _queueConfigs = new List<RoutingProfileQueueConfig>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private List<RoutingProfileQueueConfig> _queueConfigs = AWSConfigs.InitializeCollections ? new List<RoutingProfileQueueConfig>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AgentAvailabilityTimer. 
@@ -138,7 +139,7 @@ namespace Amazon.Connect.Model
         // Check to see if MediaConcurrencies property is set
         internal bool IsSetMediaConcurrencies()
         {
-            return this._mediaConcurrencies != null && this._mediaConcurrencies.Count > 0; 
+            return this._mediaConcurrencies != null && (this._mediaConcurrencies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -168,7 +169,7 @@ namespace Amazon.Connect.Model
         /// </para>
         ///  
         /// <para>
-        /// The limit of 10 array members applies to the maximum number of <code>RoutingProfileQueueConfig</code>
+        /// The limit of 10 array members applies to the maximum number of <c>RoutingProfileQueueConfig</c>
         /// objects that can be passed during a CreateRoutingProfile API request. It is different
         /// from the quota of 50 queues per routing profile per instance that is listed in <a
         /// href="https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html">Amazon
@@ -185,14 +186,14 @@ namespace Amazon.Connect.Model
         // Check to see if QueueConfigs property is set
         internal bool IsSetQueueConfigs()
         {
-            return this._queueConfigs != null && this._queueConfigs.Count > 0; 
+            return this._queueConfigs != null && (this._queueConfigs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// The tags used to organize, track, or control access for this resource. For example,
-        /// { "tags": {"key1":"value1", "key2":"value2"} }.
+        /// { "Tags": {"key1":"value1", "key2":"value2"} }.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -205,7 +206,7 @@ namespace Amazon.Connect.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Lambda.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.Lambda.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(FunctionCode requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetImageUri())
             {
                 context.Writer.WritePropertyName("ImageUri");
@@ -67,6 +70,12 @@ namespace Amazon.Lambda.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("S3ObjectVersion");
                 context.Writer.Write(requestObject.S3ObjectVersion);
+            }
+
+            if(requestObject.IsSetSourceKMSKeyArn())
+            {
+                context.Writer.WritePropertyName("SourceKMSKeyArn");
+                context.Writer.Write(requestObject.SourceKMSKeyArn);
             }
 
             if(requestObject.IsSetZipFile())

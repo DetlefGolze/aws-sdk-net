@@ -26,10 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// Account takeover actions type.
+    /// A list of account-takeover actions for each level of risk that Amazon Cognito might
+    /// assess with advanced security features.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a request parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetRiskConfiguration.html">SetRiskConfiguration</a>
+    /// and a response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeRiskConfiguration.html">DescribeRiskConfiguration</a>.
+    /// </para>
     /// </summary>
     public partial class AccountTakeoverActionsType
     {
@@ -40,7 +48,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property HighAction. 
         /// <para>
-        /// Action to take for a high risk.
+        /// The action that you assign to a high-risk assessment by advanced security features.
         /// </para>
         /// </summary>
         public AccountTakeoverActionType HighAction
@@ -58,7 +66,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property LowAction. 
         /// <para>
-        /// Action to take for a low risk.
+        /// The action that you assign to a low-risk assessment by advanced security features.
         /// </para>
         /// </summary>
         public AccountTakeoverActionType LowAction
@@ -76,7 +84,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property MediumAction. 
         /// <para>
-        /// Action to take for a medium risk.
+        /// The action that you assign to a medium-risk assessment by advanced security features.
         /// </para>
         /// </summary>
         public AccountTakeoverActionType MediumAction

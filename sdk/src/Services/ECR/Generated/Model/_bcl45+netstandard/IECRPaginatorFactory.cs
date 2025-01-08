@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the ecr-2015-09-21.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ECR.Model
 {
     /// <summary>
@@ -44,6 +45,11 @@ namespace Amazon.ECR.Model
         /// Paginator for DescribeRepositories operation
         ///</summary>
         IDescribeRepositoriesPaginator DescribeRepositories(DescribeRepositoriesRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeRepositoryCreationTemplates operation
+        ///</summary>
+        IDescribeRepositoryCreationTemplatesPaginator DescribeRepositoryCreationTemplates(DescribeRepositoryCreationTemplatesRequest request);
 
         /// <summary>
         /// Paginator for GetLifecyclePolicyPreview operation

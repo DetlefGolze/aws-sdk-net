@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GreengrassV2.Model
 {
     /// <summary>
@@ -33,10 +34,10 @@ namespace Amazon.GreengrassV2.Model
     /// </summary>
     public partial class LambdaFunctionRecipeSource
     {
-        private Dictionary<string, ComponentDependencyRequirement> _componentDependencies = new Dictionary<string, ComponentDependencyRequirement>();
+        private Dictionary<string, ComponentDependencyRequirement> _componentDependencies = AWSConfigs.InitializeCollections ? new Dictionary<string, ComponentDependencyRequirement>() : null;
         private LambdaExecutionParameters _componentLambdaParameters;
         private string _componentName;
-        private List<ComponentPlatform> _componentPlatforms = new List<ComponentPlatform>();
+        private List<ComponentPlatform> _componentPlatforms = AWSConfigs.InitializeCollections ? new List<ComponentPlatform>() : null;
         private string _componentVersion;
         private string _lambdaArn;
 
@@ -55,7 +56,7 @@ namespace Amazon.GreengrassV2.Model
         // Check to see if ComponentDependencies property is set
         internal bool IsSetComponentDependencies()
         {
-            return this._componentDependencies != null && this._componentDependencies.Count > 0; 
+            return this._componentDependencies != null && (this._componentDependencies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -115,7 +116,7 @@ namespace Amazon.GreengrassV2.Model
         // Check to see if ComponentPlatforms property is set
         internal bool IsSetComponentPlatforms()
         {
-            return this._componentPlatforms != null && this._componentPlatforms.Count > 0; 
+            return this._componentPlatforms != null && (this._componentPlatforms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -126,7 +127,7 @@ namespace Amazon.GreengrassV2.Model
         ///  
         /// <para>
         /// Defaults to the version of the Lambda function as a semantic version. For example,
-        /// if your function version is <code>3</code>, the component version becomes <code>3.0.0</code>.
+        /// if your function version is <c>3</c>, the component version becomes <c>3.0.0</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -147,7 +148,7 @@ namespace Amazon.GreengrassV2.Model
         /// <para>
         /// The <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>
         /// of the Lambda function. The ARN must include the version of the function to import.
-        /// You can't use version aliases like <code>$LATEST</code>.
+        /// You can't use version aliases like <c>$LATEST</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1)]

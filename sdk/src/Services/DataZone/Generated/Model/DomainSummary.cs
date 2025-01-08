@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.DataZone.Model
         private string _arn;
         private DateTime? _createdAt;
         private string _description;
+        private DomainVersion _domainVersion;
         private string _id;
         private DateTime? _lastUpdatedAt;
         private string _managedAccountId;
@@ -98,6 +100,24 @@ namespace Amazon.DataZone.Model
         internal bool IsSetDescription()
         {
             return this._description != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DomainVersion. 
+        /// <para>
+        /// The domain version.
+        /// </para>
+        /// </summary>
+        public DomainVersion DomainVersion
+        {
+            get { return this._domainVersion; }
+            set { this._domainVersion = value; }
+        }
+
+        // Check to see if DomainVersion property is set
+        internal bool IsSetDomainVersion()
+        {
+            return this._domainVersion != null;
         }
 
         /// <summary>

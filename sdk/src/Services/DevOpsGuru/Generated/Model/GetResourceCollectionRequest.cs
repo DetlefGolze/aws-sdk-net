@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
@@ -67,7 +68,7 @@ namespace Amazon.DevOpsGuru.Model
         /// Gets and sets the property ResourceCollectionType. 
         /// <para>
         ///  The type of Amazon Web Services resource collections to return. The one valid value
-        /// is <code>CLOUD_FORMATION</code> for Amazon Web Services CloudFormation stacks. 
+        /// is <c>CLOUD_FORMATION</c> for Amazon Web Services CloudFormation stacks. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
@@ -64,7 +65,7 @@ namespace Amazon.CloudSearch.Model
         /// <para>
         /// You expand an existing search domain to a second Availability Zone by setting the
         /// Multi-AZ option to true. Similarly, you can turn off the Multi-AZ option to downgrade
-        /// the domain to a single Availability Zone by setting the Multi-AZ option to <code>false</code>.
+        /// the domain to a single Availability Zone by setting the Multi-AZ option to <c>false</c>.
         /// 
         /// </para>
         /// </summary>

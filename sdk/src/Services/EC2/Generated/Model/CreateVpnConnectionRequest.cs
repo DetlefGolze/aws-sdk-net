@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateVpnConnection operation.
     /// Creates a VPN connection between an existing virtual private gateway or transit gateway
-    /// and a customer gateway. The supported connection type is <code>ipsec.1</code>.
+    /// and a customer gateway. The supported connection type is <c>ipsec.1</c>.
     /// 
     ///  
     /// <para>
@@ -66,7 +67,7 @@ namespace Amazon.EC2.Model
     {
         private string _customerGatewayId;
         private VpnConnectionOptionsSpecification _options;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
         private string _transitGatewayId;
         private string _type;
         private string _vpnGatewayId;
@@ -79,7 +80,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Instantiates CreateVpnConnectionRequest with the parameterized properties
         /// </summary>
-        /// <param name="type">The type of VPN connection (<code>ipsec.1</code>).</param>
+        /// <param name="type">The type of VPN connection (<c>ipsec.1</c>).</param>
         /// <param name="customerGatewayId">The ID of the customer gateway.</param>
         /// <param name="vpnGatewayId">The ID of the virtual private gateway. If you specify a virtual private gateway, you cannot specify a transit gateway.</param>
         public CreateVpnConnectionRequest(string type, string customerGatewayId, string vpnGatewayId)
@@ -141,7 +142,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -166,7 +167,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of VPN connection (<code>ipsec.1</code>).
+        /// The type of VPN connection (<c>ipsec.1</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

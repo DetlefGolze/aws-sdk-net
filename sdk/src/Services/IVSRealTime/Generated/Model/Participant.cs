@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IVSRealTime.Model
 {
     /// <summary>
@@ -33,10 +34,20 @@ namespace Amazon.IVSRealTime.Model
     /// </summary>
     public partial class Participant
     {
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private string _browserName;
+        private string _browserVersion;
         private DateTime? _firstJoinTime;
+        private string _ispName;
+        private string _osName;
+        private string _osVersion;
         private string _participantId;
+        private ParticipantProtocol _protocol;
         private bool? _published;
+        private string _recordings3BucketName;
+        private string _recordings3Prefix;
+        private ParticipantRecordingState _recordingState;
+        private string _sdkVersion;
         private ParticipantState _state;
         private string _userId;
 
@@ -58,7 +69,45 @@ namespace Amazon.IVSRealTime.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property BrowserName. 
+        /// <para>
+        /// The participant’s browser.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=128)]
+        public string BrowserName
+        {
+            get { return this._browserName; }
+            set { this._browserName = value; }
+        }
+
+        // Check to see if BrowserName property is set
+        internal bool IsSetBrowserName()
+        {
+            return this._browserName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property BrowserVersion. 
+        /// <para>
+        /// The participant’s browser version.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=128)]
+        public string BrowserVersion
+        {
+            get { return this._browserVersion; }
+            set { this._browserVersion = value; }
+        }
+
+        // Check to see if BrowserVersion property is set
+        internal bool IsSetBrowserVersion()
+        {
+            return this._browserVersion != null;
         }
 
         /// <summary>
@@ -81,11 +130,69 @@ namespace Amazon.IVSRealTime.Model
         }
 
         /// <summary>
+        /// Gets and sets the property IspName. 
+        /// <para>
+        /// The participant’s Internet Service Provider.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=128)]
+        public string IspName
+        {
+            get { return this._ispName; }
+            set { this._ispName = value; }
+        }
+
+        // Check to see if IspName property is set
+        internal bool IsSetIspName()
+        {
+            return this._ispName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OsName. 
+        /// <para>
+        /// The participant’s operating system.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=128)]
+        public string OsName
+        {
+            get { return this._osName; }
+            set { this._osName = value; }
+        }
+
+        // Check to see if OsName property is set
+        internal bool IsSetOsName()
+        {
+            return this._osName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OsVersion. 
+        /// <para>
+        /// The participant’s operating system version.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=128)]
+        public string OsVersion
+        {
+            get { return this._osVersion; }
+            set { this._osVersion = value; }
+        }
+
+        // Check to see if OsVersion property is set
+        internal bool IsSetOsVersion()
+        {
+            return this._osVersion != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ParticipantId. 
         /// <para>
         /// Unique identifier for this participant, assigned by IVS.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=0, Max=64)]
         public string ParticipantId
         {
             get { return this._participantId; }
@@ -96,6 +203,24 @@ namespace Amazon.IVSRealTime.Model
         internal bool IsSetParticipantId()
         {
             return this._participantId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Protocol. 
+        /// <para>
+        /// Type of ingest protocol that the participant employs for broadcasting.
+        /// </para>
+        /// </summary>
+        public ParticipantProtocol Protocol
+        {
+            get { return this._protocol; }
+            set { this._protocol = value; }
+        }
+
+        // Check to see if Protocol property is set
+        internal bool IsSetProtocol()
+        {
+            return this._protocol != null;
         }
 
         /// <summary>
@@ -114,6 +239,84 @@ namespace Amazon.IVSRealTime.Model
         internal bool IsSetPublished()
         {
             return this._published.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property RecordingS3BucketName. 
+        /// <para>
+        /// Name of the S3 bucket to where the participant is being recorded, if individual participant
+        /// recording is enabled, or <c>""</c> (empty string), if recording is not enabled.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=63)]
+        public string RecordingS3BucketName
+        {
+            get { return this._recordings3BucketName; }
+            set { this._recordings3BucketName = value; }
+        }
+
+        // Check to see if RecordingS3BucketName property is set
+        internal bool IsSetRecordingS3BucketName()
+        {
+            return this._recordings3BucketName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RecordingS3Prefix. 
+        /// <para>
+        /// S3 prefix of the S3 bucket where the participant is being recorded, if individual
+        /// participant recording is enabled, or <c>""</c> (empty string), if recording is not
+        /// enabled.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=256)]
+        public string RecordingS3Prefix
+        {
+            get { return this._recordings3Prefix; }
+            set { this._recordings3Prefix = value; }
+        }
+
+        // Check to see if RecordingS3Prefix property is set
+        internal bool IsSetRecordingS3Prefix()
+        {
+            return this._recordings3Prefix != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RecordingState. 
+        /// <para>
+        /// The participant’s recording state.
+        /// </para>
+        /// </summary>
+        public ParticipantRecordingState RecordingState
+        {
+            get { return this._recordingState; }
+            set { this._recordingState = value; }
+        }
+
+        // Check to see if RecordingState property is set
+        internal bool IsSetRecordingState()
+        {
+            return this._recordingState != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SdkVersion. 
+        /// <para>
+        /// The participant’s SDK version.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=128)]
+        public string SdkVersion
+        {
+            get { return this._sdkVersion; }
+            set { this._sdkVersion = value; }
+        }
+
+        // Check to see if SdkVersion property is set
+        internal bool IsSetSdkVersion()
+        {
+            return this._sdkVersion != null;
         }
 
         /// <summary>

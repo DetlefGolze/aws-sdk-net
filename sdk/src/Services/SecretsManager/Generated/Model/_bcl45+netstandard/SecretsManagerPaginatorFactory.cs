@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SecretsManager.Model
 {
     /// <summary>
@@ -33,6 +34,14 @@ namespace Amazon.SecretsManager.Model
         internal SecretsManagerPaginatorFactory(IAmazonSecretsManager client) 
         {
             this.client = client;
+        }
+
+        /// <summary>
+        /// Paginator for BatchGetSecretValue operation
+        ///</summary>
+        public IBatchGetSecretValuePaginator BatchGetSecretValue(BatchGetSecretValueRequest request) 
+        {
+            return new BatchGetSecretValuePaginator(this.client, request);
         }
 
         /// <summary>

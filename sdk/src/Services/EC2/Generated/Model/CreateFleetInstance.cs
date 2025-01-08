@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class CreateFleetInstance
     {
-        private List<string> _instanceIds = new List<string>();
+        private List<string> _instanceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private InstanceType _instanceType;
         private LaunchTemplateAndOverridesResponse _launchTemplateAndOverrides;
         private InstanceLifecycle _lifecycle;
@@ -54,7 +55,7 @@ namespace Amazon.EC2.Model
         // Check to see if InstanceIds property is set
         internal bool IsSetInstanceIds()
         {
-            return this._instanceIds != null && this._instanceIds.Count > 0; 
+            return this._instanceIds != null && (this._instanceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -115,7 +116,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Platform. 
         /// <para>
-        /// The value is <code>Windows</code> for Windows instances. Otherwise, the value is blank.
+        /// The value is <c>windows</c> for Windows instances in an EC2 Fleet. Otherwise, the
+        /// value is blank.
         /// </para>
         /// </summary>
         public PlatformValues Platform

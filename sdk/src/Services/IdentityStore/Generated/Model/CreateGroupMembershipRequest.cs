@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityStore.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateGroupMembership operation.
     /// Creates a relationship between a member and a group. The following identifiers must
-    /// be specified: <code>GroupId</code>, <code>IdentityStoreId</code>, and <code>MemberId</code>.
+    /// be specified: <c>GroupId</c>, <c>IdentityStoreId</c>, and <c>MemberId</c>.
     /// </summary>
     public partial class CreateGroupMembershipRequest : AmazonIdentityStoreRequest
     {
@@ -80,7 +81,7 @@ namespace Amazon.IdentityStore.Model
         /// <summary>
         /// Gets and sets the property MemberId. 
         /// <para>
-        /// An object that contains the identifier of a group member. Setting the <code>UserID</code>
+        /// An object that contains the identifier of a group member. Setting the <c>UserID</c>
         /// field to the specific identifier for a user indicates that the user is a member of
         /// the group.
         /// </para>

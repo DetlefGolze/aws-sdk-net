@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -51,11 +52,11 @@ namespace Amazon.AutoScaling.Model
         /// Gets and sets the property DefaultResult. 
         /// <para>
         /// The action the Auto Scaling group takes when the lifecycle hook timeout elapses or
-        /// if an unexpected failure occurs. The default value is <code>ABANDON</code>.
+        /// if an unexpected failure occurs. The default value is <c>ABANDON</c>.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>CONTINUE</code> | <code>ABANDON</code> 
+        /// Valid values: <c>CONTINUE</c> | <c>ABANDON</c> 
         /// </para>
         /// </summary>
         public string DefaultResult
@@ -74,8 +75,8 @@ namespace Amazon.AutoScaling.Model
         /// Gets and sets the property HeartbeatTimeout. 
         /// <para>
         /// The maximum time, in seconds, that can elapse before the lifecycle hook times out.
-        /// The range is from <code>30</code> to <code>7200</code> seconds. The default value
-        /// is <code>3600</code> seconds (1 hour).
+        /// The range is from <c>30</c> to <c>7200</c> seconds. The default value is <c>3600</c>
+        /// seconds (1 hour).
         /// </para>
         /// </summary>
         public int HeartbeatTimeout
@@ -116,11 +117,11 @@ namespace Amazon.AutoScaling.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// To create a lifecycle hook for scale-out events, specify <code>autoscaling:EC2_INSTANCE_LAUNCHING</code>.
+        /// To create a lifecycle hook for scale-out events, specify <c>autoscaling:EC2_INSTANCE_LAUNCHING</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// To create a lifecycle hook for scale-in events, specify <code>autoscaling:EC2_INSTANCE_TERMINATING</code>.
+        /// To create a lifecycle hook for scale-in events, specify <c>autoscaling:EC2_INSTANCE_TERMINATING</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -144,7 +145,7 @@ namespace Amazon.AutoScaling.Model
         /// a message to the notification target.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=1023)]
+        [AWSProperty(Min=1, Max=4000)]
         public string NotificationMetadata
         {
             get { return this._notificationMetadata; }
@@ -182,9 +183,9 @@ namespace Amazon.AutoScaling.Model
         /// Gets and sets the property RoleARN. 
         /// <para>
         /// The ARN of the IAM role that allows the Auto Scaling group to publish to the specified
-        /// notification target. For information about creating this role, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/prepare-for-lifecycle-notifications.html#lifecycle-hook-notification-target">Configure
-        /// a notification target for a lifecycle hook</a> in the <i>Amazon EC2 Auto Scaling User
-        /// Guide</i>.
+        /// notification target. For information about creating this role, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/prepare-for-lifecycle-notifications.html">Prepare
+        /// to add a lifecycle hook to your Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling
+        /// User Guide</i>.
         /// </para>
         ///  
         /// <para>

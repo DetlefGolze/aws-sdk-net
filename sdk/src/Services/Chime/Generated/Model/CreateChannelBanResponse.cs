@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
@@ -58,8 +59,7 @@ namespace Amazon.Chime.Model
         /// <summary>
         /// Gets and sets the property Member. 
         /// <para>
-        /// The <code>ChannelArn</code> and <code>BannedIdentity</code> of the member in the ban
-        /// response.
+        /// The <c>ChannelArn</c> and <c>BannedIdentity</c> of the member in the ban response.
         /// </para>
         /// </summary>
         public Identity Member

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -45,7 +46,8 @@ namespace Amazon.WorkSpaces.Model
         private int? _limit;
         private string _nextToken;
         private string _userName;
-        private List<string> _workspaceIds = new List<string>();
+        private List<string> _workspaceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private string _workspaceName;
 
         /// <summary>
         /// Gets and sets the property BundleId. 
@@ -70,8 +72,8 @@ namespace Amazon.WorkSpaces.Model
         /// Gets and sets the property DirectoryId. 
         /// <para>
         /// The identifier of the directory. In addition, you can optionally specify a specific
-        /// directory user (see <code>UserName</code>). You cannot combine this parameter with
-        /// any other filter.
+        /// directory user (see <c>UserName</c>). You cannot combine this parameter with any other
+        /// filter.
         /// </para>
         /// </summary>
         [AWSProperty(Min=10, Max=65)]
@@ -109,8 +111,8 @@ namespace Amazon.WorkSpaces.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If you received a <code>NextToken</code> from a previous call that was paginated,
-        /// provide this token to receive the next set of results.
+        /// If you received a <c>NextToken</c> from a previous call that was paginated, provide
+        /// this token to receive the next set of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]
@@ -129,7 +131,7 @@ namespace Amazon.WorkSpaces.Model
         /// <summary>
         /// Gets and sets the property UserName. 
         /// <para>
-        /// The name of the directory user. You must specify this parameter with <code>DirectoryId</code>.
+        /// The name of the directory user. You must specify this parameter with <c>DirectoryId</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=63)]
@@ -168,7 +170,25 @@ namespace Amazon.WorkSpaces.Model
         // Check to see if WorkspaceIds property is set
         internal bool IsSetWorkspaceIds()
         {
-            return this._workspaceIds != null && this._workspaceIds.Count > 0; 
+            return this._workspaceIds != null && (this._workspaceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property WorkspaceName. 
+        /// <para>
+        /// The name of the user-decoupled WorkSpace.
+        /// </para>
+        /// </summary>
+        public string WorkspaceName
+        {
+            get { return this._workspaceName; }
+            set { this._workspaceName = value; }
+        }
+
+        // Check to see if WorkspaceName property is set
+        internal bool IsSetWorkspaceName()
+        {
+            return this._workspaceName != null;
         }
 
     }

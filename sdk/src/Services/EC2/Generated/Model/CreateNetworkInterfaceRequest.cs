@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,41 +36,41 @@ namespace Amazon.EC2.Model
     ///  
     /// <para>
     /// The number of IP addresses you can assign to a network interface varies by instance
-    /// type. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI">IP
-    /// Addresses Per ENI Per Instance Type</a> in the <i>Amazon Virtual Private Cloud User
-    /// Guide</i>.
+    /// type.
     /// </para>
     ///  
     /// <para>
     /// For more information about network interfaces, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html">Elastic
-    /// network interfaces</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+    /// network interfaces</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     /// </summary>
     public partial class CreateNetworkInterfaceRequest : AmazonEC2Request
     {
         private string _clientToken;
+        private ConnectionTrackingSpecificationRequest _connectionTrackingSpecification;
         private string _description;
         private bool? _enablePrimaryIpv6;
-        private List<string> _groups = new List<string>();
+        private List<string> _groups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private NetworkInterfaceCreationType _interfaceType;
         private int? _ipv4PrefixCount;
-        private List<Ipv4PrefixSpecificationRequest> _ipv4Prefixes = new List<Ipv4PrefixSpecificationRequest>();
+        private List<Ipv4PrefixSpecificationRequest> _ipv4Prefixes = AWSConfigs.InitializeCollections ? new List<Ipv4PrefixSpecificationRequest>() : null;
         private int? _ipv6AddressCount;
-        private List<InstanceIpv6Address> _ipv6Addresses = new List<InstanceIpv6Address>();
+        private List<InstanceIpv6Address> _ipv6Addresses = AWSConfigs.InitializeCollections ? new List<InstanceIpv6Address>() : null;
         private int? _ipv6PrefixCount;
-        private List<Ipv6PrefixSpecificationRequest> _ipv6Prefixes = new List<Ipv6PrefixSpecificationRequest>();
+        private List<Ipv6PrefixSpecificationRequest> _ipv6Prefixes = AWSConfigs.InitializeCollections ? new List<Ipv6PrefixSpecificationRequest>() : null;
+        private OperatorRequest _operator;
         private string _privateIpAddress;
-        private List<PrivateIpAddressSpecification> _privateIpAddresses = new List<PrivateIpAddressSpecification>();
+        private List<PrivateIpAddressSpecification> _privateIpAddresses = AWSConfigs.InitializeCollections ? new List<PrivateIpAddressSpecification>() : null;
         private int? _secondaryPrivateIpAddressCount;
         private string _subnetId;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// Unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        /// request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
-        /// Idempotency</a>.
+        /// request. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html">Ensuring
+        /// idempotency</a>.
         /// </para>
         /// </summary>
         public string ClientToken
@@ -82,6 +83,24 @@ namespace Amazon.EC2.Model
         internal bool IsSetClientToken()
         {
             return this._clientToken != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ConnectionTrackingSpecification. 
+        /// <para>
+        /// A connection tracking specification for the network interface.
+        /// </para>
+        /// </summary>
+        public ConnectionTrackingSpecificationRequest ConnectionTrackingSpecification
+        {
+            get { return this._connectionTrackingSpecification; }
+            set { this._connectionTrackingSpecification = value; }
+        }
+
+        // Check to see if ConnectionTrackingSpecification property is set
+        internal bool IsSetConnectionTrackingSpecification()
+        {
+            return this._connectionTrackingSpecification != null;
         }
 
         /// <summary>
@@ -146,17 +165,22 @@ namespace Amazon.EC2.Model
         // Check to see if Groups property is set
         internal bool IsSetGroups()
         {
-            return this._groups != null && this._groups.Count > 0; 
+            return this._groups != null && (this._groups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property InterfaceType. 
         /// <para>
-        /// The type of network interface. The default is <code>interface</code>.
+        /// The type of network interface. The default is <c>interface</c>.
         /// </para>
         ///  
         /// <para>
-        /// The only supported values are <code>interface</code>, <code>efa</code>, and <code>trunk</code>.
+        /// If you specify <c>efa-only</c>, do not assign any IP addresses to the network interface.
+        /// EFA-only network interfaces do not support IP addresses.
+        /// </para>
+        ///  
+        /// <para>
+        /// The only supported values are <c>interface</c>, <c>efa</c>, <c>efa-only</c>, and <c>trunk</c>.
         /// </para>
         /// </summary>
         public NetworkInterfaceCreationType InterfaceType
@@ -216,7 +240,7 @@ namespace Amazon.EC2.Model
         // Check to see if Ipv4Prefixes property is set
         internal bool IsSetIpv4Prefixes()
         {
-            return this._ipv4Prefixes != null && this._ipv4Prefixes.Count > 0; 
+            return this._ipv4Prefixes != null && (this._ipv4Prefixes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -233,8 +257,8 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// If your subnet has the <code>AssignIpv6AddressOnCreation</code> attribute set, you
-        /// can override that setting by specifying 0 as the IPv6 address count.
+        /// If your subnet has the <c>AssignIpv6AddressOnCreation</c> attribute set, you can override
+        /// that setting by specifying 0 as the IPv6 address count.
         /// </para>
         /// </summary>
         public int Ipv6AddressCount
@@ -269,7 +293,7 @@ namespace Amazon.EC2.Model
         // Check to see if Ipv6Addresses property is set
         internal bool IsSetIpv6Addresses()
         {
-            return this._ipv6Addresses != null && this._ipv6Addresses.Count > 0; 
+            return this._ipv6Addresses != null && (this._ipv6Addresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -316,7 +340,25 @@ namespace Amazon.EC2.Model
         // Check to see if Ipv6Prefixes property is set
         internal bool IsSetIpv6Prefixes()
         {
-            return this._ipv6Prefixes != null && this._ipv6Prefixes.Count > 0; 
+            return this._ipv6Prefixes != null && (this._ipv6Prefixes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Operator. 
+        /// <para>
+        /// Reserved for internal use.
+        /// </para>
+        /// </summary>
+        public OperatorRequest Operator
+        {
+            get { return this._operator; }
+            set { this._operator = value; }
+        }
+
+        // Check to see if Operator property is set
+        internal bool IsSetOperator()
+        {
+            return this._operator != null;
         }
 
         /// <summary>
@@ -324,7 +366,7 @@ namespace Amazon.EC2.Model
         /// <para>
         /// The primary private IPv4 address of the network interface. If you don't specify an
         /// IPv4 address, Amazon EC2 selects one for you from the subnet's IPv4 CIDR range. If
-        /// you specify an IP address, you cannot indicate any IP addresses specified in <code>privateIpAddresses</code>
+        /// you specify an IP address, you cannot indicate any IP addresses specified in <c>privateIpAddresses</c>
         /// as primary (only one IP address can be designated as primary).
         /// </para>
         /// </summary>
@@ -360,7 +402,7 @@ namespace Amazon.EC2.Model
         // Check to see if PrivateIpAddresses property is set
         internal bool IsSetPrivateIpAddresses()
         {
-            return this._privateIpAddresses != null && this._privateIpAddresses.Count > 0; 
+            return this._privateIpAddresses != null && (this._privateIpAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -369,7 +411,7 @@ namespace Amazon.EC2.Model
         /// The number of secondary private IPv4 addresses to assign to a network interface. When
         /// you specify a number of secondary IPv4 addresses, Amazon EC2 selects these IP addresses
         /// within the subnet's IPv4 CIDR range. You can't specify this option and specify more
-        /// than one private IP address using <code>privateIpAddresses</code>.
+        /// than one private IP address using <c>privateIpAddresses</c>.
         /// </para>
         ///  
         /// <para>
@@ -424,7 +466,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

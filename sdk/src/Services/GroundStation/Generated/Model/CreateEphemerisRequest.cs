@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateEphemeris operation.
-    /// Creates an Ephemeris with the specified <code>EphemerisData</code>.
+    /// Creates an Ephemeris with the specified <c>EphemerisData</c>.
     /// </summary>
     public partial class CreateEphemerisRequest : AmazonGroundStationRequest
     {
@@ -41,17 +42,16 @@ namespace Amazon.GroundStation.Model
         private string _name;
         private int? _priority;
         private string _satelliteId;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Enabled. 
         /// <para>
-        /// Whether to set the ephemeris status to <code>ENABLED</code> after validation.
+        /// Whether to set the ephemeris status to <c>ENABLED</c> after validation.
         /// </para>
         ///  
         /// <para>
-        /// Setting this to false will set the ephemeris status to <code>DISABLED</code> after
-        /// validation.
+        /// Setting this to false will set the ephemeris status to <c>DISABLED</c> after validation.
         /// </para>
         /// </summary>
         public bool Enabled
@@ -87,7 +87,7 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property ExpirationTime. 
         /// <para>
-        /// An overall expiration time for the ephemeris in UTC, after which it will become <code>EXPIRED</code>.
+        /// An overall expiration time for the ephemeris in UTC, after which it will become <c>EXPIRED</c>.
         /// </para>
         /// </summary>
         public DateTime ExpirationTime
@@ -203,7 +203,7 @@ namespace Amazon.GroundStation.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

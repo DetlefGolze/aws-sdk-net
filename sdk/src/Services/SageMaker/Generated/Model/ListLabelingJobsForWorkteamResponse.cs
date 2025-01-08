@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class ListLabelingJobsForWorkteamResponse : AmazonWebServiceResponse
     {
-        private List<LabelingJobForWorkteamSummary> _labelingJobSummaryList = new List<LabelingJobForWorkteamSummary>();
+        private List<LabelingJobForWorkteamSummary> _labelingJobSummaryList = AWSConfigs.InitializeCollections ? new List<LabelingJobForWorkteamSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property LabelingJobSummaryList. 
         /// <para>
-        /// An array of <code>LabelingJobSummary</code> objects, each describing a labeling job.
+        /// An array of <c>LabelingJobSummary</c> objects, each describing a labeling job.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -52,7 +53,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if LabelingJobSummaryList property is set
         internal bool IsSetLabelingJobSummaryList()
         {
-            return this._labelingJobSummaryList != null && this._labelingJobSummaryList.Count > 0; 
+            return this._labelingJobSummaryList != null && (this._labelingJobSummaryList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

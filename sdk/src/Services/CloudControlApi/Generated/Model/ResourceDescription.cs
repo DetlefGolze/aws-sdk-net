@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudControlApi.Model
 {
     /// <summary>
@@ -66,7 +67,7 @@ namespace Amazon.CloudControlApi.Model
         /// A list of the resource properties and their current values.
         /// </para>
         /// </summary>
-        [AWSProperty(Sensitive=true, Min=1, Max=65536)]
+        [AWSProperty(Sensitive=true, Min=1, Max=262144)]
         public string Properties
         {
             get { return this._properties; }

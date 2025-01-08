@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(FontConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetFontColor())
             {
                 context.Writer.WritePropertyName("FontColor");
@@ -55,6 +58,12 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("FontDecoration");
                 context.Writer.Write(requestObject.FontDecoration);
+            }
+
+            if(requestObject.IsSetFontFamily())
+            {
+                context.Writer.WritePropertyName("FontFamily");
+                context.Writer.Write(requestObject.FontFamily);
             }
 
             if(requestObject.IsSetFontSize())

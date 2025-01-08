@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeFargateProfile operation.
-    /// Returns descriptive information about an Fargate profile.
+    /// Describes an Fargate profile.
     /// </summary>
     public partial class DescribeFargateProfileRequest : AmazonEKSRequest
     {
@@ -40,7 +41,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ClusterName. 
         /// <para>
-        /// The name of the Amazon EKS cluster associated with the Fargate profile.
+        /// The name of your cluster.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

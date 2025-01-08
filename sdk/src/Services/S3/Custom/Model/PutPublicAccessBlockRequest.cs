@@ -25,7 +25,57 @@ namespace Amazon.S3.Model
 {
     /// <summary>
     /// Container for the parameters to the PutPublicAccessBlock operation.
-    /// Creates or modifies the Public Access Block configuration for an Amazon S3 bucket.
+    /// <note> 
+    /// <para>
+    /// This operation is not supported by directory buckets.
+    /// </para>
+    ///  </note> 
+    /// <para>
+    /// Creates or modifies the <code>PublicAccessBlock</code> configuration for an Amazon
+    /// S3 bucket. To use this operation, you must have the <code>s3:PutBucketPublicAccessBlock</code>
+    /// permission. For more information about Amazon S3 permissions, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html">Specifying
+    /// Permissions in a Policy</a>.
+    /// </para>
+    ///  <important> 
+    /// <para>
+    /// When Amazon S3 evaluates the <code>PublicAccessBlock</code> configuration for a bucket
+    /// or an object, it checks the <code>PublicAccessBlock</code> configuration for both
+    /// the bucket (or the bucket that contains the object) and the bucket owner's account.
+    /// If the <code>PublicAccessBlock</code> configurations are different between the bucket
+    /// and the account, Amazon S3 uses the most restrictive combination of the bucket-level
+    /// and account-level settings.
+    /// </para>
+    ///  </important> 
+    /// <para>
+    /// For more information about when Amazon S3 considers a bucket or an object public,
+    /// see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status">The
+    /// Meaning of "Public"</a>.
+    /// </para>
+    ///  
+    /// <para>
+    /// The following operations are related to <code>PutPublicAccessBlock</code>:
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetPublicAccessBlock.html">GetPublicAccessBlock</a>
+    /// 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeletePublicAccessBlock.html">DeletePublicAccessBlock</a>
+    /// 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketPolicyStatus.html">GetBucketPolicyStatus</a>
+    /// 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html">Using
+    /// Amazon S3 Block Public Access</a> 
+    /// </para>
+    ///  </li> </ul>
     /// </summary>
     public partial class PutPublicAccessBlockRequest : AmazonWebServiceRequest
     {
@@ -57,10 +107,18 @@ namespace Amazon.S3.Model
         /// <summary>
         /// Gets and sets the property ChecksumAlgorithm. 
         /// <para>
-        /// Indicates the algorithm used to create the checksum for the object. Amazon S3 will
-        /// fail the request with a 400 error if there is no checksum associated with the object.
-        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">
-        /// Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.
+        /// Indicates the algorithm used to create the checksum for the object when you use the
+        /// SDK. This header will not provide any additional functionality if you don't use the
+        /// SDK. When you send this header, there must be a corresponding <code>x-amz-checksum</code>
+        /// or <code>x-amz-trailer</code> header sent. Otherwise, Amazon S3 fails the request
+        /// with the HTTP status code <code>400 Bad Request</code>. For more information, see
+        /// <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+        /// object integrity</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you provide an individual checksum, Amazon S3 ignores any provided <code>ChecksumAlgorithm</code>
+        /// parameter.
         /// </para>
         /// </summary>
         public ChecksumAlgorithm ChecksumAlgorithm
@@ -117,8 +175,12 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// The account ID of the expected bucket owner. 
-        /// If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.
+        /// Gets and sets the property ExpectedBucketOwner. 
+        /// <para>
+        /// The account ID of the expected bucket owner. If the account ID that you provide does
+        /// not match the actual owner of the bucket, the request fails with the HTTP status code
+        /// <code>403 Forbidden</code> (access denied).
+        /// </para>
         /// </summary>
         public string ExpectedBucketOwner
         {

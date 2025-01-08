@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaTailor.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.MediaTailor.Model
         /// <summary>
         /// Gets and sets the property ManifestWindowSeconds. 
         /// <para>
-        /// The total duration (in seconds) of each manifest. Minimum value: <code>30</code> seconds.
-        /// Maximum value: <code>3600</code> seconds.
+        /// The total duration (in seconds) of each manifest. Minimum value: <c>30</c> seconds.
+        /// Maximum value: <c>3600</c> seconds.
         /// </para>
         /// </summary>
         public int ManifestWindowSeconds
@@ -61,8 +62,7 @@ namespace Amazon.MediaTailor.Model
         /// Gets and sets the property MinBufferTimeSeconds. 
         /// <para>
         /// Minimum amount of content (measured in seconds) that a player must keep available
-        /// in the buffer. Minimum value: <code>2</code> seconds. Maximum value: <code>60</code>
-        /// seconds.
+        /// in the buffer. Minimum value: <c>2</c> seconds. Maximum value: <c>60</c> seconds.
         /// </para>
         /// </summary>
         public int MinBufferTimeSeconds
@@ -81,7 +81,7 @@ namespace Amazon.MediaTailor.Model
         /// Gets and sets the property MinUpdatePeriodSeconds. 
         /// <para>
         /// Minimum amount of time (in seconds) that the player should wait before requesting
-        /// updates to the manifest. Minimum value: <code>2</code> seconds. Maximum value: <code>60</code>
+        /// updates to the manifest. Minimum value: <c>2</c> seconds. Maximum value: <c>60</c>
         /// seconds.
         /// </para>
         /// </summary>
@@ -101,8 +101,7 @@ namespace Amazon.MediaTailor.Model
         /// Gets and sets the property SuggestedPresentationDelaySeconds. 
         /// <para>
         /// Amount of time (in seconds) that the player should be from the live point at the end
-        /// of the manifest. Minimum value: <code>2</code> seconds. Maximum value: <code>60</code>
-        /// seconds.
+        /// of the manifest. Minimum value: <c>2</c> seconds. Maximum value: <c>60</c> seconds.
         /// </para>
         /// </summary>
         public int SuggestedPresentationDelaySeconds

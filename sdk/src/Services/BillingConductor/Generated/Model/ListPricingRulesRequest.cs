@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BillingConductor.Model
 {
     /// <summary>
@@ -61,8 +62,8 @@ namespace Amazon.BillingConductor.Model
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        ///  A <code>DescribePricingRuleFilter</code> that specifies the Amazon Resource Name
-        /// (ARNs) of pricing rules to retrieve pricing rules information. 
+        ///  A <c>DescribePricingRuleFilter</c> that specifies the Amazon Resource Name (ARNs)
+        /// of pricing rules to retrieve pricing rules information. 
         /// </para>
         /// </summary>
         public ListPricingRulesFilter Filters

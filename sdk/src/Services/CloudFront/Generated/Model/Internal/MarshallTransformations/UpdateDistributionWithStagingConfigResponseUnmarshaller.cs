@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudFront.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -56,7 +57,10 @@ namespace Amazon.CloudFront.Model.Internal.MarshallTransformations
         {
             int originalDepth = context.CurrentDepth;
             int targetDepth = originalDepth + 1;
-
+            if (context.IsEmptyResponse)
+            {
+                return;
+            }
             while (context.Read())
             {
                 if (context.IsStartElement || context.IsAttribute)
@@ -103,6 +107,10 @@ namespace Amazon.CloudFront.Model.Internal.MarshallTransformations
                 if (errorResponse.Code != null && errorResponse.Code.Equals("CNAMEAlreadyExists"))
                 {
                     return CNAMEAlreadyExistsExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("EntityNotFound"))
+                {
+                    return EntityNotFoundExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("IllegalFieldLevelEncryptionConfigAssociationWithCacheBehavior"))
                 {

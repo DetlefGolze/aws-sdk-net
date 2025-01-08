@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateTagsForResource operation.
     /// Update the list of tags applied to an AWS Elastic Beanstalk resource. Two lists can
-    /// be passed: <code>TagsToAdd</code> for tags to add or update, and <code>TagsToRemove</code>.
+    /// be passed: <c>TagsToAdd</c> for tags to add or update, and <c>TagsToRemove</c>.
     /// 
     ///  
     /// <para>
@@ -46,13 +47,13 @@ namespace Amazon.ElasticBeanstalk.Model
     /// </para>
     ///  <dl> <dt>elasticbeanstalk:AddTags</dt> <dd> 
     /// <para>
-    /// Controls permission to call <code>UpdateTagsForResource</code> and pass a list of
-    /// tags to add in the <code>TagsToAdd</code> parameter.
+    /// Controls permission to call <c>UpdateTagsForResource</c> and pass a list of tags to
+    /// add in the <c>TagsToAdd</c> parameter.
     /// </para>
     ///  </dd> <dt>elasticbeanstalk:RemoveTags</dt> <dd> 
     /// <para>
-    /// Controls permission to call <code>UpdateTagsForResource</code> and pass a list of
-    /// tag keys to remove in the <code>TagsToRemove</code> parameter.
+    /// Controls permission to call <c>UpdateTagsForResource</c> and pass a list of tag keys
+    /// to remove in the <c>TagsToRemove</c> parameter.
     /// </para>
     ///  </dd> </dl> 
     /// <para>
@@ -63,8 +64,8 @@ namespace Amazon.ElasticBeanstalk.Model
     public partial class UpdateTagsForResourceRequest : AmazonElasticBeanstalkRequest
     {
         private string _resourceArn;
-        private List<Tag> _tagsToAdd = new List<Tag>();
-        private List<string> _tagsToRemove = new List<string>();
+        private List<Tag> _tagsToAdd = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private List<string> _tagsToRemove = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -97,7 +98,7 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  
         /// <para>
-        /// Specify at least one of these parameters: <code>TagsToAdd</code>, <code>TagsToRemove</code>.
+        /// Specify at least one of these parameters: <c>TagsToAdd</c>, <c>TagsToRemove</c>.
         /// </para>
         /// </summary>
         public List<Tag> TagsToAdd
@@ -109,7 +110,7 @@ namespace Amazon.ElasticBeanstalk.Model
         // Check to see if TagsToAdd property is set
         internal bool IsSetTagsToAdd()
         {
-            return this._tagsToAdd != null && this._tagsToAdd.Count > 0; 
+            return this._tagsToAdd != null && (this._tagsToAdd.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -119,7 +120,7 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  
         /// <para>
-        /// Specify at least one of these parameters: <code>TagsToAdd</code>, <code>TagsToRemove</code>.
+        /// Specify at least one of these parameters: <c>TagsToAdd</c>, <c>TagsToRemove</c>.
         /// </para>
         /// </summary>
         public List<string> TagsToRemove
@@ -131,7 +132,7 @@ namespace Amazon.ElasticBeanstalk.Model
         // Check to see if TagsToRemove property is set
         internal bool IsSetTagsToRemove()
         {
-            return this._tagsToRemove != null && this._tagsToRemove.Count > 0; 
+            return this._tagsToRemove != null && (this._tagsToRemove.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

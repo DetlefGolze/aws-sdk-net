@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.BackupGateway
 {
     /// <summary>
-    /// Implementation for accessing BackupGateway
+    /// <para>Implementation for accessing BackupGateway</para>
     ///
     /// Backup gateway 
     /// <para>
@@ -360,7 +361,7 @@ namespace Amazon.BackupGateway
 
         /// <summary>
         /// Creates a backup gateway. After you create a gateway, you can associate it with a
-        /// server using the <code>AssociateGatewayToServer</code> operation.
+        /// server using the <c>AssociateGatewayToServer</c> operation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateGateway service method.</param>
         /// 
@@ -388,7 +389,7 @@ namespace Amazon.BackupGateway
 
         /// <summary>
         /// Creates a backup gateway. After you create a gateway, you can associate it with a
-        /// server using the <code>AssociateGatewayToServer</code> operation.
+        /// server using the <c>AssociateGatewayToServer</c> operation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateGateway service method.</param>
         /// <param name="cancellationToken">
@@ -1904,7 +1905,7 @@ namespace Amazon.BackupGateway
         /// 
         ///  <note> 
         /// <para>
-        /// When you make this request, you get a <code>200 OK</code> success response immediately.
+        /// When you make this request, you get a <c>200 OK</c> success response immediately.
         /// However, it might take some time for the update to complete.
         /// </para>
         ///  </note>
@@ -1942,7 +1943,7 @@ namespace Amazon.BackupGateway
         /// 
         ///  <note> 
         /// <para>
-        /// When you make this request, you get a <code>200 OK</code> success response immediately.
+        /// When you make this request, you get a <c>200 OK</c> success response immediately.
         /// However, it might take some time for the update to complete.
         /// </para>
         ///  </note>
@@ -2070,11 +2071,11 @@ namespace Amazon.BackupGateway
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Personalize.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Personalize.Model
     /// </summary>
     public partial class ListMetricAttributionMetricsResponse : AmazonWebServiceResponse
     {
-        private List<MetricAttribute> _metrics = new List<MetricAttribute>();
+        private List<MetricAttribute> _metrics = AWSConfigs.InitializeCollections ? new List<MetricAttribute>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,13 +53,13 @@ namespace Amazon.Personalize.Model
         // Check to see if Metrics property is set
         internal bool IsSetMetrics()
         {
-            return this._metrics != null && this._metrics.Count > 0; 
+            return this._metrics != null && (this._metrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Specify the pagination token from a previous <code>ListMetricAttributionMetricsResponse</code>
+        /// Specify the pagination token from a previous <c>ListMetricAttributionMetricsResponse</c>
         /// request to retrieve the next page of results.
         /// </para>
         /// </summary>

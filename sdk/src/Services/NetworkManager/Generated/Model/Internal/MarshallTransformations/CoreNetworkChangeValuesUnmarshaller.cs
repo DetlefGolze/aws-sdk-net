@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.NetworkManager.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.NetworkManager.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public CoreNetworkChangeValues Unmarshall(JsonUnmarshallerContext context)
         {
+            CoreNetworkChangeValues unmarshalledObject = new CoreNetworkChangeValues();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            CoreNetworkChangeValues unmarshalledObject = new CoreNetworkChangeValues();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -94,10 +96,22 @@ namespace Amazon.NetworkManager.Model.Internal.MarshallTransformations
                     unmarshalledObject.InsideCidrBlocks = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("NetworkFunctionGroupName", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.NetworkFunctionGroupName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("SegmentName", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.SegmentName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ServiceInsertionActions", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<ServiceInsertionAction, ServiceInsertionActionUnmarshaller>(ServiceInsertionActionUnmarshaller.Instance);
+                    unmarshalledObject.ServiceInsertionActions = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("SharedSegments", targetDepth))
@@ -107,7 +121,6 @@ namespace Amazon.NetworkManager.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

@@ -56,7 +56,7 @@ namespace Amazon.Runtime.Internal
         RegionEndpoint alternateRegion;
         long originalStreamLength;
         int marshallerVersion = 2; //2 is the default version and must be used whenever a version is not specified in the marshaller.
-
+        DateTime? signedAt;
         /// <summary>
         /// Constructs a new DefaultRequest with the specified service name and the
         /// original, user facing request object.
@@ -71,14 +71,29 @@ namespace Amazon.Runtime.Internal
             this.serviceName = serviceName;
             this.originalRequest = request;
             this.requestName = this.originalRequest.GetType().Name;
+#pragma warning disable CS0612,CS0618
             this.UseSigV4 = ((Amazon.Runtime.Internal.IAmazonWebServiceRequest)this.originalRequest).UseSigV4;
+#pragma warning restore CS0612,CS0618
             this.SignatureVersion = ((Amazon.Runtime.Internal.IAmazonWebServiceRequest)this.originalRequest).SignatureVersion;
             this.HostPrefix = string.Empty;
 
             parametersCollection = new ParameterCollection();
             parametersFacade = new ParametersDictionaryFacade(parametersCollection);
         }
-
+        /// <summary>
+        /// The time which the request was signed at.
+        /// </summary>
+        public DateTime? SignedAt
+        {
+            get
+            {
+                return signedAt;
+            }
+            set
+            {
+                this.signedAt = value;
+            }
+        }
 
         /// <summary>
         /// The name of the request

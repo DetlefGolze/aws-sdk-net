@@ -25,6 +25,60 @@ namespace Amazon.IoTWireless
 {
 
     /// <summary>
+    /// Constants used for properties of type AggregationPeriod.
+    /// </summary>
+    public class AggregationPeriod : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant OneDay for AggregationPeriod
+        /// </summary>
+        public static readonly AggregationPeriod OneDay = new AggregationPeriod("OneDay");
+        /// <summary>
+        /// Constant OneHour for AggregationPeriod
+        /// </summary>
+        public static readonly AggregationPeriod OneHour = new AggregationPeriod("OneHour");
+        /// <summary>
+        /// Constant OneWeek for AggregationPeriod
+        /// </summary>
+        public static readonly AggregationPeriod OneWeek = new AggregationPeriod("OneWeek");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public AggregationPeriod(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static AggregationPeriod FindValue(string value)
+        {
+            return FindValue<AggregationPeriod>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator AggregationPeriod(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ApplicationConfigType.
     /// </summary>
     public class ApplicationConfigType : ConstantClass
@@ -283,6 +337,56 @@ namespace Amazon.IoTWireless
 
 
     /// <summary>
+    /// Constants used for properties of type DimensionName.
+    /// </summary>
+    public class DimensionName : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DeviceId for DimensionName
+        /// </summary>
+        public static readonly DimensionName DeviceId = new DimensionName("DeviceId");
+        /// <summary>
+        /// Constant GatewayId for DimensionName
+        /// </summary>
+        public static readonly DimensionName GatewayId = new DimensionName("GatewayId");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public DimensionName(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static DimensionName FindValue(string value)
+        {
+            return FindValue<DimensionName>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator DimensionName(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type DlClass.
     /// </summary>
     public class DlClass : ConstantClass
@@ -501,6 +605,10 @@ namespace Amazon.IoTWireless
     {
 
         /// <summary>
+        /// Constant FuotaTask for EventNotificationResourceType
+        /// </summary>
+        public static readonly EventNotificationResourceType FuotaTask = new EventNotificationResourceType("FuotaTask");
+        /// <summary>
         /// Constant SidewalkAccount for EventNotificationResourceType
         /// </summary>
         public static readonly EventNotificationResourceType SidewalkAccount = new EventNotificationResourceType("SidewalkAccount");
@@ -655,6 +763,10 @@ namespace Amazon.IoTWireless
     {
 
         /// <summary>
+        /// Constant Device_exist_in_conflict_fuota_task for FuotaDeviceStatus
+        /// </summary>
+        public static readonly FuotaDeviceStatus Device_exist_in_conflict_fuota_task = new FuotaDeviceStatus("Device_exist_in_conflict_fuota_task");
+        /// <summary>
         /// Constant FragAlgo_unsupported for FuotaDeviceStatus
         /// </summary>
         public static readonly FuotaDeviceStatus FragAlgo_unsupported = new FuotaDeviceStatus("FragAlgo_unsupported");
@@ -735,6 +847,52 @@ namespace Amazon.IoTWireless
 
 
     /// <summary>
+    /// Constants used for properties of type FuotaTaskEvent.
+    /// </summary>
+    public class FuotaTaskEvent : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Fuota for FuotaTaskEvent
+        /// </summary>
+        public static readonly FuotaTaskEvent Fuota = new FuotaTaskEvent("Fuota");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public FuotaTaskEvent(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static FuotaTaskEvent FindValue(string value)
+        {
+            return FindValue<FuotaTaskEvent>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator FuotaTaskEvent(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type FuotaTaskStatus.
     /// </summary>
     public class FuotaTaskStatus : ConstantClass
@@ -797,6 +955,52 @@ namespace Amazon.IoTWireless
 
 
     /// <summary>
+    /// Constants used for properties of type FuotaTaskType.
+    /// </summary>
+    public class FuotaTaskType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant LoRaWAN for FuotaTaskType
+        /// </summary>
+        public static readonly FuotaTaskType LoRaWAN = new FuotaTaskType("LoRaWAN");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public FuotaTaskType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static FuotaTaskType FindValue(string value)
+        {
+            return FindValue<FuotaTaskType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator FuotaTaskType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type IdentifierType.
     /// </summary>
     public class IdentifierType : ConstantClass
@@ -806,6 +1010,10 @@ namespace Amazon.IoTWireless
         /// Constant DevEui for IdentifierType
         /// </summary>
         public static readonly IdentifierType DevEui = new IdentifierType("DevEui");
+        /// <summary>
+        /// Constant FuotaTaskId for IdentifierType
+        /// </summary>
+        public static readonly IdentifierType FuotaTaskId = new IdentifierType("FuotaTaskId");
         /// <summary>
         /// Constant GatewayEui for IdentifierType
         /// </summary>
@@ -1030,6 +1238,226 @@ namespace Amazon.IoTWireless
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator MessageType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type MetricName.
+    /// </summary>
+    public class MetricName : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant AwsAccountActiveDeviceCount for MetricName
+        /// </summary>
+        public static readonly MetricName AwsAccountActiveDeviceCount = new MetricName("AwsAccountActiveDeviceCount");
+        /// <summary>
+        /// Constant AwsAccountActiveGatewayCount for MetricName
+        /// </summary>
+        public static readonly MetricName AwsAccountActiveGatewayCount = new MetricName("AwsAccountActiveGatewayCount");
+        /// <summary>
+        /// Constant AwsAccountDeviceCount for MetricName
+        /// </summary>
+        public static readonly MetricName AwsAccountDeviceCount = new MetricName("AwsAccountDeviceCount");
+        /// <summary>
+        /// Constant AwsAccountDownlinkCount for MetricName
+        /// </summary>
+        public static readonly MetricName AwsAccountDownlinkCount = new MetricName("AwsAccountDownlinkCount");
+        /// <summary>
+        /// Constant AwsAccountGatewayCount for MetricName
+        /// </summary>
+        public static readonly MetricName AwsAccountGatewayCount = new MetricName("AwsAccountGatewayCount");
+        /// <summary>
+        /// Constant AwsAccountJoinAcceptCount for MetricName
+        /// </summary>
+        public static readonly MetricName AwsAccountJoinAcceptCount = new MetricName("AwsAccountJoinAcceptCount");
+        /// <summary>
+        /// Constant AwsAccountJoinRequestCount for MetricName
+        /// </summary>
+        public static readonly MetricName AwsAccountJoinRequestCount = new MetricName("AwsAccountJoinRequestCount");
+        /// <summary>
+        /// Constant AwsAccountRoamingDownlinkCount for MetricName
+        /// </summary>
+        public static readonly MetricName AwsAccountRoamingDownlinkCount = new MetricName("AwsAccountRoamingDownlinkCount");
+        /// <summary>
+        /// Constant AwsAccountRoamingUplinkCount for MetricName
+        /// </summary>
+        public static readonly MetricName AwsAccountRoamingUplinkCount = new MetricName("AwsAccountRoamingUplinkCount");
+        /// <summary>
+        /// Constant AwsAccountUplinkCount for MetricName
+        /// </summary>
+        public static readonly MetricName AwsAccountUplinkCount = new MetricName("AwsAccountUplinkCount");
+        /// <summary>
+        /// Constant AwsAccountUplinkLostCount for MetricName
+        /// </summary>
+        public static readonly MetricName AwsAccountUplinkLostCount = new MetricName("AwsAccountUplinkLostCount");
+        /// <summary>
+        /// Constant AwsAccountUplinkLostRate for MetricName
+        /// </summary>
+        public static readonly MetricName AwsAccountUplinkLostRate = new MetricName("AwsAccountUplinkLostRate");
+        /// <summary>
+        /// Constant DeviceDownlinkCount for MetricName
+        /// </summary>
+        public static readonly MetricName DeviceDownlinkCount = new MetricName("DeviceDownlinkCount");
+        /// <summary>
+        /// Constant DeviceJoinAcceptCount for MetricName
+        /// </summary>
+        public static readonly MetricName DeviceJoinAcceptCount = new MetricName("DeviceJoinAcceptCount");
+        /// <summary>
+        /// Constant DeviceJoinRequestCount for MetricName
+        /// </summary>
+        public static readonly MetricName DeviceJoinRequestCount = new MetricName("DeviceJoinRequestCount");
+        /// <summary>
+        /// Constant DeviceRoamingDownlinkCount for MetricName
+        /// </summary>
+        public static readonly MetricName DeviceRoamingDownlinkCount = new MetricName("DeviceRoamingDownlinkCount");
+        /// <summary>
+        /// Constant DeviceRoamingRSSI for MetricName
+        /// </summary>
+        public static readonly MetricName DeviceRoamingRSSI = new MetricName("DeviceRoamingRSSI");
+        /// <summary>
+        /// Constant DeviceRoamingSNR for MetricName
+        /// </summary>
+        public static readonly MetricName DeviceRoamingSNR = new MetricName("DeviceRoamingSNR");
+        /// <summary>
+        /// Constant DeviceRoamingUplinkCount for MetricName
+        /// </summary>
+        public static readonly MetricName DeviceRoamingUplinkCount = new MetricName("DeviceRoamingUplinkCount");
+        /// <summary>
+        /// Constant DeviceRSSI for MetricName
+        /// </summary>
+        public static readonly MetricName DeviceRSSI = new MetricName("DeviceRSSI");
+        /// <summary>
+        /// Constant DeviceSNR for MetricName
+        /// </summary>
+        public static readonly MetricName DeviceSNR = new MetricName("DeviceSNR");
+        /// <summary>
+        /// Constant DeviceUplinkCount for MetricName
+        /// </summary>
+        public static readonly MetricName DeviceUplinkCount = new MetricName("DeviceUplinkCount");
+        /// <summary>
+        /// Constant DeviceUplinkLostCount for MetricName
+        /// </summary>
+        public static readonly MetricName DeviceUplinkLostCount = new MetricName("DeviceUplinkLostCount");
+        /// <summary>
+        /// Constant DeviceUplinkLostRate for MetricName
+        /// </summary>
+        public static readonly MetricName DeviceUplinkLostRate = new MetricName("DeviceUplinkLostRate");
+        /// <summary>
+        /// Constant GatewayDownlinkCount for MetricName
+        /// </summary>
+        public static readonly MetricName GatewayDownlinkCount = new MetricName("GatewayDownlinkCount");
+        /// <summary>
+        /// Constant GatewayDownTime for MetricName
+        /// </summary>
+        public static readonly MetricName GatewayDownTime = new MetricName("GatewayDownTime");
+        /// <summary>
+        /// Constant GatewayJoinAcceptCount for MetricName
+        /// </summary>
+        public static readonly MetricName GatewayJoinAcceptCount = new MetricName("GatewayJoinAcceptCount");
+        /// <summary>
+        /// Constant GatewayJoinRequestCount for MetricName
+        /// </summary>
+        public static readonly MetricName GatewayJoinRequestCount = new MetricName("GatewayJoinRequestCount");
+        /// <summary>
+        /// Constant GatewayRSSI for MetricName
+        /// </summary>
+        public static readonly MetricName GatewayRSSI = new MetricName("GatewayRSSI");
+        /// <summary>
+        /// Constant GatewaySNR for MetricName
+        /// </summary>
+        public static readonly MetricName GatewaySNR = new MetricName("GatewaySNR");
+        /// <summary>
+        /// Constant GatewayUplinkCount for MetricName
+        /// </summary>
+        public static readonly MetricName GatewayUplinkCount = new MetricName("GatewayUplinkCount");
+        /// <summary>
+        /// Constant GatewayUpTime for MetricName
+        /// </summary>
+        public static readonly MetricName GatewayUpTime = new MetricName("GatewayUpTime");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public MetricName(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static MetricName FindValue(string value)
+        {
+            return FindValue<MetricName>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator MetricName(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type MetricQueryStatus.
+    /// </summary>
+    public class MetricQueryStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Failed for MetricQueryStatus
+        /// </summary>
+        public static readonly MetricQueryStatus Failed = new MetricQueryStatus("Failed");
+        /// <summary>
+        /// Constant Succeeded for MetricQueryStatus
+        /// </summary>
+        public static readonly MetricQueryStatus Succeeded = new MetricQueryStatus("Succeeded");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public MetricQueryStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static MetricQueryStatus FindValue(string value)
+        {
+            return FindValue<MetricQueryStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator MetricQueryStatus(string value)
         {
             return FindValue(value);
         }
@@ -1526,6 +1954,56 @@ namespace Amazon.IoTWireless
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator SigningAlg(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type SummaryMetricConfigurationStatus.
+    /// </summary>
+    public class SummaryMetricConfigurationStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Disabled for SummaryMetricConfigurationStatus
+        /// </summary>
+        public static readonly SummaryMetricConfigurationStatus Disabled = new SummaryMetricConfigurationStatus("Disabled");
+        /// <summary>
+        /// Constant Enabled for SummaryMetricConfigurationStatus
+        /// </summary>
+        public static readonly SummaryMetricConfigurationStatus Enabled = new SummaryMetricConfigurationStatus("Enabled");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public SummaryMetricConfigurationStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static SummaryMetricConfigurationStatus FindValue(string value)
+        {
+            return FindValue<SummaryMetricConfigurationStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator SummaryMetricConfigurationStatus(string value)
         {
             return FindValue(value);
         }

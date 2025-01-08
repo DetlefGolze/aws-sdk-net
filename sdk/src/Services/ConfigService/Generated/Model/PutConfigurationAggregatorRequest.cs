@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.ConfigService.Model
     /// 
     ///  
     /// <para>
-    ///  <code>accountIds</code> that are passed will be replaced with existing accounts.
-    /// If you want to add additional accounts into the aggregator, call <code>DescribeConfigurationAggregators</code>
+    ///  <c>accountIds</c> that are passed will be replaced with existing accounts. If you
+    /// want to add additional accounts into the aggregator, call <c>DescribeConfigurationAggregators</c>
     /// to get the previous accounts and then append new ones.
     /// </para>
     ///  <note> 
@@ -47,10 +48,10 @@ namespace Amazon.ConfigService.Model
     /// <para>
     /// If your source type is an organization, you must be signed in to the management account
     /// or a registered delegated administrator and all the features must be enabled in your
-    /// organization. If the caller is a management account, Config calls <code>EnableAwsServiceAccess</code>
+    /// organization. If the caller is a management account, Config calls <c>EnableAwsServiceAccess</c>
     /// API to enable integration between Config and Organizations. If the caller is a registered
-    /// delegated administrator, Config calls <code>ListDelegatedAdministrators</code> API
-    /// to verify whether the caller is a valid delegated administrator.
+    /// delegated administrator, Config calls <c>ListDelegatedAdministrators</c> API to verify
+    /// whether the caller is a valid delegated administrator.
     /// </para>
     ///  
     /// <para>
@@ -59,20 +60,31 @@ namespace Amazon.ConfigService.Model
     /// </para>
     ///  </note> <note> 
     /// <para>
-    ///  <code>PutConfigurationAggregator</code> is an idempotent API. Subsequent requests
-    /// won’t create a duplicate resource if one was already created. If a following request
-    /// has different <code>tags</code> values, Config will ignore these differences and treat
-    /// it as an idempotent request of the previous. In this case, <code>tags</code> will
-    /// not be updated, even if they are different.
+    ///  <b>Tags are added at creation and cannot be updated with this operation</b> 
+    /// </para>
+    ///  
+    /// <para>
+    ///  <c>PutConfigurationAggregator</c> is an idempotent API. Subsequent requests won’t
+    /// create a duplicate resource if one was already created. If a following request has
+    /// different <c>tags</c> values, Config will ignore these differences and treat it as
+    /// an idempotent request of the previous. In this case, <c>tags</c> will not be updated,
+    /// even if they are different.
+    /// </para>
+    ///  
+    /// <para>
+    /// Use <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_TagResource.html">TagResource</a>
+    /// and <a href="https://docs.aws.amazon.com/config/latest/APIReference/API_UntagResource.html">UntagResource</a>
+    /// to update tags after creation.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class PutConfigurationAggregatorRequest : AmazonConfigServiceRequest
     {
-        private List<AccountAggregationSource> _accountAggregationSources = new List<AccountAggregationSource>();
+        private List<AccountAggregationSource> _accountAggregationSources = AWSConfigs.InitializeCollections ? new List<AccountAggregationSource>() : null;
+        private AggregatorFilters _aggregatorFilters;
         private string _configurationAggregatorName;
         private OrganizationAggregationSource _organizationAggregationSource;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AccountAggregationSources. 
@@ -90,7 +102,26 @@ namespace Amazon.ConfigService.Model
         // Check to see if AccountAggregationSources property is set
         internal bool IsSetAccountAggregationSources()
         {
-            return this._accountAggregationSources != null && this._accountAggregationSources.Count > 0; 
+            return this._accountAggregationSources != null && (this._accountAggregationSources.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property AggregatorFilters. 
+        /// <para>
+        /// An object to filter configuration recorders in an aggregator. Either <c>ResourceType</c>
+        /// or <c>ServicePrincipal</c> is required.
+        /// </para>
+        /// </summary>
+        public AggregatorFilters AggregatorFilters
+        {
+            get { return this._aggregatorFilters; }
+            set { this._aggregatorFilters = value; }
+        }
+
+        // Check to see if AggregatorFilters property is set
+        internal bool IsSetAggregatorFilters()
+        {
+            return this._aggregatorFilters != null;
         }
 
         /// <summary>
@@ -146,7 +177,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

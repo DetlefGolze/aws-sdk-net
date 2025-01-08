@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.LexModelsV2.Model
     {
         private string _botId;
         private string _botVersion;
-        private List<SlotFilter> _filters = new List<SlotFilter>();
+        private List<SlotFilter> _filters = AWSConfigs.InitializeCollections ? new List<SlotFilter>() : null;
         private string _intentId;
         private string _localeId;
         private int? _maxResults;
@@ -99,7 +100,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -165,10 +166,9 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the response from the <code>ListSlots</code> operation contains more results than
-        /// specified in the <code>maxResults</code> parameter, a token is returned in the response.
-        /// Use that token in the <code>nextToken</code> parameter to return the next page of
-        /// results.
+        /// If the response from the <c>ListSlots</c> operation contains more results than specified
+        /// in the <c>maxResults</c> parameter, a token is returned in the response. Use that
+        /// token in the <c>nextToken</c> parameter to return the next page of results.
         /// </para>
         /// </summary>
         public string NextToken
@@ -186,9 +186,9 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property SortBy. 
         /// <para>
-        /// Determines the sort order for the response from the <code>ListSlots</code> operation.
-        /// You can choose to sort by the slot name or last updated date in either ascending or
-        /// descending order.
+        /// Determines the sort order for the response from the <c>ListSlots</c> operation. You
+        /// can choose to sort by the slot name or last updated date in either ascending or descending
+        /// order.
         /// </para>
         /// </summary>
         public SlotSortBy SortBy

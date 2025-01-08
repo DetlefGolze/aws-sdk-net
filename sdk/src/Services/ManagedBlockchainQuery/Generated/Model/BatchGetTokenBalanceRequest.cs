@@ -26,28 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchainQuery.Model
 {
     /// <summary>
     /// Container for the parameters to the BatchGetTokenBalance operation.
-    /// Gets the token balance for a batch of tokens by using the <code>GetTokenBalance</code>
+    /// Gets the token balance for a batch of tokens by using the <c>BatchGetTokenBalance</c>
     /// action for every token in the request.
     /// 
     ///  <note> 
     /// <para>
-    /// Only the native tokens BTC,ETH, and the ERC-20, ERC-721, and ERC 1155 token standards
+    /// Only the native tokens BTC and ETH, and the ERC-20, ERC-721, and ERC 1155 token standards
     /// are supported.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class BatchGetTokenBalanceRequest : AmazonManagedBlockchainQueryRequest
     {
-        private List<BatchGetTokenBalanceInputItem> _getTokenBalanceInputs = new List<BatchGetTokenBalanceInputItem>();
+        private List<BatchGetTokenBalanceInputItem> _getTokenBalanceInputs = AWSConfigs.InitializeCollections ? new List<BatchGetTokenBalanceInputItem>() : null;
 
         /// <summary>
         /// Gets and sets the property GetTokenBalanceInputs. 
         /// <para>
-        /// An array of <code>GetTokenBalanceInput</code> objects whose balance is being requested.
+        /// An array of <c>BatchGetTokenBalanceInputItem</c> objects whose balance is being requested.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
@@ -60,7 +61,7 @@ namespace Amazon.ManagedBlockchainQuery.Model
         // Check to see if GetTokenBalanceInputs property is set
         internal bool IsSetGetTokenBalanceInputs()
         {
-            return this._getTokenBalanceInputs != null && this._getTokenBalanceInputs.Count > 0; 
+            return this._getTokenBalanceInputs != null && (this._getTokenBalanceInputs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

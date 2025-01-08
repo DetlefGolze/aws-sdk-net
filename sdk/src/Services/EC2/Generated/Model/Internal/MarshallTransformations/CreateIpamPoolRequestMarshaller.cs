@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -129,6 +130,25 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                 if(publicRequest.IsSetSourceIpamPoolId())
                 {
                     request.Parameters.Add("SourceIpamPoolId", StringUtils.FromString(publicRequest.SourceIpamPoolId));
+                }
+                if(publicRequest.IsSetSourceResource())
+                {
+                    if(publicRequest.SourceResource.IsSetResourceId())
+                    {
+                        request.Parameters.Add("SourceResource" + "." + "ResourceId", StringUtils.FromString(publicRequest.SourceResource.ResourceId));
+                    }
+                    if(publicRequest.SourceResource.IsSetResourceOwner())
+                    {
+                        request.Parameters.Add("SourceResource" + "." + "ResourceOwner", StringUtils.FromString(publicRequest.SourceResource.ResourceOwner));
+                    }
+                    if(publicRequest.SourceResource.IsSetResourceRegion())
+                    {
+                        request.Parameters.Add("SourceResource" + "." + "ResourceRegion", StringUtils.FromString(publicRequest.SourceResource.ResourceRegion));
+                    }
+                    if(publicRequest.SourceResource.IsSetResourceType())
+                    {
+                        request.Parameters.Add("SourceResource" + "." + "ResourceType", StringUtils.FromString(publicRequest.SourceResource.ResourceType));
+                    }
                 }
                 if(publicRequest.IsSetTagSpecifications())
                 {

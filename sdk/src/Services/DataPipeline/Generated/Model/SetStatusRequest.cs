@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataPipeline.Model
 {
     /// <summary>
@@ -33,12 +34,12 @@ namespace Amazon.DataPipeline.Model
     /// Requests that the status of the specified physical or logical pipeline objects be
     /// updated in the specified pipeline. This update might not occur immediately, but is
     /// eventually consistent. The status that can be set depends on the type of object (for
-    /// example, DataNode or Activity). You cannot perform this operation on <code>FINISHED</code>
-    /// pipelines and attempting to do so returns <code>InvalidRequestException</code>.
+    /// example, DataNode or Activity). You cannot perform this operation on <c>FINISHED</c>
+    /// pipelines and attempting to do so returns <c>InvalidRequestException</c>.
     /// </summary>
     public partial class SetStatusRequest : AmazonDataPipelineRequest
     {
-        private List<string> _objectIds = new List<string>();
+        private List<string> _objectIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _pipelineId;
         private string _status;
 
@@ -59,7 +60,7 @@ namespace Amazon.DataPipeline.Model
         // Check to see if ObjectIds property is set
         internal bool IsSetObjectIds()
         {
-            return this._objectIds != null && this._objectIds.Count > 0; 
+            return this._objectIds != null && (this._objectIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -84,9 +85,9 @@ namespace Amazon.DataPipeline.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status to be set on all the objects specified in <code>objectIds</code>. For components,
-        /// use <code>PAUSE</code> or <code>RESUME</code>. For instances, use <code>TRY_CANCEL</code>,
-        /// <code>RERUN</code>, or <code>MARK_FINISHED</code>.
+        /// The status to be set on all the objects specified in <c>objectIds</c>. For components,
+        /// use <c>PAUSE</c> or <c>RESUME</c>. For instances, use <c>TRY_CANCEL</c>, <c>RERUN</c>,
+        /// or <c>MARK_FINISHED</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=1024)]

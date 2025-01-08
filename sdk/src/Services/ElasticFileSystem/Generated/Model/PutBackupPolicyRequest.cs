@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.ElasticFileSystem.Model
         /// <summary>
         /// Gets and sets the property BackupPolicy. 
         /// <para>
-        /// The backup policy included in the <code>PutBackupPolicy</code> request.
+        /// The backup policy included in the <c>PutBackupPolicy</c> request.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.WorkSpaces.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,8 +66,20 @@ namespace Amazon.WorkSpaces.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetActiveDirectoryConfig())
+                {
+                    context.Writer.WritePropertyName("ActiveDirectoryConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ActiveDirectoryConfigMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.ActiveDirectoryConfig, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetDirectoryId())
                 {
                     context.Writer.WritePropertyName("DirectoryId");
@@ -83,6 +96,23 @@ namespace Amazon.WorkSpaces.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("EnableWorkDocs");
                     context.Writer.Write(publicRequest.EnableWorkDocs);
+                }
+
+                if(publicRequest.IsSetIdcInstanceArn())
+                {
+                    context.Writer.WritePropertyName("IdcInstanceArn");
+                    context.Writer.Write(publicRequest.IdcInstanceArn);
+                }
+
+                if(publicRequest.IsSetMicrosoftEntraConfig())
+                {
+                    context.Writer.WritePropertyName("MicrosoftEntraConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = MicrosoftEntraConfigMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.MicrosoftEntraConfig, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetSubnetIds())
@@ -116,6 +146,30 @@ namespace Amazon.WorkSpaces.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("Tenancy");
                     context.Writer.Write(publicRequest.Tenancy);
+                }
+
+                if(publicRequest.IsSetUserIdentityType())
+                {
+                    context.Writer.WritePropertyName("UserIdentityType");
+                    context.Writer.Write(publicRequest.UserIdentityType);
+                }
+
+                if(publicRequest.IsSetWorkspaceDirectoryDescription())
+                {
+                    context.Writer.WritePropertyName("WorkspaceDirectoryDescription");
+                    context.Writer.Write(publicRequest.WorkspaceDirectoryDescription);
+                }
+
+                if(publicRequest.IsSetWorkspaceDirectoryName())
+                {
+                    context.Writer.WritePropertyName("WorkspaceDirectoryName");
+                    context.Writer.Write(publicRequest.WorkspaceDirectoryName);
+                }
+
+                if(publicRequest.IsSetWorkspaceType())
+                {
+                    context.Writer.WritePropertyName("WorkspaceType");
+                    context.Writer.Write(publicRequest.WorkspaceType);
                 }
 
                 writer.WriteObjectEnd();

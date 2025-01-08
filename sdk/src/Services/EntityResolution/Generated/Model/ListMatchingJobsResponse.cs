@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.EntityResolution.Model
     /// </summary>
     public partial class ListMatchingJobsResponse : AmazonWebServiceResponse
     {
-        private List<JobSummary> _jobs = new List<JobSummary>();
+        private List<JobSummary> _jobs = AWSConfigs.InitializeCollections ? new List<JobSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Jobs. 
         /// <para>
-        /// A list of <code>JobSummary</code> objects, each of which contain the ID, status, start
-        /// time, and end time of a job.
+        /// A list of <c>JobSummary</c> objects, each of which contain the ID, status, start time,
+        /// and end time of a job.
         /// </para>
         /// </summary>
         public List<JobSummary> Jobs
@@ -52,13 +53,13 @@ namespace Amazon.EntityResolution.Model
         // Check to see if Jobs property is set
         internal bool IsSetJobs()
         {
-            return this._jobs != null && this._jobs.Count > 0; 
+            return this._jobs != null && (this._jobs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The pagination token from the previous <code>ListSchemaMappings</code> API call.
+        /// The pagination token from the previous API call.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

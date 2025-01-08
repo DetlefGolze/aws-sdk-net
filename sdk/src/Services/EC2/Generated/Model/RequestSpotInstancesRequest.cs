@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,15 +35,14 @@ namespace Amazon.EC2.Model
     /// 
     ///  
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html">Spot
-    /// Instance requests</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html">Work
+    /// with Spot Instance</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     ///  <important> 
     /// <para>
     /// We strongly discourage using the RequestSpotInstances API because it is a legacy API
     /// with no planned investment. For options for requesting Spot Instances, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-best-practices.html#which-spot-request-method-to-use">Which
-    /// is the best Spot request method to use?</a> in the <i>Amazon EC2 User Guide for Linux
-    /// Instances</i>.
+    /// is the best Spot request method to use?</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     ///  </important>
     /// </summary>
@@ -56,7 +56,7 @@ namespace Amazon.EC2.Model
         private string _launchGroup;
         private LaunchSpecification _launchSpecification;
         private string _spotPrice;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
         private SpotInstanceType _type;
         private DateTime? _validFromUtc;
         private DateTime? _validUntilUtc;
@@ -138,8 +138,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// Unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        /// request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How
-        /// to Ensure Idempotency</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.
+        /// request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">Ensuring
+        /// idempotency in Amazon EC2 API requests</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         /// </summary>
         public string ClientToken
@@ -179,7 +179,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property InstanceInterruptionBehavior. 
         /// <para>
-        /// The behavior when a Spot Instance is interrupted. The default is <code>terminate</code>.
+        /// The behavior when a Spot Instance is interrupted. The default is <c>terminate</c>.
         /// </para>
         /// </summary>
         public InstanceInterruptionBehavior InstanceInterruptionBehavior
@@ -265,9 +265,9 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property TagSpecifications. 
         /// <para>
         /// The key-value pair for tagging the Spot Instance request on creation. The value for
-        /// <code>ResourceType</code> must be <code>spot-instances-request</code>, otherwise the
-        /// Spot Instance request fails. To tag the Spot Instance request after it has been created,
-        /// see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html">CreateTags</a>.
+        /// <c>ResourceType</c> must be <c>spot-instances-request</c>, otherwise the Spot Instance
+        /// request fails. To tag the Spot Instance request after it has been created, see <a
+        /// href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html">CreateTags</a>.
         /// 
         /// </para>
         /// </summary>
@@ -280,7 +280,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -290,7 +290,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>one-time</code> 
+        /// Default: <c>one-time</c> 
         /// </para>
         /// </summary>
         public SpotInstanceType Type
@@ -338,14 +338,13 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For a persistent request, the request remains active until the <code>ValidUntil</code>
-        /// date and time is reached. Otherwise, the request remains active until you cancel it.
-        /// 
+        /// For a persistent request, the request remains active until the <c>ValidUntil</c> date
+        /// and time is reached. Otherwise, the request remains active until you cancel it. 
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// For a one-time request, the request remains active until all instances launch, the
-        /// request is canceled, or the <code>ValidUntil</code> date and time is reached. By default,
+        /// request is canceled, or the <c>ValidUntil</c> date and time is reached. By default,
         /// the request is valid for 7 days from the date the request was created.
         /// </para>
         ///  </li> </ul>
@@ -419,14 +418,13 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For a persistent request, the request remains active until the <code>ValidUntil</code>
-        /// date and time is reached. Otherwise, the request remains active until you cancel it.
-        /// 
+        /// For a persistent request, the request remains active until the <c>ValidUntil</c> date
+        /// and time is reached. Otherwise, the request remains active until you cancel it. 
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// For a one-time request, the request remains active until all instances launch, the
-        /// request is canceled, or the <code>ValidUntil</code> date and time is reached. By default,
+        /// request is canceled, or the <c>ValidUntil</c> date and time is reached. By default,
         /// the request is valid for 7 days from the date the request was created.
         /// </para>
         ///  </li> </ul>

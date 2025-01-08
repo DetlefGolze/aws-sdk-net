@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -49,25 +50,27 @@ namespace Amazon.SageMaker.Model
         private string _kmsKeyId;
         private DateTime? _lastModifiedTime;
         private string _securityGroupIdForDomainBoundary;
+        private string _singleSignOnApplicationArn;
         private string _singleSignOnManagedApplicationInstanceId;
         private DomainStatus _status;
-        private List<string> _subnetIds = new List<string>();
+        private List<string> _subnetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private TagPropagation _tagPropagation;
         private string _url;
         private string _vpcId;
 
         /// <summary>
         /// Gets and sets the property AppNetworkAccessType. 
         /// <para>
-        /// Specifies the VPC used for non-EFS traffic. The default value is <code>PublicInternetOnly</code>.
+        /// Specifies the VPC used for non-EFS traffic. The default value is <c>PublicInternetOnly</c>.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PublicInternetOnly</code> - Non-EFS traffic is through a VPC managed by Amazon
-        /// SageMaker, which allows direct internet access
+        ///  <c>PublicInternetOnly</c> - Non-EFS traffic is through a VPC managed by Amazon SageMaker
+        /// AI, which allows direct internet access
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>VpcOnly</code> - All Studio traffic is through the specified VPC and subnets
+        ///  <c>VpcOnly</c> - All traffic is through the specified VPC and subnets
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -87,8 +90,8 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property AppSecurityGroupManagement. 
         /// <para>
         /// The entity that creates and manages the required security groups for inter-app communication
-        /// in <code>VPCOnly</code> mode. Required when <code>CreateDomain.AppNetworkAccessType</code>
-        /// is <code>VPCOnly</code> and <code>DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn</code>
+        /// in <c>VPCOnly</c> mode. Required when <c>CreateDomain.AppNetworkAccessType</c> is
+        /// <c>VPCOnly</c> and <c>DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn</c>
         /// is provided.
         /// </para>
         /// </summary>
@@ -143,7 +146,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property DefaultSpaceSettings. 
         /// <para>
-        /// The default settings used to create a space.
+        /// The default settings for shared spaces that users create in the domain.
         /// </para>
         /// </summary>
         public DefaultSpaceSettings DefaultSpaceSettings
@@ -237,7 +240,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property DomainSettings. 
         /// <para>
-        /// A collection of <code>Domain</code> settings.
+        /// A collection of <c>Domain</c> settings.
         /// </para>
         /// </summary>
         public DomainSettings DomainSettings
@@ -274,7 +277,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property HomeEfsFileSystemId. 
         /// <para>
-        /// The ID of the Amazon Elastic File System (EFS) managed by this Domain.
+        /// The ID of the Amazon Elastic File System managed by this Domain.
         /// </para>
         /// </summary>
         [AWSProperty(Max=32)]
@@ -293,7 +296,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property HomeEfsFileSystemKmsKeyId. 
         /// <para>
-        /// Use <code>KmsKeyId</code>.
+        /// Use <c>KmsKeyId</c>.
         /// </para>
         /// </summary>
         [Obsolete("This property is deprecated, use KmsKeyId instead.")]
@@ -351,8 +354,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SecurityGroupIdForDomainBoundary. 
         /// <para>
-        /// The ID of the security group that authorizes traffic between the <code>RSessionGateway</code>
-        /// apps and the <code>RStudioServerPro</code> app.
+        /// The ID of the security group that authorizes traffic between the <c>RSessionGateway</c>
+        /// apps and the <c>RStudioServerPro</c> app.
         /// </para>
         /// </summary>
         [AWSProperty(Max=32)]
@@ -366,6 +369,25 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetSecurityGroupIdForDomainBoundary()
         {
             return this._securityGroupIdForDomainBoundary != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SingleSignOnApplicationArn. 
+        /// <para>
+        /// The ARN of the application managed by SageMaker AI in IAM Identity Center. This value
+        /// is only returned for domains created after October 1, 2023.
+        /// </para>
+        /// </summary>
+        public string SingleSignOnApplicationArn
+        {
+            get { return this._singleSignOnApplicationArn; }
+            set { this._singleSignOnApplicationArn = value; }
+        }
+
+        // Check to see if SingleSignOnApplicationArn property is set
+        internal bool IsSetSingleSignOnApplicationArn()
+        {
+            return this._singleSignOnApplicationArn != null;
         }
 
         /// <summary>
@@ -408,7 +430,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SubnetIds. 
         /// <para>
-        /// The VPC subnets that Studio uses for communication.
+        /// The VPC subnets that the domain uses for communication.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=16)]
@@ -421,7 +443,25 @@ namespace Amazon.SageMaker.Model
         // Check to see if SubnetIds property is set
         internal bool IsSetSubnetIds()
         {
-            return this._subnetIds != null && this._subnetIds.Count > 0; 
+            return this._subnetIds != null && (this._subnetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property TagPropagation. 
+        /// <para>
+        /// Indicates whether custom tag propagation is supported for the domain.
+        /// </para>
+        /// </summary>
+        public TagPropagation TagPropagation
+        {
+            get { return this._tagPropagation; }
+            set { this._tagPropagation = value; }
+        }
+
+        // Check to see if TagPropagation property is set
+        internal bool IsSetTagPropagation()
+        {
+            return this._tagPropagation != null;
         }
 
         /// <summary>
@@ -446,7 +486,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property VpcId. 
         /// <para>
-        /// The ID of the Amazon Virtual Private Cloud (VPC) that Studio uses for communication.
+        /// The ID of the Amazon Virtual Private Cloud (VPC) that the domain uses for communication.
         /// </para>
         /// </summary>
         [AWSProperty(Max=32)]

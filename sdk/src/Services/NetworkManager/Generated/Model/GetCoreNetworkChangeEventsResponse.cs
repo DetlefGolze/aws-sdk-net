@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.NetworkManager.Model
     /// </summary>
     public partial class GetCoreNetworkChangeEventsResponse : AmazonWebServiceResponse
     {
-        private List<CoreNetworkChangeEvent> _coreNetworkChangeEvents = new List<CoreNetworkChangeEvent>();
+        private List<CoreNetworkChangeEvent> _coreNetworkChangeEvents = AWSConfigs.InitializeCollections ? new List<CoreNetworkChangeEvent>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property CoreNetworkChangeEvents. 
         /// <para>
-        /// The response to <code>GetCoreNetworkChangeEventsRequest</code>.
+        /// The response to <c>GetCoreNetworkChangeEventsRequest</c>.
         /// </para>
         /// </summary>
         public List<CoreNetworkChangeEvent> CoreNetworkChangeEvents
@@ -51,7 +52,7 @@ namespace Amazon.NetworkManager.Model
         // Check to see if CoreNetworkChangeEvents property is set
         internal bool IsSetCoreNetworkChangeEvents()
         {
-            return this._coreNetworkChangeEvents != null && this._coreNetworkChangeEvents.Count > 0; 
+            return this._coreNetworkChangeEvents != null && (this._coreNetworkChangeEvents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

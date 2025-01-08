@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
     /// Specifies configuration settings that determine which findings are published to Security
     /// Hub automatically. For information about how Macie publishes findings to Security
-    /// Hub, see <a href="https://docs.aws.amazon.com/macie/latest/user/securityhub-integration.html">Amazon
-    /// Macie integration with Security Hub</a> in the <i>Amazon Macie User Guide</i>.
+    /// Hub, see <a href="https://docs.aws.amazon.com/macie/latest/user/securityhub-integration.html">Evaluating
+    /// findings with Security Hub</a> in the <i>Amazon Macie User Guide</i>.
     /// </summary>
     public partial class SecurityHubConfiguration
     {

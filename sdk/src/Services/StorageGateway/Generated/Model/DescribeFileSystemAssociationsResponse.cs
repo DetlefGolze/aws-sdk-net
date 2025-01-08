@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.StorageGateway.Model
     /// </summary>
     public partial class DescribeFileSystemAssociationsResponse : AmazonWebServiceResponse
     {
-        private List<FileSystemAssociationInfo> _fileSystemAssociationInfoList = new List<FileSystemAssociationInfo>();
+        private List<FileSystemAssociationInfo> _fileSystemAssociationInfoList = AWSConfigs.InitializeCollections ? new List<FileSystemAssociationInfo>() : null;
 
         /// <summary>
         /// Gets and sets the property FileSystemAssociationInfoList. 
         /// <para>
-        /// An array containing the <code>FileSystemAssociationInfo</code> data type of each file
-        /// system association to be described. 
+        /// An array containing the <c>FileSystemAssociationInfo</c> data type of each file system
+        /// association to be described. 
         /// </para>
         /// </summary>
         public List<FileSystemAssociationInfo> FileSystemAssociationInfoList
@@ -51,7 +52,7 @@ namespace Amazon.StorageGateway.Model
         // Check to see if FileSystemAssociationInfoList property is set
         internal bool IsSetFileSystemAssociationInfoList()
         {
-            return this._fileSystemAssociationInfoList != null && this._fileSystemAssociationInfoList.Count > 0; 
+            return this._fileSystemAssociationInfoList != null && (this._fileSystemAssociationInfoList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

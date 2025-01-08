@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Budgets.Model
 {
     /// <summary>
@@ -42,8 +43,8 @@ namespace Amazon.Budgets.Model
         /// <summary>
         /// Gets and sets the property AccountId. 
         /// <para>
-        /// The <code>accountId</code> that is associated with the budget whose notification you
-        /// want to update.
+        /// The <c>accountId</c> that is associated with the budget whose notification you want
+        /// to update.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=12, Max=12)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -81,8 +82,8 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// To determine the valid values, use the <code>describe-certificates</code> CLI command
-        /// or the <code>DescribeCertificates</code> API operation.
+        /// To determine the valid values, use the <c>describe-certificates</c> CLI command or
+        /// the <c>DescribeCertificates</c> API operation.
         /// </para>
         /// </summary>
         public string CertificateIdentifier

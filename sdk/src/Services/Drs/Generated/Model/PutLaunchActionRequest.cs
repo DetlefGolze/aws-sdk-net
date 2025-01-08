@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Drs.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.Drs.Model
         private string _name;
         private bool? _optional;
         private int? _order;
-        private Dictionary<string, LaunchActionParameter> _parameters = new Dictionary<string, LaunchActionParameter>();
+        private Dictionary<string, LaunchActionParameter> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, LaunchActionParameter>() : null;
         private string _resourceId;
 
         /// <summary>
@@ -135,7 +136,7 @@ namespace Amazon.Drs.Model
         /// <summary>
         /// Gets and sets the property Description.
         /// </summary>
-        [AWSProperty(Min=0, Max=1024)]
+        [AWSProperty(Required=true, Min=0, Max=1024)]
         public string Description
         {
             get { return this._description; }
@@ -212,7 +213,7 @@ namespace Amazon.Drs.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

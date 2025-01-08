@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchain.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.ManagedBlockchain.Model
     public partial class ListAccessorsRequest : AmazonManagedBlockchainRequest
     {
         private int? _maxResults;
+        private AccessorNetworkType _networkType;
         private string _nextToken;
 
         /// <summary>
@@ -55,6 +57,30 @@ namespace Amazon.ManagedBlockchain.Model
         internal bool IsSetMaxResults()
         {
             return this._maxResults.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property NetworkType. 
+        /// <para>
+        /// The blockchain network that the <c>Accessor</c> token is created for.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// Use the value <c>ETHEREUM_MAINNET_AND_GOERLI</c> for all existing <c>Accessors</c>
+        /// tokens that were created before the <c>networkType</c> property was introduced.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public AccessorNetworkType NetworkType
+        {
+            get { return this._networkType; }
+            set { this._networkType = value; }
+        }
+
+        // Check to see if NetworkType property is set
+        internal bool IsSetNetworkType()
+        {
+            return this._networkType != null;
         }
 
         /// <summary>

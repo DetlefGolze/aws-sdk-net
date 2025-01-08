@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property ResourceName. 
         /// <para>
-        /// The Amazon Resource Name (ARN) with which the tag is associated, for example: <code>arn:aws:redshift:us-east-2:123456789:cluster:t1</code>.
+        /// The Amazon Resource Name (ARN) with which the tag is associated, for example: <c>arn:aws:redshift:us-east-2:123456789:cluster:t1</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
-    /// If you run <code>GetInsightSelectors</code> on a trail that does not have Insights
-    /// events enabled, the operation throws the exception <code>InsightNotEnabledException</code>.
+    /// If you run <c>GetInsightSelectors</c> on a trail or event data store that does not
+    /// have Insights events enabled, the operation throws the exception <c>InsightNotEnabledException</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComprehendMedical.Model
 {
     /// <summary>
@@ -37,23 +38,23 @@ namespace Amazon.ComprehendMedical.Model
     /// </summary>
     public partial class RxNormEntity
     {
-        private List<RxNormAttribute> _attributes = new List<RxNormAttribute>();
+        private List<RxNormAttribute> _attributes = AWSConfigs.InitializeCollections ? new List<RxNormAttribute>() : null;
         private int? _beginOffset;
         private RxNormEntityCategory _category;
         private int? _endOffset;
         private int? _id;
-        private List<RxNormConcept> _rxNormConcepts = new List<RxNormConcept>();
+        private List<RxNormConcept> _rxNormConcepts = AWSConfigs.InitializeCollections ? new List<RxNormConcept>() : null;
         private float? _score;
         private string _text;
-        private List<RxNormTrait> _traits = new List<RxNormTrait>();
+        private List<RxNormTrait> _traits = AWSConfigs.InitializeCollections ? new List<RxNormTrait>() : null;
         private RxNormEntityType _type;
 
         /// <summary>
         /// Gets and sets the property Attributes. 
         /// <para>
         /// The extracted attributes that relate to the entity. The attributes recognized by InferRxNorm
-        /// are <code>DOSAGE</code>, <code>DURATION</code>, <code>FORM</code>, <code>FREQUENCY</code>,
-        /// <code>RATE</code>, <code>ROUTE_OR_MODE</code>, and <code>STRENGTH</code>.
+        /// are <c>DOSAGE</c>, <c>DURATION</c>, <c>FORM</c>, <c>FREQUENCY</c>, <c>RATE</c>, <c>ROUTE_OR_MODE</c>,
+        /// and <c>STRENGTH</c>.
         /// </para>
         /// </summary>
         public List<RxNormAttribute> Attributes
@@ -65,7 +66,7 @@ namespace Amazon.ComprehendMedical.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -90,8 +91,7 @@ namespace Amazon.ComprehendMedical.Model
         /// <summary>
         /// Gets and sets the property Category. 
         /// <para>
-        /// The category of the entity. The recognized categories are <code>GENERIC</code> or
-        /// <code>BRAND_NAME</code>.
+        /// The category of the entity. The recognized categories are <c>GENERIC</c> or <c>BRAND_NAME</c>.
         /// </para>
         /// </summary>
         public RxNormEntityCategory Category
@@ -160,7 +160,7 @@ namespace Amazon.ComprehendMedical.Model
         // Check to see if RxNormConcepts property is set
         internal bool IsSetRxNormConcepts()
         {
-            return this._rxNormConcepts != null && this._rxNormConcepts.Count > 0; 
+            return this._rxNormConcepts != null && (this._rxNormConcepts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -216,14 +216,14 @@ namespace Amazon.ComprehendMedical.Model
         // Check to see if Traits property is set
         internal bool IsSetTraits()
         {
-            return this._traits != null && this._traits.Count > 0; 
+            return this._traits != null && (this._traits.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
         ///  Describes the specific type of entity. For InferRxNorm, the recognized entity type
-        /// is <code>MEDICATION</code>.
+        /// is <c>MEDICATION</c>.
         /// </para>
         /// </summary>
         public RxNormEntityType Type

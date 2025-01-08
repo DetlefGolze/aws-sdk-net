@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AppStream.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,28 +53,53 @@ namespace Amazon.AppStream.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ComputeCapacityStatus Unmarshall(JsonUnmarshallerContext context)
         {
+            ComputeCapacityStatus unmarshalledObject = new ComputeCapacityStatus();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ComputeCapacityStatus unmarshalledObject = new ComputeCapacityStatus();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("ActiveUserSessions", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.ActiveUserSessions = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ActualUserSessions", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.ActualUserSessions = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("Available", targetDepth))
                 {
                     var unmarshaller = IntUnmarshaller.Instance;
                     unmarshalledObject.Available = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("AvailableUserSessions", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.AvailableUserSessions = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("Desired", targetDepth))
                 {
                     var unmarshaller = IntUnmarshaller.Instance;
                     unmarshalledObject.Desired = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("DesiredUserSessions", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.DesiredUserSessions = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("InUse", targetDepth))
@@ -89,7 +115,6 @@ namespace Amazon.AppStream.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

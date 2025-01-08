@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.DatabaseMigrationService.Model
     /// </summary>
     public partial class DescribeRecommendationLimitationsResponse : AmazonWebServiceResponse
     {
-        private List<Limitation> _limitations = new List<Limitation>();
+        private List<Limitation> _limitations = AWSConfigs.InitializeCollections ? new List<Limitation>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if Limitations property is set
         internal bool IsSetLimitations()
         {
-            return this._limitations != null && this._limitations.Count > 0; 
+            return this._limitations != null && (this._limitations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -59,8 +60,8 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <para>
         /// The unique pagination token returned for you to pass to a subsequent request. Fleet
         /// Advisor returns this token when the number of records in the response is greater than
-        /// the <code>MaxRecords</code> value. To retrieve the next page, make the call again
-        /// using the returned token and keeping all other arguments unchanged.
+        /// the <c>MaxRecords</c> value. To retrieve the next page, make the call again using
+        /// the returned token and keeping all other arguments unchanged.
         /// </para>
         /// </summary>
         public string NextToken

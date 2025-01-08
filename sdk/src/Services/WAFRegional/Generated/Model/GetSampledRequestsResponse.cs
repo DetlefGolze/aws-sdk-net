@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFRegional.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.WAFRegional.Model
     public partial class GetSampledRequestsResponse : AmazonWebServiceResponse
     {
         private long? _populationSize;
-        private List<SampledHTTPRequest> _sampledRequests = new List<SampledHTTPRequest>();
+        private List<SampledHTTPRequest> _sampledRequests = AWSConfigs.InitializeCollections ? new List<SampledHTTPRequest>() : null;
         private TimeWindow _timeWindow;
 
         /// <summary>
         /// Gets and sets the property PopulationSize. 
         /// <para>
-        /// The total number of requests from which <code>GetSampledRequests</code> got a sample
-        /// of <code>MaxItems</code> requests. If <code>PopulationSize</code> is less than <code>MaxItems</code>,
-        /// the sample includes every request that your AWS resource received during the specified
+        /// The total number of requests from which <c>GetSampledRequests</c> got a sample of
+        /// <c>MaxItems</c> requests. If <c>PopulationSize</c> is less than <c>MaxItems</c>, the
+        /// sample includes every request that your AWS resource received during the specified
         /// time range.
         /// </para>
         /// </summary>
@@ -74,17 +75,17 @@ namespace Amazon.WAFRegional.Model
         // Check to see if SampledRequests property is set
         internal bool IsSetSampledRequests()
         {
-            return this._sampledRequests != null && this._sampledRequests.Count > 0; 
+            return this._sampledRequests != null && (this._sampledRequests.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TimeWindow. 
         /// <para>
-        /// Usually, <code>TimeWindow</code> is the time range that you specified in the <code>GetSampledRequests</code>
+        /// Usually, <c>TimeWindow</c> is the time range that you specified in the <c>GetSampledRequests</c>
         /// request. However, if your AWS resource received more than 5,000 requests during the
-        /// time range that you specified in the request, <code>GetSampledRequests</code> returns
-        /// the time range for the first 5,000 requests. Times are in Coordinated Universal Time
-        /// (UTC) format.
+        /// time range that you specified in the request, <c>GetSampledRequests</c> returns the
+        /// time range for the first 5,000 requests. Times are in Coordinated Universal Time (UTC)
+        /// format.
         /// </para>
         /// </summary>
         public TimeWindow TimeWindow

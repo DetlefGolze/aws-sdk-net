@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RDS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -90,6 +91,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                 {
                     request.Parameters.Add("BackupRetentionPeriod", StringUtils.FromInt(publicRequest.BackupRetentionPeriod));
                 }
+                if(publicRequest.IsSetCACertificateIdentifier())
+                {
+                    request.Parameters.Add("CACertificateIdentifier", StringUtils.FromString(publicRequest.CACertificateIdentifier));
+                }
                 if(publicRequest.IsSetCloudwatchLogsExportConfiguration())
                 {
                     if(publicRequest.CloudwatchLogsExportConfiguration.IsSetDisableLogTypes())
@@ -114,6 +119,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                 if(publicRequest.IsSetCopyTagsToSnapshot())
                 {
                     request.Parameters.Add("CopyTagsToSnapshot", StringUtils.FromBool(publicRequest.CopyTagsToSnapshot));
+                }
+                if(publicRequest.IsSetDatabaseInsightsMode())
+                {
+                    request.Parameters.Add("DatabaseInsightsMode", StringUtils.FromString(publicRequest.DatabaseInsightsMode));
                 }
                 if(publicRequest.IsSetDBClusterIdentifier())
                 {
@@ -154,6 +163,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                 if(publicRequest.IsSetEnableIAMDatabaseAuthentication())
                 {
                     request.Parameters.Add("EnableIAMDatabaseAuthentication", StringUtils.FromBool(publicRequest.EnableIAMDatabaseAuthentication));
+                }
+                if(publicRequest.IsSetEnableLimitlessDatabase())
+                {
+                    request.Parameters.Add("EnableLimitlessDatabase", StringUtils.FromBool(publicRequest.EnableLimitlessDatabase));
                 }
                 if(publicRequest.IsSetEnableLocalWriteForwarding())
                 {
@@ -268,6 +281,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     {
                         request.Parameters.Add("ServerlessV2ScalingConfiguration" + "." + "MinCapacity", StringUtils.FromDouble(publicRequest.ServerlessV2ScalingConfiguration.MinCapacity));
                     }
+                    if(publicRequest.ServerlessV2ScalingConfiguration.IsSetSecondsUntilAutoPause())
+                    {
+                        request.Parameters.Add("ServerlessV2ScalingConfiguration" + "." + "SecondsUntilAutoPause", StringUtils.FromInt(publicRequest.ServerlessV2ScalingConfiguration.SecondsUntilAutoPause));
+                    }
                 }
                 if(publicRequest.IsSetStorageType())
                 {
@@ -278,7 +295,7 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     int publicRequestlistValueIndex = 1;
                     foreach(var publicRequestlistValue in publicRequest.VpcSecurityGroupIds)
                     {
-                        request.Parameters.Add("VpcSecurityGroupIds" + "." + "member" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
+                        request.Parameters.Add("VpcSecurityGroupIds" + "." + "VpcSecurityGroupId" + "." + publicRequestlistValueIndex, StringUtils.FromString(publicRequestlistValue));
                         publicRequestlistValueIndex++;
                     }
                 }

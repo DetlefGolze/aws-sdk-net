@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Indicates whether your instance is configured for hibernation. This parameter is valid
     /// only if the instance meets the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hibernating-prerequisites.html">hibernation
     /// prerequisites</a>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html">Hibernate
-    /// your instance</a> in the <i>Amazon EC2 User Guide</i>.
+    /// your Amazon EC2 instance</a> in the <i>Amazon EC2 User Guide</i>.
     /// </summary>
     public partial class HibernationOptionsRequest
     {
@@ -41,11 +42,27 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Configured. 
         /// <para>
-        /// Set to <code>true</code> to enable your instance for hibernation.
+        /// Set to <c>true</c> to enable your instance for hibernation.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// For Spot Instances, if you set <c>Configured</c> to <c>true</c>, either omit the <c>InstanceInterruptionBehavior</c>
+        /// parameter (for <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_SpotMarketOptions.html">
+        /// <c>SpotMarketOptions</c> </a>), or set it to <c>hibernate</c>. When <c>Configured</c>
+        /// is true:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// If you omit <c>InstanceInterruptionBehavior</c>, it defaults to <c>hibernate</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If you set <c>InstanceInterruptionBehavior</c> to a value other than <c>hibernate</c>,
+        /// you'll get an error.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool Configured

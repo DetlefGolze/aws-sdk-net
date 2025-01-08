@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeCommit.Model
 {
     /// <summary>
@@ -45,7 +46,7 @@ namespace Amazon.CodeCommit.Model
         /// <para>
         /// The fully quaified reference that identifies the commit that contains the file. For
         /// example, you can specify a full commit ID, a tag, a branch name, or a reference such
-        /// as <code>refs/heads/main</code>. If none is provided, the head commit is used.
+        /// as <c>refs/heads/main</c>. If none is provided, the head commit is used.
         /// </para>
         /// </summary>
         public string CommitSpecifier

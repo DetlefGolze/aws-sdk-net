@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationInsights.Model
 {
     /// <summary>
@@ -45,8 +46,8 @@ namespace Amazon.ApplicationInsights.Model
         /// <summary>
         /// Gets and sets the property AccountId. 
         /// <para>
-        /// The AWS account ID for the owner of the application to which the configuration event
-        /// belongs.
+        /// The Amazon Web Services account ID for the owner of the application to which the configuration
+        /// event belongs.
         /// </para>
         /// </summary>
         [AWSProperty(Min=12, Max=12)]

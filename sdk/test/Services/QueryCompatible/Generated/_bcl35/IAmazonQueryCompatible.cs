@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.QueryCompatible.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.QueryCompatible
 {
     /// <summary>
-    /// Interface for accessing QueryCompatible
+    /// <para>Interface for accessing QueryCompatible</para>
     ///
     /// 
     /// </summary>
@@ -81,6 +82,86 @@ namespace Amazon.QueryCompatible
         /// <returns>Returns a  CreateQueueResult from QueryCompatible.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/aws-query-compatible-2012-11-05/CreateQueue">REST API Reference for CreateQueue Operation</seealso>
         CreateQueueResponse EndCreateQueue(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  MemberRefOp
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the MemberRefOp service method.</param>
+        /// 
+        /// <returns>The response from the MemberRefOp service method, as returned by QueryCompatible.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/aws-query-compatible-2012-11-05/MemberRefOp">REST API Reference for MemberRefOp Operation</seealso>
+        MemberRefOpResponse MemberRefOp(MemberRefOpRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the MemberRefOp operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the MemberRefOp operation on AmazonQueryCompatibleClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndMemberRefOp
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/aws-query-compatible-2012-11-05/MemberRefOp">REST API Reference for MemberRefOp Operation</seealso>
+        IAsyncResult BeginMemberRefOp(MemberRefOpRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  MemberRefOp operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginMemberRefOp.</param>
+        /// 
+        /// <returns>Returns a  MemberRefOpResult from QueryCompatible.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/aws-query-compatible-2012-11-05/MemberRefOp">REST API Reference for MemberRefOp Operation</seealso>
+        MemberRefOpResponse EndMemberRefOp(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  StaticOp
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StaticOp service method.</param>
+        /// 
+        /// <returns>The response from the StaticOp service method, as returned by QueryCompatible.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/aws-query-compatible-2012-11-05/StaticOp">REST API Reference for StaticOp Operation</seealso>
+        StaticOpResponse StaticOp(StaticOpRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the StaticOp operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the StaticOp operation on AmazonQueryCompatibleClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndStaticOp
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/aws-query-compatible-2012-11-05/StaticOp">REST API Reference for StaticOp Operation</seealso>
+        IAsyncResult BeginStaticOp(StaticOpRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  StaticOp operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginStaticOp.</param>
+        /// 
+        /// <returns>Returns a  StaticOpResult from QueryCompatible.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/aws-query-compatible-2012-11-05/StaticOp">REST API Reference for StaticOp Operation</seealso>
+        StaticOpResponse EndStaticOp(IAsyncResult asyncResult);
 
         #endregion
         

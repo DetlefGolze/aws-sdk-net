@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectConnect.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.DirectConnect.Model
         private string _authKey;
         private string _awsDeviceV2;
         private string _awsLogicalDeviceId;
-        private List<BGPPeer> _bgpPeers = new List<BGPPeer>();
+        private List<BGPPeer> _bgpPeers = AWSConfigs.InitializeCollections ? new List<BGPPeer>() : null;
         private string _connectionId;
         private string _customerAddress;
         private string _customerRouterConfig;
@@ -50,9 +51,9 @@ namespace Amazon.DirectConnect.Model
         private int? _mtu;
         private string _ownerAccount;
         private string _region;
-        private List<RouteFilterPrefix> _routeFilterPrefixes = new List<RouteFilterPrefix>();
+        private List<RouteFilterPrefix> _routeFilterPrefixes = AWSConfigs.InitializeCollections ? new List<RouteFilterPrefix>() : null;
         private bool? _siteLinkEnabled;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _virtualGatewayId;
         private string _virtualInterfaceId;
         private string _virtualInterfaceName;
@@ -207,7 +208,7 @@ namespace Amazon.DirectConnect.Model
         // Check to see if BgpPeers property is set
         internal bool IsSetBgpPeers()
         {
-            return this._bgpPeers != null && this._bgpPeers.Count > 0; 
+            return this._bgpPeers != null && (this._bgpPeers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -389,7 +390,7 @@ namespace Amazon.DirectConnect.Model
         // Check to see if RouteFilterPrefixes property is set
         internal bool IsSetRouteFilterPrefixes()
         {
-            return this._routeFilterPrefixes != null && this._routeFilterPrefixes.Count > 0; 
+            return this._routeFilterPrefixes != null && (this._routeFilterPrefixes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -426,7 +427,7 @@ namespace Amazon.DirectConnect.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -492,48 +493,47 @@ namespace Amazon.DirectConnect.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>confirming</code>: The creation of the virtual interface is pending confirmation
+        ///  <c>confirming</c>: The creation of the virtual interface is pending confirmation
         /// from the virtual interface owner. If the owner of the virtual interface is different
         /// from the owner of the connection on which it is provisioned, then the virtual interface
         /// will remain in this state until it is confirmed by the virtual interface owner.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>verifying</code>: This state only applies to public virtual interfaces. Each
-        /// public virtual interface needs validation before the virtual interface can be created.
+        ///  <c>verifying</c>: This state only applies to public virtual interfaces. Each public
+        /// virtual interface needs validation before the virtual interface can be created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>pending</code>: A virtual interface is in this state from the time that it
-        /// is created until the virtual interface is ready to forward traffic.
+        ///  <c>pending</c>: A virtual interface is in this state from the time that it is created
+        /// until the virtual interface is ready to forward traffic.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>available</code>: A virtual interface that is able to forward traffic.
+        ///  <c>available</c>: A virtual interface that is able to forward traffic.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>down</code>: A virtual interface that is BGP down.
+        ///  <c>down</c>: A virtual interface that is BGP down.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deleting</code>: A virtual interface is in this state immediately after calling
-        /// <a>DeleteVirtualInterface</a> until it can no longer forward traffic.
+        ///  <c>deleting</c>: A virtual interface is in this state immediately after calling <a>DeleteVirtualInterface</a>
+        /// until it can no longer forward traffic.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deleted</code>: A virtual interface that cannot forward traffic.
+        ///  <c>deleted</c>: A virtual interface that cannot forward traffic.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>rejected</code>: The virtual interface owner has declined creation of the virtual
-        /// interface. If a virtual interface in the <code>Confirming</code> state is deleted
-        /// by the virtual interface owner, the virtual interface enters the <code>Rejected</code>
-        /// state.
+        ///  <c>rejected</c>: The virtual interface owner has declined creation of the virtual
+        /// interface. If a virtual interface in the <c>Confirming</c> state is deleted by the
+        /// virtual interface owner, the virtual interface enters the <c>Rejected</c> state.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>unknown</code>: The state of the virtual interface is not available.
+        ///  <c>unknown</c>: The state of the virtual interface is not available.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -552,7 +552,8 @@ namespace Amazon.DirectConnect.Model
         /// <summary>
         /// Gets and sets the property VirtualInterfaceType. 
         /// <para>
-        /// The type of virtual interface. The possible values are <code>private</code> and <code>public</code>.
+        /// The type of virtual interface. The possible values are <c>private</c>, <c>public</c>
+        /// and <c>transit</c>.
         /// </para>
         /// </summary>
         public string VirtualInterfaceType

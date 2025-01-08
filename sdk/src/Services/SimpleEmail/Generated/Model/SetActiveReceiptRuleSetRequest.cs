@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmail.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.SimpleEmail.Model
     ///  <note> 
     /// <para>
     /// To disable your email-receiving through Amazon SES completely, you can call this operation
-    /// with <code>RuleSetName</code> set to null.
+    /// with <c>RuleSetName</c> set to null.
     /// </para>
     ///  </note> 
     /// <para>

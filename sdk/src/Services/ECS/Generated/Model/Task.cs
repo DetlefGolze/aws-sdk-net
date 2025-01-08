@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -33,24 +34,25 @@ namespace Amazon.ECS.Model
     /// </summary>
     public partial class Task
     {
-        private List<Attachment> _attachments = new List<Attachment>();
-        private List<Attribute> _attributes = new List<Attribute>();
+        private List<Attachment> _attachments = AWSConfigs.InitializeCollections ? new List<Attachment>() : null;
+        private List<Attribute> _attributes = AWSConfigs.InitializeCollections ? new List<Attribute>() : null;
         private string _availabilityZone;
         private string _capacityProviderName;
         private string _clusterArn;
         private Connectivity _connectivity;
         private DateTime? _connectivityAt;
         private string _containerInstanceArn;
-        private List<Container> _containers = new List<Container>();
+        private List<Container> _containers = AWSConfigs.InitializeCollections ? new List<Container>() : null;
         private string _cpu;
         private DateTime? _createdAt;
         private string _desiredStatus;
         private bool? _enableExecuteCommand;
         private EphemeralStorage _ephemeralStorage;
         private DateTime? _executionStoppedAt;
+        private TaskEphemeralStorage _fargateEphemeralStorage;
         private string _group;
         private HealthStatus _healthStatus;
-        private List<InferenceAccelerator> _inferenceAccelerators = new List<InferenceAccelerator>();
+        private List<InferenceAccelerator> _inferenceAccelerators = AWSConfigs.InitializeCollections ? new List<InferenceAccelerator>() : null;
         private string _lastStatus;
         private LaunchType _launchType;
         private string _memory;
@@ -65,7 +67,7 @@ namespace Amazon.ECS.Model
         private DateTime? _stoppedAt;
         private string _stoppedReason;
         private DateTime? _stoppingAt;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _taskArn;
         private string _taskDefinitionArn;
         private long? _version;
@@ -73,7 +75,7 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Attachments. 
         /// <para>
-        /// The Elastic Network Adapter that's associated with the task if the task uses the <code>awsvpc</code>
+        /// The Elastic Network Adapter that's associated with the task if the task uses the <c>awsvpc</c>
         /// network mode.
         /// </para>
         /// </summary>
@@ -86,7 +88,7 @@ namespace Amazon.ECS.Model
         // Check to see if Attachments property is set
         internal bool IsSetAttachments()
         {
-            return this._attachments != null && this._attachments.Count > 0; 
+            return this._attachments != null && (this._attachments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -104,7 +106,7 @@ namespace Amazon.ECS.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -182,8 +184,7 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property ConnectivityAt. 
         /// <para>
-        /// The Unix timestamp for the time when the task last went into <code>CONNECTED</code>
-        /// status.
+        /// The Unix timestamp for the time when the task last went into <c>CONNECTED</c> status.
         /// </para>
         /// </summary>
         public DateTime ConnectivityAt
@@ -231,28 +232,27 @@ namespace Amazon.ECS.Model
         // Check to see if Containers property is set
         internal bool IsSetContainers()
         {
-            return this._containers != null && this._containers.Count > 0; 
+            return this._containers != null && (this._containers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Cpu. 
         /// <para>
         /// The number of CPU units used by the task as expressed in a task definition. It can
-        /// be expressed as an integer using CPU units (for example, <code>1024</code>). It can
-        /// also be expressed as a string using vCPUs (for example, <code>1 vCPU</code> or <code>1
-        /// vcpu</code>). String values are converted to an integer that indicates the CPU units
-        /// when the task definition is registered.
+        /// be expressed as an integer using CPU units (for example, <c>1024</c>). It can also
+        /// be expressed as a string using vCPUs (for example, <c>1 vCPU</c> or <c>1 vcpu</c>).
+        /// String values are converted to an integer that indicates the CPU units when the task
+        /// definition is registered.
         /// </para>
         ///  
         /// <para>
         /// If you use the EC2 launch type, this field is optional. Supported values are between
-        /// <code>128</code> CPU units (<code>0.125</code> vCPUs) and <code>10240</code> CPU units
-        /// (<code>10</code> vCPUs).
+        /// <c>128</c> CPU units (<c>0.125</c> vCPUs) and <c>10240</c> CPU units (<c>10</c> vCPUs).
         /// </para>
         ///  
         /// <para>
         /// If you use the Fargate launch type, this field is required. You must use one of the
-        /// following values. These values determine the range of supported values for the <code>memory</code>
+        /// following values. These values determine the range of supported values for the <c>memory</c>
         /// parameter:
         /// </para>
         ///  
@@ -261,44 +261,44 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// 256 (.25 vCPU) - Available <code>memory</code> values: 512 (0.5 GB), 1024 (1 GB),
-        /// 2048 (2 GB)
+        /// 256 (.25 vCPU) - Available <c>memory</c> values: 512 (0.5 GB), 1024 (1 GB), 2048 (2
+        /// GB)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// 512 (.5 vCPU) - Available <code>memory</code> values: 1024 (1 GB), 2048 (2 GB), 3072
-        /// (3 GB), 4096 (4 GB)
+        /// 512 (.5 vCPU) - Available <c>memory</c> values: 1024 (1 GB), 2048 (2 GB), 3072 (3
+        /// GB), 4096 (4 GB)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// 1024 (1 vCPU) - Available <code>memory</code> values: 2048 (2 GB), 3072 (3 GB), 4096
-        /// (4 GB), 5120 (5 GB), 6144 (6 GB), 7168 (7 GB), 8192 (8 GB)
+        /// 1024 (1 vCPU) - Available <c>memory</c> values: 2048 (2 GB), 3072 (3 GB), 4096 (4
+        /// GB), 5120 (5 GB), 6144 (6 GB), 7168 (7 GB), 8192 (8 GB)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// 2048 (2 vCPU) - Available <code>memory</code> values: 4096 (4 GB) and 16384 (16 GB)
-        /// in increments of 1024 (1 GB)
+        /// 2048 (2 vCPU) - Available <c>memory</c> values: 4096 (4 GB) and 16384 (16 GB) in increments
+        /// of 1024 (1 GB)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// 4096 (4 vCPU) - Available <code>memory</code> values: 8192 (8 GB) and 30720 (30 GB)
-        /// in increments of 1024 (1 GB)
+        /// 4096 (4 vCPU) - Available <c>memory</c> values: 8192 (8 GB) and 30720 (30 GB) in increments
+        /// of 1024 (1 GB)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// 8192 (8 vCPU) - Available <code>memory</code> values: 16 GB and 60 GB in 4 GB increments
+        /// 8192 (8 vCPU) - Available <c>memory</c> values: 16 GB and 60 GB in 4 GB increments
         /// </para>
         ///  
         /// <para>
-        /// This option requires Linux platform <code>1.4.0</code> or later.
+        /// This option requires Linux platform <c>1.4.0</c> or later.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// 16384 (16vCPU) - Available <code>memory</code> values: 32GB and 120 GB in 8 GB increments
+        /// 16384 (16vCPU) - Available <c>memory</c> values: 32GB and 120 GB in 8 GB increments
         /// </para>
         ///  
         /// <para>
-        /// This option requires Linux platform <code>1.4.0</code> or later.
+        /// This option requires Linux platform <c>1.4.0</c> or later.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -318,7 +318,7 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property CreatedAt. 
         /// <para>
         /// The Unix timestamp for the time when the task was created. More specifically, it's
-        /// for the time when the task entered the <code>PENDING</code> state.
+        /// for the time when the task entered the <c>PENDING</c> state.
         /// </para>
         /// </summary>
         public DateTime CreatedAt
@@ -355,7 +355,7 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property EnableExecuteCommand. 
         /// <para>
-        /// Determines whether execute command functionality is turned on for this task. If <code>true</code>,
+        /// Determines whether execute command functionality is turned on for this task. If <c>true</c>,
         /// execute command functionality is turned on all the containers in the task.
         /// </para>
         /// </summary>
@@ -408,6 +408,24 @@ namespace Amazon.ECS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property FargateEphemeralStorage. 
+        /// <para>
+        /// The Fargate ephemeral storage settings for the task.
+        /// </para>
+        /// </summary>
+        public TaskEphemeralStorage FargateEphemeralStorage
+        {
+            get { return this._fargateEphemeralStorage; }
+            set { this._fargateEphemeralStorage = value; }
+        }
+
+        // Check to see if FargateEphemeralStorage property is set
+        internal bool IsSetFargateEphemeralStorage()
+        {
+            return this._fargateEphemeralStorage != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Group. 
         /// <para>
         /// The name of the task group that's associated with the task.
@@ -429,10 +447,10 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property HealthStatus. 
         /// <para>
         /// The health status for the task. It's determined by the health of the essential containers
-        /// in the task. If all essential containers in the task are reporting as <code>HEALTHY</code>,
-        /// the task status also reports as <code>HEALTHY</code>. If any essential containers
-        /// in the task are reporting as <code>UNHEALTHY</code> or <code>UNKNOWN</code>, the task
-        /// status also reports as <code>UNHEALTHY</code> or <code>UNKNOWN</code>.
+        /// in the task. If all essential containers in the task are reporting as <c>HEALTHY</c>,
+        /// the task status also reports as <c>HEALTHY</c>. If any essential containers in the
+        /// task are reporting as <c>UNHEALTHY</c> or <c>UNKNOWN</c>, the task status also reports
+        /// as <c>UNHEALTHY</c> or <c>UNKNOWN</c>.
         /// </para>
         ///  <note> 
         /// <para>
@@ -471,7 +489,7 @@ namespace Amazon.ECS.Model
         // Check to see if InferenceAccelerators property is set
         internal bool IsSetInferenceAccelerators()
         {
-            return this._inferenceAccelerators != null && this._inferenceAccelerators.Count > 0; 
+            return this._inferenceAccelerators != null && (this._inferenceAccelerators.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -516,9 +534,9 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property Memory. 
         /// <para>
         /// The amount of memory (in MiB) that the task uses as expressed in a task definition.
-        /// It can be expressed as an integer using MiB (for example, <code>1024</code>). If it's
-        /// expressed as a string using GB (for example, <code>1GB</code> or <code>1 GB</code>),
-        /// it's converted to an integer indicating the MiB when the task definition is registered.
+        /// It can be expressed as an integer using MiB (for example, <c>1024</c>). If it's expressed
+        /// as a string using GB (for example, <c>1GB</c> or <c>1 GB</c>), it's converted to an
+        /// integer indicating the MiB when the task definition is registered.
         /// </para>
         ///  
         /// <para>
@@ -528,50 +546,49 @@ namespace Amazon.ECS.Model
         /// <para>
         /// If you use the Fargate launch type, this field is required. You must use one of the
         /// following values. The value that you choose determines the range of supported values
-        /// for the <code>cpu</code> parameter.
+        /// for the <c>cpu</c> parameter.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// 512 (0.5 GB), 1024 (1 GB), 2048 (2 GB) - Available <code>cpu</code> values: 256 (.25
-        /// vCPU)
+        /// 512 (0.5 GB), 1024 (1 GB), 2048 (2 GB) - Available <c>cpu</c> values: 256 (.25 vCPU)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// 1024 (1 GB), 2048 (2 GB), 3072 (3 GB), 4096 (4 GB) - Available <code>cpu</code> values:
+        /// 1024 (1 GB), 2048 (2 GB), 3072 (3 GB), 4096 (4 GB) - Available <c>cpu</c> values:
         /// 512 (.5 vCPU)
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// 2048 (2 GB), 3072 (3 GB), 4096 (4 GB), 5120 (5 GB), 6144 (6 GB), 7168 (7 GB), 8192
-        /// (8 GB) - Available <code>cpu</code> values: 1024 (1 vCPU)
+        /// (8 GB) - Available <c>cpu</c> values: 1024 (1 vCPU)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Between 4096 (4 GB) and 16384 (16 GB) in increments of 1024 (1 GB) - Available <code>cpu</code>
+        /// Between 4096 (4 GB) and 16384 (16 GB) in increments of 1024 (1 GB) - Available <c>cpu</c>
         /// values: 2048 (2 vCPU)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Between 8192 (8 GB) and 30720 (30 GB) in increments of 1024 (1 GB) - Available <code>cpu</code>
+        /// Between 8192 (8 GB) and 30720 (30 GB) in increments of 1024 (1 GB) - Available <c>cpu</c>
         /// values: 4096 (4 vCPU)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Between 16 GB and 60 GB in 4 GB increments - Available <code>cpu</code> values: 8192
-        /// (8 vCPU)
+        /// Between 16 GB and 60 GB in 4 GB increments - Available <c>cpu</c> values: 8192 (8
+        /// vCPU)
         /// </para>
         ///  
         /// <para>
-        /// This option requires Linux platform <code>1.4.0</code> or later.
+        /// This option requires Linux platform <c>1.4.0</c> or later.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Between 32GB and 120 GB in 8 GB increments - Available <code>cpu</code> values: 16384
-        /// (16 vCPU)
+        /// Between 32GB and 120 GB in 8 GB increments - Available <c>cpu</c> values: 16384 (16
+        /// vCPU)
         /// </para>
         ///  
         /// <para>
-        /// This option requires Linux platform <code>1.4.0</code> or later.
+        /// This option requires Linux platform <c>1.4.0</c> or later.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -613,8 +630,8 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  
         /// <para>
-        ///  All tasks that run as part of this service must use the same <code>platformFamily</code>
-        /// value as the service (for example, <code>LINUX.</code>).
+        ///  All tasks that run as part of this service must use the same <c>platformFamily</c>
+        /// value as the service (for example, <c>LINUX.</c>).
         /// </para>
         /// </summary>
         public string PlatformFamily
@@ -633,7 +650,7 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property PlatformVersion. 
         /// <para>
         /// The platform version where your task runs on. A platform version is only specified
-        /// for tasks that use the Fargate launch type. If you didn't specify one, the <code>LATEST</code>
+        /// for tasks that use the Fargate launch type. If you didn't specify one, the <c>LATEST</c>
         /// platform version is used. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html">Fargate
         /// Platform Versions</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
         /// </para>
@@ -690,7 +707,7 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property StartedAt. 
         /// <para>
         /// The Unix timestamp for the time when the task started. More specifically, it's for
-        /// the time when the task transitioned from the <code>PENDING</code> state to the <code>RUNNING</code>
+        /// the time when the task transitioned from the <c>PENDING</c> state to the <c>RUNNING</c>
         /// state.
         /// </para>
         /// </summary>
@@ -710,7 +727,7 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property StartedBy. 
         /// <para>
         /// The tag specified when a task is started. If an Amazon ECS service started the task,
-        /// the <code>startedBy</code> parameter contains the deployment ID of that service.
+        /// the <c>startedBy</c> parameter contains the deployment ID of that service.
         /// </para>
         /// </summary>
         public string StartedBy
@@ -728,43 +745,14 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property StopCode. 
         /// <para>
-        /// The stop code indicating why a task was stopped. The <code>stoppedReason</code> might
-        /// contain additional details. 
+        /// The stop code indicating why a task was stopped. The <c>stoppedReason</c> might contain
+        /// additional details. 
         /// </para>
         ///  
         /// <para>
-        /// For more information about stop code, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/userguide/stopped-task-error-codes.html">Stopped
-        /// tasks error codes</a> in the <i>Amazon ECS User Guide</i>.
+        /// For more information about stop code, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/stopped-task-error-codes.html">Stopped
+        /// tasks error codes</a> in the <i>Amazon ECS Developer Guide</i>.
         /// </para>
-        ///  
-        /// <para>
-        /// The following are valid values:
-        /// </para>
-        ///  <ul> <li> 
-        /// <para>
-        ///  <code>TaskFailedToStart</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>EssentialContainerExited</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>UserInitiated</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>TerminationNotice</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>ServiceSchedulerInitiated</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>SpotInterruption</code> 
-        /// </para>
-        ///  </li> </ul>
         /// </summary>
         public TaskStopCode StopCode
         {
@@ -782,8 +770,8 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property StoppedAt. 
         /// <para>
         /// The Unix timestamp for the time when the task was stopped. More specifically, it's
-        /// for the time when the task transitioned from the <code>RUNNING</code> state to the
-        /// <code>STOPPED</code> state.
+        /// for the time when the task transitioned from the <c>RUNNING</c> state to the <c>STOPPED</c>
+        /// state.
         /// </para>
         /// </summary>
         public DateTime StoppedAt
@@ -820,7 +808,7 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property StoppingAt. 
         /// <para>
         /// The Unix timestamp for the time when the task stops. More specifically, it's for the
-        /// time when the task transitions from the <code>RUNNING</code> state to <code>STOPPING</code>.
+        /// time when the task transitions from the <c>RUNNING</c> state to <c>STOPPING</c>.
         /// </para>
         /// </summary>
         public DateTime StoppingAt
@@ -875,10 +863,10 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Do not use <code>aws:</code>, <code>AWS:</code>, or any upper or lowercase combination
-        /// of such as a prefix for either keys or values as it is reserved for Amazon Web Services
-        /// use. You cannot edit or delete tag keys or values with this prefix. Tags with this
-        /// prefix do not count against your tags per resource limit.
+        /// Do not use <c>aws:</c>, <c>AWS:</c>, or any upper or lowercase combination of such
+        /// as a prefix for either keys or values as it is reserved for Amazon Web Services use.
+        /// You cannot edit or delete tag keys or values with this prefix. Tags with this prefix
+        /// do not count against your tags per resource limit.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -892,7 +880,7 @@ namespace Amazon.ECS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -938,8 +926,8 @@ namespace Amazon.ECS.Model
         /// a CloudWatch event, the version counter is incremented. If you replicate your Amazon
         /// ECS task state with CloudWatch Events, you can compare the version of a task reported
         /// by the Amazon ECS API actions with the version reported in CloudWatch Events for the
-        /// task (inside the <code>detail</code> object) to verify that the version in your event
-        /// stream is current.
+        /// task (inside the <c>detail</c> object) to verify that the version in your event stream
+        /// is current.
         /// </para>
         /// </summary>
         public long Version

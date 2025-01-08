@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.Comprehend.Model
         private PiiEntitiesDetectionMode _mode;
         private OutputDataConfig _outputDataConfig;
         private RedactionConfig _redactionConfig;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
@@ -125,7 +126,8 @@ namespace Amazon.Comprehend.Model
         /// <summary>
         /// Gets and sets the property LanguageCode. 
         /// <para>
-        /// The language of the input documents. Currently, English is the only valid language.
+        /// The language of the input documents. Enter the language code for English (en) or Spanish
+        /// (es).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -187,9 +189,9 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  
         /// <para>
-        /// This parameter is required if you set the <code>Mode</code> parameter to <code>ONLY_REDACTION</code>.
-        /// In that case, you must provide a <code>RedactionConfig</code> definition that includes
-        /// the <code>PiiEntityTypes</code> parameter.
+        /// This parameter is required if you set the <c>Mode</c> parameter to <c>ONLY_REDACTION</c>.
+        /// In that case, you must provide a <c>RedactionConfig</c> definition that includes the
+        /// <c>PiiEntityTypes</c> parameter.
         /// </para>
         /// </summary>
         public RedactionConfig RedactionConfig
@@ -221,7 +223,7 @@ namespace Amazon.Comprehend.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

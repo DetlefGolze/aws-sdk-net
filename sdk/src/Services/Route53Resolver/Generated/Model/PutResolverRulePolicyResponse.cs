@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
-    /// The response to a <code>PutResolverRulePolicy</code> request.
+    /// The response to a <c>PutResolverRulePolicy</c> request.
     /// </summary>
     public partial class PutResolverRulePolicyResponse : AmazonWebServiceResponse
     {
@@ -38,7 +39,7 @@ namespace Amazon.Route53Resolver.Model
         /// <summary>
         /// Gets and sets the property ReturnValue. 
         /// <para>
-        /// Whether the <code>PutResolverRulePolicy</code> request was successful.
+        /// Whether the <c>PutResolverRulePolicy</c> request was successful.
         /// </para>
         /// </summary>
         public bool ReturnValue

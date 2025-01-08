@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RedshiftServerless.Model
 {
     /// <summary>
@@ -36,11 +37,27 @@ namespace Amazon.RedshiftServerless.Model
         }
 
         /// <summary>
+        /// Paginator for ListCustomDomainAssociations operation
+        ///</summary>
+        public IListCustomDomainAssociationsPaginator ListCustomDomainAssociations(ListCustomDomainAssociationsRequest request) 
+        {
+            return new ListCustomDomainAssociationsPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListEndpointAccess operation
         ///</summary>
         public IListEndpointAccessPaginator ListEndpointAccess(ListEndpointAccessRequest request) 
         {
             return new ListEndpointAccessPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListManagedWorkgroups operation
+        ///</summary>
+        public IListManagedWorkgroupsPaginator ListManagedWorkgroups(ListManagedWorkgroupsRequest request) 
+        {
+            return new ListManagedWorkgroupsPaginator(this.client, request);
         }
 
         /// <summary>
@@ -57,6 +74,22 @@ namespace Amazon.RedshiftServerless.Model
         public IListRecoveryPointsPaginator ListRecoveryPoints(ListRecoveryPointsRequest request) 
         {
             return new ListRecoveryPointsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListScheduledActions operation
+        ///</summary>
+        public IListScheduledActionsPaginator ListScheduledActions(ListScheduledActionsRequest request) 
+        {
+            return new ListScheduledActionsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListSnapshotCopyConfigurations operation
+        ///</summary>
+        public IListSnapshotCopyConfigurationsPaginator ListSnapshotCopyConfigurations(ListSnapshotCopyConfigurationsRequest request) 
+        {
+            return new ListSnapshotCopyConfigurationsPaginator(this.client, request);
         }
 
         /// <summary>

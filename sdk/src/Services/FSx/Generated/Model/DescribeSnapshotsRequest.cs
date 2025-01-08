@@ -26,29 +26,30 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeSnapshots operation.
-    /// Returns the description of specific Amazon FSx for OpenZFS snapshots, if a <code>SnapshotIds</code>
+    /// Returns the description of specific Amazon FSx for OpenZFS snapshots, if a <c>SnapshotIds</c>
     /// value is provided. Otherwise, this operation returns all snapshots owned by your Amazon
     /// Web Services account in the Amazon Web Services Region of the endpoint that you're
     /// calling.
     /// 
     ///  
     /// <para>
-    /// When retrieving all snapshots, you can optionally specify the <code>MaxResults</code>
-    /// parameter to limit the number of snapshots in a response. If more backups remain,
-    /// Amazon FSx returns a <code>NextToken</code> value in the response. In this case, send
-    /// a later request with the <code>NextToken</code> request parameter set to the value
-    /// of <code>NextToken</code> from the last response. 
+    /// When retrieving all snapshots, you can optionally specify the <c>MaxResults</c> parameter
+    /// to limit the number of snapshots in a response. If more backups remain, Amazon FSx
+    /// returns a <c>NextToken</c> value in the response. In this case, send a later request
+    /// with the <c>NextToken</c> request parameter set to the value of <c>NextToken</c> from
+    /// the last response. 
     /// </para>
     ///  
     /// <para>
-    /// Use this operation in an iterative process to retrieve a list of your snapshots. <code>DescribeSnapshots</code>
-    /// is called first without a <code>NextToken</code> value. Then the operation continues
-    /// to be called with the <code>NextToken</code> parameter set to the value of the last
-    /// <code>NextToken</code> value until a response has no <code>NextToken</code> value.
+    /// Use this operation in an iterative process to retrieve a list of your snapshots. <c>DescribeSnapshots</c>
+    /// is called first without a <c>NextToken</c> value. Then the operation continues to
+    /// be called with the <c>NextToken</c> parameter set to the value of the last <c>NextToken</c>
+    /// value until a response has no <c>NextToken</c> value.
     /// </para>
     ///  
     /// <para>
@@ -56,28 +57,29 @@ namespace Amazon.FSx.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// The operation might return fewer than the <code>MaxResults</code> value of snapshot
-    /// descriptions while still including a <code>NextToken</code> value.
+    /// The operation might return fewer than the <c>MaxResults</c> value of snapshot descriptions
+    /// while still including a <c>NextToken</c> value.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// The order of snapshots returned in the response of one <code>DescribeSnapshots</code>
-    /// call and the order of backups returned across the responses of a multi-call iteration
-    /// is unspecified. 
+    /// The order of snapshots returned in the response of one <c>DescribeSnapshots</c> call
+    /// and the order of backups returned across the responses of a multi-call iteration is
+    /// unspecified. 
     /// </para>
     ///  </li> </ul>
     /// </summary>
     public partial class DescribeSnapshotsRequest : AmazonFSxRequest
     {
-        private List<SnapshotFilter> _filters = new List<SnapshotFilter>();
+        private List<SnapshotFilter> _filters = AWSConfigs.InitializeCollections ? new List<SnapshotFilter>() : null;
+        private bool? _includeShared;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _snapshotIds = new List<string>();
+        private List<string> _snapshotIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// The filters structure. The supported names are <code>file-system-id</code> or <code>volume-id</code>.
+        /// The filters structure. The supported names are <c>file-system-id</c> or <c>volume-id</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=2)]
@@ -90,7 +92,27 @@ namespace Amazon.FSx.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property IncludeShared. 
+        /// <para>
+        /// Set to <c>false</c> (default) if you want to only see the snapshots owned by your
+        /// Amazon Web Services account. Set to <c>true</c> if you want to see the snapshots in
+        /// your account and the ones shared with you from another account.
+        /// </para>
+        /// </summary>
+        public bool IncludeShared
+        {
+            get { return this._includeShared.GetValueOrDefault(); }
+            set { this._includeShared = value; }
+        }
+
+        // Check to see if IncludeShared property is set
+        internal bool IsSetIncludeShared()
+        {
+            return this._includeShared.HasValue; 
         }
 
         /// <summary>
@@ -129,7 +151,7 @@ namespace Amazon.FSx.Model
         /// Gets and sets the property SnapshotIds. 
         /// <para>
         /// The IDs of the snapshots that you want to retrieve. This parameter value overrides
-        /// any filters. If any IDs aren't found, a <code>SnapshotNotFound</code> error occurs.
+        /// any filters. If any IDs aren't found, a <c>SnapshotNotFound</c> error occurs.
         /// </para>
         /// </summary>
         [AWSProperty(Max=50)]
@@ -142,7 +164,7 @@ namespace Amazon.FSx.Model
         // Check to see if SnapshotIds property is set
         internal bool IsSetSnapshotIds()
         {
-            return this._snapshotIds != null && this._snapshotIds.Count > 0; 
+            return this._snapshotIds != null && (this._snapshotIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

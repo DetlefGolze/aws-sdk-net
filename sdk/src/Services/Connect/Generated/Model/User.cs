@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -38,10 +39,12 @@ namespace Amazon.Connect.Model
         private string _hierarchyGroupId;
         private string _id;
         private UserIdentityInfo _identityInfo;
+        private string _lastModifiedRegion;
+        private DateTime? _lastModifiedTime;
         private UserPhoneConfig _phoneConfig;
         private string _routingProfileId;
-        private List<string> _securityProfileIds = new List<string>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private List<string> _securityProfileIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _username;
 
         /// <summary>
@@ -135,6 +138,42 @@ namespace Amazon.Connect.Model
         }
 
         /// <summary>
+        /// Gets and sets the property LastModifiedRegion. 
+        /// <para>
+        /// The Amazon Web Services Region where this resource was last modified.
+        /// </para>
+        /// </summary>
+        public string LastModifiedRegion
+        {
+            get { return this._lastModifiedRegion; }
+            set { this._lastModifiedRegion = value; }
+        }
+
+        // Check to see if LastModifiedRegion property is set
+        internal bool IsSetLastModifiedRegion()
+        {
+            return this._lastModifiedRegion != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property LastModifiedTime. 
+        /// <para>
+        /// The timestamp when this resource was last modified.
+        /// </para>
+        /// </summary>
+        public DateTime LastModifiedTime
+        {
+            get { return this._lastModifiedTime.GetValueOrDefault(); }
+            set { this._lastModifiedTime = value; }
+        }
+
+        // Check to see if LastModifiedTime property is set
+        internal bool IsSetLastModifiedTime()
+        {
+            return this._lastModifiedTime.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property PhoneConfig. 
         /// <para>
         /// Information about the phone configuration for the user.
@@ -186,7 +225,7 @@ namespace Amazon.Connect.Model
         // Check to see if SecurityProfileIds property is set
         internal bool IsSetSecurityProfileIds()
         {
-            return this._securityProfileIds != null && this._securityProfileIds.Count > 0; 
+            return this._securityProfileIds != null && (this._securityProfileIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -205,7 +244,7 @@ namespace Amazon.Connect.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMakerRuntime.Model
 {
     /// <summary>
@@ -34,9 +35,11 @@ namespace Amazon.SageMakerRuntime.Model
     public partial class InvokeEndpointResponse : AmazonWebServiceResponse
     {
         private MemoryStream _body;
+        private string _closedSessionId;
         private string _contentType;
         private string _customAttributes;
         private string _invokedProductionVariant;
+        private string _newSessionId;
 
         /// <summary>
         /// Gets and sets the property Body. 
@@ -69,6 +72,25 @@ namespace Amazon.SageMakerRuntime.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ClosedSessionId. 
+        /// <para>
+        /// If you closed a stateful session with your request, the ID of that session.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=256)]
+        public string ClosedSessionId
+        {
+            get { return this._closedSessionId; }
+            set { this._closedSessionId = value; }
+        }
+
+        // Check to see if ClosedSessionId property is set
+        internal bool IsSetClosedSessionId()
+        {
+            return !string.IsNullOrEmpty(this._closedSessionId);
+        }
+
+        /// <summary>
         /// Gets and sets the property ContentType. 
         /// <para>
         /// The MIME type of the inference returned from the model container.
@@ -84,7 +106,7 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if ContentType property is set
         internal bool IsSetContentType()
         {
-            return this._contentType != null;
+            return !string.IsNullOrEmpty(this._contentType);
         }
 
         /// <summary>
@@ -93,9 +115,9 @@ namespace Amazon.SageMakerRuntime.Model
         /// Provides additional information in the response about the inference returned by a
         /// model hosted at an Amazon SageMaker endpoint. The information is an opaque value that
         /// is forwarded verbatim. You could use this value, for example, to return an ID received
-        /// in the <code>CustomAttributes</code> header of a request or other metadata that a
-        /// service endpoint was programmed to produce. The value must consist of no more than
-        /// 1024 visible US-ASCII characters as specified in <a href="https://tools.ietf.org/html/rfc7230#section-3.2.6">Section
+        /// in the <c>CustomAttributes</c> header of a request or other metadata that a service
+        /// endpoint was programmed to produce. The value must consist of no more than 1024 visible
+        /// US-ASCII characters as specified in <a href="https://tools.ietf.org/html/rfc7230#section-3.2.6">Section
         /// 3.3.6. Field Value Components</a> of the Hypertext Transfer Protocol (HTTP/1.1). If
         /// the customer wants the custom attribute returned, the model must set the custom attribute
         /// to be included on the way back. 
@@ -105,8 +127,7 @@ namespace Amazon.SageMakerRuntime.Model
         /// The code in your model is responsible for setting or updating any custom attributes
         /// in the response. If your code does not set this value in the response, an empty value
         /// is returned. For example, if a custom attribute represents the trace ID, your model
-        /// can prepend the custom attribute with <code>Trace ID:</code> in your post-processing
-        /// function.
+        /// can prepend the custom attribute with <c>Trace ID:</c> in your post-processing function.
         /// </para>
         ///  
         /// <para>
@@ -124,7 +145,7 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if CustomAttributes property is set
         internal bool IsSetCustomAttributes()
         {
-            return this._customAttributes != null;
+            return !string.IsNullOrEmpty(this._customAttributes);
         }
 
         /// <summary>
@@ -143,7 +164,27 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if InvokedProductionVariant property is set
         internal bool IsSetInvokedProductionVariant()
         {
-            return this._invokedProductionVariant != null;
+            return !string.IsNullOrEmpty(this._invokedProductionVariant);
+        }
+
+        /// <summary>
+        /// Gets and sets the property NewSessionId. 
+        /// <para>
+        /// If you created a stateful session with your request, the ID and expiration time that
+        /// the model assigns to that session.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=256)]
+        public string NewSessionId
+        {
+            get { return this._newSessionId; }
+            set { this._newSessionId = value; }
+        }
+
+        // Check to see if NewSessionId property is set
+        internal bool IsSetNewSessionId()
+        {
+            return !string.IsNullOrEmpty(this._newSessionId);
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property VerifiedAccessInstance. 
         /// <para>
-        /// The ID of the Verified Access instance.
+        /// Details about the Verified Access instance.
         /// </para>
         /// </summary>
         public VerifiedAccessInstance VerifiedAccessInstance
@@ -57,7 +58,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property VerifiedAccessTrustProvider. 
         /// <para>
-        /// The ID of the Verified Access trust provider.
+        /// Details about the Verified Access trust provider.
         /// </para>
         /// </summary>
         public VerifiedAccessTrustProvider VerifiedAccessTrustProvider

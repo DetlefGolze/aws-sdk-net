@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MarketplaceCatalog.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.MarketplaceCatalog.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetCatalog())
@@ -75,6 +77,28 @@ namespace Amazon.MarketplaceCatalog.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("EntityType");
                     context.Writer.Write(publicRequest.EntityType);
+                }
+
+                if(publicRequest.IsSetEntityTypeFilters())
+                {
+                    context.Writer.WritePropertyName("EntityTypeFilters");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = EntityTypeFiltersMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.EntityTypeFilters, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetEntityTypeSort())
+                {
+                    context.Writer.WritePropertyName("EntityTypeSort");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = EntityTypeSortMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.EntityTypeSort, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetFilterList())

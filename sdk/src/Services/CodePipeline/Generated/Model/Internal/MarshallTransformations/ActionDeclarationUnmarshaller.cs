@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ActionDeclaration Unmarshall(JsonUnmarshallerContext context)
         {
+            ActionDeclaration unmarshalledObject = new ActionDeclaration();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ActionDeclaration unmarshalledObject = new ActionDeclaration();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -68,6 +70,12 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = ActionTypeIdUnmarshaller.Instance;
                     unmarshalledObject.ActionTypeId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("commands", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
+                    unmarshalledObject.Commands = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("configuration", targetDepth))
@@ -100,6 +108,12 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
                     unmarshalledObject.OutputArtifacts = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("outputVariables", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
+                    unmarshalledObject.OutputVariables = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("region", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -118,8 +132,13 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
                     unmarshalledObject.RunOrder = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("timeoutInMinutes", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.TimeoutInMinutes = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

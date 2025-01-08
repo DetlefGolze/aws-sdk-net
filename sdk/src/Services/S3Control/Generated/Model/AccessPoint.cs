@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -140,11 +141,11 @@ namespace Amazon.S3Control.Model
         /// <summary>
         /// Gets and sets the property NetworkOrigin. 
         /// <para>
-        /// Indicates whether this access point allows access from the public internet. If <code>VpcConfiguration</code>
-        /// is specified for this access point, then <code>NetworkOrigin</code> is <code>VPC</code>,
-        /// and the access point doesn't allow access from the public internet. Otherwise, <code>NetworkOrigin</code>
-        /// is <code>Internet</code>, and the access point allows access from the public internet,
-        /// subject to the access point and bucket access policies.
+        /// Indicates whether this access point allows access from the public internet. If <c>VpcConfiguration</c>
+        /// is specified for this access point, then <c>NetworkOrigin</c> is <c>VPC</c>, and the
+        /// access point doesn't allow access from the public internet. Otherwise, <c>NetworkOrigin</c>
+        /// is <c>Internet</c>, and the access point allows access from the public internet, subject
+        /// to the access point and bucket access policies.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -168,7 +169,7 @@ namespace Amazon.S3Control.Model
         ///  <note> 
         /// <para>
         /// This element is empty if this access point is an Amazon S3 on Outposts access point
-        /// that is used by other Amazon Web Services.
+        /// that is used by other Amazon Web Services services.
         /// </para>
         ///  </note>
         /// </summary>

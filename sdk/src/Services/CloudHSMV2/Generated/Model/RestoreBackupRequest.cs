@@ -26,12 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudHSMV2.Model
 {
     /// <summary>
     /// Container for the parameters to the RestoreBackup operation.
-    /// Restores a specified AWS CloudHSM backup that is in the <code>PENDING_DELETION</code>
-    /// state. For mor information on deleting a backup, see <a>DeleteBackup</a>.
+    /// Restores a specified CloudHSM backup that is in the <c>PENDING_DELETION</c> state.
+    /// For more information on deleting a backup, see <a>DeleteBackup</a>.
+    /// 
+    ///  
+    /// <para>
+    ///  <b>Cross-account use:</b> No. You cannot perform this operation on an CloudHSM backup
+    /// in a different Amazon Web Services account.
+    /// </para>
     /// </summary>
     public partial class RestoreBackupRequest : AmazonCloudHSMV2Request
     {

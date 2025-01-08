@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
     /// Container for the parameters to the ListBackups operation.
     /// List DynamoDB backups that are associated with an Amazon Web Services account and
     /// weren't made with Amazon Web Services Backup. To list these backups for a given table,
-    /// specify <code>TableName</code>. <code>ListBackups</code> returns a paginated list
-    /// of results with at most 1 MB worth of items in a page. You can also specify a maximum
-    /// number of entries to be returned in a page.
+    /// specify <c>TableName</c>. <c>ListBackups</c> returns a paginated list of results with
+    /// at most 1 MB worth of items in a page. You can also specify a maximum number of entries
+    /// to be returned in a page.
     /// 
     ///  
     /// <para>
@@ -43,7 +44,7 @@ namespace Amazon.DynamoDBv2.Model
     /// </para>
     ///  
     /// <para>
-    /// You can call <code>ListBackups</code> a maximum of five times per second.
+    /// You can call <c>ListBackups</c> a maximum of five times per second.
     /// </para>
     ///  
     /// <para>
@@ -64,24 +65,24 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property BackupType. 
         /// <para>
-        /// The backups from the table specified by <code>BackupType</code> are listed.
+        /// The backups from the table specified by <c>BackupType</c> are listed.
         /// </para>
         ///  
         /// <para>
-        /// Where <code>BackupType</code> can be:
+        /// Where <c>BackupType</c> can be:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>USER</code> - On-demand backup created by you. (The default setting if no other
-        /// backup types are specified.)
+        ///  <c>USER</c> - On-demand backup created by you. (The default setting if no other backup
+        /// types are specified.)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SYSTEM</code> - On-demand backup automatically created by DynamoDB.
+        ///  <c>SYSTEM</c> - On-demand backup automatically created by DynamoDB.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ALL</code> - All types of on-demand backups (USER and SYSTEM).
+        ///  <c>ALL</c> - All types of on-demand backups (USER and SYSTEM).
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -100,10 +101,10 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property ExclusiveStartBackupArn. 
         /// <para>
-        ///  <code>LastEvaluatedBackupArn</code> is the Amazon Resource Name (ARN) of the backup
-        /// last evaluated when the current page of results was returned, inclusive of the current
-        /// page of results. This value may be specified as the <code>ExclusiveStartBackupArn</code>
-        /// of a new <code>ListBackups</code> operation in order to fetch the next page of results.
+        ///  <c>LastEvaluatedBackupArn</c> is the Amazon Resource Name (ARN) of the backup last
+        /// evaluated when the current page of results was returned, inclusive of the current
+        /// page of results. This value may be specified as the <c>ExclusiveStartBackupArn</c>
+        /// of a new <c>ListBackups</c> operation in order to fetch the next page of results.
         /// 
         /// </para>
         /// </summary>
@@ -142,10 +143,11 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property TableName. 
         /// <para>
-        /// The backups from the table specified by <code>TableName</code> are listed. 
+        /// Lists the backups from the table specified in <c>TableName</c>. You can also provide
+        /// the Amazon Resource Name (ARN) of the table in this parameter.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=3, Max=255)]
+        [AWSProperty(Min=1, Max=1024)]
         public string TableName
         {
             get { return this._tableName; }
@@ -161,8 +163,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property TimeRangeLowerBound. 
         /// <para>
-        /// Only backups created after this time are listed. <code>TimeRangeLowerBound</code>
-        /// is inclusive.
+        /// Only backups created after this time are listed. <c>TimeRangeLowerBound</c> is inclusive.
         /// </para>
         /// </summary>
         public DateTime TimeRangeLowerBound
@@ -180,8 +181,8 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property TimeRangeUpperBound. 
         /// <para>
-        /// Only backups created before this time are listed. <code>TimeRangeUpperBound</code>
-        /// is exclusive. 
+        /// Only backups created before this time are listed. <c>TimeRangeUpperBound</c> is exclusive.
+        /// 
         /// </para>
         /// </summary>
         public DateTime TimeRangeUpperBound

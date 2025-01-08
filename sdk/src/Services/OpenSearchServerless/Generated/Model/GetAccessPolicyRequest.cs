@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchServerless.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.OpenSearchServerless.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// Tye type of policy. Currently the only supported value is <code>data</code>.
+        /// Tye type of policy. Currently, the only supported value is <c>data</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

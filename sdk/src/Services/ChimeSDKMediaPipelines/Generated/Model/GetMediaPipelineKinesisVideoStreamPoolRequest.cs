@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMediaPipelines.Model
 {
     /// <summary>
@@ -39,7 +40,8 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         /// <summary>
         /// Gets and sets the property Identifier. 
         /// <para>
-        /// The ID of the video stream pool.
+        /// The unique identifier of the requested resource. Valid values include the name and
+        /// ARN of the media pipeline Kinesis Video Stream pool.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=1024)]

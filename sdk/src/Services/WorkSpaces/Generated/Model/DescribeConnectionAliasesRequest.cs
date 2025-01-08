@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.WorkSpaces.Model
     /// </summary>
     public partial class DescribeConnectionAliasesRequest : AmazonWorkSpacesRequest
     {
-        private List<string> _aliasIds = new List<string>();
+        private List<string> _aliasIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _limit;
         private string _nextToken;
         private string _resourceId;
@@ -57,7 +58,7 @@ namespace Amazon.WorkSpaces.Model
         // Check to see if AliasIds property is set
         internal bool IsSetAliasIds()
         {
-            return this._aliasIds != null && this._aliasIds.Count > 0; 
+            return this._aliasIds != null && (this._aliasIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -82,8 +83,8 @@ namespace Amazon.WorkSpaces.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If you received a <code>NextToken</code> from a previous call that was paginated,
-        /// provide this token to receive the next set of results. 
+        /// If you received a <c>NextToken</c> from a previous call that was paginated, provide
+        /// this token to receive the next set of results. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

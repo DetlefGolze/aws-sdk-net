@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BillingConductor.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.BillingConductor.Model
     /// </summary>
     public partial class BatchAssociateResourcesToCustomLineItemResponse : AmazonWebServiceResponse
     {
-        private List<AssociateResourceResponseElement> _failedAssociatedResources = new List<AssociateResourceResponseElement>();
-        private List<AssociateResourceResponseElement> _successfullyAssociatedResources = new List<AssociateResourceResponseElement>();
+        private List<AssociateResourceResponseElement> _failedAssociatedResources = AWSConfigs.InitializeCollections ? new List<AssociateResourceResponseElement>() : null;
+        private List<AssociateResourceResponseElement> _successfullyAssociatedResources = AWSConfigs.InitializeCollections ? new List<AssociateResourceResponseElement>() : null;
 
         /// <summary>
         /// Gets and sets the property FailedAssociatedResources. 
         /// <para>
-        ///  A list of <code>AssociateResourceResponseElement</code> for each resource that failed
-        /// association to a percentage custom line item. 
+        ///  A list of <c>AssociateResourceResponseElement</c> for each resource that failed association
+        /// to a percentage custom line item. 
         /// </para>
         /// </summary>
         public List<AssociateResourceResponseElement> FailedAssociatedResources
@@ -52,14 +53,14 @@ namespace Amazon.BillingConductor.Model
         // Check to see if FailedAssociatedResources property is set
         internal bool IsSetFailedAssociatedResources()
         {
-            return this._failedAssociatedResources != null && this._failedAssociatedResources.Count > 0; 
+            return this._failedAssociatedResources != null && (this._failedAssociatedResources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SuccessfullyAssociatedResources. 
         /// <para>
-        ///  A list of <code>AssociateResourceResponseElement</code> for each resource that's
-        /// been associated to a percentage custom line item successfully. 
+        ///  A list of <c>AssociateResourceResponseElement</c> for each resource that's been associated
+        /// to a percentage custom line item successfully. 
         /// </para>
         /// </summary>
         public List<AssociateResourceResponseElement> SuccessfullyAssociatedResources
@@ -71,7 +72,7 @@ namespace Amazon.BillingConductor.Model
         // Check to see if SuccessfullyAssociatedResources property is set
         internal bool IsSetSuccessfullyAssociatedResources()
         {
-            return this._successfullyAssociatedResources != null && this._successfullyAssociatedResources.Count > 0; 
+            return this._successfullyAssociatedResources != null && (this._successfullyAssociatedResources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,18 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateLocationObjectStorage operation.
-    /// Creates an endpoint for an object storage system that DataSync can access for a transfer.
-    /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html">Creating
-    /// a location for object storage</a>.
+    /// Creates a transfer <i>location</i> for an object storage system. DataSync can use
+    /// this location as a source or destination for transferring data.
+    /// 
+    ///  
+    /// <para>
+    /// Before you begin, make sure that you understand the <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html#create-object-location-prerequisites">prerequisites</a>
+    /// for DataSync to work with object storage systems.
+    /// </para>
     /// </summary>
     public partial class CreateLocationObjectStorageRequest : AmazonDataSyncRequest
     {
         private string _accessKey;
-        private List<string> _agentArns = new List<string>();
+        private List<string> _agentArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _bucketName;
         private string _secretKey;
         private MemoryStream _serverCertificate;
@@ -45,7 +51,7 @@ namespace Amazon.DataSync.Model
         private int? _serverPort;
         private ObjectStorageServerProtocol _serverProtocol;
         private string _subdirectory;
-        private List<TagListEntry> _tags = new List<TagListEntry>();
+        private List<TagListEntry> _tags = AWSConfigs.InitializeCollections ? new List<TagListEntry>() : null;
 
         /// <summary>
         /// Gets and sets the property AccessKey. 
@@ -54,7 +60,7 @@ namespace Amazon.DataSync.Model
         /// authenticate with the object storage server.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=200)]
+        [AWSProperty(Min=0, Max=200)]
         public string AccessKey
         {
             get { return this._accessKey; }
@@ -70,8 +76,8 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property AgentArns. 
         /// <para>
-        /// Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can securely
-        /// connect with your location.
+        /// Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can connect
+        /// with your object storage system.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=4)]
@@ -84,7 +90,7 @@ namespace Amazon.DataSync.Model
         // Check to see if AgentArns property is set
         internal bool IsSetAgentArns()
         {
-            return this._agentArns != null && this._agentArns.Count > 0; 
+            return this._agentArns != null && (this._agentArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -113,7 +119,7 @@ namespace Amazon.DataSync.Model
         /// authenticate with the object storage server.
         /// </para>
         /// </summary>
-        [AWSProperty(Sensitive=true, Min=1, Max=200)]
+        [AWSProperty(Sensitive=true, Min=0, Max=200)]
         public string SecretKey
         {
             get { return this._secretKey; }
@@ -129,33 +135,41 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property ServerCertificate. 
         /// <para>
-        /// Specifies a file with the certificates that are used to sign the object storage server's
-        /// certificate (for example, <code>file:///home/user/.ssh/storage_sys_certificate.pem</code>).
-        /// The file you specify must include the following:
-        /// </para>
-        ///  <ul> <li> 
-        /// <para>
-        /// The certificate of the signing certificate authority (CA)
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Any intermediate certificates
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// base64 encoding
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// A <code>.pem</code> extension
-        /// </para>
-        ///  </li> </ul> 
-        /// <para>
-        /// The file can be up to 32768 bytes (before base64 encoding).
+        /// Specifies a certificate chain for DataSync to authenticate with your object storage
+        /// system if the system uses a private or self-signed certificate authority (CA). You
+        /// must specify a single <c>.pem</c> file with a full certificate chain (for example,
+        /// <c>file:///home/user/.ssh/object_storage_certificates.pem</c>).
         /// </para>
         ///  
         /// <para>
-        /// To use this parameter, configure <code>ServerProtocol</code> to <code>HTTPS</code>.
+        /// The certificate chain might include:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// The object storage system's certificate
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// All intermediate certificates (if there are any)
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The root certificate of the signing CA
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// You can concatenate your certificates into a <c>.pem</c> file (which can be up to
+        /// 32768 bytes before base64 encoding). The following example <c>cat</c> command creates
+        /// an <c>object_storage_certificates.pem</c> file that includes three certificates:
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>cat object_server_certificate.pem intermediate_certificate.pem ca_root_certificate.pem
+        /// &gt; object_storage_certificates.pem</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// To use this parameter, configure <c>ServerProtocol</c> to <c>HTTPS</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=32768)]
@@ -268,7 +282,7 @@ namespace Amazon.DataSync.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

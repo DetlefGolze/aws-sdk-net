@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// Provide details about an Amazon MSK cluster.
+    /// Provide details about an Amazon Managed Streaming for Apache Kafka (Amazon MSK) cluster.
     /// </summary>
     public partial class AwsMskClusterClusterInfoDetails
     {
@@ -37,6 +38,7 @@ namespace Amazon.SecurityHub.Model
         private string _clusterName;
         private string _currentVersion;
         private AwsMskClusterClusterInfoEncryptionInfoDetails _encryptionInfo;
+        private string _enhancedMonitoring;
         private int? _numberOfBrokerNodes;
 
         /// <summary>
@@ -78,7 +80,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property CurrentVersion. 
         /// <para>
-        ///  The current version of the MSK cluster.
+        ///  The current version of the cluster.
         /// </para>
         /// </summary>
         public string CurrentVersion
@@ -110,6 +112,24 @@ namespace Amazon.SecurityHub.Model
         internal bool IsSetEncryptionInfo()
         {
             return this._encryptionInfo != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EnhancedMonitoring. 
+        /// <para>
+        ///  Specifies the level of monitoring for the cluster. 
+        /// </para>
+        /// </summary>
+        public string EnhancedMonitoring
+        {
+            get { return this._enhancedMonitoring; }
+            set { this._enhancedMonitoring = value; }
+        }
+
+        // Check to see if EnhancedMonitoring property is set
+        internal bool IsSetEnhancedMonitoring()
+        {
+            return this._enhancedMonitoring != null;
         }
 
         /// <summary>

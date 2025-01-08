@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
     /// Container for the parameters to the ListTagsForDeliveryStream operation.
-    /// Lists the tags for the specified delivery stream. This operation has a limit of five
+    /// Lists the tags for the specified Firehose stream. This operation has a limit of five
     /// transactions per second per account.
     /// </summary>
     public partial class ListTagsForDeliveryStreamRequest : AmazonKinesisFirehoseRequest
@@ -42,7 +43,7 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property DeliveryStreamName. 
         /// <para>
-        /// The name of the delivery stream whose tags you want to list.
+        /// The name of the Firehose stream whose tags you want to list.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]
@@ -62,7 +63,7 @@ namespace Amazon.KinesisFirehose.Model
         /// Gets and sets the property ExclusiveStartTagKey. 
         /// <para>
         /// The key to use as the starting point for the list of tags. If you set this parameter,
-        /// <code>ListTagsForDeliveryStream</code> gets all tags that occur after <code>ExclusiveStartTagKey</code>.
+        /// <c>ListTagsForDeliveryStream</c> gets all tags that occur after <c>ExclusiveStartTagKey</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -82,9 +83,9 @@ namespace Amazon.KinesisFirehose.Model
         /// Gets and sets the property Limit. 
         /// <para>
         /// The number of tags to return. If this number is less than the total number of tags
-        /// associated with the delivery stream, <code>HasMoreTags</code> is set to <code>true</code>
-        /// in the response. To list additional tags, set <code>ExclusiveStartTagKey</code> to
-        /// the last key in the response. 
+        /// associated with the Firehose stream, <c>HasMoreTags</c> is set to <c>true</c> in the
+        /// response. To list additional tags, set <c>ExclusiveStartTagKey</c> to the last key
+        /// in the response. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]

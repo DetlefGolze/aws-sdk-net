@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -83,10 +84,10 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Iops. 
         /// <para>
-        /// The number of I/O operations per second (IOPS). For <code>gp3</code>, <code>io1</code>,
-        /// and <code>io2</code> volumes, this represents the number of IOPS that are provisioned
-        /// for the volume. For <code>gp2</code> volumes, this represents the baseline performance
-        /// of the volume and the rate at which the volume accumulates I/O credits for bursting.
+        /// The number of I/O operations per second (IOPS). For <c>gp3</c>, <c>io1</c>, and <c>io2</c>
+        /// volumes, this represents the number of IOPS that are provisioned for the volume. For
+        /// <c>gp2</c> volumes, this represents the baseline performance of the volume and the
+        /// rate at which the volume accumulates I/O credits for bursting.
         /// </para>
         ///  
         /// <para>
@@ -94,28 +95,25 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>gp3</code>: 3,000-16,000 IOPS
+        ///  <c>gp3</c>: 3,000 - 16,000 IOPS
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>io1</code>: 100-64,000 IOPS
+        ///  <c>io1</c>: 100 - 64,000 IOPS
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>io2</code>: 100-64,000 IOPS
+        ///  <c>io2</c>: 100 - 256,000 IOPS
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For <code>io1</code> and <code>io2</code> volumes, we guarantee 64,000 IOPS only for
-        /// <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances">Instances
-        /// built on the Nitro System</a>. Other instance families guarantee performance up to
-        /// 32,000 IOPS.
+        /// For <c>io2</c> volumes, you can achieve up to 256,000 IOPS on <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances">instances
+        /// built on the Nitro System</a>. On other instances, you can achieve performance up
+        /// to 32,000 IOPS.
         /// </para>
         ///  
         /// <para>
-        /// This parameter is supported for <code>io1</code>, <code>io2</code>, and <code>gp3</code>
-        /// volumes only. This parameter is not supported for <code>gp2</code>, <code>st1</code>,
-        /// <code>sc1</code>, or <code>standard</code> volumes.
+        /// This parameter is supported for <c>io1</c>, <c>io2</c>, and <c>gp3</c> volumes only.
         /// </para>
         /// </summary>
         public int Iops
@@ -133,7 +131,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// The ARN of the symmetric Key Management Service (KMS) CMK used for encryption.
+        /// Identifier (key ID, key alias, key ARN, or alias ARN) of the customer managed KMS
+        /// key to use for EBS encryption.
         /// </para>
         /// </summary>
         public string KmsKeyId
@@ -169,8 +168,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Throughput. 
         /// <para>
-        /// The throughput to provision for a <code>gp3</code> volume, with a maximum of 1,000
-        /// MiB/s.
+        /// The throughput to provision for a <c>gp3</c> volume, with a maximum of 1,000 MiB/s.
         /// </para>
         ///  
         /// <para>
@@ -197,19 +195,23 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>gp2</code> and <code>gp3</code>: 1-16,384
+        ///  <c>gp2</c> and <c>gp3</c>: 1 - 16,384 GiB
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>io1</code> and <code>io2</code>: 4-16,384
+        ///  <c>io1</c>: 4 - 16,384 GiB
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>st1</code> and <code>sc1</code>: 125-16,384
+        ///  <c>io2</c>: 4 - 65,536 GiB
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>standard</code>: 1-1,024
+        ///  <c>st1</c> and <c>sc1</c>: 125 - 16,384 GiB
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>standard</c>: 1 - 1024 GiB
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -228,8 +230,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property VolumeType. 
         /// <para>
-        /// The volume type. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
-        /// EBS volume types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+        /// The volume type. For more information, see <a href="https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volume-types.html">Amazon
+        /// EBS volume types</a> in the <i>Amazon EBS User Guide</i>.
         /// </para>
         /// </summary>
         public VolumeType VolumeType

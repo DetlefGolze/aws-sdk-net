@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -44,6 +45,12 @@ namespace Amazon.S3Control.Model
         /// <para>
         /// The bucket ARN the generated manifest should be written to.
         /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <b>Directory buckets</b> - Directory buckets aren't supported as the buckets to store
+        /// the generated manifest.
+        /// </para>
+        ///  </note>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=128)]
         public string Bucket

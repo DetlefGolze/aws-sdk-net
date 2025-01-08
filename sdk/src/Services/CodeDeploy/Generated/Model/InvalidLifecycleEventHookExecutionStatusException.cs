@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
     /// The result of a Lambda validation function that verifies a lifecycle event is invalid.
-    /// It should return <code>Succeeded</code> or <code>Failed</code>.
+    /// It should return <c>Succeeded</c> or <c>Failed</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

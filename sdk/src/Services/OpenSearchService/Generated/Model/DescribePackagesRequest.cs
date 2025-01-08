@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -36,14 +37,14 @@ namespace Amazon.OpenSearchService.Model
     /// </summary>
     public partial class DescribePackagesRequest : AmazonOpenSearchServiceRequest
     {
-        private List<DescribePackagesFilter> _filters = new List<DescribePackagesFilter>();
+        private List<DescribePackagesFilter> _filters = AWSConfigs.InitializeCollections ? new List<DescribePackagesFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// Only returns packages that match the <code>DescribePackagesFilterList</code> values.
+        /// Only returns packages that match the <c>DescribePackagesFilterList</c> values.
         /// </para>
         /// </summary>
         public List<DescribePackagesFilter> Filters
@@ -55,14 +56,14 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// An optional parameter that specifies the maximum number of results to return. You
-        /// can use <code>nextToken</code> to get the next page of results.
+        /// can use <c>nextToken</c> to get the next page of results.
         /// </para>
         /// </summary>
         [AWSProperty(Max=100)]
@@ -81,8 +82,8 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If your initial <code>DescribePackageFilters</code> operation returns a <code>nextToken</code>,
-        /// you can include the returned <code>nextToken</code> in subsequent <code>DescribePackageFilters</code>
+        /// If your initial <c>DescribePackageFilters</c> operation returns a <c>nextToken</c>,
+        /// you can include the returned <c>nextToken</c> in subsequent <c>DescribePackageFilters</c>
         /// operations, which returns results in the next page.
         /// </para>
         /// </summary>

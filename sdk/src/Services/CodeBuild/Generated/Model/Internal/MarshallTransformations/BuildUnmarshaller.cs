@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Build Unmarshall(JsonUnmarshallerContext context)
         {
+            Build unmarshalledObject = new Build();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Build unmarshalledObject = new Build();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -74,6 +76,12 @@ namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = BuildArtifactsUnmarshaller.Instance;
                     unmarshalledObject.Artifacts = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("autoRetryConfig", targetDepth))
+                {
+                    var unmarshaller = AutoRetryConfigUnmarshaller.Instance;
+                    unmarshalledObject.AutoRetryConfig = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("buildBatchArn", targetDepth))
@@ -257,7 +265,6 @@ namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

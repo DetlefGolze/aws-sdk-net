@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.XRay.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.XRay.Model
         /// <summary>
         /// Gets and sets the property ThrottleCount. 
         /// <para>
-        /// The number of requests that failed with a 419 throttling status code.
+        /// The number of requests that failed with a 429 throttling status code.
         /// </para>
         /// </summary>
         public long ThrottleCount

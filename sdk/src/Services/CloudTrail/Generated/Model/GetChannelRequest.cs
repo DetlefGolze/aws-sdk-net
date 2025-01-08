@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.CloudTrail.Model
         /// <summary>
         /// Gets and sets the property Channel. 
         /// <para>
-        /// The ARN or <code>UUID</code> of a channel.
+        /// The ARN or <c>UUID</c> of a channel.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=3, Max=256)]

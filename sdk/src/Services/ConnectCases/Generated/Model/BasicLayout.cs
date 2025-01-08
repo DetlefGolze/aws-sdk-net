@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectCases.Model
 {
     /// <summary>
-    /// Content specific to <code>BasicLayout</code> type. It configures fields in the top
-    /// panel and More Info tab of agent application.
+    /// Content specific to <c>BasicLayout</c> type. It configures fields in the top panel
+    /// and More Info tab of agent application.
     /// </summary>
     public partial class BasicLayout
     {

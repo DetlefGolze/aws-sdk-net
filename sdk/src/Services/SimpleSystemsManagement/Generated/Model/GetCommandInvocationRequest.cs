@@ -26,16 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
     /// Container for the parameters to the GetCommandInvocation operation.
     /// Returns detailed information about command execution for an invocation or plugin.
+    /// The Run Command API follows an eventual consistency model, due to the distributed
+    /// nature of the system supporting the API. This means that the result of an API command
+    /// you run that affects your resources might not be immediately visible to all subsequent
+    /// commands you run. You should keep this in mind when you carry out an API command that
+    /// immediately follows a previous API command.
     /// 
     ///  
     /// <para>
-    ///  <code>GetCommandInvocation</code> only gives the execution status of a plugin in
-    /// a document. To get the command execution status on a specific managed node, use <a>ListCommandInvocations</a>.
+    ///  <c>GetCommandInvocation</c> only gives the execution status of a plugin in a document.
+    /// To get the command execution status on a specific managed node, use <a>ListCommandInvocations</a>.
     /// To get the command execution status across managed nodes, use <a>ListCommands</a>.
     /// </para>
     /// </summary>
@@ -92,15 +98,14 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// The name of the step for which you want detailed results. If the document contains
         /// only one step, you can omit the name and details for that step. If the document contains
         /// more than one step, you must specify the name of the step for which you want to view
-        /// details. Be sure to specify the name of the step, not the name of a plugin like <code>aws:RunShellScript</code>.
+        /// details. Be sure to specify the name of the step, not the name of a plugin like <c>aws:RunShellScript</c>.
         /// </para>
         ///  
         /// <para>
-        /// To find the <code>PluginName</code>, check the document content and find the name
-        /// of the step you want details for. Alternatively, use <a>ListCommandInvocations</a>
-        /// with the <code>CommandId</code> and <code>Details</code> parameters. The <code>PluginName</code>
-        /// is the <code>Name</code> attribute of the <code>CommandPlugin</code> object in the
-        /// <code>CommandPlugins</code> list.
+        /// To find the <c>PluginName</c>, check the document content and find the name of the
+        /// step you want details for. Alternatively, use <a>ListCommandInvocations</a> with the
+        /// <c>CommandId</c> and <c>Details</c> parameters. The <c>PluginName</c> is the <c>Name</c>
+        /// attribute of the <c>CommandPlugin</c> object in the <c>CommandPlugins</c> list.
         /// </para>
         /// </summary>
         [AWSProperty(Min=4)]

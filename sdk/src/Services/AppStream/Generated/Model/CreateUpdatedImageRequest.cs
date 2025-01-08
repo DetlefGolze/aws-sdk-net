@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppStream.Model
 {
     /// <summary>
@@ -47,16 +48,16 @@ namespace Amazon.AppStream.Model
         private string _newImageDescription;
         private string _newImageDisplayName;
         private string _newImageName;
-        private Dictionary<string, string> _newImageTags = new Dictionary<string, string>();
+        private Dictionary<string, string> _newImageTags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property DryRun. 
         /// <para>
         /// Indicates whether to display the status of image update availability before AppStream
         /// 2.0 initiates the process of creating a new updated image. If this value is set to
-        /// <code>true</code>, AppStream 2.0 displays whether image updates are available. If
-        /// this value is set to <code>false</code>, AppStream 2.0 initiates the process of creating
-        /// a new updated image without displaying whether image updates are available.
+        /// <c>true</c>, AppStream 2.0 displays whether image updates are available. If this value
+        /// is set to <c>false</c>, AppStream 2.0 initiates the process of creating a new updated
+        /// image without displaying whether image updates are available.
         /// </para>
         /// </summary>
         public bool DryRun
@@ -183,7 +184,7 @@ namespace Amazon.AppStream.Model
         // Check to see if NewImageTags property is set
         internal bool IsSetNewImageTags()
         {
-            return this._newImageTags != null && this._newImageTags.Count > 0; 
+            return this._newImageTags != null && (this._newImageTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

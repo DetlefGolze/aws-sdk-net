@@ -26,45 +26,51 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppConfig.Model
 {
     /// <summary>
     /// An action defines the tasks that the extension performs during the AppConfig workflow.
-    /// Each action includes an action point such as <code>ON_CREATE_HOSTED_CONFIGURATION</code>,
-    /// <code>PRE_DEPLOYMENT</code>, or <code>ON_DEPLOYMENT</code>. Each action also includes
-    /// a name, a URI to an Lambda function, and an Amazon Resource Name (ARN) for an Identity
-    /// and Access Management assume role. You specify the name, URI, and ARN for each <i>action
-    /// point</i> defined in the extension. You can specify the following actions for an extension:
+    /// Each action includes an action point, as shown in the following list: 
     /// 
     ///  <ul> <li> 
     /// <para>
-    ///  <code>PRE_CREATE_HOSTED_CONFIGURATION_VERSION</code> 
+    ///  <c>PRE_CREATE_HOSTED_CONFIGURATION_VERSION</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>PRE_START_DEPLOYMENT</code> 
+    ///  <c>PRE_START_DEPLOYMENT</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ON_DEPLOYMENT_START</code> 
+    ///  <c>AT_DEPLOYMENT_TICK</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ON_DEPLOYMENT_STEP</code> 
+    ///  <c>ON_DEPLOYMENT_START</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ON_DEPLOYMENT_BAKING</code> 
+    ///  <c>ON_DEPLOYMENT_STEP</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ON_DEPLOYMENT_COMPLETE</code> 
+    ///  <c>ON_DEPLOYMENT_BAKING</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ON_DEPLOYMENT_ROLLED_BACK</code> 
+    ///  <c>ON_DEPLOYMENT_COMPLETE</c> 
     /// </para>
-    ///  </li> </ul>
+    ///  </li> <li> 
+    /// <para>
+    ///  <c>ON_DEPLOYMENT_ROLLED_BACK</c> 
+    /// </para>
+    ///  </li> </ul> 
+    /// <para>
+    /// Each action also includes a name, a URI to an Lambda function, and an Amazon Resource
+    /// Name (ARN) for an Identity and Access Management assume role. You specify the name,
+    /// URI, and ARN for each <i>action point</i> defined in the extension.
+    /// </para>
     /// </summary>
     public partial class Action
     {

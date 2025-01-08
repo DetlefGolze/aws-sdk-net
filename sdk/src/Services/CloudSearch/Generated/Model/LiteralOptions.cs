@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// Options for literal field. Present if <code>IndexFieldType</code> specifies the field
-    /// is of type <code>literal</code>. All options are enabled by default.
+    /// Options for literal field. Present if <c>IndexFieldType</c> specifies the field is
+    /// of type <c>literal</c>. All options are enabled by default.
     /// </summary>
     public partial class LiteralOptions
     {

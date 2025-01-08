@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvidently.Model
 {
     /// <summary>
     /// Container for the parameters to the BatchEvaluateFeature operation.
     /// This operation assigns feature variation to user sessions. For each user session,
-    /// you pass in an <code>entityID</code> that represents the user. Evidently then checks
-    /// the evaluation rules and assigns the variation.
+    /// you pass in an <c>entityID</c> that represents the user. Evidently then checks the
+    /// evaluation rules and assigns the variation.
     /// 
     ///  
     /// <para>
-    /// The first rules that are evaluated are the override rules. If the user's <code>entityID</code>
+    /// The first rules that are evaluated are the override rules. If the user's <c>entityID</c>
     /// matches an override rule, the user is served the variation specified by that rule.
     /// </para>
     ///  
@@ -63,7 +64,7 @@ namespace Amazon.CloudWatchEvidently.Model
     public partial class BatchEvaluateFeatureRequest : AmazonCloudWatchEvidentlyRequest
     {
         private string _project;
-        private List<EvaluationRequest> _requests = new List<EvaluationRequest>();
+        private List<EvaluationRequest> _requests = AWSConfigs.InitializeCollections ? new List<EvaluationRequest>() : null;
 
         /// <summary>
         /// Gets and sets the property Project. 
@@ -101,7 +102,7 @@ namespace Amazon.CloudWatchEvidently.Model
         // Check to see if Requests property is set
         internal bool IsSetRequests()
         {
-            return this._requests != null && this._requests.Count > 0; 
+            return this._requests != null && (this._requests.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

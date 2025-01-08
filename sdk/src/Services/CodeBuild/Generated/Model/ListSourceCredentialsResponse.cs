@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -33,12 +34,12 @@ namespace Amazon.CodeBuild.Model
     /// </summary>
     public partial class ListSourceCredentialsResponse : AmazonWebServiceResponse
     {
-        private List<SourceCredentialsInfo> _sourceCredentialsInfos = new List<SourceCredentialsInfo>();
+        private List<SourceCredentialsInfo> _sourceCredentialsInfos = AWSConfigs.InitializeCollections ? new List<SourceCredentialsInfo>() : null;
 
         /// <summary>
         /// Gets and sets the property SourceCredentialsInfos. 
         /// <para>
-        ///  A list of <code>SourceCredentialsInfo</code> objects. Each <code>SourceCredentialsInfo</code>
+        ///  A list of <c>SourceCredentialsInfo</c> objects. Each <c>SourceCredentialsInfo</c>
         /// object includes the authentication type, token ARN, and type of source provider for
         /// one set of credentials. 
         /// </para>
@@ -52,7 +53,7 @@ namespace Amazon.CodeBuild.Model
         // Check to see if SourceCredentialsInfos property is set
         internal bool IsSetSourceCredentialsInfos()
         {
-            return this._sourceCredentialsInfos != null && this._sourceCredentialsInfos.Count > 0; 
+            return this._sourceCredentialsInfos != null && (this._sourceCredentialsInfos.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

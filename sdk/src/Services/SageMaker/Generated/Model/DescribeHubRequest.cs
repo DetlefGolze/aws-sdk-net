@@ -26,17 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeHub operation.
-    /// Describe a hub.
-    /// 
-    ///  <note> 
-    /// <para>
-    /// Hub APIs are only callable through SageMaker Studio.
-    /// </para>
-    ///  </note>
+    /// Describes a hub.
     /// </summary>
     public partial class DescribeHubRequest : AmazonSageMakerRequest
     {
@@ -48,7 +43,7 @@ namespace Amazon.SageMaker.Model
         /// The name of the hub to describe.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=63)]
+        [AWSProperty(Required=true)]
         public string HubName
         {
             get { return this._hubName; }

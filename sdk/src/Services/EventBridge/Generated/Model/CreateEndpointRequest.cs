@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.EventBridge.Model
     public partial class CreateEndpointRequest : AmazonEventBridgeRequest
     {
         private string _description;
-        private List<EndpointEventBus> _eventBuses = new List<EndpointEventBus>();
+        private List<EndpointEventBus> _eventBuses = AWSConfigs.InitializeCollections ? new List<EndpointEventBus>() : null;
         private string _name;
         private ReplicationConfig _replicationConfig;
         private string _roleArn;
@@ -86,13 +87,13 @@ namespace Amazon.EventBridge.Model
         // Check to see if EventBuses property is set
         internal bool IsSetEventBuses()
         {
-            return this._eventBuses != null && this._eventBuses.Count > 0; 
+            return this._eventBuses != null && (this._eventBuses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the global endpoint. For example, <code>"Name":"us-east-2-custom_bus_A-endpoint"</code>.
+        /// The name of the global endpoint. For example, <c>"Name":"us-east-2-custom_bus_A-endpoint"</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]
@@ -111,9 +112,9 @@ namespace Amazon.EventBridge.Model
         /// <summary>
         /// Gets and sets the property ReplicationConfig. 
         /// <para>
-        /// Enable or disable event replication. The default state is <code>ENABLED</code> which
-        /// means you must supply a <code>RoleArn</code>. If you don't have a <code>RoleArn</code>
-        /// or you don't want event replication enabled, set the state to <code>DISABLED</code>.
+        /// Enable or disable event replication. The default state is <c>ENABLED</c> which means
+        /// you must supply a <c>RoleArn</c>. If you don't have a <c>RoleArn</c> or you don't
+        /// want event replication enabled, set the state to <c>DISABLED</c>.
         /// </para>
         /// </summary>
         public ReplicationConfig ReplicationConfig

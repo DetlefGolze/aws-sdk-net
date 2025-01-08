@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
     /// Container for the parameters to the GetVehicleStatus operation.
-    /// Retrieves information about the status of a vehicle with any associated campaigns.
+    /// Retrieves information about the status of campaigns, decoder manifests, or state
+    /// templates associated with a vehicle.
     /// </summary>
     public partial class GetVehicleStatusRequest : AmazonIoTFleetWiseRequest
     {
@@ -41,7 +43,8 @@ namespace Amazon.IoTFleetWise.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        ///  The maximum number of items to return, between 1 and 100, inclusive. 
+        /// The maximum number of items to return, between 1 and 100, inclusive. This parameter
+        /// is only supported for resources of type <c>CAMPAIGN</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -65,10 +68,10 @@ namespace Amazon.IoTFleetWise.Model
         ///  
         /// <para>
         /// If the results of a search are large, only a portion of the results are returned,
-        /// and a <code>nextToken</code> pagination token is returned in the response. To retrieve
-        /// the next set of results, reissue the search request and include the returned token.
-        /// When all results have been returned, the response does not contain a pagination token
-        /// value. 
+        /// and a <c>nextToken</c> pagination token is returned in the response. To retrieve the
+        /// next set of results, reissue the search request and include the returned token. When
+        /// all results have been returned, the response does not contain a pagination token value.
+        /// This parameter is only supported for resources of type <c>CAMPAIGN</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4096)]

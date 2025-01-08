@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CertificateManager.Model
 {
     /// <summary>
@@ -37,19 +38,19 @@ namespace Amazon.CertificateManager.Model
         private DateTime? _createdAt;
         private string _domainName;
         private bool? _exported;
-        private List<string> _extendedKeyUsages = new List<string>();
+        private List<string> _extendedKeyUsages = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _hasAdditionalSubjectAlternativeNames;
         private DateTime? _importedAt;
         private bool? _inUse;
         private DateTime? _issuedAt;
         private KeyAlgorithm _keyAlgorithm;
-        private List<string> _keyUsages = new List<string>();
+        private List<string> _keyUsages = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _notAfter;
         private DateTime? _notBefore;
         private RenewalEligibility _renewalEligibility;
         private DateTime? _revokedAt;
         private CertificateStatus _status;
-        private List<string> _subjectAlternativeNameSummaries = new List<string>();
+        private List<string> _subjectAlternativeNameSummaries = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private CertificateType _type;
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.CertificateManager.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code>
+        ///  <c>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</c>
         /// 
         /// </para>
         ///  
@@ -123,7 +124,7 @@ namespace Amazon.CertificateManager.Model
         /// Gets and sets the property Exported. 
         /// <para>
         /// Indicates whether the certificate has been exported. This value exists only when the
-        /// certificate type is <code>PRIVATE</code>.
+        /// certificate type is <c>PRIVATE</c>.
         /// </para>
         /// </summary>
         public bool Exported
@@ -155,18 +156,17 @@ namespace Amazon.CertificateManager.Model
         // Check to see if ExtendedKeyUsages property is set
         internal bool IsSetExtendedKeyUsages()
         {
-            return this._extendedKeyUsages != null && this._extendedKeyUsages.Count > 0; 
+            return this._extendedKeyUsages != null && (this._extendedKeyUsages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property HasAdditionalSubjectAlternativeNames. 
         /// <para>
-        /// When called by <a href="https://docs.aws.amazon.com/acm/latestAPIReference/API_ListCertificates.html">ListCertificates</a>,
-        /// indicates whether the full list of subject alternative names has been included in
-        /// the response. If false, the response includes all of the subject alternative names
-        /// included in the certificate. If true, the response only includes the first 100 subject
-        /// alternative names included in the certificate. To display the full list of subject
-        /// alternative names, use <a href="https://docs.aws.amazon.com/acm/latestAPIReference/API_DescribeCertificate.html">DescribeCertificate</a>.
+        /// When called by <a>ListCertificates</a>, indicates whether the full list of subject
+        /// alternative names has been included in the response. If false, the response includes
+        /// all of the subject alternative names included in the certificate. If true, the response
+        /// only includes the first 100 subject alternative names included in the certificate.
+        /// To display the full list of subject alternative names, use <a>DescribeCertificate</a>.
         /// </para>
         /// </summary>
         public bool HasAdditionalSubjectAlternativeNames
@@ -185,7 +185,7 @@ namespace Amazon.CertificateManager.Model
         /// Gets and sets the property ImportedAt. 
         /// <para>
         /// The date and time when the certificate was imported. This value exists only when the
-        /// certificate type is <code>IMPORTED</code>. 
+        /// certificate type is <c>IMPORTED</c>. 
         /// </para>
         /// </summary>
         public DateTime ImportedAt
@@ -222,7 +222,7 @@ namespace Amazon.CertificateManager.Model
         /// Gets and sets the property IssuedAt. 
         /// <para>
         /// The time at which the certificate was issued. This value exists only when the certificate
-        /// type is <code>AMAZON_ISSUED</code>. 
+        /// type is <c>AMAZON_ISSUED</c>. 
         /// </para>
         /// </summary>
         public DateTime IssuedAt
@@ -272,7 +272,7 @@ namespace Amazon.CertificateManager.Model
         // Check to see if KeyUsages property is set
         internal bool IsSetKeyUsages()
         {
-            return this._keyUsages != null && this._keyUsages.Count > 0; 
+            return this._keyUsages != null && (this._keyUsages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -334,7 +334,7 @@ namespace Amazon.CertificateManager.Model
         /// Gets and sets the property RevokedAt. 
         /// <para>
         /// The time at which the certificate was revoked. This value exists only when the certificate
-        /// status is <code>REVOKED</code>. 
+        /// status is <c>REVOKED</c>. 
         /// </para>
         /// </summary>
         public DateTime RevokedAt
@@ -389,9 +389,9 @@ namespace Amazon.CertificateManager.Model
         /// </para>
         ///  
         /// <para>
-        /// When called by <a href="https://docs.aws.amazon.com/acm/latestAPIReference/API_ListCertificates.html">ListCertificates</a>,
-        /// this parameter will only return the first 100 subject alternative names included in
-        /// the certificate. To display the full list of subject alternative names, use <a href="https://docs.aws.amazon.com/acm/latestAPIReference/API_DescribeCertificate.html">DescribeCertificate</a>.
+        /// When called by <a>ListCertificates</a>, this parameter will only return the first
+        /// 100 subject alternative names included in the certificate. To display the full list
+        /// of subject alternative names, use <a>DescribeCertificate</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -404,14 +404,14 @@ namespace Amazon.CertificateManager.Model
         // Check to see if SubjectAlternativeNameSummaries property is set
         internal bool IsSetSubjectAlternativeNameSummaries()
         {
-            return this._subjectAlternativeNameSummaries != null && this._subjectAlternativeNameSummaries.Count > 0; 
+            return this._subjectAlternativeNameSummaries != null && (this._subjectAlternativeNameSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The source of the certificate. For certificates provided by ACM, this value is <code>AMAZON_ISSUED</code>.
-        /// For certificates that you imported with <a>ImportCertificate</a>, this value is <code>IMPORTED</code>.
+        /// The source of the certificate. For certificates provided by ACM, this value is <c>AMAZON_ISSUED</c>.
+        /// For certificates that you imported with <a>ImportCertificate</a>, this value is <c>IMPORTED</c>.
         /// ACM does not provide <a href="https://docs.aws.amazon.com/acm/latest/userguide/acm-renewal.html">managed
         /// renewal</a> for imported certificates. For more information about the differences
         /// between certificates that you import and those that ACM provides, see <a href="https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html">Importing

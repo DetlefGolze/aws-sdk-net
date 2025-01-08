@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostExplorer.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.CostExplorer.Model
         /// Gets and sets the property AmortizedRecurringCommitment. 
         /// <para>
         /// The amortized amount of your Savings Plans commitment that was purchased with either
-        /// a <code>Partial</code> or a <code>NoUpfront</code>.
+        /// a <c>Partial</c> or a <c>NoUpfront</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1024)]
@@ -61,8 +62,8 @@ namespace Amazon.CostExplorer.Model
         /// <summary>
         /// Gets and sets the property AmortizedUpfrontCommitment. 
         /// <para>
-        /// The amortized amount of your Savings Plans commitment that was purchased with an <code>Upfront</code>
-        /// or <code>PartialUpfront</code> Savings Plans.
+        /// The amortized amount of your Savings Plans commitment that was purchased with an <c>Upfront</c>
+        /// or <c>PartialUpfront</c> Savings Plans.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1024)]

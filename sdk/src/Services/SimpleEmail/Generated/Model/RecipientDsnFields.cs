@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmail.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.SimpleEmail.Model
     {
         private DsnAction _action;
         private string _diagnosticCode;
-        private List<ExtensionField> _extensionFields = new List<ExtensionField>();
+        private List<ExtensionField> _extensionFields = AWSConfigs.InitializeCollections ? new List<ExtensionField>() : null;
         private string _finalRecipient;
         private DateTime? _lastAttemptDateUtc;
         private string _remoteMta;
@@ -104,22 +105,22 @@ namespace Amazon.SimpleEmail.Model
         // Check to see if ExtensionFields property is set
         internal bool IsSetExtensionFields()
         {
-            return this._extensionFields != null && this._extensionFields.Count > 0; 
+            return this._extensionFields != null && (this._extensionFields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property FinalRecipient. 
         /// <para>
         /// The email address that the message was ultimately delivered to. This corresponds to
-        /// the <code>Final-Recipient</code> in the DSN. If not specified, <code>FinalRecipient</code>
-        /// is set to the <code>Recipient</code> specified in the <code>BouncedRecipientInfo</code>
-        /// structure. Either <code>FinalRecipient</code> or the recipient in <code>BouncedRecipientInfo</code>
-        /// must be a recipient of the original bounced message.
+        /// the <c>Final-Recipient</c> in the DSN. If not specified, <c>FinalRecipient</c> is
+        /// set to the <c>Recipient</c> specified in the <c>BouncedRecipientInfo</c> structure.
+        /// Either <c>FinalRecipient</c> or the recipient in <c>BouncedRecipientInfo</c> must
+        /// be a recipient of the original bounced message.
         /// </para>
         ///  <note> 
         /// <para>
-        /// Do not prepend the <code>FinalRecipient</code> email address with <code>rfc 822;</code>,
-        /// as described in <a href="https://tools.ietf.org/html/rfc3798">RFC 3798</a>.
+        /// Do not prepend the <c>FinalRecipient</c> email address with <c>rfc 822;</c>, as described
+        /// in <a href="https://tools.ietf.org/html/rfc3798">RFC 3798</a>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -158,9 +159,8 @@ namespace Amazon.SimpleEmail.Model
         /// Gets and sets the property RemoteMta. 
         /// <para>
         /// The MTA to which the remote MTA attempted to deliver the message, formatted as specified
-        /// in <a href="https://tools.ietf.org/html/rfc3464">RFC 3464</a> (<code>mta-name-type;
-        /// mta-name</code>). This parameter typically applies only to propagating synchronous
-        /// bounces.
+        /// in <a href="https://tools.ietf.org/html/rfc3464">RFC 3464</a> (<c>mta-name-type; mta-name</c>).
+        /// This parameter typically applies only to propagating synchronous bounces.
         /// </para>
         /// </summary>
         public string RemoteMta

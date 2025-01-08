@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
     /// Container for the parameters to the BatchStopUpdateAction operation.
     /// Stop the service update. For more information on service updates and stopping them,
-    /// see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/stopping-self-service-updates.html">Stopping
+    /// see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/stopping-self-service-updates.html">Stopping
     /// Service Updates</a>.
     /// </summary>
     public partial class BatchStopUpdateActionRequest : AmazonElastiCacheRequest
     {
-        private List<string> _cacheClusterIds = new List<string>();
-        private List<string> _replicationGroupIds = new List<string>();
+        private List<string> _cacheClusterIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _replicationGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _serviceUpdateName;
 
         /// <summary>
@@ -56,7 +57,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if CacheClusterIds property is set
         internal bool IsSetCacheClusterIds()
         {
-            return this._cacheClusterIds != null && this._cacheClusterIds.Count > 0; 
+            return this._cacheClusterIds != null && (this._cacheClusterIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -75,7 +76,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if ReplicationGroupIds property is set
         internal bool IsSetReplicationGroupIds()
         {
-            return this._replicationGroupIds != null && this._replicationGroupIds.Count > 0; 
+            return this._replicationGroupIds != null && (this._replicationGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

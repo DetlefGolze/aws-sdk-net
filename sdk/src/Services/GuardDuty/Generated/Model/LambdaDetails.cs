@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.GuardDuty.Model
         private DateTime? _lastModifiedAt;
         private string _revisionId;
         private string _role;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private VpcConfig _vpcConfig;
 
         /// <summary>
@@ -119,7 +120,7 @@ namespace Amazon.GuardDuty.Model
         /// Gets and sets the property LastModifiedAt. 
         /// <para>
         /// The timestamp when the Lambda function was last modified. This field is in the UTC
-        /// date string format <code>(2023-03-22T19:37:20.168Z)</code>.
+        /// date string format <c>(2023-03-22T19:37:20.168Z)</c>.
         /// </para>
         /// </summary>
         public DateTime LastModifiedAt
@@ -173,7 +174,7 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// A list of tags attached to this resource, listed in the format of <code>key</code>:<code>value</code>
+        /// A list of tags attached to this resource, listed in the format of <c>key</c>:<c>value</c>
         /// pair.
         /// </para>
         /// </summary>
@@ -186,7 +187,7 @@ namespace Amazon.GuardDuty.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

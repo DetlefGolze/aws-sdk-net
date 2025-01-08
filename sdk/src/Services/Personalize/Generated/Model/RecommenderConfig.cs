@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Personalize.Model
 {
     /// <summary>
@@ -33,16 +34,45 @@ namespace Amazon.Personalize.Model
     /// </summary>
     public partial class RecommenderConfig
     {
-        private Dictionary<string, string> _itemExplorationConfig = new Dictionary<string, string>();
+        private bool? _enableMetadataWithRecommendations;
+        private Dictionary<string, string> _itemExplorationConfig = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private int? _minRecommendationRequestsPerSecond;
         private TrainingDataConfig _trainingDataConfig;
 
         /// <summary>
+        /// Gets and sets the property EnableMetadataWithRecommendations. 
+        /// <para>
+        /// Whether metadata with recommendations is enabled for the recommender. If enabled,
+        /// you can specify the columns from your Items dataset in your request for recommendations.
+        /// Amazon Personalize returns this data for each item in the recommendation response.
+        /// For information about enabling metadata for a recommender, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/creating-recommenders.html#create-recommender-return-metadata">Enabling
+        /// metadata in recommendations for a recommender</a>.
+        /// </para>
+        ///  
+        /// <para>
+        ///  If you enable metadata in recommendations, you will incur additional costs. For more
+        /// information, see <a href="https://aws.amazon.com/personalize/pricing/">Amazon Personalize
+        /// pricing</a>. 
+        /// </para>
+        /// </summary>
+        public bool EnableMetadataWithRecommendations
+        {
+            get { return this._enableMetadataWithRecommendations.GetValueOrDefault(); }
+            set { this._enableMetadataWithRecommendations = value; }
+        }
+
+        // Check to see if EnableMetadataWithRecommendations property is set
+        internal bool IsSetEnableMetadataWithRecommendations()
+        {
+            return this._enableMetadataWithRecommendations.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property ItemExplorationConfig. 
         /// <para>
-        /// Specifies the exploration configuration hyperparameters, including <code>explorationWeight</code>
-        /// and <code>explorationItemAgeCutOff</code>, you want to use to configure the amount
-        /// of item exploration Amazon Personalize uses when recommending items. Provide <code>itemExplorationConfig</code>
+        /// Specifies the exploration configuration hyperparameters, including <c>explorationWeight</c>
+        /// and <c>explorationItemAgeCutOff</c>, you want to use to configure the amount of item
+        /// exploration Amazon Personalize uses when recommending items. Provide <c>itemExplorationConfig</c>
         /// data only if your recommenders generate personalized recommendations for a user (not
         /// popular items or similar items).
         /// </para>
@@ -57,17 +87,17 @@ namespace Amazon.Personalize.Model
         // Check to see if ItemExplorationConfig property is set
         internal bool IsSetItemExplorationConfig()
         {
-            return this._itemExplorationConfig != null && this._itemExplorationConfig.Count > 0; 
+            return this._itemExplorationConfig != null && (this._itemExplorationConfig.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MinRecommendationRequestsPerSecond. 
         /// <para>
         /// Specifies the requested minimum provisioned recommendation requests per second that
-        /// Amazon Personalize will support. A high <code>minRecommendationRequestsPerSecond</code>
-        /// will increase your bill. We recommend starting with 1 for <code>minRecommendationRequestsPerSecond</code>
+        /// Amazon Personalize will support. A high <c>minRecommendationRequestsPerSecond</c>
+        /// will increase your bill. We recommend starting with 1 for <c>minRecommendationRequestsPerSecond</c>
         /// (the default). Track your usage using Amazon CloudWatch metrics, and increase the
-        /// <code>minRecommendationRequestsPerSecond</code> as necessary.
+        /// <c>minRecommendationRequestsPerSecond</c> as necessary.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]

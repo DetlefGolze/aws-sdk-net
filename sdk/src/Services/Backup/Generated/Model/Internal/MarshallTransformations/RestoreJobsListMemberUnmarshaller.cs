@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Backup.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Backup.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public RestoreJobsListMember Unmarshall(JsonUnmarshallerContext context)
         {
+            RestoreJobsListMember unmarshalledObject = new RestoreJobsListMember();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            RestoreJobsListMember unmarshalledObject = new RestoreJobsListMember();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -82,6 +84,12 @@ namespace Amazon.Backup.Model.Internal.MarshallTransformations
                     unmarshalledObject.CompletionDate = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("CreatedBy", targetDepth))
+                {
+                    var unmarshaller = RestoreJobCreatorUnmarshaller.Instance;
+                    unmarshalledObject.CreatedBy = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("CreatedResourceArn", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -92,6 +100,18 @@ namespace Amazon.Backup.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
                     unmarshalledObject.CreationDate = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("DeletionStatus", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DeletionStatus = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("DeletionStatusMessage", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DeletionStatusMessage = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("ExpectedCompletionTimeMinutes", targetDepth))
@@ -118,6 +138,12 @@ namespace Amazon.Backup.Model.Internal.MarshallTransformations
                     unmarshalledObject.RecoveryPointArn = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("RecoveryPointCreationDate", targetDepth))
+                {
+                    var unmarshaller = DateTimeUnmarshaller.Instance;
+                    unmarshalledObject.RecoveryPointCreationDate = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ResourceType", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -142,8 +168,19 @@ namespace Amazon.Backup.Model.Internal.MarshallTransformations
                     unmarshalledObject.StatusMessage = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ValidationStatus", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ValidationStatus = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ValidationStatusMessage", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ValidationStatusMessage = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

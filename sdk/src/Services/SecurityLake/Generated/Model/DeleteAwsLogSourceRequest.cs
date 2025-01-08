@@ -26,15 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityLake.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteAwsLogSource operation.
-    /// Removes a natively supported Amazon Web Service as an Amazon Security Lake source.
-    /// You can remove a source for one or more Regions. When you remove the source, Security
-    /// Lake stops collecting data from that source in the specified Regions and accounts,
-    /// and subscribers can no longer consume new data from the source. However, subscribers
-    /// can still consume data that Security Lake collected from the source before removal.
+    /// Removes a natively supported Amazon Web Services service as an Amazon Security Lake
+    /// source. You can remove a source for one or more Regions. When you remove the source,
+    /// Security Lake stops collecting data from that source in the specified Regions and
+    /// accounts, and subscribers can no longer consume new data from the source. However,
+    /// subscribers can still consume data that Security Lake collected from the source before
+    /// removal.
     /// 
     ///  
     /// <para>
@@ -44,7 +46,7 @@ namespace Amazon.SecurityLake.Model
     /// </summary>
     public partial class DeleteAwsLogSourceRequest : AmazonSecurityLakeRequest
     {
-        private List<AwsLogSourceConfiguration> _sources = new List<AwsLogSourceConfiguration>();
+        private List<AwsLogSourceConfiguration> _sources = AWSConfigs.InitializeCollections ? new List<AwsLogSourceConfiguration>() : null;
 
         /// <summary>
         /// Gets and sets the property Sources. 
@@ -53,7 +55,7 @@ namespace Amazon.SecurityLake.Model
         /// Security Lake.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=0, Max=50)]
+        [AWSProperty(Required=true, Min=1, Max=50)]
         public List<AwsLogSourceConfiguration> Sources
         {
             get { return this._sources; }
@@ -63,7 +65,7 @@ namespace Amazon.SecurityLake.Model
         // Check to see if Sources property is set
         internal bool IsSetSources()
         {
-            return this._sources != null && this._sources.Count > 0; 
+            return this._sources != null && (this._sources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

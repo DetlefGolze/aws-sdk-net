@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -33,37 +34,37 @@ namespace Amazon.Kendra.Model
     /// 
     ///  <note> 
     /// <para>
-    /// Support for <code>AlfrescoConfiguration</code> ended May 2023. We recommend migrating
-    /// to or using the Alfresco data source template schema / <a href="https://docs.aws.amazon.com/kendra/latest/APIReference/API_TemplateConfiguration.html">TemplateConfiguration</a>
+    /// Support for <c>AlfrescoConfiguration</c> ended May 2023. We recommend migrating to
+    /// or using the Alfresco data source template schema / <a href="https://docs.aws.amazon.com/kendra/latest/APIReference/API_TemplateConfiguration.html">TemplateConfiguration</a>
     /// API.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class AlfrescoConfiguration
     {
-        private List<DataSourceToIndexFieldMapping> _blogFieldMappings = new List<DataSourceToIndexFieldMapping>();
+        private List<DataSourceToIndexFieldMapping> _blogFieldMappings = AWSConfigs.InitializeCollections ? new List<DataSourceToIndexFieldMapping>() : null;
         private bool? _crawlComments;
         private bool? _crawlSystemFolders;
-        private List<DataSourceToIndexFieldMapping> _documentLibraryFieldMappings = new List<DataSourceToIndexFieldMapping>();
-        private List<string> _entityFilter = new List<string>();
-        private List<string> _exclusionPatterns = new List<string>();
-        private List<string> _inclusionPatterns = new List<string>();
+        private List<DataSourceToIndexFieldMapping> _documentLibraryFieldMappings = AWSConfigs.InitializeCollections ? new List<DataSourceToIndexFieldMapping>() : null;
+        private List<string> _entityFilter = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _exclusionPatterns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _inclusionPatterns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _secretArn;
         private string _siteId;
         private string _siteUrl;
         private S3Path _sslCertificateS3Path;
         private DataSourceVpcConfiguration _vpcConfiguration;
-        private List<DataSourceToIndexFieldMapping> _wikiFieldMappings = new List<DataSourceToIndexFieldMapping>();
+        private List<DataSourceToIndexFieldMapping> _wikiFieldMappings = AWSConfigs.InitializeCollections ? new List<DataSourceToIndexFieldMapping>() : null;
 
         /// <summary>
         /// Gets and sets the property BlogFieldMappings. 
         /// <para>
-        /// A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or
-        /// field names of Alfresco blogs to Amazon Kendra index field names. To create custom
-        /// fields, use the <code>UpdateIndex</code> API before you map to Alfresco fields. For
-        /// more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">
-        /// Mapping data source fields</a>. The Alfresco data source field names must exist in
-        /// your Alfresco custom metadata.
+        /// A list of <c>DataSourceToIndexFieldMapping</c> objects that map attributes or field
+        /// names of Alfresco blogs to Amazon Kendra index field names. To create custom fields,
+        /// use the <c>UpdateIndex</c> API before you map to Alfresco fields. For more information,
+        /// see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html"> Mapping
+        /// data source fields</a>. The Alfresco data source field names must exist in your Alfresco
+        /// custom metadata.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -76,13 +77,13 @@ namespace Amazon.Kendra.Model
         // Check to see if BlogFieldMappings property is set
         internal bool IsSetBlogFieldMappings()
         {
-            return this._blogFieldMappings != null && this._blogFieldMappings.Count > 0; 
+            return this._blogFieldMappings != null && (this._blogFieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property CrawlComments. 
         /// <para>
-        ///  <code>TRUE</code> to index comments of blogs and other content.
+        ///  <c>TRUE</c> to index comments of blogs and other content.
         /// </para>
         /// </summary>
         public bool CrawlComments
@@ -100,7 +101,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property CrawlSystemFolders. 
         /// <para>
-        ///  <code>TRUE</code> to index shared files.
+        ///  <c>TRUE</c> to index shared files.
         /// </para>
         /// </summary>
         public bool CrawlSystemFolders
@@ -118,10 +119,10 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property DocumentLibraryFieldMappings. 
         /// <para>
-        /// A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or
-        /// field names of Alfresco document libraries to Amazon Kendra index field names. To
-        /// create custom fields, use the <code>UpdateIndex</code> API before you map to Alfresco
-        /// fields. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">
+        /// A list of <c>DataSourceToIndexFieldMapping</c> objects that map attributes or field
+        /// names of Alfresco document libraries to Amazon Kendra index field names. To create
+        /// custom fields, use the <c>UpdateIndex</c> API before you map to Alfresco fields. For
+        /// more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">
         /// Mapping data source fields</a>. The Alfresco data source field names must exist in
         /// your Alfresco custom metadata.
         /// </para>
@@ -136,7 +137,7 @@ namespace Amazon.Kendra.Model
         // Check to see if DocumentLibraryFieldMappings property is set
         internal bool IsSetDocumentLibraryFieldMappings()
         {
-            return this._documentLibraryFieldMappings != null && this._documentLibraryFieldMappings.Count > 0; 
+            return this._documentLibraryFieldMappings != null && (this._documentLibraryFieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -156,7 +157,7 @@ namespace Amazon.Kendra.Model
         // Check to see if EntityFilter property is set
         internal bool IsSetEntityFilter()
         {
-            return this._entityFilter != null && this._entityFilter.Count > 0; 
+            return this._entityFilter != null && (this._entityFilter.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -179,7 +180,7 @@ namespace Amazon.Kendra.Model
         // Check to see if ExclusionPatterns property is set
         internal bool IsSetExclusionPatterns()
         {
-            return this._exclusionPatterns != null && this._exclusionPatterns.Count > 0; 
+            return this._exclusionPatterns != null && (this._exclusionPatterns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -202,7 +203,7 @@ namespace Amazon.Kendra.Model
         // Check to see if InclusionPatterns property is set
         internal bool IsSetInclusionPatterns()
         {
-            return this._inclusionPatterns != null && this._inclusionPatterns.Count > 0; 
+            return this._inclusionPatterns != null && (this._inclusionPatterns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -322,12 +323,12 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property WikiFieldMappings. 
         /// <para>
-        /// A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or
-        /// field names of Alfresco wikis to Amazon Kendra index field names. To create custom
-        /// fields, use the <code>UpdateIndex</code> API before you map to Alfresco fields. For
-        /// more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">
-        /// Mapping data source fields</a>. The Alfresco data source field names must exist in
-        /// your Alfresco custom metadata.
+        /// A list of <c>DataSourceToIndexFieldMapping</c> objects that map attributes or field
+        /// names of Alfresco wikis to Amazon Kendra index field names. To create custom fields,
+        /// use the <c>UpdateIndex</c> API before you map to Alfresco fields. For more information,
+        /// see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html"> Mapping
+        /// data source fields</a>. The Alfresco data source field names must exist in your Alfresco
+        /// custom metadata.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -340,7 +341,7 @@ namespace Amazon.Kendra.Model
         // Check to see if WikiFieldMappings property is set
         internal bool IsSetWikiFieldMappings()
         {
-            return this._wikiFieldMappings != null && this._wikiFieldMappings.Count > 0; 
+            return this._wikiFieldMappings != null && (this._wikiFieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

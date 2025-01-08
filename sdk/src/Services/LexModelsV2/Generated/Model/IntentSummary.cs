@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
-    /// Summary information about an intent returned by the <code>ListIntents</code> operation.
+    /// Summary information about an intent returned by the <c>ListIntents</c> operation.
     /// </summary>
     public partial class IntentSummary
     {
         private string _description;
-        private List<InputContext> _inputContexts = new List<InputContext>();
+        private List<InputContext> _inputContexts = AWSConfigs.InitializeCollections ? new List<InputContext>() : null;
         private string _intentId;
         private string _intentName;
         private DateTime? _lastUpdatedDateTime;
-        private List<OutputContext> _outputContexts = new List<OutputContext>();
+        private List<OutputContext> _outputContexts = AWSConfigs.InitializeCollections ? new List<OutputContext>() : null;
         private string _parentIntentSignature;
 
         /// <summary>
@@ -76,14 +77,14 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if InputContexts property is set
         internal bool IsSetInputContexts()
         {
-            return this._inputContexts != null && this._inputContexts.Count > 0; 
+            return this._inputContexts != null && (this._inputContexts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property IntentId. 
         /// <para>
         /// The unique identifier assigned to the intent. Use this ID to get detailed information
-        /// about the intent with the <code>DescribeIntent</code> operation.
+        /// about the intent with the <c>DescribeIntent</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Min=10, Max=10)]
@@ -152,7 +153,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if OutputContexts property is set
         internal bool IsSetOutputContexts()
         {
-            return this._outputContexts != null && this._outputContexts.Count > 0; 
+            return this._outputContexts != null && (this._outputContexts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

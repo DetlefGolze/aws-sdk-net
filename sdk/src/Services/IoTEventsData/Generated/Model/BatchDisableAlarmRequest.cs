@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTEventsData.Model
 {
     /// <summary>
     /// Container for the parameters to the BatchDisableAlarm operation.
-    /// Disables one or more alarms. The alarms change to the <code>DISABLED</code> state
-    /// after you disable them.
+    /// Disables one or more alarms. The alarms change to the <c>DISABLED</c> state after
+    /// you disable them.
     /// </summary>
     public partial class BatchDisableAlarmRequest : AmazonIoTEventsDataRequest
     {
-        private List<DisableAlarmActionRequest> _disableActionRequests = new List<DisableAlarmActionRequest>();
+        private List<DisableAlarmActionRequest> _disableActionRequests = AWSConfigs.InitializeCollections ? new List<DisableAlarmActionRequest>() : null;
 
         /// <summary>
         /// Gets and sets the property DisableActionRequests. 
@@ -53,7 +54,7 @@ namespace Amazon.IoTEventsData.Model
         // Check to see if DisableActionRequests property is set
         internal bool IsSetDisableActionRequests()
         {
-            return this._disableActionRequests != null && this._disableActionRequests.Count > 0; 
+            return this._disableActionRequests != null && (this._disableActionRequests.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

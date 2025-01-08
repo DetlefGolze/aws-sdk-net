@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityLake.Model
 {
     /// <summary>
@@ -40,7 +41,8 @@ namespace Amazon.SecurityLake.Model
         /// <summary>
         /// Gets and sets the property ExceptionTimeToLive. 
         /// <para>
-        /// The expiration period and time-to-live (TTL).
+        /// The expiration period and time-to-live (TTL). It is the duration of time until which
+        /// the exception message remains.
         /// </para>
         /// </summary>
         public long ExceptionTimeToLive

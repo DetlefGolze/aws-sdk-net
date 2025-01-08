@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
     /// A tag is a key-value pair. Allowed characters are letters, white space, and numbers
-    /// that can be represented in UTF-8, and the following characters:<code> + - = . _ :
-    /// /</code>.
+    /// that can be represented in UTF-8, and the following characters:<c> + - = . _ : /</c>.
     /// </summary>
     public partial class Tag
     {
@@ -41,7 +41,7 @@ namespace Amazon.ElasticFileSystem.Model
         /// <summary>
         /// Gets and sets the property Key. 
         /// <para>
-        /// The tag key (String). The key can't start with <code>aws:</code>.
+        /// The tag key (String). The key can't start with <c>aws:</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=128)]

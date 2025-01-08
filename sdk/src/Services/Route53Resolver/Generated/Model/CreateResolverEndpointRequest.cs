@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -49,20 +50,21 @@ namespace Amazon.Route53Resolver.Model
     {
         private string _creatorRequestId;
         private ResolverEndpointDirection _direction;
-        private List<IpAddressRequest> _ipAddresses = new List<IpAddressRequest>();
+        private List<IpAddressRequest> _ipAddresses = AWSConfigs.InitializeCollections ? new List<IpAddressRequest>() : null;
         private string _name;
         private string _outpostArn;
         private string _preferredInstanceType;
+        private List<string> _protocols = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ResolverEndpointType _resolverEndpointType;
-        private List<string> _securityGroupIds = new List<string>();
-        private List<Tag> _tags = new List<Tag>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property CreatorRequestId. 
         /// <para>
         /// A unique string that identifies the request and that allows failed requests to be
-        /// retried without the risk of running the operation twice. <code>CreatorRequestId</code>
-        /// can be any unique string, for example, a date/time stamp. 
+        /// retried without the risk of running the operation twice. <c>CreatorRequestId</c> can
+        /// be any unique string, for example, a date/time stamp. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]
@@ -85,13 +87,13 @@ namespace Amazon.Route53Resolver.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>INBOUND</code>: Resolver forwards DNS queries to the DNS service for a VPC
-        /// from your network
+        ///  <c>INBOUND</c>: Resolver forwards DNS queries to the DNS service for a VPC from your
+        /// network
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OUTBOUND</code>: Resolver forwards DNS queries from the DNS service for a VPC
-        /// to your network
+        ///  <c>OUTBOUND</c>: Resolver forwards DNS queries from the DNS service for a VPC to
+        /// your network
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -115,8 +117,13 @@ namespace Amazon.Route53Resolver.Model
         /// endpoints) or that you forward DNS queries to (for inbound endpoints). The subnet
         /// ID uniquely identifies a VPC. 
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// Even though the minimum is 1, Route 53 requires that you create at least two.
+        /// </para>
+        ///  </note>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=20)]
+        [AWSProperty(Required=true, Min=2, Max=20)]
         public List<IpAddressRequest> IpAddresses
         {
             get { return this._ipAddresses; }
@@ -126,7 +133,7 @@ namespace Amazon.Route53Resolver.Model
         // Check to see if IpAddresses property is set
         internal bool IsSetIpAddresses()
         {
-            return this._ipAddresses != null && this._ipAddresses.Count > 0; 
+            return this._ipAddresses != null && (this._ipAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -153,7 +160,7 @@ namespace Amazon.Route53Resolver.Model
         /// Gets and sets the property OutpostArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the Outpost. If you specify this, you must also
-        /// specify a value for the <code>PreferredInstanceType</code>. 
+        /// specify a value for the <c>PreferredInstanceType</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -172,7 +179,7 @@ namespace Amazon.Route53Resolver.Model
         /// <summary>
         /// Gets and sets the property PreferredInstanceType. 
         /// <para>
-        /// The instance type. If you specify this, you must also specify a value for the <code>OutpostArn</code>.
+        /// The instance type. If you specify this, you must also specify a value for the <c>OutpostArn</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -186,6 +193,75 @@ namespace Amazon.Route53Resolver.Model
         internal bool IsSetPreferredInstanceType()
         {
             return this._preferredInstanceType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Protocols. 
+        /// <para>
+        ///  The protocols you want to use for the endpoint. DoH-FIPS is applicable for inbound
+        /// endpoints only. 
+        /// </para>
+        ///  
+        /// <para>
+        /// For an inbound endpoint you can apply the protocols as follows:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  Do53 and DoH in combination.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Do53 and DoH-FIPS in combination.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Do53 alone.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// DoH alone.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// DoH-FIPS alone.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// None, which is treated as Do53.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For an outbound endpoint you can apply the protocols as follows:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  Do53 and DoH in combination.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Do53 alone.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// DoH alone.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// None, which is treated as Do53.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        [AWSProperty(Min=1, Max=2)]
+        public List<string> Protocols
+        {
+            get { return this._protocols; }
+            set { this._protocols = value; }
+        }
+
+        // Check to see if Protocols property is set
+        internal bool IsSetProtocols()
+        {
+            return this._protocols != null && (this._protocols.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -217,6 +293,15 @@ namespace Amazon.Route53Resolver.Model
         /// and outbound rules must allow TCP and UDP access. For inbound access, open port 53.
         /// For outbound access, open the port that you're using for DNS queries on your network.
         /// </para>
+        ///  
+        /// <para>
+        /// Some security group rules will cause your connection to be tracked. For outbound resolver
+        /// endpoint, it can potentially impact the maximum queries per second from outbound endpoint
+        /// to your target name server. For inbound resolver endpoint, it can bring down the overall
+        /// maximum queries per second per IP address to as low as 1500. To avoid connection tracking
+        /// caused by security group, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-connection-tracking.html#untracked-connectionsl">Untracked
+        /// connections</a>.
+        /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
         public List<string> SecurityGroupIds
@@ -228,7 +313,7 @@ namespace Amazon.Route53Resolver.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -247,7 +332,7 @@ namespace Amazon.Route53Resolver.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

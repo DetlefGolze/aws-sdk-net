@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Imagebuilder.Model
         /// Gets and sets the property ComponentBuildVersionArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the component that you want to get. Regex requires
-        /// the suffix <code>/\d+$</code>.
+        /// the suffix <c>/\d+$</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

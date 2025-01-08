@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElasticLoadBalancingV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -84,6 +85,10 @@ namespace Amazon.ElasticLoadBalancingV2.Model.Internal.MarshallTransformations
                     if (context.TestExpression("Listeners/member", targetDepth))
                     {
                         var unmarshaller = ListenerUnmarshaller.Instance;
+                        if (response.Listeners == null)
+                        {
+                            response.Listeners = new List<Listener>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         response.Listeners.Add(item);
                         continue;
@@ -176,6 +181,14 @@ namespace Amazon.ElasticLoadBalancingV2.Model.Internal.MarshallTransformations
                 if (errorResponse.Code != null && errorResponse.Code.Equals("TooManyUniqueTargetGroupsPerLoadBalancer"))
                 {
                     return TooManyUniqueTargetGroupsPerLoadBalancerExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("TrustStoreNotFound"))
+                {
+                    return TrustStoreNotFoundExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("TrustStoreNotReady"))
+                {
+                    return TrustStoreNotReadyExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("UnsupportedProtocol"))
                 {

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MigrationHubStrategyRecommendations.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.MigrationHubStrategyRecommendations.Model.Internal.MarshallTran
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public AppUnitError Unmarshall(JsonUnmarshallerContext context)
         {
+            AppUnitError unmarshalledObject = new AppUnitError();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            AppUnitError unmarshalledObject = new AppUnitError();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -71,7 +73,6 @@ namespace Amazon.MigrationHubStrategyRecommendations.Model.Internal.MarshallTran
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

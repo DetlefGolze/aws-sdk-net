@@ -97,9 +97,25 @@ namespace Amazon.WAFV2
     {
 
         /// <summary>
+        /// Constant API_GATEWAY for AssociatedResourceType
+        /// </summary>
+        public static readonly AssociatedResourceType API_GATEWAY = new AssociatedResourceType("API_GATEWAY");
+        /// <summary>
+        /// Constant APP_RUNNER_SERVICE for AssociatedResourceType
+        /// </summary>
+        public static readonly AssociatedResourceType APP_RUNNER_SERVICE = new AssociatedResourceType("APP_RUNNER_SERVICE");
+        /// <summary>
         /// Constant CLOUDFRONT for AssociatedResourceType
         /// </summary>
         public static readonly AssociatedResourceType CLOUDFRONT = new AssociatedResourceType("CLOUDFRONT");
+        /// <summary>
+        /// Constant COGNITO_USER_POOL for AssociatedResourceType
+        /// </summary>
+        public static readonly AssociatedResourceType COGNITO_USER_POOL = new AssociatedResourceType("COGNITO_USER_POOL");
+        /// <summary>
+        /// Constant VERIFIED_ACCESS_INSTANCE for AssociatedResourceType
+        /// </summary>
+        public static readonly AssociatedResourceType VERIFIED_ACCESS_INSTANCE = new AssociatedResourceType("VERIFIED_ACCESS_INSTANCE");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -1758,6 +1774,102 @@ namespace Amazon.WAFV2
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator LabelMatchScope(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type LogScope.
+    /// </summary>
+    public class LogScope : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CUSTOMER for LogScope
+        /// </summary>
+        public static readonly LogScope CUSTOMER = new LogScope("CUSTOMER");
+        /// <summary>
+        /// Constant SECURITY_LAKE for LogScope
+        /// </summary>
+        public static readonly LogScope SECURITY_LAKE = new LogScope("SECURITY_LAKE");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public LogScope(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static LogScope FindValue(string value)
+        {
+            return FindValue<LogScope>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator LogScope(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type LogType.
+    /// </summary>
+    public class LogType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant WAF_LOGS for LogType
+        /// </summary>
+        public static readonly LogType WAF_LOGS = new LogType("WAF_LOGS");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public LogType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static LogType FindValue(string value)
+        {
+            return FindValue<LogType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator LogType(string value)
         {
             return FindValue(value);
         }

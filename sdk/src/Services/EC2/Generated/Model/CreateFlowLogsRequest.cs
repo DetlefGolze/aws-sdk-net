@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -37,8 +38,8 @@ namespace Amazon.EC2.Model
     /// <para>
     /// Flow log data for a monitored network interface is recorded as flow log records, which
     /// are log events consisting of fields that describe the traffic flow. For more information,
-    /// see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records">Flow
-    /// log records</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.
+    /// see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/flow-log-records.html">Flow
+    /// log records</a> in the <i>Amazon VPC User Guide</i>.
     /// </para>
     ///  
     /// <para>
@@ -50,7 +51,7 @@ namespace Amazon.EC2.Model
     ///  
     /// <para>
     /// For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html">VPC
-    /// Flow Logs</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.
+    /// Flow Logs</a> in the <i>Amazon VPC User Guide</i>.
     /// </para>
     /// </summary>
     public partial class CreateFlowLogsRequest : AmazonEC2Request
@@ -64,16 +65,16 @@ namespace Amazon.EC2.Model
         private string _logFormat;
         private string _logGroupName;
         private int? _maxAggregationInterval;
-        private List<string> _resourceIds = new List<string>();
+        private List<string> _resourceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private FlowLogsResourceType _resourceType;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
         private TrafficType _trafficType;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// Unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        /// request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How
+        /// request. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html">How
         /// to ensure idempotency</a>.
         /// </para>
         /// </summary>
@@ -110,13 +111,13 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property DeliverLogsPermissionArn. 
         /// <para>
-        /// The ARN of the IAM role that allows Amazon EC2 to publish flow logs to a CloudWatch
-        /// Logs log group in your account.
+        /// The ARN of the IAM role that allows Amazon EC2 to publish flow logs to the log destination.
         /// </para>
         ///  
         /// <para>
-        /// This parameter is required if the destination type is <code>cloud-watch-logs</code>
-        /// and unsupported otherwise.
+        /// This parameter is required if the destination type is <c>cloud-watch-logs</c>, or
+        /// if the destination type is <c>kinesis-data-firehose</c> and the delivery stream and
+        /// the resources to monitor are in different accounts.
         /// </para>
         /// </summary>
         public string DeliverLogsPermissionArn
@@ -157,7 +158,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If the destination type is <code>cloud-watch-logs</code>, specify the ARN of a CloudWatch
+        /// If the destination type is <c>cloud-watch-logs</c>, specify the ARN of a CloudWatch
         /// Logs log group. For example:
         /// </para>
         ///  
@@ -166,11 +167,11 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Alternatively, use the <code>LogGroupName</code> parameter.
+        /// Alternatively, use the <c>LogGroupName</c> parameter.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the destination type is <code>s3</code>, specify the ARN of an S3 bucket. For example:
+        /// If the destination type is <c>s3</c>, specify the ARN of an S3 bucket. For example:
         /// </para>
         ///  
         /// <para>
@@ -178,13 +179,12 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// The subfolder is optional. Note that you can't use <code>AWSLogs</code> as a subfolder
-        /// name.
+        /// The subfolder is optional. Note that you can't use <c>AWSLogs</c> as a subfolder name.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the destination type is <code>kinesis-data-firehose</code>, specify the ARN of
-        /// a Kinesis Data Firehose delivery stream. For example:
+        /// If the destination type is <c>kinesis-data-firehose</c>, specify the ARN of a Kinesis
+        /// Data Firehose delivery stream. For example:
         /// </para>
         ///  
         /// <para>
@@ -211,7 +211,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>cloud-watch-logs</code> 
+        /// Default: <c>cloud-watch-logs</c> 
         /// </para>
         /// </summary>
         public LogDestinationType LogDestinationType
@@ -232,13 +232,13 @@ namespace Amazon.EC2.Model
         /// The fields to include in the flow log record. List the fields in the order in which
         /// they should appear. If you omit this parameter, the flow log is created using the
         /// default format. If you specify this parameter, you must include at least one field.
-        /// For more information about the available fields, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records">Flow
+        /// For more information about the available fields, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/flow-log-records.html">Flow
         /// log records</a> in the <i>Amazon VPC User Guide</i> or <a href="https://docs.aws.amazon.com/vpc/latest/tgw/tgw-flow-logs.html#flow-log-records">Transit
         /// Gateway Flow Log records</a> in the <i>Amazon Web Services Transit Gateway Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// Specify the fields using the <code>${field-id}</code> format, separated by spaces.
+        /// Specify the fields using the <c>${field-id}</c> format, separated by spaces.
         /// </para>
         /// </summary>
         public string LogFormat
@@ -261,7 +261,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// This parameter is valid only if the destination type is <code>cloud-watch-logs</code>.
+        /// This parameter is valid only if the destination type is <c>cloud-watch-logs</c>.
         /// </para>
         /// </summary>
         public string LogGroupName
@@ -285,7 +285,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// When a network interface is attached to a <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances">Nitro-based
+        /// When a network interface is attached to a <a href="https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-nitro-instances.html">Nitro-based
         /// instance</a>, the aggregation interval is always 60 seconds or less, regardless of
         /// the value that you specify.
         /// </para>
@@ -309,7 +309,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property ResourceIds. 
         /// <para>
-        /// The IDs of the resources to monitor. For example, if the resource type is <code>VPC</code>,
+        /// The IDs of the resources to monitor. For example, if the resource type is <c>VPC</c>,
         /// specify the IDs of the VPCs.
         /// </para>
         ///  
@@ -328,7 +328,7 @@ namespace Amazon.EC2.Model
         // Check to see if ResourceIds property is set
         internal bool IsSetResourceIds()
         {
-            return this._resourceIds != null && this._resourceIds.Count > 0; 
+            return this._resourceIds != null && (this._resourceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -365,7 +365,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

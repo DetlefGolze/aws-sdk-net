@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class AwsLambdaFunctionDetails
     {
-        private List<string> _architectures = new List<string>();
+        private List<string> _architectures = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private AwsLambdaFunctionCode _code;
         private string _codeSha256;
         private AwsLambdaFunctionDeadLetterConfig _deadLetterConfig;
@@ -42,7 +43,7 @@ namespace Amazon.SecurityHub.Model
         private string _handler;
         private string _kmsKeyArn;
         private string _lastModified;
-        private List<AwsLambdaFunctionLayer> _layers = new List<AwsLambdaFunctionLayer>();
+        private List<AwsLambdaFunctionLayer> _layers = AWSConfigs.InitializeCollections ? new List<AwsLambdaFunctionLayer>() : null;
         private string _masterArn;
         private int? _memorySize;
         private string _packageType;
@@ -57,8 +58,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Architectures. 
         /// <para>
-        /// The instruction set architecture that the function uses. Valid values are <code>x86_64</code>
-        /// or <code>arm64</code>.
+        /// The instruction set architecture that the function uses. Valid values are <c>x86_64</c>
+        /// or <c>arm64</c>.
         /// </para>
         /// </summary>
         public List<string> Architectures
@@ -70,13 +71,13 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Architectures property is set
         internal bool IsSetArchitectures()
         {
-            return this._architectures != null && this._architectures.Count > 0; 
+            return this._architectures != null && (this._architectures.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Code. 
         /// <para>
-        /// An <code>AwsLambdaFunctionCode</code> object.
+        /// An <c>AwsLambdaFunctionCode</c> object.
         /// </para>
         /// </summary>
         public AwsLambdaFunctionCode Code
@@ -207,9 +208,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string LastModified
@@ -239,7 +239,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Layers property is set
         internal bool IsSetLayers()
         {
-            return this._layers != null && this._layers.Count > 0; 
+            return this._layers != null && (this._layers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -282,8 +282,8 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property PackageType. 
         /// <para>
         /// The type of deployment package that's used to deploy the function code to Lambda.
-        /// Set to <code>Image</code> for a container image and <code>Zip</code> for a .zip file
-        /// archive. 
+        /// Set to <c>Image</c> for a container image and <c>Zip</c> for a .zip file archive.
+        /// 
         /// </para>
         /// </summary>
         public string PackageType

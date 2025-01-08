@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.KinesisAnalyticsV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.KinesisAnalyticsV2.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ApplicationConfigurationUpdate requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetApplicationCodeConfigurationUpdate())
             {
                 context.Writer.WritePropertyName("ApplicationCodeConfigurationUpdate");
@@ -63,6 +66,17 @@ namespace Amazon.KinesisAnalyticsV2.Model.Internal.MarshallTransformations
 
                 var marshaller = ApplicationSnapshotConfigurationUpdateMarshaller.Instance;
                 marshaller.Marshall(requestObject.ApplicationSnapshotConfigurationUpdate, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetApplicationSystemRollbackConfigurationUpdate())
+            {
+                context.Writer.WritePropertyName("ApplicationSystemRollbackConfigurationUpdate");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = ApplicationSystemRollbackConfigurationUpdateMarshaller.Instance;
+                marshaller.Marshall(requestObject.ApplicationSystemRollbackConfigurationUpdate, context);
 
                 context.Writer.WriteObjectEnd();
             }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -37,18 +38,17 @@ namespace Amazon.WAFV2.Model
     ///  
     /// <para>
     /// If you configure WAF to inspect the request body, WAF inspects only the number of
-    /// bytes of the body up to the limit for the web ACL. By default, for regional web ACLs,
-    /// this limit is 8 KB (8,192 bytes) and for CloudFront web ACLs, this limit is 16 KB
-    /// (16,384 bytes). For CloudFront web ACLs, you can increase the limit in the web ACL
-    /// <code>AssociationConfig</code>, for additional fees. If you know that the request
-    /// body for your web requests should never exceed the inspection limit, you could use
-    /// a size constraint statement to block requests that have a larger request body size.
+    /// bytes in the body up to the limit for the web ACL and protected resource type. If
+    /// you know that the request body for your web requests should never exceed the inspection
+    /// limit, you can use a size constraint statement to block requests that have a larger
+    /// request body size. For more information about the inspection limits, see <c>Body</c>
+    /// and <c>JsonBody</c> settings for the <c>FieldToMatch</c> data type. 
     /// </para>
     ///  
     /// <para>
     /// If you choose URI for the value of Part of the request to filter on, the slash (/)
-    /// in the URI counts as one character. For example, the URI <code>/logo.jpg</code> is
-    /// nine characters long.
+    /// in the URI counts as one character. For example, the URI <c>/logo.jpg</c> is nine
+    /// characters long.
     /// </para>
     /// </summary>
     public partial class SizeConstraintStatement
@@ -56,7 +56,7 @@ namespace Amazon.WAFV2.Model
         private ComparisonOperator _comparisonOperator;
         private FieldToMatch _fieldToMatch;
         private long? _size;
-        private List<TextTransformation> _textTransformations = new List<TextTransformation>();
+        private List<TextTransformation> _textTransformations = AWSConfigs.InitializeCollections ? new List<TextTransformation>() : null;
 
         /// <summary>
         /// Gets and sets the property ComparisonOperator. 
@@ -120,12 +120,11 @@ namespace Amazon.WAFV2.Model
         /// <para>
         /// Text transformations eliminate some of the unusual formatting that attackers use in
         /// web requests in an effort to bypass detection. Text transformations are used in rule
-        /// match statements, to transform the <code>FieldToMatch</code> request component before
-        /// inspecting it, and they're used in rate-based rule statements, to transform request
-        /// components before using them as custom aggregation keys. If you specify one or more
-        /// transformations to apply, WAF performs all transformations on the specified content,
-        /// starting from the lowest priority setting, and then uses the transformed component
-        /// contents. 
+        /// match statements, to transform the <c>FieldToMatch</c> request component before inspecting
+        /// it, and they're used in rate-based rule statements, to transform request components
+        /// before using them as custom aggregation keys. If you specify one or more transformations
+        /// to apply, WAF performs all transformations on the specified content, starting from
+        /// the lowest priority setting, and then uses the transformed component contents. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1)]
@@ -138,7 +137,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if TextTransformations property is set
         internal bool IsSetTextTransformations()
         {
-            return this._textTransformations != null && this._textTransformations.Count > 0; 
+            return this._textTransformations != null && (this._textTransformations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

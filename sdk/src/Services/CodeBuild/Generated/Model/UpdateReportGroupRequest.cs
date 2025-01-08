@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.CodeBuild.Model
     {
         private string _arn;
         private ReportExportConfig _exportConfig;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -64,11 +65,11 @@ namespace Amazon.CodeBuild.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>S3</code>: The report results are exported to an S3 bucket. 
+        ///  <c>S3</c>: The report results are exported to an S3 bucket. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NO_EXPORT</code>: The report results are not exported. 
+        ///  <c>NO_EXPORT</c>: The report results are not exported. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -105,7 +106,7 @@ namespace Amazon.CodeBuild.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

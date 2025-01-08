@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Signer.Model
 {
     /// <summary>
     /// Container for the parameters to the PutSigningProfile operation.
-    /// Creates a signing profile. A signing profile is a code signing template that can be
+    /// Creates a signing profile. A signing profile is a code-signing template that can be
     /// used to carry out a pre-defined signing job.
     /// </summary>
     public partial class PutSigningProfileRequest : AmazonSignerRequest
@@ -40,15 +41,15 @@ namespace Amazon.Signer.Model
         private string _profileName;
         private SignatureValidityPeriod _signatureValidityPeriod;
         private SigningMaterial _signingMaterial;
-        private Dictionary<string, string> _signingParameters = new Dictionary<string, string>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _signingParameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Overrides. 
         /// <para>
-        /// A subfield of <code>platform</code>. This specifies any different configuration options
-        /// that you want to apply to the chosen platform (such as a different <code>hash-algorithm</code>
-        /// or <code>signing-algorithm</code>).
+        /// A subfield of <c>platform</c>. This specifies any different configuration options
+        /// that you want to apply to the chosen platform (such as a different <c>hash-algorithm</c>
+        /// or <c>signing-algorithm</c>).
         /// </para>
         /// </summary>
         public SigningPlatformOverrides Overrides
@@ -155,7 +156,7 @@ namespace Amazon.Signer.Model
         // Check to see if SigningParameters property is set
         internal bool IsSetSigningParameters()
         {
-            return this._signingParameters != null && this._signingParameters.Count > 0; 
+            return this._signingParameters != null && (this._signingParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -174,7 +175,7 @@ namespace Amazon.Signer.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

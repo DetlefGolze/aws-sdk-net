@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.KeyManagementService.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// When it succeeds, the <code>UntagResource</code> operation doesn't return any output.
-    /// Also, if the specified tag key isn't found on the KMS key, it doesn't throw an exception
+    /// When it succeeds, the <c>UntagResource</c> operation doesn't return any output. Also,
+    /// if the specified tag key isn't found on the KMS key, it doesn't throw an exception
     /// or return a response. To confirm that the operation worked, use the <a>ListResourceTags</a>
     /// operation.
     /// </para>
@@ -89,12 +90,17 @@ namespace Amazon.KeyManagementService.Model
     /// <para>
     ///  <a>TagResource</a> 
     /// </para>
-    ///  </li> </ul>
+    ///  </li> </ul> 
+    /// <para>
+    ///  <b>Eventual consistency</b>: The KMS API follows an eventual consistency model. For
+    /// more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html">KMS
+    /// eventual consistency</a>.
+    /// </para>
     /// </summary>
     public partial class UntagResourceRequest : AmazonKeyManagementServiceRequest
     {
         private string _keyId;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property KeyId. 
@@ -111,11 +117,11 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> 
+        /// Key ID: <c>1234abcd-12ab-34cd-56ef-1234567890ab</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Key ARN: <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
+        /// Key ARN: <c>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</c>
         /// 
         /// </para>
         ///  </li> </ul> 
@@ -152,7 +158,7 @@ namespace Amazon.KeyManagementService.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -45,12 +46,12 @@ namespace Amazon.Neptune.Model
         private string _dbInstanceIdentifier;
         private string _dbName;
         private string _dbParameterGroupName;
-        private List<string> _dbSecurityGroups = new List<string>();
+        private List<string> _dbSecurityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _dbSubnetGroupName;
         private bool? _deletionProtection;
         private string _domain;
         private string _domainIAMRoleName;
-        private List<string> _enableCloudwatchLogsExports = new List<string>();
+        private List<string> _enableCloudwatchLogsExports = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _enableIAMDatabaseAuthentication;
         private bool? _enablePerformanceInsights;
         private string _engine;
@@ -72,11 +73,11 @@ namespace Amazon.Neptune.Model
         private bool? _publiclyAccessible;
         private bool? _storageEncrypted;
         private string _storageType;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _tdeCredentialArn;
         private string _tdeCredentialPassword;
         private string _timezone;
-        private List<string> _vpcSecurityGroupIds = new List<string>();
+        private List<string> _vpcSecurityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AllocatedStorage. 
@@ -104,7 +105,7 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>true</code> 
+        /// Default: <c>true</c> 
         /// </para>
         /// </summary>
         public bool AutoMinorVersionUpgrade
@@ -130,12 +131,12 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        ///  Example: <code>us-east-1d</code> 
+        ///  Example: <c>us-east-1d</c> 
         /// </para>
         ///  
         /// <para>
         ///  Constraint: The AvailabilityZone parameter can't be specified if the MultiAZ parameter
-        /// is set to <code>true</code>. The specified Availability Zone must be in the same Amazon
+        /// is set to <c>true</c>. The specified Availability Zone must be in the same Amazon
         /// Region as the current endpoint.
         /// </para>
         /// </summary>
@@ -258,7 +259,7 @@ namespace Amazon.Neptune.Model
         /// <summary>
         /// Gets and sets the property DBInstanceClass. 
         /// <para>
-        /// The compute and memory capacity of the DB instance, for example, <code>db.m4.large</code>.
+        /// The compute and memory capacity of the DB instance, for example, <c>db.m4.large</c>.
         /// Not all DB instance classes are available in all Amazon Regions.
         /// </para>
         /// </summary>
@@ -298,7 +299,7 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>mydbinstance</code> 
+        /// Example: <c>mydbinstance</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -387,7 +388,7 @@ namespace Amazon.Neptune.Model
         // Check to see if DBSecurityGroups property is set
         internal bool IsSetDBSecurityGroups()
         {
-            return this._dbSecurityGroups != null && this._dbSecurityGroups.Count > 0; 
+            return this._dbSecurityGroups != null && (this._dbSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -490,7 +491,7 @@ namespace Amazon.Neptune.Model
         // Check to see if EnableCloudwatchLogsExports property is set
         internal bool IsSetEnableCloudwatchLogsExports()
         {
-            return this._enableCloudwatchLogsExports != null && this._enableCloudwatchLogsExports.Count > 0; 
+            return this._enableCloudwatchLogsExports != null && (this._enableCloudwatchLogsExports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -536,7 +537,7 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>neptune</code> 
+        /// Valid Values: <c>neptune</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -609,10 +610,10 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        /// If the <code>StorageEncrypted</code> parameter is true, and you do not specify a value
-        /// for the <code>KmsKeyId</code> parameter, then Amazon Neptune will use your default
-        /// encryption key. Amazon KMS creates the default encryption key for your Amazon account.
-        /// Your Amazon account has a different default encryption key for each Amazon Region.
+        /// If the <c>StorageEncrypted</c> parameter is true, and you do not specify a value for
+        /// the <c>KmsKeyId</c> parameter, then Amazon Neptune will use your default encryption
+        /// key. Amazon KMS creates the default encryption key for your Amazon account. Your Amazon
+        /// account has a different default encryption key for each Amazon Region.
         /// </para>
         /// </summary>
         public string KmsKeyId
@@ -634,8 +635,8 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        ///  Valid values: <code>license-included</code> | <code>bring-your-own-license</code>
-        /// | <code>general-public-license</code> 
+        ///  Valid values: <c>license-included</c> | <c>bring-your-own-license</c> | <c>general-public-license</c>
+        /// 
         /// </para>
         /// </summary>
         public string LicenseModel
@@ -695,12 +696,12 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        /// If <code>MonitoringRoleArn</code> is specified, then you must also set <code>MonitoringInterval</code>
+        /// If <c>MonitoringRoleArn</c> is specified, then you must also set <c>MonitoringInterval</c>
         /// to a value other than 0.
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>0, 1, 5, 10, 15, 30, 60</code> 
+        /// Valid Values: <c>0, 1, 5, 10, 15, 30, 60</c> 
         /// </para>
         /// </summary>
         public int MonitoringInterval
@@ -719,12 +720,12 @@ namespace Amazon.Neptune.Model
         /// Gets and sets the property MonitoringRoleArn. 
         /// <para>
         /// The ARN for the IAM role that permits Neptune to send enhanced monitoring metrics
-        /// to Amazon CloudWatch Logs. For example, <code>arn:aws:iam:123456789012:role/emaccess</code>.
+        /// to Amazon CloudWatch Logs. For example, <c>arn:aws:iam:123456789012:role/emaccess</c>.
         /// </para>
         ///  
         /// <para>
-        /// If <code>MonitoringInterval</code> is set to a value other than 0, then you must supply
-        /// a <code>MonitoringRoleArn</code> value.
+        /// If <c>MonitoringInterval</c> is set to a value other than 0, then you must supply
+        /// a <c>MonitoringRoleArn</c> value.
         /// </para>
         /// </summary>
         public string MonitoringRoleArn
@@ -805,7 +806,7 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        ///  Default: <code>8182</code> 
+        ///  Default: <c>8182</c> 
         /// </para>
         ///  
         /// <para>
@@ -855,7 +856,7 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        ///  Format: <code>ddd:hh24:mi-ddd:hh24:mi</code> 
+        ///  Format: <c>ddd:hh24:mi-ddd:hh24:mi</c> 
         /// </para>
         ///  
         /// <para>
@@ -993,7 +994,7 @@ namespace Amazon.Neptune.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1020,6 +1021,7 @@ namespace Amazon.Neptune.Model
         /// The password for the given ARN from the key store in order to access the device.
         /// </para>
         /// </summary>
+        [AWSProperty(Sensitive=true)]
         public string TdeCredentialPassword
         {
             get { return this._tdeCredentialPassword; }
@@ -1074,7 +1076,7 @@ namespace Amazon.Neptune.Model
         // Check to see if VpcSecurityGroupIds property is set
         internal bool IsSetVpcSecurityGroupIds()
         {
-            return this._vpcSecurityGroupIds != null && this._vpcSecurityGroupIds.Count > 0; 
+            return this._vpcSecurityGroupIds != null && (this._vpcSecurityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

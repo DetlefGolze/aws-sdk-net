@@ -26,20 +26,32 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateResiliencyPolicy operation.
     /// Creates a resiliency policy for an application.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// Resilience Hub allows you to provide a value of zero for <c>rtoInSecs</c> and <c>rpoInSecs</c>
+    /// of your resiliency policy. But, while assessing your application, the lowest possible
+    /// assessment result is near zero. Hence, if you provide value zero for <c>rtoInSecs</c>
+    /// and <c>rpoInSecs</c>, the estimated workload RTO and estimated workload RPO result
+    /// will be near zero and the <b>Compliance status</b> for your application will be set
+    /// to <b>Policy breached</b>.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class CreateResiliencyPolicyRequest : AmazonResilienceHubRequest
     {
         private string _clientToken;
         private DataLocationConstraint _dataLocationConstraint;
-        private Dictionary<string, FailurePolicy> _policy = new Dictionary<string, FailurePolicy>();
+        private Dictionary<string, FailurePolicy> _policy = AWSConfigs.InitializeCollections ? new Dictionary<string, FailurePolicy>() : null;
         private string _policyDescription;
         private string _policyName;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private ResiliencyPolicyTier _tier;
 
         /// <summary>
@@ -99,13 +111,13 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if Policy property is set
         internal bool IsSetPolicy()
         {
-            return this._policy != null && this._policy.Count > 0; 
+            return this._policy != null && (this._policy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PolicyDescription. 
         /// <para>
-        /// The description for the policy.
+        /// Description of the resiliency policy.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=500)]
@@ -124,7 +136,7 @@ namespace Amazon.ResilienceHub.Model
         /// <summary>
         /// Gets and sets the property PolicyName. 
         /// <para>
-        /// The name of the policy
+        /// Name of the resiliency policy.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -157,14 +169,14 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Tier. 
         /// <para>
-        /// The tier for this resiliency policy, ranging from the highest severity (<code>MissionCritical</code>)
-        /// to lowest (<code>NonCritical</code>).
+        /// The tier for this resiliency policy, ranging from the highest severity (<c>MissionCritical</c>)
+        /// to lowest (<c>NonCritical</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

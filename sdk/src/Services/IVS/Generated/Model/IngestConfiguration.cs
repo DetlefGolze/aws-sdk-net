@@ -26,11 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IVS.Model
 {
     /// <summary>
     /// Object specifying the ingest configuration set up by the broadcaster, usually in an
     /// encoder.
+    /// 
+    ///  
+    /// <para>
+    ///  <b>Note:</b> IngestConfiguration is deprecated in favor of <a>IngestConfigurations</a>
+    /// but retained to ensure backward compatibility. If multitrack is not enabled, IngestConfiguration
+    /// and IngestConfigurations contain the same data, namely information about track0 (the
+    /// sole track). If multitrack is enabled, IngestConfiguration contains data for only
+    /// the first track (track0) and IngestConfigurations contains data for all tracks.
+    /// </para>
     /// </summary>
     public partial class IngestConfiguration
     {

@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -196,6 +197,22 @@ namespace Amazon.Redshift.Model
         }
 
         /// <summary>
+        /// Paginator for DescribeInboundIntegrations operation
+        ///</summary>
+        public IDescribeInboundIntegrationsPaginator DescribeInboundIntegrations(DescribeInboundIntegrationsRequest request) 
+        {
+            return new DescribeInboundIntegrationsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeIntegrations operation
+        ///</summary>
+        public IDescribeIntegrationsPaginator DescribeIntegrations(DescribeIntegrationsRequest request) 
+        {
+            return new DescribeIntegrationsPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for DescribeNodeConfigurationOptions operation
         ///</summary>
         public IDescribeNodeConfigurationOptionsPaginator DescribeNodeConfigurationOptions(DescribeNodeConfigurationOptionsRequest request) 
@@ -209,6 +226,14 @@ namespace Amazon.Redshift.Model
         public IDescribeOrderableClusterOptionsPaginator DescribeOrderableClusterOptions(DescribeOrderableClusterOptionsRequest request) 
         {
             return new DescribeOrderableClusterOptionsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeRedshiftIdcApplications operation
+        ///</summary>
+        public IDescribeRedshiftIdcApplicationsPaginator DescribeRedshiftIdcApplications(DescribeRedshiftIdcApplicationsRequest request) 
+        {
+            return new DescribeRedshiftIdcApplicationsPaginator(this.client, request);
         }
 
         /// <summary>
@@ -297,6 +322,14 @@ namespace Amazon.Redshift.Model
         public IGetReservedNodeExchangeOfferingsPaginator GetReservedNodeExchangeOfferings(GetReservedNodeExchangeOfferingsRequest request) 
         {
             return new GetReservedNodeExchangeOfferingsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListRecommendations operation
+        ///</summary>
+        public IListRecommendationsPaginator ListRecommendations(ListRecommendationsRequest request) 
+        {
+            return new ListRecommendationsPaginator(this.client, request);
         }
     }
 }

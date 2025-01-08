@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Drs.Model
 {
     /// <summary>
@@ -38,9 +39,10 @@ namespace Amazon.Drs.Model
         private bool? _copyTags;
         private string _exportBucketArn;
         private LaunchDisposition _launchDisposition;
+        private bool? _launchIntoSourceInstance;
         private Licensing _licensing;
         private bool? _postLaunchEnabled;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private TargetInstanceTypeRightSizingMethod _targetInstanceTypeRightSizingMethod;
 
         /// <summary>
@@ -117,6 +119,26 @@ namespace Amazon.Drs.Model
         }
 
         /// <summary>
+        /// Gets and sets the property LaunchIntoSourceInstance. 
+        /// <para>
+        /// DRS will set the 'launch into instance ID' of any source server when performing a
+        /// drill, recovery or failback to the previous region or availability zone, using the
+        /// instance ID of the source instance.
+        /// </para>
+        /// </summary>
+        public bool LaunchIntoSourceInstance
+        {
+            get { return this._launchIntoSourceInstance.GetValueOrDefault(); }
+            set { this._launchIntoSourceInstance = value; }
+        }
+
+        // Check to see if LaunchIntoSourceInstance property is set
+        internal bool IsSetLaunchIntoSourceInstance()
+        {
+            return this._launchIntoSourceInstance.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property Licensing. 
         /// <para>
         /// Licensing.
@@ -168,7 +190,7 @@ namespace Amazon.Drs.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

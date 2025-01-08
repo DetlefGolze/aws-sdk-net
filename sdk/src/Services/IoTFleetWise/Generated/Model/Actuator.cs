@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.IoTFleetWise.Model
     /// </summary>
     public partial class Actuator
     {
-        private List<string> _allowedValues = new List<string>();
+        private List<string> _allowedValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _assignedValue;
         private string _comment;
         private NodeDataType _dataType;
@@ -50,6 +51,7 @@ namespace Amazon.IoTFleetWise.Model
         private string _fullyQualifiedName;
         private double? _max;
         private double? _min;
+        private string _structFullyQualifiedName;
         private string _unit;
 
         /// <summary>
@@ -67,7 +69,7 @@ namespace Amazon.IoTFleetWise.Model
         // Check to see if AllowedValues property is set
         internal bool IsSetAllowedValues()
         {
-            return this._allowedValues != null && this._allowedValues.Count > 0; 
+            return this._allowedValues != null && (this._allowedValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -169,7 +171,7 @@ namespace Amazon.IoTFleetWise.Model
         /// Gets and sets the property FullyQualifiedName. 
         /// <para>
         /// The fully qualified name of the actuator. For example, the fully qualified name of
-        /// an actuator might be <code>Vehicle.Front.Left.Door.Lock</code>.
+        /// an actuator might be <c>Vehicle.Front.Left.Door.Lock</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -219,6 +221,27 @@ namespace Amazon.IoTFleetWise.Model
         internal bool IsSetMin()
         {
             return this._min.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property StructFullyQualifiedName. 
+        /// <para>
+        /// The fully qualified name of the struct node for the actuator if the data type of the
+        /// actuator is <c>Struct</c> or <c>StructArray</c>. For example, the struct fully qualified
+        /// name of an actuator might be <c>Vehicle.Door.LockStruct</c>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=150)]
+        public string StructFullyQualifiedName
+        {
+            get { return this._structFullyQualifiedName; }
+            set { this._structFullyQualifiedName = value; }
+        }
+
+        // Check to see if StructFullyQualifiedName property is set
+        internal bool IsSetStructFullyQualifiedName()
+        {
+            return this._structFullyQualifiedName != null;
         }
 
         /// <summary>

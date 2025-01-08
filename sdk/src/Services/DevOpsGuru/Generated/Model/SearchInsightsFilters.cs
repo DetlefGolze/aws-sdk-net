@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
     /// Specifies values used to filter responses when searching for insights. You can use
-    /// a <code>ResourceCollection</code>, <code>ServiceCollection</code>, array of severities,
-    /// and an array of status values. Each filter type contains one or more values to search
-    /// for. If you specify multiple filter types, the filter types are joined with an <code>AND</code>,
+    /// a <c>ResourceCollection</c>, <c>ServiceCollection</c>, array of severities, and an
+    /// array of status values. Each filter type contains one or more values to search for.
+    /// If you specify multiple filter types, the filter types are joined with an <c>AND</c>,
     /// and the request returns only results that match all of the specified filters.
     /// </summary>
     public partial class SearchInsightsFilters
     {
         private ResourceCollection _resourceCollection;
         private ServiceCollection _serviceCollection;
-        private List<string> _severities = new List<string>();
-        private List<string> _statuses = new List<string>();
+        private List<string> _severities = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _statuses = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceCollection.
@@ -91,7 +92,7 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if Severities property is set
         internal bool IsSetSeverities()
         {
-            return this._severities != null && this._severities.Count > 0; 
+            return this._severities != null && (this._severities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -110,7 +111,7 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if Statuses property is set
         internal bool IsSetStatuses()
         {
-            return this._statuses != null && this._statuses.Count > 0; 
+            return this._statuses != null && (this._statuses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

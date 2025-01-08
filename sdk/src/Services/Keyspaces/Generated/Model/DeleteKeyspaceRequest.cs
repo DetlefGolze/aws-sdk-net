@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Keyspaces.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteKeyspace operation.
-    /// The <code>DeleteKeyspace</code> operation deletes a keyspace and all of its tables.
+    /// The <c>DeleteKeyspace</c> operation deletes a keyspace and all of its tables.
     /// </summary>
     public partial class DeleteKeyspaceRequest : AmazonKeyspacesRequest
     {

@@ -26,13 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
     /// Contains the configuration for an S3 Object Lock legal hold operation that an S3 Batch
-    /// Operations job passes to every object to the underlying <code>PutObjectLegalHold</code>
+    /// Operations job passes to every object to the underlying <c>PutObjectLegalHold</c>
     /// API operation. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-legal-hold.html">Using
     /// S3 Object Lock legal hold with S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// This functionality is not supported by directory buckets.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class S3SetObjectLegalHoldOperation
     {

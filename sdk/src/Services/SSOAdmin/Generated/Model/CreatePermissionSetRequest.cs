@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSOAdmin.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.SSOAdmin.Model
     /// 
     ///  <note> 
     /// <para>
-    /// To grant users and groups access to Amazon Web Services account resources, use <code>
-    /// <a>CreateAccountAssignment</a> </code>.
+    /// To grant users and groups access to Amazon Web Services account resources, use <c>
+    /// <a>CreateAccountAssignment</a> </c>.
     /// </para>
     ///  </note>
     /// </summary>
@@ -46,7 +47,7 @@ namespace Amazon.SSOAdmin.Model
         private string _name;
         private string _relayState;
         private string _sessionDuration;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -153,7 +154,7 @@ namespace Amazon.SSOAdmin.Model
         /// The tags to attach to the new <a>PermissionSet</a>.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=50)]
+        [AWSProperty(Min=0, Max=75)]
         public List<Tag> Tags
         {
             get { return this._tags; }
@@ -163,7 +164,7 @@ namespace Amazon.SSOAdmin.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

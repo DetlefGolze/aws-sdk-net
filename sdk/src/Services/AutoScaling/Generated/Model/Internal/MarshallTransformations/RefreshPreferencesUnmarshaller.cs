@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AutoScaling.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,6 +67,12 @@ namespace Amazon.AutoScaling.Model.Internal.MarshallTransformations
                         unmarshalledObject.AutoRollback = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("BakeTime", targetDepth))
+                    {
+                        var unmarshaller = IntUnmarshaller.Instance;
+                        unmarshalledObject.BakeTime = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("CheckpointDelay", targetDepth))
                     {
                         var unmarshaller = IntUnmarshaller.Instance;
@@ -75,6 +82,10 @@ namespace Amazon.AutoScaling.Model.Internal.MarshallTransformations
                     if (context.TestExpression("CheckpointPercentages/member", targetDepth))
                     {
                         var unmarshaller = IntUnmarshaller.Instance;
+                        if (unmarshalledObject.CheckpointPercentages == null)
+                        {
+                            unmarshalledObject.CheckpointPercentages = new List<int>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.CheckpointPercentages.Add(item);
                         continue;
@@ -83,6 +94,12 @@ namespace Amazon.AutoScaling.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = IntUnmarshaller.Instance;
                         unmarshalledObject.InstanceWarmup = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("MaxHealthyPercentage", targetDepth))
+                    {
+                        var unmarshaller = IntUnmarshaller.Instance;
+                        unmarshalledObject.MaxHealthyPercentage = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("MinHealthyPercentage", targetDepth))

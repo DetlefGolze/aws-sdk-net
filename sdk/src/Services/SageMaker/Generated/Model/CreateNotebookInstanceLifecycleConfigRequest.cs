@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -40,13 +41,13 @@ namespace Amazon.SageMaker.Model
     /// </para>
     ///  
     /// <para>
-    /// The value of the <code>$PATH</code> environment variable that is available to both
-    /// scripts is <code>/sbin:bin:/usr/sbin:/usr/bin</code>.
+    /// The value of the <c>$PATH</c> environment variable that is available to both scripts
+    /// is <c>/sbin:bin:/usr/sbin:/usr/bin</c>.
     /// </para>
     ///  
     /// <para>
-    /// View CloudWatch Logs for notebook instance lifecycle configurations in log group <code>/aws/sagemaker/NotebookInstances</code>
-    /// in log stream <code>[notebook-instance-name]/[LifecycleConfigHook]</code>.
+    /// View Amazon CloudWatch Logs for notebook instance lifecycle configurations in log
+    /// group <c>/aws/sagemaker/NotebookInstances</c> in log stream <c>[notebook-instance-name]/[LifecycleConfigHook]</c>.
     /// </para>
     ///  
     /// <para>
@@ -63,8 +64,8 @@ namespace Amazon.SageMaker.Model
     public partial class CreateNotebookInstanceLifecycleConfigRequest : AmazonSageMakerRequest
     {
         private string _notebookInstanceLifecycleConfigName;
-        private List<NotebookInstanceLifecycleHook> _onCreate = new List<NotebookInstanceLifecycleHook>();
-        private List<NotebookInstanceLifecycleHook> _onStart = new List<NotebookInstanceLifecycleHook>();
+        private List<NotebookInstanceLifecycleHook> _onCreate = AWSConfigs.InitializeCollections ? new List<NotebookInstanceLifecycleHook>() : null;
+        private List<NotebookInstanceLifecycleHook> _onStart = AWSConfigs.InitializeCollections ? new List<NotebookInstanceLifecycleHook>() : null;
 
         /// <summary>
         /// Gets and sets the property NotebookInstanceLifecycleConfigName. 
@@ -102,7 +103,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if OnCreate property is set
         internal bool IsSetOnCreate()
         {
-            return this._onCreate != null && this._onCreate.Count > 0; 
+            return this._onCreate != null && (this._onCreate.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -122,7 +123,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if OnStart property is set
         internal bool IsSetOnStart()
         {
-            return this._onStart != null && this._onStart.Count > 0; 
+            return this._onStart != null && (this._onStart.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationAutoScaling.Model
 {
     /// <summary>
@@ -43,20 +44,19 @@ namespace Amazon.ApplicationAutoScaling.Model
         private int? _cooldown;
         private MetricAggregationType _metricAggregationType;
         private int? _minAdjustmentMagnitude;
-        private List<StepAdjustment> _stepAdjustments = new List<StepAdjustment>();
+        private List<StepAdjustment> _stepAdjustments = AWSConfigs.InitializeCollections ? new List<StepAdjustment>() : null;
 
         /// <summary>
         /// Gets and sets the property AdjustmentType. 
         /// <para>
-        /// Specifies how the <code>ScalingAdjustment</code> value in a <a href="https://docs.aws.amazon.com/autoscaling/application/APIReference/API_StepAdjustment.html">StepAdjustment</a>
+        /// Specifies how the <c>ScalingAdjustment</c> value in a <a href="https://docs.aws.amazon.com/autoscaling/application/APIReference/API_StepAdjustment.html">StepAdjustment</a>
         /// is interpreted (for example, an absolute number or a percentage). The valid values
-        /// are <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and <code>PercentChangeInCapacity</code>.
+        /// are <c>ChangeInCapacity</c>, <c>ExactCapacity</c>, and <c>PercentChangeInCapacity</c>.
         /// 
         /// </para>
         ///  
         /// <para>
-        ///  <code>AdjustmentType</code> is required if you are adding a new step scaling policy
-        /// configuration.
+        ///  <c>AdjustmentType</c> is required if you are adding a new step scaling policy configuration.
         /// </para>
         /// </summary>
         public AdjustmentType AdjustmentType
@@ -75,7 +75,7 @@ namespace Amazon.ApplicationAutoScaling.Model
         /// Gets and sets the property Cooldown. 
         /// <para>
         /// The amount of time, in seconds, to wait for a previous scaling activity to take effect.
-        /// If not specified, the default value is 300. For more information, see <a href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html#step-scaling-cooldown">Cooldown
+        /// If not specified, the default value is 300. For more information, see <a href="https://docs.aws.amazon.com/autoscaling/application/userguide/step-scaling-policy-overview.html#step-scaling-cooldown">Cooldown
         /// period</a> in the <i>Application Auto Scaling User Guide</i>.
         /// </para>
         /// </summary>
@@ -94,9 +94,9 @@ namespace Amazon.ApplicationAutoScaling.Model
         /// <summary>
         /// Gets and sets the property MetricAggregationType. 
         /// <para>
-        /// The aggregation type for the CloudWatch metrics. Valid values are <code>Minimum</code>,
-        /// <code>Maximum</code>, and <code>Average</code>. If the aggregation type is null, the
-        /// value is treated as <code>Average</code>.
+        /// The aggregation type for the CloudWatch metrics. Valid values are <c>Minimum</c>,
+        /// <c>Maximum</c>, and <c>Average</c>. If the aggregation type is null, the value is
+        /// treated as <c>Average</c>.
         /// </para>
         /// </summary>
         public MetricAggregationType MetricAggregationType
@@ -114,12 +114,12 @@ namespace Amazon.ApplicationAutoScaling.Model
         /// <summary>
         /// Gets and sets the property MinAdjustmentMagnitude. 
         /// <para>
-        /// The minimum value to scale by when the adjustment type is <code>PercentChangeInCapacity</code>.
+        /// The minimum value to scale by when the adjustment type is <c>PercentChangeInCapacity</c>.
         /// For example, suppose that you create a step scaling policy to scale out an Amazon
-        /// ECS service by 25 percent and you specify a <code>MinAdjustmentMagnitude</code> of
-        /// 2. If the service has 4 tasks and the scaling policy is performed, 25 percent of 4
-        /// is 1. However, because you specified a <code>MinAdjustmentMagnitude</code> of 2, Application
-        /// Auto Scaling scales out the service by 2 tasks.
+        /// ECS service by 25 percent and you specify a <c>MinAdjustmentMagnitude</c> of 2. If
+        /// the service has 4 tasks and the scaling policy is performed, 25 percent of 4 is 1.
+        /// However, because you specified a <c>MinAdjustmentMagnitude</c> of 2, Application Auto
+        /// Scaling scales out the service by 2 tasks.
         /// </para>
         /// </summary>
         public int MinAdjustmentMagnitude
@@ -154,7 +154,7 @@ namespace Amazon.ApplicationAutoScaling.Model
         // Check to see if StepAdjustments property is set
         internal bool IsSetStepAdjustments()
         {
-            return this._stepAdjustments != null && this._stepAdjustments.Count > 0; 
+            return this._stepAdjustments != null && (this._stepAdjustments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

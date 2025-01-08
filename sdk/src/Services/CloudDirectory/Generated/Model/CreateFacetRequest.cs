@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.CloudDirectory.Model
     /// </summary>
     public partial class CreateFacetRequest : AmazonCloudDirectoryRequest
     {
-        private List<FacetAttribute> _attributes = new List<FacetAttribute>();
+        private List<FacetAttribute> _attributes = AWSConfigs.InitializeCollections ? new List<FacetAttribute>() : null;
         private FacetStyle _facetStyle;
         private string _name;
         private ObjectType _objectType;
@@ -56,15 +57,15 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property FacetStyle. 
         /// <para>
-        /// There are two different styles that you can define on any given facet, <code>Static</code>
-        /// and <code>Dynamic</code>. For static facets, all attributes must be defined in the
-        /// schema. For dynamic facets, attributes can be defined during data plane operations.
+        /// There are two different styles that you can define on any given facet, <c>Static</c>
+        /// and <c>Dynamic</c>. For static facets, all attributes must be defined in the schema.
+        /// For dynamic facets, attributes can be defined during data plane operations.
         /// </para>
         /// </summary>
         public FacetStyle FacetStyle
@@ -152,7 +153,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if SchemaArn property is set
         internal bool IsSetSchemaArn()
         {
-            return this._schemaArn != null;
+            return !string.IsNullOrEmpty(this._schemaArn);
         }
 
     }

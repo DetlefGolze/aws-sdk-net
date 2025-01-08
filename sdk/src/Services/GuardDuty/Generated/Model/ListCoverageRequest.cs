@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -36,8 +37,8 @@ namespace Amazon.GuardDuty.Model
     /// 
     ///  
     /// <para>
-    /// Make sure the accounts have EKS Runtime Monitoring enabled and GuardDuty agent running
-    /// on their EKS nodes.
+    /// Make sure the accounts have Runtime Monitoring enabled and GuardDuty agent running
+    /// on their resources.
     /// </para>
     /// </summary>
     public partial class ListCoverageRequest : AmazonGuardDutyRequest
@@ -52,6 +53,12 @@ namespace Amazon.GuardDuty.Model
         /// Gets and sets the property DetectorId. 
         /// <para>
         /// The unique ID of the detector whose coverage details you want to retrieve.
+        /// </para>
+        ///  
+        /// <para>
+        /// To find the <c>detectorId</c> in the current Region, see the Settings page in the
+        /// GuardDuty console, or run the <a href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html">ListDetectors</a>
+        /// API.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=300)]

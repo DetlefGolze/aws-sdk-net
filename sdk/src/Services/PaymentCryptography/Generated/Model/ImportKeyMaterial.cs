@@ -26,17 +26,39 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptography.Model
 {
     /// <summary>
-    /// Parameter information for key material import.
+    /// Parameter information for key material import into Amazon Web Services Payment Cryptography
+    /// using TR-31 or TR-34 or RSA wrap and unwrap key exchange method.
     /// </summary>
     public partial class ImportKeyMaterial
     {
+        private ImportKeyCryptogram _keyCryptogram;
         private RootCertificatePublicKey _rootCertificatePublicKey;
         private ImportTr31KeyBlock _tr31KeyBlock;
         private ImportTr34KeyBlock _tr34KeyBlock;
         private TrustedCertificatePublicKey _trustedCertificatePublicKey;
+
+        /// <summary>
+        /// Gets and sets the property KeyCryptogram. 
+        /// <para>
+        /// Parameter information for key material import using asymmetric RSA wrap and unwrap
+        /// key exchange method.
+        /// </para>
+        /// </summary>
+        public ImportKeyCryptogram KeyCryptogram
+        {
+            get { return this._keyCryptogram; }
+            set { this._keyCryptogram = value; }
+        }
+
+        // Check to see if KeyCryptogram property is set
+        internal bool IsSetKeyCryptogram()
+        {
+            return this._keyCryptogram != null;
+        }
 
         /// <summary>
         /// Gets and sets the property RootCertificatePublicKey. 
@@ -59,7 +81,7 @@ namespace Amazon.PaymentCryptography.Model
         /// <summary>
         /// Gets and sets the property Tr31KeyBlock. 
         /// <para>
-        /// Parameter information for key material import using TR-31 standard.
+        /// Parameter information for key material import using symmetric TR-31 key exchange method.
         /// </para>
         /// </summary>
         public ImportTr31KeyBlock Tr31KeyBlock
@@ -77,7 +99,8 @@ namespace Amazon.PaymentCryptography.Model
         /// <summary>
         /// Gets and sets the property Tr34KeyBlock. 
         /// <para>
-        /// Parameter information for key material import using TR-34 standard.
+        /// Parameter information for key material import using the asymmetric TR-34 key exchange
+        /// method.
         /// </para>
         /// </summary>
         public ImportTr34KeyBlock Tr34KeyBlock

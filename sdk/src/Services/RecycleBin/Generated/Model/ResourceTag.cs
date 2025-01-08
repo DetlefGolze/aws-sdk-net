@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RecycleBin.Model
 {
     /// <summary>
-    /// Information about the resource tags used to identify resources that are retained by
-    /// the retention rule.
+    /// [Tag-level retention rules only] Information about the resource tags used to identify
+    /// resources that are retained by the retention rule.
     /// </summary>
     public partial class ResourceTag
     {

@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedGrafana.Model
 {
     /// <summary>
     /// Container for the parameters to the ListTagsForResource operation.
-    /// The <code>ListTagsForResource</code> operation returns the tags that are associated
-    /// with the Amazon Managed Service for Grafana resource specified by the <code>resourceArn</code>.
+    /// The <c>ListTagsForResource</c> operation returns the tags that are associated with
+    /// the Amazon Managed Service for Grafana resource specified by the <c>resourceArn</c>.
     /// Currently, the only resource that can be tagged is a workspace.
     /// </summary>
     public partial class ListTagsForResourceRequest : AmazonManagedGrafanaRequest

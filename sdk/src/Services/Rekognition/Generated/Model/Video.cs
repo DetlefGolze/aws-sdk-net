@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// Video file stored in an Amazon S3 bucket. Amazon Rekognition video start operations
-    /// such as <a>StartLabelDetection</a> use <code>Video</code> to specify a video for analysis.
+    /// such as <a>StartLabelDetection</a> use <c>Video</c> to specify a video for analysis.
     /// The supported file formats are .mp4, .mov and .avi.
     /// </summary>
     public partial class Video

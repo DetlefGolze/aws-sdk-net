@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.FSx.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public LustreFileSystemConfiguration Unmarshall(JsonUnmarshallerContext context)
         {
+            LustreFileSystemConfiguration unmarshalledObject = new LustreFileSystemConfiguration();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            LustreFileSystemConfiguration unmarshalledObject = new LustreFileSystemConfiguration();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -106,10 +108,22 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
                     unmarshalledObject.DriveCacheType = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("EfaEnabled", targetDepth))
+                {
+                    var unmarshaller = BoolUnmarshaller.Instance;
+                    unmarshalledObject.EfaEnabled = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("LogConfiguration", targetDepth))
                 {
                     var unmarshaller = LustreLogConfigurationUnmarshaller.Instance;
                     unmarshalledObject.LogConfiguration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("MetadataConfiguration", targetDepth))
+                {
+                    var unmarshaller = FileSystemLustreMetadataConfigurationUnmarshaller.Instance;
+                    unmarshalledObject.MetadataConfiguration = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("MountName", targetDepth))
@@ -137,7 +151,6 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

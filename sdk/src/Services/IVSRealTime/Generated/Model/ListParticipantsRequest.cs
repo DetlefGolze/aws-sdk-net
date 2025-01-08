@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IVSRealTime.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.IVSRealTime.Model
     public partial class ListParticipantsRequest : AmazonIVSRealTimeRequest
     {
         private bool? _filterByPublished;
+        private ParticipantRecordingFilterByRecordingState _filterByRecordingState;
         private ParticipantState _filterByState;
         private string _filterByUserId;
         private int? _maxResults;
@@ -46,8 +48,8 @@ namespace Amazon.IVSRealTime.Model
         /// Gets and sets the property FilterByPublished. 
         /// <para>
         /// Filters the response list to only show participants who published during the stage
-        /// session. Only one of <code>filterByUserId</code>, <code>filterByPublished</code>,
-        /// or <code>filterByState</code> can be provided per request.
+        /// session. Only one of <c>filterByUserId</c>, <c>filterByPublished</c>, <c>filterByState</c>,
+        /// or <c>filterByRecordingState</c> can be provided per request.
         /// </para>
         /// </summary>
         public bool FilterByPublished
@@ -63,10 +65,30 @@ namespace Amazon.IVSRealTime.Model
         }
 
         /// <summary>
+        /// Gets and sets the property FilterByRecordingState. 
+        /// <para>
+        /// Filters the response list to only show participants with the specified recording state.
+        /// Only one of <c>filterByUserId</c>, <c>filterByPublished</c>, <c>filterByState</c>,
+        /// or <c>filterByRecordingState</c> can be provided per request.
+        /// </para>
+        /// </summary>
+        public ParticipantRecordingFilterByRecordingState FilterByRecordingState
+        {
+            get { return this._filterByRecordingState; }
+            set { this._filterByRecordingState = value; }
+        }
+
+        // Check to see if FilterByRecordingState property is set
+        internal bool IsSetFilterByRecordingState()
+        {
+            return this._filterByRecordingState != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property FilterByState. 
         /// <para>
         /// Filters the response list to only show participants in the specified state. Only one
-        /// of <code>filterByUserId</code>, <code>filterByPublished</code>, or <code>filterByState</code>
+        /// of <c>filterByUserId</c>, <c>filterByPublished</c>, <c>filterByState</c>, or <c>filterByRecordingState</c>
         /// can be provided per request.
         /// </para>
         /// </summary>
@@ -85,10 +107,11 @@ namespace Amazon.IVSRealTime.Model
         /// <summary>
         /// Gets and sets the property FilterByUserId. 
         /// <para>
-        /// Filters the response list to match the specified user ID. Only one of <code>filterByUserId</code>,
-        /// <code>filterByPublished</code>, or <code>filterByState</code> can be provided per
-        /// request. A <code>userId</code> is a customer-assigned name to help identify the token;
-        /// this can be used to link a participant to a user in the customer’s own systems.
+        /// Filters the response list to match the specified user ID. Only one of <c>filterByUserId</c>,
+        /// <c>filterByPublished</c>, <c>filterByState</c>, or <c>filterByRecordingState</c> can
+        /// be provided per request. A <c>userId</c> is a customer-assigned name to help identify
+        /// the token; this can be used to link a participant to a user in the customer’s own
+        /// systems.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=128)]
@@ -126,7 +149,7 @@ namespace Amazon.IVSRealTime.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The first participant to retrieve. This is used for pagination; see the <code>nextToken</code>
+        /// The first participant to retrieve. This is used for pagination; see the <c>nextToken</c>
         /// response field.
         /// </para>
         /// </summary>

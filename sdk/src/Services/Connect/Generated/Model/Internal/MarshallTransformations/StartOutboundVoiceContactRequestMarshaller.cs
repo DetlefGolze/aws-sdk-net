@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Connect.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAnswerMachineDetectionConfig())
@@ -113,6 +115,12 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
                     context.Writer.Write(publicRequest.ContactFlowId);
                 }
 
+                if(publicRequest.IsSetDescription())
+                {
+                    context.Writer.WritePropertyName("Description");
+                    context.Writer.Write(publicRequest.Description);
+                }
+
                 if(publicRequest.IsSetDestinationPhoneNumber())
                 {
                     context.Writer.WritePropertyName("DestinationPhoneNumber");
@@ -125,10 +133,41 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
                     context.Writer.Write(publicRequest.InstanceId);
                 }
 
+                if(publicRequest.IsSetName())
+                {
+                    context.Writer.WritePropertyName("Name");
+                    context.Writer.Write(publicRequest.Name);
+                }
+
                 if(publicRequest.IsSetQueueId())
                 {
                     context.Writer.WritePropertyName("QueueId");
                     context.Writer.Write(publicRequest.QueueId);
+                }
+
+                if(publicRequest.IsSetReferences())
+                {
+                    context.Writer.WritePropertyName("References");
+                    context.Writer.WriteObjectStart();
+                    foreach (var publicRequestReferencesKvp in publicRequest.References)
+                    {
+                        context.Writer.WritePropertyName(publicRequestReferencesKvp.Key);
+                        var publicRequestReferencesValue = publicRequestReferencesKvp.Value;
+
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = ReferenceMarshaller.Instance;
+                        marshaller.Marshall(publicRequestReferencesValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetRelatedContactId())
+                {
+                    context.Writer.WritePropertyName("RelatedContactId");
+                    context.Writer.Write(publicRequest.RelatedContactId);
                 }
 
                 if(publicRequest.IsSetSourcePhoneNumber())

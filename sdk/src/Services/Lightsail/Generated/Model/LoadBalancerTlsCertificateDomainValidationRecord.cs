@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// A fully qualified domain name in the certificate. For example, <code>example.com</code>.
+        /// A fully qualified domain name in the certificate. For example, <c>example.com</c>.
         /// </para>
         /// </summary>
         public string Name
@@ -98,7 +99,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of validation record. For example, <code>CNAME</code> for domain validation.
+        /// The type of validation record. For example, <c>CNAME</c> for domain validation.
         /// </para>
         /// </summary>
         public string Type

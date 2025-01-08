@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -35,14 +36,13 @@ namespace Amazon.OpenSearchService.Model
     /// </summary>
     public partial class DescribeDomainsRequest : AmazonOpenSearchServiceRequest
     {
-        private List<string> _domainNames = new List<string>();
+        private List<string> _domainNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DomainNames. 
         /// <para>
-        /// Array of OpenSearch Service domain names that you want information about. If you don't
-        /// specify any domains, OpenSearch Service returns information about all domains owned
-        /// by the account.
+        /// Array of OpenSearch Service domain names that you want information about. You must
+        /// specify at least one domain name.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -55,7 +55,7 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if DomainNames property is set
         internal bool IsSetDomainNames()
         {
-            return this._domainNames != null && this._domainNames.Count > 0; 
+            return this._domainNames != null && (this._domainNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

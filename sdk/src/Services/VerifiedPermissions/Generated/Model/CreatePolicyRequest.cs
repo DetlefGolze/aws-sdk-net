@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VerifiedPermissions.Model
 {
     /// <summary>
@@ -35,15 +36,15 @@ namespace Amazon.VerifiedPermissions.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    /// To create a static policy, provide the Cedar policy text in the <code>StaticPolicy</code>
-    /// section of the <code>PolicyDefinition</code>.
+    /// To create a static policy, provide the Cedar policy text in the <c>StaticPolicy</c>
+    /// section of the <c>PolicyDefinition</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
     /// To create a policy that is dynamically linked to a policy template, specify the policy
-    /// template ID and the principal and resource to associate with this policy in the <code>templateLinked</code>
-    /// section of the <code>PolicyDefinition</code>. If the policy template is ever updated,
-    /// any policies linked to the policy template automatically use the updated template.
+    /// template ID and the principal and resource to associate with this policy in the <c>templateLinked</c>
+    /// section of the <c>PolicyDefinition</c>. If the policy template is ever updated, any
+    /// policies linked to the policy template automatically use the updated template.
     /// </para>
     ///  </li> </ul> <note> 
     /// <para>
@@ -53,9 +54,8 @@ namespace Amazon.VerifiedPermissions.Model
     ///  </note> <note> 
     /// <para>
     /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
-    /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
-    /// propagate through the service and be visible in the results of other Verified Permissions
-    /// operations.
+    /// consistent</a> </i>. It can take a few seconds for a new or changed element to propagate
+    /// through the service and be visible in the results of other Verified Permissions operations.
     /// </para>
     ///  </note>
     /// </summary>
@@ -82,8 +82,14 @@ namespace Amazon.VerifiedPermissions.Model
         /// </para>
         ///  
         /// <para>
-        /// If you retry the operation with the same <code>ClientToken</code>, but with different
-        /// parameters, the retry fails with an <code>IdempotentParameterMismatch</code> error.
+        /// If you retry the operation with the same <c>ClientToken</c>, but with different parameters,
+        /// the retry fails with an <c>ConflictException</c> error.
+        /// </para>
+        ///  
+        /// <para>
+        /// Verified Permissions recognizes a <c>ClientToken</c> for eight hours. After eight
+        /// hours, the next request with the same parameters performs the operation again regardless
+        /// of the value of <c>ClientToken</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -123,8 +129,8 @@ namespace Amazon.VerifiedPermissions.Model
         /// <summary>
         /// Gets and sets the property PolicyStoreId. 
         /// <para>
-        /// Specifies the <code>PolicyStoreId</code> of the policy store you want to store the
-        /// policy in.
+        /// Specifies the <c>PolicyStoreId</c> of the policy store you want to store the policy
+        /// in.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=200)]

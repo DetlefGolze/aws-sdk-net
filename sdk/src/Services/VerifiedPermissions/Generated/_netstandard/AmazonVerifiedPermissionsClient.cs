@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.VerifiedPermissions
 {
     /// <summary>
-    /// Implementation for accessing VerifiedPermissions
+    /// <para>Implementation for accessing VerifiedPermissions</para>
     ///
     /// Amazon Verified Permissions is a permissions management service from Amazon Web Services.
     /// You can use Verified Permissions to manage permissions for your application, and authorize
@@ -78,13 +79,13 @@ namespace Amazon.VerifiedPermissions
     /// </para>
     ///  
     /// <para>
-    /// For example, if user <code>jane</code> leaves the company, and you later let someone
-    /// else use the name <code>jane</code>, then that new user automatically gets access
-    /// to everything granted by policies that still reference <code>User::"jane"</code>.
-    /// Cedar can’t distinguish between the new user and the old. This applies to both principal
-    /// and resource identifiers. Always use identifiers that are guaranteed unique and never
-    /// reused to ensure that you don’t unintentionally grant access because of the presence
-    /// of an old identifier in a policy.
+    /// For example, if user <c>jane</c> leaves the company, and you later let someone else
+    /// use the name <c>jane</c>, then that new user automatically gets access to everything
+    /// granted by policies that still reference <c>User::"jane"</c>. Cedar can’t distinguish
+    /// between the new user and the old. This applies to both principal and resource identifiers.
+    /// Always use identifiers that are guaranteed unique and never reused to ensure that
+    /// you don’t unintentionally grant access because of the presence of an old identifier
+    /// in a policy.
     /// </para>
     ///  
     /// <para>
@@ -109,13 +110,11 @@ namespace Amazon.VerifiedPermissions
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// Parameter type structures that end in <code>Detail</code> are used in <code>Get</code>
-    /// operations.
+    /// Parameter type structures that end in <c>Detail</c> are used in <c>Get</c> operations.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Parameter type structures that end in <code>Item</code> are used in <code>List</code>
-    /// operations.
+    /// Parameter type structures that end in <c>Item</c> are used in <c>List</c> operations.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -351,6 +350,507 @@ namespace Amazon.VerifiedPermissions
         #endregion
 
 
+        #region  BatchGetPolicy
+
+        internal virtual BatchGetPolicyResponse BatchGetPolicy(BatchGetPolicyRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = BatchGetPolicyRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = BatchGetPolicyResponseUnmarshaller.Instance;
+
+            return Invoke<BatchGetPolicyResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Retrieves information about a group (batch) of policies.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// The <c>BatchGetPolicy</c> operation doesn't have its own IAM permission. To authorize
+        /// this operation for Amazon Web Services principals, include the permission <c>verifiedpermissions:GetPolicy</c>
+        /// in their IAM policies.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the BatchGetPolicy service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the BatchGetPolicy service method, as returned by VerifiedPermissions.</returns>
+        /// <exception cref="Amazon.VerifiedPermissions.Model.AccessDeniedException">
+        /// You don't have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.VerifiedPermissions.Model.InternalServerException">
+        /// The request failed because of an internal error. Try your request again later
+        /// </exception>
+        /// <exception cref="Amazon.VerifiedPermissions.Model.ThrottlingException">
+        /// The request failed because it exceeded a throttling quota.
+        /// </exception>
+        /// <exception cref="Amazon.VerifiedPermissions.Model.ValidationException">
+        /// The request failed because one or more input parameters don't satisfy their constraint
+        /// requirements. The output is provided as a list of fields and a reason for each field
+        /// that isn't valid.
+        /// 
+        ///  
+        /// <para>
+        /// The possible reasons include the following:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>UnrecognizedEntityType</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy includes an entity type that isn't found in the schema.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>UnrecognizedActionId</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy includes an action id that isn't found in the schema.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>InvalidActionApplication</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy includes an action that, according to the schema, doesn't support the specified
+        /// principal and resource.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>UnexpectedType</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy included an operand that isn't a valid type for the specified operation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>IncompatibleTypes</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>MissingAttribute</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy attempts to access a record or entity attribute that isn't specified in
+        /// the schema. Test for the existence of the attribute first before attempting to access
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
+        /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>UnsafeOptionalAttributeAccess</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy attempts to access a record or entity attribute that is optional and isn't
+        /// guaranteed to be present. Test for the existence of the attribute first before attempting
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
+        /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>ImpossiblePolicy</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Cedar has determined that a policy condition always evaluates to false. If the policy
+        /// is always false, it can never apply to any query, and so it can never affect an authorization
+        /// decision.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>WrongNumberArguments</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy references an extension type with the wrong number of arguments.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>FunctionArgumentValidationError</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Cedar couldn't parse the argument passed to an extension type. For example, a string
+        /// that is to be parsed as an IPv4 address can contain only digits and the period character.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/verifiedpermissions-2021-12-01/BatchGetPolicy">REST API Reference for BatchGetPolicy Operation</seealso>
+        public virtual Task<BatchGetPolicyResponse> BatchGetPolicyAsync(BatchGetPolicyRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = BatchGetPolicyRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = BatchGetPolicyResponseUnmarshaller.Instance;
+
+            return InvokeAsync<BatchGetPolicyResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  BatchIsAuthorized
+
+        internal virtual BatchIsAuthorizedResponse BatchIsAuthorized(BatchIsAuthorizedRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = BatchIsAuthorizedRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = BatchIsAuthorizedResponseUnmarshaller.Instance;
+
+            return Invoke<BatchIsAuthorizedResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Makes a series of decisions about multiple authorization requests for one principal
+        /// or resource. Each request contains the equivalent content of an <c>IsAuthorized</c>
+        /// request: principal, action, resource, and context. Either the <c>principal</c> or
+        /// the <c>resource</c> parameter must be identical across all requests. For example,
+        /// Verified Permissions won't evaluate a pair of requests where <c>bob</c> views <c>photo1</c>
+        /// and <c>alice</c> views <c>photo2</c>. Authorization of <c>bob</c> to view <c>photo1</c>
+        /// and <c>photo2</c>, or <c>bob</c> and <c>alice</c> to view <c>photo1</c>, are valid
+        /// batches. 
+        /// 
+        ///  
+        /// <para>
+        /// The request is evaluated against all policies in the specified policy store that match
+        /// the entities that you declare. The result of the decisions is a series of <c>Allow</c>
+        /// or <c>Deny</c> responses, along with the IDs of the policies that produced each decision.
+        /// </para>
+        ///  
+        /// <para>
+        /// The <c>entities</c> of a <c>BatchIsAuthorized</c> API request can contain up to 100
+        /// principals and up to 100 resources. The <c>requests</c> of a <c>BatchIsAuthorized</c>
+        /// API request can contain up to 30 requests.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// The <c>BatchIsAuthorized</c> operation doesn't have its own IAM permission. To authorize
+        /// this operation for Amazon Web Services principals, include the permission <c>verifiedpermissions:IsAuthorized</c>
+        /// in their IAM policies.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the BatchIsAuthorized service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the BatchIsAuthorized service method, as returned by VerifiedPermissions.</returns>
+        /// <exception cref="Amazon.VerifiedPermissions.Model.AccessDeniedException">
+        /// You don't have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.VerifiedPermissions.Model.InternalServerException">
+        /// The request failed because of an internal error. Try your request again later
+        /// </exception>
+        /// <exception cref="Amazon.VerifiedPermissions.Model.ResourceNotFoundException">
+        /// The request failed because it references a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.VerifiedPermissions.Model.ThrottlingException">
+        /// The request failed because it exceeded a throttling quota.
+        /// </exception>
+        /// <exception cref="Amazon.VerifiedPermissions.Model.ValidationException">
+        /// The request failed because one or more input parameters don't satisfy their constraint
+        /// requirements. The output is provided as a list of fields and a reason for each field
+        /// that isn't valid.
+        /// 
+        ///  
+        /// <para>
+        /// The possible reasons include the following:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>UnrecognizedEntityType</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy includes an entity type that isn't found in the schema.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>UnrecognizedActionId</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy includes an action id that isn't found in the schema.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>InvalidActionApplication</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy includes an action that, according to the schema, doesn't support the specified
+        /// principal and resource.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>UnexpectedType</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy included an operand that isn't a valid type for the specified operation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>IncompatibleTypes</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>MissingAttribute</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy attempts to access a record or entity attribute that isn't specified in
+        /// the schema. Test for the existence of the attribute first before attempting to access
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
+        /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>UnsafeOptionalAttributeAccess</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy attempts to access a record or entity attribute that is optional and isn't
+        /// guaranteed to be present. Test for the existence of the attribute first before attempting
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
+        /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>ImpossiblePolicy</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Cedar has determined that a policy condition always evaluates to false. If the policy
+        /// is always false, it can never apply to any query, and so it can never affect an authorization
+        /// decision.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>WrongNumberArguments</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy references an extension type with the wrong number of arguments.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>FunctionArgumentValidationError</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Cedar couldn't parse the argument passed to an extension type. For example, a string
+        /// that is to be parsed as an IPv4 address can contain only digits and the period character.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/verifiedpermissions-2021-12-01/BatchIsAuthorized">REST API Reference for BatchIsAuthorized Operation</seealso>
+        public virtual Task<BatchIsAuthorizedResponse> BatchIsAuthorizedAsync(BatchIsAuthorizedRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = BatchIsAuthorizedRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = BatchIsAuthorizedResponseUnmarshaller.Instance;
+
+            return InvokeAsync<BatchIsAuthorizedResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  BatchIsAuthorizedWithToken
+
+        internal virtual BatchIsAuthorizedWithTokenResponse BatchIsAuthorizedWithToken(BatchIsAuthorizedWithTokenRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = BatchIsAuthorizedWithTokenRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = BatchIsAuthorizedWithTokenResponseUnmarshaller.Instance;
+
+            return Invoke<BatchIsAuthorizedWithTokenResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Makes a series of decisions about multiple authorization requests for one token. The
+        /// principal in this request comes from an external identity source in the form of an
+        /// identity or access token, formatted as a <a href="https://wikipedia.org/wiki/JSON_Web_Token">JSON
+        /// web token (JWT)</a>. The information in the parameters can also define additional
+        /// context that Verified Permissions can include in the evaluations.
+        /// 
+        ///  
+        /// <para>
+        /// The request is evaluated against all policies in the specified policy store that match
+        /// the entities that you provide in the entities declaration and in the token. The result
+        /// of the decisions is a series of <c>Allow</c> or <c>Deny</c> responses, along with
+        /// the IDs of the policies that produced each decision.
+        /// </para>
+        ///  
+        /// <para>
+        /// The <c>entities</c> of a <c>BatchIsAuthorizedWithToken</c> API request can contain
+        /// up to 100 resources and up to 99 user groups. The <c>requests</c> of a <c>BatchIsAuthorizedWithToken</c>
+        /// API request can contain up to 30 requests.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// The <c>BatchIsAuthorizedWithToken</c> operation doesn't have its own IAM permission.
+        /// To authorize this operation for Amazon Web Services principals, include the permission
+        /// <c>verifiedpermissions:IsAuthorizedWithToken</c> in their IAM policies.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the BatchIsAuthorizedWithToken service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the BatchIsAuthorizedWithToken service method, as returned by VerifiedPermissions.</returns>
+        /// <exception cref="Amazon.VerifiedPermissions.Model.AccessDeniedException">
+        /// You don't have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.VerifiedPermissions.Model.InternalServerException">
+        /// The request failed because of an internal error. Try your request again later
+        /// </exception>
+        /// <exception cref="Amazon.VerifiedPermissions.Model.ResourceNotFoundException">
+        /// The request failed because it references a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.VerifiedPermissions.Model.ThrottlingException">
+        /// The request failed because it exceeded a throttling quota.
+        /// </exception>
+        /// <exception cref="Amazon.VerifiedPermissions.Model.ValidationException">
+        /// The request failed because one or more input parameters don't satisfy their constraint
+        /// requirements. The output is provided as a list of fields and a reason for each field
+        /// that isn't valid.
+        /// 
+        ///  
+        /// <para>
+        /// The possible reasons include the following:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>UnrecognizedEntityType</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy includes an entity type that isn't found in the schema.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>UnrecognizedActionId</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy includes an action id that isn't found in the schema.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>InvalidActionApplication</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy includes an action that, according to the schema, doesn't support the specified
+        /// principal and resource.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>UnexpectedType</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy included an operand that isn't a valid type for the specified operation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>IncompatibleTypes</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>MissingAttribute</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy attempts to access a record or entity attribute that isn't specified in
+        /// the schema. Test for the existence of the attribute first before attempting to access
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
+        /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>UnsafeOptionalAttributeAccess</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy attempts to access a record or entity attribute that is optional and isn't
+        /// guaranteed to be present. Test for the existence of the attribute first before attempting
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
+        /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>ImpossiblePolicy</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Cedar has determined that a policy condition always evaluates to false. If the policy
+        /// is always false, it can never apply to any query, and so it can never affect an authorization
+        /// decision.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>WrongNumberArguments</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// The policy references an extension type with the wrong number of arguments.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>FunctionArgumentValidationError</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Cedar couldn't parse the argument passed to an extension type. For example, a string
+        /// that is to be parsed as an IPv4 address can contain only digits and the period character.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/verifiedpermissions-2021-12-01/BatchIsAuthorizedWithToken">REST API Reference for BatchIsAuthorizedWithToken Operation</seealso>
+        public virtual Task<BatchIsAuthorizedWithTokenResponse> BatchIsAuthorizedWithTokenAsync(BatchIsAuthorizedWithTokenRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = BatchIsAuthorizedWithTokenRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = BatchIsAuthorizedWithTokenResponseUnmarshaller.Instance;
+
+            return InvokeAsync<BatchIsAuthorizedWithTokenResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  CreateIdentitySource
 
         internal virtual CreateIdentitySourceResponse CreateIdentitySource(CreateIdentitySourceRequest request)
@@ -365,49 +865,46 @@ namespace Amazon.VerifiedPermissions
 
 
         /// <summary>
-        /// Creates a reference to an Amazon Cognito user pool as an external identity provider
-        /// (IdP). 
+        /// Adds an identity source to a policy store–an Amazon Cognito user pool or OpenID Connect
+        /// (OIDC) identity provider (IdP). 
         /// 
         ///  
         /// <para>
         /// After you create an identity source, you can use the identities provided by the IdP
         /// as proxies for the principal in authorization queries that use the <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html">IsAuthorizedWithToken</a>
-        /// operation. These identities take the form of tokens that contain claims about the
-        /// user, such as IDs, attributes and group memberships. Amazon Cognito provides both
-        /// identity tokens and access tokens, and Verified Permissions can use either or both.
-        /// Any combination of identity and access tokens results in the same Cedar principal.
-        /// Verified Permissions automatically translates the information about the identities
-        /// into the standard Cedar attributes that can be evaluated by your policies. Because
-        /// the Amazon Cognito identity and access tokens can contain different information, the
-        /// tokens you choose to use determine which principal attributes are available to access
-        /// when evaluating Cedar policies.
+        /// or <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_BatchIsAuthorizedWithToken.html">BatchIsAuthorizedWithToken</a>
+        /// API operations. These identities take the form of tokens that contain claims about
+        /// the user, such as IDs, attributes and group memberships. Identity sources provide
+        /// identity (ID) tokens and access tokens. Verified Permissions derives information about
+        /// your user and session from token claims. Access tokens provide action <c>context</c>
+        /// to your policies, and ID tokens provide principal <c>Attributes</c>.
         /// </para>
         ///  <important> 
         /// <para>
-        /// If you delete a Amazon Cognito user pool or user, tokens from that deleted pool or
-        /// that deleted user continue to be usable until they expire.
+        /// Tokens from an identity source user continue to be usable until they expire. Token
+        /// revocation and resource deletion have no effect on the validity of a token in your
+        /// policy store
         /// </para>
         ///  </important> <note> 
         /// <para>
-        /// To reference a user from this identity source in your Cedar policies, use the following
-        /// syntax.
+        /// To reference a user from this identity source in your Cedar policies, refer to the
+        /// following syntax examples.
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        ///  <i>IdentityType::"&lt;CognitoUserPoolIdentifier&gt;|&lt;CognitoClientId&gt;</i> 
+        /// Amazon Cognito user pool: <c>Namespace::[Entity type]::[User pool ID]|[user principal
+        /// attribute]</c>, for example <c>MyCorp::User::us-east-1_EXAMPLE|a1b2c3d4-5678-90ab-cdef-EXAMPLE11111</c>.
         /// </para>
-        ///  
+        ///  </li> <li> 
         /// <para>
-        /// Where <code>IdentityType</code> is the string that you provide to the <code>PrincipalEntityType</code>
-        /// parameter for this operation. The <code>CognitoUserPoolId</code> and <code>CognitoClientId</code>
-        /// are defined by the Amazon Cognito user pool.
+        /// OpenID Connect (OIDC) provider: <c>Namespace::[Entity type]::[entityIdPrefix]|[user
+        /// principal attribute]</c>, for example <c>MyCorp::User::MyOIDCProvider|a1b2c3d4-5678-90ab-cdef-EXAMPLE22222</c>.
         /// </para>
-        ///  </note> <note> 
+        ///  </li> </ul> </note> <note> 
         /// <para>
         /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
-        /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
-        /// propagate through the service and be visible in the results of other Verified Permissions
-        /// operations.
+        /// consistent</a> </i>. It can take a few seconds for a new or changed element to propagate
+        /// through the service and be visible in the results of other Verified Permissions operations.
         /// </para>
         ///  </note>
         /// </summary>
@@ -419,6 +916,9 @@ namespace Amazon.VerifiedPermissions
         /// <returns>The response from the CreateIdentitySource service method, as returned by VerifiedPermissions.</returns>
         /// <exception cref="Amazon.VerifiedPermissions.Model.AccessDeniedException">
         /// You don't have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.VerifiedPermissions.Model.ConflictException">
+        /// The request failed because another request to modify a resource occurred at the same.
         /// </exception>
         /// <exception cref="Amazon.VerifiedPermissions.Model.InternalServerException">
         /// The request failed because of an internal error. Try your request again later
@@ -480,8 +980,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -491,7 +991,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -502,7 +1002,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -565,15 +1065,15 @@ namespace Amazon.VerifiedPermissions
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// To create a static policy, provide the Cedar policy text in the <code>StaticPolicy</code>
-        /// section of the <code>PolicyDefinition</code>.
+        /// To create a static policy, provide the Cedar policy text in the <c>StaticPolicy</c>
+        /// section of the <c>PolicyDefinition</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// To create a policy that is dynamically linked to a policy template, specify the policy
-        /// template ID and the principal and resource to associate with this policy in the <code>templateLinked</code>
-        /// section of the <code>PolicyDefinition</code>. If the policy template is ever updated,
-        /// any policies linked to the policy template automatically use the updated template.
+        /// template ID and the principal and resource to associate with this policy in the <c>templateLinked</c>
+        /// section of the <c>PolicyDefinition</c>. If the policy template is ever updated, any
+        /// policies linked to the policy template automatically use the updated template.
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
@@ -583,9 +1083,8 @@ namespace Amazon.VerifiedPermissions
         ///  </note> <note> 
         /// <para>
         /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
-        /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
-        /// propagate through the service and be visible in the results of other Verified Permissions
-        /// operations.
+        /// consistent</a> </i>. It can take a few seconds for a new or changed element to propagate
+        /// through the service and be visible in the results of other Verified Permissions operations.
         /// </para>
         ///  </note>
         /// </summary>
@@ -597,6 +1096,9 @@ namespace Amazon.VerifiedPermissions
         /// <returns>The response from the CreatePolicy service method, as returned by VerifiedPermissions.</returns>
         /// <exception cref="Amazon.VerifiedPermissions.Model.AccessDeniedException">
         /// You don't have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.VerifiedPermissions.Model.ConflictException">
+        /// The request failed because another request to modify a resource occurred at the same.
         /// </exception>
         /// <exception cref="Amazon.VerifiedPermissions.Model.InternalServerException">
         /// The request failed because of an internal error. Try your request again later
@@ -658,8 +1160,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -669,7 +1171,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -680,7 +1182,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -742,16 +1244,15 @@ namespace Amazon.VerifiedPermissions
         /// 
         ///  <note> 
         /// <para>
-        /// Although <a href="https://docs.cedarpolicy.com/schema.html#namespace">Cedar supports
-        /// multiple namespaces</a>, Verified Permissions currently supports only one namespace
-        /// per policy store.
+        /// Although <a href="https://docs.cedarpolicy.com/schema/schema.html#namespace">Cedar
+        /// supports multiple namespaces</a>, Verified Permissions currently supports only one
+        /// namespace per policy store.
         /// </para>
         ///  </note> <note> 
         /// <para>
         /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
-        /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
-        /// propagate through the service and be visible in the results of other Verified Permissions
-        /// operations.
+        /// consistent</a> </i>. It can take a few seconds for a new or changed element to propagate
+        /// through the service and be visible in the results of other Verified Permissions operations.
         /// </para>
         ///  </note>
         /// </summary>
@@ -763,6 +1264,9 @@ namespace Amazon.VerifiedPermissions
         /// <returns>The response from the CreatePolicyStore service method, as returned by VerifiedPermissions.</returns>
         /// <exception cref="Amazon.VerifiedPermissions.Model.AccessDeniedException">
         /// You don't have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.VerifiedPermissions.Model.ConflictException">
+        /// The request failed because another request to modify a resource occurred at the same.
         /// </exception>
         /// <exception cref="Amazon.VerifiedPermissions.Model.InternalServerException">
         /// The request failed because of an internal error. Try your request again later
@@ -821,8 +1325,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -832,7 +1336,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -843,7 +1347,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -911,9 +1415,8 @@ namespace Amazon.VerifiedPermissions
         ///  <note> 
         /// <para>
         /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
-        /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
-        /// propagate through the service and be visible in the results of other Verified Permissions
-        /// operations.
+        /// consistent</a> </i>. It can take a few seconds for a new or changed element to propagate
+        /// through the service and be visible in the results of other Verified Permissions operations.
         /// </para>
         ///  </note>
         /// </summary>
@@ -925,6 +1428,9 @@ namespace Amazon.VerifiedPermissions
         /// <returns>The response from the CreatePolicyTemplate service method, as returned by VerifiedPermissions.</returns>
         /// <exception cref="Amazon.VerifiedPermissions.Model.AccessDeniedException">
         /// You don't have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.VerifiedPermissions.Model.ConflictException">
+        /// The request failed because another request to modify a resource occurred at the same.
         /// </exception>
         /// <exception cref="Amazon.VerifiedPermissions.Model.InternalServerException">
         /// The request failed because of an internal error. Try your request again later
@@ -986,8 +1492,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -997,7 +1503,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -1008,7 +1514,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -1141,8 +1647,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1152,7 +1658,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -1163,7 +1669,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -1226,7 +1732,7 @@ namespace Amazon.VerifiedPermissions
         ///  
         /// <para>
         /// This operation is idempotent; if you specify a policy that doesn't exist, the request
-        /// response returns a successful <code>HTTP 200</code> status code.
+        /// response returns a successful <c>HTTP 200</c> status code.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeletePolicy service method.</param>
@@ -1298,8 +1804,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1309,7 +1815,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -1320,7 +1826,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -1449,8 +1955,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1460,7 +1966,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -1471,7 +1977,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -1608,8 +2114,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1619,7 +2125,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -1630,7 +2136,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -1756,8 +2262,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1767,7 +2273,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -1778,7 +2284,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -1904,8 +2410,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1915,7 +2421,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -1926,7 +2432,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -2052,8 +2558,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2063,7 +2569,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -2074,7 +2580,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -2200,8 +2706,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2211,7 +2717,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -2222,7 +2728,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -2348,8 +2854,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2359,7 +2865,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -2370,7 +2876,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -2431,8 +2937,8 @@ namespace Amazon.VerifiedPermissions
         /// Makes an authorization decision about a service request described in the parameters.
         /// The information in the parameters can also define additional context that Verified
         /// Permissions can include in the evaluation. The request is evaluated against all matching
-        /// policies in the specified policy store. The result of the decision is either <code>Allow</code>
-        /// or <code>Deny</code>, along with a list of the policies that resulted in the decision.
+        /// policies in the specified policy store. The result of the decision is either <c>Allow</c>
+        /// or <c>Deny</c>, along with a list of the policies that resulted in the decision.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the IsAuthorized service method.</param>
         /// <param name="cancellationToken">
@@ -2500,8 +3006,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2511,7 +3017,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -2522,7 +3028,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -2586,24 +3092,9 @@ namespace Amazon.VerifiedPermissions
         /// web token (JWT)</a>. The information in the parameters can also define additional
         /// context that Verified Permissions can include in the evaluation. The request is evaluated
         /// against all matching policies in the specified policy store. The result of the decision
-        /// is either <code>Allow</code> or <code>Deny</code>, along with a list of the policies
-        /// that resulted in the decision.
+        /// is either <c>Allow</c> or <c>Deny</c>, along with a list of the policies that resulted
+        /// in the decision.
         /// 
-        ///  <important> 
-        /// <para>
-        /// If you specify the <code>identityToken</code> parameter, then this operation derives
-        /// the principal from that token. You must not also include that principal in the <code>entities</code>
-        /// parameter or the operation fails and reports a conflict between the two entity sources.
-        /// </para>
-        ///  
-        /// <para>
-        /// If you provide only an <code>accessToken</code>, then you can include the entity as
-        /// part of the <code>entities</code> parameter to provide additional attributes.
-        /// </para>
-        ///  </important> 
-        /// <para>
-        /// At this time, Verified Permissions accepts tokens from only Amazon Cognito.
-        /// </para>
         ///  
         /// <para>
         /// Verified Permissions validates each token that is specified in a request by checking
@@ -2611,8 +3102,9 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  <important> 
         /// <para>
-        /// If you delete a Amazon Cognito user pool or user, tokens from that deleted pool or
-        /// that deleted user continue to be usable until they expire.
+        /// Tokens from an identity source user continue to be usable until they expire. Token
+        /// revocation and resource deletion have no effect on the validity of a token in your
+        /// policy store
         /// </para>
         ///  </important>
         /// </summary>
@@ -2682,8 +3174,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2693,7 +3185,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -2704,7 +3196,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -2831,8 +3323,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2842,7 +3334,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -2853,7 +3345,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -2979,8 +3471,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2990,7 +3482,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -3001,7 +3493,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -3124,8 +3616,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3135,7 +3627,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -3146,7 +3638,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -3272,8 +3764,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3283,7 +3775,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -3294,7 +3786,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -3362,9 +3854,8 @@ namespace Amazon.VerifiedPermissions
         ///  <note> 
         /// <para>
         /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
-        /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
-        /// propagate through the service and be visible in the results of other Verified Permissions
-        /// operations.
+        /// consistent</a> </i>. It can take a few seconds for a new or changed element to propagate
+        /// through the service and be visible in the results of other Verified Permissions operations.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3440,8 +3931,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3451,7 +3942,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -3462,7 +3953,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -3520,16 +4011,14 @@ namespace Amazon.VerifiedPermissions
 
 
         /// <summary>
-        /// Updates the specified identity source to use a new identity provider (IdP) source,
-        /// or to change the mapping of identities from the IdP to a different principal entity
-        /// type.
+        /// Updates the specified identity source to use a new identity provider (IdP), or to
+        /// change the mapping of identities from the IdP to a different principal entity type.
         /// 
         ///  <note> 
         /// <para>
         /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
-        /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
-        /// propagate through the service and be visible in the results of other Verified Permissions
-        /// operations.
+        /// consistent</a> </i>. It can take a few seconds for a new or changed element to propagate
+        /// through the service and be visible in the results of other Verified Permissions operations.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3602,8 +4091,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3613,7 +4102,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -3624,7 +4113,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -3696,7 +4185,7 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// When you edit a static policy, You can change only certain elements of a static policy:
+        /// When you edit a static policy, you can change only certain elements of a static policy:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -3733,9 +4222,8 @@ namespace Amazon.VerifiedPermissions
         ///  </li> </ul> </note> <note> 
         /// <para>
         /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
-        /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
-        /// propagate through the service and be visible in the results of other Verified Permissions
-        /// operations.
+        /// consistent</a> </i>. It can take a few seconds for a new or changed element to propagate
+        /// through the service and be visible in the results of other Verified Permissions operations.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3811,8 +4299,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3822,7 +4310,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -3833,7 +4321,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -3896,9 +4384,8 @@ namespace Amazon.VerifiedPermissions
         ///  <note> 
         /// <para>
         /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
-        /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
-        /// propagate through the service and be visible in the results of other Verified Permissions
-        /// operations.
+        /// consistent</a> </i>. It can take a few seconds for a new or changed element to propagate
+        /// through the service and be visible in the results of other Verified Permissions operations.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3971,8 +4458,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3982,7 +4469,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -3993,7 +4480,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -4057,15 +4544,15 @@ namespace Amazon.VerifiedPermissions
         /// 
         ///  <important> 
         /// <para>
-        /// Changes you make to the policy template content are immediately reflected in authorization
-        /// decisions that involve all template-linked policies instantiated from this template.
+        /// Changes you make to the policy template content are immediately (within the constraints
+        /// of eventual consistency) reflected in authorization decisions that involve all template-linked
+        /// policies instantiated from this template.
         /// </para>
         ///  </important> <note> 
         /// <para>
         /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
-        /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
-        /// propagate through the service and be visible in the results of other Verified Permissions
-        /// operations.
+        /// consistent</a> </i>. It can take a few seconds for a new or changed element to propagate
+        /// through the service and be visible in the results of other Verified Permissions operations.
         /// </para>
         ///  </note>
         /// </summary>
@@ -4138,8 +4625,8 @@ namespace Amazon.VerifiedPermissions
         /// </para>
         ///  
         /// <para>
-        /// The types of elements included in a <code>set</code>, or the types of expressions
-        /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+        /// The types of elements included in a <c>set</c>, or the types of expressions used in
+        /// an <c>if...then...else</c> clause aren't compatible in this context.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -4149,7 +4636,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that isn't specified in
         /// the schema. Test for the existence of the attribute first before attempting to access
-        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -4160,7 +4647,7 @@ namespace Amazon.VerifiedPermissions
         /// <para>
         /// The policy attempts to access a record or entity attribute that is optional and isn't
         /// guaranteed to be present. Test for the existence of the attribute first before attempting
-        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+        /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
         /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
         /// </para>
         ///  </li> <li> 
@@ -4213,11 +4700,11 @@ namespace Amazon.VerifiedPermissions
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

@@ -26,10 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
-    /// The snapshot configuration to use when creating an OpenZFS volume from a snapshot.
+    /// The snapshot configuration used when creating an Amazon FSx for OpenZFS volume from
+    /// a snapshot.
     /// </summary>
     public partial class OpenZFSOriginSnapshotConfiguration
     {
@@ -43,16 +45,22 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CLONE</code> - The new volume references the data in the origin snapshot. Cloning
+        ///  <c>CLONE</c> - The new volume references the data in the origin snapshot. Cloning
         /// a snapshot is faster than copying the data from a snapshot to a new volume and doesn't
         /// consume disk throughput. However, the origin snapshot can't be deleted if there is
         /// a volume using its copied data. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FULL_COPY</code> - Copies all data from the snapshot to the new volume. 
+        ///  <c>FULL_COPY</c> - Copies all data from the snapshot to the new volume.
         /// </para>
-        ///  </li> </ul>
+        ///  </li> </ul> <note> 
+        /// <para>
+        /// The <c>INCREMENTAL_COPY</c> option is only for updating an existing volume by using
+        /// a snapshot from another FSx for OpenZFS file system. For more information, see <a
+        /// href="https://docs.aws.amazon.com/fsx/latest/APIReference/API_CopySnapshotAndUpdateVolume.html">CopySnapshotAndUpdateVolume</a>.
+        /// </para>
+        ///  </note>
         /// </summary>
         public OpenZFSCopyStrategy CopyStrategy
         {

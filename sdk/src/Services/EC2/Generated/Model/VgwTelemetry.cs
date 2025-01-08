@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -79,7 +80,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property LastStatusChange. 
         /// <para>
-        /// The date and time of the last change in status.
+        /// The date and time of the last change in status. This field is updated when changes
+        /// in IKE (Phase 1), IPSec (Phase 2), or BGP status are detected.
         /// </para>
         /// </summary>
         public DateTime LastStatusChange

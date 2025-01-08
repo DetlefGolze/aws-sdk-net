@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.CloudFormation.Model
     public partial class ListTypeVersionsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<TypeVersionSummary> _typeVersionSummaries = new List<TypeVersionSummary>();
+        private List<TypeVersionSummary> _typeVersionSummaries = AWSConfigs.InitializeCollections ? new List<TypeVersionSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the request doesn't return all of the remaining results, <code>NextToken</code>
-        /// is set to a token. To retrieve the next set of results, call this action again and
-        /// assign that token to the request object's <code>NextToken</code> parameter. If the
-        /// request returns all results, <code>NextToken</code> is set to <code>null</code>.
+        /// If the request doesn't return all of the remaining results, <c>NextToken</c> is set
+        /// to a token. To retrieve the next set of results, call this action again and assign
+        /// that token to the request object's <c>NextToken</c> parameter. If the request returns
+        /// all results, <c>NextToken</c> is set to <c>null</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -61,8 +62,8 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property TypeVersionSummaries. 
         /// <para>
-        /// A list of <code>TypeVersionSummary</code> structures that contain information about
-        /// the specified extension's versions.
+        /// A list of <c>TypeVersionSummary</c> structures that contain information about the
+        /// specified extension's versions.
         /// </para>
         /// </summary>
         public List<TypeVersionSummary> TypeVersionSummaries
@@ -74,7 +75,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if TypeVersionSummaries property is set
         internal bool IsSetTypeVersionSummaries()
         {
-            return this._typeVersionSummaries != null && this._typeVersionSummaries.Count > 0; 
+            return this._typeVersionSummaries != null && (this._typeVersionSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

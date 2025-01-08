@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CertificateManager.Model
 {
     /// <summary>
@@ -36,15 +37,15 @@ namespace Amazon.CertificateManager.Model
         private string _domainName;
         private ResourceRecord _resourceRecord;
         private string _validationDomain;
-        private List<string> _validationEmails = new List<string>();
+        private List<string> _validationEmails = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ValidationMethod _validationMethod;
         private DomainStatus _validationStatus;
 
         /// <summary>
         /// Gets and sets the property DomainName. 
         /// <para>
-        /// A fully qualified domain name (FQDN) in the certificate. For example, <code>www.example.com</code>
-        /// or <code>example.com</code>. 
+        /// A fully qualified domain name (FQDN) in the certificate. For example, <c>www.example.com</c>
+        /// or <c>example.com</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=253)]
@@ -121,7 +122,7 @@ namespace Amazon.CertificateManager.Model
         // Check to see if ValidationEmails property is set
         internal bool IsSetValidationEmails()
         {
-            return this._validationEmails != null && this._validationEmails.Count > 0; 
+            return this._validationEmails != null && (this._validationEmails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -149,15 +150,15 @@ namespace Amazon.CertificateManager.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PENDING_VALIDATION</code> 
+        ///  <c>PENDING_VALIDATION</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code/>SUCCESS
+        ///  <c>SUCCESS</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code/>FAILED
+        ///  <c>FAILED</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

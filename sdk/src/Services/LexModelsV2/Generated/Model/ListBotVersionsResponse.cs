@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.LexModelsV2.Model
     public partial class ListBotVersionsResponse : AmazonWebServiceResponse
     {
         private string _botId;
-        private List<BotVersionSummary> _botVersionSummaries = new List<BotVersionSummary>();
+        private List<BotVersionSummary> _botVersionSummaries = AWSConfigs.InitializeCollections ? new List<BotVersionSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -60,9 +61,9 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property BotVersionSummaries. 
         /// <para>
         /// Summary information for the bot versions that meet the filter criteria specified in
-        /// the request. The length of the list is specified in the <code>maxResults</code> parameter
-        /// of the request. If there are more versions available, the <code>nextToken</code> field
-        /// contains a token to get the next page of results.
+        /// the request. The length of the list is specified in the <c>maxResults</c> parameter
+        /// of the request. If there are more versions available, the <c>nextToken</c> field contains
+        /// a token to get the next page of results.
         /// </para>
         /// </summary>
         public List<BotVersionSummary> BotVersionSummaries
@@ -74,16 +75,16 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if BotVersionSummaries property is set
         internal bool IsSetBotVersionSummaries()
         {
-            return this._botVersionSummaries != null && this._botVersionSummaries.Count > 0; 
+            return this._botVersionSummaries != null && (this._botVersionSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token that indicates whether there are more results to return in a response to the
-        /// <code>ListBotVersions</code> operation. If the <code>nextToken</code> field is present,
-        /// you send the contents as the <code>nextToken</code> parameter of a <code>ListBotAliases</code>
-        /// operation request to get the next page of results.
+        /// <c>ListBotVersions</c> operation. If the <c>nextToken</c> field is present, you send
+        /// the contents as the <c>nextToken</c> parameter of a <c>ListBotAliases</c> operation
+        /// request to get the next page of results.
         /// </para>
         /// </summary>
         public string NextToken

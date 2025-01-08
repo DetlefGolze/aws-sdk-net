@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -101,7 +102,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property VersionId. 
         /// <para>
-        /// The ID value of the table version to be retrieved. A <code>VersionID</code> is a string
+        /// The ID value of the table version to be retrieved. A <c>VersionID</c> is a string
         /// representation of an integer. Each version is incremented by 1. 
         /// </para>
         /// </summary>

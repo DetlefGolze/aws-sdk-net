@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// </summary>
     public partial class DescribePatchBaselinesRequest : AmazonSimpleSystemsManagementRequest
     {
-        private List<PatchOrchestratorFilter> _filters = new List<PatchOrchestratorFilter>();
+        private List<PatchOrchestratorFilter> _filters = AWSConfigs.InitializeCollections ? new List<PatchOrchestratorFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -45,32 +46,31 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported keys for <code>DescribePatchBaselines</code> include the following:
+        /// Supported keys for <c>DescribePatchBaselines</c> include the following:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b> <code>NAME_PREFIX</code> </b> 
+        ///  <b> <c>NAME_PREFIX</c> </b> 
         /// </para>
         ///  
         /// <para>
-        /// Sample values: <code>AWS-</code> | <code>My-</code> 
+        /// Sample values: <c>AWS-</c> | <c>My-</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>OWNER</code> </b> 
+        ///  <b> <c>OWNER</c> </b> 
         /// </para>
         ///  
         /// <para>
-        /// Sample values: <code>AWS</code> | <code>Self</code> 
+        /// Sample values: <c>AWS</c> | <c>Self</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>OPERATING_SYSTEM</code> </b> 
+        ///  <b> <c>OPERATING_SYSTEM</c> </b> 
         /// </para>
         ///  
         /// <para>
-        /// Sample values: <code>AMAZON_LINUX</code> | <code>SUSE</code> | <code>WINDOWS</code>
-        /// 
+        /// Sample values: <c>AMAZON_LINUX</c> | <c>SUSE</c> | <c>WINDOWS</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -84,7 +84,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

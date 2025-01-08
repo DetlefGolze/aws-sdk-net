@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The conditional formatting of a <code>FilledMapVisual</code>.
+    /// The conditional formatting of a <c>FilledMapVisual</c>.
     /// </summary>
     public partial class FilledMapConditionalFormatting
     {
-        private List<FilledMapConditionalFormattingOption> _conditionalFormattingOptions = new List<FilledMapConditionalFormattingOption>();
+        private List<FilledMapConditionalFormattingOption> _conditionalFormattingOptions = AWSConfigs.InitializeCollections ? new List<FilledMapConditionalFormattingOption>() : null;
 
         /// <summary>
         /// Gets and sets the property ConditionalFormattingOptions. 
         /// <para>
-        /// Conditional formatting options of a <code>FilledMapVisual</code>.
+        /// Conditional formatting options of a <c>FilledMapVisual</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=200)]
@@ -51,7 +52,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if ConditionalFormattingOptions property is set
         internal bool IsSetConditionalFormattingOptions()
         {
-            return this._conditionalFormattingOptions != null && this._conditionalFormattingOptions.Count > 0; 
+            return this._conditionalFormattingOptions != null && (this._conditionalFormattingOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

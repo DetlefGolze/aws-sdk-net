@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -33,11 +34,13 @@ namespace Amazon.FSx.Model
     /// </summary>
     public partial class OntapVolumeConfiguration
     {
+        private AggregateConfiguration _aggregateConfiguration;
         private bool? _copyTagsToBackups;
         private FlexCacheEndpointType _flexCacheEndpointType;
         private string _junctionPath;
         private OntapVolumeType _ontapVolumeType;
         private SecurityStyle _securityStyle;
+        private long? _sizeInBytes;
         private int? _sizeInMegabytes;
         private SnaplockConfiguration _snaplockConfiguration;
         private string _snapshotPolicy;
@@ -46,6 +49,26 @@ namespace Amazon.FSx.Model
         private bool? _storageVirtualMachineRoot;
         private TieringPolicy _tieringPolicy;
         private string _uuid;
+        private VolumeStyle _volumeStyle;
+
+        /// <summary>
+        /// Gets and sets the property AggregateConfiguration. 
+        /// <para>
+        /// This structure specifies configuration options for a volume’s storage aggregate or
+        /// aggregates.
+        /// </para>
+        /// </summary>
+        public AggregateConfiguration AggregateConfiguration
+        {
+            get { return this._aggregateConfiguration; }
+            set { this._aggregateConfiguration = value; }
+        }
+
+        // Check to see if AggregateConfiguration property is set
+        internal bool IsSetAggregateConfiguration()
+        {
+            return this._aggregateConfiguration != null;
+        }
 
         /// <summary>
         /// Gets and sets the property CopyTagsToBackups. 
@@ -77,17 +100,16 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NONE</code> specifies that the volume doesn't have a FlexCache configuration.
-        /// <code>NONE</code> is the default.
+        ///  <c>NONE</c> specifies that the volume doesn't have a FlexCache configuration. <c>NONE</c>
+        /// is the default.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ORIGIN</code> specifies that the volume is the origin volume for a FlexCache
-        /// volume.
+        ///  <c>ORIGIN</c> specifies that the volume is the origin volume for a FlexCache volume.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CACHE</code> specifies that the volume is a FlexCache volume.
+        ///  <c>CACHE</c> specifies that the volume is a FlexCache volume.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -108,10 +130,9 @@ namespace Amazon.FSx.Model
         /// <para>
         /// Specifies the directory that network-attached storage (NAS) clients use to mount the
         /// volume, along with the storage virtual machine (SVM) Domain Name System (DNS) name
-        /// or IP address. You can create a <code>JunctionPath</code> directly below a parent
-        /// volume junction or on a directory within a volume. A <code>JunctionPath</code> for
-        /// a volume named <code>vol3</code> might be <code>/vol1/vol2/vol3</code>, or <code>/vol1/dir2/vol3</code>,
-        /// or even <code>/dir1/dir2/vol3</code>.
+        /// or IP address. You can create a <c>JunctionPath</c> directly below a parent volume
+        /// junction or on a directory within a volume. A <c>JunctionPath</c> for a volume named
+        /// <c>vol3</c> might be <c>/vol1/vol2/vol3</c>, or <c>/vol1/dir2/vol3</c>, or even <c>/dir1/dir2/vol3</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -134,19 +155,18 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>RW</code> specifies a read/write volume. <code>RW</code> is the default.
+        ///  <c>RW</c> specifies a read/write volume. <c>RW</c> is the default.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DP</code> specifies a data-protection volume. You can protect data by replicating
+        ///  <c>DP</c> specifies a data-protection volume. You can protect data by replicating
         /// it to data-protection mirror copies. If a disaster occurs, you can use these data-protection
         /// mirror copies to recover data.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LS</code> specifies a load-sharing mirror volume. A load-sharing mirror reduces
-        /// the network traffic to a FlexVol volume by providing additional read-only access to
-        /// clients.
+        ///  <c>LS</c> specifies a load-sharing mirror volume. A load-sharing mirror reduces the
+        /// network traffic to a FlexVol volume by providing additional read-only access to clients.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -165,8 +185,7 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property SecurityStyle. 
         /// <para>
-        /// The security style for the volume, which can be <code>UNIX</code>, <code>NTFS</code>,
-        /// or <code>MIXED</code>.
+        /// The security style for the volume, which can be <c>UNIX</c>, <c>NTFS</c>, or <c>MIXED</c>.
         /// </para>
         /// </summary>
         public SecurityStyle SecurityStyle
@@ -182,12 +201,31 @@ namespace Amazon.FSx.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SizeInBytes. 
+        /// <para>
+        /// The configured size of the volume, in bytes.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=22517998000000000)]
+        public long SizeInBytes
+        {
+            get { return this._sizeInBytes.GetValueOrDefault(); }
+            set { this._sizeInBytes = value; }
+        }
+
+        // Check to see if SizeInBytes property is set
+        internal bool IsSetSizeInBytes()
+        {
+            return this._sizeInBytes.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property SizeInMegabytes. 
         /// <para>
         /// The configured size of the volume, in megabytes (MBs).
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=314572800)]
+        [AWSProperty(Min=0, Max=2147483647)]
         public int SizeInMegabytes
         {
             get { return this._sizeInMegabytes.GetValueOrDefault(); }
@@ -225,19 +263,19 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>default</code>: This is the default policy. A maximum of six hourly snapshots
-        /// taken five minutes past the hour. A maximum of two daily snapshots taken Monday through
+        ///  <c>default</c>: This is the default policy. A maximum of six hourly snapshots taken
+        /// five minutes past the hour. A maximum of two daily snapshots taken Monday through
         /// Saturday at 10 minutes after midnight. A maximum of two weekly snapshots taken every
         /// Sunday at 15 minutes after midnight.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>default-1weekly</code>: This policy is the same as the <code>default</code>
-        /// policy except that it only retains one snapshot from the weekly schedule.
+        ///  <c>default-1weekly</c>: This policy is the same as the <c>default</c> policy except
+        /// that it only retains one snapshot from the weekly schedule.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>none</code>: This policy does not take any snapshots. This policy can be assigned
+        ///  <c>none</c>: This policy does not take any snapshots. This policy can be assigned
         /// to volumes to prevent automatic snapshots from being taken.
         /// </para>
         ///  </li> </ul> 
@@ -248,7 +286,7 @@ namespace Amazon.FSx.Model
         ///  
         /// <para>
         /// For more information, see <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snapshots-ontap.html#snapshot-policies">Snapshot
-        /// policies</a> in the <i>Amazon FSx for NetApp ONTAP User Guide</i>.
+        /// policies</a> in the Amazon FSx for NetApp ONTAP User Guide.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -306,14 +344,13 @@ namespace Amazon.FSx.Model
         /// <para>
         /// A Boolean flag indicating whether this volume is the root volume for its storage virtual
         /// machine (SVM). Only one volume on an SVM can be the root volume. This value defaults
-        /// to <code>false</code>. If this value is <code>true</code>, then this is the SVM root
-        /// volume.
+        /// to <c>false</c>. If this value is <c>true</c>, then this is the SVM root volume.
         /// </para>
         ///  
         /// <para>
         /// This flag is useful when you're deleting an SVM, because you must first delete all
-        /// non-root volumes. This flag, when set to <code>false</code>, helps you identify which
-        /// volumes to delete before you can delete the SVM.
+        /// non-root volumes. This flag, when set to <c>false</c>, helps you identify which volumes
+        /// to delete before you can delete the SVM.
         /// </para>
         /// </summary>
         public bool StorageVirtualMachineRoot
@@ -331,7 +368,7 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property TieringPolicy. 
         /// <para>
-        /// The volume's <code>TieringPolicy</code> setting.
+        /// The volume's <c>TieringPolicy</c> setting.
         /// </para>
         /// </summary>
         public TieringPolicy TieringPolicy
@@ -363,6 +400,26 @@ namespace Amazon.FSx.Model
         internal bool IsSetUUID()
         {
             return this._uuid != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property VolumeStyle. 
+        /// <para>
+        /// Use to specify the style of an ONTAP volume. For more information about FlexVols and
+        /// FlexGroups, see <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-types.html">Volume
+        /// types</a> in Amazon FSx for NetApp ONTAP User Guide.
+        /// </para>
+        /// </summary>
+        public VolumeStyle VolumeStyle
+        {
+            get { return this._volumeStyle; }
+            set { this._volumeStyle = value; }
+        }
+
+        // Check to see if VolumeStyle property is set
+        internal bool IsSetVolumeStyle()
+        {
+            return this._volumeStyle != null;
         }
 
     }

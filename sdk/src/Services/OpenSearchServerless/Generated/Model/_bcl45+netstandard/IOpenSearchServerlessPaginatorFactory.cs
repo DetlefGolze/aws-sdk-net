@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the opensearchserverless-2021-11-01.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.OpenSearchServerless.Model
 {
     /// <summary>
@@ -34,6 +35,11 @@ namespace Amazon.OpenSearchServerless.Model
         /// Paginator for ListCollections operation
         ///</summary>
         IListCollectionsPaginator ListCollections(ListCollectionsRequest request);
+
+        /// <summary>
+        /// Paginator for ListLifecyclePolicies operation
+        ///</summary>
+        IListLifecyclePoliciesPaginator ListLifecyclePolicies(ListLifecyclePoliciesRequest request);
 
         /// <summary>
         /// Paginator for ListSecurityConfigs operation

@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.ManagedBlockchainQuery.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.ManagedBlockchainQuery
 {
     /// <summary>
-    /// Interface for accessing ManagedBlockchainQuery
+    /// <para>Interface for accessing ManagedBlockchainQuery</para>
     ///
     /// Amazon Managed Blockchain (AMB) Query provides you with convenient access to multi-blockchain
     /// network data, which makes it easier for you to extract contextual data related to
@@ -53,12 +54,12 @@ namespace Amazon.ManagedBlockchainQuery
 
 
         /// <summary>
-        /// Gets the token balance for a batch of tokens by using the <code>GetTokenBalance</code>
+        /// Gets the token balance for a batch of tokens by using the <c>BatchGetTokenBalance</c>
         /// action for every token in the request.
         /// 
         ///  <note> 
         /// <para>
-        /// Only the native tokens BTC,ETH, and the ERC-20, ERC-721, and ERC 1155 token standards
+        /// Only the native tokens BTC and ETH, and the ERC-20, ERC-721, and ERC 1155 token standards
         /// are supported.
         /// </para>
         ///  </note>
@@ -93,12 +94,12 @@ namespace Amazon.ManagedBlockchainQuery
 
 
         /// <summary>
-        /// Gets the token balance for a batch of tokens by using the <code>GetTokenBalance</code>
+        /// Gets the token balance for a batch of tokens by using the <c>BatchGetTokenBalance</c>
         /// action for every token in the request.
         /// 
         ///  <note> 
         /// <para>
-        /// Only the native tokens BTC,ETH, and the ERC-20, ERC-721, and ERC 1155 token standards
+        /// Only the native tokens BTC and ETH, and the ERC-20, ERC-721, and ERC 1155 token standards
         /// are supported.
         /// </para>
         ///  </note>
@@ -135,6 +136,98 @@ namespace Amazon.ManagedBlockchainQuery
 
         #endregion
         
+        #region  GetAssetContract
+
+
+        /// <summary>
+        /// Gets the information about a specific contract deployed on the blockchain.
+        /// 
+        ///  <note> <ul> <li> 
+        /// <para>
+        /// The Bitcoin blockchain networks do not support this operation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Metadata is currently only available for some <c>ERC-20</c> contracts. Metadata will
+        /// be available for additional contracts in the future.
+        /// </para>
+        ///  </li> </ul> </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetAssetContract service method.</param>
+        /// 
+        /// <returns>The response from the GetAssetContract service method, as returned by ManagedBlockchainQuery.</returns>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.AccessDeniedException">
+        /// The Amazon Web Services account doesn’t have access to this resource.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.InternalServerException">
+        /// The request processing has failed because of an internal error in the service.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.ResourceNotFoundException">
+        /// The resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.ServiceQuotaExceededException">
+        /// The service quota has been exceeded for this resource.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.ThrottlingException">
+        /// The request or operation couldn't be performed because a service is throttling requests.
+        /// The most common source of throttling errors is when you create resources that exceed
+        /// your service limit for this resource type. Request a limit increase or delete unused
+        /// resources, if possible.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.ValidationException">
+        /// The resource passed is invalid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/managedblockchain-query-2023-05-04/GetAssetContract">REST API Reference for GetAssetContract Operation</seealso>
+        GetAssetContractResponse GetAssetContract(GetAssetContractRequest request);
+
+
+
+        /// <summary>
+        /// Gets the information about a specific contract deployed on the blockchain.
+        /// 
+        ///  <note> <ul> <li> 
+        /// <para>
+        /// The Bitcoin blockchain networks do not support this operation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Metadata is currently only available for some <c>ERC-20</c> contracts. Metadata will
+        /// be available for additional contracts in the future.
+        /// </para>
+        ///  </li> </ul> </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetAssetContract service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetAssetContract service method, as returned by ManagedBlockchainQuery.</returns>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.AccessDeniedException">
+        /// The Amazon Web Services account doesn’t have access to this resource.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.InternalServerException">
+        /// The request processing has failed because of an internal error in the service.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.ResourceNotFoundException">
+        /// The resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.ServiceQuotaExceededException">
+        /// The service quota has been exceeded for this resource.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.ThrottlingException">
+        /// The request or operation couldn't be performed because a service is throttling requests.
+        /// The most common source of throttling errors is when you create resources that exceed
+        /// your service limit for this resource type. Request a limit increase or delete unused
+        /// resources, if possible.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.ValidationException">
+        /// The resource passed is invalid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/managedblockchain-query-2023-05-04/GetAssetContract">REST API Reference for GetAssetContract Operation</seealso>
+        Task<GetAssetContractResponse> GetAssetContractAsync(GetAssetContractRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  GetTokenBalance
 
 
@@ -144,7 +237,7 @@ namespace Amazon.ManagedBlockchainQuery
         /// 
         ///  <note> 
         /// <para>
-        /// Only the native tokens BTC,ETH, and the ERC-20, ERC-721, and ERC 1155 token standards
+        /// Only the native tokens BTC and ETH, and the ERC-20, ERC-721, and ERC 1155 token standards
         /// are supported.
         /// </para>
         ///  </note>
@@ -184,7 +277,7 @@ namespace Amazon.ManagedBlockchainQuery
         /// 
         ///  <note> 
         /// <para>
-        /// Only the native tokens BTC,ETH, and the ERC-20, ERC-721, and ERC 1155 token standards
+        /// Only the native tokens BTC and ETH, and the ERC-20, ERC-721, and ERC 1155 token standards
         /// are supported.
         /// </para>
         ///  </note>
@@ -225,7 +318,15 @@ namespace Amazon.ManagedBlockchainQuery
 
 
         /// <summary>
-        /// Get the details of a transaction.
+        /// Gets the details of a transaction.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// This action will return transaction details for all transactions that are <i>confirmed</i>
+        /// on the blockchain, even if they have not reached <a href="https://docs.aws.amazon.com/managed-blockchain/latest/ambq-dg/key-concepts.html#finality">finality</a>.
+        /// 
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetTransaction service method.</param>
         /// 
@@ -257,7 +358,15 @@ namespace Amazon.ManagedBlockchainQuery
 
 
         /// <summary>
-        /// Get the details of a transaction.
+        /// Gets the details of a transaction.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// This action will return transaction details for all transactions that are <i>confirmed</i>
+        /// on the blockchain, even if they have not reached <a href="https://docs.aws.amazon.com/managed-blockchain/latest/ambq-dg/key-concepts.html#finality">finality</a>.
+        /// 
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetTransaction service method.</param>
         /// <param name="cancellationToken">
@@ -291,15 +400,167 @@ namespace Amazon.ManagedBlockchainQuery
 
         #endregion
         
+        #region  ListAssetContracts
+
+
+        /// <summary>
+        /// Lists all the contracts for a given contract type deployed by an address (either a
+        /// contract address or a wallet address).
+        /// 
+        ///  
+        /// <para>
+        /// The Bitcoin blockchain networks do not support this operation.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAssetContracts service method.</param>
+        /// 
+        /// <returns>The response from the ListAssetContracts service method, as returned by ManagedBlockchainQuery.</returns>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.AccessDeniedException">
+        /// The Amazon Web Services account doesn’t have access to this resource.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.InternalServerException">
+        /// The request processing has failed because of an internal error in the service.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.ServiceQuotaExceededException">
+        /// The service quota has been exceeded for this resource.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.ThrottlingException">
+        /// The request or operation couldn't be performed because a service is throttling requests.
+        /// The most common source of throttling errors is when you create resources that exceed
+        /// your service limit for this resource type. Request a limit increase or delete unused
+        /// resources, if possible.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.ValidationException">
+        /// The resource passed is invalid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/managedblockchain-query-2023-05-04/ListAssetContracts">REST API Reference for ListAssetContracts Operation</seealso>
+        ListAssetContractsResponse ListAssetContracts(ListAssetContractsRequest request);
+
+
+
+        /// <summary>
+        /// Lists all the contracts for a given contract type deployed by an address (either a
+        /// contract address or a wallet address).
+        /// 
+        ///  
+        /// <para>
+        /// The Bitcoin blockchain networks do not support this operation.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListAssetContracts service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListAssetContracts service method, as returned by ManagedBlockchainQuery.</returns>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.AccessDeniedException">
+        /// The Amazon Web Services account doesn’t have access to this resource.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.InternalServerException">
+        /// The request processing has failed because of an internal error in the service.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.ServiceQuotaExceededException">
+        /// The service quota has been exceeded for this resource.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.ThrottlingException">
+        /// The request or operation couldn't be performed because a service is throttling requests.
+        /// The most common source of throttling errors is when you create resources that exceed
+        /// your service limit for this resource type. Request a limit increase or delete unused
+        /// resources, if possible.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.ValidationException">
+        /// The resource passed is invalid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/managedblockchain-query-2023-05-04/ListAssetContracts">REST API Reference for ListAssetContracts Operation</seealso>
+        Task<ListAssetContractsResponse> ListAssetContractsAsync(ListAssetContractsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListFilteredTransactionEvents
+
+
+        /// <summary>
+        /// Lists all the transaction events for an address on the blockchain.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// This operation is only supported on the Bitcoin networks.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListFilteredTransactionEvents service method.</param>
+        /// 
+        /// <returns>The response from the ListFilteredTransactionEvents service method, as returned by ManagedBlockchainQuery.</returns>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.AccessDeniedException">
+        /// The Amazon Web Services account doesn’t have access to this resource.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.InternalServerException">
+        /// The request processing has failed because of an internal error in the service.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.ServiceQuotaExceededException">
+        /// The service quota has been exceeded for this resource.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.ThrottlingException">
+        /// The request or operation couldn't be performed because a service is throttling requests.
+        /// The most common source of throttling errors is when you create resources that exceed
+        /// your service limit for this resource type. Request a limit increase or delete unused
+        /// resources, if possible.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.ValidationException">
+        /// The resource passed is invalid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/managedblockchain-query-2023-05-04/ListFilteredTransactionEvents">REST API Reference for ListFilteredTransactionEvents Operation</seealso>
+        ListFilteredTransactionEventsResponse ListFilteredTransactionEvents(ListFilteredTransactionEventsRequest request);
+
+
+
+        /// <summary>
+        /// Lists all the transaction events for an address on the blockchain.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// This operation is only supported on the Bitcoin networks.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListFilteredTransactionEvents service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListFilteredTransactionEvents service method, as returned by ManagedBlockchainQuery.</returns>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.AccessDeniedException">
+        /// The Amazon Web Services account doesn’t have access to this resource.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.InternalServerException">
+        /// The request processing has failed because of an internal error in the service.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.ServiceQuotaExceededException">
+        /// The service quota has been exceeded for this resource.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.ThrottlingException">
+        /// The request or operation couldn't be performed because a service is throttling requests.
+        /// The most common source of throttling errors is when you create resources that exceed
+        /// your service limit for this resource type. Request a limit increase or delete unused
+        /// resources, if possible.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedBlockchainQuery.Model.ValidationException">
+        /// The resource passed is invalid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/managedblockchain-query-2023-05-04/ListFilteredTransactionEvents">REST API Reference for ListFilteredTransactionEvents Operation</seealso>
+        Task<ListFilteredTransactionEventsResponse> ListFilteredTransactionEventsAsync(ListFilteredTransactionEventsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  ListTokenBalances
 
 
         /// <summary>
-        /// This action returns the following for a given a blockchain network:
+        /// This action returns the following for a given blockchain network:
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// Lists all token balances owned by an address (either a contact address or a wallet
+        /// Lists all token balances owned by an address (either a contract address or a wallet
         /// address).
         /// </para>
         ///  </li> <li> 
@@ -312,8 +573,8 @@ namespace Amazon.ManagedBlockchainQuery
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
-        /// You must always specify the network property of the <code>tokenFilter</code> when
-        /// using this operation.
+        /// You must always specify the network property of the <c>tokenFilter</c> when using
+        /// this operation.
         /// </para>
         ///  </note>
         /// </summary>
@@ -344,11 +605,11 @@ namespace Amazon.ManagedBlockchainQuery
 
 
         /// <summary>
-        /// This action returns the following for a given a blockchain network:
+        /// This action returns the following for a given blockchain network:
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// Lists all token balances owned by an address (either a contact address or a wallet
+        /// Lists all token balances owned by an address (either a contract address or a wallet
         /// address).
         /// </para>
         ///  </li> <li> 
@@ -361,8 +622,8 @@ namespace Amazon.ManagedBlockchainQuery
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
-        /// You must always specify the network property of the <code>tokenFilter</code> when
-        /// using this operation.
+        /// You must always specify the network property of the <c>tokenFilter</c> when using
+        /// this operation.
         /// </para>
         ///  </note>
         /// </summary>
@@ -399,8 +660,15 @@ namespace Amazon.ManagedBlockchainQuery
 
 
         /// <summary>
-        /// An array of <code>TransactionEvent</code> objects. Each object contains details about
-        /// the transaction event.
+        /// Lists all the transaction events for a transaction 
+        /// 
+        ///  <note> 
+        /// <para>
+        /// This action will return transaction details for all transactions that are <i>confirmed</i>
+        /// on the blockchain, even if they have not reached <a href="https://docs.aws.amazon.com/managed-blockchain/latest/ambq-dg/key-concepts.html#finality">finality</a>.
+        /// 
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTransactionEvents service method.</param>
         /// 
@@ -429,8 +697,15 @@ namespace Amazon.ManagedBlockchainQuery
 
 
         /// <summary>
-        /// An array of <code>TransactionEvent</code> objects. Each object contains details about
-        /// the transaction event.
+        /// Lists all the transaction events for a transaction 
+        /// 
+        ///  <note> 
+        /// <para>
+        /// This action will return transaction details for all transactions that are <i>confirmed</i>
+        /// on the blockchain, even if they have not reached <a href="https://docs.aws.amazon.com/managed-blockchain/latest/ambq-dg/key-concepts.html#finality">finality</a>.
+        /// 
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTransactionEvents service method.</param>
         /// <param name="cancellationToken">
@@ -465,7 +740,7 @@ namespace Amazon.ManagedBlockchainQuery
 
 
         /// <summary>
-        /// Lists all of the transactions on a given wallet address or to a specific contract.
+        /// Lists all the transaction events for a transaction.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTransactions service method.</param>
         /// 
@@ -494,7 +769,7 @@ namespace Amazon.ManagedBlockchainQuery
 
 
         /// <summary>
-        /// Lists all of the transactions on a given wallet address or to a specific contract.
+        /// Lists all the transaction events for a transaction.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTransactions service method.</param>
         /// <param name="cancellationToken">

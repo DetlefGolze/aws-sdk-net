@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -33,11 +34,11 @@ namespace Amazon.RDS.Model
     /// 
     ///  
     /// <para>
-    /// This data type is used as a response element in the operations <code>CreateDBInstance</code>,
-    /// <code>CreateDBInstanceReadReplica</code>, <code>DeleteDBInstance</code>, <code>DescribeDBInstances</code>,
-    /// <code>ModifyDBInstance</code>, <code>PromoteReadReplica</code>, <code>RebootDBInstance</code>,
-    /// <code>RestoreDBInstanceFromDBSnapshot</code>, <code>RestoreDBInstanceFromS3</code>,
-    /// <code>RestoreDBInstanceToPointInTime</code>, <code>StartDBInstance</code>, and <code>StopDBInstance</code>.
+    /// This data type is used as a response element in the operations <c>CreateDBInstance</c>,
+    /// <c>CreateDBInstanceReadReplica</c>, <c>DeleteDBInstance</c>, <c>DescribeDBInstances</c>,
+    /// <c>ModifyDBInstance</c>, <c>PromoteReadReplica</c>, <c>RebootDBInstance</c>, <c>RestoreDBInstanceFromDBSnapshot</c>,
+    /// <c>RestoreDBInstanceFromS3</c>, <c>RestoreDBInstanceToPointInTime</c>, <c>StartDBInstance</c>,
+    /// and <c>StopDBInstance</c>.
     /// </para>
     /// </summary>
     public partial class DBInstance
@@ -49,7 +50,7 @@ namespace Amazon.RDS.Model
         private ActivityStreamPolicyStatus _activityStreamPolicyStatus;
         private ActivityStreamStatus _activityStreamStatus;
         private int? _allocatedStorage;
-        private List<DBInstanceRole> _associatedRoles = new List<DBInstanceRole>();
+        private List<DBInstanceRole> _associatedRoles = AWSConfigs.InitializeCollections ? new List<DBInstanceRole>() : null;
         private DateTime? _automaticRestartTime;
         private AutomationMode _automationMode;
         private bool? _autoMinorVersionUpgrade;
@@ -63,29 +64,33 @@ namespace Amazon.RDS.Model
         private bool? _copyTagsToSnapshot;
         private bool? _customerOwnedIpEnabled;
         private string _customIamInstanceProfile;
+        private DatabaseInsightsMode _databaseInsightsMode;
         private string _dbClusterIdentifier;
         private string _dbInstanceArn;
-        private List<DBInstanceAutomatedBackupsReplication> _dbInstanceAutomatedBackupsReplications = new List<DBInstanceAutomatedBackupsReplication>();
+        private List<DBInstanceAutomatedBackupsReplication> _dbInstanceAutomatedBackupsReplications = AWSConfigs.InitializeCollections ? new List<DBInstanceAutomatedBackupsReplication>() : null;
         private string _dbInstanceClass;
         private string _dbInstanceIdentifier;
         private int? _dbInstancePort;
         private string _dbInstanceStatus;
         private string _dbiResourceId;
         private string _dbName;
-        private List<DBParameterGroupStatus> _dbParameterGroups = new List<DBParameterGroupStatus>();
-        private List<DBSecurityGroupMembership> _dbSecurityGroups = new List<DBSecurityGroupMembership>();
+        private List<DBParameterGroupStatus> _dbParameterGroups = AWSConfigs.InitializeCollections ? new List<DBParameterGroupStatus>() : null;
+        private List<DBSecurityGroupMembership> _dbSecurityGroups = AWSConfigs.InitializeCollections ? new List<DBSecurityGroupMembership>() : null;
         private DBSubnetGroup _dbSubnetGroup;
         private string _dbSystemId;
+        private bool? _dedicatedLogVolume;
         private bool? _deletionProtection;
-        private List<DomainMembership> _domainMemberships = new List<DomainMembership>();
-        private List<string> _enabledCloudwatchLogsExports = new List<string>();
+        private List<DomainMembership> _domainMemberships = AWSConfigs.InitializeCollections ? new List<DomainMembership>() : null;
+        private List<string> _enabledCloudwatchLogsExports = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private Endpoint _endpoint;
         private string _engine;
+        private string _engineLifecycleSupport;
         private string _engineVersion;
         private string _enhancedMonitoringResourceArn;
         private bool? _iamDatabaseAuthenticationEnabled;
         private DateTime? _instanceCreateTime;
         private int? _iops;
+        private bool? _isStorageConfigUpgradeAvailable;
         private string _kmsKeyId;
         private DateTime? _latestRestorableTime;
         private string _licenseModel;
@@ -96,9 +101,10 @@ namespace Amazon.RDS.Model
         private int? _monitoringInterval;
         private string _monitoringRoleArn;
         private bool? _multiAZ;
+        private bool? _multiTenant;
         private string _ncharCharacterSetName;
         private string _networkType;
-        private List<OptionGroupMembership> _optionGroupMemberships = new List<OptionGroupMembership>();
+        private List<OptionGroupMembership> _optionGroupMemberships = AWSConfigs.InitializeCollections ? new List<OptionGroupMembership>() : null;
         private PendingModifiedValues _pendingModifiedValues;
         private string _percentProgress;
         private bool? _performanceInsightsEnabled;
@@ -106,24 +112,24 @@ namespace Amazon.RDS.Model
         private int? _performanceInsightsRetentionPeriod;
         private string _preferredBackupWindow;
         private string _preferredMaintenanceWindow;
-        private List<ProcessorFeature> _processorFeatures = new List<ProcessorFeature>();
+        private List<ProcessorFeature> _processorFeatures = AWSConfigs.InitializeCollections ? new List<ProcessorFeature>() : null;
         private int? _promotionTier;
         private bool? _publiclyAccessible;
-        private List<string> _readReplicaDBClusterIdentifiers = new List<string>();
-        private List<string> _readReplicaDBInstanceIdentifiers = new List<string>();
+        private List<string> _readReplicaDBClusterIdentifiers = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _readReplicaDBInstanceIdentifiers = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _readReplicaSourceDBClusterIdentifier;
         private string _readReplicaSourceDBInstanceIdentifier;
         private ReplicaMode _replicaMode;
         private DateTime? _resumeFullAutomationModeTime;
         private string _secondaryAvailabilityZone;
-        private List<DBInstanceStatusInfo> _statusInfos = new List<DBInstanceStatusInfo>();
+        private List<DBInstanceStatusInfo> _statusInfos = AWSConfigs.InitializeCollections ? new List<DBInstanceStatusInfo>() : null;
         private bool? _storageEncrypted;
         private int? _storageThroughput;
         private string _storageType;
-        private List<Tag> _tagList = new List<Tag>();
+        private List<Tag> _tagList = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _tdeCredentialArn;
         private string _timezone;
-        private List<VpcSecurityGroupMembership> _vpcSecurityGroups = new List<VpcSecurityGroupMembership>();
+        private List<VpcSecurityGroupMembership> _vpcSecurityGroups = AWSConfigs.InitializeCollections ? new List<VpcSecurityGroupMembership>() : null;
 
         /// <summary>
         /// Gets and sets the property ActivityStreamEngineNativeAuditFieldsIncluded. 
@@ -271,7 +277,7 @@ namespace Amazon.RDS.Model
         // Check to see if AssociatedRoles property is set
         internal bool IsSetAssociatedRoles()
         {
-            return this._associatedRoles != null && this._associatedRoles.Count > 0; 
+            return this._associatedRoles != null && (this._associatedRoles.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -295,10 +301,9 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property AutomationMode. 
         /// <para>
-        /// The automation mode of the RDS Custom DB instance: <code>full</code> or <code>all
-        /// paused</code>. If <code>full</code>, the DB instance automates monitoring and instance
-        /// recovery. If <code>all paused</code>, the instance pauses automation for the duration
-        /// set by <code>--resume-full-automation-mode-minutes</code>.
+        /// The automation mode of the RDS Custom DB instance: <c>full</c> or <c>all paused</c>.
+        /// If <c>full</c>, the DB instance automates monitoring and instance recovery. If <c>all
+        /// paused</c>, the instance pauses automation for the duration set by <c>--resume-full-automation-mode-minutes</c>.
         /// </para>
         /// </summary>
         public AutomationMode AutomationMode
@@ -476,7 +481,7 @@ namespace Amazon.RDS.Model
         /// <para>
         /// This setting doesn't apply to Amazon Aurora DB instances. Copying tags to snapshots
         /// is managed by the DB cluster. Setting this value for an Aurora DB instance has no
-        /// effect on the DB cluster setting. For more information, see <code>DBCluster</code>.
+        /// effect on the DB cluster setting. For more information, see <c>DBCluster</c>.
         /// </para>
         /// </summary>
         public bool CopyTagsToSnapshot
@@ -544,7 +549,7 @@ namespace Amazon.RDS.Model
         ///  </li> <li> 
         /// <para>
         /// The instance profile name and the associated IAM role name must start with the prefix
-        /// <code>AWSRDSCustom</code>.
+        /// <c>AWSRDSCustom</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -562,6 +567,24 @@ namespace Amazon.RDS.Model
         internal bool IsSetCustomIamInstanceProfile()
         {
             return this._customIamInstanceProfile != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DatabaseInsightsMode. 
+        /// <para>
+        /// The mode of Database Insights that is enabled for the instance.
+        /// </para>
+        /// </summary>
+        public DatabaseInsightsMode DatabaseInsightsMode
+        {
+            get { return this._databaseInsightsMode; }
+            set { this._databaseInsightsMode = value; }
+        }
+
+        // Check to see if DatabaseInsightsMode property is set
+        internal bool IsSetDatabaseInsightsMode()
+        {
+            return this._databaseInsightsMode != null;
         }
 
         /// <summary>
@@ -616,7 +639,7 @@ namespace Amazon.RDS.Model
         // Check to see if DBInstanceAutomatedBackupsReplications property is set
         internal bool IsSetDBInstanceAutomatedBackupsReplications()
         {
-            return this._dbInstanceAutomatedBackupsReplications != null && this._dbInstanceAutomatedBackupsReplications.Count > 0; 
+            return this._dbInstanceAutomatedBackupsReplications != null && (this._dbInstanceAutomatedBackupsReplications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -721,9 +744,9 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property DBName. 
         /// <para>
-        /// Contains the initial database name that you provided (if required) when you created
-        /// the DB instance. This name is returned for the life of your DB instance. For an RDS
-        /// for Oracle CDB instance, the name identifies the PDB rather than the CDB.
+        /// The initial database name that you provided (if required) when you created the DB
+        /// instance. This name is returned for the life of your DB instance. For an RDS for Oracle
+        /// CDB instance, the name identifies the PDB rather than the CDB.
         /// </para>
         /// </summary>
         public string DBName
@@ -753,14 +776,14 @@ namespace Amazon.RDS.Model
         // Check to see if DBParameterGroups property is set
         internal bool IsSetDBParameterGroups()
         {
-            return this._dbParameterGroups != null && this._dbParameterGroups.Count > 0; 
+            return this._dbParameterGroups != null && (this._dbParameterGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DBSecurityGroups. 
         /// <para>
-        /// A list of DB security group elements containing <code>DBSecurityGroup.Name</code>
-        /// and <code>DBSecurityGroup.Status</code> subelements.
+        /// A list of DB security group elements containing <c>DBSecurityGroup.Name</c> and <c>DBSecurityGroup.Status</c>
+        /// subelements.
         /// </para>
         /// </summary>
         public List<DBSecurityGroupMembership> DBSecurityGroups
@@ -772,7 +795,7 @@ namespace Amazon.RDS.Model
         // Check to see if DBSecurityGroups property is set
         internal bool IsSetDBSecurityGroups()
         {
-            return this._dbSecurityGroups != null && this._dbSecurityGroups.Count > 0; 
+            return this._dbSecurityGroups != null && (this._dbSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -814,6 +837,24 @@ namespace Amazon.RDS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DedicatedLogVolume. 
+        /// <para>
+        /// Indicates whether the DB instance has a dedicated log volume (DLV) enabled.
+        /// </para>
+        /// </summary>
+        public bool DedicatedLogVolume
+        {
+            get { return this._dedicatedLogVolume.GetValueOrDefault(); }
+            set { this._dedicatedLogVolume = value; }
+        }
+
+        // Check to see if DedicatedLogVolume property is set
+        internal bool IsSetDedicatedLogVolume()
+        {
+            return this._dedicatedLogVolume.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property DeletionProtection. 
         /// <para>
         /// Indicates whether the DB instance has deletion protection enabled. The database can't
@@ -848,7 +889,7 @@ namespace Amazon.RDS.Model
         // Check to see if DomainMemberships property is set
         internal bool IsSetDomainMemberships()
         {
-            return this._domainMemberships != null && this._domainMemberships.Count > 0; 
+            return this._domainMemberships != null && (this._domainMemberships.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -872,7 +913,7 @@ namespace Amazon.RDS.Model
         // Check to see if EnabledCloudwatchLogsExports property is set
         internal bool IsSetEnabledCloudwatchLogsExports()
         {
-            return this._enabledCloudwatchLogsExports != null && this._enabledCloudwatchLogsExports.Count > 0; 
+            return this._enabledCloudwatchLogsExports != null && (this._enabledCloudwatchLogsExports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -882,7 +923,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The endpoint might not be shown for instances with the status of <code>creating</code>.
+        /// The endpoint might not be shown for instances with the status of <c>creating</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -914,6 +955,28 @@ namespace Amazon.RDS.Model
         internal bool IsSetEngine()
         {
             return this._engine != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EngineLifecycleSupport. 
+        /// <para>
+        /// The life cycle type for the DB instance.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see CreateDBInstance.
+        /// </para>
+        /// </summary>
+        public string EngineLifecycleSupport
+        {
+            get { return this._engineLifecycleSupport; }
+            set { this._engineLifecycleSupport = value; }
+        }
+
+        // Check to see if EngineLifecycleSupport property is set
+        internal bool IsSetEngineLifecycleSupport()
+        {
+            return this._engineLifecycleSupport != null;
         }
 
         /// <summary>
@@ -1015,9 +1078,31 @@ namespace Amazon.RDS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property IsStorageConfigUpgradeAvailable. 
+        /// <para>
+        /// Indicates whether an upgrade is recommended for the storage file system configuration
+        /// on the DB instance. To migrate to the preferred configuration, you can either create
+        /// a blue/green deployment, or create a read replica from the DB instance. For more information,
+        /// see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.UpgradeFileSystem">Upgrading
+        /// the storage file system for a DB instance</a>.
+        /// </para>
+        /// </summary>
+        public bool IsStorageConfigUpgradeAvailable
+        {
+            get { return this._isStorageConfigUpgradeAvailable.GetValueOrDefault(); }
+            set { this._isStorageConfigUpgradeAvailable = value; }
+        }
+
+        // Check to see if IsStorageConfigUpgradeAvailable property is set
+        internal bool IsSetIsStorageConfigUpgradeAvailable()
+        {
+            return this._isStorageConfigUpgradeAvailable.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// If <code>StorageEncrypted</code> is enabled, the Amazon Web Services KMS key identifier
+        /// If <c>StorageEncrypted</c> is enabled, the Amazon Web Services KMS key identifier
         /// for the encrypted DB instance.
         /// </para>
         ///  
@@ -1061,7 +1146,7 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property LicenseModel. 
         /// <para>
         /// The license model information for this DB instance. This setting doesn't apply to
-        /// RDS Custom DB instances.
+        /// Amazon Aurora or RDS Custom DB instances.
         /// </para>
         /// </summary>
         public string LicenseModel
@@ -1214,6 +1299,25 @@ namespace Amazon.RDS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MultiTenant. 
+        /// <para>
+        /// Specifies whether the DB instance is in the multi-tenant configuration (TRUE) or the
+        /// single-tenant configuration (FALSE).
+        /// </para>
+        /// </summary>
+        public bool MultiTenant
+        {
+            get { return this._multiTenant.GetValueOrDefault(); }
+            set { this._multiTenant = value; }
+        }
+
+        // Check to see if MultiTenant property is set
+        internal bool IsSetMultiTenant()
+        {
+            return this._multiTenant.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property NcharCharacterSetName. 
         /// <para>
         /// The name of the NCHAR character set for the Oracle DB instance. This character set
@@ -1240,9 +1344,9 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// The network type is determined by the <code>DBSubnetGroup</code> specified for the
-        /// DB instance. A <code>DBSubnetGroup</code> can support only the IPv4 protocol or the
-        /// IPv4 and the IPv6 protocols (<code>DUAL</code>).
+        /// The network type is determined by the <c>DBSubnetGroup</c> specified for the DB instance.
+        /// A <c>DBSubnetGroup</c> can support only the IPv4 protocol or the IPv4 and the IPv6
+        /// protocols (<c>DUAL</c>).
         /// </para>
         ///  
         /// <para>
@@ -1253,7 +1357,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>IPV4 | DUAL</code> 
+        /// Valid Values: <c>IPV4 | DUAL</c> 
         /// </para>
         /// </summary>
         public string NetworkType
@@ -1283,7 +1387,7 @@ namespace Amazon.RDS.Model
         // Check to see if OptionGroupMemberships property is set
         internal bool IsSetOptionGroupMemberships()
         {
-            return this._optionGroupMemberships != null && this._optionGroupMemberships.Count > 0; 
+            return this._optionGroupMemberships != null && (this._optionGroupMemberships.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1376,21 +1480,20 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>7</code> 
+        ///  <c>7</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
         ///  <i>month</i> * 31, where <i>month</i> is a number of months from 1-23. Examples:
-        /// <code>93</code> (3 months * 31), <code>341</code> (11 months * 31), <code>589</code>
-        /// (19 months * 31)
+        /// <c>93</c> (3 months * 31), <c>341</c> (11 months * 31), <c>589</c> (19 months * 31)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>731</code> 
+        ///  <c>731</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Default: <code>7</code> days
+        /// Default: <c>7</c> days
         /// </para>
         /// </summary>
         public int PerformanceInsightsRetentionPeriod
@@ -1409,7 +1512,7 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property PreferredBackupWindow. 
         /// <para>
         /// The daily time range during which automated backups are created if automated backups
-        /// are enabled, as determined by the <code>BackupRetentionPeriod</code>.
+        /// are enabled, as determined by the <c>BackupRetentionPeriod</c>.
         /// </para>
         /// </summary>
         public string PreferredBackupWindow
@@ -1459,7 +1562,7 @@ namespace Amazon.RDS.Model
         // Check to see if ProcessorFeatures property is set
         internal bool IsSetProcessorFeatures()
         {
-            return this._processorFeatures != null && this._processorFeatures.Count > 0; 
+            return this._processorFeatures != null && (this._processorFeatures.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1489,12 +1592,12 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// When the DB cluster is publicly accessible, its Domain Name System (DNS) endpoint
-        /// resolves to the private IP address from within the DB cluster's virtual private cloud
-        /// (VPC). It resolves to the public IP address from outside of the DB cluster's VPC.
-        /// Access to the DB cluster is ultimately controlled by the security group it uses. That
-        /// public access isn't permitted if the security group assigned to the DB cluster doesn't
-        /// permit it.
+        /// When the DB instance is publicly accessible and you connect from outside of the DB
+        /// instance's virtual private cloud (VPC), its Domain Name System (DNS) endpoint resolves
+        /// to the public IP address. When you connect from within the same VPC as the DB instance,
+        /// the endpoint resolves to the private IP address. Access to the DB cluster is ultimately
+        /// controlled by the security group it uses. That public access isn't permitted if the
+        /// security group assigned to the DB cluster doesn't permit it.
         /// </para>
         ///  
         /// <para>
@@ -1541,7 +1644,7 @@ namespace Amazon.RDS.Model
         // Check to see if ReadReplicaDBClusterIdentifiers property is set
         internal bool IsSetReadReplicaDBClusterIdentifiers()
         {
-            return this._readReplicaDBClusterIdentifiers != null && this._readReplicaDBClusterIdentifiers.Count > 0; 
+            return this._readReplicaDBClusterIdentifiers != null && (this._readReplicaDBClusterIdentifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1559,7 +1662,7 @@ namespace Amazon.RDS.Model
         // Check to see if ReadReplicaDBInstanceIdentifiers property is set
         internal bool IsSetReadReplicaDBInstanceIdentifiers()
         {
-            return this._readReplicaDBInstanceIdentifiers != null && this._readReplicaDBInstanceIdentifiers.Count > 0; 
+            return this._readReplicaDBInstanceIdentifiers != null && (this._readReplicaDBInstanceIdentifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1601,8 +1704,8 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property ReplicaMode. 
         /// <para>
-        /// The open mode of an Oracle read replica. The default is <code>open-read-only</code>.
-        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/oracle-read-replicas.html">Working
+        /// The open mode of an Oracle read replica. The default is <c>open-read-only</c>. For
+        /// more information, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/oracle-read-replicas.html">Working
         /// with Oracle Read Replicas for Amazon RDS</a> in the <i>Amazon RDS User Guide</i>.
         /// </para>
         ///  <note> 
@@ -1677,7 +1780,7 @@ namespace Amazon.RDS.Model
         // Check to see if StatusInfos property is set
         internal bool IsSetStatusInfos()
         {
-            return this._statusInfos != null && this._statusInfos.Count > 0; 
+            return this._statusInfos != null && (this._statusInfos.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1705,7 +1808,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// This setting applies only to the <code>gp3</code> storage type.
+        /// This setting applies only to the <c>gp3</c> storage type.
         /// </para>
         /// </summary>
         public int StorageThroughput
@@ -1750,7 +1853,7 @@ namespace Amazon.RDS.Model
         // Check to see if TagList property is set
         internal bool IsSetTagList()
         {
-            return this._tagList != null && this._tagList.Count > 0; 
+            return this._tagList != null && (this._tagList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1774,8 +1877,8 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Timezone. 
         /// <para>
-        /// The time zone of the DB instance. In most cases, the <code>Timezone</code> element
-        /// is empty. <code>Timezone</code> content appears only for Microsoft SQL Server DB instances
+        /// The time zone of the DB instance. In most cases, the <c>Timezone</c> element is empty.
+        /// <c>Timezone</c> content appears only for RDS for Db2 and RDS for SQL Server DB instances
         /// that were created with a time zone specified.
         /// </para>
         /// </summary>
@@ -1806,7 +1909,7 @@ namespace Amazon.RDS.Model
         // Check to see if VpcSecurityGroups property is set
         internal bool IsSetVpcSecurityGroups()
         {
-            return this._vpcSecurityGroups != null && this._vpcSecurityGroups.Count > 0; 
+            return this._vpcSecurityGroups != null && (this._vpcSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

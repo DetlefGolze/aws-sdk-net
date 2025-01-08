@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptography.Model
 {
     /// <summary>
@@ -38,7 +39,8 @@ namespace Amazon.PaymentCryptography.Model
         /// <summary>
         /// Gets and sets the property WrappedKey. 
         /// <para>
-        /// The key material under export as a TR-34 or TR-31 wrapped key block.
+        /// The key material under export as a TR-34 WrappedKeyBlock or a TR-31 WrappedKeyBlock.
+        /// or a RSA WrappedKeyCryptogram.
         /// </para>
         /// </summary>
         public WrappedKey WrappedKey

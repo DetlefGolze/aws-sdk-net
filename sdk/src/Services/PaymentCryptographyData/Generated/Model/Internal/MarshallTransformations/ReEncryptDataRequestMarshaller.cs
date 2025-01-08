@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.PaymentCryptographyData.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,6 +67,7 @@ namespace Amazon.PaymentCryptographyData.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetCipherText())
@@ -85,6 +87,17 @@ namespace Amazon.PaymentCryptographyData.Model.Internal.MarshallTransformations
                     context.Writer.WriteObjectEnd();
                 }
 
+                if(publicRequest.IsSetIncomingWrappedKey())
+                {
+                    context.Writer.WritePropertyName("IncomingWrappedKey");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = WrappedKeyMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.IncomingWrappedKey, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetOutgoingEncryptionAttributes())
                 {
                     context.Writer.WritePropertyName("OutgoingEncryptionAttributes");
@@ -100,6 +113,17 @@ namespace Amazon.PaymentCryptographyData.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("OutgoingKeyIdentifier");
                     context.Writer.Write(publicRequest.OutgoingKeyIdentifier);
+                }
+
+                if(publicRequest.IsSetOutgoingWrappedKey())
+                {
+                    context.Writer.WritePropertyName("OutgoingWrappedKey");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = WrappedKeyMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.OutgoingWrappedKey, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 writer.WriteObjectEnd();

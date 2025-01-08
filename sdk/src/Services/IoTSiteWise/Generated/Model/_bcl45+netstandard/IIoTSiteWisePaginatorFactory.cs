@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the iotsitewise-2019-12-02.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -41,6 +42,11 @@ namespace Amazon.IoTSiteWise.Model
         IBatchGetAssetPropertyValueHistoryPaginator BatchGetAssetPropertyValueHistory(BatchGetAssetPropertyValueHistoryRequest request);
 
         /// <summary>
+        /// Paginator for ExecuteQuery operation
+        ///</summary>
+        IExecuteQueryPaginator ExecuteQuery(ExecuteQueryRequest request);
+
+        /// <summary>
         /// Paginator for GetAssetPropertyAggregates operation
         ///</summary>
         IGetAssetPropertyAggregatesPaginator GetAssetPropertyAggregates(GetAssetPropertyAggregatesRequest request);
@@ -59,6 +65,16 @@ namespace Amazon.IoTSiteWise.Model
         /// Paginator for ListAccessPolicies operation
         ///</summary>
         IListAccessPoliciesPaginator ListAccessPolicies(ListAccessPoliciesRequest request);
+
+        /// <summary>
+        /// Paginator for ListActions operation
+        ///</summary>
+        IListActionsPaginator ListActions(ListActionsRequest request);
+
+        /// <summary>
+        /// Paginator for ListAssetModelCompositeModels operation
+        ///</summary>
+        IListAssetModelCompositeModelsPaginator ListAssetModelCompositeModels(ListAssetModelCompositeModelsRequest request);
 
         /// <summary>
         /// Paginator for ListAssetModelProperties operation
@@ -96,9 +112,19 @@ namespace Amazon.IoTSiteWise.Model
         IListBulkImportJobsPaginator ListBulkImportJobs(ListBulkImportJobsRequest request);
 
         /// <summary>
+        /// Paginator for ListCompositionRelationships operation
+        ///</summary>
+        IListCompositionRelationshipsPaginator ListCompositionRelationships(ListCompositionRelationshipsRequest request);
+
+        /// <summary>
         /// Paginator for ListDashboards operation
         ///</summary>
         IListDashboardsPaginator ListDashboards(ListDashboardsRequest request);
+
+        /// <summary>
+        /// Paginator for ListDatasets operation
+        ///</summary>
+        IListDatasetsPaginator ListDatasets(ListDatasetsRequest request);
 
         /// <summary>
         /// Paginator for ListGateways operation

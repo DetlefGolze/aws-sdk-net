@@ -33,17 +33,18 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.Signer
 {
     /// <summary>
-    /// Implementation for accessing Signer
+    /// <para>Implementation for accessing Signer</para>
     ///
-    /// AWS Signer is a fully managed code signing service to help you ensure the trust and
+    /// AWS Signer is a fully managed code-signing service to help you ensure the trust and
     /// integrity of your code. 
     /// 
     ///  
     /// <para>
-    /// AWS Signer supports the following applications:
+    /// Signer supports the following applications:
     /// </para>
     ///  
     /// <para>
@@ -60,17 +61,21 @@ namespace Amazon.Signer
     /// by AWS. IoT code signing is available for <a href="http://docs.aws.amazon.com/freertos/latest/userguide/">Amazon
     /// FreeRTOS</a> and <a href="http://docs.aws.amazon.com/iot/latest/developerguide/">AWS
     /// IoT Device Management</a>, and is integrated with <a href="http://docs.aws.amazon.com/acm/latest/userguide/">AWS
-    /// Certificate Manager (ACM)</a>. In order to sign code, you import a third-party code
-    /// signing certificate using ACM, and use that to sign updates in Amazon FreeRTOS and
-    /// AWS IoT Device Management. 
+    /// Certificate Manager (ACM)</a>. In order to sign code, you import a third-party code-signing
+    /// certificate using ACM, and use that to sign updates in Amazon FreeRTOS and AWS IoT
+    /// Device Management. 
     /// </para>
     ///  
     /// <para>
-    /// With code signing for containers …(TBD)
+    /// With Signer and the Notation CLI from the <a href="https://notaryproject.dev/">Notary&#x2028;
+    /// Project</a>, you can sign container images stored in a container registry such as
+    /// Amazon Elastic Container Registry (ECR). The signatures are stored in the registry
+    /// alongside the images, where they are available for verifying image authenticity and
+    /// integrity.
     /// </para>
     ///  
     /// <para>
-    /// For more information about AWS Signer, see the <a href="https://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html">AWS
+    /// For more information about Signer, see the <a href="https://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html">AWS
     /// Signer Developer Guide</a>.
     /// </para>
     /// </summary>
@@ -326,7 +331,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -372,7 +377,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -394,9 +399,9 @@ namespace Amazon.Signer
 
 
         /// <summary>
-        /// Changes the state of an <code>ACTIVE</code> signing profile to <code>CANCELED</code>.
-        /// A canceled profile is still viewable with the <code>ListSigningProfiles</code> operation,
-        /// but it cannot perform new signing jobs, and is deleted two years after cancelation.
+        /// Changes the state of an <c>ACTIVE</c> signing profile to <c>CANCELED</c>. A canceled
+        /// profile is still viewable with the <c>ListSigningProfiles</c> operation, but it cannot
+        /// perform new signing jobs, and is deleted two years after cancelation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CancelSigningProfile service method.</param>
         /// 
@@ -415,7 +420,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/CancelSigningProfile">REST API Reference for CancelSigningProfile Operation</seealso>
@@ -430,9 +435,9 @@ namespace Amazon.Signer
 
 
         /// <summary>
-        /// Changes the state of an <code>ACTIVE</code> signing profile to <code>CANCELED</code>.
-        /// A canceled profile is still viewable with the <code>ListSigningProfiles</code> operation,
-        /// but it cannot perform new signing jobs, and is deleted two years after cancelation.
+        /// Changes the state of an <c>ACTIVE</c> signing profile to <c>CANCELED</c>. A canceled
+        /// profile is still viewable with the <c>ListSigningProfiles</c> operation, but it cannot
+        /// perform new signing jobs, and is deleted two years after cancelation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CancelSigningProfile service method.</param>
         /// <param name="cancellationToken">
@@ -454,7 +459,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/CancelSigningProfile">REST API Reference for CancelSigningProfile Operation</seealso>
@@ -474,7 +479,7 @@ namespace Amazon.Signer
 
         /// <summary>
         /// Returns information about a specific code signing job. You specify the job by using
-        /// the <code>jobId</code> value that is returned by the <a>StartSigningJob</a> operation.
+        /// the <c>jobId</c> value that is returned by the <a>StartSigningJob</a> operation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeSigningJob service method.</param>
         /// 
@@ -493,7 +498,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/DescribeSigningJob">REST API Reference for DescribeSigningJob Operation</seealso>
@@ -509,7 +514,7 @@ namespace Amazon.Signer
 
         /// <summary>
         /// Returns information about a specific code signing job. You specify the job by using
-        /// the <code>jobId</code> value that is returned by the <a>StartSigningJob</a> operation.
+        /// the <c>jobId</c> value that is returned by the <a>StartSigningJob</a> operation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeSigningJob service method.</param>
         /// <param name="cancellationToken">
@@ -531,7 +536,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/DescribeSigningJob">REST API Reference for DescribeSigningJob Operation</seealso>
@@ -567,7 +572,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -605,7 +610,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -646,7 +651,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/GetSigningPlatform">REST API Reference for GetSigningPlatform Operation</seealso>
@@ -683,7 +688,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/GetSigningPlatform">REST API Reference for GetSigningPlatform Operation</seealso>
@@ -721,7 +726,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/GetSigningProfile">REST API Reference for GetSigningProfile Operation</seealso>
@@ -758,7 +763,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/GetSigningProfile">REST API Reference for GetSigningProfile Operation</seealso>
@@ -796,7 +801,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -836,7 +841,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -858,13 +863,13 @@ namespace Amazon.Signer
 
 
         /// <summary>
-        /// Lists all your signing jobs. You can use the <code>maxResults</code> parameter to
-        /// limit the number of signing jobs that are returned in the response. If additional
-        /// jobs remain to be listed, code signing returns a <code>nextToken</code> value. Use
-        /// this value in subsequent calls to <code>ListSigningJobs</code> to fetch the remaining
-        /// values. You can continue calling <code>ListSigningJobs</code> with your <code>maxResults</code>
-        /// parameter and with new values that code signing returns in the <code>nextToken</code>
-        /// parameter until all of your signing jobs have been returned.
+        /// Lists all your signing jobs. You can use the <c>maxResults</c> parameter to limit
+        /// the number of signing jobs that are returned in the response. If additional jobs remain
+        /// to be listed, AWS Signer returns a <c>nextToken</c> value. Use this value in subsequent
+        /// calls to <c>ListSigningJobs</c> to fetch the remaining values. You can continue calling
+        /// <c>ListSigningJobs</c> with your <c>maxResults</c> parameter and with new values that
+        /// Signer returns in the <c>nextToken</c> parameter until all of your signing jobs have
+        /// been returned.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListSigningJobs service method.</param>
         /// 
@@ -880,7 +885,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -898,13 +903,13 @@ namespace Amazon.Signer
 
 
         /// <summary>
-        /// Lists all your signing jobs. You can use the <code>maxResults</code> parameter to
-        /// limit the number of signing jobs that are returned in the response. If additional
-        /// jobs remain to be listed, code signing returns a <code>nextToken</code> value. Use
-        /// this value in subsequent calls to <code>ListSigningJobs</code> to fetch the remaining
-        /// values. You can continue calling <code>ListSigningJobs</code> with your <code>maxResults</code>
-        /// parameter and with new values that code signing returns in the <code>nextToken</code>
-        /// parameter until all of your signing jobs have been returned.
+        /// Lists all your signing jobs. You can use the <c>maxResults</c> parameter to limit
+        /// the number of signing jobs that are returned in the response. If additional jobs remain
+        /// to be listed, AWS Signer returns a <c>nextToken</c> value. Use this value in subsequent
+        /// calls to <c>ListSigningJobs</c> to fetch the remaining values. You can continue calling
+        /// <c>ListSigningJobs</c> with your <c>maxResults</c> parameter and with new values that
+        /// Signer returns in the <c>nextToken</c> parameter until all of your signing jobs have
+        /// been returned.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListSigningJobs service method.</param>
         /// <param name="cancellationToken">
@@ -923,7 +928,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -945,12 +950,12 @@ namespace Amazon.Signer
 
 
         /// <summary>
-        /// Lists all signing platforms available in code signing that match the request parameters.
-        /// If additional jobs remain to be listed, code signing returns a <code>nextToken</code>
-        /// value. Use this value in subsequent calls to <code>ListSigningJobs</code> to fetch
-        /// the remaining values. You can continue calling <code>ListSigningJobs</code> with your
-        /// <code>maxResults</code> parameter and with new values that code signing returns in
-        /// the <code>nextToken</code> parameter until all of your signing jobs have been returned.
+        /// Lists all signing platforms available in AWS Signer that match the request parameters.
+        /// If additional jobs remain to be listed, Signer returns a <c>nextToken</c> value. Use
+        /// this value in subsequent calls to <c>ListSigningJobs</c> to fetch the remaining values.
+        /// You can continue calling <c>ListSigningJobs</c> with your <c>maxResults</c> parameter
+        /// and with new values that Signer returns in the <c>nextToken</c> parameter until all
+        /// of your signing jobs have been returned.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListSigningPlatforms service method.</param>
         /// 
@@ -966,7 +971,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -984,12 +989,12 @@ namespace Amazon.Signer
 
 
         /// <summary>
-        /// Lists all signing platforms available in code signing that match the request parameters.
-        /// If additional jobs remain to be listed, code signing returns a <code>nextToken</code>
-        /// value. Use this value in subsequent calls to <code>ListSigningJobs</code> to fetch
-        /// the remaining values. You can continue calling <code>ListSigningJobs</code> with your
-        /// <code>maxResults</code> parameter and with new values that code signing returns in
-        /// the <code>nextToken</code> parameter until all of your signing jobs have been returned.
+        /// Lists all signing platforms available in AWS Signer that match the request parameters.
+        /// If additional jobs remain to be listed, Signer returns a <c>nextToken</c> value. Use
+        /// this value in subsequent calls to <c>ListSigningJobs</c> to fetch the remaining values.
+        /// You can continue calling <c>ListSigningJobs</c> with your <c>maxResults</c> parameter
+        /// and with new values that Signer returns in the <c>nextToken</c> parameter until all
+        /// of your signing jobs have been returned.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListSigningPlatforms service method.</param>
         /// <param name="cancellationToken">
@@ -1008,7 +1013,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -1031,13 +1036,12 @@ namespace Amazon.Signer
 
         /// <summary>
         /// Lists all available signing profiles in your AWS account. Returns only profiles with
-        /// an <code>ACTIVE</code> status unless the <code>includeCanceled</code> request field
-        /// is set to <code>true</code>. If additional jobs remain to be listed, code signing
-        /// returns a <code>nextToken</code> value. Use this value in subsequent calls to <code>ListSigningJobs</code>
-        /// to fetch the remaining values. You can continue calling <code>ListSigningJobs</code>
-        /// with your <code>maxResults</code> parameter and with new values that code signing
-        /// returns in the <code>nextToken</code> parameter until all of your signing jobs have
-        /// been returned.
+        /// an <c>ACTIVE</c> status unless the <c>includeCanceled</c> request field is set to
+        /// <c>true</c>. If additional jobs remain to be listed, AWS Signer returns a <c>nextToken</c>
+        /// value. Use this value in subsequent calls to <c>ListSigningJobs</c> to fetch the remaining
+        /// values. You can continue calling <c>ListSigningJobs</c> with your <c>maxResults</c>
+        /// parameter and with new values that Signer returns in the <c>nextToken</c> parameter
+        /// until all of your signing jobs have been returned.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListSigningProfiles service method.</param>
         /// 
@@ -1053,7 +1057,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/ListSigningProfiles">REST API Reference for ListSigningProfiles Operation</seealso>
@@ -1069,13 +1073,12 @@ namespace Amazon.Signer
 
         /// <summary>
         /// Lists all available signing profiles in your AWS account. Returns only profiles with
-        /// an <code>ACTIVE</code> status unless the <code>includeCanceled</code> request field
-        /// is set to <code>true</code>. If additional jobs remain to be listed, code signing
-        /// returns a <code>nextToken</code> value. Use this value in subsequent calls to <code>ListSigningJobs</code>
-        /// to fetch the remaining values. You can continue calling <code>ListSigningJobs</code>
-        /// with your <code>maxResults</code> parameter and with new values that code signing
-        /// returns in the <code>nextToken</code> parameter until all of your signing jobs have
-        /// been returned.
+        /// an <c>ACTIVE</c> status unless the <c>includeCanceled</c> request field is set to
+        /// <c>true</c>. If additional jobs remain to be listed, AWS Signer returns a <c>nextToken</c>
+        /// value. Use this value in subsequent calls to <c>ListSigningJobs</c> to fetch the remaining
+        /// values. You can continue calling <c>ListSigningJobs</c> with your <c>maxResults</c>
+        /// parameter and with new values that Signer returns in the <c>nextToken</c> parameter
+        /// until all of your signing jobs have been returned.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListSigningProfiles service method.</param>
         /// <param name="cancellationToken">
@@ -1094,7 +1097,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/ListSigningProfiles">REST API Reference for ListSigningProfiles Operation</seealso>
@@ -1133,7 +1136,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/ListTagsForResource">REST API Reference for ListTagsForResource Operation</seealso>
@@ -1171,7 +1174,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/ListTagsForResource">REST API Reference for ListTagsForResource Operation</seealso>
@@ -1190,7 +1193,7 @@ namespace Amazon.Signer
 
 
         /// <summary>
-        /// Creates a signing profile. A signing profile is a code signing template that can be
+        /// Creates a signing profile. A signing profile is a code-signing template that can be
         /// used to carry out a pre-defined signing job.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutSigningProfile service method.</param>
@@ -1210,7 +1213,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -1228,7 +1231,7 @@ namespace Amazon.Signer
 
 
         /// <summary>
-        /// Creates a signing profile. A signing profile is a code signing template that can be
+        /// Creates a signing profile. A signing profile is a code-signing template that can be
         /// used to carry out a pre-defined signing job.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutSigningProfile service method.</param>
@@ -1251,7 +1254,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -1295,7 +1298,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -1338,7 +1341,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -1380,7 +1383,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -1421,7 +1424,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -1463,7 +1466,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -1504,7 +1507,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -1545,7 +1548,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -1585,7 +1588,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -1608,8 +1611,8 @@ namespace Amazon.Signer
 
         /// <summary>
         /// Initiates a signing job to be performed on the code provided. Signing jobs are viewable
-        /// by the <code>ListSigningJobs</code> operation for two years after they are performed.
-        /// Note the following requirements: 
+        /// by the <c>ListSigningJobs</c> operation for two years after they are performed. Note
+        /// the following requirements: 
         /// 
         ///  <ul> <li> 
         /// <para>
@@ -1622,22 +1625,27 @@ namespace Amazon.Signer
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You must create an S3 destination bucket. Code signing uses your S3 destination bucket
+        /// You must create an S3 destination bucket. AWS Signer uses your S3 destination bucket
         /// to write your signed code.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You specify the name of the source and destination buckets when calling the <code>StartSigningJob</code>
+        /// You specify the name of the source and destination buckets when calling the <c>StartSigningJob</c>
         /// operation.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You must also specify a request token that identifies your request to code signing.
+        /// You must ensure the S3 buckets are from the same Region as the signing profile. Cross-Region
+        /// signing isn't supported.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You must also specify a request token that identifies your request to Signer.
         /// </para>
         ///  </li> </ul> 
         /// <para>
         /// You can call the <a>DescribeSigningJob</a> and the <a>ListSigningJobs</a> actions
-        /// after you call <code>StartSigningJob</code>.
+        /// after you call <c>StartSigningJob</c>.
         /// </para>
         ///  
         /// <para>
@@ -1661,7 +1669,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// Instead of this error, <code>TooManyRequestsException</code> should be used.
+        /// Instead of this error, <c>TooManyRequestsException</c> should be used.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.TooManyRequestsException">
@@ -1669,7 +1677,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -1688,8 +1696,8 @@ namespace Amazon.Signer
 
         /// <summary>
         /// Initiates a signing job to be performed on the code provided. Signing jobs are viewable
-        /// by the <code>ListSigningJobs</code> operation for two years after they are performed.
-        /// Note the following requirements: 
+        /// by the <c>ListSigningJobs</c> operation for two years after they are performed. Note
+        /// the following requirements: 
         /// 
         ///  <ul> <li> 
         /// <para>
@@ -1702,22 +1710,27 @@ namespace Amazon.Signer
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You must create an S3 destination bucket. Code signing uses your S3 destination bucket
+        /// You must create an S3 destination bucket. AWS Signer uses your S3 destination bucket
         /// to write your signed code.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You specify the name of the source and destination buckets when calling the <code>StartSigningJob</code>
+        /// You specify the name of the source and destination buckets when calling the <c>StartSigningJob</c>
         /// operation.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You must also specify a request token that identifies your request to code signing.
+        /// You must ensure the S3 buckets are from the same Region as the signing profile. Cross-Region
+        /// signing isn't supported.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You must also specify a request token that identifies your request to Signer.
         /// </para>
         ///  </li> </ul> 
         /// <para>
         /// You can call the <a>DescribeSigningJob</a> and the <a>ListSigningJobs</a> actions
-        /// after you call <code>StartSigningJob</code>.
+        /// after you call <c>StartSigningJob</c>.
         /// </para>
         ///  
         /// <para>
@@ -1744,7 +1757,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// Instead of this error, <code>TooManyRequestsException</code> should be used.
+        /// Instead of this error, <c>TooManyRequestsException</c> should be used.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.TooManyRequestsException">
@@ -1752,7 +1765,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.Signer.Model.ValidationException">
@@ -1797,7 +1810,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/TagResource">REST API Reference for TagResource Operation</seealso>
@@ -1838,7 +1851,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/TagResource">REST API Reference for TagResource Operation</seealso>
@@ -1878,7 +1891,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/UntagResource">REST API Reference for UntagResource Operation</seealso>
@@ -1917,7 +1930,7 @@ namespace Amazon.Signer
         /// 
         ///  
         /// <para>
-        /// This error supersedes the error <code>ThrottlingException</code>.
+        /// This error supersedes the error <c>ThrottlingException</c>.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/UntagResource">REST API Reference for UntagResource Operation</seealso>
@@ -1941,11 +1954,11 @@ namespace Amazon.Signer
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

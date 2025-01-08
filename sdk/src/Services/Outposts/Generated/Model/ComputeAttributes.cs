@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Outposts.Model
 {
     /// <summary>
@@ -34,7 +35,9 @@ namespace Amazon.Outposts.Model
     public partial class ComputeAttributes
     {
         private string _hostId;
-        private List<string> _instanceFamilies = new List<string>();
+        private List<string> _instanceFamilies = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<AssetInstanceTypeCapacity> _instanceTypeCapacities = AWSConfigs.InitializeCollections ? new List<AssetInstanceTypeCapacity>() : null;
+        private int? _maxVcpus;
         private ComputeAssetState _state;
 
         /// <summary>
@@ -72,7 +75,44 @@ namespace Amazon.Outposts.Model
         // Check to see if InstanceFamilies property is set
         internal bool IsSetInstanceFamilies()
         {
-            return this._instanceFamilies != null && this._instanceFamilies.Count > 0; 
+            return this._instanceFamilies != null && (this._instanceFamilies.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property InstanceTypeCapacities. 
+        /// <para>
+        /// The instance type capacities configured for this asset. This can be changed through
+        /// a capacity task.
+        /// </para>
+        /// </summary>
+        public List<AssetInstanceTypeCapacity> InstanceTypeCapacities
+        {
+            get { return this._instanceTypeCapacities; }
+            set { this._instanceTypeCapacities = value; }
+        }
+
+        // Check to see if InstanceTypeCapacities property is set
+        internal bool IsSetInstanceTypeCapacities()
+        {
+            return this._instanceTypeCapacities != null && (this._instanceTypeCapacities.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property MaxVcpus. 
+        /// <para>
+        /// The maximum number of vCPUs possible for the specified asset.
+        /// </para>
+        /// </summary>
+        public int MaxVcpus
+        {
+            get { return this._maxVcpus.GetValueOrDefault(); }
+            set { this._maxVcpus = value; }
+        }
+
+        // Check to see if MaxVcpus property is set
+        internal bool IsSetMaxVcpus()
+        {
+            return this._maxVcpus.HasValue; 
         }
 
         /// <summary>

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// The Amazon SageMaker Canvas app setting where you configure OAuth for connecting to
-    /// an external data source, such as Snowflake.
+    /// The Amazon SageMaker Canvas application setting where you configure OAuth for connecting
+    /// to an external data source, such as Snowflake.
     /// </summary>
     public partial class IdentityProviderOAuthSetting
     {

@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
     /// Container for the parameters to the ListPhoneNumbersV2 operation.
     /// Lists phone numbers claimed to your Amazon Connect instance or traffic distribution
-    /// group. If the provided <code>TargetArn</code> is a traffic distribution group, you
-    /// can call this API in both Amazon Web Services Regions associated with traffic distribution
+    /// group. If the provided <c>TargetArn</c> is a traffic distribution group, you can call
+    /// this API in both Amazon Web Services Regions associated with traffic distribution
     /// group.
     /// 
     ///  
@@ -43,24 +44,48 @@ namespace Amazon.Connect.Model
     /// </para>
     ///  <note> <ul> <li> 
     /// <para>
-    /// When given an instance ARN, <code>ListPhoneNumbersV2</code> returns only the phone
-    /// numbers claimed to the instance.
+    /// When given an instance ARN, <c>ListPhoneNumbersV2</c> returns only the phone numbers
+    /// claimed to the instance.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// When given a traffic distribution group ARN <code>ListPhoneNumbersV2</code> returns
-    /// only the phone numbers claimed to the traffic distribution group.
+    /// When given a traffic distribution group ARN <c>ListPhoneNumbersV2</c> returns only
+    /// the phone numbers claimed to the traffic distribution group.
     /// </para>
     ///  </li> </ul> </note>
     /// </summary>
     public partial class ListPhoneNumbersV2Request : AmazonConnectRequest
     {
+        private string _instanceId;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _phoneNumberCountryCodes = new List<string>();
+        private List<string> _phoneNumberCountryCodes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _phoneNumberPrefix;
-        private List<string> _phoneNumberTypes = new List<string>();
+        private List<string> _phoneNumberTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _targetArn;
+
+        /// <summary>
+        /// Gets and sets the property InstanceId. 
+        /// <para>
+        /// The identifier of the Amazon Connect instance that phone numbers are claimed to. You
+        /// can <a href="https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html">find
+        /// the instance ID</a> in the Amazon Resource Name (ARN) of the instance. If both <c>TargetArn</c>
+        /// and <c>InstanceId</c> are not provided, this API lists numbers claimed to all the
+        /// Amazon Connect instances belonging to your account in the same AWS Region as the request.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=100)]
+        public string InstanceId
+        {
+            get { return this._instanceId; }
+            set { this._instanceId = value; }
+        }
+
+        // Check to see if InstanceId property is set
+        internal bool IsSetInstanceId()
+        {
+            return this._instanceId != null;
+        }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
@@ -117,14 +142,14 @@ namespace Amazon.Connect.Model
         // Check to see if PhoneNumberCountryCodes property is set
         internal bool IsSetPhoneNumberCountryCodes()
         {
-            return this._phoneNumberCountryCodes != null && this._phoneNumberCountryCodes.Count > 0; 
+            return this._phoneNumberCountryCodes != null && (this._phoneNumberCountryCodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PhoneNumberPrefix. 
         /// <para>
-        /// The prefix of the phone number. If provided, it must contain <code>+</code> as part
-        /// of the country code.
+        /// The prefix of the phone number. If provided, it must contain <c>+</c> as part of the
+        /// country code.
         /// </para>
         /// </summary>
         public string PhoneNumberPrefix
@@ -155,16 +180,17 @@ namespace Amazon.Connect.Model
         // Check to see if PhoneNumberTypes property is set
         internal bool IsSetPhoneNumberTypes()
         {
-            return this._phoneNumberTypes != null && this._phoneNumberTypes.Count > 0; 
+            return this._phoneNumberTypes != null && (this._phoneNumberTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TargetArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution
-        /// groups that phone numbers are claimed to. If <code>TargetArn</code> input is not provided,
-        /// this API lists numbers claimed to all the Amazon Connect instances belonging to your
-        /// account in the same Amazon Web Services Region as the request.
+        /// groups that phone number inbound traffic is routed through. If both <c>TargetArn</c>
+        /// and <c>InstanceId</c> input are not provided, this API lists numbers claimed to all
+        /// the Amazon Connect instances belonging to your account in the same Amazon Web Services
+        /// Region as the request.
         /// </para>
         /// </summary>
         public string TargetArn

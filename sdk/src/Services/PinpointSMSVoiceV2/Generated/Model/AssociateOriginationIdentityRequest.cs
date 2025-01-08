@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
@@ -35,12 +36,12 @@ namespace Amazon.PinpointSMSVoiceV2.Model
     ///  
     /// <para>
     /// If the origination identity is a phone number and is already associated with another
-    /// pool, an Error is returned. A sender ID can be associated with multiple pools.
+    /// pool, an error is returned. A sender ID can be associated with multiple pools.
     /// </para>
     ///  
     /// <para>
     /// If the origination identity configuration doesn't match the pool's configuration,
-    /// an Error is returned.
+    /// an error is returned.
     /// </para>
     /// </summary>
     public partial class AssociateOriginationIdentityRequest : AmazonPinpointSMSVoiceV2Request
@@ -99,6 +100,12 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// and PhoneNumberArn, while <a>DescribeSenderIds</a> can be used to get the values for
         /// SenderId and SenderIdArn.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// If you are using a shared AWS End User Messaging SMS and Voice resource then you must
+        /// use the full Amazon Resource Name(ARN).
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]
         public string OriginationIdentity
@@ -119,6 +126,12 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// The pool to update with the new Identity. This value can be either the PoolId or PoolArn,
         /// and you can find these values using <a>DescribePools</a>.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// If you are using a shared AWS End User Messaging SMS and Voice resource then you must
+        /// use the full Amazon Resource Name(ARN).
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]
         public string PoolId

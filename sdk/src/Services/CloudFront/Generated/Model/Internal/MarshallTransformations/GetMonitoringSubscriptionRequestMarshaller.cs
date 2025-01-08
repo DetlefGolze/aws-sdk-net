@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using System.Xml;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudFront.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.CloudFront.Model.Internal.MarshallTransformations
             if (!publicRequest.IsSetDistributionId())
                 throw new AmazonCloudFrontException("Request object does not have required field DistributionId set");
             request.AddPathResource("{DistributionId}", StringUtils.FromString(publicRequest.DistributionId));
-            request.ResourcePath = "/2020-05-31/distributions/{DistributionId}/monitoring-subscription/";
+            request.ResourcePath = "/2020-05-31/distributions/{DistributionId}/monitoring-subscription";
 
 
             return request;

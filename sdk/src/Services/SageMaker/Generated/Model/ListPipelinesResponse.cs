@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.SageMaker.Model
     public partial class ListPipelinesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<PipelineSummary> _pipelineSummaries = new List<PipelineSummary>();
+        private List<PipelineSummary> _pipelineSummaries = AWSConfigs.InitializeCollections ? new List<PipelineSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the result of the previous <code>ListPipelines</code> request was truncated, the
-        /// response includes a <code>NextToken</code>. To retrieve the next set of pipelines,
-        /// use the token in the next request.
+        /// If the result of the previous <c>ListPipelines</c> request was truncated, the response
+        /// includes a <c>NextToken</c>. To retrieve the next set of pipelines, use the token
+        /// in the next request.
         /// </para>
         /// </summary>
         [AWSProperty(Max=8192)]
@@ -60,10 +61,10 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property PipelineSummaries. 
         /// <para>
-        /// Contains a sorted list of <code>PipelineSummary</code> objects matching the specified
-        /// filters. Each <code>PipelineSummary</code> consists of PipelineArn, PipelineName,
-        /// ExperimentName, PipelineDescription, CreationTime, LastModifiedTime, LastRunTime,
-        /// and RoleArn. This list can be empty. 
+        /// Contains a sorted list of <c>PipelineSummary</c> objects matching the specified filters.
+        /// Each <c>PipelineSummary</c> consists of PipelineArn, PipelineName, ExperimentName,
+        /// PipelineDescription, CreationTime, LastModifiedTime, LastRunTime, and RoleArn. This
+        /// list can be empty. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]
@@ -76,7 +77,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if PipelineSummaries property is set
         internal bool IsSetPipelineSummaries()
         {
-            return this._pipelineSummaries != null && this._pipelineSummaries.Count > 0; 
+            return this._pipelineSummaries != null && (this._pipelineSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

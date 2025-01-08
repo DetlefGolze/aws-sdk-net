@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.WAFV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.WAFV2.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(LoggingConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetLogDestinationConfigs())
             {
                 context.Writer.WritePropertyName("LogDestinationConfigs");
@@ -65,6 +68,18 @@ namespace Amazon.WAFV2.Model.Internal.MarshallTransformations
                 marshaller.Marshall(requestObject.LoggingFilter, context);
 
                 context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetLogScope())
+            {
+                context.Writer.WritePropertyName("LogScope");
+                context.Writer.Write(requestObject.LogScope);
+            }
+
+            if(requestObject.IsSetLogType())
+            {
+                context.Writer.WritePropertyName("LogType");
+                context.Writer.Write(requestObject.LogType);
             }
 
             if(requestObject.IsSetManagedByFirewallManager())

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.IoT.Model
         /// Gets and sets the property Quality. 
         /// <para>
         /// Optional. A string that describes the quality of the value. Accepts substitution templates.
-        /// Must be <code>GOOD</code>, <code>BAD</code>, or <code>UNCERTAIN</code>.
+        /// Must be <c>GOOD</c>, <c>BAD</c>, or <c>UNCERTAIN</c>.
         /// </para>
         /// </summary>
         public string Quality

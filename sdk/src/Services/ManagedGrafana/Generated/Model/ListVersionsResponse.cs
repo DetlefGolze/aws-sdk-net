@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedGrafana.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ManagedGrafana.Model
     /// </summary>
     public partial class ListVersionsResponse : AmazonWebServiceResponse
     {
-        private List<string> _grafanaVersions = new List<string>();
+        private List<string> _grafanaVersions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,14 +53,14 @@ namespace Amazon.ManagedGrafana.Model
         // Check to see if GrafanaVersions property is set
         internal bool IsSetGrafanaVersions()
         {
-            return this._grafanaVersions != null && this._grafanaVersions.Count > 0; 
+            return this._grafanaVersions != null && (this._grafanaVersions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to use in a subsequent <code>ListVersions</code> operation to return the
-        /// next set of results.
+        /// The token to use in a subsequent <c>ListVersions</c> operation to return the next
+        /// set of results.
         /// </para>
         /// </summary>
         public string NextToken

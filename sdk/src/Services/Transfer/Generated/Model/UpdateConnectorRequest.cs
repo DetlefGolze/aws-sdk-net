@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateConnector operation.
-    /// Updates some of the parameters for an existing connector. Provide the <code>ConnectorId</code>
+    /// Updates some of the parameters for an existing connector. Provide the <c>ConnectorId</c>
     /// for the connector that you want to update, along with the new values for the parameters
     /// to update.
     /// </summary>
@@ -40,6 +41,7 @@ namespace Amazon.Transfer.Model
         private As2ConnectorConfig _as2Config;
         private string _connectorId;
         private string _loggingRole;
+        private string _securityPolicyName;
         private SftpConnectorConfig _sftpConfig;
         private string _url;
 
@@ -56,23 +58,22 @@ namespace Amazon.Transfer.Model
         /// </para>
         ///  
         /// <para>
-        /// With AS2, you can send files by calling <code>StartFileTransfer</code> and specifying
-        /// the file paths in the request parameter, <code>SendFilePaths</code>. We use the file’s
-        /// parent directory (for example, for <code>--send-file-paths /bucket/dir/file.txt</code>,
-        /// parent directory is <code>/bucket/dir/</code>) to temporarily store a processed AS2
-        /// message file, store the MDN when we receive them from the partner, and write a final
-        /// JSON file containing relevant metadata of the transmission. So, the <code>AccessRole</code>
-        /// needs to provide read and write access to the parent directory of the file location
-        /// used in the <code>StartFileTransfer</code> request. Additionally, you need to provide
-        /// read and write access to the parent directory of the files that you intend to send
-        /// with <code>StartFileTransfer</code>.
+        /// With AS2, you can send files by calling <c>StartFileTransfer</c> and specifying the
+        /// file paths in the request parameter, <c>SendFilePaths</c>. We use the file’s parent
+        /// directory (for example, for <c>--send-file-paths /bucket/dir/file.txt</c>, parent
+        /// directory is <c>/bucket/dir/</c>) to temporarily store a processed AS2 message file,
+        /// store the MDN when we receive them from the partner, and write a final JSON file containing
+        /// relevant metadata of the transmission. So, the <c>AccessRole</c> needs to provide
+        /// read and write access to the parent directory of the file location used in the <c>StartFileTransfer</c>
+        /// request. Additionally, you need to provide read and write access to the parent directory
+        /// of the files that you intend to send with <c>StartFileTransfer</c>.
         /// </para>
         ///  
         /// <para>
         /// If you are using Basic authentication for your AS2 connector, the access role requires
-        /// the <code>secretsmanager:GetSecretValue</code> permission for the secret. If the secret
+        /// the <c>secretsmanager:GetSecretValue</c> permission for the secret. If the secret
         /// is encrypted using a customer-managed key instead of the Amazon Web Services managed
-        /// key in Secrets Manager, then the role also needs the <code>kms:Decrypt</code> permission
+        /// key in Secrets Manager, then the role also needs the <c>kms:Decrypt</c> permission
         /// for that key.
         /// </para>
         ///  
@@ -82,9 +83,9 @@ namespace Amazon.Transfer.Model
         ///  
         /// <para>
         /// Make sure that the access role provides read and write access to the parent directory
-        /// of the file location that's used in the <code>StartFileTransfer</code> request. Additionally,
-        /// make sure that the role provides <code>secretsmanager:GetSecretValue</code> permission
-        /// to Secrets Manager.
+        /// of the file location that's used in the <c>StartFileTransfer</c> request. Additionally,
+        /// make sure that the role provides <c>secretsmanager:GetSecretValue</c> permission to
+        /// Secrets Manager.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]
@@ -159,6 +160,25 @@ namespace Amazon.Transfer.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SecurityPolicyName. 
+        /// <para>
+        /// Specifies the name of the security policy for the connector.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=100)]
+        public string SecurityPolicyName
+        {
+            get { return this._securityPolicyName; }
+            set { this._securityPolicyName = value; }
+        }
+
+        // Check to see if SecurityPolicyName property is set
+        internal bool IsSetSecurityPolicyName()
+        {
+            return this._securityPolicyName != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property SftpConfig. 
         /// <para>
         /// A structure that contains the parameters for an SFTP connector object.
@@ -182,7 +202,7 @@ namespace Amazon.Transfer.Model
         /// The URL of the partner's AS2 or SFTP endpoint.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=255)]
+        [AWSProperty(Min=0, Max=255)]
         public string Url
         {
             get { return this._url; }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.SageMaker.Model
     public partial class RecommendationJobInputConfig
     {
         private RecommendationJobContainerConfig _containerConfig;
-        private List<EndpointInputConfiguration> _endpointConfigurations = new List<EndpointInputConfiguration>();
-        private List<EndpointInfo> _endpoints = new List<EndpointInfo>();
+        private List<EndpointInputConfiguration> _endpointConfigurations = AWSConfigs.InitializeCollections ? new List<EndpointInputConfiguration>() : null;
+        private List<EndpointInfo> _endpoints = AWSConfigs.InitializeCollections ? new List<EndpointInfo>() : null;
         private int? _jobDurationInSeconds;
         private string _modelName;
         private string _modelPackageVersionArn;
@@ -48,7 +49,7 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property ContainerConfig. 
         /// <para>
         /// Specifies mandatory fields for running an Inference Recommender job. The fields specified
-        /// in <code>ContainerConfig</code> override the corresponding fields in the model package.
+        /// in <c>ContainerConfig</c> override the corresponding fields in the model package.
         /// </para>
         /// </summary>
         public RecommendationJobContainerConfig ContainerConfig
@@ -79,7 +80,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if EndpointConfigurations property is set
         internal bool IsSetEndpointConfigurations()
         {
-            return this._endpointConfigurations != null && this._endpointConfigurations.Count > 0; 
+            return this._endpointConfigurations != null && (this._endpointConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -98,7 +99,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Endpoints property is set
         internal bool IsSetEndpoints()
         {
-            return this._endpoints != null && this._endpoints.Count > 0; 
+            return this._endpoints != null && (this._endpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -205,15 +206,14 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        /// The SageMaker execution role must have <code>kms:CreateGrant</code> permission in
-        /// order to encrypt data on the storage volume of the endpoints created for inference
-        /// recommendation. The inference recommendation job will fail asynchronously during endpoint
-        /// configuration creation if the role passed does not have <code>kms:CreateGrant</code>
-        /// permission.
+        /// The SageMaker execution role must have <c>kms:CreateGrant</c> permission in order
+        /// to encrypt data on the storage volume of the endpoints created for inference recommendation.
+        /// The inference recommendation job will fail asynchronously during endpoint configuration
+        /// creation if the role passed does not have <c>kms:CreateGrant</c> permission.
         /// </para>
         ///  
         /// <para>
-        /// The <code>KmsKeyId</code> can be any of the following formats:
+        /// The <c>KmsKeyId</c> can be any of the following formats:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -221,7 +221,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code> 
+        ///  <c>"1234abcd-12ab-34cd-56ef-1234567890ab"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -229,7 +229,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"arn:aws:kms:&lt;region&gt;:&lt;account&gt;:key/&lt;key-id-12ab-34cd-56ef-1234567890ab&gt;"</code>
+        ///  <c>"arn:aws:kms:&lt;region&gt;:&lt;account&gt;:key/&lt;key-id-12ab-34cd-56ef-1234567890ab&gt;"</c>
         /// 
         /// </para>
         ///  </li> <li> 
@@ -238,7 +238,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"alias/ExampleAlias"</code> 
+        ///  <c>"alias/ExampleAlias"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -246,8 +246,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"arn:aws:kms:&lt;region&gt;:&lt;account&gt;:alias/&lt;ExampleAlias&gt;"</code>
-        /// 
+        ///  <c>"arn:aws:kms:&lt;region&gt;:&lt;account&gt;:alias/&lt;ExampleAlias&gt;"</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>

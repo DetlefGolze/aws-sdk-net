@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Appflow.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.Appflow.Model
     /// You can cancel a flow run only when the run is in progress. You can't cancel a run
     /// that has already completed or failed. You also can't cancel a run that's scheduled
     /// to occur but hasn't started yet. To prevent a scheduled run, you can deactivate the
-    /// flow with the <code>StopFlow</code> action.
+    /// flow with the <c>StopFlow</c> action.
     /// </para>
     ///  
     /// <para>
@@ -50,8 +51,8 @@ namespace Amazon.Appflow.Model
     /// </para>
     ///  
     /// <para>
-    /// When you send your request, the status for each run becomes <code>CancelStarted</code>.
-    /// When the cancellation completes, the status becomes <code>Canceled</code>.
+    /// When you send your request, the status for each run becomes <c>CancelStarted</c>.
+    /// When the cancellation completes, the status becomes <c>Canceled</c>.
     /// </para>
     ///  <note> 
     /// <para>
@@ -67,7 +68,7 @@ namespace Amazon.Appflow.Model
     /// </summary>
     public partial class CancelFlowExecutionsRequest : AmazonAppflowRequest
     {
-        private List<string> _executionIds = new List<string>();
+        private List<string> _executionIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _flowName;
 
         /// <summary>
@@ -91,7 +92,7 @@ namespace Amazon.Appflow.Model
         // Check to see if ExecutionIds property is set
         internal bool IsSetExecutionIds()
         {
-            return this._executionIds != null && this._executionIds.Count > 0; 
+            return this._executionIds != null && (this._executionIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

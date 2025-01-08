@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteArtifact operation.
-    /// Deletes an artifact. Either <code>ArtifactArn</code> or <code>Source</code> must be
-    /// specified.
+    /// Deletes an artifact. Either <c>ArtifactArn</c> or <c>Source</c> must be specified.
     /// </summary>
     public partial class DeleteArtifactRequest : AmazonSageMakerRequest
     {

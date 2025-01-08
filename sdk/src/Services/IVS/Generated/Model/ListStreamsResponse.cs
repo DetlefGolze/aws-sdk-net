@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IVS.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.IVS.Model
     public partial class ListStreamsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<StreamSummary> _streams = new List<StreamSummary>();
+        private List<StreamSummary> _streams = AWSConfigs.InitializeCollections ? new List<StreamSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If there are more streams than <code>maxResults</code>, use <code>nextToken</code>
-        /// in the request to get the next set.
+        /// If there are more streams than <c>maxResults</c>, use <c>nextToken</c> in the request
+        /// to get the next set.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1024)]
@@ -72,7 +73,7 @@ namespace Amazon.IVS.Model
         // Check to see if Streams property is set
         internal bool IsSetStreams()
         {
-            return this._streams != null && this._streams.Count > 0; 
+            return this._streams != null && (this._streams.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

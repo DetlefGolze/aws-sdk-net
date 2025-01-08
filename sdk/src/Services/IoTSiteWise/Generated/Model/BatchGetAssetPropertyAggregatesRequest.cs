@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.IoTSiteWise.Model
     /// </summary>
     public partial class BatchGetAssetPropertyAggregatesRequest : AmazonIoTSiteWiseRequest
     {
-        private List<BatchGetAssetPropertyAggregatesEntry> _entries = new List<BatchGetAssetPropertyAggregatesEntry>();
+        private List<BatchGetAssetPropertyAggregatesEntry> _entries = AWSConfigs.InitializeCollections ? new List<BatchGetAssetPropertyAggregatesEntry>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -57,7 +58,7 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if Entries property is set
         internal bool IsSetEntries()
         {
-            return this._entries != null && this._entries.Count > 0; 
+            return this._entries != null && (this._entries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -72,8 +73,8 @@ namespace Amazon.IoTSiteWise.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The number of data points in the result set is equal to the value of <code>maxResults</code>.
-        /// The maximum value of <code>maxResults</code> is 4000.
+        /// The number of data points in the result set is equal to the value of <c>maxResults</c>.
+        /// The maximum value of <c>maxResults</c> is 4000.
         /// </para>
         ///  </li> </ul>
         /// </summary>

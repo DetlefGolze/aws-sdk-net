@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
@@ -36,13 +37,13 @@ namespace Amazon.Inspector2.Model
     public partial class UpdateEc2DeepInspectionConfigurationRequest : AmazonInspector2Request
     {
         private bool? _activateDeepInspection;
-        private List<string> _packagePaths = new List<string>();
+        private List<string> _packagePaths = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ActivateDeepInspection. 
         /// <para>
-        /// Specify <code>TRUE</code> to activate Amazon Inspector deep inspection in your account,
-        /// or <code>FALSE</code> to deactivate. Member accounts in an organization cannot deactivate
+        /// Specify <c>TRUE</c> to activate Amazon Inspector deep inspection in your account,
+        /// or <c>FALSE</c> to deactivate. Member accounts in an organization cannot deactivate
         /// deep inspection, instead the delegated administrator for the organization can deactivate
         /// a member account using <a href="https://docs.aws.amazon.com/inspector/v2/APIReference/API_BatchUpdateMemberEc2DeepInspectionStatus.html">BatchUpdateMemberEc2DeepInspectionStatus</a>.
         /// </para>
@@ -75,7 +76,7 @@ namespace Amazon.Inspector2.Model
         // Check to see if PackagePaths property is set
         internal bool IsSetPackagePaths()
         {
-            return this._packagePaths != null && this._packagePaths.Count > 0; 
+            return this._packagePaths != null && (this._packagePaths.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

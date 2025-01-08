@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSHealth.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.AWSHealth.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values are <code>ENABLED | DISABLED | PENDING</code>. 
+        /// Valid values are <c>ENABLED | DISABLED | PENDING</c>. 
         /// </para>
         /// </summary>
         public string HealthServiceAccessStatusForOrganization

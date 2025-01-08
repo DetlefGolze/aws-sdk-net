@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Amplify.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property App. 
         /// <para>
-        ///  Represents the updated Amplify app. 
+        /// Represents the updated Amplify app. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

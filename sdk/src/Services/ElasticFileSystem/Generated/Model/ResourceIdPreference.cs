@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
@@ -35,13 +36,13 @@ namespace Amazon.ElasticFileSystem.Model
     public partial class ResourceIdPreference
     {
         private ResourceIdType _resourceIdType;
-        private List<string> _resources = new List<string>();
+        private List<string> _resources = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceIdType. 
         /// <para>
-        /// Identifies the EFS resource ID preference, either <code>LONG_ID</code> (17 characters)
-        /// or <code>SHORT_ID</code> (8 characters).
+        /// Identifies the EFS resource ID preference, either <c>LONG_ID</c> (17 characters) or
+        /// <c>SHORT_ID</c> (8 characters).
         /// </para>
         /// </summary>
         public ResourceIdType ResourceIdType
@@ -59,8 +60,8 @@ namespace Amazon.ElasticFileSystem.Model
         /// <summary>
         /// Gets and sets the property Resources. 
         /// <para>
-        /// Identifies the Amazon EFS resources to which the ID preference setting applies, <code>FILE_SYSTEM</code>
-        /// and <code>MOUNT_TARGET</code>.
+        /// Identifies the Amazon EFS resources to which the ID preference setting applies, <c>FILE_SYSTEM</c>
+        /// and <c>MOUNT_TARGET</c>.
         /// </para>
         /// </summary>
         public List<string> Resources
@@ -72,7 +73,7 @@ namespace Amazon.ElasticFileSystem.Model
         // Check to see if Resources property is set
         internal bool IsSetResources()
         {
-            return this._resources != null && this._resources.Count > 0; 
+            return this._resources != null && (this._resources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

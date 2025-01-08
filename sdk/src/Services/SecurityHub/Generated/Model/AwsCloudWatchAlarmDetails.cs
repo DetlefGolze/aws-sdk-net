@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -34,21 +35,21 @@ namespace Amazon.SecurityHub.Model
     public partial class AwsCloudWatchAlarmDetails
     {
         private bool? _actionsEnabled;
-        private List<string> _alarmActions = new List<string>();
+        private List<string> _alarmActions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _alarmArn;
         private string _alarmConfigurationUpdatedTimestamp;
         private string _alarmDescription;
         private string _alarmName;
         private string _comparisonOperator;
         private int? _datapointsToAlarm;
-        private List<AwsCloudWatchAlarmDimensionsDetails> _dimensions = new List<AwsCloudWatchAlarmDimensionsDetails>();
+        private List<AwsCloudWatchAlarmDimensionsDetails> _dimensions = AWSConfigs.InitializeCollections ? new List<AwsCloudWatchAlarmDimensionsDetails>() : null;
         private string _evaluateLowSampleCountPercentile;
         private int? _evaluationPeriods;
         private string _extendedStatistic;
-        private List<string> _insufficientDataActions = new List<string>();
+        private List<string> _insufficientDataActions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _metricName;
         private string _awsNamespace;
-        private List<string> _okActions = new List<string>();
+        private List<string> _okActions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _period;
         private string _statistic;
         private double? _threshold;
@@ -79,7 +80,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property AlarmActions. 
         /// <para>
         /// The list of actions, specified as Amazon Resource Names (ARNs) to execute when this
-        /// alarm transitions into an <code>ALARM</code> state from any other state. 
+        /// alarm transitions into an <c>ALARM</c> state from any other state. 
         /// </para>
         /// </summary>
         public List<string> AlarmActions
@@ -91,7 +92,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if AlarmActions property is set
         internal bool IsSetAlarmActions()
         {
-            return this._alarmActions != null && this._alarmActions.Count > 0; 
+            return this._alarmActions != null && (this._alarmActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -219,16 +220,16 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Dimensions property is set
         internal bool IsSetDimensions()
         {
-            return this._dimensions != null && this._dimensions.Count > 0; 
+            return this._dimensions != null && (this._dimensions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property EvaluateLowSampleCountPercentile. 
         /// <para>
-        /// Used only for alarms based on percentiles. If <code>ignore</code>, the alarm state
-        /// does not change during periods with too few data points to be statistically significant.
-        /// If <code>evaluate</code> or this parameter is not used, the alarm is always evaluated
-        /// and possibly changes state no matter how many data points are available. 
+        /// Used only for alarms based on percentiles. If <c>ignore</c>, the alarm state does
+        /// not change during periods with too few data points to be statistically significant.
+        /// If <c>evaluate</c> or this parameter is not used, the alarm is always evaluated and
+        /// possibly changes state no matter how many data points are available. 
         /// </para>
         /// </summary>
         public string EvaluateLowSampleCountPercentile
@@ -282,7 +283,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property InsufficientDataActions. 
         /// <para>
-        /// The actions to execute when this alarm transitions to the <code>INSUFFICIENT_DATA</code>
+        /// The actions to execute when this alarm transitions to the <c>INSUFFICIENT_DATA</c>
         /// state from any other state. Each action is specified as an ARN. 
         /// </para>
         /// </summary>
@@ -295,15 +296,15 @@ namespace Amazon.SecurityHub.Model
         // Check to see if InsufficientDataActions property is set
         internal bool IsSetInsufficientDataActions()
         {
-            return this._insufficientDataActions != null && this._insufficientDataActions.Count > 0; 
+            return this._insufficientDataActions != null && (this._insufficientDataActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MetricName. 
         /// <para>
         /// The name of the metric associated with the alarm. This is required for an alarm based
-        /// on a metric. For an alarm based on a math expression, you use <code>Metrics</code>
-        /// instead and you can't specify <code>MetricName</code>. 
+        /// on a metric. For an alarm based on a math expression, you use <c>Metrics</c> instead
+        /// and you can't specify <c>MetricName</c>. 
         /// </para>
         /// </summary>
         public string MetricName
@@ -322,8 +323,8 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Namespace. 
         /// <para>
         /// The namespace of the metric associated with the alarm. This is required for an alarm
-        /// based on a metric. For an alarm based on a math expression, you can't specify <code>Namespace</code>
-        /// and you use <code>Metrics</code> instead. 
+        /// based on a metric. For an alarm based on a math expression, you can't specify <c>Namespace</c>
+        /// and you use <c>Metrics</c> instead. 
         /// </para>
         /// </summary>
         public string Namespace
@@ -341,8 +342,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property OkActions. 
         /// <para>
-        /// The actions to execute when this alarm transitions to the <code>OK</code> state from
-        /// any other state. Each action is specified as an ARN. 
+        /// The actions to execute when this alarm transitions to the <c>OK</c> state from any
+        /// other state. Each action is specified as an ARN. 
         /// </para>
         /// </summary>
         public List<string> OkActions
@@ -354,7 +355,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if OkActions property is set
         internal bool IsSetOkActions()
         {
-            return this._okActions != null && this._okActions.Count > 0; 
+            return this._okActions != null && (this._okActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -380,17 +381,17 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Statistic. 
         /// <para>
         /// The statistic for the metric associated with the alarm, other than percentile. For
-        /// percentile statistics, use <code>ExtendedStatistic</code>.
+        /// percentile statistics, use <c>ExtendedStatistic</c>.
         /// </para>
         ///  
         /// <para>
-        /// For an alarm based on a metric, you must specify either <code>Statistic</code> or
-        /// <code>ExtendedStatistic</code> but not both.
+        /// For an alarm based on a metric, you must specify either <c>Statistic</c> or <c>ExtendedStatistic</c>
+        /// but not both.
         /// </para>
         ///  
         /// <para>
-        /// For an alarm based on a math expression, you can't specify <code>Statistic</code>.
-        /// Instead, you use <code>Metrics</code>.
+        /// For an alarm based on a math expression, you can't specify <c>Statistic</c>. Instead,
+        /// you use <c>Metrics</c>.
         /// </para>
         /// </summary>
         public string Statistic
@@ -426,7 +427,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property ThresholdMetricId. 
         /// <para>
-        /// n an alarm based on an anomaly detection model, this is the ID of the <code>ANOMALY_DETECTION_BAND</code>
+        /// n an alarm based on an anomaly detection model, this is the ID of the <c>ANOMALY_DETECTION_BAND</c>
         /// function used as the threshold for the alarm. 
         /// </para>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -38,12 +39,12 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        ///  <code>COUNT</code> overrides the action specified by the individual rule within a
-        /// <code>RuleGroup</code> .
+        ///  <c>COUNT</c> overrides the action specified by the individual rule within a <c>RuleGroup</c>
+        /// .
         /// </para>
         ///  
         /// <para>
-        /// If set to <code>NONE</code>, the rule's action takes place.
+        /// If set to <c>NONE</c>, the rule's action takes place.
         /// </para>
         /// </summary>
         public string Type

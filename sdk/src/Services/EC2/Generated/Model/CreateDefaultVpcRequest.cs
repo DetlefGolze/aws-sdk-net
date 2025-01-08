@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateDefaultVpc operation.
-    /// Creates a default VPC with a size <code>/16</code> IPv4 CIDR block and a default subnet
+    /// Creates a default VPC with a size <c>/16</c> IPv4 CIDR block and a default subnet
     /// in each Availability Zone. For more information about the components of a default
     /// VPC, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html">Default
     /// VPCs</a> in the <i>Amazon VPC User Guide</i>. You cannot specify the components of

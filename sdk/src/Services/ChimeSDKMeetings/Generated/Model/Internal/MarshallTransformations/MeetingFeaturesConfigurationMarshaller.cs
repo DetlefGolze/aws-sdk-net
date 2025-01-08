@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ChimeSDKMeetings.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,19 @@ namespace Amazon.ChimeSDKMeetings.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(MeetingFeaturesConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetAttendee())
+            {
+                context.Writer.WritePropertyName("Attendee");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = AttendeeFeaturesMarshaller.Instance;
+                marshaller.Marshall(requestObject.Attendee, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetAudio())
             {
                 context.Writer.WritePropertyName("Audio");
@@ -52,6 +66,28 @@ namespace Amazon.ChimeSDKMeetings.Model.Internal.MarshallTransformations
 
                 var marshaller = AudioFeaturesMarshaller.Instance;
                 marshaller.Marshall(requestObject.Audio, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetContent())
+            {
+                context.Writer.WritePropertyName("Content");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = ContentFeaturesMarshaller.Instance;
+                marshaller.Marshall(requestObject.Content, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetVideo())
+            {
+                context.Writer.WritePropertyName("Video");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = VideoFeaturesMarshaller.Instance;
+                marshaller.Marshall(requestObject.Video, context);
 
                 context.Writer.WriteObjectEnd();
             }

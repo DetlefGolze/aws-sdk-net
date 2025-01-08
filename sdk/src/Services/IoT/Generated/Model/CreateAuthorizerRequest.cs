@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -45,9 +46,9 @@ namespace Amazon.IoT.Model
         private bool? _enableCachingForHttp;
         private bool? _signingDisabled;
         private AuthorizerStatus _status;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _tokenKeyName;
-        private Dictionary<string, string> _tokenSigningPublicKeys = new Dictionary<string, string>();
+        private Dictionary<string, string> _tokenSigningPublicKeys = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AuthorizerFunctionArn. 
@@ -90,14 +91,14 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property EnableCachingForHttp. 
         /// <para>
-        /// When <code>true</code>, the result from the authorizer’s Lambda function is cached
-        /// for clients that use persistent HTTP connections. The results are cached for the time
-        /// specified by the Lambda function in <code>refreshAfterInSeconds</code>. This value
-        /// does not affect authorization of clients that use MQTT connections.
+        /// When <c>true</c>, the result from the authorizer’s Lambda function is cached for clients
+        /// that use persistent HTTP connections. The results are cached for the time specified
+        /// by the Lambda function in <c>refreshAfterInSeconds</c>. This value does not affect
+        /// authorization of clients that use MQTT connections.
         /// </para>
         ///  
         /// <para>
-        /// The default value is <code>false</code>.
+        /// The default value is <c>false</c>.
         /// </para>
         /// </summary>
         public bool EnableCachingForHttp
@@ -176,7 +177,7 @@ namespace Amazon.IoT.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -214,7 +215,7 @@ namespace Amazon.IoT.Model
         // Check to see if TokenSigningPublicKeys property is set
         internal bool IsSetTokenSigningPublicKeys()
         {
-            return this._tokenSigningPublicKeys != null && this._tokenSigningPublicKeys.Count > 0; 
+            return this._tokenSigningPublicKeys != null && (this._tokenSigningPublicKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

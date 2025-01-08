@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.DataSync.Model
         private string _domain;
         private string _locationArn;
         private string _locationUri;
-        private List<string> _securityGroupArns = new List<string>();
+        private List<string> _securityGroupArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _user;
 
         /// <summary>
@@ -61,7 +62,8 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property Domain. 
         /// <para>
-        /// The name of the Windows domain that the FSx for Windows File Server belongs to.
+        /// The name of the Microsoft Active Directory domain that the FSx for Windows File Server
+        /// file system belongs to.
         /// </para>
         /// </summary>
         [AWSProperty(Max=253)]
@@ -80,8 +82,7 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property LocationArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the FSx for Windows File Server location that was
-        /// described.
+        /// The ARN of the FSx for Windows File Server location.
         /// </para>
         /// </summary>
         [AWSProperty(Max=128)]
@@ -100,7 +101,7 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property LocationUri. 
         /// <para>
-        /// The URL of the FSx for Windows File Server location that was described.
+        /// The uniform resource identifier (URI) of the FSx for Windows File Server location.
         /// </para>
         /// </summary>
         [AWSProperty(Max=4360)]
@@ -119,8 +120,14 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property SecurityGroupArns. 
         /// <para>
-        /// The Amazon Resource Names (ARNs) of the security groups that are configured for the
-        /// FSx for Windows File Server file system.
+        /// The ARNs of the Amazon EC2 security groups that provide access to your file system's
+        /// preferred subnet.
+        /// </para>
+        ///  
+        /// <para>
+        /// For information about configuring security groups for file system access, see the
+        /// <a href="https://docs.aws.amazon.com/fsx/latest/WindowsGuide/limit-access-security-groups.html">
+        /// <i>Amazon FSx for Windows File Server User Guide</i> </a>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=5)]
@@ -133,14 +140,14 @@ namespace Amazon.DataSync.Model
         // Check to see if SecurityGroupArns property is set
         internal bool IsSetSecurityGroupArns()
         {
-            return this._securityGroupArns != null && this._securityGroupArns.Count > 0; 
+            return this._securityGroupArns != null && (this._securityGroupArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property User. 
         /// <para>
-        /// The user who has the permissions to access files and folders in the FSx for Windows
-        /// File Server file system.
+        /// The user with the permissions to mount and access the FSx for Windows File Server
+        /// file system.
         /// </para>
         /// </summary>
         [AWSProperty(Max=104)]

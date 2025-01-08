@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -45,6 +46,7 @@ namespace Amazon.Connect.Model
     public partial class StopContactRecordingRequest : AmazonConnectRequest
     {
         private string _contactId;
+        private ContactRecordingType _contactRecordingType;
         private string _initialContactId;
         private string _instanceId;
 
@@ -65,6 +67,24 @@ namespace Amazon.Connect.Model
         internal bool IsSetContactId()
         {
             return this._contactId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ContactRecordingType. 
+        /// <para>
+        /// The type of recording being operated on.
+        /// </para>
+        /// </summary>
+        public ContactRecordingType ContactRecordingType
+        {
+            get { return this._contactRecordingType; }
+            set { this._contactRecordingType = value; }
+        }
+
+        // Check to see if ContactRecordingType property is set
+        internal bool IsSetContactRecordingType()
+        {
+            return this._contactRecordingType != null;
         }
 
         /// <summary>

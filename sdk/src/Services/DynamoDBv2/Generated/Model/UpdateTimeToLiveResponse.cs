@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property TimeToLiveSpecification. 
         /// <para>
-        /// Represents the output of an <code>UpdateTimeToLive</code> operation.
+        /// Represents the output of an <c>UpdateTimeToLive</c> operation.
         /// </para>
         /// </summary>
         public TimeToLiveSpecification TimeToLiveSpecification

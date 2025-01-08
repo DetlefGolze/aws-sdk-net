@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PI.Model
 {
     /// <summary>
@@ -35,19 +36,47 @@ namespace Amazon.PI.Model
     /// </summary>
     public partial class ListAvailableResourceDimensionsRequest : AmazonPIRequest
     {
+        private List<string> _authorizedActions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _identifier;
         private int? _maxResults;
-        private List<string> _metrics = new List<string>();
+        private List<string> _metrics = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
         private ServiceType _serviceType;
+
+        /// <summary>
+        /// Gets and sets the property AuthorizedActions. 
+        /// <para>
+        /// The actions to discover the dimensions you are authorized to access. If you specify
+        /// multiple actions, then the response will contain the dimensions common for all the
+        /// actions.
+        /// </para>
+        ///  
+        /// <para>
+        /// When you don't specify this request parameter or provide an empty list, the response
+        /// contains all the available dimensions for the target database engine whether or not
+        /// you are authorized to access them.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=3)]
+        public List<string> AuthorizedActions
+        {
+            get { return this._authorizedActions; }
+            set { this._authorizedActions = value; }
+        }
+
+        // Check to see if AuthorizedActions property is set
+        internal bool IsSetAuthorizedActions()
+        {
+            return this._authorizedActions != null && (this._authorizedActions.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
 
         /// <summary>
         /// Gets and sets the property Identifier. 
         /// <para>
         /// An immutable identifier for a data source that is unique within an Amazon Web Services
         /// Region. Performance Insights gathers metrics from this data source. To use an Amazon
-        /// RDS DB instance as a data source, specify its <code>DbiResourceId</code> value. For
-        /// example, specify <code>db-ABCDEFGHIJKLMNOPQRSTU1VWZ</code>. 
+        /// RDS DB instance as a data source, specify its <c>DbiResourceId</c> value. For example,
+        /// specify <c>db-ABCDEFGHIJKLMNOPQRSTU1VWZ</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=256)]
@@ -67,7 +96,7 @@ namespace Amazon.PI.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of items to return in the response. If more items exist than the
-        /// specified <code>MaxRecords</code> value, a pagination token is included in the response
+        /// specified <c>MaxRecords</c> value, a pagination token is included in the response
         /// so that the remaining results can be retrieved.
         /// </para>
         /// </summary>
@@ -87,7 +116,7 @@ namespace Amazon.PI.Model
         /// <summary>
         /// Gets and sets the property Metrics. 
         /// <para>
-        /// The types of metrics for which to retrieve dimensions. Valid values include <code>db.load</code>.
+        /// The types of metrics for which to retrieve dimensions. Valid values include <c>db.load</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=5)]
@@ -100,7 +129,7 @@ namespace Amazon.PI.Model
         // Check to see if Metrics property is set
         internal bool IsSetMetrics()
         {
-            return this._metrics != null && this._metrics.Count > 0; 
+            return this._metrics != null && (this._metrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -108,7 +137,7 @@ namespace Amazon.PI.Model
         /// <para>
         /// An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the token, up to the value specified
-        /// by <code>MaxRecords</code>. 
+        /// by <c>MaxRecords</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=8192)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -35,27 +36,26 @@ namespace Amazon.LexModelsV2.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    ///  <code>startDateTime</code> and <code>endDateTime</code> – Define a time range for
-    /// which you want to retrieve results.
+    ///  <c>startDateTime</c> and <c>endDateTime</c> – Define a time range for which you want
+    /// to retrieve results.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>intentPath</code> – Define an order of intents for which you want to retrieve
-    /// metrics. Separate intents in the path with a forward slash. For example, populate
-    /// the <code>intentPath</code> field with <code>/BookCar/BookHotel</code> to see details
-    /// about how many times users invoked the <code>BookCar</code> and <code>BookHotel</code>
-    /// intents in that order.
+    ///  <c>intentPath</c> – Define an order of intents for which you want to retrieve metrics.
+    /// Separate intents in the path with a forward slash. For example, populate the <c>intentPath</c>
+    /// field with <c>/BookCar/BookHotel</c> to see details about how many times users invoked
+    /// the <c>BookCar</c> and <c>BookHotel</c> intents in that order.
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// Use the optional <code>filters</code> field to filter the results.
+    /// Use the optional <c>filters</c> field to filter the results.
     /// </para>
     /// </summary>
     public partial class ListIntentPathsRequest : AmazonLexModelsV2Request
     {
         private string _botId;
         private DateTime? _endDateTime;
-        private List<AnalyticsPathFilter> _filters = new List<AnalyticsPathFilter>();
+        private List<AnalyticsPathFilter> _filters = AWSConfigs.InitializeCollections ? new List<AnalyticsPathFilter>() : null;
         private string _intentPath;
         private DateTime? _startDateTime;
 
@@ -114,7 +114,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

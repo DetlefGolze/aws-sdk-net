@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Rekognition.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.Rekognition.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ProjectVersionDescription Unmarshall(JsonUnmarshallerContext context)
         {
+            ProjectVersionDescription unmarshalledObject = new ProjectVersionDescription();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ProjectVersionDescription unmarshalledObject = new ProjectVersionDescription();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("BaseModelVersion", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.BaseModelVersion = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("BillableTrainingTimeInSeconds", targetDepth))
                 {
                     var unmarshaller = LongUnmarshaller.Instance;
@@ -80,6 +88,18 @@ namespace Amazon.Rekognition.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = EvaluationResultUnmarshaller.Instance;
                     unmarshalledObject.EvaluationResult = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("Feature", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Feature = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("FeatureConfig", targetDepth))
+                {
+                    var unmarshaller = CustomizationFeatureConfigUnmarshaller.Instance;
+                    unmarshalledObject.FeatureConfig = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("KmsKeyId", targetDepth))
@@ -154,8 +174,13 @@ namespace Amazon.Rekognition.Model.Internal.MarshallTransformations
                     unmarshalledObject.TrainingEndTimestamp = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("VersionDescription", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.VersionDescription = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Account.Model
 {
     /// <summary>
@@ -45,16 +46,16 @@ namespace Amazon.Account.Model
         /// it defaults to the Amazon Web Services account of the identity used to call the operation.
         /// To use this parameter, the caller must be an identity in the <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account">organization's
         /// management account</a> or a delegated administrator account. The specified account
-        /// ID must also be a member account in the same organization. The organization must have
-        /// <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html">all
+        /// ID must be a member account in the same organization. The organization must have <a
+        /// href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html">all
         /// features enabled</a>, and the organization must have <a href="https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-trusted-access.html">trusted
         /// access</a> enabled for the Account Management service, and optionally a <a href="https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-delegated-admin.html">delegated
         /// admin</a> account assigned.
         /// </para>
         ///  <note> 
         /// <para>
-        /// The management account can't specify its own <code>AccountId</code>. It must call
-        /// the operation in standalone context by not including the <code>AccountId</code> parameter.
+        /// The management account can't specify its own <c>AccountId</c>. It must call the operation
+        /// in standalone context by not including the <c>AccountId</c> parameter.
         /// </para>
         ///  </note> 
         /// <para>
@@ -78,7 +79,7 @@ namespace Amazon.Account.Model
         /// <summary>
         /// Gets and sets the property RegionName. 
         /// <para>
-        /// Specifies the Region-code for a given Region name (for example, <code>af-south-1</code>).
+        /// Specifies the Region-code for a given Region name (for example, <c>af-south-1</c>).
         /// This function will return the status of whatever Region you pass into this parameter.
         /// 
         /// </para>

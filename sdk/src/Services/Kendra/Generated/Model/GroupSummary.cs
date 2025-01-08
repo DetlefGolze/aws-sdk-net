@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -58,8 +59,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property OrderingId. 
         /// <para>
-        /// The timestamp identifier used for the latest <code>PUT</code> or <code>DELETE</code>
-        /// action.
+        /// The timestamp identifier used for the latest <c>PUT</c> or <c>DELETE</c> action.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=32535158400000)]

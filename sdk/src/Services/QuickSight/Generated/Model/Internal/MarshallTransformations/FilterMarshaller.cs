@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(Filter requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCategoryFilter())
             {
                 context.Writer.WritePropertyName("CategoryFilter");
@@ -52,6 +55,17 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 
                 var marshaller = CategoryFilterMarshaller.Instance;
                 marshaller.Marshall(requestObject.CategoryFilter, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetNestedFilter())
+            {
+                context.Writer.WritePropertyName("NestedFilter");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = NestedFilterMarshaller.Instance;
+                marshaller.Marshall(requestObject.NestedFilter, context);
 
                 context.Writer.WriteObjectEnd();
             }

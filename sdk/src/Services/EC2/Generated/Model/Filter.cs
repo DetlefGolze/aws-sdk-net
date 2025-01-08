@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,14 +36,19 @@ namespace Amazon.EC2.Model
     /// 
     ///  
     /// <para>
-    /// If you specify multiple filters, the filters are joined with an <code>AND</code>,
-    /// and the request returns only results that match all of the specified filters.
+    /// If you specify multiple filters, the filters are joined with an <c>AND</c>, and the
+    /// request returns only results that match all of the specified filters.
+    /// </para>
+    ///  
+    /// <para>
+    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Filtering.html#Filtering_Resources_CLI">List
+    /// and filter using the CLI and API</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     /// </summary>
     public partial class Filter
     {
         private string _name;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -53,7 +59,7 @@ namespace Amazon.EC2.Model
         /// Instantiates Filter with the parameterized properties
         /// </summary>
         /// <param name="name">The name of the filter. Filter names are case-sensitive.</param>
-        /// <param name="values">The filter values. Filter values are case-sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values.</param>
+        /// <param name="values">The filter values. Filter values are case-sensitive. If you specify multiple values for a filter, the values are joined with an <c>OR</c>, and the request returns all results that match any of the specified values.</param>
         public Filter(string name, List<string> values)
         {
             _name = name;
@@ -91,8 +97,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property Values. 
         /// <para>
         /// The filter values. Filter values are case-sensitive. If you specify multiple values
-        /// for a filter, the values are joined with an <code>OR</code>, and the request returns
-        /// all results that match any of the specified values.
+        /// for a filter, the values are joined with an <c>OR</c>, and the request returns all
+        /// results that match any of the specified values.
         /// </para>
         /// </summary>
         public List<string> Values
@@ -104,7 +110,7 @@ namespace Amazon.EC2.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

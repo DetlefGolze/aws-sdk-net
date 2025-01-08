@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -44,9 +45,9 @@ namespace Amazon.EC2.Model
     {
         private string _clientToken;
         private bool? _preserveClientIp;
-        private List<string> _securityGroupIds = new List<string>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _subnetId;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
@@ -70,21 +71,20 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property PreserveClientIp. 
         /// <para>
-        /// Indicates whether your client's IP address is preserved as the source. The value is
-        /// <code>true</code> or <code>false</code>.
+        /// Indicates whether the client IP address is preserved as the source. The following
+        /// are the possible values.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If <code>true</code>, your client's IP address is used when you connect to a resource.
+        ///  <c>true</c> - Use the client IP address as the source.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If <code>false</code>, the elastic network interface IP address is used when you connect
-        /// to a resource.
+        ///  <c>false</c> - Use the network interface IP address as the source.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Default: <code>true</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool PreserveClientIp
@@ -117,7 +117,7 @@ namespace Amazon.EC2.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

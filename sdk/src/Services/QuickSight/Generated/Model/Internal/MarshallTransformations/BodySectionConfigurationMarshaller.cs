@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(BodySectionConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetContent())
             {
                 context.Writer.WritePropertyName("Content");
@@ -63,6 +66,17 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 
                 var marshaller = SectionPageBreakConfigurationMarshaller.Instance;
                 marshaller.Marshall(requestObject.PageBreakConfiguration, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetRepeatConfiguration())
+            {
+                context.Writer.WritePropertyName("RepeatConfiguration");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = BodySectionRepeatConfigurationMarshaller.Instance;
+                marshaller.Marshall(requestObject.RepeatConfiguration, context);
 
                 context.Writer.WriteObjectEnd();
             }

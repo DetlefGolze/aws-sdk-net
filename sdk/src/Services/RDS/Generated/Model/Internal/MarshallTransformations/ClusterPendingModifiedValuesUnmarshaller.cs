@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RDS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,6 +67,12 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                         unmarshalledObject.BackupRetentionPeriod = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("CertificateDetails", targetDepth))
+                    {
+                        var unmarshaller = CertificateDetailsUnmarshaller.Instance;
+                        unmarshalledObject.CertificateDetails = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("DBClusterIdentifier", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
@@ -100,6 +107,12 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = PendingCloudwatchLogsExportsUnmarshaller.Instance;
                         unmarshalledObject.PendingCloudwatchLogsExports = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("RdsCustomClusterConfiguration", targetDepth))
+                    {
+                        var unmarshaller = RdsCustomClusterConfigurationUnmarshaller.Instance;
+                        unmarshalledObject.RdsCustomClusterConfiguration = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("StorageType", targetDepth))

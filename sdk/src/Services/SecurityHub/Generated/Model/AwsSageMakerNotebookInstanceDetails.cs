@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// Provides details about an Amazon SageMaker notebook instance.
+    /// Provides details about an Amazon SageMaker AI notebook instance.
     /// </summary>
     public partial class AwsSageMakerNotebookInstanceDetails
     {
-        private List<string> _acceleratorTypes = new List<string>();
-        private List<string> _additionalCodeRepositories = new List<string>();
+        private List<string> _acceleratorTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _additionalCodeRepositories = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _defaultCodeRepository;
         private string _directInternetAccess;
         private string _failureReason;
@@ -49,7 +50,7 @@ namespace Amazon.SecurityHub.Model
         private string _platformIdentifier;
         private string _roleArn;
         private string _rootAccess;
-        private List<string> _securityGroups = new List<string>();
+        private List<string> _securityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _subnetId;
         private string _url;
         private int? _volumeSizeInGB;
@@ -71,7 +72,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if AcceleratorTypes property is set
         internal bool IsSetAcceleratorTypes()
         {
-            return this._acceleratorTypes != null && this._acceleratorTypes.Count > 0; 
+            return this._acceleratorTypes != null && (this._acceleratorTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -82,8 +83,8 @@ namespace Amazon.SecurityHub.Model
         /// the URL of Git repositories in <a href="https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html">CodeCommit</a>
         /// or in any other Git repository. These repositories are cloned at the same level as
         /// the default repository of your notebook instance. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html">Associating
-        /// Git repositories with SageMaker notebook instances</a> in the <i>Amazon SageMaker
-        /// Developer Guide</i>. 
+        /// Git repositories with SageMaker AI notebook instances</a> in the <i>Amazon SageMaker
+        /// AI Developer Guide</i>. 
         /// </para>
         /// </summary>
         public List<string> AdditionalCodeRepositories
@@ -95,7 +96,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if AdditionalCodeRepositories property is set
         internal bool IsSetAdditionalCodeRepositories()
         {
-            return this._additionalCodeRepositories != null && this._additionalCodeRepositories.Count > 0; 
+            return this._additionalCodeRepositories != null && (this._additionalCodeRepositories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -106,8 +107,8 @@ namespace Amazon.SecurityHub.Model
         /// or the URL of a Git repository in <a href="https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html">CodeCommit</a>
         /// or in any other Git repository. When you open a notebook instance, it opens in the
         /// directory that contains this repository. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html">Associating
-        /// Git repositories with SageMaker notebook instances</a> in the <i>Amazon SageMaker
-        /// Developer Guide</i>. 
+        /// Git repositories with SageMaker AI notebook instances</a> in the <i>Amazon SageMaker
+        /// AI Developer Guide</i>. 
         /// </para>
         /// </summary>
         public string DefaultCodeRepository
@@ -125,11 +126,10 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property DirectInternetAccess. 
         /// <para>
-        ///  Sets whether SageMaker provides internet access to the notebook instance. If you
-        /// set this to <code>Disabled</code>, this notebook instance is able to access resources
-        /// only in your VPC, and is not be able to connect to SageMaker training and endpoint
-        /// services unless you configure a Network Address Translation (NAT) Gateway in your
-        /// VPC. 
+        ///  Sets whether SageMaker AI provides internet access to the notebook instance. If you
+        /// set this to <c>Disabled</c>, this notebook instance is able to access resources only
+        /// in your VPC, and is not be able to connect to SageMaker AI training and endpoint services
+        /// unless you configure a Network Address Translation (NAT) Gateway in your VPC. 
         /// </para>
         /// </summary>
         public string DirectInternetAccess
@@ -147,7 +147,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property FailureReason. 
         /// <para>
-        ///  If status of the instance is <code>Failed</code>, the reason it failed. 
+        ///  If status of the instance is <c>Failed</c>, the reason it failed. 
         /// </para>
         /// </summary>
         public string FailureReason
@@ -203,8 +203,8 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property KmsKeyId. 
         /// <para>
         ///  The Amazon Resource Name (ARN) of an Key Management Service (KMS) key that SageMaker
-        /// uses to encrypt data on the storage volume attached to your notebook instance. The
-        /// KMS key you provide must be enabled. For information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html">Enabling
+        /// AI uses to encrypt data on the storage volume attached to your notebook instance.
+        /// The KMS key you provide must be enabled. For information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html">Enabling
         /// and disabling keys</a> in the <i>Key Management Service Developer Guide</i>. 
         /// </para>
         /// </summary>
@@ -223,7 +223,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property NetworkInterfaceId. 
         /// <para>
-        ///  The network interface ID that SageMaker created when the instance was created. 
+        ///  The network interface ID that SageMaker AI created when the instance was created.
+        /// 
         /// </para>
         /// </summary>
         public string NetworkInterfaceId
@@ -379,7 +380,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

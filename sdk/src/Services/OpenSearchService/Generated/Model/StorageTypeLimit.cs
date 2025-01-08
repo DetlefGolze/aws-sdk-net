@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.OpenSearchService.Model
     public partial class StorageTypeLimit
     {
         private string _limitName;
-        private List<string> _limitValues = new List<string>();
+        private List<string> _limitValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property LimitName. 
         /// <para>
-        ///  Name of storage limits that are applicable for the given storage type. If <code>StorageType</code>
-        /// is <code>ebs</code>, the following options are available:
+        ///  Name of storage limits that are applicable for the given storage type. If <c>StorageType</c>
+        /// is <c>ebs</c>, the following options are available:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -101,7 +102,7 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if LimitValues property is set
         internal bool IsSetLimitValues()
         {
-            return this._limitValues != null && this._limitValues.Count > 0; 
+            return this._limitValues != null && (this._limitValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

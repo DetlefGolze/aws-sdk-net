@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// The result of a <code><a>DescribeInboundCrossClusterSearchConnections</a></code> request.
+    /// The result of a <c><a>DescribeInboundCrossClusterSearchConnections</a></c> request.
     /// Contains the list of connections matching the filter criteria.
     /// </summary>
     public partial class DescribeInboundCrossClusterSearchConnectionsResponse : AmazonWebServiceResponse
     {
-        private List<InboundCrossClusterSearchConnection> _crossClusterSearchConnections = new List<InboundCrossClusterSearchConnection>();
+        private List<InboundCrossClusterSearchConnection> _crossClusterSearchConnections = AWSConfigs.InitializeCollections ? new List<InboundCrossClusterSearchConnection>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property CrossClusterSearchConnections. 
         /// <para>
-        /// Consists of list of <code><a>InboundCrossClusterSearchConnection</a></code> matching
-        /// the specified filter criteria.
+        /// Consists of list of <c><a>InboundCrossClusterSearchConnection</a></c> matching the
+        /// specified filter criteria.
         /// </para>
         /// </summary>
         public List<InboundCrossClusterSearchConnection> CrossClusterSearchConnections
@@ -53,7 +54,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if CrossClusterSearchConnections property is set
         internal bool IsSetCrossClusterSearchConnections()
         {
-            return this._crossClusterSearchConnections != null && this._crossClusterSearchConnections.Count > 0; 
+            return this._crossClusterSearchConnections != null && (this._crossClusterSearchConnections.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

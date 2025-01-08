@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
@@ -65,12 +66,6 @@ namespace Amazon.CodePipeline.Model
         /// is retained for up to 12 months, based on action execution start times. Default value
         /// is 100. 
         /// </para>
-        ///  <note> 
-        /// <para>
-        /// Detailed execution history is available for executions run on or after February 21,
-        /// 2019.
-        /// </para>
-        ///  </note>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
         public int MaxResults
@@ -88,8 +83,8 @@ namespace Amazon.CodePipeline.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token that was returned from the previous <code>ListActionExecutions</code> call,
-        /// which can be used to return the next set of action executions in the list.
+        /// The token that was returned from the previous <c>ListActionExecutions</c> call, which
+        /// can be used to return the next set of action executions in the list.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

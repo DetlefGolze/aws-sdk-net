@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// This data type is used as a response element in the <code>ModifyDBInstance</code>
-    /// operation and contains changes that will be applied during the next maintenance window.
+    /// This data type is used as a response element in the <c>ModifyDBInstance</c> operation
+    /// and contains changes that will be applied during the next maintenance window.
     /// </summary>
     public partial class PendingModifiedValues
     {
@@ -41,6 +42,7 @@ namespace Amazon.RDS.Model
         private string _dbInstanceClass;
         private string _dbInstanceIdentifier;
         private string _dbSubnetGroupName;
+        private bool? _dedicatedLogVolume;
         private string _engine;
         private string _engineVersion;
         private bool? _iamDatabaseAuthenticationEnabled;
@@ -48,9 +50,10 @@ namespace Amazon.RDS.Model
         private string _licenseModel;
         private string _masterUserPassword;
         private bool? _multiAZ;
+        private bool? _multiTenant;
         private PendingCloudwatchLogsExports _pendingCloudwatchLogsExports;
         private int? _port;
-        private List<ProcessorFeature> _processorFeatures = new List<ProcessorFeature>();
+        private List<ProcessorFeature> _processorFeatures = AWSConfigs.InitializeCollections ? new List<ProcessorFeature>() : null;
         private DateTime? _resumeFullAutomationModeTime;
         private int? _storageThroughput;
         private string _storageType;
@@ -81,10 +84,9 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property AutomationMode. 
         /// <para>
-        /// The automation mode of the RDS Custom DB instance: <code>full</code> or <code>all-paused</code>.
-        /// If <code>full</code>, the DB instance automates monitoring and instance recovery.
-        /// If <code>all-paused</code>, the instance pauses automation for the duration set by
-        /// <code>--resume-full-automation-mode-minutes</code>.
+        /// The automation mode of the RDS Custom DB instance: <c>full</c> or <c>all-paused</c>.
+        /// If <c>full</c>, the DB instance automates monitoring and instance recovery. If <c>all-paused</c>,
+        /// the instance pauses automation for the duration set by <c>--resume-full-automation-mode-minutes</c>.
         /// </para>
         /// </summary>
         public AutomationMode AutomationMode
@@ -198,6 +200,24 @@ namespace Amazon.RDS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DedicatedLogVolume. 
+        /// <para>
+        /// Indicates whether the DB instance has a dedicated log volume (DLV) enabled.&gt;
+        /// </para>
+        /// </summary>
+        public bool DedicatedLogVolume
+        {
+            get { return this._dedicatedLogVolume.GetValueOrDefault(); }
+            set { this._dedicatedLogVolume = value; }
+        }
+
+        // Check to see if DedicatedLogVolume property is set
+        internal bool IsSetDedicatedLogVolume()
+        {
+            return this._dedicatedLogVolume.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property Engine. 
         /// <para>
         /// The database engine of the DB instance.
@@ -277,8 +297,8 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>license-included</code> | <code>bring-your-own-license</code>
-        /// | <code>general-public-license</code> 
+        /// Valid values: <c>license-included</c> | <c>bring-your-own-license</c> | <c>general-public-license</c>
+        /// 
         /// </para>
         /// </summary>
         public string LicenseModel
@@ -330,6 +350,25 @@ namespace Amazon.RDS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MultiTenant. 
+        /// <para>
+        /// Indicates whether the DB instance will change to the multi-tenant configuration (TRUE)
+        /// or the single-tenant configuration (FALSE). 
+        /// </para>
+        /// </summary>
+        public bool MultiTenant
+        {
+            get { return this._multiTenant.GetValueOrDefault(); }
+            set { this._multiTenant = value; }
+        }
+
+        // Check to see if MultiTenant property is set
+        internal bool IsSetMultiTenant()
+        {
+            return this._multiTenant.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property PendingCloudwatchLogsExports.
         /// </summary>
         public PendingCloudwatchLogsExports PendingCloudwatchLogsExports
@@ -378,7 +417,7 @@ namespace Amazon.RDS.Model
         // Check to see if ProcessorFeatures property is set
         internal bool IsSetProcessorFeatures()
         {
-            return this._processorFeatures != null && this._processorFeatures.Count > 0; 
+            return this._processorFeatures != null && (this._processorFeatures.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

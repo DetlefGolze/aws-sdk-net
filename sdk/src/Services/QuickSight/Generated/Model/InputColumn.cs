@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace Amazon.QuickSight.Model
     public partial class InputColumn
     {
         private string _name;
+        private ColumnDataSubType _subType;
         private InputColumnDataType _type;
 
         /// <summary>
@@ -53,6 +55,25 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetName()
         {
             return this._name != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SubType. 
+        /// <para>
+        /// The sub data type of the column. Sub types are only available for decimal columns
+        /// that are part of a SPICE dataset.
+        /// </para>
+        /// </summary>
+        public ColumnDataSubType SubType
+        {
+            get { return this._subType; }
+            set { this._subType = value; }
+        }
+
+        // Check to see if SubType property is set
+        internal bool IsSetSubType()
+        {
+            return this._subType != null;
         }
 
         /// <summary>

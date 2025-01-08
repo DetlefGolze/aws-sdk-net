@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.MarketplaceEntitlementService
 {
     /// <summary>
-    /// Implementation for accessing MarketplaceEntitlementService
+    /// <para>Implementation for accessing MarketplaceEntitlementService</para>
     ///
     /// AWS Marketplace Entitlement Service 
     /// <para>
@@ -62,6 +63,22 @@ namespace Amazon.MarketplaceEntitlementService
     public partial class AmazonMarketplaceEntitlementServiceClient : AmazonServiceClient, IAmazonMarketplaceEntitlementService
     {
         private static IServiceMetadata serviceMetadata = new AmazonMarketplaceEntitlementServiceMetadata();
+        private IMarketplaceEntitlementServicePaginatorFactory _paginators;
+
+        /// <summary>
+        /// Paginators for the service
+        /// </summary>
+        public IMarketplaceEntitlementServicePaginatorFactory Paginators 
+        {
+            get 
+            {
+                if (this._paginators == null) 
+                {
+                    this._paginators = new MarketplaceEntitlementServicePaginatorFactory(this);
+                }
+                return this._paginators;
+            }
+        }
         #region Constructors
 
         /// <summary>
@@ -338,11 +355,11 @@ namespace Amazon.MarketplaceEntitlementService
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

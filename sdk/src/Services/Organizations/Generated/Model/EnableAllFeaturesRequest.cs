@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Organizations.Model
 {
     /// <summary>
@@ -54,7 +55,7 @@ namespace Amazon.Organizations.Model
     ///  
     /// <para>
     /// After all invited member accounts accept the handshake, you finalize the feature set
-    /// change by accepting the handshake that contains <code>"Action": "ENABLE_ALL_FEATURES"</code>.
+    /// change by accepting the handshake that contains <c>"Action": "ENABLE_ALL_FEATURES"</c>.
     /// This completes the change.
     /// </para>
     ///  

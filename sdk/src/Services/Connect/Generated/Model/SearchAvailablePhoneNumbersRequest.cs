@@ -26,23 +26,47 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
     /// Container for the parameters to the SearchAvailablePhoneNumbers operation.
     /// Searches for available phone numbers that you can claim to your Amazon Connect instance
-    /// or traffic distribution group. If the provided <code>TargetArn</code> is a traffic
-    /// distribution group, you can call this API in both Amazon Web Services Regions associated
-    /// with the traffic distribution group.
+    /// or traffic distribution group. If the provided <c>TargetArn</c> is a traffic distribution
+    /// group, you can call this API in both Amazon Web Services Regions associated with the
+    /// traffic distribution group.
     /// </summary>
     public partial class SearchAvailablePhoneNumbersRequest : AmazonConnectRequest
     {
+        private string _instanceId;
         private int? _maxResults;
         private string _nextToken;
         private PhoneNumberCountryCode _phoneNumberCountryCode;
         private string _phoneNumberPrefix;
         private PhoneNumberType _phoneNumberType;
         private string _targetArn;
+
+        /// <summary>
+        /// Gets and sets the property InstanceId. 
+        /// <para>
+        /// The identifier of the Amazon Connect instance that phone numbers are claimed to. You
+        /// can <a href="https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html">find
+        /// the instance ID</a> in the Amazon Resource Name (ARN) of the instance. You must enter
+        /// <c>InstanceId</c> or <c>TargetArn</c>. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=100)]
+        public string InstanceId
+        {
+            get { return this._instanceId; }
+            set { this._instanceId = value; }
+        }
+
+        // Check to see if InstanceId property is set
+        internal bool IsSetInstanceId()
+        {
+            return this._instanceId != null;
+        }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
@@ -105,8 +129,8 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property PhoneNumberPrefix. 
         /// <para>
-        /// The prefix of the phone number. If provided, it must contain <code>+</code> as part
-        /// of the country code.
+        /// The prefix of the phone number. If provided, it must contain <c>+</c> as part of the
+        /// country code.
         /// </para>
         /// </summary>
         public string PhoneNumberPrefix
@@ -144,10 +168,10 @@ namespace Amazon.Connect.Model
         /// Gets and sets the property TargetArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution
-        /// groups that phone numbers are claimed to.
+        /// groups that phone number inbound traffic is routed through. You must enter <c>InstanceId</c>
+        /// or <c>TargetArn</c>. 
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public string TargetArn
         {
             get { return this._targetArn; }

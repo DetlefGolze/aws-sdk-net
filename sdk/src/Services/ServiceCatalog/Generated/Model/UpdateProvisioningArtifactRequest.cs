@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -55,11 +56,11 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>jp</code> - Japanese
+        ///  <c>jp</c> - Japanese
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>zh</code> - Chinese
+        ///  <c>zh</c> - Chinese
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -126,14 +127,14 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  
         /// <para>
-        /// The <code>DEFAULT</code> value indicates that the product version is active.
+        /// The <c>DEFAULT</c> value indicates that the product version is active.
         /// </para>
         ///  
         /// <para>
-        /// The administrator can set the guidance to <code>DEPRECATED</code> to inform users
-        /// that the product version is deprecated. Users are able to make updates to a provisioned
-        /// product of a deprecated version but cannot launch new provisioned products using a
-        /// deprecated version.
+        /// The administrator can set the guidance to <c>DEPRECATED</c> to inform users that the
+        /// product version is deprecated. Users are able to make updates to a provisioned product
+        /// of a deprecated version but cannot launch new provisioned products using a deprecated
+        /// version.
         /// </para>
         /// </summary>
         public ProvisioningArtifactGuidance Guidance

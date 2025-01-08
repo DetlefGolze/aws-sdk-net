@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -62,8 +63,8 @@ namespace Amazon.Route53Resolver.Model
         /// Gets and sets the property Validation. 
         /// <para>
         /// The new value that you are specifying for DNSSEC validation for the VPC. The value
-        /// can be <code>ENABLE</code> or <code>DISABLE</code>. Be aware that it can take time
-        /// for a validation status change to be completed.
+        /// can be <c>ENABLE</c> or <c>DISABLE</c>. Be aware that it can take time for a validation
+        /// status change to be completed.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

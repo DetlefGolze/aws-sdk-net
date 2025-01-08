@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchRUM.Model
 {
     /// <summary>
@@ -67,10 +68,10 @@ namespace Amazon.CloudWatchRUM.Model
         /// <summary>
         /// Gets and sets the property Destination. 
         /// <para>
-        /// Defines the destination to send the metrics to. Valid values are <code>CloudWatch</code>
-        /// and <code>Evidently</code>. If you specify <code>Evidently</code>, you must also specify
-        /// the ARN of the CloudWatchEvidently experiment that is to be the destination and an
-        /// IAM role that has permission to write to the experiment.
+        /// Defines the destination to send the metrics to. Valid values are <c>CloudWatch</c>
+        /// and <c>Evidently</c>. If you specify <c>Evidently</c>, you must also specify the ARN
+        /// of the CloudWatchEvidently experiment that is to be the destination and an IAM role
+        /// that has permission to write to the experiment.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -89,9 +90,8 @@ namespace Amazon.CloudWatchRUM.Model
         /// <summary>
         /// Gets and sets the property DestinationArn. 
         /// <para>
-        /// Use this parameter only if <code>Destination</code> is <code>Evidently</code>. This
-        /// parameter specifies the ARN of the Evidently experiment that will receive the extended
-        /// metrics.
+        /// Use this parameter only if <c>Destination</c> is <c>Evidently</c>. This parameter
+        /// specifies the ARN of the Evidently experiment that will receive the extended metrics.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=2048)]
@@ -110,14 +110,21 @@ namespace Amazon.CloudWatchRUM.Model
         /// <summary>
         /// Gets and sets the property IamRoleArn. 
         /// <para>
-        /// This parameter is required if <code>Destination</code> is <code>Evidently</code>.
-        /// If <code>Destination</code> is <code>CloudWatch</code>, do not use this parameter.
+        /// This parameter is required if <c>Destination</c> is <c>Evidently</c>. If <c>Destination</c>
+        /// is <c>CloudWatch</c>, don't use this parameter.
         /// </para>
         ///  
         /// <para>
         /// This parameter specifies the ARN of an IAM role that RUM will assume to write to the
         /// Evidently experiment that you are sending metrics to. This role must have permission
         /// to write to that experiment.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you specify this parameter, you must be signed on to a role that has <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html">PassRole</a>
+        /// permissions attached to it, to allow the role to be passed. The <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/auth-and-access-control-cw.html#managed-policies-cloudwatch-RUM">
+        /// CloudWatchAmazonCloudWatchRUMFullAccess</a> policy doesn't include <c>PassRole</c>
+        /// permissions.
         /// </para>
         /// </summary>
         public string IamRoleArn

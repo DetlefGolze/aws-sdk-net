@@ -26,10 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// The template for verification messages.
+    /// The template for the verification message that your user pool delivers to users who
+    /// set an email address or phone number attribute.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a request and response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserPool.html">CreateUserPool</a>
+    /// and <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserPool.html">UpdateUserPool</a>,
+    /// and a response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeUserPool.html">DescribeUserPool</a>.
+    /// </para>
     /// </summary>
     public partial class VerificationMessageTemplateType
     {
@@ -43,7 +52,14 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property DefaultEmailOption. 
         /// <para>
-        /// The default email option.
+        /// The configuration of verification emails to contain a clickable link or a verification
+        /// code.
+        /// </para>
+        ///  
+        /// <para>
+        /// For link, your template body must contain link text in the format <c>{##Click here##}</c>.
+        /// "Click here" in the example is a customizable string. For code, your template body
+        /// must contain a code placeholder in the format <c>{####}</c>.
         /// </para>
         /// </summary>
         public DefaultEmailOptionType DefaultEmailOption
@@ -62,10 +78,10 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// Gets and sets the property EmailMessage. 
         /// <para>
         /// The template for email messages that Amazon Cognito sends to your users. You can set
-        /// an <code>EmailMessage</code> template only if the value of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount">
-        /// EmailSendingAccount</a> is <code>DEVELOPER</code>. When your <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount">EmailSendingAccount</a>
-        /// is <code>DEVELOPER</code>, your user pool sends email messages with your own Amazon
-        /// SES configuration.
+        /// an <c>EmailMessage</c> template only if the value of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount">
+        /// EmailSendingAccount</a> is <c>DEVELOPER</c>. When your <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount">EmailSendingAccount</a>
+        /// is <c>DEVELOPER</c>, your user pool sends email messages with your own Amazon SES
+        /// configuration.
         /// </para>
         /// </summary>
         [AWSProperty(Min=6, Max=20000)]
@@ -85,10 +101,10 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// Gets and sets the property EmailMessageByLink. 
         /// <para>
         /// The email message template for sending a confirmation link to the user. You can set
-        /// an <code>EmailMessageByLink</code> template only if the value of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount">
-        /// EmailSendingAccount</a> is <code>DEVELOPER</code>. When your <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount">EmailSendingAccount</a>
-        /// is <code>DEVELOPER</code>, your user pool sends email messages with your own Amazon
-        /// SES configuration.
+        /// an <c>EmailMessageByLink</c> template only if the value of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount">
+        /// EmailSendingAccount</a> is <c>DEVELOPER</c>. When your <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount">EmailSendingAccount</a>
+        /// is <c>DEVELOPER</c>, your user pool sends email messages with your own Amazon SES
+        /// configuration.
         /// </para>
         /// </summary>
         [AWSProperty(Min=6, Max=20000)]
@@ -107,11 +123,11 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property EmailSubject. 
         /// <para>
-        /// The subject line for the email message template. You can set an <code>EmailSubject</code>
+        /// The subject line for the email message template. You can set an <c>EmailSubject</c>
         /// template only if the value of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount">
-        /// EmailSendingAccount</a> is <code>DEVELOPER</code>. When your <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount">EmailSendingAccount</a>
-        /// is <code>DEVELOPER</code>, your user pool sends email messages with your own Amazon
-        /// SES configuration.
+        /// EmailSendingAccount</a> is <c>DEVELOPER</c>. When your <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount">EmailSendingAccount</a>
+        /// is <c>DEVELOPER</c>, your user pool sends email messages with your own Amazon SES
+        /// configuration.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=140)]
@@ -131,11 +147,11 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// Gets and sets the property EmailSubjectByLink. 
         /// <para>
         /// The subject line for the email message template for sending a confirmation link to
-        /// the user. You can set an <code>EmailSubjectByLink</code> template only if the value
-        /// of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount">
-        /// EmailSendingAccount</a> is <code>DEVELOPER</code>. When your <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount">EmailSendingAccount</a>
-        /// is <code>DEVELOPER</code>, your user pool sends email messages with your own Amazon
-        /// SES configuration.
+        /// the user. You can set an <c>EmailSubjectByLink</c> template only if the value of <a
+        /// href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount">
+        /// EmailSendingAccount</a> is <c>DEVELOPER</c>. When your <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount">EmailSendingAccount</a>
+        /// is <c>DEVELOPER</c>, your user pool sends email messages with your own Amazon SES
+        /// configuration.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=140)]

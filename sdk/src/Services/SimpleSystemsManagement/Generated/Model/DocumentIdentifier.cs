@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -41,11 +42,11 @@ namespace Amazon.SimpleSystemsManagement.Model
         private string _documentVersion;
         private string _name;
         private string _owner;
-        private List<string> _platformTypes = new List<string>();
-        private List<DocumentRequires> _requires = new List<DocumentRequires>();
+        private List<string> _platformTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<DocumentRequires> _requires = AWSConfigs.InitializeCollections ? new List<DocumentRequires>() : null;
         private ReviewStatus _reviewStatus;
         private string _schemaVersion;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _targetType;
         private string _versionName;
 
@@ -225,14 +226,14 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if PlatformTypes property is set
         internal bool IsSetPlatformTypes()
         {
-            return this._platformTypes != null && this._platformTypes.Count > 0; 
+            return this._platformTypes != null && (this._platformTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Requires. 
         /// <para>
-        /// A list of SSM documents required by a document. For example, an <code>ApplicationConfiguration</code>
-        /// document requires an <code>ApplicationConfigurationSchema</code> document.
+        /// A list of SSM documents required by a document. For example, an <c>ApplicationConfiguration</c>
+        /// document requires an <c>ApplicationConfigurationSchema</c> document.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -245,7 +246,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Requires property is set
         internal bool IsSetRequires()
         {
-            return this._requires != null && this._requires.Count > 0; 
+            return this._requires != null && (this._requires.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -300,15 +301,14 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TargetType. 
         /// <para>
         /// The target type which defines the kinds of resources the document can run on. For
-        /// example, <code>/AWS::EC2::Instance</code>. For a list of valid resource types, see
-        /// <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">Amazon
+        /// example, <c>/AWS::EC2::Instance</c>. For a list of valid resource types, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">Amazon
         /// Web Services resource and property types reference</a> in the <i>CloudFormation User
         /// Guide</i>. 
         /// </para>
@@ -330,8 +330,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property VersionName. 
         /// <para>
         /// An optional field specifying the version of the artifact associated with the document.
-        /// For example, "Release 12, Update 6". This value is unique across all versions of a
-        /// document, and can't be changed.
+        /// For example, 12.6. This value is unique across all versions of a document, and can't
+        /// be changed.
         /// </para>
         /// </summary>
         public string VersionName

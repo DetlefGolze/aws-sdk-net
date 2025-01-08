@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -40,6 +41,8 @@ namespace Amazon.Backup.Model
         private DateTime? _byCompleteBefore;
         private DateTime? _byCreatedAfter;
         private DateTime? _byCreatedBefore;
+        private string _byResourceType;
+        private string _byRestoreTestingPlanArn;
         private RestoreJobStatus _byStatus;
         private int? _maxResults;
         private string _nextToken;
@@ -138,6 +141,109 @@ namespace Amazon.Backup.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ByResourceType. 
+        /// <para>
+        /// Include this parameter to return only restore jobs for the specified resources:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>Aurora</c> for Amazon Aurora
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>CloudFormation</c> for CloudFormation
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>DocumentDB</c> for Amazon DocumentDB (with MongoDB compatibility)
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>DynamoDB</c> for Amazon DynamoDB
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>EBS</c> for Amazon Elastic Block Store
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>EC2</c> for Amazon Elastic Compute Cloud
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>EFS</c> for Amazon Elastic File System
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>FSx</c> for Amazon FSx
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Neptune</c> for Amazon Neptune
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>RDS</c> for Amazon Relational Database Service
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Redshift</c> for Amazon Redshift
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>S3</c> for Amazon Simple Storage Service (Amazon S3)
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>SAP HANA on Amazon EC2</c> for SAP HANA databases on Amazon Elastic Compute Cloud
+        /// instances
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Storage Gateway</c> for Storage Gateway
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Timestream</c> for Amazon Timestream
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>VirtualMachine</c> for VMware virtual machines
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public string ByResourceType
+        {
+            get { return this._byResourceType; }
+            set { this._byResourceType = value; }
+        }
+
+        // Check to see if ByResourceType property is set
+        internal bool IsSetByResourceType()
+        {
+            return this._byResourceType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ByRestoreTestingPlanArn. 
+        /// <para>
+        /// This returns only restore testing jobs that match the specified resource Amazon Resource
+        /// Name (ARN).
+        /// </para>
+        /// </summary>
+        public string ByRestoreTestingPlanArn
+        {
+            get { return this._byRestoreTestingPlanArn; }
+            set { this._byRestoreTestingPlanArn = value; }
+        }
+
+        // Check to see if ByRestoreTestingPlanArn property is set
+        internal bool IsSetByRestoreTestingPlanArn()
+        {
+            return this._byRestoreTestingPlanArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ByStatus. 
         /// <para>
         /// Returns only restore jobs associated with the specified job status.
@@ -178,9 +284,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The next item following a partial list of returned items. For example, if a request
-        /// is made to return <code>maxResults</code> number of items, <code>NextToken</code>
-        /// allows you to return more items in your list starting at the location pointed to by
-        /// the next token.
+        /// is made to return <c>MaxResults</c> number of items, <c>NextToken</c> allows you to
+        /// return more items in your list starting at the location pointed to by the next token.
         /// </para>
         /// </summary>
         public string NextToken

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElasticFileSystem.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,10 +46,18 @@ namespace Amazon.ElasticFileSystem.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(DestinationToCreate requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAvailabilityZoneName())
             {
                 context.Writer.WritePropertyName("AvailabilityZoneName");
                 context.Writer.Write(requestObject.AvailabilityZoneName);
+            }
+
+            if(requestObject.IsSetFileSystemId())
+            {
+                context.Writer.WritePropertyName("FileSystemId");
+                context.Writer.Write(requestObject.FileSystemId);
             }
 
             if(requestObject.IsSetKmsKeyId())
@@ -61,6 +70,12 @@ namespace Amazon.ElasticFileSystem.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("Region");
                 context.Writer.Write(requestObject.Region);
+            }
+
+            if(requestObject.IsSetRoleArn())
+            {
+                context.Writer.WritePropertyName("RoleArn");
+                context.Writer.Write(requestObject.RoleArn);
             }
 
         }

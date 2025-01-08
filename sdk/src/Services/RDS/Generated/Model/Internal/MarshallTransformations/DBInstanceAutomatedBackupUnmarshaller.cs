@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RDS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -99,6 +100,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("DBInstanceAutomatedBackupsReplications/DBInstanceAutomatedBackupsReplication", targetDepth))
                     {
                         var unmarshaller = DBInstanceAutomatedBackupsReplicationUnmarshaller.Instance;
+                        if (unmarshalledObject.DBInstanceAutomatedBackupsReplications == null)
+                        {
+                            unmarshalledObject.DBInstanceAutomatedBackupsReplications = new List<DBInstanceAutomatedBackupsReplication>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.DBInstanceAutomatedBackupsReplications.Add(item);
                         continue;
@@ -113,6 +118,12 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
                         unmarshalledObject.DbiResourceId = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("DedicatedLogVolume", targetDepth))
+                    {
+                        var unmarshaller = BoolUnmarshaller.Instance;
+                        unmarshalledObject.DedicatedLogVolume = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("Encrypted", targetDepth))
@@ -167,6 +178,12 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
                         unmarshalledObject.MasterUsername = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("MultiTenant", targetDepth))
+                    {
+                        var unmarshaller = BoolUnmarshaller.Instance;
+                        unmarshalledObject.MultiTenant = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("OptionGroupName", targetDepth))

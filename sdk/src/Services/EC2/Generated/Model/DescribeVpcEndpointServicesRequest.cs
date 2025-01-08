@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -37,17 +38,18 @@ namespace Amazon.EC2.Model
     /// When the service provider and the consumer have different accounts in multiple Availability
     /// Zones, and the consumer views the VPC endpoint service information, the response only
     /// includes the common Availability Zones. For example, when the service provider account
-    /// uses <code>us-east-1a</code> and <code>us-east-1c</code> and the consumer uses <code>us-east-1a</code>
-    /// and <code>us-east-1b</code>, the response includes the VPC endpoint services in the
-    /// common Availability Zone, <code>us-east-1a</code>.
+    /// uses <c>us-east-1a</c> and <c>us-east-1c</c> and the consumer uses <c>us-east-1a</c>
+    /// and <c>us-east-1b</c>, the response includes the VPC endpoint services in the common
+    /// Availability Zone, <c>us-east-1a</c>.
     /// </para>
     /// </summary>
     public partial class DescribeVpcEndpointServicesRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _serviceNames = new List<string>();
+        private List<string> _serviceNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _serviceRegions = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Filters. 
@@ -56,35 +58,35 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>owner</code> - The ID or alias of the Amazon Web Services account that owns
-        /// the service.
+        ///  <c>owner</c> - The ID or alias of the Amazon Web Services account that owns the service.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>service-name</code> - The name of the service.
+        ///  <c>service-name</c> - The name of the service.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>service-type</code> - The type of service (<code>Interface</code> | <code>Gateway</code>
-        /// | <code>GatewayLoadBalancer</code>).
+        ///  <c>service-region</c> - The Region of the service.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>supported-ip-address-types</code> - The IP address type (<code>ipv4</code>
-        /// | <code>ipv6</code>).
+        ///  <c>service-type</c> - The type of service (<c>Interface</c> | <c>Gateway</c> | <c>GatewayLoadBalancer</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the
-        /// resource. Use the tag key in the filter name and the tag value as the filter value.
-        /// For example, to find all resources that have a tag with the key <code>Owner</code>
-        /// and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name
-        /// and <code>TeamA</code> for the filter value.
+        ///  <c>supported-ip-address-types</c> - The IP address type (<c>ipv4</c> | <c>ipv6</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter
-        /// to find all resources assigned a tag with a specific key, regardless of the tag value.
+        ///  <c>tag</c>:&lt;key&gt; - The key/value combination of a tag assigned to the resource.
+        /// Use the tag key in the filter name and the tag value as the filter value. For example,
+        /// to find all resources that have a tag with the key <c>Owner</c> and the value <c>TeamA</c>,
+        /// specify <c>tag:Owner</c> for the filter name and <c>TeamA</c> for the filter value.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>tag-key</c> - The key of a tag assigned to the resource. Use this filter to find
+        /// all resources assigned a tag with a specific key, regardless of the tag value.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -97,7 +99,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -157,7 +159,25 @@ namespace Amazon.EC2.Model
         // Check to see if ServiceNames property is set
         internal bool IsSetServiceNames()
         {
-            return this._serviceNames != null && this._serviceNames.Count > 0; 
+            return this._serviceNames != null && (this._serviceNames.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ServiceRegions. 
+        /// <para>
+        /// The service Regions.
+        /// </para>
+        /// </summary>
+        public List<string> ServiceRegions
+        {
+            get { return this._serviceRegions; }
+            set { this._serviceRegions = value; }
+        }
+
+        // Check to see if ServiceRegions property is set
+        internal bool IsSetServiceRegions()
+        {
+            return this._serviceRegions != null && (this._serviceRegions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

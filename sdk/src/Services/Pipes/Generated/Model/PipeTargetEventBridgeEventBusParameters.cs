@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pipes.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Pipes.Model
     {
         private string _detailType;
         private string _endpointId;
-        private List<string> _resources = new List<string>();
+        private List<string> _resources = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _source;
         private string _time;
 
@@ -63,13 +64,8 @@ namespace Amazon.Pipes.Model
         /// Gets and sets the property EndpointId. 
         /// <para>
         /// The URL subdomain of the endpoint. For example, if the URL for Endpoint is https://abcde.veo.endpoints.event.amazonaws.com,
-        /// then the EndpointId is <code>abcde.veo</code>.
+        /// then the EndpointId is <c>abcde.veo</c>.
         /// </para>
-        ///  <important> 
-        /// <para>
-        /// When using Java, you must include <code>auth-crt</code> on the class path.
-        /// </para>
-        ///  </important>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=50)]
         public string EndpointId
@@ -101,7 +97,7 @@ namespace Amazon.Pipes.Model
         // Check to see if Resources property is set
         internal bool IsSetResources()
         {
-            return this._resources != null && this._resources.Count > 0; 
+            return this._resources != null && (this._resources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property Workteam. 
         /// <para>
-        /// A <code>Workteam</code> instance that contains information about the work team. 
+        /// A <c>Workteam</c> instance that contains information about the work team. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -23,9 +23,6 @@ using Amazon.Util;
 
 namespace Amazon.S3.Model.Internal.MarshallTransformations
 {
-    /// <summary>
-    /// GetObjectMetadata Marshaller
-    /// </summary>       
     public class GetObjectMetadataRequestMarshaller : IMarshaller<IRequest, GetObjectMetadataRequest> ,IMarshaller<IRequest,Amazon.Runtime.AmazonWebServiceRequest>
 	{
 		public IRequest Marshall(Amazon.Runtime.AmazonWebServiceRequest input)
@@ -72,6 +69,23 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
 
             if (headObjectRequest.IsSetChecksumMode())
                 request.Headers.Add(S3Constants.AmzHeaderChecksumMode, S3Transforms.ToStringValue(headObjectRequest.ChecksumMode));
+            if (headObjectRequest.IsSetResponseCacheControl())
+                request.Parameters.Add("response-cache-control", S3Transforms.ToStringValue(headObjectRequest.ResponseCacheControl));
+
+            if (headObjectRequest.IsSetResponseContentDisposition())
+                request.Parameters.Add("response-content-disposition", S3Transforms.ToStringValue(headObjectRequest.ResponseContentDisposition));
+
+            if (headObjectRequest.IsSetResponseContentEncoding())
+                request.Parameters.Add("response-content-encoding", S3Transforms.ToStringValue(headObjectRequest.ResponseContentEncoding));
+
+            if (headObjectRequest.IsSetResponseContentLanguage())
+                request.Parameters.Add("response-content-language", S3Transforms.ToStringValue(headObjectRequest.ResponseContentLanguage));
+
+            if (headObjectRequest.IsSetResponseContentType())
+                request.Parameters.Add("response-content-type", S3Transforms.ToStringValue(headObjectRequest.ResponseContentType));
+
+            if (headObjectRequest.IsSetResponseExpires())
+                request.Parameters.Add("response-expires", S3Transforms.ToStringValue(headObjectRequest.ResponseExpires));
 
             if (string.IsNullOrEmpty(headObjectRequest.BucketName))
                 throw new System.ArgumentException("BucketName is a required property and must be set before making this call.", "GetObjectMetadataRequest.BucketName");
@@ -93,7 +107,10 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
 
 	    private static GetObjectMetadataRequestMarshaller _instance;
 
-	    public static GetObjectMetadataRequestMarshaller Instance
+        /// <summary>
+        /// Singleton for marshaller
+        /// </summary>
+        public static GetObjectMetadataRequestMarshaller Instance
 	    {
 	        get
 	        {

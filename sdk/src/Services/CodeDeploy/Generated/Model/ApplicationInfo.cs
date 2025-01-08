@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
@@ -80,8 +81,8 @@ namespace Amazon.CodeDeploy.Model
         /// <summary>
         /// Gets and sets the property ComputePlatform. 
         /// <para>
-        /// The destination platform type for deployment of the application (<code>Lambda</code>
-        /// or <code>Server</code>).
+        /// The destination platform type for deployment of the application (<c>Lambda</c> or
+        /// <c>Server</c>).
         /// </para>
         /// </summary>
         public ComputePlatform ComputePlatform

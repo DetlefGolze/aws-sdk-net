@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
@@ -59,9 +60,9 @@ namespace Amazon.DevOpsGuru.Model
     {
         private string _metricDisplayName;
         private PerformanceInsightsMetricQuery _metricQuery;
-        private List<PerformanceInsightsReferenceData> _referenceData = new List<PerformanceInsightsReferenceData>();
-        private List<PerformanceInsightsStat> _statsAtAnomaly = new List<PerformanceInsightsStat>();
-        private List<PerformanceInsightsStat> _statsAtBaseline = new List<PerformanceInsightsStat>();
+        private List<PerformanceInsightsReferenceData> _referenceData = AWSConfigs.InitializeCollections ? new List<PerformanceInsightsReferenceData>() : null;
+        private List<PerformanceInsightsStat> _statsAtAnomaly = AWSConfigs.InitializeCollections ? new List<PerformanceInsightsStat>() : null;
+        private List<PerformanceInsightsStat> _statsAtBaseline = AWSConfigs.InitializeCollections ? new List<PerformanceInsightsStat>() : null;
         private string _unit;
 
         /// <summary>
@@ -85,9 +86,8 @@ namespace Amazon.DevOpsGuru.Model
         /// <summary>
         /// Gets and sets the property MetricQuery. 
         /// <para>
-        /// A single query to be processed for the metric. For more information, see <code> <a
-        /// href="https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsMetricQuery.html">PerformanceInsightsMetricQuery</a>
-        /// </code>.
+        /// A single query to be processed for the metric. For more information, see <c> <a href="https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsMetricQuery.html">PerformanceInsightsMetricQuery</a>
+        /// </c>.
         /// </para>
         /// </summary>
         public PerformanceInsightsMetricQuery MetricQuery
@@ -105,8 +105,8 @@ namespace Amazon.DevOpsGuru.Model
         /// <summary>
         /// Gets and sets the property ReferenceData. 
         /// <para>
-        ///  For more information, see <code> <a href="https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsReferenceData.html">PerformanceInsightsReferenceData</a>
-        /// </code>. 
+        ///  For more information, see <c> <a href="https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsReferenceData.html">PerformanceInsightsReferenceData</a>
+        /// </c>. 
         /// </para>
         /// </summary>
         public List<PerformanceInsightsReferenceData> ReferenceData
@@ -118,7 +118,7 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if ReferenceData property is set
         internal bool IsSetReferenceData()
         {
-            return this._referenceData != null && this._referenceData.Count > 0; 
+            return this._referenceData != null && (this._referenceData.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -136,15 +136,15 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if StatsAtAnomaly property is set
         internal bool IsSetStatsAtAnomaly()
         {
-            return this._statsAtAnomaly != null && this._statsAtAnomaly.Count > 0; 
+            return this._statsAtAnomaly != null && (this._statsAtAnomaly.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property StatsAtBaseline. 
         /// <para>
         /// Typical metric statistics that are not considered anomalous. When DevOps Guru analyzes
-        /// metrics, it compares them to <code>StatsAtBaseline</code> to help determine if they
-        /// are anomalous.
+        /// metrics, it compares them to <c>StatsAtBaseline</c> to help determine if they are
+        /// anomalous.
         /// </para>
         /// </summary>
         public List<PerformanceInsightsStat> StatsAtBaseline
@@ -156,7 +156,7 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if StatsAtBaseline property is set
         internal bool IsSetStatsAtBaseline()
         {
-            return this._statsAtBaseline != null && this._statsAtBaseline.Count > 0; 
+            return this._statsAtBaseline != null && (this._statsAtBaseline.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

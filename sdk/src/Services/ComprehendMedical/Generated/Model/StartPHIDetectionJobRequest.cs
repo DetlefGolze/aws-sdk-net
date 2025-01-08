@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComprehendMedical.Model
 {
     /// <summary>
     /// Container for the parameters to the StartPHIDetectionJob operation.
-    /// Starts an asynchronous job to detect protected health information (PHI). Use the <code>DescribePHIDetectionJob</code>
+    /// Starts an asynchronous job to detect protected health information (PHI). Use the <c>DescribePHIDetectionJob</c>
     /// operation to track the status of a job.
     /// </summary>
     public partial class StartPHIDetectionJobRequest : AmazonComprehendMedicalRequest

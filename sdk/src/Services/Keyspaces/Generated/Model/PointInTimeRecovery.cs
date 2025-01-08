@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Keyspaces.Model
 {
     /// <summary>
@@ -49,11 +50,11 @@ namespace Amazon.Keyspaces.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>status=ENABLED</code> 
+        ///  <c>status=ENABLED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>status=DISABLED</code> 
+        ///  <c>status=DISABLED</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

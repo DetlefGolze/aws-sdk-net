@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -35,12 +36,13 @@ namespace Amazon.Backup.Model
     {
         private string _backupVaultArn;
         private string _recoveryPointArn;
-        private Dictionary<string, string> _restoreMetadata = new Dictionary<string, string>();
+        private string _resourceType;
+        private Dictionary<string, string> _restoreMetadata = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property BackupVaultArn. 
         /// <para>
-        /// An ARN that uniquely identifies a backup vault; for example, <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>.
+        /// An ARN that uniquely identifies a backup vault; for example, <c>arn:aws:backup:us-east-1:123456789012:backup-vault:aBackupVault</c>.
         /// </para>
         /// </summary>
         public string BackupVaultArn
@@ -58,7 +60,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property RecoveryPointArn. 
         /// <para>
-        /// An ARN that uniquely identifies a recovery point; for example, <code>arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45</code>.
+        /// An ARN that uniquely identifies a recovery point; for example, <c>arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45</c>.
         /// </para>
         /// </summary>
         public string RecoveryPointArn
@@ -71,6 +73,24 @@ namespace Amazon.Backup.Model
         internal bool IsSetRecoveryPointArn()
         {
             return this._recoveryPointArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ResourceType. 
+        /// <para>
+        /// The resource type of the recovery point.
+        /// </para>
+        /// </summary>
+        public string ResourceType
+        {
+            get { return this._resourceType; }
+            set { this._resourceType = value; }
+        }
+
+        // Check to see if ResourceType property is set
+        internal bool IsSetResourceType()
+        {
+            return this._resourceType != null;
         }
 
         /// <summary>
@@ -90,7 +110,7 @@ namespace Amazon.Backup.Model
         // Check to see if RestoreMetadata property is set
         internal bool IsSetRestoreMetadata()
         {
-            return this._restoreMetadata != null && this._restoreMetadata.Count > 0; 
+            return this._restoreMetadata != null && (this._restoreMetadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

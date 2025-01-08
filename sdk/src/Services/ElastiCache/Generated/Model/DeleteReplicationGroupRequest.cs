@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -33,18 +34,23 @@ namespace Amazon.ElastiCache.Model
     /// Deletes an existing replication group. By default, this operation deletes the entire
     /// replication group, including the primary/primaries and all of the read replicas. If
     /// the replication group has only one primary, you can optionally delete only the read
-    /// replicas, while retaining the primary by setting <code>RetainPrimaryCluster=true</code>.
+    /// replicas, while retaining the primary by setting <c>RetainPrimaryCluster=true</c>.
     /// 
     ///  
     /// <para>
     /// When you receive a successful response from this operation, Amazon ElastiCache immediately
     /// begins deleting the selected resources; you cannot cancel or revert this operation.
     /// </para>
-    ///  <note> 
+    ///  <note> <ul> <li> 
     /// <para>
-    /// This operation is valid for Redis only.
+    ///  <c>CreateSnapshot</c> permission is required to create a final snapshot. Without
+    /// this permission, the API call will fail with an <c>Access Denied</c> exception.
     /// </para>
-    ///  </note>
+    ///  </li> <li> 
+    /// <para>
+    /// This operation is valid for Redis OSS only.
+    /// </para>
+    ///  </li> </ul> </note>
     /// </summary>
     public partial class DeleteReplicationGroupRequest : AmazonElastiCacheRequest
     {
@@ -95,8 +101,8 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property RetainPrimaryCluster. 
         /// <para>
-        /// If set to <code>true</code>, all of the read replicas are deleted, but the primary
-        /// node is retained.
+        /// If set to <c>true</c>, all of the read replicas are deleted, but the primary node
+        /// is retained.
         /// </para>
         /// </summary>
         public bool RetainPrimaryCluster

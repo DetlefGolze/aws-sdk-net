@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaLive.Model
 {
     /// <summary>
@@ -33,7 +34,23 @@ namespace Amazon.MediaLive.Model
     /// </summary>
     public partial class H265FilterSettings
     {
+        private BandwidthReductionFilterSettings _bandwidthReductionFilterSettings;
         private TemporalFilterSettings _temporalFilterSettings;
+
+        /// <summary>
+        /// Gets and sets the property BandwidthReductionFilterSettings.
+        /// </summary>
+        public BandwidthReductionFilterSettings BandwidthReductionFilterSettings
+        {
+            get { return this._bandwidthReductionFilterSettings; }
+            set { this._bandwidthReductionFilterSettings = value; }
+        }
+
+        // Check to see if BandwidthReductionFilterSettings property is set
+        internal bool IsSetBandwidthReductionFilterSettings()
+        {
+            return this._bandwidthReductionFilterSettings != null;
+        }
 
         /// <summary>
         /// Gets and sets the property TemporalFilterSettings.

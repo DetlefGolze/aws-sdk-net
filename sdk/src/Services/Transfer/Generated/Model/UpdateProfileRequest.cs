@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateProfile operation.
-    /// Updates some of the parameters for an existing profile. Provide the <code>ProfileId</code>
+    /// Updates some of the parameters for an existing profile. Provide the <c>ProfileId</c>
     /// for the profile that you want to update, along with the new values for the parameters
     /// to update.
     /// </summary>
     public partial class UpdateProfileRequest : AmazonTransferRequest
     {
-        private List<string> _certificateIds = new List<string>();
+        private List<string> _certificateIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _profileId;
 
         /// <summary>
@@ -55,7 +56,7 @@ namespace Amazon.Transfer.Model
         // Check to see if CertificateIds property is set
         internal bool IsSetCertificateIds()
         {
-            return this._certificateIds != null && this._certificateIds.Count > 0; 
+            return this._certificateIds != null && (this._certificateIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

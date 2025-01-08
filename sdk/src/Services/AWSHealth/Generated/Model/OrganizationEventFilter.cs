@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSHealth.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.AWSHealth.Model
     /// </summary>
     public partial class OrganizationEventFilter
     {
-        private List<string> _awsAccountIds = new List<string>();
+        private List<string> _awsAccountIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTimeRange _endTime;
-        private List<string> _entityArns = new List<string>();
-        private List<string> _entityValues = new List<string>();
-        private List<string> _eventStatusCodes = new List<string>();
-        private List<string> _eventTypeCategories = new List<string>();
-        private List<string> _eventTypeCodes = new List<string>();
+        private List<string> _entityArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _entityValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _eventStatusCodes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _eventTypeCategories = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _eventTypeCodes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTimeRange _lastUpdatedTime;
-        private List<string> _regions = new List<string>();
-        private List<string> _services = new List<string>();
+        private List<string> _regions = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _services = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTimeRange _startTime;
 
         /// <summary>
@@ -63,7 +64,7 @@ namespace Amazon.AWSHealth.Model
         // Check to see if AwsAccountIds property is set
         internal bool IsSetAwsAccountIds()
         {
-            return this._awsAccountIds != null && this._awsAccountIds.Count > 0; 
+            return this._awsAccountIds != null && (this._awsAccountIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -97,7 +98,7 @@ namespace Amazon.AWSHealth.Model
         // Check to see if EntityArns property is set
         internal bool IsSetEntityArns()
         {
-            return this._entityArns != null && this._entityArns.Count > 0; 
+            return this._entityArns != null && (this._entityArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -117,7 +118,7 @@ namespace Amazon.AWSHealth.Model
         // Check to see if EntityValues property is set
         internal bool IsSetEntityValues()
         {
-            return this._entityValues != null && this._entityValues.Count > 0; 
+            return this._entityValues != null && (this._entityValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -136,15 +137,15 @@ namespace Amazon.AWSHealth.Model
         // Check to see if EventStatusCodes property is set
         internal bool IsSetEventStatusCodes()
         {
-            return this._eventStatusCodes != null && this._eventStatusCodes.Count > 0; 
+            return this._eventStatusCodes != null && (this._eventStatusCodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property EventTypeCategories. 
         /// <para>
-        /// A list of event type category codes. Possible values are <code>issue</code>, <code>accountNotification</code>,
-        /// or <code>scheduledChange</code>. Currently, the <code>investigation</code> value isn't
-        /// supported at this time.
+        /// A list of event type category codes. Possible values are <c>issue</c>, <c>accountNotification</c>,
+        /// or <c>scheduledChange</c>. Currently, the <c>investigation</c> value isn't supported
+        /// at this time.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
@@ -157,13 +158,13 @@ namespace Amazon.AWSHealth.Model
         // Check to see if EventTypeCategories property is set
         internal bool IsSetEventTypeCategories()
         {
-            return this._eventTypeCategories != null && this._eventTypeCategories.Count > 0; 
+            return this._eventTypeCategories != null && (this._eventTypeCategories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property EventTypeCodes. 
         /// <para>
-        /// A list of unique identifiers for event types. For example, <code>"AWS_EC2_SYSTEM_MAINTENANCE_EVENT","AWS_RDS_MAINTENANCE_SCHEDULED".</code>
+        /// A list of unique identifiers for event types. For example, <c>"AWS_EC2_SYSTEM_MAINTENANCE_EVENT","AWS_RDS_MAINTENANCE_SCHEDULED".</c>
         /// 
         /// </para>
         /// </summary>
@@ -177,7 +178,7 @@ namespace Amazon.AWSHealth.Model
         // Check to see if EventTypeCodes property is set
         internal bool IsSetEventTypeCodes()
         {
-            return this._eventTypeCodes != null && this._eventTypeCodes.Count > 0; 
+            return this._eventTypeCodes != null && (this._eventTypeCodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -211,14 +212,14 @@ namespace Amazon.AWSHealth.Model
         // Check to see if Regions property is set
         internal bool IsSetRegions()
         {
-            return this._regions != null && this._regions.Count > 0; 
+            return this._regions != null && (this._regions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Services. 
         /// <para>
-        /// The Amazon Web Services associated with the event. For example, <code>EC2</code>,
-        /// <code>RDS</code>.
+        /// The Amazon Web Services services associated with the event. For example, <c>EC2</c>,
+        /// <c>RDS</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
@@ -231,7 +232,7 @@ namespace Amazon.AWSHealth.Model
         // Check to see if Services property is set
         internal bool IsSetServices()
         {
-            return this._services != null && this._services.Count > 0; 
+            return this._services != null && (this._services.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

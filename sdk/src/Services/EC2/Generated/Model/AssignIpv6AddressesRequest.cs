@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,9 +35,7 @@ namespace Amazon.EC2.Model
     /// one or more specific IPv6 addresses, or you can specify the number of IPv6 addresses
     /// to be automatically assigned from within the subnet's IPv6 CIDR block range. You can
     /// assign as many IPv6 addresses to a network interface as you can assign private IPv4
-    /// addresses, and the limit varies per instance type. For information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI">IP
-    /// Addresses Per Network Interface Per Instance Type</a> in the <i>Amazon Elastic Compute
-    /// Cloud User Guide</i>.
+    /// addresses, and the limit varies per instance type.
     /// 
     ///  
     /// <para>
@@ -48,16 +47,15 @@ namespace Amazon.EC2.Model
     /// You can optionally use Prefix Delegation on the network interface. You must specify
     /// either the IPV6 Prefix Delegation prefixes, or the IPv6 Prefix Delegation count. For
     /// information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html">
-    /// Assigning prefixes to Amazon EC2 network interfaces</a> in the <i>Amazon Elastic Compute
-    /// Cloud User Guide</i>.
+    /// Assigning prefixes to network interfaces</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     /// </summary>
     public partial class AssignIpv6AddressesRequest : AmazonEC2Request
     {
         private int? _ipv6AddressCount;
-        private List<string> _ipv6Addresses = new List<string>();
+        private List<string> _ipv6Addresses = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _ipv6PrefixCount;
-        private List<string> _ipv6Prefixes = new List<string>();
+        private List<string> _ipv6Prefixes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _networkInterfaceId;
 
         /// <summary>
@@ -98,15 +96,14 @@ namespace Amazon.EC2.Model
         // Check to see if Ipv6Addresses property is set
         internal bool IsSetIpv6Addresses()
         {
-            return this._ipv6Addresses != null && this._ipv6Addresses.Count > 0; 
+            return this._ipv6Addresses != null && (this._ipv6Addresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Ipv6PrefixCount. 
         /// <para>
         /// The number of IPv6 prefixes that Amazon Web Services automatically assigns to the
-        /// network interface. You cannot use this option if you use the <code>Ipv6Prefixes</code>
-        /// option.
+        /// network interface. You cannot use this option if you use the <c>Ipv6Prefixes</c> option.
         /// </para>
         /// </summary>
         public int Ipv6PrefixCount
@@ -125,7 +122,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property Ipv6Prefixes. 
         /// <para>
         /// One or more IPv6 prefixes assigned to the network interface. You cannot use this option
-        /// if you use the <code>Ipv6PrefixCount</code> option.
+        /// if you use the <c>Ipv6PrefixCount</c> option.
         /// </para>
         /// </summary>
         public List<string> Ipv6Prefixes
@@ -137,7 +134,7 @@ namespace Amazon.EC2.Model
         // Check to see if Ipv6Prefixes property is set
         internal bool IsSetIpv6Prefixes()
         {
-            return this._ipv6Prefixes != null && this._ipv6Prefixes.Count > 0; 
+            return this._ipv6Prefixes != null && (this._ipv6Prefixes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

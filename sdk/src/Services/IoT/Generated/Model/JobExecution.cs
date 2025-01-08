@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -49,10 +50,10 @@ namespace Amazon.IoT.Model
         /// Gets and sets the property ApproximateSecondsBeforeTimedOut. 
         /// <para>
         /// The estimated number of seconds that remain before the job execution status will be
-        /// changed to <code>TIMED_OUT</code>. The timeout interval can be anywhere between 1
-        /// minute and 7 days (1 to 10080 minutes). The actual job execution timeout can occur
-        /// up to 60 seconds later than the estimated duration. This value will not be included
-        /// if the job execution has reached a terminal status.
+        /// changed to <c>TIMED_OUT</c>. The timeout interval can be anywhere between 1 minute
+        /// and 7 days (1 to 10080 minutes). The actual job execution timeout can occur up to
+        /// 60 seconds later than the estimated duration. This value will not be included if the
+        /// job execution has reached a terminal status.
         /// </para>
         /// </summary>
         public long ApproximateSecondsBeforeTimedOut
@@ -90,8 +91,8 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property ForceCanceled. 
         /// <para>
-        /// Will be <code>true</code> if the job execution was canceled with the optional <code>force</code>
-        /// parameter set to <code>true</code>.
+        /// Will be <c>true</c> if the job execution was canceled with the optional <c>force</c>
+        /// parameter set to <c>true</c>.
         /// </para>
         /// </summary>
         public bool ForceCanceled

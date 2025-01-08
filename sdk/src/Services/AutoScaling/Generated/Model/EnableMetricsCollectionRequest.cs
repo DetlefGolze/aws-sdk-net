@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -45,7 +46,7 @@ namespace Amazon.AutoScaling.Model
     {
         private string _autoScalingGroupName;
         private string _granularity;
-        private List<string> _metrics = new List<string>();
+        private List<string> _metrics = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AutoScalingGroupName. 
@@ -70,7 +71,7 @@ namespace Amazon.AutoScaling.Model
         /// Gets and sets the property Granularity. 
         /// <para>
         /// The frequency at which Amazon EC2 Auto Scaling sends aggregated data to CloudWatch.
-        /// The only valid value is <code>1Minute</code>.
+        /// The only valid value is <c>1Minute</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]
@@ -97,93 +98,93 @@ namespace Amazon.AutoScaling.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>GroupMinSize</code> 
+        ///  <c>GroupMinSize</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>GroupMaxSize</code> 
+        ///  <c>GroupMaxSize</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>GroupDesiredCapacity</code> 
+        ///  <c>GroupDesiredCapacity</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>GroupInServiceInstances</code> 
+        ///  <c>GroupInServiceInstances</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>GroupPendingInstances</code> 
+        ///  <c>GroupPendingInstances</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>GroupStandbyInstances</code> 
+        ///  <c>GroupStandbyInstances</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>GroupTerminatingInstances</code> 
+        ///  <c>GroupTerminatingInstances</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>GroupTotalInstances</code> 
+        ///  <c>GroupTotalInstances</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>GroupInServiceCapacity</code> 
+        ///  <c>GroupInServiceCapacity</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>GroupPendingCapacity</code> 
+        ///  <c>GroupPendingCapacity</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>GroupStandbyCapacity</code> 
+        ///  <c>GroupStandbyCapacity</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>GroupTerminatingCapacity</code> 
+        ///  <c>GroupTerminatingCapacity</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>GroupTotalCapacity</code> 
+        ///  <c>GroupTotalCapacity</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>WarmPoolDesiredCapacity</code> 
+        ///  <c>WarmPoolDesiredCapacity</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>WarmPoolWarmedCapacity</code> 
+        ///  <c>WarmPoolWarmedCapacity</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>WarmPoolPendingCapacity</code> 
+        ///  <c>WarmPoolPendingCapacity</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>WarmPoolTerminatingCapacity</code> 
+        ///  <c>WarmPoolTerminatingCapacity</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>WarmPoolTotalCapacity</code> 
+        ///  <c>WarmPoolTotalCapacity</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>GroupAndWarmPoolDesiredCapacity</code> 
+        ///  <c>GroupAndWarmPoolDesiredCapacity</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>GroupAndWarmPoolTotalCapacity</code> 
+        ///  <c>GroupAndWarmPoolTotalCapacity</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If you specify <code>Granularity</code> and don't specify any metrics, all metrics
-        /// are enabled.
+        /// If you specify <c>Granularity</c> and don't specify any metrics, all metrics are enabled.
         /// </para>
         ///  
         /// <para>
-        /// For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-cloudwatch-monitoring.html#as-group-metrics">Auto
-        /// Scaling group metrics</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+        /// For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-metrics.html">Amazon
+        /// CloudWatch metrics for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling
+        /// User Guide</i>.
         /// </para>
         /// </summary>
         public List<string> Metrics
@@ -195,7 +196,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if Metrics property is set
         internal bool IsSetMetrics()
         {
-            return this._metrics != null && this._metrics.Count > 0; 
+            return this._metrics != null && (this._metrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

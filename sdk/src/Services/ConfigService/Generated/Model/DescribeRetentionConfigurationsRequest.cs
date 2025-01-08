@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeRetentionConfigurations operation.
     /// Returns the details of one or more retention configurations. If the retention configuration
-    /// name is not specified, this action returns the details for all the retention configurations
+    /// name is not specified, this operation returns the details for all the retention configurations
     /// for that account.
     /// 
     ///  <note> 
@@ -43,13 +44,13 @@ namespace Amazon.ConfigService.Model
     public partial class DescribeRetentionConfigurationsRequest : AmazonConfigServiceRequest
     {
         private string _nextToken;
-        private List<string> _retentionConfigurationNames = new List<string>();
+        private List<string> _retentionConfigurationNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> string returned on a previous page that you use to get
-        /// the next page of results in a paginated response. 
+        /// The <c>nextToken</c> string returned on a previous page that you use to get the next
+        /// page of results in a paginated response. 
         /// </para>
         /// </summary>
         public string NextToken
@@ -87,7 +88,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if RetentionConfigurationNames property is set
         internal bool IsSetRetentionConfigurationNames()
         {
-            return this._retentionConfigurationNames != null && this._retentionConfigurationNames.Count > 0; 
+            return this._retentionConfigurationNames != null && (this._retentionConfigurationNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

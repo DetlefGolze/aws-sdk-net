@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
     /// 
     ///  
     /// <para>
-    /// If the opt-out list name already exists, an Error is returned.
+    /// If the opt-out list name already exists, an error is returned.
     /// </para>
     ///  
     /// <para>
@@ -43,14 +44,14 @@ namespace Amazon.PinpointSMSVoiceV2.Model
     /// for the phone number is added to the opt-out list. In addition to STOP, your recipients
     /// can use any supported opt-out keyword, such as CANCEL or OPTOUT. For a list of supported
     /// opt-out keywords, see <a href="https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-sms-manage.html#channels-sms-manage-optout">
-    /// SMS opt out </a> in the <i>Amazon Pinpoint User Guide</i>.
+    /// SMS opt out </a> in the <i>AWS End User Messaging SMS User Guide</i>.
     /// </para>
     /// </summary>
     public partial class CreateOptOutListRequest : AmazonPinpointSMSVoiceV2Request
     {
         private string _clientToken;
         private string _optOutListName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
@@ -108,7 +109,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

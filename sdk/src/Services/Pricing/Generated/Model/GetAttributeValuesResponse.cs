@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pricing.Model
 {
     /// <summary>
@@ -33,15 +34,14 @@ namespace Amazon.Pricing.Model
     /// </summary>
     public partial class GetAttributeValuesResponse : AmazonWebServiceResponse
     {
-        private List<AttributeValue> _attributeValues = new List<AttributeValue>();
+        private List<AttributeValue> _attributeValues = AWSConfigs.InitializeCollections ? new List<AttributeValue>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property AttributeValues. 
         /// <para>
-        /// The list of values for an attribute. For example, <code>Throughput Optimized HDD</code>
-        /// and <code>Provisioned IOPS</code> are two available values for the <code>AmazonEC2</code>
-        /// <code>volumeType</code>.
+        /// The list of values for an attribute. For example, <c>Throughput Optimized HDD</c>
+        /// and <c>Provisioned IOPS</c> are two available values for the <c>AmazonEC2</c> <c>volumeType</c>.
         /// </para>
         /// </summary>
         public List<AttributeValue> AttributeValues
@@ -53,7 +53,7 @@ namespace Amazon.Pricing.Model
         // Check to see if AttributeValues property is set
         internal bool IsSetAttributeValues()
         {
-            return this._attributeValues != null && this._attributeValues.Count > 0; 
+            return this._attributeValues != null && (this._attributeValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Lightsail.Model
     /// </summary>
     public partial class GetCertificatesResponse : AmazonWebServiceResponse
     {
-        private List<CertificateSummary> _certificates = new List<CertificateSummary>();
+        private List<CertificateSummary> _certificates = AWSConfigs.InitializeCollections ? new List<CertificateSummary>() : null;
         private string _nextPageToken;
 
         /// <summary>
@@ -51,16 +52,15 @@ namespace Amazon.Lightsail.Model
         // Check to see if Certificates property is set
         internal bool IsSetCertificates()
         {
-            return this._certificates != null && this._certificates.Count > 0; 
+            return this._certificates != null && (this._certificates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextPageToken. 
         /// <para>
-        /// If <code>NextPageToken</code> is returned there are more results available. The value
-        /// of <code>NextPageToken</code> is a unique pagination token for each page. Make the
-        /// call again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged.
+        /// If <c>NextPageToken</c> is returned there are more results available. The value of
+        /// <c>NextPageToken</c> is a unique pagination token for each page. Make the call again
+        /// using the returned token to retrieve the next page. Keep all other arguments unchanged.
         /// </para>
         /// </summary>
         public string NextPageToken

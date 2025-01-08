@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.MediaConvert.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.MediaConvert
 {
     /// <summary>
-    /// Interface for accessing MediaConvert
+    /// <para>Interface for accessing MediaConvert</para>
     ///
     /// AWS Elemental MediaConvert
     /// </summary>
@@ -441,8 +442,9 @@ namespace Amazon.MediaConvert
 
 
         /// <summary>
-        /// Send an request with an empty body to the regional API endpoint to get your account
-        /// API endpoint.
+        /// Send a request with an empty body to the regional API endpoint to get your account
+        /// API endpoint. Note that DescribeEndpoints is no longer required. We recommend that
+        /// you send your requests directly to the regional endpoint instead.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeEndpoints service method.</param>
         /// <param name="cancellationToken">
@@ -472,6 +474,7 @@ namespace Amazon.MediaConvert
         /// at which it will accept requests.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/mediaconvert-2017-08-29/DescribeEndpoints">REST API Reference for DescribeEndpoints Operation</seealso>
+        [Obsolete("DescribeEndpoints and account specific endpoints are no longer required. We recommend that you send your requests directly to the regional endpoint instead.")]
         Task<DescribeEndpointsResponse> DescribeEndpointsAsync(DescribeEndpointsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
@@ -915,6 +918,45 @@ namespace Amazon.MediaConvert
 
         #endregion
                 
+        #region  ListVersions
+
+
+
+        /// <summary>
+        /// Retrieve a JSON array of all available Job engine versions and the date they expire.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListVersions service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListVersions service method, as returned by MediaConvert.</returns>
+        /// <exception cref="Amazon.MediaConvert.Model.BadRequestException">
+        /// The service can't process your request because of a problem in the request. Please
+        /// check your request form and syntax.
+        /// </exception>
+        /// <exception cref="Amazon.MediaConvert.Model.ConflictException">
+        /// The service couldn't complete your request because there is a conflict with the current
+        /// state of the resource.
+        /// </exception>
+        /// <exception cref="Amazon.MediaConvert.Model.ForbiddenException">
+        /// You don't have permissions for this action with the credentials you sent.
+        /// </exception>
+        /// <exception cref="Amazon.MediaConvert.Model.InternalServerErrorException">
+        /// The service encountered an unexpected condition and can't fulfill your request.
+        /// </exception>
+        /// <exception cref="Amazon.MediaConvert.Model.NotFoundException">
+        /// The resource you requested doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.MediaConvert.Model.TooManyRequestsException">
+        /// Too many requests have been sent in too short of a time. The service limits the rate
+        /// at which it will accept requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/mediaconvert-2017-08-29/ListVersions">REST API Reference for ListVersions Operation</seealso>
+        Task<ListVersionsResponse> ListVersionsAsync(ListVersionsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  PutPolicy
 
 
@@ -952,6 +994,48 @@ namespace Amazon.MediaConvert
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/mediaconvert-2017-08-29/PutPolicy">REST API Reference for PutPolicy Operation</seealso>
         Task<PutPolicyResponse> PutPolicyAsync(PutPolicyRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  SearchJobs
+
+
+
+        /// <summary>
+        /// Retrieve a JSON array that includes job details for up to twenty of your most recent
+        /// jobs. Optionally filter results further according to input file, queue, or status.
+        /// To retrieve the twenty next most recent jobs, use the nextToken string returned with
+        /// the array.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the SearchJobs service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the SearchJobs service method, as returned by MediaConvert.</returns>
+        /// <exception cref="Amazon.MediaConvert.Model.BadRequestException">
+        /// The service can't process your request because of a problem in the request. Please
+        /// check your request form and syntax.
+        /// </exception>
+        /// <exception cref="Amazon.MediaConvert.Model.ConflictException">
+        /// The service couldn't complete your request because there is a conflict with the current
+        /// state of the resource.
+        /// </exception>
+        /// <exception cref="Amazon.MediaConvert.Model.ForbiddenException">
+        /// You don't have permissions for this action with the credentials you sent.
+        /// </exception>
+        /// <exception cref="Amazon.MediaConvert.Model.InternalServerErrorException">
+        /// The service encountered an unexpected condition and can't fulfill your request.
+        /// </exception>
+        /// <exception cref="Amazon.MediaConvert.Model.NotFoundException">
+        /// The resource you requested doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.MediaConvert.Model.TooManyRequestsException">
+        /// Too many requests have been sent in too short of a time. The service limits the rate
+        /// at which it will accept requests.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/mediaconvert-2017-08-29/SearchJobs">REST API Reference for SearchJobs Operation</seealso>
+        Task<SearchJobsResponse> SearchJobsAsync(SearchJobsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 

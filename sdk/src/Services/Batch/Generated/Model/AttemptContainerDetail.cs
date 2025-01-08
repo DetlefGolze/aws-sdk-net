@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Batch.Model
         private string _containerInstanceArn;
         private int? _exitCode;
         private string _logStreamName;
-        private List<NetworkInterface> _networkInterfaces = new List<NetworkInterface>();
+        private List<NetworkInterface> _networkInterfaces = AWSConfigs.InitializeCollections ? new List<NetworkInterface>() : null;
         private string _reason;
         private string _taskArn;
 
@@ -81,8 +82,8 @@ namespace Amazon.Batch.Model
         /// Gets and sets the property LogStreamName. 
         /// <para>
         /// The name of the CloudWatch Logs log stream that's associated with the container. The
-        /// log group for Batch jobs is <code>/aws/batch/job</code>. Each container attempt receives
-        /// a log stream name when they reach the <code>RUNNING</code> status.
+        /// log group for Batch jobs is <c>/aws/batch/job</c>. Each container attempt receives
+        /// a log stream name when they reach the <c>RUNNING</c> status.
         /// </para>
         /// </summary>
         public string LogStreamName
@@ -112,7 +113,7 @@ namespace Amazon.Batch.Model
         // Check to see if NetworkInterfaces property is set
         internal bool IsSetNetworkInterfaces()
         {
-            return this._networkInterfaces != null && this._networkInterfaces.Count > 0; 
+            return this._networkInterfaces != null && (this._networkInterfaces.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -138,7 +139,7 @@ namespace Amazon.Batch.Model
         /// Gets and sets the property TaskArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the Amazon ECS task that's associated with the job
-        /// attempt. Each container attempt receives a task ARN when they reach the <code>STARTING</code>
+        /// attempt. Each container attempt receives a task ARN when they reach the <c>STARTING</c>
         /// status.
         /// </para>
         /// </summary>

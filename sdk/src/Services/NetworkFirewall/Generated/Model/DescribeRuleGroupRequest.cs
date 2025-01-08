@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
@@ -34,9 +35,30 @@ namespace Amazon.NetworkFirewall.Model
     /// </summary>
     public partial class DescribeRuleGroupRequest : AmazonNetworkFirewallRequest
     {
+        private bool? _analyzeRuleGroup;
         private string _ruleGroupArn;
         private string _ruleGroupName;
         private RuleGroupType _type;
+
+        /// <summary>
+        /// Gets and sets the property AnalyzeRuleGroup. 
+        /// <para>
+        /// Indicates whether you want Network Firewall to analyze the stateless rules in the
+        /// rule group for rule behavior such as asymmetric routing. If set to <c>TRUE</c>, Network
+        /// Firewall runs the analysis.
+        /// </para>
+        /// </summary>
+        public bool AnalyzeRuleGroup
+        {
+            get { return this._analyzeRuleGroup.GetValueOrDefault(); }
+            set { this._analyzeRuleGroup = value; }
+        }
+
+        // Check to see if AnalyzeRuleGroup property is set
+        internal bool IsSetAnalyzeRuleGroup()
+        {
+            return this._analyzeRuleGroup.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property RuleGroupArn. 
@@ -93,7 +115,7 @@ namespace Amazon.NetworkFirewall.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// This setting is required for requests that do not include the <code>RuleGroupARN</code>.
+        /// This setting is required for requests that do not include the <c>RuleGroupARN</c>.
         /// </para>
         ///  </note>
         /// </summary>

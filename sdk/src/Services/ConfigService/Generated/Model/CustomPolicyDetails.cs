@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.ConfigService.Model
         /// Gets and sets the property EnableDebugLogDelivery. 
         /// <para>
         /// The boolean expression for enabling debug logging for your Config Custom Policy rule.
-        /// The default value is <code>false</code>.
+        /// The default value is <c>false</c>.
         /// </para>
         /// </summary>
         public bool EnableDebugLogDelivery

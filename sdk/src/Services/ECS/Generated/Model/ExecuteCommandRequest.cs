@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.ECS.Model
     ///  
     /// <para>
     /// If you use a condition key in your IAM policy to refine the conditions for the policy
-    /// statement, for example limit the actions to a specific cluster, you receive an <code>AccessDeniedException</code>
+    /// statement, for example limit the actions to a specific cluster, you receive an <c>AccessDeniedException</c>
     /// when there is a mismatch between the condition key value and the corresponding parameter
     /// value.
     /// </para>

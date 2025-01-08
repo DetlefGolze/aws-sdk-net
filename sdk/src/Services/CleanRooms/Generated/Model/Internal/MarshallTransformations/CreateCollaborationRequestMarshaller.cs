@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,8 +64,15 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetAnalyticsEngine())
+                {
+                    context.Writer.WritePropertyName("analyticsEngine");
+                    context.Writer.Write(publicRequest.AnalyticsEngine);
+                }
+
                 if(publicRequest.IsSetCreatorDisplayName())
                 {
                     context.Writer.WritePropertyName("creatorDisplayName");
@@ -80,6 +88,28 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
                             context.Writer.Write(publicRequestCreatorMemberAbilitiesListValue);
                     }
                     context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetCreatorMLMemberAbilities())
+                {
+                    context.Writer.WritePropertyName("creatorMLMemberAbilities");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = MLMemberAbilitiesMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.CreatorMLMemberAbilities, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetCreatorPaymentConfiguration())
+                {
+                    context.Writer.WritePropertyName("creatorPaymentConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = PaymentConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.CreatorPaymentConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetDataEncryptionMetadata())

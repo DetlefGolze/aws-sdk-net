@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -35,9 +36,13 @@ namespace Amazon.Connect.Model
     {
         private ActionType _actionType;
         private AssignContactCategoryActionDefinition _assignContactCategoryAction;
+        private CreateCaseActionDefinition _createCaseAction;
+        private EndAssociatedTasksActionDefinition _endAssociatedTasksAction;
         private EventBridgeActionDefinition _eventBridgeAction;
         private SendNotificationActionDefinition _sendNotificationAction;
+        private SubmitAutoEvaluationActionDefinition _submitAutoEvaluationAction;
         private TaskActionDefinition _taskAction;
+        private UpdateCaseActionDefinition _updateCaseAction;
 
         /// <summary>
         /// Gets and sets the property ActionType. 
@@ -65,10 +70,10 @@ namespace Amazon.Connect.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported only for <code>TriggerEventSource</code> values: <code>OnPostCallAnalysisAvailable</code>
-        /// | <code>OnRealTimeCallAnalysisAvailable</code> | <code>OnPostChatAnalysisAvailable</code>
-        /// | <code>OnZendeskTicketCreate</code> | <code>OnZendeskTicketStatusUpdate</code> |
-        /// <code>OnSalesforceCaseCreate</code> 
+        /// Supported only for <c>TriggerEventSource</c> values: <c>OnPostCallAnalysisAvailable</c>
+        /// | <c>OnRealTimeCallAnalysisAvailable</c> | <c>OnRealTimeChatAnalysisAvailable</c>
+        /// | <c>OnPostChatAnalysisAvailable</c> | <c>OnZendeskTicketCreate</c> | <c>OnZendeskTicketStatusUpdate</c>
+        /// | <c>OnSalesforceCaseCreate</c> 
         /// </para>
         /// </summary>
         public AssignContactCategoryActionDefinition AssignContactCategoryAction
@@ -84,15 +89,61 @@ namespace Amazon.Connect.Model
         }
 
         /// <summary>
+        /// Gets and sets the property CreateCaseAction. 
+        /// <para>
+        /// Information about the create case action.
+        /// </para>
+        ///  
+        /// <para>
+        /// Supported only for <c>TriggerEventSource</c> values: <c>OnPostCallAnalysisAvailable</c>
+        /// | <c>OnPostChatAnalysisAvailable</c>.
+        /// </para>
+        /// </summary>
+        public CreateCaseActionDefinition CreateCaseAction
+        {
+            get { return this._createCaseAction; }
+            set { this._createCaseAction = value; }
+        }
+
+        // Check to see if CreateCaseAction property is set
+        internal bool IsSetCreateCaseAction()
+        {
+            return this._createCaseAction != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EndAssociatedTasksAction. 
+        /// <para>
+        /// Information about the end associated tasks action.
+        /// </para>
+        ///  
+        /// <para>
+        /// Supported only for <c>TriggerEventSource</c> values: <c>OnCaseUpdate</c>.
+        /// </para>
+        /// </summary>
+        public EndAssociatedTasksActionDefinition EndAssociatedTasksAction
+        {
+            get { return this._endAssociatedTasksAction; }
+            set { this._endAssociatedTasksAction = value; }
+        }
+
+        // Check to see if EndAssociatedTasksAction property is set
+        internal bool IsSetEndAssociatedTasksAction()
+        {
+            return this._endAssociatedTasksAction != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property EventBridgeAction. 
         /// <para>
         /// Information about the EventBridge action.
         /// </para>
         ///  
         /// <para>
-        /// Supported only for <code>TriggerEventSource</code> values: <code>OnPostCallAnalysisAvailable</code>
-        /// | <code>OnRealTimeCallAnalysisAvailable</code> | <code>OnPostChatAnalysisAvailable</code>
-        /// | <code>OnContactEvaluationSubmit</code> | <code>OnMetricDataUpdate</code> 
+        /// Supported only for <c>TriggerEventSource</c> values: <c>OnPostCallAnalysisAvailable</c>
+        /// | <c>OnRealTimeCallAnalysisAvailable</c> | <c>OnRealTimeChatAnalysisAvailable</c>
+        /// | <c>OnPostChatAnalysisAvailable</c> | <c>OnContactEvaluationSubmit</c> | <c>OnMetricDataUpdate</c>
+        /// 
         /// </para>
         /// </summary>
         public EventBridgeActionDefinition EventBridgeAction
@@ -114,9 +165,10 @@ namespace Amazon.Connect.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported only for <code>TriggerEventSource</code> values: <code>OnPostCallAnalysisAvailable</code>
-        /// | <code>OnRealTimeCallAnalysisAvailable</code> | <code>OnPostChatAnalysisAvailable</code>
-        /// | <code>OnContactEvaluationSubmit</code> | <code>OnMetricDataUpdate</code> 
+        /// Supported only for <c>TriggerEventSource</c> values: <c>OnPostCallAnalysisAvailable</c>
+        /// | <c>OnRealTimeCallAnalysisAvailable</c> | <c>OnRealTimeChatAnalysisAvailable</c>
+        /// | <c>OnPostChatAnalysisAvailable</c> | <c>OnContactEvaluationSubmit</c> | <c>OnMetricDataUpdate</c>
+        /// 
         /// </para>
         /// </summary>
         public SendNotificationActionDefinition SendNotificationAction
@@ -132,11 +184,29 @@ namespace Amazon.Connect.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SubmitAutoEvaluationAction. 
+        /// <para>
+        /// Information about the submit automated evaluation action.
+        /// </para>
+        /// </summary>
+        public SubmitAutoEvaluationActionDefinition SubmitAutoEvaluationAction
+        {
+            get { return this._submitAutoEvaluationAction; }
+            set { this._submitAutoEvaluationAction = value; }
+        }
+
+        // Check to see if SubmitAutoEvaluationAction property is set
+        internal bool IsSetSubmitAutoEvaluationAction()
+        {
+            return this._submitAutoEvaluationAction != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property TaskAction. 
         /// <para>
-        /// Information about the task action. This field is required if <code>TriggerEventSource</code>
-        /// is one of the following values: <code>OnZendeskTicketCreate</code> | <code>OnZendeskTicketStatusUpdate</code>
-        /// | <code>OnSalesforceCaseCreate</code> 
+        /// Information about the task action. This field is required if <c>TriggerEventSource</c>
+        /// is one of the following values: <c>OnZendeskTicketCreate</c> | <c>OnZendeskTicketStatusUpdate</c>
+        /// | <c>OnSalesforceCaseCreate</c> 
         /// </para>
         /// </summary>
         public TaskActionDefinition TaskAction
@@ -149,6 +219,28 @@ namespace Amazon.Connect.Model
         internal bool IsSetTaskAction()
         {
             return this._taskAction != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property UpdateCaseAction. 
+        /// <para>
+        /// Information about the update case action.
+        /// </para>
+        ///  
+        /// <para>
+        /// Supported only for <c>TriggerEventSource</c> values: <c>OnCaseCreate</c> | <c>OnCaseUpdate</c>.
+        /// </para>
+        /// </summary>
+        public UpdateCaseActionDefinition UpdateCaseAction
+        {
+            get { return this._updateCaseAction; }
+            set { this._updateCaseAction = value; }
+        }
+
+        // Check to see if UpdateCaseAction property is set
+        internal bool IsSetUpdateCaseAction()
+        {
+            return this._updateCaseAction != null;
         }
 
     }

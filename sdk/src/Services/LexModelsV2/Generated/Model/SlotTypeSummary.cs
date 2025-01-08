@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -103,20 +104,20 @@ namespace Amazon.LexModelsV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Custom</code> - A slot type that you created using custom values. For more
-        /// information, see <a href="https://docs.aws.amazon.com/lexv2/latest/dg/custom-slot-types.html">Creating
+        ///  <c>Custom</c> - A slot type that you created using custom values. For more information,
+        /// see <a href="https://docs.aws.amazon.com/lexv2/latest/dg/custom-slot-types.html">Creating
         /// custom slot types</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Extended</code> - A slot type created by extending the <code>AMAZON.AlphaNumeric</code>
+        ///  <c>Extended</c> - A slot type created by extending the <c>AMAZON.AlphaNumeric</c>
         /// built-in slot type. For more information, see <a href="https://docs.aws.amazon.com/lexv2/latest/dg/built-in-slot-alphanumerice.html">
-        /// <code>AMAZON.AlphaNumeric</code> </a>.
+        /// <c>AMAZON.AlphaNumeric</c> </a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ExternalGrammar</code> - A slot type using a custom GRXML grammar to define
-        /// values. For more information, see <a href="https://docs.aws.amazon.com/lexv2/latest/dg/building-grxml.html">Using
+        ///  <c>ExternalGrammar</c> - A slot type using a custom GRXML grammar to define values.
+        /// For more information, see <a href="https://docs.aws.amazon.com/lexv2/latest/dg/building-grxml.html">Using
         /// a custom grammar slot type</a>.
         /// </para>
         ///  </li> </ul>

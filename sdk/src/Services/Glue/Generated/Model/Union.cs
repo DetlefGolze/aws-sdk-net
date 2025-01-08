@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Glue.Model
     /// </summary>
     public partial class Union
     {
-        private List<string> _inputs = new List<string>();
+        private List<string> _inputs = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
         private UnionType _unionType;
 
@@ -54,7 +55,7 @@ namespace Amazon.Glue.Model
         // Check to see if Inputs property is set
         internal bool IsSetInputs()
         {
-            return this._inputs != null && this._inputs.Count > 0; 
+            return this._inputs != null && (this._inputs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -83,12 +84,12 @@ namespace Amazon.Glue.Model
         /// </para>
         ///  
         /// <para>
-        /// Specify <code>ALL</code> to join all rows from data sources to the resulting DynamicFrame.
+        /// Specify <c>ALL</c> to join all rows from data sources to the resulting DynamicFrame.
         /// The resulting union does not remove duplicate rows.
         /// </para>
         ///  
         /// <para>
-        /// Specify <code>DISTINCT</code> to remove duplicate rows in the resulting DynamicFrame.
+        /// Specify <c>DISTINCT</c> to remove duplicate rows in the resulting DynamicFrame.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

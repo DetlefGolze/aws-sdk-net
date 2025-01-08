@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaTailor.Model
 {
     /// <summary>
@@ -64,7 +65,7 @@ namespace Amazon.MediaTailor.Model
         /// Gets and sets the property PlaybackConfigurationName. 
         /// <para>
         /// Returns information about the prefetch schedule for a specific playback configuration.
-        /// If you call <code>GetPrefetchSchedule</code> on an expired prefetch schedule, MediaTailor
+        /// If you call <c>GetPrefetchSchedule</c> on an expired prefetch schedule, MediaTailor
         /// returns an HTTP 404 status code.
         /// </para>
         /// </summary>

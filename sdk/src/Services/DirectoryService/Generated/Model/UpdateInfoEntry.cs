@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
@@ -137,8 +138,7 @@ namespace Amazon.DirectoryService.Model
         /// <summary>
         /// Gets and sets the property StartTime. 
         /// <para>
-        ///  The start time of the <code>UpdateDirectorySetup</code> for the particular type.
-        /// 
+        ///  The start time of the <c>UpdateDirectorySetup</c> for the particular type. 
         /// </para>
         /// </summary>
         public DateTime StartTime

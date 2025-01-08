@@ -26,21 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// The result of a <code>DescribeElasticsearchDomains</code> request. Contains the status
-    /// of the specified domains or all domains owned by the account.
+    /// The result of a <c>DescribeElasticsearchDomains</c> request. Contains the status of
+    /// the specified domains or all domains owned by the account.
     /// </summary>
     public partial class DescribeElasticsearchDomainsResponse : AmazonWebServiceResponse
     {
-        private List<ElasticsearchDomainStatus> _domainStatusList = new List<ElasticsearchDomainStatus>();
+        private List<ElasticsearchDomainStatus> _domainStatusList = AWSConfigs.InitializeCollections ? new List<ElasticsearchDomainStatus>() : null;
 
         /// <summary>
         /// Gets and sets the property DomainStatusList. 
         /// <para>
-        /// The status of the domains requested in the <code>DescribeElasticsearchDomains</code>
-        /// request.
+        /// The status of the domains requested in the <c>DescribeElasticsearchDomains</c> request.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -53,7 +53,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if DomainStatusList property is set
         internal bool IsSetDomainStatusList()
         {
-            return this._domainStatusList != null && this._domainStatusList.Count > 0; 
+            return this._domainStatusList != null && (this._domainStatusList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

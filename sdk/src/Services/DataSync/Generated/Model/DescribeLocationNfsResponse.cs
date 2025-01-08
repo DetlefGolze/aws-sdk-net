@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
@@ -79,7 +80,7 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property LocationUri. 
         /// <para>
-        /// The URL of the NFS location.
+        /// The URI of the NFS location.
         /// </para>
         /// </summary>
         [AWSProperty(Max=4360)]

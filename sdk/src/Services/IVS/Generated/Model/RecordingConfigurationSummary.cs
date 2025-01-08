@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IVS.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.IVS.Model
         private DestinationConfiguration _destinationConfiguration;
         private string _name;
         private RecordingConfigurationState _state;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -99,7 +100,7 @@ namespace Amazon.IVS.Model
         /// <summary>
         /// Gets and sets the property State. 
         /// <para>
-        /// Indicates the current state of the recording configuration. When the state is <code>ACTIVE</code>,
+        /// Indicates the current state of the recording configuration. When the state is <c>ACTIVE</c>,
         /// the configuration is ready for recording a channel stream.
         /// </para>
         /// </summary>
@@ -119,11 +120,12 @@ namespace Amazon.IVS.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// Tags attached to the resource. Array of 1-50 maps, each of the form <code>string:string
-        /// (key:value)</code>. See <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-        /// Amazon Web Services Resources</a> for more information, including restrictions that
-        /// apply to tags and "Tag naming limits and requirements"; Amazon IVS has no service-specific
-        /// constraints beyond what is documented there.
+        /// Tags attached to the resource. Array of 1-50 maps, each of the form <c>string:string
+        /// (key:value)</c>. See <a href="https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html">Best
+        /// practices and strategies</a> in <i>Tagging Amazon Web Services Resources and Tag Editor</i>
+        /// for details, including restrictions that apply to tags and "Tag naming limits and
+        /// requirements"; Amazon IVS has no service-specific constraints beyond what is documented
+        /// there.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -136,7 +138,7 @@ namespace Amazon.IVS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

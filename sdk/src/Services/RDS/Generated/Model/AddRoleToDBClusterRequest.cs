@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property RoleArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the IAM role to associate with the Aurora DB cluster,
-        /// for example <code>arn:aws:iam::123456789012:role/AuroraAccessRole</code>.
+        /// for example <c>arn:aws:iam::123456789012:role/AuroraAccessRole</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

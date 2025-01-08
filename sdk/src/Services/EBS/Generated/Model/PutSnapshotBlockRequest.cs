@@ -27,12 +27,13 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EBS.Model
 {
     /// <summary>
     /// Container for the parameters to the PutSnapshotBlock operation.
     /// Writes a block of data to a snapshot. If the specified block contains data, the existing
-    /// data is overwritten. The target snapshot must be in the <code>pending</code> state.
+    /// data is overwritten. The target snapshot must be in the <c>pending</c> state.
     /// 
     ///  
     /// <para>
@@ -40,9 +41,9 @@ namespace Amazon.EBS.Model
     /// </para>
     ///  <note> 
     /// <para>
-    /// You should always retry requests that receive server (<code>5xx</code>) error responses,
-    /// and <code>ThrottlingException</code> and <code>RequestThrottledException</code> client
-    /// error responses. For more information see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html">Error
+    /// You should always retry requests that receive server (<c>5xx</c>) error responses,
+    /// and <c>ThrottlingException</c> and <c>RequestThrottledException</c> client error responses.
+    /// For more information see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/error-retries.html">Error
     /// retries</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
     /// </para>
     ///  </note>
@@ -92,10 +93,9 @@ namespace Amazon.EBS.Model
         /// Gets and sets the property BlockIndex. 
         /// <para>
         /// The block index of the block in which to write the data. A block index is a logical
-        /// index in units of <code>512</code> KiB blocks. To identify the block index, divide
-        /// the logical offset of the data in the logical volume by the block size (logical offset
-        /// of data/<code>524288</code>). The logical offset of the data must be <code>512</code>
-        /// KiB aligned.
+        /// index in units of <c>512</c> KiB blocks. To identify the block index, divide the logical
+        /// offset of the data in the logical volume by the block size (logical offset of data/<c>524288</c>).
+        /// The logical offset of the data must be <c>512</c> KiB aligned.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0)]
@@ -127,14 +127,14 @@ namespace Amazon.EBS.Model
         // Check to see if Checksum property is set
         internal bool IsSetChecksum()
         {
-            return this._checksum != null;
+            return !string.IsNullOrEmpty(this._checksum);
         }
 
         /// <summary>
         /// Gets and sets the property ChecksumAlgorithm. 
         /// <para>
         /// The algorithm used to generate the checksum. Currently, the only supported algorithm
-        /// is <code>SHA256</code>.
+        /// is <c>SHA256</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=32)]
@@ -147,18 +147,18 @@ namespace Amazon.EBS.Model
         // Check to see if ChecksumAlgorithm property is set
         internal bool IsSetChecksumAlgorithm()
         {
-            return this._checksumAlgorithm != null;
+            return !string.IsNullOrEmpty(this._checksumAlgorithm);
         }
 
         /// <summary>
         /// Gets and sets the property DataLength. 
         /// <para>
         /// The size of the data to write to the block, in bytes. Currently, the only supported
-        /// size is <code>524288</code> bytes.
+        /// size is <c>524288</c> bytes.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>524288</code> 
+        /// Valid values: <c>524288</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

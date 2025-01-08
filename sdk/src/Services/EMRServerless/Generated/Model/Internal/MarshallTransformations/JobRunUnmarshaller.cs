@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public JobRun Unmarshall(JsonUnmarshallerContext context)
         {
+            JobRun unmarshalledObject = new JobRun();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            JobRun unmarshalledObject = new JobRun();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -74,6 +76,24 @@ namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.Arn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("attempt", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.Attempt = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("attemptCreatedAt", targetDepth))
+                {
+                    var unmarshaller = DateTimeUnmarshaller.Instance;
+                    unmarshalledObject.AttemptCreatedAt = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("attemptUpdatedAt", targetDepth))
+                {
+                    var unmarshaller = DateTimeUnmarshaller.Instance;
+                    unmarshalledObject.AttemptUpdatedAt = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("billedResourceUtilization", targetDepth))
@@ -100,6 +120,12 @@ namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
                     unmarshalledObject.CreatedBy = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("endedAt", targetDepth))
+                {
+                    var unmarshaller = DateTimeUnmarshaller.Instance;
+                    unmarshalledObject.EndedAt = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("executionRole", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -124,6 +150,12 @@ namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
                     unmarshalledObject.JobRunId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("mode", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Mode = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("name", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -136,10 +168,28 @@ namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
                     unmarshalledObject.NetworkConfiguration = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("queuedDurationMilliseconds", targetDepth))
+                {
+                    var unmarshaller = LongUnmarshaller.Instance;
+                    unmarshalledObject.QueuedDurationMilliseconds = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("releaseLabel", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.ReleaseLabel = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("retryPolicy", targetDepth))
+                {
+                    var unmarshaller = RetryPolicyUnmarshaller.Instance;
+                    unmarshalledObject.RetryPolicy = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("startedAt", targetDepth))
+                {
+                    var unmarshaller = DateTimeUnmarshaller.Instance;
+                    unmarshalledObject.StartedAt = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("state", targetDepth))
@@ -179,7 +229,6 @@ namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

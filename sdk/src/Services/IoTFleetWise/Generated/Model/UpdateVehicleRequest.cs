@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -34,10 +35,12 @@ namespace Amazon.IoTFleetWise.Model
     /// </summary>
     public partial class UpdateVehicleRequest : AmazonIoTFleetWiseRequest
     {
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private UpdateMode _attributeUpdateMode;
         private string _decoderManifestArn;
         private string _modelManifestArn;
+        private List<StateTemplateAssociation> _stateTemplatesToAdd = AWSConfigs.InitializeCollections ? new List<StateTemplateAssociation>() : null;
+        private List<string> _stateTemplatesToRemove = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _vehicleName;
 
         /// <summary>
@@ -47,7 +50,7 @@ namespace Amazon.IoTFleetWise.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"engineType"</code> : <code>"1.3 L R2"</code> 
+        ///  <c>"engineType"</c> : <c>"1.3 L R2"</c> 
         /// </para>
         /// </summary>
         public Dictionary<string, string> Attributes
@@ -59,15 +62,15 @@ namespace Amazon.IoTFleetWise.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AttributeUpdateMode. 
         /// <para>
         /// The method the specified attributes will update the existing attributes on the vehicle.
-        /// Use<code>Overwite</code> to replace the vehicle attributes with the specified attributes.
-        /// Or use <code>Merge</code> to combine all attributes.
+        /// Use<c>Overwite</c> to replace the vehicle attributes with the specified attributes.
+        /// Or use <c>Merge</c> to combine all attributes.
         /// </para>
         ///  
         /// <para>
@@ -120,6 +123,44 @@ namespace Amazon.IoTFleetWise.Model
         internal bool IsSetModelManifestArn()
         {
             return this._modelManifestArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property StateTemplatesToAdd. 
+        /// <para>
+        /// Associate state templates with the vehicle.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=20)]
+        public List<StateTemplateAssociation> StateTemplatesToAdd
+        {
+            get { return this._stateTemplatesToAdd; }
+            set { this._stateTemplatesToAdd = value; }
+        }
+
+        // Check to see if StateTemplatesToAdd property is set
+        internal bool IsSetStateTemplatesToAdd()
+        {
+            return this._stateTemplatesToAdd != null && (this._stateTemplatesToAdd.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property StateTemplatesToRemove. 
+        /// <para>
+        /// Remove state templates from the vehicle.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=20)]
+        public List<string> StateTemplatesToRemove
+        {
+            get { return this._stateTemplatesToRemove; }
+            set { this._stateTemplatesToRemove = value; }
+        }
+
+        // Check to see if StateTemplatesToRemove property is set
+        internal bool IsSetStateTemplatesToRemove()
+        {
+            return this._stateTemplatesToRemove != null && (this._stateTemplatesToRemove.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

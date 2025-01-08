@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
@@ -70,17 +71,17 @@ namespace Amazon.NetworkFirewall.Model
         private string _firewallPolicyArn;
         private bool? _firewallPolicyChangeProtection;
         private bool? _subnetChangeProtection;
-        private List<SubnetMapping> _subnetMappings = new List<SubnetMapping>();
-        private List<Tag> _tags = new List<Tag>();
+        private List<SubnetMapping> _subnetMappings = AWSConfigs.InitializeCollections ? new List<SubnetMapping>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _vpcId;
 
         /// <summary>
         /// Gets and sets the property DeleteProtection. 
         /// <para>
-        /// A flag indicating whether it is possible to delete the firewall. A setting of <code>TRUE</code>
+        /// A flag indicating whether it is possible to delete the firewall. A setting of <c>TRUE</c>
         /// indicates that the firewall is protected against deletion. Use this setting to protect
         /// against accidentally deleting a firewall that is in use. When you create a firewall,
-        /// the operation initializes this flag to <code>TRUE</code>.
+        /// the operation initializes this flag to <c>TRUE</c>.
         /// </para>
         /// </summary>
         public bool DeleteProtection
@@ -178,7 +179,7 @@ namespace Amazon.NetworkFirewall.Model
         /// A setting indicating whether the firewall is protected against a change to the firewall
         /// policy association. Use this setting to protect against accidentally modifying the
         /// firewall policy for a firewall that is in use. When you create a firewall, the operation
-        /// initializes this setting to <code>TRUE</code>.
+        /// initializes this setting to <c>TRUE</c>.
         /// </para>
         /// </summary>
         public bool FirewallPolicyChangeProtection
@@ -199,7 +200,7 @@ namespace Amazon.NetworkFirewall.Model
         /// A setting indicating whether the firewall is protected against changes to the subnet
         /// associations. Use this setting to protect against accidentally modifying the subnet
         /// associations for a firewall that is in use. When you create a firewall, the operation
-        /// initializes this setting to <code>TRUE</code>.
+        /// initializes this setting to <c>TRUE</c>.
         /// </para>
         /// </summary>
         public bool SubnetChangeProtection
@@ -232,7 +233,7 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if SubnetMappings property is set
         internal bool IsSetSubnetMappings()
         {
-            return this._subnetMappings != null && this._subnetMappings.Count > 0; 
+            return this._subnetMappings != null && (this._subnetMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -251,7 +252,7 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

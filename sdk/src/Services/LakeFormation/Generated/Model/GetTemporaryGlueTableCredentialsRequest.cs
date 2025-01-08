@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
@@ -34,13 +35,21 @@ namespace Amazon.LakeFormation.Model
     /// Amazon S3. In order to vend such credentials, Lake Formation assumes the role associated
     /// with a registered location, for example an Amazon S3 bucket, with a scope down policy
     /// which restricts the access to a single prefix.
+    /// 
+    ///  
+    /// <para>
+    /// To call this API, the role that the service assumes must have <c>lakeformation:GetDataAccess</c>
+    /// permission on the resource.
+    /// </para>
     /// </summary>
     public partial class GetTemporaryGlueTableCredentialsRequest : AmazonLakeFormationRequest
     {
         private AuditContext _auditContext;
         private int? _durationSeconds;
-        private List<string> _permissions = new List<string>();
-        private List<string> _supportedPermissionTypes = new List<string>();
+        private List<string> _permissions = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private QuerySessionContext _querySessionContext;
+        private string _s3Path;
+        private List<string> _supportedPermissionTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _tableArn;
 
         /// <summary>
@@ -97,14 +106,52 @@ namespace Amazon.LakeFormation.Model
         // Check to see if Permissions property is set
         internal bool IsSetPermissions()
         {
-            return this._permissions != null && this._permissions.Count > 0; 
+            return this._permissions != null && (this._permissions.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property QuerySessionContext. 
+        /// <para>
+        /// A structure used as a protocol between query engines and Lake Formation or Glue. Contains
+        /// both a Lake Formation generated authorization identifier and information from the
+        /// request's authorization context.
+        /// </para>
+        /// </summary>
+        public QuerySessionContext QuerySessionContext
+        {
+            get { return this._querySessionContext; }
+            set { this._querySessionContext = value; }
+        }
+
+        // Check to see if QuerySessionContext property is set
+        internal bool IsSetQuerySessionContext()
+        {
+            return this._querySessionContext != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property S3Path. 
+        /// <para>
+        /// The Amazon S3 path for the table.
+        /// </para>
+        /// </summary>
+        public string S3Path
+        {
+            get { return this._s3Path; }
+            set { this._s3Path = value; }
+        }
+
+        // Check to see if S3Path property is set
+        internal bool IsSetS3Path()
+        {
+            return this._s3Path != null;
         }
 
         /// <summary>
         /// Gets and sets the property SupportedPermissionTypes. 
         /// <para>
-        /// A list of supported permission types for the table. Valid values are <code>COLUMN_PERMISSION</code>
-        /// and <code>CELL_FILTER_PERMISSION</code>.
+        /// A list of supported permission types for the table. Valid values are <c>COLUMN_PERMISSION</c>
+        /// and <c>CELL_FILTER_PERMISSION</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -117,7 +164,7 @@ namespace Amazon.LakeFormation.Model
         // Check to see if SupportedPermissionTypes property is set
         internal bool IsSetSupportedPermissionTypes()
         {
-            return this._supportedPermissionTypes != null && this._supportedPermissionTypes.Count > 0; 
+            return this._supportedPermissionTypes != null && (this._supportedPermissionTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

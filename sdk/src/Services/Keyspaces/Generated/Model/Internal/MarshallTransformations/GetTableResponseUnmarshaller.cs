@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Keyspaces.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -97,6 +98,12 @@ namespace Amazon.Keyspaces.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = PointInTimeRecoverySummaryUnmarshaller.Instance;
                     response.PointInTimeRecovery = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("replicaSpecifications", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<ReplicaSpecificationSummary, ReplicaSpecificationSummaryUnmarshaller>(ReplicaSpecificationSummaryUnmarshaller.Instance);
+                    response.ReplicaSpecifications = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("resourceArn", targetDepth))

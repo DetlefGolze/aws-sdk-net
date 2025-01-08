@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
     /// The policy directives and their values that CloudFront includes as values for the
-    /// <code>Content-Security-Policy</code> HTTP response header.
+    /// <c>Content-Security-Policy</c> HTTP response header.
     /// 
     ///  
     /// <para>
-    /// For more information about the <code>Content-Security-Policy</code> HTTP response
-    /// header, see <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy">Content-Security-Policy</a>
+    /// For more information about the <c>Content-Security-Policy</c> HTTP response header,
+    /// see <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy">Content-Security-Policy</a>
     /// in the MDN Web Docs.
     /// </para>
     /// </summary>
@@ -48,7 +49,7 @@ namespace Amazon.CloudFront.Model
         /// Gets and sets the property ContentSecurityPolicy. 
         /// <para>
         /// The policy directives and their values that CloudFront includes as values for the
-        /// <code>Content-Security-Policy</code> HTTP response header.
+        /// <c>Content-Security-Policy</c> HTTP response header.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -67,7 +68,7 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property Override. 
         /// <para>
-        /// A Boolean that determines whether CloudFront overrides the <code>Content-Security-Policy</code>
+        /// A Boolean that determines whether CloudFront overrides the <c>Content-Security-Policy</c>
         /// HTTP response header received from the origin with the one specified in this response
         /// headers policy.
         /// </para>

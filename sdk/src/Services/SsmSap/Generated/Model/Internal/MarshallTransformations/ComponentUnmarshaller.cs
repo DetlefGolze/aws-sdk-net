@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SsmSap.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.SsmSap.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Component Unmarshall(JsonUnmarshallerContext context)
         {
+            Component unmarshalledObject = new Component();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Component unmarshalledObject = new Component();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -98,6 +100,12 @@ namespace Amazon.SsmSap.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.ComponentType = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("DatabaseConnection", targetDepth))
+                {
+                    var unmarshaller = DatabaseConnectionUnmarshaller.Instance;
+                    unmarshalledObject.DatabaseConnection = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Databases", targetDepth))
@@ -142,6 +150,12 @@ namespace Amazon.SsmSap.Model.Internal.MarshallTransformations
                     unmarshalledObject.Resilience = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("SapFeature", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.SapFeature = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("SapHostname", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -154,14 +168,25 @@ namespace Amazon.SsmSap.Model.Internal.MarshallTransformations
                     unmarshalledObject.SapKernelVersion = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("Sid", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Sid = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("Status", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.Status = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("SystemNumber", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.SystemNumber = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

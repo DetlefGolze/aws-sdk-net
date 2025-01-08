@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
@@ -66,7 +67,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// The date and time that the association was created, specified in ISO-8601 format.
+        /// The date and time that the association was created, in ISO-8601 format.
         /// </para>
         /// </summary>
         public DateTime CreatedAt
@@ -122,7 +123,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property LastUpdatedAt. 
         /// <para>
-        /// The date and time that the association was last updated, specified in ISO-8601 format.
+        /// The date and time that the association was last updated, in ISO-8601 format.
         /// </para>
         /// </summary>
         public DateTime LastUpdatedAt
@@ -162,7 +163,7 @@ namespace Amazon.VPCLattice.Model
         /// The ID of the service network.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=32, Max=32)]
+        [AWSProperty(Min=20, Max=20)]
         public string ServiceNetworkId
         {
             get { return this._serviceNetworkId; }

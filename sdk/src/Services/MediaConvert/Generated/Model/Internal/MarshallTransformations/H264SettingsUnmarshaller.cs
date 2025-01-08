@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public H264Settings Unmarshall(JsonUnmarshallerContext context)
         {
+            H264Settings unmarshalledObject = new H264Settings();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            H264Settings unmarshalledObject = new H264Settings();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -262,6 +264,12 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
                     unmarshalledObject.RepeatPps = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("saliencyAwareEncoding", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.SaliencyAwareEncoding = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("scanTypeConversionMode", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -322,8 +330,13 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
                     unmarshalledObject.UnregisteredSeiTimecode = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("writeMp4PackagingType", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.WriteMp4PackagingType = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

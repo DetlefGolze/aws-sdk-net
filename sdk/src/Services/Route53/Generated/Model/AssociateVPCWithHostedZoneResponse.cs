@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
-    /// A complex type that contains the response information for the <code>AssociateVPCWithHostedZone</code>
+    /// A complex type that contains the response information for the <c>AssociateVPCWithHostedZone</c>
     /// request.
     /// </summary>
     public partial class AssociateVPCWithHostedZoneResponse : AmazonWebServiceResponse

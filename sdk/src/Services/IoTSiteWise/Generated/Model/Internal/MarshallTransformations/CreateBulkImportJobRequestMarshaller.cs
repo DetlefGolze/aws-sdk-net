@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,8 +64,21 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetAdaptiveIngestion())
+                {
+                    context.Writer.WritePropertyName("adaptiveIngestion");
+                    context.Writer.Write(publicRequest.AdaptiveIngestion);
+                }
+
+                if(publicRequest.IsSetDeleteFilesAfterImport())
+                {
+                    context.Writer.WritePropertyName("deleteFilesAfterImport");
+                    context.Writer.Write(publicRequest.DeleteFilesAfterImport);
+                }
+
                 if(publicRequest.IsSetErrorReportLocation())
                 {
                     context.Writer.WritePropertyName("errorReportLocation");

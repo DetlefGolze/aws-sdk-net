@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
@@ -166,7 +167,7 @@ namespace Amazon.Snowball.Model
         /// Gets and sets the property JobType. 
         /// <para>
         /// The type of job for this cluster. Currently, the only job type supported for clusters
-        /// is <code>LOCAL_USE</code>.
+        /// is <c>LOCAL_USE</c>.
         /// </para>
         /// </summary>
         public JobType JobType
@@ -184,8 +185,8 @@ namespace Amazon.Snowball.Model
         /// <summary>
         /// Gets and sets the property KmsKeyARN. 
         /// <para>
-        /// The <code>KmsKeyARN</code> Amazon Resource Name (ARN) associated with this cluster.
-        /// This ARN was created using the <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html">CreateKey</a>
+        /// The <c>KmsKeyARN</c> Amazon Resource Name (ARN) associated with this cluster. This
+        /// ARN was created using the <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html">CreateKey</a>
         /// API action in Key Management Service (KMS.
         /// </para>
         /// </summary>
@@ -326,7 +327,7 @@ namespace Amazon.Snowball.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// For cluster jobs, Amazon Web Services Snow Family currently supports only the <code>EDGE</code>
+        /// For cluster jobs, Amazon Web Services Snow Family currently supports only the <c>EDGE</c>
         /// device type.
         /// </para>
         ///  </note>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.Comprehend.Model
         private string _message;
         private OutputDataConfig _outputDataConfig;
         private DateTime? _submitTime;
-        private List<string> _targetEventTypes = new List<string>();
+        private List<string> _targetEventTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DataAccessRoleArn. 
@@ -112,7 +113,7 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:events-detection-job/&lt;job-id&gt;</code>
+        ///  <c>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:events-detection-job/&lt;job-id&gt;</c>
         /// 
         /// </para>
         ///  
@@ -121,7 +122,7 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:comprehend:us-west-2:111122223333:events-detection-job/1234abcd12ab34cd56ef1234567890ab</code>
+        ///  <c>arn:aws:comprehend:us-west-2:111122223333:events-detection-job/1234abcd12ab34cd56ef1234567890ab</c>
         /// 
         /// </para>
         /// </summary>
@@ -283,7 +284,7 @@ namespace Amazon.Comprehend.Model
         // Check to see if TargetEventTypes property is set
         internal bool IsSetTargetEventTypes()
         {
-            return this._targetEventTypes != null && this._targetEventTypes.Count > 0; 
+            return this._targetEventTypes != null && (this._targetEventTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

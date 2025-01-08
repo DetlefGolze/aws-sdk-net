@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,8 +66,20 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetAttributesToGet())
+                {
+                    context.Writer.WritePropertyName("AttributesToGet");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestAttributesToGetListValue in publicRequest.AttributesToGet)
+                    {
+                            context.Writer.Write(publicRequestAttributesToGetListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+
                 if(publicRequest.IsSetCatalogId())
                 {
                     context.Writer.WritePropertyName("CatalogId");
@@ -83,6 +96,12 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("Expression");
                     context.Writer.Write(publicRequest.Expression);
+                }
+
+                if(publicRequest.IsSetIncludeStatusDetails())
+                {
+                    context.Writer.WritePropertyName("IncludeStatusDetails");
+                    context.Writer.Write(publicRequest.IncludeStatusDetails);
                 }
 
                 if(publicRequest.IsSetMaxResults())

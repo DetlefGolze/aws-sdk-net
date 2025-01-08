@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LookoutforVision.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.LookoutforVision.Model
     /// 
     ///  <note> 
     /// <para>
-    /// You can't specify a component with the same <code>ComponentName</code> and <code>Componentversion</code>
+    /// You can't specify a component with the same <c>ComponentName</c> and <c>Componentversion</c>
     /// as an existing component with the same component name and component version.
     /// </para>
     ///  </note>
@@ -46,7 +47,7 @@ namespace Amazon.LookoutforVision.Model
         private string _componentName;
         private string _componentVersion;
         private S3Location _s3OutputLocation;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private TargetDevice _targetDevice;
         private TargetPlatform _targetPlatform;
 
@@ -54,8 +55,8 @@ namespace Amazon.LookoutforVision.Model
         /// Gets and sets the property CompilerOptions. 
         /// <para>
         /// Additional compiler options for the Greengrass component. Currently, only NVIDIA Graphics
-        /// Processing Units (GPU) and CPU accelerators are supported. If you specify <code>TargetDevice</code>,
-        /// don't specify <code>CompilerOptions</code>.
+        /// Processing Units (GPU) and CPU accelerators are supported. If you specify <c>TargetDevice</c>,
+        /// don't specify <c>CompilerOptions</c>.
         /// </para>
         ///  
         /// <para>
@@ -118,7 +119,7 @@ namespace Amazon.LookoutforVision.Model
         /// Gets and sets the property ComponentVersion. 
         /// <para>
         /// A Version for the AWS IoT Greengrass component. If you don't provide a value, a default
-        /// value of <code> <i>Model Version</i>.0.0</code> is used. 
+        /// value of <c> <i>Model Version</i>.0.0</c> is used. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -170,15 +171,14 @@ namespace Amazon.LookoutforVision.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TargetDevice. 
         /// <para>
-        /// The target device for the model. Currently the only supported value is <code>jetson_xavier</code>.
-        /// If you specify <code>TargetDevice</code>, you can't specify <code>TargetPlatform</code>.
-        /// 
+        /// The target device for the model. Currently the only supported value is <c>jetson_xavier</c>.
+        /// If you specify <c>TargetDevice</c>, you can't specify <c>TargetPlatform</c>. 
         /// </para>
         /// </summary>
         public TargetDevice TargetDevice
@@ -196,8 +196,8 @@ namespace Amazon.LookoutforVision.Model
         /// <summary>
         /// Gets and sets the property TargetPlatform. 
         /// <para>
-        /// The target platform for the model. If you specify <code>TargetPlatform</code>, you
-        /// can't specify <code>TargetDevice</code>. 
+        /// The target platform for the model. If you specify <c>TargetPlatform</c>, you can't
+        /// specify <c>TargetDevice</c>. 
         /// </para>
         /// </summary>
         public TargetPlatform TargetPlatform

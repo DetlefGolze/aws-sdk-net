@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.LexModelsV2.Model
         private string _botVersion;
         private string _localeId;
         private string _nextToken;
-        private List<SlotTypeSummary> _slotTypeSummaries = new List<SlotTypeSummary>();
+        private List<SlotTypeSummary> _slotTypeSummaries = AWSConfigs.InitializeCollections ? new List<SlotTypeSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property BotId. 
@@ -99,9 +100,9 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token that indicates whether there are more results to return in a response to the
-        /// <code>ListSlotTypes</code> operation. If the <code>nextToken</code> field is present,
-        /// you send the contents as the <code>nextToken</code> parameter of a <code>ListSlotTypes</code>
-        /// operation request to get the next page of results.
+        /// <c>ListSlotTypes</c> operation. If the <c>nextToken</c> field is present, you send
+        /// the contents as the <c>nextToken</c> parameter of a <c>ListSlotTypes</c> operation
+        /// request to get the next page of results.
         /// </para>
         /// </summary>
         public string NextToken
@@ -120,9 +121,9 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property SlotTypeSummaries. 
         /// <para>
         /// Summary information for the slot types that meet the filter criteria specified in
-        /// the request. The length of the list is specified in the <code>maxResults</code> parameter
-        /// of the request. If there are more slot types available, the <code>nextToken</code>
-        /// field contains a token to get the next page of results.
+        /// the request. The length of the list is specified in the <c>maxResults</c> parameter
+        /// of the request. If there are more slot types available, the <c>nextToken</c> field
+        /// contains a token to get the next page of results.
         /// </para>
         /// </summary>
         public List<SlotTypeSummary> SlotTypeSummaries
@@ -134,7 +135,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if SlotTypeSummaries property is set
         internal bool IsSetSlotTypeSummaries()
         {
-            return this._slotTypeSummaries != null && this._slotTypeSummaries.Count > 0; 
+            return this._slotTypeSummaries != null && (this._slotTypeSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// The result of a <code><a>DescribeOutboundCrossClusterSearchConnections</a></code>
-    /// request. Contains the list of connections matching the filter criteria.
+    /// The result of a <c><a>DescribeOutboundCrossClusterSearchConnections</a></c> request.
+    /// Contains the list of connections matching the filter criteria.
     /// </summary>
     public partial class DescribeOutboundCrossClusterSearchConnectionsResponse : AmazonWebServiceResponse
     {
-        private List<OutboundCrossClusterSearchConnection> _crossClusterSearchConnections = new List<OutboundCrossClusterSearchConnection>();
+        private List<OutboundCrossClusterSearchConnection> _crossClusterSearchConnections = AWSConfigs.InitializeCollections ? new List<OutboundCrossClusterSearchConnection>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property CrossClusterSearchConnections. 
         /// <para>
-        /// Consists of list of <code><a>OutboundCrossClusterSearchConnection</a></code> matching
-        /// the specified filter criteria.
+        /// Consists of list of <c><a>OutboundCrossClusterSearchConnection</a></c> matching the
+        /// specified filter criteria.
         /// </para>
         /// </summary>
         public List<OutboundCrossClusterSearchConnection> CrossClusterSearchConnections
@@ -53,7 +54,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if CrossClusterSearchConnections property is set
         internal bool IsSetCrossClusterSearchConnections()
         {
-            return this._crossClusterSearchConnections != null && this._crossClusterSearchConnections.Count > 0; 
+            return this._crossClusterSearchConnections != null && (this._crossClusterSearchConnections.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

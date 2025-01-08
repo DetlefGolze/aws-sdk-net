@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Redshift.Model
     /// </summary>
     public partial class DescribeDataSharesResponse : AmazonWebServiceResponse
     {
-        private List<DataShare> _dataShares = new List<DataShare>();
+        private List<DataShare> _dataShares = AWSConfigs.InitializeCollections ? new List<DataShare>() : null;
         private string _marker;
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace Amazon.Redshift.Model
         // Check to see if DataShares property is set
         internal bool IsSetDataShares()
         {
-            return this._dataShares != null && this._dataShares.Count > 0; 
+            return this._dataShares != null && (this._dataShares.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -59,9 +60,9 @@ namespace Amazon.Redshift.Model
         /// <para>
         /// An optional parameter that specifies the starting point to return a set of response
         /// records. When the results of a <a>DescribeDataShares</a> request exceed the value
-        /// specified in <code>MaxRecords</code>, Amazon Web Services returns a value in the <code>Marker</code>
+        /// specified in <c>MaxRecords</c>, Amazon Web Services returns a value in the <c>Marker</c>
         /// field of the response. You can retrieve the next set of response records by providing
-        /// the returned marker value in the <code>Marker</code> parameter and retrying the request.
+        /// the returned marker value in the <c>Marker</c> parameter and retrying the request.
         /// 
         /// </para>
         /// </summary>

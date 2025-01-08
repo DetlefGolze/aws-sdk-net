@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTWireless.Model
 {
     /// <summary>
-    /// <code>SidewalkEventNotificationConfigurations</code> object, which is the event configuration
+    /// <c>SidewalkEventNotificationConfigurations</c> object, which is the event configuration
     /// object for Sidewalk-related event topics.
     /// </summary>
     public partial class SidewalkEventNotificationConfigurations

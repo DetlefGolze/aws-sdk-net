@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHub.Model
 {
     /// <summary>
     /// Exception raised when there are problems accessing Application Discovery Service (Application
-    /// Discovery Service); most likely due to a misconfigured policy or the <code>migrationhub-discovery</code>
+    /// Discovery Service); most likely due to a misconfigured policy or the <c>migrationhub-discovery</c>
     /// role is missing or not configured correctly.
     /// </summary>
     #if !NETSTANDARD

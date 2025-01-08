@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -47,17 +48,16 @@ namespace Amazon.IdentityManagement.Model
     /// </para>
     ///  <note> 
     /// <para>
-    /// Amazon Web Services secures communication with some OIDC identity providers (IdPs)
-    /// through our library of trusted root certificate authorities (CAs) instead of using
-    /// a certificate thumbprint to verify your IdP server certificate. These OIDC IdPs include
-    /// Auth0, GitHub, Google, and those that use an Amazon S3 bucket to host a JSON Web Key
-    /// Set (JWKS) endpoint. In these cases, your legacy thumbprint remains in your configuration,
-    /// but is no longer used for validation.
+    /// Amazon Web Services secures communication with OIDC identity providers (IdPs) using
+    /// our library of trusted root certificate authorities (CAs) to verify the JSON Web Key
+    /// Set (JWKS) endpoint's TLS certificate. If your OIDC IdP relies on a certificate that
+    /// is not signed by one of these trusted CAs, only then we secure communication using
+    /// the thumbprints set in the IdP's configuration.
     /// </para>
     ///  </note> <note> 
     /// <para>
     /// Trust for the OIDC provider is derived from the provider certificate and is validated
-    /// by the thumbprint. Therefore, it is best to limit access to the <code>UpdateOpenIDConnectProviderThumbprint</code>
+    /// by the thumbprint. Therefore, it is best to limit access to the <c>UpdateOpenIDConnectProviderThumbprint</c>
     /// operation to highly privileged users.
     /// </para>
     ///  </note>
@@ -65,7 +65,7 @@ namespace Amazon.IdentityManagement.Model
     public partial class UpdateOpenIDConnectProviderThumbprintRequest : AmazonIdentityManagementServiceRequest
     {
         private string _openIDConnectProviderArn;
-        private List<string> _thumbprintList = new List<string>();
+        private List<string> _thumbprintList = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property OpenIDConnectProviderArn. 
@@ -110,7 +110,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if ThumbprintList property is set
         internal bool IsSetThumbprintList()
         {
-            return this._thumbprintList != null && this._thumbprintList.Count > 0; 
+            return this._thumbprintList != null && (this._thumbprintList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

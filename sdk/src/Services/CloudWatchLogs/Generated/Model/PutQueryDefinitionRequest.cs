@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -36,26 +37,26 @@ namespace Amazon.CloudWatchLogs.Model
     /// 
     ///  
     /// <para>
-    /// To update a query definition, specify its <code>queryDefinitionId</code> in your request.
-    /// The values of <code>name</code>, <code>queryString</code>, and <code>logGroupNames</code>
-    /// are changed to the values that you specify in your update operation. No current values
-    /// are retained from the current query definition. For example, imagine updating a current
-    /// query definition that includes log groups. If you don't specify the <code>logGroupNames</code>
-    /// parameter in your update operation, the query definition changes to contain no log
-    /// groups.
+    /// To update a query definition, specify its <c>queryDefinitionId</c> in your request.
+    /// The values of <c>name</c>, <c>queryString</c>, and <c>logGroupNames</c> are changed
+    /// to the values that you specify in your update operation. No current values are retained
+    /// from the current query definition. For example, imagine updating a current query definition
+    /// that includes log groups. If you don't specify the <c>logGroupNames</c> parameter
+    /// in your update operation, the query definition changes to contain no log groups.
     /// </para>
     ///  
     /// <para>
-    /// You must have the <code>logs:PutQueryDefinition</code> permission to be able to perform
+    /// You must have the <c>logs:PutQueryDefinition</c> permission to be able to perform
     /// this operation.
     /// </para>
     /// </summary>
     public partial class PutQueryDefinitionRequest : AmazonCloudWatchLogsRequest
     {
         private string _clientToken;
-        private List<string> _logGroupNames = new List<string>();
+        private List<string> _logGroupNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
         private string _queryDefinitionId;
+        private QueryLanguage _queryLanguage;
         private string _queryString;
 
         /// <summary>
@@ -82,11 +83,14 @@ namespace Amazon.CloudWatchLogs.Model
         /// Gets and sets the property LogGroupNames. 
         /// <para>
         /// Use this parameter to include specific log groups as part of your query definition.
+        /// If your query uses the OpenSearch Service query language, you specify the log group
+        /// names inside the <c>querystring</c> instead of here.
         /// </para>
         ///  
         /// <para>
-        /// If you are updating a query definition and you omit this parameter, then the updated
-        /// definition will contain no log groups.
+        /// If you are updating an existing query definition for the Logs Insights QL or OpenSearch
+        /// Service PPL and you omit this parameter, then the updated definition will contain
+        /// no log groups.
         /// </para>
         /// </summary>
         public List<string> LogGroupNames
@@ -98,7 +102,7 @@ namespace Amazon.CloudWatchLogs.Model
         // Check to see if LogGroupNames property is set
         internal bool IsSetLogGroupNames()
         {
-            return this._logGroupNames != null && this._logGroupNames.Count > 0; 
+            return this._logGroupNames != null && (this._logGroupNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -106,7 +110,7 @@ namespace Amazon.CloudWatchLogs.Model
         /// <para>
         /// A name for the query definition. If you are saving numerous query definitions, we
         /// recommend that you name them. This way, you can find the ones you want by using the
-        /// first part of the name as a filter in the <code>queryDefinitionNamePrefix</code> parameter
+        /// first part of the name as a filter in the <c>queryDefinitionNamePrefix</c> parameter
         /// of <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeQueryDefinitions.html">DescribeQueryDefinitions</a>.
         /// </para>
         /// </summary>
@@ -148,6 +152,27 @@ namespace Amazon.CloudWatchLogs.Model
         internal bool IsSetQueryDefinitionId()
         {
             return this._queryDefinitionId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property QueryLanguage. 
+        /// <para>
+        /// Specify the query language to use for this query. The options are Logs Insights QL,
+        /// OpenSearch PPL, and OpenSearch SQL. For more information about the query languages
+        /// that CloudWatch Logs supports, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_AnalyzeLogData_Languages.html">Supported
+        /// query languages</a>.
+        /// </para>
+        /// </summary>
+        public QueryLanguage QueryLanguage
+        {
+            get { return this._queryLanguage; }
+            set { this._queryLanguage = value; }
+        }
+
+        // Check to see if QueryLanguage property is set
+        internal bool IsSetQueryLanguage()
+        {
+            return this._queryLanguage != null;
         }
 
         /// <summary>

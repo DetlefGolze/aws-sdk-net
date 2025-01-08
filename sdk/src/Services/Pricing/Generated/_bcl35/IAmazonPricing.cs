@@ -24,16 +24,17 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Pricing.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Pricing
 {
     /// <summary>
-    /// Interface for accessing Pricing
+    /// <para>Interface for accessing Pricing</para>
     ///
     /// The Amazon Web Services Price List API is a centralized and convenient way to programmatically
     /// query Amazon Web Services for services, products, and pricing information. The Amazon
-    /// Web Services Price List uses standardized product attributes such as <code>Location</code>,
-    /// <code>Storage Class</code>, and <code>Operating System</code>, and provides prices
-    /// at the SKU level. You can use the Amazon Web Services Price List to do the following:
+    /// Web Services Price List uses standardized product attributes such as <c>Location</c>,
+    /// <c>Storage Class</c>, and <c>Operating System</c>, and provides prices at the SKU
+    /// level. You can use the Amazon Web Services Price List to do the following:
     /// 
     ///  <ul> <li> 
     /// <para>
@@ -54,28 +55,19 @@ namespace Amazon.Pricing
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// Use <code>GetServices</code> without a service code to retrieve the service codes
-    /// for all Amazon Web Services, then <code>GetServices</code> with a service code to
-    /// retrieve the attribute names for that service. After you have the service code and
-    /// attribute names, you can use <code>GetAttributeValues</code> to see what values are
-    /// available for an attribute. With the service code and an attribute name and value,
-    /// you can use <code>GetProducts</code> to find specific products that you're interested
-    /// in, such as an <code>AmazonEC2</code> instance, with a <code>Provisioned IOPS</code>
-    /// <code>volumeType</code>.
+    /// Use <c>GetServices</c> without a service code to retrieve the service codes for all
+    /// Amazon Web Services services, then <c>GetServices</c> with a service code to retrieve
+    /// the attribute names for that service. After you have the service code and attribute
+    /// names, you can use <c>GetAttributeValues</c> to see what values are available for
+    /// an attribute. With the service code and an attribute name and value, you can use <c>GetProducts</c>
+    /// to find specific products that you're interested in, such as an <c>AmazonEC2</c> instance,
+    /// with a <c>Provisioned IOPS</c> <c>volumeType</c>.
     /// </para>
     ///  
     /// <para>
-    /// You can use the following endpoints for the Amazon Web Services Price List API:
+    /// For more information, see <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html">Using
+    /// the Amazon Web Services Price List API</a> in the <i>Billing User Guide</i>.
     /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    /// https://api.pricing.us-east-1.amazonaws.com
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// https://api.pricing.ap-south-1.amazonaws.com
-    /// </para>
-    ///  </li> </ul>
     /// </summary>
     public partial interface IAmazonPricing : IAmazonService, IDisposable
     {
@@ -96,10 +88,10 @@ namespace Amazon.Pricing
         /// <summary>
         /// Returns the metadata for one service or a list of the metadata for all services. Use
         /// this without a service code to get the service codes for all services. Use it with
-        /// a service code, such as <code>AmazonEC2</code>, to get information specific to that
-        /// service, such as the attribute names available for that service. For example, some
-        /// of the attribute names available for EC2 are <code>volumeType</code>, <code>maxIopsVolume</code>,
-        /// <code>operation</code>, <code>locationType</code>, and <code>instanceCapacity10xlarge</code>.
+        /// a service code, such as <c>AmazonEC2</c>, to get information specific to that service,
+        /// such as the attribute names available for that service. For example, some of the attribute
+        /// names available for EC2 are <c>volumeType</c>, <c>maxIopsVolume</c>, <c>operation</c>,
+        /// <c>locationType</c>, and <c>instanceCapacity10xlarge</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeServices service method.</param>
         /// 
@@ -118,6 +110,9 @@ namespace Amazon.Pricing
         /// </exception>
         /// <exception cref="Amazon.Pricing.Model.NotFoundException">
         /// The requested resource can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Pricing.Model.ThrottlingException">
+        /// You've made too many requests exceeding service quotas.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/pricing-2017-10-15/DescribeServices">REST API Reference for DescribeServices Operation</seealso>
         DescribeServicesResponse DescribeServices(DescribeServicesRequest request);
@@ -177,6 +172,9 @@ namespace Amazon.Pricing
         /// <exception cref="Amazon.Pricing.Model.NotFoundException">
         /// The requested resource can't be found.
         /// </exception>
+        /// <exception cref="Amazon.Pricing.Model.ThrottlingException">
+        /// You've made too many requests exceeding service quotas.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/pricing-2017-10-15/GetAttributeValues">REST API Reference for GetAttributeValues Operation</seealso>
         GetAttributeValuesResponse GetAttributeValues(GetAttributeValuesRequest request);
 
@@ -220,9 +218,9 @@ namespace Amazon.Pricing
         ///  
         /// <para>
         /// This returns the URL that you can retrieve your Price List file from. This URL is
-        /// based on the <code>PriceListArn</code> and <code>FileFormat</code> that you retrieve
-        /// from the <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_ListPriceLists.html">
-        /// <code>ListPriceLists</code> </a> response. 
+        /// based on the <c>PriceListArn</c> and <c>FileFormat</c> that you retrieve from the
+        /// <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_ListPriceLists.html">ListPriceLists</a>
+        /// response. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetPriceListFileUrl service method.</param>
@@ -239,6 +237,12 @@ namespace Amazon.Pricing
         /// </exception>
         /// <exception cref="Amazon.Pricing.Model.NotFoundException">
         /// The requested resource can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Pricing.Model.ResourceNotFoundException">
+        /// The requested resource can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Pricing.Model.ThrottlingException">
+        /// You've made too many requests exceeding service quotas.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/pricing-2017-10-15/GetPriceListFileUrl">REST API Reference for GetPriceListFileUrl Operation</seealso>
         GetPriceListFileUrlResponse GetPriceListFileUrl(GetPriceListFileUrlRequest request);
@@ -295,6 +299,9 @@ namespace Amazon.Pricing
         /// <exception cref="Amazon.Pricing.Model.NotFoundException">
         /// The requested resource can't be found.
         /// </exception>
+        /// <exception cref="Amazon.Pricing.Model.ThrottlingException">
+        /// You've made too many requests exceeding service quotas.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/pricing-2017-10-15/GetProducts">REST API Reference for GetProducts Operation</seealso>
         GetProductsResponse GetProducts(GetProductsRequest request);
 
@@ -338,13 +345,13 @@ namespace Amazon.Pricing
         ///  
         /// <para>
         /// This returns a list of Price List references that the requester if authorized to view,
-        /// given a <code>ServiceCode</code>, <code>CurrencyCode</code>, and an <code>EffectiveDate</code>.
-        /// Use without a <code>RegionCode</code> filter to list Price List references from all
-        /// available Amazon Web Services Regions. Use with a <code>RegionCode</code> filter to
-        /// get the Price List reference that's specific to a specific Amazon Web Services Region.
-        /// You can use the <code>PriceListArn</code> from the response to get your preferred
-        /// Price List files through the <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_GetPriceListFileUrl.html">
-        /// <code>GetPriceListFileUrl</code> </a> API.
+        /// given a <c>ServiceCode</c>, <c>CurrencyCode</c>, and an <c>EffectiveDate</c>. Use
+        /// without a <c>RegionCode</c> filter to list Price List references from all available
+        /// Amazon Web Services Regions. Use with a <c>RegionCode</c> filter to get the Price
+        /// List reference that's specific to a specific Amazon Web Services Region. You can use
+        /// the <c>PriceListArn</c> from the response to get your preferred Price List files through
+        /// the <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_GetPriceListFileUrl.html">GetPriceListFileUrl</a>
+        /// API.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListPriceLists service method.</param>
@@ -367,6 +374,12 @@ namespace Amazon.Pricing
         /// </exception>
         /// <exception cref="Amazon.Pricing.Model.NotFoundException">
         /// The requested resource can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Pricing.Model.ResourceNotFoundException">
+        /// The requested resource can't be found.
+        /// </exception>
+        /// <exception cref="Amazon.Pricing.Model.ThrottlingException">
+        /// You've made too many requests exceeding service quotas.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/pricing-2017-10-15/ListPriceLists">REST API Reference for ListPriceLists Operation</seealso>
         ListPriceListsResponse ListPriceLists(ListPriceListsRequest request);

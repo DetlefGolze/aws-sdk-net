@@ -26,30 +26,30 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeBackups operation.
-    /// Returns the description of a specific Amazon FSx backup, if a <code>BackupIds</code>
-    /// value is provided for that backup. Otherwise, it returns all backups owned by your
-    /// Amazon Web Services account in the Amazon Web Services Region of the endpoint that
-    /// you're calling.
+    /// Returns the description of a specific Amazon FSx backup, if a <c>BackupIds</c> value
+    /// is provided for that backup. Otherwise, it returns all backups owned by your Amazon
+    /// Web Services account in the Amazon Web Services Region of the endpoint that you're
+    /// calling.
     /// 
     ///  
     /// <para>
-    /// When retrieving all backups, you can optionally specify the <code>MaxResults</code>
-    /// parameter to limit the number of backups in a response. If more backups remain, Amazon
-    /// FSx returns a <code>NextToken</code> value in the response. In this case, send a later
-    /// request with the <code>NextToken</code> request parameter set to the value of the
-    /// <code>NextToken</code> value from the last response.
+    /// When retrieving all backups, you can optionally specify the <c>MaxResults</c> parameter
+    /// to limit the number of backups in a response. If more backups remain, Amazon FSx returns
+    /// a <c>NextToken</c> value in the response. In this case, send a later request with
+    /// the <c>NextToken</c> request parameter set to the value of the <c>NextToken</c> value
+    /// from the last response.
     /// </para>
     ///  
     /// <para>
     /// This operation is used in an iterative process to retrieve a list of your backups.
-    /// <code>DescribeBackups</code> is called first without a <code>NextToken</code> value.
-    /// Then the operation continues to be called with the <code>NextToken</code> parameter
-    /// set to the value of the last <code>NextToken</code> value until a response has no
-    /// <code>NextToken</code> value.
+    /// <c>DescribeBackups</c> is called first without a <c>NextToken</c> value. Then the
+    /// operation continues to be called with the <c>NextToken</c> parameter set to the value
+    /// of the last <c>NextToken</c> value until a response has no <c>NextToken</c> value.
     /// </para>
     ///  
     /// <para>
@@ -57,21 +57,21 @@ namespace Amazon.FSx.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// The operation might return fewer than the <code>MaxResults</code> value of backup
-    /// descriptions while still including a <code>NextToken</code> value.
+    /// The operation might return fewer than the <c>MaxResults</c> value of backup descriptions
+    /// while still including a <c>NextToken</c> value.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// The order of the backups returned in the response of one <code>DescribeBackups</code>
-    /// call and the order of the backups returned across the responses of a multi-call iteration
+    /// The order of the backups returned in the response of one <c>DescribeBackups</c> call
+    /// and the order of the backups returned across the responses of a multi-call iteration
     /// is unspecified.
     /// </para>
     ///  </li> </ul>
     /// </summary>
     public partial class DescribeBackupsRequest : AmazonFSxRequest
     {
-        private List<string> _backupIds = new List<string>();
-        private List<Filter> _filters = new List<Filter>();
+        private List<string> _backupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -79,7 +79,7 @@ namespace Amazon.FSx.Model
         /// Gets and sets the property BackupIds. 
         /// <para>
         /// The IDs of the backups that you want to retrieve. This parameter value overrides any
-        /// filters. If any IDs aren't found, a <code>BackupNotFound</code> error occurs.
+        /// filters. If any IDs aren't found, a <c>BackupNotFound</c> error occurs.
         /// </para>
         /// </summary>
         [AWSProperty(Max=50)]
@@ -92,14 +92,14 @@ namespace Amazon.FSx.Model
         // Check to see if BackupIds property is set
         internal bool IsSetBackupIds()
         {
-            return this._backupIds != null && this._backupIds.Count > 0; 
+            return this._backupIds != null && (this._backupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// The filters structure. The supported names are <code>file-system-id</code>, <code>backup-type</code>,
-        /// <code>file-system-type</code>, and <code>volume-id</code>.
+        /// The filters structure. The supported names are <c>file-system-id</c>, <c>backup-type</c>,
+        /// <c>file-system-type</c>, and <c>volume-id</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=10)]
@@ -112,7 +112,7 @@ namespace Amazon.FSx.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -120,8 +120,8 @@ namespace Amazon.FSx.Model
         /// <para>
         /// Maximum number of backups to return in the response. This parameter value must be
         /// greater than 0. The number of items that Amazon FSx returns is the minimum of the
-        /// <code>MaxResults</code> parameter specified in the request and the service's internal
-        /// maximum number of items per page.
+        /// <c>MaxResults</c> parameter specified in the request and the service's internal maximum
+        /// number of items per page.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2147483647)]
@@ -140,7 +140,7 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// An opaque pagination token returned from a previous <code>DescribeBackups</code> operation.
+        /// An opaque pagination token returned from a previous <c>DescribeBackups</c> operation.
         /// If a token is present, the operation continues the list from where the returning call
         /// left off.
         /// </para>

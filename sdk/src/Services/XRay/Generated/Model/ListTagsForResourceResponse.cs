@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.XRay.Model
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace Amazon.XRay.Model
     public partial class ListTagsForResourceResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A pagination token. If multiple pages of results are returned, use the <code>NextToken</code>
+        /// A pagination token. If multiple pages of results are returned, use the <c>NextToken</c>
         /// value returned with the current page of results to get the next page of results.
         /// </para>
         /// </summary>
@@ -72,7 +73,7 @@ namespace Amazon.XRay.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

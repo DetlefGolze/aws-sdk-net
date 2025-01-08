@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHub.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.MigrationHub.Model
     /// </summary>
     public partial class ListApplicationStatesResponse : AmazonWebServiceResponse
     {
-        private List<ApplicationState> _applicationStateList = new List<ApplicationState>();
+        private List<ApplicationState> _applicationStateList = AWSConfigs.InitializeCollections ? new List<ApplicationState>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,15 +53,15 @@ namespace Amazon.MigrationHub.Model
         // Check to see if ApplicationStateList property is set
         internal bool IsSetApplicationStateList()
         {
-            return this._applicationStateList != null && this._applicationStateList.Count > 0; 
+            return this._applicationStateList != null && (this._applicationStateList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If a <code>NextToken</code> was returned by a previous call, there are more results
-        /// available. To retrieve the next page of results, make the call again using the returned
-        /// token in <code>NextToken</code>.
+        /// If a <c>NextToken</c> was returned by a previous call, there are more results available.
+        /// To retrieve the next page of results, make the call again using the returned token
+        /// in <c>NextToken</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=2048)]

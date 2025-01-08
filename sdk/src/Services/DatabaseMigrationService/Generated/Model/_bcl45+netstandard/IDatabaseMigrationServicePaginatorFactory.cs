@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the dms-2016-01-01.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -39,6 +40,11 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Paginator for DescribeConnections operation
         ///</summary>
         IDescribeConnectionsPaginator DescribeConnections(DescribeConnectionsRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeDataMigrations operation
+        ///</summary>
+        IDescribeDataMigrationsPaginator DescribeDataMigrations(DescribeDataMigrationsRequest request);
 
         /// <summary>
         /// Paginator for DescribeDataProviders operation

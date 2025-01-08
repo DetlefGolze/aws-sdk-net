@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the customer-profiles-2020-08-15.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
@@ -26,8 +27,33 @@ namespace Amazon.CustomerProfiles.Model
     {
 
         /// <summary>
+        /// Paginator for GetSimilarProfiles operation
+        ///</summary>
+        IGetSimilarProfilesPaginator GetSimilarProfiles(GetSimilarProfilesRequest request);
+
+        /// <summary>
         /// Paginator for ListEventStreams operation
         ///</summary>
         IListEventStreamsPaginator ListEventStreams(ListEventStreamsRequest request);
+
+        /// <summary>
+        /// Paginator for ListEventTriggers operation
+        ///</summary>
+        IListEventTriggersPaginator ListEventTriggers(ListEventTriggersRequest request);
+
+        /// <summary>
+        /// Paginator for ListObjectTypeAttributes operation
+        ///</summary>
+        IListObjectTypeAttributesPaginator ListObjectTypeAttributes(ListObjectTypeAttributesRequest request);
+
+        /// <summary>
+        /// Paginator for ListRuleBasedMatches operation
+        ///</summary>
+        IListRuleBasedMatchesPaginator ListRuleBasedMatches(ListRuleBasedMatchesRequest request);
+
+        /// <summary>
+        /// Paginator for ListSegmentDefinitions operation
+        ///</summary>
+        IListSegmentDefinitionsPaginator ListSegmentDefinitions(ListSegmentDefinitionsRequest request);
     }
 }

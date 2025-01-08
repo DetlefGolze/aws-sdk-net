@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.SimpleSystemsManagement.Model
     {
         private string _key;
         private string _option;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Key. 
@@ -44,19 +45,18 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  
         /// <para>
-        /// The <code>ParameterStringFilter</code> object is used by the <a>DescribeParameters</a>
-        /// and <a>GetParametersByPath</a> API operations. However, not all of the pattern values
-        /// listed for <code>Key</code> can be used with both operations.
+        /// The <c>ParameterStringFilter</c> object is used by the <a>DescribeParameters</a> and
+        /// <a>GetParametersByPath</a> API operations. However, not all of the pattern values
+        /// listed for <c>Key</c> can be used with both operations.
         /// </para>
         ///  
         /// <para>
-        /// For <code>DescribeParameters</code>, all of the listed patterns are valid except <code>Label</code>.
+        /// For <c>DescribeParameters</c>, all of the listed patterns are valid except <c>Label</c>.
         /// </para>
         ///  
         /// <para>
-        /// For <code>GetParametersByPath</code>, the following patterns listed for <code>Key</code>
-        /// aren't valid: <code>tag</code>, <code>DataType</code>, <code>Name</code>, <code>Path</code>,
-        /// and <code>Tier</code>.
+        /// For <c>GetParametersByPath</c>, the following patterns listed for <c>Key</c> aren't
+        /// valid: <c>tag</c>, <c>DataType</c>, <c>Name</c>, <c>Path</c>, and <c>Tier</c>.
         /// </para>
         ///  
         /// <para>
@@ -82,16 +82,16 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property Option. 
         /// <para>
-        /// For all filters used with <a>DescribeParameters</a>, valid options include <code>Equals</code>
-        /// and <code>BeginsWith</code>. The <code>Name</code> filter additionally supports the
-        /// <code>Contains</code> option. (Exception: For filters using the key <code>Path</code>,
-        /// valid options include <code>Recursive</code> and <code>OneLevel</code>.)
+        /// For all filters used with <a>DescribeParameters</a>, valid options include <c>Equals</c>
+        /// and <c>BeginsWith</c>. The <c>Name</c> filter additionally supports the <c>Contains</c>
+        /// option. (Exception: For filters using the key <c>Path</c>, valid options include <c>Recursive</c>
+        /// and <c>OneLevel</c>.)
         /// </para>
         ///  
         /// <para>
-        /// For filters used with <a>GetParametersByPath</a>, valid options include <code>Equals</code>
-        /// and <code>BeginsWith</code>. (Exception: For filters using <code>Label</code> as the
-        /// Key name, the only valid option is <code>Equals</code>.)
+        /// For filters used with <a>GetParametersByPath</a>, valid options include <c>Equals</c>
+        /// and <c>BeginsWith</c>. (Exception: For filters using <c>Label</c> as the Key name,
+        /// the only valid option is <c>Equals</c>.)
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
@@ -123,7 +123,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

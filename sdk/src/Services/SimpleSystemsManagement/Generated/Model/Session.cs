@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -68,7 +69,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property DocumentName. 
         /// <para>
         /// The name of the Session Manager SSM document used to define the parameters and plugin
-        /// settings for the session. For example, <code>SSM-SessionManagerRunShell</code>.
+        /// settings for the session. For example, <c>SSM-SessionManagerRunShell</c>.
         /// </para>
         /// </summary>
         public string DocumentName

@@ -26,23 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedGrafana.Model
 {
     /// <summary>
     /// This structure defines which groups defined in the SAML assertion attribute are to
-    /// be mapped to the Grafana <code>Admin</code> and <code>Editor</code> roles in the workspace.
-    /// SAML authenticated users not part of <code>Admin</code> or <code>Editor</code> role
-    /// groups have <code>Viewer</code> permission over the workspace.
+    /// be mapped to the Grafana <c>Admin</c> and <c>Editor</c> roles in the workspace. SAML
+    /// authenticated users not part of <c>Admin</c> or <c>Editor</c> role groups have <c>Viewer</c>
+    /// permission over the workspace.
     /// </summary>
     public partial class RoleValues
     {
-        private List<string> _admin = new List<string>();
-        private List<string> _editor = new List<string>();
+        private List<string> _admin = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _editor = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Admin. 
         /// <para>
-        /// A list of groups from the SAML assertion attribute to grant the Grafana <code>Admin</code>
+        /// A list of groups from the SAML assertion attribute to grant the Grafana <c>Admin</c>
         /// role to.
         /// </para>
         /// </summary>
@@ -56,13 +57,13 @@ namespace Amazon.ManagedGrafana.Model
         // Check to see if Admin property is set
         internal bool IsSetAdmin()
         {
-            return this._admin != null && this._admin.Count > 0; 
+            return this._admin != null && (this._admin.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Editor. 
         /// <para>
-        /// A list of groups from the SAML assertion attribute to grant the Grafana <code>Editor</code>
+        /// A list of groups from the SAML assertion attribute to grant the Grafana <c>Editor</c>
         /// role to.
         /// </para>
         /// </summary>
@@ -76,7 +77,7 @@ namespace Amazon.ManagedGrafana.Model
         // Check to see if Editor property is set
         internal bool IsSetEditor()
         {
-            return this._editor != null && this._editor.Count > 0; 
+            return this._editor != null && (this._editor.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

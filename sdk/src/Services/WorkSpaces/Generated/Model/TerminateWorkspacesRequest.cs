@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -40,15 +41,15 @@ namespace Amazon.WorkSpaces.Model
     /// </para>
     ///  </important> 
     /// <para>
-    /// You can terminate a WorkSpace that is in any state except <code>SUSPENDED</code>.
+    /// You can terminate a WorkSpace that is in any state except <c>SUSPENDED</c>.
     /// </para>
     ///  
     /// <para>
     /// This operation is asynchronous and returns before the WorkSpaces have been completely
-    /// terminated. After a WorkSpace is terminated, the <code>TERMINATED</code> state is
-    /// returned only briefly before the WorkSpace directory metadata is cleaned up, so this
-    /// state is rarely returned. To confirm that a WorkSpace is terminated, check for the
-    /// WorkSpace ID by using <a href="https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaces.html">
+    /// terminated. After a WorkSpace is terminated, the <c>TERMINATED</c> state is returned
+    /// only briefly before the WorkSpace directory metadata is cleaned up, so this state
+    /// is rarely returned. To confirm that a WorkSpace is terminated, check for the WorkSpace
+    /// ID by using <a href="https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaces.html">
     /// DescribeWorkSpaces</a>. If the WorkSpace ID isn't returned, then the WorkSpace has
     /// been successfully terminated.
     /// </para>
@@ -71,7 +72,7 @@ namespace Amazon.WorkSpaces.Model
     /// </summary>
     public partial class TerminateWorkspacesRequest : AmazonWorkSpacesRequest
     {
-        private List<TerminateRequest> _terminateWorkspaceRequests = new List<TerminateRequest>();
+        private List<TerminateRequest> _terminateWorkspaceRequests = AWSConfigs.InitializeCollections ? new List<TerminateRequest>() : null;
 
         /// <summary>
         /// Gets and sets the property TerminateWorkspaceRequests. 
@@ -89,7 +90,7 @@ namespace Amazon.WorkSpaces.Model
         // Check to see if TerminateWorkspaceRequests property is set
         internal bool IsSetTerminateWorkspaceRequests()
         {
-            return this._terminateWorkspaceRequests != null && this._terminateWorkspaceRequests.Count > 0; 
+            return this._terminateWorkspaceRequests != null && (this._terminateWorkspaceRequests.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

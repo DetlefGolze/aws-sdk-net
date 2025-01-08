@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -57,7 +58,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property PolicyId. 
         /// <para>
-        /// The policy ID. To update a policy, you must specify <code>PolicyId</code> and <code>PolicyHash</code>.
+        /// The policy ID. To update a policy, you must specify <c>PolicyId</c> and <c>PolicyHash</c>.
         /// </para>
         /// </summary>
         public string PolicyId

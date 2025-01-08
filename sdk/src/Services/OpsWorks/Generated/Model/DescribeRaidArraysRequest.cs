@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
@@ -47,14 +48,14 @@ namespace Amazon.OpsWorks.Model
     public partial class DescribeRaidArraysRequest : AmazonOpsWorksRequest
     {
         private string _instanceId;
-        private List<string> _raidArrayIds = new List<string>();
+        private List<string> _raidArrayIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _stackId;
 
         /// <summary>
         /// Gets and sets the property InstanceId. 
         /// <para>
-        /// The instance ID. If you use this parameter, <code>DescribeRaidArrays</code> returns
-        /// descriptions of the RAID arrays associated with the specified instance. 
+        /// The instance ID. If you use this parameter, <c>DescribeRaidArrays</c> returns descriptions
+        /// of the RAID arrays associated with the specified instance. 
         /// </para>
         /// </summary>
         public string InstanceId
@@ -72,9 +73,9 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property RaidArrayIds. 
         /// <para>
-        /// An array of RAID array IDs. If you use this parameter, <code>DescribeRaidArrays</code>
-        /// returns descriptions of the specified arrays. Otherwise, it returns a description
-        /// of every array.
+        /// An array of RAID array IDs. If you use this parameter, <c>DescribeRaidArrays</c> returns
+        /// descriptions of the specified arrays. Otherwise, it returns a description of every
+        /// array.
         /// </para>
         /// </summary>
         public List<string> RaidArrayIds
@@ -86,7 +87,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if RaidArrayIds property is set
         internal bool IsSetRaidArrayIds()
         {
-            return this._raidArrayIds != null && this._raidArrayIds.Count > 0; 
+            return this._raidArrayIds != null && (this._raidArrayIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -35,16 +36,17 @@ namespace Amazon.GameLift.Model
     {
         private string _fleetArn;
         private string _fleetId;
-        private List<LocationState> _locationStates = new List<LocationState>();
+        private List<LocationState> _locationStates = AWSConfigs.InitializeCollections ? new List<LocationState>() : null;
 
         /// <summary>
         /// Gets and sets the property FleetArn. 
         /// <para>
         /// The Amazon Resource Name (<a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
         /// that is assigned to a Amazon GameLift fleet resource and uniquely identifies it. ARNs
-        /// are unique across all Regions. Format is <code>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+        /// are unique across all Regions. Format is <c>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</c>.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=512)]
         public string FleetArn
         {
             get { return this._fleetArn; }
@@ -63,6 +65,7 @@ namespace Amazon.GameLift.Model
         /// A unique identifier for the fleet that location attributes are being deleted for.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -78,7 +81,7 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property LocationStates. 
         /// <para>
-        /// The remote locations that are being deleted, with each location status set to <code>DELETING</code>.
+        /// The remote locations that are being deleted, with each location status set to <c>DELETING</c>.
         /// </para>
         /// </summary>
         public List<LocationState> LocationStates
@@ -90,7 +93,7 @@ namespace Amazon.GameLift.Model
         // Check to see if LocationStates property is set
         internal bool IsSetLocationStates()
         {
-            return this._locationStates != null && this._locationStates.Count > 0; 
+            return this._locationStates != null && (this._locationStates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,6 +34,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class NetworkInfo
     {
+        private List<string> _bandwidthWeightings = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _defaultNetworkCardIndex;
         private EfaInfo _efaInfo;
         private bool? _efaSupported;
@@ -44,8 +46,27 @@ namespace Amazon.EC2.Model
         private bool? _ipv6Supported;
         private int? _maximumNetworkCards;
         private int? _maximumNetworkInterfaces;
-        private List<NetworkCardInfo> _networkCards = new List<NetworkCardInfo>();
+        private List<NetworkCardInfo> _networkCards = AWSConfigs.InitializeCollections ? new List<NetworkCardInfo>() : null;
         private string _networkPerformance;
+
+        /// <summary>
+        /// Gets and sets the property BandwidthWeightings. 
+        /// <para>
+        /// A list of valid settings for configurable bandwidth weighting for the instance type,
+        /// if supported.
+        /// </para>
+        /// </summary>
+        public List<string> BandwidthWeightings
+        {
+            get { return this._bandwidthWeightings; }
+            set { this._bandwidthWeightings = value; }
+        }
+
+        // Check to see if BandwidthWeightings property is set
+        internal bool IsSetBandwidthWeightings()
+        {
+            return this._bandwidthWeightings != null && (this._bandwidthWeightings.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
 
         /// <summary>
         /// Gets and sets the property DefaultNetworkCardIndex. 
@@ -263,7 +284,7 @@ namespace Amazon.EC2.Model
         // Check to see if NetworkCards property is set
         internal bool IsSetNetworkCards()
         {
-            return this._networkCards != null && this._networkCards.Count > 0; 
+            return this._networkCards != null && (this._networkCards.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

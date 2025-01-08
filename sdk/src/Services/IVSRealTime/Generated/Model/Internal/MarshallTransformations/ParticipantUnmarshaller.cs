@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IVSRealTime.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.IVSRealTime.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Participant Unmarshall(JsonUnmarshallerContext context)
         {
+            Participant unmarshalledObject = new Participant();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Participant unmarshalledObject = new Participant();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -70,10 +72,40 @@ namespace Amazon.IVSRealTime.Model.Internal.MarshallTransformations
                     unmarshalledObject.Attributes = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("browserName", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.BrowserName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("browserVersion", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.BrowserVersion = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("firstJoinTime", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
                     unmarshalledObject.FirstJoinTime = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ispName", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.IspName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("osName", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.OsName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("osVersion", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.OsVersion = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("participantId", targetDepth))
@@ -82,10 +114,40 @@ namespace Amazon.IVSRealTime.Model.Internal.MarshallTransformations
                     unmarshalledObject.ParticipantId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("protocol", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Protocol = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("published", targetDepth))
                 {
                     var unmarshaller = BoolUnmarshaller.Instance;
                     unmarshalledObject.Published = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("recordingS3BucketName", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.RecordingS3BucketName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("recordingS3Prefix", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.RecordingS3Prefix = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("recordingState", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.RecordingState = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("sdkVersion", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.SdkVersion = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("state", targetDepth))
@@ -101,7 +163,6 @@ namespace Amazon.IVSRealTime.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

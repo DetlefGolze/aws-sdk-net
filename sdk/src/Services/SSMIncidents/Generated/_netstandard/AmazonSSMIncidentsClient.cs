@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.SSMIncidents
 {
     /// <summary>
-    /// Implementation for accessing SSMIncidents
+    /// <para>Implementation for accessing SSMIncidents</para>
     ///
     /// Systems Manager Incident Manager is an incident management console designed to help
     /// users mitigate and recover from incidents affecting their Amazon Web Services-hosted
@@ -279,6 +280,58 @@ namespace Amazon.SSMIncidents
         #endregion
 
 
+        #region  BatchGetIncidentFindings
+
+        internal virtual BatchGetIncidentFindingsResponse BatchGetIncidentFindings(BatchGetIncidentFindingsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = BatchGetIncidentFindingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = BatchGetIncidentFindingsResponseUnmarshaller.Instance;
+
+            return Invoke<BatchGetIncidentFindingsResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Retrieves details about all specified findings for an incident, including descriptive
+        /// details about each finding. A finding represents a recent application environment
+        /// change made by an CodeDeploy deployment or an CloudFormation stack creation or update
+        /// that can be investigated as a potential cause of the incident.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the BatchGetIncidentFindings service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the BatchGetIncidentFindings service method, as returned by SSMIncidents.</returns>
+        /// <exception cref="Amazon.SSMIncidents.Model.AccessDeniedException">
+        /// You don't have sufficient access to perform this operation.
+        /// </exception>
+        /// <exception cref="Amazon.SSMIncidents.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.SSMIncidents.Model.ResourceNotFoundException">
+        /// Request references a resource which doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.SSMIncidents.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.SSMIncidents.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/BatchGetIncidentFindings">REST API Reference for BatchGetIncidentFindings Operation</seealso>
+        public virtual Task<BatchGetIncidentFindingsResponse> BatchGetIncidentFindingsAsync(BatchGetIncidentFindingsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = BatchGetIncidentFindingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = BatchGetIncidentFindingsResponseUnmarshaller.Instance;
+
+            return InvokeAsync<BatchGetIncidentFindingsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  CreateReplicationSet
 
         internal virtual CreateReplicationSetResponse CreateReplicationSet(CreateReplicationSetRequest request)
@@ -925,6 +978,58 @@ namespace Amazon.SSMIncidents
 
         #endregion
         
+        #region  ListIncidentFindings
+
+        internal virtual ListIncidentFindingsResponse ListIncidentFindings(ListIncidentFindingsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListIncidentFindingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListIncidentFindingsResponseUnmarshaller.Instance;
+
+            return Invoke<ListIncidentFindingsResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Retrieves a list of the IDs of findings, plus their last modified times, that have
+        /// been identified for a specified incident. A finding represents a recent application
+        /// environment change made by an CloudFormation stack creation or update or an CodeDeploy
+        /// deployment that can be investigated as a potential cause of the incident.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListIncidentFindings service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListIncidentFindings service method, as returned by SSMIncidents.</returns>
+        /// <exception cref="Amazon.SSMIncidents.Model.AccessDeniedException">
+        /// You don't have sufficient access to perform this operation.
+        /// </exception>
+        /// <exception cref="Amazon.SSMIncidents.Model.InternalServerException">
+        /// The request processing has failed because of an unknown error, exception or failure.
+        /// </exception>
+        /// <exception cref="Amazon.SSMIncidents.Model.ResourceNotFoundException">
+        /// Request references a resource which doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.SSMIncidents.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.SSMIncidents.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/ListIncidentFindings">REST API Reference for ListIncidentFindings Operation</seealso>
+        public virtual Task<ListIncidentFindingsResponse> ListIncidentFindingsAsync(ListIncidentFindingsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListIncidentFindingsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListIncidentFindingsResponseUnmarshaller.Instance;
+
+            return InvokeAsync<ListIncidentFindingsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ListIncidentRecords
 
         internal virtual ListIncidentRecordsResponse ListIncidentRecords(ListIncidentRecordsRequest request)
@@ -1124,7 +1229,7 @@ namespace Amazon.SSMIncidents
 
 
         /// <summary>
-        /// Lists the tags that are attached to the specified response plan.
+        /// Lists the tags that are attached to the specified response plan or incident.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTagsForResource service method.</param>
         /// <param name="cancellationToken">
@@ -1691,7 +1796,7 @@ namespace Amazon.SSMIncidents
 
 
         /// <summary>
-        /// Updates a timeline event. You can update events of type <code>Custom Event</code>.
+        /// Updates a timeline event. You can update events of type <c>Custom Event</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateTimelineEvent service method.</param>
         /// <param name="cancellationToken">
@@ -1738,11 +1843,11 @@ namespace Amazon.SSMIncidents
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

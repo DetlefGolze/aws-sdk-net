@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
     /// Contains an Amazon Web Services Region name as the result of a successful call to
-    /// the <code>DescribeSourceRegions</code> action.
+    /// the <c>DescribeSourceRegions</c> action.
     /// </summary>
     public partial class SourceRegion
     {

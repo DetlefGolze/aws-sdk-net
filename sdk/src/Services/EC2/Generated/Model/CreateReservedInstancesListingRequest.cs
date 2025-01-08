@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -59,15 +60,15 @@ namespace Amazon.EC2.Model
     /// </para>
     ///  
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html">Reserved
-    /// Instance Marketplace</a> in the <i>Amazon EC2 User Guide</i>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html">Sell
+    /// in the Reserved Instance Marketplace</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     /// </summary>
     public partial class CreateReservedInstancesListingRequest : AmazonEC2Request
     {
         private string _clientToken;
         private int? _instanceCount;
-        private List<PriceScheduleSpecification> _priceSchedules = new List<PriceScheduleSpecification>();
+        private List<PriceScheduleSpecification> _priceSchedules = AWSConfigs.InitializeCollections ? new List<PriceScheduleSpecification>() : null;
         private string _reservedInstancesId;
 
         /// <summary>
@@ -129,7 +130,7 @@ namespace Amazon.EC2.Model
         // Check to see if PriceSchedules property is set
         internal bool IsSetPriceSchedules()
         {
-            return this._priceSchedules != null && this._priceSchedules.Count > 0; 
+            return this._priceSchedules != null && (this._priceSchedules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

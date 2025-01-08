@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -41,37 +42,117 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The resource name for which to modify the account setting. If you specify <code>serviceLongArnFormat</code>,
-        /// the ARN for your Amazon ECS services is affected. If you specify <code>taskLongArnFormat</code>,
-        /// the ARN and resource ID for your Amazon ECS tasks is affected. If you specify <code>containerInstanceLongArnFormat</code>,
-        /// the ARN and resource ID for your Amazon ECS container instances is affected. If you
-        /// specify <code>awsvpcTrunking</code>, the ENI limit for your Amazon ECS container instances
-        /// is affected. If you specify <code>containerInsights</code>, the default setting for
-        /// Amazon Web Services CloudWatch Container Insights for your clusters is affected. If
-        /// you specify <code>tagResourceAuthorization</code>, the opt-in option for tagging resources
-        /// on creation is affected. For information about the opt-in timeline, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#tag-resources">Tagging
-        /// authorization timeline</a> in the <i>Amazon ECS Developer Guide</i>. If you specify
-        /// <code>fargateTaskRetirementWaitPeriod</code>, the default wait time to retire a Fargate
-        /// task due to required maintenance is affected.
+        /// The resource name for which to modify the account setting.
         /// </para>
         ///  
         /// <para>
-        /// When you specify <code>fargateFIPSMode</code> for the <code>name</code> and <code>enabled</code>
-        /// for the <code>value</code>, Fargate uses FIPS-140 compliant cryptographic algorithms
-        /// on your tasks. For more information about FIPS-140 compliance with Fargate, see <a
-        /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-fips-compliance.html">
-        /// Amazon Web Services Fargate Federal Information Processing Standard (FIPS) 140-2 compliance</a>
-        /// in the <i>Amazon Elastic Container Service Developer Guide</i>.
+        /// The following are the valid values for the account setting name.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>serviceLongArnFormat</c> - When modified, the Amazon Resource Name (ARN) and resource
+        /// ID format of the resource type for a specified user, role, or the root user for an
+        /// account is affected. The opt-in and opt-out account setting must be set for each Amazon
+        /// ECS resource separately. The ARN and resource ID format of a resource is defined by
+        /// the opt-in status of the user or role that created the resource. You must turn on
+        /// this setting to use Amazon ECS features such as resource tagging.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>taskLongArnFormat</c> - When modified, the Amazon Resource Name (ARN) and resource
+        /// ID format of the resource type for a specified user, role, or the root user for an
+        /// account is affected. The opt-in and opt-out account setting must be set for each Amazon
+        /// ECS resource separately. The ARN and resource ID format of a resource is defined by
+        /// the opt-in status of the user or role that created the resource. You must turn on
+        /// this setting to use Amazon ECS features such as resource tagging.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>containerInstanceLongArnFormat</c> - When modified, the Amazon Resource Name (ARN)
+        /// and resource ID format of the resource type for a specified user, role, or the root
+        /// user for an account is affected. The opt-in and opt-out account setting must be set
+        /// for each Amazon ECS resource separately. The ARN and resource ID format of a resource
+        /// is defined by the opt-in status of the user or role that created the resource. You
+        /// must turn on this setting to use Amazon ECS features such as resource tagging.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>awsvpcTrunking</c> - When modified, the elastic network interface (ENI) limit
+        /// for any new container instances that support the feature is changed. If <c>awsvpcTrunking</c>
+        /// is turned on, any new container instances that support the feature are launched have
+        /// the increased ENI limits available to them. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/container-instance-eni.html">Elastic
+        /// Network Interface Trunking</a> in the <i>Amazon Elastic Container Service Developer
+        /// Guide</i>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>containerInsights</c> - Container Insights with enhanced observability provides
+        /// all the Container Insights metrics, plus additional task and container metrics. This
+        /// version supports enhanced observability for Amazon ECS clusters using the Amazon EC2
+        /// and Fargate launch types. After you configure Container Insights with enhanced observability
+        /// on Amazon ECS, Container Insights auto-collects detailed infrastructure telemetry
+        /// from the cluster level down to the container level in your environment and displays
+        /// these critical performance data in curated dashboards removing the heavy lifting in
+        /// observability set-up. 
         /// </para>
         ///  
         /// <para>
-        /// When Amazon Web Services determines that a security or infrastructure update is needed
-        /// for an Amazon ECS task hosted on Fargate, the tasks need to be stopped and new tasks
-        /// launched to replace them. Use <code>fargateTaskRetirementWaitPeriod</code> to set
-        /// the wait time to retire a Fargate task to the default. For information about the Fargate
+        /// To use Container Insights with enhanced observability, set the <c>containerInsights</c>
+        /// account setting to <c>enhanced</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// To use Container Insights, set the <c>containerInsights</c> account setting to <c>enabled</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-container-insights.html">Monitor
+        /// Amazon ECS containers using Container Insights with enhanced observability</a> in
+        /// the <i>Amazon Elastic Container Service Developer Guide</i>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>dualStackIPv6</c> - When turned on, when using a VPC in dual stack mode, your
+        /// tasks using the <c>awsvpc</c> network mode can have an IPv6 address assigned. For
+        /// more information on using IPv6 with tasks launched on Amazon EC2 instances, see <a
+        /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-networking-awsvpc.html#task-networking-vpc-dual-stack">Using
+        /// a VPC in dual-stack mode</a>. For more information on using IPv6 with tasks launched
+        /// on Fargate, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/fargate-task-networking.html#fargate-task-networking-vpc-dual-stack">Using
+        /// a VPC in dual-stack mode</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>fargateFIPSMode</c> - If you specify <c>fargateFIPSMode</c>, Fargate FIPS 140
+        /// compliance is affected.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>fargateTaskRetirementWaitPeriod</c> - When Amazon Web Services determines that
+        /// a security or infrastructure update is needed for an Amazon ECS task hosted on Fargate,
+        /// the tasks need to be stopped and new tasks launched to replace them. Use <c>fargateTaskRetirementWaitPeriod</c>
+        /// to configure the wait time to retire a Fargate task. For information about the Fargate
         /// tasks maintenance, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-maintenance.html">Amazon
         /// Web Services Fargate task maintenance</a> in the <i>Amazon ECS Developer Guide</i>.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>tagResourceAuthorization</c> - Amazon ECS is introducing tagging authorization
+        /// for resource creation. Users must have permissions for actions that create the resource,
+        /// such as <c>ecsCreateCluster</c>. If tags are specified when you create a resource,
+        /// Amazon Web Services performs additional authorization to verify if users or roles
+        /// have permissions to create tags. Therefore, you must grant explicit permissions to
+        /// use the <c>ecs:TagResource</c> action. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/supported-iam-actions-tagging.html">Grant
+        /// permission to tag resources on creation</a> in the <i>Amazon ECS Developer Guide</i>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>guardDutyActivate</c> - The <c>guardDutyActivate</c> parameter is read-only in
+        /// Amazon ECS and indicates whether Amazon ECS Runtime Monitoring is enabled or disabled
+        /// by your security administrator in your Amazon ECS account. Amazon GuardDuty controls
+        /// this account setting on your behalf. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-guard-duty-integration.html">Protecting
+        /// Amazon ECS workloads with Amazon ECS Runtime Monitoring</a>.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         [AWSProperty(Required=true)]
         public SettingName Name
@@ -89,28 +170,28 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Value. 
         /// <para>
-        /// The account setting value for the specified principal ARN. Accepted values are <code>enabled</code>,
-        /// <code>disabled</code>, <code>on</code>, and <code>off</code>.
+        /// The account setting value for the specified principal ARN. Accepted values are <c>enabled</c>,
+        /// <c>disabled</c>, <c>on</c>, <c>enhanced</c>, and <c>off</c>.
         /// </para>
         ///  
         /// <para>
-        /// When you specify <code>fargateTaskRetirementWaitPeriod</code> for the <code>name</code>,
-        /// the following are the valid values:
+        /// When you specify <c>fargateTaskRetirementWaitPeriod</c> for the <c>name</c>, the following
+        /// are the valid values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>0</code> - Amazon Web Services sends the notification, and immediately retires
-        /// the affected tasks.
+        ///  <c>0</c> - Amazon Web Services sends the notification, and immediately retires the
+        /// affected tasks.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>7</code> - Amazon Web Services sends the notification, and waits 7 calendar
-        /// days to retire the tasks.
+        ///  <c>7</c> - Amazon Web Services sends the notification, and waits 7 calendar days
+        /// to retire the tasks.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>14</code> - Amazon Web Services sends the notification, and waits 14 calendar
-        /// days to retire the tasks.
+        ///  <c>14</c> - Amazon Web Services sends the notification, and waits 14 calendar days
+        /// to retire the tasks.
         /// </para>
         ///  </li> </ul>
         /// </summary>

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
     /// A container that specifies the time value for S3 Replication Time Control (S3 RTC).
-    /// This value is also used for the replication metrics <code>EventThreshold</code> element.
+    /// This value is also used for the replication metrics <c>EventThreshold</c> element.
     /// 
     /// 
     ///  <note> 

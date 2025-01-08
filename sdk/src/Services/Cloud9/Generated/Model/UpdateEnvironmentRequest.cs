@@ -26,11 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Cloud9.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateEnvironment operation.
     /// Changes the settings of an existing Cloud9 development environment.
+    /// 
+    ///  <important> 
+    /// <para>
+    /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+    /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+    /// more"</a> 
+    /// </para>
+    ///  </important>
     /// </summary>
     public partial class UpdateEnvironmentRequest : AmazonCloud9Request
     {
@@ -85,17 +94,17 @@ namespace Amazon.Cloud9.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ENABLE</code> 
+        ///  <c>ENABLE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DISABLE</code> 
+        ///  <c>DISABLE</c> 
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
         /// Only the environment owner can change the status of managed temporary credentials.
-        /// An <code>AccessDeniedException</code> is thrown if an attempt to turn on or turn off
-        /// managed temporary credentials is made by an account that's not the environment owner.
+        /// An <c>AccessDeniedException</c> is thrown if an attempt to turn on or turn off managed
+        /// temporary credentials is made by an account that's not the environment owner.
         /// </para>
         ///  </note>
         /// </summary>

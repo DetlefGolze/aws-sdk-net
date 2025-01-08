@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityStore.Model
 {
     /// <summary>
@@ -36,7 +37,6 @@ namespace Amazon.IdentityStore.Model
     #endif
     public partial class ResourceNotFoundException : AmazonIdentityStoreException
     {
-        private string _requestId;
         private string _resourceId;
         private ResourceType _resourceType;
 
@@ -130,36 +130,15 @@ namespace Amazon.IdentityStore.Model
 #endif
 
         /// <summary>
-        /// Gets and sets the property RequestId. 
-        /// <para>
-        /// The identifier for each request. This value is a globally unique ID that is generated
-        /// by the identity store service for each sent request, and is then returned inside the
-        /// exception if the request fails.
-        /// </para>
-        /// </summary>
-        [AWSProperty(Min=1, Max=36)]
-        public string RequestId
-        {
-            get { return this._requestId; }
-            set { this._requestId = value; }
-        }
-
-        // Check to see if RequestId property is set
-        internal bool IsSetRequestId()
-        {
-            return this._requestId != null;
-        }
-
-        /// <summary>
         /// Gets and sets the property ResourceId. 
         /// <para>
-        /// The identifier for a resource in the identity store that can be used as <code>UserId</code>
-        /// or <code>GroupId</code>. The format for <code>ResourceId</code> is either <code>UUID</code>
-        /// or <code>1234567890-UUID</code>, where <code>UUID</code> is a randomly generated value
-        /// for each resource when it is created and <code>1234567890</code> represents the <code>IdentityStoreId</code>
-        /// string value. In the case that the identity store is migrated from a legacy SSO identity
-        /// store, the <code>ResourceId</code> for that identity store will be in the format of
-        /// <code>UUID</code>. Otherwise, it will be in the <code>1234567890-UUID</code> format.
+        /// The identifier for a resource in the identity store that can be used as <c>UserId</c>
+        /// or <c>GroupId</c>. The format for <c>ResourceId</c> is either <c>UUID</c> or <c>1234567890-UUID</c>,
+        /// where <c>UUID</c> is a randomly generated value for each resource when it is created
+        /// and <c>1234567890</c> represents the <c>IdentityStoreId</c> string value. In the case
+        /// that the identity store is migrated from a legacy SSO identity store, the <c>ResourceId</c>
+        /// for that identity store will be in the format of <c>UUID</c>. Otherwise, it will be
+        /// in the <c>1234567890-UUID</c> format.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=47)]

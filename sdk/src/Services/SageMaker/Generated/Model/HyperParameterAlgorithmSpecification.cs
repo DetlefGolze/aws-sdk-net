@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.SageMaker.Model
     public partial class HyperParameterAlgorithmSpecification
     {
         private string _algorithmName;
-        private List<MetricDefinition> _metricDefinitions = new List<MetricDefinition>();
+        private List<MetricDefinition> _metricDefinitions = AWSConfigs.InitializeCollections ? new List<MetricDefinition>() : null;
         private string _trainingImage;
         private TrainingInputMode _trainingInputMode;
 
@@ -43,7 +44,7 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property AlgorithmName. 
         /// <para>
         /// The name of the resource algorithm to use for the hyperparameter tuning job. If you
-        /// specify a value for this parameter, do not specify a value for <code>TrainingImage</code>.
+        /// specify a value for this parameter, do not specify a value for <c>TrainingImage</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=170)]
@@ -76,7 +77,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if MetricDefinitions property is set
         internal bool IsSetMetricDefinitions()
         {
-            return this._metricDefinitions != null && this._metricDefinitions.Count > 0; 
+            return this._metricDefinitions != null && (this._metricDefinitions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -84,8 +85,8 @@ namespace Amazon.SageMaker.Model
         /// <para>
         ///  The registry path of the Docker image that contains the training algorithm. For information
         /// about Docker registry paths for built-in algorithms, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html">Algorithms
-        /// Provided by Amazon SageMaker: Common Parameters</a>. SageMaker supports both <code>registry/repository[:tag]</code>
-        /// and <code>registry/repository[@digest]</code> image path formats. For more information,
+        /// Provided by Amazon SageMaker: Common Parameters</a>. SageMaker supports both <c>registry/repository[:tag]</c>
+        /// and <c>registry/repository[@digest]</c> image path formats. For more information,
         /// see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html">Using
         /// Your Own Algorithms with Amazon SageMaker</a>.
         /// </para>

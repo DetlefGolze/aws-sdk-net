@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// An object that recognizes faces or labels in a streaming video. An Amazon Rekognition
     /// stream processor is created by a call to <a>CreateStreamProcessor</a>. The request
-    /// parameters for <code>CreateStreamProcessor</code> describe the Kinesis video stream
-    /// source for the streaming video, face recognition parameters, and where to stream the
-    /// analysis resullts.
+    /// parameters for <c>CreateStreamProcessor</c> describe the Kinesis video stream source
+    /// for the streaming video, face recognition parameters, and where to stream the analysis
+    /// resullts.
     /// </summary>
     public partial class StreamProcessor
     {

@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lex.Model
 {
     /// <summary>
     /// If you configure a response card when creating your bots, Amazon Lex substitutes the
     /// session attributes and slot values that are available, and then returns it. The response
-    /// card can also come from a Lambda function ( <code>dialogCodeHook</code> and <code>fulfillmentActivity</code>
+    /// card can also come from a Lambda function ( <c>dialogCodeHook</c> and <c>fulfillmentActivity</c>
     /// on an intent).
     /// </summary>
     public partial class ResponseCard
     {
         private ContentType _contentType;
-        private List<GenericAttachment> _genericAttachments = new List<GenericAttachment>();
+        private List<GenericAttachment> _genericAttachments = AWSConfigs.InitializeCollections ? new List<GenericAttachment>() : null;
         private string _version;
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace Amazon.Lex.Model
         // Check to see if GenericAttachments property is set
         internal bool IsSetGenericAttachments()
         {
-            return this._genericAttachments != null && this._genericAttachments.Count > 0; 
+            return this._genericAttachments != null && (this._genericAttachments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

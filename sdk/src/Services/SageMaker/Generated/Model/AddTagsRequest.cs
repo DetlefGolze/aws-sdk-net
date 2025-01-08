@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -47,19 +48,19 @@ namespace Amazon.SageMaker.Model
     /// API, but not to training jobs that the hyperparameter tuning job launched before you
     /// called this API. To make sure that the tags associated with a hyperparameter tuning
     /// job are also added to all training jobs that the hyperparameter tuning job launches,
-    /// add the tags when you first create the tuning job by specifying them in the <code>Tags</code>
+    /// add the tags when you first create the tuning job by specifying them in the <c>Tags</c>
     /// parameter of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateHyperParameterTuningJob.html">CreateHyperParameterTuningJob</a>
     /// 
     /// </para>
     ///  </note> <note> 
     /// <para>
-    /// Tags that you add to a SageMaker Studio Domain or User Profile by calling this API
-    /// are also added to any Apps that the Domain or User Profile launches after you call
-    /// this API, but not to Apps that the Domain or User Profile launched before you called
-    /// this API. To make sure that the tags associated with a Domain or User Profile are
-    /// also added to all Apps that the Domain or User Profile launches, add the tags when
-    /// you first create the Domain or User Profile by specifying them in the <code>Tags</code>
-    /// parameter of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateDomain.html">CreateDomain</a>
+    /// Tags that you add to a SageMaker Domain or User Profile by calling this API are also
+    /// added to any Apps that the Domain or User Profile launches after you call this API,
+    /// but not to Apps that the Domain or User Profile launched before you called this API.
+    /// To make sure that the tags associated with a Domain or User Profile are also added
+    /// to all Apps that the Domain or User Profile launches, add the tags when you first
+    /// create the Domain or User Profile by specifying them in the <c>Tags</c> parameter
+    /// of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateDomain.html">CreateDomain</a>
     /// or <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateUserProfile.html">CreateUserProfile</a>.
     /// </para>
     ///  </note>
@@ -67,7 +68,7 @@ namespace Amazon.SageMaker.Model
     public partial class AddTagsRequest : AmazonSageMakerRequest
     {
         private string _resourceArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -107,7 +108,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

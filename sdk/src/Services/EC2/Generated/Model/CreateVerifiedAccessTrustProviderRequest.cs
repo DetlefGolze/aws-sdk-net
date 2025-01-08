@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -41,10 +42,11 @@ namespace Amazon.EC2.Model
         private string _description;
         private CreateVerifiedAccessTrustProviderDeviceOptions _deviceOptions;
         private DeviceTrustProviderType _deviceTrustProviderType;
+        private CreateVerifiedAccessNativeApplicationOidcOptions _nativeApplicationOidcOptions;
         private CreateVerifiedAccessTrustProviderOidcOptions _oidcOptions;
         private string _policyReferenceName;
         private VerifiedAccessSseSpecificationRequest _sseSpecification;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
         private TrustProviderType _trustProviderType;
         private UserTrustProviderType _userTrustProviderType;
 
@@ -52,8 +54,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// A unique, case-sensitive token that you provide to ensure idempotency of your modification
-        /// request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
-        /// Idempotency</a>.
+        /// request. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html">Ensuring
+        /// idempotency</a>.
         /// </para>
         /// </summary>
         public string ClientToken
@@ -90,7 +92,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property DeviceOptions. 
         /// <para>
         /// The options for a device-based trust provider. This parameter is required when the
-        /// provider type is <code>device</code>.
+        /// provider type is <c>device</c>.
         /// </para>
         /// </summary>
         public CreateVerifiedAccessTrustProviderDeviceOptions DeviceOptions
@@ -109,7 +111,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property DeviceTrustProviderType. 
         /// <para>
         /// The type of device-based trust provider. This parameter is required when the provider
-        /// type is <code>device</code>.
+        /// type is <c>device</c>.
         /// </para>
         /// </summary>
         public DeviceTrustProviderType DeviceTrustProviderType
@@ -125,10 +127,28 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property NativeApplicationOidcOptions. 
+        /// <para>
+        /// The OpenID Connect (OIDC) options.
+        /// </para>
+        /// </summary>
+        public CreateVerifiedAccessNativeApplicationOidcOptions NativeApplicationOidcOptions
+        {
+            get { return this._nativeApplicationOidcOptions; }
+            set { this._nativeApplicationOidcOptions = value; }
+        }
+
+        // Check to see if NativeApplicationOidcOptions property is set
+        internal bool IsSetNativeApplicationOidcOptions()
+        {
+            return this._nativeApplicationOidcOptions != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property OidcOptions. 
         /// <para>
         /// The options for a OpenID Connect-compatible user-identity trust provider. This parameter
-        /// is required when the provider type is <code>user</code>.
+        /// is required when the provider type is <c>user</c>.
         /// </para>
         /// </summary>
         public CreateVerifiedAccessTrustProviderOidcOptions OidcOptions
@@ -165,7 +185,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property SseSpecification. 
         /// <para>
-        ///  Options for server side encryption. 
+        /// The options for server side encryption.
         /// </para>
         /// </summary>
         public VerifiedAccessSseSpecificationRequest SseSpecification
@@ -195,7 +215,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -221,7 +241,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property UserTrustProviderType. 
         /// <para>
         /// The type of user-based trust provider. This parameter is required when the provider
-        /// type is <code>user</code>.
+        /// type is <c>user</c>.
         /// </para>
         /// </summary>
         public UserTrustProviderType UserTrustProviderType

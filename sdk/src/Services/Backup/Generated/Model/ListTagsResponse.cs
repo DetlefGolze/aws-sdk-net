@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -34,15 +35,14 @@ namespace Amazon.Backup.Model
     public partial class ListTagsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The next item following a partial list of returned items. For example, if a request
-        /// is made to return <code>maxResults</code> number of items, <code>NextToken</code>
-        /// allows you to return more items in your list starting at the location pointed to by
-        /// the next token.
+        /// is made to return <c>MaxResults</c> number of items, <c>NextToken</c> allows you to
+        /// return more items in your list starting at the location pointed to by the next token.
         /// </para>
         /// </summary>
         public string NextToken
@@ -60,8 +60,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// To help organize your resources, you can assign your own metadata to the resources
-        /// you create. Each tag is a key-value pair.
+        /// Information about the tags.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -74,7 +73,7 @@ namespace Amazon.Backup.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

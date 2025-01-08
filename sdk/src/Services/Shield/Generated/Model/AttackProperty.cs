@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Shield.Model
 {
     /// <summary>
@@ -35,15 +36,15 @@ namespace Amazon.Shield.Model
     {
         private AttackLayer _attackLayer;
         private AttackPropertyIdentifier _attackPropertyIdentifier;
-        private List<Contributor> _topContributors = new List<Contributor>();
+        private List<Contributor> _topContributors = AWSConfigs.InitializeCollections ? new List<Contributor>() : null;
         private long? _total;
         private Unit _unit;
 
         /// <summary>
         /// Gets and sets the property AttackLayer. 
         /// <para>
-        /// The type of Shield event that was observed. <code>NETWORK</code> indicates layer 3
-        /// and layer 4 events and <code>APPLICATION</code> indicates layer 7 events.
+        /// The type of Shield event that was observed. <c>NETWORK</c> indicates layer 3 and layer
+        /// 4 events and <c>APPLICATION</c> indicates layer 7 events.
         /// </para>
         ///  
         /// <para>
@@ -67,8 +68,8 @@ namespace Amazon.Shield.Model
         /// <summary>
         /// Gets and sets the property AttackPropertyIdentifier. 
         /// <para>
-        /// Defines the Shield event property information that is provided. The <code>WORDPRESS_PINGBACK_REFLECTOR</code>
-        /// and <code>WORDPRESS_PINGBACK_SOURCE</code> values are valid only for WordPress reflective
+        /// Defines the Shield event property information that is provided. The <c>WORDPRESS_PINGBACK_REFLECTOR</c>
+        /// and <c>WORDPRESS_PINGBACK_SOURCE</c> values are valid only for WordPress reflective
         /// pingback events.
         /// </para>
         /// </summary>
@@ -101,7 +102,7 @@ namespace Amazon.Shield.Model
         // Check to see if TopContributors property is set
         internal bool IsSetTopContributors()
         {
-            return this._topContributors != null && this._topContributors.Count > 0; 
+            return this._topContributors != null && (this._topContributors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -125,7 +126,7 @@ namespace Amazon.Shield.Model
         /// <summary>
         /// Gets and sets the property Unit. 
         /// <para>
-        /// The unit used for the <code>Contributor</code> <code>Value</code> property. 
+        /// The unit used for the <c>Contributor</c> <c>Value</c> property. 
         /// </para>
         /// </summary>
         public Unit Unit

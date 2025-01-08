@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
-    /// A face that <a>IndexFaces</a> detected, but didn't index. Use the <code>Reasons</code>
-    /// response attribute to determine why a face wasn't indexed.
+    /// A face that <a>IndexFaces</a> detected, but didn't index. Use the <c>Reasons</c> response
+    /// attribute to determine why a face wasn't indexed.
     /// </summary>
     public partial class UnindexedFace
     {
         private FaceDetail _faceDetail;
-        private List<string> _reasons = new List<string>();
+        private List<string> _reasons = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property FaceDetail. 
         /// <para>
-        /// The structure that contains attributes of a face that <code>IndexFaces</code>detected,
-        /// but didn't index. 
+        /// The structure that contains attributes of a face that <c>IndexFaces</c>detected, but
+        /// didn't index. 
         /// </para>
         /// </summary>
         public FaceDetail FaceDetail
@@ -69,7 +70,7 @@ namespace Amazon.Rekognition.Model
         ///  </li> <li> 
         /// <para>
         /// EXCEEDS_MAX_FACES - The number of faces detected is already higher than that specified
-        /// by the <code>MaxFaces</code> input parameter for <code>IndexFaces</code>.
+        /// by the <c>MaxFaces</c> input parameter for <c>IndexFaces</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -98,7 +99,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if Reasons property is set
         internal bool IsSetReasons()
         {
-            return this._reasons != null && this._reasons.Count > 0; 
+            return this._reasons != null && (this._reasons.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

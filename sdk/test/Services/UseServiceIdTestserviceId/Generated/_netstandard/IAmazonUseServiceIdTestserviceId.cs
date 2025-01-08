@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.UseServiceIdTestserviceId.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.UseServiceIdTestserviceId
 {
     /// <summary>
-    /// Interface for accessing UseServiceIdTestserviceId
+    /// <para>Interface for accessing UseServiceIdTestserviceId</para>
     ///
     /// 
     /// </summary>

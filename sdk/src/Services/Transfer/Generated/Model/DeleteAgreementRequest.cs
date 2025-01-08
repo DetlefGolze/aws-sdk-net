@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteAgreement operation.
-    /// Delete the agreement that's specified in the provided <code>AgreementId</code>.
+    /// Delete the agreement that's specified in the provided <c>AgreementId</c>.
     /// </summary>
     public partial class DeleteAgreementRequest : AmazonTransferRequest
     {

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.Neptune.Model
     public partial class DescribeDBSubnetGroupsRequest : AmazonNeptuneRequest
     {
         private string _dbSubnetGroupName;
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private string _marker;
         private int? _maxRecords;
 
@@ -79,7 +80,7 @@ namespace Amazon.Neptune.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -87,7 +88,7 @@ namespace Amazon.Neptune.Model
         /// <para>
         ///  An optional pagination token provided by a previous DescribeDBSubnetGroups request.
         /// If this parameter is specified, the response includes only records beyond the marker,
-        /// up to the value specified by <code>MaxRecords</code>.
+        /// up to the value specified by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -106,8 +107,8 @@ namespace Amazon.Neptune.Model
         /// Gets and sets the property MaxRecords. 
         /// <para>
         ///  The maximum number of records to include in the response. If more records exist than
-        /// the specified <code>MaxRecords</code> value, a pagination token called a marker is
-        /// included in the response so that the remaining results can be retrieved.
+        /// the specified <c>MaxRecords</c> value, a pagination token called a marker is included
+        /// in the response so that the remaining results can be retrieved.
         /// </para>
         ///  
         /// <para>

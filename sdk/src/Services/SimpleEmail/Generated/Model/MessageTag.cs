@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmail.Model
 {
     /// <summary>
-    /// Contains the name and value of a tag that you can provide to <code>SendEmail</code>
-    /// or <code>SendRawEmail</code> to apply to an email.
+    /// Contains the name and value of a tag that you can provide to <c>SendEmail</c> or <c>SendRawEmail</c>
+    /// to apply to an email.
     /// 
     ///  
     /// <para>

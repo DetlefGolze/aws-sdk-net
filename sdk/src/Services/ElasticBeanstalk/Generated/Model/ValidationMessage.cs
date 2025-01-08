@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -104,13 +105,11 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>error</code>: This message indicates that this is not a valid setting for an
-        /// option.
+        ///  <c>error</c>: This message indicates that this is not a valid setting for an option.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>warning</code>: This message is providing information you should take into
-        /// account.
+        ///  <c>warning</c>: This message is providing information you should take into account.
         /// </para>
         ///  </li> </ul>
         /// </summary>

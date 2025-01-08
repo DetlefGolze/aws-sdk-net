@@ -26,23 +26,35 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the UntagResource operation.
-    /// Removes the specified tags from the specified AWS RoboMaker resource.
+    /// <important> 
+    /// <para>
+    /// End of support notice: On September 10, 2025, Amazon Web Services will discontinue
+    /// support for Amazon Web Services RoboMaker. After September 10, 2025, you will no longer
+    /// be able to access the Amazon Web Services RoboMaker console or Amazon Web Services
+    /// RoboMaker resources. For more information on transitioning to Batch to help run containerized
+    /// simulations, visit <a href="https://aws.amazon.com/blogs/hpc/run-simulations-using-multiple-containers-in-a-single-aws-batch-job/">https://aws.amazon.com/blogs/hpc/run-simulations-using-multiple-containers-in-a-single-aws-batch-job/</a>.
     /// 
+    /// </para>
+    ///  </important> 
+    /// <para>
+    /// Removes the specified tags from the specified AWS RoboMaker resource.
+    /// </para>
     ///  
     /// <para>
     /// To remove a tag, specify the tag key. To change the tag value of an existing tag key,
     /// use <a href="https://docs.aws.amazon.com/robomaker/latest/dg/API_TagResource.html">
-    /// <code>TagResource</code> </a>. 
+    /// <c>TagResource</c> </a>. 
     /// </para>
     /// </summary>
     public partial class UntagResourceRequest : AmazonRoboMakerRequest
     {
         private string _resourceArn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -79,7 +91,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchain.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.ManagedBlockchain.Model
         private string _memberId;
         private string _networkId;
         private NodeConfiguration _nodeConfiguration;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
@@ -97,15 +98,11 @@ namespace Amazon.ManagedBlockchain.Model
         /// </para>
         ///  
         /// <para>
-        /// Ethereum public networks have the following <code>NetworkId</code>s:
+        /// Ethereum public networks have the following <c>NetworkId</c>s:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>n-ethereum-mainnet</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>n-ethereum-goerli</code> 
+        ///  <c>n-ethereum-mainnet</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -169,7 +166,7 @@ namespace Amazon.ManagedBlockchain.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

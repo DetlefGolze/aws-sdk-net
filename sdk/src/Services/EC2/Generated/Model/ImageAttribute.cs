@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,15 +34,16 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class ImageAttribute
     {
-        private List<BlockDeviceMapping> _blockDeviceMappings = new List<BlockDeviceMapping>();
+        private List<BlockDeviceMapping> _blockDeviceMappings = AWSConfigs.InitializeCollections ? new List<BlockDeviceMapping>() : null;
         private string _bootMode;
+        private string _deregistrationProtection;
         private string _description;
         private string _imageId;
         private string _imdsSupport;
         private string _kernelId;
         private string _lastLaunchedTime;
-        private List<LaunchPermission> _launchPermissions = new List<LaunchPermission>();
-        private List<ProductCode> _productCodes = new List<ProductCode>();
+        private List<LaunchPermission> _launchPermissions = AWSConfigs.InitializeCollections ? new List<LaunchPermission>() : null;
+        private List<ProductCode> _productCodes = AWSConfigs.InitializeCollections ? new List<ProductCode>() : null;
         private string _ramdiskId;
         private string _sriovNetSupport;
         private string _tpmSupport;
@@ -62,7 +64,7 @@ namespace Amazon.EC2.Model
         // Check to see if BlockDeviceMappings property is set
         internal bool IsSetBlockDeviceMappings()
         {
-            return this._blockDeviceMappings != null && this._blockDeviceMappings.Count > 0; 
+            return this._blockDeviceMappings != null && (this._blockDeviceMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -81,6 +83,24 @@ namespace Amazon.EC2.Model
         internal bool IsSetBootMode()
         {
             return this._bootMode != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DeregistrationProtection. 
+        /// <para>
+        /// Indicates whether deregistration protection is enabled for the AMI.
+        /// </para>
+        /// </summary>
+        public string DeregistrationProtection
+        {
+            get { return this._deregistrationProtection; }
+            set { this._deregistrationProtection = value; }
+        }
+
+        // Check to see if DeregistrationProtection property is set
+        internal bool IsSetDeregistrationProtection()
+        {
+            return this._deregistrationProtection != null;
         }
 
         /// <summary>
@@ -122,11 +142,11 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property ImdsSupport. 
         /// <para>
-        /// If <code>v2.0</code>, it indicates that IMDSv2 is specified in the AMI. Instances
-        /// launched from this AMI will have <code>HttpTokens</code> automatically set to <code>required</code>
-        /// so that, by default, the instance requires that IMDSv2 is used when requesting instance
-        /// metadata. In addition, <code>HttpPutResponseHopLimit</code> is set to <code>2</code>.
-        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html#configure-IMDS-new-instances-ami-configuration">Configure
+        /// If <c>v2.0</c>, it indicates that IMDSv2 is specified in the AMI. Instances launched
+        /// from this AMI will have <c>HttpTokens</c> automatically set to <c>required</c> so
+        /// that, by default, the instance requires that IMDSv2 is used when requesting instance
+        /// metadata. In addition, <c>HttpPutResponseHopLimit</c> is set to <c>2</c>. For more
+        /// information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html#configure-IMDS-new-instances-ami-configuration">Configure
         /// the AMI</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         /// </summary>
@@ -169,7 +189,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>lastLaunchedTime</code> data is available starting April 2017.
+        ///  <c>lastLaunchedTime</c> data is available starting April 2017.
         /// </para>
         ///  </note>
         /// </summary>
@@ -200,7 +220,7 @@ namespace Amazon.EC2.Model
         // Check to see if LaunchPermissions property is set
         internal bool IsSetLaunchPermissions()
         {
-            return this._launchPermissions != null && this._launchPermissions.Count > 0; 
+            return this._launchPermissions != null && (this._launchPermissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -218,7 +238,7 @@ namespace Amazon.EC2.Model
         // Check to see if ProductCodes property is set
         internal bool IsSetProductCodes()
         {
-            return this._productCodes != null && this._productCodes.Count > 0; 
+            return this._productCodes != null && (this._productCodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -261,7 +281,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property TpmSupport. 
         /// <para>
-        /// If the image is configured for NitroTPM support, the value is <code>v2.0</code>.
+        /// If the image is configured for NitroTPM support, the value is <c>v2.0</c>.
         /// </para>
         /// </summary>
         public string TpmSupport

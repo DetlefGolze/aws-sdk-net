@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -46,9 +47,9 @@ namespace Amazon.QuickSight.Model
     ///  </li> <li> 
     /// <para>
     /// The URL validity period should not be confused with the actual session lifetime that
-    /// can be customized using the <code> <a href="https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GenerateEmbedUrlForAnonymousUser.html#QS-GenerateEmbedUrlForAnonymousUser-request-SessionLifetimeInMinutes">SessionLifetimeInMinutes</a>
-    /// </code> parameter. The resulting user session is valid for 15 minutes (minimum) to
-    /// 10 hours (maximum). The default session duration is 10 hours.
+    /// can be customized using the <c> <a href="https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GenerateEmbedUrlForAnonymousUser.html#QS-GenerateEmbedUrlForAnonymousUser-request-SessionLifetimeInMinutes">SessionLifetimeInMinutes</a>
+    /// </c> parameter. The resulting user session is valid for 15 minutes (minimum) to 10
+    /// hours (maximum). The default session duration is 10 hours.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -68,13 +69,13 @@ namespace Amazon.QuickSight.Model
     /// </summary>
     public partial class GenerateEmbedUrlForAnonymousUserRequest : AmazonQuickSightRequest
     {
-        private List<string> _allowedDomains = new List<string>();
-        private List<string> _authorizedResourceArns = new List<string>();
+        private List<string> _allowedDomains = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _authorizedResourceArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _awsAccountId;
         private AnonymousUserEmbeddingExperienceConfiguration _experienceConfiguration;
         private string _awsNamespace;
         private long? _sessionLifetimeInMinutes;
-        private List<SessionTag> _sessionTags = new List<SessionTag>();
+        private List<SessionTag> _sessionTags = AWSConfigs.InitializeCollections ? new List<SessionTag>() : null;
 
         /// <summary>
         /// Gets and sets the property AllowedDomains. 
@@ -87,9 +88,8 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  
         /// <para>
-        /// To include all subdomains under a specific domain to the allow list, use <code>*</code>.
-        /// For example, <code>https://*.sapp.amazon.com</code> includes all subdomains under
-        /// <code>https://sapp.amazon.com</code>.
+        /// To include all subdomains under a specific domain to the allow list, use <c>*</c>.
+        /// For example, <c>https://*.sapp.amazon.com</c> includes all subdomains under <c>https://sapp.amazon.com</c>.
         /// </para>
         /// </summary>
         public List<string> AllowedDomains
@@ -101,17 +101,28 @@ namespace Amazon.QuickSight.Model
         // Check to see if AllowedDomains property is set
         internal bool IsSetAllowedDomains()
         {
-            return this._allowedDomains != null && this._allowedDomains.Count > 0; 
+            return this._allowedDomains != null && (this._allowedDomains.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AuthorizedResourceArns. 
         /// <para>
         /// The Amazon Resource Names (ARNs) for the Amazon QuickSight resources that the user
-        /// is authorized to access during the lifetime of the session. If you choose <code>Dashboard</code>
-        /// embedding experience, pass the list of dashboard ARNs in the account that you want
-        /// the user to be able to view. Currently, you can pass up to 25 dashboard ARNs in each
-        /// API call.
+        /// is authorized to access during the lifetime of the session.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you choose <c>Dashboard</c> embedding experience, pass the list of dashboard ARNs
+        /// in the account that you want the user to be able to view.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you want to make changes to the theme of your embedded content, pass a list of
+        /// theme ARNs that the anonymous users need access to.
+        /// </para>
+        ///  
+        /// <para>
+        /// Currently, you can pass up to 25 theme ARNs in each API call.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -124,7 +135,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if AuthorizedResourceArns property is set
         internal bool IsSetAuthorizedResourceArns()
         {
-            return this._authorizedResourceArns != null && this._authorizedResourceArns.Count > 0; 
+            return this._authorizedResourceArns != null && (this._authorizedResourceArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -170,7 +181,7 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property Namespace. 
         /// <para>
         /// The Amazon QuickSight namespace that the anonymous user virtually belongs to. If you
-        /// are not using an Amazon QuickSight custom namespace, set this to <code>default</code>.
+        /// are not using an Amazon QuickSight custom namespace, set this to <c>default</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=64)]
@@ -210,7 +221,7 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property SessionTags. 
         /// <para>
         /// The session tags used for row-level security. Before you use this parameter, make
-        /// sure that you have configured the relevant datasets using the <code>DataSet$RowLevelPermissionTagConfiguration</code>
+        /// sure that you have configured the relevant datasets using the <c>DataSet$RowLevelPermissionTagConfiguration</c>
         /// parameter so that session tags can be used to provide row-level security.
         /// </para>
         ///  
@@ -230,7 +241,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if SessionTags property is set
         internal bool IsSetSessionTags()
         {
-            return this._sessionTags != null && this._sessionTags.Count > 0; 
+            return this._sessionTags != null && (this._sessionTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostExplorer.Model
 {
     /// <summary>
-    /// A request to generate a recommendation is already in progress.
+    /// A request to generate a recommendation or analysis is already in progress.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

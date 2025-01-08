@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeVpcEndpointServicePermissionsResponse : AmazonWebServiceResponse
     {
-        private List<AllowedPrincipal> _allowedPrincipals = new List<AllowedPrincipal>();
+        private List<AllowedPrincipal> _allowedPrincipals = AWSConfigs.InitializeCollections ? new List<AllowedPrincipal>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.EC2.Model
         // Check to see if AllowedPrincipals property is set
         internal bool IsSetAllowedPrincipals()
         {
-            return this._allowedPrincipals != null && this._allowedPrincipals.Count > 0; 
+            return this._allowedPrincipals != null && (this._allowedPrincipals.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to use to retrieve the next page of results. This value is <code>null</code>
-        /// when there are no more results to return.
+        /// The token to use to retrieve the next page of results. This value is <c>null</c> when
+        /// there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken

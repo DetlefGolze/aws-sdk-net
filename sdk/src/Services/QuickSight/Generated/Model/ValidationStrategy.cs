@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
     /// The option to relax the validation that is required to create and update analyses,
-    /// dashboards, and templates with definition objects. When you set this value to <code>LENIENT</code>,
+    /// dashboards, and templates with definition objects. When you set this value to <c>LENIENT</c>,
     /// validation is skipped for specific errors.
     /// </summary>
     public partial class ValidationStrategy
@@ -40,9 +41,9 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Mode. 
         /// <para>
-        /// The mode of validation for the asset to be creaed or updated. When you set this value
-        /// to <code>STRICT</code>, strict validation for every error is enforced. When you set
-        /// this value to <code>LENIENT</code>, validation is skipped for specific UI errors.
+        /// The mode of validation for the asset to be created or updated. When you set this value
+        /// to <c>STRICT</c>, strict validation for every error is enforced. When you set this
+        /// value to <c>LENIENT</c>, validation is skipped for specific UI errors.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -138,8 +139,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property TopicScheduleType. 
         /// <para>
-        /// The type of refresh schedule. Valid values for this structure are <code>HOURLY</code>,
-        /// <code>DAILY</code>, <code>WEEKLY</code>, and <code>MONTHLY</code>.
+        /// The type of refresh schedule. Valid values for this structure are <c>HOURLY</c>, <c>DAILY</c>,
+        /// <c>WEEKLY</c>, and <c>MONTHLY</c>.
         /// </para>
         /// </summary>
         public TopicScheduleType TopicScheduleType

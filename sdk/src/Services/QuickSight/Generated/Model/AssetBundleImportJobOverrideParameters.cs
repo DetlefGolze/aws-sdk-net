@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -34,20 +35,21 @@ namespace Amazon.QuickSight.Model
     /// </summary>
     public partial class AssetBundleImportJobOverrideParameters
     {
-        private List<AssetBundleImportJobAnalysisOverrideParameters> _analyses = new List<AssetBundleImportJobAnalysisOverrideParameters>();
-        private List<AssetBundleImportJobDashboardOverrideParameters> _dashboards = new List<AssetBundleImportJobDashboardOverrideParameters>();
-        private List<AssetBundleImportJobDataSetOverrideParameters> _dataSets = new List<AssetBundleImportJobDataSetOverrideParameters>();
-        private List<AssetBundleImportJobDataSourceOverrideParameters> _dataSources = new List<AssetBundleImportJobDataSourceOverrideParameters>();
-        private List<AssetBundleImportJobRefreshScheduleOverrideParameters> _refreshSchedules = new List<AssetBundleImportJobRefreshScheduleOverrideParameters>();
+        private List<AssetBundleImportJobAnalysisOverrideParameters> _analyses = AWSConfigs.InitializeCollections ? new List<AssetBundleImportJobAnalysisOverrideParameters>() : null;
+        private List<AssetBundleImportJobDashboardOverrideParameters> _dashboards = AWSConfigs.InitializeCollections ? new List<AssetBundleImportJobDashboardOverrideParameters>() : null;
+        private List<AssetBundleImportJobDataSetOverrideParameters> _dataSets = AWSConfigs.InitializeCollections ? new List<AssetBundleImportJobDataSetOverrideParameters>() : null;
+        private List<AssetBundleImportJobDataSourceOverrideParameters> _dataSources = AWSConfigs.InitializeCollections ? new List<AssetBundleImportJobDataSourceOverrideParameters>() : null;
+        private List<AssetBundleImportJobFolderOverrideParameters> _folders = AWSConfigs.InitializeCollections ? new List<AssetBundleImportJobFolderOverrideParameters>() : null;
+        private List<AssetBundleImportJobRefreshScheduleOverrideParameters> _refreshSchedules = AWSConfigs.InitializeCollections ? new List<AssetBundleImportJobRefreshScheduleOverrideParameters>() : null;
         private AssetBundleImportJobResourceIdOverrideConfiguration _resourceIdOverrideConfiguration;
-        private List<AssetBundleImportJobThemeOverrideParameters> _themes = new List<AssetBundleImportJobThemeOverrideParameters>();
-        private List<AssetBundleImportJobVPCConnectionOverrideParameters> _vpcConnections = new List<AssetBundleImportJobVPCConnectionOverrideParameters>();
+        private List<AssetBundleImportJobThemeOverrideParameters> _themes = AWSConfigs.InitializeCollections ? new List<AssetBundleImportJobThemeOverrideParameters>() : null;
+        private List<AssetBundleImportJobVPCConnectionOverrideParameters> _vpcConnections = AWSConfigs.InitializeCollections ? new List<AssetBundleImportJobVPCConnectionOverrideParameters>() : null;
 
         /// <summary>
         /// Gets and sets the property Analyses. 
         /// <para>
-        /// A list of overrides for any <code>Analysis</code> resources that are present in the
-        /// asset bundle that is imported.
+        /// A list of overrides for any <c>Analysis</c> resources that are present in the asset
+        /// bundle that is imported.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -60,14 +62,14 @@ namespace Amazon.QuickSight.Model
         // Check to see if Analyses property is set
         internal bool IsSetAnalyses()
         {
-            return this._analyses != null && this._analyses.Count > 0; 
+            return this._analyses != null && (this._analyses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Dashboards. 
         /// <para>
-        /// A list of overrides for any <code>Dashboard</code> resources that are present in the
-        /// asset bundle that is imported.
+        /// A list of overrides for any <c>Dashboard</c> resources that are present in the asset
+        /// bundle that is imported.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -80,14 +82,14 @@ namespace Amazon.QuickSight.Model
         // Check to see if Dashboards property is set
         internal bool IsSetDashboards()
         {
-            return this._dashboards != null && this._dashboards.Count > 0; 
+            return this._dashboards != null && (this._dashboards.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DataSets. 
         /// <para>
-        /// A list of overrides for any <code>DataSet</code> resources that are present in the
-        /// asset bundle that is imported.
+        /// A list of overrides for any <c>DataSet</c> resources that are present in the asset
+        /// bundle that is imported.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -100,14 +102,14 @@ namespace Amazon.QuickSight.Model
         // Check to see if DataSets property is set
         internal bool IsSetDataSets()
         {
-            return this._dataSets != null && this._dataSets.Count > 0; 
+            return this._dataSets != null && (this._dataSets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DataSources. 
         /// <para>
-        ///  A list of overrides for any <code>DataSource</code> resources that are present in
-        /// the asset bundle that is imported.
+        ///  A list of overrides for any <c>DataSource</c> resources that are present in the asset
+        /// bundle that is imported.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -120,14 +122,34 @@ namespace Amazon.QuickSight.Model
         // Check to see if DataSources property is set
         internal bool IsSetDataSources()
         {
-            return this._dataSources != null && this._dataSources.Count > 0; 
+            return this._dataSources != null && (this._dataSources.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Folders. 
+        /// <para>
+        /// A list of overrides for any <c>Folder</c> resources that are present in the asset
+        /// bundle that is imported.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=50)]
+        public List<AssetBundleImportJobFolderOverrideParameters> Folders
+        {
+            get { return this._folders; }
+            set { this._folders = value; }
+        }
+
+        // Check to see if Folders property is set
+        internal bool IsSetFolders()
+        {
+            return this._folders != null && (this._folders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property RefreshSchedules. 
         /// <para>
-        /// A list of overrides for any <code>RefreshSchedule</code> resources that are present
-        /// in the asset bundle that is imported.
+        /// A list of overrides for any <c>RefreshSchedule</c> resources that are present in the
+        /// asset bundle that is imported.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -140,7 +162,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if RefreshSchedules property is set
         internal bool IsSetRefreshSchedules()
         {
-            return this._refreshSchedules != null && this._refreshSchedules.Count > 0; 
+            return this._refreshSchedules != null && (this._refreshSchedules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -165,8 +187,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Themes. 
         /// <para>
-        /// A list of overrides for any <code>Theme</code> resources that are present in the asset
-        /// bundle that is imported.
+        /// A list of overrides for any <c>Theme</c> resources that are present in the asset bundle
+        /// that is imported.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -179,14 +201,14 @@ namespace Amazon.QuickSight.Model
         // Check to see if Themes property is set
         internal bool IsSetThemes()
         {
-            return this._themes != null && this._themes.Count > 0; 
+            return this._themes != null && (this._themes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property VPCConnections. 
         /// <para>
-        /// A list of overrides for any <code>VPCConnection</code> resources that are present
-        /// in the asset bundle that is imported.
+        /// A list of overrides for any <c>VPCConnection</c> resources that are present in the
+        /// asset bundle that is imported.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -199,7 +221,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if VPCConnections property is set
         internal bool IsSetVPCConnections()
         {
-            return this._vpcConnections != null && this._vpcConnections.Count > 0; 
+            return this._vpcConnections != null && (this._vpcConnections.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

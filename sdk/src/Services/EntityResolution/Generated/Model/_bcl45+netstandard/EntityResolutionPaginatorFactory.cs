@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
@@ -33,6 +34,30 @@ namespace Amazon.EntityResolution.Model
         internal EntityResolutionPaginatorFactory(IAmazonEntityResolution client) 
         {
             this.client = client;
+        }
+
+        /// <summary>
+        /// Paginator for ListIdMappingJobs operation
+        ///</summary>
+        public IListIdMappingJobsPaginator ListIdMappingJobs(ListIdMappingJobsRequest request) 
+        {
+            return new ListIdMappingJobsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListIdMappingWorkflows operation
+        ///</summary>
+        public IListIdMappingWorkflowsPaginator ListIdMappingWorkflows(ListIdMappingWorkflowsRequest request) 
+        {
+            return new ListIdMappingWorkflowsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListIdNamespaces operation
+        ///</summary>
+        public IListIdNamespacesPaginator ListIdNamespaces(ListIdNamespacesRequest request) 
+        {
+            return new ListIdNamespacesPaginator(this.client, request);
         }
 
         /// <summary>
@@ -49,6 +74,14 @@ namespace Amazon.EntityResolution.Model
         public IListMatchingWorkflowsPaginator ListMatchingWorkflows(ListMatchingWorkflowsRequest request) 
         {
             return new ListMatchingWorkflowsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListProviderServices operation
+        ///</summary>
+        public IListProviderServicesPaginator ListProviderServices(ListProviderServicesRequest request) 
+        {
+            return new ListProviderServicesPaginator(this.client, request);
         }
 
         /// <summary>

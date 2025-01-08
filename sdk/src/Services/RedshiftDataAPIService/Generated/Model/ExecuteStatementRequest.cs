@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RedshiftDataAPIService.Model
 {
     /// <summary>
@@ -36,13 +37,13 @@ namespace Amazon.RedshiftDataAPIService.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    /// Secrets Manager - when connecting to a cluster, provide the <code>secret-arn</code>
-    /// of a secret stored in Secrets Manager which has <code>username</code> and <code>password</code>.
-    /// The specified secret contains credentials to connect to the <code>database</code>
-    /// you specify. When you are connecting to a cluster, you also supply the database name,
-    /// If you provide a cluster identifier (<code>dbClusterIdentifier</code>), it must match
-    /// the cluster identifier stored in the secret. When you are connecting to a serverless
-    /// workgroup, you also supply the database name.
+    /// Secrets Manager - when connecting to a cluster, provide the <c>secret-arn</c> of a
+    /// secret stored in Secrets Manager which has <c>username</c> and <c>password</c>. The
+    /// specified secret contains credentials to connect to the <c>database</c> you specify.
+    /// When you are connecting to a cluster, you also supply the database name, If you provide
+    /// a cluster identifier (<c>dbClusterIdentifier</c>), it must match the cluster identifier
+    /// stored in the secret. When you are connecting to a serverless workgroup, you also
+    /// supply the database name.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -52,22 +53,21 @@ namespace Amazon.RedshiftDataAPIService.Model
     ///  <ul> <li> 
     /// <para>
     /// When connecting to a serverless workgroup, specify the workgroup name and database
-    /// name. The database user name is derived from the IAM identity. For example, <code>arn:iam::123456789012:user:foo</code>
-    /// has the database user name <code>IAM:foo</code>. Also, permission to call the <code>redshift-serverless:GetCredentials</code>
+    /// name. The database user name is derived from the IAM identity. For example, <c>arn:iam::123456789012:user:foo</c>
+    /// has the database user name <c>IAM:foo</c>. Also, permission to call the <c>redshift-serverless:GetCredentials</c>
     /// operation is required.
     /// </para>
     ///  </li> <li> 
     /// <para>
     /// When connecting to a cluster as an IAM identity, specify the cluster identifier and
     /// the database name. The database user name is derived from the IAM identity. For example,
-    /// <code>arn:iam::123456789012:user:foo</code> has the database user name <code>IAM:foo</code>.
-    /// Also, permission to call the <code>redshift:GetClusterCredentialsWithIAM</code> operation
-    /// is required.
+    /// <c>arn:iam::123456789012:user:foo</c> has the database user name <c>IAM:foo</c>. Also,
+    /// permission to call the <c>redshift:GetClusterCredentialsWithIAM</c> operation is required.
     /// </para>
     ///  </li> <li> 
     /// <para>
     /// When connecting to a cluster as a database user, specify the cluster identifier, the
-    /// database name, and the database user name. Also, permission to call the <code>redshift:GetClusterCredentials</code>
+    /// database name, and the database user name. Also, permission to call the <c>redshift:GetClusterCredentials</c>
     /// operation is required.
     /// </para>
     ///  </li> </ul> </li> </ul> 
@@ -83,8 +83,11 @@ namespace Amazon.RedshiftDataAPIService.Model
         private string _clusterIdentifier;
         private string _database;
         private string _dbUser;
-        private List<SqlParameter> _parameters = new List<SqlParameter>();
+        private List<SqlParameter> _parameters = AWSConfigs.InitializeCollections ? new List<SqlParameter>() : null;
+        private ResultFormatString _resultFormat;
         private string _secretArn;
+        private string _sessionId;
+        private int? _sessionKeepAliveSeconds;
         private string _sql;
         private string _statementName;
         private bool? _withEvent;
@@ -117,6 +120,7 @@ namespace Amazon.RedshiftDataAPIService.Model
         /// authenticating using either Secrets Manager or temporary credentials. 
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=63)]
         public string ClusterIdentifier
         {
             get { return this._clusterIdentifier; }
@@ -136,7 +140,6 @@ namespace Amazon.RedshiftDataAPIService.Model
         /// Secrets Manager or temporary credentials. 
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public string Database
         {
             get { return this._database; }
@@ -184,7 +187,26 @@ namespace Amazon.RedshiftDataAPIService.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ResultFormat. 
+        /// <para>
+        /// The data format of the result of the SQL statement. If no format is specified, the
+        /// default is JSON.
+        /// </para>
+        /// </summary>
+        public ResultFormatString ResultFormat
+        {
+            get { return this._resultFormat; }
+            set { this._resultFormat = value; }
+        }
+
+        // Check to see if ResultFormat property is set
+        internal bool IsSetResultFormat()
+        {
+            return this._resultFormat != null;
         }
 
         /// <summary>
@@ -204,6 +226,45 @@ namespace Amazon.RedshiftDataAPIService.Model
         internal bool IsSetSecretArn()
         {
             return this._secretArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SessionId. 
+        /// <para>
+        /// The session identifier of the query.
+        /// </para>
+        /// </summary>
+        public string SessionId
+        {
+            get { return this._sessionId; }
+            set { this._sessionId = value; }
+        }
+
+        // Check to see if SessionId property is set
+        internal bool IsSetSessionId()
+        {
+            return this._sessionId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SessionKeepAliveSeconds. 
+        /// <para>
+        /// The number of seconds to keep the session alive after the query finishes. The maximum
+        /// time a session can keep alive is 24 hours. After 24 hours, the session is forced closed
+        /// and the query is terminated.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=86400)]
+        public int SessionKeepAliveSeconds
+        {
+            get { return this._sessionKeepAliveSeconds.GetValueOrDefault(); }
+            set { this._sessionKeepAliveSeconds = value; }
+        }
+
+        // Check to see if SessionKeepAliveSeconds property is set
+        internal bool IsSetSessionKeepAliveSeconds()
+        {
+            return this._sessionKeepAliveSeconds.HasValue; 
         }
 
         /// <summary>

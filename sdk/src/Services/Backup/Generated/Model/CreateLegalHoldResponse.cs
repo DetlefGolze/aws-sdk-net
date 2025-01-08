@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property CreationDate. 
         /// <para>
-        /// Time in number format when legal hold was created.
+        /// The time when the legal hold was created.
         /// </para>
         /// </summary>
         public DateTime CreationDate
@@ -62,7 +63,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
-        /// This is the returned string description of the legal hold.
+        /// The description of the legal hold.
         /// </para>
         /// </summary>
         public string Description
@@ -80,7 +81,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property LegalHoldArn. 
         /// <para>
-        /// This is the ARN (Amazon Resource Number) of the created legal hold.
+        /// The Amazon Resource Name (ARN) of the legal hold.
         /// </para>
         /// </summary>
         public string LegalHoldArn
@@ -98,7 +99,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property LegalHoldId. 
         /// <para>
-        /// Legal hold ID returned for the specified legal hold on a recovery point.
+        /// The ID of the legal hold.
         /// </para>
         /// </summary>
         public string LegalHoldId
@@ -116,8 +117,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property RecoveryPointSelection. 
         /// <para>
-        /// This specifies criteria to assign a set of resources, such as resource types or backup
-        /// vaults.
+        /// The criteria to assign to a set of resources, such as resource types or backup vaults.
         /// </para>
         /// </summary>
         public RecoveryPointSelection RecoveryPointSelection
@@ -135,9 +135,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// This displays the status of the legal hold returned after creating the legal hold.
-        /// Statuses can be <code>ACTIVE</code>, <code>PENDING</code>, <code>CANCELED</code>,
-        /// <code>CANCELING</code>, or <code>FAILED</code>.
+        /// The status of the legal hold.
         /// </para>
         /// </summary>
         public LegalHoldStatus Status
@@ -155,7 +153,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property Title. 
         /// <para>
-        /// This is the string title of the legal hold returned after creating the legal hold.
+        /// The title of the legal hold.
         /// </para>
         /// </summary>
         public string Title

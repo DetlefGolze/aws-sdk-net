@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTWireless.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.IoTWireless.Model
         private string _arn;
         private DateTime? _createdAt;
         private string _description;
+        private string _descriptor;
         private string _firmwareUpdateImage;
         private string _firmwareUpdateRole;
         private int? _fragmentIntervalMS;
@@ -91,6 +93,22 @@ namespace Amazon.IoTWireless.Model
         internal bool IsSetDescription()
         {
             return this._description != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Descriptor.
+        /// </summary>
+        [AWSProperty(Max=332)]
+        public string Descriptor
+        {
+            get { return this._descriptor; }
+            set { this._descriptor = value; }
+        }
+
+        // Check to see if Descriptor property is set
+        internal bool IsSetDescriptor()
+        {
+            return this._descriptor != null;
         }
 
         /// <summary>

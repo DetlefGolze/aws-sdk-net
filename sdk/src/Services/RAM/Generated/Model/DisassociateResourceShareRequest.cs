@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RAM.Model
 {
     /// <summary>
@@ -36,10 +37,10 @@ namespace Amazon.RAM.Model
     public partial class DisassociateResourceShareRequest : AmazonRAMRequest
     {
         private string _clientToken;
-        private List<string> _principals = new List<string>();
-        private List<string> _resourceArns = new List<string>();
+        private List<string> _principals = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _resourceArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _resourceShareArn;
-        private List<string> _sources = new List<string>();
+        private List<string> _sources = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
@@ -58,8 +59,8 @@ namespace Amazon.RAM.Model
         /// </para>
         ///  
         /// <para>
-        /// If you retry the operation with the same <code>ClientToken</code>, but with different
-        /// parameters, the retry fails with an <code>IdempotentParameterMismatch</code> error.
+        /// If you retry the operation with the same <c>ClientToken</c>, but with different parameters,
+        /// the retry fails with an <c>IdempotentParameterMismatch</c> error.
         /// </para>
         /// </summary>
         public string ClientToken
@@ -86,26 +87,26 @@ namespace Amazon.RAM.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// An Amazon Web Services account ID, for example: <code>123456789012</code> 
+        /// An Amazon Web Services account ID, for example: <c>123456789012</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// An <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-        /// Resource Name (ARN)</a> of an organization in Organizations, for example: <code>organizations::123456789012:organization/o-exampleorgid</code>
+        /// Resource Name (ARN)</a> of an organization in Organizations, for example: <c>organizations::123456789012:organization/o-exampleorgid</c>
         /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// An ARN of an organizational unit (OU) in Organizations, for example: <code>organizations::123456789012:ou/o-exampleorgid/ou-examplerootid-exampleouid123</code>
+        /// An ARN of an organizational unit (OU) in Organizations, for example: <c>organizations::123456789012:ou/o-exampleorgid/ou-examplerootid-exampleouid123</c>
         /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// An ARN of an IAM role, for example: <code>iam::123456789012:role/rolename</code> 
+        /// An ARN of an IAM role, for example: <c>iam::123456789012:role/rolename</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// An ARN of an IAM user, for example: <code>iam::123456789012user/username</code> 
+        /// An ARN of an IAM user, for example: <c>iam::123456789012user/username</c> 
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
@@ -124,7 +125,7 @@ namespace Amazon.RAM.Model
         // Check to see if Principals property is set
         internal bool IsSetPrincipals()
         {
-            return this._principals != null && this._principals.Count > 0; 
+            return this._principals != null && (this._principals.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -145,7 +146,7 @@ namespace Amazon.RAM.Model
         // Check to see if ResourceArns property is set
         internal bool IsSetResourceArns()
         {
-            return this._resourceArns != null && this._resourceArns.Count > 0; 
+            return this._resourceArns != null && (this._resourceArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -185,7 +186,7 @@ namespace Amazon.RAM.Model
         // Check to see if Sources property is set
         internal bool IsSetSources()
         {
-            return this._sources != null && this._sources.Count > 0; 
+            return this._sources != null && (this._sources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

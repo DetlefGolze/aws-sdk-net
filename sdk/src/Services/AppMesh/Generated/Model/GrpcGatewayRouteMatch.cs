@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppMesh.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.AppMesh.Model
     public partial class GrpcGatewayRouteMatch
     {
         private GatewayRouteHostnameMatch _hostname;
-        private List<GrpcGatewayRouteMetadata> _metadata = new List<GrpcGatewayRouteMetadata>();
+        private List<GrpcGatewayRouteMetadata> _metadata = AWSConfigs.InitializeCollections ? new List<GrpcGatewayRouteMetadata>() : null;
         private int? _port;
         private string _serviceName;
 
@@ -72,13 +73,13 @@ namespace Amazon.AppMesh.Model
         // Check to see if Metadata property is set
         internal bool IsSetMetadata()
         {
-            return this._metadata != null && this._metadata.Count > 0; 
+            return this._metadata != null && (this._metadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Port. 
         /// <para>
-        /// The port number to match from the request.
+        /// The gateway route port to be matched on.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=65535)]

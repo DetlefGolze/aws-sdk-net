@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -34,13 +35,15 @@ namespace Amazon.CognitoIdentityProvider.Model
     public partial class ListUsersResponse : AmazonWebServiceResponse
     {
         private string _paginationToken;
-        private List<UserType> _users = new List<UserType>();
+        private List<UserType> _users = AWSConfigs.InitializeCollections ? new List<UserType>() : null;
 
         /// <summary>
         /// Gets and sets the property PaginationToken. 
         /// <para>
-        /// An identifier that was returned from the previous call to this operation, which can
-        /// be used to return the next set of items in the list.
+        /// The identifier that Amazon Cognito returned with the previous request to this operation.
+        /// When you include a pagination token in your request, Amazon Cognito returns the next
+        /// set of items in the list. By use of this token, you can paginate through the full
+        /// list of items.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -66,9 +69,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// Amazon Cognito creates a profile in your user pool for each native user in your user
         /// pool, and each unique user ID from your third-party identity providers (IdPs). When
         /// you link users with the <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html">AdminLinkProviderForUser</a>
-        /// API operation, the output of <code>ListUsers</code> displays both the IdP user and
-        /// the native user that you linked. You can identify IdP users in the <code>Users</code>
-        /// object of this API response by the IdP prefix that Amazon Cognito appends to <code>Username</code>.
+        /// API operation, the output of <c>ListUsers</c> displays both the IdP user and the native
+        /// user that you linked. You can identify IdP users in the <c>Users</c> object of this
+        /// API response by the IdP prefix that Amazon Cognito appends to <c>Username</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -81,7 +84,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if Users property is set
         internal bool IsSetUsers()
         {
-            return this._users != null && this._users.Count > 0; 
+            return this._users != null && (this._users.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

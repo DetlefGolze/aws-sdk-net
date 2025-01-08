@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TimestreamQuery.Model
 {
     /// <summary>
-    /// The requested endpoint was not valid.
+    /// The requested endpoint is invalid.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

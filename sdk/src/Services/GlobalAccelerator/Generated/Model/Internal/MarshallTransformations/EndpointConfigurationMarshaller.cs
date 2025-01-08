@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.GlobalAccelerator.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,14 @@ namespace Amazon.GlobalAccelerator.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(EndpointConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetAttachmentArn())
+            {
+                context.Writer.WritePropertyName("AttachmentArn");
+                context.Writer.Write(requestObject.AttachmentArn);
+            }
+
             if(requestObject.IsSetClientIPPreservationEnabled())
             {
                 context.Writer.WritePropertyName("ClientIPPreservationEnabled");

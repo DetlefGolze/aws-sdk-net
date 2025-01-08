@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.SecurityHub.Model
     {
         private string _containerPath;
         private string _hostPath;
-        private List<string> _permissions = new List<string>();
+        private List<string> _permissions = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ContainerPath. 
@@ -77,7 +78,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Permissions. 
         /// <para>
         /// The explicit permissions to provide to the container for the device. By default, the
-        /// container has permissions for read, write, and <code>mknod</code> for the device.
+        /// container has permissions for read, write, and <c>mknod</c> for the device.
         /// </para>
         /// </summary>
         public List<string> Permissions
@@ -89,7 +90,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Permissions property is set
         internal bool IsSetPermissions()
         {
-            return this._permissions != null && this._permissions.Count > 0; 
+            return this._permissions != null && (this._permissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

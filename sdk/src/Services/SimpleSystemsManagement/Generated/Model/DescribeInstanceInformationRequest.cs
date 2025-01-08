@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -43,16 +44,16 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// </para>
     ///  <note> 
     /// <para>
-    /// The <code>IamRole</code> field returned for this API operation is the Identity and
-    /// Access Management (IAM) role assigned to on-premises managed nodes. This operation
-    /// does not return the IAM role for EC2 instances.
+    /// The <c>IamRole</c> field returned for this API operation is the role assigned to an
+    /// Amazon EC2 instance configured with a Systems Manager Quick Setup host management
+    /// configuration or the role assigned to an on-premises managed node.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class DescribeInstanceInformationRequest : AmazonSimpleSystemsManagementRequest
     {
-        private List<InstanceInformationStringFilter> _filters = new List<InstanceInformationStringFilter>();
-        private List<InstanceInformationFilter> _instanceInformationFilterList = new List<InstanceInformationFilter>();
+        private List<InstanceInformationStringFilter> _filters = AWSConfigs.InitializeCollections ? new List<InstanceInformationStringFilter>() : null;
+        private List<InstanceInformationFilter> _instanceInformationFilterList = AWSConfigs.InitializeCollections ? new List<InstanceInformationFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -61,7 +62,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <para>
         /// One or more filters. Use a filter to return a more specific list of managed nodes.
         /// You can filter based on tags applied to your managed nodes. Tag filters can't be combined
-        /// with other filter types. Use this <code>Filters</code> data type instead of <code>InstanceInformationFilterList</code>,
+        /// with other filter types. Use this <c>Filters</c> data type instead of <c>InstanceInformationFilterList</c>,
         /// which is deprecated.
         /// </para>
         /// </summary>
@@ -75,20 +76,20 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property InstanceInformationFilterList. 
         /// <para>
         /// This is a legacy method. We recommend that you don't use this method. Instead, use
-        /// the <code>Filters</code> data type. <code>Filters</code> enables you to return node
-        /// information by filtering based on tags applied to managed nodes.
+        /// the <c>Filters</c> data type. <c>Filters</c> enables you to return node information
+        /// by filtering based on tags applied to managed nodes.
         /// </para>
         ///  <note> 
         /// <para>
-        /// Attempting to use <code>InstanceInformationFilterList</code> and <code>Filters</code>
-        /// leads to an exception error. 
+        /// Attempting to use <c>InstanceInformationFilterList</c> and <c>Filters</c> leads to
+        /// an exception error. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -102,7 +103,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if InstanceInformationFilterList property is set
         internal bool IsSetInstanceInformationFilterList()
         {
-            return this._instanceInformationFilterList != null && this._instanceInformationFilterList.Count > 0; 
+            return this._instanceInformationFilterList != null && (this._instanceInformationFilterList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

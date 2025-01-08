@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMediaPipelines.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
     public partial class KinesisVideoStreamRecordingSourceRuntimeConfiguration
     {
         private FragmentSelector _fragmentSelector;
-        private List<RecordingStreamConfiguration> _streams = new List<RecordingStreamConfiguration>();
+        private List<RecordingStreamConfiguration> _streams = AWSConfigs.InitializeCollections ? new List<RecordingStreamConfiguration>() : null;
 
         /// <summary>
         /// Gets and sets the property FragmentSelector. 
@@ -62,7 +63,7 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         /// The stream or streams to be recorded.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=2, Max=2)]
+        [AWSProperty(Required=true, Min=1, Max=2)]
         public List<RecordingStreamConfiguration> Streams
         {
             get { return this._streams; }
@@ -72,7 +73,7 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         // Check to see if Streams property is set
         internal bool IsSetStreams()
         {
-            return this._streams != null && this._streams.Count > 0; 
+            return this._streams != null && (this._streams.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

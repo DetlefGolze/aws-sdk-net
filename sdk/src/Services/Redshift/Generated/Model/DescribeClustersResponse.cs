@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.Redshift.Model
     /// </summary>
     public partial class DescribeClustersResponse : AmazonWebServiceResponse
     {
-        private List<Cluster> _clusters = new List<Cluster>();
+        private List<Cluster> _clusters = AWSConfigs.InitializeCollections ? new List<Cluster>() : null;
         private string _marker;
 
         /// <summary>
         /// Gets and sets the property Clusters. 
         /// <para>
-        /// A list of <code>Cluster</code> objects, where each object describes one cluster. 
+        /// A list of <c>Cluster</c> objects, where each object describes one cluster. 
         /// </para>
         /// </summary>
         public List<Cluster> Clusters
@@ -51,7 +52,7 @@ namespace Amazon.Redshift.Model
         // Check to see if Clusters property is set
         internal bool IsSetClusters()
         {
-            return this._clusters != null && this._clusters.Count > 0; 
+            return this._clusters != null && (this._clusters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -59,9 +60,9 @@ namespace Amazon.Redshift.Model
         /// <para>
         /// A value that indicates the starting point for the next set of response records in
         /// a subsequent request. If a value is returned in a response, you can retrieve the next
-        /// set of records by providing this returned marker value in the <code>Marker</code>
-        /// parameter and retrying the command. If the <code>Marker</code> field is empty, all
-        /// response records have been retrieved for the request. 
+        /// set of records by providing this returned marker value in the <c>Marker</c> parameter
+        /// and retrying the command. If the <c>Marker</c> field is empty, all response records
+        /// have been retrieved for the request. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]

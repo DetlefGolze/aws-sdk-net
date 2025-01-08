@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -65,11 +66,11 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>true | false</code> 
+        /// Valid values: <c>true | false</c> 
         /// </para>
         ///  
         /// <para>
-        /// Default value: <code>false</code> 
+        /// Default value: <c>false</c> 
         /// </para>
         /// </summary>
         public bool Enabled

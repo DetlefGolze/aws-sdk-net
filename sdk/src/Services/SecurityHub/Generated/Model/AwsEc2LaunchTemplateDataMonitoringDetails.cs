@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Enabled. 
         /// <para>
-        ///  Enables detailed monitoring when <code>true</code> is specified. Otherwise, basic
-        /// monitoring is enabled. For more information about detailed monitoring, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html">Enable
+        ///  Enables detailed monitoring when <c>true</c> is specified. Otherwise, basic monitoring
+        /// is enabled. For more information about detailed monitoring, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html">Enable
         /// or turn off detailed monitoring for your instances</a> in the <i>Amazon EC2 User Guide</i>.
         /// 
         /// </para>

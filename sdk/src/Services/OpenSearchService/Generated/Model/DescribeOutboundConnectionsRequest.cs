@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.OpenSearchService.Model
     /// </summary>
     public partial class DescribeOutboundConnectionsRequest : AmazonOpenSearchServiceRequest
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -55,14 +56,14 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// An optional parameter that specifies the maximum number of results to return. You
-        /// can use <code>nextToken</code> to get the next page of results.
+        /// can use <c>nextToken</c> to get the next page of results.
         /// </para>
         /// </summary>
         [AWSProperty(Max=100)]
@@ -81,8 +82,8 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If your initial <code>DescribeOutboundConnections</code> operation returns a <code>nextToken</code>,
-        /// you can include the returned <code>nextToken</code> in subsequent <code>DescribeOutboundConnections</code>
+        /// If your initial <c>DescribeOutboundConnections</c> operation returns a <c>nextToken</c>,
+        /// you can include the returned <c>nextToken</c> in subsequent <c>DescribeOutboundConnections</c>
         /// operations, which returns results in the next page.
         /// </para>
         /// </summary>

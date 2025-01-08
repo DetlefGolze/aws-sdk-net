@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Glue.Model
     {
         private string _catalogId;
         private string _databaseName;
-        private List<PartitionInput> _partitionInputList = new List<PartitionInput>();
+        private List<PartitionInput> _partitionInputList = AWSConfigs.InitializeCollections ? new List<PartitionInput>() : null;
         private string _tableName;
 
         /// <summary>
@@ -81,8 +82,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property PartitionInputList. 
         /// <para>
-        /// A list of <code>PartitionInput</code> structures that define the partitions to be
-        /// created.
+        /// A list of <c>PartitionInput</c> structures that define the partitions to be created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=100)]
@@ -95,7 +95,7 @@ namespace Amazon.Glue.Model
         // Check to see if PartitionInputList property is set
         internal bool IsSetPartitionInputList()
         {
-            return this._partitionInputList != null && this._partitionInputList.Count > 0; 
+            return this._partitionInputList != null && (this._partitionInputList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

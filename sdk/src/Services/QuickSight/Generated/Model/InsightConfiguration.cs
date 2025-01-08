@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -33,8 +34,9 @@ namespace Amazon.QuickSight.Model
     /// </summary>
     public partial class InsightConfiguration
     {
-        private List<Computation> _computations = new List<Computation>();
+        private List<Computation> _computations = AWSConfigs.InitializeCollections ? new List<Computation>() : null;
         private CustomNarrativeOptions _customNarrative;
+        private VisualInteractionOptions _interactions;
 
         /// <summary>
         /// Gets and sets the property Computations. 
@@ -52,7 +54,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Computations property is set
         internal bool IsSetComputations()
         {
-            return this._computations != null && this._computations.Count > 0; 
+            return this._computations != null && (this._computations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -71,6 +73,24 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetCustomNarrative()
         {
             return this._customNarrative != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Interactions. 
+        /// <para>
+        /// The general visual interactions setup for a visual.
+        /// </para>
+        /// </summary>
+        public VisualInteractionOptions Interactions
+        {
+            get { return this._interactions; }
+            set { this._interactions = value; }
+        }
+
+        // Check to see if Interactions property is set
+        internal bool IsSetInteractions()
+        {
+            return this._interactions != null;
         }
 
     }

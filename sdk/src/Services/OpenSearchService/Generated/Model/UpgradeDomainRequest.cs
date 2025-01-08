@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.OpenSearchService.Model
     /// </summary>
     public partial class UpgradeDomainRequest : AmazonOpenSearchServiceRequest
     {
-        private Dictionary<string, string> _advancedOptions = new Dictionary<string, string>();
+        private Dictionary<string, string> _advancedOptions = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _domainName;
         private bool? _performCheckOnly;
         private string _targetVersion;
@@ -43,10 +44,10 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property AdvancedOptions. 
         /// <para>
-        /// Only supports the <code>override_main_response_version</code> parameter and not other
-        /// advanced options. You can only include this option when upgrading to an OpenSearch
-        /// version. Specifies whether the domain reports its version as 7.10 so that it continues
-        /// to work with Elasticsearch OSS clients and plugins.
+        /// Only supports the <c>override_main_response_version</c> parameter and not other advanced
+        /// options. You can only include this option when upgrading to an OpenSearch version.
+        /// Specifies whether the domain reports its version as 7.10 so that it continues to work
+        /// with Elasticsearch OSS clients and plugins.
         /// </para>
         /// </summary>
         public Dictionary<string, string> AdvancedOptions
@@ -58,7 +59,7 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if AdvancedOptions property is set
         internal bool IsSetAdvancedOptions()
         {
-            return this._advancedOptions != null && this._advancedOptions.Count > 0; 
+            return this._advancedOptions != null && (this._advancedOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DLM.Model
 {
     /// <summary>
-    /// <b>[Snapshot and AMI policies only]</b> Specifies when the policy should create snapshots
-    /// or AMIs.
+    /// <b>[Custom snapshot and AMI policies only]</b> Specifies when the policy should create
+    /// snapshots or AMIs.
     /// 
     ///  <note> <ul> <li> 
     /// <para>
@@ -39,8 +40,8 @@ namespace Amazon.DLM.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// If you need to specify an <a>ArchiveRule</a> for the schedule, then you must specify
-    /// a creation frequency of at least 28 days.
+    /// If you need to specify an <a href="https://docs.aws.amazon.com/dlm/latest/APIReference/API_ArchiveRule.html">ArchiveRule</a>
+    /// for the schedule, then you must specify a creation frequency of at least 28 days.
     /// </para>
     ///  </li> </ul> </note>
     /// </summary>
@@ -50,14 +51,15 @@ namespace Amazon.DLM.Model
         private int? _interval;
         private IntervalUnitValues _intervalUnit;
         private LocationValues _location;
-        private List<string> _times = new List<string>();
+        private List<Script> _scripts = AWSConfigs.InitializeCollections ? new List<Script>() : null;
+        private List<string> _times = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property CronExpression. 
         /// <para>
         /// The schedule, as a Cron expression. The schedule interval must be between 1 hour and
-        /// 1 year. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions">Cron
-        /// expressions</a> in the <i>Amazon CloudWatch User Guide</i>.
+        /// 1 year. For more information, see the <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-cron-expressions.html">Cron
+        /// expressions reference</a> in the <i>Amazon EventBridge User Guide</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=17, Max=106)]
@@ -114,18 +116,43 @@ namespace Amazon.DLM.Model
         /// <summary>
         /// Gets and sets the property Location. 
         /// <para>
-        ///  <b>[Snapshot policies only]</b> Specifies the destination for snapshots created by
-        /// the policy. To create snapshots in the same Region as the source resource, specify
-        /// <code>CLOUD</code>. To create snapshots on the same Outpost as the source resource,
-        /// specify <code>OUTPOST_LOCAL</code>. If you omit this parameter, <code>CLOUD</code>
-        /// is used by default.
+        ///  <b>[Custom snapshot policies only]</b> Specifies the destination for snapshots created
+        /// by the policy. The allowed destinations depend on the location of the targeted resources.
         /// </para>
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// If the policy targets resources in an Amazon Web Services Region, then you must create
-        /// snapshots in the same Region as the source resource. If the policy targets resources
-        /// on an Outpost, then you can create snapshots on the same Outpost as the source resource,
-        /// or in the Region of that Outpost.
+        /// If the policy targets resources in a Region, then you must create snapshots in the
+        /// same Region as the source resource.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If the policy targets resources in a Local Zone, you can create snapshots in the same
+        /// Local Zone or in its parent Region.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If the policy targets resources on an Outpost, then you can create snapshots on the
+        /// same Outpost or in its parent Region.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Specify one of the following values:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// To create snapshots in the same Region as the source resource, specify <c>CLOUD</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// To create snapshots in the same Local Zone as the source resource, specify <c>LOCAL_ZONE</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// To create snapshots on the same Outpost as the source resource, specify <c>OUTPOST_LOCAL</c>.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Default: <c>CLOUD</c> 
         /// </para>
         /// </summary>
         public LocationValues Location
@@ -138,6 +165,33 @@ namespace Amazon.DLM.Model
         internal bool IsSetLocation()
         {
             return this._location != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Scripts. 
+        /// <para>
+        ///  <b>[Custom snapshot policies that target instances only]</b> Specifies pre and/or
+        /// post scripts for a snapshot lifecycle policy that targets instances. This is useful
+        /// for creating application-consistent snapshots, or for performing specific administrative
+        /// tasks before or after Amazon Data Lifecycle Manager initiates snapshot creation.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/automate-app-consistent-backups.html">Automating
+        /// application-consistent snapshots with pre and post scripts</a>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=1)]
+        public List<Script> Scripts
+        {
+            get { return this._scripts; }
+            set { this._scripts = value; }
+        }
+
+        // Check to see if Scripts property is set
+        internal bool IsSetScripts()
+        {
+            return this._scripts != null && (this._scripts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -162,7 +216,7 @@ namespace Amazon.DLM.Model
         // Check to see if Times property is set
         internal bool IsSetTimes()
         {
-            return this._times != null && this._times.Count > 0; 
+            return this._times != null && (this._times.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Omics.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,8 +64,21 @@ namespace Amazon.Omics.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetCacheBehavior())
+                {
+                    context.Writer.WritePropertyName("cacheBehavior");
+                    context.Writer.Write(publicRequest.CacheBehavior);
+                }
+
+                if(publicRequest.IsSetCacheId())
+                {
+                    context.Writer.WritePropertyName("cacheId");
+                    context.Writer.Write(publicRequest.CacheId);
+                }
+
                 if(publicRequest.IsSetLogLevel())
                 {
                     context.Writer.WritePropertyName("logLevel");
@@ -136,6 +150,12 @@ namespace Amazon.Omics.Model.Internal.MarshallTransformations
                     context.Writer.Write(publicRequest.StorageCapacity);
                 }
 
+                if(publicRequest.IsSetStorageType())
+                {
+                    context.Writer.WritePropertyName("storageType");
+                    context.Writer.Write(publicRequest.StorageType);
+                }
+
                 if(publicRequest.IsSetTags())
                 {
                     context.Writer.WritePropertyName("tags");
@@ -154,6 +174,12 @@ namespace Amazon.Omics.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("workflowId");
                     context.Writer.Write(publicRequest.WorkflowId);
+                }
+
+                if(publicRequest.IsSetWorkflowOwnerId())
+                {
+                    context.Writer.WritePropertyName("workflowOwnerId");
+                    context.Writer.Write(publicRequest.WorkflowOwnerId);
                 }
 
                 if(publicRequest.IsSetWorkflowType())

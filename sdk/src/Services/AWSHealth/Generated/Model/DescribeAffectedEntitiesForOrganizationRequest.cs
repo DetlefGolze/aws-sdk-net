@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSHealth.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.AWSHealth.Model
     /// Returns a list of entities that have been affected by one or more events for one or
     /// more accounts in your organization in Organizations, based on the filter criteria.
     /// Entities can refer to individual customer resources, groups of customer resources,
-    /// or any other construct, depending on the Amazon Web Service.
+    /// or any other construct, depending on the Amazon Web Services service.
     /// 
     ///  
     /// <para>
@@ -47,8 +48,8 @@ namespace Amazon.AWSHealth.Model
     /// </para>
     ///  <note> <ul> <li> 
     /// <para>
-    /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-    /// the next request to return more results.
+    /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+    /// next request to return more results.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -63,8 +64,8 @@ namespace Amazon.AWSHealth.Model
         private string _locale;
         private int? _maxResults;
         private string _nextToken;
-        private List<EntityAccountFilter> _organizationEntityAccountFilters = new List<EntityAccountFilter>();
-        private List<EventAccountFilter> _organizationEntityFilters = new List<EventAccountFilter>();
+        private List<EntityAccountFilter> _organizationEntityAccountFilters = AWSConfigs.InitializeCollections ? new List<EntityAccountFilter>() : null;
+        private List<EventAccountFilter> _organizationEntityFilters = AWSConfigs.InitializeCollections ? new List<EventAccountFilter>() : null;
 
         /// <summary>
         /// Gets and sets the property Locale. 
@@ -109,8 +110,8 @@ namespace Amazon.AWSHealth.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If the results of a search are large, only a portion of the results are returned,
-        /// and a <code>nextToken</code> pagination token is returned in the response. To retrieve
-        /// the next batch of results, reissue the search request and include the returned token.
+        /// and a <c>nextToken</c> pagination token is returned in the response. To retrieve the
+        /// next batch of results, reissue the search request and include the returned token.
         /// When all results have been returned, the response does not contain a pagination token
         /// value.
         /// </para>
@@ -131,8 +132,8 @@ namespace Amazon.AWSHealth.Model
         /// <summary>
         /// Gets and sets the property OrganizationEntityAccountFilters. 
         /// <para>
-        /// A JSON set of elements including the <code>awsAccountId</code>, <code>eventArn</code>
-        /// and a set of <code>statusCodes</code>.
+        /// A JSON set of elements including the <c>awsAccountId</c>, <c>eventArn</c> and a set
+        /// of <c>statusCodes</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
@@ -145,13 +146,13 @@ namespace Amazon.AWSHealth.Model
         // Check to see if OrganizationEntityAccountFilters property is set
         internal bool IsSetOrganizationEntityAccountFilters()
         {
-            return this._organizationEntityAccountFilters != null && this._organizationEntityAccountFilters.Count > 0; 
+            return this._organizationEntityAccountFilters != null && (this._organizationEntityAccountFilters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property OrganizationEntityFilters. 
         /// <para>
-        /// A JSON set of elements including the <code>awsAccountId</code> and the <code>eventArn</code>.
+        /// A JSON set of elements including the <c>awsAccountId</c> and the <c>eventArn</c>.
         /// </para>
         /// </summary>
         [Obsolete("This property is deprecated, use organizationEntityAccountFilters instead.")]
@@ -165,7 +166,7 @@ namespace Amazon.AWSHealth.Model
         // Check to see if OrganizationEntityFilters property is set
         internal bool IsSetOrganizationEntityFilters()
         {
-            return this._organizationEntityFilters != null && this._organizationEntityFilters.Count > 0; 
+            return this._organizationEntityFilters != null && (this._organizationEntityFilters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

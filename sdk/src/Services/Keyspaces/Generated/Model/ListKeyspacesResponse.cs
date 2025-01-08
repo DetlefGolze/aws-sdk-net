@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Keyspaces.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Keyspaces.Model
     /// </summary>
     public partial class ListKeyspacesResponse : AmazonWebServiceResponse
     {
-        private List<KeyspaceSummary> _keyspaces = new List<KeyspaceSummary>();
+        private List<KeyspaceSummary> _keyspaces = AWSConfigs.InitializeCollections ? new List<KeyspaceSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,14 +53,14 @@ namespace Amazon.Keyspaces.Model
         // Check to see if Keyspaces property is set
         internal bool IsSetKeyspaces()
         {
-            return this._keyspaces != null && this._keyspaces.Count > 0; 
+            return this._keyspaces != null && (this._keyspaces.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token to specify where to start paginating. This is the <code>NextToken</code> from
-        /// a previously truncated response.
+        /// A token to specify where to start paginating. This is the <c>NextToken</c> from a
+        /// previously truncated response.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

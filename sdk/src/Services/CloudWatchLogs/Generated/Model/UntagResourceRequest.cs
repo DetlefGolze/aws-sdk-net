@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.CloudWatchLogs.Model
     public partial class UntagResourceRequest : AmazonCloudWatchLogsRequest
     {
         private string _resourceArn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -44,13 +45,13 @@ namespace Amazon.CloudWatchLogs.Model
         /// </para>
         ///  
         /// <para>
-        /// The ARN format of a log group is <code>arn:aws:logs:<i>Region</i>:<i>account-id</i>:log-group:<i>log-group-name</i>
-        /// </code> 
+        /// The ARN format of a log group is <c>arn:aws:logs:<i>Region</i>:<i>account-id</i>:log-group:<i>log-group-name</i>
+        /// </c> 
         /// </para>
         ///  
         /// <para>
-        /// The ARN format of a destination is <code>arn:aws:logs:<i>Region</i>:<i>account-id</i>:destination:<i>destination-name</i>
-        /// </code> 
+        /// The ARN format of a destination is <c>arn:aws:logs:<i>Region</i>:<i>account-id</i>:destination:<i>destination-name</i>
+        /// </c> 
         /// </para>
         ///  
         /// <para>
@@ -87,7 +88,7 @@ namespace Amazon.CloudWatchLogs.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

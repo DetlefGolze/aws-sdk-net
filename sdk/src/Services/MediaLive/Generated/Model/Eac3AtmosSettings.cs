@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaLive.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.MediaLive.Model
 
         /// <summary>
         /// Gets and sets the property Bitrate. Average bitrate in bits/second. Valid bitrates
-        /// depend on the coding mode.//  * @affectsRightSizing true
+        /// depend on the coding mode.
         /// </summary>
         public double Bitrate
         {

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -38,16 +39,16 @@ namespace Amazon.EC2.Model
         private DateTime? _createTime;
         private string _spotFleetRequestId;
         private BatchState _spotFleetRequestState;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ActivityStatus. 
         /// <para>
-        /// The progress of the Spot Fleet request. If there is an error, the status is <code>error</code>.
-        /// After all requests are placed, the status is <code>pending_fulfillment</code>. If
-        /// the size of the fleet is equal to or greater than its target capacity, the status
-        /// is <code>fulfilled</code>. If the size of the fleet is decreased, the status is <code>pending_termination</code>
-        /// while Spot Instances are terminating.
+        /// The progress of the Spot Fleet request. If there is an error, the status is <c>error</c>.
+        /// After all requests are placed, the status is <c>pending_fulfillment</c>. If the size
+        /// of the fleet is equal to or greater than its target capacity, the status is <c>fulfilled</c>.
+        /// If the size of the fleet is decreased, the status is <c>pending_termination</c> while
+        /// Spot Instances are terminating.
         /// </para>
         /// </summary>
         public ActivityStatus ActivityStatus
@@ -149,7 +150,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

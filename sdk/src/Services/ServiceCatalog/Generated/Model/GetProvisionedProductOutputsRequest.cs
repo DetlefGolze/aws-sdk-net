@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
     /// Container for the parameters to the GetProvisionedProductOutputs operation.
-    /// This API takes either a <code>ProvisonedProductId</code> or a <code>ProvisionedProductName</code>,
+    /// This API takes either a <c>ProvisonedProductId</c> or a <c>ProvisionedProductName</c>,
     /// along with a list of one or more output keys, and responds with the key/value pairs
     /// of those outputs.
     /// </summary>
     public partial class GetProvisionedProductOutputsRequest : AmazonServiceCatalogRequest
     {
         private string _acceptLanguage;
-        private List<string> _outputKeys = new List<string>();
+        private List<string> _outputKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _pageSize;
         private string _pageToken;
         private string _provisionedProductId;
@@ -50,11 +51,11 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>jp</code> - Japanese
+        ///  <c>jp</c> - Japanese
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>zh</code> - Chinese
+        ///  <c>zh</c> - Chinese
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -88,7 +89,7 @@ namespace Amazon.ServiceCatalog.Model
         // Check to see if OutputKeys property is set
         internal bool IsSetOutputKeys()
         {
-            return this._outputKeys != null && this._outputKeys.Count > 0; 
+            return this._outputKeys != null && (this._outputKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

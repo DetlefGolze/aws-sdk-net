@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaTailor.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.MediaTailor.Model
     /// </summary>
     public partial class ListPrefetchSchedulesResponse : AmazonWebServiceResponse
     {
-        private List<PrefetchSchedule> _items = new List<PrefetchSchedule>();
+        private List<PrefetchSchedule> _items = AWSConfigs.InitializeCollections ? new List<PrefetchSchedule>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Items. 
         /// <para>
-        /// Lists the prefetch schedules. An empty <code>Items</code> list doesn't mean there
-        /// aren't more items to fetch, just that that page was empty.
+        /// Lists the prefetch schedules. An empty <c>Items</c> list doesn't mean there aren't
+        /// more items to fetch, just that that page was empty.
         /// </para>
         /// </summary>
         public List<PrefetchSchedule> Items
@@ -52,7 +53,7 @@ namespace Amazon.MediaTailor.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

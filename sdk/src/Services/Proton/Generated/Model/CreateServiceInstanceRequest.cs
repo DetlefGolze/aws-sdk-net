@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Proton.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.Proton.Model
         private string _name;
         private string _serviceName;
         private string _spec;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _templateMajorVersion;
         private string _templateMinorVersion;
 
@@ -140,14 +141,14 @@ namespace Amazon.Proton.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TemplateMajorVersion. 
         /// <para>
-        /// To create a new major and minor version of the service template, <i>exclude</i> <code>major
-        /// Version</code>.
+        /// To create a new major and minor version of the service template, <i>exclude</i> <c>major
+        /// Version</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=20)]
@@ -166,7 +167,7 @@ namespace Amazon.Proton.Model
         /// <summary>
         /// Gets and sets the property TemplateMinorVersion. 
         /// <para>
-        /// To create a new minor version of the service template, include a <code>major Version</code>.
+        /// To create a new minor version of the service template, include a <c>major Version</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=20)]

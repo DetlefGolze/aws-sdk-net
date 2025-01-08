@@ -1,14 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netcoreapp3.1;net8.0</TargetFrameworks>
     <DefineConstants>$(DefineConstants);NETSTANDARD;AWS_ASYNC_API</DefineConstants>
     <DebugType>portable</DebugType>
     <AssemblyName>AWSSDK.SmokeTests.NetStandard</AssemblyName>
     <PackageId>AWSSDK.SmokeTests.NetStandard</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-
-    <NoWarn>CS1591</NoWarn>
+    <NoWarn>CS1591,NU1701</NoWarn>
+	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <LangVersion Condition="'$(TargetFramework)' == 'netstandard2.0'">8.0</LangVersion>
   </PropertyGroup>
   
   <ItemGroup>

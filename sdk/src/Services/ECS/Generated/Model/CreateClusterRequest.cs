@@ -26,21 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateCluster operation.
-    /// Creates a new Amazon ECS cluster. By default, your account receives a <code>default</code>
+    /// Creates a new Amazon ECS cluster. By default, your account receives a <c>default</c>
     /// cluster when you launch your first container instance. However, you can create your
-    /// own cluster with a unique name with the <code>CreateCluster</code> action.
+    /// own cluster with a unique name.
     /// 
     ///  <note> 
     /// <para>
-    /// When you call the <a>CreateCluster</a> API operation, Amazon ECS attempts to create
-    /// the Amazon ECS service-linked role for your account. This is so that it can manage
-    /// required resources in other Amazon Web Services services on your behalf. However,
-    /// if the user that makes the call doesn't have permissions to create the service-linked
-    /// role, it isn't created. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using-service-linked-roles.html">Using
+    /// When you call the <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateCluster.html">CreateCluster</a>
+    /// API operation, Amazon ECS attempts to create the Amazon ECS service-linked role for
+    /// your account. This is so that it can manage required resources in other Amazon Web
+    /// Services services on your behalf. However, if the user that makes the call doesn't
+    /// have permissions to create the service-linked role, it isn't created. For more information,
+    /// see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using-service-linked-roles.html">Using
     /// service-linked roles for Amazon ECS</a> in the <i>Amazon Elastic Container Service
     /// Developer Guide</i>.
     /// </para>
@@ -48,13 +50,13 @@ namespace Amazon.ECS.Model
     /// </summary>
     public partial class CreateClusterRequest : AmazonECSRequest
     {
-        private List<string> _capacityProviders = new List<string>();
+        private List<string> _capacityProviders = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _clusterName;
         private ClusterConfiguration _configuration;
-        private List<CapacityProviderStrategyItem> _defaultCapacityProviderStrategy = new List<CapacityProviderStrategyItem>();
+        private List<CapacityProviderStrategyItem> _defaultCapacityProviderStrategy = AWSConfigs.InitializeCollections ? new List<CapacityProviderStrategyItem>() : null;
         private ClusterServiceConnectDefaultsRequest _serviceConnectDefaults;
-        private List<ClusterSetting> _settings = new List<ClusterSetting>();
-        private List<Tag> _tags = new List<Tag>();
+        private List<ClusterSetting> _settings = AWSConfigs.InitializeCollections ? new List<ClusterSetting>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property CapacityProviders. 
@@ -75,7 +77,7 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  
         /// <para>
-        /// To use a Fargate capacity provider, specify either the <code>FARGATE</code> or <code>FARGATE_SPOT</code>
+        /// To use a Fargate capacity provider, specify either the <c>FARGATE</c> or <c>FARGATE_SPOT</c>
         /// capacity providers. The Fargate capacity providers are available to all accounts and
         /// only need to be associated with a cluster to be used.
         /// </para>
@@ -95,14 +97,14 @@ namespace Amazon.ECS.Model
         // Check to see if CapacityProviders property is set
         internal bool IsSetCapacityProviders()
         {
-            return this._capacityProviders != null && this._capacityProviders.Count > 0; 
+            return this._capacityProviders != null && (this._capacityProviders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ClusterName. 
         /// <para>
         /// The name of your cluster. If you don't specify a name for your cluster, you create
-        /// a cluster that's named <code>default</code>. Up to 255 letters (uppercase and lowercase),
+        /// a cluster that's named <c>default</c>. Up to 255 letters (uppercase and lowercase),
         /// numbers, underscores, and hyphens are allowed. 
         /// </para>
         /// </summary>
@@ -121,7 +123,7 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Configuration. 
         /// <para>
-        /// The <code>execute</code> command configuration for the cluster.
+        /// The <c>execute</c> command configuration for the cluster.
         /// </para>
         /// </summary>
         public ClusterConfiguration Configuration
@@ -148,7 +150,8 @@ namespace Amazon.ECS.Model
         ///  
         /// <para>
         /// If a default capacity provider strategy isn't defined for a cluster when it was created,
-        /// it can be defined later with the <a>PutClusterCapacityProviders</a> API operation.
+        /// it can be defined later with the <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_PutClusterCapacityProviders.html">PutClusterCapacityProviders</a>
+        /// API operation.
         /// </para>
         /// </summary>
         public List<CapacityProviderStrategyItem> DefaultCapacityProviderStrategy
@@ -160,7 +163,7 @@ namespace Amazon.ECS.Model
         // Check to see if DefaultCapacityProviderStrategy property is set
         internal bool IsSetDefaultCapacityProviderStrategy()
         {
-            return this._defaultCapacityProviderStrategy != null && this._defaultCapacityProviderStrategy.Count > 0; 
+            return this._defaultCapacityProviderStrategy != null && (this._defaultCapacityProviderStrategy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -169,10 +172,9 @@ namespace Amazon.ECS.Model
         /// Use this parameter to set a default Service Connect namespace. After you set a default
         /// Service Connect namespace, any new services with Service Connect turned on that are
         /// created in the cluster are added as client services in the namespace. This setting
-        /// only applies to new services that set the <code>enabled</code> parameter to <code>true</code>
-        /// in the <code>ServiceConnectConfiguration</code>. You can set the namespace of each
-        /// service individually in the <code>ServiceConnectConfiguration</code> to override this
-        /// default parameter.
+        /// only applies to new services that set the <c>enabled</c> parameter to <c>true</c>
+        /// in the <c>ServiceConnectConfiguration</c>. You can set the namespace of each service
+        /// individually in the <c>ServiceConnectConfiguration</c> to override this default parameter.
         /// </para>
         ///  
         /// <para>
@@ -200,8 +202,9 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property Settings. 
         /// <para>
         /// The setting to use when creating a cluster. This parameter is used to turn on CloudWatch
-        /// Container Insights for a cluster. If this value is specified, it overrides the <code>containerInsights</code>
-        /// value set with <a>PutAccountSetting</a> or <a>PutAccountSettingDefault</a>.
+        /// Container Insights for a cluster. If this value is specified, it overrides the <c>containerInsights</c>
+        /// value set with <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_PutAccountSetting.html">PutAccountSetting</a>
+        /// or <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_PutAccountSettingDefault.html">PutAccountSettingDefault</a>.
         /// </para>
         /// </summary>
         public List<ClusterSetting> Settings
@@ -213,7 +216,7 @@ namespace Amazon.ECS.Model
         // Check to see if Settings property is set
         internal bool IsSetSettings()
         {
-            return this._settings != null && this._settings.Count > 0; 
+            return this._settings != null && (this._settings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -256,10 +259,10 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Do not use <code>aws:</code>, <code>AWS:</code>, or any upper or lowercase combination
-        /// of such as a prefix for either keys or values as it is reserved for Amazon Web Services
-        /// use. You cannot edit or delete tag keys or values with this prefix. Tags with this
-        /// prefix do not count against your tags per resource limit.
+        /// Do not use <c>aws:</c>, <c>AWS:</c>, or any upper or lowercase combination of such
+        /// as a prefix for either keys or values as it is reserved for Amazon Web Services use.
+        /// You cannot edit or delete tag keys or values with this prefix. Tags with this prefix
+        /// do not count against your tags per resource limit.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -273,7 +276,7 @@ namespace Amazon.ECS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

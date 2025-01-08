@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalyticsV2.Model
 {
     /// <summary>
@@ -73,8 +74,8 @@ namespace Amazon.KinesisAnalyticsV2.Model
         /// <summary>
         /// Gets and sets the property CurrentApplicationVersionId. 
         /// <para>
-        /// The current version of your application. You must provide the <code>ApplicationVersionID</code>
-        /// or the <code>ConditionalToken</code>.You can use the <a>DescribeApplication</a> operation
+        /// The current version of your application. You must provide the <c>ApplicationVersionID</c>
+        /// or the <c>ConditionalToken</c>.You can use the <a>DescribeApplication</a> operation
         /// to find the current application version.
         /// </para>
         /// </summary>

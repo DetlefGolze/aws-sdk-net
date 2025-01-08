@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeImage operation.
-    /// Describes a SageMaker image.
+    /// Describes a SageMaker AI image.
     /// </summary>
     public partial class DescribeImageRequest : AmazonSageMakerRequest
     {

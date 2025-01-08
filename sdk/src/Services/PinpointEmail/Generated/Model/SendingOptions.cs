@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointEmail.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.PinpointEmail.Model
         /// <summary>
         /// Gets and sets the property SendingEnabled. 
         /// <para>
-        /// If <code>true</code>, email sending is enabled for the configuration set. If <code>false</code>,
+        /// If <c>true</c>, email sending is enabled for the configuration set. If <c>false</c>,
         /// email sending is disabled for the configuration set.
         /// </para>
         /// </summary>

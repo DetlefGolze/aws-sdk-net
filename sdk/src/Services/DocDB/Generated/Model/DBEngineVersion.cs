@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
@@ -38,9 +39,11 @@ namespace Amazon.DocDB.Model
         private string _dbParameterGroupFamily;
         private string _engine;
         private string _engineVersion;
-        private List<string> _exportableLogTypes = new List<string>();
+        private List<string> _exportableLogTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _supportedCACertificateIdentifiers = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private bool? _supportsCertificateRotationWithoutRestart;
         private bool? _supportsLogExportsToCloudwatchLogs;
-        private List<UpgradeTarget> _validUpgradeTarget = new List<UpgradeTarget>();
+        private List<UpgradeTarget> _validUpgradeTarget = AWSConfigs.InitializeCollections ? new List<UpgradeTarget>() : null;
 
         /// <summary>
         /// Gets and sets the property DBEngineDescription. 
@@ -148,14 +151,57 @@ namespace Amazon.DocDB.Model
         // Check to see if ExportableLogTypes property is set
         internal bool IsSetExportableLogTypes()
         {
-            return this._exportableLogTypes != null && this._exportableLogTypes.Count > 0; 
+            return this._exportableLogTypes != null && (this._exportableLogTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SupportedCACertificateIdentifiers. 
+        /// <para>
+        /// A list of the supported CA certificate identifiers.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/documentdb/latest/developerguide/ca_cert_rotation.html">Updating
+        /// Your Amazon DocumentDB TLS Certificates</a> and <a href="https://docs.aws.amazon.com/documentdb/latest/developerguide/security.encryption.ssl.html">
+        /// Encrypting Data in Transit</a> in the <i>Amazon DocumentDB Developer Guide</i>.
+        /// </para>
+        /// </summary>
+        public List<string> SupportedCACertificateIdentifiers
+        {
+            get { return this._supportedCACertificateIdentifiers; }
+            set { this._supportedCACertificateIdentifiers = value; }
+        }
+
+        // Check to see if SupportedCACertificateIdentifiers property is set
+        internal bool IsSetSupportedCACertificateIdentifiers()
+        {
+            return this._supportedCACertificateIdentifiers != null && (this._supportedCACertificateIdentifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SupportsCertificateRotationWithoutRestart. 
+        /// <para>
+        /// Indicates whether the engine version supports rotating the server certificate without
+        /// rebooting the DB instance.
+        /// </para>
+        /// </summary>
+        public bool SupportsCertificateRotationWithoutRestart
+        {
+            get { return this._supportsCertificateRotationWithoutRestart.GetValueOrDefault(); }
+            set { this._supportsCertificateRotationWithoutRestart = value; }
+        }
+
+        // Check to see if SupportsCertificateRotationWithoutRestart property is set
+        internal bool IsSetSupportsCertificateRotationWithoutRestart()
+        {
+            return this._supportsCertificateRotationWithoutRestart.HasValue; 
         }
 
         /// <summary>
         /// Gets and sets the property SupportsLogExportsToCloudwatchLogs. 
         /// <para>
         /// A value that indicates whether the engine version supports exporting the log types
-        /// specified by <code>ExportableLogTypes</code> to CloudWatch Logs.
+        /// specified by <c>ExportableLogTypes</c> to CloudWatch Logs.
         /// </para>
         /// </summary>
         public bool SupportsLogExportsToCloudwatchLogs
@@ -185,7 +231,7 @@ namespace Amazon.DocDB.Model
         // Check to see if ValidUpgradeTarget property is set
         internal bool IsSetValidUpgradeTarget()
         {
-            return this._validUpgradeTarget != null && this._validUpgradeTarget.Count > 0; 
+            return this._validUpgradeTarget != null && (this._validUpgradeTarget.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

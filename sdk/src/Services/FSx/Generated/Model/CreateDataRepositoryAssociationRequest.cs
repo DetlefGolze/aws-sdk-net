@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.FSx.Model
     /// association is a link between a directory on the file system and an Amazon S3 bucket
     /// or prefix. You can have a maximum of 8 data repository associations on a file system.
     /// Data repository associations are supported on all FSx for Lustre 2.12 and 2.15 file
-    /// systems, excluding <code>scratch_1</code> deployment type.
+    /// systems, excluding <c>scratch_1</c> deployment type.
     /// 
     ///  
     /// <para>
@@ -46,9 +47,8 @@ namespace Amazon.FSx.Model
     /// </para>
     ///  <note> 
     /// <para>
-    ///  <code>CreateDataRepositoryAssociation</code> isn't supported on Amazon File Cache
-    /// resources. To create a DRA on Amazon File Cache, use the <code>CreateFileCache</code>
-    /// operation.
+    ///  <c>CreateDataRepositoryAssociation</c> isn't supported on Amazon File Cache resources.
+    /// To create a DRA on Amazon File Cache, use the <c>CreateFileCache</c> operation.
     /// </para>
     ///  </note>
     /// </summary>
@@ -61,14 +61,14 @@ namespace Amazon.FSx.Model
         private string _fileSystemPath;
         private int? _importedFileChunkSize;
         private S3DataRepositoryConfiguration _s3;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property BatchImportMetaDataOnCreate. 
         /// <para>
-        /// Set to <code>true</code> to run an import data repository task to import metadata
-        /// from the data repository to the file system after the data repository association
-        /// is created. Default is <code>false</code>.
+        /// Set to <c>true</c> to run an import data repository task to import metadata from the
+        /// data repository to the file system after the data repository association is created.
+        /// Default is <c>false</c>.
         /// </para>
         /// </summary>
         public bool BatchImportMetaDataOnCreate
@@ -103,9 +103,9 @@ namespace Amazon.FSx.Model
         /// Gets and sets the property DataRepositoryPath. 
         /// <para>
         /// The path to the Amazon S3 data repository that will be linked to the file system.
-        /// The path can be an S3 bucket or prefix in the format <code>s3://myBucket/myPrefix/</code>.
-        /// This path specifies where in the S3 data repository files will be imported from or
-        /// exported to.
+        /// The path can be an S3 bucket or prefix in the format <c>s3://bucket-name/prefix/</c>
+        /// (where <c>prefix</c> is optional). This path specifies where in the S3 data repository
+        /// files will be imported from or exported to.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=3, Max=4357)]
@@ -140,12 +140,12 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property FileSystemPath. 
         /// <para>
-        /// A path on the file system that points to a high-level directory (such as <code>/ns1/</code>)
-        /// or subdirectory (such as <code>/ns1/subdir/</code>) that will be mapped 1-1 with <code>DataRepositoryPath</code>.
+        /// A path on the file system that points to a high-level directory (such as <c>/ns1/</c>)
+        /// or subdirectory (such as <c>/ns1/subdir/</c>) that will be mapped 1-1 with <c>DataRepositoryPath</c>.
         /// The leading forward slash in the name is required. Two data repository associations
         /// cannot have overlapping file system paths. For example, if a data repository is associated
-        /// with file system path <code>/ns1/</code>, then you cannot link another data repository
-        /// with file system path <code>/ns1/ns2</code>.
+        /// with file system path <c>/ns1/</c>, then you cannot link another data repository with
+        /// file system path <c>/ns1/ns2</c>.
         /// </para>
         ///  
         /// <para>
@@ -155,9 +155,9 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you specify only a forward slash (<code>/</code>) as the file system path, you
-        /// can link only one data repository to the file system. You can only specify "/" as
-        /// the file system path for the first data repository associated with a file system.
+        /// If you specify only a forward slash (<c>/</c>) as the file system path, you can link
+        /// only one data repository to the file system. You can only specify "/" as the file
+        /// system path for the first data repository associated with a file system.
         /// </para>
         ///  </note>
         /// </summary>
@@ -236,7 +236,7 @@ namespace Amazon.FSx.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

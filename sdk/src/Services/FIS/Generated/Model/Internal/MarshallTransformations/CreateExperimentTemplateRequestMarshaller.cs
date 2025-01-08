@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.FIS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.FIS.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetActions())
@@ -99,6 +101,28 @@ namespace Amazon.FIS.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("description");
                     context.Writer.Write(publicRequest.Description);
+                }
+
+                if(publicRequest.IsSetExperimentOptions())
+                {
+                    context.Writer.WritePropertyName("experimentOptions");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = CreateExperimentTemplateExperimentOptionsInputMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.ExperimentOptions, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetExperimentReportConfiguration())
+                {
+                    context.Writer.WritePropertyName("experimentReportConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = CreateExperimentTemplateReportConfigurationInputMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.ExperimentReportConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetLogConfiguration())

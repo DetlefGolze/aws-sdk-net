@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glacier.Model
 {
     /// <summary>
     /// Container for the parameters to the UploadArchive operation.
     /// This operation adds an archive to a vault. This is a synchronous operation, and for
     /// a successful upload, your data is durably persisted. Amazon S3 Glacier returns the
-    /// archive ID in the <code>x-amz-archive-id</code> header of the response. 
+    /// archive ID in the <c>x-amz-archive-id</c> header of the response. 
     /// 
     ///  
     /// <para>
@@ -110,7 +111,7 @@ namespace Amazon.Glacier.Model
         /// <summary>
         /// Instantiates UploadArchiveRequest with the parameterized properties
         /// </summary>
-        /// <param name="accountId">The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. </param>
+        /// <param name="accountId">The <c>AccountId</c> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<c>-</c>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. </param>
         /// <param name="vaultName">The name of the vault.</param>
         /// <param name="archiveDescription">The optional description of the archive you are uploading.</param>
         /// <param name="checksum">The SHA256 tree hash of the data being uploaded.</param>
@@ -127,11 +128,11 @@ namespace Amazon.Glacier.Model
         /// <summary>
         /// Gets and sets the property AccountId. 
         /// <para>
-        /// The <code>AccountId</code> value is the AWS account ID of the account that owns the
-        /// vault. You can either specify an AWS account ID or optionally a single '<code>-</code>'
-        /// (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with
-        /// the credentials used to sign the request. If you use an account ID, do not include
-        /// any hyphens ('-') in the ID. 
+        /// The <c>AccountId</c> value is the AWS account ID of the account that owns the vault.
+        /// You can either specify an AWS account ID or optionally a single '<c>-</c>' (hyphen),
+        /// in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials
+        /// used to sign the request. If you use an account ID, do not include any hyphens ('-')
+        /// in the ID. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -162,7 +163,7 @@ namespace Amazon.Glacier.Model
         // Check to see if ArchiveDescription property is set
         internal bool IsSetArchiveDescription()
         {
-            return this._archiveDescription != null;
+            return !string.IsNullOrEmpty(this._archiveDescription);
         }
 
         /// <summary>
@@ -198,7 +199,7 @@ namespace Amazon.Glacier.Model
         // Check to see if Checksum property is set
         internal bool IsSetChecksum()
         {
-            return this._checksum != null;
+            return !string.IsNullOrEmpty(this._checksum);
         }
 
         /// <summary>

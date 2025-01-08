@@ -26,13 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
     /// Container for the parameters to the Invoke operation.
     /// Invokes a Lambda function. You can invoke a function synchronously (and wait for the
-    /// response), or asynchronously. To invoke a function asynchronously, set <code>InvocationType</code>
-    /// to <code>Event</code>.
+    /// response), or asynchronously. By default, Lambda invokes your function synchronously
+    /// (i.e. the<c>InvocationType</c> is <c>RequestResponse</c>). To invoke a function asynchronously,
+    /// set <c>InvocationType</c> to <c>Event</c>. Lambda passes the <c>ClientContext</c>
+    /// object to your function for synchronous invocations only.
     /// 
     ///  
     /// <para>
@@ -66,9 +69,9 @@ namespace Amazon.Lambda.Model
     /// reserved for errors that prevent your function from executing, such as permissions
     /// errors, <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">quota</a>
     /// errors, or issues with your function's code and configuration. For example, Lambda
-    /// returns <code>TooManyRequestsException</code> if running the function would cause
-    /// you to exceed a concurrency limit at either the account level (<code>ConcurrentInvocationLimitExceeded</code>)
-    /// or function level (<code>ReservedFunctionConcurrentInvocationLimitExceeded</code>).
+    /// returns <c>TooManyRequestsException</c> if running the function would cause you to
+    /// exceed a concurrency limit at either the account level (<c>ConcurrentInvocationLimitExceeded</c>)
+    /// or function level (<c>ReservedFunctionConcurrentInvocationLimitExceeded</c>).
     /// </para>
     ///  
     /// <para>
@@ -98,7 +101,8 @@ namespace Amazon.Lambda.Model
         /// Gets and sets the property ClientContextBase64. 
         /// <para>
         /// Up to 3,583 bytes of base64-encoded data about the invoking client to pass to the
-        /// function in the context object.
+        /// function in the context object. Lambda passes the <c>ClientContext</c> object to your
+        /// function for synchronous invocations only.
         /// </para>
         /// </summary>
         public string ClientContextBase64
@@ -110,13 +114,13 @@ namespace Amazon.Lambda.Model
         // Check to see if ClientContextBase64 property is set
         internal bool IsSetClientContextBase64()
         {
-            return this._clientContextBase64 != null;
+            return !string.IsNullOrEmpty(this._clientContextBase64);
         }
 
         /// <summary>
         /// Gets and sets the property FunctionName. 
         /// <para>
-        /// The name of the Lambda function, version, or alias.
+        /// The name or ARN of the Lambda function, version, or alias.
         /// </para>
         ///  
         /// <para>
@@ -124,16 +128,16 @@ namespace Amazon.Lambda.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>Function name</b> – <code>my-function</code> (name-only), <code>my-function:v1</code>
-        /// (with alias).
+        ///  <b>Function name</b> – <c>my-function</c> (name-only), <c>my-function:v1</c> (with
+        /// alias).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.
+        ///  <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Partial ARN</b> – <code>123456789012:function:my-function</code>.
+        ///  <b>Partial ARN</b> – <c>123456789012:function:my-function</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -162,20 +166,20 @@ namespace Amazon.Lambda.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>RequestResponse</code> (default) – Invoke the function synchronously. Keep
-        /// the connection open until the function returns a response or times out. The API response
-        /// includes the function response and additional data.
+        ///  <c>RequestResponse</c> (default) – Invoke the function synchronously. Keep the connection
+        /// open until the function returns a response or times out. The API response includes
+        /// the function response and additional data.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Event</code> – Invoke the function asynchronously. Send events that fail multiple
+        ///  <c>Event</c> – Invoke the function asynchronously. Send events that fail multiple
         /// times to the function's dead-letter queue (if one is configured). The API response
         /// only includes a status code.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DryRun</code> – Validate parameter values and verify that the user or role
-        /// has permission to invoke the function.
+        ///  <c>DryRun</c> – Validate parameter values and verify that the user or role has permission
+        /// to invoke the function.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -188,14 +192,14 @@ namespace Amazon.Lambda.Model
         // Check to see if InvocationType property is set
         internal bool IsSetInvocationType()
         {
-            return this._invocationType != null;
+            return !string.IsNullOrEmpty(this._invocationType);
         }
 
         /// <summary>
         /// Gets and sets the property LogType. 
         /// <para>
-        /// Set to <code>Tail</code> to include the execution log in the response. Applies to
-        /// synchronously invoked functions only.
+        /// Set to <c>Tail</c> to include the execution log in the response. Applies to synchronously
+        /// invoked functions only.
         /// </para>
         /// </summary>
         public LogType LogType
@@ -207,7 +211,7 @@ namespace Amazon.Lambda.Model
         // Check to see if LogType property is set
         internal bool IsSetLogType()
         {
-            return this._logType != null;
+            return !string.IsNullOrEmpty(this._logType);
         }
 
         /// <summary>
@@ -217,8 +221,8 @@ namespace Amazon.Lambda.Model
         /// </para>
         ///  
         /// <para>
-        /// You can enter the JSON directly. For example, <code>--payload '{ "key": "value" }'</code>.
-        /// You can also specify a file path. For example, <code>--payload file://payload.json</code>.
+        /// You can enter the JSON directly. For example, <c>--payload '{ "key": "value" }'</c>.
+        /// You can also specify a file path. For example, <c>--payload file://payload.json</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]

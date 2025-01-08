@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.ElastiCache.Model
     public partial class NodeGroup
     {
         private string _nodeGroupId;
-        private List<NodeGroupMember> _nodeGroupMembers = new List<NodeGroupMember>();
+        private List<NodeGroupMember> _nodeGroupMembers = AWSConfigs.InitializeCollections ? new List<NodeGroupMember>() : null;
         private Endpoint _primaryEndpoint;
         private Endpoint _readerEndpoint;
         private string _slots;
@@ -44,10 +45,11 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property NodeGroupId. 
         /// <para>
-        /// The identifier for the node group (shard). A Redis (cluster mode disabled) replication
-        /// group contains only 1 node group; therefore, the node group ID is 0001. A Redis (cluster
-        /// mode enabled) replication group contains 1 to 90 node groups numbered 0001 to 0090.
-        /// Optionally, the user can provide the id for a node group. 
+        /// The identifier for the node group (shard). A Valkey or Redis OSS (cluster mode disabled)
+        /// replication group contains only 1 node group; therefore, the node group ID is 0001.
+        /// A Valkey or Redis OSS (cluster mode enabled) replication group contains 1 to 90 node
+        /// groups numbered 0001 to 0090. Optionally, the user can provide the id for a node group.
+        /// 
         /// </para>
         /// </summary>
         public string NodeGroupId
@@ -77,7 +79,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if NodeGroupMembers property is set
         internal bool IsSetNodeGroupMembers()
         {
-            return this._nodeGroupMembers != null && this._nodeGroupMembers.Count > 0; 
+            return this._nodeGroupMembers != null && (this._nodeGroupMembers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -101,7 +103,7 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property ReaderEndpoint. 
         /// <para>
-        /// The endpoint of the replica nodes in this node group (shard).
+        /// The endpoint of the replica nodes in this node group (shard). This value is read-only.
         /// </para>
         /// </summary>
         public Endpoint ReaderEndpoint
@@ -137,8 +139,8 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The current state of this replication group - <code>creating</code>, <code>available</code>,
-        /// <code>modifying</code>, <code>deleting</code>.
+        /// The current state of this replication group - <c>creating</c>, <c>available</c>, <c>modifying</c>,
+        /// <c>deleting</c>.
         /// </para>
         /// </summary>
         public string Status

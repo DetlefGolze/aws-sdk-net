@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Organizations.Model
 {
     /// <summary>
     /// We can't find an organizational unit (OU) or Amazon Web Services account with the
-    /// <code>ChildId</code> that you specified.
+    /// <c>ChildId</c> that you specified.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

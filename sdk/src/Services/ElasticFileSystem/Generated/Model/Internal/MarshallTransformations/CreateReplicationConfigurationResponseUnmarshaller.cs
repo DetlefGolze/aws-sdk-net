@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElasticFileSystem.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -81,6 +82,12 @@ namespace Amazon.ElasticFileSystem.Model.Internal.MarshallTransformations
                     response.SourceFileSystemId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("SourceFileSystemOwnerId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.SourceFileSystemOwnerId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("SourceFileSystemRegion", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -113,6 +120,10 @@ namespace Amazon.ElasticFileSystem.Model.Internal.MarshallTransformations
                 if (errorResponse.Code != null && errorResponse.Code.Equals("BadRequest"))
                 {
                     return BadRequestExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("ConflictException"))
+                {
+                    return ConflictExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("FileSystemLimitExceeded"))
                 {

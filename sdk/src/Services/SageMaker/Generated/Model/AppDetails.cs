@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// Details about an Amazon SageMaker app.
+    /// Details about an Amazon SageMaker AI app.
     /// </summary>
     public partial class AppDetails
     {
@@ -37,6 +38,7 @@ namespace Amazon.SageMaker.Model
         private AppType _appType;
         private DateTime? _creationTime;
         private string _domainId;
+        private ResourceSpec _resourceSpec;
         private string _spaceName;
         private AppStatus _status;
         private string _userProfileName;
@@ -113,6 +115,21 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetDomainId()
         {
             return this._domainId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ResourceSpec.
+        /// </summary>
+        public ResourceSpec ResourceSpec
+        {
+            get { return this._resourceSpec; }
+            set { this._resourceSpec = value; }
+        }
+
+        // Check to see if ResourceSpec property is set
+        internal bool IsSetResourceSpec()
+        {
+            return this._resourceSpec != null;
         }
 
         /// <summary>

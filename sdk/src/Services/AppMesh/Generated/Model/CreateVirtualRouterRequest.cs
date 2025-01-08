@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppMesh.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.AppMesh.Model
     /// 
     ///  
     /// <para>
-    /// Specify a <code>listener</code> for any inbound traffic that your virtual router receives.
+    /// Specify a <c>listener</c> for any inbound traffic that your virtual router receives.
     /// Create a virtual router for each protocol and port that you need to route. Virtual
     /// routers handle traffic for one or more virtual services within your mesh. After you
     /// create your virtual router, create and associate routes for your virtual router that
@@ -52,7 +53,7 @@ namespace Amazon.AppMesh.Model
         private string _meshName;
         private string _meshOwner;
         private VirtualRouterSpec _spec;
-        private List<TagRef> _tags = new List<TagRef>();
+        private List<TagRef> _tags = AWSConfigs.InitializeCollections ? new List<TagRef>() : null;
         private string _virtualRouterName;
 
         /// <summary>
@@ -154,7 +155,7 @@ namespace Amazon.AppMesh.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -33,17 +34,37 @@ namespace Amazon.ResilienceHub.Model
     /// </summary>
     public partial class TestRecommendation
     {
+        private string _appComponentId;
         private string _appComponentName;
-        private List<string> _dependsOnAlarms = new List<string>();
+        private List<string> _dependsOnAlarms = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _description;
         private string _intent;
-        private List<RecommendationItem> _items = new List<RecommendationItem>();
+        private List<RecommendationItem> _items = AWSConfigs.InitializeCollections ? new List<RecommendationItem>() : null;
         private string _name;
         private string _prerequisite;
         private string _recommendationId;
+        private RecommendationStatus _recommendationStatus;
         private string _referenceId;
         private TestRisk _risk;
         private TestType _type;
+
+        /// <summary>
+        /// Gets and sets the property AppComponentId. 
+        /// <para>
+        /// Indicates the identifier of the AppComponent.
+        /// </para>
+        /// </summary>
+        public string AppComponentId
+        {
+            get { return this._appComponentId; }
+            set { this._appComponentId = value; }
+        }
+
+        // Check to see if AppComponentId property is set
+        internal bool IsSetAppComponentId()
+        {
+            return this._appComponentId != null;
+        }
 
         /// <summary>
         /// Gets and sets the property AppComponentName. 
@@ -80,7 +101,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if DependsOnAlarms property is set
         internal bool IsSetDependsOnAlarms()
         {
-            return this._dependsOnAlarms != null && this._dependsOnAlarms.Count > 0; 
+            return this._dependsOnAlarms != null && (this._dependsOnAlarms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -136,7 +157,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -193,6 +214,24 @@ namespace Amazon.ResilienceHub.Model
         internal bool IsSetRecommendationId()
         {
             return this._recommendationId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RecommendationStatus. 
+        /// <para>
+        /// Status of the recommended test.
+        /// </para>
+        /// </summary>
+        public RecommendationStatus RecommendationStatus
+        {
+            get { return this._recommendationStatus; }
+            set { this._recommendationStatus = value; }
+        }
+
+        // Check to see if RecommendationStatus property is set
+        internal bool IsSetRecommendationStatus()
+        {
+            return this._recommendationStatus != null;
         }
 
         /// <summary>

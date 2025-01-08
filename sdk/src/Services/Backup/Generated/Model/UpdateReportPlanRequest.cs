@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateReportPlan operation.
-    /// Updates an existing report plan identified by its <code>ReportPlanName</code> with
-    /// the input document in JSON format.
+    /// Updates the specified report plan.
     /// </summary>
     public partial class UpdateReportPlanRequest : AmazonBackupRequest
     {
@@ -45,8 +45,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property IdempotencyToken. 
         /// <para>
         /// A customer-chosen string that you can use to distinguish between otherwise identical
-        /// calls to <code>UpdateReportPlanInput</code>. Retrying a successful request with the
-        /// same idempotency token results in a success message with no action taken.
+        /// calls to <c>UpdateReportPlanInput</c>. Retrying a successful request with the same
+        /// idempotency token results in a success message with no action taken.
         /// </para>
         /// </summary>
         public string IdempotencyToken
@@ -64,8 +64,8 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property ReportDeliveryChannel. 
         /// <para>
-        /// A structure that contains information about where to deliver your reports, specifically
-        /// your Amazon S3 bucket name, S3 key prefix, and the formats of your reports.
+        /// The information about where to deliver your reports, specifically your Amazon S3 bucket
+        /// name, S3 key prefix, and the formats of your reports.
         /// </para>
         /// </summary>
         public ReportDeliveryChannel ReportDeliveryChannel
@@ -123,17 +123,17 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property ReportSetting. 
         /// <para>
-        /// Identifies the report template for the report. Reports are built using a report template.
-        /// The report templates are:
+        /// The report template for the report. Reports are built using a report template. The
+        /// report templates are:
         /// </para>
         ///  
         /// <para>
-        ///  <code>RESOURCE_COMPLIANCE_REPORT | CONTROL_COMPLIANCE_REPORT | BACKUP_JOB_REPORT
-        /// | COPY_JOB_REPORT | RESTORE_JOB_REPORT</code> 
+        ///  <c>RESOURCE_COMPLIANCE_REPORT | CONTROL_COMPLIANCE_REPORT | BACKUP_JOB_REPORT | COPY_JOB_REPORT
+        /// | RESTORE_JOB_REPORT</c> 
         /// </para>
         ///  
         /// <para>
-        /// If the report template is <code>RESOURCE_COMPLIANCE_REPORT</code> or <code>CONTROL_COMPLIANCE_REPORT</code>,
+        /// If the report template is <c>RESOURCE_COMPLIANCE_REPORT</c> or <c>CONTROL_COMPLIANCE_REPORT</c>,
         /// this API resource also describes the report coverage by Amazon Web Services Regions
         /// and frameworks.
         /// </para>

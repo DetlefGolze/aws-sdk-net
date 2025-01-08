@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -57,7 +58,7 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property ResizeType. 
         /// <para>
-        /// Returns the value <code>ClassicResize</code>.
+        /// Returns the value <c>ClassicResize</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]

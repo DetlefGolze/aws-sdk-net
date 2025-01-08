@@ -26,17 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateTask operation.
-    /// Updates the configuration of a DataSync transfer task.
+    /// Updates the configuration of a <i>task</i>, which defines where and how DataSync transfers
+    /// your data.
     /// </summary>
     public partial class UpdateTaskRequest : AmazonDataSyncRequest
     {
         private string _cloudWatchLogGroupArn;
-        private List<FilterRule> _excludes = new List<FilterRule>();
-        private List<FilterRule> _includes = new List<FilterRule>();
+        private List<FilterRule> _excludes = AWSConfigs.InitializeCollections ? new List<FilterRule>() : null;
+        private List<FilterRule> _includes = AWSConfigs.InitializeCollections ? new List<FilterRule>() : null;
+        private ManifestConfig _manifestConfig;
         private string _name;
         private Options _options;
         private TaskSchedule _schedule;
@@ -46,7 +49,22 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property CloudWatchLogGroupArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the resource name of the Amazon CloudWatch log group.
+        /// Specifies the Amazon Resource Name (ARN) of an Amazon CloudWatch log group for monitoring
+        /// your task.
+        /// </para>
+        ///  
+        /// <para>
+        /// For Enhanced mode tasks, you must use <c>/aws/datasync</c> as your log group name.
+        /// For example:
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>arn:aws:logs:us-east-1:111222333444:log-group:/aws/datasync:*</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/configure-logging.html">Monitoring
+        /// data transfers with CloudWatch Logs</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=562)]
@@ -65,9 +83,10 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property Excludes. 
         /// <para>
-        /// Specifies a list of filter rules that exclude specific data during your transfer.
-        /// For more information and examples, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html">Filtering
-        /// data transferred by DataSync</a>.
+        /// Specifies exclude filters that define the files, objects, and folders in your source
+        /// location that you don't want DataSync to transfer. For more information and examples,
+        /// see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html">Specifying
+        /// what DataSync transfers by using filters</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1)]
@@ -80,15 +99,15 @@ namespace Amazon.DataSync.Model
         // Check to see if Excludes property is set
         internal bool IsSetExcludes()
         {
-            return this._excludes != null && this._excludes.Count > 0; 
+            return this._excludes != null && (this._excludes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Includes. 
         /// <para>
-        /// Specifies a list of filter rules that include specific data during your transfer.
-        /// For more information and examples, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html">Filtering
-        /// data transferred by DataSync</a>.
+        /// Specifies include filters define the files, objects, and folders in your source location
+        /// that you want DataSync to transfer. For more information and examples, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html">Specifying
+        /// what DataSync transfers by using filters</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1)]
@@ -101,16 +120,46 @@ namespace Amazon.DataSync.Model
         // Check to see if Includes property is set
         internal bool IsSetIncludes()
         {
-            return this._includes != null && this._includes.Count > 0; 
+            return this._includes != null && (this._includes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ManifestConfig. 
+        /// <para>
+        /// Configures a manifest, which is a list of files or objects that you want DataSync
+        /// to transfer. For more information and configuration examples, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/transferring-with-manifest.html">Specifying
+        /// what DataSync transfers by using a manifest</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// When using this parameter, your caller identity (the IAM role that you're using DataSync
+        /// with) must have the <c>iam:PassRole</c> permission. The <a href="https://docs.aws.amazon.com/datasync/latest/userguide/security-iam-awsmanpol.html#security-iam-awsmanpol-awsdatasyncfullaccess">AWSDataSyncFullAccess</a>
+        /// policy includes this permission.
+        /// </para>
+        ///  
+        /// <para>
+        /// To remove a manifest configuration, specify this parameter as empty.
+        /// </para>
+        /// </summary>
+        public ManifestConfig ManifestConfig
+        {
+            get { return this._manifestConfig; }
+            set { this._manifestConfig = value; }
+        }
+
+        // Check to see if ManifestConfig property is set
+        internal bool IsSetManifestConfig()
+        {
+            return this._manifestConfig != null;
         }
 
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the task to update.
+        /// Specifies the name of your task.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=256)]
+        [AWSProperty(Min=0, Max=256)]
         public string Name
         {
             get { return this._name; }
@@ -141,10 +190,8 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property Schedule. 
         /// <para>
-        /// Specifies a schedule used to periodically transfer files from a source to a destination
-        /// location. You can configure your task to execute hourly, daily, weekly or on specific
-        /// days of the week. You control when in the day or hour you want the task to execute.
-        /// The time you specify is UTC time. For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html">Scheduling
+        /// Specifies a schedule for when you want your task to run. For more information, see
+        /// <a href="https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html">Scheduling
         /// your task</a>.
         /// </para>
         /// </summary>
@@ -163,7 +210,7 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property TaskArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the resource name of the task to update.
+        /// Specifies the ARN of the task that you want to update.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=128)]
@@ -183,7 +230,18 @@ namespace Amazon.DataSync.Model
         /// Gets and sets the property TaskReportConfig. 
         /// <para>
         /// Specifies how you want to configure a task report, which provides detailed information
-        /// about for your DataSync transfer.
+        /// about your DataSync transfer. For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html">Monitoring
+        /// your DataSync transfers with task reports</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// When using this parameter, your caller identity (the IAM role that you're using DataSync
+        /// with) must have the <c>iam:PassRole</c> permission. The <a href="https://docs.aws.amazon.com/datasync/latest/userguide/security-iam-awsmanpol.html#security-iam-awsmanpol-awsdatasyncfullaccess">AWSDataSyncFullAccess</a>
+        /// policy includes this permission.
+        /// </para>
+        ///  
+        /// <para>
+        /// To remove a task report configuration, specify this parameter as empty.
         /// </para>
         /// </summary>
         public TaskReportConfig TaskReportConfig

@@ -26,16 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComputeOptimizer.Model
 {
     /// <summary>
     /// Describes the recommendation preferences to return in the response of a <a>GetAutoScalingGroupRecommendations</a>,
-    /// <a>GetEC2InstanceRecommendations</a>, and <a>GetEC2RecommendationProjectedMetrics</a>
+    /// <a>GetEC2InstanceRecommendations</a>, <a>GetEC2RecommendationProjectedMetrics</a>,
+    /// <a>GetRDSDatabaseRecommendations</a>, and <a>GetRDSDatabaseRecommendationProjectedMetrics</a>
     /// request.
     /// </summary>
     public partial class RecommendationPreferences
     {
-        private List<string> _cpuVendorArchitectures = new List<string>();
+        private List<string> _cpuVendorArchitectures = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property CpuVendorArchitectures. 
@@ -45,23 +47,23 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        /// For example, when you specify <code>AWS_ARM64</code> with:
+        /// For example, when you specify <c>AWS_ARM64</c> with:
         /// </para>
         ///  <ul> <li> 
         /// <para>
         /// A <a>GetEC2InstanceRecommendations</a> or <a>GetAutoScalingGroupRecommendations</a>
-        /// request, Compute Optimizer returns recommendations that consist of Graviton2 instance
+        /// request, Compute Optimizer returns recommendations that consist of Graviton instance
         /// types only.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// A <a>GetEC2RecommendationProjectedMetrics</a> request, Compute Optimizer returns projected
-        /// utilization metrics for Graviton2 instance type recommendations only.
+        /// utilization metrics for Graviton instance type recommendations only.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// A <a>ExportEC2InstanceRecommendations</a> or <a>ExportAutoScalingGroupRecommendations</a>
-        /// request, Compute Optimizer exports recommendations that consist of Graviton2 instance
+        /// request, Compute Optimizer exports recommendations that consist of Graviton instance
         /// types only.
         /// </para>
         ///  </li> </ul>
@@ -75,7 +77,7 @@ namespace Amazon.ComputeOptimizer.Model
         // Check to see if CpuVendorArchitectures property is set
         internal bool IsSetCpuVendorArchitectures()
         {
-            return this._cpuVendorArchitectures != null && this._cpuVendorArchitectures.Count > 0; 
+            return this._cpuVendorArchitectures != null && (this._cpuVendorArchitectures.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.Transfer.Model
         private DateTime? _notBeforeDate;
         private string _serial;
         private CertificateStatusType _status;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private CertificateType _type;
         private CertificateUsageType _usage;
 
@@ -238,9 +239,8 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The certificate can be either <code>ACTIVE</code>, <code>PENDING_ROTATION</code>,
-        /// or <code>INACTIVE</code>. <code>PENDING_ROTATION</code> means that this certificate
-        /// will replace the current certificate when it expires.
+        /// Currently, the only available status is <c>ACTIVE</c>: all other values are reserved
+        /// for future use.
         /// </para>
         /// </summary>
         public CertificateStatusType Status
@@ -271,14 +271,14 @@ namespace Amazon.Transfer.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// If a private key has been specified for the certificate, its type is <code>CERTIFICATE_WITH_PRIVATE_KEY</code>.
-        /// If there is no private key, the type is <code>CERTIFICATE</code>.
+        /// If a private key has been specified for the certificate, its type is <c>CERTIFICATE_WITH_PRIVATE_KEY</c>.
+        /// If there is no private key, the type is <c>CERTIFICATE</c>.
         /// </para>
         /// </summary>
         public CertificateType Type
@@ -296,8 +296,21 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property Usage. 
         /// <para>
-        /// Specifies whether this certificate is used for signing or encryption.
+        /// Specifies how this certificate is used. It can be used in the following ways:
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>SIGNING</c>: For signing AS2 messages
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>ENCRYPTION</c>: For encrypting AS2 messages
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>TLS</c>: For securing AS2 communications sent over HTTPS
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public CertificateUsageType Usage
         {

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Macie2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -51,6 +52,12 @@ namespace Amazon.Macie2.Model.Internal.MarshallTransformations
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("autoEnableOrganizationMembers", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.AutoEnableOrganizationMembers = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("classificationScopeId", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;

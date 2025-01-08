@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
     /// Container for the parameters to the AssociateResolverEndpointIpAddress operation.
     /// Adds IP addresses to an inbound or an outbound Resolver endpoint. If you want to add
-    /// more than one IP address, submit one <code>AssociateResolverEndpointIpAddress</code>
-    /// request for each IP address.
+    /// more than one IP address, submit one <c>AssociateResolverEndpointIpAddress</c> request
+    /// for each IP address.
     /// 
     ///  
     /// <para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -117,7 +118,7 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property NodeType. 
         /// <para>
-        /// Specifies whether the node is the end of a path (<code>Exit</code>) or not (<code>Inner</code>).
+        /// Specifies whether the node is the end of a path (<c>Exit</c>) or not (<c>Inner</c>).
         /// </para>
         /// </summary>
         public AnalyticsNodeType NodeType

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Keyspaces.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Keyspaces.Model
     public partial class KeyspaceSummary
     {
         private string _keyspaceName;
-        private List<string> _replicationRegions = new List<string>();
+        private List<string> _replicationRegions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private Rs _replicationStrategy;
         private string _resourceArn;
 
@@ -60,8 +61,8 @@ namespace Amazon.Keyspaces.Model
         /// <summary>
         /// Gets and sets the property ReplicationRegions. 
         /// <para>
-        ///  If the <code>replicationStrategy</code> of the keyspace is <code>MULTI_REGION</code>,
-        /// a list of replication Regions is returned. 
+        ///  If the <c>replicationStrategy</c> of the keyspace is <c>MULTI_REGION</c>, a list
+        /// of replication Regions is returned. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=2, Max=6)]
@@ -74,15 +75,14 @@ namespace Amazon.Keyspaces.Model
         // Check to see if ReplicationRegions property is set
         internal bool IsSetReplicationRegions()
         {
-            return this._replicationRegions != null && this._replicationRegions.Count > 0; 
+            return this._replicationRegions != null && (this._replicationRegions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ReplicationStrategy. 
         /// <para>
         ///  This property specifies if a keyspace is a single Region keyspace or a multi-Region
-        /// keyspace. The available values are <code>SINGLE_REGION</code> or <code>MULTI_REGION</code>.
-        /// 
+        /// keyspace. The available values are <c>SINGLE_REGION</c> or <c>MULTI_REGION</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=20)]

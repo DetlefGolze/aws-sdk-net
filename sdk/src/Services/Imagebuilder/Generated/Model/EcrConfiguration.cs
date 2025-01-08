@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.Imagebuilder.Model
     /// </summary>
     public partial class EcrConfiguration
     {
-        private List<string> _containerTags = new List<string>();
+        private List<string> _containerTags = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _repositoryName;
 
         /// <summary>
         /// Gets and sets the property ContainerTags. 
         /// <para>
-        /// Tags for Image Builder to apply to the output container image that &amp;INS; scans.
-        /// Tags can help you identify and manage your scanned images.
+        /// Tags for Image Builder to apply to the output container image that Amazon Inspector
+        /// scans. Tags can help you identify and manage your scanned images.
         /// </para>
         /// </summary>
         public List<string> ContainerTags
@@ -53,7 +54,7 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if ContainerTags property is set
         internal bool IsSetContainerTags()
         {
-            return this._containerTags != null && this._containerTags.Count > 0; 
+            return this._containerTags != null && (this._containerTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -62,8 +63,8 @@ namespace Amazon.Imagebuilder.Model
         /// The name of the container repository that Amazon Inspector scans to identify findings
         /// for your container images. The name includes the path for the repository location.
         /// If you don’t provide this information, Image Builder creates a repository in your
-        /// account named <code>image-builder-image-scanning-repository</code> for vulnerability
-        /// scans of your output container images.
+        /// account named <c>image-builder-image-scanning-repository</c> for vulnerability scans
+        /// of your output container images.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

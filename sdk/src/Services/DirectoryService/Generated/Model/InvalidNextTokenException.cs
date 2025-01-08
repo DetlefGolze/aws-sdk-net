@@ -26,17 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
-    /// The <code>NextToken</code> value is not valid.
+    /// The <c>NextToken</c> value is not valid.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]
     #endif
     public partial class InvalidNextTokenException : AmazonDirectoryServiceException
     {
-        private string _requestId;
 
         /// <summary>
         /// Constructs a new InvalidNextTokenException with the specified error
@@ -122,21 +122,6 @@ namespace Amazon.DirectoryService.Model
             info.AddValue("RequestId", this.RequestId);
         }
 #endif
-
-        /// <summary>
-        /// Gets and sets the property RequestId.
-        /// </summary>
-        public string RequestId
-        {
-            get { return this._requestId; }
-            set { this._requestId = value; }
-        }
-
-        // Check to see if RequestId property is set
-        internal bool IsSetRequestId()
-        {
-            return this._requestId != null;
-        }
 
     }
 }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -45,19 +46,19 @@ namespace Amazon.Kendra.Model
     {
         private string _clientToken;
         private string _description;
-        private List<FeaturedDocument> _featuredDocuments = new List<FeaturedDocument>();
+        private List<FeaturedDocument> _featuredDocuments = AWSConfigs.InitializeCollections ? new List<FeaturedDocument>() : null;
         private string _featuredResultsSetName;
         private string _indexId;
-        private List<string> _queryTexts = new List<string>();
+        private List<string> _queryTexts = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private FeaturedResultsSetStatus _status;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// A token that you provide to identify the request to create a set of featured results.
-        /// Multiple calls to the <code>CreateFeaturedResultsSet</code> API with the same client
-        /// token will create only one featured results set.
+        /// Multiple calls to the <c>CreateFeaturedResultsSet</c> API with the same client token
+        /// will create only one featured results set.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -108,7 +109,7 @@ namespace Amazon.Kendra.Model
         // Check to see if FeaturedDocuments property is set
         internal bool IsSetFeaturedDocuments()
         {
-            return this._featuredDocuments != null && this._featuredDocuments.Count > 0; 
+            return this._featuredDocuments != null && (this._featuredDocuments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -166,18 +167,18 @@ namespace Amazon.Kendra.Model
         // Check to see if QueryTexts property is set
         internal bool IsSetQueryTexts()
         {
-            return this._queryTexts != null && this._queryTexts.Count > 0; 
+            return this._queryTexts != null && (this._queryTexts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The current status of the set of featured results. When the value is <code>ACTIVE</code>,
+        /// The current status of the set of featured results. When the value is <c>ACTIVE</c>,
         /// featured results are ready for use. You can still configure your settings before setting
-        /// the status to <code>ACTIVE</code>. You can set the status to <code>ACTIVE</code> or
-        /// <code>INACTIVE</code> using the <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateFeaturedResultsSet.html">UpdateFeaturedResultsSet</a>
+        /// the status to <c>ACTIVE</c>. You can set the status to <c>ACTIVE</c> or <c>INACTIVE</c>
+        /// using the <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateFeaturedResultsSet.html">UpdateFeaturedResultsSet</a>
         /// API. The queries you specify for featured results must be unique per featured results
-        /// set for each index, whether the status is <code>ACTIVE</code> or <code>INACTIVE</code>.
+        /// set for each index, whether the status is <c>ACTIVE</c> or <c>INACTIVE</c>.
         /// </para>
         /// </summary>
         public FeaturedResultsSetStatus Status
@@ -211,7 +212,7 @@ namespace Amazon.Kendra.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

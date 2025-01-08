@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkMail.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateUser operation.
     /// Updates data for the user. To have the latest information, it must be preceded by
     /// a <a>DescribeUser</a> call. The dataset in the request should be the one expected
-    /// when performing another <code>DescribeUser</code> call.
+    /// when performing another <c>DescribeUser</c> call.
     /// </summary>
     public partial class UpdateUserRequest : AmazonWorkMailRequest
     {
@@ -43,6 +44,7 @@ namespace Amazon.WorkMail.Model
         private string _displayName;
         private string _firstName;
         private bool? _hiddenFromGlobalAddressList;
+        private string _identityProviderUserId;
         private string _initials;
         private string _jobTitle;
         private string _lastName;
@@ -184,6 +186,27 @@ namespace Amazon.WorkMail.Model
         internal bool IsSetHiddenFromGlobalAddressList()
         {
             return this._hiddenFromGlobalAddressList.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property IdentityProviderUserId. 
+        /// <para>
+        /// User ID from the IAM Identity Center. If this parameter is empty it will be updated
+        /// automatically when the user logs in for the first time to the mailbox associated with
+        /// WorkMail.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=47)]
+        public string IdentityProviderUserId
+        {
+            get { return this._identityProviderUserId; }
+            set { this._identityProviderUserId = value; }
+        }
+
+        // Check to see if IdentityProviderUserId property is set
+        internal bool IsSetIdentityProviderUserId()
+        {
+            return this._identityProviderUserId != null;
         }
 
         /// <summary>
@@ -381,7 +404,7 @@ namespace Amazon.WorkMail.Model
         /// <summary>
         /// Gets and sets the property ZipCode. 
         /// <para>
-        /// Updates the user's zipcode.
+        /// Updates the user's zip code.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Max=256)]

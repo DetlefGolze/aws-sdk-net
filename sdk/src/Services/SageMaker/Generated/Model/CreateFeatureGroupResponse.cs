@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property FeatureGroupArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the <code>FeatureGroup</code>. This is a unique
-        /// identifier for the feature group. 
+        /// The Amazon Resource Name (ARN) of the <c>FeatureGroup</c>. This is a unique identifier
+        /// for the feature group. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=256)]

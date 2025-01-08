@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,10 +46,23 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(SpekeKeyProvider requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCertificateArn())
             {
                 context.Writer.WritePropertyName("certificateArn");
                 context.Writer.Write(requestObject.CertificateArn);
+            }
+
+            if(requestObject.IsSetEncryptionContractConfiguration())
+            {
+                context.Writer.WritePropertyName("encryptionContractConfiguration");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = EncryptionContractConfigurationMarshaller.Instance;
+                marshaller.Marshall(requestObject.EncryptionContractConfiguration, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetResourceId())

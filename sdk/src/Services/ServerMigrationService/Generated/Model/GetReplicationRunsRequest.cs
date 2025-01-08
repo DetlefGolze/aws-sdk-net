@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServerMigrationService.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.ServerMigrationService.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to return in a single call. The default value is 50.
-        /// To retrieve the remaining results, make another call with the returned <code>NextToken</code>
+        /// To retrieve the remaining results, make another call with the returned <c>NextToken</c>
         /// value.
         /// </para>
         /// </summary>

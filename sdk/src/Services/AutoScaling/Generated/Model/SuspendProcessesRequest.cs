@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -35,20 +36,22 @@ namespace Amazon.AutoScaling.Model
     /// 
     ///  
     /// <para>
-    /// If you suspend either the <code>Launch</code> or <code>Terminate</code> process types,
-    /// it can prevent other process types from functioning properly. For more information,
-    /// see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html">Suspending
-    /// and resuming scaling processes</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+    /// If you suspend either the <c>Launch</c> or <c>Terminate</c> process types, it can
+    /// prevent other process types from functioning properly. For more information, see <a
+    /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html">Suspend
+    /// and resume Amazon EC2 Auto Scaling processes</a> in the <i>Amazon EC2 Auto Scaling
+    /// User Guide</i>.
     /// </para>
     ///  
     /// <para>
-    /// To resume processes that have been suspended, call the <a>ResumeProcesses</a> API.
+    /// To resume processes that have been suspended, call the <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_ResumeProcesses.html">ResumeProcesses</a>
+    /// API.
     /// </para>
     /// </summary>
     public partial class SuspendProcessesRequest : AmazonAutoScalingRequest
     {
         private string _autoScalingGroupName;
-        private List<string> _scalingProcesses = new List<string>();
+        private List<string> _scalingProcesses = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AutoScalingGroupName. 
@@ -76,39 +79,39 @@ namespace Amazon.AutoScaling.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Launch</code> 
+        ///  <c>Launch</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Terminate</code> 
+        ///  <c>Terminate</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AddToLoadBalancer</code> 
+        ///  <c>AddToLoadBalancer</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AlarmNotification</code> 
+        ///  <c>AlarmNotification</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AZRebalance</code> 
+        ///  <c>AZRebalance</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>HealthCheck</code> 
+        ///  <c>HealthCheck</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>InstanceRefresh</code> 
+        ///  <c>InstanceRefresh</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ReplaceUnhealthy</code> 
+        ///  <c>ReplaceUnhealthy</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ScheduledActions</code> 
+        ///  <c>ScheduledActions</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -124,7 +127,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if ScalingProcesses property is set
         internal bool IsSetScalingProcesses()
         {
-            return this._scalingProcesses != null && this._scalingProcesses.Count > 0; 
+            return this._scalingProcesses != null && (this._scalingProcesses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

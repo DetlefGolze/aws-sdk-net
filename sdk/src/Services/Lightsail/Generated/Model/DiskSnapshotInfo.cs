@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property SizeInGb. 
         /// <para>
-        /// The size of the disk in GB (e.g., <code>32</code>).
+        /// The size of the disk in GB (<c>32</c>).
         /// </para>
         /// </summary>
         public int SizeInGb

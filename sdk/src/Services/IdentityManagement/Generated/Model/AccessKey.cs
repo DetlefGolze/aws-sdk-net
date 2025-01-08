@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.IdentityManagement.Model
     /// </para>
     ///  <note> 
     /// <para>
-    /// The <code>SecretAccessKey</code> value is returned only in response to <a>CreateAccessKey</a>.
+    /// The <c>SecretAccessKey</c> value is returned only in response to <a>CreateAccessKey</a>.
     /// You can get a secret access key only when you first create an access key; you cannot
     /// recover the secret access key later. If you lose a secret access key, you must create
     /// a new access key.
@@ -63,7 +64,7 @@ namespace Amazon.IdentityManagement.Model
         /// </summary>
         /// <param name="userName">The name of the IAM user that the access key is associated with.</param>
         /// <param name="accessKeyId">The ID for this access key.</param>
-        /// <param name="status">The status of the access key. <code>Active</code> means that the key is valid for API calls, while <code>Inactive</code> means it is not. </param>
+        /// <param name="status">The status of the access key. <c>Active</c> means that the key is valid for API calls, while <c>Inactive</c> means it is not. </param>
         /// <param name="secretAccessKey">The secret key used to sign requests.</param>
         public AccessKey(string userName, string accessKeyId, StatusType status, string secretAccessKey)
         {
@@ -132,8 +133,8 @@ namespace Amazon.IdentityManagement.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the access key. <code>Active</code> means that the key is valid for
-        /// API calls, while <code>Inactive</code> means it is not. 
+        /// The status of the access key. <c>Active</c> means that the key is valid for API calls,
+        /// while <c>Inactive</c> means it is not. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

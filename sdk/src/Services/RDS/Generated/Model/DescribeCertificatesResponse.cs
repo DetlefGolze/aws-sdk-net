@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.RDS.Model
     /// </summary>
     public partial class DescribeCertificatesResponse : AmazonWebServiceResponse
     {
-        private List<Certificate> _certificates = new List<Certificate>();
+        private List<Certificate> _certificates = AWSConfigs.InitializeCollections ? new List<Certificate>() : null;
         private string _defaultCertificateForNewLaunches;
         private string _marker;
 
         /// <summary>
         /// Gets and sets the property Certificates. 
         /// <para>
-        /// The list of <code>Certificate</code> objects for the Amazon Web Services account.
+        /// The list of <c>Certificate</c> objects for the Amazon Web Services account.
         /// </para>
         /// </summary>
         public List<Certificate> Certificates
@@ -52,7 +53,7 @@ namespace Amazon.RDS.Model
         // Check to see if Certificates property is set
         internal bool IsSetCertificates()
         {
-            return this._certificates != null && this._certificates.Count > 0; 
+            return this._certificates != null && (this._certificates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.RDS.Model
         /// The default root CA for new databases created by your Amazon Web Services account.
         /// This is either the root CA override set on your Amazon Web Services account or the
         /// system default CA for the Region if no override exists. To override the default CA,
-        /// use the <code>ModifyCertificates</code> operation.
+        /// use the <c>ModifyCertificates</c> operation.
         /// </para>
         /// </summary>
         public string DefaultCertificateForNewLaunches
@@ -79,9 +80,9 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// An optional pagination token provided by a previous <code>DescribeCertificates</code>
-        /// request. If this parameter is specified, the response includes only records beyond
-        /// the marker, up to the value specified by <code>MaxRecords</code> .
+        /// An optional pagination token provided by a previous <c>DescribeCertificates</c> request.
+        /// If this parameter is specified, the response includes only records beyond the marker,
+        /// up to the value specified by <c>MaxRecords</c> .
         /// </para>
         /// </summary>
         public string Marker

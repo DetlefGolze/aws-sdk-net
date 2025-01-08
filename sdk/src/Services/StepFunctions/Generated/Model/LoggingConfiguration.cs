@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
-    /// The <code>LoggingConfiguration</code> data type is used to set CloudWatch Logs options.
+    /// The <c>LoggingConfiguration</c> data type is used to set CloudWatch Logs options.
     /// </summary>
     public partial class LoggingConfiguration
     {
-        private List<LogDestination> _destinations = new List<LogDestination>();
+        private List<LogDestination> _destinations = AWSConfigs.InitializeCollections ? new List<LogDestination>() : null;
         private bool? _includeExecutionData;
         private LogLevel _level;
 
@@ -41,7 +42,7 @@ namespace Amazon.StepFunctions.Model
         /// Gets and sets the property Destinations. 
         /// <para>
         /// An array of objects that describes where your execution history events will be logged.
-        /// Limited to size 1. Required, if your log level is not set to <code>OFF</code>.
+        /// Limited to size 1. Required, if your log level is not set to <c>OFF</c>.
         /// </para>
         /// </summary>
         public List<LogDestination> Destinations
@@ -53,13 +54,13 @@ namespace Amazon.StepFunctions.Model
         // Check to see if Destinations property is set
         internal bool IsSetDestinations()
         {
-            return this._destinations != null && this._destinations.Count > 0; 
+            return this._destinations != null && (this._destinations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property IncludeExecutionData. 
         /// <para>
-        /// Determines whether execution data is included in your log. When set to <code>false</code>,
+        /// Determines whether execution data is included in your log. When set to <c>false</c>,
         /// data is excluded.
         /// </para>
         /// </summary>

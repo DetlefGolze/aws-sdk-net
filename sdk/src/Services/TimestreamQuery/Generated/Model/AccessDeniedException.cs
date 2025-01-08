@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TimestreamQuery.Model
 {
     /// <summary>
-    /// You are not authorized to perform this action.
+    /// You do not have the necessary permissions to access the account settings.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

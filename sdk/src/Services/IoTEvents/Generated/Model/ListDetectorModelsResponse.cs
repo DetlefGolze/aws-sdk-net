@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTEvents.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.IoTEvents.Model
     /// </summary>
     public partial class ListDetectorModelsResponse : AmazonWebServiceResponse
     {
-        private List<DetectorModelSummary> _detectorModelSummaries = new List<DetectorModelSummary>();
+        private List<DetectorModelSummary> _detectorModelSummaries = AWSConfigs.InitializeCollections ? new List<DetectorModelSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.IoTEvents.Model
         // Check to see if DetectorModelSummaries property is set
         internal bool IsSetDetectorModelSummaries()
         {
-            return this._detectorModelSummaries != null && this._detectorModelSummaries.Count > 0; 
+            return this._detectorModelSummaries != null && (this._detectorModelSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token that you can use to return the next set of results, or <code>null</code>
-        /// if there are no more results.
+        /// The token that you can use to return the next set of results, or <c>null</c> if there
+        /// are no more results.
         /// </para>
         /// </summary>
         public string NextToken

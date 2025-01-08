@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
-    /// KMS was unable to reach the specified <code>XksProxyUriPath</code>. The path must
-    /// be reachable before you create the external key store or update its settings.
+    /// KMS was unable to reach the specified <c>XksProxyUriPath</c>. The path must be reachable
+    /// before you create the external key store or update its settings.
     /// 
     ///  
     /// <para>
-    /// This exception is also thrown when the external key store proxy response to a <code>GetHealthStatus</code>
+    /// This exception is also thrown when the external key store proxy response to a <c>GetHealthStatus</c>
     /// request indicates that all external key manager instances are unavailable.
     /// </para>
     /// </summary>

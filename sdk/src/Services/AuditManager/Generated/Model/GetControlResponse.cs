@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AuditManager.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.AuditManager.Model
         /// <summary>
         /// Gets and sets the property Control. 
         /// <para>
-        ///  The details of the control that the <code>GetControl</code> API returned. 
+        ///  The details of the control that the <c>GetControl</c> API returned. 
         /// </para>
         /// </summary>
         public Control Control

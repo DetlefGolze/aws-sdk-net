@@ -26,14 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Scheduler.Model
 {
     /// <summary>
     /// The templated target type for the Amazon SQS <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessage.html">
-    /// <code>SendMessage</code> </a> API operation. Contains the message group ID to use
-    /// when the target is a FIFO queue. If you specify an Amazon SQS FIFO queue as a target,
-    /// the queue must have content-based deduplication enabled. For more information, see
-    /// <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-messagededuplicationid-property.html">Using
+    /// <c>SendMessage</c> </a> API operation. Contains the message group ID to use when the
+    /// target is a FIFO queue. If you specify an Amazon SQS FIFO queue as a target, the queue
+    /// must have content-based deduplication enabled. For more information, see <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-messagededuplicationid-property.html">Using
     /// the Amazon SQS message deduplication ID</a> in the <i>Amazon SQS Developer Guide</i>.
     /// </summary>
     public partial class SqsParameters

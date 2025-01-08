@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MedicalImaging.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -97,6 +98,12 @@ namespace Amazon.MedicalImaging.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.Message = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("overrides", targetDepth))
+                {
+                    var unmarshaller = OverridesUnmarshaller.Instance;
+                    response.Overrides = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("updatedAt", targetDepth))

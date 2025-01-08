@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
-    /// Contains details about additional route preferences for requests that specify <code>TravelMode</code>
-    /// as <code>Car</code>.
+    /// Contains details about additional route preferences for requests that specify <c>TravelMode</c>
+    /// as <c>Car</c>.
     /// </summary>
     public partial class CalculateRouteCarModeOptions
     {
@@ -44,11 +45,11 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  
         /// <para>
-        /// Default Value: <code>false</code> 
+        /// Default Value: <c>false</c> 
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>false</code> | <code>true</code> 
+        /// Valid Values: <c>false</c> | <c>true</c> 
         /// </para>
         /// </summary>
         public bool AvoidFerries
@@ -70,11 +71,11 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  
         /// <para>
-        /// Default Value: <code>false</code> 
+        /// Default Value: <c>false</c> 
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>false</code> | <code>true</code> 
+        /// Valid Values: <c>false</c> | <c>true</c> 
         /// </para>
         /// </summary>
         public bool AvoidTolls

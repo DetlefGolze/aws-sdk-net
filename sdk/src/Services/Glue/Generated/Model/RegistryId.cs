@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property RegistryArn. 
         /// <para>
-        /// Arn of the registry to be updated. One of <code>RegistryArn</code> or <code>RegistryName</code>
+        /// Arn of the registry to be updated. One of <c>RegistryArn</c> or <c>RegistryName</c>
         /// has to be provided.
         /// </para>
         /// </summary>
@@ -59,7 +60,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property RegistryName. 
         /// <para>
-        /// Name of the registry. Used only for lookup. One of <code>RegistryArn</code> or <code>RegistryName</code>
+        /// Name of the registry. Used only for lookup. One of <c>RegistryArn</c> or <c>RegistryName</c>
         /// has to be provided. 
         /// </para>
         /// </summary>

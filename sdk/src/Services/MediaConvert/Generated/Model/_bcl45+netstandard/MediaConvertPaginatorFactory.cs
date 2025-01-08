@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaConvert.Model
 {
     /// <summary>
@@ -73,6 +74,22 @@ namespace Amazon.MediaConvert.Model
         public IListQueuesPaginator ListQueues(ListQueuesRequest request) 
         {
             return new ListQueuesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListVersions operation
+        ///</summary>
+        public IListVersionsPaginator ListVersions(ListVersionsRequest request) 
+        {
+            return new ListVersionsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for SearchJobs operation
+        ///</summary>
+        public ISearchJobsPaginator SearchJobs(SearchJobsRequest request) 
+        {
+            return new SearchJobsPaginator(this.client, request);
         }
     }
 }

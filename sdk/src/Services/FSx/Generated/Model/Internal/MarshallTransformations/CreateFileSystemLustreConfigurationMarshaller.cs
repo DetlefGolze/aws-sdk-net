@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.FSx.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(CreateFileSystemLustreConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAutoImportPolicy())
             {
                 context.Writer.WritePropertyName("AutoImportPolicy");
@@ -87,6 +90,12 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
                 context.Writer.Write(requestObject.DriveCacheType);
             }
 
+            if(requestObject.IsSetEfaEnabled())
+            {
+                context.Writer.WritePropertyName("EfaEnabled");
+                context.Writer.Write(requestObject.EfaEnabled);
+            }
+
             if(requestObject.IsSetExportPath())
             {
                 context.Writer.WritePropertyName("ExportPath");
@@ -112,6 +121,17 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
 
                 var marshaller = LustreLogCreateConfigurationMarshaller.Instance;
                 marshaller.Marshall(requestObject.LogConfiguration, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetMetadataConfiguration())
+            {
+                context.Writer.WritePropertyName("MetadataConfiguration");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = CreateFileSystemLustreMetadataConfigurationMarshaller.Instance;
+                marshaller.Marshall(requestObject.MetadataConfiguration, context);
 
                 context.Writer.WriteObjectEnd();
             }

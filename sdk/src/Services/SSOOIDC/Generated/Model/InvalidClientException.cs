@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSOOIDC.Model
 {
     /// <summary>
-    /// Indicates that the <code>clientId</code> or <code>clientSecret</code> in the request
-    /// is invalid. For example, this can occur when a client sends an incorrect <code>clientId</code>
-    /// or an expired <code>clientSecret</code>.
+    /// Indicates that the <c>clientId</c> or <c>clientSecret</c> in the request is invalid.
+    /// For example, this can occur when a client sends an incorrect <c>clientId</c> or an
+    /// expired <c>clientSecret</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]
@@ -129,7 +130,10 @@ namespace Amazon.SSOOIDC.Model
 #endif
 
         /// <summary>
-        /// Gets and sets the property Error.
+        /// Gets and sets the property Error. 
+        /// <para>
+        /// Single error code. For this exception the value will be <c>invalid_client</c>.
+        /// </para>
         /// </summary>
         public string Error
         {
@@ -144,7 +148,11 @@ namespace Amazon.SSOOIDC.Model
         }
 
         /// <summary>
-        /// Gets and sets the property Error_description.
+        /// Gets and sets the property Error_description. 
+        /// <para>
+        /// Human-readable text providing additional information, used to assist the client developer
+        /// in understanding the error that occurred.
+        /// </para>
         /// </summary>
         public string Error_description
         {

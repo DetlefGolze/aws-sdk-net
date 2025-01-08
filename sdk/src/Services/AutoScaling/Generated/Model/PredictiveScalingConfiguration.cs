@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.AutoScaling.Model
     {
         private PredictiveScalingMaxCapacityBreachBehavior _maxCapacityBreachBehavior;
         private int? _maxCapacityBuffer;
-        private List<PredictiveScalingMetricSpecification> _metricSpecifications = new List<PredictiveScalingMetricSpecification>();
+        private List<PredictiveScalingMetricSpecification> _metricSpecifications = AWSConfigs.InitializeCollections ? new List<PredictiveScalingMetricSpecification>() : null;
         private PredictiveScalingMode _mode;
         private int? _schedulingBufferTime;
 
@@ -43,7 +44,7 @@ namespace Amazon.AutoScaling.Model
         /// Gets and sets the property MaxCapacityBreachBehavior. 
         /// <para>
         /// Defines the behavior that should be applied if the forecast capacity approaches or
-        /// exceeds the maximum capacity of the Auto Scaling group. Defaults to <code>HonorMaxCapacity</code>
+        /// exceeds the maximum capacity of the Auto Scaling group. Defaults to <c>HonorMaxCapacity</c>
         /// if not specified.
         /// </para>
         ///  
@@ -52,18 +53,24 @@ namespace Amazon.AutoScaling.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>HonorMaxCapacity</code> - Amazon EC2 Auto Scaling cannot scale out capacity
-        /// higher than the maximum capacity. The maximum capacity is enforced as a hard limit.
-        /// 
+        ///  <c>HonorMaxCapacity</c> - Amazon EC2 Auto Scaling can't increase the maximum capacity
+        /// of the group when the forecast capacity is close to or exceeds the maximum capacity.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IncreaseMaxCapacity</code> - Amazon EC2 Auto Scaling can scale out capacity
-        /// higher than the maximum capacity when the forecast capacity is close to or exceeds
-        /// the maximum capacity. The upper limit is determined by the forecasted capacity and
-        /// the value for <code>MaxCapacityBuffer</code>.
+        ///  <c>IncreaseMaxCapacity</c> - Amazon EC2 Auto Scaling can increase the maximum capacity
+        /// of the group when the forecast capacity is close to or exceeds the maximum capacity.
+        /// The upper limit is determined by the forecasted capacity and the value for <c>MaxCapacityBuffer</c>.
         /// </para>
-        ///  </li> </ul>
+        ///  </li> </ul> <important> 
+        /// <para>
+        /// Use caution when allowing the maximum capacity to be automatically increased. This
+        /// can lead to more instances being launched than intended if the increased maximum capacity
+        /// is not monitored and managed. The increased maximum capacity then becomes the new
+        /// normal maximum capacity for the Auto Scaling group until you manually update it. The
+        /// maximum capacity does not automatically decrease back to the original maximum.
+        /// </para>
+        ///  </important>
         /// </summary>
         public PredictiveScalingMaxCapacityBreachBehavior MaxCapacityBreachBehavior
         {
@@ -93,7 +100,7 @@ namespace Amazon.AutoScaling.Model
         /// </para>
         ///  
         /// <para>
-        /// Required if the <code>MaxCapacityBreachBehavior</code> property is set to <code>IncreaseMaxCapacity</code>,
+        /// Required if the <c>MaxCapacityBreachBehavior</c> property is set to <c>IncreaseMaxCapacity</c>,
         /// and cannot be used otherwise.
         /// </para>
         /// </summary>
@@ -133,13 +140,13 @@ namespace Amazon.AutoScaling.Model
         // Check to see if MetricSpecifications property is set
         internal bool IsSetMetricSpecifications()
         {
-            return this._metricSpecifications != null && this._metricSpecifications.Count > 0; 
+            return this._metricSpecifications != null && (this._metricSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Mode. 
         /// <para>
-        /// The predictive scaling mode. Defaults to <code>ForecastOnly</code> if not specified.
+        /// The predictive scaling mode. Defaults to <c>ForecastOnly</c> if not specified.
         /// </para>
         /// </summary>
         public PredictiveScalingMode Mode

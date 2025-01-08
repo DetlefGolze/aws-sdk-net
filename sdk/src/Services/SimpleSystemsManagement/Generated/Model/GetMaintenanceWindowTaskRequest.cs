@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -35,9 +36,9 @@ namespace Amazon.SimpleSystemsManagement.Model
     ///  <note> 
     /// <para>
     /// For maintenance window tasks without a specified target, you can't supply values for
-    /// <code>--max-errors</code> and <code>--max-concurrency</code>. Instead, the system
-    /// inserts a placeholder value of <code>1</code>, which may be reported in the response
-    /// to this command. These values don't affect the running of your task and can be ignored.
+    /// <c>--max-errors</c> and <c>--max-concurrency</c>. Instead, the system inserts a placeholder
+    /// value of <c>1</c>, which may be reported in the response to this command. These values
+    /// don't affect the running of your task and can be ignored.
     /// </para>
     ///  </note> 
     /// <para>

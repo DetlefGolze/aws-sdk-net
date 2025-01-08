@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
-    /// Provides information that describes a serverless replication created by the <code>CreateReplication</code>
+    /// Provides information that describes a serverless replication created by the <c>CreateReplication</c>
     /// operation.
     /// </summary>
     public partial class Replication
@@ -37,12 +38,13 @@ namespace Amazon.DatabaseMigrationService.Model
         private string _cdcStartPosition;
         private DateTime? _cdcStartTime;
         private string _cdcStopPosition;
-        private List<string> _failureMessages = new List<string>();
+        private List<string> _failureMessages = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ProvisionData _provisionData;
         private string _recoveryCheckpoint;
         private string _replicationConfigArn;
         private string _replicationConfigIdentifier;
         private DateTime? _replicationCreateTime;
+        private DateTime? _replicationDeprovisionTime;
         private DateTime? _replicationLastStopTime;
         private ReplicationStats _replicationStats;
         private MigrationTypeValue _replicationType;
@@ -56,9 +58,9 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property CdcStartPosition. 
         /// <para>
-        /// Indicates the start time for a change data capture (CDC) operation. Use either <code>CdcStartTime</code>
-        /// or <code>CdcStartPosition</code> to specify when you want a CDC operation to start.
-        /// Specifying both values results in an error.
+        /// Indicates the start time for a change data capture (CDC) operation. Use either <c>CdcStartTime</c>
+        /// or <c>CdcStartPosition</c> to specify when you want a CDC operation to start. Specifying
+        /// both values results in an error.
         /// </para>
         /// </summary>
         public string CdcStartPosition
@@ -76,9 +78,9 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property CdcStartTime. 
         /// <para>
-        /// Indicates the start time for a change data capture (CDC) operation. Use either <code>CdcStartTime</code>
-        /// or <code>CdcStartPosition</code> to specify when you want a CDC operation to start.
-        /// Specifying both values results in an error.
+        /// Indicates the start time for a change data capture (CDC) operation. Use either <c>CdcStartTime</c>
+        /// or <c>CdcStartPosition</c> to specify when you want a CDC operation to start. Specifying
+        /// both values results in an error.
         /// </para>
         /// </summary>
         public DateTime CdcStartTime
@@ -127,7 +129,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if FailureMessages property is set
         internal bool IsSetFailureMessages()
         {
-            return this._failureMessages != null && this._failureMessages.Count > 0; 
+            return this._failureMessages != null && (this._failureMessages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -152,8 +154,8 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property RecoveryCheckpoint. 
         /// <para>
         /// Indicates the last checkpoint that occurred during a change data capture (CDC) operation.
-        /// You can provide this value to the <code>CdcStartPosition</code> parameter to start
-        /// a CDC operation that begins at that checkpoint.
+        /// You can provide this value to the <c>CdcStartPosition</c> parameter to start a CDC
+        /// operation that begins at that checkpoint.
         /// </para>
         /// </summary>
         public string RecoveryCheckpoint
@@ -171,8 +173,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property ReplicationConfigArn. 
         /// <para>
-        /// The Amazon Resource Name for the <code>ReplicationConfig</code> associated with the
-        /// replication.
+        /// The Amazon Resource Name for the <c>ReplicationConfig</c> associated with the replication.
         /// </para>
         /// </summary>
         public string ReplicationConfigArn
@@ -190,7 +191,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property ReplicationConfigIdentifier. 
         /// <para>
-        /// The identifier for the <code>ReplicationConfig</code> associated with the replication.
+        /// The identifier for the <c>ReplicationConfig</c> associated with the replication.
         /// </para>
         /// </summary>
         public string ReplicationConfigIdentifier
@@ -221,6 +222,24 @@ namespace Amazon.DatabaseMigrationService.Model
         internal bool IsSetReplicationCreateTime()
         {
             return this._replicationCreateTime.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ReplicationDeprovisionTime. 
+        /// <para>
+        /// The timestamp when DMS will deprovision the replication.
+        /// </para>
+        /// </summary>
+        public DateTime ReplicationDeprovisionTime
+        {
+            get { return this._replicationDeprovisionTime.GetValueOrDefault(); }
+            set { this._replicationDeprovisionTime = value; }
+        }
+
+        // Check to see if ReplicationDeprovisionTime property is set
+        internal bool IsSetReplicationDeprovisionTime()
+        {
+            return this._replicationDeprovisionTime.HasValue; 
         }
 
         /// <summary>
@@ -298,7 +317,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property SourceEndpointArn. 
         /// <para>
-        /// The Amazon Resource Name for an existing <code>Endpoint</code> the serverless replication
+        /// The Amazon Resource Name for an existing <c>Endpoint</c> the serverless replication
         /// uses for its data source.
         /// </para>
         /// </summary>
@@ -317,7 +336,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property StartReplicationType. 
         /// <para>
-        /// The replication type.
+        /// The type of replication to start.
         /// </para>
         /// </summary>
         public string StartReplicationType
@@ -358,64 +377,63 @@ namespace Amazon.DatabaseMigrationService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>"Stop Reason NORMAL"</code> 
+        ///  <c>"Stop Reason NORMAL"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"Stop Reason RECOVERABLE_ERROR"</code> 
+        ///  <c>"Stop Reason RECOVERABLE_ERROR"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"Stop Reason FATAL_ERROR"</code> 
+        ///  <c>"Stop Reason FATAL_ERROR"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"Stop Reason FULL_LOAD_ONLY_FINISHED"</code> 
+        ///  <c>"Stop Reason FULL_LOAD_ONLY_FINISHED"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"Stop Reason STOPPED_AFTER_FULL_LOAD"</code> – Full load completed, with cached
-        /// changes not applied
+        ///  <c>"Stop Reason STOPPED_AFTER_FULL_LOAD"</c> – Full load completed, with cached changes
+        /// not applied
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"Stop Reason STOPPED_AFTER_CACHED_EVENTS"</code> – Full load completed, with
-        /// cached changes applied
+        ///  <c>"Stop Reason STOPPED_AFTER_CACHED_EVENTS"</c> – Full load completed, with cached
+        /// changes applied
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"Stop Reason EXPRESS_LICENSE_LIMITS_REACHED"</code> 
+        ///  <c>"Stop Reason EXPRESS_LICENSE_LIMITS_REACHED"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"Stop Reason STOPPED_AFTER_DDL_APPLY"</code> – User-defined stop task after
-        /// DDL applied
+        ///  <c>"Stop Reason STOPPED_AFTER_DDL_APPLY"</c> – User-defined stop task after DDL applied
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"Stop Reason STOPPED_DUE_TO_LOW_MEMORY"</code> 
+        ///  <c>"Stop Reason STOPPED_DUE_TO_LOW_MEMORY"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"Stop Reason STOPPED_DUE_TO_LOW_DISK"</code> 
+        ///  <c>"Stop Reason STOPPED_DUE_TO_LOW_DISK"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"Stop Reason STOPPED_AT_SERVER_TIME"</code> – User-defined server time for
-        /// stopping task
+        ///  <c>"Stop Reason STOPPED_AT_SERVER_TIME"</c> – User-defined server time for stopping
+        /// task
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"Stop Reason STOPPED_AT_COMMIT_TIME"</code> – User-defined commit time for
-        /// stopping task
+        ///  <c>"Stop Reason STOPPED_AT_COMMIT_TIME"</c> – User-defined commit time for stopping
+        /// task
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"Stop Reason RECONFIGURATION_RESTART"</code> 
+        ///  <c>"Stop Reason RECONFIGURATION_RESTART"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"Stop Reason RECYCLE_TASK"</code> 
+        ///  <c>"Stop Reason RECYCLE_TASK"</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -434,7 +452,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property TargetEndpointArn. 
         /// <para>
-        /// The Amazon Resource Name for an existing <code>Endpoint</code> the serverless replication
+        /// The Amazon Resource Name for an existing <c>Endpoint</c> the serverless replication
         /// uses for its data target.
         /// </para>
         /// </summary>

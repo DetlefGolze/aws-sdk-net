@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MainframeModernization.Model
 {
     /// <summary>
@@ -36,8 +37,9 @@ namespace Amazon.MainframeModernization.Model
     public partial class StartBatchJobRequest : AmazonMainframeModernizationRequest
     {
         private string _applicationId;
+        private string _authSecretsManagerArn;
         private BatchJobIdentifier _batchJobIdentifier;
-        private Dictionary<string, string> _jobParams = new Dictionary<string, string>();
+        private Dictionary<string, string> _jobParams = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ApplicationId. 
@@ -56,6 +58,26 @@ namespace Amazon.MainframeModernization.Model
         internal bool IsSetApplicationId()
         {
             return this._applicationId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property AuthSecretsManagerArn. 
+        /// <para>
+        /// The Amazon Web Services Secrets Manager containing user's credentials for authentication
+        /// and authorization for Start Batch Job execution operation.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=2048)]
+        public string AuthSecretsManagerArn
+        {
+            get { return this._authSecretsManagerArn; }
+            set { this._authSecretsManagerArn = value; }
+        }
+
+        // Check to see if AuthSecretsManagerArn property is set
+        internal bool IsSetAuthSecretsManagerArn()
+        {
+            return this._authSecretsManagerArn != null;
         }
 
         /// <summary>
@@ -95,7 +117,7 @@ namespace Amazon.MainframeModernization.Model
         // Check to see if JobParams property is set
         internal bool IsSetJobParams()
         {
-            return this._jobParams != null && this._jobParams.Count > 0; 
+            return this._jobParams != null && (this._jobParams.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

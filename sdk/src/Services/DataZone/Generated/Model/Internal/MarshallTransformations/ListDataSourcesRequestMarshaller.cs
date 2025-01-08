@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DataZone.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -61,6 +62,9 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
             if (!publicRequest.IsSetDomainIdentifier())
                 throw new AmazonDataZoneException("Request object does not have required field DomainIdentifier set");
             request.AddPathResource("{domainIdentifier}", StringUtils.FromString(publicRequest.DomainIdentifier));
+            
+            if (publicRequest.IsSetConnectionIdentifier())
+                request.Parameters.Add("connectionIdentifier", StringUtils.FromString(publicRequest.ConnectionIdentifier));
             
             if (publicRequest.IsSetEnvironmentIdentifier())
                 request.Parameters.Add("environmentIdentifier", StringUtils.FromString(publicRequest.EnvironmentIdentifier));

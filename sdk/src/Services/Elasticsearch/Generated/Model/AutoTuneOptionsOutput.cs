@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property State. 
         /// <para>
-        /// Specifies the <code>AutoTuneState</code> for the Elasticsearch domain.
+        /// Specifies the <c>AutoTuneState</c> for the Elasticsearch domain.
         /// </para>
         /// </summary>
         public AutoTuneState State

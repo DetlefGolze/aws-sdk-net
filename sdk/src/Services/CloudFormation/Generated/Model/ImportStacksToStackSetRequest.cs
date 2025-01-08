@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -40,24 +41,24 @@ namespace Amazon.CloudFormation.Model
         private CallAs _callAs;
         private string _operationId;
         private StackSetOperationPreferences _operationPreferences;
-        private List<string> _organizationalUnitIds = new List<string>();
-        private List<string> _stackIds = new List<string>();
+        private List<string> _organizationalUnitIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _stackIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _stackIdsUrl;
         private string _stackSetName;
 
         /// <summary>
         /// Gets and sets the property CallAs. 
         /// <para>
-        /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for stack sets with
-        /// self-managed permissions.
+        /// By default, <c>SELF</c> is specified. Use <c>SELF</c> for stack sets with self-managed
+        /// permissions.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If you are signed in to the management account, specify <code>SELF</code>.
+        /// If you are signed in to the management account, specify <c>SELF</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For service managed stack sets, specify <code>DELEGATED_ADMIN</code>.
+        /// For service managed stack sets, specify <c>DELEGATED_ADMIN</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -100,7 +101,7 @@ namespace Amazon.CloudFormation.Model
         ///  
         /// <para>
         /// For more information about maximum concurrent accounts and failure tolerance, see
-        /// <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-concepts.html#stackset-ops-options">Stack
+        /// <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/what-is-cfnstacksets.html#stackset-ops-options">Stack
         /// set operation options</a>.
         /// </para>
         /// </summary>
@@ -132,7 +133,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if OrganizationalUnitIds property is set
         internal bool IsSetOrganizationalUnitIds()
         {
-            return this._organizationalUnitIds != null && this._organizationalUnitIds.Count > 0; 
+            return this._organizationalUnitIds != null && (this._organizationalUnitIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -143,7 +144,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Specify either <code>StackIds</code> or <code>StackIdsUrl</code>.
+        /// Specify either <c>StackIds</c> or <c>StackIdsUrl</c>.
         /// </para>
         /// </summary>
         public List<string> StackIds
@@ -155,7 +156,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if StackIds property is set
         internal bool IsSetStackIds()
         {
-            return this._stackIds != null && this._stackIds.Count > 0; 
+            return this._stackIds != null && (this._stackIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -165,7 +166,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Specify either <code>StackIds</code> or <code>StackIdsUrl</code>.
+        /// Specify either <c>StackIds</c> or <c>StackIdsUrl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=5120)]

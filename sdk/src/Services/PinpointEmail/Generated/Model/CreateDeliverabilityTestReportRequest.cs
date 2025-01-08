@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointEmail.Model
 {
     /// <summary>
@@ -36,15 +37,14 @@ namespace Amazon.PinpointEmail.Model
     /// message that contains the content that you plan to send to your customers. Amazon
     /// Pinpoint then sends that message to special email addresses spread across several
     /// major email providers. After about 24 hours, the test is complete, and you can use
-    /// the <code>GetDeliverabilityTestReport</code> operation to view the results of the
-    /// test.
+    /// the <c>GetDeliverabilityTestReport</c> operation to view the results of the test.
     /// </summary>
     public partial class CreateDeliverabilityTestReportRequest : AmazonPinpointEmailRequest
     {
         private EmailContent _content;
         private string _fromEmailAddress;
         private string _reportName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Content. 
@@ -120,7 +120,7 @@ namespace Amazon.PinpointEmail.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

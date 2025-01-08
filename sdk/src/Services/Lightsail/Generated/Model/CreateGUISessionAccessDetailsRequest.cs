@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.Lightsail.Model
     /// 
     ///  
     /// <para>
-    /// Use <code>StartGUISession</code> to open the session.
+    /// Use <c>StartGUISession</c> to open the session.
     /// </para>
     /// </summary>
     public partial class CreateGUISessionAccessDetailsRequest : AmazonLightsailRequest

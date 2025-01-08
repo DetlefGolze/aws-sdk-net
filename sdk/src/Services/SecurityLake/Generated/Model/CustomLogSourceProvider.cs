@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityLake.Model
 {
     /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.SecurityLake.Model
         /// The ARN of the IAM role to be used by the entity putting logs into your custom source
         /// partition. Security Lake will apply the correct access policies to this role, but
         /// you must first manually create the trust policy for this role. The IAM role name must
-        /// start with the text 'Security Lake'. The IAM role must trust the <code>logProviderAccountId</code>
+        /// start with the text 'Security Lake'. The IAM role must trust the <c>logProviderAccountId</c>
         /// to assume the role.
         /// </para>
         /// </summary>

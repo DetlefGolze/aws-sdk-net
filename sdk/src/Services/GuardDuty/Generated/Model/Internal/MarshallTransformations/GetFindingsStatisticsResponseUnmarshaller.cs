@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -55,6 +56,12 @@ namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = FindingStatisticsUnmarshaller.Instance;
                     response.FindingStatistics = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("nextToken", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.NextToken = unmarshaller.Unmarshall(context);
                     continue;
                 }
             }

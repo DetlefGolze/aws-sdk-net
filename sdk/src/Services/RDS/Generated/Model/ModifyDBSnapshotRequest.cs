@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.RDS.Model
     ///  
     /// <para>
     /// Amazon RDS supports upgrading DB snapshots for MySQL, PostgreSQL, and Oracle. This
-    /// command doesn't apply to RDS Custom.
+    /// operation doesn't apply to RDS Custom or RDS for Db2.
     /// </para>
     /// </summary>
     public partial class ModifyDBSnapshotRequest : AmazonRDSRequest
@@ -78,33 +79,36 @@ namespace Amazon.RDS.Model
         /// <para>
         ///  <b>MySQL</b> 
         /// </para>
-        ///  <ul> <li> 
+        ///  
         /// <para>
-        ///  <code>5.5.46</code> (supported for 5.1 DB snapshots)
+        /// For the list of engine versions that are available for upgrading a DB snapshot, see
+        /// <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/mysql-upgrade-snapshot.html">
+        /// Upgrading a MySQL DB snapshot engine version</a> in the <i>Amazon RDS User Guide.</i>
+        /// 
         /// </para>
-        ///  </li> </ul> 
+        ///  
         /// <para>
         ///  <b>Oracle</b> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>19.0.0.0.ru-2022-01.rur-2022-01.r1</code> (supported for 12.2.0.1 DB snapshots)
+        ///  <c>19.0.0.0.ru-2022-01.rur-2022-01.r1</c> (supported for 12.2.0.1 DB snapshots)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>19.0.0.0.ru-2022-07.rur-2022-07.r1</code> (supported for 12.1.0.2 DB snapshots)
+        ///  <c>19.0.0.0.ru-2022-07.rur-2022-07.r1</c> (supported for 12.1.0.2 DB snapshots)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>12.1.0.2.v8</code> (supported for 12.1.0.1 DB snapshots)
+        ///  <c>12.1.0.2.v8</c> (supported for 12.1.0.1 DB snapshots)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>11.2.0.4.v12</code> (supported for 11.2.0.2 DB snapshots)
+        ///  <c>11.2.0.4.v12</c> (supported for 11.2.0.2 DB snapshots)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>11.2.0.4.v11</code> (supported for 11.2.0.3 DB snapshots)
+        ///  <c>11.2.0.4.v11</c> (supported for 11.2.0.3 DB snapshots)
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -113,8 +117,9 @@ namespace Amazon.RDS.Model
         ///  
         /// <para>
         /// For the list of engine versions that are available for upgrading a DB snapshot, see
-        /// <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.PostgreSQL.html#USER_UpgradeDBInstance.PostgreSQL.MajorVersion">
-        /// Upgrading the PostgreSQL DB Engine for Amazon RDS</a>.
+        /// <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBSnapshot.PostgreSQL.html">
+        /// Upgrading a PostgreSQL DB snapshot engine version</a> in the <i>Amazon RDS User Guide.</i>
+        /// 
         /// </para>
         /// </summary>
         public string EngineVersion

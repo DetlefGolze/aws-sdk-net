@@ -26,24 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTAnalytics.Model
 {
     /// <summary>
-    /// Information required to run the <code>containerAction</code> to produce dataset contents.
+    /// Information required to run the <c>containerAction</c> to produce dataset contents.
     /// </summary>
     public partial class ContainerDatasetAction
     {
         private string _executionRoleArn;
         private string _image;
         private ResourceConfiguration _resourceConfiguration;
-        private List<Variable> _variables = new List<Variable>();
+        private List<Variable> _variables = AWSConfigs.InitializeCollections ? new List<Variable>() : null;
 
         /// <summary>
         /// Gets and sets the property ExecutionRoleArn. 
         /// <para>
         /// The ARN of the role that gives permission to the system to access required resources
-        /// to run the <code>containerAction</code>. This includes, at minimum, permission to
-        /// retrieve the dataset contents that are the input to the containerized application.
+        /// to run the <c>containerAction</c>. This includes, at minimum, permission to retrieve
+        /// the dataset contents that are the input to the containerized application.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]
@@ -82,7 +83,7 @@ namespace Amazon.IoTAnalytics.Model
         /// <summary>
         /// Gets and sets the property ResourceConfiguration. 
         /// <para>
-        /// Configuration of the resource that executes the <code>containerAction</code>.
+        /// Configuration of the resource that executes the <c>containerAction</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -103,8 +104,8 @@ namespace Amazon.IoTAnalytics.Model
         /// <para>
         /// The values of variables used in the context of the execution of the containerized
         /// application (basically, parameters passed to the application). Each variable must
-        /// have a name and a value given by one of <code>stringValue</code>, <code>datasetContentVersionValue</code>,
-        /// or <code>outputFileUriValue</code>.
+        /// have a name and a value given by one of <c>stringValue</c>, <c>datasetContentVersionValue</c>,
+        /// or <c>outputFileUriValue</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -117,7 +118,7 @@ namespace Amazon.IoTAnalytics.Model
         // Check to see if Variables property is set
         internal bool IsSetVariables()
         {
-            return this._variables != null && this._variables.Count > 0; 
+            return this._variables != null && (this._variables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

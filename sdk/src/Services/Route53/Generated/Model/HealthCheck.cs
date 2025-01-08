@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
@@ -123,7 +124,7 @@ namespace Amazon.Route53.Model
         /// <summary>
         /// Gets and sets the property HealthCheckVersion. 
         /// <para>
-        /// The version of the health check. You can optionally pass this value in a call to <code>UpdateHealthCheck</code>
+        /// The version of the health check. You can optionally pass this value in a call to <c>UpdateHealthCheck</c>
         /// to prevent overwriting another change to the health check.
         /// </para>
         /// </summary>

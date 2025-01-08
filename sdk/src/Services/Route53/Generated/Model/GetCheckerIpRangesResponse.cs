@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
-    /// A complex type that contains the <code>CheckerIpRanges</code> element.
+    /// A complex type that contains the <c>CheckerIpRanges</c> element.
     /// </summary>
     public partial class GetCheckerIpRangesResponse : AmazonWebServiceResponse
     {
-        private List<string> _checkerIpRanges = new List<string>();
+        private List<string> _checkerIpRanges = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property CheckerIpRanges. 
@@ -52,7 +53,7 @@ namespace Amazon.Route53.Model
         // Check to see if CheckerIpRanges property is set
         internal bool IsSetCheckerIpRanges()
         {
-            return this._checkerIpRanges != null && this._checkerIpRanges.Count > 0; 
+            return this._checkerIpRanges != null && (this._checkerIpRanges.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

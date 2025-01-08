@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -38,8 +39,9 @@ namespace Amazon.SimpleEmailV2.Model
         private bool? _feedbackForwardingStatus;
         private IdentityType _identityType;
         private MailFromAttributes _mailFromAttributes;
-        private Dictionary<string, string> _policies = new Dictionary<string, string>();
-        private List<Tag> _tags = new List<Tag>();
+        private Dictionary<string, string> _policies = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private VerificationInfo _verificationInfo;
         private VerificationStatus _verificationStatus;
         private bool? _verifiedForSendingStatus;
 
@@ -86,9 +88,9 @@ namespace Amazon.SimpleEmailV2.Model
         /// </para>
         ///  
         /// <para>
-        /// If the value is <code>true</code>, you receive email notifications when bounce or
-        /// complaint events occur. These notifications are sent to the address that you specified
-        /// in the <code>Return-Path</code> header of the original email.
+        /// If the value is <c>true</c>, you receive email notifications when bounce or complaint
+        /// events occur. These notifications are sent to the address that you specified in the
+        /// <c>Return-Path</c> header of the original email.
         /// </para>
         ///  
         /// <para>
@@ -113,8 +115,7 @@ namespace Amazon.SimpleEmailV2.Model
         /// <summary>
         /// Gets and sets the property IdentityType. 
         /// <para>
-        /// The email identity type. Note: the <code>MANAGED_DOMAIN</code> identity type is not
-        /// supported.
+        /// The email identity type. Note: the <c>MANAGED_DOMAIN</c> identity type is not supported.
         /// </para>
         /// </summary>
         public IdentityType IdentityType
@@ -162,7 +163,7 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if Policies property is set
         internal bool IsSetPolicies()
         {
-            return this._policies != null && this._policies.Count > 0; 
+            return this._policies != null && (this._policies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -181,7 +182,26 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property VerificationInfo. 
+        /// <para>
+        /// An object that contains additional information about the verification status for the
+        /// identity.
+        /// </para>
+        /// </summary>
+        public VerificationInfo VerificationInfo
+        {
+            get { return this._verificationInfo; }
+            set { this._verificationInfo = value; }
+        }
+
+        // Check to see if VerificationInfo property is set
+        internal bool IsSetVerificationInfo()
+        {
+            return this._verificationInfo != null;
         }
 
         /// <summary>
@@ -191,26 +211,25 @@ namespace Amazon.SimpleEmailV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PENDING</code> – The verification process was initiated, but Amazon SES hasn't
-        /// yet been able to verify the identity.
+        ///  <c>PENDING</c> – The verification process was initiated, but Amazon SES hasn't yet
+        /// been able to verify the identity.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SUCCESS</code> – The verification process completed successfully.
+        ///  <c>SUCCESS</c> – The verification process completed successfully.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> – The verification process failed.
+        ///  <c>FAILED</c> – The verification process failed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TEMPORARY_FAILURE</code> – A temporary issue is preventing Amazon SES from
-        /// determining the verification status of the identity.
+        ///  <c>TEMPORARY_FAILURE</c> – A temporary issue is preventing Amazon SES from determining
+        /// the verification status of the identity.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NOT_STARTED</code> – The verification process hasn't been initiated for the
-        /// identity.
+        ///  <c>NOT_STARTED</c> – The verification process hasn't been initiated for the identity.
         /// </para>
         ///  </li> </ul>
         /// </summary>

@@ -14,6 +14,7 @@
  */
 using Amazon.Runtime.Internal.Util;
 using Amazon.Util;
+using Amazon.Util.Internal;
 using AWSSDK.Runtime.Internal.Util;
 using System;
 using System.Collections.Generic;
@@ -90,9 +91,9 @@ namespace Amazon.Runtime
                 // but try again to refresh them in 2 minutes.
                 if (null != _currentRefreshState)
                 {
-                    #pragma warning disable CS0612 // Type or member is obsolete
+#pragma warning disable CS0612, CS0618 // Type or member is obsolete
                     var newExpiryTime = AWSSDKUtils.CorrectedUtcNow.ToLocalTime() + TimeSpan.FromMinutes(2);
-#pragma warning restore CS0612 // Type or member is obsolete
+#pragma warning restore CS0612,CS0618 // Type or member is obsolete
 
                     _currentRefreshState = new CredentialsRefreshState(_currentRefreshState.Credentials.Copy(), newExpiryTime);
                     return _currentRefreshState;
@@ -106,9 +107,9 @@ namespace Amazon.Runtime
 
                 // use a custom refresh time
 
-                #pragma warning disable CS0612 // Type or member is obsolete
+#pragma warning disable CS0612, CS0618 // Type or member is obsolete
                 var newExpiryTime = AWSSDKUtils.CorrectedUtcNow.ToLocalTime() + TimeSpan.FromMinutes(new Random().Next(5, 11));
-                #pragma warning restore CS0612 // Type or member is obsolete
+#pragma warning restore CS0612, CS0618 // Type or member is obsolete
 
                 _currentRefreshState = new CredentialsRefreshState(newState.Credentials.Copy(), newExpiryTime);
 
@@ -154,16 +155,17 @@ namespace Amazon.Runtime
         #region Constructors
 
         /// <summary>
-        /// Constructs a InstanceProfileAWSCredentials object for specific role
+        /// Constructs <see cref="InstanceProfileAWSCredentials"/> for the specified role.
         /// </summary>
-        /// <param name="role">Role to use</param>
+        /// <param name="role">Name of the role to use</param>
         public InstanceProfileAWSCredentials(string role)
             : this(role, null) { }
 
         /// <summary>
-        /// Constructs a InstanceProfileAWSCredentials object for specific role
+        /// Constructs <see cref="InstanceProfileAWSCredentials"/> for the specified role.
         /// </summary>
-        /// <param name="role">Role to use</param>
+        /// <param name="role">Name of the role to use</param>
+        /// <param name="proxy">Proxy used to process requests to the instance metadata service</param>
         public InstanceProfileAWSCredentials(string role, IWebProxy proxy)
         {
             _logger = Logger.GetLogger(GetType());
@@ -180,14 +182,19 @@ namespace Amazon.Runtime
         }
 
         /// <summary>
-        /// Constructs a InstanceProfileAWSCredentials object for the first found role
+        /// Constructs <see cref="InstanceProfileAWSCredentials"/> for the first found role.
         /// </summary>
+        /// <remarks>This makes an IMDS call to retrieve the name of the IAM role associated with the instance during construction.</remarks>
+        /// <exception cref="AmazonServiceException">Thrown when unable to retrieve the name of the IAM role.</exception>
         public InstanceProfileAWSCredentials()
             : this(proxy: null) { }
 
         /// <summary>
-        /// Constructs a InstanceProfileAWSCredentials object for the first found role
+        /// Constructs <see cref="InstanceProfileAWSCredentials"/> for the first found role.
         /// </summary>
+        /// <remarks>This makes an IMDS call to retrieve the name of the IAM role associated with the instance during construction.</remarks>
+        /// <param name="proxy">Proxy used to process requests to the instance metadata service</param>
+        /// <exception cref="AmazonServiceException">Thrown when unable to retrieve the name of the IAM role.</exception>
         public InstanceProfileAWSCredentials(IWebProxy proxy)
             : this(GetFirstRole(proxy), proxy) { }
 
@@ -277,10 +284,10 @@ namespace Amazon.Runtime
         private CredentialsRefreshState GetEarlyRefreshState(CredentialsRefreshState state)
         {
             // New expiry time = Now + _refreshAttemptPeriod + PreemptExpiryTime
-#pragma warning disable CS0612 // Type or member is obsolete
+#pragma warning disable CS0612,CS0618 // Type or member is obsolete
             var newExpiryTime = AWSSDKUtils.CorrectedUtcNow.ToLocalTime() + _refreshAttemptPeriod + PreemptExpiryTime;
-#pragma warning restore CS0612 // Type or member is obsolete
-            
+#pragma warning restore CS0612, CS0618 // Type or member is obsolete
+
             // Use this only if the time is earlier than the default expiration time
             if (newExpiryTime.ToUniversalTime() > state.Expiration.ToUniversalTime())
                 newExpiryTime = state.Expiration;
@@ -314,13 +321,13 @@ namespace Amazon.Runtime
         private static SecurityInfo GetServiceInfo(IWebProxy proxy, string token)
         {
             CheckIsIMDSEnabled();
-            return GetObjectFromResponse<SecurityInfo>(InfoUri, proxy, CreateMetadataTokenHeaders(token));
+            return GetObjectFromResponse<SecurityInfo, SecurityInfoJsonSerializerContexts>(InfoUri, proxy, CreateMetadataTokenHeaders(token));
         }
 
         private SecurityCredentials GetRoleCredentials(string token)
         {
             CheckIsIMDSEnabled();
-            return GetObjectFromResponse<SecurityCredentials>(CurrentRoleUri, _proxy, CreateMetadataTokenHeaders(token));
+            return GetObjectFromResponse<SecurityCredentials, SecurityCredentialsJsonSerializerContexts>(CurrentRoleUri, _proxy, CreateMetadataTokenHeaders(token));
         }
 
         private static void CheckIsIMDSEnabled()

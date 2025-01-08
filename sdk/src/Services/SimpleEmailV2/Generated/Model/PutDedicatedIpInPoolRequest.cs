@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.SimpleEmailV2.Model
     ///  
     /// <para>
     /// The dedicated IP pool you specify must already exist. You can create a new pool by
-    /// using the <code>CreateDedicatedIpPool</code> operation.
+    /// using the <c>CreateDedicatedIpPool</c> operation.
     /// </para>
     ///  </note>
     /// </summary>

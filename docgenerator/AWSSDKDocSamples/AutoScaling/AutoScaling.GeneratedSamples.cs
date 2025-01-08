@@ -211,6 +211,7 @@ namespace AWSSDKDocSamples.Amazon.AutoScaling.Generated
             {
                 AutoScalingGroupName = "my-asg",
                 DesiredCapacity = 4,
+                DesiredCapacityType = "units",
                 MaxSize = 100,
                 MinSize = 0,
                 MixedInstancesPolicy = new MixedInstancesPolicy {
@@ -1102,6 +1103,7 @@ namespace AWSSDKDocSamples.Amazon.AutoScaling.Generated
                     } },
                     AutoRollback = true,
                     InstanceWarmup = 200,
+                    MaxHealthyPercentage = 120,
                     MinHealthyPercentage = 90
                 }
             });

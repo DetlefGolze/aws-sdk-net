@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateTLSInspectionConfiguration operation.
-    /// Creates an Network Firewall TLS inspection configuration. A TLS inspection configuration
-    /// contains the Certificate Manager certificate references that Network Firewall uses
-    /// to decrypt and re-encrypt inbound traffic.
+    /// Creates an Network Firewall TLS inspection configuration. Network Firewall uses TLS
+    /// inspection configurations to decrypt your firewall's inbound and outbound SSL/TLS
+    /// traffic. After decryption, Network Firewall inspects the traffic according to your
+    /// firewall policy's stateful rules, and then re-encrypts it before sending it to its
+    /// destination. You can enable inspection of your firewall's inbound traffic, outbound
+    /// traffic, or both. To use TLS inspection with your firewall, you must first import
+    /// or provision certificates using ACM, create a TLS inspection configuration, add that
+    /// configuration to a new firewall policy, and then associate that policy with your firewall.
     /// 
-    ///  
-    /// <para>
-    /// After you create a TLS inspection configuration, you associate it with a new firewall
-    /// policy.
-    /// </para>
     ///  
     /// <para>
     /// To update the settings for a TLS inspection configuration, use <a>UpdateTLSInspectionConfiguration</a>.
@@ -55,7 +56,7 @@ namespace Amazon.NetworkFirewall.Model
     /// </para>
     ///  
     /// <para>
-    ///  For more information about TLS inspection configurations, see <a href="https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html">Decrypting
+    ///  For more information about TLS inspection configurations, see <a href="https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html">Inspecting
     /// SSL/TLS traffic with TLS inspection configurations</a> in the <i>Network Firewall
     /// Developer Guide</i>. 
     /// </para>
@@ -64,7 +65,7 @@ namespace Amazon.NetworkFirewall.Model
     {
         private string _description;
         private EncryptionConfiguration _encryptionConfiguration;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private TLSInspectionConfiguration _tlsInspectionConfiguration;
         private string _tlsInspectionConfigurationName;
 
@@ -118,7 +119,7 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -137,10 +138,10 @@ namespace Amazon.NetworkFirewall.Model
         /// <para>
         /// To use a TLS inspection configuration, you add it to a new Network Firewall firewall
         /// policy, then you apply the firewall policy to a firewall. Network Firewall acts as
-        /// a proxy service to decrypt and inspect inbound traffic. You can reference a TLS inspection
-        /// configuration from more than one firewall policy, and you can use a firewall policy
-        /// in more than one firewall. For more information about using TLS inspection configurations,
-        /// see <a href="https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html">Decrypting
+        /// a proxy service to decrypt and inspect the traffic traveling through your firewalls.
+        /// You can reference a TLS inspection configuration from more than one firewall policy,
+        /// and you can use a firewall policy in more than one firewall. For more information
+        /// about using TLS inspection configurations, see <a href="https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html">Inspecting
         /// SSL/TLS traffic with TLS inspection configurations</a> in the <i>Network Firewall
         /// Developer Guide</i>.
         /// </para>

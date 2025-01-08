@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ResourceConfig requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetInstanceCount())
             {
                 context.Writer.WritePropertyName("InstanceCount");
@@ -77,6 +80,12 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("KeepAlivePeriodInSeconds");
                 context.Writer.Write(requestObject.KeepAlivePeriodInSeconds);
+            }
+
+            if(requestObject.IsSetTrainingPlanArn())
+            {
+                context.Writer.WritePropertyName("TrainingPlanArn");
+                context.Writer.Write(requestObject.TrainingPlanArn);
             }
 
             if(requestObject.IsSetVolumeKmsKeyId())

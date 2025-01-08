@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.DocDB.Model
         /// Gets and sets the property AutoUpgrade. 
         /// <para>
         /// A value that indicates whether the target version is applied to any source DB instances
-        /// that have <code>AutoMinorVersionUpgrade</code> set to <code>true</code>.
+        /// that have <c>AutoMinorVersionUpgrade</c> set to <c>true</c>.
         /// </para>
         /// </summary>
         public bool AutoUpgrade

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -35,14 +36,14 @@ namespace Amazon.Glue.Model
     {
         private S3DirectSourceAdditionalOptions _additionalOptions;
         private ParquetCompressionType _compressionType;
-        private List<string> _exclusions = new List<string>();
+        private List<string> _exclusions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _groupFiles;
         private string _groupSize;
         private int? _maxBand;
         private int? _maxFilesInBand;
         private string _name;
-        private List<GlueSchema> _outputSchemas = new List<GlueSchema>();
-        private List<string> _paths = new List<string>();
+        private List<GlueSchema> _outputSchemas = AWSConfigs.InitializeCollections ? new List<GlueSchema>() : null;
+        private List<string> _paths = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _recurse;
 
         /// <summary>
@@ -67,7 +68,7 @@ namespace Amazon.Glue.Model
         /// Gets and sets the property CompressionType. 
         /// <para>
         /// Specifies how the data is compressed. This is generally not necessary if the data
-        /// has a standard file extension. Possible values are <code>"gzip"</code> and <code>"bzip"</code>).
+        /// has a standard file extension. Possible values are <c>"gzip"</c> and <c>"bzip"</c>).
         /// </para>
         /// </summary>
         public ParquetCompressionType CompressionType
@@ -98,7 +99,7 @@ namespace Amazon.Glue.Model
         // Check to see if Exclusions property is set
         internal bool IsSetExclusions()
         {
-            return this._exclusions != null && this._exclusions.Count > 0; 
+            return this._exclusions != null && (this._exclusions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -106,7 +107,7 @@ namespace Amazon.Glue.Model
         /// <para>
         /// Grouping files is turned on by default when the input contains more than 50,000 files.
         /// To turn on grouping with fewer than 50,000 files, set this parameter to "inPartition".
-        /// To disable grouping when there are more than 50,000 files, set this parameter to <code>"none"</code>.
+        /// To disable grouping when there are more than 50,000 files, set this parameter to <c>"none"</c>.
         /// </para>
         /// </summary>
         public string GroupFiles
@@ -125,8 +126,8 @@ namespace Amazon.Glue.Model
         /// Gets and sets the property GroupSize. 
         /// <para>
         /// The target group size in bytes. The default is computed based on the input data size
-        /// and the size of your cluster. When there are fewer than 50,000 input files, <code>"groupFiles"</code>
-        /// must be set to <code>"inPartition"</code> for this to take effect.
+        /// and the size of your cluster. When there are fewer than 50,000 input files, <c>"groupFiles"</c>
+        /// must be set to <c>"inPartition"</c> for this to take effect.
         /// </para>
         /// </summary>
         public string GroupSize
@@ -219,7 +220,7 @@ namespace Amazon.Glue.Model
         // Check to see if OutputSchemas property is set
         internal bool IsSetOutputSchemas()
         {
-            return this._outputSchemas != null && this._outputSchemas.Count > 0; 
+            return this._outputSchemas != null && (this._outputSchemas.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -238,7 +239,7 @@ namespace Amazon.Glue.Model
         // Check to see if Paths property is set
         internal bool IsSetPaths()
         {
-            return this._paths != null && this._paths.Count > 0; 
+            return this._paths != null && (this._paths.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

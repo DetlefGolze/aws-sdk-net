@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceDiscovery.Model
 {
     /// <summary>
@@ -76,7 +77,7 @@ namespace Amazon.ServiceDiscovery.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>FAIL</b>: The operation failed. For the failure reason, see <code>ErrorMessage</code>.
+        ///  <b>FAIL</b>: The operation failed. For the failure reason, see <c>ErrorMessage</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>

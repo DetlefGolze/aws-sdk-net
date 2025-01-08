@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DatabaseMigrationService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.DatabaseMigrationService.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ReplicationTaskAssessmentRun Unmarshall(JsonUnmarshallerContext context)
         {
+            ReplicationTaskAssessmentRun unmarshalledObject = new ReplicationTaskAssessmentRun();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ReplicationTaskAssessmentRun unmarshalledObject = new ReplicationTaskAssessmentRun();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -74,6 +76,12 @@ namespace Amazon.DatabaseMigrationService.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.AssessmentRunName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("IsLatestTaskAssessmentRun", targetDepth))
+                {
+                    var unmarshaller = BoolUnmarshaller.Instance;
+                    unmarshalledObject.IsLatestTaskAssessmentRun = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("LastFailureMessage", targetDepth))
@@ -124,6 +132,12 @@ namespace Amazon.DatabaseMigrationService.Model.Internal.MarshallTransformations
                     unmarshalledObject.ResultLocationFolder = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ResultStatistic", targetDepth))
+                {
+                    var unmarshaller = ReplicationTaskAssessmentRunResultStatisticUnmarshaller.Instance;
+                    unmarshalledObject.ResultStatistic = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ServiceAccessRoleArn", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -137,7 +151,6 @@ namespace Amazon.DatabaseMigrationService.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

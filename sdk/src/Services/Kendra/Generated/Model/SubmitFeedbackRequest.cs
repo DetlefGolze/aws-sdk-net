@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -35,16 +36,16 @@ namespace Amazon.Kendra.Model
     /// 
     ///  
     /// <para>
-    ///  <code>SubmitFeedback</code> is currently not supported in the Amazon Web Services
-    /// GovCloud (US-West) region.
+    ///  <c>SubmitFeedback</c> is currently not supported in the Amazon Web Services GovCloud
+    /// (US-West) region.
     /// </para>
     /// </summary>
     public partial class SubmitFeedbackRequest : AmazonKendraRequest
     {
-        private List<ClickFeedback> _clickFeedbackItems = new List<ClickFeedback>();
+        private List<ClickFeedback> _clickFeedbackItems = AWSConfigs.InitializeCollections ? new List<ClickFeedback>() : null;
         private string _indexId;
         private string _queryId;
-        private List<RelevanceFeedback> _relevanceFeedbackItems = new List<RelevanceFeedback>();
+        private List<RelevanceFeedback> _relevanceFeedbackItems = AWSConfigs.InitializeCollections ? new List<RelevanceFeedback>() : null;
 
         /// <summary>
         /// Gets and sets the property ClickFeedbackItems. 
@@ -61,7 +62,7 @@ namespace Amazon.Kendra.Model
         // Check to see if ClickFeedbackItems property is set
         internal bool IsSetClickFeedbackItems()
         {
-            return this._clickFeedbackItems != null && this._clickFeedbackItems.Count > 0; 
+            return this._clickFeedbackItems != null && (this._clickFeedbackItems.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -87,7 +88,7 @@ namespace Amazon.Kendra.Model
         /// Gets and sets the property QueryId. 
         /// <para>
         /// The identifier of the specific query for which you are submitting feedback. The query
-        /// ID is returned in the response to the <code>Query</code> API.
+        /// ID is returned in the response to the <c>Query</c> API.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=36)]
@@ -119,7 +120,7 @@ namespace Amazon.Kendra.Model
         // Check to see if RelevanceFeedbackItems property is set
         internal bool IsSetRelevanceFeedbackItems()
         {
-            return this._relevanceFeedbackItems != null && this._relevanceFeedbackItems.Count > 0; 
+            return this._relevanceFeedbackItems != null && (this._relevanceFeedbackItems.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

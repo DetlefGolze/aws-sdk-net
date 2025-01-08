@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceExplorer2.Model
 {
     /// <summary>
@@ -48,7 +49,7 @@ namespace Amazon.ResourceExplorer2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Tags</code> 
+        ///  <c>Tags</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

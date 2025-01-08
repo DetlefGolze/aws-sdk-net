@@ -203,6 +203,210 @@ namespace Amazon.Macie2
 
 
     /// <summary>
+    /// Constants used for properties of type AutoEnableMode.
+    /// </summary>
+    public class AutoEnableMode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ALL for AutoEnableMode
+        /// </summary>
+        public static readonly AutoEnableMode ALL = new AutoEnableMode("ALL");
+        /// <summary>
+        /// Constant NEW for AutoEnableMode
+        /// </summary>
+        public static readonly AutoEnableMode NEW = new AutoEnableMode("NEW");
+        /// <summary>
+        /// Constant NONE for AutoEnableMode
+        /// </summary>
+        public static readonly AutoEnableMode NONE = new AutoEnableMode("NONE");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public AutoEnableMode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static AutoEnableMode FindValue(string value)
+        {
+            return FindValue<AutoEnableMode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator AutoEnableMode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type AutomatedDiscoveryAccountStatus.
+    /// </summary>
+    public class AutomatedDiscoveryAccountStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DISABLED for AutomatedDiscoveryAccountStatus
+        /// </summary>
+        public static readonly AutomatedDiscoveryAccountStatus DISABLED = new AutomatedDiscoveryAccountStatus("DISABLED");
+        /// <summary>
+        /// Constant ENABLED for AutomatedDiscoveryAccountStatus
+        /// </summary>
+        public static readonly AutomatedDiscoveryAccountStatus ENABLED = new AutomatedDiscoveryAccountStatus("ENABLED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public AutomatedDiscoveryAccountStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static AutomatedDiscoveryAccountStatus FindValue(string value)
+        {
+            return FindValue<AutomatedDiscoveryAccountStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator AutomatedDiscoveryAccountStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type AutomatedDiscoveryAccountUpdateErrorCode.
+    /// </summary>
+    public class AutomatedDiscoveryAccountUpdateErrorCode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ACCOUNT_NOT_FOUND for AutomatedDiscoveryAccountUpdateErrorCode
+        /// </summary>
+        public static readonly AutomatedDiscoveryAccountUpdateErrorCode ACCOUNT_NOT_FOUND = new AutomatedDiscoveryAccountUpdateErrorCode("ACCOUNT_NOT_FOUND");
+        /// <summary>
+        /// Constant ACCOUNT_PAUSED for AutomatedDiscoveryAccountUpdateErrorCode
+        /// </summary>
+        public static readonly AutomatedDiscoveryAccountUpdateErrorCode ACCOUNT_PAUSED = new AutomatedDiscoveryAccountUpdateErrorCode("ACCOUNT_PAUSED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public AutomatedDiscoveryAccountUpdateErrorCode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static AutomatedDiscoveryAccountUpdateErrorCode FindValue(string value)
+        {
+            return FindValue<AutomatedDiscoveryAccountUpdateErrorCode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator AutomatedDiscoveryAccountUpdateErrorCode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type AutomatedDiscoveryMonitoringStatus.
+    /// </summary>
+    public class AutomatedDiscoveryMonitoringStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant MONITORED for AutomatedDiscoveryMonitoringStatus
+        /// </summary>
+        public static readonly AutomatedDiscoveryMonitoringStatus MONITORED = new AutomatedDiscoveryMonitoringStatus("MONITORED");
+        /// <summary>
+        /// Constant NOT_MONITORED for AutomatedDiscoveryMonitoringStatus
+        /// </summary>
+        public static readonly AutomatedDiscoveryMonitoringStatus NOT_MONITORED = new AutomatedDiscoveryMonitoringStatus("NOT_MONITORED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public AutomatedDiscoveryMonitoringStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static AutomatedDiscoveryMonitoringStatus FindValue(string value)
+        {
+            return FindValue<AutomatedDiscoveryMonitoringStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator AutomatedDiscoveryMonitoringStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type AutomatedDiscoveryStatus.
     /// </summary>
     public class AutomatedDiscoveryStatus : ConstantClass
@@ -312,6 +516,10 @@ namespace Amazon.Macie2
         /// Constant ACCESS_DENIED for BucketMetadataErrorCode
         /// </summary>
         public static readonly BucketMetadataErrorCode ACCESS_DENIED = new BucketMetadataErrorCode("ACCESS_DENIED");
+        /// <summary>
+        /// Constant BUCKET_COUNT_EXCEEDS_QUOTA for BucketMetadataErrorCode
+        /// </summary>
+        public static readonly BucketMetadataErrorCode BUCKET_COUNT_EXCEEDS_QUOTA = new BucketMetadataErrorCode("BUCKET_COUNT_EXCEEDS_QUOTA");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -690,6 +898,10 @@ namespace Amazon.Macie2
         /// Constant AwsKms for EncryptionType
         /// </summary>
         public static readonly EncryptionType AwsKms = new EncryptionType("aws:kms");
+        /// <summary>
+        /// Constant AwsKmsDsse for EncryptionType
+        /// </summary>
+        public static readonly EncryptionType AwsKmsDsse = new EncryptionType("aws:kms:dsse");
         /// <summary>
         /// Constant NONE for EncryptionType
         /// </summary>
@@ -1937,6 +2149,56 @@ namespace Amazon.Macie2
 
 
     /// <summary>
+    /// Constants used for properties of type RetrievalMode.
+    /// </summary>
+    public class RetrievalMode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ASSUME_ROLE for RetrievalMode
+        /// </summary>
+        public static readonly RetrievalMode ASSUME_ROLE = new RetrievalMode("ASSUME_ROLE");
+        /// <summary>
+        /// Constant CALLER_CREDENTIALS for RetrievalMode
+        /// </summary>
+        public static readonly RetrievalMode CALLER_CREDENTIALS = new RetrievalMode("CALLER_CREDENTIALS");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public RetrievalMode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static RetrievalMode FindValue(string value)
+        {
+            return FindValue<RetrievalMode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator RetrievalMode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type RevealRequestStatus.
     /// </summary>
     public class RevealRequestStatus : ConstantClass
@@ -2158,6 +2420,10 @@ namespace Amazon.Macie2
         /// Constant ACCOUNT_ID for SearchResourcesSimpleCriterionKey
         /// </summary>
         public static readonly SearchResourcesSimpleCriterionKey ACCOUNT_ID = new SearchResourcesSimpleCriterionKey("ACCOUNT_ID");
+        /// <summary>
+        /// Constant AUTOMATED_DISCOVERY_MONITORING_STATUS for SearchResourcesSimpleCriterionKey
+        /// </summary>
+        public static readonly SearchResourcesSimpleCriterionKey AUTOMATED_DISCOVERY_MONITORING_STATUS = new SearchResourcesSimpleCriterionKey("AUTOMATED_DISCOVERY_MONITORING_STATUS");
         /// <summary>
         /// Constant S3_BUCKET_EFFECTIVE_PERMISSION for SearchResourcesSimpleCriterionKey
         /// </summary>
@@ -2681,6 +2947,10 @@ namespace Amazon.Macie2
         /// </summary>
         public static readonly Type AwsKms = new Type("aws:kms");
         /// <summary>
+        /// Constant AwsKmsDsse for Type
+        /// </summary>
+        public static readonly Type AwsKmsDsse = new Type("aws:kms:dsse");
+        /// <summary>
         /// Constant NONE for Type
         /// </summary>
         public static readonly Type NONE = new Type("NONE");
@@ -2727,9 +2997,25 @@ namespace Amazon.Macie2
     {
 
         /// <summary>
+        /// Constant ACCOUNT_NOT_IN_ORGANIZATION for UnavailabilityReasonCode
+        /// </summary>
+        public static readonly UnavailabilityReasonCode ACCOUNT_NOT_IN_ORGANIZATION = new UnavailabilityReasonCode("ACCOUNT_NOT_IN_ORGANIZATION");
+        /// <summary>
         /// Constant INVALID_CLASSIFICATION_RESULT for UnavailabilityReasonCode
         /// </summary>
         public static readonly UnavailabilityReasonCode INVALID_CLASSIFICATION_RESULT = new UnavailabilityReasonCode("INVALID_CLASSIFICATION_RESULT");
+        /// <summary>
+        /// Constant INVALID_RESULT_SIGNATURE for UnavailabilityReasonCode
+        /// </summary>
+        public static readonly UnavailabilityReasonCode INVALID_RESULT_SIGNATURE = new UnavailabilityReasonCode("INVALID_RESULT_SIGNATURE");
+        /// <summary>
+        /// Constant MEMBER_ROLE_TOO_PERMISSIVE for UnavailabilityReasonCode
+        /// </summary>
+        public static readonly UnavailabilityReasonCode MEMBER_ROLE_TOO_PERMISSIVE = new UnavailabilityReasonCode("MEMBER_ROLE_TOO_PERMISSIVE");
+        /// <summary>
+        /// Constant MISSING_GET_MEMBER_PERMISSION for UnavailabilityReasonCode
+        /// </summary>
+        public static readonly UnavailabilityReasonCode MISSING_GET_MEMBER_PERMISSION = new UnavailabilityReasonCode("MISSING_GET_MEMBER_PERMISSION");
         /// <summary>
         /// Constant OBJECT_EXCEEDS_SIZE_QUOTA for UnavailabilityReasonCode
         /// </summary>
@@ -2738,6 +3024,14 @@ namespace Amazon.Macie2
         /// Constant OBJECT_UNAVAILABLE for UnavailabilityReasonCode
         /// </summary>
         public static readonly UnavailabilityReasonCode OBJECT_UNAVAILABLE = new UnavailabilityReasonCode("OBJECT_UNAVAILABLE");
+        /// <summary>
+        /// Constant RESULT_NOT_SIGNED for UnavailabilityReasonCode
+        /// </summary>
+        public static readonly UnavailabilityReasonCode RESULT_NOT_SIGNED = new UnavailabilityReasonCode("RESULT_NOT_SIGNED");
+        /// <summary>
+        /// Constant ROLE_TOO_PERMISSIVE for UnavailabilityReasonCode
+        /// </summary>
+        public static readonly UnavailabilityReasonCode ROLE_TOO_PERMISSIVE = new UnavailabilityReasonCode("ROLE_TOO_PERMISSIVE");
         /// <summary>
         /// Constant UNSUPPORTED_FINDING_TYPE for UnavailabilityReasonCode
         /// </summary>

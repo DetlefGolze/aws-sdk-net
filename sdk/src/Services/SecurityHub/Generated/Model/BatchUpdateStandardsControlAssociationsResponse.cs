@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -33,12 +34,12 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class BatchUpdateStandardsControlAssociationsResponse : AmazonWebServiceResponse
     {
-        private List<UnprocessedStandardsControlAssociationUpdate> _unprocessedAssociationUpdates = new List<UnprocessedStandardsControlAssociationUpdate>();
+        private List<UnprocessedStandardsControlAssociationUpdate> _unprocessedAssociationUpdates = AWSConfigs.InitializeCollections ? new List<UnprocessedStandardsControlAssociationUpdate>() : null;
 
         /// <summary>
         /// Gets and sets the property UnprocessedAssociationUpdates. 
         /// <para>
-        ///  A security control (identified with <code>SecurityControlId</code>, <code>SecurityControlArn</code>,
+        ///  A security control (identified with <c>SecurityControlId</c>, <c>SecurityControlArn</c>,
         /// or a mix of both parameters) whose enablement status in a specified standard couldn't
         /// be updated. 
         /// </para>
@@ -52,7 +53,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if UnprocessedAssociationUpdates property is set
         internal bool IsSetUnprocessedAssociationUpdates()
         {
-            return this._unprocessedAssociationUpdates != null && this._unprocessedAssociationUpdates.Count > 0; 
+            return this._unprocessedAssociationUpdates != null && (this._unprocessedAssociationUpdates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

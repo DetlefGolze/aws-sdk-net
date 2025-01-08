@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElastiCache.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -69,11 +70,11 @@ namespace Amazon.ElastiCache.Model.Internal.MarshallTransformations
                     {
                         if(publicRequestlistValue.IsSetParameterName())
                         {
-                            request.Parameters.Add("ParameterNameValues" + "." + "member" + "." + publicRequestlistValueIndex + "." + "ParameterName", StringUtils.FromString(publicRequestlistValue.ParameterName));
+                            request.Parameters.Add("ParameterNameValues" + "." + "ParameterNameValue" + "." + publicRequestlistValueIndex + "." + "ParameterName", StringUtils.FromString(publicRequestlistValue.ParameterName));
                         }
                         if(publicRequestlistValue.IsSetParameterValue())
                         {
-                            request.Parameters.Add("ParameterNameValues" + "." + "member" + "." + publicRequestlistValueIndex + "." + "ParameterValue", StringUtils.FromString(publicRequestlistValue.ParameterValue));
+                            request.Parameters.Add("ParameterNameValues" + "." + "ParameterNameValue" + "." + publicRequestlistValueIndex + "." + "ParameterValue", StringUtils.FromString(publicRequestlistValue.ParameterValue));
                         }
                         publicRequestlistValueIndex++;
                     }

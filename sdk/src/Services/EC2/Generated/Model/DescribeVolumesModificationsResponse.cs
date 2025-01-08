@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.EC2.Model
     public partial class DescribeVolumesModificationsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<VolumeModification> _volumesModifications = new List<VolumeModification>();
+        private List<VolumeModification> _volumesModifications = AWSConfigs.InitializeCollections ? new List<VolumeModification>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The token to include in another request to get the next page of items. This value
-        /// is <code>null</code> if there are no more items to return.
+        /// is <c>null</c> when there are no more items to return.
         /// </para>
         /// </summary>
         public string NextToken
@@ -70,7 +71,7 @@ namespace Amazon.EC2.Model
         // Check to see if VolumesModifications property is set
         internal bool IsSetVolumesModifications()
         {
-            return this._volumesModifications != null && this._volumesModifications.Count > 0; 
+            return this._volumesModifications != null && (this._volumesModifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

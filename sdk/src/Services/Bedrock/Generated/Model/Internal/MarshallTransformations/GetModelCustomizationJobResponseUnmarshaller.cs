@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Bedrock.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -67,6 +68,18 @@ namespace Amazon.Bedrock.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
                     response.CreationTime = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("customizationConfig", targetDepth))
+                {
+                    var unmarshaller = CustomizationConfigUnmarshaller.Instance;
+                    response.CustomizationConfig = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("customizationType", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.CustomizationType = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("endTime", targetDepth))

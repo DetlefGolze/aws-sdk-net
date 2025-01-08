@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Route53Resolver.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.Route53Resolver.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetCreatorRequestId())
@@ -111,6 +113,17 @@ namespace Amazon.Route53Resolver.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("PreferredInstanceType");
                     context.Writer.Write(publicRequest.PreferredInstanceType);
+                }
+
+                if(publicRequest.IsSetProtocols())
+                {
+                    context.Writer.WritePropertyName("Protocols");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestProtocolsListValue in publicRequest.Protocols)
+                    {
+                            context.Writer.Write(publicRequestProtocolsListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
                 }
 
                 if(publicRequest.IsSetResolverEndpointType())

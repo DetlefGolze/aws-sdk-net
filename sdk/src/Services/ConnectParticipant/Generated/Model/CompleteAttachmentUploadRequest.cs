@@ -26,16 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectParticipant.Model
 {
     /// <summary>
     /// Container for the parameters to the CompleteAttachmentUpload operation.
     /// Allows you to confirm that the attachment has been uploaded using the pre-signed URL
-    /// provided in StartAttachmentUpload API. 
+    /// provided in StartAttachmentUpload API. A conflict exception is thrown when an attachment
+    /// with that identifier is already being uploaded.
     /// 
+    ///  
+    /// <para>
+    /// For security recommendations, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/security-best-practices.html#bp-security-chat">Amazon
+    /// Connect Chat security best practices</a>.
+    /// </para>
     ///  <note> 
     /// <para>
-    ///  <code>ConnectionToken</code> is used for invoking this API instead of <code>ParticipantToken</code>.
+    ///  <c>ConnectionToken</c> is used for invoking this API instead of <c>ParticipantToken</c>.
     /// </para>
     ///  </note> 
     /// <para>
@@ -45,7 +52,7 @@ namespace Amazon.ConnectParticipant.Model
     /// </summary>
     public partial class CompleteAttachmentUploadRequest : AmazonConnectParticipantRequest
     {
-        private List<string> _attachmentIds = new List<string>();
+        private List<string> _attachmentIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _clientToken;
         private string _connectionToken;
 
@@ -65,7 +72,7 @@ namespace Amazon.ConnectParticipant.Model
         // Check to see if AttachmentIds property is set
         internal bool IsSetAttachmentIds()
         {
-            return this._attachmentIds != null && this._attachmentIds.Count > 0; 
+            return this._attachmentIds != null && (this._attachmentIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -106,7 +113,7 @@ namespace Amazon.ConnectParticipant.Model
         // Check to see if ConnectionToken property is set
         internal bool IsSetConnectionToken()
         {
-            return this._connectionToken != null;
+            return !string.IsNullOrEmpty(this._connectionToken);
         }
 
     }

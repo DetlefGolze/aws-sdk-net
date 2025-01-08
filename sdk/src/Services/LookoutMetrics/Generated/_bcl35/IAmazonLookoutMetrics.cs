@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.LookoutMetrics.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.LookoutMetrics
 {
     /// <summary>
-    /// Interface for accessing LookoutMetrics
+    /// <para>Interface for accessing LookoutMetrics</para>
     ///
     /// This is the <i>Amazon Lookout for Metrics API Reference</i>. For an introduction to
     /// the service with tutorials for getting started, visit <a href="https://docs.aws.amazon.com/lookoutmetrics/latest/dev">Amazon

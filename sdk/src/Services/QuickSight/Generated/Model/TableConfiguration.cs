@@ -26,18 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The configuration for a <code>TableVisual</code>.
+    /// The configuration for a <c>TableVisual</c>.
     /// </summary>
     public partial class TableConfiguration
     {
         private TableFieldOptions _fieldOptions;
         private TableFieldWells _fieldWells;
+        private VisualInteractionOptions _interactions;
         private TablePaginatedReportOptions _paginatedReportOptions;
         private TableSortConfiguration _sortConfiguration;
-        private List<TableInlineVisualization> _tableInlineVisualizations = new List<TableInlineVisualization>();
+        private List<TableInlineVisualization> _tableInlineVisualizations = AWSConfigs.InitializeCollections ? new List<TableInlineVisualization>() : null;
         private TableOptions _tableOptions;
         private TotalOptions _totalOptions;
 
@@ -78,6 +80,24 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Interactions. 
+        /// <para>
+        /// The general visual interactions setup for a visual.
+        /// </para>
+        /// </summary>
+        public VisualInteractionOptions Interactions
+        {
+            get { return this._interactions; }
+            set { this._interactions = value; }
+        }
+
+        // Check to see if Interactions property is set
+        internal bool IsSetInteractions()
+        {
+            return this._interactions != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property PaginatedReportOptions. 
         /// <para>
         /// The paginated report options for a table visual.
@@ -98,7 +118,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property SortConfiguration. 
         /// <para>
-        /// The sort configuration for a <code>TableVisual</code>.
+        /// The sort configuration for a <c>TableVisual</c>.
         /// </para>
         /// </summary>
         public TableSortConfiguration SortConfiguration
@@ -129,7 +149,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if TableInlineVisualizations property is set
         internal bool IsSetTableInlineVisualizations()
         {
-            return this._tableInlineVisualizations != null && this._tableInlineVisualizations.Count > 0; 
+            return this._tableInlineVisualizations != null && (this._tableInlineVisualizations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

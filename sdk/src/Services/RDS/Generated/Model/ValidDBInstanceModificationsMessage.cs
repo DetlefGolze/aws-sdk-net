@@ -26,17 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
     /// Information about valid modifications that you can make to your DB instance. Contains
-    /// the result of a successful call to the <code>DescribeValidDBInstanceModifications</code>
-    /// action. You can use this information when you call <code>ModifyDBInstance</code>.
+    /// the result of a successful call to the <c>DescribeValidDBInstanceModifications</c>
+    /// action. You can use this information when you call <c>ModifyDBInstance</c>.
     /// </summary>
     public partial class ValidDBInstanceModificationsMessage
     {
-        private List<ValidStorageOptions> _storage = new List<ValidStorageOptions>();
-        private List<AvailableProcessorFeature> _validProcessorFeatures = new List<AvailableProcessorFeature>();
+        private List<ValidStorageOptions> _storage = AWSConfigs.InitializeCollections ? new List<ValidStorageOptions>() : null;
+        private bool? _supportsDedicatedLogVolume;
+        private List<AvailableProcessorFeature> _validProcessorFeatures = AWSConfigs.InitializeCollections ? new List<AvailableProcessorFeature>() : null;
 
         /// <summary>
         /// Gets and sets the property Storage. 
@@ -53,7 +55,25 @@ namespace Amazon.RDS.Model
         // Check to see if Storage property is set
         internal bool IsSetStorage()
         {
-            return this._storage != null && this._storage.Count > 0; 
+            return this._storage != null && (this._storage.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SupportsDedicatedLogVolume. 
+        /// <para>
+        /// Indicates whether a DB instance supports using a dedicated log volume (DLV).
+        /// </para>
+        /// </summary>
+        public bool SupportsDedicatedLogVolume
+        {
+            get { return this._supportsDedicatedLogVolume.GetValueOrDefault(); }
+            set { this._supportsDedicatedLogVolume = value; }
+        }
+
+        // Check to see if SupportsDedicatedLogVolume property is set
+        internal bool IsSetSupportsDedicatedLogVolume()
+        {
+            return this._supportsDedicatedLogVolume.HasValue; 
         }
 
         /// <summary>
@@ -71,7 +91,7 @@ namespace Amazon.RDS.Model
         // Check to see if ValidProcessorFeatures property is set
         internal bool IsSetValidProcessorFeatures()
         {
-            return this._validProcessorFeatures != null && this._validProcessorFeatures.Count > 0; 
+            return this._validProcessorFeatures != null && (this._validProcessorFeatures.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

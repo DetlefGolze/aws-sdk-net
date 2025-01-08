@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -45,8 +46,8 @@ namespace Amazon.ElasticBeanstalk.Model
         /// <summary>
         /// Gets and sets the property Idle. 
         /// <para>
-        /// Percentage of time that the CPU has spent in the <code>Idle</code> state over the
-        /// last 10 seconds.
+        /// Percentage of time that the CPU has spent in the <c>Idle</c> state over the last 10
+        /// seconds.
         /// </para>
         /// </summary>
         public double Idle
@@ -68,8 +69,8 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  
         /// <para>
-        /// Percentage of time that the CPU has spent in the <code>I/O Wait</code> state over
-        /// the last 10 seconds.
+        /// Percentage of time that the CPU has spent in the <c>I/O Wait</c> state over the last
+        /// 10 seconds.
         /// </para>
         /// </summary>
         public double IOWait
@@ -91,8 +92,8 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  
         /// <para>
-        /// Percentage of time that the CPU has spent in the <code>IRQ</code> state over the last
-        /// 10 seconds.
+        /// Percentage of time that the CPU has spent in the <c>IRQ</c> state over the last 10
+        /// seconds.
         /// </para>
         /// </summary>
         public double IRQ
@@ -114,8 +115,8 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  
         /// <para>
-        /// Percentage of time that the CPU has spent in the <code>Nice</code> state over the
-        /// last 10 seconds.
+        /// Percentage of time that the CPU has spent in the <c>Nice</c> state over the last 10
+        /// seconds.
         /// </para>
         /// </summary>
         public double Nice
@@ -137,8 +138,8 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  
         /// <para>
-        /// Percentage of time that the CPU has spent in the <code>Privileged</code> state over
-        /// the last 10 seconds.
+        /// Percentage of time that the CPU has spent in the <c>Privileged</c> state over the
+        /// last 10 seconds.
         /// </para>
         /// </summary>
         public double Privileged
@@ -160,8 +161,8 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  
         /// <para>
-        /// Percentage of time that the CPU has spent in the <code>SoftIRQ</code> state over the
-        /// last 10 seconds.
+        /// Percentage of time that the CPU has spent in the <c>SoftIRQ</c> state over the last
+        /// 10 seconds.
         /// </para>
         /// </summary>
         public double SoftIRQ
@@ -183,8 +184,8 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  
         /// <para>
-        /// Percentage of time that the CPU has spent in the <code>System</code> state over the
-        /// last 10 seconds.
+        /// Percentage of time that the CPU has spent in the <c>System</c> state over the last
+        /// 10 seconds.
         /// </para>
         /// </summary>
         public double System
@@ -202,8 +203,8 @@ namespace Amazon.ElasticBeanstalk.Model
         /// <summary>
         /// Gets and sets the property User. 
         /// <para>
-        /// Percentage of time that the CPU has spent in the <code>User</code> state over the
-        /// last 10 seconds.
+        /// Percentage of time that the CPU has spent in the <c>User</c> state over the last 10
+        /// seconds.
         /// </para>
         /// </summary>
         public double User

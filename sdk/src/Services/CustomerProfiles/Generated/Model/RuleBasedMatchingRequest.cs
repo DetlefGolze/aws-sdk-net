@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
@@ -37,14 +38,14 @@ namespace Amazon.CustomerProfiles.Model
         private ConflictResolution _conflictResolution;
         private bool? _enabled;
         private ExportingConfig _exportingConfig;
-        private List<MatchingRule> _matchingRules = new List<MatchingRule>();
+        private List<MatchingRule> _matchingRules = AWSConfigs.InitializeCollections ? new List<MatchingRule>() : null;
         private int? _maxAllowedRuleLevelForMatching;
         private int? _maxAllowedRuleLevelForMerging;
 
         /// <summary>
         /// Gets and sets the property AttributeTypesSelector. 
         /// <para>
-        /// Configures information about the <code>AttributeTypesSelector</code> where the rule-based
+        /// Configures information about the <c>AttributeTypesSelector</c> where the rule-based
         /// identity resolution uses to match profiles.
         /// </para>
         /// </summary>
@@ -113,7 +114,7 @@ namespace Amazon.CustomerProfiles.Model
         /// Gets and sets the property MatchingRules. 
         /// <para>
         /// Configures how the rule-based matching process should match profiles. You can have
-        /// up to 15 <code>MatchingRule</code> in the <code>MatchingRules</code>.
+        /// up to 15 <c>MatchingRule</c> in the <c>MatchingRules</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=15)]
@@ -126,7 +127,7 @@ namespace Amazon.CustomerProfiles.Model
         // Check to see if MatchingRules property is set
         internal bool IsSetMatchingRules()
         {
-            return this._matchingRules != null && this._matchingRules.Count > 0; 
+            return this._matchingRules != null && (this._matchingRules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

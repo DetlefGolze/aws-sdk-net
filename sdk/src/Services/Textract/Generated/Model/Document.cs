@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Textract.Model
 {
     /// <summary>
@@ -33,17 +34,17 @@ namespace Amazon.Textract.Model
     /// 
     ///  
     /// <para>
-    /// You pass image bytes to an Amazon Textract API operation by using the <code>Bytes</code>
-    /// property. For example, you would use the <code>Bytes</code> property to pass a document
-    /// loaded from a local file system. Image bytes passed by using the <code>Bytes</code>
-    /// property must be base64 encoded. Your code might not need to encode document file
-    /// bytes if you're using an AWS SDK to call Amazon Textract API operations. 
+    /// You pass image bytes to an Amazon Textract API operation by using the <c>Bytes</c>
+    /// property. For example, you would use the <c>Bytes</c> property to pass a document
+    /// loaded from a local file system. Image bytes passed by using the <c>Bytes</c> property
+    /// must be base64 encoded. Your code might not need to encode document file bytes if
+    /// you're using an AWS SDK to call Amazon Textract API operations. 
     /// </para>
     ///  
     /// <para>
     /// You pass images stored in an S3 bucket to an Amazon Textract API operation by using
-    /// the <code>S3Object</code> property. Documents stored in an S3 bucket don't need to
-    /// be base64 encoded.
+    /// the <c>S3Object</c> property. Documents stored in an S3 bucket don't need to be base64
+    /// encoded.
     /// </para>
     ///  
     /// <para>
@@ -76,7 +77,7 @@ namespace Amazon.Textract.Model
         ///  
         /// <para>
         /// If you're using an AWS SDK to call Amazon Textract, you might not need to base64-encode
-        /// image bytes passed using the <code>Bytes</code> field. 
+        /// image bytes passed using the <c>Bytes</c> field. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10485760)]

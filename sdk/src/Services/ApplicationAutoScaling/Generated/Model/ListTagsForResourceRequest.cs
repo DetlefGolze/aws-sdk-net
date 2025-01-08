@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationAutoScaling.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.ApplicationAutoScaling.Model
     ///  
     /// <para>
     /// For general information about tags, including the format and syntax, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-    /// Amazon Web Services resources</a> in the <i>Amazon Web Services General Reference</i>.
+    /// your Amazon Web Services resources</a> in the <i>Amazon Web Services General Reference</i>.
     /// </para>
     /// </summary>
     public partial class ListTagsForResourceRequest : AmazonApplicationAutoScalingRequest
@@ -49,7 +50,7 @@ namespace Amazon.ApplicationAutoScaling.Model
         /// </para>
         ///  
         /// <para>
-        /// For example: <code>arn:aws:application-autoscaling:us-east-1:123456789012:scalable-target/1234abcd56ab78cd901ef1234567890ab123</code>
+        /// For example: <c>arn:aws:application-autoscaling:us-east-1:123456789012:scalable-target/1234abcd56ab78cd901ef1234567890ab123</c>
         /// 
         /// </para>
         ///  

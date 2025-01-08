@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchServerless.Model
 {
     /// <summary>
@@ -136,7 +137,7 @@ namespace Amazon.OpenSearchServerless.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of access policy. Currently the only available type is <code>data</code>.
+        /// The type of access policy. Currently, the only available type is <c>data</c>.
         /// </para>
         /// </summary>
         public AccessPolicyType Type

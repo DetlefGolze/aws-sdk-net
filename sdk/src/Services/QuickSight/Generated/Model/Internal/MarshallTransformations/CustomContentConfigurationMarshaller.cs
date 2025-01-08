@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(CustomContentConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetContentType())
             {
                 context.Writer.WritePropertyName("ContentType");
@@ -61,6 +64,17 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("ImageScaling");
                 context.Writer.Write(requestObject.ImageScaling);
+            }
+
+            if(requestObject.IsSetInteractions())
+            {
+                context.Writer.WritePropertyName("Interactions");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = VisualInteractionOptionsMarshaller.Instance;
+                marshaller.Marshall(requestObject.Interactions, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
         }

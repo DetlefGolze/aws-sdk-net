@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,7 +35,8 @@ namespace Amazon.EC2.Model
     public partial class CreateSecurityGroupResponse : AmazonWebServiceResponse
     {
         private string _groupId;
-        private List<Tag> _tags = new List<Tag>();
+        private string _securityGroupArn;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property GroupId. 
@@ -55,6 +57,24 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SecurityGroupArn. 
+        /// <para>
+        /// The security group ARN.
+        /// </para>
+        /// </summary>
+        public string SecurityGroupArn
+        {
+            get { return this._securityGroupArn; }
+            set { this._securityGroupArn = value; }
+        }
+
+        // Check to see if SecurityGroupArn property is set
+        internal bool IsSetSecurityGroupArn()
+        {
+            return this._securityGroupArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// The tags assigned to the security group.
@@ -69,7 +89,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

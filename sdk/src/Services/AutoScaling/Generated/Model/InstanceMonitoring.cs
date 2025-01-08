@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -38,8 +39,7 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property Enabled. 
         /// <para>
-        /// If <code>true</code>, detailed monitoring is enabled. Otherwise, basic monitoring
-        /// is enabled.
+        /// If <c>true</c>, detailed monitoring is enabled. Otherwise, basic monitoring is enabled.
         /// </para>
         /// </summary>
         public bool Enabled

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -33,13 +34,15 @@ namespace Amazon.ElasticMapReduce.Model
     /// </summary>
     public partial class Cluster
     {
-        private List<Application> _applications = new List<Application>();
+        private List<Application> _applications = AWSConfigs.InitializeCollections ? new List<Application>() : null;
         private string _autoScalingRole;
         private bool? _autoTerminate;
         private string _clusterArn;
-        private List<Configuration> _configurations = new List<Configuration>();
+        private List<Configuration> _configurations = AWSConfigs.InitializeCollections ? new List<Configuration>() : null;
         private string _customAmiId;
+        private int? _ebsRootVolumeIops;
         private int? _ebsRootVolumeSize;
+        private int? _ebsRootVolumeThroughput;
         private Ec2InstanceAttributes _ec2InstanceAttributes;
         private string _id;
         private InstanceCollectionType _instanceCollectionType;
@@ -51,7 +54,7 @@ namespace Amazon.ElasticMapReduce.Model
         private int? _normalizedInstanceHours;
         private string _osReleaseLabel;
         private string _outpostArn;
-        private List<PlacementGroupConfig> _placementGroups = new List<PlacementGroupConfig>();
+        private List<PlacementGroupConfig> _placementGroups = AWSConfigs.InitializeCollections ? new List<PlacementGroupConfig>() : null;
         private string _releaseLabel;
         private RepoUpgradeOnBoot _repoUpgradeOnBoot;
         private string _requestedAmiVersion;
@@ -61,8 +64,9 @@ namespace Amazon.ElasticMapReduce.Model
         private string _serviceRole;
         private ClusterStatus _status;
         private int? _stepConcurrencyLevel;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private bool? _terminationProtected;
+        private bool? _unhealthyNodeReplacement;
         private bool? _visibleToAllUsers;
 
         /// <summary>
@@ -80,13 +84,13 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if Applications property is set
         internal bool IsSetApplications()
         {
-            return this._applications != null && this._applications.Count > 0; 
+            return this._applications != null && (this._applications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AutoScalingRole. 
         /// <para>
-        /// An IAM role for automatic scaling policies. The default role is <code>EMR_AutoScaling_DefaultRole</code>.
+        /// An IAM role for automatic scaling policies. The default role is <c>EMR_AutoScaling_DefaultRole</c>.
         /// The IAM role provides permissions that the automatic scaling feature requires to launch
         /// and terminate Amazon EC2 instances in an instance group.
         /// </para>
@@ -157,7 +161,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if Configurations property is set
         internal bool IsSetConfigurations()
         {
-            return this._configurations != null && this._configurations.Count > 0; 
+            return this._configurations != null && (this._configurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -181,6 +185,25 @@ namespace Amazon.ElasticMapReduce.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EbsRootVolumeIops. 
+        /// <para>
+        /// The IOPS, of the Amazon EBS root device volume of the Linux AMI that is used for each
+        /// Amazon EC2 instance. Available in Amazon EMR releases 6.15.0 and later.
+        /// </para>
+        /// </summary>
+        public int EbsRootVolumeIops
+        {
+            get { return this._ebsRootVolumeIops.GetValueOrDefault(); }
+            set { this._ebsRootVolumeIops = value; }
+        }
+
+        // Check to see if EbsRootVolumeIops property is set
+        internal bool IsSetEbsRootVolumeIops()
+        {
+            return this._ebsRootVolumeIops.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property EbsRootVolumeSize. 
         /// <para>
         /// The size, in GiB, of the Amazon EBS root device volume of the Linux AMI that is used
@@ -197,6 +220,26 @@ namespace Amazon.ElasticMapReduce.Model
         internal bool IsSetEbsRootVolumeSize()
         {
             return this._ebsRootVolumeSize.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property EbsRootVolumeThroughput. 
+        /// <para>
+        /// The throughput, in MiB/s, of the Amazon EBS root device volume of the Linux AMI that
+        /// is used for each Amazon EC2 instance. Available in Amazon EMR releases 6.15.0 and
+        /// later.
+        /// </para>
+        /// </summary>
+        public int EbsRootVolumeThroughput
+        {
+            get { return this._ebsRootVolumeThroughput.GetValueOrDefault(); }
+            set { this._ebsRootVolumeThroughput = value; }
+        }
+
+        // Check to see if EbsRootVolumeThroughput property is set
+        internal bool IsSetEbsRootVolumeThroughput()
+        {
+            return this._ebsRootVolumeThroughput.HasValue; 
         }
 
         /// <summary>
@@ -244,8 +287,8 @@ namespace Amazon.ElasticMapReduce.Model
         /// </para>
         ///  </note> 
         /// <para>
-        /// The instance group configuration of the cluster. A value of <code>INSTANCE_GROUP</code>
-        /// indicates a uniform instance group configuration. A value of <code>INSTANCE_FLEET</code>
+        /// The instance group configuration of the cluster. A value of <c>INSTANCE_GROUP</c>
+        /// indicates a uniform instance group configuration. A value of <c>INSTANCE_FLEET</c>
         /// indicates an instance fleets configuration.
         /// </para>
         /// </summary>
@@ -340,7 +383,8 @@ namespace Amazon.ElasticMapReduce.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the cluster.
+        /// The name of the cluster. This parameter can't contain the characters &lt;, &gt;, $,
+        /// |, or ` (backtick).
         /// </para>
         /// </summary>
         public string Name
@@ -430,19 +474,19 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if PlacementGroups property is set
         internal bool IsSetPlacementGroups()
         {
-            return this._placementGroups != null && this._placementGroups.Count > 0; 
+            return this._placementGroups != null && (this._placementGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ReleaseLabel. 
         /// <para>
         /// The Amazon EMR release label, which determines the version of open-source application
-        /// packages installed on the cluster. Release labels are in the form <code>emr-x.x.x</code>,
-        /// where x.x.x is an Amazon EMR release version such as <code>emr-5.14.0</code>. For
-        /// more information about Amazon EMR release versions and included application versions
-        /// and features, see <a href="https://docs.aws.amazon.com/emr/latest/ReleaseGuide/">https://docs.aws.amazon.com/emr/latest/ReleaseGuide/</a>.
+        /// packages installed on the cluster. Release labels are in the form <c>emr-x.x.x</c>,
+        /// where x.x.x is an Amazon EMR release version such as <c>emr-5.14.0</c>. For more information
+        /// about Amazon EMR release versions and included application versions and features,
+        /// see <a href="https://docs.aws.amazon.com/emr/latest/ReleaseGuide/">https://docs.aws.amazon.com/emr/latest/ReleaseGuide/</a>.
         /// The release label applies only to Amazon EMR releases version 4.0 and later. Earlier
-        /// versions use <code>AmiVersion</code>.
+        /// versions use <c>AmiVersion</c>.
         /// </para>
         /// </summary>
         public string ReleaseLabel
@@ -460,9 +504,8 @@ namespace Amazon.ElasticMapReduce.Model
         /// <summary>
         /// Gets and sets the property RepoUpgradeOnBoot. 
         /// <para>
-        /// Applies only when <code>CustomAmiID</code> is used. Specifies the type of updates
-        /// that the Amazon Linux AMI package repositories apply when an instance boots using
-        /// the AMI.
+        /// Applies only when <c>CustomAmiID</c> is used. Specifies the type of updates that the
+        /// Amazon Linux AMI package repositories apply when an instance boots using the AMI.
         /// </para>
         /// </summary>
         public RepoUpgradeOnBoot RepoUpgradeOnBoot
@@ -517,17 +560,16 @@ namespace Amazon.ElasticMapReduce.Model
         /// Gets and sets the property ScaleDownBehavior. 
         /// <para>
         /// The way that individual Amazon EC2 instances terminate when an automatic scale-in
-        /// activity occurs or an instance group is resized. <code>TERMINATE_AT_INSTANCE_HOUR</code>
+        /// activity occurs or an instance group is resized. <c>TERMINATE_AT_INSTANCE_HOUR</c>
         /// indicates that Amazon EMR terminates nodes at the instance-hour boundary, regardless
         /// of when the request to terminate the instance was submitted. This option is only available
         /// with Amazon EMR 5.1.0 and later and is the default for clusters created using that
-        /// version. <code>TERMINATE_AT_TASK_COMPLETION</code> indicates that Amazon EMR adds
-        /// nodes to a deny list and drains tasks from nodes before terminating the Amazon EC2
-        /// instances, regardless of the instance-hour boundary. With either behavior, Amazon
-        /// EMR removes the least active nodes first and blocks instance termination if it could
-        /// lead to HDFS corruption. <code>TERMINATE_AT_TASK_COMPLETION</code> is available only
-        /// in Amazon EMR releases 4.1.0 and later, and is the default for versions of Amazon
-        /// EMR earlier than 5.1.0.
+        /// version. <c>TERMINATE_AT_TASK_COMPLETION</c> indicates that Amazon EMR adds nodes
+        /// to a deny list and drains tasks from nodes before terminating the Amazon EC2 instances,
+        /// regardless of the instance-hour boundary. With either behavior, Amazon EMR removes
+        /// the least active nodes first and blocks instance termination if it could lead to HDFS
+        /// corruption. <c>TERMINATE_AT_TASK_COMPLETION</c> is available only in Amazon EMR releases
+        /// 4.1.0 and later, and is the default for versions of Amazon EMR earlier than 5.1.0.
         /// </para>
         /// </summary>
         public ScaleDownBehavior ScaleDownBehavior
@@ -631,7 +673,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -655,19 +697,38 @@ namespace Amazon.ElasticMapReduce.Model
         }
 
         /// <summary>
+        /// Gets and sets the property UnhealthyNodeReplacement. 
+        /// <para>
+        /// Indicates whether Amazon EMR should gracefully replace Amazon EC2 core instances that
+        /// have degraded within the cluster.
+        /// </para>
+        /// </summary>
+        public bool UnhealthyNodeReplacement
+        {
+            get { return this._unhealthyNodeReplacement.GetValueOrDefault(); }
+            set { this._unhealthyNodeReplacement = value; }
+        }
+
+        // Check to see if UnhealthyNodeReplacement property is set
+        internal bool IsSetUnhealthyNodeReplacement()
+        {
+            return this._unhealthyNodeReplacement.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property VisibleToAllUsers. 
         /// <para>
         /// Indicates whether the cluster is visible to IAM principals in the Amazon Web Services
-        /// account associated with the cluster. When <code>true</code>, IAM principals in the
-        /// Amazon Web Services account can perform Amazon EMR cluster actions on the cluster
-        /// that their IAM policies allow. When <code>false</code>, only the IAM principal that
-        /// created the cluster and the Amazon Web Services account root user can perform Amazon
-        /// EMR actions, regardless of IAM permissions policies attached to other IAM principals.
+        /// account associated with the cluster. When <c>true</c>, IAM principals in the Amazon
+        /// Web Services account can perform Amazon EMR cluster actions on the cluster that their
+        /// IAM policies allow. When <c>false</c>, only the IAM principal that created the cluster
+        /// and the Amazon Web Services account root user can perform Amazon EMR actions, regardless
+        /// of IAM permissions policies attached to other IAM principals.
         /// </para>
         ///  
         /// <para>
-        /// The default value is <code>true</code> if a value is not provided when creating a
-        /// cluster using the Amazon EMR API <a>RunJobFlow</a> command, the CLI <a href="https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html">create-cluster</a>
+        /// The default value is <c>true</c> if a value is not provided when creating a cluster
+        /// using the Amazon EMR API <a>RunJobFlow</a> command, the CLI <a href="https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html">create-cluster</a>
         /// command, or the Amazon Web Services Management Console.
         /// </para>
         /// </summary>

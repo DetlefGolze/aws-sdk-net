@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
@@ -110,7 +111,7 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property Source. 
         /// <para>
-        /// The <code>EphemerisSource</code> that generated a given ephemeris.
+        /// The <c>EphemerisSource</c> that generated a given ephemeris.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

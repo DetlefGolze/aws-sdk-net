@@ -26,11 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTJobsDataPlane.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateJobExecution operation.
     /// Updates the status of a job execution.
+    /// 
+    ///  
+    /// <para>
+    /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiotjobsdataplane.html">UpdateJobExecution</a>
+    /// action.
+    /// </para>
     /// </summary>
     public partial class UpdateJobExecutionRequest : AmazonIoTJobsDataPlaneRequest
     {
@@ -40,7 +47,7 @@ namespace Amazon.IoTJobsDataPlane.Model
         private bool? _includeJobExecutionState;
         private string _jobId;
         private JobExecutionStatus _status;
-        private Dictionary<string, string> _statusDetails = new Dictionary<string, string>();
+        private Dictionary<string, string> _statusDetails = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private long? _stepTimeoutInMinutes;
         private string _thingName;
 
@@ -168,6 +175,10 @@ namespace Amazon.IoTJobsDataPlane.Model
         ///  Optional. A collection of name/value pairs that describe the status of the job execution.
         /// If not specified, the statusDetails are unchanged.
         /// </para>
+        ///  
+        /// <para>
+        /// The maximum length of the value in the name/value pair is 1,024 characters.
+        /// </para>
         /// </summary>
         public Dictionary<string, string> StatusDetails
         {
@@ -178,7 +189,7 @@ namespace Amazon.IoTJobsDataPlane.Model
         // Check to see if StatusDetails property is set
         internal bool IsSetStatusDetails()
         {
-            return this._statusDetails != null && this._statusDetails.Count > 0; 
+            return this._statusDetails != null && (this._statusDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -186,12 +197,17 @@ namespace Amazon.IoTJobsDataPlane.Model
         /// <para>
         /// Specifies the amount of time this device has to finish execution of this job. If the
         /// job execution status is not set to a terminal state before this timer expires, or
-        /// before the timer is reset (by again calling <code>UpdateJobExecution</code>, setting
-        /// the status to <code>IN_PROGRESS</code> and specifying a new timeout value in this
-        /// field) the job execution status will be automatically set to <code>TIMED_OUT</code>.
-        /// Note that setting or resetting this timeout has no effect on that job execution timeout
-        /// which may have been specified when the job was created (<code>CreateJob</code> using
-        /// field <code>timeoutConfig</code>).
+        /// before the timer is reset (by again calling <c>UpdateJobExecution</c>, setting the
+        /// status to <c>IN_PROGRESS</c>, and specifying a new timeout value in this field) the
+        /// job execution status will be automatically set to <c>TIMED_OUT</c>. Note that setting
+        /// or resetting the step timeout has no effect on the in progress timeout that may have
+        /// been specified when the job was created (<c>CreateJob</c> using field <c>timeoutConfig</c>).
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid values for this parameter range from 1 to 10080 (1 minute to 7 days). A value
+        /// of -1 is also valid and will cancel the current step timer (created by an earlier
+        /// use of <c>UpdateJobExecutionRequest</c>).
         /// </para>
         /// </summary>
         public long StepTimeoutInMinutes

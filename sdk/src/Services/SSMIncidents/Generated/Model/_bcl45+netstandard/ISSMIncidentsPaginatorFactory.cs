@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the ssm-incidents-2018-05-10.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SSMIncidents.Model
 {
     /// <summary>
@@ -29,6 +30,11 @@ namespace Amazon.SSMIncidents.Model
         /// Paginator for GetResourcePolicies operation
         ///</summary>
         IGetResourcePoliciesPaginator GetResourcePolicies(GetResourcePoliciesRequest request);
+
+        /// <summary>
+        /// Paginator for ListIncidentFindings operation
+        ///</summary>
+        IListIncidentFindingsPaginator ListIncidentFindings(ListIncidentFindingsRequest request);
 
         /// <summary>
         /// Paginator for ListIncidentRecords operation

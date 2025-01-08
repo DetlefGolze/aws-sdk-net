@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -43,11 +44,11 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>true</code> : The CNAME is available.
+        ///  <c>true</c> : The CNAME is available.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>false</code> : The CNAME is not available.
+        ///  <c>false</c> : The CNAME is not available.
         /// </para>
         ///  </li> </ul>
         /// </summary>

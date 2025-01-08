@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.IoTSiteWise.Model
         private Permission _accessPolicyPermission;
         private Resource _accessPolicyResource;
         private string _clientToken;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AccessPolicyIdentity. 
@@ -65,7 +66,7 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property AccessPolicyPermission. 
         /// <para>
-        /// The permission level for this access policy. Note that a project <code>ADMINISTRATOR</code>
+        /// The permission level for this access policy. Note that a project <c>ADMINISTRATOR</c>
         /// is also known as a project owner.
         /// </para>
         /// </summary>
@@ -140,7 +141,7 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

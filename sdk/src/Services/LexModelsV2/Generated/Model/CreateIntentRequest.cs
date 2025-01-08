@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -35,8 +36,7 @@ namespace Amazon.LexModelsV2.Model
     ///  
     /// <para>
     /// To define the interaction between the user and your bot, you define one or more intents.
-    /// For example, for a pizza ordering bot you would create an <code>OrderPizza</code>
-    /// intent.
+    /// For example, for a pizza ordering bot you would create an <c>OrderPizza</c> intent.
     /// </para>
     ///  
     /// <para>
@@ -85,15 +85,16 @@ namespace Amazon.LexModelsV2.Model
         private DialogCodeHookSettings _dialogCodeHook;
         private FulfillmentCodeHookSettings _fulfillmentCodeHook;
         private InitialResponseSetting _initialResponseSetting;
-        private List<InputContext> _inputContexts = new List<InputContext>();
+        private List<InputContext> _inputContexts = AWSConfigs.InitializeCollections ? new List<InputContext>() : null;
         private IntentClosingSetting _intentClosingSetting;
         private IntentConfirmationSetting _intentConfirmationSetting;
         private string _intentName;
         private KendraConfiguration _kendraConfiguration;
         private string _localeId;
-        private List<OutputContext> _outputContexts = new List<OutputContext>();
+        private List<OutputContext> _outputContexts = AWSConfigs.InitializeCollections ? new List<OutputContext>() : null;
         private string _parentIntentSignature;
-        private List<SampleUtterance> _sampleUtterances = new List<SampleUtterance>();
+        private QnAIntentConfiguration _qnaIntentConfiguration;
+        private List<SampleUtterance> _sampleUtterances = AWSConfigs.InitializeCollections ? new List<SampleUtterance>() : null;
 
         /// <summary>
         /// Gets and sets the property BotId. 
@@ -163,8 +164,8 @@ namespace Amazon.LexModelsV2.Model
         /// For example, suppose that your bot determines that the user's name is John. You Lambda
         /// function might retrieve John's information from a backend database and prepopulate
         /// some of the values. For example, if you find that John is gluten intolerant, you might
-        /// set the corresponding intent slot, <code>glutenIntolerant</code> to <code>true</code>.
-        /// You might find John's phone number and set the corresponding session attribute.
+        /// set the corresponding intent slot, <c>glutenIntolerant</c> to <c>true</c>. You might
+        /// find John's phone number and set the corresponding session attribute.
         /// </para>
         /// </summary>
         public DialogCodeHookSettings DialogCodeHook
@@ -239,7 +240,7 @@ namespace Amazon.LexModelsV2.Model
         /// </para>
         ///  
         /// <para>
-        /// A context can be automatically activated using the <code>outputContexts</code> property
+        /// A context can be automatically activated using the <c>outputContexts</c> property
         /// or it can be set at runtime.
         /// </para>
         ///  
@@ -263,7 +264,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if InputContexts property is set
         internal bool IsSetInputContexts()
         {
-            return this._inputContexts != null && this._inputContexts.Count > 0; 
+            return this._inputContexts != null && (this._inputContexts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -327,9 +328,9 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property KendraConfiguration. 
         /// <para>
-        /// Configuration information required to use the <code>AMAZON.KendraSearchIntent</code>
-        /// intent to connect to an Amazon Kendra index. The <code>AMAZON.KendraSearchIntent</code>
-        /// intent is called when Amazon Lex can't determine another intent to invoke.
+        /// Configuration information required to use the <c>AMAZON.KendraSearchIntent</c> intent
+        /// to connect to an Amazon Kendra index. The <c>AMAZON.KendraSearchIntent</c> intent
+        /// is called when Amazon Lex can't determine another intent to invoke.
         /// </para>
         /// </summary>
         public KendraConfiguration KendraConfiguration
@@ -378,7 +379,7 @@ namespace Amazon.LexModelsV2.Model
         /// </para>
         ///  
         /// <para>
-        /// When you use the <code>outputContextsList</code> property, all of the contexts specified
+        /// When you use the <c>outputContextsList</c> property, all of the contexts specified
         /// in the list are activated when the intent is fulfilled. You can set up to 10 output
         /// contexts. You can also set the number of conversation turns that the context should
         /// be active, or the length of time that the context should be active.
@@ -394,7 +395,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if OutputContexts property is set
         internal bool IsSetOutputContexts()
         {
-            return this._outputContexts != null && this._outputContexts.Count > 0; 
+            return this._outputContexts != null && (this._outputContexts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -413,6 +414,26 @@ namespace Amazon.LexModelsV2.Model
         internal bool IsSetParentIntentSignature()
         {
             return this._parentIntentSignature != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property QnAIntentConfiguration. 
+        /// <para>
+        /// Specifies the configuration of the built-in <c>Amazon.QnAIntent</c>. The <c>AMAZON.QnAIntent</c>
+        /// intent is called when Amazon Lex can't determine another intent to invoke. If you
+        /// specify this field, you can't specify the <c>kendraConfiguration</c> field.
+        /// </para>
+        /// </summary>
+        public QnAIntentConfiguration QnAIntentConfiguration
+        {
+            get { return this._qnaIntentConfiguration; }
+            set { this._qnaIntentConfiguration = value; }
+        }
+
+        // Check to see if QnAIntentConfiguration property is set
+        internal bool IsSetQnAIntentConfiguration()
+        {
+            return this._qnaIntentConfiguration != null;
         }
 
         /// <summary>
@@ -436,7 +457,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if SampleUtterances property is set
         internal bool IsSetSampleUtterances()
         {
-            return this._sampleUtterances != null && this._sampleUtterances.Count > 0; 
+            return this._sampleUtterances != null && (this._sampleUtterances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

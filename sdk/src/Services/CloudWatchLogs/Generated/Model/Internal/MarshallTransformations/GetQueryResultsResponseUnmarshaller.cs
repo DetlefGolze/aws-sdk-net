@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudWatchLogs.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -55,6 +56,12 @@ namespace Amazon.CloudWatchLogs.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.EncryptionKey = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("queryLanguage", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.QueryLanguage = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("results", targetDepth))

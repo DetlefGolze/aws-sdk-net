@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.DynamoDBv2.Model
     /// 
     ///  
     /// <para>
-    /// A <code>KeySchemaElement</code> represents exactly one attribute of the primary key.
-    /// For example, a simple primary key would be represented by one <code>KeySchemaElement</code>
-    /// (for the partition key). A composite primary key would require one <code>KeySchemaElement</code>
-    /// for the partition key, and another <code>KeySchemaElement</code> for the sort key.
+    /// A <c>KeySchemaElement</c> represents exactly one attribute of the primary key. For
+    /// example, a simple primary key would be represented by one <c>KeySchemaElement</c>
+    /// (for the partition key). A composite primary key would require one <c>KeySchemaElement</c>
+    /// for the partition key, and another <c>KeySchemaElement</c> for the sort key.
     /// </para>
     ///  
     /// <para>
-    /// A <code>KeySchemaElement</code> must be a scalar, top-level attribute (not a nested
-    /// attribute). The data type must be one of String, Number, or Binary. The attribute
-    /// cannot be nested within a List or a Map.
+    /// A <c>KeySchemaElement</c> must be a scalar, top-level attribute (not a nested attribute).
+    /// The data type must be one of String, Number, or Binary. The attribute cannot be nested
+    /// within a List or a Map.
     /// </para>
     /// </summary>
     public partial class KeySchemaElement
@@ -60,7 +61,7 @@ namespace Amazon.DynamoDBv2.Model
         /// Instantiates KeySchemaElement with the parameterized properties
         /// </summary>
         /// <param name="attributeName">The name of a key attribute.</param>
-        /// <param name="keyType">The role that this key attribute will assume: <ul> <li>  <code>HASH</code> - partition key </li> <li>  <code>RANGE</code> - sort key </li> </ul> <note> The partition key of an item is also known as its <i>hash attribute</i>. The term "hash attribute" derives from DynamoDB's usage of an internal hash function to evenly distribute data items across partitions, based on their partition key values. The sort key of an item is also known as its <i>range attribute</i>. The term "range attribute" derives from the way DynamoDB stores items with the same partition key physically close together, in sorted order by the sort key value. </note></param>
+        /// <param name="keyType">The role that this key attribute will assume: <ul> <li>  <c>HASH</c> - partition key </li> <li>  <c>RANGE</c> - sort key </li> </ul> <note> The partition key of an item is also known as its <i>hash attribute</i>. The term "hash attribute" derives from DynamoDB's usage of an internal hash function to evenly distribute data items across partitions, based on their partition key values. The sort key of an item is also known as its <i>range attribute</i>. The term "range attribute" derives from the way DynamoDB stores items with the same partition key physically close together, in sorted order by the sort key value. </note></param>
         public KeySchemaElement(string attributeName, KeyType keyType)
         {
             _attributeName = attributeName;
@@ -93,11 +94,11 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>HASH</code> - partition key
+        ///  <c>HASH</c> - partition key
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RANGE</code> - sort key
+        ///  <c>RANGE</c> - sort key
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>

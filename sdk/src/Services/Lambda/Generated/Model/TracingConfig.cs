@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
     /// The function's <a href="https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html">X-Ray</a>
-    /// tracing configuration. To sample and record incoming requests, set <code>Mode</code>
-    /// to <code>Active</code>.
+    /// tracing configuration. To sample and record incoming requests, set <c>Mode</c> to
+    /// <c>Active</c>.
     /// </summary>
     public partial class TracingConfig
     {

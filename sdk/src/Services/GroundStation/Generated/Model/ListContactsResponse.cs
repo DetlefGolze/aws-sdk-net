@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.GroundStation.Model
     /// </summary>
     public partial class ListContactsResponse : AmazonWebServiceResponse
     {
-        private List<ContactData> _contactList = new List<ContactData>();
+        private List<ContactData> _contactList = AWSConfigs.InitializeCollections ? new List<ContactData>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.GroundStation.Model
         // Check to see if ContactList property is set
         internal bool IsSetContactList()
         {
-            return this._contactList != null && this._contactList.Count > 0; 
+            return this._contactList != null && (this._contactList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Next token returned in the response of a previous <code>ListContacts</code> call.
-        /// Used to get the next page of results.
+        /// Next token returned in the response of a previous <c>ListContacts</c> call. Used to
+        /// get the next page of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=3, Max=1000)]

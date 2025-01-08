@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKIdentity.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteAppInstanceBot operation.
-    /// Deletes an <code>AppInstanceBot</code>.
+    /// Deletes an <c>AppInstanceBot</c>.
     /// </summary>
     public partial class DeleteAppInstanceBotRequest : AmazonChimeSDKIdentityRequest
     {
@@ -39,7 +40,7 @@ namespace Amazon.ChimeSDKIdentity.Model
         /// <summary>
         /// Gets and sets the property AppInstanceBotArn. 
         /// <para>
-        /// The ARN of the <code>AppInstanceBot</code> being deleted.
+        /// The ARN of the <c>AppInstanceBot</c> being deleted.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=5, Max=1600)]

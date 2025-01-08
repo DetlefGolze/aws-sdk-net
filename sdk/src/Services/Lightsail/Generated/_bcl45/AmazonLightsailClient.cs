@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.Lightsail
 {
     /// <summary>
-    /// Implementation for accessing Lightsail
+    /// <para>Implementation for accessing Lightsail</para>
     ///
     /// Amazon Lightsail is the easiest way to get started with Amazon Web Services (Amazon
     /// Web Services) for developers who need to build websites or web applications. It includes
@@ -292,9 +293,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -344,9 +345,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -388,16 +389,15 @@ namespace Amazon.Lightsail
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>CreateCertificate</code> action to create a certificate that you can
-        /// attach to your distribution.
+        /// Use the <c>CreateCertificate</c> action to create a certificate that you can attach
+        /// to your distribution.
         /// </para>
         ///  <important> 
         /// <para>
-        /// Only certificates created in the <code>us-east-1</code> Amazon Web Services Region
-        /// can be attached to Lightsail distributions. Lightsail distributions are global resources
+        /// Only certificates created in the <c>us-east-1</c> Amazon Web Services Region can be
+        /// attached to Lightsail distributions. Lightsail distributions are global resources
         /// that can reference an origin in any Amazon Web Services Region, and distribute its
-        /// content globally. However, all distributions are located in the <code>us-east-1</code>
-        /// Region.
+        /// content globally. However, all distributions are located in the <c>us-east-1</c> Region.
         /// </para>
         ///  </important>
         /// </summary>
@@ -414,9 +414,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -454,16 +454,15 @@ namespace Amazon.Lightsail
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>CreateCertificate</code> action to create a certificate that you can
-        /// attach to your distribution.
+        /// Use the <c>CreateCertificate</c> action to create a certificate that you can attach
+        /// to your distribution.
         /// </para>
         ///  <important> 
         /// <para>
-        /// Only certificates created in the <code>us-east-1</code> Amazon Web Services Region
-        /// can be attached to Lightsail distributions. Lightsail distributions are global resources
+        /// Only certificates created in the <c>us-east-1</c> Amazon Web Services Region can be
+        /// attached to Lightsail distributions. Lightsail distributions are global resources
         /// that can reference an origin in any Amazon Web Services Region, and distribute its
-        /// content globally. However, all distributions are located in the <code>us-east-1</code>
-        /// Region.
+        /// content globally. However, all distributions are located in the <c>us-east-1</c> Region.
         /// </para>
         ///  </important>
         /// </summary>
@@ -483,9 +482,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -522,9 +521,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>attach disk</code> operation supports tag-based access control via resource
-        /// tags applied to the resource identified by <code>disk name</code>. For more information,
-        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>attach disk</c> operation supports tag-based access control via resource tags
+        /// applied to the resource identified by <c>disk name</c>. For more information, see
+        /// the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -545,9 +544,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -580,9 +579,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>attach disk</code> operation supports tag-based access control via resource
-        /// tags applied to the resource identified by <code>disk name</code>. For more information,
-        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>attach disk</c> operation supports tag-based access control via resource tags
+        /// applied to the resource identified by <c>disk name</c>. For more information, see
+        /// the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -606,9 +605,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -649,9 +648,9 @@ namespace Amazon.Lightsail
         /// </para>
         ///  
         /// <para>
-        /// The <code>attach instances to load balancer</code> operation supports tag-based access
-        /// control via resource tags applied to the resource identified by <code>load balancer
-        /// name</code>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Lightsail
+        /// The <c>attach instances to load balancer</c> operation supports tag-based access control
+        /// via resource tags applied to the resource identified by <c>load balancer name</c>.
+        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Lightsail
         /// Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -672,9 +671,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -711,9 +710,9 @@ namespace Amazon.Lightsail
         /// </para>
         ///  
         /// <para>
-        /// The <code>attach instances to load balancer</code> operation supports tag-based access
-        /// control via resource tags applied to the resource identified by <code>load balancer
-        /// name</code>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Lightsail
+        /// The <c>attach instances to load balancer</c> operation supports tag-based access control
+        /// via resource tags applied to the resource identified by <c>load balancer name</c>.
+        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Lightsail
         /// Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -737,9 +736,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -777,15 +776,15 @@ namespace Amazon.Lightsail
         ///  
         /// <para>
         /// Once you create and validate your certificate, you can attach it to your load balancer.
-        /// You can also use this API to rotate the certificates on your account. Use the <code>AttachLoadBalancerTlsCertificate</code>
+        /// You can also use this API to rotate the certificates on your account. Use the <c>AttachLoadBalancerTlsCertificate</c>
         /// action with the non-attached certificate, and it will replace the existing one and
         /// become the attached certificate.
         /// </para>
         ///  
         /// <para>
-        /// The <code>AttachLoadBalancerTlsCertificate</code> operation supports tag-based access
-        /// control via resource tags applied to the resource identified by <code>load balancer
-        /// name</code>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>AttachLoadBalancerTlsCertificate</c> operation supports tag-based access control
+        /// via resource tags applied to the resource identified by <c>load balancer name</c>.
+        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -806,9 +805,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -842,15 +841,15 @@ namespace Amazon.Lightsail
         ///  
         /// <para>
         /// Once you create and validate your certificate, you can attach it to your load balancer.
-        /// You can also use this API to rotate the certificates on your account. Use the <code>AttachLoadBalancerTlsCertificate</code>
+        /// You can also use this API to rotate the certificates on your account. Use the <c>AttachLoadBalancerTlsCertificate</c>
         /// action with the non-attached certificate, and it will replace the existing one and
         /// become the attached certificate.
         /// </para>
         ///  
         /// <para>
-        /// The <code>AttachLoadBalancerTlsCertificate</code> operation supports tag-based access
-        /// control via resource tags applied to the resource identified by <code>load balancer
-        /// name</code>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>AttachLoadBalancerTlsCertificate</c> operation supports tag-based access control
+        /// via resource tags applied to the resource identified by <c>load balancer name</c>.
+        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -874,9 +873,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -927,9 +926,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -979,9 +978,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -1017,9 +1016,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>CloseInstancePublicPorts</code> action supports tag-based access control
-        /// via resource tags applied to the resource identified by <code>instanceName</code>.
-        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>CloseInstancePublicPorts</c> action supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>instanceName</c>. For more information,
+        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -1040,9 +1039,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -1074,9 +1073,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>CloseInstancePublicPorts</code> action supports tag-based access control
-        /// via resource tags applied to the resource identified by <code>instanceName</code>.
-        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>CloseInstancePublicPorts</c> action supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>instanceName</c>. For more information,
+        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -1100,9 +1099,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -1141,15 +1140,14 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// When copying a <i>manual snapshot</i>, be sure to define the <code>source region</code>,
-        /// <code>source snapshot name</code>, and <code>target snapshot name</code> parameters.
+        /// When copying a <i>manual snapshot</i>, be sure to define the <c>source region</c>,
+        /// <c>source snapshot name</c>, and <c>target snapshot name</c> parameters.
         /// </para>
         ///  
         /// <para>
-        /// When copying an <i>automatic snapshot</i>, be sure to define the <code>source region</code>,
-        /// <code>source resource name</code>, <code>target snapshot name</code>, and either the
-        /// <code>restore date</code> or the <code>use latest restorable auto snapshot</code>
-        /// parameters.
+        /// When copying an <i>automatic snapshot</i>, be sure to define the <c>source region</c>,
+        /// <c>source resource name</c>, <c>target snapshot name</c>, and either the <c>restore
+        /// date</c> or the <c>use latest restorable auto snapshot</c> parameters.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CopySnapshot service method.</param>
@@ -1169,9 +1167,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -1206,15 +1204,14 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// When copying a <i>manual snapshot</i>, be sure to define the <code>source region</code>,
-        /// <code>source snapshot name</code>, and <code>target snapshot name</code> parameters.
+        /// When copying a <i>manual snapshot</i>, be sure to define the <c>source region</c>,
+        /// <c>source snapshot name</c>, and <c>target snapshot name</c> parameters.
         /// </para>
         ///  
         /// <para>
-        /// When copying an <i>automatic snapshot</i>, be sure to define the <code>source region</code>,
-        /// <code>source resource name</code>, <code>target snapshot name</code>, and either the
-        /// <code>restore date</code> or the <code>use latest restorable auto snapshot</code>
-        /// parameters.
+        /// When copying an <i>automatic snapshot</i>, be sure to define the <c>source region</c>,
+        /// <c>source resource name</c>, <c>target snapshot name</c>, and either the <c>restore
+        /// date</c> or the <c>use latest restorable auto snapshot</c> parameters.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CopySnapshot service method.</param>
@@ -1237,9 +1234,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -1294,9 +1291,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -1344,9 +1341,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -1386,7 +1383,7 @@ namespace Amazon.Lightsail
         /// </para>
         ///  <important> 
         /// <para>
-        /// The <code>secretAccessKey</code> value is returned only in response to the <code>CreateBucketAccessKey</code>
+        /// The <c>secretAccessKey</c> value is returned only in response to the <c>CreateBucketAccessKey</c>
         /// action. You can get a secret access key only when you first create an access key;
         /// you cannot get the secret access key later. If you lose the secret access key, you
         /// must create a new access key.
@@ -1406,9 +1403,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -1447,7 +1444,7 @@ namespace Amazon.Lightsail
         /// </para>
         ///  <important> 
         /// <para>
-        /// The <code>secretAccessKey</code> value is returned only in response to the <code>CreateBucketAccessKey</code>
+        /// The <c>secretAccessKey</c> value is returned only in response to the <c>CreateBucketAccessKey</c>
         /// action. You can get a secret access key only when you first create an access key;
         /// you cannot get the secret access key later. If you lose the secret access key, you
         /// must create a new access key.
@@ -1470,9 +1467,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -1506,17 +1503,16 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// After the certificate is valid, use the <code>AttachCertificateToDistribution</code>
-        /// action to use the certificate and its domains with your distribution. Or use the <code>UpdateContainerService</code>
+        /// After the certificate is valid, use the <c>AttachCertificateToDistribution</c> action
+        /// to use the certificate and its domains with your distribution. Or use the <c>UpdateContainerService</c>
         /// action to use the certificate and its domains with your container service.
         /// </para>
         ///  <important> 
         /// <para>
-        /// Only certificates created in the <code>us-east-1</code> Amazon Web Services Region
-        /// can be attached to Lightsail distributions. Lightsail distributions are global resources
+        /// Only certificates created in the <c>us-east-1</c> Amazon Web Services Region can be
+        /// attached to Lightsail distributions. Lightsail distributions are global resources
         /// that can reference an origin in any Amazon Web Services Region, and distribute its
-        /// content globally. However, all distributions are located in the <code>us-east-1</code>
-        /// Region.
+        /// content globally. However, all distributions are located in the <c>us-east-1</c> Region.
         /// </para>
         ///  </important>
         /// </summary>
@@ -1533,9 +1529,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -1565,17 +1561,16 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// After the certificate is valid, use the <code>AttachCertificateToDistribution</code>
-        /// action to use the certificate and its domains with your distribution. Or use the <code>UpdateContainerService</code>
+        /// After the certificate is valid, use the <c>AttachCertificateToDistribution</c> action
+        /// to use the certificate and its domains with your distribution. Or use the <c>UpdateContainerService</c>
         /// action to use the certificate and its domains with your container service.
         /// </para>
         ///  <important> 
         /// <para>
-        /// Only certificates created in the <code>us-east-1</code> Amazon Web Services Region
-        /// can be attached to Lightsail distributions. Lightsail distributions are global resources
+        /// Only certificates created in the <c>us-east-1</c> Amazon Web Services Region can be
+        /// attached to Lightsail distributions. Lightsail distributions are global resources
         /// that can reference an origin in any Amazon Web Services Region, and distribute its
-        /// content globally. However, all distributions are located in the <code>us-east-1</code>
-        /// Region.
+        /// content globally. However, all distributions are located in the <c>us-east-1</c> Region.
         /// </para>
         ///  </important>
         /// </summary>
@@ -1595,9 +1590,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -1629,13 +1624,13 @@ namespace Amazon.Lightsail
         /// Creates an AWS CloudFormation stack, which creates a new Amazon EC2 instance from
         /// an exported Amazon Lightsail snapshot. This operation results in a CloudFormation
         /// stack record that can be used to track the AWS CloudFormation stack created. Use the
-        /// <code>get cloud formation stack records</code> operation to get a list of the CloudFormation
+        /// <c>get cloud formation stack records</c> operation to get a list of the CloudFormation
         /// stacks created.
         /// 
         ///  <important> 
         /// <para>
-        /// Wait until after your new Amazon EC2 instance is created before running the <code>create
-        /// cloud formation stack</code> operation again with the same export snapshot record.
+        /// Wait until after your new Amazon EC2 instance is created before running the <c>create
+        /// cloud formation stack</c> operation again with the same export snapshot record.
         /// </para>
         ///  </important>
         /// </summary>
@@ -1656,9 +1651,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -1689,13 +1684,13 @@ namespace Amazon.Lightsail
         /// Creates an AWS CloudFormation stack, which creates a new Amazon EC2 instance from
         /// an exported Amazon Lightsail snapshot. This operation results in a CloudFormation
         /// stack record that can be used to track the AWS CloudFormation stack created. Use the
-        /// <code>get cloud formation stack records</code> operation to get a list of the CloudFormation
+        /// <c>get cloud formation stack records</c> operation to get a list of the CloudFormation
         /// stacks created.
         /// 
         ///  <important> 
         /// <para>
-        /// Wait until after your new Amazon EC2 instance is created before running the <code>create
-        /// cloud formation stack</code> operation again with the same export snapshot record.
+        /// Wait until after your new Amazon EC2 instance is created before running the <c>create
+        /// cloud formation stack</c> operation again with the same export snapshot record.
         /// </para>
         ///  </important>
         /// </summary>
@@ -1719,9 +1714,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -1778,9 +1773,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -1836,9 +1831,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -1892,9 +1887,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -1944,9 +1939,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -2007,9 +2002,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -2069,9 +2064,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -2116,8 +2111,8 @@ namespace Amazon.Lightsail
         ///  </note> 
         /// <para>
         /// After you push your container images to the container image registry of your Lightsail
-        /// account, use the <code>RegisterContainerImage</code> action to register the pushed
-        /// images to a specific Lightsail container service.
+        /// account, use the <c>RegisterContainerImage</c> action to register the pushed images
+        /// to a specific Lightsail container service.
         /// </para>
         ///  <note> 
         /// <para>
@@ -2142,9 +2137,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -2185,8 +2180,8 @@ namespace Amazon.Lightsail
         ///  </note> 
         /// <para>
         /// After you push your container images to the container image registry of your Lightsail
-        /// account, use the <code>RegisterContainerImage</code> action to register the pushed
-        /// images to a specific Lightsail container service.
+        /// account, use the <c>RegisterContainerImage</c> action to register the pushed images
+        /// to a specific Lightsail container service.
         /// </para>
         ///  <note> 
         /// <para>
@@ -2214,9 +2209,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -2246,12 +2241,12 @@ namespace Amazon.Lightsail
 
         /// <summary>
         /// Creates a block storage disk that can be attached to an Amazon Lightsail instance
-        /// in the same Availability Zone (e.g., <code>us-east-2a</code>).
+        /// in the same Availability Zone (<c>us-east-2a</c>).
         /// 
         ///  
         /// <para>
-        /// The <code>create disk</code> operation supports tag-based access control via request
-        /// tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>create disk</c> operation supports tag-based access control via request tags.
+        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -2272,9 +2267,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -2303,12 +2298,12 @@ namespace Amazon.Lightsail
 
         /// <summary>
         /// Creates a block storage disk that can be attached to an Amazon Lightsail instance
-        /// in the same Availability Zone (e.g., <code>us-east-2a</code>).
+        /// in the same Availability Zone (<c>us-east-2a</c>).
         /// 
         ///  
         /// <para>
-        /// The <code>create disk</code> operation supports tag-based access control via request
-        /// tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>create disk</c> operation supports tag-based access control via request tags.
+        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -2332,9 +2327,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -2368,13 +2363,13 @@ namespace Amazon.Lightsail
         /// <summary>
         /// Creates a block storage disk from a manual or automatic snapshot of a disk. The resulting
         /// disk can be attached to an Amazon Lightsail instance in the same Availability Zone
-        /// (e.g., <code>us-east-2a</code>).
+        /// (<c>us-east-2a</c>).
         /// 
         ///  
         /// <para>
-        /// The <code>create disk from snapshot</code> operation supports tag-based access control
-        /// via request tags and resource tags applied to the resource identified by <code>disk
-        /// snapshot name</code>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>create disk from snapshot</c> operation supports tag-based access control via
+        /// request tags and resource tags applied to the resource identified by <c>disk snapshot
+        /// name</c>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -2395,9 +2390,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -2427,13 +2422,13 @@ namespace Amazon.Lightsail
         /// <summary>
         /// Creates a block storage disk from a manual or automatic snapshot of a disk. The resulting
         /// disk can be attached to an Amazon Lightsail instance in the same Availability Zone
-        /// (e.g., <code>us-east-2a</code>).
+        /// (<c>us-east-2a</c>).
         /// 
         ///  
         /// <para>
-        /// The <code>create disk from snapshot</code> operation supports tag-based access control
-        /// via request tags and resource tags applied to the resource identified by <code>disk
-        /// snapshot name</code>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>create disk from snapshot</c> operation supports tag-based access control via
+        /// request tags and resource tags applied to the resource identified by <c>disk snapshot
+        /// name</c>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -2457,9 +2452,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -2511,16 +2506,16 @@ namespace Amazon.Lightsail
         /// You can also use this operation to create a snapshot of an instance's system volume.
         /// You might want to do this, for example, to recover data from the system volume of
         /// a botched instance or to create a backup of the system volume like you would for a
-        /// block storage disk. To create a snapshot of a system volume, just define the <code>instance
-        /// name</code> parameter when issuing the snapshot command, and a snapshot of the defined
+        /// block storage disk. To create a snapshot of a system volume, just define the <c>instance
+        /// name</c> parameter when issuing the snapshot command, and a snapshot of the defined
         /// instance's system volume will be created. After the snapshot is available, you can
         /// create a block storage disk from the snapshot and attach it to a running instance
         /// to access the data on the disk.
         /// </para>
         ///  
         /// <para>
-        /// The <code>create disk snapshot</code> operation supports tag-based access control
-        /// via request tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>create disk snapshot</c> operation supports tag-based access control via request
+        /// tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -2541,9 +2536,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -2591,16 +2586,16 @@ namespace Amazon.Lightsail
         /// You can also use this operation to create a snapshot of an instance's system volume.
         /// You might want to do this, for example, to recover data from the system volume of
         /// a botched instance or to create a backup of the system volume like you would for a
-        /// block storage disk. To create a snapshot of a system volume, just define the <code>instance
-        /// name</code> parameter when issuing the snapshot command, and a snapshot of the defined
+        /// block storage disk. To create a snapshot of a system volume, just define the <c>instance
+        /// name</c> parameter when issuing the snapshot command, and a snapshot of the defined
         /// instance's system volume will be created. After the snapshot is available, you can
         /// create a block storage disk from the snapshot and attach it to a running instance
         /// to access the data on the disk.
         /// </para>
         ///  
         /// <para>
-        /// The <code>create disk snapshot</code> operation supports tag-based access control
-        /// via request tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>create disk snapshot</c> operation supports tag-based access control via request
+        /// tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -2624,9 +2619,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -2681,9 +2676,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -2737,9 +2732,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -2771,12 +2766,12 @@ namespace Amazon.Lightsail
 
 
         /// <summary>
-        /// Creates a domain resource for the specified domain (e.g., example.com).
+        /// Creates a domain resource for the specified domain (example.com).
         /// 
         ///  
         /// <para>
-        /// The <code>create domain</code> operation supports tag-based access control via request
-        /// tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>create domain</c> operation supports tag-based access control via request tags.
+        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -2797,9 +2792,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -2827,12 +2822,12 @@ namespace Amazon.Lightsail
 
 
         /// <summary>
-        /// Creates a domain resource for the specified domain (e.g., example.com).
+        /// Creates a domain resource for the specified domain (example.com).
         /// 
         ///  
         /// <para>
-        /// The <code>create domain</code> operation supports tag-based access control via request
-        /// tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>create domain</c> operation supports tag-based access control via request tags.
+        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -2856,9 +2851,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -2896,9 +2891,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>create domain entry</code> operation supports tag-based access control via
-        /// resource tags applied to the resource identified by <code>domain name</code>. For
-        /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>create domain entry</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>domain name</c>. For more information,
+        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -2919,9 +2914,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -2955,9 +2950,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>create domain entry</code> operation supports tag-based access control via
-        /// resource tags applied to the resource identified by <code>domain name</code>. For
-        /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>create domain entry</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>domain name</c>. For more information,
+        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -2981,9 +2976,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -3022,7 +3017,7 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// Use <code>StartGUISession</code> to open the session.
+        /// Use <c>StartGUISession</c> to open the session.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateGUISessionAccessDetails service method.</param>
@@ -3038,9 +3033,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -3072,7 +3067,7 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// Use <code>StartGUISession</code> to open the session.
+        /// Use <c>StartGUISession</c> to open the session.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateGUISessionAccessDetails service method.</param>
@@ -3091,9 +3086,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -3126,8 +3121,8 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>create instances</code> operation supports tag-based access control via
-        /// request tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Lightsail
+        /// The <c>create instances</c> operation supports tag-based access control via request
+        /// tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Lightsail
         /// Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -3148,9 +3143,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -3182,8 +3177,8 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>create instances</code> operation supports tag-based access control via
-        /// request tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Lightsail
+        /// The <c>create instances</c> operation supports tag-based access control via request
+        /// tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Lightsail
         /// Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -3207,9 +3202,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -3245,9 +3240,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>create instances from snapshot</code> operation supports tag-based access
-        /// control via request tags and resource tags applied to the resource identified by <code>instance
-        /// snapshot name</code>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>create instances from snapshot</c> operation supports tag-based access control
+        /// via request tags and resource tags applied to the resource identified by <c>instance
+        /// snapshot name</c>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -3268,9 +3263,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -3302,9 +3297,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>create instances from snapshot</code> operation supports tag-based access
-        /// control via request tags and resource tags applied to the resource identified by <code>instance
-        /// snapshot name</code>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>create instances from snapshot</c> operation supports tag-based access control
+        /// via request tags and resource tags applied to the resource identified by <c>instance
+        /// snapshot name</c>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -3328,9 +3323,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -3367,8 +3362,8 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>create instance snapshot</code> operation supports tag-based access control
-        /// via request tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>create instance snapshot</c> operation supports tag-based access control via
+        /// request tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -3389,9 +3384,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -3424,8 +3419,8 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>create instance snapshot</code> operation supports tag-based access control
-        /// via request tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>create instance snapshot</c> operation supports tag-based access control via
+        /// request tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -3449,9 +3444,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -3493,7 +3488,7 @@ namespace Amazon.Lightsail
         /// </para>
         ///  </note> 
         /// <para>
-        /// The <code>create key pair</code> operation supports tag-based access control via request
+        /// The <c>create key pair</c> operation supports tag-based access control via request
         /// tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -3515,9 +3510,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -3555,7 +3550,7 @@ namespace Amazon.Lightsail
         /// </para>
         ///  </note> 
         /// <para>
-        /// The <code>create key pair</code> operation supports tag-based access control via request
+        /// The <c>create key pair</c> operation supports tag-based access control via request
         /// tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -3580,9 +3575,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -3622,13 +3617,13 @@ namespace Amazon.Lightsail
         ///  
         /// <para>
         /// When you create a load balancer, you can specify a unique name and port settings.
-        /// To change additional load balancer settings, use the <code>UpdateLoadBalancerAttribute</code>
+        /// To change additional load balancer settings, use the <c>UpdateLoadBalancerAttribute</c>
         /// operation.
         /// </para>
         ///  
         /// <para>
-        /// The <code>create load balancer</code> operation supports tag-based access control
-        /// via request tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>create load balancer</c> operation supports tag-based access control via request
+        /// tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -3649,9 +3644,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -3687,13 +3682,13 @@ namespace Amazon.Lightsail
         ///  
         /// <para>
         /// When you create a load balancer, you can specify a unique name and port settings.
-        /// To change additional load balancer settings, use the <code>UpdateLoadBalancerAttribute</code>
+        /// To change additional load balancer settings, use the <c>UpdateLoadBalancerAttribute</c>
         /// operation.
         /// </para>
         ///  
         /// <para>
-        /// The <code>create load balancer</code> operation supports tag-based access control
-        /// via request tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>create load balancer</c> operation supports tag-based access control via request
+        /// tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -3717,9 +3712,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -3759,9 +3754,9 @@ namespace Amazon.Lightsail
         /// </para>
         ///  
         /// <para>
-        /// The <code>CreateLoadBalancerTlsCertificate</code> operation supports tag-based access
-        /// control via resource tags applied to the resource identified by <code>load balancer
-        /// name</code>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>CreateLoadBalancerTlsCertificate</c> operation supports tag-based access control
+        /// via resource tags applied to the resource identified by <c>load balancer name</c>.
+        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -3782,9 +3777,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -3820,9 +3815,9 @@ namespace Amazon.Lightsail
         /// </para>
         ///  
         /// <para>
-        /// The <code>CreateLoadBalancerTlsCertificate</code> operation supports tag-based access
-        /// control via resource tags applied to the resource identified by <code>load balancer
-        /// name</code>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>CreateLoadBalancerTlsCertificate</c> operation supports tag-based access control
+        /// via resource tags applied to the resource identified by <c>load balancer name</c>.
+        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -3846,9 +3841,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -3884,7 +3879,7 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>create relational database</code> operation supports tag-based access control
+        /// The <c>create relational database</c> operation supports tag-based access control
         /// via request tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -3906,9 +3901,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -3940,7 +3935,7 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>create relational database</code> operation supports tag-based access control
+        /// The <c>create relational database</c> operation supports tag-based access control
         /// via request tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -3965,9 +3960,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -4009,9 +4004,9 @@ namespace Amazon.Lightsail
         /// </para>
         ///  
         /// <para>
-        /// The <code>create relational database from snapshot</code> operation supports tag-based
-        /// access control via request tags and resource tags applied to the resource identified
-        /// by relationalDatabaseSnapshotName. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>create relational database from snapshot</c> operation supports tag-based access
+        /// control via request tags and resource tags applied to the resource identified by relationalDatabaseSnapshotName.
+        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -4032,9 +4027,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -4072,9 +4067,9 @@ namespace Amazon.Lightsail
         /// </para>
         ///  
         /// <para>
-        /// The <code>create relational database from snapshot</code> operation supports tag-based
-        /// access control via request tags and resource tags applied to the resource identified
-        /// by relationalDatabaseSnapshotName. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>create relational database from snapshot</c> operation supports tag-based access
+        /// control via request tags and resource tags applied to the resource identified by relationalDatabaseSnapshotName.
+        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -4098,9 +4093,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -4137,8 +4132,8 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>create relational database snapshot</code> operation supports tag-based
-        /// access control via request tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>create relational database snapshot</c> operation supports tag-based access
+        /// control via request tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -4159,9 +4154,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -4194,8 +4189,8 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>create relational database snapshot</code> operation supports tag-based
-        /// access control via request tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>create relational database snapshot</c> operation supports tag-based access
+        /// control via request tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -4219,9 +4214,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -4276,9 +4271,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -4332,9 +4327,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -4383,9 +4378,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -4433,9 +4428,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -4489,9 +4484,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -4541,9 +4536,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -4598,9 +4593,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -4654,9 +4649,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -4691,8 +4686,8 @@ namespace Amazon.Lightsail
         ///  
         /// <para>
         /// Certificates that are currently attached to a distribution cannot be deleted. Use
-        /// the <code>DetachCertificateFromDistribution</code> action to detach a certificate
-        /// from a distribution.
+        /// the <c>DetachCertificateFromDistribution</c> action to detach a certificate from a
+        /// distribution.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteCertificate service method.</param>
@@ -4708,9 +4703,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -4741,8 +4736,8 @@ namespace Amazon.Lightsail
         ///  
         /// <para>
         /// Certificates that are currently attached to a distribution cannot be deleted. Use
-        /// the <code>DetachCertificateFromDistribution</code> action to detach a certificate
-        /// from a distribution.
+        /// the <c>DetachCertificateFromDistribution</c> action to detach a certificate from a
+        /// distribution.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteCertificate service method.</param>
@@ -4761,9 +4756,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -4817,9 +4812,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -4875,9 +4870,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -4924,9 +4919,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -4969,9 +4964,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -5015,9 +5010,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -5060,9 +5055,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -5091,18 +5086,18 @@ namespace Amazon.Lightsail
 
 
         /// <summary>
-        /// Deletes the specified block storage disk. The disk must be in the <code>available</code>
+        /// Deletes the specified block storage disk. The disk must be in the <c>available</c>
         /// state (not attached to a Lightsail instance).
         /// 
         ///  <note> 
         /// <para>
-        /// The disk may remain in the <code>deleting</code> state for several minutes.
+        /// The disk may remain in the <c>deleting</c> state for several minutes.
         /// </para>
         ///  </note> 
         /// <para>
-        /// The <code>delete disk</code> operation supports tag-based access control via resource
-        /// tags applied to the resource identified by <code>disk name</code>. For more information,
-        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>delete disk</c> operation supports tag-based access control via resource tags
+        /// applied to the resource identified by <c>disk name</c>. For more information, see
+        /// the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -5123,9 +5118,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -5153,18 +5148,18 @@ namespace Amazon.Lightsail
 
 
         /// <summary>
-        /// Deletes the specified block storage disk. The disk must be in the <code>available</code>
+        /// Deletes the specified block storage disk. The disk must be in the <c>available</c>
         /// state (not attached to a Lightsail instance).
         /// 
         ///  <note> 
         /// <para>
-        /// The disk may remain in the <code>deleting</code> state for several minutes.
+        /// The disk may remain in the <c>deleting</c> state for several minutes.
         /// </para>
         ///  </note> 
         /// <para>
-        /// The <code>delete disk</code> operation supports tag-based access control via resource
-        /// tags applied to the resource identified by <code>disk name</code>. For more information,
-        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>delete disk</c> operation supports tag-based access control via resource tags
+        /// applied to the resource identified by <c>disk name</c>. For more information, see
+        /// the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -5188,9 +5183,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -5234,9 +5229,9 @@ namespace Amazon.Lightsail
         /// </para>
         ///  
         /// <para>
-        /// The <code>delete disk snapshot</code> operation supports tag-based access control
-        /// via resource tags applied to the resource identified by <code>disk snapshot name</code>.
-        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>delete disk snapshot</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>disk snapshot name</c>. For more information,
+        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -5257,9 +5252,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -5299,9 +5294,9 @@ namespace Amazon.Lightsail
         /// </para>
         ///  
         /// <para>
-        /// The <code>delete disk snapshot</code> operation supports tag-based access control
-        /// via resource tags applied to the resource identified by <code>disk snapshot name</code>.
-        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>delete disk snapshot</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>disk snapshot name</c>. For more information,
+        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -5325,9 +5320,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -5374,9 +5369,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -5422,9 +5417,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -5460,8 +5455,8 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>delete domain</code> operation supports tag-based access control via resource
-        /// tags applied to the resource identified by <code>domain name</code>. For more information,
+        /// The <c>delete domain</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>domain name</c>. For more information,
         /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -5483,9 +5478,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -5517,8 +5512,8 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>delete domain</code> operation supports tag-based access control via resource
-        /// tags applied to the resource identified by <code>domain name</code>. For more information,
+        /// The <c>delete domain</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>domain name</c>. For more information,
         /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -5543,9 +5538,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -5581,9 +5576,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>delete domain entry</code> operation supports tag-based access control via
-        /// resource tags applied to the resource identified by <code>domain name</code>. For
-        /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>delete domain entry</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>domain name</c>. For more information,
+        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -5604,9 +5599,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -5638,9 +5633,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>delete domain entry</code> operation supports tag-based access control via
-        /// resource tags applied to the resource identified by <code>domain name</code>. For
-        /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>delete domain entry</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>domain name</c>. For more information,
+        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -5664,9 +5659,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -5702,8 +5697,8 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>delete instance</code> operation supports tag-based access control via resource
-        /// tags applied to the resource identified by <code>instance name</code>. For more information,
+        /// The <c>delete instance</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>instance name</c>. For more information,
         /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -5725,9 +5720,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -5759,8 +5754,8 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>delete instance</code> operation supports tag-based access control via resource
-        /// tags applied to the resource identified by <code>instance name</code>. For more information,
+        /// The <c>delete instance</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>instance name</c>. For more information,
         /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -5785,9 +5780,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -5823,8 +5818,8 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>delete instance snapshot</code> operation supports tag-based access control
-        /// via resource tags applied to the resource identified by <code>instance snapshot name</code>.
+        /// The <c>delete instance snapshot</c> operation supports tag-based access control via
+        /// resource tags applied to the resource identified by <c>instance snapshot name</c>.
         /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -5846,9 +5841,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -5880,8 +5875,8 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>delete instance snapshot</code> operation supports tag-based access control
-        /// via resource tags applied to the resource identified by <code>instance snapshot name</code>.
+        /// The <c>delete instance snapshot</c> operation supports tag-based access control via
+        /// resource tags applied to the resource identified by <c>instance snapshot name</c>.
         /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -5906,9 +5901,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -5953,8 +5948,8 @@ namespace Amazon.Lightsail
         /// </para>
         ///  
         /// <para>
-        /// The <code>delete key pair</code> operation supports tag-based access control via resource
-        /// tags applied to the resource identified by <code>key pair name</code>. For more information,
+        /// The <c>delete key pair</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>key pair name</c>. For more information,
         /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -5976,9 +5971,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -6019,8 +6014,8 @@ namespace Amazon.Lightsail
         /// </para>
         ///  
         /// <para>
-        /// The <code>delete key pair</code> operation supports tag-based access control via resource
-        /// tags applied to the resource identified by <code>key pair name</code>. For more information,
+        /// The <c>delete key pair</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>key pair name</c>. For more information,
         /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -6045,9 +6040,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -6109,9 +6104,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -6172,9 +6167,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -6212,9 +6207,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>delete load balancer</code> operation supports tag-based access control
-        /// via resource tags applied to the resource identified by <code>load balancer name</code>.
-        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>delete load balancer</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>load balancer name</c>. For more information,
+        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -6235,9 +6230,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -6271,9 +6266,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>delete load balancer</code> operation supports tag-based access control
-        /// via resource tags applied to the resource identified by <code>load balancer name</code>.
-        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>delete load balancer</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>load balancer name</c>. For more information,
+        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -6297,9 +6292,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -6335,9 +6330,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>DeleteLoadBalancerTlsCertificate</code> operation supports tag-based access
-        /// control via resource tags applied to the resource identified by <code>load balancer
-        /// name</code>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>DeleteLoadBalancerTlsCertificate</c> operation supports tag-based access control
+        /// via resource tags applied to the resource identified by <c>load balancer name</c>.
+        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -6358,9 +6353,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -6392,9 +6387,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>DeleteLoadBalancerTlsCertificate</code> operation supports tag-based access
-        /// control via resource tags applied to the resource identified by <code>load balancer
-        /// name</code>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>DeleteLoadBalancerTlsCertificate</c> operation supports tag-based access control
+        /// via resource tags applied to the resource identified by <c>load balancer name</c>.
+        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -6418,9 +6413,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -6456,7 +6451,7 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>delete relational database</code> operation supports tag-based access control
+        /// The <c>delete relational database</c> operation supports tag-based access control
         /// via resource tags applied to the resource identified by relationalDatabaseName. For
         /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
@@ -6479,9 +6474,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -6513,7 +6508,7 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>delete relational database</code> operation supports tag-based access control
+        /// The <c>delete relational database</c> operation supports tag-based access control
         /// via resource tags applied to the resource identified by relationalDatabaseName. For
         /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
@@ -6539,9 +6534,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -6577,8 +6572,8 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>delete relational database snapshot</code> operation supports tag-based
-        /// access control via resource tags applied to the resource identified by relationalDatabaseName.
+        /// The <c>delete relational database snapshot</c> operation supports tag-based access
+        /// control via resource tags applied to the resource identified by relationalDatabaseName.
         /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -6600,9 +6595,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -6634,8 +6629,8 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>delete relational database snapshot</code> operation supports tag-based
-        /// access control via resource tags applied to the resource identified by relationalDatabaseName.
+        /// The <c>delete relational database snapshot</c> operation supports tag-based access
+        /// control via resource tags applied to the resource identified by relationalDatabaseName.
         /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -6660,9 +6655,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -6716,9 +6711,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -6771,9 +6766,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -6811,9 +6806,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>detach disk</code> operation supports tag-based access control via resource
-        /// tags applied to the resource identified by <code>disk name</code>. For more information,
-        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>detach disk</c> operation supports tag-based access control via resource tags
+        /// applied to the resource identified by <c>disk name</c>. For more information, see
+        /// the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -6834,9 +6829,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -6870,9 +6865,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>detach disk</code> operation supports tag-based access control via resource
-        /// tags applied to the resource identified by <code>disk name</code>. For more information,
-        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>detach disk</c> operation supports tag-based access control via resource tags
+        /// applied to the resource identified by <c>disk name</c>. For more information, see
+        /// the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -6896,9 +6891,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -6939,9 +6934,9 @@ namespace Amazon.Lightsail
         /// </para>
         ///  
         /// <para>
-        /// The <code>detach instances from load balancer</code> operation supports tag-based
-        /// access control via resource tags applied to the resource identified by <code>load
-        /// balancer name</code>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>detach instances from load balancer</c> operation supports tag-based access
+        /// control via resource tags applied to the resource identified by <c>load balancer name</c>.
+        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -6962,9 +6957,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -7001,9 +6996,9 @@ namespace Amazon.Lightsail
         /// </para>
         ///  
         /// <para>
-        /// The <code>detach instances from load balancer</code> operation supports tag-based
-        /// access control via resource tags applied to the resource identified by <code>load
-        /// balancer name</code>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>detach instances from load balancer</c> operation supports tag-based access
+        /// control via resource tags applied to the resource identified by <c>load balancer name</c>.
+        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -7027,9 +7022,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -7080,9 +7075,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -7132,9 +7127,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -7183,9 +7178,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -7233,9 +7228,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -7292,9 +7287,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -7350,9 +7345,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -7401,9 +7396,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -7451,9 +7446,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -7487,8 +7482,8 @@ namespace Amazon.Lightsail
         /// <summary>
         /// Exports an Amazon Lightsail instance or block storage disk snapshot to Amazon Elastic
         /// Compute Cloud (Amazon EC2). This operation results in an export snapshot record that
-        /// can be used with the <code>create cloud formation stack</code> operation to create
-        /// new Amazon EC2 instances.
+        /// can be used with the <c>create cloud formation stack</c> operation to create new Amazon
+        /// EC2 instances.
         /// 
         ///  
         /// <para>
@@ -7500,15 +7495,15 @@ namespace Amazon.Lightsail
         /// </para>
         ///   
         /// <para>
-        /// The <code>export snapshot</code> operation supports tag-based access control via resource
-        /// tags applied to the resource identified by <code>source snapshot name</code>. For
-        /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>export snapshot</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>source snapshot name</c>. For more information,
+        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// Use the <code>get instance snapshots</code> or <code>get disk snapshots</code> operations
-        /// to get a list of snapshots that you can export to Amazon EC2.
+        /// Use the <c>get instance snapshots</c> or <c>get disk snapshots</c> operations to get
+        /// a list of snapshots that you can export to Amazon EC2.
         /// </para>
         ///  </note>
         /// </summary>
@@ -7529,9 +7524,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -7561,8 +7556,8 @@ namespace Amazon.Lightsail
         /// <summary>
         /// Exports an Amazon Lightsail instance or block storage disk snapshot to Amazon Elastic
         /// Compute Cloud (Amazon EC2). This operation results in an export snapshot record that
-        /// can be used with the <code>create cloud formation stack</code> operation to create
-        /// new Amazon EC2 instances.
+        /// can be used with the <c>create cloud formation stack</c> operation to create new Amazon
+        /// EC2 instances.
         /// 
         ///  
         /// <para>
@@ -7574,15 +7569,15 @@ namespace Amazon.Lightsail
         /// </para>
         ///   
         /// <para>
-        /// The <code>export snapshot</code> operation supports tag-based access control via resource
-        /// tags applied to the resource identified by <code>source snapshot name</code>. For
-        /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>export snapshot</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>source snapshot name</c>. For more information,
+        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// Use the <code>get instance snapshots</code> or <code>get disk snapshots</code> operations
-        /// to get a list of snapshots that you can export to Amazon EC2.
+        /// Use the <c>get instance snapshots</c> or <c>get disk snapshots</c> operations to get
+        /// a list of snapshots that you can export to Amazon EC2.
         /// </para>
         ///  </note>
         /// </summary>
@@ -7606,9 +7601,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -7659,9 +7654,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -7711,9 +7706,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -7770,9 +7765,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -7828,9 +7823,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -7879,9 +7874,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -7929,9 +7924,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -7994,9 +7989,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -8058,9 +8053,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -8115,9 +8110,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -8168,9 +8163,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -8225,9 +8220,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -8278,9 +8273,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -8328,9 +8323,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -8380,9 +8375,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -8434,9 +8429,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -8487,9 +8482,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -8550,9 +8545,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -8615,9 +8610,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -8653,9 +8648,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// To get a summary of a certificate, omit <code>includeCertificateDetails</code> from
-        /// your request. The response will include only the certificate Amazon Resource Name
-        /// (ARN), certificate name, domain name, and tags.
+        /// To get a summary of a certificate, omit <c>includeCertificateDetails</c> from your
+        /// request. The response will include only the certificate Amazon Resource Name (ARN),
+        /// certificate name, domain name, and tags.
         /// </para>
         ///  </note>
         /// </summary>
@@ -8672,9 +8667,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -8703,9 +8698,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// To get a summary of a certificate, omit <code>includeCertificateDetails</code> from
-        /// your request. The response will include only the certificate Amazon Resource Name
-        /// (ARN), certificate name, domain name, and tags.
+        /// To get a summary of a certificate, omit <c>includeCertificateDetails</c> from your
+        /// request. The response will include only the certificate Amazon Resource Name (ARN),
+        /// certificate name, domain name, and tags.
         /// </para>
         ///  </note>
         /// </summary>
@@ -8725,9 +8720,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -8756,8 +8751,8 @@ namespace Amazon.Lightsail
 
 
         /// <summary>
-        /// Returns the CloudFormation stack record created as a result of the <code>create cloud
-        /// formation stack</code> operation.
+        /// Returns the CloudFormation stack record created as a result of the <c>create cloud
+        /// formation stack</c> operation.
         /// 
         ///  
         /// <para>
@@ -8782,9 +8777,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -8812,8 +8807,8 @@ namespace Amazon.Lightsail
 
 
         /// <summary>
-        /// Returns the CloudFormation stack record created as a result of the <code>create cloud
-        /// formation stack</code> operation.
+        /// Returns the CloudFormation stack record created as a result of the <c>create cloud
+        /// formation stack</c> operation.
         /// 
         ///  
         /// <para>
@@ -8841,9 +8836,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -8901,9 +8896,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -8960,9 +8955,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -9081,9 +9076,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -9135,9 +9130,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -9195,9 +9190,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -9254,9 +9249,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -9318,9 +9313,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -9381,9 +9376,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -9433,9 +9428,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -9484,9 +9479,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -9537,9 +9532,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -9589,9 +9584,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -9635,9 +9630,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -9680,9 +9675,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -9727,9 +9722,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -9773,9 +9768,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -9823,9 +9818,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -9875,9 +9870,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -9928,9 +9923,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -9980,9 +9975,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -10033,9 +10028,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -10085,9 +10080,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -10139,9 +10134,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -10192,9 +10187,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -10248,9 +10243,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -10303,9 +10298,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -10353,9 +10348,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -10402,9 +10397,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -10459,9 +10454,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -10515,9 +10510,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -10565,9 +10560,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -10614,9 +10609,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -10667,9 +10662,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -10719,9 +10714,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -10772,9 +10767,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -10824,9 +10819,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -10858,7 +10853,7 @@ namespace Amazon.Lightsail
 
 
         /// <summary>
-        /// Returns all export snapshot records created as a result of the <code>export snapshot</code>
+        /// Returns all export snapshot records created as a result of the <c>export snapshot</c>
         /// operation.
         /// 
         ///  
@@ -10885,9 +10880,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -10915,7 +10910,7 @@ namespace Amazon.Lightsail
 
 
         /// <summary>
-        /// Returns all export snapshot records created as a result of the <code>export snapshot</code>
+        /// Returns all export snapshot records created as a result of the <c>export snapshot</c>
         /// operation.
         /// 
         ///  
@@ -10945,9 +10940,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -10999,9 +10994,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -11052,9 +11047,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -11091,9 +11086,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>get instance access details</code> operation supports tag-based access control
-        /// via resource tags applied to the resource identified by <code>instance name</code>.
-        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>get instance access details</c> operation supports tag-based access control
+        /// via resource tags applied to the resource identified by <c>instance name</c>. For
+        /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -11114,9 +11109,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -11149,9 +11144,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>get instance access details</code> operation supports tag-based access control
-        /// via resource tags applied to the resource identified by <code>instance name</code>.
-        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>get instance access details</c> operation supports tag-based access control
+        /// via resource tags applied to the resource identified by <c>instance name</c>. For
+        /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -11175,9 +11170,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -11236,9 +11231,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -11296,9 +11291,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -11350,9 +11345,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -11403,9 +11398,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -11456,9 +11451,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -11508,9 +11503,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -11561,9 +11556,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -11613,9 +11608,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -11666,9 +11661,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -11718,9 +11713,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -11771,9 +11766,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -11823,9 +11818,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -11876,9 +11871,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -11928,9 +11923,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -11981,9 +11976,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -12033,9 +12028,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -12086,9 +12081,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -12138,9 +12133,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -12198,9 +12193,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -12257,9 +12252,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -12310,9 +12305,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -12362,9 +12357,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -12426,9 +12421,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -12489,9 +12484,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -12549,9 +12544,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -12602,9 +12597,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -12650,9 +12645,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -12703,9 +12698,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -12742,8 +12737,8 @@ namespace Amazon.Lightsail
         ///  
         /// <para>
         /// Results are returned from oldest to newest, up to a maximum of 200. Results can be
-        /// paged by making each subsequent call to <code>GetOperations</code> use the maximum
-        /// (last) <code>statusChangedAt</code> value from the previous request.
+        /// paged by making each subsequent call to <c>GetOperations</c> use the maximum (last)
+        /// <c>statusChangedAt</c> value from the previous request.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetOperations service method.</param>
@@ -12763,9 +12758,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -12798,8 +12793,8 @@ namespace Amazon.Lightsail
         ///  
         /// <para>
         /// Results are returned from oldest to newest, up to a maximum of 200. Results can be
-        /// paged by making each subsequent call to <code>GetOperations</code> use the maximum
-        /// (last) <code>statusChangedAt</code> value from the previous request.
+        /// paged by making each subsequent call to <c>GetOperations</c> use the maximum (last)
+        /// <c>statusChangedAt</c> value from the previous request.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetOperations service method.</param>
@@ -12822,9 +12817,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -12856,7 +12851,7 @@ namespace Amazon.Lightsail
 
 
         /// <summary>
-        /// Gets operations for a specific resource (e.g., an instance or a static IP).
+        /// Gets operations for a specific resource (an instance or a static IP).
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetOperationsForResource service method.</param>
         /// 
@@ -12875,9 +12870,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -12905,7 +12900,7 @@ namespace Amazon.Lightsail
 
 
         /// <summary>
-        /// Gets operations for a specific resource (e.g., an instance or a static IP).
+        /// Gets operations for a specific resource (an instance or a static IP).
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetOperationsForResource service method.</param>
         /// <param name="cancellationToken">
@@ -12927,9 +12922,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -12961,8 +12956,8 @@ namespace Amazon.Lightsail
 
 
         /// <summary>
-        /// Returns a list of all valid regions for Amazon Lightsail. Use the <code>include availability
-        /// zones</code> parameter to also return the Availability Zones in a region.
+        /// Returns a list of all valid regions for Amazon Lightsail. Use the <c>include availability
+        /// zones</c> parameter to also return the Availability Zones in a region.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetRegions service method.</param>
         /// 
@@ -12981,9 +12976,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -13011,8 +13006,8 @@ namespace Amazon.Lightsail
 
 
         /// <summary>
-        /// Returns a list of all valid regions for Amazon Lightsail. Use the <code>include availability
-        /// zones</code> parameter to also return the Availability Zones in a region.
+        /// Returns a list of all valid regions for Amazon Lightsail. Use the <c>include availability
+        /// zones</c> parameter to also return the Availability Zones in a region.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetRegions service method.</param>
         /// <param name="cancellationToken">
@@ -13034,9 +13029,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -13087,9 +13082,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -13139,9 +13134,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -13199,9 +13194,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -13258,9 +13253,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -13317,9 +13312,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -13375,9 +13370,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -13428,9 +13423,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -13480,9 +13475,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -13533,9 +13528,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -13585,9 +13580,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -13638,9 +13633,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -13690,9 +13685,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -13729,8 +13724,8 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>GetRelationalDatabaseMasterUserPassword</code> operation supports tag-based
-        /// access control via resource tags applied to the resource identified by relationalDatabaseName.
+        /// The <c>GetRelationalDatabaseMasterUserPassword</c> operation supports tag-based access
+        /// control via resource tags applied to the resource identified by relationalDatabaseName.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetRelationalDatabaseMasterUserPassword service method.</param>
@@ -13750,9 +13745,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -13785,8 +13780,8 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>GetRelationalDatabaseMasterUserPassword</code> operation supports tag-based
-        /// access control via resource tags applied to the resource identified by relationalDatabaseName.
+        /// The <c>GetRelationalDatabaseMasterUserPassword</c> operation supports tag-based access
+        /// control via resource tags applied to the resource identified by relationalDatabaseName.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetRelationalDatabaseMasterUserPassword service method.</param>
@@ -13809,9 +13804,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -13869,9 +13864,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -13928,9 +13923,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -13989,9 +13984,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -14049,9 +14044,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -14102,9 +14097,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -14154,9 +14149,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -14207,9 +14202,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -14259,9 +14254,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -14312,9 +14307,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -14364,9 +14359,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -14394,6 +14389,99 @@ namespace Amazon.Lightsail
 
         #endregion
         
+        #region  GetSetupHistory
+
+
+        /// <summary>
+        /// Returns detailed information for five of the most recent <c>SetupInstanceHttps</c>
+        /// requests that were ran on the target instance.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetSetupHistory service method.</param>
+        /// 
+        /// <returns>The response from the GetSetupHistory service method, as returned by Lightsail.</returns>
+        /// <exception cref="Amazon.Lightsail.Model.AccessDeniedException">
+        /// Lightsail throws this exception when the user cannot be authenticated or uses invalid
+        /// credentials to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.Lightsail.Model.InvalidInputException">
+        /// Lightsail throws this exception when user input does not conform to the validation
+        /// rules of an input field.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
+        /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
+        /// </para>
+        ///  </note>
+        /// </exception>
+        /// <exception cref="Amazon.Lightsail.Model.NotFoundException">
+        /// Lightsail throws this exception when it cannot find a resource.
+        /// </exception>
+        /// <exception cref="Amazon.Lightsail.Model.ServiceException">
+        /// A general service exception.
+        /// </exception>
+        /// <exception cref="Amazon.Lightsail.Model.UnauthenticatedException">
+        /// Lightsail throws this exception when the user has not been authenticated.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetSetupHistory">REST API Reference for GetSetupHistory Operation</seealso>
+        public virtual GetSetupHistoryResponse GetSetupHistory(GetSetupHistoryRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetSetupHistoryRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetSetupHistoryResponseUnmarshaller.Instance;
+
+            return Invoke<GetSetupHistoryResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Returns detailed information for five of the most recent <c>SetupInstanceHttps</c>
+        /// requests that were ran on the target instance.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetSetupHistory service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetSetupHistory service method, as returned by Lightsail.</returns>
+        /// <exception cref="Amazon.Lightsail.Model.AccessDeniedException">
+        /// Lightsail throws this exception when the user cannot be authenticated or uses invalid
+        /// credentials to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.Lightsail.Model.InvalidInputException">
+        /// Lightsail throws this exception when user input does not conform to the validation
+        /// rules of an input field.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
+        /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
+        /// </para>
+        ///  </note>
+        /// </exception>
+        /// <exception cref="Amazon.Lightsail.Model.NotFoundException">
+        /// Lightsail throws this exception when it cannot find a resource.
+        /// </exception>
+        /// <exception cref="Amazon.Lightsail.Model.ServiceException">
+        /// A general service exception.
+        /// </exception>
+        /// <exception cref="Amazon.Lightsail.Model.UnauthenticatedException">
+        /// Lightsail throws this exception when the user has not been authenticated.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetSetupHistory">REST API Reference for GetSetupHistory Operation</seealso>
+        public virtual Task<GetSetupHistoryResponse> GetSetupHistoryAsync(GetSetupHistoryRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetSetupHistoryRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetSetupHistoryResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetSetupHistoryResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  GetStaticIp
 
 
@@ -14417,9 +14505,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -14469,9 +14557,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -14522,9 +14610,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -14574,9 +14662,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -14627,9 +14715,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -14679,9 +14767,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -14732,9 +14820,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -14784,9 +14872,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -14823,9 +14911,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>OpenInstancePublicPorts</code> action supports tag-based access control
-        /// via resource tags applied to the resource identified by <code>instanceName</code>.
-        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>OpenInstancePublicPorts</c> action supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>instanceName</c>. For more information,
+        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -14846,9 +14934,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -14881,9 +14969,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>OpenInstancePublicPorts</code> action supports tag-based access control
-        /// via resource tags applied to the resource identified by <code>instanceName</code>.
-        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>OpenInstancePublicPorts</c> action supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>instanceName</c>. For more information,
+        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -14907,9 +14995,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -14960,9 +15048,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -15012,9 +15100,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -15057,7 +15145,7 @@ namespace Amazon.Lightsail
         /// </para>
         ///  
         /// <para>
-        /// When this action creates an alarm, the alarm state is immediately set to <code>INSUFFICIENT_DATA</code>.
+        /// When this action creates an alarm, the alarm state is immediately set to <c>INSUFFICIENT_DATA</c>.
         /// The alarm is then evaluated and its state is set appropriately. Any actions associated
         /// with the new state are then executed.
         /// </para>
@@ -15081,9 +15169,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -15122,7 +15210,7 @@ namespace Amazon.Lightsail
         /// </para>
         ///  
         /// <para>
-        /// When this action creates an alarm, the alarm state is immediately set to <code>INSUFFICIENT_DATA</code>.
+        /// When this action creates an alarm, the alarm state is immediately set to <c>INSUFFICIENT_DATA</c>.
         /// The alarm is then evaluated and its state is set appropriately. Any actions associated
         /// with the new state are then executed.
         /// </para>
@@ -15149,9 +15237,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -15186,15 +15274,15 @@ namespace Amazon.Lightsail
         /// Opens ports for a specific Amazon Lightsail instance, and specifies the IP addresses
         /// allowed to connect to the instance through the ports, and the protocol. This action
         /// also closes all currently open ports that are not included in the request. Include
-        /// all of the ports and the protocols you want to open in your <code>PutInstancePublicPorts</code>request.
-        /// Or use the <code>OpenInstancePublicPorts</code> action to open ports without closing
-        /// currently open ports.
+        /// all of the ports and the protocols you want to open in your <c>PutInstancePublicPorts</c>request.
+        /// Or use the <c>OpenInstancePublicPorts</c> action to open ports without closing currently
+        /// open ports.
         /// 
         ///  
         /// <para>
-        /// The <code>PutInstancePublicPorts</code> action supports tag-based access control via
-        /// resource tags applied to the resource identified by <code>instanceName</code>. For
-        /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>PutInstancePublicPorts</c> action supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>instanceName</c>. For more information,
+        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -15215,9 +15303,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -15248,15 +15336,15 @@ namespace Amazon.Lightsail
         /// Opens ports for a specific Amazon Lightsail instance, and specifies the IP addresses
         /// allowed to connect to the instance through the ports, and the protocol. This action
         /// also closes all currently open ports that are not included in the request. Include
-        /// all of the ports and the protocols you want to open in your <code>PutInstancePublicPorts</code>request.
-        /// Or use the <code>OpenInstancePublicPorts</code> action to open ports without closing
-        /// currently open ports.
+        /// all of the ports and the protocols you want to open in your <c>PutInstancePublicPorts</c>request.
+        /// Or use the <c>OpenInstancePublicPorts</c> action to open ports without closing currently
+        /// open ports.
         /// 
         ///  
         /// <para>
-        /// The <code>PutInstancePublicPorts</code> action supports tag-based access control via
-        /// resource tags applied to the resource identified by <code>instanceName</code>. For
-        /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>PutInstancePublicPorts</c> action supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>instanceName</c>. For more information,
+        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -15280,9 +15368,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -15318,8 +15406,8 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>reboot instance</code> operation supports tag-based access control via resource
-        /// tags applied to the resource identified by <code>instance name</code>. For more information,
+        /// The <c>reboot instance</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>instance name</c>. For more information,
         /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -15341,9 +15429,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -15375,8 +15463,8 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>reboot instance</code> operation supports tag-based access control via resource
-        /// tags applied to the resource identified by <code>instance name</code>. For more information,
+        /// The <c>reboot instance</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>instance name</c>. For more information,
         /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -15401,9 +15489,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -15439,7 +15527,7 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>reboot relational database</code> operation supports tag-based access control
+        /// The <c>reboot relational database</c> operation supports tag-based access control
         /// via resource tags applied to the resource identified by relationalDatabaseName. For
         /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
@@ -15462,9 +15550,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -15496,7 +15584,7 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>reboot relational database</code> operation supports tag-based access control
+        /// The <c>reboot relational database</c> operation supports tag-based access control
         /// via resource tags applied to the resource identified by relationalDatabaseName. For
         /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
@@ -15522,9 +15610,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -15581,9 +15669,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -15636,9 +15724,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -15686,9 +15774,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -15738,9 +15826,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -15794,9 +15882,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -15849,9 +15937,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -15921,9 +16009,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -15992,9 +16080,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -16052,9 +16140,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -16111,9 +16199,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -16166,9 +16254,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -16217,9 +16305,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -16240,6 +16328,111 @@ namespace Amazon.Lightsail
             options.ResponseUnmarshaller = SetResourceAccessForBucketResponseUnmarshaller.Instance;
             
             return InvokeAsync<SetResourceAccessForBucketResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  SetupInstanceHttps
+
+
+        /// <summary>
+        /// Creates an SSL/TLS certificate that secures traffic for your website. After the certificate
+        /// is created, it is installed on the specified Lightsail instance.
+        /// 
+        ///  
+        /// <para>
+        /// If you provide more than one domain name in the request, at least one name must be
+        /// less than or equal to 63 characters in length.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the SetupInstanceHttps service method.</param>
+        /// 
+        /// <returns>The response from the SetupInstanceHttps service method, as returned by Lightsail.</returns>
+        /// <exception cref="Amazon.Lightsail.Model.AccessDeniedException">
+        /// Lightsail throws this exception when the user cannot be authenticated or uses invalid
+        /// credentials to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.Lightsail.Model.InvalidInputException">
+        /// Lightsail throws this exception when user input does not conform to the validation
+        /// rules of an input field.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
+        /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
+        /// </para>
+        ///  </note>
+        /// </exception>
+        /// <exception cref="Amazon.Lightsail.Model.NotFoundException">
+        /// Lightsail throws this exception when it cannot find a resource.
+        /// </exception>
+        /// <exception cref="Amazon.Lightsail.Model.ServiceException">
+        /// A general service exception.
+        /// </exception>
+        /// <exception cref="Amazon.Lightsail.Model.UnauthenticatedException">
+        /// Lightsail throws this exception when the user has not been authenticated.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/SetupInstanceHttps">REST API Reference for SetupInstanceHttps Operation</seealso>
+        public virtual SetupInstanceHttpsResponse SetupInstanceHttps(SetupInstanceHttpsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = SetupInstanceHttpsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = SetupInstanceHttpsResponseUnmarshaller.Instance;
+
+            return Invoke<SetupInstanceHttpsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Creates an SSL/TLS certificate that secures traffic for your website. After the certificate
+        /// is created, it is installed on the specified Lightsail instance.
+        /// 
+        ///  
+        /// <para>
+        /// If you provide more than one domain name in the request, at least one name must be
+        /// less than or equal to 63 characters in length.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the SetupInstanceHttps service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the SetupInstanceHttps service method, as returned by Lightsail.</returns>
+        /// <exception cref="Amazon.Lightsail.Model.AccessDeniedException">
+        /// Lightsail throws this exception when the user cannot be authenticated or uses invalid
+        /// credentials to access a resource.
+        /// </exception>
+        /// <exception cref="Amazon.Lightsail.Model.InvalidInputException">
+        /// Lightsail throws this exception when user input does not conform to the validation
+        /// rules of an input field.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
+        /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
+        /// </para>
+        ///  </note>
+        /// </exception>
+        /// <exception cref="Amazon.Lightsail.Model.NotFoundException">
+        /// Lightsail throws this exception when it cannot find a resource.
+        /// </exception>
+        /// <exception cref="Amazon.Lightsail.Model.ServiceException">
+        /// A general service exception.
+        /// </exception>
+        /// <exception cref="Amazon.Lightsail.Model.UnauthenticatedException">
+        /// Lightsail throws this exception when the user has not been authenticated.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/SetupInstanceHttps">REST API Reference for SetupInstanceHttps Operation</seealso>
+        public virtual Task<SetupInstanceHttpsResponse> SetupInstanceHttpsAsync(SetupInstanceHttpsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = SetupInstanceHttpsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = SetupInstanceHttpsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<SetupInstanceHttpsResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -16265,9 +16458,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -16312,9 +16505,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -16344,7 +16537,7 @@ namespace Amazon.Lightsail
 
         /// <summary>
         /// Starts a specific Amazon Lightsail instance from a stopped state. To restart an instance,
-        /// use the <code>reboot instance</code> operation.
+        /// use the <c>reboot instance</c> operation.
         /// 
         ///  <note> 
         /// <para>
@@ -16356,8 +16549,8 @@ namespace Amazon.Lightsail
         /// </para>
         ///  </note> 
         /// <para>
-        /// The <code>start instance</code> operation supports tag-based access control via resource
-        /// tags applied to the resource identified by <code>instance name</code>. For more information,
+        /// The <c>start instance</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>instance name</c>. For more information,
         /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -16379,9 +16572,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -16410,7 +16603,7 @@ namespace Amazon.Lightsail
 
         /// <summary>
         /// Starts a specific Amazon Lightsail instance from a stopped state. To restart an instance,
-        /// use the <code>reboot instance</code> operation.
+        /// use the <c>reboot instance</c> operation.
         /// 
         ///  <note> 
         /// <para>
@@ -16422,8 +16615,8 @@ namespace Amazon.Lightsail
         /// </para>
         ///  </note> 
         /// <para>
-        /// The <code>start instance</code> operation supports tag-based access control via resource
-        /// tags applied to the resource identified by <code>instance name</code>. For more information,
+        /// The <c>start instance</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>instance name</c>. For more information,
         /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -16448,9 +16641,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -16483,13 +16676,13 @@ namespace Amazon.Lightsail
 
         /// <summary>
         /// Starts a specific database from a stopped state in Amazon Lightsail. To restart a
-        /// database, use the <code>reboot relational database</code> operation.
+        /// database, use the <c>reboot relational database</c> operation.
         /// 
         ///  
         /// <para>
-        /// The <code>start relational database</code> operation supports tag-based access control
-        /// via resource tags applied to the resource identified by relationalDatabaseName. For
-        /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>start relational database</c> operation supports tag-based access control via
+        /// resource tags applied to the resource identified by relationalDatabaseName. For more
+        /// information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -16510,9 +16703,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -16541,13 +16734,13 @@ namespace Amazon.Lightsail
 
         /// <summary>
         /// Starts a specific database from a stopped state in Amazon Lightsail. To restart a
-        /// database, use the <code>reboot relational database</code> operation.
+        /// database, use the <c>reboot relational database</c> operation.
         /// 
         ///  
         /// <para>
-        /// The <code>start relational database</code> operation supports tag-based access control
-        /// via resource tags applied to the resource identified by relationalDatabaseName. For
-        /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>start relational database</c> operation supports tag-based access control via
+        /// resource tags applied to the resource identified by relationalDatabaseName. For more
+        /// information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -16571,9 +16764,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -16622,9 +16815,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -16669,9 +16862,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -16712,8 +16905,8 @@ namespace Amazon.Lightsail
         /// </para>
         ///  </note> 
         /// <para>
-        /// The <code>stop instance</code> operation supports tag-based access control via resource
-        /// tags applied to the resource identified by <code>instance name</code>. For more information,
+        /// The <c>stop instance</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>instance name</c>. For more information,
         /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -16735,9 +16928,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -16777,8 +16970,8 @@ namespace Amazon.Lightsail
         /// </para>
         ///  </note> 
         /// <para>
-        /// The <code>stop instance</code> operation supports tag-based access control via resource
-        /// tags applied to the resource identified by <code>instance name</code>. For more information,
+        /// The <c>stop instance</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>instance name</c>. For more information,
         /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -16803,9 +16996,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -16841,9 +17034,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>stop relational database</code> operation supports tag-based access control
-        /// via resource tags applied to the resource identified by relationalDatabaseName. For
-        /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>stop relational database</c> operation supports tag-based access control via
+        /// resource tags applied to the resource identified by relationalDatabaseName. For more
+        /// information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -16864,9 +17057,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -16898,9 +17091,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>stop relational database</code> operation supports tag-based access control
-        /// via resource tags applied to the resource identified by relationalDatabaseName. For
-        /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>stop relational database</c> operation supports tag-based access control via
+        /// resource tags applied to the resource identified by relationalDatabaseName. For more
+        /// information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -16924,9 +17117,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -16965,9 +17158,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>tag resource</code> operation supports tag-based access control via request
-        /// tags and resource tags applied to the resource identified by <code>resource name</code>.
-        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>tag resource</c> operation supports tag-based access control via request tags
+        /// and resource tags applied to the resource identified by <c>resource name</c>. For
+        /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -16988,9 +17181,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -17025,9 +17218,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>tag resource</code> operation supports tag-based access control via request
-        /// tags and resource tags applied to the resource identified by <code>resource name</code>.
-        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>tag resource</c> operation supports tag-based access control via request tags
+        /// and resource tags applied to the resource identified by <c>resource name</c>. For
+        /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -17051,9 +17244,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -17087,8 +17280,7 @@ namespace Amazon.Lightsail
         /// <summary>
         /// Tests an alarm by displaying a banner on the Amazon Lightsail console. If a notification
         /// trigger is configured for the specified alarm, the test also sends a notification
-        /// to the notification protocol (<code>Email</code> and/or <code>SMS</code>) configured
-        /// for the alarm.
+        /// to the notification protocol (<c>Email</c> and/or <c>SMS</c>) configured for the alarm.
         /// 
         ///  
         /// <para>
@@ -17111,9 +17303,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -17143,8 +17335,7 @@ namespace Amazon.Lightsail
         /// <summary>
         /// Tests an alarm by displaying a banner on the Amazon Lightsail console. If a notification
         /// trigger is configured for the specified alarm, the test also sends a notification
-        /// to the notification protocol (<code>Email</code> and/or <code>SMS</code>) configured
-        /// for the alarm.
+        /// to the notification protocol (<c>Email</c> and/or <c>SMS</c>) configured for the alarm.
         /// 
         ///  
         /// <para>
@@ -17170,9 +17361,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -17223,9 +17414,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -17275,9 +17466,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -17314,8 +17505,8 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>untag resource</code> operation supports tag-based access control via request
-        /// tags and resource tags applied to the resource identified by <code>resource name</code>.
+        /// The <c>untag resource</c> operation supports tag-based access control via request
+        /// tags and resource tags applied to the resource identified by <c>resource name</c>.
         /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -17337,9 +17528,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -17372,8 +17563,8 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>untag resource</code> operation supports tag-based access control via request
-        /// tags and resource tags applied to the resource identified by <code>resource name</code>.
+        /// The <c>untag resource</c> operation supports tag-based access control via request
+        /// tags and resource tags applied to the resource identified by <c>resource name</c>.
         /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -17398,9 +17589,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -17453,9 +17644,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -17504,9 +17695,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -17543,8 +17734,8 @@ namespace Amazon.Lightsail
         /// for a bucket. You can update a bucket's bundle only one time within a monthly Amazon
         /// Web Services billing cycle. To determine if you can update a bucket's bundle, use
         /// the <a href="https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetBuckets.html">GetBuckets</a>
-        /// action. The <code>ableToUpdateBundle</code> parameter in the response will indicate
-        /// whether you can currently update a bucket's bundle.
+        /// action. The <c>ableToUpdateBundle</c> parameter in the response will indicate whether
+        /// you can currently update a bucket's bundle.
         /// </para>
         ///  
         /// <para>
@@ -17570,9 +17761,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -17605,8 +17796,8 @@ namespace Amazon.Lightsail
         /// for a bucket. You can update a bucket's bundle only one time within a monthly Amazon
         /// Web Services billing cycle. To determine if you can update a bucket's bundle, use
         /// the <a href="https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetBuckets.html">GetBuckets</a>
-        /// action. The <code>ableToUpdateBundle</code> parameter in the response will indicate
-        /// whether you can currently update a bucket's bundle.
+        /// action. The <c>ableToUpdateBundle</c> parameter in the response will indicate whether
+        /// you can currently update a bucket's bundle.
         /// </para>
         ///  
         /// <para>
@@ -17635,9 +17826,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -17682,9 +17873,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -17728,9 +17919,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -17779,9 +17970,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -17832,9 +18023,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -17882,9 +18073,8 @@ namespace Amazon.Lightsail
         /// <para>
         /// You can update your distribution's bundle only one time within your monthly Amazon
         /// Web Services billing cycle. To determine if you can update your distribution's bundle,
-        /// use the <code>GetDistributions</code> action. The <code>ableToUpdateBundle</code>
-        /// parameter in the result will indicate whether you can currently update your distribution's
-        /// bundle.
+        /// use the <c>GetDistributions</c> action. The <c>ableToUpdateBundle</c> parameter in
+        /// the result will indicate whether you can currently update your distribution's bundle.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateDistributionBundle service method.</param>
@@ -17900,9 +18090,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -17946,9 +18136,8 @@ namespace Amazon.Lightsail
         /// <para>
         /// You can update your distribution's bundle only one time within your monthly Amazon
         /// Web Services billing cycle. To determine if you can update your distribution's bundle,
-        /// use the <code>GetDistributions</code> action. The <code>ableToUpdateBundle</code>
-        /// parameter in the result will indicate whether you can currently update your distribution's
-        /// bundle.
+        /// use the <c>GetDistributions</c> action. The <c>ableToUpdateBundle</c> parameter in
+        /// the result will indicate whether you can currently update your distribution's bundle.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateDistributionBundle service method.</param>
@@ -17967,9 +18156,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -18005,9 +18194,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>update domain entry</code> operation supports tag-based access control via
-        /// resource tags applied to the resource identified by <code>domain name</code>. For
-        /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>update domain entry</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>domain name</c>. For more information,
+        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -18028,9 +18217,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -18062,9 +18251,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>update domain entry</code> operation supports tag-based access control via
-        /// resource tags applied to the resource identified by <code>domain name</code>. For
-        /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>update domain entry</c> operation supports tag-based access control via resource
+        /// tags applied to the resource identified by <c>domain name</c>. For more information,
+        /// see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -18088,9 +18277,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -18123,11 +18312,11 @@ namespace Amazon.Lightsail
 
         /// <summary>
         /// Modifies the Amazon Lightsail instance metadata parameters on a running or stopped
-        /// instance. When you modify the parameters on a running instance, the <code>GetInstance</code>
-        /// or <code>GetInstances</code> API operation initially responds with a state of <code>pending</code>.
-        /// After the parameter modifications are successfully applied, the state changes to <code>applied</code>
-        /// in subsequent <code>GetInstance</code> or <code>GetInstances</code> API calls. For
-        /// more information, see <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configuring-instance-metadata-service">Use
+        /// instance. When you modify the parameters on a running instance, the <c>GetInstance</c>
+        /// or <c>GetInstances</c> API operation initially responds with a state of <c>pending</c>.
+        /// After the parameter modifications are successfully applied, the state changes to <c>applied</c>
+        /// in subsequent <c>GetInstance</c> or <c>GetInstances</c> API calls. For more information,
+        /// see <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configuring-instance-metadata-service">Use
         /// IMDSv2 with an Amazon Lightsail instance</a> in the <i>Amazon Lightsail Developer
         /// Guide</i>.
         /// </summary>
@@ -18148,9 +18337,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -18179,11 +18368,11 @@ namespace Amazon.Lightsail
 
         /// <summary>
         /// Modifies the Amazon Lightsail instance metadata parameters on a running or stopped
-        /// instance. When you modify the parameters on a running instance, the <code>GetInstance</code>
-        /// or <code>GetInstances</code> API operation initially responds with a state of <code>pending</code>.
-        /// After the parameter modifications are successfully applied, the state changes to <code>applied</code>
-        /// in subsequent <code>GetInstance</code> or <code>GetInstances</code> API calls. For
-        /// more information, see <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configuring-instance-metadata-service">Use
+        /// instance. When you modify the parameters on a running instance, the <c>GetInstance</c>
+        /// or <c>GetInstances</c> API operation initially responds with a state of <c>pending</c>.
+        /// After the parameter modifications are successfully applied, the state changes to <c>applied</c>
+        /// in subsequent <c>GetInstance</c> or <c>GetInstances</c> API calls. For more information,
+        /// see <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configuring-instance-metadata-service">Use
         /// IMDSv2 with an Amazon Lightsail instance</a> in the <i>Amazon Lightsail Developer
         /// Guide</i>.
         /// </summary>
@@ -18207,9 +18396,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -18246,9 +18435,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>update load balancer attribute</code> operation supports tag-based access
-        /// control via resource tags applied to the resource identified by <code>load balancer
-        /// name</code>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>update load balancer attribute</c> operation supports tag-based access control
+        /// via resource tags applied to the resource identified by <c>load balancer name</c>.
+        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -18269,9 +18458,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -18304,9 +18493,9 @@ namespace Amazon.Lightsail
         /// 
         ///  
         /// <para>
-        /// The <code>update load balancer attribute</code> operation supports tag-based access
-        /// control via resource tags applied to the resource identified by <code>load balancer
-        /// name</code>. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+        /// The <c>update load balancer attribute</c> operation supports tag-based access control
+        /// via resource tags applied to the resource identified by <c>load balancer name</c>.
+        /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
         /// </summary>
@@ -18330,9 +18519,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -18373,7 +18562,7 @@ namespace Amazon.Lightsail
         /// </para>
         ///  
         /// <para>
-        /// The <code>update relational database</code> operation supports tag-based access control
+        /// The <c>update relational database</c> operation supports tag-based access control
         /// via resource tags applied to the resource identified by relationalDatabaseName. For
         /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
@@ -18396,9 +18585,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -18435,7 +18624,7 @@ namespace Amazon.Lightsail
         /// </para>
         ///  
         /// <para>
-        /// The <code>update relational database</code> operation supports tag-based access control
+        /// The <c>update relational database</c> operation supports tag-based access control
         /// via resource tags applied to the resource identified by relationalDatabaseName. For
         /// more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
@@ -18461,9 +18650,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -18501,15 +18690,15 @@ namespace Amazon.Lightsail
         /// <para>
         /// Parameter updates don't cause outages; therefore, their application is not subject
         /// to the preferred maintenance window. However, there are two ways in which parameter
-        /// updates are applied: <code>dynamic</code> or <code>pending-reboot</code>. Parameters
-        /// marked with a <code>dynamic</code> apply type are applied immediately. Parameters
-        /// marked with a <code>pending-reboot</code> apply type are applied only after the database
-        /// is rebooted using the <code>reboot relational database</code> operation.
+        /// updates are applied: <c>dynamic</c> or <c>pending-reboot</c>. Parameters marked with
+        /// a <c>dynamic</c> apply type are applied immediately. Parameters marked with a <c>pending-reboot</c>
+        /// apply type are applied only after the database is rebooted using the <c>reboot relational
+        /// database</c> operation.
         /// </para>
         ///  
         /// <para>
-        /// The <code>update relational database parameters</code> operation supports tag-based
-        /// access control via resource tags applied to the resource identified by relationalDatabaseName.
+        /// The <c>update relational database parameters</c> operation supports tag-based access
+        /// control via resource tags applied to the resource identified by relationalDatabaseName.
         /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -18531,9 +18720,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -18567,15 +18756,15 @@ namespace Amazon.Lightsail
         /// <para>
         /// Parameter updates don't cause outages; therefore, their application is not subject
         /// to the preferred maintenance window. However, there are two ways in which parameter
-        /// updates are applied: <code>dynamic</code> or <code>pending-reboot</code>. Parameters
-        /// marked with a <code>dynamic</code> apply type are applied immediately. Parameters
-        /// marked with a <code>pending-reboot</code> apply type are applied only after the database
-        /// is rebooted using the <code>reboot relational database</code> operation.
+        /// updates are applied: <c>dynamic</c> or <c>pending-reboot</c>. Parameters marked with
+        /// a <c>dynamic</c> apply type are applied immediately. Parameters marked with a <c>pending-reboot</c>
+        /// apply type are applied only after the database is rebooted using the <c>reboot relational
+        /// database</c> operation.
         /// </para>
         ///  
         /// <para>
-        /// The <code>update relational database parameters</code> operation supports tag-based
-        /// access control via resource tags applied to the resource identified by relationalDatabaseName.
+        /// The <c>update relational database parameters</c> operation supports tag-based access
+        /// control via resource tags applied to the resource identified by relationalDatabaseName.
         /// For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
         /// Lightsail Developer Guide</a>.
         /// </para>
@@ -18600,9 +18789,9 @@ namespace Amazon.Lightsail
         /// 
         ///  <note> 
         /// <para>
-        /// Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>)
+        /// Domain and distribution APIs are only available in the N. Virginia (<c>us-east-1</c>)
         /// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
-        /// to <code>us-east-1</code> to create, view, or edit these resources.
+        /// to <c>us-east-1</c> to create, view, or edit these resources.
         /// </para>
         ///  </note>
         /// </exception>
@@ -18639,11 +18828,11 @@ namespace Amazon.Lightsail
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

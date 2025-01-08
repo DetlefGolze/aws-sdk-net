@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -40,7 +41,15 @@ namespace Amazon.CognitoIdentityProvider.Model
     /// Regions in some cases. For more information on the supported Regions, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-email.html">Email
     /// settings for Amazon Cognito user pools</a>.
     /// </para>
-    ///  </note>
+    ///  </note> 
+    /// <para>
+    /// This data type is a request parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserPool.html">CreateUserPool</a>,
+    /// <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserPool.html">UpdateUserPool</a>,
+    /// and <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetUserPoolMfaConfig.html">SetUserPoolMfaConfig</a>,
+    /// and a response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserPool.html">CreateUserPool</a>,
+    /// <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserPool.html">UpdateUserPool</a>,
+    /// and <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_GetUserPoolMfaConfig.html">GetUserPoolMfaConfig</a>.
+    /// </para>
     /// </summary>
     public partial class EmailConfigurationType
     {
@@ -108,9 +117,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// </para>
         ///  
         /// <para>
-        /// The default FROM address is <code>no-reply@verificationemail.com</code>. To customize
-        /// the FROM address, provide the Amazon Resource Name (ARN) of an Amazon SES verified
-        /// email address for the <code>SourceArn</code> parameter.
+        /// The default FROM address is <c>no-reply@verificationemail.com</c>. To customize the
+        /// FROM address, provide the Amazon Resource Name (ARN) of an Amazon SES verified email
+        /// address for the <c>SourceArn</c> parameter.
         /// </para>
         ///  </dd> <dt>DEVELOPER</dt> <dd> 
         /// <para>
@@ -122,7 +131,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         ///  
         /// <para>
         /// If you use this option, provide the ARN of an Amazon SES verified email address for
-        /// the <code>SourceArn</code> parameter.
+        /// the <c>SourceArn</c> parameter.
         /// </para>
         ///  
         /// <para>
@@ -152,7 +161,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// Gets and sets the property From. 
         /// <para>
         /// Either the sender’s email address or the sender’s name with their email address. For
-        /// example, <code>testuser@example.com</code> or <code>Test User &lt;testuser@example.com&gt;</code>.
+        /// example, <c>testuser@example.com</c> or <c>Test User &lt;testuser@example.com&gt;</c>.
         /// This address appears before the body of the email.
         /// </para>
         /// </summary>
@@ -191,26 +200,26 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// Gets and sets the property SourceArn. 
         /// <para>
         /// The ARN of a verified email address or an address from a verified domain in Amazon
-        /// SES. You can set a <code>SourceArn</code> email from a verified domain only with an
-        /// API request. You can set a verified email address, but not an address in a verified
-        /// domain, in the Amazon Cognito console. Amazon Cognito uses the email address that
-        /// you provide in one of the following ways, depending on the value that you specify
-        /// for the <code>EmailSendingAccount</code> parameter:
+        /// SES. You can set a <c>SourceArn</c> email from a verified domain only with an API
+        /// request. You can set a verified email address, but not an address in a verified domain,
+        /// in the Amazon Cognito console. Amazon Cognito uses the email address that you provide
+        /// in one of the following ways, depending on the value that you specify for the <c>EmailSendingAccount</c>
+        /// parameter:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If you specify <code>COGNITO_DEFAULT</code>, Amazon Cognito uses this address as the
-        /// custom FROM address when it emails your users using its built-in email account.
+        /// If you specify <c>COGNITO_DEFAULT</c>, Amazon Cognito uses this address as the custom
+        /// FROM address when it emails your users using its built-in email account.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If you specify <code>DEVELOPER</code>, Amazon Cognito emails your users with this
-        /// address by calling Amazon SES on your behalf.
+        /// If you specify <c>DEVELOPER</c>, Amazon Cognito emails your users with this address
+        /// by calling Amazon SES on your behalf.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// The Region value of the <code>SourceArn</code> parameter must indicate a supported
-        /// Amazon Web Services Region of your user pool. Typically, the Region in the <code>SourceArn</code>
+        /// The Region value of the <c>SourceArn</c> parameter must indicate a supported Amazon
+        /// Web Services Region of your user pool. Typically, the Region in the <c>SourceArn</c>
         /// and the user pool Region are the same. For more information, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-email.html#user-pool-email-developer-region-mapping">Amazon
         /// SES email configuration regions</a> in the <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html">Amazon
         /// Cognito Developer Guide</a>.

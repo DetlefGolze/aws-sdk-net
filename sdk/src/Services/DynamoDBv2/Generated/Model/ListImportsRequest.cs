@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -42,8 +43,8 @@ namespace Amazon.DynamoDBv2.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         ///  An optional string that, if supplied, must be copied from the output of a previous
-        /// call to <code>ListImports</code>. When provided in this manner, the API fetches the
-        /// next page of results. 
+        /// call to <c>ListImports</c>. When provided in this manner, the API fetches the next
+        /// page of results. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=112, Max=1024)]
@@ -62,7 +63,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property PageSize. 
         /// <para>
-        ///  The number of <code>ImportSummary </code>objects returned in a single page. 
+        ///  The number of <c>ImportSummary </c>objects returned in a single page. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=25)]
@@ -84,6 +85,7 @@ namespace Amazon.DynamoDBv2.Model
         ///  The Amazon Resource Name (ARN) associated with the table that was imported to. 
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=1024)]
         public string TableArn
         {
             get { return this._tableArn; }

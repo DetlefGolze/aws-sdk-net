@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchainQuery.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.ManagedBlockchainQuery.Model
     /// </summary>
     public partial class ListTransactionEventsResponse : AmazonWebServiceResponse
     {
-        private List<TransactionEvent> _events = new List<TransactionEvent>();
+        private List<TransactionEvent> _events = AWSConfigs.InitializeCollections ? new List<TransactionEvent>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Events. 
         /// <para>
-        /// An array of <code>TransactionEvent</code> objects. Each object contains details about
-        /// the transaction events.
+        /// An array of <c>TransactionEvent</c> objects. Each object contains details about the
+        /// transaction events.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=250)]
@@ -53,7 +54,7 @@ namespace Amazon.ManagedBlockchainQuery.Model
         // Check to see if Events property is set
         internal bool IsSetEvents()
         {
-            return this._events != null && this._events.Count > 0; 
+            return this._events != null && (this._events.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

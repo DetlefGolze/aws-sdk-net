@@ -26,14 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pipes.Model
 {
     /// <summary>
     /// The parameters for using a self-managed Apache Kafka stream as a source.
+    /// 
+    ///  
+    /// <para>
+    /// A <i>self managed</i> cluster refers to any Apache Kafka cluster not hosted by Amazon
+    /// Web Services. This includes both clusters you manage yourself, as well as those hosted
+    /// by a third-party provider, such as <a href="https://www.confluent.io/">Confluent Cloud</a>,
+    /// <a href="https://www.cloudkarafka.com/">CloudKarafka</a>, or <a href="https://redpanda.com/">Redpanda</a>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-kafka.html">Apache
+    /// Kafka streams as a source</a> in the <i>Amazon EventBridge User Guide</i>.
+    /// </para>
     /// </summary>
     public partial class PipeSourceSelfManagedKafkaParameters
     {
-        private List<string> _additionalBootstrapServers = new List<string>();
+        private List<string> _additionalBootstrapServers = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _batchSize;
         private string _consumerGroupID;
         private SelfManagedKafkaAccessConfigurationCredentials _credentials;
@@ -59,7 +70,7 @@ namespace Amazon.Pipes.Model
         // Check to see if AdditionalBootstrapServers property is set
         internal bool IsSetAdditionalBootstrapServers()
         {
-            return this._additionalBootstrapServers != null && this._additionalBootstrapServers.Count > 0; 
+            return this._additionalBootstrapServers != null && (this._additionalBootstrapServers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -159,7 +170,7 @@ namespace Amazon.Pipes.Model
         /// <summary>
         /// Gets and sets the property StartingPosition. 
         /// <para>
-        /// (Streams only) The position in a stream from which to start reading.
+        /// The position in a stream from which to start reading.
         /// </para>
         /// </summary>
         public SelfManagedKafkaStartPosition StartingPosition

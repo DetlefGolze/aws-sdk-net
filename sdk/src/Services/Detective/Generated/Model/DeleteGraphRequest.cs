@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Detective.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Detective.Model
     /// 
     ///  
     /// <para>
-    ///  <code>DeleteGraph</code> can only be called by the administrator account for a behavior
+    ///  <c>DeleteGraph</c> can only be called by the administrator account for a behavior
     /// graph.
     /// </para>
     /// </summary>

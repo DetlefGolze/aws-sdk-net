@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -102,7 +103,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property MemberType. 
         /// <para>
-        /// The member type (for example, <code>static</code>).
+        /// The member type (for example, <c>static</c>).
         /// </para>
         /// </summary>
         public MembershipType MemberType

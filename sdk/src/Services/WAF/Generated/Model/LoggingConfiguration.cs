@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAF.Model
 {
     /// <summary>
@@ -42,14 +43,14 @@ namespace Amazon.WAF.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// The Amazon Kinesis Data Firehose, <code>RedactedFields</code> information, and the
-    /// web ACL Amazon Resource Name (ARN).
+    /// The Amazon Kinesis Data Firehose, <c>RedactedFields</c> information, and the web ACL
+    /// Amazon Resource Name (ARN).
     /// </para>
     /// </summary>
     public partial class LoggingConfiguration
     {
-        private List<string> _logDestinationConfigs = new List<string>();
-        private List<FieldToMatch> _redactedFields = new List<FieldToMatch>();
+        private List<string> _logDestinationConfigs = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<FieldToMatch> _redactedFields = AWSConfigs.InitializeCollections ? new List<FieldToMatch>() : null;
         private string _resourceArn;
 
         /// <summary>
@@ -68,15 +69,14 @@ namespace Amazon.WAF.Model
         // Check to see if LogDestinationConfigs property is set
         internal bool IsSetLogDestinationConfigs()
         {
-            return this._logDestinationConfigs != null && this._logDestinationConfigs.Count > 0; 
+            return this._logDestinationConfigs != null && (this._logDestinationConfigs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property RedactedFields. 
         /// <para>
         /// The parts of the request that you want redacted from the logs. For example, if you
-        /// redact the cookie field, the cookie field in the firehose will be <code>xxx</code>.
-        /// 
+        /// redact the cookie field, the cookie field in the firehose will be <c>xxx</c>. 
         /// </para>
         /// </summary>
         public List<FieldToMatch> RedactedFields
@@ -88,13 +88,13 @@ namespace Amazon.WAF.Model
         // Check to see if RedactedFields property is set
         internal bool IsSetRedactedFields()
         {
-            return this._redactedFields != null && this._redactedFields.Count > 0; 
+            return this._redactedFields != null && (this._redactedFields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the web ACL that you want to associate with <code>LogDestinationConfigs</code>.
+        /// The Amazon Resource Name (ARN) of the web ACL that you want to associate with <c>LogDestinationConfigs</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1224)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -77,7 +78,7 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property Value. 
         /// <para>
-        /// The value of the asset property (see <code>Variant</code>).
+        /// The value of the asset property (see <c>Variant</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -39,21 +40,22 @@ namespace Amazon.EKS.Model
         private DateTime? _createdAt;
         private int? _diskSize;
         private NodegroupHealth _health;
-        private List<string> _instanceTypes = new List<string>();
-        private Dictionary<string, string> _labels = new Dictionary<string, string>();
+        private List<string> _instanceTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, string> _labels = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private LaunchTemplateSpecification _launchTemplate;
         private DateTime? _modifiedAt;
         private string _nodegroupArn;
         private string _nodegroupName;
+        private NodeRepairConfig _nodeRepairConfig;
         private string _nodeRole;
         private string _releaseVersion;
         private RemoteAccessConfig _remoteAccess;
         private NodegroupResources _resources;
         private NodegroupScalingConfig _scalingConfig;
         private NodegroupStatus _status;
-        private List<string> _subnets = new List<string>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
-        private List<Taint> _taints = new List<Taint>();
+        private List<string> _subnets = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<Taint> _taints = AWSConfigs.InitializeCollections ? new List<Taint>() : null;
         private NodegroupUpdateConfig _updateConfig;
         private string _version;
 
@@ -61,8 +63,8 @@ namespace Amazon.EKS.Model
         /// Gets and sets the property AmiType. 
         /// <para>
         /// If the node group was deployed using a launch template with a custom AMI, then this
-        /// is <code>CUSTOM</code>. For node groups that weren't deployed using a launch template,
-        /// this is the AMI type that was specified in the node group configuration.
+        /// is <c>CUSTOM</c>. For node groups that weren't deployed using a launch template, this
+        /// is the AMI type that was specified in the node group configuration.
         /// </para>
         /// </summary>
         public AMITypes AmiType
@@ -98,7 +100,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ClusterName. 
         /// <para>
-        /// The name of the cluster that the managed node group resides in.
+        /// The name of your cluster.
         /// </para>
         /// </summary>
         public string ClusterName
@@ -116,7 +118,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// The Unix epoch timestamp in seconds for when the managed node group was created.
+        /// The Unix epoch timestamp at object creation.
         /// </para>
         /// </summary>
         public DateTime CreatedAt
@@ -136,7 +138,7 @@ namespace Amazon.EKS.Model
         /// <para>
         /// If the node group wasn't deployed with a launch template, then this is the disk size
         /// in the node group configuration. If the node group was deployed with a launch template,
-        /// then this is <code>null</code>.
+        /// then this is <c>null</c>.
         /// </para>
         /// </summary>
         public int DiskSize
@@ -175,7 +177,7 @@ namespace Amazon.EKS.Model
         /// <para>
         /// If the node group wasn't deployed with a launch template, then this is the instance
         /// type that is associated with the node group. If the node group was deployed with a
-        /// launch template, then this is <code>null</code>.
+        /// launch template, then this is <c>null</c>.
         /// </para>
         /// </summary>
         public List<string> InstanceTypes
@@ -187,18 +189,18 @@ namespace Amazon.EKS.Model
         // Check to see if InstanceTypes property is set
         internal bool IsSetInstanceTypes()
         {
-            return this._instanceTypes != null && this._instanceTypes.Count > 0; 
+            return this._instanceTypes != null && (this._instanceTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Labels. 
         /// <para>
-        /// The Kubernetes labels applied to the nodes in the node group.
+        /// The Kubernetes <c>labels</c> applied to the nodes in the node group.
         /// </para>
         ///  <note> 
         /// <para>
-        /// Only labels that are applied with the Amazon EKS API are shown here. There may be
-        /// other Kubernetes labels applied to the nodes in this group.
+        /// Only <c>labels</c> that are applied with the Amazon EKS API are shown here. There
+        /// may be other Kubernetes <c>labels</c> applied to the nodes in this group.
         /// </para>
         ///  </note>
         /// </summary>
@@ -211,7 +213,7 @@ namespace Amazon.EKS.Model
         // Check to see if Labels property is set
         internal bool IsSetLabels()
         {
-            return this._labels != null && this._labels.Count > 0; 
+            return this._labels != null && (this._labels.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -236,7 +238,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ModifiedAt. 
         /// <para>
-        /// The Unix epoch timestamp in seconds for when the managed node group was last modified.
+        /// The Unix epoch timestamp for the last modification to the object.
         /// </para>
         /// </summary>
         public DateTime ModifiedAt
@@ -288,10 +290,28 @@ namespace Amazon.EKS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property NodeRepairConfig. 
+        /// <para>
+        /// The node auto repair configuration for the node group.
+        /// </para>
+        /// </summary>
+        public NodeRepairConfig NodeRepairConfig
+        {
+            get { return this._nodeRepairConfig; }
+            set { this._nodeRepairConfig = value; }
+        }
+
+        // Check to see if NodeRepairConfig property is set
+        internal bool IsSetNodeRepairConfig()
+        {
+            return this._nodeRepairConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property NodeRole. 
         /// <para>
-        /// The IAM role associated with your node group. The Amazon EKS node <code>kubelet</code>
-        /// daemon makes calls to Amazon Web Services APIs on your behalf. Nodes receive permissions
+        /// The IAM role associated with your node group. The Amazon EKS node <c>kubelet</c> daemon
+        /// makes calls to Amazon Web Services APIs on your behalf. Nodes receive permissions
         /// for these API calls through an IAM instance profile and associated policies.
         /// </para>
         /// </summary>
@@ -333,7 +353,7 @@ namespace Amazon.EKS.Model
         /// <para>
         /// If the node group wasn't deployed with a launch template, then this is the remote
         /// access configuration that is associated with the node group. If the node group was
-        /// deployed with a launch template, then this is <code>null</code>.
+        /// deployed with a launch template, then this is <c>null</c>.
         /// </para>
         /// </summary>
         public RemoteAccessConfig RemoteAccess
@@ -420,16 +440,15 @@ namespace Amazon.EKS.Model
         // Check to see if Subnets property is set
         internal bool IsSetSubnets()
         {
-            return this._subnets != null && this._subnets.Count > 0; 
+            return this._subnets != null && (this._subnets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// The metadata applied to the node group to assist with categorization and organization.
-        /// Each tag consists of a key and an optional value. You define both. Node group tags
-        /// do not propagate to any other resources associated with the node group, such as the
-        /// Amazon EC2 instances or subnets. 
+        /// Metadata that assists with categorization and organization. Each tag consists of a
+        /// key and an optional value. You define both. Tags don't propagate to any other cluster
+        /// or Amazon Web Services resources.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -442,14 +461,14 @@ namespace Amazon.EKS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Taints. 
         /// <para>
         /// The Kubernetes taints to be applied to the nodes in the node group when they are created.
-        /// Effect is one of <code>No_Schedule</code>, <code>Prefer_No_Schedule</code>, or <code>No_Execute</code>.
+        /// Effect is one of <c>No_Schedule</c>, <c>Prefer_No_Schedule</c>, or <c>No_Execute</c>.
         /// Kubernetes taints can be used together with tolerations to control how workloads are
         /// scheduled to your nodes. For more information, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/node-taints-managed-node-groups.html">Node
         /// taints on managed node groups</a>.
@@ -464,7 +483,7 @@ namespace Amazon.EKS.Model
         // Check to see if Taints property is set
         internal bool IsSetTaints()
         {
-            return this._taints != null && this._taints.Count > 0; 
+            return this._taints != null && (this._taints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -37,14 +38,14 @@ namespace Amazon.CloudFormation.Model
     /// Rollback triggers enable you to have CloudFormation monitor the state of your application
     /// during stack creation and updating, and to roll back that operation if the application
     /// breaches the threshold of any of the alarms you've specified. For more information,
-    /// see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-rollback-triggers.html">Monitor
-    /// and Roll Back Stack Operations</a>.
+    /// see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-rollback-triggers.html">Roll
+    /// back your CloudFormation stack on alarm breach with rollback triggers</a>.
     /// </para>
     /// </summary>
     public partial class RollbackConfiguration
     {
         private int? _monitoringTimeInMinutes;
-        private List<RollbackTrigger> _rollbackTriggers = new List<RollbackTrigger>();
+        private List<RollbackTrigger> _rollbackTriggers = AWSConfigs.InitializeCollections ? new List<RollbackTrigger>() : null;
 
         /// <summary>
         /// Gets and sets the property MonitoringTimeInMinutes. 
@@ -129,7 +130,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if RollbackTriggers property is set
         internal bool IsSetRollbackTriggers()
         {
-            return this._rollbackTriggers != null && this._rollbackTriggers.Count > 0; 
+            return this._rollbackTriggers != null && (this._rollbackTriggers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

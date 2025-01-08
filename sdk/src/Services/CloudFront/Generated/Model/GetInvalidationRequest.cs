@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.CloudFront.Model
         /// Instantiates GetInvalidationRequest with the parameterized properties
         /// </summary>
         /// <param name="distributionId">The distribution's ID.</param>
-        /// <param name="id">The identifier for the invalidation request, for example, <code>IDFDVBD632BHDS5</code>.</param>
+        /// <param name="id">The identifier for the invalidation request, for example, <c>IDFDVBD632BHDS5</c>.</param>
         public GetInvalidationRequest(string distributionId, string id)
         {
             _distributionId = distributionId;
@@ -75,7 +76,7 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        /// The identifier for the invalidation request, for example, <code>IDFDVBD632BHDS5</code>.
+        /// The identifier for the invalidation request, for example, <c>IDFDVBD632BHDS5</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

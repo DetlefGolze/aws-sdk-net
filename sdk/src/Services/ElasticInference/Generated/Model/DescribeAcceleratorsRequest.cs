@@ -26,28 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticInference.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeAccelerators operation.
-    /// Describes information over a provided set of accelerators belonging to an account.
-    /// 
-    /// 
-    ///  
+    /// <note> 
     /// <para>
-    ///  February 15, 2023: Starting April 15, 2023, AWS will not onboard new customers to
-    /// Amazon Elastic Inference (EI), and will help current customers migrate their workloads
-    /// to options that offer better price and performance. After April 15, 2023, new customers
-    /// will not be able to launch instances with Amazon EI accelerators in Amazon SageMaker,
-    /// Amazon ECS, or Amazon EC2. However, customers who have used Amazon EI at least once
-    /// during the past 30-day period are considered current customers and will be able to
-    /// continue using the service. 
+    /// Amazon Elastic Inference is no longer available.
+    /// </para>
+    ///  </note> 
+    /// <para>
+    ///  Describes information over a provided set of accelerators belonging to an account.
+    /// 
     /// </para>
     /// </summary>
     public partial class DescribeAcceleratorsRequest : AmazonElasticInferenceRequest
     {
-        private List<string> _acceleratorIds = new List<string>();
-        private List<Filter> _filters = new List<Filter>();
+        private List<string> _acceleratorIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -67,7 +64,7 @@ namespace Amazon.ElasticInference.Model
         // Check to see if AcceleratorIds property is set
         internal bool IsSetAcceleratorIds()
         {
-            return this._acceleratorIds != null && this._acceleratorIds.Count > 0; 
+            return this._acceleratorIds != null && (this._acceleratorIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -88,7 +85,7 @@ namespace Amazon.ElasticInference.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -34,24 +35,24 @@ namespace Amazon.SageMaker.Model
     /// 
     ///  <note> 
     /// <para>
-    /// When <code>StatusEquals</code> and <code>MaxResults</code> are set at the same time,
-    /// the <code>MaxResults</code> number of training jobs are first retrieved ignoring the
-    /// <code>StatusEquals</code> parameter and then they are filtered by the <code>StatusEquals</code>
-    /// parameter, which is returned as a response.
+    /// When <c>StatusEquals</c> and <c>MaxResults</c> are set at the same time, the <c>MaxResults</c>
+    /// number of training jobs are first retrieved ignoring the <c>StatusEquals</c> parameter
+    /// and then they are filtered by the <c>StatusEquals</c> parameter, which is returned
+    /// as a response.
     /// </para>
     ///  
     /// <para>
-    /// For example, if <code>ListTrainingJobs</code> is invoked with the following parameters:
+    /// For example, if <c>ListTrainingJobs</c> is invoked with the following parameters:
     /// </para>
     ///  
     /// <para>
-    ///  <code>{ ... MaxResults: 100, StatusEquals: InProgress ... }</code> 
+    ///  <c>{ ... MaxResults: 100, StatusEquals: InProgress ... }</c> 
     /// </para>
     ///  
     /// <para>
-    /// First, 100 trainings jobs with any status, including those other than <code>InProgress</code>,
+    /// First, 100 trainings jobs with any status, including those other than <c>InProgress</c>,
     /// are selected (sorted according to the creation time, from the most current to the
-    /// oldest). Next, those with a status of <code>InProgress</code> are returned.
+    /// oldest). Next, those with a status of <c>InProgress</c> are returned.
     /// </para>
     ///  
     /// <para>
@@ -59,7 +60,7 @@ namespace Amazon.SageMaker.Model
     /// </para>
     ///  
     /// <para>
-    ///  <code>aws sagemaker list-training-jobs --max-results 100 --status-equals InProgress</code>
+    ///  <c>aws sagemaker list-training-jobs --max-results 100 --status-equals InProgress</c>
     /// 
     /// </para>
     ///  </note>
@@ -76,6 +77,7 @@ namespace Amazon.SageMaker.Model
         private SortBy _sortBy;
         private SortOrder _sortOrder;
         private TrainingJobStatus _statusEquals;
+        private string _trainingPlanArnEquals;
         private WarmPoolResourceStatus _warmPoolStatusEquals;
 
         /// <summary>
@@ -192,9 +194,9 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the result of the previous <code>ListTrainingJobs</code> request was truncated,
-        /// the response includes a <code>NextToken</code>. To retrieve the next set of training
-        /// jobs, use the token in the next request. 
+        /// If the result of the previous <c>ListTrainingJobs</c> request was truncated, the response
+        /// includes a <c>NextToken</c>. To retrieve the next set of training jobs, use the token
+        /// in the next request. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=8192)]
@@ -213,7 +215,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SortBy. 
         /// <para>
-        /// The field to sort results by. The default is <code>CreationTime</code>.
+        /// The field to sort results by. The default is <c>CreationTime</c>.
         /// </para>
         /// </summary>
         public SortBy SortBy
@@ -231,7 +233,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SortOrder. 
         /// <para>
-        /// The sort order for results. The default is <code>Ascending</code>.
+        /// The sort order for results. The default is <c>Ascending</c>.
         /// </para>
         /// </summary>
         public SortOrder SortOrder
@@ -262,6 +264,28 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetStatusEquals()
         {
             return this._statusEquals != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property TrainingPlanArnEquals. 
+        /// <para>
+        /// The Amazon Resource Name (ARN); of the training plan to filter training jobs by. For
+        /// more information about reserving GPU capacity for your SageMaker training jobs using
+        /// Amazon SageMaker Training Plan, see <c> <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingPlan.html">CreateTrainingPlan</a>
+        /// </c>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=50, Max=2048)]
+        public string TrainingPlanArnEquals
+        {
+            get { return this._trainingPlanArnEquals; }
+            set { this._trainingPlanArnEquals = value; }
+        }
+
+        // Check to see if TrainingPlanArnEquals property is set
+        internal bool IsSetTrainingPlanArnEquals()
+        {
+            return this._trainingPlanArnEquals != null;
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecretsManager.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.SecretsManager.Model
     /// </para>
     ///  
     /// <para>
-    ///  <b>Required permissions: </b> <code>secretsmanager:RemoveRegionsFromReplication</code>.
+    ///  <b>Required permissions: </b> <c>secretsmanager:RemoveRegionsFromReplication</c>.
     /// For more information, see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">
     /// IAM policy actions for Secrets Manager</a> and <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
     /// and access control in Secrets Manager</a>. 
@@ -50,7 +51,7 @@ namespace Amazon.SecretsManager.Model
     /// </summary>
     public partial class RemoveRegionsFromReplicationRequest : AmazonSecretsManagerRequest
     {
-        private List<string> _removeReplicaRegions = new List<string>();
+        private List<string> _removeReplicaRegions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _secretId;
 
         /// <summary>
@@ -69,7 +70,7 @@ namespace Amazon.SecretsManager.Model
         // Check to see if RemoveReplicaRegions property is set
         internal bool IsSetRemoveReplicaRegions()
         {
-            return this._removeReplicaRegions != null && this._removeReplicaRegions.Count > 0; 
+            return this._removeReplicaRegions != null && (this._removeReplicaRegions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

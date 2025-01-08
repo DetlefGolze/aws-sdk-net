@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.Ivschat
 {
     /// <summary>
-    /// Implementation for accessing Ivschat
+    /// <para>Implementation for accessing Ivschat</para>
     ///
     /// <b>Introduction</b> 
     /// 
@@ -52,6 +53,12 @@ namespace Amazon.Ivschat
     /// The API is an AWS regional service. For a list of supported regions and Amazon IVS
     /// Chat HTTPS service endpoints, see the Amazon IVS Chat information on the <a href="https://docs.aws.amazon.com/general/latest/gr/ivs.html">Amazon
     /// IVS page</a> in the <i>AWS General Reference</i>. 
+    /// </para>
+    ///  
+    /// <para>
+    /// This document describes HTTP operations. There is a separate <i>messaging</i> API
+    /// for managing Chat resources; see the <a href="https://docs.aws.amazon.com/ivs/latest/chatmsgapireference/chat-messaging-api.html">
+    /// Amazon IVS Chat Messaging API Reference</a>.
     /// </para>
     ///  
     /// <para>
@@ -94,10 +101,11 @@ namespace Amazon.Ivschat
     /// <para>
     /// A <i>tag</i> is a metadata label that you assign to an AWS resource. A tag comprises
     /// a <i>key</i> and a <i>value</i>, both set by you. For example, you might set a tag
-    /// as <code>topic:nature</code> to label a particular video category. See <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-    /// AWS Resources</a> for more information, including restrictions that apply to tags
-    /// and "Tag naming limits and requirements"; Amazon IVS Chat has no service-specific
-    /// constraints beyond what is documented there.
+    /// as <c>topic:nature</c> to label a particular video category. See <a href="https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html">Best
+    /// practices and strategies</a> in <i>Tagging Amazon Web Services Resources and Tag Editor</i>
+    /// for details, including restrictions that apply to tags and "Tag naming limits and
+    /// requirements"; Amazon IVS Chat has no service-specific constraints beyond what is
+    /// documented there.
     /// </para>
     ///  
     /// <para>
@@ -108,7 +116,7 @@ namespace Amazon.Ivschat
     /// </para>
     ///  
     /// <para>
-    /// The Amazon IVS Chat API has these tag-related endpoints: <a>TagResource</a>, <a>UntagResource</a>,
+    /// The Amazon IVS Chat API has these tag-related operations: <a>TagResource</a>, <a>UntagResource</a>,
     /// and <a>ListTagsForResource</a>. The following resource supports tagging: Room.
     /// </para>
     ///  
@@ -138,7 +146,7 @@ namespace Amazon.Ivschat
     ///  </li> </ul> 
     /// <para>
     /// Users (viewers) connect to a room using secure access tokens that you create using
-    /// the <a>CreateChatToken</a> endpoint through the AWS SDK. You call CreateChatToken
+    /// the <a>CreateChatToken</a> operation through the AWS SDK. You call CreateChatToken
     /// for every user’s chat session, passing identity and authorization information about
     /// the user.
     /// </para>
@@ -157,7 +165,7 @@ namespace Amazon.Ivschat
     /// <para>
     /// You generate a signature using valid AWS credentials for an IAM role that has permission
     /// to perform the requested action. For example, DeleteMessage requests must be made
-    /// using an IAM role that has the <code>ivschat:DeleteMessage</code> permission.
+    /// using an IAM role that has the <c>ivschat:DeleteMessage</c> permission.
     /// </para>
     ///  
     /// <para>
@@ -184,116 +192,6 @@ namespace Amazon.Ivschat
     /// a resource unambiguously across all of AWS, such as in IAM policies and API calls.
     /// For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
     /// Resource Names</a> in the <i>AWS General Reference</i>.
-    /// </para>
-    ///  
-    /// <para>
-    ///  <b>Messaging Endpoints</b> 
-    /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    ///  <a>DeleteMessage</a> — Sends an event to a specific room which directs clients to
-    /// delete a specific message; that is, unrender it from view and delete it from the client’s
-    /// chat history. This event’s <code>EventName</code> is <code>aws:DELETE_MESSAGE</code>.
-    /// This replicates the <a href="https://docs.aws.amazon.com/ivs/latest/chatmsgapireference/actions-deletemessage-publish.html">
-    /// DeleteMessage</a> WebSocket operation in the Amazon IVS Chat Messaging API.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>DisconnectUser</a> — Disconnects all connections using a specified user ID from
-    /// a room. This replicates the <a href="https://docs.aws.amazon.com/ivs/latest/chatmsgapireference/actions-disconnectuser-publish.html">
-    /// DisconnectUser</a> WebSocket operation in the Amazon IVS Chat Messaging API.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>SendEvent</a> — Sends an event to a room. Use this within your application’s business
-    /// logic to send events to clients of a room; e.g., to notify clients to change the way
-    /// the chat UI is rendered.
-    /// </para>
-    ///  </li> </ul> 
-    /// <para>
-    ///  <b>Chat Token Endpoint</b> 
-    /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    ///  <a>CreateChatToken</a> — Creates an encrypted token that is used by a chat participant
-    /// to establish an individual WebSocket chat connection to a room. When the token is
-    /// used to connect to chat, the connection is valid for the session duration specified
-    /// in the request. The token becomes invalid at the token-expiration timestamp included
-    /// in the response.
-    /// </para>
-    ///  </li> </ul> 
-    /// <para>
-    ///  <b>Room Endpoints</b> 
-    /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    ///  <a>CreateRoom</a> — Creates a room that allows clients to connect and pass messages.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>DeleteRoom</a> — Deletes the specified room.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>GetRoom</a> — Gets the specified room.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>ListRooms</a> — Gets summary information about all your rooms in the AWS region
-    /// where the API request is processed. 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>UpdateRoom</a> — Updates a room’s configuration.
-    /// </para>
-    ///  </li> </ul> 
-    /// <para>
-    ///  <b>Logging Configuration Endpoints</b> 
-    /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    ///  <a>CreateLoggingConfiguration</a> — Creates a logging configuration that allows clients
-    /// to store and record sent messages.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>DeleteLoggingConfiguration</a> — Deletes the specified logging configuration.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>GetLoggingConfiguration</a> — Gets the specified logging configuration.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>ListLoggingConfigurations</a> — Gets summary information about all your logging
-    /// configurations in the AWS region where the API request is processed.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>UpdateLoggingConfiguration</a> — Updates a specified logging configuration.
-    /// </para>
-    ///  </li> </ul> 
-    /// <para>
-    ///  <b>Tags Endpoints</b> 
-    /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    ///  <a>ListTagsForResource</a> — Gets information about AWS tags for the specified ARN.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>TagResource</a> — Adds or updates tags for the AWS resource with the specified
-    /// ARN.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a>UntagResource</a> — Removes tags from the resource with the specified ARN.
-    /// </para>
-    ///  </li> </ul> 
-    /// <para>
-    /// All the above are HTTP operations. There is a separate <i>messaging</i> API for managing
-    /// Chat resources; see the <a href="https://docs.aws.amazon.com/ivs/latest/chatmsgapireference/chat-messaging-api.html">
-    /// Amazon IVS Chat Messaging API Reference</a>.
     /// </para>
     /// </summary>
     public partial class AmazonIvschatClient : AmazonServiceClient, IAmazonIvschat
@@ -544,12 +442,12 @@ namespace Amazon.Ivschat
         /// 
         ///  
         /// <para>
-        /// Use the <code>capabilities</code> field to permit an end user to send messages or
-        /// moderate a room.
+        /// Use the <c>capabilities</c> field to permit an end user to send messages or moderate
+        /// a room.
         /// </para>
         ///  
         /// <para>
-        /// The <code>attributes</code> field securely attaches structured data to the chat session;
+        /// The <c>attributes</c> field securely attaches structured data to the chat session;
         /// the data is included within each message sent by the end user and received by other
         /// participants in the room. Common use cases for attributes include passing end-user
         /// profile data like an icon, display name, colors, badges, and other display features.
@@ -758,8 +656,7 @@ namespace Amazon.Ivschat
         /// <summary>
         /// Sends an event to a specific room which directs clients to delete a specific message;
         /// that is, unrender it from view and delete it from the client’s chat history. This
-        /// event’s <code>EventName</code> is <code>aws:DELETE_MESSAGE</code>. This replicates
-        /// the <a href="https://docs.aws.amazon.com/ivs/latest/chatmsgapireference/actions-deletemessage-publish.html">
+        /// event’s <c>EventName</c> is <c>aws:DELETE_MESSAGE</c>. This replicates the <a href="https://docs.aws.amazon.com/ivs/latest/chatmsgapireference/actions-deletemessage-publish.html">
         /// DeleteMessage</a> WebSocket operation in the Amazon IVS Chat Messaging API.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteMessage service method.</param>
@@ -1034,7 +931,7 @@ namespace Amazon.Ivschat
 
         /// <summary>
         /// Gets summary information about all your rooms in the AWS region where the API request
-        /// is processed. Results are sorted in descending order of <code>updateTime</code>.
+        /// is processed. Results are sorted in descending order of <c>updateTime</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListRooms service method.</param>
         /// <param name="cancellationToken">
@@ -1347,11 +1244,11 @@ namespace Amazon.Ivschat
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

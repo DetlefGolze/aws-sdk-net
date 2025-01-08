@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeCommit.Model
 {
     /// <summary>
     /// The divergence between the tips of the provided commit specifiers is too great to
     /// determine whether there might be any merge conflicts. Locally compare the specifiers
-    /// using <code>git diff</code> or a diff tool.
+    /// using <c>git diff</c> or a diff tool.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

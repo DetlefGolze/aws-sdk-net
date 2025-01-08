@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Code. 
         /// <para>
-        /// The code identifying the operation, for example, <code>enable-volume-io</code>.
+        /// The code identifying the operation, for example, <c>enable-volume-io</c>.
         /// </para>
         /// </summary>
         public string Code

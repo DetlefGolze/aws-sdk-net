@@ -43,6 +43,14 @@ namespace Amazon.PaymentCryptography
         /// </summary>
         public static readonly KeyAlgorithm AES_256 = new KeyAlgorithm("AES_256");
         /// <summary>
+        /// Constant ECC_NIST_P256 for KeyAlgorithm
+        /// </summary>
+        public static readonly KeyAlgorithm ECC_NIST_P256 = new KeyAlgorithm("ECC_NIST_P256");
+        /// <summary>
+        /// Constant ECC_NIST_P384 for KeyAlgorithm
+        /// </summary>
+        public static readonly KeyAlgorithm ECC_NIST_P384 = new KeyAlgorithm("ECC_NIST_P384");
+        /// <summary>
         /// Constant RSA_2048 for KeyAlgorithm
         /// </summary>
         public static readonly KeyAlgorithm RSA_2048 = new KeyAlgorithm("RSA_2048");
@@ -207,11 +215,69 @@ namespace Amazon.PaymentCryptography
 
 
     /// <summary>
+    /// Constants used for properties of type KeyExportability.
+    /// </summary>
+    public class KeyExportability : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant EXPORTABLE for KeyExportability
+        /// </summary>
+        public static readonly KeyExportability EXPORTABLE = new KeyExportability("EXPORTABLE");
+        /// <summary>
+        /// Constant NON_EXPORTABLE for KeyExportability
+        /// </summary>
+        public static readonly KeyExportability NON_EXPORTABLE = new KeyExportability("NON_EXPORTABLE");
+        /// <summary>
+        /// Constant SENSITIVE for KeyExportability
+        /// </summary>
+        public static readonly KeyExportability SENSITIVE = new KeyExportability("SENSITIVE");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public KeyExportability(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static KeyExportability FindValue(string value)
+        {
+            return FindValue<KeyExportability>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator KeyExportability(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type KeyMaterialType.
     /// </summary>
     public class KeyMaterialType : ConstantClass
     {
 
+        /// <summary>
+        /// Constant KEY_CRYPTOGRAM for KeyMaterialType
+        /// </summary>
+        public static readonly KeyMaterialType KEY_CRYPTOGRAM = new KeyMaterialType("KEY_CRYPTOGRAM");
         /// <summary>
         /// Constant ROOT_PUBLIC_KEY_CERTIFICATE for KeyMaterialType
         /// </summary>
@@ -435,6 +501,10 @@ namespace Amazon.PaymentCryptography
         /// </summary>
         public static readonly KeyUsage TR31_K3_ASYMMETRIC_KEY_FOR_KEY_AGREEMENT = new KeyUsage("TR31_K3_ASYMMETRIC_KEY_FOR_KEY_AGREEMENT");
         /// <summary>
+        /// Constant TR31_M1_ISO_9797_1_MAC_KEY for KeyUsage
+        /// </summary>
+        public static readonly KeyUsage TR31_M1_ISO_9797_1_MAC_KEY = new KeyUsage("TR31_M1_ISO_9797_1_MAC_KEY");
+        /// <summary>
         /// Constant TR31_M3_ISO_9797_3_MAC_KEY for KeyUsage
         /// </summary>
         public static readonly KeyUsage TR31_M3_ISO_9797_3_MAC_KEY = new KeyUsage("TR31_M3_ISO_9797_3_MAC_KEY");
@@ -596,6 +666,56 @@ namespace Amazon.PaymentCryptography
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator WrappedKeyMaterialFormat(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type WrappingKeySpec.
+    /// </summary>
+    public class WrappingKeySpec : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant RSA_OAEP_SHA_256 for WrappingKeySpec
+        /// </summary>
+        public static readonly WrappingKeySpec RSA_OAEP_SHA_256 = new WrappingKeySpec("RSA_OAEP_SHA_256");
+        /// <summary>
+        /// Constant RSA_OAEP_SHA_512 for WrappingKeySpec
+        /// </summary>
+        public static readonly WrappingKeySpec RSA_OAEP_SHA_512 = new WrappingKeySpec("RSA_OAEP_SHA_512");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public WrappingKeySpec(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static WrappingKeySpec FindValue(string value)
+        {
+            return FindValue<WrappingKeySpec>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator WrappingKeySpec(string value)
         {
             return FindValue(value);
         }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.SimpleNotificationService.Model
     public partial class ListSubscriptionsByTopicResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Subscription> _subscriptions = new List<Subscription>();
+        private List<Subscription> _subscriptions = AWSConfigs.InitializeCollections ? new List<Subscription>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Token to pass along to the next <code>ListSubscriptionsByTopic</code> request. This
-        /// element is returned if there are more subscriptions to retrieve.
+        /// Token to pass along to the next <c>ListSubscriptionsByTopic</c> request. This element
+        /// is returned if there are more subscriptions to retrieve.
         /// </para>
         /// </summary>
         public string NextToken
@@ -70,7 +71,7 @@ namespace Amazon.SimpleNotificationService.Model
         // Check to see if Subscriptions property is set
         internal bool IsSetSubscriptions()
         {
-            return this._subscriptions != null && this._subscriptions.Count > 0; 
+            return this._subscriptions != null && (this._subscriptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

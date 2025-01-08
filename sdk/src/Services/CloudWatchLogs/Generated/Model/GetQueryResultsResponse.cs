@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -34,7 +35,8 @@ namespace Amazon.CloudWatchLogs.Model
     public partial class GetQueryResultsResponse : AmazonWebServiceResponse
     {
         private string _encryptionKey;
-        private List<List<ResultField>> _results = new List<List<ResultField>>();
+        private QueryLanguage _queryLanguage;
+        private List<List<ResultField>> _results = AWSConfigs.InitializeCollections ? new List<List<ResultField>>() : null;
         private QueryStatistics _statistics;
         private QueryStatus _status;
 
@@ -61,14 +63,34 @@ namespace Amazon.CloudWatchLogs.Model
         }
 
         /// <summary>
+        /// Gets and sets the property QueryLanguage. 
+        /// <para>
+        /// The query language used for this query. For more information about the query languages
+        /// that CloudWatch Logs supports, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_AnalyzeLogData_Languages.html">Supported
+        /// query languages</a>.
+        /// </para>
+        /// </summary>
+        public QueryLanguage QueryLanguage
+        {
+            get { return this._queryLanguage; }
+            set { this._queryLanguage = value; }
+        }
+
+        // Check to see if QueryLanguage property is set
+        internal bool IsSetQueryLanguage()
+        {
+            return this._queryLanguage != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Results. 
         /// <para>
         /// The log events that matched the query criteria during the most recent time it ran.
         /// </para>
         ///  
         /// <para>
-        /// The <code>results</code> value is an array of arrays. Each log event is one object
-        /// in the top-level array. Each of these log event objects is an array of <code>field</code>/<code>value</code>
+        /// The <c>results</c> value is an array of arrays. Each log event is one object in the
+        /// top-level array. Each of these log event objects is an array of <c>field</c>/<c>value</c>
         /// pairs.
         /// </para>
         /// </summary>
@@ -81,7 +103,7 @@ namespace Amazon.CloudWatchLogs.Model
         // Check to see if Results property is set
         internal bool IsSetResults()
         {
-            return this._results != null && this._results.Count > 0; 
+            return this._results != null && (this._results.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -107,9 +129,9 @@ namespace Amazon.CloudWatchLogs.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the most recent running of the query. Possible values are <code>Cancelled</code>,
-        /// <code>Complete</code>, <code>Failed</code>, <code>Running</code>, <code>Scheduled</code>,
-        /// <code>Timeout</code>, and <code>Unknown</code>.
+        /// The status of the most recent running of the query. Possible values are <c>Cancelled</c>,
+        /// <c>Complete</c>, <c>Failed</c>, <c>Running</c>, <c>Scheduled</c>, <c>Timeout</c>,
+        /// and <c>Unknown</c>.
         /// </para>
         ///  
         /// <para>

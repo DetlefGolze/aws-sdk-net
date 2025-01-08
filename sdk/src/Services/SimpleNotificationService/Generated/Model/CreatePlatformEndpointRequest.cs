@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
     /// Container for the parameters to the CreatePlatformEndpoint operation.
     /// Creates an endpoint for a device and mobile app on one of the supported push notification
-    /// services, such as GCM (Firebase Cloud Messaging) and APNS. <code>CreatePlatformEndpoint</code>
-    /// requires the <code>PlatformApplicationArn</code> that is returned from <code>CreatePlatformApplication</code>.
-    /// You can use the returned <code>EndpointArn</code> to send a message to a mobile app
-    /// or by the <code>Subscribe</code> action for subscription to a topic. The <code>CreatePlatformEndpoint</code>
+    /// services, such as GCM (Firebase Cloud Messaging) and APNS. <c>CreatePlatformEndpoint</c>
+    /// requires the <c>PlatformApplicationArn</c> that is returned from <c>CreatePlatformApplication</c>.
+    /// You can use the returned <c>EndpointArn</c> to send a message to a mobile app or by
+    /// the <c>Subscribe</c> action for subscription to a topic. The <c>CreatePlatformEndpoint</c>
     /// action is idempotent, so if the requester already owns an endpoint with the same device
     /// token and attributes, that endpoint's ARN is returned without creating a new endpoint.
     /// For more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
@@ -42,15 +43,15 @@ namespace Amazon.SimpleNotificationService.Model
     /// 
     ///  
     /// <para>
-    /// When using <code>CreatePlatformEndpoint</code> with Baidu, two attributes must be
-    /// provided: ChannelId and UserId. The token field must also contain the ChannelId. For
-    /// more information, see <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePushBaiduEndpoint.html">Creating
+    /// When using <c>CreatePlatformEndpoint</c> with Baidu, two attributes must be provided:
+    /// ChannelId and UserId. The token field must also contain the ChannelId. For more information,
+    /// see <a href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePushBaiduEndpoint.html">Creating
     /// an Amazon SNS Endpoint for Baidu</a>. 
     /// </para>
     /// </summary>
     public partial class CreatePlatformEndpointRequest : AmazonSimpleNotificationServiceRequest
     {
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _customUserData;
         private string _platformApplicationArn;
         private string _token;
@@ -58,7 +59,8 @@ namespace Amazon.SimpleNotificationService.Model
         /// <summary>
         /// Gets and sets the property Attributes. 
         /// <para>
-        /// For a list of attributes, see <a href="https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html">SetEndpointAttributes</a>.
+        /// For a list of attributes, see <a href="https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html">
+        /// <c>SetEndpointAttributes</c> </a>.
         /// </para>
         /// </summary>
         public Dictionary<string, string> Attributes
@@ -70,7 +72,7 @@ namespace Amazon.SimpleNotificationService.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -95,8 +97,8 @@ namespace Amazon.SimpleNotificationService.Model
         /// <summary>
         /// Gets and sets the property PlatformApplicationArn. 
         /// <para>
-        /// PlatformApplicationArn returned from CreatePlatformApplication is used to create a
-        /// an endpoint.
+        ///  <c>PlatformApplicationArn</c> returned from CreatePlatformApplication is used to
+        /// create a an endpoint.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

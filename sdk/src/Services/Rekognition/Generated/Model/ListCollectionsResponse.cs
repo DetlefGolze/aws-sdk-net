@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -33,8 +34,8 @@ namespace Amazon.Rekognition.Model
     /// </summary>
     public partial class ListCollectionsResponse : AmazonWebServiceResponse
     {
-        private List<string> _collectionIds = new List<string>();
-        private List<string> _faceModelVersions = new List<string>();
+        private List<string> _collectionIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _faceModelVersions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,15 +53,15 @@ namespace Amazon.Rekognition.Model
         // Check to see if CollectionIds property is set
         internal bool IsSetCollectionIds()
         {
-            return this._collectionIds != null && this._collectionIds.Count > 0; 
+            return this._collectionIds != null && (this._collectionIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property FaceModelVersions. 
         /// <para>
         /// Version numbers of the face detection models associated with the collections in the
-        /// array <code>CollectionIds</code>. For example, the value of <code>FaceModelVersions[2]</code>
-        /// is the version number for the face detection model used by the collection in <code>CollectionId[2]</code>.
+        /// array <c>CollectionIds</c>. For example, the value of <c>FaceModelVersions[2]</c>
+        /// is the version number for the face detection model used by the collection in <c>CollectionId[2]</c>.
         /// </para>
         /// </summary>
         public List<string> FaceModelVersions
@@ -72,14 +73,14 @@ namespace Amazon.Rekognition.Model
         // Check to see if FaceModelVersions property is set
         internal bool IsSetFaceModelVersions()
         {
-            return this._faceModelVersions != null && this._faceModelVersions.Count > 0; 
+            return this._faceModelVersions != null && (this._faceModelVersions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the result is truncated, the response provides a <code>NextToken</code> that you
-        /// can use in the subsequent request to fetch the next set of collection IDs.
+        /// If the result is truncated, the response provides a <c>NextToken</c> that you can
+        /// use in the subsequent request to fetch the next set of collection IDs.
         /// </para>
         /// </summary>
         [AWSProperty(Max=255)]

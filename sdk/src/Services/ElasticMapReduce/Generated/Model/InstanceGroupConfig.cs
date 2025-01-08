@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.ElasticMapReduce.Model
     {
         private AutoScalingPolicy _autoScalingPolicy;
         private string _bidPrice;
-        private List<Configuration> _configurations = new List<Configuration>();
+        private List<Configuration> _configurations = AWSConfigs.InitializeCollections ? new List<Configuration>() : null;
         private string _customAmiId;
         private EbsConfiguration _ebsConfiguration;
         private int? _instanceCount;
@@ -87,8 +88,8 @@ namespace Amazon.ElasticMapReduce.Model
         /// Gets and sets the property BidPrice. 
         /// <para>
         /// If specified, indicates that the instance group uses Spot Instances. This is the maximum
-        /// price you are willing to pay for Spot Instances. Specify <code>OnDemandPrice</code>
-        /// to set the amount equal to the On-Demand price, or specify an amount in USD.
+        /// price you are willing to pay for Spot Instances. Specify <c>OnDemandPrice</c> to set
+        /// the amount equal to the On-Demand price, or specify an amount in USD.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=256)]
@@ -124,7 +125,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if Configurations property is set
         internal bool IsSetConfigurations()
         {
-            return this._configurations != null && this._configurations.Count > 0; 
+            return this._configurations != null && (this._configurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

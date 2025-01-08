@@ -26,17 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
-    /// Contains summary information about a reference. <code>ReferenceSummary</code> contains
-    /// only one non null field between the URL and attachment based on the reference type.
+    /// Contains summary information about a reference. <c>ReferenceSummary</c> contains only
+    /// one non null field between the URL and attachment based on the reference type.
     /// </summary>
     public partial class ReferenceSummary
     {
         private AttachmentReference _attachment;
         private DateReference _date;
         private EmailReference _email;
+        private EmailMessageReference _emailMessage;
         private NumberReference _number;
         private StringReference _string;
         private UrlReference _url;
@@ -44,7 +46,7 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property Attachment. 
         /// <para>
-        /// Information about the reference when the <code>referenceType</code> is <code>ATTACHMENT</code>.
+        /// Information about the reference when the <c>referenceType</c> is <c>ATTACHMENT</c>.
         /// Otherwise, null.
         /// </para>
         /// </summary>
@@ -63,8 +65,8 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property Date. 
         /// <para>
-        /// Information about a reference when the <code>referenceType</code> is <code>DATE</code>.
-        /// Otherwise, null.
+        /// Information about a reference when the <c>referenceType</c> is <c>DATE</c>. Otherwise,
+        /// null.
         /// </para>
         /// </summary>
         public DateReference Date
@@ -82,8 +84,8 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property Email. 
         /// <para>
-        /// Information about a reference when the <code>referenceType</code> is <code>EMAIL</code>.
-        /// Otherwise, null.
+        /// Information about a reference when the <c>referenceType</c> is <c>EMAIL</c>. Otherwise,
+        /// null.
         /// </para>
         /// </summary>
         public EmailReference Email
@@ -99,10 +101,29 @@ namespace Amazon.Connect.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EmailMessage. 
+        /// <para>
+        /// Information about the reference when the referenceType is <c>EMAIL_MESSAGE</c>. Otherwise,
+        /// null.
+        /// </para>
+        /// </summary>
+        public EmailMessageReference EmailMessage
+        {
+            get { return this._emailMessage; }
+            set { this._emailMessage = value; }
+        }
+
+        // Check to see if EmailMessage property is set
+        internal bool IsSetEmailMessage()
+        {
+            return this._emailMessage != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Number. 
         /// <para>
-        /// Information about a reference when the <code>referenceType</code> is <code>NUMBER</code>.
-        /// Otherwise, null.
+        /// Information about a reference when the <c>referenceType</c> is <c>NUMBER</c>. Otherwise,
+        /// null.
         /// </para>
         /// </summary>
         public NumberReference Number
@@ -120,8 +141,8 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property String. 
         /// <para>
-        /// Information about a reference when the <code>referenceType</code> is <code>STRING</code>.
-        /// Otherwise, null.
+        /// Information about a reference when the <c>referenceType</c> is <c>STRING</c>. Otherwise,
+        /// null.
         /// </para>
         /// </summary>
         public StringReference String
@@ -139,8 +160,8 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property Url. 
         /// <para>
-        /// Information about the reference when the <code>referenceType</code> is <code>URL</code>.
-        /// Otherwise, null.
+        /// Information about the reference when the <c>referenceType</c> is <c>URL</c>. Otherwise,
+        /// null.
         /// </para>
         /// </summary>
         public UrlReference Url

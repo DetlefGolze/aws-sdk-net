@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Backup.Model
     /// </summary>
     public partial class GetBackupPlanResponse : AmazonWebServiceResponse
     {
-        private List<AdvancedBackupSetting> _advancedBackupSettings = new List<AdvancedBackupSetting>();
+        private List<AdvancedBackupSetting> _advancedBackupSettings = AWSConfigs.InitializeCollections ? new List<AdvancedBackupSetting>() : null;
         private BackupPlan _backupPlan;
         private string _backupPlanArn;
         private string _backupPlanId;
@@ -46,8 +47,8 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property AdvancedBackupSettings. 
         /// <para>
-        /// Contains a list of <code>BackupOptions</code> for each resource type. The list is
-        /// populated only if the advanced option is set for the backup plan.
+        /// Contains a list of <c>BackupOptions</c> for each resource type. The list is populated
+        /// only if the advanced option is set for the backup plan.
         /// </para>
         /// </summary>
         public List<AdvancedBackupSetting> AdvancedBackupSettings
@@ -59,14 +60,14 @@ namespace Amazon.Backup.Model
         // Check to see if AdvancedBackupSettings property is set
         internal bool IsSetAdvancedBackupSettings()
         {
-            return this._advancedBackupSettings != null && this._advancedBackupSettings.Count > 0; 
+            return this._advancedBackupSettings != null && (this._advancedBackupSettings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property BackupPlan. 
         /// <para>
-        /// Specifies the body of a backup plan. Includes a <code>BackupPlanName</code> and one
-        /// or more sets of <code>Rules</code>.
+        /// Specifies the body of a backup plan. Includes a <c>BackupPlanName</c> and one or more
+        /// sets of <c>Rules</c>.
         /// </para>
         /// </summary>
         public BackupPlan BackupPlan
@@ -85,7 +86,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property BackupPlanArn. 
         /// <para>
         /// An Amazon Resource Name (ARN) that uniquely identifies a backup plan; for example,
-        /// <code>arn:aws:backup:us-east-1:123456789012:plan:8F81F553-3A74-4A3F-B93D-B3360DC80C50</code>.
+        /// <c>arn:aws:backup:us-east-1:123456789012:plan:8F81F553-3A74-4A3F-B93D-B3360DC80C50</c>.
         /// </para>
         /// </summary>
         public string BackupPlanArn
@@ -122,9 +123,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property CreationDate. 
         /// <para>
         /// The date and time that a backup plan is created, in Unix format and Coordinated Universal
-        /// Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For
-        /// example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087
-        /// AM.
+        /// Time (UTC). The value of <c>CreationDate</c> is accurate to milliseconds. For example,
+        /// the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.
         /// </para>
         /// </summary>
         public DateTime CreationDate
@@ -143,7 +143,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property CreatorRequestId. 
         /// <para>
         /// A unique string that identifies the request and allows failed requests to be retried
-        /// without the risk of running the operation twice.
+        /// without the risk of running the operation twice. 
         /// </para>
         /// </summary>
         public string CreatorRequestId
@@ -162,9 +162,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property DeletionDate. 
         /// <para>
         /// The date and time that a backup plan is deleted, in Unix format and Coordinated Universal
-        /// Time (UTC). The value of <code>DeletionDate</code> is accurate to milliseconds. For
-        /// example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087
-        /// AM.
+        /// Time (UTC). The value of <c>DeletionDate</c> is accurate to milliseconds. For example,
+        /// the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.
         /// </para>
         /// </summary>
         public DateTime DeletionDate
@@ -182,10 +181,10 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property LastExecutionDate. 
         /// <para>
-        /// The last time a job to back up resources was run with this backup plan. A date and
-        /// time, in Unix format and Coordinated Universal Time (UTC). The value of <code>LastExecutionDate</code>
-        /// is accurate to milliseconds. For example, the value 1516925490.087 represents Friday,
-        /// January 26, 2018 12:11:30.087 AM.
+        /// The last time this backup plan was run. A date and time, in Unix format and Coordinated
+        /// Universal Time (UTC). The value of <c>LastExecutionDate</c> is accurate to milliseconds.
+        /// For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087
+        /// AM.
         /// </para>
         /// </summary>
         public DateTime LastExecutionDate

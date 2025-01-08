@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.DynamoDBv2.Model
     /// 
     ///  <important> 
     /// <para>
-    /// This operation only applies to <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V2.html">Version
-    /// 2019.11.21 (Current)</a> of global tables. 
+    /// For global tables, this operation only applies to global tables using Version 2019.11.21
+    /// (Current version). 
     /// </para>
     ///  </important> 
     /// <para>
@@ -53,29 +54,31 @@ namespace Amazon.DynamoDBv2.Model
     ///  </li> <li> 
     /// <para>
     /// Create a new global secondary index on the table. After the index begins backfilling,
-    /// you can use <code>UpdateTable</code> to perform other operations.
+    /// you can use <c>UpdateTable</c> to perform other operations.
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    ///  <code>UpdateTable</code> is an asynchronous operation; while it is executing, the
-    /// table status changes from <code>ACTIVE</code> to <code>UPDATING</code>. While it is
-    /// <code>UPDATING</code>, you cannot issue another <code>UpdateTable</code> request.
-    /// When the table returns to the <code>ACTIVE</code> state, the <code>UpdateTable</code>
-    /// operation is complete.
+    ///  <c>UpdateTable</c> is an asynchronous operation; while it's executing, the table
+    /// status changes from <c>ACTIVE</c> to <c>UPDATING</c>. While it's <c>UPDATING</c>,
+    /// you can't issue another <c>UpdateTable</c> request. When the table returns to the
+    /// <c>ACTIVE</c> state, the <c>UpdateTable</c> operation is complete.
     /// </para>
     /// </summary>
     public partial class UpdateTableRequest : AmazonDynamoDBRequest
     {
-        private List<AttributeDefinition> _attributeDefinitions = new List<AttributeDefinition>();
+        private List<AttributeDefinition> _attributeDefinitions = AWSConfigs.InitializeCollections ? new List<AttributeDefinition>() : null;
         private BillingMode _billingMode;
         private bool? _deletionProtectionEnabled;
-        private List<GlobalSecondaryIndexUpdate> _globalSecondaryIndexUpdates = new List<GlobalSecondaryIndexUpdate>();
+        private List<GlobalSecondaryIndexUpdate> _globalSecondaryIndexUpdates = AWSConfigs.InitializeCollections ? new List<GlobalSecondaryIndexUpdate>() : null;
+        private MultiRegionConsistency _multiRegionConsistency;
+        private OnDemandThroughput _onDemandThroughput;
         private ProvisionedThroughput _provisionedThroughput;
-        private List<ReplicationGroupUpdate> _replicaUpdates = new List<ReplicationGroupUpdate>();
+        private List<ReplicationGroupUpdate> _replicaUpdates = AWSConfigs.InitializeCollections ? new List<ReplicationGroupUpdate>() : null;
         private SSESpecification _sseSpecification;
         private StreamSpecification _streamSpecification;
         private TableClass _tableClass;
         private string _tableName;
+        private WarmThroughput _warmThroughput;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -85,7 +88,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Instantiates UpdateTableRequest with the parameterized properties
         /// </summary>
-        /// <param name="tableName">The name of the table to be updated.</param>
+        /// <param name="tableName">The name of the table to be updated. You can also provide the Amazon Resource Name (ARN) of the table in this parameter.</param>
         /// <param name="provisionedThroughput">The new provisioned throughput settings for the specified table or index.</param>
         public UpdateTableRequest(string tableName, ProvisionedThroughput provisionedThroughput)
         {
@@ -97,7 +100,7 @@ namespace Amazon.DynamoDBv2.Model
         /// Gets and sets the property AttributeDefinitions. 
         /// <para>
         /// An array of attributes that describe the key schema for the table and indexes. If
-        /// you are adding a new global secondary index to the table, <code>AttributeDefinitions</code>
+        /// you are adding a new global secondary index to the table, <c>AttributeDefinitions</c>
         /// must include the key element(s) of the new index.
         /// </para>
         /// </summary>
@@ -110,7 +113,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if AttributeDefinitions property is set
         internal bool IsSetAttributeDefinitions()
         {
-            return this._attributeDefinitions != null && this._attributeDefinitions.Count > 0; 
+            return this._attributeDefinitions != null && (this._attributeDefinitions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -124,16 +127,15 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PROVISIONED</code> - We recommend using <code>PROVISIONED</code> for predictable
-        /// workloads. <code>PROVISIONED</code> sets the billing mode to <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html#HowItWorks.ProvisionedThroughput.Manual">Provisioned
-        /// Mode</a>.
+        ///  <c>PROVISIONED</c> - We recommend using <c>PROVISIONED</c> for predictable workloads.
+        /// <c>PROVISIONED</c> sets the billing mode to <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/provisioned-capacity-mode.html">Provisioned
+        /// capacity mode</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PAY_PER_REQUEST</code> - We recommend using <code>PAY_PER_REQUEST</code> for
-        /// unpredictable workloads. <code>PAY_PER_REQUEST</code> sets the billing mode to <a
-        /// href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html#HowItWorks.OnDemand">On-Demand
-        /// Mode</a>. 
+        ///  <c>PAY_PER_REQUEST</c> - We recommend using <c>PAY_PER_REQUEST</c> for unpredictable
+        /// workloads. <c>PAY_PER_REQUEST</c> sets the billing mode to <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/on-demand-capacity-mode.html">On-demand
+        /// capacity mode</a>. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -176,21 +178,20 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Create</code> - add a new global secondary index to the table.
+        ///  <c>Create</c> - add a new global secondary index to the table.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Update</code> - modify the provisioned throughput settings of an existing global
+        ///  <c>Update</c> - modify the provisioned throughput settings of an existing global
         /// secondary index.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Delete</code> - remove a global secondary index from the table.
+        ///  <c>Delete</c> - remove a global secondary index from the table.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You can create or delete only one global secondary index per <code>UpdateTable</code>
-        /// operation.
+        /// You can create or delete only one global secondary index per <c>UpdateTable</c> operation.
         /// </para>
         ///  
         /// <para>
@@ -207,7 +208,73 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if GlobalSecondaryIndexUpdates property is set
         internal bool IsSetGlobalSecondaryIndexUpdates()
         {
-            return this._globalSecondaryIndexUpdates != null && this._globalSecondaryIndexUpdates.Count > 0; 
+            return this._globalSecondaryIndexUpdates != null && (this._globalSecondaryIndexUpdates.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property MultiRegionConsistency. 
+        /// <para>
+        /// Specifies the consistency mode for a new global table. This parameter is only valid
+        /// when you create a global table by specifying one or more <a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ReplicationGroupUpdate.html#DDB-Type-ReplicationGroupUpdate-Create">Create</a>
+        /// actions in the <a href="https://docs.aws.amazon.com/https:/docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateTable.html#DDB-UpdateTable-request-ReplicaUpdates">ReplicaUpdates</a>
+        /// action list.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can specify one of the following consistency modes:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>EVENTUAL</c>: Configures a new global table for multi-Region eventual consistency.
+        /// This is the default consistency mode for global tables.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>STRONG</c>: Configures a new global table for multi-Region strong consistency
+        /// (preview).
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// Multi-Region strong consistency (MRSC) is a new DynamoDB global tables capability
+        /// currently available in preview mode. For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/PreviewFeatures.html#multi-region-strong-consistency-gt">Global
+        /// tables multi-Region strong consistency</a>.
+        /// </para>
+        ///  </note> </li> </ul> 
+        /// <para>
+        /// If you don't specify this parameter, the global table consistency mode defaults to
+        /// <c>EVENTUAL</c>.
+        /// </para>
+        /// </summary>
+        public MultiRegionConsistency MultiRegionConsistency
+        {
+            get { return this._multiRegionConsistency; }
+            set { this._multiRegionConsistency = value; }
+        }
+
+        // Check to see if MultiRegionConsistency property is set
+        internal bool IsSetMultiRegionConsistency()
+        {
+            return this._multiRegionConsistency != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OnDemandThroughput. 
+        /// <para>
+        /// Updates the maximum number of read and write units for the specified table in on-demand
+        /// capacity mode. If you use this parameter, you must specify <c>MaxReadRequestUnits</c>,
+        /// <c>MaxWriteRequestUnits</c>, or both.
+        /// </para>
+        /// </summary>
+        public OnDemandThroughput OnDemandThroughput
+        {
+            get { return this._onDemandThroughput; }
+            set { this._onDemandThroughput = value; }
+        }
+
+        // Check to see if OnDemandThroughput property is set
+        internal bool IsSetOnDemandThroughput()
+        {
+            return this._onDemandThroughput != null;
         }
 
         /// <summary>
@@ -235,8 +302,8 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// This property only applies to <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V2.html">Version
-        /// 2019.11.21 (Current)</a> of global tables. 
+        /// For global tables, this property only applies to global tables using Version 2019.11.21
+        /// (Current version). 
         /// </para>
         ///  </note>
         /// </summary>
@@ -250,7 +317,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if ReplicaUpdates property is set
         internal bool IsSetReplicaUpdates()
         {
-            return this._replicaUpdates != null && this._replicaUpdates.Count > 0; 
+            return this._replicaUpdates != null && (this._replicaUpdates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -278,9 +345,9 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// You receive a <code>ResourceInUseException</code> if you try to enable a stream on
-        /// a table that already has a stream, or if you try to disable a stream on a table that
-        /// doesn't have a stream.
+        /// You receive a <c>ValidationException</c> if you try to enable a stream on a table
+        /// that already has a stream, or if you try to disable a stream on a table that doesn't
+        /// have a stream.
         /// </para>
         ///  </note>
         /// </summary>
@@ -299,8 +366,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property TableClass. 
         /// <para>
-        /// The table class of the table to be updated. Valid values are <code>STANDARD</code>
-        /// and <code>STANDARD_INFREQUENT_ACCESS</code>.
+        /// The table class of the table to be updated. Valid values are <c>STANDARD</c> and <c>STANDARD_INFREQUENT_ACCESS</c>.
         /// </para>
         /// </summary>
         public TableClass TableClass
@@ -318,10 +384,11 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property TableName. 
         /// <para>
-        /// The name of the table to be updated.
+        /// The name of the table to be updated. You can also provide the Amazon Resource Name
+        /// (ARN) of the table in this parameter.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=3, Max=255)]
+        [AWSProperty(Required=true, Min=1, Max=1024)]
         public string TableName
         {
             get { return this._tableName; }
@@ -332,6 +399,25 @@ namespace Amazon.DynamoDBv2.Model
         internal bool IsSetTableName()
         {
             return this._tableName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WarmThroughput. 
+        /// <para>
+        /// Represents the warm throughput (in read units per second and write units per second)
+        /// for updating a table.
+        /// </para>
+        /// </summary>
+        public WarmThroughput WarmThroughput
+        {
+            get { return this._warmThroughput; }
+            set { this._warmThroughput = value; }
+        }
+
+        // Check to see if WarmThroughput property is set
+        internal bool IsSetWarmThroughput()
+        {
+            return this._warmThroughput != null;
         }
 
     }

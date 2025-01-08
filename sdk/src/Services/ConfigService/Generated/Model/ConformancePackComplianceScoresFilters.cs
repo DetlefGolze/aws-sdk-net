@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -33,15 +34,15 @@ namespace Amazon.ConfigService.Model
     /// </summary>
     public partial class ConformancePackComplianceScoresFilters
     {
-        private List<string> _conformancePackNames = new List<string>();
+        private List<string> _conformancePackNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ConformancePackNames. 
         /// <para>
         /// The names of the conformance packs whose compliance scores you want to include in
         /// the conformance pack compliance score result set. You can include up to 25 conformance
-        /// packs in the <code>ConformancePackNames</code> array of strings, each with a character
-        /// limit of 256 characters for the conformance pack name.
+        /// packs in the <c>ConformancePackNames</c> array of strings, each with a character limit
+        /// of 256 characters for the conformance pack name.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=25)]
@@ -54,7 +55,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if ConformancePackNames property is set
         internal bool IsSetConformancePackNames()
         {
-            return this._conformancePackNames != null && this._conformancePackNames.Count > 0; 
+            return this._conformancePackNames != null && (this._conformancePackNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationAutoScaling.Model
 {
     /// <summary>
@@ -46,12 +47,12 @@ namespace Amazon.ApplicationAutoScaling.Model
     ///  
     /// <para>
     /// You can also add tags to an Application Auto Scaling scalable target while creating
-    /// it (<code>RegisterScalableTarget</code>).
+    /// it (<c>RegisterScalableTarget</c>).
     /// </para>
     ///  
     /// <para>
     /// For general information about tags, including the format and syntax, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-    /// Amazon Web Services resources</a> in the <i>Amazon Web Services General Reference</i>.
+    /// your Amazon Web Services resources</a> in the <i>Amazon Web Services General Reference</i>.
     /// </para>
     ///  
     /// <para>
@@ -62,7 +63,7 @@ namespace Amazon.ApplicationAutoScaling.Model
     public partial class TagResourceRequest : AmazonApplicationAutoScalingRequest
     {
         private string _resourceARN;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceARN. 
@@ -72,7 +73,7 @@ namespace Amazon.ApplicationAutoScaling.Model
         /// </para>
         ///  
         /// <para>
-        /// For example: <code>arn:aws:application-autoscaling:us-east-1:123456789012:scalable-target/1234abcd56ab78cd901ef1234567890ab123</code>
+        /// For example: <c>arn:aws:application-autoscaling:us-east-1:123456789012:scalable-target/1234abcd56ab78cd901ef1234567890ab123</c>
         /// 
         /// </para>
         ///  
@@ -112,8 +113,7 @@ namespace Amazon.ApplicationAutoScaling.Model
         ///  
         /// <para>
         /// For information about the rules that apply to tag keys and tag values, see <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html">User-defined
-        /// tag restrictions</a> in the <i>Amazon Web Services Billing and Cost Management User
-        /// Guide</i>.
+        /// tag restrictions</a> in the <i>Amazon Web Services Billing User Guide</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -126,7 +126,7 @@ namespace Amazon.ApplicationAutoScaling.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -51,6 +51,9 @@ namespace Amazon.DynamoDBv2.DataModel
     /// Configuration object for setting options on the DynamoDBContext.
     /// and individual operations.
     /// </summary>
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode(Amazon.DynamoDBv2.Custom.Internal.InternalConstants.RequiresUnreferencedCodeMessage)]
+#endif
     public class DynamoDBContextConfig
     {
         /// <summary>
@@ -62,6 +65,7 @@ namespace Amazon.DynamoDBv2.DataModel
             Conversion = DynamoDBEntryConversion.CurrentConversion;
             MetadataCachingMode = AWSConfigsDynamoDB.Context.MetadataCachingMode;
             DisableFetchingTableMetadata = AWSConfigsDynamoDB.Context.DisableFetchingTableMetadata;
+            RetrieveDateTimeInUtc = AWSConfigsDynamoDB.Context.RetrieveDateTimeInUtc;
         }
 
         /// <summary>
@@ -88,7 +92,7 @@ namespace Amazon.DynamoDBv2.DataModel
         /// <summary>
         /// The object persistence model API relies on an internal cache of the DynamoDB table's metadata to construct and validate 
         /// requests. This controls how the cache key is derived, which influences when the SDK will call 
-        /// <see cref="IAmazonDynamoDB.DescribeTable(string)"/> internally to populate the cache.
+        /// IAmazonDynamoDB.DescribeTable(string) internally to populate the cache.
         /// </summary>
         /// <remarks>
         /// For <see cref="MetadataCachingMode.Default"/> the cache key will be a combination of the table name, credentials, region and service URL. 
@@ -125,17 +129,27 @@ namespace Amazon.DynamoDBv2.DataModel
         /// </summary>
         /// <remarks>
         /// Setting this to true can avoid latency and thread starvation due to blocking asynchronous 
-        /// <see cref="IAmazonDynamoDB.DescribeTable(string)"/> calls that are used to populate the SDK's cache of 
+        /// IAmazonDynamoDB.DescribeTable(string) calls that are used to populate the SDK's cache of 
         /// table metadata. It requires that the table's index schema be accurately described via the above methods, 
         /// otherwise exceptions may be thrown and/or the results of certain DynamoDB operations may change.
         /// </remarks>
         public bool? DisableFetchingTableMetadata { get; set; }
+
+        /// <summary>
+        /// If true, all <see cref="DateTime"/> properties are retrieved in UTC timezone while reading data from DynamoDB. Else, the local timezone is used.
+        /// </summary>
+        /// <remarks>This setting is only applicable to the high-level library. Service calls made via <see cref="AmazonDynamoDBClient"/> will always return <see cref="DateTime"/> attributes in UTC.</remarks>
+        public bool? RetrieveDateTimeInUtc { get; set; }
     }
 
     /// <summary>
     /// Configuration object for setting options for individual operations.
     /// This will override any settings specified by the DynamoDBContext's DynamoDBContextConfig object.
     /// </summary>
+
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode(Amazon.DynamoDBv2.Custom.Internal.InternalConstants.RequiresUnreferencedCodeMessage)]
+#endif
     public class DynamoDBOperationConfig : DynamoDBContextConfig
     {
         /// <summary>
@@ -293,7 +307,9 @@ namespace Amazon.DynamoDBv2.DataModel
         #endregion
     }
 
-
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode(Amazon.DynamoDBv2.Custom.Internal.InternalConstants.RequiresUnreferencedCodeMessage)]
+#endif
     internal class DynamoDBFlatConfig
     {
         public static string DefaultIndexName = string.Empty;
@@ -334,6 +350,7 @@ namespace Amazon.DynamoDBv2.DataModel
             bool skipVersionCheck = operationConfig.SkipVersionCheck ?? contextConfig.SkipVersionCheck ?? false;
             bool ignoreNullValues = operationConfig.IgnoreNullValues ?? contextConfig.IgnoreNullValues ?? false;
             bool disableFetchingTableMetadata = contextConfig.DisableFetchingTableMetadata ?? false;
+            bool retrieveDateTimeInUtc = operationConfig.RetrieveDateTimeInUtc ?? contextConfig.RetrieveDateTimeInUtc ?? false;
 
             bool isEmptyStringValueEnabled = operationConfig.IsEmptyStringValueEnabled ?? contextConfig.IsEmptyStringValueEnabled ?? false;
             string overrideTableName =
@@ -362,6 +379,7 @@ namespace Amazon.DynamoDBv2.DataModel
             Conversion = conversion;
             MetadataCachingMode = metadataCachingMode;
             DisableFetchingTableMetadata = disableFetchingTableMetadata;
+            RetrieveDateTimeInUtc = retrieveDateTimeInUtc;
 
             State = new OperationState();
         }
@@ -390,7 +408,7 @@ namespace Amazon.DynamoDBv2.DataModel
         /// <summary>
         /// The object mapping API relies on an internal cache of the DynamoDB table's metadata to construct and validate 
         /// requests. This controls how the cache key is derived, which influences when the SDK will call 
-        /// <see cref="IAmazonDynamoDB.DescribeTable(string)"/> internally to populate the cache.
+        /// IAmazonDynamoDB.DescribeTable(string) internally to populate the cache.
         /// </summary>
         public MetadataCachingMode? MetadataCachingMode { get; set; }
 
@@ -453,6 +471,9 @@ namespace Amazon.DynamoDBv2.DataModel
 
         /// <inheritdoc cref="DynamoDBContextConfig.DisableFetchingTableMetadata"/>
         public bool DisableFetchingTableMetadata { get; set; }
+
+        /// <inheritdoc cref="DynamoDBContextConfig.RetrieveDateTimeInUtc"/>
+        public bool RetrieveDateTimeInUtc { get; set; }
 
         // Checks if the IndexName is set on the config
         internal bool IsIndexOperation { get { return !string.IsNullOrEmpty(IndexName); } }

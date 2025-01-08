@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace Amazon.IoT.Model
     public partial class Behavior
     {
         private BehaviorCriteria _criteria;
+        private bool? _exportMetric;
         private string _metric;
         private MetricDimension _metricDimension;
         private string _name;
@@ -42,7 +44,7 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property Criteria. 
         /// <para>
-        /// The criteria that determine if a device is behaving normally in regard to the <code>metric</code>.
+        /// The criteria that determine if a device is behaving normally in regard to the <c>metric</c>.
         /// </para>
         ///  <note> 
         /// <para>
@@ -61,6 +63,24 @@ namespace Amazon.IoT.Model
         internal bool IsSetCriteria()
         {
             return this._criteria != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExportMetric. 
+        /// <para>
+        /// Value indicates exporting metrics related to the behavior when it is true.
+        /// </para>
+        /// </summary>
+        public bool ExportMetric
+        {
+            get { return this._exportMetric.GetValueOrDefault(); }
+            set { this._exportMetric = value; }
+        }
+
+        // Check to see if ExportMetric property is set
+        internal bool IsSetExportMetric()
+        {
+            return this._exportMetric.HasValue; 
         }
 
         /// <summary>
@@ -84,7 +104,7 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property MetricDimension. 
         /// <para>
-        /// The dimension for a metric in your behavior. For example, using a <code>TOPIC_FILTER</code>
+        /// The dimension for a metric in your behavior. For example, using a <c>TOPIC_FILTER</c>
         /// dimension, you can narrow down the scope of the metric to only MQTT topics where the
         /// name matches the pattern specified in the dimension. This can't be used with custom
         /// metrics.

@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -33,6 +34,30 @@ namespace Amazon.S3Control.Model
         internal S3ControlPaginatorFactory(IAmazonS3Control client) 
         {
             this.client = client;
+        }
+
+        /// <summary>
+        /// Paginator for ListAccessGrants operation
+        ///</summary>
+        public IListAccessGrantsPaginator ListAccessGrants(ListAccessGrantsRequest request) 
+        {
+            return new ListAccessGrantsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListAccessGrantsInstances operation
+        ///</summary>
+        public IListAccessGrantsInstancesPaginator ListAccessGrantsInstances(ListAccessGrantsInstancesRequest request) 
+        {
+            return new ListAccessGrantsInstancesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListAccessGrantsLocations operation
+        ///</summary>
+        public IListAccessGrantsLocationsPaginator ListAccessGrantsLocations(ListAccessGrantsLocationsRequest request) 
+        {
+            return new ListAccessGrantsLocationsPaginator(this.client, request);
         }
 
         /// <summary>
@@ -49,6 +74,14 @@ namespace Amazon.S3Control.Model
         public IListAccessPointsForObjectLambdaPaginator ListAccessPointsForObjectLambda(ListAccessPointsForObjectLambdaRequest request) 
         {
             return new ListAccessPointsForObjectLambdaPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListCallerAccessGrants operation
+        ///</summary>
+        public IListCallerAccessGrantsPaginator ListCallerAccessGrants(ListCallerAccessGrantsRequest request) 
+        {
+            return new ListCallerAccessGrantsPaginator(this.client, request);
         }
 
         /// <summary>
@@ -81,6 +114,14 @@ namespace Amazon.S3Control.Model
         public IListStorageLensConfigurationsPaginator ListStorageLensConfigurations(ListStorageLensConfigurationsRequest request) 
         {
             return new ListStorageLensConfigurationsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListStorageLensGroups operation
+        ///</summary>
+        public IListStorageLensGroupsPaginator ListStorageLensGroups(ListStorageLensGroupsRequest request) 
+        {
+            return new ListStorageLensGroupsPaginator(this.client, request);
         }
     }
 }

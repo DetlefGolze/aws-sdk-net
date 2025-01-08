@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
     /// Container for the parameters to the ListTypedLinkFacetNames operation.
-    /// Returns a paginated list of <code>TypedLink</code> facet names for a particular schema.
+    /// Returns a paginated list of <c>TypedLink</c> facet names for a particular schema.
     /// For more information, see <a href="https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink">Typed
     /// Links</a>.
     /// </summary>
@@ -94,7 +95,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if SchemaArn property is set
         internal bool IsSetSchemaArn()
         {
-            return this._schemaArn != null;
+            return !string.IsNullOrEmpty(this._schemaArn);
         }
 
     }

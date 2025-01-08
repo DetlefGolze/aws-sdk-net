@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComputeOptimizer.Model
 {
     /// <summary>
@@ -37,6 +38,7 @@ namespace Amazon.ComputeOptimizer.Model
         private double? _performanceRisk;
         private int? _rank;
         private SavingsOpportunity _savingsOpportunity;
+        private EBSSavingsOpportunityAfterDiscounts _savingsOpportunityAfterDiscounts;
 
         /// <summary>
         /// Gets and sets the property Configuration. 
@@ -68,11 +70,10 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        /// The value ranges from <code>0</code> - <code>4</code>, with <code>0</code> meaning
-        /// that the recommended resource is predicted to always provide enough hardware capability.
-        /// The higher the performance risk is, the more likely you should validate whether the
-        /// recommendation will meet the performance requirements of your workload before migrating
-        /// your resource.
+        /// The value ranges from <c>0</c> - <c>4</c>, with <c>0</c> meaning that the recommended
+        /// resource is predicted to always provide enough hardware capability. The higher the
+        /// performance risk is, the more likely you should validate whether the recommendation
+        /// will meet the performance requirements of your workload before migrating your resource.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=4)]
@@ -95,7 +96,7 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        /// The top recommendation option is ranked as <code>1</code>.
+        /// The top recommendation option is ranked as <c>1</c>.
         /// </para>
         /// </summary>
         public int Rank
@@ -127,6 +128,26 @@ namespace Amazon.ComputeOptimizer.Model
         internal bool IsSetSavingsOpportunity()
         {
             return this._savingsOpportunity != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SavingsOpportunityAfterDiscounts. 
+        /// <para>
+        ///  An object that describes the savings opportunity for the Amazon EBS volume recommendation
+        /// option with specific discounts. Savings opportunity includes the estimated monthly
+        /// savings and percentage. 
+        /// </para>
+        /// </summary>
+        public EBSSavingsOpportunityAfterDiscounts SavingsOpportunityAfterDiscounts
+        {
+            get { return this._savingsOpportunityAfterDiscounts; }
+            set { this._savingsOpportunityAfterDiscounts = value; }
+        }
+
+        // Check to see if SavingsOpportunityAfterDiscounts property is set
+        internal bool IsSetSavingsOpportunityAfterDiscounts()
+        {
+            return this._savingsOpportunityAfterDiscounts != null;
         }
 
     }

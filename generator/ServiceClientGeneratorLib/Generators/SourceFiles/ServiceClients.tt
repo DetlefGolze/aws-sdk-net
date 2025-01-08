@@ -20,6 +20,7 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace <#=this.Config.Namespace#>
 {
 <#    this.FormatServiceClientDocumentation(this.Config.ServiceModel.Documentation); #>
@@ -311,6 +312,18 @@ namespace <#=this.Config.Namespace#>
         /// </summary>
         protected override void Dispose(bool disposing)
         {
+<#
+        if(this.Config.ServiceId == "S3")
+        {
+#>
+            var clientConfig = this.Config as AmazonS3Config;
+            if (clientConfig != null && clientConfig.S3ExpressCredentialProvider != null)
+            {
+                clientConfig.S3ExpressCredentialProvider.Dispose();
+            }
+<#
+        }
+#>
             base.Dispose(disposing);
         }
 
@@ -323,6 +336,11 @@ namespace <#=this.Config.Namespace#>
 #>
         #region  EndpointOperation Override
 
+        /// <summary>
+        /// Resolve endpoint for service api request.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         protected override IEnumerable<DiscoveryEndpointBase> EndpointOperation(EndpointOperationContextBase context)
         {
             return EndpointDiscoveryResolver.ResolveEndpoints(context, () =>
@@ -474,11 +492,11 @@ namespace <#=this.Config.Namespace#>
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

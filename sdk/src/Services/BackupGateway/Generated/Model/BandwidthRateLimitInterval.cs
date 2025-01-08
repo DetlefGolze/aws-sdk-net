@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BackupGateway.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.BackupGateway.Model
     public partial class BandwidthRateLimitInterval
     {
         private long? _averageUploadRateLimitInBitsPerSec;
-        private List<int> _daysOfWeek = new List<int>();
+        private List<int> _daysOfWeek = AWSConfigs.InitializeCollections ? new List<int>() : null;
         private int? _endHourOfDay;
         private int? _endMinuteOfHour;
         private int? _startHourOfDay;
@@ -52,7 +53,7 @@ namespace Amazon.BackupGateway.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// For Backup Gateway, the minimum value is <code>(Value)</code>.
+        /// For Backup Gateway, the minimum value is <c>(Value)</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -86,7 +87,7 @@ namespace Amazon.BackupGateway.Model
         // Check to see if DaysOfWeek property is set
         internal bool IsSetDaysOfWeek()
         {
-            return this._daysOfWeek != null && this._daysOfWeek.Count > 0; 
+            return this._daysOfWeek != null && (this._daysOfWeek.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -116,7 +117,7 @@ namespace Amazon.BackupGateway.Model
         ///  <important> 
         /// <para>
         /// The bandwidth rate limit interval ends at the end of the minute. To end an interval
-        /// at the end of an hour, use the value <code>59</code>.
+        /// at the end of an hour, use the value <c>59</c>.
         /// </para>
         ///  </important>
         /// </summary>
@@ -157,7 +158,7 @@ namespace Amazon.BackupGateway.Model
         /// <para>
         /// The minute of the hour to start the bandwidth rate limit interval. The interval begins
         /// at the start of that minute. To begin an interval exactly at the start of the hour,
-        /// use the value <code>0</code>.
+        /// use the value <c>0</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=59)]

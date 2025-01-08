@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
     /// Container for the parameters to the DisassociateResolverEndpointIpAddress operation.
     /// Removes IP addresses from an inbound or an outbound Resolver endpoint. If you want
-    /// to remove more than one IP address, submit one <code>DisassociateResolverEndpointIpAddress</code>
+    /// to remove more than one IP address, submit one <c>DisassociateResolverEndpointIpAddress</c>
     /// request for each IP address.
     /// 
     ///  

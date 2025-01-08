@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTAnalytics.Model
 {
     /// <summary>
@@ -39,8 +40,8 @@ namespace Amazon.IoTAnalytics.Model
         /// <summary>
         /// Gets and sets the property NumberOfDays. 
         /// <para>
-        /// The number of days that message data is kept. The <code>unlimited</code> parameter
-        /// must be false.
+        /// The number of days that message data is kept. The <c>unlimited</c> parameter must
+        /// be false.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]

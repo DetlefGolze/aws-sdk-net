@@ -26,25 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
     /// Container for the parameters to the UntagResource operation.
     /// Removes <a href="https://docs.aws.amazon.com/lambda/latest/dg/tagging.html">tags</a>
-    /// from a function.
+    /// from a function, event source mapping, or code signing configuration.
     /// </summary>
     public partial class UntagResourceRequest : AmazonLambdaRequest
     {
         private string _resource;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Resource. 
         /// <para>
-        /// The function's Amazon Resource Name (ARN).
+        /// The resource's Amazon Resource Name (ARN).
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=256)]
         public string Resource
         {
             get { return this._resource; }
@@ -60,7 +61,7 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property TagKeys. 
         /// <para>
-        /// A list of tag keys to remove from the function.
+        /// A list of tag keys to remove from the resource.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -73,7 +74,7 @@ namespace Amazon.Lambda.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

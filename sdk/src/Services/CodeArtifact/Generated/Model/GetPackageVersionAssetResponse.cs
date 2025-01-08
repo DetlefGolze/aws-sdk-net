@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeArtifact.Model
 {
     /// <summary>
@@ -72,13 +73,13 @@ namespace Amazon.CodeArtifact.Model
         // Check to see if AssetName property is set
         internal bool IsSetAssetName()
         {
-            return this._assetName != null;
+            return !string.IsNullOrEmpty(this._assetName);
         }
 
         /// <summary>
         /// Gets and sets the property PackageVersion. 
         /// <para>
-        ///  A string that contains the package version (for example, <code>3.5.2</code>). 
+        ///  A string that contains the package version (for example, <c>3.5.2</c>). 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -91,7 +92,7 @@ namespace Amazon.CodeArtifact.Model
         // Check to see if PackageVersion property is set
         internal bool IsSetPackageVersion()
         {
-            return this._packageVersion != null;
+            return !string.IsNullOrEmpty(this._packageVersion);
         }
 
         /// <summary>
@@ -110,7 +111,7 @@ namespace Amazon.CodeArtifact.Model
         // Check to see if PackageVersionRevision property is set
         internal bool IsSetPackageVersionRevision()
         {
-            return this._packageVersionRevision != null;
+            return !string.IsNullOrEmpty(this._packageVersionRevision);
         }
 
         #region Dispose Pattern
@@ -126,6 +127,9 @@ namespace Amazon.CodeArtifact.Model
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Disposes of all managed and unmanaged resources.
+        /// </summary>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

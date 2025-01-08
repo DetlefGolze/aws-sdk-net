@@ -44,22 +44,26 @@ namespace Amazon.Runtime.Credentials.Internal
         /// <inheritdoc cref="GetSsoTokenRequest.ClientType"/>
         public string ClientType { get; set; } = SsoClientTypePublic;
 
+        /// <inheritdoc cref="GetSsoTokenRequest.Scopes"/>
         public IList<string> Scopes { get; set; }
 
         /// <inheritdoc cref="SSOAWSCredentialsOptions.SsoVerificationCallback"/>
         public Action<SsoVerificationArguments> SsoVerificationCallback { get; set; }
 
+        /// <inheritdoc cref="GetSsoTokenRequest.PkceFlowOptions"/>
+        public PkceFlowOptions PkceFlowOptions { get; set; }
+
         /// <summary>
         /// This field controls how <see cref="SSOTokenManager"/> should behave if it does not find a valid or
         /// refreshable token.
         /// <para />
-        /// If <c>true</c>, then <see cref="SSOTokenManager"/> will use <see cref="ICoreAmazonSSOOIDC.GetSsoToken"/>
+        /// If <c>true</c>, then <see cref="SSOTokenManager"/> will use ICoreAmazonSSOOIDC.GetSsoToken
         /// to start an authorization flow and mint a new token and cache the result.
         /// If <c>false</c> <see cref="SSOTokenManager"/> will throw an exception if it finds
         /// an expired token.  It will take no action if finds no cached token.
         /// <para />
-        /// NOTE: If setting to <c>true</c>, <see cref="SsoVerificationCallback"/> must also be set
-        /// for authorization flow to succeed.
+        /// NOTE: If setting to <c>true</c>, either <see cref="SsoVerificationCallback"/> or <see cref="PkceFlowOptions"/> must 
+        /// also be set for authorization flow to succeed.
         /// </summary>
         public bool SupportsGettingNewToken { get; set; } = true;
     }

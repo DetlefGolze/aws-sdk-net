@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Transfer.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Transfer.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public DescribedSecurityPolicy Unmarshall(JsonUnmarshallerContext context)
         {
+            DescribedSecurityPolicy unmarshalledObject = new DescribedSecurityPolicy();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            DescribedSecurityPolicy unmarshalledObject = new DescribedSecurityPolicy();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -68,6 +70,12 @@ namespace Amazon.Transfer.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = BoolUnmarshaller.Instance;
                     unmarshalledObject.Fips = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("Protocols", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
+                    unmarshalledObject.Protocols = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("SecurityPolicyName", targetDepth))
@@ -80,6 +88,12 @@ namespace Amazon.Transfer.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
                     unmarshalledObject.SshCiphers = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("SshHostKeyAlgorithms", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
+                    unmarshalledObject.SshHostKeyAlgorithms = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("SshKexs", targetDepth))
@@ -100,8 +114,13 @@ namespace Amazon.Transfer.Model.Internal.MarshallTransformations
                     unmarshalledObject.TlsCiphers = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("Type", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Type = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

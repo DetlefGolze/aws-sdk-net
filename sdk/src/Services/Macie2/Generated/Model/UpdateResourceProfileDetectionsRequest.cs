@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Macie2.Model
     public partial class UpdateResourceProfileDetectionsRequest : AmazonMacie2Request
     {
         private string _resourceArn;
-        private List<SuppressDataIdentifier> _suppressDataIdentifiers = new List<SuppressDataIdentifier>();
+        private List<SuppressDataIdentifier> _suppressDataIdentifiers = AWSConfigs.InitializeCollections ? new List<SuppressDataIdentifier>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -60,9 +61,8 @@ namespace Amazon.Macie2.Model
         /// Gets and sets the property SuppressDataIdentifiers. 
         /// <para>
         /// An array of objects, one for each custom data identifier or managed data identifier
-        /// that detected the type of sensitive data to start excluding or including in the bucket's
-        /// score. To start including all sensitive data types in the score, don't specify any
-        /// values for this array.
+        /// that detected a type of sensitive data to exclude from the bucket's score. To include
+        /// all sensitive data types in the score, don't specify any values for this array.
         /// </para>
         /// </summary>
         public List<SuppressDataIdentifier> SuppressDataIdentifiers
@@ -74,7 +74,7 @@ namespace Amazon.Macie2.Model
         // Check to see if SuppressDataIdentifiers property is set
         internal bool IsSetSuppressDataIdentifiers()
         {
-            return this._suppressDataIdentifiers != null && this._suppressDataIdentifiers.Count > 0; 
+            return this._suppressDataIdentifiers != null && (this._suppressDataIdentifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

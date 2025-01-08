@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -37,17 +38,17 @@ namespace Amazon.SecurityHub.Model
         private int? _confidence;
         private int? _criticality;
         private NoteUpdate _note;
-        private List<RelatedFinding> _relatedFindings = new List<RelatedFinding>();
+        private List<RelatedFinding> _relatedFindings = AWSConfigs.InitializeCollections ? new List<RelatedFinding>() : null;
         private SeverityUpdate _severity;
-        private List<string> _types = new List<string>();
-        private Dictionary<string, string> _userDefinedFields = new Dictionary<string, string>();
+        private List<string> _types = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, string> _userDefinedFields = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private VerificationState _verificationState;
         private WorkflowUpdate _workflow;
 
         /// <summary>
         /// Gets and sets the property Confidence. 
         /// <para>
-        ///  The rule action updates the <code>Confidence</code> field of a finding. 
+        ///  The rule action updates the <c>Confidence</c> field of a finding. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]
@@ -66,7 +67,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Criticality. 
         /// <para>
-        ///  The rule action updates the <code>Criticality</code> field of a finding. 
+        ///  The rule action updates the <c>Criticality</c> field of a finding. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]
@@ -100,7 +101,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property RelatedFindings. 
         /// <para>
-        ///  The rule action updates the <code>RelatedFindings</code> field of a finding. 
+        ///  The rule action updates the <c>RelatedFindings</c> field of a finding. 
         /// </para>
         /// </summary>
         public List<RelatedFinding> RelatedFindings
@@ -112,7 +113,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if RelatedFindings property is set
         internal bool IsSetRelatedFindings()
         {
-            return this._relatedFindings != null && this._relatedFindings.Count > 0; 
+            return this._relatedFindings != null && (this._relatedFindings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -133,7 +134,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Types. 
         /// <para>
-        ///  The rule action updates the <code>Types</code> field of a finding. 
+        ///  The rule action updates the <c>Types</c> field of a finding. 
         /// </para>
         /// </summary>
         public List<string> Types
@@ -145,13 +146,13 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Types property is set
         internal bool IsSetTypes()
         {
-            return this._types != null && this._types.Count > 0; 
+            return this._types != null && (this._types.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UserDefinedFields. 
         /// <para>
-        ///  The rule action updates the <code>UserDefinedFields</code> field of a finding. 
+        ///  The rule action updates the <c>UserDefinedFields</c> field of a finding. 
         /// </para>
         /// </summary>
         public Dictionary<string, string> UserDefinedFields
@@ -163,13 +164,13 @@ namespace Amazon.SecurityHub.Model
         // Check to see if UserDefinedFields property is set
         internal bool IsSetUserDefinedFields()
         {
-            return this._userDefinedFields != null && this._userDefinedFields.Count > 0; 
+            return this._userDefinedFields != null && (this._userDefinedFields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property VerificationState. 
         /// <para>
-        ///  The rule action updates the <code>VerificationState</code> field of a finding. 
+        ///  The rule action updates the <c>VerificationState</c> field of a finding. 
         /// </para>
         /// </summary>
         public VerificationState VerificationState

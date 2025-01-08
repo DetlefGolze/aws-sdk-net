@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroups.Model
 {
     /// <summary>
@@ -33,14 +34,15 @@ namespace Amazon.ResourceGroups.Model
     /// </summary>
     public partial class GroupResourcesResponse : AmazonWebServiceResponse
     {
-        private List<FailedResource> _failed = new List<FailedResource>();
-        private List<PendingResource> _pending = new List<PendingResource>();
-        private List<string> _succeeded = new List<string>();
+        private List<FailedResource> _failed = AWSConfigs.InitializeCollections ? new List<FailedResource>() : null;
+        private List<PendingResource> _pending = AWSConfigs.InitializeCollections ? new List<PendingResource>() : null;
+        private List<string> _succeeded = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Failed. 
         /// <para>
-        /// A list of ARNs of any resources that this operation failed to add to the group.
+        /// A list of Amazon resource names (ARNs) of any resources that this operation failed
+        /// to add to the group.
         /// </para>
         /// </summary>
         public List<FailedResource> Failed
@@ -52,16 +54,16 @@ namespace Amazon.ResourceGroups.Model
         // Check to see if Failed property is set
         internal bool IsSetFailed()
         {
-            return this._failed != null && this._failed.Count > 0; 
+            return this._failed != null && (this._failed.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Pending. 
         /// <para>
-        /// A list of ARNs of any resources that this operation is still in the process adding
-        /// to the group. These pending additions continue asynchronously. You can check the status
-        /// of pending additions by using the <code> <a>ListGroupResources</a> </code> operation,
-        /// and checking the <code>Resources</code> array in the response and the <code>Status</code>
+        /// A list of Amazon resource names (ARNs) of any resources that this operation is still
+        /// in the process adding to the group. These pending additions continue asynchronously.
+        /// You can check the status of pending additions by using the <c> <a>ListGroupResources</a>
+        /// </c> operation, and checking the <c>Resources</c> array in the response and the <c>Status</c>
         /// field of each object in that array. 
         /// </para>
         /// </summary>
@@ -74,13 +76,14 @@ namespace Amazon.ResourceGroups.Model
         // Check to see if Pending property is set
         internal bool IsSetPending()
         {
-            return this._pending != null && this._pending.Count > 0; 
+            return this._pending != null && (this._pending.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Succeeded. 
         /// <para>
-        /// A list of ARNs of the resources that this operation successfully added to the group.
+        /// A list of Amazon resource names (ARNs) of the resources that this operation successfully
+        /// added to the group.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
@@ -93,7 +96,7 @@ namespace Amazon.ResourceGroups.Model
         // Check to see if Succeeded property is set
         internal bool IsSetSucceeded()
         {
-            return this._succeeded != null && this._succeeded.Count > 0; 
+            return this._succeeded != null && (this._succeeded.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

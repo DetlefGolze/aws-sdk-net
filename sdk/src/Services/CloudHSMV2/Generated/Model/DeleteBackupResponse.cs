@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudHSMV2.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.CloudHSMV2.Model
         /// <summary>
         /// Gets and sets the property Backup. 
         /// <para>
-        /// Information on the <code>Backup</code> object deleted.
+        /// Information on the <c>Backup</c> object deleted.
         /// </para>
         /// </summary>
         public Backup Backup

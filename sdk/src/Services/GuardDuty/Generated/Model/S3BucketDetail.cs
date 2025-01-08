@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -39,7 +40,8 @@ namespace Amazon.GuardDuty.Model
         private string _name;
         private Owner _owner;
         private PublicAccess _publicAccess;
-        private List<Tag> _tags = new List<Tag>();
+        private List<S3ObjectDetail> _s3ObjectDetails = AWSConfigs.InitializeCollections ? new List<S3ObjectDetail>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _type;
 
         /// <summary>
@@ -151,6 +153,24 @@ namespace Amazon.GuardDuty.Model
         }
 
         /// <summary>
+        /// Gets and sets the property S3ObjectDetails. 
+        /// <para>
+        /// Information about the S3 object that was scanned.
+        /// </para>
+        /// </summary>
+        public List<S3ObjectDetail> S3ObjectDetails
+        {
+            get { return this._s3ObjectDetails; }
+            set { this._s3ObjectDetails = value; }
+        }
+
+        // Check to see if S3ObjectDetails property is set
+        internal bool IsSetS3ObjectDetails()
+        {
+            return this._s3ObjectDetails != null && (this._s3ObjectDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// All tags attached to the S3 bucket
@@ -165,7 +185,7 @@ namespace Amazon.GuardDuty.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

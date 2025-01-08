@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -33,10 +34,10 @@ namespace Amazon.IoTSiteWise.Model
     /// 
     ///  <note> 
     /// <para>
-    /// Currently, you can't use Amazon Web Services APIs to retrieve IAM Identity Center
-    /// identity IDs. You can find the IAM Identity Center identity IDs in the URL of user
-    /// and group pages in the <a href="https://console.aws.amazon.com/singlesignon">IAM Identity
-    /// Center console</a>.
+    /// Currently, you can't use Amazon Web Services API operations to retrieve IAM Identity
+    /// Center identity IDs. You can find the IAM Identity Center identity IDs in the URL
+    /// of user and group pages in the <a href="https://console.aws.amazon.com/singlesignon">IAM
+    /// Identity Center console</a>.
     /// </para>
     ///  </note>
     /// </summary>

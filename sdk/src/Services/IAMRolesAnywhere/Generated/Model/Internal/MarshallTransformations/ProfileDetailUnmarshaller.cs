@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IAMRolesAnywhere.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,31 @@ namespace Amazon.IAMRolesAnywhere.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ProfileDetail Unmarshall(JsonUnmarshallerContext context)
         {
+            ProfileDetail unmarshalledObject = new ProfileDetail();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ProfileDetail unmarshalledObject = new ProfileDetail();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("acceptRoleSessionName", targetDepth))
+                {
+                    var unmarshaller = BoolUnmarshaller.Instance;
+                    unmarshalledObject.AcceptRoleSessionName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("attributeMappings", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<AttributeMapping, AttributeMappingUnmarshaller>(AttributeMappingUnmarshaller.Instance);
+                    unmarshalledObject.AttributeMappings = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("createdAt", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
@@ -137,7 +151,6 @@ namespace Amazon.IAMRolesAnywhere.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

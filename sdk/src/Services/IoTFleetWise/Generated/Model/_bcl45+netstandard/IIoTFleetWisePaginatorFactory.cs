@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the iotfleetwise-2021-06-17.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -79,6 +80,11 @@ namespace Amazon.IoTFleetWise.Model
         /// Paginator for ListSignalCatalogs operation
         ///</summary>
         IListSignalCatalogsPaginator ListSignalCatalogs(ListSignalCatalogsRequest request);
+
+        /// <summary>
+        /// Paginator for ListStateTemplates operation
+        ///</summary>
+        IListStateTemplatesPaginator ListStateTemplates(ListStateTemplatesRequest request);
 
         /// <summary>
         /// Paginator for ListVehicles operation

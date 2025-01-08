@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -35,14 +36,14 @@ namespace Amazon.EventBridge.Model
     {
         private UpdateConnectionApiKeyAuthRequestParameters _apiKeyAuthParameters;
         private UpdateConnectionBasicAuthRequestParameters _basicAuthParameters;
+        private ConnectivityResourceParameters _connectivityParameters;
         private ConnectionHttpParameters _invocationHttpParameters;
         private UpdateConnectionOAuthRequestParameters _oAuthParameters;
 
         /// <summary>
         /// Gets and sets the property ApiKeyAuthParameters. 
         /// <para>
-        /// A <code>UpdateConnectionApiKeyAuthRequestParameters</code> object that contains the
-        /// authorization parameters for API key authorization.
+        /// The authorization parameters for API key authorization.
         /// </para>
         /// </summary>
         public UpdateConnectionApiKeyAuthRequestParameters ApiKeyAuthParameters
@@ -60,8 +61,7 @@ namespace Amazon.EventBridge.Model
         /// <summary>
         /// Gets and sets the property BasicAuthParameters. 
         /// <para>
-        /// A <code>UpdateConnectionBasicAuthRequestParameters</code> object that contains the
-        /// authorization parameters for Basic authorization.
+        /// The authorization parameters for Basic authorization.
         /// </para>
         /// </summary>
         public UpdateConnectionBasicAuthRequestParameters BasicAuthParameters
@@ -77,10 +77,33 @@ namespace Amazon.EventBridge.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ConnectivityParameters. 
+        /// <para>
+        /// If you specify a private OAuth endpoint, the parameters for EventBridge to use when
+        /// authenticating against the endpoint.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-target-connection-auth.html">Authorization
+        /// methods for connections</a> in the <i> <i>Amazon EventBridge User Guide</i> </i>.
+        /// </para>
+        /// </summary>
+        public ConnectivityResourceParameters ConnectivityParameters
+        {
+            get { return this._connectivityParameters; }
+            set { this._connectivityParameters = value; }
+        }
+
+        // Check to see if ConnectivityParameters property is set
+        internal bool IsSetConnectivityParameters()
+        {
+            return this._connectivityParameters != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property InvocationHttpParameters. 
         /// <para>
-        /// A <code>ConnectionHttpParameters</code> object that contains the additional parameters
-        /// to use for the connection.
+        /// The additional parameters to use for the connection.
         /// </para>
         /// </summary>
         public ConnectionHttpParameters InvocationHttpParameters
@@ -98,8 +121,7 @@ namespace Amazon.EventBridge.Model
         /// <summary>
         /// Gets and sets the property OAuthParameters. 
         /// <para>
-        /// A <code>UpdateConnectionOAuthRequestParameters</code> object that contains the authorization
-        /// parameters for OAuth authorization.
+        /// The authorization parameters for OAuth authorization.
         /// </para>
         /// </summary>
         public UpdateConnectionOAuthRequestParameters OAuthParameters

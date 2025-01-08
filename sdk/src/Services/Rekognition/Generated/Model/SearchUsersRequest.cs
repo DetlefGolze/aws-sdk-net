@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// Container for the parameters to the SearchUsers operation.
-    /// Searches for UserIDs within a collection based on a <code>FaceId</code> or <code>UserId</code>.
+    /// Searches for UserIDs within a collection based on a <c>FaceId</c> or <c>UserId</c>.
     /// This API can be used to find the closest UserID (with a highest similarity) to associate
-    /// a face. The request must be provided with either <code>FaceId</code> or <code>UserId</code>.
-    /// The operation returns an array of UserID that match the <code>FaceId</code> or <code>UserId</code>,
+    /// a face. The request must be provided with either <c>FaceId</c> or <c>UserId</c>. The
+    /// operation returns an array of UserID that match the <c>FaceId</c> or <c>UserId</c>,
     /// ordered by similarity score with the highest similarity first.
     /// </summary>
     public partial class SearchUsersRequest : AmazonRekognitionRequest

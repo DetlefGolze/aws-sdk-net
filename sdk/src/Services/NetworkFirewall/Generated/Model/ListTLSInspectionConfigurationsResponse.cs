@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.NetworkFirewall.Model
     public partial class ListTLSInspectionConfigurationsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<TLSInspectionConfigurationMetadata> _tlsInspectionConfigurations = new List<TLSInspectionConfigurationMetadata>();
+        private List<TLSInspectionConfigurationMetadata> _tlsInspectionConfigurations = AWSConfigs.InitializeCollections ? new List<TLSInspectionConfigurationMetadata>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When you request a list of objects with a <code>MaxResults</code> setting, if the
-        /// number of objects that are still available for retrieval exceeds the maximum you requested,
-        /// Network Firewall returns a <code>NextToken</code> value in the response. To retrieve
-        /// the next batch of objects, use the token returned from the prior request in your next
+        /// When you request a list of objects with a <c>MaxResults</c> setting, if the number
+        /// of objects that are still available for retrieval exceeds the maximum you requested,
+        /// Network Firewall returns a <c>NextToken</c> value in the response. To retrieve the
+        /// next batch of objects, use the token returned from the prior request in your next
         /// request.
         /// </para>
         /// </summary>
@@ -76,7 +77,7 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if TLSInspectionConfigurations property is set
         internal bool IsSetTLSInspectionConfigurations()
         {
-            return this._tlsInspectionConfigurations != null && this._tlsInspectionConfigurations.Count > 0; 
+            return this._tlsInspectionConfigurations != null && (this._tlsInspectionConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

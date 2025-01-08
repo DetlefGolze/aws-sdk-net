@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Connect.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -61,6 +62,9 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
             if (!publicRequest.IsSetInstanceId())
                 throw new AmazonConnectException("Request object does not have required field InstanceId set");
             request.AddPathResource("{InstanceId}", StringUtils.FromString(publicRequest.InstanceId));
+            
+            if (publicRequest.IsSetIntegrationArn())
+                request.Parameters.Add("integrationArn", StringUtils.FromString(publicRequest.IntegrationArn));
             
             if (publicRequest.IsSetIntegrationType())
                 request.Parameters.Add("integrationType", StringUtils.FromString(publicRequest.IntegrationType));

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointEmail.Model
 {
     /// <summary>
@@ -49,7 +50,7 @@ namespace Amazon.PinpointEmail.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token returned from a previous call to <code>ListConfigurationSets</code> to indicate
+        /// A token returned from a previous call to <c>ListConfigurationSets</c> to indicate
         /// the position in the list of configuration sets.
         /// </para>
         /// </summary>
@@ -68,10 +69,10 @@ namespace Amazon.PinpointEmail.Model
         /// <summary>
         /// Gets and sets the property PageSize. 
         /// <para>
-        /// The number of results to show in a single call to <code>ListConfigurationSets</code>.
-        /// If the number of results is larger than the number you specified in this parameter,
-        /// then the response includes a <code>NextToken</code> element, which you can use to
-        /// obtain additional results.
+        /// The number of results to show in a single call to <c>ListConfigurationSets</c>. If
+        /// the number of results is larger than the number you specified in this parameter, then
+        /// the response includes a <c>NextToken</c> element, which you can use to obtain additional
+        /// results.
         /// </para>
         /// </summary>
         public int PageSize

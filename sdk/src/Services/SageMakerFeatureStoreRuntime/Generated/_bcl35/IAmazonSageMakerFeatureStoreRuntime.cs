@@ -24,17 +24,18 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.SageMakerFeatureStoreRuntime.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.SageMakerFeatureStoreRuntime
 {
     /// <summary>
-    /// Interface for accessing SageMakerFeatureStoreRuntime
+    /// <para>Interface for accessing SageMakerFeatureStoreRuntime</para>
     ///
     /// Contains all data plane API operations and data types for the Amazon SageMaker Feature
     /// Store. Use this API to put, delete, and retrieve (get) features from a feature store.
     /// 
     ///  
     /// <para>
-    /// Use the following operations to configure your <code>OnlineStore</code> and <code>OfflineStore</code>
+    /// Use the following operations to configure your <c>OnlineStore</c> and <c>OfflineStore</c>
     /// features, and to create and manage feature groups:
     /// </para>
     ///  <ul> <li> 
@@ -70,7 +71,7 @@ namespace Amazon.SageMakerFeatureStoreRuntime
 
 
         /// <summary>
-        /// Retrieves a batch of <code>Records</code> from a <code>FeatureGroup</code>.
+        /// Retrieves a batch of <c>Records</c> from a <c>FeatureGroup</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the BatchGetRecord service method.</param>
         /// 
@@ -123,34 +124,41 @@ namespace Amazon.SageMakerFeatureStoreRuntime
 
 
         /// <summary>
-        /// Deletes a <code>Record</code> from a <code>FeatureGroup</code> in the <code>OnlineStore</code>.
-        /// Feature Store supports both <code>SoftDelete</code> and <code>HardDelete</code>. For
-        /// <code>SoftDelete</code> (default), feature columns are set to <code>null</code> and
-        /// the record is no longer retrievable by <code>GetRecord</code> or <code>BatchGetRecord</code>.
-        /// For <code>HardDelete</code>, the complete <code>Record</code> is removed from the
-        /// <code>OnlineStore</code>. In both cases, Feature Store appends the deleted record
-        /// marker to the <code>OfflineStore</code> with feature values set to <code>null</code>,
-        /// <code>is_deleted</code> value set to <code>True</code>, and <code>EventTime</code>
-        /// set to the delete input <code>EventTime</code>.
+        /// Deletes a <c>Record</c> from a <c>FeatureGroup</c> in the <c>OnlineStore</c>. Feature
+        /// Store supports both <c>SoftDelete</c> and <c>HardDelete</c>. For <c>SoftDelete</c>
+        /// (default), feature columns are set to <c>null</c> and the record is no longer retrievable
+        /// by <c>GetRecord</c> or <c>BatchGetRecord</c>. For <c>HardDelete</c>, the complete
+        /// <c>Record</c> is removed from the <c>OnlineStore</c>. In both cases, Feature Store
+        /// appends the deleted record marker to the <c>OfflineStore</c>. The deleted record marker
+        /// is a record with the same <c>RecordIdentifer</c> as the original, but with <c>is_deleted</c>
+        /// value set to <c>True</c>, <c>EventTime</c> set to the delete input <c>EventTime</c>,
+        /// and other feature values set to <c>null</c>.
         /// 
         ///  
         /// <para>
-        /// Note that the <code>EventTime</code> specified in <code>DeleteRecord</code> should
-        /// be set later than the <code>EventTime</code> of the existing record in the <code>OnlineStore</code>
-        /// for that <code>RecordIdentifer</code>. If it is not, the deletion does not occur:
+        /// Note that the <c>EventTime</c> specified in <c>DeleteRecord</c> should be set later
+        /// than the <c>EventTime</c> of the existing record in the <c>OnlineStore</c> for that
+        /// <c>RecordIdentifer</c>. If it is not, the deletion does not occur:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For <code>SoftDelete</code>, the existing (undeleted) record remains in the <code>OnlineStore</code>,
-        /// though the delete record marker is still written to the <code>OfflineStore</code>.
+        /// For <c>SoftDelete</c>, the existing (not deleted) record remains in the <c>OnlineStore</c>,
+        /// though the delete record marker is still written to the <c>OfflineStore</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>HardDelete</code> returns <code>EventTime</code>: <code>400 ValidationException</code>
-        /// to indicate that the delete operation failed. No delete record marker is written to
-        /// the <code>OfflineStore</code>.
+        ///  <c>HardDelete</c> returns <c>EventTime</c>: <c>400 ValidationException</c> to indicate
+        /// that the delete operation failed. No delete record marker is written to the <c>OfflineStore</c>.
         /// </para>
-        ///  </li> </ul>
+        ///  </li> </ul> 
+        /// <para>
+        /// When a record is deleted from the <c>OnlineStore</c>, the deleted record marker is
+        /// appended to the <c>OfflineStore</c>. If you have the Iceberg table format enabled
+        /// for your <c>OfflineStore</c>, you can remove all history of a record from the <c>OfflineStore</c>
+        /// using Amazon Athena or Apache Spark. For information on how to hard delete a record
+        /// from the <c>OfflineStore</c> with the Iceberg table format enabled, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/feature-store-delete-records-offline-store.html#feature-store-delete-records-offline-store">Delete
+        /// records from the offline store</a>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteRecord service method.</param>
         /// 
@@ -203,9 +211,9 @@ namespace Amazon.SageMakerFeatureStoreRuntime
 
 
         /// <summary>
-        /// Use for <code>OnlineStore</code> serving from a <code>FeatureStore</code>. Only the
-        /// latest records stored in the <code>OnlineStore</code> can be retrieved. If no Record
-        /// with <code>RecordIdentifierValue</code> is found, then an empty result is returned.
+        /// Use for <c>OnlineStore</c> serving from a <c>FeatureStore</c>. Only the latest records
+        /// stored in the <c>OnlineStore</c> can be retrieved. If no Record with <c>RecordIdentifierValue</c>
+        /// is found, then an empty result is returned.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetRecord service method.</param>
         /// 
@@ -261,29 +269,29 @@ namespace Amazon.SageMakerFeatureStoreRuntime
 
 
         /// <summary>
-        /// The <code>PutRecord</code> API is used to ingest a list of <code>Records</code> into
-        /// your feature group. 
+        /// The <c>PutRecord</c> API is used to ingest a list of <c>Records</c> into your feature
+        /// group. 
         /// 
         ///  
         /// <para>
-        /// If a new record’s <code>EventTime</code> is greater, the new record is written to
-        /// both the <code>OnlineStore</code> and <code>OfflineStore</code>. Otherwise, the record
-        /// is a historic record and it is written only to the <code>OfflineStore</code>. 
+        /// If a new record’s <c>EventTime</c> is greater, the new record is written to both the
+        /// <c>OnlineStore</c> and <c>OfflineStore</c>. Otherwise, the record is a historic record
+        /// and it is written only to the <c>OfflineStore</c>. 
         /// </para>
         ///  
         /// <para>
-        /// You can specify the ingestion to be applied to the <code>OnlineStore</code>, <code>OfflineStore</code>,
-        /// or both by using the <code>TargetStores</code> request parameter. 
+        /// You can specify the ingestion to be applied to the <c>OnlineStore</c>, <c>OfflineStore</c>,
+        /// or both by using the <c>TargetStores</c> request parameter. 
         /// </para>
         ///  
         /// <para>
         /// You can set the ingested record to expire at a given time to live (TTL) duration after
-        /// the record’s event time, <code>ExpiresAt</code> = <code>EventTime</code> + <code>TtlDuration</code>,
-        /// by specifying the <code>TtlDuration</code> parameter. A record level <code>TtlDuration</code>
-        /// is set when specifying the <code>TtlDuration</code> parameter using the <code>PutRecord</code>
-        /// API call. If the input <code>TtlDuration</code> is <code>null</code> or unspecified,
-        /// <code>TtlDuration</code> is set to the default feature group level <code>TtlDuration</code>.
-        /// A record level <code>TtlDuration</code> supersedes the group level <code>TtlDuration</code>.
+        /// the record’s event time, <c>ExpiresAt</c> = <c>EventTime</c> + <c>TtlDuration</c>,
+        /// by specifying the <c>TtlDuration</c> parameter. A record level <c>TtlDuration</c>
+        /// is set when specifying the <c>TtlDuration</c> parameter using the <c>PutRecord</c>
+        /// API call. If the input <c>TtlDuration</c> is <c>null</c> or unspecified, <c>TtlDuration</c>
+        /// is set to the default feature group level <c>TtlDuration</c>. A record level <c>TtlDuration</c>
+        /// supersedes the group level <c>TtlDuration</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutRecord service method.</param>

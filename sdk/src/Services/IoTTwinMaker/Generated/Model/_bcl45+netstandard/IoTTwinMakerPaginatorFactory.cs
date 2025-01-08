@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTTwinMaker.Model
 {
     /// <summary>
@@ -60,6 +61,14 @@ namespace Amazon.IoTTwinMaker.Model
         }
 
         /// <summary>
+        /// Paginator for ListComponents operation
+        ///</summary>
+        public IListComponentsPaginator ListComponents(ListComponentsRequest request) 
+        {
+            return new ListComponentsPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListComponentTypes operation
         ///</summary>
         public IListComponentTypesPaginator ListComponentTypes(ListComponentTypesRequest request) 
@@ -73,6 +82,22 @@ namespace Amazon.IoTTwinMaker.Model
         public IListEntitiesPaginator ListEntities(ListEntitiesRequest request) 
         {
             return new ListEntitiesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListMetadataTransferJobs operation
+        ///</summary>
+        public IListMetadataTransferJobsPaginator ListMetadataTransferJobs(ListMetadataTransferJobsRequest request) 
+        {
+            return new ListMetadataTransferJobsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListProperties operation
+        ///</summary>
+        public IListPropertiesPaginator ListProperties(ListPropertiesRequest request) 
+        {
+            return new ListPropertiesPaginator(this.client, request);
         }
 
         /// <summary>

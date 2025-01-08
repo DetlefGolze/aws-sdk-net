@@ -26,17 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
     /// Information about one CloudWatch Logs Insights query that matches the request in a
-    /// <code>DescribeQueries</code> operation.
+    /// <c>DescribeQueries</c> operation.
     /// </summary>
     public partial class QueryInfo
     {
         private long? _createTime;
         private string _logGroupName;
         private string _queryId;
+        private QueryLanguage _queryLanguage;
         private string _queryString;
         private QueryStatus _status;
 
@@ -98,6 +100,26 @@ namespace Amazon.CloudWatchLogs.Model
         }
 
         /// <summary>
+        /// Gets and sets the property QueryLanguage. 
+        /// <para>
+        /// The query language used for this query. For more information about the query languages
+        /// that CloudWatch Logs supports, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_AnalyzeLogData_Languages.html">Supported
+        /// query languages</a>.
+        /// </para>
+        /// </summary>
+        public QueryLanguage QueryLanguage
+        {
+            get { return this._queryLanguage; }
+            set { this._queryLanguage = value; }
+        }
+
+        // Check to see if QueryLanguage property is set
+        internal bool IsSetQueryLanguage()
+        {
+            return this._queryLanguage != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property QueryString. 
         /// <para>
         /// The query string used in this query.
@@ -119,8 +141,8 @@ namespace Amazon.CloudWatchLogs.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of this query. Possible values are <code>Cancelled</code>, <code>Complete</code>,
-        /// <code>Failed</code>, <code>Running</code>, <code>Scheduled</code>, and <code>Unknown</code>.
+        /// The status of this query. Possible values are <c>Cancelled</c>, <c>Complete</c>, <c>Failed</c>,
+        /// <c>Running</c>, <c>Scheduled</c>, and <c>Unknown</c>.
         /// </para>
         /// </summary>
         public QueryStatus Status

@@ -26,27 +26,28 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
     /// Container for the parameters to the BatchUnsuspendUser operation.
     /// Removes the suspension from up to 50 previously suspended users for the specified
-    /// Amazon Chime <code>EnterpriseLWA</code> account. Only users on <code>EnterpriseLWA</code>
-    /// accounts can be unsuspended using this action. For more information about different
-    /// account types, see <a href="https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html">
+    /// Amazon Chime <c>EnterpriseLWA</c> account. Only users on <c>EnterpriseLWA</c> accounts
+    /// can be unsuspended using this action. For more information about different account
+    /// types, see <a href="https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html">
     /// Managing Your Amazon Chime Accounts </a> in the account types, in the <i>Amazon Chime
     /// Administration Guide</i>. 
     /// 
     ///  
     /// <para>
-    /// Previously suspended users who are unsuspended using this action are returned to <code>Registered</code>
+    /// Previously suspended users who are unsuspended using this action are returned to <c>Registered</c>
     /// status. Users who are not previously suspended are ignored.
     /// </para>
     /// </summary>
     public partial class BatchUnsuspendUserRequest : AmazonChimeRequest
     {
         private string _accountId;
-        private List<string> _userIdList = new List<string>();
+        private List<string> _userIdList = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AccountId. 
@@ -83,7 +84,7 @@ namespace Amazon.Chime.Model
         // Check to see if UserIdList property is set
         internal bool IsSetUserIdList()
         {
-            return this._userIdList != null && this._userIdList.Count > 0; 
+            return this._userIdList != null && (this._userIdList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

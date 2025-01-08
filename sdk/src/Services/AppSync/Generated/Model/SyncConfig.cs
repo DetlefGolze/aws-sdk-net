@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
@@ -86,7 +87,7 @@ namespace Amazon.AppSync.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>LAMBDA</b>: Resolve conflicts with an Lambda function supplied in the <code>LambdaConflictHandlerConfig</code>.
+        ///  <b>LAMBDA</b>: Resolve conflicts with an Lambda function supplied in the <c>LambdaConflictHandlerConfig</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -105,8 +106,8 @@ namespace Amazon.AppSync.Model
         /// <summary>
         /// Gets and sets the property LambdaConflictHandlerConfig. 
         /// <para>
-        /// The <code>LambdaConflictHandlerConfig</code> when configuring <code>LAMBDA</code>
-        /// as the Conflict Handler.
+        /// The <c>LambdaConflictHandlerConfig</c> when configuring <c>LAMBDA</c> as the Conflict
+        /// Handler.
         /// </para>
         /// </summary>
         public LambdaConflictHandlerConfig LambdaConflictHandlerConfig

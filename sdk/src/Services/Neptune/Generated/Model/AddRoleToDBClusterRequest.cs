@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.Neptune.Model
         /// Gets and sets the property FeatureName. 
         /// <para>
         /// The name of the feature for the Neptune DB cluster that the IAM role is to be associated
-        /// with. For the list of supported feature names, see <a href="neptune/latest/userguide/api-other-apis.html#DBEngineVersion">DBEngineVersion</a>.
+        /// with. For the list of supported feature names, see <a>DBEngineVersion</a>.
         /// </para>
         /// </summary>
         public string FeatureName
@@ -80,7 +81,7 @@ namespace Amazon.Neptune.Model
         /// Gets and sets the property RoleArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the IAM role to associate with the Neptune DB cluster,
-        /// for example <code>arn:aws:iam::123456789012:role/NeptuneAccessRole</code>.
+        /// for example <c>arn:aws:iam::123456789012:role/NeptuneAccessRole</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

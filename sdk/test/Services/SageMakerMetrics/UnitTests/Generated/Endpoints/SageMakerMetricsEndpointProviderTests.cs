@@ -18,6 +18,7 @@
  */
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.SageMakerMetrics.Endpoints;
 using Amazon.SageMakerMetrics.Internal;
@@ -31,60 +32,60 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         [TestCategory("UnitTest")]
         [TestCategory("Endpoints")]
         [TestCategory("SageMakerMetrics")]
-        [Description("For region us-gov-east-1 with FIPS enabled and DualStack enabled")]
-        public void For_region_usgoveast1_with_FIPS_enabled_and_DualStack_enabled_Test()
+        [Description("For region us-east-1 with FIPS enabled and DualStack enabled")]
+        public void For_region_useast1_with_FIPS_enabled_and_DualStack_enabled_Test()
         {
             var parameters = new SageMakerMetricsEndpointParameters();
+            parameters["Region"] = "us-east-1";
             parameters["UseFIPS"] = true;
-            parameters["Region"] = "us-gov-east-1";
             parameters["UseDualStack"] = true;
             var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
-            Assert.AreEqual("https://metrics.sagemaker-fips.us-gov-east-1.api.aws", endpoint.URL);
+            Assert.AreEqual("https://metrics.sagemaker-fips.us-east-1.api.aws", endpoint.URL);
         }
 
         [TestMethod]
         [TestCategory("UnitTest")]
         [TestCategory("Endpoints")]
         [TestCategory("SageMakerMetrics")]
-        [Description("For region us-gov-east-1 with FIPS enabled and DualStack disabled")]
-        public void For_region_usgoveast1_with_FIPS_enabled_and_DualStack_disabled_Test()
+        [Description("For region us-east-1 with FIPS enabled and DualStack disabled")]
+        public void For_region_useast1_with_FIPS_enabled_and_DualStack_disabled_Test()
         {
             var parameters = new SageMakerMetricsEndpointParameters();
+            parameters["Region"] = "us-east-1";
             parameters["UseFIPS"] = true;
-            parameters["Region"] = "us-gov-east-1";
             parameters["UseDualStack"] = false;
             var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
-            Assert.AreEqual("https://metrics.sagemaker-fips.us-gov-east-1.amazonaws.com", endpoint.URL);
+            Assert.AreEqual("https://metrics.sagemaker-fips.us-east-1.amazonaws.com", endpoint.URL);
         }
 
         [TestMethod]
         [TestCategory("UnitTest")]
         [TestCategory("Endpoints")]
         [TestCategory("SageMakerMetrics")]
-        [Description("For region us-gov-east-1 with FIPS disabled and DualStack enabled")]
-        public void For_region_usgoveast1_with_FIPS_disabled_and_DualStack_enabled_Test()
+        [Description("For region us-east-1 with FIPS disabled and DualStack enabled")]
+        public void For_region_useast1_with_FIPS_disabled_and_DualStack_enabled_Test()
         {
             var parameters = new SageMakerMetricsEndpointParameters();
+            parameters["Region"] = "us-east-1";
             parameters["UseFIPS"] = false;
-            parameters["Region"] = "us-gov-east-1";
             parameters["UseDualStack"] = true;
             var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
-            Assert.AreEqual("https://metrics.sagemaker.us-gov-east-1.api.aws", endpoint.URL);
+            Assert.AreEqual("https://metrics.sagemaker.us-east-1.api.aws", endpoint.URL);
         }
 
         [TestMethod]
         [TestCategory("UnitTest")]
         [TestCategory("Endpoints")]
         [TestCategory("SageMakerMetrics")]
-        [Description("For region us-gov-east-1 with FIPS disabled and DualStack disabled")]
-        public void For_region_usgoveast1_with_FIPS_disabled_and_DualStack_disabled_Test()
+        [Description("For region us-east-1 with FIPS disabled and DualStack disabled")]
+        public void For_region_useast1_with_FIPS_disabled_and_DualStack_disabled_Test()
         {
             var parameters = new SageMakerMetricsEndpointParameters();
+            parameters["Region"] = "us-east-1";
             parameters["UseFIPS"] = false;
-            parameters["Region"] = "us-gov-east-1";
             parameters["UseDualStack"] = false;
             var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
-            Assert.AreEqual("https://metrics.sagemaker.us-gov-east-1.amazonaws.com", endpoint.URL);
+            Assert.AreEqual("https://metrics.sagemaker.us-east-1.amazonaws.com", endpoint.URL);
         }
 
         [TestMethod]
@@ -95,8 +96,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void For_region_cnnorth1_with_FIPS_enabled_and_DualStack_enabled_Test()
         {
             var parameters = new SageMakerMetricsEndpointParameters();
-            parameters["UseFIPS"] = true;
             parameters["Region"] = "cn-north-1";
+            parameters["UseFIPS"] = true;
             parameters["UseDualStack"] = true;
             var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://metrics.sagemaker-fips.cn-north-1.api.amazonwebservices.com.cn", endpoint.URL);
@@ -110,8 +111,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void For_region_cnnorth1_with_FIPS_enabled_and_DualStack_disabled_Test()
         {
             var parameters = new SageMakerMetricsEndpointParameters();
-            parameters["UseFIPS"] = true;
             parameters["Region"] = "cn-north-1";
+            parameters["UseFIPS"] = true;
             parameters["UseDualStack"] = false;
             var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://metrics.sagemaker-fips.cn-north-1.amazonaws.com.cn", endpoint.URL);
@@ -125,8 +126,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void For_region_cnnorth1_with_FIPS_disabled_and_DualStack_enabled_Test()
         {
             var parameters = new SageMakerMetricsEndpointParameters();
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "cn-north-1";
+            parameters["UseFIPS"] = false;
             parameters["UseDualStack"] = true;
             var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://metrics.sagemaker.cn-north-1.api.amazonwebservices.com.cn", endpoint.URL);
@@ -140,11 +141,71 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void For_region_cnnorth1_with_FIPS_disabled_and_DualStack_disabled_Test()
         {
             var parameters = new SageMakerMetricsEndpointParameters();
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "cn-north-1";
+            parameters["UseFIPS"] = false;
             parameters["UseDualStack"] = false;
             var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://metrics.sagemaker.cn-north-1.amazonaws.com.cn", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("SageMakerMetrics")]
+        [Description("For region us-gov-east-1 with FIPS enabled and DualStack enabled")]
+        public void For_region_usgoveast1_with_FIPS_enabled_and_DualStack_enabled_Test()
+        {
+            var parameters = new SageMakerMetricsEndpointParameters();
+            parameters["Region"] = "us-gov-east-1";
+            parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = true;
+            var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://metrics.sagemaker-fips.us-gov-east-1.api.aws", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("SageMakerMetrics")]
+        [Description("For region us-gov-east-1 with FIPS enabled and DualStack disabled")]
+        public void For_region_usgoveast1_with_FIPS_enabled_and_DualStack_disabled_Test()
+        {
+            var parameters = new SageMakerMetricsEndpointParameters();
+            parameters["Region"] = "us-gov-east-1";
+            parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = false;
+            var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://metrics.sagemaker-fips.us-gov-east-1.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("SageMakerMetrics")]
+        [Description("For region us-gov-east-1 with FIPS disabled and DualStack enabled")]
+        public void For_region_usgoveast1_with_FIPS_disabled_and_DualStack_enabled_Test()
+        {
+            var parameters = new SageMakerMetricsEndpointParameters();
+            parameters["Region"] = "us-gov-east-1";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = true;
+            var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://metrics.sagemaker.us-gov-east-1.api.aws", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("SageMakerMetrics")]
+        [Description("For region us-gov-east-1 with FIPS disabled and DualStack disabled")]
+        public void For_region_usgoveast1_with_FIPS_disabled_and_DualStack_disabled_Test()
+        {
+            var parameters = new SageMakerMetricsEndpointParameters();
+            parameters["Region"] = "us-gov-east-1";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://metrics.sagemaker.us-gov-east-1.amazonaws.com", endpoint.URL);
         }
 
         [TestMethod]
@@ -156,8 +217,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void For_region_usisoeast1_with_FIPS_enabled_and_DualStack_enabled_Test()
         {
             var parameters = new SageMakerMetricsEndpointParameters();
-            parameters["UseFIPS"] = true;
             parameters["Region"] = "us-iso-east-1";
+            parameters["UseFIPS"] = true;
             parameters["UseDualStack"] = true;
             var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
         }
@@ -170,8 +231,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void For_region_usisoeast1_with_FIPS_enabled_and_DualStack_disabled_Test()
         {
             var parameters = new SageMakerMetricsEndpointParameters();
-            parameters["UseFIPS"] = true;
             parameters["Region"] = "us-iso-east-1";
+            parameters["UseFIPS"] = true;
             parameters["UseDualStack"] = false;
             var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://metrics.sagemaker-fips.us-iso-east-1.c2s.ic.gov", endpoint.URL);
@@ -186,8 +247,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void For_region_usisoeast1_with_FIPS_disabled_and_DualStack_enabled_Test()
         {
             var parameters = new SageMakerMetricsEndpointParameters();
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "us-iso-east-1";
+            parameters["UseFIPS"] = false;
             parameters["UseDualStack"] = true;
             var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
         }
@@ -200,71 +261,11 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void For_region_usisoeast1_with_FIPS_disabled_and_DualStack_disabled_Test()
         {
             var parameters = new SageMakerMetricsEndpointParameters();
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "us-iso-east-1";
+            parameters["UseFIPS"] = false;
             parameters["UseDualStack"] = false;
             var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://metrics.sagemaker.us-iso-east-1.c2s.ic.gov", endpoint.URL);
-        }
-
-        [TestMethod]
-        [TestCategory("UnitTest")]
-        [TestCategory("Endpoints")]
-        [TestCategory("SageMakerMetrics")]
-        [Description("For region us-east-1 with FIPS enabled and DualStack enabled")]
-        public void For_region_useast1_with_FIPS_enabled_and_DualStack_enabled_Test()
-        {
-            var parameters = new SageMakerMetricsEndpointParameters();
-            parameters["UseFIPS"] = true;
-            parameters["Region"] = "us-east-1";
-            parameters["UseDualStack"] = true;
-            var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
-            Assert.AreEqual("https://metrics.sagemaker-fips.us-east-1.api.aws", endpoint.URL);
-        }
-
-        [TestMethod]
-        [TestCategory("UnitTest")]
-        [TestCategory("Endpoints")]
-        [TestCategory("SageMakerMetrics")]
-        [Description("For region us-east-1 with FIPS enabled and DualStack disabled")]
-        public void For_region_useast1_with_FIPS_enabled_and_DualStack_disabled_Test()
-        {
-            var parameters = new SageMakerMetricsEndpointParameters();
-            parameters["UseFIPS"] = true;
-            parameters["Region"] = "us-east-1";
-            parameters["UseDualStack"] = false;
-            var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
-            Assert.AreEqual("https://metrics.sagemaker-fips.us-east-1.amazonaws.com", endpoint.URL);
-        }
-
-        [TestMethod]
-        [TestCategory("UnitTest")]
-        [TestCategory("Endpoints")]
-        [TestCategory("SageMakerMetrics")]
-        [Description("For region us-east-1 with FIPS disabled and DualStack enabled")]
-        public void For_region_useast1_with_FIPS_disabled_and_DualStack_enabled_Test()
-        {
-            var parameters = new SageMakerMetricsEndpointParameters();
-            parameters["UseFIPS"] = false;
-            parameters["Region"] = "us-east-1";
-            parameters["UseDualStack"] = true;
-            var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
-            Assert.AreEqual("https://metrics.sagemaker.us-east-1.api.aws", endpoint.URL);
-        }
-
-        [TestMethod]
-        [TestCategory("UnitTest")]
-        [TestCategory("Endpoints")]
-        [TestCategory("SageMakerMetrics")]
-        [Description("For region us-east-1 with FIPS disabled and DualStack disabled")]
-        public void For_region_useast1_with_FIPS_disabled_and_DualStack_disabled_Test()
-        {
-            var parameters = new SageMakerMetricsEndpointParameters();
-            parameters["UseFIPS"] = false;
-            parameters["Region"] = "us-east-1";
-            parameters["UseDualStack"] = false;
-            var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
-            Assert.AreEqual("https://metrics.sagemaker.us-east-1.amazonaws.com", endpoint.URL);
         }
 
         [TestMethod]
@@ -276,8 +277,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void For_region_usisobeast1_with_FIPS_enabled_and_DualStack_enabled_Test()
         {
             var parameters = new SageMakerMetricsEndpointParameters();
-            parameters["UseFIPS"] = true;
             parameters["Region"] = "us-isob-east-1";
+            parameters["UseFIPS"] = true;
             parameters["UseDualStack"] = true;
             var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
         }
@@ -290,8 +291,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void For_region_usisobeast1_with_FIPS_enabled_and_DualStack_disabled_Test()
         {
             var parameters = new SageMakerMetricsEndpointParameters();
-            parameters["UseFIPS"] = true;
             parameters["Region"] = "us-isob-east-1";
+            parameters["UseFIPS"] = true;
             parameters["UseDualStack"] = false;
             var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://metrics.sagemaker-fips.us-isob-east-1.sc2s.sgov.gov", endpoint.URL);
@@ -306,8 +307,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void For_region_usisobeast1_with_FIPS_disabled_and_DualStack_enabled_Test()
         {
             var parameters = new SageMakerMetricsEndpointParameters();
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "us-isob-east-1";
+            parameters["UseFIPS"] = false;
             parameters["UseDualStack"] = true;
             var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
         }
@@ -320,8 +321,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void For_region_usisobeast1_with_FIPS_disabled_and_DualStack_disabled_Test()
         {
             var parameters = new SageMakerMetricsEndpointParameters();
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "us-isob-east-1";
+            parameters["UseFIPS"] = false;
             parameters["UseDualStack"] = false;
             var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://metrics.sagemaker.us-isob-east-1.sc2s.sgov.gov", endpoint.URL);
@@ -331,12 +332,27 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         [TestCategory("UnitTest")]
         [TestCategory("Endpoints")]
         [TestCategory("SageMakerMetrics")]
-        [Description("For custom endpoint with fips disabled and dualstack disabled")]
-        public void For_custom_endpoint_with_fips_disabled_and_dualstack_disabled_Test()
+        [Description("For custom endpoint with region set and fips disabled and dualstack disabled")]
+        public void For_custom_endpoint_with_region_set_and_fips_disabled_and_dualstack_disabled_Test()
+        {
+            var parameters = new SageMakerMetricsEndpointParameters();
+            parameters["Region"] = "us-east-1";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Endpoint"] = "https://example.com";
+            var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://example.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("SageMakerMetrics")]
+        [Description("For custom endpoint with region not set and fips disabled and dualstack disabled")]
+        public void For_custom_endpoint_with_region_not_set_and_fips_disabled_and_dualstack_disabled_Test()
         {
             var parameters = new SageMakerMetricsEndpointParameters();
             parameters["UseFIPS"] = false;
-            parameters["Region"] = "us-east-1";
             parameters["UseDualStack"] = false;
             parameters["Endpoint"] = "https://example.com";
             var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
@@ -352,8 +368,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void For_custom_endpoint_with_fips_enabled_and_dualstack_disabled_Test()
         {
             var parameters = new SageMakerMetricsEndpointParameters();
-            parameters["UseFIPS"] = true;
             parameters["Region"] = "us-east-1";
+            parameters["UseFIPS"] = true;
             parameters["UseDualStack"] = false;
             parameters["Endpoint"] = "https://example.com";
             var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
@@ -368,10 +384,22 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void For_custom_endpoint_with_fips_disabled_and_dualstack_enabled_Test()
         {
             var parameters = new SageMakerMetricsEndpointParameters();
-            parameters["UseFIPS"] = false;
             parameters["Region"] = "us-east-1";
+            parameters["UseFIPS"] = false;
             parameters["UseDualStack"] = true;
             parameters["Endpoint"] = "https://example.com";
+            var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("SageMakerMetrics")]
+        [Description("Missing region")]
+        [ExpectedException(typeof(AmazonClientException), @"Invalid Configuration: Missing Region")]
+        public void Missing_region_Test()
+        {
+            var parameters = new SageMakerMetricsEndpointParameters();
             var endpoint = new AmazonSageMakerMetricsEndpointProvider().ResolveEndpoint(parameters);
         }
 

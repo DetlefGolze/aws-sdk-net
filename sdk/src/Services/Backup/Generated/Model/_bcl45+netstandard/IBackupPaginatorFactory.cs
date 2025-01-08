@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the backup-2018-11-15.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -29,6 +30,11 @@ namespace Amazon.Backup.Model
         /// Paginator for ListBackupJobs operation
         ///</summary>
         IListBackupJobsPaginator ListBackupJobs(ListBackupJobsRequest request);
+
+        /// <summary>
+        /// Paginator for ListBackupJobSummaries operation
+        ///</summary>
+        IListBackupJobSummariesPaginator ListBackupJobSummaries(ListBackupJobSummariesRequest request);
 
         /// <summary>
         /// Paginator for ListBackupPlans operation
@@ -61,9 +67,19 @@ namespace Amazon.Backup.Model
         IListCopyJobsPaginator ListCopyJobs(ListCopyJobsRequest request);
 
         /// <summary>
+        /// Paginator for ListCopyJobSummaries operation
+        ///</summary>
+        IListCopyJobSummariesPaginator ListCopyJobSummaries(ListCopyJobSummariesRequest request);
+
+        /// <summary>
         /// Paginator for ListFrameworks operation
         ///</summary>
         IListFrameworksPaginator ListFrameworks(ListFrameworksRequest request);
+
+        /// <summary>
+        /// Paginator for ListIndexedRecoveryPoints operation
+        ///</summary>
+        IListIndexedRecoveryPointsPaginator ListIndexedRecoveryPoints(ListIndexedRecoveryPointsRequest request);
 
         /// <summary>
         /// Paginator for ListLegalHolds operation
@@ -109,6 +125,26 @@ namespace Amazon.Backup.Model
         /// Paginator for ListRestoreJobs operation
         ///</summary>
         IListRestoreJobsPaginator ListRestoreJobs(ListRestoreJobsRequest request);
+
+        /// <summary>
+        /// Paginator for ListRestoreJobsByProtectedResource operation
+        ///</summary>
+        IListRestoreJobsByProtectedResourcePaginator ListRestoreJobsByProtectedResource(ListRestoreJobsByProtectedResourceRequest request);
+
+        /// <summary>
+        /// Paginator for ListRestoreJobSummaries operation
+        ///</summary>
+        IListRestoreJobSummariesPaginator ListRestoreJobSummaries(ListRestoreJobSummariesRequest request);
+
+        /// <summary>
+        /// Paginator for ListRestoreTestingPlans operation
+        ///</summary>
+        IListRestoreTestingPlansPaginator ListRestoreTestingPlans(ListRestoreTestingPlansRequest request);
+
+        /// <summary>
+        /// Paginator for ListRestoreTestingSelections operation
+        ///</summary>
+        IListRestoreTestingSelectionsPaginator ListRestoreTestingSelections(ListRestoreTestingSelectionsRequest request);
 
         /// <summary>
         /// Paginator for ListTags operation

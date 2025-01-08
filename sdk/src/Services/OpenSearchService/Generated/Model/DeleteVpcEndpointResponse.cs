@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property VpcEndpointSummary. 
         /// <para>
-        /// Information about the deleted endpoint, including its current status (<code>DELETING</code>
-        /// or <code>DELETE_FAILED</code>).
+        /// Information about the deleted endpoint, including its current status (<c>DELETING</c>
+        /// or <c>DELETE_FAILED</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

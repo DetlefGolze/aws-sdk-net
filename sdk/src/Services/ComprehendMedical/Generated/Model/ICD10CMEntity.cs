@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComprehendMedical.Model
 {
     /// <summary>
@@ -37,15 +38,15 @@ namespace Amazon.ComprehendMedical.Model
     /// </summary>
     public partial class ICD10CMEntity
     {
-        private List<ICD10CMAttribute> _attributes = new List<ICD10CMAttribute>();
+        private List<ICD10CMAttribute> _attributes = AWSConfigs.InitializeCollections ? new List<ICD10CMAttribute>() : null;
         private int? _beginOffset;
         private ICD10CMEntityCategory _category;
         private int? _endOffset;
-        private List<ICD10CMConcept> _icd10cmConcepts = new List<ICD10CMConcept>();
+        private List<ICD10CMConcept> _icd10cmConcepts = AWSConfigs.InitializeCollections ? new List<ICD10CMConcept>() : null;
         private int? _id;
         private float? _score;
         private string _text;
-        private List<ICD10CMTrait> _traits = new List<ICD10CMTrait>();
+        private List<ICD10CMTrait> _traits = AWSConfigs.InitializeCollections ? new List<ICD10CMTrait>() : null;
         private ICD10CMEntityType _type;
 
         /// <summary>
@@ -65,7 +66,7 @@ namespace Amazon.ComprehendMedical.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -90,7 +91,7 @@ namespace Amazon.ComprehendMedical.Model
         /// <summary>
         /// Gets and sets the property Category. 
         /// <para>
-        ///  The category of the entity. InferICD10CM detects entities in the <code>MEDICAL_CONDITION</code>
+        ///  The category of the entity. InferICD10CM detects entities in the <c>MEDICAL_CONDITION</c>
         /// category. 
         /// </para>
         /// </summary>
@@ -141,7 +142,7 @@ namespace Amazon.ComprehendMedical.Model
         // Check to see if ICD10CMConcepts property is set
         internal bool IsSetICD10CMConcepts()
         {
-            return this._icd10cmConcepts != null && this._icd10cmConcepts.Count > 0; 
+            return this._icd10cmConcepts != null && (this._icd10cmConcepts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -205,8 +206,7 @@ namespace Amazon.ComprehendMedical.Model
         /// Gets and sets the property Traits. 
         /// <para>
         /// Provides Contextual information for the entity. The traits recognized by InferICD10CM
-        /// are <code>DIAGNOSIS</code>, <code>SIGN</code>, <code>SYMPTOM</code>, and <code>NEGATION.</code>
-        /// 
+        /// are <c>DIAGNOSIS</c>, <c>SIGN</c>, <c>SYMPTOM</c>, and <c>NEGATION.</c> 
         /// </para>
         /// </summary>
         public List<ICD10CMTrait> Traits
@@ -218,14 +218,14 @@ namespace Amazon.ComprehendMedical.Model
         // Check to see if Traits property is set
         internal bool IsSetTraits()
         {
-            return this._traits != null && this._traits.Count > 0; 
+            return this._traits != null && (this._traits.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
         /// Describes the specific type of entity with category of entities. InferICD10CM detects
-        /// entities of the type <code>DX_NAME</code> and <code>TIME_EXPRESSION</code>.
+        /// entities of the type <c>DX_NAME</c> and <c>TIME_EXPRESSION</c>.
         /// </para>
         /// </summary>
         public ICD10CMEntityType Type

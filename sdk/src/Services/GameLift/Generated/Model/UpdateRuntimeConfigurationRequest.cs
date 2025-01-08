@@ -26,27 +26,28 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateRuntimeConfiguration operation.
-    /// Updates the current runtime configuration for the specified fleet, which tells Amazon
-    /// GameLift how to launch server processes on all instances in the fleet. You can update
-    /// a fleet's runtime configuration at any time after the fleet is created; it does not
-    /// need to be in <code>ACTIVE</code> status.
+    /// Updates the runtime configuration for the specified fleet. The runtime configuration
+    /// tells Amazon GameLift how to launch server processes on computes in managed EC2 and
+    /// Anywhere fleets. You can update a fleet's runtime configuration at any time after
+    /// the fleet is created; it does not need to be in <c>ACTIVE</c> status.
     /// 
     ///  
     /// <para>
-    /// To update runtime configuration, specify the fleet ID and provide a <code>RuntimeConfiguration</code>
+    /// To update runtime configuration, specify the fleet ID and provide a <c>RuntimeConfiguration</c>
     /// with an updated set of server process configurations.
     /// </para>
     ///  
     /// <para>
-    /// If successful, the fleet's runtime configuration settings are updated. Each instance
-    /// in the fleet regularly checks for and retrieves updated runtime configurations. Instances
-    /// immediately begin complying with the new configuration by launching new server processes
-    /// or not replacing existing processes when they shut down. Updating a fleet's runtime
-    /// configuration never affects existing server processes.
+    /// If successful, the fleet's runtime configuration settings are updated. Fleet computes
+    /// that run game server processes regularly check for and receive updated runtime configurations.
+    /// The computes immediately take action to comply with the new configuration by launching
+    /// new server processes or by not replacing existing processes when they shut down. Updating
+    /// a fleet's runtime configuration never affects existing server processes.
     /// </para>
     ///  
     /// <para>
@@ -70,7 +71,7 @@ namespace Amazon.GameLift.Model
         /// either the fleet ID or ARN value.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -86,10 +87,10 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property RuntimeConfiguration. 
         /// <para>
-        /// Instructions for launching server processes on each instance in the fleet. Server
-        /// processes run either a custom game build executable or a Realtime Servers script.
-        /// The runtime configuration lists the types of server processes to run on an instance,
-        /// how to launch them, and the number of processes to run concurrently.
+        /// Instructions for launching server processes on fleet computes. Server processes run
+        /// either a custom game build executable or a Realtime Servers script. The runtime configuration
+        /// lists the types of server processes to run, how to launch them, and the number of
+        /// processes to run concurrently.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

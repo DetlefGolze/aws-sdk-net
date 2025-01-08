@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaLive.Model
 {
     /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.MediaLive.Model
 
         /// <summary>
         /// Gets and sets the property Codec. Filter by codec, 'AVC', 'HEVC', 'MPEG2', 'AUDIO',
-        /// or 'LINK'
+        /// 'LINK', or 'AV1'
         /// </summary>
         public string Codec
         {

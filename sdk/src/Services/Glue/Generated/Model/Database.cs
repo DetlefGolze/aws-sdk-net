@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
-    /// The <code>Database</code> object represents a logical grouping of tables that might
-    /// reside in a Hive metastore or an RDBMS.
+    /// The <c>Database</c> object represents a logical grouping of tables that might reside
+    /// in a Hive metastore or an RDBMS.
     /// </summary>
     public partial class Database
     {
         private string _catalogId;
-        private List<PrincipalPermissions> _createTableDefaultPermissions = new List<PrincipalPermissions>();
+        private List<PrincipalPermissions> _createTableDefaultPermissions = AWSConfigs.InitializeCollections ? new List<PrincipalPermissions>() : null;
         private DateTime? _createTime;
         private string _description;
         private FederatedDatabase _federatedDatabase;
         private string _locationUri;
         private string _name;
-        private Dictionary<string, string> _parameters = new Dictionary<string, string>();
+        private Dictionary<string, string> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private DatabaseIdentifier _targetDatabase;
 
         /// <summary>
@@ -79,7 +80,7 @@ namespace Amazon.Glue.Model
         // Check to see if CreateTableDefaultPermissions property is set
         internal bool IsSetCreateTableDefaultPermissions()
         {
-            return this._createTableDefaultPermissions != null && this._createTableDefaultPermissions.Count > 0; 
+            return this._createTableDefaultPermissions != null && (this._createTableDefaultPermissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -122,8 +123,8 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property FederatedDatabase. 
         /// <para>
-        /// A <code>FederatedDatabase</code> structure that references an entity outside the Glue
-        /// Data Catalog.
+        /// A <c>FederatedDatabase</c> structure that references an entity outside the Glue Data
+        /// Catalog.
         /// </para>
         /// </summary>
         public FederatedDatabase FederatedDatabase
@@ -192,13 +193,13 @@ namespace Amazon.Glue.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TargetDatabase. 
         /// <para>
-        /// A <code>DatabaseIdentifier</code> structure that describes a target database for resource
+        /// A <c>DatabaseIdentifier</c> structure that describes a target database for resource
         /// linking.
         /// </para>
         /// </summary>

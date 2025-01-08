@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.QuickSight.Model
         /// The text of a description for a column.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=500)]
+        [AWSProperty(Sensitive=true, Min=0, Max=500)]
         public string Text
         {
             get { return this._text; }

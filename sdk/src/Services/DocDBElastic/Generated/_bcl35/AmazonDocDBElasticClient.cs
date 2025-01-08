@@ -30,12 +30,39 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.DocDBElastic
 {
     /// <summary>
-    /// Implementation for accessing DocDBElastic
+    /// <para>Implementation for accessing DocDBElastic</para>
     ///
-    /// The new Amazon Elastic DocumentDB service endpoint.
+    /// Amazon DocumentDB elastic clusters 
+    /// <para>
+    /// Amazon DocumentDB elastic-clusters support workloads with millions of reads/writes
+    /// per second and petabytes of storage capacity. Amazon DocumentDB elastic clusters also
+    /// simplify how developers interact with Amazon DocumentDB elastic-clusters by eliminating
+    /// the need to choose, manage or upgrade instances.
+    /// 
+    ///  
+    /// <para>
+    /// Amazon DocumentDB elastic-clusters were created to:
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    /// provide a solution for customers looking for a database that provides virtually limitless
+    /// scale with rich query capabilities and MongoDB API compatibility.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// give customers higher connection limits, and to reduce downtime from patching.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// continue investing in a cloud-native, elastic, and class leading architecture for
+    /// JSON workloads.
+    /// </para>
+    ///  </li> </ul>
+    /// </para>
     /// </summary>
     public partial class AmazonDocDBElasticClient : AmazonServiceClient, IAmazonDocDBElastic
     {
@@ -263,10 +290,157 @@ namespace Amazon.DocDBElastic
         #endregion
 
 
+        #region  ApplyPendingMaintenanceAction
+
+        /// <summary>
+        /// The type of pending maintenance action to be applied to the resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ApplyPendingMaintenanceAction service method.</param>
+        /// 
+        /// <returns>The response from the ApplyPendingMaintenanceAction service method, as returned by DocDBElastic.</returns>
+        /// <exception cref="Amazon.DocDBElastic.Model.AccessDeniedException">
+        /// An exception that occurs when there are not sufficient permissions to perform an action.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ConflictException">
+        /// There was an access conflict.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.InternalServerException">
+        /// There was an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ResourceNotFoundException">
+        /// The specified resource could not be located.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ThrottlingException">
+        /// ThrottlingException will be thrown when request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ValidationException">
+        /// A structure defining a validation exception.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/ApplyPendingMaintenanceAction">REST API Reference for ApplyPendingMaintenanceAction Operation</seealso>
+        public virtual ApplyPendingMaintenanceActionResponse ApplyPendingMaintenanceAction(ApplyPendingMaintenanceActionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ApplyPendingMaintenanceActionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ApplyPendingMaintenanceActionResponseUnmarshaller.Instance;
+
+            return Invoke<ApplyPendingMaintenanceActionResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ApplyPendingMaintenanceAction operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ApplyPendingMaintenanceAction operation on AmazonDocDBElasticClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndApplyPendingMaintenanceAction
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/ApplyPendingMaintenanceAction">REST API Reference for ApplyPendingMaintenanceAction Operation</seealso>
+        public virtual IAsyncResult BeginApplyPendingMaintenanceAction(ApplyPendingMaintenanceActionRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ApplyPendingMaintenanceActionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ApplyPendingMaintenanceActionResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ApplyPendingMaintenanceAction operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginApplyPendingMaintenanceAction.</param>
+        /// 
+        /// <returns>Returns a  ApplyPendingMaintenanceActionResult from DocDBElastic.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/ApplyPendingMaintenanceAction">REST API Reference for ApplyPendingMaintenanceAction Operation</seealso>
+        public virtual ApplyPendingMaintenanceActionResponse EndApplyPendingMaintenanceAction(IAsyncResult asyncResult)
+        {
+            return EndInvoke<ApplyPendingMaintenanceActionResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  CopyClusterSnapshot
+
+        /// <summary>
+        /// Copies a snapshot of an elastic cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CopyClusterSnapshot service method.</param>
+        /// 
+        /// <returns>The response from the CopyClusterSnapshot service method, as returned by DocDBElastic.</returns>
+        /// <exception cref="Amazon.DocDBElastic.Model.AccessDeniedException">
+        /// An exception that occurs when there are not sufficient permissions to perform an action.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ConflictException">
+        /// There was an access conflict.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.InternalServerException">
+        /// There was an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ResourceNotFoundException">
+        /// The specified resource could not be located.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ServiceQuotaExceededException">
+        /// The service quota for the action was exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ThrottlingException">
+        /// ThrottlingException will be thrown when request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ValidationException">
+        /// A structure defining a validation exception.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/CopyClusterSnapshot">REST API Reference for CopyClusterSnapshot Operation</seealso>
+        public virtual CopyClusterSnapshotResponse CopyClusterSnapshot(CopyClusterSnapshotRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CopyClusterSnapshotRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CopyClusterSnapshotResponseUnmarshaller.Instance;
+
+            return Invoke<CopyClusterSnapshotResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CopyClusterSnapshot operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CopyClusterSnapshot operation on AmazonDocDBElasticClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCopyClusterSnapshot
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/CopyClusterSnapshot">REST API Reference for CopyClusterSnapshot Operation</seealso>
+        public virtual IAsyncResult BeginCopyClusterSnapshot(CopyClusterSnapshotRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CopyClusterSnapshotRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CopyClusterSnapshotResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CopyClusterSnapshot operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCopyClusterSnapshot.</param>
+        /// 
+        /// <returns>Returns a  CopyClusterSnapshotResult from DocDBElastic.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/CopyClusterSnapshot">REST API Reference for CopyClusterSnapshot Operation</seealso>
+        public virtual CopyClusterSnapshotResponse EndCopyClusterSnapshot(IAsyncResult asyncResult)
+        {
+            return EndInvoke<CopyClusterSnapshotResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region  CreateCluster
 
         /// <summary>
-        /// Creates a new Elastic DocumentDB cluster and returns its Cluster structure.
+        /// Creates a new Amazon DocumentDB elastic cluster and returns its cluster structure.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateCluster service method.</param>
         /// 
@@ -338,7 +512,7 @@ namespace Amazon.DocDBElastic
         #region  CreateClusterSnapshot
 
         /// <summary>
-        /// Creates a snapshot of a cluster.
+        /// Creates a snapshot of an elastic cluster.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateClusterSnapshot service method.</param>
         /// 
@@ -413,7 +587,7 @@ namespace Amazon.DocDBElastic
         #region  DeleteCluster
 
         /// <summary>
-        /// Delete a Elastic DocumentDB cluster.
+        /// Delete an elastic cluster.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteCluster service method.</param>
         /// 
@@ -485,7 +659,7 @@ namespace Amazon.DocDBElastic
         #region  DeleteClusterSnapshot
 
         /// <summary>
-        /// Delete a Elastic DocumentDB snapshot.
+        /// Delete an elastic cluster snapshot.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteClusterSnapshot service method.</param>
         /// 
@@ -557,7 +731,7 @@ namespace Amazon.DocDBElastic
         #region  GetCluster
 
         /// <summary>
-        /// Returns information about a specific Elastic DocumentDB cluster.
+        /// Returns information about a specific elastic cluster.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetCluster service method.</param>
         /// 
@@ -626,7 +800,7 @@ namespace Amazon.DocDBElastic
         #region  GetClusterSnapshot
 
         /// <summary>
-        /// Returns information about a specific Elastic DocumentDB snapshot
+        /// Returns information about a specific elastic cluster snapshot
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetClusterSnapshot service method.</param>
         /// 
@@ -692,10 +866,82 @@ namespace Amazon.DocDBElastic
 
         #endregion
         
+        #region  GetPendingMaintenanceAction
+
+        /// <summary>
+        /// Retrieves all maintenance actions that are pending.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetPendingMaintenanceAction service method.</param>
+        /// 
+        /// <returns>The response from the GetPendingMaintenanceAction service method, as returned by DocDBElastic.</returns>
+        /// <exception cref="Amazon.DocDBElastic.Model.AccessDeniedException">
+        /// An exception that occurs when there are not sufficient permissions to perform an action.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ConflictException">
+        /// There was an access conflict.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.InternalServerException">
+        /// There was an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ResourceNotFoundException">
+        /// The specified resource could not be located.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ThrottlingException">
+        /// ThrottlingException will be thrown when request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ValidationException">
+        /// A structure defining a validation exception.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/GetPendingMaintenanceAction">REST API Reference for GetPendingMaintenanceAction Operation</seealso>
+        public virtual GetPendingMaintenanceActionResponse GetPendingMaintenanceAction(GetPendingMaintenanceActionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetPendingMaintenanceActionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetPendingMaintenanceActionResponseUnmarshaller.Instance;
+
+            return Invoke<GetPendingMaintenanceActionResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetPendingMaintenanceAction operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetPendingMaintenanceAction operation on AmazonDocDBElasticClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetPendingMaintenanceAction
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/GetPendingMaintenanceAction">REST API Reference for GetPendingMaintenanceAction Operation</seealso>
+        public virtual IAsyncResult BeginGetPendingMaintenanceAction(GetPendingMaintenanceActionRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetPendingMaintenanceActionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetPendingMaintenanceActionResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetPendingMaintenanceAction operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetPendingMaintenanceAction.</param>
+        /// 
+        /// <returns>Returns a  GetPendingMaintenanceActionResult from DocDBElastic.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/GetPendingMaintenanceAction">REST API Reference for GetPendingMaintenanceAction Operation</seealso>
+        public virtual GetPendingMaintenanceActionResponse EndGetPendingMaintenanceAction(IAsyncResult asyncResult)
+        {
+            return EndInvoke<GetPendingMaintenanceActionResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region  ListClusters
 
         /// <summary>
-        /// Returns information about provisioned Elastic DocumentDB clusters.
+        /// Returns information about provisioned Amazon DocumentDB elastic clusters.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListClusters service method.</param>
         /// 
@@ -761,7 +1007,7 @@ namespace Amazon.DocDBElastic
         #region  ListClusterSnapshots
 
         /// <summary>
-        /// Returns information about Elastic DocumentDB snapshots for a specified cluster.
+        /// Returns information about snapshots for a specified elastic cluster.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListClusterSnapshots service method.</param>
         /// 
@@ -824,10 +1070,76 @@ namespace Amazon.DocDBElastic
 
         #endregion
         
+        #region  ListPendingMaintenanceActions
+
+        /// <summary>
+        /// Retrieves a list of all maintenance actions that are pending.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListPendingMaintenanceActions service method.</param>
+        /// 
+        /// <returns>The response from the ListPendingMaintenanceActions service method, as returned by DocDBElastic.</returns>
+        /// <exception cref="Amazon.DocDBElastic.Model.AccessDeniedException">
+        /// An exception that occurs when there are not sufficient permissions to perform an action.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.InternalServerException">
+        /// There was an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ThrottlingException">
+        /// ThrottlingException will be thrown when request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ValidationException">
+        /// A structure defining a validation exception.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/ListPendingMaintenanceActions">REST API Reference for ListPendingMaintenanceActions Operation</seealso>
+        public virtual ListPendingMaintenanceActionsResponse ListPendingMaintenanceActions(ListPendingMaintenanceActionsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListPendingMaintenanceActionsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListPendingMaintenanceActionsResponseUnmarshaller.Instance;
+
+            return Invoke<ListPendingMaintenanceActionsResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListPendingMaintenanceActions operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListPendingMaintenanceActions operation on AmazonDocDBElasticClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListPendingMaintenanceActions
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/ListPendingMaintenanceActions">REST API Reference for ListPendingMaintenanceActions Operation</seealso>
+        public virtual IAsyncResult BeginListPendingMaintenanceActions(ListPendingMaintenanceActionsRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListPendingMaintenanceActionsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListPendingMaintenanceActionsResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListPendingMaintenanceActions operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListPendingMaintenanceActions.</param>
+        /// 
+        /// <returns>Returns a  ListPendingMaintenanceActionsResult from DocDBElastic.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/ListPendingMaintenanceActions">REST API Reference for ListPendingMaintenanceActions Operation</seealso>
+        public virtual ListPendingMaintenanceActionsResponse EndListPendingMaintenanceActions(IAsyncResult asyncResult)
+        {
+            return EndInvoke<ListPendingMaintenanceActionsResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region  ListTagsForResource
 
         /// <summary>
-        /// Lists all tags on a Elastic DocumentDB resource
+        /// Lists all tags on a elastic cluster resource
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTagsForResource service method.</param>
         /// 
@@ -893,7 +1205,7 @@ namespace Amazon.DocDBElastic
         #region  RestoreClusterFromSnapshot
 
         /// <summary>
-        /// Restores a Elastic DocumentDB cluster from a snapshot.
+        /// Restores an elastic cluster from a snapshot.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the RestoreClusterFromSnapshot service method.</param>
         /// 
@@ -965,10 +1277,149 @@ namespace Amazon.DocDBElastic
 
         #endregion
         
+        #region  StartCluster
+
+        /// <summary>
+        /// Restarts the stopped elastic cluster that is specified by <c>clusterARN</c>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartCluster service method.</param>
+        /// 
+        /// <returns>The response from the StartCluster service method, as returned by DocDBElastic.</returns>
+        /// <exception cref="Amazon.DocDBElastic.Model.AccessDeniedException">
+        /// An exception that occurs when there are not sufficient permissions to perform an action.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.InternalServerException">
+        /// There was an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ResourceNotFoundException">
+        /// The specified resource could not be located.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ThrottlingException">
+        /// ThrottlingException will be thrown when request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ValidationException">
+        /// A structure defining a validation exception.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/StartCluster">REST API Reference for StartCluster Operation</seealso>
+        public virtual StartClusterResponse StartCluster(StartClusterRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartClusterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartClusterResponseUnmarshaller.Instance;
+
+            return Invoke<StartClusterResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the StartCluster operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the StartCluster operation on AmazonDocDBElasticClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndStartCluster
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/StartCluster">REST API Reference for StartCluster Operation</seealso>
+        public virtual IAsyncResult BeginStartCluster(StartClusterRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StartClusterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StartClusterResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  StartCluster operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginStartCluster.</param>
+        /// 
+        /// <returns>Returns a  StartClusterResult from DocDBElastic.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/StartCluster">REST API Reference for StartCluster Operation</seealso>
+        public virtual StartClusterResponse EndStartCluster(IAsyncResult asyncResult)
+        {
+            return EndInvoke<StartClusterResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  StopCluster
+
+        /// <summary>
+        /// Stops the running elastic cluster that is specified by <c>clusterArn</c>. The elastic
+        /// cluster must be in the <i>available</i> state.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StopCluster service method.</param>
+        /// 
+        /// <returns>The response from the StopCluster service method, as returned by DocDBElastic.</returns>
+        /// <exception cref="Amazon.DocDBElastic.Model.AccessDeniedException">
+        /// An exception that occurs when there are not sufficient permissions to perform an action.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.InternalServerException">
+        /// There was an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ResourceNotFoundException">
+        /// The specified resource could not be located.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ThrottlingException">
+        /// ThrottlingException will be thrown when request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.DocDBElastic.Model.ValidationException">
+        /// A structure defining a validation exception.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/StopCluster">REST API Reference for StopCluster Operation</seealso>
+        public virtual StopClusterResponse StopCluster(StopClusterRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StopClusterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StopClusterResponseUnmarshaller.Instance;
+
+            return Invoke<StopClusterResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the StopCluster operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the StopCluster operation on AmazonDocDBElasticClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndStopCluster
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/StopCluster">REST API Reference for StopCluster Operation</seealso>
+        public virtual IAsyncResult BeginStopCluster(StopClusterRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = StopClusterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = StopClusterResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  StopCluster operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginStopCluster.</param>
+        /// 
+        /// <returns>Returns a  StopClusterResult from DocDBElastic.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/StopCluster">REST API Reference for StopCluster Operation</seealso>
+        public virtual StopClusterResponse EndStopCluster(IAsyncResult asyncResult)
+        {
+            return EndInvoke<StopClusterResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region  TagResource
 
         /// <summary>
-        /// Adds metadata tags to a Elastic DocumentDB resource
+        /// Adds metadata tags to an elastic cluster resource
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the TagResource service method.</param>
         /// 
@@ -1034,7 +1485,7 @@ namespace Amazon.DocDBElastic
         #region  UntagResource
 
         /// <summary>
-        /// Removes metadata tags to a Elastic DocumentDB resource
+        /// Removes metadata tags from an elastic cluster resource
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
         /// 
@@ -1100,8 +1551,8 @@ namespace Amazon.DocDBElastic
         #region  UpdateCluster
 
         /// <summary>
-        /// Modifies a Elastic DocumentDB cluster. This includes updating admin-username/password,
-        /// upgrading API version setting up a backup window and maintenance window
+        /// Modifies an elastic cluster. This includes updating admin-username/password, upgrading
+        /// the API version, and setting up a backup window and maintenance window
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateCluster service method.</param>
         /// 
@@ -1179,11 +1630,11 @@ namespace Amazon.DocDBElastic
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

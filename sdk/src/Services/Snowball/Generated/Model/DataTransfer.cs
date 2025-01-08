@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
     /// Defines the real-time status of a Snow device's data transfer while the device is
-    /// at Amazon Web Services. This data is only available while a job has a <code>JobState</code>
-    /// value of <code>InProgress</code>, for both import and export jobs.
+    /// at Amazon Web Services. This data is only available while a job has a <c>JobState</c>
+    /// value of <c>InProgress</c>, for both import and export jobs.
     /// </summary>
     public partial class DataTransfer
     {

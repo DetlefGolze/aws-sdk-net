@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -60,9 +61,9 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Type. 
         /// <para>
         ///  Describes the type of finding change event, such as a call to <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchImportFindings.html">
-        /// <code>BatchImportFindings</code> </a> (by an integrated Amazon Web Service or third
+        /// <c>BatchImportFindings</c> </a> (by an integrated Amazon Web Services service or third
         /// party partner integration) or <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateFindings.html">
-        /// <code>BatchUpdateFindings</code> </a> (by a Security Hub customer). 
+        /// <c>BatchUpdateFindings</c> </a> (by a Security Hub customer). 
         /// </para>
         /// </summary>
         public FindingHistoryUpdateSourceType Type

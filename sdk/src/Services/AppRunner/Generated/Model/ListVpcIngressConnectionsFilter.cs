@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRunner.Model
 {
     /// <summary>
     /// Returns a list of VPC Ingress Connections based on the filter provided. It can return
-    /// either <code>ServiceArn</code> or <code>VpcEndpointId</code>, or both.
+    /// either <c>ServiceArn</c> or <c>VpcEndpointId</c>, or both.
     /// </summary>
     public partial class ListVpcIngressConnectionsFilter
     {

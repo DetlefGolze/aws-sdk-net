@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteFunction operation.
-    /// Deletes a Lambda function. To delete a specific function version, use the <code>Qualifier</code>
+    /// Deletes a Lambda function. To delete a specific function version, use the <c>Qualifier</c>
     /// parameter. Otherwise, all versions and aliases are deleted. This doesn't require the
     /// user to have explicit permissions for <a>DeleteAlias</a>.
     /// 
     ///  
     /// <para>
     /// To delete Lambda event source mappings that invoke a function, use <a>DeleteEventSourceMapping</a>.
-    /// For Amazon Web Services and resources that invoke your function directly, delete the
-    /// trigger in the service where you originally configured it.
+    /// For Amazon Web Services services and resources that invoke your function directly,
+    /// delete the trigger in the service where you originally configured it.
     /// </para>
     /// </summary>
     public partial class DeleteFunctionRequest : AmazonLambdaRequest
@@ -49,7 +50,7 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property FunctionName. 
         /// <para>
-        /// The name of the Lambda function or version.
+        /// The name or ARN of the Lambda function or version.
         /// </para>
         ///  
         /// <para>
@@ -57,16 +58,16 @@ namespace Amazon.Lambda.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>Function name</b> – <code>my-function</code> (name-only), <code>my-function:1</code>
-        /// (with version).
+        ///  <b>Function name</b> – <c>my-function</c> (name-only), <c>my-function:1</c> (with
+        /// version).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.
+        ///  <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Partial ARN</b> – <code>123456789012:function:my-function</code>.
+        ///  <b>Partial ARN</b> – <c>123456789012:function:my-function</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>

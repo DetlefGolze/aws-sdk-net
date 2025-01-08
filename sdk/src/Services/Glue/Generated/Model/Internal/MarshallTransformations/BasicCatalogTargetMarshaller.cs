@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(BasicCatalogTarget requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetDatabase())
             {
                 context.Writer.WritePropertyName("Database");
@@ -66,6 +69,22 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("Name");
                 context.Writer.Write(requestObject.Name);
+            }
+
+            if(requestObject.IsSetPartitionKeys())
+            {
+                context.Writer.WritePropertyName("PartitionKeys");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectPartitionKeysListValue in requestObject.PartitionKeys)
+                {
+                    context.Writer.WriteArrayStart();
+                    foreach(var requestObjectPartitionKeysListValueListValue in requestObjectPartitionKeysListValue)
+                    {
+                            context.Writer.Write(requestObjectPartitionKeysListValueListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+                context.Writer.WriteArrayEnd();
             }
 
             if(requestObject.IsSetTable())

@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// Container for the parameters for response received from <code> <a>ListElasticsearchVersions</a>
-    /// </code> operation.
+    /// Container for the parameters for response received from <c> <a>ListElasticsearchVersions</a>
+    /// </c> operation.
     /// </summary>
     public partial class ListElasticsearchVersionsResponse : AmazonWebServiceResponse
     {
-        private List<string> _elasticsearchVersions = new List<string>();
+        private List<string> _elasticsearchVersions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -49,7 +50,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if ElasticsearchVersions property is set
         internal bool IsSetElasticsearchVersions()
         {
-            return this._elasticsearchVersions != null && this._elasticsearchVersions.Count > 0; 
+            return this._elasticsearchVersions != null && (this._elasticsearchVersions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

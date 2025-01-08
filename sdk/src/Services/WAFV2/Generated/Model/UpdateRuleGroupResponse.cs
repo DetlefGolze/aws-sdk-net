@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property NextLockToken. 
         /// <para>
-        /// A token used for optimistic locking. WAF returns this token to your <code>update</code>
-        /// requests. You use <code>NextLockToken</code> in the same manner as you use <code>LockToken</code>.
+        /// A token used for optimistic locking. WAF returns this token to your <c>update</c>
+        /// requests. You use <c>NextLockToken</c> in the same manner as you use <c>LockToken</c>.
         /// 
         /// </para>
         /// </summary>

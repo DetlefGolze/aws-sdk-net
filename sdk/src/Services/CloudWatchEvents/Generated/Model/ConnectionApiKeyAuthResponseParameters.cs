@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvents.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.CloudWatchEvents.Model
         /// <summary>
         /// Gets and sets the property ApiKeyName. 
         /// <para>
-        /// The name of the header to use for the <code>APIKeyValue</code> used for authorization.
+        /// The name of the header to use for the <c>APIKeyValue</c> used for authorization.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=512)]

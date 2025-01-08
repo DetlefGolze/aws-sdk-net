@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,32 +35,38 @@ namespace Amazon.EC2.Model
     public partial class Image
     {
         private ArchitectureValues _architecture;
-        private List<BlockDeviceMapping> _blockDeviceMappings = new List<BlockDeviceMapping>();
+        private List<BlockDeviceMapping> _blockDeviceMappings = AWSConfigs.InitializeCollections ? new List<BlockDeviceMapping>() : null;
         private BootModeValues _bootMode;
         private string _creationDate;
         private string _deprecationTime;
+        private string _deregistrationProtection;
         private string _description;
         private bool? _enaSupport;
         private HypervisorType _hypervisor;
+        private bool? _imageAllowed;
         private string _imageId;
         private string _imageLocation;
         private string _imageOwnerAlias;
         private ImageTypeValues _imageType;
         private ImdsSupportValues _imdsSupport;
         private string _kernelId;
+        private string _lastLaunchedTime;
         private string _name;
         private string _ownerId;
         private PlatformValues _platform;
         private string _platformDetails;
-        private List<ProductCode> _productCodes = new List<ProductCode>();
+        private List<ProductCode> _productCodes = AWSConfigs.InitializeCollections ? new List<ProductCode>() : null;
         private bool? _public;
         private string _ramdiskId;
         private string _rootDeviceName;
         private DeviceType _rootDeviceType;
+        private string _sourceImageId;
+        private string _sourceImageRegion;
+        private string _sourceInstanceId;
         private string _sriovNetSupport;
         private ImageState _state;
         private StateReason _stateReason;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private TpmSupportValues _tpmSupport;
         private string _usageOperation;
         private VirtualizationType _virtualizationType;
@@ -97,7 +104,7 @@ namespace Amazon.EC2.Model
         // Check to see if BlockDeviceMappings property is set
         internal bool IsSetBlockDeviceMappings()
         {
-            return this._blockDeviceMappings != null && this._blockDeviceMappings.Count > 0; 
+            return this._blockDeviceMappings != null && (this._blockDeviceMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -158,6 +165,24 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DeregistrationProtection. 
+        /// <para>
+        /// Indicates whether deregistration protection is enabled for the AMI.
+        /// </para>
+        /// </summary>
+        public string DeregistrationProtection
+        {
+            get { return this._deregistrationProtection; }
+            set { this._deregistrationProtection = value; }
+        }
+
+        // Check to see if DeregistrationProtection property is set
+        internal bool IsSetDeregistrationProtection()
+        {
+            return this._deregistrationProtection != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
         /// The description of the AMI that was provided during image creation.
@@ -196,7 +221,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Hypervisor. 
         /// <para>
-        /// The hypervisor type of the image.
+        /// The hypervisor type of the image. Only <c>xen</c> is supported. <c>ovm</c> is not
+        /// supported.
         /// </para>
         /// </summary>
         public HypervisorType Hypervisor
@@ -209,6 +235,33 @@ namespace Amazon.EC2.Model
         internal bool IsSetHypervisor()
         {
             return this._hypervisor != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ImageAllowed. 
+        /// <para>
+        /// If <c>true</c>, the AMI satisfies the criteria for Allowed AMIs and can be discovered
+        /// and used in the account. If <c>false</c> and Allowed AMIs is set to <c>enabled</c>,
+        /// the AMI can't be discovered or used in the account. If <c>false</c> and Allowed AMIs
+        /// is set to <c>audit-mode</c>, the AMI can be discovered and used in the account.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-allowed-amis.html">Control
+        /// the discovery and use of AMIs in Amazon EC2 with Allowed AMIs</a> in <i>Amazon EC2
+        /// User Guide</i>.
+        /// </para>
+        /// </summary>
+        public bool ImageAllowed
+        {
+            get { return this._imageAllowed.GetValueOrDefault(); }
+            set { this._imageAllowed = value; }
+        }
+
+        // Check to see if ImageAllowed property is set
+        internal bool IsSetImageAllowed()
+        {
+            return this._imageAllowed.HasValue; 
         }
 
         /// <summary>
@@ -250,8 +303,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property ImageOwnerAlias. 
         /// <para>
-        /// The Amazon Web Services account alias (for example, <code>amazon</code>, <code>self</code>)
-        /// or the Amazon Web Services account ID of the AMI owner.
+        /// The owner alias (<c>amazon</c> | <c>aws-backup-vault</c> | <c>aws-marketplace</c>).
         /// </para>
         /// </summary>
         public string ImageOwnerAlias
@@ -287,11 +339,11 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property ImdsSupport. 
         /// <para>
-        /// If <code>v2.0</code>, it indicates that IMDSv2 is specified in the AMI. Instances
-        /// launched from this AMI will have <code>HttpTokens</code> automatically set to <code>required</code>
-        /// so that, by default, the instance requires that IMDSv2 is used when requesting instance
-        /// metadata. In addition, <code>HttpPutResponseHopLimit</code> is set to <code>2</code>.
-        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html#configure-IMDS-new-instances-ami-configuration">Configure
+        /// If <c>v2.0</c>, it indicates that IMDSv2 is specified in the AMI. Instances launched
+        /// from this AMI will have <c>HttpTokens</c> automatically set to <c>required</c> so
+        /// that, by default, the instance requires that IMDSv2 is used when requesting instance
+        /// metadata. In addition, <c>HttpPutResponseHopLimit</c> is set to <c>2</c>. For more
+        /// information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html#configure-IMDS-new-instances-ami-configuration">Configure
         /// the AMI</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         /// </summary>
@@ -323,6 +375,31 @@ namespace Amazon.EC2.Model
         internal bool IsSetKernelId()
         {
             return this._kernelId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property LastLaunchedTime. 
+        /// <para>
+        /// The date and time, in <a href="http://www.iso.org/iso/iso8601">ISO 8601 date-time
+        /// format</a>, when the AMI was last used to launch an EC2 instance. When the AMI is
+        /// used to launch an instance, there is a 24-hour delay before that usage is reported.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <c>lastLaunchedTime</c> data is available starting April 2017.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public string LastLaunchedTime
+        {
+            get { return this._lastLaunchedTime; }
+            set { this._lastLaunchedTime = value; }
+        }
+
+        // Check to see if LastLaunchedTime property is set
+        internal bool IsSetLastLaunchedTime()
+        {
+            return this._lastLaunchedTime != null;
         }
 
         /// <summary>
@@ -364,7 +441,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Platform. 
         /// <para>
-        /// This value is set to <code>windows</code> for Windows AMIs; otherwise, it is blank.
+        /// This value is set to <c>windows</c> for Windows AMIs; otherwise, it is blank.
         /// </para>
         /// </summary>
         public PlatformValues Platform
@@ -414,14 +491,14 @@ namespace Amazon.EC2.Model
         // Check to see if ProductCodes property is set
         internal bool IsSetProductCodes()
         {
-            return this._productCodes != null && this._productCodes.Count > 0; 
+            return this._productCodes != null && (this._productCodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Public. 
         /// <para>
-        /// Indicates whether the image has public launch permissions. The value is <code>true</code>
-        /// if this image has public launch permissions or <code>false</code> if it has only implicit
+        /// Indicates whether the image has public launch permissions. The value is <c>true</c>
+        /// if this image has public launch permissions or <c>false</c> if it has only implicit
         /// and explicit launch permissions.
         /// </para>
         /// </summary>
@@ -458,7 +535,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property RootDeviceName. 
         /// <para>
-        /// The device name of the root device volume (for example, <code>/dev/sda1</code>).
+        /// The device name of the root device volume (for example, <c>/dev/sda1</c>).
         /// </para>
         /// </summary>
         public string RootDeviceName
@@ -493,6 +570,78 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SourceImageId. 
+        /// <para>
+        /// The ID of the source AMI from which the AMI was created.
+        /// </para>
+        ///  
+        /// <para>
+        /// The ID only appears if the AMI was created using <a>CreateImage</a>, <a>CopyImage</a>,
+        /// or <a>CreateRestoreImageTask</a>. The ID does not appear if the AMI was created using
+        /// any other API. For some older AMIs, the ID might not be available. For more information,
+        /// see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/identify-source-ami-used-to-create-new-ami.html">Identify
+        /// the source AMI used to create a new AMI</a> in the <i>Amazon EC2 User Guide</i>.
+        /// </para>
+        /// </summary>
+        public string SourceImageId
+        {
+            get { return this._sourceImageId; }
+            set { this._sourceImageId = value; }
+        }
+
+        // Check to see if SourceImageId property is set
+        internal bool IsSetSourceImageId()
+        {
+            return this._sourceImageId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SourceImageRegion. 
+        /// <para>
+        /// The Region of the source AMI. 
+        /// </para>
+        ///  
+        /// <para>
+        /// The Region only appears if the AMI was created using <a>CreateImage</a>, <a>CopyImage</a>,
+        /// or <a>CreateRestoreImageTask</a>. The Region does not appear if the AMI was created
+        /// using any other API. For some older AMIs, the Region might not be available. For more
+        /// information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/identify-source-ami-used-to-create-new-ami.html">Identify
+        /// the source AMI used to create a new AMI</a> in the <i>Amazon EC2 User Guide</i>.
+        /// </para>
+        /// </summary>
+        public string SourceImageRegion
+        {
+            get { return this._sourceImageRegion; }
+            set { this._sourceImageRegion = value; }
+        }
+
+        // Check to see if SourceImageRegion property is set
+        internal bool IsSetSourceImageRegion()
+        {
+            return this._sourceImageRegion != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SourceInstanceId. 
+        /// <para>
+        /// The ID of the instance that the AMI was created from if the AMI was created using
+        /// <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateImage.html">CreateImage</a>.
+        /// This field only appears if the AMI was created using CreateImage.
+        /// </para>
+        /// </summary>
+        public string SourceInstanceId
+        {
+            get { return this._sourceInstanceId; }
+            set { this._sourceInstanceId = value; }
+        }
+
+        // Check to see if SourceInstanceId property is set
+        internal bool IsSetSourceInstanceId()
+        {
+            return this._sourceInstanceId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property SriovNetSupport. 
         /// <para>
         /// Specifies whether enhanced networking with the Intel 82599 Virtual Function interface
@@ -514,8 +663,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property State. 
         /// <para>
-        /// The current state of the AMI. If the state is <code>available</code>, the image is
-        /// successfully registered and can be used to launch an instance.
+        /// The current state of the AMI. If the state is <c>available</c>, the image is successfully
+        /// registered and can be used to launch an instance.
         /// </para>
         /// </summary>
         public ImageState State
@@ -563,14 +712,14 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TpmSupport. 
         /// <para>
-        /// If the image is configured for NitroTPM support, the value is <code>v2.0</code>. For
-        /// more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitrotpm.html">NitroTPM</a>
+        /// If the image is configured for NitroTPM support, the value is <c>v2.0</c>. For more
+        /// information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitrotpm.html">NitroTPM</a>
         /// in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         /// </summary>
@@ -590,7 +739,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property UsageOperation. 
         /// <para>
         /// The operation of the Amazon EC2 instance and the billing code that is associated with
-        /// the AMI. <code>usageOperation</code> corresponds to the <a href="https://docs.aws.amazon.com/cur/latest/userguide/Lineitem-columns.html#Lineitem-details-O-Operation">lineitem/Operation</a>
+        /// the AMI. <c>usageOperation</c> corresponds to the <a href="https://docs.aws.amazon.com/cur/latest/userguide/Lineitem-columns.html#Lineitem-details-O-Operation">lineitem/Operation</a>
         /// column on your Amazon Web Services Cost and Usage Report and in the <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html">Amazon
         /// Web Services Price List API</a>. You can view these fields on the <b>Instances</b>
         /// or <b>AMIs</b> pages in the Amazon EC2 console, or in the responses that are returned

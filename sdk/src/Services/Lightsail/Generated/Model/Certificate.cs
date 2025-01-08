@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -33,10 +34,9 @@ namespace Amazon.Lightsail.Model
     /// 
     ///  <note> 
     /// <para>
-    /// To get a summary of a certificate, use the <code>GetCertificates</code> action and
-    /// omit <code>includeCertificateDetails</code> from your request. The response will include
-    /// only the certificate Amazon Resource Name (ARN), certificate name, domain name, and
-    /// tags.
+    /// To get a summary of a certificate, use the <c>GetCertificates</c> action and omit
+    /// <c>includeCertificateDetails</c> from your request. The response will include only
+    /// the certificate Amazon Resource Name (ARN), certificate name, domain name, and tags.
     /// </para>
     ///  </note>
     /// </summary>
@@ -45,7 +45,7 @@ namespace Amazon.Lightsail.Model
         private string _arn;
         private DateTime? _createdAt;
         private string _domainName;
-        private List<DomainValidationRecord> _domainValidationRecords = new List<DomainValidationRecord>();
+        private List<DomainValidationRecord> _domainValidationRecords = AWSConfigs.InitializeCollections ? new List<DomainValidationRecord>() : null;
         private string _eligibleToRenew;
         private int? _inUseResourceCount;
         private DateTime? _issuedAt;
@@ -60,9 +60,9 @@ namespace Amazon.Lightsail.Model
         private DateTime? _revokedAt;
         private string _serialNumber;
         private CertificateStatus _status;
-        private List<string> _subjectAlternativeNames = new List<string>();
+        private List<string> _subjectAlternativeNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _supportCode;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -133,7 +133,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if DomainValidationRecords property is set
         internal bool IsSetDomainValidationRecords()
         {
-            return this._domainValidationRecords != null && this._domainValidationRecords.Count > 0; 
+            return this._domainValidationRecords != null && (this._domainValidationRecords.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -229,7 +229,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the certificate (e.g., <code>my-certificate</code>).
+        /// The name of the certificate (<c>my-certificate</c>).
         /// </para>
         /// </summary>
         public string Name
@@ -309,12 +309,12 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b> <code>NO_AVAILABLE_CONTACTS</code> </b> - This failure applies to email validation,
+        ///  <b> <c>NO_AVAILABLE_CONTACTS</c> </b> - This failure applies to email validation,
         /// which is not available for Lightsail certificates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>ADDITIONAL_VERIFICATION_REQUIRED</code> </b> - Lightsail requires additional
+        ///  <b> <c>ADDITIONAL_VERIFICATION_REQUIRED</c> </b> - Lightsail requires additional
         /// information to process this certificate request. This can happen as a fraud-protection
         /// measure, such as when the domain ranks within the Alexa top 1000 websites. To provide
         /// the required information, use the <a href="https://console.aws.amazon.com/support/home">Amazon
@@ -327,8 +327,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  </note> </li> <li> 
         /// <para>
-        ///  <b> <code>DOMAIN_NOT_ALLOWED</code> </b> - One or more of the domain names in the
-        /// certificate request was reported as an unsafe domain by <a href="https://www.virustotal.com/gui/home/url">VirusTotal</a>.
+        ///  <b> <c>DOMAIN_NOT_ALLOWED</c> </b> - One or more of the domain names in the certificate
+        /// request was reported as an unsafe domain by <a href="https://www.virustotal.com/gui/home/url">VirusTotal</a>.
         /// To correct the problem, search for your domain name on the <a href="https://www.virustotal.com/gui/home/url">VirusTotal</a>
         /// website. If your domain is reported as suspicious, see <a href="https://developers.google.com/web/fundamentals/security/hacked">Google
         /// Help for Hacked Websites</a> to learn what you can do.
@@ -348,17 +348,17 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>INVALID_PUBLIC_DOMAIN</code> </b> - One or more of the domain names in
-        /// the certificate request is not valid. Typically, this is because a domain name in
-        /// the request is not a valid top-level domain. Try to request a certificate again, correcting
-        /// any spelling errors or typos that were in the failed request, and ensure that all
-        /// domain names in the request are for valid top-level domains. For example, you cannot
-        /// request a certificate for <code>example.invalidpublicdomain</code> because <code>invalidpublicdomain</code>
+        ///  <b> <c>INVALID_PUBLIC_DOMAIN</c> </b> - One or more of the domain names in the certificate
+        /// request is not valid. Typically, this is because a domain name in the request is not
+        /// a valid top-level domain. Try to request a certificate again, correcting any spelling
+        /// errors or typos that were in the failed request, and ensure that all domain names
+        /// in the request are for valid top-level domains. For example, you cannot request a
+        /// certificate for <c>example.invalidpublicdomain</c> because <c>invalidpublicdomain</c>
         /// is not a valid top-level domain.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>OTHER</code> </b> - Typically, this failure occurs when there is a typographical
+        ///  <b> <c>OTHER</c> </b> - Typically, this failure occurs when there is a typographical
         /// error in one or more of the domain names in the certificate request. Try to request
         /// a certificate again, correcting any spelling errors or typos that were in the failed
         /// request. 
@@ -381,7 +381,7 @@ namespace Amazon.Lightsail.Model
         /// Gets and sets the property RevocationReason. 
         /// <para>
         /// The reason the certificate was revoked. This value is present only when the certificate
-        /// status is <code>REVOKED</code>.
+        /// status is <c>REVOKED</c>.
         /// </para>
         /// </summary>
         public string RevocationReason
@@ -400,7 +400,7 @@ namespace Amazon.Lightsail.Model
         /// Gets and sets the property RevokedAt. 
         /// <para>
         /// The timestamp when the certificate was revoked. This value is present only when the
-        /// certificate status is <code>REVOKED</code>.
+        /// certificate status is <c>REVOKED</c>.
         /// </para>
         /// </summary>
         public DateTime RevokedAt
@@ -454,8 +454,8 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property SubjectAlternativeNames. 
         /// <para>
-        /// An array of strings that specify the alternate domains (e.g., <code>example2.com</code>)
-        /// and subdomains (e.g., <code>blog.example.com</code>) of the certificate.
+        /// An array of strings that specify the alternate domains (<c>example2.com</c>) and subdomains
+        /// (<c>blog.example.com</c>) of the certificate.
         /// </para>
         /// </summary>
         public List<string> SubjectAlternativeNames
@@ -467,7 +467,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if SubjectAlternativeNames property is set
         internal bool IsSetSubjectAlternativeNames()
         {
-            return this._subjectAlternativeNames != null && this._subjectAlternativeNames.Count > 0; 
+            return this._subjectAlternativeNames != null && (this._subjectAlternativeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -507,7 +507,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

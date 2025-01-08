@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
     /// Container for the parameters to the BatchDisableStandards operation.
-    /// Disables the standards specified by the provided <code>StandardsSubscriptionArns</code>.
+    /// Disables the standards specified by the provided <c>StandardsSubscriptionArns</c>.
     /// 
     ///  
     /// <para>
@@ -40,7 +41,7 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class BatchDisableStandardsRequest : AmazonSecurityHubRequest
     {
-        private List<string> _standardsSubscriptionArns = new List<string>();
+        private List<string> _standardsSubscriptionArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property StandardsSubscriptionArns. 
@@ -58,7 +59,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if StandardsSubscriptionArns property is set
         internal bool IsSetStandardsSubscriptionArns()
         {
-            return this._standardsSubscriptionArns != null && this._standardsSubscriptionArns.Count > 0; 
+            return this._standardsSubscriptionArns != null && (this._standardsSubscriptionArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

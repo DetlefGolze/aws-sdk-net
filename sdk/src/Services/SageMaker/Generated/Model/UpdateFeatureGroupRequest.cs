@@ -26,34 +26,37 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateFeatureGroup operation.
     /// Updates the feature group by either adding features or updating the online store configuration.
-    /// Use one of the following request parameters at a time while using the <code>UpdateFeatureGroup</code>
+    /// Use one of the following request parameters at a time while using the <c>UpdateFeatureGroup</c>
     /// API.
     /// 
     ///  
     /// <para>
-    /// You can add features for your feature group using the <code>FeatureAdditions</code>
-    /// request parameter. Features cannot be removed from a feature group.
+    /// You can add features for your feature group using the <c>FeatureAdditions</c> request
+    /// parameter. Features cannot be removed from a feature group.
     /// </para>
     ///  
     /// <para>
-    /// You can update the online store configuration by using the <code>OnlineStoreConfig</code>
-    /// request parameter. If a <code>TtlDuration</code> is specified, the default <code>TtlDuration</code>
+    /// You can update the online store configuration by using the <c>OnlineStoreConfig</c>
+    /// request parameter. If a <c>TtlDuration</c> is specified, the default <c>TtlDuration</c>
     /// applies for all records added to the feature group <i>after the feature group is updated</i>.
-    /// If a record level <code>TtlDuration</code> exists from using the <code>PutRecord</code>
-    /// API, the record level <code>TtlDuration</code> applies to that record instead of the
-    /// default <code>TtlDuration</code>.
+    /// If a record level <c>TtlDuration</c> exists from using the <c>PutRecord</c> API, the
+    /// record level <c>TtlDuration</c> applies to that record instead of the default <c>TtlDuration</c>.
+    /// To remove the default <c>TtlDuration</c> from an existing feature group, use the <c>UpdateFeatureGroup</c>
+    /// API and set the <c>TtlDuration</c> <c>Unit</c> and <c>Value</c> to <c>null</c>.
     /// </para>
     /// </summary>
     public partial class UpdateFeatureGroupRequest : AmazonSageMakerRequest
     {
-        private List<FeatureDefinition> _featureAdditions = new List<FeatureDefinition>();
+        private List<FeatureDefinition> _featureAdditions = AWSConfigs.InitializeCollections ? new List<FeatureDefinition>() : null;
         private string _featureGroupName;
         private OnlineStoreConfigUpdate _onlineStoreConfig;
+        private ThroughputConfigUpdate _throughputConfig;
 
         /// <summary>
         /// Gets and sets the property FeatureAdditions. 
@@ -73,7 +76,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if FeatureAdditions property is set
         internal bool IsSetFeatureAdditions()
         {
-            return this._featureAdditions != null && this._featureAdditions.Count > 0; 
+            return this._featureAdditions != null && (this._featureAdditions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -111,6 +114,21 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetOnlineStoreConfig()
         {
             return this._onlineStoreConfig != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ThroughputConfig.
+        /// </summary>
+        public ThroughputConfigUpdate ThroughputConfig
+        {
+            get { return this._throughputConfig; }
+            set { this._throughputConfig = value; }
+        }
+
+        // Check to see if ThroughputConfig property is set
+        internal bool IsSetThroughputConfig()
+        {
+            return this._throughputConfig != null;
         }
 
     }

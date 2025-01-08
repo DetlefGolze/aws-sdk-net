@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -61,15 +62,15 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>DIFFERENCE</code> 
+        ///  <c>DIFFERENCE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PERCENT_DIFFERENCE</code> 
+        ///  <c>PERCENT_DIFFERENCE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PERCENT</code> 
+        ///  <c>PERCENT</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

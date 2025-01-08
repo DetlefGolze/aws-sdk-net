@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.Glue.Model
     /// </summary>
     public partial class BatchGetDevEndpointsResponse : AmazonWebServiceResponse
     {
-        private List<DevEndpoint> _devEndpoints = new List<DevEndpoint>();
-        private List<string> _devEndpointsNotFound = new List<string>();
+        private List<DevEndpoint> _devEndpoints = AWSConfigs.InitializeCollections ? new List<DevEndpoint>() : null;
+        private List<string> _devEndpointsNotFound = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DevEndpoints. 
         /// <para>
-        /// A list of <code>DevEndpoint</code> definitions.
+        /// A list of <c>DevEndpoint</c> definitions.
         /// </para>
         /// </summary>
         public List<DevEndpoint> DevEndpoints
@@ -51,13 +52,13 @@ namespace Amazon.Glue.Model
         // Check to see if DevEndpoints property is set
         internal bool IsSetDevEndpoints()
         {
-            return this._devEndpoints != null && this._devEndpoints.Count > 0; 
+            return this._devEndpoints != null && (this._devEndpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DevEndpointsNotFound. 
         /// <para>
-        /// A list of <code>DevEndpoints</code> not found.
+        /// A list of <c>DevEndpoints</c> not found.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=25)]
@@ -70,7 +71,7 @@ namespace Amazon.Glue.Model
         // Check to see if DevEndpointsNotFound property is set
         internal bool IsSetDevEndpointsNotFound()
         {
-            return this._devEndpointsNotFound != null && this._devEndpointsNotFound.Count > 0; 
+            return this._devEndpointsNotFound != null && (this._devEndpointsNotFound.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

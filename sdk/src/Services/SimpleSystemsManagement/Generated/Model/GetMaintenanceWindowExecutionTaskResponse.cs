@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -44,8 +45,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         private string _statusDetails;
         private string _taskArn;
         private string _taskExecutionId;
-        private List<Dictionary<string, MaintenanceWindowTaskParameterValueExpression>> _taskParameters = new List<Dictionary<string, MaintenanceWindowTaskParameterValueExpression>>();
-        private List<AlarmStateInformation> _triggeredAlarms = new List<AlarmStateInformation>();
+        private List<Dictionary<string, MaintenanceWindowTaskParameterValueExpression>> _taskParameters = AWSConfigs.InitializeCollections ? new List<Dictionary<string, MaintenanceWindowTaskParameterValueExpression>>() : null;
+        private List<AlarmStateInformation> _triggeredAlarms = AWSConfigs.InitializeCollections ? new List<AlarmStateInformation>() : null;
         private MaintenanceWindowTaskType _type;
         private string _windowExecutionId;
 
@@ -261,8 +262,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>TaskParameters</code> has been deprecated. To specify parameters to pass to
-        /// a task when it runs, instead use the <code>Parameters</code> option in the <code>TaskInvocationParameters</code>
+        ///  <c>TaskParameters</c> has been deprecated. To specify parameters to pass to a task
+        /// when it runs, instead use the <c>Parameters</c> option in the <c>TaskInvocationParameters</c>
         /// structure. For information about how Systems Manager handles these options for the
         /// supported maintenance window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.
         /// </para>
@@ -272,11 +273,11 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Key</code>: string, between 1 and 255 characters
+        ///  <c>Key</c>: string, between 1 and 255 characters
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Value</code>: an array of strings, each between 1 and 255 characters
+        ///  <c>Value</c>: an array of strings, each between 1 and 255 characters
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -290,7 +291,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if TaskParameters property is set
         internal bool IsSetTaskParameters()
         {
-            return this._taskParameters != null && this._taskParameters.Count > 0; 
+            return this._taskParameters != null && (this._taskParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -309,7 +310,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if TriggeredAlarms property is set
         internal bool IsSetTriggeredAlarms()
         {
-            return this._triggeredAlarms != null && this._triggeredAlarms.Count > 0; 
+            return this._triggeredAlarms != null && (this._triggeredAlarms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

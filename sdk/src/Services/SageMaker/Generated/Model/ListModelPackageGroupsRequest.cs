@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.SageMaker.Model
     {
         private DateTime? _creationTimeAfter;
         private DateTime? _creationTimeBefore;
+        private CrossAccountFilterOption _crossAccountFilterOption;
         private int? _maxResults;
         private string _nameContains;
         private string _nextToken;
@@ -76,6 +78,27 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetCreationTimeBefore()
         {
             return this._creationTimeBefore.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property CrossAccountFilterOption. 
+        /// <para>
+        /// A filter that returns either model groups shared with you or model groups in your
+        /// own account. When the value is <c>CrossAccount</c>, the results show the resources
+        /// made discoverable to you from other accounts. When the value is <c>SameAccount</c>
+        /// or <c>null</c>, the results show resources from your account. The default is <c>SameAccount</c>.
+        /// </para>
+        /// </summary>
+        public CrossAccountFilterOption CrossAccountFilterOption
+        {
+            get { return this._crossAccountFilterOption; }
+            set { this._crossAccountFilterOption = value; }
+        }
+
+        // Check to see if CrossAccountFilterOption property is set
+        internal bool IsSetCrossAccountFilterOption()
+        {
+            return this._crossAccountFilterOption != null;
         }
 
         /// <summary>
@@ -120,9 +143,9 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the result of the previous <code>ListModelPackageGroups</code> request was truncated,
-        /// the response includes a <code>NextToken</code>. To retrieve the next set of model
-        /// groups, use the token in the next request.
+        /// If the result of the previous <c>ListModelPackageGroups</c> request was truncated,
+        /// the response includes a <c>NextToken</c>. To retrieve the next set of model groups,
+        /// use the token in the next request.
         /// </para>
         /// </summary>
         [AWSProperty(Max=8192)]
@@ -141,7 +164,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SortBy. 
         /// <para>
-        /// The field to sort results by. The default is <code>CreationTime</code>.
+        /// The field to sort results by. The default is <c>CreationTime</c>.
         /// </para>
         /// </summary>
         public ModelPackageGroupSortBy SortBy
@@ -159,7 +182,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SortOrder. 
         /// <para>
-        /// The sort order for results. The default is <code>Ascending</code>.
+        /// The sort order for results. The default is <c>Ascending</c>.
         /// </para>
         /// </summary>
         public SortOrder SortOrder

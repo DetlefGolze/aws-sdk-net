@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
-    /// A complex type that contains the response information for the <code>CreateTrafficPolicyInstance</code>
+    /// A complex type that contains the response information for the <c>CreateTrafficPolicyInstance</c>
     /// request.
     /// </summary>
     public partial class CreateTrafficPolicyInstanceResponse : AmazonWebServiceResponse
@@ -72,7 +73,7 @@ namespace Amazon.Route53.Model
         // Check to see if Location property is set
         internal bool IsSetLocation()
         {
-            return this._location != null;
+            return !string.IsNullOrEmpty(this._location);
         }
 
     }

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ChimeSDKMediaPipelines.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.ChimeSDKMediaPipelines.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public MediaCapturePipeline Unmarshall(JsonUnmarshallerContext context)
         {
+            MediaCapturePipeline unmarshalledObject = new MediaCapturePipeline();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            MediaCapturePipeline unmarshalledObject = new MediaCapturePipeline();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -94,6 +96,12 @@ namespace Amazon.ChimeSDKMediaPipelines.Model.Internal.MarshallTransformations
                     unmarshalledObject.SinkArn = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("SinkIamRoleArn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.SinkIamRoleArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("SinkType", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -112,6 +120,12 @@ namespace Amazon.ChimeSDKMediaPipelines.Model.Internal.MarshallTransformations
                     unmarshalledObject.SourceType = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("SseAwsKeyManagementParams", targetDepth))
+                {
+                    var unmarshaller = SseAwsKeyManagementParamsUnmarshaller.Instance;
+                    unmarshalledObject.SseAwsKeyManagementParams = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("Status", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -125,7 +139,6 @@ namespace Amazon.ChimeSDKMediaPipelines.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

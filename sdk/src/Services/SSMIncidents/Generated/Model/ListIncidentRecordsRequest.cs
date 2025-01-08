@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSMIncidents.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.SSMIncidents.Model
     /// </summary>
     public partial class ListIncidentRecordsRequest : AmazonSSMIncidentsRequest
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -47,19 +48,19 @@ namespace Amazon.SSMIncidents.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>creationTime</code> 
+        ///  <c>creationTime</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>impact</code> 
+        ///  <c>impact</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>status</code> 
+        ///  <c>status</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>createdBy</code> 
+        ///  <c>createdBy</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -91,7 +92,7 @@ namespace Amazon.SSMIncidents.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -116,7 +117,8 @@ namespace Amazon.SSMIncidents.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The pagination token to continue to the next page of results.
+        /// The pagination token for the next set of items to return. (You received this token
+        /// from a previous call.)
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=2000)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Rekognition.Model
     /// 
     ///  
     /// <para>
-    /// This operation requires permissions to perform the <code>rekognition:DeleteCollection</code>
+    /// This operation requires permissions to perform the <c>rekognition:DeleteCollection</c>
     /// action.
     /// </para>
     /// </summary>

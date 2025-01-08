@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentity.Model
 {
     /// <summary>
-    /// Returned in response to a successful <code>DeleteIdentities</code> operation.
+    /// Returned in response to a successful <c>DeleteIdentities</c> operation.
     /// </summary>
     public partial class DeleteIdentitiesResponse : AmazonWebServiceResponse
     {
-        private List<UnprocessedIdentityId> _unprocessedIdentityIds = new List<UnprocessedIdentityId>();
+        private List<UnprocessedIdentityId> _unprocessedIdentityIds = AWSConfigs.InitializeCollections ? new List<UnprocessedIdentityId>() : null;
 
         /// <summary>
         /// Gets and sets the property UnprocessedIdentityIds. 
@@ -52,7 +53,7 @@ namespace Amazon.CognitoIdentity.Model
         // Check to see if UnprocessedIdentityIds property is set
         internal bool IsSetUnprocessedIdentityIds()
         {
-            return this._unprocessedIdentityIds != null && this._unprocessedIdentityIds.Count > 0; 
+            return this._unprocessedIdentityIds != null && (this._unprocessedIdentityIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

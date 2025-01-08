@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -40,8 +41,9 @@ namespace Amazon.Kendra.Model
     /// </summary>
     public partial class QueryResultItem
     {
-        private List<AdditionalResultAttribute> _additionalAttributes = new List<AdditionalResultAttribute>();
-        private List<DocumentAttribute> _documentAttributes = new List<DocumentAttribute>();
+        private List<AdditionalResultAttribute> _additionalAttributes = AWSConfigs.InitializeCollections ? new List<AdditionalResultAttribute>() : null;
+        private CollapsedResultDetail _collapsedResultDetail;
+        private List<DocumentAttribute> _documentAttributes = AWSConfigs.InitializeCollections ? new List<DocumentAttribute>() : null;
         private TextWithHighlights _documentExcerpt;
         private string _documentId;
         private TextWithHighlights _documentTitle;
@@ -68,14 +70,32 @@ namespace Amazon.Kendra.Model
         // Check to see if AdditionalAttributes property is set
         internal bool IsSetAdditionalAttributes()
         {
-            return this._additionalAttributes != null && this._additionalAttributes.Count > 0; 
+            return this._additionalAttributes != null && (this._additionalAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property CollapsedResultDetail. 
+        /// <para>
+        /// Provides details about a collapsed group of search results.
+        /// </para>
+        /// </summary>
+        public CollapsedResultDetail CollapsedResultDetail
+        {
+            get { return this._collapsedResultDetail; }
+            set { this._collapsedResultDetail = value; }
+        }
+
+        // Check to see if CollapsedResultDetail property is set
+        internal bool IsSetCollapsedResultDetail()
+        {
+            return this._collapsedResultDetail != null;
         }
 
         /// <summary>
         /// Gets and sets the property DocumentAttributes. 
         /// <para>
         /// An array of document fields/attributes assigned to a document in the search results.
-        /// For example, the document author (<code>_author</code>) or the source URI (<code>_source_uri</code>)
+        /// For example, the document author (<c>_author</c>) or the source URI (<c>_source_uri</c>)
         /// of the document.
         /// </para>
         /// </summary>
@@ -88,7 +108,7 @@ namespace Amazon.Kendra.Model
         // Check to see if DocumentAttributes property is set
         internal bool IsSetDocumentAttributes()
         {
-            return this._documentAttributes != null && this._documentAttributes.Count > 0; 
+            return this._documentAttributes != null && (this._documentAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -191,10 +211,10 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property Format. 
         /// <para>
-        /// If the <code>Type</code> of document within the response is <code>ANSWER</code>, then
-        /// it is either a <code>TABLE</code> answer or <code>TEXT</code> answer. If it's a table
-        /// answer, a table excerpt is returned in <code>TableExcerpt</code>. If it's a text answer,
-        /// a text excerpt is returned in <code>DocumentExcerpt</code>.
+        /// If the <c>Type</c> of document within the response is <c>ANSWER</c>, then it is either
+        /// a <c>TABLE</c> answer or <c>TEXT</c> answer. If it's a table answer, a table excerpt
+        /// is returned in <c>TableExcerpt</c>. If it's a text answer, a text excerpt is returned
+        /// in <c>DocumentExcerpt</c>.
         /// </para>
         /// </summary>
         public QueryResultFormat Format
@@ -212,7 +232,9 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        /// The identifier for the query result.
+        /// The unique identifier for the query result item id (<c>Id</c>) and the query result
+        /// item document id (<c>DocumentId</c>) combined. The value of this field changes with
+        /// every request, even when you have the same documents.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=73)]
@@ -232,15 +254,14 @@ namespace Amazon.Kendra.Model
         /// Gets and sets the property ScoreAttributes. 
         /// <para>
         /// Indicates the confidence level of Amazon Kendra providing a relevant result for the
-        /// query. Each result is placed into a bin that indicates the confidence, <code>VERY_HIGH</code>,
-        /// <code>HIGH</code>, <code>MEDIUM</code> and <code>LOW</code>. You can use the score
-        /// to determine if a response meets the confidence needed for your application.
+        /// query. Each result is placed into a bin that indicates the confidence, <c>VERY_HIGH</c>,
+        /// <c>HIGH</c>, <c>MEDIUM</c> and <c>LOW</c>. You can use the score to determine if a
+        /// response meets the confidence needed for your application.
         /// </para>
         ///  
         /// <para>
-        /// The field is only set to <code>LOW</code> when the <code>Type</code> field is set
-        /// to <code>DOCUMENT</code> and Amazon Kendra is not confident that the result is relevant
-        /// to the query.
+        /// The field is only set to <c>LOW</c> when the <c>Type</c> field is set to <c>DOCUMENT</c>
+        /// and Amazon Kendra is not confident that the result is relevant to the query.
         /// </para>
         /// </summary>
         public ScoreAttributes ScoreAttributes

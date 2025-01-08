@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptography.Model
 {
     /// <summary>
-    /// Parameter information for key material import using TR-31 standard.
+    /// Parameter information for key material import using symmetric TR-31 key exchange method.
     /// </summary>
     public partial class ImportTr31KeyBlock
     {
@@ -39,10 +40,10 @@ namespace Amazon.PaymentCryptography.Model
         /// <summary>
         /// Gets and sets the property WrappedKeyBlock. 
         /// <para>
-        /// The TR-34 wrapped key block to import.
+        /// The TR-31 wrapped key block to import.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=56, Max=9984)]
+        [AWSProperty(Required=true, Sensitive=true, Min=56, Max=9984)]
         public string WrappedKeyBlock
         {
             get { return this._wrappedKeyBlock; }
@@ -58,7 +59,7 @@ namespace Amazon.PaymentCryptography.Model
         /// <summary>
         /// Gets and sets the property WrappingKeyIdentifier. 
         /// <para>
-        /// The <code>KeyARN</code> of the key that will decrypt or unwrap a TR-31 key block during
+        /// The <c>KeyARN</c> of the key that will decrypt or unwrap a TR-31 key block during
         /// import.
         /// </para>
         /// </summary>

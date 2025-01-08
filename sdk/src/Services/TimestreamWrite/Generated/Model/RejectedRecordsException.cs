@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TimestreamWrite.Model
 {
     /// <summary>
@@ -47,10 +48,10 @@ namespace Amazon.TimestreamWrite.Model
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    ///  In this case, if Timestream rejects data, the <code>ExistingVersion</code> field
-    /// in the <code>RejectedRecords</code> response will indicate the current record’s version.
-    /// To force an update, you can resend the request with a version for the record set to
-    /// a value greater than the <code>ExistingVersion</code>.
+    ///  In this case, if Timestream rejects data, the <c>ExistingVersion</c> field in the
+    /// <c>RejectedRecords</c> response will indicate the current record’s version. To force
+    /// an update, you can resend the request with a version for the record set to a value
+    /// greater than the <c>ExistingVersion</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -72,7 +73,7 @@ namespace Amazon.TimestreamWrite.Model
     #endif
     public partial class RejectedRecordsException : AmazonTimestreamWriteException
     {
-        private List<RejectedRecord> _rejectedRecords = new List<RejectedRecord>();
+        private List<RejectedRecord> _rejectedRecords = AWSConfigs.InitializeCollections ? new List<RejectedRecord>() : null;
 
         /// <summary>
         /// Constructs a new RejectedRecordsException with the specified error
@@ -174,7 +175,7 @@ namespace Amazon.TimestreamWrite.Model
         // Check to see if RejectedRecords property is set
         internal bool IsSetRejectedRecords()
         {
-            return this._rejectedRecords != null && this._rejectedRecords.Count > 0; 
+            return this._rejectedRecords != null && (this._rejectedRecords.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

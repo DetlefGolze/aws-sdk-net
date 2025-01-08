@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AmplifyUIBuilder.Model
 {
     /// <summary>
@@ -33,15 +34,14 @@ namespace Amazon.AmplifyUIBuilder.Model
     /// </summary>
     public partial class ComponentVariant
     {
-        private Dictionary<string, Dictionary<string, string>> _overrides = new Dictionary<string, Dictionary<string, string>>();
-        private Dictionary<string, string> _variantValues = new Dictionary<string, string>();
+        private Dictionary<string, Dictionary<string, string>> _overrides = AWSConfigs.InitializeCollections ? new Dictionary<string, Dictionary<string, string>>() : null;
+        private Dictionary<string, string> _variantValues = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Overrides. 
         /// <para>
         /// The properties of the component variant that can be overriden when customizing an
-        /// instance of the component. You can't specify <code>tags</code> as a valid property
-        /// for <code>overrides</code>.
+        /// instance of the component. You can't specify <c>tags</c> as a valid property for <c>overrides</c>.
         /// </para>
         /// </summary>
         public Dictionary<string, Dictionary<string, string>> Overrides
@@ -53,14 +53,14 @@ namespace Amazon.AmplifyUIBuilder.Model
         // Check to see if Overrides property is set
         internal bool IsSetOverrides()
         {
-            return this._overrides != null && this._overrides.Count > 0; 
+            return this._overrides != null && (this._overrides.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property VariantValues. 
         /// <para>
-        /// The combination of variants that comprise this variant. You can't specify <code>tags</code>
-        /// as a valid property for <code>variantValues</code>.
+        /// The combination of variants that comprise this variant. You can't specify <c>tags</c>
+        /// as a valid property for <c>variantValues</c>.
         /// </para>
         /// </summary>
         public Dictionary<string, string> VariantValues
@@ -72,7 +72,7 @@ namespace Amazon.AmplifyUIBuilder.Model
         // Check to see if VariantValues property is set
         internal bool IsSetVariantValues()
         {
-            return this._variantValues != null && this._variantValues.Count > 0; 
+            return this._variantValues != null && (this._variantValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

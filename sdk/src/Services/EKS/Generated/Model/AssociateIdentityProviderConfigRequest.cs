@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
     /// Container for the parameters to the AssociateIdentityProviderConfig operation.
-    /// Associate an identity provider configuration to a cluster.
+    /// Associates an identity provider configuration to a cluster.
     /// 
     ///  
     /// <para>
     /// If you want to authenticate identities using an identity provider, you can create
     /// an identity provider configuration and associate it to your cluster. After configuring
-    /// authentication to your cluster you can create Kubernetes <code>roles</code> and <code>clusterroles</code>
-    /// to assign permissions to the roles, and then bind the roles to the identities using
-    /// Kubernetes <code>rolebindings</code> and <code>clusterrolebindings</code>. For more
-    /// information see <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Using
-    /// RBAC Authorization</a> in the Kubernetes documentation.
+    /// authentication to your cluster you can create Kubernetes <c>Role</c> and <c>ClusterRole</c>
+    /// objects, assign permissions to them, and then bind them to the identities using Kubernetes
+    /// <c>RoleBinding</c> and <c>ClusterRoleBinding</c> objects. For more information see
+    /// <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Using RBAC
+    /// Authorization</a> in the Kubernetes documentation.
     /// </para>
     /// </summary>
     public partial class AssociateIdentityProviderConfigRequest : AmazonEKSRequest
@@ -48,13 +49,13 @@ namespace Amazon.EKS.Model
         private string _clientRequestToken;
         private string _clusterName;
         private OidcIdentityProviderConfigRequest _oidc;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
-        /// Unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        /// request.
+        /// A unique, case-sensitive identifier that you provide to ensure the idempotency of
+        /// the request.
         /// </para>
         /// </summary>
         public string ClientRequestToken
@@ -72,7 +73,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ClusterName. 
         /// <para>
-        /// The name of the cluster to associate the configuration to.
+        /// The name of your cluster.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -110,8 +111,9 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// The metadata to apply to the configuration to assist with categorization and organization.
-        /// Each tag consists of a key and an optional value. You define both.
+        /// Metadata that assists with categorization and organization. Each tag consists of a
+        /// key and an optional value. You define both. Tags don't propagate to any other cluster
+        /// or Amazon Web Services resources.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -124,7 +126,7 @@ namespace Amazon.EKS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

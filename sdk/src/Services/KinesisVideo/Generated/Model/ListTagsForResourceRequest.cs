@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideo.Model
 {
     /// <summary>
@@ -40,12 +41,12 @@ namespace Amazon.KinesisVideo.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If you specify this parameter and the result of a <code>ListTagsForResource</code>
-        /// call is truncated, the response includes a token that you can use in the next request
-        /// to fetch the next batch of tags. 
+        /// If you specify this parameter and the result of a <c>ListTagsForResource</c> call
+        /// is truncated, the response includes a token that you can use in the next request to
+        /// fetch the next batch of tags. 
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=512)]
+        [AWSProperty(Min=0, Max=1024)]
         public string NextToken
         {
             get { return this._nextToken; }

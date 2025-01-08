@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -39,8 +40,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property Percentile. 
         /// <para>
-        /// The model latency percentile threshold. Acceptable values are <code>P95</code> and
-        /// <code>P99</code>. For custom load tests, specify the value as <code>P95</code>.
+        /// The model latency percentile threshold. Acceptable values are <c>P95</c> and <c>P99</c>.
+        /// For custom load tests, specify the value as <c>P95</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=64)]

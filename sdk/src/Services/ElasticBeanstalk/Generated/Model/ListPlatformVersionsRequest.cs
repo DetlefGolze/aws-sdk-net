@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.ElasticBeanstalk.Model
     /// </summary>
     public partial class ListPlatformVersionsRequest : AmazonElasticBeanstalkRequest
     {
-        private List<PlatformFilter> _filters = new List<PlatformFilter>();
+        private List<PlatformFilter> _filters = AWSConfigs.InitializeCollections ? new List<PlatformFilter>() : null;
         private int? _maxRecords;
         private string _nextToken;
 
@@ -50,7 +51,7 @@ namespace Amazon.ElasticBeanstalk.Model
         /// Gets and sets the property Filters. 
         /// <para>
         /// Criteria for restricting the resulting list of platform versions. The filter is interpreted
-        /// as a logical conjunction (AND) of the separate <code>PlatformFilter</code> terms.
+        /// as a logical conjunction (AND) of the separate <c>PlatformFilter</c> terms.
         /// </para>
         /// </summary>
         public List<PlatformFilter> Filters
@@ -62,7 +63,7 @@ namespace Amazon.ElasticBeanstalk.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -93,7 +94,7 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  
         /// <para>
-        /// If no <code>NextToken</code> is specified, the first page is retrieved.
+        /// If no <c>NextToken</c> is specified, the first page is retrieved.
         /// </para>
         /// </summary>
         public string NextToken

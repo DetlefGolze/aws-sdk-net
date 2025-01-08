@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RDS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -87,6 +88,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("SupportedEngineModes/member", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
+                        if (unmarshalledObject.SupportedEngineModes == null)
+                        {
+                            unmarshalledObject.SupportedEngineModes = new List<string>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.SupportedEngineModes.Add(item);
                         continue;
@@ -101,6 +106,18 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = BoolUnmarshaller.Instance;
                         unmarshalledObject.SupportsGlobalDatabases = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("SupportsIntegrations", targetDepth))
+                    {
+                        var unmarshaller = BoolUnmarshaller.Instance;
+                        unmarshalledObject.SupportsIntegrations = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("SupportsLimitlessDatabase", targetDepth))
+                    {
+                        var unmarshaller = BoolUnmarshaller.Instance;
+                        unmarshalledObject.SupportsLimitlessDatabase = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("SupportsLocalWriteForwarding", targetDepth))

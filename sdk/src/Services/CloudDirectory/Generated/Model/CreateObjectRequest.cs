@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateObject operation.
     /// Creates an object in a <a>Directory</a>. Additionally attaches the object to a parent,
-    /// if a parent reference and <code>LinkName</code> is specified. An object is simply
-    /// a collection of <a>Facet</a> attributes. You can also use this API call to create
-    /// a policy object, if the facet from which you create the object is a policy facet.
+    /// if a parent reference and <c>LinkName</c> is specified. An object is simply a collection
+    /// of <a>Facet</a> attributes. You can also use this API call to create a policy object,
+    /// if the facet from which you create the object is a policy facet.
     /// </summary>
     public partial class CreateObjectRequest : AmazonCloudDirectoryRequest
     {
         private string _directoryArn;
         private string _linkName;
-        private List<AttributeKeyAndValue> _objectAttributeList = new List<AttributeKeyAndValue>();
+        private List<AttributeKeyAndValue> _objectAttributeList = AWSConfigs.InitializeCollections ? new List<AttributeKeyAndValue>() : null;
         private ObjectReference _parentReference;
-        private List<SchemaFacet> _schemaFacets = new List<SchemaFacet>();
+        private List<SchemaFacet> _schemaFacets = AWSConfigs.InitializeCollections ? new List<SchemaFacet>() : null;
 
         /// <summary>
         /// Gets and sets the property DirectoryArn. 
@@ -60,7 +61,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if DirectoryArn property is set
         internal bool IsSetDirectoryArn()
         {
-            return this._directoryArn != null;
+            return !string.IsNullOrEmpty(this._directoryArn);
         }
 
         /// <summary>
@@ -98,7 +99,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if ObjectAttributeList property is set
         internal bool IsSetObjectAttributeList()
         {
-            return this._objectAttributeList != null && this._objectAttributeList.Count > 0; 
+            return this._objectAttributeList != null && (this._objectAttributeList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -136,7 +137,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if SchemaFacets property is set
         internal bool IsSetSchemaFacets()
         {
-            return this._schemaFacets != null && this._schemaFacets.Count > 0; 
+            return this._schemaFacets != null && (this._schemaFacets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

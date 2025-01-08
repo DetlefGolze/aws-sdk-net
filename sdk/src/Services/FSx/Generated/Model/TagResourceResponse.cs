@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
-    /// The response object for the <code>TagResource</code> operation.
+    /// The response object for the <c>TagResource</c> operation.
     /// </summary>
     public partial class TagResourceResponse : AmazonWebServiceResponse
     {

@@ -26,13 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// A time zone associated with a <code>DBInstance</code> or a <code>DBSnapshot</code>.
-    /// This data type is an element in the response to the <code>DescribeDBInstances</code>,
-    /// the <code>DescribeDBSnapshots</code>, and the <code>DescribeDBEngineVersions</code>
-    /// actions.
+    /// A time zone associated with a <c>DBInstance</c> or a <c>DBSnapshot</c>. This data
+    /// type is an element in the response to the <c>DescribeDBInstances</c>, the <c>DescribeDBSnapshots</c>,
+    /// and the <c>DescribeDBEngineVersions</c> actions.
     /// </summary>
     public partial class Timezone
     {

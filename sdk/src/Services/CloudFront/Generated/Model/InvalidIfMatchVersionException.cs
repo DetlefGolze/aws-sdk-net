@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
-    /// The <code>If-Match</code> version is missing or not valid.
+    /// The <c>If-Match</c> version is missing or not valid.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

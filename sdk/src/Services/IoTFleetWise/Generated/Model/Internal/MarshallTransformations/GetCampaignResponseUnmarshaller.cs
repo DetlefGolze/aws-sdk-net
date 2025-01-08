@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -87,6 +88,12 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
                     response.DataExtraDimensions = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("dataPartitions", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<DataPartition, DataPartitionUnmarshaller>(DataPartitionUnmarshaller.Instance);
+                    response.DataPartitions = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("description", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -139,6 +146,12 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = new ListUnmarshaller<SignalInformation, SignalInformationUnmarshaller>(SignalInformationUnmarshaller.Instance);
                     response.SignalsToCollect = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("signalsToFetch", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<SignalFetchInformation, SignalFetchInformationUnmarshaller>(SignalFetchInformationUnmarshaller.Instance);
+                    response.SignalsToFetch = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("spoolingMode", targetDepth))

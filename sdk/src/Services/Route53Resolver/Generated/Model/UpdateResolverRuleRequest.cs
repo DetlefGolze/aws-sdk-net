@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateResolverRule operation.
-    /// Updates settings for a specified Resolver rule. <code>ResolverRuleId</code> is required,
+    /// Updates settings for a specified Resolver rule. <c>ResolverRuleId</c> is required,
     /// and all other parameters are optional. If you don't specify a parameter, it retains
     /// its current value.
     /// </summary>

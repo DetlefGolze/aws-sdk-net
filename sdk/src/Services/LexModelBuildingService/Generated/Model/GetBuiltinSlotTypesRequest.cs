@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.LexModelBuildingService.Model
     /// </para>
     ///  
     /// <para>
-    /// This operation requires permission for the <code>lex:GetBuiltInSlotTypes</code> action.
+    /// This operation requires permission for the <c>lex:GetBuiltInSlotTypes</c> action.
     /// </para>
     /// </summary>
     public partial class GetBuiltinSlotTypesRequest : AmazonLexModelBuildingServiceRequest

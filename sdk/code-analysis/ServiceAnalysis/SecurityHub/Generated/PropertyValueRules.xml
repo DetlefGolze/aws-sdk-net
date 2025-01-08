@@ -60,6 +60,30 @@
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.SecurityHub.Model.CreateConfigurationPolicyRequest.Description</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.CreateConfigurationPolicyRequest.Name</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.CreateConfigurationPolicyResponse.Arn</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.CreateConfigurationPolicyResponse.Description</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.CreateConfigurationPolicyResponse.Id</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.CreateConfigurationPolicyResponse.Name</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.SecurityHub.Model.CreateFindingAggregatorRequest.RegionLinkingMode</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
@@ -93,6 +117,10 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityHub.Model.DeleteActionTargetResponse.ActionTargetArn</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.DeleteConfigurationPolicyRequest.Identifier</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
@@ -168,6 +196,38 @@
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.SecurityHub.Model.GetConfigurationPolicyRequest.Identifier</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.GetConfigurationPolicyResponse.Arn</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.GetConfigurationPolicyResponse.Description</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.GetConfigurationPolicyResponse.Id</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.GetConfigurationPolicyResponse.Name</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.GetConfigurationPolicyAssociationResponse.AssociationStatusMessage</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.GetConfigurationPolicyAssociationResponse.ConfigurationPolicyId</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.GetConfigurationPolicyAssociationResponse.TargetId</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.SecurityHub.Model.GetEnabledStandardsRequest.MaxResults</property>
     <min>1</min>
     <max>100</max>
@@ -208,7 +268,21 @@
     <max>100</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.SecurityHub.Model.GetSecurityControlDefinitionRequest.SecurityControlId</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.SecurityHub.Model.ListAutomationRulesRequest.MaxResults</property>
+    <min>1</min>
+    <max>100</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.ListConfigurationPoliciesRequest.MaxResults</property>
+    <min>1</min>
+    <max>100</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.ListConfigurationPolicyAssociationsRequest.MaxResults</property>
     <min>1</min>
     <max>100</max>
   </property-value-rule>
@@ -268,6 +342,26 @@
     <pattern>^arn:aws:securityhub:.*</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.SecurityHub.Model.StartConfigurationPolicyAssociationRequest.ConfigurationPolicyIdentifier</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.StartConfigurationPolicyAssociationResponse.AssociationStatusMessage</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.StartConfigurationPolicyAssociationResponse.ConfigurationPolicyId</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.StartConfigurationPolicyAssociationResponse.TargetId</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.StartConfigurationPolicyDisassociationRequest.ConfigurationPolicyIdentifier</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.SecurityHub.Model.TagResourceRequest.ResourceArn</property>
     <pattern>^arn:aws:securityhub:.*</pattern>
   </property-value-rule>
@@ -285,6 +379,38 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityHub.Model.UpdateActionTargetRequest.Name</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.UpdateConfigurationPolicyRequest.Description</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.UpdateConfigurationPolicyRequest.Identifier</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.UpdateConfigurationPolicyRequest.Name</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.UpdateConfigurationPolicyRequest.UpdatedReason</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.UpdateConfigurationPolicyResponse.Arn</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.UpdateConfigurationPolicyResponse.Description</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.UpdateConfigurationPolicyResponse.Id</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.UpdateConfigurationPolicyResponse.Name</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
@@ -317,6 +443,14 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityHub.Model.UpdateInsightRequest.Name</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.UpdateSecurityControlRequest.LastUpdateReason</property>
+    <pattern>^([^\u0000-\u007F]|[-_ a-zA-Z0-9])+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.UpdateSecurityControlRequest.SecurityControlId</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
@@ -368,6 +502,34 @@
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.SecurityHub.Model.Actor.Id</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.ActorSession.Issuer</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.ActorSession.Uid</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.ActorUser.CredentialUid</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.ActorUser.Name</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.ActorUser.Type</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.ActorUser.Uid</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.SecurityHub.Model.Adjustment.Metric</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
@@ -381,6 +543,10 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityHub.Model.AssociatedStandard.StandardsId</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AssociationFilters.ConfigurationPolicyId</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
@@ -1829,6 +1995,78 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityHub.Model.AwsDynamoDbTableStreamSpecification.StreamViewType</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsEc2ClientVpnEndpointAuthenticationOptionsActiveDirectoryDetails.DirectoryId</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsEc2ClientVpnEndpointAuthenticationOptionsDetails.Type</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsEc2ClientVpnEndpointAuthenticationOptionsFederatedAuthenticationDetails.SamlProviderArn</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsEc2ClientVpnEndpointAuthenticationOptionsFederatedAuthenticationDetails.SelfServiceSamlProviderArn</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsEc2ClientVpnEndpointAuthenticationOptionsMutualAuthenticationDetails.ClientRootCertificateChain</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsEc2ClientVpnEndpointClientConnectOptionsDetails.LambdaFunctionArn</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsEc2ClientVpnEndpointClientConnectOptionsStatusDetails.Code</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsEc2ClientVpnEndpointClientConnectOptionsStatusDetails.Message</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsEc2ClientVpnEndpointClientLoginBannerOptionsDetails.BannerText</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsEc2ClientVpnEndpointConnectionLogOptionsDetails.CloudwatchLogGroup</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsEc2ClientVpnEndpointConnectionLogOptionsDetails.CloudwatchLogStream</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsEc2ClientVpnEndpointDetails.ClientCidrBlock</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsEc2ClientVpnEndpointDetails.ClientVpnEndpointId</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsEc2ClientVpnEndpointDetails.Description</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsEc2ClientVpnEndpointDetails.SelfServicePortalUrl</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsEc2ClientVpnEndpointDetails.ServerCertificateArn</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsEc2ClientVpnEndpointDetails.TransportProtocol</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsEc2ClientVpnEndpointDetails.VpcId</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
@@ -3828,6 +4066,10 @@
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsMskClusterClusterInfoDetails.EnhancedMonitoring</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.SecurityHub.Model.AwsMskClusterClusterInfoEncryptionInfoEncryptionAtRestDetails.DataVolumeKMSKeyId</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
@@ -4800,6 +5042,34 @@
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsS3AccessPointDetails.AccessPointArn</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsS3AccessPointDetails.Alias</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsS3AccessPointDetails.Bucket</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsS3AccessPointDetails.BucketAccountId</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsS3AccessPointDetails.Name</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsS3AccessPointDetails.NetworkOrigin</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsS3AccessPointVpcConfigurationDetails.VpcId</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.SecurityHub.Model.AwsS3BucketBucketLifecycleConfigurationRulesDetails.ExpirationDate</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
@@ -4869,6 +5139,10 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityHub.Model.AwsS3BucketDetails.CreatedAt</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsS3BucketDetails.Name</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
@@ -5072,6 +5346,10 @@
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsSecurityFinding.AwsAccountName</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.SecurityHub.Model.AwsSecurityFinding.CompanyName</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
@@ -5097,6 +5375,10 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityHub.Model.AwsSecurityFinding.LastObservedAt</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.AwsSecurityFinding.ProcessedAt</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
@@ -5580,6 +5862,34 @@
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.SecurityHub.Model.ConfigurationPolicyAssociationSummary.AssociationStatusMessage</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.ConfigurationPolicyAssociationSummary.ConfigurationPolicyId</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.ConfigurationPolicyAssociationSummary.TargetId</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.ConfigurationPolicySummary.Arn</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.ConfigurationPolicySummary.Description</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.ConfigurationPolicySummary.Id</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.ConfigurationPolicySummary.Name</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.SecurityHub.Model.ContainerDetails.ContainerRuntime</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
@@ -5645,6 +5955,10 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityHub.Model.DnsRequestAction.Protocol</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.EnumConfigurationOptions.DefaultValue</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
@@ -5727,6 +6041,18 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityHub.Model.ImportFindingsError.Id</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.Indicator.Key</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.Indicator.Title</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.Indicator.Type</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
@@ -5882,11 +6208,35 @@
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.SecurityHub.Model.NetworkAutonomousSystem.Name</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.SecurityHub.Model.NetworkConnectionAction.ConnectionDirection</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityHub.Model.NetworkConnectionAction.Protocol</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.NetworkEndpoint.Domain</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.NetworkEndpoint.Id</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.NetworkEndpoint.Ip</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.NetworkGeoLocation.City</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.NetworkGeoLocation.Country</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
@@ -5919,6 +6269,22 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityHub.Model.NoteUpdate.UpdatedBy</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.OrganizationConfiguration.StatusMessage</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.ParameterDefinition.Description</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.ParameterValue.Enum</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.ParameterValue.String</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
@@ -6010,6 +6376,14 @@
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.SecurityHub.Model.Resource.ApplicationArn</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.Resource.ApplicationName</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.SecurityHub.Model.Resource.Id</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
@@ -6027,6 +6401,10 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityHub.Model.ResourceConflictException.Code</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.ResourceInUseException.Code</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
@@ -6158,6 +6536,10 @@
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.SecurityHub.Model.SecurityControl.LastUpdateReason</property>
+    <pattern>^([^\u0000-\u007F]|[-_ a-zA-Z0-9])+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.SecurityHub.Model.SecurityControl.RemediationUrl</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
@@ -6171,6 +6553,10 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityHub.Model.SecurityControl.Title</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.SecurityControlCustomParameter.SecurityControlId</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
@@ -6190,11 +6576,19 @@
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.SecurityHub.Model.SecurityControlParameter.Name</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.SecurityHub.Model.SensitiveDataDetections.Type</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityHub.Model.SensitiveDataResult.Category</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.Sequence.Uid</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
@@ -6205,6 +6599,26 @@
     <property>Amazon.SecurityHub.Model.SeverityUpdate.Normalized</property>
     <min>0</min>
     <max>100</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.Signal.Id</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.Signal.Name</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.Signal.ProductArn</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.Signal.Title</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.Signal.Type</property>
+    <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityHub.Model.SoftwarePackage.Architecture</property>
@@ -6391,7 +6805,39 @@
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.SecurityHub.Model.StringConfigurationOptions.DefaultValue</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.StringConfigurationOptions.ExpressionDescription</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.StringConfigurationOptions.Re2Expression</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.SecurityHub.Model.StringFilter.Value</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.StringListConfigurationOptions.ExpressionDescription</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.StringListConfigurationOptions.Re2Expression</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.Target.AccountId</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.Target.OrganizationalUnitId</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.Target.RootId</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
@@ -6424,6 +6870,14 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityHub.Model.UnprocessedAutomationRule.RuleArn</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.UnprocessedConfigurationPolicyAssociation.ErrorCode</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.UnprocessedConfigurationPolicyAssociation.ErrorReason</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>
@@ -6460,6 +6914,14 @@
     <max>1000</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.SecurityHub.Model.UserAccount.Name</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.UserAccount.Uid</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.SecurityHub.Model.VolumeMount.MountPath</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
@@ -6477,6 +6939,10 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityHub.Model.Vulnerability.Id</property>
+    <pattern>.*\S.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityHub.Model.Vulnerability.LastKnownExploitAt</property>
     <pattern>.*\S.*</pattern>
   </property-value-rule>
   <property-value-rule>

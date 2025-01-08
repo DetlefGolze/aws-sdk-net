@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptographyData.Model
 {
     /// <summary>
@@ -85,8 +86,8 @@ namespace Amazon.PaymentCryptographyData.Model
         /// <summary>
         /// Gets and sets the property KeyIdentifier. 
         /// <para>
-        /// The <code>keyARN</code> of the CVK encryption key that Amazon Web Services Payment
-        /// Cryptography uses to verify card data.
+        /// The <c>keyARN</c> of the CVK encryption key that Amazon Web Services Payment Cryptography
+        /// uses to verify card data.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=7, Max=322)]
@@ -129,7 +130,7 @@ namespace Amazon.PaymentCryptographyData.Model
         /// Payment Cryptography.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=3, Max=5)]
+        [AWSProperty(Required=true, Sensitive=true, Min=3, Max=5)]
         public string ValidationData
         {
             get { return this._validationData; }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -101,8 +102,8 @@ namespace Amazon.CloudWatchLogs.Model
         /// <summary>
         /// Gets and sets the property From. 
         /// <para>
-        /// The start time, expressed as the number of milliseconds after <code>Jan 1, 1970 00:00:00
-        /// UTC</code>. Events with a timestamp before this time are not exported.
+        /// The start time, expressed as the number of milliseconds after <c>Jan 1, 1970 00:00:00
+        /// UTC</c>. Events with a timestamp before this time are not exported.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]
@@ -196,8 +197,8 @@ namespace Amazon.CloudWatchLogs.Model
         /// <summary>
         /// Gets and sets the property To. 
         /// <para>
-        /// The end time, expressed as the number of milliseconds after <code>Jan 1, 1970 00:00:00
-        /// UTC</code>. Events with a timestamp later than this time are not exported.
+        /// The end time, expressed as the number of milliseconds after <c>Jan 1, 1970 00:00:00
+        /// UTC</c>. Events with a timestamp later than this time are not exported.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]

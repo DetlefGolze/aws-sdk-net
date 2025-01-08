@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.CloudFront.Model
     public partial class StreamingDistributionList
     {
         private bool? _isTruncated;
-        private List<StreamingDistributionSummary> _items = new List<StreamingDistributionSummary>();
+        private List<StreamingDistributionSummary> _items = AWSConfigs.InitializeCollections ? new List<StreamingDistributionSummary>() : null;
         private string _marker;
         private int? _maxItems;
         private string _nextMarker;
@@ -50,8 +51,7 @@ namespace Amazon.CloudFront.Model
         /// <para>
         /// A flag that indicates whether more streaming distributions remain to be listed. If
         /// your results were truncated, you can make a follow-up pagination request using the
-        /// <code>Marker</code> request parameter to retrieve more distributions in the list.
-        /// 
+        /// <c>Marker</c> request parameter to retrieve more distributions in the list. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -70,8 +70,8 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property Items. 
         /// <para>
-        /// A complex type that contains one <code>StreamingDistributionSummary</code> element
-        /// for each distribution that was created by the current Amazon Web Services account.
+        /// A complex type that contains one <c>StreamingDistributionSummary</c> element for each
+        /// distribution that was created by the current Amazon Web Services account.
         /// </para>
         /// </summary>
         public List<StreamingDistributionSummary> Items
@@ -83,13 +83,13 @@ namespace Amazon.CloudFront.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// The value you provided for the <code>Marker</code> request parameter.
+        /// The value you provided for the <c>Marker</c> request parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -108,7 +108,7 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property MaxItems. 
         /// <para>
-        /// The value you provided for the <code>MaxItems</code> request parameter.
+        /// The value you provided for the <c>MaxItems</c> request parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -127,9 +127,9 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property NextMarker. 
         /// <para>
-        /// If <code>IsTruncated</code> is <code>true</code>, this element is present and contains
-        /// the value you can use for the <code>Marker</code> request parameter to continue listing
-        /// your RTMP distributions where they left off.
+        /// If <c>IsTruncated</c> is <c>true</c>, this element is present and contains the value
+        /// you can use for the <c>Marker</c> request parameter to continue listing your RTMP
+        /// distributions where they left off.
         /// </para>
         /// </summary>
         public string NextMarker

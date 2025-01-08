@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,8 +66,20 @@ namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetEmailMfaConfiguration())
+                {
+                    context.Writer.WritePropertyName("EmailMfaConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = EmailMfaConfigTypeMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.EmailMfaConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetMfaConfiguration())
                 {
                     context.Writer.WritePropertyName("MfaConfiguration");
@@ -99,6 +112,17 @@ namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("UserPoolId");
                     context.Writer.Write(publicRequest.UserPoolId);
+                }
+
+                if(publicRequest.IsSetWebAuthnConfiguration())
+                {
+                    context.Writer.WritePropertyName("WebAuthnConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = WebAuthnConfigurationTypeMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.WebAuthnConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 writer.WriteObjectEnd();

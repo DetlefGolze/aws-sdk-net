@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// Container for response returned by <code> <a>GetUpgradeHistory</a> </code> operation.
+    /// Container for response returned by <c> <a>GetUpgradeHistory</a> </c> operation.
     /// </summary>
     public partial class GetUpgradeHistoryResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<UpgradeHistory> _upgradeHistories = new List<UpgradeHistory>();
+        private List<UpgradeHistory> _upgradeHistories = AWSConfigs.InitializeCollections ? new List<UpgradeHistory>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -58,9 +59,9 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property UpgradeHistories. 
         /// <para>
-        ///  A list of <code> <a>UpgradeHistory</a> </code> objects corresponding to each Upgrade
-        /// or Upgrade Eligibility Check performed on a domain returned as part of <code> <a>GetUpgradeHistoryResponse</a>
-        /// </code> object. 
+        ///  A list of <c> <a>UpgradeHistory</a> </c> objects corresponding to each Upgrade or
+        /// Upgrade Eligibility Check performed on a domain returned as part of <c> <a>GetUpgradeHistoryResponse</a>
+        /// </c> object. 
         /// </para>
         /// </summary>
         public List<UpgradeHistory> UpgradeHistories
@@ -72,7 +73,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if UpgradeHistories property is set
         internal bool IsSetUpgradeHistories()
         {
-            return this._upgradeHistories != null && this._upgradeHistories.Count > 0; 
+            return this._upgradeHistories != null && (this._upgradeHistories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,22 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
     /// Container for the parameters to the ActivateType operation.
     /// Activates a public third-party extension, making it available for use in stack templates.
-    /// For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-public.html">Using
-    /// public extensions</a> in the <i>CloudFormation User Guide</i>.
-    /// 
-    ///  
-    /// <para>
     /// Once you have activated a public third-party extension in your account and Region,
     /// use <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_SetTypeConfiguration.html">SetTypeConfiguration</a>
     /// to specify configuration properties for the extension. For more information, see <a
-    /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-register.html#registry-set-configuration">Configuring
-    /// extensions at the account level</a> in the <i>CloudFormation User Guide</i>.
-    /// </para>
+    /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-public.html">Using
+    /// public extensions</a> in the <i>CloudFormation User Guide</i>.
     /// </summary>
     public partial class ActivateTypeRequest : AmazonCloudFormationRequest
     {
@@ -65,7 +60,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// The default is <code>true</code>.
+        /// The default is <c>true</c>.
         /// </para>
         /// </summary>
         public bool AutoUpdate
@@ -126,7 +121,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// You can specify <code>MajorVersion</code> or <code>VersionBump</code>, but not both.
+        /// You can specify <c>MajorVersion</c> or <c>VersionBump</c>, but not both.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100000)]
@@ -149,8 +144,8 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify <code>PublicTypeArn</code>, or <code>TypeName</code>,
-        /// <code>Type</code>, and <code>PublisherId</code>.
+        /// Conditional: You must specify <c>PublicTypeArn</c>, or <c>TypeName</c>, <c>Type</c>,
+        /// and <c>PublisherId</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=1024)]
@@ -173,8 +168,8 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify <code>PublicTypeArn</code>, or <code>TypeName</code>,
-        /// <code>Type</code>, and <code>PublisherId</code>.
+        /// Conditional: You must specify <c>PublicTypeArn</c>, or <c>TypeName</c>, <c>Type</c>,
+        /// and <c>PublisherId</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=40)]
@@ -197,8 +192,8 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify <code>PublicTypeArn</code>, or <code>TypeName</code>,
-        /// <code>Type</code>, and <code>PublisherId</code>.
+        /// Conditional: You must specify <c>PublicTypeArn</c>, or <c>TypeName</c>, <c>Type</c>,
+        /// and <c>PublisherId</c>.
         /// </para>
         /// </summary>
         public ThirdPartyType Type
@@ -220,8 +215,8 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify <code>PublicTypeArn</code>, or <code>TypeName</code>,
-        /// <code>Type</code>, and <code>PublisherId</code>.
+        /// Conditional: You must specify <c>PublicTypeArn</c>, or <c>TypeName</c>, <c>Type</c>,
+        /// and <c>PublisherId</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=10, Max=204)]
@@ -269,17 +264,17 @@ namespace Amazon.CloudFormation.Model
         /// Gets and sets the property VersionBump. 
         /// <para>
         /// Manually updates a previously-activated type to a new major or minor version, if available.
-        /// You can also use this parameter to update the value of <code>AutoUpdate</code>.
+        /// You can also use this parameter to update the value of <c>AutoUpdate</c>.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>MAJOR</code>: CloudFormation updates the extension to the newest major version,
-        /// if one is available.
+        ///  <c>MAJOR</c>: CloudFormation updates the extension to the newest major version, if
+        /// one is available.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MINOR</code>: CloudFormation updates the extension to the newest minor version,
-        /// if one is available.
+        ///  <c>MINOR</c>: CloudFormation updates the extension to the newest minor version, if
+        /// one is available.
         /// </para>
         ///  </li> </ul>
         /// </summary>

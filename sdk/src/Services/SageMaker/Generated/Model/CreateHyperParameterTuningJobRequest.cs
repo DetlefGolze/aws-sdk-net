@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -57,9 +58,9 @@ namespace Amazon.SageMaker.Model
         private Autotune _autotune;
         private HyperParameterTuningJobConfig _hyperParameterTuningJobConfig;
         private string _hyperParameterTuningJobName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private HyperParameterTrainingJobDefinition _trainingJobDefinition;
-        private List<HyperParameterTrainingJobDefinition> _trainingJobDefinitions = new List<HyperParameterTrainingJobDefinition>();
+        private List<HyperParameterTrainingJobDefinition> _trainingJobDefinitions = AWSConfigs.InitializeCollections ? new List<HyperParameterTrainingJobDefinition>() : null;
         private HyperParameterTuningJobWarmStartConfig _warmStartConfig;
 
         /// <summary>
@@ -186,7 +187,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -227,7 +228,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if TrainingJobDefinitions property is set
         internal bool IsSetTrainingJobDefinitions()
         {
-            return this._trainingJobDefinitions != null && this._trainingJobDefinitions.Count > 0; 
+            return this._trainingJobDefinitions != null && (this._trainingJobDefinitions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -241,11 +242,11 @@ namespace Amazon.SageMaker.Model
         ///  
         /// <para>
         /// All training jobs launched by the new hyperparameter tuning job are evaluated by using
-        /// the objective metric. If you specify <code>IDENTICAL_DATA_AND_ALGORITHM</code> as
-        /// the <code>WarmStartType</code> value for the warm start configuration, the training
-        /// job that performs the best in the new tuning job is compared to the best training
-        /// jobs from the parent tuning jobs. From these, the training job that performs the best
-        /// as measured by the objective metric is returned as the overall best training job.
+        /// the objective metric. If you specify <c>IDENTICAL_DATA_AND_ALGORITHM</c> as the <c>WarmStartType</c>
+        /// value for the warm start configuration, the training job that performs the best in
+        /// the new tuning job is compared to the best training jobs from the parent tuning jobs.
+        /// From these, the training job that performs the best as measured by the objective metric
+        /// is returned as the overall best training job.
         /// </para>
         ///  <note> 
         /// <para>

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// The meta data of the Glue table which serves as data catalog for the <code>OfflineStore</code>.
+    /// The meta data of the Glue table which serves as data catalog for the <c>OfflineStore</c>.
     /// </summary>
     public partial class DataCatalogConfig
     {

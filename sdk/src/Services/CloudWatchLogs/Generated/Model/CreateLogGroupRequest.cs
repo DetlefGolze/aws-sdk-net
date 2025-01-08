@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -50,6 +51,10 @@ namespace Amazon.CloudWatchLogs.Model
     /// Log group names consist of the following characters: a-z, A-Z, 0-9, '_' (underscore),
     /// '-' (hyphen), '/' (forward slash), '.' (period), and '#' (number sign)
     /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Log group names can't start with the string <c>aws/</c> 
+    /// </para>
     ///  </li> </ul> 
     /// <para>
     /// When you create a log group, by default the log events in the log group do not expire.
@@ -66,7 +71,7 @@ namespace Amazon.CloudWatchLogs.Model
     ///  
     /// <para>
     /// If you attempt to associate a KMS key with the log group but the KMS key does not
-    /// exist or the KMS key is disabled, you receive an <code>InvalidParameterException</code>
+    /// exist or the KMS key is disabled, you receive an <c>InvalidParameterException</c>
     /// error. 
     /// </para>
     ///  <important> 
@@ -80,8 +85,9 @@ namespace Amazon.CloudWatchLogs.Model
     public partial class CreateLogGroupRequest : AmazonCloudWatchLogsRequest
     {
         private string _kmsKeyId;
+        private LogGroupClass _logGroupClass;
         private string _logGroupName;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -91,7 +97,7 @@ namespace Amazon.CloudWatchLogs.Model
         /// <summary>
         /// Instantiates CreateLogGroupRequest with the parameterized properties
         /// </summary>
-        /// <param name="logGroupName">The name of the log group.</param>
+        /// <param name="logGroupName">A name for the log group.</param>
         public CreateLogGroupRequest(string logGroupName)
         {
             _logGroupName = logGroupName;
@@ -119,9 +125,50 @@ namespace Amazon.CloudWatchLogs.Model
         }
 
         /// <summary>
+        /// Gets and sets the property LogGroupClass. 
+        /// <para>
+        /// Use this parameter to specify the log group class for this log group. There are two
+        /// classes:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// The <c>Standard</c> log class supports all CloudWatch Logs features.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The <c>Infrequent Access</c> log class supports a subset of CloudWatch Logs features
+        /// and incurs lower costs.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// If you omit this parameter, the default of <c>STANDARD</c> is used.
+        /// </para>
+        ///  <important> 
+        /// <para>
+        /// The value of <c>logGroupClass</c> can't be changed after a log group is created.
+        /// </para>
+        ///  </important> 
+        /// <para>
+        /// For details about the features supported by each class, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html">Log
+        /// classes</a> 
+        /// </para>
+        /// </summary>
+        public LogGroupClass LogGroupClass
+        {
+            get { return this._logGroupClass; }
+            set { this._logGroupClass = value; }
+        }
+
+        // Check to see if LogGroupClass property is set
+        internal bool IsSetLogGroupClass()
+        {
+            return this._logGroupClass != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property LogGroupName. 
         /// <para>
-        /// The name of the log group.
+        /// A name for the log group.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]
@@ -146,9 +193,9 @@ namespace Amazon.CloudWatchLogs.Model
         /// <para>
         /// You can grant users access to certain log groups while preventing them from accessing
         /// other log groups. To do so, tag your groups and use IAM policies that refer to those
-        /// tags. To assign tags when you create a log group, you must have either the <code>logs:TagResource</code>
-        /// or <code>logs:TagLogGroup</code> permission. For more information about tagging, see
-        /// <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging Amazon
+        /// tags. To assign tags when you create a log group, you must have either the <c>logs:TagResource</c>
+        /// or <c>logs:TagLogGroup</c> permission. For more information about tagging, see <a
+        /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging Amazon
         /// Web Services resources</a>. For more information about using tags to control access,
         /// see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html">Controlling
         /// access to Amazon Web Services resources using tags</a>.
@@ -164,7 +211,7 @@ namespace Amazon.CloudWatchLogs.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

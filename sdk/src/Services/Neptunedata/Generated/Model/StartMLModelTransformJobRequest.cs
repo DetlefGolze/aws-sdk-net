@@ -26,12 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptunedata.Model
 {
     /// <summary>
     /// Container for the parameters to the StartMLModelTransformJob operation.
     /// Creates a new model transform job. See <a href="https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-model-transform.html">Use
     /// a trained model to generate new model artifacts</a>.
+    /// 
+    ///  
+    /// <para>
+    /// When invoking this operation in a Neptune cluster that has IAM authentication enabled,
+    /// the IAM user or role making the request must have a policy attached that allows the
+    /// <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#startmlmodeltransformjob">neptune-db:StartMLModelTransformJob</a>
+    /// IAM action in that cluster.
+    /// </para>
     /// </summary>
     public partial class StartMLModelTransformJobRequest : AmazonNeptunedataRequest
     {
@@ -45,8 +54,8 @@ namespace Amazon.Neptunedata.Model
         private string _neptuneIamRoleArn;
         private string _s3OutputEncryptionKMSKey;
         private string _sagemakerIamRoleArn;
-        private List<string> _securityGroupIds = new List<string>();
-        private List<string> _subnets = new List<string>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _subnets = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _trainingJobName;
         private string _volumeEncryptionKMSKey;
 
@@ -94,7 +103,7 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property CustomModelTransformParameters. 
         /// <para>
-        /// Configuration information for a model transform using a custom model. The <code>customModelTransformParameters</code>
+        /// Configuration information for a model transform using a custom model. The <c>customModelTransformParameters</c>
         /// object contains the following fields, which must have values compatible with the saved
         /// model parameters from the training job:
         /// </para>
@@ -114,8 +123,8 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property DataProcessingJobId. 
         /// <para>
-        /// The job ID of a completed data-processing job. You must include either <code>dataProcessingJobId</code>
-        /// and a <code>mlModelTrainingJobId</code>, or a <code>trainingJobName</code>.
+        /// The job ID of a completed data-processing job. You must include either <c>dataProcessingJobId</c>
+        /// and a <c>mlModelTrainingJobId</c>, or a <c>trainingJobName</c>.
         /// </para>
         /// </summary>
         public string DataProcessingJobId
@@ -151,8 +160,8 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property MlModelTrainingJobId. 
         /// <para>
-        /// The job ID of a completed model-training job. You must include either <code>dataProcessingJobId</code>
-        /// and a <code>mlModelTrainingJobId</code>, or a <code>trainingJobName</code>.
+        /// The job ID of a completed model-training job. You must include either <c>dataProcessingJobId</c>
+        /// and a <c>mlModelTrainingJobId</c>, or a <c>trainingJobName</c>.
         /// </para>
         /// </summary>
         public string MlModelTrainingJobId
@@ -258,7 +267,7 @@ namespace Amazon.Neptunedata.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -276,14 +285,14 @@ namespace Amazon.Neptunedata.Model
         // Check to see if Subnets property is set
         internal bool IsSetSubnets()
         {
-            return this._subnets != null && this._subnets.Count > 0; 
+            return this._subnets != null && (this._subnets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TrainingJobName. 
         /// <para>
-        /// The name of a completed SageMaker training job. You must include either <code>dataProcessingJobId</code>
-        /// and a <code>mlModelTrainingJobId</code>, or a <code>trainingJobName</code>.
+        /// The name of a completed SageMaker training job. You must include either <c>dataProcessingJobId</c>
+        /// and a <c>mlModelTrainingJobId</c>, or a <c>trainingJobName</c>.
         /// </para>
         /// </summary>
         public string TrainingJobName

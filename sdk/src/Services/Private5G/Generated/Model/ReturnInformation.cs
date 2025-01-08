@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Private5G.Model
 {
     /// <summary>
@@ -97,7 +98,7 @@ namespace Amazon.Private5G.Model
         /// Gets and sets the property ShippingLabel. 
         /// <para>
         /// The URL of the shipping label. The shipping label is available for download only if
-        /// the status of the network resource is <code>PENDING_RETURN</code>. For more information,
+        /// the status of the network resource is <c>PENDING_RETURN</c>. For more information,
         /// see <a href="https://docs.aws.amazon.com/private-networks/latest/userguide/radio-units.html#return-radio-unit">Return
         /// a radio unit</a>.
         /// </para>

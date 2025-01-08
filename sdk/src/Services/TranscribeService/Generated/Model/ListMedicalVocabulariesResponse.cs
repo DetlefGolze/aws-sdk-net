@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
@@ -35,16 +36,16 @@ namespace Amazon.TranscribeService.Model
     {
         private string _nextToken;
         private VocabularyState _status;
-        private List<VocabularyInfo> _vocabularies = new List<VocabularyInfo>();
+        private List<VocabularyInfo> _vocabularies = AWSConfigs.InitializeCollections ? new List<VocabularyInfo>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If <code>NextToken</code> is present in your response, it indicates that not all results
+        /// If <c>NextToken</c> is present in your response, it indicates that not all results
         /// are displayed. To view the next set of results, copy the string associated with the
-        /// <code>NextToken</code> parameter in your results output, then run your request again
-        /// including <code>NextToken</code> with the value of the copied string. Repeat as needed
-        /// to view all your results.
+        /// <c>NextToken</c> parameter in your results output, then run your request again including
+        /// <c>NextToken</c> with the value of the copied string. Repeat as needed to view all
+        /// your results.
         /// </para>
         /// </summary>
         [AWSProperty(Max=8192)]
@@ -95,7 +96,7 @@ namespace Amazon.TranscribeService.Model
         // Check to see if Vocabularies property is set
         internal bool IsSetVocabularies()
         {
-            return this._vocabularies != null && this._vocabularies.Count > 0; 
+            return this._vocabularies != null && (this._vocabularies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

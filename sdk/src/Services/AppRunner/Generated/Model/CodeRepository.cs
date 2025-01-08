@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRunner.Model
 {
     /// <summary>
@@ -45,7 +46,7 @@ namespace Amazon.AppRunner.Model
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>CodeConfiguration</code> is required only for <code>CreateService</code> request.
+        ///  <c>CodeConfiguration</c> is required only for <c>CreateService</c> request.
         /// </para>
         ///  </note>
         /// </summary>

@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.CodeGuruReviewer
 {
     /// <summary>
-    /// Implementation for accessing CodeGuruReviewer
+    /// <para>Implementation for accessing CodeGuruReviewer</para>
     ///
     /// This section provides documentation for the Amazon CodeGuru Reviewer API operations.
     /// CodeGuru Reviewer is a service that uses program analysis and machine learning to
@@ -385,9 +386,9 @@ namespace Amazon.CodeGuruReviewer
 
         /// <summary>
         /// Use to create a code review with a <a href="https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReviewType.html">CodeReviewType</a>
-        /// of <code>RepositoryAnalysis</code>. This type of code review analyzes all code under
-        /// a specified branch in an associated repository. <code>PullRequest</code> code reviews
-        /// are automatically triggered by a pull request.
+        /// of <c>RepositoryAnalysis</c>. This type of code review analyzes all code under a specified
+        /// branch in an associated repository. <c>PullRequest</c> code reviews are automatically
+        /// triggered by a pull request.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateCodeReview service method.</param>
         /// 
@@ -1279,11 +1280,11 @@ namespace Amazon.CodeGuruReviewer
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

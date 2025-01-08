@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.NetworkFirewall.Model
     {
         private string _firewallArn;
         private string _firewallName;
-        private List<string> _subnetIds = new List<string>();
+        private List<string> _subnetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _updateToken;
 
         /// <summary>
@@ -104,7 +105,7 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if SubnetIds property is set
         internal bool IsSetSubnetIds()
         {
-            return this._subnetIds != null && this._subnetIds.Count > 0; 
+            return this._subnetIds != null && (this._subnetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -124,7 +125,7 @@ namespace Amazon.NetworkFirewall.Model
         /// <para>
         /// To make a conditional change to the firewall, provide the token in your update request.
         /// Network Firewall uses the token to ensure that the firewall hasn't changed since you
-        /// last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>.
+        /// last retrieved it. If it has changed, the operation fails with an <c>InvalidTokenException</c>.
         /// If this happens, retrieve the firewall again to get a current copy of it with a new
         /// token. Reapply your changes as needed, then try the operation again using the new
         /// token. 

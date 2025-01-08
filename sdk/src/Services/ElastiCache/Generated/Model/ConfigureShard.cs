@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -37,15 +38,15 @@ namespace Amazon.ElastiCache.Model
     {
         private int? _newReplicaCount;
         private string _nodeGroupId;
-        private List<string> _preferredAvailabilityZones = new List<string>();
-        private List<string> _preferredOutpostArns = new List<string>();
+        private List<string> _preferredAvailabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _preferredOutpostArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property NewReplicaCount. 
         /// <para>
         /// The number of replicas you want in this node group at the end of this operation. The
-        /// maximum value for <code>NewReplicaCount</code> is 5. The minimum value depends upon
-        /// the type of Redis replication group you are working with.
+        /// maximum value for <c>NewReplicaCount</c> is 5. The minimum value depends upon the
+        /// type of Valkey or Redis OSS replication group you are working with.
         /// </para>
         ///  
         /// <para>
@@ -53,7 +54,7 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Redis (cluster mode disabled)
+        /// Valkey or Redis OSS (cluster mode disabled)
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -65,8 +66,8 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
-        /// Redis (cluster mode enabled): 0 (though you will not be able to failover to a replica
-        /// if your primary node fails)
+        /// Valkey or Redis OSS (cluster mode enabled): 0 (though you will not be able to failover
+        /// to a replica if your primary node fails)
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -86,9 +87,9 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property NodeGroupId. 
         /// <para>
-        /// The 4-digit id for the node group you are configuring. For Redis (cluster mode disabled)
-        /// replication groups, the node group id is always 0001. To find a Redis (cluster mode
-        /// enabled)'s node group's (shard's) id, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/shard-find-id.html">Finding
+        /// The 4-digit id for the node group you are configuring. For Valkey or Redis OSS (cluster
+        /// mode disabled) replication groups, the node group id is always 0001. To find a Valkey
+        /// or Redis OSS (cluster mode enabled)'s node group's (shard's) id, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/shard-find-id.html">Finding
         /// a Shard's Id</a>.
         /// </para>
         /// </summary>
@@ -108,11 +109,11 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property PreferredAvailabilityZones. 
         /// <para>
-        /// A list of <code>PreferredAvailabilityZone</code> strings that specify which availability
-        /// zones the replication group's nodes are to be in. The nummber of <code>PreferredAvailabilityZone</code>
-        /// values must equal the value of <code>NewReplicaCount</code> plus 1 to account for
-        /// the primary node. If this member of <code>ReplicaConfiguration</code> is omitted,
-        /// ElastiCache for Redis selects the availability zone for each of the replicas.
+        /// A list of <c>PreferredAvailabilityZone</c> strings that specify which availability
+        /// zones the replication group's nodes are to be in. The nummber of <c>PreferredAvailabilityZone</c>
+        /// values must equal the value of <c>NewReplicaCount</c> plus 1 to account for the primary
+        /// node. If this member of <c>ReplicaConfiguration</c> is omitted, ElastiCache selects
+        /// the availability zone for each of the replicas.
         /// </para>
         /// </summary>
         public List<string> PreferredAvailabilityZones
@@ -124,7 +125,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if PreferredAvailabilityZones property is set
         internal bool IsSetPreferredAvailabilityZones()
         {
-            return this._preferredAvailabilityZones != null && this._preferredAvailabilityZones.Count > 0; 
+            return this._preferredAvailabilityZones != null && (this._preferredAvailabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -142,7 +143,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if PreferredOutpostArns property is set
         internal bool IsSetPreferredOutpostArns()
         {
-            return this._preferredOutpostArns != null && this._preferredOutpostArns.Count > 0; 
+            return this._preferredOutpostArns != null && (this._preferredOutpostArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

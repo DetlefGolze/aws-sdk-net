@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property ConfidenceLevel. 
         /// <para>
-        ///  The sensitivity of anomalous behavior evaluation. Can be <code>Low</code>, <code>Medium</code>,
-        /// or <code>High</code>. 
+        ///  The sensitivity of anomalous behavior evaluation. Can be <c>Low</c>, <c>Medium</c>,
+        /// or <c>High</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

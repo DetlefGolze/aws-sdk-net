@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.AppSync.Model
         /// <summary>
         /// Gets and sets the property SourceApiAssociation. 
         /// <para>
-        /// The <code>SourceApiAssociation</code> object data.
+        /// The <c>SourceApiAssociation</c> object data.
         /// </para>
         /// </summary>
         public SourceApiAssociation SourceApiAssociation

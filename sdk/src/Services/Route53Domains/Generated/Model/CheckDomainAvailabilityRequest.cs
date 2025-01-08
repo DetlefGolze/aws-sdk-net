@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Domains.Model
 {
     /// <summary>
@@ -66,7 +67,7 @@ namespace Amazon.Route53Domains.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Period (.) to separate the labels in the name, such as the <code>.</code> in <code>example.com</code>.
+        /// Period (.) to separate the labels in the name, such as the <c>.</c> in <c>example.com</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -96,7 +97,6 @@ namespace Amazon.Route53Domains.Model
         /// Reserved for future use.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=3)]
         public string IdnLangCode
         {
             get { return this._idnLangCode; }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
@@ -61,8 +62,8 @@ namespace Amazon.CloudTrail.Model
         /// Gets and sets the property Type. 
         /// <para>
         /// The type of destination for events arriving from a channel. For channels used for
-        /// a CloudTrail Lake integration, the value is <code>EventDataStore</code>. For service-linked
-        /// channels, the value is <code>AWS_SERVICE</code>. 
+        /// a CloudTrail Lake integration, the value is <c>EVENT_DATA_STORE</c>. For service-linked
+        /// channels, the value is <c>AWS_SERVICE</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

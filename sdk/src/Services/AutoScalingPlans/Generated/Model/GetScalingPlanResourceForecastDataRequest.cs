@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScalingPlans.Model
 {
     /// <summary>
@@ -83,23 +84,23 @@ namespace Amazon.AutoScalingPlans.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>LoadForecast</code>: The load metric forecast. 
+        ///  <c>LoadForecast</c>: The load metric forecast. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CapacityForecast</code>: The capacity forecast. 
+        ///  <c>CapacityForecast</c>: The capacity forecast. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ScheduledActionMinCapacity</code>: The minimum capacity for each scheduled
-        /// scaling action. This data is calculated as the larger of two values: the capacity
-        /// forecast or the minimum capacity in the scaling instruction.
+        ///  <c>ScheduledActionMinCapacity</c>: The minimum capacity for each scheduled scaling
+        /// action. This data is calculated as the larger of two values: the capacity forecast
+        /// or the minimum capacity in the scaling instruction.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ScheduledActionMaxCapacity</code>: The maximum capacity for each scheduled
-        /// scaling action. The calculation used is determined by the predictive scaling maximum
-        /// capacity behavior setting in the scaling instruction.
+        ///  <c>ScheduledActionMaxCapacity</c>: The maximum capacity for each scheduled scaling
+        /// action. The calculation used is determined by the predictive scaling maximum capacity
+        /// behavior setting in the scaling instruction.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -119,9 +120,9 @@ namespace Amazon.AutoScalingPlans.Model
         /// <summary>
         /// Gets and sets the property ResourceId. 
         /// <para>
-        /// The ID of the resource. This string consists of a prefix (<code>autoScalingGroup</code>)
-        /// followed by the name of a specified Auto Scaling group (<code>my-asg</code>). Example:
-        /// <code>autoScalingGroup/my-asg</code>. 
+        /// The ID of the resource. This string consists of a prefix (<c>autoScalingGroup</c>)
+        /// followed by the name of a specified Auto Scaling group (<c>my-asg</c>). Example: <c>autoScalingGroup/my-asg</c>.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -140,7 +141,7 @@ namespace Amazon.AutoScalingPlans.Model
         /// <summary>
         /// Gets and sets the property ScalableDimension. 
         /// <para>
-        /// The scalable dimension for the resource. The only valid value is <code>autoscaling:autoScalingGroup:DesiredCapacity</code>.
+        /// The scalable dimension for the resource. The only valid value is <c>autoscaling:autoScalingGroup:DesiredCapacity</c>.
         /// 
         /// </para>
         /// </summary>
@@ -179,7 +180,7 @@ namespace Amazon.AutoScalingPlans.Model
         /// <summary>
         /// Gets and sets the property ScalingPlanVersion. 
         /// <para>
-        /// The version number of the scaling plan. Currently, the only valid value is <code>1</code>.
+        /// The version number of the scaling plan. Currently, the only valid value is <c>1</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -198,8 +199,7 @@ namespace Amazon.AutoScalingPlans.Model
         /// <summary>
         /// Gets and sets the property ServiceNamespace. 
         /// <para>
-        /// The namespace of the AWS service. The only valid value is <code>autoscaling</code>.
-        /// 
+        /// The namespace of the AWS service. The only valid value is <c>autoscaling</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

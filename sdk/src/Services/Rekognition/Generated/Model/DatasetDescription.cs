@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Rekognition.Model
     /// 
     ///  
     /// <para>
-    /// The status fields <code>Status</code>, <code>StatusMessage</code>, and <code>StatusMessageCode</code>
+    /// The status fields <c>Status</c>, <c>StatusMessage</c>, and <c>StatusMessageCode</c>
     /// reflect the last operation on the dataset. 
     /// </para>
     /// </summary>

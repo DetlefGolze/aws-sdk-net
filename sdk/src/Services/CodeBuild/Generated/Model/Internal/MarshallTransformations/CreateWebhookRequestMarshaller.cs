@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetBranchFilter())
@@ -100,10 +102,27 @@ namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
                     context.Writer.WriteArrayEnd();
                 }
 
+                if(publicRequest.IsSetManualCreation())
+                {
+                    context.Writer.WritePropertyName("manualCreation");
+                    context.Writer.Write(publicRequest.ManualCreation);
+                }
+
                 if(publicRequest.IsSetProjectName())
                 {
                     context.Writer.WritePropertyName("projectName");
                     context.Writer.Write(publicRequest.ProjectName);
+                }
+
+                if(publicRequest.IsSetScopeConfiguration())
+                {
+                    context.Writer.WritePropertyName("scopeConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ScopeConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.ScopeConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 writer.WriteObjectEnd();

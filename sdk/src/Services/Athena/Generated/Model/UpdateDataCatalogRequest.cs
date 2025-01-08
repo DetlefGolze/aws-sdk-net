@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Athena.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Athena.Model
     {
         private string _description;
         private string _name;
-        private Dictionary<string, string> _parameters = new Dictionary<string, string>();
+        private Dictionary<string, string> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private DataCatalogType _type;
 
         /// <summary>
@@ -88,18 +89,17 @@ namespace Amazon.Athena.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For the <code>HIVE</code> data catalog type, use the following syntax. The <code>metadata-function</code>
-        /// parameter is required. <code>The sdk-version</code> parameter is optional and defaults
-        /// to the currently supported version.
+        /// For the <c>HIVE</c> data catalog type, use the following syntax. The <c>metadata-function</c>
+        /// parameter is required. <c>The sdk-version</c> parameter is optional and defaults to
+        /// the currently supported version.
         /// </para>
         ///  
         /// <para>
-        ///  <code>metadata-function=<i>lambda_arn</i>, sdk-version=<i>version_number</i> </code>
-        /// 
+        ///  <c>metadata-function=<i>lambda_arn</i>, sdk-version=<i>version_number</i> </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For the <code>LAMBDA</code> data catalog type, use one of the following sets of required
+        /// For the <c>LAMBDA</c> data catalog type, use one of the following sets of required
         /// parameters, but not both.
         /// </para>
         ///  <ul> <li> 
@@ -109,8 +109,7 @@ namespace Amazon.Athena.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>metadata-function=<i>lambda_arn</i>, record-function=<i>lambda_arn</i> </code>
-        /// 
+        ///  <c>metadata-function=<i>lambda_arn</i>, record-function=<i>lambda_arn</i> </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -119,7 +118,7 @@ namespace Amazon.Athena.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>function=<i>lambda_arn</i> </code> 
+        ///  <c>function=<i>lambda_arn</i> </c> 
         /// </para>
         ///  </li> </ul> </li> </ul>
         /// </summary>
@@ -132,15 +131,15 @@ namespace Amazon.Athena.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// Specifies the type of data catalog to update. Specify <code>LAMBDA</code> for a federated
-        /// catalog, <code>HIVE</code> for an external hive metastore, or <code>GLUE</code> for
-        /// an Glue Data Catalog.
+        /// Specifies the type of data catalog to update. Specify <c>LAMBDA</c> for a federated
+        /// catalog, <c>HIVE</c> for an external hive metastore, or <c>GLUE</c> for an Glue Data
+        /// Catalog.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

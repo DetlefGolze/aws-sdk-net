@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.SageMaker.Model
         private int? _maxDepth;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _startArns = new List<string>();
+        private List<string> _startArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Direction. 
@@ -74,8 +75,8 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// LineageTypes - A set of lineage entity types to match on. For example: <code>TrialComponent</code>,
-        /// <code>Artifact</code>, or <code>Context</code>.
+        /// LineageTypes - A set of lineage entity types to match on. For example: <c>TrialComponent</c>,
+        /// <c>Artifact</c>, or <c>Context</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -106,10 +107,10 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property IncludeEdges. 
         /// <para>
-        ///  Setting this value to <code>True</code> retrieves not only the entities of interest
-        /// but also the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking-entities.html">Associations</a>
-        /// and lineage entities on the path. Set to <code>False</code> to only return lineage
-        /// entities that match your query.
+        ///  Setting this value to <c>True</c> retrieves not only the entities of interest but
+        /// also the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking-entities.html">Associations</a>
+        /// and lineage entities on the path. Set to <c>False</c> to only return lineage entities
+        /// that match your query.
         /// </para>
         /// </summary>
         public bool IncludeEdges
@@ -127,9 +128,9 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property MaxDepth. 
         /// <para>
-        /// The maximum depth in lineage relationships from the <code>StartArns</code> that are
-        /// traversed. Depth is a measure of the number of <code>Associations</code> from the
-        /// <code>StartArn</code> entity to the matched results.
+        /// The maximum depth in lineage relationships from the <c>StartArns</c> that are traversed.
+        /// Depth is a measure of the number of <c>Associations</c> from the <c>StartArn</c> entity
+        /// to the matched results.
         /// </para>
         /// </summary>
         [AWSProperty(Max=10)]
@@ -148,8 +149,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// Limits the number of vertices in the results. Use the <code>NextToken</code> in a
-        /// response to to retrieve the next page of results.
+        /// Limits the number of vertices in the results. Use the <c>NextToken</c> in a response
+        /// to to retrieve the next page of results.
         /// </para>
         /// </summary>
         [AWSProperty(Max=50)]
@@ -168,8 +169,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Limits the number of vertices in the request. Use the <code>NextToken</code> in a
-        /// response to to retrieve the next page of results.
+        /// Limits the number of vertices in the request. Use the <c>NextToken</c> in a response
+        /// to to retrieve the next page of results.
         /// </para>
         /// </summary>
         [AWSProperty(Max=8192)]
@@ -202,7 +203,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if StartArns property is set
         internal bool IsSetStartArns()
         {
-            return this._startArns != null && this._startArns.Count > 0; 
+            return this._startArns != null && (this._startArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

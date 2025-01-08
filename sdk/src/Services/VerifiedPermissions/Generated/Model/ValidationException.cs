@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VerifiedPermissions.Model
 {
     /// <summary>
@@ -76,8 +77,8 @@ namespace Amazon.VerifiedPermissions.Model
     /// </para>
     ///  
     /// <para>
-    /// The types of elements included in a <code>set</code>, or the types of expressions
-    /// used in an <code>if...then...else</code> clause aren't compatible in this context.
+    /// The types of elements included in a <c>set</c>, or the types of expressions used in
+    /// an <c>if...then...else</c> clause aren't compatible in this context.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -87,7 +88,7 @@ namespace Amazon.VerifiedPermissions.Model
     /// <para>
     /// The policy attempts to access a record or entity attribute that isn't specified in
     /// the schema. Test for the existence of the attribute first before attempting to access
-    /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+    /// its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
     /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
     /// </para>
     ///  </li> <li> 
@@ -98,7 +99,7 @@ namespace Amazon.VerifiedPermissions.Model
     /// <para>
     /// The policy attempts to access a record or entity attribute that is optional and isn't
     /// guaranteed to be present. Test for the existence of the attribute first before attempting
-    /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test">has
+    /// to access its value. For more information, see the <a href="https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test">has
     /// (presence of attribute test) operator</a> in the <i>Cedar Policy Language Guide</i>.
     /// </para>
     ///  </li> <li> 
@@ -135,7 +136,7 @@ namespace Amazon.VerifiedPermissions.Model
     #endif
     public partial class ValidationException : AmazonVerifiedPermissionsException
     {
-        private List<ValidationExceptionField> _fieldList = new List<ValidationExceptionField>();
+        private List<ValidationExceptionField> _fieldList = AWSConfigs.InitializeCollections ? new List<ValidationExceptionField>() : null;
 
         /// <summary>
         /// Constructs a new ValidationException with the specified error
@@ -237,7 +238,7 @@ namespace Amazon.VerifiedPermissions.Model
         // Check to see if FieldList property is set
         internal bool IsSetFieldList()
         {
-            return this._fieldList != null && this._fieldList.Count > 0; 
+            return this._fieldList != null && (this._fieldList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

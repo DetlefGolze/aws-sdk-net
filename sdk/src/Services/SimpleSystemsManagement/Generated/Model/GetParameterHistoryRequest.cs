@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// <para>
     /// If you change the KMS key alias for the KMS key used to encrypt a parameter, then
     /// you must also update the key alias the parameter uses to reference KMS. Otherwise,
-    /// <code>GetParameterHistory</code> retrieves whatever the original key alias was referencing.
+    /// <c>GetParameterHistory</c> retrieves whatever the original key alias was referencing.
     /// </para>
     ///  </important>
     /// </summary>
@@ -70,7 +71,9 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the parameter for which you want to review history.
+        /// The name or Amazon Resource Name (ARN) of the parameter for which you want to review
+        /// history. For parameters shared with you from another account, you must use the full
+        /// ARN.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]
@@ -108,8 +111,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property WithDecryption. 
         /// <para>
-        /// Return decrypted values for secure string parameters. This flag is ignored for <code>String</code>
-        /// and <code>StringList</code> parameter types.
+        /// Return decrypted values for secure string parameters. This flag is ignored for <c>String</c>
+        /// and <c>StringList</c> parameter types.
         /// </para>
         /// </summary>
         public bool WithDecryption

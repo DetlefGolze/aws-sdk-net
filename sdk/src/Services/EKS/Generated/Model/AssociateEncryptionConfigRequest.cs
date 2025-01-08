@@ -26,29 +26,31 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
     /// Container for the parameters to the AssociateEncryptionConfig operation.
-    /// Associate encryption configuration to an existing cluster.
+    /// Associates an encryption configuration to an existing cluster.
     /// 
     ///  
     /// <para>
-    /// You can use this API to enable encryption on existing clusters which do not have encryption
-    /// already enabled. This allows you to implement a defense-in-depth security strategy
-    /// without migrating applications to new Amazon EKS clusters.
+    /// Use this API to enable encryption on existing clusters that don't already have encryption
+    /// enabled. This allows you to implement a defense-in-depth security strategy without
+    /// migrating applications to new Amazon EKS clusters.
     /// </para>
     /// </summary>
     public partial class AssociateEncryptionConfigRequest : AmazonEKSRequest
     {
         private string _clientRequestToken;
         private string _clusterName;
-        private List<EncryptionConfig> _encryptionConfig = new List<EncryptionConfig>();
+        private List<EncryptionConfig> _encryptionConfig = AWSConfigs.InitializeCollections ? new List<EncryptionConfig>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
-        /// The client request token you are using with the encryption configuration.
+        /// A unique, case-sensitive identifier that you provide to ensure the idempotency of
+        /// the request.
         /// </para>
         /// </summary>
         public string ClientRequestToken
@@ -66,7 +68,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ClusterName. 
         /// <para>
-        /// The name of the cluster that you are associating with encryption configuration.
+        /// The name of your cluster.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -98,7 +100,7 @@ namespace Amazon.EKS.Model
         // Check to see if EncryptionConfig property is set
         internal bool IsSetEncryptionConfig()
         {
-            return this._encryptionConfig != null && this._encryptionConfig.Count > 0; 
+            return this._encryptionConfig != null && (this._encryptionConfig.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

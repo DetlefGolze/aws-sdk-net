@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -70,6 +71,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                 {
                     request.Parameters.Add("Description", StringUtils.FromString(publicRequest.Description));
                 }
+                if(publicRequest.IsSetEnablePrivateGua())
+                {
+                    request.Parameters.Add("EnablePrivateGua", StringUtils.FromBool(publicRequest.EnablePrivateGua));
+                }
                 if(publicRequest.IsSetOperatingRegions())
                 {
                     int publicRequestlistValueIndex = 1;
@@ -109,6 +114,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                         }
                         publicRequestlistValueIndex++;
                     }
+                }
+                if(publicRequest.IsSetTier())
+                {
+                    request.Parameters.Add("Tier", StringUtils.FromString(publicRequest.Tier));
                 }
             }
             return request;

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElasticMapReduce.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,25 @@ namespace Amazon.ElasticMapReduce.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(OnDemandResizingSpecification requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetAllocationStrategy())
+            {
+                context.Writer.WritePropertyName("AllocationStrategy");
+                context.Writer.Write(requestObject.AllocationStrategy);
+            }
+
+            if(requestObject.IsSetCapacityReservationOptions())
+            {
+                context.Writer.WritePropertyName("CapacityReservationOptions");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = OnDemandCapacityReservationOptionsMarshaller.Instance;
+                marshaller.Marshall(requestObject.CapacityReservationOptions, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetTimeoutDurationMinutes())
             {
                 context.Writer.WritePropertyName("TimeoutDurationMinutes");

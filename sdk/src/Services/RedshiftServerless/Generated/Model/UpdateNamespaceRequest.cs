@@ -26,30 +26,53 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RedshiftServerless.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateNamespace operation.
     /// Updates a namespace with the specified settings. Unless required, you can't update
-    /// multiple parameters in one request. For example, you must specify both <code>adminUsername</code>
-    /// and <code>adminUserPassword</code> to update either field, but you can't update both
-    /// <code>kmsKeyId</code> and <code>logExports</code> in a single request.
+    /// multiple parameters in one request. For example, you must specify both <c>adminUsername</c>
+    /// and <c>adminUserPassword</c> to update either field, but you can't update both <c>kmsKeyId</c>
+    /// and <c>logExports</c> in a single request.
     /// </summary>
     public partial class UpdateNamespaceRequest : AmazonRedshiftServerlessRequest
     {
+        private string _adminPasswordSecretKmsKeyId;
         private string _adminUsername;
         private string _adminUserPassword;
         private string _defaultIamRoleArn;
-        private List<string> _iamRoles = new List<string>();
+        private List<string> _iamRoles = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _kmsKeyId;
-        private List<string> _logExports = new List<string>();
+        private List<string> _logExports = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private bool? _manageAdminPassword;
         private string _namespaceName;
+
+        /// <summary>
+        /// Gets and sets the property AdminPasswordSecretKmsKeyId. 
+        /// <para>
+        /// The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's
+        /// admin credentials secret. You can only use this parameter if <c>manageAdminPassword</c>
+        /// is true.
+        /// </para>
+        /// </summary>
+        public string AdminPasswordSecretKmsKeyId
+        {
+            get { return this._adminPasswordSecretKmsKeyId; }
+            set { this._adminPasswordSecretKmsKeyId = value; }
+        }
+
+        // Check to see if AdminPasswordSecretKmsKeyId property is set
+        internal bool IsSetAdminPasswordSecretKmsKeyId()
+        {
+            return this._adminPasswordSecretKmsKeyId != null;
+        }
 
         /// <summary>
         /// Gets and sets the property AdminUsername. 
         /// <para>
         /// The username of the administrator for the first database created in the namespace.
-        /// This parameter must be updated together with <code>adminUserPassword</code>.
+        /// This parameter must be updated together with <c>adminUserPassword</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -69,7 +92,11 @@ namespace Amazon.RedshiftServerless.Model
         /// Gets and sets the property AdminUserPassword. 
         /// <para>
         /// The password of the administrator for the first database created in the namespace.
-        /// This parameter must be updated together with <code>adminUsername</code>.
+        /// This parameter must be updated together with <c>adminUsername</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can't use <c>adminUserPassword</c> if <c>manageAdminPassword</c> is true. 
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -89,7 +116,7 @@ namespace Amazon.RedshiftServerless.Model
         /// Gets and sets the property DefaultIamRoleArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the IAM role to set as a default in the namespace.
-        /// This parameter must be updated together with <code>iamRoles</code>.
+        /// This parameter must be updated together with <c>iamRoles</c>.
         /// </para>
         /// </summary>
         public string DefaultIamRoleArn
@@ -108,7 +135,7 @@ namespace Amazon.RedshiftServerless.Model
         /// Gets and sets the property IamRoles. 
         /// <para>
         /// A list of IAM roles to associate with the namespace. This parameter must be updated
-        /// together with <code>defaultIamRoleArn</code>.
+        /// together with <c>defaultIamRoleArn</c>.
         /// </para>
         /// </summary>
         public List<string> IamRoles
@@ -120,7 +147,7 @@ namespace Amazon.RedshiftServerless.Model
         // Check to see if IamRoles property is set
         internal bool IsSetIamRoles()
         {
-            return this._iamRoles != null && this._iamRoles.Count > 0; 
+            return this._iamRoles != null && (this._iamRoles.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -145,8 +172,8 @@ namespace Amazon.RedshiftServerless.Model
         /// <summary>
         /// Gets and sets the property LogExports. 
         /// <para>
-        /// The types of logs the namespace can export. The export types are <code>userlog</code>,
-        /// <code>connectionlog</code>, and <code>useractivitylog</code>.
+        /// The types of logs the namespace can export. The export types are <c>userlog</c>, <c>connectionlog</c>,
+        /// and <c>useractivitylog</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=16)]
@@ -159,7 +186,28 @@ namespace Amazon.RedshiftServerless.Model
         // Check to see if LogExports property is set
         internal bool IsSetLogExports()
         {
-            return this._logExports != null && this._logExports.Count > 0; 
+            return this._logExports != null && (this._logExports.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ManageAdminPassword. 
+        /// <para>
+        /// If <c>true</c>, Amazon Redshift uses Secrets Manager to manage the namespace's admin
+        /// credentials. You can't use <c>adminUserPassword</c> if <c>manageAdminPassword</c>
+        /// is true. If <c>manageAdminPassword</c> is false or not set, Amazon Redshift uses <c>adminUserPassword</c>
+        /// for the admin user account's password. 
+        /// </para>
+        /// </summary>
+        public bool ManageAdminPassword
+        {
+            get { return this._manageAdminPassword.GetValueOrDefault(); }
+            set { this._manageAdminPassword = value; }
+        }
+
+        // Check to see if ManageAdminPassword property is set
+        internal bool IsSetManageAdminPassword()
+        {
+            return this._manageAdminPassword.HasValue; 
         }
 
         /// <summary>

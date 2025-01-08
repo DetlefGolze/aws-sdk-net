@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeAccess operation.
     /// Describes the access that is assigned to the specific file transfer protocol-enabled
-    /// server, as identified by its <code>ServerId</code> property and its <code>ExternalId</code>.
+    /// server, as identified by its <c>ServerId</c> property and its <c>ExternalId</c>.
     /// 
     ///  
     /// <para>
     /// The response from this call returns the properties of the access that is associated
-    /// with the <code>ServerId</code> value that was specified.
+    /// with the <c>ServerId</c> value that was specified.
     /// </para>
     /// </summary>
     public partial class DescribeAccessRequest : AmazonTransferRequest
@@ -54,8 +55,8 @@ namespace Amazon.Transfer.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>Get-ADGroup -Filter {samAccountName -like "<i>YourGroupName</i>*"} -Properties
-        /// * | Select SamAccountName,ObjectSid</code> 
+        ///  <c>Get-ADGroup -Filter {samAccountName -like "<i>YourGroupName</i>*"} -Properties
+        /// * | Select SamAccountName,ObjectSid</c> 
         /// </para>
         ///  
         /// <para>

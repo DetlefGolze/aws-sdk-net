@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pinpoint.Model
 {
     /// <summary>
@@ -61,7 +62,8 @@ namespace Amazon.Pinpoint.Model
         /// <summary>
         /// Gets and sets the property EndpointId. 
         /// <para>
-        /// The unique identifier for the endpoint.
+        /// The case insensitive unique identifier for the endpoint. The identifier can't contain
+        /// <c>$</c>, <c>{</c> or <c>}</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostAndUsageReport.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.CostAndUsageReport.Model
     public partial class PutReportDefinitionRequest : AmazonCostAndUsageReportRequest
     {
         private ReportDefinition _reportDefinition;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ReportDefinition. 
@@ -54,6 +56,25 @@ namespace Amazon.CostAndUsageReport.Model
         internal bool IsSetReportDefinition()
         {
             return this._reportDefinition != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Tags. 
+        /// <para>
+        /// The tags to be assigned to the report definition resource.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=200)]
+        public List<Tag> Tags
+        {
+            get { return this._tags; }
+            set { this._tags = value; }
+        }
+
+        // Check to see if Tags property is set
+        internal bool IsSetTags()
+        {
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

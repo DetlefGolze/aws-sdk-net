@@ -26,13 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CertificateManager.Model
 {
     /// <summary>
     /// Container for the parameters to the GetCertificate operation.
-    /// Retrieves an Amazon-issued certificate and its certificate chain. The chain consists
-    /// of the certificate of the issuing CA and the intermediate certificates of any other
-    /// subordinate CAs. All of the certificates are base64 encoded. You can use <a href="https://wiki.openssl.org/index.php/Command_Line_Utilities">OpenSSL</a>
+    /// Retrieves a certificate and its certificate chain. The certificate may be either a
+    /// public or private certificate issued using the ACM <c>RequestCertificate</c> action,
+    /// or a certificate imported into ACM using the <c>ImportCertificate</c> action. The
+    /// chain consists of the certificate of the issuing CA and the intermediate certificates
+    /// of any other subordinate CAs. All of the certificates are base64 encoded. You can
+    /// use <a href="https://wiki.openssl.org/index.php/Command_Line_Utilities">OpenSSL</a>
     /// to decode the certificates and inspect individual fields.
     /// </summary>
     public partial class GetCertificateRequest : AmazonCertificateManagerRequest
@@ -47,7 +51,7 @@ namespace Amazon.CertificateManager.Model
         /// <summary>
         /// Instantiates GetCertificateRequest with the parameterized properties
         /// </summary>
-        /// <param name="certificateArn">String that contains a certificate ARN in the following format:  <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code>  For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs)</a>.</param>
+        /// <param name="certificateArn">String that contains a certificate ARN in the following format:  <c>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</c>  For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs)</a>.</param>
         public GetCertificateRequest(string certificateArn)
         {
             _certificateArn = certificateArn;
@@ -60,7 +64,7 @@ namespace Amazon.CertificateManager.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code>
+        ///  <c>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</c>
         /// 
         /// </para>
         ///  

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// The result of a <code>StartElasticsearchServiceSoftwareUpdate</code> operation. Contains
+    /// The result of a <c>StartElasticsearchServiceSoftwareUpdate</c> operation. Contains
     /// the status of the update.
     /// </summary>
     public partial class StartElasticsearchServiceSoftwareUpdateResponse : AmazonWebServiceResponse

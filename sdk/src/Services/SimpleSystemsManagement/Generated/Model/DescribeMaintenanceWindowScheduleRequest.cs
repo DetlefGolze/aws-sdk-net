@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -34,11 +35,11 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// </summary>
     public partial class DescribeMaintenanceWindowScheduleRequest : AmazonSimpleSystemsManagementRequest
     {
-        private List<PatchOrchestratorFilter> _filters = new List<PatchOrchestratorFilter>();
+        private List<PatchOrchestratorFilter> _filters = AWSConfigs.InitializeCollections ? new List<PatchOrchestratorFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
         private MaintenanceWindowResourceType _resourceType;
-        private List<Target> _targets = new List<Target>();
+        private List<Target> _targets = AWSConfigs.InitializeCollections ? new List<Target>() : null;
         private string _windowId;
 
         /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -103,7 +104,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The type of resource you want to retrieve information about. For example, <code>INSTANCE</code>.
+        /// The type of resource you want to retrieve information about. For example, <c>INSTANCE</c>.
         /// </para>
         /// </summary>
         public MaintenanceWindowResourceType ResourceType
@@ -134,7 +135,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

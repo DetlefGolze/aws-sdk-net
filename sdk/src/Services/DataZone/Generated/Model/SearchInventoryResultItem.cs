@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.DataZone.Model
     public partial class SearchInventoryResultItem
     {
         private AssetItem _assetItem;
-        private DataProductSummary _dataProductItem;
+        private DataProductResultItem _dataProductItem;
         private GlossaryItem _glossaryItem;
         private GlossaryTermItem _glossaryTermItem;
 
@@ -59,10 +60,10 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property DataProductItem. 
         /// <para>
-        /// The data product item included in the search results.
+        /// The data product.
         /// </para>
         /// </summary>
-        public DataProductSummary DataProductItem
+        public DataProductResultItem DataProductItem
         {
             get { return this._dataProductItem; }
             set { this._dataProductItem = value; }

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecretsManager.Model
 {
     /// <summary>
-    /// The <code>BlockPublicPolicy</code> parameter is set to true, and the resource policy
-    /// did not prevent broad access to the secret.
+    /// The <c>BlockPublicPolicy</c> parameter is set to true, and the resource policy did
+    /// not prevent broad access to the secret.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

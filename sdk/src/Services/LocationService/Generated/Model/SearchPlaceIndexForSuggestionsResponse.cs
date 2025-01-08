@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.LocationService.Model
     /// </summary>
     public partial class SearchPlaceIndexForSuggestionsResponse : AmazonWebServiceResponse
     {
-        private List<SearchForSuggestionsResult> _results = new List<SearchForSuggestionsResult>();
+        private List<SearchForSuggestionsResult> _results = AWSConfigs.InitializeCollections ? new List<SearchForSuggestionsResult>() : null;
         private SearchPlaceIndexForSuggestionsSummary _summary;
 
         /// <summary>
@@ -52,16 +53,15 @@ namespace Amazon.LocationService.Model
         // Check to see if Results property is set
         internal bool IsSetResults()
         {
-            return this._results != null && this._results.Count > 0; 
+            return this._results != null && (this._results.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Summary. 
         /// <para>
-        /// Contains a summary of the request. Echoes the input values for <code>BiasPosition</code>,
-        /// <code>FilterBBox</code>, <code>FilterCountries</code>, <code>Language</code>, <code>MaxResults</code>,
-        /// and <code>Text</code>. Also includes the <code>DataSource</code> of the place index.
-        /// 
+        /// Contains a summary of the request. Echoes the input values for <c>BiasPosition</c>,
+        /// <c>FilterBBox</c>, <c>FilterCountries</c>, <c>Language</c>, <c>MaxResults</c>, and
+        /// <c>Text</c>. Also includes the <c>DataSource</c> of the place index. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

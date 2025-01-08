@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
@@ -81,7 +82,7 @@ namespace Amazon.VPCLattice.Model
         /// The ID of the service network.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=32, Max=32)]
+        [AWSProperty(Min=20, Max=20)]
         public string Id
         {
             get { return this._id; }

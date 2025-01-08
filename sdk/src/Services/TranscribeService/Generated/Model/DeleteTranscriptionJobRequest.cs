@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteTranscriptionJob operation.
     /// Deletes a transcription job. To use this operation, specify the name of the job you
-    /// want to delete using <code>TranscriptionJobName</code>. Job names are case sensitive.
+    /// want to delete using <c>TranscriptionJobName</c>. Job names are case sensitive.
     /// </summary>
     public partial class DeleteTranscriptionJobRequest : AmazonTranscribeServiceRequest
     {

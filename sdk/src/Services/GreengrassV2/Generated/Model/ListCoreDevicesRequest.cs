@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GreengrassV2.Model
 {
     /// <summary>
@@ -54,7 +55,14 @@ namespace Amazon.GreengrassV2.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// When the status of any component on the core device becomes <code>BROKEN</code> 
+    /// For Greengrass nucleus 2.12.2 and earlier, the core device sends status updates when
+    /// the status of any component on the core device becomes <c>ERRORED</c> or <c>BROKEN</c>.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// For Greengrass nucleus 2.12.3 and later, the core device sends status updates when
+    /// the status of any component on the core device becomes <c>ERRORED</c>, <c>BROKEN</c>,
+    /// <c>RUNNING</c>, or <c>FINISHED</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -72,6 +80,7 @@ namespace Amazon.GreengrassV2.Model
     {
         private int? _maxResults;
         private string _nextToken;
+        private string _runtime;
         private CoreDeviceStatus _status;
         private string _thingGroupArn;
 
@@ -113,6 +122,34 @@ namespace Amazon.GreengrassV2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Runtime. 
+        /// <para>
+        /// The runtime to be used by the core device. The runtime can be:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>aws_nucleus_classic</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>aws_nucleus_lite</c> 
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        [AWSProperty(Min=1, Max=255)]
+        public string Runtime
+        {
+            get { return this._runtime; }
+            set { this._runtime = value; }
+        }
+
+        // Check to see if Runtime property is set
+        internal bool IsSetRuntime()
+        {
+            return this._runtime != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
         /// The core device status by which to filter. If you specify this parameter, the list
@@ -120,13 +157,13 @@ namespace Amazon.GreengrassV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>HEALTHY</code> – The IoT Greengrass Core software and all components run on
-        /// the core device without issue.
+        ///  <c>HEALTHY</c> – The IoT Greengrass Core software and all components run on the core
+        /// device without issue.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UNHEALTHY</code> – The IoT Greengrass Core software or a component is in a
-        /// failed state on the core device.
+        ///  <c>UNHEALTHY</c> – The IoT Greengrass Core software or a component is in a failed
+        /// state on the core device.
         /// </para>
         ///  </li> </ul>
         /// </summary>

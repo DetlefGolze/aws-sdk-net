@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatch.Model
 {
     /// <summary>
@@ -41,15 +42,15 @@ namespace Amazon.CloudWatch.Model
     ///  
     /// <para>
     /// To use this operation and return information about a composite alarm, you must be
-    /// signed on with the <code>cloudwatch:DescribeAlarmHistory</code> permission that is
-    /// scoped to <code>*</code>. You can't return information about composite alarms if your
-    /// <code>cloudwatch:DescribeAlarmHistory</code> permission has a narrower scope.
+    /// signed on with the <c>cloudwatch:DescribeAlarmHistory</c> permission that is scoped
+    /// to <c>*</c>. You can't return information about composite alarms if your <c>cloudwatch:DescribeAlarmHistory</c>
+    /// permission has a narrower scope.
     /// </para>
     /// </summary>
     public partial class DescribeAlarmHistoryRequest : AmazonCloudWatchRequest
     {
         private string _alarmName;
-        private List<string> _alarmTypes = new List<string>();
+        private List<string> _alarmTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _endDateUtc;
         private HistoryItemType _historyItemType;
         private int? _maxRecords;
@@ -92,7 +93,7 @@ namespace Amazon.CloudWatch.Model
         // Check to see if AlarmTypes property is set
         internal bool IsSetAlarmTypes()
         {
-            return this._alarmTypes != null && this._alarmTypes.Count > 0; 
+            return this._alarmTypes != null && (this._alarmTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -171,8 +172,8 @@ namespace Amazon.CloudWatch.Model
         /// <summary>
         /// Gets and sets the property ScanBy. 
         /// <para>
-        /// Specified whether to return the newest or oldest alarm history first. Specify <code>TimestampDescending</code>
-        /// to have the newest event history returned first, and specify <code>TimestampAscending</code>
+        /// Specified whether to return the newest or oldest alarm history first. Specify <c>TimestampDescending</c>
+        /// to have the newest event history returned first, and specify <c>TimestampAscending</c>
         /// to have the oldest history returned first.
         /// </para>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property DayOfMonth. 
         /// <para>
-        /// The day of the month on which the scheduled audit is run (if the <code>frequency</code>
+        /// The day of the month on which the scheduled audit is run (if the <c>frequency</c>
         /// is "MONTHLY"). If days 29-31 are specified, and the month does not have that many
         /// days, the audit takes place on the "LAST" day of the month.
         /// </para>
@@ -62,8 +63,8 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property DayOfWeek. 
         /// <para>
-        /// The day of the week on which the scheduled audit is run (if the <code>frequency</code>
-        /// is "WEEKLY" or "BIWEEKLY").
+        /// The day of the week on which the scheduled audit is run (if the <c>frequency</c> is
+        /// "WEEKLY" or "BIWEEKLY").
         /// </para>
         /// </summary>
         public DayOfWeek DayOfWeek

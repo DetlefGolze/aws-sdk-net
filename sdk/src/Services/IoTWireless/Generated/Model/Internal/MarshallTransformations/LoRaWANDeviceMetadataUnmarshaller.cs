@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTWireless.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.IoTWireless.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public LoRaWANDeviceMetadata Unmarshall(JsonUnmarshallerContext context)
         {
+            LoRaWANDeviceMetadata unmarshalledObject = new LoRaWANDeviceMetadata();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            LoRaWANDeviceMetadata unmarshalledObject = new LoRaWANDeviceMetadata();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -94,6 +96,12 @@ namespace Amazon.IoTWireless.Model.Internal.MarshallTransformations
                     unmarshalledObject.Gateways = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("PublicGateways", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<LoRaWANPublicGatewayMetadata, LoRaWANPublicGatewayMetadataUnmarshaller>(LoRaWANPublicGatewayMetadataUnmarshaller.Instance);
+                    unmarshalledObject.PublicGateways = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("Timestamp", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -101,7 +109,6 @@ namespace Amazon.IoTWireless.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

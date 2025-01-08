@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -36,16 +37,16 @@ namespace Amazon.CloudFormation.Model
     /// 
     ///  
     /// <para>
-    /// For update operations, you can specify either <code>Accounts</code> or <code>OrganizationalUnitIds</code>.
-    /// For create and delete operations, specify <code>OrganizationalUnitIds</code>.
+    /// For update operations, you can specify either <c>Accounts</c> or <c>OrganizationalUnitIds</c>.
+    /// For create and delete operations, specify <c>OrganizationalUnitIds</c>.
     /// </para>
     /// </summary>
     public partial class DeploymentTargets
     {
         private AccountFilterType _accountFilterType;
-        private List<string> _accounts = new List<string>();
+        private List<string> _accounts = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _accountsUrl;
-        private List<string> _organizationalUnitIds = new List<string>();
+        private List<string> _organizationalUnitIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AccountFilterType. 
@@ -55,34 +56,31 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// The following is a list of possible values for the <code>AccountFilterType</code>
-        /// operation.
+        /// The following is a list of possible values for the <c>AccountFilterType</c> operation.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>INTERSECTION</code>: StackSets deploys to the accounts specified in <code>Accounts</code>
+        ///  <c>INTERSECTION</c>: StackSets deploys to the accounts specified in <c>Accounts</c>
         /// parameter. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DIFFERENCE</code>: StackSets excludes the accounts specified in <code>Accounts</code>
-        /// parameter. This enables user to avoid certain accounts within an OU such as suspended
-        /// accounts.
+        ///  <c>DIFFERENCE</c>: StackSets excludes the accounts specified in <c>Accounts</c> parameter.
+        /// This enables user to avoid certain accounts within an OU such as suspended accounts.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UNION</code>: StackSets includes additional accounts deployment targets. 
+        ///  <c>UNION</c>: StackSets includes additional accounts deployment targets. 
         /// </para>
         ///  
         /// <para>
-        /// This is the default value if <code>AccountFilterType</code> is not provided. This
-        /// enables user to update an entire OU and individual accounts from a different OU in
-        /// one request, which used to be two separate requests.
+        /// This is the default value if <c>AccountFilterType</c> is not provided. This enables
+        /// user to update an entire OU and individual accounts from a different OU in one request,
+        /// which used to be two separate requests.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NONE</code>: Deploys to all the accounts in specified organizational units
-        /// (OU).
+        ///  <c>NONE</c>: Deploys to all the accounts in specified organizational units (OU).
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -114,13 +112,13 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Accounts property is set
         internal bool IsSetAccounts()
         {
-            return this._accounts != null && this._accounts.Count > 0; 
+            return this._accounts != null && (this._accounts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AccountsUrl. 
         /// <para>
-        /// Returns the value of the <code>AccountsUrl</code> property.
+        /// Returns the value of the <c>AccountsUrl</c> property.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=5120)]
@@ -151,7 +149,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if OrganizationalUnitIds property is set
         internal bool IsSetOrganizationalUnitIds()
         {
-            return this._organizationalUnitIds != null && this._organizationalUnitIds.Count > 0; 
+            return this._organizationalUnitIds != null && (this._organizationalUnitIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

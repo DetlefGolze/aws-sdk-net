@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
-    /// Describes the current Amazon Pinpoint monthly spend limits for sending voice and text
-    /// messages. For more information on increasing your monthly spend limit, see <a href="https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-sms-awssupport-spend-threshold.html">
-    /// Requesting increases to your monthly SMS spending quota for Amazon Pinpoint </a> in
-    /// the <i>Amazon Pinpoint User Guide</i>.
+    /// Describes the current monthly spend limits for sending voice and text messages. For
+    /// more information on increasing your monthly spend limit, see <a href="https://docs.aws.amazon.com/sms-voice/latest/userguide/awssupport-spend-threshold.html">
+    /// Requesting a spending quota increase </a> in the <i>AWS End User Messaging SMS User
+    /// Guide</i>.
     /// </summary>
     public partial class SpendLimit
     {
@@ -45,8 +46,8 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// Gets and sets the property EnforcedLimit. 
         /// <para>
         /// The maximum amount of money, in US dollars, that you want to be able to spend sending
-        /// messages each month. This value has to be less than or equal to the amount in <code>MaxLimit</code>.
-        /// To use this custom limit, <code>Overridden</code> must be set to true.
+        /// messages each month. This value has to be less than or equal to the amount in <c>MaxLimit</c>.
+        /// To use this custom limit, <c>Overridden</c> must be set to true.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -104,7 +105,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// <summary>
         /// Gets and sets the property Overridden. 
         /// <para>
-        /// When set to <code>True</code>, the value that has been specified in the <code>EnforcedLimit</code>
+        /// When set to <c>True</c>, the value that has been specified in the <c>EnforcedLimit</c>
         /// is used to determine the maximum amount in US dollars that can be spent to send messages
         /// each month, in US dollars.
         /// </para>

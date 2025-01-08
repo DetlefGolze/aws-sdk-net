@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -40,9 +41,9 @@ namespace Amazon.RDS.Model
     /// <para>
     /// A DB cluster parameter group is initially created with the default parameters for
     /// the database engine used by instances in the DB cluster. To provide custom values
-    /// for any of the parameters, you must modify the group after creating it using <code>ModifyDBClusterParameterGroup</code>.
+    /// for any of the parameters, you must modify the group after creating it using <c>ModifyDBClusterParameterGroup</c>.
     /// Once you've created a DB cluster parameter group, you need to associate it with your
-    /// DB cluster using <code>ModifyDBCluster</code>.
+    /// DB cluster using <c>ModifyDBCluster</c>.
     /// </para>
     ///  
     /// <para>
@@ -64,10 +65,10 @@ namespace Amazon.RDS.Model
     /// before the DB cluster parameter group is used as the default for a new DB cluster.
     /// This is especially important for parameters that are critical when creating the default
     /// database for a DB cluster, such as the character set for the default database defined
-    /// by the <code>character_set_database</code> parameter. You can use the <i>Parameter
-    /// Groups</i> option of the <a href="https://console.aws.amazon.com/rds/">Amazon RDS
-    /// console</a> or the <code>DescribeDBClusterParameters</code> operation to verify that
-    /// your DB cluster parameter group has been created or modified.
+    /// by the <c>character_set_database</c> parameter. You can use the <i>Parameter Groups</i>
+    /// option of the <a href="https://console.aws.amazon.com/rds/">Amazon RDS console</a>
+    /// or the <c>DescribeDBClusterParameters</c> operation to verify that your DB cluster
+    /// parameter group has been created or modified.
     /// </para>
     ///  </important> 
     /// <para>
@@ -85,7 +86,7 @@ namespace Amazon.RDS.Model
         private string _dbClusterParameterGroupName;
         private string _dbParameterGroupFamily;
         private string _description;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property DBClusterParameterGroupName. 
@@ -133,7 +134,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>aurora-mysql5.7</code>, <code>aurora-mysql8.0</code> 
+        /// Example: <c>aurora-mysql5.7</c>, <c>aurora-mysql8.0</c> 
         /// </para>
         ///  
         /// <para>
@@ -141,7 +142,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>aurora-postgresql14</code> 
+        /// Example: <c>aurora-postgresql14</c> 
         /// </para>
         ///  
         /// <para>
@@ -149,7 +150,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>mysql8.0</code> 
+        /// Example: <c>mysql8.0</c> 
         /// </para>
         ///  
         /// <para>
@@ -157,7 +158,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>postgres12</code> 
+        /// Example: <c>postgres13</c> 
         /// </para>
         ///  
         /// <para>
@@ -166,8 +167,8 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily"
-        /// --engine &lt;engine&gt;</code> 
+        ///  <c>aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily"
+        /// --engine &lt;engine&gt;</c> 
         /// </para>
         ///  
         /// <para>
@@ -176,8 +177,8 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily"
-        /// --engine aurora-postgresql</code> 
+        ///  <c>aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily"
+        /// --engine aurora-postgresql</c> 
         /// </para>
         ///  <note> 
         /// <para>
@@ -189,19 +190,19 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>aurora-mysql</code> 
+        ///  <c>aurora-mysql</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>aurora-postgresql</code> 
+        ///  <c>aurora-postgresql</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mysql</code> 
+        ///  <c>mysql</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>postgres</code> 
+        ///  <c>postgres</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -252,7 +253,7 @@ namespace Amazon.RDS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

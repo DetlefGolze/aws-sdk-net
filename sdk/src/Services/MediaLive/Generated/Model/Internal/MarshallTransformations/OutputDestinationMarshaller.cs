@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(OutputDestination requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetId())
             {
                 context.Writer.WritePropertyName("id");
@@ -88,6 +91,22 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 
                     var marshaller = OutputDestinationSettingsMarshaller.Instance;
                     marshaller.Marshall(requestObjectSettingsListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetSrtSettings())
+            {
+                context.Writer.WritePropertyName("srtSettings");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectSrtSettingsListValue in requestObject.SrtSettings)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = SrtOutputDestinationSettingsMarshaller.Instance;
+                    marshaller.Marshall(requestObjectSrtSettingsListValue, context);
 
                     context.Writer.WriteObjectEnd();
                 }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Lightsail.Model
     /// </summary>
     public partial class GetBlueprintsResponse : AmazonWebServiceResponse
     {
-        private List<Blueprint> _blueprints = new List<Blueprint>();
+        private List<Blueprint> _blueprints = AWSConfigs.InitializeCollections ? new List<Blueprint>() : null;
         private string _nextPageToken;
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Blueprints property is set
         internal bool IsSetBlueprints()
         {
-            return this._blueprints != null && this._blueprints.Count > 0; 
+            return this._blueprints != null && (this._blueprints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -65,8 +66,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// To get the next page of results, perform another <code>GetBlueprints</code> request
-        /// and specify the next page token using the <code>pageToken</code> parameter.
+        /// To get the next page of results, perform another <c>GetBlueprints</c> request and
+        /// specify the next page token using the <c>pageToken</c> parameter.
         /// </para>
         /// </summary>
         public string NextPageToken

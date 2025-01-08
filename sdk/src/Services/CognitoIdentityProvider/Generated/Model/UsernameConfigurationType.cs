@@ -26,10 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// The username configuration type.
+    /// The configuration of a user pool for username case sensitivity.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a request and response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserPool.html">CreateUserPool</a>
+    /// and <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserPool.html">UpdateUserPool</a>,
+    /// and a response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeUserPool.html">DescribeUserPool</a>.
+    /// </para>
     /// </summary>
     public partial class UsernameConfigurationType
     {
@@ -40,27 +48,26 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <para>
         /// Specifies whether user name case sensitivity will be applied for all users in the
         /// user pool through Amazon Cognito APIs. For most use cases, set case sensitivity to
-        /// <code>False</code> (case insensitive) as a best practice. When usernames and email
-        /// addresses are case insensitive, users can sign in as the same user when they enter
-        /// a different capitalization of their user name.
+        /// <c>False</c> (case insensitive) as a best practice. When usernames and email addresses
+        /// are case insensitive, users can sign in as the same user when they enter a different
+        /// capitalization of their user name.
         /// </para>
         ///  
         /// <para>
         /// Valid values include:
         /// </para>
-        ///  <dl> <dt>True</dt> <dd> 
+        ///  <dl> <dt>true</dt> <dd> 
         /// <para>
-        /// Enables case sensitivity for all username input. When this option is set to <code>True</code>,
+        /// Enables case sensitivity for all username input. When this option is set to <c>true</c>,
         /// users must sign in using the exact capitalization of their given username, such as
         /// “UserName”. This is the default value.
         /// </para>
-        ///  </dd> <dt>False</dt> <dd> 
+        ///  </dd> <dt>false</dt> <dd> 
         /// <para>
         /// Enables case insensitivity for all username input. For example, when this option is
-        /// set to <code>False</code>, users can sign in using <code>username</code>, <code>USERNAME</code>,
-        /// or <code>UserName</code>. This option also enables both <code>preferred_username</code>
-        /// and <code>email</code> alias to be case insensitive, in addition to the <code>username</code>
-        /// attribute.
+        /// set to <c>false</c>, users can sign in using <c>username</c>, <c>USERNAME</c>, or
+        /// <c>UserName</c>. This option also enables both <c>preferred_username</c> and <c>email</c>
+        /// alias to be case insensitive, in addition to the <c>username</c> attribute.
         /// </para>
         ///  </dd> </dl>
         /// </summary>

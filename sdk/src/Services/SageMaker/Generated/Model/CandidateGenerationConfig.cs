@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -34,50 +35,84 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class CandidateGenerationConfig
     {
-        private List<AutoMLAlgorithmConfig> _algorithmsConfig = new List<AutoMLAlgorithmConfig>();
+        private List<AutoMLAlgorithmConfig> _algorithmsConfig = AWSConfigs.InitializeCollections ? new List<AutoMLAlgorithmConfig>() : null;
 
         /// <summary>
         /// Gets and sets the property AlgorithmsConfig. 
         /// <para>
-        /// Stores the configuration information for the selection of algorithms used to train
-        /// model candidates on tabular data.
+        /// Your Autopilot job trains a default set of algorithms on your dataset. For tabular
+        /// and time-series data, you can customize the algorithm list by selecting a subset of
+        /// algorithms for your problem type.
         /// </para>
         ///  
         /// <para>
-        /// The list of available algorithms to choose from depends on the training mode set in
-        /// <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TabularJobConfig.html">
-        /// <code>TabularJobConfig.Mode</code> </a>.
+        ///  <c>AlgorithmsConfig</c> stores the customized selection of algorithms to train on
+        /// your data.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AlgorithmsConfig</code> should not be set in <code>AUTO</code> training mode.
+        ///  <b>For the tabular problem type <c>TabularJobConfig</c>,</b> the list of available
+        /// algorithms to choose from depends on the training mode set in <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLJobConfig.html">
+        /// <c>AutoMLJobConfig.Mode</c> </a>.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>AlgorithmsConfig</c> should not be set when the training mode <c>AutoMLJobConfig.Mode</c>
+        /// is set to <c>AUTO</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// When <code>AlgorithmsConfig</code> is provided, one <code>AutoMLAlgorithms</code>
-        /// attribute must be set and one only.
+        /// When <c>AlgorithmsConfig</c> is provided, one <c>AutoMLAlgorithms</c> attribute must
+        /// be set and one only.
         /// </para>
         ///  
         /// <para>
-        /// If the list of algorithms provided as values for <code>AutoMLAlgorithms</code> is
-        /// empty, <code>CandidateGenerationConfig</code> uses the full set of algorithms for
-        /// the given training mode.
+        /// If the list of algorithms provided as values for <c>AutoMLAlgorithms</c> is empty,
+        /// <c>CandidateGenerationConfig</c> uses the full set of algorithms for the given training
+        /// mode.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// When <code>AlgorithmsConfig</code> is not provided, <code>CandidateGenerationConfig</code>
-        /// uses the full set of algorithms for the given training mode.
+        /// When <c>AlgorithmsConfig</c> is not provided, <c>CandidateGenerationConfig</c> uses
+        /// the full set of algorithms for the given training mode.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For the list of all algorithms per problem type and training mode, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLAlgorithmConfig.html">
-        /// AutoMLAlgorithmConfig</a>.
+        /// For the list of all algorithms per training mode, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLAlgorithmConfig.html">
+        /// AlgorithmConfig</a>.
         /// </para>
         ///  
         /// <para>
         /// For more information on each algorithm, see the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-model-support-validation.html#autopilot-algorithm-support">Algorithm
-        /// support</a> section in Autopilot developer guide.
+        /// support</a> section in the Autopilot developer guide.
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>For the time-series forecasting problem type <c>TimeSeriesForecastingJobConfig</c>,</b>
+        /// choose your algorithms from the list provided in <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLAlgorithmConfig.html">
+        /// AlgorithmConfig</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information on each algorithm, see the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/timeseries-forecasting-algorithms.html">Algorithms
+        /// support for time-series forecasting</a> section in the Autopilot developer guide.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// When <c>AlgorithmsConfig</c> is provided, one <c>AutoMLAlgorithms</c> attribute must
+        /// be set and one only.
+        /// </para>
+        ///  
+        /// <para>
+        /// If the list of algorithms provided as values for <c>AutoMLAlgorithms</c> is empty,
+        /// <c>CandidateGenerationConfig</c> uses the full set of algorithms for time-series forecasting.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// When <c>AlgorithmsConfig</c> is not provided, <c>CandidateGenerationConfig</c> uses
+        /// the full set of algorithms for time-series forecasting.
+        /// </para>
+        ///  </li> </ul> </li> </ul>
         /// </summary>
         [AWSProperty(Max=1)]
         public List<AutoMLAlgorithmConfig> AlgorithmsConfig
@@ -89,7 +124,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if AlgorithmsConfig property is set
         internal bool IsSetAlgorithmsConfig()
         {
-            return this._algorithmsConfig != null && this._algorithmsConfig.Count > 0; 
+            return this._algorithmsConfig != null && (this._algorithmsConfig.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

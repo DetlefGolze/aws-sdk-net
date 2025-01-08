@@ -26,24 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
-    /// Specifies how your DataSync agent connects to Amazon Web Services using a virtual
-    /// private cloud (VPC) service endpoint. An agent that uses a VPC endpoint isn't accessible
-    /// over the public internet.
+    /// Specifies how your DataSync agent connects to Amazon Web Services using a <a href="https://docs.aws.amazon.com/datasync/latest/userguide/choose-service-endpoint.html#choose-service-endpoint-vpc">virtual
+    /// private cloud (VPC) service endpoint</a>. An agent that uses a VPC endpoint isn't
+    /// accessible over the public internet.
     /// </summary>
     public partial class PrivateLinkConfig
     {
         private string _privateLinkEndpoint;
-        private List<string> _securityGroupArns = new List<string>();
-        private List<string> _subnetArns = new List<string>();
+        private List<string> _securityGroupArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _subnetArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _vpcEndpointId;
 
         /// <summary>
         /// Gets and sets the property PrivateLinkEndpoint. 
         /// <para>
-        /// Specifies the VPC endpoint provided by <a href="https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html">Amazon
+        /// Specifies the VPC endpoint provided by <a href="https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-share-your-services.html">Amazon
         /// Web Services PrivateLink</a> that your agent connects to.
         /// </para>
         /// </summary>
@@ -77,7 +78,7 @@ namespace Amazon.DataSync.Model
         // Check to see if SecurityGroupArns property is set
         internal bool IsSetSecurityGroupArns()
         {
-            return this._securityGroupArns != null && this._securityGroupArns.Count > 0; 
+            return this._securityGroupArns != null && (this._securityGroupArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -97,7 +98,7 @@ namespace Amazon.DataSync.Model
         // Check to see if SubnetArns property is set
         internal bool IsSetSubnetArns()
         {
-            return this._subnetArns != null && this._subnetArns.Count > 0; 
+            return this._subnetArns != null && (this._subnetArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

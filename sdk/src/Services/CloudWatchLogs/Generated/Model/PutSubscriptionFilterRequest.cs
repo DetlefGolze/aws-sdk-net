@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -49,7 +50,7 @@ namespace Amazon.CloudWatchLogs.Model
     /// <para>
     /// A logical destination created with <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestination.html">PutDestination</a>
     /// that belongs to a different account, for cross-account delivery. We currently support
-    /// Kinesis Data Streams and Kinesis Data Firehose as logical destinations.
+    /// Kinesis Data Streams and Firehose as logical destinations.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -64,23 +65,59 @@ namespace Amazon.CloudWatchLogs.Model
     ///  </li> </ul> 
     /// <para>
     /// Each log group can have up to two subscription filters associated with it. If you
-    /// are updating an existing filter, you must specify the correct name in <code>filterName</code>.
+    /// are updating an existing filter, you must specify the correct name in <c>filterName</c>.
     /// 
     /// </para>
     ///  
     /// <para>
-    /// To perform a <code>PutSubscriptionFilter</code> operation for any destination except
-    /// a Lambda function, you must also have the <code>iam:PassRole</code> permission.
+    /// Using regular expressions to create subscription filters is supported. For these filters,
+    /// there is a quotas of quota of two regular expression patterns within a single filter
+    /// pattern. There is also a quota of five regular expression patterns per log group.
+    /// For more information about using regular expressions in subscription filters, see
+    /// <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html">
+    /// Filter pattern syntax for metric filters, subscription filters, filter log events,
+    /// and Live Tail</a>.
+    /// </para>
+    ///  
+    /// <para>
+    /// To perform a <c>PutSubscriptionFilter</c> operation for any destination except a Lambda
+    /// function, you must also have the <c>iam:PassRole</c> permission.
     /// </para>
     /// </summary>
     public partial class PutSubscriptionFilterRequest : AmazonCloudWatchLogsRequest
     {
+        private bool? _applyOnTransformedLogs;
         private string _destinationArn;
         private Distribution _distribution;
         private string _filterName;
         private string _filterPattern;
         private string _logGroupName;
         private string _roleArn;
+
+        /// <summary>
+        /// Gets and sets the property ApplyOnTransformedLogs. 
+        /// <para>
+        /// This parameter is valid only for log groups that have an active log transformer. For
+        /// more information about log transformers, see <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutTransformer.html">PutTransformer</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// If the log group uses either a log-group level or account-level transformer, and you
+        /// specify <c>true</c>, the subscription filter will be applied on the transformed version
+        /// of the log events instead of the original ingested log events.
+        /// </para>
+        /// </summary>
+        public bool ApplyOnTransformedLogs
+        {
+            get { return this._applyOnTransformedLogs.GetValueOrDefault(); }
+            set { this._applyOnTransformedLogs = value; }
+        }
+
+        // Check to see if ApplyOnTransformedLogs property is set
+        internal bool IsSetApplyOnTransformedLogs()
+        {
+            return this._applyOnTransformedLogs.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property DestinationArn. 
@@ -154,8 +191,8 @@ namespace Amazon.CloudWatchLogs.Model
         /// Gets and sets the property FilterName. 
         /// <para>
         /// A name for the subscription filter. If you are updating an existing filter, you must
-        /// specify the correct name in <code>filterName</code>. To find the name of the filter
-        /// currently associated with a log group, use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeSubscriptionFilters.html">DescribeSubscriptionFilters</a>.
+        /// specify the correct name in <c>filterName</c>. To find the name of the filter currently
+        /// associated with a log group, use <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeSubscriptionFilters.html">DescribeSubscriptionFilters</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]

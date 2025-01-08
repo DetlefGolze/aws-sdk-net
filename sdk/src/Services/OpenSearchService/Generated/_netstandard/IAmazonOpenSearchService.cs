@@ -26,25 +26,17 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.OpenSearchService.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.OpenSearchService
 {
     /// <summary>
-    /// Interface for accessing OpenSearchService
+    /// <para>Interface for accessing OpenSearchService</para>
     ///
     /// Use the Amazon OpenSearch Service configuration API to create, configure, and manage
-    /// OpenSearch Service domains.
-    /// 
-    ///  
-    /// <para>
-    /// For sample code that uses the configuration API, see the <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/opensearch-configuration-samples.html">
-    /// <i>Amazon OpenSearch Service Developer Guide</i> </a>. The guide also contains <a
-    /// href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/request-signing.html">sample
-    /// code</a> for sending signed HTTP requests to the OpenSearch APIs. The endpoint for
-    /// configuration service requests is Region specific: es.<i>region</i>.amazonaws.com.
-    /// For example, es.us-east-1.amazonaws.com. For a current list of supported Regions and
-    /// endpoints, see <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html#service-regions">Amazon
+    /// OpenSearch Service domains. The endpoint for configuration service requests is Region
+    /// specific: es.<i>region</i>.amazonaws.com. For example, es.us-east-1.amazonaws.com.
+    /// For a current list of supported Regions and endpoints, see <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html#service-regions">Amazon
     /// Web Services service endpoints</a>.
-    /// </para>
     /// </summary>
     public partial interface IAmazonOpenSearchService : IAmazonService, IDisposable
     {
@@ -84,14 +76,99 @@ namespace Amazon.OpenSearchService
 
         #endregion
                 
+        #region  AddDataSource
+
+
+
+        /// <summary>
+        /// Creates a new direct-query data source to the specified domain. For more information,
+        /// see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/direct-query-s3-creating.html">Creating
+        /// Amazon OpenSearch Service data source integrations with Amazon S3</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AddDataSource service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the AddDataSource service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DependencyFailureException">
+        /// An exception for when a failure in one of the dependencies results in the service
+        /// being unable to fetch details about the resource.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.LimitExceededException">
+        /// An exception for trying to create more than the allowed number of resources or sub-resources.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/AddDataSource">REST API Reference for AddDataSource Operation</seealso>
+        Task<AddDataSourceResponse> AddDataSourceAsync(AddDataSourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  AddDirectQueryDataSource
+
+
+
+        /// <summary>
+        /// Adds a new data source in Amazon OpenSearch Service so that you can perform direct
+        /// queries on external data.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AddDirectQueryDataSource service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the AddDirectQueryDataSource service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.LimitExceededException">
+        /// An exception for trying to create more than the allowed number of resources or sub-resources.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/AddDirectQueryDataSource">REST API Reference for AddDirectQueryDataSource Operation</seealso>
+        Task<AddDirectQueryDataSourceResponse> AddDirectQueryDataSourceAsync(AddDirectQueryDataSourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  AddTags
 
 
 
         /// <summary>
-        /// Attaches tags to an existing Amazon OpenSearch Service domain. Tags are a set of case-sensitive
-        /// key-value pairs. A domain can have up to 10 tags. For more information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-awsresourcetagging.html">Tagging
-        /// Amazon OpenSearch Service domains</a>.
+        /// Attaches tags to an existing Amazon OpenSearch Service domain, data source, or application.
+        /// 
+        /// 
+        ///  
+        /// <para>
+        /// Tags are a set of case-sensitive key-value pairs. A domain, data source, or application
+        /// can have up to 10 tags. For more information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-awsresourcetagging.html">Tagging
+        /// Amazon OpenSearch Service resources</a>. 
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the AddTags service method.</param>
         /// <param name="cancellationToken">
@@ -155,6 +232,44 @@ namespace Amazon.OpenSearchService
 
         #endregion
                 
+        #region  AssociatePackages
+
+
+
+        /// <summary>
+        /// Operation in the Amazon OpenSearch Service API for associating multiple packages with
+        /// a domain simultaneously.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AssociatePackages service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the AssociatePackages service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ConflictException">
+        /// An error occurred because the client attempts to remove a resource that is currently
+        /// in use.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/AssociatePackages">REST API Reference for AssociatePackages Operation</seealso>
+        Task<AssociatePackagesResponse> AssociatePackagesAsync(AssociatePackagesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  AuthorizeVpcEndpointAccess
 
 
@@ -192,15 +307,48 @@ namespace Amazon.OpenSearchService
 
         #endregion
                 
+        #region  CancelDomainConfigChange
+
+
+
+        /// <summary>
+        /// Cancels a pending configuration change on an Amazon OpenSearch Service domain.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CancelDomainConfigChange service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CancelDomainConfigChange service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/CancelDomainConfigChange">REST API Reference for CancelDomainConfigChange Operation</seealso>
+        Task<CancelDomainConfigChangeResponse> CancelDomainConfigChangeAsync(CancelDomainConfigChangeRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  CancelServiceSoftwareUpdate
 
 
 
         /// <summary>
         /// Cancels a scheduled service software update for an Amazon OpenSearch Service domain.
-        /// You can only perform this operation before the <code>AutomatedUpdateDate</code> and
-        /// when the domain's <code>UpdateStatus</code> is <code>PENDING_UPDATE</code>. For more
-        /// information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html">Service
+        /// You can only perform this operation before the <c>AutomatedUpdateDate</c> and when
+        /// the domain's <c>UpdateStatus</c> is <c>PENDING_UPDATE</c>. For more information, see
+        /// <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html">Service
         /// software updates in Amazon OpenSearch Service</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CancelServiceSoftwareUpdate service method.</param>
@@ -223,6 +371,43 @@ namespace Amazon.OpenSearchService
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/CancelServiceSoftwareUpdate">REST API Reference for CancelServiceSoftwareUpdate Operation</seealso>
         Task<CancelServiceSoftwareUpdateResponse> CancelServiceSoftwareUpdateAsync(CancelServiceSoftwareUpdateRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  CreateApplication
+
+
+
+        /// <summary>
+        /// Creates an OpenSearch Application.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateApplication service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateApplication service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.AccessDeniedException">
+        /// An error occurred because you don't have permissions to access the resource.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ConflictException">
+        /// An error occurred because the client attempts to remove a resource that is currently
+        /// in use.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/CreateApplication">REST API Reference for CreateApplication Operation</seealso>
+        Task<CreateApplicationResponse> CreateApplicationAsync(CreateApplicationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 
@@ -375,6 +560,117 @@ namespace Amazon.OpenSearchService
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/CreateVpcEndpoint">REST API Reference for CreateVpcEndpoint Operation</seealso>
         Task<CreateVpcEndpointResponse> CreateVpcEndpointAsync(CreateVpcEndpointRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  DeleteApplication
+
+
+
+        /// <summary>
+        /// Deletes an existing OpenSearch Application.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteApplication service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteApplication service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.AccessDeniedException">
+        /// An error occurred because you don't have permissions to access the resource.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ConflictException">
+        /// An error occurred because the client attempts to remove a resource that is currently
+        /// in use.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DeleteApplication">REST API Reference for DeleteApplication Operation</seealso>
+        Task<DeleteApplicationResponse> DeleteApplicationAsync(DeleteApplicationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  DeleteDataSource
+
+
+
+        /// <summary>
+        /// Deletes a direct-query data source. For more information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/direct-query-s3-delete.html">Deleting
+        /// an Amazon OpenSearch Service data source with Amazon S3</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDataSource service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteDataSource service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DependencyFailureException">
+        /// An exception for when a failure in one of the dependencies results in the service
+        /// being unable to fetch details about the resource.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DeleteDataSource">REST API Reference for DeleteDataSource Operation</seealso>
+        Task<DeleteDataSourceResponse> DeleteDataSourceAsync(DeleteDataSourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  DeleteDirectQueryDataSource
+
+
+
+        /// <summary>
+        /// Deletes a previously configured direct query data source from Amazon OpenSearch Service.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDirectQueryDataSource service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteDirectQueryDataSource service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DeleteDirectQueryDataSource">REST API Reference for DeleteDirectQueryDataSource Operation</seealso>
+        Task<DeleteDirectQueryDataSourceResponse> DeleteDirectQueryDataSourceAsync(DeleteDirectQueryDataSourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 
@@ -1049,6 +1345,79 @@ namespace Amazon.OpenSearchService
 
         #endregion
                 
+        #region  DissociatePackages
+
+
+
+        /// <summary>
+        /// Dissociates multiple packages from a domain simulatneously.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DissociatePackages service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DissociatePackages service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ConflictException">
+        /// An error occurred because the client attempts to remove a resource that is currently
+        /// in use.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DissociatePackages">REST API Reference for DissociatePackages Operation</seealso>
+        Task<DissociatePackagesResponse> DissociatePackagesAsync(DissociatePackagesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  GetApplication
+
+
+
+        /// <summary>
+        /// Check the configuration and status of an existing OpenSearch Application.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetApplication service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetApplication service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.AccessDeniedException">
+        /// An error occurred because you don't have permissions to access the resource.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/GetApplication">REST API Reference for GetApplication Operation</seealso>
+        Task<GetApplicationResponse> GetApplicationAsync(GetApplicationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  GetCompatibleVersions
 
 
@@ -1080,6 +1449,110 @@ namespace Amazon.OpenSearchService
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/GetCompatibleVersions">REST API Reference for GetCompatibleVersions Operation</seealso>
         Task<GetCompatibleVersionsResponse> GetCompatibleVersionsAsync(GetCompatibleVersionsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  GetDataSource
+
+
+
+        /// <summary>
+        /// Retrieves information about a direct query data source.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDataSource service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetDataSource service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DependencyFailureException">
+        /// An exception for when a failure in one of the dependencies results in the service
+        /// being unable to fetch details about the resource.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/GetDataSource">REST API Reference for GetDataSource Operation</seealso>
+        Task<GetDataSourceResponse> GetDataSourceAsync(GetDataSourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  GetDirectQueryDataSource
+
+
+
+        /// <summary>
+        /// Returns detailed configuration information for a specific direct query data source
+        /// in Amazon OpenSearch Service.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDirectQueryDataSource service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetDirectQueryDataSource service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/GetDirectQueryDataSource">REST API Reference for GetDirectQueryDataSource Operation</seealso>
+        Task<GetDirectQueryDataSourceResponse> GetDirectQueryDataSourceAsync(GetDirectQueryDataSourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  GetDomainMaintenanceStatus
+
+
+
+        /// <summary>
+        /// The status of the maintenance action.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDomainMaintenanceStatus service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetDomainMaintenanceStatus service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/GetDomainMaintenanceStatus">REST API Reference for GetDomainMaintenanceStatus Operation</seealso>
+        Task<GetDomainMaintenanceStatusResponse> GetDomainMaintenanceStatusAsync(GetDomainMaintenanceStatusRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 
@@ -1184,6 +1657,148 @@ namespace Amazon.OpenSearchService
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/GetUpgradeStatus">REST API Reference for GetUpgradeStatus Operation</seealso>
         Task<GetUpgradeStatusResponse> GetUpgradeStatusAsync(GetUpgradeStatusRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  ListApplications
+
+
+
+        /// <summary>
+        /// List all OpenSearch Applications under your account.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListApplications service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListApplications service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.AccessDeniedException">
+        /// An error occurred because you don't have permissions to access the resource.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListApplications">REST API Reference for ListApplications Operation</seealso>
+        Task<ListApplicationsResponse> ListApplicationsAsync(ListApplicationsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  ListDataSources
+
+
+
+        /// <summary>
+        /// Lists direct-query data sources for a specific domain. For more information, see For
+        /// more information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/direct-query-s3.html">Working
+        /// with Amazon OpenSearch Service direct queries with Amazon S3</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListDataSources service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListDataSources service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DependencyFailureException">
+        /// An exception for when a failure in one of the dependencies results in the service
+        /// being unable to fetch details about the resource.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListDataSources">REST API Reference for ListDataSources Operation</seealso>
+        Task<ListDataSourcesResponse> ListDataSourcesAsync(ListDataSourcesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  ListDirectQueryDataSources
+
+
+
+        /// <summary>
+        /// Lists an inventory of all the direct query data sources that you have configured
+        /// within Amazon OpenSearch Service.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListDirectQueryDataSources service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListDirectQueryDataSources service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListDirectQueryDataSources">REST API Reference for ListDirectQueryDataSources Operation</seealso>
+        Task<ListDirectQueryDataSourcesResponse> ListDirectQueryDataSourcesAsync(ListDirectQueryDataSourcesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  ListDomainMaintenances
+
+
+
+        /// <summary>
+        /// A list of maintenance actions for the domain.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListDomainMaintenances service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListDomainMaintenances service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListDomainMaintenances">REST API Reference for ListDomainMaintenances Operation</seealso>
+        Task<ListDomainMaintenancesResponse> ListDomainMaintenancesAsync(ListDomainMaintenancesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 
@@ -1354,9 +1969,9 @@ namespace Amazon.OpenSearchService
 
 
         /// <summary>
-        /// Returns all resource tags for an Amazon OpenSearch Service domain. For more information,
-        /// see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-awsresourcetagging.html">Tagging
-        /// Amazon OpenSearch Service domains</a>.
+        /// Returns all resource tags for an Amazon OpenSearch Service domain, data source, or
+        /// application. For more information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-awsresourcetagging.html">Tagging
+        /// Amazon OpenSearch Service resources</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTags service method.</param>
         /// <param name="cancellationToken">
@@ -1569,9 +2184,9 @@ namespace Amazon.OpenSearchService
 
 
         /// <summary>
-        /// Removes the specified set of tags from an Amazon OpenSearch Service domain. For more
-        /// information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains.html#managedomains-awsresorcetagging">
-        /// Tagging Amazon OpenSearch Service domains</a>.
+        /// Removes the specified set of tags from an Amazon OpenSearch Service domain, data source,
+        /// or application. For more information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains.html#managedomains-awsresorcetagging">
+        /// Tagging Amazon OpenSearch Service resources</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the RemoveTags service method.</param>
         /// <param name="cancellationToken">
@@ -1627,6 +2242,41 @@ namespace Amazon.OpenSearchService
 
         #endregion
                 
+        #region  StartDomainMaintenance
+
+
+
+        /// <summary>
+        /// Starts the node maintenance process on the data node. These processes can include
+        /// a node reboot, an Opensearch or Elasticsearch process restart, or a Dashboard or Kibana
+        /// restart.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartDomainMaintenance service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StartDomainMaintenance service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/StartDomainMaintenance">REST API Reference for StartDomainMaintenance Operation</seealso>
+        Task<StartDomainMaintenanceResponse> StartDomainMaintenanceAsync(StartDomainMaintenanceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  StartServiceSoftwareUpdate
 
 
@@ -1659,12 +2309,124 @@ namespace Amazon.OpenSearchService
 
         #endregion
                 
+        #region  UpdateApplication
+
+
+
+        /// <summary>
+        /// Update the OpenSearch Application.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateApplication service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateApplication service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.AccessDeniedException">
+        /// An error occurred because you don't have permissions to access the resource.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ConflictException">
+        /// An error occurred because the client attempts to remove a resource that is currently
+        /// in use.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/UpdateApplication">REST API Reference for UpdateApplication Operation</seealso>
+        Task<UpdateApplicationResponse> UpdateApplicationAsync(UpdateApplicationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  UpdateDataSource
+
+
+
+        /// <summary>
+        /// Updates a direct-query data source. For more information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/direct-query-s3-creating.html">Working
+        /// with Amazon OpenSearch Service data source integrations with Amazon S3</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateDataSource service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateDataSource service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DependencyFailureException">
+        /// An exception for when a failure in one of the dependencies results in the service
+        /// being unable to fetch details about the resource.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/UpdateDataSource">REST API Reference for UpdateDataSource Operation</seealso>
+        Task<UpdateDataSourceResponse> UpdateDataSourceAsync(UpdateDataSourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  UpdateDirectQueryDataSource
+
+
+
+        /// <summary>
+        /// Updates the configuration or properties of an existing direct query data source in
+        /// Amazon OpenSearch Service.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateDirectQueryDataSource service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateDirectQueryDataSource service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/UpdateDirectQueryDataSource">REST API Reference for UpdateDirectQueryDataSource Operation</seealso>
+        Task<UpdateDirectQueryDataSourceResponse> UpdateDirectQueryDataSourceAsync(UpdateDirectQueryDataSourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  UpdateDomainConfig
 
 
 
         /// <summary>
-        /// Modifies the cluster configuration of the specified Amazon OpenSearch Service domain.sl
+        /// Modifies the cluster configuration of the specified Amazon OpenSearch Service domain.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateDomainConfig service method.</param>
         /// <param name="cancellationToken">
@@ -1731,6 +2493,40 @@ namespace Amazon.OpenSearchService
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/UpdatePackage">REST API Reference for UpdatePackage Operation</seealso>
         Task<UpdatePackageResponse> UpdatePackageAsync(UpdatePackageRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  UpdatePackageScope
+
+
+
+        /// <summary>
+        /// Updates the scope of a package. Scope of the package defines users who can view and
+        /// associate a package.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdatePackageScope service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdatePackageScope service method, as returned by OpenSearchService.</returns>
+        /// <exception cref="Amazon.OpenSearchService.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access an unsupported operation.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.InternalException">
+        /// Request processing failed because of an unknown error, exception, or internal failure.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <exception cref="Amazon.OpenSearchService.Model.ValidationException">
+        /// An exception for accessing or deleting a resource that doesn't exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/UpdatePackageScope">REST API Reference for UpdatePackageScope Operation</seealso>
+        Task<UpdatePackageScopeResponse> UpdatePackageScopeAsync(UpdatePackageScopeRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 

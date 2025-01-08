@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MachineLearning.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateEvaluation operation.
-    /// Updates the <code>EvaluationName</code> of an <code>Evaluation</code>.
+    /// Updates the <c>EvaluationName</c> of an <c>Evaluation</c>.
     /// 
     ///  
     /// <para>
-    /// You can use the <code>GetEvaluation</code> operation to view the contents of the updated
+    /// You can use the <c>GetEvaluation</c> operation to view the contents of the updated
     /// data element.
     /// </para>
     /// </summary>
@@ -46,7 +47,7 @@ namespace Amazon.MachineLearning.Model
         /// <summary>
         /// Gets and sets the property EvaluationId. 
         /// <para>
-        /// The ID assigned to the <code>Evaluation</code> during creation.
+        /// The ID assigned to the <c>Evaluation</c> during creation.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]
@@ -65,7 +66,7 @@ namespace Amazon.MachineLearning.Model
         /// <summary>
         /// Gets and sets the property EvaluationName. 
         /// <para>
-        /// A new user-supplied name or description of the <code>Evaluation</code> that will replace
+        /// A new user-supplied name or description of the <c>Evaluation</c> that will replace
         /// the current content. 
         /// </para>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.DatabaseMigrationService.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// The task must be in the <code>stopped</code> state.
+    /// The task must be in the <c>stopped</c> state.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -47,8 +48,8 @@ namespace Amazon.DatabaseMigrationService.Model
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// If either of these conditions are not met, an <code>InvalidResourceStateFault</code>
-    /// error will result. 
+    /// If either of these conditions are not met, an <c>InvalidResourceStateFault</c> error
+    /// will result. 
     /// </para>
     ///  
     /// <para>

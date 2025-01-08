@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityLake.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.SecurityLake.Model
         /// <summary>
         /// Gets and sets the property Source. 
         /// <para>
-        /// The created third-party custom source.
+        /// The third-party custom source that was created.
         /// </para>
         /// </summary>
         public CustomLogSourceResource Source

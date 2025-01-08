@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -202,20 +203,19 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property JobType. 
         /// <para>
-        /// Indicates SageMaker job type compatibility.
+        /// Indicates SageMaker AI job type compatibility.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>TRAINING</code>: The image version is compatible with SageMaker training jobs.
+        ///  <c>TRAINING</c>: The image version is compatible with SageMaker AI training jobs.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INFERENCE</code>: The image version is compatible with SageMaker inference
-        /// jobs.
+        ///  <c>INFERENCE</c>: The image version is compatible with SageMaker AI inference jobs.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NOTEBOOK_KERNEL</code>: The image version is compatible with SageMaker notebook
+        ///  <c>NOTEBOOK_KERNEL</c>: The image version is compatible with SageMaker AI notebook
         /// kernels.
         /// </para>
         ///  </li> </ul>
@@ -276,11 +276,11 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CPU</code>: The image version is compatible with CPU.
+        ///  <c>CPU</c>: The image version is compatible with CPU.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>GPU</code>: The image version is compatible with GPU.
+        ///  <c>GPU</c>: The image version is compatible with GPU.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -341,22 +341,21 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NOT_PROVIDED</code>: The maintainers did not provide a status for image version
-        /// stability.
+        ///  <c>NOT_PROVIDED</c>: The maintainers did not provide a status for image version stability.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>STABLE</code>: The image version is stable.
+        ///  <c>STABLE</c>: The image version is stable.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TO_BE_ARCHIVED</code>: The image version is set to be archived. Custom image
-        /// versions that are set to be archived are automatically archived after three months.
+        ///  <c>TO_BE_ARCHIVED</c>: The image version is set to be archived. Custom image versions
+        /// that are set to be archived are automatically archived after three months.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ARCHIVED</code>: The image version is archived. Archived image versions are
-        /// not searchable and are no longer actively supported. 
+        ///  <c>ARCHIVED</c>: The image version is archived. Archived image versions are not searchable
+        /// and are no longer actively supported. 
         /// </para>
         ///  </li> </ul>
         /// </summary>

@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Bedrock.Model
 {
     /// <summary>
@@ -44,11 +45,83 @@ namespace Amazon.Bedrock.Model
         }
 
         /// <summary>
+        /// Paginator for ListEvaluationJobs operation
+        ///</summary>
+        public IListEvaluationJobsPaginator ListEvaluationJobs(ListEvaluationJobsRequest request) 
+        {
+            return new ListEvaluationJobsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListGuardrails operation
+        ///</summary>
+        public IListGuardrailsPaginator ListGuardrails(ListGuardrailsRequest request) 
+        {
+            return new ListGuardrailsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListImportedModels operation
+        ///</summary>
+        public IListImportedModelsPaginator ListImportedModels(ListImportedModelsRequest request) 
+        {
+            return new ListImportedModelsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListInferenceProfiles operation
+        ///</summary>
+        public IListInferenceProfilesPaginator ListInferenceProfiles(ListInferenceProfilesRequest request) 
+        {
+            return new ListInferenceProfilesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListMarketplaceModelEndpoints operation
+        ///</summary>
+        public IListMarketplaceModelEndpointsPaginator ListMarketplaceModelEndpoints(ListMarketplaceModelEndpointsRequest request) 
+        {
+            return new ListMarketplaceModelEndpointsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListModelCopyJobs operation
+        ///</summary>
+        public IListModelCopyJobsPaginator ListModelCopyJobs(ListModelCopyJobsRequest request) 
+        {
+            return new ListModelCopyJobsPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListModelCustomizationJobs operation
         ///</summary>
         public IListModelCustomizationJobsPaginator ListModelCustomizationJobs(ListModelCustomizationJobsRequest request) 
         {
             return new ListModelCustomizationJobsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListModelImportJobs operation
+        ///</summary>
+        public IListModelImportJobsPaginator ListModelImportJobs(ListModelImportJobsRequest request) 
+        {
+            return new ListModelImportJobsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListModelInvocationJobs operation
+        ///</summary>
+        public IListModelInvocationJobsPaginator ListModelInvocationJobs(ListModelInvocationJobsRequest request) 
+        {
+            return new ListModelInvocationJobsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListPromptRouters operation
+        ///</summary>
+        public IListPromptRoutersPaginator ListPromptRouters(ListPromptRoutersRequest request) 
+        {
+            return new ListPromptRoutersPaginator(this.client, request);
         }
 
         /// <summary>

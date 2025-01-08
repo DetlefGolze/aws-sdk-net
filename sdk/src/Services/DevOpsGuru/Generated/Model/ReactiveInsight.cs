@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
-    /// Information about a reactive insight. This object is returned by <code>ListInsights</code>.
+    /// Information about a reactive insight. This object is returned by <c>ListInsights</c>.
     /// </summary>
     public partial class ReactiveInsight
     {

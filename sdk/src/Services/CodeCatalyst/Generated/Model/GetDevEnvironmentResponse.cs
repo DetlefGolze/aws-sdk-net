@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeCatalyst.Model
 {
     /// <summary>
@@ -36,16 +37,17 @@ namespace Amazon.CodeCatalyst.Model
         private string _alias;
         private string _creatorId;
         private string _id;
-        private List<Ide> _ides = new List<Ide>();
+        private List<Ide> _ides = AWSConfigs.InitializeCollections ? new List<Ide>() : null;
         private int? _inactivityTimeoutMinutes;
         private InstanceType _instanceType;
         private DateTime? _lastUpdatedTime;
         private PersistentStorage _persistentStorage;
         private string _projectName;
-        private List<DevEnvironmentRepositorySummary> _repositories = new List<DevEnvironmentRepositorySummary>();
+        private List<DevEnvironmentRepositorySummary> _repositories = AWSConfigs.InitializeCollections ? new List<DevEnvironmentRepositorySummary>() : null;
         private string _spaceName;
         private DevEnvironmentStatus _status;
         private string _statusReason;
+        private string _vpcConnectionName;
 
         /// <summary>
         /// Gets and sets the property Alias. 
@@ -121,7 +123,7 @@ namespace Amazon.CodeCatalyst.Model
         // Check to see if Ides property is set
         internal bool IsSetIdes()
         {
-            return this._ides != null && this._ides.Count > 0; 
+            return this._ides != null && (this._ides.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -239,7 +241,7 @@ namespace Amazon.CodeCatalyst.Model
         // Check to see if Repositories property is set
         internal bool IsSetRepositories()
         {
-            return this._repositories != null && this._repositories.Count > 0; 
+            return this._repositories != null && (this._repositories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -297,6 +299,26 @@ namespace Amazon.CodeCatalyst.Model
         internal bool IsSetStatusReason()
         {
             return this._statusReason != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property VpcConnectionName. 
+        /// <para>
+        /// The name of the connection used to connect to Amazon VPC used when the Dev Environment
+        /// was created, if any.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=3, Max=63)]
+        public string VpcConnectionName
+        {
+            get { return this._vpcConnectionName; }
+            set { this._vpcConnectionName = value; }
+        }
+
+        // Check to see if VpcConnectionName property is set
+        internal bool IsSetVpcConnectionName()
+        {
+            return this._vpcConnectionName != null;
         }
 
     }

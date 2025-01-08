@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DataZone.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,12 +67,43 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetDeploymentOrder())
+                {
+                    context.Writer.WritePropertyName("deploymentOrder");
+                    context.Writer.Write(publicRequest.DeploymentOrder);
+                }
+
                 if(publicRequest.IsSetDescription())
                 {
                     context.Writer.WritePropertyName("description");
                     context.Writer.Write(publicRequest.Description);
+                }
+
+                if(publicRequest.IsSetEnvironmentAccountIdentifier())
+                {
+                    context.Writer.WritePropertyName("environmentAccountIdentifier");
+                    context.Writer.Write(publicRequest.EnvironmentAccountIdentifier);
+                }
+
+                if(publicRequest.IsSetEnvironmentAccountRegion())
+                {
+                    context.Writer.WritePropertyName("environmentAccountRegion");
+                    context.Writer.Write(publicRequest.EnvironmentAccountRegion);
+                }
+
+                if(publicRequest.IsSetEnvironmentBlueprintIdentifier())
+                {
+                    context.Writer.WritePropertyName("environmentBlueprintIdentifier");
+                    context.Writer.Write(publicRequest.EnvironmentBlueprintIdentifier);
+                }
+
+                if(publicRequest.IsSetEnvironmentConfigurationId())
+                {
+                    context.Writer.WritePropertyName("environmentConfigurationId");
+                    context.Writer.Write(publicRequest.EnvironmentConfigurationId);
                 }
 
                 if(publicRequest.IsSetEnvironmentProfileIdentifier())

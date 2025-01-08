@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.Redshift.Model
     public partial class GetReservedNodeExchangeOfferingsResponse : AmazonWebServiceResponse
     {
         private string _marker;
-        private List<ReservedNodeOffering> _reservedNodeOfferings = new List<ReservedNodeOffering>();
+        private List<ReservedNodeOffering> _reservedNodeOfferings = AWSConfigs.InitializeCollections ? new List<ReservedNodeOffering>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         /// An optional parameter that specifies the starting point for returning a set of response
-        /// records. When the results of a <code>GetReservedNodeExchangeOfferings</code> request
-        /// exceed the value specified in MaxRecords, Amazon Redshift returns a value in the marker
-        /// field of the response. You can retrieve the next set of response records by providing
-        /// the returned marker value in the marker parameter and retrying the request. 
+        /// records. When the results of a <c>GetReservedNodeExchangeOfferings</c> request exceed
+        /// the value specified in MaxRecords, Amazon Redshift returns a value in the marker field
+        /// of the response. You can retrieve the next set of response records by providing the
+        /// returned marker value in the marker parameter and retrying the request. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]
@@ -74,7 +75,7 @@ namespace Amazon.Redshift.Model
         // Check to see if ReservedNodeOfferings property is set
         internal bool IsSetReservedNodeOfferings()
         {
-            return this._reservedNodeOfferings != null && this._reservedNodeOfferings.Count > 0; 
+            return this._reservedNodeOfferings != null && (this._reservedNodeOfferings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

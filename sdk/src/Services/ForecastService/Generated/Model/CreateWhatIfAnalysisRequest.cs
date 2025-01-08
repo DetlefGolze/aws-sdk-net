@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -66,7 +67,7 @@ namespace Amazon.ForecastService.Model
     public partial class CreateWhatIfAnalysisRequest : AmazonForecastServiceRequest
     {
         private string _forecastArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private TimeSeriesSelector _timeSeriesSelector;
         private string _whatIfAnalysisName;
 
@@ -106,30 +107,30 @@ namespace Amazon.ForecastService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TimeSeriesSelector. 
         /// <para>
-        /// Defines the set of time series that are used in the what-if analysis with a <code>TimeSeriesIdentifiers</code>
+        /// Defines the set of time series that are used in the what-if analysis with a <c>TimeSeriesIdentifiers</c>
         /// object. What-if analyses are performed only for the time series in this object.
         /// </para>
         ///  
         /// <para>
-        /// The <code>TimeSeriesIdentifiers</code> object needs the following information:
+        /// The <c>TimeSeriesIdentifiers</c> object needs the following information:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>DataSource</code> 
+        ///  <c>DataSource</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Format</code> 
+        ///  <c>Format</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Schema</code> 
+        ///  <c>Schema</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

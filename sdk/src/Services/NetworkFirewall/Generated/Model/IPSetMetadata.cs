@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.NetworkFirewall.Model
         /// <para>
         /// Describes the total number of CIDR blocks currently in use by the IP set references
         /// in a firewall. To determine how many CIDR blocks are available for you to use in a
-        /// firewall, you can call <code>AvailableCIDRCount</code>.
+        /// firewall, you can call <c>AvailableCIDRCount</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1000000)]

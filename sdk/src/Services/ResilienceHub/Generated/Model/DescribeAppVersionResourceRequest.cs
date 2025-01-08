@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -34,20 +35,20 @@ namespace Amazon.ResilienceHub.Model
     /// 
     ///  <note> 
     /// <para>
-    /// This API accepts only one of the following parameters to descibe the resource:
+    /// This API accepts only one of the following parameters to describe the resource:
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>resourceName</code> 
+    ///  <c>resourceName</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>logicalResourceId</code> 
+    ///  <c>logicalResourceId</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>physicalResourceId</code> (Along with <code>physicalResourceId</code>, you
-    /// can also provide <code>awsAccountId</code>, and <code>awsRegion</code>)
+    ///  <c>physicalResourceId</c> (Along with <c>physicalResourceId</c>, you can also provide
+    /// <c>awsAccountId</c>, and <c>awsRegion</c>)
     /// </para>
     ///  </li> </ul> </note>
     /// </summary>
@@ -65,9 +66,10 @@ namespace Amazon.ResilienceHub.Model
         /// Gets and sets the property AppArn. 
         /// <para>
         /// Amazon Resource Name (ARN) of the Resilience Hub application. The format for this
-        /// ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app/<code>app-id</code>.
+        /// ARN is: arn:<c>partition</c>:resiliencehub:<c>region</c>:<c>account</c>:app/<c>app-id</c>.
         /// For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
-        /// Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i> guide.
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSHealth.Model
 {
     /// <summary>
@@ -33,16 +34,15 @@ namespace Amazon.AWSHealth.Model
     /// </summary>
     public partial class DescribeAffectedEntitiesForOrganizationResponse : AmazonWebServiceResponse
     {
-        private List<AffectedEntity> _entities = new List<AffectedEntity>();
-        private List<OrganizationAffectedEntitiesErrorItem> _failedSet = new List<OrganizationAffectedEntitiesErrorItem>();
+        private List<AffectedEntity> _entities = AWSConfigs.InitializeCollections ? new List<AffectedEntity>() : null;
+        private List<OrganizationAffectedEntitiesErrorItem> _failedSet = AWSConfigs.InitializeCollections ? new List<OrganizationAffectedEntitiesErrorItem>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Entities. 
         /// <para>
-        /// A JSON set of elements including the <code>awsAccountId</code> and its <code>entityArn</code>,
-        /// <code>entityValue</code> and its <code>entityArn</code>, <code>lastUpdatedTime</code>,
-        /// and <code>statusCode</code>.
+        /// A JSON set of elements including the <c>awsAccountId</c> and its <c>entityArn</c>,
+        /// <c>entityValue</c> and its <c>entityArn</c>, <c>lastUpdatedTime</c>, and <c>statusCode</c>.
         /// </para>
         /// </summary>
         public List<AffectedEntity> Entities
@@ -54,14 +54,14 @@ namespace Amazon.AWSHealth.Model
         // Check to see if Entities property is set
         internal bool IsSetEntities()
         {
-            return this._entities != null && this._entities.Count > 0; 
+            return this._entities != null && (this._entities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property FailedSet. 
         /// <para>
-        /// A JSON set of elements of the failed response, including the <code>awsAccountId</code>,
-        /// <code>errorMessage</code>, <code>errorName</code>, and <code>eventArn</code>.
+        /// A JSON set of elements of the failed response, including the <c>awsAccountId</c>,
+        /// <c>errorMessage</c>, <c>errorName</c>, and <c>eventArn</c>.
         /// </para>
         /// </summary>
         public List<OrganizationAffectedEntitiesErrorItem> FailedSet
@@ -73,15 +73,15 @@ namespace Amazon.AWSHealth.Model
         // Check to see if FailedSet property is set
         internal bool IsSetFailedSet()
         {
-            return this._failedSet != null && this._failedSet.Count > 0; 
+            return this._failedSet != null && (this._failedSet.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If the results of a search are large, only a portion of the results are returned,
-        /// and a <code>nextToken</code> pagination token is returned in the response. To retrieve
-        /// the next batch of results, reissue the search request and include the returned token.
+        /// and a <c>nextToken</c> pagination token is returned in the response. To retrieve the
+        /// next batch of results, reissue the search request and include the returned token.
         /// When all results have been returned, the response does not contain a pagination token
         /// value.
         /// </para>

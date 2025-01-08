@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ApplicationInsights.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.ApplicationInsights.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Problem Unmarshall(JsonUnmarshallerContext context)
         {
+            Problem unmarshalledObject = new Problem();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Problem unmarshalledObject = new Problem();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -130,6 +132,12 @@ namespace Amazon.ApplicationInsights.Model.Internal.MarshallTransformations
                     unmarshalledObject.SeverityLevel = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ShortName", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ShortName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("StartTime", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
@@ -155,7 +163,6 @@ namespace Amazon.ApplicationInsights.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
@@ -48,8 +49,8 @@ namespace Amazon.OpsWorks.Model
         private DeploymentCommand _command;
         private string _comment;
         private string _customJson;
-        private List<string> _instanceIds = new List<string>();
-        private List<string> _layerIds = new List<string>();
+        private List<string> _instanceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _layerIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _stackId;
 
         /// <summary>
@@ -74,8 +75,8 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Command. 
         /// <para>
-        /// A <code>DeploymentCommand</code> object that specifies the deployment command and
-        /// any associated arguments.
+        /// A <c>DeploymentCommand</c> object that specifies the deployment command and any associated
+        /// arguments.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -118,7 +119,7 @@ namespace Amazon.OpsWorks.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"{\"key1\": \"value1\", \"key2\": \"value2\",...}"</code> 
+        ///  <c>"{\"key1\": \"value1\", \"key2\": \"value2\",...}"</c> 
         /// </para>
         ///  
         /// <para>
@@ -154,7 +155,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if InstanceIds property is set
         internal bool IsSetInstanceIds()
         {
-            return this._instanceIds != null && this._instanceIds.Count > 0; 
+            return this._instanceIds != null && (this._instanceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -172,7 +173,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if LayerIds property is set
         internal bool IsSetLayerIds()
         {
-            return this._layerIds != null && this._layerIds.Count > 0; 
+            return this._layerIds != null && (this._layerIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Domains.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.Route53Domains.Model
         private ContactType _contactType;
         private CountryCode _countryCode;
         private string _email;
-        private List<ExtraParam> _extraParams = new List<ExtraParam>();
+        private List<ExtraParam> _extraParams = AWSConfigs.InitializeCollections ? new List<ExtraParam>() : null;
         private string _fax;
         private string _firstName;
         private string _lastName;
@@ -113,21 +114,21 @@ namespace Amazon.Route53Domains.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If you specify a value other than <code>PERSON</code>, you must also specify a value
-        /// for <code>OrganizationName</code>.
+        /// If you specify a value other than <c>PERSON</c>, you must also specify a value for
+        /// <c>OrganizationName</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// For some TLDs, the privacy protection available depends on the value that you specify
-        /// for <code>Contact Type</code>. For the privacy protection settings for your TLD, see
-        /// <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/registrar-tld-list.html">Domains
+        /// for <c>Contact Type</c>. For the privacy protection settings for your TLD, see <a
+        /// href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/registrar-tld-list.html">Domains
         /// that You Can Register with Amazon Route 53</a> in the <i>Amazon Route 53 Developer
         /// Guide</i> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For .es domains, the value of <code>ContactType</code> must be <code>PERSON</code>
-        /// for all three contacts.
+        /// For .es domains, the value of <c>ContactType</c> must be <c>PERSON</c> for all three
+        /// contacts.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -196,7 +197,7 @@ namespace Amazon.Route53Domains.Model
         // Check to see if ExtraParams property is set
         internal bool IsSetExtraParams()
         {
-            return this._extraParams != null && this._extraParams.Count > 0; 
+            return this._extraParams != null && (this._extraParams.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -207,7 +208,7 @@ namespace Amazon.Route53Domains.Model
         ///  
         /// <para>
         /// Constraints: Phone number must be specified in the format "+[country dialing code].[number
-        /// including any area code]". For example, a US phone number might appear as <code>"+1.1234567890"</code>.
+        /// including any area code]". For example, a US phone number might appear as <c>"+1.1234567890"</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Max=30)]
@@ -264,7 +265,7 @@ namespace Amazon.Route53Domains.Model
         /// <summary>
         /// Gets and sets the property OrganizationName. 
         /// <para>
-        /// Name of the organization for contact types other than <code>PERSON</code>.
+        /// Name of the organization for contact types other than <c>PERSON</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Max=255)]
@@ -288,7 +289,7 @@ namespace Amazon.Route53Domains.Model
         ///  
         /// <para>
         /// Constraints: Phone number must be specified in the format "+[country dialing code].[number
-        /// including any area code&gt;]". For example, a US phone number might appear as <code>"+1.1234567890"</code>.
+        /// including any area code&gt;]". For example, a US phone number might appear as <c>"+1.1234567890"</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Max=30)]

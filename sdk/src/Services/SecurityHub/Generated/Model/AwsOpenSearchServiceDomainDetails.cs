@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.SecurityHub.Model
         private AwsOpenSearchServiceDomainClusterConfigDetails _clusterConfig;
         private string _domainEndpoint;
         private AwsOpenSearchServiceDomainDomainEndpointOptionsDetails _domainEndpointOptions;
-        private Dictionary<string, string> _domainEndpoints = new Dictionary<string, string>();
+        private Dictionary<string, string> _domainEndpoints = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _domainName;
         private AwsOpenSearchServiceDomainEncryptionAtRestOptionsDetails _encryptionAtRestOptions;
         private string _engineVersion;
@@ -165,8 +166,7 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// This is a map of key-value pairs. The key is always <code>vpc</code>. The value is
-        /// the endpoint.
+        /// This is a map of key-value pairs. The key is always <c>vpc</c>. The value is the endpoint.
         /// </para>
         /// </summary>
         public Dictionary<string, string> DomainEndpoints
@@ -178,7 +178,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if DomainEndpoints property is set
         internal bool IsSetDomainEndpoints()
         {
-            return this._domainEndpoints != null && this._domainEndpoints.Count > 0; 
+            return this._domainEndpoints != null && (this._domainEndpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -310,8 +310,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property VpcOptions. 
         /// <para>
-        /// Information that OpenSearch Service derives based on <code>VPCOptions</code> for the
-        /// domain.
+        /// Information that OpenSearch Service derives based on <c>VPCOptions</c> for the domain.
         /// </para>
         /// </summary>
         public AwsOpenSearchServiceDomainVpcOptionsDetails VpcOptions

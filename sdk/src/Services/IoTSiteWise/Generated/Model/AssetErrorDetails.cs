@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property AssetId. 
         /// <para>
-        /// The ID of the asset.
+        /// The ID of the asset, in UUID format.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=36, Max=36)]

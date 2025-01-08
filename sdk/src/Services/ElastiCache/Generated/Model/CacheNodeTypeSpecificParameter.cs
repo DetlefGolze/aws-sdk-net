@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
     /// A parameter that has a different value for each cache node type it is applied to.
-    /// For example, in a Redis cluster, a <code>cache.m1.large</code> cache node type would
-    /// have a larger <code>maxmemory</code> value than a <code>cache.m1.small</code> type.
+    /// For example, in a Valkey or Redis OSS cluster, a <c>cache.m1.large</c> cache node
+    /// type would have a larger <c>maxmemory</c> value than a <c>cache.m1.small</c> type.
     /// </summary>
     public partial class CacheNodeTypeSpecificParameter
     {
         private string _allowedValues;
-        private List<CacheNodeTypeSpecificValue> _cacheNodeTypeSpecificValues = new List<CacheNodeTypeSpecificValue>();
+        private List<CacheNodeTypeSpecificValue> _cacheNodeTypeSpecificValues = AWSConfigs.InitializeCollections ? new List<CacheNodeTypeSpecificValue>() : null;
         private ChangeType _changeType;
         private string _dataType;
         private string _description;
@@ -83,7 +84,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if CacheNodeTypeSpecificValues property is set
         internal bool IsSetCacheNodeTypeSpecificValues()
         {
-            return this._cacheNodeTypeSpecificValues != null && this._cacheNodeTypeSpecificValues.Count > 0; 
+            return this._cacheNodeTypeSpecificValues != null && (this._cacheNodeTypeSpecificValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -91,7 +92,7 @@ namespace Amazon.ElastiCache.Model
         /// <para>
         /// Indicates whether a change to the parameter is applied immediately or requires a reboot
         /// for the change to be applied. You can force a reboot or wait until the next maintenance
-        /// window's reboot. For more information, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.Rebooting.html">Rebooting
+        /// window's reboot. For more information, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Clusters.Rebooting.html">Rebooting
         /// a Cluster</a>.
         /// </para>
         /// </summary>
@@ -146,9 +147,9 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property IsModifiable. 
         /// <para>
-        /// Indicates whether (<code>true</code>) or not (<code>false</code>) the parameter can
-        /// be modified. Some parameters have security or operational implications that prevent
-        /// them from being changed.
+        /// Indicates whether (<c>true</c>) or not (<c>false</c>) the parameter can be modified.
+        /// Some parameters have security or operational implications that prevent them from being
+        /// changed.
         /// </para>
         /// </summary>
         public bool IsModifiable

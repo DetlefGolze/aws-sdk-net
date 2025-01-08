@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.RDS.Model
     public partial class DescribeEngineDefaultParametersRequest : AmazonRDSRequest
     {
         private string _dbParameterGroupFamily;
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private string _marker;
         private int? _maxRecords;
 
@@ -48,7 +49,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Instantiates DescribeEngineDefaultParametersRequest with the parameterized properties
         /// </summary>
-        /// <param name="dbParameterGroupFamily">The name of the DB parameter group family. Valid Values: <ul> <li>  <code>aurora-mysql5.7</code>  </li> <li>  <code>aurora-mysql8.0</code>  </li> <li>  <code>aurora-postgresql10</code>  </li> <li>  <code>aurora-postgresql11</code>  </li> <li>  <code>aurora-postgresql12</code>  </li> <li>  <code>aurora-postgresql13</code>  </li> <li>  <code>aurora-postgresql14</code>  </li> <li>  <code>custom-oracle-ee-19</code>  </li> <li>  <code>mariadb10.2</code>  </li> <li>  <code>mariadb10.3</code>  </li> <li>  <code>mariadb10.4</code>  </li> <li>  <code>mariadb10.5</code>  </li> <li>  <code>mariadb10.6</code>  </li> <li>  <code>mysql5.7</code>  </li> <li>  <code>mysql8.0</code>  </li> <li>  <code>oracle-ee-19</code>  </li> <li>  <code>oracle-ee-cdb-19</code>  </li> <li>  <code>oracle-ee-cdb-21</code>  </li> <li>  <code>oracle-se2-19</code>  </li> <li>  <code>oracle-se2-cdb-19</code>  </li> <li>  <code>oracle-se2-cdb-21</code>  </li> <li>  <code>postgres10</code>  </li> <li>  <code>postgres11</code>  </li> <li>  <code>postgres12</code>  </li> <li>  <code>postgres13</code>  </li> <li>  <code>postgres14</code>  </li> <li>  <code>sqlserver-ee-11.0</code>  </li> <li>  <code>sqlserver-ee-12.0</code>  </li> <li>  <code>sqlserver-ee-13.0</code>  </li> <li>  <code>sqlserver-ee-14.0</code>  </li> <li>  <code>sqlserver-ee-15.0</code>  </li> <li>  <code>sqlserver-ex-11.0</code>  </li> <li>  <code>sqlserver-ex-12.0</code>  </li> <li>  <code>sqlserver-ex-13.0</code>  </li> <li>  <code>sqlserver-ex-14.0</code>  </li> <li>  <code>sqlserver-ex-15.0</code>  </li> <li>  <code>sqlserver-se-11.0</code>  </li> <li>  <code>sqlserver-se-12.0</code>  </li> <li>  <code>sqlserver-se-13.0</code>  </li> <li>  <code>sqlserver-se-14.0</code>  </li> <li>  <code>sqlserver-se-15.0</code>  </li> <li>  <code>sqlserver-web-11.0</code>  </li> <li>  <code>sqlserver-web-12.0</code>  </li> <li>  <code>sqlserver-web-13.0</code>  </li> <li>  <code>sqlserver-web-14.0</code>  </li> <li>  <code>sqlserver-web-15.0</code>  </li> </ul></param>
+        /// <param name="dbParameterGroupFamily">The name of the DB parameter group family. Valid Values: <ul> <li>  <c>aurora-mysql5.7</c>  </li> <li>  <c>aurora-mysql8.0</c>  </li> <li>  <c>aurora-postgresql10</c>  </li> <li>  <c>aurora-postgresql11</c>  </li> <li>  <c>aurora-postgresql12</c>  </li> <li>  <c>aurora-postgresql13</c>  </li> <li>  <c>aurora-postgresql14</c>  </li> <li>  <c>custom-oracle-ee-19</c>  </li> <li>  <c>custom-oracle-ee-cdb-19</c>  </li> <li>  <c>db2-ae</c>  </li> <li>  <c>db2-se</c>  </li> <li>  <c>mariadb10.2</c>  </li> <li>  <c>mariadb10.3</c>  </li> <li>  <c>mariadb10.4</c>  </li> <li>  <c>mariadb10.5</c>  </li> <li>  <c>mariadb10.6</c>  </li> <li>  <c>mysql5.7</c>  </li> <li>  <c>mysql8.0</c>  </li> <li>  <c>oracle-ee-19</c>  </li> <li>  <c>oracle-ee-cdb-19</c>  </li> <li>  <c>oracle-ee-cdb-21</c>  </li> <li>  <c>oracle-se2-19</c>  </li> <li>  <c>oracle-se2-cdb-19</c>  </li> <li>  <c>oracle-se2-cdb-21</c>  </li> <li>  <c>postgres10</c>  </li> <li>  <c>postgres11</c>  </li> <li>  <c>postgres12</c>  </li> <li>  <c>postgres13</c>  </li> <li>  <c>postgres14</c>  </li> <li>  <c>sqlserver-ee-11.0</c>  </li> <li>  <c>sqlserver-ee-12.0</c>  </li> <li>  <c>sqlserver-ee-13.0</c>  </li> <li>  <c>sqlserver-ee-14.0</c>  </li> <li>  <c>sqlserver-ee-15.0</c>  </li> <li>  <c>sqlserver-ex-11.0</c>  </li> <li>  <c>sqlserver-ex-12.0</c>  </li> <li>  <c>sqlserver-ex-13.0</c>  </li> <li>  <c>sqlserver-ex-14.0</c>  </li> <li>  <c>sqlserver-ex-15.0</c>  </li> <li>  <c>sqlserver-se-11.0</c>  </li> <li>  <c>sqlserver-se-12.0</c>  </li> <li>  <c>sqlserver-se-13.0</c>  </li> <li>  <c>sqlserver-se-14.0</c>  </li> <li>  <c>sqlserver-se-15.0</c>  </li> <li>  <c>sqlserver-web-11.0</c>  </li> <li>  <c>sqlserver-web-12.0</c>  </li> <li>  <c>sqlserver-web-13.0</c>  </li> <li>  <c>sqlserver-web-14.0</c>  </li> <li>  <c>sqlserver-web-15.0</c>  </li> </ul></param>
         public DescribeEngineDefaultParametersRequest(string dbParameterGroupFamily)
         {
             _dbParameterGroupFamily = dbParameterGroupFamily;
@@ -65,187 +66,199 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>aurora-mysql5.7</code> 
+        ///  <c>aurora-mysql5.7</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>aurora-mysql8.0</code> 
+        ///  <c>aurora-mysql8.0</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>aurora-postgresql10</code> 
+        ///  <c>aurora-postgresql10</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>aurora-postgresql11</code> 
+        ///  <c>aurora-postgresql11</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>aurora-postgresql12</code> 
+        ///  <c>aurora-postgresql12</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>aurora-postgresql13</code> 
+        ///  <c>aurora-postgresql13</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>aurora-postgresql14</code> 
+        ///  <c>aurora-postgresql14</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>custom-oracle-ee-19</code> 
+        ///  <c>custom-oracle-ee-19</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mariadb10.2</code> 
+        ///  <c>custom-oracle-ee-cdb-19</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mariadb10.3</code> 
+        ///  <c>db2-ae</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mariadb10.4</code> 
+        ///  <c>db2-se</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mariadb10.5</code> 
+        ///  <c>mariadb10.2</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mariadb10.6</code> 
+        ///  <c>mariadb10.3</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mysql5.7</code> 
+        ///  <c>mariadb10.4</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mysql8.0</code> 
+        ///  <c>mariadb10.5</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-ee-19</code> 
+        ///  <c>mariadb10.6</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-ee-cdb-19</code> 
+        ///  <c>mysql5.7</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-ee-cdb-21</code> 
+        ///  <c>mysql8.0</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-se2-19</code> 
+        ///  <c>oracle-ee-19</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-se2-cdb-19</code> 
+        ///  <c>oracle-ee-cdb-19</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>oracle-se2-cdb-21</code> 
+        ///  <c>oracle-ee-cdb-21</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>postgres10</code> 
+        ///  <c>oracle-se2-19</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>postgres11</code> 
+        ///  <c>oracle-se2-cdb-19</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>postgres12</code> 
+        ///  <c>oracle-se2-cdb-21</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>postgres13</code> 
+        ///  <c>postgres10</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>postgres14</code> 
+        ///  <c>postgres11</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ee-11.0</code> 
+        ///  <c>postgres12</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ee-12.0</code> 
+        ///  <c>postgres13</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ee-13.0</code> 
+        ///  <c>postgres14</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ee-14.0</code> 
+        ///  <c>sqlserver-ee-11.0</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ee-15.0</code> 
+        ///  <c>sqlserver-ee-12.0</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ex-11.0</code> 
+        ///  <c>sqlserver-ee-13.0</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ex-12.0</code> 
+        ///  <c>sqlserver-ee-14.0</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ex-13.0</code> 
+        ///  <c>sqlserver-ee-15.0</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ex-14.0</code> 
+        ///  <c>sqlserver-ex-11.0</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-ex-15.0</code> 
+        ///  <c>sqlserver-ex-12.0</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-se-11.0</code> 
+        ///  <c>sqlserver-ex-13.0</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-se-12.0</code> 
+        ///  <c>sqlserver-ex-14.0</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-se-13.0</code> 
+        ///  <c>sqlserver-ex-15.0</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-se-14.0</code> 
+        ///  <c>sqlserver-se-11.0</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-se-15.0</code> 
+        ///  <c>sqlserver-se-12.0</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-web-11.0</code> 
+        ///  <c>sqlserver-se-13.0</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-web-12.0</code> 
+        ///  <c>sqlserver-se-14.0</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-web-13.0</code> 
+        ///  <c>sqlserver-se-15.0</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-web-14.0</code> 
+        ///  <c>sqlserver-web-11.0</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sqlserver-web-15.0</code> 
+        ///  <c>sqlserver-web-12.0</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>sqlserver-web-13.0</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>sqlserver-web-14.0</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>sqlserver-web-15.0</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -265,7 +278,12 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// This parameter isn't currently supported.
+        /// A filter that specifies one or more parameters to describe.
+        /// </para>
+        ///  
+        /// <para>
+        /// The only supported filter is <c>parameter-name</c>. The results list only includes
+        /// information about the parameters with these names.
         /// </para>
         /// </summary>
         public List<Filter> Filters
@@ -277,15 +295,15 @@ namespace Amazon.RDS.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// An optional pagination token provided by a previous <code>DescribeEngineDefaultParameters</code>
+        /// An optional pagination token provided by a previous <c>DescribeEngineDefaultParameters</c>
         /// request. If this parameter is specified, the response includes only records beyond
-        /// the marker, up to the value specified by <code>MaxRecords</code>.
+        /// the marker, up to the value specified by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -304,8 +322,8 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property MaxRecords. 
         /// <para>
         /// The maximum number of records to include in the response. If more records exist than
-        /// the specified <code>MaxRecords</code> value, a pagination token called a marker is
-        /// included in the response so you can retrieve the remaining results.
+        /// the specified <c>MaxRecords</c> value, a pagination token called a marker is included
+        /// in the response so you can retrieve the remaining results.
         /// </para>
         ///  
         /// <para>

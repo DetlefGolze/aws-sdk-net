@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PI.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.PI.Model
     /// </summary>
     public partial class ListPerformanceAnalysisReportsResponse : AmazonWebServiceResponse
     {
-        private List<AnalysisReportSummary> _analysisReports = new List<AnalysisReportSummary>();
+        private List<AnalysisReportSummary> _analysisReports = AWSConfigs.InitializeCollections ? new List<AnalysisReportSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace Amazon.PI.Model
         // Check to see if AnalysisReports property is set
         internal bool IsSetAnalysisReports()
         {
-            return this._analysisReports != null && this._analysisReports.Count > 0; 
+            return this._analysisReports != null && (this._analysisReports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.PI.Model
         /// <para>
         /// An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the token, up to the value specified
-        /// by <code>MaxResults</code>.
+        /// by <c>MaxResults</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=8192)]

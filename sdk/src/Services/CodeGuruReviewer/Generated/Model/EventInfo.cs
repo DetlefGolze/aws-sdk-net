@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruReviewer.Model
 {
     /// <summary>
@@ -40,8 +41,8 @@ namespace Amazon.CodeGuruReviewer.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the event. The possible names are <code>pull_request</code>, <code>workflow_dispatch</code>,
-        /// <code>schedule</code>, and <code>push</code> 
+        /// The name of the event. The possible names are <c>pull_request</c>, <c>workflow_dispatch</c>,
+        /// <c>schedule</c>, and <c>push</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=32)]

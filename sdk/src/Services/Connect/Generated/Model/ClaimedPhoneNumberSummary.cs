@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace Amazon.Connect.Model
     /// </summary>
     public partial class ClaimedPhoneNumberSummary
     {
+        private string _instanceId;
         private string _phoneNumber;
         private string _phoneNumberArn;
         private PhoneNumberCountryCode _phoneNumberCountryCode;
@@ -41,14 +43,36 @@ namespace Amazon.Connect.Model
         private string _phoneNumberId;
         private PhoneNumberStatus _phoneNumberStatus;
         private PhoneNumberType _phoneNumberType;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private string _sourcePhoneNumberArn;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _targetArn;
+
+        /// <summary>
+        /// Gets and sets the property InstanceId. 
+        /// <para>
+        /// The identifier of the Amazon Connect instance that phone numbers are claimed to. You
+        /// can <a href="https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html">find
+        /// the instance ID</a> in the Amazon Resource Name (ARN) of the instance.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=100)]
+        public string InstanceId
+        {
+            get { return this._instanceId; }
+            set { this._instanceId = value; }
+        }
+
+        // Check to see if InstanceId property is set
+        internal bool IsSetInstanceId()
+        {
+            return this._instanceId != null;
+        }
 
         /// <summary>
         /// Gets and sets the property PhoneNumber. 
         /// <para>
-        /// The phone number. Phone numbers are formatted <code>[+] [country code] [subscriber
-        /// number including area code]</code>.
+        /// The phone number. Phone numbers are formatted <c>[+] [country code] [subscriber number
+        /// including area code]</c>.
         /// </para>
         /// </summary>
         public string PhoneNumber
@@ -143,27 +167,28 @@ namespace Amazon.Connect.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CLAIMED</code> means the previous <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html">ClaimedPhoneNumber</a>
+        ///  <c>CLAIMED</c> means the previous <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html">ClaimPhoneNumber</a>
         /// or <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html">UpdatePhoneNumber</a>
         /// operation succeeded.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IN_PROGRESS</code> means a <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html">ClaimedPhoneNumber</a>
-        /// or <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html">UpdatePhoneNumber</a>
+        ///  <c>IN_PROGRESS</c> means a <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html">ClaimPhoneNumber</a>,
+        /// <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html">UpdatePhoneNumber</a>,
+        /// or <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumberMetadata.html">UpdatePhoneNumberMetadata</a>
         /// operation is still in progress and has not yet completed. You can call <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html">DescribePhoneNumber</a>
         /// at a later time to verify if the previous operation has completed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> indicates that the previous <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html">ClaimedPhoneNumber</a>
+        ///  <c>FAILED</c> indicates that the previous <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html">ClaimPhoneNumber</a>
         /// or <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html">UpdatePhoneNumber</a>
         /// operation has failed. It will include a message indicating the failure reason. A common
-        /// reason for a failure may be that the <code>TargetArn</code> value you are claiming
-        /// or updating a phone number to has reached its limit of total claimed numbers. If you
-        /// received a <code>FAILED</code> status from a <code>ClaimPhoneNumber</code> API call,
-        /// you have one day to retry claiming the phone number before the number is released
-        /// back to the inventory for other customers to claim.
+        /// reason for a failure may be that the <c>TargetArn</c> value you are claiming or updating
+        /// a phone number to has reached its limit of total claimed numbers. If you received
+        /// a <c>FAILED</c> status from a <c>ClaimPhoneNumber</c> API call, you have one day to
+        /// retry claiming the phone number before the number is released back to the inventory
+        /// for other customers to claim.
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
@@ -203,10 +228,31 @@ namespace Amazon.Connect.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SourcePhoneNumberArn. 
+        /// <para>
+        /// The claimed phone number ARN that was previously imported from the external service,
+        /// such as Amazon Web Services End User Messaging. If it is from Amazon Web Services
+        /// End User Messaging, it looks like the ARN of the phone number that was imported from
+        /// Amazon Web Services End User Messaging.
+        /// </para>
+        /// </summary>
+        public string SourcePhoneNumberArn
+        {
+            get { return this._sourcePhoneNumberArn; }
+            set { this._sourcePhoneNumberArn = value; }
+        }
+
+        // Check to see if SourcePhoneNumberArn property is set
+        internal bool IsSetSourcePhoneNumberArn()
+        {
+            return this._sourcePhoneNumberArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// The tags used to organize, track, or control access for this resource. For example,
-        /// { "tags": {"key1":"value1", "key2":"value2"} }.
+        /// { "Tags": {"key1":"value1", "key2":"value2"} }.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -219,14 +265,14 @@ namespace Amazon.Connect.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TargetArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution
-        /// groups that phone numbers are claimed to.
+        /// groups that phone number inbound traffic is routed through.
         /// </para>
         /// </summary>
         public string TargetArn

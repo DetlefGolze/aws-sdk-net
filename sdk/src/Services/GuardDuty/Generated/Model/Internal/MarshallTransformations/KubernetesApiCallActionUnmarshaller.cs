@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public KubernetesApiCallAction Unmarshall(JsonUnmarshallerContext context)
         {
+            KubernetesApiCallAction unmarshalledObject = new KubernetesApiCallAction();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            KubernetesApiCallAction unmarshalledObject = new KubernetesApiCallAction();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("namespace", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Namespace = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("parameters", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -82,7 +90,19 @@ namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
                     unmarshalledObject.RequestUri = unmarshaller.Unmarshall(context);
                     continue;
                 }
-                if (context.TestExpression("sourceIps", targetDepth))
+                if (context.TestExpression("resource", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Resource = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("resourceName", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ResourceName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("sourceIPs", targetDepth))
                 {
                     var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
                     unmarshalledObject.SourceIps = unmarshaller.Unmarshall(context);
@@ -92,6 +112,12 @@ namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = IntUnmarshaller.Instance;
                     unmarshalledObject.StatusCode = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("subresource", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Subresource = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("userAgent", targetDepth))
@@ -107,7 +133,6 @@ namespace Amazon.GuardDuty.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

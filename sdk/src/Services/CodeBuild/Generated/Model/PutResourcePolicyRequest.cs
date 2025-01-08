@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
     /// Container for the parameters to the PutResourcePolicy operation.
-    /// Stores a resource policy for the ARN of a <code>Project</code> or <code>ReportGroup</code>
-    /// object.
+    /// Stores a resource policy for the ARN of a <c>Project</c> or <c>ReportGroup</c> object.
     /// </summary>
     public partial class PutResourcePolicyRequest : AmazonCodeBuildRequest
     {
@@ -62,8 +62,8 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        ///  The ARN of the <code>Project</code> or <code>ReportGroup</code> resource you want
-        /// to associate with a resource policy. 
+        ///  The ARN of the <c>Project</c> or <c>ReportGroup</c> resource you want to associate
+        /// with a resource policy. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECR.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.ECR.Model
         /// Gets and sets the property AuthorizationToken. 
         /// <para>
         /// A base64-encoded string that contains authorization data for the specified Amazon
-        /// ECR registry. When the string is decoded, it is presented in the format <code>user:password</code>
-        /// for private registry authentication using <code>docker login</code>.
+        /// ECR registry. When the string is decoded, it is presented in the format <c>user:password</c>
+        /// for private registry authentication using <c>docker login</c>.
         /// </para>
         /// </summary>
         public string AuthorizationToken
@@ -79,9 +80,9 @@ namespace Amazon.ECR.Model
         /// <summary>
         /// Gets and sets the property ProxyEndpoint. 
         /// <para>
-        /// The registry URL to use for this authorization token in a <code>docker login</code>
-        /// command. The Amazon ECR registry URL format is <code>https://aws_account_id.dkr.ecr.region.amazonaws.com</code>.
-        /// For example, <code>https://012345678910.dkr.ecr.us-east-1.amazonaws.com</code>.. 
+        /// The registry URL to use for this authorization token in a <c>docker login</c> command.
+        /// The Amazon ECR registry URL format is <c>https://aws_account_id.dkr.ecr.region.amazonaws.com</c>.
+        /// For example, <c>https://012345678910.dkr.ecr.us-east-1.amazonaws.com</c>.. 
         /// </para>
         /// </summary>
         public string ProxyEndpoint

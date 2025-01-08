@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMessaging.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         private DateTime? _createdTimestamp;
         private DateTime? _lastEditedTimestamp;
         private DateTime? _lastUpdatedTimestamp;
-        private Dictionary<string, MessageAttributeValue> _messageAttributes = new Dictionary<string, MessageAttributeValue>();
+        private Dictionary<string, MessageAttributeValue> _messageAttributes = AWSConfigs.InitializeCollections ? new Dictionary<string, MessageAttributeValue>() : null;
         private string _messageId;
         private string _metadata;
         private ChannelMessagePersistenceType _persistence;
@@ -47,7 +48,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         private Identity _sender;
         private ChannelMessageStatusStructure _status;
         private string _subChannelId;
-        private List<Target> _target = new List<Target>();
+        private List<Target> _target = AWSConfigs.InitializeCollections ? new List<Target>() : null;
         private ChannelMessageType _type;
 
         /// <summary>
@@ -95,7 +96,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         /// Gets and sets the property ContentType. 
         /// <para>
         /// The content type of the channel message. For Amazon Lex V2 bot responses, the content
-        /// type is <code>application/amz-chime-lex-msgs</code> for success responses and <code>application/amz-chime-lex-error</code>
+        /// type is <c>application/amz-chime-lex-msgs</c> for success responses and <c>application/amz-chime-lex-error</c>
         /// for failure responses. For more information, refer to <a href="https://docs.aws.amazon.com/chime-sdk/latest/dg/appinstance-bots#process-response.html">Processing
         /// responses from an AppInstanceBot</a> in the <i>Amazon Chime SDK Messaging Developer
         /// Guide</i>.
@@ -186,7 +187,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         // Check to see if MessageAttributes property is set
         internal bool IsSetMessageAttributes()
         {
-            return this._messageAttributes != null && this._messageAttributes.Count > 0; 
+            return this._messageAttributes != null && (this._messageAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -336,7 +337,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         // Check to see if Target property is set
         internal bool IsSetTarget()
         {
-            return this._target != null && this._target.Count > 0; 
+            return this._target != null && (this._target.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

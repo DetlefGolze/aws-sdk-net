@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Backup.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -109,6 +110,12 @@ namespace Amazon.Backup.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = LongUnmarshaller.Instance;
                     response.NumberOfRecoveryPoints = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("VaultState", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.VaultState = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("VaultType", targetDepth))

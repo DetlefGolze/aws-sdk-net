@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property DecodeConfig. 
         /// <para>
-        /// Information about the decode <code>Config</code>.
+        /// Information about the decode <c>Config</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -60,7 +61,7 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property DemodulationConfig. 
         /// <para>
-        /// Information about the demodulation <code>Config</code>.
+        /// Information about the demodulation <c>Config</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -79,7 +80,7 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property SpectrumConfig. 
         /// <para>
-        /// Information about the spectral <code>Config</code>.
+        /// Information about the spectral <c>Config</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

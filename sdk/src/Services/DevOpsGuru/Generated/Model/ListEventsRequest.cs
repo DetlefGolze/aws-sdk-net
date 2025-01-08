@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
@@ -62,7 +63,7 @@ namespace Amazon.DevOpsGuru.Model
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        ///  A <code>ListEventsFilters</code> object used to specify which events to return. 
+        ///  A <c>ListEventsFilters</c> object used to specify which events to return. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -82,7 +83,7 @@ namespace Amazon.DevOpsGuru.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to return with a single call. To retrieve the remaining
-        /// results, make another call with the returned <code>nextToken</code> value.
+        /// results, make another call with the returned <c>nextToken</c> value.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=200)]

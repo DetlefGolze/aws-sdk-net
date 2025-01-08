@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SsmSap.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.SsmSap.Model
         private string _componentId;
         private string _databaseId;
         private DatabaseType _databaseType;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ApplicationId. 
@@ -46,6 +47,7 @@ namespace Amazon.SsmSap.Model
         /// The ID of the application.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=60)]
         public string ApplicationId
         {
             get { return this._applicationId; }
@@ -82,6 +84,7 @@ namespace Amazon.SsmSap.Model
         /// The ID of the component.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=100)]
         public string ComponentId
         {
             get { return this._componentId; }
@@ -100,6 +103,7 @@ namespace Amazon.SsmSap.Model
         /// The ID of the database.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=300)]
         public string DatabaseId
         {
             get { return this._databaseId; }
@@ -145,7 +149,7 @@ namespace Amazon.SsmSap.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

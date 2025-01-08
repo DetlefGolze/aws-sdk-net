@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FMS.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.FMS.Model
     /// </summary>
     public partial class AwsVPCSecurityGroupViolation
     {
-        private List<PartialMatch> _partialMatches = new List<PartialMatch>();
-        private List<SecurityGroupRemediationAction> _possibleSecurityGroupRemediationActions = new List<SecurityGroupRemediationAction>();
+        private List<PartialMatch> _partialMatches = AWSConfigs.InitializeCollections ? new List<PartialMatch>() : null;
+        private List<SecurityGroupRemediationAction> _possibleSecurityGroupRemediationActions = AWSConfigs.InitializeCollections ? new List<SecurityGroupRemediationAction>() : null;
         private string _violationTarget;
         private string _violationTargetDescription;
 
@@ -43,7 +44,7 @@ namespace Amazon.FMS.Model
         /// Gets and sets the property PartialMatches. 
         /// <para>
         /// List of rules specified in the security group of the Firewall Manager policy that
-        /// partially match the <code>ViolationTarget</code> rule.
+        /// partially match the <c>ViolationTarget</c> rule.
         /// </para>
         /// </summary>
         public List<PartialMatch> PartialMatches
@@ -55,13 +56,13 @@ namespace Amazon.FMS.Model
         // Check to see if PartialMatches property is set
         internal bool IsSetPartialMatches()
         {
-            return this._partialMatches != null && this._partialMatches.Count > 0; 
+            return this._partialMatches != null && (this._partialMatches.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PossibleSecurityGroupRemediationActions. 
         /// <para>
-        /// Remediation options for the rule specified in the <code>ViolationTarget</code>.
+        /// Remediation options for the rule specified in the <c>ViolationTarget</c>.
         /// </para>
         /// </summary>
         public List<SecurityGroupRemediationAction> PossibleSecurityGroupRemediationActions
@@ -73,7 +74,7 @@ namespace Amazon.FMS.Model
         // Check to see if PossibleSecurityGroupRemediationActions property is set
         internal bool IsSetPossibleSecurityGroupRemediationActions()
         {
-            return this._possibleSecurityGroupRemediationActions != null && this._possibleSecurityGroupRemediationActions.Count > 0; 
+            return this._possibleSecurityGroupRemediationActions != null && (this._possibleSecurityGroupRemediationActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

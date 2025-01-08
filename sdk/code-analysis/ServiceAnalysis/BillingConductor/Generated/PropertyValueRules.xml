@@ -50,6 +50,10 @@
     <pattern>(arn:aws(-cn)?:billingconductor::[0-9]{12}:billinggroup/)?[0-9]{12}</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.BillingConductor.Model.CreateCustomLineItemRequest.AccountId</property>
+    <pattern>[0-9]{12}</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.BillingConductor.Model.CreateCustomLineItemRequest.BillingGroupArn</property>
     <pattern>(arn:aws(-cn)?:billingconductor::[0-9]{12}:billinggroup/)?[0-9]{12}</pattern>
   </property-value-rule>
@@ -189,6 +193,15 @@
   <property-value-rule>
     <property>Amazon.BillingConductor.Model.DisassociatePricingRulesResponse.Arn</property>
     <pattern>(arn:aws(-cn)?:billingconductor::[0-9]{12}:pricingplan/)?[a-zA-Z0-9]{10}</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.BillingConductor.Model.GetBillingGroupCostReportRequest.Arn</property>
+    <pattern>(arn:aws(-cn)?:billingconductor::[0-9]{12}:billinggroup/)?[0-9]{12}</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.BillingConductor.Model.GetBillingGroupCostReportRequest.MaxResults</property>
+    <min>200</min>
+    <max>300</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.BillingConductor.Model.ListAccountAssociationsRequest.BillingPeriod</property>
@@ -528,6 +541,10 @@
     <pattern>(arn:aws(-cn)?:billingconductor::[0-9]{12}:billinggroup/)?[0-9]{12}</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.BillingConductor.Model.BillingGroupCostReportResultElement.Arn</property>
+    <pattern>(arn:aws(-cn)?:billingconductor::[0-9]{12}:billinggroup/)?[0-9]{12}</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.BillingConductor.Model.BillingGroupListElement.Arn</property>
     <pattern>(arn:aws(-cn)?:billingconductor::[0-9]{12}:billinggroup/)?[0-9]{12}</pattern>
   </property-value-rule>
@@ -551,6 +568,14 @@
     <min>0</min>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.BillingConductor.Model.BillingPeriodRange.ExclusiveEndBillingPeriod</property>
+    <pattern>\d{4}-(0?[1-9]|1[012])</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.BillingConductor.Model.BillingPeriodRange.InclusiveStartBillingPeriod</property>
+    <pattern>\d{4}-(0?[1-9]|1[012])</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.BillingConductor.Model.ComputationPreference.PricingPlanArn</property>
     <pattern>arn:aws(-cn)?:billingconductor::[0-9]{12}:pricingplan/[a-zA-Z0-9]{10}</pattern>
   </property-value-rule>
@@ -566,6 +591,10 @@
     <property>Amazon.BillingConductor.Model.CustomLineItemFlatChargeDetails.ChargeValue</property>
     <min>0</min>
     <max>1000000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.BillingConductor.Model.CustomLineItemListElement.AccountId</property>
+    <pattern>[0-9]{12}</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.BillingConductor.Model.CustomLineItemListElement.Arn</property>
@@ -599,6 +628,10 @@
     <property>Amazon.BillingConductor.Model.CustomLineItemPercentageChargeDetails.PercentageValue</property>
     <min>0</min>
     <max>10000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.BillingConductor.Model.CustomLineItemVersionListElement.AccountId</property>
+    <pattern>[0-9]{12}</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.BillingConductor.Model.CustomLineItemVersionListElement.Arn</property>

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
-    /// Specifies the Amazon S3 bucket where DataSync uploads your <a href="https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html">task
+    /// Specifies the Amazon S3 bucket where DataSync uploads your <a href="https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html">task
     /// report</a>.
     /// </summary>
     public partial class ReportDestinationS3
@@ -42,7 +43,7 @@ namespace Amazon.DataSync.Model
         /// Gets and sets the property BucketAccessRoleArn. 
         /// <para>
         /// Specifies the Amazon Resource Name (ARN) of the IAM policy that allows DataSync to
-        /// upload a task report to your S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/https:/docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html">Allowing
+        /// upload a task report to your S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html">Allowing
         /// DataSync to upload a task report to an Amazon S3 bucket</a>.
         /// </para>
         /// </summary>
@@ -65,7 +66,7 @@ namespace Amazon.DataSync.Model
         /// Specifies the ARN of the S3 bucket where DataSync uploads your report.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=156)]
+        [AWSProperty(Required=true, Max=268)]
         public string S3BucketArn
         {
             get { return this._s3BucketArn; }

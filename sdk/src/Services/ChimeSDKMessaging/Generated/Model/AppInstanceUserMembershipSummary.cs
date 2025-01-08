@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMessaging.Model
 {
     /// <summary>
-    /// Summary of the membership details of an <code>AppInstanceUser</code>.
+    /// Summary of the membership details of an <c>AppInstanceUser</c>.
     /// </summary>
     public partial class AppInstanceUserMembershipSummary
     {
@@ -40,7 +41,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         /// <summary>
         /// Gets and sets the property ReadMarkerTimestamp. 
         /// <para>
-        /// The time at which an <code>AppInstanceUser</code> last marked a channel as read.
+        /// The time at which an <c>AppInstanceUser</c> last marked a channel as read.
         /// </para>
         /// </summary>
         public DateTime ReadMarkerTimestamp
@@ -58,7 +59,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         /// <summary>
         /// Gets and sets the property SubChannelId. 
         /// <para>
-        /// The ID of the SubChannel that the <code>AppInstanceUser</code> is a member of.
+        /// The ID of the SubChannel that the <c>AppInstanceUser</c> is a member of.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -77,7 +78,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of <code>ChannelMembership</code>.
+        /// The type of <c>ChannelMembership</c>.
         /// </para>
         /// </summary>
         public ChannelMembershipType Type

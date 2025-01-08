@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -50,7 +51,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <para>
         ///  An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>. 
+        /// by <c>MaxRecords</c>. 
         /// </para>
         /// </summary>
         public string Marker
@@ -69,8 +70,8 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property MaxRecords. 
         /// <para>
         ///  The maximum number of records to include in the response. If more records exist than
-        /// the specified <code>MaxRecords</code> value, a pagination token called a marker is
-        /// included in the response so that the remaining results can be retrieved. 
+        /// the specified <c>MaxRecords</c> value, a pagination token called a marker is included
+        /// in the response so that the remaining results can be retrieved. 
         /// </para>
         ///  
         /// <para>
@@ -98,7 +99,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <para>
         /// The Amazon Resource Name (ARN) string that uniquely identifies the task. When this
         /// input parameter is specified, the API returns only one result and ignore the values
-        /// of the <code>MaxRecords</code> and <code>Marker</code> parameters. 
+        /// of the <c>MaxRecords</c> and <c>Marker</c> parameters. 
         /// </para>
         /// </summary>
         public string ReplicationTaskArn

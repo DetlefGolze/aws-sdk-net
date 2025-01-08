@@ -191,6 +191,60 @@ namespace Amazon.LocationService
 
 
     /// <summary>
+    /// Constants used for properties of type ForecastedGeofenceEventType.
+    /// </summary>
+    public class ForecastedGeofenceEventType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ENTER for ForecastedGeofenceEventType
+        /// </summary>
+        public static readonly ForecastedGeofenceEventType ENTER = new ForecastedGeofenceEventType("ENTER");
+        /// <summary>
+        /// Constant EXIT for ForecastedGeofenceEventType
+        /// </summary>
+        public static readonly ForecastedGeofenceEventType EXIT = new ForecastedGeofenceEventType("EXIT");
+        /// <summary>
+        /// Constant IDLE for ForecastedGeofenceEventType
+        /// </summary>
+        public static readonly ForecastedGeofenceEventType IDLE = new ForecastedGeofenceEventType("IDLE");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ForecastedGeofenceEventType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ForecastedGeofenceEventType FindValue(string value)
+        {
+            return FindValue<ForecastedGeofenceEventType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ForecastedGeofenceEventType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type IntendedUse.
     /// </summary>
     public class IntendedUse : ConstantClass
@@ -234,6 +288,56 @@ namespace Amazon.LocationService
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator IntendedUse(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type OptimizationMode.
+    /// </summary>
+    public class OptimizationMode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant FastestRoute for OptimizationMode
+        /// </summary>
+        public static readonly OptimizationMode FastestRoute = new OptimizationMode("FastestRoute");
+        /// <summary>
+        /// Constant ShortestRoute for OptimizationMode
+        /// </summary>
+        public static readonly OptimizationMode ShortestRoute = new OptimizationMode("ShortestRoute");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public OptimizationMode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static OptimizationMode FindValue(string value)
+        {
+            return FindValue<OptimizationMode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator OptimizationMode(string value)
         {
             return FindValue(value);
         }
@@ -408,6 +512,56 @@ namespace Amazon.LocationService
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator RouteMatrixErrorCode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type SpeedUnit.
+    /// </summary>
+    public class SpeedUnit : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant KilometersPerHour for SpeedUnit
+        /// </summary>
+        public static readonly SpeedUnit KilometersPerHour = new SpeedUnit("KilometersPerHour");
+        /// <summary>
+        /// Constant MilesPerHour for SpeedUnit
+        /// </summary>
+        public static readonly SpeedUnit MilesPerHour = new SpeedUnit("MilesPerHour");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public SpeedUnit(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static SpeedUnit FindValue(string value)
+        {
+            return FindValue<SpeedUnit>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator SpeedUnit(string value)
         {
             return FindValue(value);
         }

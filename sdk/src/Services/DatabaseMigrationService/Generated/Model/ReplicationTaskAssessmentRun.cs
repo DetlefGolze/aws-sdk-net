@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
     /// Provides information that describes a premigration assessment run that you have started
-    /// using the <code>StartReplicationTaskAssessmentRun</code> operation.
+    /// using the <c>StartReplicationTaskAssessmentRun</c> operation.
     /// 
     ///  
     /// <para>
-    /// Some of the information appears based on other operations that can return the <code>ReplicationTaskAssessmentRun</code>
+    /// Some of the information appears based on other operations that can return the <c>ReplicationTaskAssessmentRun</c>
     /// object.
     /// </para>
     /// </summary>
@@ -42,6 +43,7 @@ namespace Amazon.DatabaseMigrationService.Model
     {
         private ReplicationTaskAssessmentRunProgress _assessmentProgress;
         private string _assessmentRunName;
+        private bool? _isLatestTaskAssessmentRun;
         private string _lastFailureMessage;
         private string _replicationTaskArn;
         private string _replicationTaskAssessmentRunArn;
@@ -50,6 +52,7 @@ namespace Amazon.DatabaseMigrationService.Model
         private string _resultKmsKeyArn;
         private string _resultLocationBucket;
         private string _resultLocationFolder;
+        private ReplicationTaskAssessmentRunResultStatistic _resultStatistic;
         private string _serviceAccessRoleArn;
         private string _status;
 
@@ -88,6 +91,25 @@ namespace Amazon.DatabaseMigrationService.Model
         internal bool IsSetAssessmentRunName()
         {
             return this._assessmentRunName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IsLatestTaskAssessmentRun. 
+        /// <para>
+        /// Indicates that the following PreflightAssessmentRun is the latest for the ReplicationTask.
+        /// The status is either true or false.
+        /// </para>
+        /// </summary>
+        public bool IsLatestTaskAssessmentRun
+        {
+            get { return this._isLatestTaskAssessmentRun.GetValueOrDefault(); }
+            set { this._isLatestTaskAssessmentRun = value; }
+        }
+
+        // Check to see if IsLatestTaskAssessmentRun property is set
+        internal bool IsSetIsLatestTaskAssessmentRun()
+        {
+            return this._isLatestTaskAssessmentRun.HasValue; 
         }
 
         /// <summary>
@@ -147,7 +169,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property ReplicationTaskAssessmentRunCreationDate. 
         /// <para>
-        /// Date on which the assessment run was created using the <code>StartReplicationTaskAssessmentRun</code>
+        /// Date on which the assessment run was created using the <c>StartReplicationTaskAssessmentRun</c>
         /// operation.
         /// </para>
         /// </summary>
@@ -236,10 +258,30 @@ namespace Amazon.DatabaseMigrationService.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ResultStatistic. 
+        /// <para>
+        ///  Result statistics for a completed assessment run, showing aggregated statistics of
+        /// IndividualAssessments for how many assessments were passed, failed, or encountered
+        /// issues such as errors or warnings. 
+        /// </para>
+        /// </summary>
+        public ReplicationTaskAssessmentRunResultStatistic ResultStatistic
+        {
+            get { return this._resultStatistic; }
+            set { this._resultStatistic = value; }
+        }
+
+        // Check to see if ResultStatistic property is set
+        internal bool IsSetResultStatistic()
+        {
+            return this._resultStatistic != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ServiceAccessRoleArn. 
         /// <para>
-        /// ARN of the service role used to start the assessment run using the <code>StartReplicationTaskAssessmentRun</code>
-        /// operation. The role must allow the <code>iam:PassRole</code> action.
+        /// ARN of the service role used to start the assessment run using the <c>StartReplicationTaskAssessmentRun</c>
+        /// operation. The role must allow the <c>iam:PassRole</c> action.
         /// </para>
         /// </summary>
         public string ServiceAccessRoleArn
@@ -265,51 +307,56 @@ namespace Amazon.DatabaseMigrationService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>"cancelling"</code> – The assessment run was canceled by the <code>CancelReplicationTaskAssessmentRun</code>
+        ///  <c>"cancelling"</c> – The assessment run was canceled by the <c>CancelReplicationTaskAssessmentRun</c>
         /// operation.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"deleting"</code> – The assessment run was deleted by the <code>DeleteReplicationTaskAssessmentRun</code>
+        ///  <c>"deleting"</c> – The assessment run was deleted by the <c>DeleteReplicationTaskAssessmentRun</c>
         /// operation.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"failed"</code> – At least one individual assessment completed with a <code>failed</code>
+        ///  <c>"failed"</c> – At least one individual assessment completed with a <c>failed</c>
         /// status.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"error-provisioning"</code> – An internal error occurred while resources were
-        /// provisioned (during <code>provisioning</code> status).
+        ///  <c>"error-provisioning"</c> – An internal error occurred while resources were provisioned
+        /// (during <c>provisioning</c> status).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"error-executing"</code> – An internal error occurred while individual assessments
-        /// ran (during <code>running</code> status).
+        ///  <c>"error-executing"</c> – An internal error occurred while individual assessments
+        /// ran (during <c>running</c> status).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"invalid state"</code> – The assessment run is in an unknown state.
+        ///  <c>"invalid state"</c> – The assessment run is in an unknown state.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"passed"</code> – All individual assessments have completed, and none has a
-        /// <code>failed</code> status.
+        ///  <c>"passed"</c> – All individual assessments have completed, and none has a <c>failed</c>
+        /// status.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"provisioning"</code> – Resources required to run individual assessments are
-        /// being provisioned.
+        ///  <c>"provisioning"</c> – Resources required to run individual assessments are being
+        /// provisioned.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"running"</code> – Individual assessments are being run.
+        ///  <c>"running"</c> – Individual assessments are being run.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"starting"</code> – The assessment run is starting, but resources are not yet
-        /// being provisioned for individual assessments.
+        ///  <c>"starting"</c> – The assessment run is starting, but resources are not yet being
+        /// provisioned for individual assessments.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>"warning"</c> – At least one individual assessment completed with a <c>warning</c>
+        /// status.
         /// </para>
         ///  </li> </ul>
         /// </summary>

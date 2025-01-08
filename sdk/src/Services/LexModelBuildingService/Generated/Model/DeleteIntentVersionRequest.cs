@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.LexModelBuildingService.Model
     /// 
     ///  
     /// <para>
-    /// This operation requires permissions for the <code>lex:DeleteIntentVersion</code> action.
+    /// This operation requires permissions for the <c>lex:DeleteIntentVersion</c> action.
     /// </para>
     /// </summary>
     public partial class DeleteIntentVersionRequest : AmazonLexModelBuildingServiceRequest
@@ -65,9 +66,8 @@ namespace Amazon.LexModelBuildingService.Model
         /// <summary>
         /// Gets and sets the property Version. 
         /// <para>
-        /// The version of the intent to delete. You cannot delete the <code>$LATEST</code> version
-        /// of the intent. To delete the <code>$LATEST</code> version, use the <a>DeleteIntent</a>
-        /// operation.
+        /// The version of the intent to delete. You cannot delete the <c>$LATEST</c> version
+        /// of the intent. To delete the <c>$LATEST</c> version, use the <a>DeleteIntent</a> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

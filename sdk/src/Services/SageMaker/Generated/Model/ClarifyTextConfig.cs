@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property Granularity. 
         /// <para>
         /// The unit of granularity for the analysis of text features. For example, if the unit
-        /// is <code>'token'</code>, then each token (like a word in English) of the text is treated
+        /// is <c>'token'</c>, then each token (like a word in English) of the text is treated
         /// as a feature. SHAP values are computed for each unit/feature.
         /// </para>
         /// </summary>
@@ -68,7 +69,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// For a mix of multiple languages, use code <code>'xx'</code>.
+        /// For a mix of multiple languages, use code <c>'xx'</c>.
         /// </para>
         ///  </note>
         /// </summary>

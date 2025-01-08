@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DeviceFarm.Model
 {
     /// <summary>
     /// Container for the parameters to the TagResource operation.
-    /// Associates the specified tags to a resource with the specified <code>resourceArn</code>.
+    /// Associates the specified tags to a resource with the specified <c>resourceArn</c>.
     /// If existing tags on a resource are not specified in the request parameters, they are
     /// not changed. When a resource is deleted, the tags associated with that resource are
     /// also deleted.
@@ -38,15 +39,15 @@ namespace Amazon.DeviceFarm.Model
     public partial class TagResourceRequest : AmazonDeviceFarmRequest
     {
         private string _resourceARN;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceARN. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the resource or resources to which to add tags.
-        /// You can associate tags with the following Device Farm resources: <code>PROJECT</code>,
-        /// <code>RUN</code>, <code>NETWORK_PROFILE</code>, <code>INSTANCE_PROFILE</code>, <code>DEVICE_INSTANCE</code>,
-        /// <code>SESSION</code>, <code>DEVICE_POOL</code>, <code>DEVICE</code>, and <code>VPCE_CONFIGURATION</code>.
+        /// You can associate tags with the following Device Farm resources: <c>PROJECT</c>, <c>RUN</c>,
+        /// <c>NETWORK_PROFILE</c>, <c>INSTANCE_PROFILE</c>, <c>DEVICE_INSTANCE</c>, <c>SESSION</c>,
+        /// <c>DEVICE_POOL</c>, <c>DEVICE</c>, and <c>VPCE_CONFIGURATION</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=32, Max=1011)]
@@ -80,7 +81,7 @@ namespace Amazon.DeviceFarm.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -24,7 +24,8 @@ using System.Collections;
 using System.Threading;
 using System.Threading.Tasks;
 using Amazon.Runtime;
- 
+
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -45,7 +46,7 @@ namespace Amazon.CloudFront.Model
         /// Enumerable containing all of the Items
         /// </summary>
         public IPaginatedEnumerable<CloudFrontOriginAccessIdentitySummary> Items => 
-            new PaginatedResultKeyResponse<ListCloudFrontOriginAccessIdentitiesResponse, CloudFrontOriginAccessIdentitySummary>(this, (i) => i.CloudFrontOriginAccessIdentityList.Items);
+            new PaginatedResultKeyResponse<ListCloudFrontOriginAccessIdentitiesResponse, CloudFrontOriginAccessIdentitySummary>(this, (i) => i.CloudFrontOriginAccessIdentityList.Items ?? new List<CloudFrontOriginAccessIdentitySummary>());
 
         internal ListCloudFrontOriginAccessIdentitiesPaginator(IAmazonCloudFront client, ListCloudFrontOriginAccessIdentitiesRequest request)
         {
@@ -69,11 +70,11 @@ namespace Amazon.CloudFront.Model
                 marker = response.CloudFrontOriginAccessIdentityList.NextMarker;
                 yield return response;
             }
-            while (response.CloudFrontOriginAccessIdentityList.IsTruncated);
+            while (!string.IsNullOrEmpty(marker));
         }
 #endif
 #if AWS_ASYNC_ENUMERABLES_API
-        async IAsyncEnumerable<ListCloudFrontOriginAccessIdentitiesResponse> IPaginator<ListCloudFrontOriginAccessIdentitiesResponse>.PaginateAsync(CancellationToken cancellationToken = default)
+        async IAsyncEnumerable<ListCloudFrontOriginAccessIdentitiesResponse> IPaginator<ListCloudFrontOriginAccessIdentitiesResponse>.PaginateAsync([System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken cancellationToken)
         {
             if (Interlocked.Exchange(ref _isPaginatorInUse, 1) != 0)
             {
@@ -90,7 +91,7 @@ namespace Amazon.CloudFront.Model
                 cancellationToken.ThrowIfCancellationRequested();
                 yield return response;
             }
-            while (response.CloudFrontOriginAccessIdentityList.IsTruncated);
+            while (!string.IsNullOrEmpty(marker));
         }
 #endif
     }

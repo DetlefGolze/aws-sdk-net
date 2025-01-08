@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -33,17 +34,40 @@ namespace Amazon.Glue.Model
     /// </summary>
     public partial class DataQualityResult
     {
+        private List<DataQualityAnalyzerResult> _analyzerResults = AWSConfigs.InitializeCollections ? new List<DataQualityAnalyzerResult>() : null;
         private DateTime? _completedOn;
         private DataSource _dataSource;
         private string _evaluationContext;
         private string _jobName;
         private string _jobRunId;
+        private List<DataQualityObservation> _observations = AWSConfigs.InitializeCollections ? new List<DataQualityObservation>() : null;
+        private string _profileId;
         private string _resultId;
-        private List<DataQualityRuleResult> _ruleResults = new List<DataQualityRuleResult>();
+        private List<DataQualityRuleResult> _ruleResults = AWSConfigs.InitializeCollections ? new List<DataQualityRuleResult>() : null;
         private string _rulesetEvaluationRunId;
         private string _rulesetName;
         private double? _score;
         private DateTime? _startedOn;
+
+        /// <summary>
+        /// Gets and sets the property AnalyzerResults. 
+        /// <para>
+        /// A list of <c>DataQualityAnalyzerResult</c> objects representing the results for each
+        /// analyzer. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=2000)]
+        public List<DataQualityAnalyzerResult> AnalyzerResults
+        {
+            get { return this._analyzerResults; }
+            set { this._analyzerResults = value; }
+        }
+
+        // Check to see if AnalyzerResults property is set
+        internal bool IsSetAnalyzerResults()
+        {
+            return this._analyzerResults != null && (this._analyzerResults.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
 
         /// <summary>
         /// Gets and sets the property CompletedOn. 
@@ -86,7 +110,7 @@ namespace Amazon.Glue.Model
         /// <para>
         /// In the context of a job in Glue Studio, each node in the canvas is typically assigned
         /// some sort of name and data quality nodes will have names. In the case of multiple
-        /// nodes, the <code>evaluationContext</code> can differentiate the nodes.
+        /// nodes, the <c>evaluationContext</c> can differentiate the nodes.
         /// </para>
         /// </summary>
         public string EvaluationContext
@@ -140,6 +164,45 @@ namespace Amazon.Glue.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Observations. 
+        /// <para>
+        /// A list of <c>DataQualityObservation</c> objects representing the observations generated
+        /// after evaluating the rules and analyzers. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=50)]
+        public List<DataQualityObservation> Observations
+        {
+            get { return this._observations; }
+            set { this._observations = value; }
+        }
+
+        // Check to see if Observations property is set
+        internal bool IsSetObservations()
+        {
+            return this._observations != null && (this._observations.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ProfileId. 
+        /// <para>
+        /// The Profile ID for the data quality result.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=255)]
+        public string ProfileId
+        {
+            get { return this._profileId; }
+            set { this._profileId = value; }
+        }
+
+        // Check to see if ProfileId property is set
+        internal bool IsSetProfileId()
+        {
+            return this._profileId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ResultId. 
         /// <para>
         /// A unique result ID for the data quality result.
@@ -161,11 +224,11 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property RuleResults. 
         /// <para>
-        /// A list of <code>DataQualityRuleResult</code> objects representing the results for
-        /// each rule. 
+        /// A list of <c>DataQualityRuleResult</c> objects representing the results for each rule.
+        /// 
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=2000)]
+        [AWSProperty(Min=0, Max=2000)]
         public List<DataQualityRuleResult> RuleResults
         {
             get { return this._ruleResults; }
@@ -175,7 +238,7 @@ namespace Amazon.Glue.Model
         // Check to see if RuleResults property is set
         internal bool IsSetRuleResults()
         {
-            return this._ruleResults != null && this._ruleResults.Count > 0; 
+            return this._ruleResults != null && (this._ruleResults.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

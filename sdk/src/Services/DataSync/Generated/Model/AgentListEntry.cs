@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
@@ -37,6 +38,7 @@ namespace Amazon.DataSync.Model
     {
         private string _agentArn;
         private string _name;
+        private Platform _platform;
         private AgentStatus _status;
 
         /// <summary>
@@ -64,7 +66,7 @@ namespace Amazon.DataSync.Model
         /// The name of an agent.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=256)]
+        [AWSProperty(Min=0, Max=256)]
         public string Name
         {
             get { return this._name; }
@@ -78,11 +80,40 @@ namespace Amazon.DataSync.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Platform. 
+        /// <para>
+        /// The platform-related details about the agent, such as the version number.
+        /// </para>
+        /// </summary>
+        public Platform Platform
+        {
+            get { return this._platform; }
+            set { this._platform = value; }
+        }
+
+        // Check to see if Platform property is set
+        internal bool IsSetPlatform()
+        {
+            return this._platform != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of an agent. For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/understand-agent-statuses.html">DataSync
-        /// agent statuses</a>.
+        /// The status of an agent.
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// If the status is <c>ONLINE</c>, the agent is configured properly and ready to use.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If the status is <c>OFFLINE</c>, the agent has been out of contact with DataSync for
+        /// five minutes or longer. This can happen for a few reasons. For more information, see
+        /// <a href="https://docs.aws.amazon.com/datasync/latest/userguide/troubleshooting-datasync-agents.html#troubleshoot-agent-offline">What
+        /// do I do if my agent is offline?</a> 
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public AgentStatus Status
         {

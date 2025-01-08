@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
-    /// Hostnames and IP address entries that are added to the <code>/etc/hosts</code> file
-    /// of a container via the <code>extraHosts</code> parameter of its <a>ContainerDefinition</a>.
+    /// Hostnames and IP address entries that are added to the <c>/etc/hosts</c> file of a
+    /// container via the <c>extraHosts</c> parameter of its <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerDefinition.html">ContainerDefinition</a>.
     /// </summary>
     public partial class HostEntry
     {
@@ -40,7 +41,7 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Hostname. 
         /// <para>
-        /// The hostname to use in the <code>/etc/hosts</code> entry.
+        /// The hostname to use in the <c>/etc/hosts</c> entry.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -59,7 +60,7 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property IpAddress. 
         /// <para>
-        /// The IP address to use in the <code>/etc/hosts</code> entry.
+        /// The IP address to use in the <c>/etc/hosts</c> entry.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

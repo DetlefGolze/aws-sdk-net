@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -40,14 +41,16 @@ namespace Amazon.IoT.Model
     /// </summary>
     public partial class UpdateSecurityProfileRequest : AmazonIoTRequest
     {
-        private List<string> _additionalMetricsToRetain = new List<string>();
-        private List<MetricToRetain> _additionalMetricsToRetainV2 = new List<MetricToRetain>();
-        private Dictionary<string, AlertTarget> _alertTargets = new Dictionary<string, AlertTarget>();
-        private List<Behavior> _behaviors = new List<Behavior>();
+        private List<string> _additionalMetricsToRetain = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<MetricToRetain> _additionalMetricsToRetainV2 = AWSConfigs.InitializeCollections ? new List<MetricToRetain>() : null;
+        private Dictionary<string, AlertTarget> _alertTargets = AWSConfigs.InitializeCollections ? new Dictionary<string, AlertTarget>() : null;
+        private List<Behavior> _behaviors = AWSConfigs.InitializeCollections ? new List<Behavior>() : null;
         private bool? _deleteAdditionalMetricsToRetain;
         private bool? _deleteAlertTargets;
         private bool? _deleteBehaviors;
+        private bool? _deleteMetricsExportConfig;
         private long? _expectedVersion;
+        private MetricsExportConfig _metricsExportConfig;
         private string _securityProfileDescription;
         private string _securityProfileName;
 
@@ -60,8 +63,8 @@ namespace Amazon.IoT.Model
         ///  
         /// <para>
         /// A list of metrics whose data is retained (stored). By default, data is retained for
-        /// any metric used in the profile's <code>behaviors</code>, but it is also retained for
-        /// any metric specified here. Can be used with custom metrics; cannot be used with dimensions.
+        /// any metric used in the profile's <c>behaviors</c>, but it is also retained for any
+        /// metric specified here. Can be used with custom metrics; cannot be used with dimensions.
         /// </para>
         /// </summary>
         [Obsolete("Use additionalMetricsToRetainV2.")]
@@ -74,7 +77,7 @@ namespace Amazon.IoT.Model
         // Check to see if AdditionalMetricsToRetain property is set
         internal bool IsSetAdditionalMetricsToRetain()
         {
-            return this._additionalMetricsToRetain != null && this._additionalMetricsToRetain.Count > 0; 
+            return this._additionalMetricsToRetain != null && (this._additionalMetricsToRetain.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -94,7 +97,7 @@ namespace Amazon.IoT.Model
         // Check to see if AdditionalMetricsToRetainV2 property is set
         internal bool IsSetAdditionalMetricsToRetainV2()
         {
-            return this._additionalMetricsToRetainV2 != null && this._additionalMetricsToRetainV2.Count > 0; 
+            return this._additionalMetricsToRetainV2 != null && (this._additionalMetricsToRetainV2.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -112,7 +115,7 @@ namespace Amazon.IoT.Model
         // Check to see if AlertTargets property is set
         internal bool IsSetAlertTargets()
         {
-            return this._alertTargets != null && this._alertTargets.Count > 0; 
+            return this._alertTargets != null && (this._alertTargets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -131,15 +134,15 @@ namespace Amazon.IoT.Model
         // Check to see if Behaviors property is set
         internal bool IsSetBehaviors()
         {
-            return this._behaviors != null && this._behaviors.Count > 0; 
+            return this._behaviors != null && (this._behaviors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DeleteAdditionalMetricsToRetain. 
         /// <para>
-        /// If true, delete all <code>additionalMetricsToRetain</code> defined for this security
-        /// profile. If any <code>additionalMetricsToRetain</code> are defined in the current
-        /// invocation, an exception occurs.
+        /// If true, delete all <c>additionalMetricsToRetain</c> defined for this security profile.
+        /// If any <c>additionalMetricsToRetain</c> are defined in the current invocation, an
+        /// exception occurs.
         /// </para>
         /// </summary>
         public bool DeleteAdditionalMetricsToRetain
@@ -157,9 +160,8 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property DeleteAlertTargets. 
         /// <para>
-        /// If true, delete all <code>alertTargets</code> defined for this security profile. If
-        /// any <code>alertTargets</code> are defined in the current invocation, an exception
-        /// occurs.
+        /// If true, delete all <c>alertTargets</c> defined for this security profile. If any
+        /// <c>alertTargets</c> are defined in the current invocation, an exception occurs.
         /// </para>
         /// </summary>
         public bool DeleteAlertTargets
@@ -177,8 +179,8 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property DeleteBehaviors. 
         /// <para>
-        /// If true, delete all <code>behaviors</code> defined for this security profile. If any
-        /// <code>behaviors</code> are defined in the current invocation, an exception occurs.
+        /// If true, delete all <c>behaviors</c> defined for this security profile. If any <c>behaviors</c>
+        /// are defined in the current invocation, an exception occurs.
         /// </para>
         /// </summary>
         public bool DeleteBehaviors
@@ -194,11 +196,29 @@ namespace Amazon.IoT.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DeleteMetricsExportConfig. 
+        /// <para>
+        /// Set the value as true to delete metrics export related configurations.
+        /// </para>
+        /// </summary>
+        public bool DeleteMetricsExportConfig
+        {
+            get { return this._deleteMetricsExportConfig.GetValueOrDefault(); }
+            set { this._deleteMetricsExportConfig = value; }
+        }
+
+        // Check to see if DeleteMetricsExportConfig property is set
+        internal bool IsSetDeleteMetricsExportConfig()
+        {
+            return this._deleteMetricsExportConfig.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property ExpectedVersion. 
         /// <para>
         /// The expected version of the security profile. A new version is generated whenever
         /// the security profile is updated. If you specify a value that is different from the
-        /// actual version, a <code>VersionConflictException</code> is thrown.
+        /// actual version, a <c>VersionConflictException</c> is thrown.
         /// </para>
         /// </summary>
         public long ExpectedVersion
@@ -211,6 +231,24 @@ namespace Amazon.IoT.Model
         internal bool IsSetExpectedVersion()
         {
             return this._expectedVersion.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property MetricsExportConfig. 
+        /// <para>
+        /// Specifies the MQTT topic and role ARN required for metric export.
+        /// </para>
+        /// </summary>
+        public MetricsExportConfig MetricsExportConfig
+        {
+            get { return this._metricsExportConfig; }
+            set { this._metricsExportConfig = value; }
+        }
+
+        // Check to see if MetricsExportConfig property is set
+        internal bool IsSetMetricsExportConfig()
+        {
+            return this._metricsExportConfig != null;
         }
 
         /// <summary>

@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
     /// This exception occurs when there is an internal failure in the Entity Resolution service.
-    /// <code>HTTP Status Code: 500</code>
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

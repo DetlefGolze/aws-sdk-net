@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AppSync.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,12 +67,19 @@ namespace Amazon.AppSync.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetApiCachingBehavior())
                 {
                     context.Writer.WritePropertyName("apiCachingBehavior");
                     context.Writer.Write(publicRequest.ApiCachingBehavior);
+                }
+
+                if(publicRequest.IsSetHealthMetricsConfig())
+                {
+                    context.Writer.WritePropertyName("healthMetricsConfig");
+                    context.Writer.Write(publicRequest.HealthMetricsConfig);
                 }
 
                 if(publicRequest.IsSetTtl())

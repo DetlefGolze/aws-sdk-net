@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Inspector2.Model
     /// </summary>
     public partial class ListUsageTotalsRequest : AmazonInspector2Request
     {
-        private List<string> _accountIds = new List<string>();
+        private List<string> _accountIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -54,13 +55,15 @@ namespace Amazon.Inspector2.Model
         // Check to see if AccountIds property is set
         internal bool IsSetAccountIds()
         {
-            return this._accountIds != null && this._accountIds.Count > 0; 
+            return this._accountIds != null && (this._accountIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The maximum number of results to return in the response.
+        /// The maximum number of results the response can return. If your request would return
+        /// more than the maximum the response will return a <c>nextToken</c> value, use this
+        /// value when you call the action again to get the remaining results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=500)]
@@ -80,9 +83,10 @@ namespace Amazon.Inspector2.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token to use for paginating results that are returned in the response. Set the value
-        /// of this parameter to null for the first request to a list action. For subsequent calls,
-        /// use the <code>NextToken</code> value returned from the previous request to continue
-        /// listing results after the first page.
+        /// of this parameter to null for the first request to a list action. If your response
+        /// returns more than the <c>maxResults</c> maximum value it will also return a <c>nextToken</c>
+        /// value. For subsequent calls, use the <c>nextToken</c> value returned from the previous
+        /// request to continue listing results after the first page.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]

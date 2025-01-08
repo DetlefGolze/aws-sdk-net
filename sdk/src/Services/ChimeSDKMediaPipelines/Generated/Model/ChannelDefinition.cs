@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMediaPipelines.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         /// <summary>
         /// Gets and sets the property ParticipantRole. 
         /// <para>
-        /// Specifies whether the audio in a channel belongs to the <code>AGENT</code> or <code>CUSTOMER</code>.
+        /// Specifies whether the audio in a channel belongs to the <c>AGENT</c> or <c>CUSTOMER</c>.
         /// </para>
         /// </summary>
         public ParticipantRole ParticipantRole

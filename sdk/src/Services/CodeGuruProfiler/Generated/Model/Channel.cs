@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruProfiler.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.CodeGuruProfiler.Model
     /// </summary>
     public partial class Channel
     {
-        private List<string> _eventPublishers = new List<string>();
+        private List<string> _eventPublishers = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _id;
         private string _uri;
 
@@ -55,15 +56,15 @@ namespace Amazon.CodeGuruProfiler.Model
         // Check to see if EventPublishers property is set
         internal bool IsSetEventPublishers()
         {
-            return this._eventPublishers != null && this._eventPublishers.Count > 0; 
+            return this._eventPublishers != null && (this._eventPublishers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        /// Unique identifier for each <code>Channel</code> in the notification configuration
-        /// of a Profiling Group. A random UUID for channelId is used when adding a channel to
-        /// the notification configuration if not specified in the request.
+        /// Unique identifier for each <c>Channel</c> in the notification configuration of a Profiling
+        /// Group. A random UUID for channelId is used when adding a channel to the notification
+        /// configuration if not specified in the request.
         /// </para>
         /// </summary>
         public string Id

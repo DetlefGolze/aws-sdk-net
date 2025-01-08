@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -33,6 +34,14 @@ namespace Amazon.LocationService.Model
         internal LocationServicePaginatorFactory(IAmazonLocationService client) 
         {
             this.client = client;
+        }
+
+        /// <summary>
+        /// Paginator for ForecastGeofenceEvents operation
+        ///</summary>
+        public IForecastGeofenceEventsPaginator ForecastGeofenceEvents(ForecastGeofenceEventsRequest request) 
+        {
+            return new ForecastGeofenceEventsPaginator(this.client, request);
         }
 
         /// <summary>

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Backup.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Backup.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public BackupRule Unmarshall(JsonUnmarshallerContext context)
         {
+            BackupRule unmarshalledObject = new BackupRule();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            BackupRule unmarshalledObject = new BackupRule();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -80,6 +82,12 @@ namespace Amazon.Backup.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = BoolUnmarshaller.Instance;
                     unmarshalledObject.EnableContinuousBackup = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("IndexActions", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<IndexAction, IndexActionUnmarshaller>(IndexActionUnmarshaller.Instance);
+                    unmarshalledObject.IndexActions = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Lifecycle", targetDepth))
@@ -131,7 +139,6 @@ namespace Amazon.Backup.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

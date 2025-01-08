@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MTurk.Model
 {
     /// <summary>
     /// Container for the parameters to the SendTestEventNotification operation.
-    /// The <code>SendTestEventNotification</code> operation causes Amazon Mechanical Turk
-    /// to send a notification message as if a HIT event occurred, according to the provided
-    /// notification specification. This allows you to test notifications without setting
-    /// up notifications for a real HIT type and trying to trigger them using the website.
-    /// When you call this operation, the service attempts to send the test notification immediately.
+    /// The <c>SendTestEventNotification</c> operation causes Amazon Mechanical Turk to send
+    /// a notification message as if a HIT event occurred, according to the provided notification
+    /// specification. This allows you to test notifications without setting up notifications
+    /// for a real HIT type and trying to trigger them using the website. When you call this
+    /// operation, the service attempts to send the test notification immediately.
     /// </summary>
     public partial class SendTestEventNotificationRequest : AmazonMTurkRequest
     {

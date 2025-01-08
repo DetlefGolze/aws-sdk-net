@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glacier.Model
 {
     /// <summary>
@@ -39,12 +40,11 @@ namespace Amazon.Glacier.Model
     /// <para>
     /// The List Multipart Uploads operation supports pagination. By default, this operation
     /// returns up to 50 multipart uploads in the response. You should always check the response
-    /// for a <code>marker</code> at which to continue the list; if there are no more items
-    /// the <code>marker</code> is <code>null</code>. To return a list of multipart uploads
-    /// that begins at a specific upload, set the <code>marker</code> request parameter to
-    /// the value you obtained from a previous List Multipart Upload request. You can also
-    /// limit the number of uploads returned in the response by specifying the <code>limit</code>
-    /// parameter in the request.
+    /// for a <c>marker</c> at which to continue the list; if there are no more items the
+    /// <c>marker</c> is <c>null</c>. To return a list of multipart uploads that begins at
+    /// a specific upload, set the <c>marker</c> request parameter to the value you obtained
+    /// from a previous List Multipart Upload request. You can also limit the number of uploads
+    /// returned in the response by specifying the <c>limit</c> parameter in the request.
     /// </para>
     ///  
     /// <para>
@@ -92,7 +92,7 @@ namespace Amazon.Glacier.Model
         /// <summary>
         /// Instantiates ListMultipartUploadsRequest with the parameterized properties
         /// </summary>
-        /// <param name="accountId">The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. </param>
+        /// <param name="accountId">The <c>AccountId</c> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<c>-</c>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. </param>
         /// <param name="vaultName">The name of the vault.</param>
         public ListMultipartUploadsRequest(string accountId, string vaultName)
         {
@@ -103,11 +103,11 @@ namespace Amazon.Glacier.Model
         /// <summary>
         /// Gets and sets the property AccountId. 
         /// <para>
-        /// The <code>AccountId</code> value is the AWS account ID of the account that owns the
-        /// vault. You can either specify an AWS account ID or optionally a single '<code>-</code>'
-        /// (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with
-        /// the credentials used to sign the request. If you use an account ID, do not include
-        /// any hyphens ('-') in the ID. 
+        /// The <c>AccountId</c> value is the AWS account ID of the account that owns the vault.
+        /// You can either specify an AWS account ID or optionally a single '<c>-</c>' (hyphen),
+        /// in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials
+        /// used to sign the request. If you use an account ID, do not include any hyphens ('-')
+        /// in the ID. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

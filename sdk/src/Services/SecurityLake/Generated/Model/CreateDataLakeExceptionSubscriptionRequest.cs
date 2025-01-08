@@ -26,12 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityLake.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateDataLakeExceptionSubscription operation.
     /// Creates the specified notification subscription in Amazon Security Lake for the organization
-    /// you specify.
+    /// you specify. The notification subscription is created for exceptions that cannot be
+    /// resolved by Security Lake automatically.
     /// </summary>
     public partial class CreateDataLakeExceptionSubscriptionRequest : AmazonSecurityLakeRequest
     {
@@ -42,7 +44,8 @@ namespace Amazon.SecurityLake.Model
         /// <summary>
         /// Gets and sets the property ExceptionTimeToLive. 
         /// <para>
-        /// The expiration period and time-to-live (TTL).
+        /// The expiration period and time-to-live (TTL). It is the duration of time until which
+        /// the exception message remains.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]

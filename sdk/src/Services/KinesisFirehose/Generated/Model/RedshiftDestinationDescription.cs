@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
@@ -42,12 +43,13 @@ namespace Amazon.KinesisFirehose.Model
         private S3DestinationDescription _s3BackupDescription;
         private RedshiftS3BackupMode _s3BackupMode;
         private S3DestinationDescription _s3DestinationDescription;
+        private SecretsManagerConfiguration _secretsManagerConfiguration;
         private string _username;
 
         /// <summary>
         /// Gets and sets the property CloudWatchLoggingOptions. 
         /// <para>
-        /// The Amazon CloudWatch logging options for your delivery stream.
+        /// The Amazon CloudWatch logging options for your Firehose stream.
         /// </para>
         /// </summary>
         public CloudWatchLoggingOptions CloudWatchLoggingOptions
@@ -84,7 +86,7 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property CopyCommand. 
         /// <para>
-        /// The <code>COPY</code> command.
+        /// The <c>COPY</c> command.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -121,8 +123,8 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property RetryOptions. 
         /// <para>
-        /// The retry behavior in case Kinesis Data Firehose is unable to deliver documents to
-        /// Amazon Redshift. Default value is 3600 (60 minutes).
+        /// The retry behavior in case Firehose is unable to deliver documents to Amazon Redshift.
+        /// Default value is 3600 (60 minutes).
         /// </para>
         /// </summary>
         public RedshiftRetryOptions RetryOptions
@@ -214,12 +216,30 @@ namespace Amazon.KinesisFirehose.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SecretsManagerConfiguration. 
+        /// <para>
+        ///  The configuration that defines how you access secrets for Amazon Redshift. 
+        /// </para>
+        /// </summary>
+        public SecretsManagerConfiguration SecretsManagerConfiguration
+        {
+            get { return this._secretsManagerConfiguration; }
+            set { this._secretsManagerConfiguration = value; }
+        }
+
+        // Check to see if SecretsManagerConfiguration property is set
+        internal bool IsSetSecretsManagerConfiguration()
+        {
+            return this._secretsManagerConfiguration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Username. 
         /// <para>
         /// The name of the user.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Sensitive=true, Min=1, Max=512)]
+        [AWSProperty(Sensitive=true, Min=1, Max=512)]
         public string Username
         {
             get { return this._username; }

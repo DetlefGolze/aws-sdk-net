@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruProfiler.Model
 {
     /// <summary>
@@ -34,11 +35,11 @@ namespace Amazon.CodeGuruProfiler.Model
     public partial class BatchGetFrameMetricDataResponse : AmazonWebServiceResponse
     {
         private DateTime? _endTime;
-        private List<TimestampStructure> _endTimes = new List<TimestampStructure>();
-        private List<FrameMetricDatum> _frameMetricData = new List<FrameMetricDatum>();
+        private List<TimestampStructure> _endTimes = AWSConfigs.InitializeCollections ? new List<TimestampStructure>() : null;
+        private List<FrameMetricDatum> _frameMetricData = AWSConfigs.InitializeCollections ? new List<FrameMetricDatum>() : null;
         private AggregationPeriod _resolution;
         private DateTime? _startTime;
-        private Dictionary<string, List<TimestampStructure>> _unprocessedEndTimes = new Dictionary<string, List<TimestampStructure>>();
+        private Dictionary<string, List<TimestampStructure>> _unprocessedEndTimes = AWSConfigs.InitializeCollections ? new Dictionary<string, List<TimestampStructure>>() : null;
 
         /// <summary>
         /// Gets and sets the property EndTime. 
@@ -64,10 +65,10 @@ namespace Amazon.CodeGuruProfiler.Model
         /// <summary>
         /// Gets and sets the property EndTimes. 
         /// <para>
-        ///  List of instances, or time steps, in the time series. For example, if the <code>period</code>
-        /// is one day (<code>PT24H)</code>), and the <code>resolution</code> is five minutes
-        /// (<code>PT5M</code>), then there are 288 <code>endTimes</code> in the list that are
-        /// each five minutes appart. 
+        ///  List of instances, or time steps, in the time series. For example, if the <c>period</c>
+        /// is one day (<c>PT24H)</c>), and the <c>resolution</c> is five minutes (<c>PT5M</c>),
+        /// then there are 288 <c>endTimes</c> in the list that are each five minutes appart.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -80,7 +81,7 @@ namespace Amazon.CodeGuruProfiler.Model
         // Check to see if EndTimes property is set
         internal bool IsSetEndTimes()
         {
-            return this._endTimes != null && this._endTimes.Count > 0; 
+            return this._endTimes != null && (this._endTimes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -101,7 +102,7 @@ namespace Amazon.CodeGuruProfiler.Model
         // Check to see if FrameMetricData property is set
         internal bool IsSetFrameMetricData()
         {
-            return this._frameMetricData != null && this._frameMetricData.Count > 0; 
+            return this._frameMetricData != null && (this._frameMetricData.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -113,15 +114,15 @@ namespace Amazon.CodeGuruProfiler.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>P1D</code> — 1 day 
+        ///  <c>P1D</c> — 1 day 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PT1H</code> — 1 hour 
+        ///  <c>PT1H</c> — 1 hour 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PT5M</code> — 5 minutes 
+        ///  <c>PT5M</c> — 5 minutes 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -176,7 +177,7 @@ namespace Amazon.CodeGuruProfiler.Model
         // Check to see if UnprocessedEndTimes property is set
         internal bool IsSetUnprocessedEndTimes()
         {
-            return this._unprocessedEndTimes != null && this._unprocessedEndTimes.Count > 0; 
+            return this._unprocessedEndTimes != null && (this._unprocessedEndTimes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRunner.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.AppRunner.Model
     /// 
     ///  
     /// <para>
-    /// Multiple revisions of a connector might have the same <code>Name</code> and different
-    /// <code>Revision</code> values.
+    /// Multiple revisions of a connector might have the same <c>Name</c> and different <c>Revision</c>
+    /// values.
     /// </para>
     ///  <note> 
     /// <para>
@@ -48,9 +49,9 @@ namespace Amazon.AppRunner.Model
     {
         private DateTime? _createdAt;
         private DateTime? _deletedAt;
-        private List<string> _securityGroups = new List<string>();
+        private List<string> _securityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private VpcConnectorStatus _status;
-        private List<string> _subnets = new List<string>();
+        private List<string> _subnets = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _vpcConnectorArn;
         private string _vpcConnectorName;
         private int? _vpcConnectorRevision;
@@ -108,13 +109,13 @@ namespace Amazon.AppRunner.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The current state of the VPC connector. If the status of a connector revision is <code>INACTIVE</code>,
+        /// The current state of the VPC connector. If the status of a connector revision is <c>INACTIVE</c>,
         /// it was deleted and can't be used. Inactive connector revisions are permanently removed
         /// some time after they are deleted.
         /// </para>
@@ -147,7 +148,7 @@ namespace Amazon.AppRunner.Model
         // Check to see if Subnets property is set
         internal bool IsSetSubnets()
         {
-            return this._subnets != null && this._subnets.Count > 0; 
+            return this._subnets != null && (this._subnets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -191,8 +192,8 @@ namespace Amazon.AppRunner.Model
         /// <summary>
         /// Gets and sets the property VpcConnectorRevision. 
         /// <para>
-        /// The revision of this VPC connector. It's unique among all the active connectors (<code>"Status":
-        /// "ACTIVE"</code>) that share the same <code>Name</code>.
+        /// The revision of this VPC connector. It's unique among all the active connectors (<c>"Status":
+        /// "ACTIVE"</c>) that share the same <c>Name</c>.
         /// </para>
         ///  <note> 
         /// <para>

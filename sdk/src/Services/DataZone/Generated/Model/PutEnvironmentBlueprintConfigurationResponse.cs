@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -35,11 +36,13 @@ namespace Amazon.DataZone.Model
     {
         private DateTime? _createdAt;
         private string _domainId;
-        private List<string> _enabledRegions = new List<string>();
+        private List<string> _enabledRegions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _environmentBlueprintId;
+        private string _environmentRolePermissionBoundary;
         private string _manageAccessRoleArn;
+        private List<ProvisioningConfiguration> _provisioningConfigurations = AWSConfigs.InitializeCollections ? new List<ProvisioningConfiguration>() : null;
         private string _provisioningRoleArn;
-        private Dictionary<string, Dictionary<string, string>> _regionalParameters = new Dictionary<string, Dictionary<string, string>>();
+        private Dictionary<string, Dictionary<string, string>> _regionalParameters = AWSConfigs.InitializeCollections ? new Dictionary<string, Dictionary<string, string>>() : null;
         private DateTime? _updatedAt;
 
         /// <summary>
@@ -95,7 +98,7 @@ namespace Amazon.DataZone.Model
         // Check to see if EnabledRegions property is set
         internal bool IsSetEnabledRegions()
         {
-            return this._enabledRegions != null && this._enabledRegions.Count > 0; 
+            return this._enabledRegions != null && (this._enabledRegions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -118,6 +121,24 @@ namespace Amazon.DataZone.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EnvironmentRolePermissionBoundary. 
+        /// <para>
+        /// The environment role permissions boundary.
+        /// </para>
+        /// </summary>
+        public string EnvironmentRolePermissionBoundary
+        {
+            get { return this._environmentRolePermissionBoundary; }
+            set { this._environmentRolePermissionBoundary = value; }
+        }
+
+        // Check to see if EnvironmentRolePermissionBoundary property is set
+        internal bool IsSetEnvironmentRolePermissionBoundary()
+        {
+            return this._environmentRolePermissionBoundary != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ManageAccessRoleArn. 
         /// <para>
         /// The ARN of the manage access role.
@@ -133,6 +154,24 @@ namespace Amazon.DataZone.Model
         internal bool IsSetManageAccessRoleArn()
         {
             return this._manageAccessRoleArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ProvisioningConfigurations. 
+        /// <para>
+        /// The provisioning configuration of a blueprint.
+        /// </para>
+        /// </summary>
+        public List<ProvisioningConfiguration> ProvisioningConfigurations
+        {
+            get { return this._provisioningConfigurations; }
+            set { this._provisioningConfigurations = value; }
+        }
+
+        // Check to see if ProvisioningConfigurations property is set
+        internal bool IsSetProvisioningConfigurations()
+        {
+            return this._provisioningConfigurations != null && (this._provisioningConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -168,7 +207,7 @@ namespace Amazon.DataZone.Model
         // Check to see if RegionalParameters property is set
         internal bool IsSetRegionalParameters()
         {
-            return this._regionalParameters != null && this._regionalParameters.Count > 0; 
+            return this._regionalParameters != null && (this._regionalParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

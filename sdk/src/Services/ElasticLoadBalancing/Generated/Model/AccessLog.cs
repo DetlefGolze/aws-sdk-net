@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancing.Model
 {
     /// <summary>
-    /// Information about the <code>AccessLog</code> attribute.
+    /// Information about the <c>AccessLog</c> attribute.
     /// </summary>
     public partial class AccessLog
     {
@@ -101,7 +102,7 @@ namespace Amazon.ElasticLoadBalancing.Model
         /// <summary>
         /// Gets and sets the property S3BucketPrefix. 
         /// <para>
-        /// The logical hierarchy you created for your Amazon S3 bucket, for example <code>my-bucket-prefix/prod</code>.
+        /// The logical hierarchy you created for your Amazon S3 bucket, for example <c>my-bucket-prefix/prod</c>.
         /// If the prefix is not provided, the log is placed at the root level of the bucket.
         /// </para>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServerMigrationService.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ServerMigrationService.Model
     /// </summary>
     public partial class ListAppsRequest : AmazonServerMigrationServiceRequest
     {
-        private List<string> _appIds = new List<string>();
+        private List<string> _appIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -53,14 +54,14 @@ namespace Amazon.ServerMigrationService.Model
         // Check to see if AppIds property is set
         internal bool IsSetAppIds()
         {
-            return this._appIds != null && this._appIds.Count > 0; 
+            return this._appIds != null && (this._appIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to return in a single call. The default value is 100.
-        /// To retrieve the remaining results, make another call with the returned <code>NextToken</code>
+        /// To retrieve the remaining results, make another call with the returned <c>NextToken</c>
         /// value. 
         /// </para>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class AwsEcsServiceDetails
     {
-        private List<AwsEcsServiceCapacityProviderStrategyDetails> _capacityProviderStrategy = new List<AwsEcsServiceCapacityProviderStrategyDetails>();
+        private List<AwsEcsServiceCapacityProviderStrategyDetails> _capacityProviderStrategy = AWSConfigs.InitializeCollections ? new List<AwsEcsServiceCapacityProviderStrategyDetails>() : null;
         private string _cluster;
         private AwsEcsServiceDeploymentConfigurationDetails _deploymentConfiguration;
         private AwsEcsServiceDeploymentControllerDetails _deploymentController;
@@ -42,18 +43,18 @@ namespace Amazon.SecurityHub.Model
         private bool? _enableExecuteCommand;
         private int? _healthCheckGracePeriodSeconds;
         private string _launchType;
-        private List<AwsEcsServiceLoadBalancersDetails> _loadBalancers = new List<AwsEcsServiceLoadBalancersDetails>();
+        private List<AwsEcsServiceLoadBalancersDetails> _loadBalancers = AWSConfigs.InitializeCollections ? new List<AwsEcsServiceLoadBalancersDetails>() : null;
         private string _name;
         private AwsEcsServiceNetworkConfigurationDetails _networkConfiguration;
-        private List<AwsEcsServicePlacementConstraintsDetails> _placementConstraints = new List<AwsEcsServicePlacementConstraintsDetails>();
-        private List<AwsEcsServicePlacementStrategiesDetails> _placementStrategies = new List<AwsEcsServicePlacementStrategiesDetails>();
+        private List<AwsEcsServicePlacementConstraintsDetails> _placementConstraints = AWSConfigs.InitializeCollections ? new List<AwsEcsServicePlacementConstraintsDetails>() : null;
+        private List<AwsEcsServicePlacementStrategiesDetails> _placementStrategies = AWSConfigs.InitializeCollections ? new List<AwsEcsServicePlacementStrategiesDetails>() : null;
         private string _platformVersion;
         private string _propagateTags;
         private string _role;
         private string _schedulingStrategy;
         private string _serviceArn;
         private string _serviceName;
-        private List<AwsEcsServiceServiceRegistriesDetails> _serviceRegistries = new List<AwsEcsServiceServiceRegistriesDetails>();
+        private List<AwsEcsServiceServiceRegistriesDetails> _serviceRegistries = AWSConfigs.InitializeCollections ? new List<AwsEcsServiceServiceRegistriesDetails>() : null;
         private string _taskDefinition;
 
         /// <summary>
@@ -71,7 +72,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if CapacityProviderStrategy property is set
         internal bool IsSetCapacityProviderStrategy()
         {
-            return this._capacityProviderStrategy != null && this._capacityProviderStrategy.Count > 0; 
+            return this._capacityProviderStrategy != null && (this._capacityProviderStrategy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -209,7 +210,7 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>EC2</code> | <code>FARGATE</code> | <code>EXTERNAL</code> 
+        /// Valid values: <c>EC2</c> | <c>FARGATE</c> | <c>EXTERNAL</c> 
         /// </para>
         /// </summary>
         public string LaunchType
@@ -239,7 +240,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if LoadBalancers property is set
         internal bool IsSetLoadBalancers()
         {
-            return this._loadBalancers != null && this._loadBalancers.Count > 0; 
+            return this._loadBalancers != null && (this._loadBalancers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -263,7 +264,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property NetworkConfiguration. 
         /// <para>
-        /// For tasks that use the <code>awsvpc</code> networking mode, the VPC subnet and security
+        /// For tasks that use the <c>awsvpc</c> networking mode, the VPC subnet and security
         /// group configuration.
         /// </para>
         /// </summary>
@@ -294,7 +295,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if PlacementConstraints property is set
         internal bool IsSetPlacementConstraints()
         {
-            return this._placementConstraints != null && this._placementConstraints.Count > 0; 
+            return this._placementConstraints != null && (this._placementConstraints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -312,15 +313,15 @@ namespace Amazon.SecurityHub.Model
         // Check to see if PlacementStrategies property is set
         internal bool IsSetPlacementStrategies()
         {
-            return this._placementStrategies != null && this._placementStrategies.Count > 0; 
+            return this._placementStrategies != null && (this._placementStrategies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PlatformVersion. 
         /// <para>
         /// The platform version on which to run the service. Only specified for tasks that are
-        /// hosted on Fargate. If a platform version is not specified, the <code>LATEST</code>
-        /// platform version is used by default.
+        /// hosted on Fargate. If a platform version is not specified, the <c>LATEST</c> platform
+        /// version is used by default.
         /// </para>
         /// </summary>
         public string PlatformVersion
@@ -343,7 +344,7 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>TASK_DEFINITION</code> | <code>SERVICE</code> 
+        /// Valid values: <c>TASK_DEFINITION</c> | <c>SERVICE</c> 
         /// </para>
         /// </summary>
         public string PropagateTags
@@ -385,21 +386,21 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// The <code>REPLICA</code> scheduling strategy places and maintains the desired number
-        /// of tasks across the cluster. By default, the service scheduler spreads tasks across
-        /// Availability Zones. Task placement strategies and constraints are used to customize
-        /// task placement decisions.
+        /// The <c>REPLICA</c> scheduling strategy places and maintains the desired number of
+        /// tasks across the cluster. By default, the service scheduler spreads tasks across Availability
+        /// Zones. Task placement strategies and constraints are used to customize task placement
+        /// decisions.
         /// </para>
         ///  
         /// <para>
-        /// The <code>DAEMON</code> scheduling strategy deploys exactly one task on each active
-        /// container instance that meets all of the task placement constraints that are specified
-        /// in the cluster. The service scheduler also evaluates the task placement constraints
-        /// for running tasks and stops tasks that do not meet the placement constraints.
+        /// The <c>DAEMON</c> scheduling strategy deploys exactly one task on each active container
+        /// instance that meets all of the task placement constraints that are specified in the
+        /// cluster. The service scheduler also evaluates the task placement constraints for running
+        /// tasks and stops tasks that don't meet the placement constraints.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>REPLICA</code> | <code>DAEMON</code> 
+        /// Valid values: <c>REPLICA</c> | <c>DAEMON</c> 
         /// </para>
         /// </summary>
         public string SchedulingStrategy
@@ -470,7 +471,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ServiceRegistries property is set
         internal bool IsSetServiceRegistries()
         {
-            return this._serviceRegistries != null && this._serviceRegistries.Count > 0; 
+            return this._serviceRegistries != null && (this._serviceRegistries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

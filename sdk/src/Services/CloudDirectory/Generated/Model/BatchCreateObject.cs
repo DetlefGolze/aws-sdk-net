@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
@@ -35,9 +36,9 @@ namespace Amazon.CloudDirectory.Model
     {
         private string _batchReferenceName;
         private string _linkName;
-        private List<AttributeKeyAndValue> _objectAttributeList = new List<AttributeKeyAndValue>();
+        private List<AttributeKeyAndValue> _objectAttributeList = AWSConfigs.InitializeCollections ? new List<AttributeKeyAndValue>() : null;
         private ObjectReference _parentReference;
-        private List<SchemaFacet> _schemaFacet = new List<SchemaFacet>();
+        private List<SchemaFacet> _schemaFacet = AWSConfigs.InitializeCollections ? new List<SchemaFacet>() : null;
 
         /// <summary>
         /// Gets and sets the property BatchReferenceName. 
@@ -94,7 +95,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if ObjectAttributeList property is set
         internal bool IsSetObjectAttributeList()
         {
-            return this._objectAttributeList != null && this._objectAttributeList.Count > 0; 
+            return this._objectAttributeList != null && (this._objectAttributeList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -118,8 +119,8 @@ namespace Amazon.CloudDirectory.Model
         /// <summary>
         /// Gets and sets the property SchemaFacet. 
         /// <para>
-        /// A list of <code>FacetArns</code> that will be associated with the object. For more
-        /// information, see <a>arns</a>.
+        /// A list of <c>FacetArns</c> that will be associated with the object. For more information,
+        /// see <a>arns</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -132,7 +133,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if SchemaFacet property is set
         internal bool IsSetSchemaFacet()
         {
-            return this._schemaFacet != null && this._schemaFacet.Count > 0; 
+            return this._schemaFacet != null && (this._schemaFacet.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

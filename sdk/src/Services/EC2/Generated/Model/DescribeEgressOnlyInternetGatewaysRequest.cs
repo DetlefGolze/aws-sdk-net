@@ -26,16 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeEgressOnlyInternetGateways operation.
-    /// Describes one or more of your egress-only internet gateways.
+    /// Describes your egress-only internet gateways. The default is to describe all your
+    /// egress-only internet gateways. Alternatively, you can specify specific egress-only
+    /// internet gateway IDs or filter the results to include only the egress-only internet
+    /// gateways that match specific criteria.
     /// </summary>
     public partial class DescribeEgressOnlyInternetGatewaysRequest : AmazonEC2Request
     {
-        private List<string> _egressOnlyInternetGatewayIds = new List<string>();
-        private List<Filter> _filters = new List<Filter>();
+        private List<string> _egressOnlyInternetGatewayIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -54,7 +58,7 @@ namespace Amazon.EC2.Model
         // Check to see if EgressOnlyInternetGatewayIds property is set
         internal bool IsSetEgressOnlyInternetGatewayIds()
         {
-            return this._egressOnlyInternetGatewayIds != null && this._egressOnlyInternetGatewayIds.Count > 0; 
+            return this._egressOnlyInternetGatewayIds != null && (this._egressOnlyInternetGatewayIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -64,16 +68,15 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the
-        /// resource. Use the tag key in the filter name and the tag value as the filter value.
-        /// For example, to find all resources that have a tag with the key <code>Owner</code>
-        /// and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name
-        /// and <code>TeamA</code> for the filter value.
+        ///  <c>tag</c> - The key/value combination of a tag assigned to the resource. Use the
+        /// tag key in the filter name and the tag value as the filter value. For example, to
+        /// find all resources that have a tag with the key <c>Owner</c> and the value <c>TeamA</c>,
+        /// specify <c>tag:Owner</c> for the filter name and <c>TeamA</c> for the filter value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter
-        /// to find all resources assigned a tag with a specific key, regardless of the tag value.
+        ///  <c>tag-key</c> - The key of a tag assigned to the resource. Use this filter to find
+        /// all resources assigned a tag with a specific key, regardless of the tag value.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -86,7 +89,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

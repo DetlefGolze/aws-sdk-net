@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -38,6 +39,11 @@ namespace Amazon.Connect.Model
     /// not attach any storage, such as Amazon Simple Storage Service (Amazon S3) or Amazon
     /// Kinesis. It also does not allow for any configurations on features, such as Contact
     /// Lens for Amazon Connect. 
+    /// </para>
+    ///  
+    /// <para>
+    /// For more information, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-instances.html">Create
+    /// an Amazon Connect instance</a> in the <i>Amazon Connect Administrator Guide</i>.
     /// </para>
     ///  
     /// <para>
@@ -56,6 +62,7 @@ namespace Amazon.Connect.Model
         private bool? _inboundCallsEnabled;
         private string _instanceAlias;
         private bool? _outboundCallsEnabled;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
@@ -169,6 +176,26 @@ namespace Amazon.Connect.Model
         internal bool IsSetOutboundCallsEnabled()
         {
             return this._outboundCallsEnabled.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Tags. 
+        /// <para>
+        /// The tags used to organize, track, or control access for this resource. For example,
+        /// <c>{ "tags": {"key1":"value1", "key2":"value2"} }</c>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=50)]
+        public Dictionary<string, string> Tags
+        {
+            get { return this._tags; }
+            set { this._tags = value; }
+        }
+
+        // Check to see if Tags property is set
+        internal bool IsSetTags()
+        {
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

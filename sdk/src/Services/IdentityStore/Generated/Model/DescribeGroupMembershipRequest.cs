@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityStore.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeGroupMembership operation.
-    /// Retrieves membership metadata and attributes from <code>MembershipId</code> in an
-    /// identity store.
+    /// Retrieves membership metadata and attributes from <c>MembershipId</c> in an identity
+    /// store.
     /// 
     ///  <note> 
     /// <para>
@@ -68,7 +69,7 @@ namespace Amazon.IdentityStore.Model
         /// <summary>
         /// Gets and sets the property MembershipId. 
         /// <para>
-        /// The identifier for a <code>GroupMembership</code> in an identity store.
+        /// The identifier for a <c>GroupMembership</c> in an identity store.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=47)]

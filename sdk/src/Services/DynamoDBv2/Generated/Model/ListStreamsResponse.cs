@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
-    /// Represents the output of a <code>ListStreams</code> operation.
+    /// Represents the output of a <c>ListStreams</c> operation.
     /// </summary>
     public partial class ListStreamsResponse : AmazonWebServiceResponse
     {
         private string _lastEvaluatedStreamArn;
-        private List<StreamSummary> _streams = new List<StreamSummary>();
+        private List<StreamSummary> _streams = AWSConfigs.InitializeCollections ? new List<StreamSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property LastEvaluatedStreamArn. 
@@ -45,14 +46,14 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  
         /// <para>
-        /// If <code>LastEvaluatedStreamArn</code> is empty, then the "last page" of results has
-        /// been processed and there is no more data to be retrieved.
+        /// If <c>LastEvaluatedStreamArn</c> is empty, then the "last page" of results has been
+        /// processed and there is no more data to be retrieved.
         /// </para>
         ///  
         /// <para>
-        /// If <code>LastEvaluatedStreamArn</code> is not empty, it does not necessarily mean
-        /// that there is more data in the result set. The only way to know when you have reached
-        /// the end of the result set is when <code>LastEvaluatedStreamArn</code> is empty.
+        /// If <c>LastEvaluatedStreamArn</c> is not empty, it does not necessarily mean that there
+        /// is more data in the result set. The only way to know when you have reached the end
+        /// of the result set is when <c>LastEvaluatedStreamArn</c> is empty.
         /// </para>
         /// </summary>
         [AWSProperty(Min=37, Max=1024)]
@@ -83,7 +84,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if Streams property is set
         internal bool IsSetStreams()
         {
-            return this._streams != null && this._streams.Count > 0; 
+            return this._streams != null && (this._streams.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

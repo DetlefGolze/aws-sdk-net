@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoT.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -55,7 +56,6 @@ namespace Amazon.IoT.Model.Internal.MarshallTransformations
         public IRequest Marshall(StopThingRegistrationTaskRequest publicRequest)
         {
             IRequest request = new DefaultRequest(publicRequest, "Amazon.IoT");
-            request.Headers["Content-Type"] = "application/json";
             request.Headers[Amazon.Util.HeaderKeys.XAmzApiVersion] = "2015-05-28";
             request.HttpMethod = "PUT";
 

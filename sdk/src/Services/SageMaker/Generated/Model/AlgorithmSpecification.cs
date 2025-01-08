@@ -26,13 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Specifies the training algorithm to use in a <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html">CreateTrainingJob</a>
     /// request.
     /// 
-    ///  
+    ///  <important> 
+    /// <para>
+    /// SageMaker uses its own SageMaker account credentials to pull and access built-in algorithms
+    /// so built-in algorithms are universally accessible across all Amazon Web Services accounts.
+    /// As a result, built-in algorithms have standard, unrestricted access. You cannot restrict
+    /// built-in algorithms using IAM roles. Use custom algorithms if you require specific
+    /// access controls.
+    /// </para>
+    ///  </important> 
     /// <para>
     /// For more information about algorithms provided by SageMaker, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html">Algorithms</a>.
     /// For information about using your own algorithms, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html">Using
@@ -42,10 +51,10 @@ namespace Amazon.SageMaker.Model
     public partial class AlgorithmSpecification
     {
         private string _algorithmName;
-        private List<string> _containerArguments = new List<string>();
-        private List<string> _containerEntrypoint = new List<string>();
+        private List<string> _containerArguments = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _containerEntrypoint = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _enableSageMakerMetricsTimeSeries;
-        private List<MetricDefinition> _metricDefinitions = new List<MetricDefinition>();
+        private List<MetricDefinition> _metricDefinitions = AWSConfigs.InitializeCollections ? new List<MetricDefinition>() : null;
         private string _trainingImage;
         private TrainingImageConfig _trainingImageConfig;
         private TrainingInputMode _trainingInputMode;
@@ -58,19 +67,19 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// You must specify either the algorithm name to the <code>AlgorithmName</code> parameter
-        /// or the image URI of the algorithm container to the <code>TrainingImage</code> parameter.
+        /// You must specify either the algorithm name to the <c>AlgorithmName</c> parameter or
+        /// the image URI of the algorithm container to the <c>TrainingImage</c> parameter.
         /// </para>
         ///  
         /// <para>
-        /// Note that the <code>AlgorithmName</code> parameter is mutually exclusive with the
-        /// <code>TrainingImage</code> parameter. If you specify a value for the <code>AlgorithmName</code>
-        /// parameter, you can't specify a value for <code>TrainingImage</code>, and vice versa.
+        /// Note that the <c>AlgorithmName</c> parameter is mutually exclusive with the <c>TrainingImage</c>
+        /// parameter. If you specify a value for the <c>AlgorithmName</c> parameter, you can't
+        /// specify a value for <c>TrainingImage</c>, and vice versa.
         /// </para>
         ///  
         /// <para>
         /// If you specify values for both parameters, the training job might break; if you don't
-        /// specify any value for both parameters, the training job might raise a <code>null</code>
+        /// specify any value for both parameters, the training job might raise a <c>null</c>
         /// error.
         /// </para>
         ///  </note>
@@ -105,7 +114,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if ContainerArguments property is set
         internal bool IsSetContainerArguments()
         {
-            return this._containerArguments != null && this._containerArguments.Count > 0; 
+            return this._containerArguments != null && (this._containerArguments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -117,7 +126,7 @@ namespace Amazon.SageMaker.Model
         /// Amazon SageMaker Runs Your Training Image</a> for more information.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=10)]
+        [AWSProperty(Min=1, Max=100)]
         public List<string> ContainerEntrypoint
         {
             get { return this._containerEntrypoint; }
@@ -127,15 +136,15 @@ namespace Amazon.SageMaker.Model
         // Check to see if ContainerEntrypoint property is set
         internal bool IsSetContainerEntrypoint()
         {
-            return this._containerEntrypoint != null && this._containerEntrypoint.Count > 0; 
+            return this._containerEntrypoint != null && (this._containerEntrypoint.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property EnableSageMakerMetricsTimeSeries. 
         /// <para>
-        /// To generate and save time-series metrics during training, set to <code>true</code>.
-        /// The default is <code>false</code> and time-series metrics aren't generated except
-        /// in the following cases:
+        /// To generate and save time-series metrics during training, set to <c>true</c>. The
+        /// default is <c>false</c> and time-series metrics aren't generated except in the following
+        /// cases:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -195,7 +204,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if MetricDefinitions property is set
         internal bool IsSetMetricDefinitions()
         {
-            return this._metricDefinitions != null && this._metricDefinitions.Count > 0; 
+            return this._metricDefinitions != null && (this._metricDefinitions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -204,19 +213,19 @@ namespace Amazon.SageMaker.Model
         /// The registry path of the Docker image that contains the training algorithm. For information
         /// about docker registry paths for SageMaker built-in algorithms, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html">Docker
         /// Registry Paths and Example Code</a> in the <i>Amazon SageMaker developer guide</i>.
-        /// SageMaker supports both <code>registry/repository[:tag]</code> and <code>registry/repository[@digest]</code>
+        /// SageMaker supports both <c>registry/repository[:tag]</c> and <c>registry/repository[@digest]</c>
         /// image path formats. For more information about using your custom training container,
         /// see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html">Using
         /// Your Own Algorithms with Amazon SageMaker</a>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// You must specify either the algorithm name to the <code>AlgorithmName</code> parameter
-        /// or the image URI of the algorithm container to the <code>TrainingImage</code> parameter.
+        /// You must specify either the algorithm name to the <c>AlgorithmName</c> parameter or
+        /// the image URI of the algorithm container to the <c>TrainingImage</c> parameter.
         /// </para>
         ///  
         /// <para>
-        /// For more information, see the note in the <code>AlgorithmName</code> parameter description.
+        /// For more information, see the note in the <c>AlgorithmName</c> parameter description.
         /// </para>
         ///  </note>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.TranscribeService.Model
     /// </summary>
     public partial class SubtitlesOutput
     {
-        private List<string> _formats = new List<string>();
+        private List<string> _formats = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _outputStartIndex;
-        private List<string> _subtitleFileUris = new List<string>();
+        private List<string> _subtitleFileUris = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Formats. 
         /// <para>
-        /// Provides the format of your subtitle files. If your request included both WebVTT (<code>vtt</code>)
-        /// and SubRip (<code>srt</code>) formats, both formats are shown.
+        /// Provides the format of your subtitle files. If your request included both WebVTT (<c>vtt</c>)
+        /// and SubRip (<c>srt</c>) formats, both formats are shown.
         /// </para>
         /// </summary>
         public List<string> Formats
@@ -54,14 +55,14 @@ namespace Amazon.TranscribeService.Model
         // Check to see if Formats property is set
         internal bool IsSetFormats()
         {
-            return this._formats != null && this._formats.Count > 0; 
+            return this._formats != null && (this._formats.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property OutputStartIndex. 
         /// <para>
         /// Provides the start index value for your subtitle files. If you did not specify a value
-        /// in your request, the default value of <code>0</code> is used.
+        /// in your request, the default value of <c>0</c> is used.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1)]
@@ -86,21 +87,21 @@ namespace Amazon.TranscribeService.Model
         /// </para>
         ///  
         /// <para>
-        /// If you included <code>OutputBucketName</code> in your transcription job request, this
-        /// is the URI of that bucket. If you also included <code>OutputKey</code> in your request,
-        /// your output is located in the path you specified in your request.
+        /// If you included <c>OutputBucketName</c> in your transcription job request, this is
+        /// the URI of that bucket. If you also included <c>OutputKey</c> in your request, your
+        /// output is located in the path you specified in your request.
         /// </para>
         ///  
         /// <para>
-        /// If you didn't include <code>OutputBucketName</code> in your transcription job request,
-        /// your subtitle file is stored in a service-managed bucket, and <code>TranscriptFileUri</code>
+        /// If you didn't include <c>OutputBucketName</c> in your transcription job request, your
+        /// subtitle file is stored in a service-managed bucket, and <c>TranscriptFileUri</c>
         /// provides you with a temporary URI you can use for secure access to your subtitle file.
         /// </para>
         ///  <note> 
         /// <para>
         /// Temporary URIs for service-managed Amazon S3 buckets are only valid for 15 minutes.
-        /// If you get an <code>AccesDenied</code> error, you can get a new temporary URI by running
-        /// a <code>GetTranscriptionJob</code> or <code>ListTranscriptionJob</code> request.
+        /// If you get an <c>AccesDenied</c> error, you can get a new temporary URI by running
+        /// a <c>GetTranscriptionJob</c> or <c>ListTranscriptionJob</c> request.
         /// </para>
         ///  </note>
         /// </summary>
@@ -113,7 +114,7 @@ namespace Amazon.TranscribeService.Model
         // Check to see if SubtitleFileUris property is set
         internal bool IsSetSubtitleFileUris()
         {
-            return this._subtitleFileUris != null && this._subtitleFileUris.Count > 0; 
+            return this._subtitleFileUris != null && (this._subtitleFileUris.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

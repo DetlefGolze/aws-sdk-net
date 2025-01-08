@@ -26,24 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeTrunkInterfaceAssociations operation.
-    /// <note> 
-    /// <para>
-    /// This API action is currently in <b>limited preview only</b>. If you are interested
-    /// in using this feature, contact your account manager.
-    /// </para>
-    ///  </note> 
-    /// <para>
     /// Describes one or more network interface trunk associations.
-    /// </para>
     /// </summary>
     public partial class DescribeTrunkInterfaceAssociationsRequest : AmazonEC2Request
     {
-        private List<string> _associationIds = new List<string>();
-        private List<Filter> _filters = new List<Filter>();
+        private List<string> _associationIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -62,7 +55,7 @@ namespace Amazon.EC2.Model
         // Check to see if AssociationIds property is set
         internal bool IsSetAssociationIds()
         {
-            return this._associationIds != null && this._associationIds.Count > 0; 
+            return this._associationIds != null && (this._associationIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -72,12 +65,12 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>gre-key</code> - The ID of a trunk interface association.
+        ///  <c>gre-key</c> - The ID of a trunk interface association.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>interface-protocol</code> - The interface protocol. Valid values are <code>VLAN</code>
-        /// and <code>GRE</code>.
+        ///  <c>interface-protocol</c> - The interface protocol. Valid values are <c>VLAN</c>
+        /// and <c>GRE</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -90,14 +83,14 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to return with a single call. To retrieve the remaining
-        /// results, make another call with the returned <code>nextToken</code> value.
+        /// results, make another call with the returned <c>nextToken</c> value.
         /// </para>
         /// </summary>
         [AWSProperty(Min=5, Max=255)]

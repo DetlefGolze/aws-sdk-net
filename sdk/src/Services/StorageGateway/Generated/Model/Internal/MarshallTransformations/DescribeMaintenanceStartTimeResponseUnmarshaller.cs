@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.StorageGateway.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -79,6 +80,12 @@ namespace Amazon.StorageGateway.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = IntUnmarshaller.Instance;
                     response.MinuteOfHour = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("SoftwareUpdatePreferences", targetDepth))
+                {
+                    var unmarshaller = SoftwareUpdatePreferencesUnmarshaller.Instance;
+                    response.SoftwareUpdatePreferences = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Timezone", targetDepth))

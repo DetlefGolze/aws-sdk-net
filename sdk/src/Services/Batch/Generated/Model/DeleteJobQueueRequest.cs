@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.Batch.Model
     ///  
     /// <para>
     /// It's not necessary to disassociate compute environments from a queue before submitting
-    /// a <code>DeleteJobQueue</code> request.
+    /// a <c>DeleteJobQueue</c> request.
     /// </para>
     /// </summary>
     public partial class DeleteJobQueueRequest : AmazonBatchRequest

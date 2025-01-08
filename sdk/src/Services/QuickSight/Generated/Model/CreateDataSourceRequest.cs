@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -38,10 +39,11 @@ namespace Amazon.QuickSight.Model
         private DataSourceCredentials _credentials;
         private string _dataSourceId;
         private DataSourceParameters _dataSourceParameters;
+        private List<string> _folderArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
-        private List<ResourcePermission> _permissions = new List<ResourcePermission>();
+        private List<ResourcePermission> _permissions = AWSConfigs.InitializeCollections ? new List<ResourcePermission>() : null;
         private SslProperties _sslProperties;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private DataSourceType _type;
         private VpcConnectionProperties _vpcConnectionProperties;
 
@@ -123,6 +125,25 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property FolderArns. 
+        /// <para>
+        /// When you create the data source, Amazon QuickSight adds the data source to these folders.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=1)]
+        public List<string> FolderArns
+        {
+            get { return this._folderArns; }
+            set { this._folderArns = value; }
+        }
+
+        // Check to see if FolderArns property is set
+        internal bool IsSetFolderArns()
+        {
+            return this._folderArns != null && (this._folderArns.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
         /// A display name for the data source.
@@ -157,7 +178,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Permissions property is set
         internal bool IsSetPermissions()
         {
-            return this._permissions != null && this._permissions.Count > 0; 
+            return this._permissions != null && (this._permissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -196,17 +217,17 @@ namespace Amazon.QuickSight.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of the data source. To return a list of all data sources, use <code>ListDataSources</code>.
+        /// The type of the data source. To return a list of all data sources, use <c>ListDataSources</c>.
         /// </para>
         ///  
         /// <para>
-        /// Use <code>AMAZON_ELASTICSEARCH</code> for Amazon OpenSearch Service.
+        /// Use <c>AMAZON_ELASTICSEARCH</c> for Amazon OpenSearch Service.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

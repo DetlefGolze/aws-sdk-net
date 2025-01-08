@@ -26,11 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateThingType operation.
-    /// Creates a new thing type.
+    /// Creates a new thing type. If this call is made multiple times using the same thing
+    /// type name and configuration, the call will succeed. If this call is made with the
+    /// same thing type name but different configuration a <c>ResourceAlreadyExistsException</c>
+    /// is thrown. 
     /// 
     ///  
     /// <para>
@@ -40,7 +44,7 @@ namespace Amazon.IoT.Model
     /// </summary>
     public partial class CreateThingTypeRequest : AmazonIoTRequest
     {
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _thingTypeName;
         private ThingTypeProperties _thingTypeProperties;
 
@@ -59,7 +63,7 @@ namespace Amazon.IoT.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

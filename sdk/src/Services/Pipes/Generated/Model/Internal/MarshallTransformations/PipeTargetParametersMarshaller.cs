@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Pipes.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.Pipes.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(PipeTargetParameters requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetBatchJobParameters())
             {
                 context.Writer.WritePropertyName("BatchJobParameters");
@@ -168,6 +171,17 @@ namespace Amazon.Pipes.Model.Internal.MarshallTransformations
 
                 var marshaller = PipeTargetStateMachineParametersMarshaller.Instance;
                 marshaller.Marshall(requestObject.StepFunctionStateMachineParameters, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetTimestreamParameters())
+            {
+                context.Writer.WritePropertyName("TimestreamParameters");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = PipeTargetTimestreamParametersMarshaller.Instance;
+                marshaller.Marshall(requestObject.TimestreamParameters, context);
 
                 context.Writer.WriteObjectEnd();
             }

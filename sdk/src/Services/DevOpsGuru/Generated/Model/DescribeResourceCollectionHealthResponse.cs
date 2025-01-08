@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
@@ -33,15 +34,15 @@ namespace Amazon.DevOpsGuru.Model
     /// </summary>
     public partial class DescribeResourceCollectionHealthResponse : AmazonWebServiceResponse
     {
-        private List<CloudFormationHealth> _cloudFormation = new List<CloudFormationHealth>();
+        private List<CloudFormationHealth> _cloudFormation = AWSConfigs.InitializeCollections ? new List<CloudFormationHealth>() : null;
         private string _nextToken;
-        private List<ServiceHealth> _service = new List<ServiceHealth>();
-        private List<TagHealth> _tags = new List<TagHealth>();
+        private List<ServiceHealth> _service = AWSConfigs.InitializeCollections ? new List<ServiceHealth>() : null;
+        private List<TagHealth> _tags = AWSConfigs.InitializeCollections ? new List<TagHealth>() : null;
 
         /// <summary>
         /// Gets and sets the property CloudFormation. 
         /// <para>
-        ///  The returned <code>CloudFormationHealthOverview</code> object that contains an <code>InsightHealthOverview</code>
+        ///  The returned <c>CloudFormationHealthOverview</c> object that contains an <c>InsightHealthOverview</c>
         /// object with the requested system health information. 
         /// </para>
         /// </summary>
@@ -54,7 +55,7 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if CloudFormation property is set
         internal bool IsSetCloudFormation()
         {
-            return this._cloudFormation != null && this._cloudFormation.Count > 0; 
+            return this._cloudFormation != null && (this._cloudFormation.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -80,8 +81,8 @@ namespace Amazon.DevOpsGuru.Model
         /// <summary>
         /// Gets and sets the property Service. 
         /// <para>
-        /// An array of <code>ServiceHealth</code> objects that describes the health of the Amazon
-        /// Web Services services associated with the resources in the collection.
+        /// An array of <c>ServiceHealth</c> objects that describes the health of the Amazon Web
+        /// Services services associated with the resources in the collection.
         /// </para>
         /// </summary>
         public List<ServiceHealth> Service
@@ -93,7 +94,7 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if Service property is set
         internal bool IsSetService()
         {
-            return this._service != null && this._service.Count > 0; 
+            return this._service != null && (this._service.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -116,14 +117,14 @@ namespace Amazon.DevOpsGuru.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// A tag <i>key</i> (for example, <code>CostCenter</code>, <code>Environment</code>,
-        /// <code>Project</code>, or <code>Secret</code>). Tag <i>keys</i> are case-sensitive.
+        /// A tag <i>key</i> (for example, <c>CostCenter</c>, <c>Environment</c>, <c>Project</c>,
+        /// or <c>Secret</c>). Tag <i>keys</i> are case-sensitive.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// An optional field known as a tag <i>value</i> (for example, <code>111122223333</code>,
-        /// <code>Production</code>, or a team name). Omitting the tag <i>value</i> is the same
-        /// as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive.
+        /// An optional field known as a tag <i>value</i> (for example, <c>111122223333</c>, <c>Production</c>,
+        /// or a team name). Omitting the tag <i>value</i> is the same as using an empty string.
+        /// Like tag <i>keys</i>, tag <i>values</i> are case-sensitive.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -132,14 +133,13 @@ namespace Amazon.DevOpsGuru.Model
         ///  <important> 
         /// <para>
         /// The string used for a <i>key</i> in a tag that you use to define your resource coverage
-        /// must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be
-        /// <code>DevOps-Guru-deployment-application</code> or <code>devops-guru-rds-application</code>.
-        /// When you create a <i>key</i>, the case of characters in the <i>key</i> can be whatever
-        /// you choose. After you create a <i>key</i>, it is case-sensitive. For example, DevOps
-        /// Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named
-        /// <code>DevOps-Guru-RDS</code>, and these act as two different <i>keys</i>. Possible
-        /// <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code>
-        /// or <code>Devops-Guru-production-application/containers</code>.
+        /// must begin with the prefix <c>Devops-guru-</c>. The tag <i>key</i> might be <c>DevOps-Guru-deployment-application</c>
+        /// or <c>devops-guru-rds-application</c>. When you create a <i>key</i>, the case of characters
+        /// in the <i>key</i> can be whatever you choose. After you create a <i>key</i>, it is
+        /// case-sensitive. For example, DevOps Guru works with a <i>key</i> named <c>devops-guru-rds</c>
+        /// and a <i>key</i> named <c>DevOps-Guru-RDS</c>, and these act as two different <i>keys</i>.
+        /// Possible <i>key</i>/<i>value</i> pairs in your application might be <c>Devops-Guru-production-application/RDS</c>
+        /// or <c>Devops-Guru-production-application/containers</c>.
         /// </para>
         ///  </important>
         /// </summary>
@@ -152,7 +152,7 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

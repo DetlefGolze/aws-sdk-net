@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.DatabaseMigrationService.Model
     /// </summary>
     public partial class DescribeFleetAdvisorCollectorsResponse : AmazonWebServiceResponse
     {
-        private List<CollectorResponse> _collectors = new List<CollectorResponse>();
+        private List<CollectorResponse> _collectors = AWSConfigs.InitializeCollections ? new List<CollectorResponse>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,16 +53,15 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if Collectors property is set
         internal bool IsSetCollectors()
         {
-            return this._collectors != null && this._collectors.Count > 0; 
+            return this._collectors != null && (this._collectors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If <code>NextToken</code> is returned, there are more results available. The value
-        /// of <code>NextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. 
+        /// If <c>NextToken</c> is returned, there are more results available. The value of <c>NextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. 
         /// </para>
         /// </summary>
         public string NextToken

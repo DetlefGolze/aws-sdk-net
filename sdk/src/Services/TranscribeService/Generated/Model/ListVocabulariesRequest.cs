@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
@@ -50,7 +51,7 @@ namespace Amazon.TranscribeService.Model
         /// <para>
         /// The maximum number of custom vocabularies to return in each page of results. If there
         /// are fewer results than the value that you specify, only the actual results are returned.
-        /// If you don't specify a value, a default of 5 is used.
+        /// If you do not specify a value, a default of 5 is used.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -89,11 +90,10 @@ namespace Amazon.TranscribeService.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If your <code>ListVocabularies</code> request returns more results than can be displayed,
-        /// <code>NextToken</code> is displayed in the response with an associated string. To
-        /// get the next page of results, copy this string and repeat your request, including
-        /// <code>NextToken</code> with the value of the copied string. Repeat as needed to view
-        /// all your results.
+        /// If your <c>ListVocabularies</c> request returns more results than can be displayed,
+        /// <c>NextToken</c> is displayed in the response with an associated string. To get the
+        /// next page of results, copy this string and repeat your request, including <c>NextToken</c>
+        /// with the value of the copied string. Repeat as needed to view all your results.
         /// </para>
         /// </summary>
         [AWSProperty(Max=8192)]
@@ -113,7 +113,7 @@ namespace Amazon.TranscribeService.Model
         /// Gets and sets the property StateEquals. 
         /// <para>
         /// Returns only custom vocabularies with the specified state. Vocabularies are ordered
-        /// by creation date, with the newest vocabulary first. If you don't include <code>StateEquals</code>,
+        /// by creation date, with the newest vocabulary first. If you do not include <c>StateEquals</c>,
         /// all custom medical vocabularies are returned.
         /// </para>
         /// </summary>

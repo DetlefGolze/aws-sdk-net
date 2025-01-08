@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeCatalyst.Model
 {
     /// <summary>
@@ -46,13 +47,14 @@ namespace Amazon.CodeCatalyst.Model
     {
         private string _alias;
         private string _clientToken;
-        private List<IdeConfiguration> _ides = new List<IdeConfiguration>();
+        private List<IdeConfiguration> _ides = AWSConfigs.InitializeCollections ? new List<IdeConfiguration>() : null;
         private int? _inactivityTimeoutMinutes;
         private InstanceType _instanceType;
         private PersistentStorageConfiguration _persistentStorage;
         private string _projectName;
-        private List<RepositoryInput> _repositories = new List<RepositoryInput>();
+        private List<RepositoryInput> _repositories = AWSConfigs.InitializeCollections ? new List<RepositoryInput>() : null;
         private string _spaceName;
+        private string _vpcConnectionName;
 
         /// <summary>
         /// Gets and sets the property Alias. 
@@ -118,7 +120,7 @@ namespace Amazon.CodeCatalyst.Model
         // Check to see if Ides property is set
         internal bool IsSetIdes()
         {
-            return this._ides != null && this._ides.Count > 0; 
+            return this._ides != null && (this._ides.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -223,7 +225,7 @@ namespace Amazon.CodeCatalyst.Model
         // Check to see if Repositories property is set
         internal bool IsSetRepositories()
         {
-            return this._repositories != null && this._repositories.Count > 0; 
+            return this._repositories != null && (this._repositories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -243,6 +245,25 @@ namespace Amazon.CodeCatalyst.Model
         internal bool IsSetSpaceName()
         {
             return this._spaceName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property VpcConnectionName. 
+        /// <para>
+        /// The name of the connection that will be used to connect to Amazon VPC, if any.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=3, Max=63)]
+        public string VpcConnectionName
+        {
+            get { return this._vpcConnectionName; }
+            set { this._vpcConnectionName = value; }
+        }
+
+        // Check to see if VpcConnectionName property is set
+        internal bool IsSetVpcConnectionName()
+        {
+            return this._vpcConnectionName != null;
         }
 
     }

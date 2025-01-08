@@ -26,11 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptunedata.Model
 {
     /// <summary>
     /// Container for the parameters to the GetPropertygraphSummary operation.
     /// Gets a graph summary for a property graph.
+    /// 
+    ///  
+    /// <para>
+    /// When invoking this operation in a Neptune cluster that has IAM authentication enabled,
+    /// the IAM user or role making the request must have a policy attached that allows the
+    /// <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#getgraphsummary">neptune-db:GetGraphSummary</a>
+    /// IAM action in that cluster.
+    /// </para>
     /// </summary>
     public partial class GetPropertygraphSummaryRequest : AmazonNeptunedataRequest
     {
@@ -39,7 +48,7 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property Mode. 
         /// <para>
-        /// Mode can take one of two values: <code>BASIC</code> (the default), and <code>DETAILED</code>.
+        /// Mode can take one of two values: <c>BASIC</c> (the default), and <c>DETAILED</c>.
         /// </para>
         /// </summary>
         public GraphSummaryType Mode

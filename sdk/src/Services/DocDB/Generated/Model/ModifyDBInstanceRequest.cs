@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
@@ -38,6 +39,7 @@ namespace Amazon.DocDB.Model
         private bool? _applyImmediately;
         private bool? _autoMinorVersionUpgrade;
         private string _caCertificateIdentifier;
+        private bool? _certificateRotationRestart;
         private bool? _copyTagsToSnapshot;
         private string _dbInstanceClass;
         private string _dbInstanceIdentifier;
@@ -51,18 +53,18 @@ namespace Amazon.DocDB.Model
         /// Gets and sets the property ApplyImmediately. 
         /// <para>
         /// Specifies whether the modifications in this request and any pending modifications
-        /// are asynchronously applied as soon as possible, regardless of the <code>PreferredMaintenanceWindow</code>
+        /// are asynchronously applied as soon as possible, regardless of the <c>PreferredMaintenanceWindow</c>
         /// setting for the instance. 
         /// </para>
         ///  
         /// <para>
-        ///  If this parameter is set to <code>false</code>, changes to the instance are applied
-        /// during the next maintenance window. Some parameter changes can cause an outage and
-        /// are applied on the next reboot.
+        ///  If this parameter is set to <c>false</c>, changes to the instance are applied during
+        /// the next maintenance window. Some parameter changes can cause an outage and are applied
+        /// on the next reboot.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool ApplyImmediately
@@ -115,6 +117,39 @@ namespace Amazon.DocDB.Model
         }
 
         /// <summary>
+        /// Gets and sets the property CertificateRotationRestart. 
+        /// <para>
+        /// Specifies whether the DB instance is restarted when you rotate your SSL/TLS certificate.
+        /// </para>
+        ///  
+        /// <para>
+        /// By default, the DB instance is restarted when you rotate your SSL/TLS certificate.
+        /// The certificate is not updated until the DB instance is restarted.
+        /// </para>
+        ///  <important> 
+        /// <para>
+        /// Set this parameter only if you are <i>not</i> using SSL/TLS to connect to the DB instance.
+        /// </para>
+        ///  </important> 
+        /// <para>
+        /// If you are using SSL/TLS to connect to the DB instance, see <a href="https://docs.aws.amazon.com/documentdb/latest/developerguide/ca_cert_rotation.html">Updating
+        /// Your Amazon DocumentDB TLS Certificates</a> and <a href="https://docs.aws.amazon.com/documentdb/latest/developerguide/security.encryption.ssl.html">
+        /// Encrypting Data in Transit</a> in the <i>Amazon DocumentDB Developer Guide</i>.
+        /// </para>
+        /// </summary>
+        public bool CertificateRotationRestart
+        {
+            get { return this._certificateRotationRestart.GetValueOrDefault(); }
+            set { this._certificateRotationRestart = value; }
+        }
+
+        // Check to see if CertificateRotationRestart property is set
+        internal bool IsSetCertificateRotationRestart()
+        {
+            return this._certificateRotationRestart.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property CopyTagsToSnapshot. 
         /// <para>
         /// A value that indicates whether to copy all tags from the DB instance to snapshots
@@ -136,14 +171,14 @@ namespace Amazon.DocDB.Model
         /// <summary>
         /// Gets and sets the property DBInstanceClass. 
         /// <para>
-        /// The new compute and memory capacity of the instance; for example, <code>db.r5.large</code>.
+        /// The new compute and memory capacity of the instance; for example, <c>db.r5.large</c>.
         /// Not all instance classes are available in all Amazon Web Services Regions. 
         /// </para>
         ///  
         /// <para>
         /// If you modify the instance class, an outage occurs during the change. The change is
-        /// applied during the next maintenance window, unless <code>ApplyImmediately</code> is
-        /// specified as <code>true</code> for this request. 
+        /// applied during the next maintenance window, unless <c>ApplyImmediately</c> is specified
+        /// as <c>true</c> for this request. 
         /// </para>
         ///  
         /// <para>
@@ -173,7 +208,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Must match the identifier of an existing <code>DBInstance</code>.
+        /// Must match the identifier of an existing <c>DBInstance</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -214,10 +249,10 @@ namespace Amazon.DocDB.Model
         /// Gets and sets the property NewDBInstanceIdentifier. 
         /// <para>
         ///  The new instance identifier for the instance when renaming an instance. When you
-        /// change the instance identifier, an instance reboot occurs immediately if you set <code>Apply
-        /// Immediately</code> to <code>true</code>. It occurs during the next maintenance window
-        /// if you set <code>Apply Immediately</code> to <code>false</code>. This value is stored
-        /// as a lowercase string. 
+        /// change the instance identifier, an instance reboot occurs immediately if you set <c>Apply
+        /// Immediately</c> to <c>true</c>. It occurs during the next maintenance window if you
+        /// set <c>Apply Immediately</c> to <c>false</c>. This value is stored as a lowercase
+        /// string. 
         /// </para>
         ///  
         /// <para>
@@ -237,7 +272,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>mydbinstance</code> 
+        /// Example: <c>mydbinstance</c> 
         /// </para>
         /// </summary>
         public string NewDBInstanceIdentifier
@@ -300,7 +335,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// Format: <code>ddd:hh24:mi-ddd:hh24:mi</code> 
+        /// Format: <c>ddd:hh24:mi-ddd:hh24:mi</c> 
         /// </para>
         ///  
         /// <para>

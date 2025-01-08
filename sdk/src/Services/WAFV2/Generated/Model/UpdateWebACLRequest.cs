@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -56,20 +57,6 @@ namespace Amazon.WAFV2.Model
     /// </para>
     ///  </li> </ol> </note> 
     /// <para>
-    /// When you make changes to web ACLs or web ACL components, like rules and rule groups,
-    /// WAF propagates the changes everywhere that the web ACL and its components are stored
-    /// and used. Your changes are applied within seconds, but there might be a brief period
-    /// of inconsistency when the changes have arrived in some places and not in others. So,
-    /// for example, if you change a rule action setting, the action might be the old action
-    /// in one area and the new action in another area. Or if you add an IP address to an
-    /// IP set used in a blocking rule, the new address might briefly be blocked in one area
-    /// while still allowed in another. This temporary inconsistency can occur when you first
-    /// associate a web ACL with an Amazon Web Services resource and when you change a web
-    /// ACL that is already associated with a resource. Generally, any inconsistencies of
-    /// this type last only a few seconds.
-    /// </para>
-    ///  
-    /// <para>
     ///  A web ACL defines a collection of rules to use to inspect and control web requests.
     /// Each rule has a statement that defines what to look for in web requests and an action
     /// that WAF applies to requests that match the statement. In the web ACL, you assign
@@ -81,21 +68,57 @@ namespace Amazon.WAFV2.Model
     /// Cognito user pool, an App Runner service, or an Amazon Web Services Verified Access
     /// instance. 
     /// </para>
+    ///  
+    /// <para>
+    ///  <b>Temporary inconsistencies during updates</b> 
+    /// </para>
+    ///  
+    /// <para>
+    /// When you create or change a web ACL or other WAF resources, the changes take a small
+    /// amount of time to propagate to all areas where the resources are stored. The propagation
+    /// time can be from a few seconds to a number of minutes. 
+    /// </para>
+    ///  
+    /// <para>
+    /// The following are examples of the temporary inconsistencies that you might notice
+    /// during change propagation: 
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    /// After you create a web ACL, if you try to associate it with a resource, you might
+    /// get an exception indicating that the web ACL is unavailable. 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// After you add a rule group to a web ACL, the new rule group rules might be in effect
+    /// in one area where the web ACL is used and not in another.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// After you change a rule action setting, you might see the old action in some places
+    /// and the new action in others. 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// After you add an IP address to an IP set that is in use in a blocking rule, the new
+    /// address might be blocked in one area while still allowed in another.
+    /// </para>
+    ///  </li> </ul>
     /// </summary>
     public partial class UpdateWebACLRequest : AmazonWAFV2Request
     {
         private AssociationConfig _associationConfig;
         private CaptchaConfig _captchaConfig;
         private ChallengeConfig _challengeConfig;
-        private Dictionary<string, CustomResponseBody> _customResponseBodies = new Dictionary<string, CustomResponseBody>();
+        private Dictionary<string, CustomResponseBody> _customResponseBodies = AWSConfigs.InitializeCollections ? new Dictionary<string, CustomResponseBody>() : null;
         private DefaultAction _defaultAction;
         private string _description;
         private string _id;
         private string _lockToken;
         private string _name;
-        private List<Rule> _rules = new List<Rule>();
+        private List<Rule> _rules = AWSConfigs.InitializeCollections ? new List<Rule>() : null;
         private Scope _scope;
-        private List<string> _tokenDomains = new List<string>();
+        private List<string> _tokenDomains = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private VisibilityConfig _visibilityConfig;
 
         /// <summary>
@@ -106,9 +129,10 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// Use this to customize the maximum size of the request body that your protected CloudFront
-        /// distributions forward to WAF for inspection. The default is 16 KB (16,384 bytes).
-        /// 
+        /// Use this to customize the maximum size of the request body that your protected resources
+        /// forward to WAF for inspection. You can customize this setting for CloudFront, API
+        /// Gateway, Amazon Cognito, App Runner, or Verified Access resources. The default setting
+        /// is 16 KB (16,384 bytes). 
         /// </para>
         ///  <note> 
         /// <para>
@@ -116,7 +140,10 @@ namespace Amazon.WAFV2.Model
         /// are larger than the default. For more information, see <a href="http://aws.amazon.com/waf/pricing/">WAF
         /// Pricing</a>.
         /// </para>
-        ///  </note>
+        ///  </note> 
+        /// <para>
+        /// For Application Load Balancer and AppSync, the limit is fixed at 8 KB (8,192 bytes).
+        /// </para>
         /// </summary>
         public AssociationConfig AssociationConfig
         {
@@ -133,9 +160,9 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property CaptchaConfig. 
         /// <para>
-        /// Specifies how WAF should handle <code>CAPTCHA</code> evaluations for rules that don't
-        /// have their own <code>CaptchaConfig</code> settings. If you don't specify this, WAF
-        /// uses its default settings for <code>CaptchaConfig</code>. 
+        /// Specifies how WAF should handle <c>CAPTCHA</c> evaluations for rules that don't have
+        /// their own <c>CaptchaConfig</c> settings. If you don't specify this, WAF uses its default
+        /// settings for <c>CaptchaConfig</c>. 
         /// </para>
         /// </summary>
         public CaptchaConfig CaptchaConfig
@@ -154,8 +181,8 @@ namespace Amazon.WAFV2.Model
         /// Gets and sets the property ChallengeConfig. 
         /// <para>
         /// Specifies how WAF should handle challenge evaluations for rules that don't have their
-        /// own <code>ChallengeConfig</code> settings. If you don't specify this, WAF uses its
-        /// default settings for <code>ChallengeConfig</code>. 
+        /// own <c>ChallengeConfig</c> settings. If you don't specify this, WAF uses its default
+        /// settings for <c>ChallengeConfig</c>. 
         /// </para>
         /// </summary>
         public ChallengeConfig ChallengeConfig
@@ -200,14 +227,14 @@ namespace Amazon.WAFV2.Model
         // Check to see if CustomResponseBodies property is set
         internal bool IsSetCustomResponseBodies()
         {
-            return this._customResponseBodies != null && this._customResponseBodies.Count > 0; 
+            return this._customResponseBodies != null && (this._customResponseBodies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DefaultAction. 
         /// <para>
-        /// The action to perform if none of the <code>Rules</code> contained in the <code>WebACL</code>
-        /// match. 
+        /// The action to perform if none of the <c>Rules</c> contained in the <c>WebACL</c> match.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -265,14 +292,13 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property LockToken. 
         /// <para>
-        /// A token used for optimistic locking. WAF returns a token to your <code>get</code>
-        /// and <code>list</code> requests, to mark the state of the entity at the time of the
-        /// request. To make changes to the entity associated with the token, you provide the
-        /// token to operations like <code>update</code> and <code>delete</code>. WAF uses the
-        /// token to ensure that no changes have been made to the entity since you last retrieved
-        /// it. If a change has been made, the update fails with a <code>WAFOptimisticLockException</code>.
-        /// If this happens, perform another <code>get</code>, and use the new token returned
-        /// by that operation. 
+        /// A token used for optimistic locking. WAF returns a token to your <c>get</c> and <c>list</c>
+        /// requests, to mark the state of the entity at the time of the request. To make changes
+        /// to the entity associated with the token, you provide the token to operations like
+        /// <c>update</c> and <c>delete</c>. WAF uses the token to ensure that no changes have
+        /// been made to the entity since you last retrieved it. If a change has been made, the
+        /// update fails with a <c>WAFOptimisticLockException</c>. If this happens, perform another
+        /// <c>get</c>, and use the new token returned by that operation. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=36)]
@@ -325,7 +351,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if Rules property is set
         internal bool IsSetRules()
         {
-            return this._rules != null && this._rules.Count > 0; 
+            return this._rules != null && (this._rules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -343,8 +369,8 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// CLI - Specify the Region when you use the CloudFront scope: <code>--scope=CLOUDFRONT
-        /// --region=us-east-1</code>. 
+        /// CLI - Specify the Region when you use the CloudFront scope: <c>--scope=CLOUDFRONT
+        /// --region=us-east-1</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -377,13 +403,12 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// Example JSON: <code>"TokenDomains": { "mywebsite.com", "myotherwebsite.com" }</code>
-        /// 
+        /// Example JSON: <c>"TokenDomains": { "mywebsite.com", "myotherwebsite.com" }</c> 
         /// </para>
         ///  
         /// <para>
-        /// Public suffixes aren't allowed. For example, you can't use <code>usa.gov</code> or
-        /// <code>co.uk</code> as token domains.
+        /// Public suffixes aren't allowed. For example, you can't use <c>gov.au</c> or <c>co.uk</c>
+        /// as token domains.
         /// </para>
         /// </summary>
         public List<string> TokenDomains
@@ -395,7 +420,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if TokenDomains property is set
         internal bool IsSetTokenDomains()
         {
-            return this._tokenDomains != null && this._tokenDomains.Count > 0; 
+            return this._tokenDomains != null && (this._tokenDomains.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
     /// The location of the training documents. This parameter is required in a request to
-    /// create a native classifier model.
+    /// create a semi-structured document classification model.
     /// </summary>
     public partial class DocumentClassifierDocuments
     {

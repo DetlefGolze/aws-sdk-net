@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.SageMaker.Model
     ///  <note> 
     /// <para>
     /// AutoML jobs created by calling <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html">CreateAutoMLJobV2</a>
-    /// cannot be described by <code>DescribeAutoMLJob</code>.
+    /// cannot be described by <c>DescribeAutoMLJob</c>.
     /// </para>
     ///  </note>
     /// </summary>

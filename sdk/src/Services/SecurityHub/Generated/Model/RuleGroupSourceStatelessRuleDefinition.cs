@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -33,15 +34,15 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class RuleGroupSourceStatelessRuleDefinition
     {
-        private List<string> _actions = new List<string>();
+        private List<string> _actions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private RuleGroupSourceStatelessRuleMatchAttributes _matchAttributes;
 
         /// <summary>
         /// Gets and sets the property Actions. 
         /// <para>
         /// The actions to take on a packet that matches one of the stateless rule definition's
-        /// match attributes. You must specify a standard action (<code>aws:pass</code>, <code>aws:drop</code>,
-        /// or <code>aws:forward_to_sfe</code>). You can then add custom actions.
+        /// match attributes. You must specify a standard action (<c>aws:pass</c>, <c>aws:drop</c>,
+        /// or <c>aws:forward_to_sfe</c>). You can then add custom actions.
         /// </para>
         /// </summary>
         public List<string> Actions
@@ -53,7 +54,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

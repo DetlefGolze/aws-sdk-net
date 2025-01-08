@@ -26,24 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeLifecycleConfiguration operation.
-    /// Returns the current <code>LifecycleConfiguration</code> object for the specified Amazon
-    /// EFS file system. EFS lifecycle management uses the <code>LifecycleConfiguration</code>
-    /// object to identify which files to move to the EFS Infrequent Access (IA) storage class.
-    /// For a file system without a <code>LifecycleConfiguration</code> object, the call returns
-    /// an empty array in the response.
+    /// Returns the current <c>LifecycleConfiguration</c> object for the specified Amazon
+    /// EFS file system. Lifecycle management uses the <c>LifecycleConfiguration</c> object
+    /// to identify when to move files between storage classes. For a file system without
+    /// a <c>LifecycleConfiguration</c> object, the call returns an empty array in the response.
     /// 
     ///  
     /// <para>
-    /// When EFS Intelligent-Tiering is enabled, <code>TransitionToPrimaryStorageClass</code>
-    /// has a value of <code>AFTER_1_ACCESS</code>.
-    /// </para>
-    ///  
-    /// <para>
-    /// This operation requires permissions for the <code>elasticfilesystem:DescribeLifecycleConfiguration</code>
+    /// This operation requires permissions for the <c>elasticfilesystem:DescribeLifecycleConfiguration</c>
     /// operation.
     /// </para>
     /// </summary>
@@ -54,8 +49,8 @@ namespace Amazon.ElasticFileSystem.Model
         /// <summary>
         /// Gets and sets the property FileSystemId. 
         /// <para>
-        /// The ID of the file system whose <code>LifecycleConfiguration</code> object you want
-        /// to retrieve (String).
+        /// The ID of the file system whose <c>LifecycleConfiguration</c> object you want to retrieve
+        /// (String).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=128)]

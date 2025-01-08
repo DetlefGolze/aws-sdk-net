@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.CloudDirectory.Model
         /// <summary>
         /// Gets and sets the property AttachedObjectIdentifier. 
         /// <para>
-        /// The attached <code>ObjectIdentifier</code>, which is the child <code>ObjectIdentifier</code>.
+        /// The attached <c>ObjectIdentifier</c>, which is the child <c>ObjectIdentifier</c>.
         /// </para>
         /// </summary>
         public string AttachedObjectIdentifier

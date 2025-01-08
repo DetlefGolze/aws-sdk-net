@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceExplorer2.Model
 {
     /// <summary>
@@ -83,9 +84,9 @@ namespace Amazon.ResourceExplorer2.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The state can remain in the <code>CREATING</code> or <code>UPDATING</code> state for
-        /// several hours as Resource Explorer discovers the information about your resources
-        /// and populates the index.
+        /// The state can remain in the <c>CREATING</c> or <c>UPDATING</c> state for several hours
+        /// as Resource Explorer discovers the information about your resources and populates
+        /// the index.
         /// </para>
         ///  </note>
         /// </summary>

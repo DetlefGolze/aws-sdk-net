@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
@@ -48,13 +49,13 @@ namespace Amazon.OpsWorks.Model
     public partial class DescribeElasticIpsRequest : AmazonOpsWorksRequest
     {
         private string _instanceId;
-        private List<string> _ips = new List<string>();
+        private List<string> _ips = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _stackId;
 
         /// <summary>
         /// Gets and sets the property InstanceId. 
         /// <para>
-        /// The instance ID. If you include this parameter, <code>DescribeElasticIps</code> returns
+        /// The instance ID. If you include this parameter, <c>DescribeElasticIps</c> returns
         /// a description of the Elastic IP addresses associated with the specified instance.
         /// </para>
         /// </summary>
@@ -73,7 +74,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Ips. 
         /// <para>
-        /// An array of Elastic IP addresses to be described. If you include this parameter, <code>DescribeElasticIps</code>
+        /// An array of Elastic IP addresses to be described. If you include this parameter, <c>DescribeElasticIps</c>
         /// returns a description of the specified Elastic IP addresses. Otherwise, it returns
         /// a description of every Elastic IP address.
         /// </para>
@@ -87,14 +88,14 @@ namespace Amazon.OpsWorks.Model
         // Check to see if Ips property is set
         internal bool IsSetIps()
         {
-            return this._ips != null && this._ips.Count > 0; 
+            return this._ips != null && (this._ips.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property StackId. 
         /// <para>
-        /// A stack ID. If you include this parameter, <code>DescribeElasticIps</code> returns
-        /// a description of the Elastic IP addresses that are registered with the specified stack.
+        /// A stack ID. If you include this parameter, <c>DescribeElasticIps</c> returns a description
+        /// of the Elastic IP addresses that are registered with the specified stack.
         /// </para>
         /// </summary>
         public string StackId

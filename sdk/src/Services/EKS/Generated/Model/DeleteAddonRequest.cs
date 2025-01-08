@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteAddon operation.
-    /// Delete an Amazon EKS add-on.
+    /// Deletes an Amazon EKS add-on.
     /// 
     ///  
     /// <para>
-    /// When you remove the add-on, it will also be deleted from the cluster. You can always
-    /// manually start an add-on on the cluster using the Kubernetes API.
+    /// When you remove an add-on, it's deleted from the cluster. You can always manually
+    /// start an add-on on the cluster using the Kubernetes API.
     /// </para>
     /// </summary>
     public partial class DeleteAddonRequest : AmazonEKSRequest
@@ -48,7 +49,7 @@ namespace Amazon.EKS.Model
         /// Gets and sets the property AddonName. 
         /// <para>
         /// The name of the add-on. The name must match one of the names returned by <a href="https://docs.aws.amazon.com/eks/latest/APIReference/API_ListAddons.html">
-        /// <code>ListAddons</code> </a>.
+        /// <c>ListAddons</c> </a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -67,7 +68,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ClusterName. 
         /// <para>
-        /// The name of the cluster to delete the add-on from.
+        /// The name of your cluster.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]

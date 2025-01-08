@@ -26,25 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// Specifies a VPC that your training jobs and hosted models have access to. Control
-    /// access to and from your training and model containers by configuring the VPC. For
-    /// more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html">Protect
-    /// Endpoints by Using an Amazon Virtual Private Cloud</a> and <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html">Protect
-    /// Training Jobs by Using an Amazon Virtual Private Cloud</a>.
+    /// Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs, hosted models,
+    /// and compute resources have access to. You can control access to and from your resources
+    /// by configuring a VPC. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html">Give
+    /// SageMaker Access to Resources in your Amazon VPC</a>.
     /// </summary>
     public partial class VpcConfig
     {
-        private List<string> _securityGroupIds = new List<string>();
-        private List<string> _subnets = new List<string>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _subnets = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property SecurityGroupIds. 
         /// <para>
-        /// The VPC security group IDs, in the form sg-xxxxxxxx. Specify the security groups for
-        /// the VPC that is specified in the <code>Subnets</code> field.
+        /// The VPC security group IDs, in the form <c>sg-xxxxxxxx</c>. Specify the security groups
+        /// for the VPC that is specified in the <c>Subnets</c> field.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=5)]
@@ -57,7 +57,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Subnets property is set
         internal bool IsSetSubnets()
         {
-            return this._subnets != null && this._subnets.Count > 0; 
+            return this._subnets != null && (this._subnets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchServerless.Model
 {
     /// <summary>
-    /// Error information for a failed <code>BatchGetVpcEndpoint</code> request.
+    /// Error information for a failed <c>BatchGetVpcEndpoint</c> request.
     /// </summary>
     public partial class VpcEndpointErrorDetail
     {

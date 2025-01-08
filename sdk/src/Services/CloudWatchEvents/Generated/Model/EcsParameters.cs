@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvents.Model
 {
     /// <summary>
@@ -33,18 +34,18 @@ namespace Amazon.CloudWatchEvents.Model
     /// </summary>
     public partial class EcsParameters
     {
-        private List<CapacityProviderStrategyItem> _capacityProviderStrategy = new List<CapacityProviderStrategyItem>();
+        private List<CapacityProviderStrategyItem> _capacityProviderStrategy = AWSConfigs.InitializeCollections ? new List<CapacityProviderStrategyItem>() : null;
         private bool? _enableECSManagedTags;
         private bool? _enableExecuteCommand;
         private string _group;
         private LaunchType _launchType;
         private NetworkConfiguration _networkConfiguration;
-        private List<PlacementConstraint> _placementConstraints = new List<PlacementConstraint>();
-        private List<PlacementStrategy> _placementStrategy = new List<PlacementStrategy>();
+        private List<PlacementConstraint> _placementConstraints = AWSConfigs.InitializeCollections ? new List<PlacementConstraint>() : null;
+        private List<PlacementStrategy> _placementStrategy = AWSConfigs.InitializeCollections ? new List<PlacementStrategy>() : null;
         private string _platformVersion;
         private PropagateTags _propagateTags;
         private string _referenceId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private int? _taskCount;
         private string _taskDefinitionArn;
 
@@ -55,10 +56,9 @@ namespace Amazon.CloudWatchEvents.Model
         /// </para>
         ///  
         /// <para>
-        /// If a <code>capacityProviderStrategy</code> is specified, the <code>launchType</code>
-        /// parameter must be omitted. If no <code>capacityProviderStrategy</code> or launchType
-        /// is specified, the <code>defaultCapacityProviderStrategy</code> for the cluster is
-        /// used. 
+        /// If a <c>capacityProviderStrategy</c> is specified, the <c>launchType</c> parameter
+        /// must be omitted. If no <c>capacityProviderStrategy</c> or launchType is specified,
+        /// the <c>defaultCapacityProviderStrategy</c> for the cluster is used. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=6)]
@@ -71,7 +71,7 @@ namespace Amazon.CloudWatchEvents.Model
         // Check to see if CapacityProviderStrategy property is set
         internal bool IsSetCapacityProviderStrategy()
         {
-            return this._capacityProviderStrategy != null && this._capacityProviderStrategy.Count > 0; 
+            return this._capacityProviderStrategy != null && (this._capacityProviderStrategy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -138,8 +138,8 @@ namespace Amazon.CloudWatchEvents.Model
         /// <para>
         /// Specifies the launch type on which your task is running. The launch type that you
         /// specify here must match one of the launch type (compatibilities) of the target task.
-        /// The <code>FARGATE</code> value is supported only in the Regions where Fargate witt
-        /// Amazon ECS is supported. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS-Fargate.html">Fargate
+        /// The <c>FARGATE</c> value is supported only in the Regions where Fargate witt Amazon
+        /// ECS is supported. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS-Fargate.html">Fargate
         /// on Amazon ECS</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
         /// </para>
         /// </summary>
@@ -158,16 +158,15 @@ namespace Amazon.CloudWatchEvents.Model
         /// <summary>
         /// Gets and sets the property NetworkConfiguration. 
         /// <para>
-        /// Use this structure if the Amazon ECS task uses the <code>awsvpc</code> network mode.
-        /// This structure specifies the VPC subnets and security groups associated with the task,
-        /// and whether a public IP address is to be used. This structure is required if <code>LaunchType</code>
-        /// is <code>FARGATE</code> because the <code>awsvpc</code> mode is required for Fargate
-        /// tasks.
+        /// Use this structure if the Amazon ECS task uses the <c>awsvpc</c> network mode. This
+        /// structure specifies the VPC subnets and security groups associated with the task,
+        /// and whether a public IP address is to be used. This structure is required if <c>LaunchType</c>
+        /// is <c>FARGATE</c> because the <c>awsvpc</c> mode is required for Fargate tasks.
         /// </para>
         ///  
         /// <para>
-        /// If you specify <code>NetworkConfiguration</code> when the target ECS task does not
-        /// use the <code>awsvpc</code> network mode, the task fails.
+        /// If you specify <c>NetworkConfiguration</c> when the target ECS task does not use the
+        /// <c>awsvpc</c> network mode, the task fails.
         /// </para>
         /// </summary>
         public NetworkConfiguration NetworkConfiguration
@@ -200,7 +199,7 @@ namespace Amazon.CloudWatchEvents.Model
         // Check to see if PlacementConstraints property is set
         internal bool IsSetPlacementConstraints()
         {
-            return this._placementConstraints != null && this._placementConstraints.Count > 0; 
+            return this._placementConstraints != null && (this._placementConstraints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -220,19 +219,19 @@ namespace Amazon.CloudWatchEvents.Model
         // Check to see if PlacementStrategy property is set
         internal bool IsSetPlacementStrategy()
         {
-            return this._placementStrategy != null && this._placementStrategy.Count > 0; 
+            return this._placementStrategy != null && (this._placementStrategy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PlatformVersion. 
         /// <para>
         /// Specifies the platform version for the task. Specify only the numeric portion of the
-        /// platform version, such as <code>1.1.0</code>.
+        /// platform version, such as <c>1.1.0</c>.
         /// </para>
         ///  
         /// <para>
-        /// This structure is used only if <code>LaunchType</code> is <code>FARGATE</code>. For
-        /// more information about valid platform versions, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html">Fargate
+        /// This structure is used only if <c>LaunchType</c> is <c>FARGATE</c>. For more information
+        /// about valid platform versions, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html">Fargate
         /// Platform Versions</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
         /// </para>
         /// </summary>
@@ -306,14 +305,13 @@ namespace Amazon.CloudWatchEvents.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TaskCount. 
         /// <para>
-        /// The number of tasks to create based on <code>TaskDefinition</code>. The default is
-        /// 1.
+        /// The number of tasks to create based on <c>TaskDefinition</c>. The default is 1.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]

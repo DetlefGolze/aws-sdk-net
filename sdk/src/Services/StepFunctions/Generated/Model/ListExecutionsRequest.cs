@@ -26,13 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
     /// Container for the parameters to the ListExecutions operation.
     /// Lists all executions of a state machine or a Map Run. You can list all executions
     /// related to a state machine by specifying a state machine Amazon Resource Name (ARN),
-    /// or those related to a Map Run by specifying a Map Run ARN.
+    /// or those related to a Map Run by specifying a Map Run ARN. Using this API action,
+    /// you can also list all <a href="https://docs.aws.amazon.com/step-functions/latest/dg/redrive-executions.html">redriven</a>
+    /// executions.
     /// 
     ///  
     /// <para>
@@ -46,11 +49,11 @@ namespace Amazon.StepFunctions.Model
     /// </para>
     ///  
     /// <para>
-    /// If <code>nextToken</code> is returned, there are more results available. The value
-    /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-    /// again using the returned token to retrieve the next page. Keep all other arguments
-    /// unchanged. Each pagination token expires after 24 hours. Using an expired pagination
-    /// token will return an <i>HTTP 400 InvalidToken</i> error.
+    /// If <c>nextToken</c> is returned, there are more results available. The value of <c>nextToken</c>
+    /// is a unique pagination token for each page. Make the call again using the returned
+    /// token to retrieve the next page. Keep all other arguments unchanged. Each pagination
+    /// token expires after 24 hours. Using an expired pagination token will return an <i>HTTP
+    /// 400 InvalidToken</i> error.
     /// </para>
     ///  <note> 
     /// <para>
@@ -59,7 +62,7 @@ namespace Amazon.StepFunctions.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// This API action is not supported by <code>EXPRESS</code> state machines.
+    /// This API action is not supported by <c>EXPRESS</c> state machines.
     /// </para>
     /// </summary>
     public partial class ListExecutionsRequest : AmazonStepFunctionsRequest
@@ -67,6 +70,7 @@ namespace Amazon.StepFunctions.Model
         private string _mapRunArn;
         private int? _maxResults;
         private string _nextToken;
+        private ExecutionRedriveFilter _redriveFilter;
         private string _stateMachineArn;
         private ExecutionStatus _statusFilter;
 
@@ -74,14 +78,13 @@ namespace Amazon.StepFunctions.Model
         /// Gets and sets the property MapRunArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the Map Run that started the child workflow executions.
-        /// If the <code>mapRunArn</code> field is specified, a list of all of the child workflow
-        /// executions started by a Map Run is returned. For more information, see <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-examine-map-run.html">Examining
+        /// If the <c>mapRunArn</c> field is specified, a list of all of the child workflow executions
+        /// started by a Map Run is returned. For more information, see <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-examine-map-run.html">Examining
         /// Map Run</a> in the <i>Step Functions Developer Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// You can specify either a <code>mapRunArn</code> or a <code>stateMachineArn</code>,
-        /// but not both.
+        /// You can specify either a <c>mapRunArn</c> or a <c>stateMachineArn</c>, but not both.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2000)]
@@ -100,7 +103,7 @@ namespace Amazon.StepFunctions.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The maximum number of results that are returned per call. You can use <code>nextToken</code>
+        /// The maximum number of results that are returned per call. You can use <c>nextToken</c>
         /// to obtain further pages of results. The default is 100 and the maximum allowed page
         /// size is 1000. A value of 0 uses the default.
         /// </para>
@@ -126,11 +129,11 @@ namespace Amazon.StepFunctions.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. Each pagination token expires after 24 hours. Using an expired pagination
-        /// token will return an <i>HTTP 400 InvalidToken</i> error.
+        /// If <c>nextToken</c> is returned, there are more results available. The value of <c>nextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. Each pagination
+        /// token expires after 24 hours. Using an expired pagination token will return an <i>HTTP
+        /// 400 InvalidToken</i> error.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=3096)]
@@ -147,20 +150,52 @@ namespace Amazon.StepFunctions.Model
         }
 
         /// <summary>
+        /// Gets and sets the property RedriveFilter. 
+        /// <para>
+        /// Sets a filter to list executions based on whether or not they have been redriven.
+        /// </para>
+        ///  
+        /// <para>
+        /// For a Distributed Map, <c>redriveFilter</c> sets a filter to list child workflow executions
+        /// based on whether or not they have been redriven.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you do not provide a <c>redriveFilter</c>, Step Functions returns a list of both
+        /// redriven and non-redriven executions.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you provide a state machine ARN in <c>redriveFilter</c>, the API returns a validation
+        /// exception.
+        /// </para>
+        /// </summary>
+        public ExecutionRedriveFilter RedriveFilter
+        {
+            get { return this._redriveFilter; }
+            set { this._redriveFilter = value; }
+        }
+
+        // Check to see if RedriveFilter property is set
+        internal bool IsSetRedriveFilter()
+        {
+            return this._redriveFilter != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property StateMachineArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the state machine whose executions is listed.
         /// </para>
         ///  
         /// <para>
-        /// You can specify either a <code>mapRunArn</code> or a <code>stateMachineArn</code>,
-        /// but not both.
+        /// You can specify either a <c>mapRunArn</c> or a <c>stateMachineArn</c>, but not both.
         /// </para>
         ///  
         /// <para>
         /// You can also return a list of executions associated with a specific <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-alias.html">alias</a>
         /// or <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html">version</a>,
-        /// by specifying an alias ARN or a version ARN in the <code>stateMachineArn</code> parameter.
+        /// by specifying an alias ARN or a version ARN in the <c>stateMachineArn</c> parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]

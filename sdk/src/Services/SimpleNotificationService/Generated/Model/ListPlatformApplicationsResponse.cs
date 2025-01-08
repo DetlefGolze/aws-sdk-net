@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
-    /// Response for ListPlatformApplications action.
+    /// Response for <c>ListPlatformApplications</c> action.
     /// </summary>
     public partial class ListPlatformApplicationsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<PlatformApplication> _platformApplications = new List<PlatformApplication>();
+        private List<PlatformApplication> _platformApplications = AWSConfigs.InitializeCollections ? new List<PlatformApplication>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// NextToken string is returned when calling ListPlatformApplications action if additional
-        /// records are available after the first page results.
+        ///  <c>NextToken</c> string is returned when calling <c>ListPlatformApplications</c>
+        /// action if additional records are available after the first page results.
         /// </para>
         /// </summary>
         public string NextToken
@@ -58,7 +59,7 @@ namespace Amazon.SimpleNotificationService.Model
         /// <summary>
         /// Gets and sets the property PlatformApplications. 
         /// <para>
-        /// Platform applications returned when calling ListPlatformApplications action.
+        /// Platform applications returned when calling <c>ListPlatformApplications</c> action.
         /// </para>
         /// </summary>
         public List<PlatformApplication> PlatformApplications
@@ -70,7 +71,7 @@ namespace Amazon.SimpleNotificationService.Model
         // Check to see if PlatformApplications property is set
         internal bool IsSetPlatformApplications()
         {
-            return this._platformApplications != null && this._platformApplications.Count > 0; 
+            return this._platformApplications != null && (this._platformApplications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

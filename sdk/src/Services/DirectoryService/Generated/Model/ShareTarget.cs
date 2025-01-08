@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.DirectoryService.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// Type of identifier to be used in the <code>Id</code> field.
+        /// Type of identifier to be used in the <c>Id</c> field.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AppStream.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.AppStream.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Image Unmarshall(JsonUnmarshallerContext context)
         {
+            Image unmarshalledObject = new Image();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Image unmarshalledObject = new Image();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -106,6 +108,12 @@ namespace Amazon.AppStream.Model.Internal.MarshallTransformations
                     unmarshalledObject.DisplayName = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("DynamicAppProvidersEnabled", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DynamicAppProvidersEnabled = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ImageBuilderName", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -128,6 +136,18 @@ namespace Amazon.AppStream.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = ImagePermissionsUnmarshaller.Instance;
                     unmarshalledObject.ImagePermissions = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ImageSharedWithOthers", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ImageSharedWithOthers = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("LatestAppstreamAgentVersion", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.LatestAppstreamAgentVersion = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Name", targetDepth))
@@ -160,6 +180,12 @@ namespace Amazon.AppStream.Model.Internal.MarshallTransformations
                     unmarshalledObject.StateChangeReason = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("SupportedInstanceFamilies", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
+                    unmarshalledObject.SupportedInstanceFamilies = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("Visibility", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -167,7 +193,6 @@ namespace Amazon.AppStream.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

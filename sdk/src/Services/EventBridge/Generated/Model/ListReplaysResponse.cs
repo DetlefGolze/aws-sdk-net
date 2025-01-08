@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -34,12 +35,23 @@ namespace Amazon.EventBridge.Model
     public partial class ListReplaysResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Replay> _replays = new List<Replay>();
+        private List<Replay> _replays = AWSConfigs.InitializeCollections ? new List<Replay>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token returned by a previous call to retrieve the next set of results.
+        /// A token indicating there are more results available. If there are no more results,
+        /// no token is included in the response.
+        /// </para>
+        ///  
+        /// <para>
+        /// The value of <c>nextToken</c> is a unique pagination token for each page. To retrieve
+        /// the next page of results, make the call again using the returned token. Keep all other
+        /// arguments unchanged.
+        /// </para>
+        ///  
+        /// <para>
+        ///  Using an expired pagination token results in an <c>HTTP 400 InvalidToken</c> error.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]
@@ -58,7 +70,7 @@ namespace Amazon.EventBridge.Model
         /// <summary>
         /// Gets and sets the property Replays. 
         /// <para>
-        /// An array of <code>Replay</code> objects that contain information about the replay.
+        /// An array of <c>Replay</c> objects that contain information about the replay.
         /// </para>
         /// </summary>
         public List<Replay> Replays
@@ -70,7 +82,7 @@ namespace Amazon.EventBridge.Model
         // Check to see if Replays property is set
         internal bool IsSetReplays()
         {
-            return this._replays != null && this._replays.Count > 0; 
+            return this._replays != null && (this._replays.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

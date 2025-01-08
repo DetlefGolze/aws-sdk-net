@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
-    /// The result from the inspection of the web request for a valid <code>CAPTCHA</code>
-    /// token.
+    /// The result from the inspection of the web request for a valid <c>CAPTCHA</c> token.
     /// </summary>
     public partial class CaptchaResponse
     {
@@ -59,9 +59,9 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property ResponseCode. 
         /// <para>
-        /// The HTTP response code indicating the status of the <code>CAPTCHA</code> token in
-        /// the web request. If the token is missing, invalid, or expired, this code is <code>405
-        /// Method Not Allowed</code>.
+        /// The HTTP response code indicating the status of the <c>CAPTCHA</c> token in the web
+        /// request. If the token is missing, invalid, or expired, this code is <c>405 Method
+        /// Not Allowed</c>.
         /// </para>
         /// </summary>
         public int ResponseCode
@@ -79,7 +79,7 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property SolveTimestamp. 
         /// <para>
-        /// The time that the <code>CAPTCHA</code> was last solved for the supplied token. 
+        /// The time that the <c>CAPTCHA</c> was last solved for the supplied token. 
         /// </para>
         /// </summary>
         public long SolveTimestamp

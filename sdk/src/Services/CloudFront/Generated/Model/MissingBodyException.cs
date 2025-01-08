@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
-    /// This operation requires a body. Ensure that the body is present and the <code>Content-Type</code>
+    /// This operation requires a body. Ensure that the body is present and the <c>Content-Type</c>
     /// header is set.
     /// </summary>
     #if !NETSTANDARD

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace Amazon.EC2.Model
     public partial class DescribeScheduledInstanceAvailabilityResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ScheduledInstanceAvailability> _scheduledInstanceAvailabilitySet = new List<ScheduledInstanceAvailability>();
+        private List<ScheduledInstanceAvailability> _scheduledInstanceAvailabilitySet = AWSConfigs.InitializeCollections ? new List<ScheduledInstanceAvailability>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token required to retrieve the next set of results. This value is <code>null</code>
+        /// The token required to retrieve the next set of results. This value is <c>null</c>
         /// when there are no more results to return.
         /// </para>
         /// </summary>
@@ -70,7 +71,7 @@ namespace Amazon.EC2.Model
         // Check to see if ScheduledInstanceAvailabilitySet property is set
         internal bool IsSetScheduledInstanceAvailabilitySet()
         {
-            return this._scheduledInstanceAvailabilitySet != null && this._scheduledInstanceAvailabilitySet.Count > 0; 
+            return this._scheduledInstanceAvailabilitySet != null && (this._scheduledInstanceAvailabilitySet.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

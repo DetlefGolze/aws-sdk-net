@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Organizations.Model
 {
     /// <summary>
@@ -75,8 +76,8 @@ namespace Amazon.Organizations.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// INVALID_PAGINATION_TOKEN: Get the value for the <code>NextToken</code> parameter from
-    /// the response to a previous call of the operation.
+    /// INVALID_PAGINATION_TOKEN: Get the value for the <c>NextToken</c> parameter from the
+    /// response to a previous call of the operation.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -94,8 +95,12 @@ namespace Amazon.Organizations.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
+    /// INVALID_PRINCIPAL: You specified an invalid principal element in the policy.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
     /// INVALID_ROLE_NAME: You provided a role name that isn't valid. A role name can't begin
-    /// with the reserved prefix <code>AWSServiceRoleFor</code>.
+    /// with the reserved prefix <c>AWSServiceRoleFor</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -138,6 +143,10 @@ namespace Amazon.Organizations.Model
     /// <para>
     /// MOVING_ACCOUNT_BETWEEN_DIFFERENT_ROOTS: You can move an account only between entities
     /// in the same root.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// NON_DETACHABLE_POLICY: You can't detach this Amazon Web Services Managed Policy.
     /// </para>
     ///  </li> <li> 
     /// <para>

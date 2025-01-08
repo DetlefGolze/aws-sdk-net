@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.Chime.Model
         /// <summary>
         /// Gets and sets the property SipMediaApplicationCall. 
         /// <para>
-        /// A <code>Call</code> instance for a SIP media application.
+        /// A <c>Call</c> instance for a SIP media application.
         /// </para>
         /// </summary>
         public SipMediaApplicationCall SipMediaApplicationCall

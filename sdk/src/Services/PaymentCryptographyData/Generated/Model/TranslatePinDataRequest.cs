@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptographyData.Model
 {
     /// <summary>
@@ -36,15 +37,37 @@ namespace Amazon.PaymentCryptographyData.Model
     /// 
     ///  
     /// <para>
-    /// PIN block translation involves changing the encrytion of PIN block from one encryption
-    /// key to another encryption key and changing PIN block format from one to another without
-    /// PIN block data leaving Amazon Web Services Payment Cryptography. The encryption key
-    /// transformation can be from PEK (Pin Encryption Key) to BDK (Base Derivation Key) for
-    /// DUKPT or from BDK for DUKPT to PEK. Amazon Web Services Payment Cryptography supports
-    /// <code>TDES</code> and <code>AES</code> key derivation type for DUKPT tranlations.
-    /// You can use this operation for P2PE (Point to Point Encryption) use cases where the
-    /// encryption keys should change but the processing system either does not need to, or
-    /// is not permitted to, decrypt the data.
+    /// PIN block translation involves changing a PIN block from one encryption key to another
+    /// and optionally change its format. PIN block translation occurs entirely within the
+    /// HSM boundary and PIN data never enters or leaves Amazon Web Services Payment Cryptography
+    /// in clear text. The encryption key transformation can be from PEK (Pin Encryption Key)
+    /// to BDK (Base Derivation Key) for DUKPT or from BDK for DUKPT to PEK.
+    /// </para>
+    ///  
+    /// <para>
+    /// Amazon Web Services Payment Cryptography also supports use of dynamic keys and ECDH
+    /// (Elliptic Curve Diffie-Hellman) based key exchange for this operation.
+    /// </para>
+    ///  
+    /// <para>
+    /// Dynamic keys allow you to pass a PEK as a TR-31 WrappedKeyBlock. They can be used
+    /// when key material is frequently rotated, such as during every card transaction, and
+    /// there is need to avoid importing short-lived keys into Amazon Web Services Payment
+    /// Cryptography. To translate PIN block using dynamic keys, the <c>keyARN</c> is the
+    /// Key Encryption Key (KEK) of the TR-31 wrapped PEK. The incoming wrapped key shall
+    /// have a key purpose of P0 with a mode of use of B or D. For more information, see <a
+    /// href="https://docs.aws.amazon.com/payment-cryptography/latest/userguide/use-cases-acquirers-dynamickeys.html">Using
+    /// Dynamic Keys</a> in the <i>Amazon Web Services Payment Cryptography User Guide</i>.
+    /// </para>
+    ///  
+    /// <para>
+    /// Using ECDH key exchange, you can receive cardholder selectable PINs into Amazon Web
+    /// Services Payment Cryptography. The ECDH derived key protects the incoming PIN block,
+    /// which is translated to a PEK encrypted PIN block for use within the service. You can
+    /// also use ECDH for reveal PIN, wherein the service translates the PIN block from PEK
+    /// to a ECDH derived encryption key. For more information on establishing ECDH derived
+    /// keys, see the <a href="https://docs.aws.amazon.com/payment-cryptography/latest/userguide/create-keys.html">Generating
+    /// keys</a> in the <i>Amazon Web Services Payment Cryptography User Guide</i>.
     /// </para>
     ///  
     /// <para>
@@ -63,8 +86,9 @@ namespace Amazon.PaymentCryptographyData.Model
     /// </para>
     ///  <note> 
     /// <para>
-    /// At this time, Amazon Web Services Payment Cryptography does not support translations
-    /// to PIN format 4.
+    /// Amazon Web Services Payment Cryptography currently supports ISO PIN block 4 translation
+    /// for PIN block built using legacy PAN length. That is, PAN is the right most 12 digits
+    /// excluding the check digits.
     /// </para>
     ///  </note> 
     /// <para>
@@ -91,9 +115,11 @@ namespace Amazon.PaymentCryptographyData.Model
         private DukptDerivationAttributes _incomingDukptAttributes;
         private string _incomingKeyIdentifier;
         private TranslationIsoFormats _incomingTranslationAttributes;
+        private WrappedKey _incomingWrappedKey;
         private DukptDerivationAttributes _outgoingDukptAttributes;
         private string _outgoingKeyIdentifier;
         private TranslationIsoFormats _outgoingTranslationAttributes;
+        private WrappedKey _outgoingWrappedKey;
 
         /// <summary>
         /// Gets and sets the property EncryptedPinBlock. 
@@ -117,7 +143,7 @@ namespace Amazon.PaymentCryptographyData.Model
         /// <summary>
         /// Gets and sets the property IncomingDukptAttributes. 
         /// <para>
-        /// The attributes and values to use for incoming DUKPT encryption key for PIN block tranlation.
+        /// The attributes and values to use for incoming DUKPT encryption key for PIN block translation.
         /// </para>
         /// </summary>
         public DukptDerivationAttributes IncomingDukptAttributes
@@ -135,8 +161,13 @@ namespace Amazon.PaymentCryptographyData.Model
         /// <summary>
         /// Gets and sets the property IncomingKeyIdentifier. 
         /// <para>
-        /// The <code>keyARN</code> of the encryption key under which incoming PIN block data
-        /// is encrypted. This key type can be PEK or BDK.
+        /// The <c>keyARN</c> of the encryption key under which incoming PIN block data is encrypted.
+        /// This key type can be PEK or BDK.
+        /// </para>
+        ///  
+        /// <para>
+        /// For dynamic keys, it is the <c>keyARN</c> of KEK of the TR-31 wrapped PEK. For ECDH,
+        /// it is the <c>keyARN</c> of the asymmetric ECC key.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=7, Max=322)]
@@ -155,7 +186,7 @@ namespace Amazon.PaymentCryptographyData.Model
         /// <summary>
         /// Gets and sets the property IncomingTranslationAttributes. 
         /// <para>
-        /// The format of the incoming PIN block data for tranlation within Amazon Web Services
+        /// The format of the incoming PIN block data for translation within Amazon Web Services
         /// Payment Cryptography.
         /// </para>
         /// </summary>
@@ -170,6 +201,25 @@ namespace Amazon.PaymentCryptographyData.Model
         internal bool IsSetIncomingTranslationAttributes()
         {
             return this._incomingTranslationAttributes != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IncomingWrappedKey. 
+        /// <para>
+        /// The WrappedKeyBlock containing the encryption key under which incoming PIN block data
+        /// is encrypted.
+        /// </para>
+        /// </summary>
+        public WrappedKey IncomingWrappedKey
+        {
+            get { return this._incomingWrappedKey; }
+            set { this._incomingWrappedKey = value; }
+        }
+
+        // Check to see if IncomingWrappedKey property is set
+        internal bool IsSetIncomingWrappedKey()
+        {
+            return this._incomingWrappedKey != null;
         }
 
         /// <summary>
@@ -194,8 +244,12 @@ namespace Amazon.PaymentCryptographyData.Model
         /// <summary>
         /// Gets and sets the property OutgoingKeyIdentifier. 
         /// <para>
-        /// The <code>keyARN</code> of the encryption key for encrypting outgoing PIN block data.
-        /// This key type can be PEK or BDK.
+        /// The <c>keyARN</c> of the encryption key for encrypting outgoing PIN block data. This
+        /// key type can be PEK or BDK.
+        /// </para>
+        ///  
+        /// <para>
+        /// For ECDH, it is the <c>keyARN</c> of the asymmetric ECC key.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=7, Max=322)]
@@ -214,7 +268,7 @@ namespace Amazon.PaymentCryptographyData.Model
         /// <summary>
         /// Gets and sets the property OutgoingTranslationAttributes. 
         /// <para>
-        /// The format of the outgoing PIN block data after tranlation by Amazon Web Services
+        /// The format of the outgoing PIN block data after translation by Amazon Web Services
         /// Payment Cryptography.
         /// </para>
         /// </summary>
@@ -229,6 +283,25 @@ namespace Amazon.PaymentCryptographyData.Model
         internal bool IsSetOutgoingTranslationAttributes()
         {
             return this._outgoingTranslationAttributes != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OutgoingWrappedKey. 
+        /// <para>
+        /// The WrappedKeyBlock containing the encryption key for encrypting outgoing PIN block
+        /// data.
+        /// </para>
+        /// </summary>
+        public WrappedKey OutgoingWrappedKey
+        {
+            get { return this._outgoingWrappedKey; }
+            set { this._outgoingWrappedKey = value; }
+        }
+
+        // Check to see if OutgoingWrappedKey property is set
+        internal bool IsSetOutgoingWrappedKey()
+        {
+            return this._outgoingWrappedKey != null;
         }
 
     }

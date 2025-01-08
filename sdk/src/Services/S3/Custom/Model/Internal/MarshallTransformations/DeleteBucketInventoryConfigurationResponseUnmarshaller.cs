@@ -27,16 +27,23 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
     /// </summary>
     public class DeleteBucketInventoryConfigurationResponseUnmarshaller : S3ReponseUnmarshaller
     {
+        /// <summary>
+        /// Unmarshaller the response from the service to the response class.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public override AmazonWebServiceResponse Unmarshall(XmlUnmarshallerContext context)
         {
             DeleteBucketInventoryConfigurationResponse response = new DeleteBucketInventoryConfigurationResponse();
-
 
             return response;
         }
 
         private static DeleteBucketInventoryConfigurationResponseUnmarshaller _instance;
 
+        /// <summary>
+        /// Singleton for the unmarshaller
+        /// </summary>
         public static DeleteBucketInventoryConfigurationResponseUnmarshaller Instance
         {
             get

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchRUM.Model
 {
     /// <summary>
@@ -41,36 +42,36 @@ namespace Amazon.CloudWatchRUM.Model
     /// </para>
     ///  
     /// <para>
-    /// In addition to these default metrics, you can choose to send extended metrics or custom
-    /// metrics or both.
+    /// In addition to these default metrics, you can choose to send extended metrics, custom
+    /// metrics, or both.
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// Extended metrics enable you to send metrics with additional dimensions not included
-    /// in the default metrics. You can also send extended metrics to Evidently as well as
-    /// CloudWatch. The valid dimension names for the additional dimensions for extended metrics
-    /// are <code>BrowserName</code>, <code>CountryCode</code>, <code>DeviceType</code>, <code>FileType</code>,
-    /// <code>OSName</code>, and <code>PageId</code>. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-RUM-vended-metrics.html">
+    /// Extended metrics let you send metrics with additional dimensions that aren't included
+    /// in the default metrics. You can also send extended metrics to both Evidently and CloudWatch.
+    /// The valid dimension names for the additional dimensions for extended metrics are <c>BrowserName</c>,
+    /// <c>CountryCode</c>, <c>DeviceType</c>, <c>FileType</c>, <c>OSName</c>, and <c>PageId</c>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-RUM-vended-metrics.html">
     /// Extended metrics that you can send to CloudWatch and CloudWatch Evidently</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Custom metrics are metrics that you define. You can send custom metrics to CloudWatch
-    /// or to CloudWatch Evidently or to both. With custom metrics, you can use any metric
-    /// name and namespace, and to derive the metrics you can use any custom events, built-in
-    /// events, custom attributes, or default attributes. 
+    /// Custom metrics are metrics that you define. You can send custom metrics to CloudWatch.
+    /// CloudWatch Evidently, or both. With custom metrics, you can use any metric name and
+    /// namespace. To derive the metrics, you can use any custom events, built-in events,
+    /// custom attributes, or default attributes. 
     /// </para>
     ///  
     /// <para>
-    /// You can't send custom metrics to the <code>AWS/RUM</code> namespace. You must send
-    /// custom metrics to a custom namespace that you define. The namespace that you use can't
-    /// start with <code>AWS/</code>. CloudWatch RUM prepends <code>RUM/CustomMetrics/</code>
-    /// to the custom namespace that you define, so the final namespace for your metrics in
-    /// CloudWatch is <code>RUM/CustomMetrics/<i>your-custom-namespace</i> </code>.
+    /// You can't send custom metrics to the <c>AWS/RUM</c> namespace. You must send custom
+    /// metrics to a custom namespace that you define. The namespace that you use can't start
+    /// with <c>AWS/</c>. CloudWatch RUM prepends <c>RUM/CustomMetrics/</c> to the custom
+    /// namespace that you define, so the final namespace for your metrics in CloudWatch is
+    /// <c>RUM/CustomMetrics/<i>your-custom-namespace</i> </c>.
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// The maximum number of metric definitions that you can specify in one <code>BatchCreateRumMetricDefinitions</code>
+    /// The maximum number of metric definitions that you can specify in one <c>BatchCreateRumMetricDefinitions</c>
     /// operation is 200.
     /// </para>
     ///  
@@ -91,9 +92,9 @@ namespace Amazon.CloudWatchRUM.Model
     /// </para>
     ///  
     /// <para>
-    /// If some metric definitions specified in a <code>BatchCreateRumMetricDefinitions</code>
-    /// operations are not valid, those metric definitions fail and return errors, but all
-    /// valid metric definitions in the same operation still succeed.
+    /// If some metric definitions specified in a <c>BatchCreateRumMetricDefinitions</c> operations
+    /// are not valid, those metric definitions fail and return errors, but all valid metric
+    /// definitions in the same operation still succeed.
     /// </para>
     /// </summary>
     public partial class BatchCreateRumMetricDefinitionsRequest : AmazonCloudWatchRUMRequest
@@ -101,7 +102,7 @@ namespace Amazon.CloudWatchRUM.Model
         private string _appMonitorName;
         private MetricDestination _destination;
         private string _destinationArn;
-        private List<MetricDefinitionRequest> _metricDefinitions = new List<MetricDefinitionRequest>();
+        private List<MetricDefinitionRequest> _metricDefinitions = AWSConfigs.InitializeCollections ? new List<MetricDefinitionRequest>() : null;
 
         /// <summary>
         /// Gets and sets the property AppMonitorName. 
@@ -125,10 +126,10 @@ namespace Amazon.CloudWatchRUM.Model
         /// <summary>
         /// Gets and sets the property Destination. 
         /// <para>
-        /// The destination to send the metrics to. Valid values are <code>CloudWatch</code> and
-        /// <code>Evidently</code>. If you specify <code>Evidently</code>, you must also specify
-        /// the ARN of the CloudWatchEvidently experiment that will receive the metrics and an
-        /// IAM role that has permission to write to the experiment.
+        /// The destination to send the metrics to. Valid values are <c>CloudWatch</c> and <c>Evidently</c>.
+        /// If you specify <c>Evidently</c>, you must also specify the Amazon Resource Name (ARN)
+        /// of the CloudWatchEvidently experiment that will receive the metrics and an IAM role
+        /// that has permission to write to the experiment.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -147,8 +148,8 @@ namespace Amazon.CloudWatchRUM.Model
         /// <summary>
         /// Gets and sets the property DestinationArn. 
         /// <para>
-        /// This parameter is required if <code>Destination</code> is <code>Evidently</code>.
-        /// If <code>Destination</code> is <code>CloudWatch</code>, do not use this parameter.
+        /// This parameter is required if <c>Destination</c> is <c>Evidently</c>. If <c>Destination</c>
+        /// is <c>CloudWatch</c>, do not use this parameter.
         /// </para>
         ///  
         /// <para>
@@ -186,7 +187,7 @@ namespace Amazon.CloudWatchRUM.Model
         // Check to see if MetricDefinitions property is set
         internal bool IsSetMetricDefinitions()
         {
-            return this._metricDefinitions != null && this._metricDefinitions.Count > 0; 
+            return this._metricDefinitions != null && (this._metricDefinitions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

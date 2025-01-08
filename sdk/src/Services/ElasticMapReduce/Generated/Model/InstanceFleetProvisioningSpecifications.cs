@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
-    /// The launch specification for Spot Instances in the fleet, which determines the defined
-    /// duration, provisioning timeout behavior, and allocation strategy.
+    /// The launch specification for On-Demand and Spot Instances in the fleet.
     /// 
     ///  <note> 
     /// <para>
@@ -49,7 +49,7 @@ namespace Amazon.ElasticMapReduce.Model
         /// Gets and sets the property OnDemandSpecification. 
         /// <para>
         ///  The launch specification for On-Demand Instances in the instance fleet, which determines
-        /// the allocation strategy. 
+        /// the allocation strategy and capacity reservation options.
         /// </para>
         ///  <note> 
         /// <para>
@@ -74,8 +74,8 @@ namespace Amazon.ElasticMapReduce.Model
         /// <summary>
         /// Gets and sets the property SpotSpecification. 
         /// <para>
-        /// The launch specification for Spot instances in the fleet, which determines the defined
-        /// duration, provisioning timeout behavior, and allocation strategy.
+        /// The launch specification for Spot instances in the fleet, which determines the allocation
+        /// strategy, defined duration, and provisioning timeout behavior.
         /// </para>
         /// </summary>
         public SpotProvisioningSpecification SpotSpecification

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -34,17 +35,16 @@ namespace Amazon.ConfigService.Model
     public partial class ListStoredQueriesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<StoredQueryMetadata> _storedQueryMetadata = new List<StoredQueryMetadata>();
+        private List<StoredQueryMetadata> _storedQueryMetadata = AWSConfigs.InitializeCollections ? new List<StoredQueryMetadata>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If the previous paginated request didn't return all of the remaining results, the
-        /// response object's <code>NextToken</code> parameter value is set to a token. To retrieve
-        /// the next set of results, call this action again and assign that token to the request
-        /// object's <code>NextToken</code> parameter. If there are no remaining results, the
-        /// previous response object's <code>NextToken</code> parameter is set to <code>null</code>.
-        /// 
+        /// response object's <c>NextToken</c> parameter value is set to a token. To retrieve
+        /// the next set of results, call this operation again and assign that token to the request
+        /// object's <c>NextToken</c> parameter. If there are no remaining results, the previous
+        /// response object's <c>NextToken</c> parameter is set to <c>null</c>. 
         /// </para>
         /// </summary>
         public string NextToken
@@ -62,7 +62,7 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property StoredQueryMetadata. 
         /// <para>
-        /// A list of <code>StoredQueryMetadata</code> objects.
+        /// A list of <c>StoredQueryMetadata</c> objects.
         /// </para>
         /// </summary>
         public List<StoredQueryMetadata> StoredQueryMetadata
@@ -74,7 +74,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if StoredQueryMetadata property is set
         internal bool IsSetStoredQueryMetadata()
         {
-            return this._storedQueryMetadata != null && this._storedQueryMetadata.Count > 0; 
+            return this._storedQueryMetadata != null && (this._storedQueryMetadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

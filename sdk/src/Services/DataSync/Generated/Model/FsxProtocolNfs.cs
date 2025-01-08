@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Specifies the Network File System (NFS) protocol configuration that DataSync uses
-    /// to access your Amazon FSx for OpenZFS or Amazon FSx for NetApp ONTAP file system.
+    /// to access your FSx for OpenZFS file system or FSx for ONTAP file system's storage
+    /// virtual machine (SVM).
     /// </summary>
     public partial class FsxProtocolNfs
     {

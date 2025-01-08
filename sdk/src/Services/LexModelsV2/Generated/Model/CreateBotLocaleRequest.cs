@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -39,6 +40,7 @@ namespace Amazon.LexModelsV2.Model
         private string _botId;
         private string _botVersion;
         private string _description;
+        private GenerativeAISettings _generativeaiSettings;
         private string _localeId;
         private double? _nluIntentConfidenceThreshold;
         private VoiceSettings _voiceSettings;
@@ -102,6 +104,21 @@ namespace Amazon.LexModelsV2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property GenerativeAISettings.
+        /// </summary>
+        public GenerativeAISettings GenerativeAISettings
+        {
+            get { return this._generativeaiSettings; }
+            set { this._generativeaiSettings = value; }
+        }
+
+        // Check to see if GenerativeAISettings property is set
+        internal bool IsSetGenerativeAISettings()
+        {
+            return this._generativeaiSettings != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property LocaleId. 
         /// <para>
         /// The identifier of the language and locale that the bot will be used in. The string
@@ -126,17 +143,17 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property NluIntentConfidenceThreshold. 
         /// <para>
-        /// Determines the threshold where Amazon Lex will insert the <code>AMAZON.FallbackIntent</code>,
-        /// <code>AMAZON.KendraSearchIntent</code>, or both when returning alternative intents.
-        /// <code>AMAZON.FallbackIntent</code> and <code>AMAZON.KendraSearchIntent</code> are
-        /// only inserted if they are configured for the bot.
+        /// Determines the threshold where Amazon Lex will insert the <c>AMAZON.FallbackIntent</c>,
+        /// <c>AMAZON.KendraSearchIntent</c>, or both when returning alternative intents. <c>AMAZON.FallbackIntent</c>
+        /// and <c>AMAZON.KendraSearchIntent</c> are only inserted if they are configured for
+        /// the bot.
         /// </para>
         ///  
         /// <para>
         /// For example, suppose a bot is configured with the confidence threshold of 0.80 and
-        /// the <code>AMAZON.FallbackIntent</code>. Amazon Lex returns three alternative intents
-        /// with the following confidence scores: IntentA (0.70), IntentB (0.60), IntentC (0.50).
-        /// The response from the <code>RecognizeText</code> operation would be:
+        /// the <c>AMAZON.FallbackIntent</c>. Amazon Lex returns three alternative intents with
+        /// the following confidence scores: IntentA (0.70), IntentB (0.60), IntentC (0.50). The
+        /// response from the <c>RecognizeText</c> operation would be:
         /// </para>
         ///  <ul> <li> 
         /// <para>

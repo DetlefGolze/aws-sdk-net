@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchain.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.ManagedBlockchain.Model
         private string _arn;
         private DateTime? _creationDate;
         private string _id;
+        private AccessorNetworkType _networkType;
         private AccessorStatus _status;
         private AccessorType _type;
 
@@ -98,6 +100,24 @@ namespace Amazon.ManagedBlockchain.Model
         }
 
         /// <summary>
+        /// Gets and sets the property NetworkType. 
+        /// <para>
+        /// The blockchain network that the Accessor token is created for.
+        /// </para>
+        /// </summary>
+        public AccessorNetworkType NetworkType
+        {
+            get { return this._networkType; }
+            set { this._networkType = value; }
+        }
+
+        // Check to see if NetworkType property is set
+        internal bool IsSetNetworkType()
+        {
+            return this._networkType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
         /// The current status of the accessor.
@@ -122,7 +142,7 @@ namespace Amazon.ManagedBlockchain.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// Currently accessor type is restricted to <code>BILLING_TOKEN</code>.
+        /// Currently accessor type is restricted to <c>BILLING_TOKEN</c>.
         /// </para>
         ///  </note>
         /// </summary>

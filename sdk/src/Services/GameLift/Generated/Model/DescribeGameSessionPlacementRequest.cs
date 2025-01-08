@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.GameLift.Model
     /// This operation is not designed to be continually called to track game session status.
     /// This practice can cause you to exceed your API limit, which results in errors. Instead,
     /// you must configure configure an Amazon Simple Notification Service (SNS) topic to
-    /// receive notifications from FlexMatch or queues. Continuously polling with <code>DescribeGameSessionPlacement</code>
+    /// receive notifications from FlexMatch or queues. Continuously polling with <c>DescribeGameSessionPlacement</c>
     /// should only be used for games in development with low game session usage. 
     /// </para>
     /// </summary>

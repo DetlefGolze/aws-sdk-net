@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property AvailabilityZoneCount. 
         /// <para>
-        /// The number of Availability Zones that the domain uses. Valid values are <code>2</code>
-        /// or <code>3</code>. The default is <code>2</code>.
+        /// The number of Availability Zones that the domain uses. Valid values are <c>2</c> or
+        /// <c>3</c>. The default is <c>2</c>.
         /// </para>
         /// </summary>
         public int AvailabilityZoneCount

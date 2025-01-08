@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Glue.Model
     /// Machine learning transforms are a special type of transform that use machine learning
     /// to learn the details of the transformation to be performed by learning from examples
     /// provided by humans. These transformations are then saved by Glue. You can retrieve
-    /// their metadata by calling <code>GetMLTransform</code>.
+    /// their metadata by calling <c>GetMLTransform</c>.
     /// </summary>
     public partial class GetMLTransformRequest : AmazonGlueRequest
     {

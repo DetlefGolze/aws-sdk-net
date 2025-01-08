@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace Amazon.ECS.Model
     public partial class LinuxParameters
     {
         private KernelCapabilities _capabilities;
-        private List<Device> _devices = new List<Device>();
+        private List<Device> _devices = AWSConfigs.InitializeCollections ? new List<Device>() : null;
         private bool? _initProcessEnabled;
         private int? _maxSwap;
         private int? _sharedMemorySize;
         private int? _swappiness;
-        private List<Tmpfs> _tmpfs = new List<Tmpfs>();
+        private List<Tmpfs> _tmpfs = AWSConfigs.InitializeCollections ? new List<Tmpfs>() : null;
 
         /// <summary>
         /// Gets and sets the property Capabilities. 
@@ -49,9 +50,9 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// For tasks that use the Fargate launch type, <code>capabilities</code> is supported
-        /// for all platform versions but the <code>add</code> parameter is only supported if
-        /// using platform version 1.4.0 or later.
+        /// For tasks that use the Fargate launch type, <c>capabilities</c> is supported for all
+        /// platform versions but the <c>add</c> parameter is only supported if using platform
+        /// version 1.4.0 or later.
         /// </para>
         ///  </note>
         /// </summary>
@@ -70,15 +71,12 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Devices. 
         /// <para>
-        /// Any host devices to expose to the container. This parameter maps to <code>Devices</code>
-        /// in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-        /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-        /// Remote API</a> and the <code>--device</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// Any host devices to expose to the container. This parameter maps to <c>Devices</c>
+        /// in the docker container create command and the <c>--device</c> option to docker run.
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you're using tasks that use the Fargate launch type, the <code>devices</code> parameter
+        /// If you're using tasks that use the Fargate launch type, the <c>devices</c> parameter
         /// isn't supported.
         /// </para>
         ///  </note>
@@ -92,18 +90,18 @@ namespace Amazon.ECS.Model
         // Check to see if Devices property is set
         internal bool IsSetDevices()
         {
-            return this._devices != null && this._devices.Count > 0; 
+            return this._devices != null && (this._devices.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property InitProcessEnabled. 
         /// <para>
-        /// Run an <code>init</code> process inside the container that forwards signals and reaps
-        /// processes. This parameter maps to the <code>--init</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>. This parameter requires version 1.25 of the Docker Remote API or greater
-        /// on your container instance. To check the Docker Remote API version on your container
-        /// instance, log in to your container instance and run the following command: <code>sudo
-        /// docker version --format '{{.Server.APIVersion}}'</code> 
+        /// Run an <c>init</c> process inside the container that forwards signals and reaps processes.
+        /// This parameter maps to the <c>--init</c> option to docker run. This parameter requires
+        /// version 1.25 of the Docker Remote API or greater on your container instance. To check
+        /// the Docker Remote API version on your container instance, log in to your container
+        /// instance and run the following command: <c>sudo docker version --format '{{.Server.APIVersion}}'</c>
+        /// 
         /// </para>
         /// </summary>
         public bool InitProcessEnabled
@@ -122,27 +120,25 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property MaxSwap. 
         /// <para>
         /// The total amount of swap memory (in MiB) a container can use. This parameter will
-        /// be translated to the <code>--memory-swap</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a> where the value would be the sum of the container memory plus the <code>maxSwap</code>
-        /// value.
+        /// be translated to the <c>--memory-swap</c> option to docker run where the value would
+        /// be the sum of the container memory plus the <c>maxSwap</c> value.
         /// </para>
         ///  
         /// <para>
-        /// If a <code>maxSwap</code> value of <code>0</code> is specified, the container will
-        /// not use swap. Accepted values are <code>0</code> or any positive integer. If the <code>maxSwap</code>
-        /// parameter is omitted, the container will use the swap configuration for the container
-        /// instance it is running on. A <code>maxSwap</code> value must be set for the <code>swappiness</code>
-        /// parameter to be used.
+        /// If a <c>maxSwap</c> value of <c>0</c> is specified, the container will not use swap.
+        /// Accepted values are <c>0</c> or any positive integer. If the <c>maxSwap</c> parameter
+        /// is omitted, the container will use the swap configuration for the container instance
+        /// it is running on. A <c>maxSwap</c> value must be set for the <c>swappiness</c> parameter
+        /// to be used.
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you're using tasks that use the Fargate launch type, the <code>maxSwap</code> parameter
+        /// If you're using tasks that use the Fargate launch type, the <c>maxSwap</c> parameter
         /// isn't supported.
         /// </para>
         ///  
         /// <para>
-        /// If you're using tasks on Amazon Linux 2023 the <code>swappiness</code> parameter isn't
-        /// supported.
+        /// If you're using tasks on Amazon Linux 2023 the <c>swappiness</c> parameter isn't supported.
         /// </para>
         ///  </note>
         /// </summary>
@@ -161,13 +157,12 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property SharedMemorySize. 
         /// <para>
-        /// The value for the size (in MiB) of the <code>/dev/shm</code> volume. This parameter
-        /// maps to the <code>--shm-size</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// The value for the size (in MiB) of the <c>/dev/shm</c> volume. This parameter maps
+        /// to the <c>--shm-size</c> option to docker run.
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you are using tasks that use the Fargate launch type, the <code>sharedMemorySize</code>
+        /// If you are using tasks that use the Fargate launch type, the <c>sharedMemorySize</c>
         /// parameter is not supported.
         /// </para>
         ///  </note>
@@ -187,25 +182,22 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Swappiness. 
         /// <para>
-        /// This allows you to tune a container's memory swappiness behavior. A <code>swappiness</code>
-        /// value of <code>0</code> will cause swapping to not happen unless absolutely necessary.
-        /// A <code>swappiness</code> value of <code>100</code> will cause pages to be swapped
-        /// very aggressively. Accepted values are whole numbers between <code>0</code> and <code>100</code>.
-        /// If the <code>swappiness</code> parameter is not specified, a default value of <code>60</code>
-        /// is used. If a value is not specified for <code>maxSwap</code> then this parameter
-        /// is ignored. This parameter maps to the <code>--memory-swappiness</code> option to
-        /// <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// This allows you to tune a container's memory swappiness behavior. A <c>swappiness</c>
+        /// value of <c>0</c> will cause swapping to not happen unless absolutely necessary. A
+        /// <c>swappiness</c> value of <c>100</c> will cause pages to be swapped very aggressively.
+        /// Accepted values are whole numbers between <c>0</c> and <c>100</c>. If the <c>swappiness</c>
+        /// parameter is not specified, a default value of <c>60</c> is used. If a value is not
+        /// specified for <c>maxSwap</c> then this parameter is ignored. This parameter maps to
+        /// the <c>--memory-swappiness</c> option to docker run.
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you're using tasks that use the Fargate launch type, the <code>swappiness</code>
-        /// parameter isn't supported.
+        /// If you're using tasks that use the Fargate launch type, the <c>swappiness</c> parameter
+        /// isn't supported.
         /// </para>
         ///  
         /// <para>
-        /// If you're using tasks on Amazon Linux 2023 the <code>swappiness</code> parameter isn't
-        /// supported.
+        /// If you're using tasks on Amazon Linux 2023 the <c>swappiness</c> parameter isn't supported.
         /// </para>
         ///  </note>
         /// </summary>
@@ -225,12 +217,11 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property Tmpfs. 
         /// <para>
         /// The container path, mount options, and size (in MiB) of the tmpfs mount. This parameter
-        /// maps to the <code>--tmpfs</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// maps to the <c>--tmpfs</c> option to docker run.
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you're using tasks that use the Fargate launch type, the <code>tmpfs</code> parameter
+        /// If you're using tasks that use the Fargate launch type, the <c>tmpfs</c> parameter
         /// isn't supported.
         /// </para>
         ///  </note>
@@ -244,7 +235,7 @@ namespace Amazon.ECS.Model
         // Check to see if Tmpfs property is set
         internal bool IsSetTmpfs()
         {
-            return this._tmpfs != null && this._tmpfs.Count > 0; 
+            return this._tmpfs != null && (this._tmpfs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

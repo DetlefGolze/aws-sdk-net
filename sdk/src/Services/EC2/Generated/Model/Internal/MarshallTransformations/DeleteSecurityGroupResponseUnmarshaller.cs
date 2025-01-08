@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -55,6 +56,18 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                 if (context.IsStartElement || context.IsAttribute)
                 {
 
+                    if (context.TestExpression("groupId", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        response.GroupId = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("return", targetDepth))
+                    {
+                        var unmarshaller = BoolUnmarshaller.Instance;
+                        response.Return = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                 } 
             }
 

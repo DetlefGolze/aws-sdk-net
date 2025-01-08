@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -129,7 +130,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the DB cluster, for example, <code>arn:aws:rds:us-east-1:12345667890:cluster:das-cluster</code>.
+        /// The Amazon Resource Name (ARN) of the DB cluster, for example, <c>arn:aws:rds:us-east-1:12345667890:cluster:das-cluster</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

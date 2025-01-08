@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property DownScaling. 
         /// <para>
-        /// An <code>AutoScalingThresholds</code> object that describes the downscaling configuration,
-        /// which defines how and when AWS OpsWorks Stacks reduces the number of instances.
+        /// An <c>AutoScalingThresholds</c> object that describes the downscaling configuration,
+        /// which defines how and when OpsWorks Stacks reduces the number of instances.
         /// </para>
         /// </summary>
         public AutoScalingThresholds DownScaling
@@ -96,8 +97,8 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property UpScaling. 
         /// <para>
-        /// An <code>AutoScalingThresholds</code> object that describes the upscaling configuration,
-        /// which defines how and when AWS OpsWorks Stacks increases the number of instances.
+        /// An <c>AutoScalingThresholds</c> object that describes the upscaling configuration,
+        /// which defines how and when OpsWorks Stacks increases the number of instances.
         /// </para>
         /// </summary>
         public AutoScalingThresholds UpScaling

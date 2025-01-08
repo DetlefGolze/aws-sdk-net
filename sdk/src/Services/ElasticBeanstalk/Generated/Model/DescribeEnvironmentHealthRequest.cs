@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -35,14 +36,14 @@ namespace Amazon.ElasticBeanstalk.Model
     /// </summary>
     public partial class DescribeEnvironmentHealthRequest : AmazonElasticBeanstalkRequest
     {
-        private List<string> _attributeNames = new List<string>();
+        private List<string> _attributeNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _environmentId;
         private string _environmentName;
 
         /// <summary>
         /// Gets and sets the property AttributeNames. 
         /// <para>
-        /// Specify the response elements to return. To retrieve all attributes, set to <code>All</code>.
+        /// Specify the response elements to return. To retrieve all attributes, set to <c>All</c>.
         /// If no attribute names are specified, returns the name of the environment.
         /// </para>
         /// </summary>
@@ -55,7 +56,7 @@ namespace Amazon.ElasticBeanstalk.Model
         // Check to see if AttributeNames property is set
         internal bool IsSetAttributeNames()
         {
-            return this._attributeNames != null && this._attributeNames.Count > 0; 
+            return this._attributeNames != null && (this._attributeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

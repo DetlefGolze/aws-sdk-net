@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
-    /// A list of <code>PreferredAvailabilityZones</code> objects that specifies the configuration
+    /// A list of <c>PreferredAvailabilityZones</c> objects that specifies the configuration
     /// of a node group in the resharded cluster.
     /// </summary>
     public partial class ReshardingConfiguration
     {
         private string _nodeGroupId;
-        private List<string> _preferredAvailabilityZones = new List<string>();
+        private List<string> _preferredAvailabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property NodeGroupId. 
         /// <para>
-        /// Either the ElastiCache for Redis supplied 4-digit id or a user supplied id for the
-        /// node group these configuration values apply to.
+        /// Either the ElastiCache supplied 4-digit id or a user supplied id for the node group
+        /// these configuration values apply to.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4)]
@@ -72,7 +73,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if PreferredAvailabilityZones property is set
         internal bool IsSetPreferredAvailabilityZones()
         {
-            return this._preferredAvailabilityZones != null && this._preferredAvailabilityZones.Count > 0; 
+            return this._preferredAvailabilityZones != null && (this._preferredAvailabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

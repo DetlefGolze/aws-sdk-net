@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Backup.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -111,6 +112,18 @@ namespace Amazon.Backup.Model.Internal.MarshallTransformations
                     response.IamRoleArn = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("IndexStatus", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.IndexStatus = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("IndexStatusMessage", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.IndexStatusMessage = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("IsEncrypted", targetDepth))
                 {
                     var unmarshaller = BoolUnmarshaller.Instance;
@@ -187,6 +200,12 @@ namespace Amazon.Backup.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.StorageClass = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("VaultType", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.VaultType = unmarshaller.Unmarshall(context);
                     continue;
                 }
             }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.DatabaseMigrationService.Model
     public partial class DescribeOrderableReplicationInstancesResponse : AmazonWebServiceResponse
     {
         private string _marker;
-        private List<OrderableReplicationInstance> _orderableReplicationInstances = new List<OrderableReplicationInstance>();
+        private List<OrderableReplicationInstance> _orderableReplicationInstances = AWSConfigs.InitializeCollections ? new List<OrderableReplicationInstance>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         ///  An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>. 
+        /// by <c>MaxRecords</c>. 
         /// </para>
         /// </summary>
         public string Marker
@@ -71,7 +72,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if OrderableReplicationInstances property is set
         internal bool IsSetOrderableReplicationInstances()
         {
-            return this._orderableReplicationInstances != null && this._orderableReplicationInstances.Count > 0; 
+            return this._orderableReplicationInstances != null && (this._orderableReplicationInstances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

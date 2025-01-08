@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(GatewayPlatform requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetGreengrass())
             {
                 context.Writer.WritePropertyName("greengrass");
@@ -63,6 +66,17 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
 
                 var marshaller = GreengrassV2Marshaller.Instance;
                 marshaller.Marshall(requestObject.GreengrassV2, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetSiemensIE())
+            {
+                context.Writer.WritePropertyName("siemensIE");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = SiemensIEMarshaller.Instance;
+                marshaller.Marshall(requestObject.SiemensIE, context);
 
                 context.Writer.WriteObjectEnd();
             }

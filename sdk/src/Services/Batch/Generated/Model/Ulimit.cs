@@ -26,10 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
-    /// The <code>ulimit</code> settings to pass to the container.
+    /// The <c>ulimit</c> settings to pass to the container. For more information, see <a
+    /// href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Ulimit.html">Ulimit</a>.
     /// 
     ///  <note> 
     /// <para>
@@ -46,7 +48,7 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property HardLimit. 
         /// <para>
-        /// The hard limit for the <code>ulimit</code> type.
+        /// The hard limit for the <c>ulimit</c> type. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -65,7 +67,10 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The <code>type</code> of the <code>ulimit</code>.
+        /// The <c>type</c> of the <c>ulimit</c>. Valid values are: <c>core</c> | <c>cpu</c> |
+        /// <c>data</c> | <c>fsize</c> | <c>locks</c> | <c>memlock</c> | <c>msgqueue</c> | <c>nice</c>
+        /// | <c>nofile</c> | <c>nproc</c> | <c>rss</c> | <c>rtprio</c> | <c>rttime</c> | <c>sigpending</c>
+        /// | <c>stack</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -84,7 +89,7 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property SoftLimit. 
         /// <para>
-        /// The soft limit for the <code>ulimit</code> type.
+        /// The soft limit for the <c>ulimit</c> type.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -86,7 +87,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The friendly name of the power (e.g., <code>nano</code>).
+        /// The friendly name of the power (<c>nano</c>).
         /// </para>
         /// </summary>
         public string Name
@@ -104,7 +105,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property PowerId. 
         /// <para>
-        /// The ID of the power (e.g., <code>nano-1</code>).
+        /// The ID of the power (<c>nano-1</c>).
         /// </para>
         /// </summary>
         public string PowerId

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancingV2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
     /// </summary>
     public partial class AuthenticateCognitoActionConfig
     {
-        private Dictionary<string, string> _authenticationRequestExtraParams = new Dictionary<string, string>();
+        private Dictionary<string, string> _authenticationRequestExtraParams = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private AuthenticateCognitoActionConditionalBehaviorEnum _onUnauthenticatedRequest;
         private string _scope;
         private string _sessionCookieName;
@@ -58,7 +59,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if AuthenticationRequestExtraParams property is set
         internal bool IsSetAuthenticationRequestExtraParams()
         {
-            return this._authenticationRequestExtraParams != null && this._authenticationRequestExtraParams.Count > 0; 
+            return this._authenticationRequestExtraParams != null && (this._authenticationRequestExtraParams.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -96,7 +97,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         /// <summary>
         /// Gets and sets the property Scope. 
         /// <para>
-        /// The set of user claims to be requested from the IdP. The default is <code>openid</code>.
+        /// The set of user claims to be requested from the IdP. The default is <c>openid</c>.
         /// </para>
         ///  
         /// <para>

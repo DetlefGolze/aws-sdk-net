@@ -26,20 +26,41 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptography.Model
 {
     /// <summary>
-    /// Parameter information for key material export using TR-31 standard.
+    /// Parameter information for key material export using symmetric TR-31 key exchange method.
     /// </summary>
     public partial class ExportTr31KeyBlock
     {
+        private KeyBlockHeaders _keyBlockHeaders;
         private string _wrappingKeyIdentifier;
+
+        /// <summary>
+        /// Gets and sets the property KeyBlockHeaders. 
+        /// <para>
+        /// Optional metadata for export associated with the key material. This data is signed
+        /// but transmitted in clear text.
+        /// </para>
+        /// </summary>
+        public KeyBlockHeaders KeyBlockHeaders
+        {
+            get { return this._keyBlockHeaders; }
+            set { this._keyBlockHeaders = value; }
+        }
+
+        // Check to see if KeyBlockHeaders property is set
+        internal bool IsSetKeyBlockHeaders()
+        {
+            return this._keyBlockHeaders != null;
+        }
 
         /// <summary>
         /// Gets and sets the property WrappingKeyIdentifier. 
         /// <para>
-        /// The <code>KeyARN</code> of the the wrapping key. This key encrypts or wraps the key
-        /// under export for TR-31 key block generation.
+        /// The <c>KeyARN</c> of the the wrapping key. This key encrypts or wraps the key under
+        /// export for TR-31 key block generation.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=7, Max=322)]

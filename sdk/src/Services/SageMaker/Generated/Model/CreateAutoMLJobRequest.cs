@@ -26,12 +26,32 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateAutoMLJob operation.
     /// Creates an Autopilot job also referred to as Autopilot experiment or AutoML job.
     /// 
+    ///  
+    /// <para>
+    /// An AutoML job in SageMaker AI is a fully automated process that allows you to build
+    /// machine learning models with minimal effort and machine learning expertise. When initiating
+    /// an AutoML job, you provide your data and optionally specify parameters tailored to
+    /// your use case. SageMaker AI then automates the entire model development lifecycle,
+    /// including data preprocessing, model training, tuning, and evaluation. AutoML jobs
+    /// are designed to simplify and accelerate the model building process by automating various
+    /// tasks and exploring different combinations of machine learning algorithms, data preprocessing
+    /// techniques, and hyperparameter values. The output of an AutoML job comprises one or
+    /// more trained models ready for deployment and inference. Additionally, SageMaker AI
+    /// AutoML jobs generate a candidate model leaderboard, allowing you to select the best-performing
+    /// model for deployment.
+    /// </para>
+    ///  
+    /// <para>
+    /// For more information about AutoML jobs, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html">https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html</a>
+    /// in the SageMaker AI developer guide.
+    /// </para>
     ///  <note> 
     /// <para>
     /// We recommend using the new versions <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html">CreateAutoMLJobV2</a>
@@ -40,14 +60,14 @@ namespace Amazon.SageMaker.Model
     /// </para>
     ///  
     /// <para>
-    ///  <code>CreateAutoMLJobV2</code> can manage tabular problem types identical to those
-    /// of its previous version <code>CreateAutoMLJob</code>, as well as time-series forecasting,
-    /// and non-tabular problem types such as image or text classification.
+    ///  <c>CreateAutoMLJobV2</c> can manage tabular problem types identical to those of its
+    /// previous version <c>CreateAutoMLJob</c>, as well as time-series forecasting, non-tabular
+    /// problem types such as image or text classification, and text generation (LLMs fine-tuning).
     /// </para>
     ///  
     /// <para>
-    /// Find guidelines about how to migrate a <code>CreateAutoMLJob</code> to <code>CreateAutoMLJobV2</code>
-    /// in <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html#autopilot-create-experiment-api-migrate-v1-v2">Migrate
+    /// Find guidelines about how to migrate a <c>CreateAutoMLJob</c> to <c>CreateAutoMLJobV2</c>
+    /// in <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment.html#autopilot-create-experiment-api-migrate-v1-v2">Migrate
     /// a CreateAutoMLJob to CreateAutoMLJobV2</a>.
     /// </para>
     ///  </note> 
@@ -62,12 +82,12 @@ namespace Amazon.SageMaker.Model
         private string _autoMLJobName;
         private AutoMLJobObjective _autoMLJobObjective;
         private bool? _generateCandidateDefinitionsOnly;
-        private List<AutoMLChannel> _inputDataConfig = new List<AutoMLChannel>();
+        private List<AutoMLChannel> _inputDataConfig = AWSConfigs.InitializeCollections ? new List<AutoMLChannel>() : null;
         private ModelDeployConfig _modelDeployConfig;
         private AutoMLOutputDataConfig _outputDataConfig;
         private ProblemType _problemType;
         private string _roleArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AutoMLJobConfig. 
@@ -149,7 +169,7 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property InputDataConfig. 
         /// <para>
         /// An array of channel objects that describes the input data and its location. Each channel
-        /// is a named input source. Similar to <code>InputDataConfig</code> supported by <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HyperParameterTrainingJobDefinition.html">HyperParameterTrainingJobDefinition</a>.
+        /// is a named input source. Similar to <c>InputDataConfig</c> supported by <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HyperParameterTrainingJobDefinition.html">HyperParameterTrainingJobDefinition</a>.
         /// Format(s) supported: CSV, Parquet. A minimum of 500 rows is required for the training
         /// dataset. There is not a minimum number of rows required for the validation dataset.
         /// </para>
@@ -164,7 +184,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if InputDataConfig property is set
         internal bool IsSetInputDataConfig()
         {
-            return this._inputDataConfig != null && this._inputDataConfig.Count > 0; 
+            return this._inputDataConfig != null && (this._inputDataConfig.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -211,7 +231,7 @@ namespace Amazon.SageMaker.Model
         /// <para>
         /// Defines the type of supervised learning problem available for the candidates. For
         /// more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-datasets-problem-types.html#autopilot-problem-types">
-        /// Amazon SageMaker Autopilot problem types</a>.
+        /// SageMaker Autopilot problem types</a>.
         /// </para>
         /// </summary>
         public ProblemType ProblemType
@@ -264,7 +284,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LicenseManagerLinuxSubscriptions.Model
 {
     /// <summary>
@@ -35,13 +36,18 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model
     {
         private string _accountID;
         private string _amiId;
+        private string _dualSubscription;
         private string _instanceID;
         private string _instanceType;
         private string _lastUpdatedTime;
-        private List<string> _productCode = new List<string>();
+        private string _osVersion;
+        private List<string> _productCode = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _region;
+        private string _registeredWithSubscriptionProvider;
         private string _status;
         private string _subscriptionName;
+        private string _subscriptionProviderCreateTime;
+        private string _subscriptionProviderUpdateTime;
         private string _usageOperation;
 
         /// <summary>
@@ -78,6 +84,25 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model
         internal bool IsSetAmiId()
         {
             return this._amiId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DualSubscription. 
+        /// <para>
+        /// Indicates that you have two different license subscriptions for the same software
+        /// on your instance.
+        /// </para>
+        /// </summary>
+        public string DualSubscription
+        {
+            get { return this._dualSubscription; }
+            set { this._dualSubscription = value; }
+        }
+
+        // Check to see if DualSubscription property is set
+        internal bool IsSetDualSubscription()
+        {
+            return this._dualSubscription != null;
         }
 
         /// <summary>
@@ -135,6 +160,24 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model
         }
 
         /// <summary>
+        /// Gets and sets the property OsVersion. 
+        /// <para>
+        /// The operating system software version that runs on your instance.
+        /// </para>
+        /// </summary>
+        public string OsVersion
+        {
+            get { return this._osVersion; }
+            set { this._osVersion = value; }
+        }
+
+        // Check to see if OsVersion property is set
+        internal bool IsSetOsVersion()
+        {
+            return this._osVersion != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ProductCode. 
         /// <para>
         /// The product code for the instance. For more information, see <a href="https://docs.aws.amazon.com/license-manager/latest/userguide/linux-subscriptions-usage-operation.html">Usage
@@ -150,7 +193,7 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model
         // Check to see if ProductCode property is set
         internal bool IsSetProductCode()
         {
-            return this._productCode != null && this._productCode.Count > 0; 
+            return this._productCode != null && (this._productCode.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -169,6 +212,25 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model
         internal bool IsSetRegion()
         {
             return this._region != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RegisteredWithSubscriptionProvider. 
+        /// <para>
+        /// Indicates that your instance uses a BYOL license subscription from a third-party Linux
+        /// subscription provider that you've registered with License Manager.
+        /// </para>
+        /// </summary>
+        public string RegisteredWithSubscriptionProvider
+        {
+            get { return this._registeredWithSubscriptionProvider; }
+            set { this._registeredWithSubscriptionProvider = value; }
+        }
+
+        // Check to see if RegisteredWithSubscriptionProvider property is set
+        internal bool IsSetRegisteredWithSubscriptionProvider()
+        {
+            return this._registeredWithSubscriptionProvider != null;
         }
 
         /// <summary>
@@ -192,7 +254,7 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model
         /// <summary>
         /// Gets and sets the property SubscriptionName. 
         /// <para>
-        /// The name of the subscription being used by the instance.
+        /// The name of the license subscription that the instance uses.
         /// </para>
         /// </summary>
         public string SubscriptionName
@@ -205,6 +267,44 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model
         internal bool IsSetSubscriptionName()
         {
             return this._subscriptionName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SubscriptionProviderCreateTime. 
+        /// <para>
+        /// The timestamp when you registered the third-party Linux subscription provider for
+        /// the subscription that the instance uses.
+        /// </para>
+        /// </summary>
+        public string SubscriptionProviderCreateTime
+        {
+            get { return this._subscriptionProviderCreateTime; }
+            set { this._subscriptionProviderCreateTime = value; }
+        }
+
+        // Check to see if SubscriptionProviderCreateTime property is set
+        internal bool IsSetSubscriptionProviderCreateTime()
+        {
+            return this._subscriptionProviderCreateTime != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SubscriptionProviderUpdateTime. 
+        /// <para>
+        /// The timestamp from the last time that the instance synced with the registered third-party
+        /// Linux subscription provider.
+        /// </para>
+        /// </summary>
+        public string SubscriptionProviderUpdateTime
+        {
+            get { return this._subscriptionProviderUpdateTime; }
+            set { this._subscriptionProviderUpdateTime = value; }
+        }
+
+        // Check to see if SubscriptionProviderUpdateTime property is set
+        internal bool IsSetSubscriptionProviderUpdateTime()
+        {
+            return this._subscriptionProviderUpdateTime != null;
         }
 
         /// <summary>

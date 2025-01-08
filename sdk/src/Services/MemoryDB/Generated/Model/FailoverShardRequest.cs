@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MemoryDB.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.MemoryDB.Model
         /// <summary>
         /// Gets and sets the property ClusterName. 
         /// <para>
-        /// The cluster being failed over
+        /// The cluster being failed over.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -63,7 +64,7 @@ namespace Amazon.MemoryDB.Model
         /// <summary>
         /// Gets and sets the property ShardName. 
         /// <para>
-        /// The name of the shard
+        /// The name of the shard.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

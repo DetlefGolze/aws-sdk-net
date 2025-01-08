@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSMIncidents.Model
 {
     /// <summary>
@@ -40,8 +41,8 @@ namespace Amazon.SSMIncidents.Model
         /// <summary>
         /// Gets and sets the property EventId. 
         /// <para>
-        /// The ID of the event to update. You can use <code>ListTimelineEvents</code> to find
-        /// an event's ID.
+        /// The ID of the event to update. You can use <c>ListTimelineEvents</c> to find an event's
+        /// ID.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=50)]

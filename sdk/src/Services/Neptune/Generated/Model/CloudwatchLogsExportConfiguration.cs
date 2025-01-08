@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -34,14 +35,20 @@ namespace Amazon.Neptune.Model
     /// 
     ///  
     /// <para>
-    /// The <code>EnableLogTypes</code> and <code>DisableLogTypes</code> arrays determine
-    /// which logs will be exported (or not exported) to CloudWatch Logs.
+    /// The <c>EnableLogTypes</c> and <c>DisableLogTypes</c> arrays determine which logs will
+    /// be exported (or not exported) to CloudWatch Logs.
+    /// </para>
+    ///  
+    /// <para>
+    /// Valid log types are: <c>audit</c> (to publish audit logs) and <c>slowquery</c> (to
+    /// publish slow-query logs). See <a href="https://docs.aws.amazon.com/neptune/latest/userguide/cloudwatch-logs.html">Publishing
+    /// Neptune logs to Amazon CloudWatch logs</a>.
     /// </para>
     /// </summary>
     public partial class CloudwatchLogsExportConfiguration
     {
-        private List<string> _disableLogTypes = new List<string>();
-        private List<string> _enableLogTypes = new List<string>();
+        private List<string> _disableLogTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _enableLogTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DisableLogTypes. 
@@ -58,7 +65,7 @@ namespace Amazon.Neptune.Model
         // Check to see if DisableLogTypes property is set
         internal bool IsSetDisableLogTypes()
         {
-            return this._disableLogTypes != null && this._disableLogTypes.Count > 0; 
+            return this._disableLogTypes != null && (this._disableLogTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -76,7 +83,7 @@ namespace Amazon.Neptune.Model
         // Check to see if EnableLogTypes property is set
         internal bool IsSetEnableLogTypes()
         {
-            return this._enableLogTypes != null && this._enableLogTypes.Count > 0; 
+            return this._enableLogTypes != null && (this._enableLogTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

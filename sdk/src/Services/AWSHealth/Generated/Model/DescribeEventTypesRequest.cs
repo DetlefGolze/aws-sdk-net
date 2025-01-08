@@ -26,13 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSHealth.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeEventTypes operation.
     /// Returns the event types that meet the specified filter criteria. You can use this
     /// API operation to find information about the Health event, such as the category, Amazon
-    /// Web Service, and event code. The metadata for each event appears in the <a href="https://docs.aws.amazon.com/health/latest/APIReference/API_EventType.html">EventType</a>
+    /// Web Services service, and event code. The metadata for each event appears in the <a
+    /// href="https://docs.aws.amazon.com/health/latest/APIReference/API_EventType.html">EventType</a>
     /// object. 
     /// 
     ///  
@@ -42,8 +44,8 @@ namespace Amazon.AWSHealth.Model
     /// </para>
     ///  <note> 
     /// <para>
-    /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-    /// the next request to return more results.
+    /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+    /// next request to return more results.
     /// </para>
     ///  </note>
     /// </summary>
@@ -99,8 +101,8 @@ namespace Amazon.AWSHealth.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you don't specify the <code>maxResults</code> parameter, this operation returns
-        /// a maximum of 30 items by default.
+        /// If you don't specify the <c>maxResults</c> parameter, this operation returns a maximum
+        /// of 30 items by default.
         /// </para>
         ///  </note>
         /// </summary>
@@ -121,8 +123,8 @@ namespace Amazon.AWSHealth.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If the results of a search are large, only a portion of the results are returned,
-        /// and a <code>nextToken</code> pagination token is returned in the response. To retrieve
-        /// the next batch of results, reissue the search request and include the returned token.
+        /// and a <c>nextToken</c> pagination token is returned in the response. To retrieve the
+        /// next batch of results, reissue the search request and include the returned token.
         /// When all results have been returned, the response does not contain a pagination token
         /// value.
         /// </para>

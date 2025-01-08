@@ -21,6 +21,9 @@ namespace Amazon.DynamoDBv2.DocumentModel
     /// <summary>
     /// Configuration for the Table.PutItem operation
     /// </summary>
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode(Amazon.DynamoDBv2.Custom.Internal.InternalConstants.RequiresUnreferencedCodeMessage)]
+#endif
     public class TableConfig
     {
         /// <summary>
@@ -31,7 +34,7 @@ namespace Amazon.DynamoDBv2.DocumentModel
         /// <summary>
         /// The document API relies on an internal cache of the DynamoDB table's metadata to construct and validate 
         /// requests. This controls how the cache key is derived, which influences when the SDK will call 
-        /// <see cref="IAmazonDynamoDB.DescribeTable(string)"/> internally to populate the cache.
+        /// IAmazonDynamoDB.DescribeTable(string) internally to populate the cache.
         /// </summary>
         /// <remarks>
         /// For <see cref="MetadataCachingMode.Default"/> the cache key will be a combination of the table name, credentials, region and service URL. 

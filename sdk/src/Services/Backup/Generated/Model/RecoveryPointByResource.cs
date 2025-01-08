@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -37,12 +38,15 @@ namespace Amazon.Backup.Model
         private string _backupVaultName;
         private DateTime? _creationDate;
         private string _encryptionKeyArn;
+        private IndexStatus _indexStatus;
+        private string _indexStatusMessage;
         private bool? _isParent;
         private string _parentRecoveryPointArn;
         private string _recoveryPointArn;
         private string _resourceName;
         private RecoveryPointStatus _status;
         private string _statusMessage;
+        private VaultType _vaultType;
 
         /// <summary>
         /// Gets and sets the property BackupSizeBytes. 
@@ -67,7 +71,7 @@ namespace Amazon.Backup.Model
         /// <para>
         /// The name of a logical container where backups are stored. Backup vaults are identified
         /// by names that are unique to the account used to create them and the Amazon Web Services
-        /// Region where they are created. They consist of lowercase letters, numbers, and hyphens.
+        /// Region where they are created.
         /// </para>
         /// </summary>
         public string BackupVaultName
@@ -86,9 +90,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property CreationDate. 
         /// <para>
         /// The date and time a recovery point is created, in Unix format and Coordinated Universal
-        /// Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For
-        /// example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087
-        /// AM.
+        /// Time (UTC). The value of <c>CreationDate</c> is accurate to milliseconds. For example,
+        /// the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.
         /// </para>
         /// </summary>
         public DateTime CreationDate
@@ -107,7 +110,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property EncryptionKeyArn. 
         /// <para>
         /// The server-side encryption key that is used to protect your backups; for example,
-        /// <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>.
+        /// <c>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</c>.
         /// </para>
         /// </summary>
         public string EncryptionKeyArn
@@ -120,6 +123,53 @@ namespace Amazon.Backup.Model
         internal bool IsSetEncryptionKeyArn()
         {
             return this._encryptionKeyArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IndexStatus. 
+        /// <para>
+        /// This is the current status for the backup index associated with the specified recovery
+        /// point.
+        /// </para>
+        ///  
+        /// <para>
+        /// Statuses are: <c>PENDING</c> | <c>ACTIVE</c> | <c>FAILED</c> | <c>DELETING</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// A recovery point with an index that has the status of <c>ACTIVE</c> can be included
+        /// in a search.
+        /// </para>
+        /// </summary>
+        public IndexStatus IndexStatus
+        {
+            get { return this._indexStatus; }
+            set { this._indexStatus = value; }
+        }
+
+        // Check to see if IndexStatus property is set
+        internal bool IsSetIndexStatus()
+        {
+            return this._indexStatus != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IndexStatusMessage. 
+        /// <para>
+        /// A string in the form of a detailed message explaining the status of a backup index
+        /// associated with the recovery point.
+        /// </para>
+        /// </summary>
+        public string IndexStatusMessage
+        {
+            get { return this._indexStatusMessage; }
+            set { this._indexStatusMessage = value; }
+        }
+
+        // Check to see if IndexStatusMessage property is set
+        internal bool IsSetIndexStatusMessage()
+        {
+            return this._indexStatusMessage != null;
         }
 
         /// <summary>
@@ -143,7 +193,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property ParentRecoveryPointArn. 
         /// <para>
-        /// This is the Amazon Resource Name (ARN) of the parent (composite) recovery point.
+        /// The Amazon Resource Name (ARN) of the parent (composite) recovery point.
         /// </para>
         /// </summary>
         public string ParentRecoveryPointArn
@@ -162,7 +212,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property RecoveryPointArn. 
         /// <para>
         /// An Amazon Resource Name (ARN) that uniquely identifies a recovery point; for example,
-        /// <code>arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45</code>.
+        /// <c>arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45</c>.
         /// </para>
         /// </summary>
         public string RecoveryPointArn
@@ -180,7 +230,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property ResourceName. 
         /// <para>
-        /// This is the non-unique name of the resource that belongs to the specified backup.
+        /// The non-unique name of the resource that belongs to the specified backup.
         /// </para>
         /// </summary>
         public string ResourceName
@@ -216,7 +266,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property StatusMessage. 
         /// <para>
-        /// A message explaining the reason of the recovery point deletion failure.
+        /// A message explaining the current status of the recovery point.
         /// </para>
         /// </summary>
         public string StatusMessage
@@ -229,6 +279,24 @@ namespace Amazon.Backup.Model
         internal bool IsSetStatusMessage()
         {
             return this._statusMessage != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property VaultType. 
+        /// <para>
+        /// The type of vault in which the described recovery point is stored.
+        /// </para>
+        /// </summary>
+        public VaultType VaultType
+        {
+            get { return this._vaultType; }
+            set { this._vaultType = value; }
+        }
+
+        // Check to see if VaultType property is set
+        internal bool IsSetVaultType()
+        {
+            return this._vaultType != null;
         }
 
     }

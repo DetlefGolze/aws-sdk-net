@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -33,6 +34,38 @@ namespace Amazon.CloudWatchLogs.Model
         internal CloudWatchLogsPaginatorFactory(IAmazonCloudWatchLogs client) 
         {
             this.client = client;
+        }
+
+        /// <summary>
+        /// Paginator for DescribeConfigurationTemplates operation
+        ///</summary>
+        public IDescribeConfigurationTemplatesPaginator DescribeConfigurationTemplates(DescribeConfigurationTemplatesRequest request) 
+        {
+            return new DescribeConfigurationTemplatesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeDeliveries operation
+        ///</summary>
+        public IDescribeDeliveriesPaginator DescribeDeliveries(DescribeDeliveriesRequest request) 
+        {
+            return new DescribeDeliveriesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeDeliveryDestinations operation
+        ///</summary>
+        public IDescribeDeliveryDestinationsPaginator DescribeDeliveryDestinations(DescribeDeliveryDestinationsRequest request) 
+        {
+            return new DescribeDeliveryDestinationsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeDeliverySources operation
+        ///</summary>
+        public IDescribeDeliverySourcesPaginator DescribeDeliverySources(DescribeDeliverySourcesRequest request) 
+        {
+            return new DescribeDeliverySourcesPaginator(this.client, request);
         }
 
         /// <summary>
@@ -89,6 +122,30 @@ namespace Amazon.CloudWatchLogs.Model
         public IGetLogEventsPaginator GetLogEvents(GetLogEventsRequest request) 
         {
             return new GetLogEventsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListAnomalies operation
+        ///</summary>
+        public IListAnomaliesPaginator ListAnomalies(ListAnomaliesRequest request) 
+        {
+            return new ListAnomaliesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListLogAnomalyDetectors operation
+        ///</summary>
+        public IListLogAnomalyDetectorsPaginator ListLogAnomalyDetectors(ListLogAnomalyDetectorsRequest request) 
+        {
+            return new ListLogAnomalyDetectorsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListLogGroupsForQuery operation
+        ///</summary>
+        public IListLogGroupsForQueryPaginator ListLogGroupsForQuery(ListLogGroupsForQueryRequest request) 
+        {
+            return new ListLogGroupsForQueryPaginator(this.client, request);
         }
     }
 }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WellArchitected.Model
 {
     /// <summary>
@@ -117,7 +118,7 @@ namespace Amazon.WellArchitected.Model
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        ///  <code>ResourceArn</code> of the lens being upgraded
+        ///  <c>ResourceArn</c> of the lens being upgraded
         /// </para>
         /// </summary>
         [AWSProperty(Min=50, Max=250)]

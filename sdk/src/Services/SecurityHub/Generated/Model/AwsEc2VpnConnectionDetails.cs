@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -37,20 +38,19 @@ namespace Amazon.SecurityHub.Model
         private string _customerGatewayConfiguration;
         private string _customerGatewayId;
         private AwsEc2VpnConnectionOptionsDetails _options;
-        private List<AwsEc2VpnConnectionRoutesDetails> _routes = new List<AwsEc2VpnConnectionRoutesDetails>();
+        private List<AwsEc2VpnConnectionRoutesDetails> _routes = AWSConfigs.InitializeCollections ? new List<AwsEc2VpnConnectionRoutesDetails>() : null;
         private string _state;
         private string _transitGatewayId;
         private string _type;
-        private List<AwsEc2VpnConnectionVgwTelemetryDetails> _vgwTelemetry = new List<AwsEc2VpnConnectionVgwTelemetryDetails>();
+        private List<AwsEc2VpnConnectionVgwTelemetryDetails> _vgwTelemetry = AWSConfigs.InitializeCollections ? new List<AwsEc2VpnConnectionVgwTelemetryDetails>() : null;
         private string _vpnConnectionId;
         private string _vpnGatewayId;
 
         /// <summary>
         /// Gets and sets the property Category. 
         /// <para>
-        /// The category of the VPN connection. <code>VPN</code> indicates an Amazon Web Services
-        /// VPN connection. <code>VPN-Classic</code> indicates an Amazon Web Services Classic
-        /// VPN connection.
+        /// The category of the VPN connection. <c>VPN</c> indicates an Amazon Web Services VPN
+        /// connection. <c>VPN-Classic</c> indicates an Amazon Web Services Classic VPN connection.
         /// </para>
         /// </summary>
         public string Category
@@ -135,7 +135,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Routes property is set
         internal bool IsSetRoutes()
         {
-            return this._routes != null && this._routes.Count > 0; 
+            return this._routes != null && (this._routes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -145,19 +145,19 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>available</code> 
+        ///  <c>available</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deleted</code> 
+        ///  <c>deleted</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deleting</code> 
+        ///  <c>deleting</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>pending</code> 
+        ///  <c>pending</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -224,7 +224,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if VgwTelemetry property is set
         internal bool IsSetVgwTelemetry()
         {
-            return this._vgwTelemetry != null && this._vgwTelemetry.Count > 0; 
+            return this._vgwTelemetry != null && (this._vgwTelemetry.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

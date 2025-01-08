@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -74,8 +75,8 @@ namespace Amazon.NetworkManager.Model
         /// <summary>
         /// Gets and sets the property TransitGatewayRouteTableArn. 
         /// <para>
-        /// The ARN of the transit gateway attachment route table. For example, <code>"TransitGatewayRouteTableArn":
-        /// "arn:aws:ec2:us-west-2:123456789012:transit-gateway-route-table/tgw-rtb-9876543210123456"</code>.
+        /// The ARN of the transit gateway attachment route table. For example, <c>"TransitGatewayRouteTableArn":
+        /// "arn:aws:ec2:us-west-2:123456789012:transit-gateway-route-table/tgw-rtb-9876543210123456"</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=500)]

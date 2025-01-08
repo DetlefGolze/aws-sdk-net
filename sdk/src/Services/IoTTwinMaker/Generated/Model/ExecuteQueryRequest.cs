@@ -26,12 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTTwinMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the ExecuteQuery operation.
     /// Run queries to access information from your knowledge graph of entities within individual
     /// workspaces.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// The ExecuteQuery action only works with <a href="https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/home.html">Amazon
+    /// Web Services Java SDK2</a>. ExecuteQuery will not work with any Amazon Web Services
+    /// Java SDK version &lt; 2.x.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class ExecuteQueryRequest : AmazonIoTTwinMakerRequest
     {
@@ -43,11 +52,7 @@ namespace Amazon.IoTTwinMaker.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The maximum number of results to return at one time. The default is 25.
-        /// </para>
-        ///  
-        /// <para>
-        /// Valid Range: Minimum value of 1. Maximum value of 250.
+        /// The maximum number of results to return at one time. The default is 50.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]

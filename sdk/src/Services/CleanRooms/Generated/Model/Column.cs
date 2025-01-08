@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CleanRooms.Model
 {
     /// <summary>
-    /// A column within a schema relation, derived from the underlying Glue table.
+    /// A column within a schema relation, derived from the underlying table.
     /// </summary>
     public partial class Column
     {

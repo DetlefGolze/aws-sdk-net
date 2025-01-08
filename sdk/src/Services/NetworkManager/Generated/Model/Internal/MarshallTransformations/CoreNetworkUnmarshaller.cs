@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.NetworkManager.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.NetworkManager.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public CoreNetwork Unmarshall(JsonUnmarshallerContext context)
         {
+            CoreNetwork unmarshalledObject = new CoreNetwork();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            CoreNetwork unmarshalledObject = new CoreNetwork();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -100,6 +102,12 @@ namespace Amazon.NetworkManager.Model.Internal.MarshallTransformations
                     unmarshalledObject.GlobalNetworkId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("NetworkFunctionGroups", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<CoreNetworkNetworkFunctionGroup, CoreNetworkNetworkFunctionGroupUnmarshaller>(CoreNetworkNetworkFunctionGroupUnmarshaller.Instance);
+                    unmarshalledObject.NetworkFunctionGroups = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("Segments", targetDepth))
                 {
                     var unmarshaller = new ListUnmarshaller<CoreNetworkSegment, CoreNetworkSegmentUnmarshaller>(CoreNetworkSegmentUnmarshaller.Instance);
@@ -119,7 +127,6 @@ namespace Amazon.NetworkManager.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

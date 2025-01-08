@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.EC2.Model
     {
         private int? _amiLaunchIndex;
         private ArchitectureValues _architecture;
-        private List<InstanceBlockDeviceMapping> _blockDeviceMappings = new List<InstanceBlockDeviceMapping>();
+        private List<InstanceBlockDeviceMapping> _blockDeviceMappings = AWSConfigs.InitializeCollections ? new List<InstanceBlockDeviceMapping>() : null;
         private BootModeValues _bootMode;
         private string _capacityReservationId;
         private CapacityReservationSpecificationResponse _capacityReservationSpecification;
@@ -43,8 +44,8 @@ namespace Amazon.EC2.Model
         private CpuOptions _cpuOptions;
         private InstanceBootModeValues _currentInstanceBootMode;
         private bool? _ebsOptimized;
-        private List<ElasticGpuAssociation> _elasticGpuAssociations = new List<ElasticGpuAssociation>();
-        private List<ElasticInferenceAcceleratorAssociation> _elasticInferenceAcceleratorAssociations = new List<ElasticInferenceAcceleratorAssociation>();
+        private List<ElasticGpuAssociation> _elasticGpuAssociations = AWSConfigs.InitializeCollections ? new List<ElasticGpuAssociation>() : null;
+        private List<ElasticInferenceAcceleratorAssociation> _elasticInferenceAcceleratorAssociations = AWSConfigs.InitializeCollections ? new List<ElasticInferenceAcceleratorAssociation>() : null;
         private bool? _enaSupport;
         private EnclaveOptions _enclaveOptions;
         private HibernationOptions _hibernationOptions;
@@ -58,11 +59,13 @@ namespace Amazon.EC2.Model
         private string _kernelId;
         private string _keyName;
         private DateTime? _launchTime;
-        private List<LicenseConfiguration> _licenses = new List<LicenseConfiguration>();
+        private List<LicenseConfiguration> _licenses = AWSConfigs.InitializeCollections ? new List<LicenseConfiguration>() : null;
         private InstanceMaintenanceOptions _maintenanceOptions;
         private InstanceMetadataOptionsResponse _metadataOptions;
         private Monitoring _monitoring;
-        private List<InstanceNetworkInterface> _networkInterfaces = new List<InstanceNetworkInterface>();
+        private List<InstanceNetworkInterface> _networkInterfaces = AWSConfigs.InitializeCollections ? new List<InstanceNetworkInterface>() : null;
+        private InstanceNetworkPerformanceOptions _networkPerformanceOptions;
+        private OperatorResponse _operator;
         private string _outpostArn;
         private Placement _placement;
         private PlatformValues _platform;
@@ -70,13 +73,13 @@ namespace Amazon.EC2.Model
         private string _privateDnsName;
         private PrivateDnsNameOptionsResponse _privateDnsNameOptions;
         private string _privateIpAddress;
-        private List<ProductCode> _productCodes = new List<ProductCode>();
+        private List<ProductCode> _productCodes = AWSConfigs.InitializeCollections ? new List<ProductCode>() : null;
         private string _publicDnsName;
         private string _publicIpAddress;
         private string _ramdiskId;
         private string _rootDeviceName;
         private DeviceType _rootDeviceType;
-        private List<GroupIdentifier> _securityGroups = new List<GroupIdentifier>();
+        private List<GroupIdentifier> _securityGroups = AWSConfigs.InitializeCollections ? new List<GroupIdentifier>() : null;
         private bool? _sourceDestCheck;
         private string _spotInstanceRequestId;
         private string _sriovNetSupport;
@@ -84,7 +87,7 @@ namespace Amazon.EC2.Model
         private StateReason _stateReason;
         private string _stateTransitionReason;
         private string _subnetId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _tpmSupport;
         private string _usageOperation;
         private DateTime? _usageOperationUpdateTime;
@@ -142,15 +145,15 @@ namespace Amazon.EC2.Model
         // Check to see if BlockDeviceMappings property is set
         internal bool IsSetBlockDeviceMappings()
         {
-            return this._blockDeviceMappings != null && this._blockDeviceMappings.Count > 0; 
+            return this._blockDeviceMappings != null && (this._blockDeviceMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property BootMode. 
         /// <para>
-        /// The boot mode that was specified by the AMI. If the value is <code>uefi-preferred</code>,
-        /// the AMI supports both UEFI and Legacy BIOS. The <code>currentInstanceBootMode</code>
-        /// parameter is the boot mode that is used to boot the instance at launch or start.
+        /// The boot mode that was specified by the AMI. If the value is <c>uefi-preferred</c>,
+        /// the AMI supports both UEFI and Legacy BIOS. The <c>currentInstanceBootMode</c> parameter
+        /// is the boot mode that is used to boot the instance at launch or start.
         /// </para>
         ///  <note> 
         /// <para>
@@ -291,8 +294,13 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property ElasticGpuAssociations. 
         /// <para>
-        /// The Elastic GPU associated with the instance.
+        /// Deprecated.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// Amazon Elastic Graphics reached end of life on January 8, 2024.
+        /// </para>
+        ///  </note>
         /// </summary>
         public List<ElasticGpuAssociation> ElasticGpuAssociations
         {
@@ -303,14 +311,19 @@ namespace Amazon.EC2.Model
         // Check to see if ElasticGpuAssociations property is set
         internal bool IsSetElasticGpuAssociations()
         {
-            return this._elasticGpuAssociations != null && this._elasticGpuAssociations.Count > 0; 
+            return this._elasticGpuAssociations != null && (this._elasticGpuAssociations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ElasticInferenceAcceleratorAssociations. 
         /// <para>
-        /// The elastic inference accelerator associated with the instance.
+        /// Deprecated
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// Amazon Elastic Inference is no longer available.
+        /// </para>
+        ///  </note>
         /// </summary>
         public List<ElasticInferenceAcceleratorAssociation> ElasticInferenceAcceleratorAssociations
         {
@@ -321,7 +334,7 @@ namespace Amazon.EC2.Model
         // Check to see if ElasticInferenceAcceleratorAssociations property is set
         internal bool IsSetElasticInferenceAcceleratorAssociations()
         {
-            return this._elasticInferenceAcceleratorAssociations != null && this._elasticInferenceAcceleratorAssociations.Count > 0; 
+            return this._elasticInferenceAcceleratorAssociations != null && (this._elasticInferenceAcceleratorAssociations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -381,8 +394,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Hypervisor. 
         /// <para>
-        /// The hypervisor type of the instance. The value <code>xen</code> is used for both Xen
-        /// and Nitro hypervisors.
+        /// The hypervisor type of the instance. The value <c>xen</c> is used for both Xen and
+        /// Nitro hypervisors.
         /// </para>
         /// </summary>
         public HypervisorType Hypervisor
@@ -544,7 +557,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property LaunchTime. 
         /// <para>
-        /// The time the instance was launched.
+        /// The time that the instance was last launched. To determine the time that instance
+        /// was first launched, see the attachment time for the primary network interface.
         /// </para>
         /// </summary>
         public DateTime LaunchTime
@@ -574,7 +588,7 @@ namespace Amazon.EC2.Model
         // Check to see if Licenses property is set
         internal bool IsSetLicenses()
         {
-            return this._licenses != null && this._licenses.Count > 0; 
+            return this._licenses != null && (this._licenses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -646,7 +660,43 @@ namespace Amazon.EC2.Model
         // Check to see if NetworkInterfaces property is set
         internal bool IsSetNetworkInterfaces()
         {
-            return this._networkInterfaces != null && this._networkInterfaces.Count > 0; 
+            return this._networkInterfaces != null && (this._networkInterfaces.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property NetworkPerformanceOptions. 
+        /// <para>
+        /// Contains settings for the network performance options for your instance.
+        /// </para>
+        /// </summary>
+        public InstanceNetworkPerformanceOptions NetworkPerformanceOptions
+        {
+            get { return this._networkPerformanceOptions; }
+            set { this._networkPerformanceOptions = value; }
+        }
+
+        // Check to see if NetworkPerformanceOptions property is set
+        internal bool IsSetNetworkPerformanceOptions()
+        {
+            return this._networkPerformanceOptions != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Operator. 
+        /// <para>
+        /// The service provider that manages the instance.
+        /// </para>
+        /// </summary>
+        public OperatorResponse Operator
+        {
+            get { return this._operator; }
+            set { this._operator = value; }
+        }
+
+        // Check to see if Operator property is set
+        internal bool IsSetOperator()
+        {
+            return this._operator != null;
         }
 
         /// <summary>
@@ -688,7 +738,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Platform. 
         /// <para>
-        /// The value is <code>Windows</code> for Windows instances; otherwise blank.
+        /// The platform. This value is <c>windows</c> for Windows instances; otherwise, it is
+        /// empty.
         /// </para>
         /// </summary>
         public PlatformValues Platform
@@ -727,7 +778,7 @@ namespace Amazon.EC2.Model
         /// <para>
         /// [IPv4 only] The private DNS hostname name assigned to the instance. This DNS hostname
         /// can only be used inside the Amazon EC2 network. This name is not available until the
-        /// instance enters the <code>running</code> state. 
+        /// instance enters the <c>running</c> state. 
         /// </para>
         ///  
         /// <para>
@@ -800,15 +851,15 @@ namespace Amazon.EC2.Model
         // Check to see if ProductCodes property is set
         internal bool IsSetProductCodes()
         {
-            return this._productCodes != null && this._productCodes.Count > 0; 
+            return this._productCodes != null && (this._productCodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PublicDnsName. 
         /// <para>
         /// [IPv4 only] The public DNS name assigned to the instance. This name is not available
-        /// until the instance enters the <code>running</code> state. This name is only available
-        /// if you've enabled DNS hostnames for your VPC.
+        /// until the instance enters the <c>running</c> state. This name is only available if
+        /// you've enabled DNS hostnames for your VPC.
         /// </para>
         /// </summary>
         public string PublicDnsName
@@ -867,7 +918,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property RootDeviceName. 
         /// <para>
-        /// The device name of the root device volume (for example, <code>/dev/sda1</code>).
+        /// The device name of the root device volume (for example, <c>/dev/sda1</c>).
         /// </para>
         /// </summary>
         public string RootDeviceName
@@ -916,7 +967,7 @@ namespace Amazon.EC2.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1061,14 +1112,14 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TpmSupport. 
         /// <para>
-        /// If the instance is configured for NitroTPM support, the value is <code>v2.0</code>.
-        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitrotpm.html">NitroTPM</a>
+        /// If the instance is configured for NitroTPM support, the value is <c>v2.0</c>. For
+        /// more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitrotpm.html">NitroTPM</a>
         /// in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         /// </summary>

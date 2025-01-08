@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AugmentedAIRuntime.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.AugmentedAIRuntime.Model
     /// 
     ///  
     /// <para>
-    /// If the human loop was deleted, this operation will return a <code>ResourceNotFoundException</code>.
+    /// If the human loop was deleted, this operation will return a <c>ResourceNotFoundException</c>.
     /// 
     /// </para>
     /// </summary>

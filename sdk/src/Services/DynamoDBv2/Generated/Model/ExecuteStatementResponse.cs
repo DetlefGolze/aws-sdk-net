@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.DynamoDBv2.Model
     public partial class ExecuteStatementResponse : AmazonWebServiceResponse
     {
         private ConsumedCapacity _consumedCapacity;
-        private List<Dictionary<string, AttributeValue>> _items = new List<Dictionary<string, AttributeValue>>();
-        private Dictionary<string, AttributeValue> _lastEvaluatedKey = new Dictionary<string, AttributeValue>();
+        private List<Dictionary<string, AttributeValue>> _items = AWSConfigs.InitializeCollections ? new List<Dictionary<string, AttributeValue>>() : null;
+        private Dictionary<string, AttributeValue> _lastEvaluatedKey = AWSConfigs.InitializeCollections ? new Dictionary<string, AttributeValue>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -70,7 +71,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -78,10 +79,10 @@ namespace Amazon.DynamoDBv2.Model
         /// <para>
         /// The primary key of the item where the operation stopped, inclusive of the previous
         /// result set. Use this value to start a new operation, excluding this value in the new
-        /// request. If <code>LastEvaluatedKey</code> is empty, then the "last page" of results
-        /// has been processed and there is no more data to be retrieved. If <code>LastEvaluatedKey</code>
+        /// request. If <c>LastEvaluatedKey</c> is empty, then the "last page" of results has
+        /// been processed and there is no more data to be retrieved. If <c>LastEvaluatedKey</c>
         /// is not empty, it does not necessarily mean that there is more data in the result set.
-        /// The only way to know when you have reached the end of the result set is when <code>LastEvaluatedKey</code>
+        /// The only way to know when you have reached the end of the result set is when <c>LastEvaluatedKey</c>
         /// is empty. 
         /// </para>
         /// </summary>
@@ -94,7 +95,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if LastEvaluatedKey property is set
         internal bool IsSetLastEvaluatedKey()
         {
-            return this._lastEvaluatedKey != null && this._lastEvaluatedKey.Count > 0; 
+            return this._lastEvaluatedKey != null && (this._lastEvaluatedKey.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.Chime.Model
     /// </summary>
     public partial class ListAppInstancesResponse : AmazonWebServiceResponse
     {
-        private List<AppInstanceSummary> _appInstances = new List<AppInstanceSummary>();
+        private List<AppInstanceSummary> _appInstances = AWSConfigs.InitializeCollections ? new List<AppInstanceSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property AppInstances. 
         /// <para>
-        /// The information for each <code>AppInstance</code>.
+        /// The information for each <c>AppInstance</c>.
         /// </para>
         /// </summary>
         public List<AppInstanceSummary> AppInstances
@@ -51,13 +52,13 @@ namespace Amazon.Chime.Model
         // Check to see if AppInstances property is set
         internal bool IsSetAppInstances()
         {
-            return this._appInstances != null && this._appInstances.Count > 0; 
+            return this._appInstances != null && (this._appInstances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token passed by previous API requests until the maximum number of <code>AppInstance</code>s
+        /// The token passed by previous API requests until the maximum number of <c>AppInstance</c>s
         /// is reached.
         /// </para>
         /// </summary>

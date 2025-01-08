@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
-    /// A resource with the same name already exists.
+    /// The request conflicts with the current state of the resource.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

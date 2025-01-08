@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.NetworkFirewall.Model
         private ResourceStatus _firewallPolicyStatus;
         private DateTime? _lastModifiedTime;
         private int? _numberOfAssociations;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ConsumedStatefulRuleCapacity. 
@@ -127,7 +128,7 @@ namespace Amazon.NetworkFirewall.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If this response is for a create request that had <code>DryRun</code> set to <code>TRUE</code>,
+        /// If this response is for a create request that had <c>DryRun</c> set to <c>TRUE</c>,
         /// then this ARN is a placeholder that isn't attached to a valid resource.
         /// </para>
         ///  </note>
@@ -256,7 +257,7 @@ namespace Amazon.NetworkFirewall.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

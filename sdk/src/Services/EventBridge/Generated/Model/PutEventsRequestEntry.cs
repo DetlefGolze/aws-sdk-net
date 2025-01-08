@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.EventBridge.Model
         private string _detail;
         private string _detailType;
         private string _eventBusName;
-        private List<string> _resources = new List<string>();
+        private List<string> _resources = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _source;
         private DateTime? _time;
         private string _traceHeader;
@@ -45,8 +46,17 @@ namespace Amazon.EventBridge.Model
         /// Gets and sets the property Detail. 
         /// <para>
         /// A valid JSON object. There is no other schema imposed. The JSON object may contain
-        /// fields and nested subobjects.
+        /// fields and nested sub-objects.
         /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <c>Detail</c>, <c>DetailType</c>, and <c>Source</c> are required for EventBridge
+        /// to successfully send an event to an event bus. If you include event entries in a request
+        /// that do not include each of those properties, EventBridge fails that entry. If you
+        /// submit a request in which <i>none</i> of the entries have each of these properties,
+        /// EventBridge fails the entire request. 
+        /// </para>
+        ///  </note>
         /// </summary>
         public string Detail
         {
@@ -66,6 +76,15 @@ namespace Amazon.EventBridge.Model
         /// Free-form string, with a maximum of 128 characters, used to decide what fields to
         /// expect in the event detail.
         /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <c>Detail</c>, <c>DetailType</c>, and <c>Source</c> are required for EventBridge
+        /// to successfully send an event to an event bus. If you include event entries in a request
+        /// that do not include each of those properties, EventBridge fails that entry. If you
+        /// submit a request in which <i>none</i> of the entries have each of these properties,
+        /// EventBridge fails the entire request. 
+        /// </para>
+        ///  </note>
         /// </summary>
         public string DetailType
         {
@@ -88,10 +107,11 @@ namespace Amazon.EventBridge.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you're using a global endpoint with a custom bus, you must enter the name, not
-        /// the ARN, of the event bus in either the primary or secondary Region here and the corresponding
-        /// event bus in the other Region will be determined based on the endpoint referenced
-        /// by the <code>EndpointId</code>.
+        /// If you're using a global endpoint with a custom bus, you can enter either the name
+        /// or Amazon Resource Name (ARN) of the event bus in either the primary or secondary
+        /// Region here. EventBridge then determines the corresponding event bus in the other
+        /// Region based on the endpoint referenced by the <c>EndpointId</c>. Specifying the event
+        /// bus ARN is preferred.
         /// </para>
         ///  </note>
         /// </summary>
@@ -124,7 +144,7 @@ namespace Amazon.EventBridge.Model
         // Check to see if Resources property is set
         internal bool IsSetResources()
         {
-            return this._resources != null && this._resources.Count > 0; 
+            return this._resources != null && (this._resources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -132,6 +152,15 @@ namespace Amazon.EventBridge.Model
         /// <para>
         /// The source of the event.
         /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <c>Detail</c>, <c>DetailType</c>, and <c>Source</c> are required for EventBridge
+        /// to successfully send an event to an event bus. If you include event entries in a request
+        /// that do not include each of those properties, EventBridge fails that entry. If you
+        /// submit a request in which <i>none</i> of the entries have each of these properties,
+        /// EventBridge fails the entire request. 
+        /// </para>
+        ///  </note>
         /// </summary>
         public string Source
         {

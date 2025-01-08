@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
@@ -52,11 +53,11 @@ namespace Amazon.OpsWorks.Model
         /// Gets and sets the property Force. 
         /// <para>
         /// Specifies whether to force an instance to stop. If the instance's root device type
-        /// is <code>ebs</code>, or EBS-backed, adding the <code>Force</code> parameter to the
-        /// <code>StopInstances</code> API call disassociates the AWS OpsWorks Stacks instance
-        /// from EC2, and forces deletion of <i>only</i> the OpsWorks Stacks instance. You must
-        /// also delete the formerly-associated instance in EC2 after troubleshooting and replacing
-        /// the AWS OpsWorks Stacks instance with a new one.
+        /// is <c>ebs</c>, or EBS-backed, adding the <c>Force</c> parameter to the <c>StopInstances</c>
+        /// API call disassociates the OpsWorks Stacks instance from EC2, and forces deletion
+        /// of <i>only</i> the OpsWorks Stacks instance. You must also delete the formerly-associated
+        /// instance in EC2 after troubleshooting and replacing the OpsWorks Stacks instance with
+        /// a new one.
         /// </para>
         /// </summary>
         public bool Force

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GreengrassV2.Model
 {
     /// <summary>
@@ -39,9 +40,8 @@ namespace Amazon.GreengrassV2.Model
         /// Gets and sets the property InProgressTimeoutInMinutes. 
         /// <para>
         /// The amount of time, in minutes, that devices have to complete the job. The timer starts
-        /// when the job status is set to <code>IN_PROGRESS</code>. If the job status doesn't
-        /// change to a terminal state before the time expires, then the job status is set to
-        /// <code>TIMED_OUT</code>.
+        /// when the job status is set to <c>IN_PROGRESS</c>. If the job status doesn't change
+        /// to a terminal state before the time expires, then the job status is set to <c>TIMED_OUT</c>.
         /// </para>
         ///  
         /// <para>

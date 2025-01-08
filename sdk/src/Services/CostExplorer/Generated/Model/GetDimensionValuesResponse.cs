@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostExplorer.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.CostExplorer.Model
     /// </summary>
     public partial class GetDimensionValuesResponse : AmazonWebServiceResponse
     {
-        private List<DimensionValuesWithAttributes> _dimensionValues = new List<DimensionValuesWithAttributes>();
+        private List<DimensionValuesWithAttributes> _dimensionValues = AWSConfigs.InitializeCollections ? new List<DimensionValuesWithAttributes>() : null;
         private string _nextPageToken;
         private int? _returnSize;
         private int? _totalSize;
@@ -46,12 +47,12 @@ namespace Amazon.CostExplorer.Model
         /// </para>
         ///  
         /// <para>
-        /// If you set the context to <code>COST_AND_USAGE</code>, you can use the following dimensions
+        /// If you set the context to <c>COST_AND_USAGE</c>, you can use the following dimensions
         /// for searching:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// AZ - The Availability Zone. An example is <code>us-east-1a</code>.
+        /// AZ - The Availability Zone. An example is <c>us-east-1a</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -60,7 +61,7 @@ namespace Amazon.CostExplorer.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// INSTANCE_TYPE - The type of Amazon EC2 instance. An example is <code>m4.xlarge</code>.
+        /// INSTANCE_TYPE - The type of Amazon EC2 instance. An example is <c>m4.xlarge</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -79,7 +80,7 @@ namespace Amazon.CostExplorer.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// OPERATION - The action performed. Examples include <code>RunInstance</code> and <code>CreateBucket</code>.
+        /// OPERATION - The action performed. Examples include <c>RunInstance</c> and <c>CreateBucket</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -97,8 +98,8 @@ namespace Amazon.CostExplorer.Model
         ///  </li> <li> 
         /// <para>
         /// USAGE_TYPE - The type of usage. An example is DataTransfer-In-Bytes. The response
-        /// for the <code>GetDimensionValues</code> operation includes a unit attribute. Examples
-        /// include GB and Hrs.
+        /// for the <c>GetDimensionValues</c> operation includes a unit attribute. Examples include
+        /// GB and Hrs.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -114,17 +115,16 @@ namespace Amazon.CostExplorer.Model
         /// <para>
         /// RESOURCE_ID - The unique identifier of the resource. ResourceId is an opt-in feature
         /// only available for last 14 days for EC2-Compute Service. You can opt-in by enabling
-        /// <code>Hourly</code> and <code>Resource Level Data</code> in Cost Management Console
-        /// preferences.
+        /// <c>Hourly</c> and <c>Resource Level Data</c> in Cost Management Console preferences.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If you set the context to <code>RESERVATIONS</code>, you can use the following dimensions
+        /// If you set the context to <c>RESERVATIONS</c>, you can use the following dimensions
         /// for searching:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// AZ - The Availability Zone. An example is <code>us-east-1a</code>.
+        /// AZ - The Availability Zone. An example is <c>us-east-1a</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -133,11 +133,11 @@ namespace Amazon.CostExplorer.Model
         ///  </li> <li> 
         /// <para>
         /// DEPLOYMENT_OPTION - The scope of Amazon Relational Database Service deployments. Valid
-        /// values are <code>SingleAZ</code> and <code>MultiAZ</code>.
+        /// values are <c>SingleAZ</c> and <c>MultiAZ</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// INSTANCE_TYPE - The type of Amazon EC2 instance. An example is <code>m4.xlarge</code>.
+        /// INSTANCE_TYPE - The type of Amazon EC2 instance. An example is <c>m4.xlarge</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -168,7 +168,7 @@ namespace Amazon.CostExplorer.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If you set the context to <code>SAVINGS_PLANS</code>, you can use the following dimensions
+        /// If you set the context to <c>SAVINGS_PLANS</c>, you can use the following dimensions
         /// for searching:
         /// </para>
         ///  <ul> <li> 
@@ -185,7 +185,7 @@ namespace Amazon.CostExplorer.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// INSTANCE_TYPE_FAMILY - The family of instances (For example, <code>m5</code>)
+        /// INSTANCE_TYPE_FAMILY - The family of instances (For example, <c>m5</c>)
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -209,7 +209,7 @@ namespace Amazon.CostExplorer.Model
         // Check to see if DimensionValues property is set
         internal bool IsSetDimensionValues()
         {
-            return this._dimensionValues != null && this._dimensionValues.Count > 0; 
+            return this._dimensionValues != null && (this._dimensionValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

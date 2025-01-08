@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSMIncidents.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.SSMIncidents.Model
     {
         private string _eventData;
         private string _eventId;
-        private List<EventReference> _eventReferences = new List<EventReference>();
+        private List<EventReference> _eventReferences = AWSConfigs.InitializeCollections ? new List<EventReference>() : null;
         private DateTime? _eventTime;
         private string _eventType;
         private DateTime? _eventUpdatedTime;
@@ -82,7 +83,7 @@ namespace Amazon.SSMIncidents.Model
         /// <summary>
         /// Gets and sets the property EventReferences. 
         /// <para>
-        /// A list of references in a <code>TimelineEvent</code>.
+        /// A list of references in a <c>TimelineEvent</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=10)]
@@ -95,13 +96,13 @@ namespace Amazon.SSMIncidents.Model
         // Check to see if EventReferences property is set
         internal bool IsSetEventReferences()
         {
-            return this._eventReferences != null && this._eventReferences.Count > 0; 
+            return this._eventReferences != null && (this._eventReferences.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property EventTime. 
         /// <para>
-        /// The time that the event occurred.
+        /// The timestamp for when the event occurred.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -120,8 +121,8 @@ namespace Amazon.SSMIncidents.Model
         /// <summary>
         /// Gets and sets the property EventType. 
         /// <para>
-        /// The type of event that occurred. Currently Incident Manager supports only the <code>Custom
-        /// Event</code> type.
+        /// The type of event that occurred. Currently Incident Manager supports only the <c>Custom
+        /// Event</c> and <c>Note</c> types.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=100)]
@@ -140,7 +141,7 @@ namespace Amazon.SSMIncidents.Model
         /// <summary>
         /// Gets and sets the property EventUpdatedTime. 
         /// <para>
-        /// The time that the timeline event was last updated.
+        /// The timestamp for when the timeline event was last updated.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

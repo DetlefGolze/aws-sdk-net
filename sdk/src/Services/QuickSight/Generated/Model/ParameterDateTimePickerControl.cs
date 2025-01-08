@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property ParameterControlId. 
         /// <para>
-        /// The ID of the <code>ParameterDateTimePickerControl</code>.
+        /// The ID of the <c>ParameterDateTimePickerControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]
@@ -78,7 +79,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property SourceParameterName. 
         /// <para>
-        /// The name of the <code>ParameterDateTimePickerControl</code>.
+        /// The name of the <c>ParameterDateTimePickerControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]
@@ -97,7 +98,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Title. 
         /// <para>
-        /// The title of the <code>ParameterDateTimePickerControl</code>.
+        /// The title of the <c>ParameterDateTimePickerControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]

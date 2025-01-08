@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the mediaconvert-2017-08-29.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaConvert.Model
 {
     /// <summary>
@@ -49,5 +50,15 @@ namespace Amazon.MediaConvert.Model
         /// Paginator for ListQueues operation
         ///</summary>
         IListQueuesPaginator ListQueues(ListQueuesRequest request);
+
+        /// <summary>
+        /// Paginator for ListVersions operation
+        ///</summary>
+        IListVersionsPaginator ListVersions(ListVersionsRequest request);
+
+        /// <summary>
+        /// Paginator for SearchJobs operation
+        ///</summary>
+        ISearchJobsPaginator SearchJobs(SearchJobsRequest request);
     }
 }

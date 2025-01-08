@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Indicates whether your instance is configured for hibernation. This parameter is valid
     /// only if the instance meets the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hibernating-prerequisites.html">hibernation
     /// prerequisites</a>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html">Hibernate
-    /// your instance</a> in the <i>Amazon EC2 User Guide</i>.
+    /// your Amazon EC2 instance</a> in the <i>Amazon EC2 User Guide</i>.
     /// </summary>
     public partial class HibernationOptions
     {
@@ -41,8 +42,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Configured. 
         /// <para>
-        /// If <code>true</code>, your instance is enabled for hibernation; otherwise, it is not
-        /// enabled for hibernation.
+        /// If <c>true</c>, your instance is enabled for hibernation; otherwise, it is not enabled
+        /// for hibernation.
         /// </para>
         /// </summary>
         public bool Configured

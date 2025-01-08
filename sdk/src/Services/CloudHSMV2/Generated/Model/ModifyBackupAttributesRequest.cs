@@ -26,11 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudHSMV2.Model
 {
     /// <summary>
     /// Container for the parameters to the ModifyBackupAttributes operation.
-    /// Modifies attributes for AWS CloudHSM backup.
+    /// Modifies attributes for CloudHSM backup.
+    /// 
+    ///  
+    /// <para>
+    ///  <b>Cross-account use:</b> No. You cannot perform this operation on an CloudHSM backup
+    /// in a different Amazon Web Services account.
+    /// </para>
     /// </summary>
     public partial class ModifyBackupAttributesRequest : AmazonCloudHSMV2Request
     {
@@ -61,7 +68,7 @@ namespace Amazon.CloudHSMV2.Model
         /// Gets and sets the property NeverExpires. 
         /// <para>
         /// Specifies whether the service should exempt a backup from the retention policy for
-        /// the cluster. <code>True</code> exempts a backup from the retention policy. <code>False</code>
+        /// the cluster. <c>True</c> exempts a backup from the retention policy. <c>False</c>
         /// means the service applies the backup retention policy defined at the cluster.
         /// </para>
         /// </summary>

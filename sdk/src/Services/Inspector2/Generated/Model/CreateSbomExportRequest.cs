@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
@@ -76,7 +77,10 @@ namespace Amazon.Inspector2.Model
         }
 
         /// <summary>
-        /// Gets and sets the property S3Destination.
+        /// Gets and sets the property S3Destination. 
+        /// <para>
+        /// Contains details of the Amazon S3 bucket and KMS key used to export findings.
+        /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
         public Destination S3Destination

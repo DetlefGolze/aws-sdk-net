@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.EC2.Model
     {
         private string _description;
         private int? _packetLength;
-        private List<string> _removeFields = new List<string>();
+        private List<string> _removeFields = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _sessionNumber;
         private string _trafficMirrorFilterId;
         private string _trafficMirrorSessionId;
@@ -73,8 +74,8 @@ namespace Amazon.EC2.Model
         ///  
         /// <para>
         /// For sessions with Network Load Balancer (NLB) traffic mirror targets, the default
-        /// <code>PacketLength</code> will be set to 8500. Valid values are 1-8500. Setting a
-        /// <code>PacketLength</code> greater than 8500 will result in an error response.
+        /// <c>PacketLength</c> will be set to 8500. Valid values are 1-8500. Setting a <c>PacketLength</c>
+        /// greater than 8500 will result in an error response.
         /// </para>
         /// </summary>
         public int PacketLength
@@ -109,7 +110,7 @@ namespace Amazon.EC2.Model
         // Check to see if RemoveFields property is set
         internal bool IsSetRemoveFields()
         {
-            return this._removeFields != null && this._removeFields.Count > 0; 
+            return this._removeFields != null && (this._removeFields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

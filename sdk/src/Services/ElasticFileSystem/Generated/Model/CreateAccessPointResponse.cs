@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.ElasticFileSystem.Model
         private string _ownerId;
         private PosixUser _posixUser;
         private RootDirectory _rootDirectory;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AccessPointArn. 
@@ -141,7 +142,7 @@ namespace Amazon.ElasticFileSystem.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the access point. This is the value of the <code>Name</code> tag.
+        /// The name of the access point. This is the value of the <c>Name</c> tag.
         /// </para>
         /// </summary>
         public string Name
@@ -198,8 +199,8 @@ namespace Amazon.ElasticFileSystem.Model
         /// <summary>
         /// Gets and sets the property RootDirectory. 
         /// <para>
-        /// The directory on the Amazon EFS file system that the access point exposes as the root
-        /// directory to NFS clients using the access point.
+        /// The directory on the EFS file system that the access point exposes as the root directory
+        /// to NFS clients using the access point.
         /// </para>
         /// </summary>
         public RootDirectory RootDirectory
@@ -229,7 +230,7 @@ namespace Amazon.ElasticFileSystem.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

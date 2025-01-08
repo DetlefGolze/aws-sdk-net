@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -47,8 +48,7 @@ namespace Amazon.IoTSiteWise.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:${Partition}:iotsitewise:${Region}:${Account}:portal/${PortalId}</code>
-        /// 
+        ///  <c>arn:${Partition}:iotsitewise:${Region}:${Account}:portal/${PortalId}</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1600)]
@@ -108,7 +108,7 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property PortalStatus. 
         /// <para>
-        /// The status of the portal, which contains a state (<code>CREATING</code> after successfully
+        /// The status of the portal, which contains a state (<c>CREATING</c> after successfully
         /// calling this operation) and any error message.
         /// </para>
         /// </summary>

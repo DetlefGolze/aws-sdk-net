@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
@@ -39,8 +40,8 @@ namespace Amazon.NetworkFirewall.Model
         /// <summary>
         /// Gets and sets the property Action. 
         /// <para>
-        /// The action that changes the rule group from <code>DROP</code> to <code>ALERT</code>.
-        /// This only applies to managed rule groups.
+        /// The action that changes the rule group from <c>DROP</c> to <c>ALERT</c>. This only
+        /// applies to managed rule groups.
         /// </para>
         /// </summary>
         public OverrideAction Action

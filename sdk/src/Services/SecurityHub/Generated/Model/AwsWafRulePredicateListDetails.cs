@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// Provides details about the <code>ByteMatchSet</code>, <code>IPSet</code>, <code>SqlInjectionMatchSet</code>,
-    /// <code>XssMatchSet</code>, <code>RegexMatchSet</code>, <code>GeoMatchSet</code>, and
-    /// <code>SizeConstraintSet</code> objects that you want to add to a rule and, for each
-    /// object, indicates whether you want to negate the settings.
+    /// Provides details about the <c>ByteMatchSet</c>, <c>IPSet</c>, <c>SqlInjectionMatchSet</c>,
+    /// <c>XssMatchSet</c>, <c>RegexMatchSet</c>, <c>GeoMatchSet</c>, and <c>SizeConstraintSet</c>
+    /// objects that you want to add to a rule and, for each object, indicates whether you
+    /// want to negate the settings.
     /// </summary>
     public partial class AwsWafRulePredicateListDetails
     {
@@ -43,8 +44,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property DataId. 
         /// <para>
-        /// A unique identifier for a predicate in a rule, such as <code>ByteMatchSetId</code>
-        /// or <code>IPSetId</code>. 
+        /// A unique identifier for a predicate in a rule, such as <c>ByteMatchSetId</c> or <c>IPSetId</c>.
+        /// 
         /// </para>
         /// </summary>
         public string DataId
@@ -63,9 +64,8 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Negated. 
         /// <para>
         /// Specifies if you want WAF to allow, block, or count requests based on the settings
-        /// in the <code>ByteMatchSet</code>, <code>IPSet</code>, <code>SqlInjectionMatchSet</code>,
-        /// <code>XssMatchSet</code>, <code>RegexMatchSet</code>, <code>GeoMatchSet</code>, or
-        /// <code>SizeConstraintSet</code>. 
+        /// in the <c>ByteMatchSet</c>, <c>IPSet</c>, <c>SqlInjectionMatchSet</c>, <c>XssMatchSet</c>,
+        /// <c>RegexMatchSet</c>, <c>GeoMatchSet</c>, or <c>SizeConstraintSet</c>. 
         /// </para>
         /// </summary>
         public bool Negated
@@ -83,8 +83,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of predicate in a rule, such as <code>ByteMatch</code> or <code>IPSet</code>.
-        /// 
+        /// The type of predicate in a rule, such as <c>ByteMatch</c> or <c>IPSet</c>. 
         /// </para>
         /// </summary>
         public string Type

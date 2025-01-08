@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeAddressesAttributeRequest : AmazonEC2Request
     {
-        private List<string> _allocationIds = new List<string>();
+        private List<string> _allocationIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private AddressAttributeName _attribute;
         private int? _maxResults;
         private string _nextToken;
@@ -56,7 +57,7 @@ namespace Amazon.EC2.Model
         // Check to see if AllocationIds property is set
         internal bool IsSetAllocationIds()
         {
-            return this._allocationIds != null && this._allocationIds.Count > 0; 
+            return this._allocationIds != null && (this._allocationIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to return with a single call. To retrieve the remaining
-        /// results, make another call with the returned <code>nextToken</code> value.
+        /// results, make another call with the returned <c>nextToken</c> value.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]

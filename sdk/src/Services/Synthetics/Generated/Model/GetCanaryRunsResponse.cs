@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Synthetics.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Synthetics.Model
     /// </summary>
     public partial class GetCanaryRunsResponse : AmazonWebServiceResponse
     {
-        private List<CanaryRun> _canaryRuns = new List<CanaryRun>();
+        private List<CanaryRun> _canaryRuns = AWSConfigs.InitializeCollections ? new List<CanaryRun>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,14 +53,14 @@ namespace Amazon.Synthetics.Model
         // Check to see if CanaryRuns property is set
         internal bool IsSetCanaryRuns()
         {
-            return this._canaryRuns != null && this._canaryRuns.Count > 0; 
+            return this._canaryRuns != null && (this._canaryRuns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token that indicates that there is more data available. You can use this token in
-        /// a subsequent <code>GetCanaryRuns</code> operation to retrieve the next set of results.
+        /// a subsequent <c>GetCanaryRuns</c> operation to retrieve the next set of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=4, Max=252)]

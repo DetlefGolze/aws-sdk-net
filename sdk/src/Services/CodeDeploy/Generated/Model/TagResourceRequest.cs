@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
     /// Container for the parameters to the TagResource operation.
-    /// Associates the list of tags in the input <code>Tags</code> parameter with the resource
-    /// identified by the <code>ResourceArn</code> input parameter.
+    /// Associates the list of tags in the input <c>Tags</c> parameter with the resource
+    /// identified by the <c>ResourceArn</c> input parameter.
     /// </summary>
     public partial class TagResourceRequest : AmazonCodeDeployRequest
     {
         private string _resourceArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -60,8 +61,8 @@ namespace Amazon.CodeDeploy.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        ///  A list of tags that <code>TagResource</code> associates with a resource. The resource
-        /// is identified by the <code>ResourceArn</code> input parameter. 
+        ///  A list of tags that <c>TagResource</c> associates with a resource. The resource is
+        /// identified by the <c>ResourceArn</c> input parameter. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -74,7 +75,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

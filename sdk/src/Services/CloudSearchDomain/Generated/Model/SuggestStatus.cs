@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearchDomain.Model
 {
     /// <summary>
-    /// Contains the resource id (<code>rid</code>) and the time it took to process the request
-    /// (<code>timems</code>).
+    /// Contains the resource id (<c>rid</c>) and the time it took to process the request
+    /// (<c>timems</c>).
     /// </summary>
     public partial class SuggestStatus
     {

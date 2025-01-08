@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Batch.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public LaunchTemplateSpecification Unmarshall(JsonUnmarshallerContext context)
         {
+            LaunchTemplateSpecification unmarshalledObject = new LaunchTemplateSpecification();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            LaunchTemplateSpecification unmarshalledObject = new LaunchTemplateSpecification();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -76,6 +78,12 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
                     unmarshalledObject.LaunchTemplateName = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("overrides", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<LaunchTemplateSpecificationOverride, LaunchTemplateSpecificationOverrideUnmarshaller>(LaunchTemplateSpecificationOverrideUnmarshaller.Instance);
+                    unmarshalledObject.Overrides = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("version", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -83,7 +91,6 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

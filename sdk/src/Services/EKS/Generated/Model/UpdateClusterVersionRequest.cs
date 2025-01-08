@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -38,9 +39,9 @@ namespace Amazon.EKS.Model
     ///  
     /// <para>
     /// Cluster updates are asynchronous, and they should finish within a few minutes. During
-    /// an update, the cluster status moves to <code>UPDATING</code> (this status transition
-    /// is eventually consistent). When the update is complete (either <code>Failed</code>
-    /// or <code>Successful</code>), the cluster status moves to <code>Active</code>.
+    /// an update, the cluster status moves to <c>UPDATING</c> (this status transition is
+    /// eventually consistent). When the update is complete (either <c>Failed</c> or <c>Successful</c>),
+    /// the cluster status moves to <c>Active</c>.
     /// </para>
     ///  
     /// <para>
@@ -58,8 +59,8 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
-        /// Unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        /// request.
+        /// A unique, case-sensitive identifier that you provide to ensure the idempotency of
+        /// the request.
         /// </para>
         /// </summary>
         public string ClientRequestToken

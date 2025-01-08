@@ -26,16 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MWAA.Model
 {
     /// <summary>
     /// Container for the parameters to the PublishMetrics operation.
     /// <b>Internal only</b>. Publishes environment health metrics to Amazon CloudWatch.
     /// </summary>
+    [Obsolete("This type is for internal use and not meant for public use. Data set for this type will be ignored.")]
     public partial class PublishMetricsRequest : AmazonMWAARequest
     {
         private string _environmentName;
-        private List<MetricDatum> _metricData = new List<MetricDatum>();
+        private List<MetricDatum> _metricData = AWSConfigs.InitializeCollections ? new List<MetricDatum>() : null;
 
         /// <summary>
         /// Gets and sets the property EnvironmentName. 
@@ -74,7 +76,7 @@ namespace Amazon.MWAA.Model
         // Check to see if MetricData property is set
         internal bool IsSetMetricData()
         {
-            return this._metricData != null && this._metricData.Count > 0; 
+            return this._metricData != null && (this._metricData.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

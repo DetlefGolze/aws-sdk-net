@@ -26,29 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
     /// Container for the parameters to the RemoveTagsFromResource operation.
-    /// Removes the tags identified by the <code>TagKeys</code> list from the named resource.
-    /// A tag is a key-value pair where the key and value are case-sensitive. You can use
-    /// tags to categorize and track all your ElastiCache resources, with the exception of
-    /// global replication group. When you add or remove tags on replication groups, those
-    /// actions will be replicated to all nodes in the replication group. For more information,
-    /// see <a href="http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/IAM.ResourceLevelPermissions.html">Resource-level
+    /// Removes the tags identified by the <c>TagKeys</c> list from the named resource. A
+    /// tag is a key-value pair where the key and value are case-sensitive. You can use tags
+    /// to categorize and track all your ElastiCache resources, with the exception of global
+    /// replication group. When you add or remove tags on replication groups, those actions
+    /// will be replicated to all nodes in the replication group. For more information, see
+    /// <a href="http://docs.aws.amazon.com/AmazonElastiCache/latest/dg/IAM.ResourceLevelPermissions.html">Resource-level
     /// permissions</a>.
     /// </summary>
     public partial class RemoveTagsFromResourceRequest : AmazonElastiCacheRequest
     {
         private string _resourceName;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceName. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the resource from which you want the tags removed,
-        /// for example <code>arn:aws:elasticache:us-west-2:0123456789:cluster:myCluster</code>
-        /// or <code>arn:aws:elasticache:us-west-2:0123456789:snapshot:mySnapshot</code>.
+        /// for example <c>arn:aws:elasticache:us-west-2:0123456789:cluster:myCluster</c> or <c>arn:aws:elasticache:us-west-2:0123456789:snapshot:mySnapshot</c>.
         /// </para>
         ///  
         /// <para>
@@ -72,8 +72,7 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property TagKeys. 
         /// <para>
-        /// A list of <code>TagKeys</code> identifying the tags you want removed from the named
-        /// resource.
+        /// A list of <c>TagKeys</c> identifying the tags you want removed from the named resource.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -86,7 +85,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

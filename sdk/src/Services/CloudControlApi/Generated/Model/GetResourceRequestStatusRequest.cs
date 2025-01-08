@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudControlApi.Model
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.CloudControlApi.Model
         /// </para>
         ///  
         /// <para>
-        /// Request tokens are included in the <code>ProgressEvent</code> type returned by a resource
+        /// Request tokens are included in the <c>ProgressEvent</c> type returned by a resource
         /// operation request.
         /// </para>
         /// </summary>

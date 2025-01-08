@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Translate.Model
 {
     /// <summary>
@@ -49,7 +50,7 @@ namespace Amazon.Translate.Model
         private long? _skippedRecordCount;
         private string _sourceLanguageCode;
         private ParallelDataStatus _status;
-        private List<string> _targetLanguageCodes = new List<string>();
+        private List<string> _targetLanguageCodes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -332,7 +333,7 @@ namespace Amazon.Translate.Model
         /// Gets and sets the property Status. 
         /// <para>
         /// The status of the parallel data resource. When the parallel data is ready for you
-        /// to use, the status is <code>ACTIVE</code>.
+        /// to use, the status is <c>ACTIVE</c>.
         /// </para>
         /// </summary>
         public ParallelDataStatus Status
@@ -363,7 +364,7 @@ namespace Amazon.Translate.Model
         // Check to see if TargetLanguageCodes property is set
         internal bool IsSetTargetLanguageCodes()
         {
-            return this._targetLanguageCodes != null && this._targetLanguageCodes.Count > 0; 
+            return this._targetLanguageCodes != null && (this._targetLanguageCodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

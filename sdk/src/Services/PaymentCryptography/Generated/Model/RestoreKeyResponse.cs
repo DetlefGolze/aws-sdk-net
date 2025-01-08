@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptography.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.PaymentCryptography.Model
         /// <summary>
         /// Gets and sets the property Key. 
         /// <para>
-        /// The key material of the restored key. The <code>KeyState</code> will change to <code>CREATE_COMPLETE</code>
-        /// and value for <code>DeletePendingTimestamp</code> gets removed. 
+        /// The key material of the restored key. The <c>KeyState</c> will change to <c>CREATE_COMPLETE</c>
+        /// and value for <c>DeletePendingTimestamp</c> gets removed. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

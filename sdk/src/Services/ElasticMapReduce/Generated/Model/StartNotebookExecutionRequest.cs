@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.ElasticMapReduce.Model
     public partial class StartNotebookExecutionRequest : AmazonElasticMapReduceRequest
     {
         private string _editorId;
-        private Dictionary<string, string> _environmentVariables = new Dictionary<string, string>();
+        private Dictionary<string, string> _environmentVariables = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private ExecutionEngineConfig _executionEngine;
         private string _notebookExecutionName;
         private string _notebookInstanceSecurityGroupId;
@@ -45,7 +46,7 @@ namespace Amazon.ElasticMapReduce.Model
         private OutputNotebookS3LocationFromInput _outputNotebookS3Location;
         private string _relativePath;
         private string _serviceRole;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property EditorId. 
@@ -81,7 +82,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if EnvironmentVariables property is set
         internal bool IsSetEnvironmentVariables()
         {
-            return this._environmentVariables != null && this._environmentVariables.Count > 0; 
+            return this._environmentVariables != null && (this._environmentVariables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -219,11 +220,10 @@ namespace Amazon.ElasticMapReduce.Model
         /// Gets and sets the property RelativePath. 
         /// <para>
         /// The path and file name of the notebook file for this execution, relative to the path
-        /// specified for the Amazon EMR Notebook. For example, if you specify a path of <code>s3://MyBucket/MyNotebooks</code>
-        /// when you create an Amazon EMR Notebook for a notebook with an ID of <code>e-ABCDEFGHIJK1234567890ABCD</code>
-        /// (the <code>EditorID</code> of this request), and you specify a <code>RelativePath</code>
-        /// of <code>my_notebook_executions/notebook_execution.ipynb</code>, the location of the
-        /// file for the notebook execution is <code>s3://MyBucket/MyNotebooks/e-ABCDEFGHIJK1234567890ABCD/my_notebook_executions/notebook_execution.ipynb</code>.
+        /// specified for the Amazon EMR Notebook. For example, if you specify a path of <c>s3://MyBucket/MyNotebooks</c>
+        /// when you create an Amazon EMR Notebook for a notebook with an ID of <c>e-ABCDEFGHIJK1234567890ABCD</c>
+        /// (the <c>EditorID</c> of this request), and you specify a <c>RelativePath</c> of <c>my_notebook_executions/notebook_execution.ipynb</c>,
+        /// the location of the file for the notebook execution is <c>s3://MyBucket/MyNotebooks/e-ABCDEFGHIJK1234567890ABCD/my_notebook_executions/notebook_execution.ipynb</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=10280)]
@@ -276,7 +276,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

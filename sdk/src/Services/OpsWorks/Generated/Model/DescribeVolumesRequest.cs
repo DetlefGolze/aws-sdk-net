@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
@@ -49,12 +50,12 @@ namespace Amazon.OpsWorks.Model
         private string _instanceId;
         private string _raidArrayId;
         private string _stackId;
-        private List<string> _volumeIds = new List<string>();
+        private List<string> _volumeIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property InstanceId. 
         /// <para>
-        /// The instance ID. If you use this parameter, <code>DescribeVolumes</code> returns descriptions
+        /// The instance ID. If you use this parameter, <c>DescribeVolumes</c> returns descriptions
         /// of the volumes associated with the specified instance.
         /// </para>
         /// </summary>
@@ -73,8 +74,8 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property RaidArrayId. 
         /// <para>
-        /// The RAID array ID. If you use this parameter, <code>DescribeVolumes</code> returns
-        /// descriptions of the volumes associated with the specified RAID array.
+        /// The RAID array ID. If you use this parameter, <c>DescribeVolumes</c> returns descriptions
+        /// of the volumes associated with the specified RAID array.
         /// </para>
         /// </summary>
         public string RaidArrayId
@@ -110,7 +111,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property VolumeIds. 
         /// <para>
-        /// Am array of volume IDs. If you use this parameter, <code>DescribeVolumes</code> returns
+        /// Am array of volume IDs. If you use this parameter, <c>DescribeVolumes</c> returns
         /// descriptions of the specified volumes. Otherwise, it returns a description of every
         /// volume.
         /// </para>
@@ -124,7 +125,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if VolumeIds property is set
         internal bool IsSetVolumeIds()
         {
-            return this._volumeIds != null && this._volumeIds.Count > 0; 
+            return this._volumeIds != null && (this._volumeIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

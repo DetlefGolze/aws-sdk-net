@@ -26,14 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// The SMS configuration type is the settings that your Amazon Cognito user pool must
-    /// use to send an SMS message from your Amazon Web Services account through Amazon Simple
-    /// Notification Service. To send SMS messages with Amazon SNS in the Amazon Web Services
-    /// Region that you want, the Amazon Cognito user pool uses an Identity and Access Management
-    /// (IAM) role in your Amazon Web Services account.
+    /// User pool configuration for delivery of SMS messages with Amazon Simple Notification
+    /// Service. To send SMS messages with Amazon SNS in the Amazon Web Services Region that
+    /// you want, the Amazon Cognito user pool uses an Identity and Access Management (IAM)
+    /// role in your Amazon Web Services account.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a request parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserPool.html">CreateUserPool</a>,
+    /// <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserPool.html">UpdateUserPool</a>,
+    /// and <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetUserPoolMfaConfig.html">SetUserPoolMfaConfig</a>,
+    /// and a response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserPool.html">CreateUserPool</a>,
+    /// <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserPool.html">UpdateUserPool</a>,
+    /// and <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_GetUserPoolMfaConfig.html">GetUserPoolMfaConfig</a>.
+    /// </para>
     /// </summary>
     public partial class SmsConfigurationType
     {
@@ -44,20 +54,20 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property ExternalId. 
         /// <para>
-        /// The external ID provides additional security for your IAM role. You can use an <code>ExternalId</code>
+        /// The external ID provides additional security for your IAM role. You can use an <c>ExternalId</c>
         /// with the IAM role that you use with Amazon SNS to send SMS messages for your user
-        /// pool. If you provide an <code>ExternalId</code>, your Amazon Cognito user pool includes
+        /// pool. If you provide an <c>ExternalId</c>, your Amazon Cognito user pool includes
         /// it in the request to assume your IAM role. You can configure the role trust policy
-        /// to require that Amazon Cognito, and any principal, provide the <code>ExternalID</code>.
+        /// to require that Amazon Cognito, and any principal, provide the <c>ExternalID</c>.
         /// If you use the Amazon Cognito Management Console to create a role for SMS multi-factor
         /// authentication (MFA), Amazon Cognito creates a role with the required permissions
-        /// and a trust policy that demonstrates use of the <code>ExternalId</code>.
+        /// and a trust policy that demonstrates use of the <c>ExternalId</c>.
         /// </para>
         ///  
         /// <para>
-        /// For more information about the <code>ExternalId</code> of a role, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html">How
+        /// For more information about the <c>ExternalId</c> of a role, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html">How
         /// to use an external ID when granting access to your Amazon Web Services resources to
-        /// a third party</a> 
+        /// a third party</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=131072)]

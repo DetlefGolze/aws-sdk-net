@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -37,12 +38,13 @@ namespace Amazon.EC2.Model
         private string _availabilityZone;
         private string _availabilityZoneId;
         private int? _availableIpAddressCount;
+        private BlockPublicAccessStates _blockPublicAccessStates;
         private string _cidrBlock;
         private string _customerOwnedIpv4Pool;
         private bool? _defaultForAz;
         private bool? _enableDns64;
         private int? _enableLniAtDeviceIndex;
-        private List<SubnetIpv6CidrBlockAssociation> _ipv6CidrBlockAssociationSet = new List<SubnetIpv6CidrBlockAssociation>();
+        private List<SubnetIpv6CidrBlockAssociation> _ipv6CidrBlockAssociationSet = AWSConfigs.InitializeCollections ? new List<SubnetIpv6CidrBlockAssociation>() : null;
         private bool? _ipv6Native;
         private bool? _mapCustomerOwnedIpOnLaunch;
         private bool? _mapPublicIpOnLaunch;
@@ -52,7 +54,7 @@ namespace Amazon.EC2.Model
         private SubnetState _state;
         private string _subnetArn;
         private string _subnetId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _vpcId;
 
         /// <summary>
@@ -127,6 +129,24 @@ namespace Amazon.EC2.Model
         internal bool IsSetAvailableIpAddressCount()
         {
             return this._availableIpAddressCount.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property BlockPublicAccessStates. 
+        /// <para>
+        /// The state of VPC Block Public Access (BPA).
+        /// </para>
+        /// </summary>
+        public BlockPublicAccessStates BlockPublicAccessStates
+        {
+            get { return this._blockPublicAccessStates; }
+            set { this._blockPublicAccessStates = value; }
+        }
+
+        // Check to see if BlockPublicAccessStates property is set
+        internal bool IsSetBlockPublicAccessStates()
+        {
+            return this._blockPublicAccessStates != null;
         }
 
         /// <summary>
@@ -206,8 +226,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property EnableLniAtDeviceIndex. 
         /// <para>
         ///  Indicates the device position for local network interfaces in this subnet. For example,
-        /// <code>1</code> indicates local network interfaces in this subnet are the secondary
-        /// network interface (eth1). 
+        /// <c>1</c> indicates local network interfaces in this subnet are the secondary network
+        /// interface (eth1). 
         /// </para>
         /// </summary>
         public int EnableLniAtDeviceIndex
@@ -237,7 +257,7 @@ namespace Amazon.EC2.Model
         // Check to see if Ipv6CidrBlockAssociationSet property is set
         internal bool IsSetIpv6CidrBlockAssociationSet()
         {
-            return this._ipv6CidrBlockAssociationSet != null && this._ipv6CidrBlockAssociationSet.Count > 0; 
+            return this._ipv6CidrBlockAssociationSet != null && (this._ipv6CidrBlockAssociationSet.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -281,6 +301,13 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property MapPublicIpOnLaunch. 
         /// <para>
         /// Indicates whether instances launched in this subnet receive a public IPv4 address.
+        /// </para>
+        ///  
+        /// <para>
+        /// Amazon Web Services charges for all public IPv4 addresses, including public IPv4 addresses
+        /// associated with running instances and Elastic IP addresses. For more information,
+        /// see the <i>Public IPv4 Address</i> tab on the <a href="http://aws.amazon.com/vpc/pricing/">Amazon
+        /// VPC pricing page</a>.
         /// </para>
         /// </summary>
         public bool MapPublicIpOnLaunch
@@ -419,7 +446,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

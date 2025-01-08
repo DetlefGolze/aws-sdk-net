@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DataSync.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -105,6 +106,12 @@ namespace Amazon.DataSync.Model.Internal.MarshallTransformations
                     response.Includes = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ManifestConfig", targetDepth))
+                {
+                    var unmarshaller = ManifestConfigUnmarshaller.Instance;
+                    response.ManifestConfig = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("Name", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -121,6 +128,12 @@ namespace Amazon.DataSync.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = TaskScheduleUnmarshaller.Instance;
                     response.Schedule = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ScheduleDetails", targetDepth))
+                {
+                    var unmarshaller = TaskScheduleDetailsUnmarshaller.Instance;
+                    response.ScheduleDetails = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("SourceLocationArn", targetDepth))
@@ -145,6 +158,12 @@ namespace Amazon.DataSync.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.TaskArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("TaskMode", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.TaskMode = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("TaskReportConfig", targetDepth))

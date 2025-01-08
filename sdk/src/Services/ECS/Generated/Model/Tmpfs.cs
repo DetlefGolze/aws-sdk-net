@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ECS.Model
     public partial class Tmpfs
     {
         private string _containerPath;
-        private List<string> _mountOptions = new List<string>();
+        private List<string> _mountOptions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _size;
 
         /// <summary>
@@ -63,12 +64,12 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>"defaults" | "ro" | "rw" | "suid" | "nosuid" | "dev" | "nodev"
-        /// | "exec" | "noexec" | "sync" | "async" | "dirsync" | "remount" | "mand" | "nomand"
-        /// | "atime" | "noatime" | "diratime" | "nodiratime" | "bind" | "rbind" | "unbindable"
+        /// Valid values: <c>"defaults" | "ro" | "rw" | "suid" | "nosuid" | "dev" | "nodev" |
+        /// "exec" | "noexec" | "sync" | "async" | "dirsync" | "remount" | "mand" | "nomand" |
+        /// "atime" | "noatime" | "diratime" | "nodiratime" | "bind" | "rbind" | "unbindable"
         /// | "runbindable" | "private" | "rprivate" | "shared" | "rshared" | "slave" | "rslave"
         /// | "relatime" | "norelatime" | "strictatime" | "nostrictatime" | "mode" | "uid" | "gid"
-        /// | "nr_inodes" | "nr_blocks" | "mpol"</code> 
+        /// | "nr_inodes" | "nr_blocks" | "mpol"</c> 
         /// </para>
         /// </summary>
         public List<string> MountOptions
@@ -80,7 +81,7 @@ namespace Amazon.ECS.Model
         // Check to see if MountOptions property is set
         internal bool IsSetMountOptions()
         {
-            return this._mountOptions != null && this._mountOptions.Count > 0; 
+            return this._mountOptions != null && (this._mountOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

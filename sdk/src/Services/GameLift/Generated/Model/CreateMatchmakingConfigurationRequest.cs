@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -76,21 +77,21 @@ namespace Amazon.GameLift.Model
         private string _customEventData;
         private string _description;
         private FlexMatchMode _flexMatchMode;
-        private List<GameProperty> _gameProperties = new List<GameProperty>();
+        private List<GameProperty> _gameProperties = AWSConfigs.InitializeCollections ? new List<GameProperty>() : null;
         private string _gameSessionData;
-        private List<string> _gameSessionQueueArns = new List<string>();
+        private List<string> _gameSessionQueueArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
         private string _notificationTarget;
         private int? _requestTimeoutSeconds;
         private string _ruleSetName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AcceptanceRequired. 
         /// <para>
         /// A flag that determines whether a match that was created with this configuration must
-        /// be accepted by the matched players. To require acceptance, set to <code>TRUE</code>.
-        /// With this option enabled, matchmaking tickets use the status <code>REQUIRES_ACCEPTANCE</code>
+        /// be accepted by the matched players. To require acceptance, set to <c>TRUE</c>. With
+        /// this option enabled, matchmaking tickets use the status <c>REQUIRES_ACCEPTANCE</c>
         /// to indicate when a completed potential match is waiting for player acceptance. 
         /// </para>
         /// </summary>
@@ -131,10 +132,9 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property AdditionalPlayerCount. 
         /// <para>
         /// The number of player slots in a match to keep open for future players. For example,
-        /// if the configuration's rule set specifies a match for a single 10-person team, and
-        /// the additional player count is set to 2, 10 players will be selected for the match
-        /// and 2 more player slots will be open for future players. This parameter is not used
-        /// if <code>FlexMatchMode</code> is set to <code>STANDALONE</code>.
+        /// if the configuration's rule set specifies a match for a single 12-person team, and
+        /// the additional player count is set to 2, only 10 players are selected for the match.
+        /// This parameter is not used if <c>FlexMatchMode</c> is set to <c>STANDALONE</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]
@@ -154,12 +154,12 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property BackfillMode. 
         /// <para>
         /// The method used to backfill game sessions that are created with this matchmaking configuration.
-        /// Specify <code>MANUAL</code> when your game manages backfill requests manually or does
-        /// not use the match backfill feature. Specify <code>AUTOMATIC</code> to have Amazon
-        /// GameLift create a backfill request whenever a game session has one or more open slots.
-        /// Learn more about manual and automatic backfill in <a href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-backfill.html">
+        /// Specify <c>MANUAL</c> when your game manages backfill requests manually or does not
+        /// use the match backfill feature. Specify <c>AUTOMATIC</c> to have Amazon GameLift create
+        /// a backfill request whenever a game session has one or more open slots. Learn more
+        /// about manual and automatic backfill in <a href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-backfill.html">
         /// Backfill Existing Games with FlexMatch</a>. Automatic backfill is not available when
-        /// <code>FlexMatchMode</code> is set to <code>STANDALONE</code>.
+        /// <c>FlexMatchMode</c> is set to <c>STANDALONE</c>.
         /// </para>
         /// </summary>
         public BackfillMode BackfillMode
@@ -246,12 +246,10 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property GameProperties. 
         /// <para>
-        /// A set of custom properties for a game session, formatted as key:value pairs. These
-        /// properties are passed to a game server process with a request to start a new game
-        /// session (see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
-        /// a Game Session</a>). This information is added to the new <code>GameSession</code>
-        /// object that is created for a successful match. This parameter is not used if <code>FlexMatchMode</code>
-        /// is set to <code>STANDALONE</code>.
+        /// A set of key-value pairs that can store custom data in a game session. For example:
+        /// <c>{"Key": "difficulty", "Value": "novice"}</c>. This information is added to the
+        /// new <c>GameSession</c> object that is created for a successful match. This parameter
+        /// is not used if <c>FlexMatchMode</c> is set to <c>STANDALONE</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=16)]
@@ -264,18 +262,18 @@ namespace Amazon.GameLift.Model
         // Check to see if GameProperties property is set
         internal bool IsSetGameProperties()
         {
-            return this._gameProperties != null && this._gameProperties.Count > 0; 
+            return this._gameProperties != null && (this._gameProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property GameSessionData. 
         /// <para>
         /// A set of custom game session properties, formatted as a single string value. This
-        /// data is passed to a game server process with a request to start a new game session
-        /// (see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
-        /// a Game Session</a>). This information is added to the new <code>GameSession</code>
-        /// object that is created for a successful match. This parameter is not used if <code>FlexMatchMode</code>
-        /// is set to <code>STANDALONE</code>.
+        /// data is passed to a game server process with a request to start a new game session.
+        /// For more information, see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
+        /// a game session</a>. This information is added to the new <c>GameSession</c> object
+        /// that is created for a successful match. This parameter is not used if <c>FlexMatchMode</c>
+        /// is set to <c>STANDALONE</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4096)]
@@ -296,11 +294,10 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// The Amazon Resource Name (<a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
         /// that is assigned to a Amazon GameLift game session queue resource and uniquely identifies
-        /// it. ARNs are unique across all Regions. Format is <code>arn:aws:gamelift:&lt;region&gt;::gamesessionqueue/&lt;queue
-        /// name&gt;</code>. Queues can be located in any Region. Queues are used to start new
-        /// Amazon GameLift-hosted game sessions for matches that are created with this matchmaking
-        /// configuration. If <code>FlexMatchMode</code> is set to <code>STANDALONE</code>, do
-        /// not set this parameter. 
+        /// it. ARNs are unique across all Regions. Format is <c>arn:aws:gamelift:&lt;region&gt;::gamesessionqueue/&lt;queue
+        /// name&gt;</c>. Queues can be located in any Region. Queues are used to start new Amazon
+        /// GameLift-hosted game sessions for matches that are created with this matchmaking configuration.
+        /// If <c>FlexMatchMode</c> is set to <c>STANDALONE</c>, do not set this parameter. 
         /// </para>
         /// </summary>
         public List<string> GameSessionQueueArns
@@ -312,7 +309,7 @@ namespace Amazon.GameLift.Model
         // Check to see if GameSessionQueueArns property is set
         internal bool IsSetGameSessionQueueArns()
         {
-            return this._gameSessionQueueArns != null && this._gameSessionQueueArns.Count > 0; 
+            return this._gameSessionQueueArns != null && (this._gameSessionQueueArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -416,7 +413,7 @@ namespace Amazon.GameLift.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

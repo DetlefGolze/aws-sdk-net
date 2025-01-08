@@ -26,20 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VerifiedPermissions.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateIdentitySource operation.
-    /// Updates the specified identity source to use a new identity provider (IdP) source,
-    /// or to change the mapping of identities from the IdP to a different principal entity
-    /// type.
+    /// Updates the specified identity source to use a new identity provider (IdP), or to
+    /// change the mapping of identities from the IdP to a different principal entity type.
     /// 
     ///  <note> 
     /// <para>
     /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
-    /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
-    /// propagate through the service and be visible in the results of other Verified Permissions
-    /// operations.
+    /// consistent</a> </i>. It can take a few seconds for a new or changed element to propagate
+    /// through the service and be visible in the results of other Verified Permissions operations.
     /// </para>
     ///  </note>
     /// </summary>
@@ -115,16 +114,6 @@ namespace Amazon.VerifiedPermissions.Model
         /// Specifies the details required to communicate with the identity provider (IdP) associated
         /// with this identity source.
         /// </para>
-        ///  <note> 
-        /// <para>
-        /// At this time, the only valid member of this structure is a Amazon Cognito user pool
-        /// configuration.
-        /// </para>
-        ///  
-        /// <para>
-        /// You must specify a <code>userPoolArn</code>, and optionally, a <code>ClientId</code>.
-        /// </para>
-        ///  </note>
         /// </summary>
         [AWSProperty(Required=true)]
         public UpdateConfiguration UpdateConfiguration

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// This data type is used as a response element in the action <code>DescribeDBEngineVersions</code>.
+    /// This data type is used as a response element in the action <c>DescribeDBEngineVersions</c>.
     /// </summary>
     public partial class DeleteCustomDBEngineVersionResponse : AmazonWebServiceResponse
     {
@@ -45,26 +46,29 @@ namespace Amazon.RDS.Model
         private CharacterSet _defaultCharacterSet;
         private string _engine;
         private string _engineVersion;
-        private List<string> _exportableLogTypes = new List<string>();
+        private List<string> _exportableLogTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private CustomDBEngineVersionAMI _image;
         private string _kmsKeyId;
         private string _majorEngineVersion;
+        private ServerlessV2FeaturesSupport _serverlessV2FeaturesSupport;
         private string _status;
-        private List<string> _supportedCACertificateIdentifiers = new List<string>();
-        private List<CharacterSet> _supportedCharacterSets = new List<CharacterSet>();
-        private List<string> _supportedEngineModes = new List<string>();
-        private List<string> _supportedFeatureNames = new List<string>();
-        private List<CharacterSet> _supportedNcharCharacterSets = new List<CharacterSet>();
-        private List<Timezone> _supportedTimezones = new List<Timezone>();
+        private List<string> _supportedCACertificateIdentifiers = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<CharacterSet> _supportedCharacterSets = AWSConfigs.InitializeCollections ? new List<CharacterSet>() : null;
+        private List<string> _supportedEngineModes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _supportedFeatureNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<CharacterSet> _supportedNcharCharacterSets = AWSConfigs.InitializeCollections ? new List<CharacterSet>() : null;
+        private List<Timezone> _supportedTimezones = AWSConfigs.InitializeCollections ? new List<Timezone>() : null;
         private bool? _supportsBabelfish;
         private bool? _supportsCertificateRotationWithoutRestart;
         private bool? _supportsGlobalDatabases;
+        private bool? _supportsIntegrations;
+        private bool? _supportsLimitlessDatabase;
         private bool? _supportsLocalWriteForwarding;
         private bool? _supportsLogExportsToCloudwatchLogs;
         private bool? _supportsParallelQuery;
         private bool? _supportsReadReplica;
-        private List<Tag> _tagList = new List<Tag>();
-        private List<UpgradeTarget> _validUpgradeTarget = new List<UpgradeTarget>();
+        private List<Tag> _tagList = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private List<UpgradeTarget> _validUpgradeTarget = AWSConfigs.InitializeCollections ? new List<UpgradeTarget>() : null;
 
         /// <summary>
         /// Gets and sets the property CreateTime. 
@@ -239,7 +243,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property DefaultCharacterSet. 
         /// <para>
-        /// The default character set for new instances of this engine version, if the <code>CharacterSetName</code>
+        /// The default character set for new instances of this engine version, if the <c>CharacterSetName</c>
         /// parameter of the CreateDBInstance API isn't specified.
         /// </para>
         /// </summary>
@@ -307,7 +311,7 @@ namespace Amazon.RDS.Model
         // Check to see if ExportableLogTypes property is set
         internal bool IsSetExportableLogTypes()
         {
-            return this._exportableLogTypes != null && this._exportableLogTypes.Count > 0; 
+            return this._exportableLogTypes != null && (this._exportableLogTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -366,9 +370,31 @@ namespace Amazon.RDS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ServerlessV2FeaturesSupport. 
+        /// <para>
+        /// Specifies any Aurora Serverless v2 properties or limits that differ between Aurora
+        /// engine versions. You can test the values of this attribute when deciding which Aurora
+        /// version to use in a new or upgraded DB cluster. You can also retrieve the version
+        /// of an existing DB cluster and check whether that version supports certain Aurora Serverless
+        /// v2 features before you attempt to use those features. 
+        /// </para>
+        /// </summary>
+        public ServerlessV2FeaturesSupport ServerlessV2FeaturesSupport
+        {
+            get { return this._serverlessV2FeaturesSupport; }
+            set { this._serverlessV2FeaturesSupport = value; }
+        }
+
+        // Check to see if ServerlessV2FeaturesSupport property is set
+        internal bool IsSetServerlessV2FeaturesSupport()
+        {
+            return this._serverlessV2FeaturesSupport != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the DB engine version, either <code>available</code> or <code>deprecated</code>.
+        /// The status of the DB engine version, either <c>available</c> or <c>deprecated</c>.
         /// </para>
         /// </summary>
         public string Status
@@ -406,14 +432,14 @@ namespace Amazon.RDS.Model
         // Check to see if SupportedCACertificateIdentifiers property is set
         internal bool IsSetSupportedCACertificateIdentifiers()
         {
-            return this._supportedCACertificateIdentifiers != null && this._supportedCACertificateIdentifiers.Count > 0; 
+            return this._supportedCACertificateIdentifiers != null && (this._supportedCACertificateIdentifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SupportedCharacterSets. 
         /// <para>
-        /// A list of the character sets supported by this engine for the <code>CharacterSetName</code>
-        /// parameter of the <code>CreateDBInstance</code> operation.
+        /// A list of the character sets supported by this engine for the <c>CharacterSetName</c>
+        /// parameter of the <c>CreateDBInstance</c> operation.
         /// </para>
         /// </summary>
         public List<CharacterSet> SupportedCharacterSets
@@ -425,7 +451,7 @@ namespace Amazon.RDS.Model
         // Check to see if SupportedCharacterSets property is set
         internal bool IsSetSupportedCharacterSets()
         {
-            return this._supportedCharacterSets != null && this._supportedCharacterSets.Count > 0; 
+            return this._supportedCharacterSets != null && (this._supportedCharacterSets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -443,7 +469,7 @@ namespace Amazon.RDS.Model
         // Check to see if SupportedEngineModes property is set
         internal bool IsSetSupportedEngineModes()
         {
-            return this._supportedEngineModes != null && this._supportedEngineModes.Count > 0; 
+            return this._supportedEngineModes != null && (this._supportedEngineModes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -462,8 +488,8 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>aws rds describe-db-engine-versions --engine &lt;engine_name&gt; --engine-version
-        /// &lt;engine_version&gt;</code> 
+        ///  <c>aws rds describe-db-engine-versions --engine &lt;engine_name&gt; --engine-version
+        /// &lt;engine_version&gt;</c> 
         /// </para>
         ///  
         /// <para>
@@ -472,13 +498,12 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>aws rds describe-db-engine-versions --engine postgres --engine-version 13.3</code>
+        ///  <c>aws rds describe-db-engine-versions --engine postgres --engine-version 13.3</c>
         /// 
         /// </para>
         ///  
         /// <para>
-        /// The supported features are listed under <code>SupportedFeatureNames</code> in the
-        /// output.
+        /// The supported features are listed under <c>SupportedFeatureNames</c> in the output.
         /// </para>
         /// </summary>
         public List<string> SupportedFeatureNames
@@ -490,14 +515,14 @@ namespace Amazon.RDS.Model
         // Check to see if SupportedFeatureNames property is set
         internal bool IsSetSupportedFeatureNames()
         {
-            return this._supportedFeatureNames != null && this._supportedFeatureNames.Count > 0; 
+            return this._supportedFeatureNames != null && (this._supportedFeatureNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SupportedNcharCharacterSets. 
         /// <para>
-        /// A list of the character sets supported by the Oracle DB engine for the <code>NcharCharacterSetName</code>
-        /// parameter of the <code>CreateDBInstance</code> operation.
+        /// A list of the character sets supported by the Oracle DB engine for the <c>NcharCharacterSetName</c>
+        /// parameter of the <c>CreateDBInstance</c> operation.
         /// </para>
         /// </summary>
         public List<CharacterSet> SupportedNcharCharacterSets
@@ -509,14 +534,14 @@ namespace Amazon.RDS.Model
         // Check to see if SupportedNcharCharacterSets property is set
         internal bool IsSetSupportedNcharCharacterSets()
         {
-            return this._supportedNcharCharacterSets != null && this._supportedNcharCharacterSets.Count > 0; 
+            return this._supportedNcharCharacterSets != null && (this._supportedNcharCharacterSets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SupportedTimezones. 
         /// <para>
-        /// A list of the time zones supported by this engine for the <code>Timezone</code> parameter
-        /// of the <code>CreateDBInstance</code> action.
+        /// A list of the time zones supported by this engine for the <c>Timezone</c> parameter
+        /// of the <c>CreateDBInstance</c> action.
         /// </para>
         /// </summary>
         public List<Timezone> SupportedTimezones
@@ -528,7 +553,7 @@ namespace Amazon.RDS.Model
         // Check to see if SupportedTimezones property is set
         internal bool IsSetSupportedTimezones()
         {
-            return this._supportedTimezones != null && this._supportedTimezones.Count > 0; 
+            return this._supportedTimezones != null && (this._supportedTimezones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -584,6 +609,43 @@ namespace Amazon.RDS.Model
         internal bool IsSetSupportsGlobalDatabases()
         {
             return this._supportsGlobalDatabases.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SupportsIntegrations. 
+        /// <para>
+        /// Indicates whether the DB engine version supports zero-ETL integrations with Amazon
+        /// Redshift.
+        /// </para>
+        /// </summary>
+        public bool SupportsIntegrations
+        {
+            get { return this._supportsIntegrations.GetValueOrDefault(); }
+            set { this._supportsIntegrations = value; }
+        }
+
+        // Check to see if SupportsIntegrations property is set
+        internal bool IsSetSupportsIntegrations()
+        {
+            return this._supportsIntegrations.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SupportsLimitlessDatabase. 
+        /// <para>
+        /// Indicates whether the DB engine version supports Aurora Limitless Database.
+        /// </para>
+        /// </summary>
+        public bool SupportsLimitlessDatabase
+        {
+            get { return this._supportsLimitlessDatabase.GetValueOrDefault(); }
+            set { this._supportsLimitlessDatabase = value; }
+        }
+
+        // Check to see if SupportsLimitlessDatabase property is set
+        internal bool IsSetSupportsLimitlessDatabase()
+        {
+            return this._supportsLimitlessDatabase.HasValue; 
         }
 
         /// <summary>
@@ -677,7 +739,7 @@ namespace Amazon.RDS.Model
         // Check to see if TagList property is set
         internal bool IsSetTagList()
         {
-            return this._tagList != null && this._tagList.Count > 0; 
+            return this._tagList != null && (this._tagList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -695,7 +757,7 @@ namespace Amazon.RDS.Model
         // Check to see if ValidUpgradeTarget property is set
         internal bool IsSetValidUpgradeTarget()
         {
-            return this._validUpgradeTarget != null && this._validUpgradeTarget.Count > 0; 
+            return this._validUpgradeTarget != null && (this._validUpgradeTarget.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

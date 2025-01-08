@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
-    /// Updating or deleting a resource can cause an inconsistent state.
+    /// The request would cause an inconsistent state.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

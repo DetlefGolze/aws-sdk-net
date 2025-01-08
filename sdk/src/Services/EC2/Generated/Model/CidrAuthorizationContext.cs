@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Provides authorization for Amazon to bring a specific IP address range to a specific
     /// Amazon Web Services account using bring your own IP addresses (BYOIP). For more information,
     /// see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html#prepare-for-byoip">Configuring
-    /// your BYOIP address range</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+    /// your BYOIP address range</a> in the <i>Amazon EC2 User Guide</i>.
     /// </summary>
     public partial class CidrAuthorizationContext
     {

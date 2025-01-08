@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DAX.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.DAX.Model
     public partial class UpdateParameterGroupRequest : AmazonDAXRequest
     {
         private string _parameterGroupName;
-        private List<ParameterNameValue> _parameterNameValues = new List<ParameterNameValue>();
+        private List<ParameterNameValue> _parameterNameValues = AWSConfigs.InitializeCollections ? new List<ParameterNameValue>() : null;
 
         /// <summary>
         /// Gets and sets the property ParameterGroupName. 
@@ -65,8 +66,8 @@ namespace Amazon.DAX.Model
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>record-ttl-millis</code> and <code>query-ttl-millis</code> are the only supported
-        /// parameter names. For more details, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.cluster-management.html#DAX.cluster-management.custom-settings.ttl">Configuring
+        ///  <c>record-ttl-millis</c> and <c>query-ttl-millis</c> are the only supported parameter
+        /// names. For more details, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.cluster-management.html#DAX.cluster-management.custom-settings.ttl">Configuring
         /// TTL Settings</a>.
         /// </para>
         ///  </note>
@@ -81,7 +82,7 @@ namespace Amazon.DAX.Model
         // Check to see if ParameterNameValues property is set
         internal bool IsSetParameterNameValues()
         {
-            return this._parameterNameValues != null && this._parameterNameValues.Count > 0; 
+            return this._parameterNameValues != null && (this._parameterNameValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

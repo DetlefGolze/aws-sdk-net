@@ -26,10 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// Specifies the event feedback type.
+    /// The feedback that your application submitted to an advanced security features event
+    /// log, as displayed in an <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminListUserAuthEvents.html">AdminListUserAuthEvents</a>
+    /// response.
     /// </summary>
     public partial class EventFeedbackType
     {
@@ -40,7 +43,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property FeedbackDate. 
         /// <para>
-        /// The event feedback date.
+        /// The date that you or your user submitted the feedback.
         /// </para>
         /// </summary>
         public DateTime FeedbackDate
@@ -58,11 +61,11 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property FeedbackValue. 
         /// <para>
-        /// The authentication event feedback value. When you provide a <code>FeedbackValue</code>
-        /// value of <code>valid</code>, you tell Amazon Cognito that you trust a user session
-        /// where Amazon Cognito has evaluated some level of risk. When you provide a <code>FeedbackValue</code>
-        /// value of <code>invalid</code>, you tell Amazon Cognito that you don't trust a user
-        /// session, or you don't believe that Amazon Cognito evaluated a high-enough risk level.
+        /// The authentication event feedback value. When you provide a <c>FeedbackValue</c> value
+        /// of <c>valid</c>, you tell Amazon Cognito that you trust a user session where Amazon
+        /// Cognito has evaluated some level of risk. When you provide a <c>FeedbackValue</c>
+        /// value of <c>invalid</c>, you tell Amazon Cognito that you don't trust a user session,
+        /// or you don't believe that Amazon Cognito evaluated a high-enough risk level.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -81,7 +84,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Provider. 
         /// <para>
-        /// The provider.
+        /// The submitter of the event feedback. For example, if you submit event feedback in
+        /// the Amazon Cognito console, this value is <c>Admin</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=131072)]

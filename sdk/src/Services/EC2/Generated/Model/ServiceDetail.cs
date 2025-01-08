@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,19 +35,20 @@ namespace Amazon.EC2.Model
     public partial class ServiceDetail
     {
         private bool? _acceptanceRequired;
-        private List<string> _availabilityZones = new List<string>();
-        private List<string> _baseEndpointDnsNames = new List<string>();
+        private List<string> _availabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _baseEndpointDnsNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _managesVpcEndpoints;
         private string _owner;
         private PayerResponsibility _payerResponsibility;
         private string _privateDnsName;
-        private List<PrivateDnsDetails> _privateDnsNames = new List<PrivateDnsDetails>();
+        private List<PrivateDnsDetails> _privateDnsNames = AWSConfigs.InitializeCollections ? new List<PrivateDnsDetails>() : null;
         private DnsNameState _privateDnsNameVerificationState;
         private string _serviceId;
         private string _serviceName;
-        private List<ServiceTypeDetail> _serviceType = new List<ServiceTypeDetail>();
-        private List<string> _supportedIpAddressTypes = new List<string>();
-        private List<Tag> _tags = new List<Tag>();
+        private string _serviceRegion;
+        private List<ServiceTypeDetail> _serviceType = AWSConfigs.InitializeCollections ? new List<ServiceTypeDetail>() : null;
+        private List<string> _supportedIpAddressTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private bool? _vpcEndpointPolicySupported;
 
         /// <summary>
@@ -83,7 +85,7 @@ namespace Amazon.EC2.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -101,7 +103,7 @@ namespace Amazon.EC2.Model
         // Check to see if BaseEndpointDnsNames property is set
         internal bool IsSetBaseEndpointDnsNames()
         {
-            return this._baseEndpointDnsNames != null && this._baseEndpointDnsNames.Count > 0; 
+            return this._baseEndpointDnsNames != null && (this._baseEndpointDnsNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -192,7 +194,7 @@ namespace Amazon.EC2.Model
         // Check to see if PrivateDnsNames property is set
         internal bool IsSetPrivateDnsNames()
         {
-            return this._privateDnsNames != null && this._privateDnsNames.Count > 0; 
+            return this._privateDnsNames != null && (this._privateDnsNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -203,7 +205,7 @@ namespace Amazon.EC2.Model
         ///  
         /// <para>
         /// Consumers of the endpoint service cannot use the private name when the state is not
-        /// <code>verified</code>.
+        /// <c>verified</c>.
         /// </para>
         /// </summary>
         public DnsNameState PrivateDnsNameVerificationState
@@ -255,6 +257,24 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ServiceRegion. 
+        /// <para>
+        /// The Region where the service is hosted.
+        /// </para>
+        /// </summary>
+        public string ServiceRegion
+        {
+            get { return this._serviceRegion; }
+            set { this._serviceRegion = value; }
+        }
+
+        // Check to see if ServiceRegion property is set
+        internal bool IsSetServiceRegion()
+        {
+            return this._serviceRegion != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ServiceType. 
         /// <para>
         /// The type of service.
@@ -269,7 +289,7 @@ namespace Amazon.EC2.Model
         // Check to see if ServiceType property is set
         internal bool IsSetServiceType()
         {
-            return this._serviceType != null && this._serviceType.Count > 0; 
+            return this._serviceType != null && (this._serviceType.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -288,7 +308,7 @@ namespace Amazon.EC2.Model
         // Check to see if SupportedIpAddressTypes property is set
         internal bool IsSetSupportedIpAddressTypes()
         {
-            return this._supportedIpAddressTypes != null && this._supportedIpAddressTypes.Count > 0; 
+            return this._supportedIpAddressTypes != null && (this._supportedIpAddressTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -306,7 +326,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

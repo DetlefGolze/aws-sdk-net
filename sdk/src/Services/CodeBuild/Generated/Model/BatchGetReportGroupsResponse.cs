@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.CodeBuild.Model
     /// </summary>
     public partial class BatchGetReportGroupsResponse : AmazonWebServiceResponse
     {
-        private List<ReportGroup> _reportGroups = new List<ReportGroup>();
-        private List<string> _reportGroupsNotFound = new List<string>();
+        private List<ReportGroup> _reportGroups = AWSConfigs.InitializeCollections ? new List<ReportGroup>() : null;
+        private List<string> _reportGroupsNotFound = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ReportGroups. 
         /// <para>
-        ///  The array of report groups returned by <code>BatchGetReportGroups</code>. 
+        ///  The array of report groups returned by <c>BatchGetReportGroups</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -52,14 +53,14 @@ namespace Amazon.CodeBuild.Model
         // Check to see if ReportGroups property is set
         internal bool IsSetReportGroups()
         {
-            return this._reportGroups != null && this._reportGroups.Count > 0; 
+            return this._reportGroups != null && (this._reportGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ReportGroupsNotFound. 
         /// <para>
-        ///  An array of ARNs passed to <code>BatchGetReportGroups</code> that are not associated
-        /// with a <code>ReportGroup</code>. 
+        ///  An array of ARNs passed to <c>BatchGetReportGroups</c> that are not associated with
+        /// a <c>ReportGroup</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -72,7 +73,7 @@ namespace Amazon.CodeBuild.Model
         // Check to see if ReportGroupsNotFound property is set
         internal bool IsSetReportGroupsNotFound()
         {
-            return this._reportGroupsNotFound != null && this._reportGroupsNotFound.Count > 0; 
+            return this._reportGroupsNotFound != null && (this._reportGroupsNotFound.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

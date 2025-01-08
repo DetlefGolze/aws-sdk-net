@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -47,7 +48,6 @@ namespace Amazon.SageMaker.Model
         /// Defines the cost per hour for the instance. 
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public float CostPerHour
         {
             get { return this._costPerHour.GetValueOrDefault(); }
@@ -66,7 +66,6 @@ namespace Amazon.SageMaker.Model
         /// Defines the cost per inference for the instance .
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public float CostPerInference
         {
             get { return this._costPerInference.GetValueOrDefault(); }
@@ -86,7 +85,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>NaN</code> indicates that the value is not available.
+        ///  <c>NaN</c> indicates that the value is not available.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]
@@ -108,7 +107,6 @@ namespace Amazon.SageMaker.Model
         /// The expected maximum number of requests per minute for the instance.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public int MaxInvocations
         {
             get { return this._maxInvocations.GetValueOrDefault(); }
@@ -128,7 +126,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>NaN</code> indicates that the value is not available.
+        ///  <c>NaN</c> indicates that the value is not available.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]
@@ -150,7 +148,6 @@ namespace Amazon.SageMaker.Model
         /// The expected model latency at maximum invocation per minute for the instance.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public int ModelLatency
         {
             get { return this._modelLatency.GetValueOrDefault(); }
@@ -172,7 +169,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>NaN</code> indicates that the value is not available.
+        ///  <c>NaN</c> indicates that the value is not available.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]

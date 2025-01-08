@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Describes the results of a processing job. The processing output must specify exactly
-    /// one of either <code>S3Output</code> or <code>FeatureStoreOutput</code> types.
+    /// one of either <c>S3Output</c> or <c>FeatureStoreOutput</c> types.
     /// </summary>
     public partial class ProcessingOutput
     {
@@ -42,9 +43,9 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property AppManaged. 
         /// <para>
-        /// When <code>True</code>, output operations such as data upload are managed natively
-        /// by the processing job application. When <code>False</code> (default), output operations
-        /// are managed by Amazon SageMaker.
+        /// When <c>True</c>, output operations such as data upload are managed natively by the
+        /// processing job application. When <c>False</c> (default), output operations are managed
+        /// by Amazon SageMaker.
         /// </para>
         /// </summary>
         public bool AppManaged
@@ -63,7 +64,7 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property FeatureStoreOutput. 
         /// <para>
         /// Configuration for processing job outputs in Amazon SageMaker Feature Store. This processing
-        /// output type is only supported when <code>AppManaged</code> is specified. 
+        /// output type is only supported when <c>AppManaged</c> is specified. 
         /// </para>
         /// </summary>
         public ProcessingFeatureStoreOutput FeatureStoreOutput

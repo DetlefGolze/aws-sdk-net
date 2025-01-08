@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
     /// Container for the parameters to the DisassociateApi operation.
-    /// Removes an <code>ApiAssociation</code> object from a custom domain.
+    /// Removes an <c>ApiAssociation</c> object from a custom domain.
     /// </summary>
     public partial class DisassociateApiRequest : AmazonAppSyncRequest
     {

@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// The response from a call to <code>DescribeDBLogFiles</code>.
+    /// The response from a call to <c>DescribeDBLogFiles</c>.
     /// </summary>
     public partial class DescribeDBLogFilesResponse : AmazonWebServiceResponse
     {
-        private List<DescribeDBLogFilesDetails> _describeDBLogFiles = new List<DescribeDBLogFilesDetails>();
+        private List<DescribeDBLogFilesDetails> _describeDBLogFiles = AWSConfigs.InitializeCollections ? new List<DescribeDBLogFilesDetails>() : null;
         private string _marker;
 
         /// <summary>
@@ -51,13 +52,13 @@ namespace Amazon.RDS.Model
         // Check to see if DescribeDBLogFiles property is set
         internal bool IsSetDescribeDBLogFiles()
         {
-            return this._describeDBLogFiles != null && this._describeDBLogFiles.Count > 0; 
+            return this._describeDBLogFiles != null && (this._describeDBLogFiles.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// A pagination token that can be used in a later <code>DescribeDBLogFiles</code> request.
+        /// A pagination token that can be used in a later <c>DescribeDBLogFiles</c> request.
         /// </para>
         /// </summary>
         public string Marker

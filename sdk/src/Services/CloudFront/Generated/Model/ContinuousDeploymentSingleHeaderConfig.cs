@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.CloudFront.Model
         /// Gets and sets the property Header. 
         /// <para>
         /// The request header name that you want CloudFront to send to your staging distribution.
-        /// The header must contain the prefix <code>aws-cf-cd-</code>.
+        /// The header must contain the prefix <c>aws-cf-cd-</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

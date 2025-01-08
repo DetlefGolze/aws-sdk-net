@@ -30,12 +30,13 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudFront.Model.Internal.MarshallTransformations
 {
     /// <summary>
     /// Response Unmarshaller for CacheBehavior Object
     /// </summary>  
-    public class CacheBehaviorUnmarshaller : IUnmarshaller<CacheBehavior, XmlUnmarshallerContext>
+    public class CacheBehaviorUnmarshaller : IUnmarshaller<CacheBehavior, XmlUnmarshallerContext>, IUnmarshaller<CacheBehavior, JsonUnmarshallerContext>
     {
         /// <summary>
         /// Unmarshaller the response from the service to the response class.
@@ -95,6 +96,12 @@ namespace Amazon.CloudFront.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = FunctionAssociationsUnmarshaller.Instance;
                         unmarshalledObject.FunctionAssociations = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("GrpcConfig", targetDepth))
+                    {
+                        var unmarshaller = GrpcConfigUnmarshaller.Instance;
+                        unmarshalledObject.GrpcConfig = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("LambdaFunctionAssociations", targetDepth))
@@ -176,6 +183,16 @@ namespace Amazon.CloudFront.Model.Internal.MarshallTransformations
                 }
             }          
             return unmarshalledObject;
+        }
+        
+        /// <summary>
+        /// Unmarshaller the response from the service to the response class.
+        /// </summary>  
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public CacheBehavior Unmarshall(JsonUnmarshallerContext context)
+        {
+            throw new NotImplementedException();
         }
 
         private static CacheBehaviorUnmarshaller _instance = new CacheBehaviorUnmarshaller();        

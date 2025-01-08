@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -43,12 +44,14 @@ namespace Amazon.Backup.Model
         private long? _maxRetentionDays;
         private long? _minRetentionDays;
         private long? _numberOfRecoveryPoints;
+        private VaultState _vaultState;
+        private VaultType _vaultType;
 
         /// <summary>
         /// Gets and sets the property BackupVaultArn. 
         /// <para>
         /// An Amazon Resource Name (ARN) that uniquely identifies a backup vault; for example,
-        /// <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>.
+        /// <c>arn:aws:backup:us-east-1:123456789012:backup-vault:aBackupVault</c>.
         /// </para>
         /// </summary>
         public string BackupVaultArn
@@ -68,7 +71,7 @@ namespace Amazon.Backup.Model
         /// <para>
         /// The name of a logical container where backups are stored. Backup vaults are identified
         /// by names that are unique to the account used to create them and the Amazon Web Services
-        /// Region where they are created. They consist of lowercase letters, numbers, and hyphens.
+        /// Region where they are created.
         /// </para>
         /// </summary>
         public string BackupVaultName
@@ -87,9 +90,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property CreationDate. 
         /// <para>
         /// The date and time a resource backup is created, in Unix format and Coordinated Universal
-        /// Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For
-        /// example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087
-        /// AM.
+        /// Time (UTC). The value of <c>CreationDate</c> is accurate to milliseconds. For example,
+        /// the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.
         /// </para>
         /// </summary>
         public DateTime CreationDate
@@ -131,7 +133,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property EncryptionKeyArn. 
         /// <para>
         /// A server-side encryption key you can specify to encrypt your backups from services
-        /// that support full Backup management; for example, <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>.
+        /// that support full Backup management; for example, <c>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</c>.
         /// If you specify a key, you must specify its ARN, not its alias. If you do not specify
         /// a key, Backup creates a KMS key for you by default.
         /// </para>
@@ -188,8 +190,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property Locked. 
         /// <para>
         /// A Boolean value that indicates whether Backup Vault Lock applies to the selected backup
-        /// vault. If <code>true</code>, Vault Lock prevents delete and update operations on the
-        /// recovery points in the selected vault.
+        /// vault. If <c>true</c>, Vault Lock prevents delete and update operations on the recovery
+        /// points in the selected vault.
         /// </para>
         /// </summary>
         public bool Locked
@@ -279,6 +281,42 @@ namespace Amazon.Backup.Model
         internal bool IsSetNumberOfRecoveryPoints()
         {
             return this._numberOfRecoveryPoints.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property VaultState. 
+        /// <para>
+        /// The current state of the vault.
+        /// </para>
+        /// </summary>
+        public VaultState VaultState
+        {
+            get { return this._vaultState; }
+            set { this._vaultState = value; }
+        }
+
+        // Check to see if VaultState property is set
+        internal bool IsSetVaultState()
+        {
+            return this._vaultState != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property VaultType. 
+        /// <para>
+        /// The type of vault in which the described recovery point is stored.
+        /// </para>
+        /// </summary>
+        public VaultType VaultType
+        {
+            get { return this._vaultType; }
+            set { this._vaultType = value; }
+        }
+
+        // Check to see if VaultType property is set
+        internal bool IsSetVaultType()
+        {
+            return this._vaultType != null;
         }
 
     }

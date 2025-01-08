@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the logs-2014-03-28.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -24,6 +25,26 @@ namespace Amazon.CloudWatchLogs.Model
     ///</summary>
     public interface ICloudWatchLogsPaginatorFactory
     {
+
+        /// <summary>
+        /// Paginator for DescribeConfigurationTemplates operation
+        ///</summary>
+        IDescribeConfigurationTemplatesPaginator DescribeConfigurationTemplates(DescribeConfigurationTemplatesRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeDeliveries operation
+        ///</summary>
+        IDescribeDeliveriesPaginator DescribeDeliveries(DescribeDeliveriesRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeDeliveryDestinations operation
+        ///</summary>
+        IDescribeDeliveryDestinationsPaginator DescribeDeliveryDestinations(DescribeDeliveryDestinationsRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeDeliverySources operation
+        ///</summary>
+        IDescribeDeliverySourcesPaginator DescribeDeliverySources(DescribeDeliverySourcesRequest request);
 
         /// <summary>
         /// Paginator for DescribeDestinations operation
@@ -59,5 +80,20 @@ namespace Amazon.CloudWatchLogs.Model
         /// Paginator for GetLogEvents operation
         ///</summary>
         IGetLogEventsPaginator GetLogEvents(GetLogEventsRequest request);
+
+        /// <summary>
+        /// Paginator for ListAnomalies operation
+        ///</summary>
+        IListAnomaliesPaginator ListAnomalies(ListAnomaliesRequest request);
+
+        /// <summary>
+        /// Paginator for ListLogAnomalyDetectors operation
+        ///</summary>
+        IListLogAnomalyDetectorsPaginator ListLogAnomalyDetectors(ListLogAnomalyDetectorsRequest request);
+
+        /// <summary>
+        /// Paginator for ListLogGroupsForQuery operation
+        ///</summary>
+        IListLogGroupsForQueryPaginator ListLogGroupsForQuery(ListLogGroupsForQueryRequest request);
     }
 }

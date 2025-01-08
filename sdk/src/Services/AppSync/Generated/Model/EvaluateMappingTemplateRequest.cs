@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
@@ -54,7 +55,7 @@ namespace Amazon.AppSync.Model
         /// Gets and sets the property Context. 
         /// <para>
         /// The map that holds all of the contextual information for your resolver invocation.
-        /// A <code>context</code> is required for this action.
+        /// A <c>context</c> is required for this action.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=2, Max=28000)]
@@ -73,7 +74,7 @@ namespace Amazon.AppSync.Model
         /// <summary>
         /// Gets and sets the property Template. 
         /// <para>
-        /// The mapping template; this can be a request or response template. A <code>template</code>
+        /// The mapping template; this can be a request or response template. A <c>template</c>
         /// is required for this action.
         /// </para>
         /// </summary>

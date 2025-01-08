@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.SageMaker.Model
     public partial class ProcessingOutputConfig
     {
         private string _kmsKeyId;
-        private List<ProcessingOutput> _outputs = new List<ProcessingOutput>();
+        private List<ProcessingOutput> _outputs = AWSConfigs.InitializeCollections ? new List<ProcessingOutput>() : null;
 
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
         /// The Amazon Web Services Key Management Service (Amazon Web Services KMS) key that
-        /// Amazon SageMaker uses to encrypt the processing job output. <code>KmsKeyId</code>
-        /// can be an ID of a KMS key, ARN of a KMS key, alias of a KMS key, or alias of a KMS
-        /// key. The <code>KmsKeyId</code> is applied to all outputs.
+        /// Amazon SageMaker uses to encrypt the processing job output. <c>KmsKeyId</c> can be
+        /// an ID of a KMS key, ARN of a KMS key, alias of a KMS key, or alias of a KMS key. The
+        /// <c>KmsKeyId</c> is applied to all outputs.
         /// </para>
         /// </summary>
         [AWSProperty(Max=2048)]
@@ -74,7 +75,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Outputs property is set
         internal bool IsSetOutputs()
         {
-            return this._outputs != null && this._outputs.Count > 0; 
+            return this._outputs != null && (this._outputs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

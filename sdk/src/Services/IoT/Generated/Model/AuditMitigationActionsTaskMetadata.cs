@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
-    /// Information about an audit mitigation actions task that is returned by <code>ListAuditMitigationActionsTasks</code>.
+    /// Information about an audit mitigation actions task that is returned by <c>ListAuditMitigationActionsTasks</c>.
     /// </summary>
     public partial class AuditMitigationActionsTaskMetadata
     {

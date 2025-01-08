@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.SimpleNotificationService.Model
     /// 
     ///  
     /// <para>
-    /// To resume sending messages, you can opt in the number by using the <code>OptInPhoneNumber</code>
+    /// To resume sending messages, you can opt in the number by using the <c>OptInPhoneNumber</c>
     /// action.
     /// </para>
     /// </summary>
@@ -50,7 +51,7 @@ namespace Amazon.SimpleNotificationService.Model
         /// The phone number for which you want to check the opt out status.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Sensitive=true)]
         public string PhoneNumber
         {
             get { return this._phoneNumber; }

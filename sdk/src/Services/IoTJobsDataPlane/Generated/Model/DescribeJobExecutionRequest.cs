@@ -26,11 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTJobsDataPlane.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeJobExecution operation.
     /// Gets details of a job execution.
+    /// 
+    ///  
+    /// <para>
+    /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">DescribeJobExecution</a>
+    /// action.
+    /// </para>
     /// </summary>
     public partial class DescribeJobExecutionRequest : AmazonIoTJobsDataPlaneRequest
     {
@@ -61,8 +68,8 @@ namespace Amazon.IoTJobsDataPlane.Model
         /// <summary>
         /// Gets and sets the property IncludeJobDocument. 
         /// <para>
-        /// Optional. When set to true, the response contains the job document. The default is
-        /// false.
+        /// Optional. Unless set to false, the response contains the job document. The default
+        /// is true.
         /// </para>
         /// </summary>
         public bool IncludeJobDocument

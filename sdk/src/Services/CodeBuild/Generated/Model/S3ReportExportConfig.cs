@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -123,12 +124,12 @@ namespace Amazon.CodeBuild.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NONE</code>: CodeBuild creates the raw data in the output bucket. This is the
-        /// default if packaging is not specified. 
+        ///  <c>NONE</c>: CodeBuild creates the raw data in the output bucket. This is the default
+        /// if packaging is not specified. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ZIP</code>: CodeBuild creates a ZIP file with the raw data in the output bucket.
+        ///  <c>ZIP</c>: CodeBuild creates a ZIP file with the raw data in the output bucket.
         /// 
         /// </para>
         ///  </li> </ul>

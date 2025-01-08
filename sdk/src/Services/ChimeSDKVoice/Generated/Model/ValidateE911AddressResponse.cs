@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKVoice.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.ChimeSDKVoice.Model
     {
         private Address _address;
         private string _addressExternalId;
-        private List<CandidateAddress> _candidateAddressList = new List<CandidateAddress>();
+        private List<CandidateAddress> _candidateAddressList = AWSConfigs.InitializeCollections ? new List<CandidateAddress>() : null;
         private int? _validationResult;
 
         /// <summary>
@@ -89,17 +90,33 @@ namespace Amazon.ChimeSDKVoice.Model
         // Check to see if CandidateAddressList property is set
         internal bool IsSetCandidateAddressList()
         {
-            return this._candidateAddressList != null && this._candidateAddressList.Count > 0; 
+            return this._candidateAddressList != null && (this._candidateAddressList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ValidationResult. 
         /// <para>
-        /// Number indicating the result of address validation. <code>0</code> means the address
-        /// was perfect as-is and successfully validated. <code>1</code> means the address was
-        /// corrected. <code>2</code> means the address sent was not close enough and was not
-        /// validated.
+        /// Number indicating the result of address validation.
         /// </para>
+        ///  
+        /// <para>
+        /// Each possible result is defined as follows:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>0</c> - Address validation succeeded.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>1</c> - Address validation succeeded. The address was a close enough match and
+        /// has been corrected as part of the address object.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>2</c> - Address validation failed. You should re-submit the validation request
+        /// with candidates from the <c>CandidateAddressList</c> result, if it's a close match.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         [AWSProperty(Min=0, Max=2)]
         public int ValidationResult

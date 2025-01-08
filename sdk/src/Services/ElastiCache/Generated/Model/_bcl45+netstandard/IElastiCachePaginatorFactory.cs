@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the elasticache-2015-02-02.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -84,6 +85,16 @@ namespace Amazon.ElastiCache.Model
         /// Paginator for DescribeReservedCacheNodesOfferings operation
         ///</summary>
         IDescribeReservedCacheNodesOfferingsPaginator DescribeReservedCacheNodesOfferings(DescribeReservedCacheNodesOfferingsRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeServerlessCaches operation
+        ///</summary>
+        IDescribeServerlessCachesPaginator DescribeServerlessCaches(DescribeServerlessCachesRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeServerlessCacheSnapshots operation
+        ///</summary>
+        IDescribeServerlessCacheSnapshotsPaginator DescribeServerlessCacheSnapshots(DescribeServerlessCacheSnapshotsRequest request);
 
         /// <summary>
         /// Paginator for DescribeServiceUpdates operation

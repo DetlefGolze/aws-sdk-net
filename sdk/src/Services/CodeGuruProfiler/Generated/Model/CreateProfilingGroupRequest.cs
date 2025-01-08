@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruProfiler.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.CodeGuruProfiler.Model
         private string _clientToken;
         private ComputePlatform _computePlatform;
         private string _profilingGroupName;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AgentOrchestrationConfig. 
@@ -83,10 +84,10 @@ namespace Amazon.CodeGuruProfiler.Model
         /// <summary>
         /// Gets and sets the property ComputePlatform. 
         /// <para>
-        ///  The compute platform of the profiling group. Use <code>AWSLambda</code> if your application
-        /// runs on AWS Lambda. Use <code>Default</code> if your application runs on a compute
-        /// platform that is not AWS Lambda, such an Amazon EC2 instance, an on-premises server,
-        /// or a different platform. If not specified, <code>Default</code> is used. 
+        ///  The compute platform of the profiling group. Use <c>AWSLambda</c> if your application
+        /// runs on AWS Lambda. Use <c>Default</c> if your application runs on a compute platform
+        /// that is not AWS Lambda, such an Amazon EC2 instance, an on-premises server, or a different
+        /// platform. If not specified, <c>Default</c> is used. 
         /// </para>
         /// </summary>
         public ComputePlatform ComputePlatform
@@ -135,7 +136,7 @@ namespace Amazon.CodeGuruProfiler.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

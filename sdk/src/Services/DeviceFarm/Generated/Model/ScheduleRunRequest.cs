@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DeviceFarm.Model
 {
     /// <summary>
@@ -108,8 +109,8 @@ namespace Amazon.DeviceFarm.Model
         /// </para>
         ///  
         /// <para>
-        /// Either <b> <code>devicePoolArn</code> </b> or <b> <code>deviceSelectionConfiguration</code>
-        /// </b> is required in a request.
+        /// Either <b> <c>devicePoolArn</c> </b> or <b> <c>deviceSelectionConfiguration</c> </b>
+        /// is required in a request.
         /// </para>
         /// </summary>
         public DeviceSelectionConfiguration DeviceSelectionConfiguration

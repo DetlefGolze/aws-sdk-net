@@ -26,33 +26,34 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// Container for the parameters to the DisassociateFaces operation.
-    /// Removes the association between a <code>Face</code> supplied in an array of <code>FaceIds</code>
-    /// and the User. If the User is not present already, then a <code>ResourceNotFound</code>
-    /// exception is thrown. If successful, an array of faces that are disassociated from
-    /// the User is returned. If a given face is already disassociated from the given UserID,
-    /// it will be ignored and not be returned in the response. If a given face is already
-    /// associated with a different User or not found in the collection it will be returned
-    /// as part of <code>UnsuccessfulDisassociations</code>. You can remove 1 - 100 face IDs
-    /// from a user at one time.
+    /// Removes the association between a <c>Face</c> supplied in an array of <c>FaceIds</c>
+    /// and the User. If the User is not present already, then a <c>ResourceNotFound</c> exception
+    /// is thrown. If successful, an array of faces that are disassociated from the User is
+    /// returned. If a given face is already disassociated from the given UserID, it will
+    /// be ignored and not be returned in the response. If a given face is already associated
+    /// with a different User or not found in the collection it will be returned as part of
+    /// <c>UnsuccessfulDisassociations</c>. You can remove 1 - 100 face IDs from a user at
+    /// one time.
     /// </summary>
     public partial class DisassociateFacesRequest : AmazonRekognitionRequest
     {
         private string _clientRequestToken;
         private string _collectionId;
-        private List<string> _faceIds = new List<string>();
+        private List<string> _faceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _userId;
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
-        /// Idempotent token used to identify the request to <code>DisassociateFaces</code>. If
-        /// you use the same token with multiple <code>DisassociateFaces</code> requests, the
-        /// same response is returned. Use ClientRequestToken to prevent the same request from
-        /// being processed more than once.
+        /// Idempotent token used to identify the request to <c>DisassociateFaces</c>. If you
+        /// use the same token with multiple <c>DisassociateFaces</c> requests, the same response
+        /// is returned. Use ClientRequestToken to prevent the same request from being processed
+        /// more than once.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -103,7 +104,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if FaceIds property is set
         internal bool IsSetFaceIds()
         {
-            return this._faceIds != null && this._faceIds.Count > 0; 
+            return this._faceIds != null && (this._faceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

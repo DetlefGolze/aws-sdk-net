@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Lightsail.Model
     /// </summary>
     public partial class GetDiskSnapshotsResponse : AmazonWebServiceResponse
     {
-        private List<DiskSnapshot> _diskSnapshots = new List<DiskSnapshot>();
+        private List<DiskSnapshot> _diskSnapshots = AWSConfigs.InitializeCollections ? new List<DiskSnapshot>() : null;
         private string _nextPageToken;
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if DiskSnapshots property is set
         internal bool IsSetDiskSnapshots()
         {
-            return this._diskSnapshots != null && this._diskSnapshots.Count > 0; 
+            return this._diskSnapshots != null && (this._diskSnapshots.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -65,8 +66,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// To get the next page of results, perform another <code>GetDiskSnapshots</code> request
-        /// and specify the next page token using the <code>pageToken</code> parameter.
+        /// To get the next page of results, perform another <c>GetDiskSnapshots</c> request and
+        /// specify the next page token using the <c>pageToken</c> parameter.
         /// </para>
         /// </summary>
         public string NextPageToken

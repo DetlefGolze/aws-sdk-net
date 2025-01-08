@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -42,9 +43,9 @@ namespace Amazon.IoT.Model
     {
         private AbortConfig _abortConfig;
         private string _description;
-        private List<string> _destinationPackageVersions = new List<string>();
+        private List<string> _destinationPackageVersions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _document;
-        private Dictionary<string, string> _documentParameters = new Dictionary<string, string>();
+        private Dictionary<string, string> _documentParameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _documentSource;
         private JobExecutionsRetryConfig _jobExecutionsRetryConfig;
         private JobExecutionsRolloutConfig _jobExecutionsRolloutConfig;
@@ -53,8 +54,8 @@ namespace Amazon.IoT.Model
         private string _namespaceId;
         private PresignedUrlConfig _presignedUrlConfig;
         private SchedulingConfig _schedulingConfig;
-        private List<Tag> _tags = new List<Tag>();
-        private List<string> _targets = new List<string>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private List<string> _targets = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private TargetSelection _targetSelection;
         private TimeoutConfig _timeoutConfig;
 
@@ -99,12 +100,14 @@ namespace Amazon.IoT.Model
         /// Gets and sets the property DestinationPackageVersions. 
         /// <para>
         /// The package version Amazon Resource Names (ARNs) that are installed on the device
-        /// when the job successfully completes. 
+        /// when the job successfully completes. The package version must be in either the Published
+        /// or Deprecated state when the job deploys. For more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle">Package
+        /// version lifecycle</a>. 
         /// </para>
         ///  
         /// <para>
-        ///  <b>Note:</b>The following Length Constraints relates to a single string. Up to five
-        /// strings are allowed.
+        ///  <b>Note:</b>The following Length Constraints relates to a single ARN. Up to 25 package
+        /// version ARNs are allowed.
         /// </para>
         /// </summary>
         public List<string> DestinationPackageVersions
@@ -116,13 +119,13 @@ namespace Amazon.IoT.Model
         // Check to see if DestinationPackageVersions property is set
         internal bool IsSetDestinationPackageVersions()
         {
-            return this._destinationPackageVersions != null && this._destinationPackageVersions.Count > 0; 
+            return this._destinationPackageVersions != null && (this._destinationPackageVersions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Document. 
         /// <para>
-        /// The job document. Required if you don't specify a value for <code>documentSource</code>.
+        /// The job document. Required if you don't specify a value for <c>documentSource</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=32768)]
@@ -146,9 +149,9 @@ namespace Amazon.IoT.Model
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>documentParameters</code> can only be used when creating jobs from Amazon Web
-        /// Services managed templates. This parameter can't be used with custom job templates
-        /// or to create jobs from them.
+        ///  <c>documentParameters</c> can only be used when creating jobs from Amazon Web Services
+        /// managed templates. This parameter can't be used with custom job templates or to create
+        /// jobs from them.
         /// </para>
         ///  </note>
         /// </summary>
@@ -161,18 +164,18 @@ namespace Amazon.IoT.Model
         // Check to see if DocumentParameters property is set
         internal bool IsSetDocumentParameters()
         {
-            return this._documentParameters != null && this._documentParameters.Count > 0; 
+            return this._documentParameters != null && (this._documentParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DocumentSource. 
         /// <para>
         /// An S3 link, or S3 object URL, to the job document. The link is an Amazon S3 object
-        /// URL and is required if you don't specify a value for <code>document</code>.
+        /// URL and is required if you don't specify a value for <c>document</c>.
         /// </para>
         ///  
         /// <para>
-        /// For example, <code>--document-source https://s3.<i>region-code</i>.amazonaws.com/example-firmware/device-firmware.1.0</code>
+        /// For example, <c>--document-source https://s3.<i>region-code</i>.amazonaws.com/example-firmware/device-firmware.1.0</c>
         /// 
         /// </para>
         ///  
@@ -233,8 +236,8 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property JobId. 
         /// <para>
-        /// A job identifier which must be unique for your Amazon Web Services account. We recommend
-        /// using a UUID. Alpha-numeric characters, "-" and "_" are valid for use here.
+        /// A job identifier which must be unique for your account. We recommend using a UUID.
+        /// Alpha-numeric characters, "-" and "_" are valid for use here.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]
@@ -281,12 +284,14 @@ namespace Amazon.IoT.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
+        ///  <c>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</c>
         /// 
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>namespaceId</code> feature is in public preview.
+        /// The <c>namespaceId</c> feature is only supported by IoT Greengrass at this time. For
+        /// more information, see <a href="https://docs.aws.amazon.com/greengrass/v2/developerguide/setting-up.html">Setting
+        /// up IoT Greengrass core devices.</a> 
         /// </para>
         ///  </note>
         /// </summary>
@@ -354,7 +359,7 @@ namespace Amazon.IoT.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -373,7 +378,7 @@ namespace Amazon.IoT.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -409,9 +414,9 @@ namespace Amazon.IoT.Model
         /// Gets and sets the property TimeoutConfig. 
         /// <para>
         /// Specifies the amount of time each device has to finish its execution of the job. The
-        /// timer is started when the job execution status is set to <code>IN_PROGRESS</code>.
-        /// If the job execution status is not set to another terminal state before the time expires,
-        /// it will be automatically set to <code>TIMED_OUT</code>.
+        /// timer is started when the job execution status is set to <c>IN_PROGRESS</c>. If the
+        /// job execution status is not set to another terminal state before the time expires,
+        /// it will be automatically set to <c>TIMED_OUT</c>.
         /// </para>
         /// </summary>
         public TimeoutConfig TimeoutConfig

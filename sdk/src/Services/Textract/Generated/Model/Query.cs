@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Textract.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Textract.Model
     public partial class Query
     {
         private string _alias;
-        private List<string> _pages = new List<string>();
+        private List<string> _pages = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _text;
 
         /// <summary>
@@ -65,12 +66,12 @@ namespace Amazon.Textract.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If a page is not specified, it is set to <code>["1"]</code> by default.
+        /// If a page is not specified, it is set to <c>["1"]</c> by default.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The following characters are allowed in the parameter's string: <code>0 1 2 3 4 5
-        /// 6 7 8 9 - *</code>. No whitespace is allowed.
+        /// The following characters are allowed in the parameter's string: <c>0 1 2 3 4 5 6 7
+        /// 8 9 - *</c>. No whitespace is allowed.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -78,8 +79,8 @@ namespace Amazon.Textract.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You can use page intervals, such as <code>[“1-3”, “1-1”, “4-*”]</code>. Where <code>*</code>
-        /// indicates last page of document.
+        /// You can use page intervals, such as <c>[“1-3”, “1-1”, “4-*”]</c>. Where <c>*</c> indicates
+        /// last page of document.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -98,7 +99,7 @@ namespace Amazon.Textract.Model
         // Check to see if Pages property is set
         internal bool IsSetPages()
         {
-            return this._pages != null && this._pages.Count > 0; 
+            return this._pages != null && (this._pages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

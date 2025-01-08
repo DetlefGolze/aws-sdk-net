@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -150,7 +151,7 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  
         /// <para>
-        /// If this option is <code>true</code>, enhanced VPC routing is enabled. 
+        /// If this option is <c>true</c>, enhanced VPC routing is enabled. 
         /// </para>
         ///  
         /// <para>
@@ -195,7 +196,7 @@ namespace Amazon.Redshift.Model
         /// The pending or in-progress change of the admin user password for the cluster.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=2147483647)]
+        [AWSProperty(Sensitive=true)]
         public string MasterUserPassword
         {
             get { return this._masterUserPassword; }

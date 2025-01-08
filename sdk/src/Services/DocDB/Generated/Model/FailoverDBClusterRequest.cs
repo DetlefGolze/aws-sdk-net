@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Must match the identifier of an existing <code>DBCluster</code>.
+        /// Must match the identifier of an existing <c>DBCluster</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -84,7 +85,7 @@ namespace Amazon.DocDB.Model
         ///  
         /// <para>
         /// You must specify the instance identifier for an Amazon DocumentDB replica in the cluster.
-        /// For example, <code>mydbcluster-replica1</code>.
+        /// For example, <c>mydbcluster-replica1</c>.
         /// </para>
         /// </summary>
         public string TargetDBInstanceIdentifier

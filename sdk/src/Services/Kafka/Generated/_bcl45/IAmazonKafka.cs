@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Kafka.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Kafka
 {
     /// <summary>
-    /// Interface for accessing Kafka
+    /// <para>Interface for accessing Kafka</para>
     ///
     /// The operations for managing an Amazon MSK cluster.
     /// </summary>
@@ -392,6 +393,82 @@ namespace Amazon.Kafka
 
         #endregion
         
+        #region  CreateReplicator
+
+
+        /// <summary>
+        /// Creates the replicator.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateReplicator service method.</param>
+        /// 
+        /// <returns>The response from the CreateReplicator service method, as returned by Kafka.</returns>
+        /// <exception cref="Amazon.Kafka.Model.BadRequestException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ConflictException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ForbiddenException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.InternalServerErrorException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.NotFoundException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ServiceUnavailableException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.TooManyRequestsException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.UnauthorizedException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/CreateReplicator">REST API Reference for CreateReplicator Operation</seealso>
+        CreateReplicatorResponse CreateReplicator(CreateReplicatorRequest request);
+
+
+
+        /// <summary>
+        /// Creates the replicator.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateReplicator service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateReplicator service method, as returned by Kafka.</returns>
+        /// <exception cref="Amazon.Kafka.Model.BadRequestException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ConflictException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ForbiddenException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.InternalServerErrorException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.NotFoundException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ServiceUnavailableException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.TooManyRequestsException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.UnauthorizedException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/CreateReplicator">REST API Reference for CreateReplicator Operation</seealso>
+        Task<CreateReplicatorResponse> CreateReplicatorAsync(CreateReplicatorRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  CreateVpcConnection
 
 
@@ -611,6 +688,76 @@ namespace Amazon.Kafka
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/DeleteConfiguration">REST API Reference for DeleteConfiguration Operation</seealso>
         Task<DeleteConfigurationResponse> DeleteConfigurationAsync(DeleteConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DeleteReplicator
+
+
+        /// <summary>
+        /// Deletes a replicator.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteReplicator service method.</param>
+        /// 
+        /// <returns>The response from the DeleteReplicator service method, as returned by Kafka.</returns>
+        /// <exception cref="Amazon.Kafka.Model.BadRequestException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ForbiddenException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.InternalServerErrorException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.NotFoundException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ServiceUnavailableException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.TooManyRequestsException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.UnauthorizedException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/DeleteReplicator">REST API Reference for DeleteReplicator Operation</seealso>
+        DeleteReplicatorResponse DeleteReplicator(DeleteReplicatorRequest request);
+
+
+
+        /// <summary>
+        /// Deletes a replicator.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteReplicator service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteReplicator service method, as returned by Kafka.</returns>
+        /// <exception cref="Amazon.Kafka.Model.BadRequestException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ForbiddenException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.InternalServerErrorException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.NotFoundException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ServiceUnavailableException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.TooManyRequestsException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.UnauthorizedException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/DeleteReplicator">REST API Reference for DeleteReplicator Operation</seealso>
+        Task<DeleteReplicatorResponse> DeleteReplicatorAsync(DeleteReplicatorRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -1042,6 +1189,76 @@ namespace Amazon.Kafka
 
         #endregion
         
+        #region  DescribeReplicator
+
+
+        /// <summary>
+        /// Describes a replicator.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeReplicator service method.</param>
+        /// 
+        /// <returns>The response from the DescribeReplicator service method, as returned by Kafka.</returns>
+        /// <exception cref="Amazon.Kafka.Model.BadRequestException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ForbiddenException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.InternalServerErrorException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.NotFoundException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ServiceUnavailableException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.TooManyRequestsException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.UnauthorizedException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/DescribeReplicator">REST API Reference for DescribeReplicator Operation</seealso>
+        DescribeReplicatorResponse DescribeReplicator(DescribeReplicatorRequest request);
+
+
+
+        /// <summary>
+        /// Describes a replicator.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeReplicator service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeReplicator service method, as returned by Kafka.</returns>
+        /// <exception cref="Amazon.Kafka.Model.BadRequestException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ForbiddenException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.InternalServerErrorException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.NotFoundException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ServiceUnavailableException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.TooManyRequestsException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.UnauthorizedException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/DescribeReplicator">REST API Reference for DescribeReplicator Operation</seealso>
+        Task<DescribeReplicatorResponse> DescribeReplicatorAsync(DescribeReplicatorRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  DescribeVpcConnection
 
 
@@ -1110,7 +1327,11 @@ namespace Amazon.Kafka
 
 
         /// <summary>
-        /// A list of brokers that a client application can use to bootstrap.
+        /// A list of brokers that a client application can use to bootstrap. This list doesn't
+        /// necessarily include all of the brokers in the cluster. The following Python 3.6 example
+        /// shows how you can use the Amazon Resource Name (ARN) of a cluster to get its bootstrap
+        /// brokers. If you don't know the ARN of your cluster, you can use the <c>ListClusters</c>
+        /// operation to get the ARNs of all the clusters in this account and Region.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetBootstrapBrokers service method.</param>
         /// 
@@ -1136,7 +1357,11 @@ namespace Amazon.Kafka
 
 
         /// <summary>
-        /// A list of brokers that a client application can use to bootstrap.
+        /// A list of brokers that a client application can use to bootstrap. This list doesn't
+        /// necessarily include all of the brokers in the cluster. The following Python 3.6 example
+        /// shows how you can use the Amazon Resource Name (ARN) of a cluster to get its bootstrap
+        /// brokers. If you don't know the ARN of your cluster, you can use the <c>ListClusters</c>
+        /// operation to get the ARNs of all the clusters in this account and Region.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetBootstrapBrokers service method.</param>
         /// <param name="cancellationToken">
@@ -1797,6 +2022,76 @@ namespace Amazon.Kafka
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/ListNodes">REST API Reference for ListNodes Operation</seealso>
         Task<ListNodesResponse> ListNodesAsync(ListNodesRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListReplicators
+
+
+        /// <summary>
+        /// Lists the replicators.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListReplicators service method.</param>
+        /// 
+        /// <returns>The response from the ListReplicators service method, as returned by Kafka.</returns>
+        /// <exception cref="Amazon.Kafka.Model.BadRequestException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ForbiddenException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.InternalServerErrorException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.NotFoundException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ServiceUnavailableException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.TooManyRequestsException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.UnauthorizedException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/ListReplicators">REST API Reference for ListReplicators Operation</seealso>
+        ListReplicatorsResponse ListReplicators(ListReplicatorsRequest request);
+
+
+
+        /// <summary>
+        /// Lists the replicators.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListReplicators service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListReplicators service method, as returned by Kafka.</returns>
+        /// <exception cref="Amazon.Kafka.Model.BadRequestException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ForbiddenException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.InternalServerErrorException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.NotFoundException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ServiceUnavailableException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.TooManyRequestsException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.UnauthorizedException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/ListReplicators">REST API Reference for ListReplicators Operation</seealso>
+        Task<ListReplicatorsResponse> ListReplicatorsAsync(ListReplicatorsRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -2749,6 +3044,76 @@ namespace Amazon.Kafka
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/UpdateMonitoring">REST API Reference for UpdateMonitoring Operation</seealso>
         Task<UpdateMonitoringResponse> UpdateMonitoringAsync(UpdateMonitoringRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  UpdateReplicationInfo
+
+
+        /// <summary>
+        /// Updates replication info of a replicator.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateReplicationInfo service method.</param>
+        /// 
+        /// <returns>The response from the UpdateReplicationInfo service method, as returned by Kafka.</returns>
+        /// <exception cref="Amazon.Kafka.Model.BadRequestException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ForbiddenException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.InternalServerErrorException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.NotFoundException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ServiceUnavailableException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.TooManyRequestsException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.UnauthorizedException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/UpdateReplicationInfo">REST API Reference for UpdateReplicationInfo Operation</seealso>
+        UpdateReplicationInfoResponse UpdateReplicationInfo(UpdateReplicationInfoRequest request);
+
+
+
+        /// <summary>
+        /// Updates replication info of a replicator.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateReplicationInfo service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateReplicationInfo service method, as returned by Kafka.</returns>
+        /// <exception cref="Amazon.Kafka.Model.BadRequestException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ForbiddenException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.InternalServerErrorException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.NotFoundException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.ServiceUnavailableException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.TooManyRequestsException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <exception cref="Amazon.Kafka.Model.UnauthorizedException">
+        /// Returns information about an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/UpdateReplicationInfo">REST API Reference for UpdateReplicationInfo Operation</seealso>
+        Task<UpdateReplicationInfoResponse> UpdateReplicationInfoAsync(UpdateReplicationInfoRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaConvert.Model
 {
     /// <summary>
@@ -123,9 +124,9 @@ namespace Amazon.MediaConvert.Model
         }
 
         /// <summary>
-        /// Gets and sets the property MoovPlacement. If set to PROGRESSIVE_DOWNLOAD, the MOOV
-        /// atom is relocated to the beginning of the archive as required for progressive downloading.
-        /// Otherwise it is placed normally at the end.
+        /// Gets and sets the property MoovPlacement. To place the MOOV atom at the beginning
+        /// of your output, which is useful for progressive downloading: Leave blank or choose
+        /// Progressive download. To place the MOOV at the end of your output: Choose Normal.
         /// </summary>
         public Mp4MoovPlacement MoovPlacement
         {

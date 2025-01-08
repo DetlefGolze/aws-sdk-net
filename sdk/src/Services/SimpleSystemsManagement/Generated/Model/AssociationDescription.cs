@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -39,10 +40,11 @@ namespace Amazon.SimpleSystemsManagement.Model
         private string _associationName;
         private string _associationVersion;
         private string _automationTargetParameterName;
-        private List<string> _calendarNames = new List<string>();
+        private List<string> _calendarNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private AssociationComplianceSeverity _complianceSeverity;
         private DateTime? _date;
         private string _documentVersion;
+        private int? _duration;
         private string _instanceId;
         private DateTime? _lastExecutionDate;
         private DateTime? _lastSuccessfulExecutionDate;
@@ -52,15 +54,15 @@ namespace Amazon.SimpleSystemsManagement.Model
         private string _name;
         private InstanceAssociationOutputLocation _outputLocation;
         private AssociationOverview _overview;
-        private Dictionary<string, List<string>> _parameters = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<string>> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
         private string _scheduleExpression;
         private int? _scheduleOffset;
         private AssociationStatus _status;
         private AssociationSyncCompliance _syncCompliance;
-        private List<TargetLocation> _targetLocations = new List<TargetLocation>();
-        private List<Dictionary<string, List<string>>> _targetMaps = new List<Dictionary<string, List<string>>>();
-        private List<Target> _targets = new List<Target>();
-        private List<AlarmStateInformation> _triggeredAlarms = new List<AlarmStateInformation>();
+        private List<TargetLocation> _targetLocations = AWSConfigs.InitializeCollections ? new List<TargetLocation>() : null;
+        private List<Dictionary<string, List<string>>> _targetMaps = AWSConfigs.InitializeCollections ? new List<Dictionary<string, List<string>>>() : null;
+        private List<Target> _targets = AWSConfigs.InitializeCollections ? new List<Target>() : null;
+        private List<AlarmStateInformation> _triggeredAlarms = AWSConfigs.InitializeCollections ? new List<AlarmStateInformation>() : null;
 
         /// <summary>
         /// Gets and sets the property AlarmConfiguration.
@@ -191,7 +193,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if CalendarNames property is set
         internal bool IsSetCalendarNames()
         {
-            return this._calendarNames != null && this._calendarNames.Count > 0; 
+            return this._calendarNames != null && (this._calendarNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -246,6 +248,27 @@ namespace Amazon.SimpleSystemsManagement.Model
         internal bool IsSetDocumentVersion()
         {
             return this._documentVersion != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Duration. 
+        /// <para>
+        /// The number of hours that an association can run on specified targets. After the resulting
+        /// cutoff time passes, associations that are currently running are cancelled, and no
+        /// pending executions are started on remaining targets.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=24)]
+        public int Duration
+        {
+            get { return this._duration.GetValueOrDefault(); }
+            set { this._duration = value; }
+        }
+
+        // Check to see if Duration property is set
+        internal bool IsSetDuration()
+        {
+            return this._duration.HasValue; 
         }
 
         /// <summary>
@@ -331,9 +354,9 @@ namespace Amazon.SimpleSystemsManagement.Model
         ///  
         /// <para>
         /// If a new managed node starts and attempts to run an association while Systems Manager
-        /// is running <code>MaxConcurrency</code> associations, the association is allowed to
-        /// run. During the next association interval, the new managed node will process its association
-        /// within the limit specified for <code>MaxConcurrency</code>.
+        /// is running <c>MaxConcurrency</c> associations, the association is allowed to run.
+        /// During the next association interval, the new managed node will process its association
+        /// within the limit specified for <c>MaxConcurrency</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=7)]
@@ -357,15 +380,15 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// of errors, for example 10, or a percentage of the target set, for example 10%. If
         /// you specify 3, for example, the system stops sending requests when the fourth error
         /// is received. If you specify 0, then the system stops sending requests after the first
-        /// error is returned. If you run an association on 50 managed nodes and set <code>MaxError</code>
+        /// error is returned. If you run an association on 50 managed nodes and set <c>MaxError</c>
         /// to 10%, then the system stops sending the request when the sixth error is received.
         /// </para>
         ///  
         /// <para>
-        /// Executions that are already running an association when <code>MaxErrors</code> is
-        /// reached are allowed to complete, but some of these executions may fail as well. If
-        /// you need to ensure that there won't be more than max-errors failed executions, set
-        /// <code>MaxConcurrency</code> to 1 so that executions proceed one at a time.
+        /// Executions that are already running an association when <c>MaxErrors</c> is reached
+        /// are allowed to complete, but some of these executions may fail as well. If you need
+        /// to ensure that there won't be more than max-errors failed executions, set <c>MaxConcurrency</c>
+        /// to 1 so that executions proceed one at a time.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=7)]
@@ -451,7 +474,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -513,22 +536,22 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property SyncCompliance. 
         /// <para>
-        /// The mode for generating association compliance. You can specify <code>AUTO</code>
-        /// or <code>MANUAL</code>. In <code>AUTO</code> mode, the system uses the status of the
-        /// association execution to determine the compliance status. If the association execution
-        /// runs successfully, then the association is <code>COMPLIANT</code>. If the association
-        /// execution doesn't run successfully, the association is <code>NON-COMPLIANT</code>.
+        /// The mode for generating association compliance. You can specify <c>AUTO</c> or <c>MANUAL</c>.
+        /// In <c>AUTO</c> mode, the system uses the status of the association execution to determine
+        /// the compliance status. If the association execution runs successfully, then the association
+        /// is <c>COMPLIANT</c>. If the association execution doesn't run successfully, the association
+        /// is <c>NON-COMPLIANT</c>.
         /// </para>
         ///  
         /// <para>
-        /// In <code>MANUAL</code> mode, you must specify the <code>AssociationId</code> as a
-        /// parameter for the <a>PutComplianceItems</a> API operation. In this case, compliance
-        /// data isn't managed by State Manager, a capability of Amazon Web Services Systems Manager.
-        /// It is managed by your direct call to the <a>PutComplianceItems</a> API operation.
+        /// In <c>MANUAL</c> mode, you must specify the <c>AssociationId</c> as a parameter for
+        /// the <a>PutComplianceItems</a> API operation. In this case, compliance data isn't managed
+        /// by State Manager, a capability of Amazon Web Services Systems Manager. It is managed
+        /// by your direct call to the <a>PutComplianceItems</a> API operation.
         /// </para>
         ///  
         /// <para>
-        /// By default, all associations use <code>AUTO</code> mode.
+        /// By default, all associations use <c>AUTO</c> mode.
         /// </para>
         /// </summary>
         public AssociationSyncCompliance SyncCompliance
@@ -560,7 +583,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if TargetLocations property is set
         internal bool IsSetTargetLocations()
         {
-            return this._targetLocations != null && this._targetLocations.Count > 0; 
+            return this._targetLocations != null && (this._targetLocations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -580,7 +603,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if TargetMaps property is set
         internal bool IsSetTargetMaps()
         {
-            return this._targetMaps != null && this._targetMaps.Count > 0; 
+            return this._targetMaps != null && (this._targetMaps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -599,7 +622,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -618,7 +641,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if TriggeredAlarms property is set
         internal bool IsSetTriggeredAlarms()
         {
-            return this._triggeredAlarms != null && this._triggeredAlarms.Count > 0; 
+            return this._triggeredAlarms != null && (this._triggeredAlarms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

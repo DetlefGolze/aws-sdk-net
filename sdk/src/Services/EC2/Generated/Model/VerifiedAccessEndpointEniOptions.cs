@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.EC2.Model
     {
         private string _networkInterfaceId;
         private int? _port;
+        private List<VerifiedAccessEndpointPortRange> _portRanges = AWSConfigs.InitializeCollections ? new List<VerifiedAccessEndpointPortRange>() : null;
         private VerifiedAccessEndpointProtocol _protocol;
 
         /// <summary>
@@ -72,6 +74,24 @@ namespace Amazon.EC2.Model
         internal bool IsSetPort()
         {
             return this._port.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property PortRanges. 
+        /// <para>
+        /// The port ranges.
+        /// </para>
+        /// </summary>
+        public List<VerifiedAccessEndpointPortRange> PortRanges
+        {
+            get { return this._portRanges; }
+            set { this._portRanges = value; }
+        }
+
+        // Check to see if PortRanges property is set
+        internal bool IsSetPortRanges()
+        {
+            return this._portRanges != null && (this._portRanges.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

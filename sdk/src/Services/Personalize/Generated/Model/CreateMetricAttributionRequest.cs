@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Personalize.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.Personalize.Model
     public partial class CreateMetricAttributionRequest : AmazonPersonalizeRequest
     {
         private string _datasetGroupArn;
-        private List<MetricAttribute> _metrics = new List<MetricAttribute>();
+        private List<MetricAttribute> _metrics = AWSConfigs.InitializeCollections ? new List<MetricAttribute>() : null;
         private MetricAttributionOutput _metricsOutputConfig;
         private string _name;
 
@@ -65,9 +66,9 @@ namespace Amazon.Personalize.Model
         /// Gets and sets the property Metrics. 
         /// <para>
         /// A list of metric attributes for the metric attribution. Each metric attribute specifies
-        /// an event type to track and a function. Available functions are <code>SUM()</code>
-        /// or <code>SAMPLECOUNT()</code>. For SUM() functions, provide the dataset type (either
-        /// Interactions or Items) and column to sum as a parameter. For example SUM(Items.PRICE).
+        /// an event type to track and a function. Available functions are <c>SUM()</c> or <c>SAMPLECOUNT()</c>.
+        /// For SUM() functions, provide the dataset type (either Interactions or Items) and column
+        /// to sum as a parameter. For example SUM(Items.PRICE).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=10)]
@@ -80,7 +81,7 @@ namespace Amazon.Personalize.Model
         // Check to see if Metrics property is set
         internal bool IsSetMetrics()
         {
-            return this._metrics != null && this._metrics.Count > 0; 
+            return this._metrics != null && (this._metrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

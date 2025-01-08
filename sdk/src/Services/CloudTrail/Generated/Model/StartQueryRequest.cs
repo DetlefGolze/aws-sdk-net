@@ -26,27 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
     /// Container for the parameters to the StartQuery operation.
-    /// Starts a CloudTrail Lake query. Use the <code>QueryStatement</code> parameter to provide
-    /// your SQL query, enclosed in single quotation marks. Use the optional <code>DeliveryS3Uri</code>
+    /// Starts a CloudTrail Lake query. Use the <c>QueryStatement</c> parameter to provide
+    /// your SQL query, enclosed in single quotation marks. Use the optional <c>DeliveryS3Uri</c>
     /// parameter to deliver the query results to an S3 bucket.
     /// 
     ///  
     /// <para>
-    ///  <code>StartQuery</code> requires you specify either the <code>QueryStatement</code>
-    /// parameter, or a <code>QueryAlias</code> and any <code>QueryParameters</code>. In the
-    /// current release, the <code>QueryAlias</code> and <code>QueryParameters</code> parameters
-    /// are used only for the queries that populate the CloudTrail Lake dashboards.
+    ///  <c>StartQuery</c> requires you specify either the <c>QueryStatement</c> parameter,
+    /// or a <c>QueryAlias</c> and any <c>QueryParameters</c>. In the current release, the
+    /// <c>QueryAlias</c> and <c>QueryParameters</c> parameters are used only for the queries
+    /// that populate the CloudTrail Lake dashboards.
     /// </para>
     /// </summary>
     public partial class StartQueryRequest : AmazonCloudTrailRequest
     {
         private string _deliveryS3Uri;
+        private string _eventDataStoreOwnerAccountId;
         private string _queryAlias;
-        private List<string> _queryParameters = new List<string>();
+        private List<string> _queryParameters = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _queryStatement;
 
         /// <summary>
@@ -66,6 +68,25 @@ namespace Amazon.CloudTrail.Model
         internal bool IsSetDeliveryS3Uri()
         {
             return this._deliveryS3Uri != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EventDataStoreOwnerAccountId. 
+        /// <para>
+        ///  The account ID of the event data store owner. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=12, Max=16)]
+        public string EventDataStoreOwnerAccountId
+        {
+            get { return this._eventDataStoreOwnerAccountId; }
+            set { this._eventDataStoreOwnerAccountId = value; }
+        }
+
+        // Check to see if EventDataStoreOwnerAccountId property is set
+        internal bool IsSetEventDataStoreOwnerAccountId()
+        {
+            return this._eventDataStoreOwnerAccountId != null;
         }
 
         /// <summary>
@@ -90,7 +111,7 @@ namespace Amazon.CloudTrail.Model
         /// <summary>
         /// Gets and sets the property QueryParameters. 
         /// <para>
-        ///  The query parameters for the specified <code>QueryAlias</code>. 
+        ///  The query parameters for the specified <c>QueryAlias</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
@@ -103,7 +124,7 @@ namespace Amazon.CloudTrail.Model
         // Check to see if QueryParameters property is set
         internal bool IsSetQueryParameters()
         {
-            return this._queryParameters != null && this._queryParameters.Count > 0; 
+            return this._queryParameters != null && (this._queryParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

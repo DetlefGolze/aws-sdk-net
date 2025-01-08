@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComputeOptimizer.Model
 {
     /// <summary>
@@ -35,6 +36,9 @@ namespace Amazon.ComputeOptimizer.Model
     {
         private EnhancedInfrastructureMetrics _enhancedInfrastructureMetrics;
         private ExternalMetricsPreference _externalMetricsPreference;
+        private LookBackPeriodPreference _lookBackPeriod;
+        private List<EffectivePreferredResource> _preferredResources = AWSConfigs.InitializeCollections ? new List<EffectivePreferredResource>() : null;
+        private List<UtilizationPreference> _utilizationPreferences = AWSConfigs.InitializeCollections ? new List<UtilizationPreference>() : null;
 
         /// <summary>
         /// Gets and sets the property EnhancedInfrastructureMetrics. 
@@ -45,15 +49,14 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        /// A status of <code>Active</code> confirms that the preference is applied in the latest
-        /// recommendation refresh, and a status of <code>Inactive</code> confirms that it's not
-        /// yet applied to recommendations.
+        /// A status of <c>Active</c> confirms that the preference is applied in the latest recommendation
+        /// refresh, and a status of <c>Inactive</c> confirms that it's not yet applied to recommendations.
         /// </para>
         ///  
         /// <para>
         /// To validate whether the preference is applied to your last generated set of recommendations,
-        /// review the <code>effectiveRecommendationPreferences</code> value in the response of
-        /// the <a>GetAutoScalingGroupRecommendations</a> and <a>GetEC2InstanceRecommendations</a>
+        /// review the <c>effectiveRecommendationPreferences</c> value in the response of the
+        /// <a>GetAutoScalingGroupRecommendations</a> and <a>GetEC2InstanceRecommendations</a>
         /// actions.
         /// </para>
         ///  
@@ -83,14 +86,14 @@ namespace Amazon.ComputeOptimizer.Model
         ///  
         /// <para>
         /// If the preference is applied in the latest recommendation refresh, an object with
-        /// a valid <code>source</code> value appears in the response. If the preference isn't
-        /// applied to the recommendations already, then this object doesn't appear in the response.
+        /// a valid <c>source</c> value appears in the response. If the preference isn't applied
+        /// to the recommendations already, then this object doesn't appear in the response.
         /// </para>
         ///  
         /// <para>
         /// To validate whether the preference is applied to your last generated set of recommendations,
-        /// review the <code>effectiveRecommendationPreferences</code> value in the response of
-        /// the <a>GetEC2InstanceRecommendations</a> actions.
+        /// review the <c>effectiveRecommendationPreferences</c> value in the response of the
+        /// <a>GetEC2InstanceRecommendations</a> actions.
         /// </para>
         ///  
         /// <para>
@@ -108,6 +111,84 @@ namespace Amazon.ComputeOptimizer.Model
         internal bool IsSetExternalMetricsPreference()
         {
             return this._externalMetricsPreference != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property LookBackPeriod. 
+        /// <para>
+        ///  The number of days the utilization metrics of the Amazon Web Services resource are
+        /// analyzed. 
+        /// </para>
+        ///  
+        /// <para>
+        /// To validate that the preference is applied to your last generated set of recommendations,
+        /// review the <c>effectiveRecommendationPreferences</c> value in the response of the
+        /// GetAutoScalingGroupRecommendations or GetEC2InstanceRecommendations actions.
+        /// </para>
+        /// </summary>
+        public LookBackPeriodPreference LookBackPeriod
+        {
+            get { return this._lookBackPeriod; }
+            set { this._lookBackPeriod = value; }
+        }
+
+        // Check to see if LookBackPeriod property is set
+        internal bool IsSetLookBackPeriod()
+        {
+            return this._lookBackPeriod != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PreferredResources. 
+        /// <para>
+        ///  The resource type values that are considered as candidates when generating rightsizing
+        /// recommendations. This object resolves any wildcard expressions and returns the effective
+        /// list of candidate resource type values. It also considers all applicable preferences
+        /// that you set at the resource, account, and organization level. 
+        /// </para>
+        ///  
+        /// <para>
+        /// To validate that the preference is applied to your last generated set of recommendations,
+        /// review the <c>effectiveRecommendationPreferences</c> value in the response of the
+        /// GetAutoScalingGroupRecommendations or GetEC2InstanceRecommendations actions.
+        /// </para>
+        /// </summary>
+        public List<EffectivePreferredResource> PreferredResources
+        {
+            get { return this._preferredResources; }
+            set { this._preferredResources = value; }
+        }
+
+        // Check to see if PreferredResources property is set
+        internal bool IsSetPreferredResources()
+        {
+            return this._preferredResources != null && (this._preferredResources.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property UtilizationPreferences. 
+        /// <para>
+        ///  The resource’s CPU and memory utilization preferences, such as threshold and headroom,
+        /// that were used to generate rightsizing recommendations. It considers all applicable
+        /// preferences that you set at the resource, account, and organization level. 
+        /// </para>
+        ///  
+        /// <para>
+        /// To validate that the preference is applied to your last generated set of recommendations,
+        /// review the <c>effectiveRecommendationPreferences</c> value in the response of the
+        /// GetAutoScalingGroupRecommendations or GetEC2InstanceRecommendations actions.
+        /// </para>
+        /// </summary>
+        public List<UtilizationPreference> UtilizationPreferences
+        {
+            get { return this._utilizationPreferences; }
+            set { this._utilizationPreferences = value; }
+        }
+
+        // Check to see if UtilizationPreferences property is set
+        internal bool IsSetUtilizationPreferences()
+        {
+            return this._utilizationPreferences != null && (this._utilizationPreferences.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

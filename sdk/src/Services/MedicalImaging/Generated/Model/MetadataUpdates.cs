@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MedicalImaging.Model
 {
     /// <summary>
@@ -34,11 +35,12 @@ namespace Amazon.MedicalImaging.Model
     public partial class MetadataUpdates
     {
         private DICOMUpdates _dicomUpdates;
+        private string _revertToVersionId;
 
         /// <summary>
         /// Gets and sets the property DICOMUpdates. 
         /// <para>
-        /// The object containing <code>removableAttributes</code> and <code>updatableAttributes</code>.
+        /// The object containing <c>removableAttributes</c> and <c>updatableAttributes</c>.
         /// </para>
         /// </summary>
         public DICOMUpdates DICOMUpdates
@@ -51,6 +53,31 @@ namespace Amazon.MedicalImaging.Model
         internal bool IsSetDICOMUpdates()
         {
             return this._dicomUpdates != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RevertToVersionId. 
+        /// <para>
+        /// Specifies the previous image set version ID to revert the current image set back to.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// You must provide either <c>revertToVersionId</c> or <c>DICOMUpdates</c> in your request.
+        /// A <c>ValidationException</c> error is thrown if both parameters are provided at the
+        /// same time.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public string RevertToVersionId
+        {
+            get { return this._revertToVersionId; }
+            set { this._revertToVersionId = value; }
+        }
+
+        // Check to see if RevertToVersionId property is set
+        internal bool IsSetRevertToVersionId()
+        {
+            return this._revertToVersionId != null;
         }
 
     }

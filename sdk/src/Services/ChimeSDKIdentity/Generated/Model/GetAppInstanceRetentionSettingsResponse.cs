@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKIdentity.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.ChimeSDKIdentity.Model
         /// <summary>
         /// Gets and sets the property AppInstanceRetentionSettings. 
         /// <para>
-        /// The retention settings for the <code>AppInstance</code>.
+        /// The retention settings for the <c>AppInstance</c>.
         /// </para>
         /// </summary>
         public AppInstanceRetentionSettings AppInstanceRetentionSettings

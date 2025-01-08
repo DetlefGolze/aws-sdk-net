@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
@@ -40,25 +41,30 @@ namespace Amazon.Lambda.Model
         private DestinationConfig _destinationConfig;
         private DocumentDBEventSourceConfig _documentDBEventSourceConfig;
         private string _eventSourceArn;
+        private string _eventSourceMappingArn;
         private FilterCriteria _filterCriteria;
+        private FilterCriteriaError _filterCriteriaError;
         private string _functionArn;
-        private List<string> _functionResponseTypes = new List<string>();
+        private List<string> _functionResponseTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private string _kmsKeyArn;
         private DateTime? _lastModified;
         private string _lastProcessingResult;
         private int? _maximumBatchingWindowInSeconds;
         private int? _maximumRecordAgeInSeconds;
         private int? _maximumRetryAttempts;
+        private EventSourceMappingMetricsConfig _metricsConfig;
         private int? _parallelizationFactor;
-        private List<string> _queues = new List<string>();
+        private ProvisionedPollerConfig _provisionedPollerConfig;
+        private List<string> _queues = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ScalingConfig _scalingConfig;
         private SelfManagedEventSource _selfManagedEventSource;
         private SelfManagedKafkaEventSourceConfig _selfManagedKafkaEventSourceConfig;
-        private List<SourceAccessConfiguration> _sourceAccessConfigurations = new List<SourceAccessConfiguration>();
+        private List<SourceAccessConfiguration> _sourceAccessConfigurations = AWSConfigs.InitializeCollections ? new List<SourceAccessConfiguration>() : null;
         private EventSourcePosition _startingPosition;
         private DateTime? _startingPositionTimestamp;
         private string _state;
         private string _stateTransitionReason;
-        private List<string> _topics = new List<string>();
+        private List<string> _topics = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _tumblingWindowInSeconds;
         private string _uuid;
 
@@ -96,8 +102,8 @@ namespace Amazon.Lambda.Model
         /// </para>
         ///  
         /// <para>
-        /// Related setting: When you set <code>BatchSize</code> to a value greater than 10, you
-        /// must set <code>MaximumBatchingWindowInSeconds</code> to at least 1.
+        /// Related setting: When you set <c>BatchSize</c> to a value greater than 10, you must
+        /// set <c>MaximumBatchingWindowInSeconds</c> to at least 1.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10000)]
@@ -135,8 +141,9 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property DestinationConfig. 
         /// <para>
-        /// (Kinesis and DynamoDB Streams only) An Amazon SQS queue or Amazon SNS topic destination
-        /// for discarded records.
+        /// (Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka event sources
+        /// only) A configuration object that specifies the destination of an event after Lambda
+        /// processes it.
         /// </para>
         /// </summary>
         public DestinationConfig DestinationConfig
@@ -188,11 +195,37 @@ namespace Amazon.Lambda.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EventSourceMappingArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the event source mapping.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=85, Max=120)]
+        public string EventSourceMappingArn
+        {
+            get { return this._eventSourceMappingArn; }
+            set { this._eventSourceMappingArn = value; }
+        }
+
+        // Check to see if EventSourceMappingArn property is set
+        internal bool IsSetEventSourceMappingArn()
+        {
+            return this._eventSourceMappingArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property FilterCriteria. 
         /// <para>
         /// An object that defines the filter criteria that determine whether Lambda should process
         /// an event. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html">Lambda
         /// event filtering</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// If filter criteria is encrypted, this field shows up as <c>null</c> in the response
+        /// of ListEventSourceMapping API calls. You can view this field in plaintext in the response
+        /// of GetEventSourceMapping and DeleteEventSourceMapping calls if you have <c>kms:Decrypt</c>
+        /// permissions for the correct KMS key.
         /// </para>
         /// </summary>
         public FilterCriteria FilterCriteria
@@ -205,6 +238,24 @@ namespace Amazon.Lambda.Model
         internal bool IsSetFilterCriteria()
         {
             return this._filterCriteria != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property FilterCriteriaError. 
+        /// <para>
+        /// An object that contains details about an error related to filter criteria encryption.
+        /// </para>
+        /// </summary>
+        public FilterCriteriaError FilterCriteriaError
+        {
+            get { return this._filterCriteriaError; }
+            set { this._filterCriteriaError = value; }
+        }
+
+        // Check to see if FilterCriteriaError property is set
+        internal bool IsSetFilterCriteriaError()
+        {
+            return this._filterCriteriaError != null;
         }
 
         /// <summary>
@@ -242,7 +293,27 @@ namespace Amazon.Lambda.Model
         // Check to see if FunctionResponseTypes property is set
         internal bool IsSetFunctionResponseTypes()
         {
-            return this._functionResponseTypes != null && this._functionResponseTypes.Count > 0; 
+            return this._functionResponseTypes != null && (this._functionResponseTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property KMSKeyArn. 
+        /// <para>
+        ///  The ARN of the Key Management Service (KMS) customer managed key that Lambda uses
+        /// to encrypt your function's <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-basics">filter
+        /// criteria</a>.
+        /// </para>
+        /// </summary>
+        public string KMSKeyArn
+        {
+            get { return this._kmsKeyArn; }
+            set { this._kmsKeyArn = value; }
+        }
+
+        // Check to see if KMSKeyArn property is set
+        internal bool IsSetKMSKeyArn()
+        {
+            return this._kmsKeyArn != null;
         }
 
         /// <summary>
@@ -285,23 +356,23 @@ namespace Amazon.Lambda.Model
         /// Gets and sets the property MaximumBatchingWindowInSeconds. 
         /// <para>
         /// The maximum amount of time, in seconds, that Lambda spends gathering records before
-        /// invoking the function. You can configure <code>MaximumBatchingWindowInSeconds</code>
-        /// to any value from 0 seconds to 300 seconds in increments of seconds.
+        /// invoking the function. You can configure <c>MaximumBatchingWindowInSeconds</c> to
+        /// any value from 0 seconds to 300 seconds in increments of seconds.
         /// </para>
         ///  
         /// <para>
         /// For streams and Amazon SQS event sources, the default batching window is 0 seconds.
         /// For Amazon MSK, Self-managed Apache Kafka, Amazon MQ, and DocumentDB event sources,
-        /// the default batching window is 500 ms. Note that because you can only change <code>MaximumBatchingWindowInSeconds</code>
+        /// the default batching window is 500 ms. Note that because you can only change <c>MaximumBatchingWindowInSeconds</c>
         /// in increments of seconds, you cannot revert back to the 500 ms default batching window
         /// after you have changed it. To restore the default batching window, you must create
         /// a new event source mapping.
         /// </para>
         ///  
         /// <para>
-        /// Related setting: For streams and Amazon SQS event sources, when you set <code>BatchSize</code>
-        /// to a value greater than 10, you must set <code>MaximumBatchingWindowInSeconds</code>
-        /// to at least 1.
+        /// Related setting: For streams and Amazon SQS event sources, when you set <c>BatchSize</c>
+        /// to a value greater than 10, you must set <c>MaximumBatchingWindowInSeconds</c> to
+        /// at least 1.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=300)]
@@ -367,6 +438,25 @@ namespace Amazon.Lambda.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MetricsConfig. 
+        /// <para>
+        /// The metrics configuration for your event source. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics-types.html#event-source-mapping-metrics">Event
+        /// source mapping metrics</a>.
+        /// </para>
+        /// </summary>
+        public EventSourceMappingMetricsConfig MetricsConfig
+        {
+            get { return this._metricsConfig; }
+            set { this._metricsConfig = value; }
+        }
+
+        // Check to see if MetricsConfig property is set
+        internal bool IsSetMetricsConfig()
+        {
+            return this._metricsConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ParallelizationFactor. 
         /// <para>
         /// (Kinesis and DynamoDB Streams only) The number of batches to process concurrently
@@ -387,6 +477,26 @@ namespace Amazon.Lambda.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ProvisionedPollerConfig. 
+        /// <para>
+        /// (Amazon MSK and self-managed Apache Kafka only) The Provisioned Mode configuration
+        /// for the event source. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html#invocation-eventsourcemapping-provisioned-mode">Provisioned
+        /// Mode</a>.
+        /// </para>
+        /// </summary>
+        public ProvisionedPollerConfig ProvisionedPollerConfig
+        {
+            get { return this._provisionedPollerConfig; }
+            set { this._provisionedPollerConfig = value; }
+        }
+
+        // Check to see if ProvisionedPollerConfig property is set
+        internal bool IsSetProvisionedPollerConfig()
+        {
+            return this._provisionedPollerConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Queues. 
         /// <para>
         ///  (Amazon MQ) The name of the Amazon MQ broker destination queue to consume.
@@ -402,7 +512,7 @@ namespace Amazon.Lambda.Model
         // Check to see if Queues property is set
         internal bool IsSetQueues()
         {
-            return this._queues != null && this._queues.Count > 0; 
+            return this._queues != null && (this._queues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -478,16 +588,15 @@ namespace Amazon.Lambda.Model
         // Check to see if SourceAccessConfigurations property is set
         internal bool IsSetSourceAccessConfigurations()
         {
-            return this._sourceAccessConfigurations != null && this._sourceAccessConfigurations.Count > 0; 
+            return this._sourceAccessConfigurations != null && (this._sourceAccessConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property StartingPosition. 
         /// <para>
         /// The position in a stream from which to start reading. Required for Amazon Kinesis
-        /// and Amazon DynamoDB Stream event sources. <code>AT_TIMESTAMP</code> is supported only
-        /// for Amazon Kinesis streams, Amazon DocumentDB, Amazon MSK, and self-managed Apache
-        /// Kafka.
+        /// and Amazon DynamoDB Stream event sources. <c>AT_TIMESTAMP</c> is supported only for
+        /// Amazon Kinesis streams, Amazon DocumentDB, Amazon MSK, and self-managed Apache Kafka.
         /// </para>
         /// </summary>
         public EventSourcePosition StartingPosition
@@ -505,8 +614,8 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property StartingPositionTimestamp. 
         /// <para>
-        /// With <code>StartingPosition</code> set to <code>AT_TIMESTAMP</code>, the time from
-        /// which to start reading. <code>StartingPositionTimestamp</code> cannot be in the future.
+        /// With <c>StartingPosition</c> set to <c>AT_TIMESTAMP</c>, the time from which to start
+        /// reading. <c>StartingPositionTimestamp</c> cannot be in the future.
         /// </para>
         /// </summary>
         public DateTime StartingPositionTimestamp
@@ -524,9 +633,9 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property State. 
         /// <para>
-        /// The state of the event source mapping. It can be one of the following: <code>Creating</code>,
-        /// <code>Enabling</code>, <code>Enabled</code>, <code>Disabling</code>, <code>Disabled</code>,
-        /// <code>Updating</code>, or <code>Deleting</code>.
+        /// The state of the event source mapping. It can be one of the following: <c>Creating</c>,
+        /// <c>Enabling</c>, <c>Enabled</c>, <c>Disabling</c>, <c>Disabled</c>, <c>Updating</c>,
+        /// or <c>Deleting</c>.
         /// </para>
         /// </summary>
         public string State
@@ -575,7 +684,7 @@ namespace Amazon.Lambda.Model
         // Check to see if Topics property is set
         internal bool IsSetTopics()
         {
-            return this._topics != null && this._topics.Count > 0; 
+            return this._topics != null && (this._topics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

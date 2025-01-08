@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -41,15 +42,15 @@ namespace Amazon.DatabaseMigrationService.Model
         private bool? _multiAZ;
         private string _preferredMaintenanceWindow;
         private string _replicationSubnetGroupId;
-        private List<string> _vpcSecurityGroupIds = new List<string>();
+        private List<string> _vpcSecurityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AvailabilityZone. 
         /// <para>
         /// The Availability Zone where the DMS Serverless replication using this configuration
         /// will run. The default value is a random, system-chosen Availability Zone in the configuration's
-        /// Amazon Web Services Region, for example, <code>"us-west-2"</code>. You can't set this
-        /// parameter if the <code>MultiAZ</code> parameter is set to <code>true</code>.
+        /// Amazon Web Services Region, for example, <c>"us-west-2"</c>. You can't set this parameter
+        /// if the <c>MultiAZ</c> parameter is set to <c>true</c>.
         /// </para>
         /// </summary>
         public string AvailabilityZone
@@ -70,7 +71,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// A list of custom DNS name servers supported for the DMS Serverless replication to
         /// access your source or target database. This list overrides the default name servers
         /// supported by the DMS Serverless replication. You can specify a comma-separated list
-        /// of internet addresses for up to four DNS name servers. For example: <code>"1.1.1.1,2.2.2.2,3.3.3.3,4.4.4.4"</code>
+        /// of internet addresses for up to four DNS name servers. For example: <c>"1.1.1.1,2.2.2.2,3.3.3.3,4.4.4.4"</c>
         /// 
         /// </para>
         /// </summary>
@@ -94,8 +95,8 @@ namespace Amazon.DatabaseMigrationService.Model
         /// </para>
         ///  
         /// <para>
-        /// If you don't specify a value for the <code>KmsKeyId</code> parameter, DMS uses your
-        /// default encryption key.
+        /// If you don't specify a value for the <c>KmsKeyId</c> parameter, DMS uses your default
+        /// encryption key.
         /// </para>
         ///  
         /// <para>
@@ -123,7 +124,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Serverless replication can be provisioned. A single DCU is 2GB of RAM, with 1 DCU
         /// as the minimum value allowed. The list of valid DCU values includes 1, 2, 4, 8, 16,
         /// 32, 64, 128, 192, 256, and 384. So, the maximum value that you can specify for DMS
-        /// Serverless is 384. The <code>MaxCapacityUnits</code> parameter is the only DCU parameter
+        /// Serverless is 384. The <c>MaxCapacityUnits</c> parameter is the only DCU parameter
         /// you are required to specify.
         /// </para>
         /// </summary>
@@ -146,11 +147,9 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Serverless replication can be provisioned. A single DCU is 2GB of RAM, with 1 DCU
         /// as the minimum value allowed. The list of valid DCU values includes 1, 2, 4, 8, 16,
         /// 32, 64, 128, 192, 256, and 384. So, the minimum DCU value that you can specify for
-        /// DMS Serverless is 1. You don't have to specify a value for the <code>MinCapacityUnits</code>
-        /// parameter. If you don't set this value, DMS scans the current activity of available
-        /// source tables to identify an optimum setting for this parameter. If there is no current
-        /// source activity or DMS can't otherwise identify a more appropriate value, it sets
-        /// this parameter to the minimum DCU value allowed, 1.
+        /// DMS Serverless is 1. If you don't set this value, DMS sets this parameter to the minimum
+        /// DCU value allowed, 1. If there is no current source activity, DMS scales down your
+        /// replication until it reaches the value specified in <c>MinCapacityUnits</c>.
         /// </para>
         /// </summary>
         public int MinCapacityUnits
@@ -169,8 +168,8 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property MultiAZ. 
         /// <para>
         /// Specifies whether the DMS Serverless replication is a Multi-AZ deployment. You can't
-        /// set the <code>AvailabilityZone</code> parameter if the <code>MultiAZ</code> parameter
-        /// is set to <code>true</code>.
+        /// set the <c>AvailabilityZone</c> parameter if the <c>MultiAZ</c> parameter is set to
+        /// <c>true</c>.
         /// </para>
         /// </summary>
         public bool MultiAZ
@@ -189,14 +188,14 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property PreferredMaintenanceWindow. 
         /// <para>
         /// The weekly time range during which system maintenance can occur for the DMS Serverless
-        /// replication, in Universal Coordinated Time (UTC). The format is <code>ddd:hh24:mi-ddd:hh24:mi</code>.
+        /// replication, in Universal Coordinated Time (UTC). The format is <c>ddd:hh24:mi-ddd:hh24:mi</c>.
         /// </para>
         ///  
         /// <para>
         /// The default is a 30-minute window selected at random from an 8-hour block of time
         /// per Amazon Web Services Region. This maintenance occurs on a random day of the week.
-        /// Valid values for days of the week include <code>Mon</code>, <code>Tue</code>, <code>Wed</code>,
-        /// <code>Thu</code>, <code>Fri</code>, <code>Sat</code>, and <code>Sun</code>.
+        /// Valid values for days of the week include <c>Mon</c>, <c>Tue</c>, <c>Wed</c>, <c>Thu</c>,
+        /// <c>Fri</c>, <c>Sat</c>, and <c>Sun</c>.
         /// </para>
         ///  
         /// <para>
@@ -249,7 +248,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if VpcSecurityGroupIds property is set
         internal bool IsSetVpcSecurityGroupIds()
         {
-            return this._vpcSecurityGroupIds != null && this._vpcSecurityGroupIds.Count > 0; 
+            return this._vpcSecurityGroupIds != null && (this._vpcSecurityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

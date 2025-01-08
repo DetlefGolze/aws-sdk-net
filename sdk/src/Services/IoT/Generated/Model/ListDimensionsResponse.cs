@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.IoT.Model
     /// </summary>
     public partial class ListDimensionsResponse : AmazonWebServiceResponse
     {
-        private List<string> _dimensionNames = new List<string>();
+        private List<string> _dimensionNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property DimensionNames. 
         /// <para>
-        /// A list of the names of the defined dimensions. Use <code>DescribeDimension</code>
-        /// to get details for a dimension.
+        /// A list of the names of the defined dimensions. Use <c>DescribeDimension</c> to get
+        /// details for a dimension.
         /// </para>
         /// </summary>
         public List<string> DimensionNames
@@ -52,14 +53,14 @@ namespace Amazon.IoT.Model
         // Check to see if DimensionNames property is set
         internal bool IsSetDimensionNames()
         {
-            return this._dimensionNames != null && this._dimensionNames.Count > 0; 
+            return this._dimensionNames != null && (this._dimensionNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token that can be used to retrieve the next set of results, or <code>null</code>
-        /// if there are no additional results.
+        /// A token that can be used to retrieve the next set of results, or <c>null</c> if there
+        /// are no additional results.
         /// </para>
         /// </summary>
         public string NextToken

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property CollectorName. 
         /// <para>
-        /// The name of your Fleet Advisor collector (for example, <code>sample-collector</code>).
+        /// The name of your Fleet Advisor collector (for example, <c>sample-collector</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

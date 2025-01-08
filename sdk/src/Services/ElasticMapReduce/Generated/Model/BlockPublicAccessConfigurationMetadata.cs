@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
-    /// Properties that describe the Amazon Web Services principal that created the <code>BlockPublicAccessConfiguration</code>
-    /// using the <code>PutBlockPublicAccessConfiguration</code> action as well as the date
-    /// and time that the configuration was created. Each time a configuration for block public
+    /// Properties that describe the Amazon Web Services principal that created the <c>BlockPublicAccessConfiguration</c>
+    /// using the <c>PutBlockPublicAccessConfiguration</c> action as well as the date and
+    /// time that the configuration was created. Each time a configuration for block public
     /// access is updated, Amazon EMR updates this metadata.
     /// </summary>
     public partial class BlockPublicAccessConfigurationMetadata

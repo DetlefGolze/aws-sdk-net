@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53RecoveryCluster.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateRoutingControlStates operation.
-    /// Set multiple routing control states. You can set the value for each state to be On
-    /// or Off. When the state is On, traffic flows to a cell. When it's Off, traffic does
+    /// Set multiple routing control states. You can set the value for each state to be ON
+    /// or OFF. When the state is ON, traffic flows to a cell. When it's OFF, traffic does
     /// not flow.
     /// 
     ///  
@@ -47,7 +48,7 @@ namespace Amazon.Route53RecoveryCluster.Model
     /// </para>
     ///  
     /// <para>
-    /// The <code>SafetyRulesToOverride</code> property enables you override one or more safety
+    /// The <c>SafetyRulesToOverride</c> property enables you override one or more safety
     /// rules and update routing control states. For more information, see <a href="https://docs.aws.amazon.com/r53recovery/latest/dg/routing-control.override-safety-rule.html">
     /// Override safety rules to reroute traffic</a> in the Amazon Route 53 Application Recovery
     /// Controller Developer Guide.
@@ -77,8 +78,8 @@ namespace Amazon.Route53RecoveryCluster.Model
     /// </summary>
     public partial class UpdateRoutingControlStatesRequest : AmazonRoute53RecoveryClusterRequest
     {
-        private List<string> _safetyRulesToOverride = new List<string>();
-        private List<UpdateRoutingControlStateEntry> _updateRoutingControlStateEntries = new List<UpdateRoutingControlStateEntry>();
+        private List<string> _safetyRulesToOverride = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<UpdateRoutingControlStateEntry> _updateRoutingControlStateEntries = AWSConfigs.InitializeCollections ? new List<UpdateRoutingControlStateEntry>() : null;
 
         /// <summary>
         /// Gets and sets the property SafetyRulesToOverride. 
@@ -103,7 +104,7 @@ namespace Amazon.Route53RecoveryCluster.Model
         // Check to see if SafetyRulesToOverride property is set
         internal bool IsSetSafetyRulesToOverride()
         {
-            return this._safetyRulesToOverride != null && this._safetyRulesToOverride.Count > 0; 
+            return this._safetyRulesToOverride != null && (this._safetyRulesToOverride.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -122,7 +123,7 @@ namespace Amazon.Route53RecoveryCluster.Model
         // Check to see if UpdateRoutingControlStateEntries property is set
         internal bool IsSetUpdateRoutingControlStateEntries()
         {
-            return this._updateRoutingControlStateEntries != null && this._updateRoutingControlStateEntries.Count > 0; 
+            return this._updateRoutingControlStateEntries != null && (this._updateRoutingControlStateEntries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

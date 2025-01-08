@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.AutoScaling.Model
     /// 
     ///  
     /// <para>
-    /// If there are any outstanding lifecycle actions, they are completed first (<code>ABANDON</code>
-    /// for launching instances, <code>CONTINUE</code> for terminating instances).
+    /// If there are any outstanding lifecycle actions, they are completed first (<c>ABANDON</c>
+    /// for launching instances, <c>CONTINUE</c> for terminating instances).
     /// </para>
     /// </summary>
     public partial class DeleteLifecycleHookRequest : AmazonAutoScalingRequest

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MedicalImaging.Model
 {
     /// <summary>
@@ -42,8 +43,8 @@ namespace Amazon.MedicalImaging.Model
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// The time an image set is created in AWS HealthImaging. Sample creation date is provided
-        /// in <code>1985-04-12T23:20:50.52Z</code> format.
+        /// The time an image set is created. Sample creation date is provided in <c>1985-04-12T23:20:50.52Z</c>
+        /// format.
         /// </para>
         /// </summary>
         public DateTime CreatedAt
@@ -98,7 +99,7 @@ namespace Amazon.MedicalImaging.Model
         /// <summary>
         /// Gets and sets the property UpdatedAt. 
         /// <para>
-        /// The time when an image was last updated in AWS HealthImaging.
+        /// The time an image set was last updated.
         /// </para>
         /// </summary>
         public DateTime UpdatedAt

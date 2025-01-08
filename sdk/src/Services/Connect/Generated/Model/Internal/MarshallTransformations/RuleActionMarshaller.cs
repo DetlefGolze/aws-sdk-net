@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Connect.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(RuleAction requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetActionType())
             {
                 context.Writer.WritePropertyName("ActionType");
@@ -58,6 +61,28 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
 
                 var marshaller = AssignContactCategoryActionDefinitionMarshaller.Instance;
                 marshaller.Marshall(requestObject.AssignContactCategoryAction, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetCreateCaseAction())
+            {
+                context.Writer.WritePropertyName("CreateCaseAction");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = CreateCaseActionDefinitionMarshaller.Instance;
+                marshaller.Marshall(requestObject.CreateCaseAction, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetEndAssociatedTasksAction())
+            {
+                context.Writer.WritePropertyName("EndAssociatedTasksAction");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = EndAssociatedTasksActionDefinitionMarshaller.Instance;
+                marshaller.Marshall(requestObject.EndAssociatedTasksAction, context);
 
                 context.Writer.WriteObjectEnd();
             }
@@ -84,6 +109,17 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
                 context.Writer.WriteObjectEnd();
             }
 
+            if(requestObject.IsSetSubmitAutoEvaluationAction())
+            {
+                context.Writer.WritePropertyName("SubmitAutoEvaluationAction");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = SubmitAutoEvaluationActionDefinitionMarshaller.Instance;
+                marshaller.Marshall(requestObject.SubmitAutoEvaluationAction, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetTaskAction())
             {
                 context.Writer.WritePropertyName("TaskAction");
@@ -91,6 +127,17 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
 
                 var marshaller = TaskActionDefinitionMarshaller.Instance;
                 marshaller.Marshall(requestObject.TaskAction, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetUpdateCaseAction())
+            {
+                context.Writer.WritePropertyName("UpdateCaseAction");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = UpdateCaseActionDefinitionMarshaller.Instance;
+                marshaller.Marshall(requestObject.UpdateCaseAction, context);
 
                 context.Writer.WriteObjectEnd();
             }

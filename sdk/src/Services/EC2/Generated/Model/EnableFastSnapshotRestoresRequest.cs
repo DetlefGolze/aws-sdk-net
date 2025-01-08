@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,25 +36,25 @@ namespace Amazon.EC2.Model
     /// 
     ///  
     /// <para>
-    /// You get the full benefit of fast snapshot restores after they enter the <code>enabled</code>
+    /// You get the full benefit of fast snapshot restores after they enter the <c>enabled</c>
     /// state. To get the current state of fast snapshot restores, use <a>DescribeFastSnapshotRestores</a>.
     /// To disable fast snapshot restores, use <a>DisableFastSnapshotRestores</a>.
     /// </para>
     ///  
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-fast-snapshot-restore.html">Amazon
-    /// EBS fast snapshot restore</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/ebs/latest/userguide/ebs-fast-snapshot-restore.html">Amazon
+    /// EBS fast snapshot restore</a> in the <i>Amazon EBS User Guide</i>.
     /// </para>
     /// </summary>
     public partial class EnableFastSnapshotRestoresRequest : AmazonEC2Request
     {
-        private List<string> _availabilityZones = new List<string>();
-        private List<string> _sourceSnapshotIds = new List<string>();
+        private List<string> _availabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _sourceSnapshotIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AvailabilityZones. 
         /// <para>
-        /// One or more Availability Zones. For example, <code>us-east-2a</code>.
+        /// One or more Availability Zones. For example, <c>us-east-2a</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -66,15 +67,14 @@ namespace Amazon.EC2.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SourceSnapshotIds. 
         /// <para>
-        /// The IDs of one or more snapshots. For example, <code>snap-1234567890abcdef0</code>.
-        /// You can specify a snapshot that was shared with you from another Amazon Web Services
-        /// account.
+        /// The IDs of one or more snapshots. For example, <c>snap-1234567890abcdef0</c>. You
+        /// can specify a snapshot that was shared with you from another Amazon Web Services account.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -87,7 +87,7 @@ namespace Amazon.EC2.Model
         // Check to see if SourceSnapshotIds property is set
         internal bool IsSetSourceSnapshotIds()
         {
-            return this._sourceSnapshotIds != null && this._sourceSnapshotIds.Count > 0; 
+            return this._sourceSnapshotIds != null && (this._sourceSnapshotIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

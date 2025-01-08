@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.WAFV2.Model
         private FieldToMatch _fieldToMatch;
         private PositionalConstraint _positionalConstraint;
         private MemoryStream _searchString;
-        private List<TextTransformation> _textTransformations = new List<TextTransformation>();
+        private List<TextTransformation> _textTransformations = AWSConfigs.InitializeCollections ? new List<TextTransformation>() : null;
 
         /// <summary>
         /// Gets and sets the property FieldToMatch. 
@@ -64,7 +65,7 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property PositionalConstraint. 
         /// <para>
-        /// The area within the portion of the web request that you want WAF to search for <code>SearchString</code>.
+        /// The area within the portion of the web request that you want WAF to search for <c>SearchString</c>.
         /// Valid values include the following:
         /// </para>
         ///  
@@ -73,7 +74,7 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// The specified part of the web request must include the value of <code>SearchString</code>,
+        /// The specified part of the web request must include the value of <c>SearchString</c>,
         /// but the location doesn't matter.
         /// </para>
         ///  
@@ -82,22 +83,22 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// The specified part of the web request must include the value of <code>SearchString</code>,
-        /// and <code>SearchString</code> must contain only alphanumeric characters or underscore
-        /// (A-Z, a-z, 0-9, or _). In addition, <code>SearchString</code> must be a word, which
-        /// means that both of the following are true:
+        /// The specified part of the web request must include the value of <c>SearchString</c>,
+        /// and <c>SearchString</c> must contain only alphanumeric characters or underscore (A-Z,
+        /// a-z, 0-9, or _). In addition, <c>SearchString</c> must be a word, which means that
+        /// both of the following are true:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>SearchString</code> is at the beginning of the specified part of the web request
+        ///  <c>SearchString</c> is at the beginning of the specified part of the web request
         /// or is preceded by a character other than an alphanumeric character or underscore (_).
-        /// Examples include the value of a header and <code>;BadBot</code>.
+        /// Examples include the value of a header and <c>;BadBot</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SearchString</code> is at the end of the specified part of the web request
-        /// or is followed by a character other than an alphanumeric character or underscore (_),
-        /// for example, <code>BadBot;</code> and <code>-BadBot;</code>.
+        ///  <c>SearchString</c> is at the end of the specified part of the web request or is
+        /// followed by a character other than an alphanumeric character or underscore (_), for
+        /// example, <c>BadBot;</c> and <c>-BadBot;</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -106,7 +107,7 @@ namespace Amazon.WAFV2.Model
         ///  
         /// <para>
         /// The value of the specified part of the web request must exactly match the value of
-        /// <code>SearchString</code>.
+        /// <c>SearchString</c>.
         /// </para>
         ///  
         /// <para>
@@ -114,8 +115,8 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// The value of <code>SearchString</code> must appear at the beginning of the specified
-        /// part of the web request.
+        /// The value of <c>SearchString</c> must appear at the beginning of the specified part
+        /// of the web request.
         /// </para>
         ///  
         /// <para>
@@ -123,8 +124,8 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// The value of <code>SearchString</code> must appear at the end of the specified part
-        /// of the web request.
+        /// The value of <c>SearchString</c> must appear at the end of the specified part of the
+        /// web request.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -149,25 +150,26 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values depend on the component that you specify for inspection in <code>FieldToMatch</code>:
+        /// Valid values depend on the component that you specify for inspection in <c>FieldToMatch</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Method</code>: The HTTP method that you want WAF to search for. This indicates
-        /// the type of operation specified in the request. 
+        ///  <c>Method</c>: The HTTP method that you want WAF to search for. This indicates the
+        /// type of operation specified in the request. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UriPath</code>: The value that you want WAF to search for in the URI path,
-        /// for example, <code>/images/daily-ad.jpg</code>. 
+        ///  <c>UriPath</c>: The value that you want WAF to search for in the URI path, for example,
+        /// <c>/images/daily-ad.jpg</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>JA3Fingerprint</code>: Match against the request's JA3 fingerprint. The JA3
-        /// fingerprint is a 32-character hash derived from the TLS Client Hello of an incoming
-        /// request. This fingerprint serves as a unique identifier for the client's TLS configuration.
-        /// You can use this choice only with a string match <code>ByteMatchStatement</code> with
-        /// the <code>PositionalConstraint</code> set to <code>EXACTLY</code>. 
+        ///  <c>JA3Fingerprint</c>: Available for use with Amazon CloudFront distributions and
+        /// Application Load Balancers. Match against the request's JA3 fingerprint. The JA3 fingerprint
+        /// is a 32-character hash derived from the TLS Client Hello of an incoming request. This
+        /// fingerprint serves as a unique identifier for the client's TLS configuration. You
+        /// can use this choice only with a string match <c>ByteMatchStatement</c> with the <c>PositionalConstraint</c>
+        /// set to <c>EXACTLY</c>. 
         /// </para>
         ///  
         /// <para>
@@ -178,14 +180,14 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>HeaderOrder</code>: The comma-separated list of header names to match for.
-        /// WAF creates a string that contains the ordered list of header names, from the headers
-        /// in the web request, and then matches against that string. 
+        ///  <c>HeaderOrder</c>: The list of header names to match for. WAF creates a string that
+        /// contains the ordered list of header names, from the headers in the web request, and
+        /// then matches against that string. 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If <code>SearchString</code> includes alphabetic characters A-Z and a-z, note that
-        /// the value is case sensitive.
+        /// If <c>SearchString</c> includes alphabetic characters A-Z and a-z, note that the value
+        /// is case sensitive.
         /// </para>
         ///  
         /// <para>
@@ -198,11 +200,10 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// For example, suppose the value of <code>Type</code> is <code>HEADER</code> and the
-        /// value of <code>Data</code> is <code>User-Agent</code>. If you want to search the <code>User-Agent</code>
-        /// header for the value <code>BadBot</code>, you base64-encode <code>BadBot</code> using
-        /// MIME base64-encoding and include the resulting value, <code>QmFkQm90</code>, in the
-        /// value of <code>SearchString</code>.
+        /// For example, suppose the value of <c>Type</c> is <c>HEADER</c> and the value of <c>Data</c>
+        /// is <c>User-Agent</c>. If you want to search the <c>User-Agent</c> header for the value
+        /// <c>BadBot</c>, you base64-encode <c>BadBot</c> using MIME base64-encoding and include
+        /// the resulting value, <c>QmFkQm90</c>, in the value of <c>SearchString</c>.
         /// </para>
         ///  
         /// <para>
@@ -232,12 +233,11 @@ namespace Amazon.WAFV2.Model
         /// <para>
         /// Text transformations eliminate some of the unusual formatting that attackers use in
         /// web requests in an effort to bypass detection. Text transformations are used in rule
-        /// match statements, to transform the <code>FieldToMatch</code> request component before
-        /// inspecting it, and they're used in rate-based rule statements, to transform request
-        /// components before using them as custom aggregation keys. If you specify one or more
-        /// transformations to apply, WAF performs all transformations on the specified content,
-        /// starting from the lowest priority setting, and then uses the transformed component
-        /// contents. 
+        /// match statements, to transform the <c>FieldToMatch</c> request component before inspecting
+        /// it, and they're used in rate-based rule statements, to transform request components
+        /// before using them as custom aggregation keys. If you specify one or more transformations
+        /// to apply, WAF performs all transformations on the specified content, starting from
+        /// the lowest priority setting, and then uses the transformed component contents. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1)]
@@ -250,7 +250,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if TextTransformations property is set
         internal bool IsSetTextTransformations()
         {
-            return this._textTransformations != null && this._textTransformations.Count > 0; 
+            return this._textTransformations != null && (this._textTransformations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

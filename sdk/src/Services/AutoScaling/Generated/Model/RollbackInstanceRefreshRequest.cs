@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -52,18 +53,19 @@ namespace Amazon.AutoScaling.Model
     ///  </li> <li> 
     /// <para>
     /// The Auto Scaling group has a launch template that uses an Amazon Web Services Systems
-    /// Manager parameter instead of an AMI ID for the <code>ImageId</code> property.
+    /// Manager parameter instead of an AMI ID for the <c>ImageId</c> property.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// The Auto Scaling group uses the launch template's <code>$Latest</code> or <code>$Default</code>
+    /// The Auto Scaling group uses the launch template's <c>$Latest</c> or <c>$Default</c>
     /// version.
     /// </para>
     ///  </li> </ul> 
     /// <para>
     /// When you receive a successful response from this operation, Amazon EC2 Auto Scaling
     /// immediately begins replacing instances. You can check the status of this operation
-    /// through the <a>DescribeInstanceRefreshes</a> API operation. 
+    /// through the <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeInstanceRefreshes.html">DescribeInstanceRefreshes</a>
+    /// API operation. 
     /// </para>
     /// </summary>
     public partial class RollbackInstanceRefreshRequest : AmazonAutoScalingRequest

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AppSync.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.AppSync.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public GraphqlApi Unmarshall(JsonUnmarshallerContext context)
         {
+            GraphqlApi unmarshalledObject = new GraphqlApi();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            GraphqlApi unmarshalledObject = new GraphqlApi();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -98,6 +100,18 @@ namespace Amazon.AppSync.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = new DictionaryUnmarshaller<string, string, StringUnmarshaller, StringUnmarshaller>(StringUnmarshaller.Instance, StringUnmarshaller.Instance);
                     unmarshalledObject.Dns = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("enhancedMetricsConfig", targetDepth))
+                {
+                    var unmarshaller = EnhancedMetricsConfigUnmarshaller.Instance;
+                    unmarshalledObject.EnhancedMetricsConfig = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("introspectionConfig", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.IntrospectionConfig = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("lambdaAuthorizerConfig", targetDepth))
@@ -142,6 +156,18 @@ namespace Amazon.AppSync.Model.Internal.MarshallTransformations
                     unmarshalledObject.OwnerContact = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("queryDepthLimit", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.QueryDepthLimit = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("resolverCountLimit", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.ResolverCountLimit = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("tags", targetDepth))
                 {
                     var unmarshaller = new DictionaryUnmarshaller<string, string, StringUnmarshaller, StringUnmarshaller>(StringUnmarshaller.Instance, StringUnmarshaller.Instance);
@@ -179,7 +205,6 @@ namespace Amazon.AppSync.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

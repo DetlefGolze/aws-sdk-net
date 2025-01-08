@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -34,9 +35,9 @@ namespace Amazon.AutoScaling.Model
     public partial class LaunchConfiguration
     {
         private bool? _associatePublicIpAddress;
-        private List<BlockDeviceMapping> _blockDeviceMappings = new List<BlockDeviceMapping>();
+        private List<BlockDeviceMapping> _blockDeviceMappings = AWSConfigs.InitializeCollections ? new List<BlockDeviceMapping>() : null;
         private string _classicLinkVPCId;
-        private List<string> _classicLinkVPCSecurityGroups = new List<string>();
+        private List<string> _classicLinkVPCSecurityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _createdTime;
         private bool? _ebsOptimized;
         private string _iamInstanceProfile;
@@ -50,7 +51,7 @@ namespace Amazon.AutoScaling.Model
         private InstanceMetadataOptions _metadataOptions;
         private string _placementTenancy;
         private string _ramdiskId;
-        private List<string> _securityGroups = new List<string>();
+        private List<string> _securityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _spotPrice;
         private string _userData;
 
@@ -62,8 +63,9 @@ namespace Amazon.AutoScaling.Model
         /// address, unless you disabled the option to assign a public IPv4 address on the subnet.
         /// If the instance is launched into a nondefault subnet, the default is not to assign
         /// a public IPv4 address, unless you enabled the option to assign a public IPv4 address
-        /// on the subnet. For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html">Launching
-        /// Auto Scaling instances in a VPC</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+        /// on the subnet. For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html">Provide
+        /// network connectivity for your Auto Scaling instances using Amazon VPC</a> in the <i>Amazon
+        /// EC2 Auto Scaling User Guide</i>.
         /// </para>
         /// </summary>
         public bool AssociatePublicIpAddress
@@ -84,7 +86,7 @@ namespace Amazon.AutoScaling.Model
         /// The block device mapping entries that define the block devices to attach to the instances
         /// at launch. By default, the block devices specified in the block device mapping for
         /// the AMI are used. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html">Block
-        /// Device Mapping</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.
+        /// device mappings</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.
         /// </para>
         /// </summary>
         public List<BlockDeviceMapping> BlockDeviceMappings
@@ -96,7 +98,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if BlockDeviceMappings property is set
         internal bool IsSetBlockDeviceMappings()
         {
-            return this._blockDeviceMappings != null && this._blockDeviceMappings.Count > 0; 
+            return this._blockDeviceMappings != null && (this._blockDeviceMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -133,7 +135,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if ClassicLinkVPCSecurityGroups property is set
         internal bool IsSetClassicLinkVPCSecurityGroups()
         {
-            return this._classicLinkVPCSecurityGroups != null && this._classicLinkVPCSecurityGroups.Count > 0; 
+            return this._classicLinkVPCSecurityGroups != null && (this._classicLinkVPCSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -158,9 +160,9 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property EbsOptimized. 
         /// <para>
-        /// Specifies whether the launch configuration is optimized for EBS I/O (<code>true</code>)
-        /// or not (<code>false</code>). For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html">Amazon
-        /// EBS-Optimized Instances</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.
+        /// Specifies whether the launch configuration is optimized for EBS I/O (<c>true</c>)
+        /// or not (<c>false</c>). For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html">Amazon
+        /// EBS-optimized instances</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.
         /// </para>
         /// </summary>
         public bool EbsOptimized
@@ -222,13 +224,13 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property InstanceMonitoring. 
         /// <para>
-        /// Controls whether instances in this group are launched with detailed (<code>true</code>)
-        /// or basic (<code>false</code>) monitoring.
+        /// Controls whether instances in this group are launched with detailed (<c>true</c>)
+        /// or basic (<c>false</c>) monitoring.
         /// </para>
         ///  
         /// <para>
         /// For more information, see <a href="https://docs.aws.amazon.com/autoscaling/latest/userguide/enable-as-instance-metrics.html">Configure
-        /// Monitoring for Auto Scaling Instances</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+        /// monitoring for Auto Scaling instances</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
         /// </para>
         /// </summary>
         public InstanceMonitoring InstanceMonitoring
@@ -291,7 +293,8 @@ namespace Amazon.AutoScaling.Model
         ///  
         /// <para>
         /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html">Amazon
-        /// EC2 Key Pairs</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.
+        /// EC2 key pairs and Amazon EC2 instances</a> in the <i>Amazon EC2 User Guide for Linux
+        /// Instances</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -348,8 +351,8 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property MetadataOptions. 
         /// <para>
-        /// The metadata options for the instances. For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-config.html#launch-configurations-imds">Configuring
-        /// the Instance Metadata Options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+        /// The metadata options for the instances. For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-config.html#launch-configurations-imds">Configure
+        /// the instance metadata options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
         /// </para>
         /// </summary>
         public InstanceMetadataOptions MetadataOptions
@@ -367,15 +370,9 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property PlacementTenancy. 
         /// <para>
-        /// The tenancy of the instance, either <code>default</code> or <code>dedicated</code>.
-        /// An instance with <code>dedicated</code> tenancy runs on isolated, single-tenant hardware
-        /// and can only be launched into a VPC.
-        /// </para>
-        ///  
-        /// <para>
-        /// For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-dedicated-instances.html">Configuring
-        /// instance tenancy with Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling
-        /// User Guide</i>.
+        /// The tenancy of the instance, either <c>default</c> or <c>dedicated</c>. An instance
+        /// with <c>dedicated</c> tenancy runs on isolated, single-tenant hardware and can only
+        /// be launched into a VPC.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -414,8 +411,9 @@ namespace Amazon.AutoScaling.Model
         /// Gets and sets the property SecurityGroups. 
         /// <para>
         /// A list that contains the security groups to assign to the instances in the Auto Scaling
-        /// group. For more information, see <a href="https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html">Security
-        /// Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.
+        /// group. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html">Control
+        /// traffic to your Amazon Web Services resources using security groups</a> in the <i>Amazon
+        /// Virtual Private Cloud User Guide</i>.
         /// </para>
         /// </summary>
         public List<string> SecurityGroups
@@ -427,7 +425,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -435,8 +433,9 @@ namespace Amazon.AutoScaling.Model
         /// <para>
         /// The maximum hourly price to be paid for any Spot Instance launched to fulfill the
         /// request. Spot Instances are launched when the price you specify exceeds the current
-        /// Spot price. For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html">Requesting
-        /// Spot Instances</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+        /// Spot price. For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-template-spot-instances.html">Requesting
+        /// Spot Instances for fault-tolerant and flexible applications</a> in the <i>Amazon EC2
+        /// Auto Scaling User Guide</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]

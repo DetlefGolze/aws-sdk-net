@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Visibility. 
         /// <para>
-        /// The visibility configuration of <code>LoadingAnimation</code>.
+        /// The visibility configuration of <c>LoadingAnimation</c>.
         /// </para>
         /// </summary>
         public Visibility Visibility

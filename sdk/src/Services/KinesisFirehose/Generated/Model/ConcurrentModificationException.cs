@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
-    /// Another modification has already happened. Fetch <code>VersionId</code> again and
-    /// use it to update the destination.
+    /// Another modification has already happened. Fetch <c>VersionId</c> again and use it
+    /// to update the destination.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

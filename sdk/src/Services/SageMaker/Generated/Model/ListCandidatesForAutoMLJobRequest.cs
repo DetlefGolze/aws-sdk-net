@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -86,7 +87,7 @@ namespace Amazon.SageMaker.Model
         /// List the job's candidates up to a specified limit.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=100)]
+        [AWSProperty(Min=1, Max=300)]
         public int MaxResults
         {
             get { return this._maxResults.GetValueOrDefault(); }
@@ -122,7 +123,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SortBy. 
         /// <para>
-        /// The parameter by which to sort the results. The default is <code>Descending</code>.
+        /// The parameter by which to sort the results. The default is <c>Descending</c>.
         /// </para>
         /// </summary>
         public CandidateSortBy SortBy
@@ -140,7 +141,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SortOrder. 
         /// <para>
-        /// The sort order for the results. The default is <code>Ascending</code>.
+        /// The sort order for the results. The default is <c>Ascending</c>.
         /// </para>
         /// </summary>
         public AutoMLSortOrder SortOrder

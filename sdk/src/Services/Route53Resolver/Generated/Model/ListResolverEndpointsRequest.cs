@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Route53Resolver.Model
     /// </summary>
     public partial class ListResolverEndpointsRequest : AmazonRoute53ResolverRequest
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -47,9 +48,9 @@ namespace Amazon.Route53Resolver.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you submit a second or subsequent <code>ListResolverEndpoints</code> request and
-        /// specify the <code>NextToken</code> parameter, you must use the same values for <code>Filters</code>,
-        /// if any, as in the previous request.
+        /// If you submit a second or subsequent <c>ListResolverEndpoints</c> request and specify
+        /// the <c>NextToken</c> parameter, you must use the same values for <c>Filters</c>, if
+        /// any, as in the previous request.
         /// </para>
         ///  </note>
         /// </summary>
@@ -62,14 +63,14 @@ namespace Amazon.Route53Resolver.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of Resolver endpoints that you want to return in the response to
-        /// a <code>ListResolverEndpoints</code> request. If you don't specify a value for <code>MaxResults</code>,
+        /// a <c>ListResolverEndpoints</c> request. If you don't specify a value for <c>MaxResults</c>,
         /// Resolver returns up to 100 Resolver endpoints. 
         /// </para>
         /// </summary>
@@ -89,14 +90,14 @@ namespace Amazon.Route53Resolver.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// For the first <code>ListResolverEndpoints</code> request, omit this value.
+        /// For the first <c>ListResolverEndpoints</c> request, omit this value.
         /// </para>
         ///  
         /// <para>
-        /// If you have more than <code>MaxResults</code> Resolver endpoints, you can submit another
-        /// <code>ListResolverEndpoints</code> request to get the next group of Resolver endpoints.
-        /// In the next request, specify the value of <code>NextToken</code> from the previous
-        /// response. 
+        /// If you have more than <c>MaxResults</c> Resolver endpoints, you can submit another
+        /// <c>ListResolverEndpoints</c> request to get the next group of Resolver endpoints.
+        /// In the next request, specify the value of <c>NextToken</c> from the previous response.
+        /// 
         /// </para>
         /// </summary>
         public string NextToken

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTAnalytics.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.IoTAnalytics.Model
         private DatastoreStorage _datastoreStorage;
         private FileFormatConfiguration _fileFormatConfiguration;
         private RetentionPeriod _retentionPeriod;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property DatastoreName. 
@@ -81,10 +82,10 @@ namespace Amazon.IoTAnalytics.Model
         /// <summary>
         /// Gets and sets the property DatastoreStorage. 
         /// <para>
-        /// Where data in a data store is stored.. You can choose <code>serviceManagedS3</code>
-        /// storage, <code>customerManagedS3</code> storage, or <code>iotSiteWiseMultiLayerStorage</code>
-        /// storage. The default is <code>serviceManagedS3</code>. You can't change the choice
-        /// of Amazon S3 storage after your data store is created. 
+        /// Where data in a data store is stored.. You can choose <c>serviceManagedS3</c> storage,
+        /// <c>customerManagedS3</c> storage, or <c>iotSiteWiseMultiLayerStorage</c> storage.
+        /// The default is <c>serviceManagedS3</c>. You can't change the choice of Amazon S3 storage
+        /// after your data store is created. 
         /// </para>
         /// </summary>
         public DatastoreStorage DatastoreStorage
@@ -129,7 +130,7 @@ namespace Amazon.IoTAnalytics.Model
         /// <summary>
         /// Gets and sets the property RetentionPeriod. 
         /// <para>
-        /// How long, in days, message data is kept for the data store. When <code>customerManagedS3</code>
+        /// How long, in days, message data is kept for the data store. When <c>customerManagedS3</c>
         /// storage is selected, this parameter is ignored.
         /// </para>
         /// </summary>
@@ -161,7 +162,7 @@ namespace Amazon.IoTAnalytics.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

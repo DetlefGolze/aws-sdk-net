@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkMail.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteAvailabilityConfiguration operation.
-    /// Deletes the <code>AvailabilityConfiguration</code> for the given WorkMail organization
-    /// and domain.
+    /// Deletes the <c>AvailabilityConfiguration</c> for the given WorkMail organization and
+    /// domain.
     /// </summary>
     public partial class DeleteAvailabilityConfigurationRequest : AmazonWorkMailRequest
     {
@@ -41,7 +42,7 @@ namespace Amazon.WorkMail.Model
         /// <summary>
         /// Gets and sets the property DomainName. 
         /// <para>
-        /// The domain for which the <code>AvailabilityConfiguration</code> will be deleted.
+        /// The domain for which the <c>AvailabilityConfiguration</c> will be deleted.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=3, Max=255)]
@@ -60,8 +61,7 @@ namespace Amazon.WorkMail.Model
         /// <summary>
         /// Gets and sets the property OrganizationId. 
         /// <para>
-        /// The WorkMail organization for which the <code>AvailabilityConfiguration</code> will
-        /// be deleted.
+        /// The WorkMail organization for which the <c>AvailabilityConfiguration</c> will be deleted.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=34, Max=34)]

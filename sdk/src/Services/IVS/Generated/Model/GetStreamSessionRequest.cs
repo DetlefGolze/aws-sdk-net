@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IVS.Model
 {
     /// <summary>
@@ -60,8 +61,8 @@ namespace Amazon.IVS.Model
         /// Gets and sets the property StreamId. 
         /// <para>
         /// Unique identifier for a live or previously live stream in the specified channel. If
-        /// no <code>streamId</code> is provided, this returns the most recent stream session
-        /// for the channel, if it exists.
+        /// no <c>streamId</c> is provided, this returns the most recent stream session for the
+        /// channel, if it exists.
         /// </para>
         /// </summary>
         [AWSProperty(Min=26, Max=26)]

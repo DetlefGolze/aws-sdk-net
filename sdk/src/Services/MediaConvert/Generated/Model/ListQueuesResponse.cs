@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaConvert.Model
 {
     /// <summary>
@@ -34,7 +35,9 @@ namespace Amazon.MediaConvert.Model
     public partial class ListQueuesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Queue> _queues = new List<Queue>();
+        private List<Queue> _queues = AWSConfigs.InitializeCollections ? new List<Queue>() : null;
+        private int? _totalConcurrentJobs;
+        private int? _unallocatedConcurrentJobs;
 
         /// <summary>
         /// Gets and sets the property NextToken. Use this string to request the next batch of
@@ -64,7 +67,40 @@ namespace Amazon.MediaConvert.Model
         // Check to see if Queues property is set
         internal bool IsSetQueues()
         {
-            return this._queues != null && this._queues.Count > 0; 
+            return this._queues != null && (this._queues.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property TotalConcurrentJobs. The maximum number of jobs that MediaConvert
+        /// can process at one time, across all of your on-demand queues in the current AWS Region.
+        /// </summary>
+        public int TotalConcurrentJobs
+        {
+            get { return this._totalConcurrentJobs.GetValueOrDefault(); }
+            set { this._totalConcurrentJobs = value; }
+        }
+
+        // Check to see if TotalConcurrentJobs property is set
+        internal bool IsSetTotalConcurrentJobs()
+        {
+            return this._totalConcurrentJobs.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property UnallocatedConcurrentJobs. The remaining number of concurrent
+        /// jobs that are not associated with a queue and are available to allocate to a queue.
+        /// You can allocate these jobs when you create or update a queue.
+        /// </summary>
+        public int UnallocatedConcurrentJobs
+        {
+            get { return this._unallocatedConcurrentJobs.GetValueOrDefault(); }
+            set { this._unallocatedConcurrentJobs = value; }
+        }
+
+        // Check to see if UnallocatedConcurrentJobs property is set
+        internal bool IsSetUnallocatedConcurrentJobs()
+        {
+            return this._unallocatedConcurrentJobs.HasValue; 
         }
 
     }

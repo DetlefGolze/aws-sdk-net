@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -33,8 +34,7 @@ namespace Amazon.SimpleEmailV2.Model
     /// Create an event destination. <i>Events</i> include message sends, deliveries, opens,
     /// clicks, bounces, and complaints. <i>Event destinations</i> are places that you can
     /// send information about these events to. For example, you can send event data to Amazon
-    /// SNS to receive notifications when you receive bounces or complaints, or you can use
-    /// Amazon Kinesis Data Firehose to stream data to Amazon S3 for long-term storage.
+    /// EventBridge and associate a rule to send the event to the specified target.
     /// 
     ///  
     /// <para>

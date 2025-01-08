@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceExplorer2.Model
 {
     /// <summary>
@@ -94,12 +95,12 @@ namespace Amazon.ResourceExplorer2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>LOCAL</b> – The index contains information about resources from only the same
+        ///  <c>LOCAL</c> – The index contains information about resources from only the same
         /// Amazon Web Services Region.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>AGGREGATOR</b> – Resource Explorer replicates copies of the indexed information
+        ///  <c>AGGREGATOR</c> – Resource Explorer replicates copies of the indexed information
         /// about resources in all other Amazon Web Services Regions to the aggregator index.
         /// This lets search results in the Region with the aggregator index to include resources
         /// from all Regions in the account where Resource Explorer is turned on.

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.CodePipeline.Model
         /// Gets and sets the property JobId. 
         /// <para>
         /// The unique system-generated ID of the job that failed. This is the same ID returned
-        /// from <code>PollForJobs</code>.
+        /// from <c>PollForJobs</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

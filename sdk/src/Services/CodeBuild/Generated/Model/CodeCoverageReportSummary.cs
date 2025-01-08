@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.CodeBuild.Model
     ///  
     /// <para>
     /// Branch coverage determines if your tests cover every possible branch of a control
-    /// structure, such as an <code>if</code> or <code>case</code> statement.
+    /// structure, such as an <c>if</c> or <c>case</c> statement.
     /// </para>
     /// </summary>
     public partial class CodeCoverageReportSummary

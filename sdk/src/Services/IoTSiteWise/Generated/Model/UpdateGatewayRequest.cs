@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property GatewayName. 
         /// <para>
-        /// A unique, friendly name for the gateway.
+        /// A unique name for the gateway.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]

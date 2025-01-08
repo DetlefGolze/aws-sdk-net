@@ -26,38 +26,39 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateDataflowEndpointGroup operation.
-    /// Creates a <code>DataflowEndpoint</code> group containing the specified list of <code>DataflowEndpoint</code>
+    /// Creates a <c>DataflowEndpoint</c> group containing the specified list of <c>DataflowEndpoint</c>
     /// objects.
     /// 
     ///  
     /// <para>
-    /// The <code>name</code> field in each endpoint is used in your mission profile <code>DataflowEndpointConfig</code>
+    /// The <c>name</c> field in each endpoint is used in your mission profile <c>DataflowEndpointConfig</c>
     /// to specify which endpoints to use during a contact.
     /// </para>
     ///  
     /// <para>
-    /// When a contact uses multiple <code>DataflowEndpointConfig</code> objects, each <code>Config</code>
-    /// must match a <code>DataflowEndpoint</code> in the same group.
+    /// When a contact uses multiple <c>DataflowEndpointConfig</c> objects, each <c>Config</c>
+    /// must match a <c>DataflowEndpoint</c> in the same group.
     /// </para>
     /// </summary>
     public partial class CreateDataflowEndpointGroupRequest : AmazonGroundStationRequest
     {
         private int? _contactPostPassDurationSeconds;
         private int? _contactPrePassDurationSeconds;
-        private List<EndpointDetails> _endpointDetails = new List<EndpointDetails>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private List<EndpointDetails> _endpointDetails = AWSConfigs.InitializeCollections ? new List<EndpointDetails>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ContactPostPassDurationSeconds. 
         /// <para>
         /// Amount of time, in seconds, after a contact ends that the Ground Station Dataflow
-        /// Endpoint Group will be in a <code>POSTPASS</code> state. A Ground Station Dataflow
-        /// Endpoint Group State Change event will be emitted when the Dataflow Endpoint Group
-        /// enters and exits the <code>POSTPASS</code> state.
+        /// Endpoint Group will be in a <c>POSTPASS</c> state. A Ground Station Dataflow Endpoint
+        /// Group State Change event will be emitted when the Dataflow Endpoint Group enters and
+        /// exits the <c>POSTPASS</c> state.
         /// </para>
         /// </summary>
         [AWSProperty(Min=120, Max=480)]
@@ -77,9 +78,9 @@ namespace Amazon.GroundStation.Model
         /// Gets and sets the property ContactPrePassDurationSeconds. 
         /// <para>
         /// Amount of time, in seconds, before a contact starts that the Ground Station Dataflow
-        /// Endpoint Group will be in a <code>PREPASS</code> state. A Ground Station Dataflow
-        /// Endpoint Group State Change event will be emitted when the Dataflow Endpoint Group
-        /// enters and exits the <code>PREPASS</code> state.
+        /// Endpoint Group will be in a <c>PREPASS</c> state. A Ground Station Dataflow Endpoint
+        /// Group State Change event will be emitted when the Dataflow Endpoint Group enters and
+        /// exits the <c>PREPASS</c> state.
         /// </para>
         /// </summary>
         [AWSProperty(Min=120, Max=480)]
@@ -111,7 +112,7 @@ namespace Amazon.GroundStation.Model
         // Check to see if EndpointDetails property is set
         internal bool IsSetEndpointDetails()
         {
-            return this._endpointDetails != null && this._endpointDetails.Count > 0; 
+            return this._endpointDetails != null && (this._endpointDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -129,7 +130,7 @@ namespace Amazon.GroundStation.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

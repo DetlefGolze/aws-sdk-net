@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ServiceCatalog.Model
     public partial class ParameterConstraints
     {
         private string _allowedPattern;
-        private List<string> _allowedValues = new List<string>();
+        private List<string> _allowedValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _constraintDescription;
         private string _maxLength;
         private string _maxValue;
@@ -44,8 +45,8 @@ namespace Amazon.ServiceCatalog.Model
         /// <summary>
         /// Gets and sets the property AllowedPattern. 
         /// <para>
-        /// A regular expression that represents the patterns that allow for <code>String</code>
-        /// types. The pattern must match the entire parameter value provided.
+        /// A regular expression that represents the patterns that allow for <c>String</c> types.
+        /// The pattern must match the entire parameter value provided.
         /// </para>
         /// </summary>
         public string AllowedPattern
@@ -75,20 +76,19 @@ namespace Amazon.ServiceCatalog.Model
         // Check to see if AllowedValues property is set
         internal bool IsSetAllowedValues()
         {
-            return this._allowedValues != null && this._allowedValues.Count > 0; 
+            return this._allowedValues != null && (this._allowedValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ConstraintDescription. 
         /// <para>
         /// A string that explains a constraint when the constraint is violated. For example,
-        /// without a constraint description, a parameter that has an allowed pattern of <code>[A-Za-z0-9]+</code>
+        /// without a constraint description, a parameter that has an allowed pattern of <c>[A-Za-z0-9]+</c>
         /// displays the following error message when the user specifies an invalid value:
         /// </para>
         ///  
         /// <para>
-        ///  <code>Malformed input-Parameter MyParameter must match pattern [A-Za-z0-9]+</code>
-        /// 
+        ///  <c>Malformed input-Parameter MyParameter must match pattern [A-Za-z0-9]+</c> 
         /// </para>
         ///  
         /// <para>
@@ -97,8 +97,8 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>Malformed input-Parameter MyParameter must only contain uppercase and lowercase
-        /// letters and numbers.</code> 
+        ///  <c>Malformed input-Parameter MyParameter must only contain uppercase and lowercase
+        /// letters and numbers.</c> 
         /// </para>
         /// </summary>
         public string ConstraintDescription
@@ -117,7 +117,7 @@ namespace Amazon.ServiceCatalog.Model
         /// Gets and sets the property MaxLength. 
         /// <para>
         /// An integer value that determines the largest number of characters you want to allow
-        /// for <code>String</code> types. 
+        /// for <c>String</c> types. 
         /// </para>
         /// </summary>
         public string MaxLength
@@ -135,7 +135,7 @@ namespace Amazon.ServiceCatalog.Model
         /// <summary>
         /// Gets and sets the property MaxValue. 
         /// <para>
-        /// A numeric value that determines the largest numeric value you want to allow for <code>Number</code>
+        /// A numeric value that determines the largest numeric value you want to allow for <c>Number</c>
         /// types.
         /// </para>
         /// </summary>
@@ -155,7 +155,7 @@ namespace Amazon.ServiceCatalog.Model
         /// Gets and sets the property MinLength. 
         /// <para>
         /// An integer value that determines the smallest number of characters you want to allow
-        /// for <code>String</code> types.
+        /// for <c>String</c> types.
         /// </para>
         /// </summary>
         public string MinLength
@@ -173,7 +173,7 @@ namespace Amazon.ServiceCatalog.Model
         /// <summary>
         /// Gets and sets the property MinValue. 
         /// <para>
-        /// A numeric value that determines the smallest numeric value you want to allow for <code>Number</code>
+        /// A numeric value that determines the smallest numeric value you want to allow for <c>Number</c>
         /// types. 
         /// </para>
         /// </summary>

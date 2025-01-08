@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Bedrock.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.Bedrock.Model
     {
         private string _baseModelArn;
         private DateTime? _creationTime;
+        private CustomizationType _customizationType;
         private string _customModelArn;
         private string _customModelName;
         private DateTime? _endTime;
@@ -46,7 +48,7 @@ namespace Amazon.Bedrock.Model
         /// <summary>
         /// Gets and sets the property BaseModelArn. 
         /// <para>
-        /// ARN of the base model.
+        /// Amazon Resource Name (ARN) of the base model.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=1011)]
@@ -82,9 +84,29 @@ namespace Amazon.Bedrock.Model
         }
 
         /// <summary>
+        /// Gets and sets the property CustomizationType. 
+        /// <para>
+        /// Specifies whether to carry out continued pre-training of a model or whether to fine-tune
+        /// it. For more information, see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html">Custom
+        /// models</a>.
+        /// </para>
+        /// </summary>
+        public CustomizationType CustomizationType
+        {
+            get { return this._customizationType; }
+            set { this._customizationType = value; }
+        }
+
+        // Check to see if CustomizationType property is set
+        internal bool IsSetCustomizationType()
+        {
+            return this._customizationType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property CustomModelArn. 
         /// <para>
-        /// ARN of the custom model.
+        /// Amazon Resource Name (ARN) of the custom model.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=1011)]
@@ -140,7 +162,7 @@ namespace Amazon.Bedrock.Model
         /// <summary>
         /// Gets and sets the property JobArn. 
         /// <para>
-        /// ARN of the customization job.
+        /// Amazon Resource Name (ARN) of the customization job.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=1011)]

@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeArtifact.Model
 {
     /// <summary>
     /// The details of a repository stored in CodeArtifact. A CodeArtifact repository contains
     /// a set of package versions, each of which maps to a set of assets. Repositories are
     /// polyglot—a single repository can contain packages of any supported type. Each repository
-    /// exposes endpoints for fetching and publishing packages using tools like the <code>npm</code>
-    /// CLI, the Maven CLI (<code>mvn</code>), and <code>pip</code>. You can create up to
-    /// 100 repositories per Amazon Web Services account.
+    /// exposes endpoints for fetching and publishing packages using tools like the <c>npm</c>
+    /// CLI, the Maven CLI (<c>mvn</c>), and <c>pip</c>. You can create up to 100 repositories
+    /// per Amazon Web Services account.
     /// </summary>
     public partial class RepositoryDescription
     {
@@ -44,9 +45,9 @@ namespace Amazon.CodeArtifact.Model
         private string _description;
         private string _domainName;
         private string _domainOwner;
-        private List<RepositoryExternalConnectionInfo> _externalConnections = new List<RepositoryExternalConnectionInfo>();
+        private List<RepositoryExternalConnectionInfo> _externalConnections = AWSConfigs.InitializeCollections ? new List<RepositoryExternalConnectionInfo>() : null;
         private string _name;
-        private List<UpstreamRepositoryInfo> _upstreams = new List<UpstreamRepositoryInfo>();
+        private List<UpstreamRepositoryInfo> _upstreams = AWSConfigs.InitializeCollections ? new List<UpstreamRepositoryInfo>() : null;
 
         /// <summary>
         /// Gets and sets the property AdministratorAccount. 
@@ -178,7 +179,7 @@ namespace Amazon.CodeArtifact.Model
         // Check to see if ExternalConnections property is set
         internal bool IsSetExternalConnections()
         {
-            return this._externalConnections != null && this._externalConnections.Count > 0; 
+            return this._externalConnections != null && (this._externalConnections.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -218,7 +219,7 @@ namespace Amazon.CodeArtifact.Model
         // Check to see if Upstreams property is set
         internal bool IsSetUpstreams()
         {
-            return this._upstreams != null && this._upstreams.Count > 0; 
+            return this._upstreams != null && (this._upstreams.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

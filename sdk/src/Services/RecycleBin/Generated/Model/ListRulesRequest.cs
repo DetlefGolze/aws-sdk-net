@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RecycleBin.Model
 {
     /// <summary>
@@ -34,11 +35,32 @@ namespace Amazon.RecycleBin.Model
     /// </summary>
     public partial class ListRulesRequest : AmazonRecycleBinRequest
     {
+        private List<ResourceTag> _excludeResourceTags = AWSConfigs.InitializeCollections ? new List<ResourceTag>() : null;
         private LockState _lockState;
         private int? _maxResults;
         private string _nextToken;
-        private List<ResourceTag> _resourceTags = new List<ResourceTag>();
+        private List<ResourceTag> _resourceTags = AWSConfigs.InitializeCollections ? new List<ResourceTag>() : null;
         private ResourceType _resourceType;
+
+        /// <summary>
+        /// Gets and sets the property ExcludeResourceTags. 
+        /// <para>
+        /// [Region-level retention rules only] Information about the exclusion tags used to identify
+        /// resources that are to be excluded, or ignored, by the retention rule.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=5)]
+        public List<ResourceTag> ExcludeResourceTags
+        {
+            get { return this._excludeResourceTags; }
+            set { this._excludeResourceTags = value; }
+        }
+
+        // Check to see if ExcludeResourceTags property is set
+        internal bool IsSetExcludeResourceTags()
+        {
+            return this._excludeResourceTags != null && (this._excludeResourceTags.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
 
         /// <summary>
         /// Gets and sets the property LockState. 
@@ -63,7 +85,7 @@ namespace Amazon.RecycleBin.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to return with a single call. To retrieve the remaining
-        /// results, make another call with the returned <code>NextToken</code> value.
+        /// results, make another call with the returned <c>NextToken</c> value.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]
@@ -100,8 +122,8 @@ namespace Amazon.RecycleBin.Model
         /// <summary>
         /// Gets and sets the property ResourceTags. 
         /// <para>
-        /// Information about the resource tags used to identify resources that are retained by
-        /// the retention rule.
+        /// [Tag-level retention rules only] Information about the resource tags used to identify
+        /// resources that are retained by the retention rule.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -114,7 +136,7 @@ namespace Amazon.RecycleBin.Model
         // Check to see if ResourceTags property is set
         internal bool IsSetResourceTags()
         {
-            return this._resourceTags != null && this._resourceTags.Count > 0; 
+            return this._resourceTags != null && (this._resourceTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -122,8 +144,8 @@ namespace Amazon.RecycleBin.Model
         /// <para>
         /// The resource type retained by the retention rule. Only retention rules that retain
         /// the specified resource type are listed. Currently, only Amazon EBS snapshots and EBS-backed
-        /// AMIs are supported. To list retention rules that retain snapshots, specify <code>EBS_SNAPSHOT</code>.
-        /// To list retention rules that retain EBS-backed AMIs, specify <code>EC2_IMAGE</code>.
+        /// AMIs are supported. To list retention rules that retain snapshots, specify <c>EBS_SNAPSHOT</c>.
+        /// To list retention rules that retain EBS-backed AMIs, specify <c>EC2_IMAGE</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

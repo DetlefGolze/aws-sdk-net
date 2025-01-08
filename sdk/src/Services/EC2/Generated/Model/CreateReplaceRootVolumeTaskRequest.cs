@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateReplaceRootVolumeTask operation.
-    /// Replaces the EBS-backed root volume for a <code>running</code> instance with a new
-    /// volume that is restored to the original root volume's launch state, that is restored
-    /// to a specific snapshot taken from the original root volume, or that is restored from
-    /// an AMI that has the same key characteristics as that of the instance.
+    /// Replaces the EBS-backed root volume for a <c>running</c> instance with a new volume
+    /// that is restored to the original root volume's launch state, that is restored to a
+    /// specific snapshot taken from the original root volume, or that is restored from an
+    /// AMI that has the same key characteristics as that of the instance.
     /// 
     ///  
     /// <para>
     /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/replace-root.html">Replace
-    /// a root volume</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+    /// a root volume</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     /// </summary>
     public partial class CreateReplaceRootVolumeTaskRequest : AmazonEC2Request
@@ -48,14 +49,14 @@ namespace Amazon.EC2.Model
         private string _imageId;
         private string _instanceId;
         private string _snapshotId;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// Unique, case-sensitive identifier you provide to ensure the idempotency of the request.
         /// If you do not specify a client token, a randomly generated token is used for the request
-        /// to ensure idempotency. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+        /// to ensure idempotency. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html">Ensuring
         /// idempotency</a>.
         /// </para>
         /// </summary>
@@ -75,7 +76,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property DeleteReplacedRootVolume. 
         /// <para>
         /// Indicates whether to automatically delete the original root volume after the root
-        /// volume replacement task completes. To delete the original root volume, specify <code>true</code>.
+        /// volume replacement task completes. To delete the original root volume, specify <c>true</c>.
         /// If you choose to keep the original root volume after the replacement task completes,
         /// you must manually delete it when you no longer need it.
         /// </para>
@@ -175,7 +176,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

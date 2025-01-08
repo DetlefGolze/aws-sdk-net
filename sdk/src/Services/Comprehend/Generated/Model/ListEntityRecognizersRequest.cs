@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -50,8 +51,8 @@ namespace Amazon.Comprehend.Model
         /// <summary>
         /// Gets and sets the property Filter. 
         /// <para>
-        /// Filters the list of entities returned. You can filter on <code>Status</code>, <code>SubmitTimeBefore</code>,
-        /// or <code>SubmitTimeAfter</code>. You can only set one filter at a time.
+        /// Filters the list of entities returned. You can filter on <c>Status</c>, <c>SubmitTimeBefore</c>,
+        /// or <c>SubmitTimeAfter</c>. You can only set one filter at a time.
         /// </para>
         /// </summary>
         public EntityRecognizerFilter Filter

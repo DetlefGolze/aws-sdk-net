@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Expression. 
         /// <para>
         /// A cluster query language expression to apply to the constraint. You cannot specify
-        /// an expression if the constraint type is <code>distinctInstance</code>.
+        /// an expression if the constraint type is <c>distinctInstance</c>.
         /// </para>
         /// </summary>
         public string Expression
@@ -58,13 +59,13 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of constraint. Use <code>distinctInstance</code> to run each task in a particular
-        /// group on a different container instance. Use <code>memberOf</code> to restrict the
-        /// selection to a group of valid candidates.
+        /// The type of constraint. Use <c>distinctInstance</c> to run each task in a particular
+        /// group on a different container instance. Use <c>memberOf</c> to restrict the selection
+        /// to a group of valid candidates.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>distinctInstance</code> | <code>memberOf</code> 
+        /// Valid values: <c>distinctInstance</c> | <c>memberOf</c> 
         /// </para>
         /// </summary>
         public string Type

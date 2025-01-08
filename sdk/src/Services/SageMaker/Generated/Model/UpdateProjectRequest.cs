@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.SageMaker.Model
     /// 
     ///  <note> 
     /// <para>
-    /// You must not update a project that is in use. If you update the <code>ServiceCatalogProvisioningUpdateDetails</code>
+    /// You must not update a project that is in use. If you update the <c>ServiceCatalogProvisioningUpdateDetails</c>
     /// of a project that is active or being created, or updated, you may lose resources already
     /// created by the project.
     /// </para>
@@ -46,7 +47,7 @@ namespace Amazon.SageMaker.Model
         private string _projectDescription;
         private string _projectName;
         private ServiceCatalogProvisioningUpdateDetails _serviceCatalogProvisioningUpdateDetails;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ProjectDescription. 
@@ -129,7 +130,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -61,8 +62,8 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property DatabaseInput. 
         /// <para>
-        /// A <code>DatabaseInput</code> object specifying the new definition of the metadata
-        /// database in the catalog.
+        /// A <c>DatabaseInput</c> object specifying the new definition of the metadata database
+        /// in the catalog.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

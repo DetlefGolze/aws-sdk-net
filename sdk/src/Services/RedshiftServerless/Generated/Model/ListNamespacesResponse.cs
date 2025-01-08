@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RedshiftServerless.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.RedshiftServerless.Model
     /// </summary>
     public partial class ListNamespacesResponse : AmazonWebServiceResponse
     {
-        private List<Namespace> _namespaces = new List<Namespace>();
+        private List<Namespace> _namespaces = AWSConfigs.InitializeCollections ? new List<Namespace>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,15 +53,15 @@ namespace Amazon.RedshiftServerless.Model
         // Check to see if Namespaces property is set
         internal bool IsSetNamespaces()
         {
-            return this._namespaces != null && this._namespaces.Count > 0; 
+            return this._namespaces != null && (this._namespaces.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page.
+        /// When <c>nextToken</c> is returned, there are more results available. The value of
+        /// <c>nextToken</c> is a unique pagination token for each page. Make the call again using
+        /// the returned token to retrieve the next page.
         /// </para>
         /// </summary>
         public string NextToken

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexRuntimeV2.Model
 {
     /// <summary>
@@ -72,7 +73,7 @@ namespace Amazon.LexRuntimeV2.Model
         private string _botAliasId;
         private string _botId;
         private string _localeId;
-        private Dictionary<string, string> _requestAttributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _requestAttributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _sessionId;
         private SessionState _sessionStateValue;
         private string _text;
@@ -142,8 +143,8 @@ namespace Amazon.LexRuntimeV2.Model
         /// </para>
         ///  
         /// <para>
-        /// The namespace <code>x-amz-lex:</code> is reserved for special attributes. Don't create
-        /// any request attributes with the prefix <code>x-amz-lex:</code>.
+        /// The namespace <c>x-amz-lex:</c> is reserved for special attributes. Don't create any
+        /// request attributes with the prefix <c>x-amz-lex:</c>.
         /// </para>
         /// </summary>
         public Dictionary<string, string> RequestAttributes
@@ -155,7 +156,7 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if RequestAttributes property is set
         internal bool IsSetRequestAttributes()
         {
-            return this._requestAttributes != null && this._requestAttributes.Count > 0; 
+            return this._requestAttributes != null && (this._requestAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

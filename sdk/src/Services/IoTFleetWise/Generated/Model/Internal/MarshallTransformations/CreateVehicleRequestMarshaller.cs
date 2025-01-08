@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAssociationBehavior())
@@ -97,6 +99,22 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("modelManifestArn");
                     context.Writer.Write(publicRequest.ModelManifestArn);
+                }
+
+                if(publicRequest.IsSetStateTemplates())
+                {
+                    context.Writer.WritePropertyName("stateTemplates");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestStateTemplatesListValue in publicRequest.StateTemplates)
+                    {
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = StateTemplateAssociationMarshaller.Instance;
+                        marshaller.Marshall(publicRequestStateTemplatesListValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteArrayEnd();
                 }
 
                 if(publicRequest.IsSetTags())

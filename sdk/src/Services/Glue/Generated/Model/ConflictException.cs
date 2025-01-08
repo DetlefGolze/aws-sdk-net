@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
-    /// The <code>CreatePartitions</code> API was called on a table that has indexes enabled.
+    /// The <c>CreatePartitions</c> API was called on a table that has indexes enabled.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

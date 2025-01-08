@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property PackageID. 
         /// <para>
-        /// Internal ID of the package that you want to associate with a domain. Use <code>DescribePackages</code>
+        /// Internal ID of the package that you want to associate with a domain. Use <c>DescribePackages</c>
         /// to find this value.
         /// </para>
         /// </summary>

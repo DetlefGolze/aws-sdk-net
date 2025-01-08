@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// <code>DBParameterGroupName</code> doesn't refer to an existing DB parameter group.
+    /// <c>DBParameterGroupName</c> doesn't refer to an existing DB parameter group.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ECS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.ECS.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ContainerDefinition Unmarshall(JsonUnmarshallerContext context)
         {
+            ContainerDefinition unmarshalledObject = new ContainerDefinition();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ContainerDefinition unmarshalledObject = new ContainerDefinition();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -256,6 +258,12 @@ namespace Amazon.ECS.Model.Internal.MarshallTransformations
                     unmarshalledObject.ResourceRequirements = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("restartPolicy", targetDepth))
+                {
+                    var unmarshaller = ContainerRestartPolicyUnmarshaller.Instance;
+                    unmarshalledObject.RestartPolicy = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("secrets", targetDepth))
                 {
                     var unmarshaller = new ListUnmarshaller<Secret, SecretUnmarshaller>(SecretUnmarshaller.Instance);
@@ -292,6 +300,12 @@ namespace Amazon.ECS.Model.Internal.MarshallTransformations
                     unmarshalledObject.User = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("versionConsistency", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.VersionConsistency = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("volumesFrom", targetDepth))
                 {
                     var unmarshaller = new ListUnmarshaller<VolumeFrom, VolumeFromUnmarshaller>(VolumeFromUnmarshaller.Instance);
@@ -305,7 +319,6 @@ namespace Amazon.ECS.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

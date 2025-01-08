@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// Provides details about an Backup backup plan and an array of <code>BackupRule</code>
-    /// objects, each of which specifies a backup rule.
+    /// Provides details about an Backup backup plan and an array of <c>BackupRule</c> objects,
+    /// each of which specifies a backup rule.
     /// </summary>
     public partial class AwsBackupBackupPlanDetails
     {

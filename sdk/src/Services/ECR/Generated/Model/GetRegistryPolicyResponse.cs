@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECR.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.ECR.Model
         /// <summary>
         /// Gets and sets the property RegistryId. 
         /// <para>
-        /// The ID of the registry.
+        /// The registry ID associated with the request.
         /// </para>
         /// </summary>
         public string RegistryId

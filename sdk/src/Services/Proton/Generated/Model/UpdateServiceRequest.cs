@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Proton.Model
 {
     /// <summary>
@@ -39,11 +40,11 @@ namespace Amazon.Proton.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// Use the <code>description</code> parameter to modify the description.
+    /// Use the <c>description</c> parameter to modify the description.
     /// </para>
     ///  
     /// <para>
-    /// Edit the <code>spec</code> parameter to add or delete instances.
+    /// Edit the <c>spec</c> parameter to add or delete instances.
     /// </para>
     ///  <note> 
     /// <para>

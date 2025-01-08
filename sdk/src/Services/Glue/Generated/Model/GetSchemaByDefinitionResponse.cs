@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -60,8 +61,8 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property DataFormat. 
         /// <para>
-        /// The data format of the schema definition. Currently <code>AVRO</code>, <code>JSON</code>
-        /// and <code>PROTOBUF</code> are supported.
+        /// The data format of the schema definition. Currently <c>AVRO</c>, <c>JSON</c> and <c>PROTOBUF</c>
+        /// are supported.
         /// </para>
         /// </summary>
         public DataFormat DataFormat

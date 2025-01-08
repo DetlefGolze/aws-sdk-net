@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -77,7 +78,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Protocol. 
         /// <para>
-        /// The protocol used for the port mapping. The default is <code>tcp</code>.
+        /// The protocol used for the port mapping. The default is <c>tcp</c>.
         /// </para>
         /// </summary>
         public string Protocol

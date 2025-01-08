@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateCodeRepository operation.
-    /// Creates a Git repository as a resource in your SageMaker account. You can associate
+    /// Creates a Git repository as a resource in your SageMaker AI account. You can associate
     /// the repository with notebook instances so that you can use Git source control for
-    /// the notebooks you create. The Git repository is a resource in your SageMaker account,
+    /// the notebooks you create. The Git repository is a resource in your SageMaker AI account,
     /// so it can be associated with more than one notebook instance, and it persists independently
     /// from the lifecycle of any notebook instances it is associated with.
     /// 
@@ -46,7 +47,7 @@ namespace Amazon.SageMaker.Model
     {
         private string _codeRepositoryName;
         private GitConfig _gitConfig;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property CodeRepositoryName. 
@@ -107,7 +108,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

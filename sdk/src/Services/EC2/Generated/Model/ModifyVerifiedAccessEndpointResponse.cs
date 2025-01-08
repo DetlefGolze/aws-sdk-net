@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property VerifiedAccessEndpoint. 
         /// <para>
-        /// The Verified Access endpoint details.
+        /// Details about the Verified Access endpoint.
         /// </para>
         /// </summary>
         public VerifiedAccessEndpoint VerifiedAccessEndpoint

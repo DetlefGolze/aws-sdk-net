@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.QuickSight.Model
     {
         private AxisBinding _axisBinding;
         private ReferenceLineDynamicDataConfiguration _dynamicConfiguration;
+        private ReferenceLineSeriesType _seriesType;
         private ReferenceLineStaticDataConfiguration _staticConfiguration;
 
         /// <summary>
@@ -44,11 +46,11 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// PrimaryY
+        ///  <c>PrimaryY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// SecondaryY
+        ///  <c>SecondaryY</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -80,6 +82,34 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetDynamicConfiguration()
         {
             return this._dynamicConfiguration != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SeriesType. 
+        /// <para>
+        /// The series type of the reference line data configuration. Choose one of the following
+        /// options:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>BAR</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>LINE</c> 
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public ReferenceLineSeriesType SeriesType
+        {
+            get { return this._seriesType; }
+            set { this._seriesType = value; }
+        }
+
+        // Check to see if SeriesType property is set
+        internal bool IsSetSeriesType()
+        {
+            return this._seriesType != null;
         }
 
         /// <summary>

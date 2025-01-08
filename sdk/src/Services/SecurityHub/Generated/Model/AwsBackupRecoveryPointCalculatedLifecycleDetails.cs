@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property DeleteAt. 
         /// <para>
         /// Specifies the number of days after creation that a recovery point is deleted. Must
-        /// be greater than 90 days plus <code>MoveToColdStorageAfterDays</code>. 
+        /// be greater than 90 days plus <c>MoveToColdStorageAfterDays</c>. 
         /// </para>
         /// </summary>
         public string DeleteAt

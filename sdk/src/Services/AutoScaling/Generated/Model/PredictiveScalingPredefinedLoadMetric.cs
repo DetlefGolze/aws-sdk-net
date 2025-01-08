@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -33,9 +34,9 @@ namespace Amazon.AutoScaling.Model
     /// 
     ///  
     /// <para>
-    /// When returned in the output of <code>DescribePolicies</code>, it indicates that a
-    /// predictive scaling policy uses individually specified load and scaling metrics instead
-    /// of a metric pair.
+    /// When returned in the output of <c>DescribePolicies</c>, it indicates that a predictive
+    /// scaling policy uses individually specified load and scaling metrics instead of a metric
+    /// pair.
     /// </para>
     /// </summary>
     public partial class PredictiveScalingPredefinedLoadMetric
@@ -77,7 +78,7 @@ namespace Amazon.AutoScaling.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>app/my-alb/778d41231b141a0f/targetgroup/my-alb-target-group/943f017f100becff</code>.
+        ///  <c>app/my-alb/778d41231b141a0f/targetgroup/my-alb-target-group/943f017f100becff</c>.
         /// </para>
         ///  
         /// <para>

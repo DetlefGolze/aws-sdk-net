@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the DeletePipeline operation.
     /// Deletes a pipeline if there are no running instances of the pipeline. To delete a
-    /// pipeline, you must stop all running instances of the pipeline using the <code>StopPipelineExecution</code>
+    /// pipeline, you must stop all running instances of the pipeline using the <c>StopPipelineExecution</c>
     /// API. When you delete a pipeline, all instances of the pipeline are deleted.
     /// </summary>
     public partial class DeletePipelineRequest : AmazonSageMakerRequest

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VerifiedPermissions.Model
 {
     /// <summary>
@@ -35,16 +36,36 @@ namespace Amazon.VerifiedPermissions.Model
     ///  <note> 
     /// <para>
     /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
-    /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
-    /// propagate through the service and be visible in the results of other Verified Permissions
-    /// operations.
+    /// consistent</a> </i>. It can take a few seconds for a new or changed element to propagate
+    /// through the service and be visible in the results of other Verified Permissions operations.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class UpdatePolicyStoreRequest : AmazonVerifiedPermissionsRequest
     {
+        private string _description;
         private string _policyStoreId;
         private ValidationSettings _validationSettings;
+
+        /// <summary>
+        /// Gets and sets the property Description. 
+        /// <para>
+        /// Descriptive text that you can provide to help with identification of the current policy
+        /// store.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Sensitive=true, Min=0, Max=150)]
+        public string Description
+        {
+            get { return this._description; }
+            set { this._description = value; }
+        }
+
+        // Check to see if Description property is set
+        internal bool IsSetDescription()
+        {
+            return this._description != null;
+        }
 
         /// <summary>
         /// Gets and sets the property PolicyStoreId. 

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.SimpleNotificationService.Model
         /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        /// The <code>Id</code> of an entry in a batch request
+        /// The <c>Id</c> of an entry in a batch request
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

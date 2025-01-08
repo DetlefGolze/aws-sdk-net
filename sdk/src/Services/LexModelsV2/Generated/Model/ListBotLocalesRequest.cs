@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.LexModelsV2.Model
     {
         private string _botId;
         private string _botVersion;
-        private List<BotLocaleFilter> _filters = new List<BotLocaleFilter>();
+        private List<BotLocaleFilter> _filters = AWSConfigs.InitializeCollections ? new List<BotLocaleFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
         private BotLocaleSortBy _sortBy;
@@ -97,7 +98,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -123,10 +124,10 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the response from the <code>ListBotLocales</code> operation contains more results
-        /// than specified in the <code>maxResults</code> parameter, a token is returned in the
-        /// response. Use that token as the <code>nextToken</code> parameter to return the next
-        /// page of results. 
+        /// If the response from the <c>ListBotLocales</c> operation contains more results than
+        /// specified in the <c>maxResults</c> parameter, a token is returned in the response.
+        /// Use that token as the <c>nextToken</c> parameter to return the next page of results.
+        /// 
         /// </para>
         /// </summary>
         public string NextToken

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property AvailabilityZone. 
         /// <para>
-        /// The Availability Zone. Follows the format <code>us-east-2a</code> (case-sensitive).
+        /// The Availability Zone. Follows the format <c>us-east-2a</c> (case-sensitive).
         /// </para>
         /// </summary>
         public string AvailabilityZone

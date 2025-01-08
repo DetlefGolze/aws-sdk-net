@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruSecurity.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.CodeGuruSecurity.Model
     /// </summary>
     public partial class ListTagsForResourceResponse : AmazonWebServiceResponse
     {
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Tags. 
@@ -43,12 +44,12 @@ namespace Amazon.CodeGuruSecurity.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// A tag key. For example, <code>CostCenter</code>, <code>Environment</code>, or <code>Secret</code>.
-        /// Tag keys are case sensitive.
+        /// A tag key. For example, <c>CostCenter</c>, <c>Environment</c>, or <c>Secret</c>. Tag
+        /// keys are case sensitive.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// An optional tag value field. For example, <code>111122223333</code>, <code>Production</code>,
+        /// An optional tag value field. For example, <c>111122223333</c>, <c>Production</c>,
         /// or a team name. Omitting the tag value is the same as using an empty string. Tag values
         /// are case sensitive.
         /// </para>
@@ -64,7 +65,7 @@ namespace Amazon.CodeGuruSecurity.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

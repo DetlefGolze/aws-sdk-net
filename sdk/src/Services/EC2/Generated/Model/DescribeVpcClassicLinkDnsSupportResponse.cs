@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.EC2.Model
     public partial class DescribeVpcClassicLinkDnsSupportResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ClassicLinkDnsSupport> _vpcs = new List<ClassicLinkDnsSupport>();
+        private List<ClassicLinkDnsSupport> _vpcs = AWSConfigs.InitializeCollections ? new List<ClassicLinkDnsSupport>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The token to include in another request to get the next page of items. This value
-        /// is <code>null</code> when there are no more items to return.
+        /// is <c>null</c> when there are no more items to return.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -71,7 +72,7 @@ namespace Amazon.EC2.Model
         // Check to see if Vpcs property is set
         internal bool IsSetVpcs()
         {
-            return this._vpcs != null && this._vpcs.Count > 0; 
+            return this._vpcs != null && (this._vpcs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

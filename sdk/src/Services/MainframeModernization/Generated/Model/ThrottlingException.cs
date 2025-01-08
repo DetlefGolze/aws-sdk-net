@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MainframeModernization.Model
 {
     /// <summary>
@@ -134,7 +135,7 @@ namespace Amazon.MainframeModernization.Model
         /// <summary>
         /// Gets and sets the property QuotaCode. 
         /// <para>
-        /// The identifier of the throttled reuqest.
+        /// The identifier of the throttled request.
         /// </para>
         /// </summary>
         public string QuotaCode

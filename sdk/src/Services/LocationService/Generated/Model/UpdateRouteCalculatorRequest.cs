@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -79,7 +80,7 @@ namespace Amazon.LocationService.Model
         /// <summary>
         /// Gets and sets the property PricingPlan. 
         /// <para>
-        /// No longer used. If included, the only allowed value is <code>RequestBasedUsage</code>.
+        /// No longer used. If included, the only allowed value is <c>RequestBasedUsage</c>.
         /// </para>
         /// </summary>
         [Obsolete("Deprecated. If included, the only allowed value is RequestBasedUsage.")]

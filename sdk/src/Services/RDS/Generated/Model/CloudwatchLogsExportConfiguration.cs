@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -34,9 +35,9 @@ namespace Amazon.RDS.Model
     /// 
     ///  
     /// <para>
-    /// The <code>EnableLogTypes</code> and <code>DisableLogTypes</code> arrays determine
-    /// which logs will be exported (or not exported) to CloudWatch Logs. The values within
-    /// these arrays depend on the DB engine being used.
+    /// The <c>EnableLogTypes</c> and <c>DisableLogTypes</c> arrays determine which logs will
+    /// be exported (or not exported) to CloudWatch Logs. The values within these arrays depend
+    /// on the DB engine being used.
     /// </para>
     ///  
     /// <para>
@@ -53,14 +54,35 @@ namespace Amazon.RDS.Model
     /// </summary>
     public partial class CloudwatchLogsExportConfiguration
     {
-        private List<string> _disableLogTypes = new List<string>();
-        private List<string> _enableLogTypes = new List<string>();
+        private List<string> _disableLogTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _enableLogTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DisableLogTypes. 
         /// <para>
         /// The list of log types to disable.
         /// </para>
+        ///  
+        /// <para>
+        /// The following values are valid for each DB engine:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Aurora MySQL - <c>audit | error | general | slowquery</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Aurora PostgreSQL - <c>postgresql</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// RDS for MySQL - <c>error | general | slowquery</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// RDS for PostgreSQL - <c>postgresql | upgrade</c> 
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public List<string> DisableLogTypes
         {
@@ -71,7 +93,7 @@ namespace Amazon.RDS.Model
         // Check to see if DisableLogTypes property is set
         internal bool IsSetDisableLogTypes()
         {
-            return this._disableLogTypes != null && this._disableLogTypes.Count > 0; 
+            return this._disableLogTypes != null && (this._disableLogTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -79,6 +101,27 @@ namespace Amazon.RDS.Model
         /// <para>
         /// The list of log types to enable.
         /// </para>
+        ///  
+        /// <para>
+        /// The following values are valid for each DB engine:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Aurora MySQL - <c>audit | error | general | slowquery</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Aurora PostgreSQL - <c>postgresql</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// RDS for MySQL - <c>error | general | slowquery</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// RDS for PostgreSQL - <c>postgresql | upgrade</c> 
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public List<string> EnableLogTypes
         {
@@ -89,7 +132,7 @@ namespace Amazon.RDS.Model
         // Check to see if EnableLogTypes property is set
         internal bool IsSetEnableLogTypes()
         {
-            return this._enableLogTypes != null && this._enableLogTypes.Count > 0; 
+            return this._enableLogTypes != null && (this._enableLogTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

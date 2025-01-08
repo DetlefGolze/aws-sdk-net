@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -34,19 +35,19 @@ namespace Amazon.OpenSearchService.Model
     public partial class AdditionalLimit
     {
         private string _limitName;
-        private List<string> _limitValues = new List<string>();
+        private List<string> _limitValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property LimitName. <ul> <li> 
         /// <para>
-        ///  <code>MaximumNumberOfDataNodesSupported</code> - This attribute only applies to master
+        ///  <c>MaximumNumberOfDataNodesSupported</c> - This attribute only applies to master
         /// nodes and specifies the maximum number of data nodes of a given instance type a master
         /// node can support.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MaximumNumberOfDataNodesWithoutMasterNode</code> - This attribute only applies
-        /// to data nodes and specifies the maximum number of data nodes of a given instance type
+        ///  <c>MaximumNumberOfDataNodesWithoutMasterNode</c> - This attribute only applies to
+        /// data nodes and specifies the maximum number of data nodes of a given instance type
         /// can exist without a master node governing them.
         /// </para>
         ///  </li> </ul>
@@ -78,7 +79,7 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if LimitValues property is set
         internal bool IsSetLimitValues()
         {
-            return this._limitValues != null && this._limitValues.Count > 0; 
+            return this._limitValues != null && (this._limitValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

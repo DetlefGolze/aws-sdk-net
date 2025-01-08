@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -66,7 +67,7 @@ namespace Amazon.GameLift.Model
     /// </summary>
     public partial class StartFleetActionsRequest : AmazonGameLiftRequest
     {
-        private List<string> _actions = new List<string>();
+        private List<string> _actions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _fleetId;
         private string _location;
 
@@ -86,7 +87,7 @@ namespace Amazon.GameLift.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -96,7 +97,7 @@ namespace Amazon.GameLift.Model
         /// ID or ARN value.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -113,7 +114,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property Location. 
         /// <para>
         /// The fleet location to restart fleet actions for. Specify a location in the form of
-        /// an Amazon Web Services Region code, such as <code>us-west-2</code>.
+        /// an Amazon Web Services Region code, such as <c>us-west-2</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]

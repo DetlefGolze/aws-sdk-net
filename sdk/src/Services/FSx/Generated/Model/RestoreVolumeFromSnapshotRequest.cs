@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.FSx.Model
     public partial class RestoreVolumeFromSnapshotRequest : AmazonFSxRequest
     {
         private string _clientRequestToken;
-        private List<string> _options = new List<string>();
+        private List<string> _options = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _snapshotId;
         private string _volumeId;
 
@@ -62,15 +63,15 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>DELETE_INTERMEDIATE_SNAPSHOTS</code> - Deletes snapshots between the current
-        /// state and the specified snapshot. If there are intermediate snapshots and this option
-        /// isn't used, <code>RestoreVolumeFromSnapshot</code> fails.
+        ///  <c>DELETE_INTERMEDIATE_SNAPSHOTS</c> - Deletes snapshots between the current state
+        /// and the specified snapshot. If there are intermediate snapshots and this option isn't
+        /// used, <c>RestoreVolumeFromSnapshot</c> fails.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETE_CLONED_VOLUMES</code> - Deletes any dependent clone volumes created
-        /// from intermediate snapshots. If there are any dependent clone volumes and this option
-        /// isn't used, <code>RestoreVolumeFromSnapshot</code> fails.
+        ///  <c>DELETE_CLONED_VOLUMES</c> - Deletes any dependent clone volumes created from intermediate
+        /// snapshots. If there are any dependent clone volumes and this option isn't used, <c>RestoreVolumeFromSnapshot</c>
+        /// fails.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -84,7 +85,7 @@ namespace Amazon.FSx.Model
         // Check to see if Options property is set
         internal bool IsSetOptions()
         {
-            return this._options != null && this._options.Count > 0; 
+            return this._options != null && (this._options.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

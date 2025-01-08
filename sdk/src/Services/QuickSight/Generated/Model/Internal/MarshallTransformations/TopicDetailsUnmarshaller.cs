@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public TopicDetails Unmarshall(JsonUnmarshallerContext context)
         {
+            TopicDetails unmarshalledObject = new TopicDetails();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            TopicDetails unmarshalledObject = new TopicDetails();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("ConfigOptions", targetDepth))
+                {
+                    var unmarshaller = TopicConfigOptionsUnmarshaller.Instance;
+                    unmarshalledObject.ConfigOptions = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("DataSets", targetDepth))
                 {
                     var unmarshaller = new ListUnmarshaller<DatasetMetadata, DatasetMetadataUnmarshaller>(DatasetMetadataUnmarshaller.Instance);
@@ -82,8 +90,13 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
                     unmarshalledObject.Name = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("UserExperienceVersion", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.UserExperienceVersion = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

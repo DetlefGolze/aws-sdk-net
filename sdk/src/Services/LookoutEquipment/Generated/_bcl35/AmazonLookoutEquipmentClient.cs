@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.LookoutEquipment
 {
     /// <summary>
-    /// Implementation for accessing LookoutEquipment
+    /// <para>Implementation for accessing LookoutEquipment</para>
     ///
     /// Amazon Lookout for Equipment is a machine learning service that uses advanced analytics
     /// to identify anomalies in machines from sensor data for use in predictive maintenance.
@@ -1204,7 +1205,7 @@ namespace Amazon.LookoutEquipment
 
         /// <summary>
         /// Deletes a retraining scheduler from a model. The retraining scheduler must be in the
-        /// <code>STOPPED</code> status.
+        /// <c>STOPPED</c> status.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteRetrainingScheduler service method.</param>
         /// 
@@ -2628,8 +2629,8 @@ namespace Amazon.LookoutEquipment
 
         /// <summary>
         /// Generates a list of all model versions for a given model, including the model version,
-        /// model version ARN, and status. To list a subset of versions, use the <code>MaxModelVersion</code>
-        /// and <code>MinModelVersion</code> fields.
+        /// model version ARN, and status. To list a subset of versions, use the <c>MaxModelVersion</c>
+        /// and <c>MinModelVersion</c> fields.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListModelVersions service method.</param>
         /// 
@@ -3898,11 +3899,11 @@ namespace Amazon.LookoutEquipment
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

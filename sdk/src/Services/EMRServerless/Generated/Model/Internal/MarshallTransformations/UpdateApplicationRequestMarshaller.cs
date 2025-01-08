@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,6 +67,7 @@ namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetArchitecture())
@@ -137,6 +139,17 @@ namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
                     context.Writer.WriteObjectEnd();
                 }
 
+                if(publicRequest.IsSetInteractiveConfiguration())
+                {
+                    context.Writer.WritePropertyName("interactiveConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = InteractiveConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.InteractiveConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetMaximumCapacity())
                 {
                     context.Writer.WritePropertyName("maximumCapacity");
@@ -190,6 +203,17 @@ namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
                         context.Writer.WriteObjectEnd();
                     }
                     context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetSchedulerConfiguration())
+                {
+                    context.Writer.WritePropertyName("schedulerConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = SchedulerConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.SchedulerConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetWorkerTypeSpecifications())

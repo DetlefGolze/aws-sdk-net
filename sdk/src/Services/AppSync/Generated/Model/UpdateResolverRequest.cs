@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateResolver operation.
-    /// Updates a <code>Resolver</code> object.
+    /// Updates a <c>Resolver</c> object.
     /// </summary>
     public partial class UpdateResolverRequest : AmazonAppSyncRequest
     {
@@ -41,6 +42,7 @@ namespace Amazon.AppSync.Model
         private string _fieldName;
         private ResolverKind _kind;
         private int? _maxBatchSize;
+        private ResolverLevelMetricsConfig _metricsConfig;
         private PipelineConfig _pipelineConfig;
         private string _requestMappingTemplate;
         private string _responseMappingTemplate;
@@ -88,9 +90,8 @@ namespace Amazon.AppSync.Model
         /// <summary>
         /// Gets and sets the property Code. 
         /// <para>
-        /// The <code>resolver</code> code that contains the request and response functions. When
-        /// code is used, the <code>runtime</code> is required. The <code>runtime</code> value
-        /// must be <code>APPSYNC_JS</code>.
+        /// The <c>resolver</c> code that contains the request and response functions. When code
+        /// is used, the <c>runtime</c> is required. The <c>runtime</c> value must be <c>APPSYNC_JS</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=32768)]
@@ -157,8 +158,8 @@ namespace Amazon.AppSync.Model
         ///  </li> <li> 
         /// <para>
         ///  <b>PIPELINE</b>: A PIPELINE resolver type. You can use a PIPELINE resolver to invoke
-        /// a series of <code>Function</code> objects in a serial manner. You can use a pipeline
-        /// resolver to run a GraphQL query against multiple data sources.
+        /// a series of <c>Function</c> objects in a serial manner. You can use a pipeline resolver
+        /// to run a GraphQL query against multiple data sources.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -194,9 +195,34 @@ namespace Amazon.AppSync.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MetricsConfig. 
+        /// <para>
+        /// Enables or disables enhanced resolver metrics for specified resolvers. Note that <c>metricsConfig</c>
+        /// won't be used unless the <c>resolverLevelMetricsBehavior</c> value is set to <c>PER_RESOLVER_METRICS</c>.
+        /// If the <c>resolverLevelMetricsBehavior</c> is set to <c>FULL_REQUEST_RESOLVER_METRICS</c>
+        /// instead, <c>metricsConfig</c> will be ignored. However, you can still set its value.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>metricsConfig</c> can be <c>ENABLED</c> or <c>DISABLED</c>.
+        /// </para>
+        /// </summary>
+        public ResolverLevelMetricsConfig MetricsConfig
+        {
+            get { return this._metricsConfig; }
+            set { this._metricsConfig = value; }
+        }
+
+        // Check to see if MetricsConfig property is set
+        internal bool IsSetMetricsConfig()
+        {
+            return this._metricsConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property PipelineConfig. 
         /// <para>
-        /// The <code>PipelineConfig</code>.
+        /// The <c>PipelineConfig</c>.
         /// </para>
         /// </summary>
         public PipelineConfig PipelineConfig
@@ -278,7 +304,7 @@ namespace Amazon.AppSync.Model
         /// <summary>
         /// Gets and sets the property SyncConfig. 
         /// <para>
-        /// The <code>SyncConfig</code> for a resolver attached to a versioned data source.
+        /// The <c>SyncConfig</c> for a resolver attached to a versioned data source.
         /// </para>
         /// </summary>
         public SyncConfig SyncConfig

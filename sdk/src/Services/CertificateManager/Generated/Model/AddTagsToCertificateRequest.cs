@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CertificateManager.Model
 {
     /// <summary>
     /// Container for the parameters to the AddTagsToCertificate operation.
     /// Adds one or more tags to an ACM certificate. Tags are labels that you can use to identify
-    /// and organize your Amazon Web Services resources. Each tag consists of a <code>key</code>
-    /// and an optional <code>value</code>. You specify the certificate on input by its Amazon
-    /// Resource Name (ARN). You specify the tag by using a key-value pair. 
+    /// and organize your Amazon Web Services resources. Each tag consists of a <c>key</c>
+    /// and an optional <c>value</c>. You specify the certificate on input by its Amazon Resource
+    /// Name (ARN). You specify the tag by using a key-value pair. 
     /// 
     ///  
     /// <para>
@@ -56,7 +57,7 @@ namespace Amazon.CertificateManager.Model
     public partial class AddTagsToCertificateRequest : AmazonCertificateManagerRequest
     {
         private string _certificateArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property CertificateArn. 
@@ -66,7 +67,7 @@ namespace Amazon.CertificateManager.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code>
+        ///  <c>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</c>
         /// 
         /// </para>
         ///  
@@ -104,7 +105,7 @@ namespace Amazon.CertificateManager.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
     /// Container for the parameters to the ListServiceVersions operation.
-    /// Lists all supported versions for Snow on-device services. Returns an array of <code>ServiceVersion</code>
+    /// Lists all supported versions for Snow on-device services. Returns an array of <c>ServiceVersion</c>
     /// object containing the supported versions for a particular service.
     /// </summary>
     public partial class ListServiceVersionsRequest : AmazonSnowballRequest
     {
-        private List<DependentService> _dependentServices = new List<DependentService>();
+        private List<DependentService> _dependentServices = AWSConfigs.InitializeCollections ? new List<DependentService>() : null;
         private int? _maxResults;
         private string _nextToken;
         private ServiceName _serviceName;
@@ -55,13 +56,13 @@ namespace Amazon.Snowball.Model
         // Check to see if DependentServices property is set
         internal bool IsSetDependentServices()
         {
-            return this._dependentServices != null && this._dependentServices.Count > 0; 
+            return this._dependentServices != null && (this._dependentServices.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The maximum number of <code>ListServiceVersions</code> objects to return.
+        /// The maximum number of <c>ListServiceVersions</c> objects to return.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]
@@ -81,7 +82,7 @@ namespace Amazon.Snowball.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// Because HTTP requests are stateless, this is the starting point for the next list
-        /// of returned <code>ListServiceVersionsRequest</code> versions.
+        /// of returned <c>ListServiceVersionsRequest</c> versions.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

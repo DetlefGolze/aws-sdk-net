@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -129,6 +130,22 @@ namespace Amazon.ElastiCache.Model
         public IDescribeReservedCacheNodesOfferingsPaginator DescribeReservedCacheNodesOfferings(DescribeReservedCacheNodesOfferingsRequest request) 
         {
             return new DescribeReservedCacheNodesOfferingsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeServerlessCaches operation
+        ///</summary>
+        public IDescribeServerlessCachesPaginator DescribeServerlessCaches(DescribeServerlessCachesRequest request) 
+        {
+            return new DescribeServerlessCachesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeServerlessCacheSnapshots operation
+        ///</summary>
+        public IDescribeServerlessCacheSnapshotsPaginator DescribeServerlessCacheSnapshots(DescribeServerlessCacheSnapshotsRequest request) 
+        {
+            return new DescribeServerlessCacheSnapshotsPaginator(this.client, request);
         }
 
         /// <summary>

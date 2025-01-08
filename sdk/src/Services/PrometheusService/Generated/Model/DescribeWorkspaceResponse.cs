@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
-    /// Represents the output of a DescribeWorkspace operation.
+    /// Represents the output of a <c>DescribeWorkspace</c> operation.
     /// </summary>
     public partial class DescribeWorkspaceResponse : AmazonWebServiceResponse
     {
@@ -38,7 +39,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property Workspace. 
         /// <para>
-        /// The properties of the selected workspace.
+        /// A structure that contains details about the workspace.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Connect.Model
         private string _contactFlowId;
         private string _description;
         private string _name;
-        private Dictionary<string, Reference> _references = new Dictionary<string, Reference>();
+        private Dictionary<string, Reference> _references = AWSConfigs.InitializeCollections ? new Dictionary<string, Reference>() : null;
 
         /// <summary>
         /// Gets and sets the property ContactFlowId. 
@@ -100,8 +101,8 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property References. 
         /// <para>
-        /// Information about the reference when the <code>referenceType</code> is <code>URL</code>.
-        /// Otherwise, null. (Supports variable injection in the <code>Value</code> field.)
+        /// Information about the reference when the <c>referenceType</c> is <c>URL</c>. Otherwise,
+        /// null. (Supports variable injection in the <c>Value</c> field.)
         /// </para>
         /// </summary>
         public Dictionary<string, Reference> References
@@ -113,7 +114,7 @@ namespace Amazon.Connect.Model
         // Check to see if References property is set
         internal bool IsSetReferences()
         {
-            return this._references != null && this._references.Count > 0; 
+            return this._references != null && (this._references.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

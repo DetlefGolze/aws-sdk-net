@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.LocationService.Model
         /// Gets and sets the property Name. 
         /// <para>
         /// The name of the time zone, following the <a href="https://www.iana.org/time-zones">
-        /// IANA time zone standard</a>. For example, <code>America/Los_Angeles</code>.
+        /// IANA time zone standard</a>. For example, <c>America/Los_Angeles</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

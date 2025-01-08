@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Synthetics.Model
 {
     /// <summary>
     /// Container for the parameters to the StartCanary operation.
     /// Use this operation to run a canary that has already been created. The frequency of
-    /// the canary runs is determined by the value of the canary's <code>Schedule</code>.
-    /// To see a canary's schedule, use <a href="https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_GetCanary.html">GetCanary</a>.
+    /// the canary runs is determined by the value of the canary's <c>Schedule</c>. To see
+    /// a canary's schedule, use <a href="https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_GetCanary.html">GetCanary</a>.
     /// </summary>
     public partial class StartCanaryRequest : AmazonSyntheticsRequest
     {
@@ -44,7 +45,7 @@ namespace Amazon.Synthetics.Model
         /// The name of the canary that you want to run. To find canary names, use <a href="https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_DescribeCanaries.html">DescribeCanaries</a>.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=21)]
+        [AWSProperty(Required=true, Min=1, Max=255)]
         public string Name
         {
             get { return this._name; }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -194,7 +195,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Platform. 
         /// <para>
-        /// The platform (<code>Linux/UNIX</code> or <code>Windows</code>).
+        /// The platform (<c>Linux/UNIX</c> or <c>Windows</c>).
         /// </para>
         /// </summary>
         public string Platform

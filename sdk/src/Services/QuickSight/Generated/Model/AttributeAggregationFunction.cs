@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -43,8 +44,8 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>UNIQUE_VALUE</code>: Returns the unique value for a field, aggregated by the
-        /// dimension fields.
+        ///  <c>UNIQUE_VALUE</c>: Returns the unique value for a field, aggregated by the dimension
+        /// fields.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -63,9 +64,9 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property ValueForMultipleValues. 
         /// <para>
-        /// Used by the <code>UNIQUE_VALUE</code> aggregation function. If there are multiple
-        /// values for the field used by the aggregation, the value for this property will be
-        /// returned instead. Defaults to '*'.
+        /// Used by the <c>UNIQUE_VALUE</c> aggregation function. If there are multiple values
+        /// for the field used by the aggregation, the value for this property will be returned
+        /// instead. Defaults to '*'.
         /// </para>
         /// </summary>
         public string ValueForMultipleValues

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Personalize.Model
 {
     /// <summary>
@@ -119,7 +120,7 @@ namespace Amazon.Personalize.Model
         /// The schema.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=10000)]
+        [AWSProperty(Max=20000)]
         public string Schema
         {
             get { return this._schema; }

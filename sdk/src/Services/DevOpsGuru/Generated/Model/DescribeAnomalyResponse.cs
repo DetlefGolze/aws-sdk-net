@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.DevOpsGuru.Model
         /// <summary>
         /// Gets and sets the property ProactiveAnomaly. 
         /// <para>
-        ///  A <code>ProactiveAnomaly</code> object that represents the requested anomaly. 
+        ///  A <c>ProactiveAnomaly</c> object that represents the requested anomaly. 
         /// </para>
         /// </summary>
         public ProactiveAnomaly ProactiveAnomaly
@@ -57,7 +58,7 @@ namespace Amazon.DevOpsGuru.Model
         /// <summary>
         /// Gets and sets the property ReactiveAnomaly. 
         /// <para>
-        ///  A <code>ReactiveAnomaly</code> object that represents the requested anomaly. 
+        ///  A <c>ReactiveAnomaly</c> object that represents the requested anomaly. 
         /// </para>
         /// </summary>
         public ReactiveAnomaly ReactiveAnomaly

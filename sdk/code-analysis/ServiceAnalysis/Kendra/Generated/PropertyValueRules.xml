@@ -1541,6 +1541,12 @@
     <max>65535</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.Kendra.Model.BatchDeleteDocumentResponseFailedDocument.DataSourceId</property>
+    <min>1</min>
+    <max>100</max>
+    <pattern>[a-zA-Z0-9][a-zA-Z0-9_-]*</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.Kendra.Model.BatchDeleteDocumentResponseFailedDocument.ErrorMessage</property>
     <min>1</min>
     <max>2048</max>
@@ -1564,6 +1570,12 @@
     <pattern>^[a-zA-Z-0-9]*</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.Kendra.Model.BatchGetDocumentStatusResponseError.DataSourceId</property>
+    <min>1</min>
+    <max>100</max>
+    <pattern>[a-zA-Z0-9][a-zA-Z0-9_-]*</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.Kendra.Model.BatchGetDocumentStatusResponseError.DocumentId</property>
     <min>1</min>
     <max>2048</max>
@@ -1573,6 +1585,12 @@
     <min>1</min>
     <max>2048</max>
     <pattern>^\P{C}*$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Kendra.Model.BatchPutDocumentResponseFailedDocument.DataSourceId</property>
+    <min>1</min>
+    <max>100</max>
+    <pattern>[a-zA-Z0-9][a-zA-Z0-9_-]*</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.Kendra.Model.BatchPutDocumentResponseFailedDocument.ErrorMessage</property>
@@ -1609,6 +1627,12 @@
     <property>Amazon.Kendra.Model.ClickFeedback.ResultId</property>
     <min>1</min>
     <max>73</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Kendra.Model.CollapseConfiguration.DocumentAttributeKey</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>[a-zA-Z0-9_][a-zA-Z0-9_-]*</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.Kendra.Model.ColumnConfiguration.DocumentDataColumnName</property>
@@ -1933,6 +1957,22 @@
     <min>1</min>
     <max>47</max>
     <pattern>^([0-9a-f]{10}-|)[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Kendra.Model.ExpandedResultItem.DocumentId</property>
+    <min>1</min>
+    <max>2048</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Kendra.Model.ExpandedResultItem.DocumentURI</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>^(https?|ftp|file):\/\/([^\s]*)</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.Kendra.Model.ExpandedResultItem.Id</property>
+    <min>1</min>
+    <max>73</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.Kendra.Model.ExperienceEndpoint.Endpoint</property>

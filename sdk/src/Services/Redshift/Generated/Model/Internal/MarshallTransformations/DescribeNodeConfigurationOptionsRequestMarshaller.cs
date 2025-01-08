@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Redshift.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -73,18 +74,18 @@ namespace Amazon.Redshift.Model.Internal.MarshallTransformations
                     {
                         if(publicRequestlistValue.IsSetName())
                         {
-                            request.Parameters.Add("Filter" + "." + "member" + "." + publicRequestlistValueIndex + "." + "Name", StringUtils.FromString(publicRequestlistValue.Name));
+                            request.Parameters.Add("Filter" + "." + "NodeConfigurationOptionsFilter" + "." + publicRequestlistValueIndex + "." + "Name", StringUtils.FromString(publicRequestlistValue.Name));
                         }
                         if(publicRequestlistValue.IsSetOperator())
                         {
-                            request.Parameters.Add("Filter" + "." + "member" + "." + publicRequestlistValueIndex + "." + "Operator", StringUtils.FromString(publicRequestlistValue.Operator));
+                            request.Parameters.Add("Filter" + "." + "NodeConfigurationOptionsFilter" + "." + publicRequestlistValueIndex + "." + "Operator", StringUtils.FromString(publicRequestlistValue.Operator));
                         }
                         if(publicRequestlistValue.IsSetValues())
                         {
                             int publicRequestlistValuelistValueIndex = 1;
                             foreach(var publicRequestlistValuelistValue in publicRequestlistValue.Values)
                             {
-                                request.Parameters.Add("Filter" + "." + "member" + "." + publicRequestlistValueIndex + "." + "Value" + "." + "member" + "." + publicRequestlistValuelistValueIndex, StringUtils.FromString(publicRequestlistValuelistValue));
+                                request.Parameters.Add("Filter" + "." + "NodeConfigurationOptionsFilter" + "." + publicRequestlistValueIndex + "." + "Value" + "." + "item" + "." + publicRequestlistValuelistValueIndex, StringUtils.FromString(publicRequestlistValuelistValue));
                                 publicRequestlistValuelistValueIndex++;
                             }
                         }

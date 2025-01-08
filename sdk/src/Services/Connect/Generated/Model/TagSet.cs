@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property Key. 
         /// <para>
-        /// The tag key in the tagSet.
+        /// The tag key in the TagSet.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]

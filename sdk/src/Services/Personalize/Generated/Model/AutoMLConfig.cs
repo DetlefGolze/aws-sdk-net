@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Personalize.Model
 {
     /// <summary>
-    /// When the solution performs AutoML (<code>performAutoML</code> is true in <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html">CreateSolution</a>),
+    /// When the solution performs AutoML (<c>performAutoML</c> is true in <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html">CreateSolution</a>),
     /// Amazon Personalize determines which recipe, from the specified list, optimizes the
     /// given metric. Amazon Personalize then uses that recipe for the solution.
     /// </summary>
     public partial class AutoMLConfig
     {
         private string _metricName;
-        private List<string> _recipeList = new List<string>();
+        private List<string> _recipeList = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property MetricName. 
@@ -73,7 +74,7 @@ namespace Amazon.Personalize.Model
         // Check to see if RecipeList property is set
         internal bool IsSetRecipeList()
         {
-            return this._recipeList != null && this._recipeList.Count > 0; 
+            return this._recipeList != null && (this._recipeList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

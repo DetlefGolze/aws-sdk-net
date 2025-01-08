@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Shield.Model
 {
     /// <summary>
-    /// Specifies that Shield Advanced should configure its WAF rules with the WAF <code>Block</code>
+    /// Specifies that Shield Advanced should configure its WAF rules with the WAF <c>Block</c>
     /// action. 
     /// 
     ///  
     /// <para>
-    /// This is only used in the context of the <code>ResponseAction</code> setting. 
+    /// This is only used in the context of the <c>ResponseAction</c> setting. 
     /// </para>
     ///  
     /// <para>
-    /// JSON specification: <code>"Block": {}</code> 
+    /// JSON specification: <c>"Block": {}</c> 
     /// </para>
     /// </summary>
     public partial class BlockAction

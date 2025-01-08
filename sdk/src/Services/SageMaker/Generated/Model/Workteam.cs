@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -36,10 +37,11 @@ namespace Amazon.SageMaker.Model
         private DateTime? _createDate;
         private string _description;
         private DateTime? _lastUpdatedDate;
-        private List<MemberDefinition> _memberDefinitions = new List<MemberDefinition>();
+        private List<MemberDefinition> _memberDefinitions = AWSConfigs.InitializeCollections ? new List<MemberDefinition>() : null;
         private NotificationConfiguration _notificationConfiguration;
-        private List<string> _productListingIds = new List<string>();
+        private List<string> _productListingIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _subDomain;
+        private WorkerAccessConfiguration _workerAccessConfiguration;
         private string _workforceArn;
         private string _workteamArn;
         private string _workteamName;
@@ -102,14 +104,14 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property MemberDefinitions. 
         /// <para>
-        /// A list of <code>MemberDefinition</code> objects that contains objects that identify
-        /// the workers that make up the work team. 
+        /// A list of <c>MemberDefinition</c> objects that contains objects that identify the
+        /// workers that make up the work team. 
         /// </para>
         ///  
         /// <para>
         /// Workforces can be created using Amazon Cognito or your own OIDC Identity Provider
-        /// (IdP). For private workforces created using Amazon Cognito use <code>CognitoMemberDefinition</code>.
-        /// For workforces created using your own OIDC identity provider (IdP) use <code>OidcMemberDefinition</code>.
+        /// (IdP). For private workforces created using Amazon Cognito use <c>CognitoMemberDefinition</c>.
+        /// For workforces created using your own OIDC identity provider (IdP) use <c>OidcMemberDefinition</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=10)]
@@ -122,7 +124,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if MemberDefinitions property is set
         internal bool IsSetMemberDefinitions()
         {
-            return this._memberDefinitions != null && this._memberDefinitions.Count > 0; 
+            return this._memberDefinitions != null && (this._memberDefinitions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -158,7 +160,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if ProductListingIds property is set
         internal bool IsSetProductListingIds()
         {
-            return this._productListingIds != null && this._productListingIds.Count > 0; 
+            return this._productListingIds != null && (this._productListingIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -178,6 +180,24 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetSubDomain()
         {
             return this._subDomain != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WorkerAccessConfiguration. 
+        /// <para>
+        /// Describes any access constraints that have been defined for Amazon S3 resources.
+        /// </para>
+        /// </summary>
+        public WorkerAccessConfiguration WorkerAccessConfiguration
+        {
+            get { return this._workerAccessConfiguration; }
+            set { this._workerAccessConfiguration = value; }
+        }
+
+        // Check to see if WorkerAccessConfiguration property is set
+        internal bool IsSetWorkerAccessConfiguration()
+        {
+            return this._workerAccessConfiguration != null;
         }
 
         /// <summary>

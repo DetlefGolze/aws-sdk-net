@@ -26,10 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// The CloudWatch logging destination of a user pool detailed activity logging configuration.
+    /// Configuration for the CloudWatch log group destination of user pool detailed activity
+    /// logging, or of user activity log export with advanced security features.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a request parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetLogDeliveryConfiguration.html">SetLogDeliveryConfiguration</a>
+    /// and a response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_GetLogDeliveryConfiguration.html">GetLogDeliveryConfiguration</a>.
+    /// </para>
     /// </summary>
     public partial class CloudWatchLogsConfigurationType
     {
@@ -45,8 +53,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         ///  
         /// <para>
         /// To send logs to log groups with a resource policy of a size greater than 5120 characters,
-        /// configure a log group with a path that starts with <code>/aws/vendedlogs</code>. For
-        /// more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html">Enabling
+        /// configure a log group with a path that starts with <c>/aws/vendedlogs</c>. For more
+        /// information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html">Enabling
         /// logging from certain Amazon Web Services services</a>.
         /// </para>
         /// </summary>

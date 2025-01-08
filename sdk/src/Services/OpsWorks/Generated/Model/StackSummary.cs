@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
@@ -79,7 +80,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property InstancesCount. 
         /// <para>
-        /// An <code>InstancesCount</code> object with the number of instances in each status.
+        /// An <c>InstancesCount</c> object with the number of instances in each status.
         /// </para>
         /// </summary>
         public InstancesCount InstancesCount

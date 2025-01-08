@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptographyData.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.PaymentCryptographyData.Model
         /// The encrypted PIN block data to verify.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=16, Max=32)]
+        [AWSProperty(Required=true, Sensitive=true, Min=16, Max=32)]
         public string EncryptedPinBlock
         {
             get { return this._encryptedPinBlock; }
@@ -62,7 +63,7 @@ namespace Amazon.PaymentCryptographyData.Model
         /// the PVV (PIN Verification Value).
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=0, Max=9)]
+        [AWSProperty(Required=true, Min=0, Max=6)]
         public int PinVerificationKeyIndex
         {
             get { return this._pinVerificationKeyIndex.GetValueOrDefault(); }

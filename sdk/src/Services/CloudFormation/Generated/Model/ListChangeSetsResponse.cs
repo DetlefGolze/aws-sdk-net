@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.CloudFormation.Model
     public partial class ListChangeSetsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ChangeSetSummary> _summaries = new List<ChangeSetSummary>();
+        private List<ChangeSetSummary> _summaries = AWSConfigs.InitializeCollections ? new List<ChangeSetSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If the output exceeds 1 MB, a string that identifies the next page of change sets.
-        /// If there is no additional page, this value is <code>null</code>.
+        /// If there is no additional page, this value is <c>null</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -59,8 +60,8 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property Summaries. 
         /// <para>
-        /// A list of <code>ChangeSetSummary</code> structures that provides the ID and status
-        /// of each change set for the specified stack.
+        /// A list of <c>ChangeSetSummary</c> structures that provides the ID and status of each
+        /// change set for the specified stack.
         /// </para>
         /// </summary>
         public List<ChangeSetSummary> Summaries
@@ -72,7 +73,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if Summaries property is set
         internal bool IsSetSummaries()
         {
-            return this._summaries != null && this._summaries.Count > 0; 
+            return this._summaries != null && (this._summaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

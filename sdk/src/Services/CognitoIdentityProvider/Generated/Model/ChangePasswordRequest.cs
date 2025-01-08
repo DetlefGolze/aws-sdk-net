@@ -27,19 +27,25 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the ChangePassword operation.
     /// Changes the password for a specified user in a user pool.
     /// 
+    ///  
+    /// <para>
+    /// Authorize this action with a signed-in user's access token. It must include the scope
+    /// <c>aws.cognito.signin.user.admin</c>.
+    /// </para>
     ///  <note> 
     /// <para>
     /// Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests
     /// for this API operation. For this operation, you can't use IAM credentials to authorize
     /// requests, and you can't grant IAM permissions in policies. For more information about
     /// authorization models in Amazon Cognito, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using
-    /// the Amazon Cognito native and OIDC APIs</a>.
+    /// the Amazon Cognito user pools API and user pool endpoints</a>.
     /// </para>
     ///  </note>
     /// </summary>
@@ -72,10 +78,12 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property PreviousPassword. 
         /// <para>
-        /// The old password.
+        /// The user's previous password. Required if the user has a password. If the user has
+        /// no password and only signs in with passwordless authentication options, you can omit
+        /// this parameter.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Sensitive=true, Max=256)]
+        [AWSProperty(Sensitive=true, Max=256)]
         public string PreviousPassword
         {
             get { return this._previousPassword; }
@@ -91,7 +99,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property ProposedPassword. 
         /// <para>
-        /// The new password.
+        /// A new password that you prompted the user to enter in your application.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Max=256)]

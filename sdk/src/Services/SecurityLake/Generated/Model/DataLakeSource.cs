@@ -26,19 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityLake.Model
 {
     /// <summary>
-    /// Amazon Security Lake collects logs and events from supported Amazon Web Services and
-    /// custom sources. For the list of supported Amazon Web Services, see the <a href="https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html">Amazon
+    /// Amazon Security Lake collects logs and events from supported Amazon Web Services services
+    /// and custom sources. For the list of supported Amazon Web Services services, see the
+    /// <a href="https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html">Amazon
     /// Security Lake User Guide</a>.
     /// </summary>
     public partial class DataLakeSource
     {
         private string _account;
-        private List<string> _eventClasses = new List<string>();
+        private List<string> _eventClasses = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _sourceName;
-        private List<DataLakeSourceStatus> _sourceStatuses = new List<DataLakeSourceStatus>();
+        private List<DataLakeSourceStatus> _sourceStatuses = AWSConfigs.InitializeCollections ? new List<DataLakeSourceStatus>() : null;
 
         /// <summary>
         /// Gets and sets the property Account. 
@@ -67,119 +69,119 @@ namespace Amazon.SecurityLake.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ACCESS_ACTIVITY</code> 
+        ///  <c>ACCESS_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FILE_ACTIVITY</code> 
+        ///  <c>FILE_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>KERNEL_ACTIVITY</code> 
+        ///  <c>KERNEL_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>KERNEL_EXTENSION</code> 
+        ///  <c>KERNEL_EXTENSION</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MEMORY_ACTIVITY</code> 
+        ///  <c>MEMORY_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MODULE_ACTIVITY</code> 
+        ///  <c>MODULE_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PROCESS_ACTIVITY</code> 
+        ///  <c>PROCESS_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>REGISTRY_KEY_ACTIVITY</code> 
+        ///  <c>REGISTRY_KEY_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>REGISTRY_VALUE_ACTIVITY</code> 
+        ///  <c>REGISTRY_VALUE_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RESOURCE_ACTIVITY</code> 
+        ///  <c>RESOURCE_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SCHEDULED_JOB_ACTIVITY</code> 
+        ///  <c>SCHEDULED_JOB_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SECURITY_FINDING</code> 
+        ///  <c>SECURITY_FINDING</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ACCOUNT_CHANGE</code> 
+        ///  <c>ACCOUNT_CHANGE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AUTHENTICATION</code> 
+        ///  <c>AUTHENTICATION</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AUTHORIZATION</code> 
+        ///  <c>AUTHORIZATION</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ENTITY_MANAGEMENT_AUDIT</code> 
+        ///  <c>ENTITY_MANAGEMENT_AUDIT</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DHCP_ACTIVITY</code> 
+        ///  <c>DHCP_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NETWORK_ACTIVITY</code> 
+        ///  <c>NETWORK_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DNS_ACTIVITY</code> 
+        ///  <c>DNS_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FTP_ACTIVITY</code> 
+        ///  <c>FTP_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>HTTP_ACTIVITY</code> 
+        ///  <c>HTTP_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RDP_ACTIVITY</code> 
+        ///  <c>RDP_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SMB_ACTIVITY</code> 
+        ///  <c>SMB_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SSH_ACTIVITY</code> 
+        ///  <c>SSH_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CONFIG_STATE</code> 
+        ///  <c>CONFIG_STATE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INVENTORY_INFO</code> 
+        ///  <c>INVENTORY_INFO</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EMAIL_ACTIVITY</code> 
+        ///  <c>EMAIL_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>API_ACTIVITY</code> 
+        ///  <c>API_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CLOUD_API</code> 
+        ///  <c>CLOUD_API</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -192,15 +194,15 @@ namespace Amazon.SecurityLake.Model
         // Check to see if EventClasses property is set
         internal bool IsSetEventClasses()
         {
-            return this._eventClasses != null && this._eventClasses.Count > 0; 
+            return this._eventClasses != null && (this._eventClasses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SourceName. 
         /// <para>
-        /// The supported Amazon Web Services from which logs and events are collected. Amazon
-        /// Security Lake supports log and event collection for natively supported Amazon Web
-        /// Services.
+        /// The supported Amazon Web Services services from which logs and events are collected.
+        /// Amazon Security Lake supports log and event collection for natively supported Amazon
+        /// Web Services services.
         /// </para>
         /// </summary>
         public string SourceName
@@ -230,7 +232,7 @@ namespace Amazon.SecurityLake.Model
         // Check to see if SourceStatuses property is set
         internal bool IsSetSourceStatuses()
         {
-            return this._sourceStatuses != null && this._sourceStatuses.Count > 0; 
+            return this._sourceStatuses != null && (this._sourceStatuses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

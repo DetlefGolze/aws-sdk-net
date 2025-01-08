@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class ListDataQualityJobDefinitionsResponse : AmazonWebServiceResponse
     {
-        private List<MonitoringJobDefinitionSummary> _jobDefinitionSummaries = new List<MonitoringJobDefinitionSummary>();
+        private List<MonitoringJobDefinitionSummary> _jobDefinitionSummaries = AWSConfigs.InitializeCollections ? new List<MonitoringJobDefinitionSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,15 +53,15 @@ namespace Amazon.SageMaker.Model
         // Check to see if JobDefinitionSummaries property is set
         internal bool IsSetJobDefinitionSummaries()
         {
-            return this._jobDefinitionSummaries != null && this._jobDefinitionSummaries.Count > 0; 
+            return this._jobDefinitionSummaries != null && (this._jobDefinitionSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the result of the previous <code>ListDataQualityJobDefinitions</code> request was
-        /// truncated, the response includes a <code>NextToken</code>. To retrieve the next set
-        /// of data quality monitoring job definitions, use the token in the next request.
+        /// If the result of the previous <c>ListDataQualityJobDefinitions</c> request was truncated,
+        /// the response includes a <c>NextToken</c>. To retrieve the next set of data quality
+        /// monitoring job definitions, use the token in the next request.
         /// </para>
         /// </summary>
         [AWSProperty(Max=8192)]

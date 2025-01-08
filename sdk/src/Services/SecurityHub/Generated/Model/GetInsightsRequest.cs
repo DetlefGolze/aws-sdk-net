@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class GetInsightsRequest : AmazonSecurityHubRequest
     {
-        private List<string> _insightArns = new List<string>();
+        private List<string> _insightArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property InsightArns. 
         /// <para>
-        /// The ARNs of the insights to describe. If you do not provide any insight ARNs, then
-        /// <code>GetInsights</code> returns all of your custom insights. It does not return any
-        /// managed insights.
+        /// The ARNs of the insights to describe. If you don't provide any insight ARNs, then
+        /// <c>GetInsights</c> returns all of your custom insights. It does not return any managed
+        /// insights.
         /// </para>
         /// </summary>
         public List<string> InsightArns
@@ -55,7 +56,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if InsightArns property is set
         internal bool IsSetInsightArns()
         {
-            return this._insightArns != null && this._insightArns.Count > 0; 
+            return this._insightArns != null && (this._insightArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -80,8 +81,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token that is required for pagination. On your first call to the <code>GetInsights</code>
-        /// operation, set the value of this parameter to <code>NULL</code>.
+        /// The token that is required for pagination. On your first call to the <c>GetInsights</c>
+        /// operation, set the value of this parameter to <c>NULL</c>.
         /// </para>
         ///  
         /// <para>

@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
-    /// Batch defines the boundaries for ingestion for each step in <code>APPFLOW_INTEGRATION</code>
-    /// workflow. <code>APPFLOW_INTEGRATION</code> workflow splits ingestion based on these
-    /// boundaries.
+    /// Batch defines the boundaries for ingestion for each step in <c>APPFLOW_INTEGRATION</c>
+    /// workflow. <c>APPFLOW_INTEGRATION</c> workflow splits ingestion based on these boundaries.
     /// </summary>
     public partial class Batch
     {

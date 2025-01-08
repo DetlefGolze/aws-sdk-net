@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -45,14 +46,15 @@ namespace Amazon.DatabaseMigrationService.Model
     public partial class StartReplicationTaskAssessmentRunRequest : AmazonDatabaseMigrationServiceRequest
     {
         private string _assessmentRunName;
-        private List<string> _exclude = new List<string>();
-        private List<string> _includeOnly = new List<string>();
+        private List<string> _exclude = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _includeOnly = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _replicationTaskArn;
         private string _resultEncryptionMode;
         private string _resultKmsKeyArn;
         private string _resultLocationBucket;
         private string _resultLocationFolder;
         private string _serviceAccessRoleArn;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AssessmentRunName. 
@@ -78,18 +80,18 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <para>
         /// Space-separated list of names for specific individual assessments that you want to
         /// exclude. These names come from the default list of individual assessments that DMS
-        /// supports for the associated migration task. This task is specified by <code>ReplicationTaskArn</code>.
+        /// supports for the associated migration task. This task is specified by <c>ReplicationTaskArn</c>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// You can't set a value for <code>Exclude</code> if you also set a value for <code>IncludeOnly</code>
+        /// You can't set a value for <c>Exclude</c> if you also set a value for <c>IncludeOnly</c>
         /// in the API operation.
         /// </para>
         ///  
         /// <para>
         /// To identify the names of the default individual assessments that DMS supports for
-        /// the associated migration task, run the <code>DescribeApplicableIndividualAssessments</code>
-        /// operation using its own <code>ReplicationTaskArn</code> request parameter.
+        /// the associated migration task, run the <c>DescribeApplicableIndividualAssessments</c>
+        /// operation using its own <c>ReplicationTaskArn</c> request parameter.
         /// </para>
         ///  </note>
         /// </summary>
@@ -102,7 +104,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if Exclude property is set
         internal bool IsSetExclude()
         {
-            return this._exclude != null && this._exclude.Count > 0; 
+            return this._exclude != null && (this._exclude.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -110,18 +112,18 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <para>
         /// Space-separated list of names for specific individual assessments that you want to
         /// include. These names come from the default list of individual assessments that DMS
-        /// supports for the associated migration task. This task is specified by <code>ReplicationTaskArn</code>.
+        /// supports for the associated migration task. This task is specified by <c>ReplicationTaskArn</c>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// You can't set a value for <code>IncludeOnly</code> if you also set a value for <code>Exclude</code>
+        /// You can't set a value for <c>IncludeOnly</c> if you also set a value for <c>Exclude</c>
         /// in the API operation. 
         /// </para>
         ///  
         /// <para>
         /// To identify the names of the default individual assessments that DMS supports for
-        /// the associated migration task, run the <code>DescribeApplicableIndividualAssessments</code>
-        /// operation using its own <code>ReplicationTaskArn</code> request parameter.
+        /// the associated migration task, run the <c>DescribeApplicableIndividualAssessments</c>
+        /// operation using its own <c>ReplicationTaskArn</c> request parameter.
         /// </para>
         ///  </note>
         /// </summary>
@@ -134,7 +136,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if IncludeOnly property is set
         internal bool IsSetIncludeOnly()
         {
-            return this._includeOnly != null && this._includeOnly.Count > 0; 
+            return this._includeOnly != null && (this._includeOnly.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -166,13 +168,12 @@ namespace Amazon.DatabaseMigrationService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>"SSE_S3"</code> – The server-side encryption provided as a default by Amazon
-        /// S3.
+        ///  <c>"SSE_S3"</c> – The server-side encryption provided as a default by Amazon S3.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"SSE_KMS"</code> – Key Management Service (KMS) encryption. This encryption
-        /// can use either a custom KMS encryption key that you specify or the default KMS encryption
+        ///  <c>"SSE_KMS"</c> – Key Management Service (KMS) encryption. This encryption can use
+        /// either a custom KMS encryption key that you specify or the default KMS encryption
         /// key that DMS provides.
         /// </para>
         ///  </li> </ul>
@@ -192,8 +193,8 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property ResultKmsKeyArn. 
         /// <para>
-        /// ARN of a custom KMS encryption key that you specify when you set <code>ResultEncryptionMode</code>
-        /// to <code>"SSE_KMS</code>".
+        /// ARN of a custom KMS encryption key that you specify when you set <c>ResultEncryptionMode</c>
+        /// to <c>"SSE_KMS</c>".
         /// </para>
         /// </summary>
         public string ResultKmsKeyArn
@@ -250,7 +251,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property ServiceAccessRoleArn. 
         /// <para>
         /// ARN of the service role needed to start the assessment run. The role must allow the
-        /// <code>iam:PassRole</code> action.
+        /// <c>iam:PassRole</c> action.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -264,6 +265,25 @@ namespace Amazon.DatabaseMigrationService.Model
         internal bool IsSetServiceAccessRoleArn()
         {
             return this._serviceAccessRoleArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Tags. 
+        /// <para>
+        /// One or more tags to be assigned to the premigration assessment run that you want to
+        /// start.
+        /// </para>
+        /// </summary>
+        public List<Tag> Tags
+        {
+            get { return this._tags; }
+            set { this._tags = value; }
+        }
+
+        // Check to see if Tags property is set
+        internal bool IsSetTags()
+        {
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

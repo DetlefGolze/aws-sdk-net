@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchRUM.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.CloudWatchRUM.Model
     /// 
     ///  
     /// <para>
-    /// If some metric definition IDs specified in a <code>BatchDeleteRumMetricDefinitions</code>
+    /// If some metric definition IDs specified in a <c>BatchDeleteRumMetricDefinitions</c>
     /// operations are not valid, those metric definitions fail and return errors, but all
     /// valid metric definition IDs in the same operation are still deleted.
     /// </para>
     ///  
     /// <para>
-    /// The maximum number of metric definitions that you can specify in one <code>BatchDeleteRumMetricDefinitions</code>
+    /// The maximum number of metric definitions that you can specify in one <c>BatchDeleteRumMetricDefinitions</c>
     /// operation is 200.
     /// </para>
     /// </summary>
@@ -49,7 +50,7 @@ namespace Amazon.CloudWatchRUM.Model
         private string _appMonitorName;
         private MetricDestination _destination;
         private string _destinationArn;
-        private List<string> _metricDefinitionIds = new List<string>();
+        private List<string> _metricDefinitionIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AppMonitorName. 
@@ -74,7 +75,7 @@ namespace Amazon.CloudWatchRUM.Model
         /// Gets and sets the property Destination. 
         /// <para>
         /// Defines the destination where you want to stop sending the specified metrics. Valid
-        /// values are <code>CloudWatch</code> and <code>Evidently</code>. If you specify <code>Evidently</code>,
+        /// values are <c>CloudWatch</c> and <c>Evidently</c>. If you specify <c>Evidently</c>,
         /// you must also specify the ARN of the CloudWatchEvidently experiment that is to be
         /// the destination and an IAM role that has permission to write to the experiment.
         /// </para>
@@ -95,9 +96,8 @@ namespace Amazon.CloudWatchRUM.Model
         /// <summary>
         /// Gets and sets the property DestinationArn. 
         /// <para>
-        /// This parameter is required if <code>Destination</code> is <code>Evidently</code>.
-        /// If <code>Destination</code> is <code>CloudWatch</code>, do not use this parameter.
-        /// 
+        /// This parameter is required if <c>Destination</c> is <c>Evidently</c>. If <c>Destination</c>
+        /// is <c>CloudWatch</c>, do not use this parameter. 
         /// </para>
         ///  
         /// <para>
@@ -134,7 +134,7 @@ namespace Amazon.CloudWatchRUM.Model
         // Check to see if MetricDefinitionIds property is set
         internal bool IsSetMetricDefinitionIds()
         {
-            return this._metricDefinitionIds != null && this._metricDefinitionIds.Count > 0; 
+            return this._metricDefinitionIds != null && (this._metricDefinitionIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

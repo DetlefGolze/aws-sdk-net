@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.CognitoIdentityProvider.Model
     /// </summary>
     public partial class AdminListUserAuthEventsResponse : AmazonWebServiceResponse
     {
-        private List<AuthEventType> _authEvents = new List<AuthEventType>();
+        private List<AuthEventType> _authEvents = AWSConfigs.InitializeCollections ? new List<AuthEventType>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property AuthEvents. 
         /// <para>
-        /// The response object. It includes the <code>EventID</code>, <code>EventType</code>,
-        /// <code>CreationDate</code>, <code>EventRisk</code>, and <code>EventResponse</code>.
+        /// The response object. It includes the <c>EventID</c>, <c>EventType</c>, <c>CreationDate</c>,
+        /// <c>EventRisk</c>, and <c>EventResponse</c>.
         /// </para>
         /// </summary>
         public List<AuthEventType> AuthEvents
@@ -52,13 +53,16 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if AuthEvents property is set
         internal bool IsSetAuthEvents()
         {
-            return this._authEvents != null && this._authEvents.Count > 0; 
+            return this._authEvents != null && (this._authEvents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A pagination token.
+        /// The identifier that Amazon Cognito returned with the previous request to this operation.
+        /// When you include a pagination token in your request, Amazon Cognito returns the next
+        /// set of items in the list. By use of this token, you can paginate through the full
+        /// list of items.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=131072)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFRegional.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.WAFRegional.Model
         /// <summary>
         /// Gets and sets the property RuleGroup. 
         /// <para>
-        /// Information about the <a>RuleGroup</a> that you specified in the <code>GetRuleGroup</code>
+        /// Information about the <a>RuleGroup</a> that you specified in the <c>GetRuleGroup</c>
         /// request. 
         /// </para>
         /// </summary>

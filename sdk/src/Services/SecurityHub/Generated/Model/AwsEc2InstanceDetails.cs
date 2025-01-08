@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -35,13 +36,13 @@ namespace Amazon.SecurityHub.Model
     {
         private string _iamInstanceProfileArn;
         private string _imageId;
-        private List<string> _ipV4Addresses = new List<string>();
-        private List<string> _ipV6Addresses = new List<string>();
+        private List<string> _ipV4Addresses = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _ipV6Addresses = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _keyName;
         private string _launchedAt;
         private AwsEc2InstanceMetadataOptions _metadataOptions;
         private AwsEc2InstanceMonitoringDetails _monitoring;
-        private List<AwsEc2InstanceNetworkInterfacesDetails> _networkInterfaces = new List<AwsEc2InstanceNetworkInterfacesDetails>();
+        private List<AwsEc2InstanceNetworkInterfacesDetails> _networkInterfaces = AWSConfigs.InitializeCollections ? new List<AwsEc2InstanceNetworkInterfacesDetails>() : null;
         private string _subnetId;
         private string _type;
         private string _virtualizationType;
@@ -98,7 +99,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if IpV4Addresses property is set
         internal bool IsSetIpV4Addresses()
         {
-            return this._ipV4Addresses != null && this._ipV4Addresses.Count > 0; 
+            return this._ipV4Addresses != null && (this._ipV4Addresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -116,7 +117,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if IpV6Addresses property is set
         internal bool IsSetIpV6Addresses()
         {
-            return this._ipV6Addresses != null && this._ipV6Addresses.Count > 0; 
+            return this._ipV6Addresses != null && (this._ipV6Addresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -144,9 +145,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string LaunchedAt
@@ -201,8 +201,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property NetworkInterfaces. 
         /// <para>
         /// The identifiers of the network interfaces for the EC2 instance. The details for each
-        /// network interface are in a corresponding <code>AwsEc2NetworkInterfacesDetails</code>
-        /// object.
+        /// network interface are in a corresponding <c>AwsEc2NetworkInterfacesDetails</c> object.
         /// </para>
         /// </summary>
         public List<AwsEc2InstanceNetworkInterfacesDetails> NetworkInterfaces
@@ -214,7 +213,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if NetworkInterfaces property is set
         internal bool IsSetNetworkInterfaces()
         {
-            return this._networkInterfaces != null && this._networkInterfaces.Count > 0; 
+            return this._networkInterfaces != null && (this._networkInterfaces.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

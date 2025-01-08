@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -35,7 +36,8 @@ namespace Amazon.DynamoDBv2.Model
     {
         private BillingMode _billingMode;
         private long? _itemCount;
-        private List<KeySchemaElement> _keySchema = new List<KeySchemaElement>();
+        private List<KeySchemaElement> _keySchema = AWSConfigs.InitializeCollections ? new List<KeySchemaElement>() : null;
+        private OnDemandThroughput _onDemandThroughput;
         private ProvisionedThroughput _provisionedThroughput;
         private string _tableArn;
         private DateTime? _tableCreationDateTime;
@@ -51,13 +53,13 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PROVISIONED</code> - Sets the read/write capacity mode to <code>PROVISIONED</code>.
-        /// We recommend using <code>PROVISIONED</code> for predictable workloads.
+        ///  <c>PROVISIONED</c> - Sets the read/write capacity mode to <c>PROVISIONED</c>. We
+        /// recommend using <c>PROVISIONED</c> for predictable workloads.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PAY_PER_REQUEST</code> - Sets the read/write capacity mode to <code>PAY_PER_REQUEST</code>.
-        /// We recommend using <code>PAY_PER_REQUEST</code> for unpredictable workloads. 
+        ///  <c>PAY_PER_REQUEST</c> - Sets the read/write capacity mode to <c>PAY_PER_REQUEST</c>.
+        /// We recommend using <c>PAY_PER_REQUEST</c> for unpredictable workloads. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -108,7 +110,22 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if KeySchema property is set
         internal bool IsSetKeySchema()
         {
-            return this._keySchema != null && this._keySchema.Count > 0; 
+            return this._keySchema != null && (this._keySchema.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property OnDemandThroughput.
+        /// </summary>
+        public OnDemandThroughput OnDemandThroughput
+        {
+            get { return this._onDemandThroughput; }
+            set { this._onDemandThroughput = value; }
+        }
+
+        // Check to see if OnDemandThroughput property is set
+        internal bool IsSetOnDemandThroughput()
+        {
+            return this._onDemandThroughput != null;
         }
 
         /// <summary>
@@ -136,6 +153,7 @@ namespace Amazon.DynamoDBv2.Model
         /// ARN of the table for which backup was created. 
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=1024)]
         public string TableArn
         {
             get { return this._tableArn; }

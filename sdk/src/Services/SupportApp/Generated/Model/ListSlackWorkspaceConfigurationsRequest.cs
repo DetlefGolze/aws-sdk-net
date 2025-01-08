@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SupportApp.Model
 {
     /// <summary>
@@ -40,8 +41,8 @@ namespace Amazon.SupportApp.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If the results of a search are large, the API only returns a portion of the results
-        /// and includes a <code>nextToken</code> pagination token in the response. To retrieve
-        /// the next batch of results, reissue the search request and include the returned token.
+        /// and includes a <c>nextToken</c> pagination token in the response. To retrieve the
+        /// next batch of results, reissue the search request and include the returned token.
         /// When the API returns the last set of results, the response doesn't include a pagination
         /// token value.
         /// </para>

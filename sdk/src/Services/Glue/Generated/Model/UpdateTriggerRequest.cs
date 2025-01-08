@@ -26,11 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateTrigger operation.
     /// Updates a trigger definition.
+    /// 
+    ///  
+    /// <para>
+    /// Job arguments may be logged. Do not pass plaintext secrets as arguments. Retrieve
+    /// secrets from a Glue Connection, Amazon Web Services Secrets Manager or other secret
+    /// management mechanism if you intend to keep them within the Job.
+    /// </para>
     /// </summary>
     public partial class UpdateTriggerRequest : AmazonGlueRequest
     {

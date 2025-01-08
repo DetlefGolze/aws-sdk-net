@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Neptune.Model
     /// </summary>
     public partial class DescribePendingMaintenanceActionsRequest : AmazonNeptuneRequest
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private string _marker;
         private int? _maxRecords;
         private string _resourceIdentifier;
@@ -52,15 +53,15 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>db-cluster-id</code> - Accepts DB cluster identifiers and DB cluster Amazon
-        /// Resource Names (ARNs). The results list will only include pending maintenance actions
-        /// for the DB clusters identified by these ARNs.
+        ///  <c>db-cluster-id</c> - Accepts DB cluster identifiers and DB cluster Amazon Resource
+        /// Names (ARNs). The results list will only include pending maintenance actions for the
+        /// DB clusters identified by these ARNs.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>db-instance-id</code> - Accepts DB instance identifiers and DB instance ARNs.
-        /// The results list will only include pending maintenance actions for the DB instances
-        /// identified by these ARNs.
+        ///  <c>db-instance-id</c> - Accepts DB instance identifiers and DB instance ARNs. The
+        /// results list will only include pending maintenance actions for the DB instances identified
+        /// by these ARNs.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -73,15 +74,15 @@ namespace Amazon.Neptune.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        ///  An optional pagination token provided by a previous <code>DescribePendingMaintenanceActions</code>
+        ///  An optional pagination token provided by a previous <c>DescribePendingMaintenanceActions</c>
         /// request. If this parameter is specified, the response includes only records beyond
-        /// the marker, up to a number of records specified by <code>MaxRecords</code>.
+        /// the marker, up to a number of records specified by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -100,8 +101,8 @@ namespace Amazon.Neptune.Model
         /// Gets and sets the property MaxRecords. 
         /// <para>
         ///  The maximum number of records to include in the response. If more records exist than
-        /// the specified <code>MaxRecords</code> value, a pagination token called a marker is
-        /// included in the response so that the remaining results can be retrieved.
+        /// the specified <c>MaxRecords</c> value, a pagination token called a marker is included
+        /// in the response so that the remaining results can be retrieved.
         /// </para>
         ///  
         /// <para>

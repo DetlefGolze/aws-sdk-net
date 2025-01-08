@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -36,13 +37,17 @@ namespace Amazon.S3Control.Model
         private DateTime? _createdAfter;
         private DateTime? _createdBefore;
         private bool? _eligibleForReplication;
-        private List<string> _objectReplicationStatuses = new List<string>();
+        private KeyNameConstraint _keyNameConstraint;
+        private List<string> _matchAnyStorageClass = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _objectReplicationStatuses = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private long? _objectSizeGreaterThanBytes;
+        private long? _objectSizeLessThanBytes;
 
         /// <summary>
         /// Gets and sets the property CreatedAfter. 
         /// <para>
-        /// If provided, the generated manifest should include only source bucket objects that
-        /// were created after this time.
+        /// If provided, the generated manifest includes only source bucket objects that were
+        /// created after this time.
         /// </para>
         /// </summary>
         public DateTime CreatedAfter
@@ -60,8 +65,8 @@ namespace Amazon.S3Control.Model
         /// <summary>
         /// Gets and sets the property CreatedBefore. 
         /// <para>
-        /// If provided, the generated manifest should include only source bucket objects that
-        /// were created before this time.
+        /// If provided, the generated manifest includes only source bucket objects that were
+        /// created before this time.
         /// </para>
         /// </summary>
         public DateTime CreatedBefore
@@ -96,10 +101,49 @@ namespace Amazon.S3Control.Model
         }
 
         /// <summary>
+        /// Gets and sets the property KeyNameConstraint. 
+        /// <para>
+        /// If provided, the generated manifest includes only source bucket objects whose object
+        /// keys match the string constraints specified for <c>MatchAnyPrefix</c>, <c>MatchAnySuffix</c>,
+        /// and <c>MatchAnySubstring</c>.
+        /// </para>
+        /// </summary>
+        public KeyNameConstraint KeyNameConstraint
+        {
+            get { return this._keyNameConstraint; }
+            set { this._keyNameConstraint = value; }
+        }
+
+        // Check to see if KeyNameConstraint property is set
+        internal bool IsSetKeyNameConstraint()
+        {
+            return this._keyNameConstraint != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property MatchAnyStorageClass. 
+        /// <para>
+        /// If provided, the generated manifest includes only source bucket objects that are stored
+        /// with the specified storage class.
+        /// </para>
+        /// </summary>
+        public List<string> MatchAnyStorageClass
+        {
+            get { return this._matchAnyStorageClass; }
+            set { this._matchAnyStorageClass = value; }
+        }
+
+        // Check to see if MatchAnyStorageClass property is set
+        internal bool IsSetMatchAnyStorageClass()
+        {
+            return this._matchAnyStorageClass != null && (this._matchAnyStorageClass.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property ObjectReplicationStatuses. 
         /// <para>
-        /// If provided, the generated manifest should include only source bucket objects that
-        /// have one of the specified Replication statuses.
+        /// If provided, the generated manifest includes only source bucket objects that have
+        /// one of the specified Replication statuses.
         /// </para>
         /// </summary>
         public List<string> ObjectReplicationStatuses
@@ -111,7 +155,45 @@ namespace Amazon.S3Control.Model
         // Check to see if ObjectReplicationStatuses property is set
         internal bool IsSetObjectReplicationStatuses()
         {
-            return this._objectReplicationStatuses != null && this._objectReplicationStatuses.Count > 0; 
+            return this._objectReplicationStatuses != null && (this._objectReplicationStatuses.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ObjectSizeGreaterThanBytes. 
+        /// <para>
+        /// If provided, the generated manifest includes only source bucket objects whose file
+        /// size is greater than the specified number of bytes.
+        /// </para>
+        /// </summary>
+        public long ObjectSizeGreaterThanBytes
+        {
+            get { return this._objectSizeGreaterThanBytes.GetValueOrDefault(); }
+            set { this._objectSizeGreaterThanBytes = value; }
+        }
+
+        // Check to see if ObjectSizeGreaterThanBytes property is set
+        internal bool IsSetObjectSizeGreaterThanBytes()
+        {
+            return this._objectSizeGreaterThanBytes.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ObjectSizeLessThanBytes. 
+        /// <para>
+        /// If provided, the generated manifest includes only source bucket objects whose file
+        /// size is less than the specified number of bytes.
+        /// </para>
+        /// </summary>
+        public long ObjectSizeLessThanBytes
+        {
+            get { return this._objectSizeLessThanBytes.GetValueOrDefault(); }
+            set { this._objectSizeLessThanBytes = value; }
+        }
+
+        // Check to see if ObjectSizeLessThanBytes property is set
+        internal bool IsSetObjectSizeLessThanBytes()
+        {
+            return this._objectSizeLessThanBytes.HasValue; 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FIS.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.FIS.Model
     /// </summary>
     public partial class ListExperimentTemplatesResponse : AmazonWebServiceResponse
     {
-        private List<ExperimentTemplateSummary> _experimentTemplates = new List<ExperimentTemplateSummary>();
+        private List<ExperimentTemplateSummary> _experimentTemplates = AWSConfigs.InitializeCollections ? new List<ExperimentTemplateSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.FIS.Model
         // Check to see if ExperimentTemplates property is set
         internal bool IsSetExperimentTemplates()
         {
-            return this._experimentTemplates != null && this._experimentTemplates.Count > 0; 
+            return this._experimentTemplates != null && (this._experimentTemplates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to use to retrieve the next page of results. This value is <code>null</code>
-        /// when there are no more results to return.
+        /// The token to use to retrieve the next page of results. This value is <c>null</c> when
+        /// there are no more results to return.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

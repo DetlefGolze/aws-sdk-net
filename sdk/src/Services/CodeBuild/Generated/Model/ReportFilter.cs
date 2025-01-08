@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
-    /// A filter used to return reports with the status specified by the input <code>status</code>
+    /// A filter used to return reports with the status specified by the input <c>status</c>
     /// parameter.
     /// </summary>
     public partial class ReportFilter

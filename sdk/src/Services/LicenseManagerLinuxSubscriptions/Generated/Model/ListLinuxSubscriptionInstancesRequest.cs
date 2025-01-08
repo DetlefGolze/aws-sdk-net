@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LicenseManagerLinuxSubscriptions.Model
 {
     /// <summary>
@@ -35,69 +36,75 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model
     /// </summary>
     public partial class ListLinuxSubscriptionInstancesRequest : AmazonLicenseManagerLinuxSubscriptionsRequest
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// An array of structures that you can use to filter the results to those that match
-        /// one or more sets of key-value pairs that you specify. For example, you can filter
-        /// by the name of <code>AmiID</code> with an optional operator to see subscriptions that
-        /// match, partially match, or don't match a certain Amazon Machine Image (AMI) ID.
+        /// An array of structures that you can use to filter the results by your specified criteria.
+        /// For example, you can specify <c>Region</c> in the <c>Name</c>, with the <c>contains</c>
+        /// operator to list all subscriptions that match a partial string in the <c>Value</c>,
+        /// such as <c>us-west</c>.
         /// </para>
         ///  
         /// <para>
-        /// The valid names for this filter are:
+        /// For each filter, you can specify one of the following values for the <c>Name</c> key
+        /// to streamline results:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AmiID</code> 
+        ///  <c>AccountID</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>InstanceID</code> 
+        ///  <c>AmiID</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AccountID</code> 
+        ///  <c>DualSubscription</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Status</code> 
+        ///  <c>InstanceID</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Region</code> 
+        ///  <c>InstanceType</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UsageOperation</code> 
+        ///  <c>ProductCode</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ProductCode</code> 
+        ///  <c>Region</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>InstanceType</code> 
+        ///  <c>Status</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>UsageOperation</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// The valid Operators for this filter are:
+        /// For each filter, you can use one of the following <c>Operator</c> values to define
+        /// the behavior of the filter:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>contains</code> 
+        ///  <c>contains</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>equals</code> 
+        ///  <c>equals</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Notequal</code> 
+        ///  <c>Notequal</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -110,13 +117,13 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// Maximum number of results to return in a single call.
+        /// The maximum items to return in a request.
         /// </para>
         /// </summary>
         public int MaxResults
@@ -134,7 +141,8 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Token for the next set of results.
+        /// A token to specify where to start paginating. This is the nextToken from a previously
+        /// truncated response.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=16384)]

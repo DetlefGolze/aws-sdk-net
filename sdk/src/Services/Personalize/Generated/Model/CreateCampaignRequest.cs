@@ -26,46 +26,61 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Personalize.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateCampaign operation.
+    /// <important> 
+    /// <para>
+    ///  You incur campaign costs while it is active. To avoid unnecessary costs, make sure
+    /// to delete the campaign when you are finished. For information about campaign costs,
+    /// see <a href="https://aws.amazon.com/personalize/pricing/">Amazon Personalize pricing</a>.
+    /// </para>
+    ///  </important> 
+    /// <para>
     /// Creates a campaign that deploys a solution version. When a client calls the <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html">GetRecommendations</a>
     /// and <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetPersonalizedRanking.html">GetPersonalizedRanking</a>
     /// APIs, a campaign is specified in the request.
-    /// 
+    /// </para>
     ///  
     /// <para>
     ///  <b>Minimum Provisioned TPS and Auto-Scaling</b> 
     /// </para>
     ///  <important> 
     /// <para>
-    ///  A high <code>minProvisionedTPS</code> will increase your bill. We recommend starting
-    /// with 1 for <code>minProvisionedTPS</code> (the default). Track your usage using Amazon
-    /// CloudWatch metrics, and increase the <code>minProvisionedTPS</code> as necessary.
+    ///  A high <c>minProvisionedTPS</c> will increase your cost. We recommend starting with
+    /// 1 for <c>minProvisionedTPS</c> (the default). Track your usage using Amazon CloudWatch
+    /// metrics, and increase the <c>minProvisionedTPS</c> as necessary.
     /// </para>
     ///  </important> 
     /// <para>
-    /// A transaction is a single <code>GetRecommendations</code> or <code>GetPersonalizedRanking</code>
-    /// call. Transactions per second (TPS) is the throughput and unit of billing for Amazon
-    /// Personalize. The minimum provisioned TPS (<code>minProvisionedTPS</code>) specifies
-    /// the baseline throughput provisioned by Amazon Personalize, and thus, the minimum billing
-    /// charge. 
+    ///  When you create an Amazon Personalize campaign, you can specify the minimum provisioned
+    /// transactions per second (<c>minProvisionedTPS</c>) for the campaign. This is the baseline
+    /// transaction throughput for the campaign provisioned by Amazon Personalize. It sets
+    /// the minimum billing charge for the campaign while it is active. A transaction is a
+    /// single <c>GetRecommendations</c> or <c>GetPersonalizedRanking</c> request. The default
+    /// <c>minProvisionedTPS</c> is 1.
     /// </para>
     ///  
     /// <para>
-    ///  If your TPS increases beyond <code>minProvisionedTPS</code>, Amazon Personalize auto-scales
-    /// the provisioned capacity up and down, but never below <code>minProvisionedTPS</code>.
-    /// There's a short time delay while the capacity is increased that might cause loss of
-    /// transactions.
+    ///  If your TPS increases beyond the <c>minProvisionedTPS</c>, Amazon Personalize auto-scales
+    /// the provisioned capacity up and down, but never below <c>minProvisionedTPS</c>. There's
+    /// a short time delay while the capacity is increased that might cause loss of transactions.
+    /// When your traffic reduces, capacity returns to the <c>minProvisionedTPS</c>. 
     /// </para>
     ///  
     /// <para>
-    /// The actual TPS used is calculated as the average requests/second within a 5-minute
-    /// window. You pay for maximum of either the minimum provisioned TPS or the actual TPS.
-    /// We recommend starting with a low <code>minProvisionedTPS</code>, track your usage
-    /// using Amazon CloudWatch metrics, and then increase the <code>minProvisionedTPS</code>
+    /// You are charged for the the minimum provisioned TPS or, if your requests exceed the
+    /// <c>minProvisionedTPS</c>, the actual TPS. The actual TPS is the total number of recommendation
+    /// requests you make. We recommend starting with a low <c>minProvisionedTPS</c>, track
+    /// your usage using Amazon CloudWatch metrics, and then increase the <c>minProvisionedTPS</c>
     /// as necessary.
+    /// </para>
+    ///  
+    /// <para>
+    /// For more information about campaign costs, see <a href="https://aws.amazon.com/personalize/pricing/">Amazon
+    /// Personalize pricing</a>.
     /// </para>
     ///  
     /// <para>
@@ -89,8 +104,8 @@ namespace Amazon.Personalize.Model
     /// </para>
     ///  <note> 
     /// <para>
-    /// Wait until the <code>status</code> of the campaign is <code>ACTIVE</code> before asking
-    /// the campaign for recommendations.
+    /// Wait until the <c>status</c> of the campaign is <c>ACTIVE</c> before asking the campaign
+    /// for recommendations.
     /// </para>
     ///  </note> 
     /// <para>
@@ -124,7 +139,7 @@ namespace Amazon.Personalize.Model
         private int? _minProvisionedTPS;
         private string _name;
         private string _solutionVersionArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property CampaignConfig. 
@@ -148,9 +163,9 @@ namespace Amazon.Personalize.Model
         /// Gets and sets the property MinProvisionedTPS. 
         /// <para>
         /// Specifies the requested minimum provisioned transactions (recommendations) per second
-        /// that Amazon Personalize will support. A high <code>minProvisionedTPS</code> will increase
-        /// your bill. We recommend starting with 1 for <code>minProvisionedTPS</code> (the default).
-        /// Track your usage using Amazon CloudWatch metrics, and increase the <code>minProvisionedTPS</code>
+        /// that Amazon Personalize will support. A high <c>minProvisionedTPS</c> will increase
+        /// your bill. We recommend starting with 1 for <c>minProvisionedTPS</c> (the default).
+        /// Track your usage using Amazon CloudWatch metrics, and increase the <c>minProvisionedTPS</c>
         /// as necessary.
         /// </para>
         /// </summary>
@@ -189,7 +204,21 @@ namespace Amazon.Personalize.Model
         /// <summary>
         /// Gets and sets the property SolutionVersionArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the solution version to deploy.
+        /// The Amazon Resource Name (ARN) of the trained model to deploy with the campaign. To
+        /// specify the latest solution version of your solution, specify the ARN of your <i>solution</i>
+        /// in <c>SolutionArn/$LATEST</c> format. You must use this format if you set <c>syncWithLatestSolutionVersion</c>
+        /// to <c>True</c> in the <a href="https://docs.aws.amazon.com/personalize/latest/dg/API_CampaignConfig.html">CampaignConfig</a>.
+        /// 
+        /// </para>
+        ///  
+        /// <para>
+        ///  To deploy a model that isn't the latest solution version of your solution, specify
+        /// the ARN of the solution version. 
+        /// </para>
+        ///  
+        /// <para>
+        ///  For more information about automatic campaign updates, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/campaigns.html#create-campaign-automatic-latest-sv-update">Enabling
+        /// automatic campaign updates</a>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=256)]
@@ -222,7 +251,7 @@ namespace Amazon.Personalize.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

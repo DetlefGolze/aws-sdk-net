@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the ReleaseHosts operation.
     /// When you no longer want to use an On-Demand Dedicated Host it can be released. On-Demand
-    /// billing is stopped and the host goes into <code>released</code> state. The host ID
-    /// of Dedicated Hosts that have been released can no longer be specified in another request,
-    /// for example, to modify the host. You must stop or terminate all instances on a host
-    /// before it can be released.
+    /// billing is stopped and the host goes into <c>released</c> state. The host ID of Dedicated
+    /// Hosts that have been released can no longer be specified in another request, for example,
+    /// to modify the host. You must stop or terminate all instances on a host before it can
+    /// be released.
     /// 
     ///  
     /// <para>
@@ -49,7 +50,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class ReleaseHostsRequest : AmazonEC2Request
     {
-        private List<string> _hostIds = new List<string>();
+        private List<string> _hostIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property HostIds. 
@@ -67,7 +68,7 @@ namespace Amazon.EC2.Model
         // Check to see if HostIds property is set
         internal bool IsSetHostIds()
         {
-            return this._hostIds != null && this._hostIds.Count > 0; 
+            return this._hostIds != null && (this._hostIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

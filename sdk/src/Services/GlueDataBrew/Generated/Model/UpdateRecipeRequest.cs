@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GlueDataBrew.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateRecipe operation.
-    /// Modifies the definition of the <code>LATEST_WORKING</code> version of a DataBrew recipe.
+    /// Modifies the definition of the <c>LATEST_WORKING</c> version of a DataBrew recipe.
     /// </summary>
     public partial class UpdateRecipeRequest : AmazonGlueDataBrewRequest
     {
         private string _description;
         private string _name;
-        private List<RecipeStep> _steps = new List<RecipeStep>();
+        private List<RecipeStep> _steps = AWSConfigs.InitializeCollections ? new List<RecipeStep>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -92,7 +93,7 @@ namespace Amazon.GlueDataBrew.Model
         // Check to see if Steps property is set
         internal bool IsSetSteps()
         {
-            return this._steps != null && this._steps.Count > 0; 
+            return this._steps != null && (this._steps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

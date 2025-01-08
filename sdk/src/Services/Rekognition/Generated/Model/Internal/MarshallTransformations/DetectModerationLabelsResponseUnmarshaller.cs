@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Rekognition.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -51,6 +52,12 @@ namespace Amazon.Rekognition.Model.Internal.MarshallTransformations
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("ContentTypes", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<ContentType, ContentTypeUnmarshaller>(ContentTypeUnmarshaller.Instance);
+                    response.ContentTypes = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("HumanLoopActivationOutput", targetDepth))
                 {
                     var unmarshaller = HumanLoopActivationOutputUnmarshaller.Instance;
@@ -67,6 +74,12 @@ namespace Amazon.Rekognition.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.ModerationModelVersion = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ProjectVersion", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.ProjectVersion = unmarshaller.Unmarshall(context);
                     continue;
                 }
             }
@@ -123,6 +136,14 @@ namespace Amazon.Rekognition.Model.Internal.MarshallTransformations
                 if (errorResponse.Code != null && errorResponse.Code.Equals("ProvisionedThroughputExceededException"))
                 {
                     return ProvisionedThroughputExceededExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("ResourceNotFoundException"))
+                {
+                    return ResourceNotFoundExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("ResourceNotReadyException"))
+                {
+                    return ResourceNotReadyExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("ThrottlingException"))
                 {

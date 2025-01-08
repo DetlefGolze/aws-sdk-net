@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.EMRServerless.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.EMRServerless
 {
     /// <summary>
-    /// Interface for accessing EMRServerless
+    /// <para>Interface for accessing EMRServerless</para>
     ///
     /// Amazon EMR Serverless is a new deployment option for Amazon EMR. Amazon EMR Serverless
     /// provides a serverless runtime environment that simplifies running analytics applications
@@ -37,24 +38,23 @@ namespace Amazon.EMRServerless
     /// 
     ///  
     /// <para>
-    /// The API reference to Amazon EMR Serverless is <code>emr-serverless</code>. The <code>emr-serverless</code>
+    /// The API reference to Amazon EMR Serverless is <c>emr-serverless</c>. The <c>emr-serverless</c>
     /// prefix is used in the following scenarios: 
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// It is the prefix in the CLI commands for Amazon EMR Serverless. For example, <code>aws
-    /// emr-serverless start-job-run</code>.
+    /// It is the prefix in the CLI commands for Amazon EMR Serverless. For example, <c>aws
+    /// emr-serverless start-job-run</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
     /// It is the prefix before IAM policy actions for Amazon EMR Serverless. For example,
-    /// <code>"Action": ["emr-serverless:StartJobRun"]</code>. For more information, see <a
-    /// href="https://docs.aws.amazon.com/emr/latest/EMR-Serverless-UserGuide/security_iam_service-with-iam.html#security_iam_service-with-iam-id-based-policies-actions">Policy
+    /// <c>"Action": ["emr-serverless:StartJobRun"]</c>. For more information, see <a href="https://docs.aws.amazon.com/emr/latest/EMR-Serverless-UserGuide/security_iam_service-with-iam.html#security_iam_service-with-iam-id-based-policies-actions">Policy
     /// actions for Amazon EMR Serverless</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// It is the prefix used in Amazon EMR Serverless service endpoints. For example, <code>emr-serverless.us-east-2.amazonaws.com</code>.
+    /// It is the prefix used in Amazon EMR Serverless service endpoints. For example, <c>emr-serverless.us-east-2.amazonaws.com</c>.
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -427,6 +427,55 @@ namespace Amazon.EMRServerless
         /// <returns>Returns a  ListApplicationsResult from EMRServerless.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/emr-serverless-2021-07-13/ListApplications">REST API Reference for ListApplications Operation</seealso>
         ListApplicationsResponse EndListApplications(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  ListJobRunAttempts
+
+
+        /// <summary>
+        /// Lists all attempt of a job run.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListJobRunAttempts service method.</param>
+        /// 
+        /// <returns>The response from the ListJobRunAttempts service method, as returned by EMRServerless.</returns>
+        /// <exception cref="Amazon.EMRServerless.Model.InternalServerException">
+        /// Request processing failed because of an error or failure with the service.
+        /// </exception>
+        /// <exception cref="Amazon.EMRServerless.Model.ResourceNotFoundException">
+        /// The specified resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.EMRServerless.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/emr-serverless-2021-07-13/ListJobRunAttempts">REST API Reference for ListJobRunAttempts Operation</seealso>
+        ListJobRunAttemptsResponse ListJobRunAttempts(ListJobRunAttemptsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListJobRunAttempts operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListJobRunAttempts operation on AmazonEMRServerlessClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListJobRunAttempts
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/emr-serverless-2021-07-13/ListJobRunAttempts">REST API Reference for ListJobRunAttempts Operation</seealso>
+        IAsyncResult BeginListJobRunAttempts(ListJobRunAttemptsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListJobRunAttempts operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListJobRunAttempts.</param>
+        /// 
+        /// <returns>Returns a  ListJobRunAttemptsResult from EMRServerless.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/emr-serverless-2021-07-13/ListJobRunAttempts">REST API Reference for ListJobRunAttempts Operation</seealso>
+        ListJobRunAttemptsResponse EndListJobRunAttempts(IAsyncResult asyncResult);
 
         #endregion
         

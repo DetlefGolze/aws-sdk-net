@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.Lightsail.Model
     /// </para>
     ///  
     /// <para>
-    /// When this action creates an alarm, the alarm state is immediately set to <code>INSUFFICIENT_DATA</code>.
+    /// When this action creates an alarm, the alarm state is immediately set to <c>INSUFFICIENT_DATA</c>.
     /// The alarm is then evaluated and its state is set appropriately. Any actions associated
     /// with the new state are then executed.
     /// </para>
@@ -56,13 +57,13 @@ namespace Amazon.Lightsail.Model
     {
         private string _alarmName;
         private ComparisonOperator _comparisonOperator;
-        private List<string> _contactProtocols = new List<string>();
+        private List<string> _contactProtocols = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _datapointsToAlarm;
         private int? _evaluationPeriods;
         private MetricName _metricName;
         private string _monitoredResourceName;
         private bool? _notificationEnabled;
-        private List<string> _notificationTriggers = new List<string>();
+        private List<string> _notificationTriggers = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private double? _threshold;
         private TreatMissingData _treatMissingData;
 
@@ -109,8 +110,8 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property ContactProtocols. 
         /// <para>
-        /// The contact protocols to use for the alarm, such as <code>Email</code>, <code>SMS</code>
-        /// (text messaging), or both.
+        /// The contact protocols to use for the alarm, such as <c>Email</c>, <c>SMS</c> (text
+        /// messaging), or both.
         /// </para>
         ///  
         /// <para>
@@ -121,12 +122,12 @@ namespace Amazon.Lightsail.Model
         /// <para>
         /// A notification is not sent if a contact protocol is not specified, if the specified
         /// contact protocol is not configured in the Amazon Web Services Region, or if notifications
-        /// are not enabled for the alarm using the <code>notificationEnabled</code> paramater.
+        /// are not enabled for the alarm using the <c>notificationEnabled</c> paramater.
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>CreateContactMethod</code> action to configure a contact protocol in
-        /// an Amazon Web Services Region.
+        /// Use the <c>CreateContactMethod</c> action to configure a contact protocol in an Amazon
+        /// Web Services Region.
         /// </para>
         /// </summary>
         public List<string> ContactProtocols
@@ -138,14 +139,14 @@ namespace Amazon.Lightsail.Model
         // Check to see if ContactProtocols property is set
         internal bool IsSetContactProtocols()
         {
-            return this._contactProtocols != null && this._contactProtocols.Count > 0; 
+            return this._contactProtocols != null && (this._contactProtocols.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DatapointsToAlarm. 
         /// <para>
         /// The number of data points that must be not within the specified threshold to trigger
-        /// the alarm. If you are setting an "M out of N" alarm, this value (<code>datapointsToAlarm</code>)
+        /// the alarm. If you are setting an "M out of N" alarm, this value (<c>datapointsToAlarm</c>)
         /// is the M.
         /// </para>
         /// </summary>
@@ -165,8 +166,8 @@ namespace Amazon.Lightsail.Model
         /// Gets and sets the property EvaluationPeriods. 
         /// <para>
         /// The number of most recent periods over which data is compared to the specified threshold.
-        /// If you are setting an "M out of N" alarm, this value (<code>evaluationPeriods</code>)
-        /// is the N.
+        /// If you are setting an "M out of N" alarm, this value (<c>evaluationPeriods</c>) is
+        /// the N.
         /// </para>
         ///  
         /// <para>
@@ -213,23 +214,22 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>Instances</b>: <code>BurstCapacityPercentage</code>, <code>BurstCapacityTime</code>,
-        /// <code>CPUUtilization</code>, <code>NetworkIn</code>, <code>NetworkOut</code>, <code>StatusCheckFailed</code>,
-        /// <code>StatusCheckFailed_Instance</code>, and <code>StatusCheckFailed_System</code>.
+        ///  <b>Instances</b>: <c>BurstCapacityPercentage</c>, <c>BurstCapacityTime</c>, <c>CPUUtilization</c>,
+        /// <c>NetworkIn</c>, <c>NetworkOut</c>, <c>StatusCheckFailed</c>, <c>StatusCheckFailed_Instance</c>,
+        /// and <c>StatusCheckFailed_System</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Load balancers</b>: <code>ClientTLSNegotiationErrorCount</code>, <code>HealthyHostCount</code>,
-        /// <code>UnhealthyHostCount</code>, <code>HTTPCode_LB_4XX_Count</code>, <code>HTTPCode_LB_5XX_Count</code>,
-        /// <code>HTTPCode_Instance_2XX_Count</code>, <code>HTTPCode_Instance_3XX_Count</code>,
-        /// <code>HTTPCode_Instance_4XX_Count</code>, <code>HTTPCode_Instance_5XX_Count</code>,
-        /// <code>InstanceResponseTime</code>, <code>RejectedConnectionCount</code>, and <code>RequestCount</code>.
+        ///  <b>Load balancers</b>: <c>ClientTLSNegotiationErrorCount</c>, <c>HealthyHostCount</c>,
+        /// <c>UnhealthyHostCount</c>, <c>HTTPCode_LB_4XX_Count</c>, <c>HTTPCode_LB_5XX_Count</c>,
+        /// <c>HTTPCode_Instance_2XX_Count</c>, <c>HTTPCode_Instance_3XX_Count</c>, <c>HTTPCode_Instance_4XX_Count</c>,
+        /// <c>HTTPCode_Instance_5XX_Count</c>, <c>InstanceResponseTime</c>, <c>RejectedConnectionCount</c>,
+        /// and <c>RequestCount</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Relational databases</b>: <code>CPUUtilization</code>, <code>DatabaseConnections</code>,
-        /// <code>DiskQueueDepth</code>, <code>FreeStorageSpace</code>, <code>NetworkReceiveThroughput</code>,
-        /// and <code>NetworkTransmitThroughput</code>.
+        ///  <b>Relational databases</b>: <c>CPUUtilization</c>, <c>DatabaseConnections</c>, <c>DiskQueueDepth</c>,
+        /// <c>FreeStorageSpace</c>, <c>NetworkReceiveThroughput</c>, and <c>NetworkTransmitThroughput</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -307,40 +307,38 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ALARM</code> - The metric is outside of the defined threshold.
+        ///  <c>ALARM</c> - The metric is outside of the defined threshold.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INSUFFICIENT_DATA</code> - The alarm has just started, the metric is not available,
+        ///  <c>INSUFFICIENT_DATA</c> - The alarm has just started, the metric is not available,
         /// or not enough data is available for the metric to determine the alarm state.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OK</code> - The metric is within the defined threshold.
+        ///  <c>OK</c> - The metric is within the defined threshold.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// When you specify a notification trigger, the <code>ALARM</code> state must be specified.
-        /// The <code>INSUFFICIENT_DATA</code> and <code>OK</code> states can be specified in
-        /// addition to the <code>ALARM</code> state.
+        /// When you specify a notification trigger, the <c>ALARM</c> state must be specified.
+        /// The <c>INSUFFICIENT_DATA</c> and <c>OK</c> states can be specified in addition to
+        /// the <c>ALARM</c> state.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If you specify <code>OK</code> as an alarm trigger, a notification is sent when the
-        /// alarm switches from an <code>ALARM</code> or <code>INSUFFICIENT_DATA</code> alarm
-        /// state to an <code>OK</code> state. This can be thought of as an <i>all clear</i> alarm
-        /// notification.
+        /// If you specify <c>OK</c> as an alarm trigger, a notification is sent when the alarm
+        /// switches from an <c>ALARM</c> or <c>INSUFFICIENT_DATA</c> alarm state to an <c>OK</c>
+        /// state. This can be thought of as an <i>all clear</i> alarm notification.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If you specify <code>INSUFFICIENT_DATA</code> as the alarm trigger, a notification
-        /// is sent when the alarm switches from an <code>OK</code> or <code>ALARM</code> alarm
-        /// state to an <code>INSUFFICIENT_DATA</code> state.
+        /// If you specify <c>INSUFFICIENT_DATA</c> as the alarm trigger, a notification is sent
+        /// when the alarm switches from an <c>OK</c> or <c>ALARM</c> alarm state to an <c>INSUFFICIENT_DATA</c>
+        /// state.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// The notification trigger defaults to <code>ALARM</code> if you don't specify this
-        /// parameter.
+        /// The notification trigger defaults to <c>ALARM</c> if you don't specify this parameter.
         /// </para>
         /// </summary>
         public List<string> NotificationTriggers
@@ -352,7 +350,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if NotificationTriggers property is set
         internal bool IsSetNotificationTriggers()
         {
-            return this._notificationTriggers != null && this._notificationTriggers.Count > 0; 
+            return this._notificationTriggers != null && (this._notificationTriggers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -385,25 +383,25 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>breaching</code> - Assume the missing data is not within the threshold. Missing
-        /// data counts towards the number of times the metric is not within the threshold.
+        ///  <c>breaching</c> - Assume the missing data is not within the threshold. Missing data
+        /// counts towards the number of times the metric is not within the threshold.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>notBreaching</code> - Assume the missing data is within the threshold. Missing
-        /// data does not count towards the number of times the metric is not within the threshold.
+        ///  <c>notBreaching</c> - Assume the missing data is within the threshold. Missing data
+        /// does not count towards the number of times the metric is not within the threshold.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ignore</code> - Ignore the missing data. Maintains the current alarm state.
+        ///  <c>ignore</c> - Ignore the missing data. Maintains the current alarm state.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>missing</code> - Missing data is treated as missing.
+        ///  <c>missing</c> - Missing data is treated as missing.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If <code>treatMissingData</code> is not specified, the default behavior of <code>missing</code>
+        /// If <c>treatMissingData</c> is not specified, the default behavior of <c>missing</c>
         /// is used.
         /// </para>
         /// </summary>

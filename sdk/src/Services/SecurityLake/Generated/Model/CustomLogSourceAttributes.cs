@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityLake.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.SecurityLake.Model
         /// <summary>
         /// Gets and sets the property DatabaseArn. 
         /// <para>
-        /// The ARN of the Glue database where results are written, such as: <code>arn:aws:daylight:us-east-1::database/sometable/*</code>.
+        /// The ARN of the Glue database where results are written, such as: <c>arn:aws:daylight:us-east-1::database/sometable/*</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1011)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property Enabled. 
         /// <para>
         /// To enable the instance for Amazon Web Services Nitro Enclaves, set this parameter
-        /// to <code>true</code>.
+        /// to <c>true</c>.
         /// </para>
         /// </summary>
         public bool Enabled

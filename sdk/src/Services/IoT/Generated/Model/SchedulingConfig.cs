@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -37,15 +38,15 @@ namespace Amazon.IoT.Model
     {
         private JobEndBehavior _endBehavior;
         private string _endTime;
-        private List<MaintenanceWindow> _maintenanceWindows = new List<MaintenanceWindow>();
+        private List<MaintenanceWindow> _maintenanceWindows = AWSConfigs.InitializeCollections ? new List<MaintenanceWindow>() : null;
         private string _startTime;
 
         /// <summary>
         /// Gets and sets the property EndBehavior. 
         /// <para>
         /// Specifies the end behavior for all job executions after a job reaches the selected
-        /// <code>endTime</code>. If <code>endTime</code> is not selected when creating the job,
-        /// then <code>endBehavior</code> does not apply.
+        /// <c>endTime</c>. If <c>endTime</c> is not selected when creating the job, then <c>endBehavior</c>
+        /// does not apply.
         /// </para>
         /// </summary>
         public JobEndBehavior EndBehavior
@@ -64,17 +65,17 @@ namespace Amazon.IoT.Model
         /// Gets and sets the property EndTime. 
         /// <para>
         /// The time a job will stop rollout of the job document to all devices in the target
-        /// group for a job. The <code>endTime</code> must take place no later than two years
-        /// from the current time and be scheduled a minimum of thirty minutes from the current
-        /// time. The minimum duration between <code>startTime</code> and <code>endTime</code>
-        /// is thirty minutes. The maximum duration between <code>startTime</code> and <code>endTime</code>
-        /// is two years. The date and time format for the <code>endTime</code> is YYYY-MM-DD
-        /// for the date and HH:MM for the time.
+        /// group for a job. The <c>endTime</c> must take place no later than two years from the
+        /// current time and be scheduled a minimum of thirty minutes from the current time. The
+        /// minimum duration between <c>startTime</c> and <c>endTime</c> is thirty minutes. The
+        /// maximum duration between <c>startTime</c> and <c>endTime</c> is two years. The date
+        /// and time format for the <c>endTime</c> is YYYY-MM-DD for the date and HH:MM for the
+        /// time.
         /// </para>
         ///  
         /// <para>
-        /// For more information on the syntax for <code>endTime</code> when using an API command
-        /// or the Command Line Interface, see <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters-types.html#parameter-type-timestamp">Timestamp</a>.
+        /// For more information on the syntax for <c>endTime</c> when using an API command or
+        /// the Command Line Interface, see <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters-types.html#parameter-type-timestamp">Timestamp</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -93,7 +94,7 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property MaintenanceWindows. 
         /// <para>
-        /// An optional configuration within the <code>SchedulingConfig</code> to setup a recurring
+        /// An optional configuration within the <c>SchedulingConfig</c> to setup a recurring
         /// maintenance window with a predetermined start time and duration for the rollout of
         /// a job document to all devices in a target group for a job.
         /// </para>
@@ -107,21 +108,21 @@ namespace Amazon.IoT.Model
         // Check to see if MaintenanceWindows property is set
         internal bool IsSetMaintenanceWindows()
         {
-            return this._maintenanceWindows != null && this._maintenanceWindows.Count > 0; 
+            return this._maintenanceWindows != null && (this._maintenanceWindows.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property StartTime. 
         /// <para>
         /// The time a job will begin rollout of the job document to all devices in the target
-        /// group for a job. The <code>startTime</code> can be scheduled up to a year in advance
-        /// and must be scheduled a minimum of thirty minutes from the current time. The date
-        /// and time format for the <code>startTime</code> is YYYY-MM-DD for the date and HH:MM
-        /// for the time.
+        /// group for a job. The <c>startTime</c> can be scheduled up to a year in advance and
+        /// must be scheduled a minimum of thirty minutes from the current time. The date and
+        /// time format for the <c>startTime</c> is YYYY-MM-DD for the date and HH:MM for the
+        /// time.
         /// </para>
         ///  
         /// <para>
-        /// For more information on the syntax for <code>startTime</code> when using an API command
+        /// For more information on the syntax for <c>startTime</c> when using an API command
         /// or the Command Line Interface, see <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters-types.html#parameter-type-timestamp">Timestamp</a>.
         /// </para>
         /// </summary>

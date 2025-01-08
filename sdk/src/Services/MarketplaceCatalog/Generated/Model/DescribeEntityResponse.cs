@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MarketplaceCatalog.Model
 {
     /// <summary>
@@ -99,7 +100,7 @@ namespace Amazon.MarketplaceCatalog.Model
         /// <summary>
         /// Gets and sets the property EntityIdentifier. 
         /// <para>
-        /// The identifier of the entity, in the format of <code>EntityId@RevisionId</code>.
+        /// The identifier of the entity, in the format of <c>EntityId@RevisionId</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -118,7 +119,7 @@ namespace Amazon.MarketplaceCatalog.Model
         /// <summary>
         /// Gets and sets the property EntityType. 
         /// <para>
-        /// The named type of the entity, in the format of <code>EntityType@Version</code>.
+        /// The named type of the entity, in the format of <c>EntityType@Version</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]

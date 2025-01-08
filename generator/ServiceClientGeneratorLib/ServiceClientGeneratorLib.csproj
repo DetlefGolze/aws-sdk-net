@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks Condition="'$(OS)' == 'Windows_NT'">netstandard2.0;net45</TargetFrameworks>
-    <TargetFramework Condition="'$(OS)' != 'Windows_NT'">netstandard2.0</TargetFramework>
+    <TargetFrameworks Condition="'$(OS)' == 'Windows_NT'">netstandard2.0;netcoreapp3.1;net8.0;net45</TargetFrameworks>
+    <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard2.0;netcoreapp3.1;net8.0</TargetFrameworks>
     <DebugType>portable</DebugType>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RootNamespace>ServiceClientGenerator</RootNamespace>
@@ -19,6 +19,7 @@
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
     <SignAssembly>true</SignAssembly>
     <NoWarn>CS1591;CS1572;CS1573;CS1570;CS0109;CS0252</NoWarn>
+    <NuGetAuditMode>direct</NuGetAuditMode>
   </PropertyGroup> 
     <Choose>
     <When Condition=" '$(AWSKeyFile)' == '' ">
@@ -203,18 +204,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ServicePaginatorFactoryInterface.tt</DependentUpon>
     </Compile>
-    <Compile Update="Generators/TestFiles/AWSQueryEC2MarshallingTests.cs">
-      <DependentUpon>AWSQueryEC2MarshallingTests.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Update="Generators/Marshallers/AWSQueryEC2ResponseUnmarshaller.cs">
       <DependentUpon>AWSQueryEC2ResponseUnmarshaller.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Update="Generators/TestFiles/AWSQueryMarshallingTests.cs">
-      <DependentUpon>AWSQueryMarshallingTests.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -268,11 +259,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>EndpointDiscoveryMarshallingTests.tt</DependentUpon>
     </Compile>
-    <Compile Update="Generators/TestFiles/JsonMarshallingTests.cs">
-      <DependentUpon>JsonMarshallingTests.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Update="Generators/Marshallers/JsonRPCRequestMarshaller.cs">
       <DependentUpon>JsonRPCRequestMarshaller.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -302,11 +288,6 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>PaginatorTests.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Generators/TestFiles/RestMarshallingTests.cs">
-      <DependentUpon>RestMarshallingTests.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Update="Generators/Marshallers/RestXmlRequestMarshaller.cs">
       <DependentUpon>RestXmlRequestMarshaller.tt</DependentUpon>
@@ -410,6 +391,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Nuspec.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Generators/SourceFiles/EventStreamGenerator.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EventStreamGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Generators\SourceFiles\AmazonS3RetryPolicy.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AmazonS3RetryPolicy.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -525,17 +516,9 @@
       <LastGenOutput>EndpointsGenerator.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
-    <None Update="Generators/TestFiles/AWSQueryEC2MarshallingTests.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>AWSQueryEC2MarshallingTests.cs</LastGenOutput>
-    </None>
     <None Update="Generators/Marshallers/AWSQueryEC2ResponseUnmarshaller.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>AWSQueryEC2ResponseUnmarshaller.cs</LastGenOutput>
-    </None>
-    <None Update="Generators/TestFiles/AWSQueryMarshallingTests.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>AWSQueryMarshallingTests.cs</LastGenOutput>
     </None>
     <None Update="Generators/Marshallers/AWSQueryRequestMarshaller.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
@@ -577,10 +560,6 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>EndpointDiscoveryMarshallingTests.cs</LastGenOutput>
     </None>
-    <None Update="Generators/TestFiles/JsonMarshallingTests.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>JsonMarshallingTests.cs</LastGenOutput>
-    </None>
     <None Update="Generators/Marshallers/JsonRPCRequestMarshaller.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>JsonRPCRequestMarshaller.cs</LastGenOutput>
@@ -604,10 +583,6 @@
     <None Update="Generators/TestFiles/PaginatorTests.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>PaginatorTests.cs</LastGenOutput>
-    </None>
-    <None Update="Generators/TestFiles/RestMarshallingTests.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>RestMarshallingTests.cs</LastGenOutput>
     </None>
     <None Update="Generators/Marshallers/RestXmlRequestMarshaller.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
@@ -724,11 +699,19 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>SolutionFileBclAndNetStandard.cs</LastGenOutput>
     </None>
+    <None Update="Generators/SourceFiles/EventStreamGenerator.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>EventStreamGenerator.cs</LastGenOutput>
+    </None>
+    <None Update="Generators\SourceFiles\AmazonS3RetryPolicy.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>AmazonS3RetryPolicy.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
 	<PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+  <ItemGroup Condition="'$(TargetFramework)' != 'net45'">
 	<PackageReference Include="System.CodeDom" Version="6.0.0" />
   </ItemGroup>
 </Project>

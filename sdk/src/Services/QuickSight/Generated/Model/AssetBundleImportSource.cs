@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
     /// The source of the asset bundle zip file that contains the data that you want to import.
-    /// The file must be in <code>QUICKSIGHT_JSON</code> format.
+    /// The file must be in <c>QUICKSIGHT_JSON</c> format.
     /// </summary>
     public partial class AssetBundleImportSource
     {
@@ -41,7 +42,8 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property Body. 
         /// <para>
         /// The bytes of the base64 encoded asset bundle import zip file. This file can't exceed
-        /// 20 MB.
+        /// 20 MB. If the size of the file that you want to upload is more than 20 MB, add the
+        /// file to your Amazon S3 bucket and use <c>S3Uri</c> of the file for this operation.
         /// </para>
         ///  
         /// <para>
@@ -69,7 +71,7 @@ namespace Amazon.QuickSight.Model
         /// <para>
         /// The Amazon S3 URI for an asset bundle import file that exists in an Amazon S3 bucket
         /// that the caller has read access to. The file must be a zip format file and can't exceed
-        /// 20 MB.
+        /// 1 GB.
         /// </para>
         /// </summary>
         public string S3Uri

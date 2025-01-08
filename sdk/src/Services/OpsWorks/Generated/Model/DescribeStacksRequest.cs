@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
@@ -42,13 +43,17 @@ namespace Amazon.OpsWorks.Model
     /// </summary>
     public partial class DescribeStacksRequest : AmazonOpsWorksRequest
     {
-        private List<string> _stackIds = new List<string>();
+        private List<string> _stackIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property StackIds. 
         /// <para>
         /// An array of stack IDs that specify the stacks to be described. If you omit this parameter,
-        /// <code>DescribeStacks</code> returns a description of every stack.
+        /// and have permissions to get information about all stacks, <c>DescribeStacks</c> returns
+        /// a description of every stack. If the IAM policy that is attached to an IAM user limits
+        /// the <c>DescribeStacks</c> action to specific stack ARNs, this parameter is required,
+        /// and the user must specify a stack ARN that is allowed by the policy. Otherwise, <c>DescribeStacks</c>
+        /// returns an <c>AccessDenied</c> error.
         /// </para>
         /// </summary>
         public List<string> StackIds
@@ -60,7 +65,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if StackIds property is set
         internal bool IsSetStackIds()
         {
-            return this._stackIds != null && this._stackIds.Count > 0; 
+            return this._stackIds != null && (this._stackIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

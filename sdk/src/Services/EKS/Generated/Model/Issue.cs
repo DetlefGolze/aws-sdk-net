@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.EKS.Model
     {
         private NodegroupIssueCode _code;
         private string _message;
-        private List<string> _resourceIds = new List<string>();
+        private List<string> _resourceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Code. 
@@ -66,6 +67,12 @@ namespace Amazon.EKS.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
+        ///  <b>Ec2InstanceTypeDoesNotExist</b>: One or more of the supplied Amazon EC2 instance
+        /// types do not exist. Amazon EKS checked for the instance types that you provided in
+        /// this Amazon Web Services Region, and one or more aren't available.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
         ///  <b>Ec2LaunchTemplateNotFound</b>: We couldn't find the Amazon EC2 launch template
         /// for your managed node group. You may be able to recreate a launch template with the
         /// same settings to recover.
@@ -91,10 +98,10 @@ namespace Amazon.EKS.Model
         ///  <b>Ec2SubnetInvalidConfiguration</b>: One or more Amazon EC2 subnets specified for
         /// a node group do not automatically assign public IP addresses to instances launched
         /// into it. If you want your instances to be assigned a public IP address, then you need
-        /// to enable the <code>auto-assign public IP address</code> setting for the subnet. See
-        /// <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#subnet-public-ip">Modifying
-        /// the public IPv4 addressing attribute for your subnet</a> in the <i>Amazon VPC User
-        /// Guide</i>.
+        /// to enable the <c>auto-assign public IP address</c> setting for the subnet. See <a
+        /// href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#subnet-public-ip">Modifying
+        /// the public <c>IPv4</c> addressing attribute for your subnet</a> in the <i>Amazon VPC
+        /// User Guide</i>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -176,7 +183,7 @@ namespace Amazon.EKS.Model
         // Check to see if ResourceIds property is set
         internal bool IsSetResourceIds()
         {
-            return this._resourceIds != null && this._resourceIds.Count > 0; 
+            return this._resourceIds != null && (this._resourceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

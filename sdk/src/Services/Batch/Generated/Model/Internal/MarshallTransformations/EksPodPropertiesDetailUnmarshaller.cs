@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Batch.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public EksPodPropertiesDetail Unmarshall(JsonUnmarshallerContext context)
         {
+            EksPodPropertiesDetail unmarshalledObject = new EksPodPropertiesDetail();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            EksPodPropertiesDetail unmarshalledObject = new EksPodPropertiesDetail();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -80,6 +82,18 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = BoolUnmarshaller.Instance;
                     unmarshalledObject.HostNetwork = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("imagePullSecrets", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<ImagePullSecret, ImagePullSecretUnmarshaller>(ImagePullSecretUnmarshaller.Instance);
+                    unmarshalledObject.ImagePullSecrets = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("initContainers", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<EksContainerDetail, EksContainerDetailUnmarshaller>(EksContainerDetailUnmarshaller.Instance);
+                    unmarshalledObject.InitContainers = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("metadata", targetDepth))
@@ -106,6 +120,12 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
                     unmarshalledObject.ServiceAccountName = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("shareProcessNamespace", targetDepth))
+                {
+                    var unmarshaller = BoolUnmarshaller.Instance;
+                    unmarshalledObject.ShareProcessNamespace = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("volumes", targetDepth))
                 {
                     var unmarshaller = new ListUnmarshaller<EksVolume, EksVolumeUnmarshaller>(EksVolumeUnmarshaller.Instance);
@@ -113,7 +133,6 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

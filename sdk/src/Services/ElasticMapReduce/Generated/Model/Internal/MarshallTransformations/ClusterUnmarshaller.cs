@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElasticMapReduce.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.ElasticMapReduce.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Cluster Unmarshall(JsonUnmarshallerContext context)
         {
+            Cluster unmarshalledObject = new Cluster();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Cluster unmarshalledObject = new Cluster();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -100,10 +102,22 @@ namespace Amazon.ElasticMapReduce.Model.Internal.MarshallTransformations
                     unmarshalledObject.CustomAmiId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("EbsRootVolumeIops", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.EbsRootVolumeIops = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("EbsRootVolumeSize", targetDepth))
                 {
                     var unmarshaller = IntUnmarshaller.Instance;
                     unmarshalledObject.EbsRootVolumeSize = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("EbsRootVolumeThroughput", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.EbsRootVolumeThroughput = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Ec2InstanceAttributes", targetDepth))
@@ -244,6 +258,12 @@ namespace Amazon.ElasticMapReduce.Model.Internal.MarshallTransformations
                     unmarshalledObject.TerminationProtected = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("UnhealthyNodeReplacement", targetDepth))
+                {
+                    var unmarshaller = BoolUnmarshaller.Instance;
+                    unmarshalledObject.UnhealthyNodeReplacement = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("VisibleToAllUsers", targetDepth))
                 {
                     var unmarshaller = BoolUnmarshaller.Instance;
@@ -251,7 +271,6 @@ namespace Amazon.ElasticMapReduce.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CleanRooms.Model
 {
     /// <summary>
@@ -52,11 +53,51 @@ namespace Amazon.CleanRooms.Model
         }
 
         /// <summary>
+        /// Paginator for ListCollaborationConfiguredAudienceModelAssociations operation
+        ///</summary>
+        public IListCollaborationConfiguredAudienceModelAssociationsPaginator ListCollaborationConfiguredAudienceModelAssociations(ListCollaborationConfiguredAudienceModelAssociationsRequest request) 
+        {
+            return new ListCollaborationConfiguredAudienceModelAssociationsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListCollaborationIdNamespaceAssociations operation
+        ///</summary>
+        public IListCollaborationIdNamespaceAssociationsPaginator ListCollaborationIdNamespaceAssociations(ListCollaborationIdNamespaceAssociationsRequest request) 
+        {
+            return new ListCollaborationIdNamespaceAssociationsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListCollaborationPrivacyBudgets operation
+        ///</summary>
+        public IListCollaborationPrivacyBudgetsPaginator ListCollaborationPrivacyBudgets(ListCollaborationPrivacyBudgetsRequest request) 
+        {
+            return new ListCollaborationPrivacyBudgetsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListCollaborationPrivacyBudgetTemplates operation
+        ///</summary>
+        public IListCollaborationPrivacyBudgetTemplatesPaginator ListCollaborationPrivacyBudgetTemplates(ListCollaborationPrivacyBudgetTemplatesRequest request) 
+        {
+            return new ListCollaborationPrivacyBudgetTemplatesPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListCollaborations operation
         ///</summary>
         public IListCollaborationsPaginator ListCollaborations(ListCollaborationsRequest request) 
         {
             return new ListCollaborationsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListConfiguredAudienceModelAssociations operation
+        ///</summary>
+        public IListConfiguredAudienceModelAssociationsPaginator ListConfiguredAudienceModelAssociations(ListConfiguredAudienceModelAssociationsRequest request) 
+        {
+            return new ListConfiguredAudienceModelAssociationsPaginator(this.client, request);
         }
 
         /// <summary>
@@ -76,6 +117,22 @@ namespace Amazon.CleanRooms.Model
         }
 
         /// <summary>
+        /// Paginator for ListIdMappingTables operation
+        ///</summary>
+        public IListIdMappingTablesPaginator ListIdMappingTables(ListIdMappingTablesRequest request) 
+        {
+            return new ListIdMappingTablesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListIdNamespaceAssociations operation
+        ///</summary>
+        public IListIdNamespaceAssociationsPaginator ListIdNamespaceAssociations(ListIdNamespaceAssociationsRequest request) 
+        {
+            return new ListIdNamespaceAssociationsPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListMembers operation
         ///</summary>
         public IListMembersPaginator ListMembers(ListMembersRequest request) 
@@ -89,6 +146,22 @@ namespace Amazon.CleanRooms.Model
         public IListMembershipsPaginator ListMemberships(ListMembershipsRequest request) 
         {
             return new ListMembershipsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListPrivacyBudgets operation
+        ///</summary>
+        public IListPrivacyBudgetsPaginator ListPrivacyBudgets(ListPrivacyBudgetsRequest request) 
+        {
+            return new ListPrivacyBudgetsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListPrivacyBudgetTemplates operation
+        ///</summary>
+        public IListPrivacyBudgetTemplatesPaginator ListPrivacyBudgetTemplates(ListPrivacyBudgetTemplatesRequest request) 
+        {
+            return new ListPrivacyBudgetTemplatesPaginator(this.client, request);
         }
 
         /// <summary>

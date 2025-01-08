@@ -30,12 +30,13 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.S3Control.Model.Internal.MarshallTransformations
 {
     /// <summary>
     /// Response Unmarshaller for AccountLevel Object
     /// </summary>  
-    public class AccountLevelUnmarshaller : IUnmarshaller<AccountLevel, XmlUnmarshallerContext>
+    public class AccountLevelUnmarshaller : IUnmarshaller<AccountLevel, XmlUnmarshallerContext>, IUnmarshaller<AccountLevel, JsonUnmarshallerContext>
     {
         /// <summary>
         /// Unmarshaller the response from the service to the response class.
@@ -85,6 +86,12 @@ namespace Amazon.S3Control.Model.Internal.MarshallTransformations
                         unmarshalledObject.DetailedStatusCodesMetrics = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("StorageLensGroupLevel", targetDepth))
+                    {
+                        var unmarshaller = StorageLensGroupLevelUnmarshaller.Instance;
+                        unmarshalledObject.StorageLensGroupLevel = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                 }
                 else if (context.IsEndElement && context.CurrentDepth < originalDepth)
                 {
@@ -92,6 +99,16 @@ namespace Amazon.S3Control.Model.Internal.MarshallTransformations
                 }
             }          
             return unmarshalledObject;
+        }
+        
+        /// <summary>
+        /// Unmarshaller the response from the service to the response class.
+        /// </summary>  
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public AccountLevel Unmarshall(JsonUnmarshallerContext context)
+        {
+            throw new NotImplementedException();
         }
 
         private static AccountLevelUnmarshaller _instance = new AccountLevelUnmarshaller();        

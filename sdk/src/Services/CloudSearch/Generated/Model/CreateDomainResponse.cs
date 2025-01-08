@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// The result of a <code>CreateDomainRequest</code>. Contains the status of a newly created
+    /// The result of a <c>CreateDomainRequest</c>. Contains the status of a newly created
     /// domain.
     /// </summary>
     public partial class CreateDomainResponse : AmazonWebServiceResponse

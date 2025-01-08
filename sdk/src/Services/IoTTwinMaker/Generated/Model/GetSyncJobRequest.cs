@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTTwinMaker.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.IoTTwinMaker.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// Currently the only supported syncSource is <code>SITEWISE </code>.
+        /// Currently the only supported syncSource is <c>SITEWISE </c>.
         /// </para>
         ///  </note>
         /// </summary>

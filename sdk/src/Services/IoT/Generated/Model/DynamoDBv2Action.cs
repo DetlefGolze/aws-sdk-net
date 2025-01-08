@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -49,8 +50,8 @@ namespace Amazon.IoT.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>{ "dynamoDBv2": { "roleArn": "aws:iam:12341251:my-role" "putItem": { "tableName":
-        /// "my-table" } } }</code> 
+        ///  <c>{ "dynamoDBv2": { "roleArn": "aws:iam:12341251:my-role" "putItem": { "tableName":
+        /// "my-table" } } }</c> 
         /// </para>
         ///  
         /// <para>

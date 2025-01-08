@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.EC2.Model
         private string _resourceOwnerId;
         private TransitGatewayAttachmentResourceType _resourceType;
         private TransitGatewayAttachmentState _state;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _transitGatewayAttachmentId;
         private string _transitGatewayId;
         private string _transitGatewayOwnerId;
@@ -119,7 +120,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The resource type. Note that the <code>tgw-peering</code> resource type has been deprecated.
+        /// The resource type. Note that the <c>tgw-peering</c> resource type has been deprecated.
         /// </para>
         /// </summary>
         public TransitGatewayAttachmentResourceType ResourceType
@@ -137,7 +138,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property State. 
         /// <para>
-        /// The attachment state. Note that the <code>initiating</code> state has been deprecated.
+        /// The attachment state. Note that the <c>initiating</c> state has been deprecated.
         /// </para>
         /// </summary>
         public TransitGatewayAttachmentState State
@@ -167,7 +168,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
@@ -36,11 +37,16 @@ namespace Amazon.CloudTrail.Model
     ///  <ul> <li> 
     /// <para>
     /// If your event selector includes read-only events, write-only events, or all events.
-    /// This applies to both management events and data events.
+    /// This applies to management events, data events, and network activity events.
     /// </para>
     ///  </li> <li> 
     /// <para>
     /// If your event selector includes management events.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// If your event selector includes network activity events, the event sources for which
+    /// you are logging network activity events.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -49,8 +55,8 @@ namespace Amazon.CloudTrail.Model
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// For more information about logging management and data events, see the following topics
-    /// in the <i>CloudTrail User Guide</i>:
+    /// For more information about logging management, data, and network activity events,
+    /// see the following topics in the <i>CloudTrail User Guide</i>:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -61,6 +67,11 @@ namespace Amazon.CloudTrail.Model
     /// <para>
     ///  <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html">Logging
     /// data events</a> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-network-events-with-cloudtrail.html">Logging
+    /// network activity events</a> 
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -89,8 +100,8 @@ namespace Amazon.CloudTrail.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Have no adjacent periods, underscores or dashes. Names like <code>my-_namespace</code>
-        /// and <code>my--namespace</code> are not valid.
+        /// Have no adjacent periods, underscores or dashes. Names like <c>my-_namespace</c> and
+        /// <c>my--namespace</c> are not valid.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -102,7 +113,7 @@ namespace Amazon.CloudTrail.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</code> 
+        ///  <c>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

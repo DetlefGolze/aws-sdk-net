@@ -26,11 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateContactFlowModuleContent operation.
-    /// Updates specified flow module for the specified Amazon Connect instance.
+    /// Updates specified flow module for the specified Amazon Connect instance. 
+    /// 
+    ///  
+    /// <para>
+    /// Use the <c>$SAVED</c> alias in the request to describe the <c>SAVED</c> content of
+    /// a Flow. For example, <c>arn:aws:.../contact-flow/{id}:$SAVED</c>. After a flow is
+    /// published, <c>$SAVED</c> needs to be supplied to view saved content that has not been
+    /// published.
+    /// </para>
     /// </summary>
     public partial class UpdateContactFlowModuleContentRequest : AmazonConnectRequest
     {
@@ -61,7 +70,7 @@ namespace Amazon.Connect.Model
         /// Gets and sets the property Content. 
         /// <para>
         /// The JSON string that represents the content of the flow. For an example, see <a href="https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html">Example
-        /// contact flow in Amazon Connect Flow language</a>. 
+        /// flow in Amazon Connect Flow language</a>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256000)]

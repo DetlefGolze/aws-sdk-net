@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.Redshift.Model
     /// </summary>
     public partial class DescribeEventsResponse : AmazonWebServiceResponse
     {
-        private List<Event> _events = new List<Event>();
+        private List<Event> _events = AWSConfigs.InitializeCollections ? new List<Event>() : null;
         private string _marker;
 
         /// <summary>
         /// Gets and sets the property Events. 
         /// <para>
-        /// A list of <code>Event</code> instances. 
+        /// A list of <c>Event</c> instances. 
         /// </para>
         /// </summary>
         public List<Event> Events
@@ -51,7 +52,7 @@ namespace Amazon.Redshift.Model
         // Check to see if Events property is set
         internal bool IsSetEvents()
         {
-            return this._events != null && this._events.Count > 0; 
+            return this._events != null && (this._events.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -59,9 +60,9 @@ namespace Amazon.Redshift.Model
         /// <para>
         /// A value that indicates the starting point for the next set of response records in
         /// a subsequent request. If a value is returned in a response, you can retrieve the next
-        /// set of records by providing this returned marker value in the <code>Marker</code>
-        /// parameter and retrying the command. If the <code>Marker</code> field is empty, all
-        /// response records have been retrieved for the request. 
+        /// set of records by providing this returned marker value in the <c>Marker</c> parameter
+        /// and retrying the command. If the <c>Marker</c> field is empty, all response records
+        /// have been retrieved for the request. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]

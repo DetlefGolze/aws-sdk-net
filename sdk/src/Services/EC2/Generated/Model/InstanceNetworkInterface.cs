@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,18 +36,20 @@ namespace Amazon.EC2.Model
     {
         private InstanceNetworkInterfaceAssociation _association;
         private InstanceNetworkInterfaceAttachment _attachment;
+        private ConnectionTrackingSpecificationResponse _connectionTrackingConfiguration;
         private string _description;
-        private List<GroupIdentifier> _groups = new List<GroupIdentifier>();
+        private List<GroupIdentifier> _groups = AWSConfigs.InitializeCollections ? new List<GroupIdentifier>() : null;
         private string _interfaceType;
-        private List<InstanceIpv4Prefix> _ipv4Prefixes = new List<InstanceIpv4Prefix>();
-        private List<InstanceIpv6Address> _ipv6Addresses = new List<InstanceIpv6Address>();
-        private List<InstanceIpv6Prefix> _ipv6Prefixes = new List<InstanceIpv6Prefix>();
+        private List<InstanceIpv4Prefix> _ipv4Prefixes = AWSConfigs.InitializeCollections ? new List<InstanceIpv4Prefix>() : null;
+        private List<InstanceIpv6Address> _ipv6Addresses = AWSConfigs.InitializeCollections ? new List<InstanceIpv6Address>() : null;
+        private List<InstanceIpv6Prefix> _ipv6Prefixes = AWSConfigs.InitializeCollections ? new List<InstanceIpv6Prefix>() : null;
         private string _macAddress;
         private string _networkInterfaceId;
+        private OperatorResponse _operator;
         private string _ownerId;
         private string _privateDnsName;
         private string _privateIpAddress;
-        private List<InstancePrivateIpAddress> _privateIpAddresses = new List<InstancePrivateIpAddress>();
+        private List<InstancePrivateIpAddress> _privateIpAddresses = AWSConfigs.InitializeCollections ? new List<InstancePrivateIpAddress>() : null;
         private bool? _sourceDestCheck;
         private NetworkInterfaceStatus _status;
         private string _subnetId;
@@ -89,6 +92,27 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ConnectionTrackingConfiguration. 
+        /// <para>
+        /// A security group connection tracking configuration that enables you to set the timeout
+        /// for connection tracking on an Elastic network interface. For more information, see
+        /// <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-connection-tracking.html#connection-tracking-timeouts">Connection
+        /// tracking timeouts</a> in the <i>Amazon EC2 User Guide</i>.
+        /// </para>
+        /// </summary>
+        public ConnectionTrackingSpecificationResponse ConnectionTrackingConfiguration
+        {
+            get { return this._connectionTrackingConfiguration; }
+            set { this._connectionTrackingConfiguration = value; }
+        }
+
+        // Check to see if ConnectionTrackingConfiguration property is set
+        internal bool IsSetConnectionTrackingConfiguration()
+        {
+            return this._connectionTrackingConfiguration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
         /// The description.
@@ -121,7 +145,7 @@ namespace Amazon.EC2.Model
         // Check to see if Groups property is set
         internal bool IsSetGroups()
         {
-            return this._groups != null && this._groups.Count > 0; 
+            return this._groups != null && (this._groups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -131,7 +155,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>interface</code> | <code>efa</code> | <code>trunk</code> 
+        /// Valid values: <c>interface</c> | <c>efa</c> | <c>efa-only</c> | <c>trunk</c> 
         /// </para>
         /// </summary>
         public string InterfaceType
@@ -161,7 +185,7 @@ namespace Amazon.EC2.Model
         // Check to see if Ipv4Prefixes property is set
         internal bool IsSetIpv4Prefixes()
         {
-            return this._ipv4Prefixes != null && this._ipv4Prefixes.Count > 0; 
+            return this._ipv4Prefixes != null && (this._ipv4Prefixes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -179,7 +203,7 @@ namespace Amazon.EC2.Model
         // Check to see if Ipv6Addresses property is set
         internal bool IsSetIpv6Addresses()
         {
-            return this._ipv6Addresses != null && this._ipv6Addresses.Count > 0; 
+            return this._ipv6Addresses != null && (this._ipv6Addresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -197,7 +221,7 @@ namespace Amazon.EC2.Model
         // Check to see if Ipv6Prefixes property is set
         internal bool IsSetIpv6Prefixes()
         {
-            return this._ipv6Prefixes != null && this._ipv6Prefixes.Count > 0; 
+            return this._ipv6Prefixes != null && (this._ipv6Prefixes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -234,6 +258,24 @@ namespace Amazon.EC2.Model
         internal bool IsSetNetworkInterfaceId()
         {
             return this._networkInterfaceId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Operator. 
+        /// <para>
+        /// The service provider that manages the network interface.
+        /// </para>
+        /// </summary>
+        public OperatorResponse Operator
+        {
+            get { return this._operator; }
+            set { this._operator = value; }
+        }
+
+        // Check to see if Operator property is set
+        internal bool IsSetOperator()
+        {
+            return this._operator != null;
         }
 
         /// <summary>
@@ -305,7 +347,7 @@ namespace Amazon.EC2.Model
         // Check to see if PrivateIpAddresses property is set
         internal bool IsSetPrivateIpAddresses()
         {
-            return this._privateIpAddresses != null && this._privateIpAddresses.Count > 0; 
+            return this._privateIpAddresses != null && (this._privateIpAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -61,14 +62,14 @@ namespace Amazon.IdentityManagement.Model
     ///  
     /// <para>
     /// Context keys are variables maintained by Amazon Web Services and its services that
-    /// provide details about the context of an API query request. You can use the <code>Condition</code>
+    /// provide details about the context of an API query request. You can use the <c>Condition</c>
     /// element of an IAM policy to evaluate context keys. To get the list of context keys
     /// that the policies require for correct simulation, use <a>GetContextKeysForPrincipalPolicy</a>.
     /// </para>
     ///  
     /// <para>
-    /// If the output is long, you can use the <code>MaxItems</code> and <code>Marker</code>
-    /// parameters to paginate the results.
+    /// If the output is long, you can use the <c>MaxItems</c> and <c>Marker</c> parameters
+    /// to paginate the results.
     /// </para>
     ///  <note> 
     /// <para>
@@ -84,15 +85,15 @@ namespace Amazon.IdentityManagement.Model
     /// </summary>
     public partial class SimulatePrincipalPolicyRequest : AmazonIdentityManagementServiceRequest
     {
-        private List<string> _actionNames = new List<string>();
+        private List<string> _actionNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _callerArn;
-        private List<ContextEntry> _contextEntries = new List<ContextEntry>();
+        private List<ContextEntry> _contextEntries = AWSConfigs.InitializeCollections ? new List<ContextEntry>() : null;
         private string _marker;
         private int? _maxItems;
-        private List<string> _permissionsBoundaryPolicyInputList = new List<string>();
-        private List<string> _policyInputList = new List<string>();
+        private List<string> _permissionsBoundaryPolicyInputList = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _policyInputList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _policySourceArn;
-        private List<string> _resourceArns = new List<string>();
+        private List<string> _resourceArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _resourceHandlingOption;
         private string _resourceOwner;
         private string _resourcePolicy;
@@ -102,7 +103,7 @@ namespace Amazon.IdentityManagement.Model
         /// <para>
         /// A list of names of API operations to evaluate in the simulation. Each operation is
         /// evaluated for each resource. Each operation must include the service identifier, such
-        /// as <code>iam:CreateUser</code>.
+        /// as <c>iam:CreateUser</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -115,18 +116,18 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if ActionNames property is set
         internal bool IsSetActionNames()
         {
-            return this._actionNames != null && this._actionNames.Count > 0; 
+            return this._actionNames != null && (this._actionNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property CallerArn. 
         /// <para>
         /// The ARN of the IAM user that you want to specify as the simulated caller of the API
-        /// operations. If you do not specify a <code>CallerArn</code>, it defaults to the ARN
-        /// of the user that you specify in <code>PolicySourceArn</code>, if you specified a user.
-        /// If you include both a <code>PolicySourceArn</code> (for example, <code>arn:aws:iam::123456789012:user/David</code>)
-        /// and a <code>CallerArn</code> (for example, <code>arn:aws:iam::123456789012:user/Bob</code>),
-        /// the result is that you simulate calling the API operations as Bob, as if Bob had David's
+        /// operations. If you do not specify a <c>CallerArn</c>, it defaults to the ARN of the
+        /// user that you specify in <c>PolicySourceArn</c>, if you specified a user. If you include
+        /// both a <c>PolicySourceArn</c> (for example, <c>arn:aws:iam::123456789012:user/David</c>)
+        /// and a <c>CallerArn</c> (for example, <c>arn:aws:iam::123456789012:user/Bob</c>), the
+        /// result is that you simulate calling the API operations as Bob, as if Bob had David's
         /// policies.
         /// </para>
         ///  
@@ -136,10 +137,9 @@ namespace Amazon.IdentityManagement.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>CallerArn</code> is required if you include a <code>ResourcePolicy</code> and
-        /// the <code>PolicySourceArn</code> is not the ARN for an IAM user. This is required
-        /// so that the resource-based policy's <code>Principal</code> element has a value to
-        /// use in evaluating the policy.
+        ///  <c>CallerArn</c> is required if you include a <c>ResourcePolicy</c> and the <c>PolicySourceArn</c>
+        /// is not the ARN for an IAM user. This is required so that the resource-based policy's
+        /// <c>Principal</c> element has a value to use in evaluating the policy.
         /// </para>
         ///  
         /// <para>
@@ -177,14 +177,14 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if ContextEntries property is set
         internal bool IsSetContextEntries()
         {
-            return this._contextEntries != null && this._contextEntries.Count > 0; 
+            return this._contextEntries != null && (this._contextEntries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         /// Use this parameter only when paginating results and only after you receive a response
-        /// indicating that the results are truncated. Set it to the value of the <code>Marker</code>
+        /// indicating that the results are truncated. Set it to the value of the <c>Marker</c>
         /// element in the response that you received to indicate where the next call should start.
         /// </para>
         /// </summary>
@@ -206,15 +206,15 @@ namespace Amazon.IdentityManagement.Model
         /// <para>
         /// Use this only when paginating results to indicate the maximum number of items you
         /// want in the response. If additional items exist beyond the maximum you specify, the
-        /// <code>IsTruncated</code> response element is <code>true</code>.
+        /// <c>IsTruncated</c> response element is <c>true</c>.
         /// </para>
         ///  
         /// <para>
         /// If you do not include this parameter, the number of items defaults to 100. Note that
         /// IAM might return fewer results, even when there are more results available. In that
-        /// case, the <code>IsTruncated</code> response element returns <code>true</code>, and
-        /// <code>Marker</code> contains a value to include in the subsequent call that tells
-        /// the service where to continue from.
+        /// case, the <c>IsTruncated</c> response element returns <c>true</c>, and <c>Marker</c>
+        /// contains a value to include in the subsequent call that tells the service where to
+        /// continue from.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]
@@ -258,18 +258,18 @@ namespace Amazon.IdentityManagement.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Any printable ASCII character ranging from the space character (<code>\u0020</code>)
-        /// through the end of the ASCII character range
+        /// Any printable ASCII character ranging from the space character (<c>\u0020</c>) through
+        /// the end of the ASCII character range
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The printable characters in the Basic Latin and Latin-1 Supplement character set (through
-        /// <code>\u00FF</code>)
+        /// <c>\u00FF</c>)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The special characters tab (<code>\u0009</code>), line feed (<code>\u000A</code>),
-        /// and carriage return (<code>\u000D</code>)
+        /// The special characters tab (<c>\u0009</c>), line feed (<c>\u000A</c>), and carriage
+        /// return (<c>\u000D</c>)
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -282,7 +282,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if PermissionsBoundaryPolicyInputList property is set
         internal bool IsSetPermissionsBoundaryPolicyInputList()
         {
-            return this._permissionsBoundaryPolicyInputList != null && this._permissionsBoundaryPolicyInputList.Count > 0; 
+            return this._permissionsBoundaryPolicyInputList != null && (this._permissionsBoundaryPolicyInputList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -299,18 +299,18 @@ namespace Amazon.IdentityManagement.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Any printable ASCII character ranging from the space character (<code>\u0020</code>)
-        /// through the end of the ASCII character range
+        /// Any printable ASCII character ranging from the space character (<c>\u0020</c>) through
+        /// the end of the ASCII character range
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The printable characters in the Basic Latin and Latin-1 Supplement character set (through
-        /// <code>\u00FF</code>)
+        /// <c>\u00FF</c>)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The special characters tab (<code>\u0009</code>), line feed (<code>\u000A</code>),
-        /// and carriage return (<code>\u000D</code>)
+        /// The special characters tab (<c>\u0009</c>), line feed (<c>\u000A</c>), and carriage
+        /// return (<c>\u000D</c>)
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -323,7 +323,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if PolicyInputList property is set
         internal bool IsSetPolicyInputList()
         {
-            return this._policyInputList != null && this._policyInputList.Count > 0; 
+            return this._policyInputList != null && (this._policyInputList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -364,17 +364,17 @@ namespace Amazon.IdentityManagement.Model
         /// Gets and sets the property ResourceArns. 
         /// <para>
         /// A list of ARNs of Amazon Web Services resources to include in the simulation. If this
-        /// parameter is not provided, then the value defaults to <code>*</code> (all resources).
-        /// Each API in the <code>ActionNames</code> parameter is evaluated for each resource
-        /// in this list. The simulation determines the access result (allowed or denied) of each
-        /// combination and reports it in the response. You can simulate resources that don't
-        /// exist in your account.
+        /// parameter is not provided, then the value defaults to <c>*</c> (all resources). Each
+        /// API in the <c>ActionNames</c> parameter is evaluated for each resource in this list.
+        /// The simulation determines the access result (allowed or denied) of each combination
+        /// and reports it in the response. You can simulate resources that don't exist in your
+        /// account.
         /// </para>
         ///  
         /// <para>
         /// The simulation does not automatically retrieve policies for the specified resources.
         /// If you want to include a resource policy in the simulation, then you must include
-        /// the policy as a string in the <code>ResourcePolicy</code> parameter.
+        /// the policy as a string in the <c>ResourcePolicy</c> parameter.
         /// </para>
         ///  
         /// <para>
@@ -396,7 +396,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if ResourceArns property is set
         internal bool IsSetResourceArns()
         {
-            return this._resourceArns != null && this._resourceArns.Count > 0; 
+            return this._resourceArns != null && (this._resourceArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -412,11 +412,12 @@ namespace Amazon.IdentityManagement.Model
         /// </para>
         ///  
         /// <para>
-        /// Each of the EC2 scenarios requires that you specify instance, image, and security
+        /// Each of the Amazon EC2 scenarios requires that you specify instance, image, and security
         /// group resources. If your scenario includes an EBS volume, then you must specify that
-        /// volume as a resource. If the EC2 scenario includes VPC, then you must supply the network
-        /// interface resource. If it includes an IP subnet, then you must specify the subnet
-        /// resource. For more information on the EC2 scenario options, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html">Supported
+        /// volume as a resource. If the Amazon EC2 scenario includes VPC, then you must supply
+        /// the network interface resource. If it includes an IP subnet, then you must specify
+        /// the subnet resource. For more information on the Amazon EC2 scenario options, see
+        /// <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html">Supported
         /// platforms</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         ///  <ul> <li> 
@@ -471,13 +472,12 @@ namespace Amazon.IdentityManagement.Model
         /// <para>
         /// An Amazon Web Services account ID that specifies the owner of any simulated resource
         /// that does not identify its owner in the resource ARN. Examples of resource ARNs include
-        /// an S3 bucket or object. If <code>ResourceOwner</code> is specified, it is also used
-        /// as the account owner of any <code>ResourcePolicy</code> included in the simulation.
-        /// If the <code>ResourceOwner</code> parameter is not specified, then the owner of the
-        /// resources and the resource policy defaults to the account of the identity provided
-        /// in <code>CallerArn</code>. This parameter is required only if you specify a resource-based
-        /// policy and account that owns the resource is different from the account that owns
-        /// the simulated calling user <code>CallerArn</code>.
+        /// an S3 bucket or object. If <c>ResourceOwner</c> is specified, it is also used as the
+        /// account owner of any <c>ResourcePolicy</c> included in the simulation. If the <c>ResourceOwner</c>
+        /// parameter is not specified, then the owner of the resources and the resource policy
+        /// defaults to the account of the identity provided in <c>CallerArn</c>. This parameter
+        /// is required only if you specify a resource-based policy and account that owns the
+        /// resource is different from the account that owns the simulated calling user <c>CallerArn</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]
@@ -514,18 +514,18 @@ namespace Amazon.IdentityManagement.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Any printable ASCII character ranging from the space character (<code>\u0020</code>)
-        /// through the end of the ASCII character range
+        /// Any printable ASCII character ranging from the space character (<c>\u0020</c>) through
+        /// the end of the ASCII character range
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The printable characters in the Basic Latin and Latin-1 Supplement character set (through
-        /// <code>\u00FF</code>)
+        /// <c>\u00FF</c>)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The special characters tab (<code>\u0009</code>), line feed (<code>\u000A</code>),
-        /// and carriage return (<code>\u000D</code>)
+        /// The special characters tab (<c>\u0009</c>), line feed (<c>\u000A</c>), and carriage
+        /// return (<c>\u000D</c>)
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>

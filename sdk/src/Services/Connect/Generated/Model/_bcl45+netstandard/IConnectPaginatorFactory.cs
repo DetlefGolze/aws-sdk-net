@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the connect-2017-08-08.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -56,6 +57,11 @@ namespace Amazon.Connect.Model
         IListApprovedOriginsPaginator ListApprovedOrigins(ListApprovedOriginsRequest request);
 
         /// <summary>
+        /// Paginator for ListAuthenticationProfiles operation
+        ///</summary>
+        IListAuthenticationProfilesPaginator ListAuthenticationProfiles(ListAuthenticationProfilesRequest request);
+
+        /// <summary>
         /// Paginator for ListBots operation
         ///</summary>
         IListBotsPaginator ListBots(ListBotsRequest request);
@@ -76,6 +82,11 @@ namespace Amazon.Connect.Model
         IListContactFlowsPaginator ListContactFlows(ListContactFlowsRequest request);
 
         /// <summary>
+        /// Paginator for ListContactFlowVersions operation
+        ///</summary>
+        IListContactFlowVersionsPaginator ListContactFlowVersions(ListContactFlowVersionsRequest request);
+
+        /// <summary>
         /// Paginator for ListContactReferences operation
         ///</summary>
         IListContactReferencesPaginator ListContactReferences(ListContactReferencesRequest request);
@@ -94,6 +105,16 @@ namespace Amazon.Connect.Model
         /// Paginator for ListEvaluationFormVersions operation
         ///</summary>
         IListEvaluationFormVersionsPaginator ListEvaluationFormVersions(ListEvaluationFormVersionsRequest request);
+
+        /// <summary>
+        /// Paginator for ListFlowAssociations operation
+        ///</summary>
+        IListFlowAssociationsPaginator ListFlowAssociations(ListFlowAssociationsRequest request);
+
+        /// <summary>
+        /// Paginator for ListHoursOfOperationOverrides operation
+        ///</summary>
+        IListHoursOfOperationOverridesPaginator ListHoursOfOperationOverrides(ListHoursOfOperationOverridesRequest request);
 
         /// <summary>
         /// Paginator for ListHoursOfOperations operation
@@ -141,6 +162,11 @@ namespace Amazon.Connect.Model
         IListPhoneNumbersV2Paginator ListPhoneNumbersV2(ListPhoneNumbersV2Request request);
 
         /// <summary>
+        /// Paginator for ListPredefinedAttributes operation
+        ///</summary>
+        IListPredefinedAttributesPaginator ListPredefinedAttributes(ListPredefinedAttributesRequest request);
+
+        /// <summary>
         /// Paginator for ListPrompts operation
         ///</summary>
         IListPromptsPaginator ListPrompts(ListPromptsRequest request);
@@ -159,6 +185,11 @@ namespace Amazon.Connect.Model
         /// Paginator for ListQuickConnects operation
         ///</summary>
         IListQuickConnectsPaginator ListQuickConnects(ListQuickConnectsRequest request);
+
+        /// <summary>
+        /// Paginator for ListRealtimeContactAnalysisSegmentsV2 operation
+        ///</summary>
+        IListRealtimeContactAnalysisSegmentsV2Paginator ListRealtimeContactAnalysisSegmentsV2(ListRealtimeContactAnalysisSegmentsV2Request request);
 
         /// <summary>
         /// Paginator for ListRoutingProfileQueues operation
@@ -221,6 +252,11 @@ namespace Amazon.Connect.Model
         IListUserHierarchyGroupsPaginator ListUserHierarchyGroups(ListUserHierarchyGroupsRequest request);
 
         /// <summary>
+        /// Paginator for ListUserProficiencies operation
+        ///</summary>
+        IListUserProficienciesPaginator ListUserProficiencies(ListUserProficienciesRequest request);
+
+        /// <summary>
         /// Paginator for ListUsers operation
         ///</summary>
         IListUsersPaginator ListUsers(ListUsersRequest request);
@@ -236,14 +272,44 @@ namespace Amazon.Connect.Model
         IListViewVersionsPaginator ListViewVersions(ListViewVersionsRequest request);
 
         /// <summary>
+        /// Paginator for SearchAgentStatuses operation
+        ///</summary>
+        ISearchAgentStatusesPaginator SearchAgentStatuses(SearchAgentStatusesRequest request);
+
+        /// <summary>
         /// Paginator for SearchAvailablePhoneNumbers operation
         ///</summary>
         ISearchAvailablePhoneNumbersPaginator SearchAvailablePhoneNumbers(SearchAvailablePhoneNumbersRequest request);
 
         /// <summary>
+        /// Paginator for SearchContactFlowModules operation
+        ///</summary>
+        ISearchContactFlowModulesPaginator SearchContactFlowModules(SearchContactFlowModulesRequest request);
+
+        /// <summary>
+        /// Paginator for SearchContactFlows operation
+        ///</summary>
+        ISearchContactFlowsPaginator SearchContactFlows(SearchContactFlowsRequest request);
+
+        /// <summary>
+        /// Paginator for SearchContacts operation
+        ///</summary>
+        ISearchContactsPaginator SearchContacts(SearchContactsRequest request);
+
+        /// <summary>
+        /// Paginator for SearchHoursOfOperationOverrides operation
+        ///</summary>
+        ISearchHoursOfOperationOverridesPaginator SearchHoursOfOperationOverrides(SearchHoursOfOperationOverridesRequest request);
+
+        /// <summary>
         /// Paginator for SearchHoursOfOperations operation
         ///</summary>
         ISearchHoursOfOperationsPaginator SearchHoursOfOperations(SearchHoursOfOperationsRequest request);
+
+        /// <summary>
+        /// Paginator for SearchPredefinedAttributes operation
+        ///</summary>
+        ISearchPredefinedAttributesPaginator SearchPredefinedAttributes(SearchPredefinedAttributesRequest request);
 
         /// <summary>
         /// Paginator for SearchPrompts operation
@@ -274,6 +340,11 @@ namespace Amazon.Connect.Model
         /// Paginator for SearchSecurityProfiles operation
         ///</summary>
         ISearchSecurityProfilesPaginator SearchSecurityProfiles(SearchSecurityProfilesRequest request);
+
+        /// <summary>
+        /// Paginator for SearchUserHierarchyGroups operation
+        ///</summary>
+        ISearchUserHierarchyGroupsPaginator SearchUserHierarchyGroups(SearchUserHierarchyGroupsRequest request);
 
         /// <summary>
         /// Paginator for SearchUsers operation

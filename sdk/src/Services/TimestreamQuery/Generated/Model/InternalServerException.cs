@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TimestreamQuery.Model
 {
     /// <summary>
-    /// Timestream was unable to fully process this request because of an internal server
-    /// error.
+    /// An internal server error occurred while processing the request.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

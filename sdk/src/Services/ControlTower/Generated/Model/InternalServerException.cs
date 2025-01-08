@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ControlTower.Model
 {
     /// <summary>
-    /// Unexpected error during processing of request.
+    /// An unexpected error occurred during processing of a request.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

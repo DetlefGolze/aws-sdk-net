@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EMRServerless.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.EMRServerless.Model
         private string _encryptionKeyArn;
         private string _logGroupName;
         private string _logStreamNamePrefix;
-        private Dictionary<string, List<string>> _logTypes = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<string>> _logTypes = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
 
         /// <summary>
         /// Gets and sets the property Enabled. 
@@ -129,13 +130,13 @@ namespace Amazon.EMRServerless.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>Key Valid Values</b>: <code>SPARK_DRIVER</code>, <code>SPARK_EXECUTOR</code>,
-        /// <code>HIVE_DRIVER</code>, <code>TEZ_TASK</code> 
+        ///  <b>Key Valid Values</b>: <c>SPARK_DRIVER</c>, <c>SPARK_EXECUTOR</c>, <c>HIVE_DRIVER</c>,
+        /// <c>TEZ_TASK</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Array Members Valid Values</b>: <code>STDOUT</code>, <code>STDERR</code>, <code>HIVE_LOG</code>,
-        /// <code>TEZ_AM</code>, <code>SYSTEM_LOGS</code> 
+        ///  <b>Array Members Valid Values</b>: <c>STDOUT</c>, <c>STDERR</c>, <c>HIVE_LOG</c>,
+        /// <c>TEZ_AM</c>, <c>SYSTEM_LOGS</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -149,7 +150,7 @@ namespace Amazon.EMRServerless.Model
         // Check to see if LogTypes property is set
         internal bool IsSetLogTypes()
         {
-            return this._logTypes != null && this._logTypes.Count > 0; 
+            return this._logTypes != null && (this._logTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

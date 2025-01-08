@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// A list of features. You must include <code>FeatureName</code> and <code>FeatureType</code>.
-    /// Valid feature <code>FeatureType</code>s are <code>Integral</code>, <code>Fractional</code>
-    /// and <code>String</code>.
+    /// A list of features. You must include <c>FeatureName</c> and <c>FeatureType</c>. Valid
+    /// feature <c>FeatureType</c>s are <c>Integral</c>, <c>Fractional</c> and <c>String</c>.
     /// </summary>
     public partial class FeatureDefinition
     {
@@ -62,19 +62,19 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property CollectionType. 
         /// <para>
         /// A grouping of elements where each element within the collection must have the same
-        /// feature type (<code>String</code>, <code>Integral</code>, or <code>Fractional</code>).
+        /// feature type (<c>String</c>, <c>Integral</c>, or <c>Fractional</c>).
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>List</code>: An ordered collection of elements.
+        ///  <c>List</c>: An ordered collection of elements.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Set</code>: An unordered collection of unique elements.
+        ///  <c>Set</c>: An unordered collection of unique elements.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Vector</code>: A specialized list that represents a fixed-size array of elements.
+        ///  <c>Vector</c>: A specialized list that represents a fixed-size array of elements.
         /// The vector dimension is determined by you. Must have elements with fractional feature
         /// types. 
         /// </para>
@@ -95,11 +95,25 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property FeatureName. 
         /// <para>
-        /// The name of a feature. The type must be a string. <code>FeatureName</code> cannot
-        /// be any of the following: <code>is_deleted</code>, <code>write_time</code>, <code>api_invocation_time</code>.
+        /// The name of a feature. The type must be a string. <c>FeatureName</c> cannot be any
+        /// of the following: <c>is_deleted</c>, <c>write_time</c>, <c>api_invocation_time</c>.
         /// </para>
+        ///  
+        /// <para>
+        /// The name:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Must start with an alphanumeric character.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Can only include alphanumeric characters, underscores, and hyphens. Spaces are not
+        /// allowed.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
-        [AWSProperty(Min=1, Max=64)]
+        [AWSProperty(Required=true, Min=1, Max=64)]
         public string FeatureName
         {
             get { return this._featureName; }
@@ -118,6 +132,7 @@ namespace Amazon.SageMaker.Model
         /// The value type of a feature. Valid values are Integral, Fractional, or String.
         /// </para>
         /// </summary>
+        [AWSProperty(Required=true)]
         public FeatureType FeatureType
         {
             get { return this._featureType; }

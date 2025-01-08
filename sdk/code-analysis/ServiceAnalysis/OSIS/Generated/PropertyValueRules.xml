@@ -3,12 +3,10 @@
   <property-value-rule>
     <property>Amazon.OSIS.Model.CreatePipelineRequest.MaxUnits</property>
     <min>1</min>
-    <max>96</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.OSIS.Model.CreatePipelineRequest.MinUnits</property>
     <min>1</min>
-    <max>96</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.OSIS.Model.CreatePipelineRequest.PipelineConfigurationBody</property>
@@ -32,6 +30,10 @@
     <min>3</min>
     <max>28</max>
     <pattern>[a-z][a-z0-9\-]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.OSIS.Model.GetPipelineBlueprintRequest.Format</property>
+    <pattern>(YAML|JSON)</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.OSIS.Model.GetPipelineChangeProgressRequest.PipelineName</property>
@@ -89,12 +91,10 @@
   <property-value-rule>
     <property>Amazon.OSIS.Model.UpdatePipelineRequest.MaxUnits</property>
     <min>1</min>
-    <max>96</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.OSIS.Model.UpdatePipelineRequest.MinUnits</property>
     <min>1</min>
-    <max>96</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.OSIS.Model.UpdatePipelineRequest.PipelineConfigurationBody</property>
@@ -119,14 +119,17 @@
     <pattern>\/aws\/vendedlogs\/[\.\-_/#A-Za-z0-9]+</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.OSIS.Model.EncryptionAtRestOptions.KmsKeyArn</property>
+    <min>7</min>
+    <max>2048</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.OSIS.Model.PipelineSummary.MaxUnits</property>
     <min>1</min>
-    <max>96</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.OSIS.Model.PipelineSummary.MinUnits</property>
     <min>1</min>
-    <max>96</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.OSIS.Model.PipelineSummary.PipelineArn</property>
@@ -151,5 +154,9 @@
     <min>0</min>
     <max>256</max>
     <pattern>.*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.OSIS.Model.VpcAttachmentOptions.CidrBlock</property>
+    <pattern>^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/(3[0-2]|[12]?[0-9])$</pattern>
   </property-value-rule>
 </property-value-rules>

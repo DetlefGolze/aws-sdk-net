@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -77,7 +78,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property SelectAllOptions. 
         /// <para>
-        /// The configuration of the <code>Select all</code> options in a list control.
+        /// The configuration of the <c>Select all</c> options in a list control.
         /// </para>
         /// </summary>
         public ListControlSelectAllOptions SelectAllOptions

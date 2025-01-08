@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAdditionalInferenceSpecifications())
@@ -159,6 +161,28 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     context.Writer.Write(publicRequest.ModelApprovalStatus);
                 }
 
+                if(publicRequest.IsSetModelCard())
+                {
+                    context.Writer.WritePropertyName("ModelCard");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ModelPackageModelCardMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.ModelCard, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetModelLifeCycle())
+                {
+                    context.Writer.WritePropertyName("ModelLifeCycle");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ModelLifeCycleMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.ModelLifeCycle, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetModelMetrics())
                 {
                     context.Writer.WritePropertyName("ModelMetrics");
@@ -194,6 +218,17 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     context.Writer.Write(publicRequest.SamplePayloadUrl);
                 }
 
+                if(publicRequest.IsSetSecurityConfig())
+                {
+                    context.Writer.WritePropertyName("SecurityConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ModelPackageSecurityConfigMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.SecurityConfig, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetSkipModelValidation())
                 {
                     context.Writer.WritePropertyName("SkipModelValidation");
@@ -209,6 +244,12 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     marshaller.Marshall(publicRequest.SourceAlgorithmSpecification, context);
 
                     context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetSourceUri())
+                {
+                    context.Writer.WritePropertyName("SourceUri");
+                    context.Writer.Write(publicRequest.SourceUri);
                 }
 
                 if(publicRequest.IsSetTags())

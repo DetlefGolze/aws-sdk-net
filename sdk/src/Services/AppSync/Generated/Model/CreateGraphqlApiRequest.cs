@@ -26,24 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateGraphqlApi operation.
-    /// Creates a <code>GraphqlApi</code> object.
+    /// Creates a <c>GraphqlApi</c> object.
     /// </summary>
     public partial class CreateGraphqlApiRequest : AmazonAppSyncRequest
     {
-        private List<AdditionalAuthenticationProvider> _additionalAuthenticationProviders = new List<AdditionalAuthenticationProvider>();
+        private List<AdditionalAuthenticationProvider> _additionalAuthenticationProviders = AWSConfigs.InitializeCollections ? new List<AdditionalAuthenticationProvider>() : null;
         private GraphQLApiType _apiType;
         private AuthenticationType _authenticationType;
+        private EnhancedMetricsConfig _enhancedMetricsConfig;
+        private GraphQLApiIntrospectionConfig _introspectionConfig;
         private LambdaAuthorizerConfig _lambdaAuthorizerConfig;
         private LogConfig _logConfig;
         private string _mergedApiExecutionRoleArn;
         private string _name;
         private OpenIDConnectConfig _openidConnectConfig;
         private string _ownerContact;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private int? _queryDepthLimit;
+        private int? _resolverCountLimit;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private UserPoolConfig _userPoolConfig;
         private GraphQLApiVisibility _visibility;
         private bool? _xrayEnabled;
@@ -51,7 +56,7 @@ namespace Amazon.AppSync.Model
         /// <summary>
         /// Gets and sets the property AdditionalAuthenticationProviders. 
         /// <para>
-        /// A list of additional authentication providers for the <code>GraphqlApi</code> API.
+        /// A list of additional authentication providers for the <c>GraphqlApi</c> API.
         /// </para>
         /// </summary>
         public List<AdditionalAuthenticationProvider> AdditionalAuthenticationProviders
@@ -63,14 +68,14 @@ namespace Amazon.AppSync.Model
         // Check to see if AdditionalAuthenticationProviders property is set
         internal bool IsSetAdditionalAuthenticationProviders()
         {
-            return this._additionalAuthenticationProviders != null && this._additionalAuthenticationProviders.Count > 0; 
+            return this._additionalAuthenticationProviders != null && (this._additionalAuthenticationProviders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ApiType. 
         /// <para>
-        /// The value that indicates whether the GraphQL API is a standard API (<code>GRAPHQL</code>)
-        /// or merged API (<code>MERGED</code>).
+        /// The value that indicates whether the GraphQL API is a standard API (<c>GRAPHQL</c>)
+        /// or merged API (<c>MERGED</c>).
         /// </para>
         /// </summary>
         public GraphQLApiType ApiType
@@ -103,6 +108,50 @@ namespace Amazon.AppSync.Model
         internal bool IsSetAuthenticationType()
         {
             return this._authenticationType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EnhancedMetricsConfig. 
+        /// <para>
+        /// The <c>enhancedMetricsConfig</c> object.
+        /// </para>
+        /// </summary>
+        public EnhancedMetricsConfig EnhancedMetricsConfig
+        {
+            get { return this._enhancedMetricsConfig; }
+            set { this._enhancedMetricsConfig = value; }
+        }
+
+        // Check to see if EnhancedMetricsConfig property is set
+        internal bool IsSetEnhancedMetricsConfig()
+        {
+            return this._enhancedMetricsConfig != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IntrospectionConfig. 
+        /// <para>
+        /// Sets the value of the GraphQL API to enable (<c>ENABLED</c>) or disable (<c>DISABLED</c>)
+        /// introspection. If no value is provided, the introspection configuration will be set
+        /// to <c>ENABLED</c> by default. This field will produce an error if the operation attempts
+        /// to use the introspection feature while this field is disabled.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about introspection, see <a href="https://graphql.org/learn/introspection/">GraphQL
+        /// introspection</a>.
+        /// </para>
+        /// </summary>
+        public GraphQLApiIntrospectionConfig IntrospectionConfig
+        {
+            get { return this._introspectionConfig; }
+            set { this._introspectionConfig = value; }
+        }
+
+        // Check to see if IntrospectionConfig property is set
+        internal bool IsSetIntrospectionConfig()
+        {
+            return this._introspectionConfig != null;
         }
 
         /// <summary>
@@ -146,8 +195,8 @@ namespace Amazon.AppSync.Model
         /// <para>
         /// The Identity and Access Management service role ARN for a merged API. The AppSync
         /// service assumes this role on behalf of the Merged API to validate access to source
-        /// APIs at runtime and to prompt the <code>AUTO_MERGE</code> to update the merged API
-        /// endpoint with the source API changes automatically.
+        /// APIs at runtime and to prompt the <c>AUTO_MERGE</c> to update the merged API endpoint
+        /// with the source API changes automatically.
         /// </para>
         /// </summary>
         public string MergedApiExecutionRoleArn
@@ -165,7 +214,7 @@ namespace Amazon.AppSync.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// A user-supplied name for the <code>GraphqlApi</code>.
+        /// A user-supplied name for the <c>GraphqlApi</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -222,9 +271,59 @@ namespace Amazon.AppSync.Model
         }
 
         /// <summary>
+        /// Gets and sets the property QueryDepthLimit. 
+        /// <para>
+        /// The maximum depth a query can have in a single request. Depth refers to the amount
+        /// of nested levels allowed in the body of query. The default value is <c>0</c> (or unspecified),
+        /// which indicates there's no depth limit. If you set a limit, it can be between <c>1</c>
+        /// and <c>75</c> nested levels. This field will produce a limit error if the operation
+        /// falls out of bounds.
+        /// </para>
+        ///  
+        /// <para>
+        /// Note that fields can still be set to nullable or non-nullable. If a non-nullable field
+        /// produces an error, the error will be thrown upwards to the first nullable field available.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=75)]
+        public int QueryDepthLimit
+        {
+            get { return this._queryDepthLimit.GetValueOrDefault(); }
+            set { this._queryDepthLimit = value; }
+        }
+
+        // Check to see if QueryDepthLimit property is set
+        internal bool IsSetQueryDepthLimit()
+        {
+            return this._queryDepthLimit.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ResolverCountLimit. 
+        /// <para>
+        /// The maximum number of resolvers that can be invoked in a single request. The default
+        /// value is <c>0</c> (or unspecified), which will set the limit to <c>10000</c>. When
+        /// specified, the limit value can be between <c>1</c> and <c>10000</c>. This field will
+        /// produce a limit error if the operation falls out of bounds.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=10000)]
+        public int ResolverCountLimit
+        {
+            get { return this._resolverCountLimit.GetValueOrDefault(); }
+            set { this._resolverCountLimit = value; }
+        }
+
+        // Check to see if ResolverCountLimit property is set
+        internal bool IsSetResolverCountLimit()
+        {
+            return this._resolverCountLimit.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// A <code>TagMap</code> object.
+        /// A <c>TagMap</c> object.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -237,7 +336,7 @@ namespace Amazon.AppSync.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -261,9 +360,9 @@ namespace Amazon.AppSync.Model
         /// <summary>
         /// Gets and sets the property Visibility. 
         /// <para>
-        /// Sets the value of the GraphQL API to public (<code>GLOBAL</code>) or private (<code>PRIVATE</code>).
-        /// If no value is provided, the visibility will be set to <code>GLOBAL</code> by default.
-        /// This value cannot be changed once the API has been created.
+        /// Sets the value of the GraphQL API to public (<c>GLOBAL</c>) or private (<c>PRIVATE</c>).
+        /// If no value is provided, the visibility will be set to <c>GLOBAL</c> by default. This
+        /// value cannot be changed once the API has been created.
         /// </para>
         /// </summary>
         public GraphQLApiVisibility Visibility
@@ -281,7 +380,7 @@ namespace Amazon.AppSync.Model
         /// <summary>
         /// Gets and sets the property XrayEnabled. 
         /// <para>
-        /// A flag indicating whether to use X-Ray tracing for the <code>GraphqlApi</code>.
+        /// A flag indicating whether to use X-Ray tracing for the <c>GraphqlApi</c>.
         /// </para>
         /// </summary>
         public bool XrayEnabled

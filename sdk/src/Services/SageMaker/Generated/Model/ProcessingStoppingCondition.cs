@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.SageMaker.Model
         /// Specifies the maximum runtime in seconds.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=604800)]
+        [AWSProperty(Required=true, Min=1, Max=777600)]
         public int MaxRuntimeInSeconds
         {
             get { return this._maxRuntimeInSeconds.GetValueOrDefault(); }

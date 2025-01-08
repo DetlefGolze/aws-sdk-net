@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EKS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -74,6 +75,12 @@ namespace Amazon.EKS.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.NodegroupName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("subscriptionId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.SubscriptionId = unmarshaller.Unmarshall(context);
                     continue;
                 }
             }

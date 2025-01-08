@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudHSMV2.Model
 {
     /// <summary>
-    /// Contains information about an AWS CloudHSM cluster.
+    /// Contains information about an CloudHSM cluster.
     /// </summary>
     public partial class Cluster
     {
@@ -38,15 +39,17 @@ namespace Amazon.CloudHSMV2.Model
         private Certificates _certificates;
         private string _clusterId;
         private DateTime? _createTimestamp;
-        private List<Hsm> _hsms = new List<Hsm>();
+        private List<Hsm> _hsms = AWSConfigs.InitializeCollections ? new List<Hsm>() : null;
         private string _hsmType;
+        private ClusterMode _mode;
+        private NetworkType _networkType;
         private string _preCoPassword;
         private string _securityGroup;
         private string _sourceBackupId;
         private ClusterState _state;
         private string _stateMessage;
-        private Dictionary<string, string> _subnetMapping = new Dictionary<string, string>();
-        private List<Tag> _tagList = new List<Tag>();
+        private Dictionary<string, string> _subnetMapping = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<Tag> _tagList = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _vpcId;
 
         /// <summary>
@@ -154,7 +157,7 @@ namespace Amazon.CloudHSMV2.Model
         // Check to see if Hsms property is set
         internal bool IsSetHsms()
         {
-            return this._hsms != null && this._hsms.Count > 0; 
+            return this._hsms != null && (this._hsms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -163,6 +166,7 @@ namespace Amazon.CloudHSMV2.Model
         /// The type of HSM that the cluster contains.
         /// </para>
         /// </summary>
+        [AWSProperty(Max=32)]
         public string HsmType
         {
             get { return this._hsmType; }
@@ -173,6 +177,51 @@ namespace Amazon.CloudHSMV2.Model
         internal bool IsSetHsmType()
         {
             return this._hsmType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Mode. 
+        /// <para>
+        /// The mode of the cluster.
+        /// </para>
+        /// </summary>
+        public ClusterMode Mode
+        {
+            get { return this._mode; }
+            set { this._mode = value; }
+        }
+
+        // Check to see if Mode property is set
+        internal bool IsSetMode()
+        {
+            return this._mode != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property NetworkType. 
+        /// <para>
+        /// The cluster's NetworkType can be set to either IPV4 (which is the default) or DUALSTACK.
+        /// When set to IPV4, communication between your application and the Hardware Security
+        /// Modules (HSMs) is restricted to the IPv4 protocol only. In contrast, the DUALSTACK
+        /// network type enables communication over both the IPv4 and IPv6 protocols. To use the
+        /// DUALSTACK option, you'll need to configure your Virtual Private Cloud (VPC) and subnets
+        /// to support both IPv4 and IPv6. This involves adding IPv6 Classless Inter-Domain Routing
+        /// (CIDR) blocks to the existing IPv4 CIDR blocks in your subnets. The choice between
+        /// IPV4 and DUALSTACK network types determines the flexibility of the network addressing
+        /// setup for your cluster. The DUALSTACK option provides more flexibility by allowing
+        /// both IPv4 and IPv6 communication.
+        /// </para>
+        /// </summary>
+        public NetworkType NetworkType
+        {
+            get { return this._networkType; }
+            set { this._networkType = value; }
+        }
+
+        // Check to see if NetworkType property is set
+        internal bool IsSetNetworkType()
+        {
+            return this._networkType != null;
         }
 
         /// <summary>
@@ -283,7 +332,7 @@ namespace Amazon.CloudHSMV2.Model
         // Check to see if SubnetMapping property is set
         internal bool IsSetSubnetMapping()
         {
-            return this._subnetMapping != null && this._subnetMapping.Count > 0; 
+            return this._subnetMapping != null && (this._subnetMapping.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -302,7 +351,7 @@ namespace Amazon.CloudHSMV2.Model
         // Check to see if TagList property is set
         internal bool IsSetTagList()
         {
-            return this._tagList != null && this._tagList.Count > 0; 
+            return this._tagList != null && (this._tagList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ACMPCA.Model
 {
     /// <summary>
@@ -33,8 +34,8 @@ namespace Amazon.ACMPCA.Model
     /// 
     ///  
     /// <para>
-    /// Extensions present in <code>CustomExtensions</code> follow the <code>ApiPassthrough</code>
-    /// <a href="https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html#template-order-of-operations">template
+    /// Extensions present in <c>CustomExtensions</c> follow the <c>ApiPassthrough</c> <a
+    /// href="https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html#template-order-of-operations">template
     /// rules</a>. 
     /// </para>
     /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -38,6 +39,7 @@ namespace Amazon.QuickSight.Model
         private string _dashboardId;
         private DateTime? _lastPublishedTime;
         private DateTime? _lastUpdatedTime;
+        private List<string> _linkEntities = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
         private DashboardVersion _version;
 
@@ -130,6 +132,25 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetLastUpdatedTime()
         {
             return this._lastUpdatedTime.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property LinkEntities. 
+        /// <para>
+        /// A list of analysis Amazon Resource Names (ARNs) to be linked to the dashboard.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=5)]
+        public List<string> LinkEntities
+        {
+            get { return this._linkEntities; }
+            set { this._linkEntities = value; }
+        }
+
+        // Check to see if LinkEntities property is set
+        internal bool IsSetLinkEntities()
+        {
+            return this._linkEntities != null && (this._linkEntities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

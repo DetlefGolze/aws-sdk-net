@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -33,9 +34,9 @@ namespace Amazon.Glue.Model
     /// </summary>
     public partial class Mapping
     {
-        private List<Mapping> _children = new List<Mapping>();
+        private List<Mapping> _children = AWSConfigs.InitializeCollections ? new List<Mapping>() : null;
         private bool? _dropped;
-        private List<string> _fromPath = new List<string>();
+        private List<string> _fromPath = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _fromType;
         private string _toKey;
         private string _toType;
@@ -44,9 +45,9 @@ namespace Amazon.Glue.Model
         /// Gets and sets the property Children. 
         /// <para>
         /// Only applicable to nested data structures. If you want to change the parent structure,
-        /// but also one of its children, you can fill out this data strucutre. It is also <code>Mapping</code>,
-        /// but its <code>FromPath</code> will be the parent's <code>FromPath</code> plus the
-        /// <code>FromPath</code> from this structure.
+        /// but also one of its children, you can fill out this data strucutre. It is also <c>Mapping</c>,
+        /// but its <c>FromPath</c> will be the parent's <c>FromPath</c> plus the <c>FromPath</c>
+        /// from this structure.
         /// </para>
         ///  
         /// <para>
@@ -54,19 +55,19 @@ namespace Amazon.Glue.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>{ "FromPath": "OuterStructure", "ToKey": "OuterStructure", "ToType": "Struct",
+        ///  <c>{ "FromPath": "OuterStructure", "ToKey": "OuterStructure", "ToType": "Struct",
         /// "Dropped": false, "Chidlren": [{ "FromPath": "inner", "ToKey": "inner", "ToType":
-        /// "Double", "Dropped": false, }] }</code> 
+        /// "Double", "Dropped": false, }] }</c> 
         /// </para>
         ///  
         /// <para>
-        /// You can specify a <code>Mapping</code> that looks like:
+        /// You can specify a <c>Mapping</c> that looks like:
         /// </para>
         ///  
         /// <para>
-        ///  <code>{ "FromPath": "OuterStructure", "ToKey": "OuterStructure", "ToType": "Struct",
+        ///  <c>{ "FromPath": "OuterStructure", "ToKey": "OuterStructure", "ToType": "Struct",
         /// "Dropped": false, "Chidlren": [{ "FromPath": "inner", "ToKey": "inner", "ToType":
-        /// "Double", "Dropped": false, }] }</code> 
+        /// "Double", "Dropped": false, }] }</c> 
         /// </para>
         /// </summary>
         public List<Mapping> Children
@@ -78,7 +79,7 @@ namespace Amazon.Glue.Model
         // Check to see if Children property is set
         internal bool IsSetChildren()
         {
-            return this._children != null && this._children.Count > 0; 
+            return this._children != null && (this._children.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -114,7 +115,7 @@ namespace Amazon.Glue.Model
         // Check to see if FromPath property is set
         internal bool IsSetFromPath()
         {
-            return this._fromPath != null && this._fromPath.Count > 0; 
+            return this._fromPath != null && (this._fromPath.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -139,7 +140,7 @@ namespace Amazon.Glue.Model
         /// Gets and sets the property ToKey. 
         /// <para>
         /// After the apply mapping, what the name of the column should be. Can be the same as
-        /// <code>FromPath</code>.
+        /// <c>FromPath</c>.
         /// </para>
         /// </summary>
         public string ToKey

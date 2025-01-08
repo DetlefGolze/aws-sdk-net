@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
@@ -38,6 +39,7 @@ namespace Amazon.Batch.Model
         private string _mountPath;
         private string _name;
         private bool? _readOnly;
+        private string _subPath;
 
         /// <summary>
         /// Gets and sets the property MountPath. 
@@ -78,8 +80,8 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property ReadOnly. 
         /// <para>
-        /// If this value is <code>true</code>, the container has read-only access to the volume.
-        /// Otherwise, the container can write to the volume. The default value is <code>false</code>.
+        /// If this value is <c>true</c>, the container has read-only access to the volume. Otherwise,
+        /// the container can write to the volume. The default value is <c>false</c>.
         /// </para>
         /// </summary>
         public bool ReadOnly
@@ -92,6 +94,24 @@ namespace Amazon.Batch.Model
         internal bool IsSetReadOnly()
         {
             return this._readOnly.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SubPath. 
+        /// <para>
+        /// A sub-path inside the referenced volume instead of its root.
+        /// </para>
+        /// </summary>
+        public string SubPath
+        {
+            get { return this._subPath; }
+            set { this._subPath = value; }
+        }
+
+        // Check to see if SubPath property is set
+        internal bool IsSetSubPath()
+        {
+            return this._subPath != null;
         }
 
     }
